@@ -162,22 +162,33 @@ test.describe("Entity file preview/download UX (Story 8.3 E2E)", () => {
     await preview.click();
     const link = row.getByTestId("file-preview-link");
     await expect(link).toBeVisible();
+    const firstIssuanceObservedAt = Date.now();
     // Drive only browser expiry; signing and refresh remain real server actions.
     await page.clock.fastForward(86_401_000);
     await expect(row.getByTestId("file-preview-expired")).toContainText("Länken har gått ut");
     await expect(link).toHaveCount(0);
     const reopen = row.getByTestId("file-preview-reopen");
     await expect(reopen).toBeVisible();
-    // Return browser wall time to the actual server clock before the new issuance.
-    await page.clock.setSystemTime(new Date());
+    // Cross an actual server issuance second so the new expiry schedules its timer.
+    await expect.poll(() => Date.now()).toBeGreaterThan(firstIssuanceObservedAt + 1_100);
+    // Fixed Date time lets timers advance without replaying a day-old cached tick.
+    // Both issuance calls remain real; no signer response or expiry is substituted.
+    await page.clock.setFixedTime(new Date());
     const refreshed = page.waitForResponse(response =>
       new URL(response.url()).pathname === `/customers/${fixture().crm.company.id}`
       && response.request().method() === "POST"
       && !!response.request().headers()["next-action"]);
     await reopen.click();
     expect((await refreshed).ok()).toBe(true);
+    await expect(reopen).toBeEnabled();
+    // Settle the new bounded timer with Date still at real issuance time, resetting
+    // the hook's cached tick after the earlier deliberate browser-only time jump.
+    await page.clock.fastForward(86_401_000);
     // Fresh full authorization issues a usable link; stale URLs stayed hidden.
     await expect(page.getByTestId("file-preview-link").first()).toBeVisible();
     await expect(row.getByTestId("file-preview-error")).toHaveCount(0);
+    const refreshedHref = await row.getByTestId("file-preview-link").getAttribute("href");
+    expect(refreshedHref).toMatch(/^https?:\/\//);
+    expect((await page.request.get(refreshedHref!)).ok()).toBe(true);
   });
 });

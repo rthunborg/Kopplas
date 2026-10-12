@@ -38,6 +38,8 @@ import path from "node:path";
 
 interface AdminFixture {
   readonly adminA: { readonly email: string; readonly password: string };
+  readonly crm: { readonly fileName: string };
+  readonly acceptedAcceptance: { readonly evidenceFileId: string };
 }
 
 function fixture(): AdminFixture {
@@ -124,13 +126,19 @@ test.describe("Limited Filer index scope guardrail (Story 8.5 E2E)", () => {
     const index = page.getByTestId("file-index");
     await expect(index).toBeVisible();
 
-    // The shared fixture has only a live customer file context. Categories derive
-    // from eligible rows, so the other six enrolled owners must not become empty facets.
+    // The current shared seed supplies customer, generated quote-PDF and acceptance
+    // evidence contexts. Verify those actual rows before their exact authorized facets;
+    // enrolled owners without eligible fixture files must not become empty options.
+    await expect(index.getByTestId("file-index-row").filter({ hasText: fixture().crm.fileName })).toHaveCount(1);
+    await expect(index.getByTestId("file-index-row").filter({ hasText: "offert-1002.pdf" })).toHaveCount(1);
+    await expect(index.locator(`input[name="file_id"][value="${fixture().acceptedAcceptance.evidenceFileId}"]`)).toHaveCount(1);
+    const fixtureLabels = ["Kund", "Offert", "Acceptans"];
     const filter = page.getByTestId("file-index-category-filter");
     await expect(filter).toBeVisible();
-    await expect(filter.locator("option")).toHaveText(["Alla kategorier", "Kund"]);
+    await expect(filter.locator("option")).toHaveText(["Alla kategorier", ...fixtureLabels]);
+    expect(await filter.locator("option").evaluateAll(options => options.map(option => (option as HTMLOptionElement).value))).toEqual(["", "customer", "quote_version", "quote_acceptance"]);
     await expect(filter.locator('option[value="customer"]')).toHaveCount(1);
-    for (const label of ALLOWED_CATEGORY_LABELS.filter(label => label !== "Kund")) {
+    for (const label of ALLOWED_CATEGORY_LABELS.filter(label => !fixtureLabels.includes(label))) {
       await expect(filter.locator("option").filter({ hasText: new RegExp(`^${label}$`) })).toHaveCount(0);
     }
     for (const option of await filter.locator("option").allTextContents()) {
