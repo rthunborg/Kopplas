@@ -9,47 +9,48 @@ spec_folder: null
 story_id: "20.1"
 branch: codex/parallel-documents-e20-readiness-2026-10-09-20-1
 status: running
-updated_at: "2026-10-12T12:13:17Z"
+updated_at: "2026-10-12T12:53:00Z"
 started_at: "2026-10-09T13:42:32Z"
 completed_at: null
-active_seconds: 4124
-timing_anchor: 1791807197
+active_seconds: 6507
+timing_anchor: 1791809580
 is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: build
-selected_role: build-delegate
+selected_phase: tea_per_story
+selected_role: tea-delegate
 selected_profile: standard
 selected_model: gpt-6.1-sol
 selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Retain High on sensitive source-authorization verification and recovered generation-2 signed-access integrity scope; no downgrade"
+escalation_reason: "Automatic sensitive-task escalation: security, transactional-integrity"
 routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Actual source authorization, tokens and transactional integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea-triage\",\"profile\":\"critical\",\"role\":\"test-risk classifier\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Source authorization and transactional race acceptance tests\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"testarch-atdd\",\"profile\":\"critical\",\"role\":\"acceptance test author\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Actual source authorization, HMAC/signing, SQL locks and audit integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Retain High on sensitive source-authorization verification and recovered generation-2 signed-access integrity scope; no downgrade\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: security, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: "Current source/membership authorization, HMAC and RPC ACLs, migration/audit integrity and revocation/parent concurrency races"
 epic_story_count: 3
 stories_after_in_epic: 2
-completed_phases: [0, 1, 3, 4]
+completed_phases: [0, 1, 3, 4, 5]
 spec_path: "C:\\Users\\Rasmus\\.codex\\worktrees\\documents-e20-20-1\\Kopplas\\_bmad-output\\implementation-artifacts\\spec-20-1-documents-activation-and-source-authorized-aggregation.md"
 spec_approved: true
 build:
-  status: blocked
-  blocking_condition: implementation verification failed
-  followup_review_recommended: true
+  status: done
+  blocking_condition: null
+  followup_review_recommended: false
   review_loop_iteration: 3
   deferred_count: 0
   warnings: [oversized]
 followup_passes: 0
 hitl_halt: null
-review_unverified: true
+review_unverified: false
 story_trace: null
 legacy_review_resume: false
 legacy_review_iteration: null
@@ -57,7 +58,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [477435ddf9e4a9894db82b2f1831634eaabefae3, "29258906", e07d55ee2c62dd921874fbbdede74b67a0cdd24d, f5a322e73313d4325b0a25d6cabe38bfe752b441, 72d55b06964dfa10f543b155acc3597ea4d0a452, cc034649e43d3a5e970ae96ac5cc1b77c2aacbb9]
+commits: [477435ddf9e4a9894db82b2f1831634eaabefae3, "29258906", e07d55ee2c62dd921874fbbdede74b67a0cdd24d, f5a322e73313d4325b0a25d6cabe38bfe752b441, 72d55b06964dfa10f543b155acc3597ea4d0a452, cc034649e43d3a5e970ae96ac5cc1b77c2aacbb9, cbe4b27f094c393c71ffdba50de854cd37a57c5f, 48bfe590bbc17b53bb3237364347871fdf9950b8, 20df41607096ad8f4d98229cb8690ebbba34bb60, 02db9e2f389f1ab95e55f7d52dcadf74bd44166f]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -82,10 +83,7 @@ merge_commit: null
 branch_deleted: false
 open_questions: []
 deferred_work: []
-blockers:
-  - "Implementation verification failed: four required unassigned paths; pinned protocol has no supported claim amendment."
-  - "Required unit gate: 2429 passed, 2 failed, 1 skipped; required shared browser gate unexecuted."
-  - "TEA Phase 6 and Phase 7 remain pending; Phase 5 is not complete."
+blockers: []
 overrides:
   parallel_worker: true
   no_aggregate_writes: true
@@ -102,7 +100,7 @@ overrides:
   review_cap: "No fourth broad pass; narrow regressions and unresolved serious findings only"
   tested_revision: cc034649e43d3a5e970ae96ac5cc1b77c2aacbb9
   production_build_revision: 72d55b06964dfa10f543b155acc3597ea4d0a452
-  pending_writers: 1
+  pending_writers: 0
   pending_delegate_resource_users: 0
   guard_stop_requests: "accepted; stop_requested, verified=false; saved state preserved"
   successful_submit: false
@@ -111,5 +109,11 @@ overrides:
   submission_base_sha: e2de5902d9e83f4c0fb132a5db274a575168bfe7
   supported_amendment_request_id: documents20-1-four-paths-20261012
   previous_block_resolved_by: "Supported amend-blocked applied by coordinator from separate reviewed tooling checkout; workflow unchanged"
+  phase5_manifest: "C:/Users/Rasmus/AppData/Local/Temp/kopplas-20-1-author-gen2-20261012-02db9e2f/final-manifest.json"
+  generation2_review_manifest: "C:/Users/Rasmus/AppData/Local/Temp/kopplas-documents20-1-gen2-review-792d0b1b-d9bd-4a25-befd-8ccb3f64c8f2/review-manifest.json"
+  generation2_resource_status: Own guard resources active for remaining mandatory verification
+  phase5_runtime_build_sha: 48bfe590bbc17b53bb3237364347871fdf9950b8
+  phase5_browser_sha: 02db9e2f389f1ab95e55f7d52dcadf74bd44166f
+  scope_block_resolved: true
 constraints: []
 parallel_run_id: documents-e20-readiness-2026-10-09
