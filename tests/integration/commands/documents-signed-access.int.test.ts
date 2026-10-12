@@ -26,6 +26,7 @@ let a: TestServerClient;
 let own: { fileId: string; linkId: string; customerId: string; path: string };
 let foreign: typeof own;
 let allSources: Record<string, typeof own>;
+let sourceIds: Record<string, string>;
 
 async function seed(tenantId: string) {
   const customerId = await adminInsertCustomer({ tenant_id: tenantId, customer_type: "company", display_name: "Selected source" });
@@ -42,15 +43,17 @@ async function seedOtherSources() {
   const calculation = await adminInsertCalculation({ tenant_id: tenant, customer_id: own.customerId });
   const quote = await adminInsertQuote({ tenant_id: tenant, customer_id: own.customerId });
   const version = await adminInsertQuoteVersion({ tenant_id: tenant, quote_id: quote, calculation_id: calculation, status: "sent", accepted_price_ore: 125000 });
-  const acceptance = await adminInsertQuoteAcceptance({ tenant_id: tenant, quote_id: quote, quote_version_id: version });
+  const capturedEvidence = await adminInsertFile({ tenant_id: tenant, lifecycle_state: "linked", display_name: "quote_acceptance-signed.pdf" });
+  const acceptance = await adminInsertQuoteAcceptance({ tenant_id: tenant, quote_id: quote, quote_version_id: version, evidence_file_id: capturedEvidence });
   const job = await adminInsertJob({ tenant_id: tenant, customer_id: own.customerId, quote_version_id: version, quote_acceptance_id: acceptance });
+  sourceIds = { customer: own.customerId, facility, contact, calculation, quote, quote_version: version, quote_acceptance: acceptance, job };
   const sources: Record<string, typeof own> = { customer: own };
   for (const [ownerType, ownerId, purpose] of [
     ["facility", facility, "crm_document"], ["contact", contact, "crm_document"],
     ["calculation", calculation, "calculation_attachment"], ["quote_version", version, "quote_attachment_snapshot"],
     ["quote_acceptance", acceptance, "acceptance_evidence"], ["job", job, "job_evidence"],
   ] as const) {
-    const fileId = await adminInsertFile({ tenant_id: tenant, lifecycle_state: "linked", display_name: `${ownerType}-signed.pdf` });
+    const fileId = ownerType === "quote_acceptance" ? capturedEvidence : await adminInsertFile({ tenant_id: tenant, lifecycle_state: "linked", display_name: `${ownerType}-signed.pdf` });
     const linkId = await adminInsertFileLink({ tenant_id: tenant, file_id: fileId, owner_type: ownerType, owner_id: ownerId, purpose });
     if (ownerType === "quote_version") await adminInsertQuoteVersionAttachment({ tenant_id: tenant, quote_version_id: version, file_id: fileId });
     const [file] = await adminQuery<{ object_path: string }>("select object_path from public.files where id=$1", [fileId]);
@@ -104,6 +107,31 @@ function fault(client: TestServerClient, stage: "storage" | "prepare" | "finaliz
     },
   });
 }
+
+async function seedPdf() {
+  const tenant = fx!.base.tenantA.id;
+  const calculationId = await adminInsertCalculation({ tenant_id: tenant, customer_id: own.customerId });
+  const quoteId = await adminInsertQuote({ tenant_id: tenant, customer_id: own.customerId });
+  // Arrange completed fixture bytes through the real one-insert reservation state.
+  // A linked quote_pdf cannot receive a new Storage INSERT under the immutable-byte guard.
+  const fileId = await adminInsertFile({ tenant_id: tenant, display_name: "generated-artifact.pdf", artifact_kind: "quote_pdf", lifecycle_state: "draft" });
+  const [file] = await adminQuery<{ object_path: string }>("select object_path from public.files where id=$1", [fileId]);
+  await adminUploadStorageObject({ bucket: "tenant-files", objectPath: file.object_path, body: new TextEncoder().encode("pdf-artifact") });
+  await adminExec("update public.files set lifecycle_state='linked' where id=$1", [fileId]);
+  const versionId = await adminInsertQuoteVersion({ tenant_id: tenant, quote_id: quoteId, calculation_id: calculationId, pdf_status: "generated", pdf_file_id: fileId, pdf_generated_at: new Date().toISOString() });
+  const linkId = await adminInsertFileLink({ tenant_id: tenant, file_id: fileId, owner_type: "quote_version", owner_id: versionId, purpose: "quote_pdf" });
+  return { ...own, fileId, linkId, path: file.object_path, calculationId, quoteId, versionId };
+}
+async function assertSelectedDenied(context: typeof own, correlation = crypto.randomUUID()) {
+  const result = await access(a, context, correlation);
+  expect(result.ok).toBe(false); noUrl(result);
+  const prepared = await a.rpc(PREPARE, prepareArgs(crypto.randomUUID(), context));
+  expect(prepared.data).toBeNull(); expect(prepared.error).not.toBeNull();
+  const list = await readDocuments({ client: a }); expect(list.ok).toBe(true);
+  if (list.ok) expect(list.data.descriptor.data.rows.some((row: { linkId: string }) => row.linkId === context.linkId)).toBe(false);
+  expect(await adminSelectAuditEvents({ correlationId: correlation })).toEqual([]);
+}
+
 beforeAll(async () => {
   if (!(await isLocalStackReachable()) || !(await isLocalStorageReachable())) throw new Error("Documents ATDD requires local DB/Auth/Storage; runtime pending until provisioned");
   fx = await createRoleAwarePhaseAFixture(); a = await makeAuthedServerClient(fx.base.adminA);
@@ -211,10 +239,10 @@ describe("Documents20.1 selected-link checked access", () => {
     expect(await adminSelectAuditEvents({ correlationId: args.p_correlation_id })).toEqual([]);
     expect(await adminSelectAuditEvents({ correlationId: changed.p_correlation_id })).toEqual([]);
   });
-  it("[P0] generic File proof and wrong Documents key domain cannot substitute", async () => {
+  it("[P0] generic File, quote and wrong Documents key domain proofs cannot substitute", async () => {
     const { args } = await proof();
     const generic = signFileSignedAccessAttestation({ tenantId: args.p_tenant_id, actorUserId: args.p_actor_user_id, fileId: args.p_file_id, bucketId: args.p_bucket_id, objectPath: args.p_object_path, correlationId: args.p_correlation_id, signedUrlSha256: args.p_signed_url_sha256, signedUrlExpiresAt: args.p_signed_url_expires_at, keyId: args.p_attestation_key_id, issuedAt: args.p_attestation_issued_at, expiresAt: args.p_attestation_expires_at }, LOCAL_TEST_QUOTE_PDF_SECRET);
-    for (const supplied of [generic, signature(args, undefined, "elpro.file-signed-access.audit-key.v1")]) {
+    for (const supplied of [generic, signature(args, undefined, "elpro.file-signed-access.audit-key.v1"), signature(args, "elpro.quote-pdf.audit-attestation.v1")]) {
       const result = await a.rpc(FINALIZE, { ...args, p_attestation_signature: supplied });
       expect(result.error?.code).toBe("FSA10"); expect(result.data).toBeNull();
     }
@@ -239,27 +267,132 @@ describe("Documents20.1 selected-link checked access", () => {
     for (const row of rows) expect(row.allowed).toBe([PREPARE, FINALIZE].includes(row.proname) && row.role === "authenticated");
     expect((await admin().rpc(PREPARE, prepareArgs())).error).not.toBeNull();
   });
-  it("[P0] quote-PDF artifact cannot masquerade as CRM content while its exact generated link remains eligible", async () => {
+
+  it.each([
+    ["customer", "customers"], ["facility", "facilities"], ["contact", "contacts"],
+    ["calculation", "calculations"], ["quote_version", "quote_versions"],
+    ["quote_acceptance", "quote_acceptances"], ["job", "jobs"],
+  ])("[P0] archiving %s after successful prepare denies finalization and removes the selected row", async (source, table) => {
+    const context = allSources[source]; const { args } = await proof(crypto.randomUUID(), context);
+    await adminExec(`update public.${table} set archived_at=now() where id=$1`, [sourceIds[source]]);
+    try {
+      const result = await a.rpc(FINALIZE, args);
+      expect(result.error?.code).toBe("FSA10"); expect(result.data).toBeNull();
+      expect(await adminSelectAuditEvents({ correlationId: args.p_correlation_id })).toEqual([]);
+      await assertSelectedDenied(context);
+    } finally { await adminExec(`update public.${table} set archived_at=null where id=$1`, [sourceIds[source]]); }
+  });
+  it.each([
+    ["facility", "customer", "customers"], ["contact", "customer", "customers"],
+    ["contact", "facility", "facilities"], ["quote_version", "quote", "quotes"],
+    ["quote_acceptance", "quote", "quotes"], ["quote_acceptance", "quote_version", "quote_versions"],
+  ])("[P0] %s loses authority when required %s disappears after prepare", async (source, parent, table) => {
+    const context = allSources[source]; const { args } = await proof(crypto.randomUUID(), context);
+    await adminExec(`update public.${table} set archived_at=now() where id=$1`, [sourceIds[parent]]);
+    try {
+      const result = await a.rpc(FINALIZE, args);
+      expect(result.error?.code).toBe("FSA10"); expect(result.data).toBeNull();
+      expect(await adminSelectAuditEvents({ correlationId: args.p_correlation_id })).toEqual([]);
+      await assertSelectedDenied(context);
+    } finally { await adminExec(`update public.${table} set archived_at=null where id=$1`, [sourceIds[parent]]); }
+  });
+  it.each(["calculation", "job"])("[P0] %s access does not invent live CRM-parent authority", async (source) => {
+    await adminExec("update public.customers set archived_at=now() where id=$1", [own.customerId]);
+    try {
+      const correlation = crypto.randomUUID();
+      const result = await access(a, allSources[source], correlation);
+      expect(result.ok).toBe(true);
+      if (!result.ok) throw new Error(result.code);
+      expect(result.data).toMatchObject({ linkId: allSources[source].linkId, targetId: allSources[source].fileId });
+      expect(await adminSelectAuditEvents({ correlationId: correlation })).toHaveLength(1);
+    } finally { await adminExec("update public.customers set archived_at=null where id=$1", [own.customerId]); }
+  });
+  it("[P0] a live quote snapshot link without the exact frozen attachment association is unavailable", async () => {
     const tenant = fx!.base.tenantA.id;
-    const calculation = await adminInsertCalculation({ tenant_id: tenant, customer_id: own.customerId });
-    const quote = await adminInsertQuote({ tenant_id: tenant, customer_id: own.customerId });
-    const fileId = await adminInsertFile({ tenant_id: tenant, display_name: "artifact.pdf", artifact_kind: "quote_pdf", lifecycle_state: "linked" });
-    const version = await adminInsertQuoteVersion({ tenant_id: tenant, quote_id: quote, calculation_id: calculation, pdf_status: "generated", pdf_file_id: fileId, pdf_generated_at: new Date().toISOString() });
-    const valid = await adminInsertFileLink({ tenant_id: tenant, file_id: fileId, owner_type: "quote_version", owner_id: version, purpose: "quote_pdf" });
+    const fileId = await adminInsertFile({ tenant_id: tenant, lifecycle_state: "linked" });
+    const linkId = await adminInsertFileLink({ tenant_id: tenant, file_id: fileId, owner_type: "quote_version", owner_id: sourceIds.quote_version, purpose: "quote_attachment_snapshot" });
     const [file] = await adminQuery<{ object_path: string }>("select object_path from public.files where id=$1", [fileId]);
-    await adminUploadStorageObject({ bucket: "tenant-files", objectPath: file.object_path, body: new TextEncoder().encode("pdf-artifact") });
-    const added = await a.rpc("link_file_with_audit", { p_tenant_id: tenant, p_actor_user_id: fx!.base.adminA.id, p_correlation_id: crypto.randomUUID(), p_file_id: fileId, p_owner_type: "customer", p_owner_id: own.customerId, p_purpose: "crm_document" });
+    await adminUploadStorageObject({ bucket: "tenant-files", objectPath: file.object_path, body: new TextEncoder().encode("unassociated-snapshot") });
+    await assertSelectedDenied({ ...own, fileId, linkId, path: file.object_path });
+  });
+  it.each(["source", "link"])("[P0] hard-deleted selected %s after prepare cannot finalize or return a new URL", async (target) => {
+    const context = await seed(fx!.base.tenantA.id); const { args } = await proof(crypto.randomUUID(), context);
+    if (target === "source") await adminExec("delete from public.customers where id=$1", [context.customerId]);
+    else await adminExec("delete from public.file_links where id=$1", [context.linkId]);
+    const result = await a.rpc(FINALIZE, args);
+    expect(result.error?.code).toBe("42501"); expect(result.data).toBeNull();
+    expect(await adminSelectAuditEvents({ correlationId: args.p_correlation_id })).toEqual([]);
+    await assertSelectedDenied(context);
+  });
+  it("[P0] membership disable committed between remote signing and finalize withholds the minted URL", async () => {
+    const correlation = crypto.randomUUID();
+    const client = new Proxy(a, { get(target, key, receiver) {
+      if (key === "rpc") return async (name: string, args: Record<string, unknown>) => {
+        if (name === FINALIZE) await adminExec("update public.tenant_memberships set status='disabled' where tenant_id=$1 and user_id=$2", [fx!.base.tenantA.id, fx!.base.adminA.id]);
+        return target.rpc(name, args);
+      };
+      const value = Reflect.get(target, key, receiver) as unknown;
+      return typeof value === "function" ? value.bind(target) : value;
+    } });
+    try {
+      const result = await access(client, own, correlation);
+      expect(result.ok).toBe(false); noUrl(result);
+      if (!result.ok) expect(result.code).toBe("TENANT_ACCESS_DENIED");
+      expect(await adminSelectAuditEvents({ correlationId: correlation })).toEqual([]);
+    } finally { await adminExec("update public.tenant_memberships set status='active' where tenant_id=$1 and user_id=$2", [fx!.base.tenantA.id, fx!.base.adminA.id]); }
+  });
+  it.each(["wrong-current-file", "not-generated"])("[P0] quote PDF %s association is denied even with live file/link/parents", async (mutation) => {
+    const context = await seedPdf(); const { args } = await proof(crypto.randomUUID(), context);
+    if (mutation === "wrong-current-file") {
+      const otherFile = await adminInsertFile({ tenant_id: fx!.base.tenantA.id, artifact_kind: "quote_pdf", lifecycle_state: "linked" });
+      await adminExec("update public.quote_versions set pdf_file_id=$2 where id=$1", [context.versionId, otherFile]);
+    } else await adminExec("update public.quote_versions set pdf_status='not_generated',pdf_file_id=null,pdf_generated_at=null where id=$1", [context.versionId]);
+    const [stored] = await adminQuery<{ archived_at: string | null; lifecycle_state: string }>("select archived_at,lifecycle_state from public.files where id=$1", [context.fileId]);
+    expect(stored).toMatchObject({ archived_at: null, lifecycle_state: "linked" });
+    const result = await a.rpc(FINALIZE, args);
+    expect(result.error?.code).toBe("FSA10"); expect(result.data).toBeNull();
+    expect(await adminSelectAuditEvents({ correlationId: args.p_correlation_id })).toEqual([]);
+    await assertSelectedDenied(context);
+  });
+  it("[P0] a real customer-visible quote edit invalidates its PDF and prepared Documents proof", async () => {
+    const context = await seedPdf(); const { args } = await proof(crypto.randomUUID(), context);
+    await adminExec("update public.quote_versions set intro_text='Changed customer-visible content' where id=$1", [context.versionId]);
+    const [version] = await adminQuery<{ pdf_status: string; pdf_file_id: string | null }>("select pdf_status,pdf_file_id from public.quote_versions where id=$1", [context.versionId]);
+    expect(version).toEqual({ pdf_status: "not_generated", pdf_file_id: null });
+    const [file] = await adminQuery<{ lifecycle_state: string; archived_at: string | null }>("select lifecycle_state,archived_at from public.files where id=$1", [context.fileId]);
+    expect(file.lifecycle_state).toBe("archived"); expect(file.archived_at).not.toBeNull();
+    const result = await a.rpc(FINALIZE, args); expect(result.error?.code).toBe("FSA10"); expect(result.data).toBeNull();
+    expect(await adminSelectAuditEvents({ correlationId: args.p_correlation_id })).toEqual([]);
+    await assertSelectedDenied(context);
+  });
+  it.each(["", "a".repeat(63), "g".repeat(64)])("[P0] malformed proof signature %s produces no audit", async (malformed) => {
+    const { args } = await proof();
+    const result = await a.rpc(FINALIZE, { ...args, p_attestation_signature: malformed });
+    expect(result.error?.code).toBe("FSA10"); expect(result.data).toBeNull();
+    expect(await adminSelectAuditEvents({ correlationId: args.p_correlation_id })).toEqual([]);
+  });
+  it.each(["expired-url", "over-ceiling-url", "noncanonical-time"])("[P0] validly signed %s proof fails DB expiry/format validation", async (state) => {
+    const { args } = await proof(); const changed = { ...args };
+    if (state === "noncanonical-time") changed.p_attestation_issued_at = args.p_attestation_issued_at.replace(/\.\d{3}Z$/, "Z");
+    else changed.p_signed_url_expires_at = new Date(Date.parse(args.p_attestation_issued_at) + (state === "expired-url" ? -1_000 : 86_461_000)).toISOString();
+    changed.p_attestation_signature = signature(changed);
+    const result = await a.rpc(FINALIZE, changed); expect(result.error?.code).toBe("FSA10"); expect(result.data).toBeNull();
+    expect(await adminSelectAuditEvents({ correlationId: args.p_correlation_id })).toEqual([]);
+  });
+  it.each(["customer", "calculation"] as const)("[P0] quote-PDF artifact cannot masquerade as %s content while its exact generated link remains eligible", async (ownerType) => {
+    const tenant = fx!.base.tenantA.id;
+    const pdf = await seedPdf(); const { fileId, linkId: valid } = pdf;
+    const ownerId = ownerType === "customer" ? own.customerId : pdf.calculationId;
+    const purpose = ownerType === "customer" ? "crm_document" : "calculation_attachment";
+    const added = await a.rpc("link_file_with_audit", { p_tenant_id: tenant, p_actor_user_id: fx!.base.adminA.id, p_correlation_id: crypto.randomUUID(), p_file_id: fileId, p_owner_type: ownerType, p_owner_id: ownerId, p_purpose: purpose });
     expect(added.error).toBeNull(); expect(typeof added.data).toBe("string");
-    const adversarial = { ...own, fileId, linkId: added.data as string, path: file.object_path };
-    const list = await readDocuments({ client: a }); expect(list.ok).toBe(true);
-    if (list.ok) { expect(list.data.descriptor.data.rows.some((row: { linkId: string }) => row.linkId === adversarial.linkId)).toBe(false); expect(list.data.descriptor.data.rows.some((row: { linkId: string }) => row.linkId === valid)).toBe(true); }
-    const prepare = await a.rpc(PREPARE, prepareArgs(crypto.randomUUID(), adversarial)); expect(prepare.error).not.toBeNull(); expect(prepare.data).toBeNull();
-    const denied = await access(a, adversarial); expect(denied.ok).toBe(false); noUrl(denied);
-    const legitimate = { ...adversarial, linkId: valid }; expect((await access(a, legitimate)).ok).toBe(true);
+    const adversarial = { ...pdf, linkId: added.data as string };
+    await assertSelectedDenied(adversarial);
+    const legitimate = { ...pdf, linkId: valid }; expect((await access(a, legitimate)).ok).toBe(true);
     const { args } = await proof(crypto.randomUUID(), legitimate);
-    const forged: Record<string, string> = { ...args, p_link_id: adversarial.linkId, p_owner_type: "customer", p_owner_id: own.customerId, p_purpose: "crm_document" };
+    const forged: Record<string, string> = { ...args, p_link_id: adversarial.linkId, p_owner_type: ownerType, p_owner_id: ownerId, p_purpose: purpose };
     forged.p_attestation_signature = signature(forged);
-    expect((await a.rpc(FINALIZE, forged)).error).not.toBeNull();
+    const result = await a.rpc(FINALIZE, forged); expect(result.error?.code).toBe("FSA10"); expect(result.data).toBeNull();
     expect(await adminSelectAuditEvents({ correlationId: args.p_correlation_id })).toEqual([]);
   });
 });

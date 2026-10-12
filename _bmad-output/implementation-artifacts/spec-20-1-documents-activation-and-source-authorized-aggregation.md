@@ -1,5 +1,5 @@
 ---
-status: ready-for-dev
+status: in-progress
 type: feature
 created: "2026-10-08"
 review_loop_iteration: 0
@@ -11,7 +11,7 @@ canonical_story_key: "20-1-documents-activation-and-source-authorized-aggregatio
 epic: E20
 title: Documents activation, source-authorized aggregation and minimal destination
 base_sha: a9d5269e0e3762255e1cc992bb2465883508dc21
-baseline_revision: a9d5269e0e3762255e1cc992bb2465883508dc21
+baseline_revision: 477435ddf9e4a9894db82b2f1831634eaabefae3
 branch: codex/documents-oracle-disposition-readiness
 implementation_authorized: false
 readiness_review: accepted-targeted-high

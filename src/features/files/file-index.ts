@@ -29,6 +29,10 @@ export interface FileIndexRow {
   readonly sizeBytes: number | null;
   readonly ownerCategory: string;
   readonly createdAt: string;
+  readonly ownerLabel?: string;
+  readonly purpose?: string;
+  readonly lifecycleState?: string;
+  readonly locked?: boolean;
 }
 
 /**

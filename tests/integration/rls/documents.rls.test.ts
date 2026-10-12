@@ -32,7 +32,8 @@ async function seed(tenantId: string) {
   const calculation = await adminInsertCalculation({ tenant_id: tenantId, customer_id: customer, title: "Fixture calculation" });
   const quote = await adminInsertQuote({ tenant_id: tenantId, customer_id: customer });
   const version = await adminInsertQuoteVersion({ tenant_id: tenantId, quote_id: quote, calculation_id: calculation, status: "sent", accepted_price_ore: 125000 });
-  const acceptance = await adminInsertQuoteAcceptance({ tenant_id: tenantId, quote_id: quote, quote_version_id: version });
+  const capturedEvidence = await adminInsertFile({ tenant_id: tenantId, display_name: "quote_acceptance.pdf", lifecycle_state: "linked", mime_type: "application/pdf", size_bytes: 13 });
+  const acceptance = await adminInsertQuoteAcceptance({ tenant_id: tenantId, quote_id: quote, quote_version_id: version, evidence_file_id: capturedEvidence });
   const job = await adminInsertJob({ tenant_id: tenantId, customer_id: customer, quote_version_id: version, quote_acceptance_id: acceptance, title: "Fixture job" });
   const pairs = [
     ["customer", customer, "crm_document"], ["facility", facility, "crm_document"],
@@ -42,7 +43,7 @@ async function seed(tenantId: string) {
   ] as const;
   const rows: Context[] = [];
   for (const [ownerType, ownerId, purpose] of pairs) {
-    const fileId = await adminInsertFile({ tenant_id: tenantId, display_name: `${ownerType}.pdf`, lifecycle_state: "linked", mime_type: "application/pdf", size_bytes: 13 });
+    const fileId = ownerType === "quote_acceptance" ? capturedEvidence : await adminInsertFile({ tenant_id: tenantId, display_name: `${ownerType}.pdf`, lifecycle_state: "linked", mime_type: "application/pdf", size_bytes: 13 });
     const linkId = await adminInsertFileLink({ tenant_id: tenantId, file_id: fileId, owner_type: ownerType, owner_id: ownerId, purpose });
     if (ownerType === "quote_version") await adminInsertQuoteVersionAttachment({ tenant_id: tenantId, quote_version_id: version, file_id: fileId });
     const [file] = await adminQuery<{ object_path: string }>("select object_path from public.files where id=$1", [fileId]);

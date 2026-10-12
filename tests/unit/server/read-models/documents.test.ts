@@ -265,3 +265,16 @@ test("[P0] 20-P0-02 refresh re-resolves membership and never reuses a previous s
 
 
 
+
+test("[P0] opaque page cursor tampering cannot select a hidden traversal anchor", async () => {
+  const read = await reader(); const rows = Array.from({ length: 60 }, (_, i) => candidate(uid(900-i)));
+  const cursor = success(await read(deps(rows))).nextCursor!;
+  const changed = cursor.slice(0, 40) + (cursor[40] === "A" ? "B" : "A") + cursor.slice(41);
+  unavailable(await read(deps(rows, { cursor: changed })), "SERVER_ERROR");
+});
+test("[P0] page cursor cannot cross a newly resolved tenant or actor", async () => {
+  const read = await reader(); const rows = Array.from({ length: 60 }, (_, i) => candidate(uid(900-i)));
+  const cursor = success(await read(deps(rows))).nextCursor!;
+  unavailable(await read(deps(rows, { cursor, resolveContext: async () => context(["tenant_admin"], uid(999)) })));
+  unavailable(await read(deps(rows, { cursor, resolveContext: async () => ({ ...context(), data: { ...context().data, userId: uid(999) } }) })));
+});

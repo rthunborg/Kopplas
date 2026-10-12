@@ -1,12 +1,13 @@
 /**
  * Documents 20.1 / 20-P1-11: active acceptance tests against the production app.
  * No route fulfillment or synthetic success responses: login, upload, signing and
- * opening all use the real application and local fixture. These tests have not run.
+ * opening all use the real application and local fixture, with guarded CDP attachment.
  * Existing Swedish labels/test IDs below are source-derived, unobserved selectors.
  * The Dokument heading/nav and download label are provisional AC1/AC9 contracts.
  * Exhaustive source/RLS/proof/race matrices belong to the integration suites.
  */
-import { test, expect, type Locator, type Page } from "@playwright/test";
+import type { Locator, Page } from "@playwright/test";
+import { test, expect } from "../dashboard/guarded-test";
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import { adminQuery, closeAdminPool } from "../../factories/admin-sql";
@@ -90,8 +91,8 @@ async function upload(page: Page, name: string, mimeType: string, body: string):
   await waitForHydrated(entry);
   await entry.click();
   const form = page.getByTestId("file-index-upload-form");
-  await form.getByLabel("Koppla till", { exact: true }).selectOption("customer");
-  await form.getByLabel("Kund", { exact: true }).selectOption(fixture().crm.company.id);
+  await form.getByTestId("file-index-upload-owner-type").selectOption("customer");
+  await form.getByTestId("file-index-upload-owner").selectOption(fixture().crm.company.id);
   await form.getByLabel("Välj en fil att ladda upp", { exact: true }).setInputFiles({
     name, mimeType, buffer: Buffer.from(body),
   });
@@ -147,7 +148,7 @@ for (const viewport of [
         await expect(page.getByTestId("file-index")).toHaveCount(0);
         await expect(page.getByTestId("file-index-row")).toHaveCount(0);
         await expect(page.getByRole("button", { name: /förhandsgranska|ladda upp fil/i })).toHaveCount(0);
-        await expect(page.getByRole("main")).not.toContainText(fixture().crm.fileName);
+        await expect(page.locator("#main-content")).not.toContainText(fixture().crm.fileName);
       });
     }
 
@@ -224,7 +225,7 @@ for (const viewport of [
       await waitForHydrated(search);
       await search.fill(data.crm.fileName);
       await expect(page.getByTestId("file-index-row")).toHaveCount(1);
-      await page.getByLabel("Kategori", { exact: true }).selectOption("customer");
+      await page.getByTestId("file-index-category-filter").selectOption("customer");
       await expect(documentRow(page, data.crm.fileName)).toHaveCount(1);
       await search.fill("application/pdf");
       await expect(documentRow(page, data.crm.fileName)).toHaveCount(1);
@@ -249,7 +250,7 @@ for (const viewport of [
       await expect(form.getByRole("alert")).toBeVisible();
       await expect(form.getByRole("status")).toHaveCount(0);
       await expect(documentRow(page, name)).toHaveCount(0);
-      await form.getByLabel("Kund", { exact: true }).selectOption(data.crm.company.id);
+      await form.getByTestId("file-index-upload-owner").selectOption(data.crm.company.id);
       await form.getByRole("button", { name: "Ladda upp fil", exact: true }).click();
       await expect(form.getByRole("status")).toContainText("Filen laddades upp");
       await expect(documentRow(page, name)).toHaveCount(1);
@@ -295,10 +296,11 @@ for (const viewport of [
         await expect(row.getByRole("link", { name: /tidsbegränsad länk/i })).toHaveCount(0);
         await page.reload();
         await expect(page.getByTestId("file-index")).toHaveCount(0);
-        await expect(page.getByRole("main")).not.toContainText(data.crm.fileName);
+        await expect(page.locator("#main-content")).not.toContainText(data.crm.fileName);
       } finally {
         await adminQuery("update public.tenant_memberships set status=$3 where tenant_id=$1 and id=$2", [data.tenantA.id, membership.id, membership.status]);
       }
     });
   });
 }
+

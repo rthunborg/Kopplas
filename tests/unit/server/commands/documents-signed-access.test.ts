@@ -6,7 +6,7 @@
  */
 import assert from "node:assert/strict";
 import test from "node:test";
-import { COMMAND_CAPABILITIES, type Command } from "@/server/commands/envelope";
+import { COMMAND_CAPABILITIES, defineCommand, type Command } from "@/server/commands/envelope";
 import { runCommandCore } from "@/server/commands/envelope-core";
 import type { TenantContext } from "@/server/auth/tenant-context";
 
@@ -37,7 +37,7 @@ function url() {
   const claims = Buffer.from(JSON.stringify({ url: "tenant-files/" + PATH, exp: Date.parse(EXPIRES) / 1000 })).toString("base64url");
   return "http://127.0.0.1:54321/storage/v1/object/sign/tenant-files/" + PATH + "?token=" + header + "." + claims + ".unit-only";
 }
-type Failure = "none" | "prepare" | "storage" | "finalize";
+type Failure = "none" | "prepare" | "storage" | "finalize" | "prepare-transient" | "prepare-file-denial" | "finalize-denial" | "finalize-file-denial" | "finalize-missing-id" | "storage-transient" | "storage-throw" | "invalid-url" | "challenge-tamper" | "source-error" | "source-missing" | "link-file-mismatch" | "archived-link" | "draft-file" | "unknown-artifact" | "pdf-as-crm" | "ordinary-as-pdf" | "missing-root";
 function dbDouble(failure: Failure, order: string[]) {
   const rowByTable: Record<string, Record<string, unknown>[]> = {
     file_links: [{ id: LINK, tenant_id: TENANT, file_id: FILE, owner_type: "customer", owner_id: OWNER, purpose: "crm_document", archived_at: null }],
@@ -45,14 +45,21 @@ function dbDouble(failure: Failure, order: string[]) {
       display_name: "Synthetic evidence.pdf", mime_type: "application/pdf", size_bytes: 3, lifecycle_state: "linked", archived_at: null }],
     customers: [{ id: OWNER, tenant_id: TENANT, display_name: "Synthetic customer", archived_at: null }],
   };
+  if (failure === "link-file-mismatch") rowByTable.file_links![0]!.file_id = uid(99);
+  if (failure === "archived-link") rowByTable.file_links![0]!.archived_at = NOW;
+  if (failure === "draft-file") rowByTable.files![0]!.lifecycle_state = "draft";
+  if (failure === "unknown-artifact") rowByTable.files![0]!.artifact_kind = "unknown";
+  if (failure === "pdf-as-crm") rowByTable.files![0]!.artifact_kind = "quote_pdf";
+  if (failure === "ordinary-as-pdf") Object.assign(rowByTable.file_links![0]!, { owner_type: "quote_version", purpose: "quote_pdf" });
   return {
     from(table: string) {
-      const rows = rowByTable[table] ?? [];
+      const rows = table === "customers" && failure === "source-missing" ? [] : rowByTable[table] ?? [];
+      const error = table === "customers" && failure === "source-error" ? { code: "XX000", message: "private source fault" } : null;
       const query: Record<string, unknown> = {};
       for (const method of ["select", "eq", "is", "in", "limit", "order"]) query[method] = () => query;
-      query.maybeSingle = async () => ({ data: rows[0] ?? null, error: null });
-      query.single = async () => ({ data: rows[0] ?? null, error: null });
-      query.then = (resolve: (value: unknown) => unknown) => Promise.resolve({ data: rows, error: null }).then(resolve);
+      query.maybeSingle = async () => ({ data: rows[0] ?? null, error });
+      query.single = async () => ({ data: rows[0] ?? null, error });
+      query.then = (resolve: (value: unknown) => unknown) => Promise.resolve({ data: rows, error }).then(resolve);
       return query;
     },
     async rpc(name: string, args: Record<string, unknown>) {
@@ -63,9 +70,11 @@ function dbDouble(failure: Failure, order: string[]) {
       assert.equal(args.p_correlation_id, CORRELATION);
       if (name === "prepare_document_signed_access_audit_attestation") {
         order.push("prepare");
+        if (failure === "prepare-transient") return { data: null, error: { code: "XX000", message: "private backend" } };
+        if (failure === "prepare-file-denial") return { data: null, error: { code: "FSA10" } };
         if (failure === "prepare") return { data: null, error: { code: "42501", message: "private source denial" } };
         return { data: [{
-          link_id: LINK, file_id: FILE, owner_type: "customer", owner_id: OWNER, purpose: "crm_document",
+          link_id: failure === "challenge-tamper" ? uid(99) : LINK, file_id: FILE, owner_type: "customer", owner_id: OWNER, purpose: "crm_document",
           bucket_id: "tenant-files", object_path: PATH, attestation_key_id: "test_v1",
           attestation_issued_at: NOW, attestation_expires_at: "2030-01-02T03:09:05.678Z",
         }], error: null };
@@ -80,6 +89,9 @@ function dbDouble(failure: Failure, order: string[]) {
       assert.equal(typeof args.p_attestation_signature, "string");
       assert.equal(args.p_signed_url_expires_at, EXPIRES);
       assert.ok(!Object.hasOwn(args, "p_signed_url"), "raw URL is never sent to audit");
+      if (failure === "finalize-denial") return { data: null, error: { code: "42501" } };
+      if (failure === "finalize-file-denial") return { data: null, error: { code: "FSA10" } };
+      if (failure === "finalize-missing-id") return { data: null, error: null };
       if (failure === "finalize") return { data: null, error: { code: "XX000", message: "private audit SQL detail" } };
       return { data: uid(30), error: null };
     },
@@ -91,6 +103,9 @@ function dbDouble(failure: Failure, order: string[]) {
             order.push("storage");
             assert.equal(objectPath, PATH);
             assert.equal(ttl, 300);
+            if (failure === "storage-throw") throw new Error("private network detail");
+            if (failure === "storage-transient") return { data: null, error: { code: "InternalError", status: 503 } };
+            if (failure === "invalid-url") return { data: { signedUrl: url().replace("synthetic.pdf", "substituted.pdf") }, error: null };
             return failure === "storage"
               ? { data: null, error: { code: "NoSuchKey", message: "private storage outage" } }
               : { data: { signedUrl: url() }, error: null };
@@ -104,10 +119,13 @@ function dbDouble(failure: Failure, order: string[]) {
 async function withLocalRoot<T>(run: () => Promise<T>): Promise<T> {
   const oldId = process.env.QUOTE_PDF_ATTESTATION_KEY_ID;
   const oldRoot = process.env.QUOTE_PDF_ATTESTATION_HMAC_SECRET;
+  const oldTtl = process.env.SUPABASE_SIGNED_URL_TTL_SECONDS;
+  process.env.SUPABASE_SIGNED_URL_TTL_SECONDS = "300";
   process.env.QUOTE_PDF_ATTESTATION_KEY_ID = "test_v1";
   process.env.QUOTE_PDF_ATTESTATION_HMAC_SECRET = ROOT;
   try { return await run(); }
   finally {
+    if (oldTtl === undefined) delete process.env.SUPABASE_SIGNED_URL_TTL_SECONDS; else process.env.SUPABASE_SIGNED_URL_TTL_SECONDS = oldTtl;
     if (oldId === undefined) delete process.env.QUOTE_PDF_ATTESTATION_KEY_ID; else process.env.QUOTE_PDF_ATTESTATION_KEY_ID = oldId;
     if (oldRoot === undefined) delete process.env.QUOTE_PDF_ATTESTATION_HMAC_SECRET; else process.env.QUOTE_PDF_ATTESTATION_HMAC_SECRET = oldRoot;
   }
@@ -116,7 +134,9 @@ async function run(failure: Failure, order: string[]) {
   const c = await command();
   const cfg = c.config;
   const db = dbDouble(failure, order);
-  return withLocalRoot(() => runCommandCore<Input, Access>({
+  return withLocalRoot(() => {
+    if (failure === "missing-root") delete process.env.QUOTE_PDF_ATTESTATION_HMAC_SECRET;
+    return runCommandCore<Input, Access>({
     tenantContextResult: { ok: true, data: tenant() },
     capability: cfg.capability, rawInput: INPUT, validate: cfg.validateInput,
     verifyOwnership: () => { assert.deepEqual(cfg.ownership?.(INPUT), { table: "file_links", id: LINK }); return { ok: true }; },
@@ -124,7 +144,8 @@ async function run(failure: Failure, order: string[]) {
     auditable: cfg.auditable, command: cfg.command, eventType: cfg.eventType,
     targetType: cfg.targetType, db, clock: { now: () => new Date(NOW) }, correlationId: CORRELATION,
     recordAudit: () => { assert.fail("generic envelope audit must not duplicate checked post-sign Documents event"); },
-  }));
+  });
+  });
 }
 test("[P1] 20-P1-07 fixed closed command enrollment grants Documents.View only", () => {
   assert.deepEqual(COMMAND_CAPABILITIES["document.signedAccess.create"], { module: "documents", capability: "Documents.View" });
@@ -200,3 +221,38 @@ for (const failure of ["prepare", "storage", "finalize"] as const) {
 }
 
 
+
+const faultCases: ReadonlyArray<readonly [Failure, string, readonly string[]]> = [
+  ["prepare-transient", "SERVER_ERROR", ["prepare"]], ["prepare-file-denial", "FILE_ACCESS_DENIED", ["prepare"]],
+  ["finalize-denial", "TENANT_ACCESS_DENIED", ["prepare", "storage", "finalize"]],
+  ["finalize-file-denial", "FILE_ACCESS_DENIED", ["prepare", "storage", "finalize"]],
+  ["finalize-missing-id", "SERVER_ERROR", ["prepare", "storage", "finalize"]],
+  ["storage-transient", "SERVER_ERROR", ["prepare", "storage"]], ["storage-throw", "SERVER_ERROR", ["prepare", "storage"]],
+  ["invalid-url", "SERVER_ERROR", ["prepare", "storage"]], ["challenge-tamper", "SERVER_ERROR", ["prepare"]],
+  ["source-error", "SERVER_ERROR", []], ["source-missing", "TENANT_ACCESS_DENIED", []],
+  ["link-file-mismatch", "TENANT_ACCESS_DENIED", []], ["archived-link", "TENANT_ACCESS_DENIED", []],
+  ["draft-file", "TENANT_ACCESS_DENIED", []], ["unknown-artifact", "TENANT_ACCESS_DENIED", []],
+  ["pdf-as-crm", "TENANT_ACCESS_DENIED", []], ["ordinary-as-pdf", "TENANT_ACCESS_DENIED", []],
+  ["missing-root", "SERVER_ERROR", []],
+];
+for (const [failure, code, expectedOrder] of faultCases) {
+  test("checked Documents fault " + failure + " withholds URL and preserves denial/retry classification", async () => {
+    const order: string[] = [];
+    const result = await run(failure, order);
+    assert.equal(result.ok, false);
+    assert.equal(!result.ok && result.code, code);
+    assert.deepEqual(order, expectedOrder);
+    assert.deepEqual(Object.keys(result).sort(), ["code", "message", "ok"]);
+    assert.doesNotMatch(JSON.stringify(result), /token=|private|object_path|attestation|signedUrl/);
+  });
+}
+test("Documents command definition cannot bypass absent or mismatched closed enrollment", async () => {
+  const { config } = await command();
+  assert.throws(() => defineCommand({ ...config, capability: undefined, command: "document.unenrolled" }), /enrollment missing/);
+  assert.throws(() => defineCommand({ ...config, capability: { module: "files", capability: "Files.View" } }), /enrollment missing/);
+});
+
+test("execute repeats Files.View and never queries when the current role set is absent", async () => {
+  const { config } = await command();
+  await assert.rejects(() => Promise.resolve(config.execute({ input: INPUT, tenantContext: { ...tenant(), roles: undefined }, db: { from: () => assert.fail("no file/source query"), rpc: () => assert.fail("no prepare") }, clock: { now: () => new Date(NOW) }, correlationId: CORRELATION } as never)), error => !!error && typeof error === "object" && "code" in error && error.code === "PERMISSION_DENIED");
+});

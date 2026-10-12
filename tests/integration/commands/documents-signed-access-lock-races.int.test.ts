@@ -4,7 +4,9 @@ import { beforeAll, afterAll, describe, it, expect } from "vitest";
 import {
   createTwoTenantFixture, cleanupFixture, makeAuthedServerClient, adminInsertMembership,
   adminInsertCustomer, adminInsertFacility, adminInsertContact, adminInsertFile,
-  adminInsertFileLink, adminUploadStorageObject, type TwoTenantFixture, type TestServerClient,
+  adminInsertFileLink, adminUploadStorageObject, adminInsertCalculation, adminInsertQuote,
+  adminInsertQuoteVersion, adminInsertQuoteVersionAttachment, adminInsertQuoteAcceptance, adminInsertJob,
+  type TwoTenantFixture, type TestServerClient,
 } from "../../factories/tenants";
 import { adminExec, adminQuery, adminSession } from "../../factories/admin-sql";
 import { adminSelectAuditEvents } from "../../factories/audit-events";
@@ -24,6 +26,27 @@ let contactId: string;
 let fileId: string;
 let linkId: string;
 let path: string;
+let objectId: string;
+let replacementCustomerId: string;
+let quoteId: string;
+let versionId: string;
+let acceptanceId: string;
+let calculationId: string;
+let jobId: string;
+let attachmentId: string;
+type RaceTarget = { fileId: string; linkId: string; ownerType: string; ownerId: string; purpose: string; path: string };
+let versionTarget: RaceTarget;
+let acceptanceTarget: RaceTarget;
+let calculationTarget: RaceTarget;
+let jobTarget: RaceTarget;
+function contactTarget(): RaceTarget { return { fileId, linkId, ownerType: "contact", ownerId: contactId, purpose: "crm_document", path }; }
+async function seedTarget(ownerType: Parameters<typeof adminInsertFileLink>[0]["owner_type"], ownerId: string, purpose: NonNullable<Parameters<typeof adminInsertFileLink>[0]["purpose"]>, existingFileId?: string): Promise<RaceTarget> {
+  const targetFileId = existingFileId ?? await adminInsertFile({ tenant_id: fx!.tenantA.id, lifecycle_state: "linked" });
+  const targetLinkId = await adminInsertFileLink({ tenant_id: fx!.tenantA.id, file_id: targetFileId, owner_type: ownerType, owner_id: ownerId, purpose });
+  const [file] = await adminQuery<{ object_path: string }>("select object_path from public.files where id=$1", [targetFileId]);
+  await adminUploadStorageObject({ bucket: "tenant-files", objectPath: file.object_path, body: new TextEncoder().encode("source-lock-bytes") });
+  return { fileId: targetFileId, linkId: targetLinkId, ownerType, ownerId, purpose, path: file.object_path };
+}
 
 function signed(args: Record<string, string>): string {
   const values = ["elpro.document-selected-link-signed-access.audit-attestation.v1", "document.signedAccess.create", "document.signed_access.created", "file", "record-selected-link-success-after-storage-signing",
@@ -32,16 +55,16 @@ function signed(args: Record<string, string>): string {
   const key = createHmac("sha256", LOCAL_TEST_QUOTE_PDF_SECRET).update("elpro.document-selected-link-signed-access.audit-key.v1").digest();
   return createHmac("sha256", key).update(bytes).digest("hex");
 }
-async function proof(): Promise<Record<string, string>> {
+async function proof(context = contactTarget()): Promise<Record<string, string>> {
   const correlation = crypto.randomUUID();
-  const prepared = await client.rpc("prepare_document_signed_access_audit_attestation", { p_tenant_id: fx!.tenantA.id, p_actor_user_id: fx!.orphanUser.id, p_link_id: linkId, p_file_id: fileId, p_correlation_id: correlation, p_attestation_key_id: LOCAL_TEST_QUOTE_PDF_KEY_ID });
+  const prepared = await client.rpc("prepare_document_signed_access_audit_attestation", { p_tenant_id: fx!.tenantA.id, p_actor_user_id: fx!.orphanUser.id, p_link_id: context.linkId, p_file_id: context.fileId, p_correlation_id: correlation, p_attestation_key_id: LOCAL_TEST_QUOTE_PDF_KEY_ID });
   expect(prepared.error).toBeNull();
   const row = Array.isArray(prepared.data) ? prepared.data[0] : prepared.data;
-  expect(row).toMatchObject({ link_id: linkId, file_id: fileId, owner_type: "contact", owner_id: contactId, purpose: "crm_document", object_path: path });
-  const url = await createSignedFileUrl({ client: client as unknown as StorageSigningClient, bucket: "tenant-files", objectPath: path, nowIso: row.attestation_issued_at });
+  expect(row).toMatchObject({ link_id: context.linkId, file_id: context.fileId, owner_type: context.ownerType, owner_id: context.ownerId, purpose: context.purpose, object_path: context.path });
+  const url = await createSignedFileUrl({ client: client as unknown as StorageSigningClient, bucket: "tenant-files", objectPath: context.path, nowIso: row.attestation_issued_at });
   if (!url) throw new Error("real Storage sign failed for lock-race proof");
-  const validated = validateSignedStorageUrl(url.signedUrl, { bucketId: "tenant-files", objectPath: path, challengeIssuedAt: row.attestation_issued_at, computedExpiresAt: url.expiresAt });
-  const args: Record<string, string> = { p_tenant_id: fx!.tenantA.id, p_actor_user_id: fx!.orphanUser.id, p_link_id: linkId, p_file_id: fileId, p_owner_type: "contact", p_owner_id: contactId, p_purpose: "crm_document", p_bucket_id: "tenant-files", p_object_path: path, p_correlation_id: correlation, p_signed_url_sha256: validated.signedUrlSha256, p_signed_url_expires_at: validated.expiresAt, p_attestation_key_id: LOCAL_TEST_QUOTE_PDF_KEY_ID, p_attestation_issued_at: row.attestation_issued_at, p_attestation_expires_at: row.attestation_expires_at };
+  const validated = validateSignedStorageUrl(url.signedUrl, { bucketId: "tenant-files", objectPath: context.path, challengeIssuedAt: row.attestation_issued_at, computedExpiresAt: url.expiresAt });
+  const args: Record<string, string> = { p_tenant_id: fx!.tenantA.id, p_actor_user_id: fx!.orphanUser.id, p_link_id: context.linkId, p_file_id: context.fileId, p_owner_type: context.ownerType, p_owner_id: context.ownerId, p_purpose: context.purpose, p_bucket_id: "tenant-files", p_object_path: context.path, p_correlation_id: correlation, p_signed_url_sha256: validated.signedUrlSha256, p_signed_url_expires_at: validated.expiresAt, p_attestation_key_id: LOCAL_TEST_QUOTE_PDF_KEY_ID, p_attestation_issued_at: row.attestation_issued_at, p_attestation_expires_at: row.attestation_expires_at };
   return { ...args, p_attestation_signature: signed(args) };
 }
 async function authenticate(tx: Session) {
@@ -83,10 +106,23 @@ beforeAll(async () => {
   linkId = await adminInsertFileLink({ tenant_id: fx.tenantA.id, file_id: fileId, owner_type: "contact", owner_id: contactId, purpose: "crm_document" });
   const [file] = await adminQuery<{ object_path: string }>("select object_path from public.files where id=$1", [fileId]); path = file.object_path;
   await adminUploadStorageObject({ bucket: "tenant-files", objectPath: path, body: new TextEncoder().encode("lock-race-bytes") });
+  const [object] = await adminQuery<{ id: string }>("select id from storage.objects where bucket_id='tenant-files' and name=$1", [path]); objectId = object.id;
+  replacementCustomerId = await adminInsertCustomer({ tenant_id: fx.tenantA.id, customer_type: "company", display_name: "Replacement parent" });
+  calculationId = await adminInsertCalculation({ tenant_id: fx.tenantA.id, customer_id: customerId });
+  quoteId = await adminInsertQuote({ tenant_id: fx.tenantA.id, customer_id: customerId });
+  versionId = await adminInsertQuoteVersion({ tenant_id: fx.tenantA.id, quote_id: quoteId, calculation_id: calculationId, status: "sent", accepted_price_ore: 125000 });
+  const acceptanceFileId = await adminInsertFile({ tenant_id: fx.tenantA.id, lifecycle_state: "linked" });
+  acceptanceId = await adminInsertQuoteAcceptance({ tenant_id: fx.tenantA.id, quote_id: quoteId, quote_version_id: versionId, evidence_file_id: acceptanceFileId });
+  jobId = await adminInsertJob({ tenant_id: fx.tenantA.id, customer_id: customerId, quote_acceptance_id: acceptanceId, quote_version_id: versionId });
+  calculationTarget = await seedTarget("calculation", calculationId, "calculation_attachment");
+  versionTarget = await seedTarget("quote_version", versionId, "quote_attachment_snapshot");
+  attachmentId = await adminInsertQuoteVersionAttachment({ tenant_id: fx.tenantA.id, quote_version_id: versionId, file_id: versionTarget.fileId });
+  acceptanceTarget = await seedTarget("quote_acceptance", acceptanceId, "acceptance_evidence", acceptanceFileId);
+  jobTarget = await seedTarget("job", jobId, "job_evidence");
 }, 60_000);
 afterAll(async () => { if (fx) await cleanupFixture(fx); });
 
-const mutations = [
+const mutations: { name: string; sql: string; id: () => string; context?: () => RaceTarget; denial?: boolean; expectedWriterCode?: string }[] = [
   { name: "membership disable", sql: "update public.tenant_memberships set status='disabled' where id=$1", id: () => membershipId },
   { name: "nonkey role update", sql: "update public.membership_roles set role='ekonomi' where id=$1", id: () => childRoleId },
   { name: "child role deletion", sql: "delete from public.membership_roles where id=$1", id: () => childRoleId },
@@ -95,10 +131,44 @@ const mutations = [
   { name: "contact archive", sql: "update public.contacts set archived_at=now() where id=$1", id: () => contactId },
   { name: "selected link archive", sql: "update public.file_links set archived_at=now() where id=$1", id: () => linkId },
   { name: "file lifecycle archive", sql: "update public.files set lifecycle_state='archived',archived_at=now() where id=$1", id: () => fileId },
+  { name: "primary membership role update", sql: "update public.tenant_memberships set role='ekonomi' where id=$1", id: () => membershipId, denial: false },
+  { name: "Storage nonkey metadata update", sql: "update storage.objects set updated_at=now() where id=$1", id: () => objectId, denial: false },
+  { name: "calculation archive", sql: "update public.calculations set archived_at=now() where id=$1", id: () => calculationId, context: () => calculationTarget },
+  { name: "quote parent archive", sql: "update public.quotes set archived_at=now() where id=$1", id: () => quoteId, context: () => versionTarget },
+  { name: "quote version archive", sql: "update public.quote_versions set archived_at=now() where id=$1", id: () => versionId, context: () => versionTarget },
+  { name: "acceptance archive", sql: "update public.quote_acceptances set archived_at=now() where id=$1", id: () => acceptanceId, context: () => acceptanceTarget },
+  { name: "snapshot association nonkey update", sql: "update public.quote_version_attachments set sort_order=sort_order+1 where id=$1", id: () => attachmentId, context: () => versionTarget, denial: false, expectedWriterCode: "QV409" },
+  { name: "job archive", sql: "update public.jobs set archived_at=now() where id=$1", id: () => jobId, context: () => jobTarget },
 ];
 describe("Documents20.1 SHARE authority lock and final-audit linearization", () => {
-  it.each(mutations)("[P0] $name waits behind finalized authority until its audit transaction commits", async (mutation) => {
+  it("[P0] deleting the sole granting child role after prepare denies finalization", async () => {
     const args = await proof();
+    await adminExec("delete from public.membership_roles where id=$1", [childRoleId]);
+    try {
+      const result = await client.rpc("record_document_signed_access_audit_attested", args);
+      expect(result.error?.code).toBe("42501"); expect(result.data).toBeNull();
+      expect(await adminSelectAuditEvents({ correlationId: args.p_correlation_id })).toEqual([]);
+    } finally {
+      await adminExec("insert into public.membership_roles(id,tenant_id,membership_id,role) values($1,$2,$3,'projektledare')", [childRoleId, fx!.tenantA.id, membershipId]);
+    }
+  });
+  it("[P0] revoking the sole granting primary role after prepare denies finalization", async () => {
+    await adminExec("update public.tenant_memberships set role='projektledare' where id=$1", [membershipId]);
+    await adminExec("update public.membership_roles set role='saljare' where id=$1", [childRoleId]);
+    try {
+      const args = await proof();
+      await adminExec("update public.tenant_memberships set role='ekonomi' where id=$1", [membershipId]);
+      const result = await client.rpc("record_document_signed_access_audit_attested", args);
+      expect(result.error?.code).toBe("42501"); expect(result.data).toBeNull();
+      expect(await adminSelectAuditEvents({ correlationId: args.p_correlation_id })).toEqual([]);
+    } finally {
+      await adminExec("update public.tenant_memberships set role='saljare' where id=$1", [membershipId]);
+      await adminExec("update public.membership_roles set role='projektledare' where id=$1", [childRoleId]);
+    }
+  });
+
+  it.each(mutations)("[P0] $name waits behind finalized authority until its audit transaction commits", async (mutation) => {
+    const args = await proof(mutation.context?.());
     await adminSession(async (holder) => {
       await holder.query("begin"); let writer: Promise<unknown> | undefined;
       try {
@@ -123,13 +193,18 @@ describe("Documents20.1 SHARE authority lock and final-audit linearization", () 
         await waitForBlock(holder, await pid.promise, owner.pid);
         const [audit] = await holder.query<{ n: number }>("select count(*)::int as n from public.audit_events where correlation_id=$1", [args.p_correlation_id]);
         expect(audit.n).toBe(1);
-        await holder.query("commit"); expect(await outcome).toEqual({ ok: true });
-      } finally { await holder.query("rollback"); if (writer) await writer; }
+        await holder.query("commit");
+        if (mutation.expectedWriterCode) {
+          // Immutable snapshots are protected downstream too: the blocked
+          // update resumes after our audit commit, then that invariant rejects it.
+          expect(await outcome).toEqual({ ok: false, error: expect.objectContaining({ code: mutation.expectedWriterCode }) });
+        } else expect(await outcome).toEqual({ ok: true });
+      } finally { await holder.query("rollback"); if (writer) await writer.catch(() => {}); }
     });
     expect(await adminSelectAuditEvents({ correlationId: args.p_correlation_id })).toHaveLength(1);
   });
-  it.each(mutations.filter((item) => item.name !== "child role deletion"))("[P0] $name committed before finalizer revalidation rejects the already prepared proof", async (mutation) => {
-    const args = await proof();
+  it.each(mutations.filter((item) => item.name !== "child role deletion" && item.denial !== false))("[P0] $name committed before finalizer revalidation rejects the already prepared proof", async (mutation) => {
+    const args = await proof(mutation.context?.());
     // Snapshot restoration is test-only fixture arrangement, never a product writer.
     const table = mutation.sql.split(" ")[1];
     const [before] = await adminQuery<{ row: Record<string, unknown> }>(`select to_jsonb(t) as row from ${table} t where id=$1`, [mutation.id()]);
@@ -171,8 +246,7 @@ describe("Documents20.1 SHARE authority lock and final-audit linearization", () 
         if (mode === "replacement") await holder.query("update public.facilities set archived_at=now() where id=$1", [replacementFacilityId]);
         await holder.query("commit");
         const rejected = await pending as { ok: boolean; code?: string };
-        expect(rejected.ok).toBe(false); expect(rejected.code).toEqual(expect.any(String));
-        expect(["42501", "FSA10"]).not.toContain(rejected.code);
+        expect(rejected.ok).toBe(false); expect(rejected.code).toBe("40001");
       } finally { await holder.query("rollback"); if (pending) await pending; }
     });
       expect(await adminSelectAuditEvents({ correlationId: args.p_correlation_id })).toEqual([]);
@@ -181,4 +255,50 @@ describe("Documents20.1 SHARE authority lock and final-audit linearization", () 
       await adminExec("update public.facilities set archived_at=null where id=$1", [replacementFacilityId]);
     }
   });
+  it.each([
+    { name: "contact customer reassignment", table: "public.contacts", id: () => contactId, column: "customer_id", original: () => customerId, replacement: () => replacementCustomerId },
+    { name: "facility customer reassignment", table: "public.facilities", id: () => facilityId, column: "customer_id", original: () => customerId, replacement: () => replacementCustomerId },
+    { name: "optional facility null to nonnull", table: "public.contacts", id: () => contactId, column: "facility_id", original: () => null, replacement: () => replacementFacilityId },
+    { name: "selected link owner reassignment", table: "public.file_links", id: () => linkId, column: "owner_id", original: () => contactId, replacement: () => contactId /* owner_type changes below */ },
+  ])("[P0] $name reconciles the exact locked graph after its source barrier", async (change) => {
+    if (change.name === "optional facility null to nonnull") await adminExec("update public.contacts set facility_id=null where id=$1", [contactId]);
+    const args = await proof();
+    try {
+      await adminSession(async (holder) => {
+        await holder.query("begin"); let pending: Promise<{ ok: boolean; code?: string }> | undefined;
+        try {
+          const [owner] = await holder.query<{ pid: number }>("select pg_backend_pid() as pid");
+          await holder.query(`select id from ${change.table} where id=$1 for update`, [change.id()]);
+          const pid = deferred<number>();
+          pending = adminSession(async (request) => {
+            await request.query("begin");
+            try {
+              const [row] = await request.query<{ pid: number }>("select pg_backend_pid() as pid"); pid.resolve(row.pid);
+              await request.query("set local statement_timeout='12s'"); await authenticate(request);
+              await finalize(request, args); await request.query("commit"); return { ok: true };
+            } catch (error) { await request.query("rollback"); return { ok: false, code: (error as { code?: string }).code }; }
+            finally { await request.query("rollback"); }
+          });
+          await waitForBlock(holder, await pid.promise, owner.pid);
+          if (change.name === "selected link owner reassignment") {
+            await holder.query("update public.file_links set owner_type='customer',owner_id=$2 where id=$1", [linkId, replacementCustomerId]);
+          } else {
+            await holder.query(`update ${change.table} set ${change.column}=$2 where id=$1`, [change.id(), change.replacement()]);
+          }
+          // The replacement is deliberately outside the gathered graph. Its
+          // current state must never be used as substitute locked authority.
+          if (change.column === "customer_id") await holder.query("update public.customers set archived_at=now() where id=$1", [replacementCustomerId]);
+          if (change.name === "optional facility null to nonnull") await holder.query("update public.facilities set archived_at=now() where id=$1", [replacementFacilityId]);
+          await holder.query("commit"); expect(await pending).toEqual({ ok: false, code: "40001" });
+        } finally { await holder.query("rollback"); if (pending) await pending; }
+      });
+      expect(await adminSelectAuditEvents({ correlationId: args.p_correlation_id })).toEqual([]);
+    } finally {
+      if (change.name === "selected link owner reassignment") await adminExec("update public.file_links set owner_type='contact',owner_id=$2 where id=$1", [linkId, contactId]);
+      else await adminExec(`update ${change.table} set ${change.column}=$2 where id=$1`, [change.id(), change.name === "optional facility null to nonnull" ? facilityId : change.original()]);
+      await adminExec("update public.customers set archived_at=null where id=$1", [replacementCustomerId]);
+      await adminExec("update public.facilities set archived_at=null where id=$1", [replacementFacilityId]);
+    }
+  });
+
 });

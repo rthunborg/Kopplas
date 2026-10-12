@@ -176,7 +176,7 @@ export const SCOPE_MANIFEST: ScopeManifest = {
       status: "active",
       epic: "E8",
       activatedAt: PHASE_A.E8,
-      navItems: [{ route: "/files", group: "primary", requiredCapability: "Files.View" }],
+      navItems: [],
       tenantTables: ["files", "file_links"],
       widgets: [],
       notificationCategories: [],
@@ -280,10 +280,11 @@ export const SCOPE_MANIFEST: ScopeManifest = {
       id: "documents",
       label: "Documents Center",
       wave: "B2",
-      status: "pending",
+      status: "active",
       epic: "E20",
-      // Aggregation read-model over the existing file model (AR-B16: zero new storage tables).
-      navItems: [],
+      activatedAt: "2026-10-09",
+      // Aggregation over existing files; ownership of tables stays with files.
+      navItems: [{ route: "/files", group: "primary", requiredCapability: "Documents.View" }],
       tenantTables: [],
       widgets: [],
       notificationCategories: [],

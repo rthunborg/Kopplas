@@ -212,3 +212,51 @@ test("[P0] 20-P0-01 transient source lookup fault is retryable SERVER_ERROR with
 });
 
 
+
+for (const [owner, parentTable, parentId] of [
+  ["facility", "customers", CUSTOMER], ["contact", "customers", CUSTOMER], ["contact", "facilities", FACILITY],
+  ["quote_version", "quotes", QUOTE], ["quote_acceptance", "quote_versions", VERSION], ["quote_acceptance", "quotes", QUOTE],
+] as const) {
+  test("[P0] missing/RLS-hidden required " + parentTable + " denies " + owner, async () => {
+    const rows = fixtureRows(owner); rows.delete(parentTable + ":" + parentId);
+    denied(await (await api()).readDocumentSource(candidate(owner, SOURCES[owner].purpose), deps(rows)));
+  });
+}
+test("[P0] contact optional facility's distinct archived customer denies without imposing customer equality", async () => {
+  const rows = fixtureRows("contact");
+  rows.set("facilities:" + FACILITY, { ...rows.get("facilities:" + FACILITY), customer_id: uid(91) });
+  rows.set("customers:" + uid(91), { id: uid(91), tenant_id: TENANT, archived_at: ARCHIVED });
+  denied(await (await api()).readDocumentSource(candidate("contact"), deps(rows)));
+  rows.set("customers:" + uid(91), { id: uid(91), tenant_id: TENANT, archived_at: null });
+  assert.equal((await (await api()).readDocumentSource(candidate("contact"), deps(rows))).ok, true);
+});
+function pdfFixture() {
+  const link = candidate("quote_version", "quote_pdf");
+  link.file.artifact_kind = "quote_pdf";
+  const rows = fixtureRows("quote_version");
+  rows.set("quote_versions:" + OWNER, { ...rows.get("quote_versions:" + OWNER), pdf_file_id: FILE, pdf_status: "generated" });
+  const info = async () => ({ data: { id: "object" }, error: null });
+  const client = { storage: { from: () => ({ info }) } };
+  return { link, rows, options: { ...deps(rows), client, loadRow: async (table: string, id: string) => rows.get(table + ":" + id) ?? null } };
+}
+test("[P0] exact generated-current PDF uses request Storage metadata and safe quote label", async () => {
+  const fixture = pdfFixture();
+  assert.equal((await (await api()).readDocumentSource(fixture.link, fixture.options)).ok, true);
+});
+for (const mismatch of ["association", "status", "object", "transient", "snapshot"]) {
+  test("[P0] strict quote PDF fails closed for " + mismatch, async () => {
+    const fixture = pdfFixture();
+    if (mismatch === "association") fixture.rows.set("quote_versions:" + OWNER, { ...fixture.rows.get("quote_versions:" + OWNER), pdf_file_id: uid(99) });
+    if (mismatch === "status") fixture.rows.set("quote_versions:" + OWNER, { ...fixture.rows.get("quote_versions:" + OWNER), pdf_status: "not_generated" });
+    if (mismatch === "snapshot") fixture.link.purpose = "quote_attachment_snapshot";
+    if (mismatch === "object" || mismatch === "transient") {
+      fixture.options.client = { storage: { from: () => ({ info: async () => ({ data: null, error: { status: mismatch === "object" ? 404 : 503 } }) }) } } as unknown as typeof fixture.options.client;
+    }
+    denied(await (await api()).readDocumentSource(fixture.link, fixture.options), mismatch === "transient" ? "SERVER_ERROR" : undefined);
+  });
+}
+test("[P0] snapshot requires exact immutable file/version association", async () => {
+  const rows = fixtureRows("quote_version");
+  rows.set("quote_version_attachments:" + OWNER, { tenant_id: TENANT, quote_version_id: OWNER, file_id: uid(99) });
+  denied(await (await api()).readDocumentSource(candidate("quote_version", "quote_attachment_snapshot"), deps(rows)));
+});

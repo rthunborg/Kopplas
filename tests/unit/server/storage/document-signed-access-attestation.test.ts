@@ -70,7 +70,7 @@ function challenge(overrides: Record<string, unknown> = {}) {
 }
 function expectedChallenge() {
   const p = payload();
-  return { ...p, purpose: p.linkPurpose, nowMs: NOW };
+  return { ...p, linkPurpose: p.linkPurpose, nowMs: NOW };
 }
 
 test("[P0] 20-P0-07 UTF-8 byte lengths and exact selected-link field order match the reviewed contract", async () => {
@@ -160,3 +160,26 @@ test("[P0] 20-P0-07 expired and future challenge is rejected; parsing skew does 
   assert.throws(() => api.parseDocumentSignedAccessAuditChallenge([challenge()], { ...expectedChallenge(), nowMs: NOW - 60_001 }));
 });
 
+
+for (const invalid of [
+  { signedUrlExpiresAt: ISSUED },
+  { signedUrlExpiresAt: "2030-01-03T03:05:06.679Z" },
+  { issuedAt: "2030-01-02T03:04:05Z" },
+  { expiresAt: "2030-01-02T03:09:06.678Z" },
+  { ownerType: "pending_owner" },
+  { linkPurpose: "job_evidence" },
+  { objectPath: uid(1) + "/" + uid(4) + "/../a.pdf" },
+  { keyId: "bad key" },
+]) {
+  test("invalid selected-link proof fields fail closed " + JSON.stringify(invalid), async () => {
+    const api = await proofApi();
+    assert.throws(() => api.signDocumentSignedAccessAttestation(payload(invalid), ROOT));
+    assert.equal(api.verifyDocumentSignedAccessAttestation(payload(invalid), ROOT, "a".repeat(64)), false);
+  });
+}
+test("challenge accepts only bounded DB parsing skew without extending actual URL issuance cap", async () => {
+  const api = await proofApi();
+  assert.ok(api.parseDocumentSignedAccessAuditChallenge([challenge()], { ...expectedChallenge(), nowMs: NOW - 60_000 }));
+  assert.throws(() => api.parseDocumentSignedAccessAuditChallenge([challenge()], { ...expectedChallenge(), nowMs: NOW - 60_001 }));
+  assert.throws(() => api.parseDocumentSignedAccessAuditChallenge([challenge({ attestation_expires_at: "2030-01-02T03:09:05.679Z" })], expectedChallenge()));
+});

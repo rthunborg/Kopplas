@@ -94,6 +94,7 @@ export const COMMAND_CAPABILITIES: Readonly<Record<string, CommandCapability>> =
   "quote.pdf.signedAccess.create": { module: "quotes", capability: "Quotes.Export" },
   "job.create": { module: "jobs", capability: "Jobs.Create" },
   "job.update": { module: "jobs", capability: "Jobs.Edit" },
+  "document.signedAccess.create": { module: "documents", capability: "Documents.View" },
   "file.signedAccess.create": { module: "files", capability: "Files.View" },
   "file.link.create": { module: "files", capability: "Files.Create" },
   "file.upload": { module: "files", capability: "Files.Create" },
