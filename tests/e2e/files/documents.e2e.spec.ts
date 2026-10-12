@@ -332,21 +332,23 @@ for (const viewport of [
         // before the debounced newer filter has returned its descriptor.
         let releaseFilterResponse!: () => void;
         let sawFilterRequest!: () => void;
+        let finishedFilterRequest!: () => void;
         const filterGate = new Promise<void>(resolve => { releaseFilterResponse = resolve; });
         const filterStarted = new Promise<void>(resolve => { sawFilterRequest = resolve; });
+        const filterFinished = new Promise<void>(resolve => { finishedFilterRequest = resolve; });
         await page.route("**/files?**", async route => {
           const params = new URL(route.request().url()).searchParams;
-          if (params.get("search") === marker+"-60.txt" && params.get("owner") === "customer") {
-            sawFilterRequest(); await filterGate;
-          }
-          await route.continue();
+          const gated = params.get("search") === marker+"-60.txt" && params.get("owner") === "customer";
+          if (gated) { sawFilterRequest(); await filterGate; }
+          try { await route.continue(); }
+          finally { if (gated) finishedFilterRequest(); }
         });
         try {
           await search.fill(marker+"-60.txt");
           await filterStarted;
           await expect(page.getByTestId("documents-next-page")).toHaveCount(0);
         } finally {
-          releaseFilterResponse(); await page.unroute("**/files?**");
+          releaseFilterResponse(); await filterFinished; await page.unroute("**/files?**");
         }
         await expect(page.getByTestId("file-index-row")).toHaveCount(1);
         await search.fill(marker);
