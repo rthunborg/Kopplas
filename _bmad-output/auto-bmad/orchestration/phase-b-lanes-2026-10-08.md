@@ -1,3 +1,7 @@
+## Build checkpoint - 2026-10-12 15:08 UTC
+
+Story20.2 worker state records selected_phase build, explicit Sol6.1 High, completed phases0/1/3/4 and no blockers. The author reports activation of106 ATDD cases and an initial expected RED unit result of20 failures with zero skips; these are preparation results, not acceptance evidence. Coordinator sprint status is now in-progress. Shared generation2 remains running,20.1 integrated and20.3 blocked on verified20.2. Epic15 remains idle under the full-E20 integration release gate below. No new assignment or ownership change occurred.
+
 ## Latest assignment — 2026-10-12 Story20.2 dispatched
 
 20.1 remains verified-integrated6e1aaf94. Coordinator checkpoint5e00b3a844d488b61002f02c2f6c97e80708dda5 is the20.2base. New registered checkout documents-e20-20-2/Kopplas, branch codex/parallel-documents-e20-readiness-2026-10-09-20-2, belongs to existing Documents chat01a11ae8-4100-7042-9c22-d1aca188e683. Its administrative generation1 reservation was immediately readiness-blocked before dispatch; reviewed amend-blocked request documents20-2-browser-path-20261012 admitted only tests/e2e/files/documents.e2e.spec.ts. Generation2 and original workflow/spec pins validated by unchanged worker helper heartbeat. No product change existed at recovery; the genuinely idle intended worker was attested from its terminal20.1turn.
