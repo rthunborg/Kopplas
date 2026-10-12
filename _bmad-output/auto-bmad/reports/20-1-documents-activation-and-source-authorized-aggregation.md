@@ -77,3 +77,35 @@ No deferred items; global harvest prohibited for this worker
 **⚠️ Needs human:** (none)
 
 **Next:** Freeze clean candidate; actually run all14 checks on that SHA, including full39 browser cases and fresh production build; obtain narrow independent High confirmation; supported generation2 submit. Shared-store receipt and external final handoff are authoritative for readiness and resource Stop acknowledgments.
+
+## Report — 2026-10-12T13:48:46Z (generation-2 repaired worker candidate)
+
+**Story:** `20-1-documents-activation-and-source-authorized-aggregation` (epic 20, story 1) — mid-epic.
+**Spec:** `C:\Users\Rasmus\.codex\worktrees\documents-e20-20-1\Kopplas\_bmad-output\implementation-artifacts\spec-20-1-documents-activation-and-source-authorized-aggregation.md`
+**Branch:** `codex/parallel-documents-e20-readiness-2026-10-09-20-1` (HEAD `8ec59bc`).
+**Pipeline status:** Worker phases complete; repaired exact-candidate gate and submission receipts follow externally
+**Continues:** Coordinator retains integration and epic ownership
+
+**Timing:** started 2026-10-09T13:42:32Z; completed in progress — elapsed 72h 06m (≈2h 23m AI-run, ≈69h 42m human/idle wait); resumed 2×.
+
+**Phases run:** 0, 1, 3, 4, 5, 6, 7; targeted author repair
+**Skipped:** Primary follow-up gate false; trace advisory not selected; global deferred harvest and Phases8/9 coordinator-owned
+
+**Overrides:** Claim generation2 and approved workflow preserved; frozen intent byte-equal originalcbe. No aggregate writes, zero deferred items.
+
+**TEA:** ATDD/automate complete. Prior loading/expiry coverage preserved; two new post-upload draft race regressions bring expected browser gate to41.
+
+**Build:** All14 native0/skip0 gates actually passed at8ec (unit2432, browser39, unique DB157). Independent review then found a distinct search-draft race. Author reproduced real loss2/2 at8ec, fixed own-reset binding/duplicate debounce bookkeeping, and actual dirty repair build/typecheck/lint plus green2/2 and affected6/6 passed. Final repaired-SHA replay remains pending in external manifest.
+
+**Review:** Three completed broad rounds retained. External exact8ec review native0 withheld approval for one Medium reachable draft-loss race. Original author repaired it and refreshed one guide28 valid refs/0errors; exact latest-fix-only Sol6.1 High confirmation pending. No false approval or fourth broad pass.
+
+**Retrospective:** Coordinator-owned
+
+**Open questions:** (none)
+
+**Deferred work:**
+None; no global ledger mutation
+
+**⚠️ Needs human:** (none)
+
+**Next:** Freeze repaired candidate, run actual all14 native gates including full41 browser suite and fresh production build on that SHA; obtain independent latest-fix-only confirmation; supported generation2 submit; Stop own resources and preserve data. External final handoff and shared-store receipt record exact outcome.

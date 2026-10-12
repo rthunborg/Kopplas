@@ -85,7 +85,10 @@ export function FileIndexList({
       const params = new URLSearchParams();
       if (search) params.set("search", search);
       if (ownerCategory) params.set("owner", ownerCategory);
-      pendingFilterBindings.current.push(JSON.stringify([search, ownerCategory]));
+      const filterBinding = JSON.stringify([search, ownerCategory]);
+      // Upload may already have queued this reset before the debounce fires.
+      if (pendingFilterBindings.current.at(-1) === filterBinding) return;
+      pendingFilterBindings.current.push(filterBinding);
       router.replace(`/files${params.size ? `?${params}` : ""}`, { scroll: false });
     }, 200);
     return () => clearTimeout(timer);
@@ -93,7 +96,10 @@ export function FileIndexList({
   // Newly persisted links sort before a continuation cursor. Clear the existing
   // narrowing as well, so an acknowledged upload is visible on the first page.
   const onUploadSuccess = useCallback(() => {
-    pendingFilterBindings.current = [];
+    const resetBinding = JSON.stringify(["", ""]);
+    // Register our reset echo before navigation, so it cannot erase a newer
+    // draft. An unchanged identity has no echo to consume: leave no stale entry.
+    pendingFilterBindings.current = observedServerFilter.current === resetBinding ? [] : [resetBinding];
     setSearch("");
     setOwnerCategory("");
     if (window.location.search) router.replace("/files", { scroll: false });

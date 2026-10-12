@@ -1,6 +1,6 @@
 /**
  * Documents 20.1 / 20-P1-11: active acceptance tests against the production app.
- * No route fulfillment or synthetic success responses: login, upload, signing and
+ * No synthetic success responses: login, upload, signing and
  * opening all use the real application and local fixture, with guarded CDP attachment.
  * Existing Swedish labels/test IDs below are source-derived, unobserved selectors.
  * The Dokument heading/nav and download label are provisional AC1/AC9 contracts.
@@ -349,11 +349,10 @@ for (const viewport of [
       try {
         await search.fill(data.crm.fileName);
         await requestStarted;
-        const newerDraft = data.crm.fileName + "-not-present";
-        await search.fill(newerDraft);
+        await search.fill(data.crm.fileName + "-not-present");
         releaseResponse();
-        await expect(page).toHaveURL(url => url.searchParams.get("search") === newerDraft);
-        await expect(search).toHaveValue(newerDraft);
+        await expect(page).toHaveURL(url => url.searchParams.get("search") === data.crm.fileName + "-not-present");
+        await expect(search).toHaveValue(data.crm.fileName + "-not-present");
         await expect(search).toBeFocused();
         await expect(page.getByTestId("file-index-empty")).toBeVisible();
       } finally {
@@ -365,6 +364,16 @@ for (const viewport of [
       }
       const navigation = page.getByRole("navigation", { name: "Huvudnavigation", exact: true }).filter({ visible: true });
       await navigation.getByRole("link", { name: "Dokument", exact: true }).click();
+      await expect(page).toHaveURL(/\/files$/);
+      await expect(search).toHaveValue("");
+      await expect(page.getByTestId("file-index-category-filter")).toHaveValue("");
+      await expect(documentRow(page, data.crm.fileName)).toHaveCount(1);
+      // Own reset tracking must not swallow real external history traversal.
+      await page.goBack();
+      await expect(page).toHaveURL(url => url.searchParams.get("search") === data.crm.fileName + "-not-present");
+      await expect(search).toHaveValue(data.crm.fileName + "-not-present");
+      await expect(page.getByTestId("file-index-empty")).toBeVisible();
+      await page.goForward();
       await expect(page).toHaveURL(/\/files$/);
       await expect(search).toHaveValue("");
       await expect(page.getByTestId("file-index-category-filter")).toHaveValue("");
@@ -482,6 +491,85 @@ for (const viewport of [
       await expect(documentRow(page, name)).toHaveCount(1);
       await page.goto(`/customers/${data.crm.company.id}`);
       await expect(page.getByTestId("file-panel-existing-list")).toContainText(name);
+    });
+
+    test("[P1][AC9] confirmed upload reset preserves a newer search draft before its debounce", async ({ page }) => {
+      const data = fixture();
+      await openDocuments(page, data.adminA);
+      await page.goto(`/files?${new URLSearchParams({ search: data.crm.fileName, owner: "customer" })}`);
+      const search = page.getByTestId("file-index-search");
+      await waitForHydrated(search);
+      await expect(documentRow(page, data.crm.fileName)).toHaveCount(1);
+      const entry = page.getByRole("button", { name: "Ladda upp fil", exact: true }).first();
+      await entry.click();
+      const form = page.getByTestId("file-index-upload-form");
+      const name = `documents-upload-new-draft-${crypto.randomUUID()}.txt`;
+      const body = "confirmed upload reset must preserve newer search";
+      await form.getByTestId("file-index-upload-owner").selectOption(data.crm.company.id);
+      await form.getByLabel("Välj en fil att ladda upp", { exact: true }).setInputFiles({
+        name, mimeType: "text/plain", buffer: Buffer.from(body),
+      });
+      // Freeze only browser timers: the real upload and RSC read still run. The
+      // reset must commit before the new draft's 200ms debounce can navigate.
+      await page.clock.install({ time: new Date() });
+      await page.clock.pauseAt(new Date(Date.now() + 1_000));
+      let releaseReset!: () => void;
+      let sawResetResponse!: () => void;
+      let finishedReset!: () => void;
+      const resetGate = new Promise<void>(resolve => { releaseReset = resolve; });
+      const resetResponse = new Promise<void>(resolve => { sawResetResponse = resolve; });
+      const resetFinished = new Promise<void>(resolve => { finishedReset = resolve; });
+      let capturedReset = false;
+      await page.route("**/files?**", async route => {
+        const request = route.request();
+        const params = new URL(request.url()).searchParams;
+        const ownReset = !capturedReset && request.method() === "GET" && request.headers().rsc === "1"
+          && !params.has("search") && !params.has("owner") && !params.has("cursor");
+        if (!ownReset) { await route.continue(); return; }
+        capturedReset = true;
+        try {
+          const response = await route.fetch();
+          expect(response.ok()).toBe(true);
+          sawResetResponse();
+          await resetGate;
+          // Forward the exact real server response, never a synthetic RSC body.
+          await route.fulfill({ response });
+        } finally { finishedReset(); }
+      });
+      try {
+        const uploadResponse = page.waitForResponse(response =>
+          new URL(response.url()).pathname === "/files" && response.request().method() === "POST"
+          && !!response.request().headers()["next-action"]);
+        await form.getByRole("button", { name: "Ladda upp fil", exact: true }).click();
+        expect((await uploadResponse).ok()).toBe(true);
+        await expect(form.getByRole("status")).toContainText("Filen laddades upp");
+        await resetResponse;
+        await expect(search).toHaveValue("");
+        await search.fill(name);
+        await expect(search).toBeFocused();
+        releaseReset();
+        await resetFinished;
+        await expect(page).toHaveURL(/\/files$/);
+        // The newly persisted row proves the actual reset read has committed.
+        await expect(documentRow(page, name)).toHaveCount(1);
+        await expect(search).toHaveValue(name);
+        await expect(search).toBeFocused();
+        await page.clock.runFor(201);
+        await expect(page).toHaveURL(url => url.pathname === "/files" && url.searchParams.get("search") === name
+          && !url.searchParams.has("owner") && !url.searchParams.has("cursor"));
+        await expect(search).toHaveValue(name);
+        await expect(page.getByTestId("file-index-row")).toHaveCount(1);
+        await signSelectedRow(page, documentRow(page, name));
+        const href = await documentRow(page, name).getByTestId("file-index-preview-link").getAttribute("href");
+        expect(href).not.toBeNull();
+        const stored = await page.request.get(href!);
+        expect(stored.ok()).toBe(true);
+        expect(await stored.text()).toBe(body);
+      } finally {
+        releaseReset();
+        if (capturedReset) await resetFinished;
+        await page.unroute("**/files?**");
+      }
     });
 
     test("[P1][AC6,9] confirmed upload on a narrowed continuation returns to visible first-page context", async ({ page }) => {
