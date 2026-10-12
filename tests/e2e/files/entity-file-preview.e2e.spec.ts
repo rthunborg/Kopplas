@@ -38,7 +38,8 @@
  *  Task 3 + Task 5.2; tests/e2e/files/entity-file-panel.e2e.spec.ts (the 8.2 panel E2E this sits
  *  beside, same signIn/waitForHydrated + fixture contract); epics.md 8.3 AC1/AC2/AC3]
  */
-import { test, expect, type Page, type Locator } from "@playwright/test";
+import type { Page, Locator } from "@playwright/test";
+import { test, expect } from "../dashboard/guarded-test";
 import { readFileSync } from "node:fs";
 import path from "node:path";
 
@@ -49,9 +50,9 @@ interface CrmFixture {
   };
 }
 
-const fixture: CrmFixture = JSON.parse(
-  readFileSync(path.join(process.cwd(), "tests", "e2e", ".auth", "fixture.json"), "utf8"),
-);
+function fixture(): CrmFixture {
+  return JSON.parse(readFileSync(path.join(process.cwd(), "tests", "e2e", ".auth", "fixture.json"), "utf8"));
+}
 
 async function waitForHydrated(locator: Locator): Promise<void> {
   await locator.waitFor({ state: "visible" });
@@ -77,8 +78,8 @@ async function signIn(page: Page, email: string, password: string): Promise<void
 
 /** Navigate to the customer detail page whose EntityFilePanel (with the preview affordance) is under test. */
 async function gotoCustomerPanel(page: Page): Promise<void> {
-  await signIn(page, fixture.adminA.email, fixture.adminA.password);
-  await page.goto(`/customers/${fixture.crm.company.id}`);
+  await signIn(page, fixture().adminA.email, fixture().adminA.password);
+  await page.goto(`/customers/${fixture().crm.company.id}`);
   await expect(page.getByTestId("entity-file-panel")).toBeVisible();
 }
 
@@ -153,24 +154,44 @@ test.describe("Entity file preview/download UX (Story 8.3 E2E)", () => {
   test("[8.3-E2E-04][P1/AC2/R-806] an expired link offers a re-open control that re-authorizes (never reuses the stale URL)", async ({
     page,
   }) => {
-    // The expiry→refresh UX: after a successful sign, once `expiresAt` has passed (the pure
-    // `isSignedUrlExpired` verdict), a "Länken har gått ut — öppna igen" control re-submits the
-    // form (re-invoking the command = a fresh full auth). The stale signedUrl is NOT reused.
-    //
-    // Forcing a real client-side expiry in E2E needs a low SUPABASE_SIGNED_URL_TTL_SECONDS in the
-    // E2E env + a bounded wait, OR a deterministic clock seam the dev exposes (Task 3.2). Until
-    // that driver lands this is a structural contract: the re-open control exists and re-submits.
-    // Mark test.fixme if no deterministic expiry driver is available rather than sleeping flakily.
-    test.fixme(
-      true,
-      "expiry→refresh re-open control needs a low-TTL E2E env or a deterministic clock seam (Task 3.2 dev decision)",
-    );
     await gotoCustomerPanel(page);
-    const reopen = page.getByTestId("file-preview-reopen").first();
+    await page.clock.install({ time: new Date() });
+    const row = page.getByTestId("file-panel-file-item").first();
+    const preview = row.getByTestId("file-preview-button");
+    await waitForHydrated(preview);
+    await preview.click();
+    const link = row.getByTestId("file-preview-link");
+    await expect(link).toBeVisible();
+    const firstHref = await link.getAttribute("href");
+    expect(firstHref).toMatch(/^https?:\/\//);
+    const firstIssuanceObservedAt = Date.now();
+    // Drive only browser expiry; signing and refresh remain real server actions.
+    await page.clock.fastForward(86_401_000);
+    await expect(row.getByTestId("file-preview-expired")).toContainText("Länken har gått ut");
+    await expect(link).toHaveCount(0);
+    const reopen = row.getByTestId("file-preview-reopen");
     await expect(reopen).toBeVisible();
+    // Cross an actual server issuance second so the new expiry schedules its timer.
+    await expect.poll(() => Date.now()).toBeGreaterThan(firstIssuanceObservedAt + 1_100);
+    // Fixed Date time lets timers advance without replaying a day-old cached tick.
+    // Both issuance calls remain real; no signer response or expiry is substituted.
+    await page.clock.setFixedTime(new Date());
+    const refreshed = page.waitForResponse(response =>
+      new URL(response.url()).pathname === `/customers/${fixture().crm.company.id}`
+      && response.request().method() === "POST"
+      && !!response.request().headers()["next-action"]);
     await reopen.click();
-    // A fresh full auth issues a NEW link (or a generic error if no longer allowed) — never the
-    // stale URL silently reused.
+    expect((await refreshed).ok()).toBe(true);
+    await expect(reopen).toBeEnabled();
+    // Settle the new bounded timer with Date still at real issuance time, resetting
+    // the hook's cached tick after the earlier deliberate browser-only time jump.
+    await page.clock.fastForward(86_401_000);
+    // Fresh full authorization issues a usable link; stale URLs stayed hidden.
     await expect(page.getByTestId("file-preview-link").first()).toBeVisible();
+    await expect(row.getByTestId("file-preview-error")).toHaveCount(0);
+    const refreshedHref = await row.getByTestId("file-preview-link").getAttribute("href");
+    expect(refreshedHref).toMatch(/^https?:\/\//);
+    expect(refreshedHref).not.toBe(firstHref);
+    expect((await page.request.get(refreshedHref!)).ok()).toBe(true);
   });
 });

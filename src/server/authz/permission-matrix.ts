@@ -80,6 +80,7 @@ export const PERMISSION_MATRIX = {
     "Jobs.AssignUsers": { roles: [] },
     "Jobs.ApproveCompletion": { roles: ["tenant_admin", "projektledare"] },
   },
+  documents: { "Documents.View": { roles: ["tenant_admin", "projektledare"] } },
   files: {
     // Phase A has neither job_members nor file-owner assignment scope. Montör
     // access therefore stays closed rather than becoming a tenant-wide grant.

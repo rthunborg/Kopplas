@@ -72,7 +72,7 @@ export const navItems: readonly NavItem[] = [
     ],
   },
   {
-    label: "Filer",
+    label: "Dokument",
     href: "/files",
     // folder
     iconPaths: [
