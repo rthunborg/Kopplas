@@ -2,6 +2,7 @@
 """Opt-in one-host/shared-repository sprint coordinator; no shell evidence execution."""
 import argparse
 import contextlib
+import copy
 import hashlib
 import json
 from pathlib import Path, PurePosixPath
@@ -289,6 +290,9 @@ CREATE UNIQUE INDEX IF NOT EXISTS occupied_worktree ON claims(worktree) WHERE st
 CREATE UNIQUE INDEX IF NOT EXISTS occupied_branch ON claims(branch) WHERE state != 'integrated';
 CREATE TABLE IF NOT EXISTS journal(run TEXT NOT NULL, story TEXT NOT NULL, before_sha TEXT NOT NULL, result_sha TEXT NOT NULL, after_sha TEXT, state TEXT NOT NULL, PRIMARY KEY(run,story));
 CREATE TABLE IF NOT EXISTS verifications(run TEXT NOT NULL, story TEXT NOT NULL, sha TEXT NOT NULL, evidence TEXT NOT NULL, PRIMARY KEY(run,story));
+CREATE TABLE IF NOT EXISTS claim_amendments(request_id TEXT PRIMARY KEY, run TEXT NOT NULL, story TEXT NOT NULL, request_hash TEXT NOT NULL, before_plan TEXT NOT NULL, before_plan_hash TEXT NOT NULL, after_plan TEXT NOT NULL, after_plan_hash TEXT NOT NULL, before_claim TEXT NOT NULL, after_claim TEXT NOT NULL, request TEXT NOT NULL, stopped_writers TEXT NOT NULL, response TEXT NOT NULL, created REAL NOT NULL);
+CREATE TRIGGER IF NOT EXISTS immutable_claim_amendments_update BEFORE UPDATE ON claim_amendments BEGIN SELECT RAISE(ABORT, 'Claim amendment audit is append-only'); END;
+CREATE TRIGGER IF NOT EXISTS immutable_claim_amendments_delete BEFORE DELETE ON claim_amendments BEGIN SELECT RAISE(ABORT, 'Claim amendment audit is append-only'); END;
 '''
 
 @contextlib.contextmanager
@@ -456,12 +460,131 @@ def integrate(a):
 def integration_checkpoint():
     """No-op, patched only by synthetic tests to simulate commit-before-journal crash."""
 
+def recovery_tool_sha256():
+    """Pin the separately invoked recovery executable, not the active workflow."""
+    return hashlib.sha256(Path(__file__).read_bytes().replace(b'\r\n',b'\n')).hexdigest()
+
+def stopped_writers(request,c,p):
+    q=request['quiescence']
+    keys(q,['coordinator','attested','complete_writer_inventory','evidence_path','evidence_sha256'])
+    require(q['coordinator']==p['coordinator'] and q['attested'] is True and q['complete_writer_inventory'] is True,'Explicit coordinator quiescence and complete writer inventory attestation required')
+    require(isinstance(q['evidence_path'],str) and Path(q['evidence_path']).is_absolute(),'Stopped-writer evidence must be an absolute file reference')
+    data=Path(q['evidence_path']).read_bytes()
+    require(isinstance(q['evidence_sha256'],str) and hashlib.sha256(data).hexdigest()==q['evidence_sha256'],'Stopped-writer evidence digest mismatch')
+    e=read_json(q['evidence_path'])
+    # Bind the parsed evidence to the bytes hashed above, even if its file changes.
+    require(Path(q['evidence_path']).read_bytes()==data,'Stopped-writer evidence changed during validation')
+    keys(e,['schema_version','run_id','story_id','worker','generation','branch','worktree','checkpoint_sha','writers'])
+    require(type(e['schema_version']) is int and e['schema_version']==1 and type(e['generation']) is int,'Unsupported stopped-writer evidence schema/generation')
+    for field,expected in [('run_id',p['run_id']),('story_id',c['story']),('worker',c['worker']),('generation',c['generation']),('branch',c['branch']),('checkpoint_sha',request['checkpoint_sha'])]:
+        require(e[field]==expected,'Stopped-writer evidence '+field+' mismatch')
+    require(isinstance(e['worktree'],str) and Path(e['worktree']).is_absolute() and Path(e['worktree']).resolve()==Path(c['worktree']).resolve(),'Stopped-writer worktree mismatch')
+    require(isinstance(e['writers'],list) and e['writers'],'Stopped-writer evidence needs the worker and all write-capable delegates')
+    identities=[]
+    for w in e['writers']:
+        keys(w,['identity','role','state','evidence_ref'])
+        require(all(isinstance(w[x],str) and w[x].strip() for x in ['identity','role','evidence_ref']) and w['state']=='stopped','Every writer needs stopped status and a source evidence reference')
+        identities.append(w['identity'])
+    require(len(identities)==len(set(identities)) and any(w['identity']==c['worker'] and w['role']=='worker' for w in e['writers']),'Stopped-writer inventory must uniquely include the assigned worker')
+    return e
+
+def amendment_checkpoint():
+    """No-op, patched only by synthetic tests to simulate transactional failure."""
+
+def amend_blocked(a):
+    """Explicit additive readmission at a stopped-writer checkpoint; no Git mutation."""
+    require((common(a.repo)/'auto-bmad-parallel.sqlite3').is_file(),'Recovery requires an existing shared run store')
+    r=read_json(a.request)
+    keys(r,['schema_version','request_id','run_id','story_id','owner','worker','expected_generation','expected_plan_hash','expected_integration_sha','checkpoint_sha','add_write_paths','add_conflict_domains','reason','scope_approval_ref','recovery_tool_sha256','quiescence'])
+    require(type(r['schema_version']) is int and r['schema_version']==1,'Unsupported amendment request schema')
+    require(type(r['expected_generation']) is int and r['expected_generation']>0,'Expected generation must be a positive integer')
+    for field,expected in [('run_id',a.run),('story_id',a.story),('owner',a.owner),('worker',a.worker),('expected_generation',a.generation)]:
+        require(r[field]==expected,'Amendment request '+field+' mismatch')
+    for field in ['request_id','reason','scope_approval_ref']:
+        require(isinstance(r[field],str) and r[field].strip(),'Amendment '+field+' required')
+    require(re.fullmatch('[A-Za-z0-9][A-Za-z0-9._-]{0,127}',r['request_id']) is not None,'Invalid amendment request ID')
+    require(r['recovery_tool_sha256']==recovery_tool_sha256(),'Recovery executable does not match approved tooling digest')
+    additions=strings(r['add_write_paths'],'add_write_paths')
+    domains=strings(r['add_conflict_domains'],'add_conflict_domains')
+    require(additions,'At least one exact additional path required')
+    for token in additions:
+        path_token(token); require(not token.endswith('/') and not token.casefold().endswith('epic-'),'Amendment additions must be exact files, not directory/report prefixes')
+    require(len({x.casefold() for x in additions})==len(additions) and len({x.casefold() for x in domains})==len(domains),'Case-insensitive amendment duplicates')
+    with database(a.repo) as db:
+        p=get_run(db,a)
+        prior=db.execute('SELECT * FROM claim_amendments WHERE request_id=?',(r['request_id'],)).fetchone()
+        if prior:
+            require(prior['run']==a.run and prior['story']==a.story and prior['request_hash']==digest(r),'Amendment request ID already used with different inputs')
+            return {**json.loads(prior['response']),'replayed':True}
+        run=db.execute('SELECT * FROM runs WHERE run=?',(a.run,)).fetchone()
+        require(run['state']=='active' and run['plan_hash']==r['expected_plan_hash'],'Run state or expected plan hash changed')
+        c=get_claim(db,a,worker=True)
+        require(c['state']=='blocked' and c['block_reason'],'Only deliberately blocked claims can be amended')
+        require(c['integration_sha'] is None,'A merged claim cannot be amended')
+        require(not db.execute("SELECT 1 FROM journal WHERE (run=? AND story=?) OR state='prepared'",(a.run,a.story)).fetchone(),'Integration journal must be reconciled before claim amendment')
+        require(not db.execute('SELECT 1 FROM verifications WHERE run=? AND story IN (?,?)',(a.run,a.story,'__repair__'+a.story)).fetchone(),'Existing verification prevents claim amendment')
+        target=p['integration_worktree']; wt=Path(c['worktree']).resolve()
+        require(not any(Path(__file__).resolve().is_relative_to(Path(root).resolve()) for root in [target,wt]),'Invoke recovery tooling from a separate maintenance checkout')
+        require(branch(target)==p['integration_branch'],'Integration branch identity changed')
+        clean(target); clean(wt)
+        require(branch(target)==p['integration_branch'] and branch(wt)==c['branch'],'Checkpoint branch identity changed during amendment')
+        require(sha(target,'HEAD')==r['expected_integration_sha'],'Integration checkpoint HEAD mismatch')
+        require(sha(wt,'HEAD')==r['checkpoint_sha'] and sha(a.repo,c['branch'])==r['checkpoint_sha'],'Worker checkpoint HEAD mismatch')
+        require(workflow_version(wt)==p['workflow_version'],'Worker workflow changed since assignment')
+        require(ancestor(a.repo,c['base_sha'],r['checkpoint_sha']),'Worker checkpoint lost pinned base ancestry')
+        validate_plan(a.repo,p)
+        if r['checkpoint_sha']!=c['base_sha']:
+            validate_diff(a.repo,p,c,c['base_sha'],r['checkpoint_sha'])
+        receipt=stopped_writers(r,c,p)
+        revised=copy.deepcopy(p); s=story(revised,a.story)
+        for token in additions:
+            require(not any(covers(old,token) for old in s['write_paths']),'Additional path is already owned: '+token)
+            for root,head in [(wt,r['checkpoint_sha']),(Path(target).resolve(),r['expected_integration_sha'])]:
+                require((root/token).resolve().is_relative_to(root),'Additional path follows symlink outside worktree')
+                parts=PurePosixPath(token).parts
+                prefixes=['/'.join(parts[:n]) for n in range(1,len(parts)+1)]
+                tree=git(root,'ls-tree','-z',head,'--',*prefixes)
+                require(not any(x.startswith('120000 ') or x.startswith('160000 ') for x in tree.split('\x00')),'Symlink/submodule ownership is unsupported')
+                require(not (root/token).is_dir(),'Additional ownership must name a file')
+        require(not {x.casefold() for x in domains}&{x.casefold() for x in s['conflict_domains']},'Additional conflict domain is already declared')
+        s['write_paths']+=additions; s['conflict_domains']+=domains
+        validate_plan(a.repo,revised)
+        require(not legacy_conflicts(a.repo,revised,s),'Legacy ownership collision during amendment')
+        for other in db.execute("SELECT c.*,r.plan,r.plan_hash FROM claims c JOIN runs r ON c.run=r.run WHERE c.state!='integrated'"):
+            if other['run']==a.run and other['story']==a.story: continue
+            op=json.loads(other['plan']); require(digest(op)==other['plan_hash'],'Other run plan integrity failure')
+            require(not conflicts(s,story(op,other['story'])),'Amendment conflicts with repository claim ownership')
+        for other in db.execute("SELECT plan,plan_hash FROM runs WHERE state!='finalized'"):
+            op=json.loads(other['plan']); require(digest(op)==other['plan_hash'],'Other run plan integrity failure')
+            require(not any(overlap(token,shared) for token in s['write_paths'] for shared in op['shared_paths']),'Amendment overlaps coordinator shared ownership')
+            require(not any(conflicts(s,reservation) for reservation in op['legacy_reservations']),'Amendment conflicts with declared legacy reservation')
+        # Git cannot join the database transaction. Recheck the quiesced checkpoints
+        # immediately before CAS; coordinator attestation covers continued silence.
+        clean(target); clean(wt)
+        require(branch(target)==p['integration_branch'] and branch(wt)==c['branch'],'Checkpoint branch identity changed during amendment')
+        require(sha(target,'HEAD')==r['expected_integration_sha'] and sha(wt,'HEAD')==r['checkpoint_sha'],'Checkpoint changed during amendment')
+        require(stopped_writers(r,c,p)==receipt,'Stopped-writer evidence changed during amendment')
+        revised_hash=digest(revised); now=time.time()
+        updated=db.execute("UPDATE runs SET plan=?,plan_hash=? WHERE run=? AND owner=? AND state='active' AND plan_hash=?",(canonical(revised),revised_hash,a.run,a.owner,r['expected_plan_hash']))
+        require(updated.rowcount==1,'Plan compare-and-swap failed')
+        # The unchanged v1 submit validator enforces descent from claims.base_sha.
+        # Anchor the next generation at the fully validated checkpoint so an old
+        # worker cannot discard its reviewed history by branching from the old base.
+        updated=db.execute("UPDATE claims SET generation=?,base_sha=?,state='claimed',evidence=NULL,result_sha=NULL,block_reason=NULL,heartbeat=? WHERE run=? AND story=? AND worker=? AND generation=? AND base_sha=? AND state='blocked'",(c['generation']+1,r['checkpoint_sha'],now,a.run,a.story,a.worker,a.generation,c['base_sha']))
+        require(updated.rowcount==1,'Claim generation compare-and-swap failed')
+        amended=get_claim(db,a)
+        response={**assignment(revised,amended),'amendment_request_id':r['request_id'],'plan_hash':revised_hash,'checkpoint_sha':r['checkpoint_sha'],'previous_base_sha':c['base_sha'],'replayed':False}
+        db.execute('INSERT INTO claim_amendments VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)',(r['request_id'],a.run,a.story,digest(r),canonical(p),digest(p),canonical(revised),revised_hash,canonical(c),canonical(amended),canonical(r),canonical(receipt),canonical(response),now))
+        amendment_checkpoint()
+        return response
+
 def execute(a):
     a.repo=str(top(a.repo))
     if a.command=='version': return {'schema_version':VERSION,'workflow_version':workflow_version(a.repo)}
     if a.command=='plan':
         return report(a.repo,validate_plan(a.repo,read_json(a.plan)))
     if a.command=='integrate': return integrate(a)
+    if a.command=='amend-blocked': return amend_blocked(a)
     with database(a.repo) as db:
         if a.command=='init':
             p=validate_plan(a.repo,read_json(a.plan)); require(a.owner==p['coordinator'],'Plan coordinator mismatch')
@@ -555,12 +678,14 @@ def parser():
     p=JsonParser(description=__doc__)
     p.add_argument('--repo',default='.')
     sub=p.add_subparsers(dest='command',required=True)
-    for name in ['version','plan','init','status','claim','heartbeat','block','submit','integrate','repair','verify','finalize']:
+    for name in ['version','plan','init','status','claim','heartbeat','block','submit','integrate','repair','verify','finalize','amend-blocked']:
         cmd=sub.add_parser(name)
         if name in {'plan','init'}: cmd.add_argument('--plan',required=True)
         if name not in {'version','plan'}: cmd.add_argument('--owner',required=True)
         if name not in {'version','plan','init'}: cmd.add_argument('--run',required=True)
-        if name in {'claim','heartbeat','block','submit','integrate','repair','verify'}: cmd.add_argument('--story',required=True)
+        if name in {'claim','heartbeat','block','submit','integrate','repair','verify','amend-blocked'}: cmd.add_argument('--story',required=True)
+        if name=='amend-blocked':
+            cmd.add_argument('--worker',required=True); cmd.add_argument('--generation',type=int,required=True); cmd.add_argument('--request',required=True)
         if name in {'claim','heartbeat','block','submit'}:
             cmd.add_argument('--worker',required=True); cmd.add_argument('--generation',type=int,default=1)
         if name=='claim':

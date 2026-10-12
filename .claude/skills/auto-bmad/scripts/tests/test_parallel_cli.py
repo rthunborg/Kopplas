@@ -14,6 +14,10 @@ import unittest
 
 
 SCRIPT = Path(__file__).resolve().parents[1] / 'parallel_run.py'
+# Immutable original helper from the active pinned v1 checkout, 2026-10-12.
+# Exact LF-normalized source digest; used only against disposable fixture stores.
+PINNED_SCRIPT = Path(__file__).resolve().parent / 'fixtures/parallel_run_v1.py'
+PINNED_SHA256 = 'c5f1a285745485ee0e0969e4d098ec6ac5d861d3c907af0c8fc08cee0a4558c0'
 
 
 class ParallelCli(unittest.TestCase):
@@ -103,7 +107,7 @@ class ParallelCli(unittest.TestCase):
         return path
 
     def invoke(self, repo, *args):
-        return self.process([sys.executable, '-X', 'utf8', str(SCRIPT),
+        return self.process([sys.executable, '-X', 'utf8', str(getattr(self, 'entrypoint', SCRIPT)),
                              '--repo', str(repo), *args])
 
     def cli(self, command, *, repo=None, failure=None, **options):
@@ -182,6 +186,7 @@ class ParallelCli(unittest.TestCase):
     def submit(self, story_id, evidence, failure=None):
         return self.cli('submit', repo=self.workers[story_id], story=story_id,
                         worker='worker-' + story_id,
+                        generation=self.assignments[story_id]['generation'],
                         evidence=self.json_file('worker-evidence-' + story_id,
                                                 evidence), failure=failure)
 
@@ -367,6 +372,129 @@ class ParallelCli(unittest.TestCase):
         root = SCRIPT.parents[4]
         mirror = root / '.claude/skills/auto-bmad/scripts/tests/test_parallel_cli.py'
         self.assertEqual(Path(__file__).read_bytes(), mirror.read_bytes())
+        fixture_mirror = mirror.parent / 'fixtures/parallel_run_v1.py'
+        self.assertEqual(PINNED_SCRIPT.read_bytes(), fixture_mirror.read_bytes())
+        self.assertEqual(hashlib.sha256(PINNED_SCRIPT.read_bytes().replace(b'\r\n', b'\n')).hexdigest(), PINNED_SHA256)
+
+    def amendment_request(self, checkpoint):
+        receipt = {
+            'schema_version': 1, 'run_id': 'cli-pilot', 'story_id': 'a',
+            'worker': 'worker-a', 'generation': 1,
+            'branch': self.worker_branches['a'], 'worktree': str(self.workers['a']),
+            'checkpoint_sha': checkpoint,
+            'writers': [{'identity': 'worker-a', 'role': 'worker', 'state': 'stopped',
+                         'evidence_ref': 'synthetic-status/worker-completed'}],
+        }
+        receipt_path = self.json_file('stopped-writers', receipt)
+        return {
+            'schema_version': 1, 'request_id': 'cli-amendment',
+            'run_id': 'cli-pilot', 'story_id': 'a', 'owner': 'coordinator-fixture',
+            'worker': 'worker-a', 'expected_generation': 1,
+            'expected_plan_hash': hashlib.sha256(json.dumps(self.plan, sort_keys=True,
+                                                           separators=(',', ':')).encode()).hexdigest(),
+            'expected_integration_sha': self.git(self.repo, 'rev-parse', 'HEAD'),
+            'checkpoint_sha': checkpoint,
+            'add_write_paths': ['src/shared/required.txt'],
+            'add_conflict_domains': ['contract:shared-required'],
+            'reason': 'Required fixture scope path was omitted',
+            'scope_approval_ref': 'synthetic-approved-frozen-scope-assessment',
+            'recovery_tool_sha256': hashlib.sha256(SCRIPT.read_bytes().replace(b'\r\n', b'\n')).hexdigest(),
+            'quiescence': {'coordinator': 'coordinator-fixture', 'attested': True,
+                           'complete_writer_inventory': True,
+                           'evidence_path': str(receipt_path),
+                           'evidence_sha256': hashlib.sha256(receipt_path.read_bytes()).hexdigest()},
+        }
+
+    def test_exact_pinned_helper_uses_revised_assignment_without_workflow_upgrade(self):
+        self.plan['stories'][1]['write_paths'].append('src/shared/required.txt')
+        self.planfile = self.json_file('plan', self.plan)
+        self.entrypoint = PINNED_SCRIPT
+        self.cli('init'); self.claim('a')
+        original = self.worker_evidence('a')
+        self.cli('block', story='a', worker='worker-a', generation=1,
+                 reason='Frozen approved scope missing one required path')
+        request = self.amendment_request(original['result_sha'])
+        artifact = self.planfile.read_bytes()
+        workflow = self.cli('version')['workflow_version']
+        self.entrypoint = SCRIPT
+        assignment = self.cli('amend-blocked', story='a', worker='worker-a', generation=1,
+                              request=self.json_file('amendment', request))
+        self.assertEqual(assignment['generation'], 2)
+        self.assertEqual(assignment['workflow_version'], workflow)
+        self.assertEqual(assignment['base_sha'], original['result_sha'])
+        self.assertEqual(assignment['previous_base_sha'], original['base_sha'])
+        self.assertEqual(self.planfile.read_bytes(), artifact)
+        self.entrypoint = PINNED_SCRIPT
+        for command, options in [('heartbeat', {}), ('block', {'reason': 'stale'}),
+                                 ('submit', {'evidence': self.json_file('old-evidence', original)})]:
+            self.cli(command, story='a', worker='worker-a', generation=1,
+                     failure='Stale generation', **options)
+        current = self.cli('heartbeat', story='a', worker='worker-a', generation=2)
+        self.assertIn('src/shared/required.txt', current['story']['write_paths'])
+        self.cli('claim', story='b', worker='worker-b', branch=self.worker_branches['b'],
+                 worktree=self.workers['b'], failure='semantic conflict')
+        self.assignments['a'] = current
+        self.write(self.workers['a'], 'src/shared/required.txt', 'Required admitted fixture fix\n')
+        self.submit('a', self.worker_evidence('a'))
+        self.integrate('a'); self.verify('a')
+        self.assertEqual(self.states(), {'a': 'integrated'})
+        self.assertEqual(self.cli('version')['workflow_version'], workflow)
+        head = self.git(self.repo, 'rev-parse', 'HEAD')
+        self.git(self.repo, 'merge-base', '--is-ancestor', original['result_sha'], head)
+        self.assertEqual(self.planfile.read_bytes(), artifact)
+
+    def test_pinned_helper_refuses_result_that_discards_reviewed_checkpoint(self):
+        self.entrypoint = PINNED_SCRIPT
+        self.cli('init'); self.claim('a')
+        original = self.worker_evidence('a')
+        self.cli('block', story='a', worker='worker-a', generation=1, reason='Stopped checkpoint')
+        request = self.amendment_request(original['result_sha'])
+        self.entrypoint = SCRIPT
+        assignment = self.cli('amend-blocked', story='a', worker='worker-a', generation=1,
+                              request=self.json_file('amendment', request))
+        self.assertEqual(assignment['base_sha'], original['result_sha'])
+        self.entrypoint = PINNED_SCRIPT
+        # Only disposable fixture branches are changed. Build a clean result
+        # descending from the original base but losing the reviewed checkpoint.
+        self.git(self.workers['a'], 'reset', '--hard', self.base)
+        self.write(self.workers['a'], 'src/a/result.txt', 'a complete\n')
+        self.write(self.workers['a'], 'src/shared/required.txt', 'divergent fixture\n')
+        divergent = self.commit(self.workers['a'], 'divergent unreviewed fixture result')
+        evidence = copy.deepcopy(original)
+        evidence.update(generation=2, base_sha=assignment['base_sha'], result_sha=divergent,
+                        changed_paths=self.git(self.repo, 'diff', '--name-only', '--no-renames',
+                                               assignment['base_sha'], divergent).splitlines(),
+                        checks=[self.check(self.workers['a'], divergent)],
+                        review=self.review(divergent))
+        self.cli('submit', story='a', worker='worker-a', generation=2,
+                 evidence=self.json_file('divergent-evidence', evidence),
+                 failure='atop assignment base')
+        self.assertEqual(self.states(), {'a': 'claimed'})
+        self.git(self.workers['a'], 'reset', '--hard', original['result_sha'])
+        self.assertEqual(self.cli('heartbeat', story='a', worker='worker-a', generation=2)['base_sha'],
+                         original['result_sha'])
+
+    def test_concurrent_amendments_have_one_cas_winner(self):
+        self.cli('init'); self.claim('a')
+        checkpoint = self.worker_evidence('a')['result_sha']
+        self.cli('block', story='a', worker='worker-a', generation=1, reason='Stopped checkpoint')
+        request = self.amendment_request(checkpoint)
+        another = copy.deepcopy(request); another['request_id'] = 'cli-second-amendment'
+        processes = []
+        for name, data in [('first-amendment', request), ('second-amendment', another)]:
+            args = [sys.executable, '-X', 'utf8', str(SCRIPT), '--repo', str(self.repo),
+                    'amend-blocked', '--owner', 'coordinator-fixture', '--run', 'cli-pilot',
+                    '--story', 'a', '--worker', 'worker-a', '--generation', '1',
+                    '--request', str(self.json_file(name, data))]
+            processes.append(subprocess.Popen(args, stdout=subprocess.PIPE,
+                                              stderr=subprocess.PIPE, text=True, encoding='utf-8'))
+        outputs = [process.communicate(timeout=60) for process in processes]
+        self.assertEqual(sorted(p.returncode for p in processes), [0, 1], outputs)
+        responses = [json.loads(out) for out, err in outputs]
+        self.assertEqual(sum(r['ok'] for r in responses), 1)
+        self.assertTrue(all(not err for out, err in outputs), outputs)
+        assignment = self.cli('heartbeat', story='a', worker='worker-a', generation=2)
+        self.assertEqual(assignment['generation'], 2)
 
 
 if __name__ == '__main__':
