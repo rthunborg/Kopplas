@@ -34,3 +34,37 @@
 1. Coordinator must supply verified Documents20.1 integration and explicit shared product-domain release/revalidation before15.1 build.
 
 **Next:** After reconciliation/integrated predecessor changes resume /auto-bmad epic --epic 15 in same worktree. Do not reinitialize or modify another checkout. Project context refresh recommended after epic completion.
+
+## Report — 2026-10-12T14:20:37Z (halted - updated ownership prerequisite)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `bc4163e`).
+**Pipeline status:** E5 remains unstarted. Await completed E20 main integration and explicit 15.1-only release/revalidation.
+**Continues:** (none — first run)
+
+**Summary:** Coordination update only. The coordinator reports Documents 20.1 integrated at 6e1aaf94a16a2d386b8f410f56e57c3039b2aeff, with all 14 worker checks passing; combined verification is pending and no release is granted. Independent High admission review found no supported narrow concurrent handoff: copying active E20 anchors causes registered_parallel_anchor ownership collisions for 20.2. This is protocol/bookkeeping, not a Lovable or product dependency.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 73h 22m (≈28m AI-run, ≈72h 54m human/idle wait); resumed 1×.
+
+**Stories:**
+1. 15.1 reviewed specification and ATDD preparation remain unchanged at checkpoint bc4163ea; no implementation or landed story.
+
+**Skipped:** (none)
+
+**Epic gate:** Not evaluated; all implementation and completion gates remain required.
+
+**TEA:** Existing preparation retained: 54-family epic plan and 62 skipped 15.1 scaffolds; zero product behaviors executed. No tests or resources run for this update.
+
+**Retrospective:** October 8 accepted-with-open-items Epic14 prerequisite retained; no Epic15 retrospective.
+
+**Overrides:** Preserve existing specs, preparation history, branch and markers. No active E20 merge/cherry-pick, hot-upgrade, shared/product edits, product tests or resource execution.
+
+**Open questions:** (none)
+
+**Deferred work:**
+1. E5 and remaining sequential epic work await supported ownership handoff. Contract D calendar-host acceptance remains mandatory.
+
+**⚠️ Needs human:**
+1. Coordinator supplies verified completed E20 main base after 20.2, 20.3, finalization and epic PR merge, then explicit 15.1-only release and clean-checkpoint adoption/revalidation. No additional owner approval requested.
+
+**Next:** Keep the existing Epic15 anchor and branch. Await the coordinator completed-base and scoped-release handoff before deliberate checkpoint adoption or E5.
