@@ -130,3 +130,37 @@ None
 1. None
 
 **Next:** Fresh independent follow-up review, then fresh all14 checks and distinct review of final exact worker SHA
+
+## Report — 2026-10-12T18:05:58Z (checkpoint â€” follow-up renderer permission recovery)
+
+**Story:** `20-2-search-filters-preview-and-archive-restore` (epic 20, story 2) — mid-epic.
+**Spec:** `C:/Users/Rasmus/.codex/worktrees/documents-e20-20-2/Kopplas/_bmad-output/implementation-artifacts/spec-20-2-search-filters-preview-and-archive-restore.md`
+**Branch:** `codex/parallel-documents-e20-readiness-2026-10-09-20-2` (HEAD `70950dc`).
+**Pipeline status:** Worker running; first follow-up invocation halted before review, fresh authorized invocation pending
+**Continues:** Fresh same-phase High follow-up, preserving exact-once renderer and all review gates
+
+**Timing:** started 2026-10-12T14:35:36Z; completed in progress — elapsed 3h 30m (≈3h 30m AI-run, ≈0m human/idle wait); resumed 4×.
+
+**Phases run:** Phase7 bootstrap only: renderer native1/cache Access denied, no review or test execution
+**Skipped:** (none)
+
+**Overrides:** Failed actor obeyed installed renderer HALT. Host interpreter lookup with require_escalated native0; fresh actor will use authorized host renderer without direct source execution
+
+**TEA:** (none)
+
+**Build:** not run
+
+**Review:** Completed broad rounds remains1; failed invocation receives no review credit
+
+**Retrospective:** (none)
+
+**Open questions:**
+1. None requiring a product decision
+
+**Deferred work:**
+1. None
+
+**⚠️ Needs human:**
+1. None; authorized host permission resolves the bootstrap access path
+
+**Next:** Launch fresh High follow-up skill invocation after clean-tree checkpoint

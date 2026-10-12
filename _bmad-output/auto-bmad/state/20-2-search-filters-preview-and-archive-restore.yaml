@@ -9,11 +9,11 @@ spec_folder: null
 story_id: "20.2"
 branch: codex/parallel-documents-e20-readiness-2026-10-09-20-2
 status: running
-updated_at: "2026-10-12T18:03:26Z"
+updated_at: "2026-10-12T18:05:59Z"
 started_at: "2026-10-12T14:35:36Z"
 completed_at: null
-active_seconds: 12466
-timing_anchor: 1791828206
+active_seconds: 12618
+timing_anchor: 1791828359
 is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
@@ -58,7 +58,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [9a5bde6, dcb7956, aa6f0e3, 1bcf7dab]
+commits: [9a5bde6, dcb7956, aa6f0e3, 1bcf7dab, 70950dc8]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -132,5 +132,7 @@ overrides:
   tea_automate_server_stop: 26e69df7 native0/oktrue/stop_requested/verifiedfalse after all consumers quiescent
   tea_automate_execution: "Actual lifecycle file25pass/0fail/0skip/native0 and focusedbrowser2pass/0fail/0skip/native0; lint,typecheck,discovery111,schema validation native0; candidate only, freshall14 pending"
   tea_automate_no_source_changes: true
+  followup_bootstrap_recovery: "Bounded uv python find --no-python-downloads through authorized host permission native0, installedPython314 found. Fresh delegated skill invocation will render exactly once with require_escalated; no direct workflow source or retry of failed actor"
+  followup_bootstrap_attempt1: "Renderer native1: sandbox denied uv temporary interpreter cache before workflow/review. Actor obeyed exact-once failure HALT; no writes/commits/review/checks; broad rounds remains1"
 constraints: []
 parallel_run_id: documents-e20-readiness-2026-10-09
