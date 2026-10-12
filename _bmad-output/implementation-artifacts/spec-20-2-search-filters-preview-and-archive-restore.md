@@ -320,7 +320,9 @@ Completed review rounds:2. All six configured SolHigh layers returned, including
   - `[medium]` `[patch]` Authorized compact file-size metadata is restored in the Documents presentation.
   - `[medium]` `[patch]` Real authenticated Storage-info permanent404 versus transient503 and bounded off-page failure regressions now execute with the lifecycle/filter/RLS suite.
 
-### 2026-10-12 — Review pass (Round2)
+### 2026-10-12 — Review pass
+
+Round2 of3; completed broad rounds:2.
 - intent_gap: 0
 - bad_spec: 0
 - patch: 4: (high 0, medium 4, low 0)
