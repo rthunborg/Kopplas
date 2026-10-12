@@ -80,16 +80,16 @@ function actionIdentity(request: Request) {
   }).filter(Boolean).sort((a,b) => a![0].localeCompare(b![0]));
   return { action: request.headers()["next-action"], fields };
 }function signal() { let resolve!: () => void; return { promise: new Promise<void>(done => { resolve = done; }), release: () => resolve() }; }
-/** Gate one real action; after-mode forwards the exact fetched RSC response. */
-async function gateAction(page: Page, mode: "before" | "after" = "before") {
+/** Gate one real action; after modes fetch the real response, then forward it or lose only transport. */
+async function gateAction(page: Page, mode: "before" | "after" | "after-loss" = "before") {
   const started = signal(); const release = signal(); const finished = signal(); let captured = false;
   await page.route(FILES_ROUTE, async route => {
     if (captured || !isAction(route.request())) { await route.continue(); return; }
     captured = true;
     try {
-      let response: APIResponse | undefined; if (mode === "after") response = await route.fetch();
+      let response: APIResponse | undefined; if (mode !== "before") response = await route.fetch();
       started.release(); await release.promise;
-      if (response) await route.fulfill({ response }); else await route.continue();
+      if (mode === "after-loss") await route.abort("failed"); else if (response) await route.fulfill({ response }); else await route.continue();
     } finally { finished.release(); }
   });
   return { started: started.promise, release: release.release, dispose: async () => { release.release(); if (captured) await finished.promise; await page.unroute(FILES_ROUTE); } };
@@ -183,10 +183,77 @@ for (const viewport of [{ name: "desktop", width: 1280, height: 800 }, { name: "
         } finally { await gate.dispose(); }
       });
     });
+    test("[P0][AC3,7,8] lost pending response after filter change exposes current refresh and preserves original callable", ERROR_RED, async ({ page }) => {
+      await withSeed(async seed => {
+        const target = await seedFile(seed, "20.2-filter-loss-target-" + crypto.randomUUID() + ".png", "image/png");
+        const current = await seedFile(seed, "20.2-filter-loss-current-" + crypto.randomUUID() + ".png", "image/png");
+        await adminQuery("update public.files set lifecycle_state='archived',archived_at=now() where id=$1", [target.fileId]);
+        await open(page, { q: target.name, mode: "archived" });
+        const requests: Request[] = []; page.on("request", request => { if (isAction(request)) requests.push(request); });
+        const restore = row(page, target.name).getByRole("button", { name: "Återställ", exact: true }); await hydrated(restore);
+        const action = await gateAction(page, "after-loss");
+        try {
+          await restore.click(); await action.started; await expect(page.getByTestId("documents-lifecycle-pending")).toBeVisible();
+          await page.getByLabel("Sök dokument", { exact: true }).fill(current.name);
+          await page.getByRole("button", { name: "Aktiva", exact: true }).click();
+          await expect(page.getByTestId("documents-projection-loading")).toBeVisible();
+          await expect(row(page, target.name)).not.toBeVisible();
+          await expect(page.getByTestId("documents-lifecycle-pending")).toBeVisible(); expect(requests).toHaveLength(1);
+          action.release();
+          await expect(row(page, current.name)).toBeVisible();
+          const archive = row(page, current.name).getByRole("button", { name: "Arkivera", exact: true });
+          await expect(page.getByTestId("documents-operation-refresh-required")).toBeVisible();
+          await expect(page.getByTestId("documents-lifecycle-pending")).toHaveCount(0);
+          await expect(page.getByTestId("documents-lifecycle-error")).toHaveCount(0);
+          await expect(page.getByTestId("documents-lifecycle-success")).toHaveCount(0);
+          await expect(archive).toBeDisabled(); await archive.evaluate(element => (element as HTMLButtonElement).click()); expect(requests).toHaveLength(1);
+          expect((await state(target.fileId)).lifecycle_state).toBe("linked"); expect(await audits(target.fileId)).toHaveLength(1);
+        } finally { await action.dispose(); }
+        const read = await gateRead(page);
+        try {
+          const refresh = page.getByTestId("documents-operation-refresh-required").getByRole("button", { name: "Läs in aktuella dokument", exact: true });
+          await expect(refresh).toBeVisible(); await refresh.click(); await read.started;
+          await expect(row(page, current.name).getByRole("button", { name: "Arkivera", exact: true })).toBeDisabled();
+          await expect(page.getByRole("button", { name: "Bekräfta tidigare åtgärd", exact: true })).toHaveCount(0); expect(requests).toHaveLength(1);
+          read.release(); await expect(page.getByTestId("documents-operation-uncertain")).toContainText("inte tillgänglig i detta tillstånd");
+          await expect(page.getByTestId("documents-operation-refresh-required")).toHaveCount(0);
+        } finally { await read.dispose(); }
+        // An opposite transition changes eligibility, but never replaces the original consumed restore handle.
+        await adminQuery("update public.files set lifecycle_state='archived',archived_at=now() where id=$1", [target.fileId]);
+        await page.getByLabel("Sök dokument", { exact: true }).fill(target.name);
+        await page.getByRole("button", { name: "Arkiverade", exact: true }).click();
+        await expect(row(page, target.name)).toBeVisible();
+        const retry = page.getByRole("button", { name: "Bekräfta tidigare åtgärd", exact: true });
+        await expect(retry).toBeVisible(); expect(requests).toHaveLength(1); await retry.click();
+        const dialog = page.getByRole("dialog", { name: "Bekräfta tidigare åtgärd" }); await expect(dialog).toBeVisible(); expect(requests).toHaveLength(1);
+        const response = actionResponse(page); await dialog.getByRole("button", { name: "Återställ", exact: true }).click(); expect((await response).ok()).toBe(true);
+        await expect(page.getByTestId("documents-lifecycle-error")).toContainText("redan hanterats");
+        expect(requests).toHaveLength(2); expect(actionIdentity(requests[1])).toEqual(actionIdentity(requests[0]));
+        expect((await state(target.fileId)).lifecycle_state).toBe("archived"); expect(await audits(target.fileId)).toHaveLength(1); expect(await audits(current.fileId)).toHaveLength(0);
+      });
+    });
     test("[P1][AC1,8] draft mode withholds old rows counts and facets until authorized projection arrives", RED, async ({ page }) => {
       await withSeed(async seed => {
-        const active = await seedFile(seed, "20.2-current-active-" + crypto.randomUUID() + ".png", "image/png"); const archived = await seedFile(seed, "20.2-current-archived-" + crypto.randomUUID() + ".png", "image/png", PNG, "archived"); await open(page); const read = await gateRead(page);
-        try { await page.getByRole("button", { name: "Arkiverade", exact: true }).click(); await read.started; await expect(page.getByTestId("documents-projection-loading")).toBeVisible(); await expect(row(page, active.name)).not.toBeVisible(); await expect(page.getByTestId("documents-result-count")).not.toBeVisible(); await expect(page.getByLabel("Antal per filter")).not.toBeVisible(); read.release(); await expect(row(page, archived.name)).toBeVisible(); await expect(row(page, active.name)).toHaveCount(0); await expect(row(page, archived.name).getByRole("button", { name: "Förhandsvisa", exact: true })).toHaveCount(0); } finally { await read.dispose(); }
+        const marker = "20.2-current-" + crypto.randomUUID();
+        const active = await seedFile(seed, marker + "-active.png", "image/png");
+        await seedFile(seed, marker + "-active-second.png", "image/png");
+        const archived = await seedFile(seed, marker + "-archived.png", "image/png", PNG, "archived");
+        await open(page, { q: marker });
+        const moduleOption = page.getByLabel("Modul", { exact: true }).locator('option[value="crm"]');
+        const purposeOption = page.getByLabel("Syfte", { exact: true }).locator('option[value="crm_document"]');
+        await expect(moduleOption).toHaveText("Kunder (2)"); await expect(purposeOption).toHaveText("Kunddokument (2)");
+        await hydrated(page.getByRole("button", { name: "Arkiverade", exact: true })); const read = await gateRead(page);
+        try {
+          await page.getByRole("button", { name: "Arkiverade", exact: true }).click(); await read.started;
+          await expect(page.getByTestId("documents-projection-loading")).toBeVisible(); await expect(row(page, active.name)).not.toBeVisible();
+          await expect(page.getByTestId("documents-result-count")).not.toBeVisible(); await expect(page.getByLabel("Antal per filter")).not.toBeVisible();
+          await expect(moduleOption).toHaveText("Kunder"); await expect(purposeOption).toHaveText("Kunddokument");
+          for (const label of ["Modul", "Syfte"]) expect(await page.getByLabel(label, { exact: true }).locator("option").allTextContents()).not.toEqual(expect.arrayContaining([expect.stringMatching(/\(\d+\)/)]));
+          read.release(); await expect(row(page, archived.name)).toBeVisible(); await expect(row(page, active.name)).toHaveCount(0);
+          await expect(moduleOption).toHaveText("Kunder (1)"); await expect(purposeOption).toHaveText("Kunddokument (1)");
+          await expect(page.getByTestId("documents-result-count")).toHaveText("1");
+          await expect(row(page, archived.name).getByRole("button", { name: "Förhandsvisa", exact: true })).toHaveCount(0);
+        } finally { await read.dispose(); }
       });
     });
     test("[P1][AC8] archive modal contains keyboard focus background and busy dismissal", RED, async ({ page }) => {

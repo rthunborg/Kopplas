@@ -51,6 +51,8 @@ assertDocumentSourceRegistryCoherence();
 export interface DocumentSourceDeps {
   readonly client: object; readonly tenantId: string; readonly roles: readonly string[];
   readonly mode?: "active" | "archived" | "all";
+  /** Internal all-context traversal may omit bytes only for lifecycle-excluded PDF candidates. */
+  readonly checkQuotePdfBytes?: boolean;
   readonly loadRow?: (table: string, id: string, tenantId: string, client: object) => Promise<Row | null>;
 }
 const denied = (): DocumentSourceResult => ({ ok: false, code: "TENANT_ACCESS_DENIED", message: "Dokumentet är inte tillgängligt." });
@@ -118,10 +120,13 @@ export async function readDocumentSource(link: DocumentCandidate, deps: Document
       if (file.artifact_kind === "quote_pdf") {
         if (version.pdf_file_id !== file.id || version.pdf_status !== "generated" || file.bucket_id !== "tenant-files" ||
           !file.object_path.startsWith(`${deps.tenantId}/${file.id}/`)) return denied();
-        // Only strict PDF artifacts need Storage metadata for listing; ordinary contexts are DB-backed.
-        const { data, error } = await (deps.client as Client).storage.from(file.bucket_id).info(file.object_path);
-        if (error) { if (isPermanentStorageDenial(error)) return denied(); throw error; }
-        if (!data) return denied();
+        // Current association and provenance remain mandatory even when this PDF cannot contribute to the requested lifecycle.
+        // All normal readers/signers retain strict artifact bytes by default.
+        if (deps.checkQuotePdfBytes !== false) {
+          const { data, error } = await (deps.client as Client).storage.from(file.bucket_id).info(file.object_path);
+          if (error) { if (isPermanentStorageDenial(error)) return denied(); throw error; }
+          if (!data) return denied();
+        }
       }
     }
     return { ok: true, data: { module: entry.module, ownerType: owner, ownerId: link.owner_id, ownerLabel } };

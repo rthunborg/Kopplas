@@ -9,7 +9,7 @@ import { it as test, expect } from "vitest";
 import {
   createRoleAwarePhaseAFixture, cleanupRoleAwarePhaseAFixture, makeAuthedServerClient, makeAnonServerClient,
   adminInsertCustomer, adminInsertContact, adminInsertFacility, adminInsertCalculation,
-  adminInsertFile, adminInsertFileLink, adminUploadStorageObject,
+  adminInsertFile, adminInsertFileLink, adminUploadStorageObject, adminInsertQuote, adminInsertQuoteVersion,
   type RoleAwarePhaseAFixture, type TestServerClient, type FileLinkSeed,
 } from "../../factories/tenants";
 import { adminExec, adminQuery } from "../../factories/admin-sql";
@@ -205,4 +205,39 @@ test("[P0][AC3] returned-row transient Storage.info503 produces explicit SERVER_
   const target = await seed(fx); const wrapped = infoFault(client, async () => ({ data: null, error: { status: 503, message: "Temporary outage" } }));
   const result = await read(wrapped); expect(result).toMatchObject({ ok: false, code: "SERVER_ERROR" }); expect(result).not.toHaveProperty("data"); expect(result.message).toMatch(/Försök igen/);
   const retried = await page(client); expect(retried.data.rows[0]).toMatchObject({ linkId: target.linkId, canArchive: true });
+}));
+test("[P0][AC1,6] archived current quote PDF Storage503 cannot abort active rows counts or facets but relevant archived read fails", async () => fixture(async (fx, client) => {
+  const active = await seed(fx, { name: "current-quote-active.png" });
+  const calculation = await adminInsertCalculation({ tenant_id: fx.base.tenantA.id, customer_id: active.ownerId });
+  const quote = await adminInsertQuote({ tenant_id: fx.base.tenantA.id, customer_id: active.ownerId });
+  const version = await adminInsertQuoteVersion({ tenant_id: fx.base.tenantA.id, quote_id: quote, calculation_id: calculation });
+  const { establishCurrentQuotePdf, quotePdfSendAttestation } = await import("../../support/quote-pdf");
+  const current = await establishCurrentQuotePdf({ client, tenantId: fx.base.tenantA.id, quoteVersionId: version, actorUserId: fx.base.adminA.id, occurredAt: new Date().toISOString() });
+  const [file] = await adminQuery<{ object_path: string }>("select object_path from public.files where id=$1", [current.fileId]);
+  const [link] = await adminQuery<{ id: string }>("select id from public.file_links where file_id=$1 and owner_type='quote_version' and owner_id=$2 and purpose='quote_pdf'", [current.fileId, version]);
+  const correlation = crypto.randomUUID();
+  const authority = await client.rpc("authorize_quote_final_send", { p_tenant_id: fx.base.tenantA.id, p_quote_version_id: version, p_actor_user_id: fx.base.adminA.id, p_correlation_id: correlation });
+  expect(authority.error).toBeNull(); expect(typeof authority.data).toBe("string");
+  const attestation = await quotePdfSendAttestation({ client, tenantId: fx.base.tenantA.id, quoteVersionId: version, actorUserId: fx.base.adminA.id, correlationId: correlation });
+  const sent = await client.rpc("mark_quote_version_sent", { p_tenant_id: fx.base.tenantA.id, p_quote_version_id: version, p_authorization_id: authority.data as string, p_sent_at: new Date().toISOString(), p_channel: null, p_reference: null, p_actor_user_id: fx.base.adminA.id, p_correlation_id: correlation, ...attestation });
+  expect(sent.error).toBeNull();
+  const archived = await client.rpc("archive_document_with_audit", { p_tenant_id: fx.base.tenantA.id, p_actor_user_id: fx.base.adminA.id, p_link_id: link.id, p_file_id: current.fileId, p_correlation_id: crypto.randomUUID(), p_reason: null });
+  expect(archived.error).toBeNull();
+  const [source] = await adminQuery("select archived_at,pdf_file_id,pdf_status,pdf_content_fingerprint,pdf_render_file_id from public.quote_versions where id=$1", [version]);
+  expect(source).toMatchObject({ archived_at: null, pdf_file_id: current.fileId, pdf_status: "generated", pdf_render_file_id: null });
+  expect(source.pdf_content_fingerprint).toMatch(/^[0-9a-f]{64}$/);
+  const relevant = await page(client, { q: "current-quote", mode: "archived" });
+  expect(relevant.data.rows).toHaveLength(1); expect(relevant.data.rows[0]).toMatchObject({ linkId: link.id, fileId: current.fileId, purpose: "quote_pdf", archived: true, canRestore: false });
+  const checks: string[] = [];
+  const wrapped = infoFault(client, async (path, actual) => { checks.push(path); return path === file.object_path ? { data: null, error: { status: 503, message: "Archived artifact Storage unavailable" } } : actual(); });
+  const projected = await page(wrapped, { q: "current-quote", mode: "active" });
+  expect(projected.data.rows).toHaveLength(1); expect(projected.data.rows[0]).toMatchObject({ linkId: active.linkId, fileId: active.fileId, canArchive: true });
+  expect(projected.data.total).toBe(1);
+  expect(projected.data.facets).toEqual({ module: [{ value: "crm", count: 1 }], ownerType: [{ value: "customer", count: 1 }], purpose: [{ value: "crm_document", count: 1 }] });
+  expect(checks).toEqual([active.path]); expect(checks).not.toContain(file.object_path);
+  checks.length = 0;
+  const failed = await read(wrapped, { q: "current-quote", mode: "archived" });
+  expect(failed).toMatchObject({ ok: false, code: "SERVER_ERROR" }); expect(failed).not.toHaveProperty("data"); expect(failed.message).toMatch(/Försök igen/);
+  expect(checks).toEqual([file.object_path]);
+  expect((await adminQuery("select archived_at,pdf_file_id,pdf_status,pdf_content_fingerprint,pdf_render_file_id from public.quote_versions where id=$1", [version]))[0]).toEqual(source);
 }));

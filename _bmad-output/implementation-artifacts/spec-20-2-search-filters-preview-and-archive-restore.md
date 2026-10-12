@@ -151,6 +151,8 @@ Required checks are listed below; current author execution and evidence limits a
 Status: done
 Blocking condition: none
 
+### Historical Round1 author result
+
 Implemented bounded Documents search/filter/date/paging, selection-safe preview and checked file-wide archive/restore, with current request authorization and retained encrypted action identity for explicit response-loss retries. Safe Undo is projected only for currently authorized eligible targets; its transient deadline never discards an already-started restore identity. No approved intent, applied migration, dependencies or public payload contract was widened.
 
 The existing `src/features/documents/actions.ts` signer bridge is reused unchanged; its sole blank-EOF diff was removed at finalization. The original23-path review context therefore yields22 committed author paths.
@@ -175,7 +177,7 @@ Files changed:
 - `tests/integration/commands/documents-lifecycle.int.test.ts` — Exercises real lifecycle origin, audit, authority, provenance and replay guards.
 - `tests/integration/commands/documents-lifecycle-lock-races.int.test.ts` — Exercises real file-population, role and ancestry lock races.
 - `tests/integration/rls/documents-filter-archive.rls.test.ts` — Exercises authorized filters, paging and permanent/transient Storage hint boundaries.
-- `tests/e2e/files/documents-search-preview-lifecycle.e2e.spec.ts` — Exercises 68 real desktop/phone story journeys and failure-only safe diagnostics.
+- `tests/e2e/files/documents-search-preview-lifecycle.e2e.spec.ts` — Exercises the historical68 Round1 journeys, expanded to72 current story browser cases after TEA and Round2.
 - `tests/e2e/files/documents.e2e.spec.ts` — Preserves baseline journeys and updates approved duplicate-query validation semantics.
 - `supabase/migrations/20261009091121_story_20_2_documents_lifecycle_origin_and_restore.sql` — Adds DB-owned ordinary origin capture and authenticated atomic all-link lifecycle RPCs.
 
@@ -189,69 +191,101 @@ The earlier identity question was corrected from an intent-gap hypothesis to an 
 
 Residual limits: historical login/hydration failures remain unclassified; later passing runs do not prove their cause. Failed receipts and safe Auth/gateway facts are retained without credentials or a retry/assertion waiver. The owned hydration helper now checks the same actual React predicate on a connected current node with bounded fresh locator polling; no detached-node root-cause claim is made. Existing OptionA generic/direct Storage access and issued bearer-URL TTL residuals remain. Reload/build replacement loses in-memory retry handles and fails closed. No exact Lovable comparison, verified legacy parity, demo/external-service result or universal browser/device coverage is claimed. All author contexts/jobs/DB users are quiescent; root production server Stop ACK accepted, root DB/Chrome retained for later lane gates.
 
+### Round2 follow-up author result — 2026-10-12
+
+Status: done. Blocking condition: none. The fresh required follow-up completed all six configured independent review layers at Sol6.1High: BlindHunter, EdgeCaseHunter, VerificationGap, IntentAlignment, Security and external read-only Codex. Completed broad rounds are now2; the failed prior renderer bootstrap received0 credit. This actor started no third broad round.
+
+Four medium patches are implemented and verified: retained-operation current-read recovery stays reachable across filter changes; dropdown counts wait for a matching draft/server projection; lifecycle-excluded quote-PDF bytes cannot abort unrelated metadata while all DB provenance/source guards remain; direct archive/restore quote-parent revocation has real authenticated RPC regression evidence. No intent gap, bad-spec repair, deferral, migration or scope/authority change occurred. Two descriptive interpretation claims were rejected as non-defects. Follow-up recommended: true, with patched high0/medium4/low0 and score3 × 4 + 0 =12.
+
+This pass changed seven author-owned paths:
+- `src/components/documents/DocumentFilters.tsx` — Adds filter-independent uncertain-operation refresh and hides stale dropdown counts.
+- `src/server/read-models/documents.ts` — Derives PDF byte validation from the requested lifecycle while retaining complete DB graph traversal.
+- `src/server/read-models/document-sources.ts` — Keeps strict quote-PDF bytes by default and all provenance checks mandatory.
+- `tests/e2e/files/documents-search-preview-lifecycle.e2e.spec.ts` — Adds two desktop/phone loss/filter recovery cases and extends both pending-count cases.
+- `tests/integration/rls/documents-filter-archive.rls.test.ts` — Exercises irrelevant archived quote-PDF503 isolation and relevant archived-read failure.
+- `tests/integration/commands/documents-lifecycle.int.test.ts` — Exercises exact ordinary attachment archive/restore denial after quote-parent archival without state/byte/audit mutation.
+- `_bmad-output/implementation-artifacts/spec-20-2-search-filters-preview-and-archive-restore.md` — Records current triage, terminal evidence and the refreshed author trail.
+
+All14 current required checks returned actual native0 on the frozen dirty Round2 author state, head_before `06f5a17f06197df1f4899797083c7455a9d6a076`. Actual counts: story units23; required serial lifecycle/filter/RLS51; real full production browser113 (72story +41baseline); full Linux units2455; selected-link units100; selected-link races38; generic signing20; baseline Storage boundary119. All executed suites have0 failed/skipped; units also have0 cancelled/todo. Production build, typecheck, lint (0errors/14existing warnings), source/bundle containment and lockfiles passed. The suites overlap and are not summed as unique coverage. Current story inventory146 =23unit +51INT/RLS +72browser; original106, Round1 139 and TEA142 remain historical.
+
+Exact argv, environments, raw logs, native/count receipts and six unchanged source/test hashes plus BUILD_ID: `C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-2-review-round2-2026-10-12/round2-required14-manifest.json`. Complete roster identities, external own-native0/session evidence, deduplication/downstream-guard triage and renderer native0 are recorded in `round2-review-triage.json` in that directory. Latest-fix security regression inspection returned `No findings.` without new broad-round credit. The author-written trail retains exactlyone section, five concerns and20 verified stops, including both TEA additions. Checker native0/20refs/0errors; final narrow reviewer reconciliation follows this terminal metadata write.
+
+The approved intent is identical under normalized UTF-8 newlines and the applied migration SHA256 remains `BF251B90A07E371593DF6686D776D275B58616D29ED3EE2A2D0A95B6CFAAB6AE`. All runtime jobs and owned browser contexts are terminal/quiescent. Root accepted Stop for production resource `7cac470e-29d4-4bc3-bfc6-86a30082b550` with actualnative0/oktrue/stop_requested/verifiedfalse; no shutdown polling gate. Root DB/Chrome remain retained for later lane checks.
+
+This is current author-iteration verification, not final clean-SHA acceptance. Root still owns fresh all14 checks on the final clean full SHA and a distinct High independent review respecting the three-round cap. Synthetic/local/browser and existing OptionA/bearer TTL/transient-handle limitations above remain; no exact Lovable parity, demo deployment or external service verification is claimed.
+
 ## Suggested Review Order
 
-Author: `/root/worker20_2_build/sensitive_build`, `gpt-6.1-sol` High, implementation/fix author.
-Refreshed2026-10-12 after the synchronous Round1 patches against the frozen uncommitted product build9 and current test-only hydration helper at baseline `dcb7956e4bc08de3e1a160745469642ddda88610`. Parent completed independent review Round1; this author evidence is separate from the later root-frozen exact-SHA14 gate.
+Author: `/root/worker20_2_followup_host/round2_fix_author`, `gpt-6.1-sol` High, Round2 fix author and current trail writer. Original implementation/Round1 rationale remains authored by `/root/worker20_2_build/sensitive_build`, `gpt-6.1-sol` High.
+Refreshed2026-10-12 after the parent completed all14 current required checks/native0 against the frozen dirty Round2 author tree on head_before `06f5a17f06197df1f4899797083c7455a9d6a076`. The parent completed both configured review rosters and classified four medium patches; this section records their implementation rationale, verified source stops and current execution evidence. This is dirty author-iteration verification, not final clean-SHA acceptance; historical Round1/TEA evidence remains historical.
 
 ### One current authorized metadata projection
 
-The route preserves duplicate parameters for fail-closed parsing, then derives filters/counts/facets/opaque cursor from the complete authorized source projection. Round1 moved Storage hint checks after filtering/paging, only once per unique returned eligible file: unrelated outages cannot abort matching metadata, returned404 disables hints, and returned503 remains an explicit retryable error.
+The route preserves duplicate parameters for fail-closed parsing, then derives filters/counts/facets/opaque cursor from the complete authorized source projection. Round1 bounded ordinary lifecycle Storage hints to unique eligible returned files; Round2 retains every DB source/provenance check in the all-context graph while omitting PDF byte checks only when that candidate's lifecycle cannot contribute to the requested rows, counts or facets.
 
 - `src/app/(app)/files/page.tsx:13` — `export default async function FilesPage`: preserves the public URL entry contract.
-- `src/server/read-models/documents.ts:61` — `export async function readDocuments`: authorizes complete sources before metadata filtering.
-- `src/server/read-models/documents.ts:142` — `for (let index = 0; index < rows.length; index++)`: bounds byte enrichment to returned rows.
-- `tests/integration/rls/documents-filter-archive.rls.test.ts:180` — `complete candidate metadata narrows`: proves narrow and unique page-bound info calls.
+- `src/server/read-models/documents.ts:99` — `const checkQuotePdfBytes =`: limits omission to lifecycle-excluded candidates.
+- `src/server/read-models/document-sources.ts:125` — `if (deps.checkQuotePdfBytes !== false)`: keeps artifact bytes strict by default.
+- `tests/integration/rls/documents-filter-archive.rls.test.ts:209` — `archived current quote PDF Storage503`: asserts active facets survive and relevant archived reads fail.
 
-AC1 tests cover literal name/MIME AND filters, invalid/duplicate/ownerId rejection, own-facet exclusion, selected-zero/current revoked anchors, over1100 denied candidates and Stockholm23/25-hour DST bounds. Explicit20.2 filter opt-in preserves the original no-filter13-field DTO and inherited119-case boundary. Draft/server binding mismatch displays loading and withholds stale rows/counts/aggregate facets; actions use the current projected mode.
+AC1 tests retain literal name/MIME AND filters, invalid/duplicate/ownerId rejection, own-facet exclusion, selected-zero/current revoked anchors, over1100 denied candidates and Stockholm23/25-hour DST bounds. Explicit20.2 filter opt-in preserves the original no-filter13-field DTO and inherited119-case boundary. The new RLS fixture generates, attests, sends and archives the actual current PDF through existing authenticated RPCs before faulting only its Storage.info transport; exact current association/fingerprint remains intact, the active ordinary row/count/facets remains available with zero PDF byte calls, and the relevant archived projection still returns explicit SERVER_ERROR.
 
 ### Preview receipt, bytes and keyboard detail
 
-The unchanged20.1 selected-link signer still governs access; current selection/request identity clears prior URLs, and Round1 rejects already-expired successful replies at actual receipt with exact deadline expiry. Supported media now has explicit byte/load failure and retry: image decode events and abortable PDF HTTP/nonempty-byte loading preserve download, release stale references and accept opaque/absent Storage MIME only under authorized PDF metadata.
+The unchanged20.1 selected-link signer still governs access; current selection/request identity clears prior URLs, and Round1 rejects already-expired successful replies at actual receipt with exact deadline expiry. Supported media has explicit byte/load failure and retry: image decode events and abortable PDF HTTP/nonempty-byte loading preserve download, release stale references and accept opaque/absent Storage MIME only under authorized PDF metadata.
 
 - `src/features/documents/filters.ts:46` — `export function documentPreviewReducer`: rejects stale selection and expired receipt.
 - `src/components/documents/DocumentPreviewPane.tsx:24` — `function DocumentMedia`: handles actual media failure and stale cleanup.
-- `src/components/documents/DocumentPreviewPane.tsx:6` — `back.current?.focus()`: moves focus and scroll into opened detail.
-- `tests/e2e/files/documents-search-preview-lifecycle.e2e.spec.ts:598` — `keyboard list-detail-back retains filters focus`: asserts automatic focus, Back and retained filters.
+- `tests/e2e/files/documents-search-preview-lifecycle.e2e.spec.ts:665` — `PDF preview aborts pending fetch and revokes completed Blob URL on Back`: exercises TEA's media-resource boundary.
+- `tests/e2e/files/documents-search-preview-lifecycle.e2e.spec.ts:749` — `keyboard list-detail-back retains filters focus`: asserts automatic focus, Back and retained filters.
 
-AC2/8 actual browser assertions cover image/PDF/download bytes, opaque legacy PDF MIME, expired delayed success, denial and transient failure, normal upload-to-preview clicks and app-managed focus. The collapsed sticky/expanded static upload header and bounded phone scroll remain; original signed text opening stays in the download affordance, with no embedded text parser. Shipped owner labels/order, authorized hidden row IDs, compact sizes and unknown-size state remain.
+AC2/8 actual browser assertions cover image/PDF/download bytes, opaque legacy PDF MIME, expired delayed success, denial and transient failure, normal upload-to-preview clicks and app-managed focus. The existing TEA addition observes the real AbortSignal, delays delivery of an actual native PDF Response, checks selection cancels the old fetch, and proves Back revokes the completed Blob URL; it fabricates no successful bytes or signer response. The collapsed sticky/expanded static upload header and bounded phone scroll remain; original signed text opening stays in the download affordance, with no embedded text parser. Shipped owner labels/order, authorized hidden row IDs, compact sizes and unknown-size state remain.
 
-### Uncertainty and pending state remain independent
+### Uncertainty remains reachable across filter changes
 
-Round1 gates every ordinary mutation while an original handle is unresolved and until a genuine explicitly requested authorized server read completes; retry needs current eligibility and an explicit dialog confirmation. Independent synchronous in-flight identity prevents filter echoes from unlocking controls or applying stale feedback; shared Dialog focus/Tab/Escape semantics plus inert background protect archive, retry and newly confirmed restore.
+Round1 gates every ordinary mutation while an original handle is unresolved and until a genuinely explicitly requested authorized server read completes; retry needs current eligibility and an explicit dialog confirmation. Round2 adds a filter-independent unresolved-response refresh affordance, using the existing uncertainty styling and control primitive, while dropdown labels remain navigable and their old counts disappear during draft/server mismatch.
 
-- `src/components/documents/DocumentFilters.tsx:38` — `const activeMutation =`: tracks pending identity independently of filters.
 - `src/components/documents/DocumentFilters.tsx:129` — `const currentReadCompleted =`: requires a new authorized refresh projection.
-- `src/app/(app)/files/page.tsx:28` — `const undoRows =`: projects only current safe bounded restore hints.
-- `tests/e2e/files/documents-search-preview-lifecycle.e2e.spec.ts:228` — `retained Undo restore survives deadline`: proves retained identity after expiry and opposite archive.
+- `src/components/documents/DocumentFilters.tsx:160` — `documents-operation-refresh-required`: exposes refresh independently of the originating filter.
+- `tests/e2e/files/documents-search-preview-lifecycle.e2e.spec.ts:186` — `lost pending response after filter change`: preserves the original callable through explicit refresh and confirmation.
+- `tests/e2e/files/documents-search-preview-lifecycle.e2e.spec.ts:235` — `draft mode withholds old rows counts and facets`: asserts dropdown counts disappear and current counts return.
 
-Undo is offered only for the last server-confirmed changed archive tuple matching current canRestore in the archived first50 projection, for ten seconds. The deadline expires the affordance and nonbusy confirmation only; it never cancels or discards a started/confirmed restore or its original retained callable. Missing/out-of-page/forbidden eligibility offers no undo promise. Eligible/forbidden/idle-expiry, busy-expiry/lost-response/replay, direct-entry/current-read, gated pending/filter and real modal keyboard tests exercise these boundaries.
+Independent synchronous in-flight identity still prevents filter echoes from unlocking controls or applying stale feedback; shared Dialog focus/Tab/Escape semantics plus inert background protect archive, retry and newly confirmed restore. The new desktop/360×640 response-loss journey changes filters while restore is pending, loses only the real committed reply, proves visible current-read refresh and blocked mutation controls, and compares the original encrypted action identity after an opposite transition; consumed replay changes no state and adds no success audit. The extended gated draft-mode journey asserts module/purpose labels without counts while loading, then the changed authorized2→1 counts after projection.
+
+Undo remains offered only for the last server-confirmed changed archive tuple matching current canRestore in the archived first50 projection, for ten seconds. The deadline expires the affordance and nonbusy confirmation only; it never cancels or discards a started/confirmed restore or its original retained callable. Missing/out-of-page/forbidden eligibility offers no undo promise. Eligible/forbidden/idle-expiry, busy-expiry/lost-response/replay, direct-entry/current-read, gated pending/filter and real modal keyboard tests retain these boundaries.
 
 ### Fresh authority constrains encrypted identity and atomic history
 
-The page retains supported encrypted inline Server Actions capturing only server-created correlation, fixed operation, selected pair and originating actor/tenant. Each invocation obtains fresh cookie-bound identity and permissions through the existing command envelope/RPC; captures constrain identity without supplying authority, and the exact application payload remains two UUIDs. SQL origin/complete-link guards and consumed changed identity logic are unchanged by Round1.
+The page retains supported encrypted inline Server Actions capturing only server-created correlation, fixed operation, selected pair and originating actor/tenant. Each invocation obtains fresh cookie-bound identity and permissions through the existing command envelope/RPC; captures constrain identity without supplying authority, and the exact application payload remains two UUIDs. SQL origin/complete-link guards and consumed changed identity logic are unchanged by Round2.
 
 - `src/app/(app)/files/page.tsx:35` — `async function archiveDocumentAction`: captures minimal server-owned operation identity.
 - `src/server/commands/documents/lifecycle.ts:26` — `export async function executeBoundDocumentLifecycle`: resolves current authority for every invocation.
-- `supabase/migrations/20261009091121_story_20_2_documents_lifecycle_origin_and_restore.sql:161` — `v_current is distinct from v_graph`: reconciles the complete locked source graph.
-- `supabase/migrations/20261009091121_story_20_2_documents_lifecycle_origin_and_restore.sql:224` — `errcode='DLC20'`: rejects consumed identity after an opposite transition.
+- `supabase/migrations/20261009091121_story_20_2_documents_lifecycle_origin_and_restore.sql:203` — `v_parent->>'archived_at' is not null`: denies archived quote ancestry.
+- `tests/integration/commands/documents-lifecycle.int.test.ts:549` — `exact ordinary draft quote attachment denies both direct lifecycle RPCs`: isolates archived-parent denial with exact attachment association.
 
-AC3–7 tests retain seven source checks, independently archived/hidden/foreign links, current roles, linked and retained-lock restore, unknown origin/draft/deleted/unlinked/missing-byte denial, immutable bytes/links/locks and atomic fixed audit. Every quote_pdf restore stays denied under10.9; pre-column source proof is stale and fresh re-review keeps the PDF fingerprint. Actual browser transport compares original action identities through refresh/opposite changes, distinguishes consumed changedC1 from unconsumed no-opC0 and verifies separate fresh operations and extra-field/actor rejection. Reload/build replacement loses transient state and fails closed.
+AC3–7 tests retain seven source checks, independently archived/hidden/foreign links, current roles, linked and retained-lock restore, unknown origin/draft/deleted/unlinked/missing-byte denial, immutable bytes/links/locks and atomic fixed audit. The new authenticated direct-RPC fixture has a valid ordinary draft quote attachment and exact frozen association; restore origin is captured while its parent is live, then the parent is archived before denial. Both archive and restore assert42501, unchanged file/link/object/version/attachment/parent snapshots, unchanged downloaded bytes and zero document success audits. Every quote_pdf restore stays denied under10.9; pre-column source proof is stale and fresh re-review keeps the PDF fingerprint. Actual browser transport compares original action identities through refresh/opposite changes, distinguishes consumed changedC1 from unconsumed no-opC0 and verifies separate fresh operations and extra-field/actor rejection. Reload/build replacement loses transient state and fails closed.
 
-### Executed evidence and recorded limits
+### Current verification evidence and historical execution limits
 
-The external required14 manifest records exact argv, nonsecret environment/secret-parse procedures, current raw native proofs, nine AC/matrix rows and twelve Round1 finding-to-test mappings. These stops connect receipt freshness, current reader faults, serialization and retained replay to actual assertions.
+Current source inspection confirms four Round2 repairs, two new INT/RLS definitions, one new browser definition expanded over desktop and360×640, and the extended dropdown assertions. Parent execution now covers the complete current story suites, including TEA's retained missing-frozen-attachment P0 and PDF AbortSignal/Blob-revocation journeys; all14 required checks returned actual native0.
 
-- `tests/unit/features/documents/preview-state.test.ts:75` — `successful delayed response already expired at receipt`: checks deterministic received-time freshness.
-- `tests/integration/rls/documents-filter-archive.rls.test.ts:204` — `returned-row transient Storage.info503`: checks real authenticated reader failure and fresh retry.
+- `tests/integration/commands/documents-lifecycle.int.test.ts:513` — `secondary live quote snapshot without exact frozen attachment denies both direct lifecycle RPCs`: covers TEA's exact-association gap.
+- `tests/integration/rls/documents-filter-archive.rls.test.ts:204` — `returned-row transient Storage.info503`: checks authenticated retryable reader failure.
 - `tests/integration/commands/documents-lifecycle-lock-races.int.test.ts:50` — `uncommitted FK link insertion blocks`: proves complete-link acquisition with real barriers.
-- `tests/e2e/files/documents-search-preview-lifecycle.e2e.spec.ts:520` — `retained consumed archive closure survives refresh`: proves original-handle replay without rearchiving.
+- `tests/e2e/files/documents-search-preview-lifecycle.e2e.spec.ts:587` — `retained consumed archive closure survives refresh`: proves original-handle replay without rearchiving.
 
-Author Round1 required14: story units23, required serial INT/RLS48, production browser109 (68story+41baseline), Linux full units2455, selected-link units100, selected-link races38, generic signing20 and inherited Storage boundary119 all passed/native0/zero failed or skipped. Counts overlap and are not a unique-case sum. All original106 ATDD cases remain active; added3 unit+4 INT/RLS+26 browser yields139 story cases. Baseline41 remains34 Documents+3 unchanged file-index-scope+4 unchanged entity-preview journeys. Typecheck, lint (0errors/14warnings), actual production build9, service-role/built-bundle/lockfile checks passed; test-only helper repair followed with tsc/lint/discovery109 native0.
+Current Round2 executed evidence:23 story units and51 required serial INT/RLS tests (26 lifecycle +9 races +16 filter/RLS) passed; the actual production browser run passed113 cases (72 story,36 per viewport, plus41 inherited baseline). Current story coverage is146 cases =23 unit +51 INT/RLS +72 browser. Linux full units2455, selected-link units100, selected-link races38, generic signing20 and inherited Storage boundary119 passed. All failed/skipped/cancelled/todo counts are0; suites overlap and these totals are not summed as unique coverage.
 
-Proof manifest: `C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-2-author-required14-manifest.json`. LocalAPI55721/PG55722, guarded ChromeCDP55723 and production app3100 receipts remain external. Frozen applied migration BF251B90A07E371593DF6686D776D275B58616D29ED3EE2A2D0A95B6CFAAB6AE/ledger101 is unchanged. Targeted28 and full109 returned actual native0; every own context/DB user is quiescent and root accepted server Stop. Native RED20 and all earlier failed receipts are retained, including Round1 opaque-PDF, login/hydration and temporary test-helper typecheck failures.
+All14 current required checks returned actual native0: the eight test checks above, typecheck, lint (0errors/14warnings), production build, service-role containment, built-bundle containment and lockfiles. The parent ran required local integration/RLS with SUPABASE_TEST_REQUIRED=1. Exact argv, redacted local environment reconstruction, counts, raw logs/log hashes, individual native receipts, current inventory and freeze proof are recorded in `C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-2-review-round2-2026-10-12/round2-required14-manifest.json`. The author inspected that manifest, all14 native receipts, the freeze proof and current story raw-log summaries before this evidence-only refresh.
 
-Limits: units mock boundaries; real integration uses isolated synthetic local fixtures; browser uses real Next/Storage and transport gates, not fabricated successful replies. Historical finance/login/hydration failures remain unclassified: uncorrelated successful Auth/gateway logs and later passes do not prove their cause. Finite locator polling preserves actual __react readiness and additionally requires a connected current node; no login retry/readiness relaxation/Auth edit or assertion waiver. Native image/PDF rendering is tested in Chrome desktop/360×640 viewports, not every decoder/browser/device. Existing OptionA generic/direct Storage and issued bearer-URL TTL residuals remain; no oracle/parity/demo/external-service claim. Parent owns final workflow metadata, narrow reconciliation and exact-SHA14 release evidence.
+The pre-refresh review-order checker returned actual native0 with20 references/0errors; this update preserves exactly one section, five concerns and the same20 stops. All six product/test hashes remain byte-identical to the frozen manifest and production build ID `63MkztlPIqkKTIHzc60rS` is unchanged. Root Stop was requested after owned browser contexts and DB jobs were quiescent; request acceptance is not confirmed shutdown. This author ran no tests/build, created no resources and changed only this section. Root still owes final clean exact-SHA14 acceptance and a distinct independent SolHigh review within the three-round cap.
+
+Historical story inventories remain139 for Round1 and142 after TEA; neither replaces current146. Historical author Round1 required14: story units23, required serial INT/RLS48, production browser109 (68story+41baseline), Linux full units2455, selected-link units100, selected-link races38, generic signing20 and inherited Storage boundary119 all passed/native0/zero failed or skipped. Counts overlap and are not a unique-case sum. All original106 ATDD cases remained active; additions then yielded139 story cases. Baseline41 remained34 Documents+3 unchanged file-index-scope+4 unchanged entity-preview journeys. Typecheck, lint (0errors/14warnings), actual production build9, service-role/built-bundle/lockfile checks passed; the test-only helper repair followed with tsc/lint/discovery109 native0. Historical proof manifest: `C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-2-author-required14-manifest.json`; it is not current Round2 verification.
+
+Frozen applied migration BF251B90A07E371593DF6686D776D275B58616D29ED3EE2A2D0A95B6CFAAB6AE/ledger101 is unchanged. Historical native RED20 and earlier failed receipts remain retained, including Round1 opaque-PDF, login/hydration and temporary test-helper typecheck failures. Historical finance/login/hydration failures remain unclassified; uncorrelated successful Auth/gateway logs and later passes do not prove their cause. Finite locator polling preserves the actual __react readiness predicate and a connected current node; no login retry/readiness relaxation/Auth edit or assertion waiver.
+
+Limits: units mock boundaries; real integration uses isolated synthetic local fixtures and existing tightly scoped attachment factories; browser uses real Next/Storage and transport gates, not fabricated successful replies. Native image/PDF rendering targets Chrome desktop/360×640, not every decoder/browser/device. Generic frontend skill DESIGN/Figma reference paths are absent in this repository; the Round2 UI follows actual globals, PhaseB UX and unchanged existing uncertainty/control primitives. Existing OptionA generic/direct Storage and issued bearer-URL TTL residuals remain; no oracle/parity/demo/external-service claim. Parent owns workflow metadata, post-refresh narrow reconciliation, final clean exact-SHA14 release evidence and the distinct independent SolHigh review.
+
 ## Review Findings
 
 **Round 1 of 3**
@@ -259,6 +293,10 @@ Limits: units mock boundaries; real integration uses isolated synthetic local fi
 Admitted 2026-10-12; completed review rounds remain 0 until the complete configured roster returns.
 
 Completed review rounds: 1. All six configured SolHigh layers returned; external provider, reader and whole-command native exits were 0 after a retained Windows transport failure. All12 synchronous author patches are complete and verified; remaining root follow-up phases are separate.
+
+**Round 2 of 3**
+
+Completed review rounds:2. All six configured SolHigh layers returned, including external Codex own-native0 with safe reader/whole-command0. Four medium patches are verified by all14 current author-iteration checks; narrow latest-fix security inspection adds0 broad-round credit. Root final clean-SHA checks and distinct review remain pending.
 
 ## Review Triage Log
 
@@ -281,3 +319,15 @@ Completed review rounds: 1. All six configured SolHigh layers returned; external
   - `[medium]` `[patch]` Safe current-authorized archive Undo uses checked restore and a fresh opaque handle; its idle deadline dismisses only unstarted confirmation and preserves confirmed/in-flight/lost-response retained retry identity.
   - `[medium]` `[patch]` Authorized compact file-size metadata is restored in the Documents presentation.
   - `[medium]` `[patch]` Real authenticated Storage-info permanent404 versus transient503 and bounded off-page failure regressions now execute with the lifecycle/filter/RLS suite.
+
+### 2026-10-12 — Review pass (Round2)
+- intent_gap: 0
+- bad_spec: 0
+- patch: 4: (high 0, medium 4, low 0)
+- defer: 0
+- reject: 2
+- addressed_findings:
+  - `[medium]` `[patch]` Filter-independent unresolved-operation refresh retains the original callable and genuine current-read/confirmation gates after response loss plus filter changes; desktop/phone browser regressions execute.
+  - `[medium]` `[patch]` Module/purpose dropdown counts are withheld while draft and server bindings differ; gated browser assertions verify removal and current projection counts.
+  - `[medium]` `[patch]` Lifecycle-excluded quote-PDF byte outages no longer abort unrelated active rows/counts/facets, while full DB graph/provenance and default strict reader/signer checks remain; relevant archived503 still produces explicit failure.
+  - `[medium]` `[patch]` Direct authenticated archive and restore of an otherwise exact ordinary draft quote attachment deny an archived quote parent; complete file/link/object snapshots, immutable bytes and zero denial audit are asserted.

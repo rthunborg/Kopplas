@@ -546,3 +546,40 @@ test("[P0][AC3] secondary live quote snapshot without exact frozen attachment de
     expect(await bytes.data!.text()).toBe("immutable-lifecycle-bytes");
   }
 }));
+test("[P0][AC3,5] exact ordinary draft quote attachment denies both direct lifecycle RPCs when parent quote is archived", async () => fixture(async (fx, client) => {
+  for (const operation of ["archive", "restore"] as const) {
+    const ordinary = await seed(fx);
+    const calculation = await adminInsertCalculation({ tenant_id: fx.base.tenantA.id, customer_id: ordinary.ownerId });
+    const quote = await adminInsertQuote({ tenant_id: fx.base.tenantA.id, customer_id: ordinary.ownerId });
+    const version = await adminInsertQuoteVersion({ tenant_id: fx.base.tenantA.id, quote_id: quote, calculation_id: calculation, status: "draft" });
+    await adminInsertQuoteVersionAttachment({ tenant_id: fx.base.tenantA.id, quote_version_id: version, file_id: ordinary.fileId });
+    const selected = await adminInsertFileLink({ tenant_id: fx.base.tenantA.id, file_id: ordinary.fileId, owner_type: "quote_version", owner_id: version, purpose: "quote_attachment_snapshot" });
+    const target: Target = { ...ordinary, linkId: selected, ownerId: version };
+    const association = await adminQuery<{ row: Record<string, unknown> }>("select to_jsonb(a) as row from public.quote_version_attachments a where tenant_id=$1 and quote_version_id=$2 and file_id=$3", [fx.base.tenantA.id, version, target.fileId]);
+    expect(association).toHaveLength(1); expect(association[0].row).toMatchObject({ tenant_id: fx.base.tenantA.id, quote_version_id: version, file_id: target.fileId });
+    const [source] = await adminQuery<{ row: Record<string, unknown> }>("select to_jsonb(v) as row from public.quote_versions v where id=$1", [version]);
+    expect(source.row).toMatchObject({ tenant_id: fx.base.tenantA.id, archived_at: null, status: "draft", quote_id: quote });
+    expect((await adminQuery("select tenant_id,archived_at from public.quotes where id=$1", [quote]))[0]).toMatchObject({ tenant_id: fx.base.tenantA.id, archived_at: null });
+    const live = await snapshot(target);
+    expect(live.file).toMatchObject({ lifecycle_state: "linked", archive_previous_state: null, artifact_kind: null });
+    for (const link of live.links) expect(link.row).toMatchObject({ archived_at: null, is_locked: false, locked_at: null });
+    if (operation === "restore") {
+      // Capture genuine ordinary origin while every source and the quote parent are still live.
+      await adminExec("update public.files set lifecycle_state='archived',archived_at=now() where id=$1", [target.fileId]);
+      expect((await snapshot(target)).file).toMatchObject({ lifecycle_state: "archived", archive_previous_state: "linked", artifact_kind: null });
+    }
+    await adminExec("update public.quotes set archived_at=now() where id=$1", [quote]);
+    const [parent] = await adminQuery<{ row: Record<string, unknown> }>("select to_jsonb(q) as row from public.quotes q where id=$1", [quote]);
+    expect(parent.row.archived_at).not.toBeNull();
+    const observation = await observeDenied(client, operation, args(fx, target), target);
+    expect(observation.result.error?.code).toBe("42501"); expect(observation.result.data).toBeNull();
+    expect(observation.after).toEqual(observation.before); expect(observation.auditEvents).toEqual([]);
+    expect(await adminQuery("select command from public.audit_events where target_type='file' and target_id=$1 and command in ('document.archive','document.restore')", [target.fileId])).toEqual([]);
+    expect(await adminQuery("select to_jsonb(a) as row from public.quote_version_attachments a where tenant_id=$1 and quote_version_id=$2 and file_id=$3", [fx.base.tenantA.id, version, target.fileId])).toEqual(association);
+    expect((await adminQuery("select to_jsonb(v) as row from public.quote_versions v where id=$1", [version]))[0]).toEqual(source);
+    expect((await adminQuery("select to_jsonb(q) as row from public.quotes q where id=$1", [quote]))[0]).toEqual(parent);
+    for (const hiddenIdentity of [quote, version, selected]) expect(JSON.stringify(observation.result)).not.toContain(hiddenIdentity);
+    const bytes = await admin().storage.from("tenant-files").download(target.path);
+    expect(bytes.error).toBeNull(); expect(await bytes.data!.text()).toBe("immutable-lifecycle-bytes");
+  }
+}));

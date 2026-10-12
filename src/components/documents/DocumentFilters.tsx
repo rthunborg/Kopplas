@@ -12,11 +12,11 @@ import { Dialog } from "@/components/crm/Dialog";
 const moduleLabels: Record<string, string> = { crm: "Kunder", calculations: "Kalkyler", quotes: "Offerter", jobs: "Jobb" };
 const purposeLabels: Record<string, string> = { crm_document: "Kunddokument", calculation_attachment: "Kalkylbilaga", quote_attachment_snapshot: "Offertbilaga", quote_pdf: "Offert-PDF", acceptance_evidence: "Acceptansunderlag", job_evidence: "Jobbunderlag" };
 const control = "min-w-0 rounded-md border border-zinc-300 bg-white px-2 py-2 text-sm focus-visible:ring-2 focus-visible:ring-blue-600";
-export function DocumentFilters({ filters, facets, onChange }: { readonly filters: Filters; readonly facets: DocumentFacets; readonly onChange: (patch: Partial<Filters>) => void }) {
+export function DocumentFilters({ filters, facets, showCounts = true, onChange }: { readonly filters: Filters; readonly facets: DocumentFacets; readonly showCounts?: boolean; readonly onChange: (patch: Partial<Filters>) => void }) {
   return <div className="grid grid-cols-2 gap-2 lg:grid-cols-6">
     <label className="col-span-2 flex min-w-0 flex-col gap-1 text-sm lg:col-span-1">Sök dokument<input data-testid="file-index-search" type="search" value={filters.q ?? ""} onChange={e => onChange({ q: e.target.value })} className={control} /></label>
     {(["module", "ownerType", "purpose"] as const).map(facet => <label key={facet} className="flex min-w-0 flex-col gap-1 text-sm">{facet === "module" ? "Modul" : facet === "ownerType" ? "Typ" : "Syfte"}<select aria-label={facet === "module" ? "Modul" : facet === "ownerType" ? "Typ" : "Syfte"} data-testid={facet === "ownerType" ? "file-index-category-filter" : undefined} value={filters[facet] ?? ""} onChange={e => onChange({ [facet]: e.target.value || undefined })} className={control}>
-      <option value="">{facet === "ownerType" ? "Alla kategorier" : "Alla"}</option>{(facet === "ownerType" ? [...facets[facet]].sort((a, b) => OWNER_CATEGORY_ORDER.indexOf(a.value) - OWNER_CATEGORY_ORDER.indexOf(b.value)) : facets[facet]).map(({ value, count }) => <option key={value} value={value}>{facet === "module" ? moduleLabels[value] : facet === "ownerType" ? ownerCategoryLabel(value) : purposeLabels[value]}{facet !== "ownerType" ? ` (${count})` : ""}</option>)}
+      <option value="">{facet === "ownerType" ? "Alla kategorier" : "Alla"}</option>{(facet === "ownerType" ? [...facets[facet]].sort((a, b) => OWNER_CATEGORY_ORDER.indexOf(a.value) - OWNER_CATEGORY_ORDER.indexOf(b.value)) : facets[facet]).map(({ value, count }) => <option key={value} value={value}>{facet === "module" ? moduleLabels[value] : facet === "ownerType" ? ownerCategoryLabel(value) : purposeLabels[value]}{showCounts && facet !== "ownerType" ? ` (${count})` : ""}</option>)}
     </select></label>)}
     <label className="flex min-w-0 flex-col gap-1 text-sm">Från<input type="date" value={filters.from ?? ""} onChange={e => onChange({ from: e.target.value || undefined })} className={control} /></label>
     <label className="flex min-w-0 flex-col gap-1 text-sm">Till<input type="date" value={filters.to ?? ""} onChange={e => onChange({ to: e.target.value || undefined })} className={control} /></label>
@@ -148,7 +148,7 @@ export function DocumentsWorkspace({ authorityIdentity, actions, rows, undoRows,
     <div inert={modalOpen} className="flex flex-col gap-3 [&>*]:shrink-0">
     <div className="sticky top-0 z-10 [&:has([aria-expanded=true])]:static flex flex-wrap items-center justify-between gap-2 bg-white py-2"><h1 id="documents-heading" className="text-2xl font-semibold text-zinc-900">Dokument</h1><FileIndexUpload ownerOptions={uploadOwnerOptions} optionsLoadError={uploadOptionsLoadError} onUploadSuccess={uploadSuccess} /></div>
     {loadError ? <p role="alert" data-testid="file-index-error" className="text-red-800">{loadError} <button type="button" onClick={retryRead} className="underline">Försök igen</button></p> : <>
-      <DocumentFilters filters={filters} facets={facets} onChange={changeFilters} />
+      <DocumentFilters filters={filters} facets={facets} showCounts={draftBinding === serverBinding} onChange={changeFilters} />
       {draftBinding !== serverBinding ? <p role="status" data-testid="documents-projection-loading">Läser in dokument…</p> : null}
       <div hidden={draftBinding !== serverBinding}>
       <p className="text-sm text-zinc-600">Dokument: <span data-testid="documents-result-count">{total}</span></p>
@@ -157,6 +157,10 @@ export function DocumentsWorkspace({ authorityIdentity, actions, rows, undoRows,
       {lifecycle.status === "pending" ? <p role="status" data-testid="documents-lifecycle-pending">Sparar…</p> : null}
       {lifecycle.status === "success" && lifecycle.binding === serverBinding && draftBinding === serverBinding ? <p role="status" data-testid="documents-lifecycle-success">{lifecycle.message}</p> : null}
       {lifecycle.status === "error" && lifecycle.binding === serverBinding && draftBinding === serverBinding ? <div data-testid="documents-lifecycle-error"><p role="alert">{lifecycle.message}</p><button type="button" onClick={retryRead} className={control}>Försök igen</button></div> : null}
+      {unresolvedRead && lifecycle.status !== "pending" ? <div data-testid="documents-operation-refresh-required" className="rounded border border-amber-300 p-3 text-sm">
+        <p role="alert">Den tidigare åtgärdens svar kunde inte bekräftas. Läs in aktuella dokument före nästa åtgärd.</p>
+        <button type="button" onClick={retryRead} className={control}>Läs in aktuella dokument</button>
+      </div> : null}
       {retainedOperations.filter(operation => currentReadCompleted(operation)).map((operation, index) => <div key={index} data-testid="documents-operation-uncertain" className="rounded border border-amber-300 p-3 text-sm">
         <p>Den tidigare åtgärdens svar kunde inte bekräftas. Aktuella dokument har lästs in.</p>
         {mayRetry(operation) ? <button type="button" disabled={lifecycle.status === "pending"} onClick={() => { if (!activeMutation.current && mayRetry(operation)) setRetryConfirmation(operation); }} className={control}>Bekräfta tidigare åtgärd</button> : <p>Den tidigare åtgärden är inte tillgänglig i detta tillstånd.</p>}

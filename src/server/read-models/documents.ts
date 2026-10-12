@@ -94,7 +94,10 @@ export async function readDocuments(deps: DocumentsDeps = {}): Promise<Documents
       for (const link of batch.rows) {
         if (!link.created_at || !Number.isFinite(Date.parse(link.created_at)) || (after && link.id === after.id && link.created_at === after.createdAt)) throw new Error("Invalid link order");
         after = { createdAt: link.created_at, id: link.id };
-        const result = deps.readSource ? await deps.readSource(link, authority) : await readDocumentSource(link, { ...authority, loadRow: async (table, id) => {
+        const archived = link.archived_at !== null || link.file.lifecycle_state === "archived";
+        // Traverse every DB source for complete-file authority; only irrelevant lifecycle PDF bytes are omitted.
+        const checkQuotePdfBytes = filters.mode === "active" ? !archived : archived;
+        const result = deps.readSource ? await deps.readSource(link, authority) : await readDocumentSource(link, { ...authority, checkQuotePdfBytes, loadRow: async (table, id) => {
           if (table !== "quote_version_attachments") return loadRow(table, id);
           const { data, error } = await (client as Client).from(table).select("tenant_id,quote_version_id,file_id").eq("tenant_id", tenantId).eq("quote_version_id", id).eq("file_id", link.file_id).maybeSingle();
           if (error) throw error; return data;
