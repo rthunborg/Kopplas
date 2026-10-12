@@ -164,3 +164,37 @@ None
 1. None; authorized host permission resolves the bootstrap access path
 
 **Next:** Launch fresh High follow-up skill invocation after clean-tree checkpoint
+
+## Report — 2026-10-12T18:40:24Z (checkpoint â€” Round 2 complete)
+
+**Story:** `20-2-search-filters-preview-and-archive-restore` (epic 20, story 2) — mid-epic.
+**Spec:** `C:/Users/Rasmus/.codex/worktrees/documents-e20-20-2/Kopplas/_bmad-output/implementation-artifacts/spec-20-2-search-filters-preview-and-archive-restore.md`
+**Branch:** `codex/parallel-documents-e20-readiness-2026-10-09-20-2` (HEAD `788b1b2`).
+**Pipeline status:** Worker running; four medium fixes verified/committed, final capped convergence selected
+**Continues:** Third and final broad review, then clean exact-SHA checks and distinct narrow acceptance
+
+**Timing:** started 2026-10-12T14:35:36Z; completed in progress — elapsed 4h 04m (≈4h 04m AI-run, ≈0m human/idle wait); resumed 5×.
+
+**Phases run:** Complete six-layer independent follow-up plus scoped fixes and all14 iteration checks
+**Skipped:** (none)
+
+**Overrides:** Owner standing autonomous recommendation followed; final-convergence selected to settle meaningful follow-up, cap3 broad rounds. Metadata heading correction has its own spec-only commit; no source evidence relabel
+
+**TEA:** Complete; prior142 inventory and27focused executed tests historically attributed; current146 inventory is distinct
+
+**Build:** Authors6f02c651 and788b1b22 clean;146story cases=23unit+51INT-RLS+72browser;113fullbrowser includes41baseline. All14 native0,0failed/0skip;2455Linuxunits and inherited100/38/20/119 checks pass
+
+**Review:** Round2 patch4 medium,reject2,bad_spec0,defer0; followuptrue/score12. All5 internal SolHigh plus external SolHigh ownnative0 complete; narrow security/trail pass; SRO20verifiedrefs
+
+**Retrospective:** (none)
+
+**Open questions:**
+1. Historical login/hydration failures remain unclassified; no waiver
+
+**Deferred work:**
+1. None
+
+**⚠️ Needs human:**
+1. None
+
+**Next:** One capped final-convergence pass, then source-frozen final14 and distinct exact-SHA narrow review

@@ -9,30 +9,31 @@ spec_folder: null
 story_id: "20.2"
 branch: codex/parallel-documents-e20-readiness-2026-10-09-20-2
 status: running
-updated_at: "2026-10-12T18:05:59Z"
+updated_at: "2026-10-12T18:40:26Z"
 started_at: "2026-10-12T14:35:36Z"
 completed_at: null
-active_seconds: 12618
-timing_anchor: 1791828359
+active_seconds: 14683
+timing_anchor: 1791830426
 is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: followup_review
-selected_role: primary-reviewer
+selected_phase: final_convergence
+selected_role: final-convergence
 selected_profile: standard
 selected_model: gpt-6.1-sol
 selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Automatic sensitive-task escalation: authentication, authorization, permissions, public-tokens, rls, security, transactional-integrity"
+escalation_reason: "Automatic sensitive-task escalation: authentication, authorization, permissions, public-tokens, rls, security, transactional-integrity; Settle meaningful completed four-fix follow-up under owner standing autonomous recommendation; third and final broad round"
 routing_ledger:
   - "{\"phase\":\"tea_triage\",\"role\":\"test-risk-triage\",\"profile\":\"light\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"subagent\",\"escalation_reason\":\"Automatic sensitive-task escalation: authentication, authorization, permissions, public-tokens, rls, security, transactional-integrity\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authentication, authorization, permissions, public-tokens, rls, security, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authentication, authorization, permissions, public-tokens, rls, security, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authentication, authorization, permissions, public-tokens, rls, security, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authentication, authorization, permissions, public-tokens, rls, security, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"followup_review\",\"profile\":\"standard\",\"role\":\"primary-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authentication, authorization, permissions, public-tokens, rls, security, transactional-integrity; Settle meaningful completed four-fix follow-up under owner standing autonomous recommendation; third and final broad round\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"final_convergence\",\"profile\":\"standard\",\"role\":\"final-convergence\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: "Approved migration, lifecycle authorization/RLS and lock-race concurrency independently satisfy High-risk signals"
@@ -48,9 +49,9 @@ build:
   review_loop_iteration: 0
   deferred_count: 0
   warnings: [oversized]
-followup_passes: 0
-hitl_halt: null
-review_unverified: false
+followup_passes: 1
+hitl_halt: "auto-continued (epic â€” no halt)"
+review_unverified: true
 story_trace: null
 legacy_review_resume: false
 legacy_review_iteration: null
@@ -58,7 +59,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [9a5bde6, dcb7956, aa6f0e3, 1bcf7dab, 70950dc8]
+commits: [9a5bde6, dcb7956, aa6f0e3, 1bcf7dab, 70950dc8, 06f5a17f, 6f02c651, 788b1b22]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -99,8 +100,8 @@ overrides:
   oracle_disposition: "Owner waiver retained; no new Lovable observation claimed"
   triage_initial_medium_corrected: "Within Phase0, approved described migration/auth/RLS/lock-race scope included; High selected before initialization"
   dependency_install: "pnpm install --frozen-lockfile native0; no lockfile modification"
-  resource_launches: 13
-  review_rounds_completed: 1
+  resource_launches: 14
+  review_rounds_completed: 2
   active_db_resource_id: d3d54366-351e-470b-8b7e-295a1c02c054
   failed_db_resource_id: d5132e61-f20d-4bd9-b8b0-1e5717e94de3
   db_readiness_receipt: "C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-2-db-readiness-2026-10-12.json"
@@ -134,5 +135,15 @@ overrides:
   tea_automate_no_source_changes: true
   followup_bootstrap_recovery: "Bounded uv python find --no-python-downloads through authorized host permission native0, installedPython314 found. Fresh delegated skill invocation will render exactly once with require_escalated; no direct workflow source or retry of failed actor"
   followup_bootstrap_attempt1: "Renderer native1: sandbox denied uv temporary interpreter cache before workflow/review. Actor obeyed exact-once failure HALT; no writes/commits/review/checks; broad rounds remains1"
+  final_review_cap: 3
+  round2_metadata_correction: "Installed helper caught noncanonical Round2 heading; separate spec-only commit788b1b22 fixes latest4/2 parsing, source/build/test unchanged"
+  final_convergence_selection: "Meaningful completed follow-up patched four medium findings and recommendation remains true. Owner standing Follow your recommendation authorizes autonomous settlement within assigned worker. Third and final broad pass; after cap only latest-fix regressions/unresolved serious findings"
+  round2_triage: "All six configured SolHigh layers complete; patch4 medium,reject2,bad_spec0,defer0; recommendationtrue/score12"
+  round2_author_head: 788b1b22e2cca0025f5ea89b780fa05b9a40b36b
+  round2_checks: "All14 iteration native0:23storyunit/51INT-RLS/113browser/2455fullunit/100selectedunit/38selectedraces/20generic/119boundary;0failed/skipped;146unique story cases; final-SHA acceptance pending"
+  round2_external: "Codex session01a1314d-e93d-7d93-801e-26b51817313d ownnative0, reader0, whole0"
+  round2_required14_manifest: "C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-2-review-round2-2026-10-12/round2-required14-manifest.json"
+  round2_sro: "One author-written section refreshed;20refs/0errors; narrow security/trail checks passed"
+  round2_server_stop: 7cac470e native0/oktrue/stop_requested/verifiedfalse after113 and all consumers terminal
 constraints: []
 parallel_run_id: documents-e20-readiness-2026-10-09
