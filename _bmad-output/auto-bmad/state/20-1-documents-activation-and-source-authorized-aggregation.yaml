@@ -9,11 +9,11 @@ spec_folder: null
 story_id: "20.1"
 branch: codex/parallel-documents-e20-readiness-2026-10-09-20-1
 status: running
-updated_at: "2026-10-09T14:04:07Z"
+updated_at: "2026-10-12T10:00:00Z"
 started_at: "2026-10-09T13:42:32Z"
 completed_at: null
 active_seconds: 0
-timing_anchor: null
+timing_anchor: 1791799200
 is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
