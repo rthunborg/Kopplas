@@ -509,3 +509,40 @@ test("[P0][AC4,7] generic audit endpoint cannot fabricate checked lifecycle succ
     expect(await adminSelectAuditEvents({correlationId:correlation})).toHaveLength(1);
   }
 }));
+
+test("[P0][AC3] secondary live quote snapshot without exact frozen attachment denies both direct lifecycle RPCs", async () => fixture(async (fx, client) => {
+  const target = await seed(fx);
+  const calculation = await adminInsertCalculation({ tenant_id: fx.base.tenantA.id, customer_id: target.ownerId });
+  const quote = await adminInsertQuote({ tenant_id: fx.base.tenantA.id, customer_id: target.ownerId });
+  const version = await adminInsertQuoteVersion({ tenant_id: fx.base.tenantA.id, quote_id: quote, calculation_id: calculation, status: "draft" });
+  const secondary = await adminInsertFileLink({ tenant_id: fx.base.tenantA.id, file_id: target.fileId, owner_type: "quote_version", owner_id: version, purpose: "quote_attachment_snapshot" });
+  // Draft snapshot context avoids commitment locking; both sources are live and authorized.
+  // Only the secondary snapshot's exact immutable file/version association is absent.
+  expect(await adminQuery("select id from public.quote_version_attachments where tenant_id=$1 and quote_version_id=$2 and file_id=$3", [fx.base.tenantA.id, version, target.fileId])).toEqual([]);
+  const [source] = await adminQuery("select tenant_id,archived_at,status from public.quote_versions where id=$1", [version]);
+  expect(source).toMatchObject({ tenant_id: fx.base.tenantA.id, archived_at: null, status: "draft" });
+  const [parent] = await adminQuery("select tenant_id,archived_at from public.quotes where id=$1", [quote]);
+  expect(parent).toMatchObject({ tenant_id: fx.base.tenantA.id, archived_at: null });
+  const initial = await snapshot(target);
+  expect(initial.file).toMatchObject({ lifecycle_state: "linked", archive_previous_state: null, artifact_kind: null });
+  expect(initial.links).toHaveLength(2);
+  for (const link of initial.links) expect(link.row).toMatchObject({ archived_at: null, is_locked: false, locked_at: null });
+  for (const operation of ["archive", "restore"] as const) {
+    if (operation === "restore") {
+      // Genuine ordinary archive capture isolates association denial from unknown origin.
+      await adminExec("update public.files set lifecycle_state='archived',archived_at=now() where id=$1", [target.fileId]);
+      const archived = await snapshot(target);
+      expect(archived.file).toMatchObject({ lifecycle_state: "archived", archive_previous_state: "linked", artifact_kind: null });
+    }
+    const observation = await observeDenied(client, operation, args(fx, target), target);
+    expect(observation.result.error?.code).toBe("42501");
+    expect(observation.result.data).toBeNull();
+    expect(observation.after).toEqual(observation.before);
+    expect(observation.auditEvents).toEqual([]);
+    for (const hiddenIdentity of [secondary, version, quote]) expect(JSON.stringify(observation.result)).not.toContain(hiddenIdentity);
+    expect(JSON.stringify(observation.result)).not.toMatch(/quote_version_attachments|quote_attachment_snapshot|object_path|tenant-files/);
+    const bytes = await admin().storage.from("tenant-files").download(target.path);
+    expect(bytes.error).toBeNull();
+    expect(await bytes.data!.text()).toBe("immutable-lifecycle-bytes");
+  }
+}));

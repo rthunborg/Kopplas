@@ -595,6 +595,90 @@ for (const viewport of [{ name: "desktop", width: 1280, height: 800 }, { name: "
         expect((await state(file.fileId)).lifecycle_state).toBe("archived"); expect(await audits(file.fileId)).toHaveLength(1);
       });
     });    // RED: activate after logical pane/back focus and retained list filters land.
+    test("[P1][AC2,8] PDF preview aborts pending fetch and revokes completed Blob URL on Back", ERROR_RED, async ({ page }) => {
+      type MediaCleanupAudit = {
+        created: string[]; revoked: string[]; gateNextPdf: boolean; releaseGatedPdf: (() => void) | null;
+        requests: { aborted: boolean; gated: boolean; released: boolean; settled: boolean; status?: number }[];
+      };
+      await withSeed(async seed => {
+        const marker = "20.2-media-cleanup-" + crypto.randomUUID();
+        const pdf = await PDFDocument.create(); pdf.addPage().drawText("20.2 real media cleanup");
+        const pdfBody = Buffer.from(await pdf.save());
+        const document = await seedFile(seed, marker + "-A.pdf", "application/pdf", pdfBody);
+        const image = await seedFile(seed, marker + "-B.png", "image/png");
+        await page.addInitScript(() => {
+          const audit: MediaCleanupAudit = { created: [], revoked: [], gateNextPdf: false, releaseGatedPdf: null, requests: [] };
+          (window as unknown as Window & { __documentsMediaCleanupAudit: MediaCleanupAudit }).__documentsMediaCleanupAudit = audit;
+          const create = URL.createObjectURL.bind(URL), revoke = URL.revokeObjectURL.bind(URL);
+          URL.createObjectURL = value => {
+            const url = create(value);
+            if (value instanceof Blob && value.type === "application/pdf") audit.created.push(url);
+            return url;
+          };
+          URL.revokeObjectURL = url => { if (audit.created.includes(url)) audit.revoked.push(url); revoke(url); };
+          const fetchActual = window.fetch.bind(window);
+          window.fetch = async (input, init) => {
+            const url = input instanceof Request ? input.url : String(input);
+            const signal = init?.signal ?? (input instanceof Request ? input.signal : undefined);
+            if (!url.includes("/storage/v1/object/sign/") || !signal) return fetchActual(input, init);
+            const observation: MediaCleanupAudit["requests"][number] = { aborted: signal.aborted, gated: false, released: false, settled: false };
+            audit.requests.push(observation);
+            signal.addEventListener("abort", () => { observation.aborted = true; }, { once: true });
+            const gated = audit.gateNextPdf; audit.gateNextPdf = false;
+            try {
+              // Delay delivery of the actual native Response only. No successful
+              // status, headers, body, signing result or stored bytes are fabricated.
+              const response = await fetchActual(input, init); observation.status = response.status;
+              if (gated) {
+                observation.gated = true;
+                await new Promise<void>(resolve => { audit.releaseGatedPdf = resolve; });
+                observation.released = true; audit.releaseGatedPdf = null;
+              }
+              return response;
+            } finally { observation.settled = true; }
+          };
+        });
+        await open(page, { q: marker });
+        expect((await select(page, document.name)).ok()).toBe(true);
+        const embedded = pane(page).getByTitle(document.name, { exact: true });
+        await expect(embedded).toHaveAttribute("src", /^blob:/);
+        const firstBlob = (await embedded.getAttribute("src"))!;
+        const actualBytes = await embedded.evaluate(async element => Array.from(new Uint8Array(await (await fetch(element.getAttribute("src")!)).arrayBuffer())));
+        expect(Buffer.from(actualBytes)).toEqual(pdfBody);
+        await expect.poll(() => page.evaluate(() => (window as unknown as Window & { __documentsMediaCleanupAudit: MediaCleanupAudit }).__documentsMediaCleanupAudit.created.length)).toBe(1);
+        await pane(page).getByTestId("documents-preview-back").press("Enter");
+        await expect(row(page, document.name).getByRole("button", { name: "Förhandsvisa", exact: true })).toBeFocused();
+        await expect(pane(page).locator("iframe")).toHaveCount(0); await expect(downloadLink(page)).toHaveCount(0);
+        await expect.poll(() => page.evaluate(url => (window as unknown as Window & { __documentsMediaCleanupAudit: MediaCleanupAudit }).__documentsMediaCleanupAudit.revoked.includes(url), firstBlob)).toBe(true);
+        expect(await page.evaluate(url => fetch(url).then(() => false, () => true), firstBlob)).toBe(true);
+        await page.evaluate(() => { (window as unknown as Window & { __documentsMediaCleanupAudit: MediaCleanupAudit }).__documentsMediaCleanupAudit.gateNextPdf = true; });
+        try {
+          expect((await select(page, document.name)).ok()).toBe(true);
+          await expect(pane(page).getByTestId("documents-media-loading")).toBeVisible();
+          await expect.poll(() => page.evaluate(() => (window as unknown as Window & { __documentsMediaCleanupAudit: MediaCleanupAudit }).__documentsMediaCleanupAudit.requests[1]?.gated)).toBe(true);
+          expect(await page.evaluate(() => (window as unknown as Window & { __documentsMediaCleanupAudit: MediaCleanupAudit }).__documentsMediaCleanupAudit.requests[1].status)).toBe(200);
+          expect((await select(page, image.name)).ok()).toBe(true);
+          await expect.poll(() => page.evaluate(() => (window as unknown as Window & { __documentsMediaCleanupAudit: MediaCleanupAudit }).__documentsMediaCleanupAudit.requests[1].aborted)).toBe(true);
+          await expect(pane(page).locator("iframe")).toHaveCount(0);
+          const selectedImage = pane(page).getByRole("img", { name: image.name, exact: true });
+          await expect.poll(() => selectedImage.evaluate(element => (element as HTMLImageElement).naturalWidth)).toBe(1);
+          await page.evaluate(() => { (window as unknown as Window & { __documentsMediaCleanupAudit: MediaCleanupAudit }).__documentsMediaCleanupAudit.releaseGatedPdf?.(); });
+          await expect.poll(() => page.evaluate(() => {
+            const request = (window as unknown as Window & { __documentsMediaCleanupAudit: MediaCleanupAudit }).__documentsMediaCleanupAudit.requests[1];
+            return request.released && request.settled;
+          })).toBe(true);
+          expect(await page.evaluate(() => {
+            const audit = (window as unknown as Window & { __documentsMediaCleanupAudit: MediaCleanupAudit }).__documentsMediaCleanupAudit;
+            return { created: audit.created.length, revoked: audit.revoked.length };
+          })).toEqual({ created: 1, revoked: 1 });
+          await expect(pane(page)).not.toContainText(document.name); await expect(pane(page).locator("iframe")).toHaveCount(0);
+          await expect(selectedImage).toBeVisible(); await expect(pane(page).getByRole("alert")).toHaveCount(0);
+        } finally {
+          // Release this test's native fetch gate even when an assertion fails.
+          await page.evaluate(() => { (window as unknown as Window & { __documentsMediaCleanupAudit: MediaCleanupAudit }).__documentsMediaCleanupAudit.releaseGatedPdf?.(); });
+        }
+      });
+    });
     test("[P1][AC2,8] keyboard list-detail-back retains filters focus and reachable controls", RED, async ({ page }) => {
       await withSeed(async seed => {
         const file = await seedFile(seed, `20.2-focus-${crypto.randomUUID()}.png`, "image/png"); await open(page, { q: file.name, module: "crm", ownerType: "customer", purpose: "crm_document" });

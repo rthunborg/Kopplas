@@ -96,3 +96,37 @@ None
 1. None
 
 **Next:** Run assigned post-dev TEA, independent follow-up, then fresh14 checks and distinct review on the final clean worker SHA
+
+## Report — 2026-10-12T18:03:24Z (checkpoint â€” Phase 6 complete)
+
+**Story:** `20-2-search-filters-preview-and-archive-restore` (epic 20, story 2) — mid-epic.
+**Spec:** `C:/Users/Rasmus/.codex/worktrees/documents-e20-20-2/Kopplas/_bmad-output/implementation-artifacts/spec-20-2-search-filters-preview-and-archive-restore.md`
+**Branch:** `codex/parallel-documents-e20-readiness-2026-10-09-20-2` (HEAD `1bcf7da`).
+**Pipeline status:** Worker running; post-dev TEA complete, independent follow-up and exact-SHA acceptance pending
+**Continues:** Phase7 mandatory recommended independent review, final clean candidate verification and supported submission
+
+**Timing:** started 2026-10-12T14:35:36Z; completed in progress — elapsed 3h 27m (≈3h 27m AI-run, ≈0m human/idle wait); resumed 3×.
+
+**Phases run:** TEA automate Create/BMad-integrated steps1-4, required independent API/E2E audit children synchronously complete
+**Skipped:** (none)
+
+**Overrides:** Generation2 isolated worker; no global artifacts/aggregate writes; complete TEA deliverables retained externally; resource admissions13 so far and TEA serverStop accepted
+
+**TEA:** All8ACs audited; two genuine gaps closed in two assigned files; remaining0. Inventory142=23unit+49INT-RLS+70browser, preserved41 baseline gives111 collected. Runtime lifecycle file25pass and focusedbrowser2pass,0fail/0skip/native0; static/schema/discovery native0
+
+**Build:** Product and applied migration unchanged; two additive test files ready to commit
+
+**Review:** Completed broad rounds1; recommended follow-up selected High, full configured roster required
+
+**Retrospective:** (none)
+
+**Open questions:**
+1. Historical login/hydration causes remain unclassified, failed receipts retained
+
+**Deferred work:**
+1. None in story; remaining required phases pending
+
+**⚠️ Needs human:**
+1. None
+
+**Next:** Fresh independent follow-up review, then fresh all14 checks and distinct review of final exact worker SHA
