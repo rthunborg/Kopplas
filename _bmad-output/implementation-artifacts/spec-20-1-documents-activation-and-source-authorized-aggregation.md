@@ -2,8 +2,8 @@
 status: in-progress
 type: feature
 created: "2026-10-08"
-review_loop_iteration: 0
-followup_review_recommended: false
+review_loop_iteration: 1
+followup_review_recommended: true
 warnings: [oversized]
 deferred: []
 story_id: "20.1"
@@ -200,8 +200,109 @@ Preparation audit received from root: no new material authorization/design findi
 
 2026-10-09: Record direct-human Documents-only oracle disposition, current primary guidance, complete historical High preparation acceptance and exact path reservation. No sensitive product contract change; targeted High readiness-delta acceptance and coordinator checkpoint closure recorded; final LF pin updated. Specification approval is separate from worker dispatch.
 
+### Implementation review round 1 of 3 — 2026-10-12
+
+All six configured independent Sol 6.1 High layers reviewed product revision e07d55ee against the retained whole-change baseline. The external initial transport failure was excluded; its native-0 nonempty retry counted once. Raw combined in-host findings and external review/provenance are coordinator-owned external Temp artifacts, not author self-approval. This is the first implementation review round; historical preparation audits above do not count as implementation rounds.
+
+| Finding / invariant | Author disposition and demonstrated consequence | Bounded response / evidence limit |
+| --- | --- | --- |
+| Generic audit can forge the new checked success | PATCH. Current 55622 function/trigger inspection proved authenticated active tenant-admin generic record_audit_event accepts arbitrary command/event, permitting indistinguishable success and replay preconsumption without HMAC/source/signing. | The owned additive function-only migration reserves the new Documents command OR event in the existing generic audit RPC. Other generic audit/Files/Storage semantics and ACLs are retained. Three actual generic-RPC negative/recovery cases added; final-head execution pending. No historical migration edit/new table/policy/key. |
+| Existing collection narrowing lost across pages | PATCH after author intent triage. AC9's preserve-existing-controls obligation and actual baseline global name/MIME/owner narrowing permit restoring those same semantics; richer20.2 filters remain deferred. | Existing controls automatically re-read the authorized collection; cursor binds tenant/actor/filter and retains control state. Owner facets derive from actual eligible contexts throughout the collection, including later pages, never registry availability or hidden links. Added unit, actual RLS and real-route browser assertions; final-head execution pending. No frozen AC rewrite/new controls. |
+| Continuation exposes hidden-only trailing candidates | PATCH. Fifty eligible rows followed by only archived-source candidates advertised an empty terminal page, exposing hidden presence. | Continuation now requires another matching authorized context; its cursor remains at the last displayed row. Full bounded-query scanning also derives safe existing facets; no hidden count/ID reaches the descriptor. Two focused regressions preflight passed in the dirty fix tree; final-head run pending. |
+| Existing upload labels lost disambiguation | PATCH. The baseline calculation picker title plus customer and untitled-job fallback customer label were deleted, making same-title choices ambiguous. | Restore the existing RLS-safe label projections in the owned page. No source capability/label-field widening. |
+| Successful upload on cursor page hides the new earlier-sorting link | DEFERRED / OWNERSHIP BLOCKER. FileIndexUpload router.refresh preserves the cursor, so the server-confirmed new link lies before it and is absent after success. | Correct optional success callback/navigation needs the unassigned exact src/components/files/FileIndexUpload.tsx path. Requested fourth path amendment; no workaround, weak assertion or unauthorized edit. Consequential AC9 follow-up remains required. |
+| Route resolver SERVER_ERROR rendered membership denial | PATCH. A second authority query can fail after outer-layout success; the owned route mislabeled that transient failure. | Render the resolver's generic read-failure message with explicit retry and no child/data on SERVER_ERROR; retain membership/capability denial separately. |
+| Proof/URL expires while finalizer waits | VERIFICATION PATCH. Existing tests would not detect replacing the correct post-lock clock_timestamp with statement_timestamp. | Add two deterministic unchanged-source lock barriers: synthetic independent-HMAC five-minute proof with three seconds remaining, and a real three-second Storage URL. Release only after observed DB clock expiry, assert FSA10/no audit; no sleeps. Final-head execution pending. |
+| Destination cursor wiring beyond fifty | VERIFICATION PATCH. Reader-only traversal did not prove the actual route propagates cursor/filter identity. | Added real production-route61-context journey at desktop/360×640, including older collection search and retained owner selection. Metadata fixtures prove listing only; separate existing upload/open journeys prove real Storage. Final-head execution pending. |
+| Four initial owned browser failures | TEST PATCH. Invalid React action submission resets uncontrolled file input; denial page has main without #main-content. | Reselect the file before the allowed retry; assert visible Ingen åtkomst and no document text in semantic main. Denial/no-URL assertions remain intact. Initial18/22 evidence retained; rerun pending. |
+| Three stale shared check paths | DEFERRED / OWNERSHIP BLOCKER. Two full-unit failures and unadapted shared browser assertions cannot be repaired under the present assignment. | Exact paths remain tests/unit/scope/manifest-shape.test.ts, tests/e2e/files/file-index-scope.e2e.spec.ts and tests/e2e/files/entity-file-preview.e2e.spec.ts. No claimed pass or edit; requested approved amendment. |
+
+Deferred count: four unassigned paths (three shared checks plus upload callback), representing two retained blocker groups. followup_review_recommended remains true because consequential unresolved upload behavior, blocked required gates and the oversized warning remain. Review cap is three completed implementation rounds; round2 must target latest fixes/regressions and unresolved serious findings. Current status stays in-progress until final evidence and independent triage finish.
+
 ## Auto Run Result
 
 Status: ready-for-dev
 Blocking condition: none for specification preparation; targeted independent High acceptance and coordinator checkpoint closure recorded2026-10-09. Worker dispatch still requires fresh integrated-base/path/shared/resource admission and the story-specific verified product dependencies. No implementation or runtime proof is claimed.
 Outcome: approved ready-for-dev specification; implementation_authorized:false, no worker assignment or product evidence.
+
+## Initial resumed implementation verification — e07d55ee before review fixes
+
+Implementation admission comes from the external approved generation-1 assignment for branch `codex/parallel-documents-e20-readiness-2026-10-09-20-1`; preparation-era `implementation_authorized:false` above remains historical. This author resumed checkpoint `29258906` plus routing checkpoint `e07d55ee2c62dd921874fbbdede74b67a0cdd24d`, without reimplementing or changing the frozen intent. Whole-change baseline remains `477435ddf9e4a9894db82b2f1831634eaabefae3`. The product/test tree tested below was clean at e07d55ee; this appended evidence/trail is a spec-only working-tree change. Independent review is coordinator-owned and in progress; no story completion, merge or release is claimed.
+
+All commands ran in the assigned worker with `login:false`. Required DB runs used `SUPABASE_TEST_REQUIRED=1`, API `http://127.0.0.1:55621` and DB `127.0.0.1:55622`; browser used the retained production server on `3100` and guarded CDP on `55623`. The author launched, adopted, stopped and reset no resource and changed no ignored environment file. Secret variables were loaded through an explicit name whitelist without printing their values. Earlier 54321-origin and historical pass counts are excluded from this evidence.
+
+| Check / command | Actual current result at e07d55ee | Evidence |
+| --- | --- | --- |
+| Focused Documents source/selected-link plus permission-matrix, role-catalogue, command-enrollment, phase-a-surface and role-harness units; Node `--experimental-strip-types --import ./tests/support/register.mjs --test` with the four assigned Documents units and five authz units | Native 0; 209 executed/passed, 0 failed, 0 skipped | `focused-unit.log`, `focused-unit.summary.json` |
+| Required five-file Vitest Documents RLS/selected-link/lock-race and generic file signing/refresh selection from the checks table; repeated with JSON reporter for assertion-level matrix evidence | Native 0; 151 executed/passed, 0 failed, 0 skipped: Documents RLS 23, selected-link 72, lock-race 36, generic signing 14, refresh 6 | `db.log`, `db.summary.json`, `db.vitest.json` |
+| `pnpm run test:unit` | Native 1; 2427 total, 2424 passed, 2 failed, 1 skipped. Both failures are the unassigned historical manifest active/pending lists. The skip is the existing Linux-xattrs-only backend-restore compatibility case; it provides no coverage here. | `unit.log`, `unit.summary.json` |
+| `pnpm run typecheck`, `pnpm run lint` | Native 0 each; lint 0 errors/13 warnings | Their named logs/summaries |
+| `pnpm run verify:service-role-containment`, `pnpm run verify:lockfiles` | Native 0 each | `containment.*`, `lockfiles.*` |
+| `pnpm run build`, then `pnpm run verify:bundle-containment` | Native 0 each; built during the root-authorized stopped-server window; root handles restart | `build.*`, `bundle.*` |
+| `pnpm exec playwright test tests/e2e/files/documents.e2e.spec.ts` | Native 1; 22 executed, 18 passed, 4 failed, 0 skipped, across desktop and connected 360×640 | `browser-owned.log`, `browser-owned.summary.json`; ignored `test-results/` snapshots |
+
+External raw evidence directory: `C:/Users/Rasmus/AppData/Local/Temp/kopplas-20-1-author-20261012-e07d55ee/`. Its summaries bind full SHA, argv, native exit and actual API/DB origins; DB JSON supplies each executed assertion name/status. Browser failures are preserved: invalid owner submission resets uncontrolled file input before the retry, and the post-membership-denial page has a `<main>` without `#main-content`. Both sequences passed their denial/no-URL assertions before their stale test assumptions failed; their complete journeys are not credited as passing. Owned test corrections await the coordinator's review-write hold release. The required three-file browser gate has not passed: shared `file-index-scope` still assumes seven global facets, and it plus `entity-file-preview` use base Playwright instead of the retained guarded fixture. These three shared test paths, including the unit manifest test, remain outside this assignment pending an approved amendment.
+
+### I/O & Edge-Case Matrix test audit
+
+Every matrix row maps to a named current passing assertion. This audit does not promote the failed full unit/browser gates or claim every AC complete.
+
+| Spec matrix row | Executed passing assertion / current evidence |
+| --- | --- |
+| Authorized context | Selected-link integration: `[P0] customer checked prepare/finalize and request-bound signing succeed on the exact source`; part of 72 passing assertions in `db.vitest.json`. Real caller Storage and committed audit are exercised. |
+| Same file, distinct contexts | Documents RLS: `[P0] multi-linked file keeps two allowed link identities and hides an archived third context`; part of 23 passing assertions in `db.vitest.json`. |
+| Source revocation/disappearance | Selected-link integration: `[P0] source revocation denies the selected context without substituting another authorized link`; Documents RLS membership/role next-read revocation also passes in the same JSON report. |
+| More than PostgREST cap | Documents RLS: `[P1] >PostgREST-cap hidden candidates and equal timestamps do not truncate later authorized links`; real over-cap fixtures, one of 23 passing RLS assertions. |
+| Quote PDF/attachments | Selected-link integration: `[P0] a real customer-visible quote edit invalidates its PDF and prepared Documents proof` and the exact frozen snapshot-association denial; part of 72 passing selected-link assertions. Synthetic quote-PDF fixtures are explicitly test data. |
+| Read/sign/audit outage | Selected-link integration: `[P0] actual audit rollback after real Storage signing exposes no URL`; Node command units additionally pass prepare/storage/finalize failure classification, and read-model units pass transient candidate/source failures. Injected/mocked fault units are not external-outage observations. |
+
+## Suggested Review Order
+
+Author: resumed implementation/fix author `/root/worker20_1_resume/author20_1` (Sol 6.1 High for source authorization, HMAC, SQL locking and audit integrity). Refreshed against the described round1 owned fix working tree based on `e07d55ee2c62dd921874fbbdede74b67a0cdd24d` (canonical checkpoint/final verification pending), whole-change baseline `477435ddf9e4a9894db82b2f1831634eaabefae3`, plus this spec-only evidence section. The checkpointed implementation follows the already recorded option-A and selected-link contract; the reasons below are grounded in those decisions and the implementation's explicit branches/comments.
+
+### 1. One usable destination with the existing role ceiling
+
+Activation transfers the sole `/files` entry to Documents while Files retains its storage-table ownership. Both capabilities guard direct navigation; the existing owner-required upload remains contextual (AC1/AC9), as specified in the approved intent rather than a new entitlement choice.
+
+- `src/scope/manifest.ts:287` — `Documents.View`: transfers the one navigation destination.
+- `src/app/(app)/files/layout.tsx:12` — `Documents.View`: checks current route authority before rendering.
+- `src/app/(app)/files/page.tsx:14` — `DocumentsContent`: reads the authorized destination before contextual upload options.
+- `tests/unit/server/read-models/documents.test.ts:101` — `atomic activation`: asserts nav transfer and retained Files table ownership.
+
+### 2. Exact authorized contexts and complete traversal
+
+The registry checks every manifest-active owner, including domain-created quote-version links; upload eligibility remains a separate contract. Request-bound source/live-parent checks precede the narrow per-link DTO, and encrypted actor/tenant/filter-bound cursors conceal skipped candidates while keyset traversal avoids false exhaustion. The round1 fix restores only existing name/MIME/owner collection narrowing, collects facets from current eligible contexts, and requires authorized lookahead before continuation (AC2–AC6).
+
+- `src/server/read-models/document-sources.ts:40` — `assertDocumentSourceRegistryCoherence`: fails loudly on missing active adapters.
+- `src/server/read-models/document-sources.ts:61` — `readDocumentSource`: validates capability, lifecycle, provenance and required live ancestry.
+- `src/server/read-models/documents.ts:114` — `while (true)`: continues internally across hidden candidate batches.
+- `src/server/read-models/documents.ts:134` — `const row:`: exposes only the approved contextual display projection.
+
+### 3. Selected-link access never falls back to generic signing
+
+The action accepts only link/file identity; server and checked SQL derive the source and Storage target. Distinct canonical Documents proof domains bind that selection and success is returned only after the checked audit finalizer commits. The round1 fix reserves these new success identifiers against the existing authenticated generic audit writer (AC3/AC5/AC7); this preserves the fixed option-A generic/direct boundary rather than implementing global revocation.
+
+- `src/features/documents/actions.ts:10` — `createDocumentSignedAccessAction`: creates the request-bound action entry.
+- `src/server/commands/documents/signed-access.ts:125` — `recordDocumentSignedAccessAuditAttested`: withholds the URL unless final audit succeeds.
+- `src/server/storage/document-signed-access-attestation.ts:81` — `canonicalDocumentSignedAccessAttestationBytes`: binds exact source/link/purpose proof fields.
+- `supabase/migrations/20261009091120_story_20_1_documents_selected_link_access.sql:452` — `p_command =`: blocks forged Documents success through the generic audit RPC.
+
+### 4. Current authority linearizes at locked audit finalization
+
+The reviewed contract uses SHARE locks because archive/status/role changes are nonkey updates. It reconciles the exact gathered parent graph after lock acquisition, and rechecks real time after waits; new proof/real-URL expiry barriers specifically exercise that wait boundary. Authority is linearized at successful final audit, not subsequent HTTP delivery or bearer consumption (AC3/AC7/AC8).
+
+- `supabase/migrations/20261009091120_story_20_1_documents_selected_link_access.sql:132` — `v_contact.facility_id`: denies optional-parent reassignment outside the locked graph.
+- `supabase/migrations/20261009091120_story_20_1_documents_selected_link_access.sql:376` — `clock_timestamp()`: rejects proofs expiring during lock waits.
+- `tests/integration/commands/documents-signed-access-lock-races.int.test.ts:143` — `SHARE authority lock`: proves deterministic two-connection ordering and final-audit linearization.
+- `tests/integration/commands/documents-signed-access.int.test.ts:227` — `actual audit rollback`: asserts no returned URL after real remote issuance and audit failure.
+
+### 5. Evidence proves the bounded contract and exposes remaining gaps
+
+AC4/AC6 assertions retain separate link identities and cross the actual PostgREST cap; AC5 uses a real draft quote edit to exercise established PDF invalidation. The option-A regression deliberately proves baseline generic/direct Storage remains available after source archive (AC8), rather than mislabeling that availability as source denial.
+
+- `tests/integration/rls/documents.rls.test.ts:134` — `multi-linked file`: checks two allowed contexts and absent denied context.
+- `tests/integration/rls/documents.rls.test.ts:210` — `>PostgREST-cap`: checks complete stable over-cap traversal.
+- `tests/integration/commands/documents-signed-access.int.test.ts:209` — `Option A preserves`: distinguishes generic/direct and issued-bearer residual access.
+- `tests/integration/commands/documents-signed-access.int.test.ts:370` — `real customer-visible quote edit`: proves quote-PDF invalidation without inventing a missing downstream guard.
+
+Evidence: the preceding initial verification and matrix audit bind e07d55ee's pre-fix 209 focused units and 151 actual DB assertions, zero required skips, and successful static/build/containment checks. Limits: synthetic local fixtures; fault-unit mocks; 18/22 browser journeys passed while four complete journeys failed; the full unit and required shared browser gate remain blocked by unassigned stale tests. Default URL TTL is 300 seconds and existing configurable issuance cap is 86400 seconds; already issued URLs may remain usable to their embedded expiry. Final fix verification is pending; the upload-on-cursor success regression needs its fourth unassigned path amendment. Full queries/pages remain bounded, while complete hidden traversal and safe collection facets may scan the whole collection. No actual Lovable observation or legacy parity proof, external-service outage, hosted migration/deployment or full-epic completion is claimed. Exactly one author section is maintained; final reference checking and coordinator-owned independent review remain separate from this reading guide.

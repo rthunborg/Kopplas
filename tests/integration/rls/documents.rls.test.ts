@@ -190,6 +190,23 @@ afterAll(async () => { if (fx) await cleanupRoleAwarePhaseAFixture(fx); });
       await arranged("update public.files set lifecycle_state='linked' where id=$1", [target.fileId]);
     }
   });
+  it("[P0] collection facets retain an eligible later-page job and disappear on its current source archive", async () => {
+    const batch = await adminQuery<{ id: string }>("insert into public.file_links(tenant_id,file_id,owner_type,owner_id,purpose,created_at) select $1,$2,'customer',$3,'crm_document','2030-01-01T00:00:00Z'::timestamptz from generate_series(1,55) returning id", [fx!.base.tenantA.id,contexts[0].fileId,source.customer]);
+    try {
+      const first = (await page()).data;
+      expect(first.rows).toHaveLength(50);
+      expect(first.rows.some(row=>row.ownerType==='job')).toBe(false);
+      expect(first.ownerTypes).toContain('job');
+      expect(first.nextCursor).not.toBeNull();
+      const second = (await page(client,first.nextCursor!)).data;
+      expect(second.ownerTypes).toContain('job');
+      await adminExec("update public.jobs set archived_at=now() where id=$1", [source.job]);
+      try {
+        const current = (await page()).data;
+        expect(current.ownerTypes).not.toContain('job');
+      } finally { await adminExec("update public.jobs set archived_at=null where id=$1", [source.job]); }
+    } finally { await adminExec("delete from public.file_links where id=any($1::uuid[])", [batch.map(row=>row.id)]); }
+  });
   it("[P1] >PostgREST-cap hidden candidates and equal timestamps do not truncate later authorized links", async () => {
     const tenant = fx!.base.tenantA.id;
     const hidden = await adminInsertCustomer({ tenant_id: tenant, customer_type: "company", display_name: "Pagination hidden marker" });

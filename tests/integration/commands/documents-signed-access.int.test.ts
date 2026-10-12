@@ -141,6 +141,19 @@ beforeAll(async () => {
 afterAll(async () => { if (fx) await cleanupRoleAwarePhaseAFixture(fx); });
 
 describe("Documents20.1 selected-link checked access", () => {
+  it.each([
+    ["document.signedAccess.create", "document.signed_access.created"],
+    ["document.signedAccess.create", "fixture.other"],
+    ["fixture.other", "document.signed_access.created"],
+  ])("[P0] generic audit RPC cannot forge checked Documents semantics %s/%s", async (command, event) => {
+    const correlation = crypto.randomUUID();
+    const forged = await a.rpc("record_audit_event", { p_tenant_id: fx!.base.tenantA.id, p_actor_user_id: fx!.base.adminA.id, p_command: command, p_event_type: event, p_target_type: "file", p_target_id: own.fileId, p_correlation_id: correlation, p_metadata: {}, p_created_at: new Date().toISOString() });
+    expect(forged.error?.code).toBe("42501"); expect(forged.data).toBeNull();
+    expect(await adminSelectAuditEvents({ correlationId: correlation })).toEqual([]);
+    const legitimate = await access(a, own, correlation);
+    expect(legitimate.ok).toBe(true);
+    expect(await adminSelectAuditEvents({ correlationId: correlation })).toHaveLength(1);
+  });
   it.each(["customer", "facility", "contact", "calculation", "quote_version", "quote_acceptance", "job"])("[P0] %s checked prepare/finalize and request-bound signing succeed on the exact source", async (source) => {
     const correlation = crypto.randomUUID();
     const result = await access(a, allSources[source], correlation);

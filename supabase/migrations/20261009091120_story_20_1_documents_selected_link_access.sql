@@ -429,3 +429,37 @@ comment on function public.prepare_document_signed_access_audit_attestation(uuid
 is 'Read-only selected-link challenge: current actor/roles, live same-tenant source graph, exact live link/file and existing Vault root; no signing/audit. Generic Files/Storage authority remains unchanged.';
 comment on function public.record_document_signed_access_audit_attested(uuid,uuid,uuid,uuid,text,uuid,text,text,text,uuid,text,text,text,text,text,text)
 is 'Selected-link finalizer: replay advisory lock, SHARE-locked current graph reconciliation, distinct source-bound proof and fixed append-only success audit. Authority linearizes at audit transaction commit; issued bearer URLs remain valid until expiry.';
+
+
+-- Reserve the new checked success semantics against the generic authenticated
+-- audit writer. Its other command/event behavior and generic Files/Storage
+-- authority stay unchanged; only the Documents finalizer can emit this event.
+create or replace function public.record_audit_event(
+  p_tenant_id uuid, p_actor_user_id uuid, p_command text, p_event_type text,
+  p_target_type text, p_target_id uuid, p_correlation_id uuid, p_metadata jsonb,
+  p_created_at timestamptz
+) returns uuid language plpgsql security definer set search_path = '' as $$
+declare
+  v_id uuid;
+  v_created_at timestamptz := statement_timestamp();
+begin
+  if auth.uid() is null or auth.uid() <> p_actor_user_id then
+    raise exception 'record_audit_event: actor must match the authenticated caller' using errcode='42501';
+  end if;
+  if not public.is_tenant_admin(p_tenant_id) then
+    raise exception 'record_audit_event: caller is not an active tenant admin of the target tenant' using errcode='42501';
+  end if;
+  if p_command = 'document.signedAccess.create' or p_event_type = 'document.signed_access.created' then
+    raise exception 'record_audit_event: checked document success requires the attested finalizer' using errcode='42501';
+  end if;
+  insert into public.audit_events (
+    tenant_id, actor_user_id, command, event_type, target_type, target_id, correlation_id, metadata, created_at
+  ) values (
+    p_tenant_id, p_actor_user_id, p_command, p_event_type, p_target_type, p_target_id,
+    p_correlation_id, coalesce(p_metadata,'{}'::jsonb), v_created_at
+  ) returning id into v_id;
+  return v_id;
+end;
+$$;
+revoke execute on function public.record_audit_event(uuid,uuid,text,text,text,uuid,uuid,jsonb,timestamptz) from public,anon,service_role;
+grant execute on function public.record_audit_event(uuid,uuid,text,text,text,uuid,uuid,jsonb,timestamptz) to authenticated;

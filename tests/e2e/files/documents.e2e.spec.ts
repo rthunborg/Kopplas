@@ -11,6 +11,7 @@ import { test, expect } from "../dashboard/guarded-test";
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import { adminQuery, closeAdminPool } from "../../factories/admin-sql";
+import { adminInsertFile, adminInsertFileLink } from "../../factories/tenants";
 
 type Credentials = { readonly id: string; readonly email: string; readonly password: string };
 type Fixture = {
@@ -237,6 +238,51 @@ for (const viewport of [
       await expect(documentRow(page, data.crm.fileName)).toHaveCount(1);
     });
 
+    test("[P1][AC4,6,9] actual destination traverses over fifty contexts and preserves collection narrowing", async ({ page }) => {
+      const data = fixture(); const marker = "documents-pages-"+crypto.randomUUID();
+      const files: string[] = []; const links: string[] = [];
+      try {
+        for (let i=0; i<61; i++) {
+          const id = await adminInsertFile({ tenant_id: data.tenantA.id, display_name: marker+"-"+i+".txt", mime_type: "text/plain", lifecycle_state: "linked" });
+          files.push(id);
+          const link = await adminInsertFileLink({ tenant_id: data.tenantA.id, file_id: id, owner_type: "customer", owner_id: data.crm.company.id, purpose: "crm_document" });
+          links.push(link);
+          await adminQuery("update public.file_links set created_at=$2 where id=$1", [link,new Date(Date.UTC(2030,0,1,0,0,61-i)).toISOString()]);
+        }
+        // These ordinary metadata fixtures exercise listing, not Storage bytes.
+        // The other journeys use real uploaded objects for checked access.
+        await openDocuments(page, data.adminA);
+        await expect(page.getByTestId("file-index-row")).toHaveCount(50);
+        await expect(documentRow(page, marker+"-0.txt")).toHaveCount(1);
+        await expect(documentRow(page, marker+"-60.txt")).toHaveCount(0);
+        await page.getByTestId("documents-next-page").click();
+        await expect(page).toHaveURL(/cursor=/);
+        await expect(documentRow(page, marker+"-60.txt")).toHaveCount(1);
+        await expect(documentRow(page, marker+"-0.txt")).toHaveCount(0);
+        await page.goto("/files");
+        const search = page.getByLabel("Sök (namn eller typ)", { exact: true });
+        await waitForHydrated(search);
+        await search.fill(marker+"-60.txt");
+        await expect(documentRow(page, marker+"-60.txt")).toHaveCount(1);
+        await expect(page.getByTestId("file-index-row")).toHaveCount(1);
+        await expect(page.getByTestId("documents-next-page")).toHaveCount(0);
+        await search.fill(marker);
+        await page.getByTestId("file-index-category-filter").selectOption("customer");
+        await expect(page).toHaveURL(/owner=customer/);
+        await expect(page.getByTestId("file-index-row")).toHaveCount(50);
+        await page.getByTestId("documents-next-page").click();
+        await expect(page).toHaveURL(/cursor=.*search=.*owner=customer/);
+        await expect(search).toHaveValue(marker);
+        await expect(page.getByTestId("file-index-category-filter")).toHaveValue("customer");
+        await expect(page.getByTestId("file-index-row")).toHaveCount(11);
+        await expect(documentRow(page, marker+"-60.txt")).toHaveCount(1);
+        await expect(page.getByTestId("documents-next-page")).toHaveCount(0);
+      } finally {
+        if (links.length) await adminQuery("delete from public.file_links where id=any($1::uuid[])", [links]);
+        if (files.length) await adminQuery("delete from public.files where id=any($1::uuid[])", [files]);
+      }
+    });
+
     test("[P1][AC9] upload requires an owner and success survives both Documents and contextual-page reads", async ({ page }) => {
       const data = fixture();
       await openDocuments(page, data.adminA);
@@ -250,7 +296,9 @@ for (const viewport of [
       await expect(form.getByRole("alert")).toBeVisible();
       await expect(form.getByRole("status")).toHaveCount(0);
       await expect(documentRow(page, name)).toHaveCount(0);
+      // A completed React action resets uncontrolled file inputs, including denial.
       await form.getByTestId("file-index-upload-owner").selectOption(data.crm.company.id);
+      await form.getByLabel("Välj en fil att ladda upp", { exact: true }).setInputFiles({ name, mimeType: "text/plain", buffer: Buffer.from("owner-required acceptance") });
       await form.getByRole("button", { name: "Ladda upp fil", exact: true }).click();
       await expect(form.getByRole("status")).toContainText("Filen laddades upp");
       await expect(documentRow(page, name)).toHaveCount(1);
@@ -296,7 +344,8 @@ for (const viewport of [
         await expect(row.getByRole("link", { name: /tidsbegränsad länk/i })).toHaveCount(0);
         await page.reload();
         await expect(page.getByTestId("file-index")).toHaveCount(0);
-        await expect(page.locator("#main-content")).not.toContainText(data.crm.fileName);
+        await expect(page.getByRole("heading", { name: "Ingen åtkomst", exact: true })).toBeVisible();
+        await expect(page.getByRole("main")).not.toContainText(data.crm.fileName);
       } finally {
         await adminQuery("update public.tenant_memberships set status=$3 where tenant_id=$1 and id=$2", [data.tenantA.id, membership.id, membership.status]);
       }

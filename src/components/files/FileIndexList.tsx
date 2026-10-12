@@ -1,7 +1,8 @@
 "use client";
 
 /** Documents destination: authorized per-link contexts, existing flat narrowing and contextual upload. */
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import { useActionState } from "react";
 import {
   FileIndexUpload,
@@ -41,17 +42,40 @@ export function FileIndexList({
   uploadOwnerOptions,
   uploadOptionsLoadError = false,
   nextCursor = null,
+  initialSearch = "",
+  initialOwnerCategory = "",
+  ownerTypes = rows.map(row => row.ownerType),
 }: {
   readonly rows: readonly FileIndexRow[];
   readonly loadError: string | null;
   readonly nextCursor?: string | null;
+  readonly initialSearch?: string;
+  readonly initialOwnerCategory?: string;
+  readonly ownerTypes?: readonly string[];
   /** The owner option lists for the "Ladda upp fil" affordance (owner decision 2026-07-14). */
   readonly uploadOwnerOptions: UploadOwnerOptions;
   /** True when any owner-options read FAILED (threaded to the upload form's neutral message). */
   readonly uploadOptionsLoadError?: boolean;
 }) {
-  const [search, setSearch] = useState("");
-  const [ownerCategory, setOwnerCategory] = useState("");
+  const router = useRouter();
+  const [search, setSearch] = useState(initialSearch);
+  const [ownerCategory, setOwnerCategory] = useState(initialOwnerCategory);
+  // Preserve the existing controls across the complete authorized collection.
+  // Changing them resets traversal; cursor links retain the same filter identity.
+  useEffect(() => {
+    if (search === initialSearch && ownerCategory === initialOwnerCategory) return;
+    const timer = setTimeout(() => {
+      const params = new URLSearchParams();
+      if (search) params.set("search", search);
+      if (ownerCategory) params.set("owner", ownerCategory);
+      router.replace(`/files${params.size ? `?${params}` : ""}`, { scroll: false });
+    }, 200);
+    return () => clearTimeout(timer);
+  }, [search, ownerCategory, initialSearch, initialOwnerCategory, router]);
+  const nextParams = new URLSearchParams();
+  if (nextCursor) nextParams.set("cursor", nextCursor);
+  if (initialSearch) nextParams.set("search", initialSearch);
+  if (initialOwnerCategory) nextParams.set("owner", initialOwnerCategory);
 
   // Client-side in-memory narrowing over the already-tenant-scoped rows (the thin Phase-A pattern).
   const filtered = useMemo(
@@ -112,7 +136,7 @@ export function FileIndexList({
                 className="rounded-md border border-zinc-300 px-2 py-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
               >
                 <option value="">Alla kategorier</option>
-                {OWNER_CATEGORY_ORDER.filter(ot => rows.some(row => row.ownerType === ot)).map((ot) => (
+                {OWNER_CATEGORY_ORDER.filter(ot => ownerTypes.includes(ot)).map((ot) => (
                   <option key={ot} value={ot}>
                     {ownerCategoryLabel(ot)}
                   </option>
@@ -134,7 +158,7 @@ export function FileIndexList({
               ))}
             </ul>
           )}
-          {nextCursor ? <a href={`/files?cursor=${encodeURIComponent(nextCursor)}`} data-testid="documents-next-page" className="w-fit text-sm text-blue-700 underline focus-visible:ring-2">Visa fler dokument</a> : null}
+          {nextCursor ? <a href={`/files?${nextParams}`} data-testid="documents-next-page" className="w-fit text-sm text-blue-700 underline focus-visible:ring-2">Visa fler dokument</a> : null}
         </>
       )}
     </section>

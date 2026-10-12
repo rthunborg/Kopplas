@@ -5,6 +5,7 @@ import { resolveCapability } from "@/server/authz/permission-matrix";
 import { normalizeRoles } from "@/server/authz/roles";
 import type { createSupabaseServerClient } from "@/server/db/supabase-server-client";
 import { quotePdfAttestationSecretFromEnv } from "@/server/quote-pdf/attestation";
+import { filterFileIndexRows, type FileIndexFilter } from "@/features/files/file-index";
 import { DOCUMENT_SOURCE_REGISTRY, readDocumentSource, type DocumentCandidate, type DocumentSourceData, type DocumentSourceResult } from "./document-sources";
 
 type Client = Awaited<ReturnType<typeof createSupabaseServerClient>>;
@@ -15,11 +16,11 @@ export interface DocumentRow extends DocumentSourceData {
   readonly createdAt: string; readonly lifecycleState: string; readonly locked: boolean;
 }
 export type DocumentsReadResult = { readonly ok: true; readonly data: { readonly descriptor: {
-  readonly data: { readonly rows: DocumentRow[]; readonly nextCursor: string | null };
+  readonly data: { readonly rows: DocumentRow[]; readonly nextCursor: string | null; readonly ownerTypes: readonly string[] };
   readonly entitlements: { readonly withheld: readonly string[] };
 } } } | { readonly ok: false; readonly code: string; readonly message: string };
 export interface DocumentsDeps {
-  readonly client?: object; readonly cursor?: string | null;
+  readonly client?: object; readonly cursor?: string | null; readonly filter?: FileIndexFilter;
   readonly resolveContext?: (options?: { client?: object }) => Promise<{ ok: true; data: { userId: string; tenantId: string; roles: readonly string[]; status?: string } } | { ok: false; code: string; message: string }>;
   readonly readCandidates?: (options: { client: object; tenantId: string; after: Anchor | null; limit: number }) => Promise<{ rows: DocumentCandidate[]; exhausted: boolean }>;
   readonly readSource?: (link: DocumentCandidate, options: { client: object; tenantId: string; roles: readonly string[] }) => Promise<DocumentSourceResult>;
@@ -33,18 +34,18 @@ function cursorKey(injected: boolean): Buffer {
   if (injected) return TEST_CURSOR_KEY;
   return createHmac("sha256", quotePdfAttestationSecretFromEnv().secret).update("elpro.documents.pagination-key.v1").digest();
 }
-function encodeCursor(anchor: Anchor, tenant: string, user: string, key: Buffer): string {
+function encodeCursor(anchor: Anchor, tenant: string, user: string, key: Buffer, filterBinding: string): string {
   const nonce = randomBytes(12);
   const cipher = createCipheriv("aes-256-gcm", key, nonce);
-  cipher.setAAD(Buffer.from(`${tenant}:${user}`));
+  cipher.setAAD(Buffer.from(`${tenant}:${user}:${filterBinding}`));
   const bytes = Buffer.concat([cipher.update(JSON.stringify({ ...anchor, expires: Date.now() + 15 * 60_000 }), "utf8"), cipher.final()]);
   return Buffer.concat([nonce, cipher.getAuthTag(), bytes]).toString("base64url");
 }
-function decodeCursor(raw: string, tenant: string, user: string, key: Buffer): Anchor {
+function decodeCursor(raw: string, tenant: string, user: string, key: Buffer, filterBinding: string): Anchor {
   if (!/^[A-Za-z0-9_-]{40,1024}$/.test(raw)) throw new Error("Invalid cursor");
   const bytes = Buffer.from(raw, "base64url");
   const decipher = createDecipheriv("aes-256-gcm", key, bytes.subarray(0, 12));
-  decipher.setAAD(Buffer.from(`${tenant}:${user}`));
+  decipher.setAAD(Buffer.from(`${tenant}:${user}:${filterBinding}`));
   decipher.setAuthTag(bytes.subarray(12, 28));
   const value = JSON.parse(Buffer.concat([decipher.update(bytes.subarray(28)), decipher.final()]).toString("utf8"));
   if (!value || !/^[0-9a-f-]{36}$/i.test(value.id) || typeof value.createdAt !== "string" ||
@@ -74,8 +75,19 @@ export async function readDocuments(deps: DocumentsDeps = {}): Promise<Documents
     if (!resolveCapability({ roles, module: "documents", capability: "Documents.View" }).granted ||
       !resolveCapability({ roles, module: "files", capability: "Files.View" }).granted) return unavailable("TENANT_ACCESS_DENIED");
     const key = cursorKey(!!deps.readCandidates);
-    let after = deps.cursor ? decodeCursor(deps.cursor, tenantId, userId, key) : null;
+    const filter = { search: (deps.filter?.search ?? "").trim().toLowerCase(), ownerCategory: (deps.filter?.ownerCategory ?? "").trim() };
+    if (filter.search.length > 1024 || (filter.ownerCategory && !Object.hasOwn(DOCUMENT_SOURCE_REGISTRY, filter.ownerCategory))) return unavailable("VALIDATION_FAILED");
+    const filterBinding = JSON.stringify(filter);
+    const requestedAfter = deps.cursor ? decodeCursor(deps.cursor, tenantId, userId, key, filterBinding) : null;
+    // Facets describe actual eligible contexts across the collection, never registry availability.
+    // Cursor pages first collect them from the start, then use the exact SQL keyset for rows.
+    let facetPass = requestedAfter !== null;
+    let after = facetPass ? null : requestedAfter;
     const rows: DocumentRow[] = [];
+    let pageAnchor: Anchor | null = null;
+    let hasMore = false;
+    const ownerTypes = new Set<string>();
+    const complete = (): DocumentsReadResult => ({ ok: true, data: { descriptor: { data: { rows, ownerTypes: [...ownerTypes], nextCursor: hasMore && pageAnchor ? encodeCursor(pageAnchor, tenantId, userId, key, filterBinding) : null }, entitlements: { withheld: [] } } } });
     const authority = { client, tenantId, roles };
     // Request-local row memoization reduces repeated owner lookups; never crosses a request/page.
     const sourceRows = new Map<string, Promise<Record<string, unknown> | null>>();
@@ -101,10 +113,7 @@ export async function readDocuments(deps: DocumentsDeps = {}): Promise<Documents
     };
     while (true) {
       const batch = await (deps.readCandidates ?? readCandidates)({ client, tenantId, after, limit: CANDIDATE_BATCH_SIZE });
-      if (!batch.rows.length) {
-        if (!batch.exhausted) throw new Error("Candidate traversal made no progress");
-        return { ok: true, data: { descriptor: { data: { rows, nextCursor: null }, entitlements: { withheld: [] } } } };
-      }
+      if (!batch.rows.length && !batch.exhausted) throw new Error("Candidate traversal made no progress");
       for (let i = 0; i < batch.rows.length; i++) {
         const link = batch.rows[i];
         if (!link.created_at || !Number.isFinite(Date.parse(link.created_at))) throw new Error("Invalid link order");
@@ -118,17 +127,24 @@ export async function readDocuments(deps: DocumentsDeps = {}): Promise<Documents
           return data;
         } });
         if (!result.ok) { if (result.code === "SERVER_ERROR") return unavailable(); continue; }
+        ownerTypes.add(result.data.ownerType);
+        if (facetPass) continue;
         const file = link.file;
         // A narrow projection, independent of columns or fields present on source/test rows.
-        rows.push({ fileId: link.file_id, linkId: link.id, module: result.data.module,
+        const row: DocumentRow = { fileId: link.file_id, linkId: link.id, module: result.data.module,
           ownerType: result.data.ownerType, ownerId: result.data.ownerId, ownerLabel: result.data.ownerLabel,
           purpose: link.purpose, displayName: file.display_name ?? "Bifogad fil", mimeType: file.mime_type ?? null,
           sizeBytes: file.size_bytes ?? null, createdAt: link.created_at, lifecycleState: file.lifecycle_state,
-          locked: link.is_locked === true || file.lifecycle_state === "locked" });
-        if (rows.length === PAGE_SIZE) return { ok: true, data: { descriptor: { data: { rows,
-          nextCursor: batch.exhausted && i === batch.rows.length - 1 ? null : encodeCursor(after, tenantId, userId, key) }, entitlements: { withheld: [] } } } };
+          locked: link.is_locked === true || file.lifecycle_state === "locked" };
+        if (!filterFileIndexRows([{ ...row, ownerCategory: "" }], filter).length) continue;
+        if (rows.length === PAGE_SIZE) { hasMore = true; continue; }
+        rows.push(row);
+        if (rows.length === PAGE_SIZE) pageAnchor = after;
       }
-      if (batch.exhausted) return { ok: true, data: { descriptor: { data: { rows, nextCursor: null }, entitlements: { withheld: [] } } } };
+      if (batch.exhausted) {
+        if (facetPass) { facetPass = false; after = requestedAfter; continue; }
+        return complete();
+      }
     }
   } catch { return unavailable(); }
 }

@@ -27,10 +27,10 @@ type DocumentRow = {
   ownerLabel: string; purpose: string; displayName: string; mimeType: string | null;
   sizeBytes: number | null; createdAt: string; lifecycleState: string; locked: boolean;
 };
-type ReadResult = { ok: true; data: { descriptor: { data: { rows: DocumentRow[]; nextCursor: string | null };
+type ReadResult = { ok: true; data: { descriptor: { data: { rows: DocumentRow[]; nextCursor: string | null; ownerTypes: readonly string[] };
   entitlements: { withheld: readonly string[] } } } } | { ok: false; code: string; message: string };
 interface Deps {
-  client?: object; cursor?: string | null;
+  client?: object; cursor?: string | null; filter?: { search?: string; ownerCategory?: string };
   resolveContext?: (options?: { client?: object }) => Promise<ContextResult>;
   readCandidates?: (options: {
     client: object; tenantId: string; after: { createdAt: string; id: string } | null; limit: number;
@@ -277,4 +277,54 @@ test("[P0] page cursor cannot cross a newly resolved tenant or actor", async () 
   const cursor = success(await read(deps(rows))).nextCursor!;
   unavailable(await read(deps(rows, { cursor, resolveContext: async () => context(["tenant_admin"], uid(999)) })));
   unavailable(await read(deps(rows, { cursor, resolveContext: async () => ({ ...context(), data: { ...context().data, userId: uid(999) } }) })));
+});
+
+
+test("[P0] full visible page followed only by hidden sources has no continuation or hidden-count hint", async () => {
+  const read = await reader();
+  const rows = Array.from({ length: 350 }, (_, i) => candidate(uid(2000-i)));
+  const allowed = new Set(rows.slice(0, 50).map(row => row.id));
+  const result = success(await read(deps(rows, { readSource: async link => allowed.has(link.id) ? source(link) : { ok: false, code: "TENANT_ACCESS_DENIED", message: "Hidden source" } })));
+  assert.equal(result.rows.length, 50);
+  assert.equal(result.nextCursor, null);
+  assert.deepEqual(result.rows.map(row => row.linkId), rows.slice(0, 50).map(row => row.id));
+});
+
+test("[P1] authorized lookahead after hidden batches resumes at last displayed row without skipping the next context", async () => {
+  const read = await reader();
+  const rows = Array.from({ length: 351 }, (_, i) => candidate(uid(3000-i)));
+  const allowed = new Set([...rows.slice(0, 50), rows[350]].map(row => row.id));
+  const request = { readSource: async (link: Candidate): Promise<SourceResult> => allowed.has(link.id) ? source(link) : { ok: false, code: "TENANT_ACCESS_DENIED", message: "Hidden source" } };
+  const first = success(await read(deps(rows, request)));
+  assert.equal(first.rows.length, 50); assert.ok(first.nextCursor);
+  const last = success(await read(deps(rows, { ...request, cursor: first.nextCursor })));
+  assert.deepEqual(last.rows.map(row => row.linkId), [rows[350].id]);
+  assert.equal(last.nextCursor, null);
+});
+
+
+test("[P1] existing name/MIME/owner narrowing finds older matches beyond the first page", async () => {
+  const read = await reader(); const rows = Array.from({ length: 65 }, (_, i) => candidate(uid(5000-i)));
+  rows[64].file.display_name = "Older matching drawing.csv"; rows[64].file.mime_type = "text/csv";
+  for (const search of ["matching drawing", "text/csv"]) {
+    const result = success(await read(deps(rows, { filter: { search, ownerCategory: "customer" } })));
+    assert.deepEqual(result.rows.map(row => row.linkId), [rows[64].id]); assert.equal(result.nextCursor, null);
+  }
+});
+
+test("[P0] existing owner facets include an eligible later-page context and exclude hidden categories", async () => {
+  const read = await reader(); const rows = Array.from({ length: 65 }, (_, i) => candidate(uid(6000-i)));
+  rows[63].owner_type = "job"; rows[64].owner_type = "contact";
+  const readSource = async (link: Candidate): Promise<SourceResult> => link.id === rows[64].id ? { ok: false, code: "TENANT_ACCESS_DENIED", message: "Hidden" } : source(link);
+  const first = success(await read(deps(rows, { readSource })));
+  assert.deepEqual([...first.ownerTypes].sort(), ["customer", "job"]);
+  const second = success(await read(deps(rows, { cursor: first.nextCursor, readSource })));
+  assert.deepEqual([...second.ownerTypes].sort(), ["customer", "job"]);
+});
+
+test("[P0] a cursor cannot be reused under different existing filter values", async () => {
+  const read = await reader(); const rows = Array.from({ length: 60 }, (_, i) => candidate(uid(7000-i)));
+  const first = success(await read(deps(rows, { filter: { search: "evidence" } })));
+  assert.ok(first.nextCursor);
+  unavailable(await read(deps(rows, { cursor: first.nextCursor, filter: { search: "pdf" } })), "SERVER_ERROR");
 });
