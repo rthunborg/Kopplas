@@ -10,9 +10,9 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 const selected = (overrides: Record<string, unknown> = {}) => ({ type: "select", tenantId: "tenant-a", filterIdentity: "active", mode: "active", linkId: "link-a", fileId: "file-a", requestId: 1, ...overrides });
-const response = (overrides: Record<string, unknown> = {}) => ({ type: "response", requestId: 1, linkId: "link-a", fileId: "file-a", result: { ok: true, data: { targetId: "file-a", linkId: "link-a", signedUrl: "https://example.invalid/a", expiresAt: "2026-10-12T10:05:00Z" } }, ...overrides });
+const response = (overrides: Record<string, unknown> = {}) => ({ type: "response", receivedAt: "2026-10-12T10:00:00Z", requestId: 1, linkId: "link-a", fileId: "file-a", result: { ok: true, data: { targetId: "file-a", linkId: "link-a", signedUrl: "https://example.invalid/a", expiresAt: "2026-10-12T10:05:00Z" } }, ...overrides });
 
-test.skip("[P0][AC2] selection switch immediately clears old URL/error and late result cannot replace new file", async () => {
+test("[P0][AC2] selection switch immediately clears old URL/error and late result cannot replace new file", async () => {
   const path = "@/features/documents/filters";
   const { documentPreviewReducer: reduce, DOCUMENT_PREVIEW_INITIAL: initial } = await import(path);
   const open = reduce(reduce(initial, selected()), response());
@@ -23,7 +23,7 @@ test.skip("[P0][AC2] selection switch immediately clears old URL/error and late 
   assert.equal(stale.signedUrl, null);
   assert.equal(stale.selection.fileId, "file-b");
 });
-test.skip("[P0][AC2] different selected link for the same file and older refresh response are stale", async () => {
+test("[P0][AC2] different selected link for the same file and older refresh response are stale", async () => {
   const path = "@/features/documents/filters";
   const { documentPreviewReducer: reduce, DOCUMENT_PREVIEW_INITIAL: initial } = await import(path);
   const current = reduce(reduce(initial, selected()), selected({ linkId: "link-b", requestId: 2 }));
@@ -31,7 +31,7 @@ test.skip("[P0][AC2] different selected link for the same file and older refresh
   const refresh = reduce(current, selected({ linkId: "link-b", requestId: 3 }));
   assert.equal(reduce(refresh, response({ linkId: "link-b", requestId: 2 })).signedUrl, null);
 });
-test.skip("[P0][AC2] tenant filter mode and hidden-pane changes release previous browser references", async () => {
+test("[P0][AC2] tenant filter mode and hidden-pane changes release previous browser references", async () => {
   const path = "@/features/documents/filters";
   const { documentPreviewReducer: reduce, DOCUMENT_PREVIEW_INITIAL: initial } = await import(path);
   const open = reduce(reduce(initial, selected()), response());
@@ -44,13 +44,13 @@ test.skip("[P0][AC2] tenant filter mode and hidden-pane changes release previous
   assert.equal(hidden.signedUrl, null); assert.equal(hidden.selection, null);
   assert.equal(reduce(hidden, response()).signedUrl, null);
 });
-test.skip("[P0][AC2] archived selection cannot accept even a matching successful response", async () => {
+test("[P0][AC2] archived selection cannot accept even a matching successful response", async () => {
   const path = "@/features/documents/filters";
   const { documentPreviewReducer: reduce, DOCUMENT_PREVIEW_INITIAL: initial } = await import(path);
   const archived = reduce(initial, selected({ mode: "archived" }));
   assert.equal(reduce(archived, response()).signedUrl, null);
 });
-test.skip("[P1][AC2] expiry clears URL and offers explicit renewal at exact expiry boundary", async () => {
+test("[P1][AC2] expiry clears URL and offers explicit renewal at exact expiry boundary", async () => {
   const path = "@/features/documents/filters";
   const { documentPreviewReducer: reduce, DOCUMENT_PREVIEW_INITIAL: initial } = await import(path);
   const open = reduce(reduce(initial, selected()), response());
@@ -59,7 +59,7 @@ test.skip("[P1][AC2] expiry clears URL and offers explicit renewal at exact expi
   assert.equal(expired.status, "expired");
   assert.equal(expired.error, "Åtkomsten har gått ut");
 });
-test.skip("[P0][AC2] matching denial or transient failure never retains prior URL", async () => {
+test("[P0][AC2] matching denial or transient failure never retains prior URL", async () => {
   const path = "@/features/documents/filters";
   const { documentPreviewReducer: reduce, DOCUMENT_PREVIEW_INITIAL: initial } = await import(path);
   for (const code of ["TENANT_ACCESS_DENIED", "FILE_ACCESS_DENIED", "SERVER_ERROR"]) {
@@ -69,5 +69,13 @@ test.skip("[P0][AC2] matching denial or transient failure never retains prior UR
     assert.equal(failed.signedUrl, null);
     assert.equal(failed.status, "error");
     assert.ok(failed.error);
+  }
+});
+
+test("[P0][AC2] successful delayed response already expired at receipt never exposes its URL", async () => {
+  const path = "@/features/documents/filters"; const { documentPreviewReducer: reduce, DOCUMENT_PREVIEW_INITIAL: initial } = await import(path);
+  for (const receivedAt of ["2026-10-12T10:05:00Z", "2026-10-12T10:05:01Z", "invalid"]) {
+    const expired = reduce(reduce(initial, selected()), response({ receivedAt }));
+    assert.equal(expired.signedUrl, null); assert.equal(expired.status, "expired");
   }
 });

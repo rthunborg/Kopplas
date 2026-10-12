@@ -11,7 +11,7 @@ async function commands() { const path = "@/server/commands/documents/lifecycle"
 function tenant(roles = ["tenant_admin"]): TenantContext {
   return { tenantId: TENANT, userId: ACTOR, role: roles[0], roles, status: "active", userEmail: null, tenantName: null } as TenantContext;
 }
-test.skip("[P0][AC3,4] both fixed commands use existing Files.Edit and SQL-owned success audit", async () => {
+test("[P0][AC3,4] both fixed commands use existing Files.Edit and SQL-owned success audit", async () => {
   const { archiveDocument, restoreDocument } = await commands();
   for (const [command, name, event] of [[archiveDocument, "document.archive", "file.archived"], [restoreDocument, "document.restore", "file.restored"]]) {
     assert.deepEqual(COMMAND_CAPABILITIES[name as keyof typeof COMMAND_CAPABILITIES], { module: "files", capability: "Files.Edit" });
@@ -21,7 +21,7 @@ test.skip("[P0][AC3,4] both fixed commands use existing Files.Edit and SQL-owned
     assert.equal(command.config.auditable, false);
   }
 });
-test.skip("[P0][AC3] exact two-UUID payload rejects every extra authority or lifecycle field", async () => {
+test("[P0][AC3] exact two-UUID payload rejects every extra authority or lifecycle field", async () => {
   const { archiveDocument, restoreDocument } = await commands();
   for (const command of [archiveDocument, restoreDocument]) {
     assert.deepEqual(command.config.validateInput(INPUT), { ok: true, data: INPUT });
@@ -35,7 +35,7 @@ test.skip("[P0][AC3] exact two-UUID payload rejects every extra authority or lif
     }
   }
 });
-test.skip("[P0][AC3] Files.Edit denial precedes payload validation and performs no source/RPC/audit access", async () => {
+test("[P0][AC3] Files.Edit denial precedes payload validation and performs no source/RPC/audit access", async () => {
   const { archiveDocument } = await commands();
   const cfg = archiveDocument.config;
   let touched = false;
@@ -50,7 +50,7 @@ test.skip("[P0][AC3] Files.Edit denial precedes payload validation and performs 
   });
   assert.equal(result.ok, false); assert.equal(touched, false);
 });
-test.skip("[P0][AC4,7] checked RPC result stays truthful and SQL conflicts never become success or duplicate envelope audit", async () => {
+test("[P0][AC4,7] checked RPC result stays truthful and SQL conflicts never become success or duplicate envelope audit", async () => {
   const { archiveDocument, restoreDocument } = await commands();
   for (const [command, rpc] of [[archiveDocument, "archive_document_with_audit"], [restoreDocument, "restore_document_with_audit"]]) {
     for (const outcome of [
@@ -104,5 +104,28 @@ test.skip("[P0][AC4,7] checked RPC result stays truthful and SQL conflicts never
         assert.doesNotMatch(JSON.stringify(result), /private|40P01|40001|DLC20|57014|55P03/);
       }
     }
+  }
+});
+
+test("[P0][AC3,7] server-bound operation retains its correlation while every request resolves fresh authority", async () => {
+  const { executeBoundDocumentLifecycle } = await commands();
+  let clients = 0; const identities: string[] = [];
+  const identity = { tenantId: TENANT, actorUserId: ACTOR, linkId: LINK, fileId: FILE, operation: "archive" as const, correlationId: CORRELATION };
+  const deps = { createClient: async () => ({ instance: ++clients }), resolveContext: async () => ({ ok: true, data: { tenantId: TENANT, userId: ACTOR } }),
+    execute: async (operation: string, _client: unknown, input: unknown, correlationId: string) => { assert.equal(operation, "archive"); assert.deepEqual(input, INPUT); identities.push(correlationId); return { ok: true, data: { targetId: FILE, changed: false, lifecycleState: "archived" } }; } };
+  assert.equal((await executeBoundDocumentLifecycle(INPUT, identity, deps)).ok, true);
+  assert.equal((await executeBoundDocumentLifecycle(INPUT, identity, deps)).ok, true);
+  assert.equal(clients, 2); assert.deepEqual(identities, [CORRELATION, CORRELATION]);
+});
+test("[P0][AC3,7] captured identity never authorizes changed actor tenant or selected pair and extra correlation is rejected", async () => {
+  const { executeBoundDocumentLifecycle } = await commands();
+  const identity = { tenantId: TENANT, actorUserId: ACTOR, linkId: LINK, fileId: FILE, operation: "restore" as const, correlationId: CORRELATION };
+  for (const current of [{ tenantId: uuid(99), userId: ACTOR }, { tenantId: TENANT, userId: uuid(99) }, null]) {
+    const result = await executeBoundDocumentLifecycle(INPUT, identity, { createClient: async () => ({}), resolveContext: async () => ({ ok: !!current, data: current }), execute: async () => assert.fail("captured identity is not current authority") });
+    assert.equal(result.ok, false); assert.equal(result.code, "TENANT_ACCESS_DENIED");
+  }
+  for (const input of [{ ...INPUT, link_id: uuid(99) }, { ...INPUT, file_id: uuid(99) }, { ...INPUT, correlation_id: uuid(99) }]) {
+    const result = await executeBoundDocumentLifecycle(input, identity, { createClient: async () => assert.fail("invalid binding cannot create client"), resolveContext: async () => assert.fail("cannot resolve"), execute: async () => assert.fail("cannot execute") });
+    assert.equal(result.ok, false);
   }
 });

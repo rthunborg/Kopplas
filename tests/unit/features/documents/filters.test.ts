@@ -9,7 +9,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-test.skip("[P1][AC1] URL normalization trims literal search and defaults to active", async () => {
+test("[P1][AC1] URL normalization trims literal search and defaults to active", async () => {
   const path = "@/features/documents/filters";
   const { parseDocumentFilters } = await import(path);
   const parsed = parseDocumentFilters(new URLSearchParams("q=%20Elcentral%20"));
@@ -17,7 +17,7 @@ test.skip("[P1][AC1] URL normalization trims literal search and defaults to acti
   assert.equal(parsed.data.q, "Elcentral");
   assert.equal(parsed.data.mode, "active");
 });
-test.skip("[P0][AC1] duplicate keys, pending/unknown registry values and impossible combinations fail closed", async () => {
+test("[P0][AC1] duplicate keys, pending/unknown registry values and impossible combinations fail closed", async () => {
   const path = "@/features/documents/filters";
   const { parseDocumentFilters } = await import(path);
   for (const query of [
@@ -31,12 +31,12 @@ test.skip("[P0][AC1] duplicate keys, pending/unknown registry values and impossi
     assert.equal("data" in parsed, false, "invalid input must not become an unfiltered list");
   }
 });
-test.skip("[P0][AC1] isolated ownerId is not a20.2 authority grant", async () => {
+test("[P0][AC1] isolated ownerId is not a20.2 authority grant", async () => {
   const path = "@/features/documents/filters";
   const { parseDocumentFilters } = await import(path);
   assert.equal(parseDocumentFilters(new URLSearchParams("ownerId=00000000-0000-4000-8000-000000000001")).ok, false);
 });
-test.skip("[P1][AC1] case-insensitive search uses name or MIME and treats SQL/regex punctuation literally", async () => {
+test("[P1][AC1] case-insensitive search uses name or MIME and treats SQL/regex punctuation literally", async () => {
   const path = "@/features/documents/filters";
   const { filterDocumentRows } = await import(path);
   const rows = [
@@ -47,7 +47,7 @@ test.skip("[P1][AC1] case-insensitive search uses name or MIME and treats SQL/re
   assert.deepEqual(filterDocumentRows(rows, { q: " %_ [a] ", mode: "active" }).map((r: { linkId: string }) => r.linkId), ["literal"]);
   assert.deepEqual(filterDocumentRows(rows, { q: "APPLICATION/PDF", mode: "active" }).map((r: { linkId: string }) => r.linkId), ["literal"]);
 });
-test.skip("[P1][AC1] module owner purpose date and search form an AND predicate", async () => {
+test("[P1][AC1] module owner purpose date and search form an AND predicate", async () => {
   const path = "@/features/documents/filters";
   const { filterDocumentRows } = await import(path);
   const base = { linkId: "match", module: "crm", ownerType: "customer", purpose: "crm_document", displayName: "Elcentral.pdf", mimeType: "application/pdf", createdAt: "2026-03-29T01:00:00Z", lifecycleState: "linked" };
@@ -59,7 +59,7 @@ test.skip("[P1][AC1] module owner purpose date and search form an AND predicate"
   const filters = { q: "elcentral", module: "crm", ownerType: "customer", purpose: "crm_document", from: "2026-03-29", to: "2026-03-29", mode: "active" };
   assert.deepEqual(filterDocumentRows(rows, filters).map((r: { linkId: string }) => r.linkId), ["match"]);
 });
-test.skip("[P1][AC1] equivalent normalized filters bind identically while any filter or mode change invalidates cursor identity", async () => {
+test("[P1][AC1] equivalent normalized filters bind identically while any filter or mode change invalidates cursor identity", async () => {
   const path = "@/features/documents/filters";
   const { parseDocumentFilters, documentFilterIdentity } = await import(path);
   const filters = (query: string) => { const p = parseDocumentFilters(new URLSearchParams(query)); assert.equal(p.ok, true); return p.data; };

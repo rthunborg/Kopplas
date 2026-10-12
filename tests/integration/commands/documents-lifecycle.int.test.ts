@@ -79,14 +79,14 @@ async function lock(target: Target, archivedLink = false) {
   await adminExec("update public.files set lifecycle_state='locked' where id=$1", [target.fileId]);
 }
 
-test.skip("[P0][AC3,4] seven enrolled ordinary source contexts archive only after all authority checks", async () => fixture(async (fx, client) => {
+test("[P0][AC3,4] seven enrolled ordinary source contexts archive only after all authority checks", async () => fixture(async (fx, client) => {
   for (const kind of ["customer", "facility", "contact", "calculation", "quote_version", "quote_acceptance", "job"] as const) {
     const target = await seed(fx, kind); const input = args(fx, target);
     expect(lifecycleObservation(await rpc(client, "archive", input))).toEqual({ error: null, row: { file_id: target.fileId, changed: true, lifecycle_state: "archived" } });
     expect(await adminSelectAuditEvents({ correlationId: input.p_correlation_id })).toHaveLength(1);
   }
 }));
-test.skip("[P0][AC3] anonymous foreign actor tenant mismatch link/file pairing and non-file roles cannot mutate", async () => fixture(async (fx, client) => {
+test("[P0][AC3] anonymous foreign actor tenant mismatch link/file pairing and non-file roles cannot mutate", async () => fixture(async (fx, client) => {
   const target = await seed(fx); const other = await seed(fx); const foreign = await seed(fx, "customer", fx.base.tenantB.id);
   for (const operation of ["archive", "restore"] as const) {
     for (const input of [{ ...args(fx, target), p_actor_user_id: fx.base.adminB.id }, { ...args(fx, target), p_tenant_id: fx.base.tenantB.id },
@@ -118,7 +118,7 @@ test.skip("[P0][AC3] anonymous foreign actor tenant mismatch link/file pairing a
     }
   }
 }));
-test.skip("[P0][AC3] hidden archived missing and invalid-purpose secondary contexts deny both operations whichever visible link is selected", async () => fixture(async (fx, client) => {
+test("[P0][AC3] hidden archived missing and invalid-purpose secondary contexts deny both operations whichever visible link is selected", async () => fixture(async (fx, client) => {
   for (const denial of ["archived", "missing", "invalid-purpose"] as const) {
     const target = await seed(fx); const visible = await adminInsertCustomer({ tenant_id: fx.base.tenantA.id, customer_type: "company", display_name: "Second visible context" });
     const second = await adminInsertFileLink({ tenant_id: fx.base.tenantA.id, file_id: target.fileId, owner_type: "customer", owner_id: visible });
@@ -150,7 +150,7 @@ test.skip("[P0][AC3] hidden archived missing and invalid-purpose secondary conte
     }
   }
 }));
-test.skip("[P0][AC3] independently archived inaccessible secondary link still denies file-level mutation", async () => fixture(async (fx, client) => {
+test("[P0][AC3] independently archived inaccessible secondary link still denies file-level mutation", async () => fixture(async (fx, client) => {
   const target = await seed(fx); const hidden = await adminInsertCustomer({ tenant_id: fx.base.tenantA.id, customer_type: "company", display_name: "Archived hidden context" });
   const link = await adminInsertFileLink({ tenant_id: fx.base.tenantA.id, file_id: target.fileId, owner_type: "customer", owner_id: hidden });
   await adminExec("update public.file_links set archived_at=now() where id=$1", [link]);
@@ -164,7 +164,7 @@ test.skip("[P0][AC3] independently archived inaccessible secondary link still de
     expect(observation.auditEvents).toEqual([]);
   }
 }));
-test.skip("[P0][AC4,5] eligible linked ordinary archive and restore preserve bytes identity all links locks and one fixed event per change", async () => fixture(async (fx, client) => {
+test("[P0][AC4,5] eligible linked ordinary archive and restore preserve bytes identity all links locks and one fixed event per change", async () => fixture(async (fx, client) => {
   const target = await seed(fx); const before = await snapshot(target);
   const archive = args(fx, target); expect(lifecycleObservation(await rpc(client, "archive", archive))).toEqual({ error: null, row: { file_id: target.fileId, changed: true, lifecycle_state: "archived" } });
   const archived = await snapshot(target); expect(archived.file.archive_previous_state).toBe("linked");
@@ -184,7 +184,7 @@ test.skip("[P0][AC4,5] eligible linked ordinary archive and restore preserve byt
     expect(JSON.stringify(events[0].metadata)).not.toMatch(/tenant-files|owner|https?:|signedUrl/);
   }
 }));
-test.skip("[P0][AC4] failing audit insert rolls back transition and DB-derived origin in the same transaction", async () => fixture(async (fx) => {
+test("[P0][AC4] failing audit insert rolls back transition and DB-derived origin in the same transaction", async () => fixture(async (fx) => {
   const target = await seed(fx); const input = args(fx, target); const before = await snapshot(target);
   await adminSession(async tx => {
     await tx.query("begin");
@@ -203,7 +203,7 @@ test.skip("[P0][AC4] failing audit insert rolls back transition and DB-derived o
   expect(await snapshot(target)).toEqual(before);
   expect(await adminSelectAuditEvents({ correlationId: input.p_correlation_id })).toEqual([]);
 }));
-test.skip("[P0][AC5] locked history from an independently archived link restores locked without reopening that domain link", async () => fixture(async (fx, client) => {
+test("[P0][AC5] locked history from an independently archived link restores locked without reopening that domain link", async () => fixture(async (fx, client) => {
   const target = await seed(fx); await lock(target);
   const live = await adminInsertFileLink({ tenant_id: fx.base.tenantA.id, file_id: target.fileId, owner_type: "customer", owner_id: target.ownerId });
   await adminExec("update public.file_links set archived_at=now() where id=$1", [target.linkId]);
@@ -221,7 +221,7 @@ test.skip("[P0][AC5] locked history from an independently archived link restores
     expect(observation.auditEvents).toEqual([]);
   }
 }));
-test.skip("[P0][AC5] legacy NULL origin without locks cannot default linked but retained lock history proves locked", async () => fixture(async (fx, client) => {
+test("[P0][AC5] legacy NULL origin without locks cannot default linked but retained lock history proves locked", async () => fixture(async (fx, client) => {
   const legacy = await seed(fx); await adminSession(async tx => {
     await tx.query("begin"); try { await tx.query("set local session_replication_role=replica"); await tx.query("update public.files set lifecycle_state='archived',archived_at=now(),archive_previous_state=null where id=$1", [legacy.fileId]); await tx.query("commit"); } finally { await tx.query("rollback"); }
   });
@@ -237,7 +237,7 @@ test.skip("[P0][AC5] legacy NULL origin without locks cannot default linked but 
   expect(lifecycleObservation(await rpc(client, "restore", args(fx, legacy)))).toEqual({ error: null, row: { file_id: legacy.fileId, changed: true, lifecycle_state: "locked" } });
   expect((await snapshot(legacy)).file.archive_previous_state).toBeNull();
 }));
-test.skip("[P0][AC5] draft deleted unlinked and missing-byte rows cannot resurrect", async () => fixture(async (fx, client) => {
+test("[P0][AC5] draft deleted unlinked and missing-byte rows cannot resurrect", async () => fixture(async (fx, client) => {
   for (const state of ["draft", "deleted", "unlinked", "missing-bytes"]) {
     const target = await seed(fx);
     await adminSession(async tx => {
@@ -258,7 +258,7 @@ test.skip("[P0][AC5] draft deleted unlinked and missing-byte rows cannot resurre
     }
   }
 }));
-test.skip("[P0][AC4,5] origin is DB-owned on INSERT and rejects privileged nontransition set clear or forge", async () => fixture(async (fx) => {
+test("[P0][AC4,5] origin is DB-owned on INSERT and rejects privileged nontransition set clear or forge", async () => fixture(async (fx) => {
   const id = crypto.randomUUID();
   await adminExec("insert into public.files(id,tenant_id,bucket_id,object_path,display_name,lifecycle_state,archive_previous_state) values($1,$2,'tenant-files',$3,'Origin spoof.pdf','linked','linked')", [id, fx.base.tenantA.id, fx.base.tenantA.id + "/" + id + "/Origin-spoof.pdf"]);
   expect((await adminQuery("select archive_previous_state from public.files where id=$1", [id]))[0].archive_previous_state).toBeNull();
@@ -266,7 +266,7 @@ test.skip("[P0][AC4,5] origin is DB-owned on INSERT and rejects privileged nontr
   const target = await seed(fx); await adminExec("update public.files set lifecycle_state='archived',archived_at=now() where id=$1", [target.fileId]);
   await expect(adminExec("update public.files set archive_previous_state=null where id=$1", [target.fileId])).rejects.toMatchObject({ code: "23514" });
 }));
-test.skip("[P0][AC4,5,6] generic archive capture and retries do not forge history for OLD locked quote_pdf or draft rows", async () => fixture(async (fx, client) => {
+test("[P0][AC4,5,6] generic archive capture and retries do not forge history for OLD locked quote_pdf or draft rows", async () => fixture(async (fx, client) => {
   for (const state of ["linked", "locked", "draft"] as const) {
     const target = await seed(fx);
     if (state === "locked") await lock(target);
@@ -280,7 +280,7 @@ test.skip("[P0][AC4,5,6] generic archive capture and retries do not forge histor
     expect(await snapshot(target)).toEqual(once);
   }
 }));
-test.skip("[P0][AC6] every archived quote_pdf denies restore even disguised as ordinary purpose and preserves pointers render and links", async () => fixture(async (fx, client) => {
+test("[P0][AC6] every archived quote_pdf denies restore even disguised as ordinary purpose and preserves pointers render and links", async () => fixture(async (fx, client) => {
   for (const context of ["ordinary-purpose", "current", "stale", "reserved", "locked"] as const) {
     const target = await seed(fx);
     const calculation = await adminInsertCalculation({ tenant_id: fx.base.tenantA.id, customer_id: target.ownerId });
@@ -309,7 +309,7 @@ test.skip("[P0][AC6] every archived quote_pdf denies restore even disguised as o
     expect((await snapshot(target)).file.archive_previous_state).toBeNull();
   }
 }));
-test.skip("[P0][AC6] real current unsent PDF archive denies then sent locked PDF archive preserves irreversible no-restore", async () => fixture(async (fx, client) => {
+test("[P0][AC6] real current unsent PDF archive denies then sent locked PDF archive preserves irreversible no-restore", async () => fixture(async (fx, client) => {
   const customer = await adminInsertCustomer({tenant_id:fx.base.tenantA.id,customer_type:"company",display_name:"Real immutable PDF source"});
   const calculation = await adminInsertCalculation({tenant_id:fx.base.tenantA.id,customer_id:customer});
   const quote = await adminInsertQuote({tenant_id:fx.base.tenantA.id,customer_id:customer});
@@ -345,7 +345,7 @@ test.skip("[P0][AC6] real current unsent PDF archive denies then sent locked PDF
   }
   expect((await adminQuery("select pdf_file_id,pdf_status,pdf_content_fingerprint,pdf_render_file_id from public.quote_versions where id=$1",[version]))[0]).toEqual(quoteBefore);
 }));
-test.skip("[P0][AC7] CHANGED archive C1 remains consumed after restore C2 and inverse history rejects opposite replay", async () => fixture(async (fx, client) => {
+test("[P0][AC7] CHANGED archive C1 remains consumed after restore C2 and inverse history rejects opposite replay", async () => fixture(async (fx, client) => {
   for (const firstOp of ["archive", "restore"] as const) {
     const target = await seed(fx);
     if (firstOp === "restore") expect(lifecycleObservation(await rpc(client, "archive", args(fx, target)))).toEqual({ error: null, row: { file_id: target.fileId, changed: true, lifecycle_state: "archived" } });
@@ -358,7 +358,7 @@ test.skip("[P0][AC7] CHANGED archive C1 remains consumed after restore C2 and in
     expect(await adminSelectAuditEvents({ correlationId: first.p_correlation_id })).toHaveLength(1);
   }
 }));
-test.skip("[P0][AC7] same-identity concurrent changed calls serialize to one transition and replay selected-link binding rejects substitution", async () => fixture(async (fx, client) => {
+test("[P0][AC7] same-identity concurrent changed calls serialize to one transition and replay selected-link binding rejects substitution", async () => fixture(async (fx, client) => {
   const target = await seed(fx); const secondLink = await adminInsertFileLink({ tenant_id: fx.base.tenantA.id, file_id: target.fileId, owner_type: "customer", owner_id: target.ownerId });
   const input = args(fx, target);
   const results = await Promise.all([rpc(client, "archive", input), rpc(client, "archive", input)]);
@@ -369,7 +369,7 @@ test.skip("[P0][AC7] same-identity concurrent changed calls serialize to one tra
   expect(replay.error?.code).toBe("DLC20");
   expect(await adminSelectAuditEvents({ correlationId: input.p_correlation_id })).toHaveLength(1);
 }));
-test.skip("[P0][AC4,7] fresh same-state no-op is NOT consumed and later opposite change allows newly checked change with its old correlation", async () => fixture(async (fx, client) => {
+test("[P0][AC4,7] fresh same-state no-op is NOT consumed and later opposite change allows newly checked change with its old correlation", async () => fixture(async (fx, client) => {
   const target = await seed(fx); const noOp = args(fx, target);
   expect(lifecycleObservation(await rpc(client, "restore", noOp))).toEqual({ error: null, row: { file_id: target.fileId, changed: false, lifecycle_state: "linked" } });
   expect(await adminSelectAuditEvents({ correlationId: noOp.p_correlation_id })).toEqual([]);
@@ -377,7 +377,7 @@ test.skip("[P0][AC4,7] fresh same-state no-op is NOT consumed and later opposite
   expect(lifecycleObservation(await rpc(client, "restore", noOp))).toEqual({ error: null, row: { file_id: target.fileId, changed: true, lifecycle_state: "linked" } });
   expect(await adminSelectAuditEvents({ correlationId: noOp.p_correlation_id })).toHaveLength(1);
 }));
-test.skip("[P0][AC3,7] no-op and consumed replay still check CURRENT role and every affected source", async () => fixture(async (fx, client) => {
+test("[P0][AC3,7] no-op and consumed replay still check CURRENT role and every affected source", async () => fixture(async (fx, client) => {
   const target = await seed(fx); const noOp = args(fx, target);
   expect(lifecycleObservation(await rpc(client, "restore", noOp))).toEqual({ error: null, row: { file_id: target.fileId, changed: false, lifecycle_state: "linked" } });
   const first = args(fx, target); expect(lifecycleObservation(await rpc(client, "archive", first))).toEqual({ error: null, row: { file_id: target.fileId, changed: true, lifecycle_state: "archived" } });
@@ -393,7 +393,7 @@ test.skip("[P0][AC3,7] no-op and consumed replay still check CURRENT role and ev
   expect(await adminSelectAuditEvents({ correlationId: first.p_correlation_id })).toHaveLength(1);
   expect(await adminSelectAuditEvents({ correlationId: noOp.p_correlation_id })).toEqual([]);
 }));
-test.skip("[P0][AC3,7] checked RPC ACLs grant authenticated only and raw file/link mutations remain revoked", async () => fixture(async (fx, client) => {
+test("[P0][AC3,7] checked RPC ACLs grant authenticated only and raw file/link mutations remain revoked", async () => fixture(async (fx, client) => {
   for (const signature of ["public.archive_document_with_audit(uuid,uuid,uuid,uuid,uuid,text)", "public.restore_document_with_audit(uuid,uuid,uuid,uuid,uuid)"]) {
     const [acl] = await adminQuery<{ anon: boolean; service: boolean; authenticated: boolean; definer: boolean; config: string[] }>("select has_function_privilege('anon',$1,'EXECUTE') as anon,has_function_privilege('service_role',$1,'EXECUTE') as service,has_function_privilege('authenticated',$1,'EXECUTE') as authenticated,p.prosecdef as definer,p.proconfig as config from pg_proc p where p.oid=$1::regprocedure", [signature]);
     expect(acl).toMatchObject({ anon: false, service: false, authenticated: true, definer: true });
@@ -410,13 +410,13 @@ test.skip("[P0][AC3,7] checked RPC ACLs grant authenticated only and raw file/li
   }
 }));
 
-test.skip("[P0][AC3,5] database closed unions reject impossible owner/kind rather than creating untestable corrupt rows", async () => fixture(async (fx) => {
+test("[P0][AC3,5] database closed unions reject impossible owner/kind rather than creating untestable corrupt rows", async () => fixture(async (fx) => {
   const target=await seed(fx); const before=await snapshot(target);
-  await expect(adminExec("update public.files set artifact_kind='future_artifact' where id=$1",[target.fileId])).rejects.toMatchObject({code:"23514"});
+  await expect(adminExec("insert into public.files(tenant_id,bucket_id,object_path,display_name,artifact_kind) values($1,'tenant-files','closed-union-fixture','Impossible artifact','future_artifact')",[fx.base.tenantA.id])).rejects.toMatchObject({code:"23514"});
   await expect(adminExec("update public.file_links set owner_type='pending_documents_owner' where id=$1",[target.linkId])).rejects.toMatchObject({code:"23514"});
   expect(await snapshot(target)).toEqual(before);
 }));
-test.skip("[P0][AC3] another-tenant source referenced by own-tenant polymorphic link denies both operations", async () => fixture(async(fx,client)=>{
+test("[P0][AC3] another-tenant source referenced by own-tenant polymorphic link denies both operations", async () => fixture(async(fx,client)=>{
   const target=await seed(fx); const foreign=await seed(fx,"customer",fx.base.tenantB.id);
   await adminInsertFileLink({tenant_id:fx.base.tenantA.id,file_id:target.fileId,owner_type:"customer",owner_id:foreign.ownerId});
   {
@@ -437,7 +437,7 @@ test.skip("[P0][AC3] another-tenant source referenced by own-tenant polymorphic 
     expect(observation.auditEvents).toEqual([]);
   }
 }));
-test.skip("[P0][AC4,5] raw authenticated origin INSERT/UPDATE and extra checked RPC origin argument cannot spoof DB provenance",async()=>fixture(async(fx,client)=>{
+test("[P0][AC4,5] raw authenticated origin INSERT/UPDATE and extra checked RPC origin argument cannot spoof DB provenance",async()=>fixture(async(fx,client)=>{
   const target=await seed(fx);const before=await snapshot(target);
   const id=crypto.randomUUID();
   const inserted=await client.from("files").insert({id,tenant_id:fx.base.tenantA.id,bucket_id:"tenant-files",object_path:fx.base.tenantA.id+"/"+id+"/forged.pdf",display_name:"forged.pdf",lifecycle_state:"archived",archive_previous_state:"linked"});
@@ -446,7 +446,7 @@ test.skip("[P0][AC4,5] raw authenticated origin INSERT/UPDATE and extra checked 
   const crafted=await client.rpc("restore_document_with_audit",{...args(fx,target),p_archive_previous_state:"linked"});
   expect(crafted.error).not.toBeNull();expect(crafted.data).toBeNull();expect(await snapshot(target)).toEqual(before);
 }));
-test.skip("[P0][AC7] no-op correlation after opposite change must freshly deny current role revocation",async()=>fixture(async(fx)=>{
+test("[P0][AC7] no-op correlation after opposite change must freshly deny current role revocation",async()=>fixture(async(fx)=>{
   const target=await seed(fx);const client=await makeAuthedServerClient(fx.users.projektledare);
   const noOp=args(fx,target,crypto.randomUUID(),fx.users.projektledare.id);
   expect(lifecycleObservation(await rpc(client,"restore",noOp))).toEqual({ error: null, row: { file_id: target.fileId, changed: false, lifecycle_state: "linked" } });
@@ -460,7 +460,7 @@ test.skip("[P0][AC7] no-op correlation after opposite change must freshly deny c
     expect(observation.auditEvents).toEqual([]);
   }
 }));
-test.skip("[P0][AC6,7] pre-column whole-row quote review proof fails closed and fresh re-review sends with unchanged PDF fingerprint",async()=>fixture(async(fx,client)=>{
+test("[P0][AC6,7] pre-column whole-row quote review proof fails closed and fresh re-review sends with unchanged PDF fingerprint",async()=>fixture(async(fx,client)=>{
   const customer=await adminInsertCustomer({tenant_id:fx.base.tenantA.id,customer_type:"company",display_name:"Historical review customer"});
   const calculation=await adminInsertCalculation({tenant_id:fx.base.tenantA.id,customer_id:customer});
   const quote=await adminInsertQuote({tenant_id:fx.base.tenantA.id,customer_id:customer});
@@ -498,7 +498,7 @@ test.skip("[P0][AC6,7] pre-column whole-row quote review proof fails closed and 
   expect(after.status).toBe("sent");expect(after.pdf_content_fingerprint).toBe(before.pdf_content_fingerprint);expect(after.pdf_file_id).toBe(before.pdf_file_id);
 }));
 
-test.skip("[P0][AC4,7] generic audit endpoint cannot fabricate checked lifecycle success or consume a transition correlation",async()=>fixture(async(fx,client)=>{
+test("[P0][AC4,7] generic audit endpoint cannot fabricate checked lifecycle success or consume a transition correlation",async()=>fixture(async(fx,client)=>{
   const target=await seed(fx);
   for(const operation of ["archive","restore"] as const){
     const correlation=crypto.randomUUID();

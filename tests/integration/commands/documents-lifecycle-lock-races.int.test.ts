@@ -47,7 +47,7 @@ async function blocked(observer: Session, waiter: number, holder: number) {
 function deferred<T>() { let resolve!: (value: T) => void; const promise = new Promise<T>(r => { resolve = r; }); return { promise, resolve }; }
 async function state(c: Context) { return adminQuery("select lifecycle_state,archive_previous_state,archived_at from public.files where id=$1", [c.file]); }
 
-test.skip("[P0][AC7] uncommitted FK link insertion blocks file-wide acquisition and newly committed hidden context denies archive", async () => fixture(async c => {
+test("[P0][AC7] uncommitted FK link insertion blocks file-wide acquisition and newly committed hidden context denies archive", async () => fixture(async c => {
   const hidden = await adminInsertCustomer({ tenant_id: c.fx.tenantA.id, customer_type: "company", display_name: "Hidden insert race" });
   await adminExec("update public.customers set archived_at=now() where id=$1", [hidden]);
   const correlation = crypto.randomUUID(); const before = await state(c);
@@ -72,7 +72,7 @@ test.skip("[P0][AC7] uncommitted FK link insertion blocks file-wide acquisition 
   expect(await state(c)).toEqual(before);
   expect(await adminSelectAuditEvents({ correlationId: correlation })).toEqual([]);
 }));
-test.skip("[P0][AC7] completed checked transition holds file FOR UPDATE until audit commit blocking ALL further FK inserts", async () => fixture(async c => {
+test("[P0][AC7] completed checked transition holds file FOR UPDATE until audit commit blocking ALL further FK inserts", async () => fixture(async c => {
   const correlation = crypto.randomUUID();
   await adminSession(async holder => {
     await holder.query("begin"); let writer: Promise<{ ok: boolean }> | undefined;
@@ -94,7 +94,7 @@ test.skip("[P0][AC7] completed checked transition holds file FOR UPDATE until au
   });
   expect(await adminSelectAuditEvents({ correlationId: correlation })).toHaveLength(1);
 }));
-test.skip("[P0][AC7] source nonkey archives membership disable and sole granting child-role changes wait until lifecycle audit commits", async () => {
+test("[P0][AC7] source nonkey archives membership disable and sole granting child-role changes wait until lifecycle audit commits", async () => {
   for (const writerKind of ["customer", "facility", "contact", "membership", "child-role-update", "child-role-delete"]) {
     await fixture(async c => {
       const correlation = crypto.randomUUID();
@@ -123,7 +123,7 @@ test.skip("[P0][AC7] source nonkey archives membership disable and sole granting
     });
   }
 });
-test.skip("[P0][AC7] ancestry reassignment while waiting cannot authorize an unlocked replacement graph", async () => fixture(async c => {
+test("[P0][AC7] ancestry reassignment while waiting cannot authorize an unlocked replacement graph", async () => fixture(async c => {
   const correlation = crypto.randomUUID(); const before = await state(c);
   await adminSession(async holder => {
     await holder.query("begin"); let pending: Promise<{ ok: boolean; code?: string }> | undefined;
@@ -146,14 +146,14 @@ test.skip("[P0][AC7] ancestry reassignment while waiting cannot authorize an unl
   });
   expect(await state(c)).toEqual(before); expect(await adminSelectAuditEvents({ correlationId: correlation })).toEqual([]);
 }));
-test.skip("[P0][AC7] role revocation committed before acquisition denies request using its existing token", async () => fixture(async c => {
+test("[P0][AC7] role revocation committed before acquisition denies request using its existing token", async () => fixture(async c => {
   const client = await makeAuthedServerClient(c.fx.orphanUser); const correlation = crypto.randomUUID(); const before = await state(c);
   await adminExec("delete from public.membership_roles where id=$1", [c.childRole]);
   const denied = await client.rpc("archive_document_with_audit", { p_tenant_id: c.fx.tenantA.id, p_actor_user_id: c.fx.orphanUser.id, p_link_id: c.link, p_file_id: c.file, p_correlation_id: correlation, p_reason: null });
   expect(denied.error?.code).toBe("42501"); expect(denied.data).toBeNull();
   expect(await state(c)).toEqual(before); expect(await adminSelectAuditEvents({ correlationId: correlation })).toEqual([]);
 }));
-test.skip("[P0][AC7] bounded lock timeout cannot report success or persist partial transition/origin/audit", async () => fixture(async c => {
+test("[P0][AC7] bounded lock timeout cannot report success or persist partial transition/origin/audit", async () => fixture(async c => {
   const correlation = crypto.randomUUID(); const before = await state(c);
   await adminSession(async holder => {
     await holder.query("begin");
@@ -170,7 +170,7 @@ test.skip("[P0][AC7] bounded lock timeout cannot report success or persist parti
   });
   expect(await state(c)).toEqual(before); expect(await adminSelectAuditEvents({ correlationId: correlation })).toEqual([]);
 }));
-test.skip("[P1][AC7] generic link creation AFTER lifecycle commit remains supported and does not retroactively undo success", async () => fixture(async c => {
+test("[P1][AC7] generic link creation AFTER lifecycle commit remains supported and does not retroactively undo success", async () => fixture(async c => {
   const correlation = crypto.randomUUID();
   await adminSession(async tx => { await tx.query("begin"); try { await authenticate(tx,c); expect((await lifecycle(tx,c,correlation))[0].changed).toBe(true); await tx.query("commit"); } finally { await tx.query("rollback"); } });
   const hidden = await adminInsertCustomer({ tenant_id: c.fx.tenantA.id, customer_type: "company", display_name: "Later generic source" });
@@ -185,7 +185,7 @@ test.skip("[P1][AC7] generic link creation AFTER lifecycle commit remains suppor
   expect(restore.error).not.toBeNull(); expect(await adminSelectAuditEvents({ correlationId: restoreCorrelation })).toEqual([]);
 }));
 
-test.skip("[P0][AC7] detected transaction deadlock returns40P01 with no lifecycle origin or audit success",async()=>fixture(async c=>{
+test("[P0][AC7] detected transaction deadlock returns40P01 with no lifecycle origin or audit success",async()=>fixture(async c=>{
   const correlation=crypto.randomUUID();const before=await state(c);
   await adminSession(async holder=>{
     await holder.query("begin");let request:Promise<{ok:boolean;code?:string}>|undefined;let blockedHolder:Promise<unknown>|undefined;
@@ -212,7 +212,7 @@ test.skip("[P0][AC7] detected transaction deadlock returns40P01 with no lifecycl
   });
   expect(await state(c)).toEqual(before);expect(await adminSelectAuditEvents({correlationId:correlation})).toEqual([]);
 }));
-test.skip("[P0][AC7] selected and secondary link owner reassignment reconciles complete locked graph without substitute authority",async()=>{
+test("[P0][AC7] selected and secondary link owner reassignment reconciles complete locked graph without substitute authority",async()=>{
   for(const kind of ["selected","secondary"]){
     await fixture(async c=>{
       const link=kind==="selected"?c.link:await adminInsertFileLink({tenant_id:c.fx.tenantA.id,file_id:c.file,owner_type:"contact",owner_id:c.contact});
