@@ -31,3 +31,34 @@ None
 **⚠️ Needs human:** (none)
 
 **Next:** Run scoped ATDD acceptance scaffolds and external checklist, commit authorized tests/state; context-free bmad-build-auto on approved spec with mandatory independent review and three-round cap.
+
+## Report — 2026-10-12T15:02:30Z (generation2 ATDD complete)
+
+**Story:** `20-2-search-filters-preview-and-archive-restore` (epic 20, story 2) — mid-epic.
+**Spec:** `C:/Users/Rasmus/.codex/worktrees/documents-e20-20-2/Kopplas/_bmad-output/implementation-artifacts/spec-20-2-search-filters-preview-and-archive-restore.md`
+**Branch:** `codex/parallel-documents-e20-readiness-2026-10-09-20-2` (HEAD `9a5bde6`).
+**Pipeline status:** Running; prepared acceptance scaffolds checkpointed before Phase5
+**Continues:** (none — first run)
+
+**Timing:** started 2026-10-12T14:35:36Z; completed in progress — elapsed 26m (≈26m AI-run, ≈0m human/idle wait); resumed 1×.
+
+**Phases run:** Phase4 ATDD Create; Phase5 High route and timing selected
+**Skipped:** Worker aggregate updates and Phase8/9 remain coordinator-owned
+
+**Overrides:** Validated generation2 assignment; only eight assigned test files plus own bookkeeping; external TEA artifact directory
+
+**TEA:** 106 scaffolded cases (78 P0/28 P1), all skipped. Unit collection20/skipped20; browser listing42/executed0; INT/RLS44 not run. Final lint/typecheck/AST native0. External-copy missing date module diagnostic native1 expected; no runtime coverage.
+
+**Build:** Not run; test database readiness verified after100 baseline migrations and synthetic seed native0
+
+**Review:** Story20.2 completed review rounds0
+
+**Retrospective:** (none)
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Context-free High build delegate with complete configured review roster and meaningful ATDD activation
