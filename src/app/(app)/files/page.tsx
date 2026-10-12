@@ -7,8 +7,12 @@ import { readCalculationList } from "@/features/calculations/read";
 import { readJobList } from "@/features/jobs/read";
 
 export const dynamic = "force-dynamic";
-export default async function FilesPage({ searchParams }: { readonly searchParams: Promise<{ cursor?: string; search?: string; owner?: string }> }) {
-  const { cursor, search, owner } = await searchParams;
+export default async function FilesPage({ searchParams }: { readonly searchParams: Promise<{ cursor?: string | string[]; search?: string | string[]; owner?: string | string[] }> }) {
+  const query = await searchParams;
+  // Match URLSearchParams.get: repeated query keys deterministically use the first
+  // scalar value. Arrays never reach the reader or string-only client controls.
+  const first = (value: string | string[] | undefined): string | undefined => Array.isArray(value) ? value[0] : value;
+  const cursor = first(query.cursor); const search = first(query.search); const owner = first(query.owner);
   return <Suspense fallback={<section className="flex flex-col gap-6 p-6"><h1 className="text-2xl font-semibold text-zinc-900">Dokument</h1><p role="status">Läser in dokument…</p></section>}><DocumentsContent cursor={cursor} search={search} owner={owner} /></Suspense>;
 }
 async function DocumentsContent({ cursor, search, owner }: { readonly cursor?: string; readonly search?: string; readonly owner?: string }) {

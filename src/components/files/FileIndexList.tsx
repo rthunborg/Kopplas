@@ -1,7 +1,7 @@
 "use client";
 
 /** Documents destination: authorized per-link contexts, existing flat narrowing and contextual upload. */
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useActionState } from "react";
 import {
@@ -60,6 +60,23 @@ export function FileIndexList({
   const router = useRouter();
   const [search, setSearch] = useState(initialSearch);
   const [ownerCategory, setOwnerCategory] = useState(initialOwnerCategory);
+  const serverFilterBinding = JSON.stringify([initialSearch, initialOwnerCategory]);
+  const observedServerFilter = useRef(serverFilterBinding);
+  const pendingFilterBindings = useRef<string[]>([]);
+  // Server echoes of our own navigation must not discard a newer draft or focus.
+  // An external route change (including the Dokument nav link) resets the controls.
+  useEffect(() => {
+    if (observedServerFilter.current === serverFilterBinding) return;
+    observedServerFilter.current = serverFilterBinding;
+    const ownNavigation = pendingFilterBindings.current.indexOf(serverFilterBinding);
+    if (ownNavigation >= 0) {
+      pendingFilterBindings.current.splice(0, ownNavigation + 1);
+      return;
+    }
+    pendingFilterBindings.current = [];
+    setSearch(initialSearch);
+    setOwnerCategory(initialOwnerCategory);
+  }, [serverFilterBinding, initialSearch, initialOwnerCategory]);
   // Preserve the existing controls across the complete authorized collection.
   // Changing them resets traversal; cursor links retain the same filter identity.
   useEffect(() => {
@@ -68,6 +85,7 @@ export function FileIndexList({
       const params = new URLSearchParams();
       if (search) params.set("search", search);
       if (ownerCategory) params.set("owner", ownerCategory);
+      pendingFilterBindings.current.push(JSON.stringify([search, ownerCategory]));
       router.replace(`/files${params.size ? `?${params}` : ""}`, { scroll: false });
     }, 200);
     return () => clearTimeout(timer);
@@ -158,7 +176,7 @@ export function FileIndexList({
               ))}
             </ul>
           )}
-          {nextCursor ? <a href={`/files?${nextParams}`} data-testid="documents-next-page" className="w-fit text-sm text-blue-700 underline focus-visible:ring-2">Visa fler dokument</a> : null}
+          {nextCursor && search === initialSearch && ownerCategory === initialOwnerCategory ? <a href={`/files?${nextParams}`} data-testid="documents-next-page" className="w-fit text-sm text-blue-700 underline focus-visible:ring-2">Visa fler dokument</a> : null}
         </>
       )}
     </section>

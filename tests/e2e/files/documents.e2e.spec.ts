@@ -238,6 +238,64 @@ for (const viewport of [
       await expect(documentRow(page, data.crm.fileName)).toHaveCount(1);
     });
 
+    test("[P1][AC9] external navigation resets filters while own server echoes retain focused newer drafts", async ({ page }) => {
+      const data = fixture();
+      await openDocuments(page, data.adminA);
+      const search = page.getByTestId("file-index-search");
+      await waitForHydrated(search);
+      let releaseResponse!: () => void;
+      let sawRequest!: () => void;
+      const responseGate = new Promise<void>(resolve => { releaseResponse = resolve; });
+      const requestStarted = new Promise<void>(resolve => { sawRequest = resolve; });
+      await page.route("**/files?**", async route => {
+        if (new URL(route.request().url()).searchParams.get("search") === data.crm.fileName) {
+          sawRequest();
+          await responseGate;
+        }
+        await route.continue();
+      });
+      try {
+        await search.fill(data.crm.fileName);
+        await requestStarted;
+        const newerDraft = data.crm.fileName + "-not-present";
+        await search.fill(newerDraft);
+        releaseResponse();
+        await expect(page).toHaveURL(url => url.searchParams.get("search") === newerDraft);
+        await expect(search).toHaveValue(newerDraft);
+        await expect(search).toBeFocused();
+        await expect(page.getByTestId("file-index-empty")).toBeVisible();
+      } finally {
+        releaseResponse();
+        await page.unroute("**/files?**");
+      }
+      if (viewport.width < 768) {
+        await page.getByRole("button", { name: "Öppna meny", exact: true }).click();
+      }
+      const navigation = page.getByRole("navigation", { name: "Huvudnavigation", exact: true }).filter({ visible: true });
+      await navigation.getByRole("link", { name: "Dokument", exact: true }).click();
+      await expect(page).toHaveURL(/\/files$/);
+      await expect(search).toHaveValue("");
+      await expect(page.getByTestId("file-index-category-filter")).toHaveValue("");
+      await expect(documentRow(page, data.crm.fileName)).toHaveCount(1);
+    });
+
+    test("[P1][AC9] repeated query keys remain scalar and malformed cursors have controlled retry", async ({ page }) => {
+      const data = fixture();
+      await signIn(page, data.adminA);
+      const params = new URLSearchParams();
+      params.append("search", data.crm.fileName); params.append("search", "not-present");
+      params.append("owner", "customer"); params.append("owner", "job");
+      await page.goto(`/files?${params}`);
+      await expect(page.getByTestId("file-index-search")).toHaveValue(data.crm.fileName);
+      await expect(page.getByTestId("file-index-category-filter")).toHaveValue("customer");
+      await expect(documentRow(page, data.crm.fileName)).toHaveCount(1);
+      await expect(page.getByTestId("file-index-error")).toHaveCount(0);
+      await page.goto("/files?cursor=malformed&cursor=also-malformed");
+      await expect(page.getByTestId("file-index-error")).toBeVisible();
+      await page.getByRole("link", { name: "Försök igen", exact: true }).click();
+      await expect(page).toHaveURL(/\/files$/);
+      await expect(documentRow(page, data.crm.fileName)).toHaveCount(1);
+    });
     test("[P1][AC4,6,9] actual destination traverses over fifty contexts and preserves collection narrowing", async ({ page }) => {
       const data = fixture(); const marker = "documents-pages-"+crypto.randomUUID();
       const files: string[] = []; const links: string[] = [];
@@ -270,6 +328,30 @@ for (const viewport of [
         await page.getByTestId("file-index-category-filter").selectOption("customer");
         await expect(page).toHaveURL(/owner=customer/);
         await expect(page.getByTestId("file-index-row")).toHaveCount(50);
+        // A continuation for the previous server filter must disappear immediately,
+        // before the debounced newer filter has returned its descriptor.
+        let releaseFilterResponse!: () => void;
+        let sawFilterRequest!: () => void;
+        const filterGate = new Promise<void>(resolve => { releaseFilterResponse = resolve; });
+        const filterStarted = new Promise<void>(resolve => { sawFilterRequest = resolve; });
+        await page.route("**/files?**", async route => {
+          const params = new URL(route.request().url()).searchParams;
+          if (params.get("search") === marker+"-60.txt" && params.get("owner") === "customer") {
+            sawFilterRequest(); await filterGate;
+          }
+          await route.continue();
+        });
+        try {
+          await search.fill(marker+"-60.txt");
+          await filterStarted;
+          await expect(page.getByTestId("documents-next-page")).toHaveCount(0);
+        } finally {
+          releaseFilterResponse(); await page.unroute("**/files?**");
+        }
+        await expect(page.getByTestId("file-index-row")).toHaveCount(1);
+        await search.fill(marker);
+        await expect(page.getByTestId("file-index-row")).toHaveCount(50);
+        await expect(page.getByTestId("documents-next-page")).toHaveCount(1);
         await page.getByTestId("documents-next-page").click();
         await expect(page).toHaveURL(/cursor=.*search=.*owner=customer/);
         await expect(search).toHaveValue(marker);
