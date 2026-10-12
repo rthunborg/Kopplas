@@ -392,6 +392,41 @@ for (const viewport of [
       await expect(page.getByTestId("file-panel-existing-list")).toContainText(name);
     });
 
+    test("[P1][AC6,9] confirmed upload on a narrowed continuation returns to visible first-page context", async ({ page }) => {
+      const data = fixture(); const marker = "documents-upload-cursor-"+crypto.randomUUID();
+      const files: string[] = []; const links: string[] = [];
+      try {
+        for (let i=0; i<61; i++) {
+          const id = await adminInsertFile({ tenant_id: data.tenantA.id, display_name: marker+"-"+i+".txt", mime_type: "text/plain", lifecycle_state: "linked" });
+          files.push(id);
+          const link = await adminInsertFileLink({ tenant_id: data.tenantA.id, file_id: id, owner_type: "customer", owner_id: data.crm.company.id, purpose: "crm_document" });
+          links.push(link);
+          await adminQuery("update public.file_links set created_at=$2 where id=$1", [link,new Date(Date.UTC(2020,0,1,0,0,61-i)).toISOString()]);
+        }
+        await openDocuments(page, data.adminA);
+        const params = new URLSearchParams({ search: marker, owner: "customer" });
+        await page.goto(`/files?${params}`);
+        await expect(page.getByTestId("file-index-row")).toHaveCount(50);
+        await page.getByTestId("documents-next-page").click();
+        await expect(page).toHaveURL(/cursor=.*search=.*owner=customer/);
+        await expect(page.getByTestId("file-index-row")).toHaveCount(11);
+        await expect(documentRow(page, marker+"-60.txt")).toHaveCount(1);
+        const name = `documents-persisted-${crypto.randomUUID()}.txt`;
+        await upload(page, name, "text/plain", "confirmed upload from continuation");
+        await expect(page).toHaveURL(/\/files$/);
+        await expect(page.getByTestId("file-index-search")).toHaveValue("");
+        await expect(page.getByTestId("file-index-category-filter")).toHaveValue("");
+        await expect(documentRow(page, name)).toHaveCount(1);
+        await page.goto(`/customers/${data.crm.company.id}`);
+        await expect(page.getByTestId("file-panel-existing-list")).toContainText(name);
+        await page.reload();
+        await expect(page.getByTestId("file-panel-existing-list")).toContainText(name);
+      } finally {
+        if (links.length) await adminQuery("delete from public.file_links where id=any($1::uuid[])", [links]);
+        if (files.length) await adminQuery("delete from public.files where id=any($1::uuid[])", [files]);
+      }
+    });
+
     test("[P1][AC9] an unsupported inline format offers a real authorized download", async ({ page }) => {
       await openDocuments(page, fixture().adminA);
       const name = `documents-download-${crypto.randomUUID()}.doc`;

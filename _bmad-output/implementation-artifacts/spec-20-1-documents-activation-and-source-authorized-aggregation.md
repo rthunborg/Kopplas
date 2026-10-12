@@ -1,5 +1,5 @@
 ---
-status: blocked
+status: in-progress
 type: feature
 created: "2026-10-08"
 review_loop_iteration: 3
@@ -152,7 +152,13 @@ All tasks are deferred until admission; no box below certifies execution.
 - [ ]3. Implement the contract's link-bound action/command/RPC bridge and new Documents HMAC helper in the exact listed files; add the fixed function-only migration unit with checked prepare/finalize/current-source helper, explicit ACLs and SHARE lock order/locked-graph reconciliation. Preserve generic/Sales signer boundaries. Negative proof/race/audit/forgery and enrollment tests must precede UI wiring. AC3,5,7,8.
 - [ ]4. Atomically update manifest/permission/nav and `/files` server route/layout, retaining private contextual upload and usable existing interactions via `src/components/files/`. Add exact link payload wiring and loading/empty/denial/retry/expiry states. AC1,4,9.
 - [ ]5. Run Documents selected-source, baseline generic/direct Storage regression, lifecycle and role tests under approved optionA; run all required scope/security/type/lint/unit/integration/browser checks on exact result revision. Do not claim source-sensitive global/direct Storage denial. Add real browser fixture ownership without editing reserved shared fixtures until serialized. AC10.
-- [ ]6. Implementation author adds and verifies one `## Suggested Review Order` only after code/evidence exists; independent High review audits actual entry-to-storage flow and exact result; coordinator verifies combined integrated revision before aggregate status changes. This preparation intentionally has no fabricated final review trail.
+- [ ]6. Implementation author adds and verifies one `## Generation-2 bounded recovery — 2026-10-12
+
+The supported coordinator admission `Kopplas-documents20-1-assignment-generation2-2026-10-12.json` authorizes the four formerly unassigned paths on the same worker branch/worktree. Generation2 carries amended base `e2de5902d9e83f4c0fb132a5db274a575168bfe7` and retains previous base `3a510595efe0fe2b9bbe76b372774d70d9b04a4a`, whole-change baseline `477435ddf9e4a9894db82b2f1831634eaabefae3`, historical blocked checkpoint/logs and `review_loop_iteration: 3`. The owner authorized moving the frontmatter back to in-progress for these exact fixes. All historical blocked results above remain historical evidence; frozen intent and acceptance criteria are unchanged.
+
+This author repairs only confirmed-upload continuation visibility, the two exact Documents activation assertions and guarded shared-browser verification with fixture-authorized facets. The historical unconditional entity-preview expiry skip is replaced by the existing browser clock seam and real signing/refresh assertions, preserving the signer/Storage boundary. No generic permissions, Storage policy, issued-URL lifetime, dependencies or ignored environment files change. Root retains Git and all service/browser lifecycle; final checkpointed verification and narrow independent High delta review remain pending. Three completed broad rounds remain the cap, not a reset.
+
+## Suggested Review Order` only after code/evidence exists; independent High review audits actual entry-to-storage flow and exact result; coordinator verifies combined integrated revision before aggregate status changes. This preparation intentionally has no fabricated final review trail.
 
 ## Required checks and evidence contract
 
@@ -350,15 +356,16 @@ Required ownership blockers remain exactly `tests/unit/scope/manifest-shape.test
 Terminal author result: HALT — blocked, implementation verification failed. Ordinary frontmatter deferred_count0 is distinct from four required claim amendments; followup_review_recommended:true. The current guide below remains one author-written section. No hosted parity/Lovable baseline execution, external-outage observation, global source-revocation byte promise or full-story/epic completion is claimed; OptionA/defaultTTL300s/configurablecap86400s residuals remain explicit.
 ## Suggested Review Order
 
-Author: resumed implementation/fix author `/root/worker20_1_resume/author20_1` (Sol 6.1 High for source authorization, HMAC, SQL locking and audit integrity). Refreshed against final tested product/test checkpoint `cc034649e43d3a5e970ae96ac5cc1b77c2aacbb9` after the specific owned test-only teardown repair; all three configured review rounds and the specific High changed-test-lines check completed, whole-change baseline `477435ddf9e4a9894db82b2f1831634eaabefae3`, plus this spec-only evidence section. The checkpointed implementation follows the already recorded option-A and selected-link contract; the reasons below are grounded in those decisions and the implementation's explicit branches/comments.
+Author: resumed generation-2 implementation/fix author `/root/worker20_1_gen2_build/author_gen2` (Sol 6.1 High). Refreshed against the bounded admitted working-tree delta from `cbe4b27f` before the root checkpoint; whole-change baseline stays `477435ddf9e4a9894db82b2f1831634eaabefae3`. The historical three configured review rounds and specific teardown check are retained, not counted again. The generation-2 recovery record above distinguishes new fixes and pending final verification from historical runs. Existing rationale below follows the recorded option-A and selected-link contract.
 
 ### 1. One usable destination with the existing role ceiling
 
-Activation transfers the sole `/files` entry to Documents while Files retains its storage-table ownership. Both capabilities guard direct navigation; the existing owner-required upload remains contextual (AC1/AC9), as specified in the approved intent rather than a new entitlement choice.
+Activation transfers the sole `/files` entry to Documents while Files retains its storage-table ownership. Both capabilities guard direct navigation; the existing owner-required upload remains contextual (AC1/AC9). The admitted success callback runs only after persisted file identity is returned, clears existing narrowing and resets continuation to `/files`; other upload consumers retain default refresh.
 
 - `src/scope/manifest.ts:287` — `Documents.View`: transfers the one navigation destination.
 - `src/app/(app)/files/layout.tsx:12` — `Documents.View`: checks current route authority before rendering.
-- `src/app/(app)/files/page.tsx:18` — `DocumentsContent`: reads the authorized destination before contextual upload options.
+- `src/components/files/FileIndexUpload.tsx:98` — `onUploadSuccess`: runs only after confirmed upload success.
+- `src/components/files/FileIndexList.tsx:95` — `onUploadSuccess`: clears narrowing and resets continuation after persistence.
 - `tests/unit/server/read-models/documents.test.ts:101` — `atomic activation`: asserts nav transfer and retained Files table ownership.
 
 ### 2. Exact authorized contexts and complete traversal
@@ -388,13 +395,16 @@ The reviewed contract uses SHARE locks because archive/status/role changes are n
 - `tests/integration/commands/documents-signed-access-lock-races.int.test.ts:143` — `SHARE authority lock`: proves deterministic two-connection ordering and final-audit linearization.
 - `tests/integration/commands/documents-signed-access.int.test.ts:227` — `actual audit rollback`: asserts no returned URL after real remote issuance and audit failure.
 
-### 5. Evidence proves the bounded contract and exposes remaining gaps
+### 5. Evidence distinguishes checked access, upload visibility and fixture scope
 
-AC4/AC6 assertions retain separate link identities and cross the actual PostgREST cap; AC5 uses a real draft quote edit to exercise established PDF invalidation. The option-A regression deliberately proves baseline generic/direct Storage remains available after source archive (AC8), rather than mislabeling that availability as source denial.
+AC4/AC6 assertions retain separate link identities and cross the actual PostgREST cap; AC5 uses a real draft quote edit to exercise established PDF invalidation. The option-A regression deliberately proves baseline generic/direct Storage remains available after source archive (AC8), rather than mislabeling that availability as source denial. The new AC6/AC9 browser journey uploads from a real narrowed continuation and checks first-page and reloaded owner-panel visibility. Shared scope facets assert the actual customer-only fixture and absent unrepresented owners; contextual expiry uses browser time with real signing/refresh, without the historical unconditional skip.
 
 - `tests/integration/rls/documents.rls.test.ts:134` — `multi-linked file`: checks two allowed contexts and absent denied context.
 - `tests/integration/rls/documents.rls.test.ts:210` — `>PostgREST-cap`: checks complete stable over-cap traversal.
 - `tests/integration/commands/documents-signed-access.int.test.ts:209` — `Option A preserves`: distinguishes generic/direct and issued-bearer residual access.
-- `tests/integration/commands/documents-signed-access.int.test.ts:370` — `real customer-visible quote edit`: proves quote-PDF invalidation without inventing a missing downstream guard.
+- `tests/e2e/files/documents.e2e.spec.ts:395` — `confirmed upload on a narrowed continuation`: covers persisted visibility at both viewports.
+- `tests/e2e/files/entity-file-preview.e2e.spec.ts:154` — `expired link offers`: checks real contextual signing and expiry refresh.
 
-Evidence: the finalcc034649 verification and matrix audit bind214 focused units,157 actual required DB assertions,27 quote-PDF regression assertions and28 passing production-browser journeys, all with zero required skips. Type/lint/service/lock/bundle checks pass; the actual72 build is retained with exact unchanged tracked source proof rather than relabeled as a new build. Three configured rounds and the specific static High teardown check completed; this guide is not independent self-approval. Limits: local synthetic fixtures and controlled fault tests; two required full-unit failures and the required shared browser gate remain blocked by unassigned paths. The consequential cursor-page upload gap still requires its fourth unassigned path; the pinned protocol supplies no supported claim amendment. Ordinary deferred_count0 is distinct from required amendments4; followup_review_recommended:true. Default URL TTL300s and existing issuance cap86400s remain explicit; issued URLs may survive to embedded expiry. Full queries/pages are bounded, while complete traversal and safe collection facets may scan the whole collection. Same-route reset triage used baseline source/React-state inference, not actual baseline/Lovable browser execution. No external outage, hosted migration/deployment or full-story/epic completion is claimed. Exactly one author section is maintained and all20 repository-relative stops/literal anchors must pass the final checker.
+Evidence: dirty-tree preflight `pnpm run typecheck`, scoped ESLint and the eight manifest-shape assertions passed native0; these are not final checkpoint evidence. Historical214 focused units/157 required DB/27 quote/28 owned browser results and their failed full-unit/shared-gate limits remain exactly recorded above. All14 required checks on a new root-owned SHA, the fresh actual production build and narrow independent High admitted-delta/latest-fix review are pending.
+
+Limits: local synthetic fixtures and controlled faults do not prove hosted parity or external outages. Browser tests use the root-owned guarded CDP and production server; the author launches no service/browser. Linux-only full-unit xattrs coverage needs a real Linux runtime, never a skipped Windows result. OptionA preserves generic/direct Storage and issued bearer access through embedded expiry, defaultTTL300s/cap86400s. Complete safe collection facets may scan the collection through bounded queries. Same-route baseline triage remains source/React-state inference. No frozen intent, global byte-revocation promise, hosted operation or story/epic completion is changed or claimed. Exactly one author section is maintained; final reference validation remains required.

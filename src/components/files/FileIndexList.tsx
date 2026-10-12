@@ -1,7 +1,7 @@
 "use client";
 
 /** Documents destination: authorized per-link contexts, existing flat narrowing and contextual upload. */
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useActionState } from "react";
 import {
@@ -90,6 +90,15 @@ export function FileIndexList({
     }, 200);
     return () => clearTimeout(timer);
   }, [search, ownerCategory, initialSearch, initialOwnerCategory, router]);
+  // Newly persisted links sort before a continuation cursor. Clear the existing
+  // narrowing as well, so an acknowledged upload is visible on the first page.
+  const onUploadSuccess = useCallback(() => {
+    pendingFilterBindings.current = [];
+    setSearch("");
+    setOwnerCategory("");
+    if (window.location.search) router.replace("/files", { scroll: false });
+    else router.refresh();
+  }, [router]);
   const nextParams = new URLSearchParams();
   if (nextCursor) nextParams.set("cursor", nextCursor);
   if (initialSearch) nextParams.set("search", initialSearch);
@@ -115,6 +124,7 @@ export function FileIndexList({
         <FileIndexUpload
           ownerOptions={uploadOwnerOptions}
           optionsLoadError={uploadOptionsLoadError}
+          onUploadSuccess={onUploadSuccess}
         />
       </div>
       <p className="text-sm text-zinc-600">
