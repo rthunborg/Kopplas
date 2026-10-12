@@ -45,3 +45,35 @@ Build/review/required runtime checks remain pending.
 5. C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-1-resource-stop-2026-10-12.json
 
 **Next:** Coordinator: use the clean blocked checkpoint and four-path author companion for supported tooling recovery and a legitimate validated assignment, then targeted fixes/reverification under the retained three-round cap. Human diff preview: /bmad-checkpoint-preview codex/parallel-documents-e20-readiness-2026-10-09-20-1. Do not run a bare worker picker or substitute a new run.
+
+## Report — 2026-10-12T13:27:25Z (generation-2 worker candidate)
+
+**Story:** `20-1-documents-activation-and-source-authorized-aggregation` (epic 20, story 1) — mid-epic.
+**Spec:** `C:\Users\Rasmus\.codex\worktrees\documents-e20-20-1\Kopplas\_bmad-output\implementation-artifacts\spec-20-1-documents-activation-and-source-authorized-aggregation.md`
+**Branch:** `codex/parallel-documents-e20-readiness-2026-10-09-20-1` (HEAD `8508603`).
+**Pipeline status:** Worker phases complete; exact-candidate verification and supported submit recorded externally after freeze
+**Continues:** Coordinator owns integration and epic completion
+
+**Timing:** started 2026-10-09T13:42:32Z; completed in progress — elapsed 71h 44m (≈2h 11m AI-run, ≈69h 33m human/idle wait); resumed 1×.
+
+**Phases run:** 0, 1, 3, 4, 5, 6, 7
+**Skipped:** Phase7 primary follow-up gate false (recommended and false recommendation); trace advisory not selected. Phases8/9 remain coordinator-owned.
+
+**Overrides:** Claim generation2, submission base e2de5902; approved workflow and frozen intent retained. No global ledger or aggregate writes; zero deferred items.
+
+**TEA:** High; ATDD and automate complete. AC10/10; two meaningful browser coverage families closed; 0 gaps. Dirty preflight4/4 at base8508603d/test hash5cdc93fc; full39 exact-candidate browser gate remains to run.
+
+**Build:** All14 Phase5 gates passed, zero skips; 2432 Linux unit, 157 unique required DB integration/RLS/race cases. Evidence13 gates at48bfe590 and browser37/37 at02db9e2f. These are historical revisions; final exact-candidate native runs will be recorded in external manifest.
+
+**Review:** Three completed configured broad rounds retained; generation2 six configured narrow layers and specific latest-fix High confirmations complete. No unresolved findings. Final candidate includes TEA test delta; read-only independent Sol6.1 High targeted confirmation pending. Author review guide has25 valid references/0 errors; no primary session reconfiguration.
+
+**Retrospective:** Worker does not own epic retrospective
+
+**Open questions:** (none)
+
+**Deferred work:**
+No deferred items; global harvest prohibited for this worker
+
+**⚠️ Needs human:** (none)
+
+**Next:** Freeze clean candidate; actually run all14 checks on that SHA, including full39 browser cases and fresh production build; obtain narrow independent High confirmation; supported generation2 submit. Shared-store receipt and external final handoff are authoritative for readiness and resource Stop acknowledgments.

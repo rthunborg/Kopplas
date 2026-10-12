@@ -10,7 +10,7 @@ import type { Locator, Page } from "@playwright/test";
 import { test, expect } from "../dashboard/guarded-test";
 import { readFileSync } from "node:fs";
 import path from "node:path";
-import { adminQuery, closeAdminPool } from "../../factories/admin-sql";
+import { adminQuery, adminSession, closeAdminPool } from "../../factories/admin-sql";
 import { adminInsertFile, adminInsertFileLink } from "../../factories/tenants";
 
 type Credentials = { readonly id: string; readonly email: string; readonly password: string };
@@ -153,11 +153,39 @@ for (const viewport of [
       });
     }
 
-    test("[P1][AC7,9] keyboard access opens real inline text and explicit refresh calls the server again", async ({ page, context }) => {
+    test("[P1][AC9] actual source read shows loading before the real authorized document list", async ({ page }) => {
+      const data = fixture();
+      await signIn(page, data.adminA);
+      // The existing local-only helper owns one transaction and connection.
+      // Hold this serial gate's real read; never substitute a successful response.
+      await adminSession(async session => {
+        await session.query("begin");
+        try {
+          await session.query("set local lock_timeout = '5s'");
+          await session.query("lock table public.file_links in access exclusive mode");
+          await page.goto("/files", { waitUntil: "commit" });
+          await expect(page.getByRole("heading", { name: "Dokument", exact: true })).toBeVisible();
+          await expect(page.getByRole("status").filter({ hasText: "Läser in dokument…" })).toBeVisible();
+          await expect(page.getByTestId("file-index")).toHaveCount(0);
+          await expect(page.getByTestId("file-index-empty")).toHaveCount(0);
+          await expect(page.getByTestId("file-index-error")).toHaveCount(0);
+          await expect(page.getByRole("main")).not.toContainText(data.crm.fileName);
+        } finally {
+          await session.query("rollback");
+        }
+      });
+      await expect(page.getByTestId("file-index")).toBeVisible();
+      await expect(documentRow(page, data.crm.fileName)).toHaveCount(1);
+      await expect(page.getByRole("status").filter({ hasText: "Läser in dokument…" })).toHaveCount(0);
+      await expect(page.getByTestId("file-index-error")).toHaveCount(0);
+    });
+
+    test("[P1][AC7,9] keyboard access shows signing progress, opens real inline text and refreshes expired selected access", async ({ page, context }) => {
       await openDocuments(page, fixture().adminA);
       const name = `documents-inline-${crypto.randomUUID()}.txt`;
       const content = `Dokument browser acceptance ${crypto.randomUUID()}`;
       const row = await upload(page, name, "text/plain", content);
+      await page.clock.install({ time: new Date() });
       const button = row.getByRole("button", { name: "Förhandsgranska", exact: true });
       await button.focus();
       await expect(button).toBeFocused();
@@ -165,7 +193,40 @@ for (const viewport of [
         new URL(response.url()).pathname === "/files"
         && response.request().method() === "POST"
         && !!response.request().headers()["next-action"]);
-      await button.press("Enter");
+      // Gate the actual action request before forwarding. No signer, audit or
+      // success response is fulfilled or replaced.
+      let releaseSigning!: () => void;
+      let sawSigning!: () => void;
+      let finishedSigning!: () => void;
+      let observedSigning = false;
+      let firstSigning = true;
+      const signingGate = new Promise<void>(resolve => { releaseSigning = resolve; });
+      const signingStarted = new Promise<void>(resolve => { sawSigning = resolve; });
+      const signingFinished = new Promise<void>(resolve => { finishedSigning = resolve; });
+      await page.route("**/files", async route => {
+        const request = route.request();
+        const gated = firstSigning && request.method() === "POST" && !!request.headers()["next-action"];
+        if (gated) {
+          firstSigning = false;
+          observedSigning = true;
+          sawSigning();
+          await signingGate;
+        }
+        try { await route.continue(); }
+        finally { if (gated) finishedSigning(); }
+      });
+      try {
+        await button.press("Enter");
+        await signingStarted;
+        await expect(row.getByTestId("file-index-preview-button")).toHaveText("Öppnar…");
+        await expect(row.getByTestId("file-index-preview-button")).toBeDisabled();
+        await expect(row.getByRole("link", { name: /tidsbegränsad länk/i })).toHaveCount(0);
+        await expect(row.getByRole("alert")).toHaveCount(0);
+      } finally {
+        releaseSigning();
+        if (observedSigning) await signingFinished;
+        await page.unroute("**/files");
+      }
       expect((await firstResponse).ok()).toBe(true);
       const link = row.getByRole("link", { name: /tidsbegränsad länk/i });
       await expect(link).toBeVisible();
@@ -180,13 +241,44 @@ for (const viewport of [
         await expect(popup).toHaveURL(firstHref!);
         await expect(popup.getByText(content, { exact: true })).toBeVisible();
       } finally { await popup.close(); }
-      // Reauthorization is proven by another observed production server action;
-      // identical URLs minted within one server second are not treated as a defect.
+      // Preserve explicit pre-expiry refresh. Identical URLs minted within one
+      // server second are not treated as a defect.
       await submitAccess(page, row.getByRole("button", { name: "Öppna igen", exact: true }));
       await expect(link).toBeVisible();
       await expect(row.getByRole("alert")).toHaveCount(0);
+      const beforeExpiryHref = await link.getAttribute("href");
+      expect(beforeExpiryHref).toMatch(/^https?:\/\//);
+      const previousIssuanceObservedAt = Date.now();
+      // Browser time only drives expiry UI. Selected-source signing/audit and
+      // Storage bytes remain real production-app/local-fixture operations.
+      await page.clock.fastForward(86_401_000);
+      await expect(row.getByTestId("file-index-preview-expired")).toContainText("Länken har gått ut");
+      await expect(link).toHaveCount(0);
+      const reopen = row.getByTestId("file-index-preview-reopen");
+      await expect(reopen).toBeVisible();
+      await reopen.focus();
+      await expect(reopen).toBeFocused();
+      await expect.poll(() => Date.now()).toBeGreaterThan(previousIssuanceObservedAt + 1_100);
+      await page.clock.setFixedTime(new Date());
+      const refreshed = page.waitForResponse(response =>
+        new URL(response.url()).pathname === "/files"
+        && response.request().method() === "POST"
+        && !!response.request().headers()["next-action"]);
+      await reopen.press("Enter");
+      expect((await refreshed).ok()).toBe(true);
+      await expect(reopen).toBeEnabled();
+      // Settle the shared hook's bounded timer with Date fixed at real issuance
+      // time, resetting the tick after the deliberate browser-only jump.
+      await page.clock.fastForward(86_401_000);
+      await expect(link).toBeVisible();
+      await expect(row.getByRole("alert")).toHaveCount(0);
+      const refreshedHref = await link.getAttribute("href");
+      expect(refreshedHref).toMatch(/^https?:\/\//);
+      expect(refreshedHref).not.toBe(beforeExpiryHref);
+      const refreshedBytes = await page.request.get(refreshedHref!);
+      expect(refreshedBytes.ok()).toBe(true);
+      expect(await refreshedBytes.text()).toBe(content);
     });
-
     test("[P0][AC3,7,9] expiry hides the stale URL and refresh denies a now-archived selected source", async ({ page }) => {
       const data = fixture();
       await openDocuments(page, data.adminA);

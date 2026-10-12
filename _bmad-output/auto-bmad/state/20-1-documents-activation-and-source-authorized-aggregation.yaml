@@ -9,36 +9,38 @@ spec_folder: null
 story_id: "20.1"
 branch: codex/parallel-documents-e20-readiness-2026-10-09-20-1
 status: running
-updated_at: "2026-10-12T12:53:00Z"
+updated_at: "2026-10-12T13:27:01Z"
 started_at: "2026-10-09T13:42:32Z"
 completed_at: null
-active_seconds: 6507
-timing_anchor: 1791809580
+active_seconds: 7894
+timing_anchor: null
 is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: tea_per_story
-selected_role: tea-delegate
-selected_profile: standard
+selected_phase: cross_model_layer
+selected_role: independent-reviewer
+selected_profile: diverse_review
 selected_model: gpt-6.1-sol
 selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Automatic sensitive-task escalation: security, transactional-integrity"
+escalation_reason: "Final exact-candidate confirmation of current source authorization, public-token and transactional-integrity changes and latest TEA test delta; narrow review under retained three-round cap"
 routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Actual source authorization, tokens and transactional integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea-triage\",\"profile\":\"critical\",\"role\":\"test-risk classifier\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Source authorization and transactional race acceptance tests\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"testarch-atdd\",\"profile\":\"critical\",\"role\":\"acceptance test author\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Actual source authorization, HMAC/signing, SQL locks and audit integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Retain High on sensitive source-authorization verification and recovered generation-2 signed-access integrity scope; no downgrade\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: security, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Original author evidence and Suggested Review Order refresh after sensitive Documents expiry, current-authority and loading coverage; preserve retained High and frozen intent\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Final exact-candidate confirmation of current source authorization, public-token and transactional-integrity changes and latest TEA test delta; narrow review under retained three-round cap\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"cross_model_layer\",\"profile\":\"diverse_review\",\"role\":\"independent-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: "Current source/membership authorization, HMAC and RPC ACLs, migration/audit integrity and revocation/parent concurrency races"
 epic_story_count: 3
 stories_after_in_epic: 2
-completed_phases: [0, 1, 3, 4, 5]
+completed_phases: [0, 1, 3, 4, 5, 6, 7]
 spec_path: "C:\\Users\\Rasmus\\.codex\\worktrees\\documents-e20-20-1\\Kopplas\\_bmad-output\\implementation-artifacts\\spec-20-1-documents-activation-and-source-authorized-aggregation.md"
 spec_approved: true
 build:
@@ -49,7 +51,7 @@ build:
   deferred_count: 0
   warnings: [oversized]
 followup_passes: 0
-hitl_halt: null
+hitl_halt: "skipped (clean)"
 review_unverified: false
 story_trace: null
 legacy_review_resume: false
@@ -58,7 +60,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [477435ddf9e4a9894db82b2f1831634eaabefae3, "29258906", e07d55ee2c62dd921874fbbdede74b67a0cdd24d, f5a322e73313d4325b0a25d6cabe38bfe752b441, 72d55b06964dfa10f543b155acc3597ea4d0a452, cc034649e43d3a5e970ae96ac5cc1b77c2aacbb9, cbe4b27f094c393c71ffdba50de854cd37a57c5f, 48bfe590bbc17b53bb3237364347871fdf9950b8, 20df41607096ad8f4d98229cb8690ebbba34bb60, 02db9e2f389f1ab95e55f7d52dcadf74bd44166f]
+commits: [477435ddf9e4a9894db82b2f1831634eaabefae3, "29258906", e07d55ee2c62dd921874fbbdede74b67a0cdd24d, f5a322e73313d4325b0a25d6cabe38bfe752b441, 72d55b06964dfa10f543b155acc3597ea4d0a452, cc034649e43d3a5e970ae96ac5cc1b77c2aacbb9, cbe4b27f094c393c71ffdba50de854cd37a57c5f, 48bfe590bbc17b53bb3237364347871fdf9950b8, 20df41607096ad8f4d98229cb8690ebbba34bb60, 02db9e2f389f1ab95e55f7d52dcadf74bd44166f, 8508603d9bafe3de1338aa28a24167af199b9bce]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -98,12 +100,12 @@ overrides:
   retained_protocol_blocker: "Implementation verification failed: four required unassigned paths; pinned protocol has no supported claim amendment."
   completed_configured_review_rounds: 3
   review_cap: "No fourth broad pass; narrow regressions and unresolved serious findings only"
-  tested_revision: cc034649e43d3a5e970ae96ac5cc1b77c2aacbb9
-  production_build_revision: 72d55b06964dfa10f543b155acc3597ea4d0a452
+  tested_revision: "Historical generation-2 gates at 48bfe590 and 02db9e2f; final exact-candidate replay pending in external handoff"
+  production_build_revision: "48bfe590bbc17b53bb3237364347871fdf9950b8; final exact-candidate build pending"
   pending_writers: 0
   pending_delegate_resource_users: 0
   guard_stop_requests: "accepted; stop_requested, verified=false; saved state preserved"
-  successful_submit: false
+  successful_submit: Generation-2 submit result will be recorded by shared-store receipt and external exact-candidate handoff
   claim_generation: 2
   assignment_artifact: "C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-1-assignment-generation2-2026-10-12.json"
   submission_base_sha: e2de5902d9e83f4c0fb132a5db274a575168bfe7
@@ -111,9 +113,29 @@ overrides:
   previous_block_resolved_by: "Supported amend-blocked applied by coordinator from separate reviewed tooling checkout; workflow unchanged"
   phase5_manifest: "C:/Users/Rasmus/AppData/Local/Temp/kopplas-20-1-author-gen2-20261012-02db9e2f/final-manifest.json"
   generation2_review_manifest: "C:/Users/Rasmus/AppData/Local/Temp/kopplas-documents20-1-gen2-review-792d0b1b-d9bd-4a25-befd-8ccb3f64c8f2/review-manifest.json"
-  generation2_resource_status: Own guard resources active for remaining mandatory verification
+  generation2_resource_status: "Owned resources retained for final exact-candidate checks, then Stop requested"
   phase5_runtime_build_sha: 48bfe590bbc17b53bb3237364347871fdf9950b8
   phase5_browser_sha: 02db9e2f389f1ab95e55f7d52dcadf74bd44166f
   scope_block_resolved: true
+  tea_automate_completed: true
+  tea_automate_deliverable: "C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-1-generation2-TEA-2026-10-12/automation-summary.md"
+  tea_automate_completion: "C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-1-generation2-TEA-2026-10-12/completion-result.json"
+  tea_ac_mapped: 10
+  tea_meaningful_gaps_closed: 2
+  tea_remaining_gaps: 0
+  tea_new_browser_cases: 2
+  tea_strengthened_browser_cases: 2
+  tea_dirty_verification_base: 8508603d9bafe3de1338aa28a24167af199b9bce
+  tea_dirty_test_sha256: 5cdc93fcf95b00705406601b1cd6582ef13ca4b402fada81fdf4b71a65de53d5
+  full_browser_expected_cases: 39
+  postgrest_cap_observation: "C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-1-generation2-postgrest-cap-observation.json"
+  postgrest_cap_limit: "Measured1225 traversal; no observed1000-cap claim"
+  post_tea_author_guide_pending: false
+  author_guide_references: 25
+  author_guide_errors: 0
+  phase7_followup_gate: "false: recommended and recommendation=false"
+  phase7_deferred_harvest: "worker ownership forbids global ledger; deferred_count=0"
+  phase7_trace_advisory: not selected
+  final_candidate_evidence_directory: "C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-1-generation2-final-candidate-2026-10-12"
 constraints: []
 parallel_run_id: documents-e20-readiness-2026-10-09
