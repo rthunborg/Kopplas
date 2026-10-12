@@ -162,6 +162,8 @@ test.describe("Entity file preview/download UX (Story 8.3 E2E)", () => {
     await preview.click();
     const link = row.getByTestId("file-preview-link");
     await expect(link).toBeVisible();
+    const firstHref = await link.getAttribute("href");
+    expect(firstHref).toMatch(/^https?:\/\//);
     const firstIssuanceObservedAt = Date.now();
     // Drive only browser expiry; signing and refresh remain real server actions.
     await page.clock.fastForward(86_401_000);
@@ -189,6 +191,7 @@ test.describe("Entity file preview/download UX (Story 8.3 E2E)", () => {
     await expect(row.getByTestId("file-preview-error")).toHaveCount(0);
     const refreshedHref = await row.getByTestId("file-preview-link").getAttribute("href");
     expect(refreshedHref).toMatch(/^https?:\/\//);
+    expect(refreshedHref).not.toBe(firstHref);
     expect((await page.request.get(refreshedHref!)).ok()).toBe(true);
   });
 });

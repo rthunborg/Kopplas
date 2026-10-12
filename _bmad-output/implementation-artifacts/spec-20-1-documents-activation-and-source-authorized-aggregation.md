@@ -1,9 +1,9 @@
 ---
-status: in-progress
+status: in-review
 type: feature
 created: "2026-10-08"
 review_loop_iteration: 3
-followup_review_recommended: true
+followup_review_recommended: false
 warnings: [oversized]
 deferred: []
 deferred_count: 0
@@ -152,13 +152,7 @@ All tasks are deferred until admission; no box below certifies execution.
 - [ ]3. Implement the contract's link-bound action/command/RPC bridge and new Documents HMAC helper in the exact listed files; add the fixed function-only migration unit with checked prepare/finalize/current-source helper, explicit ACLs and SHARE lock order/locked-graph reconciliation. Preserve generic/Sales signer boundaries. Negative proof/race/audit/forgery and enrollment tests must precede UI wiring. AC3,5,7,8.
 - [ ]4. Atomically update manifest/permission/nav and `/files` server route/layout, retaining private contextual upload and usable existing interactions via `src/components/files/`. Add exact link payload wiring and loading/empty/denial/retry/expiry states. AC1,4,9.
 - [ ]5. Run Documents selected-source, baseline generic/direct Storage regression, lifecycle and role tests under approved optionA; run all required scope/security/type/lint/unit/integration/browser checks on exact result revision. Do not claim source-sensitive global/direct Storage denial. Add real browser fixture ownership without editing reserved shared fixtures until serialized. AC10.
-- [ ]6. Implementation author adds and verifies one `## Generation-2 bounded recovery — 2026-10-12
-
-The supported coordinator admission `Kopplas-documents20-1-assignment-generation2-2026-10-12.json` authorizes the four formerly unassigned paths on the same worker branch/worktree. Generation2 carries amended base `e2de5902d9e83f4c0fb132a5db274a575168bfe7` and retains previous base `3a510595efe0fe2b9bbe76b372774d70d9b04a4a`, whole-change baseline `477435ddf9e4a9894db82b2f1831634eaabefae3`, historical blocked checkpoint/logs and `review_loop_iteration: 3`. The owner authorized moving the frontmatter back to in-progress for these exact fixes. All historical blocked results above remain historical evidence; frozen intent and acceptance criteria are unchanged.
-
-This author repairs only confirmed-upload continuation visibility, the two exact Documents activation assertions and guarded shared-browser verification with fixture-authorized facets. The historical unconditional entity-preview expiry skip is replaced by the existing browser clock seam and real signing/refresh assertions, preserving the signer/Storage boundary. No generic permissions, Storage policy, issued-URL lifetime, dependencies or ignored environment files change. Root retains Git and all service/browser lifecycle; final checkpointed verification and narrow independent High delta review remain pending. Three completed broad rounds remain the cap, not a reset.
-
-## Suggested Review Order` only after code/evidence exists; independent High review audits actual entry-to-storage flow and exact result; coordinator verifies combined integrated revision before aggregate status changes. This preparation intentionally has no fabricated final review trail.
+- [ ]6. Implementation author adds and verifies one `## Suggested Review Order` only after code/evidence exists; independent High review audits actual entry-to-storage flow and exact result; coordinator verifies combined integrated revision before aggregate status changes. This preparation intentionally has no fabricated final review trail.
 
 ## Required checks and evidence contract
 
@@ -260,7 +254,26 @@ All six configured targeted independent Sol6.1 High layers completed once on `72
 | Required unit/shared browser and upload-on-cursor gaps | REQUIRED OWNERSHIP BLOCKERS, not waived optional deferrals. Independent blind/edge again verified upload router.refresh does not reset the existing cursor, and final owned filter-prop synchronization has no downstream success callback/navigation. | All four exact unassigned paths remain untouched. Actual72 full-unit has2429pass/2fail/1skip; required shared three-file browser gate has no passing execution. Supported coordinator claim/plan amendment and follow-up verification are required before successful implementation submission. |
 
 Ordinary frontmatter deferred findings: `deferred: []`, `deferred_count: 0`. Required ownership amendments: four exact paths, representing the mandatory shared test-gate repairs and consequential cursor-page upload repair. The four-path count in earlier narrative denotes blocked ownership requests, not optional accepted review deferrals. `followup_review_recommended: true` follows this last pass's high1/medium0/low0 patched counts and score0; required blockers and oversized warning persist independently. Terminal implementation result must stay blocked: implementation verification failed. No independent review, required check or claim is waived.
-## Auto Run Result
+### 2026-10-12 — Review pass
+
+**Narrow admitted-delta/latest-fix review, not a fourth broad round.** All six configured independent Sol6.1 High layers completed at `20df41607096ad8f4d98229cb8690ebbba34bb60`, admitted delta from `e2de5902d9e83f4c0fb132a5db274a575168bfe7`; whole-change baseline remains `477435ddf9e4a9894db82b2f1831634eaabefae3`. The external resolver/review were native0/nonempty. Original three completed broad rounds and their historical recommendation formulas remain unchanged; `review_loop_iteration: 3` is retained.
+
+- intent_gap: 0
+- bad_spec: 0
+- patch: 1 (high 0, medium 1, low 0)
+- defer: 0
+- reject: 0
+- dismissed: none
+
+Follow-up review recommendation: false for this narrow pass. The deduplicated patched counts high0/medium1/low0 give weighted score `3 × 1 + 1 × 0 = 3`, below the threshold with no high trigger. Historical round3 true/high1/score0 above remains historical evidence, not rewritten provenance.
+
+| Finding / invariant | Author triage and caller | Bounded fix / evidence limit |
+| --- | --- | --- |
+| Real expiry refresh does not prove the bearer was replaced | PATCH — medium verification gap, independently confirmed by `verification_gen2` and the actual external Sol High review. FilePreviewRow through previewEntityFileAction currently returns the correct newly signed URL, but the browser-only time jump leaves the old bearer server-valid. The prior test's successful POST and readable bytes would not reject projecting the old URL with the new expiry. | Capture the original visible href after real signing, then assert refreshedHref differs after the existing real issuance-second barrier and timer recovery. Retain real refresh POST, displayed expiry/stale-link hiding, fresh visible link, generic-error absence and actual readable Storage bytes. Only the admitted contextual test changes; new clean checkpoint/full3browser and specific latest-fix confirmation remain pending. |
+
+The independent artifacts are retained at `C:/Users/Rasmus/AppData/Local/Temp/kopplas-documents20-1-gen2-review-792d0b1b-d9bd-4a25-befd-8ccb3f64c8f2/`: `in-host-manifest.json`, all five in-host layer files, `external-provenance.json` and the nonempty `admitted-delta.diff.review`. These are independent evidence, not author self-approval. Ordinary deferrals stay zero; the four former required ownership gaps were admitted through generation2, with their old blocked records retained.
+
+## Historical generation-1 Auto Run Result
 
 Status: blocked
 Blocking condition: implementation verification failed
@@ -354,9 +367,27 @@ Raw final evidence: `C:/Users/Rasmus/AppData/Local/Temp/kopplas-20-1-author-2026
 Required ownership blockers remain exactly `tests/unit/scope/manifest-shape.test.ts`, `tests/e2e/files/file-index-scope.e2e.spec.ts`, `tests/e2e/files/entity-file-preview.e2e.spec.ts` and `src/components/files/FileIndexUpload.tsx`. All were reinspected against final unchanged application behavior and refreshed in the request-only author companion. Upload success still only router.refreshes the same cursor/filter; the new owned prop synchronization does not navigate/reset that cursor or reveal an earlier-sorting inserted row. Existing first-page upload passes do not cover that required cursor-page gap. Shared browser tests remain unexecuted rather than launched with an unmanaged browser or credited via the owned subset.
 
 Terminal author result: HALT — blocked, implementation verification failed. Ordinary frontmatter deferred_count0 is distinct from four required claim amendments; followup_review_recommended:true. The current guide below remains one author-written section. No hosted parity/Lovable baseline execution, external-outage observation, global source-revocation byte promise or full-story/epic completion is claimed; OptionA/defaultTTL300s/configurablecap86400s residuals remain explicit.
+## Generation-2 bounded recovery — 2026-10-12
+
+The supported coordinator admission `Kopplas-documents20-1-assignment-generation2-2026-10-12.json` authorizes the four formerly unassigned paths on the same worker branch/worktree. Generation2 carries amended base `e2de5902d9e83f4c0fb132a5db274a575168bfe7` and retains previous base `3a510595efe0fe2b9bbe76b372774d70d9b04a4a`, whole-change baseline `477435ddf9e4a9894db82b2f1831634eaabefae3`, historical blocked checkpoint/logs and `review_loop_iteration: 3`. The owner authorized moving the frontmatter back to in-progress for these exact fixes. All historical blocked results above remain historical evidence; frozen intent and acceptance criteria are unchanged.
+
+This author repairs only confirmed-upload continuation visibility, the two exact Documents activation assertions and guarded shared-browser verification with fixture-authorized facets. The historical unconditional entity-preview expiry skip is replaced by the existing browser clock seam and real signing/refresh assertions, preserving the signer/Storage boundary. No generic permissions, Storage policy, issued-URL lifetime, dependencies or ignored environment files change. Root retains Git and all service/browser lifecycle. Generation2 checkpoints48bfe590 and20df4160 repair the admitted gaps; actual execution and narrow review are recorded in this spec. Final result-SHA verification and root completion remain separate. Three completed broad rounds remain the cap, not a reset.
+
+## Auto Run Result
+
+Status: in-review
+Blocking condition: latest assertion-fix verification pending
+Outcome: bounded generation2 review patch applied; root checkpoint, full3browser execution and specific independent latest-fix confirmation pending. No done/completion/submission is claimed. Historical blocked result and original protocol limitation remain above as generation1 evidence; the supported generation2 admission supersedes only the former four-path ownership restriction.
+
+## Generation-2 execution evidence — 2026-10-12
+
+Actual13 required nonbrowser checks executed at `48bfe590bbc17b53bb3237364347871fdf9950b8`: source units94, selected units100, separate requiredDB99/38/20/119, Linux fullunit2432, type/lint/service/bundle/lockfiles and real production build all native0, zero skipped tests; extra quote regression27 passed. The first Linux missing-native attempt2429/2427pass/2fail/0skip and first48 full3browser37/35pass/2fail/0skip are retained without passing credit. The repaired full3browser actually executed at20df4160 native0,37executed/37pass/0fail/0skip/0flaky, including both continuation uploads, actual fixture facets and real contextual expiry refresh. None of the48 unit/DB/build results is relabeled as20df execution: exact unchanged source/integration/unit/config/fixture Git objects and explicit root-authorized production48 reuse are in `build-source-equivalence.json`.
+
+Current evidence manifest and six-row matrix audit: `C:/Users/Rasmus/AppData/Local/Temp/kopplas-20-1-author-gen2-20261012-20df4160/final-manifest.json` and `matrix-audit.json`; raw native/check/report records retain actual argv, origins, execution revisions and counts. Matrix rows map six unique passing actual48 DB assertions, with52 additional source/proof/audit/quote boundary assertions and real20df browser evidence. The verified official Linux Node22.23.2 runtime and exact lockfile-integrity Linux native optional packages are temporary/process-only; no project dependency, ignored environment or platform configuration changes were made. This latest assertion-only patch is not yet counted as a passing rerun. Root-owned final result-SHA all14 rerun and later completion gates remain required; frontmatter is in-review, not done.
+
 ## Suggested Review Order
 
-Author: resumed generation-2 implementation/fix author `/root/worker20_1_gen2_build/author_gen2` (Sol 6.1 High). Refreshed against the admitted two-test correction on checkpoint `48bfe590bbc17b53bb3237364347871fdf9950b8` before the next root checkpoint; whole-change baseline stays `477435ddf9e4a9894db82b2f1831634eaabefae3`. The historical three configured review rounds and specific teardown check are retained, not counted again. The generation-2 recovery record above distinguishes new fixes and pending final verification from historical runs. Existing rationale below follows the recorded option-A and selected-link contract.
+Author: resumed generation-2 implementation/fix author `/root/worker20_1_gen2_build/author_gen2` (Sol 6.1 High). Refreshed against the admitted URL-refresh assertion fix on checkpoint `20df41607096ad8f4d98229cb8690ebbba34bb60` before the next root checkpoint; whole-change baseline stays `477435ddf9e4a9894db82b2f1831634eaabefae3`. The historical three configured review rounds and specific teardown check are retained, not counted again. The generation-2 recovery record above distinguishes new fixes and pending final verification from historical runs. Existing rationale below follows the recorded option-A and selected-link contract.
 
 ### 1. One usable destination with the existing role ceiling
 
@@ -397,14 +428,15 @@ The reviewed contract uses SHARE locks because archive/status/role changes are n
 
 ### 5. Evidence distinguishes checked access, upload visibility and fixture scope
 
-AC4/AC6 assertions retain separate link identities and cross the actual PostgREST cap; AC5 uses a real draft quote edit to exercise established PDF invalidation. The option-A regression deliberately proves baseline generic/direct Storage remains available after source archive (AC8), rather than mislabeling that availability as source denial. The new AC6/AC9 browser journey uploads from a real narrowed continuation and checks first-page and reloaded owner-panel visibility. Shared scope facets assert the actual customer/generated-PDF/acceptance-evidence fixture and absent unrepresented owners; contextual expiry uses browser time with real signing/refresh and readable refreshed bytes, without the historical unconditional skip. The failed initial clock reset is repaired by a real issuance-second barrier and a fixed-date timer tick; no signer output or product timer changes.
+AC4/AC6 assertions retain separate link identities and cross the actual PostgREST cap; AC5 uses a real draft quote edit to exercise established PDF invalidation. The option-A regression deliberately proves baseline generic/direct Storage remains available after source archive (AC8), rather than mislabeling that availability as source denial. The new AC6/AC9 browser journey uploads from a real narrowed continuation and checks first-page and reloaded owner-panel visibility. Shared scope facets assert the actual customer/generated-PDF/acceptance-evidence fixture and absent unrepresented owners; contextual expiry uses browser time with real signing/refresh, a different renewed href and readable refreshed bytes, without the historical unconditional skip. The failed initial clock reset is repaired by a real issuance-second barrier and a fixed-date timer tick; no signer output or product timer changes.
 
 - `tests/integration/rls/documents.rls.test.ts:134` — `multi-linked file`: checks two allowed contexts and absent denied context.
 - `tests/integration/rls/documents.rls.test.ts:210` — `>PostgREST-cap`: checks complete stable over-cap traversal.
 - `tests/integration/commands/documents-signed-access.int.test.ts:209` — `Option A preserves`: distinguishes generic/direct and issued-bearer residual access.
 - `tests/e2e/files/documents.e2e.spec.ts:395` — `confirmed upload on a narrowed continuation`: covers persisted visibility at both viewports.
 - `tests/e2e/files/entity-file-preview.e2e.spec.ts:154` — `expired link offers`: checks real contextual signing and expiry refresh.
+- `tests/e2e/files/entity-file-preview.e2e.spec.ts:194` — `refreshedHref`: rejects reuse of the original bearer after refresh.
 
-Evidence: actual48 source94/selected100 units, requiredDB99/38/20/119, quote27, all static/build checks passed native0 with zero skips. The temporary verified Linux runtime executed all2432 unit assertions/pass,0fail/0skip, including xattrs; its earlier missing-native run2429/2427pass/2fail/0skip is retained without passing credit. Required full3browser executed37/35pass/2fail/0skip: both new continuation uploads passed, while fixture-facet and backward-clock repair failed. That exact run and snapshots are retained. This bounded two-test correction needs a new root SHA/full3browser rerun and narrow High admitted-delta review; no result is invented. Dirty correction preflight and reference checks are separate from final checkpoint evidence.
+Evidence: the narrow generation-2 verification record above binds actual13 required nonbrowser checks to48bfe590 (including Linux2432pass/0skip and DB99/38/20/119) and the full37/37/0skip browser gate to20df4160. Actual build48/source-object equality proves explicitly authorized runtime reuse, without a new-build claim. All six narrow configured High layers completed at20df; one deduplicated medium href-replacement assertion gap is patched in this working tree, with final checkpoint/full3browser/latest-fix confirmation pending. The historical failed runs and round3 cap remain recorded. This is an author reading guide, not independent approval or a final result-SHA all14 submission.
 
 Limits: local synthetic fixtures and controlled faults do not prove hosted parity or external outages. Browser tests use the root-owned guarded CDP and production server; the author launches no service/browser. Linux-only xattrs executed with the official checksum-verified Node22.23.2 runtime and exact lockfile-integrity-verified Linux optional binaries, temporary/process-only; Windows dependencies were not changed. OptionA preserves generic/direct Storage and issued bearer access through embedded expiry, defaultTTL300s/cap86400s. Complete safe collection facets may scan the collection through bounded queries. Same-route baseline triage remains source/React-state inference. No frozen intent, global byte-revocation promise, hosted operation or story/epic completion is changed or claimed. Exactly one author section is maintained; final reference validation remains required.
