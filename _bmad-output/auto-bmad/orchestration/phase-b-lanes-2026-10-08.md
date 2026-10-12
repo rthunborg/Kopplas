@@ -1,3 +1,15 @@
+## Current execution checkpoint — 2026-10-12 generation-2 resume
+
+Recovery tooling PR95 merged at f0430404f6b97e91f3b460e284c71e7f91b404c6; branch retained. Exact reviewed head823869a6742fe414c52c5e3482cafed8bb89bb78 passed all required CI plus Windows/Linux parallel contracts. Local56/56 and actual pinned-v1 compatibility/regression2/2 passed. Independent High review identified checkpoint-discard risk; reanchoring fixed it and targeted High re-review passed.
+
+Root verified the worker and its write-capable delegate chain stopped, including earlier interrupted build actors, and clean checkpoint e2de5902d9e83f4c0fb132a5db274a575168bfe7. The supported amend-blocked command ran once from the separate tooling checkout with successful native0/oktrue. It preserved original run/claim audit and workflow pin, admitted only the four exact omitted paths, and issued generation2 anchored at e2de5902. The unchanged pinned worker helper accepted generation2 heartbeat. Original initialized plan artifact was not rewritten; the shared store contains the supported audited projection. No direct SQLite mutation or hot upgrade occurred.
+
+External receipt/request/new assignment: coordinator Temp files Kopplas-documents20-1-quiescence-generation1-2026-10-12.json, Kopplas-documents20-1-amend-request-2026-10-12.json and Kopplas-documents20-1-assignment-generation2-2026-10-12.json. The complete new assignment is authoritative. Request token documents20-1-four-paths-20261012 must not be replaced or replayed with changed payload.
+
+Existing Documents chat resumed at turn01a13007-5418-71a2-8c46-29f20eb8ae7b, explicitly Sol6.1 High, for admitted fixes, targeted independent review and all remaining worker gates. Three prior review rounds remain completed; no fourth broad pass. Final generation2 submission evidence uses checkpoint-to-result paths while full final-head checks and original reviewed history remain required. Worker alone owns its isolated guarded resources. No successful final submission/integration is claimed yet.
+
+Epic15 still waits before E5 for verified20.1 integration and explicit shared release. Its checkout and planning/ATDD reservations remain untouched. Later Documents stories require verified predecessor integration. This checkpoint supersedes earlier statements that recovery was pending or generation1 remained authoritative.
+
 ## Current execution checkpoint — 2026-10-12 Documents scope recovery
 
 This snapshot supersedes earlier admission, oracle and worker-state statements below. Both Documents and Epic15 owners waived exact Lovable comparison; no actual oracle observations are claimed. Option A, approved scope and required contract tests remain binding.
