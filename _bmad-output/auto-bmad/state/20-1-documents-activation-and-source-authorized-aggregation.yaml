@@ -9,11 +9,11 @@ spec_folder: null
 story_id: "20.1"
 branch: codex/parallel-documents-e20-readiness-2026-10-09-20-1
 status: running
-updated_at: "2026-10-12T11:09:34Z"
+updated_at: "2026-10-12T12:13:17Z"
 started_at: "2026-10-09T13:42:32Z"
 completed_at: null
 active_seconds: 4124
-timing_anchor: null
+timing_anchor: 1791807197
 is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
@@ -26,11 +26,12 @@ selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Actual source authorization, HMAC/signing, SQL locks and audit integrity"
+escalation_reason: "Retain High on sensitive source-authorization verification and recovered generation-2 signed-access integrity scope; no downgrade"
 routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Actual source authorization, tokens and transactional integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea-triage\",\"profile\":\"critical\",\"role\":\"test-risk classifier\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Source authorization and transactional race acceptance tests\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"testarch-atdd\",\"profile\":\"critical\",\"role\":\"acceptance test author\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Actual source authorization, HMAC/signing, SQL locks and audit integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Retain High on sensitive source-authorization verification and recovered generation-2 signed-access integrity scope; no downgrade\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: "Current source/membership authorization, HMAC and RPC ACLs, migration/audit integrity and revocation/parent concurrency races"
@@ -101,9 +102,14 @@ overrides:
   review_cap: "No fourth broad pass; narrow regressions and unresolved serious findings only"
   tested_revision: cc034649e43d3a5e970ae96ac5cc1b77c2aacbb9
   production_build_revision: 72d55b06964dfa10f543b155acc3597ea4d0a452
-  pending_writers: 0
+  pending_writers: 1
   pending_delegate_resource_users: 0
   guard_stop_requests: "accepted; stop_requested, verified=false; saved state preserved"
   successful_submit: false
+  claim_generation: 2
+  assignment_artifact: "C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-1-assignment-generation2-2026-10-12.json"
+  submission_base_sha: e2de5902d9e83f4c0fb132a5db274a575168bfe7
+  supported_amendment_request_id: documents20-1-four-paths-20261012
+  previous_block_resolved_by: "Supported amend-blocked applied by coordinator from separate reviewed tooling checkout; workflow unchanged"
 constraints: []
 parallel_run_id: documents-e20-readiness-2026-10-09
