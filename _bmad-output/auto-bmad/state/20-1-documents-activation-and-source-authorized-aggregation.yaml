@@ -9,11 +9,11 @@ spec_folder: null
 story_id: "20.1"
 branch: codex/parallel-documents-e20-readiness-2026-10-09-20-1
 status: running
-updated_at: "2026-10-12T10:00:00Z"
+updated_at: "2026-10-12T11:09:34Z"
 started_at: "2026-10-09T13:42:32Z"
 completed_at: null
-active_seconds: 0
-timing_anchor: 1791799200
+active_seconds: 4124
+timing_anchor: null
 is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
@@ -40,15 +40,15 @@ completed_phases: [0, 1, 3, 4]
 spec_path: "C:\\Users\\Rasmus\\.codex\\worktrees\\documents-e20-20-1\\Kopplas\\_bmad-output\\implementation-artifacts\\spec-20-1-documents-activation-and-source-authorized-aggregation.md"
 spec_approved: true
 build:
-  status: ready-for-dev
-  blocking_condition: null
-  followup_review_recommended: false
-  review_loop_iteration: 0
+  status: blocked
+  blocking_condition: implementation verification failed
+  followup_review_recommended: true
+  review_loop_iteration: 3
   deferred_count: 0
-  warnings: []
+  warnings: [oversized]
 followup_passes: 0
 hitl_halt: null
-review_unverified: false
+review_unverified: true
 story_trace: null
 legacy_review_resume: false
 legacy_review_iteration: null
@@ -56,7 +56,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: []
+commits: [477435ddf9e4a9894db82b2f1831634eaabefae3, "29258906", e07d55ee2c62dd921874fbbdede74b67a0cdd24d, f5a322e73313d4325b0a25d6cabe38bfe752b441, 72d55b06964dfa10f543b155acc3597ea4d0a452, cc034649e43d3a5e970ae96ac5cc1b77c2aacbb9]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -81,7 +81,10 @@ merge_commit: null
 branch_deleted: false
 open_questions: []
 deferred_work: []
-blockers: []
+blockers:
+  - "Implementation verification failed: four required unassigned paths; pinned protocol has no supported claim amendment."
+  - "Required unit gate: 2429 passed, 2 failed, 1 skipped; required shared browser gate unexecuted."
+  - "TEA Phase 6 and Phase 7 remain pending; Phase 5 is not complete."
 overrides:
   parallel_worker: true
   no_aggregate_writes: true
@@ -90,5 +93,17 @@ overrides:
   guard_owned_local_resource: 045abae5-a032-46b0-84b9-455eefcdc083
   isolated_api_port: 55621
   isolated_db_port: 55622
+  final_check_manifest: "C:/Users/Rasmus/AppData/Local/Temp/kopplas-20-1-author-20261012-cc034649/final-manifest.json"
+  author_scope_companion: "C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-1-author-validated-scope-companion-2026-10-12.json"
+  resource_stop_evidence: "C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-1-resource-stop-2026-10-12.json"
+  retained_protocol_blocker: "Implementation verification failed: four required unassigned paths; pinned protocol has no supported claim amendment."
+  completed_configured_review_rounds: 3
+  review_cap: "No fourth broad pass; narrow regressions and unresolved serious findings only"
+  tested_revision: cc034649e43d3a5e970ae96ac5cc1b77c2aacbb9
+  production_build_revision: 72d55b06964dfa10f543b155acc3597ea4d0a452
+  pending_writers: 0
+  pending_delegate_resource_users: 0
+  guard_stop_requests: "accepted; stop_requested, verified=false; saved state preserved"
+  successful_submit: false
 constraints: []
 parallel_run_id: documents-e20-readiness-2026-10-09
