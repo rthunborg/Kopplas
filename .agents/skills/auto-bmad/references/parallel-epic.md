@@ -182,6 +182,22 @@ landed; it blocks integration/finalization while independent workers can still f
 Do not automatically expire or transfer claims. Unsupported owner transfer requires
 a documented checkpoint and deliberate recovery, not a guessed worker death.
 
+An omitted exact file required by the unchanged approved story may use the
+coordinator-only `amend-blocked` maintenance API after the worker is blocked,
+its authorized checkpoint committed/clean and all write-capable delegates stopped.
+Use independently reviewed tooling in a separate checkout against the existing
+coordinator; leave the active coordinator/worker workflow digests installed and
+pinned. Follow docs/process/parallel-auto-bmad-contract.md's additive recovery
+request and structured stopped-writer evidence contract. The API preserves the
+original plan artifact/pins and appends before/after snapshots while revising the
+effective ownership projection. No direct store edit or failed-check bypass is
+authorized. A successful response creates the next claim generation, anchored at
+the validated worker checkpoint so the old helper enforces its retained ancestry.
+Prior claim bases/evidence remain in the audit; run base/spec pins stay unchanged.
+It is not a passing submission. Save the new assignment, heartbeat it with the unchanged pinned helper,
+then resume only the admitted paths. Preserve prior reviews and the three-round
+cap; use an independent delta review and all required final result checks.
+
 ## P3: Epic closure and fallback
 
 Require every planned required story verified integrated. Run the normal E8
