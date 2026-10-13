@@ -127,3 +127,34 @@ No worker global ledger writes
 **⚠️ Needs human:** (none)
 
 **Next:** Run fresh complete configured follow-up roster on approved finished spec, then freeze complete worker candidate for final checks and independent review.
+
+## Report — 2026-10-13T12:01:16Z (worker pipeline complete — final verification pending)
+
+**Story:** `20-3-entity-panel-links-and-contextual-navigation` (epic 20, story 3) — last-in-epic.
+**Spec:** `C:/Users/Rasmus/.codex/worktrees/documents-e20-20-3/Kopplas/_bmad-output/implementation-artifacts/spec-20-3-entity-panel-links-and-contextual-navigation.md`
+**Branch:** `codex/parallel-documents-e20-readiness-2026-10-09-20-3` (HEAD `5de2e96`).
+**Pipeline status:** done — assigned worker phases through7 complete; final verification and submission pending
+**Continues:** True
+
+**Timing:** started 2026-10-13T08:43:10Z; completed 2026-10-13T12:01:16Z — elapsed 3h 18m (≈3h 13m AI-run, ≈5m human/idle wait); resumed 4×.
+
+**Phases run:** 0,1,3,4,5,6,7
+**Skipped:** Coordinator-owned Phase2/8/9 and aggregate/sprint/epic/globalledger work; story trace gate not selected for3story epic.
+
+**Overrides:** Claimed20.3/gen1; approved9d baseline and fixed workflow/spec pins; only20ownedpaths; no aggregate writes, hosted verification, oracle observation, publishing or deployment. Failures and lifecycle receipts retained externally.
+
+**TEA:** ATDD and Automate completed through delegates. Automate gaps0/newtests0; current53unit/28RLS/53browser native0/0fail0skip on fa00fc8. External output artifacts retained; historical/collection runs not final-commit coverage.
+
+**Build:** Done: fresh source authorization for exact entity context and contextual navigation; existing upload/signing/all-link lifecycle authority retained. Candidate17native0 with focused53/full2508/RLS28/browser53+117, all0fail0skip; final frozen-commit17checks pending.
+
+**Review:** Two complete configured6layer SolHigh rosters. Round1 two medium fixes addressed; round2 patch0/bad_spec0/defer0/reject3low, recommendationfalse. Original-author20reference trail and independent narrow PASS. Latest triage parser mismatch corrected in one-line metadata commit. Remaining third slot reserved for distinct final read-only acceptance.
+
+**Retrospective:** (none)
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Fresh all17checks and independent source approval on the complete clean frozen commit; supported generation1submission then Stop ownresources. Coordinator owns integration/epic closure.
