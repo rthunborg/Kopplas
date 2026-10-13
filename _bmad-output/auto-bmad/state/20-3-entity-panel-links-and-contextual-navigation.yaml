@@ -9,18 +9,18 @@ spec_folder: null
 story_id: "20.3"
 branch: codex/parallel-documents-e20-readiness-2026-10-09-20-3
 status: running
-updated_at: "2026-10-13T08:43:10Z"
+updated_at: "2026-10-13T08:48:11Z"
 started_at: "2026-10-13T08:43:10Z"
 completed_at: null
 active_seconds: 0
-timing_anchor: null
+timing_anchor: 1791881291
 is_first_in_epic: false
 is_last_in_epic: true
 git_mode: remote
 base_branch: main
-selected_phase: tea_triage
-selected_role: test-risk-triage
-selected_profile: light
+selected_phase: tea_per_story
+selected_role: tea-delegate
+selected_profile: standard
 selected_model: gpt-6.1-sol
 selected_effort: high
 selected_host: codex
@@ -29,6 +29,7 @@ selected_route: subagent
 escalation_reason: "Automatic sensitive-task escalation: authentication, authorization, permissions, public-tokens, rls, security, transactional-integrity"
 routing_ledger:
   - "{\"phase\":\"tea_triage\",\"role\":\"test-risk-triage\",\"profile\":\"light\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"subagent\",\"escalation_reason\":\"Automatic sensitive-task escalation: authentication, authorization, permissions, public-tokens, rls, security, transactional-integrity\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authentication, authorization, permissions, public-tokens, rls, security, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: "Independent Phase0 triage: current-source authorization and source-authority preservation trigger authorization/permissions signals"
@@ -54,7 +55,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: []
+commits: [75b40dbeb1d4439f0f5794fe7acbf1f465e34e1d]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -104,5 +105,6 @@ overrides:
   oracle_disposition: "No new oracle observation claimed; approved owner disposition retained"
   preflight_help_encoding: "Initial help cp1252 failure; fullpreflight -Xutf8 native0"
   initialization_recovery: "PowerShell syntax failure before any commands/files; corrected structured payload, no pipeline coverage claimed"
+  dependency_setup: "pnpm install --frozen-lockfile native0; pnpm10.24.0 Node22.23.2; tracked packages and lock unchanged"
 constraints: []
 parallel_run_id: documents-e20-readiness-2026-10-09
