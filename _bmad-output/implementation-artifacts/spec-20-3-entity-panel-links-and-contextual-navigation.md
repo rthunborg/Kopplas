@@ -4,8 +4,8 @@ type: feature
 created: "2026-10-08"
 status: done
 review_loop_iteration: 0
-review_broad_rounds_completed: 1
-followup_review_recommended: true
+review_broad_rounds_completed: 2
+followup_review_recommended: false
 warnings: [oversized]
 deferred: []
 story_id: "20.3"
@@ -151,7 +151,7 @@ Files changed:
 - `tests/e2e/files/documents-context-navigation.e2e.spec.ts` — Real seven-source navigation, signing/lifecycle/history/upload and casing journeys.
 - `_bmad-output/implementation-artifacts/spec-20-3-entity-panel-links-and-contextual-navigation.md` — Implementation, actual execution, six-layer review/triage and author review trail metadata.
 
-Review: one complete configured broad round (five independent internal Sol6.1 High/context-none layers plus verified native external Codex0.159.3 Sol6.1 High/read-only inspection). Two medium patches addressed; high0, medium2, low0; intent_gap0, bad_spec0, defer0, reject0. Review repair loop iteration0; completed broad rounds1. Follow-up recommendation:true, score3×2+0=6; only this pass patch findings counted. Root owns subsequent Automate/follow-up/final freeze phases.
+Historical implementation pass: one complete configured broad round (five independent internal Sol6.1 High/context-none layers plus verified native external Codex0.159.3 Sol6.1 High/read-only inspection). Two medium patches addressed; high0, medium2, low0; intent_gap0, bad_spec0, defer0, reject0. Review repair loop iteration0; completed broad rounds1. Follow-up recommendation:true, score3×2+0=6; only this pass patch findings counted. Root owns subsequent Automate/follow-up/final freeze phases.
 
 Actual current verification: all17 required gates passed native0. Units2508; focused context units53; context RLS28; selected-link units100; selected-link race RLS38; generic signed access20; baseline Storage119; filter units23; lifecycle integration51; full story browser53; full inherited four-file browser117 (76story20.2+41inherited). All tests failed/skipped/cancelled/todo0 where applicable; suites overlap and are not summed. Typecheck, lint, production build, service-role containment, bundle containment and lockfiles passed. Required local DB runs used SUPABASE_TEST_REQUIRED=1. Both CDP variable names targeted guarded Chrome155.0.8059.40; CIunset and save-failure fixture enabled. Both browsers closed own contexts/pages without browser.close; final idleTx0 confirmed2026-10-13T11:04:38.272Z.
 
@@ -160,6 +160,24 @@ Evidence: `C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-3-build-2026-1
 Review baseline metadata now records assigned integrated base`9d64861989dfedb46b901fe1c3710f310199e828`, covering complete20.3 root ATDD/newfiles/current tree without predecessor re-review. Initial implementation start HEAD`cf8929a75327ecae394f5d752ab41532466b7a2f` remains historical evidence. Root-owned state/report files were read as diff data and never edited.
 
 Residual limits: unit graph/candidate readers are injected synthetic boundaries and static anchors are React rendering. Actual local integration/browser fixtures verify present registered sources and specified desktop/360×640 journeys; universal devices/future module adapters are not execution claims. No hosted/demo, outage, external service or Lovable parity proof. Existing OptionA Storage authority, issued bearer lifetime and immutable acceptance append denial remain unchanged. Author completion-hook reconciliation and narrow trail verification follow the local workflow commit; no new broad round is implied.
+
+### Follow-up broad round2 — 2026-10-13
+
+Status: done
+Blocking condition: none
+
+This fresh BuildAuto pass reviews the whole assigned change from `9d64861989dfedb46b901fe1c3710f310199e828` to committed input `61799d86c31b228dc1ef8af7184ec60254dc070b`, including all20paths/new files and root-owned bookkeeping as data. No product/test change was required. This pass changes only this spec's review/result metadata; current source/test bytes and the approved intent remain unchanged.
+
+All six configured layers actually completed: Blind Hunter, Edge Case Hunter, Verification Gap, Intent Alignment, Security, and external diverse-profile Codex. Every internal reviewer used explicit Sol6.1 High/context-none and read all2584lines/all20paths. Exact committed full-diff SHA256 is `4bbba78d87caefcb3f24f0d11be2cbc583e4c341c7d6b5791572411414c6f7c9`. The initial immutable working-review snapshot SHA256 is `a59bfc5495a464b05332cfc36d710723e5b5a0d7b3a6384dc24946b4b1017aee`; its only differences are this workflow's required done→in-review spec status and associated Git blob index. Both snapshots are retained, source/tests are identical, and this is one round.
+
+This pass: intent_gap0, bad_spec0, patch0(high0/medium0/low0), defer0, reject3(low3), addressed_findings:none. Follow-up recommendation:false; patched score3×0+0=0. Repair loop0, total deferred0, completed broad rounds2of3. No second broad pass or bad-spec loopback was started.
+
+Verification in this pass is full-diff/current-source review, native-provider inspection and the provider's incidental bounded owned-unit execution: context-navigation13, context-reader36 and anchor4, each native0 with executed=passed and failed/skipped/cancelled/todo0. These53 overlap prior coverage and are not a fresh all17 gate result. No DB/browser/build/resource action was taken. Product bytes unchanged, so prior evidence remains relevant but the final root-run17checks on the eventual frozen commit remain pending and root-owned. The mandatory OnComplete author reconciliation and independent narrow trail verification follow finalization.
+
+External evidence: dynamically resolved command native0/oktrue/SolHigh. Its configured cmd shim failed native1 with Windows filename/directory syntax error and empty output before provider inspection; it receives no layer credit. The verified current native Codex0.159.3 executable then ran the same model/High/read-only/approval-never/ephemeral/cwd settings via safe argv, provider native0, output`No findings.`. Its retained trace shows full current diff reads and contiguous chunk coverage0..2584, followed by current referenced-source inspection. Every nonempty diff line appears in the trace; stdout alone was not treated as inspection proof. Raw command, native receipt, trace, result, hashes and layer outputs are retained under `C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-3-followup-2026-10-13/`; see `external-inspection-verified.json` and `external-native.stderr`. The failed configured attempt remains separately preserved.
+
+Residual limits remain the approved synthetic local fixtures, injected unit boundaries, specified desktop/360×640 journeys and existing OptionA/acceptance authority. This review claims no hosted/demo, Lovable, universal-device or future-module runtime evidence. The intent audit's descriptive evidence limits do not establish a current production defect.
+
 
 ## Initial implementation author result — 2026-10-13
 
@@ -292,3 +310,19 @@ Patch1 [medium]: `readDocumentContext` accepts uppercase UUID syntax but compare
 Patch2 [medium]: real successful contextual center upload completion is not exercised by existing picker-only and returned-entity/global-center tests. Extend owned browser acceptance coverage to assert confirmed persistence under the explicitly chosen owner while retaining the original validated context and clearing narrowing, continuation and preview; include a different manual upload owner. This is bounded acceptance verification of the current callback, not an upload-authority expansion.
 
 Review loop iteration remains0 (no bad-spec loopback); completed broad rounds1. Both medium findings are verified addressed by current actual execution. Patched score6 sets followup_review_recommended:true; this recommendation does not claim another broad review completed. No current finding is deferred; historical predecessor broad counts are untouched.
+
+### 2026-10-13 — Follow-up Review pass (Round2of3)
+
+**Round 2 of 3**
+
+- intent_gap: 0
+- bad_spec: 0
+- patch: 0
+- defer: 0
+- reject: 3: (high 0, medium 0, low 3)
+- addressed_findings:
+  - none
+
+All five configured internal layers plus the actual external provider completed full current-change inspection. The blind/edge/security/external layers found no actionable current defect. The verification observation proposed additional label-content assertions while the current expression derives the actual quote/version and acceptance distinction correctly; it demonstrates a hypothetical mutation, not incorrect output introduced by this change. The intent audit describes acceptance browser evidence on version detail while the changed shared acceptance wrapper is used by both existing hosts; the listed insertion path is exercised without a separate changed host adapter. Its future-coherence observation concerns later activation stories; all seven current source adapters exist, the inherited registry validator fails loudly on missing active registry enrollment, and no current missing adapter or bypass was identified. These three observations are rejected as optional/hypothetical under the repository's production-reachable defect rule; no existing issue is deferred.
+
+Patched high0/medium0/low0 gives score0 and followup_review_recommended:false. Loop0/deferred0; completed broad rounds2. Final root17checks and independent acceptance remain pending on the eventual frozen candidate. Source/tests/approved intent and all root bookkeeping remain unchanged.
