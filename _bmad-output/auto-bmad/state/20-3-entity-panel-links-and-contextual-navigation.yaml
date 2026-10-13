@@ -1,0 +1,140 @@
+# auto-bmad per-story state — written by scripts/state_update.py (full stable schema;
+# see references/state-and-resume.md). Prose belongs in reports/{key}.md, not here.
+story_key: 20-3-entity-panel-links-and-contextual-navigation
+epic_num: 20
+story_num: 3
+story_suffix: ""
+story_source: sprint
+spec_folder: null
+story_id: "20.3"
+branch: codex/parallel-documents-e20-readiness-2026-10-09-20-3
+status: done
+updated_at: "2026-10-13T12:01:16Z"
+started_at: "2026-10-13T08:43:10Z"
+completed_at: "2026-10-13T12:01:16Z"
+active_seconds: 11583
+timing_anchor: null
+is_first_in_epic: false
+is_last_in_epic: true
+git_mode: remote
+base_branch: main
+selected_phase: cross_model_layer
+selected_role: independent-reviewer
+selected_profile: diverse_review
+selected_model: gpt-6.1-sol
+selected_effort: high
+selected_host: codex
+selected_tier: subagents
+selected_route: subagent
+escalation_reason: "Automatic sensitive-task escalation: authentication, authorization, permissions, public-tokens, rls, security, transactional-integrity"
+routing_ledger:
+  - "{\"phase\":\"tea_triage\",\"role\":\"test-risk-triage\",\"profile\":\"light\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"subagent\",\"escalation_reason\":\"Automatic sensitive-task escalation: authentication, authorization, permissions, public-tokens, rls, security, transactional-integrity\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authentication, authorization, permissions, public-tokens, rls, security, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authentication, authorization, permissions, public-tokens, rls, security, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authentication, authorization, permissions, public-tokens, rls, security, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authentication, authorization, permissions, public-tokens, rls, security, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"followup_review\",\"profile\":\"standard\",\"role\":\"primary-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authentication, authorization, permissions, public-tokens, rls, security, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"cross_model_layer\",\"profile\":\"diverse_review\",\"role\":\"independent-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+tea_risk: high
+tea_selected: [atdd, automate]
+tea_rationale: "Independent Phase0 triage: current-source authorization and source-authority preservation trigger authorization/permissions signals"
+epic_story_count: 3
+stories_after_in_epic: 0
+completed_phases: [0, 1, 3, 4, 5, 6, 7]
+spec_path: "C:/Users/Rasmus/.codex/worktrees/documents-e20-20-3/Kopplas/_bmad-output/implementation-artifacts/spec-20-3-entity-panel-links-and-contextual-navigation.md"
+spec_approved: true
+build:
+  status: done
+  blocking_condition: null
+  followup_review_recommended: false
+  review_loop_iteration: 0
+  deferred_count: 0
+  warnings: [oversized]
+followup_passes: 1
+hitl_halt: "auto-continued (epic — no halt)"
+review_unverified: false
+story_trace: null
+legacy_review_resume: false
+legacy_review_iteration: null
+legacy_review_loop_done: false
+legacy_external_review_iterations: null
+legacy_convergence_unverified: false
+legacy_artifact_path: null
+commits: [75b40dbeb1d4439f0f5794fe7acbf1f465e34e1d, 452129c6cd5ac3f7545f7d26b4cf1a64e232fd56, cf8929a75327ecae394f5d752ab41532466b7a2f, e57bdb01835b67f89b385b89a5b67e30ef22c460, 26f6eac5351efb5ad48a4408a84e1a7fd0d68758, fa00fc8d00c4aa142f07e271a85e317b0340a99d, 61799d86c31b228dc1ef8af7184ec60254dc070b, 3bc53aee42126a393f7b8bc683d28a1dcd8f64f4, c4758f9a10901ed2d08cecb36cf5ed843ff050a8, 5de2e96c90a3e18a2489531586ed6fb7465a299a]
+phase8_steps:
+  trace_gate: null
+  nfr: null
+  test_review: null
+  reconcile: null
+  archive: null
+  retro: null
+gate_decision: null
+gate_iterations: 0
+deferred_work_archived: 0
+retro:
+  doc: null
+  verdict: null
+  open_action_items: 0
+bmad_status_flipped_at: null
+pr_url: null
+ci_run_url: null
+ci_status: unknown
+pr_merged: false
+merge_method: null
+merge_commit: null
+branch_deleted: false
+open_questions: []
+deferred_work: []
+blockers: []
+overrides:
+  parallel_worker: true
+  no_aggregate_writes: true
+  claim_generation: 1
+  assignment_artifact: "C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-3-assignment-generation1-2026-10-13.json"
+  submission_base_sha: 9d64861989dfedb46b901fe1c3710f310199e828
+  workflow_pin: 95bf1053f665699aa1e44ee4711c6941ea8f2851c8bb8debd1ca9203acc7ad93
+  approved_spec_revision: 55c997e11bd09d5f5b384b70d8bf4a65827993274ce347ae6711efbebbfe255b
+  phase0: "Fullpreflightnative0/hardstopfalse/no warnings; V2Sol nesting verified; assignment replaces picker/epic guard"
+  phase0_route_exception: Exact High capsule recorded before dispatch and carried into Phase1 per no-state Phase0 exception
+  phase2: Coordinator epic setup not repeated by worker
+  phase3: Adopt approved ready-for-dev specification without picker/replanning
+  predecessor20_2_verified_integration: 3350d9f7999ef1a2a6ffff3fc91a15150250ab22
+  actual_required_checks: 17
+  additional_required_check: documents20-2-browser
+  review_rounds_completed: 2
+  final_review_cap: 3
+  resource_launches: 6
+  prior_workers: "20.1/20.2 three-round histories preserved; no old checkout writes or service adoption"
+  runtime_review_resolver: New20.3 worker config/cwd with selected SolHigh/read-only runtime command
+  scope_constraints: "No unassigned signing/lifecycle/generic-panel/permission/manifest/migration edits, PhaseC or OptionA expansion"
+  oracle_disposition: "No new oracle observation claimed; approved owner disposition retained"
+  preflight_help_encoding: "Initial help cp1252 failure; fullpreflight -Xutf8 native0"
+  initialization_recovery: "PowerShell syntax failure before any commands/files; corrected structured payload, no pipeline coverage claimed"
+  dependency_setup: "pnpm install --frozen-lockfile native0; pnpm10.24.0 Node22.23.2; tracked packages and lock unchanged"
+  atdd: "{\"outcome\": \"done\", \"definitions\": 124, \"unit_definitions\": 49, \"rls_definitions\": 28, \"browser_definitions\": 47, \"runtime_executed\": 0, \"unit_collection_native\": 0, \"vitest_collection_native\": 0, \"playwright_collection_native\": 0, \"typecheck_native\": 0, \"lint_native\": 0, \"checklist\": \"C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-3-atdd-2026-10-13/atdd-checklist-20-3-entity-panel-links-and-contextual-navigation.md\", \"proof\": \"C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-3-atdd-2026-10-13/verification-proof.json\"}"
+  resource_id: d93791d8-891f-435f-bbce-b64e5fda99cb
+  runtime_preparation: "{\"owned\": true, \"state\": \"active\", \"lastEvidence\": \"registered-start-verified\", \"auth_health\": 200, \"postgres_tcp\": true, \"migrations_ready\": true, \"history\": 101, \"last_version\": \"20261009091121\", \"idle_transactions\": 0, \"seed_values\": 3, \"fixture_tables\": 5, \"fixture_triggers\": 11, \"preparation_native\": 0, \"readiness_native\": 0}"
+  runtime_preparation_receipts: ["C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-3-runtime-2026-10-13/db-preparation-readiness.json", "C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-3-runtime-2026-10-13/db-preparation-final-integrity.json"]
+  migration_fingerprints: "{\"raw\": \"9276170a05fbea2ef287f009305c98cdbfa5b1ca8bec3ef56f887673bf459ce1\", \"normalized_sha256\": \"5a04dfac67fcf788c7240ef332330eb26692bf4166a28d7313e64bfec66d602b\", \"git_blob\": \"6d312852e1906e9694e2c93d38a5d51d5562abe7\", \"unchanged_all101\": true}"
+  setup_initial_failures: "Preserved stale supplied fingerprint precondition native1 and initial incorrect RPC-probe parameter native1; corrected preparation/readiness native0; no task coverage credited"
+  linux_runtime_integrity: "Retained official Node archive and3 pinned native packages/14 files revalidated against this checkout lock; no download or dependency mutation"
+  active_resources: [d93791d8-891f-435f-bbce-b64e5fda99cb, 8f323f63-3be7-42c6-a44f-310d06134a1c, c670ac58-b8bd-497d-b142-96aeff8d6b25]
+  resource_stop_receipts: ["C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-3-runtime-2026-10-13/production-server-initial-stop.json", "C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-3-runtime-2026-10-13/production-server-restart1-stop.json", "C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-3-runtime-2026-10-13/production-server-restart2-stop.json"]
+  phase5: "HALT done; complete six-layer SolHigh round1; two medium patches; actual17native0; fullunits2508/contextunit53/contextRLS28/browser53+117 all0fail0skip. Runtime receipts precede final clean-SHA checks. UTF8 patch/proof failures retained and corrected; same-round intent layer repaired; narrow author trail20refs0errors/PASS."
+  phase5_proof: "C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-3-build-2026-10-13/review1-patch-verification/required17-manifest.json"
+  phase5_author_terminal_sha: 26f6eac5351efb5ad48a4408a84e1a7fd0d68758
+  automate: "{\"outcome\":\"done\",\"new_tests\":0,\"gaps\":0,\"repo_edits\":0,\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"nested_leaves\":2,\"unit\":53,\"rls\":28,\"browser\":53,\"native\":[0,0,0],\"failed\":0,\"skipped\":0,\"commit\":\"fa00fc8d00c4aa142f07e271a85e317b0340a99d\",\"artifact\":\"C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-3-automate-2026-10-13/automation-summary.md\",\"proof\":\"C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-3-automate-2026-10-13/validation3-manifest.json\",\"workflow_proof\":\"C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-3-automate-2026-10-13/workflow-completion-proof.json\",\"source\":\"canonical delegate six-field result\",\"limitation\":\"Synthetic local production evidence only; no inherited/final17 rerun credited\"}"
+  automate_preparation_failures: "Two external helper native1 attempts before tests/DB execution retained and corrected; actual3suite native0. No new tests/source/spec edits."
+  configured_full_rosters_completed: 2
+  final_independent_acceptance_reserved_slot: 3
+  final_verification_pending: true
+  final_verification_artifacts: "C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-3-final-candidate-2026-10-13"
+  phase7: "{\"outcome\":\"done\",\"patch\":0,\"reject\":3,\"bad_spec\":0,\"defer\":0,\"followup_review_recommended\":false,\"completed_broad_rounds\":2,\"roster_layers\":6,\"author_trail_refs\":20,\"author_trail_native\":0,\"narrow_trail\":\"PASS\",\"source_unchanged\":true,\"canonical_source\":\"six-field delegate result\"}"
+  phase7_reader_correction: "Decorated heading was not recognized; one-line authored metadata repair makes current helper triage0/0/0/0/3, done/false. Historical round1 preserved; no new broad review."
+  author_trail: "Original author reconciled exactly one section;20refs/0errors/native0; independent narrow PASS; no reviewer authorship substitution."
+  final_convergence: "Not selected: completed follow-up patch0/bad_spec0/recommendationfalse and no conflict."
+  story_trace_advisory: "Not selected:3story epic below6 threshold; aggregate closure coordinator-owned."
+  deferred_harvest: "Deferred0; global ledger untouched under worker adapter."
+  resource_count_as_of: "Worker pipeline completion before final verification; later admissions/stops recorded in external handoff."
+  final_acceptance_scope: "Distinct read-only SolHigh source approval on full final commit, using remaining third broad-review slot. Fresh all17 on same commit, no tracked writes after freeze. No worker Phase8/9 or aggregate completion."
+constraints: []
+parallel_run_id: documents-e20-readiness-2026-10-09

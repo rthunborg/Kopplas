@@ -7,8 +7,8 @@ export const DOCUMENT_FILTER_SOURCES = {
   calculation: { module: "calculations", purposes: ["calculation_attachment"] }, quote_version: { module: "quotes", purposes: ["quote_attachment_snapshot", "quote_pdf"] },
   quote_acceptance: { module: "quotes", purposes: ["acceptance_evidence"] }, job: { module: "jobs", purposes: ["job_evidence"] },
 } as const;
-export interface DocumentFilters { readonly q?: string; readonly module?: string; readonly ownerType?: string; readonly purpose?: string; readonly from?: string; readonly to?: string; readonly mode: "active" | "archived"; readonly cursor?: string; }
-const keys = ["q", "module", "ownerType", "purpose", "from", "to", "mode", "cursor"] as const;
+export interface DocumentFilters { readonly q?: string; readonly module?: string; readonly ownerType?: string; readonly ownerId?: string; readonly purpose?: string; readonly from?: string; readonly to?: string; readonly mode: "active" | "archived"; readonly cursor?: string; }
+const keys = ["q", "module", "ownerType", "ownerId", "purpose", "from", "to", "mode", "cursor"] as const;
 export function parseDocumentFilters(params: URLSearchParams): Result<DocumentFilters, "VALIDATION_FAILED"> {
   const invalid = (): Result<never, "VALIDATION_FAILED"> => ({ ok: false, code: "VALIDATION_FAILED", message: "Kontrollera dokumentfiltren." });
   for (const key of params.keys()) if (!(keys as readonly string[]).includes(key) || params.getAll(key).length !== 1) return invalid();
@@ -16,25 +16,27 @@ export function parseDocumentFilters(params: URLSearchParams): Result<DocumentFi
   const mode = input.mode ?? "active"; if (mode !== "active" && mode !== "archived") return invalid();
   if ((input.q?.length ?? 0) > 1024 || (input.cursor?.length ?? 0) > 1024 || !documentDateBounds(input).ok) return invalid();
   const entries = Object.entries(DOCUMENT_FILTER_SOURCES);
+  // ownerType alone is still a global filter; ownerId requires the entire context tuple.
+  if (params.has("ownerId") && (!input.ownerId || !input.ownerType || !input.module || !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(input.ownerId))) return invalid();
   if ((input.module && !entries.some(([, e]) => e.module === input.module)) ||
     (input.ownerType && !Object.hasOwn(DOCUMENT_FILTER_SOURCES, input.ownerType)) ||
     (input.purpose && !entries.some(([, e]) => (e.purposes as readonly string[]).includes(input.purpose!)))) return invalid();
   if (!entries.some(([type, e]) => (!input.module || e.module === input.module) && (!input.ownerType || type === input.ownerType) && (!input.purpose || (e.purposes as readonly string[]).includes(input.purpose)))) return invalid();
-  return { ok: true, data: { q: input.q ?? "", module: input.module, ownerType: input.ownerType, purpose: input.purpose, from: input.from, to: input.to, mode, cursor: input.cursor } };
+  return { ok: true, data: { q: input.q ?? "", module: input.module, ownerType: input.ownerType, ...(input.ownerId ? { ownerId: input.ownerId.toLowerCase() } : {}), purpose: input.purpose, from: input.from, to: input.to, mode, cursor: input.cursor } };
 }
 export function documentFilterIdentity(filters: DocumentFilters): string {
-  return JSON.stringify([filters.q?.trim().toLowerCase() ?? "", filters.module ?? "", filters.ownerType ?? "", filters.purpose ?? "", filters.from ?? "", filters.to ?? "", filters.mode ?? "active"]);
+  return JSON.stringify([filters.q?.trim().toLowerCase() ?? "", filters.module ?? "", filters.ownerType ?? "", filters.ownerId?.toLowerCase() ?? "", filters.purpose ?? "", filters.from ?? "", filters.to ?? "", filters.mode ?? "active"]);
 }
 export function documentFilterParams(filters: DocumentFilters): URLSearchParams {
   const result = new URLSearchParams(); for (const key of keys) { const value = filters[key]; if (value) result.set(key, value.trim()); } return result;
 }
-interface FilterRow { readonly displayName?: string; readonly mimeType?: string | null; readonly module?: string; readonly ownerType?: string; readonly purpose?: string; readonly createdAt?: string; readonly lifecycleState?: string; readonly archived?: boolean; }
+interface FilterRow { readonly displayName?: string; readonly mimeType?: string | null; readonly module?: string; readonly ownerType?: string; readonly ownerId?: string; readonly purpose?: string; readonly createdAt?: string; readonly lifecycleState?: string; readonly archived?: boolean; }
 /** Only already-authorized display metadata is searched, never owner labels or bytes. */
 export function filterDocumentRows<T extends FilterRow>(rows: readonly T[], filters: DocumentFilters): T[] {
   const bounds = documentDateBounds(filters); if (!bounds.ok) return [];
   const q = filters.q?.trim().toLowerCase() ?? "";
   return rows.filter(r => (!q || r.displayName?.toLowerCase().includes(q) || r.mimeType?.toLowerCase().includes(q)) &&
-    (!filters.module || filters.module === r.module) && (!filters.ownerType || filters.ownerType === r.ownerType) && (!filters.purpose || filters.purpose === r.purpose) &&
+    (!filters.module || filters.module === r.module) && (!filters.ownerType || filters.ownerType === r.ownerType) && (!filters.ownerId || filters.ownerId === r.ownerId) && (!filters.purpose || filters.purpose === r.purpose) &&
     (!bounds.data.fromUtc || !!r.createdAt && Date.parse(r.createdAt) >= Date.parse(bounds.data.fromUtc)) &&
     (!bounds.data.toUtc || !!r.createdAt && Date.parse(r.createdAt) < Date.parse(bounds.data.toUtc)) &&
     (r.lifecycleState === undefined || (filters.mode === "archived" ? r.archived === true || r.lifecycleState === "archived" : r.archived !== true && r.lifecycleState !== "archived")));

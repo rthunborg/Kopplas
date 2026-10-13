@@ -6,6 +6,7 @@ import { ownerCategoryLabel, OWNER_CATEGORY_ORDER } from "@/features/files/file-
 import { DOCUMENT_PREVIEW_INITIAL, documentPreviewReducer, documentFilterIdentity, documentFilterParams, type DocumentFilters as Filters } from "@/features/documents/filters";
 import { createDocumentSignedAccessAction } from "@/features/documents/actions";
 import type { DocumentRow, DocumentFacets } from "@/server/read-models/documents";
+import type { DocumentContextResult } from "@/server/read-models/document-context";
 import { DocumentPreviewPane } from "./DocumentPreviewPane";
 import { DocumentLifecycleActions } from "./DocumentLifecycleActions";
 import { Dialog } from "@/components/crm/Dialog";
@@ -15,7 +16,7 @@ const control = "min-w-0 rounded-md border border-zinc-300 bg-white px-2 py-2 te
 export function DocumentFilters({ filters, facets, showCounts = true, onChange }: { readonly filters: Filters; readonly facets: DocumentFacets; readonly showCounts?: boolean; readonly onChange: (patch: Partial<Filters>) => void }) {
   return <div className="grid grid-cols-2 gap-2 lg:grid-cols-6">
     <label className="col-span-2 flex min-w-0 flex-col gap-1 text-sm lg:col-span-1">Sök dokument<input data-testid="file-index-search" type="search" value={filters.q ?? ""} onChange={e => onChange({ q: e.target.value })} className={control} /></label>
-    {(["module", "ownerType", "purpose"] as const).map(facet => <label key={facet} className="flex min-w-0 flex-col gap-1 text-sm">{facet === "module" ? "Modul" : facet === "ownerType" ? "Typ" : "Syfte"}<select aria-label={facet === "module" ? "Modul" : facet === "ownerType" ? "Typ" : "Syfte"} data-testid={facet === "ownerType" ? "file-index-category-filter" : undefined} value={filters[facet] ?? ""} onChange={e => onChange({ [facet]: e.target.value || undefined })} className={control}>
+    {(["module", "ownerType", "purpose"] as const).map(facet => <label key={facet} className="flex min-w-0 flex-col gap-1 text-sm">{facet === "module" ? "Modul" : facet === "ownerType" ? "Typ" : "Syfte"}<select disabled={!!filters.ownerId && facet !== "purpose"} aria-label={facet === "module" ? "Modul" : facet === "ownerType" ? "Typ" : "Syfte"} data-testid={facet === "ownerType" ? "file-index-category-filter" : undefined} value={filters[facet] ?? ""} onChange={e => onChange({ [facet]: e.target.value || undefined })} className={control}>
       <option value="">{facet === "ownerType" ? "Alla kategorier" : "Alla"}</option>{(facet === "ownerType" ? [...facets[facet]].sort((a, b) => OWNER_CATEGORY_ORDER.indexOf(a.value) - OWNER_CATEGORY_ORDER.indexOf(b.value)) : facets[facet]).map(({ value, count }) => <option key={value} value={value}>{facet === "module" ? moduleLabels[value] : facet === "ownerType" ? ownerCategoryLabel(value) : purposeLabels[value]}{showCounts && facet !== "ownerType" ? ` (${count})` : ""}</option>)}
     </select></label>)}
     <label className="flex min-w-0 flex-col gap-1 text-sm">Från<input type="date" value={filters.from ?? ""} onChange={e => onChange({ from: e.target.value || undefined })} className={control} /></label>
@@ -27,8 +28,11 @@ type LifecycleAction = (input: { link_id: string; file_id: string }) => Promise<
 type PendingOperation = { row: DocumentRow; operation: "archive" | "restore"; action: LifecycleAction; phase: "uncertain" | "refreshing"; readRows?: readonly DocumentRow[] };
 interface Props { readonly authorityIdentity: string; readonly actions: readonly { linkId: string; archiveDocumentAction: LifecycleAction; restoreDocumentAction: LifecycleAction }[]; readonly rows: readonly DocumentRow[]; readonly undoRows: readonly DocumentRow[]; readonly initialFilters: Filters; readonly facets: DocumentFacets; readonly total: number; readonly nextCursor: string | null; readonly loadError: string | null; readonly uploadOwnerOptions: UploadOwnerOptions; readonly uploadOptionsLoadError: boolean; }
 /** Server projection owns rows/counts; only transient drafts, selection and feedback live here. */
-export function DocumentsWorkspace({ authorityIdentity, actions, rows, undoRows, initialFilters, facets, total, nextCursor, loadError, uploadOwnerOptions, uploadOptionsLoadError }: Props) {
+export function DocumentsWorkspace({ authorityIdentity, documentContext, actions, rows, undoRows, initialFilters, facets, total, nextCursor, loadError, uploadOwnerOptions, uploadOptionsLoadError }: Props & { readonly documentContext?: DocumentContextResult | null }) {
   const router = useRouter();
+  const contextModule = documentContext?.state === "available" ? documentContext.data.ref.module : undefined;
+  const contextOwnerType = documentContext?.state === "available" ? documentContext.data.ref.ownerType : undefined;
+  const contextOwnerId = documentContext?.state === "available" ? documentContext.data.ref.ownerId : undefined;
   const [filters, setFilters] = useState(initialFilters);
   const serverBinding = documentFilterIdentity(initialFilters), draftBinding = documentFilterIdentity(filters);
   const observed = useRef(serverBinding), pendingBindings = useRef<string[]>([]);
@@ -46,6 +50,11 @@ export function DocumentsWorkspace({ authorityIdentity, actions, rows, undoRows,
   const [retryConfirmation, setRetryConfirmation] = useState<PendingOperation | null>(null);
   const [lifecycle, setLifecycle] = useState<{ status: "idle" | "pending" | "success" | "error"; message?: string; binding?: string }>({ status: "idle" });
   const resetPreview = useCallback(() => { sequence.current++; dispatch({ type: "clear" }); setSelectedRow(null); }, []);
+  useEffect(() => {
+    const restored = (event: PageTransitionEvent) => { if (event.persisted) resetPreview(); };
+    window.addEventListener("pageshow", restored);
+    return () => window.removeEventListener("pageshow", restored);
+  }, [resetPreview]);
   useEffect(() => {
     if (observed.current === serverBinding) return;
     observed.current = serverBinding;
@@ -71,11 +80,12 @@ export function DocumentsWorkspace({ authorityIdentity, actions, rows, undoRows,
   }, [preview.expiresAt, preview.signedUrl]);
   const changeFilters = (patch: Partial<Filters>) => { resetPreview(); if (!activeMutation.current) setConfirmation(null); setFilters(current => ({ ...current, ...patch, cursor: undefined })); };
   const uploadSuccess = useCallback(() => {
-    const reset: Filters = { q: "", mode: "active" };
+    const reset: Filters = { q: "", mode: "active", ...(contextOwnerId ? { module: contextModule, ownerType: contextOwnerType, ownerId: contextOwnerId } : {}) };
     const binding = documentFilterIdentity(reset); pendingBindings.current = observed.current === binding ? [] : [binding];
     if (!activeMutation.current) setRetryConfirmation(null);
-    setFilters(reset); resetPreview(); if (window.location.search) router.replace("/files", { scroll: false }); else router.refresh();
-  }, [router, resetPreview, setRetryConfirmation]);
+    setFilters(reset); resetPreview(); const params = documentFilterParams(reset); const href = contextOwnerId ? `/files?${params}` : "/files";
+    if (`${window.location.pathname}${window.location.search}` !== href) router.replace(href, { scroll: false }); else router.refresh();
+  }, [router, resetPreview, setRetryConfirmation, contextModule, contextOwnerType, contextOwnerId]);
   async function open(row: DocumentRow, button?: HTMLButtonElement) {
     if (draftBinding !== serverBinding || initialFilters.mode !== "active" || row.archived) return;
     if (button) focusedRow.current = button;
@@ -150,8 +160,9 @@ export function DocumentsWorkspace({ authorityIdentity, actions, rows, undoRows,
   const nextParams = documentFilterParams({ ...initialFilters, cursor: nextCursor ?? undefined });
   return <section data-testid="file-index" aria-labelledby="documents-heading" className="flex max-h-[calc(100dvh-12rem)] flex-col [&>*]:shrink-0 gap-3 overflow-y-auto p-3 md:p-6 lg:max-h-none lg:overflow-visible">
     <div inert={modalOpen} className="flex flex-col gap-3 [&>*]:shrink-0">
-    <div className="sticky top-0 z-10 [&:has([aria-expanded=true])]:static flex flex-wrap items-center justify-between gap-2 bg-white py-2"><h1 id="documents-heading" className="text-2xl font-semibold text-zinc-900">Dokument</h1><FileIndexUpload ownerOptions={uploadOwnerOptions} optionsLoadError={uploadOptionsLoadError} onUploadSuccess={uploadSuccess} /></div>
-    {loadError ? <p role="alert" data-testid="file-index-error" className="text-red-800">{loadError} <button type="button" onClick={retryRead} className="underline">Försök igen</button></p> : <>
+    <div className="sticky top-0 z-10 [&:has([aria-expanded=true])]:static flex flex-wrap items-center justify-between gap-2 bg-white py-2"><h1 id="documents-heading" className="text-2xl font-semibold text-zinc-900">Dokument</h1>{!initialFilters.ownerId || documentContext?.state === "available" ? <FileIndexUpload ownerOptions={uploadOwnerOptions} optionsLoadError={uploadOptionsLoadError} onUploadSuccess={uploadSuccess} /> : null}</div>
+    {documentContext?.state === "available" ? <div className="flex min-w-0 flex-col gap-2"><h2 data-testid="documents-context-heading" className="break-words text-lg font-semibold">{documentContext.data.ownerLabel}</h2><a data-testid="documents-context-return" href={documentContext.data.contextReturnHref} className="rounded text-sm text-blue-700 underline focus-visible:ring-2 focus-visible:ring-blue-600">Tillbaka till posten</a></div> : null}
+    {loadError ? <div data-testid="file-index-error"><p role="alert" className="text-red-800">{loadError}</p>{(!initialFilters.ownerId || loadError.includes("Försök igen")) ? <button type="button" onClick={retryRead} className={control}>Försök igen</button> : null}{initialFilters.ownerId ? <a href="/files" data-testid="documents-context-root" className="block text-blue-700 underline">Visa alla tillgängliga dokument</a> : null}</div> : <>
       <DocumentFilters filters={filters} facets={facets} showCounts={draftBinding === serverBinding} onChange={changeFilters} />
       {draftBinding !== serverBinding ? <p role="status" data-testid="documents-projection-loading">Läser in dokument…</p> : null}
       <div hidden={draftBinding !== serverBinding}>
@@ -173,7 +184,7 @@ export function DocumentsWorkspace({ authorityIdentity, actions, rows, undoRows,
       {undoExpired ? <p role="status" data-testid="documents-undo-expired">Tiden för att ångra har gått ut. Läs in aktuella dokument.</p> : null}
       {undoRow && !lifecycleBlocked ? <button data-testid="documents-archive-undo" type="button" className={control} onClick={() => { setUndoConfirmation(true); setUndoExpired(false); setConfirmationOperation("restore"); setConfirmation(undoRow); }}>Ångra arkivering</button> : null}
       <div className={draftBinding !== serverBinding ? "hidden" : "grid items-start gap-3 lg:grid-cols-2"}>
-        <div className="min-w-0">{rows.length === 0 ? <p data-testid="file-index-empty" className="text-sm text-zinc-600">{total === 0 && draftBinding === documentFilterIdentity({ mode: filters.mode }) ? "Inga tillgängliga dokument." : "Inga dokument matchar filtren."}</p> : <ul className="flex flex-col gap-2">{rows.map(row => <li key={row.linkId} data-testid="file-index-row" className="flex min-w-0 flex-col gap-1 rounded-md border border-zinc-200 p-3">
+        <div className="min-w-0">{rows.length === 0 ? <p data-testid="file-index-empty" className="text-sm text-zinc-600"><span data-testid={documentContext?.state === "available" && !filters.q && !filters.purpose && !filters.from && !filters.to ? "documents-context-empty" : undefined}>{total === 0 && draftBinding === documentFilterIdentity({ mode: filters.mode }) ? "Inga tillgängliga dokument." : documentContext?.state === "available" && !filters.q && !filters.purpose && !filters.from && !filters.to ? "Inga tillgängliga dokument i denna kontext." : "Inga dokument matchar filtren."}</span></p> : <ul className="flex flex-col gap-2">{rows.map(row => <li key={row.linkId} data-testid="file-index-row" className="flex min-w-0 flex-col gap-1 rounded-md border border-zinc-200 p-3">
           <input type="hidden" name="file_id" value={row.fileId} /><input type="hidden" name="link_id" value={row.linkId} /><div className="flex items-start justify-between gap-2"><span className="break-words text-sm font-medium text-zinc-900">{row.displayName}</span><span data-testid="file-index-row-category" className="shrink-0 text-xs text-zinc-600">{ownerCategoryLabel(row.ownerType)}</span></div>
           <p className="text-xs text-zinc-600">{row.mimeType ?? "Okänd typ"} · <span data-testid="file-index-size">{formatDocumentSize(row.sizeBytes)}</span> · {new Date(row.createdAt).toLocaleDateString("sv-SE", { timeZone: "Europe/Stockholm" })}</p><p className="text-sm text-zinc-600">{row.ownerLabel}</p>
           {row.locked ? <p role="note" className="text-xs text-amber-800">Dokumentet är låst som underlag och kan inte ersättas.</p> : null}

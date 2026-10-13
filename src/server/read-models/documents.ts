@@ -9,6 +9,8 @@ import type { FileIndexFilter } from "@/features/files/file-index";
 import { parseDocumentFilters, documentFilterIdentity, filterDocumentRows, type DocumentFilters } from "@/features/documents/filters";
 import { DOCUMENT_SOURCE_REGISTRY, readDocumentSource, type DocumentCandidate, type DocumentSourceData, type DocumentSourceResult } from "./document-sources";
 import { isPermanentStorageDenial } from "@/server/storage/signed-access";
+import { readDocumentContext, type DocumentContextDeps, type DocumentContextResult } from "./document-context";
+import { parseDocumentsContextQuery, isDocumentContextRef, type DocumentContextRef } from "@/features/documents/context-navigation";
 type Client = Awaited<ReturnType<typeof createSupabaseServerClient>>;
 type Anchor = { readonly createdAt: string; readonly id: string };
 export interface DocumentRow extends DocumentSourceData {
@@ -21,8 +23,11 @@ export type DocumentFacets = Record<"module" | "ownerType" | "purpose", { value:
 export type DocumentsReadResult = { readonly ok: true; readonly data: { readonly descriptor: {
   readonly data: { readonly rows: DocumentRow[]; readonly nextCursor: string | null; readonly ownerTypes: readonly string[]; readonly total: number; readonly facets: DocumentFacets };
   readonly entitlements: { readonly withheld: readonly string[] };
+  readonly context?: DocumentContextResult; readonly selectedLinkId?: string | null;
 } } } | { readonly ok: false; readonly code: string; readonly message: string };
 export interface DocumentsDeps {
+  readonly context?: DocumentContextRef; readonly contextQuery?: URLSearchParams; readonly selectedLinkId?: string;
+  readonly loadRow?: DocumentContextDeps["loadRow"];
   readonly client?: object; readonly cursor?: string | null; readonly filter?: FileIndexFilter; readonly filters?: Partial<DocumentFilters>;
   readonly resolveContext?: (options?: { client?: object }) => Promise<{ ok: true; data: { userId: string; tenantId: string; roles: readonly string[]; status?: string } } | { ok: false; code: string; message: string }>;
   readonly readCandidates?: (options: { client: object; tenantId: string; after: Anchor | null; limit: number }) => Promise<{ rows: DocumentCandidate[]; exhausted: boolean }>;
@@ -69,8 +74,18 @@ export async function readDocuments(deps: DocumentsDeps = {}): Promise<Documents
     const raw = deps.filters ?? { q: deps.filter?.search, ownerType: deps.filter?.ownerCategory };
     const params = new URLSearchParams();
     for (const [name, value] of Object.entries(raw)) { if (value !== undefined && value !== null) { if (typeof value !== "string") return unavailable("VALIDATION_FAILED"); params.set(name, value); } }
+    if (deps.contextQuery) { const checked = parseDocumentsContextQuery(deps.contextQuery); if (!checked.ok) return unavailable(checked.code); params.delete("ownerId"); for (const [name, value] of deps.contextQuery) params.set(name, value); }
+    if (deps.context) {
+      if (!isDocumentContextRef(deps.context)) return unavailable("VALIDATION_FAILED");
+      // A complete raw query must agree with any separately supplied navigation intent.
+      if (deps.contextQuery) { const checked = parseDocumentsContextQuery(deps.contextQuery); if (!checked.ok || !checked.data.context || Object.entries(deps.context).some(([name, value]) => checked.data.context?.[name as keyof DocumentContextRef] !== value)) return unavailable("VALIDATION_FAILED"); }
+      for (const [name, value] of Object.entries(deps.context)) params.set(name, value);
+    }
     const parsed = parseDocumentFilters(params); if (!parsed.ok) return unavailable(parsed.code);
     const filters = parsed.data;
+    const contextRef = filters.ownerId ? { module: filters.module!, ownerType: filters.ownerType!, ownerId: filters.ownerId } as DocumentContextRef : null;
+    const documentContext = contextRef ? await readDocumentContext(contextRef, { client, resolveContext: deps.resolveContext, loadRow: deps.loadRow }) : null;
+    if (documentContext && documentContext.state !== "available") return { ok: false, code: documentContext.state === "error" ? "SERVER_ERROR" : "TENANT_ACCESS_DENIED", message: documentContext.state === "error" ? "Dokumentkontexten kunde inte läsas. Försök igen." : "Dokumentkontexten är inte tillgänglig" };
     if (!Object.entries(DOCUMENT_SOURCE_REGISTRY).some(([type, entry]) => (!filters.module || entry.module === filters.module) && (!filters.ownerType || type === filters.ownerType) && (!filters.purpose || (entry.purposes as readonly string[]).includes(filters.purpose)) && resolveCapability({ roles, module: entry.module, capability: entry.capability }).granted)) return unavailable("VALIDATION_FAILED");
     const key = cursorKey(!!deps.readCandidates), binding = documentFilterIdentity(filters);
     const cursor = deps.cursor ?? filters.cursor;
@@ -130,14 +145,16 @@ export async function readDocuments(deps: DocumentsDeps = {}): Promise<Documents
         purpose: link.purpose, displayName: file.display_name ?? "Bifogad fil", mimeType: file.mime_type ?? null, sizeBytes: file.size_bytes ?? null, createdAt: link.created_at!, lifecycleState: file.lifecycle_state, locked: link.is_locked === true || file.lifecycle_state === "locked",
         ...(deps.filters ? { archived, canArchive: false, canRestore: false } : {}) });
     }
-    const matched = filterDocumentRows(projected, filters);
+    // File-wide eligibility above intentionally sees every persisted context before narrowing.
+    const contextual = contextRef ? projected.filter(row => row.module === contextRef.module && row.ownerType === contextRef.ownerType && row.ownerId === contextRef.ownerId) : projected;
+    const matched = filterDocumentRows(contextual, filters);
     let start = 0;
     if (anchor) { const index = matched.findIndex(r => r.linkId === anchor.id && r.createdAt === anchor.createdAt); if (index < 0) return unavailable(); start = index + 1; }
     const rows = matched.slice(start, start + PAGE_SIZE), hasMore = start + rows.length < matched.length;
     const facets = {} as DocumentFacets;
     for (const facet of ["module", "ownerType", "purpose"] as const) {
       const counts = new Map<string, number>();
-      for (const row of filterDocumentRows(projected, { ...filters, [facet]: undefined })) counts.set(row[facet], (counts.get(row[facet]) ?? 0) + 1);
+      for (const row of filterDocumentRows(contextual, { ...filters, [facet]: undefined })) counts.set(row[facet], (counts.get(row[facet]) ?? 0) + 1);
       const selected = filters[facet]; if (selected && !counts.has(selected)) counts.set(selected, 0);
       facets[facet] = [...counts].sort(([a], [b]) => a.localeCompare(b)).map(([value, count]) => ({ value, count }));
     }
@@ -150,6 +167,7 @@ export async function readDocuments(deps: DocumentsDeps = {}): Promise<Documents
     }
     const last = rows.at(-1);
     return { ok: true, data: { descriptor: { data: { rows, nextCursor: hasMore && last ? encodeCursor({ id: last.linkId, createdAt: last.createdAt }, tenantId, userId, key, binding) : null,
-      ownerTypes: [...new Set(projected.map(r => r.ownerType))], total: matched.length, facets }, entitlements: { withheld: [] } } } };
+      ownerTypes: [...new Set(contextual.map(r => r.ownerType))], total: matched.length, facets }, entitlements: { withheld: [] },
+      ...(documentContext ? { context: documentContext, selectedLinkId: deps.selectedLinkId && rows.some(row => row.linkId === deps.selectedLinkId) ? deps.selectedLinkId : null } : {}) } } };
   } catch { return unavailable(); }
 }
