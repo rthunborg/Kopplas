@@ -73,8 +73,9 @@ export function DocumentsWorkspace({ authorityIdentity, actions, rows, undoRows,
   const uploadSuccess = useCallback(() => {
     const reset: Filters = { q: "", mode: "active" };
     const binding = documentFilterIdentity(reset); pendingBindings.current = observed.current === binding ? [] : [binding];
+    if (!activeMutation.current) setRetryConfirmation(null);
     setFilters(reset); resetPreview(); if (window.location.search) router.replace("/files", { scroll: false }); else router.refresh();
-  }, [router, resetPreview]);
+  }, [router, resetPreview, setRetryConfirmation]);
   async function open(row: DocumentRow, button?: HTMLButtonElement) {
     if (draftBinding !== serverBinding || initialFilters.mode !== "active" || row.archived) return;
     if (button) focusedRow.current = button;
@@ -133,7 +134,10 @@ export function DocumentsWorkspace({ authorityIdentity, actions, rows, undoRows,
   };
   const unresolvedRead = retainedOperations.some(operation => !currentReadCompleted(operation));
   const lifecycleBlocked = lifecycle.status === "pending" || unresolvedRead || draftBinding !== serverBinding;
-  const modalOpen = !!confirmation || !!retryConfirmation;
+  const retryDialogOpen = !!retryConfirmation && (lifecycle.status === "pending" || mayRetry(retryConfirmation));
+  const modalOpen = !!confirmation || retryDialogOpen;
+  // Eligibility can change without an action reply. Drop only a closed, nonbusy confirmation, never its retained callable.
+  if (retryConfirmation && !retryDialogOpen) setRetryConfirmation(null);
   const undoRow = recentArchive ? undoRows.find(row => row.fileId === recentArchive.row.fileId && row.linkId === recentArchive.row.linkId && row.canRestore) : undefined;
   useEffect(() => {
     if (!recentArchive) return;
@@ -179,7 +183,7 @@ export function DocumentsWorkspace({ authorityIdentity, actions, rows, undoRows,
       </div>
     </>}
     </div>
-    <Dialog open={!!retryConfirmation && (lifecycle.status === "pending" || mayRetry(retryConfirmation))} title="Bekräfta tidigare åtgärd" busy={lifecycle.status === "pending"} onClose={() => setRetryConfirmation(null)}>
+    <Dialog open={retryDialogOpen} title="Bekräfta tidigare åtgärd" busy={lifecycle.status === "pending"} onClose={() => setRetryConfirmation(null)}>
       <p className="my-3">{retryConfirmation?.operation === "archive" ? "Filen arkiveras för alla sina kopplingar" : "Återställ filen enligt aktuellt tillstånd"}</p>
       <button type="button" disabled={lifecycle.status === "pending"} onClick={() => { if (retryConfirmation) void mutate(retryConfirmation.row, retryConfirmation.operation, retryConfirmation, true); }} className={control}>{retryConfirmation?.operation === "archive" ? "Arkivera" : "Återställ"}</button>
       <button type="button" disabled={lifecycle.status === "pending"} onClick={() => setRetryConfirmation(null)} className={control}>Avbryt</button>

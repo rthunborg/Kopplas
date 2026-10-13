@@ -33,9 +33,14 @@ function DocumentMedia({ url, name, pdf, onRetry }: { url: string; name: string;
         const contentType = response.headers.get("content-type")?.split(";")[0].trim().toLowerCase();
         if (!response.ok || (contentType && !["application/pdf", "application/octet-stream"].includes(contentType))) throw new Error("PDF unavailable");
         // Authorized projected PDF metadata also covers legacy opaque Storage MIME.
-        const bytes = await response.blob(); if (!bytes.size) throw new Error("PDF unavailable");
-        const blob = new Blob([bytes], { type: "application/pdf" });
+        const bytes = await response.blob(); if (!bytes.size) throw new Error("PDF unavailable"); if (controller.signal.aborted) return;
+        // Native iframe load events do not expose decoder failures. Validate the actual catalog/page tree first.
+        const { PDFDocument } = await import("pdf-lib");
         if (controller.signal.aborted) return;
+        const document = await PDFDocument.load(await bytes.arrayBuffer(), { throwOnInvalidObject: true, updateMetadata: false });
+        if (document.getPages().length === 0) throw new Error("PDF unavailable");
+        if (controller.signal.aborted) return;
+        const blob = new Blob([bytes], { type: "application/pdf" });
         objectUrl = URL.createObjectURL(blob); setMedia({ status: "ready", objectUrl });
       } catch { if (!controller.signal.aborted) setMedia({ status: "error" }); }
     })();

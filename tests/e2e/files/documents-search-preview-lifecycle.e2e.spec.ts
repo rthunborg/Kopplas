@@ -775,5 +775,83 @@ for (const viewport of [{ name: "desktop", width: 1280, height: 800 }, { name: "
         await page.reload(); await expect(row(page, name)).toHaveCount(1); await page.goto(`/customers/${seed.ownerId}`); await expect(page.getByTestId("file-panel-existing-list")).toContainText(name);
       });
     });
+    test("[P0][AC3,7,8] gated upload completion invalidates retry dialog without inert workspace or lost original callable", ERROR_RED, async ({ page }) => {
+      await withSeed(async seed => {
+        const marker = "20.2-upload-retry-" + crypto.randomUUID();
+        const target = await seedFile(seed, marker + "-target.png", "image/png");
+        await adminQuery("update public.files set lifecycle_state='archived',archived_at=now() where id=$1", [target.fileId]);
+        await open(page, { q: target.name, mode: "archived" });
+        const requests: Request[] = []; page.on("request", request => { if (isAction(request)) requests.push(request); });
+        const restore = row(page, target.name).getByRole("button", { name: "Återställ", exact: true }); await hydrated(restore);
+        const loss = await gateAction(page, "after-loss");
+        try {
+          await restore.click(); await loss.started; loss.release();
+          await expect(page.getByTestId("documents-lifecycle-error")).toBeVisible();
+        } finally { await loss.dispose(); }
+        expect((await state(target.fileId)).lifecycle_state).toBe("linked"); expect(await audits(target.fileId)).toHaveLength(1);
+        await adminQuery("update public.files set lifecycle_state='archived',archived_at=now() where id=$1", [target.fileId]);
+        await page.getByTestId("documents-lifecycle-error").getByRole("button", { name: "Försök igen", exact: true }).click();
+        const retry = page.getByRole("button", { name: "Bekräfta tidigare åtgärd", exact: true }); await expect(retry).toBeVisible();
+        await page.getByTestId("upload-file-button").click();
+        const form = page.getByTestId("file-index-upload-form");
+        await form.getByTestId("file-index-upload-owner-type").selectOption("customer");
+        await form.getByTestId("file-index-upload-owner").selectOption(seed.ownerId);
+        const name = marker + "-uploaded.png";
+        await form.getByLabel("Välj en fil att ladda upp", { exact: true }).setInputFiles({ name, mimeType: "image/png", buffer: PNG });
+        const upload = await gateAction(page, "after");
+        try {
+          const uploaded = actionResponse(page); await form.getByRole("button", { name: "Ladda upp fil", exact: true }).click(); await upload.started;
+          const [persisted] = await adminQuery<{ id: string; object_path: string }>("select id,object_path from public.files where tenant_id=$1 and display_name=$2", [seed.base.tenantA.id, name]);
+          expect(persisted).toBeDefined(); seed.files.push({ fileId: persisted.id, objectPath: persisted.object_path, linkId: "", name, body: PNG });
+          await retry.click(); await expect(page.getByRole("dialog", { name: "Bekräfta tidigare åtgärd" })).toBeVisible();
+          await expect(page.getByTestId("file-index").locator("[inert]")).toHaveCount(1); expect(requests).toHaveLength(2);
+          upload.release(); expect((await uploaded).ok()).toBe(true);
+          await expect(form.getByRole("status")).toContainText("Filen laddades upp");
+          await expect(page.getByRole("dialog")).toHaveCount(0); await expect(page.getByTestId("file-index").locator("[inert]")).toHaveCount(0);
+          await expect(page.getByRole("button", { name: "Aktiva", exact: true })).toHaveAttribute("aria-pressed", "true");
+          // Normal pointer and keyboard controls remain operable after the real upload's filter reset.
+          const search = page.getByLabel("Sök dokument", { exact: true }); await search.fill(name); await expect(row(page, name)).toBeVisible();
+          await expect(page.getByTestId("documents-operation-uncertain")).toContainText("inte tillgänglig i detta tillstånd"); expect(requests).toHaveLength(2);
+        } finally { await upload.dispose(); }
+        await page.getByLabel("Sök dokument", { exact: true }).fill(target.name);
+        await page.getByRole("button", { name: "Arkiverade", exact: true }).click(); await expect(row(page, target.name)).toBeVisible();
+        await expect(retry).toBeVisible(); await retry.click(); const dialog = page.getByRole("dialog", { name: "Bekräfta tidigare åtgärd" });
+        await expect(dialog).toBeVisible(); expect(requests).toHaveLength(2);
+        const replay = actionResponse(page); await dialog.getByRole("button", { name: "Återställ", exact: true }).click(); expect((await replay).ok()).toBe(true);
+        await expect(page.getByTestId("documents-lifecycle-error")).toContainText("redan hanterats");
+        expect(requests).toHaveLength(3); expect(actionIdentity(requests[2])).toEqual(actionIdentity(requests[0]));
+        expect((await state(target.fileId)).lifecycle_state).toBe("archived"); expect(await audits(target.fileId)).toHaveLength(1);
+      });
+    });
+    test("[P1][AC2,8] nonempty corrupt ordinary PDF upload reports preview error while real download and explicit retry remain available", RED, async ({ page }) => {
+      await withSeed(async seed => {
+        const name = "20.2-corrupt-pdf-" + crypto.randomUUID() + ".pdf";
+        // A real uploaded PDF declaration with a nonempty catalog referencing a missing page tree.
+        const body = Buffer.from("%PDF-1.7\n1 0 obj\n<< /Type /Catalog /Pages 99 0 R >>\nendobj\ntrailer\n<< /Root 1 0 R >>\n%%EOF");
+        await open(page); await page.getByTestId("upload-file-button").click();
+        const form = page.getByTestId("file-index-upload-form");
+        await form.getByTestId("file-index-upload-owner-type").selectOption("customer");
+        await form.getByTestId("file-index-upload-owner").selectOption(seed.ownerId);
+        await form.getByLabel("Välj en fil att ladda upp", { exact: true }).setInputFiles({ name, mimeType: "application/pdf", buffer: body });
+        const uploaded = actionResponse(page); await form.getByRole("button", { name: "Ladda upp fil", exact: true }).click(); expect((await uploaded).ok()).toBe(true);
+        const [persisted] = await adminQuery<{ id: string; object_path: string }>("select id,object_path from public.files where tenant_id=$1 and display_name=$2", [seed.base.tenantA.id, name]);
+        expect(persisted).toBeDefined(); seed.files.push({ fileId: persisted.id, objectPath: persisted.object_path, linkId: "", name, body });
+        await expect(form.getByRole("status")).toContainText("Filen laddades upp"); await expect(row(page, name)).toBeVisible();
+        const requests: Request[] = []; page.on("request", request => { if (isAction(request)) requests.push(request); });
+        expect((await select(page, name)).ok()).toBe(true);
+        const error = pane(page).getByTestId("documents-media-error");
+        await expect(error.getByRole("alert")).toContainText("Förhandsvisningen kunde inte läsas in");
+        await expect(pane(page).locator("iframe")).toHaveCount(0); await expect(pane(page).getByTestId("documents-media-loading")).toHaveCount(0);
+        await expect(downloadLink(page)).toBeVisible();
+        const actual = await page.request.get((await downloadLink(page).getAttribute("href"))!);
+        expect(actual.ok()).toBe(true); expect(actual.headers()["content-type"]).toContain("application/pdf"); expect(await actual.body()).toEqual(body);
+        expect(requests).toHaveLength(1);
+        const retried = actionResponse(page); await error.getByRole("button", { name: "Försök igen", exact: true }).click(); expect((await retried).ok()).toBe(true);
+        await expect(error.getByRole("alert")).toBeVisible(); await expect(pane(page).locator("iframe")).toHaveCount(0); await expect(downloadLink(page)).toBeVisible(); expect(requests).toHaveLength(2);
+        const downloaded = await page.request.get((await downloadLink(page).getAttribute("href"))!); expect(downloaded.ok()).toBe(true); expect(await downloaded.body()).toEqual(body);
+        await pane(page).getByTestId("documents-preview-back").press("Enter");
+        await expect(row(page, name).getByRole("button", { name: "Förhandsvisa", exact: true })).toBeFocused();
+      });
+    });
   });
 }
