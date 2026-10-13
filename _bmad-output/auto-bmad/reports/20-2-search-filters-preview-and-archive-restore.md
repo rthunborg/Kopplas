@@ -198,3 +198,35 @@ None
 1. None
 
 **Next:** One capped final-convergence pass, then source-frozen final14 and distinct exact-SHA narrow review
+
+## Report — 2026-10-13T07:28:13Z (worker phases complete - final acceptance pending)
+
+**Story:** `20-2-search-filters-preview-and-archive-restore` (epic 20, story 2) — mid-epic.
+**Spec:** `C:/Users/Rasmus/.codex/worktrees/documents-e20-20-2/Kopplas/_bmad-output/implementation-artifacts/spec-20-2-search-filters-preview-and-archive-restore.md`
+**Branch:** `codex/parallel-documents-e20-readiness-2026-10-09-20-2` (HEAD `436463d`).
+**Pipeline status:** Worker phases 4-7 complete; fresh clean-candidate acceptance and submission pending
+**Continues:** Fresh all14 checks and distinct narrow final approval before supported generation2 submission
+
+**Timing:** started 2026-10-12T14:35:36Z; completed 2026-10-13T07:28:12Z — elapsed 16h 52m (≈4h 38m AI-run, ≈12h 14m human/idle wait); resumed 6×.
+
+**Phases run:** Final convergence Phase7, third and last broad round
+**Skipped:** Worker Phase8/9 and all aggregate writes, Trace advisory not applicable; global deferred ledger remains coordinator-owned
+
+**Overrides:** Standing owner authorization continued; same generation2 assignment/workflow, No fourth broad review: narrow latest-fix and author-trail reconciliation only, Interrupted elapsed time uses conservative recorded-receipt boundary; overnight idle excluded, Original failed restart/data retained; deliberately isolated local test ports55821/55822
+
+**TEA:** Phase4 ATDD and Phase6 automate complete; original106 cases retained; current150 declared story cases, fresh execution pending
+
+**Build:** Author436463da clean four-file final fix commit; authoritative helper done/blockingnull/defer0
+
+**Review:** All six SolHigh Round3 lenses complete; patch2 medium/othercounts0; score6/recommendationtrue recorded, review_unverified true by formula. Both fixes independently resolved with no remaining findings; 20 focused browser passes are historical, not final-SHA proof
+
+**Retrospective:** Coordinator-owned epic gate, not run by worker
+
+**Open questions:** (none)
+
+**Deferred work:**
+No worker global-ledger harvest/archive
+
+**⚠️ Needs human:** (none)
+
+**Next:** Freeze this complete bookkeeping candidate, run fresh all14 and distinct narrow exact-SHA approval, submit generation2, Stop owned resource usages
