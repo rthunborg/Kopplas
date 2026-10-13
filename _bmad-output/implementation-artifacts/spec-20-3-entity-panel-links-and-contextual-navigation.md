@@ -220,20 +220,20 @@ Exactly the owned reader, owned reader unit, owned browser test and this author 
 ## Suggested Review Order
 
 Author: `/root/worker20_3_build/implementation_author` (Sol6.1 High).
-Refreshed against the uncommitted author tree based on `cf8929a75327ecae394f5d752ab41532466b7a2f`, current runtime hash `3f6f7c2260b39c953287bedf9846ac67f1aaf81b931ca2c43c43c125320291f9` and fresh BUILD_ID `8Jb-W6-Ub2QjkrSnfF5Mt`. Current build/units/static/collection passed; earlier all17 passes are pre-patch evidence. Canonical triage and current-candidate runtime/follow-up verification remain root-owned.
+Final author reconciliation against committed implementation `e57bdb01835b67f89b385b89a5b67e30ef22c460`, reviewed baseline `9d64861989dfedb46b901fe1c3710f310199e828`, runtime-tree SHA256 `3f6f7c2260b39c953287bedf9846ac67f1aaf81b931ca2c43c43c125320291f9` and production BUILD_ID `8Jb-W6-Ub2QjkrSnfF5Mt`. Read-only Git comparison confirms source/tests still match that commit; this section is the only uncommitted author reconciliation. Terminal done/no-blocker and canonical triage are preserved.
 
 ### 1. Entity entries retain the shipped panel contracts
 
-AC1/AC5 use adjacent server-rendered anchors so generic upload and locked commitment panels keep their existing APIs. The sent quote wrapper retains early draft/empty returns; new route-casing browser cases exercise real existing calculation/job insertion paths and canonical navigation.
+AC1/AC5 use adjacent server-rendered anchors so generic upload and locked commitment panels retain existing APIs. The sent quote wrapper keeps early draft/empty returns; actual calculation/job route-casing browser journeys verify canonical navigation without adding a version-detail panel.
 
 - `src/components/documents/EntityDocumentsLink.tsx:4` — `EntityDocumentsLink`: renders only the authorized success projection.
 - `tests/e2e/files/documents-context-navigation.e2e.spec.ts:313` — `canonical context entry`: exercises real calculation/job route casing and canonical return.
 - `src/features/files/quote-files-panel.tsx:43` — `EntityDocumentsLink`: preserves the sent-only locked wrapper.
 - `src/features/files/acceptance-panel.tsx:39` — `EntityDocumentsLink`: preserves owner-required acceptance upload.
 
-### 2. URL intent must pass fresh source authority before any collection read
+### 2. URL intent passes fresh source authority before any collection read
 
-AC2 requires the atomic module/type/ID tuple and closed query vocabulary; ownerType alone remains global. The review patch normalizes valid UUID case before lookup/comparison, preserving exact persisted identity, conjunctive capabilities and live ancestry independently of file presence.
+AC2 requires the atomic module/type/ID tuple and closed query vocabulary; ownerType alone remains global. The review fix normalizes valid UUID case before lookup/comparison while preserving exact persisted identity, conjunctive capabilities and live ancestry independently of file presence; unit denial cases and real route journeys verify that distinction.
 
 - `src/features/documents/filters.ts:20` — `params.has("ownerId")`: rejects incomplete or malformed context intent.
 - `src/server/read-models/document-context.ts:22` — `toLowerCase`: canonicalizes validated UUID identity before current source lookup.
@@ -242,7 +242,7 @@ AC2 requires the atomic module/type/ID tuple and closed query vocabulary; ownerT
 
 ### 3. Exact contextual projection follows complete-file lifecycle evaluation
 
-AC3 retains every persisted link in existing source evaluation before narrowing rows/counts/facets/selection. AC4 binds owner ID into cursor/preview identity, derives local return navigation from success and clears restored-history preview; normalization grants no alternate-source access.
+AC3 retains every persisted link in existing source evaluation before narrowing rows/counts/facets/selection. AC4 binds owner ID into cursor/preview identity, derives local return navigation from success and clears restored-history preview; actual same-file/revocation/archive/restore and desktop/360×640 journeys verify the unchanged selected-link/all-link authority.
 
 - `src/server/read-models/documents.ts:140` — `graphEligible`: checks all persisted contexts before narrowing.
 - `src/server/read-models/documents.ts:149` — `contextual`: restricts projection to the exact validated tuple.
@@ -251,25 +251,27 @@ AC3 retains every persisted link in existing source evaluation before narrowing 
 
 ### 4. Confirmed upload retains contextual intent and explicit owner authority
 
-AC5 preserves the shipped global `/files` reset and a validated contextual tuple, with existing command authority revalidating the manually chosen owner. New real-submission tests verify same-owner and different-owner persistence, original heading/return/results, narrowing/cursor/mode reset and selected capability clearing.
+AC5 keeps the shipped picker initially unselected; supported preselection is permitted, so no generic picker API expansion is needed. Confirmed success preserves canonical global `/files` or the original validated contextual tuple; actual matching/different-owner submissions verify exact persisted ownership, original heading/return/results and narrowing/cursor/mode/preview reset, while existing authority continues to deny immutable acceptance append.
 
 - `src/components/documents/DocumentFilters.tsx:86` — `contextOwnerId`: selects contextual serialization or canonical global reset.
 - `tests/e2e/files/documents-context-navigation.e2e.spec.ts:575` — `supported`: submits each supported picker owner and verifies persistence/reset/bytes.
 - `tests/e2e/files/documents-context-navigation.e2e.spec.ts:604` — `explicitly different picker owner`: keeps original context while persisting the explicit chosen owner.
 - `tests/e2e/files/documents-context-navigation.e2e.spec.ts:633` — `real contextual continuation`: confirms persisted upload clears cursor and selected preview.
 
-### 5. Evidence separates current unit boundaries from required runtime journeys
+### 5. Current execution covers the authority and navigation invariants
 
-Current53 units cover AC1/AC2 source authority, UUID canonicalization, forbidden roles/live ancestry and generic failures; AC3 exact projection/cursors/all-link authority; AC4 stale preview and fixed paths. Collected53 browser cases retain prior real source/upload/history coverage and add four route-casing cases plus two upload-completion cases; their changed assertions still require actual root execution.
+Current53 units exercise AC1/AC2 source authority, UUID canonicalization, forbidden roles/live ancestry and generic failures; AC3 exact projection/cursors/all-link authority; AC4 stale preview and fixed paths. Real RLS28 exercises all seven source/role/ancestry boundaries, and actual browser53 exercises every approved insertion route plus denial/revocation, immutable acceptance/original bytes, attested sent PDF, contextual picker persistence and desktop/phone history; AC6 retains the active registry without new owners, panels or activation.
 
 - `tests/unit/server/read-models/document-context.test.ts:114` — `UUID resolves canonical`: checks canonical lookup and unchanged denial of other identity/current role.
 - `tests/unit/server/read-models/document-context.test.ts:219` — `ALL-link`: checks alternate-source evaluation before context filtering.
 - `tests/e2e/files/documents-context-navigation.e2e.spec.ts:702` — `safe return preserves`: checks entity persistence or existing immutable acceptance authority.
-- `tests/e2e/files/documents-context-navigation.e2e.spec.ts:777` — `keyboard entity-center-history-safe return`: specifies desktop/360×640 history/focus behavior.
+- `tests/e2e/files/documents-context-navigation.e2e.spec.ts:777` — `keyboard entity-center-history-safe return`: verifies desktop/360×640 history/focus behavior.
 
-Evidence: fresh build0, current53 units0fail/0skip, post-build nonincremental TypeScript0, scoped lint0 and service-free collection53/native0 are recorded in Review round1 author patch. Previous all17 passes retain their exact pre-patch hashes; suites overlap and are not summed. Canonical triage remains pending independent verification, with broad rounds1; root owns current all17 execution and follow-up.
+Evidence: the actual final root-run `review1-patch-verification/required17-manifest.json` records17/17 native0 gates at the runtime hash above, with every raw log SHA256 independently checked during this reconciliation. Owned context unit command (`node --experimental-strip-types --import ./tests/support/register.mjs --test` on the three owned unit files) passed53; required `pnpm exec vitest run tests/integration/rls/documents-context.rls.test.ts --no-file-parallelism` passed28; `pnpm exec playwright test tests/e2e/files/documents-context-navigation.e2e.spec.ts --reporter=list,json` passed53; full inherited four-file browser command passed117; full units passed2508. Every executed test suite has0failed/0skipped, including selected-link100, filter23, lifecycle51, races38, signing20 and baseline Storage119; suites overlap and are not summed. Fresh production build, post-build typecheck, lint, service-role/bundle containment and lockfile gates passed. Required local DB runs use SUPABASE_TEST_REQUIRED=1/API61421/PG61422; production Chrome155 uses both guarded CDP61423 variables, CIunset and the recorded BUILD_ID. Both browser gates verified own-page cleanup; root recorded final idle transactions0. Full receipts retain exact argv/environment/times and tested worktree facts; no new test/resource run was performed for this author hook.
 
-Limits: unit readers use synthetic injected graph/candidate fixtures and anchor tests use real React static rendering. Current browser53 is collected, not executed; no new runtime pass or addressed-finding claim is made. Existing acceptance append denial and original evidence preservation remain under unchanged authority. No proven historical phone predicate root cause, hosted/demo, external outage, universal device or Lovable parity proof is claimed. OptionA generic/direct Storage authority and issued bearer lifetime remain unchanged.
+Review: canonical triage records all six configured layers completed in broad round1, including actual external provider inspection of the full2264-line frozen diff. Its corrected explicitUTF8 intent layer read the unchanged approved intent and that same diff; malformed evidence is retained. Both medium patches are verified addressed, intent_gap/bad_spec/defer0 and loop0; score6 retains the honest follow-up recommendation. This reconciliation changes only this section; parent owns its narrow independent trail check and separate spec-only documentation commit.
+
+Limits: unit readers use synthetic injected graph/candidate fixtures and anchor tests use real React static rendering. Actual browser/integration evidence is local production plus synthetic tenant fixtures; source inspection and reference validation do not constitute runtime execution. Existing acceptance append denial/original evidence preservation remains under unchanged authority, not fabricated persistence; no proven historical phone predicate root cause, hosted/demo, external outage, universal device or Lovable parity proof is claimed. OptionA generic/direct Storage authority and issued bearer lifetime remain unchanged.
 
 ## Review Triage Log
 
