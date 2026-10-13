@@ -7,21 +7,31 @@
  */
 import { it as test, expect } from "vitest";
 import {
-  createRoleAwarePhaseAFixture, cleanupRoleAwarePhaseAFixture, makeAuthedServerClient, makeAnonServerClient,
+  createTwoTenantFixture, cleanupFixture, createRoleAwarePhaseAFixture, cleanupRoleAwarePhaseAFixture,
+  makeAuthedServerClient, makeAnonServerClient,
   adminInsertCustomer, adminInsertContact, adminInsertFacility, adminInsertCalculation,
   adminInsertFile, adminInsertFileLink, adminUploadStorageObject, adminInsertQuote, adminInsertQuoteVersion,
-  type RoleAwarePhaseAFixture, type TestServerClient, type FileLinkSeed,
+  type TwoTenantFixture, type RoleAwarePhaseAFixture, type TestServerClient, type FileLinkSeed,
 } from "../../factories/tenants";
 import { adminExec, adminQuery } from "../../factories/admin-sql";
 import { isLocalStackReachable, isLocalStorageReachable } from "../../support/test-env";
 type Target = { fileId: string; linkId: string; ownerId: string; path: string };
-async function fixture(run: (fx: RoleAwarePhaseAFixture, client: TestServerClient) => Promise<void>) {
+type DocumentFixture = { readonly base: TwoTenantFixture };
+// Admin-only cases keep fresh tenants/users without creating unused role memberships.
+async function fixture(run: (fx: DocumentFixture, client: TestServerClient) => Promise<void>) {
+  if (!(await isLocalStackReachable()) || !(await isLocalStorageReachable())) throw new Error("Required local DB/Auth/Storage unavailable after activation");
+  const fx: DocumentFixture = { base: await createTwoTenantFixture() };
+  try { await run(fx, await makeAuthedServerClient(fx.base.adminA)); }
+  finally { await cleanupFixture(fx.base); }
+}
+// Role and revocation cases retain the complete real authenticated role fixture.
+async function roleFixture(run: (fx: RoleAwarePhaseAFixture, client: TestServerClient) => Promise<void>) {
   if (!(await isLocalStackReachable()) || !(await isLocalStorageReachable())) throw new Error("Required local DB/Auth/Storage unavailable after activation");
   const fx = await createRoleAwarePhaseAFixture();
   try { await run(fx, await makeAuthedServerClient(fx.base.adminA)); }
   finally { await cleanupRoleAwarePhaseAFixture(fx); }
 }
-async function seed(fx: RoleAwarePhaseAFixture, options: { name?: string; mime?: string; kind?: "customer" | "contact" | "calculation"; time?: string; tenant?: string; archivedSource?: boolean } = {}): Promise<Target> {
+async function seed(fx: DocumentFixture, options: { name?: string; mime?: string; kind?: "customer" | "contact" | "calculation"; time?: string; tenant?: string; archivedSource?: boolean } = {}): Promise<Target> {
   const tenant = options.tenant ?? fx.base.tenantA.id;
   const customer = await adminInsertCustomer({ tenant_id: tenant, customer_type: "company", display_name: options.archivedSource ? "Hidden filter owner marker" : "Authorized owner label secret-search-marker" });
   let ownerId = customer; const kind = options.kind ?? "customer";
@@ -124,7 +134,7 @@ test("[P0][AC1] cursor filter mismatch altered or revoked authorized anchor prod
   const fresh=await page(client,filters); await adminExec("update public.customers set archived_at=now() where id=$1",[target.ownerId]);
   const revoked=await read(client,filters,fresh.data.nextCursor); expect(revoked.ok).toBe(false); expect(revoked).not.toHaveProperty("data"); expect(JSON.stringify(revoked)).not.toContain(target.ownerId);
 }));
-test("[P0][AC1,3] no auth-bearing cache survives source or membership revocation with same token", async () => fixture(async (fx) => {
+test("[P0][AC1,3] no auth-bearing cache survives source or membership revocation with same token", async () => roleFixture(async (fx) => {
   const target=await seed(fx); const client=await makeAuthedServerClient(fx.users.projektledare);
   expect((await page(client)).data.total).toBe(1);
   await adminExec("update public.customers set archived_at=now() where id=$1",[target.ownerId]);
@@ -132,7 +142,7 @@ test("[P0][AC1,3] no auth-bearing cache survives source or membership revocation
   await adminExec("update public.tenant_memberships set status='disabled' where user_id=$1",[fx.users.projektledare.id]);
   const denied=await read(client); expect(denied.ok).toBe(false); expect(denied).not.toHaveProperty("data");
 }));
-test("[P0][AC1] anonymous membershipless and Montor Sales Economy receive no rows facets counts labels in either mode", async () => fixture(async (fx) => {
+test("[P0][AC1] anonymous membershipless and Montor Sales Economy receive no rows facets counts labels in either mode", async () => roleFixture(async (fx) => {
   await seed(fx);
   const clients=[await makeAnonServerClient(),await makeAuthedServerClient(fx.base.orphanUser)];
   for(const role of ["montor","saljare","ekonomi"] as const) clients.push(await makeAuthedServerClient(fx.users[role]));

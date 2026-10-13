@@ -233,6 +233,8 @@ Evidence directory: `C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-2-re
 All owned commands, browser contexts and local fixture jobs are terminal/quiescent. Root owns the admitted persistent resources and teardown; this author launched/stopped none and never closed root's browser. Exactly one author-written Suggested Review Order remains, with five concerns/20 verified stops; fresh native0 reference checks and final independent trail reconciliation are separate from broad review. Root still owes all14 fresh checks on the final clean full SHA and a distinct independent SolHigh latest-fix/unresolved-serious review respecting completed broad-round3. Existing synthetic/local/Chrome-only, structural-versus-full-decoder, OptionA/bearer TTL and transient-handle limits remain; no Lovable parity/demo/external-service claim.
 ## Suggested Review Order
 
+Fixture-selection follow-up author: `/root/epic20_runtime_fix_author`, `gpt-6.1-sol` High, 2026-10-13. This author owns only the bounded test-fixture repair and its evidence below; prior author rationale and completed review history remain unchanged.
+
 Author: `/root/worker20_2_followup_host/round2_fix_author`, `gpt-6.1-sol` High, Round2/Round3 fix author and current trail writer. Original implementation/Round1 rationale remains authored by `/root/worker20_2_build/sensitive_build`, `gpt-6.1-sol` High.
 Refreshed2026-10-12 against the uncommitted Round3 two-patch author tree based on `df5841fcc594468201e294bb201e690b61eeebca`. All six configured Round3 review lenses completed; the author patched the two confirmed medium UI findings without another broad review. Current scoped checks/build are recorded below, focused browser passed and both independent latest-fix lenses returned no findings, and prior Round2 required14 evidence retains its dirty-iteration attribution rather than final clean-SHA acceptance.
 
@@ -241,9 +243,9 @@ Refreshed2026-10-12 against the uncommitted Round3 two-patch author tree based o
 The route preserves duplicate parameters for fail-closed parsing, then derives filters/counts/facets/opaque cursor from the complete authorized source projection. Round1 bounded ordinary lifecycle Storage hints to unique eligible returned files; Round2 retains every DB source/provenance check in the all-context graph while omitting PDF byte checks only when that candidate's lifecycle cannot contribute to the requested rows, counts or facets.
 
 - `src/app/(app)/files/page.tsx:13` — `export default async function FilesPage`: preserves the public URL entry contract.
-- `src/server/read-models/documents.ts:99` — `const checkQuotePdfBytes =`: limits omission to lifecycle-excluded candidates.
+- `src/server/read-models/documents.ts:114` — `const checkQuotePdfBytes =`: limits omission to lifecycle-excluded candidates.
 - `src/server/read-models/document-sources.ts:125` — `if (deps.checkQuotePdfBytes !== false)`: keeps artifact bytes strict by default.
-- `tests/integration/rls/documents-filter-archive.rls.test.ts:209` — `archived current quote PDF Storage503`: asserts active facets survive and relevant archived reads fail.
+- `tests/integration/rls/documents-filter-archive.rls.test.ts:219` — `archived current quote PDF Storage503`: asserts active facets survive and relevant archived reads fail.
 
 AC1 tests retain literal name/MIME AND filters, invalid/duplicate/ownerId rejection, own-facet exclusion, selected-zero/current revoked anchors, over1100 denied candidates and Stockholm23/25-hour DST bounds. Explicit20.2 filter opt-in preserves the original no-filter13-field DTO and inherited119-case boundary. The new RLS fixture generates, attests, sends and archives the actual current PDF through existing authenticated RPCs before faulting only its Storage.info transport; exact current association/fingerprint remains intact, the active ordinary row/count/facets remains available with zero PDF byte calls, and the relevant archived projection still returns explicit SERVER_ERROR.
 
@@ -251,7 +253,7 @@ AC1 tests retain literal name/MIME AND filters, invalid/duplicate/ownerId reject
 
 The unchanged20.1 selected-link signer still governs access; current selection/request identity clears prior URLs, and Round1 rejects already-expired successful replies at actual receipt with exact deadline expiry. Supported media has explicit byte/load failure and retry: image decode events and abortable PDF HTTP/byte loading preserve download, release stale references and accept opaque/absent Storage MIME only under authorized PDF metadata. Round3 lazily loads already-pinned pdf-lib1.17.1 to parse actual fetched bytes and require a valid nonempty catalog/page tree before creating a native-frame Blob URL; MIME/nonempty bytes and iframe load events alone do not prove PDF structure.
 
-- `src/features/documents/filters.ts:46` — `export function documentPreviewReducer`: rejects stale selection and expired receipt.
+- `src/features/documents/filters.ts:48` — `export function documentPreviewReducer`: rejects stale selection and expired receipt.
 - `src/components/documents/DocumentPreviewPane.tsx:40` — `const document = await PDFDocument.load`: validates actual PDF structure before readiness.
 - `tests/e2e/files/documents-search-preview-lifecycle.e2e.spec.ts:665` — `PDF preview aborts pending fetch and revokes completed Blob URL on Back`: exercises TEA's media-resource boundary.
 - `tests/e2e/files/documents-search-preview-lifecycle.e2e.spec.ts:826` — `nonempty corrupt ordinary PDF upload`: asserts explicit preview failure with real download and retry.
@@ -262,8 +264,8 @@ AC2/8 actual browser assertions cover image/PDF/download bytes, opaque legacy PD
 
 Round1 gates every ordinary mutation while an original handle is unresolved and until a genuinely explicitly requested authorized server read completes; retry needs current eligibility and an explicit dialog confirmation. Round2 adds a filter-independent unresolved-response refresh affordance, using the existing uncertainty styling and control primitive, while dropdown labels remain navigable and their old counts disappear during draft/server mismatch. Round3 derives inert containment and retry-dialog visibility from the same predicate, drops only invalidated nonbusy confirmation state, and leaves the original retained operation/action intact when a previously started upload completes and resets filters.
 
-- `src/components/documents/DocumentFilters.tsx:130` — `const currentReadCompleted =`: requires a new authorized refresh projection.
-- `src/components/documents/DocumentFilters.tsx:137` — `const retryDialogOpen =`: shares visible modal and inert state.
+- `src/components/documents/DocumentFilters.tsx:140` — `const currentReadCompleted =`: requires a new authorized refresh projection.
+- `src/components/documents/DocumentFilters.tsx:147` — `const retryDialogOpen =`: shares visible modal and inert state.
 - `tests/e2e/files/documents-search-preview-lifecycle.e2e.spec.ts:778` — `gated upload completion invalidates retry dialog`: preserves operability and the original callable.
 - `tests/e2e/files/documents-search-preview-lifecycle.e2e.spec.ts:235` — `draft mode withholds old rows counts and facets`: asserts dropdown counts disappear and current counts return.
 
@@ -278,7 +280,7 @@ The page retains supported encrypted inline Server Actions capturing only server
 - `src/app/(app)/files/page.tsx:35` — `async function archiveDocumentAction`: captures minimal server-owned operation identity.
 - `src/server/commands/documents/lifecycle.ts:26` — `export async function executeBoundDocumentLifecycle`: resolves current authority for every invocation.
 - `supabase/migrations/20261009091121_story_20_2_documents_lifecycle_origin_and_restore.sql:203` — `v_parent->>'archived_at' is not null`: denies archived quote ancestry.
-- `tests/integration/commands/documents-lifecycle.int.test.ts:549` — `exact ordinary draft quote attachment denies both direct lifecycle RPCs`: isolates archived-parent denial with exact attachment association.
+- `tests/integration/commands/documents-lifecycle.int.test.ts:559` — `exact ordinary draft quote attachment denies both direct lifecycle RPCs`: isolates archived-parent denial with exact attachment association.
 
 AC3–7 tests retain seven source checks, independently archived/hidden/foreign links, current roles, linked and retained-lock restore, unknown origin/draft/deleted/unlinked/missing-byte denial, immutable bytes/links/locks and atomic fixed audit. The new authenticated direct-RPC fixture has a valid ordinary draft quote attachment and exact frozen association; restore origin is captured while its parent is live, then the parent is archived before denial. Both archive and restore assert42501, unchanged file/link/object/version/attachment/parent snapshots, unchanged downloaded bytes and zero document success audits. Every quote_pdf restore stays denied under10.9; pre-column source proof is stale and fresh re-review keeps the PDF fingerprint. Actual browser transport compares original action identities through refresh/opposite changes, distinguishes consumed changedC1 from unconsumed no-opC0 and verifies separate fresh operations and extra-field/actor rejection. Reload/build replacement loses transient state and fails closed.
 
@@ -286,10 +288,16 @@ AC3–7 tests retain seven source checks, independently archived/hidden/foreign 
 
 Current source inspection confirms the four retained Round2 repairs and two Round3 UI repairs; new Round3 browser definitions add four desktop/360×640 cases. Both TEA additions remain in the trail. Scoped Round3 verification passed story units23, TypeScript, corrected lint (0errors/1existing image warning) and the actual production build/native0; actual focused production browser20/20 passed with failed/skipped0, and independent SolHigh security plus intent/verification reviewed the final source hashes with no findings.
 
-- `tests/integration/commands/documents-lifecycle.int.test.ts:513` — `secondary live quote snapshot without exact frozen attachment denies both direct lifecycle RPCs`: covers TEA's exact-association gap.
-- `tests/integration/rls/documents-filter-archive.rls.test.ts:204` — `returned-row transient Storage.info503`: checks authenticated retryable reader failure.
+- `tests/integration/commands/documents-lifecycle.int.test.ts:523` — `secondary live quote snapshot without exact frozen attachment denies both direct lifecycle RPCs`: covers TEA's exact-association gap.
+- `tests/integration/rls/documents-filter-archive.rls.test.ts:214` — `returned-row transient Storage.info503`: checks authenticated retryable reader failure.
 - `tests/integration/commands/documents-lifecycle-lock-races.int.test.ts:50` — `uncommitted FK link insertion blocks`: proves complete-link acquisition with real barriers.
 - `tests/e2e/files/documents-search-preview-lifecycle.e2e.spec.ts:587` — `retained consumed archive closure survives refresh`: proves original-handle replay without rearchiving.
+
+Bounded fixture-selection follow-up: the lifecycle suite now uses the existing fresh three-user/two-tenant fixture in 24 of 26 cases, and filter/archive uses it in 14 of 16. The two role-dependent cases in each suite retain the full real role fixture. Both wrappers keep the same DB/Auth/Storage reachability failure, authenticated admin A session and paired cleanup in `finally`; per-test tenant/user identity remains isolated. No test body, assertion, concurrency barrier or timeout changed. Source comparison proves the complete original test sections unchanged after wrapper-name normalization; TypeScript syntax and role-reference checks passed. These are source checks only. Fresh required 42-case execution, typecheck and the complete unchanged 300s DB/RLS/pilot gate remain pending on the committed repair; no runtime improvement is claimed. This is a targeted follow-up, with no additional broad review round.
+
+- `tests/integration/commands/documents-lifecycle.int.test.ts:23` — `async function fixture`: provisions isolated base identities and preserves per-test cleanup.
+- `tests/integration/commands/documents-lifecycle.int.test.ts:30` — `async function roleFixture`: preserves complete real roles for denial and revocation.
+- `tests/integration/rls/documents-filter-archive.rls.test.ts:137` — `no auth-bearing cache`: retains the same-token membership-revocation assertions.
 
 Historical Round2 executed evidence:23 story units and51 required serial INT/RLS tests (26 lifecycle +9 races +16 filter/RLS) passed; the actual production browser run passed113 cases (72 story,36 per viewport, plus41 inherited baseline). That executed Round2 story inventory was146 cases =23 unit +51 INT/RLS +72 browser; current Round3 source-derived expected inventory is150 =23 unit +51 INT/RLS +76 browser, with117 full browser cases including41 baseline. All four new browser cases executed and passed in the focused20 subset; this does not claim the full76/117 browser suites executed on Round3. Linux full units2455, selected-link units100, selected-link races38, generic signing20 and inherited Storage boundary119 passed. All failed/skipped/cancelled/todo counts are0; suites overlap and these totals are not summed as unique coverage.
 

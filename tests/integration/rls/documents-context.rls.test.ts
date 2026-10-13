@@ -7,11 +7,12 @@
  */
 import { it as test, expect } from "vitest";
 import {
-  createRoleAwarePhaseAFixture, cleanupRoleAwarePhaseAFixture, makeAuthedServerClient, makeAnonServerClient,
+  createTwoTenantFixture, cleanupFixture, createRoleAwarePhaseAFixture, cleanupRoleAwarePhaseAFixture,
+  makeAuthedServerClient, makeAnonServerClient,
   adminInsertCustomer, adminInsertFacility, adminInsertContact, adminInsertCalculation,
   adminInsertQuote, adminInsertQuoteVersion, adminInsertQuoteAcceptance, adminInsertJob,
   adminInsertFile, adminInsertFileLink, adminInsertQuoteVersionAttachment, adminUploadStorageObject,
-  type RoleAwarePhaseAFixture, type TestServerClient, type FileLinkSeed,
+  type TwoTenantFixture, type RoleAwarePhaseAFixture, type TestServerClient, type FileLinkSeed,
 } from "../../factories/tenants";
 import { adminExec, adminQuery, adminSession } from "../../factories/admin-sql";
 import { isLocalStackReachable, isLocalStorageReachable } from "../../support/test-env";
@@ -30,7 +31,18 @@ type Center = { ok: true; data: { descriptor: { context: Entry; selectedLinkId: 
 } } } } | { ok: false; code: string; message: string };
 type Seeded = { refs: Record<Owner, Ref>; ids: Record<Owner | "quote", string>;
   files: Record<Owner, { fileId: string; linkId: string; path: string }> };
-async function fixture(run: (fx: RoleAwarePhaseAFixture, client: TestServerClient) => Promise<void>) {
+type DocumentFixture = { readonly base: TwoTenantFixture };
+// Admin-only cases keep fresh tenants/users without creating unused role memberships.
+async function fixture(run: (fx: DocumentFixture, client: TestServerClient) => Promise<void>) {
+  if (!(await isLocalStackReachable()) || !(await isLocalStorageReachable())) {
+    throw new Error("Story20.3 requires local DB/Auth/Storage; unavailable is not executed coverage");
+  }
+  const fx: DocumentFixture = { base: await createTwoTenantFixture() };
+  try { await run(fx, await makeAuthedServerClient(fx.base.adminA)); }
+  finally { await cleanupFixture(fx.base); }
+}
+// Role and revocation cases retain the complete real authenticated role fixture.
+async function roleFixture(run: (fx: RoleAwarePhaseAFixture, client: TestServerClient) => Promise<void>) {
   if (!(await isLocalStackReachable()) || !(await isLocalStorageReachable())) {
     throw new Error("Story20.3 requires local DB/Auth/Storage; unavailable is not executed coverage");
   }
@@ -109,7 +121,7 @@ async function arrange(sql: string, values: readonly unknown[]) {
 }
 
 for (const role of ["tenant_admin", "projektledare"] as const) {
-  test("[P0][AC1,3,4,6,7] " + role + " gets seven exact source-context links and server ancestry returns through real RLS", async () => fixture(async (fx) => {
+  test("[P0][AC1,3,4,6,7] " + role + " gets seven exact source-context links and server ancestry returns through real RLS", async () => roleFixture(async (fx) => {
     const own = await seed(fx.base.tenantA.id), foreign = await seed(fx.base.tenantB.id);
     const client = await makeAuthedServerClient(fx.users[role]);
     for (const owner of Object.keys(modules) as Owner[]) {
@@ -129,7 +141,7 @@ for (const role of ["tenant_admin", "projektledare"] as const) {
   }), 60_000);
 }
 for (const role of ["montor", "saljare", "ekonomi"] as const) {
-  test("[P0][AC1,2,7] " + role + " cannot turn source quote visibility into center links or labels", async () => fixture(async (fx) => {
+  test("[P0][AC1,2,7] " + role + " cannot turn source quote visibility into center links or labels", async () => roleFixture(async (fx) => {
     const own = await seed(fx.base.tenantA.id), client = await makeAuthedServerClient(fx.users[role]);
     for (const ref of Object.values(own.refs)) { unavailable(await context(client, ref)); unavailable(await context(client, ref, true)); noCenterData(await center(client, ref)); }
   }), 60_000);
@@ -206,7 +218,7 @@ test("[P0][AC3,7] same-file multiple owners remain exact filtered links facets a
     input: { link_id: target.linkId, file_id: target.fileId }, correlationId: crypto.randomUUID() });
   expect(denied.ok).toBe(false); expect(denied).not.toHaveProperty("data");
 }));
-test("[P0][AC3] context cursor cannot cross same-type owner and revoked source or membership using same client", async () => fixture(async (fx) => {
+test("[P0][AC3] context cursor cannot cross same-type owner and revoked source or membership using same client", async () => roleFixture(async (fx) => {
   const own = await seed(fx.base.tenantA.id), target = own.files.customer;
   await adminQuery("insert into public.file_links(tenant_id,file_id,owner_type,owner_id,purpose,created_at) select $1,$2,'customer',$3,'crm_document','2030-01-01'::timestamptz from generate_series(1,55)",
     [fx.base.tenantA.id, target.fileId, own.ids.customer]);

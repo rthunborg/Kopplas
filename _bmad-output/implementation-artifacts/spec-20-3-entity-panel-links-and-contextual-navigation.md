@@ -237,6 +237,8 @@ Exactly the owned reader, owned reader unit, owned browser test and this author 
 
 ## Suggested Review Order
 
+Fixture-selection follow-up author: `/root/epic20_runtime_fix_author`, `gpt-6.1-sol` High, 2026-10-13. This author owns only the bounded test-fixture repair and its evidence below; prior author rationale and completed review history remain unchanged.
+
 Author: `/root/worker20_3_build/implementation_author` (Sol6.1 High).
 Final author reconciliation against candidate `3bc53aee42126a393f7b8bc683d28a1dcd8f64f4`, reviewed baseline `9d64861989dfedb46b901fe1c3710f310199e828` and implementation `e57bdb01835b67f89b385b89a5b67e30ef22c460`. Read-only Git confirms source/tests still match implementation and reviewed candidate `61799d86`; current runtime-tree SHA256 remains `3f6f7c2260b39c953287bedf9846ac67f1aaf81b931ca2c43c43c125320291f9`, with retained production BUILD_ID `8Jb-W6-Ub2QjkrSnfF5Mt`. This section is the only uncommitted author reconciliation; terminal done/no-blocker, approved intent and canonical triage are preserved. Root final17 and independent acceptance remain pending on the eventual frozen commit.
 
@@ -284,6 +286,12 @@ Historical review1-patch53 units exercise AC1/AC2 source authority, UUID canonic
 - `tests/unit/server/read-models/document-context.test.ts:219` — `ALL-link`: checks alternate-source evaluation before context filtering.
 - `tests/e2e/files/documents-context-navigation.e2e.spec.ts:702` — `safe return preserves`: checks entity persistence or existing immutable acceptance authority.
 - `tests/e2e/files/documents-context-navigation.e2e.spec.ts:777` — `keyboard entity-center-history-safe return`: verifies desktop/360×640 history/focus behavior.
+
+Bounded fixture-selection follow-up: 22 of 28 context cases now use the existing fresh three-user/two-tenant fixture. The combined tenant_admin/Projektledare positive loop, three forbidden-role cases and Projektledare cursor/membership revocation keep the full real role fixture, preserving the original loop/test identities. Both wrappers retain DB/Auth/Storage reachability failure, real admin A request session and paired cleanup in `finally`; no authorization fixture is shared. The full original test section is unchanged after wrapper-name normalization, including all ancestry loops, role clients, assertions and timeouts. TypeScript syntax and role-reference checks passed; these are source checks only. Fresh required 28-case execution, typecheck and the complete unchanged 300s DB/RLS/pilot gate remain pending on the committed repair; no runtime improvement is claimed. This is a targeted follow-up, with no additional broad review round.
+
+- `tests/integration/rls/documents-context.rls.test.ts:36` — `async function fixture`: provisions isolated base identities with the existing cleanup boundary.
+- `tests/integration/rls/documents-context.rls.test.ts:45` — `async function roleFixture`: retains full real roles for source and revocation assertions.
+- `tests/integration/rls/documents-context.rls.test.ts:221` — `context cursor cannot cross`: retains the same-client cursor and membership-revocation boundary.
 
 Evidence: historical `Kopplas-documents20-3-build-2026-10-13/review1-patch-verification/required17-manifest.json` records17/17 native0 gates at the unchanged runtime hash above; all raw log hashes were checked during the earlier author reconciliation. Owned context units passed53, required local context RLS passed28, real story browser passed53, inherited four-file browser passed117 and full units passed2508. Every executed suite had0failed/0skipped, including selected-link100, filter23, lifecycle51, races38, signing20 and baseline Storage119; suites overlap and are not summed. The earlier fresh build/post-build typecheck/lint/service-role/bundle/lockfile gates passed with the recorded BUILD_ID. Their exact commands/environment/times remain in the original receipts: required local DB61421/61422 with SUPABASE_TEST_REQUIRED=1, production Chrome155 through both CDP61423 variables and CIunset; both browser gates verified own-page cleanup. These are relevant unchanged-source historical results, not new follow-up runtime or root final acceptance evidence.
 

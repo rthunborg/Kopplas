@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/documents-resume-admission-2026-10-09
 status: in-progress
-updated_at: "2026-10-13T15:24:26Z"
+updated_at: "2026-10-13T15:53:46Z"
 started_at: "2026-10-09T13:24:56Z"
 completed_at: null
 active_seconds: 7870
@@ -26,7 +26,7 @@ selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Final exact-candidate release verification includes authorization, RLS, signed access, storage recovery and transactional integrity."
+escalation_reason: "Bounded failed-CI fixture efficiency repair preserving fresh tenant authorization fixtures and all assertions; independent High narrow review."
 routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Epic trace gate assesses authorization, RLS and transactional integrity evidence.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -38,6 +38,7 @@ routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"retrospective\",\"profile\":\"default\",\"role\":\"retrospective-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Validate source-authorized aggregation completeness under actual PostgREST row cap and tenant-safe pilot evidence.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic_audit\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Final exact-candidate release verification includes authorization, RLS, signed access, storage recovery and transactional integrity.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic_audit\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Bounded failed-CI fixture efficiency repair preserving fresh tenant authorization fixtures and all assertions; independent High narrow review.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic_audit\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: null
 tea_selected: []
 tea_rationale: null
@@ -79,16 +80,19 @@ retro:
   verdict: rejected
   open_action_items: 5
 bmad_status_flipped_at: null
-pr_url: null
-ci_run_url: null
-ci_status: unknown
+pr_url: "https://github.com/rthunborg/Kopplas/pull/97"
+ci_run_url: "https://github.com/rthunborg/Kopplas/actions/runs/38421905618"
+ci_status: failed
 pr_merged: false
 merge_method: null
 merge_commit: null
 branch_deleted: false
-open_questions: []
+open_questions:
+  - "Owner disposition of inherited skips and expanded browser-suite execution budget requested; no waiver received."
 deferred_work: []
-blockers: []
+blockers:
+  - "Final candidate87d4dce1: CI db exceeded300s; browser361passed3skipped but summed591.40s exceeds300s."
+  - "Pinned zero-skip contract conflicts with identified inherited skips; owner disposition requested and pending."
 overrides:
   owner_authorized: true
   documents_oracle_disposition: "Requirements-based; no exact legacy comparison; zero observations"

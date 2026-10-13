@@ -6,24 +6,34 @@
  */
 import { it as test, expect } from "vitest";
 import {
-  createRoleAwarePhaseAFixture, cleanupRoleAwarePhaseAFixture, makeAuthedServerClient, makeAnonServerClient,
+  createTwoTenantFixture, cleanupFixture, createRoleAwarePhaseAFixture, cleanupRoleAwarePhaseAFixture,
+  makeAuthedServerClient, makeAnonServerClient,
   admin, adminInsertCustomer, adminInsertFacility, adminInsertContact, adminInsertCalculation,
   adminInsertQuote, adminInsertQuoteVersion, adminInsertQuoteVersionAttachment, adminInsertQuoteAcceptance,
   adminInsertJob, adminInsertFile, adminInsertFileLink, adminUploadStorageObject,
-  type RoleAwarePhaseAFixture, type TestServerClient, type FileLinkSeed,
+  type TwoTenantFixture, type RoleAwarePhaseAFixture, type TestServerClient, type FileLinkSeed,
 } from "../../factories/tenants";
 import { adminExec, adminQuery, adminSession } from "../../factories/admin-sql";
 import { adminSelectAuditEvents } from "../../factories/audit-events";
 import { isLocalStackReachable, isLocalStorageReachable } from "../../support/test-env";
 
 type Target = { fileId: string; linkId: string; ownerId: string; path: string };
-async function fixture(run: (fx: RoleAwarePhaseAFixture, client: TestServerClient) => Promise<void>) {
+type DocumentFixture = { readonly base: TwoTenantFixture };
+// Admin-only cases keep fresh tenants/users without creating unused role memberships.
+async function fixture(run: (fx: DocumentFixture, client: TestServerClient) => Promise<void>) {
+  if (!(await isLocalStackReachable()) || !(await isLocalStorageReachable())) throw new Error("Required local DB/Auth/Storage unavailable; no skipped coverage after activation");
+  const fx: DocumentFixture = { base: await createTwoTenantFixture() };
+  try { await run(fx, await makeAuthedServerClient(fx.base.adminA)); }
+  finally { await cleanupFixture(fx.base); }
+}
+// Role and revocation cases retain the complete real authenticated role fixture.
+async function roleFixture(run: (fx: RoleAwarePhaseAFixture, client: TestServerClient) => Promise<void>) {
   if (!(await isLocalStackReachable()) || !(await isLocalStorageReachable())) throw new Error("Required local DB/Auth/Storage unavailable; no skipped coverage after activation");
   const fx = await createRoleAwarePhaseAFixture();
   try { await run(fx, await makeAuthedServerClient(fx.base.adminA)); }
   finally { await cleanupRoleAwarePhaseAFixture(fx); }
 }
-async function seed(fx: RoleAwarePhaseAFixture, kind: FileLinkSeed["owner_type"] = "customer", tenant = fx.base.tenantA.id): Promise<Target> {
+async function seed(fx: DocumentFixture, kind: FileLinkSeed["owner_type"] = "customer", tenant = fx.base.tenantA.id): Promise<Target> {
   const customer = await adminInsertCustomer({ tenant_id: tenant, customer_type: "company", display_name: "Document lifecycle customer" });
   const fileId = await adminInsertFile({ tenant_id: tenant, lifecycle_state: "linked", display_name: "Elcentral lifecycle.pdf", mime_type: "application/pdf", checksum: "fixture-checksum" });
   const [file] = await adminQuery<{ object_path: string }>("select object_path from public.files where id=$1", [fileId]);
@@ -52,7 +62,7 @@ async function seed(fx: RoleAwarePhaseAFixture, kind: FileLinkSeed["owner_type"]
   if (kind === "quote_version") await adminInsertQuoteVersionAttachment({ tenant_id: tenant, quote_version_id: ownerId, file_id: fileId });
   return { fileId, linkId, ownerId, path: file.object_path };
 }
-function args(fx: RoleAwarePhaseAFixture, target: Target, correlation = crypto.randomUUID(), actor = fx.base.adminA.id) {
+function args(fx: DocumentFixture, target: Target, correlation = crypto.randomUUID(), actor = fx.base.adminA.id) {
   return { p_tenant_id: fx.base.tenantA.id, p_actor_user_id: actor, p_link_id: target.linkId, p_file_id: target.fileId, p_correlation_id: correlation };
 }
 async function rpc(client: TestServerClient, operation: "archive" | "restore", input: ReturnType<typeof args>) {
@@ -86,7 +96,7 @@ test("[P0][AC3,4] seven enrolled ordinary source contexts archive only after all
     expect(await adminSelectAuditEvents({ correlationId: input.p_correlation_id })).toHaveLength(1);
   }
 }));
-test("[P0][AC3] anonymous foreign actor tenant mismatch link/file pairing and non-file roles cannot mutate", async () => fixture(async (fx, client) => {
+test("[P0][AC3] anonymous foreign actor tenant mismatch link/file pairing and non-file roles cannot mutate", async () => roleFixture(async (fx, client) => {
   const target = await seed(fx); const other = await seed(fx); const foreign = await seed(fx, "customer", fx.base.tenantB.id);
   for (const operation of ["archive", "restore"] as const) {
     for (const input of [{ ...args(fx, target), p_actor_user_id: fx.base.adminB.id }, { ...args(fx, target), p_tenant_id: fx.base.tenantB.id },
@@ -446,7 +456,7 @@ test("[P0][AC4,5] raw authenticated origin INSERT/UPDATE and extra checked RPC o
   const crafted=await client.rpc("restore_document_with_audit",{...args(fx,target),p_archive_previous_state:"linked"});
   expect(crafted.error).not.toBeNull();expect(crafted.data).toBeNull();expect(await snapshot(target)).toEqual(before);
 }));
-test("[P0][AC7] no-op correlation after opposite change must freshly deny current role revocation",async()=>fixture(async(fx)=>{
+test("[P0][AC7] no-op correlation after opposite change must freshly deny current role revocation",async()=>roleFixture(async(fx)=>{
   const target=await seed(fx);const client=await makeAuthedServerClient(fx.users.projektledare);
   const noOp=args(fx,target,crypto.randomUUID(),fx.users.projektledare.id);
   expect(lifecycleObservation(await rpc(client,"restore",noOp))).toEqual({ error: null, row: { file_id: target.fileId, changed: false, lifecycle_state: "linked" } });
