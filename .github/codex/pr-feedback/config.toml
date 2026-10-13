@@ -1,0 +1,17 @@
+# Trusted main configuration; never read a PR-controlled .codex configuration.
+approval_policy = "never"
+web_search = "disabled"
+cli_auth_credentials_store = "ephemeral"
+log_dir = "/home/prfix-codex/log"
+sqlite_home = "/home/prfix-codex/sqlite"
+project_doc_max_bytes = 32768
+
+[shell_environment_policy]
+inherit = "none"
+ignore_default_excludes = false
+
+[shell_environment_policy.set]
+PATH = "/usr/local/bin:/usr/bin:/bin"
+HOME = "/home/prfix-codex"
+
+# No MCP servers, hooks, plugin marketplaces, or additional writable roots.
