@@ -1,0 +1,585 @@
+{
+  "dimension": "isolation",
+  "score": 20,
+  "max_score": 100,
+  "grade": "F",
+  "score_basis": "Informational worker weights: CRITICAL20/HIGH10/MEDIUM5/LOW2. The deduplicated aggregate deduction ledger is authoritative.",
+  "violations": [
+    {
+      "file": "tests/integration/commands/documents-lifecycle-lock-races.int.test.ts",
+      "line": 1,
+      "row": "M4",
+      "severity": "MEDIUM",
+      "category": "ungrouped-suite",
+      "description": "The file has 9 test declarations and no describe/context grouping. This meets M4's literal predicate; it is a suite-diagnostic maintainability finding, not evidence of a production defect or order-dependent failure.",
+      "suggestion": "Wrap the existing cases in a subject-named describe/context group during a separately authorized test-maintenance change; preserve behavior and the capped review state.",
+      "code_snippet": "test(\"[P0][AC7] uncommitted FK link insertion blocks file-wide acquisition and newly committed hidden context denies archive\", async () => fixture(async c => {",
+      "gate": "Absolute",
+      "classification": "rubric-only-maintainability",
+      "demonstrated_release_blocker": false
+    },
+    {
+      "file": "tests/integration/commands/documents-lifecycle.int.test.ts",
+      "line": 1,
+      "row": "M4",
+      "severity": "MEDIUM",
+      "category": "ungrouped-suite",
+      "description": "The file has 26 test declarations and no describe/context grouping. This meets M4's literal predicate; it is a suite-diagnostic maintainability finding, not evidence of a production defect or order-dependent failure.",
+      "suggestion": "Wrap the existing cases in a subject-named describe/context group during a separately authorized test-maintenance change; preserve behavior and the capped review state.",
+      "code_snippet": "test(\"[P0][AC3,4] seven enrolled ordinary source contexts archive only after all authority checks\", async () => fixture(async (fx, client) => {",
+      "gate": "Absolute",
+      "classification": "rubric-only-maintainability",
+      "demonstrated_release_blocker": false
+    },
+    {
+      "file": "tests/integration/rls/documents-context.rls.test.ts",
+      "line": 1,
+      "row": "M4",
+      "severity": "MEDIUM",
+      "category": "ungrouped-suite",
+      "description": "The file has 13 test declarations and no describe/context grouping. This meets M4's literal predicate; it is a suite-diagnostic maintainability finding, not evidence of a production defect or order-dependent failure.",
+      "suggestion": "Wrap the existing cases in a subject-named describe/context group during a separately authorized test-maintenance change; preserve behavior and the capped review state.",
+      "code_snippet": "  test(\"[P0][AC1,3,4,6,7] \" + role + \" gets seven exact source-context links and server ancestry returns through real RLS\", async () => fixture(async (fx) => {",
+      "gate": "Absolute",
+      "classification": "rubric-only-maintainability",
+      "demonstrated_release_blocker": false
+    },
+    {
+      "file": "tests/integration/rls/documents-filter-archive.rls.test.ts",
+      "line": 1,
+      "row": "M4",
+      "severity": "MEDIUM",
+      "category": "ungrouped-suite",
+      "description": "The file has 16 test declarations and no describe/context grouping. This meets M4's literal predicate; it is a suite-diagnostic maintainability finding, not evidence of a production defect or order-dependent failure.",
+      "suggestion": "Wrap the existing cases in a subject-named describe/context group during a separately authorized test-maintenance change; preserve behavior and the capped review state.",
+      "code_snippet": "test(\"[P0][AC1] real RLS precedes literal name/MIME AND filters dates results counts and facets\", async () => fixture(async (fx,client) => {",
+      "gate": "Absolute",
+      "classification": "rubric-only-maintainability",
+      "demonstrated_release_blocker": false
+    },
+    {
+      "file": "tests/unit/components/documents/entity-documents-link.test.ts",
+      "line": 1,
+      "row": "M4",
+      "severity": "MEDIUM",
+      "category": "ungrouped-suite",
+      "description": "The file has 3 test declarations and no describe/context grouping. This meets M4's literal predicate; it is a suite-diagnostic maintainability finding, not evidence of a production defect or order-dependent failure.",
+      "suggestion": "Wrap the existing cases in a subject-named describe/context group during a separately authorized test-maintenance change; preserve behavior and the capped review state.",
+      "code_snippet": "test(\"[P1][AC1,4] successful server projection is a normal accessible local anchor\", async () => {",
+      "gate": "Absolute",
+      "classification": "rubric-only-maintainability",
+      "demonstrated_release_blocker": false
+    },
+    {
+      "file": "tests/unit/features/documents/context-navigation.test.ts",
+      "line": 1,
+      "row": "M4",
+      "severity": "MEDIUM",
+      "category": "ungrouped-suite",
+      "description": "The file has 7 test declarations and no describe/context grouping. This meets M4's literal predicate; it is a suite-diagnostic maintainability finding, not evidence of a production defect or order-dependent failure.",
+      "suggestion": "Wrap the existing cases in a subject-named describe/context group during a separately authorized test-maintenance change; preserve behavior and the capped review state.",
+      "code_snippet": "  test(\"[P1][AC1,6] fixed center URL preserves exact active \" + ownerType + \" tuple\", async () => {",
+      "gate": "Absolute",
+      "classification": "rubric-only-maintainability",
+      "demonstrated_release_blocker": false
+    },
+    {
+      "file": "tests/unit/features/documents/date-bounds.test.ts",
+      "line": 1,
+      "row": "M4",
+      "severity": "MEDIUM",
+      "category": "ungrouped-suite",
+      "description": "The file has 4 test declarations and no describe/context grouping. This meets M4's literal predicate; it is a suite-diagnostic maintainability finding, not evidence of a production defect or order-dependent failure.",
+      "suggestion": "Wrap the existing cases in a subject-named describe/context group during a separately authorized test-maintenance change; preserve behavior and the capped review state.",
+      "code_snippet": "test(\"[P1][AC1] genuine Gregorian days reject impossible, noncanonical and reversed ranges\", async () => {",
+      "gate": "Absolute",
+      "classification": "rubric-only-maintainability",
+      "demonstrated_release_blocker": false
+    },
+    {
+      "file": "tests/unit/features/documents/filters.test.ts",
+      "line": 1,
+      "row": "M4",
+      "severity": "MEDIUM",
+      "category": "ungrouped-suite",
+      "description": "The file has 6 test declarations and no describe/context grouping. This meets M4's literal predicate; it is a suite-diagnostic maintainability finding, not evidence of a production defect or order-dependent failure.",
+      "suggestion": "Wrap the existing cases in a subject-named describe/context group during a separately authorized test-maintenance change; preserve behavior and the capped review state.",
+      "code_snippet": "test(\"[P1][AC1] URL normalization trims literal search and defaults to active\", async () => {",
+      "gate": "Absolute",
+      "classification": "rubric-only-maintainability",
+      "demonstrated_release_blocker": false
+    },
+    {
+      "file": "tests/unit/features/documents/preview-state.test.ts",
+      "line": 1,
+      "row": "M4",
+      "severity": "MEDIUM",
+      "category": "ungrouped-suite",
+      "description": "The file has 7 test declarations and no describe/context grouping. This meets M4's literal predicate; it is a suite-diagnostic maintainability finding, not evidence of a production defect or order-dependent failure.",
+      "suggestion": "Wrap the existing cases in a subject-named describe/context group during a separately authorized test-maintenance change; preserve behavior and the capped review state.",
+      "code_snippet": "test(\"[P0][AC2] selection switch immediately clears old URL/error and late result cannot replace new file\", async () => {",
+      "gate": "Absolute",
+      "classification": "rubric-only-maintainability",
+      "demonstrated_release_blocker": false
+    },
+    {
+      "file": "tests/unit/scope/manifest-shape.test.ts",
+      "line": 1,
+      "row": "M4",
+      "severity": "MEDIUM",
+      "category": "ungrouped-suite",
+      "description": "The file has 8 test declarations and no describe/context grouping. This meets M4's literal predicate; it is a suite-diagnostic maintainability finding, not evidence of a production defect or order-dependent failure.",
+      "suggestion": "Wrap the existing cases in a subject-named describe/context group during a separately authorized test-maintenance change; preserve behavior and the capped review state.",
+      "code_snippet": "test(\"10.1-UNIT-SHAPE-01 (AC2): SCOPE_MANIFEST exists and every module carries the \u00a75.2 field shape\", async () => {",
+      "gate": "Absolute",
+      "classification": "rubric-only-maintainability",
+      "demonstrated_release_blocker": false
+    },
+    {
+      "file": "tests/unit/server/commands/documents-lifecycle.test.ts",
+      "line": 1,
+      "row": "M4",
+      "severity": "MEDIUM",
+      "category": "ungrouped-suite",
+      "description": "The file has 6 test declarations and no describe/context grouping. This meets M4's literal predicate; it is a suite-diagnostic maintainability finding, not evidence of a production defect or order-dependent failure.",
+      "suggestion": "Wrap the existing cases in a subject-named describe/context group during a separately authorized test-maintenance change; preserve behavior and the capped review state.",
+      "code_snippet": "test(\"[P0][AC3,4] both fixed commands use existing Files.Edit and SQL-owned success audit\", async () => {",
+      "gate": "Absolute",
+      "classification": "rubric-only-maintainability",
+      "demonstrated_release_blocker": false
+    },
+    {
+      "file": "tests/unit/server/commands/documents-signed-access.test.ts",
+      "line": 1,
+      "row": "M4",
+      "severity": "MEDIUM",
+      "category": "ungrouped-suite",
+      "description": "The file has 11 test declarations and no describe/context grouping. This meets M4's literal predicate; it is a suite-diagnostic maintainability finding, not evidence of a production defect or order-dependent failure.",
+      "suggestion": "Wrap the existing cases in a subject-named describe/context group during a separately authorized test-maintenance change; preserve behavior and the capped review state.",
+      "code_snippet": "test(\"[P1] 20-P1-07 fixed closed command enrollment grants Documents.View only\", () => {",
+      "gate": "Absolute",
+      "classification": "rubric-only-maintainability",
+      "demonstrated_release_blocker": false
+    },
+    {
+      "file": "tests/unit/server/read-models/document-context.test.ts",
+      "line": 1,
+      "row": "M4",
+      "severity": "MEDIUM",
+      "category": "ungrouped-suite",
+      "description": "The file has 11 test declarations and no describe/context grouping. This meets M4's literal predicate; it is a suite-diagnostic maintainability finding, not evidence of a production defect or order-dependent failure.",
+      "suggestion": "Wrap the existing cases in a subject-named describe/context group during a separately authorized test-maintenance change; preserve behavior and the capped review state.",
+      "code_snippet": "  test(\"[P0][AC1,4,6] \" + owner + \" zero-file source resolves live ancestry and fixed return through current authority\", async () => {",
+      "gate": "Absolute",
+      "classification": "rubric-only-maintainability",
+      "demonstrated_release_blocker": false
+    },
+    {
+      "file": "tests/unit/server/read-models/document-sources.test.ts",
+      "line": 1,
+      "row": "M4",
+      "severity": "MEDIUM",
+      "category": "ungrouped-suite",
+      "description": "The file has 19 test declarations and no describe/context grouping. This meets M4's literal predicate; it is a suite-diagnostic maintainability finding, not evidence of a production defect or order-dependent failure.",
+      "suggestion": "Wrap the existing cases in a subject-named describe/context group during a separately authorized test-maintenance change; preserve behavior and the capped review state.",
+      "code_snippet": "test(\"[P1] 20-P1-02 registry enrolls exactly manifest-active owners including noncreatable quote_version\", async () => {",
+      "gate": "Absolute",
+      "classification": "rubric-only-maintainability",
+      "demonstrated_release_blocker": false
+    },
+    {
+      "file": "tests/unit/server/read-models/documents.test.ts",
+      "line": 1,
+      "row": "M4",
+      "severity": "MEDIUM",
+      "category": "ungrouped-suite",
+      "description": "The file has 21 test declarations and no describe/context grouping. This meets M4's literal predicate; it is a suite-diagnostic maintainability finding, not evidence of a production defect or order-dependent failure.",
+      "suggestion": "Wrap the existing cases in a subject-named describe/context group during a separately authorized test-maintenance change; preserve behavior and the capped review state.",
+      "code_snippet": "test(\"[P1] 20-P1-01 atomic activation transfers the one Dokument nav destination while files retains tables\", () => {",
+      "gate": "Absolute",
+      "classification": "rubric-only-maintainability",
+      "demonstrated_release_blocker": false
+    },
+    {
+      "file": "tests/unit/server/storage/document-signed-access-attestation.test.ts",
+      "line": 1,
+      "row": "M4",
+      "severity": "MEDIUM",
+      "category": "ungrouped-suite",
+      "description": "The file has 12 test declarations and no describe/context grouping. This meets M4's literal predicate; it is a suite-diagnostic maintainability finding, not evidence of a production defect or order-dependent failure.",
+      "suggestion": "Wrap the existing cases in a subject-named describe/context group during a separately authorized test-maintenance change; preserve behavior and the capped review state.",
+      "code_snippet": "test(\"[P0] 20-P0-07 UTF-8 byte lengths and exact selected-link field order match the reviewed contract\", async () => {",
+      "gate": "Absolute",
+      "classification": "rubric-only-maintainability",
+      "demonstrated_release_blocker": false
+    }
+  ],
+  "passed_checks": 56,
+  "failed_checks": 16,
+  "total_checks": 72,
+  "checks_per_file": 3,
+  "violation_summary": {
+    "CRITICAL": 0,
+    "HIGH": 0,
+    "MEDIUM": 16,
+    "LOW": 0
+  },
+  "recommendations": [
+    "M4 grouping findings are maintenance recommendations under the literal registry. They do not establish a release-blocking production defect, and this review does not authorize code changes or another broad story review.",
+    "Keep the existing finally/rollback restoration and exact-ID fixture ownership. Per-test cleanup for retained unique browser uploads could improve standalone repeatability, but no pinned C5/H4 predicate or deduction is established by that optional improvement."
+  ],
+  "summary": "24 test files reviewed for C5/H4/M4 only. C5=0, H4=0, M4=16 MEDIUM. No demonstrated consequential isolation defect; grouping drives all informational deductions.",
+  "reviewed_files": [
+    "tests/e2e/files/documents-context-navigation.e2e.spec.ts",
+    "tests/e2e/files/documents-search-preview-lifecycle.e2e.spec.ts",
+    "tests/e2e/files/documents.e2e.spec.ts",
+    "tests/e2e/files/entity-file-preview.e2e.spec.ts",
+    "tests/e2e/files/file-index-scope.e2e.spec.ts",
+    "tests/integration/commands/documents-lifecycle-lock-races.int.test.ts",
+    "tests/integration/commands/documents-lifecycle.int.test.ts",
+    "tests/integration/commands/documents-signed-access-lock-races.int.test.ts",
+    "tests/integration/commands/documents-signed-access.int.test.ts",
+    "tests/integration/rls/documents-context.rls.test.ts",
+    "tests/integration/rls/documents-filter-archive.rls.test.ts",
+    "tests/integration/rls/documents.rls.test.ts",
+    "tests/unit/components/documents/entity-documents-link.test.ts",
+    "tests/unit/features/documents/context-navigation.test.ts",
+    "tests/unit/features/documents/date-bounds.test.ts",
+    "tests/unit/features/documents/filters.test.ts",
+    "tests/unit/features/documents/preview-state.test.ts",
+    "tests/unit/scope/manifest-shape.test.ts",
+    "tests/unit/server/commands/documents-lifecycle.test.ts",
+    "tests/unit/server/commands/documents-signed-access.test.ts",
+    "tests/unit/server/read-models/document-context.test.ts",
+    "tests/unit/server/read-models/document-sources.test.ts",
+    "tests/unit/server/read-models/documents.test.ts",
+    "tests/unit/server/storage/document-signed-access-attestation.test.ts"
+  ],
+  "reviewed_file_count": 24,
+  "file_checks": [
+    {
+      "file": "tests/e2e/files/documents-context-navigation.e2e.spec.ts",
+      "C5": "PASS",
+      "H4": "PASS",
+      "M4": "PASS",
+      "notes": "Mock/double assertions follow a system-under-test call. No identified surviving mutation changes another test outcome in this pinned set."
+    },
+    {
+      "file": "tests/e2e/files/documents-search-preview-lifecycle.e2e.spec.ts",
+      "C5": "PASS",
+      "H4": "PASS",
+      "M4": "PASS",
+      "notes": "Mock/double assertions follow a system-under-test call. No identified surviving mutation changes another test outcome in this pinned set."
+    },
+    {
+      "file": "tests/e2e/files/documents.e2e.spec.ts",
+      "C5": "PASS",
+      "H4": "PASS",
+      "M4": "PASS",
+      "notes": "Mock/double assertions follow a system-under-test call. No identified surviving mutation changes another test outcome in this pinned set."
+    },
+    {
+      "file": "tests/e2e/files/entity-file-preview.e2e.spec.ts",
+      "C5": "PASS",
+      "H4": "PASS",
+      "M4": "PASS",
+      "notes": "Mock/double assertions follow a system-under-test call. No identified surviving mutation changes another test outcome in this pinned set."
+    },
+    {
+      "file": "tests/e2e/files/file-index-scope.e2e.spec.ts",
+      "C5": "PASS",
+      "H4": "PASS",
+      "M4": "PASS",
+      "notes": "Mock/double assertions follow a system-under-test call. No identified surviving mutation changes another test outcome in this pinned set."
+    },
+    {
+      "file": "tests/integration/commands/documents-lifecycle-lock-races.int.test.ts",
+      "C5": "PASS",
+      "H4": "PASS",
+      "M4": "WARN",
+      "notes": "Mock/double assertions follow a system-under-test call. No identified surviving mutation changes another test outcome in this pinned set."
+    },
+    {
+      "file": "tests/integration/commands/documents-lifecycle.int.test.ts",
+      "C5": "PASS",
+      "H4": "PASS",
+      "M4": "WARN",
+      "notes": "Mock/double assertions follow a system-under-test call. No identified surviving mutation changes another test outcome in this pinned set."
+    },
+    {
+      "file": "tests/integration/commands/documents-signed-access-lock-races.int.test.ts",
+      "C5": "PASS",
+      "H4": "PASS",
+      "M4": "PASS",
+      "notes": "Mock/double assertions follow a system-under-test call. No identified surviving mutation changes another test outcome in this pinned set."
+    },
+    {
+      "file": "tests/integration/commands/documents-signed-access.int.test.ts",
+      "C5": "PASS",
+      "H4": "PASS",
+      "M4": "PASS",
+      "notes": "Mock/double assertions follow a system-under-test call. No identified surviving mutation changes another test outcome in this pinned set."
+    },
+    {
+      "file": "tests/integration/rls/documents-context.rls.test.ts",
+      "C5": "PASS",
+      "H4": "PASS",
+      "M4": "WARN",
+      "notes": "Mock/double assertions follow a system-under-test call. No identified surviving mutation changes another test outcome in this pinned set."
+    },
+    {
+      "file": "tests/integration/rls/documents-filter-archive.rls.test.ts",
+      "C5": "PASS",
+      "H4": "PASS",
+      "M4": "WARN",
+      "notes": "Mock/double assertions follow a system-under-test call. No identified surviving mutation changes another test outcome in this pinned set."
+    },
+    {
+      "file": "tests/integration/rls/documents.rls.test.ts",
+      "C5": "PASS",
+      "H4": "PASS",
+      "M4": "PASS",
+      "notes": "Mock/double assertions follow a system-under-test call. No identified surviving mutation changes another test outcome in this pinned set."
+    },
+    {
+      "file": "tests/unit/components/documents/entity-documents-link.test.ts",
+      "C5": "PASS",
+      "H4": "PASS",
+      "M4": "WARN",
+      "notes": "Mock/double assertions follow a system-under-test call. No identified surviving mutation changes another test outcome in this pinned set."
+    },
+    {
+      "file": "tests/unit/features/documents/context-navigation.test.ts",
+      "C5": "PASS",
+      "H4": "PASS",
+      "M4": "WARN",
+      "notes": "Mock/double assertions follow a system-under-test call. No identified surviving mutation changes another test outcome in this pinned set."
+    },
+    {
+      "file": "tests/unit/features/documents/date-bounds.test.ts",
+      "C5": "PASS",
+      "H4": "PASS",
+      "M4": "WARN",
+      "notes": "Mock/double assertions follow a system-under-test call. No identified surviving mutation changes another test outcome in this pinned set."
+    },
+    {
+      "file": "tests/unit/features/documents/filters.test.ts",
+      "C5": "PASS",
+      "H4": "PASS",
+      "M4": "WARN",
+      "notes": "Mock/double assertions follow a system-under-test call. No identified surviving mutation changes another test outcome in this pinned set."
+    },
+    {
+      "file": "tests/unit/features/documents/preview-state.test.ts",
+      "C5": "PASS",
+      "H4": "PASS",
+      "M4": "WARN",
+      "notes": "Mock/double assertions follow a system-under-test call. No identified surviving mutation changes another test outcome in this pinned set."
+    },
+    {
+      "file": "tests/unit/scope/manifest-shape.test.ts",
+      "C5": "PASS",
+      "H4": "PASS",
+      "M4": "WARN",
+      "notes": "Mock/double assertions follow a system-under-test call. No identified surviving mutation changes another test outcome in this pinned set."
+    },
+    {
+      "file": "tests/unit/server/commands/documents-lifecycle.test.ts",
+      "C5": "PASS",
+      "H4": "PASS",
+      "M4": "WARN",
+      "notes": "Mock/double assertions follow a system-under-test call. No identified surviving mutation changes another test outcome in this pinned set."
+    },
+    {
+      "file": "tests/unit/server/commands/documents-signed-access.test.ts",
+      "C5": "PASS",
+      "H4": "PASS",
+      "M4": "WARN",
+      "notes": "Mock/double assertions follow a system-under-test call. No identified surviving mutation changes another test outcome in this pinned set."
+    },
+    {
+      "file": "tests/unit/server/read-models/document-context.test.ts",
+      "C5": "PASS",
+      "H4": "PASS",
+      "M4": "WARN",
+      "notes": "Mock/double assertions follow a system-under-test call. No identified surviving mutation changes another test outcome in this pinned set."
+    },
+    {
+      "file": "tests/unit/server/read-models/document-sources.test.ts",
+      "C5": "PASS",
+      "H4": "PASS",
+      "M4": "WARN",
+      "notes": "Mock/double assertions follow a system-under-test call. No identified surviving mutation changes another test outcome in this pinned set."
+    },
+    {
+      "file": "tests/unit/server/read-models/documents.test.ts",
+      "C5": "PASS",
+      "H4": "PASS",
+      "M4": "WARN",
+      "notes": "Mock/double assertions follow a system-under-test call. No identified surviving mutation changes another test outcome in this pinned set."
+    },
+    {
+      "file": "tests/unit/server/storage/document-signed-access-attestation.test.ts",
+      "C5": "PASS",
+      "H4": "PASS",
+      "M4": "WARN",
+      "notes": "Mock/double assertions follow a system-under-test call. No identified surviving mutation changes another test outcome in this pinned set."
+    }
+  ],
+  "excluded_files": [],
+  "context_files": [
+    "_bmad-output/implementation-artifacts/spec-20-1-documents-activation-and-source-authorized-aggregation.md",
+    "_bmad-output/implementation-artifacts/spec-20-2-search-filters-preview-and-archive-restore.md",
+    "_bmad-output/implementation-artifacts/spec-20-3-entity-panel-links-and-contextual-navigation.md"
+  ],
+  "context_scored": false,
+  "criteria_registry": "C:/DEV/Kopplas/.agents/skills/bmad-testarch-test-review/steps-c/criteria-registry.md",
+  "worker_step": "C:/DEV/Kopplas/.agents/skills/bmad-testarch-test-review/steps-c/step-03b-subagent-isolation.md",
+  "knowledge_fragments_loaded": [
+    "test-quality",
+    "data-factories",
+    "fixture-architecture",
+    "fixtures-composition",
+    "network-recorder",
+    "burn-in"
+  ],
+  "head": "21284266ee265dd349301616a9ed83d27a2b1769",
+  "timestamp": "2026-10-13-epic20-quality",
+  "config": {
+    "use_playwright_utils": true,
+    "playwright_utils_installed": false,
+    "use_pactjs_utils": true,
+    "pactjs_utils_installed": false,
+    "pact_mcp_reachable": false
+  },
+  "convention_baseline": {
+    "corpusSize": 422,
+    "sampled": 40,
+    "sample_files": [
+      "tests/e2e/files/entity-file-panel.e2e.spec.ts",
+      "tests/e2e/files/file-lock-panel.e2e.spec.ts",
+      "tests/integration/commands/accept-quote-and-create-job.int.test.ts",
+      "tests/integration/commands/acceptance-evidence-link.int.test.ts",
+      "tests/integration/commands/accepted-record-lock.int.test.ts",
+      "tests/integration/commands/admin-invitation-retry-flow.test.ts",
+      "tests/integration/commands/admin-user-management.int.test.ts",
+      "tests/integration/commands/audit-actor-on-delete-set-null.int.test.ts",
+      "tests/integration/commands/audit-anon-isolation.int.test.ts",
+      "tests/integration/commands/audit-append-only.int.test.ts",
+      "tests/integration/commands/audit-metadata-hygiene-e2e.int.test.ts",
+      "tests/integration/commands/booking-conflicts.int.test.ts",
+      "tests/integration/commands/booking-editor-review-fixes.int.test.ts",
+      "tests/integration/commands/booking-editor-round2.int.test.ts",
+      "tests/integration/commands/booking-editor.int.test.ts",
+      "tests/integration/commands/bookings-replay-authority.int.test.ts",
+      "tests/integration/commands/bookings.int.test.ts",
+      "tests/integration/commands/calculation-commands.int.test.ts",
+      "tests/integration/commands/calculation-parent-ownership.int.test.ts",
+      "tests/integration/commands/calculation-row-source.int.test.ts",
+      "tests/integration/commands/capture-quote-acceptance.int.test.ts",
+      "tests/integration/commands/create-job.int.test.ts",
+      "tests/integration/commands/create-new-quote-version.int.test.ts",
+      "tests/integration/commands/crm-command-coverage.int.test.ts",
+      "tests/integration/commands/crm-customer-commands.int.test.ts",
+      "tests/integration/commands/crm-parent-ownership.int.test.ts",
+      "tests/integration/commands/disabled-membership-no-access.int.test.ts",
+      "tests/integration/commands/envelope-audit-write.int.test.ts",
+      "tests/integration/commands/envelope-failure-modes.int.test.ts",
+      "tests/integration/commands/file-audit-events.int.test.ts",
+      "tests/integration/commands/file-link-lock.int.test.ts",
+      "tests/integration/commands/file-link-ownership.int.test.ts",
+      "tests/integration/commands/file-signed-access-refresh.int.test.ts",
+      "tests/integration/commands/file-signed-access.int.test.ts",
+      "tests/integration/commands/file-upload.int.test.ts",
+      "tests/integration/commands/generate-quote-pdf-determinism.int.test.ts",
+      "tests/integration/commands/generate-quote-pdf-retry-consistency.int.test.ts",
+      "tests/integration/commands/generate-quote-pdf-source-of-truth.int.test.ts",
+      "tests/integration/commands/generate-quote-pdf-storage-privacy.int.test.ts",
+      "tests/integration/commands/job-source-of-truth.int.test.ts"
+    ],
+    "conventions": {
+      "priorityMarkers": {
+        "adopted": 36,
+        "sampled": 40,
+        "status": "established",
+        "form": "[P0] or [P0/AC.../R...] in test names",
+        "measurement": "actual test declaration lines, excluding prose-only occurrences"
+      },
+      "testIds": {
+        "adopted": 2,
+        "sampled": 40,
+        "status": "emerging",
+        "form": "getByTestId\\(|data-testid|data-cy",
+        "measurement": "token scan; bddNaming/assertionStyle need semantic confirmation"
+      },
+      "networkFirst": {
+        "adopted": 0,
+        "sampled": 40,
+        "status": "absent",
+        "form": "\\.route\\(|waitForResponse\\(|interceptNetworkCall|cy\\.intercept",
+        "measurement": "token scan; bddNaming/assertionStyle need semantic confirmation"
+      },
+      "playwrightUtils": {
+        "adopted": 0,
+        "sampled": 40,
+        "status": "absent",
+        "form": "@seontechnologies/playwright-utils",
+        "measurement": "token scan; bddNaming/assertionStyle need semantic confirmation"
+      },
+      "dataFactories": {
+        "adopted": 35,
+        "sampled": 40,
+        "status": "established",
+        "form": "createTenantFixture|seed\\w*\\(|(?:create|build)\\w*(?:Fixture|Factory)\\(",
+        "measurement": "token scan; bddNaming/assertionStyle need semantic confirmation"
+      },
+      "fixtures": {
+        "adopted": 8,
+        "sampled": 40,
+        "status": "emerging",
+        "form": "test\\.extend|mergeTests|fixtures|createTenantFixture",
+        "measurement": "token scan; bddNaming/assertionStyle need semantic confirmation"
+      },
+      "bddNaming": {
+        "adopted": 40,
+        "sampled": 40,
+        "status": "established",
+        "form": "names describe observable behavior, input and expected result",
+        "measurement": "semantic confirmation of sampled test names; all40 contain behavioral names"
+      },
+      "assertionStyle": {
+        "adopted": 40,
+        "sampled": 40,
+        "status": "established",
+        "form": "expect matchers for Vitest/Playwright; runner-consistent assertion dialect",
+        "measurement": "sampled declaration/setup/import/assertion token read; no rule requiring a single dialect across different runners"
+      }
+    }
+  },
+  "route": {
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "reason": "Mixed test scope exercises RLS, authentication, tenant isolation and transactional races"
+  },
+  "utility_preconditions": {
+    "playwrightUtilsActive": false,
+    "pactjsUtilsActive": false,
+    "reason": "Both flags enabled, both packages absent. No utility adoption deductions. These rows are outside this isolation worker."
+  },
+  "evidence": {
+    "runtime_tests_executed": false,
+    "static_inspection": true,
+    "expanded_scored_scope": false,
+    "imported_cleanup_helpers_inspected": [],
+    "perfect_isolation_bonus_eligible": false,
+    "bonus_reason": "The review did not establish that every test can run alone or in parallel; shared browser fixture data and serialized execution preclude an unsupported bonus."
+  },
+  "preserved_governance": {
+    "story20_2_review_unverified": true,
+    "three_round_cap_preserved": true,
+    "story_status_changes": false,
+    "review_round_changes": false,
+    "code_or_spec_changes": false,
+    "resources_started": false
+  }
+}

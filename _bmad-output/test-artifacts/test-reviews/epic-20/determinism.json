@@ -1,0 +1,410 @@
+{
+  "dimension": "determinism",
+  "success": true,
+  "score": 85,
+  "max_score": 100,
+  "grade": "B",
+  "score_basis": "Parent-directed informational score: 100 - (3 HIGH x5) =85, aligned to parent deduction ledger. Raw step-03a severity-weight dimension score is70 (3 HIGH x10). Parent step-03f ledger remains authoritative.",
+  "worktree": "C:/Users/Rasmus/.codex/worktrees/dbe6/ElproSaas",
+  "head": "21284266ee265dd349301616a9ed83d27a2b1769",
+  "review_file_count": 24,
+  "test_declaration_count": 298,
+  "test_declaration_count_basis": "TypeScript AST test/it call declarations, including it.each registration sites; not expanded test cases or execution counts.",
+  "scope": "Only the authoritative 24 review_files. Three named specs are context only, unscored. No code/story review or coverage gate.",
+  "route": {
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "reason": "Sensitive auth/RLS/transactional race assertion review; no recursive effort routing."
+  },
+  "governance": {
+    "story_20_2_review_disposition": "review_unverified retained; no promotion or waiver",
+    "broad_review_round_cap": 3,
+    "review_rounds_changed": false
+  },
+  "violations": [
+    {
+      "id": "DET-H3-01",
+      "file": "tests/e2e/files/entity-file-preview.e2e.spec.ts",
+      "line": 143,
+      "row": "H3",
+      "severity": "HIGH",
+      "category": "conditional-assertion",
+      "introduced_by_reviewed_diff": false,
+      "classification": "inherited concrete test weakness",
+      "description": "The denial/error outcome assertions execute only when file-preview-error already exists. This test navigates to an ordinary customer panel without arranging or submitting a denied preview, so a normal success page can pass while every denial-message/role/no-path assertion is skipped. signIn/gotoCustomerPanel still assert dashboard URL and panel visibility; this is a hollow denial branch, not a test with zero executed assertions.",
+      "suggestion": "Arrange a specific listed file, revoke or archive its selected context, submit its preview, and unconditionally require the generic visible alert plus no raw path or existence-disclosing text.",
+      "code_snippet": "if (await previewError.count()) {",
+      "predicate_evidence": "Runtime DOM existence controls whether the claimed denial outcome is asserted. main...HEAD preserves this branch unchanged."
+    },
+    {
+      "id": "DET-H2-01",
+      "file": "tests/integration/commands/documents-signed-access.int.test.ts",
+      "line": 268,
+      "row": "H2",
+      "severity": "HIGH",
+      "category": "wall-clock-fixture",
+      "introduced_by_reviewed_diff": true,
+      "classification": "concrete time-sensitive fixture weakness",
+      "description": "The otherwise-valid expired/future proof fixture derives issuance and five-minute expiry from live Node Date.now(), then submits the HMAC proof to a real database clock. No fake or injected clock governs this fixture; proof validity depends on the relation between the runner clock, DB clock and elapsed scheduling time. This meets H2 even though the offsets provide a useful practical margin.",
+      "suggestion": "Derive mutated timestamps from the prepared DB challenge issuance rather than the independent Node wall clock; retain explicit expired/future cases and fixed-clock unit boundary assertions. Do not fake an unauthenticated success response or weaken the DB-time check.",
+      "code_snippet": "const issued = Date.now() + (state === \"expired\" ? -600_000 : 120_000);",
+      "predicate_evidence": "p_attestation_issued_at and p_attestation_expires_at are time-bounded authorization values created from live clock with no fake timers. new Date at line269 formats the derived timestamps.",
+      "git_provenance": "git diff --name-status main...HEAD: A tests/integration/commands/documents-signed-access.int.test.ts"
+    },
+    {
+      "id": "DET-H2-02",
+      "file": "tests/integration/commands/documents-signed-access-lock-races.int.test.ts",
+      "line": 153,
+      "row": "H2",
+      "severity": "HIGH",
+      "category": "wall-clock-fixture",
+      "introduced_by_reviewed_diff": true,
+      "classification": "concrete scheduler-sensitive expiry fixture",
+      "description": "The synthetic proof gets only three seconds remaining from live PostgreSQL clock_timestamp(), before asynchronous contact-lock acquisition, second-session startup and pg_blocking_pids polling. An otherwise correct implementation fails the beforeExpiry.fresh assertion at line174 if that setup is scheduled after the three-second boundary. Later observed-expiry polling proves a real post-lock boundary, but does not freeze or remove this live-clock freshness race.",
+      "suggestion": "Retain the actual PostgreSQL clock_timestamp expiry semantics, transaction lock barrier and no-audit assertions. Make the near-expiry setup budget explicit and validate freshness before admitting the asserted race; derive timestamps consistently from one DB clock sample. Do not freeze Node timers as DB control or add an unapproved production clock seam. Fixed-clock pure proof boundaries remain separate evidence.",
+      "code_snippet": "const [times] = await holder.query<{ issued: string; expires: string }>(\"select public.file_signed_access_attestation_iso(clock_timestamp()-interval '4 minutes 57 seconds') as issued,public.file_signed_access_attestation_iso(clock_timestamp()+interval '3 seconds') as expires\");",
+      "predicate_evidence": "Live DB clock constructs a security-relevant five-minute proof lifetime with three seconds remaining and no fake clock. This is an H2 fixture, not H1: the while loop polls DB expiration rather than sleeping.",
+      "git_provenance": "git diff --name-status main...HEAD: A tests/integration/commands/documents-signed-access-lock-races.int.test.ts"
+    }
+  ],
+  "passed_checks": 309,
+  "failed_checks": 3,
+  "total_checks": 312,
+  "checks_per_file": 13,
+  "check_count_basis": "24 files \u00d713 owned registry row slots. Closed applicability slots count as non-failing PASS (n/a); this arithmetic is informational rather than runtime coverage.",
+  "violation_summary": {
+    "CRITICAL": 0,
+    "HIGH": 3,
+    "MEDIUM": 0,
+    "LOW": 0
+  },
+  "row_assessment": [
+    {
+      "row": "C1",
+      "status": "PASS",
+      "note": "No executable skip/todo/fixme, xit/xdescribe, or ignore forms. Historical RED comments contain skip/fixme words but are not declarations. Required local infrastructure checks throw instead of skipping."
+    },
+    {
+      "row": "C2",
+      "status": "PASS",
+      "note": "No committed focused declarations."
+    },
+    {
+      "row": "C3",
+      "status": "PASS",
+      "note": "No self/literal-self comparisons found by AST scan and semantic assertion inspection."
+    },
+    {
+      "row": "C4",
+      "status": "PASS",
+      "note": "Tests without inline expect/assert calls invoke assertion-bearing helpers synchronously or await assertion-bearing async helpers. Denial-branch H3 still has navigation assertions, so C4 does not fire."
+    },
+    {
+      "row": "C6",
+      "status": "PASS",
+      "note": "No outcome assertions found after an unconditional return, in swallowed subject-failure catches, or in unawaited outcome callbacks. Transaction catch blocks return asserted failure results; diagnostic catches are not outcome proof."
+    },
+    {
+      "row": "C7",
+      "status": "PASS (n/a)",
+      "note": "No Maestro flows in authoritative review set."
+    },
+    {
+      "row": "H1",
+      "status": "PASS",
+      "note": "No bare timer calls ordering test steps. Browser fake-clock movement is controlled time. SQL pg_blocking_pids/expiry polling awaits an observable DB condition with failure deadline; performance.now deadlines bound polling rather than sleep. expect.poll Node issuance-second checks have no bare timer call."
+    },
+    {
+      "row": "H2",
+      "status": "FAIL",
+      "note": "Two live-clock time-sensitive proof fixture violations. Fixed/injected clocks and Playwright clock control protect pure/parser/browser expiry cases. Opaque event/PDF/audit timestamps are not H2."
+    },
+    {
+      "row": "H3",
+      "status": "FAIL",
+      "note": "One inherited runtime-DOM conditional denial branch. Fixed declared parameter matrices, asserted success/failure discriminants before narrowing, and loops with asserted nonempty populations do not provide a bypass."
+    },
+    {
+      "row": "H6",
+      "status": "PASS (n/a)",
+      "note": "No Pact Vitest config or Pact artifact in exact review set; no expansion to unrelated configuration."
+    },
+    {
+      "row": "H7",
+      "status": "PASS (n/a)",
+      "note": "No Pact consumer/provider pair reviewed."
+    },
+    {
+      "row": "H8",
+      "status": "PASS (n/a)",
+      "note": "No Pact Vitest config reviewed."
+    },
+    {
+      "row": "L4",
+      "status": "PASS (n/a)",
+      "note": "No single-file Pact suite reviewed."
+    }
+  ],
+  "recommendations": [
+    "Arrange a specific listed file, revoke or archive its selected context, submit its preview, and unconditionally require the generic visible alert plus no raw path or existence-disclosing text.",
+    "Derive mutated timestamps from the prepared DB challenge issuance rather than the independent Node wall clock; retain explicit expired/future cases and fixed-clock unit boundary assertions. Do not fake an unauthenticated success response or weaken the DB-time check.",
+    "Retain the actual PostgreSQL clock_timestamp expiry semantics, transaction lock barrier and no-audit assertions. Make the near-expiry setup budget explicit and validate freshness before admitting the asserted race; derive timestamps consistently from one DB clock sample. Do not freeze Node timers as DB control or add an unapproved production clock seam. Fixed-clock pure proof boundaries remain separate evidence."
+  ],
+  "optional_improvements": [],
+  "unscored_observations": [
+    "crypto.randomUUID fixture identities are opaque and matched to returned identity, not unpredictable expected values; no registry deduction.",
+    "Runtime counts/durations/flakiness cannot be certified by this read-only analysis."
+  ],
+  "utility_preconditions": {
+    "playwrightUtilsActive": false,
+    "pactjsUtilsActive": false,
+    "note": "Configured utility flags are on but packages are absent; no utility deduction."
+  },
+  "knowledge_fragments_loaded": [
+    "C:/DEV/Kopplas/.agents/skills/bmad-testarch-test-review/resources/knowledge/test-quality.md",
+    "C:/DEV/Kopplas/.agents/skills/bmad-testarch-test-review/resources/knowledge/timing-debugging.md",
+    "C:/DEV/Kopplas/.agents/skills/bmad-testarch-test-review/resources/knowledge/test-healing-patterns.md",
+    "C:/DEV/Kopplas/.agents/skills/bmad-testarch-test-review/resources/knowledge/overview.md",
+    "C:/DEV/Kopplas/.agents/skills/bmad-testarch-test-review/resources/knowledge/api-request.md",
+    "C:/DEV/Kopplas/.agents/skills/bmad-testarch-test-review/resources/knowledge/auth-session.md",
+    "C:/DEV/Kopplas/.agents/skills/bmad-testarch-test-review/resources/knowledge/recurse.md"
+  ],
+  "step_loaded": "C:/DEV/Kopplas/.agents/skills/bmad-testarch-test-review/steps-c/step-03a-subagent-determinism.md",
+  "criteria_registry_loaded": "C:/DEV/Kopplas/.agents/skills/bmad-testarch-test-review/steps-c/criteria-registry.md",
+  "tests_run": false,
+  "resources_launched": false,
+  "review_set_expanded": false,
+  "summary": "24 test files statically scanned; 3 HIGH determinism findings (2 H2 proof fixtures, 1 inherited H3 denial branch). No CRITICAL, hard wait, focused/disabled or Pact violations. No implementation/status/review-round changes.",
+  "reviewed_files": [
+    {
+      "file": "tests/e2e/files/documents-context-navigation.e2e.spec.ts",
+      "sha256": "1c5105705b8fb7c2ff8902dd394e37bed1338c1abb2bf9fee74d388890391e39",
+      "lines": 829
+    },
+    {
+      "file": "tests/e2e/files/documents-search-preview-lifecycle.e2e.spec.ts",
+      "sha256": "13d428be4380b25ab5de6b581a9ec81ff2282547938795cbf648aa5be4f2926d",
+      "lines": 858
+    },
+    {
+      "file": "tests/e2e/files/documents.e2e.spec.ts",
+      "sha256": "a0ef189063059f02edd292c643a6d9dbfe220771791118760fcab537ac255ba6",
+      "lines": 662
+    },
+    {
+      "file": "tests/e2e/files/entity-file-preview.e2e.spec.ts",
+      "sha256": "a14173f8963a5acc6050ee7f06d4c6a61bc7863c532b2eb8cecf6c95d714e1dc",
+      "lines": 198
+    },
+    {
+      "file": "tests/e2e/files/file-index-scope.e2e.spec.ts",
+      "sha256": "bfa9d719189705b9f3b44f71fb87167ddacd57eff3c72f834d2974ad15483c14",
+      "lines": 149
+    },
+    {
+      "file": "tests/integration/commands/documents-lifecycle-lock-races.int.test.ts",
+      "sha256": "0a0e8c8c543930570f15b5d166743bb1363d952df8a20cb61b053068b9a4a818",
+      "lines": 242
+    },
+    {
+      "file": "tests/integration/commands/documents-lifecycle.int.test.ts",
+      "sha256": "8054addb94edc1221b1e032af4cd7d3606074d699a1a4aa6a6507082b84394d6",
+      "lines": 586
+    },
+    {
+      "file": "tests/integration/commands/documents-signed-access-lock-races.int.test.ts",
+      "sha256": "e66ffb24306248da3d8aee315d165fbfaf0ad7fdb59e7607e1dbec40e680de24",
+      "lines": 352
+    },
+    {
+      "file": "tests/integration/commands/documents-signed-access.int.test.ts",
+      "sha256": "eab6b291f0eb8bee1c6269a8563fa1619105a983a0e8058eb6bea23a0151c90c",
+      "lines": 492
+    },
+    {
+      "file": "tests/integration/rls/documents-context.rls.test.ts",
+      "sha256": "d19daac9aabe3306e645af9cf491bfdaf7430eb3cc7474c8618a8e69f344074b",
+      "lines": 288
+    },
+    {
+      "file": "tests/integration/rls/documents-filter-archive.rls.test.ts",
+      "sha256": "e49cf3a48abeaea0aba27bd50a449fa944a6974604d49d2af6e640f4635caaa4",
+      "lines": 244
+    },
+    {
+      "file": "tests/integration/rls/documents.rls.test.ts",
+      "sha256": "129f0a688360965ff5c113184ae0aa29a4b2c2072d71820fd47e1d2631394c98",
+      "lines": 229
+    },
+    {
+      "file": "tests/unit/components/documents/entity-documents-link.test.ts",
+      "sha256": "60e0381ff411529915382e2c6d55e32b70bde62b468d6b3b2fe62e9b25400591",
+      "lines": 80
+    },
+    {
+      "file": "tests/unit/features/documents/context-navigation.test.ts",
+      "sha256": "1632834ccbb0052acb0eef07661a9504c8d7456511733f8b6014a1cc5cc4baed",
+      "lines": 122
+    },
+    {
+      "file": "tests/unit/features/documents/date-bounds.test.ts",
+      "sha256": "58b3ae8aa0b2f5b0d2e573085c1720bf73805c81a60cc63711e44fe9ee27aa82",
+      "lines": 38
+    },
+    {
+      "file": "tests/unit/features/documents/filters.test.ts",
+      "sha256": "e769d3cee96b680fcae092e41436619a24ea5710ca726098e96acc5ed09f7437",
+      "lines": 73
+    },
+    {
+      "file": "tests/unit/features/documents/preview-state.test.ts",
+      "sha256": "4e82bac27e42c802abf301566f0065a13fba81a6ab88bf542910d7b4f64fc89d",
+      "lines": 82
+    },
+    {
+      "file": "tests/unit/scope/manifest-shape.test.ts",
+      "sha256": "6f8d1147faf02aaa6f7145ea946bf1fdeb09d8d53e4d8103238905b9547a0441",
+      "lines": 218
+    },
+    {
+      "file": "tests/unit/server/commands/documents-lifecycle.test.ts",
+      "sha256": "966897407d161c348f04f44b153dfbd78bbfe7681776f7cf337dc78dae911e2b",
+      "lines": 132
+    },
+    {
+      "file": "tests/unit/server/commands/documents-signed-access.test.ts",
+      "sha256": "5b06cca7f8ebb829d724ec059140c075cbb8bb0cbeda35422accd6fd2e0e0938",
+      "lines": 259
+    },
+    {
+      "file": "tests/unit/server/read-models/document-context.test.ts",
+      "sha256": "f7ec0425c00fb15c0d3d44a2ca2537189d4b0999d6af92bc436e9d195a8cdc1d",
+      "lines": 234
+    },
+    {
+      "file": "tests/unit/server/read-models/document-sources.test.ts",
+      "sha256": "f135e9c837268f41023a5b1eaefe74a1ca7e80316413fbe3a4b93cd3816f4a3d",
+      "lines": 263
+    },
+    {
+      "file": "tests/unit/server/read-models/documents.test.ts",
+      "sha256": "b8bbe2999464be082389a407448c60b5824bc130347c1c99204cf459d974343a",
+      "lines": 331
+    },
+    {
+      "file": "tests/unit/server/storage/document-signed-access-attestation.test.ts",
+      "sha256": "c324cf83eb0a089ab1c846f3eab740312f223955880ed69a9efaee2d76db9912",
+      "lines": 186
+    }
+  ],
+  "context_files_read": [
+    "_bmad-output/implementation-artifacts/spec-20-1-documents-activation-and-source-authorized-aggregation.md",
+    "_bmad-output/implementation-artifacts/spec-20-2-search-filters-preview-and-archive-restore.md",
+    "_bmad-output/implementation-artifacts/spec-20-3-entity-panel-links-and-contextual-navigation.md"
+  ],
+  "input_baseline": {
+    "corpusSize": 422,
+    "sampled": 40,
+    "sample_files": [
+      "tests/e2e/files/entity-file-panel.e2e.spec.ts",
+      "tests/e2e/files/file-lock-panel.e2e.spec.ts",
+      "tests/integration/commands/accept-quote-and-create-job.int.test.ts",
+      "tests/integration/commands/acceptance-evidence-link.int.test.ts",
+      "tests/integration/commands/accepted-record-lock.int.test.ts",
+      "tests/integration/commands/admin-invitation-retry-flow.test.ts",
+      "tests/integration/commands/admin-user-management.int.test.ts",
+      "tests/integration/commands/audit-actor-on-delete-set-null.int.test.ts",
+      "tests/integration/commands/audit-anon-isolation.int.test.ts",
+      "tests/integration/commands/audit-append-only.int.test.ts",
+      "tests/integration/commands/audit-metadata-hygiene-e2e.int.test.ts",
+      "tests/integration/commands/booking-conflicts.int.test.ts",
+      "tests/integration/commands/booking-editor-review-fixes.int.test.ts",
+      "tests/integration/commands/booking-editor-round2.int.test.ts",
+      "tests/integration/commands/booking-editor.int.test.ts",
+      "tests/integration/commands/bookings-replay-authority.int.test.ts",
+      "tests/integration/commands/bookings.int.test.ts",
+      "tests/integration/commands/calculation-commands.int.test.ts",
+      "tests/integration/commands/calculation-parent-ownership.int.test.ts",
+      "tests/integration/commands/calculation-row-source.int.test.ts",
+      "tests/integration/commands/capture-quote-acceptance.int.test.ts",
+      "tests/integration/commands/create-job.int.test.ts",
+      "tests/integration/commands/create-new-quote-version.int.test.ts",
+      "tests/integration/commands/crm-command-coverage.int.test.ts",
+      "tests/integration/commands/crm-customer-commands.int.test.ts",
+      "tests/integration/commands/crm-parent-ownership.int.test.ts",
+      "tests/integration/commands/disabled-membership-no-access.int.test.ts",
+      "tests/integration/commands/envelope-audit-write.int.test.ts",
+      "tests/integration/commands/envelope-failure-modes.int.test.ts",
+      "tests/integration/commands/file-audit-events.int.test.ts",
+      "tests/integration/commands/file-link-lock.int.test.ts",
+      "tests/integration/commands/file-link-ownership.int.test.ts",
+      "tests/integration/commands/file-signed-access-refresh.int.test.ts",
+      "tests/integration/commands/file-signed-access.int.test.ts",
+      "tests/integration/commands/file-upload.int.test.ts",
+      "tests/integration/commands/generate-quote-pdf-determinism.int.test.ts",
+      "tests/integration/commands/generate-quote-pdf-retry-consistency.int.test.ts",
+      "tests/integration/commands/generate-quote-pdf-source-of-truth.int.test.ts",
+      "tests/integration/commands/generate-quote-pdf-storage-privacy.int.test.ts",
+      "tests/integration/commands/job-source-of-truth.int.test.ts"
+    ],
+    "conventions": {
+      "priorityMarkers": {
+        "adopted": 36,
+        "sampled": 40,
+        "status": "established",
+        "form": "[P0] or [P0/AC.../R...] in test names",
+        "measurement": "actual test declaration lines, excluding prose-only occurrences"
+      },
+      "testIds": {
+        "adopted": 2,
+        "sampled": 40,
+        "status": "emerging",
+        "form": "getByTestId\\(|data-testid|data-cy",
+        "measurement": "token scan; bddNaming/assertionStyle need semantic confirmation"
+      },
+      "networkFirst": {
+        "adopted": 0,
+        "sampled": 40,
+        "status": "absent",
+        "form": "\\.route\\(|waitForResponse\\(|interceptNetworkCall|cy\\.intercept",
+        "measurement": "token scan; bddNaming/assertionStyle need semantic confirmation"
+      },
+      "playwrightUtils": {
+        "adopted": 0,
+        "sampled": 40,
+        "status": "absent",
+        "form": "@seontechnologies/playwright-utils",
+        "measurement": "token scan; bddNaming/assertionStyle need semantic confirmation"
+      },
+      "dataFactories": {
+        "adopted": 35,
+        "sampled": 40,
+        "status": "established",
+        "form": "createTenantFixture|seed\\w*\\(|(?:create|build)\\w*(?:Fixture|Factory)\\(",
+        "measurement": "token scan; bddNaming/assertionStyle need semantic confirmation"
+      },
+      "fixtures": {
+        "adopted": 8,
+        "sampled": 40,
+        "status": "emerging",
+        "form": "test\\.extend|mergeTests|fixtures|createTenantFixture",
+        "measurement": "token scan; bddNaming/assertionStyle need semantic confirmation"
+      },
+      "bddNaming": {
+        "adopted": 40,
+        "sampled": 40,
+        "status": "established",
+        "form": "names describe observable behavior, input and expected result",
+        "measurement": "semantic confirmation of sampled test names; all40 contain behavioral names"
+      },
+      "assertionStyle": {
+        "adopted": 40,
+        "sampled": 40,
+        "status": "established",
+        "form": "expect matchers for Vitest/Playwright; runner-consistent assertion dialect",
+        "measurement": "sampled declaration/setup/import/assertion token read; no rule requiring a single dialect across different runners"
+      }
+    }
+  },
+  "raw_worker_score": 70
+}

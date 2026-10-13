@@ -9,11 +9,11 @@ spec_folder: null
 story_id: null
 branch: codex/documents-resume-admission-2026-10-09
 status: in-progress
-updated_at: "2026-10-13T13:59:02Z"
+updated_at: "2026-10-13T14:17:39Z"
 started_at: "2026-10-09T13:24:56Z"
 completed_at: null
-active_seconds: 3703
-timing_anchor: 1791899942
+active_seconds: 4820
+timing_anchor: null
 is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
@@ -39,7 +39,7 @@ tea_selected: []
 tea_rationale: null
 epic_story_count: 3
 stories_after_in_epic: null
-completed_phases: [0, 1, 2, 5]
+completed_phases: [0, 1, 2, 5, 81]
 spec_path: null
 spec_approved: false
 build:
@@ -63,7 +63,7 @@ commits: []
 phase8_steps:
   trace_gate: done
   nfr: done
-  test_review: null
+  test_review: done
   reconcile: null
   archive: null
   retro: null

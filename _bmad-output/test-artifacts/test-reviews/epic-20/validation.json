@@ -1,0 +1,21 @@
+{
+  "status": "complete_with_disclosed_L2_limitation",
+  "head": "21284266ee265dd349301616a9ed83d27a2b1769",
+  "all4workers_completed": true,
+  "all24test_content_matches_commit_under_Git_newline_normalization": true,
+  "attribution_and_ledger_pass": true,
+  "score": 36,
+  "grade": "F",
+  "recommendation": "Request Changes",
+  "counts": {
+    "CRITICAL": 0,
+    "HIGH": 3,
+    "MEDIUM": 26,
+    "LOW": 2
+  },
+  "score_arithmetic": "100 - 15 - 52 - 2 + 5 = 36",
+  "no_execution": true,
+  "no_exclusions": true,
+  "duration": "unknown",
+  "new_artifacts_only": true
+}
