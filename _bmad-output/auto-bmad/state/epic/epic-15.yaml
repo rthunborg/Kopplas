@@ -9,11 +9,11 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-13T19:48:50Z"
+updated_at: "2026-10-13T20:03:59Z"
 started_at: "2026-10-09T12:57:49Z"
 completed_at: null
-active_seconds: 1693
-timing_anchor: 1791920930
+active_seconds: 2482
+timing_anchor: 1791921839
 is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
