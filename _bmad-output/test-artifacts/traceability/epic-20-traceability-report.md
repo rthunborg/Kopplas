@@ -154,7 +154,7 @@ The full oracle has 81 items: 25 formal ACs plus 56 approved design families. Th
 
 ### Detailed test witnesses
 
-Full stable identity/title/file/line/level/execution/evidence fields for every mapped case are retained in `epic-20/mapping-input.json`. The following witnesses give reviewer entry points; they are a subset, not invented test IDs.
+Each full stable identity/title/file/line/level/execution record is stored once in `epic-20/discovered-tests.json`; its evidence_ref resolves through evidence_index and its source SHA inherits tested_product_sha. `epic-20/mapping-input.json` and the matrix retain complete requirement-to-case ID/level references. The following witnesses give reviewer entry points; they are a subset, not invented test IDs.
 
 #### 20.1-AC1
 
@@ -589,3 +589,9 @@ Machine outputs: `epic-20/gate-decision.json` and `epic-20/e2e-trace-summary.jso
 All five Create steps completed and outputs validated against the installed trace checklist. Phase1 output was saved before Phase2 read the exact temporary matrix; no gate-time matrix regeneration. Oracle81 items and unique identities, all test file paths, stats, by-level/live shape and deterministicFAIL were checked. Unknown NFR/code-coverage/burn-in and optional visual evidence remain explicit. No enabled story/status/stakeholder update is owned or performed.
 
 Completion resolver ran successfully using a process-only temporary uv cache after the activation cache failure; `workflow.on_complete` resolved empty (native0), so no completion hook action is required.
+
+### Compact artifact storage
+
+The committed inventory retains only606unique mapped Epic20 cases. The original676-case discovery count is recorded, but70unmapped records are omitted. Requirement mappings use stable test-ID/level references; full canonical records and evidence paths are held once in discovered-tests.json. Gap records reference authoritative requirement IDs. The verdict,81requirements, every mapping,17evidence hashes, execution/source attribution and76/81FULL statistics are unchanged. No raw runtime report/log is copied into the repository.
+
+To reproduce from the recorded raw inputs, run the five generation/validation scripts in their documented order, then compact-artifacts.py. The final packaging is idempotent. `python compact-artifacts.py` validates the normalized references and unchanged gate bytes.
