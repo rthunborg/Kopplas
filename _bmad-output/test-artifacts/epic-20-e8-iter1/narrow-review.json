@@ -1,0 +1,23 @@
+{
+  "scope": "single new 20-P0-02-MEMBERSHIP-REMOVE-001 test delta, fixture effects and affected author trail only",
+  "reviewer": "/root/epic20_trace_remediation/membership_delta_review",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "result": "cleared",
+  "findings": [],
+  "required_execution": {
+    "passed": 166,
+    "failed": 0,
+    "skipped": 0,
+    "todo": 0,
+    "native_exit": 0
+  },
+  "changed_test_sha256": "eab6b291f0eb8bee1c6269a8563fa1619105a983a0e8058eb6bea23a0151c90c",
+  "author_trail": "spec-20-1-documents-activation-and-source-authorized-aggregation.md:493",
+  "new_stops_verified": 6,
+  "limitations": [
+    "command/read-model boundary; no browser/cookie action-wrapper rerun",
+    "dirty test on b7f01bb3; final clean result-SHA replay belongs to root",
+    "no whole-story/epic clearance; no fourth broad review"
+  ]
+}

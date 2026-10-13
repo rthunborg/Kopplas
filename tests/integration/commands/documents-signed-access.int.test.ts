@@ -4,6 +4,7 @@ import { createHmac } from "node:crypto";
 import { beforeAll, afterAll, describe, it, expect } from "vitest";
 import {
   createRoleAwarePhaseAFixture, cleanupRoleAwarePhaseAFixture, makeAuthedServerClient,
+  createTwoTenantFixture, cleanupFixture, adminRemoveStorageObject,
   makeAnonServerClient, admin, adminInsertCustomer, adminInsertCalculation,
   adminInsertQuote, adminInsertQuoteVersion, adminInsertQuoteAcceptance, adminInsertJob,
   adminInsertFacility, adminInsertContact, adminInsertQuoteVersionAttachment, adminInsertFile, adminInsertFileLink,
@@ -16,6 +17,7 @@ import { runCommand } from "@/server/commands/envelope";
 import { createDocumentSignedAccess } from "@/server/commands/documents/signed-access";
 import { createSignedFileAccess } from "@/server/commands/files";
 import { readDocuments } from "@/server/read-models/documents";
+import { readDocumentContext, readEntityDocumentsLink } from "@/server/read-models/document-context";
 import { createSignedFileUrl, type StorageSigningClient } from "@/server/storage/signed-access";
 import { validateSignedStorageUrl, signFileSignedAccessAttestation } from "@/server/storage/signed-access-attestation";
 
@@ -354,6 +356,84 @@ describe("Documents20.1 selected-link checked access", () => {
       expect(await adminSelectAuditEvents({ correlationId: correlation })).toEqual([]);
     } finally { await adminExec("update public.tenant_memberships set status='active' where tenant_id=$1 and user_id=$2", [fx!.base.tenantA.id, fx!.base.adminA.id]); }
   });
+  it("[P0][20-P0-02-MEMBERSHIP-REMOVE-001] deleting active membership denies Documents reads, open and refresh with the existing authenticated session", async () => {
+    // A disposable fixture keeps deletion (including cascading child roles) away
+    // from suite actors. The client disables automatic token refresh at creation.
+    const isolated = await createTwoTenantFixture();
+    let selected: typeof own | undefined;
+    try {
+      const client = await makeAuthedServerClient(isolated.adminA);
+      selected = await seed(isolated.tenantA.id);
+      const ref = { module: "crm", ownerType: "customer", ownerId: selected.customerId } as const;
+      const session = await client.auth.getSession();
+      expect(session.error).toBeNull();
+      const issuedSession = session.data.session;
+      if (!issuedSession) throw new Error("fixture must establish an authenticated session");
+      const token = issuedSession.access_token;
+      const assertSameAuthenticatedSession = async () => {
+        const current = await client.auth.getSession();
+        expect(current.error).toBeNull();
+        // Compare as a boolean so an assertion failure cannot print bearer tokens.
+        expect(current.data.session?.access_token === token).toBe(true);
+        expect(current.data.session?.expires_at).toBe(issuedSession.expires_at);
+        expect((current.data.session?.expires_at ?? 0) * 1000).toBeGreaterThan(Date.now());
+        const authenticated = await client.auth.getUser(token);
+        expect(authenticated.error).toBeNull();
+        expect(authenticated.data.user?.id).toBe(isolated.adminA.id);
+      };
+      await assertSameAuthenticatedSession();
+      const globalBefore = await readDocuments({ client });
+      const contextBefore = await readDocuments({ client, context: ref, selectedLinkId: selected.linkId });
+      for (const result of [globalBefore, contextBefore]) {
+        expect(result.ok).toBe(true);
+        if (!result.ok) throw new Error(result.code);
+        expect(result.data.descriptor.data.rows).toEqual([expect.objectContaining({
+          linkId: selected.linkId, fileId: selected.fileId, ownerLabel: "Selected source", displayName: "document.pdf",
+        })]);
+      }
+      expect(contextBefore).toMatchObject({ data: { descriptor: { selectedLinkId: selected.linkId, context: { state: "available", data: { ownerLabel: "Selected source" } } } } });
+      expect(await readDocumentContext(ref, { client })).toMatchObject({ state: "available", data: { ownerLabel: "Selected source" } });
+      expect(await readEntityDocumentsLink(ref, { client })).toMatchObject({ state: "available", data: { href: expect.stringContaining("/files?") } });
+      const initialCorrelation = crypto.randomUUID();
+      const issued = await access(client, selected, initialCorrelation);
+      expect(issued.ok).toBe(true);
+      if (!issued.ok) throw new Error(issued.code);
+      expect(issued.data).toMatchObject({ linkId: selected.linkId, targetId: selected.fileId, signedUrl: expect.stringMatching(/\/object\/sign\//) });
+      expect(await adminSelectAuditEvents({ correlationId: initialCorrelation })).toHaveLength(1);
+
+      const removed = await adminQuery<{ id: string; status: string }>(
+        "delete from public.tenant_memberships where tenant_id=$1 and user_id=$2 and status='active' returning id,status",
+        [isolated.tenantA.id, isolated.adminA.id],
+      );
+      expect(removed).toEqual([expect.objectContaining({ status: "active", id: expect.any(String) })]);
+      expect(await adminQuery("select id from public.tenant_memberships where user_id=$1", [isolated.adminA.id])).toEqual([]);
+      await assertSameAuthenticatedSession();
+
+      for (const result of [await readDocuments({ client }), await readDocuments({ client, context: ref, selectedLinkId: selected.linkId })]) {
+        expect(result).toMatchObject({ ok: false, code: "TENANT_MEMBERSHIP_REQUIRED" });
+        expect(result).not.toHaveProperty("data");
+        expect(JSON.stringify(result)).not.toMatch(/Selected source|document\.pdf|ownerLabel|rows|selectedLinkId/);
+      }
+      for (const result of [await readDocumentContext(ref, { client }), await readEntityDocumentsLink(ref, { client })]) {
+        expect(result).toEqual({ state: "unavailable", data: null, entitlements: { canOpenDocuments: false } });
+      }
+      // actions.ts sends both initial open and refresh through this exact command.
+      // These are separate requests using the same client/token and selected pair.
+      for (const intent of ["open", "refresh"] as const) {
+        const correlation = crypto.randomUUID();
+        const result = await access(client, selected, correlation);
+        expect(result, intent).toMatchObject({ ok: false, code: "TENANT_MEMBERSHIP_REQUIRED" });
+        noUrl(result);
+        expect(await adminSelectAuditEvents({ correlationId: correlation })).toEqual([]);
+        await assertSameAuthenticatedSession();
+      }
+      expect(await adminQuery("select id from public.audit_events where tenant_id=$1 and actor_user_id=$2", [isolated.tenantA.id, isolated.adminA.id])).toHaveLength(1);
+    } finally {
+      try {
+        if (selected) await adminRemoveStorageObject({ bucket: "tenant-files", objectPath: selected.path });
+      } finally { await cleanupFixture(isolated); }
+    }
+  }, 60_000);
   it.each(["wrong-current-file", "not-generated"])("[P0] quote PDF %s association is denied even with live file/link/parents", async (mutation) => {
     const context = await seedPdf(); const { args } = await proof(crypto.randomUUID(), context);
     if (mutation === "wrong-current-file") {

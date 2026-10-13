@@ -1,0 +1,14 @@
+{
+  "success": true,
+  "target": "20-P0-02-MEMBERSHIP-REMOVE-001",
+  "tests_added": 1,
+  "level": "api/integration",
+  "priority": "P0",
+  "test_file": "tests/integration/commands/documents-signed-access.int.test.ts",
+  "test_line": 359,
+  "test_sha256": "eab6b291f0eb8bee1c6269a8563fa1619105a983a0e8058eb6bea23a0151c90c",
+  "fixtures": "fresh existing createTwoTenantFixture/cleanupFixture plus exact Storage removal in nested finally",
+  "parent_owns_git": true,
+  "bounded_scope": "one missing active-membership deletion with unchanged issued token; no production change",
+  "local_raw_receipt_directory": "C:\\Users\\Rasmus\\AppData\\Local\\Temp\\Kopplas-epic20-e8-iter1-b7f01bb3"
+}
