@@ -31,17 +31,20 @@
  *  tests/unit/guardrails/job-non-scope.test.ts (the forbidden-token discipline to mirror);
  *  tests/e2e/files/file-lock-panel.e2e.spec.ts (the sign-in + hydration helpers to reuse)]
  */
-import { test, expect, type Page, type Locator } from "@playwright/test";
+import type { Page, Locator } from "@playwright/test";
+import { test, expect } from "../dashboard/guarded-test";
 import { readFileSync } from "node:fs";
 import path from "node:path";
 
 interface AdminFixture {
   readonly adminA: { readonly email: string; readonly password: string };
+  readonly crm: { readonly fileName: string };
+  readonly acceptedAcceptance: { readonly evidenceFileId: string };
 }
 
-const fixture: AdminFixture = JSON.parse(
-  readFileSync(path.join(process.cwd(), "tests", "e2e", ".auth", "fixture.json"), "utf8"),
-);
+function fixture(): AdminFixture {
+  return JSON.parse(readFileSync(path.join(process.cwd(), "tests", "e2e", ".auth", "fixture.json"), "utf8"));
+}
 
 /** Deferred-module / document-center category tokens that must NEVER surface in the limited index. */
 const FORBIDDEN_DEFERRED_LABELS = [
@@ -93,7 +96,7 @@ async function signIn(page: Page, email: string, password: string): Promise<void
 
 test.describe("Limited Filer index scope guardrail (Story 8.5 E2E)", () => {
   test("8.5-E2E-01 (AC1): the /files index renders the limited index root", async ({ page }) => {
-    await signIn(page, fixture.adminA.email, fixture.adminA.password);
+    await signIn(page, fixture().adminA.email, fixture().adminA.password);
     await page.goto("/files");
 
     // The limited index island renders (replacing the PagePlaceholder stub).
@@ -103,7 +106,7 @@ test.describe("Limited Filer index scope guardrail (Story 8.5 E2E)", () => {
   test("8.5-E2E-01 (AC1/R-816): NO deferred-module / document-center label appears on the index", async ({
     page,
   }) => {
-    await signIn(page, fixture.adminA.email, fixture.adminA.password);
+    await signIn(page, fixture().adminA.email, fixture().adminA.password);
     await page.goto("/files");
     await expect(page.getByTestId("file-index")).toBeVisible();
 
@@ -118,17 +121,28 @@ test.describe("Limited Filer index scope guardrail (Story 8.5 E2E)", () => {
   test("8.5-E2E-01 (AC1): ONLY the fixed Phase A owner-category labels are used for grouping/filtering", async ({
     page,
   }) => {
-    await signIn(page, fixture.adminA.email, fixture.adminA.password);
+    await signIn(page, fixture().adminA.email, fixture().adminA.password);
     await page.goto("/files");
     const index = page.getByTestId("file-index");
     await expect(index).toBeVisible();
 
-    // The owner-category filter control exposes ONLY the seven Phase A categories — a deferred module
-    // can never appear as a grouping option. (The filter control is keyboard-reachable; a11y baseline.)
+    // The current shared seed supplies customer, generated quote-PDF and acceptance
+    // evidence contexts. Verify those actual rows before their exact authorized facets;
+    // enrolled owners without eligible fixture files must not become empty options.
+    await expect(index.getByTestId("file-index-row").filter({ hasText: fixture().crm.fileName })).toHaveCount(1);
+    await expect(index.getByTestId("file-index-row").filter({ hasText: "offert-1002.pdf" })).toHaveCount(1);
+    await expect(index.locator(`input[name="file_id"][value="${fixture().acceptedAcceptance.evidenceFileId}"]`)).toHaveCount(1);
+    const fixtureLabels = ["Kund", "Offert", "Acceptans"];
     const filter = page.getByTestId("file-index-category-filter");
     await expect(filter).toBeVisible();
-    for (const label of ALLOWED_CATEGORY_LABELS) {
-      await expect(filter).toContainText(label);
+    await expect(filter.locator("option")).toHaveText(["Alla kategorier", ...fixtureLabels]);
+    expect(await filter.locator("option").evaluateAll(options => options.map(option => (option as HTMLOptionElement).value))).toEqual(["", "customer", "quote_version", "quote_acceptance"]);
+    await expect(filter.locator('option[value="customer"]')).toHaveCount(1);
+    for (const label of ALLOWED_CATEGORY_LABELS.filter(label => !fixtureLabels.includes(label))) {
+      await expect(filter.locator("option").filter({ hasText: new RegExp(`^${label}$`) })).toHaveCount(0);
+    }
+    for (const option of await filter.locator("option").allTextContents()) {
+      expect(["Alla kategorier", ...ALLOWED_CATEGORY_LABELS]).toContain(option);
     }
   });
 });

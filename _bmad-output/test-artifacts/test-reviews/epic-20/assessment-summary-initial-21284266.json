@@ -1,0 +1,625 @@
+{
+  "workflow": "bmad-testarch-test-review",
+  "head": "21284266ee265dd349301616a9ed83d27a2b1769",
+  "headless": true,
+  "context_basis": "pr_diff",
+  "context_waivers_applied": 0,
+  "overall_score": 36,
+  "overall_grade": "F",
+  "recommendation": "Request Changes",
+  "violation_summary": {
+    "CRITICAL": 0,
+    "HIGH": 3,
+    "MEDIUM": 26,
+    "LOW": 2,
+    "total": 31
+  },
+  "deductions": 69,
+  "bonuses": {
+    "excellentBdd": 5,
+    "comprehensiveFixtures": 0,
+    "dataFactories": 0,
+    "networkFirst": 0,
+    "perfectIsolation": 0,
+    "allTestIds": 0
+  },
+  "all_violations": [
+    {
+      "id": "DET-H3-01",
+      "file": "tests/e2e/files/entity-file-preview.e2e.spec.ts",
+      "line": 143,
+      "row": "H3",
+      "severity": "HIGH",
+      "category": "conditional-assertion",
+      "introduced_by_reviewed_diff": false,
+      "classification": "inherited concrete test weakness",
+      "description": "The denial/error outcome assertions execute only when file-preview-error already exists. This test navigates to an ordinary customer panel without arranging or submitting a denied preview, so a normal success page can pass while every denial-message/role/no-path assertion is skipped. signIn/gotoCustomerPanel still assert dashboard URL and panel visibility; this is a hollow denial branch, not a test with zero executed assertions.",
+      "suggestion": "Arrange a specific listed file, revoke or archive its selected context, submit its preview, and unconditionally require the generic visible alert plus no raw path or existence-disclosing text.",
+      "code_snippet": "if (await previewError.count()) {",
+      "predicate_evidence": "Runtime DOM existence controls whether the claimed denial outcome is asserted. main...HEAD preserves this branch unchanged.",
+      "dimension": "determinism"
+    },
+    {
+      "id": "DET-H2-01",
+      "file": "tests/integration/commands/documents-signed-access.int.test.ts",
+      "line": 268,
+      "row": "H2",
+      "severity": "HIGH",
+      "category": "wall-clock-fixture",
+      "introduced_by_reviewed_diff": true,
+      "classification": "concrete time-sensitive fixture weakness",
+      "description": "The otherwise-valid expired/future proof fixture derives issuance and five-minute expiry from live Node Date.now(), then submits the HMAC proof to a real database clock. No fake or injected clock governs this fixture; proof validity depends on the relation between the runner clock, DB clock and elapsed scheduling time. This meets H2 even though the offsets provide a useful practical margin.",
+      "suggestion": "Derive mutated timestamps from the prepared DB challenge issuance rather than the independent Node wall clock; retain explicit expired/future cases and fixed-clock unit boundary assertions. Do not fake an unauthenticated success response or weaken the DB-time check.",
+      "code_snippet": "const issued = Date.now() + (state === \"expired\" ? -600_000 : 120_000);",
+      "predicate_evidence": "p_attestation_issued_at and p_attestation_expires_at are time-bounded authorization values created from live clock with no fake timers. new Date at line269 formats the derived timestamps.",
+      "git_provenance": "git diff --name-status main...HEAD: A tests/integration/commands/documents-signed-access.int.test.ts",
+      "dimension": "determinism"
+    },
+    {
+      "id": "DET-H2-02",
+      "file": "tests/integration/commands/documents-signed-access-lock-races.int.test.ts",
+      "line": 153,
+      "row": "H2",
+      "severity": "HIGH",
+      "category": "wall-clock-fixture",
+      "introduced_by_reviewed_diff": true,
+      "classification": "concrete scheduler-sensitive expiry fixture",
+      "description": "The synthetic proof gets only three seconds remaining from live PostgreSQL clock_timestamp(), before asynchronous contact-lock acquisition, second-session startup and pg_blocking_pids polling. An otherwise correct implementation fails the beforeExpiry.fresh assertion at line174 if that setup is scheduled after the three-second boundary. Later observed-expiry polling proves a real post-lock boundary, but does not freeze or remove this live-clock freshness race.",
+      "suggestion": "Retain the actual PostgreSQL clock_timestamp expiry semantics, transaction lock barrier and no-audit assertions. Make the near-expiry setup budget explicit and validate freshness before admitting the asserted race; derive timestamps consistently from one DB clock sample. Do not freeze Node timers as DB control or add an unapproved production clock seam. Fixed-clock pure proof boundaries remain separate evidence.",
+      "code_snippet": "const [times] = await holder.query<{ issued: string; expires: string }>(\"select public.file_signed_access_attestation_iso(clock_timestamp()-interval '4 minutes 57 seconds') as issued,public.file_signed_access_attestation_iso(clock_timestamp()+interval '3 seconds') as expires\");",
+      "predicate_evidence": "Live DB clock constructs a security-relevant five-minute proof lifetime with three seconds remaining and no fake clock. This is an H2 fixture, not H1: the while loop polls DB expiration rather than sleeping.",
+      "git_provenance": "git diff --name-status main...HEAD: A tests/integration/commands/documents-signed-access-lock-races.int.test.ts",
+      "dimension": "determinism"
+    },
+    {
+      "file": "tests/integration/commands/documents-lifecycle-lock-races.int.test.ts",
+      "line": 1,
+      "row": "M4",
+      "severity": "MEDIUM",
+      "category": "ungrouped-suite",
+      "description": "The file has 9 test declarations and no describe/context grouping. This meets M4's literal predicate; it is a suite-diagnostic maintainability finding, not evidence of a production defect or order-dependent failure.",
+      "suggestion": "Wrap the existing cases in a subject-named describe/context group during a separately authorized test-maintenance change; preserve behavior and the capped review state.",
+      "code_snippet": "test(\"[P0][AC7] uncommitted FK link insertion blocks file-wide acquisition and newly committed hidden context denies archive\", async () => fixture(async c => {",
+      "gate": "Absolute",
+      "classification": "rubric-only-maintainability",
+      "demonstrated_release_blocker": false,
+      "dimension": "isolation"
+    },
+    {
+      "file": "tests/integration/commands/documents-lifecycle.int.test.ts",
+      "line": 1,
+      "row": "M4",
+      "severity": "MEDIUM",
+      "category": "ungrouped-suite",
+      "description": "The file has 26 test declarations and no describe/context grouping. This meets M4's literal predicate; it is a suite-diagnostic maintainability finding, not evidence of a production defect or order-dependent failure.",
+      "suggestion": "Wrap the existing cases in a subject-named describe/context group during a separately authorized test-maintenance change; preserve behavior and the capped review state.",
+      "code_snippet": "test(\"[P0][AC3,4] seven enrolled ordinary source contexts archive only after all authority checks\", async () => fixture(async (fx, client) => {",
+      "gate": "Absolute",
+      "classification": "rubric-only-maintainability",
+      "demonstrated_release_blocker": false,
+      "dimension": "isolation"
+    },
+    {
+      "file": "tests/integration/rls/documents-context.rls.test.ts",
+      "line": 1,
+      "row": "M4",
+      "severity": "MEDIUM",
+      "category": "ungrouped-suite",
+      "description": "The file has 13 test declarations and no describe/context grouping. This meets M4's literal predicate; it is a suite-diagnostic maintainability finding, not evidence of a production defect or order-dependent failure.",
+      "suggestion": "Wrap the existing cases in a subject-named describe/context group during a separately authorized test-maintenance change; preserve behavior and the capped review state.",
+      "code_snippet": "  test(\"[P0][AC1,3,4,6,7] \" + role + \" gets seven exact source-context links and server ancestry returns through real RLS\", async () => fixture(async (fx) => {",
+      "gate": "Absolute",
+      "classification": "rubric-only-maintainability",
+      "demonstrated_release_blocker": false,
+      "dimension": "isolation"
+    },
+    {
+      "file": "tests/integration/rls/documents-filter-archive.rls.test.ts",
+      "line": 1,
+      "row": "M4",
+      "severity": "MEDIUM",
+      "category": "ungrouped-suite",
+      "description": "The file has 16 test declarations and no describe/context grouping. This meets M4's literal predicate; it is a suite-diagnostic maintainability finding, not evidence of a production defect or order-dependent failure.",
+      "suggestion": "Wrap the existing cases in a subject-named describe/context group during a separately authorized test-maintenance change; preserve behavior and the capped review state.",
+      "code_snippet": "test(\"[P0][AC1] real RLS precedes literal name/MIME AND filters dates results counts and facets\", async () => fixture(async (fx,client) => {",
+      "gate": "Absolute",
+      "classification": "rubric-only-maintainability",
+      "demonstrated_release_blocker": false,
+      "dimension": "isolation"
+    },
+    {
+      "file": "tests/unit/components/documents/entity-documents-link.test.ts",
+      "line": 1,
+      "row": "M4",
+      "severity": "MEDIUM",
+      "category": "ungrouped-suite",
+      "description": "The file has 3 test declarations and no describe/context grouping. This meets M4's literal predicate; it is a suite-diagnostic maintainability finding, not evidence of a production defect or order-dependent failure.",
+      "suggestion": "Wrap the existing cases in a subject-named describe/context group during a separately authorized test-maintenance change; preserve behavior and the capped review state.",
+      "code_snippet": "test(\"[P1][AC1,4] successful server projection is a normal accessible local anchor\", async () => {",
+      "gate": "Absolute",
+      "classification": "rubric-only-maintainability",
+      "demonstrated_release_blocker": false,
+      "dimension": "isolation"
+    },
+    {
+      "file": "tests/unit/features/documents/context-navigation.test.ts",
+      "line": 1,
+      "row": "M4",
+      "severity": "MEDIUM",
+      "category": "ungrouped-suite",
+      "description": "The file has 7 test declarations and no describe/context grouping. This meets M4's literal predicate; it is a suite-diagnostic maintainability finding, not evidence of a production defect or order-dependent failure.",
+      "suggestion": "Wrap the existing cases in a subject-named describe/context group during a separately authorized test-maintenance change; preserve behavior and the capped review state.",
+      "code_snippet": "  test(\"[P1][AC1,6] fixed center URL preserves exact active \" + ownerType + \" tuple\", async () => {",
+      "gate": "Absolute",
+      "classification": "rubric-only-maintainability",
+      "demonstrated_release_blocker": false,
+      "dimension": "isolation"
+    },
+    {
+      "file": "tests/unit/features/documents/date-bounds.test.ts",
+      "line": 1,
+      "row": "M4",
+      "severity": "MEDIUM",
+      "category": "ungrouped-suite",
+      "description": "The file has 4 test declarations and no describe/context grouping. This meets M4's literal predicate; it is a suite-diagnostic maintainability finding, not evidence of a production defect or order-dependent failure.",
+      "suggestion": "Wrap the existing cases in a subject-named describe/context group during a separately authorized test-maintenance change; preserve behavior and the capped review state.",
+      "code_snippet": "test(\"[P1][AC1] genuine Gregorian days reject impossible, noncanonical and reversed ranges\", async () => {",
+      "gate": "Absolute",
+      "classification": "rubric-only-maintainability",
+      "demonstrated_release_blocker": false,
+      "dimension": "isolation"
+    },
+    {
+      "file": "tests/unit/features/documents/filters.test.ts",
+      "line": 1,
+      "row": "M4",
+      "severity": "MEDIUM",
+      "category": "ungrouped-suite",
+      "description": "The file has 6 test declarations and no describe/context grouping. This meets M4's literal predicate; it is a suite-diagnostic maintainability finding, not evidence of a production defect or order-dependent failure.",
+      "suggestion": "Wrap the existing cases in a subject-named describe/context group during a separately authorized test-maintenance change; preserve behavior and the capped review state.",
+      "code_snippet": "test(\"[P1][AC1] URL normalization trims literal search and defaults to active\", async () => {",
+      "gate": "Absolute",
+      "classification": "rubric-only-maintainability",
+      "demonstrated_release_blocker": false,
+      "dimension": "isolation"
+    },
+    {
+      "file": "tests/unit/features/documents/preview-state.test.ts",
+      "line": 1,
+      "row": "M4",
+      "severity": "MEDIUM",
+      "category": "ungrouped-suite",
+      "description": "The file has 7 test declarations and no describe/context grouping. This meets M4's literal predicate; it is a suite-diagnostic maintainability finding, not evidence of a production defect or order-dependent failure.",
+      "suggestion": "Wrap the existing cases in a subject-named describe/context group during a separately authorized test-maintenance change; preserve behavior and the capped review state.",
+      "code_snippet": "test(\"[P0][AC2] selection switch immediately clears old URL/error and late result cannot replace new file\", async () => {",
+      "gate": "Absolute",
+      "classification": "rubric-only-maintainability",
+      "demonstrated_release_blocker": false,
+      "dimension": "isolation"
+    },
+    {
+      "file": "tests/unit/scope/manifest-shape.test.ts",
+      "line": 1,
+      "row": "M4",
+      "severity": "MEDIUM",
+      "category": "ungrouped-suite",
+      "description": "The file has 8 test declarations and no describe/context grouping. This meets M4's literal predicate; it is a suite-diagnostic maintainability finding, not evidence of a production defect or order-dependent failure.",
+      "suggestion": "Wrap the existing cases in a subject-named describe/context group during a separately authorized test-maintenance change; preserve behavior and the capped review state.",
+      "code_snippet": "test(\"10.1-UNIT-SHAPE-01 (AC2): SCOPE_MANIFEST exists and every module carries the \u00a75.2 field shape\", async () => {",
+      "gate": "Absolute",
+      "classification": "rubric-only-maintainability",
+      "demonstrated_release_blocker": false,
+      "dimension": "isolation"
+    },
+    {
+      "file": "tests/unit/server/commands/documents-lifecycle.test.ts",
+      "line": 1,
+      "row": "M4",
+      "severity": "MEDIUM",
+      "category": "ungrouped-suite",
+      "description": "The file has 6 test declarations and no describe/context grouping. This meets M4's literal predicate; it is a suite-diagnostic maintainability finding, not evidence of a production defect or order-dependent failure.",
+      "suggestion": "Wrap the existing cases in a subject-named describe/context group during a separately authorized test-maintenance change; preserve behavior and the capped review state.",
+      "code_snippet": "test(\"[P0][AC3,4] both fixed commands use existing Files.Edit and SQL-owned success audit\", async () => {",
+      "gate": "Absolute",
+      "classification": "rubric-only-maintainability",
+      "demonstrated_release_blocker": false,
+      "dimension": "isolation"
+    },
+    {
+      "file": "tests/unit/server/commands/documents-signed-access.test.ts",
+      "line": 1,
+      "row": "M4",
+      "severity": "MEDIUM",
+      "category": "ungrouped-suite",
+      "description": "The file has 11 test declarations and no describe/context grouping. This meets M4's literal predicate; it is a suite-diagnostic maintainability finding, not evidence of a production defect or order-dependent failure.",
+      "suggestion": "Wrap the existing cases in a subject-named describe/context group during a separately authorized test-maintenance change; preserve behavior and the capped review state.",
+      "code_snippet": "test(\"[P1] 20-P1-07 fixed closed command enrollment grants Documents.View only\", () => {",
+      "gate": "Absolute",
+      "classification": "rubric-only-maintainability",
+      "demonstrated_release_blocker": false,
+      "dimension": "isolation"
+    },
+    {
+      "file": "tests/unit/server/read-models/document-context.test.ts",
+      "line": 1,
+      "row": "M4",
+      "severity": "MEDIUM",
+      "category": "ungrouped-suite",
+      "description": "The file has 11 test declarations and no describe/context grouping. This meets M4's literal predicate; it is a suite-diagnostic maintainability finding, not evidence of a production defect or order-dependent failure.",
+      "suggestion": "Wrap the existing cases in a subject-named describe/context group during a separately authorized test-maintenance change; preserve behavior and the capped review state.",
+      "code_snippet": "  test(\"[P0][AC1,4,6] \" + owner + \" zero-file source resolves live ancestry and fixed return through current authority\", async () => {",
+      "gate": "Absolute",
+      "classification": "rubric-only-maintainability",
+      "demonstrated_release_blocker": false,
+      "dimension": "isolation"
+    },
+    {
+      "file": "tests/unit/server/read-models/document-sources.test.ts",
+      "line": 1,
+      "row": "M4",
+      "severity": "MEDIUM",
+      "category": "ungrouped-suite",
+      "description": "The file has 19 test declarations and no describe/context grouping. This meets M4's literal predicate; it is a suite-diagnostic maintainability finding, not evidence of a production defect or order-dependent failure.",
+      "suggestion": "Wrap the existing cases in a subject-named describe/context group during a separately authorized test-maintenance change; preserve behavior and the capped review state.",
+      "code_snippet": "test(\"[P1] 20-P1-02 registry enrolls exactly manifest-active owners including noncreatable quote_version\", async () => {",
+      "gate": "Absolute",
+      "classification": "rubric-only-maintainability",
+      "demonstrated_release_blocker": false,
+      "dimension": "isolation"
+    },
+    {
+      "file": "tests/unit/server/read-models/documents.test.ts",
+      "line": 1,
+      "row": "M4",
+      "severity": "MEDIUM",
+      "category": "ungrouped-suite",
+      "description": "The file has 21 test declarations and no describe/context grouping. This meets M4's literal predicate; it is a suite-diagnostic maintainability finding, not evidence of a production defect or order-dependent failure.",
+      "suggestion": "Wrap the existing cases in a subject-named describe/context group during a separately authorized test-maintenance change; preserve behavior and the capped review state.",
+      "code_snippet": "test(\"[P1] 20-P1-01 atomic activation transfers the one Dokument nav destination while files retains tables\", () => {",
+      "gate": "Absolute",
+      "classification": "rubric-only-maintainability",
+      "demonstrated_release_blocker": false,
+      "dimension": "isolation"
+    },
+    {
+      "file": "tests/unit/server/storage/document-signed-access-attestation.test.ts",
+      "line": 1,
+      "row": "M4",
+      "severity": "MEDIUM",
+      "category": "ungrouped-suite",
+      "description": "The file has 12 test declarations and no describe/context grouping. This meets M4's literal predicate; it is a suite-diagnostic maintainability finding, not evidence of a production defect or order-dependent failure.",
+      "suggestion": "Wrap the existing cases in a subject-named describe/context group during a separately authorized test-maintenance change; preserve behavior and the capped review state.",
+      "code_snippet": "test(\"[P0] 20-P0-07 UTF-8 byte lengths and exact selected-link field order match the reviewed contract\", async () => {",
+      "gate": "Absolute",
+      "classification": "rubric-only-maintainability",
+      "demonstrated_release_blocker": false,
+      "dimension": "isolation"
+    },
+    {
+      "file": "tests/e2e/files/documents-context-navigation.e2e.spec.ts",
+      "line": 133,
+      "row": "M2",
+      "severity": "MEDIUM",
+      "category": "repeated-literal-payload",
+      "description": "Six Source fixture domain records repeat the eight-field payload inline at lines 133,138,143,148,154,160.",
+      "suggestion": "Use a local Source factory with owner-specific overrides; preserve exact route expectations.",
+      "code_snippet": "seed.sources.customer = { module, ownerType, ownerId, route, returnHref, panelId, label, purpose };",
+      "classification": "rubric-maintainability-pattern",
+      "production_defect_demonstrated": false,
+      "release_blocking": false,
+      "dimension": "maintainability"
+    },
+    {
+      "file": "tests/unit/features/documents/context-navigation.test.ts",
+      "line": 46,
+      "row": "M2",
+      "severity": "MEDIUM",
+      "category": "repeated-literal-payload",
+      "description": "Five invalid Ref cases construct the same module/ownerType/ownerId domain shape inline (46\u201350). The predicate concerns repeated construction even though these are deliberately invalid cases.",
+      "suggestion": "Use a base Ref factory with explicit invalid overrides, retaining visible case meaning.",
+      "code_snippet": "{ module: \"jobs\", ownerType: \"customer\", ownerId: OWNER }",
+      "classification": "rubric-maintainability-pattern",
+      "production_defect_demonstrated": false,
+      "release_blocking": false,
+      "dimension": "maintainability"
+    },
+    {
+      "file": "tests/unit/features/documents/filters.test.ts",
+      "line": 43,
+      "row": "M2",
+      "severity": "MEDIUM",
+      "category": "repeated-literal-payload",
+      "description": "Three domain row fixtures repeat linkId/displayName/mimeType inline at 43\u201345; the third adds ownerLabel.",
+      "suggestion": "Build filter rows from a small local factory and keep overrides explicit.",
+      "code_snippet": "{ linkId: \"literal\", displayName: \"Central %_ [A].pdf\", mimeType: \"application/pdf\" }",
+      "classification": "rubric-maintainability-pattern",
+      "production_defect_demonstrated": false,
+      "release_blocking": false,
+      "dimension": "maintainability"
+    },
+    {
+      "file": "tests/e2e/files/documents-search-preview-lifecycle.e2e.spec.ts",
+      "line": 701,
+      "row": "M7",
+      "severity": "MEDIUM",
+      "category": "excessive-nesting",
+      "description": "Test starting line 665 contains seven nested Block nodes (test callback, seed callback, evaluate callback, fetch callback, try, if, promise callback); more than three levels beneath its body.",
+      "suggestion": "Extract the browser media cleanup instrumentation into a named helper while retaining its observations.",
+      "code_snippet": "await new Promise<void>(resolve => { audit.releaseGatedPdf = resolve; });",
+      "classification": "rubric-maintainability-pattern",
+      "production_defect_demonstrated": false,
+      "release_blocking": false,
+      "dimension": "maintainability"
+    },
+    {
+      "file": "tests/integration/commands/documents-lifecycle-lock-races.int.test.ts",
+      "line": 114,
+      "row": "M7",
+      "severity": "MEDIUM",
+      "category": "excessive-nesting",
+      "description": "Tests starting 97 and 215 each contain seven nested Block nodes through test/loop/fixture/session/try/writer-session/try.",
+      "suggestion": "Extract the writer transaction helper to flatten nested session orchestration without changing transaction assertions.",
+      "code_snippet": "pending = adminSession(async tx => { ... try { ... } });",
+      "classification": "rubric-maintainability-pattern",
+      "production_defect_demonstrated": false,
+      "release_blocking": false,
+      "dimension": "maintainability"
+    },
+    {
+      "file": "tests/e2e/files/documents-context-navigation.e2e.spec.ts",
+      "line": 266,
+      "row": "L1",
+      "severity": "LOW",
+      "category": "fragile-selector",
+      "description": "CSS id #main-content is used repeatedly while its rendered element is a semantic main (AppShell.tsx:309\u2013310), so getByRole(\"main\") is available.",
+      "suggestion": "Use page.getByRole(\"main\") for main-region assertions and evaluate calls.",
+      "code_snippet": "page.locator(\"#main-content\")",
+      "classification": "rubric-maintainability-pattern",
+      "production_defect_demonstrated": false,
+      "release_blocking": false,
+      "dimension": "maintainability"
+    },
+    {
+      "file": "tests/e2e/files/documents.e2e.spec.ts",
+      "line": 166,
+      "row": "L1",
+      "severity": "LOW",
+      "category": "fragile-selector",
+      "description": "CSS id #main-content locates the semantic main element; getByRole(\"main\") is available.",
+      "suggestion": "Use page.getByRole(\"main\") for this assertion.",
+      "code_snippet": "await expect(page.locator(\"#main-content\")).not.toContainText(...)",
+      "classification": "rubric-maintainability-pattern",
+      "production_defect_demonstrated": false,
+      "release_blocking": false,
+      "dimension": "maintainability"
+    },
+    {
+      "file": "tests/e2e/files/documents-context-navigation.e2e.spec.ts",
+      "line": 283,
+      "row": "M1",
+      "severity": "MEDIUM",
+      "category": "network-first-violated",
+      "description": "Source-panel navigation precedes panel visibility and seeded file-name assertions. No intercept, route stub or data-specific readiness signal is registered before that navigation. Subsequent DOM assertions/hydration waits remain present and later action intercepts are correctly registered; the strict registry ordering predicate still fires. This is a rubric quality deficit, not demonstrated product failure or measured flakiness.",
+      "suggestion": "Register a response/readiness promise for the actual destination transport before navigation, then await it before reading destination data. Preserve real SSR/Next transport and existing DOM assertions; do not invent an API endpoint.",
+      "code_snippet": "await signIn(page, seed.base.adminA); await page.goto(ref.route);",
+      "finding_type": "rubric_quality_deficit",
+      "dimension": "performance"
+    },
+    {
+      "file": "tests/e2e/files/documents-search-preview-lifecycle.e2e.spec.ts",
+      "line": 66,
+      "row": "M1",
+      "severity": "MEDIUM",
+      "category": "network-first-violated",
+      "description": "The open helper navigates before callers select or assert on seeded document rows. No intercept, route stub or data-specific readiness signal is registered before that navigation. Subsequent DOM assertions/hydration waits remain present and later action intercepts are correctly registered; the strict registry ordering predicate still fires. This is a rubric quality deficit, not demonstrated product failure or measured flakiness.",
+      "suggestion": "Register a response/readiness promise for the actual destination transport before navigation, then await it before reading destination data. Preserve real SSR/Next transport and existing DOM assertions; do not invent an API endpoint.",
+      "code_snippet": "await signIn(page); await page.goto(`/files?${new URLSearchParams(query)}`);",
+      "finding_type": "rubric_quality_deficit",
+      "dimension": "performance"
+    },
+    {
+      "file": "tests/e2e/files/documents.e2e.spec.ts",
+      "line": 73,
+      "row": "M1",
+      "severity": "MEDIUM",
+      "category": "network-first-violated",
+      "description": "openDocuments navigates before waiting for the heading/index and callers read document rows. No intercept, route stub or data-specific readiness signal is registered before that navigation. Subsequent DOM assertions/hydration waits remain present and later action intercepts are correctly registered; the strict registry ordering predicate still fires. This is a rubric quality deficit, not demonstrated product failure or measured flakiness.",
+      "suggestion": "Register a response/readiness promise for the actual destination transport before navigation, then await it before reading destination data. Preserve real SSR/Next transport and existing DOM assertions; do not invent an API endpoint.",
+      "code_snippet": "await page.goto(\"/files\");",
+      "finding_type": "rubric_quality_deficit",
+      "dimension": "performance"
+    },
+    {
+      "file": "tests/e2e/files/entity-file-preview.e2e.spec.ts",
+      "line": 82,
+      "row": "M1",
+      "severity": "MEDIUM",
+      "category": "network-first-violated",
+      "description": "gotoCustomerPanel navigates before waiting for and reading the data-bearing entity file panel. No intercept, route stub or data-specific readiness signal is registered before that navigation. Subsequent DOM assertions/hydration waits remain present and later action intercepts are correctly registered; the strict registry ordering predicate still fires. This is a rubric quality deficit, not demonstrated product failure or measured flakiness.",
+      "suggestion": "Register a response/readiness promise for the actual destination transport before navigation, then await it before reading destination data. Preserve real SSR/Next transport and existing DOM assertions; do not invent an API endpoint.",
+      "code_snippet": "await page.goto(`/customers/${fixture().crm.company.id}`);",
+      "finding_type": "rubric_quality_deficit",
+      "dimension": "performance"
+    },
+    {
+      "file": "tests/e2e/files/file-index-scope.e2e.spec.ts",
+      "line": 125,
+      "row": "M1",
+      "severity": "MEDIUM",
+      "category": "network-first-violated",
+      "description": "Navigation precedes seeded-row assertions and facet-option reads at lines132\u2013139. No intercept, route stub or data-specific readiness signal is registered before that navigation. Subsequent DOM assertions/hydration waits remain present and later action intercepts are correctly registered; the strict registry ordering predicate still fires. This is a rubric quality deficit, not demonstrated product failure or measured flakiness.",
+      "suggestion": "Register a response/readiness promise for the actual destination transport before navigation, then await it before reading destination data. Preserve real SSR/Next transport and existing DOM assertions; do not invent an API endpoint.",
+      "code_snippet": "await page.goto(\"/files\");",
+      "finding_type": "rubric_quality_deficit",
+      "dimension": "performance"
+    }
+  ],
+  "dimension_scores": {
+    "determinism": 85,
+    "isolation": 20,
+    "maintainability": 0,
+    "performance": 75
+  },
+  "reviewed_test_manifest": [
+    {
+      "file": "tests/e2e/files/documents-context-navigation.e2e.spec.ts",
+      "working_sha256": "1c5105705b8fb7c2ff8902dd394e37bed1338c1abb2bf9fee74d388890391e39",
+      "git_blob": "419d1cf883355a6090fcc856aefbb55f4fd3792d",
+      "matches_reviewed_commit_with_Git_line_ending_normalization": true
+    },
+    {
+      "file": "tests/e2e/files/documents-search-preview-lifecycle.e2e.spec.ts",
+      "working_sha256": "13d428be4380b25ab5de6b581a9ec81ff2282547938795cbf648aa5be4f2926d",
+      "git_blob": "707b7958c599e184a2b62cfb26aca4128049e66d",
+      "matches_reviewed_commit_with_Git_line_ending_normalization": true
+    },
+    {
+      "file": "tests/e2e/files/documents.e2e.spec.ts",
+      "working_sha256": "a0ef189063059f02edd292c643a6d9dbfe220771791118760fcab537ac255ba6",
+      "git_blob": "3218dc2ee508093f7306266e65294ce553ab8fe3",
+      "matches_reviewed_commit_with_Git_line_ending_normalization": true
+    },
+    {
+      "file": "tests/e2e/files/entity-file-preview.e2e.spec.ts",
+      "working_sha256": "a14173f8963a5acc6050ee7f06d4c6a61bc7863c532b2eb8cecf6c95d714e1dc",
+      "git_blob": "a5837195fefefa6b280b46f1bd5a44ddc8b553fa",
+      "matches_reviewed_commit_with_Git_line_ending_normalization": true
+    },
+    {
+      "file": "tests/e2e/files/file-index-scope.e2e.spec.ts",
+      "working_sha256": "bfa9d719189705b9f3b44f71fb87167ddacd57eff3c72f834d2974ad15483c14",
+      "git_blob": "3feb17e9e311203a9c723d45c33bc7522e7f9945",
+      "matches_reviewed_commit_with_Git_line_ending_normalization": true
+    },
+    {
+      "file": "tests/integration/commands/documents-lifecycle-lock-races.int.test.ts",
+      "working_sha256": "0a0e8c8c543930570f15b5d166743bb1363d952df8a20cb61b053068b9a4a818",
+      "git_blob": "d6ae8fa5f8370d3053b98673f9e2544b40350545",
+      "matches_reviewed_commit_with_Git_line_ending_normalization": true
+    },
+    {
+      "file": "tests/integration/commands/documents-lifecycle.int.test.ts",
+      "working_sha256": "8054addb94edc1221b1e032af4cd7d3606074d699a1a4aa6a6507082b84394d6",
+      "git_blob": "ea56f89d8236e8de99cb693a8af52fc68eaf3c74",
+      "matches_reviewed_commit_with_Git_line_ending_normalization": true
+    },
+    {
+      "file": "tests/integration/commands/documents-signed-access-lock-races.int.test.ts",
+      "working_sha256": "e66ffb24306248da3d8aee315d165fbfaf0ad7fdb59e7607e1dbec40e680de24",
+      "git_blob": "3b7c361060d6d04a716ee41469ecccd34fe0326b",
+      "matches_reviewed_commit_with_Git_line_ending_normalization": true
+    },
+    {
+      "file": "tests/integration/commands/documents-signed-access.int.test.ts",
+      "working_sha256": "eab6b291f0eb8bee1c6269a8563fa1619105a983a0e8058eb6bea23a0151c90c",
+      "git_blob": "5594186c5def14712a32fd0df53ec8c1ce2cc5f5",
+      "matches_reviewed_commit_with_Git_line_ending_normalization": true
+    },
+    {
+      "file": "tests/integration/rls/documents-context.rls.test.ts",
+      "working_sha256": "d19daac9aabe3306e645af9cf491bfdaf7430eb3cc7474c8618a8e69f344074b",
+      "git_blob": "191f7af6354ac5c11ef398430dd27c73547f490f",
+      "matches_reviewed_commit_with_Git_line_ending_normalization": true
+    },
+    {
+      "file": "tests/integration/rls/documents-filter-archive.rls.test.ts",
+      "working_sha256": "e49cf3a48abeaea0aba27bd50a449fa944a6974604d49d2af6e640f4635caaa4",
+      "git_blob": "69ed1e90dedc5c5e1198d2656d95349729b78777",
+      "matches_reviewed_commit_with_Git_line_ending_normalization": true
+    },
+    {
+      "file": "tests/integration/rls/documents.rls.test.ts",
+      "working_sha256": "129f0a688360965ff5c113184ae0aa29a4b2c2072d71820fd47e1d2631394c98",
+      "git_blob": "aae21b37c10f5d42e195a7b33397220d9b86ffda",
+      "matches_reviewed_commit_with_Git_line_ending_normalization": true
+    },
+    {
+      "file": "tests/unit/components/documents/entity-documents-link.test.ts",
+      "working_sha256": "60e0381ff411529915382e2c6d55e32b70bde62b468d6b3b2fe62e9b25400591",
+      "git_blob": "ed30f5aed31a91ab1365ed4830d9accbec7bb222",
+      "matches_reviewed_commit_with_Git_line_ending_normalization": true
+    },
+    {
+      "file": "tests/unit/features/documents/context-navigation.test.ts",
+      "working_sha256": "1632834ccbb0052acb0eef07661a9504c8d7456511733f8b6014a1cc5cc4baed",
+      "git_blob": "16dd15d351517c336e454120c42aaf1507fd14c4",
+      "matches_reviewed_commit_with_Git_line_ending_normalization": true
+    },
+    {
+      "file": "tests/unit/features/documents/date-bounds.test.ts",
+      "working_sha256": "58b3ae8aa0b2f5b0d2e573085c1720bf73805c81a60cc63711e44fe9ee27aa82",
+      "git_blob": "4c737972a7efb0ae9bc76b030bfba9f0a12ce162",
+      "matches_reviewed_commit_with_Git_line_ending_normalization": true
+    },
+    {
+      "file": "tests/unit/features/documents/filters.test.ts",
+      "working_sha256": "e769d3cee96b680fcae092e41436619a24ea5710ca726098e96acc5ed09f7437",
+      "git_blob": "11a087acfdb65373f845a75fb540c89aa5354b32",
+      "matches_reviewed_commit_with_Git_line_ending_normalization": true
+    },
+    {
+      "file": "tests/unit/features/documents/preview-state.test.ts",
+      "working_sha256": "4e82bac27e42c802abf301566f0065a13fba81a6ab88bf542910d7b4f64fc89d",
+      "git_blob": "3daeb1e3a08c31071ef4862d54f0095239082a2b",
+      "matches_reviewed_commit_with_Git_line_ending_normalization": true
+    },
+    {
+      "file": "tests/unit/scope/manifest-shape.test.ts",
+      "working_sha256": "6f8d1147faf02aaa6f7145ea946bf1fdeb09d8d53e4d8103238905b9547a0441",
+      "git_blob": "43712a867b953e13cf800ef1156ba209581c8cef",
+      "matches_reviewed_commit_with_Git_line_ending_normalization": true
+    },
+    {
+      "file": "tests/unit/server/commands/documents-lifecycle.test.ts",
+      "working_sha256": "966897407d161c348f04f44b153dfbd78bbfe7681776f7cf337dc78dae911e2b",
+      "git_blob": "2365ca6cec004d3aecaece6b64c86cff9f80dce7",
+      "matches_reviewed_commit_with_Git_line_ending_normalization": true
+    },
+    {
+      "file": "tests/unit/server/commands/documents-signed-access.test.ts",
+      "working_sha256": "5b06cca7f8ebb829d724ec059140c075cbb8bb0cbeda35422accd6fd2e0e0938",
+      "git_blob": "8aded054ab9fb8b17dac0bf1b1679f76148640e6",
+      "matches_reviewed_commit_with_Git_line_ending_normalization": true
+    },
+    {
+      "file": "tests/unit/server/read-models/document-context.test.ts",
+      "working_sha256": "f7ec0425c00fb15c0d3d44a2ca2537189d4b0999d6af92bc436e9d195a8cdc1d",
+      "git_blob": "113e8cca540127e231adaa12bc210614581f594d",
+      "matches_reviewed_commit_with_Git_line_ending_normalization": true
+    },
+    {
+      "file": "tests/unit/server/read-models/document-sources.test.ts",
+      "working_sha256": "f135e9c837268f41023a5b1eaefe74a1ca7e80316413fbe3a4b93cd3816f4a3d",
+      "git_blob": "54c6f02339695ec0a2c01153c9f048a0cd801366",
+      "matches_reviewed_commit_with_Git_line_ending_normalization": true
+    },
+    {
+      "file": "tests/unit/server/read-models/documents.test.ts",
+      "working_sha256": "b8bbe2999464be082389a407448c60b5824bc130347c1c99204cf459d974343a",
+      "git_blob": "bd6860a3b9759473edfce90dc405b7c0f821ff2b",
+      "matches_reviewed_commit_with_Git_line_ending_normalization": true
+    },
+    {
+      "file": "tests/unit/server/storage/document-signed-access-attestation.test.ts",
+      "working_sha256": "c324cf83eb0a089ab1c846f3eab740312f223955880ed69a9efaee2d76db9912",
+      "git_blob": "558ced2c307eb6ddac5fd2566a5723eb72a330d4",
+      "matches_reviewed_commit_with_Git_line_ending_normalization": true
+    }
+  ],
+  "classification": {
+    "new_consequential_test_weaknesses": 2,
+    "inherited_consequential_test_weaknesses": 1,
+    "rubric_only_medium_low": 28,
+    "production_defects_demonstrated": 0
+  },
+  "limits": [
+    "L2 omitted from all installed worker row lists; unscored diagnostic only",
+    "Duration unknown; no new execution"
+  ],
+  "governance": {
+    "20.2_review_unverified": true,
+    "broad_rounds_added": 0,
+    "oracle_observations": 0,
+    "release_clearance_claimed": false
+  }
+}

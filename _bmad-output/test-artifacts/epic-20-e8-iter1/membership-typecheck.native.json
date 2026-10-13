@@ -1,0 +1,44 @@
+{
+  "name": "membership-typecheck",
+  "result": "passed",
+  "native_exit": 0,
+  "counts": null,
+  "argv": [
+    "C:/Users/Rasmus/AppData/Local/pnpm/bin/pnpm.CMD",
+    "exec",
+    "tsc",
+    "--noEmit",
+    "--incremental",
+    "false"
+  ],
+  "cwd": "C:\\Users\\Rasmus\\.codex\\worktrees\\dbe6\\ElproSaas",
+  "started_at": "2026-10-13T13:31:24.077228+00:00",
+  "duration_s": 21.18,
+  "before": {
+    "commit": "b7f01bb33d110817c5919a86ec79ab221e2cbf3a",
+    "dirty_status": " M _bmad-output/auto-bmad/state/epic/epic-20.yaml\n M tests/integration/commands/documents-signed-access.int.test.ts\n?? _bmad-output/test-artifacts/epic-20-e8-iter1-automation-summary.md\n?? _bmad-output/test-artifacts/epic-20-e8-iter1/\n",
+    "tested_file_count": 646,
+    "tested_file_hashes_sha256": "7ecffefa00a1a8367df515b750f280c5c37282f28800fa6bd2427e56f6b001f2",
+    "changed_test_sha256": "eab6b291f0eb8bee1c6269a8563fa1619105a983a0e8058eb6bea23a0151c90c"
+  },
+  "after": {
+    "commit": "b7f01bb33d110817c5919a86ec79ab221e2cbf3a",
+    "dirty_status": " M _bmad-output/auto-bmad/state/epic/epic-20.yaml\n M tests/integration/commands/documents-signed-access.int.test.ts\n?? _bmad-output/test-artifacts/epic-20-e8-iter1-automation-summary.md\n?? _bmad-output/test-artifacts/epic-20-e8-iter1/\n",
+    "tested_file_count": 646,
+    "tested_file_hashes_sha256": "7ecffefa00a1a8367df515b750f280c5c37282f28800fa6bd2427e56f6b001f2",
+    "changed_test_sha256": "eab6b291f0eb8bee1c6269a8563fa1619105a983a0e8058eb6bea23a0151c90c"
+  },
+  "tested_sources_stable": true,
+  "raw_log": "C:\\Users\\Rasmus\\.codex\\worktrees\\dbe6\\ElproSaas\\_bmad-output\\test-artifacts\\epic-20-e8-iter1\\membership-typecheck.log",
+  "raw_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "environment": {
+    "SUPABASE_TEST_REQUIRED": "1",
+    "api_origin": "http://127.0.0.1:60431",
+    "db_origin": "127.0.0.1:60432",
+    "CI": "unset"
+  },
+  "full_native_receipt": {
+    "local_path": "C:\\Users\\Rasmus\\AppData\\Local\\Temp\\Kopplas-epic20-e8-iter1-b7f01bb3\\membership-typecheck.native.json",
+    "sha256": "148c0df057ab99b54de3ac8a48a1d36b0905347769938131ac4aa81bfe638982"
+  }
+}

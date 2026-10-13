@@ -44,7 +44,7 @@ class PathTokens(unittest.TestCase):
             with self.subTest(token=token),self.assertRaises(engine.Refusal):
                 engine.path_token(token)
 
-class Pilot(unittest.TestCase):
+class PilotFixture:
     def setUp(self):
         self.temp=tempfile.TemporaryDirectory(prefix='parallel-bmad-')
         self.root=Path(self.temp.name)
@@ -126,6 +126,7 @@ class Pilot(unittest.TestCase):
     def verify(self,id):
         head=engine.sha(self.repo,'HEAD'); return self.call('verify',story=id,evidence=self.file('combined-'+id,self.combined(head)))
 
+class Pilot(PilotFixture,unittest.TestCase):
     def test_plan_read_only_ready_pair_and_version(self):
         before=self.git(self.repo,'status','--porcelain')
         result=self.call('plan')
@@ -391,5 +392,167 @@ class Pilot(unittest.TestCase):
         self.assertEqual(SCRIPT.read_bytes(),mirror.read_bytes())
         mirror_test=mirror.parent/'tests/test_parallel_run.py'
         self.assertEqual(Path(__file__).read_bytes(),mirror_test.read_bytes())
+
+class Amendments(PilotFixture,unittest.TestCase):
+    def prepare(self,submit_first=False):
+        self.init(); self.claim('a')
+        self.old_evidence=self.evidence('a')
+        if submit_first: self.submit('a',self.old_evidence)
+        self.call('block',story='a',worker='worker-a',reason='Necessary exact paths not declared')
+        self.checkpoint=self.old_evidence['result_sha']
+        return self.request()
+
+    def request(self):
+        receipt={'schema_version':1,'run_id':'pilot','story_id':'a','worker':'worker-a','generation':1,'branch':'codex/worker-a','worktree':str(self.a),'checkpoint_sha':self.checkpoint,'writers':[{'identity':'worker-a','role':'worker','state':'stopped','evidence_ref':'synthetic-chat/completed-worker-checkpoint'},{'identity':'author-a','role':'author','state':'stopped','evidence_ref':'synthetic-agent/completed-author'}]}
+        receipt_path=self.file('stopped-writers',receipt)
+        return {'schema_version':1,'request_id':'amendment-one','run_id':'pilot','story_id':'a','owner':'coordinator-session','worker':'worker-a','expected_generation':1,'expected_plan_hash':engine.digest(self.plan),'expected_integration_sha':engine.sha(self.repo,'HEAD'),'checkpoint_sha':self.checkpoint,'add_write_paths':['src/shared/required.txt'],'add_conflict_domains':['contract:shared-required'],'reason':'Missing path required by frozen approved fixture scope','scope_approval_ref':'synthetic-independent-scope-assessment','recovery_tool_sha256':engine.recovery_tool_sha256(),'quiescence':{'coordinator':'coordinator-session','attested':True,'complete_writer_inventory':True,'evidence_path':str(receipt_path.resolve()),'evidence_sha256':hashlib.sha256(receipt_path.read_bytes()).hexdigest()}}
+
+    def amend(self,request,**overrides):
+        options={'story':'a','worker':'worker-a','generation':1,'request':self.file('amendment-request',request)}
+        options.update(overrides)
+        return self.call('amend-blocked',**options)
+
+    def store(self):
+        with engine.database(self.repo) as db:
+            return {table:[dict(row) for row in db.execute('SELECT * FROM '+table)] for table in ['runs','claims','journal','verifications','claim_amendments']}
+
+    def test_additive_amendment_preserves_pins_original_artifact_and_audit(self):
+        r=self.prepare(submit_first=True); before=self.store(); artifact=self.planfile.read_bytes()
+        aa=self.amend(r); after=self.store()
+        self.assertEqual(aa['generation'],2); self.assertEqual(aa['state'],'claimed')
+        self.assertEqual(aa['workflow_version'],self.plan['workflow_version']); self.assertEqual(aa['base_sha'],self.checkpoint)
+        self.assertEqual(aa['previous_base_sha'],self.base)
+        expected=copy.deepcopy(self.plan)
+        expected['stories'][0]['write_paths']+=r['add_write_paths']; expected['stories'][0]['conflict_domains']+=r['add_conflict_domains']
+        self.assertEqual(json.loads(after['runs'][0]['plan']),expected)
+        self.assertEqual(self.planfile.read_bytes(),artifact)
+        self.assertEqual(json.loads(after['claim_amendments'][0]['before_plan']),self.plan)
+        self.assertEqual(json.loads(after['claim_amendments'][0]['before_claim']),before['claims'][0])
+        for field in ['worker','branch','worktree','integration_sha']:
+            self.assertEqual(after['claims'][0][field],before['claims'][0][field])
+        self.assertIsNone(after['claims'][0]['evidence']); self.assertIsNone(after['claims'][0]['result_sha'])
+        self.assertEqual(after['claims'][0]['base_sha'],self.checkpoint)
+        for repo in [self.repo,self.a]:
+            self.assertEqual(engine.workflow_version(repo),self.plan['workflow_version'])
+            engine.clean(repo)
+        self.assertEqual(engine.sha(self.a,'HEAD'),self.checkpoint)
+        self.assertEqual(after['journal'],before['journal']); self.assertEqual(after['verifications'],before['verifications'])
+
+    def test_old_generation_cannot_heartbeat_block_or_submit(self):
+        r=self.prepare(); self.amend(r)
+        for command,extra in [('heartbeat',{}),('block',{'reason':'obsolete writer'}),('submit',{'evidence':self.file('old-evidence',self.old_evidence)})]:
+            with self.subTest(command=command),self.assertRaisesRegex(engine.Refusal,'Stale generation'):
+                self.call(command,story='a',worker='worker-a',generation=1,**extra)
+        self.assertEqual(self.call('heartbeat',story='a',worker='worker-a',generation=2)['generation'],2)
+
+    def test_exact_retry_is_idempotent_and_changed_payload_is_refused(self):
+        r=self.prepare(); aa=self.amend(r); before=self.store()
+        retried=self.amend(r)
+        self.assertTrue(retried['replayed']); self.assertEqual(retried['generation'],aa['generation']); self.assertEqual(self.store(),before)
+        r['reason']='Changed logical request'
+        with self.assertRaisesRegex(engine.Refusal,'different inputs'): self.amend(r)
+        self.assertEqual(self.store(),before)
+
+    def test_transactional_failure_rolls_back_plan_claim_and_audit(self):
+        r=self.prepare(); before=self.store()
+        with patch.object(engine,'amendment_checkpoint',side_effect=RuntimeError('synthetic interrupted transaction')):
+            with self.assertRaisesRegex(RuntimeError,'synthetic'): self.amend(r)
+        self.assertEqual(self.store(),before)
+        self.assertEqual(self.amend(r)['generation'],2)
+
+    def test_nonblocked_claim_and_identity_generation_hash_heads_fail_closed(self):
+        r=self.prepare(); before=self.store()
+        changes=[('owner','impostor'),('worker','impostor'),('expected_generation',2),('expected_plan_hash','0'*64),('expected_integration_sha',self.checkpoint),('checkpoint_sha',self.base),('recovery_tool_sha256','0'*64)]
+        for field,value in changes:
+            bad=copy.deepcopy(r); bad[field]=value
+            with self.subTest(field=field),self.assertRaises(engine.Refusal): self.amend(bad)
+            self.assertEqual(self.store(),before)
+        with engine.database(self.repo) as db: db.execute("UPDATE claims SET state='running' WHERE story='a'")
+        with self.assertRaisesRegex(engine.Refusal,'deliberately blocked'): self.amend(r)
+
+    def test_additions_cannot_widen_prefixes_aggregate_or_existing_ownership(self):
+        r=self.prepare(); before=self.store()
+        for additions in [[],['src/shared/'],['src/sharedepic-'],['src/shared/*.txt'],['../outside'],['src/a/already-owned.txt'],['_bmad-output/implementation-artifacts/sprint-status.yaml'],['.agents/skills/auto-bmad/SKILL.md'],['src/shared/Required.txt','src/shared/required.txt']]:
+            bad=copy.deepcopy(r); bad['add_write_paths']=additions
+            with self.subTest(additions=additions),self.assertRaises(engine.Refusal): self.amend(bad)
+            self.assertEqual(self.store(),before)
+        bad=copy.deepcopy(r); bad['required_checks']=[]
+        with self.assertRaisesRegex(engine.Refusal,'Unknown fields'): self.amend(bad)
+
+    def test_dirty_checkpoint_and_undeclared_committed_changes_fail(self):
+        r=self.prepare(); before=self.store()
+        for repo in [self.repo,self.a]:
+            self.write(repo,'dirty.txt','still writing')
+            with self.assertRaisesRegex(engine.Refusal,'clean'): self.amend(r)
+            (repo/'dirty.txt').unlink()
+            self.assertEqual(self.store(),before)
+        self.write(self.a,'src/shared/required.txt','Not admitted yet')
+        self.checkpoint=self.commit(self.a,'premature out-of-scope modification'); r=self.request()
+        with self.assertRaisesRegex(engine.Refusal,'outside assigned'): self.amend(r)
+        self.assertEqual(self.store(),before)
+
+    def test_structured_stopped_writer_receipt_and_attestation_are_required(self):
+        r=self.prepare(); before=self.store()
+        for field,value in [('attested',False),('complete_writer_inventory',False),('coordinator','wrong'),('evidence_sha256','0'*64),('evidence_path','relative.json')]:
+            bad=copy.deepcopy(r); bad['quiescence'][field]=value
+            with self.subTest(field=field),self.assertRaises(engine.Refusal): self.amend(bad)
+            self.assertEqual(self.store(),before)
+        e=engine.read_json(r['quiescence']['evidence_path'])
+        for mutation in ['writing','missing-worker','wrong-head','no-reference']:
+            bad=copy.deepcopy(e)
+            if mutation=='writing': bad['writers'][1]['state']='running'
+            if mutation=='missing-worker': bad['writers']=bad['writers'][1:]
+            if mutation=='wrong-head': bad['checkpoint_sha']=self.base
+            if mutation=='no-reference': bad['writers'][1]['evidence_ref']=''
+            path=self.file('bad-receipt',bad); bad_r=copy.deepcopy(r)
+            bad_r['quiescence'].update(evidence_path=str(path.resolve()),evidence_sha256=hashlib.sha256(path.read_bytes()).hexdigest())
+            with self.subTest(mutation=mutation),self.assertRaises(engine.Refusal): self.amend(bad_r)
+            self.assertEqual(self.store(),before)
+
+    def test_repository_claim_path_and_semantic_conflicts_are_refused(self):
+        r=self.prepare(); self.claim('b'); before=self.store()
+        bad=copy.deepcopy(r); bad['add_write_paths']=['src/b/required.txt']
+        with self.assertRaisesRegex(engine.Refusal,'repository claim'): self.amend(bad)
+        self.assertEqual(self.store(),before)
+        with engine.database(self.repo) as db:
+            p=json.loads(db.execute('SELECT plan FROM runs').fetchone()[0]); p['stories'][1]['conflict_domains']=['contract:shared-required']
+            db.execute('UPDATE runs SET plan=?,plan_hash=?',(engine.canonical(p),engine.digest(p)))
+        r['expected_plan_hash']=engine.digest(p)
+        with self.assertRaisesRegex(engine.Refusal,'repository claim'): self.amend(r)
+
+    def test_legacy_shared_and_migration_ownership_checks_remain_enforced(self):
+        r=self.prepare()
+        self.write(self.c,'_bmad-output/auto-bmad/state/epic/epic-99.yaml','status: running\nepic_num: 99\n')
+        with self.assertRaisesRegex(engine.Refusal,'Legacy ownership'): self.amend(r)
+        (self.c/'_bmad-output/auto-bmad/state/epic/epic-99.yaml').unlink()
+        bad=copy.deepcopy(r); bad['add_write_paths']=['supabase/migrations/20261012000000_fixture.sql']
+        with self.assertRaisesRegex(engine.Refusal,'schema:migrations'): self.amend(bad)
+        with engine.database(self.repo) as db:
+            p=json.loads(db.execute('SELECT plan FROM runs').fetchone()[0]); p['shared_paths']=['src/shared/']
+            db.execute('UPDATE runs SET plan=?,plan_hash=?',(engine.canonical(p),engine.digest(p)))
+        r['expected_plan_hash']=engine.digest(p)
+        with self.assertRaisesRegex(engine.Refusal,'aggregate/shared'): self.amend(r)
+
+    def test_any_target_journal_or_prepared_repository_operation_blocks_recovery(self):
+        r=self.prepare(); before=self.store()
+        for run,story,state in [('pilot','a','merged'),('other-run','other-story','prepared')]:
+            with engine.database(self.repo) as db: db.execute('INSERT INTO journal VALUES(?,?,?,?,?,?)',(run,story,self.base,self.checkpoint,None,state))
+            with self.assertRaisesRegex(engine.Refusal,'journal'): self.amend(r)
+            with engine.database(self.repo) as db: db.execute('DELETE FROM journal')
+            self.assertEqual(self.store(),before)
+
+    def test_audit_is_append_only_and_new_generation_fresh_checks_are_required(self):
+        r=self.prepare(); aa=self.amend(r)
+        for statement in ['UPDATE claim_amendments SET request_hash=\'tampered\'','DELETE FROM claim_amendments']:
+            with self.assertRaisesRegex(sqlite3.IntegrityError,'append-only'),engine.database(self.repo) as db:
+                db.execute(statement)
+        e=copy.deepcopy(self.old_evidence); e['generation']=aa['generation']; e['base_sha']=aa['base_sha']
+        self.write(self.a,'src/shared/required.txt','required addition\n'); result=self.commit(self.a,'admitted fix')
+        e['result_sha']=result; e['changed_paths']=engine.changed(self.repo,aa['base_sha'],result)
+        with self.assertRaisesRegex(engine.Refusal,'evidence commit mismatch'): self.call('submit',story='a',worker='worker-a',generation=2,evidence=self.file('stale-checks',e))
+        e['checks']=[self.check(result)]; e['review']=self.review(result)
+        self.call('submit',story='a',worker='worker-a',generation=2,evidence=self.file('fresh-checks',e))
+        self.merge('a'); self.verify('a')
+        self.assertTrue(engine.ancestor(self.repo,self.checkpoint,engine.sha(self.repo,'HEAD')))
 
 if __name__=='__main__': unittest.main()

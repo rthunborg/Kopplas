@@ -1,0 +1,471 @@
+{
+  "workflow": "testarch-nfr",
+  "epic": 20,
+  "assessment_date": "2026-10-13",
+  "overall_risk": "MEDIUM",
+  "overall_status": "CONCERNS",
+  "domain_assessments": {
+    "security": {
+      "risk_level": "MEDIUM",
+      "status": "CONCERNS",
+      "source": "C:/Users/Rasmus/AppData/Local/Temp/tea-nfr-security-2026-10-13-epic20.json",
+      "sha256": "b04d21b8c83c944b48245935bcea8383b464d9396feafe982dbb13d9e559535f",
+      "findings": [
+        {
+          "category": "Authentication & Authorization — Documents RBAC/RLS",
+          "status": "PASS"
+        },
+        {
+          "category": "Authentication & Authorization — OAuth/JWT session management and MFA",
+          "status": "CONCERNS"
+        },
+        {
+          "category": "Data Protection — safe projections and signed access",
+          "status": "PASS"
+        },
+        {
+          "category": "Data Protection — encryption at rest, database encryption and HTTPS/TLS",
+          "status": "CONCERNS"
+        },
+        {
+          "category": "Input Validation — Documents source, proof and lifecycle inputs",
+          "status": "PASS"
+        },
+        {
+          "category": "Input Validation — SQL injection, XSS, CSRF and general sanitization",
+          "status": "CONCERNS"
+        },
+        {
+          "category": "API Security — authenticated RPCs and privileged access boundaries",
+          "status": "PASS"
+        },
+        {
+          "category": "API Security — rate limiting, CORS and security headers",
+          "status": "CONCERNS"
+        },
+        {
+          "category": "Secrets Management — server-only selected-link keys and containment",
+          "status": "PASS"
+        },
+        {
+          "category": "Secrets Management — rotation, environment policy and key operations",
+          "status": "CONCERNS"
+        },
+        {
+          "category": "Security Integrity — immutable artifacts and atomic attributable audit",
+          "status": "PASS"
+        },
+        {
+          "category": "Evidence Currency and Review Disposition",
+          "status": "CONCERNS"
+        }
+      ],
+      "summary": "Security evidence is CONCERNS/MEDIUM overall: six approved Documents security/integrity dimensions meet their scoped thresholds, with six evidence/currency concerns. No demonstrated critical security failure is identified in the supplied evidence. This existing-evidence audit grants neither release authority nor broad review clearance."
+    },
+    "performance": {
+      "risk_level": "MEDIUM",
+      "status": "CONCERNS",
+      "source": "C:/Users/Rasmus/AppData/Local/Temp/tea-nfr-performance-2026-10-13-epic20.json",
+      "sha256": "2794f70e15ae002e174759b715ecef5df3761ce2be7601d1a71b64bf8191d481",
+      "findings": [
+        {
+          "category": "Bounded complete traversal",
+          "status": "PASS"
+        },
+        {
+          "category": "Response Times",
+          "status": "CONCERNS"
+        },
+        {
+          "category": "Throughput and Query Work",
+          "status": "CONCERNS"
+        },
+        {
+          "category": "Resource Usage",
+          "status": "CONCERNS"
+        },
+        {
+          "category": "Optimization",
+          "status": "CONCERNS"
+        }
+      ],
+      "summary": "CONCERNS: effective finite-cap completeness and representative pilot measurement availability are now supported by committed independently High-reviewed evidence. Numeric response/throughput/resource/optimization targets remain UNKNOWN; no numeric SLO or release PASS."
+    },
+    "reliability": {
+      "risk_level": "MEDIUM",
+      "status": "CONCERNS",
+      "source": "C:/Users/Rasmus/AppData/Local/Temp/tea-nfr-reliability-2026-10-13-epic20.json",
+      "sha256": "72fdd151ddef45bc47c3978fdd581ea29aaffb0df503631792ddf90754e3909f",
+      "findings": [
+        {
+          "category": "Error Handling",
+          "status": "PASS"
+        },
+        {
+          "category": "Transactional Fault Tolerance",
+          "status": "PASS"
+        },
+        {
+          "category": "Latest Selection, Expiry and Server-confirmed Persistence",
+          "status": "PASS"
+        },
+        {
+          "category": "Monitoring and Observability",
+          "status": "CONCERNS"
+        },
+        {
+          "category": "Operational Fault Tolerance and Disaster Recovery",
+          "status": "CONCERNS"
+        },
+        {
+          "category": "Uptime and Availability",
+          "status": "CONCERNS"
+        },
+        {
+          "category": "Verification Provenance",
+          "status": "CONCERNS"
+        }
+      ],
+      "summary": "Recorded local evidence supports the specified failure/retry/persistence and atomic replay/rollback invariants. Overall reliability remains CONCERNS because operational targets/evidence are UNKNOWN and final committed-head verification is pending; no observed reliability defect or invented numerical failure is reported."
+    },
+    "maintainability": {
+      "risk_level": "MEDIUM",
+      "status": "CONCERNS",
+      "source": "C:/Users/Rasmus/AppData/Local/Temp/tea-nfr-maintainability-2026-10-13-epic20.json",
+      "sha256": "123c5162f4af8f49ea1ebb7010283e9f9e27f350c5ad599f0da78329c57554c3",
+      "findings": [
+        {
+          "category": "Established release checks",
+          "status": "PASS"
+        },
+        {
+          "category": "Test Coverage",
+          "status": "CONCERNS"
+        },
+        {
+          "category": "Code Duplication",
+          "status": "CONCERNS"
+        },
+        {
+          "category": "Dependency & Vulnerability Health",
+          "status": "CONCERNS"
+        },
+        {
+          "category": "Observability",
+          "status": "CONCERNS"
+        }
+      ],
+      "summary": "CONCERNS: retained product-head checks pass, but code coverage, duplication, dependency health and observability measurements are missing. No new defect, release approval, fourth broad review, hosted/demo certification or Phase C obligation is inferred. Option A/Contract D and the owner waiver for zero Lovable observations remain binding."
+    }
+  },
+  "compliance_summary": {
+    "SOC2": {
+      "status": "N/A",
+      "domain_statuses": [
+        {
+          "domain": "security",
+          "status": "N/A"
+        }
+      ]
+    },
+    "GDPR": {
+      "status": "PARTIAL",
+      "domain_statuses": [
+        {
+          "domain": "security",
+          "status": "CONCERNS"
+        }
+      ]
+    },
+    "HIPAA": {
+      "status": "N/A",
+      "domain_statuses": [
+        {
+          "domain": "security",
+          "status": "N/A"
+        }
+      ]
+    },
+    "PCI-DSS": {
+      "status": "N/A",
+      "domain_statuses": [
+        {
+          "domain": "security",
+          "status": "N/A"
+        }
+      ]
+    },
+    "ISO 27001": {
+      "status": "N/A",
+      "domain_statuses": [
+        {
+          "domain": "security",
+          "status": "N/A"
+        }
+      ]
+    },
+    "bounded_complete_traversal_beyond_effective_cap": {
+      "status": "PASS",
+      "domain_statuses": [
+        {
+          "domain": "performance",
+          "status": "PASS"
+        }
+      ]
+    },
+    "representative_pilot_baseline": {
+      "status": "PASS",
+      "domain_statuses": [
+        {
+          "domain": "performance",
+          "status": "PASS"
+        }
+      ]
+    },
+    "numeric_performance_SLOs": {
+      "status": "PARTIAL",
+      "domain_statuses": [
+        {
+          "domain": "performance",
+          "status": "CONCERNS"
+        }
+      ]
+    },
+    "external_beta_load_certification": {
+      "status": "N/A",
+      "domain_statuses": [
+        {
+          "domain": "performance",
+          "status": "N/A"
+        }
+      ]
+    },
+    "NFR25_amended53_failure_retry_persistence": {
+      "status": "PASS",
+      "domain_statuses": [
+        {
+          "domain": "reliability",
+          "status": "PASS"
+        }
+      ]
+    },
+    "NFR7_11_12_23_56_atomic_audit_replay_rollback": {
+      "status": "PASS",
+      "domain_statuses": [
+        {
+          "domain": "reliability",
+          "status": "PASS"
+        }
+      ]
+    },
+    "ADR_B009_connected_desktop_360x640": {
+      "status": "PASS",
+      "domain_statuses": [
+        {
+          "domain": "reliability",
+          "status": "PASS"
+        }
+      ]
+    },
+    "numeric_availability_error_rate_MTTR_burn_in": {
+      "status": "PARTIAL",
+      "domain_statuses": [
+        {
+          "domain": "reliability",
+          "status": "CONCERNS"
+        }
+      ]
+    },
+    "operational_monitoring_DR_RTO_RPO": {
+      "status": "PARTIAL",
+      "domain_statuses": [
+        {
+          "domain": "reliability",
+          "status": "CONCERNS"
+        }
+      ]
+    },
+    "final_committed_revision_verification": {
+      "status": "PARTIAL",
+      "domain_statuses": [
+        {
+          "domain": "reliability",
+          "status": "CONCERNS"
+        }
+      ]
+    },
+    "required_release_checks": {
+      "status": "PASS",
+      "domain_statuses": [
+        {
+          "domain": "maintainability",
+          "status": "PASS"
+        }
+      ]
+    },
+    "coverage_80pct": {
+      "status": "PARTIAL",
+      "domain_statuses": [
+        {
+          "domain": "maintainability",
+          "status": "CONCERNS"
+        }
+      ]
+    },
+    "duplication_5pct": {
+      "status": "PARTIAL",
+      "domain_statuses": [
+        {
+          "domain": "maintainability",
+          "status": "CONCERNS"
+        }
+      ]
+    },
+    "vulnerability_scan": {
+      "status": "PARTIAL",
+      "domain_statuses": [
+        {
+          "domain": "maintainability",
+          "status": "CONCERNS"
+        }
+      ]
+    },
+    "observability": {
+      "status": "PARTIAL",
+      "domain_statuses": [
+        {
+          "domain": "maintainability",
+          "status": "CONCERNS"
+        }
+      ]
+    }
+  },
+  "finding_counts": {
+    "PASS": 11,
+    "CONCERNS": 18,
+    "FAIL": 0,
+    "N/A": 0
+  },
+  "cross_domain_risks": [
+    {
+      "domains": [
+        "reliability",
+        "maintainability"
+      ],
+      "description": "Missing operational telemetry and instrumented coverage limit detection confidence, not evidence of a defect.",
+      "impact": "MEDIUM"
+    },
+    {
+      "domains": [
+        "security",
+        "reliability",
+        "maintainability"
+      ],
+      "description": "Final-head verification remains pending; c65c1864 evidence and byte-identical dirty regression must retain attribution.",
+      "impact": "MEDIUM"
+    }
+  ],
+  "priority_actions": [
+    {
+      "domain": "security",
+      "action": "Preserve pending final-head checks, dirty regression provenance and canonical 20.2 review_unverified=true in aggregate/release evidence.",
+      "urgency": "NORMAL"
+    },
+    {
+      "domain": "security",
+      "action": "Keep Option A generic/direct Storage residual and actual bearer expiry explicit; do not claim immediate or global source-byte revocation.",
+      "urgency": "NORMAL"
+    },
+    {
+      "domain": "security",
+      "action": "Resolve applicability/targets and attach retained encryption, session/MFA, general vulnerability, API-hardening and secret-rotation evidence before wider security certification claims; absence remains CONCERNS, not invented FAIL.",
+      "urgency": "NORMAL"
+    },
+    {
+      "domain": "security",
+      "action": "Retain Phase C legal/GDPR deferral and zero Lovable observations with owner-waived exact comparison.",
+      "urgency": "NORMAL"
+    },
+    {
+      "domain": "performance",
+      "action": "Later owner decision: resolve UNKNOWN numeric targets before a numeric SLO gate; retain NFR26 external-beta deferral.",
+      "urgency": "NORMAL"
+    },
+    {
+      "domain": "reliability",
+      "action": "Complete required final committed-revision verification and preserve exact provenance under the coordinator's existing release workflow.",
+      "urgency": "NORMAL"
+    },
+    {
+      "domain": "reliability",
+      "action": "Keep UNKNOWN operational metrics/targets as CONCERNS; record owners and existing evidence before any later operational certification.",
+      "urgency": "NORMAL"
+    },
+    {
+      "domain": "maintainability",
+      "action": "Complete the already-established final-head release checks; do not treat retained product-head evidence as final-head clearance.",
+      "urgency": "NORMAL"
+    },
+    {
+      "domain": "maintainability",
+      "action": "Record missing instrumented coverage and operational/dependency evidence without inventing thresholds or launching scans in this existing-evidence assessment.",
+      "urgency": "NORMAL"
+    },
+    {
+      "domain": "maintainability",
+      "action": "Preserve canonical 20.2 review_unverified=true and followup_recommended=true; any follow-up remains narrow after three broad review rounds.",
+      "urgency": "NORMAL"
+    }
+  ],
+  "subagent_execution": "SUBAGENT (4 domains; slot-bounded scheduling)",
+  "performance_gain": "not measured",
+  "unknown_threshold_pass_downgrades": 0,
+  "release_authority": false,
+  "new_defects": 0,
+  "new_mandatory_requirements": 0,
+  "release_obligations": [
+    "final_committed_head_checks",
+    "preserve_canonical_20_2_review_caveat"
+  ],
+  "completion_hook": {
+    "native_exit": 0,
+    "executed": false,
+    "value": ""
+  },
+  "bounded_evidence_update": {
+    "update_head": "6f891f7db7a1be83bd3d90b67ce2fdb47e538e3c",
+    "scope": "existing evidence only; no new audits/delegates/tests/resources",
+    "closed_evidence_gaps": [
+      "effective_cap_provenance",
+      "pilot_baseline"
+    ],
+    "effective_cap": 1000,
+    "candidate_links": 2125,
+    "authorized_links": 1025,
+    "pilot_scenarios": 3,
+    "cap_pilot_ref": "_bmad-output/test-artifacts/epic-20-cap-and-pilot-baseline-2026-10-13.json",
+    "cap_pilot_sha256": "12472f0188fe350855c9d58c761dd5262381b1c24431d5cc4d6864b25f2a9020",
+    "measurement_execution_head": "74aaac5f8dae68d26c887c7c42a2ff796bb8fa6c",
+    "measurement_source_unchanged_from_c65": true,
+    "independent_high_measurement_review": "accepted; no remaining measurement blocker",
+    "numeric_slo_targets": "UNKNOWN",
+    "numeric_slo_pass": false,
+    "deployment_cap_claim": false,
+    "measurement_layer": "readDocuments/RLS; HTTP counts/transferred rows;10ms sampledNodeRSS; no Next route/cookie/browser/SQL-cost/DB-memory/p95/p99",
+    "test_fixes_commit": "4f891be8",
+    "test_fixes_ref": "_bmad-output/test-artifacts/epic-20-test-reliability-fixes.md",
+    "test_fixes_sha256": "36fbb97ff29920ed00378aa85f33cd11e23f939173976c9be36a95a5e4613f50",
+    "test_fixes_execution": "dirty c210b637 plus assigned working blobs; no final-head replay",
+    "test_fixes_counts": {
+      "skipped": 0,
+      "browser_passed": 4,
+      "failed": 0,
+      "integration_passed": 114
+    },
+    "test_fix_review": "narrow Sol6.1High CLEAN",
+    "adr_checklist_score": "10/29",
+    "final_committed_head_checks": "pending",
+    "review_caveat": "20.2 review_unverified=true",
+    "release_authority": false
+  }
+}

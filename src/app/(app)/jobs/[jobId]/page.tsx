@@ -1,3 +1,5 @@
+import { EntityDocumentsLink } from "@/components/documents/EntityDocumentsLink";
+import { readEntityDocumentsLink } from "@/server/read-models/document-context";
 /**
  * `/jobs/[jobId]` (Jobb/Order-detalj) — the job/order detail read UX (Story 7.3, Task 3).
  *
@@ -69,6 +71,8 @@ export default async function JobDetailPage({
       detail={detail}
       bookingPanel={<BookingEntry {...bookingHost} options={bookingOptions} jobId={jobId} customerId={detail.customerId ?? undefined} host="job" />}
       filesPanel={
+        <>
+        <EntityDocumentsLink link={await readEntityDocumentsLink({ module: "jobs", ownerType: "job", ownerId: jobId })} />
         <EntityFilePanel
           ownerType="job"
           ownerId={jobId}
@@ -77,6 +81,7 @@ export default async function JobDetailPage({
           files={filesRead.files}
           readError={filesRead.error}
         />
+        </>
       }
     />
   );

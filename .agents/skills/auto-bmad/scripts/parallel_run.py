@@ -2,6 +2,7 @@
 """Opt-in one-host/shared-repository sprint coordinator; no shell evidence execution."""
 import argparse
 import contextlib
+import copy
 import hashlib
 import json
 from pathlib import Path, PurePosixPath
@@ -289,6 +290,12 @@ CREATE UNIQUE INDEX IF NOT EXISTS occupied_worktree ON claims(worktree) WHERE st
 CREATE UNIQUE INDEX IF NOT EXISTS occupied_branch ON claims(branch) WHERE state != 'integrated';
 CREATE TABLE IF NOT EXISTS journal(run TEXT NOT NULL, story TEXT NOT NULL, before_sha TEXT NOT NULL, result_sha TEXT NOT NULL, after_sha TEXT, state TEXT NOT NULL, PRIMARY KEY(run,story));
 CREATE TABLE IF NOT EXISTS verifications(run TEXT NOT NULL, story TEXT NOT NULL, sha TEXT NOT NULL, evidence TEXT NOT NULL, PRIMARY KEY(run,story));
+CREATE TABLE IF NOT EXISTS claim_amendments(request_id TEXT PRIMARY KEY, run TEXT NOT NULL, story TEXT NOT NULL, request_hash TEXT NOT NULL, before_plan TEXT NOT NULL, before_plan_hash TEXT NOT NULL, after_plan TEXT NOT NULL, after_plan_hash TEXT NOT NULL, before_claim TEXT NOT NULL, after_claim TEXT NOT NULL, request TEXT NOT NULL, stopped_writers TEXT NOT NULL, response TEXT NOT NULL, created REAL NOT NULL);
+CREATE TRIGGER IF NOT EXISTS immutable_claim_amendments_update BEFORE UPDATE ON claim_amendments BEGIN SELECT RAISE(ABORT, 'Claim amendment audit is append-only'); END;
+CREATE TRIGGER IF NOT EXISTS immutable_claim_amendments_delete BEFORE DELETE ON claim_amendments BEGIN SELECT RAISE(ABORT, 'Claim amendment audit is append-only'); END;
+CREATE TABLE IF NOT EXISTS finalization_adoptions(request_id TEXT PRIMARY KEY, run TEXT NOT NULL UNIQUE, request_hash TEXT NOT NULL, before_snapshot TEXT NOT NULL, request TEXT NOT NULL, receipts TEXT NOT NULL, final_evidence TEXT NOT NULL, response TEXT NOT NULL, created REAL NOT NULL);
+CREATE TRIGGER IF NOT EXISTS immutable_finalization_adoptions_update BEFORE UPDATE ON finalization_adoptions BEGIN SELECT RAISE(ABORT, 'Finalization adoption audit is append-only'); END;
+CREATE TRIGGER IF NOT EXISTS immutable_finalization_adoptions_delete BEFORE DELETE ON finalization_adoptions BEGIN SELECT RAISE(ABORT, 'Finalization adoption audit is append-only'); END;
 '''
 
 @contextlib.contextmanager
@@ -456,12 +463,376 @@ def integrate(a):
 def integration_checkpoint():
     """No-op, patched only by synthetic tests to simulate commit-before-journal crash."""
 
+def recovery_tool_sha256():
+    """Pin the separately invoked recovery executable, not the active workflow."""
+    return hashlib.sha256(Path(__file__).read_bytes().replace(b'\r\n',b'\n')).hexdigest()
+
+def stopped_writers(request,c,p):
+    q=request['quiescence']
+    keys(q,['coordinator','attested','complete_writer_inventory','evidence_path','evidence_sha256'])
+    require(q['coordinator']==p['coordinator'] and q['attested'] is True and q['complete_writer_inventory'] is True,'Explicit coordinator quiescence and complete writer inventory attestation required')
+    require(isinstance(q['evidence_path'],str) and Path(q['evidence_path']).is_absolute(),'Stopped-writer evidence must be an absolute file reference')
+    data=Path(q['evidence_path']).read_bytes()
+    require(isinstance(q['evidence_sha256'],str) and hashlib.sha256(data).hexdigest()==q['evidence_sha256'],'Stopped-writer evidence digest mismatch')
+    e=read_json(q['evidence_path'])
+    # Bind the parsed evidence to the bytes hashed above, even if its file changes.
+    require(Path(q['evidence_path']).read_bytes()==data,'Stopped-writer evidence changed during validation')
+    keys(e,['schema_version','run_id','story_id','worker','generation','branch','worktree','checkpoint_sha','writers'])
+    require(type(e['schema_version']) is int and e['schema_version']==1 and type(e['generation']) is int,'Unsupported stopped-writer evidence schema/generation')
+    for field,expected in [('run_id',p['run_id']),('story_id',c['story']),('worker',c['worker']),('generation',c['generation']),('branch',c['branch']),('checkpoint_sha',request['checkpoint_sha'])]:
+        require(e[field]==expected,'Stopped-writer evidence '+field+' mismatch')
+    require(isinstance(e['worktree'],str) and Path(e['worktree']).is_absolute() and Path(e['worktree']).resolve()==Path(c['worktree']).resolve(),'Stopped-writer worktree mismatch')
+    require(isinstance(e['writers'],list) and e['writers'],'Stopped-writer evidence needs the worker and all write-capable delegates')
+    identities=[]
+    for w in e['writers']:
+        keys(w,['identity','role','state','evidence_ref'])
+        require(all(isinstance(w[x],str) and w[x].strip() for x in ['identity','role','evidence_ref']) and w['state']=='stopped','Every writer needs stopped status and a source evidence reference')
+        identities.append(w['identity'])
+    require(len(identities)==len(set(identities)) and any(w['identity']==c['worker'] and w['role']=='worker' for w in e['writers']),'Stopped-writer inventory must uniquely include the assigned worker')
+    return e
+
+def amendment_checkpoint():
+    """No-op, patched only by synthetic tests to simulate transactional failure."""
+
+def amend_blocked(a):
+    """Explicit additive readmission at a stopped-writer checkpoint; no Git mutation."""
+    require((common(a.repo)/'auto-bmad-parallel.sqlite3').is_file(),'Recovery requires an existing shared run store')
+    r=read_json(a.request)
+    keys(r,['schema_version','request_id','run_id','story_id','owner','worker','expected_generation','expected_plan_hash','expected_integration_sha','checkpoint_sha','add_write_paths','add_conflict_domains','reason','scope_approval_ref','recovery_tool_sha256','quiescence'])
+    require(type(r['schema_version']) is int and r['schema_version']==1,'Unsupported amendment request schema')
+    require(type(r['expected_generation']) is int and r['expected_generation']>0,'Expected generation must be a positive integer')
+    for field,expected in [('run_id',a.run),('story_id',a.story),('owner',a.owner),('worker',a.worker),('expected_generation',a.generation)]:
+        require(r[field]==expected,'Amendment request '+field+' mismatch')
+    for field in ['request_id','reason','scope_approval_ref']:
+        require(isinstance(r[field],str) and r[field].strip(),'Amendment '+field+' required')
+    require(re.fullmatch('[A-Za-z0-9][A-Za-z0-9._-]{0,127}',r['request_id']) is not None,'Invalid amendment request ID')
+    require(r['recovery_tool_sha256']==recovery_tool_sha256(),'Recovery executable does not match approved tooling digest')
+    additions=strings(r['add_write_paths'],'add_write_paths')
+    domains=strings(r['add_conflict_domains'],'add_conflict_domains')
+    require(additions,'At least one exact additional path required')
+    for token in additions:
+        path_token(token); require(not token.endswith('/') and not token.casefold().endswith('epic-'),'Amendment additions must be exact files, not directory/report prefixes')
+    require(len({x.casefold() for x in additions})==len(additions) and len({x.casefold() for x in domains})==len(domains),'Case-insensitive amendment duplicates')
+    with database(a.repo) as db:
+        p=get_run(db,a)
+        prior=db.execute('SELECT * FROM claim_amendments WHERE request_id=?',(r['request_id'],)).fetchone()
+        if prior:
+            require(prior['run']==a.run and prior['story']==a.story and prior['request_hash']==digest(r),'Amendment request ID already used with different inputs')
+            return {**json.loads(prior['response']),'replayed':True}
+        run=db.execute('SELECT * FROM runs WHERE run=?',(a.run,)).fetchone()
+        require(run['state']=='active' and run['plan_hash']==r['expected_plan_hash'],'Run state or expected plan hash changed')
+        c=get_claim(db,a,worker=True)
+        require(c['state']=='blocked' and c['block_reason'],'Only deliberately blocked claims can be amended')
+        require(c['integration_sha'] is None,'A merged claim cannot be amended')
+        require(not db.execute("SELECT 1 FROM journal WHERE (run=? AND story=?) OR state='prepared'",(a.run,a.story)).fetchone(),'Integration journal must be reconciled before claim amendment')
+        require(not db.execute('SELECT 1 FROM verifications WHERE run=? AND story IN (?,?)',(a.run,a.story,'__repair__'+a.story)).fetchone(),'Existing verification prevents claim amendment')
+        target=p['integration_worktree']; wt=Path(c['worktree']).resolve()
+        require(not any(Path(__file__).resolve().is_relative_to(Path(root).resolve()) for root in [target,wt]),'Invoke recovery tooling from a separate maintenance checkout')
+        require(branch(target)==p['integration_branch'],'Integration branch identity changed')
+        clean(target); clean(wt)
+        require(branch(target)==p['integration_branch'] and branch(wt)==c['branch'],'Checkpoint branch identity changed during amendment')
+        require(sha(target,'HEAD')==r['expected_integration_sha'],'Integration checkpoint HEAD mismatch')
+        require(sha(wt,'HEAD')==r['checkpoint_sha'] and sha(a.repo,c['branch'])==r['checkpoint_sha'],'Worker checkpoint HEAD mismatch')
+        require(workflow_version(wt)==p['workflow_version'],'Worker workflow changed since assignment')
+        require(ancestor(a.repo,c['base_sha'],r['checkpoint_sha']),'Worker checkpoint lost pinned base ancestry')
+        validate_plan(a.repo,p)
+        if r['checkpoint_sha']!=c['base_sha']:
+            validate_diff(a.repo,p,c,c['base_sha'],r['checkpoint_sha'])
+        receipt=stopped_writers(r,c,p)
+        revised=copy.deepcopy(p); s=story(revised,a.story)
+        for token in additions:
+            require(not any(covers(old,token) for old in s['write_paths']),'Additional path is already owned: '+token)
+            for root,head in [(wt,r['checkpoint_sha']),(Path(target).resolve(),r['expected_integration_sha'])]:
+                require((root/token).resolve().is_relative_to(root),'Additional path follows symlink outside worktree')
+                parts=PurePosixPath(token).parts
+                prefixes=['/'.join(parts[:n]) for n in range(1,len(parts)+1)]
+                tree=git(root,'ls-tree','-z',head,'--',*prefixes)
+                require(not any(x.startswith('120000 ') or x.startswith('160000 ') for x in tree.split('\x00')),'Symlink/submodule ownership is unsupported')
+                require(not (root/token).is_dir(),'Additional ownership must name a file')
+        require(not {x.casefold() for x in domains}&{x.casefold() for x in s['conflict_domains']},'Additional conflict domain is already declared')
+        s['write_paths']+=additions; s['conflict_domains']+=domains
+        validate_plan(a.repo,revised)
+        require(not legacy_conflicts(a.repo,revised,s),'Legacy ownership collision during amendment')
+        for other in db.execute("SELECT c.*,r.plan,r.plan_hash FROM claims c JOIN runs r ON c.run=r.run WHERE c.state!='integrated'"):
+            if other['run']==a.run and other['story']==a.story: continue
+            op=json.loads(other['plan']); require(digest(op)==other['plan_hash'],'Other run plan integrity failure')
+            require(not conflicts(s,story(op,other['story'])),'Amendment conflicts with repository claim ownership')
+        for other in db.execute("SELECT plan,plan_hash FROM runs WHERE state!='finalized'"):
+            op=json.loads(other['plan']); require(digest(op)==other['plan_hash'],'Other run plan integrity failure')
+            require(not any(overlap(token,shared) for token in s['write_paths'] for shared in op['shared_paths']),'Amendment overlaps coordinator shared ownership')
+            require(not any(conflicts(s,reservation) for reservation in op['legacy_reservations']),'Amendment conflicts with declared legacy reservation')
+        # Git cannot join the database transaction. Recheck the quiesced checkpoints
+        # immediately before CAS; coordinator attestation covers continued silence.
+        clean(target); clean(wt)
+        require(branch(target)==p['integration_branch'] and branch(wt)==c['branch'],'Checkpoint branch identity changed during amendment')
+        require(sha(target,'HEAD')==r['expected_integration_sha'] and sha(wt,'HEAD')==r['checkpoint_sha'],'Checkpoint changed during amendment')
+        require(stopped_writers(r,c,p)==receipt,'Stopped-writer evidence changed during amendment')
+        revised_hash=digest(revised); now=time.time()
+        updated=db.execute("UPDATE runs SET plan=?,plan_hash=? WHERE run=? AND owner=? AND state='active' AND plan_hash=?",(canonical(revised),revised_hash,a.run,a.owner,r['expected_plan_hash']))
+        require(updated.rowcount==1,'Plan compare-and-swap failed')
+        # The unchanged v1 submit validator enforces descent from claims.base_sha.
+        # Anchor the next generation at the fully validated checkpoint so an old
+        # worker cannot discard its reviewed history by branching from the old base.
+        updated=db.execute("UPDATE claims SET generation=?,base_sha=?,state='claimed',evidence=NULL,result_sha=NULL,block_reason=NULL,heartbeat=? WHERE run=? AND story=? AND worker=? AND generation=? AND base_sha=? AND state='blocked'",(c['generation']+1,r['checkpoint_sha'],now,a.run,a.story,a.worker,a.generation,c['base_sha']))
+        require(updated.rowcount==1,'Claim generation compare-and-swap failed')
+        amended=get_claim(db,a)
+        response={**assignment(revised,amended),'amendment_request_id':r['request_id'],'plan_hash':revised_hash,'checkpoint_sha':r['checkpoint_sha'],'previous_base_sha':c['base_sha'],'replayed':False}
+        db.execute('INSERT INTO claim_amendments VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)',(r['request_id'],a.run,a.story,digest(r),canonical(p),digest(p),canonical(revised),revised_hash,canonical(c),canonical(amended),canonical(r),canonical(receipt),canonical(response),now))
+        amendment_checkpoint()
+        return response
+
+
+# Owner-authorized inherited skips only. A test identity is (repository file,
+# complete framework title), never a count, substring, short ID or basename.
+RECOVERY_SKIP = ('tests/integration/ops/recovery-storage-immutability.int.test.ts',
+    'isolated recovery Storage physical-loader proof serves loader-materialized bytes without mutating logical rows and rejects generic plus quote-PDF overwrite attempts')
+FINALIZATION_SKIPS = {
+    'full-integration-rls': [RECOVERY_SKIP],
+    'general-browser': [
+        ('tests/e2e/quotes/quote-lost-reason-retry-safety.e2e.spec.ts', '[P1][10.5-E2E-01] each retry uses a fresh lost-reason target and still proves the terminal result'),
+        ('tests/e2e/quotes/quote-follow-up-retry-safety.e2e.spec.ts', '[P1][10.5-E2E-02] a retry plans a follow-up on its own untouched sent quote and proves the chip'),
+        ('tests/e2e/quotes/quote-follow-up-retry-safety.e2e.spec.ts', '[P1][10.5-E2E-03] a retry completes its own open follow-up and retains decide-here assertions'),
+    ],
+}
+FINALIZATION_CHECKS = set('documents-source-unit documents-integration-rls files-signed-access-integration documents-browser unit typecheck lint production-build service-role-containment bundle-containment lockfiles documents-baseline-storage-boundary documents-selected-link-unit documents-selected-link-lock-races-integration documents20-2-filter-unit documents20-2-lifecycle-integration documents20-2-browser documents20-3-context-unit documents20-3-context-integration documents20-3-browser full-integration-rls empty-migration-seed-reset isolated-storage-recovery-integration general-browser dashboard-browser epic11-pilot-performance scope-manifest-coherence epic20-trace-gate epic20-nfr epic20-test-review epic20-deferred-reconciliation epic20-deferred-archive epic20-retrospective epic20-completion-report exact-head-required-ci ci-verify ci-db ci-recovery-storage-loader ci-e2e ci-dashboard-e2e'.split())
+
+def hashed_artifact(ref, snapshots):
+    keys(ref,['path','sha256'])
+    require(isinstance(ref['path'],str) and Path(ref['path']).is_absolute(),'Receipt needs an absolute file path')
+    require(isinstance(ref['sha256'],str) and re.fullmatch('[0-9a-f]{64}',ref['sha256']),'Receipt needs a raw SHA256')
+    data=Path(ref['path']).read_bytes()
+    require(hashlib.sha256(data).hexdigest()==ref['sha256'],'Raw receipt hash mismatch')
+    snapshots.append((ref.copy(),data))
+    return data
+
+def artifact_json(ref,snapshots):
+    data=hashed_artifact(ref,snapshots)
+    parsed=read_json(ref['path'])
+    require(Path(ref['path']).read_bytes()==data,'Receipt changed during parsing')
+    return parsed
+
+def source_root(value):
+    # Source paths belong to the executor, which may be Linux CI while adoption
+    # runs on Windows. Compare lexical paths; never resolve foreign paths locally.
+    require(isinstance(value,str) and value,'Execution source root required')
+    value=value.replace('\\','/').rstrip('/')
+    require(value.startswith('/') or re.match(r'^[A-Za-z]:/',value),'Execution source root must be absolute')
+    require(str(PurePosixPath(value))==value and '..' not in PurePosixPath(value).parts,'Noncanonical execution source root')
+    return value
+
+def receipt_path(file,root):
+    require(isinstance(file,str) and file,'Framework case file required')
+    file=file.replace('\\','/'); root=source_root(root)
+    if file.startswith('/') or re.match(r'^[A-Za-z]:/',file):
+        compare_file=file.casefold() if re.match(r'^[A-Za-z]:/',root) else file
+        compare_root=root.casefold() if re.match(r'^[A-Za-z]:/',root) else root
+        require(compare_file.startswith(compare_root+'/'),'Framework case file outside report worktree')
+        file=file[len(root)+1:]
+    return path_token(file)
+
+def framework_cases(raw,framework,root):
+    """Parse all physical cases before any partition; reject failures/duplicates."""
+    cases=[]
+    if framework=='vitest':
+        require(raw.get('success') is True and raw.get('numFailedTests')==0 and raw.get('numFailedTestSuites')==0 and raw.get('numPendingTestSuites')==0 and raw.get('numTodoTests',0)==0,'Raw Vitest report failed or incomplete')
+        require(isinstance(raw.get('testResults'),list) and raw['testResults'],'Missing Vitest test results')
+        for suite in raw['testResults']:
+            require(suite.get('status')=='passed' and not suite.get('message'),'Raw Vitest suite failed or incomplete')
+            file=receipt_path(suite['name'],root)
+            for case in suite['assertionResults']:
+                status=case['status']
+                require(status in {'passed','pending','skipped'} and not case.get('failureMessages'),'Raw Vitest case failed or incomplete')
+                full=case['fullName']
+                require(full==' '.join(case['ancestorTitles']+[case['title']]),'Vitest full title mismatch')
+                cases.append((file,full,'skipped' if status in {'pending','skipped'} else 'passed'))
+        passed=sum(x[2]=='passed' for x in cases); skipped=len(cases)-passed
+        require(raw.get('numPassedTests')==passed and raw.get('numPendingTests')==skipped and raw.get('numTotalTests')==len(cases),'Vitest raw counters disagree with physical cases')
+    elif framework=='playwright':
+        require(raw.get('errors')==[] and isinstance(raw.get('suites'),list),'Raw Playwright errors or missing suites')
+        test_root=source_root(raw.get('config',{}).get('rootDir'))
+        require(test_root==source_root(root) or receipt_path(test_root,root),'Playwright test root outside report worktree')
+        def visit(suite,titles,top_file=False):
+            # The top file suite is represented by file separately, not title.
+            nested=[] if top_file else titles+[suite['title']]
+            for spec in suite.get('specs',[]):
+                require(spec.get('ok') is True,'Raw Playwright spec not successful')
+                file=receipt_path(test_root+'/'+path_token(spec['file'].replace('\\','/')),root)
+                tests=spec['tests']
+                require(isinstance(tests,list) and tests,'Missing Playwright physical cases')
+                for case in tests:
+                    require(case['status'] in {'expected','skipped'},'Raw Playwright failed, interrupted or flaky case')
+                    results=case['results']
+                    require(isinstance(results,list) and results,'Missing Playwright result')
+                    expected='skipped' if case['status']=='skipped' else 'passed'
+                    require(case.get('expectedStatus')==expected,'Playwright expected-failure evidence is not passing coverage')
+                    require(len(results)==1 and results[0]['status']==expected and not results[0].get('errors') and results[0].get('retry',0)==0,'Playwright retries/failures/incomplete results not accepted')
+                    cases.append((file,' '.join(nested+[spec['title']]),expected))
+            for child in suite.get('suites',[]): visit(child,nested)
+        for suite in raw['suites']: visit(suite,[],top_file=True)
+        stats=raw['stats']; passed=sum(x[2]=='passed' for x in cases); skipped=len(cases)-passed
+        require(stats.get('unexpected')==0 and stats.get('flaky')==0 and stats.get('expected')==passed and stats.get('skipped')==skipped,'Playwright raw counters disagree with physical cases')
+    else: raise Refusal('Unsupported framework report')
+    require(cases and len({(x[0],x[1]) for x in cases})==len(cases),'Missing or duplicate physical test identity')
+    require(all(isinstance(x[1],str) and x[1].strip() for x in cases),'Empty physical test title')
+    return cases
+
+def final_receipt(ref,check,head,target,snapshots):
+    native=artifact_json(ref,snapshots)
+    keys(native,['schema_version','name','commit','execution_sha','source_tree','argv','environment','native_exit','execution_state','executed','skipped','failed','framework','report','log','case_files','report_worktree'])
+    require(type(native['schema_version']) is int and native['schema_version']==1,'Unsupported native receipt schema')
+    require(type(native['native_exit']) is int and native['native_exit']==0 and native['execution_state']=='completed' and type(native['failed']) is int and native['failed']==0,'Native receipt failed, aborted or incomplete')
+    for field in ['name','argv','executed','skipped']:
+        require(native[field]==check[field] and type(native[field]) is type(check[field]),'Native receipt '+field+' mismatch')
+    require(native['commit']==head==check['commit'] and native['environment']==check.get('environment',{}),'Native receipt identity mismatch')
+    require(set(native['environment'])<={'SUPABASE_TEST_REQUIRED','ISOLATED_RECOVERY_STORAGE_PROOF'},'Receipt environment must contain only non-secret verification flags')
+    executor=sha(target,native['execution_sha'])
+    require(executor==native['execution_sha'] and ancestor(target,head,executor),'Execution checkout must retain candidate ancestry')
+    require(git(target,'rev-parse',executor+'^{tree}')==native['source_tree']==git(target,'rev-parse',head+'^{tree}'),'Execution checkout tree differs from final candidate')
+    source_root(native['report_worktree'])
+    # CI can use another physical checkout path; its exact root is reviewed data.
+    hashed_artifact(native['log'],snapshots)
+    files=strings(native['case_files'],'case_files')
+    for file in files: path_token(file)
+    if native['framework']=='command':
+        require(native['report'] is None and files==[] and check['skipped']==0,'Command receipts cannot admit skips or case partitions')
+        return {'native':native,'cases':[]}
+    cases=framework_cases(artifact_json(native['report'],snapshots),native['framework'],native['report_worktree'])
+    if check['name'] in FINALIZATION_SKIPS or check['name']=='isolated-storage-recovery-integration':
+        require(files==[],'Exception and recovery receipts must cover their complete physical report')
+    if files:
+        require(set(files)<=set(x[0] for x in cases),'Case partition contains absent files')
+        cases=[x for x in cases if x[0] in files]
+    require(check['executed']==sum(x[2]=='passed' for x in cases) and check['skipped']==sum(x[2]=='skipped' for x in cases),'Physical receipt counts mismatch')
+    return {'native':native,'cases':cases}
+
+def final_writers(db,p,claims,q,head,snapshots,final_verifiers):
+    e=artifact_json(q,snapshots)
+    keys(e,['schema_version','run_id','owner','plan_hash','integration_sha','workflow_version','complete_writer_inventory','includes_subsequent_authors_and_verifiers','inventory_source_refs','writers'])
+    require(type(e['schema_version']) is int and e['schema_version']==1,'Unsupported final writer inventory schema')
+    for field,expected in [('run_id',p['run_id']),('owner',p['coordinator']),('plan_hash',digest(p)),('integration_sha',head),('workflow_version',p['workflow_version'])]:
+        require(e[field]==expected,'Final writer inventory '+field+' mismatch')
+    require(e['complete_writer_inventory'] is True and e['includes_subsequent_authors_and_verifiers'] is True and strings(e['inventory_source_refs'],'inventory_source_refs'),'Complete subsequent author/verifier inventory attestation required')
+    known={p['coordinator']}|{c['worker'] for c in claims.values()}|set(final_verifiers)
+    for c in claims.values():
+        if c['evidence']: known.add(json.loads(c['evidence'])['review']['reviewer'])
+    for row in db.execute('SELECT evidence FROM verifications WHERE run=?',(p['run_id'],)):
+        known.add(json.loads(row['evidence'])['review']['reviewer'])
+    for row in db.execute('SELECT stopped_writers FROM claim_amendments WHERE run=?',(p['run_id'],)):
+        known.update(w['identity'] for w in json.loads(row['stopped_writers'])['writers'])
+    require(isinstance(e['writers'],list) and e['writers'],'Final stopped writers required')
+    identities=[]
+    for w in e['writers']:
+        keys(w,['identity','role','state','evidence_ref'])
+        require(all(isinstance(w[x],str) and w[x].strip() for x in ['identity','role','evidence_ref']) and w['state']=='stopped','Every final writer must be stopped with terminal source evidence')
+        identities.append(w['identity'])
+    require(len(identities)==len(set(identities)) and known<=set(identities),'Incomplete or duplicate final writer inventory')
+    require(any(w['identity']==p['coordinator'] and w['role']=='coordinator' for w in e['writers']),'Stopped coordinator identity required')
+    require(all(any(w['identity']==c['worker'] and w['role']=='worker' for w in e['writers']) for c in claims.values()),'Stopped assigned worker identities required')
+    return e
+
+def maintenance_identity(repo,p,claims,r):
+    root=top(Path(__file__).resolve().parent)
+    require(root in worktrees(repo) and common(root)==common(repo),'Maintenance executable must belong to a registered same-repository checkout')
+    require(root not in {Path(p['integration_worktree']).resolve()}|{Path(c['worktree']).resolve() for c in claims.values()},'Invoke finalization tooling from a separate maintenance checkout')
+    clean(root)
+    require(sha(root,'HEAD')==r['reviewed_tooling_sha'],'Maintenance HEAD must equal independently reviewed tooling SHA')
+    require(r['tool_sha256']==recovery_tool_sha256(),'Finalization executable digest mismatch')
+    # Dirty source or untracked replacement is already refused by clean(root).
+    require(branch(root).startswith('codex/'),'Maintenance checkout requires codex/ branch')
+    return str(root)
+
+def finalization_checkpoint():
+    """No-op, patched only by synthetic tests to prove atomic rollback."""
+
+def finalize_exceptions(a):
+    """Quiesced adoption+finalization only; no workflow/claim/Git mutation."""
+    r=read_json(a.request)
+    keys(r,['schema_version','request_id','run_id','owner','expected_plan_hash','expected_integration_sha','workflow_version','reviewed_tooling_sha','tool_sha256','tooling_author','tooling_review','tooling_ci','human_decision','quiescence','evidence','receipts','adoption_review'])
+    require(type(r['schema_version']) is int and r['schema_version']==1,'Unsupported finalization request schema')
+    require(isinstance(r['request_id'],str) and re.fullmatch('[A-Za-z0-9][A-Za-z0-9._-]{0,127}',r['request_id']),'Invalid finalization request ID')
+    require(r['run_id']==a.run and r['owner']==a.owner,'Finalization run/coordinator mismatch')
+    require(isinstance(r['tooling_author'],str) and r['tooling_author'].strip(),'Tooling author identity required')
+    review(r['tooling_review'],r['reviewed_tooling_sha'],r['tooling_author'],['transactional-integrity'])
+    d=r['human_decision']; keys(d,['decision_id','human','date','reason','accepted_skips'])
+    require(all(isinstance(d[x],str) and d[x].strip() for x in ['decision_id','human','date','reason']),'Recorded human decision and reason required')
+    expected={k:[{'file':file,'full_name':title} for file,title in value] for k,value in FINALIZATION_SKIPS.items()}
+    require(d['accepted_skips']==expected,'Human decision must identify exactly the supported inherited skips')
+    with database(a.repo) as db:
+        row=db.execute('SELECT * FROM runs WHERE run=?',(a.run,)).fetchone()
+        require(row is not None and row['owner']==a.owner,'Unknown run or wrong coordinator')
+        prior=db.execute('SELECT * FROM finalization_adoptions WHERE request_id=?',(r['request_id'],)).fetchone()
+        if prior:
+            require(prior['run']==a.run and prior['request_hash']==digest(r),'Finalization request token already used with different inputs')
+            return {**json.loads(prior['response']),'replayed':True}
+        p=get_run(db,a); claims=rows(db,a.run); head=r['expected_integration_sha']; target=p['integration_worktree']
+        require(row['state']=='active' and row['plan_hash']==r['expected_plan_hash'] and r['workflow_version']==p['workflow_version'],'Finalization plan/state/workflow identity changed')
+        required=set(p['final_required_checks'])|{x for s in p['stories'] for x in s['required_checks']}
+        require(p['epic']=='20' and required==FINALIZATION_CHECKS,'Exception operation requires all 40 authorized Epic 20 gates')
+        require(set(claims)=={s['id'] for s in p['stories']} and all(c['state']=='integrated' for c in claims.values()),'Required claims remain unfinished or unintegrated')
+        require(not db.execute("SELECT 1 FROM journal WHERE state='prepared'").fetchone(),'Prepared repository integration prevents finalization adoption')
+        for c in claims.values():
+            verified=db.execute('SELECT sha FROM verifications WHERE run=? AND story=?',(a.run,c['story'])).fetchone()
+            require(verified and verified['sha']==c['integration_sha'] and ancestor(a.repo,c['integration_sha'],head) and ancestor(a.repo,c['result_sha'],head),'Missing verified integration ancestry')
+        for prerequisite in p['integrated_prerequisites']:
+            require(ancestor(a.repo,prerequisite['commit'],head),'Prerequisite history missing from final candidate')
+        maintenance=maintenance_identity(a.repo,p,claims,r)
+        snapshots=[]
+        tooling_ci=artifact_json(r['tooling_ci'],snapshots)
+        keys(tooling_ci,['schema_version','commit','result','required_checks','checks','source_ref'])
+        require(type(tooling_ci['schema_version']) is int and tooling_ci['schema_version']==1 and tooling_ci['commit']==r['reviewed_tooling_sha'] and tooling_ci['result']=='passed' and isinstance(tooling_ci['source_ref'],str) and tooling_ci['source_ref'].strip(),'Reviewed tooling CI must pass at the exact tooling SHA')
+        require(strings(tooling_ci['required_checks'],'tooling required checks'),'Required tooling CI check names missing')
+        checks(tooling_ci['checks'],tooling_ci['required_checks'],r['reviewed_tooling_sha'])
+        e=artifact_json(r['evidence'],snapshots)
+        keys(e,['schema_version','run_id','integration_sha','checks','review','unresolved'])
+        require(type(e['schema_version']) is int and e['schema_version']==1 and e['run_id']==a.run and e['integration_sha']==head and e['unresolved']==[],'Final evidence stale or unresolved')
+        review(e['review'],head,p['coordinator'],['transactional-integrity'])
+        review_data=r['adoption_review']; keys(review_data,['approved','reviewer','commit','model','effort','unresolved','adoption_digest'])
+        review({k:v for k,v in review_data.items() if k!='adoption_digest'},head,p['coordinator'],['transactional-integrity'])
+        require(review_data['adoption_digest']==digest({k:v for k,v in r.items() if k!='adoption_review'}),'Independent High adoption review must bind the complete request and raw receipt hashes')
+        q=final_writers(db,p,claims,r['quiescence'],head,snapshots,[e['review']['reviewer'],review_data['reviewer']])
+        require(isinstance(r['receipts'],dict) and set(r['receipts'])==required,'Exactly all 40 native receipt references required')
+        require(isinstance(e['checks'],list) and len(e['checks'])==len(required) and {c['name'] for c in e['checks']}==required,'Exactly all 40 final checks required')
+        receipts={}
+        for check in e['checks']:
+            # Validate standard shapes/identities without changing the strict
+            # default validator. Only the private copy has skips normalized.
+            copied=copy.deepcopy(check); copied['skipped']=0
+            checks([copied],[check['name']],head)
+            require(type(check['skipped']) is int and check['skipped']>=0,'Invalid actual skip count')
+            receipt=final_receipt(r['receipts'][check['name']],check,head,target,snapshots)
+            skipped=[(x[0],x[1]) for x in receipt['cases'] if x[2]=='skipped']
+            if check['name'] in FINALIZATION_SKIPS:
+                require(sorted(skipped)==sorted(FINALIZATION_SKIPS[check['name']]),'Added, renamed, duplicate or missing inherited skip identity')
+            else: require(check['skipped']==0 and skipped==[],'No exceptions for this required gate')
+            receipts[check['name']]=receipt
+        recovery=receipts['isolated-storage-recovery-integration']
+        require(recovery['native']['framework']=='vitest' and recovery['native']['environment'].get('ISOLATED_RECOVERY_STORAGE_PROOF')=='1' and recovery['cases']==[(*RECOVERY_SKIP,'passed')],'Separate exact recovery-loader passing receipt required')
+        require(receipts['full-integration-rls']['native']['framework']=='vitest' and receipts['general-browser']['native']['framework']=='playwright','Exception receipts require their real framework reports')
+        before={'run':dict(row),'claims':claims,'verifications':[dict(x) for x in db.execute('SELECT * FROM verifications WHERE run=?',(a.run,))]}
+        # Git and external writer status cannot join SQLite: maintain quiescence,
+        # recheck all frozen facts/bytes immediately before CAS and audit insertion.
+        clean(target); require(branch(target)==p['integration_branch'] and sha(target,'HEAD')==head,'Final candidate HEAD or branch changed')
+        require(workflow_version(target)==p['workflow_version'],'Final workflow pin changed')
+        maintenance_identity(a.repo,p,claims,r)
+        for ref,data in snapshots:
+            require(Path(ref['path']).read_bytes()==data,'Raw receipt changed before finalization')
+        updated=db.execute("UPDATE runs SET state='finalized',final_sha=? WHERE run=? AND owner=? AND state='active' AND plan_hash=?",(head,a.run,a.owner,r['expected_plan_hash']))
+        require(updated.rowcount==1,'Finalization compare-and-swap failed')
+        db.execute('INSERT INTO verifications VALUES(?,?,?,?)',(a.run,'__final__',head,canonical(e)))
+        response={'state':'finalized','integration_sha':head,'epic':p['epic'],'adoption_request_id':r['request_id'],'plan_hash':row['plan_hash'],'workflow_version':p['workflow_version'],'reviewed_tooling_sha':r['reviewed_tooling_sha'],'replayed':False,'skips_have_coverage_credit':False,'next':'Continue existing publication/merge approvals; no Git, pins, claims or sprint status changed'}
+        retained={'quiescence':q,'tooling_ci':tooling_ci,'maintenance_checkout':maintenance,'checks':receipts,'raw_hashes':[ref for ref,data in snapshots]}
+        db.execute('INSERT INTO finalization_adoptions VALUES(?,?,?,?,?,?,?,?,?)',(r['request_id'],a.run,digest(r),canonical(before),canonical(r),canonical(retained),canonical(e),canonical(response),time.time()))
+        finalization_checkpoint()
+        return response
+
 def execute(a):
     a.repo=str(top(a.repo))
     if a.command=='version': return {'schema_version':VERSION,'workflow_version':workflow_version(a.repo)}
     if a.command=='plan':
         return report(a.repo,validate_plan(a.repo,read_json(a.plan)))
     if a.command=='integrate': return integrate(a)
+    if a.command=='amend-blocked': return amend_blocked(a)
+    if a.command=='finalize-exceptions': return finalize_exceptions(a)
     with database(a.repo) as db:
         if a.command=='init':
             p=validate_plan(a.repo,read_json(a.plan)); require(a.owner==p['coordinator'],'Plan coordinator mismatch')
@@ -555,12 +926,15 @@ def parser():
     p=JsonParser(description=__doc__)
     p.add_argument('--repo',default='.')
     sub=p.add_subparsers(dest='command',required=True)
-    for name in ['version','plan','init','status','claim','heartbeat','block','submit','integrate','repair','verify','finalize']:
+    for name in ['version','plan','init','status','claim','heartbeat','block','submit','integrate','repair','verify','finalize','amend-blocked','finalize-exceptions']:
         cmd=sub.add_parser(name)
         if name in {'plan','init'}: cmd.add_argument('--plan',required=True)
         if name not in {'version','plan'}: cmd.add_argument('--owner',required=True)
         if name not in {'version','plan','init'}: cmd.add_argument('--run',required=True)
-        if name in {'claim','heartbeat','block','submit','integrate','repair','verify'}: cmd.add_argument('--story',required=True)
+        if name in {'claim','heartbeat','block','submit','integrate','repair','verify','amend-blocked'}: cmd.add_argument('--story',required=True)
+        if name=='finalize-exceptions': cmd.add_argument('--request',required=True)
+        if name=='amend-blocked':
+            cmd.add_argument('--worker',required=True); cmd.add_argument('--generation',type=int,required=True); cmd.add_argument('--request',required=True)
         if name in {'claim','heartbeat','block','submit'}:
             cmd.add_argument('--worker',required=True); cmd.add_argument('--generation',type=int,default=1)
         if name=='claim':

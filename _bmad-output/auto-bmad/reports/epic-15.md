@@ -100,3 +100,35 @@
 **⚠️ Needs human:** (none)
 
 **Next:** Complete independent High ownership/contract review, deliberately adopt integrated main and revalidate supported workflow before15.1 build.
+
+## Report — 2026-10-13T19:48:07Z (checkpoint -15.1 adoption approved)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `7cdd08a`).
+**Pipeline status:** Reviewed adoption complete; explicit sequential15.1 admission approved before E5.
+**Continues:** (none — first run)
+
+**Summary:** Adopt integrated main d507c7d0 at stopped-delegate checkpoint7cdd08a6. Independent Sol High approved conflict resolutions and revalidated unchanged15.1 spec. Actual supported workflow digest bf2a33eec80b955f5a51921fbc74fd26fed6ab44a75bb9ffa1d61ce6c18d5a93 recorded. Preserve all imported E20 anchors and finalized-store history; unrelated E20 helper collision is retained.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 102h 50m (≈28m AI-run, ≈102h 22m human/idle wait); resumed 3×.
+
+**Stories:**
+1. 15.1 ready-for-dev and ATDD preserved; E5 next, zero implementation review rounds.
+
+**Skipped:** (none)
+
+**Epic gate:** Pending; all15.1 runtime/review/completion gates retained.
+
+**TEA:** No product tests executed during adoption; prior scaffolds carry zero coverage credit.
+
+**Retrospective:** Epic14 October8 accepted-with-open-items retained; Documents accepted-with-open-items and correction history imported verbatim.
+
+**Overrides:** Explicit15.1-only release; sequential target/spec only, no bare picker or fabricated parallel run. No15.2 until verified15.1 integration and renewed release; merge commits/branches retained/no deployment.
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Refresh preflight/context and start explicit approved15.1 build. Preserve Option A, Contract D, manifest/RLS boundaries and owner UX disposition.

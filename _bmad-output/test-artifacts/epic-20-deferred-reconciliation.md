@@ -1,0 +1,30 @@
+# Epic 20 deferred-work reconciliation
+
+Audited integrated commit `c210b6376c4b176ec0953ea208181f1be8653bce` on 2026-10-13. This is a deferred-evidence audit, not another story review or a new execution result. No implementation, resource launch, archive, state, sprint, spec, Git mutation, or release activation was performed.
+
+The canonical ledger plan reported 176 entries: 146 open, 3 partial, 27 resolved hints; baseline SHA-256 `2de60e864b4f84f85243248d60d595a1ad1fa030a01313cb0a1187eebd9162ae`. All 149 non-resolved entries were checked against named code, later wrappers/migrations, tests and owner records. Sensitive integrity/security/money judgments ran at Sol High; ordinary UI/docs/test evidence ran in an awaited context-free Sol Low delegate. On uncertainty the original text was retained. The three concurrently modified Documents tests were excluded as acceptance evidence; expiry proof was read using `git show HEAD:tests/e2e/files/entity-file-preview.e2e.spec.ts`.
+
+## Confirmed closures
+
+| Canonical ID | Original ledger line | Complete evidence at audited HEAD |
+| --- | --- | --- |
+| 11 | 41 | CRM/settings/pricing/quote/acceptance/job/file commands now produce minimal audited business lifecycle events; membership producers are wired in `20260910165124_admin_user_management.sql:83,125,180`. Audited command wrappers are implemented in `20260907171252_role_aware_phase_a_policy_evolution.sql`. |
+| 65 | 163 | Old security-invoker write RPCs cannot bypass revoked direct table INSERT grants (`20260907171252_role_aware_phase_a_policy_evolution.sql:1778,1794`); the live `link_file_with_audit` wrapper checks both same-tenant file existence and the polymorphic owner (`:1786-1787`). |
+| 80 | 182 | `file-audit-events.int.test.ts:228-248` executes an own-session attempt to archive a real foreign locked file and asserts `TENANT_ACCESS_DENIED`/no audit; `documents-lifecycle.int.test.ts:89-102` executes archive against a selected foreign link/file tuple and asserts denial. |
+| 118 | 273 | Committed `entity-file-preview.e2e.spec.ts:154-195` executes browser-clock expiry, verifies the stale link disappears, observes the real server refresh action, compares refreshed URL, and GETs usable refreshed bytes. |
+
+Only those four bullet lines changed, by adding leading `✅` and trailing `resolved in` evidence. All other ledger bytes were preserved. Canonical post-edit counts: 142 open, 3 partial, 31 resolved hints, still 176 entries. No archive has occurred. Reconstructing the original four lines reproduced the exact baseline SHA-256, confirming that all untouched ledger bytes (including line endings) were preserved. Final ledger SHA-256 before archive: `77e1f4bf7446bf9d0b3e157d9e1ed639f7b43fe4ec9096c080f6eca06cf8546b`.
+
+## Retained audit scope
+
+Historical shell, forms, pricing, calculation editor, docs/capture harness, governance, and quote follow-up/test residuals retain concrete missing requirements or lack full proof. Their named files were inspected; a checkbox `[x]` was never treated as completion. The combined expiry/denied-preview entry (ID125) stays open: its expiry half is implemented, but the committed denial test still conditionally checks `previewError.count()` (`entity-file-preview.e2e.spec.ts:143`). The active uncommitted correction cannot close it in this audit.
+
+Security/integrity residuals retain their exact text: membership/audit co-member least privilege; C1 sanitization; CRM partial validation/clear fields/id-only acceptance; pricing no-op audit; tax cap/union/snapshot contracts; calculation reorder/DB money guards/source constraints; required-file and margin readiness; storage retention/bucket policy/list-isolation/telemetry/shape/TTL/duplicate-link/rollback requests; legacy quote tax fields/number format/PDF consolidation; accepted-record actor/parent lookup/idempotency/mapping/zero-price/read projection; job-link command proof; archived-customer creation; aggregate withholding dependencies. Concrete examples remain `audit-metadata.ts:31-33` (C1 exclusion), `form-parsing.ts:251,256-257` (optional clears), the checked CRM wrappers' empty-patch rejection (`20260907171252_role_aware_phase_a_policy_evolution.sql:1132,1201,1243`), `snapshot-build.ts:509-511` (legacy assumption fields null), `signed-access.ts:153` (explicit TTL bypass), `storage-object-isolation.rls.test.ts:105-108` (weak list negative), `entitlements.ts:79,113-129` (flat withholding), and `quote-pipeline-aggregate.ts:165` (missing acceptance contributes zero).
+
+Owner/legal/Phase C/real-recipient activation was not inferred from implementation. ADR-B011 now records internal operating targets, but still leaves batch size unpinned and real-recipient delivery separately gated (`ADR-B011:39-41`); provider idempotency and real-template unsubscribe remain incomplete (`outbox.ts:109-112`, `templates.ts`). No current demo or hosted environment was queried.
+
+## Existing marker-hint limitation for archive owner
+
+Canonical `resolved` is a heuristic, not verified completion. Existing IDs `5,16,17,23,24,25,27,29,30,35,36,39,54,73,76,84,107,111,117,123,126,128,164,166,168,169` must be retained unless the archive owner separately proves their entire deferred scope complete. ID167 is an explicit green cross-reference to ID166 and depends on that disposition. These historical entries were not edited.
+
+Concrete examples: ID5 still gates both-null shell identity; IDs16/17 retain explicitly open exact-42501/introspection work; ID23 generic approver label persists; ID29 raw personnummer props persist; ID35 archived reads gate pricing; ID36 flat per-person cap persists; ID54 rearchive overwrites its timestamp; ID73 invalid file shape returns null; ID76 explicit TTL is unclamped; ID107 parent guard is absent; ID111 orphan uses QV409; IDs117/123 have no content sniffing; IDs168/169 still use open `E${number}` (`manifest-schema.ts:50`). Words such as “closed union”, “Deny-closed”, and “auto-resolved” explain several misleading hints. Archive must judge actual complete text, preserve uncertain follow-ups, and use the final expected ledger hash.

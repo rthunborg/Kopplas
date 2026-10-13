@@ -1,0 +1,246 @@
+{
+  "schema_version": "0.2.0",
+  "snapshot_at": "2026-10-13T15:14:51.142825+00:00",
+  "repo": "Kopplas",
+  "collection_mode": "contract_static",
+  "collection_status": "COLLECTED",
+  "inventory_basis": "acceptance_criteria",
+  "gate_basis": "priority_thresholds",
+  "source_sha": "6f891f7db7a1be83bd3d90b67ce2fdb47e538e3c",
+  "tested_product_sha": "c65c18649ac5641f9520b12e03a8b3f20af8f610",
+  "target": {
+    "type": "epic",
+    "id": "20",
+    "label": "Epic20 — Documents"
+  },
+  "decision_mode": "deterministic",
+  "evaluator": "BMad TEA Epic20 trace delegate",
+  "confidence": "high",
+  "oracle": {
+    "resolution_mode": "formal_requirements",
+    "confidence": "high",
+    "sources": ["_bmad-output/implementation-artifacts/spec-20-1-documents-activation-and-source-authorized-aggregation.md","_bmad-output/implementation-artifacts/spec-20-2-search-filters-preview-and-archive-restore.md","_bmad-output/implementation-artifacts/spec-20-3-entity-panel-links-and-contextual-navigation.md","_bmad-output/test-artifacts/test-design-epic-20.md"],
+    "external_pointer_status": "not_used",
+    "synthetic": false
+  },
+  "coverage": {
+    "inventory": {
+      "covered": 80,
+      "total": 81,
+      "pct": 99
+    },
+    "priority_breakdown": {
+      "P0": {
+        "total": 32,
+        "covered": 32,
+        "pct": 100
+      },
+      "P1": {
+        "total": 38,
+        "covered": 38,
+        "pct": 100
+      },
+      "P2": {
+        "total": 10,
+        "covered": 10,
+        "pct": 100
+      },
+      "P3": {
+        "total": 1,
+        "covered": 0,
+        "pct": 0
+      }
+    },
+    "by_level": {
+      "e2e": {
+        "tests": 165,
+        "criteria_covered": 54
+      },
+      "api": {
+        "tests": 184,
+        "criteria_covered": 70
+      },
+      "component": {
+        "tests": 4,
+        "criteria_covered": 10
+      },
+      "unit": {
+        "tests": 254,
+        "criteria_covered": 62
+      },
+      "live": {
+        "tests": 0,
+        "criteria_covered": 0
+      },
+      "other": {
+        "tests": 0,
+        "criteria_covered": 0
+      }
+    }
+  },
+  "tests": {
+    "files": 24,
+    "cases": 607,
+    "skipped_cases": 0,
+    "pending_cases": 0,
+    "fixme_cases": 0
+  },
+  "risk_summary": {
+    "critical_open": 0,
+    "high_open": 0,
+    "medium_open": 0,
+    "low_open": 1
+  },
+  "heuristics": {
+    "endpoint_gaps": 0,
+    "auth_negative_path_status": "present",
+    "error_path_status": "present",
+    "ui_journey_status": "not_applicable",
+    "ui_state_status": "not_applicable"
+  },
+  "formal_ui_heuristics": {
+    "ui_journey_status": "present",
+    "ui_state_status": "present"
+  },
+  "live_evidence": {
+    "present": false,
+    "results_file": "C:/Users/Rasmus/.codex/worktrees/dbe6/ElproSaas/_bmad-output/test-artifacts/live-verification-results.json",
+    "freshness": "not_present",
+    "recorded_source_sha": "",
+    "current_source_sha": "6f891f7db7a1be83bd3d90b67ce2fdb47e538e3c",
+    "producer": "",
+    "counted": 0,
+    "stale": 0,
+    "unverifiable": 0,
+    "failed": 0,
+    "contradicted": 0,
+    "blocked": 0,
+    "skipped": 0,
+    "unmatched": 0,
+    "invalid": 0,
+    "requirements_live_only": 0
+  },
+  "blockers": [
+    {"id":"20-P3-01","severity":"low","reason":"No recorded manual long-name/neutral-label wrap inspection at both viewports was supplied; optional visual polish is uncredited."}
+  ],
+  "recommendations": [
+    {"priority":"LOW","action":"QA: optional20-P3-01-VISUAL-001 long synthetic names/neutral labels at desktop and360x640, record actual wrap/read outcome.","requirements":["20-P3-01"]},
+    {"priority":"LOW","action":"Run separately authorized bmad-testarch-test-review and NFR assessment. Preserve20.2 review_unverified/formula history and narrow acceptance boundary.","requirements":[]}
+  ],
+  "links": {
+    "trace_report_path": "C:/Users/Rasmus/.codex/worktrees/dbe6/ElproSaas/_bmad-output/test-artifacts/traceability/epic-20-traceability-report.md",
+    "trace_report_url": "",
+    "artifact_url": "",
+    "journey_evidence_url": ""
+  },
+  "gate_status": "PASS",
+  "gate_criteria": {
+    "p0_coverage_required": "100%",
+    "p0_coverage_actual": "100%",
+    "p0_status": "MET",
+    "p1_coverage_target": "90%",
+    "p1_coverage_minimum": "80%",
+    "p1_coverage_actual": "100%",
+    "p1_status": "MET",
+    "overall_coverage_minimum": "80%",
+    "overall_coverage_actual": "99%",
+    "overall_status": "MET"
+  },
+  "formal_ac_statistics": {
+    "total_requirements": 25,
+    "fully_covered": 25,
+    "partially_covered": 0,
+    "uncovered": 0,
+    "overall_coverage_percentage": 100,
+    "priority_breakdown": {
+      "P0": {
+        "total": 14,
+        "covered": 14,
+        "percentage": 100
+      },
+      "P1": {
+        "total": 11,
+        "covered": 11,
+        "percentage": 100
+      },
+      "P2": {
+        "total": 0,
+        "covered": 0,
+        "percentage": 100
+      },
+      "P3": {
+        "total": 0,
+        "covered": 0,
+        "percentage": 100
+      }
+    }
+  },
+  "approved_design_statistics": {
+    "total_requirements": 56,
+    "fully_covered": 55,
+    "partially_covered": 0,
+    "uncovered": 1,
+    "overall_coverage_percentage": 98,
+    "priority_breakdown": {
+      "P0": {
+        "total": 18,
+        "covered": 18,
+        "percentage": 100
+      },
+      "P1": {
+        "total": 27,
+        "covered": 27,
+        "percentage": 100
+      },
+      "P2": {
+        "total": 10,
+        "covered": 10,
+        "percentage": 100
+      },
+      "P3": {
+        "total": 1,
+        "covered": 0,
+        "percentage": 0
+      }
+    }
+  },
+  "new_product_executions": 0,
+  "release_authority": false,
+  "review_clearance": false,
+  "gate_iteration": 1,
+  "iteration1_evidence": {
+    "execution_base_sha": "b7f01bb33d110817c5919a86ec79ab221e2cbf3a",
+    "execution_tree": "dirty-test-tree",
+    "tested_file_sha256": "eab6b291f0eb8bee1c6269a8563fa1619105a983a0e8058eb6bea23a0151c90c",
+    "tested_file_hashes_sha256": "7ecffefa00a1a8367df515b750f280c5c37282f28800fa6bd2427e56f6b001f2",
+    "committed_identical_blob_sha": "5594186c5def14712a32fd0df53ec8c1ce2cc5f5",
+    "committed_identical_at_sha": "80fdaef70b9145ff0ecf6de5865a894a5eb4b6a2",
+    "clean_committed_sha_replay": false,
+    "required_counts": {
+      "executed": 166,
+      "passed": 166,
+      "failed": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "native_exit": 0,
+    "test_duration_ms": 1564.2813000000006,
+    "native_receipt_ref": "_bmad-output/test-artifacts/epic-20-e8-iter1/documents-authorization-races.native.json",
+    "native_receipt_sha256": "2b8797416f3cd015e701c7aaba7e197dc71fc99446a7b8e45968849ef41a667a",
+    "vitest_ref": "_bmad-output/test-artifacts/epic-20-e8-iter1/documents-authorization-races.vitest.json",
+    "vitest_sha256": "bbe8536f753dd3262770ce4f232d8a0d319dc42dae64b70e005cf5ade094afea",
+    "raw_log_sha256": "85785c1d913ba6fb2b29e3770ae4f31f11904f5b4ec90c878338673defab2cc9",
+    "full_native_receipt": {
+      "local_path": "C:\\Users\\Rasmus\\AppData\\Local\\Temp\\Kopplas-epic20-e8-iter1-b7f01bb3\\documents-authorization-races.native.json",
+      "sha256": "7735a6284b7a48008fbc6b357b497d38e90c0ac50eac24f6334bffd669c0c3db"
+    },
+    "narrow_review_ref": "_bmad-output/test-artifacts/epic-20-e8-iter1/narrow-review.json",
+    "narrow_review_sha256": "214b012b67dbb4a2bbb828dd24d3f04ea6a13d0915bbf9a6e3093a781208590f",
+    "assessor": "/root/epic20_trace/sensitive_trace",
+    "assessor_model": "gpt-6.1-sol",
+    "assessor_effort": "high",
+    "coverage_disposition": "20-P0-02 FULL; previously missing same-token active membership DELETE variant is executed"
+  },
+  "cap_pilot_evidence_ref": "evidence-integrity.json#cap_pilot",
+  "test_reliability_evidence_ref": "evidence-integrity.json#test_reliability"
+}

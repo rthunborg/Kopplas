@@ -1,3 +1,5 @@
+import { EntityDocumentsLink } from "@/components/documents/EntityDocumentsLink";
+import { readEntityDocumentsLink } from "@/server/read-models/document-context";
 /**
  * `/customers/[customerId]` (Kund hub) — the customer detail (Story 3.2, Task 2).
  *
@@ -39,6 +41,7 @@ export default async function CustomerDetailPage({
             id: f.id,
             name: f.name,
             read: await readEntityFiles({ ownerType: "facility", ownerId: f.id }),
+            documentsLink: await readEntityDocumentsLink({ module: "crm", ownerType: "facility", ownerId: f.id }),
           })),
         ),
         Promise.all(
@@ -46,6 +49,7 @@ export default async function CustomerDetailPage({
             id: c.id,
             name: c.name,
             read: await readEntityFiles({ ownerType: "contact", ownerId: c.id }),
+            documentsLink: await readEntityDocumentsLink({ module: "crm", ownerType: "contact", ownerId: c.id }),
           })),
         ),
       ])
@@ -100,6 +104,8 @@ export default async function CustomerDetailPage({
   const facilityFilePanels: Record<string, React.ReactNode> = {};
   for (const f of facilityFiles) {
     facilityFilePanels[f.id] = (
+      <>
+      <EntityDocumentsLink link={f.documentsLink} />
       <EntityFilePanel
         ownerType="facility"
         ownerId={f.id}
@@ -110,11 +116,14 @@ export default async function CustomerDetailPage({
         parentCustomerId={customer.id}
         testIdSuffix={`facility-${f.id}`}
       />
+      </>
     );
   }
   const contactFilePanels: Record<string, React.ReactNode> = {};
   for (const c of contactFiles) {
     contactFilePanels[c.id] = (
+      <>
+      <EntityDocumentsLink link={c.documentsLink} />
       <EntityFilePanel
         ownerType="contact"
         ownerId={c.id}
@@ -125,6 +134,7 @@ export default async function CustomerDetailPage({
         parentCustomerId={customer.id}
         testIdSuffix={`contact-${c.id}`}
       />
+      </>
     );
   }
 
@@ -135,6 +145,8 @@ export default async function CustomerDetailPage({
       contacts={contacts}
       bookingPanel={<BookingEntry {...await readBookingHost({customerId})} options={await readBookingEditorOptions()} customerId={customerId} host="customer" />}
       filesPanel={
+        <>
+        <EntityDocumentsLink link={await readEntityDocumentsLink({ module: "crm", ownerType: "customer", ownerId: customer.id })} />
         <EntityFilePanel
           ownerType="customer"
           ownerId={customer.id}
@@ -143,6 +155,7 @@ export default async function CustomerDetailPage({
           files={filesRead?.files ?? []}
           readError={filesRead?.error ?? null}
         />
+        </>
       }
       facilityFilePanels={facilityFilePanels}
       contactFilePanels={contactFilePanels}

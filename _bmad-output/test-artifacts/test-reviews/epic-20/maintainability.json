@@ -1,0 +1,467 @@
+{
+  "dimension": "maintainability",
+  "score": 0,
+  "max_score": 100,
+  "grade": "F",
+  "violations": [
+    {
+      "file": "tests/integration/commands/documents-lifecycle-lock-races.int.test.ts",
+      "line": 1,
+      "row": "M4",
+      "severity": "MEDIUM",
+      "category": "ungrouped-suite",
+      "description": "9 static test declarations have no describe/context subject grouping. Literal Absolute registry predicate fires; descriptive existing test names do not waive it.",
+      "suggestion": "Group this file's related cases under a named suite. This is a rubric pattern, not demonstrated customer-visible breakage.",
+      "code_snippet": "No describe/context grouping in file",
+      "classification": "rubric-maintainability-pattern",
+      "production_defect_demonstrated": false,
+      "release_blocking": false
+    },
+    {
+      "file": "tests/integration/commands/documents-lifecycle.int.test.ts",
+      "line": 1,
+      "row": "M4",
+      "severity": "MEDIUM",
+      "category": "ungrouped-suite",
+      "description": "26 static test declarations have no describe/context subject grouping. Literal Absolute registry predicate fires; descriptive existing test names do not waive it.",
+      "suggestion": "Group this file's related cases under a named suite. This is a rubric pattern, not demonstrated customer-visible breakage.",
+      "code_snippet": "No describe/context grouping in file",
+      "classification": "rubric-maintainability-pattern",
+      "production_defect_demonstrated": false,
+      "release_blocking": false
+    },
+    {
+      "file": "tests/integration/rls/documents-context.rls.test.ts",
+      "line": 1,
+      "row": "M4",
+      "severity": "MEDIUM",
+      "category": "ungrouped-suite",
+      "description": "13 static test declarations have no describe/context subject grouping. Literal Absolute registry predicate fires; descriptive existing test names do not waive it.",
+      "suggestion": "Group this file's related cases under a named suite. This is a rubric pattern, not demonstrated customer-visible breakage.",
+      "code_snippet": "No describe/context grouping in file",
+      "classification": "rubric-maintainability-pattern",
+      "production_defect_demonstrated": false,
+      "release_blocking": false
+    },
+    {
+      "file": "tests/integration/rls/documents-filter-archive.rls.test.ts",
+      "line": 1,
+      "row": "M4",
+      "severity": "MEDIUM",
+      "category": "ungrouped-suite",
+      "description": "16 static test declarations have no describe/context subject grouping. Literal Absolute registry predicate fires; descriptive existing test names do not waive it.",
+      "suggestion": "Group this file's related cases under a named suite. This is a rubric pattern, not demonstrated customer-visible breakage.",
+      "code_snippet": "No describe/context grouping in file",
+      "classification": "rubric-maintainability-pattern",
+      "production_defect_demonstrated": false,
+      "release_blocking": false
+    },
+    {
+      "file": "tests/unit/components/documents/entity-documents-link.test.ts",
+      "line": 1,
+      "row": "M4",
+      "severity": "MEDIUM",
+      "category": "ungrouped-suite",
+      "description": "3 static test declarations have no describe/context subject grouping. Literal Absolute registry predicate fires; descriptive existing test names do not waive it.",
+      "suggestion": "Group this file's related cases under a named suite. This is a rubric pattern, not demonstrated customer-visible breakage.",
+      "code_snippet": "No describe/context grouping in file",
+      "classification": "rubric-maintainability-pattern",
+      "production_defect_demonstrated": false,
+      "release_blocking": false
+    },
+    {
+      "file": "tests/unit/features/documents/context-navigation.test.ts",
+      "line": 1,
+      "row": "M4",
+      "severity": "MEDIUM",
+      "category": "ungrouped-suite",
+      "description": "7 static test declarations have no describe/context subject grouping. Literal Absolute registry predicate fires; descriptive existing test names do not waive it.",
+      "suggestion": "Group this file's related cases under a named suite. This is a rubric pattern, not demonstrated customer-visible breakage.",
+      "code_snippet": "No describe/context grouping in file",
+      "classification": "rubric-maintainability-pattern",
+      "production_defect_demonstrated": false,
+      "release_blocking": false
+    },
+    {
+      "file": "tests/unit/features/documents/date-bounds.test.ts",
+      "line": 1,
+      "row": "M4",
+      "severity": "MEDIUM",
+      "category": "ungrouped-suite",
+      "description": "4 static test declarations have no describe/context subject grouping. Literal Absolute registry predicate fires; descriptive existing test names do not waive it.",
+      "suggestion": "Group this file's related cases under a named suite. This is a rubric pattern, not demonstrated customer-visible breakage.",
+      "code_snippet": "No describe/context grouping in file",
+      "classification": "rubric-maintainability-pattern",
+      "production_defect_demonstrated": false,
+      "release_blocking": false
+    },
+    {
+      "file": "tests/unit/features/documents/filters.test.ts",
+      "line": 1,
+      "row": "M4",
+      "severity": "MEDIUM",
+      "category": "ungrouped-suite",
+      "description": "6 static test declarations have no describe/context subject grouping. Literal Absolute registry predicate fires; descriptive existing test names do not waive it.",
+      "suggestion": "Group this file's related cases under a named suite. This is a rubric pattern, not demonstrated customer-visible breakage.",
+      "code_snippet": "No describe/context grouping in file",
+      "classification": "rubric-maintainability-pattern",
+      "production_defect_demonstrated": false,
+      "release_blocking": false
+    },
+    {
+      "file": "tests/unit/features/documents/preview-state.test.ts",
+      "line": 1,
+      "row": "M4",
+      "severity": "MEDIUM",
+      "category": "ungrouped-suite",
+      "description": "7 static test declarations have no describe/context subject grouping. Literal Absolute registry predicate fires; descriptive existing test names do not waive it.",
+      "suggestion": "Group this file's related cases under a named suite. This is a rubric pattern, not demonstrated customer-visible breakage.",
+      "code_snippet": "No describe/context grouping in file",
+      "classification": "rubric-maintainability-pattern",
+      "production_defect_demonstrated": false,
+      "release_blocking": false
+    },
+    {
+      "file": "tests/unit/scope/manifest-shape.test.ts",
+      "line": 1,
+      "row": "M4",
+      "severity": "MEDIUM",
+      "category": "ungrouped-suite",
+      "description": "8 static test declarations have no describe/context subject grouping. Literal Absolute registry predicate fires; descriptive existing test names do not waive it.",
+      "suggestion": "Group this file's related cases under a named suite. This is a rubric pattern, not demonstrated customer-visible breakage.",
+      "code_snippet": "No describe/context grouping in file",
+      "classification": "rubric-maintainability-pattern",
+      "production_defect_demonstrated": false,
+      "release_blocking": false
+    },
+    {
+      "file": "tests/unit/server/commands/documents-lifecycle.test.ts",
+      "line": 1,
+      "row": "M4",
+      "severity": "MEDIUM",
+      "category": "ungrouped-suite",
+      "description": "6 static test declarations have no describe/context subject grouping. Literal Absolute registry predicate fires; descriptive existing test names do not waive it.",
+      "suggestion": "Group this file's related cases under a named suite. This is a rubric pattern, not demonstrated customer-visible breakage.",
+      "code_snippet": "No describe/context grouping in file",
+      "classification": "rubric-maintainability-pattern",
+      "production_defect_demonstrated": false,
+      "release_blocking": false
+    },
+    {
+      "file": "tests/unit/server/commands/documents-signed-access.test.ts",
+      "line": 1,
+      "row": "M4",
+      "severity": "MEDIUM",
+      "category": "ungrouped-suite",
+      "description": "11 static test declarations have no describe/context subject grouping. Literal Absolute registry predicate fires; descriptive existing test names do not waive it.",
+      "suggestion": "Group this file's related cases under a named suite. This is a rubric pattern, not demonstrated customer-visible breakage.",
+      "code_snippet": "No describe/context grouping in file",
+      "classification": "rubric-maintainability-pattern",
+      "production_defect_demonstrated": false,
+      "release_blocking": false
+    },
+    {
+      "file": "tests/unit/server/read-models/document-context.test.ts",
+      "line": 1,
+      "row": "M4",
+      "severity": "MEDIUM",
+      "category": "ungrouped-suite",
+      "description": "11 static test declarations have no describe/context subject grouping. Literal Absolute registry predicate fires; descriptive existing test names do not waive it.",
+      "suggestion": "Group this file's related cases under a named suite. This is a rubric pattern, not demonstrated customer-visible breakage.",
+      "code_snippet": "No describe/context grouping in file",
+      "classification": "rubric-maintainability-pattern",
+      "production_defect_demonstrated": false,
+      "release_blocking": false
+    },
+    {
+      "file": "tests/unit/server/read-models/document-sources.test.ts",
+      "line": 1,
+      "row": "M4",
+      "severity": "MEDIUM",
+      "category": "ungrouped-suite",
+      "description": "19 static test declarations have no describe/context subject grouping. Literal Absolute registry predicate fires; descriptive existing test names do not waive it.",
+      "suggestion": "Group this file's related cases under a named suite. This is a rubric pattern, not demonstrated customer-visible breakage.",
+      "code_snippet": "No describe/context grouping in file",
+      "classification": "rubric-maintainability-pattern",
+      "production_defect_demonstrated": false,
+      "release_blocking": false
+    },
+    {
+      "file": "tests/unit/server/read-models/documents.test.ts",
+      "line": 1,
+      "row": "M4",
+      "severity": "MEDIUM",
+      "category": "ungrouped-suite",
+      "description": "21 static test declarations have no describe/context subject grouping. Literal Absolute registry predicate fires; descriptive existing test names do not waive it.",
+      "suggestion": "Group this file's related cases under a named suite. This is a rubric pattern, not demonstrated customer-visible breakage.",
+      "code_snippet": "No describe/context grouping in file",
+      "classification": "rubric-maintainability-pattern",
+      "production_defect_demonstrated": false,
+      "release_blocking": false
+    },
+    {
+      "file": "tests/unit/server/storage/document-signed-access-attestation.test.ts",
+      "line": 1,
+      "row": "M4",
+      "severity": "MEDIUM",
+      "category": "ungrouped-suite",
+      "description": "12 static test declarations have no describe/context subject grouping. Literal Absolute registry predicate fires; descriptive existing test names do not waive it.",
+      "suggestion": "Group this file's related cases under a named suite. This is a rubric pattern, not demonstrated customer-visible breakage.",
+      "code_snippet": "No describe/context grouping in file",
+      "classification": "rubric-maintainability-pattern",
+      "production_defect_demonstrated": false,
+      "release_blocking": false
+    },
+    {
+      "file": "tests/e2e/files/documents-context-navigation.e2e.spec.ts",
+      "line": 133,
+      "row": "M2",
+      "severity": "MEDIUM",
+      "category": "repeated-literal-payload",
+      "description": "Six Source fixture domain records repeat the eight-field payload inline at lines 133,138,143,148,154,160.",
+      "suggestion": "Use a local Source factory with owner-specific overrides; preserve exact route expectations.",
+      "code_snippet": "seed.sources.customer = { module, ownerType, ownerId, route, returnHref, panelId, label, purpose };",
+      "classification": "rubric-maintainability-pattern",
+      "production_defect_demonstrated": false,
+      "release_blocking": false
+    },
+    {
+      "file": "tests/unit/features/documents/context-navigation.test.ts",
+      "line": 46,
+      "row": "M2",
+      "severity": "MEDIUM",
+      "category": "repeated-literal-payload",
+      "description": "Five invalid Ref cases construct the same module/ownerType/ownerId domain shape inline (46\u201350). The predicate concerns repeated construction even though these are deliberately invalid cases.",
+      "suggestion": "Use a base Ref factory with explicit invalid overrides, retaining visible case meaning.",
+      "code_snippet": "{ module: \"jobs\", ownerType: \"customer\", ownerId: OWNER }",
+      "classification": "rubric-maintainability-pattern",
+      "production_defect_demonstrated": false,
+      "release_blocking": false
+    },
+    {
+      "file": "tests/unit/features/documents/filters.test.ts",
+      "line": 43,
+      "row": "M2",
+      "severity": "MEDIUM",
+      "category": "repeated-literal-payload",
+      "description": "Three domain row fixtures repeat linkId/displayName/mimeType inline at 43\u201345; the third adds ownerLabel.",
+      "suggestion": "Build filter rows from a small local factory and keep overrides explicit.",
+      "code_snippet": "{ linkId: \"literal\", displayName: \"Central %_ [A].pdf\", mimeType: \"application/pdf\" }",
+      "classification": "rubric-maintainability-pattern",
+      "production_defect_demonstrated": false,
+      "release_blocking": false
+    },
+    {
+      "file": "tests/e2e/files/documents-search-preview-lifecycle.e2e.spec.ts",
+      "line": 701,
+      "row": "M7",
+      "severity": "MEDIUM",
+      "category": "excessive-nesting",
+      "description": "Test starting line 665 contains seven nested Block nodes (test callback, seed callback, evaluate callback, fetch callback, try, if, promise callback); more than three levels beneath its body.",
+      "suggestion": "Extract the browser media cleanup instrumentation into a named helper while retaining its observations.",
+      "code_snippet": "await new Promise<void>(resolve => { audit.releaseGatedPdf = resolve; });",
+      "classification": "rubric-maintainability-pattern",
+      "production_defect_demonstrated": false,
+      "release_blocking": false
+    },
+    {
+      "file": "tests/integration/commands/documents-lifecycle-lock-races.int.test.ts",
+      "line": 114,
+      "row": "M7",
+      "severity": "MEDIUM",
+      "category": "excessive-nesting",
+      "description": "Tests starting 97 and 215 each contain seven nested Block nodes through test/loop/fixture/session/try/writer-session/try.",
+      "suggestion": "Extract the writer transaction helper to flatten nested session orchestration without changing transaction assertions.",
+      "code_snippet": "pending = adminSession(async tx => { ... try { ... } });",
+      "classification": "rubric-maintainability-pattern",
+      "production_defect_demonstrated": false,
+      "release_blocking": false
+    },
+    {
+      "file": "tests/e2e/files/documents-context-navigation.e2e.spec.ts",
+      "line": 266,
+      "row": "L1",
+      "severity": "LOW",
+      "category": "fragile-selector",
+      "description": "CSS id #main-content is used repeatedly while its rendered element is a semantic main (AppShell.tsx:309\u2013310), so getByRole(\"main\") is available.",
+      "suggestion": "Use page.getByRole(\"main\") for main-region assertions and evaluate calls.",
+      "code_snippet": "page.locator(\"#main-content\")",
+      "classification": "rubric-maintainability-pattern",
+      "production_defect_demonstrated": false,
+      "release_blocking": false
+    },
+    {
+      "file": "tests/e2e/files/documents.e2e.spec.ts",
+      "line": 166,
+      "row": "L1",
+      "severity": "LOW",
+      "category": "fragile-selector",
+      "description": "CSS id #main-content locates the semantic main element; getByRole(\"main\") is available.",
+      "suggestion": "Use page.getByRole(\"main\") for this assertion.",
+      "code_snippet": "await expect(page.locator(\"#main-content\")).not.toContainText(...)",
+      "classification": "rubric-maintainability-pattern",
+      "production_defect_demonstrated": false,
+      "release_blocking": false
+    }
+  ],
+  "passed_checks": 241,
+  "failed_checks": 23,
+  "check_count_basis": "24 files x 11 active registry rows, per-file/row findings; passed_checks includes closed applicability gates. M4 line1 file-level dedup.",
+  "violation_summary": {
+    "CRITICAL": 0,
+    "HIGH": 0,
+    "MEDIUM": 21,
+    "LOW": 2
+  },
+  "raw_penalty": 109,
+  "reviewed_files": [
+    "tests/e2e/files/documents-context-navigation.e2e.spec.ts",
+    "tests/e2e/files/documents-search-preview-lifecycle.e2e.spec.ts",
+    "tests/e2e/files/documents.e2e.spec.ts",
+    "tests/e2e/files/entity-file-preview.e2e.spec.ts",
+    "tests/e2e/files/file-index-scope.e2e.spec.ts",
+    "tests/integration/commands/documents-lifecycle-lock-races.int.test.ts",
+    "tests/integration/commands/documents-lifecycle.int.test.ts",
+    "tests/integration/commands/documents-signed-access-lock-races.int.test.ts",
+    "tests/integration/commands/documents-signed-access.int.test.ts",
+    "tests/integration/rls/documents-context.rls.test.ts",
+    "tests/integration/rls/documents-filter-archive.rls.test.ts",
+    "tests/integration/rls/documents.rls.test.ts",
+    "tests/unit/components/documents/entity-documents-link.test.ts",
+    "tests/unit/features/documents/context-navigation.test.ts",
+    "tests/unit/features/documents/date-bounds.test.ts",
+    "tests/unit/features/documents/filters.test.ts",
+    "tests/unit/features/documents/preview-state.test.ts",
+    "tests/unit/scope/manifest-shape.test.ts",
+    "tests/unit/server/commands/documents-lifecycle.test.ts",
+    "tests/unit/server/commands/documents-signed-access.test.ts",
+    "tests/unit/server/read-models/document-context.test.ts",
+    "tests/unit/server/read-models/document-sources.test.ts",
+    "tests/unit/server/read-models/documents.test.ts",
+    "tests/unit/server/storage/document-signed-access-attestation.test.ts"
+  ],
+  "loaded_knowledge": [
+    "C:/DEV/Kopplas/.agents/skills/bmad-testarch-test-review/resources/knowledge/selector-resilience.md",
+    "C:/DEV/Kopplas/.agents/skills/bmad-testarch-test-review/resources/knowledge/data-factories.md",
+    "C:/DEV/Kopplas/.agents/skills/bmad-testarch-test-review/resources/knowledge/network-first.md",
+    "C:/DEV/Kopplas/.agents/skills/bmad-testarch-test-review/resources/knowledge/intercept-network-call.md",
+    "C:/DEV/Kopplas/.agents/skills/bmad-testarch-test-review/resources/knowledge/log.md",
+    "C:/DEV/Kopplas/.agents/skills/bmad-testarch-test-review/resources/knowledge/file-utils.md",
+    "C:/DEV/Kopplas/.agents/skills/bmad-testarch-test-review/resources/knowledge/network-error-monitor.md",
+    "C:/DEV/Kopplas/.agents/skills/bmad-testarch-test-review/resources/knowledge/playwright-cli.md"
+  ],
+  "context_files_read_only": [
+    "_bmad-output/implementation-artifacts/spec-20-1-documents-activation-and-source-authorized-aggregation.md",
+    "_bmad-output/implementation-artifacts/spec-20-2-search-filters-preview-and-archive-restore.md",
+    "_bmad-output/implementation-artifacts/spec-20-3-entity-panel-links-and-contextual-navigation.md"
+  ],
+  "criteria_registry": "C:/DEV/Kopplas/.agents/skills/bmad-testarch-test-review/steps-c/criteria-registry.md",
+  "baseline": {
+    "priorityMarkers": {
+      "adopted": 36,
+      "sampled": 40,
+      "status": "established",
+      "form": "[P0] or [P0/AC.../R...] in test names",
+      "measurement": "actual test declaration lines, excluding prose-only occurrences"
+    },
+    "testIds": {
+      "adopted": 2,
+      "sampled": 40,
+      "status": "emerging",
+      "form": "getByTestId\\(|data-testid|data-cy",
+      "measurement": "token scan; bddNaming/assertionStyle need semantic confirmation"
+    },
+    "networkFirst": {
+      "adopted": 0,
+      "sampled": 40,
+      "status": "absent",
+      "form": "\\.route\\(|waitForResponse\\(|interceptNetworkCall|cy\\.intercept",
+      "measurement": "token scan; bddNaming/assertionStyle need semantic confirmation"
+    },
+    "playwrightUtils": {
+      "adopted": 0,
+      "sampled": 40,
+      "status": "absent",
+      "form": "@seontechnologies/playwright-utils",
+      "measurement": "token scan; bddNaming/assertionStyle need semantic confirmation"
+    },
+    "dataFactories": {
+      "adopted": 35,
+      "sampled": 40,
+      "status": "established",
+      "form": "createTenantFixture|seed\\w*\\(|(?:create|build)\\w*(?:Fixture|Factory)\\(",
+      "measurement": "token scan; bddNaming/assertionStyle need semantic confirmation"
+    },
+    "fixtures": {
+      "adopted": 8,
+      "sampled": 40,
+      "status": "emerging",
+      "form": "test\\.extend|mergeTests|fixtures|createTenantFixture",
+      "measurement": "token scan; bddNaming/assertionStyle need semantic confirmation"
+    },
+    "bddNaming": {
+      "adopted": 40,
+      "sampled": 40,
+      "status": "established",
+      "form": "names describe observable behavior, input and expected result",
+      "measurement": "semantic confirmation of sampled test names; all40 contain behavioral names"
+    },
+    "assertionStyle": {
+      "adopted": 40,
+      "sampled": 40,
+      "status": "established",
+      "form": "expect matchers for Vitest/Playwright; runner-consistent assertion dialect",
+      "measurement": "sampled declaration/setup/import/assertion token read; no rule requiring a single dialect across different runners"
+    }
+  },
+  "run_level_exclusions": [
+    {
+      "rows": [
+        "M9",
+        "L9"
+      ],
+      "reason": "Flag true but @seontechnologies/playwright-utils not installed."
+    },
+    {
+      "rows": [
+        "M10"
+      ],
+      "reason": "Flag true but @seontechnologies/pactjs-utils not installed."
+    }
+  ],
+  "row_results": {
+    "M2": "3 files fire; existing adminInsert factory overrides are not bypasses.",
+    "M3": "No three unrelated subjects demonstrated; persistence/audit/state are one atomic concern.",
+    "M4": "16 files fire at pinned MEDIUM.",
+    "M5": "No raw event dispatch with installed user-level dependency.",
+    "M7": "2 files fire.",
+    "H5": "All24 <=1000 lines; maximum857.",
+    "L1": "2 files fire; tag/value extraction and structural assertions not CSS class/id selection.",
+    "L3": "No independent violation; role/label/test-id satisfies; L1 same-line duplicates omitted; emerging2/40.",
+    "L5": "No implementation-shaped name; all reviewed names describe observable behavior.",
+    "L6": "No unexplained domain literal demonstrated; expected values, synthetic IDs/fixtures, and named/commented bounds excluded.",
+    "L7": "No within-file mixed assertion dialect; Node assert and runner expect are consistent."
+  },
+  "bonus_eligibility": {
+    "excellentBdd": 5,
+    "comprehensiveFixtures": 0,
+    "dataFactories": 0,
+    "allTestIds": 0,
+    "reason": "Every reviewed test name states behavior; no L5. No partial bonuses: inline payload construction and mixed fixture patterns prevent comprehensive fixture/factory bonus; not all lookup sites use stable test ids."
+  },
+  "workflow_coverage_gaps": [
+    "L2 priority-markers diagnostic is specified in step02 and registry but not assigned to any installed four-worker row list. This worker neither scores it nor asserts PASS."
+  ],
+  "recommendations": [
+    "Use descriptive grouping for the16 M4 files; retain pinned score separate from production bug severity.",
+    "Flatten the two heavily nested orchestration files.",
+    "Use local payload factories for the three literal-construction files.",
+    "Replace #main-content locators with the available main role."
+  ],
+  "summary": "23 rubric maintainability patterns:21 MEDIUM,2 LOW. Informational dimension score0 after109 penalty; aggregation ledger remains authoritative. No demonstrated production-reachable defect or release blocker.",
+  "route": {
+    "model": "gpt-6.1-sol",
+    "effort": "low",
+    "sensitive_judgment_performed": false
+  }
+}

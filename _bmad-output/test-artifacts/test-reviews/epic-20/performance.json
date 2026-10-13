@@ -1,0 +1,299 @@
+{
+  "dimension": "performance",
+  "score": 75,
+  "max_score": 100,
+  "score_basis": "Informational dimension weights MEDIUM=5; parent deduction ledger authoritative",
+  "review_files": [
+    "tests/e2e/files/documents-context-navigation.e2e.spec.ts",
+    "tests/e2e/files/documents-search-preview-lifecycle.e2e.spec.ts",
+    "tests/e2e/files/documents.e2e.spec.ts",
+    "tests/e2e/files/entity-file-preview.e2e.spec.ts",
+    "tests/e2e/files/file-index-scope.e2e.spec.ts",
+    "tests/integration/commands/documents-lifecycle-lock-races.int.test.ts",
+    "tests/integration/commands/documents-lifecycle.int.test.ts",
+    "tests/integration/commands/documents-signed-access-lock-races.int.test.ts",
+    "tests/integration/commands/documents-signed-access.int.test.ts",
+    "tests/integration/rls/documents-context.rls.test.ts",
+    "tests/integration/rls/documents-filter-archive.rls.test.ts",
+    "tests/integration/rls/documents.rls.test.ts",
+    "tests/unit/components/documents/entity-documents-link.test.ts",
+    "tests/unit/features/documents/context-navigation.test.ts",
+    "tests/unit/features/documents/date-bounds.test.ts",
+    "tests/unit/features/documents/filters.test.ts",
+    "tests/unit/features/documents/preview-state.test.ts",
+    "tests/unit/scope/manifest-shape.test.ts",
+    "tests/unit/server/commands/documents-lifecycle.test.ts",
+    "tests/unit/server/commands/documents-signed-access.test.ts",
+    "tests/unit/server/read-models/document-context.test.ts",
+    "tests/unit/server/read-models/document-sources.test.ts",
+    "tests/unit/server/read-models/documents.test.ts",
+    "tests/unit/server/storage/document-signed-access-attestation.test.ts"
+  ],
+  "violations": [
+    {
+      "file": "tests/e2e/files/documents-context-navigation.e2e.spec.ts",
+      "line": 283,
+      "row": "M1",
+      "severity": "MEDIUM",
+      "category": "network-first-violated",
+      "description": "Source-panel navigation precedes panel visibility and seeded file-name assertions. No intercept, route stub or data-specific readiness signal is registered before that navigation. Subsequent DOM assertions/hydration waits remain present and later action intercepts are correctly registered; the strict registry ordering predicate still fires. This is a rubric quality deficit, not demonstrated product failure or measured flakiness.",
+      "suggestion": "Register a response/readiness promise for the actual destination transport before navigation, then await it before reading destination data. Preserve real SSR/Next transport and existing DOM assertions; do not invent an API endpoint.",
+      "code_snippet": "await signIn(page, seed.base.adminA); await page.goto(ref.route);",
+      "finding_type": "rubric_quality_deficit"
+    },
+    {
+      "file": "tests/e2e/files/documents-search-preview-lifecycle.e2e.spec.ts",
+      "line": 66,
+      "row": "M1",
+      "severity": "MEDIUM",
+      "category": "network-first-violated",
+      "description": "The open helper navigates before callers select or assert on seeded document rows. No intercept, route stub or data-specific readiness signal is registered before that navigation. Subsequent DOM assertions/hydration waits remain present and later action intercepts are correctly registered; the strict registry ordering predicate still fires. This is a rubric quality deficit, not demonstrated product failure or measured flakiness.",
+      "suggestion": "Register a response/readiness promise for the actual destination transport before navigation, then await it before reading destination data. Preserve real SSR/Next transport and existing DOM assertions; do not invent an API endpoint.",
+      "code_snippet": "await signIn(page); await page.goto(`/files?${new URLSearchParams(query)}`);",
+      "finding_type": "rubric_quality_deficit"
+    },
+    {
+      "file": "tests/e2e/files/documents.e2e.spec.ts",
+      "line": 73,
+      "row": "M1",
+      "severity": "MEDIUM",
+      "category": "network-first-violated",
+      "description": "openDocuments navigates before waiting for the heading/index and callers read document rows. No intercept, route stub or data-specific readiness signal is registered before that navigation. Subsequent DOM assertions/hydration waits remain present and later action intercepts are correctly registered; the strict registry ordering predicate still fires. This is a rubric quality deficit, not demonstrated product failure or measured flakiness.",
+      "suggestion": "Register a response/readiness promise for the actual destination transport before navigation, then await it before reading destination data. Preserve real SSR/Next transport and existing DOM assertions; do not invent an API endpoint.",
+      "code_snippet": "await page.goto(\"/files\");",
+      "finding_type": "rubric_quality_deficit"
+    },
+    {
+      "file": "tests/e2e/files/entity-file-preview.e2e.spec.ts",
+      "line": 82,
+      "row": "M1",
+      "severity": "MEDIUM",
+      "category": "network-first-violated",
+      "description": "gotoCustomerPanel navigates before waiting for and reading the data-bearing entity file panel. No intercept, route stub or data-specific readiness signal is registered before that navigation. Subsequent DOM assertions/hydration waits remain present and later action intercepts are correctly registered; the strict registry ordering predicate still fires. This is a rubric quality deficit, not demonstrated product failure or measured flakiness.",
+      "suggestion": "Register a response/readiness promise for the actual destination transport before navigation, then await it before reading destination data. Preserve real SSR/Next transport and existing DOM assertions; do not invent an API endpoint.",
+      "code_snippet": "await page.goto(`/customers/${fixture().crm.company.id}`);",
+      "finding_type": "rubric_quality_deficit"
+    },
+    {
+      "file": "tests/e2e/files/file-index-scope.e2e.spec.ts",
+      "line": 125,
+      "row": "M1",
+      "severity": "MEDIUM",
+      "category": "network-first-violated",
+      "description": "Navigation precedes seeded-row assertions and facet-option reads at lines132\u2013139. No intercept, route stub or data-specific readiness signal is registered before that navigation. Subsequent DOM assertions/hydration waits remain present and later action intercepts are correctly registered; the strict registry ordering predicate still fires. This is a rubric quality deficit, not demonstrated product failure or measured flakiness.",
+      "suggestion": "Register a response/readiness promise for the actual destination transport before navigation, then await it before reading destination data. Preserve real SSR/Next transport and existing DOM assertions; do not invent an API endpoint.",
+      "code_snippet": "await page.goto(\"/files\");",
+      "finding_type": "rubric_quality_deficit"
+    }
+  ],
+  "passed_checks": 67,
+  "failed_checks": 5,
+  "not_applicable_checks": 19,
+  "check_count": 72,
+  "check_count_basis": "Three registry rows per authoritative file; 19 closed M1 gates included in passed_checks",
+  "violation_summary": {
+    "MEDIUM": 5,
+    "CRITICAL": 0,
+    "HIGH": 0,
+    "LOW": 0
+  },
+  "file_checks": [
+    {
+      "file": "tests/e2e/files/documents-context-navigation.e2e.spec.ts",
+      "H5": "PASS",
+      "M6": "PASS",
+      "M1": "WARN",
+      "M1_basis": "Applicability open: navigates and reads data-dependent content; no pre-navigation readiness registration on cited path"
+    },
+    {
+      "file": "tests/e2e/files/documents-search-preview-lifecycle.e2e.spec.ts",
+      "H5": "PASS",
+      "M6": "PASS",
+      "M1": "WARN",
+      "M1_basis": "Applicability open: navigates and reads data-dependent content; no pre-navigation readiness registration on cited path"
+    },
+    {
+      "file": "tests/e2e/files/documents.e2e.spec.ts",
+      "H5": "PASS",
+      "M6": "PASS",
+      "M1": "WARN",
+      "M1_basis": "Applicability open: navigates and reads data-dependent content; no pre-navigation readiness registration on cited path"
+    },
+    {
+      "file": "tests/e2e/files/entity-file-preview.e2e.spec.ts",
+      "H5": "PASS",
+      "M6": "PASS",
+      "M1": "WARN",
+      "M1_basis": "Applicability open: navigates and reads data-dependent content; no pre-navigation readiness registration on cited path"
+    },
+    {
+      "file": "tests/e2e/files/file-index-scope.e2e.spec.ts",
+      "H5": "PASS",
+      "M6": "PASS",
+      "M1": "WARN",
+      "M1_basis": "Applicability open: navigates and reads data-dependent content; no pre-navigation readiness registration on cited path"
+    },
+    {
+      "file": "tests/integration/commands/documents-lifecycle-lock-races.int.test.ts",
+      "H5": "PASS",
+      "M6": "PASS",
+      "M1": "PASS (n/a)",
+      "M1_basis": "No browser/router navigation"
+    },
+    {
+      "file": "tests/integration/commands/documents-lifecycle.int.test.ts",
+      "H5": "PASS",
+      "M6": "PASS",
+      "M1": "PASS (n/a)",
+      "M1_basis": "No browser/router navigation"
+    },
+    {
+      "file": "tests/integration/commands/documents-signed-access-lock-races.int.test.ts",
+      "H5": "PASS",
+      "M6": "PASS",
+      "M1": "PASS (n/a)",
+      "M1_basis": "No browser/router navigation"
+    },
+    {
+      "file": "tests/integration/commands/documents-signed-access.int.test.ts",
+      "H5": "PASS",
+      "M6": "PASS",
+      "M1": "PASS (n/a)",
+      "M1_basis": "No browser/router navigation"
+    },
+    {
+      "file": "tests/integration/rls/documents-context.rls.test.ts",
+      "H5": "PASS",
+      "M6": "PASS",
+      "M1": "PASS (n/a)",
+      "M1_basis": "No browser/router navigation"
+    },
+    {
+      "file": "tests/integration/rls/documents-filter-archive.rls.test.ts",
+      "H5": "PASS",
+      "M6": "PASS",
+      "M1": "PASS (n/a)",
+      "M1_basis": "No browser/router navigation"
+    },
+    {
+      "file": "tests/integration/rls/documents.rls.test.ts",
+      "H5": "PASS",
+      "M6": "PASS",
+      "M1": "PASS (n/a)",
+      "M1_basis": "No browser/router navigation"
+    },
+    {
+      "file": "tests/unit/components/documents/entity-documents-link.test.ts",
+      "H5": "PASS",
+      "M6": "PASS",
+      "M1": "PASS (n/a)",
+      "M1_basis": "No browser/router navigation"
+    },
+    {
+      "file": "tests/unit/features/documents/context-navigation.test.ts",
+      "H5": "PASS",
+      "M6": "PASS",
+      "M1": "PASS (n/a)",
+      "M1_basis": "No browser/router navigation"
+    },
+    {
+      "file": "tests/unit/features/documents/date-bounds.test.ts",
+      "H5": "PASS",
+      "M6": "PASS",
+      "M1": "PASS (n/a)",
+      "M1_basis": "No browser/router navigation"
+    },
+    {
+      "file": "tests/unit/features/documents/filters.test.ts",
+      "H5": "PASS",
+      "M6": "PASS",
+      "M1": "PASS (n/a)",
+      "M1_basis": "No browser/router navigation"
+    },
+    {
+      "file": "tests/unit/features/documents/preview-state.test.ts",
+      "H5": "PASS",
+      "M6": "PASS",
+      "M1": "PASS (n/a)",
+      "M1_basis": "No browser/router navigation"
+    },
+    {
+      "file": "tests/unit/scope/manifest-shape.test.ts",
+      "H5": "PASS",
+      "M6": "PASS",
+      "M1": "PASS (n/a)",
+      "M1_basis": "No browser/router navigation"
+    },
+    {
+      "file": "tests/unit/server/commands/documents-lifecycle.test.ts",
+      "H5": "PASS",
+      "M6": "PASS",
+      "M1": "PASS (n/a)",
+      "M1_basis": "No browser/router navigation"
+    },
+    {
+      "file": "tests/unit/server/commands/documents-signed-access.test.ts",
+      "H5": "PASS",
+      "M6": "PASS",
+      "M1": "PASS (n/a)",
+      "M1_basis": "No browser/router navigation"
+    },
+    {
+      "file": "tests/unit/server/read-models/document-context.test.ts",
+      "H5": "PASS",
+      "M6": "PASS",
+      "M1": "PASS (n/a)",
+      "M1_basis": "No browser/router navigation"
+    },
+    {
+      "file": "tests/unit/server/read-models/document-sources.test.ts",
+      "H5": "PASS",
+      "M6": "PASS",
+      "M1": "PASS (n/a)",
+      "M1_basis": "No browser/router navigation"
+    },
+    {
+      "file": "tests/unit/server/read-models/documents.test.ts",
+      "H5": "PASS",
+      "M6": "PASS",
+      "M1": "PASS (n/a)",
+      "M1_basis": "No browser/router navigation"
+    },
+    {
+      "file": "tests/unit/server/storage/document-signed-access-attestation.test.ts",
+      "H5": "PASS",
+      "M6": "PASS",
+      "M1": "PASS (n/a)",
+      "M1_basis": "No browser/router navigation"
+    }
+  ],
+  "knowledge_fragments_loaded": [
+    "C:/DEV/Kopplas/.agents/skills/bmad-testarch-test-review/resources/knowledge/test-quality.md",
+    "C:/DEV/Kopplas/.agents/skills/bmad-testarch-test-review/resources/knowledge/network-first.md",
+    "C:/DEV/Kopplas/.agents/skills/bmad-testarch-test-review/resources/knowledge/timing-debugging.md",
+    "C:/DEV/Kopplas/.agents/skills/bmad-testarch-test-review/resources/knowledge/test-levels-framework.md",
+    "C:/DEV/Kopplas/.agents/skills/bmad-testarch-test-review/resources/knowledge/selective-testing.md"
+  ],
+  "performance_metrics": {
+    "duration_note": "Static evidence audit only. No executed duration measurement used. M1 readiness-order evidence is reported, but does not establish any test exceeds90 seconds.",
+    "largest_file_lines": 857,
+    "reviewed_files": 24,
+    "slow_tests": [],
+    "duration_status": "UNKNOWN",
+    "avg_test_duration_estimate": null,
+    "parallelizable_tests": null,
+    "serial_tests": null
+  },
+  "notes": [
+    "M6: stored network/event and transaction promises are later awaited/returned; intentional concurrent barriers do not fire. Detached login response-body diagnostics do not govern the assertions and are not a demonstrated effect-before-assertion defect.",
+    "H1 hard waits belong exclusively to determinism; none scored in this dimension.",
+    "No setup/teardown, serialization, logging, utility-adoption or speculative optimization deductions.",
+    "M9/L9 do not exist in this run because Playwright Utils package is absent.",
+    "No sensitive authorization/money judgment made; review limited to navigation readiness order, promise consumption and file line count.",
+    "guarded-test imported fixture supplies browser ownership/isolation; inspected as support context only, not scored."
+  ],
+  "recommendations": [
+    "Add destination-specific readiness registration before the cited browser navigations, preserving real transport and existing data assertions."
+  ],
+  "summary": "24 files audited against M1/M6/H5: five MEDIUM strict readiness-order deficits, zero unawaited-effect findings, zero files over1000 lines. Runtime duration unknown."
+}
