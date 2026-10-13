@@ -68,3 +68,35 @@
 1. Coordinator supplies verified completed E20 main base after 20.2, 20.3, finalization and epic PR merge, then explicit 15.1-only release and clean-checkpoint adoption/revalidation. No additional owner approval requested.
 
 **Next:** Keep the existing Epic15 anchor and branch. Await the coordinator completed-base and scoped-release handoff before deliberate checkpoint adoption or E5.
+
+## Report — 2026-10-13T19:43:36Z (halted - adoption review checkpoint)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `27ce6a2`).
+**Pipeline status:** Explicit15.1-only release received; independent High adoption/ownership review underway before E5.
+**Continues:** (none — first run)
+
+**Summary:** Current integrated target d507c7d01c6c5c8d317d34cccdce881723e450c9 verified. Documents merge48a4dd96 combined CI38448550146 and correction headac569d51 CI38453931743 each have five successful jobs. Clean checkpoint27ce6a2b and retained preparationbc4163; no old delegates writing. Merge preview finds conflicts only in aggregate sprint-status and managed review configuration; resolution requires preserving both lanes.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 102h 45m (≈28m AI-run, ≈102h 17m human/idle wait); resumed 2×.
+
+**Stories:**
+1. 15.1 ready specification and ATDD preserved; implementation not started.
+
+**Skipped:** (none)
+
+**Epic gate:** Not evaluated; all15.1 implementation and completion gates remain required.
+
+**TEA:** Preparation only; zero product behaviors executed.
+
+**Retrospective:** Documents accepted-with-open-items integrated; historical review/caveat/skip evidence retained. Epic14 October8 successor retained.
+
+**Overrides:** Release limited to15.1, no15.2 until verified15.1 integration and renewed coordinator release. Sequential run retained; no marker removal, force-ours merge, fabricated opt-in, other checkout edits or deployment.
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Complete independent High ownership/contract review, deliberately adopt integrated main and revalidate supported workflow before15.1 build.
