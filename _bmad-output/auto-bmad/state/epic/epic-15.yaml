@@ -9,11 +9,11 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-13T20:03:59Z"
+updated_at: "2026-10-13T20:21:25Z"
 started_at: "2026-10-09T12:57:49Z"
 completed_at: null
-active_seconds: 2482
-timing_anchor: 1791921839
+active_seconds: 3528
+timing_anchor: null
 is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
@@ -84,7 +84,7 @@ deferred_work: []
 blockers: []
 overrides:
   oracle: "Owner2026-10-09 removes observation prerequisite; recommended designs, zero observation/parity claim"
-  ownership: "Shared product domains released to Documents; verified20.1 integration and release required before build"
+  ownership: "Coordinator release15.1 only;15.2 held"
   spec_validation: Before every build
   unattended: Full epic request
   calendar_host: Contract D transferred acceptance into15.1
@@ -164,3 +164,11 @@ ownership_wait_resolution:
   resolved: true
   resources: No resources started during adoption
   ready_for_15_1: true
+preparation:
+  spec_path: "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/implementation-artifacts/spec-15-1-the-five-scheduling-views-2.md"
+  story_15_1_corrected_spec: ready-for-dev independently High validated
+  predecessor_preservation: PASS
+  code_review_rounds: 0
+  discovery: PASS ready and synthetic done
+  spec_hash: 772155cfcc7bcc6e6aee78b2b429760d748269aeff6e61f5c02e041736763638
+  runtime_executed: 0

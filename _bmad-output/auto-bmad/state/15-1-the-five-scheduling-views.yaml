@@ -9,11 +9,11 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-13T20:03:59Z"
+updated_at: "2026-10-13T20:21:25Z"
 started_at: "2026-10-09T13:06:12Z"
 completed_at: null
-active_seconds: 1990
-timing_anchor: 1791921839
+active_seconds: 3036
+timing_anchor: null
 is_first_in_epic: true
 is_last_in_epic: false
 git_mode: remote
@@ -39,11 +39,11 @@ tea_rationale: "Scheduling, synchronized projections, capacity and drag/keyboard
 epic_story_count: 6
 stories_after_in_epic: 5
 completed_phases: [0, 1, 2, 3, 4]
-spec_path: "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/implementation-artifacts/spec-15-1-the-five-scheduling-views.md"
+spec_path: "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/implementation-artifacts/spec-15-1-the-five-scheduling-views-2.md"
 spec_approved: true
 build:
-  status: blocked
-  blocking_condition: "PL lacks authoritative peer membership status needed by the approved reassignment predicate, while the frozen specification prohibits the necessary new reader/migration."
+  status: ready-for-dev
+  blocking_condition: null
   followup_review_recommended: false
   review_loop_iteration: 0
   deferred_count: 0
@@ -85,18 +85,21 @@ open_questions: []
 deferred_work: []
 blockers: []
 overrides:
-  ownership: Preparation only pending Documents reconciliation
+  ownership: "Coordinator released listed15.1 paths; no shared writers; no15.2"
   spec_validation: Validate before build
   oracle: "Owner removes Lovable prerequisite; recommended design; no verified parity"
   contract_d: Retain actual calendar-host browser obligations
 constraints: []
 spec_validation:
+  tasks: 10
+  kernel_hash: 035ee9683e8b3e6e0420204a3ddfa8d81b0dcb6a47aa12e638673859d60cc234
+  raw_hash: 772155cfcc7bcc6e6aee78b2b429760d748269aeff6e61f5c02e041736763638
+  independent_validator: "/root/story15_1_corrected_plan/validate_corrected15"
   acceptance_criteria: 8
   model: gpt-6.1-sol
-  verdict: ready-for-dev
-  blockers: []
   effort: high
-  tasks: 9
+  blockers: []
+  verdict: ready-for-dev
 atdd:
   skipped: 18
   unit: 18
@@ -117,23 +120,14 @@ adoption_revalidation:
   base: d507c7d01c6c5c8d317d34cccdce881723e450c9
   effort: high
 ownership:
-  migration: "None"
-  scope: 15.1 scheduling tasks and necessary manifest/nav/permission/shared fixture/sprint writes
-  dependencies: No new dependency approved
-  documents: "No writers; preserve Option A and imported anchors"
   next_story: 15.2 not released
+  regression_test: tests/integration/scheduling/booking-reassignment-flags.int.test.ts
+  scope: "Released15.1 only; approved listed paths and narrow derived-boolean RPC"
+  migration: supabase/migrations/20261013201515_story_15_1_booking_reassignment_flags.sql
 spec_repair:
-  product_writes: 0
-  status: supported fresh planning required
-  original_spec_hash: 6a10a0a44de17e39bf0767262560ff8550d45bf2199b8718c22ffd5093a9f312
-  controlled_halt: true
-  product_decision: No new owner decision for minimal approved-derived boolean
-  blocked_spec_lf_hash: 60b9823b687e32d049a388b7a803548fd933cdf4a1d95896c8be76516fd6436a
-  next: "Fresh Step01 original owner intent; preserve superseded spec/history, independent High validation before source edits"
-  reason: "PL lacks authoritative peer membership status needed by the approved reassignment predicate, while the frozen specification prohibits the necessary new reader/migration."
-  review_rounds: 0
-  reserved_migration: supabase/migrations/20261013201515_story_15_1_booking_reassignment_flags.sql
-  adjudicator: spec15_gap_high gpt-6.1-sol High
-  resources: 0
-  reserved_paths: [src/server/read-models/scheduling.ts, src/features/scheduling/view-types.ts, src/features/scheduling/view-model.ts]
-  additional_test_paths: Require exact coordinator reservation before implementation
+  status: resolved by fresh independently validated planning
+  archived_spec: "_bmad-output/auto-bmad/preparation/story-15-1/spec-history/superseded-blocked-spec-15-1-the-five-scheduling-views.md"
+  discovery: PASS actual ready and synthetic-only done
+  additional_test_paths: [tests/integration/scheduling/booking-reassignment-flags.int.test.ts]
+  runtime_executed: 0
+  next: Build replacement explicit path after clean gate

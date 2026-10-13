@@ -164,3 +164,36 @@
 **⚠️ Needs human:** (none)
 
 **Next:** Fresh corrected planning and independent High validation, then exact regression ownership reconciliation before any product code. No new owner decision for narrow approved lifecycle boolean; no broader identity/grant/RLS exposure authorized.
+
+## Report — 2026-10-13T20:21:25Z (corrected specification validated)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `3a655a5`).
+**Pipeline status:** in-progress
+**Continues:** True
+
+**Summary:** 15.1 fresh corrected specification independently validated High before implementation; prior blocked attempt preserved.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 103h 23m (≈58m AI-run, ≈102h 24m human/idle wait); resumed 5×.
+
+**Stories:**
+1. 15.1 ready-for-dev:10 tasks/all8 original ACs; replacement validated; phase5 not complete.
+
+**Skipped:** (none)
+
+**Epic gate:** Pending epic end
+
+**TEA:** 62 existing skipped scaffolds remain zero coverage; runtime execution0; implementation review rounds0
+
+**Retrospective:** Epic14 October8 accepted-with-open-items remains prerequisite evidence; October7 historical
+
+**Overrides:** Owner chooses recommended scheduling design without Lovable parity claim; released15.1 only; ContractD mandatory; no deployment
+
+**Open questions:** (none)
+
+**Deferred work:**
+none
+
+**⚠️ Needs human:** (none)
+
+**Next:** Build explicit corrected suffix-2 spec after clean gate, High sensitive author/review and Low ordinary child work
