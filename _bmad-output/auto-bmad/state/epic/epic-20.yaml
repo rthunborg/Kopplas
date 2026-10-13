@@ -9,24 +9,24 @@ spec_folder: null
 story_id: null
 branch: codex/documents-resume-admission-2026-10-09
 status: in-progress
-updated_at: "2026-10-13T14:46:17Z"
+updated_at: "2026-10-13T15:11:56Z"
 started_at: "2026-10-09T13:24:56Z"
 completed_at: null
-active_seconds: 6374
+active_seconds: 7870
 timing_anchor: null
 is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: retrospective
-selected_role: retrospective-delegate
-selected_profile: default
+selected_phase: tea_epic_audit
+selected_role: tea-delegate
+selected_profile: standard
 selected_model: gpt-6.1-sol
-selected_effort: low
+selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: null
+escalation_reason: Validate source-authorized aggregation completeness under actual PostgREST row cap and tenant-safe pilot evidence.
 routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Epic trace gate assesses authorization, RLS and transactional integrity evidence.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -36,6 +36,7 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Test-quality audit includes authorization/RLS, transaction and resource-isolation tests.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic_audit\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive authorization denial and transactional integrity test-quality remediation.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic_audit\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"retrospective\",\"profile\":\"default\",\"role\":\"retrospective-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Validate source-authorized aggregation completeness under actual PostgREST row cap and tenant-safe pilot evidence.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic_audit\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: null
 tea_selected: []
 tea_rationale: null
