@@ -60,7 +60,7 @@
 # use the current Epic 10 statuses and approved corrective-story entries below.
 
 generated: 2026-06-12
-last_updated: 10-13-2026 16:45  # ADR-B009 connected-field course correction verified; governance Story 10.7 done, no PWA/offline functionality delivered.
+last_updated: 10-13-2026 21:19  # ADR-B009 connected-field course correction verified; governance Story 10.7 done, no PWA/offline functionality delivered.
 project: Kopplas
 project_key: NOKEY
 tracking_system: file-system
@@ -308,10 +308,10 @@ development_status:
   # [oracle-check] labels resolve before the epic's first story (Rule 2);
   # N-1 migration classification round 2 precedes each module's data-migration
   # story (Rule 4, NFR52).
-  epic-20: in-progress  # Documents center — 3 candidates; aggregation only, no tables (PB-D6)
+  epic-20: done  # Documents center — 3 candidates; aggregation only, no tables (PB-D6)
   20-1-documents-activation-and-source-authorized-aggregation: done
   20-2-search-filters-preview-and-archive-restore: done
-  20-3-entity-panel-links-and-contextual-navigation: in-progress
+  20-3-entity-panel-links-and-contextual-navigation: done
   epic-20-retrospective: done
   epic-21: backlog  # Rentals — 6 candidates; feeds E26; migration story [gated: N-1]
   epic-21-retrospective: optional
@@ -583,14 +583,14 @@ action_items:
       and verify bounded complete traversal; preserve 20.1-AC6/20-P1-05 partial until
       proven."
     owner: "Documents release verification delegate"
-    status: open
+    status: done
     ref: "_bmad-output/implementation-artifacts/epic-20-retro-2026-10-13.md"
   - id: "epic-20-retro-pilot"
     epic: 20
     action: "Collect planned realistic/hidden-heavy pilot elapsed baseline, query/candidate/authorized-row
       counts and memory/bounded-work observations without inventing thresholds."
     owner: "Documents release verification delegate"
-    status: open
+    status: done
     ref: "_bmad-output/implementation-artifacts/epic-20-retro-2026-10-13.md"
   - id: "epic-20-retro-release"
     epic: 20
@@ -598,7 +598,7 @@ action_items:
       CI, reconcile retained review/completion metadata through supported gates, then
       finish the single epic PR/main merge; no early flip or deployment."
     owner: "Auto-BMAD coordinator"
-    status: open
+    status: done
     ref: "_bmad-output/implementation-artifacts/epic-20-retro-2026-10-13.md"
   - id: "epic-20-retro-quality"
     epic: 20
