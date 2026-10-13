@@ -1,8 +1,8 @@
 # Epic20 trace artifacts
 
-The authoritative human report is ../epic-20-traceability-report.md. Gate remains FAIL.
+The authoritative human report is ../epic-20-traceability-report.md. Current iteration1 gate is PASS; iteration0FAIL remains in gate_progression.
 
-- discovered-tests.json stores606unique mapped test records once. Resolve evidence_ref through evidence_index; source SHA inherits tested_product_sha. Original676discovered count is retained without70unmapped records.
+- discovered-tests.json stores607unique mapped test records once. Resolve evidence_ref through evidence_index; source SHA inherits tested_product_sha. Original676discovered count is retained without70unmapped records; iteration1 adds exactly one case with explicit dirty execution provenance.
 - mapping-input.json has complete25AC/56design family definitions and test-ID/level references.
 - coverage-matrix.json contains the complete81-item Phase1 matrix, statistics, gaps and inventory references. Join each tests[].id to discovered-tests.json for full identity fields. This is normalized storage, not reduced coverage.
 - evidence-integrity.json retains17native receipt paths, actual argv/environment/counts and independently checked raw-log hashes.
@@ -15,6 +15,7 @@ Reproduce with the bounded Python scripts in this order:
 3. complete-phase1.py
 4. emit-gate.py
 5. validate-output.py
-6. compact-artifacts.py
+6. update-iteration1.py (when reproducing the current iteration1 from its recorded evidence)
+7. compact-artifacts.py
 
 Raw inputs remain at the referenced temporary evidence paths; no product tests or managed resource starts occur. Reproduction resolves current git metadata while retaining the exact tested product SHA. Keep the approved coverage judgments and gaps unless a separately authorized re-trace has new evidence. On already normalized outputs, run compact-artifacts.py for idempotent structural/reference validation. The old validate-output.py expects expanded generator data and runs before packaging.

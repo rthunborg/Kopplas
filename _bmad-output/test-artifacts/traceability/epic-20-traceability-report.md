@@ -1,23 +1,21 @@
 ---
-stepsCompleted: ['step-01-load-context', 'step-02-discover-tests', 'step-03-map-criteria', 'step-04-analyze-gaps', 'step-05-gate-decision']
-lastStep: 'step-05-gate-decision'
+stepsCompleted: ['step-01-load-context', 'step-02-discover-tests', 'step-03-map-criteria', 'step-04-analyze-gaps', 'step-05-gate-decision', 'step-01-assess', 'step-02-apply-edit']
+lastStep: 'step-02-apply-edit'
 lastSaved: '2026-10-13'
 workflowType: 'testarch-trace'
-tempCoverageMatrixPath: 'C:/Users/Rasmus/AppData/Local/Temp/tea-trace-coverage-matrix-epic20-20261013T151739.json'
+tempCoverageMatrixPath: 'C:/Users/Rasmus/AppData/Local/Temp/tea-trace-coverage-matrix-epic20-iteration1.json'
 coverageBasis: 'acceptance_criteria'
 oracleConfidence: 'high'
 oracleResolutionMode: 'formal_requirements'
 oracleSources: ['_bmad-output/implementation-artifacts/spec-20-1-documents-activation-and-source-authorized-aggregation.md', '_bmad-output/implementation-artifacts/spec-20-2-search-filters-preview-and-archive-restore.md', '_bmad-output/implementation-artifacts/spec-20-3-entity-panel-links-and-contextual-navigation.md', '_bmad-output/test-artifacts/test-design-epic-20.md']
 externalPointerStatus: 'not_used'
 collectionStatus: 'COLLECTED'
-sourceSha: '78d134656f03ca0dc96a5e415af5af04f67add53'
-collectionStatus: 'COLLECTED'
-sourceSha: '78d134656f03ca0dc96a5e415af5af04f67add53'
+sourceSha: '80fdaef70b9145ff0ecf6de5865a894a5eb4b6a2'
 ---
 
 # Epic 20 — Documents: Traceability Matrix and Gate Decision
 
-**Gate: FAIL.** Full approved epic oracle: P0 FULL coverage is31/32 (97%; required100%). 20-P0-02 lacks direct same-token active-membership deletion read/open/refresh evidence; disabled membership, granting-role deletion/revocation and initially membershipless cases pass. P1 is36/38 (95%) and overall76/81 (94%), above their90%/80% thresholds. All17 recorded native checks pass with zero required skips; passing suites do not replace the missing planned P0 variant. No waiver or product-defect finding is implied.
+**Gate: PASS (iteration1).** P0 FULL coverage32/32 (100%), P1 FULL36/38 (95%), overall77/81 (95%) meet installed100%/90%/80% thresholds. Iteration1 closes20-P0-02 using the passing same-token active membership DELETE read/open/refresh regression. Actual166/166 REQUIRED integration0skip and narrow High clearance bind dirty b7f01bb3 plus test SHA256eab6b291, identical to the committed80fdaef7 blob; no clean committed-SHA replay is claimed. Four remaining partial/optional items remain explicit; coverage PASS grants no release/review clearance or waiver.
 
 ## Step 1 — Resolved coverage oracle
 
@@ -31,7 +29,7 @@ Actual product head supplied for evidence: c65c18649ac5641f9520b12e03a8b3f20af8f
 
 Model route: trace author Sol 6.1 ordinary documentation; sensitive security/permissions/RLS/transactional evidence assessment dispatched to an independent Sol 6.1 High child. This is the required trace gate, not a fourth broad code review. Only Epic 20 trace artifacts are owned; no product/spec/state/sprint/plan edits, commit, branch, PR or managed resource is created.
 
-## Step 2 — Tests and execution provenance
+## Step 2 — Original iteration0 tests and execution provenance
 
 Current git HEAD is `78d134656f03ca0dc96a5e415af5af04f67add53`. Diff from tested product `c65c18649ac5641f9520b12e03a8b3f20af8f610` changes only orchestration/state metadata: `_bmad-output/auto-bmad/orchestration/phase-b-lanes-2026-10-08.md`, `_bmad-output/auto-bmad/state/epic/epic-20.yaml`. No source/test/schema change is relabeled as fresh runtime execution. All 17 exact-product native receipts are passing; all 17 raw-log SHA256 hashes were independently recalculated and match. See `epic-20/evidence-integrity.json` for exact argv/environment/counts.
 
@@ -96,7 +94,7 @@ The full oracle has 81 items: 25 formal ACs plus 56 approved design families. Th
 | Requirement | Priority | Coverage | Mapped cases / levels | Requirement and qualification |
 | --- | --- | --- | --- | --- |
 | 20-P0-01 | P0 | FULL | 60; api,unit | Current source conjunction rejects missing capability, cross-tenant/missing/archived source/link/required ancestor with generic shape and no rows/labels/facets/counts; all seven adapters and five seeded role sets. |
-| 20-P0-02 | P0 | PARTIAL | 10; api,unit | Current membership disable/remove/role removal takes effect on next Documents read/open/refresh; multi-role union does not use stale JWT/client entitlements. **Gap:** Same-token active membership removal transition is not directly exercised. Disabled membership, primary/child role revocation, multi-role union and initially membershipless actors pass. No product defect is inferred. |
+| 20-P0-02 | P0 | FULL | Current mapping includes E20-API-2e7362a1eb7c; api/unit/browser | Same-token active membership removal now passes at the checked command/read-model boundary. See iteration1 evidence qualification. |
 | 20-P0-03 | P0 | FULL | 17; api,unit | Selected link/file mismatch, disappeared context, or another live link to same file never substitutes authority; no signing/audit on denied selection. |
 | 20-P0-04 | P0 | FULL | 6; api | Raw authenticated prepare/finalize calls with forged actor/tenant/source/storage fields deny; internal helpers/key functions and public/anon/service_role RPC execution unavailable; checked wrappers bind auth.uid independently. |
 | 20-P0-05 | P0 | FULL | 15; api | Nonkey source/parent/file/link archive or role/membership mutation committed before finalize denies; mutations started after finalizer SHARE locks serialize after audit. |
@@ -297,7 +295,7 @@ Missing: 1225 candidates (1100 hidden/125 eligible) and stable equal-timestamp t
 - `E20-API-3b5d2c717d1f` — `tests/integration/commands/documents-signed-access.int.test.ts:340` (api): [P0] membership disable committed between remote signing and finalize withholds the minted URL. Recorded passed at c65c1864.
 - `E20-UNIT-9bf2c1fc1a3a` — `tests/unit/server/read-models/documents.test.ts:152` (unit): [P0] 20-P0-02 current resolver UNAUTHENTICATED has no source data or loaders. Recorded passed at c65c1864.
 
-Missing: Same-token active membership removal transition is not directly exercised. Disabled membership, primary/child role revocation, multi-role union and initially membershipless actors pass. No product defect is inferred.
+Iteration1 closure: Iteration1 same-token ACTIVE membership DELETE regression passes: before-state authorized data/signing; one committed active membership removed; unchanged unexpired token still authenticates; subsequent global/context/entity reads and separate open/refresh deny without new URL/data/audit. Actual dirty b7f01bb3 plus eab6b291 test hash matches committed80fdaef7 bytes; no clean-SHA/browser replay claimed.
 #### 20-P0-03
 
 - `E20-API-8599c519f03e` — `tests/integration/commands/documents-signed-access.int.test.ts:200` (api): [P0] source revocation denies the selected context without substituting another authorized link. Recorded passed at c65c1864.
@@ -527,46 +525,26 @@ Missing: Bounded completeness is exercised; representative pilot elapsed/read-qu
 
 Missing: No recorded manual long-name/neutral-label wrap inspection at both viewports was supplied; optional visual polish is uncredited.
 
-## Step 4 — Phase1 completion, gaps and recommendations
+## Iteration1 — Bounded Edit assessment and recalculation
 
-Full epic oracle: 76/81 FULL (94%); 4 PARTIAL and 1 NONE.
+Target confirmed by coordinator: the existing Epic20 report and normalized machine companions. Requested change is only20-P0-02 membership-removal coverage, dependent statistics and gate decision. Sol6.1 High sensitive evidence assessor reused synchronously; no new broad review, test/resource launch, product edit or unrelated inventory expansion.
+
+Iteration1 same-token ACTIVE membership DELETE regression passes: before-state authorized data/signing; one committed active membership removed; unchanged unexpired token still authenticates; subsequent global/context/entity reads and separate open/refresh deny without new URL/data/audit. Actual dirty b7f01bb3 plus eab6b291 test hash matches committed80fdaef7 bytes; no clean-SHA/browser replay claimed.
+
+New case `E20-API-2e7362a1eb7c` — `tests/integration/commands/documents-signed-access.int.test.ts:359`; recorded passed1.564s within166/166 REQUIRED integration,0fail/0skip/native0. New case uses explicit iteration1 execution provenance; old cases retain c65c1864 attribution and historical declaration lines. Catalog607cases, including184API; counts overlap with the earlier17-check evidence and are not summed into unique assertions. Scoped lint/nonincremental typecheck pass; their receipts remain in the automation evidence directory.
 
 | Priority | Total | FULL | Percent |
 | --- | ---: | ---: | ---: |
-| P0 | 32 | 31 | 97% |
-| P1 | 38 | 36 | 95% |
-| P2 | 10 | 9 | 90% |
-| P3 | 1 | 0 | 0% |
+| P0 |32|32|100%|
+| P1 |38|36|95%|
+| P2 |10|9|90%|
+| P3 |1|0|0%|
 
-Formal-only:24/25 FULL; P0 14/14, P1 10/11. Approved-design:52/56 FULL; P0 17/18, P1 26/27, P2 9/10, P3 0/1. Formal/design overlap is explicit; duplicate cap-gap items are one physical evidence deficiency. All recorded mapped cases pass; missing variants do not become coverage merely because suites are green.
+Full oracle77/81FULL (95%);3PARTIAL,1NONE. Formal24/25 (P0 14/14,P1 10/11) and design53/56 (P0 18/18,P1 26/27) retain separate granularity. Installed deterministic gate: **PASS**. No release/review clearance, waiver, clean80fdaef7 test replay or whole-epic approval is granted.
 
-- **URGENT** — 20.1 test owner via coordinator: add 20-P0-02-MEMBERSHIP-REMOVE-001. Given a current authorized actor and issued token with eligible document, delete its active membership, then read/open/refresh using that same authenticated client. Assert no rows/context/labels/new URL/success audit. Run REQUIRED integration on fresh exact product SHA before epic gate; retain zero required skips. No fourth broad review.
-- **HIGH** — 20.1 test owner via coordinator: 20-P1-05-CAP-001 must record effective PostgREST max-row cap/configuration and exercise more candidates than that observed limit with hidden-only batches/equal timestamps; assert every eligible row once and no false exhaustion/hidden cursor. Existing1225 traversal remains credited for what it executes.
-- **MEDIUM** — QA/coordinator before epic release: record 20-P2-09-PILOT-001 representative hidden-heavy pilot baseline with elapsed/query/candidate/authorized-row/memory measures. Resolve numeric threshold only through owner decision; do not fabricate SLO or code-coverage percentage.
-- **LOW** — QA: optional20-P3-01-VISUAL-001 long synthetic names/neutral labels at desktop and360x640, record actual wrap/read outcome.
-- **LOW** — Run separately authorized bmad-testarch-test-review and NFR assessment. Preserve20.2 review_unverified/formula history and narrow acceptance boundary.
+Remaining gaps are unchanged:20.1-AC6 /20-P1-05 actual effective PostgREST-cap provenance;20-P2-09 representative pilot elapsed/query/candidate/row/memory baseline; optional20-P3-01long-label wrap inspection. Observed1225candidate traversal and bounded queries pass, but do not establish an effective1000row cap. Numeric SLO/code-coverage/burn-in/NFR/test-quality assessments remain unclaimed. Initial iteration0FAIL (P0 31/32) is retained in gate_progression, not erased.
 
-Independent sensitive assessor: Sol6.1 High, `/root/epic20_trace/sensitive_trace`. All18 P0 behavior families map to executed evidence, but20-P0-02 is PARTIAL at variant level. Initial membershipless users, disabled current membership, primary/child role revocation and multi-role union are proven; active membership deletion with an already-issued token is not. This is missing evidence, not a discovered product defect or new broad review.
-
-The observed1225 candidates include1100 hidden and125 eligible; actual effective1000-row cap was not established. The bounded traversal code/unit behavior and actual ordered traversal pass, so completeness is PARTIAL rather than NONE.
-
-Quality scope: source assertions and real enforcement/UI witnesses are mapped; zero failed/skipped/fixme/pending coverage credit; browser0 unexpected/flaky recorded. Test-review/NFR/code-coverage/burn-in are separate assessments and NOT ASSESSED here. No blanket per-test quality sign-off or fourth broad review is issued. Relevant boundary failure/cleanup assertions and finally rollback are recorded in the existing tests; scenario counts do not prove80% branch coverage.
-
-Risk disposition: nine planned high-risk mitigations have broad executed evidence; R-001/R-008 retain the identified membership-removal qualification. R-010 retains cap provenance and R-014 remains pilot/SLO unknown; optional visual polish is uncredited. Existing design scores are planning estimates, not incident rates or newly discovered defects.
-
-Phase1 matrix saved to `C:/Users/Rasmus/AppData/Local/Temp/tea-trace-coverage-matrix-epic20-20261013T151739.json` and durable `epic-20/coverage-matrix.json`; Phase2 must consume that exact saved matrix.
-
-## Step5 — Gate decision and completion
-
-**FAIL** under the installed deterministic gate. P0 100% is mandatory; the81-item oracle includes the approved test-design obligations. The formal-only subgate meets the installed90% P1 threshold (P0 14/14, P1 10/11, overall24/25), but it cannot erase required design20-P0-02. The test design separately sets95% P1 and every required case100%; it does not authorize dropping a missing P0 variant.
-
-| Criterion | Required / target | Actual | Status |
-| --- | --- | --- | --- |
-| P0 FULL |100%|97% (31/32)|NOT_MET|
-| P1 FULL |90% target /80% minimum|95% (36/38)|MET|
-| Overall FULL |80% minimum|94% (76/81)|MET|
-
-The result is a coverage gate, without a production defect claim, waiver, review clearance, deployment approval or epic completion. Root owns any bounded test remediation and fresh exact-SHA rerun. The current source SHA is78d134656f03ca0dc96a5e415af5af04f67add53; execution remains attributed to c65c18649ac5641f9520b12e03a8b3f20af8f610, whose product/test/schema files are identical.
+Phase1normalized matrix saved before recalculation; complete mappings and canonical identities remain. Execution evidence is re-runnable static test evidence, not live-only observation, so no live-only cap applies.
 
 ### Preserved review and boundary history
 
@@ -578,20 +556,20 @@ Latest combined schema preparation records101repository migrations plus syntheti
 
 ### Follow-on actions
 
-1. Coordinator routes bounded20-P0-02 membership-removal regression through a High test author, executes REQUIRED read/open/refresh checks with the retained token and reruns trace.
+1. Membership-removal gap is closed by bounded iteration1; coordinator retains responsibility for any required final committed-revision replay.
 2. Record actual effective-cap provenance and pilot baseline; retain optional visual gap honestly until observed.
 3. Complete separately routed NFR/test-review/retrospective/checkpoint workflow obligations. No performance/code-coverage/burn-in or human sign-off is invented.
 
-Machine outputs: `epic-20/gate-decision.json` and `epic-20/e2e-trace-summary.json`; full matrix and stable witnesses in `epic-20/coverage-matrix.json` and `epic-20/mapping-input.json`. All files are local uncommitted trace artifacts. No spec/state/sprint/plan/product/environment file is edited.
+Machine outputs: `epic-20/gate-decision.json` and `epic-20/e2e-trace-summary.json`; full matrix and stable witnesses in `epic-20/coverage-matrix.json` and `epic-20/mapping-input.json`. Earlier trace artifacts are committed history; this bounded update remains uncommitted. No spec/state/sprint/plan/product/environment file is edited.
 
 ### Workflow validation
 
-All five Create steps completed and outputs validated against the installed trace checklist. Phase1 output was saved before Phase2 read the exact temporary matrix; no gate-time matrix regeneration. Oracle81 items and unique identities, all test file paths, stats, by-level/live shape and deterministicFAIL were checked. Unknown NFR/code-coverage/burn-in and optional visual evidence remain explicit. No enabled story/status/stakeholder update is owned or performed.
+All five Create steps completed and outputs validated against the installed trace checklist. Phase1 output was saved before Phase2 read the exact temporary matrix; no gate-time matrix regeneration. Oracle81 items and unique identities, all test file paths, stats, by-level/live shape and original deterministicFAIL were checked; iteration1 recalculation now validatesPASS. Unknown NFR/code-coverage/burn-in and optional visual evidence remain explicit. No enabled story/status/stakeholder update is owned or performed.
 
 Completion resolver ran successfully using a process-only temporary uv cache after the activation cache failure; `workflow.on_complete` resolved empty (native0), so no completion hook action is required.
 
 ### Compact artifact storage
 
-The committed inventory retains only606unique mapped Epic20 cases. The original676-case discovery count is recorded, but70unmapped records are omitted. Requirement mappings use stable test-ID/level references; full canonical records and evidence paths are held once in discovered-tests.json. Gap records reference authoritative requirement IDs. The verdict,81requirements, every mapping,17evidence hashes, execution/source attribution and76/81FULL statistics are unchanged. No raw runtime report/log is copied into the repository.
+The committed inventory retains 607unique mapped Epic20 cases. The original676-case discovery count is recorded, 70unmapped records are omitted and iteration1 adds one scoped regression. Requirement mappings use stable test-ID/level references; full canonical records and evidence paths are held once in discovered-tests.json. Gap records reference authoritative requirement IDs. The verdict,81requirements, every mapping,17evidence hashes, execution/source attribution and original76/81FAIL history are retained; iteration1 is77/81FULL/PASS. No raw runtime report/log is copied into the repository.
 
-To reproduce from the recorded raw inputs, run the five generation/validation scripts in their documented order, then compact-artifacts.py. The final packaging is idempotent. `python compact-artifacts.py` validates the normalized references and unchanged gate bytes.
+To reproduce from the recorded raw inputs, run the original generation/validation scripts, update-iteration1.py, then compact-artifacts.py. The final packaging is idempotent. `python compact-artifacts.py` validates the normalized references and unchanged gate bytes.

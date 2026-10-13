@@ -1,5 +1,5 @@
 {
-  "source_sha": "78d134656f03ca0dc96a5e415af5af04f67add53",
+  "source_sha": "80fdaef70b9145ff0ecf6de5865a894a5eb4b6a2",
   "tested_product_sha": "c65c18649ac5641f9520b12e03a8b3f20af8f610",
   "collection_status": "COLLECTED",
   "tests": [
@@ -608,10 +608,11 @@
     {"id":"E20-UNIT-f824a09fc9a9","title":"[P0] 20-P0-07 mismatched challenge owner_type stops before signing","file":"tests/unit/server/storage/document-signed-access-attestation.test.ts","line":146,"level":"unit","status":"active","execution_status":"passed","skipped":false,"pending":false,"fixme":false,"project":"","evidence_ref":"E7"},
     {"id":"E20-UNIT-fc52b68eef21","title":"[P0] 20-P0-01 transient source lookup fault is retryable SERVER_ERROR without labels/internal detail","file":"tests/unit/server/read-models/document-sources.test.ts","line":205,"level":"unit","status":"active","execution_status":"passed","skipped":false,"pending":false,"fixme":false,"project":"","evidence_ref":"E7"},
     {"id":"E20-UNIT-fc98c93507a7","title":"[P0] 20-P0-07 mismatched challenge purpose stops before signing","file":"tests/unit/server/storage/document-signed-access-attestation.test.ts","line":146,"level":"unit","status":"active","execution_status":"passed","skipped":false,"pending":false,"fixme":false,"project":"","evidence_ref":"E7"},
-    {"id":"E20-UNIT-fe2a5902a032","title":"[P1] authorized lookahead after hidden batches resumes at last displayed row without skipping the next context","file":"tests/unit/server/read-models/documents.test.ts","line":293,"level":"unit","status":"active","execution_status":"passed","skipped":false,"pending":false,"fixme":false,"project":"","evidence_ref":"E7"}
+    {"id":"E20-UNIT-fe2a5902a032","title":"[P1] authorized lookahead after hidden batches resumes at last displayed row without skipping the next context","file":"tests/unit/server/read-models/documents.test.ts","line":293,"level":"unit","status":"active","execution_status":"passed","skipped":false,"pending":false,"fixme":false,"project":"","evidence_ref":"E7"},
+    {"id":"E20-API-2e7362a1eb7c","title":"[P0][20-P0-02-MEMBERSHIP-REMOVE-001] deleting active membership denies Documents reads, open and refresh with the existing authenticated session","file":"tests/integration/commands/documents-signed-access.int.test.ts","line":359,"level":"api","status":"active","execution_status":"passed","skipped":false,"pending":false,"fixme":false,"evidence_ref":"E8ITER1","project":"","execution_provenance_ref":"iteration1"}
   ],
   "static_declarations": 107,
-  "identity_rule": "Original stable IDs retained. Each full identity/title/file/line/level/status/flags is stored once. Evidence path resolves through evidence_index; case source SHA inherits tested_product_sha.",
+  "identity_rule": "Full canonical identity fields stored once. Resolve evidence_ref through evidence_index and execution_provenance_ref through execution_provenance_index; old cases inherit baseline c65 execution, new case uses dirty b7f01bb3 plus verified hash.",
   "new_product_executions": 0,
   "evidence_index": {
     "E1": "C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-3-combined-c65c1864/documents-baseline-storage-boundary.vitest.json",
@@ -620,8 +621,48 @@
     "E4": "C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-3-combined-c65c1864/documents20-2-lifecycle-integration.vitest.json",
     "E5": "C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-3-combined-c65c1864/documents20-3-browser.playwright.json",
     "E6": "C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-3-combined-c65c1864/documents20-3-context-integration.vitest.json",
-    "E7": "C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-3-combined-c65c1864/unit.log"
+    "E7": "C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-3-combined-c65c1864/unit.log",
+    "E8ITER1": "_bmad-output/test-artifacts/epic-20-e8-iter1/documents-authorization-races.vitest.json"
   },
-  "inventory_scope": "Only606 unique test cases referenced by the complete Epic20 formal/design matrix; discovery originally676, unmapped records omitted from committed inventory.",
-  "original_discovered_cases": 676
+  "inventory_scope": "607 unique mapped Epic20 test cases; original676-case discovery excludes70unmapped records, then iteration1 adds exactly one scoped regression.",
+  "original_discovered_cases": 676,
+  "execution_provenance_index": {
+    "baseline": {
+      "tested_product_sha": "c65c18649ac5641f9520b12e03a8b3f20af8f610"
+    },
+    "iteration1": {
+      "execution_base_sha": "b7f01bb33d110817c5919a86ec79ab221e2cbf3a",
+      "execution_tree": "dirty-test-tree",
+      "tested_file_sha256": "eab6b291f0eb8bee1c6269a8563fa1619105a983a0e8058eb6bea23a0151c90c",
+      "tested_file_hashes_sha256": "7ecffefa00a1a8367df515b750f280c5c37282f28800fa6bd2427e56f6b001f2",
+      "committed_identical_blob_sha": "5594186c5def14712a32fd0df53ec8c1ce2cc5f5",
+      "committed_identical_at_sha": "80fdaef70b9145ff0ecf6de5865a894a5eb4b6a2",
+      "clean_committed_sha_replay": false,
+      "required_counts": {
+        "executed": 166,
+        "passed": 166,
+        "failed": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "native_exit": 0,
+      "test_duration_ms": 1564.2813000000006,
+      "native_receipt_ref": "_bmad-output/test-artifacts/epic-20-e8-iter1/documents-authorization-races.native.json",
+      "native_receipt_sha256": "2b8797416f3cd015e701c7aaba7e197dc71fc99446a7b8e45968849ef41a667a",
+      "vitest_ref": "_bmad-output/test-artifacts/epic-20-e8-iter1/documents-authorization-races.vitest.json",
+      "vitest_sha256": "bbe8536f753dd3262770ce4f232d8a0d319dc42dae64b70e005cf5ade094afea",
+      "raw_log_sha256": "85785c1d913ba6fb2b29e3770ae4f31f11904f5b4ec90c878338673defab2cc9",
+      "full_native_receipt": {
+        "local_path": "C:\\Users\\Rasmus\\AppData\\Local\\Temp\\Kopplas-epic20-e8-iter1-b7f01bb3\\documents-authorization-races.native.json",
+        "sha256": "7735a6284b7a48008fbc6b357b497d38e90c0ac50eac24f6334bffd669c0c3db"
+      },
+      "narrow_review_ref": "_bmad-output/test-artifacts/epic-20-e8-iter1/narrow-review.json",
+      "narrow_review_sha256": "214b012b67dbb4a2bbb828dd24d3f04ea6a13d0915bbf9a6e3093a781208590f",
+      "assessor": "/root/epic20_trace/sensitive_trace",
+      "assessor_model": "gpt-6.1-sol",
+      "assessor_effort": "high",
+      "coverage_disposition": "20-P0-02 FULL; previously missing same-token active membership DELETE variant is executed"
+    }
+  },
+  "default_execution_provenance_ref": "baseline"
 }

@@ -1,6 +1,6 @@
 {
   "schema_version": "0.1.0",
-  "evaluated_at": "2026-10-13T13:19:03.678784+00:00",
+  "evaluated_at": "2026-10-13T13:41:09.142342+00:00",
   "repo": "Kopplas",
   "target": {
     "type": "epic",
@@ -9,12 +9,12 @@
   },
   "collection_status": "COLLECTED",
   "gate_basis": "priority_thresholds",
-  "gate_status": "FAIL",
-  "rationale": "Full approved epic oracle: P0 FULL coverage is31/32 (97%; required100%). 20-P0-02 lacks direct same-token active-membership deletion read/open/refresh evidence; disabled membership, granting-role deletion/revocation and initially membershipless cases pass. P1 is36/38 (95%) and overall76/81 (94%), above their90%/80% thresholds. All17 recorded native checks pass with zero required skips; passing suites do not replace the missing planned P0 variant. No waiver or product-defect finding is implied.",
-  "p0_status": "NOT_MET",
+  "gate_status": "PASS",
+  "rationale": "P0 FULL coverage32/32 (100%), P1 FULL36/38 (95%), overall77/81 (95%) meet installed100%/90%/80% thresholds. Iteration1 closes20-P0-02 using the passing same-token active membership DELETE read/open/refresh regression. Actual166/166 REQUIRED integration0skip and narrow High clearance bind dirty b7f01bb3 plus test SHA256eab6b291, identical to the committed80fdaef7 blob; no clean committed-SHA replay is claimed. Four remaining partial/optional items remain explicit; coverage PASS grants no release/review clearance or waiver.",
+  "p0_status": "MET",
   "p1_status": "MET",
   "overall_status": "MET",
-  "critical_open": 1,
+  "critical_open": 0,
   "links": {
     "trace_report_path": "C:/Users/Rasmus/.codex/worktrees/dbe6/ElproSaas/_bmad-output/test-artifacts/traceability/epic-20-traceability-report.md",
     "trace_report_url": "",
@@ -23,15 +23,15 @@
   },
   "coverage": {
     "inventory": {
-      "covered": 76,
+      "covered": 77,
       "total": 81,
-      "pct": 94
+      "pct": 95
     },
     "priority_breakdown": {
       "P0": {
         "total": 32,
-        "covered": 31,
-        "pct": 97
+        "covered": 32,
+        "pct": 100
       },
       "P1": {
         "total": 38,
@@ -55,7 +55,7 @@
         "criteria_covered": 54
       },
       "api": {
-        "tests": 183,
+        "tests": 184,
         "criteria_covered": 70
       },
       "component": {
@@ -76,29 +76,52 @@
       }
     }
   },
-  "uncovered_requirements": [
-    "20.1-AC6",
-    "20-P0-02",
-    "20-P1-05",
-    "20-P2-09",
-    "20-P3-01"
-  ],
-  "critical_gap_ids": [
-    "20-P0-02"
-  ],
-  "formal_ac_gaps": [
-    "20.1-AC6"
-  ],
-  "supplementary_gap_ids": [
-    "20-P0-02",
-    "20-P1-05",
-    "20-P2-09",
-    "20-P3-01"
-  ],
-  "source_sha": "78d134656f03ca0dc96a5e415af5af04f67add53",
+  "uncovered_requirements": ["20.1-AC6","20-P1-05","20-P2-09","20-P3-01"],
+  "critical_gap_ids": [],
+  "formal_ac_gaps": ["20.1-AC6"],
+  "supplementary_gap_ids": ["20-P1-05","20-P2-09","20-P3-01"],
+  "source_sha": "80fdaef70b9145ff0ecf6de5865a894a5eb4b6a2",
   "tested_product_sha": "c65c18649ac5641f9520b12e03a8b3f20af8f610",
   "new_product_executions": 0,
   "release_authority": false,
   "review_clearance": false,
-  "waiver": null
+  "waiver": null,
+  "gate_iteration": 1,
+  "gate_progression": [
+    {"iteration":0,"gate_status":"FAIL","evaluated_at":"2026-10-13T13:19:03.678784+00:00","coverage":{"P0":"31/32","P1":"36/38","overall":"76/81"},"critical_gap_ids":["20-P0-02"]},
+    {"iteration":1,"gate_status":"PASS","evaluated_at":"2026-10-13T13:41:09.142342+00:00","coverage":{"P0":"32/32","P1":"36/38","overall":"77/81"},"closed_gap_ids":["20-P0-02"],"execution_provenance":{"execution_base_sha":"b7f01bb33d110817c5919a86ec79ab221e2cbf3a","execution_tree":"dirty-test-tree","tested_file_sha256":"eab6b291f0eb8bee1c6269a8563fa1619105a983a0e8058eb6bea23a0151c90c","tested_file_hashes_sha256":"7ecffefa00a1a8367df515b750f280c5c37282f28800fa6bd2427e56f6b001f2","committed_identical_blob_sha":"5594186c5def14712a32fd0df53ec8c1ce2cc5f5","committed_identical_at_sha":"80fdaef70b9145ff0ecf6de5865a894a5eb4b6a2","clean_committed_sha_replay":false,"required_counts":{"executed":166,"passed":166,"failed":0,"skipped":0,"todo":0},"native_exit":0,"test_duration_ms":1564.2813000000006,"native_receipt_ref":"_bmad-output/test-artifacts/epic-20-e8-iter1/documents-authorization-races.native.json","native_receipt_sha256":"2b8797416f3cd015e701c7aaba7e197dc71fc99446a7b8e45968849ef41a667a","vitest_ref":"_bmad-output/test-artifacts/epic-20-e8-iter1/documents-authorization-races.vitest.json","vitest_sha256":"bbe8536f753dd3262770ce4f232d8a0d319dc42dae64b70e005cf5ade094afea","raw_log_sha256":"85785c1d913ba6fb2b29e3770ae4f31f11904f5b4ec90c878338673defab2cc9","full_native_receipt":{"local_path":"C:\\Users\\Rasmus\\AppData\\Local\\Temp\\Kopplas-epic20-e8-iter1-b7f01bb3\\documents-authorization-races.native.json","sha256":"7735a6284b7a48008fbc6b357b497d38e90c0ac50eac24f6334bffd669c0c3db"},"narrow_review_ref":"_bmad-output/test-artifacts/epic-20-e8-iter1/narrow-review.json","narrow_review_sha256":"214b012b67dbb4a2bbb828dd24d3f04ea6a13d0915bbf9a6e3093a781208590f","assessor":"/root/epic20_trace/sensitive_trace","assessor_model":"gpt-6.1-sol","assessor_effort":"high","coverage_disposition":"20-P0-02 FULL; previously missing same-token active membership DELETE variant is executed"}}
+  ],
+  "iteration1_evidence": {
+    "execution_base_sha": "b7f01bb33d110817c5919a86ec79ab221e2cbf3a",
+    "execution_tree": "dirty-test-tree",
+    "tested_file_sha256": "eab6b291f0eb8bee1c6269a8563fa1619105a983a0e8058eb6bea23a0151c90c",
+    "tested_file_hashes_sha256": "7ecffefa00a1a8367df515b750f280c5c37282f28800fa6bd2427e56f6b001f2",
+    "committed_identical_blob_sha": "5594186c5def14712a32fd0df53ec8c1ce2cc5f5",
+    "committed_identical_at_sha": "80fdaef70b9145ff0ecf6de5865a894a5eb4b6a2",
+    "clean_committed_sha_replay": false,
+    "required_counts": {
+      "executed": 166,
+      "passed": 166,
+      "failed": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "native_exit": 0,
+    "test_duration_ms": 1564.2813000000006,
+    "native_receipt_ref": "_bmad-output/test-artifacts/epic-20-e8-iter1/documents-authorization-races.native.json",
+    "native_receipt_sha256": "2b8797416f3cd015e701c7aaba7e197dc71fc99446a7b8e45968849ef41a667a",
+    "vitest_ref": "_bmad-output/test-artifacts/epic-20-e8-iter1/documents-authorization-races.vitest.json",
+    "vitest_sha256": "bbe8536f753dd3262770ce4f232d8a0d319dc42dae64b70e005cf5ade094afea",
+    "raw_log_sha256": "85785c1d913ba6fb2b29e3770ae4f31f11904f5b4ec90c878338673defab2cc9",
+    "full_native_receipt": {
+      "local_path": "C:\\Users\\Rasmus\\AppData\\Local\\Temp\\Kopplas-epic20-e8-iter1-b7f01bb3\\documents-authorization-races.native.json",
+      "sha256": "7735a6284b7a48008fbc6b357b497d38e90c0ac50eac24f6334bffd669c0c3db"
+    },
+    "narrow_review_ref": "_bmad-output/test-artifacts/epic-20-e8-iter1/narrow-review.json",
+    "narrow_review_sha256": "214b012b67dbb4a2bbb828dd24d3f04ea6a13d0915bbf9a6e3093a781208590f",
+    "assessor": "/root/epic20_trace/sensitive_trace",
+    "assessor_model": "gpt-6.1-sol",
+    "assessor_effort": "high",
+    "coverage_disposition": "20-P0-02 FULL; previously missing same-token active membership DELETE variant is executed"
+  }
 }

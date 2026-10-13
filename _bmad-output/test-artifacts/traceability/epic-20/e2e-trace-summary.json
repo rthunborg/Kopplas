@@ -1,12 +1,12 @@
 {
   "schema_version": "0.2.0",
-  "snapshot_at": "2026-10-13T13:19:03.678784+00:00",
+  "snapshot_at": "2026-10-13T13:41:09.142342+00:00",
   "repo": "Kopplas",
   "collection_mode": "contract_static",
   "collection_status": "COLLECTED",
   "inventory_basis": "acceptance_criteria",
   "gate_basis": "priority_thresholds",
-  "source_sha": "78d134656f03ca0dc96a5e415af5af04f67add53",
+  "source_sha": "80fdaef70b9145ff0ecf6de5865a894a5eb4b6a2",
   "tested_product_sha": "c65c18649ac5641f9520b12e03a8b3f20af8f610",
   "target": {
     "type": "epic",
@@ -19,26 +19,21 @@
   "oracle": {
     "resolution_mode": "formal_requirements",
     "confidence": "high",
-    "sources": [
-      "_bmad-output/implementation-artifacts/spec-20-1-documents-activation-and-source-authorized-aggregation.md",
-      "_bmad-output/implementation-artifacts/spec-20-2-search-filters-preview-and-archive-restore.md",
-      "_bmad-output/implementation-artifacts/spec-20-3-entity-panel-links-and-contextual-navigation.md",
-      "_bmad-output/test-artifacts/test-design-epic-20.md"
-    ],
+    "sources": ["_bmad-output/implementation-artifacts/spec-20-1-documents-activation-and-source-authorized-aggregation.md","_bmad-output/implementation-artifacts/spec-20-2-search-filters-preview-and-archive-restore.md","_bmad-output/implementation-artifacts/spec-20-3-entity-panel-links-and-contextual-navigation.md","_bmad-output/test-artifacts/test-design-epic-20.md"],
     "external_pointer_status": "not_used",
     "synthetic": false
   },
   "coverage": {
     "inventory": {
-      "covered": 76,
+      "covered": 77,
       "total": 81,
-      "pct": 94
+      "pct": 95
     },
     "priority_breakdown": {
       "P0": {
         "total": 32,
-        "covered": 31,
-        "pct": 97
+        "covered": 32,
+        "pct": 100
       },
       "P1": {
         "total": 38,
@@ -62,7 +57,7 @@
         "criteria_covered": 54
       },
       "api": {
-        "tests": 183,
+        "tests": 184,
         "criteria_covered": 70
       },
       "component": {
@@ -85,20 +80,20 @@
   },
   "tests": {
     "files": 24,
-    "cases": 606,
+    "cases": 607,
     "skipped_cases": 0,
     "pending_cases": 0,
     "fixme_cases": 0
   },
   "risk_summary": {
-    "critical_open": 1,
+    "critical_open": 0,
     "high_open": 2,
     "medium_open": 1,
     "low_open": 1
   },
   "heuristics": {
     "endpoint_gaps": 0,
-    "auth_negative_path_status": "partial",
+    "auth_negative_path_status": "present",
     "error_path_status": "present",
     "ui_journey_status": "not_applicable",
     "ui_state_status": "not_applicable"
@@ -112,7 +107,7 @@
     "results_file": "C:/Users/Rasmus/.codex/worktrees/dbe6/ElproSaas/_bmad-output/test-artifacts/live-verification-results.json",
     "freshness": "not_present",
     "recorded_source_sha": "",
-    "current_source_sha": "78d134656f03ca0dc96a5e415af5af04f67add53",
+    "current_source_sha": "80fdaef70b9145ff0ecf6de5865a894a5eb4b6a2",
     "producer": "",
     "counted": 0,
     "stale": 0,
@@ -126,67 +121,16 @@
     "requirements_live_only": 0
   },
   "blockers": [
-    {
-      "id": "20.1-AC6",
-      "severity": "high",
-      "reason": "1225 candidates (1100 hidden/125 eligible) and stable equal-timestamp traversal execute, with bounded unit chunks. No observed effective PostgREST max-row cap was established; absence of PGRST_DB_MAX_ROWS in a filtered container environment is not full cap provenance."
-    },
-    {
-      "id": "20-P0-02",
-      "severity": "critical",
-      "reason": "Same-token active membership removal transition is not directly exercised. Disabled membership, primary/child role revocation, multi-role union and initially membershipless actors pass. No product defect is inferred."
-    },
-    {
-      "id": "20-P1-05",
-      "severity": "high",
-      "reason": "1225 candidates (1100 hidden/125 eligible) and stable equal-timestamp traversal execute, with bounded unit chunks. No observed effective PostgREST max-row cap was established; absence of PGRST_DB_MAX_ROWS in a filtered container environment is not full cap provenance."
-    },
-    {
-      "id": "20-P2-09",
-      "severity": "medium",
-      "reason": "Bounded completeness is exercised; representative pilot elapsed/read-query/candidate/row/memory baseline is absent. No numeric latency/concurrency/volume target is authorized."
-    },
-    {
-      "id": "20-P3-01",
-      "severity": "low",
-      "reason": "No recorded manual long-name/neutral-label wrap inspection at both viewports was supplied; optional visual polish is uncredited."
-    }
+    {"id":"20.1-AC6","severity":"high","reason":"1225 candidates (1100 hidden/125 eligible) and stable equal-timestamp traversal execute, with bounded unit chunks. No observed effective PostgREST max-row cap was established; absence of PGRST_DB_MAX_ROWS in a filtered container environment is not full cap provenance."},
+    {"id":"20-P1-05","severity":"high","reason":"1225 candidates (1100 hidden/125 eligible) and stable equal-timestamp traversal execute, with bounded unit chunks. No observed effective PostgREST max-row cap was established; absence of PGRST_DB_MAX_ROWS in a filtered container environment is not full cap provenance."},
+    {"id":"20-P2-09","severity":"medium","reason":"Bounded completeness is exercised; representative pilot elapsed/read-query/candidate/row/memory baseline is absent. No numeric latency/concurrency/volume target is authorized."},
+    {"id":"20-P3-01","severity":"low","reason":"No recorded manual long-name/neutral-label wrap inspection at both viewports was supplied; optional visual polish is uncredited."}
   ],
   "recommendations": [
-    {
-      "priority": "URGENT",
-      "action": "20.1 test owner via coordinator: add 20-P0-02-MEMBERSHIP-REMOVE-001. Given a current authorized actor and issued token with eligible document, delete its active membership, then read/open/refresh using that same authenticated client. Assert no rows/context/labels/new URL/success audit. Run REQUIRED integration on fresh exact product SHA before epic gate; retain zero required skips. No fourth broad review.",
-      "requirements": [
-        "20-P0-02"
-      ]
-    },
-    {
-      "priority": "HIGH",
-      "action": "20.1 test owner via coordinator: 20-P1-05-CAP-001 must record effective PostgREST max-row cap/configuration and exercise more candidates than that observed limit with hidden-only batches/equal timestamps; assert every eligible row once and no false exhaustion/hidden cursor. Existing1225 traversal remains credited for what it executes.",
-      "requirements": [
-        "20.1-AC6",
-        "20-P1-05"
-      ]
-    },
-    {
-      "priority": "MEDIUM",
-      "action": "QA/coordinator before epic release: record 20-P2-09-PILOT-001 representative hidden-heavy pilot baseline with elapsed/query/candidate/authorized-row/memory measures. Resolve numeric threshold only through owner decision; do not fabricate SLO or code-coverage percentage.",
-      "requirements": [
-        "20-P2-09"
-      ]
-    },
-    {
-      "priority": "LOW",
-      "action": "QA: optional20-P3-01-VISUAL-001 long synthetic names/neutral labels at desktop and360x640, record actual wrap/read outcome.",
-      "requirements": [
-        "20-P3-01"
-      ]
-    },
-    {
-      "priority": "LOW",
-      "action": "Run separately authorized bmad-testarch-test-review and NFR assessment. Preserve20.2 review_unverified/formula history and narrow acceptance boundary.",
-      "requirements": []
-    }
+    {"priority":"HIGH","action":"20.1 test owner via coordinator: 20-P1-05-CAP-001 must record effective PostgREST max-row cap/configuration and exercise more candidates than that observed limit with hidden-only batches/equal timestamps; assert every eligible row once and no false exhaustion/hidden cursor. Existing1225 traversal remains credited for what it executes.","requirements":["20.1-AC6","20-P1-05"]},
+    {"priority":"MEDIUM","action":"QA/coordinator before epic release: record 20-P2-09-PILOT-001 representative hidden-heavy pilot baseline with elapsed/query/candidate/authorized-row/memory measures. Resolve numeric threshold only through owner decision; do not fabricate SLO or code-coverage percentage.","requirements":["20-P2-09"]},
+    {"priority":"LOW","action":"QA: optional20-P3-01-VISUAL-001 long synthetic names/neutral labels at desktop and360x640, record actual wrap/read outcome.","requirements":["20-P3-01"]},
+    {"priority":"LOW","action":"Run separately authorized bmad-testarch-test-review and NFR assessment. Preserve20.2 review_unverified/formula history and narrow acceptance boundary.","requirements":[]}
   ],
   "links": {
     "trace_report_path": "C:/Users/Rasmus/.codex/worktrees/dbe6/ElproSaas/_bmad-output/test-artifacts/traceability/epic-20-traceability-report.md",
@@ -194,17 +138,17 @@
     "artifact_url": "",
     "journey_evidence_url": ""
   },
-  "gate_status": "FAIL",
+  "gate_status": "PASS",
   "gate_criteria": {
     "p0_coverage_required": "100%",
-    "p0_coverage_actual": "97%",
-    "p0_status": "NOT_MET",
+    "p0_coverage_actual": "100%",
+    "p0_status": "MET",
     "p1_coverage_target": "90%",
     "p1_coverage_minimum": "80%",
     "p1_coverage_actual": "95%",
     "p1_status": "MET",
     "overall_coverage_minimum": "80%",
-    "overall_coverage_actual": "94%",
+    "overall_coverage_actual": "95%",
     "overall_status": "MET"
   },
   "formal_ac_statistics": {
@@ -238,15 +182,15 @@
   },
   "approved_design_statistics": {
     "total_requirements": 56,
-    "fully_covered": 52,
-    "partially_covered": 3,
+    "fully_covered": 53,
+    "partially_covered": 2,
     "uncovered": 1,
-    "overall_coverage_percentage": 93,
+    "overall_coverage_percentage": 95,
     "priority_breakdown": {
       "P0": {
         "total": 18,
-        "covered": 17,
-        "percentage": 94
+        "covered": 18,
+        "percentage": 100
       },
       "P1": {
         "total": 27,
@@ -267,5 +211,39 @@
   },
   "new_product_executions": 0,
   "release_authority": false,
-  "review_clearance": false
+  "review_clearance": false,
+  "gate_iteration": 1,
+  "iteration1_evidence": {
+    "execution_base_sha": "b7f01bb33d110817c5919a86ec79ab221e2cbf3a",
+    "execution_tree": "dirty-test-tree",
+    "tested_file_sha256": "eab6b291f0eb8bee1c6269a8563fa1619105a983a0e8058eb6bea23a0151c90c",
+    "tested_file_hashes_sha256": "7ecffefa00a1a8367df515b750f280c5c37282f28800fa6bd2427e56f6b001f2",
+    "committed_identical_blob_sha": "5594186c5def14712a32fd0df53ec8c1ce2cc5f5",
+    "committed_identical_at_sha": "80fdaef70b9145ff0ecf6de5865a894a5eb4b6a2",
+    "clean_committed_sha_replay": false,
+    "required_counts": {
+      "executed": 166,
+      "passed": 166,
+      "failed": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "native_exit": 0,
+    "test_duration_ms": 1564.2813000000006,
+    "native_receipt_ref": "_bmad-output/test-artifacts/epic-20-e8-iter1/documents-authorization-races.native.json",
+    "native_receipt_sha256": "2b8797416f3cd015e701c7aaba7e197dc71fc99446a7b8e45968849ef41a667a",
+    "vitest_ref": "_bmad-output/test-artifacts/epic-20-e8-iter1/documents-authorization-races.vitest.json",
+    "vitest_sha256": "bbe8536f753dd3262770ce4f232d8a0d319dc42dae64b70e005cf5ade094afea",
+    "raw_log_sha256": "85785c1d913ba6fb2b29e3770ae4f31f11904f5b4ec90c878338673defab2cc9",
+    "full_native_receipt": {
+      "local_path": "C:\\Users\\Rasmus\\AppData\\Local\\Temp\\Kopplas-epic20-e8-iter1-b7f01bb3\\documents-authorization-races.native.json",
+      "sha256": "7735a6284b7a48008fbc6b357b497d38e90c0ac50eac24f6334bffd669c0c3db"
+    },
+    "narrow_review_ref": "_bmad-output/test-artifacts/epic-20-e8-iter1/narrow-review.json",
+    "narrow_review_sha256": "214b012b67dbb4a2bbb828dd24d3f04ea6a13d0915bbf9a6e3093a781208590f",
+    "assessor": "/root/epic20_trace/sensitive_trace",
+    "assessor_model": "gpt-6.1-sol",
+    "assessor_effort": "high",
+    "coverage_disposition": "20-P0-02 FULL; previously missing same-token active membership DELETE variant is executed"
+  }
 }

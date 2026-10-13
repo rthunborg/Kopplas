@@ -22,3 +22,11 @@
 - [x] Checklist adapted: ordinary per-test quality review/NFR/code coverage/burn-in NOT ASSESSED here; separate test-review/NFR owner workflow remains.
 
 Workflow success means an accurate completed FAIL gate. It does not mean product acceptance, release approval or absence of coverage gaps. No human sign-off is recorded.
+
+## Iteration1 bounded Edit validation
+
+- [x] Existing target/change confirmed by root; Edit steps loaded and only requested coverage recalculation applied.
+- [x] New single test ID/catalog record mapped to20-P0-02 and20.1AC3/7/10; all other mappings/gaps preserved.
+- [x] Dirty tested hash equals committed80fdaef7 blob/current file; native/raw/full-receipt hashes and166/166 REQUIRED0skip verified.
+- [x] Sol6.1 High assessor confirms closure; no clean-SHA/browser/whole-epic claim.
+- [x] PASS:32/32P0,36/38P1,77/81overall; initialFAIL history retained; no waiver.
