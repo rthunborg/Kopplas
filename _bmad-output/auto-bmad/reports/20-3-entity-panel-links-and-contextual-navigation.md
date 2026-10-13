@@ -65,3 +65,34 @@ No worker global ledger writes
 1. none
 
 **Next:** High build delegation, real17 checks and independent review
+
+## Report — 2026-10-13T11:18:31Z (checkpoint — build complete)
+
+**Story:** `20-3-entity-panel-links-and-contextual-navigation` (epic 20, story 3) — last-in-epic.
+**Spec:** `C:/Users/Rasmus/.codex/worktrees/documents-e20-20-3/Kopplas/_bmad-output/implementation-artifacts/spec-20-3-entity-panel-links-and-contextual-navigation.md`
+**Branch:** `codex/parallel-documents-e20-readiness-2026-10-09-20-3` (HEAD `26f6eac`).
+**Pipeline status:** running
+**Continues:** True
+
+**Timing:** started 2026-10-13T08:43:10Z; completed in progress — elapsed 2h 35m (≈2h 30m AI-run, ≈5m human/idle wait); resumed 2×.
+
+**Phases run:** 0, 1, 3, 4, 5
+**Skipped:** Phase2 coordinator-owned; aggregate/epic/end work remains coordinator-owned.
+
+**Overrides:** Claimed worker20.3 generation1; assigned9d baseline; only20ownedpaths; all17requiredchecks; no aggregate writes.
+
+**TEA:** ATDD completed; Automate selected and next. Collection/red scaffolds were not execution coverage.
+
+**Build:** Done. Authorized entity context and exact projection/navigation preserve upload, signing and lifecycle authority. All17native0: contextunit53/fullunit2508/contextRLS28/browser53+117;0fail0skip. Candidate runtime verified, final clean-SHA checks pending.
+
+**Review:** Complete configured six-layer SolHigh round1; two medium patches addressed; followup_review_recommended=true; no deferred work. Narrow author trail checker20references/0errors and independent PASS. Encoding attempts retained and corrected without new broad-round credit.
+
+**Retrospective:** (none)
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Run required Phase6 Automate, then recommended independent Phase7 review before final candidate verification and supported submission.
