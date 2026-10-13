@@ -46,6 +46,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
 
       # pnpm BEFORE setup-node: setup-node's `cache: pnpm` needs pnpm on PATH.
       # action-setup reads the version from package.json "packageManager"
@@ -132,6 +134,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
@@ -188,14 +192,14 @@ jobs:
 
       # Stage 8: DB-backed integration + cross-tenant RLS-negative suites.
       - name: Integration, RLS, and Epic 11 pilot performance gates (local stack)
-        # Temporary 900s diagnostic ceiling measures one complete DB+pilot run;
-        # it is not the final suite policy. Replace it after measured review.
+        # Fixed 420s DB+pilot ceiling derives from the complete 326.38s run;
+        # round 1.25x that measurement upward to a whole-minute bound.
         # Starts after stack/reset, measuring test:int and the explicit NFR
         # probe, rather than installs or Supabase startup/migration time. Keep
         # test:int visible as the historic Phase A gate; this Epic 11 probe is
         # deliberately not represented as a Phase A package-script result.
         run: >-
-          node scripts/verify/run-with-time-budget.mjs --label "Database, RLS, and pilot performance tests" --max-seconds 900 -- bash -c
+          node scripts/verify/run-with-time-budget.mjs --label "Database, RLS, and pilot performance tests" --max-seconds 420 -- bash -c
           'pnpm run test:int && node --experimental-strip-types --import ./tests/support/register.mjs scripts/nfr/epic-11-r1108-baseline.ts'
 
       - name: Stop local Supabase stack
@@ -215,6 +219,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
@@ -376,6 +382,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
@@ -465,6 +473,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
