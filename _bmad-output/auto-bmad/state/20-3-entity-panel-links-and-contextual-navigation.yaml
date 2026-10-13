@@ -9,17 +9,17 @@ spec_folder: null
 story_id: "20.3"
 branch: codex/parallel-documents-e20-readiness-2026-10-09-20-3
 status: running
-updated_at: "2026-10-13T08:48:11Z"
+updated_at: "2026-10-13T09:12:13Z"
 started_at: "2026-10-13T08:43:10Z"
 completed_at: null
-active_seconds: 0
-timing_anchor: 1791881291
+active_seconds: 1442
+timing_anchor: 1791882733
 is_first_in_epic: false
 is_last_in_epic: true
 git_mode: remote
 base_branch: main
-selected_phase: tea_per_story
-selected_role: tea-delegate
+selected_phase: build
+selected_role: build-delegate
 selected_profile: standard
 selected_model: gpt-6.1-sol
 selected_effort: high
@@ -30,12 +30,13 @@ escalation_reason: "Automatic sensitive-task escalation: authentication, authori
 routing_ledger:
   - "{\"phase\":\"tea_triage\",\"role\":\"test-risk-triage\",\"profile\":\"light\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"subagent\",\"escalation_reason\":\"Automatic sensitive-task escalation: authentication, authorization, permissions, public-tokens, rls, security, transactional-integrity\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authentication, authorization, permissions, public-tokens, rls, security, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authentication, authorization, permissions, public-tokens, rls, security, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: "Independent Phase0 triage: current-source authorization and source-authority preservation trigger authorization/permissions signals"
 epic_story_count: 3
 stories_after_in_epic: 0
-completed_phases: [0, 1, 3]
+completed_phases: [0, 1, 3, 4]
 spec_path: "C:/Users/Rasmus/.codex/worktrees/documents-e20-20-3/Kopplas/_bmad-output/implementation-artifacts/spec-20-3-entity-panel-links-and-contextual-navigation.md"
 spec_approved: true
 build:
@@ -55,7 +56,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [75b40dbeb1d4439f0f5794fe7acbf1f465e34e1d]
+commits: [75b40dbeb1d4439f0f5794fe7acbf1f465e34e1d, 452129c6cd5ac3f7545f7d26b4cf1a64e232fd56]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -98,7 +99,7 @@ overrides:
   additional_required_check: documents20-2-browser
   review_rounds_completed: 0
   final_review_cap: 3
-  resource_launches: 0
+  resource_launches: 1
   prior_workers: "20.1/20.2 three-round histories preserved; no old checkout writes or service adoption"
   runtime_review_resolver: New20.3 worker config/cwd with selected SolHigh/read-only runtime command
   scope_constraints: "No unassigned signing/lifecycle/generic-panel/permission/manifest/migration edits, PhaseC or OptionA expansion"
@@ -106,5 +107,12 @@ overrides:
   preflight_help_encoding: "Initial help cp1252 failure; fullpreflight -Xutf8 native0"
   initialization_recovery: "PowerShell syntax failure before any commands/files; corrected structured payload, no pipeline coverage claimed"
   dependency_setup: "pnpm install --frozen-lockfile native0; pnpm10.24.0 Node22.23.2; tracked packages and lock unchanged"
+  atdd: "{\"outcome\": \"done\", \"definitions\": 124, \"unit_definitions\": 49, \"rls_definitions\": 28, \"browser_definitions\": 47, \"runtime_executed\": 0, \"unit_collection_native\": 0, \"vitest_collection_native\": 0, \"playwright_collection_native\": 0, \"typecheck_native\": 0, \"lint_native\": 0, \"checklist\": \"C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-3-atdd-2026-10-13/atdd-checklist-20-3-entity-panel-links-and-contextual-navigation.md\", \"proof\": \"C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-3-atdd-2026-10-13/verification-proof.json\"}"
+  resource_id: d93791d8-891f-435f-bbce-b64e5fda99cb
+  runtime_preparation: "{\"owned\": true, \"state\": \"active\", \"lastEvidence\": \"registered-start-verified\", \"auth_health\": 200, \"postgres_tcp\": true, \"migrations_ready\": true, \"history\": 101, \"last_version\": \"20261009091121\", \"idle_transactions\": 0, \"seed_values\": 3, \"fixture_tables\": 5, \"fixture_triggers\": 11, \"preparation_native\": 0, \"readiness_native\": 0}"
+  runtime_preparation_receipts: ["C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-3-runtime-2026-10-13/db-preparation-readiness.json", "C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-3-runtime-2026-10-13/db-preparation-final-integrity.json"]
+  migration_fingerprints: "{\"raw\": \"9276170a05fbea2ef287f009305c98cdbfa5b1ca8bec3ef56f887673bf459ce1\", \"normalized_sha256\": \"5a04dfac67fcf788c7240ef332330eb26692bf4166a28d7313e64bfec66d602b\", \"git_blob\": \"6d312852e1906e9694e2c93d38a5d51d5562abe7\", \"unchanged_all101\": true}"
+  setup_initial_failures: "Preserved stale supplied fingerprint precondition native1 and initial incorrect RPC-probe parameter native1; corrected preparation/readiness native0; no task coverage credited"
+  linux_runtime_integrity: "Retained official Node archive and3 pinned native packages/14 files revalidated against this checkout lock; no download or dependency mutation"
 constraints: []
 parallel_run_id: documents-e20-readiness-2026-10-09
