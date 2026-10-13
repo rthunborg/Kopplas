@@ -1,0 +1,243 @@
+/**
+ * Story20.2 AC1–3,5–7 RED. Proposed readDocuments({client,filters,cursor}) extension:
+ * descriptor.data retains rows/nextCursor and adds total, facets.{module,ownerType,purpose}
+ * as {value,count}[]; row canArchive/canRestore are projected hints.
+ * DTO names are provisional, expected authority and filter semantics are contractual.
+ * No hooks: test.skip collection never opens local services.
+ */
+import { it as test, expect } from "vitest";
+import {
+  createRoleAwarePhaseAFixture, cleanupRoleAwarePhaseAFixture, makeAuthedServerClient, makeAnonServerClient,
+  adminInsertCustomer, adminInsertContact, adminInsertFacility, adminInsertCalculation,
+  adminInsertFile, adminInsertFileLink, adminUploadStorageObject, adminInsertQuote, adminInsertQuoteVersion,
+  type RoleAwarePhaseAFixture, type TestServerClient, type FileLinkSeed,
+} from "../../factories/tenants";
+import { adminExec, adminQuery } from "../../factories/admin-sql";
+import { isLocalStackReachable, isLocalStorageReachable } from "../../support/test-env";
+type Target = { fileId: string; linkId: string; ownerId: string; path: string };
+async function fixture(run: (fx: RoleAwarePhaseAFixture, client: TestServerClient) => Promise<void>) {
+  if (!(await isLocalStackReachable()) || !(await isLocalStorageReachable())) throw new Error("Required local DB/Auth/Storage unavailable after activation");
+  const fx = await createRoleAwarePhaseAFixture();
+  try { await run(fx, await makeAuthedServerClient(fx.base.adminA)); }
+  finally { await cleanupRoleAwarePhaseAFixture(fx); }
+}
+async function seed(fx: RoleAwarePhaseAFixture, options: { name?: string; mime?: string; kind?: "customer" | "contact" | "calculation"; time?: string; tenant?: string; archivedSource?: boolean } = {}): Promise<Target> {
+  const tenant = options.tenant ?? fx.base.tenantA.id;
+  const customer = await adminInsertCustomer({ tenant_id: tenant, customer_type: "company", display_name: options.archivedSource ? "Hidden filter owner marker" : "Authorized owner label secret-search-marker" });
+  let ownerId = customer; const kind = options.kind ?? "customer";
+  if (kind === "contact") { const facility = await adminInsertFacility({ tenant_id: tenant, customer_id: customer, name: "Filter facility" }); ownerId = await adminInsertContact({ tenant_id: tenant, customer_id: customer, facility_id: facility, name: "Filter contact" }); }
+  if (kind === "calculation") ownerId = await adminInsertCalculation({ tenant_id: tenant, customer_id: customer, title: "Filter calculation" });
+  const id = crypto.randomUUID();
+  const fileId = await adminInsertFile({ tenant_id: tenant, id, object_path: `${tenant}/${id}/filter-fixture`, lifecycle_state: "linked", display_name: options.name ?? "Elcentral.pdf", mime_type: options.mime ?? "application/pdf" });
+  const linkId = await adminInsertFileLink({ tenant_id: tenant, file_id: fileId, owner_type: kind as FileLinkSeed["owner_type"], owner_id: ownerId, purpose: kind === "calculation" ? "calculation_attachment" : "crm_document" });
+  const [file] = await adminQuery<{ object_path: string }>("select object_path from public.files where id=$1", [fileId]);
+  await adminUploadStorageObject({ bucket: "tenant-files", objectPath: file.object_path, body: new TextEncoder().encode("content-secret-search-marker") });
+  if (options.time) await adminExec("update public.file_links set created_at=$2 where id=$1", [linkId,options.time]);
+  if (options.archivedSource) await adminExec("update public.customers set archived_at=now() where id=$1", [customer]);
+  return { fileId,linkId,ownerId,path:file.object_path };
+}
+async function read(client: TestServerClient, filters: Record<string, unknown> = {}, cursor?: string) {
+  const path = "@/server/read-models/documents"; const { readDocuments } = await import(path);
+  return readDocuments({ client, filters, cursor });
+}
+async function page(client: TestServerClient, filters: Record<string, unknown> = {}, cursor?: string) {
+  const result = await read(client,filters,cursor); expect(result.ok).toBe(true);
+  if (!result.ok) throw new Error(result.code);
+  return result.data.descriptor;
+}
+async function collect(client: TestServerClient, filters: Record<string, unknown> = {}) {
+  const rows: { linkId: string; fileId: string; createdAt: string }[] = []; const seen = new Set<string>();
+  let cursor: string | undefined;
+  do { const d = await page(client,filters,cursor); rows.push(...d.data.rows); cursor=d.data.nextCursor??undefined;
+    if (cursor) { expect(seen.has(cursor)).toBe(false); seen.add(cursor); if(seen.size>100) throw new Error("Unbounded cursor traversal"); }
+  } while(cursor);
+  return rows;
+}
+test("[P0][AC1] real RLS precedes literal name/MIME AND filters dates results counts and facets", async () => fixture(async (fx,client) => {
+  const match = await seed(fx,{ name:"Central %_ [A].PDF",time:"2026-03-29T01:00:00Z" });
+  await seed(fx,{ name:"Central XX A.PDF",time:"2026-03-29T01:00:00Z" });
+  await seed(fx,{ name:"Central %_ [A].PDF",kind:"contact",time:"2026-03-29T01:00:00Z" });
+  await seed(fx,{ name:"Central %_ [A].PDF",time:"2026-03-28T22:59:59Z" });
+  const hidden = await seed(fx,{ name:"Central %_ [A].PDF",archivedSource:true,time:"2026-03-29T01:00:00Z" });
+  const foreign = await seed(fx,{ name:"Central %_ [A].PDF",tenant:fx.base.tenantB.id,time:"2026-03-29T01:00:00Z" });
+  const d = await page(client,{ q:" %_ [a] ",module:"crm",ownerType:"customer",purpose:"crm_document",from:"2026-03-29",to:"2026-03-29",mode:"active" });
+  expect(d.data.rows.map((r:{linkId:string})=>r.linkId)).toEqual([match.linkId]); expect(d.data.total).toBe(1);
+  expect(JSON.stringify(d)).not.toContain(hidden.linkId); expect(JSON.stringify(d)).not.toContain(foreign.linkId);
+  expect(JSON.stringify(d)).not.toContain("Hidden filter owner marker");
+  const mime = await page(client,{ q:"APPLICATION/PDF",from:"2026-03-29",to:"2026-03-29",ownerType:"customer" }); expect(mime.data.total).toBe(2);
+}));
+test("[P0][AC1] search excludes owner PII and file contents despite matching owner label or real stored bytes", async () => fixture(async (fx,client) => {
+  await seed(fx);
+  for (const q of ["secret-search-marker","content-secret-search-marker"]) {
+    const d=await page(client,{q}); expect(d.data.rows).toEqual([]); expect(d.data.total).toBe(0);
+  }
+}));
+test("[P0][AC1] invalid unknown pending combinations and reversed dates never trigger a global unfiltered projection", async () => fixture(async (fx,client) => {
+  await seed(fx);
+  for (const filters of [{mode:"deleted"},{module:"ai"},{ownerType:"knx_project"},{purpose:"future_purpose"},{module:"jobs",ownerType:"customer"},{from:"2026-02-29"},{from:"2026-10-26",to:"2026-10-25"}]) {
+    const result=await read(client,filters); expect(result.ok).toBe(false); expect(result.code).toBe("VALIDATION_FAILED"); expect(result).not.toHaveProperty("data");
+    expect(JSON.stringify(result)).not.toMatch(/Elcentral|Hidden|knx_project|future_purpose/);
+  }
+}));
+test("[P1][AC1] facets exclude their own value include other constraints retain selected zero and never count denied sources", async () => fixture(async (fx,client) => {
+  await seed(fx,{name:"Elcentral.pdf"}); await seed(fx,{name:"Elcentral.png",kind:"contact"}); await seed(fx,{name:"Elcentral calculation.pdf",kind:"calculation"});
+  await seed(fx,{name:"Other.pdf",kind:"contact"}); await seed(fx,{name:"Elcentral hidden.pdf",archivedSource:true});
+  const d=await page(client,{q:"elcentral",module:"crm",ownerType:"customer"});
+  expect(d.data.total).toBe(1);
+  expect(d.data.facets.ownerType).toEqual(expect.arrayContaining([{value:"customer",count:1},{value:"contact",count:1}]));
+  expect(d.data.facets.ownerType).not.toContainEqual(expect.objectContaining({value:"calculation"}));
+  expect(d.data.facets.module).toContainEqual({value:"crm",count:1});
+  const zero=await page(client,{q:"does-not-match",ownerType:"customer"});
+  expect(zero.data.total).toBe(0); expect(zero.data.rows).toEqual([]);
+  expect(zero.data.facets.ownerType).toContainEqual({value:"customer",count:0});
+  expect(JSON.stringify(d.data.facets)).not.toMatch(/Hidden|knx|pending/);
+}));
+test("[P1][AC1] facets and counts use chosen lifecycle mode and do not change between pages", async () => fixture(async (fx,client) => {
+  const active=await seed(fx); const archived=await seed(fx,{kind:"calculation"});
+  await adminExec("update public.files set lifecycle_state='archived',archived_at=now() where id=$1",[archived.fileId]);
+  const a=await page(client,{mode:"active"}); const b=await page(client,{mode:"archived"});
+  expect(a.data.rows.map((r:{linkId:string})=>r.linkId)).toEqual([active.linkId]);
+  expect(a.data.total).toBe(1); expect(a.data.facets.ownerType).not.toContainEqual(expect.objectContaining({value:"calculation"}));
+  expect(b.data.rows.map((r:{linkId:string})=>r.linkId)).toEqual([archived.linkId]); expect(b.data.total).toBe(1);
+  expect(JSON.stringify(b.data)).not.toMatch(/signedUrl|object_path|tenant-files|https?:/);
+}));
+test("[P0][AC1] stable50-row keyset traverses beyond1100 denied candidates and equal timestamps without skips duplicates or hidden cursor anchors", async () => fixture(async (fx,client) => {
+  const target=await seed(fx); const hidden=await seed(fx,{archivedSource:true});
+  const batch=await adminQuery<{id:string;owner_id:string}>("insert into public.file_links(tenant_id,file_id,owner_type,owner_id,purpose,created_at) select $1,$2,'customer',case when i<=1100 then $3::uuid else $4::uuid end,'crm_document',case when i<=1100 then '2030-01-02T00:00:00Z'::timestamptz else '2030-01-01T00:00:00Z'::timestamptz end from generate_series(1,1225) i returning id,owner_id",[fx.base.tenantA.id,target.fileId,hidden.ownerId,target.ownerId]);
+  const first=await page(client,{q:"elcentral",mode:"active"}); expect(first.data.rows).toHaveLength(50); expect(first.data.total).toBe(126);
+  const second=await page(client,{q:"elcentral",mode:"active"},first.data.nextCursor); expect(second.data.facets).toEqual(first.data.facets); expect(second.data.total).toBe(first.data.total);
+  const rows=await collect(client,{q:"elcentral",mode:"active"});
+  const allowed=batch.filter(r=>r.owner_id===target.ownerId).map(r=>r.id);
+  const order=await adminQuery<{id:string}>("select id from public.file_links where id=any($1::uuid[]) order by created_at desc,id desc",[allowed]);
+  expect(rows.filter(r=>allowed.includes(r.linkId)).map(r=>r.linkId)).toEqual(order.map(r=>r.id));
+  expect(new Set(rows.map(r=>r.linkId)).size).toBe(rows.length); expect(rows).toHaveLength(126);
+  for(const row of batch.filter(r=>r.owner_id===hidden.ownerId)) expect(JSON.stringify(first)).not.toContain(row.id);
+}),60_000);
+test("[P0][AC1] cursor filter mismatch altered or revoked authorized anchor produces generic refresh without hidden details", async () => fixture(async (fx,client) => {
+  const target=await seed(fx);
+  await adminQuery("insert into public.file_links(tenant_id,file_id,owner_type,owner_id,purpose,created_at) select $1,$2,'customer',$3,'crm_document','2030-01-01T00:00:00Z'::timestamptz from generate_series(1,55)",[fx.base.tenantA.id,target.fileId,target.ownerId]);
+  const filters={q:"elcentral",mode:"active"}; const first=await page(client,filters); expect(first.data.nextCursor).not.toBeNull();
+  const mismatched=await read(client,{...filters,mode:"archived"},first.data.nextCursor); expect(mismatched.ok).toBe(false); expect(mismatched).not.toHaveProperty("data");
+  const anchor=first.data.rows[49].linkId;
+  await adminExec("update public.file_links set created_at='2031-01-01T00:00:00Z' where id=$1",[anchor]);
+  const changed=await read(client,filters,first.data.nextCursor); expect(changed.ok).toBe(false); expect(changed).not.toHaveProperty("data"); expect(JSON.stringify(changed)).not.toContain(anchor);
+  const fresh=await page(client,filters); await adminExec("update public.customers set archived_at=now() where id=$1",[target.ownerId]);
+  const revoked=await read(client,filters,fresh.data.nextCursor); expect(revoked.ok).toBe(false); expect(revoked).not.toHaveProperty("data"); expect(JSON.stringify(revoked)).not.toContain(target.ownerId);
+}));
+test("[P0][AC1,3] no auth-bearing cache survives source or membership revocation with same token", async () => fixture(async (fx) => {
+  const target=await seed(fx); const client=await makeAuthedServerClient(fx.users.projektledare);
+  expect((await page(client)).data.total).toBe(1);
+  await adminExec("update public.customers set archived_at=now() where id=$1",[target.ownerId]);
+  expect((await page(client)).data.total).toBe(0);
+  await adminExec("update public.tenant_memberships set status='disabled' where user_id=$1",[fx.users.projektledare.id]);
+  const denied=await read(client); expect(denied.ok).toBe(false); expect(denied).not.toHaveProperty("data");
+}));
+test("[P0][AC1] anonymous membershipless and Montor Sales Economy receive no rows facets counts labels in either mode", async () => fixture(async (fx) => {
+  await seed(fx);
+  const clients=[await makeAnonServerClient(),await makeAuthedServerClient(fx.base.orphanUser)];
+  for(const role of ["montor","saljare","ekonomi"] as const) clients.push(await makeAuthedServerClient(fx.users[role]));
+  for(const client of clients) for(const mode of ["active","archived"]) {
+    const denied=await read(client,{mode}); expect(denied.ok).toBe(false); expect(denied).not.toHaveProperty("data"); expect(JSON.stringify(denied)).not.toMatch(/Elcentral|Authorized owner|facets|total/);
+  }
+}));
+test("[P0][AC2,5] archived selected link stays metadata-only even with another live same-file context and cannot be restored or signed", async () => fixture(async (fx,client) => {
+  const target=await seed(fx); const live=await adminInsertFileLink({tenant_id:fx.base.tenantA.id,file_id:target.fileId,owner_type:"customer",owner_id:target.ownerId});
+  await adminExec("update public.file_links set archived_at=now() where id=$1",[target.linkId]);
+  const active=await page(client,{mode:"active"}); expect(active.data.rows.map((r:{linkId:string})=>r.linkId)).toEqual([live]);
+  const archived=await page(client,{mode:"archived"}); const row=archived.data.rows.find((r:{linkId:string})=>r.linkId===target.linkId);
+  expect(row).toBeDefined(); expect(row.canRestore).toBe(false); expect(row.canArchive).toBe(false);
+  expect(JSON.stringify(row)).not.toMatch(/signedUrl|object_path|tenant-files|https?:/);
+  const commandPath="@/server/commands/documents/signed-access"; const {createDocumentSignedAccess}=await import(commandPath);
+  const {runCommand}=await import("@/server/commands/envelope");
+  const signing=await runCommand(createDocumentSignedAccess,{client:client as never,input:{link_id:target.linkId,file_id:target.fileId},correlationId:crypto.randomUUID()});
+  expect(signing.ok).toBe(false); expect(signing).not.toHaveProperty("data");
+  const restored=await client.rpc("restore_document_with_audit",{p_tenant_id:fx.base.tenantA.id,p_actor_user_id:fx.base.adminA.id,p_link_id:target.linkId,p_file_id:target.fileId,p_correlation_id:crypto.randomUUID()});
+  expect(restored.error).not.toBeNull();
+  expect((await adminQuery("select archived_at from public.file_links where id=$1",[target.linkId]))[0].archived_at).not.toBeNull();
+}));
+test("[P0][AC3,5] visible metadata action hints cannot promise archive with hidden secondary source or restore legacy unknown origin", async () => fixture(async (fx,client) => {
+  const target=await seed(fx); const hidden=await seed(fx,{archivedSource:true});
+  await adminInsertFileLink({tenant_id:fx.base.tenantA.id,file_id:target.fileId,owner_type:"customer",owner_id:hidden.ownerId});
+  const visible=(await page(client)).data.rows.find((r:{linkId:string})=>r.linkId===target.linkId);
+  expect(visible).toBeDefined(); expect(visible.canArchive).toBe(false);
+  expect(JSON.stringify(visible)).not.toContain(hidden.ownerId); expect(JSON.stringify(visible)).not.toContain("Hidden filter owner marker");
+  const legacy=await adminInsertFile({tenant_id:fx.base.tenantA.id,lifecycle_state:"archived"});
+  const legacyLink=await adminInsertFileLink({tenant_id:fx.base.tenantA.id,file_id:legacy,owner_type:"customer",owner_id:target.ownerId});
+  const archived=(await page(client,{mode:"archived"})).data.rows.find((r:{linkId:string})=>r.linkId===legacyLink);
+  expect(archived).toBeDefined(); expect(archived.canRestore).toBe(false);
+}));
+
+/** Fault only the info transport of a real authenticated client; all DB/Auth/Storage authority remains real. */
+function infoFault(client: TestServerClient, run: (path: string, actual: () => Promise<unknown>) => Promise<unknown>): TestServerClient {
+  return new Proxy(client, { get(target, property) {
+    if (property === "storage") return { from(bucket: string) { const actual = target.storage.from(bucket); return new Proxy(actual, { get(object, field) {
+      if (field === "info") return (path: string) => run(path, () => object.info(path));
+      const value = Reflect.get(object, field); return typeof value === "function" ? value.bind(object) : value;
+    } }); } };
+    const value = Reflect.get(target, property); return typeof value === "function" ? value.bind(target) : value;
+  } });
+}
+test("[P1][AC1,3] complete candidate metadata narrows before unique returned-page Storage checks", async () => fixture(async (fx, client) => {
+  const target = await seed(fx, { name: "Page-bound exact match.png", time: "2035-01-01T00:00:00Z" });
+  await adminQuery("with inserted as (insert into public.files(tenant_id,bucket_id,object_path,display_name,lifecycle_state) select $1::uuid,'tenant-files',$1::uuid::text || '/' || gen_random_uuid()::text || '/page','Page-bound other.png','linked' from generate_series(1,55) returning id) insert into public.file_links(tenant_id,file_id,owner_type,owner_id,purpose,created_at) select $1::uuid,id,'customer',$2::uuid,'crm_document','2030-01-01' from inserted", [fx.base.tenantA.id, target.ownerId]);
+  await adminInsertFileLink({ tenant_id: fx.base.tenantA.id, file_id: target.fileId, owner_type: "customer", owner_id: target.ownerId, purpose: "crm_document" });
+  await adminExec("update public.file_links set created_at='2035-01-01' where file_id=$1", [target.fileId]);
+  const checks: string[] = []; const wrapped = infoFault(client, async (path, actual) => { checks.push(path); return actual(); });
+  const narrow = await page(wrapped, { q: "Page-bound exact", mode: "active" });
+  expect(narrow.data.total).toBe(2); expect(narrow.data.rows).toHaveLength(2); expect(checks).toEqual([target.path]);
+  checks.length = 0; const broad = await page(wrapped, { q: "Page-bound", mode: "active" });
+  expect(broad.data.total).toBe(57); expect(broad.data.rows).toHaveLength(50); expect(broad.data.nextCursor).not.toBeNull();
+  expect(checks.length).toBe(49); expect(new Set(checks).size).toBe(49);
+}), 60_000);
+test("[P0][AC1,3] excluded and off-page Storage503 cannot abort matching metadata projection", async () => fixture(async (fx, client) => {
+  const match = await seed(fx, { name: "Matching page.png", time: "2035-01-01T00:00:00Z" });
+  const outage = await seed(fx, { name: "Other outage.png", time: "2020-01-01T00:00:00Z" });
+  await adminQuery("insert into public.file_links(tenant_id,file_id,owner_type,owner_id,purpose,created_at) select $1,$2,'customer',$3,'crm_document','2030-01-01' from generate_series(1,55)", [fx.base.tenantA.id, match.fileId, match.ownerId]);
+  const checks: string[] = []; const wrapped = infoFault(client, async (path, actual) => { checks.push(path); return path === outage.path ? { data: null, error: { status: 503, message: "Storage unavailable" } } : actual(); });
+  const narrow = await page(wrapped, { q: "Matching page" }); expect(narrow.data.total).toBe(56); expect(narrow.data.rows).toHaveLength(50); expect(checks).toEqual([match.path]);
+  checks.length = 0; const broad = await page(wrapped); expect(broad.data.total).toBe(57); expect(broad.data.rows).toHaveLength(50); expect(checks).toEqual([match.path]);
+}));
+test("[P0][AC3,5] returned-row permanent Storage.info404 preserves metadata with disabled lifecycle hints", async () => fixture(async (fx, client) => {
+  const target = await seed(fx); const wrapped = infoFault(client, async () => ({ data: null, error: { status: 404, message: "Object not found" } }));
+  const data = await page(wrapped); expect(data.data.rows).toHaveLength(1); expect(data.data.rows[0]).toMatchObject({ linkId: target.linkId, canArchive: false, canRestore: false }); expect(data.data.total).toBe(1);
+}));
+test("[P0][AC3] returned-row transient Storage.info503 produces explicit SERVER_ERROR and fresh retry", async () => fixture(async (fx, client) => {
+  const target = await seed(fx); const wrapped = infoFault(client, async () => ({ data: null, error: { status: 503, message: "Temporary outage" } }));
+  const result = await read(wrapped); expect(result).toMatchObject({ ok: false, code: "SERVER_ERROR" }); expect(result).not.toHaveProperty("data"); expect(result.message).toMatch(/Försök igen/);
+  const retried = await page(client); expect(retried.data.rows[0]).toMatchObject({ linkId: target.linkId, canArchive: true });
+}));
+test("[P0][AC1,6] archived current quote PDF Storage503 cannot abort active rows counts or facets but relevant archived read fails", async () => fixture(async (fx, client) => {
+  const active = await seed(fx, { name: "current-quote-active.png" });
+  const calculation = await adminInsertCalculation({ tenant_id: fx.base.tenantA.id, customer_id: active.ownerId });
+  const quote = await adminInsertQuote({ tenant_id: fx.base.tenantA.id, customer_id: active.ownerId });
+  const version = await adminInsertQuoteVersion({ tenant_id: fx.base.tenantA.id, quote_id: quote, calculation_id: calculation });
+  const { establishCurrentQuotePdf, quotePdfSendAttestation } = await import("../../support/quote-pdf");
+  const current = await establishCurrentQuotePdf({ client, tenantId: fx.base.tenantA.id, quoteVersionId: version, actorUserId: fx.base.adminA.id, occurredAt: new Date().toISOString() });
+  const [file] = await adminQuery<{ object_path: string }>("select object_path from public.files where id=$1", [current.fileId]);
+  const [link] = await adminQuery<{ id: string }>("select id from public.file_links where file_id=$1 and owner_type='quote_version' and owner_id=$2 and purpose='quote_pdf'", [current.fileId, version]);
+  const correlation = crypto.randomUUID();
+  const authority = await client.rpc("authorize_quote_final_send", { p_tenant_id: fx.base.tenantA.id, p_quote_version_id: version, p_actor_user_id: fx.base.adminA.id, p_correlation_id: correlation });
+  expect(authority.error).toBeNull(); expect(typeof authority.data).toBe("string");
+  const attestation = await quotePdfSendAttestation({ client, tenantId: fx.base.tenantA.id, quoteVersionId: version, actorUserId: fx.base.adminA.id, correlationId: correlation });
+  const sent = await client.rpc("mark_quote_version_sent", { p_tenant_id: fx.base.tenantA.id, p_quote_version_id: version, p_authorization_id: authority.data as string, p_sent_at: new Date().toISOString(), p_channel: null, p_reference: null, p_actor_user_id: fx.base.adminA.id, p_correlation_id: correlation, ...attestation });
+  expect(sent.error).toBeNull();
+  const archived = await client.rpc("archive_document_with_audit", { p_tenant_id: fx.base.tenantA.id, p_actor_user_id: fx.base.adminA.id, p_link_id: link.id, p_file_id: current.fileId, p_correlation_id: crypto.randomUUID(), p_reason: null });
+  expect(archived.error).toBeNull();
+  const [source] = await adminQuery("select archived_at,pdf_file_id,pdf_status,pdf_content_fingerprint,pdf_render_file_id from public.quote_versions where id=$1", [version]);
+  expect(source).toMatchObject({ archived_at: null, pdf_file_id: current.fileId, pdf_status: "generated", pdf_render_file_id: null });
+  expect(source.pdf_content_fingerprint).toMatch(/^[0-9a-f]{64}$/);
+  const relevant = await page(client, { q: "current-quote", mode: "archived" });
+  expect(relevant.data.rows).toHaveLength(1); expect(relevant.data.rows[0]).toMatchObject({ linkId: link.id, fileId: current.fileId, purpose: "quote_pdf", archived: true, canRestore: false });
+  const checks: string[] = [];
+  const wrapped = infoFault(client, async (path, actual) => { checks.push(path); return path === file.object_path ? { data: null, error: { status: 503, message: "Archived artifact Storage unavailable" } } : actual(); });
+  const projected = await page(wrapped, { q: "current-quote", mode: "active" });
+  expect(projected.data.rows).toHaveLength(1); expect(projected.data.rows[0]).toMatchObject({ linkId: active.linkId, fileId: active.fileId, canArchive: true });
+  expect(projected.data.total).toBe(1);
+  expect(projected.data.facets).toEqual({ module: [{ value: "crm", count: 1 }], ownerType: [{ value: "customer", count: 1 }], purpose: [{ value: "crm_document", count: 1 }] });
+  expect(checks).toEqual([active.path]); expect(checks).not.toContain(file.object_path);
+  checks.length = 0;
+  const failed = await read(wrapped, { q: "current-quote", mode: "archived" });
+  expect(failed).toMatchObject({ ok: false, code: "SERVER_ERROR" }); expect(failed).not.toHaveProperty("data"); expect(failed.message).toMatch(/Försök igen/);
+  expect(checks).toEqual([file.object_path]);
+  expect((await adminQuery("select archived_at,pdf_file_id,pdf_status,pdf_content_fingerprint,pdf_render_file_id from public.quote_versions where id=$1", [version]))[0]).toEqual(source);
+}));
