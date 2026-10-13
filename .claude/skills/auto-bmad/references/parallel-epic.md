@@ -204,6 +204,22 @@ Require every planned required story verified integrated. Run the normal E8
 trace/NFR/test-review, deferred reconcile, archive and retrospective gates once
 through delegates. Write coordinator report/state and commit, run final checks for
 that final candidate commit, and pass exact-head epic gate evidence to `finalize`.
+For the owner's specifically identified Epic 20 inherited skips, a distinct
+`finalize-exceptions` maintenance operation is supported only under
+`docs/process/parallel-auto-bmad-contract.md`'s quiesced finalization contract.
+This is never automatic E_final routing. Ordinary `finalize` retains zero skips.
+Use separately committed/reviewed Sol High tooling after its CI pass, only from a
+clean separate maintenance checkout; retain the live workflow pin. Freeze the
+current plan/candidate, inspect and stop the complete writer inventory including
+subsequent repair authors/verifiers, bind the direct human decision and independent
+High adoption review, and retain all 40 successful native receipts with exact
+physical skip identities/raw hashes. Only the one recovery-loader and three Story
+10.5 cases qualify, and the exact recovery test must separately execute and pass.
+All Documents and other required gates remain strict; no failed/aborted/stale
+receipt qualifies. Skipped bodies retain actual counts and no coverage credit.
+Atomic audited adoption/finalization changes no claims, plan pins or Git history;
+never replace it with direct SQLite changes or install it into a live workflow.
+
 The helper's finalization does not merge a PR or deploy. Continue E_final's existing
 PR/CI/merge authorization rules; report CI failures honestly. Bookkeeping-only
 commits still require evidence against the release candidate according to the plan.

@@ -117,3 +117,30 @@ On Windows, use `python -X utf8` for helper help/output when the shell encoding 
 Technical procedure:
 [parallel epic protocol](../../.agents/skills/auto-bmad/references/parallel-epic.md)
 and the [CLI and evidence contract](parallel-auto-bmad-contract.md).
+
+
+## Reviewed finalization of identified inherited skips
+
+The owner-authorized `finalize-exceptions` maintenance command supports only the
+one isolated physical recovery-loader skip and the three Story 10.5 retry-safety
+skips listed in the [exact finalization contract](parallel-auto-bmad-contract.md#quiesced-inherited-skip-finalization-maintenance-only).
+It preserves real skipped counts and gives those bodies no coverage credit.
+Every Documents gate and all other required gates must pass with zero skips;
+failed, aborted and stale receipts remain failures.
+
+After the maintenance change has independent Sol High review and passing CI, freeze
+the clean final candidate and stop the complete writer inventory, including later
+repair authors/verifiers. Retain exact file/full-test identities and raw framework
+JSON/native receipts for all 40 gates; separately execute the physical recovery
+proof. Bind the reviewed tooling commit/hash separately from the live workflow pin,
+human decision and reason, current plan hash, exact candidate and independent High
+adoption review. Invoke only from the clean separate maintenance checkout using the
+existing coordinator identity. Do not upgrade live helpers or edit SQLite manually.
+An honest CI merge-checkout receipt names its actual commit and identical Git tree;
+it must not pretend it ran from the literal PR branch checkout.
+
+Save the full adoption response and retain source receipts. Identical uncertain
+retries reuse the exact token/payload; changed payloads require fresh review and
+cannot replace completed finalization. The helper atomically audits adoption and
+finalizes, but does not publish, merge or claim that skipped tests executed.
+Implementation/synthetic verification alone does not apply this operation live.
