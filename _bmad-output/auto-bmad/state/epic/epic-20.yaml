@@ -1,0 +1,120 @@
+# auto-bmad per-story state — written by scripts/state_update.py (full stable schema;
+# see references/state-and-resume.md). Prose belongs in reports/{key}.md, not here.
+story_key: epic-20
+epic_num: 20
+story_num: null
+story_suffix: ""
+story_source: sprint
+spec_folder: null
+story_id: null
+branch: codex/documents-resume-admission-2026-10-09
+status: in-progress
+updated_at: "2026-10-13T16:50:05Z"
+started_at: "2026-10-09T13:24:56Z"
+completed_at: null
+active_seconds: 7870
+timing_anchor: null
+is_first_in_epic: false
+is_last_in_epic: false
+git_mode: remote
+base_branch: main
+selected_phase: tea_epic_audit
+selected_role: tea-delegate
+selected_profile: standard
+selected_model: gpt-6.1-sol
+selected_effort: high
+selected_host: codex
+selected_tier: subagents
+selected_route: subagent
+escalation_reason: Owner-approved explicit inherited-skip adoption and measured suite execution budgets require integrity authoring and independent High review.
+routing_ledger:
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Epic trace gate assesses authorization, RLS and transactional integrity evidence.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Bounded trace remediation iteration1: same-token tenant membership removal authorization regression.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Re-trace actual P0 membership removal coverage after bounded iteration1.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Epic NFR audit evaluates authorization/RLS and transactional integrity evidence.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic_audit\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Test-quality audit includes authorization/RLS, transaction and resource-isolation tests.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic_audit\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive authorization denial and transactional integrity test-quality remediation.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic_audit\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"low\",\"escalation_reason\":\"\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"retrospective\",\"profile\":\"default\",\"role\":\"retrospective-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Validate source-authorized aggregation completeness under actual PostgREST row cap and tenant-safe pilot evidence.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic_audit\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Final exact-candidate release verification includes authorization, RLS, signed access, storage recovery and transactional integrity.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic_audit\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Bounded failed-CI fixture efficiency repair preserving fresh tenant authorization fixtures and all assertions; independent High narrow review.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic_audit\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Owner-approved explicit inherited-skip adoption and measured suite execution budgets require integrity authoring and independent High review.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic_audit\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+tea_risk: null
+tea_selected: []
+tea_rationale: null
+epic_story_count: 3
+stories_after_in_epic: null
+completed_phases: [0, 1, 2, 5, 81, 82]
+spec_path: null
+spec_approved: false
+build:
+  status: null
+  blocking_condition: null
+  followup_review_recommended: false
+  review_loop_iteration: 0
+  deferred_count: 0
+  warnings: []
+followup_passes: 0
+hitl_halt: null
+review_unverified: true
+story_trace: null
+legacy_review_resume: false
+legacy_review_iteration: null
+legacy_review_loop_done: false
+legacy_external_review_iterations: null
+legacy_convergence_unverified: false
+legacy_artifact_path: null
+commits: []
+phase8_steps:
+  trace_gate: done
+  nfr: done
+  test_review: done
+  reconcile: done
+  archive: done
+  retro: done
+gate_decision: PASS
+gate_iterations: 1
+deferred_work_archived: 4
+retro:
+  doc: "_bmad-output/implementation-artifacts/epic-20-retro-2026-10-13.md"
+  verdict: rejected
+  open_action_items: 5
+bmad_status_flipped_at: null
+pr_url: "https://github.com/rthunborg/Kopplas/pull/97"
+ci_run_url: "https://github.com/rthunborg/Kopplas/actions/runs/38421905618"
+ci_status: failed
+pr_merged: false
+merge_method: null
+merge_commit: null
+branch_deleted: false
+open_questions: []
+deferred_work: []
+blockers:
+  - "Reviewed adoption and implementation of explicit inherited-skip exception remains pending; actual counts must remain unchanged."
+  - Measured suite-budget update and fresh final-candidate required checks/CI remain pending.
+overrides:
+  owner_authorized: true
+  documents_oracle_disposition: "Requirements-based; no exact legacy comparison; zero observations"
+  retain_branches: true
+  no_deployment: true
+  early_epic_checkpoint: "PR93 merged; approved three-spec plan; E15 explicit shared-domain release"
+  suite_budget_disposition: 2026-10-13 human explicitly authorizes measured independently reviewed suite-budget update retaining every test and all product performance limits
+  inherited_skip_disposition: "2026-10-13 human explicitly permits reviewed exception for identified inherited skips, retaining actual counts and no coverage credit"
+constraints: []
+parallel_run_id: documents-e20-readiness-2026-10-09
+epic_slug: documents-center
+stories_skipped: []
+stories_landed:
+  - 20-1-documents-activation-and-source-authorized-aggregation
+  - 20-2-search-filters-preview-and-archive-restore
+  - 20-3-entity-panel-links-and-contextual-navigation
+active_story: null
+epic_test_design:
+  status: complete
+  path: "_bmad-output/test-artifacts/test-design-epic-20.md"
+  risks: 16
+  high_risks: 9
+  scenario_families: 56
+  acceptance_criteria: 25
+  runtime_tests_executed: false

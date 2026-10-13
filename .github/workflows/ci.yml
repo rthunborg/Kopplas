@@ -46,6 +46,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
 
       # pnpm BEFORE setup-node: setup-node's `cache: pnpm` needs pnpm on PATH.
       # action-setup reads the version from package.json "packageManager"
@@ -132,6 +134,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
@@ -188,14 +192,24 @@ jobs:
 
       # Stage 8: DB-backed integration + cross-tenant RLS-negative suites.
       - name: Integration, RLS, and Epic 11 pilot performance gates (local stack)
-        # Starts after the stack/reset work, so the approved five-minute DB
-        # budget measures the existing test:int command and the explicit NFR
+        # Fixed 420s DB+pilot ceiling derives from the complete 326.38s run;
+        # round 1.25x that measurement upward to a whole-minute bound.
+        # Starts after stack/reset, measuring test:int and the explicit NFR
         # probe, rather than installs or Supabase startup/migration time. Keep
         # test:int visible as the historic Phase A gate; this Epic 11 probe is
         # deliberately not represented as a Phase A package-script result.
         run: >-
-          node scripts/verify/run-with-time-budget.mjs --label "Database, RLS, and pilot performance tests" --max-seconds 300 -- bash -c
-          'pnpm run test:int && node --experimental-strip-types --import ./tests/support/register.mjs scripts/nfr/epic-11-r1108-baseline.ts'
+          node scripts/verify/run-with-time-budget.mjs --label "Database, RLS, and pilot performance tests" --max-seconds 420 -- bash -c
+          'pnpm run test:int --reporter=default --reporter=github-actions --reporter=json --outputFile=test-results/full-integration.json && node --experimental-strip-types --import ./tests/support/register.mjs scripts/nfr/epic-11-r1108-baseline.ts'
+
+      - name: Upload native full integration JSON
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: native-full-integration
+          path: test-results/full-integration.json
+          retention-days: 7
+          if-no-files-found: error
 
       - name: Stop local Supabase stack
         if: always()
@@ -214,6 +228,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
@@ -346,8 +362,17 @@ jobs:
           source ops/recovery/.env
           set +a
           gateway_port="$(cat recovery/source/gateway-port.txt)"
-          ISOLATED_RECOVERY_STORAGE_PROOF=1 RECOVERY_SUPABASE_URL="http://127.0.0.1:${gateway_port}" RECOVERY_SUPABASE_SERVICE_ROLE_KEY="$SERVICE_ROLE_KEY" RECOVERY_STORAGE_PROOF_FIXTURE=recovery/synthetic-storage/storage-fixture.json RECOVERY_STORAGE_PROOF_BEFORE_ROWS=recovery/synthetic-storage/rows-before-loader.json pnpm exec vitest run tests/integration/ops/recovery-storage-immutability.int.test.ts
+          ISOLATED_RECOVERY_STORAGE_PROOF=1 RECOVERY_SUPABASE_URL="http://127.0.0.1:${gateway_port}" RECOVERY_SUPABASE_SERVICE_ROLE_KEY="$SERVICE_ROLE_KEY" RECOVERY_STORAGE_PROOF_FIXTURE=recovery/synthetic-storage/storage-fixture.json RECOVERY_STORAGE_PROOF_BEFORE_ROWS=recovery/synthetic-storage/rows-before-loader.json pnpm exec vitest run tests/integration/ops/recovery-storage-immutability.int.test.ts --reporter=default --reporter=github-actions --reporter=json --outputFile=test-results/isolated-storage-recovery.json
           unset SERVICE_ROLE_KEY ANON_KEY JWT_SECRET POSTGRES_PASSWORD
+
+      - name: Upload native isolated recovery JSON
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: native-isolated-storage-recovery
+          path: test-results/isolated-storage-recovery.json
+          retention-days: 7
+          if-no-files-found: error
 
       - name: Remove synthetic recovery resources
         if: always()
@@ -375,6 +400,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
@@ -432,8 +459,17 @@ jobs:
       - name: E2E tests (Playwright)
         # The configured reporter sums Playwright test attempts only. Its own
         # production build/web-server bootstrap remains outside the approved
-        # five-minute browser execution budget.
+        # 800-second general-browser attempt-sum execution budget.
         run: pnpm run test:e2e
+
+      - name: Upload native general browser JSON
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: native-general-browser
+          path: test-results/general-browser.json
+          retention-days: 7
+          if-no-files-found: error
 
       - name: Upload Playwright report
         if: ${{ !cancelled() }}
@@ -464,6 +500,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
@@ -523,6 +561,15 @@ jobs:
         # production build/web-server bootstrap remains outside the approved
         # five-minute browser execution budget.
         run: pnpm exec playwright test --config tests/e2e/dashboard/playwright.ci.config.ts
+
+      - name: Upload native dashboard browser JSON
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: native-dashboard-browser
+          path: test-results/dashboard-browser.json
+          retention-days: 7
+          if-no-files-found: error
 
       - name: Upload Playwright report
         if: ${{ !cancelled() }}

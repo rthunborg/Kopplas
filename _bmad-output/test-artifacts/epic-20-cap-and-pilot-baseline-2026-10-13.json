@@ -1,0 +1,496 @@
+{
+  "schemaVersion": 1,
+  "benchmark": "20.1-AC6 / 20-P1-05 / 20-P2-09",
+  "measuredAt": "2026-10-13T17:09:45.4595+02:00",
+  "status": "measured_non_gating; cap/completeness assertions passed",
+  "head": "74aaac5f8dae68d26c887c7c42a2ff796bb8fa6c",
+  "srcGitTreeSha1": "7214e643503146bd003c3097605f8fe3bb619e86",
+  "srcTreeUnchangedFromC65": true,
+  "environment": {
+    "target": "guard-owned local synthetic Compose only; no demo/production",
+    "apiOrigin": "http://127.0.0.1:60441",
+    "database": "127.0.0.1:60442/postgres",
+    "role": "tenant_admin",
+    "node": "v22.23.2",
+    "platform": "win32/x64",
+    "postgres": "PostgreSQL 17.6 on x86_64-pc-linux-gnu, compiled by gcc (GCC) 15.2.0, 64-bit",
+    "postgrest": "14.17",
+    "migrationCount": 101,
+    "migrationMode": "SQL-only repository migrations plus syntheticseed; no reset",
+    "seedSha256": "f1b0596f9f6d8d35c9a70eccbd39eb15b7b513a2a9e87859a0cd9c87eea32ea4"
+  },
+  "effectiveCap": {
+    "retainedLocalStack": {
+      "api": "http://127.0.0.1:60431",
+      "dumpConfigMaxRows": "empty/unlimited",
+      "dbConfig": true,
+      "preConfig": "empty",
+      "dbOverrides": [],
+      "unboundedRuntimeQuery": {
+        "requestedLimit": "absent",
+        "exactCount": 1225,
+        "returnedRows": 1225,
+        "status": 200,
+        "finite1000CapObserved": false
+      }
+    },
+    "dedicatedFiniteTestStack": {
+      "dumpConfig": [
+        "db-max-rows = 1000",
+        "db-config = true",
+        "db-pre-config = \"\""
+      ],
+      "dbOverrides": [],
+      "runtimeProbe": {
+        "configuredTestCap": 1000,
+        "noRequestedLimit": true,
+        "returnedRows": 1000,
+        "exactCount": 2125,
+        "status": 206,
+        "contentRange": "0-999/2125",
+        "allTruncatedRowsHidden": true
+      },
+      "deploymentCapClaim": false
+    }
+  },
+  "counts": {
+    "executed": 3,
+    "passed": 3,
+    "failed": 0,
+    "skipped": 0,
+    "timingTraversals": 9,
+    "counterTraversals": 3
+  },
+  "nativeExit": 0,
+  "SUPABASE_TEST_REQUIRED": "1",
+  "measurementLayer": "unchanged readDocuments production server read-model over real authenticated anon-key RLS client; excludes Next route/cookie/browser",
+  "thresholdBasis": {
+    "requirementSources": [
+      "spec-20-1 AC6",
+      "test-design-epic-20 R-010/R-014 and 20-P1-05/20-P2-09"
+    ],
+    "requiredInvariants": "complete stable authorized traversal, hidden/foreign exclusion, authorized-only total/facets/ownerTypes; server-controlled page <=50",
+    "currentImplementationCandidateBatch": 250,
+    "explicitSyntheticTestCap": 1000,
+    "numericPilotLatencyConcurrencyVolumeMemoryQueryLimit": "UNKNOWN; not invented or lowered",
+    "performanceSloApproval": false
+  },
+  "scenarios": [
+    {
+      "name": "realistic-mixed-source",
+      "dataset": {
+        "tenantCount": 2,
+        "candidateLinks": 210,
+        "authorizedLinks": 140,
+        "hiddenLinks": 70,
+        "uniqueAuthorizedFiles": 72,
+        "uniqueAuthorizedSources": 7,
+        "sourceOwnerTypes": [
+          "customer",
+          "facility",
+          "contact",
+          "calculation",
+          "job",
+          "quote_version",
+          "quote_acceptance"
+        ],
+        "equalTimestampGroups": 2,
+        "hiddenBeforeAllAuthorized": true,
+        "foreignTenantCandidateLinks": 7
+      },
+      "assertions": {
+        "exactAuthorizedSet": true,
+        "stableCreatedAtIdDescending": true,
+        "noDuplicates": true,
+        "noHiddenOrForeignIds": true,
+        "authorizedOnlyTotal": true,
+        "authorizedOnlyFacetsAndOwnerTypes": true,
+        "exactAuthorizedRowTuples": true,
+        "pageSizeAtMost50": true,
+        "realCandidateLimit250": true,
+        "completeCandidateTransferEveryPage": true
+      },
+      "timing": {
+        "method": "three sequential traversals; sums include only readDocuments calls, exclude validation and counter body clones; no cache/service reset",
+        "traversalReadMs": [
+          2194.599,
+          2190.571,
+          2194.032
+        ],
+        "pageReadMs": {
+          "samples": 9,
+          "min": 603.186,
+          "median": 753.871,
+          "max": 835.506
+        }
+      },
+      "memory": {
+        "method": "10ms sampled Node process memory + before/after; no guaranteed instantaneous peak or DB memory",
+        "beforeRssBytes": {
+          "samples": 9,
+          "min": 105988096,
+          "median": 116588544,
+          "max": 125394944
+        },
+        "beforeHeapUsedBytes": {
+          "samples": 9,
+          "min": 18982784,
+          "median": 24161208,
+          "max": 30831560
+        },
+        "sampledPeakRssBytes": 131104768,
+        "sampledPeakHeapUsedBytes": 31635912
+      },
+      "counterPass": {
+        "httpRequests": 152,
+        "candidateRequests": 3,
+        "transferredCandidateRows": 630,
+        "uniqueCandidateLinks": 210,
+        "authorizedRows": 140,
+        "pageCount": 3,
+        "httpRequestsByEndpoint": {
+          "auth": 3,
+          "tenant_memberships": 3,
+          "membership_roles": 3,
+          "file_links": 3,
+          "customers": 6,
+          "facilities": 3,
+          "calculations": 3,
+          "contacts": 3,
+          "jobs": 3,
+          "quote_versions": 3,
+          "quotes": 3,
+          "quote_version_attachments": 3,
+          "quote_acceptances": 3,
+          "storage-info": 110
+        },
+        "candidateBatchRowsEveryPage": [
+          210
+        ],
+        "requestedCandidateLimitEveryPage": 250,
+        "meaning": "HTTP boundary counts and transferred candidate rows; each page rescans all candidates; not SQL statements/rows scanned"
+      },
+      "runtimeCapProbe": null
+    },
+    {
+      "name": "hidden-heavy",
+      "dataset": {
+        "tenantCount": 2,
+        "candidateLinks": 1225,
+        "authorizedLinks": 125,
+        "hiddenLinks": 1100,
+        "uniqueAuthorizedFiles": 7,
+        "uniqueAuthorizedSources": 7,
+        "sourceOwnerTypes": [
+          "customer",
+          "facility",
+          "contact",
+          "calculation",
+          "job",
+          "quote_version",
+          "quote_acceptance"
+        ],
+        "equalTimestampGroups": 2,
+        "hiddenBeforeAllAuthorized": true,
+        "foreignTenantCandidateLinks": 7
+      },
+      "assertions": {
+        "exactAuthorizedSet": true,
+        "stableCreatedAtIdDescending": true,
+        "noDuplicates": true,
+        "noHiddenOrForeignIds": true,
+        "authorizedOnlyTotal": true,
+        "authorizedOnlyFacetsAndOwnerTypes": true,
+        "exactAuthorizedRowTuples": true,
+        "pageSizeAtMost50": true,
+        "realCandidateLimit250": true,
+        "completeCandidateTransferEveryPage": true
+      },
+      "timing": {
+        "method": "three sequential traversals; sums include only readDocuments calls, exclude validation and counter body clones; no cache/service reset",
+        "traversalReadMs": [
+          1302.686,
+          1289.368,
+          1307.242
+        ],
+        "pageReadMs": {
+          "samples": 9,
+          "min": 398.663,
+          "median": 432.2,
+          "max": 469.565
+        }
+      },
+      "memory": {
+        "method": "10ms sampled Node process memory + before/after; no guaranteed instantaneous peak or DB memory",
+        "beforeRssBytes": {
+          "samples": 9,
+          "min": 133201920,
+          "median": 134610944,
+          "max": 136998912
+        },
+        "beforeHeapUsedBytes": {
+          "samples": 9,
+          "min": 22798704,
+          "median": 28156168,
+          "max": 33245136
+        },
+        "sampledPeakRssBytes": 142233600,
+        "sampledPeakHeapUsedBytes": 36234400
+      },
+      "counterPass": {
+        "httpRequests": 68,
+        "candidateRequests": 15,
+        "transferredCandidateRows": 3675,
+        "uniqueCandidateLinks": 1225,
+        "authorizedRows": 125,
+        "pageCount": 3,
+        "httpRequestsByEndpoint": {
+          "auth": 3,
+          "tenant_memberships": 3,
+          "membership_roles": 3,
+          "file_links": 15,
+          "customers": 6,
+          "calculations": 3,
+          "contacts": 3,
+          "facilities": 3,
+          "jobs": 3,
+          "quote_versions": 3,
+          "quotes": 3,
+          "quote_version_attachments": 3,
+          "quote_acceptances": 3,
+          "storage-info": 14
+        },
+        "candidateBatchRowsEveryPage": [
+          250,
+          250,
+          250,
+          250,
+          225
+        ],
+        "requestedCandidateLimitEveryPage": 250,
+        "meaning": "HTTP boundary counts and transferred candidate rows; each page rescans all candidates; not SQL statements/rows scanned"
+      },
+      "runtimeCapProbe": null
+    },
+    {
+      "name": "finite-cap-completeness",
+      "dataset": {
+        "tenantCount": 2,
+        "candidateLinks": 2125,
+        "authorizedLinks": 1025,
+        "hiddenLinks": 1100,
+        "uniqueAuthorizedFiles": 7,
+        "uniqueAuthorizedSources": 7,
+        "sourceOwnerTypes": [
+          "customer",
+          "facility",
+          "contact",
+          "calculation",
+          "quote_version",
+          "quote_acceptance",
+          "job"
+        ],
+        "equalTimestampGroups": 2,
+        "hiddenBeforeAllAuthorized": true,
+        "foreignTenantCandidateLinks": 7
+      },
+      "assertions": {
+        "exactAuthorizedSet": true,
+        "stableCreatedAtIdDescending": true,
+        "noDuplicates": true,
+        "noHiddenOrForeignIds": true,
+        "authorizedOnlyTotal": true,
+        "authorizedOnlyFacetsAndOwnerTypes": true,
+        "exactAuthorizedRowTuples": true,
+        "pageSizeAtMost50": true,
+        "realCandidateLimit250": true,
+        "completeCandidateTransferEveryPage": true
+      },
+      "timing": {
+        "method": "three sequential traversals; sums include only readDocuments calls, exclude validation and counter body clones; no cache/service reset",
+        "traversalReadMs": [
+          11020.641,
+          10023.896,
+          9983.487
+        ],
+        "pageReadMs": {
+          "samples": 63,
+          "min": 415.298,
+          "median": 483.0,
+          "max": 595.179
+        }
+      },
+      "memory": {
+        "method": "10ms sampled Node process memory + before/after; no guaranteed instantaneous peak or DB memory",
+        "beforeRssBytes": {
+          "samples": 63,
+          "min": 134852608,
+          "median": 141185024,
+          "max": 144699392
+        },
+        "beforeHeapUsedBytes": {
+          "samples": 63,
+          "min": 15535144,
+          "median": 29550696,
+          "max": 40019056
+        },
+        "sampledPeakRssBytes": 144699392,
+        "sampledPeakHeapUsedBytes": 40019056
+      },
+      "counterPass": {
+        "httpRequests": 468,
+        "candidateRequests": 189,
+        "transferredCandidateRows": 44625,
+        "uniqueCandidateLinks": 2125,
+        "authorizedRows": 1025,
+        "pageCount": 21,
+        "httpRequestsByEndpoint": {
+          "auth": 21,
+          "tenant_memberships": 21,
+          "membership_roles": 21,
+          "file_links": 189,
+          "customers": 42,
+          "quote_versions": 21,
+          "quotes": 21,
+          "quote_version_attachments": 21,
+          "calculations": 21,
+          "jobs": 21,
+          "facilities": 21,
+          "contacts": 21,
+          "quote_acceptances": 21,
+          "storage-info": 6
+        },
+        "candidateBatchRowsEveryPage": [
+          250,
+          250,
+          250,
+          250,
+          250,
+          250,
+          250,
+          250,
+          125
+        ],
+        "requestedCandidateLimitEveryPage": 250,
+        "meaning": "HTTP boundary counts and transferred candidate rows; each page rescans all candidates; not SQL statements/rows scanned"
+      },
+      "runtimeCapProbe": {
+        "configuredTestCap": 1000,
+        "noRequestedLimit": true,
+        "returnedRows": 1000,
+        "exactCount": 2125,
+        "status": 206,
+        "contentRange": "0-999/2125",
+        "allTruncatedRowsHidden": true
+      }
+    }
+  ],
+  "cleanup": {
+    "fixtureOnly": true,
+    "leftovers": [
+      {
+        "tenants": "0",
+        "links": "0",
+        "files": "0"
+      }
+    ]
+  },
+  "limitations": [
+    "Synthetic pilot observation, no approved numeric latency/query/memory/load threshold; no hostedcap inference",
+    "HTTP request counts and rows transferred are not database SQL statement counts or database rows scanned",
+    "Each page rescans entire candidate collection; totals include repeated traversal, not unique-only count",
+    "Original seven source/commitment links preserved; only their timestamps are synthetically aligned under setup-only replica mode; no ordinary lifecycle writer evidence claimed. Request-local owner cache: seven authorized owner entities; realistic case has72distinctfiles/140links; hidden-heavy and finite-cap cases have7files/sevenowners with ordinary-link-heavy additions, not140distinctdocuments",
+    "Timing/memory passes do not clone bodies; counterpass clones candidate bodies and is excluded from timing/memory metrics",
+    "10ms sampled process memory peak, includes Node/libs/fixture expectations and retainedrows, excludes DBmemory; no leak/p95/p99 claim",
+    "Standalone read-model/RLS client measurement excludes Next cookie/route rendering and browser hydration; existing full verification remains required"
+  ],
+  "evidence": {
+    "pilot-reviewed.ts": {
+      "path": "C:\\Users\\Rasmus\\AppData\\Local\\Temp\\Kopplas-epic20-cap-pilot-74aaac5f\\pilot-reviewed.ts",
+      "sha256": "3b8c8d2559a5cd7537ffa7412870723741dc2e0300c47af5d21576c2b114305f"
+    },
+    "run-pilot-reviewed.py": {
+      "path": "C:\\Users\\Rasmus\\AppData\\Local\\Temp\\Kopplas-epic20-cap-pilot-74aaac5f\\run-pilot-reviewed.py",
+      "sha256": "8d73e6c5737ac20c9788db4cc47edead7b86f7a04435e71391bb35304a77c691"
+    },
+    "pilot-reviewed-result.json": {
+      "path": "C:\\Users\\Rasmus\\AppData\\Local\\Temp\\Kopplas-epic20-cap-pilot-74aaac5f\\pilot-reviewed-result.json",
+      "sha256": "229f4e1a81d6ae232918531d48119526b5d987f42897a50b3be24c7f7153ddc6"
+    },
+    "pilot-reviewed.native.json": {
+      "path": "C:\\Users\\Rasmus\\AppData\\Local\\Temp\\Kopplas-epic20-cap-pilot-74aaac5f\\pilot-reviewed.native.json",
+      "sha256": "0ae72e6da87771d801447509c43644c6d2988be8f7fac160302871dedeae7b7a"
+    },
+    "pilot-reviewed.log": {
+      "path": "C:\\Users\\Rasmus\\AppData\\Local\\Temp\\Kopplas-epic20-cap-pilot-74aaac5f\\pilot-reviewed.log",
+      "sha256": "8ed83d9212c60734bf2ab15b796536c7be50e089b5f821b0bce1bd14d95b60a2"
+    },
+    "retained-cap.json": {
+      "path": "C:\\Users\\Rasmus\\AppData\\Local\\Temp\\Kopplas-epic20-cap-pilot-74aaac5f\\retained-cap.json",
+      "sha256": "438c63e770383ad97043a6279f7654a2e05e6fa54f303b9ab09abe916b53284e"
+    },
+    "retained-probe.native.json": {
+      "path": "C:\\Users\\Rasmus\\AppData\\Local\\Temp\\Kopplas-epic20-cap-pilot-74aaac5f\\retained-probe.native.json",
+      "sha256": "04fa65586cf70e106f5e67caa6a4d9162899850deace15f29c90c445ee150d53"
+    },
+    "finite-effective-config.json": {
+      "path": "C:\\Users\\Rasmus\\AppData\\Local\\Temp\\Kopplas-epic20-cap-pilot-74aaac5f\\finite-effective-config.json",
+      "sha256": "a43d6aee71bd1f492daecf197ef0b5a727a9ddb123bfb9eb1e2dfa03a842ffd6"
+    },
+    "finite-migrations.native.json": {
+      "path": "C:\\Users\\Rasmus\\AppData\\Local\\Temp\\Kopplas-epic20-cap-pilot-74aaac5f\\finite-migrations.native.json",
+      "sha256": "c469e8c76077f3a1f4c175d08bed88c171a4c3f31a51bef4d9d6b91984f90b6c"
+    },
+    "finite-runtime-versions.json": {
+      "path": "C:\\Users\\Rasmus\\AppData\\Local\\Temp\\Kopplas-epic20-cap-pilot-74aaac5f\\finite-runtime-versions.json",
+      "sha256": "aff1d6a5671deb7e83dc881ecbd15ab28c30277da27fe07544fe4dc5a4f5a0bf"
+    },
+    "finite-readiness.json": {
+      "path": "C:\\Users\\Rasmus\\AppData\\Local\\Temp\\Kopplas-epic20-cap-pilot-74aaac5f\\finite-readiness.json",
+      "sha256": "adda99062e8cb03332705d7a3a95b4bee1c8888cf31cd29c9b46fec2facd652d"
+    },
+    "finite-corrected-readiness.json": {
+      "path": "C:\\Users\\Rasmus\\AppData\\Local\\Temp\\Kopplas-epic20-cap-pilot-74aaac5f\\finite-corrected-readiness.json",
+      "sha256": "d5cdea50139cafad45cb2ebfd23c3db3dda97bf68749a0d6f96099d00855e496"
+    },
+    "harnessBeforeAfterUnchanged": true,
+    "sourceAndHelperBeforeAfterEqual": true
+  },
+  "resourceCleanup": [
+    {
+      "receipt": "C:\\Users\\Rasmus\\AppData\\Local\\Temp\\Kopplas-epic20-cap-pilot-74aaac5f\\retained-stop.json",
+      "nativeExit": 0,
+      "ok": true,
+      "resourceId": "e209a785-6128-48ee-8171-cc0ef71f40dc",
+      "state": "stop_requested",
+      "verified": false
+    },
+    {
+      "receipt": "C:\\Users\\Rasmus\\AppData\\Local\\Temp\\Kopplas-epic20-cap-pilot-74aaac5f\\finite-failed-stop.json",
+      "nativeExit": 0,
+      "ok": true,
+      "resourceId": "e3f7f407-201a-4f46-84b4-0cfb1cea2f5d",
+      "state": "stopped",
+      "verified": true
+    },
+    {
+      "receipt": "C:\\Users\\Rasmus\\AppData\\Local\\Temp\\Kopplas-epic20-cap-pilot-74aaac5f\\finite-stop.json",
+      "nativeExit": 0,
+      "ok": true,
+      "resourceId": "2c762c85-77cc-4cb4-bc18-0571c64bc90e",
+      "state": "stop_requested",
+      "verified": false
+    }
+  ],
+  "initialAttemptDisposition": "Missing Temp Compose interpolation .env caused isolated startup failure; same-directory corrected .env admitted as new normalized configuration identity and verified active. Original failed stack/config/data retained; no administrative recovery, reset or deletion. Exploratory pilot setup failures hit expected commitment guards; final harness preserves original seven commitment links and passed.",
+  "resourceCleanupMeaning": "Native0/oktrue Stop acknowledgments accepted, saved state retained; stop_requested verified=false is not shutdown proof and no shutdown polling used.",
+  "independentNarrowMeasurementReview": {
+    "task": "/root/epic20_cap_pilot/measurement_review",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "disposition": "accepted; no remaining measurement blocker",
+    "resultSha256": "229f4e1a81d6ae232918531d48119526b5d987f42897a50b3be24c7f7153ddc6",
+    "verified": "native0;3passed/0failed/0skipped; unchangedharness;43matching source/helper hashes;consistent page/counter/timing totals;exact authorized set/order/tuples/count/facets",
+    "scope": "measurement method and actual results only; no fourth broad story/code review"
+  }
+}

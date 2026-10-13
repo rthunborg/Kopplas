@@ -1,0 +1,111 @@
+# Documents20.1 claimed worker report
+
+Worker01a11ae8-4100-7042-9c22-d1aca188e683; coordinator01a1160d-b5b1-7623-a8e8-54ef3dc537ed; run documents-e20-readiness-2026-10-09; generation1. Assigned base3a510595efe0fe2b9bbe76b372774d70d9b04a4a; workflow95bf1053f665699aa1e44ee4711c6941ea8f2851c8bb8debd1ca9203acc7ad93. Exact external assignment paths only; no aggregate writes, Phase8/9, PR or deployment.
+
+Claim heartbeat, full preflight and worker-root High external review resolver passed. Pinned dependencies installed. High risk selects ATDD and automate; short-epic trace advisory does not apply.
+
+Phase4:249 active scaffolds (144unit/83DB-RLS-race/22browser), not acceptance coverage. Focused unit red native1:144registered/3baselinepasses/141failed/0skipped. Four real activation/role/enrollment assertions failed;137 stop at missing product imports before behavior assertions. DB/browser bodies executed0. Eight-file lint native0; compiler native2 solely expected missing-product-import diagnostics. Checklist/TAP external in Temp.
+
+Owned Compose045abae5-a032-46b0-84b9-455eefcdc083 is active with verified Compose outcome; local Auth health200. Existing99baseline migrations applied through SQL-only CLI to checked loopback55622 (API55621); no story migration or runtime acceptance claimed. Stop will preserve saved data after worker verification.
+
+Build/review/required runtime checks remain pending.
+
+## Report — 2026-10-12T11:09:34Z (halted — worker scope recovery)
+
+**Story:** `20-1-documents-activation-and-source-authorized-aggregation` (epic 20, story 1) — mid-epic.
+**Spec:** `C:\Users\Rasmus\.codex\worktrees\documents-e20-20-1\Kopplas\_bmad-output\implementation-artifacts\spec-20-1-documents-activation-and-source-authorized-aggregation.md`
+**Branch:** `codex/parallel-documents-e20-readiness-2026-10-09-20-1` (HEAD `cc03464`).
+**Pipeline status:** Halted at Phase 5: implementation verification failed. Retained generation 1 claim; clean local checkpoint required for supported coordinator recovery.
+**Continues:** (none — first run)
+
+**Timing:** started 2026-10-09T13:42:32Z; completed in progress — elapsed 69h 27m (≈1h 08m AI-run, ≈68h 18m human/idle wait).
+
+**Phases run:** Resumed Phase 5 build-auto (gpt-6.1-sol High); three completed six-layer independent review rounds; specific High static review of final test teardown. No fourth broad round.
+**Skipped:** Phase 6 automate and Phase 7 pipeline review pending because Phase 5 is blocked; worker Phase 8/9 forbidden. These gates are not waived.
+
+**Overrides:** Claimed Story 20.1 worker only; explicit assigned worktree and generation 1; pinned workflow retained; external reviews resolved at runtime against worker root with Sol High; no aggregate writes, successful submit, push, PR or deployment.
+
+**TEA:** Risk High; historical Phase 4 ATDD complete. Phase 6 automate remains selected and pending; Phase 7 not run.
+
+**Build:** Blocked; review_loop_iteration 3; ordinary deferred_count 0; author Suggested Review Order has 20 verified references and no errors. At cc034649: focused 214/214, required DB 157/157, quote regressions 27/27, owned browser 28/28, all zero skips/native0. Typecheck, serial lint (13 existing warnings), containment, lockfiles and bundle native0. Full unit: 2432 total, 2431 executed, 2429 pass, 2 fail, 1 preexisting Linux-xattrs skip/native1. Required shared three-file browser gate remains unexecuted. Actual production build native0 at 72d55b06; unchanged runtime/build sources through cc034649 proven in build-source-equivalence.json, with no cc build claim. Raw command manifest: [C:/Users/Rasmus/AppData/Local/Temp/kopplas-20-1-author-20261012-cc034649/final-manifest.json](C:/Users/Rasmus/AppData/Local/Temp/kopplas-20-1-author-20261012-cc034649/final-manifest.json).
+
+**Review:** All six configured independent Sol High layers completed in rounds 1/2/3 at e07d55ee/f5a322e7/72d55b06. Final cc034649 test-only teardown had a separate narrow High check: no findings, no weakened assertions. Review cap retained; followup recommended and review_unverified=true. One required upload/cursor defect remains outside claim. No exact legacy browser/Lovable parity observation; same-route triage is source/React inference. Author handoff and revalidation: [C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-1-author-validated-scope-companion-2026-10-12.json](C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-1-author-validated-scope-companion-2026-10-12.json).
+
+**Retrospective:** Not run; coordinator owns epic closure.
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:**
+1. Implementation verification failed: four required unassigned paths; pinned protocol has no supported claim amendment.
+2. Untouched required paths: tests/unit/scope/manifest-shape.test.ts; tests/e2e/files/file-index-scope.e2e.spec.ts; tests/e2e/files/entity-file-preview.e2e.spec.ts; src/components/files/FileIndexUpload.tsx. The first three are gate/fixture updates; the fourth is a reachable upload continuation-cursor defect.
+3. Independent coordinator High assessment confirms scope fit, but it does not amend claim authority. Coordinator is preparing separately reviewed tooling recovery; no SQLite edit, replacement run, repair bypass, claim widening or passing submit.
+4. All delegates complete and no pending writers/resource users. Guard Stop accepted for five remaining worker references (stop_requested, verified=false); earlier server Stop requests retained. Saved containers, data, profiles and worktree preserved. Evidence:
+5. C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-1-resource-stop-2026-10-12.json
+
+**Next:** Coordinator: use the clean blocked checkpoint and four-path author companion for supported tooling recovery and a legitimate validated assignment, then targeted fixes/reverification under the retained three-round cap. Human diff preview: /bmad-checkpoint-preview codex/parallel-documents-e20-readiness-2026-10-09-20-1. Do not run a bare worker picker or substitute a new run.
+
+## Report — 2026-10-12T13:27:25Z (generation-2 worker candidate)
+
+**Story:** `20-1-documents-activation-and-source-authorized-aggregation` (epic 20, story 1) — mid-epic.
+**Spec:** `C:\Users\Rasmus\.codex\worktrees\documents-e20-20-1\Kopplas\_bmad-output\implementation-artifacts\spec-20-1-documents-activation-and-source-authorized-aggregation.md`
+**Branch:** `codex/parallel-documents-e20-readiness-2026-10-09-20-1` (HEAD `8508603`).
+**Pipeline status:** Worker phases complete; exact-candidate verification and supported submit recorded externally after freeze
+**Continues:** Coordinator owns integration and epic completion
+
+**Timing:** started 2026-10-09T13:42:32Z; completed in progress — elapsed 71h 44m (≈2h 11m AI-run, ≈69h 33m human/idle wait); resumed 1×.
+
+**Phases run:** 0, 1, 3, 4, 5, 6, 7
+**Skipped:** Phase7 primary follow-up gate false (recommended and false recommendation); trace advisory not selected. Phases8/9 remain coordinator-owned.
+
+**Overrides:** Claim generation2, submission base e2de5902; approved workflow and frozen intent retained. No global ledger or aggregate writes; zero deferred items.
+
+**TEA:** High; ATDD and automate complete. AC10/10; two meaningful browser coverage families closed; 0 gaps. Dirty preflight4/4 at base8508603d/test hash5cdc93fc; full39 exact-candidate browser gate remains to run.
+
+**Build:** All14 Phase5 gates passed, zero skips; 2432 Linux unit, 157 unique required DB integration/RLS/race cases. Evidence13 gates at48bfe590 and browser37/37 at02db9e2f. These are historical revisions; final exact-candidate native runs will be recorded in external manifest.
+
+**Review:** Three completed configured broad rounds retained; generation2 six configured narrow layers and specific latest-fix High confirmations complete. No unresolved findings. Final candidate includes TEA test delta; read-only independent Sol6.1 High targeted confirmation pending. Author review guide has25 valid references/0 errors; no primary session reconfiguration.
+
+**Retrospective:** Worker does not own epic retrospective
+
+**Open questions:** (none)
+
+**Deferred work:**
+No deferred items; global harvest prohibited for this worker
+
+**⚠️ Needs human:** (none)
+
+**Next:** Freeze clean candidate; actually run all14 checks on that SHA, including full39 browser cases and fresh production build; obtain narrow independent High confirmation; supported generation2 submit. Shared-store receipt and external final handoff are authoritative for readiness and resource Stop acknowledgments.
+
+## Report — 2026-10-12T13:48:46Z (generation-2 repaired worker candidate)
+
+**Story:** `20-1-documents-activation-and-source-authorized-aggregation` (epic 20, story 1) — mid-epic.
+**Spec:** `C:\Users\Rasmus\.codex\worktrees\documents-e20-20-1\Kopplas\_bmad-output\implementation-artifacts\spec-20-1-documents-activation-and-source-authorized-aggregation.md`
+**Branch:** `codex/parallel-documents-e20-readiness-2026-10-09-20-1` (HEAD `8ec59bc`).
+**Pipeline status:** Worker phases complete; repaired exact-candidate gate and submission receipts follow externally
+**Continues:** Coordinator retains integration and epic ownership
+
+**Timing:** started 2026-10-09T13:42:32Z; completed in progress — elapsed 72h 06m (≈2h 23m AI-run, ≈69h 42m human/idle wait); resumed 2×.
+
+**Phases run:** 0, 1, 3, 4, 5, 6, 7; targeted author repair
+**Skipped:** Primary follow-up gate false; trace advisory not selected; global deferred harvest and Phases8/9 coordinator-owned
+
+**Overrides:** Claim generation2 and approved workflow preserved; frozen intent byte-equal originalcbe. No aggregate writes, zero deferred items.
+
+**TEA:** ATDD/automate complete. Prior loading/expiry coverage preserved; two new post-upload draft race regressions bring expected browser gate to41.
+
+**Build:** All14 native0/skip0 gates actually passed at8ec (unit2432, browser39, unique DB157). Independent review then found a distinct search-draft race. Author reproduced real loss2/2 at8ec, fixed own-reset binding/duplicate debounce bookkeeping, and actual dirty repair build/typecheck/lint plus green2/2 and affected6/6 passed. Final repaired-SHA replay remains pending in external manifest.
+
+**Review:** Three completed broad rounds retained. External exact8ec review native0 withheld approval for one Medium reachable draft-loss race. Original author repaired it and refreshed one guide28 valid refs/0errors; exact latest-fix-only Sol6.1 High confirmation pending. No false approval or fourth broad pass.
+
+**Retrospective:** Coordinator-owned
+
+**Open questions:** (none)
+
+**Deferred work:**
+None; no global ledger mutation
+
+**⚠️ Needs human:** (none)
+
+**Next:** Freeze repaired candidate, run actual all14 native gates including full41 browser suite and fresh production build on that SHA; obtain independent latest-fix-only confirmation; supported generation2 submit; Stop own resources and preserve data. External final handoff and shared-store receipt record exact outcome.

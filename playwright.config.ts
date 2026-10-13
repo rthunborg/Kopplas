@@ -40,7 +40,7 @@ export default defineConfig({
   timeout: 60_000,
   expect: { timeout: 15_000 },
   reporter: process.env.CI
-    ? [["html", { open: "never" }], ["list"], ["./tests/e2e/ci-duration-budget-reporter.ts", { label: "Browser tests", maxMs: 300_000 }]]
+    ? [["html", { open: "never" }], ["list"], ["./tests/e2e/ci-duration-budget-reporter.ts", { label: "Browser tests", maxMs: 800_000 }], ["json", { outputFile: "test-results/general-browser.json" }]]
     : [["list"]],
   globalSetup: "./tests/e2e/global-setup.ts",
   globalTeardown: "./tests/e2e/global-teardown.ts",

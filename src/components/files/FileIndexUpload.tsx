@@ -11,7 +11,8 @@
  * The PURPOSE is DERIVED from the picked owner type (customer→crm_document,
  * calculation→calculation_attachment, job→job_evidence — the same fixed mapping as the entity
  * panels) — never a free client choice. The owner stays REQUIRED (no tenant-level/orphan file —
- * spec Never). On success the island `router.refresh()`es so the index re-reads (the action's own
+ * spec Never). On success the island invokes its optional destination callback, otherwise it
+ * `router.refresh()`es so the index re-reads (the action's own
  * revalidate targets the OWNER entity route, not `/files`), and the FORM BODY REMOUNTS (keyed on
  * the new fileId) so the file input + pickers reset — the same file can't be resubmitted
  * accidentally (double-submit guard) and the DOM can never desync from the derived-purpose state.
@@ -73,12 +74,15 @@ const ALLOWED_TYPES_DISPLAY = "PDF, bilder (PNG/JPEG/WebP/GIF), text/CSV, Word, 
 export function FileIndexUpload({
   ownerOptions,
   optionsLoadError = false,
+  onUploadSuccess,
 }: {
   readonly ownerOptions: UploadOwnerOptions;
   /** True when ANY owner-options read FAILED — an empty owner list then means "unknown", NOT
    * "nothing to link to", so the form shows a neutral retry message instead of the misleading
    * empty hint (submit stays disabled). */
   readonly optionsLoadError?: boolean;
+  /** Called only after confirmed persistence; destinations may reset their traversal. */
+  readonly onUploadSuccess?: () => void;
 }) {
   const router = useRouter();
   const [showUpload, setShowUpload] = useState(false);
@@ -91,9 +95,10 @@ export function FileIndexUpload({
   // not `/files`). A pure side effect — the form reset happens via the key remount below.
   useEffect(() => {
     if (state.status === "success" && state.fileId) {
-      router.refresh();
+      if (onUploadSuccess) onUploadSuccess();
+      else router.refresh();
     }
-  }, [state.status, state.fileId, router]);
+  }, [state.status, state.fileId, router, onUploadSuccess]);
 
   return (
     <>

@@ -1,3 +1,5 @@
+import { EntityDocumentsLink } from "@/components/documents/EntityDocumentsLink";
+import { readEntityDocumentsLink } from "@/server/read-models/document-context";
 /**
  * Server helper (Story 8.5, Task 2.2) — build the locked commitment-file panel for the SELECTED
  * version of a quote detail when that version is NON-DRAFT (sent/accepted). SERVER-ONLY: it reads
@@ -37,6 +39,8 @@ export async function renderSentQuoteFilesPanel(
   if (filesRead.error === null && filesRead.files.length === 0) return null;
 
   return (
+    <>
+    <EntityDocumentsLink link={await readEntityDocumentsLink({ module: "quotes", ownerType: "quote_version", ownerId: selected.id })} />
     <CommitmentFilesPanel
       purpose="quote_pdf"
       heading="Offertfiler (låsta)"
@@ -48,5 +52,6 @@ export async function renderSentQuoteFilesPanel(
       parentQuoteId={quoteId}
       parentVersionId={selected.id}
     />
+    </>
   );
 }

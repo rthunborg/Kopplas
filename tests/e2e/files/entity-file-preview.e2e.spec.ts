@@ -38,20 +38,26 @@
  *  Task 3 + Task 5.2; tests/e2e/files/entity-file-panel.e2e.spec.ts (the 8.2 panel E2E this sits
  *  beside, same signIn/waitForHydrated + fixture contract); epics.md 8.3 AC1/AC2/AC3]
  */
-import { test, expect, type Page, type Locator } from "@playwright/test";
+import type { Page, Locator } from "@playwright/test";
+import { test, expect } from "../dashboard/guarded-test";
 import { readFileSync } from "node:fs";
 import path from "node:path";
+import { adminInsertFile, adminInsertFileLink, adminUploadStorageObject, adminRemoveStorageObject } from "../../factories/tenants";
+import { adminQuery, adminExec, closeAdminPool } from "../../factories/admin-sql";
 
 interface CrmFixture {
+  readonly tenantA: { readonly id: string };
   readonly adminA: { readonly email: string; readonly password: string };
   readonly crm: {
     readonly company: { readonly id: string; readonly displayName: string };
   };
 }
 
-const fixture: CrmFixture = JSON.parse(
-  readFileSync(path.join(process.cwd(), "tests", "e2e", ".auth", "fixture.json"), "utf8"),
-);
+test.afterAll(async () => { await closeAdminPool(); });
+
+function fixture(): CrmFixture {
+  return JSON.parse(readFileSync(path.join(process.cwd(), "tests", "e2e", ".auth", "fixture.json"), "utf8"));
+}
 
 async function waitForHydrated(locator: Locator): Promise<void> {
   await locator.waitFor({ state: "visible" });
@@ -77,8 +83,8 @@ async function signIn(page: Page, email: string, password: string): Promise<void
 
 /** Navigate to the customer detail page whose EntityFilePanel (with the preview affordance) is under test. */
 async function gotoCustomerPanel(page: Page): Promise<void> {
-  await signIn(page, fixture.adminA.email, fixture.adminA.password);
-  await page.goto(`/customers/${fixture.crm.company.id}`);
+  await signIn(page, fixture().adminA.email, fixture().adminA.password);
+  await page.goto(`/customers/${fixture().crm.company.id}`);
   await expect(page.getByTestId("entity-file-panel")).toBeVisible();
 }
 
@@ -128,49 +134,86 @@ test.describe("Entity file preview/download UX (Story 8.3 E2E)", () => {
   test("[8.3-E2E-03][P1/AC3/R-811] a denied/wrong-lifecycle preview surfaces a generic role=alert error with NO raw path", async ({
     page,
   }) => {
-    await gotoCustomerPanel(page);
-
-    // A wrong-lifecycle / cross-tenant-invisible file surfaces a GENERIC preview error (no
-    // existence disclosure, no raw storage error). Driving a deterministic denial in E2E needs a
-    // Task-3 seam (e.g. a seeded file whose lifecycle is archived after listing, or a foreign id
-    // submitted). If no deterministic denial driver exists yet, keep this as the DOM contract
-    // (the error region is a role="alert" with a generic message + no path) and mark the trigger
-    // test.fixme rather than flaky.
-    const previewError = page.getByTestId("file-preview-error").first();
-    // The RED contract: the preview-error region is an assertive alert (text, not color-only) and
-    // carries no raw path substring when shown.
-    if (await previewError.count()) {
+    const fx = fixture();
+    const name = `denied-preview-${crypto.randomUUID()}.pdf`;
+    const fileId = await adminInsertFile({ tenant_id: fx.tenantA.id, display_name: name, mime_type: "application/pdf", lifecycle_state: "linked" });
+    let objectPath: string | undefined;
+    try {
+      await adminInsertFileLink({ tenant_id: fx.tenantA.id, file_id: fileId, owner_type: "customer", owner_id: fx.crm.company.id, purpose: "crm_document" });
+      const [file] = await adminQuery<{ object_path: string }>("select object_path from public.files where id=$1", [fileId]);
+      objectPath = file.object_path;
+      await adminUploadStorageObject({ bucket: "tenant-files", objectPath, body: new TextEncoder().encode("denied-preview-bytes") });
+      await gotoCustomerPanel(page);
+      const row = page.getByTestId("file-panel-file-item").filter({ hasText: name });
+      await expect(row).toHaveCount(1);
+      const preview = row.getByTestId("file-preview-button");
+      await waitForHydrated(preview);
+      // This inherited panel uses generic File signing (Option A): archive the
+      // selected file after listing to drive its actual lifecycle denial gate.
+      await adminExec("update public.files set lifecycle_state='archived',archived_at=now() where id=$1", [fileId]);
+      await preview.click();
+      const previewError = row.getByTestId("file-preview-error");
+      await expect(previewError).toBeVisible();
       await expect(previewError).toHaveAttribute("role", "alert");
+      await expect(previewError).toHaveText("Filen kan inte kommas åt just nu.");
+      await expect(row.getByTestId("file-preview-link")).toHaveCount(0);
       const errText = await previewError.innerText();
+      const errDom = await previewError.innerHTML();
+      expect(errText + errDom).not.toContain(objectPath);
+      expect(errText + errDom).not.toContain("tenant-files");
       expect(errText).not.toContain("object_path");
       expect(errText).not.toContain("bucket_id");
       // Generic — no "finns inte" / "hittades inte" existence leak (R-809).
       expect(errText.toLowerCase()).not.toContain("finns inte");
       expect(errText.toLowerCase()).not.toContain("hittades inte");
+    } finally {
+      if (objectPath) await adminRemoveStorageObject({ bucket: "tenant-files", objectPath });
+      await adminExec("delete from public.file_links where file_id=$1", [fileId]);
+      await adminExec("delete from public.files where id=$1", [fileId]);
     }
   });
 
   test("[8.3-E2E-04][P1/AC2/R-806] an expired link offers a re-open control that re-authorizes (never reuses the stale URL)", async ({
     page,
   }) => {
-    // The expiry→refresh UX: after a successful sign, once `expiresAt` has passed (the pure
-    // `isSignedUrlExpired` verdict), a "Länken har gått ut — öppna igen" control re-submits the
-    // form (re-invoking the command = a fresh full auth). The stale signedUrl is NOT reused.
-    //
-    // Forcing a real client-side expiry in E2E needs a low SUPABASE_SIGNED_URL_TTL_SECONDS in the
-    // E2E env + a bounded wait, OR a deterministic clock seam the dev exposes (Task 3.2). Until
-    // that driver lands this is a structural contract: the re-open control exists and re-submits.
-    // Mark test.fixme if no deterministic expiry driver is available rather than sleeping flakily.
-    test.fixme(
-      true,
-      "expiry→refresh re-open control needs a low-TTL E2E env or a deterministic clock seam (Task 3.2 dev decision)",
-    );
     await gotoCustomerPanel(page);
-    const reopen = page.getByTestId("file-preview-reopen").first();
+    await page.clock.install({ time: new Date() });
+    const row = page.getByTestId("file-panel-file-item").first();
+    const preview = row.getByTestId("file-preview-button");
+    await waitForHydrated(preview);
+    await preview.click();
+    const link = row.getByTestId("file-preview-link");
+    await expect(link).toBeVisible();
+    const firstHref = await link.getAttribute("href");
+    expect(firstHref).toMatch(/^https?:\/\//);
+    const firstIssuanceObservedAt = Date.now();
+    // Drive only browser expiry; signing and refresh remain real server actions.
+    await page.clock.fastForward(86_401_000);
+    await expect(row.getByTestId("file-preview-expired")).toContainText("Länken har gått ut");
+    await expect(link).toHaveCount(0);
+    const reopen = row.getByTestId("file-preview-reopen");
     await expect(reopen).toBeVisible();
+    // Cross an actual server issuance second so the new expiry schedules its timer.
+    await expect.poll(() => Date.now()).toBeGreaterThan(firstIssuanceObservedAt + 1_100);
+    // Fixed Date time lets timers advance without replaying a day-old cached tick.
+    // Both issuance calls remain real; no signer response or expiry is substituted.
+    await page.clock.setFixedTime(new Date());
+    const refreshed = page.waitForResponse(response =>
+      new URL(response.url()).pathname === `/customers/${fixture().crm.company.id}`
+      && response.request().method() === "POST"
+      && !!response.request().headers()["next-action"]);
     await reopen.click();
-    // A fresh full auth issues a NEW link (or a generic error if no longer allowed) — never the
-    // stale URL silently reused.
+    expect((await refreshed).ok()).toBe(true);
+    await expect(reopen).toBeEnabled();
+    // Settle the new bounded timer with Date still at real issuance time, resetting
+    // the hook's cached tick after the earlier deliberate browser-only time jump.
+    await page.clock.fastForward(86_401_000);
+    // Fresh full authorization issues a usable link; stale URLs stayed hidden.
     await expect(page.getByTestId("file-preview-link").first()).toBeVisible();
+    await expect(row.getByTestId("file-preview-error")).toHaveCount(0);
+    const refreshedHref = await row.getByTestId("file-preview-link").getAttribute("href");
+    expect(refreshedHref).toMatch(/^https?:\/\//);
+    expect(refreshedHref).not.toBe(firstHref);
+    expect((await page.request.get(refreshedHref!)).ok()).toBe(true);
   });
 });
