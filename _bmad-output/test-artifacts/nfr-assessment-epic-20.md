@@ -7,6 +7,7 @@ workflowStatus: 'completed'
 epic: 20
 authorRoute: 'gpt-6.1-sol High'
 sourceHead: '827f63dd'
+evidenceUpdateHead: '6f891f7db7a1be83bd3d90b67ce2fdb47e538e3c'
 inputDocuments:
   - AGENTS.md
   - docs/process/agent-model-routing.md
@@ -28,6 +29,8 @@ inputDocuments:
   - _bmad-output/test-artifacts/traceability/epic-20/gate-decision.json
   - _bmad-output/test-artifacts/traceability/epic-20/evidence-integrity.json
   - _bmad-output/test-artifacts/epic-20-e8-iter1-automation-summary.md
+  - _bmad-output/test-artifacts/epic-20-cap-and-pilot-baseline-2026-10-13.json
+  - _bmad-output/test-artifacts/epic-20-test-reliability-fixes.md
 ---
 # NFR Evidence Audit — Epic 20 Documents
 
@@ -35,9 +38,9 @@ inputDocuments:
 
 ## Executive Summary
 
-Four domain workers returned CONCERNS: **10 PASS findings, 19 CONCERNS, 0 FAIL**. Recorded Documents authority, minimal projections, authenticated RPC/secret containment, immutable commitments, explicit failure/retry, latest selection/expiry and atomic lifecycle/audit behavior are supported. No demonstrated vulnerability, crash, resource leak or numerical SLO breach is identified. This audit creates no new blocking requirement and grants no release/review authority.
+The four-domain audit plus the bounded evidence update remains CONCERNS: **11 PASS findings, 18 CONCERNS, 0 FAIL**. Recorded Documents authority, minimal projections, authenticated RPC/secret containment, immutable commitments, explicit failure/retry, latest selection/expiry and atomic lifecycle/audit behavior are supported. No demonstrated vulnerability, crash, resource leak or numerical SLO breach is identified. This audit creates no new blocking requirement and grants no release/review authority.
 
-Existing release obligations remain: establish actual effective PostgREST cap provenance, collect the planned representative pilot measurements, and complete final committed-head checks. Canonical 20.2 `review_unverified: true` and follow-up recommendation remain despite independent narrow acceptance. Three broad rounds per story are exhausted; this is a required evidence audit, not a fourth broad code review. Optional visual wrapping and broader unmeasured operational dimensions remain uncredited.
+The effective-cap provenance and planned pilot measurement gaps are closed by independently High-reviewed evidence committed at 6f891f7d. Final committed-head checks remain pending; unknown numerical performance and operational targets remain CONCERNS. Canonical 20.2 `review_unverified: true` and follow-up recommendation remain despite independent narrow acceptance. Three broad rounds per story are exhausted; this is a required evidence audit, not a fourth broad code review. Optional visual wrapping and broader unmeasured operational dimensions remain uncredited.
 
 ## Context, workflow and evidence
 
@@ -45,7 +48,7 @@ Create mode, English for Rasmus. Pinned checkout skill and AGENTS/routing loaded
 
 Head at assessment start 827f63dd. Latest tested product **c65c18649ac5641f9520b12e03a8b3f20af8f610**: clean local synthetic production build, Chrome 155, desktop and 360×640, **17/17 native 0 checks, zero skips**; ten same-head carried receipts plus seven fresh checks. All 17 raw-log hashes were independently recalculated in this audit and matched. Latest bundle records 101 migrations plus synthetic seed on a new isolated local schema. Suite totals overlap and are never summed. Earlier 20.1/20.2 bundles remain historical evidence.
 
-Trace PASS at 6b224082: **32/32 P0, 36/38 P1, 77/81 overall**, 81 requirement items and 607 mapped cases; this is requirement coverage, not code coverage. Iteration1 executed **166/166 REQUIRED integration, 0 fail/skip/todo**, new unchanged-token membership deletion case 1.564s; actual dirty b7f01bb3, test SHA256`eab6b291f0eb8bee1c6269a8563fa1619105a983a0e8058eb6bea23a0151c90c`, identical committed blob`5594186c5def14712a32fd0df53ec8c1ce2cc5f5` at 80fdaef7. No clean committed-head replay is claimed. Recorded lint/nonincremental typecheck and independent narrow High clearance do not replace final release checks.
+Historical trace PASS at 6b224082: **32/32 P0, 36/38 P1, 77/81 overall**, 81 requirement items and 607 mapped cases; this is requirement coverage, not code coverage. Iteration1 executed **166/166 REQUIRED integration, 0 fail/skip/todo**, new unchanged-token membership deletion case 1.564s; actual dirty b7f01bb3, test SHA256`eab6b291f0eb8bee1c6269a8563fa1619105a983a0e8058eb6bea23a0151c90c`, identical committed blob`5594186c5def14712a32fd0df53ec8c1ce2cc5f5` at 80fdaef7. No clean committed-head replay is claimed. Recorded lint/nonincremental typecheck and independent narrow High clearance do not replace final release checks.
 
 Execution probe: subagent support available; no distinct agent-team API; config auto/probe=true resolved subagent. Four worker steps 4A–4D completed and were awaited. Security and transactional Reliability used explicit Sol 6.1 High; Performance/Maintainability Sol 6.1 Low. No measured parallel-speedup claim. Unknown-threshold dimensions never PASS; no aggregation downgrade needed. Each risk is MEDIUM, so max overall risk MEDIUM. Cross-domain concerns are limited measurement/detection confidence and final-head attribution.
 
@@ -57,10 +60,10 @@ Primary thresholds come from test-design-epic-20 NFR plan and NFR24–29; generi
 
 | Dimension | Status | Threshold / actual evidence |
 | --- | --- | --- |
-| Complete bounded traversal | CONCERNS | Stable created_at/id descending, 50-row pages; 1225 candidates (1100 hidden/125 eligible), equal timestamps and bounded chunks recorded. Effective max-row cap unproven; do not infer 1000 from fixture size or an absent env variable.20.1-AC6/20-P1-05 remain PARTIAL. |
-| Response time p95/p99/page load | CONCERNS | Numeric targets UNKNOWN; required realistic/hidden-heavy elapsed baseline absent. Test durations are not request latency. |
-| Throughput/query work | CONCERNS | Numeric throughput/concurrency/volume UNKNOWN; required pilot query/candidate/authorized-row counts absent. NFR26 defers external-beta sizing certification. |
-| CPU/memory/pooling/optimization | CONCERNS | Numeric targets UNKNOWN; pilot memory/bounded-work observations absent. No measured leak or optimization requirement; CDN/caching/index changes require actual measurement justification. |
+| Complete bounded traversal | PASS | Dedicated effective config and no-limit runtime response prove cap 1000: HTTP 206, Content-Range 0-999/2125, first 1000 hidden. The unchanged readDocuments/RLS reader reaches all 1025 authorized rows exactly once in stable order, page<=50, authorized-only tuples/count/facets and no foreign/hidden IDs. Retained stack was unlimited, not a deployment 1000-cap claim. |
+| Response time p95/p99/page load | CONCERNS | Required elapsed baseline now recorded for three synthetic pilot scenarios; numeric targets UNKNOWN. No p95/p99, Next route/cookie/browser latency or SLO PASS claim. |
+| Throughput/query work | CONCERNS | Pilot HTTP request and transferred candidate-row counts now recorded. Each page rescans candidates; these are not SQL statements/rows scanned. Numeric throughput/concurrency/volume targets UNKNOWN; external-beta certification deferred under NFR26. |
+| CPU/memory/pooling/optimization | CONCERNS | Pilot Node RSS/heap sampled every 10ms plus before/after now recorded; not instantaneous peak, DB memory, CPU/pool profiling or leak certification. Numeric targets UNKNOWN. No new optimization requirement. |
 
 ## Security Assessment
 
@@ -104,7 +107,7 @@ Security worker has 6 PASS and 6 CONCERNS findings; grouped rows above preserve 
 
 Test-data strategy PASS: synthetic local fixtures, two-tenant segregation and fixture cleanup; no demo/production run. Connected QoE PASS for recorded keyboard/loading/friendly error/persisted-state desktop and 360×640 journeys. Optional long-name/neutral-label wrapping has no manual observation. No new offline/PWA/durable draft or legal-retention requirement.
 
-The 29-criterion ADR rubric is a system evidence inventory, not an approved Epic20 release-score gate. Unverified criteria are CONCERNS rather than evidence of absent implementation. Scope-specific recorded evidence supports 10 criteria; 19 lack complete supporting evidence. This is separate from the coincidentally equal 29 worker findings.
+The 29-criterion ADR rubric is a system evidence inventory, not an approved Epic20 release-score gate. Unverified criteria are CONCERNS rather than evidence of absent implementation. Scope-specific recorded evidence supports 10 criteria; 19 lack complete supporting evidence. This is separate from the 29 domain findings, now 11 PASS/18 CONCERNS after the bounded update. The ADR score remains 10/29: no approved numeric latency target or full-load bottleneck/operational evidence is newly established.
 
 | ADR category | PASS criteria | CONCERNS criteria | Met | Overall |
 | --- | --- | --- | ---: | --- |
@@ -122,8 +125,8 @@ The 29-criterion ADR rubric is a system evidence inventory, not an approved Epic
 
 | Gap / disposition | Priority, owner, deadline | Evidence needed / estimated effort |
 | --- | --- | --- |
-| Required 20.1-AC6/20-P1-05 cap provenance |HIGH evidence follow-through; QA/coordinator; before final release claim|Observe effective max-row configuration/runtime cap and bind beyond-cap traversal result.1–2h estimate; avoid rerun if sufficient retained provenance exists. |
-| Required 20-P2-09 pilot baseline |HIGH evidence follow-through; QA/coordinator; before epic release / NFR24 responsiveness claim|Realistic+hidden-heavy local synthetic dataset, role, SHA, DB/config, elapsed/query/candidate/row/memory/bounded-work observations.2–4h estimate; numeric limits remain UNKNOWN. |
+| Closed 20.1-AC6/20-P1-05 cap provenance |CLOSED; independently High-reviewed at 6f891f7d|Explicit finite 1000 cap and beyond-cap complete 2125-candidate traversal recorded; no further measurement required for this gap. |
+| Closed 20-P2-09 pilot baseline |CLOSED; independently High-reviewed at 6f891f7d|Three actual elapsed/HTTP/transferred-row/sampled-Node-memory scenarios with SHA/environment/dataset provenance; no numerical SLO approval. |
 | Existing final committed-head checks |Existing release gate; coordinator/verifier; before release clearance|Native argv/env/head/count/hash receipts for scheduled exact-head checks, including retained-token regression. Effort per existing 17-check lane, not a new test campaign. |
 | Existing 20.2 canonical review caveat |Governance follow-through; coordinator/owner; final checkpoint|Retain review_unverified/follow-up history and independent narrow approval; resolve release disposition under capped-review policy. No fourth broad round.~15–30min recording estimate. |
 | Instrumented coverage |MEDIUM claim qualification; test owner; before claiming >=80%|Attach approved critical-path instrumented report if tooling applies; otherwise record unavailable.1–2h evidence estimate, not imposed new tooling. |
@@ -136,9 +139,9 @@ Effort estimates are suggestions, not schedules or commitments. No demonstrated 
 
 ## Quick Wins, Monitoring Hooks and Fail-Fast Mechanisms
 
-Quick wins: attach retained effective-cap provenance if available; retain precise final-head receipt links; retain explicit unknown/waived/optional classifications. No product configuration mutation is performed.
+Quick wins: retain the committed cap/pilot evidence links and precise final-head receipts; retain explicit unknown/waived/optional classifications. No product configuration mutation is performed.
 
-Suggested monitoring follow-up, not deployed hooks: QA capture elapsed/query/candidate/authorized-row/memory during required pilot baseline; ops link existing error/RED/health observations at operational-readiness review; security retain denied checked-RPC/business-audit evidence. Alert thresholds remain UNKNOWN until approved; no new automation or alert recipient is created.
+Suggested monitoring follow-up, not deployed hooks: QA retain the recorded pilot elapsed/HTTP/candidate-transfer/authorized-row/sampled-Node-memory observations; ops link existing error/RED/health observations at operational-readiness review; security retain denied checked-RPC/business-audit evidence. Alert thresholds remain UNKNOWN until approved; no new automation or alert recipient is created.
 
 Existing fail-fast validation is supported by checked source/role/RLS/proof/lock/audit negatives, invalid context/date checks, manifest-derived coherence and REQUIRED-test zero-skip gates. Circuit-breaker/rate-limit/coverage-duplication additions are N/A to this audit; measurement/approved applicability must precede any product work.
 
@@ -153,12 +156,13 @@ nfr_assessment:
   overall_risk: MEDIUM
   adr_checklist_score: '10/29'
   domains: {security: CONCERNS, performance: CONCERNS, reliability: CONCERNS, maintainability: CONCERNS}
-  finding_counts: {pass: 10, concerns: 19, fail: 0}
+  finding_counts: {pass: 11, concerns: 18, fail: 0}
   critical_issues: 0
   high_priority_defects: 0
   new_nfr_blockers: false
   existing_release_obligations_pending: true
-  required_evidence_actions: [effective_cap_provenance, pilot_baseline, final_committed_head_checks]
+  required_evidence_actions: [final_committed_head_checks]
+  closed_evidence_gaps: [effective_cap_provenance, pilot_baseline]
   review_caveat: '20.2 review_unverified=true; narrow approval retained; no fourth broad review'
   release_authority: false
   waiver: 'owner waived exact Lovable comparison; zero observations'
@@ -181,5 +185,22 @@ Durable compact machine summary: `nfr/epic-20/assessment-summary.json`; worker o
 
 Checklist validated with unknown/missing evidence recorded for every applicable dimension; all four domains and ancillary ADR categories covered. Numeric targets are sourced or UNKNOWN; no generic example imposed. Report uses template sections, deduplicated prose, precise evidence attribution, owners/deadlines/estimates and gate YAML. No runtime/browser/resource launch means no new cleanup obligation. Scope prerequisite is accessible implementation and retained deployment/test evidence; no currently-running hosted deployment is asserted.
 
-**NFR audit complete: CONCERNS.** No new critical blocker or waiver request. Required cap/pilot/final-head follow-through and existing 20.2 review disposition belong to the coordinator's final gates. Refresh this evidence audit narrowly when those results exist; trace PASS remains its own coverage decision. Product release is not approved here. Terminal resolver succeeded with native exit 0 using a process-local temporary uv cache; workflow.on_complete was empty, so no hook action was required.
+**NFR audit complete: CONCERNS.** No new critical blocker or waiver request. Final committed-head follow-through and existing 20.2 review disposition belong to the coordinator's final gates. Refresh this evidence audit narrowly when those results exist; trace PASS remains its own coverage decision. Product release is not approved here. Terminal resolver succeeded with native exit 0 using a process-local temporary uv cache; workflow.on_complete was empty, so no hook action was required.
+
+
+## Bounded evidence update — 6f891f7d
+
+Existing evidence only; no new audit/delegate/test/resource launch. Artifact `epic-20-cap-and-pilot-baseline-2026-10-13.json` ran at 74aaac5f with src tree unchanged from c65c1864, real anon-key authenticated readDocuments/RLS client, 101 local synthetic migrations, REQUIRED=1, native 0, 3/3 passed/0 skip. Independent Sol6.1 High measurement review accepted exact set/order/tuples/count/facets and method/provenance; no remaining measurement blocker. Deployment cap is unclaimed.
+
+| Scenario | Candidates / authorized | Three traversal read totals (ms) | HTTP requests / transferred candidate rows | Sampled Node peak RSS (bytes) |
+| --- | --- | --- | --- | --- |
+| realistic mixed source |210/140|2194.599;2190.571;2194.032|152/630|131104768|
+| hidden heavy |1225/125|1302.686;1289.368;1307.242|68/3675|142233600|
+| finite-cap completeness |2125/1025|11020.641;10023.896;9983.487|468/44625|144699392|
+
+Timing excludes validation/counter body clones; counter pass is separate. Each page rescans candidates. HTTP counts/transferred rows do not measure SQL statements/rows scanned. RSS is 10ms sampled process memory including Node/libs/fixtures/retained rows, excluding DB memory; no guaranteed instantaneous peak, leak or p95/p99 claim. Realistic case has 72 distinct authorized files; the other cases have 7 files/seven authorized owners with ordinary-link-heavy additions. This closes required measurement availability, not an UNKNOWN numerical target.
+
+Test-reliability fixes committed 4f891be8 close DET-H3-01/DET-H2-01/DET-H2-02: unconditional rendered denial check, DB-challenge-relative proof vectors under runner skew, and prepared-session expiry readiness with setup-failure cleanup. Independent narrow Sol6.1 High review CLEAN; final affected integration 114/114 and browser 4/4, zero skips, scoped lint/type native 0. Actual execution was dirty c210b637 plus assigned working blobs; reused unchanged c65 production build. Deliberate suppressed-alert/setup-failure probes failed as intended and receive no passing/skipped coverage credit. This strengthens affected reliability evidence; it is not final committed-head release replay or another broad review.
+
+New source hashes: cap/pilot JSON SHA256`12472f0188fe350855c9d58c761dd5262381b1c24431d5cc4d6864b25f2a9020`; reliability-fixes Markdown SHA256`36fbb97ff29920ed00378aa85f33cd11e23f939173976c9be36a95a5e4613f50`. Original worker receipts remain historical; current performance finding/compliance dispositions are updated in the durable summary. Overall CONCERNS/MEDIUM and ADR 10/29 remain; bounded traversal changes to PASS, so domain findings become 11 PASS/18 CONCERNS/0 FAIL. No unknown-target PASS, operational program, new waiver, or release approval is introduced. Canonical 20.2 caveat, Option A/Contract D/Phase C and zero Lovable observations remain.
 

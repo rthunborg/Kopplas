@@ -1,5 +1,5 @@
 {
-  "source_sha": "80fdaef70b9145ff0ecf6de5865a894a5eb4b6a2",
+  "source_sha": "6f891f7db7a1be83bd3d90b67ce2fdb47e538e3c",
   "tested_product_sha": "c65c18649ac5641f9520b12e03a8b3f20af8f610",
   "collection_status": "COLLECTED",
   "tests": [
@@ -664,5 +664,6 @@
       "coverage_disposition": "20-P0-02 FULL; previously missing same-token active membership DELETE variant is executed"
     }
   },
-  "default_execution_provenance_ref": "baseline"
+  "default_execution_provenance_ref": "baseline",
+  "supplemental_evidence_refs": ["_bmad-output/test-artifacts/epic-20-cap-and-pilot-baseline-2026-10-13.json","_bmad-output/test-artifacts/epic-20-test-reliability-fixes.md"]
 }

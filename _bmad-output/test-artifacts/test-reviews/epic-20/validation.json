@@ -1,21 +1,45 @@
 {
-  "status": "complete_with_disclosed_L2_limitation",
-  "head": "21284266ee265dd349301616a9ed83d27a2b1769",
-  "all4workers_completed": true,
-  "all24test_content_matches_commit_under_Git_newline_normalization": true,
+  "status": "narrow_closure_complete_with_disclosed_L2_limitation",
+  "head": "6f891f7db7a1be83bd3d90b67ce2fdb47e538e3c",
   "attribution_and_ledger_pass": true,
-  "score": 36,
+  "score": 51,
   "grade": "F",
   "recommendation": "Request Changes",
   "counts": {
     "CRITICAL": 0,
-    "HIGH": 3,
+    "HIGH": 0,
     "MEDIUM": 26,
-    "LOW": 2
+    "LOW": 2,
+    "total": 28
   },
-  "score_arithmetic": "100 - 15 - 52 - 2 + 5 = 36",
+  "score_arithmetic": "100 - 0 - 52 - 2 + 5 = 51",
   "no_execution": true,
   "no_exclusions": true,
   "duration": "unknown",
-  "new_artifacts_only": true
+  "new_artifacts_only": true,
+  "initial_validation": {
+    "status": "complete_with_disclosed_L2_limitation",
+    "head": "21284266ee265dd349301616a9ed83d27a2b1769",
+    "all4workers_completed": true,
+    "all24test_content_matches_commit_under_Git_newline_normalization": true,
+    "attribution_and_ledger_pass": true,
+    "score": 36,
+    "grade": "F",
+    "recommendation": "Request Changes",
+    "counts": {
+      "CRITICAL": 0,
+      "HIGH": 3,
+      "MEDIUM": 26,
+      "LOW": 2
+    },
+    "score_arithmetic": "100 - 15 - 52 - 2 + 5 = 36",
+    "no_execution": true,
+    "no_exclusions": true,
+    "duration": "unknown",
+    "new_artifacts_only": true
+  },
+  "closure_three_blobs_match_tested_evidence": true,
+  "consequential_findings_remaining": 0,
+  "initial_audit_all4_workers_completed": true,
+  "closure_new_workers": 0
 }

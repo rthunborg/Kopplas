@@ -1,6 +1,6 @@
 {
   "schema_version": "0.1.0",
-  "evaluated_at": "2026-10-13T13:41:09.142342+00:00",
+  "evaluated_at": "2026-10-13T15:14:51.142825+00:00",
   "repo": "Kopplas",
   "target": {
     "type": "epic",
@@ -10,7 +10,7 @@
   "collection_status": "COLLECTED",
   "gate_basis": "priority_thresholds",
   "gate_status": "PASS",
-  "rationale": "P0 FULL coverage32/32 (100%), P1 FULL36/38 (95%), overall77/81 (95%) meet installed100%/90%/80% thresholds. Iteration1 closes20-P0-02 using the passing same-token active membership DELETE read/open/refresh regression. Actual166/166 REQUIRED integration0skip and narrow High clearance bind dirty b7f01bb3 plus test SHA256eab6b291, identical to the committed80fdaef7 blob; no clean committed-SHA replay is claimed. Four remaining partial/optional items remain explicit; coverage PASS grants no release/review clearance or waiver.",
+  "rationale": "P0 FULL32/32 (100%), P1 FULL38/38 (100%), overall80/81 (99%) meet deterministic100%/90%/80% gate thresholds. Independently reviewed actual finitecap1000/2125candidate probe and1025authorized21page traversal close20.1-AC6/20-P1-05; three measured pilot scenarios close20-P2-09 measurement evidence. Only optional20-P3-01visual inspection remainsNONE. Numeric SLO/hostedcap/release approval and clean final committed-revision replay are not claimed; historicalFAIL and20.2review caveat remain.",
   "p0_status": "MET",
   "p1_status": "MET",
   "overall_status": "MET",
@@ -23,9 +23,9 @@
   },
   "coverage": {
     "inventory": {
-      "covered": 77,
+      "covered": 80,
       "total": 81,
-      "pct": 95
+      "pct": 99
     },
     "priority_breakdown": {
       "P0": {
@@ -35,13 +35,13 @@
       },
       "P1": {
         "total": 38,
-        "covered": 36,
-        "pct": 95
+        "covered": 38,
+        "pct": 100
       },
       "P2": {
         "total": 10,
-        "covered": 9,
-        "pct": 90
+        "covered": 10,
+        "pct": 100
       },
       "P3": {
         "total": 1,
@@ -76,11 +76,11 @@
       }
     }
   },
-  "uncovered_requirements": ["20.1-AC6","20-P1-05","20-P2-09","20-P3-01"],
+  "uncovered_requirements": ["20-P3-01"],
   "critical_gap_ids": [],
-  "formal_ac_gaps": ["20.1-AC6"],
-  "supplementary_gap_ids": ["20-P1-05","20-P2-09","20-P3-01"],
-  "source_sha": "80fdaef70b9145ff0ecf6de5865a894a5eb4b6a2",
+  "formal_ac_gaps": [],
+  "supplementary_gap_ids": ["20-P3-01"],
+  "source_sha": "6f891f7db7a1be83bd3d90b67ce2fdb47e538e3c",
   "tested_product_sha": "c65c18649ac5641f9520b12e03a8b3f20af8f610",
   "new_product_executions": 0,
   "release_authority": false,
@@ -123,5 +123,10 @@
     "assessor_model": "gpt-6.1-sol",
     "assessor_effort": "high",
     "coverage_disposition": "20-P0-02 FULL; previously missing same-token active membership DELETE variant is executed"
-  }
+  },
+  "cap_pilot_evidence_ref": "evidence-integrity.json#cap_pilot",
+  "test_reliability_evidence_ref": "evidence-integrity.json#test_reliability",
+  "evidence_reconciliations": [
+    {"at":"2026-10-13T15:14:51.142825+00:00","source_sha":"6f891f7db7a1be83bd3d90b67ce2fdb47e538e3c","closed_gap_ids":["20-P1-05","20-P2-09","20.1-AC6"],"coverage":{"P0":"32/32","P1":"38/38","overall":"80/81"},"artifact_ref":"_bmad-output/test-artifacts/epic-20-cap-and-pilot-baseline-2026-10-13.json","artifact_sha256":"12472f0188fe350855c9d58c761dd5262381b1c24431d5cc4d6864b25f2a9020"}
+  ]
 }

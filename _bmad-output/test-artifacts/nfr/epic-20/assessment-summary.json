@@ -70,7 +70,7 @@
       "findings": [
         {
           "category": "Bounded complete traversal",
-          "status": "CONCERNS"
+          "status": "PASS"
         },
         {
           "category": "Response Times",
@@ -89,7 +89,7 @@
           "status": "CONCERNS"
         }
       ],
-      "summary": "CONCERNS: partial functional traversal evidence exists, but effective-cap provenance and the required representative pilot measurements are absent. Unknown numeric targets cannot pass. Trace PASS is not NFR PASS; no measured performance breach or production defect is claimed."
+      "summary": "CONCERNS: effective finite-cap completeness and representative pilot measurement availability are now supported by committed independently High-reviewed evidence. Numeric response/throughput/resource/optimization targets remain UNKNOWN; no numeric SLO or release PASS."
     },
     "reliability": {
       "risk_level": "MEDIUM",
@@ -205,20 +205,20 @@
       ]
     },
     "bounded_complete_traversal_beyond_effective_cap": {
-      "status": "PARTIAL",
+      "status": "PASS",
       "domain_statuses": [
         {
           "domain": "performance",
-          "status": "CONCERNS"
+          "status": "PASS"
         }
       ]
     },
     "representative_pilot_baseline": {
-      "status": "PARTIAL",
+      "status": "PASS",
       "domain_statuses": [
         {
           "domain": "performance",
-          "status": "CONCERNS"
+          "status": "PASS"
         }
       ]
     },
@@ -341,8 +341,8 @@
     }
   },
   "finding_counts": {
-    "PASS": 10,
-    "CONCERNS": 19,
+    "PASS": 11,
+    "CONCERNS": 18,
     "FAIL": 0,
     "N/A": 0
   },
@@ -388,16 +388,6 @@
     },
     {
       "domain": "performance",
-      "action": "Required evidence gap: establish effective-cap provenance and beyond-cap complete stable traversal.",
-      "urgency": "NORMAL"
-    },
-    {
-      "domain": "performance",
-      "action": "Required evidence gap: supply realistic/hidden-heavy pilot elapsed/query/candidate/authorized-row/memory/bounded-work baseline before claiming NFR24 responsiveness or epic release.",
-      "urgency": "NORMAL"
-    },
-    {
-      "domain": "performance",
       "action": "Later owner decision: resolve UNKNOWN numeric targets before a numeric SLO gate; retain NFR26 external-beta deferral.",
       "urgency": "NORMAL"
     },
@@ -434,8 +424,6 @@
   "new_defects": 0,
   "new_mandatory_requirements": 0,
   "release_obligations": [
-    "effective_cap_provenance",
-    "pilot_baseline",
     "final_committed_head_checks",
     "preserve_canonical_20_2_review_caveat"
   ],
@@ -443,5 +431,41 @@
     "native_exit": 0,
     "executed": false,
     "value": ""
+  },
+  "bounded_evidence_update": {
+    "update_head": "6f891f7db7a1be83bd3d90b67ce2fdb47e538e3c",
+    "scope": "existing evidence only; no new audits/delegates/tests/resources",
+    "closed_evidence_gaps": [
+      "effective_cap_provenance",
+      "pilot_baseline"
+    ],
+    "effective_cap": 1000,
+    "candidate_links": 2125,
+    "authorized_links": 1025,
+    "pilot_scenarios": 3,
+    "cap_pilot_ref": "_bmad-output/test-artifacts/epic-20-cap-and-pilot-baseline-2026-10-13.json",
+    "cap_pilot_sha256": "12472f0188fe350855c9d58c761dd5262381b1c24431d5cc4d6864b25f2a9020",
+    "measurement_execution_head": "74aaac5f8dae68d26c887c7c42a2ff796bb8fa6c",
+    "measurement_source_unchanged_from_c65": true,
+    "independent_high_measurement_review": "accepted; no remaining measurement blocker",
+    "numeric_slo_targets": "UNKNOWN",
+    "numeric_slo_pass": false,
+    "deployment_cap_claim": false,
+    "measurement_layer": "readDocuments/RLS; HTTP counts/transferred rows;10ms sampledNodeRSS; no Next route/cookie/browser/SQL-cost/DB-memory/p95/p99",
+    "test_fixes_commit": "4f891be8",
+    "test_fixes_ref": "_bmad-output/test-artifacts/epic-20-test-reliability-fixes.md",
+    "test_fixes_sha256": "36fbb97ff29920ed00378aa85f33cd11e23f939173976c9be36a95a5e4613f50",
+    "test_fixes_execution": "dirty c210b637 plus assigned working blobs; no final-head replay",
+    "test_fixes_counts": {
+      "skipped": 0,
+      "browser_passed": 4,
+      "failed": 0,
+      "integration_passed": 114
+    },
+    "test_fix_review": "narrow Sol6.1High CLEAN",
+    "adr_checklist_score": "10/29",
+    "final_committed_head_checks": "pending",
+    "review_caveat": "20.2 review_unverified=true",
+    "release_authority": false
   }
 }

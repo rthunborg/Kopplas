@@ -30,3 +30,10 @@ Workflow success means an accurate completed FAIL gate. It does not mean product
 - [x] Dirty tested hash equals committed80fdaef7 blob/current file; native/raw/full-receipt hashes and166/166 REQUIRED0skip verified.
 - [x] Sol6.1 High assessor confirms closure; no clean-SHA/browser/whole-epic claim.
 - [x] PASS:32/32P0,36/38P1,77/81overall; initialFAIL history retained; no waiver.
+
+## Cap/pilot reconciliation validation
+
+- [x] Only20.1AC6/20-P1-05/20-P2-09statuses and supporting evidence/statistics updated;607canonical cases/81requirements/prior mappings preserved.
+- [x] Twelve referenced hashes, finite1000runtime truncation,2125candidates/1025authorized/21pages and3pilot measurement limits checked.
+- [x] PASS80/81FULL, optional20-P3-01only gap; no numericSLO/hostedcap/clean final replay claim.
+- [x] HistoricalFAIL,20.2caveat and dirty execution attribution retained; no broad review or new execution.

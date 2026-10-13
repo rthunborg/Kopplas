@@ -58,7 +58,7 @@ write('coverage-matrix.json',m)
 assert len(m['requirements'])==81
 assert read('gate-decision.json')['gate_status'] in ['FAIL','PASS','CONCERNS']
 assert gate_before==(O/'gate-decision.json').read_bytes();assert summary_before==(O/'e2e-trace-summary.json').read_bytes()
-assert m['coverage_statistics']['fully_covered'] in [76,77]
+assert m['coverage_statistics']['fully_covered']==sum(r['coverage']=='FULL' for r in m['requirements'])
 assert m['test_inventory']['summary']['cases']==len(records)
 assert {t['id']for req in m['requirements']for t in req['tests']}=={t['id']for t in records}
 assert all((R/t['file']).is_file()for t in records)

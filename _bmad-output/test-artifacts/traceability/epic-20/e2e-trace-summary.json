@@ -1,12 +1,12 @@
 {
   "schema_version": "0.2.0",
-  "snapshot_at": "2026-10-13T13:41:09.142342+00:00",
+  "snapshot_at": "2026-10-13T15:14:51.142825+00:00",
   "repo": "Kopplas",
   "collection_mode": "contract_static",
   "collection_status": "COLLECTED",
   "inventory_basis": "acceptance_criteria",
   "gate_basis": "priority_thresholds",
-  "source_sha": "80fdaef70b9145ff0ecf6de5865a894a5eb4b6a2",
+  "source_sha": "6f891f7db7a1be83bd3d90b67ce2fdb47e538e3c",
   "tested_product_sha": "c65c18649ac5641f9520b12e03a8b3f20af8f610",
   "target": {
     "type": "epic",
@@ -25,9 +25,9 @@
   },
   "coverage": {
     "inventory": {
-      "covered": 77,
+      "covered": 80,
       "total": 81,
-      "pct": 95
+      "pct": 99
     },
     "priority_breakdown": {
       "P0": {
@@ -37,13 +37,13 @@
       },
       "P1": {
         "total": 38,
-        "covered": 36,
-        "pct": 95
+        "covered": 38,
+        "pct": 100
       },
       "P2": {
         "total": 10,
-        "covered": 9,
-        "pct": 90
+        "covered": 10,
+        "pct": 100
       },
       "P3": {
         "total": 1,
@@ -87,8 +87,8 @@
   },
   "risk_summary": {
     "critical_open": 0,
-    "high_open": 2,
-    "medium_open": 1,
+    "high_open": 0,
+    "medium_open": 0,
     "low_open": 1
   },
   "heuristics": {
@@ -107,7 +107,7 @@
     "results_file": "C:/Users/Rasmus/.codex/worktrees/dbe6/ElproSaas/_bmad-output/test-artifacts/live-verification-results.json",
     "freshness": "not_present",
     "recorded_source_sha": "",
-    "current_source_sha": "80fdaef70b9145ff0ecf6de5865a894a5eb4b6a2",
+    "current_source_sha": "6f891f7db7a1be83bd3d90b67ce2fdb47e538e3c",
     "producer": "",
     "counted": 0,
     "stale": 0,
@@ -121,14 +121,9 @@
     "requirements_live_only": 0
   },
   "blockers": [
-    {"id":"20.1-AC6","severity":"high","reason":"1225 candidates (1100 hidden/125 eligible) and stable equal-timestamp traversal execute, with bounded unit chunks. No observed effective PostgREST max-row cap was established; absence of PGRST_DB_MAX_ROWS in a filtered container environment is not full cap provenance."},
-    {"id":"20-P1-05","severity":"high","reason":"1225 candidates (1100 hidden/125 eligible) and stable equal-timestamp traversal execute, with bounded unit chunks. No observed effective PostgREST max-row cap was established; absence of PGRST_DB_MAX_ROWS in a filtered container environment is not full cap provenance."},
-    {"id":"20-P2-09","severity":"medium","reason":"Bounded completeness is exercised; representative pilot elapsed/read-query/candidate/row/memory baseline is absent. No numeric latency/concurrency/volume target is authorized."},
     {"id":"20-P3-01","severity":"low","reason":"No recorded manual long-name/neutral-label wrap inspection at both viewports was supplied; optional visual polish is uncredited."}
   ],
   "recommendations": [
-    {"priority":"HIGH","action":"20.1 test owner via coordinator: 20-P1-05-CAP-001 must record effective PostgREST max-row cap/configuration and exercise more candidates than that observed limit with hidden-only batches/equal timestamps; assert every eligible row once and no false exhaustion/hidden cursor. Existing1225 traversal remains credited for what it executes.","requirements":["20.1-AC6","20-P1-05"]},
-    {"priority":"MEDIUM","action":"QA/coordinator before epic release: record 20-P2-09-PILOT-001 representative hidden-heavy pilot baseline with elapsed/query/candidate/authorized-row/memory measures. Resolve numeric threshold only through owner decision; do not fabricate SLO or code-coverage percentage.","requirements":["20-P2-09"]},
     {"priority":"LOW","action":"QA: optional20-P3-01-VISUAL-001 long synthetic names/neutral labels at desktop and360x640, record actual wrap/read outcome.","requirements":["20-P3-01"]},
     {"priority":"LOW","action":"Run separately authorized bmad-testarch-test-review and NFR assessment. Preserve20.2 review_unverified/formula history and narrow acceptance boundary.","requirements":[]}
   ],
@@ -145,18 +140,18 @@
     "p0_status": "MET",
     "p1_coverage_target": "90%",
     "p1_coverage_minimum": "80%",
-    "p1_coverage_actual": "95%",
+    "p1_coverage_actual": "100%",
     "p1_status": "MET",
     "overall_coverage_minimum": "80%",
-    "overall_coverage_actual": "95%",
+    "overall_coverage_actual": "99%",
     "overall_status": "MET"
   },
   "formal_ac_statistics": {
     "total_requirements": 25,
-    "fully_covered": 24,
-    "partially_covered": 1,
+    "fully_covered": 25,
+    "partially_covered": 0,
     "uncovered": 0,
-    "overall_coverage_percentage": 96,
+    "overall_coverage_percentage": 100,
     "priority_breakdown": {
       "P0": {
         "total": 14,
@@ -165,8 +160,8 @@
       },
       "P1": {
         "total": 11,
-        "covered": 10,
-        "percentage": 91
+        "covered": 11,
+        "percentage": 100
       },
       "P2": {
         "total": 0,
@@ -182,10 +177,10 @@
   },
   "approved_design_statistics": {
     "total_requirements": 56,
-    "fully_covered": 53,
-    "partially_covered": 2,
+    "fully_covered": 55,
+    "partially_covered": 0,
     "uncovered": 1,
-    "overall_coverage_percentage": 95,
+    "overall_coverage_percentage": 98,
     "priority_breakdown": {
       "P0": {
         "total": 18,
@@ -194,13 +189,13 @@
       },
       "P1": {
         "total": 27,
-        "covered": 26,
-        "percentage": 96
+        "covered": 27,
+        "percentage": 100
       },
       "P2": {
         "total": 10,
-        "covered": 9,
-        "percentage": 90
+        "covered": 10,
+        "percentage": 100
       },
       "P3": {
         "total": 1,
@@ -245,5 +240,7 @@
     "assessor_model": "gpt-6.1-sol",
     "assessor_effort": "high",
     "coverage_disposition": "20-P0-02 FULL; previously missing same-token active membership DELETE variant is executed"
-  }
+  },
+  "cap_pilot_evidence_ref": "evidence-integrity.json#cap_pilot",
+  "test_reliability_evidence_ref": "evidence-integrity.json#test_reliability"
 }

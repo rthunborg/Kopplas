@@ -56,6 +56,116 @@
     "assessor_effort": "high",
     "coverage_disposition": "20-P0-02 FULL; previously missing same-token active membership DELETE variant is executed"
   },
-  "current_snapshot_sha": "80fdaef70b9145ff0ecf6de5865a894a5eb4b6a2",
-  "original_snapshot_sha": "78d134656f03ca0dc96a5e415af5af04f67add53"
+  "current_snapshot_sha": "6f891f7db7a1be83bd3d90b67ce2fdb47e538e3c",
+  "original_snapshot_sha": "78d134656f03ca0dc96a5e415af5af04f67add53",
+  "cap_pilot": {
+    "artifact_ref": "_bmad-output/test-artifacts/epic-20-cap-and-pilot-baseline-2026-10-13.json",
+    "artifact_sha256": "12472f0188fe350855c9d58c761dd5262381b1c24431d5cc4d6864b25f2a9020",
+    "measurement_head": "74aaac5f8dae68d26c887c7c42a2ff796bb8fa6c",
+    "artifact_committed_at": "6f891f7db7a1be83bd3d90b67ce2fdb47e538e3c",
+    "src_git_tree_sha1": "7214e643503146bd003c3097605f8fe3bb619e86",
+    "source_unchanged_from_c65": true,
+    "native_exit": 0,
+    "required": "SUPABASE_TEST_REQUIRED=1",
+    "counts": {
+      "executed": 3,
+      "passed": 3,
+      "failed": 0,
+      "skipped": 0,
+      "timingTraversals": 9,
+      "counterTraversals": 3
+    },
+    "finite_cap_probe": {
+      "configuredTestCap": 1000,
+      "noRequestedLimit": true,
+      "returnedRows": 1000,
+      "exactCount": 2125,
+      "status": 206,
+      "contentRange": "0-999/2125",
+      "allTruncatedRowsHidden": true
+    },
+    "finite_reader": {
+      "authorized": 1025,
+      "pages": 21,
+      "exact_order_set_count_facets": true
+    },
+    "measurement_scenarios": [
+      {"name":"realistic-mixed-source","candidate_links":210,"authorized_links":140,"traversal_read_ms":[2194.599,2190.571,2194.032],"http_requests":152,"transferred_candidate_rows":630,"sampled_node_peak_rss_bytes":131104768},
+      {"name":"hidden-heavy","candidate_links":1225,"authorized_links":125,"traversal_read_ms":[1302.686,1289.368,1307.242],"http_requests":68,"transferred_candidate_rows":3675,"sampled_node_peak_rss_bytes":142233600},
+      {"name":"finite-cap-completeness","candidate_links":2125,"authorized_links":1025,"traversal_read_ms":[11020.641,10023.896,9983.487],"http_requests":468,"transferred_candidate_rows":44625,"sampled_node_peak_rss_bytes":144699392}
+    ],
+    "evidence_hashes_verified": {
+      "pilot-reviewed.ts": {
+        "path": "C:/Users/Rasmus/AppData/Local/Temp/Kopplas-epic20-cap-pilot-74aaac5f/pilot-reviewed.ts",
+        "sha256": "3b8c8d2559a5cd7537ffa7412870723741dc2e0300c47af5d21576c2b114305f"
+      },
+      "run-pilot-reviewed.py": {
+        "path": "C:/Users/Rasmus/AppData/Local/Temp/Kopplas-epic20-cap-pilot-74aaac5f/run-pilot-reviewed.py",
+        "sha256": "8d73e6c5737ac20c9788db4cc47edead7b86f7a04435e71391bb35304a77c691"
+      },
+      "pilot-reviewed-result.json": {
+        "path": "C:/Users/Rasmus/AppData/Local/Temp/Kopplas-epic20-cap-pilot-74aaac5f/pilot-reviewed-result.json",
+        "sha256": "229f4e1a81d6ae232918531d48119526b5d987f42897a50b3be24c7f7153ddc6"
+      },
+      "pilot-reviewed.native.json": {
+        "path": "C:/Users/Rasmus/AppData/Local/Temp/Kopplas-epic20-cap-pilot-74aaac5f/pilot-reviewed.native.json",
+        "sha256": "0ae72e6da87771d801447509c43644c6d2988be8f7fac160302871dedeae7b7a"
+      },
+      "pilot-reviewed.log": {
+        "path": "C:/Users/Rasmus/AppData/Local/Temp/Kopplas-epic20-cap-pilot-74aaac5f/pilot-reviewed.log",
+        "sha256": "8ed83d9212c60734bf2ab15b796536c7be50e089b5f821b0bce1bd14d95b60a2"
+      },
+      "retained-cap.json": {
+        "path": "C:/Users/Rasmus/AppData/Local/Temp/Kopplas-epic20-cap-pilot-74aaac5f/retained-cap.json",
+        "sha256": "438c63e770383ad97043a6279f7654a2e05e6fa54f303b9ab09abe916b53284e"
+      },
+      "retained-probe.native.json": {
+        "path": "C:/Users/Rasmus/AppData/Local/Temp/Kopplas-epic20-cap-pilot-74aaac5f/retained-probe.native.json",
+        "sha256": "04fa65586cf70e106f5e67caa6a4d9162899850deace15f29c90c445ee150d53"
+      },
+      "finite-effective-config.json": {
+        "path": "C:/Users/Rasmus/AppData/Local/Temp/Kopplas-epic20-cap-pilot-74aaac5f/finite-effective-config.json",
+        "sha256": "a43d6aee71bd1f492daecf197ef0b5a727a9ddb123bfb9eb1e2dfa03a842ffd6"
+      },
+      "finite-migrations.native.json": {
+        "path": "C:/Users/Rasmus/AppData/Local/Temp/Kopplas-epic20-cap-pilot-74aaac5f/finite-migrations.native.json",
+        "sha256": "c469e8c76077f3a1f4c175d08bed88c171a4c3f31a51bef4d9d6b91984f90b6c"
+      },
+      "finite-runtime-versions.json": {
+        "path": "C:/Users/Rasmus/AppData/Local/Temp/Kopplas-epic20-cap-pilot-74aaac5f/finite-runtime-versions.json",
+        "sha256": "aff1d6a5671deb7e83dc881ecbd15ab28c30277da27fe07544fe4dc5a4f5a0bf"
+      },
+      "finite-readiness.json": {
+        "path": "C:/Users/Rasmus/AppData/Local/Temp/Kopplas-epic20-cap-pilot-74aaac5f/finite-readiness.json",
+        "sha256": "adda99062e8cb03332705d7a3a95b4bee1c8888cf31cd29c9b46fec2facd652d"
+      },
+      "finite-corrected-readiness.json": {
+        "path": "C:/Users/Rasmus/AppData/Local/Temp/Kopplas-epic20-cap-pilot-74aaac5f/finite-corrected-readiness.json",
+        "sha256": "d5cdea50139cafad45cb2ebfd23c3db3dda97bf68749a0d6f96099d00855e496"
+      }
+    },
+    "independent_narrow_measurement_review": {
+      "task": "/root/epic20_cap_pilot/measurement_review",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "disposition": "accepted; no remaining measurement blocker",
+      "resultSha256": "229f4e1a81d6ae232918531d48119526b5d987f42897a50b3be24c7f7153ddc6",
+      "verified": "native0;3passed/0failed/0skipped; unchangedharness;43matching source/helper hashes;consistent page/counter/timing totals;exact authorized set/order/tuples/count/facets",
+      "scope": "measurement method and actual results only; no fourth broad story/code review"
+    },
+    "numeric_slo_approval": false,
+    "measurement_layer": "unchanged readDocuments production server read-model over real authenticated anon-key RLS client; excludes Next route/cookie/browser",
+    "new_trace_execution": false
+  },
+  "test_reliability": {
+    "artifact_ref": "_bmad-output/test-artifacts/epic-20-test-reliability-fixes.md",
+    "artifact_sha256": "36fbb97ff29920ed00378aa85f33cd11e23f939173976c9be36a95a5e4613f50",
+    "committed_at": "4f891be8",
+    "passed_integration": 114,
+    "passed_browser": 4,
+    "required_skips": 0,
+    "execution_tree": "dirty c210b637 plus recorded working blobs; no clean committed-head or new production build replay",
+    "narrow_review": "CLEAN Sol6.1 High, three test reliability fixes only; no fourth broad pass",
+    "fault_probes": "deliberate failed probes are not passing coverage; filtered cases are uncredited"
+  }
 }
