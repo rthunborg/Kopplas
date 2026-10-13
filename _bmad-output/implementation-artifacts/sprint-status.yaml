@@ -60,7 +60,7 @@
 # use the current Epic 10 statuses and approved corrective-story entries below.
 
 generated: 2026-06-12
-last_updated: 10-13-2026 21:19  # ADR-B009 connected-field course correction verified; governance Story 10.7 done, no PWA/offline functionality delivered.
+last_updated: 10-13-2026 21:48  # ADR-B009 connected-field course correction verified; governance Story 10.7 done, no PWA/offline functionality delivered.
 project: Kopplas
 project_key: NOKEY
 tracking_system: file-system
@@ -254,8 +254,8 @@ development_status:
   # E15: 15-5 is public token surface #1 — ships only with the ADR-B004 abuse
   # suite green (AC-B1b-7). Phone-shape work follows ADR-B009 and requires
   # connectivity; N-9 capacity-view rules are answered.
-  epic-15: backlog
-  15-1-the-five-scheduling-views: ready-for-dev
+  epic-15: in-progress
+  15-1-the-five-scheduling-views: in-progress
   15-2-recurring-bookings-series-materialized-occurrences-exceptions: backlog
   15-3-conflict-resolver: backlog
   15-4-time-reporting-filing-timesheet-review: backlog

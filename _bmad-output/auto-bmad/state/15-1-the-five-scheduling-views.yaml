@@ -9,27 +9,28 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-09T13:27:03Z"
+updated_at: "2026-10-13T19:48:50Z"
 started_at: "2026-10-09T13:06:12Z"
 completed_at: null
 active_seconds: 1201
-timing_anchor: null
+timing_anchor: 1791920930
 is_first_in_epic: true
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: tea_per_story
-selected_role: tea-delegate
+selected_phase: build
+selected_role: build-delegate
 selected_profile: standard
 selected_model: gpt-6.1-sol
 selected_effort: low
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Ordinary15.1 ATDD preparation; sensitive access assertions delegated High; shared fixture edits excluded"
+escalation_reason: "Ordinary scheduling implementation at Low; explicit High nested authors/reviewers own actual auth/permission/read-model boundaries"
 routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary scheduling UX specification; sensitive authorization/integrity portions explicitly delegated High\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary15.1 ATDD preparation; sensitive access assertions delegated High; shared fixture edits excluded\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary scheduling implementation at Low; explicit High nested authors/reviewers own actual auth/permission/read-model boundaries\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate, trace-advisory]
 tea_rationale: "Scheduling, synchronized projections, capacity and drag/keyboard/dialog behavior"
@@ -105,3 +106,17 @@ atdd:
   product_behaviors_executed: 0
   failed: 0
   scaffolds: 62
+adoption_revalidation:
+  merge_commit: 279d3149c7abea296a52eaf46f598e6254ba3478
+  spec_lf_hash: 6a10a0a44de17e39bf0767262560ff8550d45bf2199b8718c22ffd5093a9f312
+  model: gpt-6.1-sol
+  no_review_round_consumed: true
+  verdict: ready-for-dev
+  base: d507c7d01c6c5c8d317d34cccdce881723e450c9
+  effort: high
+ownership:
+  migration: "None"
+  scope: 15.1 scheduling tasks and necessary manifest/nav/permission/shared fixture/sprint writes
+  dependencies: No new dependency approved
+  documents: "No writers; preserve Option A and imported anchors"
+  next_story: 15.2 not released
