@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/documents-resume-admission-2026-10-09
 status: in-progress
-updated_at: "2026-10-13T15:53:46Z"
+updated_at: "2026-10-13T16:50:05Z"
 started_at: "2026-10-09T13:24:56Z"
 completed_at: null
 active_seconds: 7870
@@ -26,7 +26,7 @@ selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Bounded failed-CI fixture efficiency repair preserving fresh tenant authorization fixtures and all assertions; independent High narrow review."
+escalation_reason: Owner-approved explicit inherited-skip adoption and measured suite execution budgets require integrity authoring and independent High review.
 routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Epic trace gate assesses authorization, RLS and transactional integrity evidence.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -39,6 +39,7 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Validate source-authorized aggregation completeness under actual PostgREST row cap and tenant-safe pilot evidence.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic_audit\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Final exact-candidate release verification includes authorization, RLS, signed access, storage recovery and transactional integrity.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic_audit\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Bounded failed-CI fixture efficiency repair preserving fresh tenant authorization fixtures and all assertions; independent High narrow review.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic_audit\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Owner-approved explicit inherited-skip adoption and measured suite execution budgets require integrity authoring and independent High review.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic_audit\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: null
 tea_selected: []
 tea_rationale: null
@@ -87,18 +88,19 @@ pr_merged: false
 merge_method: null
 merge_commit: null
 branch_deleted: false
-open_questions:
-  - "Owner disposition of inherited skips and expanded browser-suite execution budget requested; no waiver received."
+open_questions: []
 deferred_work: []
 blockers:
-  - "Final candidate87d4dce1: CI db exceeded300s; browser361passed3skipped but summed591.40s exceeds300s."
-  - "Pinned zero-skip contract conflicts with identified inherited skips; owner disposition requested and pending."
+  - "Reviewed adoption and implementation of explicit inherited-skip exception remains pending; actual counts must remain unchanged."
+  - Measured suite-budget update and fresh final-candidate required checks/CI remain pending.
 overrides:
   owner_authorized: true
   documents_oracle_disposition: "Requirements-based; no exact legacy comparison; zero observations"
   retain_branches: true
   no_deployment: true
   early_epic_checkpoint: "PR93 merged; approved three-spec plan; E15 explicit shared-domain release"
+  suite_budget_disposition: 2026-10-13 human explicitly authorizes measured independently reviewed suite-budget update retaining every test and all product performance limits
+  inherited_skip_disposition: "2026-10-13 human explicitly permits reviewed exception for identified inherited skips, retaining actual counts and no coverage credit"
 constraints: []
 parallel_run_id: documents-e20-readiness-2026-10-09
 epic_slug: documents-center
