@@ -142,37 +142,56 @@ const mutations: { name: string; sql: string; id: () => string; context?: () => 
 ];
 describe("Documents20.1 SHARE authority lock and final-audit linearization", () => {
   it.each(["proof", "real URL"] as const)("[P0] otherwise valid %s expiring behind a source lock is rejected after the wait without audit", async (expiryKind) => {
-    const args = await proof(contactTarget(), expiryKind === "real URL" ? 3 : undefined);
+    const args = await proof(contactTarget());
     await adminSession(async (holder) => {
       await holder.query("begin");
       let pending: Promise<{ ok: boolean; code?: string }> | undefined;
+      const preparedArgs = deferred<Record<string, string> | undefined>();
       try {
-        if (expiryKind === "proof") {
-          // Independent synthetic HMAC fixture gives the fixed five-minute proof
-          // only three seconds remaining, avoiding a five-minute test sleep.
-          const [times] = await holder.query<{ issued: string; expires: string }>("select public.file_signed_access_attestation_iso(clock_timestamp()-interval '4 minutes 57 seconds') as issued,public.file_signed_access_attestation_iso(clock_timestamp()+interval '3 seconds') as expires");
-          // Sample one issuance value: exact five-minute equality is authoritative.
-          args.p_attestation_issued_at = times.issued;
-          args.p_attestation_expires_at = new Date(Date.parse(times.issued)+300_000).toISOString();
-          args.p_attestation_signature = signed(args);
-        }
-        const expiry = expiryKind === "proof" ? args.p_attestation_expires_at : args.p_signed_url_expires_at;
         const [owner] = await holder.query<{ pid: number }>("select pg_backend_pid() as pid");
         await holder.query("select id from public.contacts where id=$1 for update", [contactId]);
         const pid = deferred<number>();
         pending = adminSession(async (request) => {
           await request.query("begin");
           try {
-            const [row] = await request.query<{ pid: number }>("select pg_backend_pid() as pid"); pid.resolve(row.pid);
-            await request.query("set local statement_timeout='12s'"); await authenticate(request);
-            await finalize(request, args); await request.query("commit"); return { ok: true };
+            const [row] = await request.query<{ pid: number }>("select pg_backend_pid() as pid");
+            await request.query("set local statement_timeout='25s'"); await authenticate(request);
+            pid.resolve(row.pid);
+            const releasedArgs = await preparedArgs.promise;
+            if (!releasedArgs) return { ok: false, code: "fixture-aborted" };
+            await finalize(request, releasedArgs); await request.query("commit"); return { ok: true };
           } catch (error) { await request.query("rollback"); return { ok: false, code: (error as { code?: string }).code }; }
           finally { await request.query("rollback"); }
         });
-        await waitForBlock(holder, await pid.promise, owner.pid);
-        const [beforeExpiry] = await holder.query<{ fresh: boolean }>("select clock_timestamp() < $1::timestamptz as fresh", [expiry]);
-        expect(beforeExpiry.fresh).toBe(true);
-        const deadline = performance.now()+8_000;
+        // Acquire both sessions, authenticate the finalizer and hold authority BEFORE
+        // starting the limited lifetime. Only the bounded dispatch/barrier remains.
+        const requestPid = await Promise.race([
+          pid.promise,
+          pending.then((outcome) => { throw new Error(`finalizer setup failed before readiness: ${outcome.code ?? "unknown"}`); }),
+        ]);
+        if (expiryKind === "proof") {
+          const [times] = await holder.query<{ issued: string }>("select public.file_signed_access_attestation_iso(clock_timestamp()-interval '4 minutes 45 seconds') as issued");
+          args.p_attestation_issued_at = times.issued;
+          args.p_attestation_expires_at = new Date(Date.parse(times.issued)+300_000).toISOString();
+          args.p_attestation_signature = signed(args);
+        } else {
+          // Prepare takes source locks too, so use the already prepared challenge;
+          // mint the short-lived real URL only after both sessions are ready.
+          const url = await createSignedFileUrl({ client: client as unknown as StorageSigningClient, bucket: "tenant-files", objectPath: path, ttlSeconds: 15, nowIso: args.p_attestation_issued_at });
+          if (!url) throw new Error("real Storage sign failed for expiry barrier");
+          const validated = validateSignedStorageUrl(url.signedUrl, { bucketId: "tenant-files", objectPath: path, challengeIssuedAt: args.p_attestation_issued_at, computedExpiresAt: url.expiresAt });
+          args.p_signed_url_sha256 = validated.signedUrlSha256;
+          args.p_signed_url_expires_at = validated.expiresAt;
+          args.p_attestation_signature = signed(args);
+        }
+        const expiry = expiryKind === "proof" ? args.p_attestation_expires_at : args.p_signed_url_expires_at;
+        const dispatchStarted = performance.now();
+        preparedArgs.resolve(args);
+        await waitForBlock(holder, requestPid, owner.pid);
+        expect(performance.now()-dispatchStarted).toBeLessThan(5_000);
+        const [beforeExpiry] = await holder.query<{ remaining: number }>("select extract(epoch from ($1::timestamptz-clock_timestamp()))::float8 as remaining", [expiry]);
+        expect(beforeExpiry.remaining).toBeGreaterThan(8);
+        const deadline = performance.now()+20_000;
         let expired = false;
         while (performance.now() < deadline) {
           const [clock] = await holder.query<{ expired: boolean }>("select clock_timestamp() >= $1::timestamptz as expired", [expiry]);
@@ -183,10 +202,10 @@ describe("Documents20.1 SHARE authority lock and final-audit linearization", () 
         // clock substitution would incorrectly accept this prepared proof.
         await holder.query("commit");
         expect(await pending).toEqual({ ok: false, code: "FSA10" });
-      } finally { await holder.query("rollback"); if (pending) await pending; }
+      } finally { preparedArgs.resolve(undefined); await holder.query("rollback"); if (pending) await pending; }
     });
     expect(await adminSelectAuditEvents({ correlationId: args.p_correlation_id })).toEqual([]);
-  });
+  }, 40_000);
 
   it("[P0] deleting the sole granting child role after prepare denies finalization", async () => {
     const args = await proof();

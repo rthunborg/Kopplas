@@ -42,13 +42,18 @@ import type { Page, Locator } from "@playwright/test";
 import { test, expect } from "../dashboard/guarded-test";
 import { readFileSync } from "node:fs";
 import path from "node:path";
+import { adminInsertFile, adminInsertFileLink, adminUploadStorageObject, adminRemoveStorageObject } from "../../factories/tenants";
+import { adminQuery, adminExec, closeAdminPool } from "../../factories/admin-sql";
 
 interface CrmFixture {
+  readonly tenantA: { readonly id: string };
   readonly adminA: { readonly email: string; readonly password: string };
   readonly crm: {
     readonly company: { readonly id: string; readonly displayName: string };
   };
 }
+
+test.afterAll(async () => { await closeAdminPool(); });
 
 function fixture(): CrmFixture {
   return JSON.parse(readFileSync(path.join(process.cwd(), "tests", "e2e", ".auth", "fixture.json"), "utf8"));
@@ -129,25 +134,42 @@ test.describe("Entity file preview/download UX (Story 8.3 E2E)", () => {
   test("[8.3-E2E-03][P1/AC3/R-811] a denied/wrong-lifecycle preview surfaces a generic role=alert error with NO raw path", async ({
     page,
   }) => {
-    await gotoCustomerPanel(page);
-
-    // A wrong-lifecycle / cross-tenant-invisible file surfaces a GENERIC preview error (no
-    // existence disclosure, no raw storage error). Driving a deterministic denial in E2E needs a
-    // Task-3 seam (e.g. a seeded file whose lifecycle is archived after listing, or a foreign id
-    // submitted). If no deterministic denial driver exists yet, keep this as the DOM contract
-    // (the error region is a role="alert" with a generic message + no path) and mark the trigger
-    // test.fixme rather than flaky.
-    const previewError = page.getByTestId("file-preview-error").first();
-    // The RED contract: the preview-error region is an assertive alert (text, not color-only) and
-    // carries no raw path substring when shown.
-    if (await previewError.count()) {
+    const fx = fixture();
+    const name = `denied-preview-${crypto.randomUUID()}.pdf`;
+    const fileId = await adminInsertFile({ tenant_id: fx.tenantA.id, display_name: name, mime_type: "application/pdf", lifecycle_state: "linked" });
+    let objectPath: string | undefined;
+    try {
+      await adminInsertFileLink({ tenant_id: fx.tenantA.id, file_id: fileId, owner_type: "customer", owner_id: fx.crm.company.id, purpose: "crm_document" });
+      const [file] = await adminQuery<{ object_path: string }>("select object_path from public.files where id=$1", [fileId]);
+      objectPath = file.object_path;
+      await adminUploadStorageObject({ bucket: "tenant-files", objectPath, body: new TextEncoder().encode("denied-preview-bytes") });
+      await gotoCustomerPanel(page);
+      const row = page.getByTestId("file-panel-file-item").filter({ hasText: name });
+      await expect(row).toHaveCount(1);
+      const preview = row.getByTestId("file-preview-button");
+      await waitForHydrated(preview);
+      // This inherited panel uses generic File signing (Option A): archive the
+      // selected file after listing to drive its actual lifecycle denial gate.
+      await adminExec("update public.files set lifecycle_state='archived',archived_at=now() where id=$1", [fileId]);
+      await preview.click();
+      const previewError = row.getByTestId("file-preview-error");
+      await expect(previewError).toBeVisible();
       await expect(previewError).toHaveAttribute("role", "alert");
+      await expect(previewError).toHaveText("Filen kan inte kommas åt just nu.");
+      await expect(row.getByTestId("file-preview-link")).toHaveCount(0);
       const errText = await previewError.innerText();
+      const errDom = await previewError.innerHTML();
+      expect(errText + errDom).not.toContain(objectPath);
+      expect(errText + errDom).not.toContain("tenant-files");
       expect(errText).not.toContain("object_path");
       expect(errText).not.toContain("bucket_id");
       // Generic — no "finns inte" / "hittades inte" existence leak (R-809).
       expect(errText.toLowerCase()).not.toContain("finns inte");
       expect(errText.toLowerCase()).not.toContain("hittades inte");
+    } finally {
+      if (objectPath) await adminRemoveStorageObject({ bucket: "tenant-files", objectPath });
+      await adminExec("delete from public.file_links where file_id=$1", [fileId]);
+      await adminExec("delete from public.files where id=$1", [fileId]);
     }
   });
 

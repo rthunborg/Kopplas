@@ -431,6 +431,8 @@ The actual `pnpm run build` executed native0 at2026-10-12T13:42:15Z only after r
 Raw red/build/green/affected logs, JSON reports, summaries, retained wrapper versions/provenance and root server receipt are in `C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-1-upload-reset-repair-2026-10-12/`; final hash-bound green/static/metadata checks are under `final-static/`. The new complete selection expects34 Documents/41 three-file cases; no full41 dirty run or all14 execution at a repaired clean SHA is claimed here. Root owns the freeze/checkpoint, exact-SHA all14 replays and independent latest-fix High confirmation. The original optionA/baseline/history/frozen intent and three completed broad rounds remain unchanged.
 
 ## Suggested Review Order
+Bounded reliability amendment author: `/root/epic20_test_reliability_fix` (Sol 6.1 High), 2026-10-13; current fixture rationale/stops and execution are in the linked bounded repair evidence. Earlier authored rationale and historical verification retain their provenance below.
+
 Author: resumed generation-2 implementation/fix author `/root/worker20_1_gen2_build/author_gen2` (Sol6.1 High). Refreshed against the dirty targeted repair on `8ec59bc75d3d069aba740fd76a24ecc959160c53`, product hash916879fb and final Documents test hash7b4a14bb, with actual fresh production build and targeted2+6 browser evidence above. Whole-change baseline remains `477435ddf9e4a9894db82b2f1831634eaabefae3`; all14/full39 at8ec and earlier48/20df/02db/Phase6 records retain their actual revisions. Original broad rounds3 and last completed narrow formula remain historical; exact clean latest-fix independent confirmation is pending root work.
 
 ### 1. One usable destination with the existing role ceiling
@@ -449,9 +451,9 @@ Activation transfers the sole `/files` entry to Documents while Files retains it
 The registry checks every manifest-active owner, including domain-created quote-version links; upload eligibility remains a separate contract. Request-bound source/live-parent checks precede the narrow per-link DTO, and encrypted actor/tenant/filter-bound cursors conceal skipped candidates while keyset traversal avoids false exhaustion. The round1 fix restores only existing name/MIME/owner collection narrowing, collects facets from current eligible contexts, and requires authorized lookahead before continuation (AC2–AC6). Round2 preserves focused newer drafts on own server echoes, reconciles actual external navigation, hides stale continuation while filters are pending, and normalizes repeated route query keys to scalars (AC9); browser response barriers exercise these specific paths.
 
 - `src/server/read-models/document-sources.ts:40` — `assertDocumentSourceRegistryCoherence`: fails loudly on missing active adapters.
-- `src/server/read-models/document-sources.ts:61` — `readDocumentSource`: validates capability, lifecycle, provenance and required live ancestry.
-- `src/server/read-models/documents.ts:114` — `while (true)`: continues internally across hidden candidate batches.
-- `src/server/read-models/documents.ts:134` — `const row:`: exposes only the approved contextual display projection.
+- `src/server/read-models/document-sources.ts:64` — `readDocumentSource`: validates capability, lifecycle, provenance and required live ancestry.
+- `src/server/read-models/documents.ts:106` — `while (true)`: continues internally across hidden candidate batches.
+- `src/server/read-models/documents.ts:133` — `const projected:`: collects the approved contextual display projection.
 
 ### 3. Selected-link access never falls back to generic signing
 
@@ -466,10 +468,14 @@ The action accepts only link/file identity; server and checked SQL derive the so
 
 The reviewed contract uses SHARE locks because archive/status/role changes are nonkey updates. It reconciles the exact gathered parent graph after lock acquisition, and rechecks real time after waits; new proof/real-URL expiry barriers specifically exercise that wait boundary. Authority is linearized at successful final audit, not subsequent HTTP delivery or bearer consumption (AC3/AC7/AC8).
 
+The 2026-10-13 bounded test repair derives expired/future proof offsets from the prepared DB challenge while deliberately skewing Node `Date.now`; the real RPC must still deny with FSA10 and no audit. Expiry races acquire the source lock and authenticate the second session before starting a 15-second remaining lifetime, assert dispatch/freshness budgets, and observe actual PostgreSQL expiry while blocked. A failed readiness outcome releases the holder through its existing finally rollback. This is a test-fixture repair, with synthetic HMAC issuance only for the proof-expiry case; the URL-expiry case mints a real Storage URL.
+
 - `supabase/migrations/20261009091120_story_20_1_documents_selected_link_access.sql:132` — `v_contact.facility_id`: denies optional-parent reassignment outside the locked graph.
 - `supabase/migrations/20261009091120_story_20_1_documents_selected_link_access.sql:376` — `clock_timestamp()`: rejects proofs expiring during lock waits.
 - `tests/integration/commands/documents-signed-access-lock-races.int.test.ts:143` — `SHARE authority lock`: proves deterministic two-connection ordering and final-audit linearization.
-- `tests/integration/commands/documents-signed-access.int.test.ts:227` — `actual audit rollback`: asserts no returned URL after real remote issuance and audit failure.
+- `tests/integration/commands/documents-signed-access.int.test.ts:229` — `actual audit rollback`: asserts no returned URL after real remote issuance and audit failure.
+- `tests/integration/commands/documents-signed-access.int.test.ts:268` — `const challengeTime`: anchors negative proof offsets to database issuance.
+- `tests/integration/commands/documents-signed-access-lock-races.int.test.ts:168` — `Promise.race`: releases failed session readiness without stranding authority locks.
 
 ### 5. Evidence distinguishes checked access, upload visibility and fixture scope
 
@@ -477,14 +483,17 @@ AC4/AC6 assertions retain separate link identities and traverse1225 mixed candid
 
 - `tests/integration/rls/documents.rls.test.ts:134` — `multi-linked file`: checks two allowed contexts and absent denied context.
 - `tests/integration/rls/documents.rls.test.ts:210` — `>PostgREST-cap`: checks stable1225 mixed-candidate traversal.
-- `tests/integration/commands/documents-signed-access.int.test.ts:209` — `Option A preserves`: distinguishes generic/direct and issued-bearer residual access.
-- `tests/e2e/files/documents.e2e.spec.ts:575` — `confirmed upload on a narrowed continuation`: covers persisted visibility at both viewports.
-- `tests/e2e/files/documents.e2e.spec.ts:496` — `confirmed upload reset preserves`: forces a real own reset to commit before the newer draft debounce and checks route/results/signed bytes.
-- `tests/e2e/files/documents.e2e.spec.ts:372` — `goBack`: verifies actual Back/Forward reconciliation remains effective after own navigation.
-- `tests/e2e/files/documents.e2e.spec.ts:156` — `actual source read shows loading`: checks real loading, no premature empty/data and completed read.
-- `tests/e2e/files/documents.e2e.spec.ts:183` — `keyboard access shows signing progress`: checks pending/noURL, expired reauthorization and exact bytes.
-- `tests/e2e/files/entity-file-preview.e2e.spec.ts:154` — `expired link offers`: checks real contextual signing and expiry refresh.
-- `tests/e2e/files/entity-file-preview.e2e.spec.ts:194` — `refreshedHref`: rejects reuse of the original bearer after refresh.
+- `tests/integration/commands/documents-signed-access.int.test.ts:211` — `Option A preserves`: distinguishes generic/direct and issued-bearer residual access.
+- `tests/e2e/files/documents.e2e.spec.ts:582` — `confirmed upload on a narrowed continuation`: covers persisted visibility at both viewports.
+- `tests/e2e/files/documents.e2e.spec.ts:503` — `confirmed upload reset preserves`: forces a real own reset to commit before the newer draft debounce and checks route/results/signed bytes.
+- `tests/e2e/files/documents.e2e.spec.ts:386` — `goBack`: verifies actual Back/Forward reconciliation remains effective after own navigation.
+- `tests/e2e/files/documents.e2e.spec.ts:170` — `actual source read shows loading`: checks real loading, no premature empty/data and completed read.
+- `tests/e2e/files/documents.e2e.spec.ts:197` — `keyboard access shows signing progress`: checks pending/noURL, expired reauthorization and exact bytes.
+- `tests/e2e/files/entity-file-preview.e2e.spec.ts:176` — `expired link offers`: checks real contextual signing and expiry refresh.
+- `tests/e2e/files/entity-file-preview.e2e.spec.ts:214` — `refreshedHref`: rejects reuse of the original bearer after refresh.
+- `tests/e2e/files/entity-file-preview.e2e.spec.ts:156` — `toBeVisible`: unconditionally requires the real generic denial alert after file archive.
+
+The inherited panel uses generic File access under Option A, so its repaired denial arranges a unique listed file and archives that file after hydration. It asserts the exact existing generic alert, no URL, no raw path and no existence disclosure. A temporary browser-only probe suppresses the real rendered alert to prove this assertion fails; it substitutes no server response or signing result. Current execution, dirty-source provenance, narrow-review disposition and raw log hashes are recorded in [the bounded repair evidence](../test-artifacts/epic-20-test-reliability-fixes.md). These results supplement historical evidence below and do not replace the root's final committed release replay.
 
 Evidence: all14 required checks actually passed at8ec, including Linux2432/0skip and full39/39/0skip/0flaky, but that review found the new upload-reset race. The dirty repaired product has an actual fresh native0 build; the deterministic red2fail/0skip on8ec became green2pass/0skip/0flaky, and affected6 passed including real external history traversal. Final green2/affected6 and nonincremental TypeScript/scoped ESLint summaries bind final product916879fb/test7b4a14bb hashes. Raw evidence and metadata/reference validation are in the targeted repair directory above. Current34 Documents/full41 cases are expected counts; full41/all14 at a new clean final SHA and independent latest-fix approval remain pending root work. Six narrow configured High layers at20df and the resolved medium href fix/latest High02db confirmations retain their historical score3/followupfalse, with broad3 unchanged. TEA all10AC/zero unit/API gaps remain audit dispositions, with their actual dirty four-case preflight retained; they do not approve the later repair.
 
@@ -494,12 +503,12 @@ Limits: local synthetic fixtures and controlled faults do not prove hosted parit
 
 Coverage author: `/root/epic20_trace_remediation/membership_test_author` (Sol6.1 High), bounded `20-P0-02-MEMBERSHIP-REMOVE-001` addition on 2026-10-13. The disposable actor first receives eligible global/context rows, source/entity navigation and a checked signed URL; deleting its active membership then denies the next reads and both open/refresh command requests while the same unexpired token still authenticates that actor (AC3/AC7/AC10). A fresh fixture isolates the membership and cascading child-role deletion from shared suite actors, with exact Storage-object removal and fixture cleanup in nested `finally`.
 
-- `tests/integration/commands/documents-signed-access.int.test.ts:359` — `20-P0-02-MEMBERSHIP-REMOVE-001`: establishes successful access before membership removal.
-- `tests/integration/commands/documents-signed-access.int.test.ts:377` — `access_token === token`: retains the token; subsequent expiry and Auth checks establish continued authentication.
-- `tests/integration/commands/documents-signed-access.int.test.ts:405` — `returning id,status`: proves actual active-row deletion; the follow-up query proves no actor membership remains.
-- `tests/integration/commands/documents-signed-access.int.test.ts:412` — `await readDocuments`: denies global/context reads without rows, labels, selection or source/entity context.
-- `tests/integration/commands/documents-signed-access.int.test.ts:422` — `"open", "refresh"`: separately denies both checked requests with no URL or added success audit.
-- `tests/integration/commands/documents-signed-access.int.test.ts:433` — `adminRemoveStorageObject`: removes the exact fixture object; nested `finally` always attempts fixture cleanup.
+- `tests/integration/commands/documents-signed-access.int.test.ts:365` — `20-P0-02-MEMBERSHIP-REMOVE-001`: establishes successful access before membership removal.
+- `tests/integration/commands/documents-signed-access.int.test.ts:383` — `access_token === token`: retains the token; subsequent expiry and Auth checks establish continued authentication.
+- `tests/integration/commands/documents-signed-access.int.test.ts:411` — `returning id,status`: proves actual active-row deletion; the follow-up query proves no actor membership remains.
+- `tests/integration/commands/documents-signed-access.int.test.ts:418` — `await readDocuments`: denies global/context reads without rows, labels, selection or source/entity context.
+- `tests/integration/commands/documents-signed-access.int.test.ts:428` — `"open", "refresh"`: separately denies both checked requests with no URL or added success audit.
+- `tests/integration/commands/documents-signed-access.int.test.ts:439` — `adminRemoveStorageObject`: removes the exact fixture object; nested `finally` always attempts fixture cleanup.
 
 Executed evidence: `SUPABASE_TEST_REQUIRED=1`, API60431/DB60432, serial Vitest selection of signed-access, signed-access-lock-races, Documents RLS and contextual RLS: native0, 166/166 passed (76/38/24/28), 0failed/0skipped/0todo in97.53s; the new regression passed in1.564s. `pnpm exec eslint tests/integration/commands/documents-signed-access.int.test.ts` and `pnpm exec tsc --noEmit --incremental false` each returned native0. Raw logs, assertion-level JSON and native summaries are `_bmad-output/test-artifacts/epic-20-e8-iter1/documents-authorization-races.{log,vitest.json,native.json}`, `membership-scoped-lint.{log,native.json}` and `membership-typecheck.{log,native.json}`.
 

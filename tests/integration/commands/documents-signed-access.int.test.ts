@@ -1,7 +1,7 @@
 /** Documents20.1 ATDD: checked command/RPC, real Storage, fixed audit and Option A. */
 import type { Result } from "@/lib/result/result";
 import { createHmac } from "node:crypto";
-import { beforeAll, afterAll, describe, it, expect } from "vitest";
+import { beforeAll, afterAll, describe, it, expect, vi } from "vitest";
 import {
   createRoleAwarePhaseAFixture, cleanupRoleAwarePhaseAFixture, makeAuthedServerClient,
   createTwoTenantFixture, cleanupFixture, adminRemoveStorageObject,
@@ -265,11 +265,17 @@ describe("Documents20.1 selected-link checked access", () => {
   });
   it.each(["expired", "future"])("[P0] otherwise valid %s proof is rejected by authoritative DB time", async (state) => {
     const { args } = await proof();
-    const issued = Date.now() + (state === "expired" ? -600_000 : 120_000);
-    const changed: Record<string, string> = { ...args, p_attestation_issued_at: new Date(issued).toISOString(), p_attestation_expires_at: new Date(issued + 300_000).toISOString() };
-    changed.p_attestation_signature = signature(changed);
-    const result = await a.rpc(FINALIZE, changed); expect(result.error?.code).toBe("FSA10"); expect(result.data).toBeNull();
-    expect(await adminSelectAuditEvents({ correlationId: args.p_correlation_id })).toEqual([]);
+    const challengeTime = Date.parse(args.p_attestation_issued_at);
+    // Deliberately skew Node: fixture authority remains the DB challenge.
+    const nodeClock = vi.spyOn(Date, "now").mockReturnValue(challengeTime + (state === "expired" ? -86_400_000 : 86_400_000));
+    try {
+      const issued = challengeTime + (state === "expired" ? -600_000 : 120_000);
+      const changed: Record<string, string> = { ...args, p_attestation_issued_at: new Date(issued).toISOString(), p_attestation_expires_at: new Date(issued + 300_000).toISOString() };
+      changed.p_attestation_signature = signature(changed);
+      expect(Math.abs(Date.now() - challengeTime)).toBe(86_400_000);
+      const result = await a.rpc(FINALIZE, changed); expect(result.error?.code).toBe("FSA10"); expect(result.data).toBeNull();
+      expect(await adminSelectAuditEvents({ correlationId: args.p_correlation_id })).toEqual([]);
+    } finally { nodeClock.mockRestore(); }
   });
   it("[P0] external checked RPC ACLs allow authenticated only; internal target/payload/key helpers allow no client role", async () => {
     const rows = await adminQuery<{ proname: string; role: string; allowed: boolean }>(
