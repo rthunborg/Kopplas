@@ -9,17 +9,17 @@ spec_folder: null
 story_id: "20.3"
 branch: codex/parallel-documents-e20-readiness-2026-10-09-20-3
 status: running
-updated_at: "2026-10-13T11:18:31Z"
+updated_at: "2026-10-13T11:38:34Z"
 started_at: "2026-10-13T08:43:10Z"
 completed_at: null
-active_seconds: 9019
-timing_anchor: 1791890311
+active_seconds: 10221
+timing_anchor: 1791891514
 is_first_in_epic: false
 is_last_in_epic: true
 git_mode: remote
 base_branch: main
-selected_phase: tea_per_story
-selected_role: tea-delegate
+selected_phase: followup_review
+selected_role: primary-reviewer
 selected_profile: standard
 selected_model: gpt-6.1-sol
 selected_effort: high
@@ -32,12 +32,13 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authentication, authorization, permissions, public-tokens, rls, security, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authentication, authorization, permissions, public-tokens, rls, security, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authentication, authorization, permissions, public-tokens, rls, security, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authentication, authorization, permissions, public-tokens, rls, security, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"followup_review\",\"profile\":\"standard\",\"role\":\"primary-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: "Independent Phase0 triage: current-source authorization and source-authority preservation trigger authorization/permissions signals"
 epic_story_count: 3
 stories_after_in_epic: 0
-completed_phases: [0, 1, 3, 4, 5]
+completed_phases: [0, 1, 3, 4, 5, 6]
 spec_path: "C:/Users/Rasmus/.codex/worktrees/documents-e20-20-3/Kopplas/_bmad-output/implementation-artifacts/spec-20-3-entity-panel-links-and-contextual-navigation.md"
 spec_approved: true
 build:
@@ -57,7 +58,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [75b40dbeb1d4439f0f5794fe7acbf1f465e34e1d, 452129c6cd5ac3f7545f7d26b4cf1a64e232fd56, cf8929a75327ecae394f5d752ab41532466b7a2f, e57bdb01835b67f89b385b89a5b67e30ef22c460, 26f6eac5351efb5ad48a4408a84e1a7fd0d68758]
+commits: [75b40dbeb1d4439f0f5794fe7acbf1f465e34e1d, 452129c6cd5ac3f7545f7d26b4cf1a64e232fd56, cf8929a75327ecae394f5d752ab41532466b7a2f, e57bdb01835b67f89b385b89a5b67e30ef22c460, 26f6eac5351efb5ad48a4408a84e1a7fd0d68758, fa00fc8d00c4aa142f07e271a85e317b0340a99d]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -120,5 +121,7 @@ overrides:
   phase5: "HALT done; complete six-layer SolHigh round1; two medium patches; actual17native0; fullunits2508/contextunit53/contextRLS28/browser53+117 all0fail0skip. Runtime receipts precede final clean-SHA checks. UTF8 patch/proof failures retained and corrected; same-round intent layer repaired; narrow author trail20refs0errors/PASS."
   phase5_proof: "C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-3-build-2026-10-13/review1-patch-verification/required17-manifest.json"
   phase5_author_terminal_sha: 26f6eac5351efb5ad48a4408a84e1a7fd0d68758
+  automate: "{\"outcome\":\"done\",\"new_tests\":0,\"gaps\":0,\"repo_edits\":0,\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"nested_leaves\":2,\"unit\":53,\"rls\":28,\"browser\":53,\"native\":[0,0,0],\"failed\":0,\"skipped\":0,\"commit\":\"fa00fc8d00c4aa142f07e271a85e317b0340a99d\",\"artifact\":\"C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-3-automate-2026-10-13/automation-summary.md\",\"proof\":\"C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-3-automate-2026-10-13/validation3-manifest.json\",\"workflow_proof\":\"C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-3-automate-2026-10-13/workflow-completion-proof.json\",\"source\":\"canonical delegate six-field result\",\"limitation\":\"Synthetic local production evidence only; no inherited/final17 rerun credited\"}"
+  automate_preparation_failures: "Two external helper native1 attempts before tests/DB execution retained and corrected; actual3suite native0. No new tests/source/spec edits."
 constraints: []
 parallel_run_id: documents-e20-readiness-2026-10-09

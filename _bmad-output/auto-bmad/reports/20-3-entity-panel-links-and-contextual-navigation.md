@@ -96,3 +96,34 @@ No worker global ledger writes
 **⚠️ Needs human:** (none)
 
 **Next:** Run required Phase6 Automate, then recommended independent Phase7 review before final candidate verification and supported submission.
+
+## Report — 2026-10-13T11:38:34Z (checkpoint — coverage complete)
+
+**Story:** `20-3-entity-panel-links-and-contextual-navigation` (epic 20, story 3) — last-in-epic.
+**Spec:** `C:/Users/Rasmus/.codex/worktrees/documents-e20-20-3/Kopplas/_bmad-output/implementation-artifacts/spec-20-3-entity-panel-links-and-contextual-navigation.md`
+**Branch:** `codex/parallel-documents-e20-readiness-2026-10-09-20-3` (HEAD `fa00fc8`).
+**Pipeline status:** running
+**Continues:** True
+
+**Timing:** started 2026-10-13T08:43:10Z; completed in progress — elapsed 2h 55m (≈2h 50m AI-run, ≈5m human/idle wait); resumed 3×.
+
+**Phases run:** 6
+**Skipped:** (none)
+
+**Overrides:** none
+
+**TEA:** Automate fully completed from canonical six-field result: required API/E2E leaves SolHigh/context-none awaited; meaningful gaps0/newtests0. Current unit53/RLS28/browser53 allnative0/0fail0skip on clean fa00fc8. Output and native proof retained externally; no inherited/final17 rerun credited.
+
+**Build:** not run
+
+**Review:** Recommended follow-up applies (configuration recommended, build recommendation true). Sol6.1High route persisted before dispatch; completed broad rounds remain1/cap3.
+
+**Retrospective:** (none)
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Run fresh complete configured follow-up roster on approved finished spec, then freeze complete worker candidate for final checks and independent review.
