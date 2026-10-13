@@ -1,5 +1,5 @@
 /**
- * Story20.3 RED: navigation intent is not authority. New exports below are
+ * Story20.3: navigation intent is not authority. New exports below are
  * provisional pure seams; behavior is fixed by the approved spec.
  * No static missing-module import, dependency addition or runtime coverage.
  */
@@ -14,7 +14,7 @@ const modules = {
 } as const;
 
 for (const [ownerType, module] of Object.entries(modules)) {
-  test.skip("[P1][AC1,6] fixed center URL preserves exact active " + ownerType + " tuple", async () => {
+  test("[P1][AC1,6] fixed center URL preserves exact active " + ownerType + " tuple", async () => {
     const path = "@/features/documents/context-navigation";
     const { buildDocumentsContextHref } = await import(path);
     const href = buildDocumentsContextHref({ module, ownerType, ownerId: OWNER });
@@ -26,7 +26,7 @@ for (const [ownerType, module] of Object.entries(modules)) {
   });
 }
 
-test.skip("[P1][AC4] retained valid20.2 filters are encoded while old cursor and selected capability reset", async () => {
+test("[P1][AC4] retained valid20.2 filters are encoded while old cursor and selected capability reset", async () => {
   const path = "@/features/documents/context-navigation";
   const { buildDocumentsContextHref } = await import(path);
   const retained = { q: "Elcentral & ritning + %_", purpose: "crm_document", from: "2026-10-01",
@@ -39,7 +39,7 @@ test.skip("[P1][AC4] retained valid20.2 filters are encoded while old cursor and
   for (const name of ["cursor", "selectedLinkId", "signedUrl", "returnTo"]) assert.equal(url.searchParams.has(name), false);
 });
 
-test.skip("[P0][AC2] pure builder refuses invalid registry tuple UUID and destination injection", async () => {
+test("[P0][AC2] pure builder refuses invalid registry tuple UUID and destination injection", async () => {
   const path = "@/features/documents/context-navigation";
   const { buildDocumentsContextHref } = await import(path);
   for (const ref of [
@@ -51,7 +51,7 @@ test.skip("[P0][AC2] pure builder refuses invalid registry tuple UUID and destin
   ]) assert.throws(() => buildDocumentsContextHref(ref), /context|kontext|invalid|ogiltig/i);
 });
 
-test.skip("[P0][AC2] forged query rejects incomplete duplicate malformed unknown and wrong-purpose tuples", async () => {
+test("[P0][AC2] forged query rejects incomplete duplicate malformed unknown and wrong-purpose tuples", async () => {
   const path = "@/features/documents/context-navigation";
   // Provisional parser seam, shared with the center read boundary.
   const { parseDocumentsContextQuery } = await import(path);
@@ -75,7 +75,7 @@ test.skip("[P0][AC2] forged query rejects incomplete duplicate malformed unknown
   }
 });
 
-test.skip("[P1][AC2] ownerType alone retains global20.2 filter but complete tuple becomes context", async () => {
+test("[P1][AC2] ownerType alone retains global20.2 filter but complete tuple becomes context", async () => {
   const path = "@/features/documents/context-navigation";
   const { parseDocumentsContextQuery } = await import(path);
   const global = parseDocumentsContextQuery(new URLSearchParams("ownerType=customer&q=central"));
@@ -87,7 +87,7 @@ test.skip("[P1][AC2] ownerType alone retains global20.2 filter but complete tupl
   assert.deepEqual(contextual.data.context, { module: "crm", ownerType: "customer", ownerId: OWNER });
 });
 
-test.skip("[P0][AC3,4] context identity changes for same-file alternate owner and clears stale preview responses", async () => {
+test("[P0][AC3,4] context identity changes for same-file alternate owner and clears stale preview responses", async () => {
   const path = "@/features/documents/context-navigation";
   const { documentContextIdentity } = await import(path);
   const filterPath = "@/features/documents/filters";
@@ -109,7 +109,7 @@ test.skip("[P0][AC3,4] context identity changes for same-file alternate owner an
   assert.deepEqual(late, DOCUMENT_PREVIEW_INITIAL);
 });
 
-test.skip("[P0][AC5] validated picker preselection is exact and never substitutes CRM parent or quote owner", async () => {
+test("[P0][AC5] validated picker preselection is exact and never substitutes CRM parent or quote owner", async () => {
   const path = "@/features/documents/context-navigation";
   // Provisional pure seam consumes server-approved context only; it grants no upload capability.
   const { documentsContextUploadOwner } = await import(path);

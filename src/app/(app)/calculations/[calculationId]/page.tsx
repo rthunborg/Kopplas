@@ -1,3 +1,5 @@
+import { EntityDocumentsLink } from "@/components/documents/EntityDocumentsLink";
+import { readEntityDocumentsLink } from "@/server/read-models/document-context";
 /**
  * `/calculations/[calculationId]` (Kalkyl) — the calculation editor (Story 5.2, Task 4.1).
  *
@@ -206,6 +208,8 @@ export default async function CalculationEditorPage({
       previewQuoteCaptureDate={previewQuoteCaptureDate}
       reviewedSnapshotDigest={reviewedSnapshotDigest}
       filesPanel={
+        <>
+        <EntityDocumentsLink link={await readEntityDocumentsLink({ module: "calculations", ownerType: "calculation", ownerId: calculationId })} />
         <EntityFilePanel
           ownerType="calculation"
           ownerId={calculationId}
@@ -214,6 +218,7 @@ export default async function CalculationEditorPage({
           files={filesRead.files}
           readError={filesRead.error}
         />
+        </>
       }
     />
   );

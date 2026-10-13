@@ -1,5 +1,5 @@
 /**
- * Story20.3 RED. New server component prop 'link' is provisional and must be
+ * Story20.3. New server component prop 'link' is provisional and must be
  * reconciled with the author's readEntityDocumentsLink success projection.
  * Installed TypeScript renders actual TSX with the existing dashboard hook pattern.
  * Actual rendered React output is tested; source text is not behavioral proof.
@@ -38,7 +38,7 @@ const available = () => ({ state: "available", entitlements: { canOpenDocuments:
   data: { href, ref: { module: "crm", ownerType: "customer", ownerId: OWNER },
     ownerLabel: "Synthetic authorized customer", contextReturnHref: "/customers/" + OWNER } });
 
-test.skip("[P1][AC1,4] successful server projection is a normal accessible local anchor", async () => {
+test("[P1][AC1,4] successful server projection is a normal accessible local anchor", async () => {
   registerTsx();
   const path = "@/components/documents/EntityDocumentsLink";
   const { EntityDocumentsLink } = await import(path);
@@ -54,7 +54,7 @@ test.skip("[P1][AC1,4] successful server projection is a normal accessible local
 });
 
 for (const state of ["unavailable", "error"]) {
-  test.skip("[P0][AC1,2] " + state + " renders no link label route or hidden projection", async () => {
+  test("[P0][AC1,2] " + state + " renders no link label route or hidden projection", async () => {
     registerTsx();
   const path = "@/components/documents/EntityDocumentsLink";
     const { EntityDocumentsLink } = await import(path);
@@ -64,7 +64,7 @@ for (const state of ["unavailable", "error"]) {
   });
 }
 
-test.skip("[P0][AC1,5] render only approved projection fields and no upload or storage capability", async () => {
+test("[P0][AC1,5] render only approved projection fields and no upload or storage capability", async () => {
   registerTsx();
   const path = "@/components/documents/EntityDocumentsLink";
   const { EntityDocumentsLink } = await import(path);

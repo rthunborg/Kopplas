@@ -1,3 +1,5 @@
+import { EntityDocumentsLink } from "@/components/documents/EntityDocumentsLink";
+import { readEntityDocumentsLink } from "@/server/read-models/document-context";
 /**
  * Server helper (Story 8.2) — build the acceptance-evidence `EntityFilePanel` for the
  * SELECTED version of a quote detail, when that version is accepted. SERVER-ONLY: it reads
@@ -33,6 +35,8 @@ export async function renderAcceptanceFilesPanel(
   });
 
   return (
+    <>
+    <EntityDocumentsLink link={await readEntityDocumentsLink({ module: "quotes", ownerType: "quote_acceptance", ownerId: acceptanceId })} />
     <EntityFilePanel
       ownerType="quote_acceptance"
       ownerId={acceptanceId}
@@ -45,5 +49,6 @@ export async function renderAcceptanceFilesPanel(
       parentQuoteId={quoteId}
       parentVersionId={selected.id}
     />
+    </>
   );
 }

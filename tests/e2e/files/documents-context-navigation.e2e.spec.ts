@@ -1,19 +1,19 @@
 /**
- * Story 20.3 ATDD RED. All tests stay skipped until context navigation lands,
- * provisional selectors are reconciled, and required real-browser evidence runs.
+ * Story 20.3 context navigation. Required cases are active and use real local
+ * source panels, request-bound actions, Storage bytes and current authority.
  * AI/source generation only: no browser snapshots or Lovable observations.
  *
  * Confidence 8: selectors/fixtures inspected in DocumentFilters, FileIndexUpload,
  * EntityFilePanel, CommitmentFilesPanel, CRM/calculation/job pages, quote-files-panel,
  * acceptance-panel, global-setup and tenants/{crm,calculations,quotes,files,storage}.
- * New PROVISIONAL IDs: documents-context-heading, documents-context-return,
+ * Current context test IDs: documents-context-heading, documents-context-return,
  * documents-context-empty, documents-context-root. Only new fixed copy is Visa i Dokument,
  * Dokumentkontexten är inte tillgänglig, Försök igen (approved Story 20.3).
  * Return/heading accessible names are intentionally not invented.
  *
  * TEA utilities/faker flags=true but neither package exists: mandate gate 2 false.
  * Keep the existing guarded fixture, local factories, UUIDs and real Next transport.
- * Lazy fixture reads + setup inside skipped bodies keep collection service-free.
+ * Lazy fixture reads + setup inside test bodies keep collection service-free.
  * Error driver needs local request statement_timeout < 20s for the bounded source
  * lock below; verify it before activation. No guessed endpoint or successful mock.
  */
@@ -44,7 +44,7 @@ type Seed = {
   facilities: string[]; contacts: string[]; calculations: string[]; quotes: string[];
   versions: string[]; files: SeedFile[]; foreignCustomerId: string; foreignLabel: string;
 };
-const RED = { annotation: [{ type: "atdd-red", description: "Activate after Story 20.3 implementation, provisional selector reconciliation and real local fixtures" }] };
+const RED = { annotation: [{ type: "story", description: "20.3 current context navigation through actual source surfaces" }] };
 const ERROR_RED = { annotation: [...RED.annotation, { type: "skipNetworkMonitoring", description: "Current-authority denial or bounded real source-read failure is the subject" }] };
 const LINK_NAME = "Visa i Dokument";
 const UNAVAILABLE = "Dokumentkontexten är inte tillgänglig";
@@ -183,7 +183,7 @@ async function withSeed(run: (seed: Seed) => Promise<void>): Promise<void> {
     for (const file of seed.files) await adminRemoveStorageObject({ bucket: "tenant-files", objectPath: file.objectPath });
   }
 }
-async function sentSource(seed: Seed): Promise<SeedFile> {
+async function sentSource(seed: Seed, page: Page): Promise<SeedFile> {
   const customer = source(seed, "customer"), calculation = source(seed, "calculation");
   const quoteId = await adminInsertQuote({ tenant_id: seed.base.tenantA.id, customer_id: customer.ownerId });
   seed.quotes.push(quoteId);
@@ -193,9 +193,25 @@ async function sentSource(seed: Seed): Promise<SeedFile> {
   const returnHref = "/quotes/" + quoteId + "/versions/" + versionId;
   seed.sources.quote_version = { module: "quotes", ownerType: "quote_version", ownerId: versionId,
     route: "/quotes/" + quoteId, returnHref, panelId: "commitment-file-panel", label: "", purpose: "quote_pdf" };
-  const file = await seedFile(seed, source(seed, "quote_version"), "locked-sent", "quote_pdf");
-  // Arrange artifact while draft, then use the real sent transition/lock triggers.
-  await adminQuery("update public.quote_versions set pdf_status='generated',pdf_file_id=$2,pdf_generated_at='2026-10-13T08:00:00Z' where id=$1", [versionId, file.id]);
+  // Exercise the current production reservation/render/attestation pipeline. Raw
+  // pdf_status fixtures omit required provenance and must never bypass the guard.
+  try {
+    await signIn(page, seed.base.adminA); await page.goto("/quotes/" + quoteId);
+    const generate = page.getByRole("button", { name: "Generera PDF", exact: true });
+    await hydrated(generate); await generate.click();
+    await expect(page.getByTestId("quote-pdf-status")).toHaveAttribute("data-pdf-status", "generated");
+  } finally {
+    // Track even partial reservations so fixture cleanup keeps exact-ID ownership.
+    const files = await adminQuery<{ id: string; link_id: string; display_name: string; object_path: string }>(
+      "select f.id,l.id as link_id,f.display_name,f.object_path from public.file_links l join public.files f on f.id=l.file_id where l.owner_type='quote_version' and l.owner_id=$1", [versionId]);
+    for (const file of files) if (!seed.files.some(item => item.id === file.id)) seed.files.push({
+      id: file.id, linkId: file.link_id, name: file.display_name, objectPath: file.object_path, body: Buffer.alloc(0) });
+  }
+  const [generated] = await adminQuery<{ pdf_file_id: string }>("select pdf_file_id from public.quote_versions where id=$1 and pdf_status='generated'", [versionId]);
+  if (!generated) throw new Error("Actual generated quote source missing");
+  const file = seed.files.find(item => item.id === generated.pdf_file_id);
+  if (!file) throw new Error("Actual generated PDF link missing");
+  // The existing sent transition runs its real immutability/file-lock triggers.
   await adminQuery("update public.quote_versions set status='sent' where id=$1", [versionId]);
   return file;
 }
@@ -204,17 +220,63 @@ async function openPicker(page: Page): Promise<Locator> {
   await hydrated(button); await button.click();
   return page.getByTestId("file-index-upload-form");
 }
+/** Submit the actual shipped picker and retain exact file ownership even after a partial failure. */
+async function uploadFromPicker(page: Page, seed: Seed, form: Locator, chosen: Source): Promise<SeedFile> {
+  const name = "20.3-picker-upload-" + crypto.randomUUID() + ".txt";
+  const body = Buffer.from("explicit picker owner " + chosen.ownerType + ":" + chosen.ownerId);
+  try {
+    await form.getByTestId("file-index-upload-owner-type").selectOption(chosen.ownerType);
+    await form.getByTestId("file-index-upload-owner").selectOption(chosen.ownerId);
+    await expect(form.getByTestId("file-index-upload-owner-type")).toHaveValue(chosen.ownerType);
+    await expect(form.getByTestId("file-index-upload-owner")).toHaveValue(chosen.ownerId);
+    await form.getByTestId("file-index-upload-input").setInputFiles({ name, mimeType: "text/plain", buffer: body });
+    await form.getByTestId("file-index-upload-submit").click();
+    await expect(page.getByTestId("file-index-upload-success")).toHaveText("Filen laddades upp.");
+    const persisted = () => adminQuery<{ id: string; link_id: string; object_path: string; owner_type: string; owner_id: string; purpose: string }>(
+      "select f.id,l.id as link_id,f.object_path,l.owner_type,l.owner_id,l.purpose from public.files f join public.file_links l on l.file_id=f.id where f.tenant_id=$1 and f.display_name=$2",
+      [seed.base.tenantA.id, name]);
+    await expect.poll(persisted).toHaveLength(1);
+    const [file] = await persisted();
+    expect(file).toMatchObject({ owner_type: chosen.ownerType, owner_id: chosen.ownerId, purpose: chosen.purpose });
+    expect(await adminQuery("select id from public.audit_events where command='file.upload' and target_id=$1", [file.id])).toHaveLength(1);
+    return { id: file.id, linkId: file.link_id, name, objectPath: file.object_path, body };
+  } finally {
+    const files = await adminQuery<{ id: string; object_path: string }>(
+      "select id,object_path from public.files where tenant_id=$1 and display_name=$2", [seed.base.tenantA.id, name]);
+    for (const file of files) if (!seed.files.some(item => item.id === file.id)) seed.files.push({
+      id: file.id, linkId: "", name, objectPath: file.object_path, body });
+    const objects = await adminQuery<{ name: string }>(
+      "select name from storage.objects where bucket_id='tenant-files' and split_part(name,'/',1)=$1 and split_part(name,'/',3)=$2",
+      [seed.base.tenantA.id, name]);
+    for (const object of objects) if (!seed.files.some(item => item.objectPath === object.name)) seed.files.push({
+      id: object.name.split("/")[1], linkId: "", name, objectPath: object.name, body });
+  }
+}
+async function expectContextUploadReset(page: Page, ref: Source, previousSignedHref?: string): Promise<void> {
+  await expect(page).toHaveURL(url => tupleMatches(url, ref) && url.searchParams.get("mode") === "active"
+    && [...url.searchParams.keys()].sort().join(",") === "mode,module,ownerId,ownerType");
+  await expect(contextHeading(page)).toHaveText(ref.label);
+  await expect(contextReturn(page)).toHaveAttribute("href", ref.returnHref);
+  await expect(page.getByLabel("Sök dokument", { exact: true })).toHaveValue("");
+  await expect(page.getByRole("combobox", { name: "Syfte", exact: true })).toHaveValue("");
+  await expect(page.getByLabel("Från", { exact: true })).toHaveValue("");
+  await expect(page.getByLabel("Till", { exact: true })).toHaveValue("");
+  await expect(page.getByRole("button", { name: "Aktiva", exact: true })).toHaveAttribute("aria-pressed", "true");
+  await expect(download(page)).toHaveCount(0);
+  if (previousSignedHref) expect(await page.locator("#main-content").evaluate((element, href) =>
+    [...element.querySelectorAll("a")].some(anchor => anchor.href === href), previousSignedHref)).toBe(false);
+}
 async function lifecycleState(fileId: string): Promise<string> {
   const [row] = await adminQuery<{ lifecycle_state: string }>("select lifecycle_state from public.files where id=$1", [fileId]);
   return row.lifecycle_state;
 }
 test.afterAll(async () => { await closeAdminPool(); });
 
-test.describe("Story 20.3 real entity insertion routes — ATDD RED", () => {
+test.describe("Story 20.3 real entity insertion routes — context navigation", () => {
   for (const owner of ["customer", "facility", "contact", "calculation", "job", "quote_version", "quote_acceptance"] as const) {
-    test.skip("[P1][AC1,3,5,7] " + owner + " real panel opens exact Documents context and safe return", RED, async ({ page }) => {
+    test("[P1][AC1,3,5,7] " + owner + " real panel opens exact Documents context and safe return", RED, async ({ page }) => {
       await withSeed(async seed => {
-        const created = owner === "quote_version" ? await sentSource(seed)
+        const created = owner === "quote_version" ? await sentSource(seed, page)
           : owner === "quote_acceptance" ? null : await seedFile(seed, source(seed, owner), owner);
         const ref = source(seed, owner);
         const fileName = created?.name ?? (await adminQuery<{ display_name: string }>("select display_name from public.files where id=$1", [seed.base.acceptedAcceptance.evidenceFileId]))[0].display_name;
@@ -246,9 +308,39 @@ test.describe("Story 20.3 real entity insertion routes — ATDD RED", () => {
     });
   }
 
-  test.skip("[P1][AC1,5,7] sent wrapper stays null for draft/empty; no fabricated version panel", RED, async ({ page }) => {
+  for (const owner of ["calculation", "job"] as const) {
+    for (const casing of ["uppercase", "mixed-case"] as const) {
+      test("[P1][AC1,2,4,7] " + owner + " " + casing + " entity UUID keeps canonical context entry and return", RED, async ({ page }) => {
+        await withSeed(async seed => {
+          const ref = source(seed, owner), file = await seedFile(seed, ref, "uuid-case-" + owner);
+          // This fixture must actually exercise letter case; numeric-only UUIDs are insufficient evidence.
+          expect(ref.ownerId.match(/[a-f]/g)?.length ?? 0).toBeGreaterThan(1);
+          let letters = 0;
+          const requested = casing === "uppercase" ? ref.ownerId.toUpperCase()
+            : ref.ownerId.replace(/[a-f]/g, letter => letters++ % 2 === 0 ? letter.toUpperCase() : letter);
+          expect(requested).not.toBe(ref.ownerId);
+          if (casing === "mixed-case") expect(requested).not.toBe(ref.ownerId.toUpperCase());
+          await signIn(page, seed.base.adminA);
+          await page.goto(ref.route.replace(ref.ownerId, requested));
+          await expect(page.getByTestId(ref.panelId)).toContainText(file.name);
+          const anchor = await entry(page, ref);
+          await expect(anchor).toHaveAttribute("href", href(ref));
+          await anchor.click();
+          await expect(page).toHaveURL(new URL(href(ref), page.url()).href);
+          await expect(contextHeading(page)).toHaveText(ref.label);
+          await expect(contextReturn(page)).toHaveAttribute("href", ref.returnHref);
+          expect(await selectedIdentity(documentRow(page, file.name))).toEqual({ fileId: file.id, linkId: file.linkId });
+          await contextReturn(page).click();
+          await expect(page).toHaveURL(new URL(ref.returnHref, page.url()).href);
+          await expect(page.getByTestId(ref.panelId)).toContainText(file.name);
+        });
+      });
+    }
+  }
+
+  test("[P1][AC1,5,7] sent wrapper stays null for draft/empty; no fabricated version panel", RED, async ({ page }) => {
     await withSeed(async seed => {
-      await sentSource(seed); const ref = source(seed, "quote_version");
+      await sentSource(seed, page); const ref = source(seed, "quote_version");
       await signIn(page, seed.base.adminA);
       const draftId = await adminInsertQuoteVersion({ tenant_id: seed.base.tenantA.id, quote_id: seed.quotes[0],
         calculation_id: source(seed, "calculation").ownerId, version_number: 2, status: "draft" });
@@ -276,20 +368,20 @@ test.describe("Story 20.3 real entity insertion routes — ATDD RED", () => {
   });
 });
 
-test.describe("Story 20.3 context authority — ATDD RED", () => {
+test.describe("Story 20.3 context authority — context navigation", () => {
   for (const role of ["installer", "salesperson", "finance"] as const) {
-    test.skip("[P0][AC1,2,7] " + role + " cannot gain center entry or source labels from query intent", ERROR_RED, async ({ page }) => {
+    test("[P0][AC1,2,7] " + role + " cannot gain center entry or source labels from query intent", ERROR_RED, async ({ page }) => {
       await withSeed(async seed => {
         const file = await seedFile(seed, source(seed, "customer"), "denied-role");
         await signIn(page, seed.base.notifications[role]);
         await page.goto(source(seed, "customer").route);
         await expect(page.getByRole("link", { name: LINK_NAME, exact: true })).toHaveCount(0);
         await page.goto(href(source(seed, "customer")));
-        await expect(page.getByText(UNAVAILABLE, { exact: true })).toBeVisible();
+        await expect(page.getByRole("heading", { name: "Ingen åtkomst", exact: true })).toBeVisible();
         await expect(page.getByTestId("file-index-row")).toHaveCount(0);
         await expect(contextReturn(page)).toHaveCount(0);
-        await expect(page.getByRole("main")).not.toContainText(source(seed, "customer").label);
-        await expect(page.getByRole("main")).not.toContainText(file.name);
+        await expect(page.locator("#main-content")).not.toContainText(source(seed, "customer").label);
+        await expect(page.locator("#main-content")).not.toContainText(file.name);
       });
     });
   }
@@ -299,7 +391,7 @@ test.describe("Story 20.3 context authority — ATDD RED", () => {
     "malformed-uuid", "unknown-key", "returnTo", "client-label", "wrong-purpose", "missing-source", "cross-tenant",
   ] as const;
   for (const invalid of invalidQueries) {
-    test.skip("[P0][AC2,7] direct " + invalid + " context never exposes results, labels or automatic fallback", ERROR_RED, async ({ page }) => {
+    test("[P0][AC2,7] direct " + invalid + " context never exposes results, labels or automatic fallback", ERROR_RED, async ({ page }) => {
       await withSeed(async seed => {
         const ref = source(seed, "customer");
         const file = await seedFile(seed, ref, "unfiltered-decoy");
@@ -325,16 +417,16 @@ test.describe("Story 20.3 context authority — ATDD RED", () => {
         await expect(page.getByTestId("documents-result-count")).toHaveCount(0);
         await expect(page.getByLabel("Antal per filter")).toHaveCount(0);
         await expect(contextReturn(page)).toHaveCount(0);
-        await expect(page.getByRole("main")).not.toContainText(ref.label);
-        await expect(page.getByRole("main")).not.toContainText(seed.foreignLabel);
-        await expect(page.getByRole("main")).not.toContainText(file.name);
+        await expect(page.locator("#main-content")).not.toContainText(ref.label);
+        await expect(page.locator("#main-content")).not.toContainText(seed.foreignLabel);
+        await expect(page.locator("#main-content")).not.toContainText(file.name);
         await expect(page).toHaveURL(url => url.pathname === "/files" && url.searchParams.toString() === params.toString());
       });
     });
   }
 
   for (const owner of ["customer", "facility", "contact", "calculation"] as const) {
-    test.skip("[P0][AC1,2,7] " + owner + " source revocation is rechecked even with zero eligible links", ERROR_RED, async ({ page }) => {
+    test("[P0][AC1,2,7] " + owner + " source revocation is rechecked even with zero eligible links", ERROR_RED, async ({ page }) => {
       await withSeed(async seed => {
         const ref = source(seed, owner);
         await signIn(page, seed.base.adminA); await page.goto(ref.route);
@@ -348,7 +440,7 @@ test.describe("Story 20.3 context authority — ATDD RED", () => {
         await expect(contextReturn(page)).toHaveCount(0);
         await expect(page.getByTestId("file-index-row")).toHaveCount(0);
         await expect(page.getByTestId("documents-context-empty")).toHaveCount(0);
-        await expect(page.getByRole("main")).not.toContainText(ref.label);
+        await expect(page.locator("#main-content")).not.toContainText(ref.label);
         // Root is a neutral explicit choice; unavailable context never auto-navigates.
         await expect(page).toHaveURL(url => tupleMatches(url, ref));
         await expect(page.getByTestId("documents-context-root")).toHaveAttribute("href", "/files");
@@ -359,7 +451,7 @@ test.describe("Story 20.3 context authority — ATDD RED", () => {
     });
   }
 
-  test.skip("[P0][AC2,7] zero-link contact becomes unavailable when live facility ancestry is revoked", ERROR_RED, async ({ page }) => {
+  test("[P0][AC2,7] zero-link contact becomes unavailable when live facility ancestry is revoked", ERROR_RED, async ({ page }) => {
     await withSeed(async seed => {
       const ref = source(seed, "contact");
       await signIn(page, seed.base.adminA); await page.goto(href(ref));
@@ -368,12 +460,12 @@ test.describe("Story 20.3 context authority — ATDD RED", () => {
       await page.reload();
       await expect(page.getByText(UNAVAILABLE, { exact: true })).toBeVisible();
       await expect(contextReturn(page)).toHaveCount(0);
-      await expect(page.getByRole("main")).not.toContainText(ref.label);
-      await expect(page.getByRole("main")).not.toContainText(source(seed, "facility").label);
+      await expect(page.locator("#main-content")).not.toContainText(ref.label);
+      await expect(page.locator("#main-content")).not.toContainText(source(seed, "facility").label);
     });
   });
 
-  test.skip("[P1][AC2] transient real source lookup failure offers retry and exposes context only after recovery", ERROR_RED, async ({ page }) => {
+  test("[P1][AC2] transient real source lookup failure offers retry and exposes context only after recovery", ERROR_RED, async ({ page }) => {
     await withSeed(async seed => {
       const ref = source(seed, "customer");
       await signIn(page, seed.base.adminA);
@@ -389,7 +481,7 @@ test.describe("Story 20.3 context authority — ATDD RED", () => {
           await expect(page.getByText(UNAVAILABLE, { exact: true })).toHaveCount(0);
           await expect(page.getByTestId("file-index-row")).toHaveCount(0);
           await expect(contextReturn(page)).toHaveCount(0);
-          await expect(page.getByRole("main")).not.toContainText(ref.label);
+          await expect(page.locator("#main-content")).not.toContainText(ref.label);
         } finally { await session.query("rollback"); }
       });
       await page.getByRole("button", { name: "Försök igen", exact: true }).click();
@@ -400,8 +492,8 @@ test.describe("Story 20.3 context authority — ATDD RED", () => {
   });
 });
 
-test.describe("Story 20.3 exact selected-link and file lifecycle — ATDD RED", () => {
-  test.skip("[P0][AC3,7] one file linked to two sources yields only the exact tuple row and contextual facets", RED, async ({ page, context }) => {
+test.describe("Story 20.3 exact selected-link and file lifecycle — context navigation", () => {
+  test("[P0][AC3,7] one file linked to two sources yields only the exact tuple row and contextual facets", RED, async ({ page }) => {
     await withSeed(async seed => {
       const ref = source(seed, "customer"), child = source(seed, "facility");
       const file = await seedFile(seed, ref, "same-file");
@@ -418,10 +510,12 @@ test.describe("Story 20.3 exact selected-link and file lifecycle — ATDD RED", 
       await expect(page.getByTestId("documents-facet-count-ownerType-facility")).toHaveCount(0);
       expect((await select(page, file)).ok()).toBe(true);
       await expect(download(page)).toBeVisible();
-      const popupPromise = context.waitForEvent("page"); await download(page).click();
-      const popup = await popupPromise;
-      try { await expect(popup.getByText(file.body.toString(), { exact: true })).toBeVisible(); }
-      finally { await popup.close(); }
+      const signedHref = await download(page).getAttribute("href");
+      expect(signedHref).toMatch(/^http:\/\/127\.0\.0\.1:/);
+      // Fixture Storage uses octet-stream; verify actual selected bytes rather than
+      // assuming Chrome will render that MIME as an HTML text document in a popup.
+      const stored = await page.request.get(signedHref!);
+      expect(stored.ok()).toBe(true); expect(await stored.body()).toEqual(file.body);
       await page.goto(child.route); await (await entry(page, child)).click();
       expect(await selectedIdentity(documentRow(page, file.name))).toEqual({ fileId: file.id, linkId: otherLink });
       await expect(page.getByTestId("documents-result-count")).toHaveText("2");
@@ -430,7 +524,7 @@ test.describe("Story 20.3 exact selected-link and file lifecycle — ATDD RED", 
     });
   });
 
-  test.skip("[P0][AC3,7] selected link revocation cannot refresh through another authorized owner of the same file", ERROR_RED, async ({ page }) => {
+  test("[P0][AC3,7] selected link revocation cannot refresh through another authorized owner of the same file", ERROR_RED, async ({ page }) => {
     await withSeed(async seed => {
       const ref = source(seed, "customer"), child = source(seed, "facility");
       const file = await seedFile(seed, ref, "revoked-selection");
@@ -450,19 +544,21 @@ test.describe("Story 20.3 exact selected-link and file lifecycle — ATDD RED", 
   });
 
   for (const operation of ["archive", "restore"] as const) {
-    test.skip("[P0][AC3,7] contextual " + operation + " still checks ALL file links after alternate source revocation", ERROR_RED, async ({ page }) => {
+    test("[P0][AC3,7] contextual " + operation + " still checks ALL file links after alternate source revocation", ERROR_RED, async ({ page }) => {
       await withSeed(async seed => {
         const ref = source(seed, "customer"), child = source(seed, "facility");
         const file = await seedFile(seed, ref, "all-links-" + operation);
         await adminInsertFileLink({ tenant_id: seed.base.tenantA.id, file_id: file.id, owner_type: "facility", owner_id: child.ownerId, purpose: "crm_document" });
-        if (operation === "restore") await adminQuery("update public.files set lifecycle_state='archived',archive_previous_state='linked',archived_at=statement_timestamp() where id=$1", [file.id]);
+        if (operation === "restore") await adminQuery("update public.files set lifecycle_state='archived',archived_at=statement_timestamp() where id=$1", [file.id]);
         await signIn(page, seed.base.adminA); await page.goto(href(ref, { mode: operation === "restore" ? "archived" : "active" }));
         const label = operation === "archive" ? "Arkivera" : "Återställ";
-        await documentRow(page, file.name).getByRole("button", { name: label, exact: true }).click();
-        const dialog = page.getByRole("dialog");
-        await expect(dialog).toBeVisible();
+        const action = documentRow(page, file.name).getByRole("button", { name: label, exact: true });
+        await hydrated(action);
+        if (operation === "archive") { await action.click(); await expect(page.getByRole("dialog")).toBeVisible(); }
         await adminQuery("update public.facilities set archived_at=statement_timestamp() where id=$1", [child.ownerId]);
-        const response = actionResponse(page); await dialog.getByRole("button", { name: label, exact: true }).click();
+        const response = actionResponse(page);
+        if (operation === "archive") await page.getByRole("dialog").getByRole("button", { name: label, exact: true }).click();
+        else await action.click();
         expect((await response).ok()).toBe(true);
         await expect(page.getByTestId("documents-lifecycle-error").getByRole("alert")).toBeVisible();
         await expect(page.getByTestId("documents-lifecycle-success")).toHaveCount(0);
@@ -474,24 +570,98 @@ test.describe("Story 20.3 exact selected-link and file lifecycle — ATDD RED", 
   }
 });
 
-test.describe("Story 20.3 upload owner continuity — ATDD RED", () => {
+test.describe("Story 20.3 upload owner continuity — context navigation", () => {
   for (const owner of ["customer", "calculation", "job"] as const) {
-    test.skip("[P1][AC5,7] supported " + owner + " picker preselects the validated exact source", RED, async ({ page }) => {
+    test("[P1][AC5,7] supported " + owner + " picker retains explicit owner choice while exact context is validated", RED, async ({ page }) => {
       await withSeed(async seed => {
-        const ref = source(seed, owner); await signIn(page, seed.base.adminA);
+        const ref = source(seed, owner), initial = await seedFile(seed, ref, "picker-narrowed-" + owner);
+        await signIn(page, seed.base.adminA);
         await page.goto(ref.route); await (await entry(page, ref)).click();
+        await page.goto(href(ref, { q: initial.name, purpose: ref.purpose, from: "2020-01-01", to: "2099-12-31", mode: "active" }));
+        await expect(documentRow(page, initial.name)).toHaveCount(1);
+        expect((await select(page, initial)).ok()).toBe(true); await expect(download(page)).toBeVisible();
+        const previousSignedHref = (await download(page).getAttribute("href"))!;
         const form = await openPicker(page);
+        await expect(form.getByTestId("file-index-upload-owner")).toHaveValue("");
+        await form.getByTestId("file-index-upload-owner-type").selectOption(owner);
+        await form.getByTestId("file-index-upload-owner").selectOption(ref.ownerId);
         await expect(form.getByTestId("file-index-upload-owner-type")).toHaveValue(owner);
         await expect(form.getByTestId("file-index-upload-owner")).toHaveValue(ref.ownerId);
         const owners = await form.getByTestId("file-index-upload-owner-type").getByRole("option").evaluateAll(elements => elements.map(element => (element as HTMLOptionElement).value));
         expect(owners).toEqual(["customer", "calculation", "job"]);
+        const uploaded = await uploadFromPicker(page, seed, form, ref);
+        await expectContextUploadReset(page, ref, previousSignedHref);
+        await expect(documentRow(page, uploaded.name)).toHaveCount(1);
+        expect(await selectedIdentity(documentRow(page, uploaded.name))).toEqual({ fileId: uploaded.id, linkId: uploaded.linkId });
+        await page.reload(); await expect(documentRow(page, uploaded.name)).toHaveCount(1);
+        await expectContextUploadReset(page, ref, previousSignedHref);
+        expect((await select(page, uploaded)).ok()).toBe(true); await expect(download(page)).toBeVisible();
+        const stored = await page.request.get((await download(page).getAttribute("href"))!);
+        expect(stored.ok()).toBe(true); expect(await stored.body()).toEqual(uploaded.body);
       });
     });
   }
+  test("[P1][AC3,4,5,7] explicitly different picker owner persists without changing original archived context", RED, async ({ page }) => {
+    await withSeed(async seed => {
+      const original = source(seed, "facility"), chosen = source(seed, "calculation");
+      const initial = await seedFile(seed, original, "different-picker-owner");
+      await signIn(page, seed.base.adminA);
+      await page.goto(href(original, { q: initial.name, purpose: original.purpose, from: "2020-01-01", to: "2099-12-31", mode: "active" }));
+      expect((await select(page, initial)).ok()).toBe(true); await expect(download(page)).toBeVisible();
+      const previousSignedHref = (await download(page).getAttribute("href"))!;
+      await page.getByRole("button", { name: "Arkiverade", exact: true }).click();
+      await expect(page).toHaveURL(url => tupleMatches(url, original) && url.searchParams.get("mode") === "archived" && url.searchParams.get("q") === initial.name);
+      await expect(page.getByTestId("file-index-empty")).toBeVisible();
+      const form = await openPicker(page);
+      await expect(form.getByTestId("file-index-upload-owner")).toHaveValue("");
+      const uploaded = await uploadFromPicker(page, seed, form, chosen);
+      await expectContextUploadReset(page, original, previousSignedHref);
+      await expect(documentRow(page, initial.name)).toHaveCount(1);
+      await expect(documentRow(page, uploaded.name)).toHaveCount(0);
+      await expect(page.getByTestId("documents-result-count")).toHaveText("1");
+      await expect(page.getByTestId("documents-facet-count-ownerType-calculation")).toHaveCount(0);
+      await page.reload(); await expectContextUploadReset(page, original, previousSignedHref);
+      await expect(documentRow(page, uploaded.name)).toHaveCount(0);
+      await page.goto(href(chosen)); await expect(documentRow(page, uploaded.name)).toHaveCount(1);
+      expect(await selectedIdentity(documentRow(page, uploaded.name))).toEqual({ fileId: uploaded.id, linkId: uploaded.linkId });
+      expect((await select(page, uploaded)).ok()).toBe(true); await expect(download(page)).toBeVisible();
+      const stored = await page.request.get((await download(page).getAttribute("href"))!);
+      expect(stored.ok()).toBe(true); expect(await stored.body()).toEqual(uploaded.body);
+    });
+  });
+
+  test("[P1][AC3,4,5,7] real contextual continuation upload returns to first page and clears signed preview", RED, async ({ page }) => {
+    await withSeed(async seed => {
+      const ref = source(seed, "customer"), marker = "picker-cursor-" + crypto.randomUUID();
+      for (let index = 0; index < 51; index++) await seedFile(seed, ref, marker + "-" + index);
+      await signIn(page, seed.base.adminA);
+      await page.goto(href(ref, { q: marker, purpose: ref.purpose, from: "2020-01-01", to: "2099-12-31", mode: "active" }));
+      await expect(page.getByTestId("file-index-row")).toHaveCount(50);
+      await page.getByTestId("documents-next-page").click();
+      await expect(page).toHaveURL(url => tupleMatches(url, ref) && !!url.searchParams.get("cursor") && url.searchParams.get("q") === marker);
+      await expect(page.getByTestId("file-index-row")).toHaveCount(1);
+      const selected = await selectedIdentity(page.getByTestId("file-index-row"));
+      const initial = seed.files.find(file => file.id === selected.fileId)!;
+      expect((await select(page, initial)).ok()).toBe(true); await expect(download(page)).toBeVisible();
+      const previousSignedHref = (await download(page).getAttribute("href"))!;
+      const uploaded = await uploadFromPicker(page, seed, await openPicker(page), ref);
+      await expectContextUploadReset(page, ref, previousSignedHref);
+      await expect(page.getByTestId("documents-result-count")).toHaveText("52");
+      await expect(page.getByTestId("file-index-row")).toHaveCount(50);
+      await expect(documentRow(page, uploaded.name)).toHaveCount(1);
+      expect(await selectedIdentity(documentRow(page, uploaded.name))).toEqual({ fileId: uploaded.id, linkId: uploaded.linkId });
+      await page.reload(); await expectContextUploadReset(page, ref, previousSignedHref);
+      await expect(documentRow(page, uploaded.name)).toHaveCount(1);
+      expect((await select(page, uploaded)).ok()).toBe(true); await expect(download(page)).toBeVisible();
+      const stored = await page.request.get((await download(page).getAttribute("href"))!);
+      expect(stored.ok()).toBe(true); expect(await stored.body()).toEqual(uploaded.body);
+    });
+  });
+
   for (const owner of ["facility", "contact", "quote_version", "quote_acceptance"] as const) {
-    test.skip("[P1][AC5,7] " + owner + " context chooses no generic owner and preserves safe entity upload return", RED, async ({ page }) => {
+    test("[P1][AC5,7] " + owner + " context chooses no generic owner and preserves safe entity upload return", RED, async ({ page }) => {
       await withSeed(async seed => {
-        if (owner === "quote_version") await sentSource(seed);
+        if (owner === "quote_version") await sentSource(seed, page);
         const ref = source(seed, owner); await signIn(page, seed.base.adminA);
         await page.goto(ref.route); await (await entry(page, ref)).click();
         const form = await openPicker(page);
@@ -529,30 +699,72 @@ test.describe("Story 20.3 upload owner continuity — ATDD RED", () => {
   }
 
   for (const owner of ["facility", "contact", "quote_acceptance"] as const) {
-    test.skip("[P1][AC5,7] safe return preserves real " + owner + " upload persistence and exact owner", RED, async ({ page }) => {
+    test("[P1][AC5,7] safe return preserves real " + owner + " upload authority and exact owner", RED, async ({ page }) => {
       await withSeed(async seed => {
         const ref = source(seed, owner);
         const name = "20.3-return-upload-" + crypto.randomUUID() + ".txt";
         await signIn(page, seed.base.adminA); await page.goto(ref.route);
-        await (await entry(page, ref)).click(); await contextReturn(page).click();
+        await (await entry(page, ref)).click();
+        let evidenceAccess: { href: string; bytes: Buffer } | null = null;
+        if (owner === "quote_acceptance") {
+          const evidence = page.getByTestId("file-index-row").filter({ has: page.locator('input[name="file_id"][value="' + seed.base.acceptedAcceptance.evidenceFileId + '"]') });
+          const open = evidence.getByRole("button", { name: "Förhandsvisa", exact: true });
+          await hydrated(open); const reply = actionResponse(page); await open.click();
+          expect((await reply).ok()).toBe(true); await expect(download(page)).toBeVisible();
+          const signedHref = await download(page).getAttribute("href");
+          const stored = await page.request.get(signedHref!); expect(stored.ok()).toBe(true);
+          evidenceAccess = { href: signedHref!, bytes: await stored.body() };
+        }
+        await contextReturn(page).click();
         try {
           const panel = page.getByTestId(ref.panelId);
           const submit = panel.getByRole("button", { name: "Ladda upp fil", exact: true });
           await hydrated(submit);
           await panel.getByLabel("Välj en fil att ladda upp", { exact: true }).setInputFiles({ name, mimeType: "text/plain", buffer: Buffer.from("owner-preserved entity upload") });
+          const original = owner === "quote_acceptance" ? await adminQuery(
+            "select to_jsonb(a) as acceptance,to_jsonb(l) as link,to_jsonb(f) as file from public.quote_acceptances a join public.file_links l on l.owner_type='quote_acceptance' and l.owner_id=a.id join public.files f on f.id=l.file_id where a.id=$1", [ref.ownerId]) : null;
+          const originalObject = owner === "quote_acceptance" ? await adminQuery<{ name: string; metadata: unknown }>(
+            "select o.name,o.metadata from storage.objects o join public.files f on f.object_path=o.name and f.bucket_id=o.bucket_id where f.id=$1", [seed.base.acceptedAcceptance.evidenceFileId]) : null;
+          const originalUploadAudit = owner === "quote_acceptance" ? await adminQuery(
+            "select id from public.audit_events where command='file.upload' and target_id in (select file_id from public.file_links where owner_type='quote_acceptance' and owner_id=$1) order by id", [ref.ownerId]) : null;
           await submit.click();
+          if (owner === "quote_acceptance") {
+            // Registered evidence is immutable under the existing 10.8 AR704 guard.
+            // The retained form's real command may write a fresh orphan object before
+            // the atomic metadata/link wrapper fails; it must never append evidence.
+            await expect(panel.getByRole("alert")).toContainText("Uppladdningen kunde inte slutföras just nu.");
+            await expect(panel.getByRole("status")).toHaveCount(0);
+            expect(await adminQuery("select id from public.files where tenant_id=$1 and display_name=$2", [seed.base.tenantA.id, name])).toHaveLength(0);
+            const current = await adminQuery(
+              "select to_jsonb(a) as acceptance,to_jsonb(l) as link,to_jsonb(f) as file from public.quote_acceptances a join public.file_links l on l.owner_type='quote_acceptance' and l.owner_id=a.id join public.files f on f.id=l.file_id where a.id=$1", [ref.ownerId]);
+            expect(current).toEqual(original);
+            expect(await adminQuery(
+              "select o.name,o.metadata from storage.objects o join public.files f on f.object_path=o.name and f.bucket_id=o.bucket_id where f.id=$1", [seed.base.acceptedAcceptance.evidenceFileId])).toEqual(originalObject);
+            expect(await adminQuery("select id from public.audit_events where command='file.upload' and target_id in (select file_id from public.file_links where owner_type='quote_acceptance' and owner_id=$1) order by id", [ref.ownerId])).toEqual(originalUploadAudit);
+            const stored = await page.request.get(evidenceAccess!.href);
+            expect(stored.ok()).toBe(true); expect(await stored.body()).toEqual(evidenceAccess!.bytes);
+            await page.reload(); await expect(panel).not.toContainText(name);
+            await (await entry(page, ref)).click(); await expect(documentRow(page, name)).toHaveCount(0);
+            return;
+          }
           await expect(panel.getByRole("status")).toContainText("Filen laddades upp.");
           await page.reload(); await expect(panel).toContainText(name);
           const rows = await adminQuery<{ id: string; object_path: string; owner_type: string; owner_id: string; is_locked: boolean }>(
             "select f.id,f.object_path,l.owner_type,l.owner_id,l.is_locked from public.files f join public.file_links l on l.file_id=f.id where f.tenant_id=$1 and f.display_name=$2",
             [seed.base.tenantA.id, name]);
           expect(rows).toHaveLength(1);
-          expect(rows[0]).toMatchObject({ owner_type: owner, owner_id: ref.ownerId, is_locked: owner === "quote_acceptance" });
+          expect(rows[0]).toMatchObject({ owner_type: owner, owner_id: ref.ownerId, is_locked: false });
           await (await entry(page, ref)).click(); await expect(documentRow(page, name)).toHaveCount(1);
         } finally {
           // Track even a partially successful upload for withSeed's exact-ID cleanup.
           const uploaded = await adminQuery<{ id: string; object_path: string }>("select id,object_path from public.files where tenant_id=$1 and display_name=$2", [seed.base.tenantA.id, name]);
           for (const file of uploaded) seed.files.push({ id: file.id, linkId: "", name, objectPath: file.object_path, body: Buffer.alloc(0) });
+          // Exact unique synthetic filename identifies the existing upload helper's
+          // retained orphan, if metadata failed; cleanup never touches shared evidence.
+          const orphanObjects = await adminQuery<{ name: string }>(
+            "select name from storage.objects where bucket_id='tenant-files' and split_part(name,'/',1)=$1 and split_part(name,'/',3)=$2", [seed.base.tenantA.id, name]);
+          for (const object of orphanObjects) if (!seed.files.some(file => file.objectPath === object.name)) seed.files.push({
+            id: object.name.split("/")[1], linkId: "", name, objectPath: object.name, body: Buffer.alloc(0) });
         }
       });
     });
@@ -560,9 +772,9 @@ test.describe("Story 20.3 upload owner continuity — ATDD RED", () => {
 });
 
 for (const viewport of [{ name: "desktop", width: 1280, height: 800 }, { name: "phone", width: 360, height: 640 }]) {
-  test.describe("Story 20.3 history and focus — " + viewport.name + " ATDD RED", () => {
+  test.describe("Story 20.3 history and focus — " + viewport.name + " context navigation", () => {
     test.use({ viewport: { width: viewport.width, height: viewport.height } });
-    test.skip("[P1][AC4,7] keyboard entity-center-history-safe return keeps filters and clears selected capability", RED, async ({ page }) => {
+    test("[P1][AC4,7] keyboard entity-center-history-safe return keeps filters and clears selected capability", RED, async ({ page }) => {
       await withSeed(async seed => {
         const ref = source(seed, "facility"), file = await seedFile(seed, ref, "history");
         await signIn(page, seed.base.adminA); await page.goto(ref.route);
@@ -574,9 +786,17 @@ for (const viewport of [{ name: "desktop", width: 1280, height: 800 }, { name: "
         await expect(page).toHaveURL(url => tupleMatches(url, ref) && url.searchParams.get("q") === file.name && !url.searchParams.has("cursor"));
         await expect(search).toBeFocused(); expect((await select(page, file)).ok()).toBe(true);
         await expect(download(page)).toBeVisible();
-        await page.goBack(); await expect(page).toHaveURL(url => url.pathname === ref.route);
+        const expectedEntityHref = new URL(ref.route, page.url()).href;
+        await test.info().attach("exact-context-history-before-back", {
+          body: Buffer.from(JSON.stringify({ viewport: viewport.name, expectedEntityHref, sourceOwnerId: ref.ownerId,
+            centerHref: page.url(), historyLength: await page.evaluate(() => window.history.length) })), contentType: "application/json" });
+        await page.goBack({ waitUntil: "commit" });
+        await test.info().attach("exact-context-history-after-back", {
+          body: Buffer.from(JSON.stringify({ expectedEntityHref, actualEntityHref: page.url(),
+            historyLength: await page.evaluate(() => window.history.length) })), contentType: "application/json" });
+        await expect(page).toHaveURL(expectedEntityHref);
         await expect(page.getByTestId(ref.panelId)).toBeVisible();
-        await page.goForward();
+        await page.goForward({ waitUntil: "commit" });
         await expect(page).toHaveURL(url => tupleMatches(url, ref) && url.searchParams.get("q") === file.name);
         await expect(search).toHaveValue(file.name); await expect(download(page)).toHaveCount(0);
         const back = contextReturn(page); await expect(back).toHaveAttribute("href", ref.returnHref);
@@ -585,7 +805,7 @@ for (const viewport of [{ name: "desktop", width: 1280, height: 800 }, { name: "
         await expect(page.getByTestId(ref.panelId)).toBeVisible();
       });
     });
-    test.skip("[P1][AC3,4,7] filter change and a different context clear stale signed preview while controls stay reachable", RED, async ({ page }) => {
+    test("[P1][AC3,4,7] filter change and a different context clear stale signed preview while controls stay reachable", RED, async ({ page }) => {
       await withSeed(async seed => {
         const ref = source(seed, "customer"), other = source(seed, "facility");
         const file = await seedFile(seed, ref, "stale-preview");
@@ -599,7 +819,7 @@ for (const viewport of [{ name: "desktop", width: 1280, height: 800 }, { name: "
         await expect(page.getByTestId("file-index-empty")).toBeVisible();
         await page.goto(other.route); await (await entry(page, other)).click();
         await expect(contextHeading(page)).toContainText(other.label); await expect(download(page)).toHaveCount(0);
-        expect(await page.getByRole("main").evaluate((element, value) => [...element.querySelectorAll("a")].some(anchor => anchor.href === value), signedUrl)).toBe(false);
+        expect(await page.locator("#main-content").evaluate((element, value) => [...element.querySelectorAll("a")].some(anchor => anchor.href === value), signedUrl)).toBe(false);
         await contextReturn(page).scrollIntoViewIfNeeded(); await expect(contextReturn(page)).toBeInViewport();
         await search.scrollIntoViewIfNeeded(); await expect(search).toBeInViewport();
       });

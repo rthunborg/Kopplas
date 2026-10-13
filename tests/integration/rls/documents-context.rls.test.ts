@@ -1,5 +1,5 @@
 /**
- * Story20.3 RED: real DB/Auth/Storage fixtures and request-bound anon-key reads.
+ * Story20.3: real DB/Auth/Storage fixtures and request-bound anon-key reads.
  * No hooks or service launches; every body remains test.skip until builder activation.
  * New document-context exports and center context/contextQuery/selectedLinkId plus
  * descriptor.context/selectedLinkId are provisional DI/DTO seams, not endpoints.
@@ -109,7 +109,7 @@ async function arrange(sql: string, values: readonly unknown[]) {
 }
 
 for (const role of ["tenant_admin", "projektledare"] as const) {
-  test.skip("[P0][AC1,3,4,6,7] " + role + " gets seven exact source-context links and server ancestry returns through real RLS", async () => fixture(async (fx) => {
+  test("[P0][AC1,3,4,6,7] " + role + " gets seven exact source-context links and server ancestry returns through real RLS", async () => fixture(async (fx) => {
     const own = await seed(fx.base.tenantA.id), foreign = await seed(fx.base.tenantB.id);
     const client = await makeAuthedServerClient(fx.users[role]);
     for (const owner of Object.keys(modules) as Owner[]) {
@@ -129,18 +129,18 @@ for (const role of ["tenant_admin", "projektledare"] as const) {
   }), 60_000);
 }
 for (const role of ["montor", "saljare", "ekonomi"] as const) {
-  test.skip("[P0][AC1,2,7] " + role + " cannot turn source quote visibility into center links or labels", async () => fixture(async (fx) => {
+  test("[P0][AC1,2,7] " + role + " cannot turn source quote visibility into center links or labels", async () => fixture(async (fx) => {
     const own = await seed(fx.base.tenantA.id), client = await makeAuthedServerClient(fx.users[role]);
     for (const ref of Object.values(own.refs)) { unavailable(await context(client, ref)); unavailable(await context(client, ref, true)); noCenterData(await center(client, ref)); }
   }), 60_000);
 }
-test.skip("[P0][AC2] anonymous and membershipless current callers receive no context rows labels or returns", async () => fixture(async (fx) => {
+test("[P0][AC2] anonymous and membershipless current callers receive no context rows labels or returns", async () => fixture(async (fx) => {
   const own = await seed(fx.base.tenantA.id);
   for (const client of [await makeAnonServerClient(), await makeAuthedServerClient(fx.base.orphanUser)]) {
     unavailable(await context(client, own.refs.customer)); noCenterData(await center(client, own.refs.customer));
   }
 }));
-test.skip("[P0][AC1,2] zero-file authorized source retains link and meaningful context while revocation next read denies", async () => fixture(async (fx, client) => {
+test("[P0][AC1,2] zero-file authorized source retains link and meaningful context while revocation next read denies", async () => fixture(async (fx, client) => {
   const ownerId = await adminInsertCustomer({ tenant_id: fx.base.tenantA.id, customer_type: "company", display_name: "Context synthetic zero-file customer" });
   const ref: Ref = { module: "crm", ownerType: "customer", ownerId };
   expect((await context(client, ref, true)).state).toBe("available");
@@ -148,7 +148,7 @@ test.skip("[P0][AC1,2] zero-file authorized source retains link and meaningful c
   await adminExec("update public.customers set archived_at=now() where id=$1", [ownerId]);
   unavailable(await context(client, ref)); noCenterData(await center(client, ref));
 }));
-test.skip("[P0][AC2] missing archived wrong-tenant sources have identical unavailable shape and no global fallback", async () => fixture(async (fx, client) => {
+test("[P0][AC2] missing archived wrong-tenant sources have identical unavailable shape and no global fallback", async () => fixture(async (fx, client) => {
   const own = await seed(fx.base.tenantA.id), foreign = await seed(fx.base.tenantB.id);
   const missing = { ...own.refs.customer, ownerId: crypto.randomUUID() };
   await adminExec("update public.customers set archived_at=now() where id=$1", [own.ids.customer]);
@@ -167,7 +167,7 @@ const ancestry = [
   ["quote_acceptance", "quote_acceptances", "quote_acceptance"],
 ] as const;
 for (const [owner, table, ancestor] of ancestry) {
-  test.skip("[P0][AC2,4,7] real " + owner + " context cannot return archived required " + table + " ancestry", async () => fixture(async (fx, client) => {
+  test("[P0][AC2,4,7] real " + owner + " context cannot return archived required " + table + " ancestry", async () => fixture(async (fx, client) => {
     const own = await seed(fx.base.tenantA.id);
     expect((await context(client, own.refs[owner])).state).toBe("available");
     await arrange("update public." + table + " set archived_at=now() where id=$1", [own.ids[ancestor]]);
@@ -175,7 +175,7 @@ for (const [owner, table, ancestor] of ancestry) {
     noCenterData(await center(client, own.refs[owner]));
   }), 60_000);
 }
-test.skip("[P0][AC2,7] forged atomic query duplicates wrong module purpose UUID unknown return and ownerID-only fail closed", async () => fixture(async (fx, client) => {
+test("[P0][AC2,7] forged atomic query duplicates wrong module purpose UUID unknown return and ownerID-only fail closed", async () => fixture(async (fx, client) => {
   const own = await seed(fx.base.tenantA.id), id = own.ids.customer;
   for (const raw of [
     "ownerId=" + id, "module=crm&ownerId=" + id, "module=jobs&ownerType=customer&ownerId=" + id,
@@ -186,7 +186,7 @@ test.skip("[P0][AC2,7] forged atomic query duplicates wrong module purpose UUID 
     "module=crm&ownerType=customer&ownerId=" + id + "&label=Private%20label",
   ]) noCenterData(await center(client, own.refs.customer, { contextQuery: new URLSearchParams(raw) }));
 }));
-test.skip("[P0][AC3,7] same-file multiple owners remain exact filtered links facets and cannot substitute selection or signing", async () => fixture(async (fx, client) => {
+test("[P0][AC3,7] same-file multiple owners remain exact filtered links facets and cannot substitute selection or signing", async () => fixture(async (fx, client) => {
   const own = await seed(fx.base.tenantA.id), target = own.files.customer;
   const other = await adminInsertFileLink({ tenant_id: fx.base.tenantA.id, file_id: target.fileId,
     owner_type: "facility", owner_id: own.ids.facility, purpose: "crm_document" });
@@ -206,7 +206,7 @@ test.skip("[P0][AC3,7] same-file multiple owners remain exact filtered links fac
     input: { link_id: target.linkId, file_id: target.fileId }, correlationId: crypto.randomUUID() });
   expect(denied.ok).toBe(false); expect(denied).not.toHaveProperty("data");
 }));
-test.skip("[P0][AC3] context cursor cannot cross same-type owner and revoked source or membership using same client", async () => fixture(async (fx) => {
+test("[P0][AC3] context cursor cannot cross same-type owner and revoked source or membership using same client", async () => fixture(async (fx) => {
   const own = await seed(fx.base.tenantA.id), target = own.files.customer;
   await adminQuery("insert into public.file_links(tenant_id,file_id,owner_type,owner_id,purpose,created_at) select $1,$2,'customer',$3,'crm_document','2030-01-01'::timestamptz from generate_series(1,55)",
     [fx.base.tenantA.id, target.fileId, own.ids.customer]);
@@ -220,7 +220,7 @@ test.skip("[P0][AC3] context cursor cannot cross same-type owner and revoked sou
   await adminExec("update public.tenant_memberships set status='disabled' where user_id=$1", [fx.users.projektledare.id]);
   unavailable(await context(client, own.refs.customer)); noCenterData(await center(client, own.refs.customer));
 }));
-test.skip("[P0][AC3] filtered customer view still checks ALL linked sources before archive and restore authority", async () => fixture(async (fx, client) => {
+test("[P0][AC3] filtered customer view still checks ALL linked sources before archive and restore authority", async () => fixture(async (fx, client) => {
   const own = await seed(fx.base.tenantA.id), target = own.files.customer;
   const hiddenOwner = await adminInsertCustomer({ tenant_id: fx.base.tenantA.id, customer_type: "company", display_name: "Hidden alternate context label" });
   await adminInsertFileLink({ tenant_id: fx.base.tenantA.id, file_id: target.fileId, owner_type: "customer", owner_id: hiddenOwner, purpose: "crm_document" });
@@ -239,7 +239,7 @@ test.skip("[P0][AC3] filtered customer view still checks ALL linked sources befo
     p_link_id: target.linkId, p_file_id: target.fileId, p_correlation_id: crypto.randomUUID() });
   expect(restored.error).not.toBeNull();
 }));
-test.skip("[P0][AC3,5] locked sent-version and acceptance contexts retain link locks and cannot become generic quote uploads", async () => fixture(async (fx, client) => {
+test("[P0][AC3,5] locked sent-version and acceptance contexts retain link locks and cannot become generic quote uploads", async () => fixture(async (fx, client) => {
   const own = await seed(fx.base.tenantA.id);
   for (const owner of ["quote_version", "quote_acceptance"] as const) {
     const d = await page(client, own.refs[owner]); expect(d.data.rows).toHaveLength(1);
@@ -250,7 +250,7 @@ test.skip("[P0][AC3,5] locked sent-version and acceptance contexts retain link l
   const validationPath = "@/server/commands/files/validation"; const { ACTIVE_OWNER_TYPES } = await import(validationPath);
   expect(ACTIVE_OWNER_TYPES).not.toContain("quote_version");
 }));
-test.skip("[P0][AC5] facility contact and unsupported picker contexts never choose customer parent as upload owner", async () => fixture(async (fx, client) => {
+test("[P0][AC5] facility contact and unsupported picker contexts never choose customer parent as upload owner", async () => fixture(async (fx, client) => {
   const own = await seed(fx.base.tenantA.id);
   for (const owner of ["facility", "contact", "quote_version", "quote_acceptance"] as const) {
     const entry = await context(client, own.refs[owner]); expect(entry.state).toBe("available");
@@ -275,7 +275,7 @@ function sourceTransportFault(client: TestServerClient): TestServerClient {
     const value = Reflect.get(target, property); return typeof value === "function" ? value.bind(target) : value;
   } });
 }
-test.skip("[P0][AC2] transient actual source transport is retryable error with no center projection until fresh RLS succeeds", async () => fixture(async (fx, client) => {
+test("[P0][AC2] transient actual source transport is retryable error with no center projection until fresh RLS succeeds", async () => fixture(async (fx, client) => {
   const own = await seed(fx.base.tenantA.id), fault = sourceTransportFault(client);
   const failed = await context(fault, own.refs.customer);
   expect(failed).toEqual({ data: null, entitlements: { canOpenDocuments: false }, state: "error" });

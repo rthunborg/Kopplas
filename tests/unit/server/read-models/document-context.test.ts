@@ -1,5 +1,5 @@
 /**
- * Story20.3 RED: request-current source authority independent of candidate files.
+ * Story20.3: request-current source authority independent of candidate files.
  * Provisional DI: readDocumentContext/readEntityDocumentsLink(ref,{client,
  * resolveContext,loadRow}); readDocuments gains context/contextQuery/selectedLinkId.
  * Provisional success state/data names must be reconciled by the build author.
@@ -90,7 +90,7 @@ function data(result: Center) {
 }
 
 for (const owner of Object.keys(sourceModules) as Owner[]) {
-  test.skip("[P0][AC1,4,6] " + owner + " zero-file source resolves live ancestry and fixed return through current authority", async () => {
+  test("[P0][AC1,4,6] " + owner + " zero-file source resolves live ancestry and fixed return through current authority", async () => {
     const { readDocumentContext, readEntityDocumentsLink } = await contextReader();
     const calls: string[] = [];
     const entry = await readDocumentContext(ref(owner), deps(graph(), calls));
@@ -109,8 +109,34 @@ for (const owner of Object.keys(sourceModules) as Owner[]) {
     assert.equal(empty.context.state, "available"); assert.deepEqual(empty.data.rows, []); assert.equal(empty.data.total, 0);
   });
 }
+for (const owner of ["calculation", "job"] as const) {
+  for (const casing of ["uppercase", "mixed-case"] as const) {
+    test("[P0][AC1,2,4] " + owner + " " + casing + " UUID resolves canonical current source and return", async () => {
+      const { readDocumentContext, readEntityDocumentsLink } = await contextReader();
+      const canonical = "abcdefab-cdef-4abc-8def-abcdefabcdef";
+      const requested = casing === "uppercase" ? canonical.toUpperCase() : "AbCdEfAb-cDeF-4aBc-8dEf-aBcDeFaBcDeF";
+      const table = owner === "calculation" ? "calculations" : "jobs";
+      const rows = graph(), calls: string[] = [];
+      rows.set(table + ":" + canonical, { ...rows.get(table + ":" + ids[owner])!, id: canonical });
+      const request = { ...ref(owner), ownerId: requested };
+      const link = await readEntityDocumentsLink(request, deps(rows, calls));
+      assert.equal(link.state, "available");
+      assert.deepEqual(link.data?.ref, { ...request, ownerId: canonical });
+      assert.equal(link.data?.href, "/files?module=" + sourceModules[owner] + "&ownerType=" + owner + "&ownerId=" + canonical);
+      assert.equal(link.data?.contextReturnHref, "/" + table + "/" + canonical);
+      assert.deepEqual(calls, [table + ":" + canonical], "UUID normalization must precede source lookup");
+      // Normalization cannot make a different persisted source or stale authority eligible.
+      rows.set(table + ":" + canonical, { ...rows.get(table + ":" + canonical)!, id: ids[owner] });
+      absent(await readDocumentContext(request, deps(rows)));
+      let reads = 0;
+      absent(await readDocumentContext(request, { ...deps(rows), resolveContext: async () => authority(["montor"]),
+        loadRow: async () => { reads++; return rows.get(table + ":" + canonical)!; } }));
+      assert.equal(reads, 0);
+    });
+  }
+}
 for (const roles of [[], ["montor"], ["saljare"], ["ekonomi"], ["unknown"]]) {
-  test.skip("[P0][AC1,2] source label and loaders are withheld for forbidden current roles " + JSON.stringify(roles), async () => {
+  test("[P0][AC1,2] source label and loaders are withheld for forbidden current roles " + JSON.stringify(roles), async () => {
     const { readDocumentContext, readEntityDocumentsLink } = await contextReader();
     let reads = 0;
     const request = { ...deps(), resolveContext: async () => authority(roles), loadRow: async () => { reads++; return null; } };
@@ -119,7 +145,7 @@ for (const roles of [[], ["montor"], ["saljare"], ["ekonomi"], ["unknown"]]) {
     assert.equal(reads, 0);
   });
 }
-test.skip("[P0][AC1,2] disabled membership and next-read revocation deny even zero-file same-client source", async () => {
+test("[P0][AC1,2] disabled membership and next-read revocation deny even zero-file same-client source", async () => {
   const { readDocumentContext } = await contextReader();
   let current = authority(); const calls: string[] = [];
   const request = { ...deps(graph(), calls), resolveContext: async () => current };
@@ -138,7 +164,7 @@ const ancestorCases = [
   ["quote_acceptance", "quote_versions", "quote_version"], ["quote_acceptance", "quotes", "quote"],
 ] as const;
 for (const [owner, table, ancestor] of ancestorCases) {
-  test.skip("[P0][AC2,4] " + owner + " unavailable missing archived or foreign " + table + " never exposes source return ancestry", async () => {
+  test("[P0][AC2,4] " + owner + " unavailable missing archived or foreign " + table + " never exposes source return ancestry", async () => {
     const { readDocumentContext } = await contextReader();
     for (const mutation of ["missing", "archived", "foreign"]) {
       const rows = graph(); const key = table + ":" + ids[ancestor];
@@ -148,28 +174,28 @@ for (const [owner, table, ancestor] of ancestorCases) {
     }
   });
 }
-test.skip("[P0][AC2] calculation status archive and acceptance quote mismatch do not derive breadcrumbs", async () => {
+test("[P0][AC2] calculation status archive and acceptance quote mismatch do not derive breadcrumbs", async () => {
   const { readDocumentContext } = await contextReader();
   const calc = graph(); calc.get("calculations:" + ids.calculation)!.status = "archived";
   absent(await readDocumentContext(ref("calculation"), deps(calc)));
   const acceptance = graph(); acceptance.get("quote_acceptances:" + ids.quote_acceptance)!.quote_id = uid(999);
   absent(await readDocumentContext(ref("quote_acceptance"), deps(acceptance)));
 });
-test.skip("[P0][AC2] transient source or auth failure is error and fresh retry rechecks source", async () => {
+test("[P0][AC2] transient source or auth failure is error and fresh retry rechecks source", async () => {
   const { readDocumentContext } = await contextReader();
   absent(await readDocumentContext(ref("customer"), { ...deps(), loadRow: async () => { throw new Error("SQL detail private label"); } }), "error");
   absent(await readDocumentContext(ref("customer"), { ...deps(), resolveContext: async () =>
     ({ ok: false, code: "SERVER_ERROR", message: "SQL detail private label" }) }), "error");
   assert.equal((await readDocumentContext(ref("customer"), deps())).state, "available");
 });
-test.skip("[P0][AC2] invalid query cannot read candidates or silently degrade to global center", async () => {
+test("[P0][AC2] invalid query cannot read candidates or silently degrade to global center", async () => {
   let reads = 0;
   const result = await center([row()], ref("customer"), { contextQuery: new URLSearchParams("ownerId=" + ids.customer),
     readCandidates: async () => { reads++; return { rows: [row()], exhausted: true }; } });
   assert.equal(result.ok, false); assert.equal(reads, 0);
   assert.doesNotMatch(JSON.stringify(result), /Synthetic|ownerId|total|facets|private-object/);
 });
-test.skip("[P0][AC3] same file remains distinct links with exact tuple-only rows counts facets and selection", async () => {
+test("[P0][AC3] same file remains distinct links with exact tuple-only rows counts facets and selection", async () => {
   const target = row(), other = row("facility", uid(101), target.file_id);
   const result = data(await center([target, other], ref("customer"), { selectedLinkId: target.id }));
   assert.deepEqual(result.data.rows.map(r => r.linkId), [target.id]); assert.equal(result.data.total, 1);
@@ -180,7 +206,7 @@ test.skip("[P0][AC3] same file remains distinct links with exact tuple-only rows
   assert.deepEqual(foreignSelection.data.rows.map(r => r.linkId), [target.id]);
   assert.doesNotMatch(JSON.stringify(result), new RegExp(other.id + "|" + other.owner_id));
 });
-test.skip("[P0][AC3] opaque cursor is bound to exact owner ID even identical module type and filters", async () => {
+test("[P0][AC3] opaque cursor is bound to exact owner ID even identical module type and filters", async () => {
   const rows = Array.from({ length: 55 }, (_, index) => row("customer", uid(1000 - index)));
   const first = data(await center(rows, ref("customer")));
   assert.ok(first.data.nextCursor);
@@ -190,7 +216,7 @@ test.skip("[P0][AC3] opaque cursor is bound to exact owner ID even identical mod
   assert.equal(changed.ok, false); assert.equal(Object.hasOwn(changed, "data"), false);
   assert.doesNotMatch(JSON.stringify(changed), new RegExp(ids.customer + "|" + different.ownerId));
 });
-test.skip("[P0][AC3] complete ALL-link lifecycle authority precedes context filtering including hidden alternate owner", async () => {
+test("[P0][AC3] complete ALL-link lifecycle authority precedes context filtering including hidden alternate owner", async () => {
   const target = row(), hidden = row("facility", uid(101), target.file_id);
   const rows = graph(); rows.get("facilities:" + ids.facility)!.archived_at = "2026-10-01T00:00:00Z";
   const checked: string[] = [];

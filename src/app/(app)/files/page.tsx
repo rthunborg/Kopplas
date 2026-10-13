@@ -14,7 +14,7 @@ export default async function FilesPage({ searchParams }: { readonly searchParam
   const query = await searchParams, params = new URLSearchParams();
   for (const [key, value] of Object.entries(query)) for (const item of Array.isArray(value) ? value : value === undefined ? [] : [value]) params.append(key, item);
   const filters = parseDocumentFilters(params);
-  if (!filters.ok) return <section className="p-3 md:p-6"><h1 className="text-2xl font-semibold">Dokument</h1><div data-testid="documents-filter-error"><p role="alert">{filters.message}</p><a href="/files" className="text-blue-700 underline">Rensa filter</a></div></section>;
+  if (!filters.ok) return <section className="p-3 md:p-6"><h1 className="text-2xl font-semibold">Dokument</h1><div data-testid="documents-filter-error"><p role="alert">{filters.message}</p><a href="/files" data-testid="documents-context-root" className="text-blue-700 underline">Rensa filter</a></div></section>;
   return <Suspense fallback={<section className="flex flex-col gap-6 p-6"><h1 className="text-2xl font-semibold text-zinc-900">Dokument</h1><p role="status">Läser in dokument…</p></section>}><DocumentsContent filters={filters.data} /></Suspense>;
 }
 async function DocumentsContent({ filters }: { readonly filters: DocumentFilters }) {
@@ -42,7 +42,7 @@ async function DocumentsContent({ filters }: { readonly filters: DocumentFilters
     }
     return { linkId, archiveDocumentAction, restoreDocumentAction };
   });
-  return <DocumentsWorkspace key={context?.ok ? `${context.data.tenantId}:${context.data.userId}` : "unavailable"} authorityIdentity={context?.ok ? `${context.data.tenantId}:${context.data.userId}` : "unavailable"} actions={actions} undoRows={undoRows} rows={data?.rows ?? []} initialFilters={filters} facets={data?.facets ?? { module: [], ownerType: [], purpose: [] }} total={data?.total ?? 0} nextCursor={data?.nextCursor ?? null} loadError={documents.ok ? null : documents.message}
+  return <DocumentsWorkspace key={context?.ok ? `${context.data.tenantId}:${context.data.userId}` : "unavailable"} authorityIdentity={context?.ok ? `${context.data.tenantId}:${context.data.userId}` : "unavailable"} documentContext={documents.ok ? documents.data.descriptor.context ?? null : null} actions={actions} undoRows={undoRows} rows={data?.rows ?? []} initialFilters={filters} facets={data?.facets ?? { module: [], ownerType: [], purpose: [] }} total={data?.total ?? 0} nextCursor={data?.nextCursor ?? null} loadError={documents.ok ? null : documents.message}
     uploadOwnerOptions={{ customer: customers.rows.map(c => ({ id: c.id, label: c.display_name })), calculation: calculations.rows.map(c => ({ id: c.id, label: c.customer_display_name ? `${c.title} — ${c.customer_display_name}` : c.title })), job: jobs.rows.map(j => ({ id: j.id, label: j.title ?? `${j.customerDisplayName ?? "Jobb"} (${j.id.slice(0, 8)})` })) }}
     uploadOptionsLoadError={customers.error !== null || calculations.error !== null || jobs.error !== null} />;
 }
