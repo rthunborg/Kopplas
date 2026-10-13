@@ -1,0 +1,501 @@
+{
+  "snapshot_sha": "78d134656f03ca0dc96a5e415af5af04f67add53",
+  "tested_product_sha": "c65c18649ac5641f9520b12e03a8b3f20af8f610",
+  "changes_since_tested_product": [
+    "_bmad-output/auto-bmad/orchestration/phase-b-lanes-2026-10-08.md",
+    "_bmad-output/auto-bmad/state/epic/epic-20.yaml"
+  ],
+  "checks": [
+    {
+      "check": "documents20-3-context-unit",
+      "receipt": "C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-3-combined-c65c1864/documents20-3-context-unit.native.json",
+      "raw_log_sha256": "5572bf691c60eb0c8c9dce6099a50b03f617783711a81ef1130e2630a3ffd06d",
+      "counts": {
+        "executed": 53,
+        "passed": 53,
+        "failed": 0,
+        "skipped": 0,
+        "cancelled": 0,
+        "todo": 0
+      },
+      "argv": [
+        "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+        "--experimental-strip-types",
+        "--import",
+        "./tests/support/register.mjs",
+        "--test",
+        "tests/unit/features/documents/context-navigation.test.ts",
+        "tests/unit/server/read-models/document-context.test.ts",
+        "tests/unit/components/documents/entity-documents-link.test.ts"
+      ],
+      "source_sha": "c65c18649ac5641f9520b12e03a8b3f20af8f610",
+      "native_exit": 0,
+      "environment": {
+        "SUPABASE_TEST_REQUIRED": "1",
+        "api_origin": "http://127.0.0.1:60431",
+        "db_origin": "127.0.0.1:60432",
+        "CI": "unset",
+        "cdp_origin": "http://127.0.0.1:60433"
+      }
+    },
+    {
+      "check": "unit",
+      "receipt": "C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-3-combined-c65c1864/unit.native.json",
+      "raw_log_sha256": "d2a1f287917d6a45cd8bfd49e88d8685fb3f5f919f021ae460da5b67505118ef",
+      "counts": {
+        "executed": 2508,
+        "passed": 2508,
+        "failed": 0,
+        "skipped": 0,
+        "cancelled": 0,
+        "todo": 0
+      },
+      "argv": [
+        "wsl.exe",
+        "--distribution",
+        "Ubuntu-24.04",
+        "--cd",
+        "/mnt/c/Users/Rasmus/.codex/worktrees/dbe6/ElproSaas",
+        "--exec",
+        "env",
+        "NODE_PATH=/tmp/kopplas-documents20-1-linux-native/node_modules",
+        "PATH=/tmp/kopplas-documents20-1-linux-node-v22.23.2/node-v22.23.2-linux-x64/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "SUPABASE_TEST_REQUIRED=1",
+        "SUPABASE_TEST_URL=http://127.0.0.1:60431",
+        "/tmp/kopplas-documents20-1-linux-node-v22.23.2/node-v22.23.2-linux-x64/bin/node",
+        "--experimental-strip-types",
+        "--import",
+        "./tests/support/register.mjs",
+        "--test",
+        "tests/unit/**/*.test.ts"
+      ],
+      "source_sha": "c65c18649ac5641f9520b12e03a8b3f20af8f610",
+      "native_exit": 0,
+      "environment": {
+        "SUPABASE_TEST_REQUIRED": "1",
+        "api_origin": "http://127.0.0.1:60431",
+        "db_origin": "127.0.0.1:60432",
+        "CI": "unset",
+        "cdp_origin": "http://127.0.0.1:60433"
+      }
+    },
+    {
+      "check": "typecheck",
+      "receipt": "C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-3-combined-c65c1864/typecheck.native.json",
+      "raw_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "counts": null,
+      "argv": [
+        "C:\\Users\\Rasmus\\AppData\\Local\\pnpm\\bin\\pnpm.CMD",
+        "exec",
+        "tsc",
+        "--noEmit"
+      ],
+      "source_sha": "c65c18649ac5641f9520b12e03a8b3f20af8f610",
+      "native_exit": 0,
+      "environment": {
+        "SUPABASE_TEST_REQUIRED": "1",
+        "api_origin": "http://127.0.0.1:60431",
+        "db_origin": "127.0.0.1:60432",
+        "CI": "unset",
+        "cdp_origin": "http://127.0.0.1:60433"
+      }
+    },
+    {
+      "check": "lint",
+      "receipt": "C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-3-combined-c65c1864/lint.native.json",
+      "raw_log_sha256": "173e2a07b23a09bbee714a25dbab58a94302a78e46b6556125daae2c5cc834ac",
+      "counts": null,
+      "argv": [
+        "C:\\Users\\Rasmus\\AppData\\Local\\pnpm\\bin\\pnpm.CMD",
+        "lint"
+      ],
+      "source_sha": "c65c18649ac5641f9520b12e03a8b3f20af8f610",
+      "native_exit": 0,
+      "environment": {
+        "SUPABASE_TEST_REQUIRED": "1",
+        "api_origin": "http://127.0.0.1:60431",
+        "db_origin": "127.0.0.1:60432",
+        "CI": "unset",
+        "cdp_origin": "http://127.0.0.1:60433"
+      }
+    },
+    {
+      "check": "production-build",
+      "receipt": "C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-3-combined-c65c1864/production-build.native.json",
+      "raw_log_sha256": "783bc63f9904ffe0c8b583b67f1f00b07a97dd847db40088dd6e42c44f267584",
+      "counts": null,
+      "argv": [
+        "C:\\Users\\Rasmus\\AppData\\Local\\pnpm\\bin\\pnpm.CMD",
+        "build"
+      ],
+      "source_sha": "c65c18649ac5641f9520b12e03a8b3f20af8f610",
+      "native_exit": 0,
+      "environment": {
+        "SUPABASE_TEST_REQUIRED": "1",
+        "api_origin": "http://127.0.0.1:60431",
+        "db_origin": "127.0.0.1:60432",
+        "CI": "unset",
+        "cdp_origin": "http://127.0.0.1:60433"
+      }
+    },
+    {
+      "check": "service-role-containment",
+      "receipt": "C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-3-combined-c65c1864/service-role-containment.native.json",
+      "raw_log_sha256": "3b9968cb7949bbeb1fa6c9c71df34a8e1f3bf7fde33cec0e0ba0ccaf65de07af",
+      "counts": null,
+      "argv": [
+        "C:\\Users\\Rasmus\\AppData\\Local\\pnpm\\bin\\pnpm.CMD",
+        "run",
+        "verify:service-role-containment"
+      ],
+      "source_sha": "c65c18649ac5641f9520b12e03a8b3f20af8f610",
+      "native_exit": 0,
+      "environment": {
+        "SUPABASE_TEST_REQUIRED": "1",
+        "api_origin": "http://127.0.0.1:60431",
+        "db_origin": "127.0.0.1:60432",
+        "CI": "unset",
+        "cdp_origin": "http://127.0.0.1:60433"
+      }
+    },
+    {
+      "check": "bundle-containment",
+      "receipt": "C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-3-combined-c65c1864/bundle-containment.native.json",
+      "raw_log_sha256": "90fa8acdcfd5a85f781b7876af8edf0cebf4c70205749a44dbea3d339e15a775",
+      "counts": null,
+      "argv": [
+        "C:\\Users\\Rasmus\\AppData\\Local\\pnpm\\bin\\pnpm.CMD",
+        "run",
+        "verify:bundle-containment"
+      ],
+      "source_sha": "c65c18649ac5641f9520b12e03a8b3f20af8f610",
+      "native_exit": 0,
+      "environment": {
+        "SUPABASE_TEST_REQUIRED": "1",
+        "api_origin": "http://127.0.0.1:60431",
+        "db_origin": "127.0.0.1:60432",
+        "CI": "unset",
+        "cdp_origin": "http://127.0.0.1:60433"
+      }
+    },
+    {
+      "check": "lockfiles",
+      "receipt": "C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-3-combined-c65c1864/lockfiles.native.json",
+      "raw_log_sha256": "e70e3f055371bd0f7415699698af665a8fbb7e355bb02b0d0d3d5b48bd225f91",
+      "counts": null,
+      "argv": [
+        "C:\\Users\\Rasmus\\AppData\\Local\\pnpm\\bin\\pnpm.CMD",
+        "run",
+        "verify:lockfiles"
+      ],
+      "source_sha": "c65c18649ac5641f9520b12e03a8b3f20af8f610",
+      "native_exit": 0,
+      "environment": {
+        "SUPABASE_TEST_REQUIRED": "1",
+        "api_origin": "http://127.0.0.1:60431",
+        "db_origin": "127.0.0.1:60432",
+        "CI": "unset",
+        "cdp_origin": "http://127.0.0.1:60433"
+      }
+    },
+    {
+      "check": "documents-selected-link-unit",
+      "receipt": "C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-3-combined-c65c1864/documents-selected-link-unit.native.json",
+      "raw_log_sha256": "bf738acf38809a77cf970da90cad2abac14c19cf6adf66b3fe0953221ccd06a6",
+      "counts": {
+        "executed": 100,
+        "passed": 100,
+        "failed": 0,
+        "skipped": 0,
+        "cancelled": 0,
+        "todo": 0
+      },
+      "argv": [
+        "wsl.exe",
+        "--distribution",
+        "Ubuntu-24.04",
+        "--cd",
+        "/mnt/c/Users/Rasmus/.codex/worktrees/dbe6/ElproSaas",
+        "--exec",
+        "env",
+        "NODE_PATH=/tmp/kopplas-documents20-1-linux-native/node_modules",
+        "PATH=/tmp/kopplas-documents20-1-linux-node-v22.23.2/node-v22.23.2-linux-x64/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "SUPABASE_TEST_REQUIRED=1",
+        "SUPABASE_TEST_URL=http://127.0.0.1:60431",
+        "/tmp/kopplas-documents20-1-linux-node-v22.23.2/node-v22.23.2-linux-x64/bin/node",
+        "--experimental-strip-types",
+        "--import",
+        "./tests/support/register.mjs",
+        "--test",
+        "tests/unit/server/storage/document-signed-access-attestation.test.ts",
+        "tests/unit/server/commands/documents-signed-access.test.ts"
+      ],
+      "source_sha": "c65c18649ac5641f9520b12e03a8b3f20af8f610",
+      "native_exit": 0,
+      "environment": {
+        "SUPABASE_TEST_REQUIRED": "1",
+        "api_origin": "http://127.0.0.1:60431",
+        "db_origin": "127.0.0.1:60432",
+        "CI": "unset",
+        "cdp_origin": "http://127.0.0.1:60433"
+      }
+    },
+    {
+      "check": "documents20-2-filter-unit",
+      "receipt": "C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-3-combined-c65c1864/documents20-2-filter-unit.native.json",
+      "raw_log_sha256": "b5cb37aa5158761c72d704f14ae4534ee840a4a7c5f5a53b46db8840146ac6f4",
+      "counts": {
+        "executed": 23,
+        "passed": 23,
+        "failed": 0,
+        "skipped": 0,
+        "cancelled": 0,
+        "todo": 0
+      },
+      "argv": [
+        "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+        "--experimental-strip-types",
+        "--import",
+        "./tests/support/register.mjs",
+        "--test",
+        "tests/unit/features/documents/filters.test.ts",
+        "tests/unit/features/documents/date-bounds.test.ts",
+        "tests/unit/features/documents/preview-state.test.ts",
+        "tests/unit/server/commands/documents-lifecycle.test.ts"
+      ],
+      "source_sha": "c65c18649ac5641f9520b12e03a8b3f20af8f610",
+      "native_exit": 0,
+      "environment": {
+        "SUPABASE_TEST_REQUIRED": "1",
+        "api_origin": "http://127.0.0.1:60431",
+        "db_origin": "127.0.0.1:60432",
+        "CI": "unset",
+        "cdp_origin": "http://127.0.0.1:60433"
+      }
+    },
+    {
+      "check": "documents20-3-context-integration",
+      "receipt": "C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-3-combined-c65c1864/documents20-3-context-integration.native.json",
+      "raw_log_sha256": "778678103f219512f5cd34b7ab44c852f4ed27f7978f3a0445487fac9b54ecbb",
+      "counts": {
+        "executed": 28,
+        "passed": 28,
+        "failed": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "argv": [
+        "C:/Users/Rasmus/AppData/Local/pnpm/bin/pnpm.CMD",
+        "exec",
+        "vitest",
+        "run",
+        "tests/integration/rls/documents-context.rls.test.ts",
+        "--no-file-parallelism",
+        "--reporter=json",
+        "--outputFile=C:\\Users\\Rasmus\\AppData\\Local\\Temp\\Kopplas-documents20-3-combined-c65c1864\\documents20-3-context-integration.vitest.json"
+      ],
+      "source_sha": "c65c18649ac5641f9520b12e03a8b3f20af8f610",
+      "native_exit": 0,
+      "environment": {
+        "SUPABASE_TEST_REQUIRED": "1",
+        "api_origin": "http://127.0.0.1:60431",
+        "db_origin": "127.0.0.1:60432",
+        "CI": "unset",
+        "cdp_origin": "http://127.0.0.1:60433"
+      }
+    },
+    {
+      "check": "documents20-3-browser",
+      "receipt": "C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-3-combined-c65c1864/documents20-3-browser.native.json",
+      "raw_log_sha256": "f64e593c14b171299acaf2b7bf5e5cff4ae618ae9e95853ca13fe926df4c4b01",
+      "counts": {
+        "executed": 53,
+        "passed": 53,
+        "failed": 0,
+        "skipped": 0,
+        "flaky": 0
+      },
+      "argv": [
+        "C:/Users/Rasmus/AppData/Local/pnpm/bin/pnpm.CMD",
+        "exec",
+        "playwright",
+        "test",
+        "tests/e2e/files/documents-context-navigation.e2e.spec.ts",
+        "--reporter=json"
+      ],
+      "source_sha": "c65c18649ac5641f9520b12e03a8b3f20af8f610",
+      "native_exit": 0,
+      "environment": {
+        "SUPABASE_TEST_REQUIRED": "1",
+        "api_origin": "http://127.0.0.1:60431",
+        "db_origin": "127.0.0.1:60432",
+        "CI": "unset",
+        "cdp_origin": "http://127.0.0.1:60433"
+      }
+    },
+    {
+      "check": "documents-selected-link-lock-races-integration",
+      "receipt": "C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-3-combined-c65c1864/documents-selected-link-lock-races-integration.native.json",
+      "raw_log_sha256": "ec2a21f634c22c95eb2ad48935cb4ebaa85880934437a1bb089247e0c3efcec5",
+      "counts": {
+        "executed": 38,
+        "passed": 38,
+        "failed": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "argv": [
+        "C:\\Users\\Rasmus\\AppData\\Local\\pnpm\\bin\\pnpm.CMD",
+        "exec",
+        "vitest",
+        "run",
+        "tests/integration/commands/documents-signed-access-lock-races.int.test.ts",
+        "--no-file-parallelism",
+        "--reporter=json",
+        "--outputFile=C:\\Users\\Rasmus\\AppData\\Local\\Temp\\Kopplas-documents20-3-combined-c65c1864\\documents-selected-link-lock-races-integration.vitest.json"
+      ],
+      "source_sha": "c65c18649ac5641f9520b12e03a8b3f20af8f610",
+      "native_exit": 0,
+      "environment": {
+        "SUPABASE_TEST_REQUIRED": "1",
+        "api_origin": "http://127.0.0.1:60431",
+        "db_origin": "127.0.0.1:60432",
+        "CI": "unset",
+        "cdp_origin": "http://127.0.0.1:60433"
+      }
+    },
+    {
+      "check": "files-signed-access-integration",
+      "receipt": "C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-3-combined-c65c1864/files-signed-access-integration.native.json",
+      "raw_log_sha256": "0b81db9d19c2ba9294b02c5b3b528ffcb770309bf3c71873c99a793146c81cb6",
+      "counts": {
+        "executed": 20,
+        "passed": 20,
+        "failed": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "argv": [
+        "C:\\Users\\Rasmus\\AppData\\Local\\pnpm\\bin\\pnpm.CMD",
+        "exec",
+        "vitest",
+        "run",
+        "tests/integration/commands/file-signed-access.int.test.ts",
+        "tests/integration/commands/file-signed-access-refresh.int.test.ts",
+        "--no-file-parallelism",
+        "--reporter=json",
+        "--outputFile=C:\\Users\\Rasmus\\AppData\\Local\\Temp\\Kopplas-documents20-3-combined-c65c1864\\files-signed-access-integration.vitest.json"
+      ],
+      "source_sha": "c65c18649ac5641f9520b12e03a8b3f20af8f610",
+      "native_exit": 0,
+      "environment": {
+        "SUPABASE_TEST_REQUIRED": "1",
+        "api_origin": "http://127.0.0.1:60431",
+        "db_origin": "127.0.0.1:60432",
+        "CI": "unset",
+        "cdp_origin": "http://127.0.0.1:60433"
+      }
+    },
+    {
+      "check": "documents-baseline-storage-boundary",
+      "receipt": "C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-3-combined-c65c1864/documents-baseline-storage-boundary.native.json",
+      "raw_log_sha256": "b1617f5f535a0ad50f036ccdf5e583d40cd7361ca4faea21ae01fb1058c2573b",
+      "counts": {
+        "executed": 119,
+        "passed": 119,
+        "failed": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "argv": [
+        "C:\\Users\\Rasmus\\AppData\\Local\\pnpm\\bin\\pnpm.CMD",
+        "exec",
+        "vitest",
+        "run",
+        "tests/integration/rls/documents.rls.test.ts",
+        "tests/integration/commands/documents-signed-access.int.test.ts",
+        "tests/integration/commands/file-signed-access.int.test.ts",
+        "tests/integration/commands/file-signed-access-refresh.int.test.ts",
+        "--no-file-parallelism",
+        "--reporter=json",
+        "--outputFile=C:\\Users\\Rasmus\\AppData\\Local\\Temp\\Kopplas-documents20-3-combined-c65c1864\\documents-baseline-storage-boundary.vitest.json"
+      ],
+      "source_sha": "c65c18649ac5641f9520b12e03a8b3f20af8f610",
+      "native_exit": 0,
+      "environment": {
+        "SUPABASE_TEST_REQUIRED": "1",
+        "api_origin": "http://127.0.0.1:60431",
+        "db_origin": "127.0.0.1:60432",
+        "CI": "unset",
+        "cdp_origin": "http://127.0.0.1:60433"
+      }
+    },
+    {
+      "check": "documents20-2-lifecycle-integration",
+      "receipt": "C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-3-combined-c65c1864/documents20-2-lifecycle-integration.native.json",
+      "raw_log_sha256": "426174a2925b76c410fc90c70503689a4eb6009c53eaed7b486f1e523e04d113",
+      "counts": {
+        "executed": 51,
+        "passed": 51,
+        "failed": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "argv": [
+        "C:\\Users\\Rasmus\\AppData\\Local\\pnpm\\bin\\pnpm.CMD",
+        "exec",
+        "vitest",
+        "run",
+        "tests/integration/commands/documents-lifecycle.int.test.ts",
+        "tests/integration/commands/documents-lifecycle-lock-races.int.test.ts",
+        "tests/integration/rls/documents-filter-archive.rls.test.ts",
+        "--no-file-parallelism",
+        "--reporter=json",
+        "--outputFile=C:\\Users\\Rasmus\\AppData\\Local\\Temp\\Kopplas-documents20-3-combined-c65c1864\\documents20-2-lifecycle-integration.vitest.json"
+      ],
+      "source_sha": "c65c18649ac5641f9520b12e03a8b3f20af8f610",
+      "native_exit": 0,
+      "environment": {
+        "SUPABASE_TEST_REQUIRED": "1",
+        "api_origin": "http://127.0.0.1:60431",
+        "db_origin": "127.0.0.1:60432",
+        "CI": "unset",
+        "cdp_origin": "http://127.0.0.1:60433"
+      }
+    },
+    {
+      "check": "documents20-2-browser",
+      "receipt": "C:/Users/Rasmus/AppData/Local/Temp/Kopplas-documents20-3-combined-c65c1864/documents20-2-browser.native.json",
+      "raw_log_sha256": "7d5388e8c076b285a57fc2879e54dfaa88f7aaaa95f5ca7ec7da05b840e5e240",
+      "counts": {
+        "executed": 117,
+        "passed": 117,
+        "failed": 0,
+        "skipped": 0,
+        "flaky": 0
+      },
+      "argv": [
+        "C:\\Users\\Rasmus\\AppData\\Local\\pnpm\\bin\\pnpm.CMD",
+        "exec",
+        "playwright",
+        "test",
+        "tests/e2e/files/documents-search-preview-lifecycle.e2e.spec.ts",
+        "tests/e2e/files/documents.e2e.spec.ts",
+        "tests/e2e/files/file-index-scope.e2e.spec.ts",
+        "tests/e2e/files/entity-file-preview.e2e.spec.ts",
+        "--reporter=json"
+      ],
+      "source_sha": "c65c18649ac5641f9520b12e03a8b3f20af8f610",
+      "native_exit": 0,
+      "environment": {
+        "SUPABASE_TEST_REQUIRED": "1",
+        "api_origin": "http://127.0.0.1:60431",
+        "db_origin": "127.0.0.1:60432",
+        "CI": "unset",
+        "cdp_origin": "http://127.0.0.1:60433"
+      }
+    }
+  ],
+  "all_17_raw_log_hashes_match": true,
+  "new_product_execution": false
+}

@@ -1,0 +1,271 @@
+{
+  "schema_version": "0.2.0",
+  "snapshot_at": "2026-10-13T13:19:03.678784+00:00",
+  "repo": "Kopplas",
+  "collection_mode": "contract_static",
+  "collection_status": "COLLECTED",
+  "inventory_basis": "acceptance_criteria",
+  "gate_basis": "priority_thresholds",
+  "source_sha": "78d134656f03ca0dc96a5e415af5af04f67add53",
+  "tested_product_sha": "c65c18649ac5641f9520b12e03a8b3f20af8f610",
+  "target": {
+    "type": "epic",
+    "id": "20",
+    "label": "Epic20 — Documents"
+  },
+  "decision_mode": "deterministic",
+  "evaluator": "BMad TEA Epic20 trace delegate",
+  "confidence": "high",
+  "oracle": {
+    "resolution_mode": "formal_requirements",
+    "confidence": "high",
+    "sources": [
+      "_bmad-output/implementation-artifacts/spec-20-1-documents-activation-and-source-authorized-aggregation.md",
+      "_bmad-output/implementation-artifacts/spec-20-2-search-filters-preview-and-archive-restore.md",
+      "_bmad-output/implementation-artifacts/spec-20-3-entity-panel-links-and-contextual-navigation.md",
+      "_bmad-output/test-artifacts/test-design-epic-20.md"
+    ],
+    "external_pointer_status": "not_used",
+    "synthetic": false
+  },
+  "coverage": {
+    "inventory": {
+      "covered": 76,
+      "total": 81,
+      "pct": 94
+    },
+    "priority_breakdown": {
+      "P0": {
+        "total": 32,
+        "covered": 31,
+        "pct": 97
+      },
+      "P1": {
+        "total": 38,
+        "covered": 36,
+        "pct": 95
+      },
+      "P2": {
+        "total": 10,
+        "covered": 9,
+        "pct": 90
+      },
+      "P3": {
+        "total": 1,
+        "covered": 0,
+        "pct": 0
+      }
+    },
+    "by_level": {
+      "e2e": {
+        "tests": 165,
+        "criteria_covered": 54
+      },
+      "api": {
+        "tests": 183,
+        "criteria_covered": 70
+      },
+      "component": {
+        "tests": 4,
+        "criteria_covered": 10
+      },
+      "unit": {
+        "tests": 254,
+        "criteria_covered": 62
+      },
+      "live": {
+        "tests": 0,
+        "criteria_covered": 0
+      },
+      "other": {
+        "tests": 0,
+        "criteria_covered": 0
+      }
+    }
+  },
+  "tests": {
+    "files": 24,
+    "cases": 606,
+    "skipped_cases": 0,
+    "pending_cases": 0,
+    "fixme_cases": 0
+  },
+  "risk_summary": {
+    "critical_open": 1,
+    "high_open": 2,
+    "medium_open": 1,
+    "low_open": 1
+  },
+  "heuristics": {
+    "endpoint_gaps": 0,
+    "auth_negative_path_status": "partial",
+    "error_path_status": "present",
+    "ui_journey_status": "not_applicable",
+    "ui_state_status": "not_applicable"
+  },
+  "formal_ui_heuristics": {
+    "ui_journey_status": "present",
+    "ui_state_status": "present"
+  },
+  "live_evidence": {
+    "present": false,
+    "results_file": "C:/Users/Rasmus/.codex/worktrees/dbe6/ElproSaas/_bmad-output/test-artifacts/live-verification-results.json",
+    "freshness": "not_present",
+    "recorded_source_sha": "",
+    "current_source_sha": "78d134656f03ca0dc96a5e415af5af04f67add53",
+    "producer": "",
+    "counted": 0,
+    "stale": 0,
+    "unverifiable": 0,
+    "failed": 0,
+    "contradicted": 0,
+    "blocked": 0,
+    "skipped": 0,
+    "unmatched": 0,
+    "invalid": 0,
+    "requirements_live_only": 0
+  },
+  "blockers": [
+    {
+      "id": "20.1-AC6",
+      "severity": "high",
+      "reason": "1225 candidates (1100 hidden/125 eligible) and stable equal-timestamp traversal execute, with bounded unit chunks. No observed effective PostgREST max-row cap was established; absence of PGRST_DB_MAX_ROWS in a filtered container environment is not full cap provenance."
+    },
+    {
+      "id": "20-P0-02",
+      "severity": "critical",
+      "reason": "Same-token active membership removal transition is not directly exercised. Disabled membership, primary/child role revocation, multi-role union and initially membershipless actors pass. No product defect is inferred."
+    },
+    {
+      "id": "20-P1-05",
+      "severity": "high",
+      "reason": "1225 candidates (1100 hidden/125 eligible) and stable equal-timestamp traversal execute, with bounded unit chunks. No observed effective PostgREST max-row cap was established; absence of PGRST_DB_MAX_ROWS in a filtered container environment is not full cap provenance."
+    },
+    {
+      "id": "20-P2-09",
+      "severity": "medium",
+      "reason": "Bounded completeness is exercised; representative pilot elapsed/read-query/candidate/row/memory baseline is absent. No numeric latency/concurrency/volume target is authorized."
+    },
+    {
+      "id": "20-P3-01",
+      "severity": "low",
+      "reason": "No recorded manual long-name/neutral-label wrap inspection at both viewports was supplied; optional visual polish is uncredited."
+    }
+  ],
+  "recommendations": [
+    {
+      "priority": "URGENT",
+      "action": "20.1 test owner via coordinator: add 20-P0-02-MEMBERSHIP-REMOVE-001. Given a current authorized actor and issued token with eligible document, delete its active membership, then read/open/refresh using that same authenticated client. Assert no rows/context/labels/new URL/success audit. Run REQUIRED integration on fresh exact product SHA before epic gate; retain zero required skips. No fourth broad review.",
+      "requirements": [
+        "20-P0-02"
+      ]
+    },
+    {
+      "priority": "HIGH",
+      "action": "20.1 test owner via coordinator: 20-P1-05-CAP-001 must record effective PostgREST max-row cap/configuration and exercise more candidates than that observed limit with hidden-only batches/equal timestamps; assert every eligible row once and no false exhaustion/hidden cursor. Existing1225 traversal remains credited for what it executes.",
+      "requirements": [
+        "20.1-AC6",
+        "20-P1-05"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "action": "QA/coordinator before epic release: record 20-P2-09-PILOT-001 representative hidden-heavy pilot baseline with elapsed/query/candidate/authorized-row/memory measures. Resolve numeric threshold only through owner decision; do not fabricate SLO or code-coverage percentage.",
+      "requirements": [
+        "20-P2-09"
+      ]
+    },
+    {
+      "priority": "LOW",
+      "action": "QA: optional20-P3-01-VISUAL-001 long synthetic names/neutral labels at desktop and360x640, record actual wrap/read outcome.",
+      "requirements": [
+        "20-P3-01"
+      ]
+    },
+    {
+      "priority": "LOW",
+      "action": "Run separately authorized bmad-testarch-test-review and NFR assessment. Preserve20.2 review_unverified/formula history and narrow acceptance boundary.",
+      "requirements": []
+    }
+  ],
+  "links": {
+    "trace_report_path": "C:/Users/Rasmus/.codex/worktrees/dbe6/ElproSaas/_bmad-output/test-artifacts/traceability/epic-20-traceability-report.md",
+    "trace_report_url": "",
+    "artifact_url": "",
+    "journey_evidence_url": ""
+  },
+  "gate_status": "FAIL",
+  "gate_criteria": {
+    "p0_coverage_required": "100%",
+    "p0_coverage_actual": "97%",
+    "p0_status": "NOT_MET",
+    "p1_coverage_target": "90%",
+    "p1_coverage_minimum": "80%",
+    "p1_coverage_actual": "95%",
+    "p1_status": "MET",
+    "overall_coverage_minimum": "80%",
+    "overall_coverage_actual": "94%",
+    "overall_status": "MET"
+  },
+  "formal_ac_statistics": {
+    "total_requirements": 25,
+    "fully_covered": 24,
+    "partially_covered": 1,
+    "uncovered": 0,
+    "overall_coverage_percentage": 96,
+    "priority_breakdown": {
+      "P0": {
+        "total": 14,
+        "covered": 14,
+        "percentage": 100
+      },
+      "P1": {
+        "total": 11,
+        "covered": 10,
+        "percentage": 91
+      },
+      "P2": {
+        "total": 0,
+        "covered": 0,
+        "percentage": 100
+      },
+      "P3": {
+        "total": 0,
+        "covered": 0,
+        "percentage": 100
+      }
+    }
+  },
+  "approved_design_statistics": {
+    "total_requirements": 56,
+    "fully_covered": 52,
+    "partially_covered": 3,
+    "uncovered": 1,
+    "overall_coverage_percentage": 93,
+    "priority_breakdown": {
+      "P0": {
+        "total": 18,
+        "covered": 17,
+        "percentage": 94
+      },
+      "P1": {
+        "total": 27,
+        "covered": 26,
+        "percentage": 96
+      },
+      "P2": {
+        "total": 10,
+        "covered": 9,
+        "percentage": 90
+      },
+      "P3": {
+        "total": 1,
+        "covered": 0,
+        "percentage": 0
+      }
+    }
+  },
+  "new_product_executions": 0,
+  "release_authority": false,
+  "review_clearance": false
+}
