@@ -9,11 +9,11 @@ spec_folder: null
 story_id: null
 branch: codex/documents-resume-admission-2026-10-09
 status: in-progress
-updated_at: "2026-10-13T08:34:40Z"
+updated_at: "2026-10-13T13:06:39Z"
 started_at: "2026-10-09T13:24:56Z"
 completed_at: null
 active_seconds: 829
-timing_anchor: null
+timing_anchor: 1791896799
 is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
@@ -26,15 +26,16 @@ selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Automatic sensitive-task escalation: authorization"
+escalation_reason: "Epic trace gate assesses authorization, RLS and transactional integrity evidence."
 routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Epic trace gate assesses authorization, RLS and transactional integrity evidence.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: null
 tea_selected: []
 tea_rationale: null
 epic_story_count: 3
 stories_after_in_epic: null
-completed_phases: [0, 1, 2]
+completed_phases: [0, 1, 2, 5]
 spec_path: null
 spec_approved: false
 build:
@@ -46,7 +47,7 @@ build:
   warnings: []
 followup_passes: 0
 hitl_halt: null
-review_unverified: false
+review_unverified: true
 story_trace: null
 legacy_review_resume: false
 legacy_review_iteration: null
@@ -93,7 +94,8 @@ stories_skipped: []
 stories_landed:
   - 20-1-documents-activation-and-source-authorized-aggregation
   - 20-2-search-filters-preview-and-archive-restore
-active_story: 20-3-entity-panel-links-and-contextual-navigation
+  - 20-3-entity-panel-links-and-contextual-navigation
+active_story: null
 epic_test_design:
   status: complete
   path: "_bmad-output/test-artifacts/test-design-epic-20.md"
