@@ -2,10 +2,10 @@
 title: '15.1 — The Five Scheduling Views'
 type: 'feature'
 created: '2026-10-09'
-status: 'ready-for-dev'
+status: 'blocked'
 review_loop_iteration: 0
 followup_review_recommended: false
-baseline_revision: '45a64853fa55af349bd7cc7ccb38e9886dd31d0b'
+baseline_revision: 'b9d61a33c90ac24c173f0aac1e400f99ed65d93c'
 context:
   - docs/process/review-order.md
   - docs/process/agent-model-routing.md
@@ -108,6 +108,12 @@ Manual assistive-tech/daylight/exploration and representative performance certif
 
 ## Auto Run Result
 
+Status: blocked
+
+Blocking condition: Projektledare cannot read authoritative peer membership status required by needs-reassignment, while the frozen specification prohibits a new reader/migration and inference from active-picker absence. Independent High review confirmed this reachable contradiction; implementation halted before product writes. Separate fresh planning from the original owner intent is required.
+
+### Historical planning result — 2026-10-09
+
 Status: ready-for-dev
 
 HALT after planning as requested; implementation was not started.
@@ -120,3 +126,19 @@ Owner disposition: further Lovable observation is no prerequisite; zero observat
 
 Completion hook: planning exit preserved; no completed author review trail manufactured and no implementation-only trail check claimed.
 
+
+### Implementation HALT — 2026-10-13
+
+Current status: blocked. The implementation author halted before product writes because the approved frozen specification cannot supply Projektledare peer membership lifecycle facts through existing read authority. Independent Sol High boundary review and root adjudication confirmed the gap; the coordinator authorized this controlled HALT. This is a specification contradiction, not a test failure or an infrastructure outage.
+
+The required reassignment predicate checks any current assignee for an archived profile, non-active membership, or missing current profile, and expressly forbids inferring lifecycle from absence in the active picker (Intent I/O matrix and task 3). Archived/missing-profile checks and manager self mapping have existing permitted paths. The missing fact is specifically the peer membership status for a Projektledare without a tenant_admin grant:
+
+- `supabase/migrations/20260907171252_role_aware_phase_a_policy_evolution.sql:15` — `tenant_memberships_select_own` permits the authenticated user's own active row or a tenant_admin caller; no subsequent migration widens that SELECT policy.
+- `supabase/migrations/20261007131222_booking_editor_review_round1_fixes.sql:28` — `booking_editor_people` returns active, unarchived profiles and safe labels, without lifecycle status; its active-only predicate is at line 36.
+- `src/server/bookings/conflict-facts.ts:63` — `snapshotBookingConflicts` supplies existing candidate-bound detector transaction facts, expressly excluded as a calendar read API by this spec. It is not a permitted replacement roster reader.
+
+The spec requires these actual lifecycle facts while retaining unchanged SQL/RLS/identity wrappers, prohibiting a privileged identity reader and asserting no new persistence migration is needed. A new bounded reader, RLS widening, active-picker inference, or fake detector candidate would contradict the frozen intent. No such workaround was implemented. Separate fresh planning from the original owner intent and independent High validation are required to resolve the authority gap; this record does not approve a new wrapper, migration, grant, or modified predicate and does not reset the spec to draft.
+
+Provenance: supplied pre-build LF specification snapshot SHA-256 `6a10a0a44de17e39bf0767262560ff8550d45bf2199b8718c22ffd5093a9f312`; implementation baseline `b9d61a33c90ac24c173f0aac1e400f99ed65d93c`; worktree `C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas`. The supplied snapshot hash records prior provenance, not a claim that this blocked writeback has the same file hash. The original intent contract and historical planning result remain unchanged.
+
+Execution evidence: 0 executed, 0 failed, 0 skipped tests because no test command ran. No source implementation, scheduling activation/nav exposure, schema/migration, dependency, environment, hosted action, commit, push, or PR was authored by this delegate. No managed resource was launched, adopted, leased, or stopped; no browser session was opened. Code-review rounds remain 0; read-only blocker adjudication is not an implementation review round. No final Suggested Review Order was manufactured for incomplete work. Parent orchestration owns sprint/state bookkeeping and any checkpoint commit.

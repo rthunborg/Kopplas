@@ -132,3 +132,35 @@
 **⚠️ Needs human:** (none)
 
 **Next:** Refresh preflight/context and start explicit approved15.1 build. Preserve Option A, Contract D, manifest/RLS boundaries and owner UX disposition.
+
+## Report — 2026-10-13T20:03:30Z (halted - frozen specification contradiction)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `b9d61a3`).
+**Pipeline status:** Controlled15.1 E5 attempt blocked before product writes; supported replacement planning is the immediate prerequisite.
+**Continues:** (none — first run)
+
+**Summary:** High author and independent boundary review confirmed missing PL peer-membership lifecycle facts. Approved epics/UX already requires deactivated-assignee warning. Independent High scope adjudication classified no-migration assumption as erroneous; frozen intent cannot ordinary bad_spec patch. Original ready spec hash6a10a0...f312 and blocked LFhash60b982...436a retained. All writer delegates terminal, no product writes/tests/resources/code review rounds.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 103h 05m (≈41m AI-run, ≈102h 24m human/idle wait); resumed 4×.
+
+**Stories:**
+1. 15.1 blocked before implementation under original frozen spec; no story landed.
+
+**Skipped:** (none)
+
+**Epic gate:** All runtime/review/Contract D and epic gates remain required.
+
+**TEA:** No product tests run; previously62 skipped scaffolds carry zero coverage credit.
+
+**Retrospective:** (none)
+
+**Overrides:** Prepare a fresh corrected spec from original owner intent via supported Step01, preserving superseded history; no silent frozen-kernel mutation or draft reset. Coordinator reserved exact minimum lifecycle-RPC migration and reader/view-model paths; extra regression-test paths still require reservation.
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Fresh corrected planning and independent High validation, then exact regression ownership reconciliation before any product code. No new owner decision for narrow approved lifecycle boolean; no broader identity/grant/RLS exposure authorized.
