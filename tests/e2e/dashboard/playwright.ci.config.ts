@@ -21,7 +21,7 @@ export default defineConfig(dashboardConfig, {
   forbidOnly: true,
   retries: 0,
   reporter: [["html", { outputFolder: path.join(process.cwd(), "playwright-report/dashboard"), open: "never" }], ["list"],
-    [path.join(process.cwd(), "tests/e2e/ci-duration-budget-reporter.ts"), { label: "Dashboard browser tests", maxMs: 300_000 }]],
+    [path.join(process.cwd(), "tests/e2e/ci-duration-budget-reporter.ts"), { label: "Dashboard browser tests", maxMs: 300_000 }], ["json", { outputFile: path.join(process.cwd(), "test-results/dashboard-browser.json") }]],
   use: { baseURL: appURL },
   // Playwright otherwise starts commands from this nested configuration directory.
   webServer: [{

@@ -8,7 +8,7 @@ const ci = readFileSync(join(process.cwd(), ".github", "workflows", "ci.yml"), "
 test("Epic 11 NFR probe shares the bounded DB lane without becoming a historical Phase A test script", () => {
   assert.match(
     ci,
-    /Database, RLS, and pilot performance tests" --max-seconds 420 -- bash -c\s+'pnpm run test:int && node --experimental-strip-types --import \.\/tests\/support\/register\.mjs scripts\/nfr\/epic-11-r1108-baseline\.ts'/,
+    /Database, RLS, and pilot performance tests" --max-seconds 420 -- bash -c\s+'pnpm run test:int --reporter=default --reporter=github-actions --reporter=json --outputFile=test-results\/full-integration\.json && node --experimental-strip-types --import \.\/tests\/support\/register\.mjs scripts\/nfr\/epic-11-r1108-baseline\.ts'/,
   );
   assert.doesNotMatch(ci, /test:int:pilot/);
 });

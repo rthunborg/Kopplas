@@ -36,3 +36,11 @@ Four fully verified ledger items archived through expected-hash helper; ambiguou
 **⚠️ Needs human:** (none)
 
 **Next:** Execute all pinned final_required_checks against the committed candidate, obtain independent High acceptance and required CI, finalize through the supported helper, then merge the single epic PR under standing authorization. After merge, truthfully reconcile completion and update retrospective before Epic15 adoption. Project context: run /bmad-project-context refresh (recommended after an epic).
+
+## Release-policy and evidence checkpoint - 2026-10-13
+
+The owner approved reviewed exceptions for the four exact inherited skips, retaining counts and no coverage credit, and measured suite-runtime budgets with all tests/product limits retained. Independent High review cleared fixed database420s and general browser800s. Diagnostic CI38434646963 passed all five jobs, including1703 database cases plus1inheritedskip and361 browser cases plus3inheritedskips. These historical synthetic-merge runs are measurement evidence, not final-candidate acceptance.
+
+Explicit PR-head checkout is enabled for all five jobs; actual post-merge main CI is also required. Candidate0a774494 passed verify/database/recovery/dashboard at this checkpoint, with browser pending. The subsequent native-report capture change enables original Vitest/Playwright JSON for exact physical case audit; fresh successor CI is required. Separate exception tooling PR98 passed77 local tests and independent High review; hosted checks and live adoption remain pending.
+
+This report records a candidate, not release completion. No failed Documents checks are waived. The exact40 final receipts, independent acceptance, supported audited finalization, merge, truthful status correction and updated retrospective remain required. Preserve Story20.2 review_unverified and the historical rejected retrospective. Epic15 remains reserved until those conditions and deliberate clean-checkpoint adoption are satisfied.

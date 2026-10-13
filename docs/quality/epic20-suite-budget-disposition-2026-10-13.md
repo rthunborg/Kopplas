@@ -18,13 +18,32 @@ The diagnostic job reported 142 passed test files and one skipped file; 1703 pas
 
 The diagnostic checkout was synthetic merge `7843eba2057f35cf22092e832402a064c21c5cdb`, merging candidate `0ea457c4bbc82a6d7b362b5777645454db0f74a3` into main `f0430404f6b97e91f3b460e284c71e7f91b404c6`. This complete merge-tree measurement informs the suite allowance only. The corrected explicit PR-head checkout and final 420-second policy require fresh exact-candidate CI, and post-merge main CI remains required before Epic 15 adoption.
 
-The command stays `pnpm run test:int && node --experimental-strip-types --import ./tests/support/register.mjs scripts/nfr/epic-11-r1108-baseline.ts`, with required local CI services and `SUPABASE_TEST_REQUIRED=1`. Its process-tree wall-clock envelope starts after stack/reset, covers all integration/RLS setup, execution and cleanup, then the pilot. Test failure still prevents the pilot and pilot failure still fails the lane. Runner partitions, bodies, assertions, individual timeouts, retry, cleanup and failure propagation remain unchanged. The temporary 900-second allowance has been replaced in both workflow and exact-command guard; it is not retained as final policy.
+The current command retains the same integration-then-pilot chain, with only native reporting arguments added: `pnpm run test:int --reporter=default --reporter=github-actions --reporter=json --outputFile=test-results/full-integration.json && node --experimental-strip-types --import ./tests/support/register.mjs scripts/nfr/epic-11-r1108-baseline.ts`, with required local CI services and `SUPABASE_TEST_REQUIRED=1`. Its process-tree wall-clock envelope starts after stack/reset, covers all integration/RLS setup, execution and cleanup, then the pilot. Test failure still prevents the pilot and pilot failure still fails the lane. Runner partitions, bodies, assertions, individual timeouts, retry, cleanup and failure propagation remain unchanged. The temporary 900-second allowance has been replaced in both workflow and exact-command guard; it is not retained as final policy.
 
 ## Exact candidate checkout and combined-main evidence
 
 All five required CI jobs now use `${{ github.event.pull_request.head.sha || github.sha }}` as their explicit checkout ref. Pull-request execution checks out the actual proposed head, rather than GitHub's synthetic merge commit; push execution checks out the triggering SHA. The existing `pull_request`/`push` events, checkout action version, token permissions, secrets exposure and test execution remain unchanged. This changes the source revision under test, not its authority or privilege. GitHub documents the [checkout ref input](https://github.com/actions/checkout) and [OR expression semantics](https://docs.github.com/en/actions/reference/workflows-and-actions/expressions).
 
 The maintenance validator still requires evidence for the actual pinned candidate HEAD/tree; its criteria are unchanged. Earlier PR97 receipts, including the browser observations and DB timeouts above, remain historical synthetic-merge-checkout measurements and are not relabelled as exact-head candidate results. Diagnostic CI 38434646963 began before this checkout correction; its completed DB duration may inform the final suite envelope but cannot establish the corrected exact-head checkout. Fresh final CI must prove the actual new candidate revision. After merge, required push CI on main must prove the combined main tree before Epic 15 adoption; a PR-head result alone does not prove those combined-main checks.
+
+## Native framework reports for the strict evidence mapping
+
+This observability successor adds four original framework-native JSON files. Candidate 0a774's earlier logs/HTML did not supply those required reports and are not final acceptance. The initialized plan's exact 40 mapping (hash `a95443b3d705191f88416f0f24ff8698b35bbfd7ff888b553655786b4fc9901a`) requires the following physical reports, reviewed independently before implementation:
+
+| CI job | Original native file | Uploaded artifact | Mapped framework checks |
+| --- | --- | --- | --- |
+| db | test-results/full-integration.json | native-full-integration | Full integration/RLS and six Documents/signing/storage partitions |
+| recovery-storage-loader | test-results/isolated-storage-recovery.json | native-isolated-storage-recovery | Actual isolated recovery; both existing verification flags 1 |
+| e2e | test-results/general-browser.json | native-general-browser | General browser and three Documents browser partitions |
+| dashboard-e2e | test-results/dashboard-browser.json | native-dashboard-browser | Whole dedicated dashboard browser report |
+
+The full Vitest report supplies `full-integration-rls`, `documents-integration-rls` (all seven existing Documents files), `files-signed-access-integration` (generic signing/access-refresh), `documents-baseline-storage-boundary` (Storage isolation/role grants), `documents-selected-link-lock-races-integration`, `documents20-2-lifecycle-integration` (lifecycle/races/filter), and `documents20-3-context-integration`. The separate recovery invocation supplies `isolated-storage-recovery-integration`. General Playwright supplies `general-browser`, `documents-browser` (three existing Documents files), `documents20-2-browser` and `documents20-3-browser`; dedicated dashboard supplies `dashboard-browser`. These 13 logical checks share four physical original reports. Their aliases/partitions are never summed as unique test executions or emitted as reconstructed framework JSON.
+
+The other 27 mapped checks retain actual Node TAP, static/build/reset/pilot/artifact-validation commands and GitHub job/status command receipts. No Node JSON reporter or additional focused product rerun is added. Root binds each external evidence envelope to actual argv, checkout SHA/tree/root, native exit, job log/report hashes and only the two existing nonsecret verification flags; this change adds no sidecar metadata reconstruction or validator exception. The strict maintenance validator remains unchanged.
+
+Both Vitest 4.1.9 invocations explicitly retain `default` and `github-actions` reporters while adding the built-in `json` reporter and separate output files. The DB wrapper remains 420 seconds around the exact integration-then-pilot chain; recovery runs the same exact isolated test file with its existing flags. General/dashboard Playwright append their built-in JSON reporters to existing HTML/list/duration reporting, with 800/300-second ceilings and unchanged retries. Frameworks write their own reports; upload steps copy original files unchanged and run after test failures unless cancelled. Missing native files fail artifact capture rather than being reconstructed from console/HTML or treated as successful evidence. Existing HTML report uploads and cleanup remain intact; `test-results/` is already ignored.
+
+Reporter/config source checks do not prove actual report emission, test execution or final acceptance. Independently reviewed successor CI must produce all four original reports and actual commands with preserved counts, skip/retry disclosure and product ceilings. Fresh exact-candidate CI and post-merge combined-main CI remain required.
 
 ## Unchanged product performance contract
 
@@ -49,6 +68,8 @@ Earlier budget-only author verification on its uncommitted four-file candidate: 
 Checkout follow-up verification: the same four-file focused unit command now reports 15 passed, zero failed/skipped/cancelled/todo, with native exit0. Three added cases verify all five explicit checkout refs, PR-head selection against a distinct synthetic merge SHA, and push fallback with absent PR context. These are source-contract and synthetic context-evaluation checks; actual Actions checkout SHA/tree still requires fresh final CI. Focused ESLint passed with native0 and the final author reference check passed 11 stops with zero errors/native0. The first run failed on a new test regex escaping error; that error was corrected before this successful run. The existing Windows descendant-probe early-return limitation remains as recorded above. No test or failure result was hidden, no permissions or product code changed, and independent narrow review remains required before commit.
 
 Final fixed-bound author verification: after replacing 900 with 420 in the workflow and exact-command guard, the same focused policy command passed 15 tests with zero failed/skipped/cancelled/todo and native0. Focused ESLint passed/native0 and the final reference check passed 11 stops with zero errors/native0. Browser 800, dashboard 300, unit 180, checkout selection, all product ceilings and test inventory remain unchanged. These are bounded Windows source/policy checks with the previously recorded descendant-probe limitation. They do not replace fresh corrected-checkout candidate CI or post-merge main CI.
+
+Native-report follow-up verification: `node --experimental-strip-types --import ./tests/support/register.mjs --test tests/unit/nfr/epic-11-pilot-limits.test.ts tests/unit/scripts/verify/run-with-time-budget.test.ts tests/unit/support/ci-duration-budget.test.ts tests/unit/scripts/verify/epic-11-pilot-ci-gate.test.ts tests/unit/scripts/verify/ci-native-test-reports.test.ts` reported 18 passed, zero failed/skipped/cancelled/todo, native0. The three new cases pin both Vitest reporter sets/output files, additive Playwright reporting with unchanged retries/budgets, and all four failure-aware/missing-file upload contracts. Focused ESLint and `pnpm typecheck` passed/native0; the author reference check passed 15 stops/zero errors/native0. TypeScript preflight checked all four changed/new TS files. These are configuration/source-contract checks; no actual native framework report from the product suites was generated locally and no full integration/browser run is claimed. The existing Windows descendant-probe limitation remains recorded. Fresh reviewed-successor CI must produce the original files, and root must bind its actual execution evidence for the strict 40 mapping.
 
 ## Suggested Review Order
 
@@ -77,6 +98,15 @@ The fixed 420-second wall-clock envelope uses the complete 326.38-second diagnos
 
 - `.github/workflows/ci.yml:202` — `--max-seconds 420`: bounds the complete DB and pilot chain with the measured final ceiling.
 - `tests/unit/scripts/verify/epic-11-pilot-ci-gate.test.ts:11` — `--max-seconds 420`: preserves the exact integration-then-pilot command.
+
+### Original framework results preserve the strict evidence boundary
+
+Native reporters retain console/budget behavior and capture the actual original framework schema. Uploads preserve the files on failed runs and reject missing output; partitioned maintenance envelopes remain root-owned and require fresh CI.
+
+- `.github/workflows/ci.yml:209` — `name: native-full-integration`: captures the original complete Vitest report.
+- `.github/workflows/ci.yml:372` — `name: native-isolated-storage-recovery`: separates actual recovery from its inherited full-suite skip.
+- `tests/unit/scripts/verify/ci-native-test-reports.test.ts:31` — `all four original native files upload`: pins failure-aware capture and missing-report rejection.
+- `playwright.config.ts:43` — `outputFile: "test-results/general-browser.json"`: adds native browser output alongside existing reporters.
 
 ### Product ceilings remain independent of suite duration
 
