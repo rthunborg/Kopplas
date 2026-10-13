@@ -60,7 +60,7 @@
 # use the current Epic 10 statuses and approved corrective-story entries below.
 
 generated: 2026-06-12
-last_updated: 10-13-2026 10:32  # ADR-B009 connected-field course correction verified; governance Story 10.7 done, no PWA/offline functionality delivered.
+last_updated: 10-13-2026 10:34  # ADR-B009 connected-field course correction verified; governance Story 10.7 done, no PWA/offline functionality delivered.
 project: Kopplas
 project_key: NOKEY
 tracking_system: file-system
@@ -311,7 +311,7 @@ development_status:
   epic-20: in-progress  # Documents center — 3 candidates; aggregation only, no tables (PB-D6)
   20-1-documents-activation-and-source-authorized-aggregation: done
   20-2-search-filters-preview-and-archive-restore: done
-  20-3-entity-panel-links-and-contextual-navigation: backlog
+  20-3-entity-panel-links-and-contextual-navigation: ready-for-dev
   epic-20-retrospective: optional
   epic-21: backlog  # Rentals — 6 candidates; feeds E26; migration story [gated: N-1]
   epic-21-retrospective: optional
