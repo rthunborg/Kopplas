@@ -9,24 +9,24 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-14T19:12:08Z"
+updated_at: "2026-10-14T19:17:15Z"
 started_at: "2026-10-09T13:06:12Z"
 completed_at: null
 active_seconds: 25163
-timing_anchor: 1791972293
+timing_anchor: 1792005435
 is_first_in_epic: true
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: P5-original-browser-reader-observation-independent-validation-r1
-selected_role: independent original stream observation proposal validator
+selected_phase: P5-original-browser-reader-observation-implementation
+selected_role: sensitive original reader observation implementation author
 selected_profile: critical
 selected_model: gpt-6.1-sol
 selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Focused independent High revalidation of R1 privacy bridge and before-carrier CDP lifecycle/stop fence; original assertion and artifact preservation remains required."
+escalation_reason: "Implement validated privacy-sensitive crypto bridge/original-reader correlation and lifecycle observation with source-extracted proofs, retaining all existing native assertions."
 routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary scheduling UX specification; sensitive authorization/integrity portions explicitly delegated High\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary15.1 ATDD preparation; sensitive access assertions delegated High; shared fixture edits excluded\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -164,6 +164,9 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Fresh independent High validation of exact request/reader correspondence, original promise/result preservation, privacy bounds and observer effects before implementation.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-original-browser-reader-observation-independent-validation\",\"profile\":\"critical\",\"role\":\"independent original stream observation proposal validator\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Resolve independent High validation privacy-transfer and pre-carrier lifecycle gaps before diagnostic implementation; preserve all existing assertions and artifacts.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-original-browser-reader-observation-preparation-r1\",\"profile\":\"critical\",\"role\":\"sensitive observation contract revision author\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Focused independent High revalidation of R1 privacy bridge and before-carrier CDP lifecycle/stop fence; original assertion and artifact preservation remains required.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-original-browser-reader-observation-independent-validation-r1\",\"profile\":\"critical\",\"role\":\"independent original stream observation proposal validator\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Resolve focused High literal privacy-contract mismatch for existing owned Playwright page handle, preserving all private application-data prohibitions and gates.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-original-browser-reader-observation-preparation-r2\",\"profile\":\"critical\",\"role\":\"sensitive observation contract revision author\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Focused High validation of explicit one-field owned framework-handle classification, retaining all private-data and original native acceptance obligations.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-original-browser-reader-observation-independent-validation-r2\",\"profile\":\"critical\",\"role\":\"independent original stream observation proposal validator\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Implement validated privacy-sensitive crypto bridge/original-reader correlation and lifecycle observation with source-extracted proofs, retaining all existing native assertions.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-original-browser-reader-observation-implementation\",\"profile\":\"critical\",\"role\":\"sensitive original reader observation implementation author\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate, trace-advisory]
 tea_rationale: "Scheduling, synchronized projections, capacity and drag/keyboard/dialog behavior"
@@ -189,7 +192,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [45a64853, f9e12a81, 279d3149, b9d61a33, 4d7911ac, 3a655a5d, a67a64dc, 66cd8436, d79fff08, bf84cf5d, 181f947f, 22cfb74a, 22cfb74a, 6fd516b0, 521d56fd, e448f856, b99e3f42, 83e27c92, 1aa7c52b, 8630b011, da3a4c59, 27d67de7, 4223e887, 9c26fd72, d75313bb, 4b0ab106]
+commits: [45a64853, f9e12a81, 279d3149, b9d61a33, 4d7911ac, 3a655a5d, a67a64dc, 66cd8436, d79fff08, bf84cf5d, 181f947f, 22cfb74a, 22cfb74a, 6fd516b0, 521d56fd, e448f856, b99e3f42, 83e27c92, 1aa7c52b, 8630b011, da3a4c59, 27d67de7, 4223e887, 9c26fd72, d75313bb, 4b0ab106, f7b4f154]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -2568,6 +2571,40 @@ original_browser_reader_observation_independent_validation_r1:
   new_cdp_send_context_script_handle_condition: feasible in pinned1.61.1 attribution/runner preview
   next: "Explicit bounded framework-handle classification amendment, focused High validation"
   implementation: not admitted
+  runtime: "none"
+  p5_complete: false
+  broad_review_round: 0
+original_browser_reader_observation_preparation_r2:
+  author: "/root/original_reader15_contract_r1_high"
+  outcome: explicit bounded framework-handle classification appended
+  bytes: 39344
+  sha256: 5a67ea550a4b1fc0f5e40f96aa8b10c35e1e8a33fbe23e57e3fbc1d36ffe3ff3
+  append_bytes: 2961
+  append_lines: 12
+  prefix_bytes: 36383
+  prefix_sha256: 5d7ef4ea7a7e010476fff18fb549253f96fc95f6d9809bbd452f0821a58f7dcf
+  prefix_preserved: true
+  allowance: ONLY owned existing Playwright page handle at BrowserContext.newCDPSession library trace params.page.guid
+  all_private_application_data_bans_preserved: true
+  companion_source_helper_unchanged: true
+  runtime: "none"
+  p5_complete: false
+  broad_review_round: 0
+original_browser_reader_observation_independent_validation_r2:
+  outcome: PASS bounded preparation only
+  validator: "/root/original_reader15_proposal_validation_high"
+  bytes: 23169
+  sha256: b315f2b70d94d26ee2c79a3bb0085b1194168642620cf3dd9329e54f3ac18d66
+  append_bytes: 3792
+  append_lines: 14
+  prefix_bytes: 19377
+  prefix_sha256: 7dbae2b9ccdce5e5c2c55bd274c2bd14e4cc67baca5935a56ec20af074b51bd1
+  prefix_preserved: true
+  proposal_bytes: 39344
+  proposal_sha256: 5a67ea550a4b1fc0f5e40f96aa8b10c35e1e8a33fbe23e57e3fbc1d36ffe3ff3
+  proposal_source_helper_preserved: true
+  one_field_framework_handle_allowance: PASS exact boundedclassification
+  remaining: Implementation proofs/privacy/crypto/lifecycle/correspondence/exactpass-through and independent High source review
   runtime: "none"
   p5_complete: false
   broad_review_round: 0
