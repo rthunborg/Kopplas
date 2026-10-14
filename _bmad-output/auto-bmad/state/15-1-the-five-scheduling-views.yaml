@@ -9,11 +9,11 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-14T02:36:45Z"
+updated_at: "2026-10-14T10:26:18Z"
 started_at: "2026-10-09T13:06:12Z"
 completed_at: null
 active_seconds: 25163
-timing_anchor: null
+timing_anchor: 1791972293
 is_first_in_epic: true
 is_last_in_epic: false
 git_mode: remote
@@ -91,6 +91,15 @@ routing_ledger:
   - "{\"phase\":\"P5-terminal-blocked-halt\",\"role\":\"build-owner-blocked-verification-closeout\",\"profile\":\"build-sensitive\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"reuse-story15_1_corrected_build\",\"escalation_reason\":\"Sensitive verification gate unfixable within supported runtime evidence; exactblockedHALT no waivedprivacyassertion or fabricatedcoverage\"}"
   - "{\"phase\":\"P5-blocked-checkpoint-consistency\",\"role\":\"blocked-metadata-evidence-independent-consistency\",\"profile\":\"sensitive-review\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"reuse-runtime15_cold_review_high-after-author-closeout\",\"escalation_reason\":\"Independent consistency of blockedverification/nativecounts/incidentsecrecy/resourceack andunchangedintent beforecheckpointpush, no broadcode-review or acceptancewaiver\"}"
   - "{\"phase\":\"P5-blocked-metadata-fix\",\"role\":\"canonical-blocker-label-author\",\"profile\":\"build-sensitive\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"reuse-story15_1_corrected_build\",\"escalation_reason\":\"PreserveHighinflightblockedverificationdisposition; minimal supportedAutoRunResult canonicallabel detectedindependently, kernel/source/tests unchanged\"}"
+  - "{\"phase\":\"P5-recovery-assessment\",\"role\":\"supported-exact-browser-install-runtime-author\",\"profile\":\"standard-sensitive-runtime\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"reuse-runtime15_init_high\",\"escalation_reason\":\"Fresh isolated officialbrowser installation/resource ownership and nativeverification recovery; userrenewsboundedlocal repairs, retaininspect_only\"}"
+  - "{\"phase\":\"P5-recovery-assessment\",\"role\":\"existing-repository-CI-verification-route\",\"profile\":\"standard-ordinary-analysis\",\"model\":\"gpt-6.1-sol\",\"effort\":\"low\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"new-ci15_recovery_assessment\",\"escalation_reason\":\"None; readonlyexistingworkflow/trigger/artifact/inventory analysis, no changes or dispatch\"}"
+  - "{\"phase\":\"P5-recovery-resource-inspection\",\"role\":\"build-owner-current-owned-resource-status\",\"profile\":\"standard-sensitive-runtime\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"reuse-story15_1_corrected_build\",\"escalation_reason\":\"Inspect actual own registrations/ownership/readiness after Stop acknowledgments before any supported recovery; no adoption or blindrestart\"}"
+  - "{\"phase\":\"P5-recovery-envelope-authoring\",\"role\":\"fresh-isolated-official-browser-installer-envelope\",\"profile\":\"standard-sensitive-runtime\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"reuse-runtime15_init_high\",\"escalation_reason\":\"Author concretefixedforegrounddownload/safe output andGC/temp isolation withoutglobal/cache/SDKmods beforeindependentreview\"}"
+  - "{\"phase\":\"P5-recovery-managed-identity\",\"role\":\"fresh-trusted-runtime-resource-operator\",\"profile\":\"standard-sensitive-runtime\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"new-recovery15_runtime_operator\",\"escalation_reason\":\"Prioractorhookcontextclosed/unregistered; freshhookregisteredactor neededforownedguardmetadata/action, neverborrow/invent\"}"
+  - "{\"phase\":\"P5-CI-route-platform-check\",\"role\":\"manual-existing-workflow-branch-dispatch-semantics\",\"profile\":\"standard-ordinary-analysis\",\"model\":\"gpt-6.1-sol\",\"effort\":\"low\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"reuse-ci15_recovery_assessment\",\"escalation_reason\":\"None; narrowprimaryGitHubdocs verification existingfiledefaultbranch versusdispatchtriggeronref, no modification/dispatchexecution\"}"
+  - "{\"phase\":\"P5-CI-recovery-authoring\",\"role\":\"one-line-existing-workflow-manual-trigger-author\",\"profile\":\"standard\",\"model\":\"gpt-6.1-sol\",\"effort\":\"low\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"reuse-ci15_recovery_assessment\",\"escalation_reason\":\"None; exactcoordinatorreservedone-lineeventrepair existingjobsunchanged\"}"
+  - "{\"phase\":\"P5-CI-recovery-independent-review\",\"role\":\"manual-trigger-exact-head-integrity-review\",\"profile\":\"critical\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"reuse-runtime15_cold_review_high\",\"escalation_reason\":\"CIexecutionintegrity/trustboundaries exacthead/synthetic-only no deploy or alteredpermissions; independentreviewbeforedispatch\"}"
+  - "{\"phase\":\"P5-CI-recovery-dispatch\",\"role\":\"orchestrator-exact-head-CI-dispatch\",\"profile\":\"git-orchestrator\",\"model\":\"gpt-6.1-sol\",\"effort\":\"low\",\"host\":\"codex\",\"tier\":\"orchestrator\",\"route\":\"root-direct-gh-dispatch\",\"escalation_reason\":\"ReviewedexistingCIone-linebranchtrigger, rootownscommitpush/dispatch/runheadbinding, sensitiveintegrityreviewHighcomplete\"}"
 tea_risk: high
 tea_selected: [atdd, automate, trace-advisory]
 tea_rationale: "Scheduling, synchronized projections, capacity and drag/keyboard/dialog behavior"
@@ -150,6 +159,7 @@ overrides:
   contract_d: Retain actual calendar-host browser obligations
   blocked_checkpoint_push: "Owner instructed commit/push work; push explicitly incomplete blockedcheckpointbranch only, no EpicPR/finalization/gate waiver/merge/deploy"
   blocked_report_commit: "Include updatedhaltedreport with blockedcheckpoint as ownerrequested documentation/commitpush; no completedepicclaim"
+  resume_2026_10_14: "Renewed proceed Epic15 instruction: continue existing blocked checkpoint, investigate supported repository-local exact-version fresh browser installation and existing CI route; preserve old HALT/evidence/gates, no global/cache/guard/SDK repair or repeated inspect_only start"
 constraints: []
 spec_validation:
   tasks: 10
@@ -1124,3 +1134,60 @@ checkpoint_push:
   native_exit: 0
   upstream: origin/codex/epic-15-scheduling-time-calendar
   tree: Clean after initial checkpoint
+resume_investigation:
+  head: ab71c0605f3c7ed4544c9dbb2b60d077302521ce
+  tree_clean: true
+  spec: blocked implementation verification failed
+  next_story: "15.1"
+  scope: "Recovery investigation only until actualblocker resolved; no15.2/duplicate epic/PR"
+recovery_route_assessment:
+  selected_initial_route: "Fresh official isolated fullChromium149 installation via existing pinnedPWCLI; independentlyreview concreteenvelope then actualhash/layout/version qualification"
+  alternative: "ExistingCI Linux suites suitable but currentworkflowno manualbranch trigger; assessminimaldispatch addition exactref semantics separately"
+  managed_context: "Existingbuildactor List failedclosed HOOK_CONTEXT_UNAVAILABLE; cannotverifycurrentresources orlaunch with retainedcontext; newtrustedactorrequired notborrowed"
+resource_inspection_resume:
+  result: Private managedresource inspection blockedonly/no newBuildAutoHALT
+  code: HOOK_CONTEXT_UNAVAILABLE
+  native_exit: 2
+  ok: false
+  current_status: "Unavailable; historical Stopacks notfreshreadiness"
+  pins: "Specd5a/kernel035/E2E56a/readerC310/tooling/buildqk5/47chunks match, savedbinding01:36:18 stale"
+ci_recovery_dispatch_plan:
+  workflow: Existing active CI id296219797 .github/workflows/ci.yml
+  reservation: "Coordinator exactone-line workflow_dispatch ownership released; audit30worktrees no samefiledirt; otherfilesnotuniversallyclean"
+  change: "Only workflow_dispatch underon; preservealltriggers/jobs/conditions/permissions/secrets/budgets/artifacts/checkout"
+  platform: "OfficialGitHubAPI/CLI permits featurebranchworkflowversion whenexistingfiledefaultregistered; no defaultmainmutation/newPR"
+  dispatch: "ONE gh workflow run ci.yml --ref codex/epic-15-scheduling-time-calendar afterindependentHighPASS/commitpush; nativeheadmustequalreviewedpushedHEAD"
+  authority: "Userboundedrepo-localverificationrepair; no deploy/gatewaiver/retroactivelocalPASS/15.2"
+fresh_operator_registration:
+  result: NewtrustedHighactor List native0oktrue/resourcesempty
+  scope: "No previousfiveIDsvisible inactorList; ownership/readinessunverified notadopted; no managedlaunch"
+  role: recovery15_runtime_operator
+ci_recovery_trigger_authoring:
+  file: ".github/workflows/ci.yml"
+  line: 19
+  delta: "Only 21byte literalworkflow_dispatch line underon; allotherbytespreserved"
+  old_sha256: 2e1ced318668258b0293263d5f226accf3923f833379db39779821fe2747dd8d
+  new_sha256: 0934289c16f56355df9c58ed2c3208574c50beb606e529c21b552ed6f7d11a95
+  author: Sol6.1 Low
+  verification: "Removing21bytes restorespriorSHAexactly; LFunchanged"
+  status: IndependentHighintegrityreviewpending noCIrun/acceptanceevidence
+resumed_preflight:
+  status: PASS nohardstop
+  python: 3.14.7
+  nesting: V2 Sol6.1 enabled
+  codex_cli: present
+  Git: expectedEpicbranch/onlyrootstate dirtbeforeoneLineauthoring
+  main: d507c7d01c6c5c8d317d34cccdce881723e450c9
+ci_recovery_integrity_review:
+  verdict: Independent Sol6.1 High PASS
+  new_sha256: 0934289c16f56355df9c58ed2c3208574c50beb606e529c21b552ed6f7d11a95
+  exact_delta: 21byte LFline only restores2e1predecessor
+  preserved: Fiveactual-headcheckouts/contentsread/localsyntheticjobs/assertions/budgets/artifacts unchanged no new hostedsecret/deploy path
+  limits: "No acceptanceevidence/broadround; requireactualdispatch headSHA matchespushedreviewedHEAD"
+ci_recovery_execution_release:
+  scope: ONEmanualexistingCIworkflowdispatch onreviewedpushedEpicbranch aftercommit
+  command: gh workflow run ci.yml --ref codex/epic-15-scheduling-time-calendar
+  registered_workflow_id: 296219797
+  head_binding: ActualrunheadSHA MUSTequalnewpushedcommit beforeevidencecredit
+  failure: Reportactualrejection no mainmutation/prematurePR/workaround or automaticduplicate
+  verification: "NativeactualJSON/executed-skipped-attempts andphysicalrecovery/general/dashboard results required; no retroactivelocalPASS"

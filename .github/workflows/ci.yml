@@ -16,6 +16,7 @@ name: CI
 # the universal local-demo defaults, not real secrets).
 
 on:
+  workflow_dispatch:
   pull_request:
     # Verify the dependent Epic 11 repair PRs before their approved retarget to main.
     branches:
