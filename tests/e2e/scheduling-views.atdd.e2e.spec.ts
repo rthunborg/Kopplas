@@ -319,7 +319,12 @@ test("[P1] 15.1-E2E-006 SCOPE-001 AC1 five projections, periods, filters and too
         expect(await h.visibleIds()).toEqual(expected);
         if (view === "Min kalender") await expect(h.page.locator(`[aria-label="${mode === "day" ? "Egen agenda" : "Egen veckokalender"}"]:visible`)).toBeVisible();
       }
-      if (mode === "week") await attachVisual(h.page, testInfo, ({ Schema: "desktop-schema-week", Resurser: "desktop-resources-week", Team: "desktop-team-week", Beläggning: "desktop-capacity-week", "Min kalender": "desktop-personal-calendar-week" })[view]);
+      if (mode === "week") {
+        if (view === "Schema" || view === "Resurser" || view === "Min kalender") {
+          await h.block(h.ids.role).scrollIntoViewIfNeeded();
+        }
+        await attachVisual(h.page, testInfo, ({ Schema: "desktop-schema-week", Resurser: "desktop-resources-week", Team: "desktop-team-week", Beläggning: "desktop-capacity-week", "Min kalender": "desktop-personal-calendar-week" })[view]);
+      }
       const before = await h.sqlBookings(), trigger = h.page.getByTestId("scheduling-new-booking");
       await trigger.click(); await expect(h.editor).toBeVisible(); await h.cancel(); await expect(trigger).toBeFocused();
       expect(await h.sqlBookings()).toEqual(before);
