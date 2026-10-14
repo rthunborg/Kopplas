@@ -121,3 +121,53 @@ Any future repair requires actual paired remedy, then separately admitted unchan
 4. Output/classification and resource proof: verify no raw payload/ID/error path, independent unknowns, cleanup/deadline ownership, no pooled repetitions and one future execution gate.
 
 Verified stops in this preparation are the directly checked input SHA256/bytes, exact official metadata/HEAD/source reads, and private sanitized eight-case fields described above. No source implementation, test, proof suite, browser/server resource, install/download, CI dispatch, deployment or app acceptance was executed. Independent validation and all runtime evidence remain outstanding.
+
+## R1 — fresh baseline qualification and mutually exclusive pair classification
+
+Focused High author revision, preparation only. Read independent validation 11,693B/SHA256 `72af2a8325af906cc941f43da9ae9f56921ad99a8780084845fe9cc76c5f0d3d` (coordinator supplied commit `85cae2a5`). Its sole REVISE finding is the overlap between a clean fresh baseline/fixed observed defect and the earlier persistence-before-inconclusive precedence. This R1 supersedes only aggregate qualification/precedence and the corresponding pure-proof expectations above. The original 25,480-byte prefix/SHA256 `33f155ee3f8a16d14332ca3c93cd8d3edc10842573bf30b54e2e604c1d7fe9e5` remains byte-identical. All source/API/case/control/sidecar/privacy/acquisition/deadline/job/default/gate constraints remain unchanged. No source, tests, validation companion, runtime or Git/state action is authorized by this append.
+
+### Qualification predicates
+
+Evaluate only frozen original rows and separately frozen sidecars from this one fresh paired run. Historical baseline observations, another engine/repetition, successful later body retrieval or teardown events cannot fill a missing predicate.
+
+`validPair` requires both exact admitted engines to have executed their eight original cases in order; exact source/SDK/version/provenance/cache/framing/identity/report/deadline/cleanup requirements; and both genuine controls passing the unchanged `validControl` predicate for EACH engine. Explicit harness/admission errors take the failure branch below. Overflow or missing/ambiguous reader correlation never qualifies a pair. Original engine results still come from the unchanged classifier.
+
+`baselineReaderReproduced` requires validPair, all four fresh full-Chrome 149 reader positives satisfying unchanged `delivered` and `correlated` predicates and the specified no-store/gzip/chunked/no-Content-Length facts, AND at least one of those same frozen reader rows having both publicTerminal=failed and cdpTerminal=failed before teardown. Thus the baseline has actual original reader EOF, full 324B/count/hash, server finish/no premature close and a uniquely correlated reader native failure. Its unchanged original result must be discrepancy-reproduced. A host-text-only defect, failed host body sidecar, pending host finished, or historical three-of-four failures alone is insufficient. Baseline body sidecar timeout does not negate this explicit terminal witness and cannot create it; preserve that timeout separately. Missing baseline reader EOF/correlation/cache facts makes this predicate false.
+
+`fixedReaderQualified` requires all four fixed reader positives satisfying unchanged delivered/correlated/cache/framing requirements. Each original public/CDP terminal must be definitively finished or failed. Original nativeFinished must be definite finished/failed, except unknown remains admissible on a row with an actual public/CDP failed terminal: pinned SDK pending-finished behavior on a genuine failure is retained, never manufactured into success. All four eligible fixed sidecars must have definite available or failed observations, with available count/hash validated. Any sidecar timeout/unknown, missing reader EOF/full hash/identity/header fact, or unknown required terminal on a row without a definitive native failure makes fixedReaderQualified false. Controls and host-text are outside these four sidecars. Unresolved host-text does not negate a qualified reader comparison but prohibits fullNativeStatus=clean.
+
+`fixedReaderClean` requires fixedReaderQualified AND all four original public/CDP/nativeFinished values finished AND all four sidecars available with exact 324B/count/hash. `fixedReaderDefect` requires fixedReaderQualified AND at least one definitive original public/CDP/nativeFinished failure, actual sidecar failure, or available sidecar count/hash mismatch. Clean and defect cannot both be true. Sidecar timeout is unknown, not defect. Frozen nativeFinished=unknown permitted beside a definitive failed terminal contributes neither success nor an invented additional failure.
+
+`fixedHostTextClean` requires both fixed ORIGINAL native-text rows to meet all unchanged clean terminal/native-finished/body-available/count/hash conditions; their browser reader stays not-exercised. Pending/failed host-text remains separately observed and sets fullNativeStatus=inconclusive, without suppressing a qualified reader-only comparison.
+
+### Deterministic decision order
+
+Implement this exclusive if/else decision tree, not independent matching labels:
+
+1. Any explicit control/action/setup/version/provenance/schema/privacy/deadline/write/cleanup harness failure -> harness-failure, nonzero. If no such failure but either engine was not executed -> no-execution, nonzero, zero rows for that unexecuted engine. Preserve partial executed evidence without a paired claim.
+2. Otherwise, if validPair=false OR baselineReaderReproduced=false -> paired-inconclusive. This branch has priority over EVERY fixed-engine observation, including definitive fixed defects or a completely clean fixed engine.
+3. Otherwise, if fixedReaderQualified=false -> paired-inconclusive. A definite fixed defect in one row cannot bypass missing/unknown qualification in another required reader or sidecar.
+4. Otherwise, if fixedReaderClean AND fixedHostTextClean -> paired-full-native-clean; fullNativeStatus=clean.
+5. Otherwise, if fixedReaderClean -> paired-reader-remedy-observed; fullNativeStatus=inconclusive.
+6. Otherwise, if fixedReaderDefect -> paired-defect-persists; fullNativeStatus=inconclusive.
+7. Otherwise -> paired-inconclusive; fullNativeStatus=inconclusive.
+
+fullNativeStatus defaults to inconclusive and can become clean ONLY in branch 4. Valid diagnostic inconclusive/observed defect still exits zero; explicit harness/no-execution remains nonzero. Pair-inconclusive never erases the unchanged original per-engine result, exact failing reader/case/terminal, body failure/timeout or host-text unknown. In particular, fresh clean baseline plus fixed observed defect reports pair-inconclusive WITH the fixed observed defect retained; it cannot report persistence. Reader remedy, persistence and full-native-clean ALL require baselineReaderReproduced=true from this paired run.
+
+### Required pure classifier witnesses, before source review/execution
+
+Resource-free table-driven proofs exercise the actual proposed classifier with frozen rows/sidecars, retaining original classifier outputs. At minimum verify these exact decision paths and preserved observations:
+
+| Fresh pair input | Aggregate expectation |
+| --- | --- |
+| Baseline readers clean, fixed qualifying native defect, both controls valid | paired-inconclusive; fixed defect/engine result retained, fullNativeStatus inconclusive |
+| Baseline readers clean, fixed readers AND host text completely clean | paired-inconclusive; no remedy/full-clean/persistence credit |
+| Baseline qualified reader reproduction, fixed qualified definitive reader defect | paired-defect-persists; actual failures retained; SDK failed-request nativeFinished unknown stays unknown |
+| Baseline qualified reproduction, all fixed readers/sidecars clean, host-text unknown | paired-reader-remedy-observed; fullNativeStatus inconclusive; host-text unknown retained |
+| Baseline qualified reproduction, fixed readers/sidecars and host text clean | paired-full-native-clean; fullNativeStatus clean |
+| Baseline host-text-only defect or unknown/missing reader EOF/correlation, otherwise fixed clean | paired-inconclusive; historical evidence cannot qualify baseline |
+| Baseline qualified reproduction, fixed definite defect plus another reader missing EOF/correlation or sidecar timeout | paired-inconclusive; definite defect retained; no partial-sample persistence |
+| Either control invalid, including actual full matching bytes without required error/no-EOF/action/premature-close qualification | harness-failure, nonzero; controls never converted to delivery |
+| Engine unexecuted, or explicit version/provenance/privacy/deadline/cleanup failure | no-execution or harness-failure according to branch 1, nonzero; no fabricated rows or paired claim |
+
+Also prove exclusivity (exactly one aggregate result), branch order, unchanged input/frozen-row identity, deterministic repeated classification and no promotion by late sidecar settlement. These are future meaningful classifier proofs, not executed here. Independent focused High revalidation of this appended contract is required before source-stage admission. This revision changes no application gate or acceptance conclusion.
