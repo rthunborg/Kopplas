@@ -5,6 +5,8 @@ export interface ArtifactPlan { schemaVersion?: number; repo?: string; runId?: s
 export interface ProposalFile { path: string; content: string | null; sha256?: string; beforeOid: string | null; mode: string }
 export interface Proposal { schemaVersion: number; plan: ArtifactPlan; files: ProposalFile[]; result: ModelResult }
 export function createApi(token: string): Api;
+export const APP_TOKEN_PERMISSIONS: Readonly<Record<string, 'read' | 'write'>>;
+export function assertAppInstallationPermissions(installation: unknown): true;
 export function scrubText(value: unknown): string;
 export function validateResult(result: ModelResult, feedbackIds: FeedbackId[]): ModelResult;
 export function collect(dir: string): Promise<{ eligible: boolean; dryRun: boolean }>;

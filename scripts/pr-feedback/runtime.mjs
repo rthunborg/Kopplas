@@ -60,6 +60,18 @@ async function unresolvedCommentIds(api, repo, prNumber) {
   throw new Error('Review-thread pagination bound exceeded.');
 }
 
+export const APP_TOKEN_PERMISSIONS = Object.freeze({ contents: 'write', pull_requests: 'write', issues: 'write', actions: 'read', variables: 'read' });
+
+export function assertAppInstallationPermissions(installation) {
+  const missing = Object.entries(APP_TOKEN_PERMISSIONS).filter(([name, required]) => {
+    const granted = installation?.permissions?.[name];
+    return granted !== 'write' && granted !== required;
+  });
+  // Never interpolate response values, account details, keys, JWTs, or tokens.
+  if (missing.length) throw new Error(`GitHub App installation lacks required permissions: ${missing.map(([name, level]) => `${name}:${level}`).join(', ')}`);
+  return true;
+}
+
 async function appApi() {
   const key = process.env.PR_FIX_APP_PRIVATE_KEY;
   if (!key) throw new Error('App signing key unavailable.');
@@ -70,7 +82,8 @@ async function appApi() {
   const jwt = `${unsigned}.${createSign('RSA-SHA256').update(unsigned).sign(key, 'base64url')}`;
   const auth = createApi(jwt);
   const installation = await auth(`/repos/${process.env.GITHUB_REPOSITORY}/installation`);
-  const token = await auth(`/app/installations/${installation.id}/access_tokens`, { method: 'POST', body: { repositories: [process.env.GITHUB_REPOSITORY.split('/')[1]], permissions: { contents: 'write', pull_requests: 'write', issues: 'write', actions: 'read', variables: 'read' } } });
+  assertAppInstallationPermissions(installation);
+  const token = await auth(`/app/installations/${installation.id}/access_tokens`, { method: 'POST', body: { repositories: [process.env.GITHUB_REPOSITORY.split('/')[1]], permissions: APP_TOKEN_PERMISSIONS } });
   return createApi(token.token);
 }
 
