@@ -1,15 +1,20 @@
-/** Story 15.1 RED acceptance scaffolds. Skips confer no coverage. */
-import { test, expect, type Host, type View, type Interval, type SchedulingViewsHarness } from "./support/scheduling-views-atdd";
+/** Story 15.1 actual authenticated acceptance. Skips confer no coverage.
+ * 14.4-E2E-006 (empty-slot click/drag portion) is exercised at both real hosts. */
+import { test, expect, interval, DATE, type View, type Interval, type SchedulingViewsHarness } from "./support/scheduling-views-atdd";
 import type { Locator, Page } from "@playwright/test";
+import { adminQuery } from "../factories/admin-sql";
 
+test.describe.configure({ mode: "serial" });
+test.setTimeout(180_000);
 async function center(locator: Locator) {
-  await expect(locator).toBeVisible();
-  const box = await locator.boundingBox();
-  if (!box) throw new Error("Actual host target has no pointer bounds");
+  await locator.scrollIntoViewIfNeeded(); await expect(locator).toBeVisible();
+  const box = await locator.boundingBox(); if (!box) throw new Error("Actual host has no pointer bounds");
   return { x: box.x + box.width / 2, y: box.y + box.height / 2 };
 }
-async function drag(page: Page, from: Locator, to: Locator) {
-  const a = await center(from), b = await center(to);
+async function selectDrag(page: Page, start: Locator, end: Locator) {
+  // Both actual host targets must fit before pointerdown; scroll cannot silently
+  // transform the second slot into a different interval while dragging.
+  await end.scrollIntoViewIfNeeded(); const a = await center(start), b = await center(end);
   await page.mouse.move(a.x, a.y); await page.mouse.down();
   await page.mouse.move(b.x, b.y, { steps: 8 }); await page.mouse.up();
 }
@@ -17,200 +22,371 @@ async function expectEditor(h: SchedulingViewsHarness, i: Interval) {
   await expect(h.editor).toBeVisible();
   await expect(h.editor.getByTestId("booking-start")).toHaveValue(i.startsLocal);
   await expect(h.editor.getByTestId("booking-end")).toHaveValue(i.endsLocal);
-  // All options are checked against the exact set, so extra assignees fail too.
-  const checked = await h.editor.getByRole("checkbox").evaluateAll(nodes => nodes
-    .filter(node => (node as HTMLInputElement).checked)
-    .map(node => node.getAttribute("data-testid"))
-    .filter((id): id is string => !!id && id.startsWith("booking-assignee-option-"))
-    .map(id => id.slice("booking-assignee-option-".length)).sort());
-  expect(checked).toEqual([...i.assigneeIds].sort());
+  expect(await h.editor.locator('[data-testid^="booking-assignee-option-"]:checked').evaluateAll(nodes => nodes.map(n => n.getAttribute("data-testid")!.slice("booking-assignee-option-".length)).sort())).toEqual([...i.assigneeIds].sort());
 }
-async function saveAndProve(h: SchedulingViewsHarness, i: Interval) {
-  const before = await h.sqlBookings();
-  await h.fillRequiredEditorFields();
-  const save = await h.observeConfirmedSave();
-  await h.editor.getByTestId("booking-save").click(); await save.confirmed;
-  await expect(h.savedStatus()).toContainText(/sparad|sparats/i);
-  const added = (await h.sqlBookings()).filter(row => !before.some(old => old.id === row.id));
-  expect(added).toHaveLength(1);
-  expect(added[0]).toMatchObject({ startsAt: i.startsAt, endsAt: i.endsAt, assigneeIds: [...i.assigneeIds].sort() });
-  await h.reloadAndOpenBooking(added[0]!.id); await expectEditor(h, i);
+async function save(h: SchedulingViewsHarness) {
+  const observation = await h.observeConfirmedSave();
+  await h.editor.getByTestId("booking-save").click(); await observation.confirmed;
+  await expect(h.page.getByTestId("booking-save-status")).toHaveText(/sparad|sparats/i);
 }
+const visibleCell = (h: SchedulingViewsHarness, date: string) => h.page.locator(`[data-testid="capacity-cell"][data-person="${h.people[0]}"][data-date="${date}"]:visible`);
 
-for (const [host, kind, id] of [
-  ["Schema", "click", "001"], ["Schema", "drag", "002"],
-  ["Resurser", "click", "003"], ["Resurser", "drag", "004"],
-] as const) {
-  test.skip(`[P0] 15.1-E2E-${id} AC4 actual ${host} ${kind} persists selected person/start/end`, async ({ resourcePage: page, schedulingViews: h }) => {
-    await h.seed(); await h.open(host, "week");
-    const i = h.interval(host, kind);
-    const person = host === "Resurser" ? h.rowPersonId() : i.assigneeIds[0];
-    const start = h.emptySlot(host, i.startsLocal, person);
-    if (kind === "click") {
-      const point = await center(start); await page.mouse.click(point.x, point.y);
-    } else {
-      // Adapter binds the final included 30-minute slot, not an arbitrary pixel.
-      await drag(page, start, h.emptySlot(host, h.dragEndSlotLocal(host), person));
-    }
-    await expectEditor(h, i); await saveAndProve(h, i);
+for (const [host, gesture, id] of [["Schema", "click", "001"], ["Schema", "drag", "002"], ["Resurser", "click", "003"], ["Resurser", "drag", "004"]] as const) {
+  test(`[P0] 15.1-E2E-${id} AC4 actual ${host} ${gesture} persists selected person/start/end`, async ({ resourcePage: page, schedulingViews: h }) => {
+    await h.seed(); await page.setViewportSize({ width: 1440, height: 1000 }); await h.open(host, "day");
+    const start = "2026-10-12T14:30", end = gesture === "click" ? "2026-10-12T15:00" : "2026-10-12T16:00";
+    const schemaPerson = host === "Schema" && gesture === "click" ? h.people[0]! : "";
+    if (schemaPerson) await h.filter("Person", schemaPerson);
+    const supplied = host === "Resurser" || schemaPerson ? [h.people[0]!] : [];
+    const i = interval(start, end, supplied), slot = h.slot(host, start, h.people[0], schemaPerson);
+    if (gesture === "click") { const point = await center(slot); await page.mouse.click(point.x, point.y); }
+    else await selectDrag(page, slot, h.slot(host, "2026-10-12T15:30"));
+    await expectEditor(h, i);
+    const before = await h.sqlBookings(); await h.fillRequired(); await save(h);
+    const created = (await h.sqlBookings()).filter(row => !before.some(old => old.id === row.id));
+    expect(created).toHaveLength(1);
+    expect(created[0]).toMatchObject({ startsAt: i.startsAt, endsAt: i.endsAt, assigneeIds: [h.people[0]] });
+    await expect(h.editor).toHaveCount(0); await h.reloadAndOpen(created[0]!.id);
+    await expectEditor(h, { ...i, assigneeIds: [h.people[0]!] });
   });
 }
 for (const host of ["Schema", "Resurser"] as const) {
-  test.skip(`[P0] 15.1-E2E-005 AC5 ${host} keyboard and interval dialog cancel without writes and return focus`, async ({ schedulingViews: h }) => {
-    await h.seed(); await h.open(host);
-    const before = await h.sqlBookings(), i = h.interval(host, "click");
-    const slot = h.emptySlot(host, i.startsLocal, host === "Resurser" ? h.rowPersonId() : i.assigneeIds[0]);
-    await slot.focus(); await slot.press("Enter"); await expectEditor(h, i);
-    await h.cancelEditor(); await expect(slot).toBeFocused();
-    expect(await h.sqlBookings()).toEqual(before);
-    const trigger = await h.openIntervalDialog(host), dialog = h.intervalDialog(host);
-    await expect(dialog).toBeVisible(); await h.fillIntervalDialog(dialog, i);
-    await h.confirmIntervalDialog(dialog).click(); await expectEditor(h, i);
-    await h.cancelEditor(); await expect(trigger).toBeFocused();
-    expect(await h.sqlBookings()).toEqual(before);
+  test(`[P0] 15.1-E2E-005 AC5 ${host} keyboard and interval dialog cancel without writes and return focus`, async ({ schedulingViews: h }) => {
+    await h.seed(); await h.open(host, "day"); const before = await h.sqlBookings();
+    const i = interval("2026-10-12T14:30", "2026-10-12T15:00", host === "Resurser" ? [h.people[0]!] : []);
+    const slot = h.slot(host, i.startsLocal); await slot.focus(); await slot.press("Enter"); await expectEditor(h, i);
+    await h.cancel(); await expect(slot).toBeFocused(); expect(await h.sqlBookings()).toEqual(before);
+    const trigger = h.page.getByRole("button", { name: "Välj intervall", exact: true }); await trigger.click();
+    const dialog = h.page.getByRole("dialog", { name: "Välj bokningsintervall" });
+    await dialog.getByLabel("Intervall start").fill(i.startsLocal); await dialog.getByLabel("Intervall slut").fill(i.endsLocal);
+    await dialog.getByLabel("Intervall person").selectOption(h.people[0]!);
+    await dialog.getByRole("button", { name: "Öppna bokningseditor" }).click();
+    await expectEditor(h, { ...i, assigneeIds: [h.people[0]!] });
+    await h.fillRequired(); await h.cancel(); await expect(trigger).toBeFocused(); expect(await h.sqlBookings()).toEqual(before);
   });
 }
-test.skip("[P1] 15.1-E2E-006 AC1 five projections, periods, filters and toolbar editor agree", async ({ schedulingViews: h }) => {
-  await h.seed();
-  const periods: [View, ("day" | "week" | "month")[]][] = [
-    ["Schema", ["day", "week", "month"]], ["Resurser", ["day", "week"]],
-    ["Team", ["week"]], ["Beläggning", ["day", "week", "month"]], ["Min kalender", ["day", "week"]],
-  ];
-  for (const [view, ranges] of periods) for (const period of ranges) {
-    await h.open(view, period); await h.applySharedFilters();
-    expect([...new Set(await h.visibleIds(view))].sort()).toEqual([...h.expectedIds(view)].sort());
-    if (view === "Beläggning") await expect(h.capacityNumbers()).toBeVisible();
-    if (view === "Min kalender") {
-      if (period === "week") await expect(h.personalWeekGrid()).toBeVisible();
-      else await expect(h.agenda()).toBeVisible();
-    }
-    const before = await h.sqlBookings(), trigger = h.toolbarCreate();
-    await trigger.click(); await expect(h.editor).toBeVisible();
-    await h.cancelEditor(); await expect(trigger).toBeFocused(); expect(await h.sqlBookings()).toEqual(before);
-  }
-});
-test.skip("[P1] 15.1-E2E-007 AC5 move/resize pointer and alternatives preserve detector review and cancellation", async ({ resourcePage: page, schedulingViews: h }) => {
-  await h.seed();
-  for (const host of ["Schema", "Resurser"] as Host[]) for (const operation of ["move", "resize"] as const) {
-    for (const mode of ["pointer", "keyboard", "dialog"] as const) {
-      await h.resetProposalFixture(); await h.open(host); const before = await h.sqlBookings(), i = h.proposal(host, operation);
-      let trigger: Locator;
-      if (mode === "pointer") {
-        trigger = h.gestureSource(host, operation); await drag(page, trigger, h.gestureTarget(host, operation));
-      } else trigger = await h.proposeByAlternative(host, operation, mode);
-      await expectEditor(h, i); await expect(h.reviewRequired()).toBeVisible();
-      await expect(h.editor.getByTestId("booking-save")).toBeDisabled();
-      expect(before.some(row => row.id === h.conflictedBookingId())).toBe(true);
-      await h.cancelEditor(); await expect(trigger).toBeFocused(); expect(await h.sqlBookings()).toEqual(before);
-      // Repeat the same actual host proposal and accept through the current review UI.
-      if (mode === "pointer") await drag(page, h.gestureSource(host, operation), h.gestureTarget(host, operation));
-      else await h.proposeByAlternative(host, operation, mode);
-      await expectEditor(h, i); await h.reviewAndAcceptCurrentProposal();
-      const confirmation = await h.observeConfirmedSave();
-      await h.editor.getByTestId("booking-save").click(); await confirmation.confirmed;
-      const after = await h.sqlBookings(), id = h.conflictedBookingId();
-      expect(after).toHaveLength(before.length);
-      expect(after.filter(row => row.id !== id)).toEqual(before.filter(row => row.id !== id));
-      const changed = after.find(row => row.id === id);
-      expect(changed).toMatchObject({ startsAt: i.startsAt, endsAt: i.endsAt });
-      expect([...(changed?.assigneeIds ?? [])].sort()).toEqual([...i.assigneeIds].sort());
-      expect(new Set(changed?.assigneeIds).size).toBe(changed?.assigneeIds.length);
-      for (const retained of h.originalOtherAssigneeIds(host)) expect(changed?.assigneeIds).toContain(retained);
-      await h.reloadAndOpenBooking(id); await expectEditor(h, i); await h.cancelEditor();
+test("[P1] 15.1-E2E-006 SCOPE-001 AC1 five projections, periods, filters and toolbar editor agree across later pages", async ({ schedulingViews: h }) => {
+  await h.seed(true); await h.signIn("manager");
+  const shared = [h.ids.role, h.ids.proposal, h.ids.collision, ...h.laterIds].sort();
+  for (const [view, modes] of [["Schema", ["day", "week", "month"]], ["Resurser", ["day", "week"]], ["Team", ["week"]], ["Beläggning", ["day", "week", "month"]], ["Min kalender", ["day", "week"]]] as [View, ("day" | "week" | "month")[]][]) {
+    for (const mode of modes) {
+      await h.open(view, mode); await h.applySharedFilters();
+      if (view === "Beläggning") await expect(visibleCell(h, DATE)).toContainText("Bokat 210 min / budget 480 min");
+      else if (view === "Schema" && mode === "month") {
+        await h.page.locator(`[data-testid="schema-density-day"][data-date="${DATE}"]`).click(); await h.settle();
+        expect(await h.visibleIds()).toEqual([h.ids.role, h.ids.proposal, h.ids.collision].sort());
+      } else {
+        const expected = view === "Min kalender" ? [h.ids.role] : mode === "day" ? [h.ids.role, h.ids.proposal, h.ids.collision].sort() : shared;
+        expect(await h.visibleIds()).toEqual(expected);
+        if (view === "Min kalender") await expect(h.page.locator(`[aria-label="${mode === "day" ? "Egen agenda" : "Egen veckokalender"}"]:visible`)).toBeVisible();
+      }
+      const before = await h.sqlBookings(), trigger = h.page.getByTestId("scheduling-new-booking");
+      await trigger.click(); await expect(h.editor).toBeVisible(); await h.cancel(); await expect(trigger).toBeFocused();
+      expect(await h.sqlBookings()).toEqual(before);
     }
   }
 });
-test.skip("[P1] 15.1-E2E-008 AC6 arbetsroll lanes, multi-assignee rows and reassignment are faithful", async ({ schedulingViews: h }) => {
-  await h.seed(); await h.open("Team");
-  for (const role of [h.fixtureRoleLabel(), "Ingen arbetsroll"]) {
-    const lane = h.roleLane(role); await expect(lane).toBeVisible();
-    expect((await h.laneIds(lane)).sort()).toEqual([...h.expectedLaneIds(role)].sort());
+
+test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycle and input tampering; denied role", async ({ schedulingViews: h, resourcePage: page }) => {
+  await h.seed(); await h.signIn("manager"); await h.open("Resurser");
+  await expect(page.getByRole("tab")).toHaveCount(5);
+  await expect(page.locator('[aria-label="Behöver omfördelas"]')).toContainText(h.scenario.description);
+  await h.signIn("montor");
+  const payloads: string[] = [];
+  const captureOrigin = new URL(page.url()).origin;
+  // AC2-NATIVE-DIAGNOSTIC BEGIN initialization
+  type CaptureMetadata = {
+    requestOrdinal: number | null; captureOrdinal: number; method: "GET" | "POST" | "other"; status: number | null;
+    phase: "finished" | "body"; outcome: "pending" | "fulfilled" | "rejected";
+    finishedStarted: number | null; finishedSettled: number | null; bodyStarted: number | null; bodySettled: number | null;
+  };
+  let diagnostic: {
+    baseline: number; requests: WeakMap<import("@playwright/test").Request, number>; requestCount: number;
+    captureCount: number; fulfilled: number; rejected: number;
+    unavailable: boolean; snapshotAttempted: boolean;
+  } | undefined;
+  if (process.env.EPIC15_AC2_NATIVE_DIAGNOSTICS === "1" && process.env.E2E_PORT === "3151" && captureOrigin === "http://127.0.0.1:3151") {
+    try {
+      diagnostic = { baseline: performance.now(), requests: new WeakMap(), requestCount: 0, captureCount: 0,
+        fulfilled: 0, rejected: 0, unavailable: false, snapshotAttempted: false };
+    } catch { /* Diagnostic initialization cannot change capture behavior. */ }
   }
+  // AC2-NATIVE-DIAGNOSTIC END initialization
+  const captures: Promise<{ ok: true } | { ok: false; error: unknown }>[] = [];
+  let hasFailure = false, firstFailure: unknown;
+  let notifyFailure!: () => void;
+  const failed = new Promise<void>(resolve => { notifyFailure = resolve; });
+  const recordFailure = (error: unknown) => {
+    if (hasFailure) return;
+    hasFailure = true; firstFailure = error; notifyFailure();
+  };
+  const read = (response: import("@playwright/test").Response) => {
+    const url = new URL(response.url());
+    if (url.origin !== captureOrigin || url.pathname !== "/scheduling" || !response.ok()) return;
+    // AC2-NATIVE-DIAGNOSTIC BEGIN binding
+    let diagnosticRequest: import("@playwright/test").Request | undefined;
+    let metadata: CaptureMetadata | undefined;
+    if (diagnostic) {
+      try {
+        metadata = { requestOrdinal: null, captureOrdinal: ++diagnostic.captureCount, method: "other", status: null,
+          phase: "finished", outcome: "pending", finishedStarted: null, finishedSettled: null, bodyStarted: null, bodySettled: null };
+        diagnosticRequest = response.request();
+        let ordinal = diagnostic.requests.get(diagnosticRequest);
+        if (ordinal === undefined) { ordinal = ++diagnostic.requestCount; diagnostic.requests.set(diagnosticRequest, ordinal); }
+        metadata.requestOrdinal = ordinal;
+        const method = diagnosticRequest.method(), status = response.status();
+        metadata.method = method === "GET" || method === "POST" ? method : "other";
+        if (Number.isInteger(status) && status >= 200 && status <= 299) metadata.status = status; else diagnostic.unavailable = true;
+      } catch { diagnostic.unavailable = true; }
+    }
+    // AC2-NATIVE-DIAGNOSTIC END binding
+    const capture = (async () => {
+      // AC2-NATIVE-DIAGNOSTIC BEGIN finished-start
+      if (diagnostic && metadata) { try { metadata.finishedStarted = performance.now() - diagnostic.baseline; } catch { diagnostic.unavailable = true; } }
+      // AC2-NATIVE-DIAGNOSTIC END finished-start
+      const failure = await response.finished();
+      // AC2-NATIVE-DIAGNOSTIC BEGIN finished-settled
+      if (diagnostic && metadata) { try { metadata.finishedSettled = performance.now() - diagnostic.baseline; } catch { diagnostic.unavailable = true; } }
+      // AC2-NATIVE-DIAGNOSTIC END finished-settled
+      if (failure) throw failure;
+      // AC2-NATIVE-DIAGNOSTIC BEGIN body-start
+      if (diagnostic && metadata) { try { metadata.phase = "body"; metadata.bodyStarted = performance.now() - diagnostic.baseline; } catch { diagnostic.unavailable = true; } }
+      // AC2-NATIVE-DIAGNOSTIC END body-start
+      payloads.push(await response.text());
+      // AC2-NATIVE-DIAGNOSTIC BEGIN fulfilled
+      if (diagnostic && metadata) {
+        try { metadata.bodySettled = performance.now() - diagnostic.baseline; metadata.outcome = "fulfilled"; diagnostic.fulfilled++; }
+        catch { diagnostic.unavailable = true; }
+      }
+      // AC2-NATIVE-DIAGNOSTIC END fulfilled
+    })();
+    // Register and handle rejection in the same event turn. The drain retains
+    // and rethrows the original error; a missing CDP body is never empty data.
+    // AC2-NATIVE-DIAGNOSTIC BEGIN settlement
+    captures.push(capture.then(() => ({ ok: true as const }), error => {
+      recordFailure(error);
+      if (diagnostic) {
+        try {
+          diagnostic.rejected++;
+          if (metadata) {
+            metadata.outcome = "rejected";
+            const elapsed = performance.now() - diagnostic.baseline;
+            if (metadata.phase === "body") metadata.bodySettled = elapsed; else metadata.finishedSettled = elapsed;
+            // The Request remains memory-only and belongs to this exact capture closure.
+            if (!diagnosticRequest || diagnostic.requests.get(diagnosticRequest) !== metadata.requestOrdinal) diagnostic.unavailable = true;
+          } else diagnostic.unavailable = true;
+        } catch { diagnostic.unavailable = true; }
+        try {
+          if (!diagnostic.snapshotAttempted) {
+            diagnostic.snapshotAttempted = true;
+            const safeCounter = (value: number) => {
+              if (Number.isSafeInteger(value) && value >= 0) return value;
+              diagnostic!.unavailable = true; return 0;
+            };
+            const safeTime = (value: number | null) => {
+              if (value === null || (Number.isFinite(value) && value >= 0)) return value;
+              diagnostic!.unavailable = true; return null;
+            };
+            const failedCapture = metadata ? {
+              requestOrdinal: metadata.requestOrdinal === null ? null : safeCounter(metadata.requestOrdinal),
+              captureOrdinal: safeCounter(metadata.captureOrdinal), method: metadata.method === "GET" || metadata.method === "POST" ? metadata.method : "other",
+              status: metadata.status !== null && Number.isInteger(metadata.status) && metadata.status >= 200 && metadata.status <= 299 ? metadata.status : null,
+              phase: metadata.phase === "body" ? "body" : "finished", outcome: "rejected",
+              finishedStarted: safeTime(metadata.finishedStarted), finishedSettled: safeTime(metadata.finishedSettled),
+              bodyStarted: safeTime(metadata.bodyStarted), bodySettled: safeTime(metadata.bodySettled),
+            } : null;
+            const requestCount = safeCounter(diagnostic.requestCount), captureCount = safeCounter(diagnostic.captureCount);
+            const fulfilled = safeCounter(diagnostic.fulfilled), rejected = safeCounter(diagnostic.rejected);
+            console.info("AC2_NATIVE_CAPTURE_REJECTION", JSON.stringify({
+              kind: "capture-rejection", origin: "http://127.0.0.1:3151", path: "/scheduling",
+              category: metadata ? metadata.phase === "body" ? "body-rejected" : "finished-rejected" : "unavailable",
+              rejectedCaptureOrdinal: metadata ? safeCounter(metadata.captureOrdinal) : null,
+              requestCount, captureCount, fulfilled, rejected, pending: safeCounter(captureCount - fulfilled - rejected),
+              unavailable: diagnostic.unavailable, failedCapture,
+            }));
+          }
+        } catch { /* One diagnostic attempt cannot replace the original capture error. */ }
+      }
+      return { ok: false as const, error };
+    }));
+    // AC2-NATIVE-DIAGNOSTIC END settlement
+  };
+  const drain = async () => {
+    let cursor = 0;
+    if (hasFailure) throw firstFailure;
+    while (cursor < captures.length) {
+      if (hasFailure) throw firstFailure;
+      const end = captures.length, batch = captures.slice(cursor, end);
+      await Promise.race([Promise.all(batch), failed]);
+      if (hasFailure) throw firstFailure;
+      cursor = end;
+    }
+    if (hasFailure) throw firstFailure;
+  };
+  page.on("response", read);
+  try {
+    await page.goto(`/scheduling?view=resources&person=${h.extraProfiles[2]}&tenant=${h.scenario.tenantIds[1]}`); await h.settle(); await drain();
+    await page.getByLabel("Datum", { exact: true }).fill(DATE); await h.settle(); await drain();
+    await expect(page.getByRole("tab")).toHaveCount(1); await expect(page.getByRole("tab")).toHaveText("Min kalender");
+    expect(await h.visibleIds()).toEqual([h.ids.role, h.ids.collision].sort());
+    await expect(page.getByLabel("Person", { exact: true })).toHaveCount(0); await expect(page.getByTestId("scheduling-new-booking")).toHaveCount(0);
+    await expect(page.getByText("Behöver omfördelas", { exact: true })).toHaveCount(0);
+    await expect(page.getByText(h.scenario.assigneeLabels[0]!, { exact: false })).toHaveCount(0);
+  } catch (error) {
+    recordFailure(error);
+  } finally {
+    try { page.off("response", read); } catch (error) { recordFailure(error); }
+    // A failing test keeps all rejection handlers attached but never waits on
+    // another unresolved capture. Success must drain the detached final buffer.
+    if (!hasFailure) { try { await drain(); } catch (error) { recordFailure(error); } }
+  }
+  if (hasFailure) throw firstFailure;
+  try {
+    expect(payloads.length).toBeGreaterThan(0);
+    for (const payload of payloads) { expect(payload).not.toContain(h.users[2]!.email); expect(payload).not.toContain('"needsReassignment":'); }
+    await h.signIn("denied"); await page.goto("/scheduling");
+    await expect(page.getByRole("heading", { name: "Ingen åtkomst", exact: true })).toBeVisible(); await expect(page.getByTestId("scheduling-workspace")).toHaveCount(0);
+  } catch (error) { recordFailure(error); }
+  if (hasFailure) throw firstFailure;
+});
+
+for (const host of ["Schema", "Resurser"] as const) for (const operation of ["move", "resize"] as const) {
+  test(`[P1] 15.1-E2E-007 AC5 ${host} actual ${operation} and keyboard/click alternatives preserve review and cancellation`, async ({ resourcePage: page, schedulingViews: h }) => {
+    await h.seed(); await h.addProposalPeer(); await page.setViewportSize({ width: 1440, height: 1000 });
+    const expected = interval(operation === "move" ? "2026-10-12T12:00" : "2026-10-12T11:00", operation === "move" ? "2026-10-12T13:00" : "2026-10-12T13:30", operation === "move" && host === "Resurser" ? [h.people[2]!, h.people[1]!] : h.people.slice(0, 2));
+    for (const mode of ["pointer", "keyboard", "click"] as const) {
+      await h.resetProposal(); await page.reload(); await h.open(host, "day");
+      const before = await h.sqlBookings();
+      const source = host === "Resurser" ? h.row().getByTestId(`scheduling-booking-${h.ids.proposal}`) : h.block(h.ids.proposal);
+      const trigger = mode === "pointer" && operation === "move" ? source : source.getByRole("button", { name: operation === "move" ? "Redigera / flytta" : "Ändra längd", exact: true });
+      const propose = async () => {
+        if (mode === "pointer") {
+          await trigger.focus();
+          await trigger.dragTo(h.slot(host, operation === "move" ? expected.startsLocal : "2026-10-12T13:00", operation === "move" && host === "Resurser" ? h.people[2] : h.people[0]));
+        } else {
+          if (mode === "keyboard") { await trigger.focus(); await trigger.press("Enter"); } else await trigger.click();
+          await expect(h.editor).toBeVisible();
+          await h.editor.getByTestId("booking-start").fill(expected.startsLocal); await h.editor.getByTestId("booking-end").fill(expected.endsLocal);
+          if (operation === "move" && host === "Resurser") {
+            await h.editor.getByTestId(`booking-assignee-option-${h.people[0]}`).uncheck(); await h.editor.getByTestId(`booking-assignee-option-${h.people[2]}`).check();
+          }
+        }
+        await expectEditor(h, expected); await expect(h.editor.getByTestId("booking-review-current-warnings")).toBeVisible();
+      };
+      await propose(); await h.editor.getByTestId("booking-save").click();
+      await expect(h.editor.getByTestId("booking-save-error")).toContainText("Granska aktuella varningar");
+      await h.cancel(); await expect(trigger).toBeFocused(); expect(await h.sqlBookings()).toEqual(before);
+      await propose(); await h.review(); await save(h);
+      const after = await h.sqlBookings(); expect(after).toHaveLength(before.length);
+      expect(after.filter(row => row.id !== h.ids.proposal)).toEqual(before.filter(row => row.id !== h.ids.proposal));
+      expect(after.find(row => row.id === h.ids.proposal)).toEqual({ id: h.ids.proposal, startsAt: expected.startsAt, endsAt: expected.endsAt, assigneeIds: [...expected.assigneeIds].sort() });
+      const states = await adminQuery<{ status: string }>("select status from public.booking_conflicts where tenant_id=$1 and (booking_id=$2 or related_booking_id=$2)", [h.scenario.tenantId, h.ids.proposal]);
+      expect(states.some(row => row.status === "accepted")).toBe(true);
+      expect(states.some(row => row.status === "open")).toBe(true);
+      await expect(h.editor).toHaveCount(0); await h.reloadAndOpen(h.ids.proposal); await expectEditor(h, expected); await h.cancel();
+    }
+  });
+}
+test("[P1] 15.1-E2E-008 AC6 arbetsroll/no-role lanes, multi-assignee rows and current reassignment lifecycle", async ({ schedulingViews: h }) => {
+  await h.seed(); await h.signIn("manager"); await h.open("Team");
+  const roleLane = h.page.getByRole("heading", { name: h.scenario.description, exact: true }).locator("..");
+  expect(await h.visibleIds(roleLane)).toEqual([h.ids.role, h.ids.proposal, h.ids.collision].sort());
+  const noRole = h.page.getByRole("heading", { name: "Ingen arbetsroll", exact: true }).locator("..");
+  expect(await h.visibleIds(noRole)).toEqual([h.ids.noRole, h.ids.inactive, h.ids.zero, h.ids.hidden].sort());
+  // The independently seeded label remains historical booking context after
+  // retirement; it must never collapse into the null-role lane or active picker.
+  const retired = await adminQuery<{ id: string }>("update public.work_roles set is_active=false where id=$1 and tenant_id=$2 and display_name=$3 returning id", [h.scenario.workRoleId, h.scenario.tenantId, h.scenario.description]);
+  expect(retired).toEqual([{ id: h.scenario.workRoleId }]);
+  await h.page.reload(); await h.settle();
+  expect(await h.visibleIds(roleLane)).toEqual([h.ids.role, h.ids.proposal, h.ids.collision].sort());
+  expect(await h.visibleIds(noRole)).toEqual([h.ids.noRole, h.ids.inactive, h.ids.zero, h.ids.hidden].sort());
+  const roleText = (id: string) => h.block(id).locator("p").filter({ has: h.page.locator('span[aria-hidden="true"]') });
+  await expect(roleText(h.ids.role)).toHaveText(`◇ ${h.scenario.description}`);
+  await expect(roleText(h.ids.noRole)).toHaveText("◇ Ingen arbetsroll");
+  await h.page.getByTestId("scheduling-new-booking").click();
+  await expect(h.editor).toBeVisible();
+  for (const picker of ["booking-work-role", "booking-work-role-filter"]) await expect(h.editor.getByTestId(picker).locator(`option[value="${h.scenario.workRoleId}"]`)).toHaveCount(0);
+  await h.cancel();
   await h.open("Resurser");
-  const row = h.resourceRow(h.rowPersonId()); await expect(row).toBeVisible();
-  expect((await h.laneIds(row)).sort()).toEqual([...h.expectedResourceIds(h.rowPersonId())].sort());
-  const reassignment = h.reassignmentLane(); await expect(reassignment).toBeVisible();
-  expect((await h.laneIds(reassignment)).sort()).toEqual([...h.expectedReassignmentIds()].sort());
-});
-test.skip("[P1] AC8 360x640 connected agenda/summary and failed save retry retain unsent input", async ({ resourcePage: page, schedulingViews: h }) => {
-  await h.seed(); await page.setViewportSize({ width: 360, height: 640 });
-  await h.open("Schema"); await h.applySharedFilters(); await expect(h.agenda()).toBeVisible();
-  await h.open("Beläggning"); await expect(h.phoneCapacitySummary()).toBeVisible();
-  const before = await h.sqlBookings(), trigger = h.toolbarCreate(); await trigger.click();
-  await h.fillRequiredEditorFields(); const draft = "15.1 phone unsent input";
-  await h.editor.getByTestId("booking-description").fill(draft);
-  const fail = await h.failNextSaveOnce(); await h.editor.getByTestId("booking-save").click(); await fail.failed;
-  await expect(h.editor.getByTestId("booking-description")).toHaveValue(draft);
-  await expect(h.retrySave()).toBeVisible(); await expect(h.savedStatus()).not.toContainText(/sparad|sparats/i);
-  expect(await h.sqlBookings()).toEqual(before);
-  const save = await h.observeConfirmedSave(); await h.retrySave().click(); await save.confirmed;
-  await expect(h.savedStatus()).toContainText(/sparad|sparats/i);
-  expect((await h.sqlBookings()).length).toBe(before.length + 1);
-});
-
-
-
-test.skip("[P1] AC3 rendered toolbar preferences are isolated by user/tenant/view and reset safely", async ({ resourcePage: page, schedulingViews: h }) => {
-  await h.seed(); await h.open("Schema"); await h.setToolbarPreference();
-  expect(await h.toolbarState()).toEqual(h.expectedChangedToolbar());
-  await page.reload(); expect(await h.toolbarState()).toEqual(h.expectedChangedToolbar());
-  await h.open("Resurser"); expect(await h.toolbarState()).toEqual(h.expectedDefaultToolbar());
-  await h.open("Schema"); expect(await h.toolbarState()).toEqual(h.expectedChangedToolbar());
-  for (const identity of ["other-user", "other-tenant"] as const) {
-    await h.switchFixtureIdentity(identity); await h.open("Schema");
-    expect(await h.toolbarState()).toEqual(h.expectedDefaultToolbar());
-    await h.switchFixtureIdentity("original"); await h.open("Schema");
-    expect(await h.toolbarState()).toEqual(h.expectedChangedToolbar());
+  await expect(h.row(h.people[0]).getByTestId(`scheduling-booking-${h.ids.role}`)).toBeVisible();
+  await expect(h.row(h.people[1]).getByTestId(`scheduling-booking-${h.ids.role}`)).toBeVisible();
+  const lane = h.page.locator('[aria-label="Behöver omfördelas"]');
+  for (const [status, archived, expected] of [["disabled", false, true], ["ended", false, true], ["active", false, false], ["active", true, true], ["active", false, false]] as const) {
+    await h.lifecycle(status, archived); expect(await h.visibleIds(lane)).toEqual(expected ? [h.ids.inactive] : []);
+    if (!expected) await expect(lane).toContainText("Inga bokningar behöver omfördelas.");
   }
-  await h.corruptScopedPreferences(); await page.reload();
-  expect(await h.toolbarState()).toEqual(h.expectedDefaultToolbar()); await expect(h.resetNotice()).toBeVisible();
-  await h.setToolbarPreference(); await h.resetToolbar().click();
-  expect(await h.toolbarState()).toEqual(h.expectedDefaultToolbar());
-  await h.denyStorage(); await page.reload();
-  expect(await h.toolbarState()).toEqual(h.expectedDefaultToolbar());
-  expect([...new Set(await h.visibleIds("Schema"))].sort()).toEqual([...h.expectedIds("Schema")].sort());
 });
-test.skip("[P1] AC3 failed final-page read hides partial/stale data and false empty/count until retry", async ({ schedulingViews: h }) => {
-  await h.seed(); await h.open("Schema"); await h.setToolbarPreference();
-  const toolbar = await h.toolbarState(), failed = await h.failNextFinalReadPage();
-  await h.open("Schema"); await failed.failed;
-  await expect(h.readFailure()).toBeVisible(); await expect(h.readRetry()).toBeVisible();
-  await expect(h.emptyState()).not.toBeVisible(); await expect(h.partialBookingList()).not.toBeVisible();
-  await expect(h.conflictCount()).not.toBeVisible(); expect(await h.toolbarState()).toEqual(toolbar);
-  await h.readRetry().click(); await expect(h.readFailure()).not.toBeVisible();
-  expect([...new Set(await h.visibleIds("Schema"))].sort()).toEqual([...h.expectedIds("Schema")].sort());
-  expect(await h.toolbarState()).toEqual(toolbar);
+
+test("[P1] 15.1-COMP-001 AC3 toolbar preferences isolate user/tenant/view and reset corrupt/unavailable storage", async ({ schedulingViews: h, resourcePage: page }) => {
+  await h.seed(); await h.open("Schema", "day"); await h.filter("Person", h.people[0]!); await h.filter("Jobb", h.scenario.jobId);
+  const state = async () => ({ mode: await page.getByLabel("Period", { exact: true }).inputValue(), person: await page.getByLabel("Person", { exact: true }).inputValue(), job: await page.getByLabel("Jobb", { exact: true }).inputValue() });
+  const changed = { mode: "day", person: h.people[0], job: h.scenario.jobId }, defaults = { mode: "week", person: "", job: "" };
+  await page.reload(); await h.settle(); expect(await state()).toEqual(changed);
+  await page.getByRole("tab", { name: "Resurser", exact: true }).click(); await h.settle(); expect(await state()).toEqual(defaults);
+  await page.getByRole("tab", { name: "Schema", exact: true }).click(); await h.settle(); expect(await state()).toEqual(changed);
+  for (const identity of ["manager", "other-tenant"] as const) {
+    await h.signIn(identity); await page.goto("/scheduling"); await h.settle(); expect(await state()).toEqual(defaults);
+    await h.signIn(); await page.goto("/scheduling"); await h.settle(); expect(await state()).toEqual(changed);
+  }
+  await page.evaluate(() => { for (let n = 0; n < localStorage.length; n++) { const key = localStorage.key(n)!; if (key.startsWith("kopplas:scheduling:v1:") && key.endsWith(":schema")) localStorage.setItem(key, "corrupt"); } });
+  await page.reload(); await h.settle(); expect(await state()).toEqual(defaults); await expect(page.getByText(/Sparade inställningar återställdes/)).toBeVisible();
+  await h.filter("Person", h.people[0]!);
+  await page.evaluate(() => { for (let n = 0; n < localStorage.length; n++) { const key = localStorage.key(n)!; if (key.startsWith("kopplas:scheduling:v1:") && key.endsWith(":schema")) { const value = JSON.parse(localStorage.getItem(key)!); value.input.filters.personIds = ["00000000-0000-4000-8000-000000000001"]; localStorage.setItem(key, JSON.stringify(value)); } } });
+  await page.reload(); await h.settle(); expect(await state()).toEqual(defaults); await expect(page.getByText(/Sparade inställningar återställdes/)).toBeVisible();
+  await h.filter("Person", h.people[0]!); await page.getByRole("button", { name: "Återställ filter", exact: true }).click(); await h.settle(); expect(await state()).toEqual(defaults);
+  await page.addInitScript(() => { Storage.prototype.getItem = () => { throw new Error("Synthetic denied storage"); }; Storage.prototype.setItem = () => { throw new Error("Synthetic denied storage"); }; });
+  await page.reload(); await h.settle(); expect(await state()).toEqual(defaults); expect((await h.visibleIds()).length).toBe(7);
 });
-test.skip("[P1] AC7 capacity numbers and color explain zero budget and full-demand overbooking drilldown", async ({ schedulingViews: h }) => {
+test("[P1] 15.1-COMP-001 AC3 observed real read transport failure hides stale/empty/count until retry", async ({ schedulingViews: h }) => {
+  await h.seed(); await h.open("Schema"); await h.filter("Jobb", h.scenario.jobId);
+  const failed = await h.failNextRead(); await h.page.getByRole("tab", { name: "Schema", exact: true }).click(); await failed.failed;
+  await expect(h.page.getByRole("alert")).toContainText("Planeringen kunde inte läsas");
+  expect(await h.visibleIds()).toEqual([]); await expect(h.page.getByText(/Inga bokningar matchar/)).toHaveCount(0);
+  await expect(h.page.getByText(/^Konflikter \(/)).toHaveCount(0);
+  await expect(h.page.getByLabel("Jobb", { exact: true })).toHaveValue(h.scenario.jobId);
+  await h.page.getByRole("button", { name: "Försök igen", exact: true }).click(); await h.settle();
+  await expect(h.page.getByRole("alert")).toHaveCount(0); expect(await h.visibleIds()).toEqual([h.ids.role, h.ids.proposal, h.ids.collision].sort());
+});
+test("[P1] 15.1-COMP-002 AC7 numeric capacity/zero budget/color/full hidden demand drilldown", async ({ schedulingViews: h }) => {
   await h.seed(); await h.open("Beläggning"); await h.applySharedFilters();
-  for (const kind of ["zero-empty", "zero-positive", "overbooked"] as const) {
-    const expected = h.capacityCase(kind), cell = h.capacityCell(expected.personId, expected.localDay);
-    await expect(cell).toBeVisible();
-    expect(await h.capacityCellNumbers(cell)).toEqual({ demand: expected.demand, budget: expected.budget, balance: expected.balance, occupancy: expected.occupancy });
-    expect(await h.capacityColorMeaning(cell)).toBe(expected.colorMeaning);
-    await expect(cell).not.toContainText(/Infinity|NaN/);
-    if (kind !== "overbooked") await expect(cell).toContainText(/ingen kapacitet|noll kapacitet|0 min/i);
-    if (kind !== "zero-empty") {
-      expect(expected.demand).toBeGreaterThan(expected.budget);
-      await h.drillCapacity(cell); expect(await h.activeRestrictiveFilters()).toEqual([]);
-      expect([...new Set(await h.visibleIds("Schema"))].sort()).toEqual([...expected.fullDemandIds].sort());
-      await h.open("Beläggning"); await h.applySharedFilters();
+  for (const [date, demand, budget, state, ids] of [["2026-10-13", 60, 0, "overbooked-no-capacity", [h.ids.zero]], ["2026-10-15", 0, 0, "no-capacity", []], ["2026-10-14", 540, 480, "overbooked", [h.ids.hidden]]] as const) {
+    const cell = visibleCell(h, date); await expect(cell).toBeVisible(); await expect(cell).toHaveAttribute("data-demand", String(demand)); await expect(cell).toHaveAttribute("data-budget", String(budget)); await expect(cell).toHaveAttribute("data-balance", String(budget - demand)); await expect(cell).toHaveAttribute("data-state", state);
+    await expect(cell).toHaveClass(state.startsWith("overbooked") ? /bg-red-50/ : /bg-white/);
+    if (budget) { await expect(cell).toHaveAttribute("data-occupancy", "112.5"); await expect(cell).toContainText("113 %"); }
+    await expect(cell).not.toContainText(/NaN|Infinity/); if (!budget) await expect(cell).toContainText("Ingen kapacitet");
+    if (demand) {
+      await cell.click(); await h.settle(); await expect(h.page.getByRole("tab", { name: "Resurser", exact: true })).toHaveAttribute("aria-selected", "true");
+      for (const filter of ["Arbetsroll", "Jobb", "Kund"]) await expect(h.page.getByLabel(filter, { exact: true })).toHaveValue("");
+      expect(await h.visibleIds()).toEqual([...ids].sort()); await h.open("Beläggning"); await h.applySharedFilters();
     }
   }
 });
-test.skip("[P1] COMP-003 AC8 month density drilldown and long multi-assignee labels remain usable at 360x640", async ({ resourcePage: page, schedulingViews: h }) => {
-  await h.seed(); await h.open("Schema", "month"); await h.monthDensityDay().click();
-  expect((await h.monthDayBookings()).sort()).toEqual([...h.expectedMonthDayIds()].sort());
-  await page.setViewportSize({ width: 360, height: 640 }); await h.open("Schema");
-  const booking = h.longMultiAssigneeBooking(); await expect(booking).toBeVisible();
-  await expect(booking).toContainText(h.expectedLongLabel());
-  for (const label of h.expectedMultiAssigneeLabels()) await expect(booking).toContainText(label);
-  for (const control of h.phoneControls()) {
-    await control.scrollIntoViewIfNeeded(); await expect(control).toBeVisible();
-    const box = await control.boundingBox(); expect(box).not.toBeNull();
-    expect(box!.x).toBeGreaterThanOrEqual(0); expect(box!.x + box!.width).toBeLessThanOrEqual(360);
-    await control.focus(); await expect(control).toBeFocused();
+test("[P1] 15.1-COMP-003 AC8 360x640 connected agenda/summary and failed save retry preserve unsent input", async ({ schedulingViews: h, resourcePage: page }) => {
+  await h.seed(); await page.setViewportSize({ width: 360, height: 640 }); await h.open("Schema");
+  await expect(page.locator('[aria-label="Agenda"]:visible')).toBeVisible(); await expect(h.block(h.ids.role)).toContainText(h.scenario.assigneeLabels[0]!);
+  for (const control of [page.getByRole("tab", { name: "Schema", exact: true }), page.getByLabel("Person", { exact: true }), page.getByTestId("scheduling-new-booking")]) {
+    await control.scrollIntoViewIfNeeded(); const box = await control.boundingBox(); expect(box).not.toBeNull(); expect(box!.x).toBeGreaterThanOrEqual(0); expect(box!.x + box!.width).toBeLessThanOrEqual(360); await control.focus(); await expect(control).toBeFocused();
   }
+  await h.open("Beläggning"); await expect(page.locator('[aria-label="Kapacitetssammanfattning"]:visible')).toBeVisible();
+  const before = await h.sqlBookings(); await page.getByRole("button", { name: "Välj intervall", exact: true }).click();
+  const dialog = page.getByRole("dialog", { name: "Välj bokningsintervall" });
+  await dialog.getByLabel("Intervall start").fill("2026-10-12T14:30"); await dialog.getByLabel("Intervall slut").fill("2026-10-12T15:00"); await dialog.getByLabel("Intervall person").selectOption(h.people[0]!); await dialog.getByRole("button", { name: "Öppna bokningseditor" }).click();
+  await h.fillRequired(); const draft = h.scenario.description + " phone unsent input"; await h.editor.getByTestId("booking-description").fill(draft);
+  const attempts: Record<string, unknown>[] = [];
+  const capture = (request: import("@playwright/test").Request) => {
+    if (request.method() !== "POST" || !request.headers()["next-action"]) return;
+    try { const input = JSON.parse(request.postData() ?? "null")?.[0]; if (input && typeof input === "object" && "editorReview" in input) attempts.push(input); } catch { /* Unrelated request. */ }
+  };
+  page.on("request", capture);
+  const failure = await h.failNextSaveOnce(); await h.editor.getByTestId("booking-save").click(); await failure.failed;
+  await expect(h.editor.getByTestId("booking-description")).toHaveValue(draft); await expect(page.getByTestId("booking-save-status")).toHaveCount(0); expect(await h.sqlBookings()).toEqual(before);
+  const confirmed = await h.observeConfirmedSave(); await h.editor.getByTestId("booking-retry").click(); await confirmed.confirmed;
+  page.off("request", capture); expect(attempts).toHaveLength(2); expect(attempts[1]).toEqual(attempts[0]);
+  await expect(page.getByTestId("booking-save-status")).toHaveText(/sparad/i); await expect(h.editor).toHaveCount(0); expect((await h.sqlBookings()).length).toBe(before.length + 1);
 });
-
-
+test("[P1] 15.1-COMP-003 AC8 month density drilldown and long multi-assignee labels at 360x640", async ({ schedulingViews: h, resourcePage: page }) => {
+  await h.seed(); await h.open("Schema", "month"); const density = page.locator(`[data-testid="schema-density-day"][data-date="${DATE}"]`); await expect(density).toHaveText("5 bokningar · öppna dag"); await density.click(); await h.settle();
+  expect(await h.visibleIds()).toEqual([h.ids.role, h.ids.noRole, h.ids.inactive, h.ids.proposal, h.ids.collision].sort());
+  await page.setViewportSize({ width: 360, height: 640 }); await h.open("Schema");
+  await expect(h.block(h.ids.role)).toContainText(h.scenario.description); for (const label of h.scenario.assigneeLabels) await expect(h.block(h.ids.role)).toContainText(label);
+});

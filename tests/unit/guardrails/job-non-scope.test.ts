@@ -31,6 +31,8 @@ import assert from "node:assert/strict";
 import { readdirSync, readFileSync, statSync, existsSync } from "node:fs";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
+import { SCOPE_MANIFEST } from "@/scope/manifest";
+import { navRoutesFromManifest } from "@/scope/manifest-schema";
 
 const REPO = process.cwd();
 const APP_DIR = path.join(REPO, "src", "app");
@@ -104,7 +106,10 @@ const FORBIDDEN_SURFACE_TOKENS = [
 
 test("7.3-E2E-03: NO deferred-module route segment (field-worker/schedule/time-material/deviation/ÄTA/invoice/fortnox/analytics/supplier) exists under src/app", () => {
   const segments = collectRouteSegments(APP_DIR, []);
+  const activeSegments = new Set(navRoutesFromManifest(SCOPE_MANIFEST).map(route => route.slice(1)));
   for (const forbidden of FORBIDDEN_ROUTE_SEGMENTS) {
+    assert.equal(collectRouteSegments(path.join(APP_DIR,"(app)","jobs"), []).includes(forbidden), false);
+    if (activeSegments.has(forbidden)) continue;
     assert.equal(
       segments.includes(forbidden),
       false,
@@ -141,9 +146,10 @@ test("7.3-E2E-03: the shell nav stays EXACTLY seven items — 7.3 adds NO new na
   )) as { navItems: ReadonlyArray<{ href: string }> };
   assert.equal(
     mod.navItems.length,
-    8,
-    `the shell nav must include the approved RBAC Admin Users entry — found ${mod.navItems.length}`,
+    navRoutesFromManifest(SCOPE_MANIFEST).length,
+    `the shell nav must match the approved manifest routes — found ${mod.navItems.length}`,
   );
+  assert.deepEqual(mod.navItems.map(n => n.href).sort(), navRoutesFromManifest(SCOPE_MANIFEST).sort());
   assert.equal(
     mod.navItems.some((n) => n.href === "/jobs"),
     true,

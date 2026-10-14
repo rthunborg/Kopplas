@@ -87,6 +87,20 @@ async function loadRealManifest(): Promise<{ modules: FixtureModule[] }> {
 
 const rules = (vs: Violation[]) => new Set(vs.map((v) => v.rule));
 
+test("15.1-SCOPE-001 scheduling activation owns only its current nav and preserves resource tables", async () => {
+  const manifest = await loadRealManifest();
+  const scheduling = manifest.modules.find(m => m.id === "scheduling")!;
+  const resources = manifest.modules.find(m => m.id === "resources")!;
+  assert.equal(scheduling.status, "active");
+  assert.equal(scheduling.activatedAt, "2026-10-13");
+  assert.deepEqual(scheduling.navItems, [{route:"/scheduling",group:"primary",requiredCapability:"Bookings.View"}]);
+  assert.deepEqual(scheduling.tenantTables, []);
+  assert.deepEqual(scheduling.publicSurfaces, []);
+  assert.deepEqual(scheduling.notificationCategories, []);
+  assert.ok(resources.tenantTables.includes("bookings"));
+  assert.equal(manifest.modules.find(m => m.id === "documents")!.status, "active");
+});
+
 // ── POSITIVE ────────────────────────────────────────────────────────────────────────────────
 test("10.1-UNIT-COH-00 (AC4 positive): the REAL manifest is coherent (validator returns zero violations)", async () => {
   const validate = await loadValidator();

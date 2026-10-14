@@ -9,11 +9,11 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-13T20:21:44Z"
+updated_at: "2026-10-14T02:34:12Z"
 started_at: "2026-10-09T13:06:12Z"
 completed_at: null
-active_seconds: 3036
-timing_anchor: 1791922904
+active_seconds: 25163
+timing_anchor: null
 is_first_in_epic: true
 is_last_in_epic: false
 git_mode: remote
@@ -34,6 +34,63 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Independent adjudication of conflicting frozen spec implementation constraints and required PL lifecycle facts; no product code or grant change\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"final_convergence\",\"profile\":\"standard\",\"role\":\"final-convergence\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Fresh corrected15.1 planning owns sensitive minimum lifecycle-RPC disclosure/EXECUTE boundary after High scope adjudication\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive corrected15.1 derived-boolean RPC/auth and lifecycle contract; High author/review, explicit Low ordinary UI children\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"phase\":\"build\",\"role\":\"runtime-admission-preparation\",\"profile\":\"standard\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"subagent\",\"escalation_reason\":\"Read-only isolated SMTP/Mailpit resource-transition preparation after independent High full-browser target audit; no edits or launch admitted\"}"
+  - "{\"phase\":\"build\",\"role\":\"mail-runtime-author\",\"profile\":\"standard\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"subagent\",\"escalation_reason\":\"Independent High permits ignored self-contained six-service runtime/initializer/target wrapper authoring only; execution withheld pending exact independent review\"}"
+  - "{\"phase\":\"build\",\"role\":\"mail-runtime-admission\",\"profile\":\"standard\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"subagent\",\"escalation_reason\":\"Independent High first-stage review selects fresh six-service guarded admission only after idle615xx writer proof; SQL/build/fixtures remain withheld pending actual binding and source-byte review\"}"
+  - "{\"phase\":\"build\",\"role\":\"integration-entry-author\",\"profile\":\"standard\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"subagent\",\"escalation_reason\":\"Coordinator High authoring-only release for strict616xx Vitest entry and clean pre-Node envelope; preserve canonical focused/full inventory and refuse unsafe targets before imports\"}"
+  - "{\"phase\":\"build\",\"role\":\"mail-runtime-cold-transition-author\",\"profile\":\"standard\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"subagent\",\"escalation_reason\":\"Coordinator independently approved byte-preserving private CDP relocation after all writer/read-only windows closed; runtime target and manifest integrity sensitive; exact review required before use\"}"
+  - "{\"phase\":\"build\",\"role\":\"scheduling-browser-observer-author\",\"profile\":\"standard\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"subagent\",\"escalation_reason\":\"Independent High rejects request replacement and admits native response lifetime correction only; tenant/payload-withholding assertion integrity requires High author and independent exact review before rerun\"}"
+  - "{\"phase\":\"build\",\"role\":\"mail-runtime-cold-transition-reviewer\",\"profile\":\"standard\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"subagent\",\"escalation_reason\":\"Independent context-free exact review of private adapter target and manifest transition; strict runtime provenance and no fixture side effects before execution\"}"
+  - "{\"phase\":\"build\",\"role\":\"integration-manifest-transition-author\",\"profile\":\"standard\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"subagent\",\"escalation_reason\":\"Independent High verified cold relocation and defined fixed hash-pinned Vitest transition verifier; no execution until exact High review and isolated bootstrap release\"}"
+  - "{\"phase\":\"build\",\"role\":\"integration-manifest-transition-reviewer\",\"profile\":\"standard\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"subagent\",\"escalation_reason\":\"Independent exact High review of fixed Vitest manifest loop successor and early-refusal proof before sensitive isolated integration entry execution\"}"
+  - "{\"phase\":\"build\",\"role\":\"mail-runtime-bootstrap-owner\",\"profile\":\"standard\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"subagent\",\"escalation_reason\":\"Independent High exact initializer/bootstrap/RPC review plus fresh owned catalog proof; SQL-only execution in closed writer window requires all6 resource/image/source/CLI/app-absence gates and process-scoped release\"}"
+  - "{\"phase\":\"build\",\"role\":\"required-integration-runtime-owner\",\"profile\":\"standard\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"subagent\",\"escalation_reason\":\"Independent High actual postSQL/RPC and strict entry review passed; focused then conditional full required integration tests exercise sensitive reader/RPC/RLS on exact owned616 stack\"}"
+  - "{\"phase\":\"build\",\"role\":\"integration-native-capture-author\",\"profile\":\"standard\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"subagent\",\"escalation_reason\":\"Closed focused integration writer window; bounded native capture envelope integrity or payload observer error precedence correction, exact independent High review before execution\"}"
+  - "{\"phase\":\"build\",\"role\":\"scheduling-observer-failure-author\",\"profile\":\"standard\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"subagent\",\"escalation_reason\":\"Closed focused integration writer window; bounded native capture envelope integrity or payload observer error precedence correction, exact independent High review before execution\"}"
+  - "{\"phase\":\"build\",\"role\":\"integration-native-capture-reviewer\",\"profile\":\"standard\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"subagent\",\"escalation_reason\":\"Independent exact review of clean foreground Node capture/exit and preserved strict target envelope before another required integration invocation\"}"
+  - "{\"phase\":\"build\",\"role\":\"integration-native-capture-fix-author\",\"profile\":\"standard\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"subagent\",\"escalation_reason\":\"Independent High found reachable capture I/O deadlock before failure receipt; bounded drain-failure handling must retain native outcome and fail incomplete evidence closed\"}"
+  - "{\"phase\":\"build\",\"role\":\"integration-native-capture-fix-reviewer\",\"profile\":\"standard\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"subagent\",\"escalation_reason\":\"Independent High regression-only review of log-write drain fault correction and incomplete-evidence failure gate before sensitive integration execution\"}"
+  - "{\"phase\":\"build\",\"role\":\"required-integration-recovery-owner\",\"profile\":\"standard\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"subagent\",\"escalation_reason\":\"Independent High capture fix and coordinator actual successor identity clear; one renewed focused616 invocation only with complete native evidence and strict fresh target gates\"}"
+  - "{\"phase\":\"build\",\"role\":\"integration-os-env-lookup-author\",\"profile\":\"standard\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"subagent\",\"escalation_reason\":\"Complete renewed native evidence identifies clean-child Windows Path key loss before test imports; bounded case-insensitive lookup of existing OS whitelist only, no target/env expansion\"}"
+  - "{\"phase\":\"build\",\"role\":\"integration-os-env-lookup-independent-review\",\"profile\":\"sensitive\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"collaboration.followup_task\",\"escalation_reason\":\"Independent exact review of OS environment lookup correction before required integration execution; security-sensitive clean environment and target preservation\"}"
+  - "{\"phase\":\"build\",\"role\":\"required-integration-focused-os-env-recovery\",\"profile\":\"sensitive\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"collaboration.send_message\",\"escalation_reason\":\"Actual required integration/RLS verification through reviewed clean target environment after OS Path casing correction\"}"
+  - "{\"phase\":\"build\",\"role\":\"required-integration-full-616\",\"profile\":\"sensitive\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"collaboration.send_message\",\"escalation_reason\":\"Required full integration and tenant/security proof after independently verified focused33pass through exact reviewed launcher\"}"
+  - "{\"phase\":\"build\",\"role\":\"ac2-native-diagnostic-proposal-review\",\"profile\":\"sensitive\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"collaboration.followup_task\",\"escalation_reason\":\"Independent assessment of bounded native browser metadata diagnosis with privacy and original failure semantics preserved\"}"
+  - "{\"phase\":\"build\",\"role\":\"mail-runtime-browser-transition-readiness\",\"profile\":\"sensitive\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"collaboration.followup_task\",\"escalation_reason\":\"Read-only readiness of exact owned runtime transition for authenticated browser and real mail acceptance; isolate target/env and preserve evidence\"}"
+  - "{\"phase\":\"build\",\"role\":\"ac2-native-diagnostic-author\",\"profile\":\"sensitive\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"collaboration.send_message\",\"escalation_reason\":\"Minimal bounded native observer metadata after required full integration completed, privacy and original failure authority\"}"
+  - "{\"phase\":\"build\",\"role\":\"ac2-native-diagnostic-exact-independent-review\",\"profile\":\"sensitive\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"collaboration.followup_task\",\"escalation_reason\":\"Independent exact diagnostic delta review privacy/nonthrowing behavior/original native failure semantics before browser use\"}"
+  - "{\"phase\":\"build\",\"role\":\"mail-runtime-browser-transition-author\",\"profile\":\"sensitive\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"collaboration.followup_task\",\"escalation_reason\":\"Bounded private launcher target/environment isolation and production build/source proof for browser/mail acceptance\"}"
+  - "{\"phase\":\"build\",\"role\":\"ac2-native-diagnostic-bounded-reduction-author\",\"profile\":\"sensitive\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"collaboration.send_message\",\"escalation_reason\":\"Reduce unapproved metadata history to original single failed-capture scope before native diagnostic use\"}"
+  - "{\"phase\":\"build\",\"role\":\"ac2-native-diagnostic-reduction-independent-review\",\"profile\":\"sensitive\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"collaboration.followup_task\",\"escalation_reason\":\"Regression-only independent assessment of removal of unapproved diagnostic history and preserved original native failure semantics\"}"
+  - "{\"phase\":\"build\",\"role\":\"mail-runtime-browser-transition-independent-review\",\"profile\":\"sensitive\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"collaboration.followup_task\",\"escalation_reason\":\"Independent exact private target/environment/output/build provenance review before authenticated app/browser/mail verification\"}"
+  - "{\"phase\":\"build\",\"role\":\"mail-runtime-browser-transition-fix-author\",\"profile\":\"sensitive\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"collaboration.followup_task\",\"escalation_reason\":\"Resolve two independently identified reachable private verification gaps: dropped scheduling diagnostic and omitted actual build inputs\"}"
+  - "{\"phase\":\"build\",\"role\":\"mail-runtime-browser-transition-fix-independent-review\",\"profile\":\"sensitive\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"collaboration.followup_task\",\"escalation_reason\":\"Regression-only exact two fixes and mandatory single pin propagation before actual app build/browser admission\"}"
+  - "{\"phase\":\"build\",\"role\":\"fresh-616-production-app-build\",\"profile\":\"sensitive\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"collaboration.send_message\",\"escalation_reason\":\"Actual fresh production build and target-source proof through independently reviewed strict launcher before any app start\"}"
+  - "{\"phase\":\"build\",\"role\":\"fresh-616-app-build-metadata-independent-review\",\"profile\":\"sensitive\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"collaboration.followup_task\",\"escalation_reason\":\"Independent actual build provenance and target proof assessment before guard Start and authenticated browser tests\"}"
+  - "{\"phase\":\"build\",\"role\":\"fresh-616-guarded-production-app-start\",\"profile\":\"sensitive\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"collaboration.send_message\",\"escalation_reason\":\"Start independently verified production build through resource guard with exact owned target/environment and resource provenance\"}"
+  - "{\"phase\":\"build\",\"role\":\"guard-start-interface-readonly-assessment\",\"profile\":\"sensitive\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"collaboration.followup_task\",\"escalation_reason\":\"Exact installed guard Start clean-environment schema assessment without guesses before sensitive app launch\"}"
+  - "{\"phase\":\"build\",\"role\":\"guarded-app-clean-environment-bootstrap-author\",\"profile\":\"sensitive\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"collaboration.followup_task\",\"escalation_reason\":\"Installedguard has no proven callerenvtransfer; smallestfixedbootstrap insideguardJob needed for exact clean app environment\"}"
+  - "{\"phase\":\"build\",\"role\":\"guarded-app-bootstrap-independent-review\",\"profile\":\"sensitive\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"collaboration.followup_task\",\"escalation_reason\":\"Exactfixedbootstrap environment/argv/path/job/nativeexit review before revised guarded app Start\"}"
+  - "{\"phase\":\"build\",\"role\":\"fresh-616-guarded-bootstrap-app-start\",\"profile\":\"sensitive\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"collaboration.send_message\",\"escalation_reason\":\"SupportedguardStart through independently reviewed cleanenvPSbootstrap, actualjobcontainment and appreadiness proof beforebrowser\"}"
+  - "{\"phase\":\"build\",\"role\":\"guard-start-preentry-transport-independent-reconciliation\",\"profile\":\"sensitive\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"collaboration.followup_task\",\"escalation_reason\":\"Prove lexicalPowerShellpreentryfailure and absence of backendstart before correcting -File transport without blindduplicate\"}"
+  - "{\"phase\":\"build\",\"role\":\"guarded-bootstrap-app-start-corrected-preentry-transport\",\"profile\":\"sensitive\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"collaboration.send_message\",\"escalation_reason\":\"IndependentHighconfirmedlexicalpreentryfailure; correct -File outertransport under existingreviewedStartscope withoutbackendduplicate\"}"
+  - "{\"phase\":\"build\",\"role\":\"actual-guarded-app-start-readiness-containment-assessment\",\"profile\":\"sensitive\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"collaboration.followup_task\",\"escalation_reason\":\"IndependentactualregisteredguardStart/Nodeancestry/kernelmembership/readiness proof assessment; qualifyAPIjobhandlelimit withoutfabrication/newunsupportedgate\"}"
+  - "{\"phase\":\"build\",\"role\":\"actual-fixed18-scheduling-browser-acceptance\",\"profile\":\"sensitive\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"collaboration.send_message\",\"escalation_reason\":\"Actualauthenticatedprivacy/ContractD calendarhost browser acceptance with nativeobserver afterverifiedguardedruntime\"}"
+  - "{\"phase\":\"P5-private-runtime\",\"role\":\"report-run-reentry-author\",\"profile\":\"sensitive-runtime\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"reuse-runtime15_init_high\",\"escalation_reason\":\"Sensitive fixture/output ownership and runtime isolation; repair observed private helper worker reentry only\"}"
+  - "{\"phase\":\"P5-private-runtime\",\"role\":\"report-run-reentry-independent-review\",\"profile\":\"sensitive-runtime-review\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"reuse-runtime15_cold_review_high\",\"escalation_reason\":\"Independent review of minimal observed same-invocation output ownership fix before positive execution\"}"
+  - "{\"phase\":\"P5-private-runtime\",\"role\":\"actual-scheduling18-after-reentry-fix\",\"profile\":\"sensitive-browser-execution\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"reuse-story15_1_corrected_build\",\"escalation_reason\":\"Actual own616 fixture authorization isolation and native diagnostics; narrow reviewed helper successor\"}"
+  - "{\"phase\":\"P5-gate-classification\",\"role\":\"scheduling-performance-acceptance-classification\",\"profile\":\"ordinary-readonly-analysis\",\"model\":\"gpt-6.1-sol\",\"effort\":\"low\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"new-performance15_1_classification\",\"escalation_reason\":\"None; classify approved NFR requirements only without architecture changes or invented workload thresholds\"}"
+  - "{\"phase\":\"P5-runtime-planning\",\"role\":\"dashboard616-private-runtime-plan\",\"profile\":\"sensitive-runtime\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"reuse-runtime15_init_high-readonly\",\"escalation_reason\":\"Dashboard auth proxy and exact owned616 target adaptation plan; no runtime/helper mutation during sole browser window\"}"
+  - "{\"phase\":\"P5-observed-failure-triage\",\"role\":\"AC2-native-response-body-triage\",\"profile\":\"sensitive-E2E-auth-response\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"nested-original-story15_1-High-author\",\"escalation_reason\":\"OriginalRequest actual GET200 body unavailable after finished bothattempts; narrow source/offline primary installed runtime triage, no inferred auth/product fix\"}"
+  - "{\"phase\":\"P5-runtime-compatibility-plan\",\"role\":\"cached-shell-guarded-qualification-capsule\",\"profile\":\"sensitive-browser-runtime\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"reuse-runtime15_init_high-readonly\",\"escalation_reason\":\"Supported guarded existing Playwright expected revision candidate; source/nativewire assertions remain untouched, no inferredcause\"}"
+  - "{\"phase\":\"P5-runtime-compatibility-plan\",\"role\":\"cached-full-Chromium149-supported-capsule\",\"profile\":\"sensitive-browser-runtime\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"reuse-runtime15_init_high-readonly\",\"escalation_reason\":\"Shell executable unsupported; assess existing fullchrome.exe allowed exact current inputs, historical14001 notcurrentproof; no workaround/repair\"}"
+  - "{\"phase\":\"P5-runtime-compatibility-review\",\"role\":\"full-Chromium149-qualification-independent-review\",\"profile\":\"sensitive-browser-runtime-review\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"reuse-runtime15_cold_review_high\",\"escalation_reason\":\"Exact allowed nativebrowser qualification capsule and disconnect/profile containment before actualguardStart; no productcause inference\"}"
+  - "{\"phase\":\"P5-runtime-compatibility-qualification\",\"role\":\"actual-guarded-full-Chromium149-qualification\",\"profile\":\"sensitive-browser-runtime\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"reuse-story15_1_corrected_build\",\"escalation_reason\":\"ONEsupportedcachedbrowser nativeactivation/version/publicCDPqualification after independentHighPASS; no sourceorassertionchanges\"}"
+  - "{\"phase\":\"P5-runtime-failure-inspection\",\"role\":\"Chromium149-own-Start-inspect-only\",\"profile\":\"sensitive-runtime\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"reuse-runtime15_init_high-readonly\",\"escalation_reason\":\"Follow exact inspect_only recoveryroute for currentSTART_NOT_CREATED without inferred14001 or retryrepair; identify underlying own failure if evidence exposes\"}"
+  - "{\"phase\":\"P5-runtime-packaging-inspection\",\"role\":\"Chromium149-private-assembly-package-assessment\",\"profile\":\"sensitive-runtime\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"reuse-runtime15_init_high-readonly\",\"escalation_reason\":\"Current exactSxS assembly unresolved despitemanifestDLLpresent; inspect identities/probing for potential isolated packaging resolution no global/cache/guardchanges or reactivation\"}"
+  - "{\"phase\":\"P5-terminal-blocked-halt\",\"role\":\"build-owner-blocked-verification-closeout\",\"profile\":\"build-sensitive\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"reuse-story15_1_corrected_build\",\"escalation_reason\":\"Sensitive verification gate unfixable within supported runtime evidence; exactblockedHALT no waivedprivacyassertion or fabricatedcoverage\"}"
+  - "{\"phase\":\"P5-blocked-checkpoint-consistency\",\"role\":\"blocked-metadata-evidence-independent-consistency\",\"profile\":\"sensitive-review\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"reuse-runtime15_cold_review_high-after-author-closeout\",\"escalation_reason\":\"Independent consistency of blockedverification/nativecounts/incidentsecrecy/resourceack andunchangedintent beforecheckpointpush, no broadcode-review or acceptancewaiver\"}"
+  - "{\"phase\":\"P5-blocked-metadata-fix\",\"role\":\"canonical-blocker-label-author\",\"profile\":\"build-sensitive\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"reuse-story15_1_corrected_build\",\"escalation_reason\":\"PreserveHighinflightblockedverificationdisposition; minimal supportedAutoRunResult canonicallabel detectedindependently, kernel/source/tests unchanged\"}"
 tea_risk: high
 tea_selected: [atdd, automate, trace-advisory]
 tea_rationale: "Scheduling, synchronized projections, capacity and drag/keyboard/dialog behavior"
@@ -43,15 +100,15 @@ completed_phases: [0, 1, 2, 3, 4]
 spec_path: "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/implementation-artifacts/spec-15-1-the-five-scheduling-views-2.md"
 spec_approved: true
 build:
-  status: ready-for-dev
-  blocking_condition: null
+  status: blocked
+  blocking_condition: implementation verification failed
   followup_review_recommended: false
   review_loop_iteration: 0
   deferred_count: 0
   warnings: [oversized]
 followup_passes: 0
 hitl_halt: null
-review_unverified: false
+review_unverified: true
 story_trace: null
 legacy_review_resume: false
 legacy_review_iteration: null
@@ -84,12 +141,15 @@ merge_commit: null
 branch_deleted: false
 open_questions: []
 deferred_work: []
-blockers: []
+blockers:
+  - "implementation verification failed: AC2 native CDP response body unavailable in both b225 attempts; compatible Chromium149 START_NOT_CREATED with current assembly-resolution event and inspect_only, no supported fix established."
 overrides:
   ownership: "Coordinator released listed15.1 paths; no shared writers; no15.2"
   spec_validation: Validate before build
   oracle: "Owner removes Lovable prerequisite; recommended design; no verified parity"
   contract_d: Retain actual calendar-host browser obligations
+  blocked_checkpoint_push: "Owner instructed commit/push work; push explicitly incomplete blockedcheckpointbranch only, no EpicPR/finalization/gate waiver/merge/deploy"
+  blocked_report_commit: "Include updatedhaltedreport with blockedcheckpoint as ownerrequested documentation/commitpush; no completedepicclaim"
 constraints: []
 spec_validation:
   tasks: 10
@@ -132,3 +192,935 @@ spec_repair:
   additional_test_paths: [tests/integration/scheduling/booking-reassignment-flags.int.test.ts]
   runtime_executed: 0
   next: Build replacement explicit path after clean gate
+runtime_validation:
+  browser: "{\"server_diagnostic_source_sha\": \"48174f1566e05164ef094984765641a61f768d8e66cb49bf687741f2daf36563\", \"dashboard\": \"61532/control root reserved; exact helper reviewed; run only after finished general window and renewed current-target proof\", \"latest_ac1\": \"Failed; worker-import probe did not identify actual server failing phase\", \"diagnostic_review\": \"Independent High clear; runtime conditional on reviewed bounded output capture\", \"contract_d_outer_cases_passed\": 4, \"full_general\": \"Held: isolated SMTP/Mailpit and exact target transition review required\", \"worker_probe_removed_sha\": \"84a90383c375ace822e0ef8519851185a80f043c126f2e2b05437ceff39a3082\", \"keyboard_focus_cases_passed\": 2}"
+  next_story: 15.2 not admitted before E5h and renewed ownership release
+  broad_review_rounds: 0
+  status: "In progress; no acceptance or review completion claimed"
+  incident: "{\"readonly_receipt_sha\": \"fb1b929bce763e6ce9fd221388cfe3f8d9243daba993fb54594a1afd7b99818f\", \"failed_tests_executed\": 0, \"storage_receipt_sha\": \"4171faf0d08289633d7ab5ed1a184c464488afc1fc82fef6a10e3d18c90113b8\", \"disposition\": \"Retain scoped synthetic fixtures in historical 543 stack; no cleanup/reset/adoption authorized\"}"
+  mail_runtime: "{\"directory\": \".env.epic15.mail-runtime/\", \"status\": \"Reserved; High authoring only; no launch/SQL/build/fixtures/mail query release\", \"ports\": [61621, 61622, 61624]}"
+  callback_helper: "{\"review\": \"Independent High clear; real-provider/token assertions retained; pure-case execution counts owner-reported\", \"path\": \"tests/e2e/auth/auth-mail-callback.e2e.spec.ts\", \"sha\": \"98a243f3a6982d8ad41223b6d5560f26a8f4965878e80200624cc67ca9dfa193\"}"
+mail_runtime_admission:
+  compose_sha: acdeb99710fc3cd307609995d4676c71537f5144decd5843ab43a9e5deb49745
+  state: "Accepted starting; readiness not yet established"
+  owner: "/root/story15_1_corrected_build"
+  original_resources: "Retained unchanged; historical543 incident data untouched"
+  resource_id: acfda8e6-5506-4d0e-8c4a-b7f97ae06f63
+  receipts_directory: ".env.epic15.mail-runtime/"
+  allowed: Guarded Compose admission and service/resource metadata only after idle615xx writer proof
+  manifest_sha: 5615a5245527702c9b7e341b1f0d74154d2a278db9a30d76b9e03d343a696b62
+  withheld: [SQL/bootstrap/migrations/seed, App build/start transition, DB/API/mail/fixture execution]
+scheduling_browser_latest:
+  passed: 7
+  attempts_passed: 14
+  native_exit: 1
+  serial_not_run: 10
+  failed: 1
+  attempts_executed: 16
+  log_sha: c273ede680ad56fb42c142a6e246dd8188e5ae0498f9a9190724d24ecb6f5d2b
+  attempts_failed: 2
+  flaky: 0
+  status: "Failed runtime proof; no acceptance claimed"
+  broad_review_rounds: 0
+  cases: 18
+  json_sha: 91f83629f658da0eb3488e1ca824ed852a320917a24f11ad92858cf12736ea39
+  failure: "AC2 CDP response.text body observer; product auth defect not proven"
+  windows: "Closed; no fixture/read-only client active"
+cold_runtime_transition:
+  adapter_sha: 4753a3122a89d0e4be6afc8955198682c461c0f0b434a32368e0925565e465ba
+  addendum_sha: 88e7c62e469edd7b402fe5d74e02e89ca61a52019dd2f6fd4d78bdf06621881b
+  reviewer: "/root/runtime15_cold_review_high"
+  broad_review_rounds: 0
+  refusal_cases: 17
+  verdict: "Static relocation pass; future execution withheld"
+  refusal_scope: "Early entry guards only; no browser/teardown/package resolution proof"
+  next: Bounded fixed Vitest transition verifier authoring and independent review
+  manifest_sha: 5615a5245527702c9b7e341b1f0d74154d2a278db9a30d76b9e03d343a696b62
+canonical_lint:
+  report_archive_manifest_sha: 8503b1021f85fd21f9300d628c542e628dc0edf8b8279ef8b53000050f8ab221
+  errors: 0
+  command: pnpm run lint
+  private_warning: 1
+  warnings: 15
+  native_exit: 0
+  qualification: "Actual unqualified command; no ignore/config/source-exclusion change; earlier failed attempts preserved"
+  log_sha: b13e8aa985354887f4efa1e9b06c584506bd3fd11cf13e757deb2a8127f4f15b
+browser_observer_correction:
+  broad_review_rounds: 0
+  state: "Independent High exact review passed; focused AC2 then conditional unchanged18 execution selected"
+  coverage: No new browser coverage until actual result
+  assertions: All18 inventory and original assertions retained
+  destination_gate: "Each destination absent/confined/no reparse/exclusively owned; never reused; preserve receipts before next invocation"
+  test_sha: e00dcdb8728a931f2b5010f97286b94cfec9c63e31a7d2db7c7e23f9ec308456
+  design: "Native Response observer only; exact origin/path, tracked awaited body reads with original-error propagation"
+  focused_html: node_modules/.cache/kopplas-epic15-reports/scheduling-observer-01
+  spec_sha: d9e942c14a050c3b1a80ac231dcabae7e753e00094beebfb5b000cf85f13ea18
+  full18_html: node_modules/.cache/kopplas-epic15-reports/scheduling-observer-full18-01
+vitest_runtime_transition:
+  entry_bytes: 9982
+  mock_receipt_sha: 112b8674852fdf3f3f20bd9d8dbe759f142dc09ea5dcaa6904f3ab54fc85ba6e
+  predecessor_sha: 69e2c0943ab6df195cea362c3fd5c753e3126ee95b2e4e36a8b9c9391c3b559d
+  coverage: "Mocked guard behavior only; no actual native metadata/import/bootstrap/integration proof"
+  addendum_sha: d60b3f915f6ec4e36ab8fd9b640d91be656e62fb15b89d31d8218b3ce39767a5
+  verdict: "Independent exact High static pass; runtime execution withheld"
+  unchanged_suffix_bytes: 2600
+  next: Actual bootstrap and fresh target readiness gates before focused/full required integration
+  reviewer: "/root/runtime15_cold_review_high"
+  mock_refusals: 23
+  broad_review_rounds: 0
+  entry_sha: 022674702071a03c2adcaf1b69af252a9355870f1f3e9231139d41add32a3892
+  unchanged_prefix_bytes: 2452
+scheduling_browser_ac2_latest:
+  failed: 1
+  native_exit: 1
+  log_sha: 241f003d1ec42e4367f16fe0d2d11c089beead4629160631308d02fc90a02fca
+  next: "Preserve attachments; High offline observer evidence assessment and isolated bootstrap preparation"
+  skipped: 0
+  json_sha: 24e6d917871118c82e8692b3cc9e3504c5918111bcfb803322974f4e4f5f7f8a
+  attempts: 2
+  attempt_state: Both timed out at unchanged180000ms
+  state: "Failed focused proof; closed writer window"
+  tab_assertion: "Unverified; no step/error evidence that it executed"
+  passed: 0
+  cases: 1
+  duration_seconds: "363.07"
+  broad_review_rounds: 0
+  flaky: 0
+  coverage: "Zero; no conditional18 rerun"
+initializer_transition_boundary:
+  repository_input_authority_sha: 8be0fed5b09fcb38a5a7f579bb38c28a7b1ceddd7f077ed85e3145ba2dedce3a
+  required: "Immediate external exact102migration+seed/bootstrap/helper hash validation; internal recorded hashes/filenames insufficient"
+  writes: None yet
+  initializer_sha: 397fff4204557cee8ca98ee560428774761fe72f31a22c6d74ad3ee456843f87
+  state: "Read-only static compatible; no internal migration byte enforcement"
+  bootstrap_sha: 3a72fcc433bf1baf7b2446e46dfe97a2f32e1945df147b131b00f5f7c7ffda4a
+mail_runtime_bootstrap:
+  enabled_app_triggers: 2
+  storage_buckets: 1
+  verification_sha: 46d5f9bc158eb463b42a667e87e78942c70ba9cbb3910b42818e704478e6da47
+  seed: Applied
+  next: Readonly RPC catalog proof and independent actual target review
+  storage_objects: 0
+  before_init_sha: 538a831b3eff84256996a6cd1b31910b1bcf4b039b2ed7dcebfaa3deb7574924
+  ledger: 102
+  seed_triggers: 11
+  public_default_acl_rows: 6
+  log_sha: b086b7c76112caf085fb7d5e78065e5cb2b318d635b5a492f52d85d4043fc5ee
+  native_exit: 0
+  service_health: "Auth/Storage/REST/Mailpit200; no mailbox read"
+  auth_users: 0
+  migrations: 102
+  live_tuple_sha: 05e840894de4a0bbd43c17520cd35700cce917d51c725a47a6c6d09ba5c1e955
+  calculation: "SIU true; DELETE false"
+  executions: 1
+  protected_metadata: "Equal;18 outside default ACL rows and5 extensions preserved"
+  execution_release: "Unset immediately; process scoped only"
+  storage_policies: 3
+  withheld: [fixtures, app build/start, Vitest, browser, mailbox/general/dashboard]
+  app3151: "Owned appStop requested; absent before bootstrap"
+  seed_functions: 6
+  resource_id: acfda8e6-5506-4d0e-8c4a-b7f97ae06f63
+  synthetic_vault_keys: 3
+mail_runtime_rpc_catalog:
+  native_exit: 0
+  invocations: 0
+  behavioral_coverage: 0
+  search_path: Empty only
+  volatility: STABLE
+  signature: "p_tenant_id uuid,p_booking_ids uuid[] returns jsonb"
+  log_sha: f8c366be46e3ad42568d28744ae283164044fa8fdd42de033445cfcbfa6ab025
+  script_sha: ee3a2aeb1c4211e041eb911c9ec4c856a75f2cac440ecbd024cc654a581dbe89
+  execute: "postgres/authenticated true; anon/service_role/PUBLIC false"
+  next: Independent actual target postassessment and required integration admission
+  security_definer: true
+  receipt_sha: 03c9670a2451c7b5f0918b2e8d25e932763433587f22d7da365a89d512023020
+  state: "Readonly catalog pass; rolled back and disconnected"
+  windows: Closed
+  binding_sha: 5c632e3c29b86d42b87aca7dd2ae08260ba9d50863a9509a939be07b81d3086c
+required_integration_admission:
+  entry_sha: 022674702071a03c2adcaf1b69af252a9355870f1f3e9231139d41add32a3892
+  state: "Independent High pass; focused then conditional unchanged full selected"
+  ports: [61621, 61622, 61624]
+  recovery: "Canonical skip zero coverage; separate physical recovery CI before merge"
+  broad_review_rounds: 0
+  launcher_sha: 4de4075830005d6b85ed675f2f1373b3af1d38be1900fb5fa3a9f263709f2059
+  full_gate: "Focused native0, actual cases executed,0unexpected skip/fail,no intervening changes"
+  resource_id: acfda8e6-5506-4d0e-8c4a-b7f97ae06f63
+  coverage: None on new stack until native result
+  envelope: "Fresh6tuple/readiness/binding at most60s; exclusive writer/app absent/source and dependency freeze; no ambient NODE_OPTIONS/NODE_PATH"
+browser_trace_metadata:
+  interpreter: Binary/version unavailable
+  next: "Independent narrow assessment; no capture-scope changes or source edits during integration freeze"
+  native_exit: "Owner tool receipts0; proof field absent"
+  status: All captured resources200
+  proof_sha: 242140a3a0f4e17417bc5e750e5319d4721b26065ce96fcf58519a817500132d
+  skipped_forbidden_or_nonmeta: 289
+  date_or_tab_assertion_reachability: Unverified
+  cause: "Unproven; only possible timeout masking source finding"
+  metadata_bytes: 4179977
+  entries: 76
+  lines: 1190
+  parser_sha: 1ac24c49513fcbc622ba6811d35b18b1daf6ca034a6dcba1e524b72d905aebdb
+  scheduling_resources: 13
+  trace_zip_sha: 39c6bd06ceead2515565b45986b581e4dd391560366701313fc59205ed75294a
+  coverage: 0
+  request_identity_join: Unavailable
+  goto_complete_ms: "122.885"
+  state: "Offline High owner evidence; qualified provenance"
+  metadata_entries: 5
+  body_lookup_start_ms: "60.076"
+  body_lookup_failed_ms: "95.089"
+  other_body_read_successes: 2
+required_integration_attempt:
+  release: Unset
+  error: WindowsPS5 native Error stream XML deserialization masks original node error at launcher37
+  fixture_writes: Unproven until source phase traced
+  mode: focused
+  next: "Read-only source/native receipt phase assessment; bounded envelope proposal and independent High review before another execution"
+  broad_review_rounds: 0
+  state: "No native Vitest summary; conditional full not admitted"
+  skipped: Unavailable
+  failed: Unavailable
+  executed: Unavailable
+  receipt_basename: receipts/vitest-focused-a976fb14-2da7-432a-ae67-84be176a3c4f
+  native_exit: 1
+  writer_window: Closed
+integration_capture_review:
+  next: Renewed strict focused-only invocation with fresh actual readiness/source/dependency binding
+  launcher_sha: 63000311d63f86e7de0ed04b763b43b8eff76a565e2b6651d604da43f8e36fd1
+  incomplete: Unavailable counts and gate refusal even childNative0
+  trivial_probes: 3
+  broad_review_rounds: 0
+  proof_receipt_sha: f96c2fbbd271ddea4df07d12b49b12435f3859f9456075f7ce36523f6f384194
+  scope: "Extracted drain block with synthetic destination faults; actual launcher/integration unexecuted"
+  entry_sha: 022674702071a03c2adcaf1b69af252a9355870f1f3e9231139d41add32a3892
+  gate_prefix_sha: fa7fa805d6685eba7cf9601cf20c675c0e55f182763ed0a1a2a9ea0c44837cdc
+  original_focused_cause: Unproven
+  verdict: "Independent High regression pass; P2 resolved; no execution yet"
+  fixture_state: Unproven
+browser_observer_failure_review:
+  test_sha: a666a2713a7965735f2c3a6ac245f68b756216fa62896882e57598ee3c1c9983
+  broad_review_rounds: 0
+  spec_sha: beb667d3ab4d5794f3e7d88550b155cb85a6f6b88e36ce0cba1ef843a7a3f1c8
+  verdict: "Independent High narrow static pass; no runtime release"
+  author_stops: 20
+  original_body_failure: "Unresolved; must still fail"
+  coverage: 0
+required_integration_recovery:
+  required: "Fresh6tuple/readiness/binding at most60s/exclusivewriter/app absent/source-dependency freeze; no ambient NODE_OPTIONS/NODE_PATH"
+  evidence_gate: "Complete capture; actual outer/native0 and executed focused counts with0unexpected skips/fails"
+  resource_id: acfda8e6-5506-4d0e-8c4a-b7f97ae06f63
+  launcher_sha: 63000311d63f86e7de0ed04b763b43b8eff76a565e2b6651d604da43f8e36fd1
+  state: "One renewed focused invocation selected; prior conditional full superseded"
+  failure: "Stop and preserve raw streams/receipt; no automaticretry/full"
+  other_release: "None"
+  broad_review_rounds: 0
+  entry_sha: 022674702071a03c2adcaf1b69af252a9355870f1f3e9231139d41add32a3892
+required_integration_recovery_result:
+  native_summary_counts: Unavailable
+  original_masked_fixture_state: Still unproven
+  phase: validate-binding18 from entry87 before canonical test-env90/Vitest110
+  stderr_bytes: 1583
+  native_exit: 1
+  capture_complete: true
+  receipt_basename: receipts/vitest-focused-6dc2b558-7631-4d55-ab58-3bb5ff17764b
+  full: Not admitted
+  error: spawnSync docker ENOENT
+  test_imports: Not reached in this renewed invocation
+  release: "Unset; writerwindowclosed"
+  source_dependency_files: 597
+  stdout_bytes: 0
+  next: Bounded OS-whitelist case lookup correction and independent High review
+  os_key_proof: "UppercasePATH missing; titlecasePath present, key-only WindowsPS5 proof92aa62"
+  outer_exit: 1
+required_integration_recovery_provenance:
+  stdout_sha: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  preflight_sha: ea1f48275d62a4b95816149323b42d7c432907f22cae07bfe8cfd21112d71be6
+  receipt_sha: 8bb918eeee346d831bf2382587ce24cd4479e5fe1eb10c87dceb120ce15d0948
+  stderr_sha: e66d260fcc73c4d44cce758715e01852e1a48801cf1c7019a5bf28e5af14d24e
+  scope: "Renewed complete-captured invocation only; earlier masked fixture state unproven"
+extras:
+  required_integration_os_env_review: "{\"launcher_bytes\": 10400, \"runtime_execution\": \"none\", \"coverage\": \"none\", \"retry_release\": \"pending renewed focused capsule\", \"entry_sha256\": \"022674702071a03c2adcaf1b69af252a9355870f1f3e9231139d41add32a3892\", \"verdict\": \"PASS exact static independent High\", \"predecessor_sha256\": \"63000311d63f86e7de0ed04b763b43b8eff76a565e2b6651d604da43f8e36fd1\", \"launcher_sha256\": \"f5cefa5d12bbe5a3eed12e9c67e3a5e3d7b2375f8b48ebc61001e7b11515a4d5\", \"scope\": \"Existing 12-name OS dictionary lookup only; preserved prefix2080 and suffix7707 bytes; casing/missing-empty-null/duplicate refusal\", \"addendum_sha256\": \"8fc1ccfa73801bfb9a7d86726a40e22c88d43359be75f9747fcbcb2abdf66743\", \"broad_review_rounds\": 0}"
+required_integration_os_env_recovery:
+  full_integration: Held pending focused result and renewed confirmation
+  acceptance: "captureComplete true, outer/native0, actual counts and no unexpected skips/failures"
+  independent_high_review: PASS
+  coordinator_confirmation: "One focused616 invocation only; fresh six-service tuple, binding <=60s, freeze and app absent"
+  launcher_sha256: f5cefa5d12bbe5a3eed12e9c67e3a5e3d7b2375f8b48ebc61001e7b11515a4d5
+  other_execution: No app/browser/mail/dashboard/SQL replay/cleanup/15.2
+  failure: Stop preserve evidence no automatic retry
+  entry_sha256: 022674702071a03c2adcaf1b69af252a9355870f1f3e9231139d41add32a3892
+required_integration_focused_pathfix:
+  failed: 0
+  broader_gates: pending
+  historical_masked_attempt: unproven
+  preflight_sha256: bb7b07d8e01ae65b1a54e7a36ff74cc2a2460e8ac9929f4087c96b1abe3cc015
+  resource_id: acfda8e6-5506-4d0e-8c4a-b7f97ae06f63
+  native_exit: 0
+  executed: 33
+  frozen_inputs: 597
+  entry_sha256: 022674702071a03c2adcaf1b69af252a9355870f1f3e9231139d41add32a3892
+  files_passed: 2
+  receipt_sha256: b36f2ab9b5d3788976fd8c777e1ab495ad86e8fb017b237f6e51322b7c19ef4c
+  skipped: 0
+  launcher_sha256: f5cefa5d12bbe5a3eed12e9c67e3a5e3d7b2375f8b48ebc61001e7b11515a4d5
+  stdout_sha256: 925b23a832e6f5f49c8744d2b6252f8eed48d54832998fcbb6ff1372415233ed
+  stderr_sha256: 5a977f732b1f9d600faa41e17c9419950464cb192f4bb813524fa102ad4b4fe4
+  full: held pending renewed independent confirmation
+  capture_complete: true
+  duration_seconds: "9.57"
+  outer_exit: 0
+  passed: 33
+  writer_window: "closed; process release variables restored"
+required_integration_full_616_release:
+  preflight: "six owned services/digests/threevolumes/exact616/readiness/binding<=60s/solewriter/app absent/source-dependencies frozen/no ambient preloads"
+  coordinator_confirmation: "Verified actual focused receipt/streams/native0/33of33; one full invocation only"
+  launcher_sha256: f5cefa5d12bbe5a3eed12e9c67e3a5e3d7b2375f8b48ebc61001e7b11515a4d5
+  entry_sha256: 022674702071a03c2adcaf1b69af252a9355870f1f3e9231139d41add32a3892
+  other_execution: "none"
+  mode: full
+  physical_recovery: canonical skip zero coverage pending separate required CI
+  result: "complete native streams/counts required; unexpected skip/fail/unknown stop preserve no automatic retry"
+required_integration_focused_count_classification:
+  scheduling_transport_mock: 21
+  old_focused_total: 35
+  rerun: "none"
+  transport_mocks_no_rls_credit: 21
+  comparison: "Current exact twofile capsule excludes6quote guard and adds4transportmock cases:35-6+4=33"
+  old_read_mock: 17
+  scheduling_actual_authenticated_read: 4
+  old_read_live: 4
+  old_quote_nav_scope: 6
+  actual_jwt_read_rpc: 12
+  booking_rpc_actual: 8
+  old_rpc: 8
+  old_json_sha256: 7016acd04b5c5937973dbe80df670997784f02c7b4ef808a7e508aa33740b85f
+  scheduling_read_total: 25
+ac2_native_diagnostic_proposal_review:
+  privacy: "Explicit whitelist JSON only literal path/origin normalized method validated finite numeric metadata; no arbitrary request/response/error/url/body/header/cookie/query/identity serialization"
+  review_effort: gpt-6.1-sol High independent
+  authoring: held until full writer freeze closes
+  verdict: Accept bounded authoring after current full source freeze ends
+  limits: "Local identity only not causal saved-trace HAR join; no runtime/coverage/launch"
+  semantics: "Atmostone guarded synchronous attempted emission; noawaittaskslistenersretryteardown; counters settlement correct; original matching/native reads/drains/assertions unchanged"
+  scope: "AC2 capture block only exact flag/port/origin; all diagnostic operations nonthrowing; original recordFailure first and original falsy error preserved"
+  frozen_test_sha256: a666a2713a7965735f2c3a6ac245f68b756216fa62896882e57598ee3c1c9983
+  evidence: "Exact delta and removal projection restores frozen baseline; independent implementation review before run"
+required_integration_full_616_result:
+  stderr_sha256: 8c3c1a57e5e219af197d30045ec27735a37a36444ca80d30769ae5a2cba35831
+  files_skipped: 1
+  skipped: 1
+  broader_gates: pending
+  broad_review_rounds: 0
+  freeze: 597
+  failed: 0
+  executed: 1736
+  files_passed: 144
+  passed: 1736
+  writer_window: "closed; release vars restored"
+  outer_exit: 0
+  duration_seconds: "171.74"
+  preflight_sha256: 4488e89e530d8433c4dad98e29651deb8e826e0c7a7eb19672743ec8b9c34d0e
+  stdout_sha256: 51cd7ea8c2a0e2fb1e314cc5c2f49a7205b5214dff564f0fcae6cc6d88f86c97
+  receipt_sha256: 3ece952e53ca683eb8f4b23d1cf15f60f6ac600d55c623feb38e1deaafd35a98
+  native_exit: 0
+  total: 1737
+  capture_complete: true
+  inventory: "full unchanged run --maxWorkers=4"
+  physical_recovery: "One canonical recovery-storage-immutability skip zero coverage; separate physical-loader CI required before merge"
+ac2_native_diagnostic_authoring:
+  evidence: "exact delta/removalprojection restores a666 required; independent review before run"
+  scope: AC2 capture block only previously independent High-reviewed proposal with all safeguards
+  runtime: not released
+  freeze: "Full native writer closed; author delta now allowed"
+required_integration_full_coordinator_verification:
+  skipped: 1
+  review_rounds: 0
+  capture_complete: true
+  stdout_sha256: 51cd7ea8c2a0e2fb1e314cc5c2f49a7205b5214dff564f0fcae6cc6d88f86c97
+  scope: "Executed frozen-source full integration, not final-head/browser acceptance"
+  receipt_sha256: 3ece952e53ca683eb8f4b23d1cf15f60f6ac600d55c623feb38e1deaafd35a98
+  native_exit: 0
+  next: "Author-only AC2delta and independentHighactualreview/read-only616transition; runtime held"
+  physical_recovery: Canonical skip0coverage separate required isolatedCI beforemerge
+  stderr_sha256: 8c3c1a57e5e219af197d30045ec27735a37a36444ca80d30769ae5a2cba35831
+  passed: 1736
+mail_browser_transition_authoring:
+  independent_review: Required actual exact deltas before appbuild/start/browser/mail
+  existing_full_inventory: 382tests43files including19booking-editor retained
+  scope: Private strict physicalNode launcher/fixed18entry-config/immutable per-run reports and source-build fingerprint proof
+  resources: "Reuse owned616Compose and61531Chrome only after exact ownership/readiness; no launches now"
+  historical_artifacts: Preserved archives nooverwrite
+  product_source: No changes
+  default_node_environment: "Existing12-nameOSwhitelist caseinsensitive duplicatesrefuse; cleanprocess targets noambientpreloads"
+  runtime: Not released
+ac2_native_diagnostic_exact_review:
+  verdict: "Static privacy/nonthrowing/originalerror PASS;64record history scope exceeds approved singlecapture shape"
+  projection_bytes: 25486
+  successor_sha256: f88a7f5bdb87dd514cc97843275a472909ff268eb08992561e08aee29592a045
+  coverage: "none"
+  successor_bytes: 32342
+  projection: Independently reproduced7markedblock removal zero disk writes exact baseline
+  runtime: Not released
+  baseline_sha256: a666a2713a7965735f2c3a6ac245f68b756216fa62896882e57598ee3c1c9983
+  broad_review_rounds: 0
+  necessary_fix: "One explicit failedcapture record+approvedaggregatecounters, remove retainedhistory records/overflow"
+ac2_native_diagnostic_reduction_review:
+  runtime: held pending private launcher/build-source/admission reviews
+  coverage: "none"
+  successor_sha256: 56a576d03c30da6ddda6fde8561deaa73e9108653df86eddfca50fc221b9126f
+  broad_review_rounds: 0
+  baseline_sha256: a666a2713a7965735f2c3a6ac245f68b756216fa62896882e57598ee3c1c9983
+  author_checks: "tsc and focusedlint native0 tool-only, not independently rerun"
+  verdict: Independent High exact regression PASS
+  preserved: gating/all guarded metadata/original recordFailure first/falsyerror authority/atmostone synchronous output/native reads/matching/drains/assertions/retries/timeouts
+  payload: "ONE explicit failedCapture plus approvedaggregatecounters; historyarray/selection/map/overflow removed"
+  projection: 7markedblocks in memory restores25486bytes/a666 with zero disk writes
+  successor_bytes: 31896
+mail_browser_transition_review_capsule:
+  addendum_sha256: 203524c0347b1476d9749495e0fd8db69f3c68d74cd6944d1f422c15daf05c39
+  common_entry_sha256: a80037ba5e77949925488e73f186913304742bf5b3a022dde423cb7fb6115967
+  launcher_sha256: 019ba8b892453c186e8d43feb06ce89e50d4425ddf5157565250b1afab82a951
+  app_build_entry_sha256: cf40e263d8ddc50f049213de6bab38e3dc501b4ed453ad53b5611ff714d038d4
+  validation: "syntax43refusals3harmlesscapture probes, noacceptancecoverage"
+  full_config_sha256: 9cbd7fb84c76a785ad9a67ee07b05d1dbcbae6518eed27a61fc650f879ccd620
+  early_refusal_receipt_sha256: e1eaefe756dbb15420a18362e48b76d04794850799f1ac48c1b6dceff30435ca
+  fixed18_config_sha256: 403b22d43eccbbb42d8297a87aa89f1fd80d90fb48626bdb09e9a181cdc56425
+  runtime: Not released pending independentHighactualreview
+  capture_receipt_sha256: 93afa64e0c2bd2d8c8d4b8cf09a5988c376c4b0dfc1bdd48c9a96e5671b747fb
+  product_source: unchanged/E2E56a frozen
+  fixed18_runner_sha256: dfda77ba0b61e5164477b254dcd95c26ee6306408a3527082c055235440e3728
+  vitest_reentry: "022/f5 preserved intentionallyrefuseschangedfullconfig; no waiver/replay"
+mail_browser_transition_exact_review:
+  build_input_fix: before-after hashes of actualroot middleware.ts/postcss.config.mjs and executednode_modules/next/dist/bin/next
+  verdict: "Two bounded fixes required; nootherreachabledefects in13reviewedinputs"
+  review_rounds: 0
+  preserved: Targets/physicalNode/preloadrefusal/modes/argv/OSwhitelist/capture/fixed18/full382inventory/outputUUIDs/history/E2E56a
+  runtime: Notreleased
+  dependency_limit: "Capturedmetadata/CLI pluscallerexclusivefreeze, notcompleteinstalledbytes"
+  addendum_sha256: 203524c0347b1476d9749495e0fd8db69f3c68d74cd6944d1f422c15daf05c39
+  diagnostic_fix: "Literal EPIC15_AC2_NATIVE_DIAGNOSTICS=1 only fixedscheduling18branch; absentfull/appbuild/noarbitrarypassthrough"
+mail_browser_transition_fix_pin_propagation:
+  review: Included nextindependentHighregressionreview
+  runtime: Notreleased
+  scope: "Onlyfixedapp-build-entry SHA literal in mail-runtime-entry.mjs; necessarydependentpin propagation"
+  other_behavior: unchanged
+  evidence: "Allprefix/suffix outsideonehashreplacement unchanged; newcommon/appentry hashes inimmutablefixaddendum"
+  archive: Exactpredecessor retained
+  common_predecessor_sha256: a80037ba5e77949925488e73f186913304742bf5b3a022dde423cb7fb6115967
+mail_browser_transition_fix_capsule:
+  other_inputs: preserved
+  predecessors: Exact019/cf40/a800 archived
+  addendum_sha256: ec3fb12086f79993e988a1edf1eb58c70df30d586545509cd24c5f25e7efe5a0
+  scope: "Fixedscheduling18 diagnostic projection; three actualbuildinput hashes+dependencylimit; onecommonentry pin literal"
+  pure_proof_sha256: 12387da8089fd1370f95f88945c55c0f5e8ebaa10380b6e999b327ff00c6ce16
+  validation: syntax3sourcecomparisons3modeprojections3input additions PASS pureproof only
+  build_entry_sha256: 3946b6a381a257d55554e2296f531a86870d29588dc5c515732f00ce5963b4c7
+  common_entry_sha256: 633599e86c09f91e603b612a88d3a3c41ac87e34a2a1ed1be3517836ee6b15c7
+  launcher_sha256: dcaf386d33113fe760a6007812313d2abe557428444f1f766cbe2dc549171a4b
+  runtime: Notreleased
+mail_browser_transition_fix_review:
+  coverage: "none"
+  verdict: IndependentHighexactregressionPASS bothfindingsresolved
+  build_requirements: Exclusiveacceptedsource/dependencyfreeze freshownedreadiness
+  e2e_sha256: 56a576d03c30da6ddda6fde8561deaa73e9108653df86eddfca50fc221b9126f
+  build_entry_sha256: 3946b6a381a257d55554e2296f531a86870d29588dc5c515732f00ce5963b4c7
+  addendum_sha256: ec3fb12086f79993e988a1edf1eb58c70df30d586545509cd24c5f25e7efe5a0
+  broad_review_rounds: 0
+  preservation: "Independentbytecompare oneflaginsertion3inputadds+limit onehashreplacement, allotheroriginalcapsulehashesmatch"
+  runtime: PendingONEappbuildcapsule
+  proof_sha256: 12387da8089fd1370f95f88945c55c0f5e8ebaa10380b6e999b327ff00c6ce16
+  start_requirements: "Independentcompletedbuildmetadata capturedinputs Nodeargv-env clientchunks inlinedAPI BUILD_ID comparebeforeguardStart; lateststructuredguardcontextstdin"
+  launcher_sha256: dcaf386d33113fe760a6007812313d2abe557428444f1f766cbe2dc549171a4b
+  common_entry_sha256: 633599e86c09f91e603b612a88d3a3c41ac87e34a2a1ed1be3517836ee6b15c7
+mail_runtime_app_build_release:
+  preflight: "Freshsixownedservices imagesdigests3volumes61621API61622postgres61624Mailpit readiness binding<=60s solewriter app3151absent acceptedsource-dependencyfreeze noambientpreloads"
+  common_sha256: 633599e86c09f91e603b612a88d3a3c41ac87e34a2a1ed1be3517836ee6b15c7
+  runtime: WindowsPS5.1NoProfileNonInteractiveExecutionPolicyBypassFileownedlaunch-mail-runtime.ps1Modeapp-build
+  build_entry_sha256: 3946b6a381a257d55554e2296f531a86870d29588dc5c515732f00ce5963b4c7
+  coordinator_confirmation: "Independentactualdcaf12098B/39466655B/ec3verified; boundedbuildconfirmed"
+  next: SeparateindependentHighactualbuildmetadata reviewBEFOREguardStart
+  failure: Stop preserve unknown/incomplete/failure noautorerun
+  launcher_sha256: dcaf386d33113fe760a6007812313d2abe557428444f1f766cbe2dc549171a4b
+  mode: app-build only oneinvocation
+  env: "Onlyactualreviewed admittedprocess-scopedrelease/resourcecontrols restoredafter; diagnosticflagabsent"
+  acceptance: Completenativecaptureexitargvreceipt beforeaftercapturedinputs BUILD_ID inlined61621 proof
+  held: appstart/browser/mail/dashboard/fixtures/SQL/newresources/15.2/newINT
+  limit: "Capturedsource/manifests/package metadata/executedCLI underexclusivefreeze, notallinstalledbytes"
+mail_runtime_app_build_controls:
+  forbidden: "NoVitestrelease/resourcecontrols; noEPIC15_MAIL_APP_GUARD_REVIEWED forbuild; noambientNODE_OPTIONS/NODE_PATH"
+  release: "EPIC15_MAIL_EXECUTION_RELEASE=independent-review-complete"
+  approved_mode: "EPIC15_MAIL_APPROVED_MODE=app-build"
+  child_argv: PhysicalNode22.23.2 --experimental-strip-types absolute mail-runtime-entry.mjs app-build
+  run_id: ONEfreshlowercaseUUIDv4 absent-only reportpaths
+  outputs: "AbsentuniqueUUID cache reports and fixedreceipts/app-build.json; confined noReparseancestors"
+  metadata_read: Noentryhelpbuildlaunch performed
+  targets: 61621API fixedreviewed61622postgresDB 61624Mailpit REQUIRED1 CI1 E2E_PORT3151 browserCDP61531 dashboardCDP61531
+  resource_control: "NoresourceIDenvvar; actualownedacfresource/projectfreshguard-binding.json"
+  restoration: allprocess-onlycontrols restoredafter nativewindow
+  diagnostic: notset/copiedforappbuild
+mail_runtime_app_build_result:
+  client_chunks: 47
+  broad_review_rounds: 0
+  inlined_61621: 1
+  app_build_receipt_sha256: adba4665515598e610c39ebb26d2305444aa51c030a710c863e652fad9ad58b1
+  acceptance: build milestone only no browser/mail/tests
+  stdout_sha256: 08bc362dec2115fb773c9016e1fac70e77149b0524cc3c1b6bad070b2c51cbc8
+  source_before_sha256: 3ac6bf5b9da9f0df7a727b9181fd941d6a83e9a1e191bb8b109f6f8e34628a2d
+  native_exit: 0
+  source_manifest_sha256: 389356e65e6e5e3553957115cab298a16d0d9b2aed43b8cb6f470f872be388dc
+  inlined_legacy_61521: 0
+  before_after_current_raw_match: true
+  preflight_sha256: f9b0cb5accd3067618169d7e577d8ac941a9ad03792e7bba671073d528db5e25
+  app_start: heldpendingindependentactualmetadatareview/separateadmission
+  metadata_sha256: 0b876c89e513a6ee6f35084122453e4ad84a09e4b5276bf0120ac92a505edfd1
+  outer_exit: 0
+  stderr_sha256: dc76271a23bcd46a3f0496a1280ff2f312f19fa2563367da49e1b6a3f089ba0e
+  writer_window: closedcontrolsrestored
+  inlined_legacy_54321: 0
+  limit: "Capturedsource/manifests/package metadata/executedCLI/envfile hashes+exclusivefreeze, notallinstalledbytes"
+  captured_inputs: 423
+  build_id: qk5WSe6PiqQTAxVyGyXAh
+  run_id: 0ddd9cdc-f470-4965-b90d-556225407f40
+  native_receipt_sha256: 76a9b7cff0a661572b3cedc34e5272965b1e1290d08dd74dc06daa8ad7117a4a
+  capture_complete: true
+mail_runtime_app_build_provenance_review:
+  inlined_61521: 0
+  captured_current_inputs: 423
+  environment_fingerprint_sha256: 80479897269699c4ce1987b3b152e9720f2ef3711d49efc04237d26e487bbedb
+  approved_pins: Allreviewedcapsule/E2E56a/readerc310/bothhelpers/specbebmatch
+  node: CurrentphysicalNodeapprovedhash/recorded22.23.2/bothargvstagesmatch
+  inlined_54321: 0
+  coverage: Nonebrowsermailacceptance
+  live_readiness: "Notprobed savedpreflighthistorical refresh<=60sbeforeStart"
+  broad_review_rounds: 0
+  native_exit: 0
+  inlined_61621: 1
+  dependency_limit: Capturedmetadata/CLI+exclusivecallerfreeze
+  build_id: qk5WSe6PiqQTAxVyGyXAh
+  source_output_freeze: RetainverifiedBUILD_ID423inputs597freeze47chunks
+  capture_complete: true
+  accepted_freeze_current_files: 597
+  verdict: IndependentHighactualconsistencyPASS
+  environment_fingerprint_keys: 17
+  before_after_pathset_equal: true
+  client_chunk_current_files: 47
+  runtime: PendingseparateguardStartcapsule
+mail_runtime_app_start_controls:
+  helper_sha256: 6b18c81037bca5e9165b17527f7ea8dba8c98d6ff2ac619c4d731181896418d6
+  not_required: NoAPPROVED_MODE/RUN_ID/resourceID/CDP/diagnosticcontrol fordirecthelper
+  clean: "OnlyreviewedOSwhitelist+fixedtargets/controls; NODE_OPTIONS/NODE_PATH absent; optionalinheritedsynthetictestkeysabsent"
+  targets: API61621 fixedsyntheticpostgres61622/postgres Mailpit61624 REQUIRED1 CI1 E2E_PORT3151
+  runtime: StillheldpendingseparateStartconfirmation
+  executable: PhysicalNode22.23.2
+  pre_import: "Fixedtarget freshbinding<=60s appabsence syntheticauthorityvalidation then canonicaltestenv"
+  server: NextCLI start --hostname127.0.0.1 --port3151 verifiesfixedbuildreceiptresource/API/BUILD_ID
+  guard_reviewed: "EPIC15_MAIL_APP_GUARD_REVIEWED=1"
+  argv: "--experimental-strip-types absoluteowned.env.epic15.mail-runtime/app-helper.mjs start"
+  release: "EPIC15_MAIL_EXECUTION_RELEASE=independent-review-complete"
+mail_runtime_app_start_release:
+  guard_transport: Latesttrustedactorcontextstructuredrequeststdin WindowsPS5.1 nativeexit/ok required
+  scope: ONEguardedappStartONLY
+  failure: FollowfixedrefusalrecoveryRoute no blindretryadoptionportcleanup
+  held: browser/mail/full/dashboard/fixtures/SQL/newDB/15.2
+  coverage: Startup onlynoneproductacceptance
+  env: "Reviewed12OSwhitelist+fixed616targetsREQUIRED1CI1E2E3151/MAIL_EXECUTION_RELEASE independent-review-complete/MAIL_APP_GUARD_REVIEWED1; noambientpreloads/optionalkeys/othermodecontrols"
+  preflight: "Sixowned616services exactimagesdigests3volumes readiness binding<=60s 3151absent source/buildoutputsfreeze currentBUILD_ID423inputs597freeze47chunks"
+  coordinator_confirmation: Actualhelper6b18 BUILD_IDqk5 native76a/captureComplete/streamhashverified
+  result: RecordresourceID actualreadiness/sourcebuildidentity beforebrowser
+  executable: PhysicalNode22.23.2
+  argv: "--experimental-strip-types absoluteownedmailapp-helper.mjs start"
+mail_guard_start_interface_assessment:
+  sensitive_positions: "DTOmetadata only stdinputmappingundocumented; no sensitiveargv"
+  runtime: "OriginaldirectNodeStartcapsule superseded, bootstrapStartnotreleased"
+  installed_version: 0.9.15
+  next: "AuthoronlyfixedownedWindowsPS5bootstrapunderexistingguardStartjob; no product/buildchanges"
+  source: Installedlifecycleinstructions/stableshim95/activewrapper86/parentStartCoreIL230to260
+  environment: "BrokerCreateCurrentBlock childscrub actoridentifier restoration, no callermergeprecedence guaranteed"
+  verdict: "No supportedclean caller-environment map established; directNodeStart notperformed"
+  documented_fields: executablePath workingDirectory arguments resourceType
+mail_runtime_scheduling18_prepared:
+  reports: AbsentuniqueUUID ownedcache atomicallycreated noexistingreuse
+  pins: Common6335 runnerdfda config403b workerbdda adapter4753 E2E56a
+  diagnostic: Launcherfixedliteral1ONLYscheduling18 internally
+  startup: Stillheldforbootstrapactualreview/revisedStartcapsule
+  inventory: ONLYscheduling-views spec18cases unchangedassertionsbudgetsretries
+  result: "Nativecompletecapture actualsummaryattempts18inventory;failedCapture+counters whitelist no rawpayload"
+  clean: "NoambientNODE_OPTIONS/NODE_PATH; noStartresourceVitestcontrols"
+  status: MetadataonlyNOTreleasedorexecuted
+  targets: API61621 DB61622postgres Mailpit61624 REQUIRED1CI1E2E3151 browser+dashboardCDP61531
+  controls: MAIL_EXECUTION_RELEASE independent-review-complete/MAIL_APPROVED_MODE scheduling18/ONEfreshlowercaseUUIDv4MAIL_RUN_ID
+  command: PhysicalWindowsPS5.1NoProfileNonInteractiveExecutionPolicyBypassFileownedlaunch-mail-runtime.ps1Modescheduling18
+mail_runtime_app_start_bootstrap_capsule:
+  addendum_sha256: a0222591b9e36ade712de1104745c0426feaf2ca486d3430045cb60db90b2ce4
+  pure_proof_sha256: 9146ef02867cbec309c8d7176182e00b70dd06151f9f454da851ad45a046c6ea
+  bootstrap_sha256: 680081d84235e2efc56ac8fd77273aec9c314907970f1ff1a6ccd95ff55beb23
+  runtime: Notreleasednoactualjobappreadiness/exitproof
+  other_files: Existinghelpers/build423/597/47/qk5/E2E56a unchanged
+  proof_script_sha256: 2657fdb0067c672735ba0571549992a59c4927e0d8dfdc58518ade9e569699ea
+  scope: FixedpinnedNode/helper/cwd/argv12OS+8fixedkeys clearenv foregroundnaturalexit inheritedstreams
+  bootstrap_bytes: 4024
+  validation: "WindowsPS5syntax7pureenvironmentrefusalsnative0 only; OSblockbyteidentityexisting79proof"
+mail_runtime_app_start_bootstrap_review:
+  actual_job: "Notproved staticnormalWindowsinheritancecompatible; callerrecordactualguardNode-descendantmembership"
+  build: qk5 42359747/E2E56a unchanged
+  bootstrap_sha256: 680081d84235e2efc56ac8fd77273aec9c314907970f1ff1a6ccd95ff55beb23
+  proof_sha256: 9146ef02867cbec309c8d7176182e00b70dd06151f9f454da851ad45a046c6ea
+  verified: Allpreservedhashes/noReparsepaths/zeroargs/WindowsPS5/pinnedNodehelper/12OS+8fixedkeys/clearenv/noambientpreloads/noShell/foreground/nativeexit/noexplicitbreakaway
+  broad_review_rounds: 0
+  runtime: PendingREVISEDguardedPSStartcapsule
+  verdict: IndependentHighexactstaticPASS
+  acceptance: "none"
+  addendum_sha256: a0222591b9e36ade712de1104745c0426feaf2ca486d3430045cb60db90b2ce4
+mail_runtime_app_bootstrap_start_release:
+  start_fields: PhysicalWindowsPS5 executable/ownedcwd/argsNoProfileNonInteractiveExecutionPolicyBypassFileABSbootstrap/resourceTypeserver
+  transport: Latesttrustedactorcontextstructuredobjectstdin neverargvfilelog noenvmapguess
+  limitation: Ifactualcontainmentunestablished record limitation nofabrication/accesswidening
+  coordinator_confirmation: Actualbootstrap6800814024B/BUILD_IDqk5 verified
+  failure: Fixedrefusal/uncertainstartrecoveryRoute noautoduplicate/adoption/portcleanup
+  preflight: "6owned616services exactimagesdigests3volumes readinessbinding<=60s3151absent current42359747acceptedsourceoutputfreeze/helper6b18physicalNodepins"
+  held: browser/full/mail/dashboard/fixtures/SQL/newDB/15.2
+  scope: ONErevisedguardStartonly replacesneverattempteddirectNode
+  bootstrap_sha256: 680081d84235e2efc56ac8fd77273aec9c314907970f1ff1a6ccd95ff55beb23
+  required_result: Nativeexit/ok resourceID actualguardNode-descendantcontainment readinessBUILD_ID beforebrowser
+  replay: Nonewbuild/INTneeded
+mail_guard_start_preentry_failure:
+  reconciliation_sha256: 60875304f31b240d915e188997514fef6ed53d99c83dc268c3865d90ae34442a
+  stdout_bytes: 0
+  reconciliation: ParentcorrectedreadonlyListnative0oktrue sameIDs noactiveownserver3151absent
+  stage: "OuterWindowsPS File token missinghyphen, CommandNotFound beforeguardentry"
+  context: stdinputonly neverargvlogfile verifiedstderrcontextabsent
+  stderr_bytes: 458
+  native_exit: 1
+  preflight_sha256: 45bc1cb446bc1c309740b1c15706ed34a602a1359eb2e5889f782b5c37d8af4b
+  stderr_sha256: 529b28f232e938b419c5c29a9ebe7282f95f26904f29387acaa0fad09b455ab3
+  window: Closednosourcechangesnoautorerun
+  next: Exact -File correction afterindependentnarrowreconciliation no rebuild
+  guard_start: "NoJSONresourceID orsuccess, independentreceiptassessment pending"
+  failure_receipt_sha256: 9633791dc3381993513534f45bfa91c6422ebdcc3aeadca93a1acbf5db7d14d3
+mail_guard_start_preentry_review:
+  actual_argv: File absent-File unknowncommand native1stdout0noJSON/noID
+  verdict: IndependentHighsavedproof lexicalpreentryPASS no uncertain/refusedbackendStart
+  runtime: Correctedouter-File transport ONEStart separatelychosen now within existingapprovedscope
+  source: Bootstrap680081/qk5unchanged
+  failure: ActualrefusaluncertainstartfixedrecoveryRoute noblindretry
+  reconciliation_scope: "Savedtyped/toolListcomparison unchangedIDs/noactiveownserver; rawbeforeafterListnotindepcompared,3151absenceparentreported"
+  preflight: Refreshallownedtuple/currentpins/sourceoutputfreeze/3151absence
+  coverage: "none"
+mail_runtime_guarded_app_start_result:
+  guard_ps_pid: 54540
+  coverage: Startupnotproductacceptance
+  ready_http: 200
+  served_build_id: qk5WSe6PiqQTAxVyGyXAh
+  ps_created_utc: "2026-10-14T01:08:32.241Z"
+  broad_review_rounds: 0
+  verified: true
+  state: active
+  ancestry: "ExactownedPSbootstrap680081 parentâ†’physicalNode22/helper6b18 child verified"
+  guard_start_utc: "2026-10-14T01:08:32.196Z"
+  result_sha256: 1150bfe09fea5b51c084ef24df34774ecd3301f5b2d346d00b63528740f09907
+  disk_build_id_match: true
+  preflight_sha256: 24a01152e92e926791d4bf1fbe3cbd0da648b156367f3b58394943c6a811ca3e
+  readiness_sha256: f1b4fca329436a34be4d424b797fcbec20e590b399e388879661702f2ce2acd9
+  native_exit: 0
+  operation_id: d76b34a7-9f2f-4328-8f67-06ed3b031b42
+  source: 6tuple42359747qk5allpins verifiedunchanged
+  node_pid: 56296
+  membership_sha256: e484c5a4c8b9d188284ab9522f2229481ebb4ff560e11e2fae5648a82d90b0b0
+  browser: heldpendingHighactualevidenceassessment
+  ok: true
+  resource_id: faa76402-9a30-4e4f-8469-f90e5a79de0c
+  node_listener: "127.0.0.1:3151"
+  kernel_job: "IsProcessInJob(NULL) true bothPSandNode actualmembership, no specificbrokerheldjobhandlecomparison"
+  window: closedno browserfixturesSQL
+mail_runtime_guarded_app_start_assessment:
+  current_independent_checks: 423inputs597freeze47chunks/bootstraphelper/metadata/E2E56a allmatch
+  browser: Pendingfixed18capsule
+  verdict: IndependentHighsupportedstartup/readinessconsistencyPASS no new blocker
+  resource_id: faa76402-9a30-4e4f-8469-f90e5a79de0c
+  readiness: "SavedHTTP200served/diskqk5 bodyhashlengthonlyno rawbody; recordedservedbuildcomparison notindependentreparsedresponse"
+  acceptance: Startupnotproductcoverage
+  actual_evidence: "Native0oktrueactiveverified/ownedguardrootPS54540â†’Node56296 expectedimagescreationtimes/BOTHactualkerneljobmembertrue"
+  containment_limit: "IsProcessInJobNULL provesSOMEjob notexactbrokerheldhandle; exactancestry nonbreakawaybootstrap andguardverifiedroot separatecontractevidence"
+  next_preflight: "Freshownbinding/readiness<=60s/ownChromeprofileCDP61531/source-dependency-outputfreeze"
+  broad_review_rounds: 0
+mail_runtime_scheduling18_release:
+  fixture_scope: Canonicalowned616fixture setupteardown partofrun only no separatemanualSQL/reset/resourcecleanup
+  controls: EPIC15_MAIL_EXECUTION_RELEASE independent-review-complete/EPIC15_MAIL_APPROVED_MODE scheduling18/ONEfreshlowercaseUUIDv4EPIC15_MAIL_RUN_ID
+  targets: API61621DB61622postgresMailpit61624REQUIRED1CI1E2E3151bothCDP61531
+  outputs: ONEnewabsentUUIDcache paths complete nativeJSON caseattemptcounts
+  preflight: "Freshownedacf6services/digests3volumes/tuplebinding<=60 appfaa3151qk5 ownfbeChromeprofileCDPready solefixturewriter42359747freeze/allreviewedpins"
+  test: All18nativewire/assertions/retries/timeouts/setup unchanged fixed403bconfig/dfdarunner/common6335/workerbdda/adapter4753/E2E56a
+  coordinator_confirmation: "Actual4startupreceipts/ready/ancestry/kernelmembershipverified; exacthandlelimitretained"
+  diagnostic: "Wrapperfixedliteral1only18, boundedfailedCapture+counters whitelist"
+  launcher_sha256: dcaf386d33113fe760a6007812313d2abe557428444f1f766cbe2dc549171a4b
+  guard_job_limit: "exactGuardJobHandleCompared=false supportedverifiedroot/nonbreakawaycontract/ancestry evidence"
+  failure: Stop preserve failedunknownincomplete noautomaticadditionalinvocation/conditionalfull
+  held: general/full/mail/dashboard/newresources/newDB/15.2
+  scope: ONEfixedscheduling18browserinvocation
+  command: PhysicalWindowsPS5NoProfileNonInteractiveExecutionPolicyBypassFileownedlaunch-mail-runtime.ps1Modescheduling18
+  replay: Norebuild/INTneeded
+mail_runtime_scheduling18_result:
+  run_id: a717e66f-da4b-4c41-97bd-f12f0bf01503
+  native_exit: 1
+  outer_exit: 1
+  capture_complete: true
+  cases: 18
+  unexpected: 1
+  not_run: 17
+  executed_acceptance_coverage: 0
+  cause: "Private report prepareRunDirectory rejects controller-created UUID root on worker config reimport; two zero-duration failed attempts"
+  fixture_limit: "Canonical global setup/teardown may have executed; no zero-fixture assertion"
+  json_sha256: 829f35f9cdb3a47be8424e8434d7c9a979c14f95ec7e19aa14b0b509c811bb55
+  receipt_sha256: d80165383470bce2cbee73d9f82fd9040420e74f217e831f649945bff5bb52dc
+  preflight_sha256: d6135d417e51be744ae5df29a548c5cbac91095bd9166a771bcfa26cede85246
+  stdout_sha256: f256b58e39402f5840106c3f54ffd243a0a6278b3921a89dfce8518b75214b7d
+  stderr_sha256: 94c019bd4ed55ffbe2439a95c87d98328e8eac0e68b14f0e0524e577f366a0e9
+  native_body_cause: "Unobserved; no AC2 diagnostic emitted"
+  window: Closed controls restored all saved output preserved
+  broad_review_rounds: 0
+p5_remaining_gate_order:
+  required: [scheduling18 native acceptance, general382/43 includes booking-editor19 and real mail callbacks, separate dashboard partition adapted to owned616 targets, desktop five views and 360x640 visual evidence, "six independent broad review layers, mixed-sensitive High", author review-order refresh and terminal HALT]
+  efficiency: "No separate19 or diagnostic-removal18 repeat absent concrete changed behavior/regression concern; final general can supply post-removal evidence"
+  integration: "1736 passed 0failed 1physical recovery skip; no replay absent affected product DB changes"
+  performance: "Existing Epic11 pilot is baseline only; unapproved scheduling thresholds remain explicit NFR/Product issue"
+  broad_review_rounds: 0
+  cap: 3
+  ownership: "Root Git/state only; original author source/spec; High runtime author ignored helpers; independent fresh reviewers; no15.2 ownership yet"
+mail_report_reentry_authoring:
+  scope: "Two private helpers only; actual failed a717 history preserved"
+  paths_sha256: 1ca7782fae54094ac277fbb48d7c11eee9f7678bb75a0cf5d2b5c88b642ac1ed
+  entry_sha256: 65adcf387997a9d3dfce68b31bdcecae157e6067eadb3508e8f06ec7e3e81dfe
+  addendum_sha256: 023a3f9170c7f5b665f52c9c64e53f561e6fe0a7ccb88ac7e3c9ebd310fbd5cc
+  proof_sha256: 1f576c507e3e6b97ff557574f4552fdd92e27fd70cb2d3008c7e3de28aedf3af
+  pure_cases: 21
+  native_exit: 0
+  authority: "Fresh atomic controller entry before canonical imports; refuse ambient controls; verified inherited same-invocation worker config reentry returns paths without mutation"
+  limits: Pure evaluations simulate worker/retry no actual worker/import/runtime evidence
+  status: "Independent High exact review pending; no execution released"
+current_build_bundle_containment:
+  route: Nested ordinary Sol6.1 Low deterministic verification
+  build_id: qk5WSe6PiqQTAxVyGyXAh
+  metadata_sha256: 0b876c89e513a6ee6f35084122453e4ad84a09e4b5276bf0120ac92a505edfd1
+  matched_client_chunks: 47
+  command: "pnpm run verify:bundle-containment"
+  native_exit: 0
+  receipt_chunk: b8d581
+  finding: No prohibited service-role material in current .next
+  limits: "Containment only; no runtime acceptance or broad review credit"
+mail_report_reentry_review:
+  verdict: Independent High narrow static PASS no concrete history adoption overwrite entry-bypass defect
+  paths_sha256: 1ca7782fae54094ac277fbb48d7c11eee9f7678bb75a0cf5d2b5c88b642ac1ed
+  entry_sha256: 65adcf387997a9d3dfce68b31bdcecae157e6067eadb3508e8f06ec7e3e81dfe
+  preservation: "Exact four entry edits reverse to predecessor; all declared configs runners launcher worker adapter apphelper E2E56a specbeb qk5 pins match"
+  limits: "21 pure filesystem/module proofs only; actual worker/retry unverified, stale controller mocked; faileda717 fixture absence unproven"
+  rounds: 0
+mail_scheduling18_reentry_release:
+  scope: "ONE fresh UUID fixed scheduling18 after exact High PASS; supersedes consumed a717 release"
+  entry_sha256: 65adcf387997a9d3dfce68b31bdcecae157e6067eadb3508e8f06ec7e3e81dfe
+  paths_sha256: 1ca7782fae54094ac277fbb48d7c11eee9f7678bb75a0cf5d2b5c88b642ac1ed
+  launcher_sha256: dcaf386d33113fe760a6007812313d2abe557428444f1f766cbe2dc549171a4b
+  preflight: Refresh ownedacf616 six tuple binding/readiness appfaa3151qk5 Chrome fbe sessionprofileCDP61531 solewriter all source/build/pins unchanged
+  controls: "Reviewed fixed scheduling18 launch controls with no ambient admission aliases/preloads; launcher generates inherited private capability"
+  history: "New absent UUID outputs only, preservea717 and allhistorical; no manual fixture cleanup"
+  result: "Complete native capture case/attempt counts and bounded diagnostic if emitted; stop/preserve any failure no automatic replay"
+  held: general/mail/dashboard/newresources/newDB/15.2
+  command: WindowsPS5 NoProfile NonInteractive ExecutionPolicy Bypass File ownedlaunch-mail-runtime.ps1 Mode scheduling18
+mail_scheduling18_reentry_started:
+  run_id: b2255c5c-85b0-49f5-a81b-a233f45ce6f2
+  session_id: 59159
+  actual_binding_utc: "2026-10-14T01:36:18.036Z"
+  pins: 22 declared/history pins plus423/597/47/E2E56a/qk5 matched
+  resources: Ownedacf/faa/fbe active six digests three volumes616health appqk5 Chrome155 CDP61531sessionprofile
+  controls: "Reviewed fixed process-only/finallyrestore; ambient admission preload Start Vitest absent"
+  history: "New absent UUID root; a717 preserved"
+  window: ONE native invocation ongoing solefixturewriter source/spec/build frozen
+scheduling_performance_gate_classification:
+  route: Independent readonly Sol6.1 Low
+  verdict: "Approved contract retains explicit open NFR concern rather than mandatory story build blocker; performance certification remains blocked"
+  authority: "Corrected spec36/128/141; test-design-epic-15 R012 lines71/86/89/105; PRD432"
+  required: All8ACs and functional/security/regression/CI/browser/ContractD mandatory
+  unknown: Product/Architect must approve representative volumes surfaces p95/resource/throughput thresholds before certification
+  baseline: "Epic11 120/24 pilot baseline not scheduling certification, no borrowed old31ms"
+  evidence: "No writes/runtime/tests/review round; final author/NFR assess retain R012/manual open concerns no performance PASS"
+mail_scheduling18_reentry_result:
+  run_id: b2255c5c-85b0-49f5-a81b-a233f45ce6f2
+  native_exit: 1
+  outer_exit: 1
+  capture_complete: true
+  duration_ms: "233351.984"
+  cases: 18
+  passed: 7
+  failed: 1
+  serial_not_run: 10
+  actual_attempts: 16
+  passed_attempts: 14
+  failed_attempts: 2
+  placeholders: 20
+  zero_credit: Ten notrun cases and20placeholders receive no execution coverage
+  passes: "Four Schema/Resurser host click drag persist; two keyboard/dialog cancel focus no-write; AC1 both attempts"
+  failure: AC2 15.1-INT-001 original native CDP No resource with given identifier bothattempts
+  native_diagnostics: "Eachattempt originalRequest ordinal1 capture1 GET200 path/scheduling phasebody AFTERfinishedsettled; no authHTTPproductcause inference"
+  attempt0_ms: finished27.5355-28.1515/body28.1542-148.2473
+  attempt1_ms: finished49.364-50.5836/body50.587-160.6974
+  receipt_sha256: 89ef42627b77a4820906d3943c7816568a58dbc3b0bc42f1bf58d54f7a8e4209
+  stdout_sha256: bdcc6c4726ebc3da1c53978ddb1114fe060fc34be8c4d199e05b5676f1922004
+  stderr_sha256: 833bf836bd8c3277db3a91a0d62168c9e794ba737f204da7b73d4a2ddb9b65dc
+  preflight_sha256: 1e1f37c08dcfead31fc11f253eb2ccbf778a6050ce7f59c10cbb568d87404a2e
+  json_sha256: bf5b1165aeca4c151721ab9cb987752278566aafdf9996dafa6c907f9ca47105
+  reentry: "Actual worker/retry succeeded, no helper refusal"
+  window: Closed controls restored sourceE2E56a/specbeb/buildqk5 frozen historypreserved
+  broad_review_rounds: 0
+dashboard616_readonly_proposal:
+  route: Sensitive auth proxy Sol6.1 High readonly
+  scope: "Later required separate threefile dashboard partition, no current edits/runtime"
+  build: "Existingqk5 direct61621 cannot exercise subject-bound proxyfaultplans; preserveqk5 remaininggates then separate proxy-target build3151"
+  proxy: Proposedloopback61632 upstream61621 notyetreservedchecked
+  control_root: "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/e2e/.auth/dashboard-control"
+  selector: [dashboard/dashboard-pipeline.e2e.spec.ts, auth/role-aware-phase-a-surface.atdd.e2e.spec.ts, onboarding/first-admin-checklist.e2e.spec.ts]
+  budgets: workers1 retry0 test60000 expect15000 action15000 nav30000 duration300000ms
+  fixture: "Dedicatedsetup calls generalsetup sharedfixturefile exclusivefuturewindow, no sharedauth/configedits"
+  canonical_config_sha256: 7e000255aad35be003f815eab7c5c5650d15e93658dde287a54e586a82bcebf8
+  proxy_sha256: 20147c434a5af5b7ee88c272d7034d5ff44ed6d2b9f3abbbfafce998d61029e8
+  candidate_scope: "New separate ignored dashboard helpers reuse reviewed cleanenv/nativecapture/admission blocks, currentmailhelpersunchanged"
+  status: Proposal only later exactauthor/review/guardadmission countsunknown
+ac2_native_body_offline_triage:
+  route: Original sensitive E2E author High
+  result: No ownedtest/public API correction justified from current evidence
+  installed_behavior: "Native body getter exact request.session andCDPrequestId; Network.enable no durablebuffer params; finished no snapshot; body rejection cached; publicnewCDPSession distinct"
+  limits: "Actualeviction/crossprocess/resourceType cause unobserved, no authproduct inference"
+  browser_metadata: "PW1.61.1 expected149.0.7827.55 revision1228; actualChrome155.0.8059.40 mismatchnotcause"
+  compatible_existing_shell: "C:/Users/Rasmus/AppData/Local/ms-playwright/chromium_headless_shell-1228/chrome-headless-shell-win64/chrome-headless-shell.exe"
+  shell_limits: 203034112B present manifestrevision149 runtimeversion startup CDPfidelity unverified
+  full_chromium: 149 binary present historicalnative14001 activationfailure not reproduced
+  candidate: "High supportedguardcontract assessment of existingcachedshell dedicatedprofile/reservedendpoint; no downloadcache repair unmanagedlaunch"
+  metadata_receipt: 97d504 native0
+  changes: "None"
+obsolete615_stop:
+  resource_id: e4ea7ab6-e112-4453-8d67-ab25bf5c1712
+  native_exit: 0
+  ok: true
+  state: stop_requested
+  verified: false
+  operation_id: fe4a3464-1f56-496f-82c0-e8bec0b8d603
+  requested_utc: "2026-10-14T01:51:07.180Z"
+  receipt_sha256: 67f2cc2e0992154d711db38d8a0c2f132ba9dac29ab4e0771cc32d9b19dd0f17
+  preservation: "Containers data receipts preserved; no shutdownpoll/repeatStop; currentacf/faa/fbe untouched"
+cached_shell_guard_contract:
+  verdict: "Not supported as browser Start executable by installed contract; no launch attempted"
+  binary_sha256: 28016df6864d302434c9231e1f9f1a8a7ecc512cb2fe3faabb2a36130b96bcf1
+  bytes: 203034112
+  validator: "ResourceGuard.Core.dll WindowsLaunchRequestValidator.DemandSupportedChromium exactchrome.exe/msedge.exe/chromium.exe allowlist; chrome-headless-shell.exe rejected UNSUPPORTED_BROWSER"
+  profile: "Caller user-data-dir rejected; guard injects own profile"
+  prohibited: No rename server-type cwd escape or guardchanges
+  runtime: "Manifest149revision1228 only, runtime unqualified"
+  next: "SameHighreadonly assess exact existing fullChromium149 chrome.exe supported contract; historical14001 notreproduced no causeclaim"
+full_chromium149_qualification_proposal:
+  binary: "C:/Users/Rasmus/AppData/Local/ms-playwright/chromium-1228/chrome-win64/chrome.exe"
+  binary_sha256: b798f9e53a98d29eb7f36f8c409f905d3184780a04d2bcb56989067194784bd1
+  binary_bytes: 4059648
+  version: 149.0.7827.55
+  chrome_dll_sha256: 22e963482a71829da68c2c2717b615aed4fb8c2aac13fc5c22baf0fd079dff5b
+  elf_sha256: a305a4aa9080ebee74ad3992ddc597784fb04892047ce6efeadb48204267bcc5
+  manifest_sha256: fc31cd0100e5e5e69cebda3f3ee20e6a228892c34f7c46b099d181742737fe9e
+  argv: ["--headless=new", "--remote-debugging-address=127.0.0.1", "--remote-debugging-port=61631", "--no-first-run", "--no-default-browser-check", "--disable-background-networking", "about:blank"]
+  cwd: "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas"
+  guard: Supportedbrowser type chrome.exe allowlist/guardallocatedprofile/no callerprofile/environmentmap
+  qualification: "ONEparentownStart then boundedloopback/jsonversion/publicCDPversion-only cleanphysicalNode/no preloads/pages/navigation/fixtures; disconnectsemantics toreview"
+  limits: "Staticbundleddependenciespresent actualactivation/version/CDP healthunknown, historical14001 notreproduced,61631unreservedunchecked, mismatchnotAC2cause"
+  status: "No files/launch/resources; independentHighreviewpending"
+full_chromium149_qualification_review:
+  verdict: Independent High PASS no concrete static blocker
+  bundle_sha256: 6be5c2ea035554e9b184b1dbc7aa5e7f1fb428dd1b5c202022858dcfae9bee27
+  binary: Currentb798149/noRP/native dependencies pins match expectedPW1228
+  disconnect: "InstalledpublicCDPbrowser.close closes transport/temp artifacts not guardChrome/profile; attachment initializes existingtargets"
+  limits: ActualSXS/61631availability/version/CDPhealthunknown historical14001 notreproduced/mismatchnotcause
+  probe: "Validatedws12761631/devtools/browser/path memoryonly noquerycredentialsfragment, publicconnectOverCDP isLocaltrue timeout5000 optionalnoDefaults true/versionread/finallybrowser.close overallbounded no pages/contexts/navigation/fixtures/preload/rawBrowser.close"
+full_chromium149_qualification_release:
+  scope: "ONEparentownedguardbrowser Start exactcachedfull149/proposedargv/currentOWNcwd/freshguardprofile/61631 afterportavailability/exactbinarypins; no callerenvmap/profile"
+  preflight: Freshownedcontext guard supported request nativejsonstdin exactexe/dll/elf/manifest pins noRP port61631 absent intentionalbrowserrevisionisolation oldfbe preserved
+  result: Checknativeexit/ok/verified/resourceID actualPID/listenercreation/profile correlation then boundedversion/publicCDPqualification
+  probe: "CleanphysicalNode existing12OSprojection no preloads/appsecrets; validatedwsURL memoryonly; connectOverCDP isLocaltrue timeout5000 noDefaults true optional chosen qualificationonly; version/finallydisconnect overallshortdeadline sanitizedmetadataonly"
+  failure: "Noautoduplicate guardrefusal fixedrecoveryRoute; failedqualificationStoponlynewownIDpreserveddata; no globalrepair/download/cachemodification"
+  success: "Newbrowser needed for planned subsequentacceptance ifqualified; no test/helperguards61531change authorizedbyqualification alone"
+  held: browsertests/general/dashboard/sourcechanges/fixtures/newDB/15.2
+  coverage: No acceptance coverage fromstartup/probe
+full_chromium149_qualification_result:
+  native_exit: 2
+  ok: false
+  code: START_NOT_CREATED
+  error: Windows process creation did not complete and the exact Job was verified empty
+  resource_id: c017259e-0fd6-4001-830d-72b46631637b
+  operation_id: 95db79be-8409-42d5-9e23-b797ecbb350e
+  state: stopped
+  verified: true
+  start_outcome: unknown
+  recovery_route: inspect_only
+  last_evidence: start-verified-not-created
+  stop: OwnIDONCE native0oktrue stoppedverifiedtrue already_stopped
+  start_sha256: 6ba3c215b76687e18a8307a923b7b03b27c5d45b581dcb05c80c7f9971ce205c
+  outcome_sha256: 49836030b0e17bb3ce55a28d4b2982bf38253843e6b76c730e79880055bf4006
+  stop_sha256: 0588197237fb63d5fc0c42513b61f9e48d3c774e348725d332e4ccde7c27a8fe
+  limits: "No current14001 detail exposed; no CDP request/page/fixture/test; oldfbe/acf/faa/qk5/sourcepreserved"
+  status: Qualificationblockedonly BuildAutohasnotHALTed no retryrepairdownloadprofilecwdworkaround
+chromium149_inspect_only_result:
+  verdict: Currentexactpath/time SideBySide activation-resolution failure evidenced
+  event_id: 33
+  record_id: 9344
+  event_utc: "2026-10-14T02:11:55.8309446Z"
+  start_interval: "2026-10-14T02:11:55.7834679Z-02:11:55.935Z"
+  dependent_assembly: "149.0.7827.55 language* typewin32 version149.0.7827.55 unresolved"
+  numeric_native_error: Notexposed current14001 unproven
+  source_limits: "StartCore nativefailures rolledback/wrapped publicreceipt doesn't identifyfailedAPI/code"
+  unknown: Why binding failed despite cachedmanifest/DLLpresent
+  recovery_route: inspect_only binding originalregistration preserved/stoppedverified Stopalreadyack
+  actions: No retryrepairdownloadcacheglobalregistryactivation
+  next: "Narrow readonly privateassemblyidentity/packaging/documentedprobing assessment only; no new runtime configuration until justified exactproposal"
+chromium149_private_package_assessment:
+  verdict: No concrete identity mismatch or justified supportedisolatedpackagingfix
+  identity: "Embedded149REFname/version/type matchexternalDEF; archomittedboth optional/languageREFstarDEFneutraldocumented; elfDLLpresent"
+  layout: "FlatexeDir149manifest+DLL Microsoftdocumentedvalid/no same-nameDLLshadow; officialChromiuminstallerVersionDirdoesnot prove cachedflatinvalid"
+  authority: ["https://learn.microsoft.com/en-us/windows/win32/sbscs/assembly-manifests", "https://learn.microsoft.com/en-us/windows/win32/sbscs/assembly-searching-sequence", "https://chromium.googlesource.com/chromium/src/%2B/master/chrome/installer/mini_installer/chrome.release"]
+  unknown: "CurrentSxS resolutionfailure reason unavailable; exact149tagpackagingsourceunavailable"
+  route: "Originalc017inspect_only/stoppedretaineddata binding; no newconfiguration/activationrelease"
+  actions: Readonly no files/copyrepair/cacheglobalguardcalls
+terminal_build_disposition:
+  decision: "No justified supported correction established; dispatch currentHigh buildowner terminal HALT blocked per Step03 verification contract"
+  reason: "All18 nativepayload AC2 gate remainsunverified; current compatible149 browseractivationfailed/inspect_only and packageinspectionno fix; Chrome155nativebodybothattemptsfailed"
+  scope: "No waiver/authgrantreaderfix/matrixcoverageclaim/broadreviews; preserveallhistory userUXBA9designoverride"
+  required: "Author blockedfrontmatter AutoRunResult verifiedtasktrail/evidenceincidents docs, no successfulfinaltrail; Stoponlyownneededresources withowncontext/ID preserveallstate"
+  next: "Root authoritativeparser thenblockedhandling checkpoint/state/report; no E5h/15.2/merge/deploy"
+blocked_closeout_resource_stops:
+  receipt_path: ".env.epic15.mail-runtime/receipts/blocked-closeout-stop-acks.json"
+  receipt_sha256: 81826a838ce58a4ab12be90b795866f01ec531414e900f543d6777a30aca06e6
+  resources: [faa76402-9a30-4e4f-8469-f90e5a79de0c, fbe36b0b-6f7a-48c1-b895-4b2beaef88c9, acfda8e6-5506-4d0e-8c4a-b7f97ae06f63]
+  native_exit_each: 0
+  ok_each: true
+  state_each: stop_requested
+  verified_each: false
+  preservation: "OneStop each ownedusage; containersdata/profiles/receipts preserved; no shutdownpoll/no repeatolde4/c017Stop"
+blocked_closeout:
+  spec_sha256: d5a492a1546c19d777d8bff3d7037686e60a577565cac67281bff764f427bc22
+  parser: "Authoritative blocked with AutoRunResult exact implementation verification failed, canonicalone-linefix allotherbytesunchanged"
+canonical_blocked_label_fix:
+  delta: One literalBlockingcondition line only no otherbytes
+  native_parser_exit: 0
+  condition: implementation verification failed
+  closeout_sha256: 31354af12bd8be3272591681f7a99e89ac2dd207169920cf86502f39ec018020
+  kernel_unchanged: true
+  broad_rounds: 0
+blocked_checkpoint_consistency:
+  verdict: Independent High bounded metadata/evidence PASS
+  spec_sha256: d5a492a1546c19d777d8bff3d7037686e60a577565cac67281bff764f427bc22
+  closeout_sha256: 31354af12bd8be3272591681f7a99e89ac2dd207169920cf86502f39ec018020
+  checks: "One-linefix reversesexactly, kernel035 unchanged,43paths excludingbothrootstates; b2257/1/10 and14/2actualattempts;33native/full1736+1skip; incident/Stop/countsafe receiptsmatch"
+  limits: "SXS event/unit categories coordinator-recorded notreplayed; no newcoverage/numeric14001/shutdownclaim"
+  rounds: 0
+  cap: 3
+  status: "Blocked implementation verification failed; no gatewaiver/executionrelease"
+checkpoint_push:
+  status: Prepared blockedsnapshot perownercommitpushinstruction
+  merge_ready: false
+  epic_complete: false
+  pr: None/Efinalnotreached
+  deployment: No deployment action

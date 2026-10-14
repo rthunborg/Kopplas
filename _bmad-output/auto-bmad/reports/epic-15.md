@@ -197,3 +197,42 @@ none
 **⚠️ Needs human:** (none)
 
 **Next:** Build explicit corrected suffix-2 spec after clean gate, High sensitive author/review and Low ordinary child work
+
+## Report — 2026-10-14T02:34:12Z (halted â€” implementation verification failed)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `ddd188f`).
+**Pipeline status:** Halted at Story 15.1 / Phase 5; needs human: implementation verification failed. Epic incomplete and merge gates open.
+**Continues:** Continues the prior Epic 15 report sections; this section records the corrected 15.1 build and terminal verification blocker.
+
+**Summary:** 15.1 code is preserved as an explicitly incomplete checkpoint. Unit2539 passed/1 skipped; integration1736 passed/1 skipped. Scheduling browser7 passed/1 failed/10 not run; actual attempts14 passed/2 failed. AC2 native response body failed twice. Compatible Chromium149 Start failed with current assembly-resolution evidence; no supported correction established.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 109h 36m (≈7h 07m AI-run, ≈102h 28m human/idle wait); resumed 6×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** Not reached. 15.1 not landed; 15.2â€“15.6 held. Six independent broad review layers and required browser/general/mail/dashboard/visual/physical-recovery CI checks remain open. Broad rounds0/3.
+
+**TEA:** Prior test design and ATDD retained. Post-dev automation, story trace and epic gate/NFR/test review not run.
+
+**Retrospective:** Epic14 integrated closeout verified; October8 accepted-with-open-items retrospective governs. October7 rejection historical. Epic15 retrospective not run.
+
+**Overrides:** Isolated origin/main worktree; specifications validated before build; owner removes Lovable prerequisite and accepts recommended Team-by-work-role design (no verified legacy-parity claim); ContractD retained; SolLow ordinary/explicit SolHigh sensitive; coordinator15.1-only ownership; commit/push blocked checkpoint and updated documentation per owner instruction; no merge/deploy.
+
+**Open questions:**
+1. Restore a supported browser/runtime path that can validate the original native response bodies; the cause remains unexplained.
+2. Current Chromium149 SideBySide assembly-resolution failure remains unresolved under inspect_only; no native numeric14001 is exposed.
+3. Historical wrong-target543 fixture-write incident is documented; no unauthorized cleanup or effects/content claim.
+
+**Deferred work:**
+1. Approved R012 representative scheduling workload/thresholds and manual accessibility/daylight/exploration remain open before certification; no scheduling-performance PASS.
+2. No story-frontmatter deferrals; unfinished required gates remain pending.
+
+**⚠️ Needs human:**
+1. implementation verification failed: scheduling18 AC2 NATIVE_CDP_BODY_NO_RESOURCE in both attempts; ten later cases did not run.
+2. Chromium149 qualification START_NOT_CREATED; exact-path/time SxS event33record9344 reports unresolved149 assembly. No supported repair/retry/package configuration established.
+3. Blocked closeout: _bmad-output/implementation-artifacts/story-15-1-blocked-verification-2026-10-14.md. Local ignored receipts preserved; Stops accepted, no confirmed-shutdown claim.
+
+**Next:** Resolve the supported native-response/runtime verification blocker; author sets blocked spec to in-progress, then resume /auto-bmad epic --epic 15. Human review: /bmad-checkpoint-preview codex/epic-15-scheduling-time-calendar. Project context: /bmad-project-context refresh recommended after epic completion.

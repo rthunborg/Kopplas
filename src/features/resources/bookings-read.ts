@@ -4,6 +4,13 @@ import { resolveCapability } from "@/server/authz/permission-matrix";
 import { createHash } from "node:crypto";
 import { formatUtcInstant, parseUtcInstant } from "@/features/scheduling/time-zone";
 import type { BookingEditorOptions, BookingHostReadResult, BookingSummary } from "./booking-action-state";
+import type { SchedulingReadInput, SchedulingReadResult } from "../scheduling/view-types";
+
+/** Actual scheduling toolbar requests retain cookie-derived tenant authority. */
+export async function readSchedulingAction(input: SchedulingReadInput): Promise<SchedulingReadResult> {
+  "use server";
+  return (await import("@/server/read-models/scheduling")).readScheduling(input);
+}
 
 const ERROR = "Bokningsuppgifterna kunde inte läsas. Försök igen om en stund.";
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
@@ -113,9 +120,9 @@ export async function readBookingEditorDefault(bookingId: string): Promise<Booki
 }
 
 /** Manager-only, current-tenant options omit price, CRM identifiers and contact details. */
-export async function readBookingEditorOptions(): Promise<BookingEditorOptions> {
+export async function readBookingEditorOptions(options: { readonly client?: Client } = {}): Promise<BookingEditorOptions> {
   try {
-    const client = await createSupabaseServerClient(); const context = await resolveTenantContext({ client });
+    const client = options.client ?? await createSupabaseServerClient(); const context = await resolveTenantContext({ client });
     if (!context.ok) return emptyOptions(ERROR);
     if (!resolveCapability({ roles: context.data.roles ?? [context.data.role], module: "resources", capability: "Bookings.Manage" }).granted) return emptyOptions();
     const tenantId = context.data.tenantId;

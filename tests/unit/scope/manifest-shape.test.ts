@@ -31,6 +31,7 @@ const PINNED_NAV_ROUTES = [
   "/files",
   "/settings",
   "/admin/users",
+  "/scheduling",
 ];
 const PINNED_OWNER_TYPES = [
   "customer",
@@ -147,7 +148,7 @@ test("10.1-UNIT-SHAPE-02 (AC2): every `active` module has an epic reference + an
   for (const m of active) {
     assert.ok(m.epic && m.epic.length > 0, `active module ${m.id} must carry an epic reference`);
     assert.ok(m.activatedAt && m.activatedAt.length > 0, `active module ${m.id} must carry an activatedAt date`);
-    assert.ok(m.wave === "A" || m.id === "rbac" || m.id === "provisioning" || m.id === "notifications" || m.id === "resources" || m.id === "documents", `only approved Phase B activations may be active (${m.id})`);
+    assert.ok(m.wave === "A" || m.id === "rbac" || m.id === "provisioning" || m.id === "notifications" || m.id === "resources" || m.id === "documents" || m.id === "scheduling", `only approved Phase B activations may be active (${m.id})`);
   }
 });
 
@@ -186,7 +187,7 @@ test("10.1-UNIT-SHAPE-06 (AC2): every Phase B module is `pending` (no live Phase
   const phaseB = manifest.modules.filter((m) => m.wave !== "A");
   assert.ok(phaseB.length > 0, "expected Phase B pending modules to be modeled");
   for (const m of phaseB) {
-    if (m.id === "rbac" || m.id === "provisioning" || m.id === "notifications" || m.id === "resources" || m.id === "documents") continue;
+    if (m.id === "rbac" || m.id === "provisioning" || m.id === "notifications" || m.id === "resources" || m.id === "documents" || m.id === "scheduling") continue;
     assert.equal(m.status, "pending", `Phase B module ${m.id} must be pending in 10.1`);
     assert.equal(m.navItems.length, 0, `pending module ${m.id} must wire no nav route`);
     assert.equal(m.tenantTables.length, 0, `pending module ${m.id} must enroll no tenant table`);

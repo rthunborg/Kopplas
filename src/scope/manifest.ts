@@ -263,11 +263,11 @@ export const SCOPE_MANIFEST: ScopeManifest = {
       id: "scheduling",
       label: "Scheduling, Time Reporting & Calendar Feeds",
       wave: "B1b",
-      status: "pending",
+      status: "active",
       epic: "E15",
-      // Future public surface `calendar_feed` (ADR-B004) is declared only on activation (a pending
-      // module carries no live/declared public surface — coherence rule 2/3). Empty here.
-      navItems: [],
+      activatedAt: "2026-10-13",
+      // Later scheduling stories enroll their own surfaces when implemented.
+      navItems: [{ route: "/scheduling", group: "primary", requiredCapability: "Bookings.View" }],
       tenantTables: [],
       widgets: [],
       notificationCategories: [],

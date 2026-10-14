@@ -8,7 +8,7 @@
  * The current manifest-governed pins:
  *   - the `quotes` module declares only `quote-pipeline` and its SINGLE `/quotes` nav item;
  *   - the complete active widget inventory contains only the approved Story 19.1 widget;
- *   - the derived active nav route set stays at the existing Phase-A routes;
+ *   - the derived active nav route set admits only approved Phase A/RBAC/scheduling entries;
  *   - the governed `TENANT_TABLES` set derives from active manifest modules;
  *   - the read-model source path imports NO email/notification send path (Epic 13 owns reminders).
  *
@@ -25,7 +25,7 @@ import path from "node:path";
 import { SCOPE_MANIFEST } from "@/scope/manifest";
 import { TENANT_TABLES } from "../../rls/tenant-table-inventory";
 
-const PHASE_A_NAV_ROUTES = [
+const APPROVED_ACTIVE_NAV_ROUTES = [
   "/admin/users",
   "/dashboard",
   "/customers",
@@ -34,6 +34,7 @@ const PHASE_A_NAV_ROUTES = [
   "/jobs",
   "/files",
   "/settings",
+  "/scheduling",
 ].sort();
 
 const READ_MODELS_DIR = path.join(process.cwd(), "src", "server", "read-models");
@@ -52,12 +53,12 @@ describe("10.4-INT-03: non-scope guard — no new analytics surface / no email-s
     expect(quotes?.navItems.map((n) => n.route)).toEqual(["/quotes"]);
   });
 
-  it("the derived active nav route set stays the 7 Phase-A routes (no new analytics/reports page)", () => {
+  it("the derived active nav route set admits the approved scheduling activation (no analytics/reports page)", () => {
     const routes = SCOPE_MANIFEST.modules
       .filter((m) => m.status === "active")
       .flatMap((m) => m.navItems.map((n) => n.route))
       .sort();
-    expect([...new Set(routes)]).toEqual(PHASE_A_NAV_ROUTES);
+    expect([...new Set(routes)]).toEqual(APPROVED_ACTIVE_NAV_ROUTES);
   });
 
   it("the active widget inventory contains only the approved Story 19.1 quote-pipeline widget", () => {

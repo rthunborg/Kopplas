@@ -36,6 +36,7 @@ const PINNED_NAV_ROUTES = [
   "/files",
   "/settings",
   "/admin/users",
+  "/scheduling",
 ];
 const PINNED_TENANT_TABLES = [
   "tenants",

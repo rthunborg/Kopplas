@@ -22,3 +22,9 @@ test("[P0] 11.2-UNIT-002 direct route authority denies absent routes and permits
   assert.equal(canAccessPhaseARoute(["saljare", "projektledare"], "/jobs/abc"), true);
   assert.equal(canAccessPhaseARoute(["unknown" as never], "/dashboard"), false);
 });
+
+test("15.1-AC2 scheduling route uses exact existing booking view role unions", () => {
+  for (const role of ["tenant_admin", "projektledare", "montor"] as const) assert.equal(canAccessPhaseARoute([role], "/scheduling"), true);
+  for (const role of ["saljare", "ekonomi"] as const) assert.equal(canAccessPhaseARoute([role], "/scheduling"), false);
+  assert.equal(canAccessPhaseARoute(["saljare", "montor"], "/scheduling"), true);
+});

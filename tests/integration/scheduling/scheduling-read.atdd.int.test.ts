@@ -1,413 +1,186 @@
-import { randomUUID } from "node:crypto";
-import { describe, expect, test } from "vitest";
-import type { TenantRole } from "@/server/authz/roles";
+import { createHash, randomUUID } from "node:crypto";
+import { beforeAll, describe, expect, test } from "vitest";
+import { readScheduling, readBookingReassignmentFlags } from "@/server/read-models/scheduling";
+import { EMPTY_SCHEDULING_FILTERS } from "@/features/scheduling/view-model";
+import type { SchedulingReadInput } from "@/features/scheduling/view-types";
+import { seedReadFixtures, withBookingFixture, bookingSnapshot } from "../../support/bookings-atdd";
+import { adminQuery } from "../../factories/admin-sql";
+import { makeAuthedServerClient } from "../../factories/tenants";
+import { isLocalStackReachable } from "../../support/test-env";
+import { skipUnlessStack } from "../../support/stack-gate";
+const input = (view: SchedulingReadInput["view"] = "schema"): SchedulingReadInput => ({view,mode:"week",date:"2026-10-12",filters:EMPTY_SCHEDULING_FILTERS});
+let stackUp=false;
+beforeAll(async()=>{stackUp=await isLocalStackReachable();});
 
-/**
- * Story 15.1 AC2 + AC1/3 completeness, ATDD RED. All bodies intentionally skipped.
- * Provider: planned src/server/read-models/scheduling.ts; no HTTP endpoint is specified.
- * These interfaces are TEST-OWNED observations, NOT proposed production exports or URLs.
- * Activation: implement the adapter against the actual reader + existing local DB/auth
- * factories, remove skip for the current task, observe RED, then implement behavior.
- * Never implement read() by returning seed rows or by computing the expectations here.
- * Preserve the raw client-bound payload in raw; normalization must not hide leaks.
- * @seontechnologies/playwright-utils deviation: this is the project's Vitest INT lane,
- * not the Playwright runner; direct server-reader/RLS verification has no HTTP contract.
- */
-type View = "schema" | "resources" | "team" | "capacity" | "personal";
-type Source = "bookings" | "conflicts" | "roster" | "shifts" | "exceptions" | "calendar";
-type Actor = "manager" | "own" | "peer" | "denied" | "foreign" | "anonymous";
-type ReadInput = {
-  readonly view: View;
-  readonly startsAt: string;
-  readonly endsAt: string;
-  readonly filters?: {
-    readonly personId?: string;
-    readonly workRoleId?: string;
-    readonly jobId?: string;
-    readonly customerId?: string;
-  };
-  // Untrusted inputs forwarded only if an actual route/action accepts them;
-  // otherwise the adapter must exercise the corresponding forged request context.
-  readonly tamper?: { readonly tenantId?: string; readonly personId?: string; readonly actorId?: string };
-};
-type BookingObservation = {
-  readonly id: string;
-  readonly assigneeIds: readonly string[];
-  readonly assigneeLabels: readonly string[];
-};
-type ReadObservation = {
-  readonly outcome: "ready" | "denied" | "retryable-error";
-  readonly canManage: boolean;
-  readonly views: readonly View[];
-  readonly bookings: readonly BookingObservation[];
-  readonly openConflictCount: number | null;
-  readonly errorMessage: string | null;
-  readonly raw: unknown;
-  // Paths copied verbatim from the real descriptor, not invented by normalization.
-  readonly withheld: readonly string[];
-};
-type ReadTrace = {
-  readonly source: Source | "identity-picker" | "profiles" | "hours" | "calendar-table";
-  readonly tenantId: string;
-  readonly from: number;
-  readonly to: number;
-  readonly orderBy: string;
-  readonly returnedIds: readonly string[];
-  readonly failed: boolean;
-};
-type SeedBooking = {
-  readonly id: string;
-  readonly tenantId: string;
-  readonly startsAt: string;
-  readonly endsAt: string;
-  readonly assigneeIds: readonly string[];
-  readonly status: "planned";
-  readonly jobId: string;
-  readonly customerId: string;
-  readonly workRoleId: string;
-  readonly description: string;
-};
-type Scenario = {
-  readonly tenantId: string;
-  readonly foreignTenantId: string;
-  readonly actorId: string;
-  readonly ownPersonId: string;
-  readonly peerPersonId: string;
-  readonly foreignPersonId: string;
-  readonly jobId: string;
-  readonly customerId: string;
-  readonly workRoleId: string;
-  readonly foreignJobId: string;
-  readonly foreignCustomerId: string;
-  readonly foreignWorkRoleId: string;
-  readonly own: SeedBooking;
-  readonly peer: SeedBooking;
-  readonly shared: SeedBooking;
-  readonly foreign: SeedBooking;
-  readonly privateMarkers: readonly string[];
-};
-type Options = {
-  readonly managerRoles?: readonly TenantRole[];
-  readonly ownRoles?: readonly TenantRole[];
-  readonly deniedRoles?: readonly TenantRole[];
-  readonly paging?: { readonly source: Source; readonly count: number };
-};
-type GestureProposal = {
-  readonly kind: "create" | "move" | "resize";
-  readonly bookingId?: string;
-  readonly startsAt: string;
-  readonly endsAt: string;
-  readonly assigneeIds: readonly string[];
-};
-type ReadHarness = {
-  readonly scenario: Scenario;
-  read(actor: Actor, input: ReadInput): Promise<ReadObservation>;
-  // Snapshot bookings/assignees/conflicts, command outcomes and audit rows in both
-  // tenants. Fixture-admin helpers may inspect/seed, never substitute for reader JWT.
-  snapshotPersistence(): Promise<unknown>;
-  trace(): readonly ReadTrace[];
-  clearTrace(): void;
-  setRoles(actor: Actor, roles: readonly TenantRole[]): Promise<void>;
-  deactivateMembership(actor: Actor): Promise<void>;
-  // Retains the previously issued auth session so revocation tests exercise live checks.
-  // Expected IDs come from seed plans independent of the reader, including page-edge sentinels.
-  expectedSourceIds(source: Source): readonly string[];
-  expectedOwnOpenConflictCount(): number;
-  failSourcePage(source: Source, offset: number, privateMessage: string): void;
-  clearSourceFailure(): void;
-  // Executes the actual existing checked save/action boundary with no preview/review
-  // authority; NEVER a fake "calendar save" endpoint and never a guessed receipt field.
-  tryUnreviewedSave(actor: Actor, proposal: GestureProposal): Promise<{ readonly saved: boolean }>;
-  dispose(): Promise<void>;
-};
-
-const PERIOD = { startsAt: "2026-10-11T22:00:00.000000Z", endsAt: "2026-10-18T22:00:00.000000Z" };
-const VIEWS: readonly View[] = ["schema", "resources", "team", "capacity", "personal"];
-
-/** Isolated fixture intent. UUIDs avoid parallel collisions; bounds and labels are fixed goldens. */
-function scenarioFactory(): Scenario {
-  const tenantId = randomUUID(), foreignTenantId = randomUUID();
-  const actorId = randomUUID(), ownPersonId = randomUUID(), peerPersonId = randomUUID(), foreignPersonId = randomUUID();
-  const jobId = randomUUID(), customerId = randomUUID(), workRoleId = randomUUID();
-  const foreignJobId = randomUUID(), foreignCustomerId = randomUUID(), foreignWorkRoleId = randomUUID();
-  const booking = (overrides: Partial<SeedBooking>): SeedBooking => ({
-    id: randomUUID(), tenantId, startsAt: "2026-10-12T06:30:00.000000Z", endsAt: "2026-10-12T08:00:00.000000Z",
-    assigneeIds: [ownPersonId], status: "planned", jobId, customerId, workRoleId,
-    description: "Elcentral och felsökning", ...overrides,
-  });
-  return {
-    tenantId, foreignTenantId, actorId, ownPersonId, peerPersonId, foreignPersonId,
-    jobId, customerId, workRoleId, foreignJobId, foreignCustomerId, foreignWorkRoleId,
-    own: booking({}), peer: booking({ assigneeIds: [peerPersonId] }),
-    shared: booking({ assigneeIds: [ownPersonId, peerPersonId] }),
-    foreign: booking({ tenantId: foreignTenantId, assigneeIds: [foreignPersonId], jobId: foreignJobId,
-      customerId: foreignCustomerId, workRoleId: foreignWorkRoleId, description: "OTHER_TENANT_BOOKING_SECRET" }),
-    // Wire these to ACTUAL existing private columns/identity labels in the DB fixture.
-    // Do not seed made-up columns; not every marker belongs to the same relation.
-    privateMarkers: ["PEER_IDENTITY_SECRET", "FOREIGN_IDENTITY_SECRET", "PRIVATE_CONTACT_SECRET", "PRIVATE_MONEY_SECRET"],
-  };
-}
-
-async function createHarness(_scenario: Scenario, _options: Options): Promise<ReadHarness> {
-  throw new Error("ATDD_UNBOUND: wire the actual scheduling reader, local role-aware DB fixtures, raw payload capture and transport trace; no production read API exists yet");
-}
-
-async function withHarness(options: Options, run: (h: ReadHarness) => Promise<void>): Promise<void> {
-  const h = await createHarness(scenarioFactory(), options);
-  try { await run(h); } finally { await h.dispose(); }
-}
-function request(view: View = "schema", extras: Partial<ReadInput> = {}): ReadInput { return { view, ...PERIOD, ...extras }; }
-function sortedIds(rows: readonly BookingObservation[]): string[] { return rows.map(row => row.id).sort(); }
-
-describe("15.1 scheduling authenticated read boundary (ATDD RED, unbound)", () => {
-  for (const role of ["tenant_admin", "projektledare"] as const) {
-    test.skip(`[P0][15.1-INT-001][AC2] ${role} receives all five views and exact current-tenant bookings`, async () => {
-      // Given real same/other tenant bookings and a manager whose self profile is the own fixture.
-      await withHarness({ managerRoles: [role] }, async h => {
-        for (const view of VIEWS) {
-          // When the actual server reader receives the same period in each view.
-          const result = await h.read("manager", request(view));
-          const expected = view === "personal" ? [h.scenario.own.id, h.scenario.shared.id] :
-            [h.scenario.own.id, h.scenario.peer.id, h.scenario.shared.id];
-          // Then personal intersects authenticated self; all planner projections retain the shared set.
-          expect({ outcome: result.outcome, canManage: result.canManage, views: result.views, ids: sortedIds(result.bookings) })
-            .toEqual({ outcome: "ready", canManage: true, views: VIEWS, ids: expected.sort() });
-          expect(JSON.stringify(result.raw)).not.toContain(h.scenario.foreign.id);
-        }
-      });
-    });
-  }
-
-  test.skip("[P0][15.1-INT-001][AC2] Montör receives own/shared booking IDs and only its own RLS-visible association", async () => {
-    await withHarness({ ownRoles: ["montor"] }, async h => {
-      const result = await h.read("own", request("personal"));
-      expect({ outcome: result.outcome, canManage: result.canManage, views: result.views, ids: sortedIds(result.bookings) })
-        .toEqual({ outcome: "ready", canManage: false, views: ["personal"], ids: [h.scenario.own.id, h.scenario.shared.id].sort() });
-      expect(result.bookings.map(row => ({ ids: row.assigneeIds, labels: row.assigneeLabels })))
-        .toEqual([{ ids: [h.scenario.ownPersonId], labels: ["Du"] }, { ids: [h.scenario.ownPersonId], labels: ["Du"] }]);
-      expect(JSON.stringify(result.raw)).not.toContain(h.scenario.peerPersonId);
-      // Distinct peer-only/foreign logical conflicts must not inflate own-visible count.
-      expect(result.openConflictCount).toBe(h.expectedOwnOpenConflictCount());
+describe("15.1 actual authenticated scheduling read/RLS",()=>{
+  test("manager reads complete same-tenant bookings and own agenda derives self without peer membership disclosure",async ctx=>{
+    if(skipUnlessStack(ctx,stackUp))return;
+    await withBookingFixture(async fx=>{
+      const seed=await seedReadFixtures(fx),before=await bookingSnapshot(fx.tenantIds);
+      const result=await readScheduling(input(),{client:fx.plannerClient as never});
+      expect(result.data.error).toBeNull();expect(result.data.canManage).toBe(true);
+      expect(result.data.bookings.map(b=>b.id).sort()).toEqual([seed.own,seed.shared,seed.coworker].sort());
+      expect(result.data.ownSelfPersonIds).toEqual([fx.coworkerProfile.id]);
+      expect(result.data.bookings.every(b=>typeof b.needsReassignment==="boolean")).toBe(true);
+      expect(JSON.stringify(result)).not.toContain(seed.foreign);
+      expect(JSON.stringify(result)).not.toContain("membership_id");
+      expect(JSON.stringify(result)).not.toContain("employment_percentage");
+      expect(await bookingSnapshot(fx.tenantIds)).toEqual(before);
     });
   });
-
-  test.skip("[P0][15.1-INT-001][AC2] own-only read neither calls identity picker nor reads profile/hours/calendar tables", async () => {
-    await withHarness({ ownRoles: ["montor"] }, async h => {
-      h.clearTrace();
-      const result = await h.read("own", request("personal"));
-      expect(result.outcome).toBe("ready");
-      expect(h.trace().filter(call => ["identity-picker", "profiles", "hours", "calendar-table", "roster", "shifts", "exceptions", "calendar"].includes(call.source)))
-        .toEqual([]);
+  test("inactive historical work role retains its label without widening the active editor picker",async ctx=>{
+    if(skipUnlessStack(ctx,stackUp))return;
+    await withBookingFixture(async fx=>{
+      const seed=await seedReadFixtures(fx);
+      const [role]=await adminQuery<{id:string}>("insert into public.work_roles(tenant_id,display_name,cost_rate_ore,sell_rate_ore,is_active) values($1,'Historisk elroll',10000,20000,false) returning id",[fx.base.tenantA.id]);
+      await adminQuery("update public.bookings set work_role_id=$2 where id=$1",[seed.own,role.id]);
+      const result=await readScheduling(input(),{client:fx.plannerClient as never});expect(result.data.error).toBeNull();
+      expect(result.data.workRoles).toContainEqual({id:role.id,label:"Historisk elroll"});expect(result.data.options?.workRoles.some(r=>r.id===role.id)).toBe(false);
+      expect(result.data.bookings.find(b=>b.id===seed.own)?.workRoleId).toBe(role.id);
     });
   });
-
-  test.skip("[P0][15.1-INT-001][AC2] own-only raw descriptor omits and lists restricted fields rather than emitting null/zero values", async () => {
-    await withHarness({ ownRoles: ["montor"] }, async h => {
-      const result = await h.read("own", request("personal"));
-      // Assert the RAW production descriptor; adapters must not synthesize withheld paths.
-      expect(result.raw).toMatchObject({ data: expect.any(Object), entitlements: { withheld: result.withheld } });
-      expect(result.withheld.length).toBeGreaterThan(0);
-      const descriptor = result.raw as { data: Record<string, unknown> };
-      for (const path of result.withheld) {
-        const segments = path.replace(/^data\./, "").split(".");
-        let parent: unknown = descriptor.data;
-        for (const segment of segments.slice(0, -1)) {
-          parent = parent !== null && typeof parent === "object" ? (parent as Record<string, unknown>)[segment] : undefined;
-        }
-        // Missing ancestors also mean the leaf is absent; a present null leaf fails.
-        expect(parent !== null && typeof parent === "object" && Object.hasOwn(parent, segments.at(-1)!)).toBe(false);
+  test("unentitled and inactive actors deny; supplied actor/tenant keys do not override current context",async ctx=>{
+    if(skipUnlessStack(ctx,stackUp))return;
+    await withBookingFixture(async fx=>{
+      const seed=await seedReadFixtures(fx);
+      for(const user of [fx.users.saljare,fx.users.ekonomi,fx.invitedUser,fx.disabledUser,fx.base.orphanUser]){
+        const client=await makeAuthedServerClient(user);const result=await readScheduling(input(),{client:client as never});
+        expect(result.data.canView).toBe(false);expect(result.data.bookings).toEqual([]);expect(result.data.error).toBe("Du har inte behörighet att läsa planeringen.");
       }
-      for (const marker of h.scenario.privateMarkers) expect(JSON.stringify(result.raw)).not.toContain(marker);
-      expect(JSON.stringify(result.raw)).not.toMatch(/"(?:sales_price_ore|cost_price_ore|contribution_margin_ore|hourly_rate|employmentPercentage|employment_percentage)"\s*:/);
+      const forged={...input(),tenantId:fx.base.tenantB.id,actorId:fx.base.adminB.id};
+      const result=await readScheduling(forged,{client:fx.plannerClient as never});expect(result.data.error).toBeNull();
+      expect(result.data.tenantId).toBe(fx.base.tenantA.id);expect(result.data.actorId).toBe(fx.users.projektledare.id);expect(result.data.bookings.some(b=>b.id===seed.foreign)).toBe(false);
     });
   });
-
-  for (const role of ["saljare", "ekonomi"] as const) {
-    test.skip(`[P0][15.1-INT-001][AC2] ${role} is denied despite CRM/economy privileges and direct view navigation`, async () => {
-      await withHarness({ deniedRoles: [role] }, async h => {
-        for (const view of VIEWS) {
-          h.clearTrace();
-          const result = await h.read("denied", request(view));
-          expect({ outcome: result.outcome, canManage: result.canManage, bookings: result.bookings, views: result.views })
-            .toEqual({ outcome: "denied", canManage: false, bookings: [], views: [] });
-          expect(h.trace()).toEqual([]);
-          expect(result.errorMessage).toBeNull(); // Denial is not a transient read error.
-        }
-      });
-    });
-  }
-
-  test.skip("[P0][15.1-INT-001][AC2] unauthenticated direct read has no booking, identity or management authority", async () => {
-    await withHarness({}, async h => {
-      h.clearTrace();
-      const result = await h.read("anonymous", request());
-      expect({ outcome: result.outcome, canManage: result.canManage, bookings: result.bookings })
-        .toEqual({ outcome: "denied", canManage: false, bookings: [] });
-      expect(h.trace()).toEqual([]);
-    });
-  });
-
-  test.skip("[P0][15.1-INT-001][AC2] secondary Montör grant preserves own-only union access under Säljare", async () => {
-    await withHarness({ ownRoles: ["saljare", "montor"] }, async h => {
-      const result = await h.read("own", request("personal"));
-      expect({ outcome: result.outcome, canManage: result.canManage, views: result.views, ids: sortedIds(result.bookings) })
-        .toEqual({ outcome: "ready", canManage: false, views: ["personal"], ids: [h.scenario.own.id, h.scenario.shared.id].sort() });
-    });
-  });
-
-  test.skip("[P0][15.1-INT-001][AC2] secondary Projektledare grant preserves manager union access under Ekonomi", async () => {
-    await withHarness({ managerRoles: ["ekonomi", "projektledare"] }, async h => {
-      const result = await h.read("manager", request());
-      expect({ outcome: result.outcome, canManage: result.canManage, views: result.views, ids: sortedIds(result.bookings) })
-        .toEqual({ outcome: "ready", canManage: true, views: VIEWS, ids: [h.scenario.own.id, h.scenario.peer.id, h.scenario.shared.id].sort() });
-    });
-  });
-
-  test.skip("[P0][15.1-INT-001][AC2] role revocation on the same authenticated session removes stale manager and own grants", async () => {
-    await withHarness({ managerRoles: ["projektledare"], ownRoles: ["saljare", "montor"] }, async h => {
-      expect((await h.read("manager", request())).outcome).toBe("ready");
-      expect((await h.read("own", request("personal"))).outcome).toBe("ready");
-      await h.setRoles("manager", ["saljare"]);
-      await h.setRoles("own", ["saljare"]);
-      for (const actor of ["manager", "own"] as const) {
-        const result = await h.read(actor, request("personal"));
-        expect({ outcome: result.outcome, canManage: result.canManage, bookings: result.bookings })
-          .toEqual({ outcome: "denied", canManage: false, bookings: [] });
-      }
-    });
-  });
-
-  test.skip("[P0][15.1-INT-001][AC2] inactive current membership cannot reuse previously successful scheduling reads", async () => {
-    await withHarness({ managerRoles: ["tenant_admin"] }, async h => {
-      expect((await h.read("manager", request())).outcome).toBe("ready");
-      await h.deactivateMembership("manager");
-      const result = await h.read("manager", request());
-      expect({ outcome: result.outcome, canManage: result.canManage, bookings: result.bookings })
-        .toEqual({ outcome: "denied", canManage: false, bookings: [] });
-    });
-  });
-
-  test.skip("[P0][15.1-INT-001][AC2] forged tenant/actor cannot select another tenant or impersonate a manager", async () => {
-    await withHarness({ managerRoles: ["tenant_admin"], ownRoles: ["montor"] }, async h => {
-      for (const actor of ["manager", "own"] as const) {
-        const result = await h.read(actor, request("personal", { tamper: { tenantId: h.scenario.foreignTenantId, actorId: h.scenario.actorId } }));
-        expect(JSON.stringify(result.raw)).not.toContain(h.scenario.foreign.id);
-        expect(JSON.stringify(result.raw)).not.toContain(h.scenario.foreignPersonId);
-        expect(result.bookings.every(row => [h.scenario.own.id, h.scenario.shared.id].includes(row.id))).toBe(true);
-        if (actor === "own") expect(result.canManage).toBe(false);
-        expect(h.trace().every(call => call.tenantId === h.scenario.tenantId)).toBe(true);
-      }
-    });
-  });
-
-  test.skip("[P0][15.1-INT-001][AC2] own-only peer person/filter and planner-view tampering cannot widen the own slice", async () => {
-    await withHarness({ ownRoles: ["montor"] }, async h => {
-      for (const view of VIEWS) {
-        const result = await h.read("own", request(view, { filters: { personId: h.scenario.peerPersonId }, tamper: { personId: h.scenario.peerPersonId } }));
-        expect(result.bookings.every(row => [h.scenario.own.id, h.scenario.shared.id].includes(row.id))).toBe(true);
-        expect(result.views.every(allowed => allowed === "personal")).toBe(true);
-        expect(result.canManage).toBe(false);
-        expect(JSON.stringify(result.raw)).not.toContain(h.scenario.peerPersonId);
-      }
-    });
-  });
-
-  test.skip("[P0][15.1-INT-001][AC2] foreign person/job/customer/work-role filters never disclose foreign records or labels", async () => {
-    await withHarness({ managerRoles: ["tenant_admin"] }, async h => {
-      const filters: NonNullable<ReadInput["filters"]>[] = [
-        { personId: h.scenario.foreignPersonId }, { jobId: h.scenario.foreignJobId },
-        { customerId: h.scenario.foreignCustomerId }, { workRoleId: h.scenario.foreignWorkRoleId },
-      ];
-      for (const filter of filters) {
-        const result = await h.read("manager", request("schema", { filters: filter }));
-        expect(JSON.stringify(result.raw)).not.toContain(h.scenario.foreign.id);
-        expect(JSON.stringify(result.raw)).not.toContain("OTHER_TENANT_BOOKING_SECRET");
-        expect(JSON.stringify(result.raw)).not.toContain("FOREIGN_IDENTITY_SECRET");
-        expect(h.trace().every(call => call.tenantId === h.scenario.tenantId)).toBe(true);
-      }
-    });
-  });
-
-  test.skip("[P0][15.1-INT-001][AC2] all successful view reads leave booking/conflict/outcome/audit state unchanged", async () => {
-    await withHarness({ managerRoles: ["tenant_admin"], ownRoles: ["montor"] }, async h => {
-      const before = await h.snapshotPersistence();
-      for (const view of VIEWS) await h.read("manager", request(view));
-      await h.read("own", request("personal"));
-      expect(await h.snapshotPersistence()).toEqual(before);
-    });
-  });
-
-  test.skip("[P0][15.1-INT-001][AC2/5] calendar create/move/resize proposals supply no mutation authority or reviewed conflict acceptance", async () => {
-    await withHarness({ managerRoles: ["tenant_admin"], ownRoles: ["montor"] }, async h => {
-      const before = await h.snapshotPersistence();
-      // Positive-demand shared booking supplies actual overlapping/conflicting persisted facts.
-      const base = { startsAt: h.scenario.shared.startsAt, endsAt: h.scenario.shared.endsAt, assigneeIds: [h.scenario.ownPersonId] };
-      const proposals: GestureProposal[] = [
-        { kind: "create", ...base }, { kind: "move", bookingId: h.scenario.own.id, ...base },
-        { kind: "resize", bookingId: h.scenario.own.id, ...base, endsAt: "2026-10-12T09:30:00.000000Z" },
-      ];
-      for (const actor of ["manager", "own"] as const) {
-        await h.read(actor, request("personal"));
-        for (const proposal of proposals) expect(await h.tryUnreviewedSave(actor, proposal)).toEqual({ saved: false });
-      }
-      // The adapter must not generate a preview receipt/review decision on the caller's behalf.
-      expect(await h.snapshotPersistence()).toEqual(before);
+  test("own agenda returns own association only with omitted/listed planner fields and no lifecycle RPC",async ctx=>{
+    if(skipUnlessStack(ctx,stackUp))return;
+    await withBookingFixture(async fx=>{
+      const seed=await seedReadFixtures(fx);let lifecycleCalls=0;
+      const client=new Proxy(fx.montorClient,{get(target,key){if(key==="rpc")return (...args:Parameters<typeof target.rpc>)=>{if(args[0]==="booking_reassignment_flags")lifecycleCalls++;return target.rpc(...args);};const value=Reflect.get(target,key,target);return typeof value==="function"?value.bind(target):value;}});
+      const result=await readScheduling(input("personal"),{client:client as never});
+      expect(result.data.error).toBeNull();expect(result.data.bookings.map(b=>b.id).sort()).toEqual([seed.own,seed.shared].sort());
+      expect(result.data.bookings.every(b=>JSON.stringify(b.assigneeIds)===JSON.stringify([fx.ownProfile.id]))).toBe(true);
+      for(const field of ["options","roster","workRoles","capacity","openConflictCount"])expect(result.data).not.toHaveProperty(field);
+      expect(result.data.bookings.every(b=>!("needsReassignment" in b))).toBe(true);expect(lifecycleCalls).toBe(0);
+      expect(result.entitlements.withheld).toContain("bookings.needsReassignment");
+      expect((await readScheduling(input("resources"),{client:client as never})).data.error).toContain("behörighet");
+      const forged={...input("personal"),filters:{...EMPTY_SCHEDULING_FILTERS,personIds:[fx.coworkerProfile.id]}};
+      expect((await readScheduling(forged,{client:client as never})).data.error).toContain("behörighet");
     });
   });
 });
 
-describe("15.1 complete paged read and honest failures (ATDD RED, unbound)", () => {
-  for (const count of [501, 1001]) {
-    test.skip(`[P0][15.1-INT-001][AC1/2] ${count} in-period bookings retain exact IDs beyond every 500-row boundary`, async () => {
-      await withHarness({ managerRoles: ["tenant_admin"], paging: { source: "bookings", count } }, async h => {
-        const expected = [...h.expectedSourceIds("bookings")].sort();
-        const result = await h.read("manager", request());
-        expect(result.outcome).toBe("ready");
-        expect(sortedIds(result.bookings)).toEqual(expected);
-        expect(result.bookings).toHaveLength(count);
-        const pages = h.trace().filter(call => call.source === "bookings");
-        expect(pages.map(page => ({ from: page.from, to: page.to, orderBy: page.orderBy })))
-          .toEqual(Array.from({ length: Math.ceil(count / 500) }, (_, i) => ({ from: i * 500, to: i * 500 + 499, orderBy: "id:asc" })));
-        expect(pages.flatMap(page => page.returnedIds).sort()).toEqual(expected);
-      });
-    });
-  }
+type Row=Record<string,unknown>;
+/** Transport-only harness, deliberately distinct from DB/RLS evidence above. */
+function transport(count=1001,own=false){
+  const tenantId=randomUUID(),actorId=randomUUID(),membershipId=randomUUID(),personId=randomUUID();
+  const ids=Array.from({length:count},()=>randomUUID()).sort();
+  const trace:{table:string;columns:string;from:number;to:number;equalities:{column:string;value:unknown}[];idFilters:{column:string;values:string[]}[];orders:{column:string;ascending:boolean}[]}[]=[],batches:string[][]=[];
+  const tableRows:Record<string,Row[]>={
+    tenant_memberships:[{id:membershipId,user_id:actorId,tenant_id:tenantId,role:own?"montor":"projektledare",status:"active",created_at:"2026-01-01",tenants:{name:"Transport tenant"}}],membership_roles:[],
+    bookings:ids.map(id=>({id,tenant_id:tenantId,starts_at:"2026-10-12T06:00:00Z",ends_at:"2026-10-12T07:00:00Z",all_day:false,status:"planned",description:"Transport booking",work_role_id:null,job_id:null,customer_id:null,facility_id:null,contact_id:null})),
+    booking_assignees:ids.map(id=>({id:randomUUID(),tenant_id:tenantId,booking_id:id,person_profile_id:personId})),booking_conflicts:[],
+    person_profiles:[{id:personId,tenant_id:tenantId,membership_id:membershipId,employment_percentage:null,default_work_role_id:null}],
+    person_work_hours:[{id:randomUUID(),tenant_id:tenantId,person_profile_id:null,entry_kind:"weekly_shift",weekday:1,starts_at:"07:00",ends_at:"16:00",local_date:null,exception_kind:null}],
+    tenant_calendar_days:[],work_roles:[],jobs:[],customers:[],facilities:[],contacts:[],
+  };
+  let failTable:string|undefined,failOffset=-1,failColumn:string|undefined,failBatch=-1,malform:(value:Row[])=>unknown=value=>value;
+  const client={auth:{getClaims:async()=>({data:{claims:{sub:actorId}},error:null})},
+    from(table:string){
+      const predicates:((row:Row)=>boolean)[]=[],equalities:{column:string;value:unknown}[]=[],idFilters:{column:string;values:string[]}[]=[],orders:{column:string;ascending:boolean}[]=[];
+      let from=0,to=499,columns="";
+      const query={
+        select(value:string){columns=value;return query;},
+        eq(column:string,value:unknown){equalities.push({column,value});predicates.push(row=>row[column]===value);return query;},
+        is(column:string,value:unknown){predicates.push(row=>row[column]===value);return query;},
+        lt(column:string,value:string){predicates.push(row=>String(row[column])<value);return query;},
+        gt(column:string,value:string){predicates.push(row=>String(row[column])>value);return query;},
+        in(column:string,values:string[]){expect(values.length).toBeLessThanOrEqual(50);idFilters.push({column,values:[...values]});predicates.push(row=>values.includes(String(row[column])));return query;},
+        or(){throw new Error("Unexpected unbounded OR transport");},
+        order(column:string,options?:{ascending?:boolean}){orders.push({column,ascending:options?.ascending!==false});return query;},
+        range(a:number,b:number){from=a;to=b;return query;},limit(value:number){to=value-1;return query;},
+        then(resolve:(value:unknown)=>unknown){
+          trace.push({table,columns,from,to,equalities,idFilters,orders});
+          const source=(tableRows[table]??[]).filter(row=>predicates.every(predicate=>predicate(row)));
+          for(const order of [...orders].reverse())source.sort((a,b)=>String(a[order.column]).localeCompare(String(b[order.column]))*(order.ascending?1:-1));
+          const failed=table===failTable&&from===failOffset&&(!failColumn||idFilters.some(filter=>filter.column===failColumn));
+          return Promise.resolve({data:failed?null:source.slice(from,to+1),error:failed?{message:"PRIVATE_TRANSPORT_ERROR"}:null}).then(resolve);
+        },
+      };return query;
+    },
+    rpc:async(name:string,args:Record<string,unknown>)=>{if(name==="booking_editor_people")return{data:[{id:personId,default_work_role_id:null,label:"Transport person"}],error:null};expect(name).toBe("booking_reassignment_flags");const batch=args.p_booking_ids as string[];batches.push(batch);return{data:batches.length===failBatch?null:malform(batch.map((bookingId,index)=>({bookingId,needsReassignment:index%2===0}))),error:batches.length===failBatch?{code:"XX000",message:"PRIVATE_TRANSPORT_ERROR"}:null};},
+  };
+  return{client:client as never,ids,personId,tenantId,tableRows,trace,batches,failPage:(table:string,offset:number,column?:string)=>{failTable=table;failOffset=offset;failColumn=column;},failRpc:(batch:number)=>{failBatch=batch;},malformed:(f:typeof malform)=>{malform=f;}};
+}
+const CONFLICT_COLUMNS="id,booking_id,related_booking_id,affected_person_profile_id,conflict_type,starts_at,ends_at,natural_key,status";
+function conflict(h:ReturnType<typeof transport>,bookingId:string,relatedBookingId:string|null,key:string,patch:Row={}):Row{return{id:randomUUID(),tenant_id:h.tenantId,booking_id:bookingId,related_booking_id:relatedBookingId,affected_person_profile_id:h.personId,conflict_type:"double_booking",starts_at:"2026-10-10T06:00:00.000000Z",ends_at:"2026-10-10T07:00:00.000000Z",natural_key:key,status:"open",...patch};}
 
-  for (const source of ["conflicts", "roster", "shifts", "exceptions", "calendar"] as const) {
-    test.skip(`[P1][15.1-INT-001][AC1/2] ${source} facts use complete stable pages beyond 500 without a tenant-wide hidden fallback`, async () => {
-      // Calendar requires valid rows reachable by the actual query. If period predicates
-      // prevent >500 returned dates, exercise the actual shared paging helper through an
-      // instrumented transport instead; record that distinction, never widen public periods.
-      await withHarness({ managerRoles: ["tenant_admin"], paging: { source, count: 501 } }, async h => {
-        const result = await h.read("manager", request());
-        expect(result.outcome).toBe("ready");
-        const pages = h.trace().filter(call => call.source === source);
-        expect(pages.map(page => ({ from: page.from, to: page.to, orderBy: page.orderBy })))
-          .toEqual([{ from: 0, to: 499, orderBy: "id:asc" }, { from: 500, to: 999, orderBy: "id:asc" }]);
-        expect(pages.flatMap(page => page.returnedIds).sort()).toEqual([...h.expectedSourceIds(source)].sort());
-        expect(pages.every(page => page.tenantId === h.scenario.tenantId)).toBe(true);
-      });
-    });
-  }
-
-  for (const source of ["bookings", "conflicts", "roster", "shifts", "exceptions", "calendar"] as const) {
-    test.skip(`[P0][15.1-INT-001][AC1/3] failed final ${source} page is retryable, never partial/empty/conflict-free or stale-success`, async () => {
-      await withHarness({ managerRoles: ["tenant_admin"], paging: { source, count: 1001 } }, async h => {
-        // Given a prior successful read and a private error on the page at offset 1000.
-        expect((await h.read("manager", request())).outcome).toBe("ready");
-        h.clearTrace();
-        h.failSourcePage(source, 1000, "PRIVATE_DATABASE_FINAL_PAGE_SECRET");
-        // When the same toolbar state reads again, only the current attempt is authoritative.
-        const result = await h.read("manager", request());
-        // Then no partial rows, old list, denial, or zero-conflict assertion replaces failure.
-        expect({ outcome: result.outcome, bookings: result.bookings, openConflictCount: result.openConflictCount })
-          .toEqual({ outcome: "retryable-error", bookings: [], openConflictCount: null });
-        expect(result.errorMessage).toMatch(/Försök igen/);
-        expect(JSON.stringify(result.raw)).not.toContain("PRIVATE_DATABASE_FINAL_PAGE_SECRET");
-        expect(h.trace().some(page => page.source === source && page.from === 1000 && page.failed)).toBe(true);
-        h.clearSourceFailure();
-        expect((await h.read("manager", request())).outcome).toBe("ready");
-      });
-    });
-  }
+describe("15.1 production scheduling transport completeness (mock transport, no RLS credit)",()=>{
+  for(const count of [501,1001])test(`${count} bookings publish only after complete 500-row pages and max50 ordered flag batches`,async()=>{
+    const h=transport(count),result=await readScheduling(input(),{client:h.client});
+    expect(result.data.error).toBeNull();expect(result.data.bookings.map(b=>b.id).sort()).toEqual(h.ids);
+    expect(h.batches.flat()).toEqual(h.ids);expect(h.batches.every(batch=>batch.length<=50)).toBe(true);
+    expect(h.trace.filter(t=>t.table==="bookings").map(t=>[t.from,t.to])).toEqual(count===501?[[0,499],[500,999]]:[[0,499],[500,999],[1000,1499]]);
+    expect(result.data.bookings.every(b=>typeof b.needsReassignment==="boolean")).toBe(true);
+  });
+  test("conflict arms retain related-only/outside-period participants and dedupe symmetric cross-batch facts with max50 exact reads",async()=>{
+    const h=transport(51),outside=randomUUID(),first=h.ids[0]!,last=h.ids[50]!;
+    const participants=[first,last,outside].sort(),start="2026-10-10T06:00:00.000000Z",end="2026-10-10T07:00:00.000000Z";
+    const identity=JSON.stringify(["over_capacity",participants,[h.personId],start,end]);
+    const hash=(parts:unknown[])=>createHash("sha256").update(JSON.stringify(parts)).digest("hex");
+    const capacityKey=(bookingId:string)=>"v2:"+hash([identity,h.personId,bookingId]);
+    h.tableRows.booking_conflicts=[conflict(h,first,null,"primary"),conflict(h,outside,last,"related"),conflict(h,first,last,"symmetric"),conflict(h,last,first,"symmetric"),
+      conflict(h,first,last,capacityKey(first),{conflict_type:"over_capacity"}),conflict(h,last,first,capacityKey(last),{conflict_type:"over_capacity"}),
+      conflict(h,outside,first,"retained accepted participant",{conflict_type:"over_capacity",status:"accepted"})];
+    const result=await readScheduling(input(),{client:h.client});
+    expect(result.data.error).toBeNull();expect(result.data.openConflictCount).toBe(4);
+    expect(result.data.bookings.find(booking=>booking.id===first)?.openConflictCount).toBe(3);expect(result.data.bookings.find(booking=>booking.id===last)?.openConflictCount).toBe(3);
+    const reads=h.trace.filter(trace=>trace.table==="booking_conflicts");expect(reads).toHaveLength(4);
+    expect(reads.map(read=>[read.idFilters[0]?.column,read.idFilters[0]?.values.length])).toEqual([["booking_id",50],["related_booking_id",50],["booking_id",1],["related_booking_id",1]]);
+    for(const read of reads){expect(read.columns).toBe(CONFLICT_COLUMNS);expect(read.equalities).toEqual([{column:"tenant_id",value:h.tenantId}]);expect(read.orders).toEqual([{column:"id",ascending:true}]);expect(read.from).toBe(0);expect(read.to).toBe(499);expect(read.idFilters).toHaveLength(1);}
+  });
+  test("both conflict arms collect more than500 rows including final contributions before logical counting",async()=>{
+    const h=transport(2),outside=randomUUID();
+    h.tableRows.booking_conflicts=[...Array.from({length:501},(_,index)=>conflict(h,h.ids[0]!,null,"primary-"+index)),...Array.from({length:501},(_,index)=>conflict(h,outside,h.ids[1]!,"related-"+index)),conflict(h,h.ids[0]!,h.ids[1]!,"shared-cross-arm")];
+    const result=await readScheduling(input(),{client:h.client});expect(result.data.error).toBeNull();expect(result.data.openConflictCount).toBe(1003);
+    expect(result.data.bookings.map(booking=>booking.openConflictCount)).toEqual([502,502]);
+    expect(h.trace.filter(trace=>trace.table==="booking_conflicts").map(read=>[read.idFilters[0]?.column,read.from,read.to])).toEqual([["booking_id",0,499],["booking_id",500,999],["related_booking_id",0,499],["related_booking_id",500,999]]);
+  });
+  for(const arm of ["booking_id","related_booking_id"])test("failed final conflict page in "+arm+" arm discards the whole read",async()=>{
+    const h=transport(2),outside=randomUUID();h.tableRows.booking_conflicts=[...Array.from({length:501},(_,index)=>conflict(h,h.ids[0]!,null,"primary-"+index)),...Array.from({length:501},(_,index)=>conflict(h,outside,h.ids[1]!,"related-"+index))];
+    h.failPage("booking_conflicts",500,arm);const result=await readScheduling(input(),{client:h.client});
+    expect(result.data.canView).toBe(false);expect(result.data.bookings).toEqual([]);expect(result.data.error).toBe("Planeringen kunde inte läsas. Försök igen.");expect(result.data).not.toHaveProperty("openConflictCount");expect(result.data).not.toHaveProperty("capacity");expect(JSON.stringify(result)).not.toContain("PRIVATE_TRANSPORT_ERROR");
+    expect(h.trace.filter(trace=>trace.table==="booking_conflicts"&&trace.idFilters[0]?.column===arm).map(read=>read.from)).toEqual([0,500]);
+  });
+  for(const table of ["person_profiles","person_work_hours","tenant_calendar_days","booking_conflicts"])test(`later ${table} page failure discards all data/counts`,async()=>{
+    const h=transport(1),existing=h.tableRows[table];
+    h.tableRows[table]=Array.from({length:501},()=>table==="person_profiles"?{...existing[0],id:randomUUID()}:table==="person_work_hours"?{...existing[0],id:randomUUID()}:table==="booking_conflicts"?{id:randomUUID(),tenant_id:h.tableRows.bookings[0].tenant_id,booking_id:h.ids[0]}:{id:randomUUID(),tenant_id:h.tableRows.bookings[0].tenant_id,local_date:`2026-10-12`,variant:"closed",reduction_percent:null});
+    h.failPage(table,500);const result=await readScheduling(input(),{client:h.client});
+    expect(result.data.error).toBe("Planeringen kunde inte läsas. Försök igen.");expect(result.data.bookings).toEqual([]);expect(result.data).not.toHaveProperty("openConflictCount");
+  });
+  test("501 ancillary roster/hour/calendar/conflict rows retain final-page facts and numeric demand",async()=>{
+    const h=transport(1),tenantId=h.tableRows.bookings[0].tenant_id,membershipId=h.tableRows.person_profiles[0].membership_id;
+    const profiles:Row[]=Array.from({length:500},()=>({id:randomUUID(),tenant_id:tenantId,membership_id:randomUUID(),employment_percentage:null,default_work_role_id:null}));
+    profiles.push({id:h.personId,tenant_id:tenantId,membership_id:String(membershipId),employment_percentage:null,default_work_role_id:null});
+    h.tableRows.person_profiles=profiles;
+    h.tableRows.person_work_hours=profiles.map(p=>({id:randomUUID(),tenant_id:tenantId,person_profile_id:p.id,entry_kind:"weekly_shift",weekday:1,starts_at:"07:00",ends_at:"16:00",local_date:null,exception_kind:null}));
+    h.tableRows.tenant_calendar_days=Array.from({length:501},(_,i)=>({id:randomUUID(),tenant_id:tenantId,local_date:new Date(Date.UTC(2027,0,1)+i*86400000).toISOString().slice(0,10),variant:"closed",reduction_percent:null}));
+    h.tableRows.booking_conflicts=Array.from({length:501},()=>({id:randomUUID(),tenant_id:tenantId,booking_id:h.ids[0],related_booking_id:null,affected_person_profile_id:h.personId,conflict_type:"outside_work_hours",starts_at:"2026-10-12T06:00:00Z",ends_at:"2026-10-12T07:00:00Z",natural_key:randomUUID(),status:"open"}));
+    const result=await readScheduling(input(),{client:h.client});expect(result.data.error).toBeNull();
+    expect(result.data.roster).toHaveLength(501);expect(result.data.capacity).toHaveLength(3507);expect(result.data.openConflictCount).toBe(501);
+    expect(result.data.capacity?.find(c=>c.personId===h.personId&&c.date==="2026-10-12")).toMatchObject({budget:540,demand:60,balance:480});
+    for(const table of ["person_profiles","person_work_hours","tenant_calendar_days","booking_conflicts"])expect(h.trace.filter(t=>t.table===table).some(t=>t.from===500&&t.to===999)).toBe(true);
+  });
+  test("failed final booking page and final lifecycle batch produce no partial or false-empty success",async()=>{
+    for(const kind of ["page","rpc"]){const h=transport();if(kind==="page")h.failPage("bookings",1000);else h.failRpc(21);const result=await readScheduling(input(),{client:h.client});expect(result.data.canView).toBe(false);expect(result.data.error).toBe("Planeringen kunde inte läsas. Försök igen.");expect(result.data.bookings).toEqual([]);expect(JSON.stringify(result)).not.toContain("PRIVATE_TRANSPORT_ERROR");}
+  });
+  for(const [label,alter] of [
+    ["missing",(r:Row[])=>r.slice(1)],["extra",(r:Row[])=>[...r,r[0]]],["duplicate",(r:Row[])=>r.map(()=>r[0])],
+    ["wrong order",(r:Row[])=>r.toReversed()],["unknown key",(r:Row[])=>r.map(x=>({...x,status:"active"}))],
+    ["not boolean",(r:Row[])=>r.map(x=>({...x,needsReassignment:null}))],["unknown ID",(r:Row[])=>r.map(x=>({...x,bookingId:randomUUID()}))],
+    ["non-array",()=>({})],
+  ] as const)test(`malformed flags ${label} reject exact shape/completeness`,async()=>{
+    const h=transport(2);h.malformed(alter);await expect(readBookingReassignmentFlags(h.client,randomUUID(),h.ids)).rejects.toThrow();
+  });
+  test("own transport calls neither planner tables nor any RPC",async()=>{const h=transport(2,true);const result=await readScheduling(input("personal"),{client:h.client});expect(result.data.error).toBeNull();expect(h.batches).toEqual([]);expect(h.trace.some(t=>["person_profiles","person_work_hours","tenant_calendar_days","work_roles","jobs","customers"].includes(t.table))).toBe(false);});
 });

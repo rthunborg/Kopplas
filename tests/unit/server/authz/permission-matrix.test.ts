@@ -2,9 +2,17 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
+  PERMISSION_MATRIX,
   resolveCapability,
   resolveSensitiveFieldEntitlement,
 } from "@/server/authz/permission-matrix";
+
+test("15.1-AC2 scheduling references one exact resource Bookings.View grant", () => {
+  assert.equal(PERMISSION_MATRIX.resources["Bookings.View"], PERMISSION_MATRIX.scheduling["Bookings.View"]);
+  assert.deepEqual(PERMISSION_MATRIX.scheduling["Bookings.View"].roles, ["tenant_admin", "projektledare", "montor"]);
+  assert.deepEqual(PERMISSION_MATRIX.resources["Bookings.Manage"].roles, ["tenant_admin", "projektledare"]);
+  assert.equal(resolveCapability({roles:["montor"],module:"scheduling",capability:"Bookings.Manage"}).granted, false);
+});
 
 test("[P0] 11.1-UNIT-001 legacy tenant_admin remains a role when membership_roles has no rows", () => {
   assert.equal(

@@ -4,7 +4,7 @@ import { test } from "node:test";
 
 const manifestModulePath = "../../../src/scope/manifest";
 
-test("[P0] activates resources with its six tenant tables and leaves scheduling surface-free", async () => {
+test("[P0] activates resources with its six tenant tables and preserves resources table ownership after scheduling nav activation", async () => {
   const manifestModule = await import(manifestModulePath);
   const manifest = (manifestModule as { SCOPE_MANIFEST?: { modules?: readonly Record<string, unknown>[] } }).SCOPE_MANIFEST;
   const modules = manifest?.modules ?? [];
@@ -18,8 +18,8 @@ test("[P0] activates resources with its six tenant tables and leaves scheduling 
     "person_work_hours",
     "tenant_calendar_days", "bookings", "booking_assignees", "booking_conflicts",
   ]);
-  assert.equal(scheduling?.status, "pending");
-  assert.deepEqual(scheduling?.navItems, []);
+  assert.equal(scheduling?.status, "active");
+  assert.deepEqual(scheduling?.navItems, [{route:"/scheduling",group:"primary",requiredCapability:"Bookings.View"}]);
   assert.deepEqual(scheduling?.tenantTables, []);
   assert.deepEqual(scheduling?.widgets, []);
   assert.deepEqual(scheduling?.notificationCategories, []);

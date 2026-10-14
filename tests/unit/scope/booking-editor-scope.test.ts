@@ -10,12 +10,13 @@ import { booking } from "@/tests-support/booking-editor-contract";
 import { validateCreateBooking } from "@/server/commands/bookings/validation";
 
 // RED: missing actual production binding; activate task-by-task and confirm failure before implementation.
-test("[P0] 14.4-GOV-001 active resources command rejects E15 fields while scheduling surfaces remain pending", () => {
+test("[P0] 14.4-GOV-001 active resources command rejects E15 fields while scheduling activation retains future E15 command exclusions", () => {
   const resources = SCOPE_MANIFEST.modules.find((module) => module.id === "resources");
   const scheduling = SCOPE_MANIFEST.modules.find((module) => module.id === "scheduling");
   assert.equal(resources?.status, "active");
-  assert.equal(scheduling?.status, "pending");
-  for (const surface of ["navItems", "tenantTables", "widgets", "notificationCategories", "publicSurfaces", "fileOwnerTypes"] as const) {
+  assert.equal(scheduling?.status, "active");
+  assert.deepEqual(scheduling?.navItems, [{route:"/scheduling",group:"primary",requiredCapability:"Bookings.View"}]);
+  for (const surface of ["tenantTables", "widgets", "notificationCategories", "publicSurfaces", "fileOwnerTypes"] as const) {
     assert.deepEqual(scheduling?.[surface], [], surface);
   }
   const input = {...booking(),commandId: "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"};
