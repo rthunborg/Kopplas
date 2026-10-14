@@ -236,3 +236,42 @@ none
 3. Blocked closeout: _bmad-output/implementation-artifacts/story-15-1-blocked-verification-2026-10-14.md. Local ignored receipts preserved; Stops accepted, no confirmed-shutdown claim.
 
 **Next:** Resolve the supported native-response/runtime verification blocker; author sets blocked spec to in-progress, then resume /auto-bmad epic --epic 15. Human review: /bmad-checkpoint-preview codex/epic-15-scheduling-time-calendar. Project context: /bmad-project-context refresh recommended after epic completion.
+
+## Report — 2026-10-14T02:36:45Z (halted — implementation verification failed)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `66cd843`).
+**Pipeline status:** Halted at Story 15.1 / Phase 5; needs human: implementation verification failed. Epic incomplete and merge gates open.
+**Continues:** 2026-10-14T02:34:12Z (halted — implementation verification failed); this append corrects report transport encoding and records the pushed checkpoint.
+
+**Summary:** Story 15.1 is preserved as an incomplete checkpoint. Units: 2,539 passed, 1 skipped. Integration: 1,736 passed, 1 skipped. Scheduling browser: 7 passed, 1 failed, 10 not run; 14 passing and 2 failing actual attempts. AC2 native response-body retrieval failed twice. Compatible Chromium 149 failed startup; no supported correction established.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 109h 38m (≈7h 07m AI-run, ≈102h 31m human/idle wait); resumed 7×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** Not reached. Story 15.1 is blocked; Stories 15.2–15.6 are held. Six independent broad review layers, remaining acceptance/general/mail/dashboard/visual checks and physical-recovery CI remain open. Broad review rounds: 0 of 3.
+
+**TEA:** Prior test design and ATDD retained. Post-dev automation, story trace and epic gate/NFR/test review not run.
+
+**Retrospective:** Epic14 integrated closeout verified; October8 accepted-with-open-items retrospective governs. October7 rejection historical. Epic15 retrospective not run.
+
+**Overrides:** Isolated origin/main worktree; specifications validated before building; owner accepts recommended Team grouping by work role and removes Lovable prerequisite; Contract D retained; ordinary Sol Low and sensitive Sol High delegates; coordinator ownership limited to 15.1; explicitly incomplete checkpoint committed and pushed; no merge or deployment action.
+
+**Open questions:**
+1. Restore a supported runtime path that can validate the original native response bodies; the cause remains unexplained.
+2. Chromium 149 SideBySide assembly resolution remains unresolved under inspect_only; no current numeric native error 14001 is exposed.
+3. Historical wrong-target 543 fixture-write incident is documented; no cleanup or effects/content claim.
+
+**Deferred work:**
+1. Approved R012 representative scheduling workload/thresholds and manual accessibility/daylight/exploration remain open before certification; no scheduling-performance PASS.
+2. No story-frontmatter deferrals; unfinished required gates remain pending.
+
+**⚠️ Needs human:**
+1. implementation verification failed: AC2 NATIVE_CDP_BODY_NO_RESOURCE in both attempts; ten later cases did not run.
+2. Chromium 149 START_NOT_CREATED; current exact-path/time SideBySide event 33, record 9344, reports unresolved assembly 149.0.7827.55. No supported correction established.
+3. See story-15-1-blocked-verification-2026-10-14.md. Local ignored receipts remain preserved. All own Stop requests were accepted; acknowledgments do not prove shutdown.
+
+**Next:** Resolve the supported native-response/runtime verification blocker; author sets blocked spec to in-progress, then resume /auto-bmad epic --epic 15. Human review: /bmad-checkpoint-preview codex/epic-15-scheduling-time-calendar. Project context: /bmad-project-context refresh recommended after epic completion.
