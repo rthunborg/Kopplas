@@ -57,7 +57,7 @@ export function TextField({
         autoComplete={autoComplete}
         required={required}
         defaultValue={defaultValue}
-        aria-invalid={hasError ? "true" : undefined}
+
         aria-describedby={hasError ? errorId : undefined}
         className={[
           "rounded-md border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600",
