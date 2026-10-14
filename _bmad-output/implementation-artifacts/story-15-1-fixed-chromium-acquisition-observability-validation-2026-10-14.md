@@ -114,3 +114,60 @@ Author amendment correction, fresh independent bounded validation, then root-coo
 ### Blockers
 
 A1 holds amendment readiness; the unchanged source-review P2 still blocks its source gate. Earlier native run 38634351750 at 4b685196313d887a9e9bdb339fccb69fefc328f9 failed acquisition, skipped pairing, produced zero paired cases and no qualified binary receipt. General AC2 failed two attempts; ten later scheduling tests and six phone targets remain unexecuted. P5=false, broad review 0/3; no application acceptance, RLS, visual, completion, release or 15.2 credit.
+## Focused independent A1 correction revalidation — 2026-10-15
+
+### Outcome
+
+**PASS for the bounded prepared A1 correction, ready only for root-coordinated conditional source/proof admission.** A1 is resolved at the specification level by post-acknowledgement supervisor commitment plus an independently enforced receiver cutoff. The narrow post-commit delivery exception is explicitly accepted with the stated bounds and failure preservation. No new consequential mechanism regression was identified in this focused static pass. Prior REVISE and original validation remain preserved history; current implementation/source review remains FAIL/P2 until admitted correction and fresh focused source/proof review. This PASS is neither source clearance nor runtime admission.
+
+Same independent `gpt-6.1-sol` High validator, reused for A1 and its amendment regressions; not the amendment/source author or prior source reviewer. Coordinator supplies current own HEAD `2a071fc49a81984ae55e9e2c08a7583444245d86`; no Git inspection or state action. Assigned checkout and branch remain unchanged. AGENTS.md/routing policy already read; privacy/carrier-integrity/publication-authority scope remains High. No nested delegate or new broad review.
+
+### Files changed
+
+Only this reserved validation artifact, appended after its complete 21,455B/SHA256 `7f05d05272f1eef3dcab15e811fadc902b09bd63d9df5382d8426ee8acbd40a1` prefix. That prefix includes the prior REVISE/A1 and is preserved exactly. Original 9,039B prefix also remains `5b3cbf730860e5e1580cd7ad7ee145830af2ebb6cc53295db4e56e398d44c3d1`. Source, addendum, source-review, private proofs/manifests, environment/configuration, canonical story/spec, Git/state and other checkouts remain untouched.
+
+### Status
+
+Independent bounded byte checks match all six before/after current bindings and all ten protected bindings: 16 checked, zero mismatches before append. The 15 specifically named private evidence entries also match their manifest bytes/hashes; they were read for hashing only, with no fixture/proof evaluation. Root state and exhaustive private/history scans remain excluded.
+
+| Input | Bytes | SHA256 |
+| --- | ---: | --- |
+| Corrected addendum | 31,439 | `b7b5dfe8bedbd4bfcd6041be0ffe0dd8017e3e34e1a670c2bd2e241eb6d96703` |
+| Probe source | 63,669 | `6dac3193961859e47f0912806d3cf6b50744ff572bd673b8a1a29718f14c7107` |
+| Workflow | 34,628 | `58c62d60f171a1d261f7fa9810127b79425c8ba733014dcfd727091423445932` |
+| Unchanged checkout unit | 2,511 | `313f11c18c66d8bb242e66cb27c314b9fbe3eca94573a4276ce28c308beb5b28` |
+| Retained source-review FAIL | 11,830 | `d18b50a7e1cbf70291f0daba13cbdaa6242b299dea8a53c10bc569397472bd75` |
+| Handoff preparation manifest | 5,340 | `499751af2f8e320099804ff0aff7000e5a4f719539a5088bc960e9475371dc7e` |
+| Preservation receipt | 5,317 | `63535690d72efb00cae7e390ad1dee060a6b9c499cefc6d4894538a88b4906dc` |
+
+The new addendum tail is 9,761B; the full 21,678B preceding prefix matches `942727569f9116749e246774fdc6303974acad8e23f527e50991d5ba4fcda41d`. Its 11,734B and 5,429B prefixes independently retain `dc98d39febdbfdc390c908c4893db32c030929e5a8b532e01a865633cfdd0986` and `f0ecf5183de2ee1b24b5eeade56c5a660e825f6599e15c28ee703bf5fb2aabfa`. These checks preserve every earlier claim as history; they do not turn retained tests into new execution evidence.
+
+**A1 authority closure.** Confirmed worker 0/71 remains necessary but is now provisional. The output directory is only a locator. No final publishable certificate exists until locator append acknowledgement is fulfilled, supervisor is still open, and the immediate fence is strictly before the fixed cutoff. Therefore the originally reported late-locator path after pre-commit closure cannot mint accepted authority even if its physical output later appears. Publisher rejection of the worker-only kind/schema and all older certificate forms is required; freshness/hash alone cannot upgrade them.
+
+The unique final `handoff.json` certificate's exact schemaVersion 2/kind binds current generation, worker/status, exact public receipt bytes/hash and private supervisor/handoff/acknowledgement times. Its deadline is independently recomputed as `min(S + 180 seconds, H + 2 seconds)`; the supplied expiry must equal that result. Required ordering `S <= H <= acknowledged < D`, current receiver time not earlier than acknowledgement, and strict rejection at/after D close arbitrary renewal, out-of-order values and late final-carrier settlement. One generation, exclusive certificate creation and one fixed publisher invocation in this job remain required; neither retries nor a second worker/acquisition are admitted.
+
+**Clock comparability is an implementation gate, not an assumed native fact.** The private same-host Linux kernel monotonic nanoseconds and boot identity are a coherent receiver-verifiable domain. Actual runtime implementation must establish that both processes use that domain; per-process performance origins or wall time cannot be substituted. Unknown/mismatched boot/domain, noncanonical or out-of-range scalar times, regression and unsupported clock fail closed. Arithmetic must preserve the exact canonical nanosecond values and strict equality boundary. This preparation neither executes a clock nor claims Linux/Node compatibility evidence; actual production-entrypoint mocked proof and static implementation inspection must establish these obligations before source clearance.
+
+**Explicit exception accepted.** Once the locator is genuinely acknowledged and the supervisor has irreversibly selected commitment before D, later certificate-delivery error/closure may leave a usable final capability only while its predeclared receiver window remains open. Accepting this short residual window does not equate a late pre-commit locator with commitment. It is a deliberate change to the earlier blanket closure rule: supervisor/step termination after commitment does not revoke the selected decision before D, but still preserves generic unavailable/nonzero in the failed command, job failure and paired-step skip. No carrier delivered at/after D qualifies, and D is no later than the supervisor's own start plus three minutes. Early external termination can leave only the existing handoff window, at most two seconds; it creates no extra runtime or renewed lease. Whole-job cancellation retains the uploader's noncancelled rejection.
+
+Successful publisher acknowledgement, final checks and closed success decision must occur before both its own two-second bound and D. Only that timely completed authorization can later be consumed by the existing uploader after D. This post-publication consumption is explicitly permitted and does not authorize a second publisher run or late commitment. A missing, partial, collided, expired or invalid final carrier yields nonzero. Deferred boolean bytes after publisher failure remain insufficient because the exact runner-success AND true-output uploader guard is retained, with no continue-on-error or failure normalization. No native I/O cancellation is claimed.
+
+**Failure availability and workflow preserved.** A timely worker-71 fresh failed receipt may commit and publish without changing outward acquisition generic stderr/exit 1, job failure or pairing skip. Ready acquisition followed by supervisor delivery failure or publisher failure also leaves its responsible command/job failed. Publisher remains positioned after acquisition and before pairing with a status override sufficient to run after acquisition failure. Default success-gated pairing stays unchanged; the old paired uploader still fails for missing report, and the acquisition uploader's explicit always/noncancelled guard must remain able to run after that failure. The certificate/clock/locator/worker streams remain private; only the unchanged closed public eight-field receipt is uploaded. Receipt status/stage/reason/failure freezing, schema/privacy/hash/freshness checks and private qualified binary receipt retain their authority.
+
+Scheduling remains a hard-cap assessment: prior 17-minute summed step ceilings plus one one-minute publisher equal the unchanged 18-minute job. No scheduling reserve or guaranteed uploader execution at all maxima is claimed. Acquisition retains its original 175-second operation deadline, preparation two seconds, supervisor three-minute step, publisher the earlier two-second/D bound and one-minute ceiling. Slow transition/startup may consume the short handoff window and legitimately make evidence unavailable; it must fail closed, never extend D. The correction does not change pinned acquisition operations/order/metadata/headers/hash/version/ZIP predicates, SDK/pins/default eight cases, paired runner/R1/body/sidecars, private executable handoff, six prior jobs/input/paired commands/uploader/DAG/permissions or seven checkouts.
+
+**Required focused source proofs.** Retain the original failing deferred-flag witness and reviewer history. Exercise actual supervisor/worker/publisher entrypoints in fully mocked evaluations; settle physical side effects after closure rather than asserting before settlement. Specifically prove no final authority for a late locator after pre-commit closure; rejection of provisional/older/forged/mismatched generation/epoch/time/hash carriers; expired final delivery even after valid commitment; narrowly eligible post-commit delivery failure strictly before D with original failure retained; late publisher flag acknowledgement at either deadline including exact equality; successful publication consumed later without renewed authority; unsupported/regressed clocks, cancellation and unconfirmed/signalled worker outcomes. Timely ready/failed publication, exact console/native exit/private handoff, absence of second acquisition, both uploader failure paths, frozen stage/reason/privacy predicates and exact protected source/workflow inverses remain required. These are future gate requirements, not tests executed here.
+
+New consequential findings in this focused revalidation: **0**. Tests/proof/fixture evaluations, native HTTP/acquisition/download/install/version/browser/server/DB/CI, managed-resource, Git/state/PR/push/merge/deployment actions: **0**. Only bounded reads/hashes and this append occurred.
+
+### Open questions
+
+Actual implementation of cross-process monotonic clock/epoch validation and the retained source P2 still require admitted source/proof work. Native acquisition cause and original application EOF/consumer identity/cancel actor remain UNKNOWN. No current receiver timing/performance or native acquisition success is inferred.
+
+### Deferred work
+
+Root-coordinated conditional source correction/proof admission, implementation and fresh independent focused High source review. Any native runtime remains separately admitted only after that gate passes. Application remedy/observer insertion, broad story review, RLS/visual/acceptance decisions and Story 15.2 remain excluded.
+
+### Blockers
+
+A1 preparation readiness is resolved by this bounded PASS; current source P2 remains open. Earlier acquisition failed, paired command was skipped, paired native cases remain zero and no qualified native binary receipt exists. General AC2 failed twice; ten later scheduling tests and six phone targets remain unexecuted. P5=false; broad review 0/3; no source/runtime, acceptance, RLS, visual, completion, release or 15.2 credit.
