@@ -1,0 +1,288 @@
+name: PR feedback remediation
+
+# Inline/submitted reviews are polled. Review events use PR-controlled workflow
+# definitions and must never be the source of this secret-bearing controller.
+on:
+  issue_comment:
+    types: [created, edited]
+  schedule:
+    - cron: '17,47 * * * *'
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: 'Exact opted-in PR number for this manual run'
+        type: string
+        required: true
+      dry_run:
+        description: 'Validate a candidate without pushing or notifying anyone'
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+# Serialize state reservation and publication across every PR and trigger.
+concurrency:
+  group: pr-feedback-remediation
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    if: >-
+      github.ref == 'refs/heads/main' &&
+      (github.event_name != 'issue_comment' ||
+      (github.event.issue.pull_request && github.event.sender.type == 'User' && github.event.sender.id == 53317458))
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    environment: pr-feedback-secrets
+    permissions:
+      contents: read
+      pull-requests: read
+      issues: read
+      actions: read
+    outputs:
+      eligible: ${{ steps.collect.outputs.eligible }}
+      head_sha: ${{ steps.collect.outputs.head_sha }}
+      pr_number: ${{ steps.collect.outputs.pr_number }}
+      dry_run: ${{ steps.collect.outputs.dry_run }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '24'
+      - name: Collect, monitor and reserve a bounded candidate
+        id: collect
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          PR_FIX_ENABLED: ${{ vars.PR_FIX_ENABLED }}
+          PR_FIX_PUBLISH: ${{ vars.PR_FIX_PUBLISH }}
+          PR_FIX_DRY_RUN: ${{ inputs.dry_run }}
+          PR_FIX_APP_ID: ${{ vars.PR_FIX_APP_ID }}
+          PR_FIX_APP_USER_ID: ${{ vars.PR_FIX_APP_USER_ID }}
+          PR_FIX_APP_PRIVATE_KEY: ${{ secrets.PR_FIX_APP_PRIVATE_KEY }}
+        run: node scripts/pr-feedback/runtime.mjs collect "$RUNNER_TEMP/pr-feedback-plan"
+      - name: Store signed attempt journal before any paid coding
+        if: steps.collect.outputs.eligible == 'true'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: pr-feedback-journal
+          path: ${{ runner.temp }}/pr-feedback-plan/journal.json
+          retention-days: 30
+          if-no-files-found: error
+      - name: Store controller plan and audit report
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: pr-feedback-plan
+          path: ${{ runner.temp }}/pr-feedback-plan/
+          retention-days: 30
+          if-no-files-found: error
+
+  code:
+    needs: collect
+    if: needs.collect.outputs.eligible == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    environment: pr-feedback-secrets
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ github.sha }}
+          path: trusted
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ needs.collect.outputs.head_sha }}
+          path: source
+          persist-credentials: false
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: pr-feedback-plan
+          path: ${{ runner.temp }}/pr-feedback-plan
+      - name: Prepare isolated coding account and immutable trusted configuration
+        run: |
+          set -euo pipefail
+          sudo useradd --create-home --shell /bin/bash prfix-codex
+          sudo chown root:root /home/prfix-codex
+          sudo chmod 755 /home/prfix-codex
+          sudo install -d -o prfix-codex -g prfix-codex -m 700 /home/prfix-codex/workspace /home/prfix-codex/log /home/prfix-codex/sqlite
+          git -C source archive --format=tar HEAD > "$RUNNER_TEMP/prfix-source.tar"
+          sudo tar --exclude='.codex' -xf "$RUNNER_TEMP/prfix-source.tar" -C /home/prfix-codex/workspace
+          sudo chown -R prfix-codex:prfix-codex /home/prfix-codex/workspace
+          # sudo strips CODEX_HOME: use the account's actual default home too.
+          sudo install -d -o runner -g runner -m 755 /home/prfix-codex/.codex
+          cp trusted/.github/codex/pr-feedback/config.toml /home/prfix-codex/.codex/config.toml
+          cp trusted/.github/codex/pr-feedback/result.schema.json /home/prfix-codex/.codex/result.schema.json
+          chmod 644 /home/prfix-codex/.codex/config.toml /home/prfix-codex/.codex/result.schema.json
+          sudo install -d -o prfix-codex -g prfix-codex -m 700 /home/prfix-codex/.codex/sessions /home/prfix-codex/.codex/tmp
+          sudo touch /home/prfix-codex/result.json
+          sudo chown prfix-codex:prfix-codex /home/prfix-codex/result.json
+          chmod 700 trusted source "$RUNNER_TEMP/pr-feedback-plan"
+          chmod 700 "$RUNNER_TEMP/_runner_file_commands" 2>/dev/null || true
+          sudo chmod o+x /home/runner /home/runner/work "$RUNNER_TEMP"
+      - name: Fix authorized feedback as an unprivileged user
+        uses: openai/codex-action@bdf19a4a223ec2549a3e2274a0cf61556bc07675 # v1
+        with:
+          openai-api-key: ${{ secrets.PR_FIX_OPENAI_API_KEY }}
+          codex-version: '0.162.1'
+          codex-home: /home/prfix-codex/.codex
+          safety-strategy: unprivileged-user
+          codex-user: prfix-codex
+          permission-profile: ':workspace'
+          working-directory: /home/prfix-codex/workspace
+          prompt-file: ${{ runner.temp }}/pr-feedback-plan/prompt.txt
+          output-schema-file: /home/prfix-codex/.codex/result.schema.json
+          output-file: /home/prfix-codex/result.json
+          model: gpt-6.1-sol
+          effort: low
+          codex-args: '["--ephemeral"]'
+      - name: Stop coding descendants and capture only regular file proposals
+        run: |
+          set -euo pipefail
+          sudo pkill -KILL -u prfix-codex || test "$?" = 1
+          sudo chown --no-dereference -R runner:runner /home/prfix-codex/workspace /home/prfix-codex/result.json
+          node trusted/scripts/pr-feedback/runtime.mjs capture source /home/prfix-codex/workspace "$RUNNER_TEMP/pr-feedback-plan/plan.json" "$RUNNER_TEMP/proposal.json" /home/prfix-codex/result.json
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: pr-feedback-proposal
+          path: ${{ runner.temp }}/proposal.json
+          retention-days: 7
+          if-no-files-found: error
+
+  validate:
+    needs: [collect, code]
+    if: needs.code.result == 'success'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    # Deliberately no environment, App credentials, OpenAI key, or production env.
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ github.sha }}
+          path: trusted
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ needs.collect.outputs.head_sha }}
+          path: source
+          persist-credentials: false
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: pr-feedback-plan
+          path: ${{ runner.temp }}/pr-feedback-plan
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: pr-feedback-proposal
+          path: ${{ runner.temp }}/proposal
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '22'
+      - uses: pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa # v4
+        with:
+          version: '10.24.0'
+          run_install: false
+      - name: Apply proposal with trusted structural validator
+        run: |
+          set -euo pipefail
+          node trusted/scripts/pr-feedback/runtime.mjs validate source "$RUNNER_TEMP/proposal/proposal.json" "$RUNNER_TEMP/pr-feedback-plan/plan.json" source "$RUNNER_TEMP/validated.json"
+          sudo useradd --create-home --shell /bin/bash prfix-test
+          sudo install -d -o prfix-test -g prfix-test -m 700 /home/prfix-test/workspace
+          sudo cp -a source/. /home/prfix-test/workspace/
+          sudo chown -R prfix-test:prfix-test /home/prfix-test/workspace
+          chmod 700 trusted source "$RUNNER_TEMP/pr-feedback-plan" "$RUNNER_TEMP/proposal"
+          chmod 600 "$RUNNER_TEMP/validated.json"
+          # The action command-file channel must also be inaccessible to tests.
+          chmod 700 "$RUNNER_TEMP/_runner_file_commands" 2>/dev/null || true
+          chmod 700 "$(dirname "$GITHUB_ENV")" "$(dirname "$GITHUB_OUTPUT")"
+          sudo chmod o+x /home/runner
+      - name: Run ordinary gates without runner credentials or writable metadata
+        run: |
+          set -euo pipefail
+          pnpm_path="$(command -v pnpm)"
+          node_path="$(dirname "$(command -v node)")"
+          sudo -u prfix-test env -i HOME=/home/prfix-test PATH="$node_path:/usr/local/bin:/usr/bin:/bin" CI=true PNPM_EXECUTABLE="$pnpm_path" bash --noprofile --norc -c '
+            set -euo pipefail
+            cd /home/prfix-test/workspace
+            "$PNPM_EXECUTABLE" install --frozen-lockfile
+            "$PNPM_EXECUTABLE" run verify:lockfiles
+            "$PNPM_EXECUTABLE" audit --audit-level=high
+            "$PNPM_EXECUTABLE" run verify:service-role-containment
+            "$PNPM_EXECUTABLE" typecheck
+            "$PNPM_EXECUTABLE" lint
+            node scripts/verify/run-with-time-budget.mjs --label "Unit tests" --max-seconds 180 -- "$PNPM_EXECUTABLE" run test:unit
+            "$PNPM_EXECUTABLE" build
+            "$PNPM_EXECUTABLE" run verify:bundle-containment
+          '
+      - name: Stop test descendants and seal validation result
+        run: |
+          set -euo pipefail
+          sudo pkill -KILL -u prfix-test || test "$?" = 1
+          # Trusted metadata was created before tests and remained inaccessible.
+          test -s "$RUNNER_TEMP/validated.json"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: pr-feedback-validation
+          path: ${{ runner.temp }}/validated.json
+          retention-days: 7
+          if-no-files-found: error
+
+  publish:
+    needs: [collect, code, validate]
+    if: always() && needs.collect.outputs.eligible == 'true' && !cancelled()
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    environment: pr-feedback-secrets
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ github.sha }}
+          path: trusted
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ needs.collect.outputs.head_sha }}
+          path: source
+          persist-credentials: false
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: pr-feedback-plan
+          path: ${{ runner.temp }}/pr-feedback-plan
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        if: needs.validate.result == 'success'
+        with:
+          name: pr-feedback-proposal
+          path: ${{ runner.temp }}/proposal
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        if: needs.validate.result == 'success'
+        with:
+          name: pr-feedback-validation
+          path: ${{ runner.temp }}/validation
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '24'
+      - name: Publish with an atomic expected-head commit, or report dry-run
+        if: needs.validate.result == 'success'
+        env:
+          PR_FIX_ENABLED: ${{ vars.PR_FIX_ENABLED }}
+          PR_FIX_PUBLISH: ${{ vars.PR_FIX_PUBLISH }}
+          PR_FIX_APP_ID: ${{ vars.PR_FIX_APP_ID }}
+          PR_FIX_APP_USER_ID: ${{ vars.PR_FIX_APP_USER_ID }}
+          PR_FIX_APP_PRIVATE_KEY: ${{ secrets.PR_FIX_APP_PRIVATE_KEY }}
+        run: node trusted/scripts/pr-feedback/runtime.mjs publish source "$RUNNER_TEMP/proposal/proposal.json" "$RUNNER_TEMP/pr-feedback-plan/plan.json" "$RUNNER_TEMP/validation/validated.json" "$RUNNER_TEMP/pr-feedback-plan/journal.json"
+      - name: Record a failed coding or validation attempt without consuming its files
+        if: needs.validate.result != 'success'
+        env:
+          PR_FIX_ENABLED: ${{ vars.PR_FIX_ENABLED }}
+          PR_FIX_PUBLISH: ${{ vars.PR_FIX_PUBLISH }}
+          PR_FIX_APP_ID: ${{ vars.PR_FIX_APP_ID }}
+          PR_FIX_APP_USER_ID: ${{ vars.PR_FIX_APP_USER_ID }}
+          PR_FIX_APP_PRIVATE_KEY: ${{ secrets.PR_FIX_APP_PRIVATE_KEY }}
+        run: node trusted/scripts/pr-feedback/runtime.mjs finalize "$RUNNER_TEMP/pr-feedback-plan/plan.json" "$RUNNER_TEMP/pr-feedback-plan/journal.json"

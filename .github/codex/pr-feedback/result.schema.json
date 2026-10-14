@@ -1,0 +1,11 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["outcome", "addressedIds", "unresolvedIds", "summary"],
+  "properties": {
+    "outcome": { "type": "string", "enum": ["changed", "no-change", "needs-human"] },
+    "addressedIds": { "type": "array", "items": { "type": "string" } },
+    "unresolvedIds": { "type": "array", "items": { "type": "string" } },
+    "summary": { "type": "string" }
+  }
+}
