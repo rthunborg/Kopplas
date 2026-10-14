@@ -23,6 +23,13 @@ on:
         type: boolean
         required: false
         default: false
+      # FIXED-CHROMIUM-INPUT-BEGIN
+      fixed_chromium_paired_probe:
+        description: Data-free exact full-Chrome 149/158 paired stream diagnostic
+        type: boolean
+        required: false
+        default: false
+      # FIXED-CHROMIUM-INPUT-END
   pull_request:
     # Verify the dependent Epic 11 repair PRs before their approved retarget to main.
     branches:
@@ -636,3 +643,57 @@ jobs:
           path: test-results/native-stream-probe.json
           retention-days: 7
           if-no-files-found: error
+
+  # FIXED-CHROMIUM-JOB-BEGIN
+  fixed-chromium-paired-probe:
+    runs-on: ubuntu-latest
+    needs: [verify, e2e]
+    timeout-minutes: 18
+    if: ${{ always() && !cancelled() && github.event_name == 'workflow_dispatch' && inputs.fixed_chromium_paired_probe && needs.verify.result == 'success' && (needs.e2e.result == 'success' || needs.e2e.result == 'failure') }}
+    steps:
+      - name: Checkout
+        timeout-minutes: 1
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+
+      - name: Install pnpm
+        timeout-minutes: 1
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node
+        timeout-minutes: 1
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - name: Install dependencies
+        timeout-minutes: 3
+        run: pnpm install --frozen-lockfile
+
+      - name: Install pinned Playwright Chromium and OS dependencies
+        timeout-minutes: 2
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Acquire exact CfT and validate provenance
+        id: fixed
+        timeout-minutes: 3
+        run: node tests/diagnostics/no-store-stream-probe.mjs --acquire-fixed-chromium
+
+      - name: Paired native stream diagnostic
+        timeout-minutes: 4
+        env:
+          FIXED_CHROMIUM_EXECUTABLE: ${{ steps.fixed.outputs.executable }}
+        run: node tests/diagnostics/no-store-stream-probe.mjs --paired-fixed-chromium "$FIXED_CHROMIUM_EXECUTABLE"
+
+      - name: Upload paired native stream diagnostic
+        timeout-minutes: 1
+        if: ${{ always() && !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: fixed-chromium-paired-probe
+          path: test-results/fixed-chromium-paired-probe.json
+          retention-days: 7
+          if-no-files-found: error
+  # FIXED-CHROMIUM-JOB-END

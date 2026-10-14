@@ -7,6 +7,13 @@ import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 import { resolve } from 'node:path';
 import { performance } from 'node:perf_hooks';
+// PAIRED-ADDITION-BEGIN imports
+import { mkdtemp, realpath, stat, lstat, chmod, appendFile } from 'node:fs/promises';
+import { dirname, join, relative, isAbsolute } from 'node:path';
+import { inflateRawSync } from 'node:zlib';
+import { execFile } from 'node:child_process';
+import { get as httpsGet } from 'node:https';
+// PAIRED-ADDITION-END imports
 
 export const PAYLOAD = Buffer.from('synthetic-no-store-stream\n'.repeat(12) + 'tail-12345\n!', 'ascii');
 export const COMPRESSED = gzipSync(PAYLOAD, { level: 0 });
@@ -301,6 +308,21 @@ async function runCase(browser, serverState, spec) {
   } finally {
     // Freeze observations first: teardown aborts and late native rejections are not evidence.
     recorder.stop(); serverState.current = null;
+    // PAIRED-ADDITION-BEGIN fence
+    const paired = pairedCases.get(browser);
+    if (paired) {
+      if (page) { page.off('response', publicResponse); page.off('requestfinished', publicFinished); page.off('requestfailed', publicFailed); }
+      if (cdp) for (const [name, handler] of handlers) cdp.off(name, handler);
+      const frozen = freezeObservation(row);
+      clearTimeout(timer);
+      paired.rows.push(frozen);
+      if (spec.control === 'none' && spec.arm !== 'native-text') {
+        try { paired.bodies.push(await bodyProof(frozen, nativeResponse)); }
+        catch { failure = 'internal'; }
+      }
+      if (timedOut) failure = 'deadline';
+    }
+    // PAIRED-ADDITION-END fence
     clearTimeout(timer);
     try { await closeCase({ recorder, detachListeners() {
       if (page) { page.off('response', publicResponse); page.off('requestfinished', publicFinished); page.off('requestfailed', publicFailed); }
@@ -385,4 +407,384 @@ export async function main() {
   } catch { process.stderr.write('native-stream-probe write\n'); process.exitCode = 1; }
 }
 
-if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) await main();
+// PAIRED-ADDITION-BEGIN implementation
+// This opt-in lane uses only public SDK methods. Default main and classifier stay authoritative.
+const pairedCases = new WeakMap();
+export const FIXED = Object.freeze({ version: '158.0.8104.0', baseline: '149.0.7827.55', sdk: '1.61.1',
+  platform: 'linux64', revision: '1717709', generation: '1791951285551907', bytes: 202355055,
+  md5: '4bc3c2aa1a735657f7d063a96d84baa2', md5Base64: 'S8PCqhpzVlf30GOpbYS6og==',
+  artifact: 'chrome-for-testing-public-158.0.8104.0-linux64',
+  metadataUrl: 'https://googlechromelabs.github.io/chrome-for-testing/158.0.8104.0.json',
+  url: 'https://storage.googleapis.com/chrome-for-testing-public/158.0.8104.0/linux64/chrome-linux64.zip' });
+const PAIRED_FAILURE = new Set([...FAILURE, 'provenance']);
+const PAIR_RESULTS = new Set(['harness-failure', 'no-execution', 'paired-inconclusive', 'paired-full-native-clean', 'paired-reader-remedy-observed', 'paired-defect-persists']);
+const hex = value => typeof value === 'string' && /^[a-f0-9]{64}$/.test(value);
+const exactKeys = (value, keys) => value !== null && typeof value === 'object' && !Array.isArray(value) && Object.keys(value).sort().join('|') === [...keys].sort().join('|');
+const safeInteger = (value, maximum) => Number.isInteger(value) && value >= 0 && value <= maximum;
+export function freezeObservation(row) {
+  const copy = JSON.parse(JSON.stringify(row));
+  for (const event of copy.events) Object.freeze(event);
+  Object.freeze(copy.events);
+  return Object.freeze(copy);
+}
+const framing = row => row.noStore && row.gzip && row.chunked && !row.contentLengthPresent;
+const positive = row => delivered(row) && correlated(row) && framing(row);
+const nativeFailure = row => [row.publicTerminal, row.cdpTerminal, row.nativeFinished].includes('failed');
+const bodyMatches = body => body.bytes === EXPECTED.decodedBytes && body.sha256 === EXPECTED.decodedSha256;
+
+export async function bodyProof(row, response, milliseconds = 750) {
+  const proof = { case: row.case, attempted: false, afterFrozenEof: false, state: 'not-requested', bytes: null, sha256: null, deadlineMs: 750 };
+  // Bytes/hash alone never qualify EOF. No controls, native-text, or ambiguous identities.
+  if (row.control !== 'none' || row.arm === 'native-text' || !positive(row)) return Object.freeze(proof);
+  if (!Object.isFrozen(row) || !Object.isFrozen(row.events) || !response || milliseconds < 1 || milliseconds > 750) throw new Error('internal');
+  proof.attempted = true; proof.afterFrozenEof = true;
+  // Handlers return values, never write evidence. Timeout/teardown settlement cannot promote a proof.
+  const operation = Promise.resolve().then(() => response.body()).then(body => {
+    if (!Buffer.isBuffer(body) || body.length > 324) return { state: 'failed', bytes: null, sha256: null };
+    return { state: 'available', bytes: body.length, sha256: sha256(body) };
+  }, () => ({ state: 'failed', bytes: null, sha256: null }));
+  try { Object.assign(proof, await bounded(operation, milliseconds)); }
+  catch { proof.state = 'timeout'; }
+  return Object.freeze(proof);
+}
+
+export function classifyPair(engines, failure = 'none') {
+  const done = (result, exitCode = 0) => ({ result, fullNativeStatus: result === 'paired-full-native-clean' ? 'clean' : 'inconclusive', exitCode });
+  if (failure !== 'none' || engines.some(engine => engine.failure !== 'none')) return done('harness-failure', 1);
+  if (engines.length !== 2 || engines.some(engine => !engine.executed)) return done('no-execution', 1);
+  if (engines.some(engine => engine.rows.length !== 8 || !engine.rows.slice(6).every(validControl))) return done('harness-failure', 1);
+  const [baseline, fixed] = engines;
+  const validPair = engines.every(engine => engine.rows.every(correlated) && engine.rows.every(framing) && engine.bodies.length === 4);
+  const reproduced = validPair && baseline.rows.slice(0, 4).every(positive)
+    && baseline.rows.slice(0, 4).some(row => row.publicTerminal === 'failed' && row.cdpTerminal === 'failed')
+    && classify(baseline.rows).result === 'discrepancy-reproduced';
+  if (!reproduced) return done('paired-inconclusive');
+  const readers = fixed.rows.slice(0, 4);
+  const qualified = readers.every((row, i) => positive(row)
+    && ['finished', 'failed'].includes(row.publicTerminal) && ['finished', 'failed'].includes(row.cdpTerminal)
+    && (['finished', 'failed'].includes(row.nativeFinished) || (row.nativeFinished === 'unknown' && [row.publicTerminal, row.cdpTerminal].includes('failed')))
+    && fixed.bodies[i].case === row.case && fixed.bodies[i].attempted && fixed.bodies[i].afterFrozenEof
+    && ['available', 'failed'].includes(fixed.bodies[i].state));
+  if (!qualified) return done('paired-inconclusive');
+  const clean = readers.every(row => row.publicTerminal === 'finished' && row.cdpTerminal === 'finished' && row.nativeFinished === 'finished')
+    && fixed.bodies.every(body => body.state === 'available' && bodyMatches(body));
+  const hostClean = fixed.rows.slice(4, 6).every(row => row.reader === 'not-exercised' && row.serverFinish && !row.serverPrematureClose
+    && row.publicTerminal === 'finished' && row.cdpTerminal === 'finished' && row.nativeFinished === 'finished'
+    && row.nativeBody === 'available' && row.nativeBodyBytes === EXPECTED.decodedBytes && row.nativeBodySha256 === EXPECTED.decodedSha256);
+  if (clean && hostClean) return done('paired-full-native-clean');
+  if (clean) return done('paired-reader-remedy-observed');
+  if (readers.some(nativeFailure) || fixed.bodies.some(body => body.state === 'failed' || (body.state === 'available' && !bodyMatches(body)))) return done('paired-defect-persists');
+  return done('paired-inconclusive');
+}
+
+export function checkTransport(status, headers) {
+  if (status !== 200 || headers['x-goog-generation'] !== FIXED.generation
+    || headers['x-goog-stored-content-length'] !== String(FIXED.bytes) || headers['content-length'] !== String(FIXED.bytes)
+    || headers['x-goog-stored-content-encoding'] !== 'identity'
+    || !String(headers['x-goog-hash']).split(',').map(s => s.trim()).includes(`md5=${FIXED.md5Base64}`)) throw new Error('provenance');
+}
+export function checkArchiveBytes(bytes) {
+  if (bytes.length !== FIXED.bytes || createHash('md5').update(bytes).digest('hex') !== FIXED.md5) throw new Error('provenance');
+  return { zipBytes: bytes.length, zipSha256: sha256(bytes), zipMd5: FIXED.md5 };
+}
+export function checkMetadata(metadata) {
+  const artifacts = metadata?.downloads?.chrome;
+  if (metadata?.version !== FIXED.version || metadata?.revision !== FIXED.revision || !Array.isArray(artifacts)
+    || artifacts.filter(item => item?.platform === FIXED.platform).length !== 1
+    || artifacts.find(item => item?.platform === FIXED.platform)?.url !== FIXED.url) throw new Error('provenance');
+}
+export async function officialMetadata(transport = httpsGet) {
+  return new Promise((yes, no) => {
+    let timer, request, settled = false, size = 0; const chunks = [];
+    const finish = error => { if (settled) return; settled = true; clearTimeout(timer);
+      if (error) no(new Error('provenance')); else {
+        try { checkMetadata(JSON.parse(Buffer.concat(chunks).toString('utf8'))); yes(); }
+        catch { no(new Error('provenance')); }
+      }
+    };
+    request = transport(FIXED.metadataUrl, { headers: { 'Accept-Encoding': 'identity' } }, response => {
+      if (response.statusCode !== 200) { response.destroy(); request.destroy(); finish(true); return; }
+      response.on('data', bytes => { size += bytes.length; if (size > 65536) { response.destroy(); request.destroy(); finish(true); } else chunks.push(bytes); });
+      response.once('end', () => finish(false)); response.once('error', () => finish(true)); response.once('aborted', () => finish(true));
+    });
+    request.once('error', () => finish(true));
+    timer = setTimeout(() => { request.destroy(); finish(true); }, 5000);
+  });
+}
+export async function downloadFixed(method, transport = httpsGet) {
+  return new Promise((yes, no) => {
+    let settled = false; const chunks = []; let length = 0;
+    const finish = (error, value) => { if (settled) return; settled = true; clearTimeout(timer); if (error) no(new Error('provenance')); else yes(value); };
+    const request = transport(FIXED.url, { method, headers: { 'Accept-Encoding': 'identity' } }, response => {
+      try { checkTransport(response.statusCode, response.headers); }
+      catch { response.destroy(); request.destroy(); finish(true); return; }
+      if (method === 'HEAD') { response.resume(); finish(false, null); return; }
+      response.on('data', chunk => {
+        length += chunk.length;
+        if (length > FIXED.bytes || length > 210000000) { response.destroy(); request.destroy(); finish(true); return; }
+        chunks.push(chunk);
+      });
+      response.once('end', () => { if (length !== FIXED.bytes) finish(true); else finish(false, Buffer.concat(chunks)); });
+      response.once('error', () => finish(true)); response.once('aborted', () => finish(true));
+    });
+    request.once('error', () => finish(true));
+    const timer = setTimeout(() => { request.destroy(); finish(true); }, method === 'HEAD' ? 5000 : 150000);
+  });
+}
+
+// Parse the ZIP directory ourselves: no archive tools/scripts, traversal, links, or overwrite.
+export function zipEntries(zip) {
+  const fail = () => { throw new Error('provenance'); };
+  if (!Buffer.isBuffer(zip) || zip.length < 22 || zip.length > 210000000) fail();
+  let end = zip.length - 22;
+  while (end >= Math.max(0, zip.length - 65557) && zip.readUInt32LE(end) !== 0x06054b50) end--;
+  if (end < 0 || end < zip.length - 65557 || zip.readUInt16LE(end + 20) + end + 22 !== zip.length) fail();
+  const count = zip.readUInt16LE(end + 10), size = zip.readUInt32LE(end + 12), start = zip.readUInt32LE(end + 16);
+  if (zip.readUInt16LE(end + 4) || zip.readUInt16LE(end + 6) || count !== zip.readUInt16LE(end + 8) || !count || count > 20000 || start + size !== end) fail();
+  let cursor = start, expanded = 0; const names = new Set(), entries = [];
+  for (let i = 0; i < count; i++) {
+    if (cursor + 46 > end || zip.readUInt32LE(cursor) !== 0x02014b50) fail();
+    const flags = zip.readUInt16LE(cursor + 8), method = zip.readUInt16LE(cursor + 10), compressed = zip.readUInt32LE(cursor + 20), bytes = zip.readUInt32LE(cursor + 24);
+    const n = zip.readUInt16LE(cursor + 28), extra = zip.readUInt16LE(cursor + 30), comment = zip.readUInt16LE(cursor + 32);
+    const mode = zip.readUInt32LE(cursor + 38) >>> 16, offset = zip.readUInt32LE(cursor + 42);
+    if (cursor + 46 + n + extra + comment > end || !n || flags & 1 || ![0, 8].includes(method) || zip.readUInt16LE(cursor + 34)) fail();
+    const nameBytes = zip.subarray(cursor + 46, cursor + 46 + n), name = nameBytes.toString('utf8');
+    const directory = name.endsWith('/'), parts = (directory ? name.slice(0, -1) : name).split('/');
+    if (!Buffer.from(name).equals(nameBytes) || name.includes('\\') || name.includes(':') || /[\x00-\x1f\x7f]/.test(name)
+      || parts.some(part => !part || part === '.' || part === '..') || parts[0] !== 'chrome-linux64' || names.has(name.replace(/\/$/, ''))
+      || ![0, 0x8000, 0x4000].includes(mode & 0xf000) || ((mode & 0xf000) === 0x4000) !== directory && (mode & 0xf000) !== 0) fail();
+    names.add(name.replace(/\/$/, '')); expanded += bytes;
+    if (expanded > 1073741824 || directory && bytes || offset + 30 > start || zip.readUInt32LE(offset) !== 0x04034b50
+      || zip.readUInt16LE(offset + 6) !== flags || zip.readUInt16LE(offset + 8) !== method) fail();
+    const localName = zip.readUInt16LE(offset + 26), localExtra = zip.readUInt16LE(offset + 28), data = offset + 30 + localName + localExtra;
+    if (data + compressed > start || !zip.subarray(offset + 30, offset + 30 + localName).equals(nameBytes)) fail();
+    entries.push({ name, directory, bytes, compressed, data, method, mode });
+    cursor += 46 + n + extra + comment;
+  }
+  if (cursor !== end || !entries.some(entry => entry.name === 'chrome-linux64/chrome' && !entry.directory && entry.mode & 0o111)) fail();
+  return entries;
+}
+export function contained(root, path) { const part = relative(root, path); return part !== '' && !isAbsolute(part) && part !== '..' && !part.startsWith(`..${process.platform === 'win32' ? '\\' : '/'}`); }
+export async function extractFixed(zip, root, deadline) {
+  const entries = zipEntries(zip);
+  for (const entry of entries) {
+    if (performance.now() > deadline) throw new Error('deadline');
+    const target = resolve(root, entry.name);
+    if (!contained(root, target)) throw new Error('provenance');
+    if (entry.directory) { await mkdir(target, { recursive: true }); continue; }
+    await mkdir(dirname(target), { recursive: true });
+    const compressed = zip.subarray(entry.data, entry.data + entry.compressed);
+    const body = entry.method === 0 ? compressed : inflateRawSync(compressed, { maxOutputLength: Math.max(1, entry.bytes) });
+    if (body.length !== entry.bytes) throw new Error('provenance');
+    await writeFile(target, body, { flag: 'wx', mode: entry.mode & 0o777 });
+  }
+  const executable = join(root, 'chrome-linux64/chrome');
+  if (!contained(await realpath(root), await realpath(executable)) || (await lstat(executable)).isSymbolicLink()) throw new Error('provenance');
+  await chmod(executable, 0o755);
+  return executable;
+}
+export function checkExecutableVersion(stdout, stderr, version) {
+  if (![FIXED.version, FIXED.baseline].includes(version) || stderr || typeof stdout !== 'string'
+    || !new RegExp(`^(Google Chrome for Testing|Chromium) ${version.replaceAll('.', '\\.')}\\r?\\n?$`).test(stdout)) throw new Error('version');
+  return version;
+}
+async function executableReceipt(path, version) {
+  const info = await stat(path);
+  if (!info.isFile() || !safeInteger(info.size, 1073741824) || info.size < 1 || !(info.mode & 0o111)) throw new Error('provenance');
+  const bytes = await readFile(path);
+  if (bytes.length !== info.size) throw new Error('provenance');
+  const actual = await new Promise((yes, no) => execFile(path, ['--version'], { timeout: 5000, maxBuffer: 256, windowsHide: true }, (error, stdout, stderr) => {
+    if (error) { no(new Error('version')); return; }
+    try { yes(checkExecutableVersion(stdout, stderr, version)); } catch { no(new Error('version')); }
+  }));
+  return { version: actual, bytes: bytes.length, sha256: sha256(bytes), product: 'full-chrome' };
+}
+const receiptKeys = ['artifact', 'platform', 'version', 'revision', 'generation', 'zipBytes', 'zipMd5', 'zipSha256', 'sha256Authority', 'executable'];
+export function validateReceipt(receipt) {
+  if (!exactKeys(receipt, receiptKeys) || receipt.artifact !== FIXED.artifact || receipt.platform !== FIXED.platform || receipt.version !== FIXED.version
+    || receipt.revision !== FIXED.revision || receipt.generation !== FIXED.generation || receipt.zipBytes !== FIXED.bytes || receipt.zipMd5 !== FIXED.md5
+    || !hex(receipt.zipSha256) || receipt.sha256Authority !== 'computed-acquired-bytes' || !validExecutable(receipt.executable, FIXED.version)) throw new Error('provenance');
+}
+function validExecutable(value, version) { return exactKeys(value, ['version', 'bytes', 'sha256', 'product']) && value.version === version && value.product === 'full-chrome' && safeInteger(value.bytes, 1073741824) && value.bytes > 0 && hex(value.sha256); }
+async function acquireFixed() {
+  if (process.platform !== 'linux' || !process.env.RUNNER_TEMP || !process.env.GITHUB_OUTPUT) throw new Error('setup');
+  const start = performance.now(), deadline = start + 175000;
+  const root = await mkdtemp(join(await realpath(process.env.RUNNER_TEMP), 'kopplas-fixed-chromium-'));
+  await officialMetadata();
+  await downloadFixed('HEAD');
+  const zip = await bounded(downloadFixed('GET'), Math.min(150000, deadline - performance.now()));
+  const transport = checkArchiveBytes(zip);
+  const executable = await extractFixed(zip, root, deadline);
+  const receipt = { artifact: FIXED.artifact, platform: FIXED.platform, version: FIXED.version, revision: FIXED.revision, generation: FIXED.generation,
+    ...transport, sha256Authority: 'computed-acquired-bytes', executable: await executableReceipt(executable, FIXED.version) };
+  validateReceipt(receipt);
+  if (performance.now() > deadline) throw new Error('deadline');
+  await writeFile(join(root, 'receipt.json'), JSON.stringify(receipt), { flag: 'wx', mode: 0o600 });
+  // Runner-private handoff, never diagnostic output or artifact. Fail closed on line injection.
+  if (/[\r\n]/.test(executable)) throw new Error('privacy');
+  await appendFile(process.env.GITHUB_OUTPUT, `executable=${executable}\n`);
+}
+async function admitCandidate(path) {
+  if (process.platform !== 'linux' || !process.env.RUNNER_TEMP || typeof path !== 'string') throw new Error('setup');
+  const base = await realpath(process.env.RUNNER_TEMP), executable = await realpath(path), root = dirname(dirname(executable));
+  if (!contained(base, root) || dirname(root) !== base || !/^kopplas-fixed-chromium-[a-zA-Z0-9]+$/.test(root.slice(base.length + 1))
+    || executable !== join(root, 'chrome-linux64/chrome') || path !== executable || (await lstat(path)).isSymbolicLink()) throw new Error('provenance');
+  const text = await readFile(join(root, 'receipt.json'), 'utf8');
+  if (Buffer.byteLength(text) > 2048) throw new Error('provenance');
+  const receipt = JSON.parse(text); validateReceipt(receipt);
+  const actual = await executableReceipt(executable, FIXED.version);
+  if (JSON.stringify(actual) !== JSON.stringify(receipt.executable)) throw new Error('provenance');
+  return { executable, receipt };
+}
+async function packageAdmission() {
+  const require = createRequire(import.meta.url), testManifest = require.resolve('@playwright/test/package.json');
+  const testRequire = createRequire(testManifest), playwrightManifest = testRequire.resolve('playwright/package.json');
+  const playwrightRequire = createRequire(playwrightManifest), coreManifest = playwrightRequire.resolve('playwright-core/package.json');
+  const paths = [testManifest, playwrightManifest, coreManifest];
+  const manifests = await Promise.all(paths.map(path => readFile(path)));
+  if (manifests.some(bytes => JSON.parse(bytes).version !== FIXED.sdk) || !/^v22\.\d+\.\d+$/.test(process.version)) throw new Error('version');
+  const nvm = await readFile(new URL('../../.nvmrc', import.meta.url));
+  if (nvm.toString().trim() !== '22') throw new Error('version');
+  const { chromium } = await import('@playwright/test');
+  if (chromium !== testRequire('playwright').chromium || chromium !== playwrightRequire('playwright-core').chromium) throw new Error('version');
+  if (EXPECTED.decodedBytes !== 324 || EXPECTED.decodedSha256 !== '0420236d41fefa877b55ef66e2b78d6f46a46f2f8ebfdd662bc6e1ce2d43b8fe'
+    || EXPECTED.compressedBytes !== 347 || EXPECTED.compressedSha256 !== 'ffce20bb3e0b9766dc35c4f0d9626874851c353b85de3c3b4e8bffda09ec07a7') throw new Error('provenance');
+  const provenance = { sourceSha256: sha256(await readFile(fileURLToPath(import.meta.url))), packageSha256: sha256(await readFile(new URL('../../package.json', import.meta.url))),
+    lockSha256: sha256(await readFile(new URL('../../pnpm-lock.yaml', import.meta.url))), nvmSha256: sha256(nvm),
+    testManifestSha256: sha256(manifests[0]), playwrightManifestSha256: sha256(manifests[1]), coreManifestSha256: sha256(manifests[2]), sdk: FIXED.sdk,
+    node: process.version, baseline: await executableReceipt(chromium.executablePath(), FIXED.baseline) };
+  return { chromium, provenance, baselinePath: chromium.executablePath() };
+}
+
+async function runEngine(chromium, path, version) {
+  const evidence = { executed: false, rows: [], bodies: [], failure: 'none', versions: { node: process.version, playwright: FIXED.sdk, chromium: 'unknown' } };
+  const start = performance.now(); let browser, server, setupTask, open = true;
+  const sockets = new Set(), state = { current: null, origin: '' };
+  try {
+    setupTask = (async () => {
+      browser = await chromium.launch({ headless: true, executablePath: path, timeout: 8000 });
+      if (!open) { await browser.close(); throw new Error('deadline'); }
+      evidence.versions.chromium = browser.version();
+      if (evidence.versions.chromium !== version) throw new Error('version');
+      pairedCases.set(browser, evidence);
+      server = createServer((req, res) => {
+        if (req.method === 'GET' && req.url === '/') { res.writeHead(200, { 'Content-Type': 'text/html' }); res.end('<!doctype html><title>Synthetic stream probe</title>'); return; }
+        const current = state.current;
+        if (!current || req.method !== 'GET' || req.url !== current.path || current.response) { res.writeHead(404); res.end(); return; }
+        current.response = res; current.recorder.record('server-request');
+        res.on('finish', () => current.recorder.mutate(() => { current.row.serverFinish = true; current.recorder.record('server-finish'); }));
+        res.on('close', () => current.recorder.mutate(() => { current.row.serverPrematureClose = !res.writableFinished; current.recorder.record('server-close'); }));
+        res.on('error', () => {});
+        res.writeHead(200, { 'Content-Type': 'text/x-component', 'Content-Encoding': 'gzip', 'Cache-Control': CACHE, 'Transfer-Encoding': 'chunked' });
+        if (current.spec.arm === 'reader-one') res.end(COMPRESSED); else res.write(PREFIX);
+      });
+      server.on('connection', socket => { sockets.add(socket); socket.once('close', () => sockets.delete(socket)); socket.on('error', () => {}); });
+      await new Promise((yes, no) => { server.once('error', no); server.listen(0, '127.0.0.1', yes); });
+      state.origin = `http://127.0.0.1:${server.address().port}`;
+    })();
+    await bounded(setupTask, 10000); evidence.executed = true;
+    for (const spec of CASES) {
+      if (performance.now() - start > 96000) throw new Error('deadline');
+      const result = await runCase(browser, state, spec);
+      if (result.failure !== 'none') { evidence.failure = result.failure; break; }
+    }
+  } catch (error) { evidence.failure = PAIRED_FAILURE.has(error?.message) && error.message !== 'none' ? error.message : 'setup'; }
+  finally {
+    open = false; state.current?.recorder.stop(); state.current = null;
+    try {
+      const closedBrowser = browser ? browser.close() : Promise.resolve();
+      const closedServer = server ? new Promise((yes, no) => server.close(error => error ? no(error) : yes())) : Promise.resolve();
+      for (const socket of sockets) socket.destroy();
+      await bounded(Promise.all([closedBrowser, closedServer, Promise.allSettled(setupTask ? [setupTask] : [])]), 5000);
+    } catch { evidence.failure = 'cleanup'; }
+    if (browser) pairedCases.delete(browser);
+  }
+  if (performance.now() - start > 110000) evidence.failure = 'deadline';
+  if (!evidence.executed) evidence.versions.chromium = 'unknown';
+  if (evidence.failure === 'none' && (evidence.rows.length !== 8 || !evidence.rows.slice(6).every(validControl))) evidence.failure = 'control';
+  return evidence;
+}
+
+// Resource-free protocol tests supply fake public SDK objects, never a browser launch.
+export async function pairedCaseProof(browser, state, spec, evidence) {
+  pairedCases.set(browser, evidence);
+  try { return await runCase(browser, state, spec); }
+  finally { pairedCases.delete(browser); }
+}
+
+const sourceKeys = ['sourceSha256', 'packageSha256', 'lockSha256', 'nvmSha256', 'testManifestSha256', 'playwrightManifestSha256', 'coreManifestSha256', 'sdk', 'node', 'baseline'];
+function validateBody(body, row) {
+  if (!exactKeys(body, ['case', 'attempted', 'afterFrozenEof', 'state', 'bytes', 'sha256', 'deadlineMs']) || body.case !== row.case || body.deadlineMs !== 750
+    || typeof body.attempted !== 'boolean' || typeof body.afterFrozenEof !== 'boolean' || !['not-requested', 'available', 'failed', 'timeout'].includes(body.state)
+    || body.attempted !== body.afterFrozenEof || body.attempted !== (body.state !== 'not-requested') || body.attempted && !positive(row)
+    || (body.state === 'available' ? !safeInteger(body.bytes, 324) || !hex(body.sha256) : body.bytes !== null || body.sha256 !== null)) throw new Error('schema');
+}
+export function pairedReport(provenance, receipt, engines, failure) {
+  if (!PAIRED_FAILURE.has(failure) || engines.length !== 2) throw new Error('schema');
+  if (provenance !== null && (!exactKeys(provenance, sourceKeys) || sourceKeys.slice(0, 7).some(key => !hex(provenance[key]))
+    || provenance.sdk !== FIXED.sdk || !/^v22\.\d+\.\d+$/.test(provenance.node) || !validExecutable(provenance.baseline, FIXED.baseline))) throw new Error('schema');
+  if (receipt !== null) validateReceipt(receipt);
+  if (engines.some(engine => engine.executed) && (!provenance || !receipt)) throw new Error('provenance');
+  const normalized = engines.map((engine, index) => {
+    if (!exactKeys(engine, ['executed', 'rows', 'bodies', 'failure', 'versions']) || typeof engine.executed !== 'boolean'
+      || !exactKeys(engine.versions, ['node', 'playwright', 'chromium'])
+      || !PAIRED_FAILURE.has(engine.failure) || !Array.isArray(engine.rows) || !Array.isArray(engine.bodies)) throw new Error('schema');
+    if (!engine.executed && (engine.rows.length || engine.bodies.length || engine.versions.chromium !== 'unknown')) throw new Error('schema');
+    if (engine.executed && engine.versions.chromium !== (index === 0 ? FIXED.baseline : FIXED.version)) throw new Error('version');
+    let original;
+    if (engine.executed) {
+      // A stopped partial series stays explicit failure; pad only the unchanged engine report,
+      // never the paired frozen rows (which remain the exact executed observations).
+      if (engine.rows.length > 8 || engine.bodies.length > 4 || engine.rows.length !== 8 && engine.failure === 'none') throw new Error('schema');
+      const full = CASES.map((spec, i) => engine.rows[i] ?? newObservation(spec));
+      original = JSON.parse(report(engine.versions, full, FAILURE.has(engine.failure) ? engine.failure : 'setup').json);
+      if (original.cases.slice(0, engine.rows.length).some((row, i) => JSON.stringify(row) !== JSON.stringify(engine.rows[i]))) throw new Error('schema');
+    } else original = JSON.parse(admissionReport(engine.versions, FAILURE.has(engine.failure) && engine.failure !== 'none' ? engine.failure : 'setup').json);
+    for (const [i, body] of engine.bodies.entries()) validateBody(body, engine.rows[i]);
+    return { engine: index === 0 ? 'full-chrome-149' : 'cft-full-chrome-158', executed: engine.executed, failure: engine.failure,
+      original, rows: engine.rows, bodies: engine.bodies };
+  });
+  const verdict = classifyPair(engines, failure);
+  if (!PAIR_RESULTS.has(verdict.result)) throw new Error('schema');
+  const output = { schemaVersion: 1, kind: 'synthetic-fixed-chromium-pair', provenance, acquisition: receipt, expected: { ...EXPECTED },
+    harnessFailure: failure, result: verdict.result, fullNativeStatus: verdict.fullNativeStatus, engines: normalized };
+  // Original reports retain their own <=16KiB ceiling; storing rows twice is unnecessary.
+  for (const engine of output.engines) { engine.original.cases = engine.rows; delete engine.rows; }
+  const json = JSON.stringify(output) + '\n';
+  if (Buffer.byteLength(json) > 49152) throw new Error('schema');
+  return { json, exitCode: verdict.exitCode };
+}
+const unexecutedEngine = () => ({ executed: false, rows: [], bodies: [], failure: 'none', versions: { node: process.version, playwright: 'unknown', chromium: 'unknown' } });
+export async function pairedMain() {
+  const acquire = process.argv[2] === '--acquire-fixed-chromium';
+  if (acquire) {
+    try { if (process.argv.length !== 3) throw new Error('setup'); await acquireFixed(); process.stdout.write('fixed-chromium-acquisition ready\n'); }
+    catch { process.stderr.write('fixed-chromium-acquisition unavailable\n'); process.exitCode = 1; }
+    return;
+  }
+  const start = performance.now(); let provenance = null, receipt = null, failure = 'none';
+  const engines = [unexecutedEngine(), unexecutedEngine()];
+  try {
+    if (process.argv.length !== 4 || process.env.DEBUG || process.env.PWDEBUG || process.platform !== 'linux') throw new Error('setup');
+    const admission = await bounded((async () => ({ candidate: await admitCandidate(process.argv[3]), packages: await packageAdmission() }))(), 15000);
+    receipt = admission.candidate.receipt; provenance = admission.packages.provenance;
+    engines[0] = await runEngine(admission.packages.chromium, admission.packages.baselinePath, FIXED.baseline);
+    if (engines[0].failure === 'none' && performance.now() - start <= 115000) engines[1] = await runEngine(admission.packages.chromium, admission.candidate.executable, FIXED.version);
+    else if (engines[0].failure === 'none') failure = 'deadline';
+  } catch (error) { failure = PAIRED_FAILURE.has(error?.message) && error.message !== 'none' ? error.message : 'setup'; }
+  if (performance.now() - start > 230000) failure = 'deadline';
+  try {
+    const output = pairedReport(provenance, receipt, engines, failure);
+    await mkdir('test-results', { recursive: true });
+    await writeFile('test-results/fixed-chromium-paired-probe.json', output.json, { encoding: 'utf8', flag: 'wx' });
+    process.stdout.write(`fixed-chromium-paired-probe ${JSON.parse(output.json).result} ${Buffer.byteLength(output.json)}B\n`);
+    if (output.exitCode) process.stderr.write('fixed-chromium-paired-probe unavailable\n');
+    process.exitCode = output.exitCode;
+  } catch { process.stderr.write('fixed-chromium-paired-probe write\n'); process.exitCode = 1; }
+}
+// PAIRED-ADDITION-END implementation
+// PAIRED-ADDITION-BEGIN entry
+const pairedEntry = process.argv[2] === '--paired-fixed-chromium' || process.argv[2] === '--acquire-fixed-chromium';
+if (pairedEntry && process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) await pairedMain();
+// PAIRED-ADDITION-END entry
+if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url) /* PAIRED-EXPRESSION-BEGIN */ && !pairedEntry /* PAIRED-EXPRESSION-END */) await main();
