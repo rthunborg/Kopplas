@@ -68,3 +68,46 @@ Coordinator-owned follow-up preparation may document the resolved protocols with
 ## Blockers
 
 Two preparation blockers: concrete trace-safe private transfer/comparison, and concrete before-carrier document-gate/cleanup protocol. Existing required general-browser failure and incomplete acceptance evidence remain substantive story blockers. Synthetic browser EOF/native-terminal discrepancy, proposal validation, and any future diagnostic success do not waive them.
+
+## R1 focused independent revalidation (2026-10-14)
+
+### Outcome
+
+**REVISE — one remaining concrete preparation blocker.** R1 supplies concrete encrypted private-key/needle transport and synchronous provisional collection/removable bootstrap protocols. Those resolve the two original mechanism omissions conditionally, subject to their specified source proofs and fail-closed cases. A pinned trace boundary still conflicts with the retained blanket no-IDs requirement: creating the public CDP session records an owned existing Playwright page GUID. This is framework control metadata, not a tenant, fixture, application, public Request, or cancellation identity. This validation neither treats it as secret application data nor silently permits it under a prohibition that R1 has not amended.
+
+### Exact reviewed appendix and immutable bindings
+
+Actual R1 proposal: 36,383B/SHA256 `5d7ef4ea7a7e010476fff18fb549253f96fc95f6d9809bbd452f0821a58f7dcf`; appendix 17,962B. The exact original 18,421B prefix remains SHA256 `64c45d82f560ea2b6afef81784862555bcbaba2804b8cf192c7702ac590e266d`. This companion's original 11,159B prefix remains SHA256 `23268e90ff9bdac3d20433b7c2814f3d655550e92167d5ba47cbe78cb0a54be4`. Scheduling source/helper remain 57,501B/`9e9fdd5a46c2f45a09f809758ed3788d13409e346177bbfa8cfd5f037ac0a065` and 18,231B/`84a90383c375ace822e0ef8519851185a80f043c126f2e2b05437ceff39a3082`.
+
+Read-only pinned Playwright 1.61.1 consulted bindings, all under `node_modules/.pnpm/`:
+
+| Input | Bytes | SHA256 |
+| --- | ---: | --- |
+| `playwright-core@1.61.1/node_modules/playwright-core/lib/coreBundle.js` | 3,352,341 | `6be5c2ea035554e9b184b1dbc7aa5e7f1fb428dd1b5c202022858dcfae9bee27` |
+| `playwright@1.61.1/node_modules/playwright/lib/index.js` | 34,528 | `033484bd04076585fa11954261323575a2f8ec12ca113f0c288dac67009fbf9f` |
+| `playwright@1.61.1/node_modules/playwright/lib/worker/workerProcessEntry.js` | 75,892 | `e8b654850c073df3996816eb09edf845490d9a6e75785477a9ddb69d586cca54` |
+| `playwright-core@1.61.1/node_modules/playwright-core/package.json` | 876 | `759e376f995bf39edd4810d699b99469bab1d7428b6fbc78d41912f367df7ba9` |
+
+Only relevant bundled source spans were inspected. These are code-path findings, not runtime trace evidence or a new broad dependency review.
+
+### Narrow pinned trace result
+
+Public `CDPSession.send()` forwards `{method, params}` through its channel (`coreBundle.js` 56144–56146). Server CDPSession inherits the root CRSession/CRConnection attribution, rather than the target BrowserContext (12389–12395, 34505–34516, 34554–34556, 34626–34630, 38176–38189). Context-scoped tracing listeners filter by exact `sdkObject.attribution.context` (12369–12375, 24746). Therefore those send calls are excluded from the BrowserContext library action trace; the corresponding binding events are emitted directly to the public client (51490, 56131–56133), rather than becoming action-call parameters. Runner API tracing supplies top-level channel parameters (`playwright/lib/index.js` 87–108); its preview turns the nested CDP `params` object into the literal `Object` (`workerProcessEntry.js` 731–744, 774–791). This supports the feasibility of R1's targeted exclusion of raw Runtime context IDs, removal script IDs, binding metadata, and encrypted dispatch contents from those trace paths. It does not prove every future wrapper/error path private.
+
+The public session-creation call is different. `BrowserContext.newCDPSession` is invoked on the context dispatcher (53120–53126). Dispatcher metadata retains original wire `params2` (18387–18403). The context's tracing listener records `metadata.params` in its before event (24567–24580, 24964–24973). The page argument is the existing channel reference, serialized as `params.page.guid`. `visitTraceEvent` recursively preserves ordinary object/string fields; its dispatcher replacement applies to actual Dispatcher instances, not that wire GUID object (24545–24565). Thus, while tracing is active, the new public creation call can record the owned framework page GUID. The returned session Dispatcher is replaced with `<CDPSession>`; it is not a newly serialized secret session identifier. The runner's object preview does not remove the separate library before event.
+
+R1 says earlier preservation/privacy constraints remain authoritative and supersedes only unspecified transfer/bootstrap choices. The earlier rule forbids IDs/tokens crossing into traces through observation arguments/results without distinguishing framework handles. Its literal requirement therefore remains incompatible with this reachable session-creation path. This is the remaining blocker; it is not a finding that the ciphertext leaks a fixture email or that CDP Runtime dispatch necessarily records a context ID.
+
+### Mechanisms conditionally accepted and necessary revision
+
+The ECDH/HKDF/AES-GCM proposal has a concrete supported API route, direction-separated keys, fresh public bootstrap material, sequence/AAD binding, fixed padding, exact decrypted tuple comparison, bounded envelopes/storage, fatal decoding and no plaintext fallback. Its public crypto material/ciphertext is expressly classified as transport, not identity evidence. Source proofs must still cover exact schemas/caps, invalid point/tag/padding, replay/reorder/cross-context rejection, zeroing owned mutable buffers, cleared references, and fixed error boundaries. Raw bytes/decoded data remain browser-only. No URL/body hash may substitute for exact tuple equality.
+
+The synchronous PROVISIONAL installation before the first unchanged `h.seed()` correctly prevents an asynchronous gate from delaying collection. Registration qualifies already collected evidence rather than guessing a missed call. Actual document/default-world/main-frame association, transitions, replacement, unexported destroyed contexts and all-document closure remain conservative UNKNOWN cases. Public owned script removal plus bounded lifecycle fence/restoration is a concrete cleanup protocol; a raced or unreachable bootstrap cannot receive successful cleanup status. No fetch/read/navigation waits on the observer. Implementation proofs, rather than this preparation review, must establish each exact event schedule and owner check.
+
+Necessary revision: explicitly resolve the treatment of **owned framework control metadata** at the public session-creation trace boundary. A bounded amendment may distinguish the existing page channel GUID from forbidden application/tenant/fixture/request identifiers, while retaining the actual no-context/script/secret transport requirements; otherwise provide an admissible public alternative and its pinned trace evidence. This reviewer does not grant that amendment implicitly. Do not disable/scrub traces, patch SDK internals, hide calls through private instrumentation, or relax raw application privacy to avoid the mismatch.
+
+### Retained status, open questions, deferred work and blockers
+
+Only this focused validation appendix is authored; every existing byte is preserved. No source/spec/kernel/Git/state/CI/resource/browser/test change or execution occurred. Historical eight probe cases and general-browser failure are unchanged antecedent evidence. Original reader/fetch promise/result/byte/rejection identity, native `Response.finished()`/`text()` failures, first-failure authority, exact native observer, 20-key/1,024B receipt, security assertions, deadlines/retries, 18 titles and 11 PNGs remain required. Closed complete unique bijection stays conditional correspondence, not shared object identity. Added microtask effects remain acknowledged; persistent original native failure on the corresponding carrier is mandatory, with masking/green/changed population UNKNOWN.
+
+One preparation question remains: the explicit framework-handle trace classification above. Resolve it in bounded preparation, then independent focused PASS before authoring, actual source-extracted proofs, exact High source review and one separately controlled diagnostic. Acceptance EOF/full payload/redaction/correspondence/cancellation actor remain unknown; no waiver, coverage credit, broad review/P5 credit, story completion or Story 15.2 follows.
