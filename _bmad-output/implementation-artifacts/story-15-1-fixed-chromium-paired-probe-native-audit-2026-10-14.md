@@ -91,3 +91,92 @@ Coordinator owns the next narrow readiness/admission decision based on these ori
 ## Blockers
 
 Required General E2E is red; AC2 fails in both attempts and ten later scheduling titles plus all six phone images are unexecuted. Optional native pair has no executed observation or artifact. **P5=false, review unverified, broad review 0/3; zero new application gate, release, completion, synthetic RLS/security or visual-acceptance credit.** This completes only the admitted immutable native evidence audit.
+
+# Append — observable acquisition run 38652607316 (audited 2026-10-15)
+
+## Outcome
+
+**New native pair UNEXECUTED; acquisition failed at `executable / version-rejected`. Required General E2E FAILED.** [Run 38652607316](https://github.com/rthunborg/Kopplas/actions/runs/38652607316), attempt 1, `workflow_dispatch`, exact HEAD `eaabd2d0020b391247e1a4383b0eaf6291f0ac83`, created `2026-10-14T23:12:11Z`, terminal failure updated `2026-10-14T23:32:03Z`. Coordinator records one accepted dispatch, paired flag true, original native flag false, no duplicate.
+
+The new acquisition boundary receipt narrows **this run only**. Its version-output predicate rejected the candidate check; it does not disclose the raw stdout/stderr or establish a wrong downloaded version, compatibility defect, network cause or application's cancellation cause. The earlier run's acquisition substage remains unknown. The `2026-10-14T21:17:47Z` Windows metadata GET/ZIP HEAD diagnosis cannot explain either native failure retroactively.
+
+Same independent Sol 6.1 High native evidence auditor, focused on actual authenticated/RLS evidence, native response boundaries, provenance and immutable evidence integrity. No mechanism authorship, broad review, nested delegate, native action, HTTP, test/proof rerun, resource launch, CI rerun, source/default change, Git/state action or deployment occurred in this audit.
+
+## Files changed
+
+Only this append. The complete original **15,107B / SHA256 `d22fa06e2e71af732ff7cbeb268911ef59040dac2ea48a790a4ffcb8b7713e36` prefix** is retained. New originals are private under `.env.epic15.mail-runtime/ci-fixed-chromium-paired-probe-38652607316/`. No transport manifest, ZIP, extracted report, proof, historical failure, source, specification, root state or other checkout was rewritten.
+
+## Status
+
+### Evidence bindings checked before interpretation
+
+First independently verified `transport-manifest.json`: **16,674B / `23188f6914b0bc3f1e80d86183719306cf8481e20808a551dabf37fc603ca8d1`**, correct run/HEAD, **92 files / zero hash or length mismatches**. All seven original ZIPs independently match terminal GitHub API size/digest/run/HEAD. In-memory ZIP entry hashes/lengths match preserved extracted files: **45 entries / zero mismatches**. No extraction or artifact rewrite was performed.
+
+| New artifact ID / name | ZIP bytes | ZIP SHA256 |
+| --- | ---: | --- |
+| `11936475263` / fixed-chromium-acquisition | 328 | `a70b7cc86de724c4fb74cbe10c465d6266b7a5e3f69d0b0d22bfaafb42fc2c02` |
+| `11935896846` / native-isolated-storage-recovery | 682 | `cc6afe3944fadf91345e4530cd2df00711727f2efc397b1b7fbd0d3dae5a6be4` |
+| `11935787249` / dashboard-playwright-report | 253,737 | `6ee814667271b6a113e3dd1f40df04854f32065480aef362d13421f5bff21027` |
+| `11935592449` / native-dashboard-browser | 5,561 | `57b69a4a374c33658b9ec23fd90015f2cd01ebb1508ec11c31224e8aa99959d0` |
+| `11935297766` / native-full-integration | 89,776 | `7cb38b8708fcc0fccbf00622092ce381868824cba85e8a3c699393ea8fdda2bb` |
+| `11935664337` / native-general-browser | 1,111,518 | `3252d39ef1d490ff46098d7cdec42c6e884841e07cb70486af1aa815c0fc4684` |
+| `11935239862` / playwright-report | 17,223,168 | `aea77b859fcae5622f92816313520060de2edfa69e3c6d465368eccdb9d2c704` |
+
+The manifest binds terminal run 12,223B/`fbb96b44dade5de1e50301f1807ee471e853014ae0f1efa4f78b75759c243275`, jobs 23,751B/`16617379d9ab3993927c4e483cc9381cc4dcffa9ff664c3ac2e21720fce53f51`, artifacts 5,075B/`54a702d6b1606a8893c05ef953d9bf1faddee2141897d7e4400cd0b8a55abbd5`. General JSON: 2,226,427B/`d7c9769c390b9697646b258b71dd68583716e2f4ccb1e06e3cc4c8602cf2e77c`. Paired log: 46,915B/`34478adb7b0de2534d7681b252b4e938d9f720ac5424edfdc179f19b6038bcaf`; General log: 232,319B/`1268d67350b70a09ef04c7b29199d597d254d8383b59a16b500d1710218d4394`; whole run: 3,497,614B/`5ec755ad27d43d722b3b2746aa7716288e23c4b2e70a0cf2289491e05a4ea122`. All four other job logs and retained API/group receipts also pass the 92-file binding audit.
+
+### Closed acquisition receipt and actual runner authority
+
+The sole extracted acquisition file is **206B / `107acb640e92b10695f70bf943c6a86a6182b4a56f80cacff236cb67f0930ccc`**. It has exactly the validated eight fields: schemaVersion 1, fixed acquisition-boundary kind, targetVersion `158.0.8104.0`, targetPlatform `linux64`, status `failed`, stage `executable`, reason `version-rejected`, pairedCases **0**. No arbitrary error text, paths, payloads, environment or private identifiers occur in this receipt. The target version is a requested constant, **not an observed actual version**.
+
+The acquisition step ran `23:31:55–23:31:59Z`, emitted generic unavailable and exited 1. Publisher step `23:31:59Z` succeeded; receipt upload succeeded `23:31:59–23:32:00Z`, yielding the one-file original ZIP above. Paired command was skipped; paired-report upload failed because the report was missing. Terminal API has exactly seven artifacts, **zero paired report**. No aggregate `classifyPair` result was emitted; both engines' eight-case populations, fresh baseline, original EOF/full hashes, native-text arms, genuine abort/truncation controls, body sidecars and frozen/late native observations are **unexecuted**.
+
+Actual source enters `executable` after its sequential acquisition gates, and assigns `version-rejected` in `checkExecutableVersion`: nonempty stderr or failure of the exact permitted product/version stdout format rejects. Native process errors have the separate `version-process-failed` reason. This receipt therefore locates the executed version-output rejection predicate, while exposing neither stream nor the rejecting component. It is not a timeout/network/metadata/MD5/ZIP/extraction rejection receipt and must not be relabeled as one. There is no retained complete ZIP/executable provenance receipt, acquired SHA256, executable size/hash or successful actual version. No independent raw candidate binary rehash was performed here.
+
+The observed publisher success and upload are consistent with the reviewed fresh-authority path: the worker freezes a failed public receipt and supplies provisional evidence; supervisor requires actual permitted child close and exact bytes/status, acknowledges the locator before nonrenewable `D=min(supervisor-start+180s,handoff-start+2s)`, then creates the final committed certificate. Publisher validates that final generation/clock/receipt authority, requires acknowledgement before the earlier of its own 2s budget and D, and writes the true output. The workflow additionally requires **publisher runner success AND true output** for this one-file upload. Acquisition failure and pairing skip remain authoritative. The amended contract permits bounded committed-carrier delivery after an earlier supervisor failure; it permits no new commitment/acceptance at or after D. This audit does not infer which allowed delivery path occurred from the public receipt or assert an independently measured private monotonic-clock deadline. No private final certificate/clock values were published or reconstructed.
+
+Observed setup: Linux/Ubuntu runner and Node `v22.23.3`; pinned dependency/browser installation succeeded. Installer log records `149.0.7827.55`; General JSON records SDK `1.61.1`. Installation is not a launched paired full-Chrome baseline, candidate launch version, compatibility result or executable provenance. Prepared official CfT generation/MD5/size facts remain preparation evidence; the failed boundary file is not a successful provenance record. Publisher authenticity/clock proof mocks do not become browser/application coverage or general Linux clock assurance.
+
+### Required jobs: actual populations and limits
+
+| Job / ID | Terminal result | Executed evidence |
+| --- | --- | --- |
+| verify / `116154770428` | success | 2,540 Node tests passed, 100 suites; 0 failed/skipped/cancelled/todo. Python 2/2, 26/26, 10/10 OK. |
+| db / `116155378516` | success | 1,736 passed, 1 skipped, 0 failed out of 1,737 assertions; 144 passed files + 1 skipped file. |
+| recovery / `116155378537` | success | Physical Storage proof: 1 executed/pass, 0 skip/fail. |
+| dashboard / `116155378589` | success | 57 distinct expected/passed titles, 57 attempts, all retry 0; 0 skipped/unexpected/flaky. |
+| General / `116155378592` | failure | 382 titles: 368 expected, 13 skipped, 1 unexpected; 0 flaky/top-level errors. 400 reporter entries = 375 passed + 2 failed executed attempts + 23 skipped entries. |
+| fixed pair / `116161242829` | failure | Acquisition rejected; fresh receipt published; paired cases 0. |
+| original native / `116161244568` | skipped | No new observations. |
+
+The main integration skip is again the physical Storage assertion; the isolated recovery job separately executes and passes it. Story 15.1 again has **8 real local DB/JWT reassignment cases + 4 actual authenticated reader/RLS cases**, distinct from **21 executed mock transport cases with no RLS credit**. These are 33 test assertions across the relevant files, not 33 live RLS tests. Vitest's 463 suite aggregate is not the file/assertion population. No mock earns tenant-isolation credit and no skipped entry earns coverage. Required DB/pilot command elapsed **358.19s / 420s budget**; that is not a calendar p95 performance certificate.
+
+### New General scheduling/AC2 observations
+
+The 18 scheduling titles again have **7 passed / 1 failed / 10 skipped**. Serial replay produces **14 passed + 2 failed executed attempts / 20 skipped entries**. Seven successful preceding titles were repeated; they are not fourteen distinct checks. The two AC8 phone tests and all later AC3/AC5/AC6/AC7 tests are unexecuted. Five desktop target names were each captured on both successful projection attempts: **10 PNG attachments, 5 distinct of 11 planned targets; all 6 phone targets missing/unexecuted**. This audit does not award image acceptance, one-hand usability, daylight readability, manual assistive-technology evidence or calendar p95. Those remain unknown without their own evidence.
+
+Both AC2 attempts fail with actual `'net::ERR_ABORTED'`, but their frozen diagnostic evidence differs and is not pooled:
+
+- **Original attempt:** one original 20-key native failure receipt for request/capture **3/3**, status 200 RSC, phase finished, finishedEnd null, bodyStart/bodyEnd null, captures 3 / fulfilled 2 / rejected 0 / pending 1. The failing same-object `Response.finished()` is pending at this fence and its `Response.text()` is uninvoked. Four passive 28-key candidate rows remain: an earlier prefetch row with no admitted public ordinal has 324 decoded bytes, CDP failed/canceled, main-frame navigation after response; ordinal 1 RSC and ordinal 2 HTML rows finish; failing ordinal 3 is **plain RSC (treePrefetch=false)**, 1,194 decoded bytes, CDP failed/canceled=true/errorClass aborted, finishedEncodedBytes null, no main-frame navigation after response. The earlier prefetch failure is not the failing admitted capture's identity.
+- **Retry:** **no native-response-failure receipt** was emitted. Its only passive candidate row is prefetch RSC/status 200/no-store, publicMatchCount 1, publicRequestOrdinal null, publicFailedSeq present, 324 decoded bytes; CDP terminal **pending**, terminalMs null, canceled/errorClass unavailable, finishedEncodedBytes null, no main-frame navigation after response. Missing native capture/phase/counts and CDP terminal are unknown; this row cannot be promoted to the prior attempt's ordinal 3 finished-state/body obligation or an observed CDP cancellation.
+
+Both passive receipts report setup ready, no overflow/invalidity, cleanup requested. Public/CDP identities remain candidates; decoded bytes do not prove a browser reader/hash/EOF. The observed requestfailure carrier proves neither a canceling actor nor an upstream/application causal identity. There is no new synthetic server-finish/control or post-EOF body sidecar for these application requests. Plain versus prefetched response observations remain distinct. Cleanup requested does not confirm detach completion; missing records are not manufactured from another attempt.
+
+Unchanged application source retains the native `Response.finished()` then `Response.text()` obligation, nonempty complete payload checks and absence-of-withheld-data/denied-role assertions. Neither failed attempt completes those final assertions. No payload assertion was weakened; no clone, replay, replacement consumer, synthetic EOF or report substitution was introduced. UI preconditions and earlier passes cannot complete the failing own-agenda/denied-role flow. Full failing-page hydration, application browser-reader EOF and response/body security acceptance remain unproven. The allow-listed diagnostic fields contain no raw payload/URL/query values/credentials; private HTML/trace evidence is not certified for publication by that limited observation.
+
+### Source and review bindings
+
+Current static source hashes match the saved exact-HEAD blob-binding record: probe **74,792B / `95c967788cff764f1d546ec1a0b1bdd77cc116a57c714774447b266ef870a5f9`**, workflow **35,082B / `25c9f3672f4538a95d5fb573421739ae14be757d0a2b72fc39e756dfcae1d304`**, application spec **57,501B / `9e9fdd5a46c2f45a09f809758ed3788d13409e346177bbfa8cfd5f037ac0a065`**; helper independently remains **18,231B / `84a90383c375ace822e0ef8519851185a80f043c126f2e2b05437ceff39a3082`**. No new source edit occurred in this audit. Saved blob bindings record probe/workflow/spec Git/work byte identity. The unit file's working **2,511B / `313f11c18c66d8bb242e66cb27c314b9fbe3eca94573a4276ce28c308beb5b28`** differs from saved Git **2,460B / `ff0f78053225461c8f0ff48729b3b4e210cce0cae5df72fb071a9c911d5472d2`**. Independent CRLF→LF hashing reproduces that Git length/hash; the saved normalization record also binds the reverse. This is newline normalization, **not raw byte identity**. No Git command was used by this auditor.
+
+Bound acquisition addendum **38,524B / `a378c28cd92ee7989d47c9bcd8f00517a9e266def7317342742ebc502395b960`**, amended validation **32,860B / `a83a3aca46f5467e10f413b354b869be66cd0e8d78e71171e0bb4f464fbfcef6`**, source follow-up review **24,788B / `a6dae4bb55704a3f23703f1765d89940498b464d5fa19ccff85580ae1d9637ae`** match. Their latest PASS clears P2 under the explicitly validated amendment while preserving the full original 11,830B FAIL/P2 review and intermediate witnesses. Source/protocol **115 + supplemental 60** mocked checks are not executed native engines, application/RLS coverage or Linux timing guarantees. Earlier inverse-receipt qualifications and all historical native/application limits remain preserved.
+
+## Open questions
+
+Which version-output predicate component rejected the new candidate is unknown; actual stdout/stderr/version and completed binary receipt are unavailable. The new stage/reason does not diagnose the old acquisition failure. Neither run executes a fresh paired baseline/fixed population, so R1 baseline reproduction, compatibility, remedy/persistence/full-clean, native-text and EOF/body/control outcomes remain unproven. AC2 retry capture state, failing page hydration, cancellation actor and final body/security assertions remain unknown. No common cause is established between acquisition and General failures.
+
+## Deferred work
+
+Coordinator separately owns any bounded next proposal/readiness decision. This audit authorizes no retry, HTTP diagnosis, source fix, browser/SDK fallback/default upgrade, waiver, private observer insertion or expanded review. TeamUXB-A9's recorded oracle waiver, original observer BLOCKED / REVISE, sequential goals and Story 15.2 exclusion remain unchanged.
+
+## Blockers
+
+Required General remains red; AC2 fails twice, ten subsequent scheduling titles and all six phone targets remain unexecuted. Candidate executable version-output admission failed; paired engine observations are zero. **P5=false, review unverified, broad review 0/3; zero new application gate, mock RLS/security, visual acceptance, Story 15.2, completion or release credit.** Only this focused immutable native evidence audit is complete.

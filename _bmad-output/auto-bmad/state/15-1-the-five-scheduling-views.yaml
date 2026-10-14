@@ -9,10 +9,10 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-14T23:10:23Z"
+updated_at: "2026-10-14T23:45:31Z"
 started_at: "2026-10-09T13:06:12Z"
 completed_at: null
-active_seconds: 38310
+active_seconds: 40190
 timing_anchor: null
 is_first_in_epic: true
 is_last_in_epic: false
@@ -26,7 +26,7 @@ selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Focused independent review of late publication P2 repair, committed certificate, clock cutoff and private source protocol proofs"
+escalation_reason: "Focused native audit of acquisition receipt, binary/engine provenance, private browser transport and actual RLS/application evidence"
 routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary scheduling UX specification; sensitive authorization/integrity portions explicitly delegated High\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary15.1 ATDD preparation; sensitive access assertions delegated High; shared fixture edits excluded\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -187,6 +187,7 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Focused independent preparation validation of receiver cutoff, supervisor authority and explicit bounded post-commit exception\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Implement independently validated supervisor commitment and receiver cutoff with private clock/carrier integrity and delayed-settlement proofs\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Focused independent review of late publication P2 repair, committed certificate, clock cutoff and private source protocol proofs\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Focused native audit of acquisition receipt, binary/engine provenance, private browser transport and actual RLS/application evidence\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate, trace-advisory]
 tea_rationale: "Scheduling, synchronized projections, capacity and drag/keyboard/dialog behavior"
@@ -212,7 +213,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [45a64853, f9e12a81, 279d3149, b9d61a33, 4d7911ac, 3a655a5d, a67a64dc, 66cd8436, d79fff08, bf84cf5d, 181f947f, 22cfb74a, 22cfb74a, 6fd516b0, 521d56fd, e448f856, b99e3f42, 83e27c92, 1aa7c52b, 8630b011, da3a4c59, 27d67de7, 4223e887, 9c26fd72, d75313bb, 4b0ab106, f7b4f154, 437c3da2, e6c404d3, f4a431f6, 85cae2a5, 689a1385, 1bc90218, c49ac882, 4b685196, a5d262f8, a39cd221, 704e9320, c797d815, 25390342e668dee81d6bda42bfe0b5b51ed1723b, a98fc96386df752c631c119de992fc832c8ecb4d, ea5477fff0dbd8e82abb6a376269bfcf54ae95e9, 35e904b2e0d8798f72fbb405b3a888d64fdebd45, 2a071fc49a81984ae55e9e2c08a7583444245d86, ccd7abe9ebe38d846df58087c9d94280ad1d25ab, b01a0511cd1ee66f710de21034faeae9d5537403]
+commits: [45a64853, f9e12a81, 279d3149, b9d61a33, 4d7911ac, 3a655a5d, a67a64dc, 66cd8436, d79fff08, bf84cf5d, 181f947f, 22cfb74a, 22cfb74a, 6fd516b0, 521d56fd, e448f856, b99e3f42, 83e27c92, 1aa7c52b, 8630b011, da3a4c59, 27d67de7, 4223e887, 9c26fd72, d75313bb, 4b0ab106, f7b4f154, 437c3da2, e6c404d3, f4a431f6, 85cae2a5, 689a1385, 1bc90218, c49ac882, 4b685196, a5d262f8, a39cd221, 704e9320, c797d815, 25390342e668dee81d6bda42bfe0b5b51ed1723b, a98fc96386df752c631c119de992fc832c8ecb4d, ea5477fff0dbd8e82abb6a376269bfcf54ae95e9, 35e904b2e0d8798f72fbb405b3a888d64fdebd45, 2a071fc49a81984ae55e9e2c08a7583444245d86, ccd7abe9ebe38d846df58087c9d94280ad1d25ab, b01a0511cd1ee66f710de21034faeae9d5537403, eaabd2d0020b391247e1a4383b0eaf6291f0ac83]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -3082,3 +3083,59 @@ fixed_chromium_acquisition_observability_source_review_followup:
   protected_files_unchanged: 9
   tests_skip: 0
   tests_fail: 0
+fixed_chromium_acquisition_observable_ci:
+  extracted_entries: 45
+  acquisition_original_zip_id: 11936475263
+  acquisition: failure
+  broad_review_round: 0
+  p5_complete: false
+  conclusion: failure
+  original_archives_verified: 7
+  outcome: "Terminal failure; four required jobs succeeded, General and acquisition failed"
+  general: failure
+  acquisition_receipt_upload: success
+  acquisition_zip_sha256: a70b7cc86de724c4fb74cbe10c465d6266b7a5e3f69d0b0d22bfaafb42fc2c02
+  paired_command: skipped
+  dashboard: success
+  native_audit: Pending focused High audit
+  status: completed
+  recovery: success
+  acquisition_zip_bytes: 328
+  cause: "Independent receipt interpretation pending; do not infer earlier failure"
+  paired_cases: 0
+  publisher: success
+  verify: success
+  db: success
+fixed_chromium_acquisition_observable_native_audit:
+  broad_review_round: 0
+  verify_pass: 2540
+  outcome: "Complete; pair unexecuted and General failed"
+  acquisition_receipt_bytes: 206
+  scheduling_fail: 1
+  preserved_prefix_bytes: 15107
+  sha256: 616797ef54235aa4526d10f2761f0f9258b279eeca84133270cfefe1aed268e3
+  scheduling_pass: 7
+  extracted_entries_verified: 45
+  observed_stage: executable
+  cancellation_actor: unknown
+  phone_targets_executed: 0
+  paired_cases: 0
+  next: "Coordinator-admitted bounded High executable-version predicate diagnosis; no automatic rerun or weakened pins"
+  ac2_retry_native_capture_receipt: "absent; cannot infer state from prior runs"
+  observed_reason: version-rejected
+  ac2_original_capture: 3
+  integration_skip: 1
+  transport_files_verified: 92
+  recovery_pass: 1
+  scheduling_skip: 10
+  bytes: 31174
+  phone_targets_required: 6
+  p5_complete: false
+  integration_pass: 1736
+  rejected_component: "Unknown: stdout/stderr/version predicate discrimination absent"
+  original_archives_verified: 7
+  application_eof: unknown
+  candidate_version: Unproven
+  dashboard_pass: 57
+  candidate_binary_provenance: No returned binary SHA receipt
+  ac2_original_finished: pending
