@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-14T15:45:16Z"
+updated_at: "2026-10-14T16:08:04Z"
 started_at: "2026-10-09T13:06:12Z"
 completed_at: null
 active_seconds: 25163
@@ -18,15 +18,15 @@ is_first_in_epic: true
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: native_passive_metadata_implementation
-selected_role: native-passive-evidence-author
-selected_profile: standard
+selected_phase: native_passive_metadata_independent_review
+selected_role: independent-native-diagnostic-reviewer
+selected_profile: diverse_review
 selected_model: gpt-6.1-sol
 selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: Implement independently validated bounded native metadata with auth/privacy isolation and failure/cleanup preservation.
+escalation_reason: Independent sensitive privacy and native first-error/body-preservation review of bounded source delta and actual extracted proofs.
 routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary scheduling UX specification; sensitive authorization/integrity portions explicitly delegated High\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary15.1 ATDD preparation; sensitive access assertions delegated High; shared fixture edits excluded\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -137,6 +137,7 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Native auth-adjacent RSC cancellation remains unresolved; prepare passive browser lifecycle metadata with strict privacy and unchanged security assertions.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"native_passive_metadata_preparation\",\"profile\":\"standard\",\"role\":\"native-evidence-contract-author\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Independent privacy, auth-adjacent native capture preservation and cleanup validation before diagnostic source authoring.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"native_passive_metadata_validation\",\"profile\":\"diverse_review\",\"role\":\"independent-native-evidence-contract-validator\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Implement independently validated bounded native metadata with auth/privacy isolation and failure/cleanup preservation.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"native_passive_metadata_implementation\",\"profile\":\"standard\",\"role\":\"native-passive-evidence-author\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Independent sensitive privacy and native first-error/body-preservation review of bounded source delta and actual extracted proofs.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"native_passive_metadata_independent_review\",\"profile\":\"diverse_review\",\"role\":\"independent-native-diagnostic-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate, trace-advisory]
 tea_rationale: "Scheduling, synchronized projections, capacity and drag/keyboard/dialog behavior"
@@ -162,7 +163,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [45a64853, f9e12a81, 279d3149, b9d61a33, 4d7911ac, 3a655a5d, a67a64dc, 66cd8436, d79fff08, bf84cf5d, 181f947f, 22cfb74a, 22cfb74a, 6fd516b0, 521d56fd, e448f856, b99e3f42]
+commits: [45a64853, f9e12a81, 279d3149, b9d61a33, 4d7911ac, 3a655a5d, a67a64dc, 66cd8436, d79fff08, bf84cf5d, 181f947f, 22cfb74a, 22cfb74a, 6fd516b0, 521d56fd, e448f856, b99e3f42, 83e27c92]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -1645,6 +1646,48 @@ native_passive_metadata_validation:
   sha256: 0f6d8f31f64aa968c248bffd0bb0955b50d11e3cb82d9db0df3dd7719282ee64
   bytes: 7639
   scope: "No reachable contract privacy/cleanup/native-preservation gap; actual factory+cleanup source-extracted proofs required"
+  native_credit: 0
+  broad_review_credit: 0
+  phase5_complete: false
+native_passive_metadata_implementation:
+  status: authored-awaiting-independent-review
+  delegate: "/root/native15_passive_author_high"
+  source: tests/e2e/scheduling-views.atdd.e2e.spec.ts
+  source_sha256: 3fd1906b73e5b26ec6f2f4c0d4bda4a0497d23829631a34784ddc3a10340db6a
+  source_bytes: 57328
+  private_proof: ".env.epic15.mail-runtime/passive-proof-20261014-6b90"
+  manifest_sha256: 838bbd265896684b6b083d02fcedc6abda7baadebae436b5276eda36e33f5ae2
+  manifest_bytes: 21969
+  private_bound_files: 44
+  external_bindings: 13
+  untouched_prior_proof_bindings: 25
+  final_diagnostic_passed: 82
+  final_prior_cases_passed: 136
+  final_failed: 0
+  final_cancelled: 0
+  final_skipped: 0
+  eslint_native: 0
+  typecheck_native: 0
+  failed_history: "Initial diagnostic74:69pass3fail2cancelled; typecheck native2; preservation-adapter native1 retained"
+  inverse_preservation: "Whole8563 input exact; original2934B20-key1024B-cap snapshot unchanged"
+  native_credit: 0
+  broad_review_credit: 0
+  phase5_complete: false
+native_passive_metadata_independent_review:
+  status: PASS-bounded-diagnostic-only
+  delegate: "/root/native15_passive_source_review_high"
+  source_sha256: 3fd1906b73e5b26ec6f2f4c0d4bda4a0497d23829631a34784ddc3a10340db6a
+  source_bytes: 57328
+  manifest_sha256: 838bbd265896684b6b083d02fcedc6abda7baadebae436b5276eda36e33f5ae2
+  private_bindings_verified: 44
+  external_bindings_verified: 13
+  prior_proof_bindings_verified: 25
+  inverse_verified: Eight marked additions removed reproduces exact8563 wholebaseline40324B
+  original_snapshot_bytes: 2934
+  original_proof_bodies_byte_identical: 136
+  source_extraction_verified: true
+  proofs: 82/82 diagnostic +136/136 prior PASS0fail0cancel0skip
+  static: Focused ESLint0/nonincrementalTS0
   native_credit: 0
   broad_review_credit: 0
   phase5_complete: false

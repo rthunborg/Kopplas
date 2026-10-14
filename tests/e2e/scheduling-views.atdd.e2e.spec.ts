@@ -8,10 +8,236 @@ import path from "node:path";
 
 test.describe.configure({ mode: "serial" });
 test.setTimeout(180_000);
+// PASSIVE-NETWORK-BEGIN factory
+type PassiveRow = {
+  flight: number; hop: number; publicRequestOrdinal: number | null; publicMatchCount: number;
+  identity: "candidate" | "ambiguous" | "unmatched";
+  type: string; initiatorType: string; rsc: boolean | null; treePrefetch: boolean | null; noStore: boolean | null;
+  status: number | null; mimeClass: string; requestMs: number | null; responseMs: number | null; terminalMs: number | null;
+  requestSeq: number | null; responseSeq: number | null; terminalSeq: number | null; publicFailedSeq: number | null;
+  mainFrameNavigationAfterResponse: boolean | null;
+  dataEventCount: number | null; receivedDataBytes: number | null; receivedEncodedBytes: number | null; finishedEncodedBytes: number | null;
+  terminal: "pending" | "finished" | "failed" | "redirected" | "ambiguous";
+  canceled: boolean | null; errorClass: string; blockedReason: string;
+};
+const schedulingPassiveShutdowns = new WeakMap<TestInfo, (failure: boolean) => void>();
+function createSchedulingPassiveMetadata(page: Page, origin: string, ordinal: (request: import("@playwright/test").Request) => number | undefined) {
+  // Public/CDP matches are candidates only. Protocol completion never replaces native body reads.
+  type Flight = { id: string; key: string; row: PassiveRow };
+  type PublicFlight = { request: import("@playwright/test").Request; key: string; status: number | null; terminal: "pending" | "finished" | "failed"; failedSeq: number | null; ambiguous: boolean };
+  const flights: Flight[] = [], publics: PublicFlight[] = [];
+  let closed = false, emitted = false, started = false, overflow = false, invalid = false;
+  let setup: "pending" | "ready" | "unavailable" = "pending", cleanup: "requested" | "unavailable" = "requested";
+  let session: import("@playwright/test").CDPSession | undefined, detached = false;
+  let firstTimestamp: number | undefined, sequence = 0, navigationSeq: number | null = null;
+  let frozen: { kind: string; setup: string; overflow: boolean; invalid: boolean; cleanup: string; rows: PassiveRow[] } | undefined;
+  const object = (value: unknown): value is Record<string, unknown> => typeof value === "object" && value !== null && !Array.isArray(value);
+  const count = (value: unknown, max: number): value is number => typeof value === "number" && Number.isSafeInteger(value) && value >= 0 && value <= max;
+  const seq = () => { if (sequence >= 1_000_000) { overflow = true; return null; } return ++sequence; };
+  const time = (value: unknown) => {
+    if (typeof value !== "number" || !Number.isFinite(value) || firstTimestamp === undefined) { invalid = true; return null; }
+    const relative = (value - firstTimestamp) * 1000;
+    if (relative < 0 || relative > 300_000) { invalid = true; return null; }
+    return Math.round(relative * 1000) / 1000;
+  };
+  const urlKey = (value: unknown) => {
+    if (typeof value !== "string" || value.length > 2048) { invalid = true; return null; }
+    const url = new URL(value);
+    return url.origin === origin && url.pathname === "/scheduling" ? value : null;
+  };
+  const idKey = (value: unknown) => { if (typeof value !== "string" || !value.length || value.length > 256) { invalid = true; return null; } return value; };
+  const status = (value: unknown) => { if (!count(value, 599) || value < 100) { invalid = true; return null; } return value; };
+  const category = (value: unknown, allowed: readonly string[]) => typeof value !== "string" ? "unavailable" : allowed.includes(value) ? value : "other";
+  const headers = (value: unknown) => {
+    if (!object(value)) { invalid = true; return { rsc: null, treePrefetch: null, noStore: null }; }
+    let rsc: boolean = false, prefetch: boolean = false, segment: boolean = false, noStore: boolean | null = null, names = 0;
+    // Project allowlisted values immediately; even optional event data is never read.
+    for (const name in value) {
+      if (!Object.prototype.hasOwnProperty.call(value, name)) continue;
+      if (++names > 256 || name.length > 256) { invalid = true; return { rsc: null, treePrefetch: null, noStore: null }; }
+      const key = name.toLowerCase();
+      if (key === "rsc") rsc = value[name] === "1";
+      else if (key === "next-router-prefetch") prefetch = value[name] === "1";
+      else if (key === "next-router-segment-prefetch") segment = value[name] === "/_tree";
+      else if (key === "cache-control") {
+        const cache = value[name];
+        if (typeof cache !== "string" || cache.length > 2048) { invalid = true; noStore = null; }
+        else noStore = cache.toLowerCase().split(",").some(token => token.trim() === "no-store");
+      }
+    }
+    return { rsc, treePrefetch: prefetch && segment, noStore };
+  };
+  const safe = (action: () => void) => { if (closed) return; try { action(); } catch { invalid = true; } };
+  const current = (event: unknown) => {
+    if (!object(event)) { invalid = true; return null; }
+    const id = idKey(event.requestId); if (id === null) return null;
+    for (let i = flights.length - 1; i >= 0; i--) if (flights[i]!.id === id) return flights[i]!;
+    return null;
+  };
+  const terminal = (flight: Flight, event: Record<string, unknown>, state: "finished" | "failed" | "redirected") => {
+    const row = flight.row;
+    if (row.terminal !== "pending") { row.terminal = "ambiguous"; return; }
+    row.terminal = state; row.terminalMs = time(event.timestamp); row.terminalSeq = seq();
+  };
+  const onRequest = (event: unknown) => safe(() => {
+    if (!object(event) || !object(event.request)) { invalid = true; return; }
+    const id = idKey(event.requestId); if (id === null) return;
+    const previous = current(event);
+    const redirect = object(event.redirectResponse);
+    if (previous) {
+      if (redirect) { terminal(previous, event, "redirected"); previous.id = ""; }
+      else { previous.row.terminal = "ambiguous"; return; }
+    }
+    if (event.request.method !== "GET") return;
+    const key = urlKey(event.request.url); if (key === null) return;
+    if (typeof event.timestamp !== "number" || !Number.isFinite(event.timestamp) || event.timestamp < 0) { invalid = true; return; }
+    if (flights.length === 4) { overflow = true; return; }
+    firstTimestamp ??= event.timestamp;
+    const projected = headers(event.request.headers);
+    flights.push({ id, key, row: {
+      flight: flights.length + 1, hop: previous ? previous.row.hop + 1 : 1,
+      publicRequestOrdinal: null, publicMatchCount: 0, identity: "unmatched",
+      type: category(event.type, ["Document", "Fetch", "XHR", "Prefetch"]), initiatorType: category(object(event.initiator) ? event.initiator.type : undefined, ["parser", "script", "preload"]),
+      rsc: projected.rsc, treePrefetch: projected.treePrefetch, noStore: projected.noStore,
+      status: null, mimeClass: "unavailable", requestMs: time(event.timestamp), responseMs: null, terminalMs: null,
+      requestSeq: seq(), responseSeq: null, terminalSeq: null, publicFailedSeq: null, mainFrameNavigationAfterResponse: null,
+      dataEventCount: 0, receivedDataBytes: 0, receivedEncodedBytes: 0, finishedEncodedBytes: null,
+      terminal: "pending", canceled: null, errorClass: "unavailable", blockedReason: "unavailable",
+    } });
+  });
+  const onResponse = (event: unknown) => safe(() => {
+    const flight = current(event); if (!flight || !object(event) || !object(event.response)) return;
+    const row = flight.row;
+    if (row.responseSeq !== null || row.terminal !== "pending") { row.terminal = "ambiguous"; return; }
+    // Full URL equality corroborates this hop; it is never a public Request identity join.
+    if (urlKey(event.response.url) !== flight.key) { row.terminal = "ambiguous"; return; }
+    row.responseSeq = seq(); row.responseMs = time(event.timestamp); row.status = status(event.response.status);
+    const mime = event.response.mimeType;
+    row.mimeClass = typeof mime !== "string" ? "unavailable" : mime === "text/html" ? "html" : mime === "text/x-component" ? "rsc" : "other";
+    row.noStore = headers(event.response.headers).noStore;
+  });
+  const add = (row: PassiveRow, key: "dataEventCount" | "receivedDataBytes" | "receivedEncodedBytes", value: unknown, max: number) => {
+    if (!count(value, max)) { invalid = true; if (typeof value === "number" && value > max) overflow = true; row[key] = null; return; }
+    if (row[key] === null) return;
+    if (row[key]! + value > max) { overflow = true; row[key] = null; return; }
+    row[key]! += value;
+  };
+  const onData = (event: unknown) => safe(() => {
+    const flight = current(event); if (!flight || !object(event)) return;
+    seq();
+    if (flight.row.terminal !== "pending") { flight.row.terminal = "ambiguous"; return; }
+    add(flight.row, "dataEventCount", 1, 1_000_000); add(flight.row, "receivedDataBytes", event.dataLength, 2_147_483_647); add(flight.row, "receivedEncodedBytes", event.encodedDataLength, 2_147_483_647);
+  });
+  const onFinished = (event: unknown) => safe(() => {
+    const flight = current(event); if (!flight || !object(event)) return;
+    terminal(flight, event, "finished");
+    if (!count(event.encodedDataLength, 2_147_483_647)) { invalid = true; if (typeof event.encodedDataLength === "number" && event.encodedDataLength > 2_147_483_647) overflow = true; flight.row.finishedEncodedBytes = null; }
+    else flight.row.finishedEncodedBytes = event.encodedDataLength;
+  });
+  const onFailed = (event: unknown) => safe(() => {
+    const flight = current(event); if (!flight || !object(event)) return;
+    terminal(flight, event, "failed");
+    flight.row.canceled = typeof event.canceled === "boolean" ? event.canceled : null;
+    flight.row.errorClass = typeof event.errorText !== "string" ? "unavailable" : event.errorText === "net::ERR_ABORTED" ? "aborted" : event.errorText === "net::ERR_BLOCKED_BY_CLIENT" ? "blocked-client" : event.errorText === "net::ERR_BLOCKED_BY_RESPONSE" ? "blocked-response" : "other";
+    flight.row.blockedReason = event.blockedReason === undefined ? "none" : category(event.blockedReason, ["csp", "mixed-content", "origin", "inspector", "integrity", "subresource-filter", "content-type"]);
+  });
+  const onPublicRequest = (request: import("@playwright/test").Request) => safe(() => {
+    if (request.method() !== "GET") return;
+    const key = urlKey(request.url()); if (key === null || publics.some(entry => entry.request === request)) return;
+    if (publics.length === 4) { overflow = true; return; }
+    publics.push({ request, key, status: null, terminal: "pending", failedSeq: null, ambiguous: false }); seq();
+  });
+  const onPublicResponse = (response: import("@playwright/test").Response) => safe(() => {
+    const entry = publics.find(candidate => candidate.request === response.request());
+    if (entry) { const value = status(response.status()); if (entry.status !== null && entry.status !== value) entry.ambiguous = true; entry.status = value; seq(); }
+  });
+  const onPublicFinished = (request: import("@playwright/test").Request) => safe(() => {
+    const entry = publics.find(candidate => candidate.request === request); if (entry) { if (entry.terminal !== "pending" && entry.terminal !== "finished") entry.ambiguous = true; entry.terminal = "finished"; seq(); }
+  });
+  const onPublicFailed = (request: import("@playwright/test").Request) => safe(() => {
+    const entry = publics.find(candidate => candidate.request === request); if (entry) { if (entry.terminal !== "pending" && entry.terminal !== "failed") entry.ambiguous = true; entry.terminal = "failed"; entry.failedSeq = seq(); }
+  });
+  const onNavigation = (frame: import("@playwright/test").Frame) => safe(() => { if (frame === page.mainFrame()) navigationSeq = seq(); });
+  const networkHandlers = [["Network.requestWillBeSent", onRequest], ["Network.responseReceived", onResponse], ["Network.dataReceived", onData], ["Network.loadingFinished", onFinished], ["Network.loadingFailed", onFailed]] as const;
+  const pageHandlers = [
+    { on: () => page.on("request", onPublicRequest), off: () => page.off("request", onPublicRequest) },
+    { on: () => page.on("response", onPublicResponse), off: () => page.off("response", onPublicResponse) },
+    { on: () => page.on("requestfinished", onPublicFinished), off: () => page.off("requestfinished", onPublicFinished) },
+    { on: () => page.on("requestfailed", onPublicFailed), off: () => page.off("requestfailed", onPublicFailed) },
+    { on: () => page.on("framenavigated", onNavigation), off: () => page.off("framenavigated", onNavigation) },
+  ];
+  const detach = (owned: import("@playwright/test").CDPSession) => {
+    if (detached) return; detached = true;
+    // Requested is never verified cleanup credit. Future rejection is handled silently;
+    // it cannot mutate the frozen failure receipt or perform late diagnostic work.
+    try { void owned.detach().then(() => {}, () => {}); }
+    catch { cleanup = "unavailable"; if (frozen) frozen.cleanup = cleanup; }
+  };
+  const stop = (failure: boolean) => {
+    if (!closed) {
+      closed = true;
+      const rows = flights.map(({ key, row }) => {
+        const matches = publics.filter(entry => entry.key === key && (row.status === null || entry.status === row.status));
+        row.publicMatchCount = matches.length;
+        row.identity = row.terminal === "ambiguous" || matches.length > 1 || matches.some(entry => entry.ambiguous) || overflow ? "ambiguous" : matches.length === 1 ? "candidate" : "unmatched";
+        if (matches.length === 1) {
+          try { const value = ordinal(matches[0]!.request); row.publicRequestOrdinal = count(value, Number.MAX_SAFE_INTEGER) && value > 0 ? value : null; } catch { invalid = true; }
+          row.publicFailedSeq = matches[0]!.failedSeq;
+        }
+        row.mainFrameNavigationAfterResponse = row.responseSeq === null ? null : navigationSeq !== null && navigationSeq > row.responseSeq;
+        return row;
+      });
+      frozen = { kind: "passive-network-v1", setup, overflow, invalid, cleanup, rows };
+      for (const remove of [() => page.off("close", onClose), ...pageHandlers.map(handler => handler.off), ...networkHandlers.map(([name, handler]) => () => session?.off(name, handler))]) {
+        try { remove(); } catch { cleanup = "unavailable"; frozen.cleanup = cleanup; }
+      }
+      if (session) detach(session);
+      flights.length = 0; publics.length = 0; session = undefined;
+    }
+    if (!failure || emitted) return; emitted = true;
+    try { const json = JSON.stringify(frozen); if (typeof json === "string" && Buffer.byteLength(json, "utf8") <= 4096) console.info(`[scheduling-passive-network-metadata] ${json}`); } catch { /* Drop unavailable diagnostics without altering the native verdict. */ }
+  };
+  const onClose = () => stop(false);
+  const start = () => {
+    if (started || closed) return; started = true;
+    try {
+      page.on("close", onClose);
+      if (closed) { try { page.off("close", onClose); } catch { /* Teardown remains unavailable. */ } return; }
+      for (const handler of pageHandlers) {
+        if (closed) return; handler.on();
+        if (closed) { try { handler.off(); } catch { /* Teardown remains unavailable. */ } return; }
+      }
+      if (closed) return;
+      void page.context().newCDPSession(page).then(owned => {
+        if (closed) { detach(owned); return; }
+        session = owned;
+        try {
+          for (const [name, handler] of networkHandlers) {
+            if (closed) return; owned.on(name, handler);
+            if (closed) { try { owned.off(name, handler); } catch { /* Teardown remains unavailable. */ } return; }
+          }
+          if (closed) return;
+          void owned.send("Network.enable", {}).then(() => { if (!closed) setup = "ready"; }, () => { if (!closed) setup = "unavailable"; });
+        } catch { if (!closed) setup = "unavailable"; }
+      }, () => { if (!closed) setup = "unavailable"; });
+    } catch { if (!closed) setup = "unavailable"; }
+  };
+  return { start, stop };
+}
+// PASSIVE-NETWORK-END factory
 const schedulingAttemptShutdowns = new WeakMap<TestInfo, () => void>();
 test.afterEach(({}, testInfo) => {
+  // PASSIVE-NETWORK-BEGIN hook-outer
+  try {
+  // PASSIVE-NETWORK-END hook-outer
   try { schedulingAttemptShutdowns.get(testInfo)?.(); }
   finally { schedulingAttemptShutdowns.delete(testInfo); }
+  // PASSIVE-NETWORK-BEGIN hook-final
+  } finally {
+    try { schedulingPassiveShutdowns.get(testInfo)?.(testInfo.status !== "passed" && testInfo.status !== "skipped"); }
+    finally { schedulingPassiveShutdowns.delete(testInfo); }
+  }
+  // PASSIVE-NETWORK-END hook-final
 });
 async function attachVisual(page: Page, testInfo: TestInfo, name: string) {
   await testInfo.attach(name, {
@@ -169,6 +395,10 @@ test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycl
     bodyStartMs: number | null; bodyEndMs: number | null; requestFailedMs: number | null;
   };
   const admitted = new WeakMap<import("@playwright/test").Request, NativeCapture>();
+  // PASSIVE-NETWORK-BEGIN attempt
+  const passive = createSchedulingPassiveMetadata(page, captureOrigin, request => admitted.get(request)?.requestOrdinal);
+  schedulingPassiveShutdowns.set(testInfo, passive.stop);
+  // PASSIVE-NETWORK-END attempt
   let requestOrdinal = 0, captureCount = 0, fulfilledCount = 0, rejectedCount = 0;
   let observerOpen = true, snapshotAttempted = false, baseline: number | null = null;
   try { baseline = performance.now(); } catch { /* Diagnostic clock is optional. */ }
@@ -321,6 +551,9 @@ test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycl
   };
   const shutdown = () => {
     if (shutdownStarted) return;
+    // PASSIVE-NETWORK-BEGIN shutdown
+    passive.stop(hasFailure);
+    // PASSIVE-NETWORK-END shutdown
     shutdownStarted = true; captureActivated = false; responseAdmissionOpen = false; trackerOpen = false; observerOpen = false;
     notifyCancellation();
     let cleanupFailed = false, cleanupFailure: unknown;
@@ -337,6 +570,9 @@ test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycl
     try {
       if (!hasFailure) { try { await navigateAfterBarrier(() => Promise.resolve()); } catch (error) { if (error === abandoned) throw error; recordFailure(error); } }
     } finally {
+      // PASSIVE-NETWORK-BEGIN window
+      passive.stop(hasFailure);
+      // PASSIVE-NETWORK-END window
       if (!shutdownStarted) {
         observerOpen = false; captureActivated = false; trackerOpen = false;
         for (const remove of [() => page.off("request", readRequest), () => page.off("requestfinished", readFinished), () => page.off("requestfailed", readFailed)]) {
@@ -350,6 +586,10 @@ test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycl
   page.on("request", readRequest);
   page.on("requestfinished", readFinished);
   page.on("requestfailed", readFailed);
+  // PASSIVE-NETWORK-BEGIN start
+  passive.start();
+  try {
+  // PASSIVE-NETWORK-END start
   try {
     try {
     await guardedSignIn("montor"); guardProgress(); openCaptureWindow();
@@ -381,6 +621,9 @@ test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycl
   if (hasFailure) throw firstFailure;
   } catch (error) { if (error !== abandoned) throw error; }
   finally { if (!shutdownStarted) schedulingAttemptShutdowns.delete(testInfo); }
+  // PASSIVE-NETWORK-BEGIN final
+  } finally { passive.stop(hasFailure); schedulingPassiveShutdowns.delete(testInfo); }
+  // PASSIVE-NETWORK-END final
 });
 
 for (const host of ["Schema", "Resurser"] as const) for (const operation of ["move", "resize"] as const) {
