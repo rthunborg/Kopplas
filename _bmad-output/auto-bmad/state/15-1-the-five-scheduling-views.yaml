@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-14T18:12:20Z"
+updated_at: "2026-10-14T18:59:39Z"
 started_at: "2026-10-09T13:06:12Z"
 completed_at: null
 active_seconds: 25163
@@ -18,15 +18,15 @@ is_first_in_epic: true
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: P5-native-stream-probe-checkout-count-documentation
-selected_role: diagnostic evidence documentation
-selected_profile: default
+selected_phase: P5-original-browser-reader-observation-independent-validation
+selected_role: independent original stream observation proposal validator
+selected_profile: critical
 selected_model: gpt-6.1-sol
-selected_effort: low
+selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Ordinary append-only evidence recording; exact correction already independently High reviewed."
+escalation_reason: "Fresh independent High validation of exact request/reader correspondence, original promise/result preservation, privacy bounds and observer effects before implementation."
 routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary scheduling UX specification; sensitive authorization/integrity portions explicitly delegated High\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary15.1 ATDD preparation; sensitive access assertions delegated High; shared fixture edits excluded\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -157,6 +157,11 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Preserve candidate-SHA integrity for five required jobs and optional diagnostic after native CI identified stale count.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-native-stream-probe-checkout-count-correction\",\"profile\":\"critical\",\"role\":\"sensitive diagnostic author\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Independent narrow review of required CI candidate-SHA assertion correction; no broad P5 review credit.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-native-stream-probe-checkout-count-independent-review\",\"profile\":\"critical\",\"role\":\"independent candidate-SHA integrity reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary append-only evidence recording; exact correction already independently High reviewed.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-native-stream-probe-checkout-count-documentation\",\"profile\":\"default\",\"role\":\"diagnostic evidence documentation\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Audit actual exact-head required checks and later authenticated/RLS/native payload evidence without skip or synthetic coverage credit.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-native-stream-probe-corrected-ci-evidence-audit\",\"profile\":\"critical\",\"role\":\"independent native acceptance auditor\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Interpret actual native synthetic stream evidence and authentication-sensitive application carrier failure without inferring EOF, identity or waiving assertions.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-native-stream-probe-runtime-causal-diagnosis\",\"profile\":\"critical\",\"role\":\"independent native stream causal diagnostician\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Prepare privacy-safe exact original reader/request correlation and observational EOF/full-byte evidence while retaining all native/security assertions.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-original-browser-reader-observation-preparation\",\"profile\":\"critical\",\"role\":\"sensitive original stream observation specification author\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Fresh-context bounded specification handoff preserving previous High evidence; exact request/reader correlation and privacy-sensitive EOF observation requires High.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-original-browser-reader-observation-bounded-preparation\",\"profile\":\"critical\",\"role\":\"fresh sensitive stream observation specification author\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Fresh independent High validation of exact request/reader correspondence, original promise/result preservation, privacy bounds and observer effects before implementation.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-original-browser-reader-observation-independent-validation\",\"profile\":\"critical\",\"role\":\"independent original stream observation proposal validator\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate, trace-advisory]
 tea_rationale: "Scheduling, synchronized projections, capacity and drag/keyboard/dialog behavior"
@@ -182,7 +187,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [45a64853, f9e12a81, 279d3149, b9d61a33, 4d7911ac, 3a655a5d, a67a64dc, 66cd8436, d79fff08, bf84cf5d, 181f947f, 22cfb74a, 22cfb74a, 6fd516b0, 521d56fd, e448f856, b99e3f42, 83e27c92, 1aa7c52b, 8630b011, da3a4c59, 27d67de7, 4223e887, 9c26fd72]
+commits: [45a64853, f9e12a81, 279d3149, b9d61a33, 4d7911ac, 3a655a5d, a67a64dc, 66cd8436, d79fff08, bf84cf5d, 181f947f, 22cfb74a, 22cfb74a, 6fd516b0, 521d56fd, e448f856, b99e3f42, 83e27c92, 1aa7c52b, 8630b011, da3a4c59, 27d67de7, 4223e887, 9c26fd72, d75313bb]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -2255,5 +2260,273 @@ native_stream_probe_corrected_ci_plan:
   baseline_run: 38610296342
   all_five_required_jobs_unchanged: true
   synthetic_zero_application_credit: true
+  p5_complete: false
+  broad_review_round: 0
+native_stream_probe_corrected_ci_dispatch:
+  run_id: 38613188051
+  head_sha: d75313bb63aa6dc414efacf0f1eb6fdd0fded186
+  workflow_id: 296219797
+  event: workflow_dispatch
+  native_stream_probe: true
+  dispatch_count: 1
+  native_exit: 0
+  url: "https://github.com/rthunborg/Kopplas/actions/runs/38613188051"
+  all_acceptance_gates_preserved: true
+  p5_complete: false
+  broad_review_round: 0
+native_stream_probe_corrected_ci_partial:
+  run_id: 38613188051
+  head_sha: d75313bb63aa6dc414efacf0f1eb6fdd0fded186
+  verify_job: 116021504548
+  verify: success
+  verify_log_bytes: 1309700
+  verify_log_sha256: 15d51b1e316b247d2efe5c9873ea5700c0dc446567b3063fd06fa1456362180d
+  verify_log_native_download_exit: 0
+  db_job: 116022630518
+  e2e_job: 116022630775
+  dashboard_job: 116022630801
+  physical_job: 116022630891
+  downstream: in_progress
+  probe: not executed yet
+  native_coverage: unverified pending actual reports
+  p5_complete: false
+  broad_review_round: 0
+native_stream_probe_corrected_ci_verify_audit:
+  outcome: PASS verify only
+  head_sha: d75313bb63aa6dc414efacf0f1eb6fdd0fded186
+  reviewer: "/root/runtime15_cold_review_high"
+  log_binding_verified: true
+  unit_passed: 2540
+  unit_failed: 0
+  unit_skipped: 0
+  unit_cancelled: 0
+  unit_todo: 0
+  suites: 100
+  lint_errors: 0
+  lint_warnings: 14
+  typecheck: pass
+  production_build: pass
+  source_containment: pass
+  built_bundle_containment: pass
+  focused_memlog_tests: 2
+  focused_routing_tests: 26
+  focused_process_api_tests: 10
+  application_acceptance: not established
+  p5_complete: false
+  broad_review_round: 0
+native_stream_probe_corrected_ci_initial_audit:
+  outcome: PASS uploaded reports
+  reviewer: "/root/runtime15_cold_review_high"
+  archives_verified: 3
+  extracted_files_verified: 3
+  dashboard_json_sha256: aab3ce5bd42f1ed6504e22369b45fd20954af4dee032fc884de25456077c81a6
+  dashboard_cases: 57
+  dashboard_attempts: 57
+  dashboard_passed: 57
+  dashboard_pipeline: 51
+  dashboard_role_aware: 5
+  dashboard_onboarding: 1
+  dashboard_retries: 0
+  dashboard_skipped: 0
+  dashboard_flaky: 0
+  dashboard_global_errors: 0
+  physical_json_sha256: d5eb31a8b38daa7f83ff30ecaf02e8303c989762e90874cafdd76b3225a2cad2
+  physical_assertions: 1
+  physical_passed: 1
+  physical_failed: 0
+  physical_skipped: 0
+  physical_checks: "loader bytes; unchanged logical rows; rejected generic/quote-PDF overwrites"
+  p5_complete: false
+  broad_review_round: 0
+native_stream_probe_corrected_ci_integration_audit:
+  outcome: PASS
+  reviewer: "/root/runtime15_cold_review_high"
+  run_id: 38613188051
+  zip_bytes: 89482
+  zip_sha256: 9f79b337bd1a2f9d0d6caa37e2e3e2459168ff7daeb08eced764b4d044110dcf
+  json_bytes: 828365
+  json_sha256: 9ef707f2ae52d625d07330d0ffe21393ca2254bdff88f0e1a839143193daea6a
+  bindings_verified: true
+  passed: 1736
+  failed: 0
+  skipped: 1
+  assertions: 1737
+  files: 145
+  executed_files: 144
+  cancelled: 0
+  todo: 0
+  scheduling_live_jwt_rpc: 8
+  scheduling_authenticated_reader: 4
+  scheduling_transport_mocks: 21
+  mock_rls_credit: 0
+  main_physical_skip_credit: 0
+  separate_physical_assertion_credit: 1
+  p5_complete: false
+  broad_review_round: 0
+native_stream_probe_corrected_ci_general_completion:
+  run_id: 38613188051
+  head_sha: d75313bb63aa6dc414efacf0f1eb6fdd0fded186
+  e2e_job: 116022630775
+  conclusion: failure
+  other_four_required_jobs: success
+  general_archives_verified: 2
+  extracted_bindings: 40
+  general_log_bytes: 234351
+  general_log_sha256: 07030318eeb614b0cfddeed8b0275cd8cd41706d6e73b5deffff6f9d5a08e1d5
+  probe_job: 116031705741
+  probe: in_progress
+  actual_general_audit: pending
+  p5_complete: false
+  broad_review_round: 0
+native_stream_probe_corrected_ci_completion:
+  run_id: 38613188051
+  head_sha: d75313bb63aa6dc414efacf0f1eb6fdd0fded186
+  status: completed
+  conclusion: failure
+  verify: success
+  db: success
+  dashboard: success
+  physical: success
+  general: failure
+  optional_probe: success
+  probe_executed: true
+  probe_job: 116031705741
+  probe_zip_id: 11920441622
+  probe_zip_bytes: 1402
+  probe_zip_sha256: a03a18e915735393ba7d8b7ab06e2fe179e200a78aaeec250e47d787fd085fac
+  probe_log_bytes: 43038
+  probe_log_sha256: fcfb0884db8f17331b0389309c423f8a2621440b9c385edf79d737ae1de42e99
+  complete_log_bytes: 3469236
+  complete_log_sha256: 3231c336341eb7cbed2f1a3efe961a1e1948f4ff407ec21bb5ad98ae9dc030df
+  original_archives_verified: 7
+  new_probe_causal_audit: pending
+  application_acceptance_credit: 0
+  p5_complete: false
+  broad_review_round: 0
+native_stream_probe_corrected_ci_general_audit:
+  outcome: "evidence integrity PASS; general verification FAILED"
+  reviewer: "/root/runtime15_cold_review_high"
+  bindings_verified: 40
+  native_json_sha256: 37b0c6ac25d6ba40d5e9e87f8f79d02f609ee98d7bd55f82f4bf09ca5309dbcd
+  html_sha256: 1dacf6601c6a8bca3f5586e10bc59c925b64f84c4fb611e9b2ee055a9aa46611
+  cases: 382
+  files: 43
+  passed: 368
+  failed: 1
+  skipped: 13
+  executed_cases: 369
+  executed_files: 41
+  passed_attempts: 375
+  failed_attempts: 2
+  executed_retries: 8
+  flaky: 0
+  global_errors: 0
+  scheduling_titles: 18
+  scheduling_first_seven: passed twice
+  ac2: "failed twice net::ERR_ABORTED"
+  ac2_id: e17ed7bc58d5aa76eeac-0fd1705b2ad3737ad645
+  scheduling_remaining_ten: not run
+  editor_passed: 19
+  auth_mail_passed: 2
+  desktop_png_attachments: 10
+  phone_targets_executed: 0
+  both_snapshots: capture1 GET200 RSC phase finished fulfilled0/pending1 no body start
+  both_passive_candidates: "CDP terminal failed/canceled true/error aborted/blockedReason none sequence9 before publicfailure11;324 decoded bytes; no finished totals"
+  second_rsc_flight: unmatched pending
+  retry_tampered_scheduling_navigation: false
+  exact_public_cdp_identity: unknown
+  application_eof: unknown
+  cancellation_initiator: unknown
+  p5_complete: false
+  broad_review_round: 0
+native_stream_probe_runtime_audit:
+  outcome: "native discrepancy reproduced; application acceptance unknown"
+  auditor: "/root/native15_prefetch_diagnosis_high"
+  json_bytes: 10345
+  json_sha256: a8efa8eedb67bdcadcb249e6df29bc36ef722d4180c2bb9d9009f10a442ea7a0
+  zip_json_source_bindings_verified: true
+  node: 22.23.3
+  playwright: 1.61.1
+  chromium: 149.0.7827.55
+  cases_executed: 8
+  reader_positive_cases: 4
+  reader_eof_correct_bytes_hash: 4
+  reader_public_and_cdp_failed: 3
+  reader_clean_finished: 1
+  server_finish_positive: 4
+  positive_premature_close: 0
+  host_text_cases: 2
+  host_text_outcome: "unresolved; browser stream unexercised"
+  negative_controls: 2
+  negative_outcome: reader error/nonEOF/premature close/public+CDPfailure after complete plaintext bytes
+  byte_hash_without_eof_credit: 0
+  probe_cancellation_reason: not captured
+  application_eof_payload_redaction_identity: unproven
+  next_candidate: "Separately prepared exact original browser-reader observation; preserve read promises/results and host-native assertions; fail on correlation ambiguity/overflow and require discrepancy persists"
+  p5_complete: false
+  broad_review_round: 0
+original_browser_reader_observation_ownership:
+  coordinator: 01a1160d-b5b1-7623-a8e8-54ef3dc537ed
+  audited_worktrees: 31
+  paths: [tests/e2e/scheduling-views.atdd.e2e.spec.ts, "_bmad-output/implementation-artifacts/story-15-1-original-browser-reader-observation-addendum-2026-10-14.md"]
+  overlap: "none"
+  reserved: true
+  scope: "High specification preparation first; no implementation before independent High validation; all original assertions/native failures preserved"
+  sdk_app_config_helper_migration_changes_allowed: false
+  dispatch: none authorized by reservation
+original_browser_reader_observation_validation_ownership:
+  coordinator: 01a1160d-b5b1-7623-a8e8-54ef3dc537ed
+  audited_worktrees: 31
+  path: "_bmad-output/implementation-artifacts/story-15-1-original-browser-reader-observation-validation-2026-10-14.md"
+  overlap: "none"
+  reserved: true
+  scope: "Independent High proposal PASS/REVISE documentation only; no implementation/runtime admission"
+original_browser_reader_observation_preparation_bound:
+  author: "/root/native15_stream_probe_author_high"
+  interrupted_unbounded_preparation: true
+  source_writes: none visible in Git
+  remaining: "Produce reviewable specification from confirmed facts/limits with explicit unresolved validation questions; no more exploratory source search"
+  model: gpt-6.1-sol
+  effort: high
+  p5_complete: false
+  broad_review_round: 0
+original_browser_reader_observation_preparation_transfer:
+  previous_author: "/root/native15_stream_probe_author_high"
+  previous_author_interrupted: true
+  new_author: fresh context High specification delegate
+  ownership: same exact admitted new addendum only
+  reason: Bound preparation to reviewable confirmed facts/limits after accumulated author context did not produce artifact
+  model: gpt-6.1-sol
+  effort: high
+  code_edits: "none"
+  p5_complete: false
+  broad_review_round: 0
+original_browser_reader_observation_preparation_arrival:
+  author: "/root/native15_stream_probe_author_high"
+  path: "_bmad-output/implementation-artifacts/story-15-1-original-browser-reader-observation-addendum-2026-10-14.md"
+  bytes: 18421
+  sha256: 64c45d82f560ea2b6afef81784862555bcbaba2804b8cf192c7702ac590e266d
+  arrived_during_interruption: true
+  fresh_preparation_delegate: "not dispatched; preserve existing artifact and validate directly"
+  author_result: pending read-only six-field handoff
+  p5_complete: false
+  broad_review_round: 0
+original_browser_reader_observation_independent_validation:
+  outcome: REVISE
+  validator: "/root/original_reader15_proposal_validation_high"
+  model: gpt-6.1-sol
+  effort: high
+  path: "_bmad-output/implementation-artifacts/story-15-1-original-browser-reader-observation-validation-2026-10-14.md"
+  bytes: 11159
+  lines: 70
+  sha256: 23268e90ff9bdac3d20433b7c2814f3d655550e92167d5ba47cbe78cb0a54be4
+  proposal_bytes: 18421
+  proposal_sha256: 64c45d82f560ea2b6afef81784862555bcbaba2804b8cf192c7702ac590e266d
+  proposal_test_helper_preserved: true
+  gaps: [Concrete trace-safe private data transfer/comparison bridge, Before-carrier synchronous installation/document gate and inert post-stop cleanup protocol]
+  conditional_unique_bijection: "sufficient correspondence; no direct cross-runtime identity claim"
+  implementation: not admitted
+  runtime: "none"
+  coverage_credit: 0
   p5_complete: false
   broad_review_round: 0
