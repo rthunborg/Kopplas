@@ -9,24 +9,24 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-14T22:47:54Z"
+updated_at: "2026-10-14T23:00:49Z"
 started_at: "2026-10-09T13:06:12Z"
 completed_at: null
-active_seconds: 37020
+active_seconds: 37766
 timing_anchor: null
 is_first_in_epic: true
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: security_layer
-selected_role: security-reviewer
-selected_profile: critical
+selected_phase: build
+selected_role: build-delegate
+selected_profile: standard
 selected_model: gpt-6.1-sol
 selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Focused independent preparation validation of receiver cutoff, supervisor authority and explicit bounded post-commit exception"
+escalation_reason: Implement independently validated supervisor commitment and receiver cutoff with private clock/carrier integrity and delayed-settlement proofs
 routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary scheduling UX specification; sensitive authorization/integrity portions explicitly delegated High\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary15.1 ATDD preparation; sensitive access assertions delegated High; shared fixture edits excluded\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -185,6 +185,7 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Fresh independent mechanism amendment validation for fail-closed publication authority and private carrier integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Bounded mechanism preparation correction addresses independent supervisor handoff authority gap before implementation\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Focused independent preparation validation of receiver cutoff, supervisor authority and explicit bounded post-commit exception\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Implement independently validated supervisor commitment and receiver cutoff with private clock/carrier integrity and delayed-settlement proofs\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate, trace-advisory]
 tea_rationale: "Scheduling, synchronized projections, capacity and drag/keyboard/dialog behavior"
@@ -210,7 +211,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [45a64853, f9e12a81, 279d3149, b9d61a33, 4d7911ac, 3a655a5d, a67a64dc, 66cd8436, d79fff08, bf84cf5d, 181f947f, 22cfb74a, 22cfb74a, 6fd516b0, 521d56fd, e448f856, b99e3f42, 83e27c92, 1aa7c52b, 8630b011, da3a4c59, 27d67de7, 4223e887, 9c26fd72, d75313bb, 4b0ab106, f7b4f154, 437c3da2, e6c404d3, f4a431f6, 85cae2a5, 689a1385, 1bc90218, c49ac882, 4b685196, a5d262f8, a39cd221, 704e9320, c797d815, 25390342e668dee81d6bda42bfe0b5b51ed1723b, a98fc96386df752c631c119de992fc832c8ecb4d, ea5477fff0dbd8e82abb6a376269bfcf54ae95e9, 35e904b2e0d8798f72fbb405b3a888d64fdebd45, 2a071fc49a81984ae55e9e2c08a7583444245d86]
+commits: [45a64853, f9e12a81, 279d3149, b9d61a33, 4d7911ac, 3a655a5d, a67a64dc, 66cd8436, d79fff08, bf84cf5d, 181f947f, 22cfb74a, 22cfb74a, 6fd516b0, 521d56fd, e448f856, b99e3f42, 83e27c92, 1aa7c52b, 8630b011, da3a4c59, 27d67de7, 4223e887, 9c26fd72, d75313bb, 4b0ab106, f7b4f154, 437c3da2, e6c404d3, f4a431f6, 85cae2a5, 689a1385, 1bc90218, c49ac882, 4b685196, a5d262f8, a39cd221, 704e9320, c797d815, 25390342e668dee81d6bda42bfe0b5b51ed1723b, a98fc96386df752c631c119de992fc832c8ecb4d, ea5477fff0dbd8e82abb6a376269bfcf54ae95e9, 35e904b2e0d8798f72fbb405b3a888d64fdebd45, 2a071fc49a81984ae55e9e2c08a7583444245d86, ccd7abe9ebe38d846df58087c9d94280ad1d25ab]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -3034,3 +3035,30 @@ fixed_chromium_acquisition_observability_handoff_validation:
   broad_review_round: 0
   p5_complete: false
   source_changes: 0
+fixed_chromium_acquisition_observability_validated_correction:
+  preserved_prefix_bytes: 31439
+  addendum_bytes: 38524
+  manifest_sha256: 36efb8e7de152f7db4d5d5141f3b07c3f2c2d16dee1db34bcefea3077fca46d0
+  manifest_bytes: 16577
+  workflow_bytes: 35082
+  source_p2: Pending independent source review
+  runtime: held
+  broad_review_round: 0
+  outcome: "Implemented; author proofs pass, independent source clearance pending"
+  final_proofs_pass: 115
+  ci_unit_pass: 4
+  lint_exit: 0
+  syntax_exit: 0
+  workflow_sha256: 25c9f3672f4538a95d5fb573421739ae14be757d0a2b72fc39e756dfcae1d304
+  next: Focused independent High source and actually-settled protocol proof review
+  probe_bytes: 74792
+  addendum_sha256: a378c28cd92ee7989d47c9bcd8f00517a9e266def7317342742ebc502395b960
+  proofs_fail: 0
+  native_actions: 0
+  p5_complete: false
+  preservation_exit: 0
+  protected_bindings_unchanged: 10
+  source_inverses: 2
+  old_proof_writes: 0
+  probe_sha256: 95c967788cff764f1d546ec1a0b1bdd77cc116a57c714774447b266ef870a5f9
+  proofs_skip: 0

@@ -681,6 +681,14 @@ jobs:
         timeout-minutes: 3
         run: node tests/diagnostics/no-store-stream-probe.mjs --acquire-fixed-chromium
 
+      - name: Publish fresh acquisition boundary authority
+        id: receipt_publish
+        timeout-minutes: 1
+        if: ${{ always() && !cancelled() }}
+        env:
+          ACQUISITION_RECEIPT_DIRECTORY: ${{ steps.fixed.outputs.acquisition_receipt_directory }}
+        run: node tests/diagnostics/no-store-stream-probe.mjs --publish-acquisition-receipt "$ACQUISITION_RECEIPT_DIRECTORY"
+
       - name: Paired native stream diagnostic
         timeout-minutes: 4
         env:
@@ -700,7 +708,7 @@ jobs:
       # ACQUISITION-UPLOADER-BEGIN
       - name: Upload fresh acquisition boundary receipt
         timeout-minutes: 1
-        if: ${{ always() && !cancelled() && steps.fixed.outputs.acquisition_receipt_written == 'true' }}
+        if: ${{ always() && !cancelled() && steps.receipt_publish.conclusion == 'success' && steps.receipt_publish.outputs.acquisition_receipt_written == 'true' }}
         uses: actions/upload-artifact@v4
         with:
           name: fixed-chromium-acquisition

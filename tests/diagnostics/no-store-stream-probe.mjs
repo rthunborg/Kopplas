@@ -11,7 +11,8 @@ import { performance } from 'node:perf_hooks';
 import { mkdtemp, realpath, stat, lstat, chmod, appendFile } from 'node:fs/promises';
 import { dirname, join, relative, isAbsolute } from 'node:path';
 import { inflateRawSync } from 'node:zlib';
-import { execFile } from 'node:child_process';
+import { execFile, spawn } from 'node:child_process';
+import { randomUUID } from 'node:crypto';
 import { get as httpsGet } from 'node:https';
 // PAIRED-ADDITION-END imports
 
@@ -515,43 +516,204 @@ async function boundedAcquisition(promise, milliseconds, observed) {
   try { return await Promise.race([promise, new Promise((_, reject) => { timer = setTimeout(() => { observed('timeout'); reject(new Error('deadline')); }, milliseconds); })]); }
   finally { clearTimeout(timer); }
 }
-async function publishAcquisitionReceipt(receipt) {
+const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
+const NS_SECOND = 1000000000n;
+const minNs = (a, b) => a < b ? a : b;
+function canonicalNs(value) {
+  if (typeof value !== 'string' || !/^[1-9][0-9]{0,19}$/.test(value) || BigInt(value) > 18446744073709551615n) throw new Error('clock');
+  return BigInt(value);
+}
+function monotonicNow() {
+  // Node 22 HrtimeBigIntImpl -> uv_hrtime(UV_CLOCK_PRECISE) -> Linux CLOCK_MONOTONIC.
+  if (process.platform !== 'linux' || !/^v22\.\d+\.\d+$/.test(process.version) || process.release?.name !== 'node'
+    || !/^1\.\d+\.\d+$/.test(process.versions?.uv) || typeof process.hrtime?.bigint !== 'function') throw new Error('clock');
+  const value = process.hrtime.bigint();
+  if (typeof value !== 'bigint') throw new Error('clock');
+  return canonicalNs(value.toString());
+}
+async function clockEpoch(fence) {
+  const epoch = await readFile('/proc/sys/kernel/random/boot_id', 'utf8'); fence();
+  if (!UUID.test(epoch.trim()) || epoch !== epoch.trim() + '\n') throw new Error('clock');
+  // A shifted time namespace would invalidate same-boot clock comparability.
+  const offsets = await readFile('/proc/self/timens_offsets', 'utf8'); fence();
+  if (!/^monotonic\s+0\s+0\s*\nboottime\s+0\s+0\s*\n?$/.test(offsets)) throw new Error('clock');
+  return epoch.trim();
+}
+function acquisitionWindow(start, duration) {
+  let open = true, last = start, end = start + duration, timer, rejectDeadline;
+  const controller = new AbortController();
+  const fence = () => {
+    const now = monotonicNow();
+    if (!open || now < last || now >= end) throw new Error('deadline');
+    last = now; return now;
+  };
+  const arm = () => {
+    clearTimeout(timer);
+    timer = setTimeout(() => { open = false; controller.abort(); rejectDeadline(new Error('deadline')); }, Math.ceil(Number(end - last) / 1000000));
+  };
+  return { fence, signal: controller.signal, shorten(value) { end = minNs(end, value); fence(); if (rejectDeadline) arm(); },
+    async run(operation) {
+      fence();
+      try {
+        return await Promise.race([operation(), new Promise((_, reject) => {
+          rejectDeadline = reject; arm();
+        })]);
+      } finally { open = false; controller.abort(); clearTimeout(timer); }
+    } };
+}
+async function privateDirectory(path, fence) {
+  const base = await realpath(process.env.RUNNER_TEMP); fence();
+  const actual = await realpath(path); fence();
+  const generation = actual.slice(base.length + 1).replace(/^kopplas-acquisition-/, '');
+  const info = await lstat(path); fence();
+  if (path !== actual || dirname(actual) !== base || !contained(base, actual) || !UUID.test(generation)
+    || actual !== join(base, `kopplas-acquisition-${generation}`) || info.isSymbolicLink() || !info.isDirectory()
+    || (info.mode & 0o777) !== 0o700 || info.uid !== process.getuid()) throw new Error('privacy');
+  return generation;
+}
+async function privateBytes(path, maximum, fence) {
+  const info = await lstat(path); fence();
+  if (info.isSymbolicLink() || !info.isFile() || (info.mode & 0o777) !== 0o600 || info.uid !== process.getuid()
+    || info.size < 1 || info.size > maximum || await realpath(path) !== path) throw new Error('privacy');
+  fence();
+  const bytes = await readFile(path); fence();
+  if (bytes.length !== info.size || bytes.length > maximum) throw new Error('privacy');
+  return bytes;
+}
+async function publicReceiptBytes(fence) {
+  const repository = await realpath(fileURLToPath(new URL('../../', import.meta.url))); fence();
+  const directory = join(repository, 'test-results'), output = join(directory, 'fixed-chromium-acquisition.json');
+  for (const path of [directory, output]) {
+    const info = await lstat(path); fence();
+    if (info.isSymbolicLink() || info.uid !== process.getuid() || await realpath(path) !== path
+      || (path === directory ? !info.isDirectory() : !info.isFile() || info.size < 1 || info.size > 1024)) throw new Error('privacy');
+    fence();
+  }
+  const bytes = await readFile(output); fence();
+  if (bytes.length > 1024) throw new Error('schema');
+  const receipt = JSON.parse(bytes.toString('utf8')); validateAcquisitionReceipt(receipt);
+  if (!bytes.equals(Buffer.from(JSON.stringify(receipt) + '\n'))) throw new Error('schema');
+  return { receipt, bytes };
+}
+function workerCertificate(generation, workerExit, receipt, bytes) {
+  return { schemaVersion: 1, kind: 'acquisition-timely-receipt', generation, workerExit,
+    receiptStatus: receipt.status, receiptBytes: bytes.length, receiptSha256: sha256(bytes) };
+}
+function validateWorkerCertificate(value, generation, workerExit, receipt, bytes) {
+  if (!exactKeys(value, ['schemaVersion', 'kind', 'generation', 'workerExit', 'receiptStatus', 'receiptBytes', 'receiptSha256'])
+    || ![0, 71].includes(workerExit) || receipt.status !== (workerExit === 0 ? 'ready' : 'failed')
+    || JSON.stringify(value) !== JSON.stringify(workerCertificate(generation, workerExit, receipt, bytes))) throw new Error('schema');
+}
+async function prepareAcquisitionReceipt(receipt, directory) {
   validateAcquisitionReceipt(receipt);
-  const controller = new AbortController(), deadline = performance.now() + 2000; let open = true;
-  const fence = () => { if (!open || controller.signal.aborted || performance.now() > deadline) throw new Error('deadline'); };
-  const operation = (async () => {
+  const window = acquisitionWindow(monotonicNow(), 2n * NS_SECOND), fence = window.fence;
+  return window.run(async () => {
+    const generation = await privateDirectory(directory, fence); fence();
     const repository = await realpath(fileURLToPath(new URL('../../', import.meta.url))); fence();
-    const directory = join(repository, 'test-results');
+    const outputDirectory = join(repository, 'test-results');
     try {
-      const before = await lstat(directory); fence();
+      const before = await lstat(outputDirectory); fence();
       if (before.isSymbolicLink() || !before.isDirectory()) throw new Error('privacy');
     } catch (error) { if (error?.code !== 'ENOENT') throw error; fence(); }
-    await mkdir(directory, { recursive: true }); fence();
-    const info = await lstat(directory); fence();
-    if (info.isSymbolicLink() || !info.isDirectory() || await realpath(directory) !== directory) throw new Error('privacy');
+    await mkdir(outputDirectory, { recursive: true }); fence();
+    const info = await lstat(outputDirectory); fence();
+    if (info.isSymbolicLink() || !info.isDirectory() || await realpath(outputDirectory) !== outputDirectory) throw new Error('privacy');
     fence();
-    const output = join(directory, 'fixed-chromium-acquisition.json');
+    const output = join(outputDirectory, 'fixed-chromium-acquisition.json');
     if (!contained(repository, output)) throw new Error('privacy');
-    await writeFile(output, JSON.stringify(receipt) + '\n', { encoding: 'utf8', flag: 'wx', signal: controller.signal }); fence();
-    // A true output can only follow this invocation's complete exclusive write.
-    await appendFile(process.env.GITHUB_OUTPUT, 'acquisition_receipt_written=true\n', { signal: controller.signal }); fence();
-  })();
-  try { await bounded(operation, 2000); }
-  finally { open = false; controller.abort(); }
+    const bytes = Buffer.from(JSON.stringify(receipt) + '\n');
+    await writeFile(output, bytes, { flag: 'wx', signal: window.signal }); fence();
+    const value = workerCertificate(generation, receipt.status === 'ready' ? 0 : 71, receipt, bytes);
+    await writeFile(join(directory, 'worker.json'), JSON.stringify(value), { flag: 'wx', mode: 0o600, signal: window.signal }); fence();
+  });
 }
 async function acquisitionMain() {
   const observation = acquisitionObservation(); let receipt;
   try {
     const observed = observation.enter('invocation');
-    if (process.argv.length !== 3) { observed('arguments'); throw new Error('setup'); }
+    if (process.argv.length !== 4) { observed('arguments'); throw new Error('setup'); }
     await acquireFixed(observation);
     receipt = observation.freeze('ready');
   } catch { receipt = observation.freeze('failed'); }
-  // Original failure is already frozen. Writer/flag failures cannot replace it or green acquisition.
+  // Internal 71 conveys a timely failed receipt; only the supervisor maps outward failure to 1.
+  try { await prepareAcquisitionReceipt(receipt, process.argv[3]); process.exitCode = receipt.status === 'ready' ? 0 : 71; }
+  catch { process.exitCode = 1; }
+}
+async function acquisitionSupervisor() {
+  let child;
   try {
-    await publishAcquisitionReceipt(receipt);
-    if (receipt.status !== 'ready') throw new Error('setup');
-    process.stdout.write('fixed-chromium-acquisition ready\n');
+    const started = monotonicNow(), window = acquisitionWindow(started, 180n * NS_SECOND), fence = window.fence;
+    await window.run(async () => {
+      if (process.argv.length !== 3 || !process.env.GITHUB_OUTPUT || process.env.DEBUG || process.env.PWDEBUG) throw new Error('setup');
+      const epoch = await clockEpoch(fence); fence();
+      const base = await realpath(process.env.RUNNER_TEMP); fence();
+      const directory = join(base, `kopplas-acquisition-${randomUUID()}`);
+      await mkdir(directory, { mode: 0o700 }); fence();
+      const generation = await privateDirectory(directory, fence); fence();
+      const workerOutput = join(directory, 'worker-output');
+      await writeFile(workerOutput, '', { flag: 'wx', mode: 0o600 }); fence();
+      const workerExit = await new Promise((yes, no) => {
+        child = spawn(process.execPath, [fileURLToPath(import.meta.url), '--acquisition-worker', directory], {
+          env: { ...process.env, GITHUB_OUTPUT: workerOutput }, stdio: 'ignore', windowsHide: true,
+        });
+        child.once('error', () => no(new Error('setup')));
+        child.once('close', (code, signal) => signal || ![0, 71].includes(code) ? no(new Error('setup')) : yes(code));
+      }); fence();
+      const { receipt, bytes } = await publicReceiptBytes(fence); fence();
+      const provisional = JSON.parse((await privateBytes(join(directory, 'worker.json'), 2048, fence)).toString('utf8')); fence();
+      validateWorkerCertificate(provisional, generation, workerExit, receipt, bytes);
+      let executableOutput = '';
+      if (workerExit === 0) {
+        executableOutput = (await privateBytes(workerOutput, 1024, fence)).toString('utf8'); fence();
+        const match = /^executable=([^\r\n]+)\n$/.exec(executableOutput);
+        if (!match || !contained(base, match[1]) || !/^kopplas-fixed-chromium-[a-zA-Z0-9]+\/chrome-linux64\/chrome$/.test(relative(base, match[1]))) throw new Error('privacy');
+      }
+      const handoffStarted = fence(), cutoff = minNs(started + 180n * NS_SECOND, handoffStarted + 2n * NS_SECOND);
+      window.shorten(cutoff);
+      // Locator bytes convey no authority. Only an acknowledged, open, timely fence commits.
+      await appendFile(process.env.GITHUB_OUTPUT, `acquisition_receipt_directory=${directory}\n`, { signal: window.signal });
+      const acknowledged = fence();
+      const certificate = { schemaVersion: 2, kind: 'acquisition-supervisor-handoff-committed', clockDomain: 'linux-host-monotonic-ns',
+        clockEpoch: epoch, generation, workerExit, receiptStatus: receipt.status, receiptBytes: bytes.length, receiptSha256: sha256(bytes),
+        supervisorStartedNs: started.toString(), handoffStartedNs: handoffStarted.toString(),
+        handoffAcknowledgedNs: acknowledged.toString(), notAfterNs: cutoff.toString() };
+      const serialized = JSON.stringify(certificate);
+      if (Buffer.byteLength(serialized) > 2048) throw new Error('schema');
+      // Committed capability may survive a later delivery error, only until its receiver cutoff.
+      await writeFile(join(directory, 'handoff.json'), serialized, { flag: 'wx', mode: 0o600, signal: window.signal }); fence();
+      if (workerExit !== 0) throw new Error('setup');
+      await appendFile(process.env.GITHUB_OUTPUT, executableOutput, { signal: window.signal }); fence();
+      process.stdout.write('fixed-chromium-acquisition ready\n');
+    });
+  } catch { process.stderr.write('fixed-chromium-acquisition unavailable\n'); process.exitCode = 1; }
+  finally {
+    if (child && child.exitCode === null && child.signalCode === null) {
+      try { child.kill('SIGKILL'); } catch { /* Keep the frozen generic failure; never expose child errors. */ }
+    }
+  }
+}
+async function acquisitionPublisher() {
+  try {
+    const started = monotonicNow(), window = acquisitionWindow(started, 2n * NS_SECOND), fence = window.fence;
+    await window.run(async () => {
+      if (process.argv.length !== 4 || !process.env.GITHUB_OUTPUT) throw new Error('setup');
+      const epoch = await clockEpoch(fence); fence();
+      const directory = process.argv[3], generation = await privateDirectory(directory, fence); fence();
+      const value = JSON.parse((await privateBytes(join(directory, 'handoff.json'), 2048, fence)).toString('utf8')); fence();
+      if (!exactKeys(value, ['schemaVersion', 'kind', 'clockDomain', 'clockEpoch', 'generation', 'workerExit', 'receiptStatus', 'receiptBytes',
+        'receiptSha256', 'supervisorStartedNs', 'handoffStartedNs', 'handoffAcknowledgedNs', 'notAfterNs'])
+        || value.schemaVersion !== 2 || value.kind !== 'acquisition-supervisor-handoff-committed'
+        || value.clockDomain !== 'linux-host-monotonic-ns' || value.clockEpoch !== epoch || value.generation !== generation) throw new Error('schema');
+      const supervisorStarted = canonicalNs(value.supervisorStartedNs), handoffStarted = canonicalNs(value.handoffStartedNs);
+      const acknowledged = canonicalNs(value.handoffAcknowledgedNs), cutoff = minNs(supervisorStarted + 180n * NS_SECOND, handoffStarted + 2n * NS_SECOND);
+      if (canonicalNs(value.notAfterNs) !== cutoff || supervisorStarted > handoffStarted || handoffStarted > acknowledged
+        || acknowledged >= cutoff || fence() < acknowledged) throw new Error('clock');
+      window.shorten(cutoff);
+      const { receipt, bytes } = await publicReceiptBytes(fence); fence();
+      validateWorkerCertificate(workerCertificate(value.generation, value.workerExit, receipt, bytes), generation, value.workerExit, receipt, bytes);
+      if (value.receiptStatus !== receipt.status || value.receiptBytes !== bytes.length || value.receiptSha256 !== sha256(bytes)) throw new Error('schema');
+      await appendFile(process.env.GITHUB_OUTPUT, 'acquisition_receipt_written=true\n', { signal: window.signal }); fence();
+    });
   } catch { process.stderr.write('fixed-chromium-acquisition unavailable\n'); process.exitCode = 1; }
 }
 // ACQUISITION-OBSERVABILITY-END
@@ -853,7 +1015,7 @@ const unexecutedEngine = () => ({ executed: false, rows: [], bodies: [], failure
 export async function pairedMain() {
   const acquire = process.argv[2] === '--acquire-fixed-chromium';
   if (acquire) {
-    await acquisitionMain();
+    await acquisitionSupervisor();
     return;
   }
   const start = performance.now(); let provenance = null, receipt = null, failure = 'none';
@@ -878,7 +1040,12 @@ export async function pairedMain() {
 }
 // PAIRED-ADDITION-END implementation
 // PAIRED-ADDITION-BEGIN entry
-const pairedEntry = process.argv[2] === '--paired-fixed-chromium' || process.argv[2] === '--acquire-fixed-chromium';
-if (pairedEntry && process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) await pairedMain();
+const pairedEntry = process.argv[2] === '--paired-fixed-chromium' || process.argv[2] === '--acquire-fixed-chromium'
+  || process.argv[2] === '--acquisition-worker' || process.argv[2] === '--publish-acquisition-receipt';
+if (pairedEntry && process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  if (process.argv[2] === '--acquisition-worker') await acquisitionMain();
+  else if (process.argv[2] === '--publish-acquisition-receipt') await acquisitionPublisher();
+  else await pairedMain();
+}
 // PAIRED-ADDITION-END entry
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url) /* PAIRED-EXPRESSION-BEGIN */ && !pairedEntry /* PAIRED-EXPRESSION-END */) await main();
