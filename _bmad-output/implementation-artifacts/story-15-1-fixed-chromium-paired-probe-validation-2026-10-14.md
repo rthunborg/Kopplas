@@ -73,3 +73,15 @@ Author makes only the aggregate qualification/precedence revision; fresh focused
 ## Blockers
 
 Mutually exclusive pair classification is not yet implementation-ready. Native executions in this review: 0. Existing application failures and incomplete acceptance remain; P5=false, review unverified, broad review 0/3, six sequential goals and Story 15.2 exclusion remain. No synthetic result supplies application/RLS/security/visual/completion/release credit.
+
+## Focused R1 revalidation
+
+**PASS for contract-limited source-stage admission.** Fresh independent Sol 6.1 High focused revalidation resolves the sole aggregate classification finding. Initial REVISE above remains historical; no source or runtime approval is implied. Coordinator-supplied HEAD `689a1385`; Git/state untouched.
+
+R1 applies validPair and fresh baselineReaderReproduced before every persistence/remedy/full-clean label. A clean baseline plus fixed defect now deterministically yields pair-inconclusive with the fixed defect retained. Baseline qualification requires all four original reader EOF/hash/server-finish/correlation/framing facts, an actual matching public/CDP failed reader, and unchanged discrepancy classification. Historical observations and host-text-only failures cannot substitute. Fixed partial positives, missing correlation or body timeout take inconclusive before persistence. Definite failed-request nativeFinished unknown remains unknown; host-text unknown permits only reader-level conclusions.
+
+The exclusive seven-branch tree and all nine required pure-proof cases were independently checked against the finding: clean baseline/fixed defect; clean/clean; qualifying persistence; reader remedy/host unknown; full clean; unqualified baseline; partial fixed evidence; invalid controls; unexecuted/harness failure. They preserve per-engine observations, nonzero harness/admission status, unknowns and no fabricated rows. No new consequential regression identified. These are specified future proofs, not executions.
+
+Direct bindings: revised proposal 34,077B/SHA256 `9b554fdf87fba712d5da0620908a67f01ddcb7ac0c7d9fef62d8704e351e148b`; unchanged 25,480B prefix `33f155ee3f8a16d14332ca3c93cd8d3edc10842573bf30b54e2e604c1d7fe9e5`; R1 suffix 8,597B/`a9706273e1e793846a6f95c17c55428d1eb81499f69c9df5612e5b9115d55cae`. Original validation 11,693B/`72af2a8325af906cc941f43da9ae9f56921ad99a8780084845fe9cc76c5f0d3d` is preserved byte-for-byte. Nine previously bound source/config/package inputs rehashed with zero mismatches.
+
+Remaining gates: root source-path admission; source authoring; actual resource-free classifier/acquisition/privacy/freeze/deadline and exact inverse-preservation proofs; fresh independent High final source PASS; exact commit/hash and ONE optional execution admission. Native/tests/CI/resources executed here: 0. No application/P5/security/visual/completion/release/15.2 credit. Original application and separate observer-lifecycle blockers remain.
