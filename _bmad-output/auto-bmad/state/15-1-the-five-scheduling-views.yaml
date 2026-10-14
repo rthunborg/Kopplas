@@ -9,24 +9,24 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-14T20:36:12Z"
+updated_at: "2026-10-14T20:41:58Z"
 started_at: "2026-10-09T13:06:12Z"
 completed_at: null
-active_seconds: 29495
+active_seconds: 29816
 timing_anchor: null
 is_first_in_epic: true
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: build
-selected_role: build-delegate
-selected_profile: standard
+selected_phase: security_layer
+selected_role: security-reviewer
+selected_profile: critical
 selected_model: gpt-6.1-sol
 selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Implement independently validated optional paired native security-payload diagnostic and strict binary provenance; sensitive controls and CI conflict."
+escalation_reason: Fresh independent exact-source review of paired security-body observer/provenance/fail-closed acquisition and control preservation before any native run.
 routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary scheduling UX specification; sensitive authorization/integrity portions explicitly delegated High\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary15.1 ATDD preparation; sensitive access assertions delegated High; shared fixture edits excluded\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -174,6 +174,7 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive paired native security-payload classification: narrow preparation revision resolving independent qualification finding.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Focused independent High revalidation of paired security-body classification qualification R1; no broad story review credit.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Implement independently validated optional paired native security-payload diagnostic and strict binary provenance; sensitive controls and CI conflict.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Fresh independent exact-source review of paired security-body observer/provenance/fail-closed acquisition and control preservation before any native run.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate, trace-advisory]
 tea_rationale: "Scheduling, synchronized projections, capacity and drag/keyboard/dialog behavior"
@@ -199,7 +200,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [45a64853, f9e12a81, 279d3149, b9d61a33, 4d7911ac, 3a655a5d, a67a64dc, 66cd8436, d79fff08, bf84cf5d, 181f947f, 22cfb74a, 22cfb74a, 6fd516b0, 521d56fd, e448f856, b99e3f42, 83e27c92, 1aa7c52b, 8630b011, da3a4c59, 27d67de7, 4223e887, 9c26fd72, d75313bb, 4b0ab106, f7b4f154, 437c3da2, e6c404d3, f4a431f6, 85cae2a5, 689a1385, 1bc90218]
+commits: [45a64853, f9e12a81, 279d3149, b9d61a33, 4d7911ac, 3a655a5d, a67a64dc, 66cd8436, d79fff08, bf84cf5d, 181f947f, 22cfb74a, 22cfb74a, 6fd516b0, 521d56fd, e448f856, b99e3f42, 83e27c92, 1aa7c52b, 8630b011, da3a4c59, 27d67de7, 4223e887, 9c26fd72, d75313bb, 4b0ab106, f7b4f154, 437c3da2, e6c404d3, f4a431f6, 85cae2a5, 689a1385, 1bc90218, c49ac882]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -2788,5 +2789,34 @@ fixed_chromium_paired_probe_implementation:
   intermediate_failures: Gzip portability assertion and Windows matcher failures retained with explanations
   acquisition: "none"
   runtime: "none"
+  p5_complete: false
+  broad_review_round: 0
+fixed_chromium_paired_probe_source_review:
+  outcome: PASS exact source/proof stage only
+  artifact_bytes: 12485
+  artifact_sha256: 6c564ae57034ae7dc380592cc292dc1055259fd3c05e10ee5bc936b0312f92a8
+  independent_exact_inverses: 3
+  archival_protected_entries: 2875
+  archival_mismatches: 0
+  current_qualified_unchanged_entries: 2874
+  current_root_epic_state_delta: "Expected root timing/bookkeeping; qualified exclusion"
+  pure_rerun_executed: 34
+  pure_rerun_passed: 34
+  ci_unit_rerun_executed: 4
+  ci_unit_rerun_passed: 4
+  syntax_exit: 0
+  lint_exit: 0
+  rerun_effect: "Private inverse receipt overwritten and existing fixture directory touched; pre-rerun receipt equality unproven"
+  input: "fixed_chromium_paired_probe=true; native_stream_probe=false"
+  job: fixed-chromium-paired-probe
+  artifact: fixed-chromium-paired-probe
+  output: test-results/fixed-chromium-paired-probe.json
+  acquisition_step_minutes: 3
+  paired_step_minutes: 4
+  paired_internal_seconds: 230
+  job_minutes: 18
+  acquisition: "none"
+  native: "none"
+  next: Root exact-commit binding and ONE isolated optional hosted comparison
   p5_complete: false
   broad_review_round: 0
