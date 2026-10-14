@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-14T16:55:24Z"
+updated_at: "2026-10-14T17:13:55Z"
 started_at: "2026-10-09T13:06:12Z"
 completed_at: null
 active_seconds: 25163
@@ -18,15 +18,15 @@ is_first_in_epic: true
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: native_visual_framing_pixels_audit
-selected_role: independent-native-visual-auditor
-selected_profile: diverse_review
+selected_phase: native_stream_probe_implementation
+selected_role: native-probe-and-CI-author
+selected_profile: critical
 selected_model: gpt-6.1-sol
-selected_effort: low
+selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Independent ordinary screenshot pixel audit of existing exact-head native artifacts; no source or runtime work."
+escalation_reason: Critical CI failure/artifact preservation and bounded native transport/cleanup integrity after independently validated budget correction.
 routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary scheduling UX specification; sensitive authorization/integrity portions explicitly delegated High\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary15.1 ATDD preparation; sensitive access assertions delegated High; shared fixture edits excluded\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -145,6 +145,11 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Audit exact-head native browser failure and sanitized CDP evidence with auth/body-capture obligations intact; distinguish observed cancellation from unsupported cause.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"native_passive_metadata_general_audit\",\"profile\":\"diverse_review\",\"role\":\"independent-native-evidence-auditor\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Fresh native diagnostics confirm preserved AC2 abort before navigation but no CDP terminal before freeze; ground actual stream cancellation paths before any corrective change.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"native_stream_cancellation_resolution\",\"profile\":\"critical\",\"role\":\"native-stream-lifecycle-diagnostician\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Independent ordinary screenshot pixel audit of existing exact-head native artifacts; no source or runtime work.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"native_visual_framing_pixels_audit\",\"profile\":\"diverse_review\",\"role\":\"independent-native-visual-auditor\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary finite data-free diagnostic planning; no app/auth/private payloads or gate alteration. Sensitive interpretation remains separately High.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"native_stream_probe_preparation\",\"profile\":\"standard\",\"role\":\"data-free-native-probe-contract-author\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Independent validation of CI failure/artifact preservation and critical native transport-integrity conclusions before workflow authoring.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"native_stream_probe_validation\",\"profile\":\"diverse_review\",\"role\":\"independent-native-probe-contract-validator\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary finite data-free diagnostic planning; no app/auth/private payloads or gate alteration. Sensitive interpretation remains separately High.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"native_stream_probe_preparation\",\"profile\":\"standard\",\"role\":\"data-free-native-probe-contract-author\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Independent validation of CI failure/artifact preservation and critical native transport-integrity conclusions before workflow authoring.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"native_stream_probe_validation\",\"profile\":\"diverse_review\",\"role\":\"independent-native-probe-contract-validator\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Critical CI failure/artifact preservation and bounded native transport/cleanup integrity after independently validated budget correction.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"native_stream_probe_implementation\",\"profile\":\"critical\",\"role\":\"native-probe-and-CI-author\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate, trace-advisory]
 tea_rationale: "Scheduling, synchronized projections, capacity and drag/keyboard/dialog behavior"
@@ -170,7 +175,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [45a64853, f9e12a81, 279d3149, b9d61a33, 4d7911ac, 3a655a5d, a67a64dc, 66cd8436, d79fff08, bf84cf5d, 181f947f, 22cfb74a, 22cfb74a, 6fd516b0, 521d56fd, e448f856, b99e3f42, 83e27c92, 1aa7c52b, 8630b011, da3a4c59]
+commits: [45a64853, f9e12a81, 279d3149, b9d61a33, 4d7911ac, 3a655a5d, a67a64dc, 66cd8436, d79fff08, bf84cf5d, 181f947f, 22cfb74a, 22cfb74a, 6fd516b0, 521d56fd, e448f856, b99e3f42, 83e27c92, 1aa7c52b, 8630b011, da3a4c59, 27d67de7]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -1928,5 +1933,75 @@ native_visual_framing_pixels_audit:
   phone_targets_unexecuted: 6
   reference_similarity: No approved Figma/reference comparison available
   manual: AT/daylight/onehand/p95unverified
+  phase5_complete: false
+  broad_review_credit: 0
+native_stream_probe_ownership:
+  status: Exact-paths-reserved-proposal-not-approved
+  coordinator_thread: 01a1160d-b5b1-7623-a8e8-54ef3dc537ed
+  checked_worktrees: 31
+  pending_overlap: false
+  owned_paths: [tests/diagnostics/no-store-stream-probe.mjs, ".github/workflows/ci.yml"]
+  scope: "Explicitoptin finite datafree post-E2E nativeprobe usingalreadyinstalledpinnedbrowser; preserveall5job outcomes/budgets/assertions/artifactuploads"
+  source_release: "IndependentSol6.1HighproposalPASS beforeauthoring; independentHighexactimplementationreviewbeforedispatch"
+  excluded: [app, shared harness, migrations, fixtures, demo, local resources]
+  acceptance_credit: 0
+  story15_2_admitted: false
+native_stream_probe_preparation:
+  status: Prepared-awaiting-independent-High-validation
+  delegate: "/root/native15_stream_probe_contract_low"
+  artifact: "_bmad-output/implementation-artifacts/story-15-1-native-stream-probe-addendum-2026-10-14.md"
+  sha256: 49a4955935bee0d566b2588b8839beb7b9cc4531a784ad51f08dc95cde3a1a24
+  bytes: 8994
+  matrix: "Threepositivearmsx2repetitions=6plus2transportnegativecontrols"
+  comparison: "BrowsergetReader one/twowrites vs distinct publicPWResponse.text arm with no priorbrowserreader; nativeunavailable/unsettled recordedunknown"
+  api: Publiconly exactalreadyinstalledversions
+  ci: "Explicitdefaultfalse optin; all5originalgates/outcomes/budgets/uploadsunchanged"
+  ownership: "31worktrees checked, exactprobe+workflowpaths reserved, proposalnotyetapproved"
+  code_changed: false
+  native_credit: 0
+  phase5_complete: false
+native_stream_probe_validation:
+  status: REVISE-single-CI-budget-preservation-gap
+  delegate: "/root/native15_passive_validation_high"
+  artifact: "_bmad-output/implementation-artifacts/story-15-1-native-stream-probe-validation-2026-10-14.md"
+  sha256: cdbf7abee85c7040df6b4979df272dd73943162d0ebfcfa811638b37ba470daa
+  bytes: 7625
+  finding: 90secondprobe+upload beforeexistingartifacts within unchanged25minutejob canpreventoriginaluploads afterlateE2Efailure
+  other_blocking_gaps: 0
+  next: "AppendR1separateoptin diagnosticjob afterexistingE2Ecompletion,ownfinitebudget; originalfivejobs unchanged, thenindependentfocusedHighvalidation"
+  code_changed: false
+  native_credit: 0
+  phase5_complete: false
+native_stream_probe_preparation_r1:
+  status: Appended-awaiting-focused-High-validation
+  delegate: "/root/native15_stream_probe_contract_low"
+  artifact: "_bmad-output/implementation-artifacts/story-15-1-native-stream-probe-addendum-2026-10-14.md"
+  sha256: a14c8ae03fbf7b1a48c185e89fb8070e55c5fa1c780337a2a969ef4c8ad0441d
+  bytes: 12969
+  append_bytes: 3975
+  original_prefix_bytes: 8994
+  original_prefix_sha256: 49a4955935bee0d566b2588b8839beb7b9cc4531a784ad51f08dc95cde3a1a24
+  resolution: "Separate explicitoptin diagnosticjob afterE2Ecompletion,ownfinitebudget,original5jobsbyteidentical"
+  coordinator_revised_scope_confirmed: true
+  code_changed: false
+  native_credit: 0
+  phase5_complete: false
+native_stream_probe_ownership_r1:
+  status: Revised-placement-reserved-not-implementation-approval
+  coordinator_thread: 01a1160d-b5b1-7623-a8e8-54ef3dc537ed
+  same_owned_paths: [tests/diagnostics/no-store-stream-probe.mjs, ".github/workflows/ci.yml"]
+  additional_scope: "Separatefiniteoptin diagnosticjob withsamepinnedinstallerinownisolatedrunner; originalfivejobsbyteidentical"
+  required: IndependentHighfocusedproposalPASSbefor eauthoring andHighexactimplementationreviewbeforedispatch
+  hold: Noapp/sharedharness/migrations/fixtures/demo/localresources/15.2release
+native_stream_probe_validation_r1:
+  status: PASS-focused-R1
+  delegate: "/root/native15_passive_validation_high"
+  artifact: "_bmad-output/implementation-artifacts/story-15-1-native-stream-probe-validation-2026-10-14.md"
+  sha256: daca862aeb80563ebe04ef0dfe806d5a20b178f20763b0f367b8cc398c88b59f
+  bytes: 8968
+  original_revise_prefix_bytes: 7625
+  original_revise_prefix_sha256: cdbf7abee85c7040df6b4979df272dd73943162d0ebfcfa811638b37ba470daa
+  finding: "Separateoptinjob resolvesoriginalartifactbudgetrisk; unchangedworkflow/source/helper/spec/package/lockbindingsverified"
+  native_credit: 0
   phase5_complete: false
   broad_review_credit: 0
