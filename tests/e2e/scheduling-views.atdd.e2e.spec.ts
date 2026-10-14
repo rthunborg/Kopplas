@@ -3,9 +3,16 @@
 import { test, expect, interval, DATE, type View, type Interval, type SchedulingViewsHarness } from "./support/scheduling-views-atdd";
 import type { Locator, Page, TestInfo } from "@playwright/test";
 import { adminQuery } from "../factories/admin-sql";
+import { readFileSync } from "node:fs";
+import path from "node:path";
 
 test.describe.configure({ mode: "serial" });
 test.setTimeout(180_000);
+const schedulingAttemptShutdowns = new WeakMap<TestInfo, () => void>();
+test.afterEach(({}, testInfo) => {
+  try { schedulingAttemptShutdowns.get(testInfo)?.(); }
+  finally { schedulingAttemptShutdowns.delete(testInfo); }
+});
 async function attachVisual(page: Page, testInfo: TestInfo, name: string) {
   await testInfo.attach(name, {
     body: await page.screenshot({ fullPage: false }),
@@ -94,20 +101,65 @@ test("[P1] 15.1-E2E-006 SCOPE-001 AC1 five projections, periods, filters and too
   }
 });
 
-test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycle and input tampering; denied role", async ({ schedulingViews: h, resourcePage: page }) => {
+test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycle and input tampering; denied role", async ({ schedulingViews: h, resourcePage: page }, testInfo) => {
   await h.seed(); await h.signIn("manager"); await h.open("Resurser");
   await expect(page.getByRole("tab")).toHaveCount(5);
   await expect(page.locator('[aria-label="Behöver omfördelas"]')).toContainText(h.scenario.description);
-  await h.signIn("montor");
   const payloads: string[] = [];
   const captureOrigin = new URL(page.url()).origin;
-  const captures: Promise<{ ok: true } | { ok: false; error: unknown }>[] = [];
+  const captures: Promise<{ ok: true } | { ok: false; error: unknown } | { ok: "abandoned" }>[] = [];
+  const abandoned = Symbol("scheduling attempt abandoned");
+  let shutdownStarted = false, captureActivated = false, responseAdmissionOpen = false, trackerOpen = true;
+  let notifyCancellation!: () => void;
+  const cancellation = new Promise<void>(resolve => { notifyCancellation = resolve; });
+  const live = new Set<import("@playwright/test").Request>();
+  const wakeWaiters = new Set<() => void>();
+  let generation = BigInt(0);
+  const ensureActive = () => { if (shutdownStarted) throw abandoned; };
+  const awaitActive = async <T,>(operation: Promise<T>): Promise<T> => {
+    // The operation may already be invoked; retain its settlement even if shutdown reentered.
+    const handled = operation.then(value => ({ ok: true as const, value }), error => ({ ok: false as const, error }));
+    ensureActive();
+    try {
+      const result = await Promise.race([handled, cancellation]); ensureActive();
+      if (result === undefined) throw abandoned;
+      if (!result.ok) throw result.error;
+      return result.value;
+    }
+    catch (error) { ensureActive(); throw error; }
+  };
+  const wake = () => { for (const waiter of wakeWaiters) waiter(); };
   let hasFailure = false, firstFailure: unknown;
   let notifyFailure!: () => void;
   const failed = new Promise<void>(resolve => { notifyFailure = resolve; });
   const recordFailure = (error: unknown) => {
-    if (hasFailure) return;
+    if (shutdownStarted || hasFailure) return;
     hasFailure = true; firstFailure = error; notifyFailure();
+  };
+  const guardProgress = () => { ensureActive(); if (hasFailure) throw firstFailure; };
+  const guardedStage = async <T,>(operation: () => Promise<T>): Promise<T> => {
+    guardProgress();
+    try {
+      const value = await awaitActive(Promise.race([operation(), failed]));
+      guardProgress(); return value as T;
+    } catch (error) { ensureActive(); recordFailure(error); throw firstFailure; }
+  };
+  const guardedSignIn = async (identity: "montor" | "denied") => {
+    guardProgress();
+    JSON.parse(readFileSync(path.join(process.cwd(), "tests/e2e/.auth/fixture.json"), "utf8"));
+    guardProgress();
+    const credentials = h.users[identity === "montor" ? 1 : 2]!;
+    if (identity === "denied") await guardedStage(() => adminQuery("update public.tenant_memberships set status='active' where id=$1 and tenant_id=$2", [h.memberships[2], h.scenario.tenantId]));
+    await guardedStage(() => page.context().clearCookies());
+    await guardedStage(() => page.goto("/login"));
+    await guardedStage(() => page.getByLabel("E-post").fill(credentials.email));
+    await guardedStage(() => page.getByLabel("Lösenord").fill(credentials.password));
+    await guardedStage(() => page.getByRole("button", { name: "Logga in" }).click());
+    await guardedStage(() => expect(page).toHaveURL(/\/dashboard$/));
+  };
+  const guardedSettle = async () => {
+    await guardedStage(() => page.evaluate(() => new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve())))));
+    await guardedStage(() => expect(page.getByText("Läser planering…", { exact: true })).toHaveCount(0));
   };
   type NativeCapture = {
     request: import("@playwright/test").Request; response: import("@playwright/test").Response;
@@ -166,15 +218,30 @@ test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycl
   const unavailableReason = new Error("Captured scheduling request failed; native reason unavailable.");
   unavailableReason.name = "SchedulingNativeRequestFailure";
   const readFailed = (request: import("@playwright/test").Request) => {
-    if (!observerOpen) return;
+    if (shutdownStarted || !trackerOpen) return;
+    const wasLive = live.delete(request);
+    if (wasLive) { generation++; wake(); }
+    if (!captureActivated) return;
     const entry = admitted.get(request);
-    if (!entry) return;
+    if (!entry && !wasLive) return;
     let reason: unknown = unavailableReason;
     try { const failure = request.failure(), text = failure?.errorText; if (typeof text === "string") reason = text; } catch { /* Use only the fixed unavailable carrier. */ }
     recordFailure(reason);
-    snapshot(entry, "requestfailed");
+    wake();
+    if (entry) snapshot(entry, "requestfailed");
+  };
+  const readRequest = (request: import("@playwright/test").Request) => {
+    if (shutdownStarted || !trackerOpen) return;
+    const url = new URL(request.url());
+    if (url.origin !== captureOrigin || url.pathname !== "/scheduling") return;
+    live.add(request); generation++; wake();
+  };
+  const readFinished = (request: import("@playwright/test").Request) => {
+    if (shutdownStarted || !trackerOpen) return;
+    if (live.delete(request)) { generation++; wake(); }
   };
   const read = (response: import("@playwright/test").Response) => {
+    if (shutdownStarted || !responseAdmissionOpen) return;
     const url = new URL(response.url());
     if (url.origin !== captureOrigin || url.pathname !== "/scheduling" || !response.ok()) return;
     const request = response.request(), previous = admitted.get(request);
@@ -188,15 +255,23 @@ test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycl
     const capture = (async () => {
       updateTiming(() => { entry.phase = "finished"; entry.finishedStartMs = relativeTime(); });
       const failure = await response.finished();
+      ensureActive();
       updateTiming(() => { entry.finishedEndMs = relativeTime(); });
       if (failure) throw failure;
       updateTiming(() => { entry.phase = "body"; entry.bodyStartMs = relativeTime(); });
-      payloads.push(await response.text());
+      const payload = await response.text();
+      ensureActive();
+      payloads.push(payload);
       updateTiming(() => { entry.bodyEndMs = relativeTime(); entry.phase = "complete"; });
     })();
     // Register and handle rejection in the same event turn. The drain retains
     // and rethrows the original error; a missing CDP body is never empty data.
-    captures.push(capture.then(() => { fulfilledCount++; return { ok: true as const }; }, error => {
+    captures.push(capture.then(() => {
+      if (shutdownStarted) return { ok: "abandoned" as const };
+      fulfilledCount++; return { ok: true as const };
+    }, error => {
+      if (error === abandoned) return { ok: "abandoned" as const };
+      if (shutdownStarted) return { ok: false as const, error };
       recordFailure(error); rejectedCount++;
       let trigger: "body-rejected" | "finished-rejected" = "finished-rejected";
       updateTiming(() => { trigger = entry.phase === "body" ? "body-rejected" : "finished-rejected"; });
@@ -206,50 +281,106 @@ test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycl
   };
   const drain = async () => {
     let cursor = 0;
+    ensureActive();
     if (hasFailure) throw firstFailure;
     while (cursor < captures.length) {
       if (hasFailure) throw firstFailure;
       const end = captures.length, batch = captures.slice(cursor, end);
-      await Promise.race([Promise.all(batch), failed]);
+      await awaitActive(Promise.race([Promise.all(batch), failed]));
+      ensureActive();
       if (hasFailure) throw firstFailure;
       cursor = end;
     }
     if (hasFailure) throw firstFailure;
   };
-  const closeCaptureWindow = async () => {
-    try { page.off("response", read); } catch (error) { recordFailure(error); }
+  const waitForFlightChange = async (observedGeneration: bigint) => {
+    ensureActive();
+    let notify!: () => void;
+    const changed = new Promise<void>(resolve => { notify = resolve; });
+    wakeWaiters.add(notify);
     try {
-      if (!hasFailure) { try { await drain(); } catch (error) { recordFailure(error); } }
-    } finally {
-      observerOpen = false;
-      try { page.off("requestfailed", readFailed); } catch (error) { recordFailure(error); }
+      ensureActive();
+      if (!live.size || generation !== observedGeneration || hasFailure) return;
+      await awaitActive(Promise.race([changed, failed]));
+      ensureActive();
+    } finally { if (!shutdownStarted) wakeWaiters.delete(notify); }
+  };
+  const navigateAfterBarrier = async <T,>(action: () => Promise<T>): Promise<T> => {
+    for (;;) {
+      ensureActive();
+      if (hasFailure) throw firstFailure;
+      const observedGeneration = generation, observedCaptures = captures.length;
+      if (live.size) { await waitForFlightChange(observedGeneration); ensureActive(); continue; }
+      await drain(); ensureActive();
+      if (hasFailure) throw firstFailure;
+      if (live.size || generation !== observedGeneration || captures.length !== observedCaptures || fulfilledCount + rejectedCount !== captures.length) continue;
+      ensureActive();
+      try { return await awaitActive(action()); }
+      catch (error) { ensureActive(); recordFailure(error); throw firstFailure; }
     }
   };
+  const shutdown = () => {
+    if (shutdownStarted) return;
+    shutdownStarted = true; captureActivated = false; responseAdmissionOpen = false; trackerOpen = false; observerOpen = false;
+    notifyCancellation();
+    let cleanupFailed = false, cleanupFailure: unknown;
+    for (const remove of [() => page.off("response", read), () => page.off("request", readRequest), () => page.off("requestfinished", readFinished), () => page.off("requestfailed", readFailed)]) {
+      try { remove(); } catch (error) { if (!cleanupFailed) { cleanupFailed = true; cleanupFailure = error; } }
+    }
+    wake(); wakeWaiters.clear(); live.clear(); schedulingAttemptShutdowns.delete(testInfo);
+    if (cleanupFailed) throw cleanupFailure;
+  };
+  const closeCaptureWindow = async () => {
+    ensureActive();
+    responseAdmissionOpen = false;
+    try { page.off("response", read); } catch (error) { recordFailure(error); }
+    try {
+      if (!hasFailure) { try { await navigateAfterBarrier(() => Promise.resolve()); } catch (error) { if (error === abandoned) throw error; recordFailure(error); } }
+    } finally {
+      if (!shutdownStarted) {
+        observerOpen = false; captureActivated = false; trackerOpen = false;
+        for (const remove of [() => page.off("request", readRequest), () => page.off("requestfinished", readFinished), () => page.off("requestfailed", readFailed)]) {
+          try { remove(); } catch (error) { recordFailure(error); }
+        }
+      }
+    }
+  };
+  const openCaptureWindow = () => { guardProgress(); captureActivated = true; responseAdmissionOpen = true; page.on("response", read); };
+  schedulingAttemptShutdowns.set(testInfo, shutdown);
+  page.on("request", readRequest);
+  page.on("requestfinished", readFinished);
   page.on("requestfailed", readFailed);
-  page.on("response", read);
   try {
-    await page.goto(`/scheduling?view=resources&person=${h.extraProfiles[2]}&tenant=${h.scenario.tenantIds[1]}`); await h.settle(); await drain();
-    await page.getByLabel("Datum", { exact: true }).fill(DATE); await h.settle(); await drain();
-    await expect(page.getByRole("tab")).toHaveCount(1); await expect(page.getByRole("tab")).toHaveText("Min kalender");
-    expect(await h.visibleIds()).toEqual([h.ids.role, h.ids.collision].sort());
-    await expect(page.getByLabel("Person", { exact: true })).toHaveCount(0); await expect(page.getByTestId("scheduling-new-booking")).toHaveCount(0);
-    await expect(page.getByText("Behöver omfördelas", { exact: true })).toHaveCount(0);
-    await expect(page.getByText(h.scenario.assigneeLabels[0]!, { exact: false })).toHaveCount(0);
+    try {
+    await guardedSignIn("montor"); guardProgress(); openCaptureWindow();
+    await navigateAfterBarrier(() => page.goto(`/scheduling?view=resources&person=${h.extraProfiles[2]}&tenant=${h.scenario.tenantIds[1]}`)); guardProgress(); await guardedSettle(); guardProgress(); await drain(); guardProgress();
+    await navigateAfterBarrier(() => page.getByLabel("Datum", { exact: true }).fill(DATE)); guardProgress(); await guardedSettle(); guardProgress(); await drain(); guardProgress();
+    await guardedStage(() => expect(page.getByRole("tab")).toHaveCount(1)); await guardedStage(() => expect(page.getByRole("tab")).toHaveText("Min kalender"));
+    const visibleIds = await guardedStage(() => h.visibleIds()); guardProgress(); expect(visibleIds).toEqual([h.ids.role, h.ids.collision].sort());
+    await guardedStage(() => expect(page.getByLabel("Person", { exact: true })).toHaveCount(0)); await guardedStage(() => expect(page.getByTestId("scheduling-new-booking")).toHaveCount(0));
+    await guardedStage(() => expect(page.getByText("Behöver omfördelas", { exact: true })).toHaveCount(0));
+    await guardedStage(() => expect(page.getByText(h.scenario.assigneeLabels[0]!, { exact: false })).toHaveCount(0));
   } catch (error) {
+    if (error === abandoned) throw error;
     recordFailure(error);
   } finally {
     // A failing test keeps all rejection handlers attached but never waits on
     // another unresolved capture. Success must drain the detached final buffer.
-    await closeCaptureWindow();
+    if (!shutdownStarted) await closeCaptureWindow();
   }
+  ensureActive();
   if (hasFailure) throw firstFailure;
   try {
+    ensureActive();
     expect(payloads.length).toBeGreaterThan(0);
-    for (const payload of payloads) { expect(payload).not.toContain(h.users[2]!.email); expect(payload).not.toContain('"needsReassignment":'); }
-    await h.signIn("denied"); await page.goto("/scheduling");
-    await expect(page.getByRole("heading", { name: "Ingen åtkomst", exact: true })).toBeVisible(); await expect(page.getByTestId("scheduling-workspace")).toHaveCount(0);
-  } catch (error) { recordFailure(error); }
+    for (const payload of payloads) { ensureActive(); expect(payload).not.toContain(h.users[2]!.email); ensureActive(); expect(payload).not.toContain('"needsReassignment":'); }
+    await guardedSignIn("denied"); guardProgress(); await guardedStage(() => page.goto("/scheduling"));
+    await guardedStage(() => expect(page.getByRole("heading", { name: "Ingen åtkomst", exact: true })).toBeVisible()); await guardedStage(() => expect(page.getByTestId("scheduling-workspace")).toHaveCount(0));
+  } catch (error) { if (error === abandoned) throw error; recordFailure(error); }
+  ensureActive();
   if (hasFailure) throw firstFailure;
+  } catch (error) { if (error !== abandoned) throw error; }
+  finally { if (!shutdownStarted) schedulingAttemptShutdowns.delete(testInfo); }
 });
 
 for (const host of ["Schema", "Resurser"] as const) for (const operation of ["move", "resize"] as const) {
