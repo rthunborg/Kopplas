@@ -1,0 +1,100 @@
+# Story 15.1 native navigation barrier — independent preparation validation
+
+Outcome: **REACHABLE GAP (R1: runner-timeout cleanup ownership).** The public lifecycle barrier and preservation proposal are otherwise acceptable. **REVISE only the bounded cancellation/cleanup delta before authoring release.**
+
+Route: independent explicit gpt-6.1-sol High for actual AC2 request/native-error authority, session boundaries and diagnostic privacy. This is preparation validation, not a build, runtime receipt, broad code-review round or release decision. Broad implementation review remains **0/3**.
+
+## Frozen inputs and evidence limits
+
+Owned checkout: `C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas`. Preserve original implementation review baseline `ddd188f63e7b84c59e8f921933140ca2a2613551`. HEAD/run identity is coordinator supplied; this validator performed no Git operation.
+
+Explicit strict UTF-8 decoding of raw bytes and independent SHA256 checks confirmed:
+
+| Input | Bytes | SHA256 |
+| --- | ---: | --- |
+| Navigation-barrier addendum | 18,046 | `b8ffafe965f44fa16f1d86bb4f1a33a999793f4a2e899461ec58d64573ff7ac7` |
+| Approved corrected spec | 84,649 | `d5a492a1546c19d777d8bff3d7037686e60a577565cac67281bff764f427bc22` |
+| Frozen scheduling browser spec | 32,769 | `54de7996179e5684f8848be94a35ec30446444d951d6f45ba7243c93ee11500b` |
+| Retained native general JSON | 1,942,710 | `3b56ccc865d30fa042e5c442ad558305d6e129153a7e9de7d566bb9fa97c2dfb` |
+
+Canonical kernel independently reproduced: raw spec range `[948,6504)`, exact tag-inclusive `<intent-contract>...</intent-contract>`, explicit UTF-8 decoding, internal CRLF-to-LF only, no exterior/appended LF, UTF-8 encoding; **5,556 bytes**, SHA256 `035ee9683e8b3e6e0420204a3ddfa8d81b0dcb6a47aa12e638673859d60cc234`.
+
+All eight ACs, ten unchecked tasks, Contract D, blocked result, historical HALT, Suggested Review Order, existing response/body/error contract, 18 cases and 11 PNG targets remain preservation requirements. No input is changed by this report. Existing observability validation remains binding, including the exact native string/fixed unavailable carrier and falsy first-error authority.
+
+Native run `38562420502` at coordinator-supplied head `22cfb74ada86b41bda5a715f417eb62f30675743` is reported as four other jobs passing; general 368 passed/one failed/13 skipped, scheduling seven passed/one failed/ten serial not run, both AC2 attempts failed, editor 19/mail two passed. Six archive-digest verifications and the trace/HAR audit are supplied independent evidence, not re-executed or re-audited here. Only the retained JSON's bytes/hash were independently verified here.
+
+Both supplied AC2 snapshots report an admitted exact Request failure, GET/200/text-x-component, query present, ordinal one, phase finished, one pending capture and no body start. The timing-compatible prefetch candidate starts before hard goto, but has no HAR-to-Request GUID join. The abort cause and whether the barrier prevents it remain unknown. This proposal is supported as a bounded scheduling hypothesis, not a proven passing-body fix.
+
+## Preservation and public API assessment
+
+| Criterion | Result |
+| --- | --- |
+| Approved intent, eight ACs and Contract D | PASS. No permission/RLS/disclosure/save/transaction change or body exception is proposed. Actual host click/drag persistence and every original AC2 tampering/own IDs/nonempty/raw withholding/denied assertion remain mandatory. No task, skipped case or review gate is credited. |
+| Public API viability | PASS. Pinned Playwright 1.61.1 declares public Page request/requestfinished/requestfailed events and exact Request objects. Successful event ordering is request → response → requestfinished; downloading the network body does not prove completion of the observer's native text promise. The same public events and bounded requests retention are described in [Playwright Page events](https://playwright.dev/docs/api/class-page#page-event-requestfinished) and [requests retention](https://playwright.dev/docs/api/class-page#page-requests). No private API or SDK patch is needed for ordinary lifecycle tracking. |
+| Earlier tracker/session boundary | PASS. Install the tracker synchronously before Montör sign-in using the known established application origin. Keep response admission disabled until sign-in returns. Pre-window finish/failure removes only live bookkeeping; it creates no capture, payload coverage or retrospective error. A request spanning activation is tracked, and its later admitted Response is read normally. Retain all admitted Request failures independently of whether the live Set still contains them. |
+| Explicit pre-response failure delta | PASS as a fail-loud strengthening. Once the Montör window opens, a tracked live flight failing before admission cannot release the barrier as success. Preserve exact native string including empty string, fixed unavailable fallback, first-observed error and no invented capture snapshot/counters. It adds no authority, exclusion or passing-body substitute. This can make the test fail for a previously unobserved transport failure; it cannot make a deficient payload pass. |
+| Set/object identity | PASS. Register starts by exact Request identity, remove only exact live terminal objects, ignore unrelated objects, and wake after recording any functional failure. Duplicate terminal events do not delete another same-URL object. No query/method/prefetch/content-type exclusion is admissible. A matching failure already admitted to the original observer still fails even if the new tracker missed its start. |
+| Barrier and native drains | PASS subject to implementation proof. Register a wake waiter before rechecking live Set/generation. Recheck generation AND admitted capture count/settlement after every await; generation alone misses a Response belonging to a request whose start was not observed. Successful requestfinished is insufficient while native finished/text remains pending. Require empty live Set, complete original capture drain and unchanged final state before same-turn action invocation. Zero captures permits the action only if no tracked flight is live; the unchanged later payload nonempty assertion remains required. |
+| Same-turn action/reentrancy | PASS subject to proof. Invoke original goto/fill once in the final synchronous turn; do not return readiness for a later caller await. Native synchronous action exceptions and async rejection retain original values. Only the sequential existing call sites may invoke the barrier; do not allow overlapping barrier owners or reuse an old waiter across calls. A synchronous request event emitted by action invocation is an action-generated flight, not permission to invoke the action twice. |
+| Final success/failure cleanup | PASS for ordinary caught errors; **R1 for runner timeout/interruption**. Success detaches response admission then completes native final drain and terminal-flight checks with failure/lifecycle listeners live. Ordinary failure skips unresolved drains while retaining rejection handlers. Cleanup must be idempotent, remove only owned listeners, close diagnostics and preserve prior original/falsy errors. The runner-timeout path is not yet owned. |
+| Snapshot/privacy | PASS. Keep the existing exact 20-key whitelist, one attempt, <=1,024 UTF-8 JSON bytes, nonthrowing getters/output and actual capture settlement counters. Tracker state remains live in-memory only; no request history, raw body/error/reason, full URL/query/header/cookie/token/fixture IDs enters output. An unadmitted flight creates no failed-capture snapshot. No additional diagnostic is needed to resolve R1. |
+| Observable race limits | PASS. Tracking cannot enumerate pre-installation requests, bind the HAR candidate or exclude queued protocol events/new browser starts after the final host check. These limits are accurately disclosed. A later admitted failure remains failure; no aborted-prefetch exemption is authorized. Current [load-state guidance](https://playwright.dev/docs/api/class-page#page-wait-for-load-state) discourages networkidle for test readiness; the proposal correctly does not use it. |
+
+## R1 — a runner timeout does not reject a pending host barrier
+
+**Concrete path:** a matching flight remains live, or an admitted native capture remains pending. The barrier awaits a host Promise raced only with lifecycle wake/failure signals. No further request terminal/failure event arrives. The configured test timeout expires. The runner fails the test and starts hooks/fixture teardown, but does not inject that timeout exception into the still-pending callback Promise. The callback's catch/finally is therefore not guaranteed to run. Owned listeners, wake registrations and diagnostics can remain active while teardown begins; a later event could even resume the abandoned barrier and invoke goto/fill on a page now being cleaned up.
+
+Pinned runner source supports this distinction: `node_modules/.pnpm/playwright@1.61.1/node_modules/playwright/lib/worker/workerProcessEntry.js:425` races `cb()` with `running.timeoutPromise`; `:1150` records/throws the timeout outside that callback, and `:1660`–`:1685` proceeds into hooks and fixture teardown after the test-function wrapper returns. These are read-only evidence stops, never implementation APIs. Native API/action timeouts can reject their own awaited operation, but a pre-action plain host waiter has no such operation.
+
+The addendum's statement that the existing test timeout bounds a permanently live flight is correct for the runner verdict, but insufficient to establish its promised owned cleanup/no-late-output/action boundary. The required proof's ordinary sign-in/action errors do not cover this path. No actual CI timeout cause is inferred from this finding; it is a reachable cleanup path explicitly introduced by the proposed pending wait.
+
+### Minimum bounded correction before release
+
+Have the author append a narrow cleanup/cancellation contract; do not redraft the approved kernel or broaden feature scope:
+
+1. Register one attempt-owned, idempotent shutdown operation through a **public test lifecycle cleanup mechanism** that the runner executes even when the callback remains pending. A narrowly registered existing-file afterEach/fixture cleanup path is viable; its exact registration area/ownership must be declared by the author if outside the currently eligible AC2 callback. Do not dynamically register hooks from a running test, alter fixtures globally or rely solely on the callback's finally. Public [test.afterEach](https://playwright.dev/docs/api/class-test#test-after-each) and [Page close](https://playwright.dev/docs/api/class-page#page-event-close) are available; an owned page-close handler can be an idempotent fallback but does not replace the runner cleanup boundary while the page remains open.
+2. Shutdown must synchronously close admission/tracker/diagnostics, remove only owned listeners and waiter registrations, mark cancellation and wake blocked host waiters. Every wait/drain/action continuation must recheck shutdown before any further native action or success path. Clearing the Set or waking a waiter must never represent quiescence/body success. An abandoned callback must not resume into goto, date fill, denied-role sign-in or payload-success continuation.
+3. Preserve every already recorded first error, including falsy values, and all existing native capture rejection handlers. Do not manufacture a new timeout/native reason that overwrites the runner's original timeout/interruption or an earlier original native/UI value. Runner-owned cancellation is an abandonment/cleanup boundary, not a fulfilled capture or an abort exemption. Declare the continuation behavior explicitly so cleanup does not produce an unhandled rejection.
+4. No additional timer, idle wait, timeout/retry/budget change, private TestInfo/SDK access, response filter, synthetic body, swallowed acceptance assertion or raw diagnostic is authorized. The public cleanup registration must remain inert for unrelated tests and be removed/released after this attempt. Its only purpose is owning shutdown when the callback cannot reach finally.
+
+**Correction condition:** the author states the chosen public cleanup registration and exact source area, shutdown/continuation semantics and retained error authority. Then perform a narrow independent check of this delta and preserved hashes before authoring release; no new broad pass is required.
+
+Add one bounded group to the already planned extracted no-network proof: keep the flight/body unresolved, simulate runner cleanup without a terminal event, verify listeners/waiters are released and no action/payload continuation/diagnostic can occur; then deliver late request/Response/rejection events and verify retained handling/no output. Repeat with earlier native/UI/falsy errors, repeated shutdown and page-close fallback. No authentic timeout execution is authorized by this preparation; pinned source inspection establishes why this proof case is required.
+
+## Existing release conditions retained
+
+The rest of the addendum's proof plan is sufficient when interpreted with the matrix above: pre-sign-in start/post-activation Response; zero captures/live flight; new starts during wait/drain; lost-wake/duplicate/same-URL cases; requestfinished with pending text; admitted/pre-response native failures and original/falsy precedence; pre-window termination; same-turn invocation and simulated residual late browser race; success final drain; only owned cleanup; unchanged bounded snapshots.
+
+After the R1 correction is narrowly accepted and coordinator authoring release is granted, require actual extracted-logic no-network proof, exact untouched-region/inverse-preservation evidence, focused lint/nonincremental no-emit typecheck, and independent High exact implementation review **before runtime**. Later exact-head native CI with authentic artifacts must enumerate all scheduling cases/attempts, failures, assertion reachability, skips and serial not-run cases. All 18 scheduling cases, 11 PNG targets, general/mail/editor/dashboard/physical-recovery, visual, six broad review layers and other retained gates remain mandatory. No proof establishes native body/RLS acceptance. No P5/E5h, R012/manual/NFR certification, story completion or 15.2 release is granted.
+
+Files changed: only this new validation report. Tests/runtime/resources/Git/source/spec/addendum/state/SDK actions: **0**. Ordinary local read-only inspection and official documentation browsing were performed.
+
+Open question: which public runner-cleanup registration and exact eligible source area the author chooses for R1. Actual abort cause/HAR Request join and barrier effectiveness in later CI remain evidence unknowns.
+
+Deferred work: R1 author clarification and narrow validation, then separately released implementation/proof/static/review/CI and retained gates. These are pending work, not scope deferrals.
+
+Blocker: **R1 blocks authoring release of this addendum as currently written.** No other concrete preservation or public-lifecycle design gap is reported.
+
+## Narrow R1 follow-up — resolved
+
+Current narrow outcome: **PASS — R1 resolved for bounded authoring.** This append-only verdict supersedes the R1 authoring blocker above, while preserving the complete original 15,167-byte report and its historical reachable-gap finding. No other criterion was reopened or broadly reviewed.
+
+Independently checked the appended public-runner shutdown contract in the addendum: **25,137 bytes**, SHA256 `8194911f460df70eb591cc75a131fd473e60cf0e7bdb566842efe24358f43f92`. Its exact first **18,046 bytes** retain SHA256 `b8ffafe965f44fa16f1d86bb4f1a33a999793f4a2e899461ec58d64573ff7ac7`, proving the accepted original proposal remains byte-preserved.
+
+The minimum correction is now explicit and addresses the reported path:
+
+- One static public afterEach and module-local WeakMap keyed by the actual public TestInfo owns only this attempt's shutdown. The source region is declared in the same scheduling browser file, the AC2 callback receives/registers its TestInfo before listeners/sign-in, and unrelated tests remain inert. This makes cleanup runner-owned while the abandoned callback/page can remain pending/open; no callback-finally or page-close dependency remains.
+- Idempotent synchronous shutdown marks abandonment first, closes admission/tracker/diagnostics, resolves cancellation, attempts every owned listener removal, releases wake/live bookkeeping and the registry. It awaits no capture and cannot label cleared bookkeeping as readiness. Removal failures cannot prevent other cleanup or replace the runner verdict/earlier first failure.
+- Every host wait/drain races cancellation, handles abandonment locally, and every action/progression/assertion continuation checks shutdown. The final same-turn action checks it too. Reentrant/late handlers cannot admit a Response, mutate state or resume goto/fill/denied-role work; cancellation never fulfils a capture or presents success.
+- Attached native settlement handlers retain eventual original rejection values, including falsy values, without late first-error/counter/payload/snapshot mutation. Already invoked native work stays handled, but cannot start a subsequent body read/action or append bytes after abandonment. Existing first-failure/native reason rules remain unchanged.
+- The added proof group invokes runner-hook shutdown with an unresolved flight/body and an open page, then exercises late events/rejections/fulfilments, waiter-registration races, repeated/reentrant cleanup, prior native/UI/falsy errors, unrelated TestInfo and normal success. It verifies no unhandled rejection, wrong listener removal, late action/output/mutation or successful-body accounting. This directly covers R1; no authentic timeout runtime execution is claimed.
+
+No new normative change, timer, budget/retry extension, SDK/private API, transport/body substitute, response exclusion or abort waiver is introduced. Separate normal observer-window closure retains the original payload assertions and denied-role sequence; only runner abandonment forbids their continuation. The author must implement this distinction exactly.
+
+Release conditions: the coordinator may release only the bounded declared source authoring, actual extracted no-network proofs, focused lint/nonincremental no-emit typecheck, and independent High exact implementation review. Runtime/CI remain separately gated. The implementation must prove the runner-owned registration and shutdown path in the actual extracted source, preserve the original captures/assertions/18 cases/11 PNG targets and untouched regions, and retain source/proof hashes. This design PASS does not certify implementation or permit native CI, P5/E5h/completion/acceptance or 15.2.
+
+Explicit raw-byte/strict UTF-8 follow-up confirms source `54de7996179e5684f8848be94a35ec30446444d951d6f45ba7243c93ee11500b` and spec `d5a492a1546c19d777d8bff3d7037686e60a577565cac67281bff764f427bc22` remain unchanged. The exact canonical kernel range `[948,6504)`, UTF-8/tag-inclusive/internal CRLF-to-LF/no exterior LF convention independently remains **5,556 bytes**, SHA256 `035ee9683e8b3e6e0420204a3ddfa8d81b0dcb6a47aa12e638673859d60cc234`.
+
+Open questions for R1: none. Actual abort cause, HAR identity join and effectiveness in later native CI remain the previously recorded evidence unknowns. Deferred work: separately released authoring/proofs/static/exact review and remaining gates. Blockers: none for this bounded design authoring release; Story 15.1 remains blocked by implementation verification failure. Broad review remains 0/3. This follow-up changes only this report; tests/runtime/resources/Git/source/spec/addendum/state/SDK actions remain zero.
+
+

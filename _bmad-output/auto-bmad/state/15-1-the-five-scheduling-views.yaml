@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-14T12:15:07Z"
+updated_at: "2026-10-14T13:16:55Z"
 started_at: "2026-10-09T13:06:12Z"
 completed_at: null
 active_seconds: 25163
@@ -26,7 +26,7 @@ selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Sensitive corrected15.1 derived-boolean RPC/auth and lifecycle contract; High author/review, explicit Low ordinary UI children"
+escalation_reason: "Validated native request lifecycle and timeout shutdown recovery preserves authenticated request scope and first-error integrity; bounded source authoring at High, no runtime release."
 routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary scheduling UX specification; sensitive authorization/integrity portions explicitly delegated High\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary15.1 ATDD preparation; sensitive access assertions delegated High; shared fixture edits excluded\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -117,6 +117,13 @@ routing_ledger:
   - "{\"phase\":\"build\",\"role\":\"native-observer-kernel-provenance-reader\",\"profile\":\"standard\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"subagents\",\"escalation_reason\":\"Reuse existing High build author to reconcile historical kernel hashing boundaries with independent exact full-spec preservation evidence; no source/spec changes.\"}"
   - "{\"phase\":\"build\",\"role\":\"native-observer-kernel-provenance-recheck\",\"profile\":\"diverse_review\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"subagents\",\"escalation_reason\":\"Independent recheck of encoding-sensitive validation evidence; existing High review route retained, no source changes or broad review.\"}"
   - "{\"phase\":\"build\",\"role\":\"native-observer-validation-wording-author\",\"profile\":\"diverse_review\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"subagents\",\"escalation_reason\":\"Original High validator clarifies reproducible UTF-8 kernel byte convention without changing normative approval, source, or acceptance obligations.\"}"
+  - "{\"phase\":\"build\",\"role\":\"native-observer-ci-integration-evidence-auditor\",\"profile\":\"diverse_review\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"subagents\",\"escalation_reason\":\"Audit actual current authenticated reader/RPC/RLS and physical recovery assertions, dashboard outcomes and artifact provenance; no inferred native acceptance from old head.\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive exact Request identity, native first-failure authority and diagnostic privacy require independent High audit of completed run before any repair.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"native_observer_ci_audit\",\"profile\":\"standard\",\"role\":\"independent-native-evidence-auditor\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Native Request identity, authenticated fixture/session boundaries, first-error authority and request lifecycle integrity require High preparation before changing AC2.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"native_navigation_barrier_preparation\",\"profile\":\"standard\",\"role\":\"build-preparation-author\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Independent validation of authenticated session/request scope and native failure integrity before barrier implementation.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"native_navigation_barrier_validation\",\"profile\":\"standard\",\"role\":\"independent-spec-validator\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Independent High validation identified reachable timeout-cleanup gap; sensitive native failure and teardown action integrity need bounded High correction.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"native_navigation_barrier_r1_preparation\",\"profile\":\"standard\",\"role\":\"build-preparation-author\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Narrow independent validation of appended attempt-owned shutdown and original-error integrity correction only.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"native_navigation_barrier_r1_validation\",\"profile\":\"standard\",\"role\":\"independent-spec-validator\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Validated native request lifecycle and timeout shutdown recovery preserves authenticated request scope and first-error integrity; bounded source authoring at High, no runtime release.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate, trace-advisory]
 tea_rationale: "Scheduling, synchronized projections, capacity and drag/keyboard/dialog behavior"
@@ -142,7 +149,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [45a64853, f9e12a81, 279d3149, b9d61a33, 4d7911ac, 3a655a5d, a67a64dc, 66cd8436, d79fff08, bf84cf5d, 181f947f]
+commits: [45a64853, f9e12a81, 279d3149, b9d61a33, 4d7911ac, 3a655a5d, a67a64dc, 66cd8436, d79fff08, bf84cf5d, 181f947f, 22cfb74a]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -1313,10 +1320,112 @@ native_observer_kernel_provenance:
   validation_new_sha256: db582fdd0cf6f9cde31b6662a26b24488de88e30cf926a7a5c3b89008082841d
   validation_delta: "One paragraph explicit convention; reverse replacement exact old bytes; +679 bytes; no normative/carrier/source change"
 native_observer_ci_plan:
-  status: Released for one controlled successor dispatch after commit/push
-  purpose: "Observe fail-loud native failed captures and produce bounded original-request metadata; source is a concrete independently reviewed delta, not blind retry"
-  workflow: ci.yml
+  registration_status: completed
+  conclusion: failure
+  head_sha: 22cfb74ada86b41bda5a715f417eb62f30675743
+  completed_jobs: [verify, dashboard-e2e, recovery-storage-loader, db, e2e]
+  failed_jobs: [e2e]
+  general_archive_digests: "Two additional original ZIP SHA256 values matched GitHub API; six total verified"
+  general_evidence: "Downloaded native general, HTML report and completed full log; independent actual-result audit pending"
+  p5_complete: false
+native_observer_initial_native_audit:
+  run_id: 38562420502
+  head_sha: 22cfb74ada86b41bda5a715f417eb62f30675743
+  reviewer: runtime15_cold_review_high
+  archive_digests_verified: 4
+  extracted_file_hashes_verified: 5
+  integration: "{\"total\": 1737, \"passed\": 1736, \"failed\": 0, \"skipped\": 1, \"files\": 145, \"executed_files\": 144, \"live_rpc\": 8, \"authenticated_reader\": 4, \"transport_mocks\": 21, \"json_sha256\": \"5122b1c31579a81281ea5027df6631b194aca8f90b2d7669792cb3a15eeeee1e\"}"
+  physical_recovery: "{\"passed\": 1, \"failed\": 0, \"skipped\": 0, \"json_sha256\": \"347dc5732d5e04f52424690f656e0df5844bf7667837dba62492382be0743b8e\"}"
+  dashboard: "{\"cases\": 57, \"passed_attempts\": 57, \"failed\": 0, \"skipped\": 0, \"retries\": 0, \"flaky\": 0, \"global_errors\": 0, \"selected_files\": 3, \"json_sha256\": \"2bd0d133c9d2642910f69b69f39dbd4c33babe97f9db1dcf10fb1d588b6f64df\"}"
+  general: "Pending; no scheduling/mail/editor/snapshot acceptance credit"
+  p5_complete: false
+  broad_round_credit: 0
+native_observer_general_findings_pending_final_audit:
+  run_id: 38562420502
+  head_sha: 22cfb74ada86b41bda5a715f417eb62f30675743
+  reviewer: runtime15_cold_review_high
+  general: "382 cases across 43 files: 368 passed, 1 failed, 13 skipped; 377 executed attempts: 375 passed, 2 failed; no flaky cases or global errors"
+  scheduling: "7 passed, 1 failed, 10 not run; editor19 and authenticated-mail2 passed"
+  failure: "Both AC2 attempts preserve original native net::ERR_ABORTED before body read; exact-Request snapshots: scheduling GET200 text/x-component, queryPresent true, ordinal1/capture1, phase finished, body not started"
+  ordering: "Retry trace: prefetch starts836460.143ms, first hard goto starts836476.267ms, response836509.216ms, observer836516.135ms, goto completes836611.656ms, later settling POST836633.597ms"
+  qualification: "HAR lacks Request GUID; unique timing-compatible response is qualified offline join. Naive drain before goto sees no admitted response and cannot prove prevention"
+  repair: "No implementation authorized yet; prepare native pre-navigation lifecycle barrier question, independently validate before build"
+  p5_complete: false
+  broad_round_credit: 0
+native_observer_general_final_audit:
+  outcome: "Evidence integrity PASS; browser verification FAILED"
+  reviewer: runtime15_cold_review_high
+  native_json_sha256: 3b56ccc865d30fa042e5c442ad558305d6e129153a7e9de7d566bb9fa97c2dfb
+  html_sha256: fd79c12198b3494b353a02f04b502381d71a65031ccf2c691eb04c2c8a83d69a
+  log_sha256: fcd636f44ac53fa2f3389de2e9aec50ca72de67839e1a280d467e52b25ed384a
+  archives_verified: 2
+  extracted_files_verified: 41
+  cases: 382
+  files: 43
+  executed_cases: 369
+  executed_files: 41
+  passed_cases: 368
+  failed_cases: 1
+  skipped_cases: 13
+  passed_attempts: 375
+  failed_attempts: 2
+  executed_retry_attempts: 8
+  flaky: 0
+  global_errors: 0
+  scheduling: "Exact18 title multiset preserved; first7 passed twice; AC2failed twice; remaining10 did notrun"
+  editor: 19
+  authenticated_mail: 2
+  units: "2540 passed, 0 failed, 0 skipped at exacthead"
+  first_error: "Native net::ERR_ABORTED bothattempts; exactRequest observer; no bodyreadstarted"
+  repair_status: "Preparation hypothesis only; no sourcechanges or runtime release"
+  p5_complete: false
+  broad_round_credit: 0
+native_navigation_barrier_preparation:
+  status: "Prepared; independent validation required before authoring"
+  author: story15_1_corrected_build
+  doc: "_bmad-output/implementation-artifacts/story-15-1-native-navigation-barrier-addendum-2026-10-14.md"
+  sha256: b8ffafe965f44fa16f1d86bb4f1a33a999793f4a2e899461ec58d64573ff7ac7
+  bytes: 18046
   source_sha256: 54de7996179e5684f8848be94a35ec30446444d951d6f45ba7243c93ee11500b
-  validation_sha256: db582fdd0cf6f9cde31b6662a26b24488de88e30cf926a7a5c3b89008082841d
-  broad_rounds_completed: 0
-  story_status: blocked
+  spec_sha256: d5a492a1546c19d777d8bff3d7037686e60a577565cac67281bff764f427bc22
+  kernel_sha256: 035ee9683e8b3e6e0420204a3ddfa8d81b0dcb6a47aa12e638673859d60cc234
+  kernel_bytes: 5556
+  runtime_release: false
+  implementation_release: false
+  p5_complete: false
+  broad_round_credit: 0
+native_navigation_barrier_validation:
+  status: "REVISE: reachable R1 timeout cleanup ownership gap; no authoring release"
+  reviewer: observer15_spec_validation_high
+  doc: "_bmad-output/implementation-artifacts/story-15-1-native-navigation-barrier-validation-2026-10-14.md"
+  sha256: 7ff8ade53b08c6eba5734be03ec5c3c16112e16878135e4a578c0d74de0a6a45
+  bytes: 15167
+  required_correction: "Attempt-owned public runner cleanup registration, idempotent shutdown, detach and close diagnostics, wake/cancelwaiters, prevent late action/success continuations, preserve native first/falsyerrors, proof unresolvedwait/runnercleanup/lateevents"
+  implementation_release: false
+  runtime_release: false
+  broad_round_credit: 0
+native_navigation_barrier_r1_preparation:
+  status: "R1 appended; narrow independent validation pending"
+  sha256: 8194911f460df70eb591cc75a131fd473e60cf0e7bdb566842efe24358f43f92
+  bytes: 25137
+  preserved_prefix_bytes: 18046
+  preserved_prefix_sha256: b8ffafe965f44fa16f1d86bb4f1a33a999793f4a2e899461ec58d64573ff7ac7
+  implementation_release: false
+  runtime_release: false
+  broad_round_credit: 0
+native_navigation_barrier_r1_validation:
+  status: "PASS: R1 resolved; bounded source authoring/proofs/static/exactHighreview released"
+  reviewer: observer15_spec_validation_high
+  validation_sha256: 7329ab2041411aa59008040b2679c3aac6b68aeaffa9a9052ea60ed2ac5cef35
+  validation_bytes: 19848
+  preserved_validation_prefix_bytes: 15167
+  preserved_validation_prefix_sha256: 7ff8ade53b08c6eba5734be03ec5c3c16112e16878135e4a578c0d74de0a6a45
+  addendum_sha256: 8194911f460df70eb591cc75a131fd473e60cf0e7bdb566842efe24358f43f92
+  addendum_bytes: 25137
+  source_unchanged: true
+  spec_unchanged: true
+  kernel_unchanged: true
+  implementation_release: true
+  runtime_release: false
+  p5_complete: false
+  broad_round_credit: 0
