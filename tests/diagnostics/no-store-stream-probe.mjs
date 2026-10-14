@@ -477,64 +477,151 @@ export function classifyPair(engines, failure = 'none') {
   return done('paired-inconclusive');
 }
 
-export function checkTransport(status, headers) {
+// ACQUISITION-OBSERVABILITY-BEGIN
+const acquisitionReasons = Object.freeze({
+  invocation: ['arguments'], setup: ['setup-rejected'], 'temp-root': ['io'],
+  metadata: ['http-status', 'timeout', 'network', 'aborted', 'oversize', 'invalid-json', 'metadata-rejected'],
+  head: ['http-status', 'header-rejected', 'timeout', 'network', 'aborted'],
+  download: ['http-status', 'header-rejected', 'timeout', 'network', 'aborted', 'oversize', 'incomplete'],
+  archive: ['length-rejected', 'md5-rejected'], extract: ['zip-rejected', 'extract-failed', 'deadline', 'io'],
+  executable: ['executable-rejected', 'version-rejected', 'version-process-failed', 'io'],
+  receipt: ['receipt-rejected'], deadline: ['deadline'], 'receipt-write': ['io'], handoff: ['privacy', 'io'],
+});
+export function acquisitionReceipt(status, stage, reason) {
+  const receipt = Object.freeze({ schemaVersion: 1, kind: 'fixed-chromium-acquisition-boundary', targetVersion: FIXED.version,
+    targetPlatform: FIXED.platform, status, stage, reason, pairedCases: 0 });
+  validateAcquisitionReceipt(receipt);
+  return receipt;
+}
+export function validateAcquisitionReceipt(receipt) {
+  if (!exactKeys(receipt, ['schemaVersion', 'kind', 'targetVersion', 'targetPlatform', 'status', 'stage', 'reason', 'pairedCases'])
+    || receipt.schemaVersion !== 1 || receipt.kind !== 'fixed-chromium-acquisition-boundary' || receipt.targetVersion !== FIXED.version
+    || receipt.targetPlatform !== FIXED.platform || receipt.pairedCases !== 0
+    || (receipt.status === 'ready' ? receipt.stage !== 'complete' || receipt.reason !== 'none'
+      : receipt.status !== 'failed' || !Object.hasOwn(acquisitionReasons, receipt.stage)
+        || receipt.reason !== 'unknown' && !acquisitionReasons[receipt.stage].includes(receipt.reason))
+    || Buffer.byteLength(JSON.stringify(receipt) + '\n') > 1024) throw new Error('schema');
+}
+function acquisitionObservation() {
+  let stage = 'invocation', reason = 'unknown', token = 0, active = true;
+  return { enter(next) {
+    stage = next; reason = 'unknown'; const current = ++token;
+    return value => { if (active && current === token && reason === 'unknown' && acquisitionReasons[next]?.includes(value)) reason = value; };
+  }, freeze(status) { active = false; return acquisitionReceipt(status, status === 'ready' ? 'complete' : stage, status === 'ready' ? 'none' : reason); } };
+}
+const acquisitionIO = (promise, observed) => observed ? promise.catch(error => { observed('io'); throw error; }) : promise;
+async function boundedAcquisition(promise, milliseconds, observed) {
+  let timer;
+  try { return await Promise.race([promise, new Promise((_, reject) => { timer = setTimeout(() => { observed('timeout'); reject(new Error('deadline')); }, milliseconds); })]); }
+  finally { clearTimeout(timer); }
+}
+async function publishAcquisitionReceipt(receipt) {
+  validateAcquisitionReceipt(receipt);
+  const controller = new AbortController(), deadline = performance.now() + 2000; let open = true;
+  const fence = () => { if (!open || controller.signal.aborted || performance.now() > deadline) throw new Error('deadline'); };
+  const operation = (async () => {
+    const repository = await realpath(fileURLToPath(new URL('../../', import.meta.url))); fence();
+    const directory = join(repository, 'test-results');
+    try {
+      const before = await lstat(directory); fence();
+      if (before.isSymbolicLink() || !before.isDirectory()) throw new Error('privacy');
+    } catch (error) { if (error?.code !== 'ENOENT') throw error; fence(); }
+    await mkdir(directory, { recursive: true }); fence();
+    const info = await lstat(directory); fence();
+    if (info.isSymbolicLink() || !info.isDirectory() || await realpath(directory) !== directory) throw new Error('privacy');
+    fence();
+    const output = join(directory, 'fixed-chromium-acquisition.json');
+    if (!contained(repository, output)) throw new Error('privacy');
+    await writeFile(output, JSON.stringify(receipt) + '\n', { encoding: 'utf8', flag: 'wx', signal: controller.signal }); fence();
+    // A true output can only follow this invocation's complete exclusive write.
+    await appendFile(process.env.GITHUB_OUTPUT, 'acquisition_receipt_written=true\n', { signal: controller.signal }); fence();
+  })();
+  try { await bounded(operation, 2000); }
+  finally { open = false; controller.abort(); }
+}
+async function acquisitionMain() {
+  const observation = acquisitionObservation(); let receipt;
+  try {
+    const observed = observation.enter('invocation');
+    if (process.argv.length !== 3) { observed('arguments'); throw new Error('setup'); }
+    await acquireFixed(observation);
+    receipt = observation.freeze('ready');
+  } catch { receipt = observation.freeze('failed'); }
+  // Original failure is already frozen. Writer/flag failures cannot replace it or green acquisition.
+  try {
+    await publishAcquisitionReceipt(receipt);
+    if (receipt.status !== 'ready') throw new Error('setup');
+    process.stdout.write('fixed-chromium-acquisition ready\n');
+  } catch { process.stderr.write('fixed-chromium-acquisition unavailable\n'); process.exitCode = 1; }
+}
+// ACQUISITION-OBSERVABILITY-END
+export function checkTransport(status, headers, observed) {
   if (status !== 200 || headers['x-goog-generation'] !== FIXED.generation
     || headers['x-goog-stored-content-length'] !== String(FIXED.bytes) || headers['content-length'] !== String(FIXED.bytes)
     || headers['x-goog-stored-content-encoding'] !== 'identity'
-    || !String(headers['x-goog-hash']).split(',').map(s => s.trim()).includes(`md5=${FIXED.md5Base64}`)) throw new Error('provenance');
+    || !String(headers['x-goog-hash']).split(',').map(s => s.trim()).includes(`md5=${FIXED.md5Base64}`)) {
+    observed?.(status !== 200 ? 'http-status' : 'header-rejected'); throw new Error('provenance');
+  }
 }
-export function checkArchiveBytes(bytes) {
-  if (bytes.length !== FIXED.bytes || createHash('md5').update(bytes).digest('hex') !== FIXED.md5) throw new Error('provenance');
+export function checkArchiveBytes(bytes, observed) {
+  if (bytes.length !== FIXED.bytes || createHash('md5').update(bytes).digest('hex') !== FIXED.md5) {
+    observed?.(bytes.length !== FIXED.bytes ? 'length-rejected' : 'md5-rejected'); throw new Error('provenance');
+  }
   return { zipBytes: bytes.length, zipSha256: sha256(bytes), zipMd5: FIXED.md5 };
 }
-export function checkMetadata(metadata) {
+export function checkMetadata(metadata, observed) {
   const artifacts = metadata?.downloads?.chrome;
   if (metadata?.version !== FIXED.version || metadata?.revision !== FIXED.revision || !Array.isArray(artifacts)
     || artifacts.filter(item => item?.platform === FIXED.platform).length !== 1
-    || artifacts.find(item => item?.platform === FIXED.platform)?.url !== FIXED.url) throw new Error('provenance');
+    || artifacts.find(item => item?.platform === FIXED.platform)?.url !== FIXED.url) { observed?.('metadata-rejected'); throw new Error('provenance'); }
 }
-export async function officialMetadata(transport = httpsGet) {
+export async function officialMetadata(transport = httpsGet, observed) {
   return new Promise((yes, no) => {
     let timer, request, settled = false, size = 0; const chunks = [];
     const finish = error => { if (settled) return; settled = true; clearTimeout(timer);
       if (error) no(new Error('provenance')); else {
-        try { checkMetadata(JSON.parse(Buffer.concat(chunks).toString('utf8'))); yes(); }
+        try {
+          let metadata;
+          try { metadata = JSON.parse(Buffer.concat(chunks).toString('utf8')); }
+          catch { observed?.('invalid-json'); throw new Error('provenance'); }
+          checkMetadata(metadata, observed); yes();
+        }
         catch { no(new Error('provenance')); }
       }
     };
     request = transport(FIXED.metadataUrl, { headers: { 'Accept-Encoding': 'identity' } }, response => {
-      if (response.statusCode !== 200) { response.destroy(); request.destroy(); finish(true); return; }
-      response.on('data', bytes => { size += bytes.length; if (size > 65536) { response.destroy(); request.destroy(); finish(true); } else chunks.push(bytes); });
-      response.once('end', () => finish(false)); response.once('error', () => finish(true)); response.once('aborted', () => finish(true));
+      if (response.statusCode !== 200) { observed?.('http-status'); response.destroy(); request.destroy(); finish(true); return; }
+      response.on('data', bytes => { size += bytes.length; if (size > 65536) { observed?.('oversize'); response.destroy(); request.destroy(); finish(true); } else chunks.push(bytes); });
+      response.once('end', () => finish(false)); response.once('error', () => { observed?.('network'); finish(true); }); response.once('aborted', () => { observed?.('aborted'); finish(true); });
     });
-    request.once('error', () => finish(true));
-    timer = setTimeout(() => { request.destroy(); finish(true); }, 5000);
+    request.once('error', () => { observed?.('network'); finish(true); });
+    timer = setTimeout(() => { observed?.('timeout'); request.destroy(); finish(true); }, 5000);
   });
 }
-export async function downloadFixed(method, transport = httpsGet) {
+export async function downloadFixed(method, transport = httpsGet, observed) {
   return new Promise((yes, no) => {
     let settled = false; const chunks = []; let length = 0;
     const finish = (error, value) => { if (settled) return; settled = true; clearTimeout(timer); if (error) no(new Error('provenance')); else yes(value); };
     const request = transport(FIXED.url, { method, headers: { 'Accept-Encoding': 'identity' } }, response => {
-      try { checkTransport(response.statusCode, response.headers); }
+      try { checkTransport(response.statusCode, response.headers, observed); }
       catch { response.destroy(); request.destroy(); finish(true); return; }
       if (method === 'HEAD') { response.resume(); finish(false, null); return; }
       response.on('data', chunk => {
         length += chunk.length;
-        if (length > FIXED.bytes || length > 210000000) { response.destroy(); request.destroy(); finish(true); return; }
+        if (length > FIXED.bytes || length > 210000000) { observed?.('oversize'); response.destroy(); request.destroy(); finish(true); return; }
         chunks.push(chunk);
       });
-      response.once('end', () => { if (length !== FIXED.bytes) finish(true); else finish(false, Buffer.concat(chunks)); });
-      response.once('error', () => finish(true)); response.once('aborted', () => finish(true));
+      response.once('end', () => { if (length !== FIXED.bytes) { observed?.('incomplete'); finish(true); } else finish(false, Buffer.concat(chunks)); });
+      response.once('error', () => { observed?.('network'); finish(true); }); response.once('aborted', () => { observed?.('aborted'); finish(true); });
     });
-    request.once('error', () => finish(true));
-    const timer = setTimeout(() => { request.destroy(); finish(true); }, method === 'HEAD' ? 5000 : 150000);
+    request.once('error', () => { observed?.('network'); finish(true); });
+    const timer = setTimeout(() => { observed?.('timeout'); request.destroy(); finish(true); }, method === 'HEAD' ? 5000 : 150000);
   });
 }
 
 // Parse the ZIP directory ourselves: no archive tools/scripts, traversal, links, or overwrite.
-export function zipEntries(zip) {
-  const fail = () => { throw new Error('provenance'); };
+export function zipEntries(zip, observed) {
+  const fail = () => { observed?.('zip-rejected'); throw new Error('provenance'); };
   if (!Buffer.isBuffer(zip) || zip.length < 22 || zip.length > 210000000) fail();
   let end = zip.length - 22;
   while (end >= Math.max(0, zip.length - 65557) && zip.readUInt32LE(end) !== 0x06054b50) end--;
@@ -565,64 +652,72 @@ export function zipEntries(zip) {
   return entries;
 }
 export function contained(root, path) { const part = relative(root, path); return part !== '' && !isAbsolute(part) && part !== '..' && !part.startsWith(`..${process.platform === 'win32' ? '\\' : '/'}`); }
-export async function extractFixed(zip, root, deadline) {
-  const entries = zipEntries(zip);
+export async function extractFixed(zip, root, deadline, observed) {
+  const entries = zipEntries(zip, observed);
   for (const entry of entries) {
-    if (performance.now() > deadline) throw new Error('deadline');
+    if (performance.now() > deadline) { observed?.('deadline'); throw new Error('deadline'); }
     const target = resolve(root, entry.name);
-    if (!contained(root, target)) throw new Error('provenance');
-    if (entry.directory) { await mkdir(target, { recursive: true }); continue; }
-    await mkdir(dirname(target), { recursive: true });
+    if (!contained(root, target)) { observed?.('extract-failed'); throw new Error('provenance'); }
+    if (entry.directory) { await acquisitionIO(mkdir(target, { recursive: true }), observed); continue; }
+    await acquisitionIO(mkdir(dirname(target), { recursive: true }), observed);
     const compressed = zip.subarray(entry.data, entry.data + entry.compressed);
-    const body = entry.method === 0 ? compressed : inflateRawSync(compressed, { maxOutputLength: Math.max(1, entry.bytes) });
-    if (body.length !== entry.bytes) throw new Error('provenance');
-    await writeFile(target, body, { flag: 'wx', mode: entry.mode & 0o777 });
+    let body;
+    try { body = entry.method === 0 ? compressed : inflateRawSync(compressed, { maxOutputLength: Math.max(1, entry.bytes) }); }
+    catch (error) { observed?.('extract-failed'); throw error; }
+    if (body.length !== entry.bytes) { observed?.('extract-failed'); throw new Error('provenance'); }
+    await acquisitionIO(writeFile(target, body, { flag: 'wx', mode: entry.mode & 0o777 }), observed);
   }
   const executable = join(root, 'chrome-linux64/chrome');
-  if (!contained(await realpath(root), await realpath(executable)) || (await lstat(executable)).isSymbolicLink()) throw new Error('provenance');
-  await chmod(executable, 0o755);
+  if (!contained(await acquisitionIO(realpath(root), observed), await acquisitionIO(realpath(executable), observed)) || (await acquisitionIO(lstat(executable), observed)).isSymbolicLink()) { observed?.('extract-failed'); throw new Error('provenance'); }
+  await acquisitionIO(chmod(executable, 0o755), observed);
   return executable;
 }
-export function checkExecutableVersion(stdout, stderr, version) {
+export function checkExecutableVersion(stdout, stderr, version, observed) {
   if (![FIXED.version, FIXED.baseline].includes(version) || stderr || typeof stdout !== 'string'
-    || !new RegExp(`^(Google Chrome for Testing|Chromium) ${version.replaceAll('.', '\\.')}\\r?\\n?$`).test(stdout)) throw new Error('version');
+    || !new RegExp(`^(Google Chrome for Testing|Chromium) ${version.replaceAll('.', '\\.')}\\r?\\n?$`).test(stdout)) { observed?.('version-rejected'); throw new Error('version'); }
   return version;
 }
-async function executableReceipt(path, version) {
-  const info = await stat(path);
-  if (!info.isFile() || !safeInteger(info.size, 1073741824) || info.size < 1 || !(info.mode & 0o111)) throw new Error('provenance');
-  const bytes = await readFile(path);
-  if (bytes.length !== info.size) throw new Error('provenance');
+async function executableReceipt(path, version, observed) {
+  const info = await acquisitionIO(stat(path), observed);
+  if (!info.isFile() || !safeInteger(info.size, 1073741824) || info.size < 1 || !(info.mode & 0o111)) { observed?.('executable-rejected'); throw new Error('provenance'); }
+  const bytes = await acquisitionIO(readFile(path), observed);
+  if (bytes.length !== info.size) { observed?.('executable-rejected'); throw new Error('provenance'); }
   const actual = await new Promise((yes, no) => execFile(path, ['--version'], { timeout: 5000, maxBuffer: 256, windowsHide: true }, (error, stdout, stderr) => {
-    if (error) { no(new Error('version')); return; }
-    try { yes(checkExecutableVersion(stdout, stderr, version)); } catch { no(new Error('version')); }
+    if (error) { observed?.('version-process-failed'); no(new Error('version')); return; }
+    try { yes(checkExecutableVersion(stdout, stderr, version, observed)); } catch { no(new Error('version')); }
   }));
   return { version: actual, bytes: bytes.length, sha256: sha256(bytes), product: 'full-chrome' };
 }
 const receiptKeys = ['artifact', 'platform', 'version', 'revision', 'generation', 'zipBytes', 'zipMd5', 'zipSha256', 'sha256Authority', 'executable'];
-export function validateReceipt(receipt) {
+export function validateReceipt(receipt, observed) {
   if (!exactKeys(receipt, receiptKeys) || receipt.artifact !== FIXED.artifact || receipt.platform !== FIXED.platform || receipt.version !== FIXED.version
     || receipt.revision !== FIXED.revision || receipt.generation !== FIXED.generation || receipt.zipBytes !== FIXED.bytes || receipt.zipMd5 !== FIXED.md5
-    || !hex(receipt.zipSha256) || receipt.sha256Authority !== 'computed-acquired-bytes' || !validExecutable(receipt.executable, FIXED.version)) throw new Error('provenance');
+    || !hex(receipt.zipSha256) || receipt.sha256Authority !== 'computed-acquired-bytes' || !validExecutable(receipt.executable, FIXED.version)) { observed?.('receipt-rejected'); throw new Error('provenance'); }
 }
 function validExecutable(value, version) { return exactKeys(value, ['version', 'bytes', 'sha256', 'product']) && value.version === version && value.product === 'full-chrome' && safeInteger(value.bytes, 1073741824) && value.bytes > 0 && hex(value.sha256); }
-async function acquireFixed() {
-  if (process.platform !== 'linux' || !process.env.RUNNER_TEMP || !process.env.GITHUB_OUTPUT) throw new Error('setup');
+async function acquireFixed(observation) {
+  let observed = observation.enter('setup');
+  if (process.platform !== 'linux' || !process.env.RUNNER_TEMP || !process.env.GITHUB_OUTPUT) { observed('setup-rejected'); throw new Error('setup'); }
   const start = performance.now(), deadline = start + 175000;
-  const root = await mkdtemp(join(await realpath(process.env.RUNNER_TEMP), 'kopplas-fixed-chromium-'));
-  await officialMetadata();
-  await downloadFixed('HEAD');
-  const zip = await bounded(downloadFixed('GET'), Math.min(150000, deadline - performance.now()));
-  const transport = checkArchiveBytes(zip);
-  const executable = await extractFixed(zip, root, deadline);
+  observed = observation.enter('temp-root');
+  const root = await acquisitionIO(mkdtemp(join(await acquisitionIO(realpath(process.env.RUNNER_TEMP), observed), 'kopplas-fixed-chromium-')), observed);
+  observed = observation.enter('metadata'); await officialMetadata(httpsGet, observed);
+  observed = observation.enter('head'); await downloadFixed('HEAD', httpsGet, observed);
+  observed = observation.enter('download');
+  const zip = await boundedAcquisition(downloadFixed('GET', httpsGet, observed), Math.min(150000, deadline - performance.now()), observed);
+  observed = observation.enter('archive'); const transport = checkArchiveBytes(zip, observed);
+  observed = observation.enter('extract'); const executable = await extractFixed(zip, root, deadline, observed);
+  observed = observation.enter('executable');
   const receipt = { artifact: FIXED.artifact, platform: FIXED.platform, version: FIXED.version, revision: FIXED.revision, generation: FIXED.generation,
-    ...transport, sha256Authority: 'computed-acquired-bytes', executable: await executableReceipt(executable, FIXED.version) };
-  validateReceipt(receipt);
-  if (performance.now() > deadline) throw new Error('deadline');
-  await writeFile(join(root, 'receipt.json'), JSON.stringify(receipt), { flag: 'wx', mode: 0o600 });
+    ...transport, sha256Authority: 'computed-acquired-bytes', executable: await executableReceipt(executable, FIXED.version, observed) };
+  observed = observation.enter('receipt'); validateReceipt(receipt, observed);
+  observed = observation.enter('deadline'); if (performance.now() > deadline) { observed('deadline'); throw new Error('deadline'); }
+  observed = observation.enter('receipt-write');
+  await acquisitionIO(writeFile(join(root, 'receipt.json'), JSON.stringify(receipt), { flag: 'wx', mode: 0o600 }), observed);
   // Runner-private handoff, never diagnostic output or artifact. Fail closed on line injection.
-  if (/[\r\n]/.test(executable)) throw new Error('privacy');
-  await appendFile(process.env.GITHUB_OUTPUT, `executable=${executable}\n`);
+  observed = observation.enter('handoff');
+  if (/[\r\n]/.test(executable)) { observed('privacy'); throw new Error('privacy'); }
+  await acquisitionIO(appendFile(process.env.GITHUB_OUTPUT, `executable=${executable}\n`), observed);
 }
 async function admitCandidate(path) {
   if (process.platform !== 'linux' || !process.env.RUNNER_TEMP || typeof path !== 'string') throw new Error('setup');
@@ -758,8 +853,7 @@ const unexecutedEngine = () => ({ executed: false, rows: [], bodies: [], failure
 export async function pairedMain() {
   const acquire = process.argv[2] === '--acquire-fixed-chromium';
   if (acquire) {
-    try { if (process.argv.length !== 3) throw new Error('setup'); await acquireFixed(); process.stdout.write('fixed-chromium-acquisition ready\n'); }
-    catch { process.stderr.write('fixed-chromium-acquisition unavailable\n'); process.exitCode = 1; }
+    await acquisitionMain();
     return;
   }
   const start = performance.now(); let provenance = null, receipt = null, failure = 'none';

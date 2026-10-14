@@ -696,4 +696,16 @@ jobs:
           path: test-results/fixed-chromium-paired-probe.json
           retention-days: 7
           if-no-files-found: error
+
+      # ACQUISITION-UPLOADER-BEGIN
+      - name: Upload fresh acquisition boundary receipt
+        timeout-minutes: 1
+        if: ${{ always() && !cancelled() && steps.fixed.outputs.acquisition_receipt_written == 'true' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: fixed-chromium-acquisition
+          path: test-results/fixed-chromium-acquisition.json
+          retention-days: 7
+          if-no-files-found: error
+      # ACQUISITION-UPLOADER-END
   # FIXED-CHROMIUM-JOB-END
