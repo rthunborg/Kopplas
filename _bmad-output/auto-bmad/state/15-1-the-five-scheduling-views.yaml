@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-14T10:26:18Z"
+updated_at: "2026-10-14T11:08:56Z"
 started_at: "2026-10-09T13:06:12Z"
 completed_at: null
 active_seconds: 25163
@@ -100,6 +100,17 @@ routing_ledger:
   - "{\"phase\":\"P5-CI-recovery-authoring\",\"role\":\"one-line-existing-workflow-manual-trigger-author\",\"profile\":\"standard\",\"model\":\"gpt-6.1-sol\",\"effort\":\"low\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"reuse-ci15_recovery_assessment\",\"escalation_reason\":\"None; exactcoordinatorreservedone-lineeventrepair existingjobsunchanged\"}"
   - "{\"phase\":\"P5-CI-recovery-independent-review\",\"role\":\"manual-trigger-exact-head-integrity-review\",\"profile\":\"critical\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"reuse-runtime15_cold_review_high\",\"escalation_reason\":\"CIexecutionintegrity/trustboundaries exacthead/synthetic-only no deploy or alteredpermissions; independentreviewbeforedispatch\"}"
   - "{\"phase\":\"P5-CI-recovery-dispatch\",\"role\":\"orchestrator-exact-head-CI-dispatch\",\"profile\":\"git-orchestrator\",\"model\":\"gpt-6.1-sol\",\"effort\":\"low\",\"host\":\"codex\",\"tier\":\"orchestrator\",\"route\":\"root-direct-gh-dispatch\",\"escalation_reason\":\"ReviewedexistingCIone-linebranchtrigger, rootownscommitpush/dispatch/runheadbinding, sensitiveintegrityreviewHighcomplete\"}"
+  - "{\"phase\":\"P5-CI-evidence-acceptance-plan\",\"role\":\"original-build-author-nativeCI-gate-mapping\",\"profile\":\"standard-sensitive\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"reuse-story15_1_corrected_build-readonly\",\"escalation_reason\":\"Sensitiveauth/RLS/nativepayload evidence mustmatchall18actualcases andstorycontract, preservehistoricalHALT/no fabricatedlocalPASS\"}"
+  - "{\"phase\":\"build\",\"role\":\"ci-native-evidence-auditor\",\"profile\":\"standard\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"subagents\",\"escalation_reason\":\"Actual authenticated reader/RLS, physical recovery and native browser outcomes need precise sensitive gate classification; retain selected High build capsule.\"}"
+  - "{\"phase\":\"build\",\"role\":\"visual-capture-planner\",\"profile\":\"standard\",\"model\":\"gpt-6.1-sol\",\"effort\":\"low\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"subagents\",\"escalation_reason\":\"Ordinary readonly capture planning for five projections and phone flows; no auth/security decisions, code edits or runtime actions.\"}"
+  - "{\"phase\":\"build\",\"role\":\"visual-capture-author\",\"profile\":\"standard\",\"model\":\"gpt-6.1-sol\",\"effort\":\"low\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"subagents\",\"escalation_reason\":\"Ordinary attachment-only visual evidence in three existing acceptance cases; assertions and sensitive AC2 native capture unchanged.\"}"
+  - "{\"phase\":\"build\",\"role\":\"visual-capture-delta-reviewer\",\"profile\":\"diverse_review\",\"model\":\"gpt-6.1-sol\",\"effort\":\"low\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"subagents\",\"escalation_reason\":\"Independent ordinary review of screenshot attachments only, preserving existing assertions and native capture unchanged; broad review count remains zero.\"}"
+  - "{\"phase\":\"build\",\"role\":\"native-diagnostic-removal-author\",\"profile\":\"standard\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"subagents\",\"escalation_reason\":\"Remove exactly seven temporary native-response diagnostic blocks, preserving wire-accurate assertions/capture and all screenshot additions; sensitive native evidence integrity.\"}"
+  - "{\"phase\":\"build\",\"role\":\"general-native-evidence-reviewer\",\"profile\":\"diverse_review\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"subagents\",\"escalation_reason\":\"Classify actual native browser failures and AC2 wire capture/authenticated projection/security boundaries; independent evidence review, no broad-round credit.\"}"
+  - "{\"phase\":\"build\",\"role\":\"retained-native-trace-diagnostician\",\"profile\":\"standard\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"subagents\",\"escalation_reason\":\"Cross-platform actual native response-body capture failure requires sensitive evidence integrity and precise original-response lifecycle diagnosis; bounded readonly retained traces only.\"}"
+  - "{\"phase\":\"build\",\"role\":\"native-diagnostic-removal-reviewer\",\"profile\":\"diverse_review\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"subagents\",\"escalation_reason\":\"Independent byte-level review of seven temporary native-response diagnostic blocks, ensuring default capture/settlement/error authority and screenshot additions remain intact.\"}"
+  - "{\"phase\":\"build\",\"role\":\"ci-static-check-evidence-reader\",\"profile\":\"light\",\"model\":\"gpt-6.1-sol\",\"effort\":\"low\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"subagents\",\"escalation_reason\":\"Ordinary readonly extraction of native unit/lint/typecheck/build/bundle/audit exit evidence from completed verify-job log; no security source review.\"}"
+  - "{\"phase\":\"build\",\"role\":\"native-capture-observer-spec-author\",\"profile\":\"standard\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"subagents\",\"escalation_reason\":\"Prepare bounded capture failure observer and sanitized native diagnostics; preserve raw browser payload authority and all approved security acceptance obligations before implementation.\"}"
 tea_risk: high
 tea_selected: [atdd, automate, trace-advisory]
 tea_rationale: "Scheduling, synchronized projections, capacity and drag/keyboard/dialog behavior"
@@ -125,7 +136,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [45a64853, f9e12a81, 279d3149, b9d61a33, 4d7911ac, 3a655a5d, a67a64dc, 66cd8436]
+commits: [45a64853, f9e12a81, 279d3149, b9d61a33, 4d7911ac, 3a655a5d, a67a64dc, 66cd8436, d79fff08]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -160,6 +171,7 @@ overrides:
   blocked_checkpoint_push: "Owner instructed commit/push work; push explicitly incomplete blockedcheckpointbranch only, no EpicPR/finalization/gate waiver/merge/deploy"
   blocked_report_commit: "Include updatedhaltedreport with blockedcheckpoint as ownerrequested documentation/commitpush; no completedepicclaim"
   resume_2026_10_14: "Renewed proceed Epic15 instruction: continue existing blocked checkpoint, investigate supported repository-local exact-version fresh browser installation and existing CI route; preserve old HALT/evidence/gates, no global/cache/guard/SDK repair or repeated inspect_only start"
+  recovery_checkpoint_commits: "Commit/push independently reviewed completed recovery test evidence under original user authorization; retain blocked spec and all unresolved gates"
 constraints: []
 spec_validation:
   tasks: 10
@@ -1159,9 +1171,13 @@ ci_recovery_dispatch_plan:
   dispatch: "ONE gh workflow run ci.yml --ref codex/epic-15-scheduling-time-calendar afterindependentHighPASS/commitpush; nativeheadmustequalreviewedpushedHEAD"
   authority: "Userboundedrepo-localverificationrepair; no deploy/gatewaiver/retroactivelocalPASS/15.2"
 fresh_operator_registration:
-  result: NewtrustedHighactor List native0oktrue/resourcesempty
-  scope: "No previousfiveIDsvisible inactorList; ownership/readinessunverified notadopted; no managedlaunch"
-  role: recovery15_runtime_operator
+  status: released
+  own_list_native_exit: 0
+  own_resources: 0
+  mutations: 0
+  held_resources: 0
+  historical_resource_adoption: false
+  reason: Actual Ubuntu matched-browser reproduction permits retained-trace diagnosis without local resources
 ci_recovery_trigger_authoring:
   file: ".github/workflows/ci.yml"
   line: 19
@@ -1191,3 +1207,88 @@ ci_recovery_execution_release:
   head_binding: ActualrunheadSHA MUSTequalnewpushedcommit beforeevidencecredit
   failure: Reportactualrejection no mainmutation/prematurePR/workaround or automaticduplicate
   verification: "NativeactualJSON/executed-skipped-attempts andphysicalrecovery/general/dashboard results required; no retroactivelocalPASS"
+ci_recovery_dispatch_actual:
+  run_id: 38549574105
+  head_sha: d79fff086e40c6e1d3b253a60a08da6ea72ae3bd
+  status: completed
+  conclusion: failure
+  jobs: "{\"verify\": \"success\", \"db\": \"success\", \"e2e\": \"failure\", \"dashboard-e2e\": \"success\", \"recovery-storage-loader\": \"success\"}"
+  evidence_directory: "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/ci-recovery-38549574105"
+  archive_digests: All six original archives SHA256 verified against GitHub API digests
+  acceptance_credit: "Native general failures being classified; no P5 completion or gate waiver"
+ci_recovery_native_audit:
+  run_id: 38549574105
+  head_sha: d79fff086e40c6e1d3b253a60a08da6ea72ae3bd
+  archive_digests: Four downloaded ZIP SHA256 values match GitHub artifact API digests
+  full_integration: "{\"passed\": 1736, \"failed\": 0, \"skipped\": 1, \"total\": 1737, \"files\": 145, \"live_rpc\": 8, \"live_reader\": 4, \"transport_mocks\": 21, \"json_sha256\": \"377f732e0f59617079ccaecf84477cc52a99c3b11ae7e0c97dd314db0347dde4\"}"
+  physical_recovery: "{\"passed\": 1, \"failed\": 0, \"skipped\": 0, \"json_sha256\": \"154404dfac72eb58efad1ac0211b73b4252997194741744dfce44b2702746f4b\"}"
+  dashboard: "{\"cases\": 57, \"passed_attempts\": 57, \"failed\": 0, \"skipped\": 0, \"flaky\": 0, \"files\": 3, \"json_sha256\": \"4968d5521234fadcbd39b07b1cef3cbcaaed02ccf3893e50dfef61b9714fb0e0\"}"
+  general_browser: Pending
+  visual: "No dashboard screenshots; screenshot-only author delta in three existing scheduling cases pending independent review"
+  broad_rounds_completed: 0
+  p5_complete: false
+ci_visual_capture_authoring:
+  file: tests/e2e/scheduling-views.atdd.e2e.spec.ts
+  predecessor_sha256: 56a576d03c30da6ddda6fde8561deaa73e9108653df86eddfca50fc221b9126f
+  new_sha256: c6b14a3a49ff62b619b2ccddcec972c175ade81c363c4a415c67d0cb397d67d7
+  attachments: 11
+  cases_changed: 3
+  lint_exit: 0
+  typecheck_exit: 0
+  execution: "Not executed; current remote CI covers predecessor only"
+ci_visual_capture_review:
+  outcome: PASS
+  reviewer: visual15_capture_review_low
+  sha256: c6b14a3a49ff62b619b2ccddcec972c175ade81c363c4a415c67d0cb397d67d7
+  broad_round_credit: 0
+  execution_credit: 0
+  open_visual_question: Inspect whether failure message and retry control fit together in 360x640 capture
+ci_recovery_log:
+  path: ".env.epic15.mail-runtime/ci-recovery-38549574105/run-final.log"
+  sha256: fee373f9ef3633607eb008cfa59e8c5e864253b35f81c5de720384d9c458eb2e
+ci_recovery_general:
+  json_sha256: 2deb96dc6478b02dcfa3c829550b4e0ccbf01dd1a8d3585f8e490ca4ba4ed6b1
+  html_sha256: 4d31cfbede541b6f974f4dc4c93b94d4736a697761d583db87648fe54c918443
+  executed_cases: 369
+  executed_files: 41
+  executed_retries: 8
+  failed_case_id: e17ed7bc58d5aa76eeac-0fd1705b2ad3737ad645
+  source_defect: "Not established; retained native trace diagnosis active"
+native_diagnostic_cleanup:
+  static_checks: "{\"focused_eslint\": 0, \"typecheck\": 0}"
+  independent_review: "{\"outcome\": \"PASS\", \"reviewer\": \"runtime15_cold_review_high\", \"final_sha256\": \"0e1861d1f148dca2b90c099197149e0d8d9152d101429aa4915c3f17ab090ba8\", \"exact_baseline_projection\": \"a666a2713a7965735f2c3a6ac245f68b756216fa62896882e57598ee3c1c9983\", \"removed_bytes\": 6410, \"capture_added_bytes\": 1068, \"broad_round_credit\": 0, \"execution_credit\": 0}"
+fresh_install_fallback:
+  status: "HOLD, not executed"
+  reason: "Native failure reproduced in matching Ubuntu CI; no local installer needed for retained evidence diagnosis"
+  source_preserved: true
+ci_recovery_verify:
+  run_id: 38549574105
+  head_sha: d79fff086e40c6e1d3b253a60a08da6ea72ae3bd
+  job_id: 115803955338
+  units: "{\"passed\": 2540, \"suites\": 100, \"failed\": 0, \"skipped\": 0, \"cancelled\": 0, \"todo\": 0, \"elapsed_seconds\": 38.57, \"budget_seconds\": 180}"
+  typecheck: passed
+  lint: "{\"errors\": 0, \"warnings\": 14}"
+  memlog: "{\"passed\": 2}"
+  routing_contracts: "{\"passed\": 26}"
+  process_api_contracts: "{\"passed\": 10}"
+  lockfile_guard: passed
+  source_service_role_containment: passed
+  dependency_high_severity_gate: "passed; two moderate findings retained"
+  build: "compiled; 12/12 static pages"
+  built_bundle_containment: passed
+  evidence: "Completed successful verify job plus explicit native output; individual exit codes not printed for all steps"
+  successor_source_credit: false
+native_trace_investigation:
+  status: "readonly diagnosis complete; bounded observer preparation next"
+  trace_sha256: 5e50696eb6921ac3b19562a4b0f83ecfbd784574ec9fb32c1124abc2fcabf601
+  candidate: "Public requestfailed observer bound to exact captured Request, first-failure authority, retained through successful final drain and detached in cleanup"
+  candidate_limit: "Fail-loud settlement/observability only, not missing-body fix or acceptance completion"
+  repair_released: false
+ci_recovery_successor_checkpoint:
+  source_sha256: 0e1861d1f148dca2b90c099197149e0d8d9152d101429aa4915c3f17ab090ba8
+  visual_review: Low independent PASS
+  diagnostic_cleanup_review: High independent exact-byte PASS
+  static_checks: "{\"lint\": 0, \"typecheck\": 0}"
+  native_execution: "Pending successor; prior CI still failed AC2"
+  scope: 11 screenshot attachments and exact temporary diagnostic removal only
+  status: "Ready to commit/push; no phase completion"

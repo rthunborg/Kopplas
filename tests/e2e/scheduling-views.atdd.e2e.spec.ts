@@ -1,11 +1,17 @@
 /** Story 15.1 actual authenticated acceptance. Skips confer no coverage.
  * 14.4-E2E-006 (empty-slot click/drag portion) is exercised at both real hosts. */
 import { test, expect, interval, DATE, type View, type Interval, type SchedulingViewsHarness } from "./support/scheduling-views-atdd";
-import type { Locator, Page } from "@playwright/test";
+import type { Locator, Page, TestInfo } from "@playwright/test";
 import { adminQuery } from "../factories/admin-sql";
 
 test.describe.configure({ mode: "serial" });
 test.setTimeout(180_000);
+async function attachVisual(page: Page, testInfo: TestInfo, name: string) {
+  await testInfo.attach(name, {
+    body: await page.screenshot({ fullPage: false }),
+    contentType: "image/png",
+  });
+}
 async function center(locator: Locator) {
   await locator.scrollIntoViewIfNeeded(); await expect(locator).toBeVisible();
   const box = await locator.boundingBox(); if (!box) throw new Error("Actual host has no pointer bounds");
@@ -65,8 +71,8 @@ for (const host of ["Schema", "Resurser"] as const) {
     await h.fillRequired(); await h.cancel(); await expect(trigger).toBeFocused(); expect(await h.sqlBookings()).toEqual(before);
   });
 }
-test("[P1] 15.1-E2E-006 SCOPE-001 AC1 five projections, periods, filters and toolbar editor agree across later pages", async ({ schedulingViews: h }) => {
-  await h.seed(true); await h.signIn("manager");
+test("[P1] 15.1-E2E-006 SCOPE-001 AC1 five projections, periods, filters and toolbar editor agree across later pages", async ({ schedulingViews: h }, testInfo) => {
+  await h.seed(true); await h.signIn("manager"); await h.page.setViewportSize({ width: 1440, height: 1000 });
   const shared = [h.ids.role, h.ids.proposal, h.ids.collision, ...h.laterIds].sort();
   for (const [view, modes] of [["Schema", ["day", "week", "month"]], ["Resurser", ["day", "week"]], ["Team", ["week"]], ["Beläggning", ["day", "week", "month"]], ["Min kalender", ["day", "week"]]] as [View, ("day" | "week" | "month")[]][]) {
     for (const mode of modes) {
@@ -80,6 +86,7 @@ test("[P1] 15.1-E2E-006 SCOPE-001 AC1 five projections, periods, filters and too
         expect(await h.visibleIds()).toEqual(expected);
         if (view === "Min kalender") await expect(h.page.locator(`[aria-label="${mode === "day" ? "Egen agenda" : "Egen veckokalender"}"]:visible`)).toBeVisible();
       }
+      if (mode === "week") await attachVisual(h.page, testInfo, ({ Schema: "desktop-schema-week", Resurser: "desktop-resources-week", Team: "desktop-team-week", Beläggning: "desktop-capacity-week", "Min kalender": "desktop-personal-calendar-week" })[view]);
       const before = await h.sqlBookings(), trigger = h.page.getByTestId("scheduling-new-booking");
       await trigger.click(); await expect(h.editor).toBeVisible(); await h.cancel(); await expect(trigger).toBeFocused();
       expect(await h.sqlBookings()).toEqual(before);
@@ -94,24 +101,6 @@ test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycl
   await h.signIn("montor");
   const payloads: string[] = [];
   const captureOrigin = new URL(page.url()).origin;
-  // AC2-NATIVE-DIAGNOSTIC BEGIN initialization
-  type CaptureMetadata = {
-    requestOrdinal: number | null; captureOrdinal: number; method: "GET" | "POST" | "other"; status: number | null;
-    phase: "finished" | "body"; outcome: "pending" | "fulfilled" | "rejected";
-    finishedStarted: number | null; finishedSettled: number | null; bodyStarted: number | null; bodySettled: number | null;
-  };
-  let diagnostic: {
-    baseline: number; requests: WeakMap<import("@playwright/test").Request, number>; requestCount: number;
-    captureCount: number; fulfilled: number; rejected: number;
-    unavailable: boolean; snapshotAttempted: boolean;
-  } | undefined;
-  if (process.env.EPIC15_AC2_NATIVE_DIAGNOSTICS === "1" && process.env.E2E_PORT === "3151" && captureOrigin === "http://127.0.0.1:3151") {
-    try {
-      diagnostic = { baseline: performance.now(), requests: new WeakMap(), requestCount: 0, captureCount: 0,
-        fulfilled: 0, rejected: 0, unavailable: false, snapshotAttempted: false };
-    } catch { /* Diagnostic initialization cannot change capture behavior. */ }
-  }
-  // AC2-NATIVE-DIAGNOSTIC END initialization
   const captures: Promise<{ ok: true } | { ok: false; error: unknown }>[] = [];
   let hasFailure = false, firstFailure: unknown;
   let notifyFailure!: () => void;
@@ -123,93 +112,14 @@ test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycl
   const read = (response: import("@playwright/test").Response) => {
     const url = new URL(response.url());
     if (url.origin !== captureOrigin || url.pathname !== "/scheduling" || !response.ok()) return;
-    // AC2-NATIVE-DIAGNOSTIC BEGIN binding
-    let diagnosticRequest: import("@playwright/test").Request | undefined;
-    let metadata: CaptureMetadata | undefined;
-    if (diagnostic) {
-      try {
-        metadata = { requestOrdinal: null, captureOrdinal: ++diagnostic.captureCount, method: "other", status: null,
-          phase: "finished", outcome: "pending", finishedStarted: null, finishedSettled: null, bodyStarted: null, bodySettled: null };
-        diagnosticRequest = response.request();
-        let ordinal = diagnostic.requests.get(diagnosticRequest);
-        if (ordinal === undefined) { ordinal = ++diagnostic.requestCount; diagnostic.requests.set(diagnosticRequest, ordinal); }
-        metadata.requestOrdinal = ordinal;
-        const method = diagnosticRequest.method(), status = response.status();
-        metadata.method = method === "GET" || method === "POST" ? method : "other";
-        if (Number.isInteger(status) && status >= 200 && status <= 299) metadata.status = status; else diagnostic.unavailable = true;
-      } catch { diagnostic.unavailable = true; }
-    }
-    // AC2-NATIVE-DIAGNOSTIC END binding
     const capture = (async () => {
-      // AC2-NATIVE-DIAGNOSTIC BEGIN finished-start
-      if (diagnostic && metadata) { try { metadata.finishedStarted = performance.now() - diagnostic.baseline; } catch { diagnostic.unavailable = true; } }
-      // AC2-NATIVE-DIAGNOSTIC END finished-start
       const failure = await response.finished();
-      // AC2-NATIVE-DIAGNOSTIC BEGIN finished-settled
-      if (diagnostic && metadata) { try { metadata.finishedSettled = performance.now() - diagnostic.baseline; } catch { diagnostic.unavailable = true; } }
-      // AC2-NATIVE-DIAGNOSTIC END finished-settled
       if (failure) throw failure;
-      // AC2-NATIVE-DIAGNOSTIC BEGIN body-start
-      if (diagnostic && metadata) { try { metadata.phase = "body"; metadata.bodyStarted = performance.now() - diagnostic.baseline; } catch { diagnostic.unavailable = true; } }
-      // AC2-NATIVE-DIAGNOSTIC END body-start
       payloads.push(await response.text());
-      // AC2-NATIVE-DIAGNOSTIC BEGIN fulfilled
-      if (diagnostic && metadata) {
-        try { metadata.bodySettled = performance.now() - diagnostic.baseline; metadata.outcome = "fulfilled"; diagnostic.fulfilled++; }
-        catch { diagnostic.unavailable = true; }
-      }
-      // AC2-NATIVE-DIAGNOSTIC END fulfilled
     })();
     // Register and handle rejection in the same event turn. The drain retains
     // and rethrows the original error; a missing CDP body is never empty data.
-    // AC2-NATIVE-DIAGNOSTIC BEGIN settlement
-    captures.push(capture.then(() => ({ ok: true as const }), error => {
-      recordFailure(error);
-      if (diagnostic) {
-        try {
-          diagnostic.rejected++;
-          if (metadata) {
-            metadata.outcome = "rejected";
-            const elapsed = performance.now() - diagnostic.baseline;
-            if (metadata.phase === "body") metadata.bodySettled = elapsed; else metadata.finishedSettled = elapsed;
-            // The Request remains memory-only and belongs to this exact capture closure.
-            if (!diagnosticRequest || diagnostic.requests.get(diagnosticRequest) !== metadata.requestOrdinal) diagnostic.unavailable = true;
-          } else diagnostic.unavailable = true;
-        } catch { diagnostic.unavailable = true; }
-        try {
-          if (!diagnostic.snapshotAttempted) {
-            diagnostic.snapshotAttempted = true;
-            const safeCounter = (value: number) => {
-              if (Number.isSafeInteger(value) && value >= 0) return value;
-              diagnostic!.unavailable = true; return 0;
-            };
-            const safeTime = (value: number | null) => {
-              if (value === null || (Number.isFinite(value) && value >= 0)) return value;
-              diagnostic!.unavailable = true; return null;
-            };
-            const failedCapture = metadata ? {
-              requestOrdinal: metadata.requestOrdinal === null ? null : safeCounter(metadata.requestOrdinal),
-              captureOrdinal: safeCounter(metadata.captureOrdinal), method: metadata.method === "GET" || metadata.method === "POST" ? metadata.method : "other",
-              status: metadata.status !== null && Number.isInteger(metadata.status) && metadata.status >= 200 && metadata.status <= 299 ? metadata.status : null,
-              phase: metadata.phase === "body" ? "body" : "finished", outcome: "rejected",
-              finishedStarted: safeTime(metadata.finishedStarted), finishedSettled: safeTime(metadata.finishedSettled),
-              bodyStarted: safeTime(metadata.bodyStarted), bodySettled: safeTime(metadata.bodySettled),
-            } : null;
-            const requestCount = safeCounter(diagnostic.requestCount), captureCount = safeCounter(diagnostic.captureCount);
-            const fulfilled = safeCounter(diagnostic.fulfilled), rejected = safeCounter(diagnostic.rejected);
-            console.info("AC2_NATIVE_CAPTURE_REJECTION", JSON.stringify({
-              kind: "capture-rejection", origin: "http://127.0.0.1:3151", path: "/scheduling",
-              category: metadata ? metadata.phase === "body" ? "body-rejected" : "finished-rejected" : "unavailable",
-              rejectedCaptureOrdinal: metadata ? safeCounter(metadata.captureOrdinal) : null,
-              requestCount, captureCount, fulfilled, rejected, pending: safeCounter(captureCount - fulfilled - rejected),
-              unavailable: diagnostic.unavailable, failedCapture,
-            }));
-          }
-        } catch { /* One diagnostic attempt cannot replace the original capture error. */ }
-      }
-      return { ok: false as const, error };
-    }));
-    // AC2-NATIVE-DIAGNOSTIC END settlement
+    captures.push(capture.then(() => ({ ok: true as const }), error => { recordFailure(error); return { ok: false as const, error }; }));
   };
   const drain = async () => {
     let cursor = 0;
@@ -361,17 +271,20 @@ test("[P1] 15.1-COMP-002 AC7 numeric capacity/zero budget/color/full hidden dema
     }
   }
 });
-test("[P1] 15.1-COMP-003 AC8 360x640 connected agenda/summary and failed save retry preserve unsent input", async ({ schedulingViews: h, resourcePage: page }) => {
+test("[P1] 15.1-COMP-003 AC8 360x640 connected agenda/summary and failed save retry preserve unsent input", async ({ schedulingViews: h, resourcePage: page }, testInfo) => {
   await h.seed(); await page.setViewportSize({ width: 360, height: 640 }); await h.open("Schema");
   await expect(page.locator('[aria-label="Agenda"]:visible')).toBeVisible(); await expect(h.block(h.ids.role)).toContainText(h.scenario.assigneeLabels[0]!);
+  await attachVisual(page, testInfo, "phone-agenda");
   for (const control of [page.getByRole("tab", { name: "Schema", exact: true }), page.getByLabel("Person", { exact: true }), page.getByTestId("scheduling-new-booking")]) {
     await control.scrollIntoViewIfNeeded(); const box = await control.boundingBox(); expect(box).not.toBeNull(); expect(box!.x).toBeGreaterThanOrEqual(0); expect(box!.x + box!.width).toBeLessThanOrEqual(360); await control.focus(); await expect(control).toBeFocused();
   }
   await h.open("Beläggning"); await expect(page.locator('[aria-label="Kapacitetssammanfattning"]:visible')).toBeVisible();
+  await attachVisual(page, testInfo, "phone-capacity-summary");
   const before = await h.sqlBookings(); await page.getByRole("button", { name: "Välj intervall", exact: true }).click();
   const dialog = page.getByRole("dialog", { name: "Välj bokningsintervall" });
   await dialog.getByLabel("Intervall start").fill("2026-10-12T14:30"); await dialog.getByLabel("Intervall slut").fill("2026-10-12T15:00"); await dialog.getByLabel("Intervall person").selectOption(h.people[0]!); await dialog.getByRole("button", { name: "Öppna bokningseditor" }).click();
   await h.fillRequired(); const draft = h.scenario.description + " phone unsent input"; await h.editor.getByTestId("booking-description").fill(draft);
+  await attachVisual(page, testInfo, "phone-editor-draft");
   const attempts: Record<string, unknown>[] = [];
   const capture = (request: import("@playwright/test").Request) => {
     if (request.method() !== "POST" || !request.headers()["next-action"]) return;
@@ -380,13 +293,18 @@ test("[P1] 15.1-COMP-003 AC8 360x640 connected agenda/summary and failed save re
   page.on("request", capture);
   const failure = await h.failNextSaveOnce(); await h.editor.getByTestId("booking-save").click(); await failure.failed;
   await expect(h.editor.getByTestId("booking-description")).toHaveValue(draft); await expect(page.getByTestId("booking-save-status")).toHaveCount(0); expect(await h.sqlBookings()).toEqual(before);
+  await h.editor.getByTestId("booking-retry").scrollIntoViewIfNeeded();
+  await attachVisual(page, testInfo, "phone-editor-save-failure");
   const confirmed = await h.observeConfirmedSave(); await h.editor.getByTestId("booking-retry").click(); await confirmed.confirmed;
   page.off("request", capture); expect(attempts).toHaveLength(2); expect(attempts[1]).toEqual(attempts[0]);
   await expect(page.getByTestId("booking-save-status")).toHaveText(/sparad/i); await expect(h.editor).toHaveCount(0); expect((await h.sqlBookings()).length).toBe(before.length + 1);
+  await attachVisual(page, testInfo, "phone-confirmed-retry");
 });
-test("[P1] 15.1-COMP-003 AC8 month density drilldown and long multi-assignee labels at 360x640", async ({ schedulingViews: h, resourcePage: page }) => {
+test("[P1] 15.1-COMP-003 AC8 month density drilldown and long multi-assignee labels at 360x640", async ({ schedulingViews: h, resourcePage: page }, testInfo) => {
   await h.seed(); await h.open("Schema", "month"); const density = page.locator(`[data-testid="schema-density-day"][data-date="${DATE}"]`); await expect(density).toHaveText("5 bokningar · öppna dag"); await density.click(); await h.settle();
   expect(await h.visibleIds()).toEqual([h.ids.role, h.ids.noRole, h.ids.inactive, h.ids.proposal, h.ids.collision].sort());
   await page.setViewportSize({ width: 360, height: 640 }); await h.open("Schema");
   await expect(h.block(h.ids.role)).toContainText(h.scenario.description); for (const label of h.scenario.assigneeLabels) await expect(h.block(h.ids.role)).toContainText(label);
+  await h.block(h.ids.role).scrollIntoViewIfNeeded();
+  await attachVisual(page, testInfo, "phone-long-multi-assignee-labels");
 });
