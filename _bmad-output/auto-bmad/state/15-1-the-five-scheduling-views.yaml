@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-14T11:24:54Z"
+updated_at: "2026-10-14T12:15:07Z"
 started_at: "2026-10-09T13:06:12Z"
 completed_at: null
 active_seconds: 25163
@@ -113,6 +113,10 @@ routing_ledger:
   - "{\"phase\":\"build\",\"role\":\"native-capture-observer-spec-author\",\"profile\":\"standard\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"subagents\",\"escalation_reason\":\"Prepare bounded capture failure observer and sanitized native diagnostics; preserve raw browser payload authority and all approved security acceptance obligations before implementation.\"}"
   - "{\"phase\":\"build\",\"role\":\"native-capture-observer-spec-validator\",\"profile\":\"diverse_review\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"subagents\",\"escalation_reason\":\"Independent preservation validation of original native payload/first-failure authority, Request binding and strict diagnostic privacy before bounded observer implementation.\"}"
   - "{\"phase\":\"build\",\"role\":\"native-capture-observer-author\",\"profile\":\"standard\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"subagents\",\"escalation_reason\":\"Implement independently validated fail-loud exact-Request observer and bounded sanitized native failure evidence; preserve raw browser payload/first-failure authority.\"}"
+  - "{\"phase\":\"build\",\"role\":\"native-capture-observer-implementation-reviewer\",\"profile\":\"diverse_review\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"subagents\",\"escalation_reason\":\"Fresh independent exact implementation review of Request identity, first-failure authority, asynchronous cleanup and diagnostic privacy before authentic CI execution.\"}"
+  - "{\"phase\":\"build\",\"role\":\"native-observer-kernel-provenance-reader\",\"profile\":\"standard\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"subagents\",\"escalation_reason\":\"Reuse existing High build author to reconcile historical kernel hashing boundaries with independent exact full-spec preservation evidence; no source/spec changes.\"}"
+  - "{\"phase\":\"build\",\"role\":\"native-observer-kernel-provenance-recheck\",\"profile\":\"diverse_review\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"subagents\",\"escalation_reason\":\"Independent recheck of encoding-sensitive validation evidence; existing High review route retained, no source changes or broad review.\"}"
+  - "{\"phase\":\"build\",\"role\":\"native-observer-validation-wording-author\",\"profile\":\"diverse_review\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"subagents\",\"escalation_reason\":\"Original High validator clarifies reproducible UTF-8 kernel byte convention without changing normative approval, source, or acceptance obligations.\"}"
 tea_risk: high
 tea_selected: [atdd, automate, trace-advisory]
 tea_rationale: "Scheduling, synchronized projections, capacity and drag/keyboard/dialog behavior"
@@ -138,7 +142,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [45a64853, f9e12a81, 279d3149, b9d61a33, 4d7911ac, 3a655a5d, a67a64dc, 66cd8436, d79fff08, bf84cf5d]
+commits: [45a64853, f9e12a81, 279d3149, b9d61a33, 4d7911ac, 3a655a5d, a67a64dc, 66cd8436, d79fff08, bf84cf5d, 181f947f]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -1291,9 +1295,28 @@ ci_recovery_successor_checkpoint:
   status: Committed and pushed
   native_execution: "Not dispatched; native observer preparation pending independent validation"
 native_observer_preparation:
-  status: "Independent High validation PASS; authoring release next"
-  validation_report: "_bmad-output/implementation-artifacts/story-15-1-native-response-observability-validation-2026-10-14.md"
-  validation_sha256: 625c24c91f9d84d5a734800c80cdfd3bdb9814888815c8e251ffb70c50c66b0e
-  resolved_carrier: "Exact public Request.failure().errorText including empty string; unavailable/throwing metadata uses fixed SchedulingNativeRequestFailure Error without cause/raw data; earlier original/falsy failure wins; neither carrier in snapshot"
-  execution_credit: 0
+  head_sha: 181f947f860137c155f29f3a4f6873e282fad3d0
+  status: "Preparation committed/pushed; validated observer authoring released"
+  runtime_release: false
+  p5_complete: false
+native_observer_implementation:
+  status: "Independent implementation and provenance checks passed; commit/push and one controlled CI execution released"
+  ci_release: true
+  ci_release_scope: "Existing isolated GitHub CI workflow only at exact pushed successor head; no local resources or duplicate dispatch"
+  acceptance_credit: 0
   broad_round_credit: 0
+native_observer_kernel_provenance:
+  status: "Resolved; independent reviewer withdrew discrepancy after explicit UTF-8 raw-byte recheck"
+  canonical_sha256: 035ee9683e8b3e6e0420204a3ddfa8d81b0dcb6a47aa12e638673859d60cc234
+  canonical_bytes: 5556
+  validation_old_sha256: 625c24c91f9d84d5a734800c80cdfd3bdb9814888815c8e251ffb70c50c66b0e
+  validation_new_sha256: db582fdd0cf6f9cde31b6662a26b24488de88e30cf926a7a5c3b89008082841d
+  validation_delta: "One paragraph explicit convention; reverse replacement exact old bytes; +679 bytes; no normative/carrier/source change"
+native_observer_ci_plan:
+  status: Released for one controlled successor dispatch after commit/push
+  purpose: "Observe fail-loud native failed captures and produce bounded original-request metadata; source is a concrete independently reviewed delta, not blind retry"
+  workflow: ci.yml
+  source_sha256: 54de7996179e5684f8848be94a35ec30446444d951d6f45ba7243c93ee11500b
+  validation_sha256: db582fdd0cf6f9cde31b6662a26b24488de88e30cf926a7a5c3b89008082841d
+  broad_rounds_completed: 0
+  story_status: blocked

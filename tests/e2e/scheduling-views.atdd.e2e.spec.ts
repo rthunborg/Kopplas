@@ -109,17 +109,100 @@ test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycl
     if (hasFailure) return;
     hasFailure = true; firstFailure = error; notifyFailure();
   };
+  type NativeCapture = {
+    request: import("@playwright/test").Request; response: import("@playwright/test").Response;
+    requestOrdinal: number; captureOrdinal: number; queryPresent: boolean | null;
+    phase: "response" | "finished" | "body" | "complete";
+    responseMs: number | null; finishedStartMs: number | null; finishedEndMs: number | null;
+    bodyStartMs: number | null; bodyEndMs: number | null; requestFailedMs: number | null;
+  };
+  const admitted = new WeakMap<import("@playwright/test").Request, NativeCapture>();
+  let requestOrdinal = 0, captureCount = 0, fulfilledCount = 0, rejectedCount = 0;
+  let observerOpen = true, snapshotAttempted = false, baseline: number | null = null;
+  try { baseline = performance.now(); } catch { /* Diagnostic clock is optional. */ }
+  const relativeTime = () => {
+    try {
+      if (baseline === null) return null;
+      const value = performance.now() - baseline;
+      return Number.isFinite(value) && value >= 0 && value <= Number.MAX_SAFE_INTEGER ? value : null;
+    } catch { return null; }
+  };
+  const updateTiming = (operation: () => void) => { if (!observerOpen) return; try { operation(); } catch { /* Timing cannot alter native capture. */ } };
+  const snapshot = (entry: NativeCapture, trigger: "requestfailed" | "finished-rejected" | "body-rejected") => {
+    if (!observerOpen || snapshotAttempted) return;
+    snapshotAttempted = true;
+    try {
+      updateTiming(() => {
+        if (trigger === "requestfailed") entry.requestFailedMs = relativeTime();
+        else if (trigger === "body-rejected") entry.bodyEndMs = relativeTime();
+        else entry.finishedEndMs = relativeTime();
+      });
+      const rawMethod = entry.request.method();
+      const method = typeof rawMethod !== "string" ? "unavailable" : rawMethod === "GET" || rawMethod === "POST" ? rawMethod : "other";
+      const rawStatus = entry.response.status();
+      const status = Number.isInteger(rawStatus) && rawStatus >= 200 && rawStatus <= 299 ? rawStatus : null;
+      const rawContentType = entry.response.headers()["content-type"];
+      const mediaType = typeof rawContentType === "string" ? rawContentType.split(";", 1)[0]!.trim().toLowerCase() : null;
+      const contentType = mediaType === null ? "unavailable" : mediaType === "text/html" || mediaType === "text/x-component" || mediaType === "application/json" || mediaType === "text/plain" ? mediaType : "other";
+      const pendingCount = captureCount - fulfilledCount - rejectedCount;
+      const validCounter = (value: number) => Number.isSafeInteger(value) && value >= 0;
+      const validTime = (value: number | null) => value === null || (Number.isFinite(value) && value >= 0 && value <= Number.MAX_SAFE_INTEGER);
+      if (![captureCount, fulfilledCount, rejectedCount, pendingCount].every(validCounter)) return;
+      if (![entry.responseMs, entry.finishedStartMs, entry.finishedEndMs, entry.bodyStartMs, entry.bodyEndMs, entry.requestFailedMs].every(validTime)) return;
+      if (entry.queryPresent !== null && typeof entry.queryPresent !== "boolean") return;
+      if (!["response", "finished", "body", "complete"].includes(entry.phase)) return;
+      const json = JSON.stringify({
+        kind: "native-response-failure", trigger, path: "/scheduling", queryPresent: entry.queryPresent, method, status, contentType,
+        requestOrdinal: Number.isSafeInteger(entry.requestOrdinal) && entry.requestOrdinal > 0 ? entry.requestOrdinal : null,
+        captureOrdinal: Number.isSafeInteger(entry.captureOrdinal) && entry.captureOrdinal > 0 ? entry.captureOrdinal : null,
+        phase: entry.phase, responseMs: entry.responseMs, finishedStartMs: entry.finishedStartMs, finishedEndMs: entry.finishedEndMs,
+        bodyStartMs: entry.bodyStartMs, bodyEndMs: entry.bodyEndMs, requestFailedMs: entry.requestFailedMs,
+        captureCount, fulfilledCount, rejectedCount, pendingCount,
+      });
+      if (typeof json !== "string" || Buffer.byteLength(json, "utf8") > 1024) return;
+      console.info("[scheduling-native-response-failure] " + json);
+    } catch { /* A failed snapshot is dropped without retry or error replacement. */ }
+  };
+  const unavailableReason = new Error("Captured scheduling request failed; native reason unavailable.");
+  unavailableReason.name = "SchedulingNativeRequestFailure";
+  const readFailed = (request: import("@playwright/test").Request) => {
+    if (!observerOpen) return;
+    const entry = admitted.get(request);
+    if (!entry) return;
+    let reason: unknown = unavailableReason;
+    try { const failure = request.failure(), text = failure?.errorText; if (typeof text === "string") reason = text; } catch { /* Use only the fixed unavailable carrier. */ }
+    recordFailure(reason);
+    snapshot(entry, "requestfailed");
+  };
   const read = (response: import("@playwright/test").Response) => {
     const url = new URL(response.url());
     if (url.origin !== captureOrigin || url.pathname !== "/scheduling" || !response.ok()) return;
+    const request = response.request(), previous = admitted.get(request);
+    const entry: NativeCapture = {
+      request, response, requestOrdinal: previous?.requestOrdinal ?? ++requestOrdinal, captureOrdinal: ++captureCount,
+      queryPresent: null, phase: "response", responseMs: null, finishedStartMs: null, finishedEndMs: null,
+      bodyStartMs: null, bodyEndMs: null, requestFailedMs: null,
+    };
+    admitted.set(request, entry);
+    updateTiming(() => { entry.queryPresent = url.search !== ""; entry.responseMs = relativeTime(); });
     const capture = (async () => {
+      updateTiming(() => { entry.phase = "finished"; entry.finishedStartMs = relativeTime(); });
       const failure = await response.finished();
+      updateTiming(() => { entry.finishedEndMs = relativeTime(); });
       if (failure) throw failure;
+      updateTiming(() => { entry.phase = "body"; entry.bodyStartMs = relativeTime(); });
       payloads.push(await response.text());
+      updateTiming(() => { entry.bodyEndMs = relativeTime(); entry.phase = "complete"; });
     })();
     // Register and handle rejection in the same event turn. The drain retains
     // and rethrows the original error; a missing CDP body is never empty data.
-    captures.push(capture.then(() => ({ ok: true as const }), error => { recordFailure(error); return { ok: false as const, error }; }));
+    captures.push(capture.then(() => { fulfilledCount++; return { ok: true as const }; }, error => {
+      recordFailure(error); rejectedCount++;
+      let trigger: "body-rejected" | "finished-rejected" = "finished-rejected";
+      updateTiming(() => { trigger = entry.phase === "body" ? "body-rejected" : "finished-rejected"; });
+      snapshot(entry, trigger);
+      return { ok: false as const, error };
+    }));
   };
   const drain = async () => {
     let cursor = 0;
@@ -133,6 +216,16 @@ test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycl
     }
     if (hasFailure) throw firstFailure;
   };
+  const closeCaptureWindow = async () => {
+    try { page.off("response", read); } catch (error) { recordFailure(error); }
+    try {
+      if (!hasFailure) { try { await drain(); } catch (error) { recordFailure(error); } }
+    } finally {
+      observerOpen = false;
+      try { page.off("requestfailed", readFailed); } catch (error) { recordFailure(error); }
+    }
+  };
+  page.on("requestfailed", readFailed);
   page.on("response", read);
   try {
     await page.goto(`/scheduling?view=resources&person=${h.extraProfiles[2]}&tenant=${h.scenario.tenantIds[1]}`); await h.settle(); await drain();
@@ -145,10 +238,9 @@ test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycl
   } catch (error) {
     recordFailure(error);
   } finally {
-    try { page.off("response", read); } catch (error) { recordFailure(error); }
     // A failing test keeps all rejection handlers attached but never waits on
     // another unresolved capture. Success must drain the detached final buffer.
-    if (!hasFailure) { try { await drain(); } catch (error) { recordFailure(error); } }
+    await closeCaptureWindow();
   }
   if (hasFailure) throw firstFailure;
   try {
