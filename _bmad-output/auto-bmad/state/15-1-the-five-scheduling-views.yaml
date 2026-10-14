@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-14T16:15:51Z"
+updated_at: "2026-10-14T16:55:24Z"
 started_at: "2026-10-09T13:06:12Z"
 completed_at: null
 active_seconds: 25163
@@ -18,15 +18,15 @@ is_first_in_epic: true
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: visual_capture_framing_independent_review
-selected_role: independent-visual-framing-source-reviewer
+selected_phase: native_visual_framing_pixels_audit
+selected_role: independent-native-visual-auditor
 selected_profile: diverse_review
 selected_model: gpt-6.1-sol
 selected_effort: low
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Independent bounded literal framing review; verify byte-identical High-reviewed AC2 logic and inverse whole-source preservation."
+escalation_reason: "Independent ordinary screenshot pixel audit of existing exact-head native artifacts; no source or runtime work."
 routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary scheduling UX specification; sensitive authorization/integrity portions explicitly delegated High\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary15.1 ATDD preparation; sensitive access assertions delegated High; shared fixture edits excluded\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -141,6 +141,10 @@ routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary screenshot framing preparation only; no application, auth, native capture or assertion change.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"visual_capture_framing_validation\",\"profile\":\"diverse_review\",\"role\":\"independent-visual-framing-contract-validator\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Validated literal screenshot framing only; native capture and application behavior are byte-preserved.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"visual_capture_framing_implementation\",\"profile\":\"standard\",\"role\":\"visual-framing-author\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Independent bounded literal framing review; verify byte-identical High-reviewed AC2 logic and inverse whole-source preservation.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"visual_capture_framing_independent_review\",\"profile\":\"diverse_review\",\"role\":\"independent-visual-framing-source-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Audit exact-head native verification/security evidence, executed counts and artifact integrity; no historical carryover or skip credit.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"native_passive_metadata_initial_audit\",\"profile\":\"diverse_review\",\"role\":\"independent-native-evidence-auditor\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Audit exact-head native browser failure and sanitized CDP evidence with auth/body-capture obligations intact; distinguish observed cancellation from unsupported cause.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"native_passive_metadata_general_audit\",\"profile\":\"diverse_review\",\"role\":\"independent-native-evidence-auditor\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Fresh native diagnostics confirm preserved AC2 abort before navigation but no CDP terminal before freeze; ground actual stream cancellation paths before any corrective change.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"native_stream_cancellation_resolution\",\"profile\":\"critical\",\"role\":\"native-stream-lifecycle-diagnostician\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"low\",\"escalation_reason\":\"Independent ordinary screenshot pixel audit of existing exact-head native artifacts; no source or runtime work.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"native_visual_framing_pixels_audit\",\"profile\":\"diverse_review\",\"role\":\"independent-native-visual-auditor\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate, trace-advisory]
 tea_rationale: "Scheduling, synchronized projections, capacity and drag/keyboard/dialog behavior"
@@ -166,7 +170,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [45a64853, f9e12a81, 279d3149, b9d61a33, 4d7911ac, 3a655a5d, a67a64dc, 66cd8436, d79fff08, bf84cf5d, 181f947f, 22cfb74a, 22cfb74a, 6fd516b0, 521d56fd, e448f856, b99e3f42, 83e27c92, 1aa7c52b, 8630b011]
+commits: [45a64853, f9e12a81, 279d3149, b9d61a33, 4d7911ac, 3a655a5d, a67a64dc, 66cd8436, d79fff08, bf84cf5d, 181f947f, 22cfb74a, 22cfb74a, 6fd516b0, 521d56fd, e448f856, b99e3f42, 83e27c92, 1aa7c52b, 8630b011, da3a4c59]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -1737,15 +1741,192 @@ native_visual_framing_independent_review:
   native_credit: 0
   broad_review_credit: 0
 native_passive_metadata_ci_plan:
-  status: reviewed-awaiting-push-and-inventory
-  workflow_id: 296219797
-  branch: codex/epic-15-scheduling-time-calendar
+  status: one-dispatch-ready
+  head: da3a4c595df22c0f699a19f56c16976fab08b925
+  remote_head_verified: true
   source_sha256: 9e9fdd5a46c2f45a09f809758ed3788d13409e346177bbfa8cfd5f037ac0a065
   source_bytes: 57501
-  purpose: One controlled exact-head native evidence experiment after validated/independently-reviewed passive diagnostics and literal screenshot framing
-  required_jobs: [verify, integration/RLS, dashboard, physical recovery, general e2e]
-  expected: "Unknown cause and actual runtime outcome; preserveoriginalcapturefailures, no blindrerun orpassclaim"
-  code_reviews: [High bounded diagnostic PASS, "Low literal framing PASS; entireHighAC2byteidentical"]
-  ownership: "Exclusiveexacttestfile,31worktreeoverlapcheck; sharedpaths/resourcesuntouched"
+  workflow_id: 296219797
+  branch: codex/epic-15-scheduling-time-calendar
+  prior_run: 38579679091
+  prior_status: completed-failure
+  duplicate_active_runs: 0
+  purpose: "Passive cancellation evidence and fresh framing; unknown native outcome"
+  independent_reviews: [High diagnostic PASS3fd with82+136proofs, Low framing PASS9e exactinverse+18043BAC2byteidentical]
+  no_workflow_or_resource_change: true
   native_credit: 0
   phase5_complete: false
+native_passive_metadata_ci_dispatch:
+  status: in-progress
+  dispatch_native: 0
+  dispatch_count: 1
+  run_id: 38596630798
+  url: "https://github.com/rthunborg/Kopplas/actions/runs/38596630798"
+  event: workflow_dispatch
+  created_at: "2026-10-14T16:16:14Z"
+  head: da3a4c595df22c0f699a19f56c16976fab08b925
+  head_api_verified: true
+  source_sha256: 9e9fdd5a46c2f45a09f809758ed3788d13409e346177bbfa8cfd5f037ac0a065
+  coordinator_notified: true
+  cause: unknown
+  native_credit: 0
+  phase5_complete: false
+native_passive_metadata_partial_audit:
+  status: PASS-initial3-only
+  delegate: "/root/runtime15_cold_review_high"
+  run_id: 38596630798
+  head: da3a4c595df22c0f699a19f56c16976fab08b925
+  archives_verified: 3
+  extracted_bindings_verified: 3
+  dashboard_cases: 57
+  dashboard_actual_pass_attempts: 57
+  dashboard_retries: 0
+  dashboard_skips: 0
+  dashboard_flaky: 0
+  dashboard_global_errors: 0
+  dashboard_sha256: 1e6c1d4384aa4a80d480f0032cbf3a1d45a3b178b12b34314c7cadb2ce79bb26
+  physical_actual_assertions_pass: 1
+  physical_sha256: aa09d263d762f26f010bf0552913526b7ebfcfe941caecefb931792d3cf978e5
+  verify_unit_pass: 2540
+  verify_unit_fail: 0
+  verify_unit_skip: 0
+  verify_unit_cancel: 0
+  lint_errors: 0
+  lint_warnings: 14
+  typecheck: PASS
+  production_build: PASS
+  containment: Both PASS
+  verify_log_sha256: 4366d4cbc172cbea1ac6176cd817cab8d9e09cffb1d93016f0b6bcf7511eb6d6
+  verify_log_bytes: 1309640
+  first_log_download: "Failed gh terminal-escape refusal; no coverage credit, failure receipt retained"
+  integration_counts: Pending audit
+  general_browser_counts: Pending native job
+  native_ac2_credit: 0
+  phase5_complete: false
+  broad_review_credit: 0
+native_passive_metadata_integration_audit:
+  status: PASS
+  delegate: "/root/runtime15_cold_review_high"
+  run_id: 38596630798
+  head: da3a4c595df22c0f699a19f56c16976fab08b925
+  artifact_id: 11912665495
+  zip_sha256: 29c78ed01a2182e55f62dc9aaad34cbb479e77e4e3474030c90ff37f880d1694
+  zip_bytes: 89660
+  json_sha256: 1e7f814bcbef54b6a8eba7b4009d21d30bdcc575d1333c3419d51666c3ed3a80
+  json_bytes: 828333
+  actual_pass: 1736
+  actual_fail: 0
+  actual_skip: 1
+  total_files: 145
+  executed_files: 144
+  scheduling_live_jwt_rpc_pass: 8
+  scheduling_authenticated_reader_pass: 4
+  transport_mock_pass: 21
+  mock_rls_credit: 0
+  main_physical_skip_credit: 0
+  general_browser: Pending
+  phase5_complete: false
+  broad_review_credit: 0
+native_passive_metadata_ci_completion:
+  status: completed-failure-awaiting-general-native-audit
+  run_id: 38596630798
+  head: da3a4c595df22c0f699a19f56c16976fab08b925
+  head_api_verified: true
+  verify_job: 115964931092
+  verify_status: success
+  dashboard_job: 115966047064
+  dashboard_status: success
+  physical_job: 115966047030
+  physical_status: success
+  integration_job: 115966047097
+  integration_status: success
+  general_job: 115966047016
+  general_status: failure
+  source_sha256: 9e9fdd5a46c2f45a09f809758ed3788d13409e346177bbfa8cfd5f037ac0a065
+  source_bytes: 57501
+  general_artifacts: [11913012004, 11912782090]
+  general_archives_api_verified: 2
+  general_extracted_bindings: 40
+  full_log_sha256: 0488e39cba647ee2e7508d70217c6fc4f46f6056c7ee1b0dc2ffca4027093702
+  full_log_bytes: 3404194
+  log_transport_failure: "Unsupported API-only flag in gh run view; first failure preserved, corrected commandnative0"
+  failed_case: "Awaiting independent actualnativeJSONaudit; do not assumeAC2"
+  phase5_complete: false
+  broad_review_credit: 0
+  dispatch_count: 1
+native_passive_metadata_general_audit:
+  status: Evidence-integrity-PASS-native-general-FAILED
+  delegate: "/root/runtime15_cold_review_high"
+  run_id: 38596630798
+  head: da3a4c595df22c0f699a19f56c16976fab08b925
+  archives_verified: 2
+  extracted_bindings_verified: 40
+  source_sha256: 9e9fdd5a46c2f45a09f809758ed3788d13409e346177bbfa8cfd5f037ac0a065
+  json_sha256: 7917d912c90779356b08b5486fe26825671b1b5635697edbab6119b75ad0a898
+  html_sha256: 1b694740c647f2287e29aea4a6d8b9a4ec6616e12ff4971a6317cd399028521a
+  log_sha256: 0488e39cba647ee2e7508d70217c6fc4f46f6056c7ee1b0dc2ffca4027093702
+  cases: 382
+  total_files: 43
+  executed_cases: 369
+  executed_files: 41
+  passed_cases: 368
+  failed_cases: 1
+  skipped_cases: 13
+  actual_pass_attempts: 375
+  actual_fail_attempts: 2
+  executed_retries: 8
+  flaky: 0
+  global_errors: 0
+  scheduling_exact_titles: 18
+  scheduling_executed_pass_cases: 7
+  scheduling_failed_cases: 1
+  scheduling_unexecuted_cases: 10
+  editor_pass: 19
+  auth_mail_pass: 2
+  desktop_png_attachments: 10
+  phone_targets_unexecuted: 6
+  failed_id: e17ed7bc58d5aa76eeac-0fd1705b2ad3737ad645
+  both_first_carriers: "net::ERR_ABORTED"
+  snapshots: "Two original20-keyGET200RSC phasefinished/no body start; attempt0capture4 fulfilled3pending1, retrycapture1 fulfilled0pending1"
+  passive_stdout: "Persisted whitelisted JSON2401B4rows/670B1row, setupready/nooverflow/noinvalid/cleanuprequested"
+  passive_terminal: "Failed candidatesCDPpending atfreeze; terminal/errorClass/canceled/blockedReason unavailable"
+  decoded_bytes: [1194, 324]
+  byte_evidence_limit: No EOF or exactPublicRequest/CDPidentity credit
+  retry_tampered_goto_invoked: false
+  diagnostic_persistence_defect: false
+  next: "Focused ground actual stream cancellation paths; no body/apprepair justified yet"
+  phase5_complete: false
+  broad_review_credit: 0
+native_stream_cancellation_resolution:
+  status: Focused-diagnosis-complete-no-grounded-application-correction
+  delegate: "/root/native15_prefetch_diagnosis_high"
+  artifact: "_bmad-output/implementation-artifacts/story-15-1-dashboard-prefetch-diagnosis-2026-10-14.md"
+  sha256: b3d186d2144bf8d27b033027978cbf16efee83ad39c3f912e1132eefe45ee2a4
+  bytes: 15100
+  appended_bytes: 6067
+  original_prefix_bytes: 9033
+  original_prefix_sha256: 8bd328a2e4d7d74b60f695849defbbe4ed1fb6f1677bad5f4f8e6b845b4ddf2d
+  finding: "Pinned nonPPR tree/loading consumers buffer full network response before React; refresh/cache/build rejection do not cancel that reader; no explicit Next/React cancellation path found"
+  remaining: "Original browser EOF and serverfinish/premature-close unobserved; CDPpending cannotestablish"
+  finite_candidate: "Separately prepared exact-version data-free native reproduction:6positive2transportnegative controls; zero applicationacceptancecredit"
+  code_changed: false
+  phase5_complete: false
+  broad_review_credit: 0
+native_visual_framing_pixels_audit:
+  status: Ten-current-PNGs-actually-viewed-no-full-visual-completion
+  delegate: "/root/visual15_native_audit_low"
+  artifact: "_bmad-output/implementation-artifacts/story-15-1-framed-native-visual-audit-2026-10-14.md"
+  sha256: 0efe5220d812ffad1396b9171a81822aab0e9681f87fc0019fd2fce5204cfbdd
+  bytes: 6959
+  run_id: 38596630798
+  head: da3a4c595df22c0f699a19f56c16976fab08b925
+  pngs_viewed_hashed_dimension_checked: 10
+  width: 1440
+  height: 1000
+  findings: "Bothattempts meaningful09:00â€“10:00bookings inSchema/Resurser/MinCalendar; edit/move+resize visibleSchema/Resurser;Teamrole groupingwrappedcards;capacitynumerics/no-capacity/cells/drilldownlabels"
+  limits: "Scrolledcapturesomittoolbar/dayheaders;longcards/latercapacitycolumnscropped;no-roleTeam+separatecolorlegendnotvisible;nogroundedappinaccessibilitydefect"
+  phone_targets_unexecuted: 6
+  reference_similarity: No approved Figma/reference comparison available
+  manual: AT/daylight/onehand/p95unverified
+  phase5_complete: false
+  broad_review_credit: 0
