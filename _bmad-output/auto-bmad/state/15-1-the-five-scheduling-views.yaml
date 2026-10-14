@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-14T11:08:56Z"
+updated_at: "2026-10-14T11:24:54Z"
 started_at: "2026-10-09T13:06:12Z"
 completed_at: null
 active_seconds: 25163
@@ -111,6 +111,8 @@ routing_ledger:
   - "{\"phase\":\"build\",\"role\":\"native-diagnostic-removal-reviewer\",\"profile\":\"diverse_review\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"subagents\",\"escalation_reason\":\"Independent byte-level review of seven temporary native-response diagnostic blocks, ensuring default capture/settlement/error authority and screenshot additions remain intact.\"}"
   - "{\"phase\":\"build\",\"role\":\"ci-static-check-evidence-reader\",\"profile\":\"light\",\"model\":\"gpt-6.1-sol\",\"effort\":\"low\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"subagents\",\"escalation_reason\":\"Ordinary readonly extraction of native unit/lint/typecheck/build/bundle/audit exit evidence from completed verify-job log; no security source review.\"}"
   - "{\"phase\":\"build\",\"role\":\"native-capture-observer-spec-author\",\"profile\":\"standard\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"subagents\",\"escalation_reason\":\"Prepare bounded capture failure observer and sanitized native diagnostics; preserve raw browser payload authority and all approved security acceptance obligations before implementation.\"}"
+  - "{\"phase\":\"build\",\"role\":\"native-capture-observer-spec-validator\",\"profile\":\"diverse_review\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"subagents\",\"escalation_reason\":\"Independent preservation validation of original native payload/first-failure authority, Request binding and strict diagnostic privacy before bounded observer implementation.\"}"
+  - "{\"phase\":\"build\",\"role\":\"native-capture-observer-author\",\"profile\":\"standard\",\"model\":\"gpt-6.1-sol\",\"effort\":\"high\",\"host\":\"codex\",\"tier\":\"subagents\",\"route\":\"subagents\",\"escalation_reason\":\"Implement independently validated fail-loud exact-Request observer and bounded sanitized native failure evidence; preserve raw browser payload/first-failure authority.\"}"
 tea_risk: high
 tea_selected: [atdd, automate, trace-advisory]
 tea_rationale: "Scheduling, synchronized projections, capacity and drag/keyboard/dialog behavior"
@@ -136,7 +138,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [45a64853, f9e12a81, 279d3149, b9d61a33, 4d7911ac, 3a655a5d, a67a64dc, 66cd8436, d79fff08]
+commits: [45a64853, f9e12a81, 279d3149, b9d61a33, 4d7911ac, 3a655a5d, a67a64dc, 66cd8436, d79fff08, bf84cf5d]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -1285,10 +1287,13 @@ native_trace_investigation:
   candidate_limit: "Fail-loud settlement/observability only, not missing-body fix or acceptance completion"
   repair_released: false
 ci_recovery_successor_checkpoint:
-  source_sha256: 0e1861d1f148dca2b90c099197149e0d8d9152d101429aa4915c3f17ab090ba8
-  visual_review: Low independent PASS
-  diagnostic_cleanup_review: High independent exact-byte PASS
-  static_checks: "{\"lint\": 0, \"typecheck\": 0}"
-  native_execution: "Pending successor; prior CI still failed AC2"
-  scope: 11 screenshot attachments and exact temporary diagnostic removal only
-  status: "Ready to commit/push; no phase completion"
+  head_sha: bf84cf5d6487480c1fdcfc18dcbd6f49a6a704b0
+  status: Committed and pushed
+  native_execution: "Not dispatched; native observer preparation pending independent validation"
+native_observer_preparation:
+  status: "Independent High validation PASS; authoring release next"
+  validation_report: "_bmad-output/implementation-artifacts/story-15-1-native-response-observability-validation-2026-10-14.md"
+  validation_sha256: 625c24c91f9d84d5a734800c80cdfd3bdb9814888815c8e251ffb70c50c66b0e
+  resolved_carrier: "Exact public Request.failure().errorText including empty string; unavailable/throwing metadata uses fixed SchedulingNativeRequestFailure Error without cause/raw data; earlier original/falsy failure wins; neither carrier in snapshot"
+  execution_credit: 0
+  broad_round_credit: 0
