@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-14T15:30:26Z"
+updated_at: "2026-10-14T15:45:16Z"
 started_at: "2026-10-09T13:06:12Z"
 completed_at: null
 active_seconds: 25163
@@ -18,15 +18,15 @@ is_first_in_epic: true
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: native_passive_metadata_preparation
-selected_role: native-evidence-contract-author
+selected_phase: native_passive_metadata_implementation
+selected_role: native-passive-evidence-author
 selected_profile: standard
 selected_model: gpt-6.1-sol
 selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Native auth-adjacent RSC cancellation remains unresolved; prepare passive browser lifecycle metadata with strict privacy and unchanged security assertions."
+escalation_reason: Implement independently validated bounded native metadata with auth/privacy isolation and failure/cleanup preservation.
 routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary scheduling UX specification; sensitive authorization/integrity portions explicitly delegated High\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary15.1 ATDD preparation; sensitive access assertions delegated High; shared fixture edits excluded\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -135,6 +135,8 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Completed run failed general browser job; audit fresh original native failure and exact Request/action ordering before any next repair, no inference from historical failures.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"native_navigation_barrier_ci_audit\",\"profile\":\"standard\",\"role\":\"independent-native-evidence-auditor\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Fresh native failure precedes every scheduling goto; distinguish authenticated dashboard/framework prefetch cancellation from app auth/render defect before any traffic policy or source change.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"dashboard_prefetch_diagnosis\",\"profile\":\"standard\",\"role\":\"native-lifecycle-diagnostician\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Native auth-adjacent RSC cancellation remains unresolved; prepare passive browser lifecycle metadata with strict privacy and unchanged security assertions.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"native_passive_metadata_preparation\",\"profile\":\"standard\",\"role\":\"native-evidence-contract-author\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Independent privacy, auth-adjacent native capture preservation and cleanup validation before diagnostic source authoring.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"native_passive_metadata_validation\",\"profile\":\"diverse_review\",\"role\":\"independent-native-evidence-contract-validator\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Implement independently validated bounded native metadata with auth/privacy isolation and failure/cleanup preservation.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"native_passive_metadata_implementation\",\"profile\":\"standard\",\"role\":\"native-passive-evidence-author\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate, trace-advisory]
 tea_rationale: "Scheduling, synchronized projections, capacity and drag/keyboard/dialog behavior"
@@ -160,7 +162,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [45a64853, f9e12a81, 279d3149, b9d61a33, 4d7911ac, 3a655a5d, a67a64dc, 66cd8436, d79fff08, bf84cf5d, 181f947f, 22cfb74a, 22cfb74a, 6fd516b0, 521d56fd, e448f856]
+commits: [45a64853, f9e12a81, 279d3149, b9d61a33, 4d7911ac, 3a655a5d, a67a64dc, 66cd8436, d79fff08, bf84cf5d, 181f947f, 22cfb74a, 22cfb74a, 6fd516b0, 521d56fd, e448f856, b99e3f42]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -1615,3 +1617,34 @@ dashboard_prefetch_diagnosis:
   code_changed: false
   phase5_complete: false
   broad_review_credit: 0
+native_passive_metadata_preparation:
+  status: prepared-awaiting-independent-validation
+  delegate: "/root/native15_passive_contract_high"
+  artifact: "_bmad-output/implementation-artifacts/story-15-1-passive-network-metadata-addendum-2026-10-14.md"
+  sha256: dec94a0dce6123590925a72cb45fbc2a7f55b2a5039968e23994438b483044f6
+  bytes: 9142
+  source_sha256: 8563d81330b0f2cd79b9e86ec5888c1c96866bfdaff48b8af484acf3b4852e66
+  source_bytes: 40324
+  independent_validator: "/root/native15_passive_validation_high"
+  code_changed: false
+  native_credit: 0
+  broad_review_credit: 0
+native_passive_metadata_ownership:
+  coordinator_thread: 01a1160d-b5b1-7623-a8e8-54ef3dc537ed
+  checked_worktrees: 31
+  pending_file_overlap: false
+  exclusive_owned_paths: [tests/e2e/scheduling-views.atdd.e2e.spec.ts, new story15.1 diagnostic preparation/validation artifacts]
+  excluded: [shared harness, app/nav/auth, workflow, migrations, fixtures, mutable resources]
+  evidence_limit: "Current pending edits checked; no claim about future intent"
+  source_release: Independent High contract PASS and subsequent independent High implementation review required
+  story15_2_admitted: false
+native_passive_metadata_validation:
+  status: PASS-bounded-authoring-only
+  delegate: "/root/native15_passive_validation_high"
+  artifact: "_bmad-output/implementation-artifacts/story-15-1-passive-network-metadata-validation-2026-10-14.md"
+  sha256: 0f6d8f31f64aa968c248bffd0bb0955b50d11e3cb82d9db0df3dd7719282ee64
+  bytes: 7639
+  scope: "No reachable contract privacy/cleanup/native-preservation gap; actual factory+cleanup source-extracted proofs required"
+  native_credit: 0
+  broad_review_credit: 0
+  phase5_complete: false
