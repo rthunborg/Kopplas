@@ -9,10 +9,10 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-15T13:30:05Z"
+updated_at: "2026-10-15T13:34:46Z"
 started_at: "2026-10-09T13:06:12Z"
 completed_at: null
-active_seconds: 63813
+active_seconds: 64076
 timing_anchor: null
 is_first_in_epic: true
 is_last_in_epic: false
@@ -26,7 +26,7 @@ selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Explicit High implementation of coordinated capsule-only savederrno diagnostic; privileged source integrity, no compiler/runtime admission"
+escalation_reason: "Distinct focused High preparation validation of capsule125-only label compatibility, encoder qualification and privileged diagnostic privacy"
 routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary scheduling UX specification; sensitive authorization/integrity portions explicitly delegated High\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary15.1 ATDD preparation; sensitive access assertions delegated High; shared fixture edits excluded\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -221,6 +221,7 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Explicit High source-only preparation: privileged capsule125 producer and credential/detachment diagnostic predicates; no execution admitted\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Independent High preparation validation of privileged first-failure capsule diagnostics and credential predicate privacy\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Explicit High implementation of coordinated capsule-only savederrno diagnostic; privileged source integrity, no compiler/runtime admission\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct focused High preparation validation of capsule125-only label compatibility, encoder qualification and privileged diagnostic privacy\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate, trace-advisory]
 tea_rationale: "Scheduling, synchronized projections, capacity and drag/keyboard/dialog behavior"
@@ -246,7 +247,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [45a64853, f9e12a81, 279d3149, b9d61a33, 4d7911ac, 3a655a5d, a67a64dc, 66cd8436, d79fff08, bf84cf5d, 181f947f, 22cfb74a, 22cfb74a, 6fd516b0, 521d56fd, e448f856, b99e3f42, 83e27c92, 1aa7c52b, 8630b011, da3a4c59, 27d67de7, 4223e887, 9c26fd72, d75313bb, 4b0ab106, f7b4f154, 437c3da2, e6c404d3, f4a431f6, 85cae2a5, 689a1385, 1bc90218, c49ac882, 4b685196, a5d262f8, a39cd221, 704e9320, c797d815, 25390342e668dee81d6bda42bfe0b5b51ed1723b, a98fc96386df752c631c119de992fc832c8ecb4d, ea5477fff0dbd8e82abb6a376269bfcf54ae95e9, 35e904b2e0d8798f72fbb405b3a888d64fdebd45, 2a071fc49a81984ae55e9e2c08a7583444245d86, ccd7abe9ebe38d846df58087c9d94280ad1d25ab, b01a0511cd1ee66f710de21034faeae9d5537403, eaabd2d0020b391247e1a4383b0eaf6291f0ac83, 39b84268e8eeffb3f9a6ff6b055846187c166d4b, ffa4168a62851a788cea6fff244a87f12b08cca6, 049a6f0f, ef1c5a290bdc3e6b48e68ec492abc0010c636c1b, 3c07917c1a323ba280d2325d7fe050cf1574bf5e, d880cd63fa158272f206d74aa5c4b0280d0d622c, 62dbbf947a916f528e8ae32d7b768750769a8c5d, b38d358fbba883ce79662a2b0fd0cea51d27c121, 4602a2eacdac7636c67751c986b18cc3c546950f, 65207b9ecaf7e5ad39b1840bda76099805acfa57, dab81e3d21a8180a05d3db9af5dde7334f991982, 828474451a0ae833a712d64544482498e79740bd, 706c3c9c7e2f2b2178b1c3506c59a2708356141b, 24d15439ab87847ecd1234b3e475b9d76883de2f, c0a57eda240f2b17793b693b2f3fbb963ebb29ab, 11c5cd1e0a8a6fda3297a9f16a54bb48209a5d9c, 5d76de08575fb8fa09197021899d78280829d554, 81836287786a40540e96dbdf46db29c868cde41b, 48386408fc628f7341b711f177ff5833f622959c, 92dc4a5f4f7e9878e9ed9c28e00bda5d98680478, 16180cd63914a57895b36c2db060c43c74da3514, caec31b185bcad597664668d7a835c9c2096aa4d, 0a312c8fbd617d4ce03f97d5484bb23babb0686b, d5a5f85155394a0337ea92fcd606f949559b172a, becfd00e, 80c31af2, a0dd2302ead46e72e77f3293b84085c4f8fe65f3, 6f9e29656df997e2c5c6027874da4bee1ef6c17d, 5c1fb90b2f7f735259208e2d420bce489cbed598, 0d6f43ac90596b8703d8df3b9b986f9026aaaba3, 76868db295ac6b7de06a57f43164d5f02140f938, c4375f61, abaf8d81, db50a9c5]
+commits: [45a64853, f9e12a81, 279d3149, b9d61a33, 4d7911ac, 3a655a5d, a67a64dc, 66cd8436, d79fff08, bf84cf5d, 181f947f, 22cfb74a, 22cfb74a, 6fd516b0, 521d56fd, e448f856, b99e3f42, 83e27c92, 1aa7c52b, 8630b011, da3a4c59, 27d67de7, 4223e887, 9c26fd72, d75313bb, 4b0ab106, f7b4f154, 437c3da2, e6c404d3, f4a431f6, 85cae2a5, 689a1385, 1bc90218, c49ac882, 4b685196, a5d262f8, a39cd221, 704e9320, c797d815, 25390342e668dee81d6bda42bfe0b5b51ed1723b, a98fc96386df752c631c119de992fc832c8ecb4d, ea5477fff0dbd8e82abb6a376269bfcf54ae95e9, 35e904b2e0d8798f72fbb405b3a888d64fdebd45, 2a071fc49a81984ae55e9e2c08a7583444245d86, ccd7abe9ebe38d846df58087c9d94280ad1d25ab, b01a0511cd1ee66f710de21034faeae9d5537403, eaabd2d0020b391247e1a4383b0eaf6291f0ac83, 39b84268e8eeffb3f9a6ff6b055846187c166d4b, ffa4168a62851a788cea6fff244a87f12b08cca6, 049a6f0f, ef1c5a290bdc3e6b48e68ec492abc0010c636c1b, 3c07917c1a323ba280d2325d7fe050cf1574bf5e, d880cd63fa158272f206d74aa5c4b0280d0d622c, 62dbbf947a916f528e8ae32d7b768750769a8c5d, b38d358fbba883ce79662a2b0fd0cea51d27c121, 4602a2eacdac7636c67751c986b18cc3c546950f, 65207b9ecaf7e5ad39b1840bda76099805acfa57, dab81e3d21a8180a05d3db9af5dde7334f991982, 828474451a0ae833a712d64544482498e79740bd, 706c3c9c7e2f2b2178b1c3506c59a2708356141b, 24d15439ab87847ecd1234b3e475b9d76883de2f, c0a57eda240f2b17793b693b2f3fbb963ebb29ab, 11c5cd1e0a8a6fda3297a9f16a54bb48209a5d9c, 5d76de08575fb8fa09197021899d78280829d554, 81836287786a40540e96dbdf46db29c868cde41b, 48386408fc628f7341b711f177ff5833f622959c, 92dc4a5f4f7e9878e9ed9c28e00bda5d98680478, 16180cd63914a57895b36c2db060c43c74da3514, caec31b185bcad597664668d7a835c9c2096aa4d, 0a312c8fbd617d4ce03f97d5484bb23babb0686b, d5a5f85155394a0337ea92fcd606f949559b172a, becfd00e, 80c31af2, a0dd2302ead46e72e77f3293b84085c4f8fe65f3, 6f9e29656df997e2c5c6027874da4bee1ef6c17d, 5c1fb90b2f7f735259208e2d420bce489cbed598, 0d6f43ac90596b8703d8df3b9b986f9026aaaba3, 76868db295ac6b7de06a57f43164d5f02140f938, c4375f61, abaf8d81, db50a9c5, a1b83089]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -3904,3 +3905,26 @@ application_browser_capsule125_compatibility:
   native_source_qualification: capsule-result
   addendum_sha256: 39f470d3d7b72a5a970774cf7fc5c82dd7119c8ff4f5110296ef925e0d39b076
   c_draft_sha256: a48c96a0e196416aa5e0036010085676fc696ff844f166903044e317064c530c
+application_browser_capsule125_compatibility_validation:
+  validation_sha256: 94afe9b3e59b6ef1295692157fa82595e4756fd697e03591f3735226efc0fde3
+  p5_credit: false
+  future_node_cases_expected: 123
+  downstream_blocked_labels: 4
+  fresh_final_inverse_required: true
+  broad_review_rounds: 0
+  append_bytes: 9286
+  preservation_receipt_sha256: 9100124904324c418fe88f5a620d87df95455581c987720f4db149599d159dce
+  prefix_sha256: ce4d2b29078f4d094c748678753f24900fb24307938fb47add87b946e2c3f19b
+  append_sha256: aeecbe1a94321cc9196ac209e41c634037eccda3347dad64c50f92316e6bbeeb
+  native_reachability_credit: false
+  protected_files: 1456
+  validation_bytes: 127228
+  prefix_bytes: 117942
+  preservation_mismatches: 0
+  compiler_native_ci_held: true
+  tests_executed: 0
+  status: PASS_focused_preparation_only
+  author_bindings_verified: 15
+  source_unaccepted: true
+  old_recipe_historical_only: true
+  future_compiled_mock_cases_expected: 36

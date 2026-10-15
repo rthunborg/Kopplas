@@ -628,3 +628,38 @@ none
 1. None for focused amendment validation
 
 **Next:** Validate native125-only fine-label namespace before dependent source realization resumes
+
+## Report — 2026-10-15T13:34:46Z (capsule125 focused compatibility preparation PASS)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `a1b8308`).
+**Pipeline status:** in-progress;15.1 verification blocked
+**Continues:** Focused compatibility preparation PASS;source realization remains separate
+
+**Summary:** Six sequential stories;none landed
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 144h 36m (≈17h 56m AI-run, ≈126h 40m human/idle wait); resumed 18×.
+
+**Stories:**
+1. 15.1 blocked;15.2-15.6 backlog
+
+**Skipped:** (none)
+
+**Epic gate:** Not evaluated
+
+**TEA:** Required gates pending
+
+**Retrospective:** Epic14 October8 accepted-with-open-items
+
+**Overrides:** Owner design;one final epic PR;merge commit retain branches;no deploy
+
+**Open questions:**
+1. Fresh final runner inverse required;four blocked labels earn no native reachability credit;marker origin unguaranteed
+
+**Deferred work:**
+1. 123Node and36compiledmock cases unexecuted;compiler unadmitted
+
+**⚠️ Needs human:**
+1. None for reviewed compatibility resolution
+
+**Next:** Coordinator resume acknowledgment then finish admitted source/Node work;precise compiler proposal before C execution
