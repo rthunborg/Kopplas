@@ -9,16 +9,16 @@ spec_folder: null
 story_id: null
 branch: codex/epic-16-jobs
 status: in-progress
-updated_at: "2026-10-15T08:53:32Z"
+updated_at: "2026-10-15T09:06:59Z"
 started_at: "2026-10-15T08:50:46Z"
 completed_at: null
-active_seconds: 124
+active_seconds: 876
 timing_anchor: null
 is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: readiness
+selected_phase: planning
 selected_role: specification-author
 selected_profile: critical
 selected_model: gpt-6.1-sol
@@ -26,9 +26,10 @@ selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Job authorization, assigned-worker money omission and acceptance transactional contract planning"
+escalation_reason: "Independent High contract recommendation: scope-safe membership foundation, job authorization, structural financial omission and authoritative booking revalidation"
 routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Job authorization, assigned-worker money omission and acceptance transactional contract planning\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"readiness\",\"profile\":\"critical\",\"role\":\"specification-author\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Independent High contract recommendation: scope-safe membership foundation, job authorization, structural financial omission and authoritative booking revalidation\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"planning\",\"profile\":\"critical\",\"role\":\"specification-author\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: null
 tea_selected: []
 tea_rationale: null
@@ -78,8 +79,7 @@ merge_method: null
 merge_commit: null
 branch_deleted: false
 open_questions:
-  - Independent High membership/dependency contract disposition pending coordinator
-  - Concrete project-only fields and oracle values unresolved
+  - "Concrete project-only field meaning must preserve product/integrity requirements; resolve design defaults under owner standing decision"
   - "Shared paths, migration range and isolated runtime allocation pending coordinator"
 deferred_work: []
 blockers: []
@@ -89,6 +89,7 @@ overrides:
   ownership: "E16-specific preparation/state only; shared allocations by coordinator"
   concurrent_epics: "Human-authorized E16 concurrently with E15; E16 stories sequential"
   merge: "Coordinator only, merge commit, retain branch; no deployment"
+  design_evidence: "2026-10-15 direct human standing decision: no legacy URL reference/use/evidence; use existing design system/accessibility and maintainable headless defaults for missing UX rules. Zero legacy observations; domain/state/validation/actions/semantic models separated from replaceable usable UI/flow."
 constraints:
   - No product/shared sprint/runtime writes before coordinator allocation
   - E15 scheduling/time/diagnostics resources excluded
@@ -102,3 +103,5 @@ base_sha: 8cda24614e77eda33ea31fe4de61af3a19d4759d
 workflow_version: 0.31.0
 readiness_evidence: "_bmad-output/test-artifacts/epic-16/readiness-contracts-2026-10-15.md"
 readiness_evidence_sha256: E75E24522459001E1EA93AD2CBFB2FC503003327052541399386EE196C1C3152
+legacy_oracle_cancelled: true
+legacy_observations: 0
