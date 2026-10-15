@@ -9,10 +9,10 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-15T12:52:32Z"
+updated_at: "2026-10-15T13:08:52Z"
 started_at: "2026-10-09T12:57:49Z"
 completed_at: null
-active_seconds: 62470
+active_seconds: 63146
 timing_anchor: null
 is_first_in_epic: false
 is_last_in_epic: false
@@ -26,7 +26,7 @@ selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Independent actual native privileged compilation identity credential and cleanup evidence audit of consumed second capability run; no reexecution"
+escalation_reason: "Explicit High source-only preparation: privileged capsule125 producer and credential/detachment diagnostic predicates; no execution admitted"
 routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary epic test planning; sensitive implementation/review scope routed explicitly High\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary story test-risk classification\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_triage\",\"profile\":\"light\",\"role\":\"test-risk-triage\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -45,6 +45,7 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"High realization of validated capability failure diagnostics and CLI terminal cancellation integrity; resource-free runner/unit scope only\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct independent High source review of capability failure diagnostics terminal exit and cancellation cleanup integrity; native held\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Independent actual native privileged compilation identity credential and cleanup evidence audit of consumed second capability run; no reexecution\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Explicit High source-only preparation: privileged capsule125 producer and credential/detachment diagnostic predicates; no execution admitted\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: null
 tea_selected: []
 tea_rationale: null
@@ -70,7 +71,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [99e1274e, b7f19e2d, 6f612a21, bc4163ea, 27ce6a2b, 7cdd08a6, 66cd8436, e6c404d3, 5d76de08575fb8fa09197021899d78280829d554, 81836287786a40540e96dbdf46db29c868cde41b, 48386408fc628f7341b711f177ff5833f622959c, 92dc4a5f4f7e9878e9ed9c28e00bda5d98680478, 16180cd63914a57895b36c2db060c43c74da3514, caec31b185bcad597664668d7a835c9c2096aa4d, 0a312c8fbd617d4ce03f97d5484bb23babb0686b, d5a5f85155394a0337ea92fcd606f949559b172a, becfd00e, 80c31af2, a0dd2302ead46e72e77f3293b84085c4f8fe65f3, 6f9e29656df997e2c5c6027874da4bee1ef6c17d, 5c1fb90b2f7f735259208e2d420bce489cbed598, 0d6f43ac90596b8703d8df3b9b986f9026aaaba3, 76868db295ac6b7de06a57f43164d5f02140f938]
+commits: [99e1274e, b7f19e2d, 6f612a21, bc4163ea, 27ce6a2b, 7cdd08a6, 66cd8436, e6c404d3, 5d76de08575fb8fa09197021899d78280829d554, 81836287786a40540e96dbdf46db29c868cde41b, 48386408fc628f7341b711f177ff5833f622959c, 92dc4a5f4f7e9878e9ed9c28e00bda5d98680478, 16180cd63914a57895b36c2db060c43c74da3514, caec31b185bcad597664668d7a835c9c2096aa4d, 0a312c8fbd617d4ce03f97d5484bb23babb0686b, d5a5f85155394a0337ea92fcd606f949559b172a, becfd00e, 80c31af2, a0dd2302ead46e72e77f3293b84085c4f8fe65f3, 6f9e29656df997e2c5c6027874da4bee1ef6c17d, 5c1fb90b2f7f735259208e2d420bce489cbed598, 0d6f43ac90596b8703d8df3b9b986f9026aaaba3, 76868db295ac6b7de06a57f43164d5f02140f938, c4375f61]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -601,3 +602,24 @@ application_browser_observability_native_audit:
   native_execution: held no retry
   p5_complete: false
   broad_review_round: 0
+application_browser_capsule125_preparation:
+  preserved_prefix_bytes: 148513
+  future_node_cases_expected: 123
+  preserved_prefix_sha256: 831a2032acf260b108e728f7b5867e521c66188a445b8e55c6d6b4e5e4153943
+  source_runtime_ci_held: true
+  future_compiled_mock_cases_expected: 36
+  native_actions: 0
+  broad_review_rounds: 0
+  append_bytes: 11812
+  protected_bindings: 1437
+  p5_credit: false
+  runner_predicate_labels: 21
+  private_manifest_sha256: b8adb455f4da98ef1fba5a65ea293661ff18ecd5758de1368834b76e83ad8d59
+  append_sha256: 2b368eef379e46fc95430680e9918e9d7c2f977437954dd65be44f27c78a0d09
+  status: sealed_pending_independent_validation
+  preservation_mismatches: 0
+  broker_main_return125_sites: 5
+  addendum_sha256: 2a27be36736929330629362a77233a99cf687902d0724e301b88166065c7d3f0
+  addendum_bytes: 160325
+  tests_executed: 0
+  child_exit125_sites: 8

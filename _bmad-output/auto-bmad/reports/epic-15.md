@@ -523,3 +523,38 @@ none
 **⚠️ Needs human:** (none)
 
 **Next:** Coordinate preparation-only next scope using audited facts; no automatic native retry
+
+## Report — 2026-10-15T13:08:53Z (capsule125 preparation sealed, implementation held)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `c4375f6`).
+**Pipeline status:** in-progress; story 15.1 blocked on application verification
+**Continues:** Independent High preparation validation; source and runtime remain held
+
+**Summary:** Six sequential stories; none landed
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 144h 11m (≈17h 32m AI-run, ≈126h 38m human/idle wait); resumed 15×.
+
+**Stories:**
+1. 15.1 blocked; 15.2-15.6 backlog
+
+**Skipped:** (none)
+
+**Epic gate:** Not evaluated
+
+**TEA:** Required completion gates pending
+
+**Retrospective:** Epic 14 October 8 accepted-with-open-items governs
+
+**Overrides:** Owner design replaces unavailable legacy oracle; merge commits and retain branches; no deploy
+
+**Open questions:**
+1. Exact capsule125 cause, credential and detachment proof, later owner survival remain unknown
+
+**Deferred work:**
+1. Concrete proposal only: 21 runner labels plus separately allocated first-failure C marker;123 Node and36 compiled mock cases expected,0 executed
+
+**⚠️ Needs human:**
+1. None for current preparation
+
+**Next:** Distinct High validation of sealed160325B proposal; no blind native retry
