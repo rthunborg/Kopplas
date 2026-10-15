@@ -442,3 +442,135 @@ test("actual capability mode has no optional DB lifecycle while application reta
     if(name === "Stop local Supabase stack") assert.equal(step.run,"supabase stop");
   }
 });
+
+
+// Capability diagnostics: actual module AND terminal CLI, with all native interfaces denied/mocked.
+async function capabilityCLI(fault: string, primary = "pending-true", secondary = "pending-true") {
+  const posix = (await import("node:path")).posix;
+  const commands: string[] = [], handoffs: string[] = [], exits: number[] = [];
+  const writes = {stdout:[] as string[],stderr:[] as string[]};
+  const retained: (()=>void)[] = [], timers=new Map<number,{fn:()=>void;delay:number}>(), signals=new Map<string,()=>void>();
+  let id=0,launches=0,settle:()=>void=()=>{};
+  const PRIVATE="PRIVATE secret /home/private bearer credential payload";
+  const denied=()=>{throw new Error(PRIVATE);};
+  const stream=(name:"stdout"|"stderr",behavior:string)=>Object.assign(new EventEmitter(),{
+    write:(value:string,callback?:(error?:Error)=>void)=>{
+      writes[name].push(value);if(callback)retained.push(()=>callback(new Error(PRIVATE)));
+      if(behavior==="throw")throw new Error(PRIVATE);
+      if(behavior==="callback-error")callback?.(new Error(PRIVATE));
+      if(behavior==="event-error")output[name].emit("error",new Error(PRIVATE));
+      return behavior!=="pending-false";
+    },
+  });
+  const output={stdout:stream("stdout",primary),stderr:stream("stderr",secondary)};
+  const child=Object.assign(new EventEmitter(),{stdout:Object.assign(new EventEmitter(),{destroy(){}}),
+    stdin:Object.assign(new EventEmitter(),{write:(value:string)=>{commands.push(value);
+      if((fault==="request"&&value==="CAPABILITY\n")||(fault==="finish"&&value==="FINISH\n"))throw new Error(PRIVATE);},end(){},destroy(){}}),unref(){}});
+  const env={CI:"true",SUPABASE_TEST_REQUIRED:"1",GITHUB_SHA:"a".repeat(40),FIXED_CHROMIUM_HOSTED_ADMISSION_SHA:"a".repeat(40),
+    FIXED_CHROMIUM_HOSTED_ADMISSION:fault==="mode"?"unadmitted":"capability",FIXED_CHROMIUM_BROKER_ROOT:"/owned",
+    FIXED_CHROMIUM_WORKLOAD_REPO:"/owned/workload",FIXED_CHROMIUM_BROKER_GENERATION:"12345678-1234-1234-1234-123456789abc",
+    FIXED_CHROMIUM_BROKER_SOURCE_SHA256:"b".repeat(64),FIXED_CHROMIUM_BROKER_UNIT:"kopplas-fixed-12345678-1234-1234-1234-123456789abc.service"};
+  const terminal=new Error("TERMINAL SENTINEL");
+  const process={platform:"linux",version:"v22.23.3",env,argv:["node","/repo/tests/diagnostics/fixed-chromium-application-runner.mjs","--capability-capsule"],
+    stdout:output.stdout,stderr:output.stderr,exitCode:0,exit:(code:number)=>{exits.push(code);throw terminal;},
+    on:(name:string,fn:()=>void)=>{if(fault==="construction")throw new Error(PRIVATE);signals.set(name,fn);},
+    off:(name:string,fn:()=>void)=>{if(signals.get(name)===fn)signals.delete(name);}};
+  const context={process,Buffer,createHash,performance:{now:()=>0},...posix,fileURLToPath:(url:string)=>new URL(url).pathname,
+    setTimeout:(fn:()=>void,delay:number)=>{const key=++id;timers.set(key,{fn,delay});return key;},clearTimeout:(key:number)=>timers.delete(key),
+    lstat:async(path:string)=>{if(fault==="root"&&path==="/owned")throw new Error(PRIVATE);
+      if(fault==="cancel-root"&&path==="/owned")await new Promise<void>(resolve=>{settle=resolve;});
+      return {isSymbolicLink:()=>false,isDirectory:()=>true,isFile:()=>true,uid:fault==="binary"&&path.endsWith("broker")?1:0,mode:path==="/owned"?0o711:0o700};},
+    mkdir:async()=>{if(fault==="directory")throw new Error(PRIVATE);},
+    writeFile:async()=>{if(fault==="write")throw new Error(PRIVATE);if(fault==="cancel-write")await new Promise<void>(resolve=>{settle=resolve;});},
+    readFile:denied,realpath:denied,execFile:denied,createRequire:denied,admitCandidate:denied,packageAdmission:denied,validateReceipt,
+    spawn:(_command:string,argv:string[])=>{if(argv.includes("/usr/bin/systemd-run")){launches++;if(fault==="spawn")throw new Error(PRIVATE);return child;}
+      handoffs.push(argv.at(-1)!);if(fault==="handoff")throw new Error(PRIVATE);return Object.assign(new EventEmitter(),{unref(){}});},
+    hooks:{} as {encode: (record:unknown)=>string;stages:readonly string[];reasons:readonly string[];publish:(record:unknown,host:unknown)=>{attempt:()=>void;commit:()=>void}},
+  };
+  const text=source("tests/diagnostics/fixed-chromium-application-runner.mjs").replace(/^import[\s\S]*?;\n/gm,"")
+    .replace(/\bexport(?=\s+(?:const|async|function))/g,"").replaceAll("import.meta.url","'file:///repo/tests/diagnostics/fixed-chromium-application-runner.mjs'")
+    .replace("if (process.argv[1] &&", "hooks.encode=encodeCapabilityFailure;hooks.stages=CAPABILITY_STAGES;hooks.reasons=CAPABILITY_REASONS;hooks.publish=publishCapabilityFailure;\nif (process.argv[1] &&");
+  const running=vm.runInNewContext(`(async()=>{${text}\n})()`,context) as Promise<unknown>;
+  const outcome=running.then(()=>null,error=>error);
+  const flush=async()=>{for(let i=0;i<100;i++)await Promise.resolve();};
+  const tick=async(delay:number)=>{for(const[key,value]of [...timers])if(value.delay===delay){timers.delete(key);value.fn();}await flush();};
+  const ack=(invalid=false)=>child.stdout.emit("data",Buffer.from(JSON.stringify({event:"ready",generation:env.FIXED_CHROMIUM_BROKER_GENERATION,
+    source:invalid?"c".repeat(64):env.FIXED_CHROMIUM_BROKER_SOURCE_SHA256,unit:env.FIXED_CHROMIUM_BROKER_UNIT,durable:true,workloads:0})+"\n"));
+  const stage=(invalid=false)=>child.stdout.emit("data",Buffer.from(JSON.stringify({event:"stage",generation:env.FIXED_CHROMIUM_BROKER_GENERATION,
+    stage:"capsule",code:0,signal:0,expired:true,reaped:true,empty:!invalid,confirmed:true,residue:false,
+    output:JSON.stringify({node:fault==="bad-payload"?"v24.0.0":"v22.23.3",uid:1001,gid:1001,groups:[1001],detached:true,
+      status:"NoNewPrivs:\t1\nCapInh:\t0000\nCapPrm:\t0000\nCapEff:\t0000\nCapBnd:\t0000\nCapAmb:\t0000"})})+"\n"));
+  const finish=async()=>{
+    await flush();if(launches&&fault!=="spawn"){
+      if(fault==="close")child.emit("close",42,null);
+      else if(fault==="timeout")await tick(15000);
+      else {ack(fault==="invalid-ACK");await flush();if(commands.includes("CAPABILITY\n")&&fault!=="request"){
+        if(fault==="capsule-timeout")await tick(4000);else stage(fault==="result");}}
+    }
+    await flush();if([...timers.values()].some(value=>value.delay===2000)){
+      assert.deepEqual(exits,[],"CLI exited before existing bounded cleanup/handoff");await tick(2000);
+    }
+    assert.equal(await outcome,terminal);assert.deepEqual(exits,[1]);assert.equal(process.exitCode,1);
+    const lines=[...writes.stdout,...writes.stderr];const record=JSON.parse(lines.find(value=>value.startsWith("{"))!.split("\n")[0]);
+    assert.equal(record.exitCode,1);assert.ok(!JSON.stringify(record).includes(PRIVATE));assert.equal(timers.size,0);
+    return record as Record<string,unknown>;
+  };
+  return{child,fault,commands,handoffs,exits,writes,retained,timers,signals,output,context,terminal,outcome,flush,tick,ack,stage,finish,
+    cancel:()=>signals.get("SIGTERM")?.(),settle:()=>settle(),get launches(){return launches;}};
+}
+for(const [fault,stage,reason] of [
+  ["construction","entry","unknown"],["mode","host-preflight","precondition-rejected"],
+  ["root","host-preflight","filesystem-read-failed"],["binary","host-preflight","precondition-rejected"],
+  ["spawn","owner-start","owner-start-failed"],["close","owner-ready","owner-transport-failed"],
+  ["timeout","owner-ready","owner-ready-timeout"],["invalid-ACK","owner-ready","control-invalid"],
+  ["request","capsule-request","capsule-request-failed"],["result","capsule-request","ownership-unconfirmed"],
+  ["finish","ownership-finish","ownership-finish-failed"],["directory","receipt-directory","receipt-directory-failed"],
+])test(`capability actual CLI ${fault} failure is frozen and terminal`,{timeout:2000},async()=>{
+  const f=await capabilityCLI(fault),record=await f.finish();assert.equal(record.stage,stage);assert.equal(record.reason,reason);
+  if(fault==="close"){assert.equal(record.nativeCode,42);assert.equal(record.nativeSource,"owner-transport");}
+  if(fault==="result"){assert.equal(record.nativeCode,0);assert.equal(record.nativeSource,"capsule-result");
+    const payload=await capabilityCLI("bad-payload"),bad=await payload.finish();assert.equal(bad.stage,"capsule-result");assert.equal(bad.reason,"capsule-result-rejected");assert.equal(bad.nativeCode,0);
+    const timed=await capabilityCLI("capsule-timeout"),expired=await timed.finish();assert.equal(expired.reason,"capsule-timeout");assert.equal(expired.nativeCode,null);
+  }
+  assert.equal(f.writes.stdout.length,1);assert.equal(f.writes.stderr.length,0);
+});
+test("capability actual CLI receipt-write failure survives both failed sinks",{timeout:2000},async()=>{
+  const f=await capabilityCLI("write","throw","throw"),record=await f.finish();assert.equal(record.stage,"receipt-write");
+  assert.equal(record.reason,"receipt-write-failed");assert.equal(record.nativeCode,0);
+  assert.equal(f.writes.stdout.length,1);assert.equal(f.writes.stderr.length,1);
+});
+test("capability actual CLI cancellation preserves first refusal and waits only existing handoff",{timeout:2000},async()=>{
+  for(const fault of ["cancel-root","cancel-ACK","handoff"]){const f=await capabilityCLI(fault);await f.flush();
+    if(fault!=="cancel-root")f.ack();await f.flush();f.cancel();await f.flush();
+    if(fault!=="cancel-root"){assert.deepEqual(f.exits,[]);await f.tick(2000);}
+    assert.equal(await f.outcome,f.terminal);assert.deepEqual(f.exits,[1]);
+    const record=JSON.parse(f.writes.stdout[0].split("\n")[0]);assert.equal(record.reason,"cancelled");
+    f.settle();f.ack();f.stage();await f.flush();assert.equal(f.commands.includes("APPLICATION\n"),false);
+    if(fault==="cancel-root")assert.equal(f.launches,0);
+  }
+  const prior=await capabilityCLI("close");await prior.flush();prior.child.emit("close",42,null);await prior.flush();prior.cancel();await prior.tick(2000);
+  assert.equal(await prior.outcome,prior.terminal);const earlier=JSON.parse(prior.writes.stdout[0].split("\n")[0]);
+  assert.equal(earlier.reason,"owner-transport-failed");assert.equal(earlier.nativeCode,42);assert.deepEqual(prior.exits,[1]);
+});
+test("capability actual CLI late result/write/signal cannot promote or rewrite failure",{timeout:2000},async()=>{
+  const f=await capabilityCLI("cancel-write");await f.flush();f.ack();await f.flush();f.stage();await f.flush();f.cancel();await f.flush();
+  assert.equal(await f.outcome,f.terminal);assert.deepEqual(f.exits,[1]);const frozen=f.writes.stdout[0];
+  assert.equal(JSON.parse(frozen.split("\n")[0]).reason,"cancelled");f.settle();f.stage();f.cancel();await f.flush();
+  assert.equal(f.writes.stdout[0],frozen);assert.equal(f.writes.stdout.length,1);assert.equal(f.writes.stderr.length,0);
+  const earlier=await capabilityCLI("root");await earlier.flush();earlier.cancel();const result=await earlier.finish();assert.equal(result.reason,"filesystem-read-failed");
+});
+test("capability actual CLI bounds untrusted schema and nonsettling publication including generic output",{timeout:2000},async()=>{
+  for(const [primary,secondary]of [["pending-false","pending-true"],["pending-true","pending-true"],["throw","pending-false"],
+    ["callback-error","throw"],["event-error","pending-true"],["throw","throw"]]){
+    const f=await capabilityCLI("mode",primary,secondary),record=await f.finish(),snapshot=JSON.stringify(record);
+    assert.equal(f.writes.stdout.length,1);assert.ok(f.writes.stderr.length<=1);
+    for(const value of [...f.writes.stdout,...f.writes.stderr]){assert.equal(value.split("\n").length,3);assert.ok(value.endsWith("fixed-chromium-application unavailable\n"));assert.ok(Buffer.byteLength(value)<=816);}
+    for(const callback of f.retained)callback();f.output.stdout.emit("error",new Error("PRIVATE"));if(f.writes.stderr.length)f.output.stderr.emit("error",new Error("PRIVATE"));
+    assert.equal(JSON.stringify(record),snapshot);assert.equal(f.writes.stdout.length,1);assert.ok(f.writes.stderr.length<=1);assert.deepEqual(f.exits,[1]);
+    const {encode,stages,reasons}=f.context.hooks;assert.equal(stages.length,10);assert.equal(reasons.length,16);assert.equal(Object.keys(record).length,11);
+    for(const stage of stages)for(const reason of reasons)assert.ok(Buffer.byteLength(encode({...record,stage,reason}))<=768);
+    for(const bad of [{...record,secret:"PRIVATE"},{...record,stage:"PRIVATE"},{...record,reason:"PRIVATE"},{...record,nativeCode:256},{...record,nativeCode:-1},{...record,nativeCode:0.5},{...record,nativeSource:"PRIVATE"},{...record,nativeSignal:"PRIVATE"},{...record,ownerEvidence:"PRIVATE"}])assert.throws(()=>encode(bad));
+    const publisher=f.context.hooks.publish({...record,extra:"PRIVATE"},{stdout:f.output.stdout,stderr:f.output.stderr});publisher.attempt();publisher.commit();
+    assert.ok(f.writes.stdout.at(-1)!.includes("unavailable"));assert.ok(!f.writes.stdout.at(-1)!.includes("PRIVATE"));
+  }
+});

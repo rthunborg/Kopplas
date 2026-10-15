@@ -197,18 +197,91 @@ export async function runOwnedChild(io, argv, env, milliseconds, capture = false
   }
 }
 
+// CAPABILITY-DIAGNOSTIC-BEGIN: data only; no native action or output on import.
+export const CAPABILITY_STAGES = Object.freeze(['entry','host-preflight','owner-start','owner-ready','capsule-request',
+  'capsule-result','ownership-finish','receipt-directory','receipt-write','terminal']);
+export const CAPABILITY_REASONS = Object.freeze(['unknown','precondition-rejected','filesystem-read-failed','owner-start-failed',
+  'owner-transport-failed','owner-ready-timeout','control-invalid','capsule-request-failed','capsule-timeout',
+  'capsule-result-rejected','ownership-unconfirmed','ownership-finish-failed','receipt-directory-failed','receipt-write-failed',
+  'cancelled','lifetime-refused']);
+const CAPABILITY_KEYS = ['schemaVersion','kind','mode','outcome','stage','reason','exitCode','nativeSource','nativeCode','nativeSignal','ownerEvidence'];
+export function encodeCapabilityFailure(value) {
+  requireFact(exact(value,CAPABILITY_KEYS) && value.schemaVersion === 1 && value.kind === 'fixed-chromium-capability-failure'
+    && value.mode === 'capability' && value.outcome === 'failed' && value.exitCode === 1
+    && CAPABILITY_STAGES.includes(value.stage) && CAPABILITY_REASONS.includes(value.reason)
+    && ['unavailable','owner-transport','capsule-result'].includes(value.nativeSource)
+    && (value.nativeCode === null || (integer(value.nativeCode) && value.nativeCode <= 255))
+    && [null,'SIGINT','SIGTERM','SIGKILL','other'].includes(value.nativeSignal)
+    && ['unavailable','partial','protocol-confirmed'].includes(value.ownerEvidence)
+    && (value.nativeSource !== 'unavailable' || (value.nativeCode === null && value.nativeSignal === null)), 'admission');
+  const line = JSON.stringify(Object.fromEntries(CAPABILITY_KEYS.map(key => [key,value[key]]))) + '\n';
+  requireFact(Buffer.byteLength(line) <= 768, 'admission'); return line;
+}
+export function createCapabilityDiagnostic() {
+  let stage = 'entry', evidence = 'unavailable', frozen, latestNative = {};
+  return {
+    enter(value) { if (!frozen && CAPABILITY_STAGES.includes(value)) stage = value; },
+    evidence(value) { if (!frozen && ['partial','protocol-confirmed'].includes(value)) evidence = value; },
+    native(value) { if (!frozen) latestNative = value; },
+    freeze(reason = 'unknown', native = latestNative) {
+      if (!frozen) frozen = Object.freeze({schemaVersion:1,kind:'fixed-chromium-capability-failure',mode:'capability',outcome:'failed',
+        stage,reason:CAPABILITY_REASONS.includes(reason) ? reason : 'unknown',exitCode:1,
+        nativeSource:['owner-transport','capsule-result'].includes(native.source) ? native.source : 'unavailable',
+        nativeCode:integer(native.code) && native.code <= 255 ? native.code : null,
+        nativeSignal:native.signal === 0 || native.signal == null ? null : native.signal === 2 || native.signal === 'SIGINT' ? 'SIGINT'
+          : native.signal === 9 || native.signal === 'SIGKILL' ? 'SIGKILL' : native.signal === 15 || native.signal === 'SIGTERM' ? 'SIGTERM' : 'other',
+        ownerEvidence:evidence});
+      return frozen;
+    },
+  };
+}
+export function publishCapabilityFailure(record, host) {
+  let committed = false, stdoutAttempted = false, stderrAttempted = false;
+  let bundle = 'fixed-chromium-application unavailable\n';
+  try { bundle = encodeCapabilityFailure(record) + bundle; } catch { /* no fabricated diagnostic */ }
+  const fallback = () => { if (!committed && !stderrAttempted) attempt(host.stderr,false); };
+  function attempt(stream, primary) {
+    if (committed || (primary ? stdoutAttempted : stderrAttempted)) return;
+    if (primary) stdoutAttempted = true; else stderrAttempted = true;
+    const failed = () => { if (primary) fallback(); }; // inert error absorption survives until exit
+    try { stream.on('error',failed); stream.write(bundle,error => { if (error) failed(); }); }
+    catch { failed(); }
+  }
+  return { attempt() { attempt(host.stdout,true); }, commit() { committed = true; } };
+}
+export async function runCapabilityEntry(factory = productionRuntime, host = process) {
+  const diagnostic = createCapabilityDiagnostic(); let io;
+  try {
+    io = factory(); io.enableCapabilityDiagnostic(diagnostic);
+    await io.capability(); return {failure:'none',exitCode:0};
+  } catch {
+    const record = diagnostic.freeze(); host.exitCode = 1;
+    try { await io?.finishOwnership(); await io?.failureCompletion(); }
+    catch { /* existing unconfirmed failure stays failure; no raw diagnostic */ }
+    const publisher = publishCapabilityFailure(record,host);
+    try { publisher.attempt(); }
+    finally { publisher.commit(); host.exit(1); }
+    return {failure:'admission',exitCode:1}; // only reachable in an invalid nonterminating host mock
+  }
+}
+// CAPABILITY-DIAGNOSTIC-END
+
 /** Exact fixed-mode transport. stdout is owned by the reviewed root broker;
  * native workload stdout is never connected to this authentication channel. */
 export function createHostedOwner(io, authority) {
   requireFact(exact(authority, ['generation', 'source', 'unit']) && /^[a-f0-9-]{36}$/.test(authority.generation)
     && hex(authority.source) && authority.unit === `kopplas-fixed-${authority.generation}.service`, 'admission');
   const child = io.start(authority);
+  const diagnostic = io.capabilityDiagnostic;
+  let resolveFailure;
+  const failureCompletion = new Promise(resolve => { resolveFailure = resolve; });
   let buffer = '', ready = false, refused = false, stage = null, last = null, completed = false;
   let resolveReady, rejectReady;
   const startup = new Promise((yes, no) => { resolveReady = yes; rejectReady = no; });
-  let startupTimer = io.setTimeout(() => refuse('admission'), 15000), refusalTimer;
-  function refuse(reason = 'cleanup') {
+  let startupTimer = io.setTimeout(() => refuse('admission','owner-ready-timeout'), 15000), refusalTimer;
+  function refuse(reason = 'cleanup', observed = 'ownership-unconfirmed', native) {
     if (refused || completed) return;
+    diagnostic?.freeze(observed,native);
     refused = true;
     try { child.stdin.write('STOP\n'); child.stdin.end(); } catch { /* journal/provider remains owner */ }
     rejectReady(new Error(reason));
@@ -218,51 +291,58 @@ export function createHostedOwner(io, authority) {
       stage?.no(new Error('cleanup')); stage = null;
       if (startupTimer) io.clearTimeout(startupTimer);
       io.offSignal(refuse);
-      io.handoff(authority); // exact previously registered unit only; request != proof
-      child.stdout.destroy?.(); child.stdin.destroy?.(); child.unref?.();
+      try {
+        io.handoff(authority); // exact previously registered unit only; request != proof
+        child.stdout.destroy?.(); child.stdin.destroy?.(); child.unref?.();
+      } catch (error) { if (!diagnostic) throw error; }
+      finally { resolveFailure(); }
     }, 2000);
   }
   function receive(line) {
-    let value; try { value = JSON.parse(line); } catch { refuse(); return; }
+    let value; try { value = JSON.parse(line); } catch { refuse('cleanup','control-invalid'); return; }
     if (value.generation !== authority.generation || refused) return;
     if (value.event === 'ready') {
       if (ready || !exact(value, ['event','generation','source','unit','durable','workloads'])
-        || value.source !== authority.source || value.unit !== authority.unit || value.durable !== true || value.workloads !== 0) { refuse(); return; }
+        || value.source !== authority.source || value.unit !== authority.unit || value.durable !== true || value.workloads !== 0) { refuse('cleanup','control-invalid'); return; }
+      diagnostic?.evidence('partial');
       ready = true; io.clearTimeout(startupTimer); startupTimer = null; resolveReady(); return;
     }
     if (value.event !== 'stage' || !ready || !stage || !exact(value,
       ['event','generation','stage','code','signal','expired','reaped','empty','confirmed','residue','output'])
       || value.stage !== stage.name || !Number.isInteger(value.code) || value.code < -1 || value.code > 255
       || !integer(value.signal) || typeof value.output !== 'string' || Buffer.byteLength(value.output) > 16384
-      || ['expired','reaped','empty','confirmed','residue'].some(key => typeof value[key] !== 'boolean')) { refuse(); return; }
+      || ['expired','reaped','empty','confirmed','residue'].some(key => typeof value[key] !== 'boolean')) { refuse('cleanup','control-invalid'); return; }
     const pending = stage; stage = null; last = value;
     io.clearTimeout(pending.timer);
     if (!value.confirmed || !value.reaped || !value.empty || value.residue) {
       const failure = Object.assign(new Error('cleanup'), { nativeCode:value.code, nativeSignal:value.signal });
+      diagnostic?.freeze('ownership-unconfirmed',{source:'capsule-result',code:value.code,signal:value.signal});
       pending.no(failure); refuse();
     }
-    else pending.yes(value);
+    else { diagnostic?.evidence('protocol-confirmed'); pending.yes(value); }
   }
   child.stdout.on('data', chunk => {
     if (refused || completed) return;
     buffer += chunk.toString('utf8');
-    if (Buffer.byteLength(buffer) > 32768) { refuse(); return; }
+    if (Buffer.byteLength(buffer) > 32768) { refuse('cleanup','control-invalid'); return; }
     let at; while ((at = buffer.indexOf('\n')) >= 0) { const line = buffer.slice(0, at); buffer = buffer.slice(at + 1); receive(line); }
   });
-  child.once('error', () => refuse());
-  child.stdin.on?.('error', () => refuse()); child.stdout.on('error', () => refuse());
-  child.once('close', () => { if (!completed) refuse(); });
+  child.once('error', () => refuse('cleanup','owner-transport-failed'));
+  child.stdin.on?.('error', () => refuse('cleanup','owner-transport-failed')); child.stdout.on('error', () => refuse('cleanup','owner-transport-failed'));
+  child.once('close', (code,signal) => { if (!completed) refuse('cleanup','owner-transport-failed',{source:'owner-transport',code,signal}); });
   io.onSignal(refuse);
   return {
     ready: startup,
+    failureCompletion: () => completed ? Promise.resolve() : failureCompletion,
     async run(name) {
       await startup;
       requireFact(!refused && !completed && !stage && ['compatibility','application','capsule'].includes(name), 'cleanup');
       if (name === 'application') requireFact(last?.stage === 'compatibility' && last.code === 0 && !last.expired, 'compatibility');
       if (name === 'compatibility' || name === 'capsule') requireFact(last === null, 'cleanup');
       return new Promise((yes, no) => {
-        stage = { name, yes, no, timer:io.setTimeout(refuse,name === 'application' ? 1500000 : name === 'capsule' ? 4000 : 15000) };
-        child.stdin.write(`${name === 'capsule' ? 'CAPABILITY' : name.toUpperCase()}\n`);
+        stage = { name, yes, no, timer:io.setTimeout(() => refuse('cleanup',name === 'capsule' ? 'capsule-timeout' : 'ownership-unconfirmed'),name === 'application' ? 1500000 : name === 'capsule' ? 4000 : 15000) };
+        try { child.stdin.write(`${name === 'capsule' ? 'CAPABILITY' : name.toUpperCase()}\n`); }
+        catch (error) { diagnostic?.freeze('capsule-request-failed'); throw error; }
       });
     },
     cancel: refuse,
@@ -278,7 +358,10 @@ function productionRuntime() {
   const repo = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
   const signals = ['SIGINT', 'SIGTERM'];
   // A generation is revocable before an owner exists, including pending I/O.
-  let owner, admission, refused = false;
+  let owner, admission, refused = false, diagnostic;
+  const enter = value => diagnostic?.enter(value);
+  const fact = (value,failure,reason = 'precondition-rejected') => { if (!value) diagnostic?.freeze(reason); requireFact(value,failure); };
+  const observed = async (task,reason) => { try { return await task; } catch (error) { diagnostic?.freeze(reason); throw error; } };
   const callbacks = new Set();
   let rejectRefusal;
   const revocation = new Promise((_, reject) => { rejectRefusal = reject; });
@@ -286,8 +369,9 @@ function productionRuntime() {
   revocation.catch(() => {});
   const active = () => requireFact(!refused, 'admission');
   const until = async task => { active(); const value = await Promise.race([task, revocation]); active(); return value; };
-  const refuse = () => {
+  const refuse = (reason = 'cancelled') => {
     if (refused) return;
+    diagnostic?.freeze(reason);
     refused = true; rejectRefusal(new Error(owner ? 'cleanup' : 'admission')); owner?.cancel();
     for (const callback of callbacks) callback();
   };
@@ -296,7 +380,7 @@ function productionRuntime() {
   const io = { platform: process.platform, version: process.version, argv: process.argv, env: process.env,
     admitCandidate, packageAdmission,
     bounded: async (task, milliseconds) => { try { const result = await bounded(until(task), milliseconds); active(); return result; }
-      catch (error) { refuse(); throw error; } },
+      catch (error) { refuse('lifetime-refused'); throw error; } },
     checkActive: active, awaitActive: until, releaseLifetime: release, now: () => performance.now(),
     async bindings() { const entries = await Promise.all(SOURCES.map(async path => { const data = await readFile(join(repo, path)); return [path, { bytes: data.length, sha256: hash(data) }]; })); return Object.fromEntries(entries); },
     async gitIdentity() { const command = args => { active(); return new Promise((yes, no) => execFile('git', ['-C', repo, ...args], { timeout: 5000, maxBuffer: 256, windowsHide: true }, (error, stdout) => error ? no(new Error('binding')) : yes(stdout.trim()))); };
@@ -318,16 +402,17 @@ function productionRuntime() {
     requireFact(typeof root === 'string' && isAbsolute(root) && path === join(root, 'workload'), 'admission'); return path;
   }
   async function startOwner() {
-    active();
-    requireFact(io.platform === 'linux' && io.version === 'v22.23.3' && io.env.GITHUB_SHA === io.env.FIXED_CHROMIUM_HOSTED_ADMISSION_SHA
+    enter('host-preflight'); active();
+    fact(io.platform === 'linux' && io.version === 'v22.23.3' && io.env.GITHUB_SHA === io.env.FIXED_CHROMIUM_HOSTED_ADMISSION_SHA
       && /^[a-f0-9]{40}$/.test(io.env.GITHUB_SHA ?? '') && ['capability','application'].includes(io.env.FIXED_CHROMIUM_HOSTED_ADMISSION), 'admission');
     const root = io.env.FIXED_CHROMIUM_BROKER_ROOT; workloadRepo();
-    const st = await until(lstat(root));
-    const binary = join(root, 'broker'), bs = await until(lstat(binary));
-    requireFact(!st.isSymbolicLink() && st.isDirectory() && st.uid === 0 && (st.mode & 0o777) === 0o711
+    const st = await observed(until(lstat(root)),'filesystem-read-failed');
+    const binary = join(root, 'broker'), bs = await observed(until(lstat(binary)),'filesystem-read-failed');
+    fact(!st.isSymbolicLink() && st.isDirectory() && st.uid === 0 && (st.mode & 0o777) === 0o711
       && !bs.isSymbolicLink() && bs.isFile() && bs.uid === 0 && (bs.mode & 0o777) === 0o700, 'admission');
     const authority = { generation: io.env.FIXED_CHROMIUM_BROKER_GENERATION, source: io.env.FIXED_CHROMIUM_BROKER_SOURCE_SHA256, unit: io.env.FIXED_CHROMIUM_BROKER_UNIT };
-    owner = createHostedOwner({ ...io,
+    enter('owner-start');
+    try { owner = createHostedOwner({ ...io,
       start: () => spawn('/usr/bin/sudo', ['-n','/usr/bin/systemd-run',`--unit=${authority.unit}`,'--service-type=exec','--quiet','--pipe','--wait',
         '--property=User=root','--property=Delegate=','--property=DelegateSubgroup=broker','--property=NoNewPrivileges=yes',
         '--property=CapabilityBoundingSet=CAP_CHOWN CAP_DAC_OVERRIDE CAP_FOWNER CAP_SETUID CAP_SETGID CAP_SETPCAP CAP_KILL',
@@ -335,7 +420,8 @@ function productionRuntime() {
         binary,'--admitted-session',join(root,'control','session')], { cwd: repo, env: { PATH: '/usr/bin:/bin' }, stdio: ['pipe','pipe','inherit'] }),
       handoff: value => { const stop = spawn('/usr/bin/sudo', ['-n','/usr/bin/systemctl','--no-block','stop',value.unit],
         { env: { PATH:'/usr/bin:/bin' }, stdio:'ignore' }); stop.on('error', () => {}); stop.unref(); },
-    }, authority);
+    }, authority); } catch (error) { diagnostic?.freeze('owner-start-failed'); throw error; }
+    enter('owner-ready');
     owner.ready.catch(() => {});
     if (refused) owner.cancel();
     await until(owner.ready); return owner;
@@ -374,26 +460,34 @@ function productionRuntime() {
     active(); await owner.finish(); active();
     return { code: result.code < 0 ? null : result.code, signal: result.signal === 0 ? null : result.signal === 9 ? 'SIGKILL' : result.signal === 15 ? 'SIGTERM' : 'other', expired: result.expired };
   };
-  io.finishOwnership = async () => { refuse(); release(); };
+  io.enableCapabilityDiagnostic = value => { diagnostic = value; io.capabilityDiagnostic = value; };
+  io.failureCompletion = () => owner ? owner.failureCompletion() : Promise.resolve();
+  io.finishOwnership = async () => { refuse('lifetime-refused'); release(); };
   io.capability = async () => {
     try {
-    active();
-    requireFact(io.env.FIXED_CHROMIUM_HOSTED_ADMISSION === 'capability', 'admission');
+    enter('host-preflight'); active();
+    fact(io.env.FIXED_CHROMIUM_HOSTED_ADMISSION === 'capability', 'admission');
     const control = await startOwner(); active();
+    enter('capsule-request');
     const value = await control.run('capsule'); active();
-    requireFact(value.expired && value.confirmed && value.reaped && value.empty && !value.residue, 'cleanup');
-    const actual = JSON.parse(value.output);
-    requireFact(actual.node === 'v22.23.3' && integer(actual.uid) && actual.uid > 0 && integer(actual.gid) && actual.gid > 0
+    enter('capsule-result');
+    diagnostic?.native({source:'capsule-result',code:value.code,signal:value.signal});
+    fact(value.expired && value.confirmed && value.reaped && value.empty && !value.residue, 'cleanup','capsule-result-rejected');
+    let actual; try { actual = JSON.parse(value.output); } catch (error) { diagnostic?.freeze('capsule-result-rejected',{source:'capsule-result',code:value.code,signal:value.signal}); throw error; }
+    fact(actual.node === 'v22.23.3' && integer(actual.uid) && actual.uid > 0 && integer(actual.gid) && actual.gid > 0
       && Array.isArray(actual.groups) && actual.groups.length <= 1 && actual.groups.every(gid => gid === actual.gid) && actual.detached === true
       && typeof actual.status === 'string' && /^NoNewPrivs:\s+1$/m.test(actual.status)
-      && ['CapInh','CapPrm','CapEff','CapBnd','CapAmb'].every(key => new RegExp(`^${key}:\\s+0+$`,'m').test(actual.status)), 'admission');
-    await control.finish(); active();
+      && ['CapInh','CapPrm','CapEff','CapBnd','CapAmb'].every(key => new RegExp(`^${key}:\\s+0+$`,'m').test(actual.status)), 'admission','capsule-result-rejected');
+    enter('ownership-finish');
+    await observed(control.finish(),'ownership-finish-failed'); active();
     const receipt = { schemaVersion:1, capabilityOnly:true, source:io.env.FIXED_CHROMIUM_BROKER_SOURCE_SHA256,
       detachedDescendant:true, droppedAuthority:true, leaderReaped:true, sameLeafEmpty:true };
-    await mkdir(join(repo,'test-results'),{recursive:true}); active();
-    await writeFile(join(repo,'test-results','fixed-chromium-hosted-capability.json'),JSON.stringify(receipt),{flag:'wx',mode:0o600});
+    enter('receipt-directory');
+    await observed(until(mkdir(join(repo,'test-results'),{recursive:true})),'receipt-directory-failed'); active();
+    enter('receipt-write');
+    await observed(until(writeFile(join(repo,'test-results','fixed-chromium-hosted-capability.json'),JSON.stringify(receipt),{flag:'wx',mode:0o600})),'receipt-write-failed');
     return receipt;
-    } catch (error) { refuse(); throw error; }
+    } catch (error) { diagnostic?.freeze(); refuse('lifetime-refused'); throw error; }
     finally { release(); }
   };
   return io;
@@ -465,8 +559,7 @@ export async function runApplication(io = productionRuntime()) {
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const result = process.argv.length === 3 && process.argv[2] === '--capability-capsule'
-    ? await (async () => { try { await productionRuntime().capability(); return { failure:'none',exitCode:0 }; }
-      catch { return { failure:'admission',exitCode:1 }; } })()
+    ? await runCapabilityEntry()
     : await runApplication();
   process.stdout.write(`fixed-chromium-application ${result.failure === 'none' ? 'diagnostic-complete' : 'unavailable'}\n`);
   process.exitCode = result.exitCode;
