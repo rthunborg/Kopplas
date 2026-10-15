@@ -9,10 +9,10 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-15T03:15:21Z"
+updated_at: "2026-10-15T03:35:27Z"
 started_at: "2026-10-09T12:57:49Z"
 completed_at: null
-active_seconds: 50444
+active_seconds: 51576
 timing_anchor: null
 is_first_in_epic: false
 is_last_in_epic: false
@@ -186,3 +186,19 @@ blocked_checkpoint:
   pr: "none"
   review_rounds: 0
   stop_acks: All own usage Stopaccepted data/profiles retained
+application_browser_docker_validation:
+  status: REVISE
+  artifact: "_bmad-output/implementation-artifacts/story-15-1-application-browser-adoption-validation-2026-10-15.md"
+  bytes: 74713
+  sha256: 45f0449451cb614a4cba5c0b2f488162c81c2e816092ce2061692147aaeba07a
+  preserved_validation_prefix_bytes: 57544
+  preserved_validation_prefix_sha256: a460f2a09581e534a750ac85e246e2a5087a8974b77b78fdb5b0fd510ba969ec
+  gaps: ["Cgroup deletion can precede populated0 observation; need explicit durable retention/observation authority", Independent controller needs concrete separate lifetime startup acknowledgment journal and cancellation handoff]
+  protected_files: 138
+  mismatches: 0
+  runtime_actions: 0
+  source_implementation: held
+  provider_selection: held
+  runtime_execution: held
+  p5_complete: false
+  broad_review_round: 0
