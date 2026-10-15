@@ -418,3 +418,38 @@ none
 **⚠️ Needs human:** (none)
 
 **Next:** Checkpoint audit, then High preparation-only delegate; independent validation and Coordinator source admission required
+
+## Report — 2026-10-15T11:18:15Z (failure diagnostics preparation validated)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `6f9e296`).
+**Pipeline status:** Epic incomplete;15.1 verification blocked/P5false/broad0/3;15.2 held
+**Continues:** Sequential Epic15; reviewed diagnostic source allocation pending
+
+**Summary:** Independent High preparation PASS after narrow R1 correction. Proposed runner/unit-only closed-enum failure receipt uses existing bounded cleanup handling, nonwaiting output and guaranteed failure exit; delivery stays unknown. All prior evidence preserved.95existing plus16new tests are111 expected future evidence, none executed here.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 142h 20m (≈16h 41m AI-run, ≈125h 39m human/idle wait); resumed 12×.
+
+**Stories:**
+1. 15.1 General red; native broker/cleanup unobserved; no acceptance credit
+2. 15.2-15.6 backlog
+
+**Skipped:** (none)
+
+**Epic gate:** OPEN; no native/application/P5 completion credit
+
+**TEA:** Later required phases held
+
+**Retrospective:** Epic14 October8 accepted-with-open-items
+
+**Overrides:** Owner authorized scoped hosted fallback; no deploy; no future legacy URL evidence
+
+**Open questions:**
+1. Exact native failure boundary and broker/cleanup guarantee realization remain unknown
+
+**Deferred work:**
+1. Coordinate two-path source allocation, implement and independently review; separately admit any future hosted execution
+
+**⚠️ Needs human:** (none)
+
+**Next:** Request precise source allocation from Coordinator using sealed proposal/validation hashes

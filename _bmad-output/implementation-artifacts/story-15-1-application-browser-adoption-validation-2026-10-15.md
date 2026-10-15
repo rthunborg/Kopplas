@@ -429,3 +429,45 @@ Prepare only the narrow R1 amendment, then focused independent preparation valid
 ### Blockers
 
 R1 blocks source-only allocation readiness. No current source fix, runtime remedy, native ownership guarantee or cause is established. Source/spec/test/config/workflow/root-state/Git/variable/resource/CI/deploy mutations0; test/compiler/bootstrap/native/browser/database/Docker/sudo/systemd executions0. Prior FAIL/RED histories remain immutable. General red/AC2 twice failed; four native-text cases unknown; P5false,broad0/3,15.2held. No acceptance/application/visual/RLS/performance/completion/release credit.
+## Focused independent R1 terminal preparation revalidation — 2026-10-15
+
+### Outcome
+
+PASS for the corrected PREPARATION contract only. The single R1 failure-completion gap is addressed; the preceding98821B validation prefix and its REVISE remain immutable history. Actual independent gpt-6.1-sol High for cancellation/privilege/evidence; supplied HEAD6f9e29656df997e2c5c6027874da4bee1ef6c17d is a task binding, not a fresh Git observation. No source allocation, source implementation, tests or native proof follows from this verdict. Existing routing policy remains applicable; no nested delegate or background work.
+
+### Files changed
+
+Sole tracked write is this append. Incoming98821B SHA20aef47f395e10c6853bf063c69304370486a27c110c884241701abcca247cfa is preserved in full. New exclusive private metadata: C:/Users/Rasmus/AppData/Local/Temp/kopplas-failure-terminal-revalidation-06f73373-f416-430e-b637-6d1eea62dd9f/. protected-before.json SHA1787c8cecec61af89672d4dc52efad9571cc96781b868da514c44a5c261dbd33 binds687 explicit existing paths, using the author's protected inventory plus current preparation/routing files; validation has separate immutable-prefix protection. Final preservation-after.json supplies exact prefix/append/full metadata and before/after results without circular self-hashing. Old private files and root states/timers remain frozen as found.
+
+Author seal1203B SHAf46e59bd768dc20f110a7bdf4dff5237c6ddca121b7fc85132e352d65ff8e3d3 and all3 listed entries match exact byte/hash bindings. Its historical684-file conservation receipt is retained; this current independent687-path comparison is distinct and does not repeat the native/ZIP audit.
+
+### Status
+
+Reviewed ONLY the new7415B author correction SHA40c1e5da53661f6e4ba167084d5d13d024c9b505635a695526b4fece2c354760, after133567B SHAa3815a52878612dc97233ac7dd0cbf7c879066621d112fdb44f596033ef19cba. Full addendum140982B SHAd5bc955789353b0164953e6642e8f968860c73847524a9d0478e4f6b05b1ff13. Primary source context is the unchanged actual capability CLI, productionRuntime refusal/release and createHostedOwner refusal/handoff path already examined for R1. No new browsing or native cause research.
+
+The corrected contract freezes the original first terminal event before refusal, immediately fixes capability failure to1, and invokes existing cancellation once. It observes/join ONLY the existing bounded ownership failure-completion transition: no owner or already-finished ownership completes immediately; partial/live ownership reaches the existing confirmed result or first-refusal R+2s explicit-unconfirmed/handoff boundary. Observation resolves in finally after the exact existing handoff attempt, even if that attempt throws. It does not await provider stop, wrapper close, pending filesystem/startup/report work or delivery. The existing R+1s force and R+2s confirmation-or-unconfirmed limits cannot renew. Immediate process exit before that boundary is expressly prohibited. This completion seam is observational wiring, not new cleanup authority or policy.
+
+After that boundary, capability FAILURE alone attempts one validated frozen eleven-key JSON plus the exact generic unavailable line as one bounded bundle (JSON<=768B including LF; bundle<=816B). The terminal finally commits handlers inert and invokes actual process.exit(1), so true/false write return, a never-called callback, queued backpressure or failed stderr cannot retain the CLI. There is no later separate generic write. No synchronous blocking primitive, publication await/drain/promise join/timer/retry is introduced. At most one attempt per existing sink; callbacks and errors are contained before commitment and inert afterward. They cannot mutate first failure/native fields, emit again, renew cleanup, register live work or change the terminal exit. Inert error absorption remains until exit rather than opening an unhandled-event window. Output may be truncated by explicit exit; availability remains UNKNOWN and is never a receipt/delivery/cleanup certificate.
+
+Serialization/sink/finalization-bookkeeping failures cannot expose raw stacks or replace the first native outcome. Capability entry still exits its original1, retaining observed native42 or native0-plus-cleanup-failure and original error semantics. Application nonzero/native outcomes and successful capability/application CLI output/exit handling remain untouched. The eleven-key schema,10 stages/16 reasons, unknown classifications, strict privacy and separate existing success receipt are unchanged. No logs identify an unobserved kernel/systemd/C cause or supply missing ownership proof.
+
+The precise two-path preparation is now ready for Coordinator source allocation ONLY:
+
+- tests/diagnostics/fixed-chromium-application-runner.mjs
+- tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts
+
+Allocation/execution is still held in this validation. C15857B SHAea2abfa6638bf148854e5aba080edc9241e26b1b3594cec3d5b10be2006fae68 and CI48743B SHA9c933a75fd38b6a4ea885dd52c94e4c072df037f5bc04251a1063d99e181f77d are immutable. No privilege/provider/path/dependency/pin/budget/timeout/assertion expansion. Inverses must remove ONLY new capability observer/serializer/failure-entry/observational-completion wiring to recover runner33989B SHA0e1f9df21c4dc710a218661f6668166316418e26a5d9641a78b908991cced4a0; remove ONLY16 appended cases/new imports to recover unit44760B SHA152d9d77f867ca0d28aab200b16752dd60fcb964482f9aa1d8bb0eb6cadf52e6. Preserve productionRuntime() signature/extraction seams, all95 original tests/assertions, successful paths and preceding raw inverses. No old scope/assertion may disappear silently.
+
+The future16 actual-source tests, expected95+16=111, meaningfully discriminate R1: pending/no-callback true and false writes, primary/fallback throw/error, late retained handlers, rejected serialization, no second generic write, no added live-work registration and deterministic exactly-one terminal1. Actual CLI wiring is exercised with process.exit replaced by a recording terminal sentinel; invoke retained callbacks afterward to prove inactivity. Cancellation tables hold cleanup until existing mock R+2s/handoff, prove no premature exit, preserve original native/first-error precedence and forbid late startup/ACK/result/write promotion. Case13 preserves receipt-write failure when both sinks fail. Serializer-only or always-settling writers do not satisfy this proof. These are planned mocked proofs, not native observations; tests executed here0.
+
+### Open questions
+
+No unresolved preparation blocker or new human dependency for this correction. Implementation must demonstrate the specified existing cleanup join and actual terminal behavior; PASS does not certify their code or execution. Standing owner design applies to later/nested handoffs: no future legacy URL evidence, browsing, asks or fabricated observations; use existing design system/accessibility and headless domain/state/validation/actions separated from replaceable UI, preserve historical records, explicit appropriate effort, synchronous handoff waits and no detached work.
+
+### Deferred work
+
+Coordinator may separately allocate the exact two paths for the accepted contract. Implementation and focused independent source review must establish all preservation inverses and actual-source111 passing/0 skipped controls; static checks and any native rerun require their own admission. The retained native audit still establishes compiler/session-preparation success then generic capability failure/receipt absence, with broker ACK/drop/reap/same-leaf emptiness/survival unobserved. This log correction is no native remedy or required-General waiver.
+
+### Blockers
+
+Source/runtime realization and required General remain unresolved beyond this preparation verdict. Source/test/spec/config/workflow/root-state/Git/variable/resource/CI/deploy mutations0; compiler/bootstrap/native/browser/database/Docker/sudo/systemd/test executions0. All prior FAIL/RED/REVISE history retained. Generalred/AC2 twice failed; four native-text cases unknown; P5false,broad0/3,15.2held. No application/acceptance/visual/RLS/performance/completion/release credit.

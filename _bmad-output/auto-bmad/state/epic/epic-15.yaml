@@ -9,24 +9,24 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-15T11:15:28Z"
+updated_at: "2026-10-15T11:18:15Z"
 started_at: "2026-10-09T12:57:49Z"
 completed_at: null
-active_seconds: 59900
+active_seconds: 60064
 timing_anchor: null
 is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: build
-selected_role: build-delegate
-selected_profile: standard
+selected_phase: security_layer
+selected_role: security-reviewer
+selected_profile: critical
 selected_model: gpt-6.1-sol
 selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Narrow High preparation correction of pending diagnostic writes and capability CLI failure termination; no source/native allocation"
+escalation_reason: "Distinct High focused revalidation of R1 bounded diagnostic publication and capability failure termination; no source/native allocation"
 routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary epic test planning; sensitive implementation/review scope routed explicitly High\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary story test-risk classification\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_triage\",\"profile\":\"light\",\"role\":\"test-risk-triage\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -41,6 +41,7 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Preparation of privileged broker failure diagnostics and cancellation evidence semantics requires explicit High; source and native held\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct independent High validation of privileged capsule failure diagnostics cancellation precedence and evidence semantics; source and native held\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Narrow High preparation correction of pending diagnostic writes and capability CLI failure termination; no source/native allocation\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct High focused revalidation of R1 bounded diagnostic publication and capability failure termination; no source/native allocation\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: null
 tea_selected: []
 tea_rationale: null
@@ -66,7 +67,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [99e1274e, b7f19e2d, 6f612a21, bc4163ea, 27ce6a2b, 7cdd08a6, 66cd8436, e6c404d3, 5d76de08575fb8fa09197021899d78280829d554, 81836287786a40540e96dbdf46db29c868cde41b, 48386408fc628f7341b711f177ff5833f622959c, 92dc4a5f4f7e9878e9ed9c28e00bda5d98680478, 16180cd63914a57895b36c2db060c43c74da3514, caec31b185bcad597664668d7a835c9c2096aa4d, 0a312c8fbd617d4ce03f97d5484bb23babb0686b, d5a5f85155394a0337ea92fcd606f949559b172a, becfd00e, 80c31af2, a0dd2302ead46e72e77f3293b84085c4f8fe65f3]
+commits: [99e1274e, b7f19e2d, 6f612a21, bc4163ea, 27ce6a2b, 7cdd08a6, 66cd8436, e6c404d3, 5d76de08575fb8fa09197021899d78280829d554, 81836287786a40540e96dbdf46db29c868cde41b, 48386408fc628f7341b711f177ff5833f622959c, 92dc4a5f4f7e9878e9ed9c28e00bda5d98680478, 16180cd63914a57895b36c2db060c43c74da3514, caec31b185bcad597664668d7a835c9c2096aa4d, 0a312c8fbd617d4ce03f97d5484bb23babb0686b, d5a5f85155394a0337ea92fcd606f949559b172a, becfd00e, 80c31af2, a0dd2302ead46e72e77f3293b84085c4f8fe65f3, 6f9e29656df997e2c5c6027874da4bee1ef6c17d]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -451,6 +452,23 @@ application_browser_failure_observability_correction:
   protected_bindings: 684
   mismatches: 0
   proof_sha256: f46e59bd768dc20f110a7bdf4dff5237c6ddca121b7fc85132e352d65ff8e3d3
+  source_admission: held
+  native_admission: held
+  p5_complete: false
+  broad_review_round: 0
+application_browser_failure_observability_revalidation:
+  status: "PASS R1 preparation only; awaiting separate Coordinator source allocation"
+  artifact: "_bmad-output/implementation-artifacts/story-15-1-application-browser-adoption-validation-2026-10-15.md"
+  bytes: 106998
+  sha256: 7a89629180adb1bac83d5850c529a080c6dfa3bfaf26dfd6e4e160ecb1c5b69e
+  preserved_prefix_bytes: 98821
+  preserved_prefix_sha256: 20aef47f395e10c6853bf063c69304370486a27c110c884241701abcca247cfa
+  append_bytes: 8177
+  append_sha256: eac48c94562078973a0c3183b19c96e3b38c1912d1e3190bee7b1b69c0cbc964
+  protected_files: 687
+  mismatches: 0
+  expected_future_tests: 111
+  tests_executed: 0
   source_admission: held
   native_admission: held
   p5_complete: false
