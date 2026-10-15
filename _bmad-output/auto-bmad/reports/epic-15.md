@@ -1080,3 +1080,37 @@ none
 **⚠️ Needs human:** (none)
 
 **Next:** Nontriggering local checkpoint of only exact vercel.json config plus ROOT bookkeeping/report. Then separately prepare provider-control remedy; no push/settings/deploy.
+
+## Report — 2026-10-15T16:46:57Z (provider-control proposal sealed; publication held)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `1fadbd1`).
+**Pipeline status:** In progress: provider-side exclusion proposal sealed with exact rollback/replay/authority gaps; publication remains held.
+**Continues:** Same Coordinator High assessment of smallest effective no-deploy transaction; no setting mutation admitted.
+
+**Summary:** All six sequential Epic15 stories and all completion gates remain required.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 147h 49m (≈20h 37m AI-run, ≈127h 11m human/idle wait); resumed 31×.
+
+**Stories:**
+1. 15.1 blocked on verification;15.2-15.6 backlog.
+
+**Skipped:** (none)
+
+**Epic gate:** Open; P5false broad0/3; compiled mock36logical/37eval unexecuted.
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** Owner no-deploy, no future legacy URL evidence, one final epicPR, merge commit retain branches.
+
+**Open questions:**
+1. previewDeploymentsDisabled baselineABSENT; exact rollback, missedpush replay, customenvironment effects, writeauthority and competingadministrators unqualified. createDeployments has no documentedsetter.
+
+**Deferred work:**
+1. Conditional provider reservation/readback/restoration-or-handoff before publication; actual native/browser and all later story gates.
+
+**⚠️ Needs human:** (none)
+
+**Next:** Coordinator SAMEHigh focused assessment of capsulec0942ce0/12manifest747c4fa7; no mutation/testpush/disconnect/compiler/CI/resources.
