@@ -9,28 +9,29 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-15T03:35:27Z"
+updated_at: "2026-10-15T03:40:54Z"
 started_at: "2026-10-09T12:57:49Z"
 completed_at: null
-active_seconds: 51576
+active_seconds: 51883
 timing_anchor: null
 is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: final_convergence
-selected_role: final-convergence
+selected_phase: build
+selected_role: build-delegate
 selected_profile: standard
 selected_model: gpt-6.1-sol
 selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Consequential clean-checkpoint workflow adoption and ownership reconciliation after finalized E20; no implementation review round"
+escalation_reason: Focused Docker authority correction addresses durable process observation and independently surviving privileged cleanup ownership
 routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary epic test planning; sensitive implementation/review scope routed explicitly High\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary story test-risk classification\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_triage\",\"profile\":\"light\",\"role\":\"test-risk-triage\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Consequential clean-checkpoint workflow adoption and ownership reconciliation after finalized E20; no implementation review round\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"final_convergence\",\"profile\":\"standard\",\"role\":\"final-convergence\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Focused Docker authority correction addresses durable process observation and independently surviving privileged cleanup ownership\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: null
 tea_selected: []
 tea_rationale: null
@@ -56,7 +57,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [99e1274e, b7f19e2d, 6f612a21, bc4163ea, 27ce6a2b, 7cdd08a6, 66cd8436, e6c404d3]
+commits: [99e1274e, b7f19e2d, 6f612a21, bc4163ea, 27ce6a2b, 7cdd08a6, 66cd8436, e6c404d3, 5d76de08575fb8fa09197021899d78280829d554]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -202,3 +203,18 @@ application_browser_docker_validation:
   runtime_execution: held
   p5_complete: false
   broad_review_round: 0
+application_browser_docker_correction:
+  status: "No supported no-root Docker route identified; independent revalidation pending"
+  bytes: 105966
+  sha256: 229c99e404032da48716853256ba7cc7771db8006a7735a93b41839dda6c8d1f
+  preserved_addendum_prefix_bytes: 94221
+  preserved_addendum_prefix_sha256: 28359e552b0c43db81febbb8a22125298c3a1201d8ad007aca1434204131aee6
+  protected_files: 30
+  mismatches: 0
+  runtime_actions: 0
+  source_implementation: held
+  runtime_execution: held
+  provider_selection: held
+  fallback: "Reviewed hosted root-service narrow sudo fresh workload UID GID private tree C broker systemd transient delegated service; capability unobserved"
+  fallback_paths: [tests/diagnostics/fixed-chromium-application-runner.mjs, NEW tests/diagnostics/fixed-chromium-owned-process.c, tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts, ".github/workflows/ci.yml optionaljobonly"]
+  p5_complete: false

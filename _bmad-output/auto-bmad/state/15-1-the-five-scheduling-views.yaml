@@ -9,24 +9,24 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-15T03:35:27Z"
+updated_at: "2026-10-15T03:40:54Z"
 started_at: "2026-10-09T13:06:12Z"
 completed_at: null
-active_seconds: 51083
+active_seconds: 51389
 timing_anchor: null
 is_first_in_epic: true
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: security_layer
-selected_role: security-reviewer
-selected_profile: critical
+selected_phase: build
+selected_role: build-delegate
+selected_profile: standard
 selected_model: gpt-6.1-sol
 selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Independent pinned container provider validation covers daemon authority, kernel evidence races, hostnetwork permission and preserved runtime provenance"
+escalation_reason: Focused Docker authority correction addresses durable process observation and independently surviving privileged cleanup ownership
 routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary scheduling UX specification; sensitive authorization/integrity portions explicitly delegated High\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary15.1 ATDD preparation; sensitive access assertions delegated High; shared fixture edits excluded\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -204,6 +204,7 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Independent concrete provider feasibility and authority command review before privileged scope decision; bounded smaller alternative assessment\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Existing hosted Docker alternative preparation resolves closed controller authority, namespace ownership, backend access and whole-workload cleanup without assumed privileges\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Independent pinned container provider validation covers daemon authority, kernel evidence races, hostnetwork permission and preserved runtime provenance\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Focused Docker authority correction addresses durable process observation and independently surviving privileged cleanup ownership\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate, trace-advisory]
 tea_rationale: "Scheduling, synchronized projections, capacity and drag/keyboard/dialog behavior"
@@ -229,7 +230,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [45a64853, f9e12a81, 279d3149, b9d61a33, 4d7911ac, 3a655a5d, a67a64dc, 66cd8436, d79fff08, bf84cf5d, 181f947f, 22cfb74a, 22cfb74a, 6fd516b0, 521d56fd, e448f856, b99e3f42, 83e27c92, 1aa7c52b, 8630b011, da3a4c59, 27d67de7, 4223e887, 9c26fd72, d75313bb, 4b0ab106, f7b4f154, 437c3da2, e6c404d3, f4a431f6, 85cae2a5, 689a1385, 1bc90218, c49ac882, 4b685196, a5d262f8, a39cd221, 704e9320, c797d815, 25390342e668dee81d6bda42bfe0b5b51ed1723b, a98fc96386df752c631c119de992fc832c8ecb4d, ea5477fff0dbd8e82abb6a376269bfcf54ae95e9, 35e904b2e0d8798f72fbb405b3a888d64fdebd45, 2a071fc49a81984ae55e9e2c08a7583444245d86, ccd7abe9ebe38d846df58087c9d94280ad1d25ab, b01a0511cd1ee66f710de21034faeae9d5537403, eaabd2d0020b391247e1a4383b0eaf6291f0ac83, 39b84268e8eeffb3f9a6ff6b055846187c166d4b, ffa4168a62851a788cea6fff244a87f12b08cca6, 049a6f0f, ef1c5a290bdc3e6b48e68ec492abc0010c636c1b, 3c07917c1a323ba280d2325d7fe050cf1574bf5e, d880cd63fa158272f206d74aa5c4b0280d0d622c, 62dbbf947a916f528e8ae32d7b768750769a8c5d, b38d358fbba883ce79662a2b0fd0cea51d27c121, 4602a2eacdac7636c67751c986b18cc3c546950f, 65207b9ecaf7e5ad39b1840bda76099805acfa57, dab81e3d21a8180a05d3db9af5dde7334f991982, 828474451a0ae833a712d64544482498e79740bd, 706c3c9c7e2f2b2178b1c3506c59a2708356141b, 24d15439ab87847ecd1234b3e475b9d76883de2f, c0a57eda240f2b17793b693b2f3fbb963ebb29ab, 11c5cd1e0a8a6fda3297a9f16a54bb48209a5d9c]
+commits: [45a64853, f9e12a81, 279d3149, b9d61a33, 4d7911ac, 3a655a5d, a67a64dc, 66cd8436, d79fff08, bf84cf5d, 181f947f, 22cfb74a, 22cfb74a, 6fd516b0, 521d56fd, e448f856, b99e3f42, 83e27c92, 1aa7c52b, 8630b011, da3a4c59, 27d67de7, 4223e887, 9c26fd72, d75313bb, 4b0ab106, f7b4f154, 437c3da2, e6c404d3, f4a431f6, 85cae2a5, 689a1385, 1bc90218, c49ac882, 4b685196, a5d262f8, a39cd221, 704e9320, c797d815, 25390342e668dee81d6bda42bfe0b5b51ed1723b, a98fc96386df752c631c119de992fc832c8ecb4d, ea5477fff0dbd8e82abb6a376269bfcf54ae95e9, 35e904b2e0d8798f72fbb405b3a888d64fdebd45, 2a071fc49a81984ae55e9e2c08a7583444245d86, ccd7abe9ebe38d846df58087c9d94280ad1d25ab, b01a0511cd1ee66f710de21034faeae9d5537403, eaabd2d0020b391247e1a4383b0eaf6291f0ac83, 39b84268e8eeffb3f9a6ff6b055846187c166d4b, ffa4168a62851a788cea6fff244a87f12b08cca6, 049a6f0f, ef1c5a290bdc3e6b48e68ec492abc0010c636c1b, 3c07917c1a323ba280d2325d7fe050cf1574bf5e, d880cd63fa158272f206d74aa5c4b0280d0d622c, 62dbbf947a916f528e8ae32d7b768750769a8c5d, b38d358fbba883ce79662a2b0fd0cea51d27c121, 4602a2eacdac7636c67751c986b18cc3c546950f, 65207b9ecaf7e5ad39b1840bda76099805acfa57, dab81e3d21a8180a05d3db9af5dde7334f991982, 828474451a0ae833a712d64544482498e79740bd, 706c3c9c7e2f2b2178b1c3506c59a2708356141b, 24d15439ab87847ecd1234b3e475b9d76883de2f, c0a57eda240f2b17793b693b2f3fbb963ebb29ab, 11c5cd1e0a8a6fda3297a9f16a54bb48209a5d9c, 5d76de08575fb8fa09197021899d78280829d554]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -3428,3 +3429,18 @@ application_browser_docker_validation:
   runtime_execution: held
   p5_complete: false
   broad_review_round: 0
+application_browser_docker_correction:
+  status: "No supported no-root Docker route identified; independent revalidation pending"
+  bytes: 105966
+  sha256: 229c99e404032da48716853256ba7cc7771db8006a7735a93b41839dda6c8d1f
+  preserved_addendum_prefix_bytes: 94221
+  preserved_addendum_prefix_sha256: 28359e552b0c43db81febbb8a22125298c3a1201d8ad007aca1434204131aee6
+  protected_files: 30
+  mismatches: 0
+  runtime_actions: 0
+  source_implementation: held
+  runtime_execution: held
+  provider_selection: held
+  fallback: "Reviewed hosted root-service narrow sudo fresh workload UID GID private tree C broker systemd transient delegated service; capability unobserved"
+  fallback_paths: [tests/diagnostics/fixed-chromium-application-runner.mjs, NEW tests/diagnostics/fixed-chromium-owned-process.c, tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts, ".github/workflows/ci.yml optionaljobonly"]
+  p5_complete: false
