@@ -943,3 +943,38 @@ none
 1. None for coordinated allocation
 
 **Next:** Request exacttwo-path source allocation plus resource-free guard/generation checks;localreview/checkpoint before triggering publication
+
+## Report — 2026-10-15T15:41:59Z (compiled capsule mock local source checkpoint, push held)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `1d4ec14`).
+**Pipeline status:** in-progress;15.1 verification blocked
+**Continues:** Exact two-file local realization sealed;PUSH HELD
+
+**Summary:** Six sequential stories;none landed
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 146h 44m (≈19h 48m AI-run, ≈126h 55m human/idle wait); resumed 27×.
+
+**Stories:**
+1. 15.1 blocked;15.2-15.6 backlog
+
+**Skipped:** (none)
+
+**Epic gate:** Not evaluated
+
+**TEA:** Required gates pending
+
+**Retrospective:** Epic14 October8 accepted-with-open-items
+
+**Overrides:** Owner design;one final epic PR;merge commit retain branches;no deploy
+
+**Open questions:**
+1. Hosted actions/toolchain qualification and totalpublicationeffects pending
+
+**Deferred work:**
+1. 19actualguardpass2accept17refuse;YAML4scriptssyntax/builderexact;36Ccasesuncompiled
+
+**⚠️ Needs human:**
+1. None for independent source review
+
+**Next:** DistinctHigh complete two-file source review afterLOCALnontriggeringcheckpoint;no push/compiler until separateadmission
