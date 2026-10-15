@@ -873,3 +873,38 @@ none
 1. None for author correction
 
 **Next:** Highauthorcorrect unresolvedtrigger boundary then same distinctHighfocusedrevalidation
+
+## Report — 2026-10-15T15:05:55Z (compiled capsule mock case-sensitive R1 correction sealed)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `09e70e8`).
+**Pipeline status:** in-progress;15.1 verification blocked
+**Continues:** R1case-sensitivepre-compilation correction sealed
+
+**Summary:** Six sequential stories;none landed
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 146h 08m (≈19h 17m AI-run, ≈126h 50m human/idle wait); resumed 25×.
+
+**Stories:**
+1. 15.1 blocked;15.2-15.6 backlog
+
+**Skipped:** (none)
+
+**Epic gate:** Not evaluated
+
+**TEA:** Required gates pending
+
+**Retrospective:** Epic14 October8 accepted-with-open-items
+
+**Overrides:** Owner design;one final epic PR;merge commit retain branches;no deploy
+
+**Open questions:**
+1. Coarsewrong-caseequivalent mayallocateVM/read-onlypreflight;publicationadmissionmustcovertheseeffects
+
+**Deferred work:**
+1. Exactguardbeforecheckout/outputcreation/qualification/compilation;gateexamplesunexecuted;C36logical37evaluationsunexecuted
+
+**⚠️ Needs human:**
+1. None for focused revalidation
+
+**Next:** Same distinctHigh validator inspect exactguard and failure semantics before any source allocation
