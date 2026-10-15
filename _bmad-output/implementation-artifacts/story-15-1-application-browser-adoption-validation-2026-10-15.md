@@ -600,3 +600,51 @@ Prepare corrected private caller/gate/path/extraction packet, retain old bytes/h
 ### Blockers
 
 R1–R3 block packet readiness;0 C cases compiled/executed,0 Node suites here. Source/spec/test/mock/workflow/root-state/Git/variable/resource/CI/deploy mutations0; compiler/version/discovery utility/bootstrap/native/WSL/Docker/browser/database/privileged actions0. Parent state/report writes excluded. Existing qualified protocol ready/reap/retained-leaf-empty observations are preserved;125 cause/credential/detached/survival/shutdown unknown. General7/1/10,phone0,four native-text unknown,P5false,broad0/3,15.2/E16held. No native/application/acceptance/visual/RLS/performance/completion/release credit.
+## Focused independent R1–R3 C mock packet correction revalidation — 2026-10-15
+
+### Outcome
+
+REVISE for PREPARATION ONLY: R2 and R3 resolved statically; R1 full-caller reachability is corrected, but its promised exact-message rejection remains incomplete because the actual GitHub Actions equality operator is case-insensitive. This is a follow-up on the existing gate finding, not a new broad pass or compiled failure. Actual independent gpt-6.1-sol High for sensitive source/caller/evidence boundary, routing policy read; supplied HEADae5b78b6a287ea69355a87c971a083eaaa88b4cd is a task binding, not newly executed Git metadata. No source allocation or execution follows.
+
+### Files changed
+
+Sole tracked write is this append. Entire137856B SHA6119cb32d013f7ae29821e7f8a84a0469d96b2be345296feb2016ccb27c27afc preserved, including original three-finding REVISE and historical proof. Exclusive private static receipts under C:/Users/Rasmus/AppData/Local/Temp/kopplas-capsule-mock-correction-revalidation-e1efc8c2-4044-4a44-b955-a92e3097395f/. protected-before.json SHA77738f59a5bbf6722eed35b8ce605403e49dc9cd68192008d16a870414472718 binds1580 explicit existing files, combining prior independent scope plus corrected packets. Root-owned states/report are excluded; validation is separately protected by immutable full prefix. Final preservation-after.json records comparison and full/append/prefix metadata. Old23-entry failed packet, earlier REVISE, source reviews and703 corpus are unchanged.
+
+Correction manifest8006B SHA42c46bc80444c7758a7e901649a0bb4a2c9ba774a29e2c1f1b977bba9de0d4ed has24/24 exact entries; latest scope-correction manifest5392B SHA6772d8266d547c02f0a35c931cfd6b0f9a3199ea840dd6c6b6f8e85d11da0219 has7/7 exact entries. Author1547-file prior conservation and explicit no-repeat sweep for the1413B supplement remain qualified history; current independent1580-path receipt is distinct. No old private file was overwritten.
+
+### Status
+
+Reviewed only the R1–R3 correction after181902B SHA40b01f1f9cdd65c0bcb9d62fbcfbcac656dd835aaaf607d20e109caf8fb5659e, including intermediate188337B SHA632e46e18e90f4ae3079d18569d5de798a5038b09bd5d180d99a6ba26fe866aa plus1413B SHAaebd73b040e59c807e1305ad75acd6d2a926c57c53e0d554c732c2712935c5a4 story-scope supplement. Full addendum189750B SHA6bb4eaaf2a054df45e991bdbc452567c2b5f98c76616c996be48bc8134332f04. Latest workflow6991B SHA1a010587d9873a483194835eaeb1c5eb79569f1ad447339fc0110180de3f626c is document-only and absent from .github/workflows.
+
+R1 partial resolution: the reviewed full caller now is exactly:
+
+chore(story-15-1): add capsule C mock proof
+
+Prepare the reviewed, fully mocked capsule producer proof.
+Execution admission: 1f93046c-858d-4ef2-8933-023913519af2.
+
+Its Conventional Commit story-scoped subject/blank line/meaningful two-line body satisfies the caller requirement. DOCUMENT-ONLY commit argv uses separate -m subject/-m two-line body, not a raw tag or subject-only workaround. YAML folded job if uses format with fromJSON('"\n"') to construct the intended complete message and its single-terminal-LF variant; newline construction is coherent. Extra LF/body, raw tag and subject-only cannot equal either value. Branch/path filters and prepublication review/checkpoint/admission remain.
+
+Unresolved R1: github.event.head_commit.message == format(...) does not establish case-sensitive exactness. GitHub Actions ignores case for string equality; both disjuncts therefore also admit case-altered subject/body/admission lines. For a concrete caller on the same branch touching a named path, change only the body word Prepare to PREPARE: it remains a legitimate Conventional Commit with meaningful body, is neither listed canonical spelling, yet the job condition compares equal and proceeds to checkout/compile. The two-positive/eight-negative packet examples are case-sensitive host constant-string data, not an Actions-engine proof, and omit this counterexample. Thus the literal claim ONLY those two full messages is false; a procedural root admission must still bind its exact reviewed tree/SHA/message and cannot be replaced by this looser job predicate.
+
+Smallest bounded correction: retain the reviewed scoped full caller and zero/one-LF policy, but prepare a case-sensitive validation of the actual event message before any compilation/mock execution, or an equivalently enforced exact predicate. Keep any coarse Actions equality candidly described; do not claim it alone rejects wrong-case messages. If a preliminary candidate job/step is necessary, explicitly describe/admit its effects and make noncanonical messages fail/skip before compiler or mock work. Add wrong-case subject/body/admission-line negatives to the actual gate validation plan. Do not waive commit policy, silently broaden normalization, use substring/trim acceptance or claim a reusable literal/concurrency group intrinsically enforces one use. Root's at-most-one permitted compiled job remains a state/admission/reconciliation obligation, with rerun/reuse requiring renewed admission. No workflow engine, predicate test or runtime was executed here.
+
+R2 resolved: latest workflow hash operands are /usr/bin/clang-18, /usr/bin/timeout and exact /usr/bin/python3; no malformed nested Python path remains. All Python invocations use the intended absolute executable. Availability/identity/version/hash qualification remains future-observed; no discovery/version/installation action or qualified compiler is claimed.
+
+R3 resolved: exact source interval[6297,15299) ends at child_exec, before static quoted().9002B SHA58110a2a79866ca8406b2a2b27aebe4e692d0f4e96272405ae662ee8d9381a22 is independently bound to unchanged C21149B SHAa48c96a0e196416aa5e0036010085676fc696ff844f166903044e317064c530c. One unchanged9855B SHAfba14fa7508e22ea5552219b984ee279d560c62ce8576d29a77cf49b5a9fa60f scaffold-marker replacement yields18823B SHA2227fd1dab92d5ab43916dd18d78200a1713ceee4a30392a49a533487ed82a91. No quoted/putchar/stage/session/main body or fake unused call/warning disable remains. Producer/helper functions are referenced by the included call graph and mock test entry; inert compatibility script remains referenced by child_exec's unchanged branch. No remaining concrete unused-helper/unmocked-effect compile obstruction identified in this narrow follow-up; successful compilation is not claimed.
+
+Source partition and generated inverse remain exact byte-binding obligations, not execution: included source bytes are unchanged, omitted complementary bytes recover the original C, and scaffold prefix/suffix recover the precise extraction. All18 effect substitutions precede inclusion; private errno/fake paths/FDs stay memory-only, exec/_exit longjmp, script strings are never run.36 logical rows/37 evaluations remain34 first-failure boundaries plus two delivery subvariants and one normal mock-exec path. Trace/immediate errno/no-later-original-call/one publication/same125 checks remain unchanged.0 compiled/0 C cases/0 Node suites here; no native pipe/kernel/credential/marker-origin or native125-cause proof.
+
+Exact prospective paths remain tests/diagnostics/fixed-chromium-capsule-mock.c and .github/workflows/fixed-chromium-capsule-mock-proof.yml, both ABSENT/UNALLOCATED. Existing three reviewed sources,123 Node/static/inverse evidence and CI48743B SHA9c933a75fd38b6a4ea885dd52c94e4c072df037f5bc04251a1063d99e181f77d immutable. Candidate Ubuntu24.04/x86_64 Clang18, strict C11/Wall/Wextra/Werror/O0 argv, job5min, compile20s/run3s with1s escalation, contents:read/no credentials/secrets/sudo/services, private bounded failure artifacts and explicit36-pass/0-skip gate are unchanged. Final source review must bind action revisions and actual workflow effects before publication; root must separately admit total current push/open-PR effects.
+
+### Open questions
+
+R1 exact case-sensitive event validation is a concrete author preparation correction, not a genuine human dependency. No directives in artifacts were adopted as executable authority. No browsing, future legacy URL evidence, owner asks or fabricated observations. Prior qualified protocol ready/reap/retained-leaf-empty facts remain preserved without cause/credential/descendant/survival/shutdown upgrade.
+
+### Deferred work
+
+Prepare only the narrow exact-message enforcement amendment, preserve both corrected and original packets, then focused preparation revalidation. Allocation, source realization, independent complete source review, root checkpoint and separate execution admission precede publication. Standing design-system/accessibility and headless domain/state/validation/actions separation, immutable history, explicit nested effort and synchronous foreground handoffs remain binding. No broad review credit.
+
+### Blockers
+
+R1 remains; R2/R3 statically resolved. Source/mock/workflow edits0; tests/compiler/version/discovery utility/native/WSL/Docker/browser/database/CI/variable/resource/Git/deploy actions0. Parent states/report excluded. General7/1/10,phone0,four native-text unknown,P5false,broad0/3,15.2/E16held. No compiled/native/application/acceptance/visual/RLS/performance/completion/release credit.

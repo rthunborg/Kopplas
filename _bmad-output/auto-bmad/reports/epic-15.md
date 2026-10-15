@@ -838,3 +838,38 @@ none
 1. None for focused revalidation
 
 **Next:** Same distinctHigh prepvalidator recheck narrow fixes and preserved history before two-path allocation
+
+## Report — 2026-10-15T14:51:07Z (compiled capsule mock R1 case sensitivity REVISE)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `ae5b78b`).
+**Pipeline status:** in-progress;15.1 verification blocked
+**Continues:** Focused R1 exact-message boundary requires correction;R2/R3 statically resolved
+
+**Summary:** Six sequential stories;none landed
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 145h 53m (≈19h 06m AI-run, ≈126h 46m human/idle wait); resumed 24×.
+
+**Stories:**
+1. 15.1 blocked;15.2-15.6 backlog
+
+**Skipped:** (none)
+
+**Epic gate:** Not evaluated
+
+**TEA:** Required gates pending
+
+**Retrospective:** Epic14 October8 accepted-with-open-items
+
+**Overrides:** Owner design;one final epic PR;merge commit retain branches;no deploy
+
+**Open questions:**
+1. Actions equality is case-insensitive;fullmessage exactness needs case-sensitive pre-compilation validation
+
+**Deferred work:**
+1. NarrowR1correction/wrong-case negatives;36logical37evaluations0compiled/executed
+
+**⚠️ Needs human:**
+1. None for author correction
+
+**Next:** Highauthorcorrect unresolvedtrigger boundary then same distinctHighfocusedrevalidation
