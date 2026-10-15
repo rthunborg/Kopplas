@@ -1114,3 +1114,37 @@ none
 **⚠️ Needs human:** (none)
 
 **Next:** Coordinator SAMEHigh focused assessment of capsulec0942ce0/12manifest747c4fa7; no mutation/testpush/disconnect/compiler/CI/resources.
+
+## Report — 2026-10-15T16:56:36Z (ordinary preview routing qualified; owner end-state decision pending)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `b1f9133`).
+**Pipeline status:** In progress: supported current inventories qualify Epic15 as ordinaryPreview; broader provider-setting end state awaits Coordinator owner decision.
+**Continues:** Coordinator SAMEHigh final routing assessment and concrete all-project-preview-disable owner handoff approval.
+
+**Summary:** Sequential Epic15 remains at15.1; all six stories, reviews and completion gates retained.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 147h 58m (≈20h 40m AI-run, ≈127h 18m human/idle wait); resumed 32×.
+
+**Stories:**
+1. 15.1 blockedverification;15.2-15.6 backlog.
+
+**Skipped:** (none)
+
+**Epic gate:** Open. Diagnostic checks do not grant P5 or broad-review credit (0/3).
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** Owner no-deploy; no future legacy URL evidence; one final epicPR with merge commit and branches retained.
+
+**Open questions:**
+1. Prospective end state disablesALLprojectpreviews and leaves disabled forownerhandoff; productionmain outsidepreview scope. No provider mutation approved. Futuredrift/admins/writeauthority qualifiedunknown.
+
+**Deferred work:**
+1. Immediate provider identity/inventory recheck before any separately authorized change, finalHEAD/publicationadmission, onecompiledmockjob then actualnative/browser/storygates.
+
+**⚠️ Needs human:** (none)
+
+**Next:** Await Coordinator concrete sharedscope/endstate decision; no duplicate question fromepicowner. Settings/push/compiler/CI/resources/deployheld.
