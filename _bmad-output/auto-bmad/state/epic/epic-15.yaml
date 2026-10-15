@@ -9,10 +9,10 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-15T16:07:04Z"
+updated_at: "2026-10-15T16:36:34Z"
 started_at: "2026-10-09T12:57:49Z"
 completed_at: null
-active_seconds: 72659
+active_seconds: 73715
 timing_anchor: null
 is_first_in_epic: false
 is_last_in_epic: false
@@ -26,7 +26,7 @@ selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Read-only concrete hosted action revision and total publication-effect qualification for bounded mocked C compiler run; security supply-chain and execution authority"
+escalation_reason: "Distinct focused independent byte JSON inverse verification of allocated Vercel branch exclusion; no broad source review or publication authority"
 routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary epic test planning; sensitive implementation/review scope routed explicitly High\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary story test-risk classification\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_triage\",\"profile\":\"light\",\"role\":\"test-risk-triage\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -61,6 +61,10 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"High local-only realization of exclusively allocated actual-C mock scaffold and exact-message workflow with complete side-effect substitution\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct complete High local source review of mocked C effect substitutions and exact-case hosted publication gate, no publication or compiler admission\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Read-only concrete hosted action revision and total publication-effect qualification for bounded mocked C compiler run; security supply-chain and execution authority\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Continuation of total-effects qualification: read-only Vercel and connected push integrations must establish owner no-deploy obligation; frozen tracked HEAD preserved\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Preparation-only exact branch Vercel no-deploy exclusion remedy; precedence and first-publication suppression require sensitive execution-authority qualification\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Realize exclusively allocated exact Vercel branch exclusion after independent proposal PASS; no provider or publication authority inferred\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct focused independent byte JSON inverse verification of allocated Vercel branch exclusion; no broad source review or publication authority\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: null
 tea_selected: []
 tea_rationale: null
@@ -86,7 +90,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [99e1274e, b7f19e2d, 6f612a21, bc4163ea, 27ce6a2b, 7cdd08a6, 66cd8436, e6c404d3, 5d76de08575fb8fa09197021899d78280829d554, 81836287786a40540e96dbdf46db29c868cde41b, 48386408fc628f7341b711f177ff5833f622959c, 92dc4a5f4f7e9878e9ed9c28e00bda5d98680478, 16180cd63914a57895b36c2db060c43c74da3514, caec31b185bcad597664668d7a835c9c2096aa4d, 0a312c8fbd617d4ce03f97d5484bb23babb0686b, d5a5f85155394a0337ea92fcd606f949559b172a, becfd00e, 80c31af2, a0dd2302ead46e72e77f3293b84085c4f8fe65f3, 6f9e29656df997e2c5c6027874da4bee1ef6c17d, 5c1fb90b2f7f735259208e2d420bce489cbed598, 0d6f43ac90596b8703d8df3b9b986f9026aaaba3, 76868db295ac6b7de06a57f43164d5f02140f938, c4375f61, abaf8d81, db50a9c5, a1b83089, 6883ef61, 2441e3a2, 94baa7c7, afd9c1dd, 6d983e00, ae5b78b6, 09e70e81, 311e744f, 1d4ec146, 37fa423a, b1ad1496]
+commits: [99e1274e, b7f19e2d, 6f612a21, bc4163ea, 27ce6a2b, 7cdd08a6, 66cd8436, e6c404d3, 5d76de08575fb8fa09197021899d78280829d554, 81836287786a40540e96dbdf46db29c868cde41b, 48386408fc628f7341b711f177ff5833f622959c, 92dc4a5f4f7e9878e9ed9c28e00bda5d98680478, 16180cd63914a57895b36c2db060c43c74da3514, caec31b185bcad597664668d7a835c9c2096aa4d, 0a312c8fbd617d4ce03f97d5484bb23babb0686b, d5a5f85155394a0337ea92fcd606f949559b172a, becfd00e, 80c31af2, a0dd2302ead46e72e77f3293b84085c4f8fe65f3, 6f9e29656df997e2c5c6027874da4bee1ef6c17d, 5c1fb90b2f7f735259208e2d420bce489cbed598, 0d6f43ac90596b8703d8df3b9b986f9026aaaba3, 76868db295ac6b7de06a57f43164d5f02140f938, c4375f61, abaf8d81, db50a9c5, a1b83089, 6883ef61, 2441e3a2, 94baa7c7, afd9c1dd, 6d983e00, ae5b78b6, 09e70e81, 311e744f, 1d4ec146, 37fa423a, b1ad1496, "21835451"]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -1018,5 +1022,50 @@ application_browser_capsule125_publication_qualification:
   executed_cases: 0
   publication_admitted: false
   native_execution_admitted: false
+  p5_credit: false
+  broad_review_rounds: 0
+application_browser_vercel_no_deploy_qualification:
+  status: not_satisfied_read_only
+  capsule_bytes: 4932
+  capsule_sha256: e434418f86a9c82f8257166ddfca43923e0594fc80617d2b3e5ed95c29f2307c
+  manifest_entries: 8
+  manifest_bytes: 2524
+  manifest_sha256: 36238ba5c85d25b404251786a23423dba4d99be798973e85d2d844e88a463fd8
+  create_deployments: enabled
+  branch_exclusion: false
+  candidate_superseded: 218354518ec2153783a1981a7faf4e7b2f4a6304
+  push_held: true
+  tracked_remedy_admitted: false
+application_browser_vercel_branch_exclusion_preparation:
+  status: sealed_private_focused_assessment_pending
+  candidate_bytes: 436
+  candidate_sha256: b880fb31b615fd8f17f4efd165d0cb3d98a358e0ee1750cbedcd9db4d7344b8a
+  manifest_entries: 12
+  manifest_bytes: 4780
+  manifest_sha256: e1a02d11ae9f68d3b2e3d571d71198c38e2fa14c17a5615941fcf55f6a05f315
+  proposal_capsule_bytes: 4132
+  proposal_capsule_sha256: b72d82c0ebee73273f60b433ef62292a4ce881b88b83b8659b0d787d49d9c01f
+  first_push_suppression_timing: uncertain_not_proven_inability
+  tracked_realization_admitted: false
+  provider_setting_change_admitted: false
+  publication_held: true
+application_browser_vercel_branch_exclusion_realization:
+  status: PASS_local_independent_byte_json_inverse
+  working_bytes: 436
+  working_sha256: b880fb31b615fd8f17f4efd165d0cb3d98a358e0ee1750cbedcd9db4d7344b8a
+  original_working_bytes: 380
+  original_working_sha256: af07b2dca2da72654fd98bcee2c4f3f1a9ca079f446caeca6b912719b15843c8
+  original_git_bytes: 369
+  original_git_sha256: 9891344ebe069d2eb92d8ff6cff4964740ee45e693582aed78c61c73c472f0e1
+  crlf_only_original_qualified: true
+  review_manifest_entries: 4
+  review_manifest_bytes: 1320
+  review_manifest_sha256: 67c5038c335754a5ec3cfc038009df621187b7e49d19c0333ddc9094fe44ea3d
+  review_proof_bytes: 3950
+  review_proof_sha256: 2f3284fe3df115d8084e752be957f8b79f1e6342584875771292e750358434b5
+  preservation_mismatches: 0
+  first_push_suppression: unestablished_not_proven_failure
+  publication_held: true
+  provider_mutation_admitted: false
   p5_credit: false
   broad_review_rounds: 0

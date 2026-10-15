@@ -1046,3 +1046,37 @@ none
 **⚠️ Needs human:** (none)
 
 **Next:** Bind bookkeeping-only final commit/tree, return capsule763bd5c... and manifestb3906c... to Coordinator. No PUSH until separate admission.
+
+## Report — 2026-10-15T16:36:34Z (branch exclusion local PASS; publication held)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `2183545`).
+**Pipeline status:** In progress: exact local Epic15 branch exclusion independently verified; publication remains held pending effective provider-side no-deploy control.
+**Continues:** Prepare smallest provider-side pre-push exclusion and restoration capsule for focused High review; no provider mutation admitted.
+
+**Summary:** Sequential Epic15 remains active at15.1 with all completion gates required.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 147h 38m (≈20h 28m AI-run, ≈127h 10m human/idle wait); resumed 30×.
+
+**Stories:**
+1. 15.1 blocked;15.2-15.6 backlog.
+
+**Skipped:** (none)
+
+**Epic gate:** Open. Local config byte check gives no P5 credit; broad0/3.
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** Owner no-deploy preserved. Superseded218354518 candidate must never be publication head. Branch retain/merge commit/one final epicPR.
+
+**Open questions:**
+1. Repository branchfalse suppression documented, incoming first-push timing unestablished (not proven failure); currentproject Git deployments enabled.
+
+**Deferred work:**
+1. Bounded provider exclusion/restoration proposal; actual compiled mock36logical/37eval, native browser capability and all application/story gates.
+
+**⚠️ Needs human:** (none)
+
+**Next:** Nontriggering local checkpoint of only exact vercel.json config plus ROOT bookkeeping/report. Then separately prepare provider-control remedy; no push/settings/deploy.
