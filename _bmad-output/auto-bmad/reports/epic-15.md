@@ -1012,3 +1012,37 @@ none
 **⚠️ Needs human:** (none)
 
 **Next:** Local checkpoint only, then Coordinator publication/execution reconciliation.
+
+## Report — 2026-10-15T16:07:04Z (publication qualification sealed locally; PUSH held)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `b1ad149`).
+**Pipeline status:** In progress: read-only publication qualification sealed; final local gate commit awaits separate High total-effects admission before PUSH.
+**Continues:** Coordinator admission review of exact final local HEAD and sealed publication capsule.
+
+**Summary:** Sequential Epic15 active at15.1; all six stories and one final epic PR remain required.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 147h 09m (≈20h 10m AI-run, ≈126h 58m human/idle wait); resumed 29×.
+
+**Stories:**
+1. 15.1 verification blocked;15.2-15.6 backlog.
+
+**Skipped:** (none)
+
+**Epic gate:** Open; P5false; broad review0/3.
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** Owner design, no future legacy URL evidence; merge commit retain branches; no deploy.
+
+**Open questions:**
+1. Action aliases are mutable despite current observed commits; hosted stock tools and36logical/37physical mock evaluations remain unobserved.
+
+**Deferred work:**
+1. Native125cause/full capability, General7/1/10, six phone targets, automated visual comparisons and all remaining gates.
+
+**⚠️ Needs human:** (none)
+
+**Next:** Bind bookkeeping-only final commit/tree, return capsule763bd5c... and manifestb3906c... to Coordinator. No PUSH until separate admission.
