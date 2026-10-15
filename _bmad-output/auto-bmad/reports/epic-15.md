@@ -558,3 +558,38 @@ none
 1. None for current preparation
 
 **Next:** Distinct High validation of sealed160325B proposal; no blind native retry
+
+## Report — 2026-10-15T13:14:22Z (capsule125 independent preparation PASS, source held)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `abaf8d8`).
+**Pipeline status:** in-progress; 15.1 verification blocked
+**Continues:** Request precise source allocation after independent preparation PASS
+
+**Summary:** Six sequential stories; none landed
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 144h 16m (≈17h 37m AI-run, ≈126h 38m human/idle wait); resumed 16×.
+
+**Stories:**
+1. 15.1 blocked;15.2-15.6 backlog
+
+**Skipped:** (none)
+
+**Epic gate:** Not evaluated
+
+**TEA:** Required gates pending
+
+**Retrospective:** Epic 14 October 8 accepted-with-open-items
+
+**Overrides:** Owner design direction; one final epic PR; merge commit retain branch; no deploy
+
+**Open questions:**
+1. Native125 cause and full capability proof remain unknown
+
+**Deferred work:**
+1. 123 Node and36 compiled mock cases expected,0 executed; three prospective files require coordinated source allocation
+
+**⚠️ Needs human:**
+1. None for coordinated preparation
+
+**Next:** Coordinator exact three-file allocation, then High source author and distinct High source review before any new runtime admission
