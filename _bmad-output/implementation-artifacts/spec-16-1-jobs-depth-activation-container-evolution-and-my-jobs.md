@@ -146,7 +146,7 @@ No fixture/seed/CI/config file is requested generically. Explain/allocate any ad
 
 ### Transfers and sequencing
 
-Companion TR01–TR12 explicitly refine original 16.1.16.1 foundation never passes16.2 assignment/designation mutations, writable picker or operational elevation.16.3 owns work-order targets/consumers/warnings.16.4 owns one-way upgrade/completed card and concrete project-only fields.16.5 owns live workspace/Filer/tab/phone shape; actual completion action still requires E18 authority. Every transferred acceptance remains an epic gate with named destination evidence; no later story is needed to make refined 16.1 execute sequentially. Stable job/bookings/time links remain; submitted-only time has no monetary valuation. No new jobs-depth manifest module.
+Companion TR01–TR16 explicitly refine original 16.1.16.1 foundation never passes16.2 assignment/designation mutations, writable picker or operational elevation.16.3 owns work-order targets/consumers/warnings.16.4 owns one-way upgrade/completed card and concrete project-only fields.16.5 owns live workspace/Filer/tab/phone shape; actual completion action still requires E18 authority. Every transferred acceptance remains an epic gate with named destination evidence; no later story is needed to make refined 16.1 execute sequentially. Stable job/bookings/time links remain; submitted-only time has no monetary valuation. No new jobs-depth manifest module.
 
 ## Verification
 
@@ -197,3 +197,21 @@ Option A/refined transfers are confirmed for preparation. These newly authored s
 ### Preparation decision chronology
 
 - 2026-10-15: Earlier draft called for E16 oracle vocabulary. The later direct owner standing decision supersedes that direction, cancels the next oracle step and authorizes maintainable headless defaults. Active tasks/design/gate were updated accordingly; historical committed evidence is not rewritten. Preserve hard product/auth/money/transaction/Phase C boundaries and independent review.
+## Narrow consumer-acceptance clarification — 2026-10-15
+
+Independent High review at f610bcbd1fccda03cc8e0e312aa91652134c13d9 found one clarity gap: persisted/full-card fields were not explicit proof of all original architecture 8.4 scheduling consumers. This amendment preserves that review history and makes no new product decision. 16.1-AC04/P1/P4/P6 retain schema, domain validation and progressive form/readback for duration, crew, travel, earliest/desired/latest and customer presence.16.1-AC06/07/P7 retain current authoritative role/window consumer integration. Do not credit field persistence or the roles/windows proof as acceptance of the scalar consumers below.
+
+Consistent with existing TR09 completed-card ownership, explicit destination 16.4-AC04 owns duration-derived default booking length through actual new-job booking entry;16.4-AC05 owns estimated duration/crew multiplier/planned travel consumption in demand/capacity;16.4-AC06 owns earliest-bounded suggestions, desired soft warnings and distinct latest breach flags;16.4-AC07 owns the actual booking-editor customer-presence constraint. Companion TR13–TR16 specifies Given/When/Then acceptance and pure, real preview/save/readback and browser evidence.16.4-AC03 full-card display alone is insufficient. No later-story prerequisite is imposed on refined16.1, but epic finalization requires all these consumers.
+
+Exact additional candidate consumer seams, for later coordinator allocation only:
+
+- C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/src/components/resources/BookingEntry.tsx:17 — existing newDraft currently defaults one hour; later job-duration semantic default must preserve explicit prefill and edit history.
+- C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/src/components/resources/BookingEditor.tsx:19 — actual editor host for semantic dates/presence/job changes; retain E14 current review and E15 selected-slot interval contracts.
+- C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/src/features/resources/booking-editor-input.ts:28 — existing temporal normalization/preservation seam; no arbitrary timezone or precision change.
+- C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/src/features/resources/booking-action-state.ts — bounded semantic context type if needed; no E15 reader-wide or route allocation.
+- C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/src/features/jobs/scheduling-consumers.ts — proposed headless domain suggestions/default/demand/constraint results, separate from replaceable UI and sole existing detector.
+- C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/src/server/read-models/job-scheduling-context.ts — proposed checked job-bound consumer context, without broad CRM/quote/money grants.
+
+Previously enumerated exact shared types/capacity/conflict/fact/proof paths remain subject to allocation. No E15 scheduling view/reader/E2E or CI/diagnostic edit is authorized here.16.4 consumer integration must include relevant job values in checked canonical facts/current-fact revalidation whenever they affect authoritative output; parser-only, display-only and stale snapshots are insufficient. Existing parent/role checks, both legacy creation signatures, job IDs/bookings, no-legacy evidence and headless separation remain unchanged. Concrete crew/travel arithmetic and any omitted-vs-explicit default details are bound before 16.4 readiness using governing rules; this correction does not invent those product semantics or a new capability/optimizer.
+
+Planning status remains draft/unapproved. Root owns state/git and existing independent reviewer handles this narrow correction; no duplicate review or product verification was run.
