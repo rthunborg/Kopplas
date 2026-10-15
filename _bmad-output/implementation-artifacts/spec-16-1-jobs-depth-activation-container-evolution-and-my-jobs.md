@@ -2,7 +2,7 @@
 title: 'Story 16.1: Jobs Depth Activation — Container Evolution and My-Jobs'
 type: 'feature'
 created: '2026-10-15'
-status: 'draft'
+status: 'blocked'
 baseline_revision: 'd6a310be4f55da0490669881737e88ce2eee8dda'
 review_loop_iteration: 0
 followup_review_recommended: false
@@ -13,6 +13,7 @@ context:
   - 'C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/_bmad-output/project-context.md'
   - 'C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/docs/process/review-order.md'
   - 'C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/docs/process/agent-model-routing.md'
+  - 'C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/_bmad-output/test-artifacts/test-design-epic-16.md'
 warnings: [oversized]
 deferred: []
 ---
@@ -188,7 +189,7 @@ Prospective exact additional product files for this transport, all requiring all
 
 Add these command files to taskP4/P7 only after exact allocation. Required tests add domain-state/semantic-DTO unit cases and real snapshot/finalize stale/missing/forged actor, wrong-domain/version, canonical child insertion/deletion, audit failure and concurrent booking/job-input races to the named card/job-booking suites. The browser control uses semantic actions/state, not embedded database policy or role names. This is a bounded domain design, not a reusable framework.
 
-## Planning Gate
+## Historical Preparation Planning Gate
 
 Status: preparation draft, NOT ready-for-development. Current owner decision removes all oracle/legacy URL work and its former blocker. Priority/location/windows/headless separation and enriched identity compatibility now have concrete defaults above. No legacy observation is claimed; no browser lookup is required for preparation. The old packet remains historical and no current step may reintroduce an oracle dependency.
 
@@ -215,3 +216,63 @@ Exact additional candidate consumer seams, for later coordinator allocation only
 Previously enumerated exact shared types/capacity/conflict/fact/proof paths remain subject to allocation. No E15 scheduling view/reader/E2E or CI/diagnostic edit is authorized here.16.4 consumer integration must include relevant job values in checked canonical facts/current-fact revalidation whenever they affect authoritative output; parser-only, display-only and stale snapshots are insufficient. Existing parent/role checks, both legacy creation signatures, job IDs/bookings, no-legacy evidence and headless separation remain unchanged. Concrete crew/travel arithmetic and any omitted-vs-explicit default details are bound before 16.4 readiness using governing rules; this correction does not invent those product semantics or a new capability/optimizer.
 
 Planning status remains draft/unapproved. Root owns state/git and existing independent reviewer handles this narrow correction; no duplicate review or product verification was run.
+## Formal planning resume — 2026-10-15
+
+Invocation: existing draft-spec resume through the pinned Build Auto workflow; Halt after planning. Root-recorded route is build/build-delegate/standard/gpt-6.1-sol/High, selected for actual authorization and integrity scope. Clean checkpoint captured by root and independently observed before this delegate wrote:5ffb6d8ecd36f98e0f05dd7317a7c66bc96568df. No implementation step was entered. The accepted preparation and E2 inputs are carried forward; no duplicate review of settled preparation findings was initiated.
+
+Preserved verbatim intent-contract SHA256:DE0DB4343DF0EA830FD12DD42BD7FFFC420F52F9AF2D390082C0DA397733B88D. All11 retained ACs and everyTR01–TR16 original/refined destination remain unchanged. Earlier preparation gate/result wording remains historical; this section is the current planning-resume record. Current human headless-design direction remains controlling; no external observations or browser step occurs.
+
+Accepted E2 input: C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/_bmad-output/test-artifacts/test-design-epic-16.md, SHA2563D7D950F097E952B2F3CB250C1B9188CBE118964700063AD5AA1566519D2A169. Its completed design checkpoint is C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/_bmad-output/test-artifacts/epic-16/test-design-progress-epic-16.md, SHA25650805B8F4B287E2FB403838C05B3D24418F9AA1F0F6159EB6F0C9E1A7720B6F3. This binds test-design authoring, not executed product tests. It names70 epic contracts,29 for retained16.1; planned families do not assert physical case counts.
+
+| Retained AC | Accepted E2 scenario binding |
+| --- | --- |
+|16.1-AC01|16.1-I01/I08/I09, R03; additive type/IDs, both creation APIs and schema negatives. |
+|16.1-AC02|16.1-I02, R01/R02, E01; real relationship union and direct route/API scope. |
+|16.1-AC03|16.1-U02/I03/R01/R02/R04/E01; matrix/row authority and protected payload absence. |
+|16.1-AC04|16.1-U01/U07/I04/R03/E02; pure enriched state/identity and real atomic write/readback. |
+|16.1-AC05|16.1-U06/E02; retained visibly-unsent state and real retry/persistence. |
+|16.1-AC06|16.1-U03/U04/U05/I05/E03; own-job authoritative inputs and missing/empty semantics. |
+|16.1-AC07|16.1-U04/U09/I06/I07/R04/E03; version/proof/current-fact races and atomic refresh. |
+|16.1-AC08|16.1-U08/I10/E04; actual linked-job dependency warning and honest unknown. |
+|16.1-AC09|16.1-I08 plus named acceptance/source-lock/evidence/tax regression inventory. |
+|16.1-AC10|16.1-I09/I11 plus existing standalone/booking/current-authority/DST/editor regression inventory. |
+|16.1-AC11|16.1-R01/R03/R04/I11 plus manifest/H4/exact-policy/scope and complete transfer accounting. |
+
+E2's16.1-E05 is an informational declared-volume baseline with no invented SLO/performance PASS; every mandatory retained/transferred AC still requires actual successful evidence. Preserve SUPABASE_TEST_REQUIRED=1 and honest discovery/executed/failed/skipped/native results, normal-JWT/direct API negatives, synthetic-only fixture credentials and full migration/seed/integration/browser gates.
+
+### Exact implementation-admission inventory clarification
+
+No source/test/helper/migration/runtime allocation is granted by planning. E2 identifies two additional existing exact semantic-rebaseline candidates, not permission to disable scope guards:
+
+- C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/tests/e2e/jobs/job-list-deferred-surface.e2e.spec.ts
+- C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/tests/unit/guardrails/job-non-scope.test.ts
+
+Exact candidate fixture helpers, supplementary to shared H4/matrix authority and still unallocated/uncreated:
+
+- C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/tests/support/jobs-depth-atdd.ts — compose existing factories into member/assignee/foreign/card fixtures; normal actor clients and privileged fixture-only readback remain separate.
+- C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/tests/support/job-booking-facts-atdd.ts — scoped canonical-fact, two-session barrier and durable conflict/audit readback support; no alternate detector or privileged production seam.
+
+These narrow filenames refine E2's proposed helper directories without granting either directory or editing E2. Candidate migrations are C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/supabase/migrations/20261015100000_e16_16_1_job_depth.sql and C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/supabase/migrations/20261015100001_e16_16_1_job_booking_facts.sql. Both are coordinator-requested PROPOSALS, not reserved/generated/created; coordinator validates chronology/collision and allocates final CLI identities. First: typed/child/read foundation; second: checked job-card transaction and authoritative booking fact/proof integration. No new mutation surface before its authoritative integration.
+
+Coordinator's bounded E12 assessment permits considering jobs-only extensions in current equivalents of migration-reset.int.test.ts, role-harness.atdd.int.test.ts and role-harness.ts, preserving provisioning owner inventory/policies/onboarding update/platform self-read/provisioning fixtures/directReadDenied/non-granting mappings/protocol projections/exhaustive negatives. This does not release/adopt/copy/revert the retained E12 checkout or allocate any product write. Supplemental helpers never replace shared H4.
+
+E15 shared semantic/claim reconciliation remains pending for the exact paths manifest.ts, permission-matrix.ts, capacity.ts and tests/unit/server/authz/phase-a-surface.test.ts already enumerated above; other proposed shared seams are not cleared by absence of a diff. All16.4 consumer paths remain EXCLUDED from16.1 ownership. E15 views/readers/time/calendar/E2E/diagnostic/CI scope remains excluded. No retained E12/E15 checkout or running resource was inspected/adopted by this formal plan.
+
+### Current formal gate condition
+
+The frozen Block If is literal: exact shared ownership unresolved at final planning prevents successful formal completion. Latest coordinator clarification expressly preserves this condition; there is no controlling appendix or readiness-to-execution waiver. All product/shared/migration/fixture/runtime paths remain on IMPLEMENTATION HOLD. At the preceding binding checkpoint, planning status remained draft pending active ownership reconciliation. The terminal final-gate assessment below controls; independent content/test-design acceptance does not grant ready-for-dev. Root owns aggregate state/git; no commit/push/branch/PR/deployment occurs here.
+## Auto Run Result
+
+Status: blocked
+
+Blocking condition: spec failed ready-for-development standard
+
+Invocation: existing draft-spec formal planning resume; Halt after planning. Selected spec: C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/_bmad-output/implementation-artifacts/spec-16-1-jobs-depth-activation-container-evolution-and-my-jobs.md.
+
+Final readiness self-check: actionable paths/dependency order, all11Given/When/Then surface ACs, allTR01–TR16 retained/transferred obligations and accepted E2 risk/scenario bindings remain present. Frozen intent preserved byte-for-byte. The one planning repair bound accepted E2/exact proposal metadata; reread still fails the literal frozen Block If because exact shared ownership remains unresolved at final planning. Coordinator confirmed no overriding interpretation and E15 semantic/claim reconciliation is still pending. No business requirement is fabricated or dropped to force readiness. No duplicate review occurred.
+
+Unresolved operational facts: exact shared source/test ownership remains unallocated; E15 changed shared semantics require reconciliation; concrete migration/helper filenames are proposals, not reservations or grants. Bounded E12 assessment applies only to possible own-worktree jobs extensions with all provisioning invariants retained, never adoption/release of the retained checkout.16.4 consumers remain excluded from16.1 allocation. These facts prevent successful formal completion under the frozen condition, independently of accepted preparation/E2 content.
+
+Outcome is planning-only BLOCKED, not implementation failure or implementation admission. No step03/build/ATDD/code-review/run-time/product test/migration/source/sprint/state/git operation was performed. Root/coordinator own the pending resolution and next admission; no new human question is needed here. Current implementation HOLD covers every unallocated product/shared/migration/fixture/runtime path.
+
+Completion hook: applied the planning/blocked branch of docs/process/review-order.md; preserved blocked result, no implementation Suggested Review Order authored, no implementation author/reviewer reconciliation or recursive HALT. No commit/push/branch/PR/deployment/resource was created. Historical preparation/E0/E1/review/E2 records remain intact.
