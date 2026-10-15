@@ -9,11 +9,11 @@ spec_folder: null
 story_id: null
 branch: codex/epic-16-jobs
 status: in-progress
-updated_at: "2026-10-15T09:14:36Z"
+updated_at: "2026-10-15T09:22:10Z"
 started_at: "2026-10-15T08:50:46Z"
 completed_at: null
-active_seconds: 876
-timing_anchor: 1792055253
+active_seconds: 1753
+timing_anchor: null
 is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
@@ -37,7 +37,7 @@ tea_selected: []
 tea_rationale: null
 epic_story_count: 5
 stories_after_in_epic: null
-completed_phases: [0, 1]
+completed_phases: [0, 1, 2]
 spec_path: null
 spec_approved: false
 build:
@@ -57,7 +57,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [0586972a, d6a310be, f610bcbd]
+commits: [0586972a, d6a310be, f610bcbd, 11bf2721]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -81,8 +81,8 @@ merge_method: null
 merge_commit: null
 branch_deleted: false
 open_questions:
-  - "Concrete project-only field meaning must preserve product/integrity requirements; resolve design defaults under owner standing decision"
-  - "Shared paths, migration range and isolated runtime allocation pending coordinator"
+  - Existing independent High reviewer narrow corrected spec/E2 disposition pending
+  - Exact shared source/fixture/migration/runtime ownership allocation pending coordinator
 deferred_work: []
 blockers: []
 overrides:
@@ -109,3 +109,6 @@ legacy_oracle_cancelled: true
 legacy_observations: 0
 consumer_transfer_correction: "TR13-TR16 and destination16.4-AC04-07 added; independent narrow review pending after E2 binding"
 draft_spec_sha256: B2528135E33EF62A5D8DD9BAF98D46D4E2FD942C1550118698CB286D5EF6D1F2
+epic_test_design_status: "Design completed:17risks/70scenario contracts;zero tests executed;no readiness promotion"
+epic_test_design_sha256: 3D7D950F097E952B2F3CB250C1B9188CBE118964700063AD5AA1566519D2A169
+epic_test_design: "_bmad-output/test-artifacts/test-design-epic-16.md"
