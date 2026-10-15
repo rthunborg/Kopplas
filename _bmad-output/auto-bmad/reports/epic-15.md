@@ -733,3 +733,38 @@ none
 1. None for concrete hosted proof preparation
 
 **Next:** Prepare document-only fully mocked C harness, exact bounded compiler/job/trigger proposal;independentHigh validation before allocation or execution
+
+## Report — 2026-10-15T14:24:54Z (compiled capsule mock packet sealed, execution held)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `94baa7c`).
+**Pipeline status:** in-progress;15.1 verification blocked
+**Continues:** Document-only compiled-C mock packet sealed for independent validation
+
+**Summary:** Six sequential stories;none landed
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 145h 27m (≈18h 43m AI-run, ≈126h 43m human/idle wait); resumed 21×.
+
+**Stories:**
+1. 15.1 blocked;15.2-15.6 backlog
+
+**Skipped:** (none)
+
+**Epic gate:** Not evaluated
+
+**TEA:** Required gates pending
+
+**Retrospective:** Epic14 October8 accepted-with-open-items
+
+**Overrides:** Owner design;one final epic PR;merge commit retain branches;no deploy
+
+**Open questions:**
+1. Hosted compiler unobserved;proposal admission-message gate must fit conventional full commit subject/body
+
+**Deferred work:**
+1. 18effects mocked;36planned0compiled/executed;two prospective sourcepaths unallocated
+
+**⚠️ Needs human:**
+1. None for independent preparation validation
+
+**Next:** DistinctHigh validate concrete harness, side effects, job permissions, trigger/caller compatibility and outputs before source allocation

@@ -9,10 +9,10 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-15T14:09:18Z"
+updated_at: "2026-10-15T14:24:54Z"
 started_at: "2026-10-09T12:57:49Z"
 completed_at: null
-active_seconds: 66548
+active_seconds: 67401
 timing_anchor: null
 is_first_in_epic: false
 is_last_in_epic: false
@@ -26,7 +26,7 @@ selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Distinct focused High source review of capsule firstfailure/savederrno marker and native125 label qualification; privileged source integrity"
+escalation_reason: "High document-only preparation of actual-source C mock side-effect substitution and bounded hosted execution proposal; no execution admitted"
 routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary epic test planning; sensitive implementation/review scope routed explicitly High\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary story test-risk classification\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_triage\",\"profile\":\"light\",\"role\":\"test-risk-triage\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -51,6 +51,7 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct focused High preparation validation of capsule125-only label compatibility, encoder qualification and privileged diagnostic privacy\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Resume High privileged diagnostic source realization after focused compatibility PASS; resource-free proofs only, C execution held\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct focused High source review of capsule firstfailure/savederrno marker and native125 label qualification; privileged source integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"High document-only preparation of actual-source C mock side-effect substitution and bounded hosted execution proposal; no execution admitted\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: null
 tea_selected: []
 tea_rationale: null
@@ -76,7 +77,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [99e1274e, b7f19e2d, 6f612a21, bc4163ea, 27ce6a2b, 7cdd08a6, 66cd8436, e6c404d3, 5d76de08575fb8fa09197021899d78280829d554, 81836287786a40540e96dbdf46db29c868cde41b, 48386408fc628f7341b711f177ff5833f622959c, 92dc4a5f4f7e9878e9ed9c28e00bda5d98680478, 16180cd63914a57895b36c2db060c43c74da3514, caec31b185bcad597664668d7a835c9c2096aa4d, 0a312c8fbd617d4ce03f97d5484bb23babb0686b, d5a5f85155394a0337ea92fcd606f949559b172a, becfd00e, 80c31af2, a0dd2302ead46e72e77f3293b84085c4f8fe65f3, 6f9e29656df997e2c5c6027874da4bee1ef6c17d, 5c1fb90b2f7f735259208e2d420bce489cbed598, 0d6f43ac90596b8703d8df3b9b986f9026aaaba3, 76868db295ac6b7de06a57f43164d5f02140f938, c4375f61, abaf8d81, db50a9c5, a1b83089, 6883ef61, 2441e3a2]
+commits: [99e1274e, b7f19e2d, 6f612a21, bc4163ea, 27ce6a2b, 7cdd08a6, 66cd8436, e6c404d3, 5d76de08575fb8fa09197021899d78280829d554, 81836287786a40540e96dbdf46db29c868cde41b, 48386408fc628f7341b711f177ff5833f622959c, 92dc4a5f4f7e9878e9ed9c28e00bda5d98680478, 16180cd63914a57895b36c2db060c43c74da3514, caec31b185bcad597664668d7a835c9c2096aa4d, 0a312c8fbd617d4ce03f97d5484bb23babb0686b, d5a5f85155394a0337ea92fcd606f949559b172a, becfd00e, 80c31af2, a0dd2302ead46e72e77f3293b84085c4f8fe65f3, 6f9e29656df997e2c5c6027874da4bee1ef6c17d, 5c1fb90b2f7f735259208e2d420bce489cbed598, 0d6f43ac90596b8703d8df3b9b986f9026aaaba3, 76868db295ac6b7de06a57f43164d5f02140f938, c4375f61, abaf8d81, db50a9c5, a1b83089, 6883ef61, 2441e3a2, 94baa7c7]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -763,3 +764,34 @@ application_browser_capsule125_source_review:
   append_bytes: 6931
   author_bindings_verified: 41
   prefix_sha256: cabe250dc9f318032f312b15ec3892f03fc74818cfe3e87cfbd4bb6a7ddcc929
+application_browser_capsule125_compiled_proof_preparation:
+  prefix_sha256: 556243f20c1220f13094ae0886dc9eb9c5f705628bc40af7e874f3d151e1f9fc
+  trigger: exact epic branch/path push and admission-message gate
+  caller_full_commit_message_compatibility_pending_validation: true
+  workflow_private_draft_sha256: 902e123104969cf77345238fd78a225b3b6814b02cdad78c45a912d06bae8fd5
+  executed_cases: 0
+  packet_manifest_bytes: 7818
+  compiler_candidate_unobserved: true
+  mocked_effect_symbols: 18
+  future_logical_cases_expected: 36
+  extracted_C_sha256: 801ce8373ddc88f4088a5d7d8e27dc45405f2759fd8be2659fe26f14dd97dc12
+  compiled_cases: 0
+  packet_entries: 23
+  broad_review_rounds: 0
+  compiler_native_ci_held: true
+  addendum_bytes: 181902
+  protected_bindings: 1524
+  append_sha256: 0d439dc84cd9c86798e4c79544174f7fc4d3f5da0a67f50e531c8740e5ac2a61
+  prospective_paths: [tests/diagnostics/fixed-chromium-capsule-mock.c, ".github/workflows/fixed-chromium-capsule-mock-proof.yml"]
+  p5_credit: false
+  addendum_sha256: 40b01f1f9cdd65c0bcb9d62fbcfbcac656dd835aaaf607d20e109caf8fb5659e
+  source_paths_unallocated: true
+  generated_harness_sha256: 86ca5d0624aa7980b62068d88df41ae85edaa49ca6865087a976cc36a79739c7
+  prefix_bytes: 172722
+  packet_manifest_sha256: 010aab7572543f7c3f069cc411480c942a384e00bc8dd21f217c907a444ed8c4
+  generated_harness_bytes: 19266
+  preservation_mismatches: 0
+  append_bytes: 9180
+  status: sealed_pending_distinct_High_validation
+  workflow_private_draft_bytes: 6618
+  extracted_C_bytes: 9445
