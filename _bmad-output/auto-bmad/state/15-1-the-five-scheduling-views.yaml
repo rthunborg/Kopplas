@@ -9,10 +9,10 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-15T11:42:07Z"
+updated_at: "2026-10-15T12:52:32Z"
 started_at: "2026-10-09T13:06:12Z"
 completed_at: null
-active_seconds: 60950
+active_seconds: 61978
 timing_anchor: null
 is_first_in_epic: true
 is_last_in_epic: false
@@ -26,7 +26,7 @@ selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Distinct independent High source review of capability failure diagnostics terminal exit and cancellation cleanup integrity; native held"
+escalation_reason: "Independent actual native privileged compilation identity credential and cleanup evidence audit of consumed second capability run; no reexecution"
 routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary scheduling UX specification; sensitive authorization/integrity portions explicitly delegated High\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary15.1 ATDD preparation; sensitive access assertions delegated High; shared fixture edits excluded\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -217,6 +217,7 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct High focused revalidation of R1 bounded diagnostic publication and capability failure termination; no source/native allocation\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"High realization of validated capability failure diagnostics and CLI terminal cancellation integrity; resource-free runner/unit scope only\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct independent High source review of capability failure diagnostics terminal exit and cancellation cleanup integrity; native held\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Independent actual native privileged compilation identity credential and cleanup evidence audit of consumed second capability run; no reexecution\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate, trace-advisory]
 tea_rationale: "Scheduling, synchronized projections, capacity and drag/keyboard/dialog behavior"
@@ -242,7 +243,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [45a64853, f9e12a81, 279d3149, b9d61a33, 4d7911ac, 3a655a5d, a67a64dc, 66cd8436, d79fff08, bf84cf5d, 181f947f, 22cfb74a, 22cfb74a, 6fd516b0, 521d56fd, e448f856, b99e3f42, 83e27c92, 1aa7c52b, 8630b011, da3a4c59, 27d67de7, 4223e887, 9c26fd72, d75313bb, 4b0ab106, f7b4f154, 437c3da2, e6c404d3, f4a431f6, 85cae2a5, 689a1385, 1bc90218, c49ac882, 4b685196, a5d262f8, a39cd221, 704e9320, c797d815, 25390342e668dee81d6bda42bfe0b5b51ed1723b, a98fc96386df752c631c119de992fc832c8ecb4d, ea5477fff0dbd8e82abb6a376269bfcf54ae95e9, 35e904b2e0d8798f72fbb405b3a888d64fdebd45, 2a071fc49a81984ae55e9e2c08a7583444245d86, ccd7abe9ebe38d846df58087c9d94280ad1d25ab, b01a0511cd1ee66f710de21034faeae9d5537403, eaabd2d0020b391247e1a4383b0eaf6291f0ac83, 39b84268e8eeffb3f9a6ff6b055846187c166d4b, ffa4168a62851a788cea6fff244a87f12b08cca6, 049a6f0f, ef1c5a290bdc3e6b48e68ec492abc0010c636c1b, 3c07917c1a323ba280d2325d7fe050cf1574bf5e, d880cd63fa158272f206d74aa5c4b0280d0d622c, 62dbbf947a916f528e8ae32d7b768750769a8c5d, b38d358fbba883ce79662a2b0fd0cea51d27c121, 4602a2eacdac7636c67751c986b18cc3c546950f, 65207b9ecaf7e5ad39b1840bda76099805acfa57, dab81e3d21a8180a05d3db9af5dde7334f991982, 828474451a0ae833a712d64544482498e79740bd, 706c3c9c7e2f2b2178b1c3506c59a2708356141b, 24d15439ab87847ecd1234b3e475b9d76883de2f, c0a57eda240f2b17793b693b2f3fbb963ebb29ab, 11c5cd1e0a8a6fda3297a9f16a54bb48209a5d9c, 5d76de08575fb8fa09197021899d78280829d554, 81836287786a40540e96dbdf46db29c868cde41b, 48386408fc628f7341b711f177ff5833f622959c, 92dc4a5f4f7e9878e9ed9c28e00bda5d98680478, 16180cd63914a57895b36c2db060c43c74da3514, caec31b185bcad597664668d7a835c9c2096aa4d, 0a312c8fbd617d4ce03f97d5484bb23babb0686b, d5a5f85155394a0337ea92fcd606f949559b172a, becfd00e, 80c31af2, a0dd2302ead46e72e77f3293b84085c4f8fe65f3, 6f9e29656df997e2c5c6027874da4bee1ef6c17d, 5c1fb90b2f7f735259208e2d420bce489cbed598, 0d6f43ac90596b8703d8df3b9b986f9026aaaba3]
+commits: [45a64853, f9e12a81, 279d3149, b9d61a33, 4d7911ac, 3a655a5d, a67a64dc, 66cd8436, d79fff08, bf84cf5d, 181f947f, 22cfb74a, 22cfb74a, 6fd516b0, 521d56fd, e448f856, b99e3f42, 83e27c92, 1aa7c52b, 8630b011, da3a4c59, 27d67de7, 4223e887, 9c26fd72, d75313bb, 4b0ab106, f7b4f154, 437c3da2, e6c404d3, f4a431f6, 85cae2a5, 689a1385, 1bc90218, c49ac882, 4b685196, a5d262f8, a39cd221, 704e9320, c797d815, 25390342e668dee81d6bda42bfe0b5b51ed1723b, a98fc96386df752c631c119de992fc832c8ecb4d, ea5477fff0dbd8e82abb6a376269bfcf54ae95e9, 35e904b2e0d8798f72fbb405b3a888d64fdebd45, 2a071fc49a81984ae55e9e2c08a7583444245d86, ccd7abe9ebe38d846df58087c9d94280ad1d25ab, b01a0511cd1ee66f710de21034faeae9d5537403, eaabd2d0020b391247e1a4383b0eaf6291f0ac83, 39b84268e8eeffb3f9a6ff6b055846187c166d4b, ffa4168a62851a788cea6fff244a87f12b08cca6, 049a6f0f, ef1c5a290bdc3e6b48e68ec492abc0010c636c1b, 3c07917c1a323ba280d2325d7fe050cf1574bf5e, d880cd63fa158272f206d74aa5c4b0280d0d622c, 62dbbf947a916f528e8ae32d7b768750769a8c5d, b38d358fbba883ce79662a2b0fd0cea51d27c121, 4602a2eacdac7636c67751c986b18cc3c546950f, 65207b9ecaf7e5ad39b1840bda76099805acfa57, dab81e3d21a8180a05d3db9af5dde7334f991982, 828474451a0ae833a712d64544482498e79740bd, 706c3c9c7e2f2b2178b1c3506c59a2708356141b, 24d15439ab87847ecd1234b3e475b9d76883de2f, c0a57eda240f2b17793b693b2f3fbb963ebb29ab, 11c5cd1e0a8a6fda3297a9f16a54bb48209a5d9c, 5d76de08575fb8fa09197021899d78280829d554, 81836287786a40540e96dbdf46db29c868cde41b, 48386408fc628f7341b711f177ff5833f622959c, 92dc4a5f4f7e9878e9ed9c28e00bda5d98680478, 16180cd63914a57895b36c2db060c43c74da3514, caec31b185bcad597664668d7a835c9c2096aa4d, 0a312c8fbd617d4ce03f97d5484bb23babb0686b, d5a5f85155394a0337ea92fcd606f949559b172a, becfd00e, 80c31af2, a0dd2302ead46e72e77f3293b84085c4f8fe65f3, 6f9e29656df997e2c5c6027874da4bee1ef6c17d, 5c1fb90b2f7f735259208e2d420bce489cbed598, 0d6f43ac90596b8703d8df3b9b986f9026aaaba3, 76868db295ac6b7de06a57f43164d5f02140f938]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -3759,5 +3760,70 @@ application_browser_failure_observability_source_review:
   proof_sha256: 7974d28b5d597f360c8224bbb39287514f2f704b254aca679309d0ecb6a47366
   native_actions: 0
   native_admission: held pending exact-head Coordinator admission
+  p5_complete: false
+  broad_review_round: 0
+application_browser_observability_capability_run:
+  status: "ONE accepted native admission consumed; terminal FAILURE; independent High audit pending"
+  run_id: 38730721339
+  url: "https://github.com/rthunborg/Kopplas/actions/runs/38730721339"
+  executed_head: 76868db295ac6b7de06a57f43164d5f02140f938
+  issued_at_utc: "2026-10-15T11:54:41.9823707Z"
+  native_dispatch_exit: 0
+  native_dispatch_http: 200
+  baseline_run_id: 38720110409
+  attempt: 1
+  actor: rthunborg
+  required_support: verify Dashboard DB recovery SUCCESS
+  general: FAILURE
+  optional_capability: FAILURE stage/reason unassessed
+  native_paired: SKIPPED
+  restoration_manifest_bytes: 5185
+  restoration_manifest_sha256: 019de022d7e25316888cc6ba2a5d389587948cbead0843f322347bb611cfe9ac
+  restoration_files: 27
+  prior_variables_unchanged: 8
+  complete_manifest_bytes: 188642
+  complete_manifest_sha256: d8408e09cf01b7b4368587c0f729cc93225474ba4627ac9c709199d9055312ad
+  execution_files: 461
+  external_files: 242
+  source_bindings: 12
+  artifacts: 6
+  extracted_artifact_files: 44
+  extracted_log_files: 113
+  typed_utc_reconciliation: "Independent High confirmed; failed redundant DateTime assertions retained"
+  freeze: Coordinator released execution window and variable reservations after terminal/restoration
+  native_execution: held no retries
+  native_cleanup: UNASSESSED no shutdown claim
+  p5_complete: false
+  broad_review_round: 0
+application_browser_observability_native_audit:
+  status: "Independent High audit sealed; capsule-result-rejected native125; underlying cause UNKNOWN"
+  artifact: "_bmad-output/implementation-artifacts/story-15-1-application-browser-capability-native-audit-2026-10-15.md"
+  bytes: 28005
+  sha256: 7bc0a012d3c821abadf714fb2ce403d2ca8ba046e1bed061d1ea1e876e0033c7
+  preserved_prefix_bytes: 15264
+  preserved_prefix_sha256: 912d170827e43cf8d5ce2c079bc485c23cf777339ff6ba86e606dd0e6143e6a1
+  append_bytes: 12741
+  append_sha256: a630f8d58d31613792ccf5737e5f6117b3a5e8dab0a64ff589e516bf4e08211a
+  receipt_bytes: 281
+  receipt_sha256: 3f42665130620b1bc375524a182300d0d185e94675d9632d0ec05243b4ed882a
+  stage: capsule-result
+  reason: capsule-result-rejected
+  native_code: 125
+  native_signal: null
+  owner_evidence: protocol-confirmed ACK leader-reaping retained-leaf-empty qualified through bound source/protocol
+  underlying_cause: UNKNOWN
+  credential_and_descendant_proof: UNOBSERVED
+  expected_timeout: UNOBSERVED
+  independent_owner_survival: UNOBSERVED
+  shutdown: UNOBSERVED
+  corpus_bindings: 703
+  restoration_files: 27
+  mismatches: 0
+  general_scheduling_passed: 7
+  general_scheduling_failed: 1
+  general_scheduling_skipped: 10
+  phone_targets_executed: 0
+  auditor_native_actions: 0
+  native_execution: held no retry
   p5_complete: false
   broad_review_round: 0

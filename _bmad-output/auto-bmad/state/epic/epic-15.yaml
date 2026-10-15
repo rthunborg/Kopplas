@@ -9,10 +9,10 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-15T11:42:08Z"
+updated_at: "2026-10-15T12:52:32Z"
 started_at: "2026-10-09T12:57:49Z"
 completed_at: null
-active_seconds: 61443
+active_seconds: 62470
 timing_anchor: null
 is_first_in_epic: false
 is_last_in_epic: false
@@ -26,7 +26,7 @@ selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Distinct independent High source review of capability failure diagnostics terminal exit and cancellation cleanup integrity; native held"
+escalation_reason: "Independent actual native privileged compilation identity credential and cleanup evidence audit of consumed second capability run; no reexecution"
 routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary epic test planning; sensitive implementation/review scope routed explicitly High\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary story test-risk classification\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_triage\",\"profile\":\"light\",\"role\":\"test-risk-triage\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -44,6 +44,7 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct High focused revalidation of R1 bounded diagnostic publication and capability failure termination; no source/native allocation\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"High realization of validated capability failure diagnostics and CLI terminal cancellation integrity; resource-free runner/unit scope only\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct independent High source review of capability failure diagnostics terminal exit and cancellation cleanup integrity; native held\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Independent actual native privileged compilation identity credential and cleanup evidence audit of consumed second capability run; no reexecution\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: null
 tea_selected: []
 tea_rationale: null
@@ -69,7 +70,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [99e1274e, b7f19e2d, 6f612a21, bc4163ea, 27ce6a2b, 7cdd08a6, 66cd8436, e6c404d3, 5d76de08575fb8fa09197021899d78280829d554, 81836287786a40540e96dbdf46db29c868cde41b, 48386408fc628f7341b711f177ff5833f622959c, 92dc4a5f4f7e9878e9ed9c28e00bda5d98680478, 16180cd63914a57895b36c2db060c43c74da3514, caec31b185bcad597664668d7a835c9c2096aa4d, 0a312c8fbd617d4ce03f97d5484bb23babb0686b, d5a5f85155394a0337ea92fcd606f949559b172a, becfd00e, 80c31af2, a0dd2302ead46e72e77f3293b84085c4f8fe65f3, 6f9e29656df997e2c5c6027874da4bee1ef6c17d, 5c1fb90b2f7f735259208e2d420bce489cbed598, 0d6f43ac90596b8703d8df3b9b986f9026aaaba3]
+commits: [99e1274e, b7f19e2d, 6f612a21, bc4163ea, 27ce6a2b, 7cdd08a6, 66cd8436, e6c404d3, 5d76de08575fb8fa09197021899d78280829d554, 81836287786a40540e96dbdf46db29c868cde41b, 48386408fc628f7341b711f177ff5833f622959c, 92dc4a5f4f7e9878e9ed9c28e00bda5d98680478, 16180cd63914a57895b36c2db060c43c74da3514, caec31b185bcad597664668d7a835c9c2096aa4d, 0a312c8fbd617d4ce03f97d5484bb23babb0686b, d5a5f85155394a0337ea92fcd606f949559b172a, becfd00e, 80c31af2, a0dd2302ead46e72e77f3293b84085c4f8fe65f3, 6f9e29656df997e2c5c6027874da4bee1ef6c17d, 5c1fb90b2f7f735259208e2d420bce489cbed598, 0d6f43ac90596b8703d8df3b9b986f9026aaaba3, 76868db295ac6b7de06a57f43164d5f02140f938]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -533,5 +534,70 @@ application_browser_failure_observability_source_review:
   proof_sha256: 7974d28b5d597f360c8224bbb39287514f2f704b254aca679309d0ecb6a47366
   native_actions: 0
   native_admission: held pending exact-head Coordinator admission
+  p5_complete: false
+  broad_review_round: 0
+application_browser_observability_capability_run:
+  status: "ONE accepted native admission consumed; terminal FAILURE; independent High audit pending"
+  run_id: 38730721339
+  url: "https://github.com/rthunborg/Kopplas/actions/runs/38730721339"
+  executed_head: 76868db295ac6b7de06a57f43164d5f02140f938
+  issued_at_utc: "2026-10-15T11:54:41.9823707Z"
+  native_dispatch_exit: 0
+  native_dispatch_http: 200
+  baseline_run_id: 38720110409
+  attempt: 1
+  actor: rthunborg
+  required_support: verify Dashboard DB recovery SUCCESS
+  general: FAILURE
+  optional_capability: FAILURE stage/reason unassessed
+  native_paired: SKIPPED
+  restoration_manifest_bytes: 5185
+  restoration_manifest_sha256: 019de022d7e25316888cc6ba2a5d389587948cbead0843f322347bb611cfe9ac
+  restoration_files: 27
+  prior_variables_unchanged: 8
+  complete_manifest_bytes: 188642
+  complete_manifest_sha256: d8408e09cf01b7b4368587c0f729cc93225474ba4627ac9c709199d9055312ad
+  execution_files: 461
+  external_files: 242
+  source_bindings: 12
+  artifacts: 6
+  extracted_artifact_files: 44
+  extracted_log_files: 113
+  typed_utc_reconciliation: "Independent High confirmed; failed redundant DateTime assertions retained"
+  freeze: Coordinator released execution window and variable reservations after terminal/restoration
+  native_execution: held no retries
+  native_cleanup: UNASSESSED no shutdown claim
+  p5_complete: false
+  broad_review_round: 0
+application_browser_observability_native_audit:
+  status: "Independent High audit sealed; capsule-result-rejected native125; underlying cause UNKNOWN"
+  artifact: "_bmad-output/implementation-artifacts/story-15-1-application-browser-capability-native-audit-2026-10-15.md"
+  bytes: 28005
+  sha256: 7bc0a012d3c821abadf714fb2ce403d2ca8ba046e1bed061d1ea1e876e0033c7
+  preserved_prefix_bytes: 15264
+  preserved_prefix_sha256: 912d170827e43cf8d5ce2c079bc485c23cf777339ff6ba86e606dd0e6143e6a1
+  append_bytes: 12741
+  append_sha256: a630f8d58d31613792ccf5737e5f6117b3a5e8dab0a64ff589e516bf4e08211a
+  receipt_bytes: 281
+  receipt_sha256: 3f42665130620b1bc375524a182300d0d185e94675d9632d0ec05243b4ed882a
+  stage: capsule-result
+  reason: capsule-result-rejected
+  native_code: 125
+  native_signal: null
+  owner_evidence: protocol-confirmed ACK leader-reaping retained-leaf-empty qualified through bound source/protocol
+  underlying_cause: UNKNOWN
+  credential_and_descendant_proof: UNOBSERVED
+  expected_timeout: UNOBSERVED
+  independent_owner_survival: UNOBSERVED
+  shutdown: UNOBSERVED
+  corpus_bindings: 703
+  restoration_files: 27
+  mismatches: 0
+  general_scheduling_passed: 7
+  general_scheduling_failed: 1
+  general_scheduling_skipped: 10
+  phone_targets_executed: 0
+  auditor_native_actions: 0
+  native_execution: held no retry
   p5_complete: false
   broad_review_round: 0

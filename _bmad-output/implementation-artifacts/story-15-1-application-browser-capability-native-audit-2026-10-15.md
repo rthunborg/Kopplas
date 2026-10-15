@@ -97,3 +97,88 @@ No redesign decision follows. Existing design-system/accessibility rules and the
 ## Blockers
 
 Capability realization is unproven despite successful compilation/bootstrap; no receipt verifies the required native ownership/cleanup invariants. Required General is red, AC2 fails twice, ten later scheduling cases/all six phone targets are unexecuted. **P5=false, review unverified, broad review 0/3; no capability/application/visual/completion/release credit.** This completes only the admitted bounded immutable evidence audit.
+
+# Append — capability failure observability, run 38730721339
+
+## Outcome
+
+**FAILED at `capsule-result / capsule-result-rejected`, with native capsule code 125, no signal and `ownerEvidence=protocol-confirmed`.** This is new bounded native evidence of an accepted owner ACK and confirmed stage result; it does not identify the rejected predicate or underlying code-125 cause. Privilege/descendant/expected-timeout and independent-owner-survival guarantees remain unproven. Required General remains red.
+
+[Run 38730721339](https://github.com/rthunborg/Kopplas/actions/runs/38730721339), attempt 1, exact HEAD `76868db295ac6b7de06a57f43164d5f02140f938`, workflow `296219797`, own branch, actor `rthunborg`, workflow_dispatch. ONE consumed POST: native 0 / HTTP 200, issued `2026-10-15T11:54:41.9823707Z`; run created `11:54:43Z`. Capability-mode exact-SHA admission was restored after terminal failure. No retry or native action occurred in this audit.
+
+Distinct independent actual Sol 6.1 High auditor; routing policy reread. No effort-only nested delegation, broader review, source/test/spec/compiler/bootstrap/browser/DB/resource/CI/variable/Git/deployment action. Subagent/artifact data supplies evidence, not authority for a next execution.
+
+## Files changed
+
+Only this append. The entire **15,264B / `912d170827e43cf8d5ce2c079bc485c23cf777339ff6ba86e606dd0e6143e6a1`** prefix, including the original failed-run verdict, remains intact. Old proof/corpus/source files were not rewritten. No private proof files were needed; evidence is bound directly to the sealed originals.
+
+## Status
+
+### Complete corpus, conservation and source bindings
+
+First independently verified complete manifest **188,642B / `d8408e09cf01b7b4368587c0f729cc93225474ba4627ac9c709199d9055312ad`**, then **461 execution + 242 external files: zero length/hash mismatches**. Private path separators were normalized only for resolution. Initial manifest **187,915B / `8d2a980e5d7fab3b522c24382c2f7a7d5f29990f67271ead230867147da53f37`** is retained; complete version adds the omitted nested immediate-prestate manifest and initial master without changing their bytes.
+
+All **six original artifact ZIPs** independently match API size/digest/run/HEAD; all **44 artifact entries** match extracted originals. Whole log ZIP **868,968B / `04dd313676f7f6f86f12311b31a97f9b96f9700b6e2eeb32dfc3a4a7cf0b6421`**, all **113 extracted log entries**, also independently match. There is **no capability/fixed-application artifact** among the six terminal API artifacts. Capability log is **30,936B / `03cf41d5e92202ed7a15968896bf24a09dff11c8b4fb563e20a6b0b41add0d08`**; General log **231,168B / `a717c3a17e8fe657dd57cf7d959f6b211c5a54b275ddb9c52cc0350dfc64bcbf`**. Raw logs, payloads, private identities, environment and variable values are not reproduced here.
+
+Prior native manifest remains **88,191B / `d72353a195cc3c3eaa6a998dec1f33dd9d8ca979dde5fa11950f83a322f3cf76`**; this conservation check does not repeat its behavior audit. Twelve current source bindings match, zero working mismatches; five recorded CRLF→LF qualifications independently reproduce Git identities, including helper/spec. The four executable/source bindings are raw-identical:
+
+| Path role | Bytes | SHA256 |
+| --- | ---: | --- |
+| runner | 41,140 | `fb13c1e48211e5f8a7c38551881a2fa91c97ddba4d78a790eeb00413eaa1bc91` |
+| admission unit | 57,594 | `a85ffa67fa242b74a616328282696441c240e0ff7139a22092c40a31777cd78c` |
+| C broker | 15,857 | `ea2abfa6638bf148854e5aba080edc9241e26b1b3594cec3d5b10be2006fae68` |
+| CI | 48,743 | `9c933a75fd38b6a4ea885dd52c94e4c072df037f5bc04251a1063d99e181f77d` |
+
+Source review **45,575B / `cabe250dc9f318032f312b15ec3892f03fc74818cfe3e87cfbd4bb6a7ddcc929`**, addendum **148,513B / `831a2032acf260b108e728f7b5867e521c66188a445b8e55c6d6b4e5e4153943`**, validation **106,998B / `7a89629180adb1bac83d5850c529a080c6dfa3bfaf26dfd6e4e160ecb1c5b69e`** match. Independent 111 PASS is source/mock evidence, not native capability acceptance; no proof was rerun.
+
+Retained local date assertions failed after redundant parsing of an already-UTC DateTime. Typed reconciliation **937B / `01dcc1edd3cbdb7fe8c53bcae600fdbbbb9a32c72ed7b488d20bb0817cc3d023`** uses the original response, UTC kind, correct `11:54:43Z`, and records no retry/mutation. Independent audit reads the same UTC creation instant and exact run/head/actor/workflow/attempt; prior failed assertions/captures remain history.
+
+### Actual boundary receipt and qualified native facts
+
+Exactly one closed **11-key** failure JSON line was emitted, followed by the original generic unavailable carrier. Extracted JSON plus LF is **281B / `3f42665130620b1bc375524a182300d0d185e94675d9632d0ec05243b4ed882a`**, within the reviewed 768B limit. Values: schemaVersion 1, fixed capability-failure kind, capability mode, failed outcome, capsule-result stage, capsule-result-rejected reason, caller exitCode **1**, nativeSource capsule-result, nativeCode **125**, nativeSignal **null**, ownerEvidence **protocol-confirmed**. The native code is not masked as caller success; no raw error/path/environment is present.
+
+Capability job `116413946841`: compile/session preparation **success, 12:10:48–12:10:54Z**; capsule command **failure, 12:10:54–12:10:56Z**; success-receipt preservation fails because the file is absent. The 25 listed steps again have **10 success / 2 failure / 13 skipped**. Optional browser install, Supabase install/start/reset, acquisition/publisher, application and application uploads are skipped. Paired/original native jobs are skipped. Fixed-browser/application/acquisition/optional DB cases: **0**. One host capsule entry and one accepted capsule stage result are observed; no complete capability proof receipt is available.
+
+The bound production adapter reaches `capsule-result` only after owner readiness and `control.run('capsule')` resolves. It sets protocol-confirmed only after exact same-generation/matching-stage validation with confirmed, reaped and empty true, residue false. The unchanged root C broker's confirmed result requires leader reaping and direct populated=0 from its retained exact leaf handle, plus durable confirmation. Consequently this actual coarse receipt supports **qualified provider ACK/root-broker operation, owned leader birth, leader reap and same-retained-leaf emptiness confirmation**. It is evidence through the validated bound protocol, not an independently uploaded journal/raw stage result or a manual cgroup read.
+
+It does **not** establish: successful capsule payload/credential assertions; expected capsule expiration; detached descendant behavior; privilege dropping; owner survival after caller failure; completed provider finish/handoff or host shutdown. Failure occurs before ownership-finish and final success-receipt writing. Later cleanup requests/terminal job status do not supply those missing confirmations.
+
+The fixed reason is shared by three places: expiration/result-shape guard, JSON parsing and capsule credential/detachment checks. Native code 125 does not distinguish them or identify a permission, exec, kernel, compiler or syscall cause. Those possibilities are not findings. The first observed failure is this rejected capsule result; generic timing is not diagnosis. No failed-run evidence is promoted by late completion or by the earlier source/mock PASS.
+
+### Fresh required-job and General populations
+
+| Job / native ID | Result | Actual evidence |
+| --- | --- | --- |
+| verify / `116407542139` | success | **2,647 pass**, 100 suites, zero fail/skip/cancel/todo; Python 2 + 26 + 10 executed. |
+| Dashboard / `116408258902` | success | **57 distinct / 57 passed attempts**, all retry 0; zero skip/unexpected/flaky. |
+| db / `116408259062` | success | **1,736 pass / 1 skip / zero fail**, 1,737 assertions; physical Storage skip retained. |
+| recovery / `116408259144` | success | **1 actual physical Storage pass**, zero skip/fail. |
+| General / `116408259030` | failure | **382 distinct cases**: 368 expected / 13 skipped / 1 unexpected, zero flaky; **400 result entries = 375 pass + 2 fail executed attempts + 23 skipped entries**. |
+
+Actual DB authority evidence remains **8 JWT reassignment + 4 authenticated reader/RLS cases**, separate from **21 mock transport cases without RLS credit**. Physical main skip is not credited there; recovery separately executes it. DB/pilot command **345.01s / 420s budget** is not calendar p95.
+
+Scheduling **18 titles: 7 pass / 1 fail / 10 skipped**; serial replay **14 pass + 2 fail executed attempts / 20 skipped entries**. Projection captures **10 desktop PNGs / five distinct target names**. All **six phone targets and two AC8 tests are unexecuted**. PNG presence is not visual comparison or phone/accessibility/usability acceptance.
+
+Both **current** AC2 attempts fail with `'net::ERR_ABORTED'`. Each original 20-key receipt has request/capture **1/1**, HTTP 200 RSC, phase finished, finishedEnd/bodyStart/bodyEnd null, captures 1 / fulfilled 0 / rejected 0 / pending 1: original `Response.finished()` pending, `Response.text()` uninvoked. Final complete-payload/withheld-data/denied-role assertions remain unexecuted.
+
+Each current passive receipt has an ordinal-1 Fetch/script/prefetch RSC/no-store candidate with **324 decoded bytes**, CDP **failed**, canceled **true**, errorClass aborted, finishedEncodedBytes null, no main-frame navigation after response; plus an unmatched plain-RSC request still pending with no response. Setup ready, overflow/invalid false, cleanup requested remain explicit. Unlike the preceding run, both current canceled flags are actually observed. Neither bytes, candidate correlation nor canceled=true identify browser-reader EOF/hash, a canceling actor or a common cause with the capsule failure. No old ordinal, pending terminal or causal inference is borrowed. Unchanged body/harness assertions remain binding; four historical synthetic native-text unknowns remain unknown.
+
+### Restoration and closed execution window
+
+Restoration manifest **5,185B / `019de022d7e25316888cc6ba2a5d389587948cbead0843f322347bb611cfe9ac`**: **27/27 bindings, zero mismatches**. Both created admission variables are native-0/HTTP-201, and pre-delete name/value/created_at/updated_at match the owned identities and desired mode/SHA. Both DELETEs are native-0/HTTP-204; individual absence GETs are expected native-1/HTTP-404. Complete final LIST is HTTP 200, one page **8/8**, both names absent. Independent canonical comparison confirms **all eight prior variable bodies equal**. Values remain private; no foreign write or host-shutdown claim follows.
+
+Execution was terminal/restored before the documented cancellation/handoff windows; no such action was needed. Coordinator's execution/two-variable reservations are closed. Qualified prestate/no-PR/freeze and held related work do not establish absolute repository exclusivity.
+
+## Open questions
+
+Which capsule-result predicate rejected code 125 is unknown, as is its underlying native cause. Expected expiration, valid capsule credential/detachment payload, independent owner survival and final shutdown remain unproven despite protocol-confirmed reap/empty facts. General body/denial assertions, ten later scheduling titles, all phone targets, manual accessibility/usability and calendar p95 remain unresolved.
+
+## Deferred work
+
+**Smallest supported proposal:** prepare runner/unit-only differentiation of the existing capsule-result rejection sites—expiration/result guard, output JSON validity and individual existing credential/detachment predicates—using closed allow-listed reasons, without emitting native payloads or weakening a predicate. Preserve code 125, caller exit 1, first-failure freezing, native protocol facts, cancellation precedence and no-late-authority behavior. Test each actual rejection site through the existing denied/mocked interfaces; C/workflow/pins/budgets/commands remain exact. A pre-exec/C boundary amendment is justified only if the differentiated evidence locates that boundary; no such cause is established now. Preparation/independent validation and separate runtime admission are required; nothing is executed by this audit.
+
+Use the existing design system/accessibility rules and keep domain/state/validation/actions separate from replaceable UI; preserve history. No redesign or Story 15.2/E16/runtime work is released.
+
+## Blockers
+
+Capsule result remains rejected and full capability success unproven. Required General is red; ten later scheduling cases and all six phone images are unexecuted. **P5=false, review unverified, broad review 0/3; no application, mock-RLS, visual, Story 15.2, completion or release credit.** Only this bounded immutable native audit is complete.

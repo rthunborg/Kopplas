@@ -488,3 +488,38 @@ none
 **⚠️ Needs human:** (none)
 
 **Next:** Coordinate one exact-head capability execution after bookkeeping-only source rebind; no automatic retry
+
+## Report — 2026-10-15T12:52:32Z (second native capability failure independently audited)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `76868db`).
+**Pipeline status:** Epic incomplete;15.1 verification blocked/P5false/broad0/3;15.2 held
+**Continues:** Sequential Epic15; next preparation scope requires coordinated allocation
+
+**Summary:** Independent High audit of consumed38730721339: closed receipt capsule-result-rejected/native125/no signal. Bound protocol confirms ACK, leader reaping and retained-leaf emptiness as qualified observations. Cause, expected timeout, credentials/descendants, owner survival and shutdown remain UNKNOWN or UNOBSERVED.703 corpus bindings and27 restoration files verified without mismatch; all8 prior variables restored.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 143h 54m (≈17h 21m AI-run, ≈126h 33m human/idle wait); resumed 14×.
+
+**Stories:**
+1. 15.1 General scheduling7pass/1fail/10skip; sixphone targets unexecuted; no application acceptance
+2. 15.2-15.6 backlog
+
+**Skipped:** (none)
+
+**Epic gate:** OPEN; required General red; no full capability/P5 credit
+
+**TEA:** Later required phases held
+
+**Retrospective:** Epic14 October8 accepted-with-open-items remains controlling
+
+**Overrides:** Owner-authorized scoped hosted fallback; no deploy; no future legacy URL evidence
+
+**Open questions:**
+1. Exact rejected predicate and native125 cause remain unknown
+
+**Deferred work:**
+1. Prepare minimal source observability sufficient to distinguish result guard, JSON and credentials without guessing cause or changing authority
+
+**⚠️ Needs human:** (none)
+
+**Next:** Coordinate preparation-only next scope using audited facts; no automatic native retry
