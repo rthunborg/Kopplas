@@ -180,3 +180,97 @@ Coordinator separately owns any bounded next proposal/readiness decision. This a
 ## Blockers
 
 Required General remains red; AC2 fails twice, ten subsequent scheduling titles and all six phone targets remain unexecuted. Candidate executable version-output admission failed; paired engine observations are zero. **P5=false, review unverified, broad review 0/3; zero new application gate, mock RLS/security, visual acceptance, Story 15.2, completion or release credit.** Only this focused immutable native evidence audit is complete.
+
+# Append — executed grammar-corrected pair, run 38660201781
+
+## Outcome
+
+**Actual synthetic `paired-reader-remedy-observed`; `fullNativeStatus=inconclusive`. Required General E2E remains FAILED.** [Run 38660201781](https://github.com/rthunborg/Kopplas/actions/runs/38660201781), attempt 1, exact HEAD `d880cd63fa158272f206d74aa5c4b0280d0d622c`, created `2026-10-15T00:28:15Z`, terminal failure updated `2026-10-15T00:49:15Z`. Coordinator records one accepted paired=true/original-native=false dispatch, no duplicate.
+
+Fresh full-Chrome 149 reproduced two reader-terminal discrepancies; fixed full-Chrome 158 completed all four qualified positive readers and matching post-EOF bodies. All four native-text observations across the two engines remain unknown. This meets the reviewed R1 **reader** remedy branch, not full-native-clean or an application's remedy. Different browser versions do not isolate CL8508456 as the sole cause. New successful version admission does not retroactively identify the component behind the earlier `version-rejected` receipt.
+
+Same independent actual Sol 6.1 High native auditor; no mechanism authorship, source/test/spec/root-state/Git action, proof rerun, HTTP/acquisition/browser/server/DB/CI action, resource launch or deployment. Interpretation followed the actual preserved report and reviewed classifier; no diagnostic test or application was executed by this auditor.
+
+## Files changed
+
+Only this append. The entire prior **31,174B / `616797ef54235aa4526d10f2761f0f9258b279eeca84133270cfefe1aed268e3`** prefix, including both failed-run histories, is preserved. Originals remain private under `.env.epic15.mail-runtime/ci-fixed-chromium-paired-probe-38660201781/`; none was rewritten. Raw payloads, identifiers, environments, executable paths, error streams and traces remain private.
+
+## Status
+
+### Binding and actual execution
+
+Before reading report contents, independently verified manifest **17,040B / `f04d8ac6037b0bc91399cb8b173b0b1e6bec8c967cd61e55dc2c4022daefde25`**, exact run/HEAD and **94/94 files, zero length/hash mismatches**. All **8 original ZIPs** match terminal API size/digest/run/HEAD; in-memory ZIP entry hashing matches **46 preserved extracted entries, zero mismatches**. API/report provenance is verified; no original file was re-extracted or changed.
+
+The paired report is **24,423B / `ccd6fd308293860d964a9193e423d612ac7ae47becccf36b0a93f8344855071e`**, original artifact `11939795872`, ZIP **2,947B / `07587e7e5a57866bfa7dc0c896b538320e4459fd8f7b8b51b0b997b9d8a4eaba`**. Acquisition boundary is **191B / `96dbd802da0c78b61dde9b8bc6b6c658eec81bccd8c068c2ec1a760dbbde5ccd`**, artifact `11939885479`, ZIP **321B / `0dfc8c68284e5e72b5352e35d2bd6f24129f7a57fcabf3efdd91ea2e66b409f2`**. Its eight-field ready/complete/none receipt still has pairedCases=0 because it records acquisition only; the separately executed paired report contains **16 cases**.
+
+Job `116185200800` is success: acquisition `00:47:51–00:47:57Z`, authority publisher success `00:47:57Z`, paired command success `00:47:57–00:49:09Z`, paired and acquisition uploads success. Log retains `fixed-chromium-acquisition ready` and `fixed-chromium-paired-probe paired-reader-remedy-observed 24423B`. Both engines executed with failure none; outer harnessFailure none. This records no reported setup/deadline/privacy/schema/cleanup failure, rather than independently measuring every process shutdown or private monotonic-clock fence.
+
+### Actual versions and acquired-byte provenance
+
+Runtime reports Linux full-Chrome **149.0.7827.55 then 158.0.8104.0**, same Node **v22.23.3** and SDK **1.61.1**. These are version/process/admission/launch receipts for the new fresh pair, not installer-only evidence or historical headless-shell identity.
+
+| Runtime receipt | Bytes | Computed SHA256 |
+| --- | ---: | --- |
+| bundled full-Chrome 149 executable | 278,568,152 | `2d18db9d8608b052b6a552ee00ec1e830f93692e928b65ecc67d693bd33fe801` |
+| exact CfT 158 ZIP | 202,355,055 | `6d15a1a00e6c8a97d04783ccb3ee0ec79ecf964dca75aff5ca8e39c3a270fa1b` |
+| full-Chrome 158 executable | 304,586,056 | `831b57f57d85e72f5a633f4ab2974bdc7047739119838fd774cbf06b3fd907c6` |
+
+Acquisition receipt matches the prepared official `chrome-for-testing-public-158.0.8104.0-linux64` identity, revision `1717709`, generation `1791951285551907`, exact ZIP size and object MD5 `4bc3c2aa1a735657f7d063a96d84baa2`. Source admission pins the official HTTPS artifact/metadata and checks complete transfer, MD5, extraction containment, executable and exact version. Report labels SHA authority **computed-acquired-bytes**. No publisher SHA256/signature for Chrome was supplied; GitHub's artifact digest binds the uploaded report ZIP, not a publisher signature for Chrome. Actual Chrome ZIP/executable bytes are not among these preserved artifacts, so this auditor independently verified report/API bytes but **did not rehash the raw browser binaries**. Raw version stdout/channel is not recorded in the report.
+
+### Every original case, controls and separate body sidecars
+
+Both engines preserve exactly the eight-case order: reader-one-1, reader-one-2, reader-two-1, reader-two-2, native-text-1, native-text-2, caller-abort, premature-close. All **16 rows** retain no-store/gzip/chunked/no-content-length framing, unique one-public/one-CDP match, no event overflow. Positive readers require actual recorded browser EOF, **324 decoded bytes / SHA256 `0420236d41fefa877b55ef66e2b78d6f46a46f2f8ebfdd662bc6e1ce2d43b8fe`**, server finish and no premature close; all eight positive readers meet these conditions. Expected compressed payload remains 347B/`ffce20bb3e0b9766dc35c4f0d9626874851c353b85de3c3b4e8bffda09ec07a7`.
+
+| Original case population | Fresh full 149 | Fixed full 158 |
+| --- | --- | --- |
+| reader-one, both repetitions | EOF/full hash/server finish; public/CDP/native finished | EOF/full hash/server finish; public/CDP/native finished |
+| reader-two, both repetitions | EOF/full hash/server finish; public and CDP **failed**, nativeFinished **unknown** | EOF/full hash/server finish; public/CDP/native **finished** |
+| native-text, both repetitions | browser reader not-exercised; public/CDP/native finished/body **unknown**; server finish | same explicit unknowns; server finish |
+| caller-abort | actual callerAbort=true, no serverTruncate; reader error/no EOF; withheld release; premature close/no finish; public/CDP failed | same genuine negative-control outcome |
+| premature-close | serverTruncate=true, callerAbort=false; reader error/no EOF; withheld release; premature close/no finish; public/CDP failed | same genuine negative-control outcome |
+
+All four controls retain full matching 324-byte/hash data **with reader error and no EOF**. Bytes/hash never turn these controls into success. Their original nativeFinished remains unknown; no expected-error swallowing or manufactured finish occurs.
+
+Eight separate paired-only body sidecars were attempted on qualified original EOF readers, each afterFrozenEof=true with the same 750ms limit. Baseline reader-one sidecars: **2 available/full matching bytes/hash**; baseline reader-two: **2 failed/null bytes/hash**. Fixed sidecars: **4 available/full matching bytes/hash**. No sidecar is requested for controls or native-text. The bound source freezes/stops/detaches original observation recording before same-object public `Response.body()`; sidecars cannot rewrite original failure/unknowns, introduce another browser stream consumer or satisfy application `Response.text()` assertions.
+
+Independent condition counting against these actual rows and static R1 branch order verifies: valid pair/controls, all-four positive baseline EOF, **2 actual baseline public+CDP reader defects**, baseline original classifier discrepancy-reproduced, all-four fixed reader/body qualification and clean outcome, but fixed host-text clean=false. Therefore exclusive result **paired-reader-remedy-observed**, fullNativeStatus **inconclusive**. Original baseline result **discrepancy-reproduced** and original fixed result **inconclusive** remain intact; body sidecars do not convert the latter to full-native-clean. Repetitions and engines remain separate. The sample supplies synthetic reader evidence only, no original application's EOF/identity, cancellation actor, raw-body security or acceptance certificate.
+
+### Required jobs and actual application gate
+
+| Required job / ID | Outcome | Actual population |
+| --- | --- | --- |
+| verify / `116179398913` | success | 2,540 pass, 100 suites, zero fail/skip/cancel/todo; Python 2/2 + 26/26 + 10/10 OK. |
+| db / `116179882237` | success | 1,736 pass / 1 skip / zero fail; 144 passed files + 1 skipped file. |
+| isolated recovery / `116179882166` | success | One physical-loader/overwrite/protected-row assertion executed/pass, zero skip/fail. |
+| Dashboard / `116179882315` | success | 57 distinct tests / 57 passed attempts, all retry 0; zero skipped/unexpected/flaky. |
+| General / `116179882472` | **failure** | 382 distinct scoped titles/IDs: 368 expected / 13 skipped / 1 unexpected; zero flaky/top-level errors. 400 results = 375 pass + 2 fail executed attempts + 23 skipped entries. |
+
+Original native diagnostic job `116185202083` is skipped. Main integration's sole skip is again the physical Storage assertion, separately executed in recovery. Actual Story 15.1 evidence remains **8 local-DB/JWT reassignment + 4 authenticated reader/RLS tests**, with **21 separate passing transport mocks / no RLS credit**. Vitest suite aggregate 463 is not a file/assertion count. DB/pilot elapsed **263.90s / 420s budget** is not a calendar p95 certificate.
+
+Scheduling remains **18 distinct titles: 7 pass / 1 fail / 10 skipped**. Serial replay gives 14 passed + 2 failed executed attempts / 20 skipped entries. Projection captures **10 desktop PNG attachments / 5 distinct of 11 target names**, five per attempt. All **six phone targets and two AC8 phone tests are unexecuted**. No automatic visual similarity, phone/one-hand/daylight/manual assistive-technology or complete workflow credit follows from desktop PNG presence or the synthetic pair.
+
+Both **new** AC2 attempts fail with `'net::ERR_ABORTED'`. Each emits its own original 20-key receipt: request/capture **1/1**, HTTP 200 RSC, phase finished, finishedEnd null, body start/end null; captures 1 / fulfilled 0 / rejected 0 / pending 1. Thus that same-object `Response.finished()` is pending at each fence and `Response.text()` uninvoked. Do not borrow capture 3 or missing-receipt conclusions from the preceding run.
+
+Original attempt passive receipt has two rows: ordinal-1 prefetch RSC/no-store candidate, **324 decoded bytes**, CDP failed/canceled=true/errorClass aborted, finishedEncodedBytes null, no main-frame navigation after response; plus an unmatched plain-RSC request still pending with no response. Retry has one ordinal-1 prefetch RSC/no-store candidate, **324 decoded bytes**, public failure observed but CDP terminal **pending**, terminalMs null, canceled/errorClass unavailable, finishedEncodedBytes null, no main-frame navigation after response. Both receipts are setup ready, no overflow/invalidity, cleanup requested. Retry's missing CDP terminal cannot be promoted to the first attempt's failure. Candidate matching and decoded byte counts are not application browser-reader identity/EOF/hash or a canceling actor. No synthetic server/EOF/control/body-sidecar evidence is transferred to these application requests.
+
+Untouched AC2 still requires finished then text, complete nonempty payload and withheld-data/denied-role checks. Both failures prevent those final assertions; earlier UI passes do not fulfill them. The pair's host-text unknowns reinforce the limitation: public post-EOF `Response.body()` availability on synthetic reader arms does not demonstrate this application's native finished/text path. Full failing-page hydration and original cancellation cause remain unproven.
+
+### Source/review preservation and newline qualifications
+
+Current probe **74,978B / `e4ff29811169cff384d9d75ad992730e5726a34f8659287763be24ddef7bfd67`**, workflow **35,082B / `25c9f3672f4538a95d5fb573421739ae14be757d0a2b72fc39e756dfcae1d304`**, application **57,501B / `9e9fdd5a46c2f45a09f809758ed3788d13409e346177bbfa8cfd5f037ac0a065`** match saved exact-HEAD Git/work raw bindings and runtime source SHA. Helper remains **18,231B / `84a90383c375ace822e0ef8519851185a80f043c126f2e2b05437ceff39a3082`**. Unit work **2,511B / `313f11c18c66d8bb242e66cb27c314b9fbe3eca94573a4276ce28c308beb5b28`** versus saved Git **2,460B / `ff0f78053225461c8f0ff48729b3b4e210cce0cae5df72fb071a9c911d5472d2`** independently verifies exact bidirectional CRLF/LF normalization, not raw identity.
+
+Runtime package/lock/nvm SHA receipts differ from Windows raw files solely by independently verified bidirectional CRLF/LF: normalized package 1,828B/`c04789d91485a4745aae998ae22e8cc5bf216d4341050004443dff4dd3207bf3`, lock 161,963B/`4335f56b85f868b1ad7e84ec7fe4c820214195068e577dd91fff0cf6c3d47b84`, nvm 3B/`f14b4987904bcb5814e4459a057ed4d20f58a633152288a761214dcd28780b56`. All three SDK manifests independently match the report hashes and version 1.61.1 in existing local files. This is static comparison, not a local module/browser rerun.
+
+Grammar follow-up source review is **36,806B / `715fdb74027e36fee52f78c9395b5630190e833943c865e0817ea69cc68b027b`**, preserving its prior 24,788B review prefix. Bound 289/289 GREEN, 32 expected RED-before, unit 4/4 and older protocol proofs remain source/mock evidence; this audit neither reruns nor rewrites them. The admitted grammar changes no application/default browser or paired classifier/body/control behavior. Historical failures and old rejection-component uncertainty remain honest history.
+
+## Open questions
+
+Native-text/host completion remains unknown even in fixed 158, so full-native remedy is unresolved. The synthetic pair cannot identify CL8508456 as the exclusive cause, the application's canceling actor or its browser consumer/EOF. General AC2 native finished/text/body-denial assertions, ten later scheduling tests, all phone targets, manual accessibility/usability and calendar p95 remain unresolved. Earlier version-rejection stderr/stdout component remains unknown.
+
+## Deferred work
+
+The evidence supports a **narrow application verification preparation** addressing the unchanged AC2 finished/text/payload obligations; the synthetic reader result is supporting diagnostic data. Any runtime or application change requires its own concrete reviewed admission. No retry, SDK/default upgrade, assertion waiver, observer insertion, broader review or Story 15.2 work is authorized by this audit. Recorded oracle waiver, original observer BLOCKED / REVISE and sequential goals remain unchanged.
+
+## Blockers
+
+Required General is still red; AC2 fails twice and ten later scheduling titles/all six phone targets are unexecuted. Fixed synthetic reader remedy is observed, but native-text/full-native and application acceptance remain inconclusive. **P5=false, review unverified, broad review 0/3; zero new application acceptance, mock RLS/security, visual, Story 15.2, completion or release credit.** Only the admitted native evidence audit is complete.
