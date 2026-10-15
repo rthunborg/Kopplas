@@ -383,3 +383,38 @@ none
 1. Noneforcurrentscopedrecovery;ownerprivilegeauthorizationestablished.
 
 **Next:** Coordinator review concrete capability capsule with exact source identities, repository-variable prior-state/read/mutation/restoration plan and all unchangedworkflow effects. No variablemutationordispatchbeforeadmission.
+
+## Report — 2026-10-15T11:04:56Z (native capability failure audited)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `d5a5f85`).
+**Pipeline status:** Epic incomplete;15.1 verification blocked, P5false, broad0/3;15.2 held
+**Continues:** Sequential Epic15; preparation only under renewed Coordinator allocation
+
+**Summary:** Independent High audit confirms compile/session preparation succeeded in run38720110409. Capability failed with generic unavailable output and no receipt; broker startup, credential drop and cleanup guarantees remain UNOBSERVED. All393 transport files, six artifacts and restoration28files verified without mismatch; all8 prior variable bodies unchanged.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 142h 07m (≈16h 28m AI-run, ≈125h 38m human/idle wait); resumed 11×.
+
+**Stories:**
+1. 15.1 scheduling7pass/1fail/10skip; six phone targets unexecuted; no acceptance credit
+2. 15.2-15.6 backlog; predecessor and renewed ownership gates remain
+
+**Skipped:** (none)
+
+**Epic gate:** OPEN; required General red; application native cases0; no promotion
+
+**TEA:** Unchanged; mandatory later phases not started
+
+**Retrospective:** Epic14 October8 accepted-with-open-items remains controlling
+
+**Overrides:** Owner authorized hosted fallback; no deploy; retain branches; no future legacy URL evidence
+
+**Open questions:**
+1. Exact failed native boundary and broker/cleanup guarantees remain unobserved
+
+**Deferred work:**
+1. Prepare closed-enum sanitized runner/unit diagnostic receipt with independent High validation before implementation; native/CI held
+
+**⚠️ Needs human:** (none)
+
+**Next:** Checkpoint audit, then High preparation-only delegate; independent validation and Coordinator source admission required
