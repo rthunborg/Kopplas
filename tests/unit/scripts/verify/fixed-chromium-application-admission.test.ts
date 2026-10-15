@@ -574,3 +574,84 @@ test("capability actual CLI bounds untrusted schema and nonsettling publication 
     assert.ok(f.writes.stdout.at(-1)!.includes("unavailable"));assert.ok(!f.writes.stdout.at(-1)!.includes("PRIVATE"));
   }
 });
+
+
+// Native125 diagnosis reuses the existing full-module CLI VM harness, not copied production logic.
+async function capsule125CLI(actual: Record<string,unknown> = {}, result: Record<string,unknown> = {}, output?:string, code=125, sink="pending-true") {
+  const unit=source("tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts");
+  const start=unit.indexOf("async function capabilityCLI("),end=unit.indexOf("\nfor(const [fault,stage,reason]",start);
+  let body=unit.slice(start,end).replace('const posix = (await import("node:path")).posix;','const posix = injectedPosix;')
+    .replace('hooks.encode=encodeCapabilityFailure;','hooks.peek=peekCapsuleDetail;hooks.predicates=CAPSULE_PREDICATE_REASONS;hooks.boundaries=CAPSULE_BOUNDARIES;hooks.encode=encodeCapabilityFailure;');
+  const at=body.indexOf('  const stage='),to=body.indexOf('  const finish=',at);
+  const stage=rStage();
+  body=body.slice(0,at)+stage+body.slice(to);
+  const javascript=ts.transpileModule(body,{compilerOptions:{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.ESNext}}).outputText;
+  const call=vm.runInNewContext(`(()=>{${javascript};return capabilityCLI;})()`,{injectedPosix:(await import("node:path")).posix,
+    injectedActual:actual,injectedResult:result,injectedOutput:output,injectedCode:code,assert,EventEmitter,createHash,Buffer,URL,vm,source,validateReceipt});
+  return await call("125",sink) as Awaited<ReturnType<typeof capabilityCLI>>;
+  function rStage(){return `  const stage=(invalid=false)=>child.stdout.emit("data",Buffer.from(JSON.stringify({event:"stage",generation:env.FIXED_CHROMIUM_BROKER_GENERATION,
+    stage:"capsule",code:injectedCode,signal:0,expired:true,reaped:true,empty:!invalid,confirmed:true,residue:false,...injectedResult,
+    output:injectedOutput===undefined?JSON.stringify({node:"v22.23.3",uid:1001,gid:1001,groups:[1001],detached:true,
+      status:"NoNewPrivs:\\t1\\nCapInh:\\t0000\\nCapPrm:\\t0000\\nCapEff:\\t0000\\nCapBnd:\\t0000\\nCapAmb:\\t0000",...injectedActual}):injectedOutput})+"\\n"));\n`;}
+}
+function capsuleDetail(f:Awaited<ReturnType<typeof capabilityCLI>>) { const bundle=f.writes.stdout[0];return JSON.parse(bundle.split("\n")[1]) as Record<string,unknown>; }
+const refusedMarker=(stage:string,errno:number|null=13)=>JSON.stringify({schemaVersion:1,kind:"owned-capsule-refusal",stage,errno});
+
+test("125 actual CLI expiration labels and downstream confirmation guards conserve authority",{timeout:2000},async()=>{
+  const f=await capsule125CLI({}, {expired:false},""),record=await f.finish();assert.equal(record.reason,"capsule-expiration-rejected");assert.equal(record.nativeCode,125);
+  for(const result of [{confirmed:false},{reaped:false},{empty:false},{residue:true}]){const blocked=await capsule125CLI({},result,""),r=await blocked.finish();assert.equal(r.reason,"ownership-unconfirmed");assert.equal(r.stage,"capsule-request");}
+});
+test("125 actual CLI JSON/property faults retain non125 compatibility",{timeout:2000},async()=>{
+  for(const [output,reason]of [["{","capsule-json-rejected"],["null","capsule-shape-rejected"]]){const f=await capsule125CLI({}, {},output),r=await f.finish();assert.equal(r.reason,reason);assert.equal(r.nativeCode,125);}
+  for(const [output,reason]of [["{","capsule-result-rejected"],["null","unknown"]]){const f=await capsule125CLI({}, {},output,0),r=await f.finish();assert.equal(r.reason,reason);assert.equal(f.writes.stdout[0].split("\n").length,3);}
+});
+test("125 actual CLI Node predicate is fine only for named native125",{timeout:2000},async()=>{
+  for(const code of [125,0,42]){const f=await capsule125CLI({node:"v24.0.0"},{},undefined,code),r=await f.finish();assert.equal(r.reason,code===125?"capsule-node-rejected":"capsule-result-rejected");assert.equal(r.nativeCode,code);}
+});
+test("125 actual CLI UID/GID predicates preserve exact integer bounds",{timeout:2000},async()=>{
+  for(const field of ["uid","gid"])for(const value of [0,-1,0.5,null]){const f=await capsule125CLI({[field]:value}),r=await f.finish();assert.equal(r.reason,`capsule-${field}-rejected`);}
+});
+test("125 actual CLI groups array/count/member checks preserve order",{timeout:2000},async()=>{
+  for(const [groups,reason]of [[null,"shape"],[[1001,1001],"count"],[[1002],"id"]]){const f=await capsule125CLI({groups}),r=await f.finish();assert.equal(r.reason,`capsule-groups-${reason}-rejected`);}
+});
+test("125 actual CLI detached predicate never accepts marker assertions",{timeout:2000},async()=>{
+  for(const detached of [false,1,"true",null]){const f=await capsule125CLI({detached}),r=await f.finish();assert.equal(r.reason,"capsule-detachment-rejected");}
+});
+test("125 actual CLI status/no-new-privileges remain independent requirements",{timeout:2000},async()=>{
+  for(const [status,reason]of [[null,"capsule-status-rejected"],["NoNewPrivs:\t0","capsule-no-new-privileges-rejected"]]){const f=await capsule125CLI({status}),r=await f.finish();assert.equal(r.reason,reason);}
+});
+test("125 actual CLI five capability-set checks preserve ordered failure",{timeout:2000},async()=>{
+  const good="NoNewPrivs:\t1\nCapInh:\t0000\nCapPrm:\t0000\nCapEff:\t0000\nCapBnd:\t0000\nCapAmb:\t0000";
+  for(const [key,name]of [["CapInh","inheritable"],["CapPrm","permitted"],["CapEff","effective"],["CapBnd","bounding"],["CapAmb","ambient"]]){
+    const f=await capsule125CLI({status:good.replace(`${key}:\t0000`,`${key}:\t0001`)}),r=await f.finish();assert.equal(r.reason,`capsule-cap-${name}-rejected`);
+  }
+});
+test("125 actual CLI accepts only reported finite markers/numeric errno",{timeout:2000},async()=>{
+  const sample=await capsule125CLI({}, {expired:false},refusedMarker("stdin-open"));await sample.finish();
+  const hooks=sample.context.hooks as typeof sample.context.hooks & {boundaries:string[]};assert.equal(hooks.boundaries.length,35);
+  for(const stage of hooks.boundaries.filter(v=>v!=="unknown"))for(const errno of [null,13,2147483647]){
+    const f=await capsule125CLI({}, {expired:false},refusedMarker(stage,errno)),r=await f.finish(),detail=capsuleDetail(f);
+    assert.equal(r.nativeCode,125);assert.equal(r.exitCode,1);assert.equal(detail.stage,stage);assert.equal(detail.errno,errno);assert.equal(r.ownerEvidence,"protocol-confirmed");
+  }
+});
+test("125 actual CLI missing/truncated/spoofed markers stay unknown with no authority",{timeout:2000},async()=>{
+  for(const output of ["", "{",refusedMarker("FOREIGN"),refusedMarker("stdin-open",0),refusedMarker("stdin-open",-1),refusedMarker("stdin-open",2147483648),
+    JSON.stringify({schemaVersion:1,kind:"foreign",stage:"stdin-open",errno:13}),JSON.stringify({schemaVersion:1,kind:"owned-capsule-refusal",stage:"stdin-open",errno:13,secret:"PRIVATE"})]){
+    const f=await capsule125CLI({}, {expired:false},output),r=await f.finish(),detail=capsuleDetail(f);assert.equal(detail.stage,"unknown");assert.equal(detail.errno,null);assert.equal(r.nativeCode,125);assert.equal(f.commands.includes("APPLICATION\n"),false);
+  }
+  const other=await capsule125CLI({}, {expired:false},refusedMarker("stdin-open"),0);const r=await other.finish();assert.equal(r.nativeSource,"capsule-result");assert.equal(r.nativeCode,0);assert.equal(other.writes.stdout[0].split("\n").length,3);
+});
+test("125 actual CLI cancellation/late marker cannot rewrite first failure",{timeout:2000},async()=>{
+  const f=await capsule125CLI({}, {expired:false},refusedMarker("stdin-open"));await f.flush();f.ack();await f.flush();f.cancel();await f.flush();assert.deepEqual(Array.from(f.exits),[]);await f.tick(2000);
+  assert.equal(await f.outcome,f.terminal);const snapshot=f.writes.stdout[0];f.stage();f.cancel();await f.flush();assert.equal(f.writes.stdout[0],snapshot);
+  const record=JSON.parse(snapshot.split("\n")[0]);assert.equal(record.reason,"cancelled");assert.equal(record.nativeSource,"unavailable");assert.equal(snapshot.split("\n").length,3);
+});
+test("125 actual CLI reason qualification/detail bounds/nonsettling sinks retain terminal1",{timeout:2000},async()=>{
+  for(const sink of ["pending-true","pending-false","throw","callback-error","event-error"]){const f=await capsule125CLI({}, {expired:false},refusedMarker("node-exec",2147483647),125,sink),record=await f.finish();
+    const hooks=f.context.hooks as typeof f.context.hooks & {predicates:string[]};assert.equal(hooks.reasons.length,16);assert.equal(hooks.predicates.length,21);
+    for(const reason of hooks.predicates){assert.ok(Buffer.byteLength(hooks.encode({...record,reason}))<=768);for(const change of [{nativeSource:"unavailable",nativeCode:null},{nativeSource:"owner-transport"},{nativeCode:0},{nativeCode:126}])assert.throws(()=>hooks.encode({...record,...change,reason}));}
+    for(const value of [...f.writes.stdout,...f.writes.stderr]){assert.ok(Buffer.byteLength(value)<=816);assert.equal(value.split("\n").length,4);assert.ok(!value.includes("PRIVATE"));}
+    for(const callback of f.retained)callback();f.output.stdout.emit("error",new Error("PRIVATE"));if(f.writes.stderr.length)f.output.stderr.emit("error",new Error("PRIVATE"));
+    assert.equal(f.writes.stdout.length,1);assert.ok(f.writes.stderr.length<=1);assert.deepEqual(Array.from(f.exits),[1]);
+  }
+});

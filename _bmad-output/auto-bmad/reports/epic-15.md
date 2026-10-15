@@ -663,3 +663,38 @@ none
 1. None for reviewed compatibility resolution
 
 **Next:** Coordinator resume acknowledgment then finish admitted source/Node work;precise compiler proposal before C execution
+
+## Report — 2026-10-15T13:52:01Z (capsule125 source Node static checkpoint, C proof pending)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `6883ef6`).
+**Pipeline status:** in-progress;15.1 verification blocked
+**Continues:** Bounded source/Node/static checkpoint sealed;independent source acceptance pending
+
+**Summary:** Six sequential stories;none landed
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 144h 54m (≈18h 12m AI-run, ≈126h 41m human/idle wait); resumed 19×.
+
+**Stories:**
+1. 15.1 blocked;15.2-15.6 backlog
+
+**Skipped:** (none)
+
+**Epic gate:** Not evaluated
+
+**TEA:** Required gates pending
+
+**Retrospective:** Epic14 October8 accepted-with-open-items
+
+**Overrides:** Owner design;one final epic PR;merge commit retain branches;no deploy
+
+**Open questions:**
+1. Native125 cause unknown;C36mockcases uncompiled;local22.23.2 proof does not establish hosted22.23.3 pin
+
+**Deferred work:**
+1. 123Nodepass,syntax/lint/fulltypecheckexit0,threefreshinversesexact;first121pass2fixturefailsretained
+
+**⚠️ Needs human:**
+1. None for independent source review
+
+**Next:** DistinctHigh source review;separate concrete hosted compile-only proposal and admission before36Ccase execution
