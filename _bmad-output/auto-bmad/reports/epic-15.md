@@ -768,3 +768,38 @@ none
 1. None for independent preparation validation
 
 **Next:** DistinctHigh validate concrete harness, side effects, job permissions, trigger/caller compatibility and outputs before source allocation
+
+## Report — 2026-10-15T14:33:54Z (compiled capsule mock preparation REVISE, zero execution)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `afd9c1d`).
+**Pipeline status:** in-progress;15.1 verification blocked
+**Continues:** Compiled-C document packet requires three bounded corrections
+
+**Summary:** Six sequential stories;none landed
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 145h 36m (≈18h 50m AI-run, ≈126h 45m human/idle wait); resumed 22×.
+
+**Stories:**
+1. 15.1 blocked;15.2-15.6 backlog
+
+**Skipped:** (none)
+
+**Epic gate:** Not evaluated
+
+**TEA:** Required gates pending
+
+**Retrospective:** Epic14 October8 accepted-with-open-items
+
+**Overrides:** Owner design;one final epic PR;merge commit retain branches;no deploy
+
+**Open questions:**
+1. No human dependency;reusable message gate does not itself guarantee one execution
+
+**Deferred work:**
+1. Correct full caller-message gate, malformed Python operand and unused extraction;preserve23entrypacket
+
+**⚠️ Needs human:**
+1. None for authorized preparation correction
+
+**Next:** High author narrow correction then same distinctHigh focused revalidation;two sourcepaths remainabsent/unallocated
