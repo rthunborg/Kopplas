@@ -9,10 +9,10 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-15T14:33:53Z"
+updated_at: "2026-10-15T14:42:33Z"
 started_at: "2026-10-09T13:06:12Z"
 completed_at: null
-active_seconds: 67345
+active_seconds: 67828
 timing_anchor: null
 is_first_in_epic: true
 is_last_in_epic: false
@@ -26,7 +26,7 @@ selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Distinct High document-only validation of actual-C mock side-effect substitution, bounded hosted trigger and caller commit-message compatibility"
+escalation_reason: High preparation R1 caller-message correction must retain required story scope before focused revalidation
 routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary scheduling UX specification; sensitive authorization/integrity portions explicitly delegated High\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary15.1 ATDD preparation; sensitive access assertions delegated High; shared fixture edits excluded\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -226,6 +226,8 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct focused High source review of capsule firstfailure/savederrno marker and native125 label qualification; privileged source integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"High document-only preparation of actual-source C mock side-effect substitution and bounded hosted execution proposal; no execution admitted\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct High document-only validation of actual-C mock side-effect substitution, bounded hosted trigger and caller commit-message compatibility\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"High document-only correction of three actual-C mock preparation blockers: caller gate, qualification path and extraction inventory\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"High preparation R1 caller-message correction must retain required story scope before focused revalidation\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate, trace-advisory]
 tea_rationale: "Scheduling, synchronized projections, capacity and drag/keyboard/dialog behavior"
@@ -251,7 +253,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [45a64853, f9e12a81, 279d3149, b9d61a33, 4d7911ac, 3a655a5d, a67a64dc, 66cd8436, d79fff08, bf84cf5d, 181f947f, 22cfb74a, 22cfb74a, 6fd516b0, 521d56fd, e448f856, b99e3f42, 83e27c92, 1aa7c52b, 8630b011, da3a4c59, 27d67de7, 4223e887, 9c26fd72, d75313bb, 4b0ab106, f7b4f154, 437c3da2, e6c404d3, f4a431f6, 85cae2a5, 689a1385, 1bc90218, c49ac882, 4b685196, a5d262f8, a39cd221, 704e9320, c797d815, 25390342e668dee81d6bda42bfe0b5b51ed1723b, a98fc96386df752c631c119de992fc832c8ecb4d, ea5477fff0dbd8e82abb6a376269bfcf54ae95e9, 35e904b2e0d8798f72fbb405b3a888d64fdebd45, 2a071fc49a81984ae55e9e2c08a7583444245d86, ccd7abe9ebe38d846df58087c9d94280ad1d25ab, b01a0511cd1ee66f710de21034faeae9d5537403, eaabd2d0020b391247e1a4383b0eaf6291f0ac83, 39b84268e8eeffb3f9a6ff6b055846187c166d4b, ffa4168a62851a788cea6fff244a87f12b08cca6, 049a6f0f, ef1c5a290bdc3e6b48e68ec492abc0010c636c1b, 3c07917c1a323ba280d2325d7fe050cf1574bf5e, d880cd63fa158272f206d74aa5c4b0280d0d622c, 62dbbf947a916f528e8ae32d7b768750769a8c5d, b38d358fbba883ce79662a2b0fd0cea51d27c121, 4602a2eacdac7636c67751c986b18cc3c546950f, 65207b9ecaf7e5ad39b1840bda76099805acfa57, dab81e3d21a8180a05d3db9af5dde7334f991982, 828474451a0ae833a712d64544482498e79740bd, 706c3c9c7e2f2b2178b1c3506c59a2708356141b, 24d15439ab87847ecd1234b3e475b9d76883de2f, c0a57eda240f2b17793b693b2f3fbb963ebb29ab, 11c5cd1e0a8a6fda3297a9f16a54bb48209a5d9c, 5d76de08575fb8fa09197021899d78280829d554, 81836287786a40540e96dbdf46db29c868cde41b, 48386408fc628f7341b711f177ff5833f622959c, 92dc4a5f4f7e9878e9ed9c28e00bda5d98680478, 16180cd63914a57895b36c2db060c43c74da3514, caec31b185bcad597664668d7a835c9c2096aa4d, 0a312c8fbd617d4ce03f97d5484bb23babb0686b, d5a5f85155394a0337ea92fcd606f949559b172a, becfd00e, 80c31af2, a0dd2302ead46e72e77f3293b84085c4f8fe65f3, 6f9e29656df997e2c5c6027874da4bee1ef6c17d, 5c1fb90b2f7f735259208e2d420bce489cbed598, 0d6f43ac90596b8703d8df3b9b986f9026aaaba3, 76868db295ac6b7de06a57f43164d5f02140f938, c4375f61, abaf8d81, db50a9c5, a1b83089, 6883ef61, 2441e3a2, 94baa7c7, afd9c1dd]
+commits: [45a64853, f9e12a81, 279d3149, b9d61a33, 4d7911ac, 3a655a5d, a67a64dc, 66cd8436, d79fff08, bf84cf5d, 181f947f, 22cfb74a, 22cfb74a, 6fd516b0, 521d56fd, e448f856, b99e3f42, 83e27c92, 1aa7c52b, 8630b011, da3a4c59, 27d67de7, 4223e887, 9c26fd72, d75313bb, 4b0ab106, f7b4f154, 437c3da2, e6c404d3, f4a431f6, 85cae2a5, 689a1385, 1bc90218, c49ac882, 4b685196, a5d262f8, a39cd221, 704e9320, c797d815, 25390342e668dee81d6bda42bfe0b5b51ed1723b, a98fc96386df752c631c119de992fc832c8ecb4d, ea5477fff0dbd8e82abb6a376269bfcf54ae95e9, 35e904b2e0d8798f72fbb405b3a888d64fdebd45, 2a071fc49a81984ae55e9e2c08a7583444245d86, ccd7abe9ebe38d846df58087c9d94280ad1d25ab, b01a0511cd1ee66f710de21034faeae9d5537403, eaabd2d0020b391247e1a4383b0eaf6291f0ac83, 39b84268e8eeffb3f9a6ff6b055846187c166d4b, ffa4168a62851a788cea6fff244a87f12b08cca6, 049a6f0f, ef1c5a290bdc3e6b48e68ec492abc0010c636c1b, 3c07917c1a323ba280d2325d7fe050cf1574bf5e, d880cd63fa158272f206d74aa5c4b0280d0d622c, 62dbbf947a916f528e8ae32d7b768750769a8c5d, b38d358fbba883ce79662a2b0fd0cea51d27c121, 4602a2eacdac7636c67751c986b18cc3c546950f, 65207b9ecaf7e5ad39b1840bda76099805acfa57, dab81e3d21a8180a05d3db9af5dde7334f991982, 828474451a0ae833a712d64544482498e79740bd, 706c3c9c7e2f2b2178b1c3506c59a2708356141b, 24d15439ab87847ecd1234b3e475b9d76883de2f, c0a57eda240f2b17793b693b2f3fbb963ebb29ab, 11c5cd1e0a8a6fda3297a9f16a54bb48209a5d9c, 5d76de08575fb8fa09197021899d78280829d554, 81836287786a40540e96dbdf46db29c868cde41b, 48386408fc628f7341b711f177ff5833f622959c, 92dc4a5f4f7e9878e9ed9c28e00bda5d98680478, 16180cd63914a57895b36c2db060c43c74da3514, caec31b185bcad597664668d7a835c9c2096aa4d, 0a312c8fbd617d4ce03f97d5484bb23babb0686b, d5a5f85155394a0337ea92fcd606f949559b172a, becfd00e, 80c31af2, a0dd2302ead46e72e77f3293b84085c4f8fe65f3, 6f9e29656df997e2c5c6027874da4bee1ef6c17d, 5c1fb90b2f7f735259208e2d420bce489cbed598, 0d6f43ac90596b8703d8df3b9b986f9026aaaba3, 76868db295ac6b7de06a57f43164d5f02140f938, c4375f61, abaf8d81, db50a9c5, a1b83089, 6883ef61, 2441e3a2, 94baa7c7, afd9c1dd, 6d983e00]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -4044,3 +4046,33 @@ application_browser_capsule125_compiled_proof_validation:
   append_sha256: acc5129c0980439117d3854f403a359a451143e59c4d60fb38098ff58c2fa93f
   status: REVISE_preparation_only
   prefix_bytes: 127228
+application_browser_capsule125_compiled_proof_correction:
+  gate_full_scoped_subject_body: true
+  broad_review_rounds: 0
+  addendum_bytes: 189750
+  source_paths_unallocated: true
+  scope_manifest_sha256: 6772d8266d547c02f0a35c931cfd6b0f9a3199ea840dd6c6b6f8e85d11da0219
+  addendum_sha256: 6bb4eaaf2a054df45e991bdbc452567c2b5f98c76616c996be48bc8134332f04
+  correction_manifest_sha256: 42c46bc80444c7758a7e901649a0bb4a2c9ba774a29e2c1f1b977bba9de0d4ed
+  p5_credit: false
+  first_correction_bytes: 6435
+  compiled_cases: 0
+  corrected_harness_sha256: 2227fd1dab92d5ab43916dd18d78200a1713ceee4a30392a49a533487ed82a91
+  checkpoint_prefix_bytes: 181902
+  executed_cases: 0
+  scoped_workflow_private_sha256: 1a010587d9873a483194835eaeb1c5eb79569f1ad447339fc0110180de3f626c
+  mocked_effects: 18
+  scoped_workflow_private_bytes: 6991
+  first_correction_sha256: 76e90fa58afafbd5a2ec0cffcb207dac526c96610477d63024f9ca678ae6f1bb
+  corrected_harness_bytes: 18823
+  terminal_LF_accepted: [0, 1]
+  corrected_extraction_sha256: 58110a2a79866ca8406b2a2b27aebe4e692d0f4e96272405ae662ee8d9381a22
+  corrected_extraction_bytes: 9002
+  compiler_native_ci_held: true
+  evaluations: 37
+  logical_cases: 36
+  root_one_job_procedural_only: true
+  scope_append_sha256: aebd73b040e59c807e1305ad75acd6d2a926c57c53e0d554c732c2712935c5a4
+  status: sealed_R1_R2_R3_pending_focused_revalidation
+  scope_append_bytes: 1413
+  checkpoint_prefix_sha256: 40b01f1f9cdd65c0bcb9d62fbcfbcac656dd835aaaf607d20e109caf8fb5659e

@@ -803,3 +803,38 @@ none
 1. None for authorized preparation correction
 
 **Next:** High author narrow correction then same distinctHigh focused revalidation;two sourcepaths remainabsent/unallocated
+
+## Report — 2026-10-15T14:42:33Z (compiled capsule mock R1 R2 R3 correction sealed)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `6d983e0`).
+**Pipeline status:** in-progress;15.1 verification blocked
+**Continues:** Narrow R1-R3 compiled-C packet correction sealed
+
+**Summary:** Six sequential stories;none landed
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 145h 44m (≈18h 58m AI-run, ≈126h 46m human/idle wait); resumed 23×.
+
+**Stories:**
+1. 15.1 blocked;15.2-15.6 backlog
+
+**Skipped:** (none)
+
+**Epic gate:** Not evaluated
+
+**TEA:** Required gates pending
+
+**Retrospective:** Epic14 October8 accepted-with-open-items
+
+**Overrides:** Owner design;one final epic PR;merge commit retain branches;no deploy
+
+**Open questions:**
+1. Compiler candidate remains future-observed
+
+**Deferred work:**
+1. Full story-scoped subject/body gate,correct Python operand,quoted-free exact extraction;36logical37evaluations0compiled/executed
+
+**⚠️ Needs human:**
+1. None for focused revalidation
+
+**Next:** Same distinctHigh prepvalidator recheck narrow fixes and preserved history before two-path allocation

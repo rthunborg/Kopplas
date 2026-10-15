@@ -9,10 +9,10 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-15T14:33:54Z"
+updated_at: "2026-10-15T14:42:33Z"
 started_at: "2026-10-09T12:57:49Z"
 completed_at: null
-active_seconds: 67834
+active_seconds: 68317
 timing_anchor: null
 is_first_in_epic: false
 is_last_in_epic: false
@@ -26,7 +26,7 @@ selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Distinct High document-only validation of actual-C mock side-effect substitution, bounded hosted trigger and caller commit-message compatibility"
+escalation_reason: High preparation R1 caller-message correction must retain required story scope before focused revalidation
 routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary epic test planning; sensitive implementation/review scope routed explicitly High\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary story test-risk classification\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_triage\",\"profile\":\"light\",\"role\":\"test-risk-triage\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -53,6 +53,8 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct focused High source review of capsule firstfailure/savederrno marker and native125 label qualification; privileged source integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"High document-only preparation of actual-source C mock side-effect substitution and bounded hosted execution proposal; no execution admitted\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct High document-only validation of actual-C mock side-effect substitution, bounded hosted trigger and caller commit-message compatibility\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"High document-only correction of three actual-C mock preparation blockers: caller gate, qualification path and extraction inventory\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"High preparation R1 caller-message correction must retain required story scope before focused revalidation\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: null
 tea_selected: []
 tea_rationale: null
@@ -78,7 +80,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [99e1274e, b7f19e2d, 6f612a21, bc4163ea, 27ce6a2b, 7cdd08a6, 66cd8436, e6c404d3, 5d76de08575fb8fa09197021899d78280829d554, 81836287786a40540e96dbdf46db29c868cde41b, 48386408fc628f7341b711f177ff5833f622959c, 92dc4a5f4f7e9878e9ed9c28e00bda5d98680478, 16180cd63914a57895b36c2db060c43c74da3514, caec31b185bcad597664668d7a835c9c2096aa4d, 0a312c8fbd617d4ce03f97d5484bb23babb0686b, d5a5f85155394a0337ea92fcd606f949559b172a, becfd00e, 80c31af2, a0dd2302ead46e72e77f3293b84085c4f8fe65f3, 6f9e29656df997e2c5c6027874da4bee1ef6c17d, 5c1fb90b2f7f735259208e2d420bce489cbed598, 0d6f43ac90596b8703d8df3b9b986f9026aaaba3, 76868db295ac6b7de06a57f43164d5f02140f938, c4375f61, abaf8d81, db50a9c5, a1b83089, 6883ef61, 2441e3a2, 94baa7c7, afd9c1dd]
+commits: [99e1274e, b7f19e2d, 6f612a21, bc4163ea, 27ce6a2b, 7cdd08a6, 66cd8436, e6c404d3, 5d76de08575fb8fa09197021899d78280829d554, 81836287786a40540e96dbdf46db29c868cde41b, 48386408fc628f7341b711f177ff5833f622959c, 92dc4a5f4f7e9878e9ed9c28e00bda5d98680478, 16180cd63914a57895b36c2db060c43c74da3514, caec31b185bcad597664668d7a835c9c2096aa4d, 0a312c8fbd617d4ce03f97d5484bb23babb0686b, d5a5f85155394a0337ea92fcd606f949559b172a, becfd00e, 80c31af2, a0dd2302ead46e72e77f3293b84085c4f8fe65f3, 6f9e29656df997e2c5c6027874da4bee1ef6c17d, 5c1fb90b2f7f735259208e2d420bce489cbed598, 0d6f43ac90596b8703d8df3b9b986f9026aaaba3, 76868db295ac6b7de06a57f43164d5f02140f938, c4375f61, abaf8d81, db50a9c5, a1b83089, 6883ef61, 2441e3a2, 94baa7c7, afd9c1dd, 6d983e00]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -818,3 +820,33 @@ application_browser_capsule125_compiled_proof_validation:
   append_sha256: acc5129c0980439117d3854f403a359a451143e59c4d60fb38098ff58c2fa93f
   status: REVISE_preparation_only
   prefix_bytes: 127228
+application_browser_capsule125_compiled_proof_correction:
+  gate_full_scoped_subject_body: true
+  broad_review_rounds: 0
+  addendum_bytes: 189750
+  source_paths_unallocated: true
+  scope_manifest_sha256: 6772d8266d547c02f0a35c931cfd6b0f9a3199ea840dd6c6b6f8e85d11da0219
+  addendum_sha256: 6bb4eaaf2a054df45e991bdbc452567c2b5f98c76616c996be48bc8134332f04
+  correction_manifest_sha256: 42c46bc80444c7758a7e901649a0bb4a2c9ba774a29e2c1f1b977bba9de0d4ed
+  p5_credit: false
+  first_correction_bytes: 6435
+  compiled_cases: 0
+  corrected_harness_sha256: 2227fd1dab92d5ab43916dd18d78200a1713ceee4a30392a49a533487ed82a91
+  checkpoint_prefix_bytes: 181902
+  executed_cases: 0
+  scoped_workflow_private_sha256: 1a010587d9873a483194835eaeb1c5eb79569f1ad447339fc0110180de3f626c
+  mocked_effects: 18
+  scoped_workflow_private_bytes: 6991
+  first_correction_sha256: 76e90fa58afafbd5a2ec0cffcb207dac526c96610477d63024f9ca678ae6f1bb
+  corrected_harness_bytes: 18823
+  terminal_LF_accepted: [0, 1]
+  corrected_extraction_sha256: 58110a2a79866ca8406b2a2b27aebe4e692d0f4e96272405ae662ee8d9381a22
+  corrected_extraction_bytes: 9002
+  compiler_native_ci_held: true
+  evaluations: 37
+  logical_cases: 36
+  root_one_job_procedural_only: true
+  scope_append_sha256: aebd73b040e59c807e1305ad75acd6d2a926c57c53e0d554c732c2712935c5a4
+  status: sealed_R1_R2_R3_pending_focused_revalidation
+  scope_append_bytes: 1413
+  checkpoint_prefix_sha256: 40b01f1f9cdd65c0bcb9d62fbcfbcac656dd835aaaf607d20e109caf8fb5659e
