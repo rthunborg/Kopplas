@@ -9,24 +9,24 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-15T09:08:43Z"
+updated_at: "2026-10-15T09:26:18Z"
 started_at: "2026-10-09T12:57:49Z"
 completed_at: null
-active_seconds: 55654
+active_seconds: 56656
 timing_anchor: null
 is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: build
-selected_role: build-delegate
-selected_profile: standard
+selected_phase: security_layer
+selected_role: security-reviewer
+selected_profile: critical
 selected_model: gpt-6.1-sol
 selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: Owner-authorized hosted privileged cleanup broker requires High source implementation and control isolation proofs
+escalation_reason: Distinct independent review of privileged C/systemd ownership cancellation and tenant test runtime source requires High
 routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary epic test planning; sensitive implementation/review scope routed explicitly High\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary story test-risk classification\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_triage\",\"profile\":\"light\",\"role\":\"test-risk-triage\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -34,6 +34,7 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Focused Docker authority correction addresses durable process observation and independently surviving privileged cleanup ownership\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Focused independent validation of Docker authority limits and concrete privileged fallback decision; no runtime admission\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Owner-authorized hosted privileged cleanup broker requires High source implementation and control isolation proofs\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct independent review of privileged C/systemd ownership cancellation and tenant test runtime source requires High\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: null
 tea_selected: []
 tea_rationale: null
@@ -59,7 +60,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [99e1274e, b7f19e2d, 6f612a21, bc4163ea, 27ce6a2b, 7cdd08a6, 66cd8436, e6c404d3, 5d76de08575fb8fa09197021899d78280829d554, 81836287786a40540e96dbdf46db29c868cde41b, 48386408fc628f7341b711f177ff5833f622959c, 92dc4a5f4f7e9878e9ed9c28e00bda5d98680478]
+commits: [99e1274e, b7f19e2d, 6f612a21, bc4163ea, 27ce6a2b, 7cdd08a6, 66cd8436, e6c404d3, 5d76de08575fb8fa09197021899d78280829d554, 81836287786a40540e96dbdf46db29c868cde41b, 48386408fc628f7341b711f177ff5833f622959c, 92dc4a5f4f7e9878e9ed9c28e00bda5d98680478, 16180cd63914a57895b36c2db060c43c74da3514]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -97,6 +98,7 @@ overrides:
   retro: "October8 accepted-with-open-items; October7 historical"
   checkpoint_push: User commit/push completed work authorization applies to reviewed preparation checkpoint while awaiting ownership
   blocked_checkpoint_push: "Owner requested commit/push; explicitly incomplete blockedcheckpoint branch only noEpicPR/finalization/merge/deploy"
+  legacy_oracle: "Standing owner design decision: no future legacy URL references browsing or evidence; missing design rules use headless domain state validation actions separated from replaceable UI with existing design system and accessibility; preserve historical records"
 constraints: []
 stories_landed: []
 epic_slug: scheduling-time-calendar
@@ -261,3 +263,25 @@ application_browser_privileged_fallback_implementation:
   p5_complete: false
   proof_manifest_sha256: eaa8968cd6f563de4822b0d55842c3497d696e9c8212f4395ef891eddd383a60
   failed_attempts_retained: [88/89 capability uploader condition failure, Lint prefer-const failure]
+application_browser_privileged_fallback_source_review:
+  status: FAIL two new consequential P2
+  source_head: 16180cd63914a57895b36c2db060c43c74da3514
+  artifact: "_bmad-output/implementation-artifacts/story-15-1-application-browser-adoption-source-review-2026-10-15.md"
+  bytes: 28585
+  sha256: 7949431e6d18ade5c0c99a38e954b3f66402d2b01368e5a2ef069044ae17355a
+  preserved_review_prefix_bytes: 16998
+  preserved_review_prefix_sha256: 317ad7458f38193511198e5691310634587aa4ba9cec4da5f3db6275c3776272
+  findings: ["R1 delayed preflight starts service and COMPATIBILITY after terminal admission refusal; cancellation latch absent before owner assignment", R2 capability mode still invokes unconditional Supabase teardown despite skipped installation/start]
+  passed: 89
+  failed: 0
+  skipped: 0
+  historical_red: 2
+  new_red: 2
+  original_p2: "Source/mock acknowledged-owner mechanisms corrected; native closure open"
+  protected_checks: 188
+  mismatches: 0
+  native_actions: 0
+  runtime_execution: held
+  p5_complete: false
+  broad_review_round: 0
+  proof_manifest_sha256: 7db7bab66d8ddacfc447e854a4c5088bec08876a10bb142574ac2cc12edd9aab

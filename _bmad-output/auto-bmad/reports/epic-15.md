@@ -311,3 +311,39 @@ none
 1. Coordinator confirms no direct human authorization for this specific privileged hosted provider expansion. Existing preparation-only admission excludes sudo bootstrap/source/provider selection/native execution. Smallest alternative is remain blocked.
 
 **Next:** Resolve reviewed provider scope decision;obtain Coordinator allocation before overlapping writes/resources. No PR,merge or deployment.
+
+## Report — 2026-10-15T09:26:18Z (in progress - authorized broker source correction)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `16180cd`).
+**Pipeline status:** Epic15 incomplete;15.1 blocked verification. Hosted fallback is owner-authorized and implemented at16180cd6, but independent focused source review FAIL requires two bounded corrections. Native execution held.
+**Continues:** Earlier provider decision checkpoint; direct human approved exact hosted-only privilege scope on2026-10-15.
+
+**Summary:** Four allocated broker/runner/unit/optionalCI files implemented with89/89 source/mock proofs. Independent source review reproduced late startup after terminal refusal and capability-mode Supabase teardown. Existing High author will fix within the same allocation.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 140h 28m (≈15h 44m AI-run, ≈124h 44m human/idle wait); resumed 9×.
+
+**Stories:**
+1. 15.1 source-review FAIL two consequentialP2;originaltwo cleanup mechanisms corrected in acknowledged-owner mocks, nativeclosure open. P5=false,broad0/3.15.2-15.6 remain held.
+
+**Skipped:**
+1. No completion gate waived.
+
+**Epic gate:** Not reached; General red and four native-text cases unknown.
+
+**TEA:** No new RLS/visual/performance acceptance credit;89sourcechecks are diagnostic evidence.
+
+**Retrospective:** Epic14 October8 accepted-with-open-items retrospective remains applicable;Epic15 pending completion.
+
+**Overrides:** Owner standing design: no futurelegacyURLreferences/browsing/evidence. Missingdesignrules use existingdesignsystem/accessibility and headless domain/state/validation/actions with replaceable UI; preserve historicalrecords. ExplicitHigh for sensitive work; mergecommit/retainbranches;no deployment.
+
+**Open questions:**
+1. No new human permission needed for boundedR1/R2 correction. Native capabilities remain unobserved and require a separately coordinated exact-source capsule.
+
+**Deferred work:**
+1. High narrowfix plus meaningful twoRED-to-GREEN regression evidence;distinct High focused review;then separate capabilityadmission,applicationverification and all later story/epic gates.
+
+**⚠️ Needs human:**
+1. None for current correction;human hostedprivilege authorization established. Runtime execution remains held by sourceFAIL.
+
+**Next:** Fix R1/R2 within existing fourpath allocation. Read-only E16 contract overlap assessment will accompany next author handoff;no E16/shared product writes.
