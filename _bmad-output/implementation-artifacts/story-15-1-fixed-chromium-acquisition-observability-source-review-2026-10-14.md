@@ -144,3 +144,68 @@ Root owns any separately admitted execution after reading this focused result. O
 ### Blockers
 
 The retained acquisition-observability P2 source/proof blocker is cleared for these exact hashes under the validated amended contract. Original runtime/application blockers remain: run `38634351750` failed acquisition and skipped pairing, zero paired native cases/qualified binary receipt; General AC2 failed twice; ten later scheduling tests and six phone targets remain unexecuted. P5=false, broad review 0/3; no fourth/extra broad review or acceptance/RLS/visual/15.2/completion/release credit.
+
+## Independent focused pinned-version grammar source/proof review — 2026-10-15
+
+### Outcome
+
+**PASS for the exact single-predicate version-grammar source/proof change.** No concrete consequential grammar defect or regression in preserved provenance/publication authority was identified. This continues the same independent actual Sol 6.1 High reviewer for pinned binary provenance, stream privacy and failure integrity; it is not author evidence, a broad story/P5 pass or runtime admission.
+
+Coordinator-supplied current checkout/branch commit is `3c07917c1a323ba280d2325d7fe050cf1574bf5e` in the original assigned checkout. No Git/state operation or nested delegation occurred. The current independently validated strict grammar governs this review; historical native output/component, acquisition cause and application EOF/cancel actor remain UNKNOWN.
+
+### Files changed
+
+Only this append to the reserved tracked review. The entire 24,788B/SHA256 `a6dae4bb55704a3f23703f1765d89940498b464d5fa19ccff85580ae1d9637ae` prefix is preserved, including the original FAIL and later receiver-fenced PASS. Fresh private reviewer copies/output were exclusively created under `.env.epic15.mail-runtime/version-grammar-review-a825924b-160c-4ac9-b072-1ccadeb16a60/`. No source/spec/workflow/app/helper/environment-file/configuration/root-state/timer or other-checkout edit occurred. Author and all older fixtures/TAP/manifests/inverse receipts were neither rewritten nor evaluated in place.
+
+### Status
+
+**Bound before evaluation and preserved after checks.** Current source/workflow/addendum/validation/review and the full current author proof inventory were hashed first. All **66** evidence entries of author `source-proof-manifest.json` match, including retained failed fixtures/receipts and complete inverse/identity proofs; all **eleven** protected bindings match before this admitted append. Rechecking after independent test execution gives zero mismatches. Author manifest is 18,648B/`20357335002bd5ebd71dd491098f68ba904a81a7381c658251c3ebcfc24edde6`; preservation receipt is 7,089B/`f788f6c9b4f919ccb96e2086d7233cb1db9086c5b120a18db23b98551e858249`. The reserved review is protected thereafter by its complete old prefix; the other ten protected files remain byte-identical. Root state/timers are excluded as coordinator-owned; no exhaustive repository/history audit is claimed.
+
+| Exact input | Bytes | SHA256 |
+| --- | ---: | --- |
+| Current probe | 74,978 | `e4ff29811169cff384d9d75ad992730e5726a34f8659287763be24ddef7bfd67` |
+| Immutable workflow | 35,082 | `25c9f3672f4538a95d5fb573421739ae14be757d0a2b72fc39e756dfcae1d304` |
+| Current grammar addendum | 55,599 | `4b0e4ad7a31971473d1bc34cb749bac43d76e03f2eee7ad9144fe48bbcc7df1e` |
+| Current independent grammar validation | 47,281 | `b81a8cd063417310eb10aeb97420863add9babce5f3eaa19f40bb1f1d9b30028` |
+| Unchanged inventory unit | 2,511 | `313f11c18c66d8bb242e66cb27c314b9fbe3eca94573a4276ce28c308beb5b28` |
+
+The addendum's complete prepared 48,826B prefix independently reproduces `28e1b15a0d3810810ec87f06035c9ea12739db67542638540bd49428ccbab549`. Protected app spec remains 57,501B/`9e9fdd5a46c2f45a09f809758ed3788d13409e346177bbfa8cfd5f037ac0a065`; helper 18,231B/`84a90383c375ace822e0ef8519851185a80f043c126f2e2b05437ceff39a3082`; canonical spec 84,649B/`d5a492a1546c19d777d8bff3d7037686e60a577565cac67281bff764f427bc22`. Package/lock/default Playwright, current validation, diagnosis/native audit and this review history match their bound working identities.
+
+**Changed predicate.** Probe `checkExecutableVersion()` at lines 837–843 now accepts only full equality with sixteen canonical lines for the caller-selected approved pin. The two existing product names, eight validated channels, literal ASCII separators and exactly one Linux LF are closed literals. Empty channel ends with one post-version ASCII space then LF. Stdout/stderr must both be primitive strings, stderr must be exactly empty, and the expected version must be one of the two existing exact pins. Full equality rejects omitted/extra separators, CRLF/missing/extra LF, payload before/after the line, wrong product/pin/channel/case, NUL/ANSI/Unicode whitespace and Buffer/string-object/falsy stream substitutes. It deliberately rejects the previously accepted synthetic bare forms. It returns the exact validated expected pin and preserves `version-rejected`/Error('version') without raw stream logging or a new enum.
+
+The complete prefix/suffix inverse demonstrates that this is the sole production change. All **56** other top-level functions remain directly byte-identical. `executableReceipt()` keeps the same --version invocation, five-second/256-byte bounds and prior callback error branch: a native callback error remains `version-process-failed` before the predicate. Acquisition/candidate/baseline revalidation all continue to use that unchanged function. No extra process/acquisition, conversion, parsed fallback, environment change, retry or default browser is introduced.
+
+**Meaningful grammar proofs.** The bound callback harness evaluates actual before/after source in isolated VMs after replacing production imports. Suppressed automatic entry is checked before evaluation; test-only exports expose the unchanged real executableReceipt/candidate/package-admission functions. Network, native process, browser, server and real filesystem writes are denied; candidate/baseline SDK objects are fake public interfaces whose browser launch is denied. The worker grammar harness separately exercises the actual acquisition-worker CLI. No detached duplicate parser is used.
+
+Independent fresh-copy GREEN run: **289 executed/pass, zero fail/skip/cancel, exit 0**. It includes all original **115** worker/supervisor/publisher/default/preservation scopes, **143** grammar/callback/mutation/bare-form/process/candidate/baseline tests, **30** actual worker CLI grammar/late-callback tests and **one** complete predicate/all-function binding test. The same 32 canonical byte fixtures reject through the retained before executableReceipt callback and succeed through the after callback/predicate. Mutation families test discriminating rejection before and after; intentional bare forms are GREEN-before/RED-after. Buffer/non-string/empty-object/nonempty stderr and valid-looking stdout plus process error stay closed. Deferred valid callbacks are actually settled after rejection and cannot promote the failed promise/frozen receipt, add an invocation or produce handoff/flag authority. Candidate and baseline positive revalidation tests reach the real existing admission functions through mocked interfaces.
+
+Independent RED-only run against the bound before source: **32 executed, 0 pass/32 expected canonical failures, exit 1, zero skip/cancel**. These are expected RED evidence, not new source failures. All 32 succeed in the GREEN run. Independent unchanged CI inventory unit: **4/4 pass**, zero fail/skip/cancel, exit 0. Author syntax/lint/preservation exit-0 receipts remain bound; no extra native version process was run.
+
+**Retained failed-fixture qualification.** Read retained grammar-green-r1 TAP and its exact failed fixture: 111 pass/32 fail of 143. The sixteen candidate failures stop at unchanged provenance because the synthetic receipt used the shortened artifact identifier; the final fixture uses the full pinned literal. Sixteen baseline failures stop at unchanged fixed fixture hashing because Windows gzip header OS byte was used while mocking Linux. The corrected mock explicitly supplies Linux OS byte 3 and asserts the unchanged compressed SHA. Those corrections affect private fixtures only and establish no historical native stream/Buffer/channel cause.
+
+Read retained protocol-preservation-r1 TAP and failed worker fixture: 114 pass/1 fail of 115. An accidental out-of-scope test option throws before invoking the negative version predicate, leaving its expected reason list empty. The final fresh worker copy uses a canonical stdout control directly with nonempty stderr and asserts the original version-rejected tag. No assertion or historical failure was removed. The prior predicate-byte assertion is preserved through the admitted exact inverse rather than dropped. The final grammar binding test is read-only: it checks the already-bound function identity receipt; its archived writer version, edit/copy/build helpers and collectors were never run by this reviewer. Copied final proof paths were statically checked before execution to prevent old-proof/receipt writes.
+
+**Preservation.** Independently applied `predicate-inverse.json` (1,604B/`efa606a0f0f68c5026b76f7565ce00c2ec63e21464a0cb60c66517580ca82059`) recovers the complete prior 74,792B probe/`95c967788cff764f1d546ec1a0b1bdd77cc116a57c714774447b266ef870a5f9`. The recovered predicate is compared to immutable old bytes; every other function is compared directly. Earlier complete admission inverses remain executed after removing only this predicate delta. Original default marker inverse still recovers 25,358B/`f4b0d06fa6ad41f94767b54a882f1b77b7ae3098a2a952ea1ef9f2ccfbadb647`; the 27 original/default/paired functions and all unchanged acquisition metadata/header/hash/version-call/order/provenance functions preserve their prior authority.
+
+Receipt schema/size/privacy/failure freezing, native worker 0/71 confirmation, private exclusive generation/certificates, nonrenewable D, pre-commit closure, bounded post-commit exception, publisher's earlier two-second/D window, actually settled deferred physical writes and exact runner-success AND fixed-true uploader guard retain all original executed assertions. Workflow is byte-identical: six prior jobs/input, seven checkouts, commands, step/job budgets, paired runner/R1/sidecars and both uploader paths are preserved. Previous P2 clearance is retained without extending it to unrelated scope.
+
+| Fresh independent evidence | Bytes | SHA256 |
+| --- | ---: | --- |
+| GREEN TAP | 67,410 | `1a8d564a15c83a0e789862ce75305e5b1391fed2a99dc568ea14660ee06dc82c` |
+| Expected RED TAP | 29,430 | `f4c8ab6fc71b4e5a19bd21a3f600e644e1ce7916455a5d0a4fac8719b732f668` |
+| Inventory TAP | 1,614 | `bdcbdb92e16cb64637ff1ee503259fc2e1b9d0902887b27451ff9bce21e6f22f` |
+| Independent review manifest | 4,210 | `c1fe2d59d12c67bd6656aa05add69bd8f1ffd14d3e7b7216f1a731c9e251a47a` |
+
+GREEN/inventory one-byte exit receipts are `0`/`5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9`; expected RED exit is `1`/`6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b`. Current source/author evidence and protected files were rechecked after these bounded runs, zero mismatches. Reviewer acquisition/native version/browser/server/DB/CI/managed-resource/Git/state/PR/push/merge/deployment actions: **0**. All version/process/transport fixtures are resource-free mocks, not acquired binary/version/compatibility evidence.
+
+### Open questions
+
+Historical native rejected stdout/stderr component remains UNKNOWN. The proven source-format incompatibility and its correction do not establish the cause of the historical runner failure, a default Buffer mismatch, actual channel, qualified native binary SHA/version/compatibility, application EOF/consumer identity or cancel actor.
+
+### Deferred work
+
+Coordinator may consider a separately admitted ONE execution after this exact source/proof PASS. This result dispatches none. Application remedy/observer insertion, broad story review, acceptance/RLS/visual/completion/release and Story 15.2 remain outside scope.
+
+### Blockers
+
+The focused grammar source/proof gate is clear for these exact bindings; subsequent execution still requires separate admission. Original native/application blockers remain: zero paired native cases, no qualified native pair; General AC2 failed twice; ten later scheduling tests and six phone targets remain unexecuted. P5=false; broad story review 0/3; no fourth/extra broad pass, application acceptance, RLS/security, visual, completion, release or 15.2 credit.
