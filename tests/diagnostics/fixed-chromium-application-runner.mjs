@@ -277,33 +277,53 @@ export function createHostedOwner(io, authority) {
 function productionRuntime() {
   const repo = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
   const signals = ['SIGINT', 'SIGTERM'];
+  // A generation is revocable before an owner exists, including pending I/O.
+  let owner, admission, refused = false;
+  const callbacks = new Set();
+  let rejectRefusal;
+  const revocation = new Promise((_, reject) => { rejectRefusal = reject; });
+  // A signal can arrive before the first await attaches its race.
+  revocation.catch(() => {});
+  const active = () => requireFact(!refused, 'admission');
+  const until = async task => { active(); const value = await Promise.race([task, revocation]); active(); return value; };
+  const refuse = () => {
+    if (refused) return;
+    refused = true; rejectRefusal(new Error(owner ? 'cleanup' : 'admission')); owner?.cancel();
+    for (const callback of callbacks) callback();
+  };
+  const release = () => { signals.forEach(signal => process.off(signal, refuse)); };
+  signals.forEach(signal => process.on(signal, refuse));
   const io = { platform: process.platform, version: process.version, argv: process.argv, env: process.env,
-    admitCandidate, packageAdmission, bounded, now: () => performance.now(),
+    admitCandidate, packageAdmission,
+    bounded: async (task, milliseconds) => { try { const result = await bounded(until(task), milliseconds); active(); return result; }
+      catch (error) { refuse(); throw error; } },
+    checkActive: active, awaitActive: until, releaseLifetime: release, now: () => performance.now(),
     async bindings() { const entries = await Promise.all(SOURCES.map(async path => { const data = await readFile(join(repo, path)); return [path, { bytes: data.length, sha256: hash(data) }]; })); return Object.fromEntries(entries); },
-    async gitIdentity() { const command = args => new Promise((yes, no) => execFile('git', ['-C', repo, ...args], { timeout: 5000, maxBuffer: 256, windowsHide: true }, (error, stdout) => error ? no(new Error('binding')) : yes(stdout.trim())));
+    async gitIdentity() { const command = args => { active(); return new Promise((yes, no) => execFile('git', ['-C', repo, ...args], { timeout: 5000, maxBuffer: 256, windowsHide: true }, (error, stdout) => error ? no(new Error('binding')) : yes(stdout.trim()))); };
       requireFact(await command(['status', '--porcelain', '--untracked-files=normal']) === '', 'binding');
       return { executionSha: await command(['rev-parse', 'HEAD']), sourceTree: await command(['rev-parse', 'HEAD^{tree}']) }; },
     async cliPath() { const require = createRequire(import.meta.url); const manifest = require.resolve('@playwright/test/package.json'); const data = JSON.parse(await readFile(manifest, 'utf8'));
       requireFact(data.version === '1.61.1' && data.bin?.playwright === 'cli.js', 'admission'); return join(dirname(manifest), 'cli.js'); },
-    async freshOutput() { const base = await realpath(repo); const parent = join(base, 'test-results'); await mkdir(parent, { recursive: true }); requireFact(await realpath(parent) === parent && !(await lstat(parent)).isSymbolicLink(), 'write');
-      const out = join(parent, 'fixed-chromium-application'); await mkdir(out); requireFact(await realpath(out) === out && !(await lstat(out)).isSymbolicLink(), 'write'); },
+    async freshOutput() { active(); const base = await realpath(repo); active(); const parent = join(base, 'test-results'); await mkdir(parent, { recursive: true }); active(); requireFact(await realpath(parent) === parent && !(await lstat(parent)).isSymbolicLink(), 'write'); active();
+      const out = join(parent, 'fixed-chromium-application'); await mkdir(out); active(); requireFact(await realpath(out) === out && !(await lstat(out)).isSymbolicLink(), 'write'); },
     async readReport() { return readFile(join(workloadRepo(), OUTPUT, 'general-browser.json')); },
     async readAttachment(path) { requireFact(typeof path === 'string', 'report'); const base = await realpath(join(workloadRepo(), OUTPUT, 'results')); const target = await realpath(resolve(workloadRepo(), path)); requireFact(contained(base, target) && !(await lstat(target)).isSymbolicLink(), 'report'); return readFile(target); },
     async writeProvenance(value) { const text = JSON.stringify(validateProvenance(value)); await writeFile(join(repo, OUTPUT, 'provenance.json'), text, { flag: 'wx', mode: 0o600 }); },
     setTimeout, clearTimeout,
-    onSignal(callback) { signals.forEach(signal => process.on(signal, callback)); },
-    offSignal(callback) { signals.forEach(signal => process.off(signal, callback)); },
+    onSignal(callback) { callbacks.add(callback); },
+    offSignal(callback) { callbacks.delete(callback); },
   };
   function workloadRepo() {
     const root = io.env.FIXED_CHROMIUM_BROKER_ROOT, path = io.env.FIXED_CHROMIUM_WORKLOAD_REPO;
     requireFact(typeof root === 'string' && isAbsolute(root) && path === join(root, 'workload'), 'admission'); return path;
   }
-  let owner, admission;
   async function startOwner() {
+    active();
     requireFact(io.platform === 'linux' && io.version === 'v22.23.3' && io.env.GITHUB_SHA === io.env.FIXED_CHROMIUM_HOSTED_ADMISSION_SHA
       && /^[a-f0-9]{40}$/.test(io.env.GITHUB_SHA ?? '') && ['capability','application'].includes(io.env.FIXED_CHROMIUM_HOSTED_ADMISSION), 'admission');
     const root = io.env.FIXED_CHROMIUM_BROKER_ROOT; workloadRepo();
-    const st = await lstat(root), binary = join(root, 'broker'), bs = await lstat(binary);
+    const st = await until(lstat(root));
+    const binary = join(root, 'broker'), bs = await until(lstat(binary));
     requireFact(!st.isSymbolicLink() && st.isDirectory() && st.uid === 0 && (st.mode & 0o777) === 0o711
       && !bs.isSymbolicLink() && bs.isFile() && bs.uid === 0 && (bs.mode & 0o777) === 0o700, 'admission');
     const authority = { generation: io.env.FIXED_CHROMIUM_BROKER_GENERATION, source: io.env.FIXED_CHROMIUM_BROKER_SOURCE_SHA256, unit: io.env.FIXED_CHROMIUM_BROKER_UNIT };
@@ -316,12 +336,15 @@ function productionRuntime() {
       handoff: value => { const stop = spawn('/usr/bin/sudo', ['-n','/usr/bin/systemctl','--no-block','stop',value.unit],
         { env: { PATH:'/usr/bin:/bin' }, stdio:'ignore' }); stop.on('error', () => {}); stop.unref(); },
     }, authority);
-    await owner.ready; return owner;
+    owner.ready.catch(() => {});
+    if (refused) owner.cancel();
+    await until(owner.ready); return owner;
   }
   async function ownedAdmission() {
     if (!admission) admission = (async () => {
       requireFact(io.env.FIXED_CHROMIUM_HOSTED_ADMISSION === 'application', 'admission');
-      const control = await startOwner(), result = await control.run('compatibility');
+      active(); const control = await startOwner(); active();
+      const result = await control.run('compatibility'); active();
       requireFact(result.code === 0 && result.signal === 0 && !result.expired, 'compatibility');
       const value = JSON.parse(result.output);
       requireFact(exact(value,['candidate','packages','compatibility']), 'admission'); checkPinnedCandidate(value.candidate);
@@ -331,41 +354,47 @@ function productionRuntime() {
     return admission;
   }
   io.admitCandidate = async path => {
-    const value = await ownedAdmission();
+    active(); const value = await ownedAdmission(); active();
     requireFact(path === io.argv[3] || path === value.candidate.executable, 'binding');
     // The version was executed in the retained owned leaf. Revalidation binds
     // unchanged acquired bytes, never another unmanaged --version process.
     for (const target of [io.argv[3], value.candidate.executable]) {
-      requireFact(!(await lstat(target)).isSymbolicLink(), 'binding');
-      const bytes = await readFile(target); requireFact(bytes.length === value.candidate.receipt.executable.bytes
+      requireFact(!(await lstat(target)).isSymbolicLink(), 'binding'); active();
+      const bytes = await readFile(target); active(); requireFact(bytes.length === value.candidate.receipt.executable.bytes
         && hash(bytes) === value.candidate.receipt.executable.sha256, 'binding');
     }
     return value.candidate;
   };
-  io.packageAdmission = async () => ({ provenance: (await ownedAdmission()).packages });
-  io.compatibility = async () => (await ownedAdmission()).compatibility;
+  io.packageAdmission = async () => { active(); const value = await ownedAdmission(); active(); return { provenance: value.packages }; };
+  io.compatibility = async () => { active(); const value = await ownedAdmission(); active(); return value.compatibility; };
   io.application = async (path, env, cli) => {
+    active();
     requireFact(path === CONFIG && cli.endsWith('/cli.js') && env.CI === 'true', 'binding');
     const result = await owner.run('application');
-    await owner.finish();
+    active(); await owner.finish(); active();
     return { code: result.code < 0 ? null : result.code, signal: result.signal === 0 ? null : result.signal === 9 ? 'SIGKILL' : result.signal === 15 ? 'SIGTERM' : 'other', expired: result.expired };
   };
-  io.finishOwnership = async () => { if (owner) owner.cancel(); };
+  io.finishOwnership = async () => { refuse(); release(); };
   io.capability = async () => {
+    try {
+    active();
     requireFact(io.env.FIXED_CHROMIUM_HOSTED_ADMISSION === 'capability', 'admission');
-    const control = await startOwner(), value = await control.run('capsule');
+    const control = await startOwner(); active();
+    const value = await control.run('capsule'); active();
     requireFact(value.expired && value.confirmed && value.reaped && value.empty && !value.residue, 'cleanup');
     const actual = JSON.parse(value.output);
     requireFact(actual.node === 'v22.23.3' && integer(actual.uid) && actual.uid > 0 && integer(actual.gid) && actual.gid > 0
       && Array.isArray(actual.groups) && actual.groups.length <= 1 && actual.groups.every(gid => gid === actual.gid) && actual.detached === true
       && typeof actual.status === 'string' && /^NoNewPrivs:\s+1$/m.test(actual.status)
       && ['CapInh','CapPrm','CapEff','CapBnd','CapAmb'].every(key => new RegExp(`^${key}:\\s+0+$`,'m').test(actual.status)), 'admission');
-    await control.finish();
+    await control.finish(); active();
     const receipt = { schemaVersion:1, capabilityOnly:true, source:io.env.FIXED_CHROMIUM_BROKER_SOURCE_SHA256,
       detachedDescendant:true, droppedAuthority:true, leaderReaped:true, sameLeafEmpty:true };
-    await mkdir(join(repo,'test-results'),{recursive:true});
+    await mkdir(join(repo,'test-results'),{recursive:true}); active();
     await writeFile(join(repo,'test-results','fixed-chromium-hosted-capability.json'),JSON.stringify(receipt),{flag:'wx',mode:0o600});
     return receipt;
+    } catch (error) { refuse(); throw error; }
+    finally { release(); }
   };
   return io;
 }
@@ -373,14 +402,18 @@ function productionRuntime() {
 export async function runApplication(io = productionRuntime()) {
   let record, candidate, packages, outputReady = false, failure = 'setup';
   const nativeActions = { compatibilityLaunches: 0, applicationInvocations: 0 };
+  const active = () => io.checkActive?.();
+  const until = task => io.awaitActive ? io.awaitActive(task) : task;
   try {
+    active();
     checkApplicationArguments(io);
-    const identity = await io.gitIdentity(), sources = await io.bindings(); checkSourceBindings(sources);
+    const identity = await until(io.gitIdentity()); active();
+    const sources = await until(io.bindings()); active(); checkSourceBindings(sources);
     requireFact(/^[0-9a-f]{40}$/.test(identity.executionSha) && /^[0-9a-f]{40}$/.test(identity.sourceTree), 'binding');
-    await io.freshOutput(); outputReady = true;
+    await until(io.freshOutput()); active(); outputReady = true;
     failure = 'admission';
     const admission = await io.bounded(Promise.all([io.admitCandidate(io.argv[3]), io.packageAdmission()]), 15000);
-    [candidate, packages] = admission; checkPinnedCandidate(candidate);
+    active(); [candidate, packages] = admission; checkPinnedCandidate(candidate);
     requireFact(packages.provenance.sdk === '1.61.1' && /^v22\.\d+\.\d+$/.test(packages.provenance.node)
       && ['testManifestSha256', 'playwrightManifestSha256', 'coreManifestSha256'].every(k => hex(packages.provenance[k])), 'admission');
     record = { schemaVersion: 1, mode: 'isolated-full158-application', ...identity, sources,
@@ -390,25 +423,28 @@ export async function runApplication(io = productionRuntime()) {
       report: null, population: null, visuals: [], failure: 'admission', nativeActions };
     failure = 'compatibility'; nativeActions.compatibilityLaunches = 1;
     record.compatibility = await io.compatibility(candidate);
+    active();
     requireFact(exact(record.compatibility, ['version', 'closed']) && record.compatibility.version === PIN && record.compatibility.closed === true, 'compatibility');
     failure = 'binding';
-    const again = await io.bounded(io.admitCandidate(candidate.executable), 15000); checkPinnedCandidate(again);
+    const again = await io.bounded(io.admitCandidate(candidate.executable), 15000); active(); checkPinnedCandidate(again);
     requireFact(JSON.stringify(candidate) === JSON.stringify(again) && JSON.stringify(sources) === JSON.stringify(await io.bindings()), 'binding');
+    active();
     requireFact(packages.provenance.sourceSha256 === sources['tests/diagnostics/no-store-stream-probe.mjs'].sha256
       && packages.provenance.packageSha256 === sources['package.json'].sha256
       && packages.provenance.lockSha256 === sources['pnpm-lock.yaml'].sha256
       && packages.provenance.nvmSha256 === sources['.nvmrc'].sha256, 'binding');
-    const cli = await io.cliPath(), env = sealEnvironment(io.env, candidate.executable);
+    const cli = await until(io.cliPath()); active(); const env = sealEnvironment(io.env, candidate.executable);
     failure = 'suite'; nativeActions.applicationInvocations = 1;
     record.cli = { state: 'aborted', nativeExit: null, signal: 'other' };
     const child = await io.application(CONFIG, env, cli);
+    active();
     record.cli = child.signal || child.expired || child.code === null
       ? { state: 'aborted', nativeExit: null, signal: ['SIGINT', 'SIGTERM', 'SIGKILL'].includes(child.signal) ? child.signal : 'other' }
       : { state: child.code === 0 ? 'completed' : 'failed', nativeExit: child.code, signal: null };
     failure = 'report';
-    const bytes = await io.readReport(); record.report = { bytes: bytes.length, sha256: hash(bytes) };
-    const result = await inspectReport(bytes, io.readAttachment); record.population = result.population; record.visuals = result.visuals;
-    failure = 'binding'; requireFact(JSON.stringify(sources) === JSON.stringify(await io.bindings()), 'binding');
+    const bytes = await io.readReport(); active(); record.report = { bytes: bytes.length, sha256: hash(bytes) };
+    const result = await inspectReport(bytes, io.readAttachment); active(); record.population = result.population; record.visuals = result.visuals;
+    failure = 'binding'; requireFact(JSON.stringify(sources) === JSON.stringify(await io.bindings()), 'binding'); active();
     failure = record.cli.state === 'completed' ? 'none' : 'suite';
     record.failure = failure; validateProvenance(record);
   } catch (error) {
@@ -419,6 +455,7 @@ export async function runApplication(io = productionRuntime()) {
     if (record) record.failure = failure;
   }
   if (failure !== 'none' && io.finishOwnership) await io.finishOwnership();
+  io.releaseLifetime?.();
   if (record && outputReady) {
     try { await io.writeProvenance(record); } catch { failure = 'write'; }
   }

@@ -967,7 +967,9 @@ jobs:
           if-no-files-found: error
 
       - name: Stop local Supabase stack
-        if: always()
+        # ROOT-SERVICE-CONDITION-BEGIN
+        if: ${{ always() && env.FIXED_CHROMIUM_HOSTED_ADMISSION == 'application' }}
+        # ROOT-SERVICE-CONDITION-END
         run: supabase stop
 
   # FIXED-APPLICATION-JOB-END
