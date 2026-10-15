@@ -835,8 +835,10 @@ export async function extractFixed(zip, root, deadline, observed) {
   return executable;
 }
 export function checkExecutableVersion(stdout, stderr, version, observed) {
-  if (![FIXED.version, FIXED.baseline].includes(version) || stderr || typeof stdout !== 'string'
-    || !new RegExp(`^(Google Chrome for Testing|Chromium) ${version.replaceAll('.', '\\.')}\\r?\\n?$`).test(stdout)) { observed?.('version-rejected'); throw new Error('version'); }
+  const products = ['Google Chrome for Testing', 'Chromium'];
+  const channels = ['', 'unknown', 'canary', 'dev', 'beta', 'extended', 'stable', 'unstable'];
+  if (![FIXED.version, FIXED.baseline].includes(version) || typeof stdout !== 'string' || typeof stderr !== 'string' || stderr !== ''
+    || !products.some(product => channels.some(channel => stdout === `${product} ${version} ${channel}\n`))) { observed?.('version-rejected'); throw new Error('version'); }
   return version;
 }
 async function executableReceipt(path, version, observed) {
