@@ -261,3 +261,51 @@ Standing owner design instruction remains: no future legacy-URL references/evide
 ### Blockers
 
 No focused source/mock blocker. Native capability/application execution remains separately held, required General remains red and native/application/visual obligations stay open. **P5=false; broad0/3;15.2 held; no acceptance/RLS/security/visual/performance/completion/release/deployment credit.** Actual native/compiler/bootstrap/browser/DB/CI/variables/privileged/resources/Docker/WSL/deploy actions0; source/spec/test edits and Git mutations0. Seven bounded read-only Git commands verified scoped bindings/inverses; no resource context was borrowed.
+
+## Focused native125 source review — 2026-10-15
+
+### Outcome
+
+**PASS for the admitted resource-free source/Node checkpoint at `2441e3a2cbf20a3ce9682c2c4f104a089f4f9953`, explicitly pending compiled actual-C producer proof.** Distinct independent Sol6.1High; no consequential production-reachable diagnostic defect found in the three-source change. This does not admit compiler/mock/native execution. The36 C mock cases remain **0 executed,36 pending**. No native125 cause is inferred.
+
+The entire incoming45,575B review prefix, SHA256 `cabe250dc9f318032f312b15ec3892f03fc74818cfe3e87cfbd4bb6a7ddcc929`, remains intact with all prior FAIL/RED/REVISE and qualified passes.
+
+### Files changed
+
+Only this tracked review append. Fresh exclusive private proofs: `.env.epic15.mail-runtime/application-browser-code125-independent-review-283321c5-e05d-4a17-9857-34a087293735/`. Source/spec/test/workflow, old proofs,703 corpus and other checkouts remain untouched. Root states/report are excluded as instructed. No compiler/version/utility discovery, harness compilation/execution, real broker child, identity/cgroup/systemd/kernel probe, browser/DB/CI/variable/resource/deployment or Git mutation occurred.
+
+### Status
+
+Author final manifest **12,457B / `5b7fb2f94c88c913a7bab271782ed7c58b97946a736d5da423508b383d01343d`** and all41 repository-relative entries match independently. An initial read-only lookup incorrectly prefixed these paths; corrected verification found zero mismatches and altered no files.
+
+| Current source | Bytes | SHA256 |
+| --- | ---: | --- |
+| Runner | 45,690 | `07eb719a1012e07c6db4a9fc7a5a32578eb4dd0b60f09368a170ef2c285c2617` |
+| Unit | 66,756 | `7c209f0409b6b065be98788467ded1db2ff005b446730065fa284348b98885be` |
+| Capsule C | 21,149 | `a48c96a0e196416aa5e0036010085676fc696ff844f166903044e317064c530c` |
+
+All three working sources equal raw Git HEAD blobs. Fresh independent reversal of scoped actual Git hunks reconstructs runner41,140B/`fb13c1e48211e5f8a7c38551881a2fa91c97ddba4d78a790eeb00413eaa1bc91`, unit57,594B/`a85ffa67fa242b74a616328282696441c240e0ff7139a22092c40a31777cd78c`, and C15,857B/`ea2abfa6638bf148854e5aba080edc9241e26b1b3594cec3d5b10be2006fae68` exactly. The entire original111-control unit prefix is byte-identical. Historical recipes are preserved; they are not used to prove this final compatibility rewrite. CI remains48,743B/`9c933a75fd38b6a4ea885dd52c94e4c072df037f5bc04251a1063d99e181f77d`.
+
+Reviewed behavior: the original16 reasons remain intact. The separate21 fine predicate reasons are encoded only with nativeSource=capsule-result and nativeCode125. Non125 parsing/predicate failures preserve coarse labels, and non125 null/property-access failure preserves unknown. First-failure freezing, native125/caller1, privacy, late-callback inertness, bounded cleanup join and nonwaiting terminal publication remain unchanged. The four confirmation/reap/empty/residue fine labels are blocked by the enforced owner validator on the normal production path; mock coverage is not evidence of new native reachability.
+
+The C producer statically retains the original call order and exits at the first original failure. Capsule-only detail captures the finite boundary and immediately available numeric errno, or null where unavailable; the diagnostic write cannot overwrite that saved value. It attempts one bounded marker on the existing nonblocking capture, including pre-stdout-redirection failure, and retains exit125 regardless of delivery. It adds no authority, FD/controller access, lifecycle policy, timer or success repair. The34 named tags are data-only. The runner's closed decoder treats malformed/truncated/missing/foreign markers as unknown/null; a valid-looking marker carries no origin guarantee and cannot change primary source/code/evidence or admit work. Primary/detail/generic output remains bounded to816B. These C statements are source review, not compiled behavior evidence.
+
+Independent Node rerun **123/123 pass,0 fail/skipped/cancelled, exit0**:111 preserved controls plus12 appended actual-module/CLI regressions. They challenge qualified fine labels, non125 conservation, marker/privacy/bounds, first failure/cancellation, downstream refusals and stalled/late sink behavior. Syntax, two-path zero-warning lint and full nonincremental typecheck also return0. Author121pass/2 new cross-realm fixture failures and all raw source copies remain immutable; only new Array.from comparisons were corrected. No old assertion was rebaselined.
+
+Fresh TAP26,650B SHA256 `03303f3d32d2a14e49b0d62766828c0e564f128251857da13428f86c927363b7`; static/inverse receipt1,590B SHA256 `81078f97b84b906e489946344112d3e1cd506b80d787d8d56e094a17518e75ce`. Actual proof Node22.23.2 and VM22.23.3 are distinguished; no hosted pin realization follows.
+
+All1,453 supplied protected bindings match, including the retained703 corpus; current snapshot1,499 files conserves every full binding except this authorized append, whose full prior prefix is preserved. This is preservation hashing, not a new native-content/ZIP audit. Author addendum remains172,722B/`556243f20c1220f13094ae0886dc9eb9c5f705628bc40af7e874f3d151e1f9fc`, with167,402B prefix intact. Focused compatibility validation remains127,228B/`94afe9b3e59b6ef1295692157fa82595e4756fd697e03591f3735226efc0fde3`.
+
+### Open questions
+
+Compiled actual-C first-failed-operation/saved-errno/exit/call-order proof remains pending; Node marker fixtures cannot establish producer behavior. Actual cause/drop/reaping/populated0/survival and delivery remain UNKNOWN. No genuine human dependency is asserted at this completed source checkpoint.
+
+### Deferred work
+
+No next execution is admitted. The private36-case C harness is authored but uncompiled/unexecuted. The suggested standalone Ubuntu24.04/Clang18 mock-proof workflow is document-only and separately unallocated, with no workflow creation or dispatch here. Any compiler identity, argv and fully mocked actual-source harness execution needs its separate concrete admission; no installation/provider substitution is implied.
+
+Standing owner rule remains: no future legacy-URL evidence/browsing/asks/fabrication; missing product rules use current design-system/accessibility and separated headless domain/state/validation/actions versus replaceable UI. Historical/settled work is preserved; no additional story analysis occurred.
+
+### Blockers
+
+No focused Node/static source blocker. **Pending compiled C36 proof prevents treating this PASS as completed producer or native admission.** General remains7 pass/1 fail/10 skip,phone0,all four native-text outcomes UNKNOWN; P5=false,broad0/3,15.2/E16 held. No application/visual/RLS/performance/completion/release credit. Actual native/compiler/bootstrap/privileged/probe/browser/DB/CI/variables/resources/WSL/Docker/deploy actions0; source/fix/Git mutations0. Ten bounded read-only Git commands establish scoped bindings/inverses only.

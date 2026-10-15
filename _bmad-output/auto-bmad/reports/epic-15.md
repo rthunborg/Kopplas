@@ -698,3 +698,38 @@ none
 1. None for independent source review
 
 **Next:** DistinctHigh source review;separate concrete hosted compile-only proposal and admission before36Ccase execution
+
+## Report — 2026-10-15T14:09:18Z (capsule125 independent Node static PASS, compiled producer proof held)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `2441e3a`).
+**Pipeline status:** in-progress;15.1 verification blocked
+**Continues:** Independent High Node/static source checkpoint PASS;actual-C producer proof pending
+
+**Summary:** Six sequential stories;none landed
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 145h 11m (≈18h 29m AI-run, ≈126h 42m human/idle wait); resumed 20×.
+
+**Stories:**
+1. 15.1 blocked;15.2-15.6 backlog
+
+**Skipped:** (none)
+
+**Epic gate:** Not evaluated
+
+**TEA:** Required gates pending
+
+**Retrospective:** Epic14 October8 accepted-with-open-items
+
+**Overrides:** Owner design;one final epic PR;merge commit retain branches;no deploy
+
+**Open questions:**
+1. Current reviewed source has no native execution;prior run broker readiness/reaping/retainedempty qualifications remain recorded
+
+**Deferred work:**
+1. 123independentpass,staticchecks/inversespass;0of36Cmockcases executed
+
+**⚠️ Needs human:**
+1. None for concrete hosted proof preparation
+
+**Next:** Prepare document-only fully mocked C harness, exact bounded compiler/job/trigger proposal;independentHigh validation before allocation or execution
