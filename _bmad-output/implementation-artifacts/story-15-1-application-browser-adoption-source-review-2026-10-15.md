@@ -216,3 +216,48 @@ Standing owner design rule remains: no future legacy-URL references/browsing/evi
 ### Blockers
 
 No R1/R2 source blocker remains. Native compilation/capability execution and later application execution are separate held stages. Required General remains red, four native-text observations remain unknown and all applicable application/visual/manual/performance gates remain open. **P5=false; broad0/3; Story15.2 held; no story/RLS/security/visual/completion/release/deployment promotion.** Actual native/compiler/bootstrap/privileged/probe/browser/acquisition/DB/resource/CI/Docker/WSL/deploy actions0; source edits/Git mutations0. Five bounded read-only Git commands verified HEAD/raw source; no resource context was borrowed.
+
+## Focused capability observability source review — 2026-10-15
+
+### Outcome
+
+**PASS source/mock readiness** for the accepted two-path observability realization at `0d6f43ac90596b8703d8df3b9b986f9026aaaba3`. Distinct independent actual Sol6.1High; no consequential production-reachable diagnostic defect found within the changed paths. This is one bounded resource-free review step, not execution admission or a broad story/C/documentary pass. The entire incoming **38,352B / `8210eb8883502141dd0afa05475643f4ef894a92565f5ef225612312ba74daa9`** review remains preserved, including all prior FAIL/RED/PASS records.
+
+### Files changed
+
+Only this review append is a tracked write. Fresh exclusive private evidence: `.env.epic15.mail-runtime/application-browser-observability-independent-review-0a123366-a22e-4469-aafb-af55c9f0816c/`. Runner/unit and every other source, spec, application, C/workflow, state and old proof remain read-only. No other checkout/resource was used or altered.
+
+### Status
+
+The author sealed manifest matches **8,130B / `467e18aac7092a705be44224b09d8a6bf6baf03571d1ac43d78ea7150aff5fc0`**; all45 entries and both source bindings match independently before/after rerun. Current raw Git blobs equal working bytes:
+
+| Source | Bytes | SHA256 |
+| --- | ---: | --- |
+| Runner | 41,140 | `fb13c1e48211e5f8a7c38551881a2fa91c97ddba4d78a790eeb00413eaa1bc91` |
+| Admission unit | 57,594 | `a85ffa67fa242b74a616328282696441c240e0ff7139a22092c40a31777cd78c` |
+
+Independent reverse application of the actual scoped Git hunks recovers old runner **33,989B / `0e1f9df21c4dc710a218661f6668166316418e26a5d9641a78b908991cced4a0`** and old unit **44,760B / `152d9d77f867ca0d28aab200b16752dd60fcb964482f9aa1d8bb0eb6cadf52e6`** exactly. The entire old unit prefix is also byte-identical. C **15,857B / `ea2abfa6638bf148854e5aba080edc9241e26b1b3594cec3d5b10be2006fae68`** and CI **48,743B / `9c933a75fd38b6a4ea885dd52c94e4c072df037f5bc04251a1063d99e181f77d`** remain unchanged.
+
+Reviewed mechanism: the capability recorder exists before runtime construction. Its closed11-key JSON uses10 stages/16 reasons, sanitized native provenance and received-protocol owner evidence; serialization is bounded to768B. Boundary hooks freeze the first observed failure before cancellation/cleanup, so later signals/results cannot replace it. Unknown cause/native status/owner evidence remains unavailable rather than inferred from historical failure. No raw errors, paths, credentials, payloads or arbitrary streams enter the record.
+
+The actual capability failure entry fixes exit1, invokes current cancellation and joins only the existing bounded cleanup/handoff completion. It does not join a provider stop, kernel-empty observation, child close or publication callback. The completion observer resolves in finally after the existing handoff attempt; it creates no new deadline or authority. Publication then attempts the frozen JSON plus generic unavailable bundle, at most once per sink, and calls actual `process.exit(1)` in finally. Backpressure/no callback does not prolong execution; late error/callback handlers are inert after commitment. Delivery may truncate or remain unknown. This exit supplies no native cleanup confirmation. Existing successful capability receipt, application entry and native application failure authorities retain their prior meaning.
+
+Independent targeted rerun: **111/111 pass,0 fail/skipped/cancelled, exit0**—95 retained controls plus16 new actual full-module CLI tests. Denied/mocked native interfaces exercise construction/precondition/I/O/start/transport42/timeout/protocol/request/result/finish/receipt/cancellation failures, native0 with failed cleanup, first-error precedence, stalled and failed sinks, late callbacks and cancellation-before-promotion. They assert no terminal exit before the mock existingR+2s handoff boundary, then one terminal exit1 without awaiting sink callbacks. The host exit is modeled by a throwing terminal sentinel; the proof host itself is not terminated. Closed-enum/privacy tables supplement this actual entry evidence.
+
+Runner syntax, two-path zero-warning lint and full nonincremental typecheck pass with exit0. Fresh TAP: **24,119B / `7a52866e20a0603682af20de99b3c00ec3a64d5578d66e5a6e2cc90c655381c5`**. Static source/inverse receipt: **1,196B / `9e55a442900449faf1fa81e374fdcd2d9572208ecdbdab2b635aaeeb3b434afe`**. Actual proof Node is22.23.2; admission VM Node is22.23.3. No hosted native pin realization follows. The author's100pass/11fail fixture attempt and debug failures remain immutable, qualified history rather than coverage or a diagnosis of the native failure.
+
+Conservation: all686 supplied protected bindings are accounted for;684 non-state bindings match their author receipts and the two coordinator states are protected at current frozen bytes. The independent snapshot contains735 files, including author45 proofs and retained native/restoration histories; every file remains exact except this authorized append, whose full prior prefix is preserved. Author addendum stays **148,513B / `831a2032acf260b108e728f7b5867e521c66188a445b8e55c6d6b4e5e4153943`**, including its140,982B prefix; validation stays **106,998B / `7a89629180adb1bac83d5850c529a080c6dfa3bfaf26dfd6e4e160ecb1c5b69e`**. Original App/spec/AC2/native assertions, privileges/pins/budgets and old proof records remain unchanged. This is preservation hashing, not a fresh native archive/binary audit.
+
+### Open questions
+
+No observability source finding remains. Actual native failure cause, broker credential drop, reaping, populated0 and surviving-owner behavior remain UNKNOWN here. Output delivery and missing cleanup evidence must retain their qualification; source/mock PASS cannot fill them.
+
+### Deferred work
+
+No next execution is performed or admitted. Future capsule metadata remains `ci.yml`/CI at exact reviewed SHA `0d6f43ac90596b8703d8df3b9b986f9026aaaba3`, with application-verification input=true and both other diagnostic inputs=false, repository mode=capability and admission-SHA equal to that commit. Repository-variable ownership/stability and complete-dispatch effects still require separate Coordinator admission; unchanged required jobs still carry their original build/DB/RLS/General/Dashboard effects. No variable mutation or dispatch occurred.
+
+Standing owner design instruction remains: no future legacy-URL references/evidence/browsing/asks/fabrication; missing rules use the existing design system/accessibility and headless domain/state/validation/actions separate from replaceable UI. Historical and settled work are preserved. No additional story or E16 analysis occurred.
+
+### Blockers
+
+No focused source/mock blocker. Native capability/application execution remains separately held, required General remains red and native/application/visual obligations stay open. **P5=false; broad0/3;15.2 held; no acceptance/RLS/security/visual/performance/completion/release/deployment credit.** Actual native/compiler/bootstrap/browser/DB/CI/variables/privileged/resources/Docker/WSL/deploy actions0; source/spec/test edits and Git mutations0. Seven bounded read-only Git commands verified scoped bindings/inverses; no resource context was borrowed.

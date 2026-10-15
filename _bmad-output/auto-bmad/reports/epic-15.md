@@ -453,3 +453,38 @@ none
 **⚠️ Needs human:** (none)
 
 **Next:** Request precise source allocation from Coordinator using sealed proposal/validation hashes
+
+## Report — 2026-10-15T11:42:08Z (failure diagnostics independent source readiness)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `0d6f43a`).
+**Pipeline status:** Epic incomplete;15.1 verification blocked/P5false/broad0/3;15.2 held
+**Continues:** Sequential Epic15; separately coordinated hosted capability admission pending
+
+**Summary:** Distinct High source/mock PASS for bounded failure diagnostics.111 independent tests and syntax/lint/type/inverses pass,735-file conservation snapshot0mismatches; prior histories preserved. No native execution or delivery guarantee claimed.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 142h 44m (≈17h 04m AI-run, ≈125h 40m human/idle wait); resumed 13×.
+
+**Stories:**
+1. 15.1 native cause/drop/reap/pop0/survival UNKNOWN; General red; sixphone targets unexecuted
+2. 15.2-15.6 backlog
+
+**Skipped:** (none)
+
+**Epic gate:** OPEN; no capability/application/acceptance/P5 credit
+
+**TEA:** Later phases held
+
+**Retrospective:** Epic14 October8 accepted-with-open-items
+
+**Overrides:** Owner authorized hosted fallback; no deploy; no future legacy URL evidence
+
+**Open questions:**
+1. Actual failed boundary and broker ownership/cleanup guarantees remain unknown
+
+**Deferred work:**
+1. Separate exact-head one-run admission must cover complete workflow effects and mutable variable restoration
+
+**⚠️ Needs human:** (none)
+
+**Next:** Coordinate one exact-head capability execution after bookkeeping-only source rebind; no automatic retry
