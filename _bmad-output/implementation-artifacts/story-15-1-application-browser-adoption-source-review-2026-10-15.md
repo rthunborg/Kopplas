@@ -160,3 +160,59 @@ Standing direct owner design instruction is carried forward: do not seek new leg
 ### Blockers
 
 R1 and R2 block root-service source readiness and later native compilation/capability admission. Original required General remains red; four native-text observations remain unknown and full native/application evidence remains incomplete. **P5=false; broad review0/3; Story15.2 held; no application/RLS/security/visual/manual/performance/completion/release/deployment credit.** Actual native compilation/bootstrap/probes/browser/acquisition/DB/CI/resources/privileged commands/Docker/WSL/deploy actions0; Git mutations/source edits0.
+
+## Focused R1/R2 regression verdict — 2026-10-15
+
+### Outcome
+
+**PASS source readiness for the R1/R2 correction at `0a312c8fbd617d4ce03f97d5484bb23babb0686b`. R1 and R2 are CLOSED at source/mock level.** Distinct independent Sol 6.1 High review; no consequential regression found in the changed refusal/teardown paths. This supports preparation of a separately admitted capability execution, not native compilation or execution itself. C/kernel/systemd behavior and actual surviving-owner cleanup remain unobserved.
+
+The complete incoming **28,585B / `7949431e6d18ade5c0c99a38e954b3f66402d2b01368e5a2ef069044ae17355a`** review is preserved, including the original16,998B prefix, both previous FAIL verdicts and all four historical RED witnesses. Broad Story15.1 review remains0/3.
+
+### Files changed
+
+Only this bounded review append is a tracked write. Source files and other actors' work/checkouts/resources remain read-only. Fresh exclusive private proofs: `.env.epic15.mail-runtime/application-browser-root-regression-review-9aa22f26-f08f-4bb0-8db0-4c34c7f155e7/`. The two independent witness files are unchanged byte-for-byte copies; neither their assertions nor their historical outputs were rewritten.
+
+### Status
+
+Before reruns, the author manifest independently matched **11,564B / `da8c3a942876f3ae565442b099715ffe8e2e44f7dabf5d85778d153dec04f704`** and all66 entries matched. The four source bindings below match working bytes and independently read raw Git HEAD blobs exactly. The coordinator's Git-binding receipt remains **931B / `c3711cf3ec45dc04db381ecfb44221232f8fd673a5aa7aa8cf72729a8870e673`**.
+
+| Source | Bytes | SHA256 |
+| --- | ---: | --- |
+| Runner | 33,989 | `0e1f9df21c4dc710a218661f6668166316418e26a5d9641a78b908991cced4a0` |
+| Admission unit | 44,760 | `152d9d77f867ca0d28aab200b16752dd60fcb964482f9aa1d8bb0eb6cadf52e6` |
+| Workflow | 48,743 | `9c933a75fd38b6a4ea885dd52c94e4c072df037f5bc04251a1063d99e181f77d` |
+| C, unchanged/uncompiled | 15,857 | `ea2abfa6638bf148854e5aba080edc9241e26b1b3594cec3d5b10be2006fae68` |
+
+**R1 closure:** the ordinary application caller now owns an irreversible generation revocation before startup I/O or signal exposure. Refusal rejects the lifetime promise even before `owner` exists. Root/binary preflight awaits race revocation and check active state; a settled obsolete preflight cannot reach privileged spawn. Startup handles an already created owner with cancellation and its existing exact-unit handoff; late ACK cannot release compatibility. Active-state fences cover compatibility, candidate revalidation, CLI preparation, application requests and promotion. Signals wake pending pre-owner waits rather than waiting for their I/O. Refusal does not reset owner force/confirmation deadlines or convert a stop request into proof. These downstream controls directly block the previously demonstrated caller/invariant bypass; no weaker substitute validator is used.
+
+**R2 closure:** the actual optional cleanup condition is now `always() && env.FIXED_CHROMIUM_HOSTED_ADMISSION == 'application'`. Capability mode suppresses Supabase installation/start/reset/teardown. Full application mode retains its original stop command and always-cleanup semantics. Other job blocks are unchanged by raw inverse, so this correction neither suppresses their normal effects nor changes required General authority.
+
+Independent targeted rerun: **95/95 pass,0 fail/skip/cancel, exit0**, including all prior89 controls and six added regressions. The unchanged independent R1/R2 scripts separately rerun **2/2 pass,0 fail/skip/cancel, exit0**. The R1 output observes terminal admission refusal, zero late service starts/commands and zero remaining timers; the R2 output observes capability installation/start/stop=false. Their script hashes remain `c74aceea71ae29f18d35cc9dfd92582053b63ce16f697382cd20a99e2396f1cd` and `aa8d8ab735bc1aae1dcdbf67a81e4486ebe35c621db8c564224b4d5d45df7ca7`. Fresh focused TAP: **20,873B / `9a11a25e690c195b68ba6f5ddb1ca497029deca849da5d7bc6a6caab0f0def2e`**; independent witness TAP: **894B / `cdac8e058462067317050b5b2ffd43544fa24b1b73d9818a6cc8272c09566dd4`**. All process/native interfaces in these witnesses are mocked or denied.
+
+Runner syntax, full nonincremental typecheck, five-path zero-warning lint, actual YAML and raw inverses independently pass with exit0. The author's retained encoding/fixture/flush failures remain sealed. In particular `focused-r1.tap` is a single module-file entry over an accidentally empty unit, not production test coverage; its0B fixture is not counted toward95. Final95 and independent2 counts are independently executed, not inferred from prior summary receipts.
+
+Preservation: author receipt **56,621B / `817973ac7ce94105017717fe4cb30761fa56beb0c8e90c076721585ec46e999f`** remains exact; all188 prior private files and66 new author-manifest entries match. All27 protected inputs are accounted for, with two coordinator states protected as currently found. Current before/after snapshot contains285 files; only this permitted append changes a full-file binding, preserving the complete original review prefix. Author addendum remains **120,879B / `dcfa0e2f341cbcf977860489647aaa7393e97842b145e99016e1be1f9388afbf`**, with its112,204B prefix intact. Original application/helper/spec/13 harness assertions/SDK/default config/package/lock/pins/retries/budgets/native histories remain unchanged. Original two process-group/cancellation P2 mechanisms retain their source/mock qualification; actual native closure is still unverified.
+
+Raw inverses recover seven-job CI35,082B/`25c9f3672f4538a95d5fb573421739ae14be757d0a2b72fc39e756dfcae1d304`, previous optional CI41,517B/`be67b75bf1a4554f35a61cf4427fc0ff2185d807ca045c249612aeb23cde2df9`, and original probe74,978B/`e4ff29811169cff384d9d75ad992730e5726a34f8659287763be24ddef7bfd67`. Fresh static receipt: **2,268B / `8e5e5d8c991301d88c8f52f0f08eb6db35ddc8c468e875c4e6ec1a50117d7025`**.
+
+### Open questions
+
+No R1/R2 source finding remains. The separately admitted native capsule must establish actual compiler/kernel/systemd/delegation/credential enforcement, detached-descendant cleanup and independent owner survival. Missing prerequisites or unconfirmed cleanup must fail; source/mock PASS supplies none of those observations.
+
+### Deferred work: concrete capability-only dispatch metadata
+
+Execution remains **HELD for separate Coordinator admission**. Reviewed candidate metadata, with no variable write or dispatch here:
+
+- Workflow ID `ci.yml`, name `CI`; dispatch ref must independently resolve to exact reviewed committed SHA **`0a312c8fbd617d4ce03f97d5484bb23babb0686b`**. There is no separate ref input. Checkout/GITHUB_SHA and the recorded actual run must bind that commit.
+- Inputs: `fixed_chromium_application_verification=true`, `native_stream_probe=false`, `fixed_chromium_paired_probe=false`.
+- Repository variables: `FIXED_CHROMIUM_HOSTED_ADMISSION=capability`; `FIXED_CHROMIUM_HOSTED_ADMISSION_SHA=0a312c8fbd617d4ce03f97d5484bb23babb0686b`.
+- Optional job `fixed-chromium-application-verification` requires verify success and original General success/failure, opted-in dispatch and noncancelled state. Its preflight rejects mode/SHA/Linux mismatch; runtime requires exact Node22.23.3. In capability mode it installs the existing dependencies, compiles the reviewed private Clang18 broker, prepares the fresh UID/GID/root-private session/workload tree, starts the registered independent systemd service, runs the owned Node leader/detached-descendant credential/reaped-plus-same-leaf-empty capsule and uploads its safe receipt. Optional browser install, acquisition/publisher, Supabase installation/start/reset/stop, application CLI and application artifacts are suppressed; no application fallthrough is admitted.
+- Repository variables are mutable global configuration, not a dispatch-scoped privilege token. Coordinator must inspect/record their prior values, own the capability-only mode/SHA change and keep it stable for the admitted job; any restoration or later application-mode change is a separate authorized action. This source verdict changes neither variable and grants no application-mode execution.
+- The complete workflow still runs unchanged `verify`, `db`, `recovery-storage-loader`, `e2e` and `dashboard-e2e` under their existing conditions: build/unit/source/bundle checks, local migration/integration/RLS/recovery-storage and General/Dashboard browser/database effects remain. The other two optional diagnostics are disabled by the false inputs. Separate execution admission must cover these complete-dispatch effects; this is not an optional-job-only dispatch.
+
+Standing owner design rule remains: no future legacy-URL references/browsing/evidence/requests or fabricated observations; missing design rules use the existing design system/accessibility conventions and maintainable headless domain/state/validation/actions separated from replaceable UI. Historical evidence and settled work are preserved. E16 implementation remains held pending its verified predecessor/schema handoff; no further E16 analysis occurred.
+
+### Blockers
+
+No R1/R2 source blocker remains. Native compilation/capability execution and later application execution are separate held stages. Required General remains red, four native-text observations remain unknown and all applicable application/visual/manual/performance gates remain open. **P5=false; broad0/3; Story15.2 held; no story/RLS/security/visual/completion/release/deployment promotion.** Actual native/compiler/bootstrap/privileged/probe/browser/acquisition/DB/resource/CI/Docker/WSL/deploy actions0; source edits/Git mutations0. Five bounded read-only Git commands verified HEAD/raw source; no resource context was borrowed.

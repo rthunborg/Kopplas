@@ -347,3 +347,39 @@ none
 1. None for current correction;human hostedprivilege authorization established. Runtime execution remains held by sourceFAIL.
 
 **Next:** Fix R1/R2 within existing fourpath allocation. Read-only E16 contract overlap assessment will accompany next author handoff;no E16/shared product writes.
+
+## Report — 2026-10-15T10:03:23Z (in progress - broker source readiness passed)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `0a312c8`).
+**Pipeline status:** Epic15 incomplete;15.1 verification remains blocked. Independent focused source/mock PASS closesR1/R2. Hosted capability and application execution remain separately held.
+**Continues:** Owner-authorized hosted fallback source correction checkpoint0a312c8f;allpriorfailurehistorypreserved.
+
+**Summary:** Independent95/95 controls and2/2 unchangedwitnessesgreen;syntax/lint/type/YAML/inverses/sourcebindings verified. No native compilation/kernel/systemd/privilege enforcement/surviving-owner proofyet.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 141h 05m (≈16h 19m AI-run, ≈124h 46m human/idle wait); resumed 10×.
+
+**Stories:**
+1. 15.1 source/mockready;actualruntime/General/visualgatesopen,P5=false,broad0/3.15.2-15.6held.
+
+**Skipped:**
+1. None; no requiredgatewaiver or promotion.
+
+**Epic gate:** Notreached;requiredGeneralred,fournative-textunknown.
+
+**TEA:** Source95checks provide noRLS/visual/performanceacceptancecredit.
+
+**Retrospective:** Epic14October8accepted-with-open-items;Epic15pendingcompletion.
+
+**Overrides:** Owner-approvedheadless design;no futurelegacyURLreferences/browsing/evidence. Existingdesignsystem/accessibility,replaceableUIandseparateddomain/state/actions;preservehistory. ExplicitHighsensitivework,mergecommitsretainingbranches,no deployment.
+
+**Open questions:**
+1. Concretecapabilitycapsule requirescoordinatedexactexecutionrefandexclusiveownership/restorationof2repoVars;no newhumanapprovalimpliedforroutineconfigurationwithinreviewedhostedscope.
+
+**Deferred work:**
+1. Separate hostedcapabilityadmissionandactualevidenceaudit;thenapplicationverification/allrequiredstorychecks/P5/P6/P7/E5h;renewsharedownershipbefore15.2;epiccloseoutandonefinalPRonly.
+
+**⚠️ Needs human:**
+1. Noneforcurrentscopedrecovery;ownerprivilegeauthorizationestablished.
+
+**Next:** Coordinator review concrete capability capsule with exact source identities, repository-variable prior-state/read/mutation/restoration plan and all unchangedworkflow effects. No variablemutationordispatchbeforeadmission.

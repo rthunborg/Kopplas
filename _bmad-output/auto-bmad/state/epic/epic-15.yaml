@@ -9,24 +9,24 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-15T09:48:15Z"
+updated_at: "2026-10-15T10:03:23Z"
 started_at: "2026-10-09T12:57:49Z"
 completed_at: null
-active_seconds: 57914
+active_seconds: 58740
 timing_anchor: null
 is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: build
-selected_role: build-delegate
-selected_profile: standard
+selected_phase: security_layer
+selected_role: security-reviewer
+selected_profile: critical
 selected_model: gpt-6.1-sol
 selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Narrow security correction latches terminal refusal across startup and isolates capability teardown; read-only shared booking RBAC semantic assessment is sensitive"
+escalation_reason: "Distinct High regression review of terminal-refusal lifetime and capability DB boundary; native execution remains held"
 routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary epic test planning; sensitive implementation/review scope routed explicitly High\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary story test-risk classification\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_triage\",\"profile\":\"light\",\"role\":\"test-risk-triage\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -36,6 +36,7 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Owner-authorized hosted privileged cleanup broker requires High source implementation and control isolation proofs\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct independent review of privileged C/systemd ownership cancellation and tenant test runtime source requires High\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Narrow security correction latches terminal refusal across startup and isolates capability teardown; read-only shared booking RBAC semantic assessment is sensitive\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct High regression review of terminal-refusal lifetime and capability DB boundary; native execution remains held\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: null
 tea_selected: []
 tea_rationale: null
@@ -61,7 +62,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [99e1274e, b7f19e2d, 6f612a21, bc4163ea, 27ce6a2b, 7cdd08a6, 66cd8436, e6c404d3, 5d76de08575fb8fa09197021899d78280829d554, 81836287786a40540e96dbdf46db29c868cde41b, 48386408fc628f7341b711f177ff5833f622959c, 92dc4a5f4f7e9878e9ed9c28e00bda5d98680478, 16180cd63914a57895b36c2db060c43c74da3514, caec31b185bcad597664668d7a835c9c2096aa4d]
+commits: [99e1274e, b7f19e2d, 6f612a21, bc4163ea, 27ce6a2b, 7cdd08a6, 66cd8436, e6c404d3, 5d76de08575fb8fa09197021899d78280829d554, 81836287786a40540e96dbdf46db29c868cde41b, 48386408fc628f7341b711f177ff5833f622959c, 92dc4a5f4f7e9878e9ed9c28e00bda5d98680478, 16180cd63914a57895b36c2db060c43c74da3514, caec31b185bcad597664668d7a835c9c2096aa4d, 0a312c8fbd617d4ce03f97d5484bb23babb0686b]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -316,3 +317,37 @@ epic16_semantic_assessment:
   migration: supabase/migrations/20261013201515_story_15_1_booking_reassignment_flags.sql immutable
   shared_product_writes: frozen
   future_15_2_15_3: "held; renewed ownership required"
+application_browser_privileged_fallback_correction_review:
+  status: PASS source/mock readiness only
+  source_head: 0a312c8fbd617d4ce03f97d5484bb23babb0686b
+  artifact: "_bmad-output/implementation-artifacts/story-15-1-application-browser-adoption-source-review-2026-10-15.md"
+  bytes: 38352
+  sha256: 8210eb8883502141dd0afa05475643f4ef894a92565f5ef225612312ba74daa9
+  preserved_review_prefix_bytes: 28585
+  preserved_review_prefix_sha256: 7949431e6d18ade5c0c99a38e954b3f66402d2b01368e5a2ef069044ae17355a
+  passed: 95
+  failed: 0
+  skipped: 0
+  cancelled: 0
+  independent_witness_passed: 2
+  R1: closed source/mock
+  R2: closed source/mock
+  protected_exact_files: 284
+  mismatches: 0
+  proof_manifest_sha256: 3bb38da966a50007e22715d60e6bb461eab90d4519014c045f0e61a0a1d8812b
+  native_actions: 0
+  runtime_execution: held
+  p5_complete: false
+  broad_review_round: 0
+application_browser_privileged_fallback_capability:
+  status: "concrete reviewed capsule; Coordinator execution admission pending"
+  workflow: ci.yml
+  workflow_id: 296219797
+  input_fixed_chromium_application_verification: true
+  input_native_stream_probe: false
+  input_fixed_chromium_paired_probe: false
+  repository_variables: ["FIXED_CHROMIUM_HOSTED_ADMISSION=capability", "FIXED_CHROMIUM_HOSTED_ADMISSION_SHA=exact execution SHA"]
+  mutable_configuration: "No reads or changes yet; requires exclusive window prior-state preservation restoration and concurrent-dispatch exclusion"
+  optional_job: "Compile/bootstrap owned Node capability fixtures; no acquisition/browser/application/DB setup or teardown"
+  other_jobs: Existing verify/build/unit DB/RLS/recovery-storage General/Dashboard effects
+  runtime_execution: held
