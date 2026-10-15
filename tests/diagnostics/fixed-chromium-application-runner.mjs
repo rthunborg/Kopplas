@@ -204,11 +204,13 @@ export const CAPABILITY_REASONS = Object.freeze(['unknown','precondition-rejecte
   'owner-transport-failed','owner-ready-timeout','control-invalid','capsule-request-failed','capsule-timeout',
   'capsule-result-rejected','ownership-unconfirmed','ownership-finish-failed','receipt-directory-failed','receipt-write-failed',
   'cancelled','lifetime-refused']);
+export const CAPSULE_PREDICATE_REASONS = Object.freeze(['capsule-expiration-rejected','capsule-confirmation-rejected','capsule-reap-rejected','capsule-leaf-rejected','capsule-residue-rejected','capsule-json-rejected','capsule-shape-rejected','capsule-node-rejected','capsule-uid-rejected','capsule-gid-rejected','capsule-groups-shape-rejected','capsule-groups-count-rejected','capsule-groups-id-rejected','capsule-detachment-rejected','capsule-status-rejected','capsule-no-new-privileges-rejected','capsule-cap-inheritable-rejected','capsule-cap-permitted-rejected','capsule-cap-effective-rejected','capsule-cap-bounding-rejected','capsule-cap-ambient-rejected']);
 const CAPABILITY_KEYS = ['schemaVersion','kind','mode','outcome','stage','reason','exitCode','nativeSource','nativeCode','nativeSignal','ownerEvidence'];
 export function encodeCapabilityFailure(value) {
   requireFact(exact(value,CAPABILITY_KEYS) && value.schemaVersion === 1 && value.kind === 'fixed-chromium-capability-failure'
     && value.mode === 'capability' && value.outcome === 'failed' && value.exitCode === 1
-    && CAPABILITY_STAGES.includes(value.stage) && CAPABILITY_REASONS.includes(value.reason)
+    && CAPABILITY_STAGES.includes(value.stage) && (CAPABILITY_REASONS.includes(value.reason)
+      || (CAPSULE_PREDICATE_REASONS.includes(value.reason) && value.nativeSource==='capsule-result' && value.nativeCode===125))
     && ['unavailable','owner-transport','capsule-result'].includes(value.nativeSource)
     && (value.nativeCode === null || (integer(value.nativeCode) && value.nativeCode <= 255))
     && [null,'SIGINT','SIGTERM','SIGKILL','other'].includes(value.nativeSignal)
@@ -217,28 +219,52 @@ export function encodeCapabilityFailure(value) {
   const line = JSON.stringify(Object.fromEntries(CAPABILITY_KEYS.map(key => [key,value[key]]))) + '\n';
   requireFact(Buffer.byteLength(line) <= 768, 'admission'); return line;
 }
+// CAPSULE-DETAIL-BEGIN: reported data, never an authority/success channel.
+export const CAPSULE_BOUNDARIES = Object.freeze(['unknown','stdin-open','stdin-dup','stdout-dup','no-new-privileges','securebits','ambient-clear','bounding-read','bounding-drop','bounding-limit','groups-drop','gid-drop','uid-drop','capset','uid-check','euid-check','gid-check','egid-check','groups-check','no-new-privileges-check','workload-chdir','fd-close-range','node-directory-format','node-path-length','environment-clear','env-home','env-path','env-ci','env-db-required','env-runtime-temp','env-browser-path','env-app-mode','env-attestation-key','env-attestation-secret','node-exec']);
+export function peekCapsuleDetail(value) {
+  const unknown = Object.freeze({schemaVersion:1,kind:'fixed-chromium-capsule-native-detail',stage:'unknown',errno:null});
+  if (value?.code !== 125 || typeof value.output !== 'string' || Buffer.byteLength(value.output)>192) return unknown;
+  try {
+    const marker=JSON.parse(value.output);
+    if (!exact(marker,['schemaVersion','kind','stage','errno']) || marker.schemaVersion!==1 || marker.kind!=='owned-capsule-refusal'
+      || !CAPSULE_BOUNDARIES.includes(marker.stage) || !(marker.errno===null || (integer(marker.errno) && marker.errno>0 && marker.errno<=2147483647))) return unknown;
+    return Object.freeze({schemaVersion:1,kind:'fixed-chromium-capsule-native-detail',stage:marker.stage,errno:marker.errno});
+  } catch { return unknown; }
+}
+export function encodeCapsuleDetail(value) {
+  requireFact(exact(value,['schemaVersion','kind','stage','errno']) && value.schemaVersion===1 && value.kind==='fixed-chromium-capsule-native-detail'
+    && CAPSULE_BOUNDARIES.includes(value.stage) && (value.errno===null || (integer(value.errno) && value.errno>0 && value.errno<=2147483647)), 'admission');
+  return JSON.stringify({schemaVersion:1,kind:value.kind,stage:value.stage,errno:value.errno})+'\n';
+}
+// CAPSULE-DETAIL-END
 export function createCapabilityDiagnostic() {
-  let stage = 'entry', evidence = 'unavailable', frozen, latestNative = {};
+  let stage = 'entry', evidence = 'unavailable', frozen, latestNative = {}, candidateDetail, frozenDetail;
   return {
     enter(value) { if (!frozen && CAPABILITY_STAGES.includes(value)) stage = value; },
     evidence(value) { if (!frozen && ['partial','protocol-confirmed'].includes(value)) evidence = value; },
     native(value) { if (!frozen) latestNative = value; },
+    detail(value) { if (!frozen) candidateDetail = peekCapsuleDetail(value); },
+    frozenDetail() { return frozenDetail; },
     freeze(reason = 'unknown', native = latestNative) {
       if (!frozen) frozen = Object.freeze({schemaVersion:1,kind:'fixed-chromium-capability-failure',mode:'capability',outcome:'failed',
-        stage,reason:CAPABILITY_REASONS.includes(reason) ? reason : 'unknown',exitCode:1,
+        stage,reason:CAPABILITY_REASONS.includes(reason) || CAPSULE_PREDICATE_REASONS.includes(reason) ? reason : 'unknown',exitCode:1,
         nativeSource:['owner-transport','capsule-result'].includes(native.source) ? native.source : 'unavailable',
         nativeCode:integer(native.code) && native.code <= 255 ? native.code : null,
         nativeSignal:native.signal === 0 || native.signal == null ? null : native.signal === 2 || native.signal === 'SIGINT' ? 'SIGINT'
           : native.signal === 9 || native.signal === 'SIGKILL' ? 'SIGKILL' : native.signal === 15 || native.signal === 'SIGTERM' ? 'SIGTERM' : 'other',
         ownerEvidence:evidence});
+      if (frozenDetail===undefined && frozen.nativeSource==='capsule-result' && frozen.nativeCode===125) frozenDetail=candidateDetail ?? peekCapsuleDetail(null);
       return frozen;
     },
   };
 }
-export function publishCapabilityFailure(record, host) {
+export function publishCapabilityFailure(record, host, detail) {
   let committed = false, stdoutAttempted = false, stderrAttempted = false;
   let bundle = 'fixed-chromium-application unavailable\n';
-  try { bundle = encodeCapabilityFailure(record) + bundle; } catch { /* no fabricated diagnostic */ }
+  try {
+    const extra=record.nativeSource==='capsule-result' && record.nativeCode===125 && detail ? encodeCapsuleDetail(detail) : '';
+    const value=encodeCapabilityFailure(record)+extra+bundle; requireFact(Buffer.byteLength(value)<=816,'admission'); bundle=value;
+  } catch { /* no fabricated diagnostic */ }
   const fallback = () => { if (!committed && !stderrAttempted) attempt(host.stderr,false); };
   function attempt(stream, primary) {
     if (committed || (primary ? stdoutAttempted : stderrAttempted)) return;
@@ -258,7 +284,7 @@ export async function runCapabilityEntry(factory = productionRuntime, host = pro
     const record = diagnostic.freeze(); host.exitCode = 1;
     try { await io?.finishOwnership(); await io?.failureCompletion(); }
     catch { /* existing unconfirmed failure stays failure; no raw diagnostic */ }
-    const publisher = publishCapabilityFailure(record,host);
+    const publisher = publishCapabilityFailure(record,host,diagnostic.frozenDetail());
     try { publisher.attempt(); }
     finally { publisher.commit(); host.exit(1); }
     return {failure:'admission',exitCode:1}; // only reachable in an invalid nonterminating host mock
@@ -472,12 +498,28 @@ function productionRuntime() {
     const value = await control.run('capsule'); active();
     enter('capsule-result');
     diagnostic?.native({source:'capsule-result',code:value.code,signal:value.signal});
-    fact(value.expired && value.confirmed && value.reaped && value.empty && !value.residue, 'cleanup','capsule-result-rejected');
-    let actual; try { actual = JSON.parse(value.output); } catch (error) { diagnostic?.freeze('capsule-result-rejected',{source:'capsule-result',code:value.code,signal:value.signal}); throw error; }
-    fact(actual.node === 'v22.23.3' && integer(actual.uid) && actual.uid > 0 && integer(actual.gid) && actual.gid > 0
-      && Array.isArray(actual.groups) && actual.groups.length <= 1 && actual.groups.every(gid => gid === actual.gid) && actual.detached === true
-      && typeof actual.status === 'string' && /^NoNewPrivs:\s+1$/m.test(actual.status)
-      && ['CapInh','CapPrm','CapEff','CapBnd','CapAmb'].every(key => new RegExp(`^${key}:\\s+0+$`,'m').test(actual.status)), 'admission','capsule-result-rejected');
+    diagnostic?.detail(value); // peek only; freeze remains at the original first failed predicate
+    const predicate = reason => value.code===125 ? reason : 'capsule-result-rejected';
+    fact(value.expired,'cleanup',predicate('capsule-expiration-rejected'));
+    fact(value.confirmed,'cleanup',predicate('capsule-confirmation-rejected'));
+    fact(value.reaped,'cleanup',predicate('capsule-reap-rejected'));
+    fact(value.empty,'cleanup',predicate('capsule-leaf-rejected'));
+    fact(!value.residue,'cleanup',predicate('capsule-residue-rejected'));
+    let actual; try { actual = JSON.parse(value.output); } catch (error) { diagnostic?.freeze(predicate('capsule-json-rejected')); throw error; }
+    let node;
+    try { node=actual.node; } catch (error) { diagnostic?.freeze(value.code===125 ? 'capsule-shape-rejected' : 'unknown'); throw error; }
+    fact(node==='v22.23.3','admission',predicate('capsule-node-rejected'));
+    fact(integer(actual.uid) && actual.uid>0,'admission',predicate('capsule-uid-rejected'));
+    fact(integer(actual.gid) && actual.gid>0,'admission',predicate('capsule-gid-rejected'));
+    fact(Array.isArray(actual.groups),'admission',predicate('capsule-groups-shape-rejected'));
+    fact(actual.groups.length<=1,'admission',predicate('capsule-groups-count-rejected'));
+    fact(actual.groups.every(gid=>gid===actual.gid),'admission',predicate('capsule-groups-id-rejected'));
+    fact(actual.detached===true,'admission',predicate('capsule-detachment-rejected'));
+    fact(typeof actual.status==='string','admission',predicate('capsule-status-rejected'));
+    fact(/^NoNewPrivs:\s+1$/m.test(actual.status),'admission',predicate('capsule-no-new-privileges-rejected'));
+    for(const [key,reason] of [['CapInh','capsule-cap-inheritable-rejected'],['CapPrm','capsule-cap-permitted-rejected'],
+      ['CapEff','capsule-cap-effective-rejected'],['CapBnd','capsule-cap-bounding-rejected'],['CapAmb','capsule-cap-ambient-rejected']])
+      fact(new RegExp(`^${key}:\\s+0+$`,'m').test(actual.status),'admission',predicate(reason));
     enter('ownership-finish');
     await observed(control.finish(),'ownership-finish-failed'); active();
     const receipt = { schemaVersion:1, capabilityOnly:true, source:io.env.FIXED_CHROMIUM_BROKER_SOURCE_SHA256,

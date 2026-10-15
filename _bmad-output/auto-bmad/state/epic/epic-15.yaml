@@ -9,10 +9,10 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-15T13:14:21Z"
+updated_at: "2026-10-15T13:30:05Z"
 started_at: "2026-10-09T12:57:49Z"
 completed_at: null
-active_seconds: 63456
+active_seconds: 64302
 timing_anchor: null
 is_first_in_epic: false
 is_last_in_epic: false
@@ -26,7 +26,7 @@ selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: Independent High preparation validation of privileged first-failure capsule diagnostics and credential predicate privacy
+escalation_reason: "Explicit High implementation of coordinated capsule-only savederrno diagnostic; privileged source integrity, no compiler/runtime admission"
 routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary epic test planning; sensitive implementation/review scope routed explicitly High\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary story test-risk classification\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_triage\",\"profile\":\"light\",\"role\":\"test-risk-triage\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -47,6 +47,7 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Independent actual native privileged compilation identity credential and cleanup evidence audit of consumed second capability run; no reexecution\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Explicit High source-only preparation: privileged capsule125 producer and credential/detachment diagnostic predicates; no execution admitted\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Independent High preparation validation of privileged first-failure capsule diagnostics and credential predicate privacy\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Explicit High implementation of coordinated capsule-only savederrno diagnostic; privileged source integrity, no compiler/runtime admission\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: null
 tea_selected: []
 tea_rationale: null
@@ -72,7 +73,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [99e1274e, b7f19e2d, 6f612a21, bc4163ea, 27ce6a2b, 7cdd08a6, 66cd8436, e6c404d3, 5d76de08575fb8fa09197021899d78280829d554, 81836287786a40540e96dbdf46db29c868cde41b, 48386408fc628f7341b711f177ff5833f622959c, 92dc4a5f4f7e9878e9ed9c28e00bda5d98680478, 16180cd63914a57895b36c2db060c43c74da3514, caec31b185bcad597664668d7a835c9c2096aa4d, 0a312c8fbd617d4ce03f97d5484bb23babb0686b, d5a5f85155394a0337ea92fcd606f949559b172a, becfd00e, 80c31af2, a0dd2302ead46e72e77f3293b84085c4f8fe65f3, 6f9e29656df997e2c5c6027874da4bee1ef6c17d, 5c1fb90b2f7f735259208e2d420bce489cbed598, 0d6f43ac90596b8703d8df3b9b986f9026aaaba3, 76868db295ac6b7de06a57f43164d5f02140f938, c4375f61, abaf8d81]
+commits: [99e1274e, b7f19e2d, 6f612a21, bc4163ea, 27ce6a2b, 7cdd08a6, 66cd8436, e6c404d3, 5d76de08575fb8fa09197021899d78280829d554, 81836287786a40540e96dbdf46db29c868cde41b, 48386408fc628f7341b711f177ff5833f622959c, 92dc4a5f4f7e9878e9ed9c28e00bda5d98680478, 16180cd63914a57895b36c2db060c43c74da3514, caec31b185bcad597664668d7a835c9c2096aa4d, 0a312c8fbd617d4ce03f97d5484bb23babb0686b, d5a5f85155394a0337ea92fcd606f949559b172a, becfd00e, 80c31af2, a0dd2302ead46e72e77f3293b84085c4f8fe65f3, 6f9e29656df997e2c5c6027874da4bee1ef6c17d, 5c1fb90b2f7f735259208e2d420bce489cbed598, 0d6f43ac90596b8703d8df3b9b986f9026aaaba3, 76868db295ac6b7de06a57f43164d5f02140f938, c4375f61, abaf8d81, db50a9c5]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -646,3 +647,34 @@ application_browser_capsule125_validation:
   validation_bytes: 117942
   tests_executed: 0
   prospective_paths: [tests/diagnostics/fixed-chromium-application-runner.mjs, tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts, tests/diagnostics/fixed-chromium-owned-process.c]
+application_browser_capsule125_source:
+  broad_review_rounds: 0
+  compiler_execution_held: true
+  source_unaccepted: true
+  status: draft_held_for_focused_compatibility_preparation_validation
+  native_ci_resources_held: true
+  p5_credit: false
+application_browser_capsule125_compatibility:
+  original_controls_preserved: 111
+  prefix_bytes: 160325
+  broad_review_rounds: 0
+  compiler_native_ci_held: true
+  preservation_mismatches: 0
+  unit_unchanged: true
+  separate_fine_labels: 21
+  native_code_qualification: 125
+  source_unaccepted: true
+  private_manifest_sha256: de93aea843380ce2c6ddd4b90672e4a31d591795b6c1ffc73774ec72fb6da0a3
+  p5_credit: false
+  addendum_bytes: 167402
+  append_sha256: bc0a1f1146e26836b44072b785afae9bbe0689401987c0d226f24aeb47e007ca
+  append_bytes: 7077
+  protected_bindings: 1437
+  prefix_sha256: 2a27be36736929330629362a77233a99cf687902d0724e301b88166065c7d3f0
+  dependent_tests_executed: 0
+  original_reasons: 16
+  runner_draft_sha256: 07eb719a1012e07c6db4a9fc7a5a32578eb4dd0b60f09368a170ef2c285c2617
+  status: sealed_pending_focused_validation
+  native_source_qualification: capsule-result
+  addendum_sha256: 39f470d3d7b72a5a970774cf7fc5c82dd7119c8ff4f5110296ef925e0d39b076
+  c_draft_sha256: a48c96a0e196416aa5e0036010085676fc696ff844f166903044e317064c530c

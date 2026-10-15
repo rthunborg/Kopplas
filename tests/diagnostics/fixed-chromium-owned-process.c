@@ -129,21 +129,49 @@ static int admitted_parent(void) {
   if (n != 7 || memcmp(type,"domain\n",7) || fstat(fd,&st) || st.st_uid != 0 || (st.st_mode & 0022)) { close(fd); return -1; }
   return fd;
 }
-static int drop_authority(void) {
-  if (prctl(PR_SET_NO_NEW_PRIVS,1,0,0,0) ||
-      prctl(PR_SET_SECUREBITS,SECBIT_NOROOT | SECBIT_NOROOT_LOCKED | SECBIT_NO_SETUID_FIXUP | SECBIT_NO_SETUID_FIXUP_LOCKED) ||
-      prctl(PR_CAP_AMBIENT,PR_CAP_AMBIENT_CLEAR_ALL,0,0,0)) return -1;
-  int cap;
-  for (cap=0;cap<1024;cap++) {
-    if (prctl(PR_CAPBSET_READ,cap,0,0,0)<0) { if(errno==EINVAL)break;return -1; }
-    if (prctl(PR_CAPBSET_DROP,cap,0,0,0))return -1;
+/* CAPSULE-REFUSAL-BEGIN: one data-only marker on the existing nonblocking capture. */
+enum capsule_boundary { CB_UNKNOWN, CB_STDIN_OPEN, CB_STDIN_DUP, CB_STDOUT_DUP, CB_NO_NEW_PRIVILEGES, CB_SECUREBITS, CB_AMBIENT_CLEAR, CB_BOUNDING_READ, CB_BOUNDING_DROP, CB_BOUNDING_LIMIT, CB_GROUPS_DROP, CB_GID_DROP, CB_UID_DROP, CB_CAPSET, CB_UID_CHECK, CB_EUID_CHECK, CB_GID_CHECK, CB_EGID_CHECK, CB_GROUPS_CHECK, CB_NO_NEW_PRIVILEGES_CHECK, CB_WORKLOAD_CHDIR, CB_FD_CLOSE_RANGE, CB_NODE_DIRECTORY_FORMAT, CB_NODE_PATH_LENGTH, CB_ENVIRONMENT_CLEAR, CB_ENV_HOME, CB_ENV_PATH, CB_ENV_CI, CB_ENV_DB_REQUIRED, CB_ENV_RUNTIME_TEMP, CB_ENV_BROWSER_PATH, CB_ENV_APP_MODE, CB_ENV_ATTESTATION_KEY, CB_ENV_ATTESTATION_SECRET, CB_NODE_EXEC, CB_COUNT };
+static const char *const capsule_boundary_names[] = {"unknown", "stdin-open", "stdin-dup", "stdout-dup", "no-new-privileges", "securebits", "ambient-clear", "bounding-read", "bounding-drop", "bounding-limit", "groups-drop", "gid-drop", "uid-drop", "capset", "uid-check", "euid-check", "gid-check", "egid-check", "groups-check", "no-new-privileges-check", "workload-chdir", "fd-close-range", "node-directory-format", "node-path-length", "environment-clear", "env-home", "env-path", "env-ci", "env-db-required", "env-runtime-temp", "env-browser-path", "env-app-mode", "env-attestation-key", "env-attestation-secret", "node-exec" };
+struct capsule_failure { enum capsule_boundary stage; int saved_errno; };
+static int capsule_failed(struct capsule_failure *detail, enum capsule_boundary stage, int saved_errno) {
+  if (detail) { detail->stage=stage; detail->saved_errno=saved_errno; }
+  return -1;
+}
+static void capsule_exit125(bool capsule, int capture, bool stdout_ready, struct capsule_failure detail) {
+  if (capsule) {
+    const char *stage=detail.stage>CB_UNKNOWN && detail.stage<CB_COUNT ? capsule_boundary_names[detail.stage] : "unknown";
+    char marker[192], error[16];
+    if(detail.saved_errno>0)snprintf(error,sizeof(error),"%d",detail.saved_errno);else strcpy(error,"null");
+    int n=snprintf(marker,sizeof(marker),"{\"schemaVersion\":1,\"kind\":\"owned-capsule-refusal\",\"stage\":\"%s\",\"errno\":%s}\n",stage,error);
+    if(n>0 && (size_t)n<sizeof(marker))(void)write(stdout_ready?STDOUT_FILENO:capture,marker,(size_t)n);
   }
-  if(cap==1024)return -1;
-  if (setgroups(0,NULL) || setresgid(s.gid,s.gid,s.gid) || setresuid(s.uid,s.uid,s.uid)) return -1;
+  _exit(125);
+}
+/* CAPSULE-REFUSAL-END */
+static int drop_authority(struct capsule_failure *detail) {
+  if(prctl(PR_SET_NO_NEW_PRIVS,1,0,0,0))return capsule_failed(detail,CB_NO_NEW_PRIVILEGES,errno);
+  if(prctl(PR_SET_SECUREBITS,SECBIT_NOROOT | SECBIT_NOROOT_LOCKED | SECBIT_NO_SETUID_FIXUP | SECBIT_NO_SETUID_FIXUP_LOCKED))return capsule_failed(detail,CB_SECUREBITS,errno);
+  if(prctl(PR_CAP_AMBIENT,PR_CAP_AMBIENT_CLEAR_ALL,0,0,0))return capsule_failed(detail,CB_AMBIENT_CLEAR,errno);
+  int cap;
+  for(cap=0;cap<1024;cap++) {
+    if(prctl(PR_CAPBSET_READ,cap,0,0,0)<0) { if(errno==EINVAL)break;return capsule_failed(detail,CB_BOUNDING_READ,errno); }
+    if(prctl(PR_CAPBSET_DROP,cap,0,0,0))return capsule_failed(detail,CB_BOUNDING_DROP,errno);
+  }
+  if(cap==1024)return capsule_failed(detail,CB_BOUNDING_LIMIT,0);
+  if(setgroups(0,NULL))return capsule_failed(detail,CB_GROUPS_DROP,errno);
+  if(setresgid(s.gid,s.gid,s.gid))return capsule_failed(detail,CB_GID_DROP,errno);
+  if(setresuid(s.uid,s.uid,s.uid))return capsule_failed(detail,CB_UID_DROP,errno);
   struct __user_cap_header_struct h = {_LINUX_CAPABILITY_VERSION_3,0};
   struct __user_cap_data_struct d[2] = {{0},{0}};
-  if (syscall(SYS_capset,&h,d) || getuid()!=s.uid || geteuid()!=s.uid || getgid()!=s.gid || getegid()!=s.gid
-      || getgroups(0,NULL)!=0 || prctl(PR_GET_NO_NEW_PRIVS,0,0,0,0)!=1) return -1;
+  if(syscall(SYS_capset,&h,d))return capsule_failed(detail,CB_CAPSET,errno);
+  if(getuid()!=s.uid)return capsule_failed(detail,CB_UID_CHECK,0);
+  if(geteuid()!=s.uid)return capsule_failed(detail,CB_EUID_CHECK,0);
+  if(getgid()!=s.gid)return capsule_failed(detail,CB_GID_CHECK,0);
+  if(getegid()!=s.gid)return capsule_failed(detail,CB_EGID_CHECK,0);
+  int groups=getgroups(0,NULL);
+  if(groups!=0)return capsule_failed(detail,CB_GROUPS_CHECK,groups<0?errno:0);
+  int privileges=prctl(PR_GET_NO_NEW_PRIVS,0,0,0,0);
+  if(privileges!=1)return capsule_failed(detail,CB_NO_NEW_PRIVILEGES_CHECK,privileges<0?errno:0);
   return 0;
 }
 static const char *compatibility_script =
@@ -157,29 +185,40 @@ static const char *capsule_script =
  "{detached:true,stdio:'ignore'});c.once('spawn',()=>process.stdout.write(JSON.stringify({node:process.version,uid:process.getuid(),gid:process.getgid(),"
  "groups:process.getgroups(),status:readFileSync('/proc/self/status','utf8'),detached:true})));c.unref();setInterval(()=>{},1000);";
 static void child_exec(int capture, bool application, bool capsule) {
+  struct capsule_failure detail={CB_UNKNOWN,0};
+  bool stdout_ready=false;
   int null_input=open("/dev/null",O_RDONLY | O_CLOEXEC);
-  if(null_input<0 || dup2(null_input,STDIN_FILENO)<0)_exit(125);
-  if (dup2(capture,STDOUT_FILENO)<0) _exit(125);
-  if (drop_authority() || chdir(s.repo)) _exit(125);
-  if (syscall(SYS_close_range,3,~0U,0)<0) _exit(125);
+  if(null_input<0) { detail=(struct capsule_failure){CB_STDIN_OPEN,errno};capsule_exit125(capsule,capture,stdout_ready,detail); }
+  if(dup2(null_input,STDIN_FILENO)<0) { detail=(struct capsule_failure){CB_STDIN_DUP,errno};capsule_exit125(capsule,capture,stdout_ready,detail); }
+  if(dup2(capture,STDOUT_FILENO)<0) { detail=(struct capsule_failure){CB_STDOUT_DUP,errno};capsule_exit125(capsule,capture,stdout_ready,detail); }
+  stdout_ready=true;
+  if(drop_authority(capsule?&detail:NULL))capsule_exit125(capsule,capture,stdout_ready,detail);
+  if(chdir(s.repo)) { detail=(struct capsule_failure){CB_WORKLOAD_CHDIR,errno};capsule_exit125(capsule,capture,stdout_ready,detail); }
+  if(syscall(SYS_close_range,3,~0U,0)<0) { detail=(struct capsule_failure){CB_FD_CLOSE_RANGE,errno};capsule_exit125(capsule,capture,stdout_ready,detail); }
   /* The root workflow writes only the sealed application fixture environment. */
   char node_path[8192];snprintf(node_path,sizeof(node_path),"%s",s.node);
-  char *node_end=strrchr(node_path,'/');if(!node_end)_exit(125);*node_end=0;
-  if(strlen(node_path)+strlen(":/usr/local/bin:/usr/bin:/bin")>=sizeof(node_path))_exit(125);
+  char *node_end=strrchr(node_path,'/');
+  if(!node_end) { detail=(struct capsule_failure){CB_NODE_DIRECTORY_FORMAT,0};capsule_exit125(capsule,capture,stdout_ready,detail); }
+  *node_end=0;
+  if(strlen(node_path)+strlen(":/usr/local/bin:/usr/bin:/bin")>=sizeof(node_path)) { detail=(struct capsule_failure){CB_NODE_PATH_LENGTH,0};capsule_exit125(capsule,capture,stdout_ready,detail); }
   strcat(node_path,":/usr/local/bin:/usr/bin:/bin");
-  if (clearenv() || setenv("HOME",s.home,1) || setenv("PATH",node_path,1) ||
-      setenv("CI","true",1) || setenv("SUPABASE_TEST_REQUIRED","1",1) ||
-      setenv("RUNNER_TEMP",s.root,1) || setenv("FIXED_CHROMIUM_EXECUTABLE",s.candidate,1) ||
-      setenv("KOPPLAS_FIXED_CHROMIUM_APPLICATION_MODE","verify-application",1) ||
-      setenv("BOOKING_CONFLICT_ATTESTATION_KEY_ID","test_v1",1) ||
-      setenv("BOOKING_CONFLICT_ATTESTATION_HMAC_SECRET","local-test-only-booking-conflict-attestation-secret-v1",1)) _exit(125);
+  if(clearenv()) { detail=(struct capsule_failure){CB_ENVIRONMENT_CLEAR,0};capsule_exit125(capsule,capture,stdout_ready,detail); }
+  if(setenv("HOME",s.home,1)) { detail=(struct capsule_failure){CB_ENV_HOME,errno};capsule_exit125(capsule,capture,stdout_ready,detail); }
+  if(setenv("PATH",node_path,1)) { detail=(struct capsule_failure){CB_ENV_PATH,errno};capsule_exit125(capsule,capture,stdout_ready,detail); }
+  if(setenv("CI","true",1)) { detail=(struct capsule_failure){CB_ENV_CI,errno};capsule_exit125(capsule,capture,stdout_ready,detail); }
+  if(setenv("SUPABASE_TEST_REQUIRED","1",1)) { detail=(struct capsule_failure){CB_ENV_DB_REQUIRED,errno};capsule_exit125(capsule,capture,stdout_ready,detail); }
+  if(setenv("RUNNER_TEMP",s.root,1)) { detail=(struct capsule_failure){CB_ENV_RUNTIME_TEMP,errno};capsule_exit125(capsule,capture,stdout_ready,detail); }
+  if(setenv("FIXED_CHROMIUM_EXECUTABLE",s.candidate,1)) { detail=(struct capsule_failure){CB_ENV_BROWSER_PATH,errno};capsule_exit125(capsule,capture,stdout_ready,detail); }
+  if(setenv("KOPPLAS_FIXED_CHROMIUM_APPLICATION_MODE","verify-application",1)) { detail=(struct capsule_failure){CB_ENV_APP_MODE,errno};capsule_exit125(capsule,capture,stdout_ready,detail); }
+  if(setenv("BOOKING_CONFLICT_ATTESTATION_KEY_ID","test_v1",1)) { detail=(struct capsule_failure){CB_ENV_ATTESTATION_KEY,errno};capsule_exit125(capsule,capture,stdout_ready,detail); }
+  if(setenv("BOOKING_CONFLICT_ATTESTATION_HMAC_SECRET","local-test-only-booking-conflict-attestation-secret-v1",1)) { detail=(struct capsule_failure){CB_ENV_ATTESTATION_SECRET,errno};capsule_exit125(capsule,capture,stdout_ready,detail); }
   char runner[8192], probe[8192];
   snprintf(runner,sizeof(runner),"%s/tests/diagnostics/fixed-chromium-application-runner.mjs",s.repo);
   snprintf(probe,sizeof(probe),"%s/tests/diagnostics/no-store-stream-probe.mjs",s.repo);
   if (capsule) execl(s.node,s.node,"--input-type=module","-e",capsule_script,(char*)NULL);
   else if (application) execl(s.node,s.node,s.cli,"test","--config","playwright.fixed-chromium-application.config.ts",(char*)NULL);
   else execl(s.node,s.node,"--input-type=module","-e",compatibility_script,"fixed-chromium-compatibility",runner,probe,s.candidate,(char*)NULL);
-  _exit(125);
+  detail=(struct capsule_failure){CB_NODE_EXEC,errno};capsule_exit125(capsule,capture,stdout_ready,detail);
 }
 static void quoted(const char *value) {
   putchar('"'); for (const unsigned char *p=(const unsigned char*)value;*p;p++) {

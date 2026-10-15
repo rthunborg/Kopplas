@@ -593,3 +593,38 @@ none
 1. None for coordinated preparation
 
 **Next:** Coordinator exact three-file allocation, then High source author and distinct High source review before any new runtime admission
+
+## Report — 2026-10-15T13:30:05Z (capsule125 compatibility amendment sealed, draft unaccepted)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `db50a9c`).
+**Pipeline status:** in-progress;15.1 verification blocked
+**Continues:** Distinct focused High compatibility amendment validation
+
+**Summary:** Six sequential stories;none landed
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 144h 32m (≈17h 51m AI-run, ≈126h 40m human/idle wait); resumed 17×.
+
+**Stories:**
+1. 15.1 blocked;15.2-15.6 backlog
+
+**Skipped:** (none)
+
+**Epic gate:** Not evaluated
+
+**TEA:** Required gates pending
+
+**Retrospective:** Epic14 October8 accepted-with-open-items
+
+**Overrides:** Owner design;one final epic PR;merge commit retain branches;no deploy
+
+**Open questions:**
+1. Capsule125 cause still unknown;C compiler unavailable/unadmitted
+
+**Deferred work:**
+1. Held runner/C drafts preserved, unit unchanged;123expected controls,0dependent tests executed
+
+**⚠️ Needs human:**
+1. None for focused amendment validation
+
+**Next:** Validate native125-only fine-label namespace before dependent source realization resumes
