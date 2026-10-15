@@ -978,3 +978,37 @@ none
 1. None for independent source review
 
 **Next:** DistinctHigh complete two-file source review afterLOCALnontriggeringcheckpoint;no push/compiler until separateadmission
+
+## Report — 2026-10-15T15:57:32Z (local source review PASS; publication held)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `37fa423`).
+**Pipeline status:** In progress: complete two-file independent High source review PASS; publication and compiler remain held.
+**Continues:** Obtain concrete action-revision and total-effects publication admission before the single compiled mock job.
+
+**Summary:** Sequential Epic 15 remains active at Story 15.1.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 146h 59m (≈20h 02m AI-run, ≈126h 57m human/idle wait); resumed 28×.
+
+**Stories:**
+1. 15.1 blocked on actual browser verification; 15.2-15.6 backlog. No completed story gate.
+
+**Skipped:** (none)
+
+**Epic gate:** Open; diagnostic review grants no P5 credit and consumes no broad review round (0/3).
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** Owner design replaces unavailable legacy behavior; no future legacy URL evidence. One final epic PR; merge commit with branch retained; no deploy.
+
+**Open questions:**
+1. Concrete actions/checkout@v4 and actions/upload-artifact@v4 revisions and hosted Clang18/Python/timeout identity unbound. Native125 cause/full capability unknown.
+
+**Deferred work:**
+1. 36 logical mock cases /37 evaluations uncompiled; actual native capability, General, six phone targets, visual comparisons and all later story gates remain open.
+
+**⚠️ Needs human:** (none)
+
+**Next:** Local checkpoint only, then Coordinator publication/execution reconciliation.
