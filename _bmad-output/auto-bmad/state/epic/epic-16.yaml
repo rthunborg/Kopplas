@@ -9,29 +9,30 @@ spec_folder: null
 story_id: null
 branch: codex/epic-16-jobs
 status: in-progress
-updated_at: "2026-10-15T09:22:10Z"
+updated_at: "2026-10-15T09:23:25Z"
 started_at: "2026-10-15T08:50:46Z"
 completed_at: null
-active_seconds: 1753
+active_seconds: 1800
 timing_anchor: null
 is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: planning
-selected_role: specification-author
-selected_profile: critical
+selected_phase: tea_triage
+selected_role: test-risk-triage
+selected_profile: light
 selected_model: gpt-6.1-sol
-selected_effort: high
+selected_effort: low
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Focused independent High review correction: exact per-booking duration/capacity/window/customer-presence consumer acceptance mapping"
+escalation_reason: Ordinary task uses Low effort
 routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Job authorization, assigned-worker money omission and acceptance transactional contract planning\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"readiness\",\"profile\":\"critical\",\"role\":\"specification-author\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Independent High contract recommendation: scope-safe membership foundation, job authorization, structural financial omission and authoritative booking revalidation\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"planning\",\"profile\":\"critical\",\"role\":\"specification-author\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Focused independent High review correction: exact per-booking duration/capacity/window/customer-presence consumer acceptance mapping\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"planning\",\"profile\":\"critical\",\"role\":\"specification-author\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary task uses Low effort\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_triage\",\"profile\":\"light\",\"role\":\"test-risk-triage\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: null
 tea_selected: []
 tea_rationale: null
@@ -57,7 +58,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [0586972a, d6a310be, f610bcbd, 11bf2721]
+commits: [0586972a, d6a310be, f610bcbd, 11bf2721, bce1436b]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -97,7 +98,7 @@ constraints:
   - E15 scheduling/time/diagnostics resources excluded
   - Membership and work-order staging remain proposals pending independent High disposition
 epic_slug: jobs-core
-active_story: null
+active_story: 16-1-jobs-depth-activation-container-evolution-and-my-jobs
 stories_landed: []
 stories_skipped: []
 batch_flip_done: false

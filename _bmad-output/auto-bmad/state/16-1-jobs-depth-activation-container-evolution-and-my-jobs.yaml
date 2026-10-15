@@ -1,0 +1,86 @@
+# auto-bmad per-story state — written by scripts/state_update.py (full stable schema;
+# see references/state-and-resume.md). Prose belongs in reports/{key}.md, not here.
+story_key: 16-1-jobs-depth-activation-container-evolution-and-my-jobs
+epic_num: 16
+story_num: 1
+story_suffix: ""
+story_source: sprint
+spec_folder: null
+story_id: null
+branch: codex/epic-16-jobs
+status: in-progress
+updated_at: "2026-10-15T09:23:25Z"
+started_at: "2026-10-15T09:23:25Z"
+completed_at: null
+active_seconds: 0
+timing_anchor: null
+is_first_in_epic: true
+is_last_in_epic: false
+git_mode: remote
+base_branch: main
+selected_phase: null
+selected_role: null
+selected_profile: null
+selected_model: null
+selected_effort: null
+selected_host: null
+selected_tier: null
+selected_route: null
+escalation_reason: null
+routing_ledger: []
+tea_risk: high
+tea_selected: [atdd, automate]
+tea_rationale: Explicit schema/CHECK constraints and membership/assignment-scoped MyJobs with per-role negatives
+epic_story_count: 5
+stories_after_in_epic: 4
+completed_phases: [0, 1]
+spec_path: "C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/_bmad-output/implementation-artifacts/spec-16-1-jobs-depth-activation-container-evolution-and-my-jobs.md"
+spec_approved: false
+build:
+  status: null
+  blocking_condition: null
+  followup_review_recommended: false
+  review_loop_iteration: 0
+  deferred_count: 0
+  warnings: []
+followup_passes: 0
+hitl_halt: null
+review_unverified: false
+story_trace: null
+legacy_review_resume: false
+legacy_review_iteration: null
+legacy_review_loop_done: false
+legacy_external_review_iterations: null
+legacy_convergence_unverified: false
+legacy_artifact_path: null
+commits: []
+phase8_steps:
+  trace_gate: null
+  nfr: null
+  test_review: null
+  reconcile: null
+  archive: null
+  retro: null
+gate_decision: null
+gate_iterations: 0
+deferred_work_archived: 0
+retro:
+  doc: null
+  verdict: null
+  open_action_items: 0
+bmad_status_flipped_at: null
+pr_url: null
+ci_run_url: null
+ci_status: unknown
+pr_merged: false
+merge_method: null
+merge_commit: null
+branch_deleted: false
+open_questions: []
+deferred_work: []
+blockers: []
+overrides:
+  ownership: Preparation only until coordinator exact allocation and formal planning
+  merge: "Coordinator only;one final epic PR;no deployment"
+  design_evidence: "Direct owner decision: no legacy URL reference/use/evidence; existing design system/accessibility/headless maintainable defaults;zero observations"
+constraints: []
