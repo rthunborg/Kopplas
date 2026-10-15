@@ -275,3 +275,39 @@ none
 3. See story-15-1-blocked-verification-2026-10-14.md. Local ignored receipts remain preserved. All own Stop requests were accepted; acknowledgments do not prove shutdown.
 
 **Next:** Resolve the supported native-response/runtime verification blocker; author sets blocked spec to in-progress, then resume /auto-bmad epic --epic 15. Human review: /bmad-checkpoint-preview codex/epic-15-scheduling-time-calendar. Project context: /bmad-project-context refresh recommended after epic completion.
+
+## Report — 2026-10-15T03:51:23Z (halted - privileged hosted provider scope decision)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `4838640`).
+**Pipeline status:** Epic15 incomplete;15.1 remains blocked at verification and15.2-15.6 remain held. Independent decision-package validation PASS grants no implementation or runtime admission.
+**Continues:** Integrated Epic14 closeout verified using October8 accepted-with-open-items retrospective. UXB-A9 is owner-approved work-role grouping design after owner waived Lovable oracle requirement.
+
+**Summary:** Sequential execution remains at15.1. Focused High Docker preparation REVISE and correction confirm no supported no-root route. The existing reviewed hosted root-service fallback is a concrete direct-owner scope decision.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 134h 53m (≈14h 34m AI-run, ≈120h 19m human/idle wait); resumed 8×.
+
+**Stories:**
+1. 15.1 blocked: implementation verification failed; source FAIL and two original RED cleanup witnesses remain;P5=false,broad0/3.15.2-15.6 not started.
+
+**Skipped:**
+1. None waived;laterstories held until15.1 completes.
+
+**Epic gate:** Not reached; required General remains red,four native-text unknown. All required gates remain.
+
+**TEA:** Existing mandatory evidence incomplete; no new RLS,visual or performance acceptance credit.
+
+**Retrospective:** Epic14 October8 accepted-with-open-items applies;October7 rejection historical. Epic15 retrospective pending all stories/gates.
+
+**Overrides:** Sequential Sol6.1Low ordinary work with explicit High sensitive delegates; merge commits retaining branches;no deployment;owner-design Team view without legacy observation claim.
+
+**Open questions:**
+1. Authorize narrowly scoped same disposable hosted Ubuntu job fresh workload identity/private tree,C broker and transient root systemd service, or remain blocked. Four exact source paths remain unallocated. Actual kernel/compiler/systemd capabilities unobserved.
+
+**Deferred work:**
+1. After owner authorization and Coordinator allocation: High implementation preserving62controls;independent focused source review demonstrating two RED-to-GREEN witnesses;separate hosted capability admission and full application verification. All later story and epic gates remain.
+
+**⚠️ Needs human:**
+1. Coordinator confirms no direct human authorization for this specific privileged hosted provider expansion. Existing preparation-only admission excludes sudo bootstrap/source/provider selection/native execution. Smallest alternative is remain blocked.
+
+**Next:** Resolve reviewed provider scope decision;obtain Coordinator allocation before overlapping writes/resources. No PR,merge or deployment.
