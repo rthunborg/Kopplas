@@ -9,30 +9,31 @@ spec_folder: null
 story_id: null
 branch: codex/epic-16-jobs
 status: in-progress
-updated_at: "2026-10-15T09:23:25Z"
+updated_at: "2026-10-15T09:27:42Z"
 started_at: "2026-10-15T08:50:46Z"
 completed_at: null
 active_seconds: 1800
-timing_anchor: null
+timing_anchor: 1792056462
 is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: tea_triage
-selected_role: test-risk-triage
-selected_profile: light
+selected_phase: build
+selected_role: build-delegate
+selected_profile: standard
 selected_model: gpt-6.1-sol
-selected_effort: low
+selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: Ordinary task uses Low effort
+escalation_reason: "Automatic sensitive-task escalation: authorization, transactional-integrity"
 routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Job authorization, assigned-worker money omission and acceptance transactional contract planning\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"readiness\",\"profile\":\"critical\",\"role\":\"specification-author\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Independent High contract recommendation: scope-safe membership foundation, job authorization, structural financial omission and authoritative booking revalidation\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"planning\",\"profile\":\"critical\",\"role\":\"specification-author\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Focused independent High review correction: exact per-booking duration/capacity/window/customer-presence consumer acceptance mapping\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"planning\",\"profile\":\"critical\",\"role\":\"specification-author\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary task uses Low effort\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_triage\",\"profile\":\"light\",\"role\":\"test-risk-triage\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: null
 tea_selected: []
 tea_rationale: null

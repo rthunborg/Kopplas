@@ -9,25 +9,26 @@ spec_folder: null
 story_id: null
 branch: codex/epic-16-jobs
 status: in-progress
-updated_at: "2026-10-15T09:23:25Z"
+updated_at: "2026-10-15T09:27:42Z"
 started_at: "2026-10-15T09:23:25Z"
 completed_at: null
 active_seconds: 0
-timing_anchor: null
+timing_anchor: 1792056462
 is_first_in_epic: true
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: null
-selected_role: null
-selected_profile: null
-selected_model: null
-selected_effort: null
-selected_host: null
-selected_tier: null
-selected_route: null
-escalation_reason: null
-routing_ledger: []
+selected_phase: build
+selected_role: build-delegate
+selected_profile: standard
+selected_model: gpt-6.1-sol
+selected_effort: high
+selected_host: codex
+selected_tier: subagents
+selected_route: subagent
+escalation_reason: "Automatic sensitive-task escalation: authorization, transactional-integrity"
+routing_ledger:
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: Explicit schema/CHECK constraints and membership/assignment-scoped MyJobs with per-role negatives
