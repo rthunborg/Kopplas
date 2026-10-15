@@ -908,3 +908,38 @@ none
 1. None for focused revalidation
 
 **Next:** Same distinctHigh validator inspect exactguard and failure semantics before any source allocation
+
+## Report — 2026-10-15T15:29:25Z (compiled capsule mock exact-case preparation PASS, source held)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `311e744`).
+**Pipeline status:** in-progress;15.1 verification blocked
+**Continues:** Focused exact-case R1 preparation PASS;all packet blockers resolved statically
+
+**Summary:** Six sequential stories;none landed
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 146h 31m (≈19h 37m AI-run, ≈126h 54m human/idle wait); resumed 26×.
+
+**Stories:**
+1. 15.1 blocked;15.2-15.6 backlog
+
+**Skipped:** (none)
+
+**Epic gate:** Not evaluated
+
+**TEA:** Required gates pending
+
+**Retrospective:** Epic14 October8 accepted-with-open-items
+
+**Overrides:** Owner design;one final epic PR;merge commit retain branches;no deploy
+
+**Open questions:**
+1. VM/preflight/publication/compilationtotal-effects admission remains separate
+
+**Deferred work:**
+1. Two sourcepaths absent/unallocated;36logical37evaluations0compiled/executed;0gateexamplesexecuted
+
+**⚠️ Needs human:**
+1. None for coordinated allocation
+
+**Next:** Request exacttwo-path source allocation plus resource-free guard/generation checks;localreview/checkpoint before triggering publication

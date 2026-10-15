@@ -9,10 +9,10 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-15T15:05:55Z"
+updated_at: "2026-10-15T15:29:25Z"
 started_at: "2026-10-09T12:57:49Z"
 completed_at: null
-active_seconds: 69440
+active_seconds: 70644
 timing_anchor: null
 is_first_in_epic: false
 is_last_in_epic: false
@@ -26,7 +26,7 @@ selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: High narrow document-only correction of unresolved R1 case-sensitive pre-compilation gate and truthful workflow activation effects
+escalation_reason: "Same distinct High focused R1 revalidation of exact-case pre-compilation event guard, failure skips and truthful coarse VM activation"
 routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary epic test planning; sensitive implementation/review scope routed explicitly High\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary story test-risk classification\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_triage\",\"profile\":\"light\",\"role\":\"test-risk-triage\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -57,6 +57,7 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"High preparation R1 caller-message correction must retain required story scope before focused revalidation\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Same distinct High focused preparation revalidation of corrected full scoped gate, compiler qualification path and pure C extraction\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"High narrow document-only correction of unresolved R1 case-sensitive pre-compilation gate and truthful workflow activation effects\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Same distinct High focused R1 revalidation of exact-case pre-compilation event guard, failure skips and truthful coarse VM activation\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: null
 tea_selected: []
 tea_rationale: null
@@ -82,7 +83,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [99e1274e, b7f19e2d, 6f612a21, bc4163ea, 27ce6a2b, 7cdd08a6, 66cd8436, e6c404d3, 5d76de08575fb8fa09197021899d78280829d554, 81836287786a40540e96dbdf46db29c868cde41b, 48386408fc628f7341b711f177ff5833f622959c, 92dc4a5f4f7e9878e9ed9c28e00bda5d98680478, 16180cd63914a57895b36c2db060c43c74da3514, caec31b185bcad597664668d7a835c9c2096aa4d, 0a312c8fbd617d4ce03f97d5484bb23babb0686b, d5a5f85155394a0337ea92fcd606f949559b172a, becfd00e, 80c31af2, a0dd2302ead46e72e77f3293b84085c4f8fe65f3, 6f9e29656df997e2c5c6027874da4bee1ef6c17d, 5c1fb90b2f7f735259208e2d420bce489cbed598, 0d6f43ac90596b8703d8df3b9b986f9026aaaba3, 76868db295ac6b7de06a57f43164d5f02140f938, c4375f61, abaf8d81, db50a9c5, a1b83089, 6883ef61, 2441e3a2, 94baa7c7, afd9c1dd, 6d983e00, ae5b78b6, 09e70e81]
+commits: [99e1274e, b7f19e2d, 6f612a21, bc4163ea, 27ce6a2b, 7cdd08a6, 66cd8436, e6c404d3, 5d76de08575fb8fa09197021899d78280829d554, 81836287786a40540e96dbdf46db29c868cde41b, 48386408fc628f7341b711f177ff5833f622959c, 92dc4a5f4f7e9878e9ed9c28e00bda5d98680478, 16180cd63914a57895b36c2db060c43c74da3514, caec31b185bcad597664668d7a835c9c2096aa4d, 0a312c8fbd617d4ce03f97d5484bb23babb0686b, d5a5f85155394a0337ea92fcd606f949559b172a, becfd00e, 80c31af2, a0dd2302ead46e72e77f3293b84085c4f8fe65f3, 6f9e29656df997e2c5c6027874da4bee1ef6c17d, 5c1fb90b2f7f735259208e2d420bce489cbed598, 0d6f43ac90596b8703d8df3b9b986f9026aaaba3, 76868db295ac6b7de06a57f43164d5f02140f938, c4375f61, abaf8d81, db50a9c5, a1b83089, 6883ef61, 2441e3a2, 94baa7c7, afd9c1dd, 6d983e00, ae5b78b6, 09e70e81, 311e744f]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -906,3 +907,28 @@ application_browser_capsule125_compiled_proof_R1_case_correction:
   packet_manifest_sha256: b4da139c801e4484e9453c4767b3524fbdbe1ba362e75f092226567e4a145012
   packet_entries: 12
   prefix_sha256: 6bb4eaaf2a054df45e991bdbc452567c2b5f98c76616c996be48bc8134332f04
+application_browser_capsule125_compiled_proof_R1_case_revalidation:
+  preservation_receipt_sha256: 7d2a558aed98eaaa580730bb46897645f9c3d929e2f73e48abdd09fc44d71cdb
+  guard_sha256: 0430b7315415d247505a59cd86b37bfb41f194c45bb64a4fae549c2f771d9d76
+  evaluations: 37
+  protected_files: 1593
+  logical_cases: 36
+  coarse_VM_preflight_effects_require_admission: true
+  append_sha256: d4e57931e8c206568c58d0ed51bc196cd2942b2b62804c0907469ab7fe3c622d
+  guard_inline_standalone_match: true
+  append_bytes: 7796
+  gate_examples_executed: 0
+  compiled_cases: 0
+  validation_sha256: 162919968d0f2baffe5e02afafe7c79c53caed059eb8166984cd1605ac2a120f
+  guard_bytes: 889
+  p5_credit: false
+  status: PASS_focused_preparation_closure
+  compiler_native_ci_held: true
+  packet_bindings_verified: 12
+  preservation_mismatches: 0
+  validation_bytes: 154804
+  prefix_sha256: 0bf6df7fd418fff51230bde5feb38dc3f2c832a6b8c36a8c97aa6741d14bbc92
+  broad_review_rounds: 0
+  source_paths_absent_unallocated: true
+  executed_cases: 0
+  prefix_bytes: 147008
