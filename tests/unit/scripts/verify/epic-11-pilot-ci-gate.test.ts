@@ -27,9 +27,9 @@ function checkoutRef(expression: string, context: Record<string, unknown>): unkn
 
 const checkoutExpressions = [...ci.matchAll(/uses: actions\/checkout@v4\n\s+with:\n\s+ref:\s+\$\{\{\s*([^}\n]+?)\s*\}\}/g)].map(match => match[1].trim());
 
-test("five required CI jobs plus the two optional diagnostics select the candidate or triggering push SHA", () => {
+test("five required CI jobs plus the three optional diagnostics select the candidate or triggering push SHA", () => {
   const checkoutSteps = [...ci.matchAll(/^\s+uses: actions\/checkout@[^\n]+/gm)];
-  assert.equal(checkoutSteps.length, 7);
+  assert.equal(checkoutSteps.length, 8);
   assert.equal(checkoutExpressions.length, checkoutSteps.length);
   for (const expression of checkoutExpressions) {
     assert.equal(expression, "github.event.pull_request.head.sha || github.sha");

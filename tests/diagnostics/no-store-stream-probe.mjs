@@ -883,7 +883,7 @@ async function acquireFixed(observation) {
   if (/[\r\n]/.test(executable)) { observed('privacy'); throw new Error('privacy'); }
   await acquisitionIO(appendFile(process.env.GITHUB_OUTPUT, `executable=${executable}\n`), observed);
 }
-async function admitCandidate(path) {
+export async function admitCandidate(path) {
   if (process.platform !== 'linux' || !process.env.RUNNER_TEMP || typeof path !== 'string') throw new Error('setup');
   const base = await realpath(process.env.RUNNER_TEMP), executable = await realpath(path), root = dirname(dirname(executable));
   if (!contained(base, root) || dirname(root) !== base || !/^kopplas-fixed-chromium-[a-zA-Z0-9]+$/.test(root.slice(base.length + 1))
@@ -895,7 +895,7 @@ async function admitCandidate(path) {
   if (JSON.stringify(actual) !== JSON.stringify(receipt.executable)) throw new Error('provenance');
   return { executable, receipt };
 }
-async function packageAdmission() {
+export async function packageAdmission() {
   const require = createRequire(import.meta.url), testManifest = require.resolve('@playwright/test/package.json');
   const testRequire = createRequire(testManifest), playwrightManifest = testRequire.resolve('playwright/package.json');
   const playwrightRequire = createRequire(playwrightManifest), coreManifest = playwrightRequire.resolve('playwright-core/package.json');
