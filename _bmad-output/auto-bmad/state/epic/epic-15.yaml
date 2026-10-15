@@ -9,30 +9,31 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-15T03:51:23Z"
+updated_at: "2026-10-15T09:08:43Z"
 started_at: "2026-10-09T12:57:49Z"
 completed_at: null
-active_seconds: 52469
+active_seconds: 55654
 timing_anchor: null
 is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: security_layer
-selected_role: security-reviewer
-selected_profile: critical
+selected_phase: build
+selected_role: build-delegate
+selected_profile: standard
 selected_model: gpt-6.1-sol
 selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Focused independent validation of Docker authority limits and concrete privileged fallback decision; no runtime admission"
+escalation_reason: Owner-authorized hosted privileged cleanup broker requires High source implementation and control isolation proofs
 routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary epic test planning; sensitive implementation/review scope routed explicitly High\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary story test-risk classification\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_triage\",\"profile\":\"light\",\"role\":\"test-risk-triage\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Consequential clean-checkpoint workflow adoption and ownership reconciliation after finalized E20; no implementation review round\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"final_convergence\",\"profile\":\"standard\",\"role\":\"final-convergence\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Focused Docker authority correction addresses durable process observation and independently surviving privileged cleanup ownership\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Focused independent validation of Docker authority limits and concrete privileged fallback decision; no runtime admission\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Owner-authorized hosted privileged cleanup broker requires High source implementation and control isolation proofs\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: null
 tea_selected: []
 tea_rationale: null
@@ -58,7 +59,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [99e1274e, b7f19e2d, 6f612a21, bc4163ea, 27ce6a2b, 7cdd08a6, 66cd8436, e6c404d3, 5d76de08575fb8fa09197021899d78280829d554, 81836287786a40540e96dbdf46db29c868cde41b, 48386408fc628f7341b711f177ff5833f622959c]
+commits: [99e1274e, b7f19e2d, 6f612a21, bc4163ea, 27ce6a2b, 7cdd08a6, 66cd8436, e6c404d3, 5d76de08575fb8fa09197021899d78280829d554, 81836287786a40540e96dbdf46db29c868cde41b, 48386408fc628f7341b711f177ff5833f622959c, 92dc4a5f4f7e9878e9ed9c28e00bda5d98680478]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -236,10 +237,27 @@ application_browser_docker_correction_validation:
   p5_complete: false
   broad_review_round: 0
 application_browser_privileged_fallback_decision:
-  status: awaiting-direct-owner-scope-decision
-  provider: Existing disposable GitHub-hosted Ubuntu optional job only
-  permissions: "Narrow sudo fresh workload UID GID root-private tree private compiled C broker and transient root systemd delegated service; no controller/package/global/local changes"
-  paths: [tests/diagnostics/fixed-chromium-application-runner.mjs, NEW tests/diagnostics/fixed-chromium-owned-process.c, tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts, ".github/workflows/ci.yml optionaljobonly"]
-  runtime_capability: "unobserved; separate admission after reviewed implementation"
-  alternative: Remain blocked
-  coordinator_allocation: held
+  status: "owner-authorized; exclusive four-path source allocation renewed"
+  owner_authorization: "2026-10-15 direct human: You are authorized to do that if needed"
+  coordinator_allocation: "30-worktree audit; exclusive sequential own checkout source/mock proofs only; native held"
+application_browser_privileged_fallback_implementation:
+  status: "source/mock complete; independent exact-source review pending"
+  source_hashes: "{\"runner\": \"83401b2deebee08aa565a352f037661200199f20c112bb08b9cc2463c3c9a410\", \"broker\": \"ea2abfa6638bf148854e5aba080edc9241e26b1b3594cec3d5b10be2006fae68\", \"unit\": \"4b667fed0e344270c285f50510fa4ac68bf35f71d7ab1badf3f870fd01e1c9ea\", \"workflow\": \"818d0f379c90ade3ccd0d31be9ed260bf0a86ec5acee1a26eadfd72374478a42\"}"
+  author_addendum_bytes: 112204
+  author_addendum_sha256: 11265a64af6cea16509e9f04472dd48e5ebc147eca2be608ee9f772d7ced8cc9
+  protected_addendum_prefix_bytes: 105966
+  protected_addendum_prefix_sha256: 229c99e404032da48716853256ba7cc7771db8006a7735a93b41839dda6c8d1f
+  passed: 89
+  failed: 0
+  skipped: 0
+  retained_controls: 62
+  original_witness_red_failures: 2
+  protected_inputs: 27
+  historical_entries: 102
+  mismatches: 0
+  native_actions: 0
+  native_execution: held
+  c_compilation: unobserved
+  p5_complete: false
+  proof_manifest_sha256: eaa8968cd6f563de4822b0d55842c3497d696e9c8212f4395ef891eddd383a60
+  failed_attempts_retained: [88/89 capability uploader condition failure, Lint prefer-const failure]

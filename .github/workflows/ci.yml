@@ -734,6 +734,10 @@ jobs:
     needs: [verify, e2e]
     if: ${{ always() && !cancelled() && github.event_name == 'workflow_dispatch' && inputs.fixed_chromium_application_verification && needs.verify.result == 'success' && (needs.e2e.result == 'success' || needs.e2e.result == 'failure') }}
     env:
+      # ROOT-SERVICE-ENV-BEGIN: a dispatch flag is not native execution admission.
+      FIXED_CHROMIUM_HOSTED_ADMISSION: ${{ vars.FIXED_CHROMIUM_HOSTED_ADMISSION }}
+      FIXED_CHROMIUM_HOSTED_ADMISSION_SHA: ${{ vars.FIXED_CHROMIUM_HOSTED_ADMISSION_SHA }}
+      # ROOT-SERVICE-ENV-END
       # Auth-mail E2E must fail loudly if its required local Auth/Mailpit stack is
       # unavailable; this matches the database integration gate.
       SUPABASE_TEST_REQUIRED: "1"
@@ -748,6 +752,14 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
 
+      # ROOT-SERVICE-PREFLIGHT-BEGIN
+      - name: Require separately admitted hosted mode and exact source
+        run: |
+          test "$FIXED_CHROMIUM_HOSTED_ADMISSION_SHA" = "$GITHUB_SHA"
+          case "$FIXED_CHROMIUM_HOSTED_ADMISSION" in capability|application) ;; *) exit 1 ;; esac
+          test "${RUNNER_OS}" = Linux
+      # ROOT-SERVICE-PREFLIGHT-END
+
       - name: Install pnpm
         uses: pnpm/action-setup@v4
 
@@ -761,18 +773,30 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Install Playwright browser (chromium + OS deps)
+        # ROOT-SERVICE-CONDITION-BEGIN
+        if: ${{ env.FIXED_CHROMIUM_HOSTED_ADMISSION == 'application' }}
+        # ROOT-SERVICE-CONDITION-END
         run: pnpm exec playwright install --with-deps chromium
 
       - name: Install Supabase CLI
+        # ROOT-SERVICE-CONDITION-BEGIN
+        if: ${{ env.FIXED_CHROMIUM_HOSTED_ADMISSION == 'application' }}
+        # ROOT-SERVICE-CONDITION-END
         uses: supabase/setup-cli@v1
         with:
           # Pin the same explicit version as the `db` job (see its note).
           version: 2.115.0
 
       - name: Start local Supabase stack
+        # ROOT-SERVICE-CONDITION-BEGIN
+        if: ${{ env.FIXED_CHROMIUM_HOSTED_ADMISSION == 'application' }}
+        # ROOT-SERVICE-CONDITION-END
         run: supabase start
 
       - name: Migration reset (empty DB → migrate → seed)
+        # ROOT-SERVICE-CONDITION-BEGIN
+        if: ${{ env.FIXED_CHROMIUM_HOSTED_ADMISSION == 'application' }}
+        # ROOT-SERVICE-CONDITION-END
         # Bounded retry (added 2026-07-26): `supabase db reset` intermittently fails with
         # "Error status 502: An invalid response was received from the upstream server" during its
         # FINAL "Restarting containers..." step — i.e. AFTER every migration applied and seed.sql ran.
@@ -802,6 +826,9 @@ jobs:
       # (NEXT_PUBLIC_* are inlined from playwright.config.ts), globalSetup seeds the
       # two-tenant fixture, and the specs drive the real browser journeys (G-2/G-3).
       - name: Acquire exact full158 with reviewed authority
+        # ROOT-SERVICE-CONDITION-BEGIN
+        if: ${{ env.FIXED_CHROMIUM_HOSTED_ADMISSION == 'application' }}
+        # ROOT-SERVICE-CONDITION-END
         id: fixed
         timeout-minutes: 3
         run: node tests/diagnostics/no-store-stream-probe.mjs --acquire-fixed-chromium
@@ -809,12 +836,88 @@ jobs:
       - name: Publish fresh acquisition boundary authority
         id: receipt_publish
         timeout-minutes: 1
-        if: ${{ always() && !cancelled() }}
+        if: ${{ always() && !cancelled() && env.FIXED_CHROMIUM_HOSTED_ADMISSION == 'application' }}
         env:
           ACQUISITION_RECEIPT_DIRECTORY: ${{ steps.fixed.outputs.acquisition_receipt_directory }}
         run: node tests/diagnostics/no-store-stream-probe.mjs --publish-acquisition-receipt "$ACQUISITION_RECEIPT_DIRECTORY"
 
+      # ROOT-SERVICE-BOOTSTRAP-BEGIN
+      - name: Compile private reviewed broker and prepare exclusive hosted session
+        timeout-minutes: 2
+        env:
+          ACQUIRED_CHROMIUM: ${{ steps.fixed.outputs.executable }}
+        run: |
+          test "$(node --version)" = v22.23.3
+          command -v /usr/bin/clang-18
+          command -v /usr/bin/systemd-run
+          private_root="$(mktemp -d "${RUNNER_TEMP}/kopplas-owned-XXXXXXXX")"
+          generation="$(cat /proc/sys/kernel/random/uuid)"
+          account="kopplas-${generation:0:20}"
+          unit="kopplas-fixed-${generation}.service"
+          source_sha="$(sha256sum tests/diagnostics/fixed-chromium-owned-process.c | cut -d ' ' -f 1)"
+          node_path="$(readlink -f "$(command -v node)")"
+          mkdir "$private_root/control" "$private_root/workload" "$private_root/home"
+          /usr/bin/clang-18 --version > "$private_root/control/compiler.txt"
+          /usr/bin/ld --version > "$private_root/control/linker.txt"
+          dpkg-query -W clang-18 binutils libc6-dev linux-libc-dev > "$private_root/control/packages.txt"
+          /usr/bin/clang-18 -std=c11 -D_GNU_SOURCE -Wall -Wextra -Werror -O2 -fPIE -pie -Wl,-z,relro,-z,now tests/diagnostics/fixed-chromium-owned-process.c -o "$private_root/broker"
+          sha256sum tests/diagnostics/fixed-chromium-owned-process.c "$private_root/broker" > "$private_root/control/binary-source.txt"
+          git archive HEAD | tar -x -C "$private_root/workload"
+          cp -a node_modules "$private_root/workload/node_modules"
+          mkdir -p "$private_root/home/.cache"
+          if [ "$FIXED_CHROMIUM_HOSTED_ADMISSION" = application ]; then
+            cp -a "$HOME/.cache/ms-playwright" "$private_root/home/.cache/ms-playwright"
+            candidate_directory="$(dirname "$(dirname "$ACQUIRED_CHROMIUM")")"
+            cp -a "$candidate_directory" "$private_root/$(basename "$candidate_directory")"
+            candidate="$private_root/$(basename "$candidate_directory")/chrome-linux64/chrome"
+          else
+            candidate=/not-executed/capability-only
+          fi
+          cli_path="$(node -e 'const p=require.resolve("@playwright/test/package.json"); process.stdout.write(require("node:path").join(require("node:path").dirname(p),"cli.js"))')"
+          cli_relative="${cli_path#"$GITHUB_WORKSPACE/"}"
+          test "$cli_relative" != "$cli_path"
+          sudo -n /usr/sbin/useradd --system --user-group --no-create-home --shell /usr/sbin/nologin "$account"
+          uid="$(id -u "$account")"; gid="$(id -g "$account")"
+          python3 - "$private_root" "$generation" "$source_sha" "$unit" "$node_path" "$candidate" "$cli_relative" "$uid" "$gid" <<'PY'
+          import pathlib,sys
+          root,generation,source,unit,node,candidate,cli,uid,gid=sys.argv[1:]
+          values=[('generation',generation),('source',source),('unit',unit),('node',node),('repo',root+'/workload'),('candidate',candidate),('cli',root+'/workload/'+cli),('home',root+'/home'),('root',root),('uid',uid),('gid',gid)]
+          if any('\n' in value or '\r' in value or '\0' in value for _,value in values): raise SystemExit(1)
+          pathlib.Path(root+'/control/session').write_text(''.join(key+'='+value+'\n' for key,value in values))
+          PY
+          sudo -n /bin/chown -R root:root "$private_root"
+          sudo -n /bin/chmod -R a+rX,a-w "$private_root/workload" "$private_root/home"
+          if [ "$FIXED_CHROMIUM_HOSTED_ADMISSION" = application ]; then
+            sudo -n /bin/chmod -R a+rX,a-w "$private_root/$(basename "$candidate_directory")"
+          fi
+          sudo -n /bin/chmod 0711 "$private_root"
+          sudo -n /bin/chmod 0700 "$private_root/control" "$private_root/broker"
+          sudo -n /bin/chmod 0600 "$private_root/control/session"
+          for relative in .next tests/e2e/.auth test-results playwright-report; do
+            sudo -n /usr/bin/install -d -o "$uid" -g "$gid" -m 0755 "$private_root/workload/$relative"
+          done
+          sudo -n /bin/chown "$uid:$gid" "$private_root/home"
+          sudo -n /bin/chmod 0700 "$private_root/home"
+          printf '%s\n' "FIXED_CHROMIUM_BROKER_ROOT=$private_root" "FIXED_CHROMIUM_WORKLOAD_REPO=$private_root/workload" "FIXED_CHROMIUM_BROKER_GENERATION=$generation" "FIXED_CHROMIUM_BROKER_SOURCE_SHA256=$source_sha" "FIXED_CHROMIUM_BROKER_UNIT=$unit" >> "$GITHUB_ENV"
+
+      - name: Capability capsule only (no browser, application, or database execution)
+        if: ${{ env.FIXED_CHROMIUM_HOSTED_ADMISSION == 'capability' }}
+        run: node tests/diagnostics/fixed-chromium-application-runner.mjs --capability-capsule
+
+      - name: Preserve capability capsule receipt
+        if: ${{ !cancelled() && env.FIXED_CHROMIUM_HOSTED_ADMISSION == 'capability' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: fixed-chromium-hosted-capability
+          path: test-results/fixed-chromium-hosted-capability.json
+          retention-days: 7
+          if-no-files-found: error
+      # ROOT-SERVICE-BOOTSTRAP-END
+
       - name: Isolated full158 application tests (original full General population)
+        # ROOT-SERVICE-CONDITION-BEGIN
+        if: ${{ env.FIXED_CHROMIUM_HOSTED_ADMISSION == 'application' }}
+        # ROOT-SERVICE-CONDITION-END
         # The configured reporter sums Playwright test attempts only. Its own
         # production build/web-server bootstrap remains outside the approved
         # 800-second general-browser attempt-sum execution budget.
@@ -823,25 +926,29 @@ jobs:
         run: node tests/diagnostics/fixed-chromium-application-runner.mjs --verify-application "$FIXED_CHROMIUM_EXECUTABLE"
 
       - name: Upload fixed application native JSON
-        if: ${{ !cancelled() }}
+        if: ${{ !cancelled() && env.FIXED_CHROMIUM_HOSTED_ADMISSION == 'application' }}
         uses: actions/upload-artifact@v4
         with:
           name: fixed-chromium-application-native
-          path: test-results/fixed-chromium-application/general-browser.json
+          # ROOT-SERVICE-PATH-BEGIN
+          path: ${{ env.FIXED_CHROMIUM_WORKLOAD_REPO }}/test-results/fixed-chromium-application/general-browser.json
+          # ROOT-SERVICE-PATH-END
           retention-days: 7
           if-no-files-found: error
 
       - name: Upload fixed application Playwright report
-        if: ${{ !cancelled() }}
+        if: ${{ !cancelled() && env.FIXED_CHROMIUM_HOSTED_ADMISSION == 'application' }}
         uses: actions/upload-artifact@v4
         with:
           name: fixed-chromium-application-report
-          path: playwright-report/fixed-chromium-application/
+          # ROOT-SERVICE-PATH-BEGIN
+          path: ${{ env.FIXED_CHROMIUM_WORKLOAD_REPO }}/playwright-report/fixed-chromium-application/
+          # ROOT-SERVICE-PATH-END
           retention-days: 7
           if-no-files-found: ignore
 
       - name: Upload fixed application provenance
-        if: ${{ always() && !cancelled() }}
+        if: ${{ always() && !cancelled() && env.FIXED_CHROMIUM_HOSTED_ADMISSION == 'application' }}
         uses: actions/upload-artifact@v4
         with:
           name: fixed-chromium-application-provenance
@@ -851,7 +958,7 @@ jobs:
 
       - name: Upload fresh acquisition boundary receipt
         timeout-minutes: 1
-        if: ${{ always() && !cancelled() && steps.receipt_publish.conclusion == 'success' && steps.receipt_publish.outputs.acquisition_receipt_written == 'true' }}
+        if: ${{ always() && !cancelled() && steps.receipt_publish.conclusion == 'success' && steps.receipt_publish.outputs.acquisition_receipt_written == 'true' && env.FIXED_CHROMIUM_HOSTED_ADMISSION == 'application' }}
         uses: actions/upload-artifact@v4
         with:
           name: fixed-chromium-application-acquisition

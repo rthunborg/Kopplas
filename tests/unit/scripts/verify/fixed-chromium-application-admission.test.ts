@@ -6,7 +6,7 @@ import vm from "node:vm";
 import ts from "typescript";
 import { test } from "node:test";
 import { bounded, checkApplicationArguments, checkPinnedCandidate, inspectReport, runApplication, runCompatibility,
-  runOwnedChild, sealEnvironment, validateProvenance, SOURCES, VISUALS } from "../../../diagnostics/fixed-chromium-application-runner.mjs";
+  runOwnedChild, sealEnvironment, validateProvenance, createHostedOwner, SOURCES, VISUALS } from "../../../diagnostics/fixed-chromium-application-runner.mjs";
 import { FIXED, validateReceipt } from "../../../diagnostics/no-store-stream-probe.mjs";
 
 const sha = (data: string | Buffer) => createHash("sha256").update(data).digest("hex");
@@ -217,6 +217,8 @@ test("actual owned-child deadline kills only its group, observes close and clear
   const child = new EventEmitter() as EventEmitter & { pid: number; stdout: EventEmitter }; child.pid=123; child.stdout=new EventEmitter();
   const timers = new Map<number,() => void>(), killed: string[] = [], listeners = new Set<() => void>(); let next=0;
   const io = { spawn: () => child, killGroup: (_child: unknown,signal: string) => { killed.push(signal); },
+    killOwnedTree: (_child: unknown,signal: string) => { killed.push(signal); },
+    confirmOwnedCleanup: async () => ({leaderReaped:true,sameLeafEmpty:true,forcedResidue:false}),
     onSignal: (fn: () => void) => { listeners.add(fn); }, offSignal: (fn: () => void) => { listeners.delete(fn); },
     setTimeout: (fn: () => void) => { const id=++next; timers.set(id,fn); return id; }, clearTimeout: (id: number) => { timers.delete(id); } };
   const pending=runOwnedChild(io,[],{},15,false); timers.get(1)?.(); timers.get(2)?.();
@@ -278,7 +280,7 @@ test("actual runner validates SDK admission before compatibility",async()=>{
 });
 test("actual acquisition uploader rejects physically true output when publisher runner failed",()=>{
   const expression=optional.match(/        if: \$\{\{ ([^\n]*receipt_publish.conclusion[^\n]*) \}\}/)?.[1];assert.ok(expression);
-  const evaluate=(conclusion:string,flag:string)=>vm.runInNewContext(expression,{always:()=>true,cancelled:()=>false,steps:{receipt_publish:{conclusion,outputs:{acquisition_receipt_written:flag}}}});
+  const evaluate=(conclusion:string,flag:string)=>vm.runInNewContext(expression,{always:()=>true,cancelled:()=>false,env:{FIXED_CHROMIUM_HOSTED_ADMISSION:"application"},steps:{receipt_publish:{conclusion,outputs:{acquisition_receipt_written:flag}}}});
   assert.equal(evaluate("failure","true"),false);assert.equal(evaluate("success","false"),false);assert.equal(evaluate("success","true"),true);
 });
 
@@ -293,4 +295,129 @@ for(const argv of [["--paired-fixed-chromium","/private/chrome"],["--verify-appl
     resolve:(value:string)=>value,dirname:(value:string)=>value.slice(0,value.lastIndexOf("/")),fileURLToPath:(url:string)=>new URL(url).pathname,
     admitCandidate:denied,packageAdmission:denied,validateReceipt,spawn:denied,execFile:denied});
   assert.equal(process.exitCode,1);assert.equal(actions,0);assert.equal(output,"fixed-chromium-application unavailable\n");
+});
+
+// Same production runner and actual installed SDK launchProcess as the retained
+// independent RED witness. Only OS/process/kernel operations are injected.
+for (const mode of ["compatibility", "application"] as const) test(`retained detached-browser assertion GREEN for ${mode} whole-leaf ownership`, async () => {
+  const sdk = source("node_modules/.pnpm/playwright-core@1.61.1/node_modules/playwright-core/lib/coreBundle.js");
+  const begin = sdk.indexOf("async function launchProcess(options) {"), end = sdk.indexOf("\nfunction envArrayToObject", begin);
+  assert.ok(begin > 0 && end > begin);
+  const browser = Object.assign(new EventEmitter(), {pid:777,stdout:new EventEmitter(),stderr:new EventEmitter()});
+  const helper = Object.assign(new EventEmitter(), {pid:123,stdout:new EventEmitter()});
+  let browserAlive=true, reaped=false, detached=false; const foreignAlive=true;
+  const launch = vm.runInNewContext(`(${sdk.slice(begin,end)})`, {
+    childProcess:{spawn:(_cmd:unknown,_args:unknown,options:{detached:boolean})=>{detached=options.detached;return browser;}},
+    process:{platform:"linux",kill:()=>{throw new Error("DENIED unmanaged group cleanup");}},
+    readline:{createInterface:()=>({on(){}})},removeFolders:async()=>[],gracefullyCloseSet:new Set(),killSet:new Set(),
+    addProcessHandlerIfNeeded(){},removeProcessHandlersIfNeeded(){},
+  });
+  const sdkOwner=await launch({command:"/admitted/chrome",args:[],env:{},tempDirectories:[],log(){},onExit(){},
+    handleSIGTERM:true,attemptToGracefullyClose:()=>new Promise(()=>{})});
+  const timers=new Map<number,{fn:()=>void,delay:number}>();let id=0;
+  const io={spawn:()=>helper,onSignal(){},offSignal(){},
+    setTimeout:(fn:()=>void,delay:number)=>{timers.set(++id,{fn,delay});return id;},clearTimeout:(value:number)=>timers.delete(value),
+    killGroup:()=>{void sdkOwner.gracefullyClose();},
+    killOwnedTree:()=>{browserAlive=false;reaped=true;browser.emit("close",null,"SIGKILL");helper.emit("close",null,"SIGKILL");},
+    confirmOwnedCleanup:async()=>({leaderReaped:reaped,sameLeafEmpty:!browserAlive,forcedResidue:false})};
+  const pending=runOwnedChild(io,[],{},mode==="application"?1500000:15000,true);
+  timers.get(1)?.fn();timers.get(2)?.fn();
+  const outcome=await pending;
+  assert.equal(detached,true);assert.equal(outcome.expired,true);
+  assert.equal(browserAlive,false,"Browser survives outside the only group killed by the production runner");
+  assert.equal(foreignAlive,true);assert.equal(timers.size,0);
+});
+test("retained early SIGTERM assertion GREEN with irreversible cancellation-relative force",async()=>{
+  const helper=Object.assign(new EventEmitter(),{pid:123});
+  const timers=new Map<number,{fn:()=>void,delay:number}>(), killed:string[]=[];let id=0,signal=()=>{};
+  const io={spawn:()=>helper,onSignal:(fn:()=>void)=>{signal=fn;},offSignal(){},
+    setTimeout:(fn:()=>void,delay:number)=>{timers.set(++id,{fn,delay});return id;},clearTimeout:(value:number)=>timers.delete(value),
+    killGroup:()=>killed.push("TERM"),killOwnedTree:()=>killed.push("TREE-KILL"),
+    confirmOwnedCleanup:async()=>({leaderReaped:true,sameLeafEmpty:true,forcedResidue:false})};
+  const pending=runOwnedChild(io,[],{},1500000,false);signal();
+  const delaysAtCancellation=[...timers.values()].map(value=>value.delay);signal();
+  assert.ok(delaysAtCancellation.some(delay=>delay<=2000),"Force cleanup remains scheduled at 1,501,000ms after start");
+  assert.deepEqual([...timers.values()].map(value=>value.delay),delaysAtCancellation);
+  helper.emit("close",null,"SIGTERM");await pending;assert.equal(timers.size,0);assert.deepEqual(killed,["TERM"]);
+});
+for (const proof of [{leaderReaped:false,sameLeafEmpty:true},{leaderReaped:true,sameLeafEmpty:false},
+  {leaderReaped:true,sameLeafEmpty:true,forcedResidue:true}]) test(`actual adapter refuses partial/residual cleanup ${JSON.stringify(proof)}`,async()=>{
+  const child=new EventEmitter();
+  const io={spawn:()=>child,killGroup(){},killOwnedTree(){},confirmOwnedCleanup:async()=>proof,
+    onSignal(){},offSignal(){},setTimeout:()=>1,clearTimeout(){}};
+  const pending=runOwnedChild(io,[],{},15,false);child.emit("close",0,null);
+  await assert.rejects(pending,/cleanup/);
+});
+function ownerFixture() {
+  const child=Object.assign(new EventEmitter(),{stdout:new EventEmitter(),stdin:Object.assign(new EventEmitter(),{
+    write:(value:string)=>{commands.push(value);},end(){},destroy(){}}),unref(){}});
+  const commands:string[]=[],handoffs:string[]=[];const timers=new Map<number,{fn:()=>void,delay:number}>();let id=0,signal=()=>{};
+  const authority={generation:"12345678-1234-1234-1234-123456789abc",source:"a".repeat(64),unit:"kopplas-fixed-12345678-1234-1234-1234-123456789abc.service"};
+  const owner=createHostedOwner({start:()=>child,setTimeout:(fn:()=>void,delay:number)=>{timers.set(++id,{fn,delay});return id;},
+    clearTimeout:(value:number)=>timers.delete(value),onSignal:(fn:()=>void)=>{signal=fn;},offSignal(){},handoff:(v:{unit:string})=>handoffs.push(v.unit)},authority);
+  const emit=(value:unknown)=>child.stdout.emit("data",Buffer.from(JSON.stringify(value)+"\n"));
+  const ack=()=>emit({event:"ready",...authority,durable:true,workloads:0});
+  const stage=(name:string,change:Record<string,unknown>={})=>emit({event:"stage",generation:authority.generation,stage:name,code:0,signal:0,
+    expired:false,reaped:true,empty:true,confirmed:true,residue:false,output:"{}",...change});
+  const tick=(delay:number)=>{for(const [key,value]of [...timers])if(value.delay===delay){timers.delete(key);value.fn();}};
+  return{child,owner,commands,handoffs,timers,authority,emit,ack,stage,tick,cancel:()=>signal()};
+}
+test("actual broker protocol requires durable zero-workload ACK before either fixed stage",async()=>{
+  const f=ownerFixture();const before=f.owner.run("compatibility");await Promise.resolve();assert.deepEqual(f.commands,[]);
+  f.ack();await f.owner.ready;await Promise.resolve();assert.deepEqual(f.commands,["COMPATIBILITY\n"]);
+  f.stage("compatibility");await before;const app=f.owner.run("application");await Promise.resolve();
+  assert.deepEqual(f.commands,["COMPATIBILITY\n","APPLICATION\n"]);f.stage("application");await app;
+  await f.owner.finish();assert.equal(f.commands.at(-1),"FINISH\n");assert.equal(f.timers.size,0);
+});
+for(const bad of [{durable:false},{workloads:1},{source:"f".repeat(64)},{unit:"foreign.service"}])test(`actual ACK refuses ${JSON.stringify(bad)}`,async()=>{
+  const f=ownerFixture();const waiting=assert.rejects(f.owner.ready,/cleanup/);
+  f.emit({event:"ready",...f.authority,durable:true,workloads:0,...bad});await waiting;f.tick(2000);
+  assert.equal(f.commands.includes("APPLICATION\n"),false);assert.deepEqual(f.handoffs,[f.authority.unit]);
+});
+for(const bad of [{empty:false},{reaped:false},{confirmed:false},{residue:true},{signal:-1},{output:"x".repeat(16385)}])test(`actual phase refuses ${JSON.stringify(Object.keys(bad))}`,async()=>{
+  const f=ownerFixture();f.ack();await f.owner.ready;const pending=f.owner.run("compatibility");await Promise.resolve();
+  const failure=assert.rejects(pending,/cleanup/);f.stage("compatibility",bad);f.tick(2000);await failure;
+  f.stage("compatibility");await assert.rejects(f.owner.run("application"),/cleanup|compatibility/);
+  assert.equal(f.commands.includes("APPLICATION\n"),false);
+});
+for(const loss of ["signal","owner error","owner close","control error","oversize control"])test(`actual independent-owner transport ${loss} preserves failure and exact-unit handoff`,async()=>{
+  const f=ownerFixture();f.ack();await f.owner.ready;const pending=f.owner.run("compatibility");await Promise.resolve();const failed=assert.rejects(pending,/cleanup/);
+  if(loss==="signal")f.cancel();if(loss==="owner error")f.child.emit("error",new Error("lost"));if(loss==="owner close")f.child.emit("close",1);
+  if(loss==="control error")f.child.stdin.emit("error",new Error("broken"));if(loss==="oversize control")f.child.stdout.emit("data",Buffer.alloc(32769,120));
+  f.cancel();f.tick(2000);await failed;assert.deepEqual(f.handoffs,[f.authority.unit]);
+  f.stage("compatibility");await assert.rejects(f.owner.run("application"));assert.equal(f.commands.includes("APPLICATION\n"),false);
+});
+test("actual runner retains native CLI zero while cleanup remains failed",async()=>{
+  const f=fixture();f.io.application=async()=>{throw Object.assign(new Error("cleanup"),{nativeCode:0,nativeSignal:0});};
+  const result=await f.run();assert.equal(result.failure,"cleanup");assert.equal(result.exitCode,1);assert.equal(result.record?.cli.nativeExit,0);
+});
+test("actual C owner has retained-leaf direct observation, atomic birth and child authority drop; no guessed/group cleanup",()=>{
+  const c=source("tests/diagnostics/fixed-chromium-owned-process.c");
+  assert.match(c,/CLONE_INTO_CGROUP \| CLONE_PIDFD/);assert.match(c,/waitid\(P_PIDFD/);
+  assert.match(c,/reaped && empty && !read_failed/);assert.match(c,/write_at\(leaf,"cgroup.kill","1"\)/);
+  assert.match(c,/FORCE_MS = 1000, FINISH_MS = 2000/);assert.match(c,/now-refusal>=FINISH_MS/);
+  assert.match(c,/frozen\(leaf\)!=1/);assert.match(c,/setgroups\(0,NULL\)/);assert.match(c,/setresuid\(s.uid,s.uid,s.uid\)/);
+  assert.match(c,/PR_CAPBSET_DROP/);assert.match(c,/SYS_capset/);assert.match(c,/PR_SET_NO_NEW_PRIVS/);assert.match(c,/SYS_close_range/);
+  assert.match(c,/durable\("registered","none",0\)/);assert.match(c,/durable\("born",name,0\) \|\| write_at/);
+  assert.doesNotMatch(c,/\brmdir\(|\bkill\(-|system\(|popen\(|cgroup\.procs",O_WRONLY/);
+});
+test("actual optional capsule is separately source-admitted and never retries the application",()=>{
+  assert.match(optional,/FIXED_CHROMIUM_HOSTED_ADMISSION_SHA/);assert.match(optional,/capability\|application/);
+  assert.match(optional,/--capability-capsule/);assert.match(optional,/env.FIXED_CHROMIUM_HOSTED_ADMISSION == 'application'/);
+  assert.match(optional,/clang-18 -std=c11/);assert.match(optional,/--no-create-home --shell \/usr\/sbin\/nologin/);
+  assert.doesNotMatch(optional,/docker run|--privileged|--network host|systemctl.*reset-failed/);
+});
+test("actual adapter bounds missing whole-tree proof after native leader closes",async()=>{
+  const child=new EventEmitter(), timers=new Map<number,{fn:()=>void,delay:number}>();let id=0,kills=0;
+  const io={spawn:()=>child,killGroup(){},killOwnedTree:()=>{kills++;},confirmOwnedCleanup:()=>new Promise(()=>{}),
+    onSignal(){},offSignal(){},setTimeout:(fn:()=>void,delay:number)=>{timers.set(++id,{fn,delay});return id;},clearTimeout:(value:number)=>timers.delete(value)};
+  const pending=runOwnedChild(io,[],{},1500000,false);child.emit("close",0,null);await new Promise<void>(resolve=>setImmediate(resolve));
+  const failed=assert.rejects(pending,/cleanup/);for(const value of timers.values())if(value.delay===2000)value.fn();await failed;
+  assert.equal(kills,1);assert.equal(timers.size,0);
+});
+test("actual optional capability condition skips browser acquisition, publisher and application artifacts",()=>{
+  const block=(name:string)=>optional.slice(optional.indexOf(`      - name: ${name}`)).split(/\n      - name: /)[0];
+  for(const name of ["Install Playwright browser (chromium + OS deps)","Start local Supabase stack","Migration reset (empty DB → migrate → seed)",
+    "Acquire exact full158 with reviewed authority","Publish fresh acquisition boundary authority","Upload fixed application native JSON","Upload fixed application provenance"])
+    assert.match(block(name),/env.FIXED_CHROMIUM_HOSTED_ADMISSION == 'application'/);
 });

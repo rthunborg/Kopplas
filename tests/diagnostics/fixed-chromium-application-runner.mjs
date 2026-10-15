@@ -12,6 +12,7 @@ export const PIN = '158.0.8104.0';
 export const CONFIG = 'playwright.fixed-chromium-application.config.ts';
 export const OUTPUT = 'test-results/fixed-chromium-application';
 export const SOURCES = Object.freeze([CONFIG, 'tests/diagnostics/fixed-chromium-application-runner.mjs',
+  'tests/diagnostics/fixed-chromium-owned-process.c',
   'tests/diagnostics/no-store-stream-probe.mjs', '.github/workflows/ci.yml', 'playwright.config.ts',
   'tests/e2e/scheduling-views.atdd.e2e.spec.ts', 'tests/e2e/support/scheduling-views-atdd.ts',
   '_bmad-output/implementation-artifacts/spec-15-1-the-five-scheduling-views-2.md',
@@ -138,7 +139,7 @@ export async function inspectReport(bytes, readAttachment) {
   return { population: counts, visuals: VISUALS.filter(name => visuals.has(name)).map(name => visuals.get(name)) };
 }
 
-/** The worker is owned by the runner's bounded, separate Linux process group. */
+/** Invoked only inside the admitted broker-owned compatibility leaf. */
 export async function runCompatibility(path, actions) {
   const io = actions ?? { admitCandidate, packageAdmission };
   const candidate = await io.admitCandidate(path); checkPinnedCandidate(candidate);
@@ -158,15 +159,24 @@ export async function bounded(task, milliseconds) {
   finally { clearTimeout(timer); }
 }
 
-/** Own only the spawned child group; retain native close, including timeouts. */
+/** Resource-free process adapter. Production ownership is the root broker below.
+ * A group signal is never a whole-tree proof: adapters must supply owned-tree
+ * kill and independent leader/tree confirmation, including the SDK's detached PG. */
 export async function runOwnedChild(io, argv, env, milliseconds, capture = false) {
+  requireFact(typeof io.killOwnedTree === 'function' && typeof io.confirmOwnedCleanup === 'function', 'cleanup');
   const child = io.spawn(argv, env, capture);
-  let closed = false, expired = false, output = '', overflow = false;
+  let closed = false, treeConfirmed = false, expired = false, output = '', overflow = false;
   const timers = [];
   const later = (callback, delay) => { const id = io.setTimeout(callback, delay); timers.push(id); return id; };
   let rejectCleanup;
   const cleanupFailure = new Promise((_, no) => { rejectCleanup = no; });
-  const stop = () => { if (!closed) { expired = true; try { io.killGroup(child, 'SIGTERM'); } catch { rejectCleanup(new Error('cleanup')); } } };
+  let refused = false;
+  const stop = () => { if (!closed && !refused) {
+    refused = true; expired = true;
+    try { io.killGroup(child, 'SIGTERM'); } catch { rejectCleanup(new Error('cleanup')); }
+    later(() => { if (!treeConfirmed) { try { io.killOwnedTree(child, 'SIGKILL'); } catch { rejectCleanup(new Error('cleanup')); } } }, 1000);
+    later(() => { if (!treeConfirmed) rejectCleanup(new Error('cleanup')); }, 2000);
+  } };
   io.onSignal(stop);
   const ending = new Promise((yes, no) => {
     child.once('error', () => no(new Error('cleanup')));
@@ -175,23 +185,93 @@ export async function runOwnedChild(io, argv, env, milliseconds, capture = false
   });
   try {
     later(stop, milliseconds);
-    // Deadline fires TERM, then only this group's KILL. No child may detach indefinitely.
-    const watchdog = new Promise((_, no) => {
-      const schedule = () => {
-        if (closed) return;
-        if (expired) {
-          try { io.killGroup(child, 'SIGKILL'); } catch { no(new Error('cleanup')); return; }
-          later(() => { if (!closed) no(new Error('cleanup')); }, 1000);
-        }
-        else later(schedule, 1000);
-      };
-      later(schedule, milliseconds + 1000);
-    });
-    return await Promise.race([ending, watchdog, cleanupFailure]);
+    const result = await Promise.race([ending, cleanupFailure]);
+    if (!refused) later(() => rejectCleanup(new Error('cleanup')), 2000);
+    const proof = await Promise.race([io.confirmOwnedCleanup(child), cleanupFailure]);
+    requireFact(proof?.leaderReaped === true && proof?.sameLeafEmpty === true && proof?.forcedResidue !== true, 'cleanup');
+    treeConfirmed = true;
+    return result;
   } finally {
     timers.forEach(id => io.clearTimeout(id)); io.offSignal(stop);
-    if (!closed) io.killGroup(child, 'SIGKILL');
+    if (!treeConfirmed) io.killOwnedTree(child, 'SIGKILL');
   }
+}
+
+/** Exact fixed-mode transport. stdout is owned by the reviewed root broker;
+ * native workload stdout is never connected to this authentication channel. */
+export function createHostedOwner(io, authority) {
+  requireFact(exact(authority, ['generation', 'source', 'unit']) && /^[a-f0-9-]{36}$/.test(authority.generation)
+    && hex(authority.source) && authority.unit === `kopplas-fixed-${authority.generation}.service`, 'admission');
+  const child = io.start(authority);
+  let buffer = '', ready = false, refused = false, stage = null, last = null, completed = false;
+  let resolveReady, rejectReady;
+  const startup = new Promise((yes, no) => { resolveReady = yes; rejectReady = no; });
+  let startupTimer = io.setTimeout(() => refuse('admission'), 15000), refusalTimer;
+  function refuse(reason = 'cleanup') {
+    if (refused || completed) return;
+    refused = true;
+    try { child.stdin.write('STOP\n'); child.stdin.end(); } catch { /* journal/provider remains owner */ }
+    rejectReady(new Error(reason));
+    // Root owner independently handles EOF/force. Client never kills the owner.
+    refusalTimer = io.setTimeout(() => {
+      if (stage) io.clearTimeout(stage.timer);
+      stage?.no(new Error('cleanup')); stage = null;
+      if (startupTimer) io.clearTimeout(startupTimer);
+      io.offSignal(refuse);
+      io.handoff(authority); // exact previously registered unit only; request != proof
+      child.stdout.destroy?.(); child.stdin.destroy?.(); child.unref?.();
+    }, 2000);
+  }
+  function receive(line) {
+    let value; try { value = JSON.parse(line); } catch { refuse(); return; }
+    if (value.generation !== authority.generation || refused) return;
+    if (value.event === 'ready') {
+      if (ready || !exact(value, ['event','generation','source','unit','durable','workloads'])
+        || value.source !== authority.source || value.unit !== authority.unit || value.durable !== true || value.workloads !== 0) { refuse(); return; }
+      ready = true; io.clearTimeout(startupTimer); startupTimer = null; resolveReady(); return;
+    }
+    if (value.event !== 'stage' || !ready || !stage || !exact(value,
+      ['event','generation','stage','code','signal','expired','reaped','empty','confirmed','residue','output'])
+      || value.stage !== stage.name || !Number.isInteger(value.code) || value.code < -1 || value.code > 255
+      || !integer(value.signal) || typeof value.output !== 'string' || Buffer.byteLength(value.output) > 16384
+      || ['expired','reaped','empty','confirmed','residue'].some(key => typeof value[key] !== 'boolean')) { refuse(); return; }
+    const pending = stage; stage = null; last = value;
+    io.clearTimeout(pending.timer);
+    if (!value.confirmed || !value.reaped || !value.empty || value.residue) {
+      const failure = Object.assign(new Error('cleanup'), { nativeCode:value.code, nativeSignal:value.signal });
+      pending.no(failure); refuse();
+    }
+    else pending.yes(value);
+  }
+  child.stdout.on('data', chunk => {
+    if (refused || completed) return;
+    buffer += chunk.toString('utf8');
+    if (Buffer.byteLength(buffer) > 32768) { refuse(); return; }
+    let at; while ((at = buffer.indexOf('\n')) >= 0) { const line = buffer.slice(0, at); buffer = buffer.slice(at + 1); receive(line); }
+  });
+  child.once('error', () => refuse());
+  child.stdin.on?.('error', () => refuse()); child.stdout.on('error', () => refuse());
+  child.once('close', () => { if (!completed) refuse(); });
+  io.onSignal(refuse);
+  return {
+    ready: startup,
+    async run(name) {
+      await startup;
+      requireFact(!refused && !completed && !stage && ['compatibility','application','capsule'].includes(name), 'cleanup');
+      if (name === 'application') requireFact(last?.stage === 'compatibility' && last.code === 0 && !last.expired, 'compatibility');
+      if (name === 'compatibility' || name === 'capsule') requireFact(last === null, 'cleanup');
+      return new Promise((yes, no) => {
+        stage = { name, yes, no, timer:io.setTimeout(refuse,name === 'application' ? 1500000 : name === 'capsule' ? 4000 : 15000) };
+        child.stdin.write(`${name === 'capsule' ? 'CAPABILITY' : name.toUpperCase()}\n`);
+      });
+    },
+    cancel: refuse,
+    async finish() {
+      requireFact(!refused && !stage && last?.confirmed === true, 'cleanup');
+      completed = true; child.stdin.write('FINISH\n'); child.stdin.end();
+      io.offSignal(refuse); if (startupTimer) io.clearTimeout(startupTimer); if (refusalTimer) io.clearTimeout(refusalTimer);
+    },
+  };
 }
 
 function productionRuntime() {
@@ -207,25 +287,85 @@ function productionRuntime() {
       requireFact(data.version === '1.61.1' && data.bin?.playwright === 'cli.js', 'admission'); return join(dirname(manifest), 'cli.js'); },
     async freshOutput() { const base = await realpath(repo); const parent = join(base, 'test-results'); await mkdir(parent, { recursive: true }); requireFact(await realpath(parent) === parent && !(await lstat(parent)).isSymbolicLink(), 'write');
       const out = join(parent, 'fixed-chromium-application'); await mkdir(out); requireFact(await realpath(out) === out && !(await lstat(out)).isSymbolicLink(), 'write'); },
-    async readReport() { return readFile(join(repo, OUTPUT, 'general-browser.json')); },
-    async readAttachment(path) { requireFact(typeof path === 'string', 'report'); const base = await realpath(join(repo, OUTPUT, 'results')); const target = await realpath(resolve(repo, path)); requireFact(contained(base, target) && !(await lstat(target)).isSymbolicLink(), 'report'); return readFile(target); },
+    async readReport() { return readFile(join(workloadRepo(), OUTPUT, 'general-browser.json')); },
+    async readAttachment(path) { requireFact(typeof path === 'string', 'report'); const base = await realpath(join(workloadRepo(), OUTPUT, 'results')); const target = await realpath(resolve(workloadRepo(), path)); requireFact(contained(base, target) && !(await lstat(target)).isSymbolicLink(), 'report'); return readFile(target); },
     async writeProvenance(value) { const text = JSON.stringify(validateProvenance(value)); await writeFile(join(repo, OUTPUT, 'provenance.json'), text, { flag: 'wx', mode: 0o600 }); },
-    spawn(argv, env, capture) { return spawn(process.execPath, argv, { cwd: repo, env, detached: true, stdio: capture ? ['ignore', 'pipe', 'ignore'] : 'inherit' }); },
-    killGroup(child, signal) { if (Number.isInteger(child.pid) && child.pid > 0) { try { process.kill(-child.pid, signal); } catch (error) { if (error.code !== 'ESRCH') throw new Error('cleanup'); } } },
     setTimeout, clearTimeout,
     onSignal(callback) { signals.forEach(signal => process.on(signal, callback)); },
     offSignal(callback) { signals.forEach(signal => process.off(signal, callback)); },
   };
-  const bootstrap = `import { pathToFileURL } from 'node:url'; try { const module = await import(pathToFileURL(process.argv[2]).href); const result = await module.runCompatibility(process.argv[3]); process.stdout.write(JSON.stringify(result)); } catch { process.exitCode = 1; }`;
-  io.compatibility = async candidate => {
-    const result = await runOwnedChild(io, ['--input-type=module', '-e', bootstrap, 'fixed-chromium-compatibility', fileURLToPath(import.meta.url), candidate.executable], io.env, 15000, true);
-    requireFact(!result.expired && !result.overflow && result.code === 0 && result.signal === null, 'compatibility');
-    const value = JSON.parse(result.output); requireFact(exact(value, ['version', 'closed']) && value.version === PIN && value.closed === true, 'compatibility'); return value;
+  function workloadRepo() {
+    const root = io.env.FIXED_CHROMIUM_BROKER_ROOT, path = io.env.FIXED_CHROMIUM_WORKLOAD_REPO;
+    requireFact(typeof root === 'string' && isAbsolute(root) && path === join(root, 'workload'), 'admission'); return path;
+  }
+  let owner, admission;
+  async function startOwner() {
+    requireFact(io.platform === 'linux' && io.version === 'v22.23.3' && io.env.GITHUB_SHA === io.env.FIXED_CHROMIUM_HOSTED_ADMISSION_SHA
+      && /^[a-f0-9]{40}$/.test(io.env.GITHUB_SHA ?? '') && ['capability','application'].includes(io.env.FIXED_CHROMIUM_HOSTED_ADMISSION), 'admission');
+    const root = io.env.FIXED_CHROMIUM_BROKER_ROOT; workloadRepo();
+    const st = await lstat(root), binary = join(root, 'broker'), bs = await lstat(binary);
+    requireFact(!st.isSymbolicLink() && st.isDirectory() && st.uid === 0 && (st.mode & 0o777) === 0o711
+      && !bs.isSymbolicLink() && bs.isFile() && bs.uid === 0 && (bs.mode & 0o777) === 0o700, 'admission');
+    const authority = { generation: io.env.FIXED_CHROMIUM_BROKER_GENERATION, source: io.env.FIXED_CHROMIUM_BROKER_SOURCE_SHA256, unit: io.env.FIXED_CHROMIUM_BROKER_UNIT };
+    owner = createHostedOwner({ ...io,
+      start: () => spawn('/usr/bin/sudo', ['-n','/usr/bin/systemd-run',`--unit=${authority.unit}`,'--service-type=exec','--quiet','--pipe','--wait',
+        '--property=User=root','--property=Delegate=','--property=DelegateSubgroup=broker','--property=NoNewPrivileges=yes',
+        '--property=CapabilityBoundingSet=CAP_CHOWN CAP_DAC_OVERRIDE CAP_FOWNER CAP_SETUID CAP_SETGID CAP_SETPCAP CAP_KILL',
+        '--property=AmbientCapabilities=','--property=RuntimeMaxSec=1502','--property=TimeoutStopSec=2','--property=KillMode=control-group',
+        binary,'--admitted-session',join(root,'control','session')], { cwd: repo, env: { PATH: '/usr/bin:/bin' }, stdio: ['pipe','pipe','inherit'] }),
+      handoff: value => { const stop = spawn('/usr/bin/sudo', ['-n','/usr/bin/systemctl','--no-block','stop',value.unit],
+        { env: { PATH:'/usr/bin:/bin' }, stdio:'ignore' }); stop.on('error', () => {}); stop.unref(); },
+    }, authority);
+    await owner.ready; return owner;
+  }
+  async function ownedAdmission() {
+    if (!admission) admission = (async () => {
+      requireFact(io.env.FIXED_CHROMIUM_HOSTED_ADMISSION === 'application', 'admission');
+      const control = await startOwner(), result = await control.run('compatibility');
+      requireFact(result.code === 0 && result.signal === 0 && !result.expired, 'compatibility');
+      const value = JSON.parse(result.output);
+      requireFact(exact(value,['candidate','packages','compatibility']), 'admission'); checkPinnedCandidate(value.candidate);
+      requireFact(value.packages.node === 'v22.23.3' && value.packages.sdk === '1.61.1', 'admission');
+      return value;
+    })();
+    return admission;
+  }
+  io.admitCandidate = async path => {
+    const value = await ownedAdmission();
+    requireFact(path === io.argv[3] || path === value.candidate.executable, 'binding');
+    // The version was executed in the retained owned leaf. Revalidation binds
+    // unchanged acquired bytes, never another unmanaged --version process.
+    for (const target of [io.argv[3], value.candidate.executable]) {
+      requireFact(!(await lstat(target)).isSymbolicLink(), 'binding');
+      const bytes = await readFile(target); requireFact(bytes.length === value.candidate.receipt.executable.bytes
+        && hash(bytes) === value.candidate.receipt.executable.sha256, 'binding');
+    }
+    return value.candidate;
   };
+  io.packageAdmission = async () => ({ provenance: (await ownedAdmission()).packages });
+  io.compatibility = async () => (await ownedAdmission()).compatibility;
   io.application = async (path, env, cli) => {
-    requireFact(path === CONFIG, 'binding');
-    const result = await runOwnedChild(io, [cli, 'test', '--config', CONFIG], env, 1500000, false);
-    return { code: result.code, signal: result.signal, expired: result.expired };
+    requireFact(path === CONFIG && cli.endsWith('/cli.js') && env.CI === 'true', 'binding');
+    const result = await owner.run('application');
+    await owner.finish();
+    return { code: result.code < 0 ? null : result.code, signal: result.signal === 0 ? null : result.signal === 9 ? 'SIGKILL' : result.signal === 15 ? 'SIGTERM' : 'other', expired: result.expired };
+  };
+  io.finishOwnership = async () => { if (owner) owner.cancel(); };
+  io.capability = async () => {
+    requireFact(io.env.FIXED_CHROMIUM_HOSTED_ADMISSION === 'capability', 'admission');
+    const control = await startOwner(), value = await control.run('capsule');
+    requireFact(value.expired && value.confirmed && value.reaped && value.empty && !value.residue, 'cleanup');
+    const actual = JSON.parse(value.output);
+    requireFact(actual.node === 'v22.23.3' && integer(actual.uid) && actual.uid > 0 && integer(actual.gid) && actual.gid > 0
+      && Array.isArray(actual.groups) && actual.groups.length <= 1 && actual.groups.every(gid => gid === actual.gid) && actual.detached === true
+      && typeof actual.status === 'string' && /^NoNewPrivs:\s+1$/m.test(actual.status)
+      && ['CapInh','CapPrm','CapEff','CapBnd','CapAmb'].every(key => new RegExp(`^${key}:\\s+0+$`,'m').test(actual.status)), 'admission');
+    await control.finish();
+    const receipt = { schemaVersion:1, capabilityOnly:true, source:io.env.FIXED_CHROMIUM_BROKER_SOURCE_SHA256,
+      detachedDescendant:true, droppedAuthority:true, leaderReaped:true, sameLeafEmpty:true };
+    await mkdir(join(repo,'test-results'),{recursive:true});
+    await writeFile(join(repo,'test-results','fixed-chromium-hosted-capability.json'),JSON.stringify(receipt),{flag:'wx',mode:0o600});
+    return receipt;
   };
   return io;
 }
@@ -273,8 +413,12 @@ export async function runApplication(io = productionRuntime()) {
     record.failure = failure; validateProvenance(record);
   } catch (error) {
     failure = FAILURES.has(error?.message) && error.message !== 'none' ? error.message : failure;
+    if (record && error?.nativeCode >= 0 && error.nativeCode <= 255 && error.nativeSignal === 0) {
+      record.cli = { state:error.nativeCode === 0 ? 'completed' : 'failed', nativeExit:error.nativeCode, signal:null };
+    }
     if (record) record.failure = failure;
   }
+  if (failure !== 'none' && io.finishOwnership) await io.finishOwnership();
   if (record && outputReady) {
     try { await io.writeProvenance(record); } catch { failure = 'write'; }
   }
@@ -283,7 +427,10 @@ export async function runApplication(io = productionRuntime()) {
 }
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  const result = await runApplication();
+  const result = process.argv.length === 3 && process.argv[2] === '--capability-capsule'
+    ? await (async () => { try { await productionRuntime().capability(); return { failure:'none',exitCode:0 }; }
+      catch { return { failure:'admission',exitCode:1 }; } })()
+    : await runApplication();
   process.stdout.write(`fixed-chromium-application ${result.failure === 'none' ? 'diagnostic-complete' : 'unavailable'}\n`);
   process.exitCode = result.exitCode;
 }
