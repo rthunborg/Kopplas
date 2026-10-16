@@ -1284,3 +1284,37 @@ none
 **⚠️ Needs human:** (none)
 
 **Next:** Checkpointvalidation165899B/adc01453... withROOTmetadata; no runtime/vars/source actions. ReturnexactnewSHA/tree/protectedsourcebindingsandmachinecapsule foroperationalrebind.
+
+## Report — 2026-10-16T10:33:01Z (final capability observation candidate local; runtime held)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `cf9b89f`).
+**Pipeline status:** In progress: final local capability observation candidate prepared after independent validation; source/runtime/publication/vars window held.
+**Continues:** Rebind actual21sources,tree/rawmessage, actor/ref/namespace/queue and fullsupportCI effects to sameHigh operational admission.
+
+**Summary:** Sequential Epic15 remains15.1; sixstories/allgatesrequired.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 165h 35m (≈21h 27m AI-run, ≈144h 07m human/idle wait); resumed 37×.
+
+**Stories:**
+1. 15.1 blocked;15.2-15.6 backlog.
+
+**Skipped:** (none)
+
+**Epic gate:** Open; compiledCmock36/37PASSonly, no realnative/app/P5credit/broad0/3.
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** AllautomaticpreviewsdisabledLEAVEuntilownerreenable/no restore/replay/deploy; ONEfinalfrontendPRagent-fixverify/mergecommitretainbranches.
+
+**Open questions:**
+1. Queuecapacityunknown; selected75minowneduniqueNONTERMINAL cancellation requires explicitCoordinatoradmission, cannotprove shutdown; final90minhandoff recordsresidue/variables if unresolved.
+
+**Deferred work:**
+1. OneCIcapability dispatch includingverify/DB/recovery/General/dashboardtotal effects; conditionalownedpair restorationandfresh8namespaceproof.
+
+**⚠️ Needs human:** (none)
+
+**Next:** NEWROOTstates/report-onlycandidate child, thenresource-freeHighauthorfreshoperationalcapsule and sameHighCoordinatorrebind/window. NoPUSH/vars/dispatch/rerun/sourcechanges now.
