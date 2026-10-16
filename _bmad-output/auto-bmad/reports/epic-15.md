@@ -1250,3 +1250,37 @@ none
 **⚠️ Needs human:** (none)
 
 **Next:** Checkpointappend205767B/7d2b8f13...andstate/reportlocally; no newvariables/dispatch/runtime/sourcechanges.
+
+## Report — 2026-10-16T10:30:22Z (capability preparation independently PASS; execution binding next)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `689ec7b`).
+**Pipeline status:** In progress: capability observation preparation independentlyHighPASS; executionSHA/rebind/total-effects runtime window pending.
+**Continues:** Construct new local executionHEAD, then immediate source/actor/ref/namespace/queue rebind before separate Coordinator admission.
+
+**Summary:** All six sequential stories remain required;15.1 verificationblocked.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 165h 32m (≈21h 27m AI-run, ≈144h 04m human/idle wait); resumed 36×.
+
+**Stories:**
+1. 15.1 blocked;15.2-15.6 backlog.
+
+**Skipped:** (none)
+
+**Epic gate:** Open; actualCmock36logical/37physicalPASS but no realnative/app/P5credit/broad0/3.
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** PreviewTRUEdisabledLEAVEuntilownerreenable/no restore/replay/deploy. EventualONEfrontendPRagent-fixverify/mergecommitretainbranches.
+
+**Open questions:**
+1. NewfinalexecutionSHA/futurequeue/actors/actions/toolchainfreshqualificationpending. Explicitcancellationadmissionrequired; cancellationdoesnotprove shutdown.
+
+**Deferred work:**
+1. OneCIcapabilityobservationwith fullnormalverify/DB/recovery/General/dashboardeffects, exactownedvariable lifecycle, completefailed/success evidence+restoration; realnative125cause remainsunknown.
+
+**⚠️ Needs human:** (none)
+
+**Next:** Checkpointvalidation165899B/adc01453... withROOTmetadata; no runtime/vars/source actions. ReturnexactnewSHA/tree/protectedsourcebindingsandmachinecapsule foroperationalrebind.
