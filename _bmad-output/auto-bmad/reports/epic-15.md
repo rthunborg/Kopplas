@@ -1394,3 +1394,46 @@ none
 **⚠️ Needs human:** (none)
 
 **Next:** Commit only the reviewed two source files plus the existing two states and this append-only report. Return actual commit/tree/parent/raw message/21-source metadata for the same independent High operational rebind; prepare a minimal new-SHA compatibility plan only. Do not push, create variables or dispatch CI yet.
+
+## Report — 2026-10-16T17:49:23Z (checkpoint - qualified private parent candidate; verification blocked)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `6c0fa8f`).
+**Pipeline status:** in-progress; Story15.1 remains blocked by General browser and native capability verification. Focused independent High parent-placement implementation review passed; no P5 or application acceptance.
+**Continues:** Prior M checkpoint 6c0fa8fa and all historical reports/failures retained. M hosted run is terminal and restored; all actual actor holds released. No remaining cancellation or handoff timer.
+
+**Summary:** Six stories: 15.1 in progress, 15.2-15.6 backlog; none accepted. Exact M run 38934697897 completed failure. Verify/DB/dashboard/recovery passed; General and optional capability failed; native/paired probes skipped.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 172h 51m (≈25h 30m AI-run, ≈147h 21m human/idle wait); resumed 40×.
+
+**Stories:**
+1. 15.1: validated canonical spec and Contract D calendar-host obligations retained; build verification blocked. M units 2683 pass/0 fail-cancel-skip; integration 1736 pass/1 skip, including 752 passing RLS assertions across 50 files as a subset. Dedicated isolated recovery passed its one test; dashboard 57 passed. All 147 diagnostic unit controls are within the unit total and establish no native-kernel behavior.
+2. 15.1 General: 368 expected/1 unexpected/13 skipped logical outcomes; 375 passed/2 failed/23 skipped physical records. AC2 failed twice with ERR_ABORTED while response.finished remained pending and failed-capture text reading was uninvoked. Attempt 0 was non-prefetch and canceled/failed; retry 1 was prefetch with pending terminal/cancellation UNKNOWN. Attempt sum 879749ms exceeded the unchanged 800000ms gate. Ten serial tests remained unexecuted; five distinct desktop captures twice and phone zero do not satisfy all eleven visual targets.
+3. 15.1 native: workload-chdir/errno13/native125/caller1; protocol-qualified reap and retained-leaf-empty observation. The uploaded 1078B COMPLETE diagnostic contained seven directory components, no symlinks and ACL presence ABSENT. Index 2 mode0750 owned1001:1001 supplies an ordinary-DAC search barrier for intended999:987. Actual workload credentials, exact denied component and later owner shutdown remain UNOBSERVED. Success-only receipt was correctly absent; its upload error is secondary.
+4. 15.1 candidate source: only optional CI bootstrap plus admission tests. Qualify fixed /,/var,/var/tmp through no-follow descriptors; refuse unsafe ownership/modes/ACL/mount metadata and create one exclusive unpredictable0700 directory relative to its qualified parent, with parent/child device-inode conservation. Admission internal1s/4096B and outer TERM2s/KILL1s stay within unchanged120s; existing diagnostic/privacy/receipt/ownership/drop/cgroup/cleanup contracts and seven other jobs remain. The owned tree is retained for existing hosted-VM disposal, whose later occurrence is not observed.
+5. 15.1 candidate proof: High author reports 175 pass/0 fail-cancel-skip (147 retained +27 actual extracted-parent variants +1 exact-M inverse). ESLint, nonincremental types, YAML/full bootstrap Bash/Python syntax passed. The initial new-regex parse refusal and raw failed source/log are retained. No-op newline-note replacement is not a source correction. M corpus has 1182 conserved bindings plus two allocated source successors, zero unexpected changes. Mocked proofs do not establish hosted parent/mount qualification or native acceptance. Distinct focused High implementation review passed with no consequential defect.
+6. 15.2-15.6: backlog; verified 15.1 E5h predecessor and renewed shared ownership remain required. Epic16 remains preparation-only pending that prerequisite. Historical Documents20 preparation is finalized; current coordination uses actual owners and exclusions.
+
+**Skipped:** (none)
+
+**Epic gate:** BLOCKED. P5 false, broad review 0/3. Six independent review layers, completion/TEA/harvest/visual/epic gates remain. Directory-placement preparation does not resolve General AC2, runtime budget or native/application acceptance.
+
+**TEA:** Completion TEA gates not run or waived.
+
+**Retrospective:** Epic 14 October 8 accepted-with-open-items is authoritative; October 7 rejection remains historical. Epic 15 retrospective not run.
+
+**Overrides:** One epic PR; merge commit only after independent review and all required checks; retain branches; no deployment. Ordinary Sol 6.1 Low, explicit sensitive High delegates. Owner-authorized design defaults and proportional headless structure; no legacy URLs or new legacy observations. Coordinate Documents/E16/shared resources and preserve other owned checkouts.
+
+**Open questions:**
+1. Does the qualified fixed-parent placement pass actual hosted parent/mount and native capability verification? Exact denied component, independently observed workload credentials and later owner shutdown remain unproved.
+2. What caused General AC2's non-prefetch canceled request and prefetch pending retry? Preserve both attempts, all assertions and the unchanged runtime gate.
+3. All eleven visual targets and remaining calendar-host acceptance obligations still require executed evidence.
+
+**Deferred work:**
+1. Independently qualify the exact parent-placement implementation; checkpoint only the two allocated source files and existing two ROOT states/report. Fresh exact-SHA helper+worker/source binding/readiness and separately admitted capability observation remain required before publication/runtime.
+2. Reuse sealed M four-job audit and original eight archives/159 extracted files; preserve the 1184-binding M corpus with explicit two-source successor qualification. M terminal restoration native0 and independent ROOT live GET confirmed original eight names/created-updated identities and zero temporary residue; Coordinator released actual actor holds.
+3. Complete Story15.1 acceptance, visual and independent review gates before15.2; prepare/validate every remaining story before implementation.
+
+**⚠️ Needs human:** (none)
+
+**Next:** Return this local checkpoint actual commit/tree/parent/raw message/current21 source bindings for SAME independent High operational metadata/trigger rebind. Prepare minimal new-SHA compatibility PLAN ONLY for both helper and worker constants plus PRIMARY source bindings. No push, variables, CI or runtime until separately released.

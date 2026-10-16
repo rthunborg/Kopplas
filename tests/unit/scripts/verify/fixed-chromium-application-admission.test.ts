@@ -722,6 +722,9 @@ test("path metadata keeps exact workflow inverse and required native success che
   assert.match(text, /run: node tests\/diagnostics\/fixed-chromium-application-runner\.mjs --capability-capsule/);
   const inverse = text.replace(/          # HOSTED-PATH-METADATA-BASH-BEGIN[\s\S]*?          # HOSTED-PATH-METADATA-BASH-END\n/, "")
     .replace(/      # HOSTED-PATH-METADATA-UPLOAD-BEGIN[\s\S]*?      # HOSTED-PATH-METADATA-UPLOAD-END\n/, "")
+    // OWNED-PARENT-INVERSE-BEGIN
+    .replace(/          # OWNED-PARENT-ADMISSION-BEGIN[\s\S]*?          # OWNED-PARENT-ADMISSION-END\n/, "          private_root=\"$(mktemp -d \"${RUNNER_TEMP}/kopplas-owned-XXXXXXXX\")\"\n")
+    // OWNED-PARENT-INVERSE-END
     .replace("        id: hosted_session\n", "");
   assert.equal(sha(inverse), "9c933a75fd38b6a4ea885dd52c94e4c072df037f5bc04251a1063d99e181f77d");
 });
@@ -730,4 +733,50 @@ test("path metadata preserves all original admission assertions as an exact pref
   const prefix = text.slice(0, text.indexOf("\n// HOSTED-PATH-METADATA-TESTS-BEGIN"));
   assert.equal(Buffer.byteLength(prefix), 66757);
   assert.equal(sha(prefix), "dc235d3d606c473d2958d7308a95beda32c326b6204334242d18768c6f22b0c4");
+});
+
+// OWNED-PARENT-ADMISSION-TESTS-BEGIN
+const ownedParentSource = () => {
+  const text = source(".github/workflows/ci.yml");
+  const begin = text.indexOf("          private_root=\"$(/usr/bin/timeout");
+  const first = text.indexOf("          import os, stat, time\n", begin);
+  const last = text.indexOf("          PY_OWNED_PARENT", first);
+  assert.ok(begin > 0 && first > begin && last > first);
+  return text.slice(first, last).split("\n").map(line => line.startsWith("          ") ? line.slice(10) : line).join("\n");
+};
+const ownedParentHarness = "import json,sys,stat,types,ast,builtins,re\nrequest=json.loads(sys.stdin.read());source=request['source'];fault=request['fault'];now=0\nallowed={'geteuid','fstat','fstatvfs','listxattr','open','close','urandom','fsencode','mkdir','write'}\ntree=ast.parse(source)\nassert [a.name for n in tree.body if isinstance(n,ast.Import) for a in n.names]==['os','stat','time']\nassert {n.func.attr for n in ast.walk(tree) if isinstance(n,ast.Call) and isinstance(n.func,ast.Attribute) and isinstance(n.func.value,ast.Name) and n.func.value.id=='os'}<=allowed\nassert sum(isinstance(n,ast.Call) and isinstance(n.func,ast.Attribute) and isinstance(n.func.value,ast.Name) and n.func.value.id=='os' and n.func.attr=='mkdir' for n in ast.walk(tree))==1\nassert not any(isinstance(n,ast.Call) and isinstance(n.func,ast.Name) and n.func.id in ['open','eval','exec','__import__'] for n in ast.walk(tree))\nclass FakeOS:\n    O_RDONLY=0;O_DIRECTORY=65536;O_NOFOLLOW=131072;O_CLOEXEC=524288;ST_NOEXEC=8\n    def __init__(self):self.fds={};self.nextfd=10;self.baseopens=0;self.childopens=0;self.created=False;self.mkdirCalls=0;self.entropyCalls=0;self.output=b'';self.calls=[];self.closeFailed=False\n    def __getattr__(self,name):raise AssertionError('DENIED unallocated OS effect')\n    def geteuid(self):return 1001\n    def open(self,path,flags,dir_fd=None):\n        assert flags & self.O_DIRECTORY and flags & self.O_NOFOLLOW and flags & self.O_CLOEXEC\n        if dir_fd is None:assert path=='/';full='/'\n        elif path in ('var','tmp'):full=self.fds[dir_fd]['path'].rstrip('/')+'/'+path\n        else:\n            assert self.fds[dir_fd]['path']=='/var/tmp' and re.fullmatch('kopplas-owned-[0-9a-f]{32}',path) and self.created\n            full='/var/tmp/'+path;self.childopens+=1\n        if fault=='symlink' and full=='/var':raise OSError(40,'PRIVATE symlink')\n        if full=='/var/tmp':self.baseopens+=1\n        inode={'/':1,'/var':2,'/var/tmp':3}.get(full,4)\n        if full=='/var/tmp' and (fault=='parent-substitution' and self.baseopens==2 or fault=='parent-substitution-after' and self.created):inode=93\n        if fault=='entry-substitution' and self.childopens==2 and full not in ['/','/var','/var/tmp']:inode=94\n        mode=0o1777 if full=='/var/tmp' else 0o700 if inode in [4,94] else 0o755\n        uid=1001 if inode in [4,94] else 0;gid=uid\n        if full=='/var':\n            if fault=='foreign-0750':mode=0o750;gid=987\n            if fault=='unsafe-owner':uid=1001\n            if fault=='writable-ancestor':mode=0o777\n        if full=='/var/tmp' and fault=='nonsticky-base':mode=0o777\n        if inode in [4,94] and fault=='creation-mode':mode=0o755\n        fd=self.nextfd;self.nextfd+=1;self.fds[fd]={'path':full,'st_dev':1,'st_ino':inode,'st_uid':uid,'st_gid':gid,'st_mode':stat.S_IFDIR|mode};self.calls.append('open');return fd\n    def fstat(self,fd):\n        global now\n        self.calls.append('fstat')\n        if fault=='inaccessible' and self.fds[fd]['path']=='/var':raise PermissionError(13,'PRIVATE metadata')\n        if fault=='deadline':now=2\n        row={k:v for k,v in self.fds[fd].items() if k!='path'}\n        if fault=='malformed':row['st_ino']=None\n        return types.SimpleNamespace(**row)\n    def fstatvfs(self,fd):\n        self.calls.append('fstatvfs')\n        if fault=='unsupported-mount':raise OSError(95,'PRIVATE mount')\n        return types.SimpleNamespace(f_flag=None if fault=='unknown-mount' else 8 if fault=='noexec' else 0)\n    def listxattr(self,fd):\n        self.calls.append('listxattr')\n        if fault=='unknown-acl':raise OSError(95,'PRIVATE ACL')\n        if fault=='access-acl':return ['system.posix_acl_access']\n        if fault=='default-acl':return ['system.posix_acl_default']\n        return ['user.PRIVATE']\n    def urandom(self,n):self.entropyCalls+=1;assert n==16;return b'1'*15 if fault=='entropy' else b'1'*16\n    def fsencode(self,s):return b'X'*5000 if fault=='overflow' else s.encode('ascii')\n    def mkdir(self,name,mode,dir_fd):\n        global now\n        self.mkdirCalls+=1;assert self.fds[dir_fd]['path']=='/var/tmp' and mode==0o700 and not self.created\n        if fault=='collision':raise FileExistsError('PRIVATE collision')\n        self.created=True;self.calls.append('mkdir')\n        if fault=='late-creation':now=2\n    def close(self,fd):\n        self.calls.append('close')\n        if fault=='close-error' and not self.closeFailed:self.closeFailed=True;raise OSError(5,'PRIVATE close')\n        assert fd in self.fds;del self.fds[fd]\n    def write(self,fd,data):\n        global now\n        self.calls.append('write');assert fd==1 and len(data)<=4096 and not self.fds\n        if fault=='write-error':raise OSError(5,'PRIVATE publication')\n        self.output=data[:-1] if fault=='short-write' else data\n        if fault=='late-publication':now=2\n        return len(self.output)\nfake=FakeOS();fake_time=types.SimpleNamespace(monotonic=lambda:now)\nimports={'os':fake,'stat':stat,'time':fake_time}\ndef only_import(name,*a,**k):assert name in imports;return imports[name]\nscope={'__builtins__':dict(vars(builtins),__import__=only_import)}\ntry:exec(compile(source,'actual-inline-parent-admission','exec'),scope);raise AssertionError('missing terminal path')\nexcept SystemExit as err:code=err.code\nassert not fake.fds and fake.mkdirCalls<=1 and fake.entropyCalls<=1\nif code==0:assert fault=='positive' and fake.output==b'/var/tmp/kopplas-owned-'+b'31'*16+b'\\n' and fake.created and fake.mkdirCalls==1\nelse:assert code==1\nprint(json.dumps({'code':code,'published':code==0,'outputBytes':len(fake.output),'retainedCreatedTree':fake.created,'mkdirCalls':fake.mkdirCalls,'entropyCalls':fake.entropyCalls,'openHandles':len(fake.fds),'calls':fake.calls,'nativeActions':0}))\n";
+const ownedParentCases = ["positive", "symlink", "foreign-0750", "unsafe-owner", "writable-ancestor", "nonsticky-base",
+  "access-acl", "default-acl", "unknown-acl", "noexec", "unknown-mount", "unsupported-mount", "inaccessible", "malformed",
+  "deadline", "late-creation", "overflow", "collision", "parent-substitution", "parent-substitution-after",
+  "entry-substitution", "creation-mode", "entropy", "write-error", "short-write", "late-publication", "close-error"];
+for (const fault of ownedParentCases) test("actual owned parent admission " + fault, { timeout: 5000 }, async () => {
+  const { spawnSync } = await import("node:child_process");
+  const result = spawnSync(process.platform === "win32" ? "python" : "python3", ["-c", ownedParentHarness], {
+    input: JSON.stringify({ source: ownedParentSource(), fault }), encoding: "utf8", timeout: 4000, maxBuffer: 65536,
+  });
+  assert.equal(result.error, undefined); assert.equal(result.status, 0, result.stderr);
+  const value = JSON.parse(result.stdout);
+  assert.equal(value.nativeActions, 0); assert.equal(value.openHandles, 0);
+  assert.ok(value.mkdirCalls <= 1); assert.ok(value.entropyCalls <= 1); assert.ok(value.outputBytes <= 4096);
+  assert.equal(value.published, fault === "positive");
+  if (["collision", "late-creation", "parent-substitution-after", "entry-substitution", "creation-mode", "write-error", "short-write", "late-publication"].includes(fault)) {
+    assert.equal(value.mkdirCalls, 1);
+    assert.equal(value.retainedCreatedTree, fault !== "collision");
+  }
+  if (["symlink", "foreign-0750", "unsafe-owner", "writable-ancestor", "nonsticky-base", "access-acl", "default-acl",
+    "unknown-acl", "noexec", "unknown-mount", "unsupported-mount", "inaccessible", "malformed", "deadline", "overflow",
+    "parent-substitution", "entropy"].includes(fault)) assert.equal(value.mkdirCalls, 0);
+});
+
+test("owned parent admission preserves exact M workflow and unit inverses", () => {
+  const text = source(".github/workflows/ci.yml");
+  const previous = text.replace(/          # OWNED-PARENT-ADMISSION-BEGIN[\s\S]*?          # OWNED-PARENT-ADMISSION-END\n/,
+    "          private_root=\"$(mktemp -d \"${RUNNER_TEMP}/kopplas-owned-XXXXXXXX\")\"\n");
+  assert.equal(Buffer.byteLength(previous), 56664);
+  assert.equal(sha(previous), "7e9eeca407f6926c24dc1a8be8d112daf4eaa08929db90c9570b95dfb5894fc8");
+  const unit = source("tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts");
+  const inverse = unit.slice(0, unit.indexOf("\n// OWNED-PARENT-ADMISSION-TESTS-BEGIN"))
+    .replace(new RegExp("    // OWNED-PARENT-INVERSE-BEGIN[\\s\\S]*?    // OWNED-PARENT-INVERSE-END\\n"), "");
+  assert.equal(Buffer.byteLength(inverse), 76918);
+  assert.equal(sha(inverse), "69421cedbb12cae21de4106d498df3b4e063f1595ad311e2c1296d885100e315");
 });

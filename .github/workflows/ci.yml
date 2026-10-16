@@ -851,7 +851,136 @@ jobs:
           test "$(node --version)" = v22.23.3
           command -v /usr/bin/clang-18
           command -v /usr/bin/systemd-run
-          private_root="$(mktemp -d "${RUNNER_TEMP}/kopplas-owned-XXXXXXXX")"
+          # OWNED-PARENT-ADMISSION-BEGIN
+          # Fail closed; parent descriptors and identities bind the one retained tree.
+          private_root="$(/usr/bin/timeout --signal=TERM --kill-after=1s 2s python3 - <<'PY_OWNED_PARENT' 2>/dev/null
+          import os, stat, time
+          MAX_SECONDS = 1.0
+          MAX_BYTES = 4096
+          PARENT_COMPONENTS = ('var', 'tmp')
+          class Refused(Exception):
+              pass
+
+          def admit_owned_root():
+              started = time.monotonic()
+              owned = set()
+              def live():
+                  if time.monotonic() - started >= MAX_SECONDS:
+                      raise Refused()
+              def number(value, maximum=18446744073709551615):
+                  return type(value) is int and 0 <= value <= maximum
+              def remember(fd):
+                  if not number(fd, 2147483647):
+                      raise Refused()
+                  owned.add(fd)
+                  return fd
+              def close(fd):
+                  os.close(fd)
+                  owned.remove(fd)
+              def attributes(fd):
+                  names = os.listxattr(fd)
+                  live()
+                  if type(names) is not list or len(names) > 64 or any(type(n) is not str or len(n) > 256 for n in names):
+                      raise Refused()
+                  if 'system.posix_acl_access' in names or 'system.posix_acl_default' in names:
+                      raise Refused()
+              def metadata(fd):
+                  value = os.fstat(fd)
+                  live()
+                  if not all(number(getattr(value, key)) for key in ('st_dev', 'st_ino', 'st_uid', 'st_gid', 'st_mode')) or value.st_ino == 0 or value.st_mode > 131071:
+                      raise Refused()
+                  if not stat.S_ISDIR(value.st_mode):
+                      raise Refused()
+                  return value
+              def executable_mount(fd):
+                  flag = os.ST_NOEXEC
+                  value = os.fstatvfs(fd).f_flag
+                  live()
+                  if not number(flag) or flag == 0 or not number(value) or value & flag:
+                      raise Refused()
+              def qualify(fd, base):
+                  value = metadata(fd)
+                  mode = stat.S_IMODE(value.st_mode)
+                  if value.st_uid != 0 or not mode & 0o001:
+                      raise Refused()
+                  if base:
+                      if not mode & stat.S_ISVTX or mode & 0o003 != 0o003:
+                          raise Refused()
+                      executable_mount(fd)
+                  elif mode & 0o022:
+                      raise Refused()
+                  attributes(fd)
+                  return (value.st_dev, value.st_ino)
+              def open_chain():
+                  live()
+                  flags = os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW | os.O_CLOEXEC
+                  root = remember(os.open('/', flags))
+                  chain = [root]
+                  identities = [qualify(root, False)]
+                  for index, component in enumerate(PARENT_COMPONENTS):
+                      live()
+                      fd = remember(os.open(component, flags, dir_fd=chain[-1]))
+                      chain.append(fd)
+                      identities.append(qualify(fd, index == 1))
+                  return chain, identities
+              def conserve(expected):
+                  chain, actual = open_chain()
+                  if actual != expected:
+                      raise Refused()
+                  for fd in reversed(chain):
+                      close(fd)
+              try:
+                  live()
+                  creator = os.geteuid()
+                  if not number(creator, 4294967295) or creator == 0:
+                      raise Refused()
+                  chain, identities = open_chain()
+                  parent = chain[-1]
+                  entropy = os.urandom(16)
+                  live()
+                  if type(entropy) is not bytes or len(entropy) != 16:
+                      raise Refused()
+                  name = 'kopplas-owned-' + entropy.hex()
+                  payload = os.fsencode('/var/tmp/' + name + '\n')
+                  if type(payload) is not bytes or not 0 < len(payload) <= MAX_BYTES:
+                      raise Refused()
+                  conserve(identities)
+                  live()
+                  # One exclusive name only: collision is refusal, never retry/removal.
+                  os.mkdir(name, 0o700, dir_fd=parent)
+                  live()
+                  child = remember(os.open(name, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW | os.O_CLOEXEC, dir_fd=parent))
+                  created = metadata(child)
+                  if created.st_uid != creator or stat.S_IMODE(created.st_mode) != 0o700 or created.st_dev != identities[-1][0]:
+                      raise Refused()
+                  attributes(child)
+                  executable_mount(child)
+                  conserve(identities)
+                  # Same child device/inode through the anchored descriptor before publication.
+                  checked = remember(os.open(name, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW | os.O_CLOEXEC, dir_fd=parent))
+                  current = metadata(checked)
+                  if (current.st_dev, current.st_ino, current.st_uid, stat.S_IMODE(current.st_mode)) != (created.st_dev, created.st_ino, creator, 0o700):
+                      raise Refused()
+                  close(checked)
+                  for fd in list(owned):
+                      close(fd)
+                  live()
+                  if os.write(1, payload) != len(payload):
+                      return 1
+                  live()
+                  return 0
+              except (Refused, OSError, AttributeError, TypeError, ValueError):
+                  return 1
+              finally:
+                  for fd in list(owned):
+                      try:
+                          os.close(fd)
+                      except OSError:
+                          pass
+          raise SystemExit(admit_owned_root())
+          PY_OWNED_PARENT
+          )"
+          # OWNED-PARENT-ADMISSION-END
           generation="$(cat /proc/sys/kernel/random/uuid)"
           account="kopplas-${generation:0:20}"
           unit="kopplas-fixed-${generation}.service"
