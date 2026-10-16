@@ -105,3 +105,13 @@ Kopplas is a multi-tenant application for electrical contractors, built with Nex
 - Follow ADR-B009 for field workflows: connected responsive web at 360×640, explicit failure/retry, and success only after server-confirmed persistence. PWA installation, durable offline storage, queues, and synchronization remain Phase C.
 
 <!-- /bmad:context -->
+
+## Frontend PR labeling
+
+- Any agent creating or updating a PR that changes frontend pages, layouts,
+  components, styles, or other user-facing UI must add the `agent-fix` label
+  and verify that it is present before handing off the PR.
+- This also applies to mixed frontend/backend PRs.
+- Respect an explicit owner opt-out from labeling for a particular PR.
+- The label does not bypass the remediation policy, required reviews, checks,
+  or separate authorization to merge or deploy.
