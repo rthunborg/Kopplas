@@ -9,10 +9,10 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-15T16:56:36Z"
+updated_at: "2026-10-16T09:42:29Z"
 started_at: "2026-10-09T12:57:49Z"
 completed_at: null
-active_seconds: 74433
+active_seconds: 74820
 timing_anchor: null
 is_first_in_epic: false
 is_last_in_epic: false
@@ -26,7 +26,7 @@ selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "One bounded read-only provider branch routing prerequisite: ordinary preview vs custom environment before owner shared-setting handoff decision"
+escalation_reason: "Owner-approved all-preview disable end state: refresh exact provider identity complete routing inventory prior flag and publication bindings before Coordinator policy/window release"
 routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary epic test planning; sensitive implementation/review scope routed explicitly High\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary story test-risk classification\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_triage\",\"profile\":\"light\",\"role\":\"test-risk-triage\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -67,6 +67,7 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct focused independent byte JSON inverse verification of allocated Vercel branch exclusion; no broad source review or publication authority\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Preparation-only provider-side pre-push no-deploy control and shared authority conditional restoration; no mutation or publication admitted\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"One bounded read-only provider branch routing prerequisite: ordinary preview vs custom environment before owner shared-setting handoff decision\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Owner-approved all-preview disable end state: refresh exact provider identity complete routing inventory prior flag and publication bindings before Coordinator policy/window release\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: null
 tea_selected: []
 tea_rationale: null
@@ -92,7 +93,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [99e1274e, b7f19e2d, 6f612a21, bc4163ea, 27ce6a2b, 7cdd08a6, 66cd8436, e6c404d3, 5d76de08575fb8fa09197021899d78280829d554, 81836287786a40540e96dbdf46db29c868cde41b, 48386408fc628f7341b711f177ff5833f622959c, 92dc4a5f4f7e9878e9ed9c28e00bda5d98680478, 16180cd63914a57895b36c2db060c43c74da3514, caec31b185bcad597664668d7a835c9c2096aa4d, 0a312c8fbd617d4ce03f97d5484bb23babb0686b, d5a5f85155394a0337ea92fcd606f949559b172a, becfd00e, 80c31af2, a0dd2302ead46e72e77f3293b84085c4f8fe65f3, 6f9e29656df997e2c5c6027874da4bee1ef6c17d, 5c1fb90b2f7f735259208e2d420bce489cbed598, 0d6f43ac90596b8703d8df3b9b986f9026aaaba3, 76868db295ac6b7de06a57f43164d5f02140f938, c4375f61, abaf8d81, db50a9c5, a1b83089, 6883ef61, 2441e3a2, 94baa7c7, afd9c1dd, 6d983e00, ae5b78b6, 09e70e81, 311e744f, 1d4ec146, 37fa423a, b1ad1496, "21835451", 1fadbd1f, b1f91332]
+commits: [99e1274e, b7f19e2d, 6f612a21, bc4163ea, 27ce6a2b, 7cdd08a6, 66cd8436, e6c404d3, 5d76de08575fb8fa09197021899d78280829d554, 81836287786a40540e96dbdf46db29c868cde41b, 48386408fc628f7341b711f177ff5833f622959c, 92dc4a5f4f7e9878e9ed9c28e00bda5d98680478, 16180cd63914a57895b36c2db060c43c74da3514, caec31b185bcad597664668d7a835c9c2096aa4d, 0a312c8fbd617d4ce03f97d5484bb23babb0686b, d5a5f85155394a0337ea92fcd606f949559b172a, becfd00e, 80c31af2, a0dd2302ead46e72e77f3293b84085c4f8fe65f3, 6f9e29656df997e2c5c6027874da4bee1ef6c17d, 5c1fb90b2f7f735259208e2d420bce489cbed598, 0d6f43ac90596b8703d8df3b9b986f9026aaaba3, 76868db295ac6b7de06a57f43164d5f02140f938, c4375f61, abaf8d81, db50a9c5, a1b83089, 6883ef61, 2441e3a2, 94baa7c7, afd9c1dd, 6d983e00, ae5b78b6, 09e70e81, 311e744f, 1d4ec146, 37fa423a, b1ad1496, "21835451", 1fadbd1f, b1f91332, 99590bfa]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -131,6 +132,8 @@ overrides:
   checkpoint_push: User commit/push completed work authorization applies to reviewed preparation checkpoint while awaiting ownership
   blocked_checkpoint_push: "Owner requested commit/push; explicitly incomplete blockedcheckpoint branch only noEpicPR/finalization/merge/deploy"
   legacy_oracle: "Standing owner design decision: no future legacy URL references browsing or evidence; missing design rules use headless domain state validation actions separated from replaceable UI with existing design system and accessibility; preserve historical records"
+  owner_preview_policy: "Explicit owner decision: disable automatic previews for ALL Kopplas project branches and leave disabled until owner reenable; no automatic restore/replay; no-deploy remains."
+  latest_project_rules: "Oct16 owner rules apply immediately; frontend finalPR requires agent-fix label application and verification; all approved scope/security/integrity/test gates preserved."
 constraints: []
 stories_landed: []
 epic_slug: scheduling-time-calendar
@@ -1110,3 +1113,44 @@ application_browser_vercel_provider_routing_qualification:
   settings_mutation_admitted: false
   publication_held: true
   owner_decision: Coordinator_to_present_all_previews_disabled_owner_handoff_no_automatic_restore
+application_browser_vercel_owner_decision:
+  status: direct_owner_approval_received_via_Coordinator
+  approved_project: Enhancior/kopplas
+  preview_scope: ALL_project_branches
+  approved_end_state: leave_automatic_previews_disabled_until_owner_reenables
+  automatic_restoration: false
+  no_deploy_preserved: true
+  mutation_window_released: false
+  publication_released: false
+application_browser_vercel_resume_refresh:
+  status: sealed_ready_for_exact_final_rebind
+  source_parent: 99590bfa510cd9e98050642712a6a46259ba0409
+  remote_head: 1d4ec14679c12e43c5a5a5999799c6df30ac508b
+  provider_capsule_bytes: 4923
+  provider_capsule_sha256: a72747c97a3ea317d1289ef38fc8fbfc5dcb268205a2f85a6dd84ba59a18f236
+  provider_manifest_bindings: 9
+  provider_manifest_bytes: 1773
+  provider_manifest_sha256: 0f717ea022664c0e891c42b30b02248c90c3be8fd94e9d66c6fd98d93e98ba96
+  feedback_capsule_bytes: 4185
+  feedback_capsule_sha256: 6f61c3754bd5a501076e84efb872b9b7d66c5698edde67894976b6c1be12a18a
+  feedback_manifest_bindings: 7
+  feedback_manifest_bytes: 1325
+  feedback_manifest_sha256: 967137b1d0c8019b4088659c582affe02090585a9f70dd7bfb6b866f79367457
+  provider_updated_at: 1792142476960
+  provider_update_cause: unknown
+  preview_flag_before: ABSENT
+  custom_environments: 0
+  open_epic_prs: 0
+  automatic_feedback_admits_epic_push: false
+  prior_218_candidate_superseded: true
+  administrative_window_released: false
+  publication_released: false
+  compiled_cases: 0
+  executed_cases: 0
+  p5_credit: false
+  broad_review_rounds: 0
+frontend_pr_agent_fix_policy:
+  required: true
+  owner_opt_out: false
+  label_verified: false
+  pr_created: false

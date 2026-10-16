@@ -1148,3 +1148,37 @@ none
 **⚠️ Needs human:** (none)
 
 **Next:** Await Coordinator concrete sharedscope/endstate decision; no duplicate question fromepicowner. Settings/push/compiler/CI/resources/deployheld.
+
+## Report — 2026-10-16T09:42:29Z (owner approval received; refreshed execution binding local only)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `99590bf`).
+**Pipeline status:** In progress: owner preview policy approved, independent policy PASS effective, fresh exact provider/branch/feedback bindings ready; mutation/PUSH still held for final Coordinator rebind/window.
+**Continues:** Bind NEW local execution head/tree/raw message then same High operational rebind and bounded 2/5/15/20-minute release.
+
+**Summary:** Sequential six-story Epic15 remains active at15.1; all required gates retained.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 164h 44m (≈20h 47m AI-run, ≈143h 57m human/idle wait); resumed 33×.
+
+**Stories:**
+1. 15.1 verification blocked;15.2-15.6 backlog.
+
+**Skipped:** (none)
+
+**Epic gate:** Open. Compiledmock36logical/37evaluations0executed; native125UNKNOWN, General7/1/10 phone0, P5false broad0/3.
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** Owner approves ALLprojectautomaticpreviewdisable leftdisableduntilownerreenable; no automaticrestore/replay/no deploy. EventualONEfrontendPR agent-fix label mandatory and verified, mergecommit retainbranches.
+
+**Open questions:**
+1. Provider updatedAt1792142476960 advanced causeunknown; externaladministrators/actualwriteauthority qualifiedunknown. Immediate identity/inventory/drift refusal and verifiedtrue required beforeonePUSH.
+
+**Deferred work:**
+1. Actual compiledmock proof/native browser/app acceptance, remaining sequentialstories, independent review and epic closeout.
+
+**⚠️ Needs human:** (none)
+
+**Next:** NEWfinalgatecommit onlyROOTstates/report using exact reviewed UUID/message; no PUSH until Coordinator finalwindowrelease. UnrelatedPR103CI allowed/no stoppingotheractors; E16 andfeedbackmanualholds acknowledged.
