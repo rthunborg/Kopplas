@@ -5,6 +5,8 @@ import type { Locator, Page, TestInfo } from "@playwright/test";
 import { adminQuery } from "../factories/admin-sql";
 import { readFileSync } from "node:fs";
 import path from "node:path";
+import * as lifecycle from "./support/scheduling-lifecycle-metadata";
+const lifecyclePages = new WeakMap<TestInfo, Page>();
 
 test.describe.configure({ mode: "serial" });
 test.setTimeout(180_000);
@@ -227,6 +229,9 @@ function createSchedulingPassiveMetadata(page: Page, origin: string, ordinal: (r
 // PASSIVE-NETWORK-END factory
 const schedulingAttemptShutdowns = new WeakMap<TestInfo, () => void>();
 test.afterEach(({}, testInfo) => {
+  const observedPage = lifecyclePages.get(testInfo);
+  if (observedPage) lifecycle.mark(observedPage, "after-each", "enter");
+  lifecyclePages.delete(testInfo);
   // PASSIVE-NETWORK-BEGIN hook-outer
   try {
   // PASSIVE-NETWORK-END hook-outer
@@ -333,7 +338,9 @@ test("[P1] 15.1-E2E-006 SCOPE-001 AC1 five projections, periods, filters and too
 });
 
 test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycle and input tampering; denied role", async ({ schedulingViews: h, resourcePage: page }, testInfo) => {
-  await h.seed(); await h.signIn("manager"); await h.open("Resurser");
+  lifecycle.activate(page, testInfo.retry); lifecyclePages.set(testInfo, page);
+  lifecycle.mark(page, "seed", "enter");
+  await h.seed(); lifecycle.mark(page, "seed", "fulfilled"); lifecycle.mark(page, "initial-signin", "enter"); await h.signIn("manager"); lifecycle.mark(page, "initial-signin", "fulfilled"); lifecycle.mark(page, "initial-open", "enter"); await h.open("Resurser"); lifecycle.mark(page, "initial-open", "fulfilled");
   await expect(page.getByRole("tab")).toHaveCount(5);
   await expect(page.locator('[aria-label="Behöver omfördelas"]')).toContainText(h.scenario.description);
   const payloads: string[] = [];
@@ -376,19 +383,29 @@ test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycl
     } catch (error) { ensureActive(); recordFailure(error); throw firstFailure; }
   };
   const guardedSignIn = async (identity: "montor" | "denied") => {
+    lifecycle.mark(page, "guarded-signin", "enter");
     guardProgress();
     JSON.parse(readFileSync(path.join(process.cwd(), "tests/e2e/.auth/fixture.json"), "utf8"));
     guardProgress();
     const credentials = h.users[identity === "montor" ? 1 : 2]!;
     if (identity === "denied") await guardedStage(() => adminQuery("update public.tenant_memberships set status='active' where id=$1 and tenant_id=$2", [h.memberships[2], h.scenario.tenantId]));
+    lifecycle.mark(page, "cookie-clear", "enter");
     await guardedStage(() => page.context().clearCookies());
+    lifecycle.mark(page, "cookie-clear", "fulfilled");
+    lifecycle.mark(page, "login-goto", "enter");
     await guardedStage(() => page.goto("/login"));
+    lifecycle.mark(page, "login-goto", "fulfilled");
     await guardedStage(() => page.getByLabel("E-post").fill(credentials.email));
     await guardedStage(() => page.getByLabel("Lösenord").fill(credentials.password));
+    lifecycle.mark(page, "login-submit", "enter");
     await guardedStage(() => page.getByRole("button", { name: "Logga in" }).click());
+    lifecycle.mark(page, "login-submit", "fulfilled");
+    lifecycle.mark(page, "dashboard-assert", "enter");
     await guardedStage(() => expect(page).toHaveURL(/\/dashboard$/));
+    lifecycle.mark(page, "dashboard-assert", "fulfilled");
   };
   const guardedSettle = async () => {
+    lifecycle.mark(page, "settle", "enter");
     await guardedStage(() => page.evaluate(() => new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve())))));
     await guardedStage(() => expect(page.getByText("Läser planering…", { exact: true })).toHaveCount(0));
   };
@@ -461,6 +478,7 @@ test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycl
     if (!entry && !wasLive) return;
     let reason: unknown = unavailableReason;
     try { const failure = request.failure(), text = failure?.errorText; if (typeof text === "string") reason = text; } catch { /* Use only the fixed unavailable carrier. */ }
+    lifecycle.mark(page, "request-failed", "event", request);
     recordFailure(reason);
     wake();
     if (entry) snapshot(entry, "requestfailed");
@@ -469,9 +487,11 @@ test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycl
     if (shutdownStarted || !trackerOpen) return;
     const url = new URL(request.url());
     if (url.origin !== captureOrigin || url.pathname !== "/scheduling") return;
+    lifecycle.mark(page, "request-admitted", "event", request, undefined, undefined, "scheduling");
     live.add(request); generation++; wake();
   };
   const readFinished = (request: import("@playwright/test").Request) => {
+    lifecycle.mark(page, "request-finished", "event", request);
     if (shutdownStarted || !trackerOpen) return;
     if (live.delete(request)) { generation++; wake(); }
   };
@@ -486,15 +506,20 @@ test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycl
       bodyStartMs: null, bodyEndMs: null, requestFailedMs: null,
     };
     admitted.set(request, entry);
+    lifecycle.mark(page, "response-admitted", "event", request, entry.requestOrdinal, entry.captureOrdinal, "scheduling");
     updateTiming(() => { entry.queryPresent = url.search !== ""; entry.responseMs = relativeTime(); });
     const capture = (async () => {
       updateTiming(() => { entry.phase = "finished"; entry.finishedStartMs = relativeTime(); });
+      lifecycle.mark(page, "finished-call", "invoked", request);
       const failure = await response.finished();
+      lifecycle.mark(page, "finished-call", "fulfilled", request);
       ensureActive();
       updateTiming(() => { entry.finishedEndMs = relativeTime(); });
       if (failure) throw failure;
       updateTiming(() => { entry.phase = "body"; entry.bodyStartMs = relativeTime(); });
+      lifecycle.mark(page, "body-call", "invoked", request);
       const payload = await response.text();
+      lifecycle.mark(page, "body-call", "fulfilled", request);
       ensureActive();
       payloads.push(payload);
       updateTiming(() => { entry.bodyEndMs = relativeTime(); entry.phase = "complete"; });
@@ -515,6 +540,7 @@ test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycl
     }));
   };
   const drain = async () => {
+    lifecycle.mark(page, "drain", "enter");
     let cursor = 0;
     ensureActive();
     if (hasFailure) throw firstFailure;
@@ -529,6 +555,7 @@ test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycl
     if (hasFailure) throw firstFailure;
   };
   const waitForFlightChange = async (observedGeneration: bigint) => {
+    lifecycle.mark(page, "barrier-wait", "enter");
     ensureActive();
     let notify!: () => void;
     const changed = new Promise<void>(resolve => { notify = resolve; });
@@ -550,12 +577,14 @@ test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycl
       if (hasFailure) throw firstFailure;
       if (live.size || generation !== observedGeneration || captures.length !== observedCaptures || fulfilledCount + rejectedCount !== captures.length) continue;
       ensureActive();
+      lifecycle.mark(page, "barrier-action", "invoked");
       try { return await awaitActive(action()); }
       catch (error) { ensureActive(); recordFailure(error); throw firstFailure; }
     }
   };
   const shutdown = () => {
     if (shutdownStarted) return;
+    lifecycle.mark(page, "shutdown", "requested");
     // PASSIVE-NETWORK-BEGIN shutdown
     passive.stop(hasFailure);
     // PASSIVE-NETWORK-END shutdown
@@ -569,6 +598,7 @@ test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycl
     if (cleanupFailed) throw cleanupFailure;
   };
   const closeCaptureWindow = async () => {
+    lifecycle.mark(page, "close-window", "enter");
     ensureActive();
     responseAdmissionOpen = false;
     try { page.off("response", read); } catch (error) { recordFailure(error); }
@@ -586,7 +616,7 @@ test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycl
       }
     }
   };
-  const openCaptureWindow = () => { guardProgress(); captureActivated = true; responseAdmissionOpen = true; page.on("response", read); };
+  const openCaptureWindow = () => { lifecycle.mark(page, "capture-open", "enter"); guardProgress(); captureActivated = true; responseAdmissionOpen = true; page.on("response", read); };
   schedulingAttemptShutdowns.set(testInfo, shutdown);
   page.on("request", readRequest);
   page.on("requestfinished", readFinished);
@@ -599,6 +629,7 @@ test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycl
     try {
     await guardedSignIn("montor"); guardProgress(); openCaptureWindow();
     await navigateAfterBarrier(() => page.goto(`/scheduling?view=resources&person=${h.extraProfiles[2]}&tenant=${h.scenario.tenantIds[1]}`)); guardProgress(); await guardedSettle(); guardProgress(); await drain(); guardProgress();
+    lifecycle.mark(page, "date-fill", "enter");
     await navigateAfterBarrier(() => page.getByLabel("Datum", { exact: true }).fill(DATE)); guardProgress(); await guardedSettle(); guardProgress(); await drain(); guardProgress();
     await guardedStage(() => expect(page.getByRole("tab")).toHaveCount(1)); await guardedStage(() => expect(page.getByRole("tab")).toHaveText("Min kalender"));
     const visibleIds = await guardedStage(() => h.visibleIds()); guardProgress(); expect(visibleIds).toEqual([h.ids.role, h.ids.collision].sort());
@@ -627,7 +658,7 @@ test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycl
   } catch (error) { if (error !== abandoned) throw error; }
   finally { if (!shutdownStarted) schedulingAttemptShutdowns.delete(testInfo); }
   // PASSIVE-NETWORK-BEGIN final
-  } finally { passive.stop(hasFailure); schedulingPassiveShutdowns.delete(testInfo); }
+  } finally { lifecycle.mark(page, "attempt-end", "event"); passive.stop(hasFailure); schedulingPassiveShutdowns.delete(testInfo); }
   // PASSIVE-NETWORK-END final
 });
 

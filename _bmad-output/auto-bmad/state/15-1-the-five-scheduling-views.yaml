@@ -9,10 +9,10 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-16T22:01:21Z"
+updated_at: "2026-10-16T22:46:26Z"
 started_at: "2026-10-09T13:06:12Z"
 completed_at: null
-active_seconds: 98703
+active_seconds: 101238
 timing_anchor: null
 is_first_in_epic: true
 is_last_in_epic: false
@@ -26,7 +26,7 @@ selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Sensitive independent focused qualification of minimal purpose-bound next-SHA application helper AND worker compatibility plan, source-binding schema and retained ownership/restoration guards; no control authoring or runtime."
+escalation_reason: "Sensitive fresh resource-free private STATIC PLAN ONLY for final PRIMARY25 application helper/worker compatibility and honest total-effect delta, while independent finalsource review runs; actual nextSHA unissued and no control authoring or runtime."
 routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary scheduling UX specification; sensitive authorization/integrity portions explicitly delegated High\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary15.1 ATDD preparation; sensitive access assertions delegated High; shared fixture edits excluded\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -314,6 +314,12 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive independent focused qualification of authenticated General lifecycle metadata privacy/noninterference proposal; plan only, no source implementation or runtime admission.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive minimal private PLAN ONLY for new-SHA compatibility of purpose-bound application variable helper and bounded worker; identify constants/PRIMARY binding schema, no control authoring/retargeting/execution; Coordinator local-checkpoint allocation explicitly permits this plan.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive independent focused qualification of minimal purpose-bound next-SHA application helper AND worker compatibility plan, source-binding schema and retained ownership/restoration guards; no control authoring or runtime.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive independent actual clean Q commit metadata/trigger/SHA rebind and minimal private application-control compatibility plan qualification before publication or variable/runtime admission.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive authenticated General lifecycle observation source implementation with bounded metadata privacy, promise/teardown noninterference and unhandled-rejection controls; Coordinator allocated exact six test-only paths from approved plan after independent actualQ/compatibility PASS.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive independent focused six-path authenticated General lifecycle observation implementation/proof review, first-error/request/teardown noninterference and publication privacy; jointly qualify explicit PRIMARY21to25 and runner12to15 dependency expansion proposal, no new source allocation or runtime.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive exact application provenance dependency expansion runner12to15 and admission controls, authoritative collection/comparison stale-hash refusal and PRIMARY21to25 schema plan; Coordinator precise two-path source/proof allocation after independent General/source-expansion PASS.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive independent focused final runner/admission exact-pathset provenance expansion and PRIMARY25 authoritative-working-binding proof review; preserve frozen General hooks and generated-file authority, no runtime/publication admission.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive fresh resource-free private STATIC PLAN ONLY for final PRIMARY25 application helper/worker compatibility and honest total-effect delta, while independent finalsource review runs; actual nextSHA unissued and no control authoring or runtime.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate, trace-advisory]
 tea_rationale: "Scheduling, synchronized projections, capacity and drag/keyboard/dialog behavior"
@@ -339,7 +345,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [45a64853, f9e12a81, 279d3149, b9d61a33, 4d7911ac, 3a655a5d, a67a64dc, 66cd8436, d79fff08, bf84cf5d, 181f947f, 22cfb74a, 22cfb74a, 6fd516b0, 521d56fd, e448f856, b99e3f42, 83e27c92, 1aa7c52b, 8630b011, da3a4c59, 27d67de7, 4223e887, 9c26fd72, d75313bb, 4b0ab106, f7b4f154, 437c3da2, e6c404d3, f4a431f6, 85cae2a5, 689a1385, 1bc90218, c49ac882, 4b685196, a5d262f8, a39cd221, 704e9320, c797d815, 25390342e668dee81d6bda42bfe0b5b51ed1723b, a98fc96386df752c631c119de992fc832c8ecb4d, ea5477fff0dbd8e82abb6a376269bfcf54ae95e9, 35e904b2e0d8798f72fbb405b3a888d64fdebd45, 2a071fc49a81984ae55e9e2c08a7583444245d86, ccd7abe9ebe38d846df58087c9d94280ad1d25ab, b01a0511cd1ee66f710de21034faeae9d5537403, eaabd2d0020b391247e1a4383b0eaf6291f0ac83, 39b84268e8eeffb3f9a6ff6b055846187c166d4b, ffa4168a62851a788cea6fff244a87f12b08cca6, 049a6f0f, ef1c5a290bdc3e6b48e68ec492abc0010c636c1b, 3c07917c1a323ba280d2325d7fe050cf1574bf5e, d880cd63fa158272f206d74aa5c4b0280d0d622c, 62dbbf947a916f528e8ae32d7b768750769a8c5d, b38d358fbba883ce79662a2b0fd0cea51d27c121, 4602a2eacdac7636c67751c986b18cc3c546950f, 65207b9ecaf7e5ad39b1840bda76099805acfa57, dab81e3d21a8180a05d3db9af5dde7334f991982, 828474451a0ae833a712d64544482498e79740bd, 706c3c9c7e2f2b2178b1c3506c59a2708356141b, 24d15439ab87847ecd1234b3e475b9d76883de2f, c0a57eda240f2b17793b693b2f3fbb963ebb29ab, 11c5cd1e0a8a6fda3297a9f16a54bb48209a5d9c, 5d76de08575fb8fa09197021899d78280829d554, 81836287786a40540e96dbdf46db29c868cde41b, 48386408fc628f7341b711f177ff5833f622959c, 92dc4a5f4f7e9878e9ed9c28e00bda5d98680478, 16180cd63914a57895b36c2db060c43c74da3514, caec31b185bcad597664668d7a835c9c2096aa4d, 0a312c8fbd617d4ce03f97d5484bb23babb0686b, d5a5f85155394a0337ea92fcd606f949559b172a, becfd00e, 80c31af2, a0dd2302ead46e72e77f3293b84085c4f8fe65f3, 6f9e29656df997e2c5c6027874da4bee1ef6c17d, 5c1fb90b2f7f735259208e2d420bce489cbed598, 0d6f43ac90596b8703d8df3b9b986f9026aaaba3, 76868db295ac6b7de06a57f43164d5f02140f938, c4375f61, abaf8d81, db50a9c5, a1b83089, 6883ef61, 2441e3a2, 94baa7c7, afd9c1dd, 6d983e00, ae5b78b6, 09e70e81, 311e744f, 1d4ec146, 37fa423a, b1ad1496, "21835451", 1fadbd1f, b1f91332, 99590bfa, 45deb287, 532ebccf, 689ec7b7, cf9b89f9, 63186b1f, 48f8d7a7f170ca496b63e8120a34edb92e3ca23e, 6c0fa8fa11a1b4ab7268f623b96693affe3506b0, 83c60e0033628b4158448b9e782a9ad5a12e062f, ab5595a609092306489064f46e5a567cbfb9b34a]
+commits: [45a64853, f9e12a81, 279d3149, b9d61a33, 4d7911ac, 3a655a5d, a67a64dc, 66cd8436, d79fff08, bf84cf5d, 181f947f, 22cfb74a, 22cfb74a, 6fd516b0, 521d56fd, e448f856, b99e3f42, 83e27c92, 1aa7c52b, 8630b011, da3a4c59, 27d67de7, 4223e887, 9c26fd72, d75313bb, 4b0ab106, f7b4f154, 437c3da2, e6c404d3, f4a431f6, 85cae2a5, 689a1385, 1bc90218, c49ac882, 4b685196, a5d262f8, a39cd221, 704e9320, c797d815, 25390342e668dee81d6bda42bfe0b5b51ed1723b, a98fc96386df752c631c119de992fc832c8ecb4d, ea5477fff0dbd8e82abb6a376269bfcf54ae95e9, 35e904b2e0d8798f72fbb405b3a888d64fdebd45, 2a071fc49a81984ae55e9e2c08a7583444245d86, ccd7abe9ebe38d846df58087c9d94280ad1d25ab, b01a0511cd1ee66f710de21034faeae9d5537403, eaabd2d0020b391247e1a4383b0eaf6291f0ac83, 39b84268e8eeffb3f9a6ff6b055846187c166d4b, ffa4168a62851a788cea6fff244a87f12b08cca6, 049a6f0f, ef1c5a290bdc3e6b48e68ec492abc0010c636c1b, 3c07917c1a323ba280d2325d7fe050cf1574bf5e, d880cd63fa158272f206d74aa5c4b0280d0d622c, 62dbbf947a916f528e8ae32d7b768750769a8c5d, b38d358fbba883ce79662a2b0fd0cea51d27c121, 4602a2eacdac7636c67751c986b18cc3c546950f, 65207b9ecaf7e5ad39b1840bda76099805acfa57, dab81e3d21a8180a05d3db9af5dde7334f991982, 828474451a0ae833a712d64544482498e79740bd, 706c3c9c7e2f2b2178b1c3506c59a2708356141b, 24d15439ab87847ecd1234b3e475b9d76883de2f, c0a57eda240f2b17793b693b2f3fbb963ebb29ab, 11c5cd1e0a8a6fda3297a9f16a54bb48209a5d9c, 5d76de08575fb8fa09197021899d78280829d554, 81836287786a40540e96dbdf46db29c868cde41b, 48386408fc628f7341b711f177ff5833f622959c, 92dc4a5f4f7e9878e9ed9c28e00bda5d98680478, 16180cd63914a57895b36c2db060c43c74da3514, caec31b185bcad597664668d7a835c9c2096aa4d, 0a312c8fbd617d4ce03f97d5484bb23babb0686b, d5a5f85155394a0337ea92fcd606f949559b172a, becfd00e, 80c31af2, a0dd2302ead46e72e77f3293b84085c4f8fe65f3, 6f9e29656df997e2c5c6027874da4bee1ef6c17d, 5c1fb90b2f7f735259208e2d420bce489cbed598, 0d6f43ac90596b8703d8df3b9b986f9026aaaba3, 76868db295ac6b7de06a57f43164d5f02140f938, c4375f61, abaf8d81, db50a9c5, a1b83089, 6883ef61, 2441e3a2, 94baa7c7, afd9c1dd, 6d983e00, ae5b78b6, 09e70e81, 311e744f, 1d4ec146, 37fa423a, b1ad1496, "21835451", 1fadbd1f, b1f91332, 99590bfa, 45deb287, 532ebccf, 689ec7b7, cf9b89f9, 63186b1f, 48f8d7a7f170ca496b63e8120a34edb92e3ca23e, 6c0fa8fa11a1b4ab7268f623b96693affe3506b0, 83c60e0033628b4158448b9e782a9ad5a12e062f, ab5595a609092306489064f46e5a567cbfb9b34a, f2bad2b11b31b4646a3b068e17b61a044b376c0a]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -5216,23 +5222,42 @@ Low_codepath_research:
   runtime_cause_unknown: true
   existing_High_actor_unchanged: true
 p_general_observability_plan:
-  status: SAME-independent-High-proposal-PASS-implementation-NOTallocated
+  status: SAME-independent-High-six-path-implementation-and-expansion-proposal-PASS
   source_writes: false
   runtime_admitted: false
   causal_conclusion: unknown
   budget_change: false
   assertion_change: false
-  packet: epic15-General-lifecycle-observation-plan-c5a92298-29d5-49c3-bd40-a8a747184296
+  packet: epic15-General-lifecycle-implementation-9d2f792b-8246-4a4a-992c-8f644a7ee2fa
   manifest_sha256: 9024cb8565de1c945c286cc411d5a0fbae818682af98d3027ace69ffae277f86
   ROOT_proof_sha256: d87a5e59b0647d013671c93230393aeef7d54e8fd564ea333379584c35c5a1e5
-  bindings_verified: 25
+  bindings_verified: 84
   implementation_bindings_conserved: 89
   mismatches: 0
   tests_executed: 0
   independent_verified_bindings: 7+18 and86+3conservation
   review_provenance: Coordinator direct completed SAME High message
+  baseline: f2bad2b11b31b4646a3b068e17b61a044b376c0a
+  source_scope: "exact six paths enumerated by sealed General-observation-plan.json; four existing+two new"
+  generated_file_sources_must_be_conserved: true
+  source_review_required_before_bookkeeping_commit_controls_runtime: true
+  implementation_manifest_sha256: 55e010212d278de5e3c87359d4bfc2bc849bdc4132d3d27601e090da60b1ae52
+  ROOT_transport_sha256: 7ec2572cfeafb4140b265fd638f6d660aa0e1c89823621f9c24ac879d3c16101
+  approved_generated_bindings_conserved: 89
+  focused_pass: 199
+  focused_fail_cancel_skip: 0
+  historical_conserved_entries: 2737
+  historical_qualified_source_successors: 4
+  Q_original_exact_inverses: 4
+  Q_new_absence_preimages: 2
+  source_implementation_paths: 6
+  runner_and_admission_unit_changed: false
+  dependency_expansion: "PROPOSAL ONLY PRIMARY21to25 and runner12to15; no current extra path allocation"
+  bookkeeping_commit_controls_runtime_admitted: false
+  independent_review_provenance: "Coordinator direct completed SAME High message; no reviewer rerun"
+  six_source_paths_frozen: true
 q_checkpoint:
-  status: local-checkpoint-qualified
+  status: SAME-independent-High-actual-Q-metadata-trigger-rebind-PASS
   parent: ab5595a609092306489064f46e5a567cbfb9b34a
   scope: [".github/workflows/ci.yml", "_bmad-output/auto-bmad/reports/epic-15.md", "_bmad-output/auto-bmad/state/15-1-the-five-scheduling-views.yaml", "_bmad-output/auto-bmad/state/epic/epic-15.yaml", tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts]
   root_source_writes: 0
@@ -5249,8 +5274,18 @@ q_checkpoint:
   broad_review_rounds: 0
   once_rendered_report_asof: "2026-10-16T21:53:38Z; preserves then-pending General proposal review; later PASS recorded in state only"
   independent_review_bindings: ["{'path': 'C:\\\\Users\\\\Rasmus\\\\.codex\\\\worktrees\\\\epic-15-calendar\\\\Kopplas\\\\.env.epic15.mail-runtime\\\\epic15-generated-type-slot-implementation-8c8b317a-c3ad-4788-9568-b30497a3e187\\\\proof-manifest.json', 'bytes': 29730, 'sha256': '74a84bcedfcf8d944e3e536f2c9f894b7bbbb2d270636f864e1bcfeb8b180020'}", "{'path': 'C:\\\\Users\\\\Rasmus\\\\.codex\\\\worktrees\\\\epic-15-calendar\\\\Kopplas\\\\.env.epic15.mail-runtime\\\\epic15-generated-type-slot-implementation-8c8b317a-c3ad-4788-9568-b30497a3e187\\\\seal.json', 'bytes': 3122, 'sha256': 'ecaef77b524e1ff8cd7b36c0f4db4e037ae8eb3a85739b2c77ba0317ff793b8d'}", "{'path': 'C:\\\\Users\\\\Rasmus\\\\.codex\\\\worktrees\\\\epic-15-calendar\\\\Kopplas\\\\.env.epic15.mail-runtime\\\\epic15-generated-type-slot-implementation-8c8b317a-c3ad-4788-9568-b30497a3e187\\\\implementation-capsule.json', 'bytes': 2970, 'sha256': 'a6097ffe906eb1f5b0b5d15bb9ce427add37f1d966bf853c0e838ca487516259'}", "{'path': 'C:\\\\Users\\\\Rasmus\\\\.codex\\\\worktrees\\\\epic-15-calendar\\\\Kopplas\\\\.github\\\\workflows\\\\ci.yml', 'bytes': 72286, 'sha256': '44ffb3ceb7e851c0f59a3a9a3749135e4e536b1680d1cd3a48f9d2f668dc76c5'}", "{'path': 'C:\\\\Users\\\\Rasmus\\\\.codex\\\\worktrees\\\\epic-15-calendar\\\\Kopplas\\\\tests\\\\unit\\\\scripts\\\\verify\\\\fixed-chromium-application-admission.test.ts', 'bytes': 103781, 'sha256': '998453875982196cda773e0067dda56fe165f4094efa44add873900b9a3d0202'}"]
+  head: f2bad2b11b31b4646a3b068e17b61a044b376c0a
+  tree: 18e96c14761d1a5dc952741c63eca1058c7bd776
+  metadata_sha256: b74201b060be1da278de6f89fa7b4d2b4bfe420db7481a3d0626f7d5151454ac
+  actual_message_bytes: 441
+  actual_message_sha256: 58a01f9588679a5c55bee0c905d46393aacd847695271cc284d6f276ffb1b29e
+  clean: true
+  source_bindings_strictly_validated: 21
+  conserved: 19
+  reviewed_successors: 2
+  independent_rebind_provenance: Coordinator direct completed SAME High message
 q_control_compatibility_plan:
-  status: sealed-ROOT-binary-verified-awaiting-SAME-independent-High-qualification
+  status: SAME-independent-High-PLAN-PASS-for-Q-five-path-checkpoint-only
   manifest_sha256: fcfa808ad3e59cba0a87e2b21c441b7e98b51d0e5a2027a256e6096b09ccca03
   plan_bindings: 38
   control_bindings_conserved: 56
@@ -5258,3 +5293,78 @@ q_control_compatibility_plan:
   mismatches: 0
   control_authoring_admitted: false
   runtime_admitted: false
+  retarget_now: false
+  General_precedes_runtime: true
+  dependency_pathset_expansion_requires_separate_qualification: true
+low_duration_comparison:
+  status: complete-private-derived-numeric-only-ROOT-input-output-binary-verified
+  output_path: "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\derived-O-P-duration-78fc7457-a601-4692-8f4a-9cd4b949a6f2.json"
+  output_sha256: e6b55cc0787c6975e13e83bb4b0738b050dd9db91e1255d00ad2fad8552c8ca4
+  matched_records: 400
+  unmatched_or_ambiguous: 0
+  attempt_sum_delta_ms: 286718
+  causal_conclusion: unknown
+  runtime_admitted: false
+  independent_task_seconds: 100
+  time_folded_once: true
+q_runner_provenance_expansion:
+  status: SAME-independent-High-final-source-PRIMARY25-review-PASS
+  paths: [tests/diagnostics/fixed-chromium-application-runner.mjs, tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts]
+  runtime_pathset: 12to15 exact three additions from approved proposal
+  PRIMARY_pathset: 21to25 exact four additions from approved proposal
+  changed_from_Q_final: "17 conserved and8 changed/added; derived from actual final bytes"
+  authoritative_stale_hash_refusal_required: true
+  six_General_sources_frozen: true
+  bookkeeping_commit_controls_runtime_admitted: "LOCAL exact11path checkpoint only; no controls/runtime"
+  packet: epic15-runner-runtime-pathset-28bb2dc5-2876-4c45-82bc-a5a40d47536d
+  manifest_sha256: e385f6b567ceb361eafe2df4caef593470e558cbbbbb37602176b0ac3ce43655
+  PRIMARY25_definition_sha256: d4cd01bef02ee0d132b2c8986ef3af440a959c57db6cf4bd035ad35481d4bf59
+  ROOT_transport_sha256: ddec727f4c9be93b40971c070e9d0e7121e0757a087c36f495e10f7db7449904
+  bindings_verified: 61
+  literal_General_direct_bindings_conserved: 84
+  generated_conserved: 88
+  generated_authorized_admission_successor: 1
+  prior_ROOT_conditional_assumption_corrected: "literalGeneralexternal8 sixsources+generatedmanifest/seal, no directadmissionbinding; all84directcurrentmatch, transitive89=88+1"
+  focused_passed: 207
+  focused_failed_cancelled_skipped: 0
+  PRIMARY_working_authority_controls_passed: 9
+  PRIMARY_proof_Git_fields: "explicitly synthetic; actual nextSHA/Git metadata unissued"
+  P_historical_current_conserved: 2736
+  P_qualified_source_successors: 5
+  mismatches: 0
+  review_provenance: "Coordinator direct completed SAME High message; no separate reviewer receipt"
+final25_control_compatibility_plan:
+  status: sealed-ROOT-binary-verified-for-joint-actual-final-checkpoint-qualification
+  actual_next_SHA: unissued
+  PRIMARY_source_entries: 25
+  changed_from_Q_proposed: "{\"false\": 17, \"true\": 8}"
+  final_scope_proposed: 8sources+3existingROOTbookkeeping
+  current8sourcebytes_frozen: true
+  control_authoring_issuance_runtime_admitted: false
+  packet: epic15-combined-application-compatibility-plan-cc2a1714-25c3-45ce-9b04-0a37eb3df9e6
+  manifest_sha256: c931aab391b6f58c93b031e0cc3024e16633441addcff63137015be6d5a8bf2e
+  plan_sha256: e0ab653452a897453a6f8f91a4257cfb3ea0c39370c556036a22c87448a4076a
+  bindings_verified: 19
+  control56_runtime61_General84_conserved: true
+  mismatches: 0
+  final_SHA_still_unissued: true
+  publication_geometry_for_joint_review: "new commit parent Q; retained latest remote P; normal fast-forward spans unpublished Q, fresh remote guards still required"
+r_checkpoint:
+  status: local-checkpoint-qualified
+  parent: f2bad2b11b31b4646a3b068e17b61a044b376c0a
+  retained_remote: ab5595a609092306489064f46e5a567cbfb9b34a
+  retained_remote_is_fresh: false
+  scope: ["_bmad-output/auto-bmad/reports/epic-15.md", "_bmad-output/auto-bmad/state/15-1-the-five-scheduling-views.yaml", "_bmad-output/auto-bmad/state/epic/epic-15.yaml", tests/diagnostics/fixed-chromium-application-runner.mjs, tests/e2e/scheduling-views.atdd.e2e.spec.ts, tests/e2e/support/booking-editor-atdd.ts, tests/e2e/support/resource-cdp-attachment.ts, tests/e2e/support/scheduling-lifecycle-metadata.ts, tests/e2e/support/scheduling-views-atdd.ts, tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts, tests/unit/scripts/verify/scheduling-lifecycle-metadata.test.ts]
+  root_source_writes: 0
+  bookkeeping_paths: 3
+  reviewed_sources: 8
+  PRIMARY_bindings: 25
+  changed_from_Q: "{\"false\": 17, \"true\": 8}"
+  report_render_count: 1
+  commit_attempts: 1
+  publication_admitted: false
+  controls_issuance_admitted: false
+  runtime_admitted: false
+  p5_credit: false
+  broad_rounds: 0
+  review_provenance: "message-based SAME independent High PASS; exact artifact bindings in private checkpoint"

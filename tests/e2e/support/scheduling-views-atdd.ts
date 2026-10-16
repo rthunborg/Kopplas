@@ -5,6 +5,7 @@ import type { Page, Locator } from "@playwright/test";
 import { randomUUID } from "node:crypto";
 import { readFileSync } from "node:fs";
 import path from "node:path";
+import * as lifecycle from "./scheduling-lifecycle-metadata";
 import { admin, deleteAuthUser, type FixtureUser } from "../../factories/tenants";
 import { adminQuery, adminSession } from "../../factories/admin-sql";
 
@@ -36,7 +37,7 @@ export class SchedulingViewsHarness {
     const first = Array.isArray(input) ? input[0] : null;
     if (this.readFailureArmed && request.method() === "POST" && request.headers()["next-action"] && first &&
         typeof first === "object" && "view" in first && "filters" in first && "mode" in first) {
-      this.readFailureArmed = false; await route.abort("failed"); this.failedReadResolve?.();
+      this.readFailureArmed = false; await lifecycle.observeAbort(this.page, "scheduling-injected-read", () => route.abort("failed")); this.failedReadResolve?.();
     } else await route.fallback();
   };
   constructor(readonly page: Page, private readonly bookingEditor: BookingEditorHarness) {}
@@ -171,6 +172,7 @@ export class SchedulingViewsHarness {
     await this.insert(randomUUID(), "12:30", "13:00", [this.people[1]!], this.scenario.workRoleId);
   }
   async dispose(): Promise<void> {
+    lifecycle.mark(this.page, "scheduling-dispose", "enter");
     if (!this.scenario) return; await this.page.unroute("**/*", this.readRoute);
     // Delete our dependent bookings before extra profiles. Base fixture owns
     // its two original people, CRM/work role and removes them afterwards.

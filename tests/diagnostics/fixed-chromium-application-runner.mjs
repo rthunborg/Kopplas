@@ -15,6 +15,8 @@ export const SOURCES = Object.freeze([CONFIG, 'tests/diagnostics/fixed-chromium-
   'tests/diagnostics/fixed-chromium-owned-process.c',
   'tests/diagnostics/no-store-stream-probe.mjs', '.github/workflows/ci.yml', 'playwright.config.ts',
   'tests/e2e/scheduling-views.atdd.e2e.spec.ts', 'tests/e2e/support/scheduling-views-atdd.ts',
+  'tests/e2e/support/scheduling-lifecycle-metadata.ts', 'tests/e2e/support/booking-editor-atdd.ts',
+  'tests/e2e/support/resource-cdp-attachment.ts',
   '_bmad-output/implementation-artifacts/spec-15-1-the-five-scheduling-views-2.md',
   'package.json', 'pnpm-lock.yaml', '.nvmrc']);
 export const VISUALS = Object.freeze(['desktop-schema-week', 'desktop-resources-week', 'desktop-team-week',

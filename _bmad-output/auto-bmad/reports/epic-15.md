@@ -1528,3 +1528,51 @@ none
 **⚠️ Needs human:** (none)
 
 **Next:** Complete this allocated local max5path checkpoint, preserve raw commit/message/scope/clean-state evidence and21working/Git source bindings with19conserved+2reviewed successors. Send actual commit for SAME independent High operational metadata/trigger/SHA rebind before any push/variable/CI/provider/runtime. Separately qualify the sealed General observation proposal; preserve unknown cause,800000ms attemptSUM budget and all completion gates.
+
+## Report — 2026-10-16T22:46:22Z (checkpoint - reviewed lifecycle observations and exact provenance expansion; runtime pending)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `f2bad2b`).
+**Pipeline status:** Epic15 and15.1 remain in progress, build-blocked/verification-failed. P5false, broad review0/3; no E5h completion or landed story. All prior runtime windows closed and temporary holds released. This is an exact11path local checkpoint, not execution release.
+**Continues:** Commit eight independently reviewed test/runner sources plus the three existing ROOT progress files. Issue truthful actual25-entry candidate metadata, then obtain SAME High joint operational/combined-plan rebind before any controls, push, variables, provider checks or CI.
+
+**Summary:** The generated-file startup repair is retained from clean localQ. Six General observation files and the exact runner/admission dependency expansion passed separate focused High review. Offline verification succeeds; no new native run has occurred. General AC2 cause,800000ms attemptSUM and mandatory visual gates remain unresolved.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 177h 48m (≈28h 15m AI-run, ≈149h 33m human/idle wait); resumed 43×.
+
+**Stories:**
+1. 15.1 in progress; approved specification, ContractD calendar-host obligations and owner-design UXB-A9 retained. Required verification remains blocked.
+2. 15.2 backlog; prepare and validate specification after verified15.1 E5h and ownership handoff, then implement.
+3. 15.3 backlog; prepare and validate specification before implementation.
+4. 15.4 backlog; prepare and validate specification before implementation.
+5. 15.5 backlog; prepare and validate specification before implementation; preserve ADR-B004 feed obligations.
+6. 15.6 backlog; prepare and validate specification before implementation.
+
+**Skipped:** (none)
+
+**Epic gate:** Preserve independent P5 review and three-round cap, P6/P7, E5h clean-SHA contracts/migrations/resources/handoff, E8 trace/NFR/test review, retrospective, project docs, final agent-fix-labelled/attached PR, exact-head checks and independent merge review. One final epic PR; merge commit; retain branches; no deploy.
+
+**TEA:** Required TEA completion gates remain pending; focused tooling reviews do not grant P5 or story acceptance.
+
+**Retrospective:** Epic14 integrated closeout uses October8 accepted-with-open-items; October7 rejection is historical. Epic15 retrospective pending.
+
+**Overrides:** Use Sol6.1Low ordinary work and explicit Sol6.1High sensitive delegates, including independent review. Owner authorization for similar necessary actions remains standing; no human approval is pending. UXB-A9 is owner-authorized design, not new legacy observation. No legacy URLs/browsing, deployment, preview restoration, scope waiver, assertion weakening or silent acceptance. Documents/E20 finalized; E16 schema prerequisite remains held until15.1 E5h.
+
+**Open questions:**
+1. No new runtime verdict: P General remains368expected/1unexpected/13skipped logical and375pass/2fail/23skip physical. AC2 twice ERR_ABORTED; original20-key snapshots had finished pending/text uninvoked. Cause UNKNOWN; HAR abort is not CDP canceled proof. Ten scheduling serial cases unexecuted. P attemptSUM854328ms exceeds800000 by54328ms; reportwall911418.394ms is separate. Optional APPLICATION had0suites/0outcomes and next-env.d.ts EACCES before tests. Reviewed startup repair has not established hosted success.
+2. Visual gate remains five distinct desktop targets twice, phone0; all11 required targets unmet. Manual/daylight/one-hand/calendar p95 evidence remains unresolved;420ms pilot is not p95. Optional application green cannot replace General red or visual evidence.
+3. The test-only observer distinguishes event order, missing observations and inference. Exact router.refresh/replace call timing and internal cancellation remain unknown; normal fixture release does not prove later framework-managed closure. Observation overhead counts in test duration; no deadlines or800000ms attemptSUM budget changed.
+4. Actual next commit/SHA/tree/message and Git bindings must be measured after commit. Latest retained remote is P while the local commit parent is Q; fresh operational review must qualify a normal fast-forward spanning unpublishedQ. Do not equate parentQ with current remoteP or require a Q run. No controls retargeted or execution window opened.
+
+**Deferred work:**
+1. SAME independent High PASS for six General paths: bounded scalar recorder96rows/32request identities/32768Btotal/256Brow/300000ms age; one nonwaiting publication, synchronous/asynchronous sink failures handled without await/retry/raw fallback/unhandled observer rejection. Original20-key snapshot, first-error identity, request/capture ordering, native abort promises, teardown, assertions and required coverage preserved. Six source bytes remain frozen through provenance work.
+2. SAME High PASS for exact runner12to15 pathset: only three approved SOURCES strings added. PRIMARY21to25 adds exactly observer, observer unit, booking harness and resource fixture. Final bindings require25unique paths/seven fields, changed_from_Q17false/8true. Runner/admission inverses recover exactQ45690B/07eb719a... and103781B/99845387.... No appbehavior/SDK/browserconfig/C/budget/cleanup changes.
+3. Actual focused207pass/0fail-cancel-skip=183retained controls+16General controls+8pathset controls. Nine separate private PRIMARY working-authority controls pass with explicitly synthetic Git fields; they do not prove real commit Git identity. Actual collector reads/hashes all15 authoritative buffers. Valid-looking stale hashes pass structural validation, then actual revalidation fails binding with two collections, compatibility1/applicationCLI0. Lint, full nonincrementalTS, runner syntax and diff-check pass. Initial encoding/type candidates,204/3missing-mock-timer fixture failure and syntax-seal refusal retained; affected fixes rechecked. No native browser/application execution credit.
+4. Conservation: General literal76+8direct bindings all match. Its external8 are six General files plus generated manifest/seal, not a direct admission binding; prior ROOT conditional83/1 assumption corrected. Nested generated89 is88current matches plus one explicitly reviewed admission successor with exactQinverse. P historical2741 corpus now2736current-conserved plus5qualified source successors, no unexpected mismatch. Four General raw inverses and two new-file absence preimages retained. Root reads no source/spec/artifact prose and changes no story source.
+5. Existing Low numeric comparison uses immutable retained O/P inputs:400structurally matched attempts,0unmatched/ambiguous; aggregate delta286718ms, retry0delta241345ms/retry1delta45373ms. Top scheduling ordinal7 retry0/1 deltas35964/32712ms contribute23.91% of positive deltas; top5/10/20concentration27.04/30.74/37.02%. Structural matches are not semantic or causal proof; reportwall and individual durations are distinct from attemptSUM and product/calendar p95. No runtime/load conclusion or budget extension.
+6. Accepted P four-job evidence remains unit2711pass with175focused mocks as a subset; DB1736pass/1skip and RLS752/50files as a subset; dashboard57pass; isolated recovery1pass. Broad recovery-storage-immutability skip remains unexecuted. P run38962295575 terminal/restored; original8 variable identities unchanged, owned pair absent, no unrelated-value comparison. All temporary E16/feedback runtime holds released, old timers retired. Original archives, reports, refusals and earlier native limitations preserved.
+7. Combined-candidate static plan proposes exactly two helper and one worker literal substitutions with byte-exact application-v1 inverses, unchanged purpose/readback/dispatch/protocol guards. Actual PRIMARY25 metadata and sourceguard qualification remain prerequisites; literal private-copy filename retained. Plan accounts for15runtime dependencies, bounded public observer metadata and privileged generated-file bootstrap. No private successor/control authoring, issuance, push, provider freshness, variable mutation, acquisition or CI has been released.
+
+**⚠️ Needs human:** (none)
+
+**Next:** Finish exact11path local commit and measured25-entry working/Git metadata, preserving full report/routing/state history and protected blocked status. Obtain SAME High joint actual-commit/combined-plan/trigger/remote-geometry rebind, then separately allocate private controls/offline proofs and fresh operational readiness. No Q/P rerun, SHA chase, deployment or completion promotion.

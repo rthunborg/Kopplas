@@ -1,4 +1,5 @@
 import { chromium, expect, test as base, type Page } from "@playwright/test";
+import * as lifecycle from "./scheduling-lifecycle-metadata";
 
 /** Test-runner-only. Never expose this endpoint through NEXT_PUBLIC_* variables. */
 export const RESOURCE_E2E_CDP_ENDPOINT_ENV = "E2E_GUARD_CHROMIUM_CDP_ENDPOINT";
@@ -33,7 +34,9 @@ const cdpEndpoint = readResourceE2eCdpEndpoint();
 requireResourceE2eFailureSeamForCdp(cdpEndpoint);
 
 const normalTest = base.extend<ResourcePageFixture>({
-  resourcePage: async ({ page }, provide) => provide(page),
+  resourcePage: async ({ page }, provide) => {
+    try { await provide(page); } finally { lifecycle.mark(page, "fixture-release", "event"); lifecycle.finish(page); }
+  },
 });
 
 const attachedTest = base.extend<ResourcePageFixture>({
@@ -45,8 +48,14 @@ const attachedTest = base.extend<ResourcePageFixture>({
     try {
       await provide(page);
     } finally {
-      await page.close();
-      await context.close();
+      try {
+        lifecycle.mark(page, "page-close", "invoked");
+        await page.close();
+        lifecycle.mark(page, "page-close", "fulfilled");
+        lifecycle.mark(page, "context-close", "invoked");
+        await context.close();
+        lifecycle.mark(page, "context-close", "fulfilled");
+      } finally { lifecycle.mark(page, "fixture-release", "event"); lifecycle.finish(page); }
       // Do not close the attached Browser: the root guard owns its Chromium
       // lifecycle. The Playwright worker process releases the CDP transport.
     }

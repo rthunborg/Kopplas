@@ -877,3 +877,77 @@ test("pinned Next direct writer needs only the existing generated file writable"
     assert.deepEqual(calls, ["readFile", "writeFile"]);
   }
 });
+
+// RUNTIME-PATHSET-TESTS-BEGIN
+const runtimeAddedPaths = ["tests/e2e/support/scheduling-lifecycle-metadata.ts", "tests/e2e/support/booking-editor-atdd.ts", "tests/e2e/support/resource-cdp-attachment.ts"];
+async function actualPathCollection(missing?: string) {
+  const { posix } = await import("node:path");
+  const text = source("tests/diagnostics/fixed-chromium-application-runner.mjs");
+  const begin = text.indexOf("function productionRuntime() {");
+  const end = text.indexOf("\nexport async function runApplication", begin);
+  const actual = text.slice(begin, end).replaceAll("import.meta.url", "'file:///repo/tests/diagnostics/fixed-chromium-application-runner.mjs'");
+  const authoritative = Object.fromEntries(SOURCES.map(p => [p, readFileSync(p)]));
+  const readPaths: string[] = [];
+  const denied = () => { throw new Error("DENIED unallocated effect"); };
+  const runtime = vm.runInNewContext(`(${actual})()`, {
+    SOURCES, CONFIG: "playwright.fixed-chromium-application.config.ts", OUTPUT: "test-results/fixed-chromium-application",
+    resolve: posix.resolve, dirname: posix.dirname, join: posix.join, relative: posix.relative, isAbsolute: posix.isAbsolute,
+    fileURLToPath: (url: string) => new URL(url).pathname, hash: (value: Buffer) => sha(value),
+    process: { platform: "linux", version: "v22.23.3", argv: [], env: {}, on() {}, off() {} },
+    performance: { now: () => 0 }, Buffer, URL, requireFact: (v: unknown) => { if (!v) throw new Error("binding"); },
+    admitCandidate: denied, packageAdmission: denied, bounded: denied, lstat: denied, writeFile: denied, mkdir: denied,
+    realpath: denied, execFile: denied, createRequire: denied, spawn: denied, createHostedOwner: denied,
+    setTimeout: denied, clearTimeout: denied,
+    readFile: async (p: string) => { assert.ok(p.startsWith("/repo/")); const key = p.slice(6); readPaths.push(key); if (key === missing) throw new Error("fixture read unavailable"); assert.ok(Object.hasOwn(authoritative, key)); return authoritative[key]; },
+  });
+  try { const result = await runtime.bindings(); return { result, authoritative, readPaths }; } finally { runtime.releaseLifetime(); }
+}
+test("runtime exact15 pathset enrolls only approved three dependencies and recovers Q runner", () => {
+  assert.equal(SOURCES.length, 15); assert.equal(new Set(SOURCES).size, 15);
+  for (const p of runtimeAddedPaths) assert.ok(SOURCES.includes(p));
+  const inverse = source("tests/diagnostics/fixed-chromium-application-runner.mjs").replace("  'tests/e2e/support/scheduling-lifecycle-metadata.ts', 'tests/e2e/support/booking-editor-atdd.ts',\n  'tests/e2e/support/resource-cdp-attachment.ts',\n", "");
+  assert.equal(Buffer.byteLength(inverse), 45690); assert.equal(sha(inverse), "07eb719a1012e07c6db4a9fc7a5a32578eb4dd0b60f09368a170ef2c285c2617");
+});
+test("actual source shape rejects every missing path and extra or malformed binding", async () => {
+  const { checkSourceBindings } = await import("../../../diagnostics/fixed-chromium-application-runner.mjs");
+  checkSourceBindings(bindings());
+  for (const path of SOURCES) { const value = bindings(); delete value[path]; assert.throws(() => checkSourceBindings(value), /binding/); }
+  assert.throws(() => checkSourceBindings({ ...bindings(), "not-approved.ts": { bytes: 1, sha256: "a".repeat(64) } }), /binding/);
+  for (const path of runtimeAddedPaths) for (const bad of [{ bytes: 0, sha256: "a".repeat(64) }, { bytes: 1, sha256: "not-hex" }, { bytes: 1, sha256: "a".repeat(64), extra: true }]) assert.throws(() => checkSourceBindings({ ...bindings(), [path]: bad }), /binding/);
+});
+test("actual production collector reads all15 authoritative source bytes without native work", async () => {
+  const value = await actualPathCollection(); assert.deepEqual([...value.readPaths].sort(), [...SOURCES].sort());
+  for (const path of SOURCES) { assert.equal(value.result[path].bytes, value.authoritative[path]!.length); assert.equal(value.result[path].sha256, sha(value.authoritative[path]!)); }
+});
+test("actual production collector refuses unavailable enrolled runtime dependency", async () => {
+  for (const path of runtimeAddedPaths) await assert.rejects(actualPathCollection(path), /fixture read unavailable/);
+});
+test("actual provenance schema requires all15 sources and preserves strict top-level shape", async () => {
+  const f = fixture(); const result = await f.run(); validateProvenance(result.record);
+  assert.equal(Object.keys(result.record.sources).length, 15);
+  for (const path of runtimeAddedPaths) { const value = JSON.parse(JSON.stringify(result.record)); delete value.sources[path]; assert.throws(() => validateProvenance(value), /binding/); }
+  assert.throws(() => validateProvenance({ ...result.record, arbitrary: true }), /binding/);
+});
+test("valid-shaped stale hashes are rejected by actual authoritative revalidation not shape alone", async () => {
+  const { checkSourceBindings } = await import("../../../diagnostics/fixed-chromium-application-runner.mjs");
+  for (const path of runtimeAddedPaths) {
+    const f = fixture(), authoritative = bindings(), stale = { ...authoritative, [path]: { bytes: 10, sha256: "f".repeat(64) } };
+    checkSourceBindings(stale); // Shape deliberately cannot prove freshness.
+    let collections = 0; f.io.bindings = async () => ++collections === 1 ? authoritative : stale;
+    const result = await f.run(); assert.equal(result.exitCode, 1); assert.equal(result.failure, "binding"); assert.equal(f.state.invocations, 0);
+    assert.equal(collections, 2); assert.equal(f.state.compatibility, 1);
+  }
+});
+test("actual collected hashes detect stale declared metadata through independent comparison", async () => {
+  const value = await actualPathCollection();
+  for (const path of runtimeAddedPaths) {
+    const declared = { ...value.result, [path]: { bytes: value.result[path].bytes, sha256: "f".repeat(64) } };
+    assert.notEqual(JSON.stringify(declared), JSON.stringify(value.result));
+    assert.notEqual(declared[path].sha256, sha(value.authoritative[path]!));
+  }
+});
+test("runtime enrollment preserves complete Q admission prefix without weakening assertions", () => {
+  const value = source("tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts");
+  const inverse = value.slice(0, value.indexOf("\n// RUNTIME-PATHSET-TESTS-BEGIN"));
+  assert.equal(Buffer.byteLength(inverse), 103781); assert.equal(sha(inverse), "998453875982196cda773e0067dda56fe165f4094efa44add873900b9a3d0202");
+});
