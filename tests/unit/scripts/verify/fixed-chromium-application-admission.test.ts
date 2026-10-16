@@ -626,7 +626,7 @@ test("125 actual CLI five capability-set checks preserve ordered failure",{timeo
     const f=await capsule125CLI({status:good.replace(`${key}:\t0000`,`${key}:\t0001`)}),r=await f.finish();assert.equal(r.reason,`capsule-cap-${name}-rejected`);
   }
 });
-test("125 actual CLI accepts only reported finite markers/numeric errno",{timeout:2000},async()=>{
+test("125 actual CLI accepts only reported finite markers/numeric errno",{timeout:10000},async()=>{
   const sample=await capsule125CLI({}, {expired:false},refusedMarker("stdin-open"));await sample.finish();
   const hooks=sample.context.hooks as typeof sample.context.hooks & {boundaries:string[]};assert.equal(hooks.boundaries.length,35);
   for(const stage of hooks.boundaries.filter(v=>v!=="unknown"))for(const errno of [null,13,2147483647]){

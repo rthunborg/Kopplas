@@ -1318,3 +1318,39 @@ none
 **⚠️ Needs human:** (none)
 
 **Next:** NEWROOTstates/report-onlycandidate child, thenresource-freeHighauthorfreshoperationalcapsule and sameHighCoordinatorrebind/window. NoPUSH/vars/dispatch/rerun/sourcechanges now.
+
+## Report — 2026-10-16T14:19:21Z (continued — CI unit cancellation; local repair reviewed)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `63186b1`).
+**Pipeline status:** In progress. Story15.1 remains blocked on implementation verification; no P5 or story acceptance.
+**Continues:** Yes. A new immutable candidate and separate High operational rebind are required before publication or another CI run.
+
+**Summary:** Run38910825118 uniquely matched candidate63186b1f, workflow296219797 and attempt1. It completed with2658 passes,0 failures,1 cancelled test and0 skips out of2659; all seven dependent jobs were skipped. The aggregate CLI unit test exceeded2000ms at2003.619864ms. One reviewed test-only literal now gives that aggregate10000ms while preserving its body,103 planned mocked variants and every production/cleanup/suite deadline.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 169h 21m (≈23h 37m AI-run, ≈145h 43m human/idle wait); resumed 38×.
+
+**Stories:**
+1. 15.1: verification blocked; focused local target123/123 (119 admission+4 existing CI-gate tests), zero fail/cancel/skip; distinct Sol6.1Low focused review PASS; exact-head hosted CI pending.
+2. 15.2–15.6: remain pending; no new story or E16 admission.
+
+**Skipped:** (none)
+
+**Epic gate:** Not run; broad story review remains0/3 and review_unverified remains true.
+
+**TEA:** Required integration, application, visual, performance and epic completion evidence remain open. Skipped jobs provide no coverage.
+
+**Retrospective:** Epic14 October8 accepted-with-open-items remains the carry-over baseline; October7 rejection is historical. Epic15 retrospective remains pending.
+
+**Overrides:** Owner-authorized design replaces future legacy-oracle use. Standing authorization covers similar reviewed bounded operations. No deployment; merge commits and retained branches remain required.
+
+**Open questions:**
+1. Native125 cause remains UNKNOWN; this CI run never executed the capability or application jobs.
+2. Windows Node22.23.2 local proof does not establish Ubuntu Node22.23.3 hosted success.
+3. Exact performance cause and progress of the cancelled hosted matrix remain UNKNOWN.
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Prepare and independently validate a new exact-SHA operational rebind and fresh readiness before any push or CI. No deployment.

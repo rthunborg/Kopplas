@@ -9,24 +9,24 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-16T10:33:01Z"
+updated_at: "2026-10-16T14:19:21Z"
 started_at: "2026-10-09T12:57:49Z"
 completed_at: null
-active_seconds: 77273
+active_seconds: 85078
 timing_anchor: null
 is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: security_layer
-selected_role: security-reviewer
-selected_profile: critical
+selected_phase: followup_review
+selected_role: primary-reviewer
+selected_profile: standard
 selected_model: gpt-6.1-sol
-selected_effort: high
+selected_effort: low
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: Distinct High validation of prepared privileged capability-only observation total CI effects dispatch identity temporary variable ownership and exact conditional restoration
+escalation_reason: "Distinct independent focused review of one literal aggregate unit-test budget adjustment and exact inverse/123 observed combined tests; ordinary actual diff, no production or authority changes, not broad P5."
 routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary epic test planning; sensitive implementation/review scope routed explicitly High\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary story test-risk classification\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_triage\",\"profile\":\"light\",\"role\":\"test-risk-triage\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -73,6 +73,29 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct independent actual compiled C mock audit: exact source substitution toolchain artifact provenance case coverage and strict separation from native privileged/browser acceptance\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Resource-free preparation of exact capability-only native refusal observation after compiled mock PASS; privileged ownership and total CI/support effects must be separately admitted\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct High validation of prepared privileged capability-only observation total CI effects dispatch identity temporary variable ownership and exact conditional restoration\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Read-only actual execution-head readiness rebind: privileged capability purpose, full hosted effects, temporary namespace identity, exact owned cancellation proposal and actor/ref/queue drift\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Focused private operational helper corrections: bounded owned-process GitHub invocation, exact dispatched attempt/repository/time restoration authority, fresh feedback source permissions. No frozen tracked changes or runtime.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Focused private successor corrections: actual PS7.6.5 serialized timestamp normalization for dispatch/restoration and output overflow after owned-capture closure before provider mutation success promotion. Frozen F unchanged; no broad story review or runtime.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Fresh read-only operational preclock rebind of privileged provider identity, temporary repo-variable namespace, actor/current feedback permissions/queue, frozen exact source/ref while independent focused review remains active. No writes or helper/kernel execution.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Direct human authorization resolves prior exact operation block and covers similar reviewed bounded checkpoint/owned CI sequences. Fresh read-only guard rebind for new reservation; cancelled window remains unusable. No source/helper mutation.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Direct-human-authorized final release T12:27-13:57UTC with actual holds. High executor owns fresh readonly preflight and literal reviewed v6/v4 Create/BindRun/Restore, two temporary repository variables, deadline and uncertainty handoff. ROOT owns exact push/one dispatch/admitted cancellation; no deploy.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Sealed actual Create prelaunch refusal from API body/transport request filename collision. Minimal private successor payload filename only, actual offline Create orchestration old RED/new GREEN and duplicate refusal; no new runtime, source changes or broad review.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"SAME High v7 failure/fix PASS. New logical operation only after proven prior mutation transports0; fresh read-only guard rebind and new UUID evidence, old intent/window preserved. No runtime until new holds/T/release.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Qualify exact owned transport state after three provider read-only timeouts; no false cleanup/native-exit claims. Re-establish same provider guards through documented read-only MCP methods without additional local CLI launches, preserve F/v7/v4 and all failures; no runtime window.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Assess minimal bounded supported provider GET transport recovery; security-sensitive provider guard and owned process containment, no mutation authority or review waiver.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Implement narrowly allocated private read-only provider adapter and meaningful offline containment/whitelist/deadline/receipt proofs; existing reviewed transport core immutable, sensitive provider and credential publication boundaries.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Execute separately released ONE exact reviewed contained project settings GET; sensitive authentication/privacy/process ownership guard, no retry, provider write, CI window or product credit.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Author narrowly allocated private inventory GET successor and actual-path offline completeness/privacy/owned process controls; sensitive provider guard, reviewed core/v1 immutable, no live GET authority.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Execute separately released once-per-operation contained inventory sequence with positive-first gating, exact scope and privacy/closure/no-retry integrity; no provider mutation or CI admission.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Refresh prewindow read-only Git/GH/identity/source/feedback guards and separately released ONE fresh reviewed contained Project read; sensitive total-effects admission qualification, no CI/variable/push/window release.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Confirm literal reviewed v7/v4 executor ready and no local drift before independently released bounded owned-variable setup/binding/restoration; sensitive operational ownership, no early mutation or duplicate primary push/POST.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Final13:46 operational release: execute literal reviewed v7 owned-variable Create afterT with identity readback and no retry; primary uniquely owns push/POST/cancel, sensitive permissions/restoration.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Persist literal reviewed v7 BindRun for uniquely reconciled actual owned CI38910825118 at exactF; sensitive run/variable restoration identity, no second dispatch or restoration before terminal.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Execute literal reviewed v7 terminal restoration after independent actual terminal failure and persisted exact run binding; identity-qualified deletion only our two prior-absent variables, no cancel/retry or overwrite.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Read-only actual unit failure diagnosis of exact-F candidate whose changed surface includes privileged native admission/proof protocol; classify exact failure and smallest source/test proposal without weakening integrity or implementing before ownership allocation.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"low\",\"escalation_reason\":\"New ordinary one-file aggregate unit-test budget adjustment only; exact test body/assertions and all production deadlines unchanged. Existing High diagnostic actor remains unchanged; no same-task downgrade.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"low\",\"escalation_reason\":\"Reconcile actual119 admission tests versus prior123 combined target from preserved evidence; no further source changes or fabricated completion count, existing bounded intended targeted scope only.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"low\",\"escalation_reason\":\"Distinct independent focused review of one literal aggregate unit-test budget adjustment and exact inverse/123 observed combined tests; ordinary actual diff, no production or authority changes, not broad P5.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"followup_review\",\"profile\":\"standard\",\"role\":\"primary-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: null
 tea_selected: []
 tea_rationale: null
@@ -98,7 +121,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [99e1274e, b7f19e2d, 6f612a21, bc4163ea, 27ce6a2b, 7cdd08a6, 66cd8436, e6c404d3, 5d76de08575fb8fa09197021899d78280829d554, 81836287786a40540e96dbdf46db29c868cde41b, 48386408fc628f7341b711f177ff5833f622959c, 92dc4a5f4f7e9878e9ed9c28e00bda5d98680478, 16180cd63914a57895b36c2db060c43c74da3514, caec31b185bcad597664668d7a835c9c2096aa4d, 0a312c8fbd617d4ce03f97d5484bb23babb0686b, d5a5f85155394a0337ea92fcd606f949559b172a, becfd00e, 80c31af2, a0dd2302ead46e72e77f3293b84085c4f8fe65f3, 6f9e29656df997e2c5c6027874da4bee1ef6c17d, 5c1fb90b2f7f735259208e2d420bce489cbed598, 0d6f43ac90596b8703d8df3b9b986f9026aaaba3, 76868db295ac6b7de06a57f43164d5f02140f938, c4375f61, abaf8d81, db50a9c5, a1b83089, 6883ef61, 2441e3a2, 94baa7c7, afd9c1dd, 6d983e00, ae5b78b6, 09e70e81, 311e744f, 1d4ec146, 37fa423a, b1ad1496, "21835451", 1fadbd1f, b1f91332, 99590bfa, 45deb287, 532ebccf, 689ec7b7, cf9b89f9]
+commits: [99e1274e, b7f19e2d, 6f612a21, bc4163ea, 27ce6a2b, 7cdd08a6, 66cd8436, e6c404d3, 5d76de08575fb8fa09197021899d78280829d554, 81836287786a40540e96dbdf46db29c868cde41b, 48386408fc628f7341b711f177ff5833f622959c, 92dc4a5f4f7e9878e9ed9c28e00bda5d98680478, 16180cd63914a57895b36c2db060c43c74da3514, caec31b185bcad597664668d7a835c9c2096aa4d, 0a312c8fbd617d4ce03f97d5484bb23babb0686b, d5a5f85155394a0337ea92fcd606f949559b172a, becfd00e, 80c31af2, a0dd2302ead46e72e77f3293b84085c4f8fe65f3, 6f9e29656df997e2c5c6027874da4bee1ef6c17d, 5c1fb90b2f7f735259208e2d420bce489cbed598, 0d6f43ac90596b8703d8df3b9b986f9026aaaba3, 76868db295ac6b7de06a57f43164d5f02140f938, c4375f61, abaf8d81, db50a9c5, a1b83089, 6883ef61, 2441e3a2, 94baa7c7, afd9c1dd, 6d983e00, ae5b78b6, 09e70e81, 311e744f, 1d4ec146, 37fa423a, b1ad1496, "21835451", 1fadbd1f, b1f91332, 99590bfa, 45deb287, 532ebccf, 689ec7b7, cf9b89f9, 63186b1f]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -115,8 +138,8 @@ retro:
   open_action_items: 0
 bmad_status_flipped_at: null
 pr_url: null
-ci_run_url: null
-ci_status: unknown
+ci_run_url: "https://github.com/rthunborg/Kopplas/actions/runs/38910825118"
+ci_status: failed
 pr_merged: false
 merge_method: null
 merge_commit: null
@@ -1261,7 +1284,7 @@ application_browser_next_capability_observation:
   restoration_scope: refreshed_namespace_names_and_owned_pair_identities_not_historical_unrelated_values
   cancellation_requires_explicit_admission: true
 application_browser_capability_runtime_candidate:
-  status: local_final_candidate_constructing_runtime_held
+  status: "executed at F; unit cancellation; owned variables restored; window closed"
   source_parent: cf9b89f90a9c0cf8ae5421f7442788392b9634d9
   workflow_id: 296219797
   workflow_path: ".github/workflows/ci.yml"
@@ -1278,6 +1301,63 @@ application_browser_capability_runtime_candidate:
   cancellation_proves_shutdown: false
   namespace_restoration: fresh_names_and_unchanged_owned_pair_identities_not_historical_unrelated_values
   preview_restore: false
-  runtime_released: false
-  variables_released: false
-  publication_released: false
+  runtime_released: true
+  variables_released: true
+  publication_released: true
+  actual_head: 63186b1f9265caaa7df23e931ad73ed5fbd5512c
+  actual_run_id: 38910825118
+  window_state: closed
+  current_owned_variable_residue: 0
+  next_execution_candidate: requires new immutable checkpoint and separate High SHA/metadata rebind
+application_browser_capability_observation_execution:
+  status: "CI completed with aggregate unit cancellation; local literal repair independently reviewed; new hosted verification pending"
+  head: 63186b1f9265caaa7df23e931ad73ed5fbd5512c
+  run_id: 38910825118
+  run_url: "https://github.com/rthunborg/Kopplas/actions/runs/38910825118"
+  workflow_id: 296219797
+  repository_id: 1269069679
+  created_at: "2026-10-16T13:49:19Z"
+  run_attempt: 1
+  unit_counts: "{\"tests\": 2659, \"pass\": 2658, \"fail\": 0, \"cancelled\": 1, \"skip\": 0}"
+  unit_test: 125 actual CLI accepts only reported finite markers/numeric errno
+  unit_duration_ms: 2003.619864
+  aggregate_timeout_before_ms: 2000
+  hosted_toolchain: "{\"node\": \"22.23.3\", \"pnpm\": \"10.24.0\", \"os\": \"Ubuntu24.04.5\"}"
+  dependent_jobs_skipped: 7
+  native_capability_executed: false
+  application_executed: false
+  window: "{\"T\": \"2026-10-16T13:46:00Z\", \"state\": \"closed\", \"holds\": \"released\", \"primary_pushes\": 1, \"primary_dispatches\": 1, \"owned_vars_created\": 2, \"owned_vars_restored\": 2, \"owned_residue\": 0, \"cancel\": 0, \"preview_restore\": false, \"coordinator_fresh_API\": \"401; qualified native receipts plus ROOT live namespace proof used; no fresh independent live API claim\"}"
+  corpus: "{\"path\": \".env.epic15.mail-runtime/root-capability-native-execution-a4a26b05-ca98-49f1-8ec1-2161a7fba118/transport-manifest.complete.json\", \"bytes\": 72079, \"sha256\": \"f46ea7fb2284e815ad4091926b21adc38a3b4c9d4e8f3acab86f991699477e4b\", \"entries\": 260, \"historical_source_bindings\": 21, \"authorized_working_successor_count\": 1}"
+  preserved_failures: ["initial ROOT raw-response versus sanitized-identity whole-object comparison; corrected explicit fields passed before push", "individual job log download native1/99stderr; complete workflow ZIP native0 retained", "diagnosis manifest reader expected absent entryCount; corrected all5bindings without premature success claim", "historical three provider CLI timeouts: direct roots reaped, descendants UNKNOWN"]
+  P5: false
+  broad_review_rounds: 0
+  native125_cause: UNKNOWN
+  dependent_story_15_2_and_E16: held
+application_browser_aggregate_unit_timeout_repair:
+  path: tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts
+  line: 629
+  only_change: named aggregate test timeout2000 to10000ms
+  before_bytes: 66756
+  before_sha256: 7c209f0409b6b065be98788467ded1db2ff005b446730065fa284348b98885be
+  after_bytes: 66757
+  after_sha256: dc235d3d606c473d2958d7308a95beda32c326b6204334242d18768c6f22b0c4
+  exact_inverse: PASS
+  other_tracked_files_conserved_before_bookkeeping: 4041
+  planned_mocked_matrix_variants: 103
+  local_completed_mocked_matrix: true
+  admission_file_tests: 119
+  companion_tests: 4
+  combined_tests: 123
+  pass: 123
+  fail: 0
+  cancelled: 0
+  skip: 0
+  wall_ms: 1684
+  node_duration_ms: 1631.1059
+  toolchain: "{\"node\": \"22.23.2\", \"pnpm\": \"10.24.0\", \"os\": \"Windows\"}"
+  suite_wrapper_seconds: 180
+  production_and_mock_cleanup_deadlines: unchanged
+  independent_review: "{\"verdict\": \"PASS\", \"model\": \"gpt-6.1-sol\", \"effort\": \"low\", \"path\": \".env.epic15.mail-runtime/timeout-independent-review-190bf183-259c-44d3-afa6-cf5a257b601e/capsule.json\", \"bytes\": 1926, \"sha256\": \"e29800063815c27ddc4ff4f9a73831d12390301f3e1ef23239c6a71999a459ee\"}"
+  author_packet: ".env.epic15.mail-runtime/timeout-repair-05a25796-9f67-48c9-9f4c-a9cf9b52626d"
+  count_reconciliation: ".env.epic15.mail-runtime/timeout-count-reconciliation-c3d77355-57b0-452d-9777-7b0f3c85e085"
+  hosted_new_head_verified: false
