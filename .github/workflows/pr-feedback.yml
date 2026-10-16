@@ -119,6 +119,9 @@ jobs:
           cp trusted/.github/codex/pr-feedback/result.schema.json /home/prfix-codex/.codex/result.schema.json
           chmod 644 /home/prfix-codex/.codex/config.toml /home/prfix-codex/.codex/result.schema.json
           sudo install -d -o prfix-codex -g prfix-codex -m 700 /home/prfix-codex/.codex/sessions /home/prfix-codex/.codex/tmp
+          # CLI 0.162.1 locks/opens this non-secret identity file read/write at startup.
+          # Its parent and configuration stay runner-owned and cannot be replaced.
+          sudo install -o prfix-codex -g prfix-codex -m 644 /dev/null /home/prfix-codex/.codex/installation_id
           sudo touch /home/prfix-codex/result.json
           sudo chown prfix-codex:prfix-codex /home/prfix-codex/result.json
           chmod 700 trusted source "$RUNNER_TEMP/pr-feedback-plan"

@@ -311,6 +311,17 @@ blocked outcomes. Reviewers retain authority to resolve their threads.
 
 ## Verification record
 
+CLI `0.162.1` opens and locks `$CODEX_HOME/installation_id` read/write during
+[app-server initialization](https://github.com/openai/codex/blob/092d3acd6bec3e3a14bdc7e7a2810ab628ab759d/codex-rs/core/src/installation_id.rs).
+The coding job precreates only this non-secret runtime file as `prfix-codex`
+with mode `644`. Its home, `.codex` parent, configuration and result schema remain
+owned by root or runner; the coding user cannot replace those files.
+`pr-feedback-runtime-preflight.yml` tests the original refusal and corrected
+initialization on Linux using the exact pinned CLI, an empty child environment,
+and `initialize`/`initialized` followed by EOF shutdown. It sends no model turn,
+uses no App or OpenAI credentials, and does not create attempt journals.
+Its hosted result proves startup only; it does not replace the paid pilot.
+
 Hosted verification remains blocked on the owner-approved setup and paid pilot.
 Local deterministic fixtures use mocked GitHub data and cannot establish real
 App permissions, environment isolation, action sandboxing, billing, downstream
