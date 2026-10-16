@@ -1216,3 +1216,37 @@ none
 **⚠️ Needs human:** (none)
 
 **Next:** Local audit+bookkeeping checkpoint; return auditedcounts/sourcebindings and minimalnextobservationproposal toCoordinator. No furthernative/CI/variable/resource/sourceactions admitted.
+
+## Report — 2026-10-16T10:23:08Z (capability observation preparation sealed; validation next)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `532ebcc`).
+**Pipeline status:** In progress: next capability-only optional-job observation proposal sealed; supportCI total effects included; independent High validation pending.
+**Continues:** Distinct High preparation validation, then NEW final bookkeeping-only HEAD rebind and separate Coordinator runtime/namespace window.
+
+**Summary:** Sequential six-storyEpic15 remains active at15.1; gates preserved.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 165h 25m (≈21h 21m AI-run, ≈144h 04m human/idle wait); resumed 35×.
+
+**Stories:**
+1. 15.1 verification blocked;15.2-15.6 backlog.
+
+**Skipped:** (none)
+
+**Epic gate:** Open; compiledmock36/37PASS grantsno realnative/app/P5credit; broad0/3.
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** AutomaticpreviewsdisabledLEAVEuntilownerreenable; no restoration/replay/deploy. EventualfinalfrontendPRagent-fixverified; mergecommitretainbranches.
+
+**Open questions:**
+1. ActualfutureexecutionHEADnotconstructed; queues,mutabletools/actions,competingactorsrequirefreshqualification. Two metadata-constructionfailuresretained.
+
+**Deferred work:**
+1. PreparedT+2setup/T+5dispatch/T+15identityreconcile/T+75terminal/T+90evidence-variablehandoffprotocolrequiresindependentvalidation/admission. Restoreonlyunchangedownedadmissionpair,neverpreviewflag.
+
+**⚠️ Needs human:** (none)
+
+**Next:** Checkpointappend205767B/7d2b8f13...andstate/reportlocally; no newvariables/dispatch/runtime/sourcechanges.
