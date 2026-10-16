@@ -9,10 +9,10 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-16T18:01:47Z"
+updated_at: "2026-10-16T19:17:54Z"
 started_at: "2026-10-09T13:06:12Z"
 completed_at: null
-active_seconds: 91516
+active_seconds: 94071
 timing_anchor: null
 is_first_in_epic: true
 is_last_in_epic: false
@@ -26,7 +26,7 @@ selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Continue same sensitive parent-admission task: diagnose deterministic prewrite Git diff-check refusal and correct only introduced formatting, preserve reviewed semantics and proofs; no authority expansion"
+escalation_reason: "Sensitive PLAN ONLY for purpose-bound isolated application admission route, helper/worker guards and own Supabase/migrations/fixtures/browser acquisition effects; no control authoring or runtime."
 routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary scheduling UX specification; sensitive authorization/integrity portions explicitly delegated High\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary15.1 ATDD preparation; sensitive access assertions delegated High; shared fixture edits excluded\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -288,6 +288,14 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive read-only actual M General/native failure and numeric path/credential evidence diagnosis from 1184 sealed bindings; minimal proposal only, no source edits, runtime admission or acceptance\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive private-root admission implementation after independent High proposal PASS; fixed parent trust, ACL/mount/descriptor creation, bounded fail-closed controls, exact two-path scope only\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Continue same sensitive parent-admission task: diagnose deterministic prewrite Git diff-check refusal and correct only introduced formatting, preserve reviewed semantics and proofs; no authority expansion\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive exact-SHA privileged CI control compatibility planning; both helper and worker hardcode prior M; plan only, no private authoring or runtime.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive private SHA-bound CI control successor authoring after SAME independent High PLAN PASS; exact two helper substitutions and one worker substitution, 33 offline proofs only.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive authorized READONLY fresh operational readiness for exact O private controls/provider routing/actor permissions/temporary variables and shared CI ownership; no live mutations.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive actual exact-O temporary capability variable phase execution under FINAL18:30 release; finalcurrentguards PASS; literal v10Create only, no retries.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive read-only audit of actual completed integration/RLS/recovery/unit controls evidence at O; classify executed/skipped counts without inferring native authorization acceptance.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive terminal exact-bound O owned variable restoration; fresh completed run+8terminaljobs native0; literal v10Restore only own unchanged pair identity before each delete.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive READONLY source/artifact diagnosis of actual O capability boundary/qualified parent admission/cleanup and General failures/budget; no acceptance or source/runtime allocation.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive PLAN ONLY for purpose-bound isolated application admission route, helper/worker guards and own Supabase/migrations/fixtures/browser acquisition effects; no control authoring or runtime.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate, trace-advisory]
 tea_rationale: "Scheduling, synchronized projections, capacity and drag/keyboard/dialog behavior"
@@ -313,7 +321,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [45a64853, f9e12a81, 279d3149, b9d61a33, 4d7911ac, 3a655a5d, a67a64dc, 66cd8436, d79fff08, bf84cf5d, 181f947f, 22cfb74a, 22cfb74a, 6fd516b0, 521d56fd, e448f856, b99e3f42, 83e27c92, 1aa7c52b, 8630b011, da3a4c59, 27d67de7, 4223e887, 9c26fd72, d75313bb, 4b0ab106, f7b4f154, 437c3da2, e6c404d3, f4a431f6, 85cae2a5, 689a1385, 1bc90218, c49ac882, 4b685196, a5d262f8, a39cd221, 704e9320, c797d815, 25390342e668dee81d6bda42bfe0b5b51ed1723b, a98fc96386df752c631c119de992fc832c8ecb4d, ea5477fff0dbd8e82abb6a376269bfcf54ae95e9, 35e904b2e0d8798f72fbb405b3a888d64fdebd45, 2a071fc49a81984ae55e9e2c08a7583444245d86, ccd7abe9ebe38d846df58087c9d94280ad1d25ab, b01a0511cd1ee66f710de21034faeae9d5537403, eaabd2d0020b391247e1a4383b0eaf6291f0ac83, 39b84268e8eeffb3f9a6ff6b055846187c166d4b, ffa4168a62851a788cea6fff244a87f12b08cca6, 049a6f0f, ef1c5a290bdc3e6b48e68ec492abc0010c636c1b, 3c07917c1a323ba280d2325d7fe050cf1574bf5e, d880cd63fa158272f206d74aa5c4b0280d0d622c, 62dbbf947a916f528e8ae32d7b768750769a8c5d, b38d358fbba883ce79662a2b0fd0cea51d27c121, 4602a2eacdac7636c67751c986b18cc3c546950f, 65207b9ecaf7e5ad39b1840bda76099805acfa57, dab81e3d21a8180a05d3db9af5dde7334f991982, 828474451a0ae833a712d64544482498e79740bd, 706c3c9c7e2f2b2178b1c3506c59a2708356141b, 24d15439ab87847ecd1234b3e475b9d76883de2f, c0a57eda240f2b17793b693b2f3fbb963ebb29ab, 11c5cd1e0a8a6fda3297a9f16a54bb48209a5d9c, 5d76de08575fb8fa09197021899d78280829d554, 81836287786a40540e96dbdf46db29c868cde41b, 48386408fc628f7341b711f177ff5833f622959c, 92dc4a5f4f7e9878e9ed9c28e00bda5d98680478, 16180cd63914a57895b36c2db060c43c74da3514, caec31b185bcad597664668d7a835c9c2096aa4d, 0a312c8fbd617d4ce03f97d5484bb23babb0686b, d5a5f85155394a0337ea92fcd606f949559b172a, becfd00e, 80c31af2, a0dd2302ead46e72e77f3293b84085c4f8fe65f3, 6f9e29656df997e2c5c6027874da4bee1ef6c17d, 5c1fb90b2f7f735259208e2d420bce489cbed598, 0d6f43ac90596b8703d8df3b9b986f9026aaaba3, 76868db295ac6b7de06a57f43164d5f02140f938, c4375f61, abaf8d81, db50a9c5, a1b83089, 6883ef61, 2441e3a2, 94baa7c7, afd9c1dd, 6d983e00, ae5b78b6, 09e70e81, 311e744f, 1d4ec146, 37fa423a, b1ad1496, "21835451", 1fadbd1f, b1f91332, 99590bfa, 45deb287, 532ebccf, 689ec7b7, cf9b89f9, 63186b1f, 48f8d7a7f170ca496b63e8120a34edb92e3ca23e, 6c0fa8fa11a1b4ab7268f623b96693affe3506b0]
+commits: [45a64853, f9e12a81, 279d3149, b9d61a33, 4d7911ac, 3a655a5d, a67a64dc, 66cd8436, d79fff08, bf84cf5d, 181f947f, 22cfb74a, 22cfb74a, 6fd516b0, 521d56fd, e448f856, b99e3f42, 83e27c92, 1aa7c52b, 8630b011, da3a4c59, 27d67de7, 4223e887, 9c26fd72, d75313bb, 4b0ab106, f7b4f154, 437c3da2, e6c404d3, f4a431f6, 85cae2a5, 689a1385, 1bc90218, c49ac882, 4b685196, a5d262f8, a39cd221, 704e9320, c797d815, 25390342e668dee81d6bda42bfe0b5b51ed1723b, a98fc96386df752c631c119de992fc832c8ecb4d, ea5477fff0dbd8e82abb6a376269bfcf54ae95e9, 35e904b2e0d8798f72fbb405b3a888d64fdebd45, 2a071fc49a81984ae55e9e2c08a7583444245d86, ccd7abe9ebe38d846df58087c9d94280ad1d25ab, b01a0511cd1ee66f710de21034faeae9d5537403, eaabd2d0020b391247e1a4383b0eaf6291f0ac83, 39b84268e8eeffb3f9a6ff6b055846187c166d4b, ffa4168a62851a788cea6fff244a87f12b08cca6, 049a6f0f, ef1c5a290bdc3e6b48e68ec492abc0010c636c1b, 3c07917c1a323ba280d2325d7fe050cf1574bf5e, d880cd63fa158272f206d74aa5c4b0280d0d622c, 62dbbf947a916f528e8ae32d7b768750769a8c5d, b38d358fbba883ce79662a2b0fd0cea51d27c121, 4602a2eacdac7636c67751c986b18cc3c546950f, 65207b9ecaf7e5ad39b1840bda76099805acfa57, dab81e3d21a8180a05d3db9af5dde7334f991982, 828474451a0ae833a712d64544482498e79740bd, 706c3c9c7e2f2b2178b1c3506c59a2708356141b, 24d15439ab87847ecd1234b3e475b9d76883de2f, c0a57eda240f2b17793b693b2f3fbb963ebb29ab, 11c5cd1e0a8a6fda3297a9f16a54bb48209a5d9c, 5d76de08575fb8fa09197021899d78280829d554, 81836287786a40540e96dbdf46db29c868cde41b, 48386408fc628f7341b711f177ff5833f622959c, 92dc4a5f4f7e9878e9ed9c28e00bda5d98680478, 16180cd63914a57895b36c2db060c43c74da3514, caec31b185bcad597664668d7a835c9c2096aa4d, 0a312c8fbd617d4ce03f97d5484bb23babb0686b, d5a5f85155394a0337ea92fcd606f949559b172a, becfd00e, 80c31af2, a0dd2302ead46e72e77f3293b84085c4f8fe65f3, 6f9e29656df997e2c5c6027874da4bee1ef6c17d, 5c1fb90b2f7f735259208e2d420bce489cbed598, 0d6f43ac90596b8703d8df3b9b986f9026aaaba3, 76868db295ac6b7de06a57f43164d5f02140f938, c4375f61, abaf8d81, db50a9c5, a1b83089, 6883ef61, 2441e3a2, 94baa7c7, afd9c1dd, 6d983e00, ae5b78b6, 09e70e81, 311e744f, 1d4ec146, 37fa423a, b1ad1496, "21835451", 1fadbd1f, b1f91332, 99590bfa, 45deb287, 532ebccf, 689ec7b7, cf9b89f9, 63186b1f, 48f8d7a7f170ca496b63e8120a34edb92e3ca23e, 6c0fa8fa11a1b4ab7268f623b96693affe3506b0, 83c60e0033628b4158448b9e782a9ad5a12e062f]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -4773,7 +4781,7 @@ parent_placement_implementation:
   offline_controls_applicable_after_correction: true
   offline_controls_rerun_after_correction: false
 parent_checkpoint:
-  status: local-checkpoint-qualified
+  status: local-committed-clean
   tracked_bookkeeping_writes: 3
   staged_writes: 0
   commit_attempts: 1
@@ -4788,6 +4796,11 @@ parent_checkpoint:
   variables_admitted: false
   CI_admitted: false
   runtime_admitted: false
+  actual_head: 83c60e0033628b4158448b9e782a9ad5a12e062f
+  actual_tree: 82feb5631fb52a7f770e0830bf4cbfd7e9ac32e9
+  remote_pushed: true
+  operational_metadata_trigger_review: "SAME independent High PASS; actual O clean/tree/parent/5paths/message/21bindings/19+2/prefix/singleappend/protectedstates/routing/CI+mock exclusions qualified; no fresh readiness"
+  actual_pushed_head: 83c60e0033628b4158448b9e782a9ad5a12e062f
 parent_formatting_correction:
   status: SAME-independent-High-PASS
   scope: "only ten ASCII spaces removed from introduced blank CI line; every remaining byte conserved"
@@ -4797,3 +4810,173 @@ parent_formatting_correction:
   manifest: "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\epic15-parent-whitespace-correction-36884a22-e14a-432d-b68f-01323833c1f1\\manifest.json"
   proof_bindings: 25
   semantics_conserved: true
+o_compatibility_plan:
+  status: SAME-independent-High-PLAN-PASS
+  author: existing adoption15_high
+  route_input_refusal: "wrong role delegate refused before route/timing; corrected build-delegate"
+  source_mutations_admitted: false
+  helper_authoring_admitted: false
+  runtime_admitted: false
+  plan: ".env.epic15.mail-runtime/epic15-O-control-plan-a80c9517-7163-4550-9bfb-83013e601d8b/compatibility-plan.json"
+  plan_sha256: 3b0fa579446731335e85239cdd472c3a2bb5f891a373a7869346a8c2a318ae5d
+  manifest_bindings: 88
+  root_binary_mismatches: 0
+  planned_offline_controls: 33
+  executed_offline_controls: 0
+  primary_binding_folder: "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\root-O-control-binding-31355c65-c004-4a8d-8545-3dd34b6e7133"
+  control_authoring_admitted: true
+  tracked_changes_admitted: false
+  publication_admitted: false
+o_control_successor:
+  status: SAME-independent-High-joint-PASS
+  folder: ".env.epic15.mail-runtime/epic15-O-control-successor-6c375e47-a946-4aa4-8aae-1e2d71b0755a"
+  manifest_sha256: 8b2defd1e2ca11f81ab445a62e008004d9cbfd1e0ab2425dfe7cfd4a00283cdf
+  proof_bindings: 47
+  offline_controls: "{\"pass\": 33, \"fail\": 0, \"skip\": 0, \"worker\": 14, \"helper\": 15, \"actual_sourceguard\": 4}"
+  historical_proofs_retained: 29
+  exact_inverse_and_other_guard_bytes_conserved: true
+  PRIMARY_copies_identical: true
+  root_binary_mismatches: 0
+  mock_only: true
+  runtime_admitted: false
+  publication_admitted: false
+  variables_admitted: false
+  CI_admitted: false
+o_readiness:
+  status: historical-completed-window-closed-restoration-qualified
+  runtime_admitted: false
+  variables_admitted: false
+  publication_admitted: false
+  CI_admitted: false
+  active_clock: false
+  proposed_T: "2026-10-16T18:30:00Z"
+  proposed_handoff: "2026-10-16T20:00:00Z"
+  actual_actor_ACKs: "{\"E16_cursor\": \"fd90fdb3-f168-4b93-a1b5-81d43eba04e1:26\", \"E16_turn\": \"01a145ed-8f43-7c40-bb4f-f525ece65ca1\", \"feedback_cursor\": \"9a9d17d0-2b54-4e9c-9c42-1901f3e4719f:12\", \"feedback_turn\": \"01a145ed-9885-7b61-89d1-3140fd264f55\", \"window\": \"18:30–20:00UTC proposed only\", \"no_intervening_conflict_confirmed\": true, \"live_remote_claim\": false}"
+  folder: ".env.epic15.mail-runtime/epic15-O-readiness-a6652db3-e526-421e-83b0-ce464697c449"
+  manifest_sha256: f2c54f5e134d433b5aa514eb18ae12cf38342c4097e910b192fcf76518ddca1f
+  proof_bindings: 68
+  root_binary_mismatches: 0
+  provider_Project: "18:16:08Z native/wrapper0 exact routing/preview disabled TRUE"
+  provider_All: "18:16:19Z complete0 native/wrapper0"
+  provider_Branch: "18:16:25Z complete0 native/wrapper0 request-bound"
+  GH: remoteM/actorrepo/noE15PR/original8identitiespairabsent/14terminal0live0atO/currentactualfeedbackrefs+permissionsqualified
+  FINAL_window_release_received: true
+  T: "2026-10-16T18:30:00.0000000+00:00"
+  setup_deadline: "2026-10-16T18:32:00Z"
+  push_POST_deadline: "2026-10-16T18:35:00Z"
+  Bind_deadline: "2026-10-16T18:45:00Z"
+  conditional_owned_cancel: "2026-10-16T19:45:00Z"
+  evidence_handoff: "2026-10-16T20:00:00Z"
+  no_actions_before_T: true
+  PRIMARY_executor_READY: true
+  v10_executor_READY: true
+  no_intervening_conflict: true
+  transport_folder: ".env.epic15.mail-runtime/root-O-native-execution-3237a238-6189-4464-9846-d4ee8ea0afa4"
+  final_current_guards: "pending atT; mismatch/unknown HOLD no retry"
+  full_future_effects: "ordinary verify/DB/General/dashboard/recovery plus approved privileged capability bootstrap/qualified parent admission/bounded private diagnostic seven-day artifact; no app-mode promotion"
+  deployment_admitted: false
+  p5_credit: false
+  final_guards_sha256: d50da283bdc08ad5f67b42947e5b99cd2109cdf4c5820ca43d0b79a9b45f1f77
+o_execution:
+  status: terminal-failure-restoration-qualified-window-closed
+  head: 83c60e0033628b4158448b9e782a9ad5a12e062f
+  pushed_once_native: 0
+  dispatch_once_native: 0
+  run_id: 38948039287
+  created_at: "2026-10-16T18:31:47Z"
+  run_attempt: 1
+  binding_bytes: 657
+  binding_sha256: 54c6d30f0c15d42fd70badaa85d65f29243e658da4ca74b3ee93037b56da5807
+  actual_journal: ".env.epic15.mail-runtime/epic15-O-control-successor-6c375e47-a946-4aa4-8aae-1e2d71b0755a/owned-variable-execution-2abe16d4-6a5a-478e-a9d5-58bb8743fe86"
+  journalId: bff40c13-4cc6-4fa2-8271-fb1a85a3e6bd
+  Create_native: 0
+  Create_completed: "18:30:51.2281512Z"
+  BindRun_native: 0
+  BindRun_completed: "18:32:36.6524427Z"
+  BindRun_mutations: 0
+  owned_variables: 0
+  active_clock: false
+  terminal: true
+  restored: true
+  conditional_owned_cancel_deadline: "19:45Z"
+  handoff_deadline: "20:00Z"
+  no_blind_retry: true
+  deployment: false
+  p5_credit: false
+  broad_review_rounds: 0
+  temporary_actor_holds: released
+  cancel_deadline_active: false
+  handoff_deadline_active: false
+  capability_job: "success; native credit requires focused artifact audit"
+  General_job: "failure; pending focused diagnosis"
+  restoration_live_receipt_sha256: ee62947b77c0d37a30d882124067cdd00d7b8d931426fe1bf73174ad4d9a99d2
+  full_corpus_manifest_sha256: b53be2e32dc14eb052a3ccfa8eed79aa42aeac1ced095e3cf02dfab594fe5321
+  full_corpus_bindings: 1974
+o_completed_job_audit:
+  status: SAME-independent-High-PASS
+  unit_pass: 2711
+  unit_fail_cancel_skip: 0
+  DB_pass: 1736
+  DB_skip: 1
+  RLS_pass_subset_of_DB: 752
+  dashboard_pass: 57
+  recovery_isolated_pass: 1
+  mock_controls_within_unit: 175
+  no_native_credit_from_mocks: true
+  manifest_sha256: 3335345787dc16d3f59cad50073b112aed5e42dd1749e249316a547ecf034ceb
+o_diagnosis:
+  status: SAME-independent-High-qualified-PASS
+  folder: ".env.epic15.mail-runtime/epic15-O-terminal-diagnosis-0bd2cd4e-9847-43cb-ace7-82b9a7f8dded"
+  manifest_sha256: b79064c75e87a2cbeb3551c5dca5421f64d7a430b8d8dd28621717f295432bc8
+  bindings: 49
+  root_binary_mismatches: 0
+  full_corpus_before_after: 1974
+  capability: "bounded success-only native receipt; not browser/application acceptance"
+  numeric_parent_admission: "COMPLETE root/var/vartmp0755/0755/1777; session0711/workload0555; ACL absent"
+  unknowns: [actual workload numeric IDs unretained, later owner service shutdown independently unobserved, General abort cause/canceled flag causality unknown]
+  General: "{\"logical_expected\": 368, \"logical_unexpected\": 1, \"logical_skip\": 13, \"physical_pass\": 375, \"physical_fail\": 2, \"physical_skip\": 23, \"AC2\": \"ERR_ABORTED twice; response.finished pending/text uninvoked\", \"scheduling_unexecuted\": 10, \"attempt_sum_ms\": 567610, \"budget_ms\": 800000, \"current_budget_pass\": true, \"historical_M_overbudget_retained\": true}"
+  visuals: "{\"distinct_desktop\": 5, \"captures_each\": 2, \"phone\": 0, \"mandatory_target_gate\": 11, \"gate_pass\": false}"
+  proposal: "prepare existing isolated full158 application route with separately allocated purpose-specific private controls; no tracked source fix justified; preserve original requests/assertions"
+  source_changes_admitted: false
+  new_CI_admitted: false
+  variables_admitted: false
+  runtime_admitted: false
+  p5_credit: false
+  broad_review_rounds: 0
+o_application_plan:
+  status: SAME-independent-High-PLAN-and-effects-PASS
+  author: same adoption15_high explicit Sol6.1 High
+  no_control_authoring: true
+  no_tracked_changes: true
+  no_acquisition_or_native_execution: true
+  no_runtime_or_new_CI: true
+  no_operational_window: true
+  General_visual_P5_gates_preserved: true
+  plan_sha256: 9520387c16271f42a5256362252f8826196cca25fc0f0b1e7a73f2ecbf997d99
+  bindings: 18
+  root_binary_mismatches: 0
+  offline_controls_planned: 47
+  offline_controls_executed: 0
+  fresh_PRIMARY_candidate_required: "unchanged SHA+workflow_dispatch unique run guard already has O capability run; no app repeat at O"
+  candidate_issued: false
+  planned_effects_reviewed: true
+  runtime_admitted: false
+  control_authoring_admitted: false
+  fresh_PRIMARY_checkpoint_allocation: "LOCAL existing2Rootstates/report only; source21 conserved; after actual P operational rebind required"
+  P_issued: false
+p_checkpoint:
+  status: local-three-path-checkpoint-qualified
+  parent: 83c60e0033628b4158448b9e782a9ad5a12e062f
+  purpose: fresh SHA required by unchanged unique-run guard before application-mode controls
+  source_writes: 0
+  tracked_bookkeeping_paths: 3
+  publication_admitted: false
+  variables_admitted: false
+  CI_admitted: false
+  runtime_admitted: false
+  blocked_gates_preserved: true
+  tracked_bookkeeping_writes: 3
+  report_rendered_once: true
+  source_bindings_conserved: 21
+  commit_attempts: 1
+  actual_P_pending: true

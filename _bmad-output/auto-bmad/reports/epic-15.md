@@ -1437,3 +1437,47 @@ none
 **⚠️ Needs human:** (none)
 
 **Next:** Return this local checkpoint actual commit/tree/parent/raw message/current21 source bindings for SAME independent High operational metadata/trigger rebind. Prepare minimal new-SHA compatibility PLAN ONLY for both helper and worker constants plus PRIMARY source bindings. No push, variables, CI or runtime until separately released.
+
+## Report — 2026-10-16T19:16:43Z (checkpoint - O native capability verified; application and General verification blocked)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `83c60e0`).
+**Pipeline status:** Epic 15 in progress; story 15.1 remains build-blocked/verification-failed. P5 is false, broad review rounds 0/3. No story has cleared E5h or landed. All O operational windows are closed.
+**Continues:** Private application-route PLAN preparation only. A fresh PRIMARY bookkeeping-only SHA is a prerequisite of the unchanged unique-run guard; no repeat application dispatch at O, guard relaxation, control authoring or runtime is currently admitted.
+
+**Summary:** All six stories remain sequential. O was committed and pushed once; exact run38948039287 completed FAILURE. Four required jobs and the optional capability job succeeded; General failed. Actual temporary variables were restored and both temporary actor reservations released.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 174h 18m (≈26h 15m AI-run, ≈148h 03m human/idle wait); resumed 41×.
+
+**Stories:**
+1. 15.1 remains in progress: accepted specification and Contract D obligations retained; build verification remains blocked by General AC2, application and visual gates. O native capability proves only its bounded synthetic predicates.
+2. 15.2 backlog; prepare and validate its specification before implementation, after verified 15.1 E5h and ownership handoff.
+3. 15.3 backlog; prepare and validate its specification before implementation.
+4. 15.4 backlog; prepare and validate its specification before implementation.
+5. 15.5 backlog; prepare and validate its specification before implementation, preserving ADR-B004 public feed obligations.
+6. 15.6 backlog; prepare and validate its specification before implementation.
+
+**Skipped:** (none)
+
+**Epic gate:** No completion promotion: P5 independent review, the three-round cap, P6/P7, E5h clean-SHA contracts/migrations/resources/handoff, E8 trace/NFR/test review, retrospective, updated docs, one final labelled/attached PR, exact-head checks and independent merge review remain required. Merge commits and retained branches; no deploy.
+
+**TEA:** Required TEA completion gates remain pending.
+
+**Retrospective:** Epic14 integrated baseline uses the October8 accepted-with-open-items retrospective; October7 rejection is historical. Epic15 retrospective remains pending.
+
+**Overrides:** Standing direct owner authorization for similar necessary future actions is retained; actual application-route total effects require explicit focused qualification before allocation. Use Sol6.1 Low for ordinary work and explicit High delegates for sensitive work; retain independent review. UXB-A9 is an owner-authorized design decision, never newly observed legacy evidence. No legacy URLs/browsing, deployment, preview restoration, scope waiver, assertion weakening or silent acceptance. Documents/E20 preparation is finalized; E16 schema prerequisite remains held until 15.1 E5h.
+
+**Open questions:**
+1. General O:368 expected/1 unexpected/13 skipped logical;375 passed/2 failed/23 skipped physical. AC2 failed twice with ERR_ABORTED; finished remained pending and response.text was uninvoked. Ten scheduling cases were unexecuted. Retry HAR prefetch records do not establish CDP canceled flags or abort causality. O attempt sum567610ms is within800000ms; prior M879749ms overrun remains historical.
+2. Visual gate:five distinct desktop targets captured twice, phone0; mandatory11-target acceptance remains unmet. Manual/daylight/one-hand/calendar p95 evidence remains unresolved.
+3. O original208-byte success-only capability receipt proves bounded credential/capability predicates, detached synthetic descendant, leader reaping and retained same-leaf emptiness. Numeric parent metadata COMPLETE:root/var/vartmp0755/0755/1777,session0711/workload0555,ACLabsent. Exact numeric workload IDs are unretained; later owner service shutdown independently unobserved. No real browser/application acceptance follows from this receipt.
+4. Application preparation must inventory acquisition/package/binary/SDK provenance, fresh generation and COMPATIBILITY-to-APPLICATION boundaries, full optional-job effects and unresolved prerequisites; preserve current capability controls and all original requests/assertions. Optional application green cannot replace General red or grant visual/P5/15.2/E16 credit.
+
+**Deferred work:**
+1. Accepted four-job audit:unit2711 pass/0 fail-cancel-skip in41.95s of180s;175 focused mock controls are within2711 and confer no native credit. DB1736 pass/1 explicit skip across144 passed files/1 skipped file; RLS752 across50 files is a subset, not additive. Dashboard57 pass; isolated recovery1 pass. Broad recovery-storage-immutability skip remains unexecuted. Node22.23.3/Python3.12.15 observed.
+2. O execution:one v10 Create, one normal M-to-O push, one workflow296219797 POST; uniquely bound run38948039287/attempt1/exactO/ownbranch/repository1269069679/actor53317458. Journalbff40c13-4cc6-4fa2-8271-fb1a85a3e6bd. Create11, Bind2, Restore10 transports native0 with closure. Restore18:49:17.327Z; independent fresh readback18:49:43.898583Z proves complete original8 name-created-updated identities unchanged, owned pair absent/residue0, no unrelated-value comparison. Temporary E16/feedback holds actually released; no19:45 cancel or20:00 handoff timer remains.
+3. Immutable evidence retained:O1974-binding corpus0 mismatches, historicalM1184 conserved1182 plus exactly2 reviewed O source successors, nine original archives/161 extracted files/27199570 uncompressed bytes with CRC/path/duplicate-case/symlink/encryption/limit checks. Root interpreted no artifact prose and executed no artifact code. O diagnosis49 and accepted four-job audit36 bindings preserved. Native success did not authorize application-mode promotion.
+
+**⚠️ Needs human:** (none)
+
+**Next:** After SAME High qualification of the sealed application PLAN, allocate only the exact ROOT bookkeeping checkpoint needed to issue a fresh candidate SHA with all21 source bindings conserved. Then issue truthful PRIMARY metadata and independently review the purpose-specific private application controls and total effects before fresh operational guards, actor reservations and any new window. No O repeat or blind retargeting.
