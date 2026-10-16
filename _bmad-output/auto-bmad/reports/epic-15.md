@@ -1481,3 +1481,50 @@ none
 **⚠️ Needs human:** (none)
 
 **Next:** After SAME High qualification of the sealed application PLAN, allocate only the exact ROOT bookkeeping checkpoint needed to issue a fresh candidate SHA with all21 source bindings conserved. Then issue truthful PRIMARY metadata and independently review the purpose-specific private application controls and total effects before fresh operational guards, actor reservations and any new window. No O repeat or blind retargeting.
+
+## Report — 2026-10-16T21:53:38Z (checkpoint - reviewed application generated-file repair; mandatory verification blocked)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `ab5595a`).
+**Pipeline status:** Epic15 in progress;15.1 remains build-blocked/verification-failed, P5false and broad review0/3. No story has cleared E5h or landed. All P operational windows closed; temporary E16/feedback holds released; owned variables restored.
+**Continues:** Local checkpoint of exactly two independently reviewed CI/control-test successors and three existing ROOT bookkeeping files. Actual new-SHA operational rebind and separately qualified controls/readiness are required before push or another hosted run. No repeat at P.
+
+**Summary:** All six stories remain sequential. P run38962295575 completed FAILURE. Four required jobs succeeded; General and optional APPLICATION failed. Application failed before test execution on EACCES opening generated next-env.d.ts. The bounded repair passed independent High source review and offline controls; hosted success remains unproved.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 176h 55m (≈27h 28m AI-run, ≈149h 27m human/idle wait); resumed 42×.
+
+**Stories:**
+1. 15.1 remains in progress; accepted specification, ContractD calendar-host obligations and owner-design UXB-A9 decision retained. General AC2, attempt-sum budget and mandatory visual gates remain blocked.
+2. 15.2 backlog; prepare and validate specification before implementation, after verified15.1 E5h and ownership handoff.
+3. 15.3 backlog; prepare and validate specification before implementation.
+4. 15.4 backlog; prepare and validate specification before implementation.
+5. 15.5 backlog; prepare and validate specification before implementation, preserving ADR-B004 feed obligations.
+6. 15.6 backlog; prepare and validate specification before implementation.
+
+**Skipped:** (none)
+
+**Epic gate:** No completion promotion. Preserve independent P5 review and three-round cap, P6/P7, E5h clean-SHA contracts/migrations/resources/handoff, E8 trace/NFR/test review, retrospective, project docs, one final agent-fix-labelled/attached PR, exact-head checks and independent merge review. Merge commit; retain branches; no deployment.
+
+**TEA:** Required TEA completion gates remain pending.
+
+**Retrospective:** Epic14 integrated closeout uses October8 accepted-with-open-items; October7 rejection remains historical. Epic15 retrospective pending.
+
+**Overrides:** Standing owner authorization for similar necessary actions retained. Sol6.1Low ordinary work; explicit High sensitive delegates, including independent review. No legacy URLs/browsing/evidence; UXB-A9 is owner-authorized design. No deployment, preview restoration, scope waiver, assertion weakening or silent acceptance. Documents/E20 finalized; E16 schema prerequisite held until15.1 E5h. Current local checkpoint does not release push, variables, provider operations or hosted execution.
+
+**Open questions:**
+1. P General:368expected/1unexpected/13skipped logical;375pass/2fail/23skip physical. AC2 twice ERR_ABORTED, finished pending/text uninvoked in original20-key snapshots. Cancellation cause UNKNOWN; HAR abort is not CDP canceled proof. Ten scheduling serial cases unexecuted. AttemptSUM854328ms exceeds800000 by54328ms; report wall911418.394ms is a separate metric. Historical O567610ms within budget and M879749ms overrun remain unchanged.
+2. Visual evidence remains five distinct desktop targets twice, phone0; all11 mandatory targets unmet. Manual/daylight/one-hand/calendar p95 evidence remains unresolved;420ms pilot does not establish p95.
+3. P optional APPLICATION original native report has0suites/0outcomes and webServer startup exit1: EACCES next-env.d.ts. Pinned Next16.3.8 direct-write behavior is statically qualified; hosted Next manifest remains lock/install-qualified rather than separately retained identity. Numeric workload credentials and later final owner shutdown remain unretained UNKNOWN.
+4. Independent Low static codepath map identifies capture/barrier/teardown/route branches and login router.refresh then replace, without establishing runtime cause. Separate SAME High General lifecycle observation proposal remains static and awaits independent qualification. Exact router-call timing is not observable through its proposed test-only hooks; normal fixture release cannot prove later framework closure. AC2 two durations9913ms cannot alone explain54328ms aggregate excess.
+
+**Deferred work:**
+1. Reviewed source repair: application-only root Python capsule after unchanged recursive permission lock/home transfer. Exactly7 validated inputs; one exclusiveNOFOLLOW generated next-env.d.ts; heldFD-only ownership/mode changes; namespace/inode checks; final workload UID/GID0600. Substitution refuses without foreign mutation/retry/fallback/deletion. Internal1s/128B; outerTERM2s/KILL1s; existing bootstrap120s unchanged. Seven other jobs, home/capability controls and19other sources conserved. Exact inverses recover both P sources. Initial tooling-gap refusal preserved rather than silently path-transferring a substituted file.
+2. Actual resource-free focused controls183pass/0fail-cancel-skip (175retained+8new;36new mocked evaluations). Initial182/1 mocked-method-signature failure retained and corrected only in fixture. YAML,11optional Bash,9Python syntax, lint, full nonincrementalTS and Git diff-check pass. These mocks provide no hosted application acceptance, P5 or later-story credit. No extra rerun absent a new change/failure.
+3. Accepted P four-job audit: unit2711pass/0fail-cancel-skip across100suites,29.91s within180s;175focused mock controls are a subset. DB1736pass/1skip across144passfiles/1skipfile,338.81s; RLS752/50files is a subset. Dashboard57pass; isolated recovery1pass. Broad recovery-storage-immutability explicit skip remains unexecuted. Node22.23.3/Python3.12.15 observed. Optional green cannot replace mandatory General red.
+4. P actual execution retained: one application Create, normal O-to-P push, one workflow296219797 POST, unique run38962295575/attempt1/exactP/branch/repository1269069679/actor53317458, one Bind and one Restore; no cancel/retry. All8jobs terminal. Actual deletes completed20:53:42.3678694Z and20:53:45.3944964Z; closure20:53:45.9720862Z. ROOT fresh namespace read20:54:03.539078Z proves complete original8 name-created-updated identities unchanged and owned pair absent/residue0, without unrelated-value comparison. Create top-level precise process-end time was not retained; ready completion positively observed20:26:18Z. E16/feedback temporary holds actually released; no21:40cancel or21:55handoff timer remains.
+5. Immutable P evidence:2741-entry historical corpus,2739current entries conserved plus exactly2 reviewed source successors with matching preserved preimages. Prior O1974/Mhistory retained;11original ZIPs,171safe-extracted files/28276067B retained with CRC/path/case/symlink/encryption/size controls. ROOT read no artifact prose or source/spec prose and executed no artifact code. Diagnosis25+18, completed-job audit8+13 and source implementation86+3 bindings preserved. Earlier transport/fixture/syntax refusals and original privacy hold remain history.
+6. Future hosted work requires actual new-SHA PRIMARY21-entry metadata, independently qualified purpose-specific helper AND worker constants/inverses/offline controls, revised total-effect and privacy qualification, fresh bounded provider/GitHub/variable identity guards, fresh actual E16/feedback reservations and explicit Coordinator execution window. Preview deployments remain owner-disabled; do not restore previews. General diagnostics implementation has no allocation yet.
+
+**⚠️ Needs human:** (none)
+
+**Next:** Complete this allocated local max5path checkpoint, preserve raw commit/message/scope/clean-state evidence and21working/Git source bindings with19conserved+2reviewed successors. Send actual commit for SAME independent High operational metadata/trigger/SHA rebind before any push/variable/CI/provider/runtime. Separately qualify the sealed General observation proposal; preserve unknown cause,800000ms attemptSUM budget and all completion gates.

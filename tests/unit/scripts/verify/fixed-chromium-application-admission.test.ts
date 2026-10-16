@@ -720,7 +720,7 @@ test("path metadata keeps exact workflow inverse and required native success che
   assert.match(text, /retention-days: 7/);
   assert.match(text, /name: Preserve capability capsule receipt[\s\S]*?if-no-files-found: error/);
   assert.match(text, /run: node tests\/diagnostics\/fixed-chromium-application-runner\.mjs --capability-capsule/);
-  const inverse = text.replace(/          # HOSTED-PATH-METADATA-BASH-BEGIN[\s\S]*?          # HOSTED-PATH-METADATA-BASH-END\n/, "")
+  const inverse = generatedNextEnvWorkflowInverse(text).replace(/          # HOSTED-PATH-METADATA-BASH-BEGIN[\s\S]*?          # HOSTED-PATH-METADATA-BASH-END\n/, "")
     .replace(/      # HOSTED-PATH-METADATA-UPLOAD-BEGIN[\s\S]*?      # HOSTED-PATH-METADATA-UPLOAD-END\n/, "")
     // OWNED-PARENT-INVERSE-BEGIN
     .replace(/          # OWNED-PARENT-ADMISSION-BEGIN[\s\S]*?          # OWNED-PARENT-ADMISSION-END\n/, "          private_root=\"$(mktemp -d \"${RUNNER_TEMP}/kopplas-owned-XXXXXXXX\")\"\n")
@@ -770,13 +770,110 @@ for (const fault of ownedParentCases) test("actual owned parent admission " + fa
 
 test("owned parent admission preserves exact M workflow and unit inverses", () => {
   const text = source(".github/workflows/ci.yml");
-  const previous = text.replace(/          # OWNED-PARENT-ADMISSION-BEGIN[\s\S]*?          # OWNED-PARENT-ADMISSION-END\n/,
+  const previous = generatedNextEnvWorkflowInverse(text).replace(/          # OWNED-PARENT-ADMISSION-BEGIN[\s\S]*?          # OWNED-PARENT-ADMISSION-END\n/,
     "          private_root=\"$(mktemp -d \"${RUNNER_TEMP}/kopplas-owned-XXXXXXXX\")\"\n");
   assert.equal(Buffer.byteLength(previous), 56664);
   assert.equal(sha(previous), "7e9eeca407f6926c24dc1a8be8d112daf4eaa08929db90c9570b95dfb5894fc8");
-  const unit = source("tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts");
+  const unit = generatedNextEnvUnitInverse(source("tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts"));
   const inverse = unit.slice(0, unit.indexOf("\n// OWNED-PARENT-ADMISSION-TESTS-BEGIN"))
     .replace(new RegExp("    // OWNED-PARENT-INVERSE-BEGIN[\\s\\S]*?    // OWNED-PARENT-INVERSE-END\\n"), "");
   assert.equal(Buffer.byteLength(inverse), 76918);
   assert.equal(sha(inverse), "69421cedbb12cae21de4106d498df3b4e063f1595ad311e2c1296d885100e315");
+});
+
+// GENERATED-NEXT-ENV-TESTS-BEGIN
+function generatedNextEnvWorkflowInverse(value: string) {
+  return value.replace(/          # GENERATED-NEXT-ENV-BIND-BEGIN[\s\S]*?          # GENERATED-NEXT-ENV-BIND-END\n/, "          python3 - \"$private_root\" \"$generation\" \"$source_sha\" \"$unit\" \"$node_path\" \"$candidate\" \"$cli_relative\" \"$uid\" \"$gid\" <<'PY'\n          import pathlib,sys\n          root,generation,source,unit,node,candidate,cli,uid,gid=sys.argv[1:]\n          values=[('generation',generation),('source',source),('unit',unit),('node',node),('repo',root+'/workload'),('candidate',candidate),('cli',root+'/workload/'+cli),('home',root+'/home'),('root',root),('uid',uid),('gid',gid)]\n          if any('\\n' in value or '\\r' in value or '\\0' in value for _,value in values): raise SystemExit(1)\n          pathlib.Path(root+'/control/session').write_text(''.join(key+'='+value+'\\n' for key,value in values))\n          PY\n")
+    .replace(/          # GENERATED-NEXT-ENV-ADMISSION-BEGIN[\s\S]*?          # GENERATED-NEXT-ENV-ADMISSION-END\n/, "");
+}
+function generatedNextEnvUnitInverse(value: string) {
+  return value.slice(0, value.indexOf("\n// GENERATED-NEXT-ENV-TESTS-BEGIN"))
+    .replace("const inverse = generatedNextEnvWorkflowInverse(text).replace(/          # HOSTED-PATH-METADATA-BASH-BEGIN", "const inverse = text.replace(/          # HOSTED-PATH-METADATA-BASH-BEGIN")
+    .replace("const previous = generatedNextEnvWorkflowInverse(text).replace(/          # OWNED-PARENT-ADMISSION-BEGIN", "const previous = text.replace(/          # OWNED-PARENT-ADMISSION-BEGIN")
+    .replace('const unit = generatedNextEnvUnitInverse(source("tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts"));', 'const unit = source("tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts");');
+}
+function generatedNextEnvSource(marker: string, ending: string) {
+  const text = source(".github/workflows/ci.yml");
+  const block = text.slice(text.indexOf(marker), text.indexOf(ending, text.indexOf(marker)));
+  const first = block.indexOf("          import ");
+  const last = block.indexOf("          PY", first);
+  assert.ok(first > 0 && last > first);
+  return block.slice(first, last).split("\n").map(line => line.startsWith("          ") ? line.slice(10) : line).join("\n");
+}
+const generatedNextEnvRootSource = () => generatedNextEnvSource("# GENERATED-NEXT-ENV-ADMISSION-BEGIN", "# GENERATED-NEXT-ENV-ADMISSION-END");
+const generatedNextEnvSessionSource = () => generatedNextEnvSource("# GENERATED-NEXT-ENV-BIND-BEGIN", "# GENERATED-NEXT-ENV-BIND-END");
+const generatedNextEnvHarness = "import ast,builtins,json,re,stat,sys,types\nrequest=json.loads(sys.stdin.read());source=request['source'];fault=request['fault'];now=0\ntree=ast.parse(source)\nallowed={'geteuid','open','fstat','fstatvfs','listxattr','stat','fchown','fchmod','close','write'}\nassert {n.func.attr for n in ast.walk(tree) if isinstance(n,ast.Call) and isinstance(n.func,ast.Attribute) and isinstance(n.func.value,ast.Name) and n.func.value.id=='os'}<=allowed\nroot='/var/tmp/kopplas-owned-'+'aa'*16\nclass FakeOS:\n    O_RDONLY=0;O_WRONLY=1;O_DIRECTORY=65536;O_NOFOLLOW=131072;O_CLOEXEC=524288;O_CREAT=64;O_EXCL=128;ST_NOEXEC=8\n    def __init__(self):\n        self.nodes={};self.fds={};self.nextfd=10;self.calls=[];self.mutations=[];self.created=0;self.output=b'';self.slotstats=0\n        for name,ino,mode in [('/',1,0o755),('/var',2,0o755),('/var/tmp',3,0o1777),(root,4,0o711),(root+'/workload',5,0o555)]:\n            self.nodes[name]=dict(st_dev=1,st_ino=ino,st_uid=0,st_gid=0,st_mode=stat.S_IFDIR|mode,st_size=0,st_nlink=1)\n        self.foreign=dict(st_dev=1,st_ino=99,st_uid=23,st_gid=24,st_mode=stat.S_IFREG|0o644,st_size=7,st_nlink=1);self.foreignbefore=dict(self.foreign)\n    def __getattr__(self,name):raise AssertionError('DENIED effect')\n    def geteuid(self):return 0\n    def open(self,name,flags,mode=None,dir_fd=None):\n        self.calls.append('open:'+name)\n        path=name if dir_fd is None else self.fds[dir_fd][0].rstrip('/')+'/'+name\n        if name=='next-env.d.ts':\n            assert flags==self.O_WRONLY|self.O_CREAT|self.O_EXCL|self.O_NOFOLLOW|self.O_CLOEXEC and mode==0o600\n            assert self.fds[dir_fd][0]==root+'/workload' and self.created==0\n            if fault in ('collision','symlink-collision','directory-collision'):raise FileExistsError('PRIVATE')\n            self.created+=1;self.nodes[path]=dict(st_dev=1,st_ino=6,st_uid=0,st_gid=0,st_mode=stat.S_IFREG|0o600,st_size=0,st_nlink=1)\n        else:\n            assert flags==self.O_DIRECTORY|self.O_NOFOLLOW|self.O_CLOEXEC\n            if fault=='symlink-parent' and name=='var':raise OSError(40,'PRIVATE')\n        node=self.nodes[path];fd=self.nextfd;self.nextfd+=1;self.fds[fd]=(path,node);return fd\n    def fstat(self,fd):\n        global now\n        path,node=self.fds[fd];value=dict(node)\n        if fault=='inaccessible' and path=='/var':raise PermissionError('PRIVATE')\n        if fault=='foreign-owner' and path=='/var':value['st_uid']=17\n        if fault=='foreign-0750' and path=='/var':value['st_mode']=stat.S_IFDIR|0o750\n        if fault=='writable-parent' and path==root:value['st_mode']=stat.S_IFDIR|0o777\n        if fault=='malformed':value['st_ino']=None\n        if fault=='deadline':now=2\n        if path.endswith('next-env.d.ts') and fault=='nonregular':value['st_mode']=stat.S_IFDIR|0o600\n        return types.SimpleNamespace(**value)\n    def fstatvfs(self,fd):\n        if fault=='unsupported-mount':raise OSError('PRIVATE')\n        return types.SimpleNamespace(f_flag=None if fault=='unknown-mount' else 8 if fault=='noexec' else 0)\n    def listxattr(self,fd):\n        if fault=='unknown-acl':raise OSError('PRIVATE')\n        if fault=='access-acl':return ['system.posix_acl_access']\n        if fault=='default-acl':return ['system.posix_acl_default']\n        if fault=='overflow':return ['x'*4097]\n        return []\n    def stat(self,name,dir_fd=None,follow_symlinks=None):\n        assert follow_symlinks is False\n        path=name if dir_fd is None else self.fds[dir_fd][0].rstrip('/')+'/'+name\n        if name=='next-env.d.ts':\n            self.slotstats+=1\n            if fault=='substitution-before':self.nodes[path]=self.foreign\n        if fault=='parent-substitution' and name=='workload':return types.SimpleNamespace(**dict(self.nodes[path],st_ino=88))\n        return types.SimpleNamespace(**self.nodes[path])\n    def fchown(self,fd,uid,gid):\n        path,node=self.fds[fd];assert node['st_ino']==6 and uid==999 and gid==987\n        if fault=='substitution-during-chown':self.nodes[path]=self.foreign\n        self.mutations.append(['fchown',node['st_ino']]);node['st_uid']=uid;node['st_gid']=gid\n        if fault=='chown-error':raise OSError('PRIVATE')\n    def fchmod(self,fd,mode):\n        path,node=self.fds[fd];assert node['st_ino']==6 and mode==0o600\n        if fault=='substitution-during-chmod':self.nodes[path]=self.foreign\n        self.mutations.append(['fchmod',node['st_ino']]);node['st_mode']=stat.S_IFREG|mode\n        if fault=='chmod-error':raise OSError('PRIVATE')\n    def close(self,fd):\n        global now\n        del self.fds[fd]\n        if fault=='late-close':now=2\n        if fault=='close-error':raise OSError('PRIVATE')\n    def write(self,fd,data):\n        global now\n        assert fd==1 and not self.fds and data==b'next_env_admitted=true\\n' and len(data)<=128\n        if fault=='write-error':raise OSError('PRIVATE')\n        self.output=data[:-1] if fault=='short-write' else data\n        if fault=='late-publication':now=2\n        return len(self.output)\nfake=FakeOS();argv=['capsule',root,'999','987','1','4','1','5']\nif fault=='wrong-input':argv[2]='0999'\nif fault=='stale-binding':argv[4]='44'\nimports={'os':fake,'re':re,'stat':stat,'sys':types.SimpleNamespace(argv=argv),'time':types.SimpleNamespace(monotonic=lambda:now)}\ndef only_import(name,*a,**k):assert name in imports;return imports[name]\nscope={'__builtins__':dict(vars(builtins),__import__=only_import)}\ntry:exec(compile(source,'actual-inline-slot','exec'),scope);raise AssertionError('missing terminal')\nexcept SystemExit as error:code=error.code\nassert code in [0,1] and not fake.fds and fake.created<=1 and fake.foreign==fake.foreignbefore\nassert all(row[1]==6 for row in fake.mutations)\nif code==0:assert fault=='positive' and fake.created==1 and fake.mutations==[['fchown',6],['fchmod',6]]\nif fault=='substitution-before':assert not fake.mutations\nif fault=='substitution-during-chown':assert fake.mutations==[['fchown',6]]\nprint(json.dumps({'code':code,'created':fake.created,'mutations':fake.mutations,'foreignUnchanged':True,'handles':len(fake.fds),'outputBytes':len(fake.output),'nativeActions':0}))\n";
+const generatedNextEnvSessionHarness = "import builtins,json,stat,sys,types,io,contextlib\nrequest=json.loads(sys.stdin.read());source=request['source'];mode=request['mode'];calls=[];saved=[]\nroot='/var/tmp/kopplas-owned-'+'aa'*16\nargv=['prep',root,'generation','sha','unit','node','candidate','cli','999','987',mode]\nclass FakePath:\n    def __init__(self,path):assert path==root+'/control/session'\n    def write_text(self,text,encoding=None):assert encoding in (None,'ascii');saved.append(text)\nclass FakeOS:\n    O_RDONLY=0;O_DIRECTORY=65536;O_NOFOLLOW=131072;O_CLOEXEC=524288\n    def __init__(self):self.fds={};self.nextfd=10\n    def __getattr__(self,name):raise AssertionError('DENIED effect')\n    def geteuid(self):return 1001\n    def open(self,name,flags,dir_fd=None):\n        assert flags==self.O_DIRECTORY|self.O_NOFOLLOW|self.O_CLOEXEC\n        assert name==root if dir_fd is None else name=='workload'\n        fd=self.nextfd;self.nextfd+=1;self.fds[fd]=4 if dir_fd is None else 5;calls.append('open');return fd\n    def fstat(self,fd):return types.SimpleNamespace(st_dev=1,st_ino=self.fds[fd],st_uid=1001,st_gid=1001,st_mode=stat.S_IFDIR|0o700)\n    def stat(self,name,dir_fd=None,follow_symlinks=None):\n        assert follow_symlinks is False;return types.SimpleNamespace(st_dev=1,st_ino=4 if dir_fd is None else 5)\n    def close(self,fd):del self.fds[fd];calls.append('close')\nfake=FakeOS();out=io.StringIO();fake_sys=types.SimpleNamespace(argv=argv,stdout=out)\nimports={'pathlib':types.SimpleNamespace(Path=FakePath),'sys':fake_sys,'os':fake,'stat':stat,'time':types.SimpleNamespace(monotonic=lambda:0)}\ndef only_import(name,*a,**k):assert name in imports;return imports[name]\nscope={'__builtins__':dict(vars(builtins),__import__=only_import)}\ncode=0\ntry:\n    with contextlib.redirect_stdout(out):exec(compile(source,'actual-session-prep','exec'),scope)\nexcept SystemExit as error:code=error.code\nassert code==0 and len(saved)==1 and not fake.fds\nassert out.getvalue()==('1 4 1 5\\n' if mode=='application' else '')\nassert len(calls)==(4 if mode=='application' else 0)\nprint(json.dumps({'code':code,'output':out.getvalue(),'session':saved[0],'calls':calls,'nativeActions':0}))\n";
+async function runGeneratedNextEnv(fault: string) {
+  const { spawnSync } = await import("node:child_process");
+  const result = spawnSync(process.platform === "win32" ? "python" : "python3", ["-c", generatedNextEnvHarness], {
+    input: JSON.stringify({ source: generatedNextEnvRootSource(), fault }), encoding: "utf8", timeout: 4000, maxBuffer: 65536,
+  });
+  assert.equal(result.error, undefined); assert.equal(result.status, 0, result.stderr);
+  const value = JSON.parse(result.stdout);
+  assert.equal(value.nativeActions, 0); assert.equal(value.foreignUnchanged, true); assert.equal(value.handles, 0);
+  assert.ok(value.created <= 1 && value.outputBytes <= 128);
+  assert.equal(value.code, fault === "positive" ? 0 : 1);
+  return value;
+}
+test("generated Next file uses held descriptor and preserves exact P inverses", { timeout: 10000 }, async () => {
+  const value = await runGeneratedNextEnv("positive");
+  assert.deepEqual(value.mutations, [["fchown", 6], ["fchmod", 6]]);
+  const text = source(".github/workflows/ci.yml");
+  const inverse = generatedNextEnvWorkflowInverse(text);
+  assert.equal(Buffer.byteLength(inverse), 62750); assert.equal(sha(inverse), "b4a1b47267c5ce7acb0197068bc07a40dcd7a2036b07ce90771a53426181d3c5");
+  const unit = generatedNextEnvUnitInverse(source("tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts"));
+  assert.equal(Buffer.byteLength(unit), 86348); assert.equal(sha(unit), "37c1807d6900982d34bf034f3f79784dac6e5aa093b57cb1fba6d37e10bc1d11");
+  assert.ok(text.includes('sudo -n /bin/chown "$uid:$gid" "$private_root/home"\n          sudo -n /bin/chmod 0700 "$private_root/home"\n          # GENERATED-NEXT-ENV-ADMISSION-BEGIN'));
+  assert.match(text, /--signal=TERM --kill-after=1s 2s \/usr\/bin\/python3 -I -/);
+  assert.match(generatedNextEnvRootSource(), /MAX_SECONDS = 1\.0/); assert.match(generatedNextEnvRootSource(), /MAX_BYTES = 128/);
+});
+test("application binds parent descriptors while capability session behavior stays unchanged", { timeout: 10000 }, async () => {
+  const { spawnSync } = await import("node:child_process");
+  const values = [];
+  for (const mode of ["application", "capability"]) {
+    const result = spawnSync(process.platform === "win32" ? "python" : "python3", ["-c", generatedNextEnvSessionHarness], {
+      input: JSON.stringify({ source: generatedNextEnvSessionSource(), mode }), encoding: "utf8", timeout: 4000, maxBuffer: 65536,
+    });
+    assert.equal(result.error, undefined); assert.equal(result.status, 0, result.stderr);
+    values.push(JSON.parse(result.stdout));
+  }
+  assert.equal(values[0].session, values[1].session); assert.deepEqual(values[1].calls, []);
+  const text = source(".github/workflows/ci.yml");
+  const block = text.slice(text.indexOf("# GENERATED-NEXT-ENV-ADMISSION-BEGIN"), text.indexOf("# GENERATED-NEXT-ENV-ADMISSION-END"));
+  assert.ok(block.includes('if [ "$FIXED_CHROMIUM_HOSTED_ADMISSION" = application ]; then'));
+});
+test("generated Next file refuses existing regular collision without mutation", async () => {
+  assert.deepEqual((await runGeneratedNextEnv("collision")).mutations, []);
+});
+test("generated Next file refuses symlink collision without foreign mutation", async () => {
+  assert.deepEqual((await runGeneratedNextEnv("symlink-collision")).mutations, []);
+});
+test("generated Next file refuses directory collision or nonregular returned descriptor", async () => {
+  for (const fault of ["directory-collision", "nonregular"]) assert.deepEqual((await runGeneratedNextEnv(fault)).mutations, []);
+});
+test("generated Next file fails closed on unqualified metadata bounds and publication", { timeout: 10000 }, async () => {
+  for (const fault of ["symlink-parent", "foreign-owner", "foreign-0750", "writable-parent", "malformed", "inaccessible", "access-acl", "default-acl", "unknown-acl", "noexec", "unknown-mount", "unsupported-mount", "overflow", "deadline", "wrong-input", "stale-binding", "close-error", "late-close", "write-error", "short-write", "late-publication"]) await runGeneratedNextEnv(fault);
+});
+test("generated Next descriptor transfer refuses namespace substitution with no foreign mutation", { timeout: 10000 }, async () => {
+  const before = await runGeneratedNextEnv("substitution-before"); assert.deepEqual(before.mutations, []);
+  const between = await runGeneratedNextEnv("substitution-during-chown"); assert.deepEqual(between.mutations, [["fchown", 6]]);
+  for (const fault of ["substitution-during-chmod", "parent-substitution", "chown-error", "chmod-error"]) await runGeneratedNextEnv(fault);
+});
+test("pinned Next direct writer needs only the existing generated file writable", async () => {
+  const nextPackage = JSON.parse(source("node_modules/next/package.json")); assert.equal(nextPackage.version, "16.3.8");
+  const actual = source("node_modules/next/dist/lib/typescript/writeAppTypeDeclarations.js");
+  const { posix } = await import("node:path");
+  for (const present of [false, true]) {
+    const calls: string[] = []; let body = "";
+    const fs = { readFile: async (path: string) => { assert.equal(path, "/owned/workload/next-env.d.ts"); calls.push("readFile"); if (!present) throw Object.assign(new Error("mock absent"), { code: "ENOENT" }); return body; },
+      writeFile: async (path: string, content: string) => { assert.equal(path, "/owned/workload/next-env.d.ts"); calls.push("writeFile"); if (!present) throw Object.assign(new Error("mock readonly parent"), { code: "EACCES" }); body = content; } };
+    const exports: Record<string, unknown> = {};
+    const context = { exports, require: (name: string) => { if (name === "fs") return { promises: fs }; if (name === "path") return posix; if (name === "os") return { EOL: "\n" }; throw new Error("denied writer import: " + name); } };
+    vm.runInNewContext(actual, context);
+    const writer = exports.writeAppTypeDeclarations as (options: Record<string, unknown>) => Promise<void>;
+    const run = writer({ baseDir: "/owned/workload", distDir: ".next", imageImportsEnabled: true, hasAppDir: true, hasPagesDir: false, strictRouteTypes: false, typedRoutes: false });
+    if (present) { await run; assert.match(body, /reference types="next"/); } else await assert.rejects(run, { code: "EACCES" });
+    assert.deepEqual(calls, ["readFile", "writeFile"]);
+  }
 });

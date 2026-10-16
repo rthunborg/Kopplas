@@ -1008,13 +1008,53 @@ jobs:
           test "$cli_relative" != "$cli_path"
           sudo -n /usr/sbin/useradd --system --user-group --no-create-home --shell /usr/sbin/nologin "$account"
           uid="$(id -u "$account")"; gid="$(id -g "$account")"
-          python3 - "$private_root" "$generation" "$source_sha" "$unit" "$node_path" "$candidate" "$cli_relative" "$uid" "$gid" <<'PY'
+          # GENERATED-NEXT-ENV-BIND-BEGIN
+          next_env_identity="$(python3 - "$private_root" "$generation" "$source_sha" "$unit" "$node_path" "$candidate" "$cli_relative" "$uid" "$gid" "$FIXED_CHROMIUM_HOSTED_ADMISSION" <<'PY'
           import pathlib,sys
-          root,generation,source,unit,node,candidate,cli,uid,gid=sys.argv[1:]
+          root,generation,source,unit,node,candidate,cli,uid,gid,mode=sys.argv[1:]
           values=[('generation',generation),('source',source),('unit',unit),('node',node),('repo',root+'/workload'),('candidate',candidate),('cli',root+'/workload/'+cli),('home',root+'/home'),('root',root),('uid',uid),('gid',gid)]
           if any('\n' in value or '\r' in value or '\0' in value for _,value in values): raise SystemExit(1)
           pathlib.Path(root+'/control/session').write_text(''.join(key+'='+value+'\n' for key,value in values))
+          if mode == 'application':
+              import os, stat, time
+              started = time.monotonic()
+              descriptors = []
+              result = None
+              try:
+                  flags = os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW | os.O_CLOEXEC
+                  parent = os.open(root, flags)
+                  descriptors.append(parent)
+                  workload = os.open('workload', flags, dir_fd=parent)
+                  descriptors.append(workload)
+                  values = [os.fstat(parent), os.fstat(workload)]
+                  if any(not stat.S_ISDIR(value.st_mode) or value.st_uid != os.geteuid() or stat.S_IMODE(value.st_mode) & 0o022 for value in values):
+                      raise ValueError('binding')
+                  pairs = [number for value in values for number in (value.st_dev, value.st_ino)]
+                  if any(type(number) is not int or number < 0 or number > (1 << 64) - 1 for number in pairs) or any(value.st_ino == 0 for value in values):
+                      raise ValueError('binding')
+                  entry = os.stat(root, follow_symlinks=False)
+                  child = os.stat('workload', dir_fd=parent, follow_symlinks=False)
+                  if (entry.st_dev, entry.st_ino) != (values[0].st_dev, values[0].st_ino) or (child.st_dev, child.st_ino) != (values[1].st_dev, values[1].st_ino):
+                      raise ValueError('binding')
+                  result = ' '.join(str(number) for number in pairs) + '\n'
+                  if len(result.encode('ascii')) > 128 or time.monotonic() - started >= 1.0:
+                      raise ValueError('binding')
+              except Exception:
+                  result = None
+              finally:
+                  for descriptor in reversed(descriptors):
+                      try:
+                          os.close(descriptor)
+                      except Exception:
+                          result = None
+              if result is None or time.monotonic() - started >= 1.0:
+                  raise SystemExit(1)
+              sys.stdout.write(result)
+          elif mode != 'capability':
+              raise SystemExit(1)
           PY
+          )"
+          # GENERATED-NEXT-ENV-BIND-END
           sudo -n /bin/chown -R root:root "$private_root"
           sudo -n /bin/chmod -R a+rX,a-w "$private_root/workload" "$private_root/home"
           if [ "$FIXED_CHROMIUM_HOSTED_ADMISSION" = application ]; then
@@ -1028,6 +1068,149 @@ jobs:
           done
           sudo -n /bin/chown "$uid:$gid" "$private_root/home"
           sudo -n /bin/chmod 0700 "$private_root/home"
+          # GENERATED-NEXT-ENV-ADMISSION-BEGIN
+          # Application-only fixed generated file; parents, code, home and control stay unchanged.
+          if [ "$FIXED_CHROMIUM_HOSTED_ADMISSION" = application ]; then
+            read -r next_env_root_device next_env_root_inode next_env_workload_device next_env_workload_inode <<< "$next_env_identity"
+            next_env_admitted="$(sudo -n /usr/bin/timeout --signal=TERM --kill-after=1s 2s /usr/bin/python3 -I - "$private_root" "$uid" "$gid" "$next_env_root_device" "$next_env_root_inode" "$next_env_workload_device" "$next_env_workload_inode" <<'PY_GENERATED_NEXT_ENV'
+          import os, re, stat, sys, time
+          MAX_SECONDS = 1.0
+          MAX_BYTES = 128
+          started = time.monotonic()
+          fds = []
+          ready = False
+
+          def checkpoint():
+              if time.monotonic() - started >= MAX_SECONDS:
+                  raise ValueError('deadline')
+
+          def call(fn, *args, **kwargs):
+              checkpoint()
+              result = fn(*args, **kwargs)
+              checkpoint()
+              return result
+
+          def uint(value, positive=False, limit=(1 << 64) - 1):
+              if not re.fullmatch(r'0|[1-9][0-9]{0,19}', value):
+                  raise ValueError('identity')
+              number = int(value)
+              if number > limit or positive and number == 0:
+                  raise ValueError('identity')
+              return number
+
+          def metadata(value):
+              for key in ('st_dev', 'st_ino', 'st_uid', 'st_gid', 'st_mode'):
+                  number = getattr(value, key)
+                  if type(number) is not int or number < 0 or number > (1 << 64) - 1:
+                      raise ValueError('metadata')
+              if value.st_ino == 0:
+                  raise ValueError('metadata')
+              return value
+
+          def identity(value):
+              return value.st_dev, value.st_ino
+
+          def open_dir(name, parent=None):
+              kwargs = {} if parent is None else {'dir_fd': parent}
+              fd = call(os.open, name, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW | os.O_CLOEXEC, **kwargs)
+              fds.append(fd)
+              return fd
+
+          def permissions(fd):
+              value = metadata(call(os.fstat, fd))
+              mount = call(os.fstatvfs, fd)
+              if type(mount.f_flag) is not int or mount.f_flag & os.ST_NOEXEC:
+                  raise ValueError('mount')
+              names = call(os.listxattr, fd)
+              if not isinstance(names, list) or len(names) > 128 or any(type(name) is not str for name in names):
+                  raise ValueError('acl')
+              if sum(len(name.encode('utf8')) for name in names) > 4096 or any(name in ('system.posix_acl_access', 'system.posix_acl_default') for name in names):
+                  raise ValueError('acl')
+              return value
+
+          def directory(fd, mode):
+              value = permissions(fd)
+              if not stat.S_ISDIR(value.st_mode) or value.st_uid != 0 or value.st_gid != 0 or stat.S_IMODE(value.st_mode) != mode:
+                  raise ValueError('parent')
+              return value
+
+          def linked(parent, name, fd):
+              entry = metadata(call(os.stat, name, dir_fd=parent, follow_symlinks=False))
+              value = metadata(call(os.fstat, fd))
+              if identity(entry) != identity(value) or entry.st_mode != value.st_mode:
+                  raise ValueError('substitution')
+
+          try:
+              if len(sys.argv) != 8 or call(os.geteuid) != 0:
+                  raise ValueError('authority')
+              root, user, group, root_device, root_inode, workload_device, workload_inode = sys.argv[1:]
+              if not re.fullmatch(r'/var/tmp/kopplas-owned-[0-9a-f]{32}', root):
+                  raise ValueError('binding')
+              user = uint(user, True, (1 << 32) - 2)
+              group = uint(group, True, (1 << 32) - 2)
+              expected_root = uint(root_device), uint(root_inode, True)
+              expected_workload = uint(workload_device), uint(workload_inode, True)
+              for name in ('O_DIRECTORY', 'O_NOFOLLOW', 'O_CLOEXEC', 'O_CREAT', 'O_EXCL', 'ST_NOEXEC'):
+                  if type(getattr(os, name)) is not int:
+                      raise ValueError('unsupported')
+              base = open_dir('/')
+              directory(base, 0o755)
+              var = open_dir('var', base)
+              directory(var, 0o755)
+              tmp = open_dir('tmp', var)
+              directory(tmp, 0o1777)
+              private_name = root.rsplit('/', 1)[1]
+              private = open_dir(private_name, tmp)
+              if identity(directory(private, 0o711)) != expected_root:
+                  raise ValueError('binding')
+              workload = open_dir('workload', private)
+              if identity(directory(workload, 0o555)) != expected_workload:
+                  raise ValueError('binding')
+              linked(tmp, private_name, private)
+              linked(private, 'workload', workload)
+              slot = call(os.open, 'next-env.d.ts', os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW | os.O_CLOEXEC, 0o600, dir_fd=workload)
+              fds.append(slot)
+              value = permissions(slot)
+              if not stat.S_ISREG(value.st_mode) or stat.S_IMODE(value.st_mode) != 0o600 or value.st_uid != 0 or value.st_gid != 0 or value.st_size != 0 or value.st_nlink != 1 or value.st_dev != expected_workload[0]:
+                  raise ValueError('file')
+              linked(workload, 'next-env.d.ts', slot)
+              linked(tmp, private_name, private)
+              linked(private, 'workload', workload)
+              call(os.fchown, slot, user, group)
+              linked(workload, 'next-env.d.ts', slot)
+              call(os.fchmod, slot, 0o600)
+              value = permissions(slot)
+              if not stat.S_ISREG(value.st_mode) or stat.S_IMODE(value.st_mode) != 0o600 or value.st_uid != user or value.st_gid != group or value.st_size != 0 or value.st_nlink != 1:
+                  raise ValueError('file')
+              linked(workload, 'next-env.d.ts', slot)
+              linked(tmp, private_name, private)
+              linked(private, 'workload', workload)
+              directory(private, 0o711)
+              directory(workload, 0o555)
+              ready = True
+          except Exception:
+              ready = False
+          finally:
+              for fd in reversed(fds):
+                  try:
+                      os.close(fd)
+                  except Exception:
+                      ready = False
+          if time.monotonic() - started >= MAX_SECONDS:
+              ready = False
+          if ready:
+              try:
+                  result = b'next_env_admitted=true\n'
+                  if len(result) > MAX_BYTES or os.write(1, result) != len(result) or time.monotonic() - started >= MAX_SECONDS:
+                      ready = False
+              except Exception:
+                  ready = False
+          raise SystemExit(0 if ready else 1)
+          PY_GENERATED_NEXT_ENV
+            )"
+            test "$next_env_admitted" = next_env_admitted=true
+          fi
+          # GENERATED-NEXT-ENV-ADMISSION-END
           # HOSTED-PATH-METADATA-BASH-BEGIN
           # Diagnostic only: one-second collection, two-second TERM, one-second KILL.
           # UNKNOWN or unavailable metadata never changes preparation/native execution.

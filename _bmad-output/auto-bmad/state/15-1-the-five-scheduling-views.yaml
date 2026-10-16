@@ -9,10 +9,10 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-16T19:17:54Z"
+updated_at: "2026-10-16T22:01:21Z"
 started_at: "2026-10-09T13:06:12Z"
 completed_at: null
-active_seconds: 94071
+active_seconds: 98703
 timing_anchor: null
 is_first_in_epic: true
 is_last_in_epic: false
@@ -26,7 +26,7 @@ selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Sensitive PLAN ONLY for purpose-bound isolated application admission route, helper/worker guards and own Supabase/migrations/fixtures/browser acquisition effects; no control authoring or runtime."
+escalation_reason: "Sensitive independent focused qualification of minimal purpose-bound next-SHA application helper AND worker compatibility plan, source-binding schema and retained ownership/restoration guards; no control authoring or runtime."
 routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary scheduling UX specification; sensitive authorization/integrity portions explicitly delegated High\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary15.1 ATDD preparation; sensitive access assertions delegated High; shared fixture edits excluded\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -296,6 +296,24 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive terminal exact-bound O owned variable restoration; fresh completed run+8terminaljobs native0; literal v10Restore only own unchanged pair identity before each delete.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive READONLY source/artifact diagnosis of actual O capability boundary/qualified parent admission/cleanup and General failures/budget; no acceptance or source/runtime allocation.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive PLAN ONLY for purpose-bound isolated application admission route, helper/worker guards and own Supabase/migrations/fixtures/browser acquisition effects; no control authoring or runtime.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive resource-free private purpose-specific application admission control implementation+47 actual-code offline proofs, after actual P independent rebind and strict PRIMARY21-entry issuance; no runtime.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive READONLY STATIC isolated application route provenance/total-effect/authority delta and secret/data exposure qualification against immutable source; no live readiness/acquisition/runtime.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive READONLY fresh artifact access/privacy and application operational readiness under explicitly qualified standing bounded hosted-CI authority; no acquisition/native/runtime/mutations.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive remaining READONLY P application operational readiness after SAME independent High exact-route privacy PASS; provider and GitHub identity guards only, no execution or mutations.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive actual owned Actions application variable Create after Coordinator FINAL and T final-current guards PASS; no push/POST by delegate.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive actual application BindRun exact newly unique ROOT-owned run38962295575/attempt1 after one pushPOST; no further variables mutation by Bind.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive actual integrated verification evidence audit including DB/RLS executed/skipped counts and conserved admission-control mock/native boundary; readonly original hosted logs, no runtime or source changes.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive current P DB/RLS executed and explicit skipped evidence; extend sealed three-job audit using newly completed original DB log, preserve first three findings without re-audit.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive read-only privacy/provenance and tenant/public acceptance evidence interpretation for failed actual General browser job, Coordinator specifically allocated SAME High diagnosis; no source/runtime/proposal expansion.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive actual terminal owned application variable Restore after fresh exact bound run38962295575 and all8jobs terminal proof; compare own current values/created/updated before EACH delete; no foreign overwrite.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive terminal application failure diagnosis including credential isolation/owned process prerequisites/provenance/acquisition and public-versus-tenant acceptance; Coordinator allocated SAME High read-only evidence-backed smallest proposal after qualified closure.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive reviewed secure generated file creation/descriptor inode binding/ownership transfer and foreign-target refusal in APPLICATION bootstrap; Coordinator exact two source paths allocated after independent High diagnosis/proposal PASS.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive revised privileged tooling: bounded app-only root Python capsule securely creates one FD-owned generated file after permission lock; independent High8+3PASS and Coordinator explicit source/proof-only authority allocation.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive independent focused implementation review of bounded privileged root FD generated-file capsule, ownership/namespace substitution and no-foreign-mutation controls; source/proof-only, no P5 broad review or execution.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive resource-free private observability PLAN ONLY for authenticated General browser failure and attempt-sum overrun, including bounded metadata privacy and observer noninterference; Coordinator explicitly allocated alongside independent source review.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive independent focused qualification of authenticated General lifecycle metadata privacy/noninterference proposal; plan only, no source implementation or runtime admission.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive minimal private PLAN ONLY for new-SHA compatibility of purpose-bound application variable helper and bounded worker; identify constants/PRIMARY binding schema, no control authoring/retargeting/execution; Coordinator local-checkpoint allocation explicitly permits this plan.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive independent focused qualification of minimal purpose-bound next-SHA application helper AND worker compatibility plan, source-binding schema and retained ownership/restoration guards; no control authoring or runtime.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate, trace-advisory]
 tea_rationale: "Scheduling, synchronized projections, capacity and drag/keyboard/dialog behavior"
@@ -321,7 +339,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [45a64853, f9e12a81, 279d3149, b9d61a33, 4d7911ac, 3a655a5d, a67a64dc, 66cd8436, d79fff08, bf84cf5d, 181f947f, 22cfb74a, 22cfb74a, 6fd516b0, 521d56fd, e448f856, b99e3f42, 83e27c92, 1aa7c52b, 8630b011, da3a4c59, 27d67de7, 4223e887, 9c26fd72, d75313bb, 4b0ab106, f7b4f154, 437c3da2, e6c404d3, f4a431f6, 85cae2a5, 689a1385, 1bc90218, c49ac882, 4b685196, a5d262f8, a39cd221, 704e9320, c797d815, 25390342e668dee81d6bda42bfe0b5b51ed1723b, a98fc96386df752c631c119de992fc832c8ecb4d, ea5477fff0dbd8e82abb6a376269bfcf54ae95e9, 35e904b2e0d8798f72fbb405b3a888d64fdebd45, 2a071fc49a81984ae55e9e2c08a7583444245d86, ccd7abe9ebe38d846df58087c9d94280ad1d25ab, b01a0511cd1ee66f710de21034faeae9d5537403, eaabd2d0020b391247e1a4383b0eaf6291f0ac83, 39b84268e8eeffb3f9a6ff6b055846187c166d4b, ffa4168a62851a788cea6fff244a87f12b08cca6, 049a6f0f, ef1c5a290bdc3e6b48e68ec492abc0010c636c1b, 3c07917c1a323ba280d2325d7fe050cf1574bf5e, d880cd63fa158272f206d74aa5c4b0280d0d622c, 62dbbf947a916f528e8ae32d7b768750769a8c5d, b38d358fbba883ce79662a2b0fd0cea51d27c121, 4602a2eacdac7636c67751c986b18cc3c546950f, 65207b9ecaf7e5ad39b1840bda76099805acfa57, dab81e3d21a8180a05d3db9af5dde7334f991982, 828474451a0ae833a712d64544482498e79740bd, 706c3c9c7e2f2b2178b1c3506c59a2708356141b, 24d15439ab87847ecd1234b3e475b9d76883de2f, c0a57eda240f2b17793b693b2f3fbb963ebb29ab, 11c5cd1e0a8a6fda3297a9f16a54bb48209a5d9c, 5d76de08575fb8fa09197021899d78280829d554, 81836287786a40540e96dbdf46db29c868cde41b, 48386408fc628f7341b711f177ff5833f622959c, 92dc4a5f4f7e9878e9ed9c28e00bda5d98680478, 16180cd63914a57895b36c2db060c43c74da3514, caec31b185bcad597664668d7a835c9c2096aa4d, 0a312c8fbd617d4ce03f97d5484bb23babb0686b, d5a5f85155394a0337ea92fcd606f949559b172a, becfd00e, 80c31af2, a0dd2302ead46e72e77f3293b84085c4f8fe65f3, 6f9e29656df997e2c5c6027874da4bee1ef6c17d, 5c1fb90b2f7f735259208e2d420bce489cbed598, 0d6f43ac90596b8703d8df3b9b986f9026aaaba3, 76868db295ac6b7de06a57f43164d5f02140f938, c4375f61, abaf8d81, db50a9c5, a1b83089, 6883ef61, 2441e3a2, 94baa7c7, afd9c1dd, 6d983e00, ae5b78b6, 09e70e81, 311e744f, 1d4ec146, 37fa423a, b1ad1496, "21835451", 1fadbd1f, b1f91332, 99590bfa, 45deb287, 532ebccf, 689ec7b7, cf9b89f9, 63186b1f, 48f8d7a7f170ca496b63e8120a34edb92e3ca23e, 6c0fa8fa11a1b4ab7268f623b96693affe3506b0, 83c60e0033628b4158448b9e782a9ad5a12e062f]
+commits: [45a64853, f9e12a81, 279d3149, b9d61a33, 4d7911ac, 3a655a5d, a67a64dc, 66cd8436, d79fff08, bf84cf5d, 181f947f, 22cfb74a, 22cfb74a, 6fd516b0, 521d56fd, e448f856, b99e3f42, 83e27c92, 1aa7c52b, 8630b011, da3a4c59, 27d67de7, 4223e887, 9c26fd72, d75313bb, 4b0ab106, f7b4f154, 437c3da2, e6c404d3, f4a431f6, 85cae2a5, 689a1385, 1bc90218, c49ac882, 4b685196, a5d262f8, a39cd221, 704e9320, c797d815, 25390342e668dee81d6bda42bfe0b5b51ed1723b, a98fc96386df752c631c119de992fc832c8ecb4d, ea5477fff0dbd8e82abb6a376269bfcf54ae95e9, 35e904b2e0d8798f72fbb405b3a888d64fdebd45, 2a071fc49a81984ae55e9e2c08a7583444245d86, ccd7abe9ebe38d846df58087c9d94280ad1d25ab, b01a0511cd1ee66f710de21034faeae9d5537403, eaabd2d0020b391247e1a4383b0eaf6291f0ac83, 39b84268e8eeffb3f9a6ff6b055846187c166d4b, ffa4168a62851a788cea6fff244a87f12b08cca6, 049a6f0f, ef1c5a290bdc3e6b48e68ec492abc0010c636c1b, 3c07917c1a323ba280d2325d7fe050cf1574bf5e, d880cd63fa158272f206d74aa5c4b0280d0d622c, 62dbbf947a916f528e8ae32d7b768750769a8c5d, b38d358fbba883ce79662a2b0fd0cea51d27c121, 4602a2eacdac7636c67751c986b18cc3c546950f, 65207b9ecaf7e5ad39b1840bda76099805acfa57, dab81e3d21a8180a05d3db9af5dde7334f991982, 828474451a0ae833a712d64544482498e79740bd, 706c3c9c7e2f2b2178b1c3506c59a2708356141b, 24d15439ab87847ecd1234b3e475b9d76883de2f, c0a57eda240f2b17793b693b2f3fbb963ebb29ab, 11c5cd1e0a8a6fda3297a9f16a54bb48209a5d9c, 5d76de08575fb8fa09197021899d78280829d554, 81836287786a40540e96dbdf46db29c868cde41b, 48386408fc628f7341b711f177ff5833f622959c, 92dc4a5f4f7e9878e9ed9c28e00bda5d98680478, 16180cd63914a57895b36c2db060c43c74da3514, caec31b185bcad597664668d7a835c9c2096aa4d, 0a312c8fbd617d4ce03f97d5484bb23babb0686b, d5a5f85155394a0337ea92fcd606f949559b172a, becfd00e, 80c31af2, a0dd2302ead46e72e77f3293b84085c4f8fe65f3, 6f9e29656df997e2c5c6027874da4bee1ef6c17d, 5c1fb90b2f7f735259208e2d420bce489cbed598, 0d6f43ac90596b8703d8df3b9b986f9026aaaba3, 76868db295ac6b7de06a57f43164d5f02140f938, c4375f61, abaf8d81, db50a9c5, a1b83089, 6883ef61, 2441e3a2, 94baa7c7, afd9c1dd, 6d983e00, ae5b78b6, 09e70e81, 311e744f, 1d4ec146, 37fa423a, b1ad1496, "21835451", 1fadbd1f, b1f91332, 99590bfa, 45deb287, 532ebccf, 689ec7b7, cf9b89f9, 63186b1f, 48f8d7a7f170ca496b63e8120a34edb92e3ca23e, 6c0fa8fa11a1b4ab7268f623b96693affe3506b0, 83c60e0033628b4158448b9e782a9ad5a12e062f, ab5595a609092306489064f46e5a567cbfb9b34a]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -4963,9 +4981,10 @@ o_application_plan:
   runtime_admitted: false
   control_authoring_admitted: false
   fresh_PRIMARY_checkpoint_allocation: "LOCAL existing2Rootstates/report only; source21 conserved; after actual P operational rebind required"
-  P_issued: false
+  P_issued: true
+  P_head: ab5595a609092306489064f46e5a567cbfb9b34a
 p_checkpoint:
-  status: local-three-path-checkpoint-qualified
+  status: SAME-independent-High-operational-rebind-PASS
   parent: 83c60e0033628b4158448b9e782a9ad5a12e062f
   purpose: fresh SHA required by unchanged unique-run guard before application-mode controls
   source_writes: 0
@@ -4979,4 +4998,263 @@ p_checkpoint:
   report_rendered_once: true
   source_bindings_conserved: 21
   commit_attempts: 1
-  actual_P_pending: true
+  actual_P_pending: false
+  actual_head: ab5595a609092306489064f46e5a567cbfb9b34a
+  tree: 36afd39d3c78081ed738ce4b8c09aff2317a32fa
+  remote_pushed: false
+  actual_message_bytes: 261
+  actual_message_sha256: c6e17ca7cbe24887c53e73e817856e110df3bedc0b39e1c739cdaef1d7399c5f
+p_application_controls:
+  status: SAME-independent-High-JOINT-static-PASS
+  PRIMARY_folder: "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\root-P-application-binding-f8045eed-73dd-4634-aca8-03cf1ce714ab"
+  source_schema_verified_upstream: 21
+  mode: application
+  runtime_admitted: false
+  variables_admitted: false
+  CI_admitted: false
+  publication_admitted: false
+  control_paths: "purpose-specific fresh helper5/worker3 substitutions only; v10/v7 immutable"
+  offline_cases_planned: 47
+  folder: ".env.epic15.mail-runtime/epic15-application-controls-9fdb8ba9-5cc0-4eb4-9101-13b028432c77"
+  manifest_sha256: 86a305e8b5f58b6ea70d826f7abd036e77c3278956b52239fdd986ffafe2825f
+  proof_bindings: 56
+  root_binary_mismatches: 0
+  offline_cases_passed: 47
+  offline_cases_failed: 0
+  offline_cases_skipped: 0
+  worker_cases: 22
+  helper_cases: 20
+  sourceguard_cases: 5
+  inverses_to_v10_v7_exact: true
+  PRIMARY_copies_identical: true
+  capability_controls_unchanged: true
+  current_runtime_admitted: false
+  current_acquisition_admitted: false
+  current_operational_window: false
+  total_effect_authority_qualification: pending concrete proofs and fresh readiness
+p_static_qualification:
+  status: SAME-independent-High-static-effects-provenance-PASS
+  author: SAME adoption15_high explicit Sol6.1 High
+  source_and_controls_immutable: true
+  whole_optional_job_minutes: 25
+  budget_includes_setup: true
+  no_acquisition_or_native_execution: true
+  no_provider_GH_live_readiness: true
+  no_runtime_or_window_admitted: true
+  total_effect_authority: "qualification pending; no self-admission"
+  folder: ".env.epic15.mail-runtime/epic15-application-effects-qualification-be4ee415-36e7-4a6b-9562-f9b7d6d533c3"
+  manifest_sha256: 8e3b488b92657e02e26e5c8bcf2aec626d4a98889bb572abf890a8d71575f47f
+  packet_bindings: 23
+  external_bindings: 5
+  root_binary_mismatches: 0
+  effective_readiness_proposal: next-readiness-proposal.corrected.json
+  effective_proposal_sha256: 8a71fb0cde2d6f8176c85d741d438f7b690a82c0cba9ac461bacd20060386a02
+  initial_input_name_correction: "preserved predecessor; corrected against actual source; no live execution"
+  matrix_rows: 12
+  boxed_phase_seconds: 1400
+  whole_job_seconds_including_setup: 1500
+  completion_guaranteed: false
+  gaps: [fresh acquisition/package/binary/SDK provenance belongs to future admitted hosted route, actual artifact access/privacy and raw trace/report credential exposure, actual setup and remaining whole-job envelope, pre-owner native version-probe descendant closure, later owner FINISH/service-exit independently unobserved]
+  tests_native_network_runtime: 0
+  authority_decision_pending: true
+  current_readiness_admitted: false
+  attempt_sum_not_wall_clock: true
+  enumerated_CI_effect_authority: "Coordinator explicitly qualified within existing standing authorization for reviewed boundeddevelopmentCI; capabilitysuccess not authority"
+  current_runtime_release: false
+  matrix_row_count_correction: "{\"previous_parent_and_root_private_assertions\": {\"matrix_rows_corrected\": 12, \"sealed_capsule_rows_stale\": 11, \"stale_capsule_preserved\": true}, \"original_JSON_combined_rows\": 11, \"original_capsule_rows\": 11, \"conserved_successor_split_view_rows\": 12, \"split\": \"acquisition and publisher represented separately; effects unchanged\", \"original_and_successor_preserved\": true, \"do_not_claim_original12\": true}"
+p_readiness:
+  status: independent-operational-PASS-explicit-FINAL-awaiting-T
+  proposed_T: "2026-10-16T20:25:00Z"
+  proposed_handoff: "2026-10-16T21:55:00Z"
+  active_clock: false
+  actual_actor_ACKs: "{\"E16_cursor\": \"fd90fdb3-f168-4b93-a1b5-81d43eba04e1:27\", \"E16_turn\": \"01a14645-8120-79c3-96c3-1b56394659ef\", \"feedback_cursor\": \"9a9d17d0-2b54-4e9c-9c42-1901f3e4719f:14\", \"feedback_turn\": \"01a14645-8a34-7f01-89da-713d502a30dc\", \"status\": \"both actually released by Coordinator; no future reuse\"}"
+  privacy_unknown_means_HOLD: true
+  current_mutations_admitted: conditional exactprotocol atT only
+  native_or_acquisition_admitted: hosted reviewedoptionalapplication route conditional exactprotocol only
+  no_budget_extension: true
+  repository_visibility: "public; actual authenticated repo GET native0"
+  repo_id: 1269069679
+  owner_id: 53317458
+  artifact_reader_scope: "signed-in public repository readers; public Actions logs visible to everyone"
+  privacy_boundary: "SAME independent High exact-route PASS: clear/fixed env, git archive excludes live .env/saved auth, local credentials and generated fixtures; no identified reachable external credentials/customer data path. Public artifacts remain unsanitized; actual external/nonsynthetic discovery STOP before export."
+  privacy_packet: ".env.epic15.mail-runtime/epic15-P-access-readiness-c7b35fbc-6c2b-4d6a-8ecb-044c20158618"
+  privacy_manifest_sha256: be09ba7a88c676963f3e55b19dc6bdbe9b73828f922c156af868f3fe5b3e5037
+  packet_entries_verified: 71
+  external_bindings_verified: 6
+  root_mismatches: 0
+  provider_invocations: 3
+  remaining_GH_guards: PASS currentP/remoteO/21sources56controls/8identitiespairabsent/15completed0live0P/noPR/currentfeedbackrefspermissions
+  proposed_2010_window: cancelled/unstarted
+  no_source_or_visibility_mutation: true
+  cancel_handoff_timers: false
+  prior_privacy_HOLD_history: "{\"status\": \"PRIVACY-HOLD-proposed-window-cancelled-unstarted\", \"proposed_T\": \"2026-10-16T20:10:00Z\", \"proposed_handoff\": \"2026-10-16T21:40:00Z\", \"active_clock\": false, \"actual_actor_ACKs\": \"{\\\"E16_cursor\\\": \\\"fd90fdb3-f168-4b93-a1b5-81d43eba04e1:27\\\", \\\"E16_turn\\\": \\\"01a14645-8120-79c3-96c3-1b56394659ef\\\", \\\"feedback_cursor\\\": \\\"9a9d17d0-2b54-4e9c-9c42-1901f3e4719f:14\\\", \\\"feedback_turn\\\": \\\"01a14645-8a34-7f01-89da-713d502a30dc\\\", \\\"status\\\": \\\"both actually released by Coordinator; no future reuse\\\"}\", \"privacy_unknown_means_HOLD\": true, \"current_mutations_admitted\": false, \"native_or_acquisition_admitted\": false, \"no_budget_extension\": true, \"repository_visibility\": \"public; actual authenticated repo GET native0\", \"repo_id\": 1269069679, \"owner_id\": 53317458, \"artifact_reader_scope\": \"signed-in public repository readers; public Actions logs visible to everyone\", \"privacy_boundary\": \"source-intended local/synthetic; future raw content and absence of live external credential contamination unproved\", \"privacy_packet\": \".env.epic15.mail-runtime/epic15-P-access-readiness-c7b35fbc-6c2b-4d6a-8ecb-044c20158618\", \"privacy_manifest_sha256\": \"be09ba7a88c676963f3e55b19dc6bdbe9b73828f922c156af868f3fe5b3e5037\", \"packet_entries_verified\": 24, \"external_bindings_verified\": 5, \"root_mismatches\": 0, \"provider_invocations\": 0, \"remaining_GH_guards\": \"not started after privacy HOLD\", \"proposed_2010_window\": \"cancelled/unstarted\", \"no_source_or_visibility_mutation\": true, \"cancel_handoff_timers\": false}"
+  privacy_qualification: "frozen synthetic/local workload only; not arbitrary future data assurance"
+  new_actor_ACKs: "{\"E16_cursor\": 28, \"E16_turn\": \"01a14650-1a34-7dc1-966e-e4050bc17476\", \"feedback_cursor\": 15, \"feedback_turn\": \"01a14650-2368-7942-a333-4d83c058b0a9\"}"
+  packet: ".env.epic15.mail-runtime/epic15-P-remaining-readiness-d9f54377-eef9-40d8-aa67-6f21b5dcd8e1"
+  manifest_sha256: d5afd744e7467f4f5fc98a72866d07ca6837cb2c26bf039dd7eb1b95a1584b11
+  PRIMARY_READY: true
+  application_executor_PREPARED_ACK: true
+  ROOT_inert_transport: ".env.epic15.mail-runtime/root-P-application-execution-b26beca5-59a1-4ff2-9690-aacd170429fc"
+  ROOT_transport_manifest_sha256: e6de186825db40e31a73c6f83ebf52ab59da0c7ba01d993fe3a5be112cc2b7fd
+  explicit_FINAL_received: true
+p_execution:
+  status: terminal-failure-restored-qualified-window-closed
+  runId: 38962295575
+  createdAt: "2026-10-16T20:26:49Z"
+  journalId: e70450c0-eb15-4303-8b74-65fb70474d29
+  rootBindingSha256: dd1aa5193ce39d1293c71dad9cc2cb49ef6e6805e48fe96011bb31aa7d3fd186
+  pushCount: 1
+  dispatchCount: 1
+  cancelCount: 0
+  restore: pending terminal
+  actualClockT: "2026-10-16T20:25:00Z"
+  windowHandoff: "2026-10-16T21:55:00Z"
+  runtime_gate_credit: false
+  Bind_verified_UTC: "2026-10-16T20:27:58.2835069Z"
+  Bind_native_exit: 0
+  Bind_mutations: 0
+  persisted_binding_sha256: 340d7aeff8667aa519feaf19e08a46fe1f6f7721a6cb96367be8c7ca3de708d9
+  Bind_packet_entries_verified: 9
+  Bind_external_bindings_verified: 2
+  Bind_mismatches: 0
+  General_job: FAILURE117180796153
+  optional_application_job: FAILURE117188324553
+  terminal_proof_UTC: "2026-10-16T20:53:03.774648Z"
+  terminal_proof_sha256: 2487a8335b46feaf4d873dc6da00601b17e707a348f151c0135ed07897411fa7
+  cancelNeeded: false
+  future_cancel_timer_active: false
+  Restore_native_exit: 0
+  Restore_packet_sha256: ebc0c09359cdbaec9760fca70225fce26cb3ad236d27c5b7b455f3aef74881a5
+  Restore_verified_entries: 40
+  Restore_verified_external: 3
+  Restore_mismatches: 0
+  original8identity_readback: "PASS20:54:03.539078Z"
+  known_owned_residue: 0
+  actual_E16_feedback_holds: Coordinator release messages delivered
+  future_handoff_timer_active: false
+  no_2140_cancel_or_2155_handoff: true
+  full_corpus: "{\"path\": \".env.epic15.mail-runtime/root-P-application-execution-b26beca5-59a1-4ff2-9690-aacd170429fc/transport-manifest.complete.v2.json\", \"entries\": 2741, \"bytes\": 937465, \"sha256\": \"8bc3490c2aed4c0e59ba891e0c4dd27cd3bc01f79a042ee38b01dec33de7baff\", \"qualified_manifests\": 12, \"mismatches\": 0, \"original_archives\": 11, \"extracted_files\": 171, \"uncompressed_bytes\": 28276067}"
+p_completed_job_audit:
+  status: SAME independent High PASS actual counts+preservation
+  packet: "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\epic15-P-four-job-audit-fde9bbfb-0b1d-4fd2-b7d8-4b9d55de594e"
+  manifest_sha256: f296a33152f04c46287a416804d288bce0fc4cf5ee61c240ae7d70ecd824df39
+  ROOT_verified_entries: 8
+  ROOT_verified_external: 13
+  mismatches: 0
+  unit_pass: 2711
+  unit_fail_cancel_skip: 0
+  focused_mock_tests_within_unit: 175
+  DB_pass: 1736
+  DB_explicit_skip: 1
+  RLS_pass_within_DB: 752
+  RLS_files: 50
+  dashboard_pass: 57
+  isolated_recovery_pass: 1
+  broad_DB_recovery_skip: "explicitly unexecuted; isolated test does not erase"
+  General_optional_acceptance_credit: false
+p_diagnosis:
+  status: "SAME independent High PASS; exact two source paths allocated resource-free proofs only"
+  packet: "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\epic15-P-terminal-diagnosis-8d183acc-5d7a-42ea-8c3d-bb3f56f8398e"
+  manifest_sha256: 9f8c93bb63e48e0b886cdb99f52b826eb672f5eb4fe9fb919e350733631a661a
+  ROOT_verified_entries: 25
+  ROOT_verified_external: 18
+  mismatches: 0
+  full_corpus_bindings_preserved: 2741
+  General_logical: 368expected/1unexpected/13skip
+  General_physical: 375pass/2fail/23skip
+  General_attempt_sum_ms: 854328
+  General_attempt_budget_ms: 800000
+  General_budget_status: FAIL54328ms-over
+  General_CDP_canceled_cause: UNKNOWN
+  General_visual_distinct_desktop: 5
+  General_phone_targets: 0
+  application_suites: 0
+  application_failure: "webServer exit1; EACCES generated next-env.d.ts"
+  proposal: "exclusive application-owned0600 generated next-env.d.ts only; CI bootstrap+admissionunit2paths"
+  proposal_sha256: 06ca1db36c7b14a479b0e6c271cbbf9b631dd1bb50c3547bfa976279b2e6c737
+  source_runtime_actions: 0
+  fresh_candidate_required: true
+  repeat_at_P: false
+  P5_credit: false
+p_source_fix:
+  status: SAME-independent-High-implementation-PASS
+  paths: [".github/workflows/ci.yml", tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts]
+  scope: "exclusive nofollow regular next-env.d.ts finalappUIDGID0600; parentcodeconfigreadonly; collisionandsubstitutionrefuse"
+  candidate_P_repeat: false
+  runtime_admitted: false
+  bookkeeping_commit_push_admitted: "LOCAL checkpoint only; push NOTadmitted"
+  actual_source_writes: 2
+  actual_tests_sudo_native: 0
+  gap: "closed unprivileged descriptor plus existing path-based transfer cannot prevent pre-transfer foreign mutation; final inodecheck insufficient"
+  next: ROOT local max5path checkpoint and actual new-SHA operational rebind
+  packet: "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\epic15-generated-type-slot-tooling-gap-f395f840-8336-4870-8e37-70a3d4d5a91b"
+  manifest_sha256: f745538c4c9d73f8390010931d95d3cbaf5c4c538c620042a814470c3c9cc09b
+  proposal_sha256: 1077d66095c92d43f121e206bb71480b25f929c6fec36b3a293de3e4789c7269
+  ROOT_verified_entries: 8
+  ROOT_verified_external: 3
+  corpus2741_verified_unchanged: true
+  mismatches: 0
+  source_writes: 0
+  new_privileged_tooling_admitted: "source/proof only; execution NOTreleased"
+  new_privileged_tooling_source_scope: ONE bounded root timeout/Python FD capsule for one generated file after lock+unchangedhome transfer
+  new_privileged_tooling_source_review: SAME independent High PASS8+3
+  implementation_packet: "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\epic15-generated-type-slot-implementation-8c8b317a-c3ad-4788-9568-b30497a3e187"
+  implementation_manifest_sha256: 74a84bcedfcf8d944e3e536f2c9f894b7bbbb2d270636f864e1bcfeb8b180020
+  ROOT_transport_proof_sha256: a2c708a8280e577873290f679eaf0321700c862bc5011ed3001be7774f21570d
+  focused_tests_passed: 183
+  focused_tests_failed: 0
+  conserved_historical_entries: 2739
+  authorized_source_successors: 2
+  independent_source_review: "SAME independent High PASS; exact sealed review references retained in q_checkpoint"
+  source_writes_by_ROOT: 0
+low_codepath_time_folded: true
+Low_codepath_research:
+  seconds: 142
+  note: ".env.epic15.mail-runtime/codepath-low-5d6d4742-c650-46dc-9441-d2b9ca06e472.json"
+  sha256: b5eab0d88bbd1fded4bdb3878f2479e2c98493987999b38c05d7dc9ac3c4c5b9
+  static_only: true
+  runtime_cause_unknown: true
+  existing_High_actor_unchanged: true
+p_general_observability_plan:
+  status: SAME-independent-High-proposal-PASS-implementation-NOTallocated
+  source_writes: false
+  runtime_admitted: false
+  causal_conclusion: unknown
+  budget_change: false
+  assertion_change: false
+  packet: epic15-General-lifecycle-observation-plan-c5a92298-29d5-49c3-bd40-a8a747184296
+  manifest_sha256: 9024cb8565de1c945c286cc411d5a0fbae818682af98d3027ace69ffae277f86
+  ROOT_proof_sha256: d87a5e59b0647d013671c93230393aeef7d54e8fd564ea333379584c35c5a1e5
+  bindings_verified: 25
+  implementation_bindings_conserved: 89
+  mismatches: 0
+  tests_executed: 0
+  independent_verified_bindings: 7+18 and86+3conservation
+  review_provenance: Coordinator direct completed SAME High message
+q_checkpoint:
+  status: local-checkpoint-qualified
+  parent: ab5595a609092306489064f46e5a567cbfb9b34a
+  scope: [".github/workflows/ci.yml", "_bmad-output/auto-bmad/reports/epic-15.md", "_bmad-output/auto-bmad/state/15-1-the-five-scheduling-views.yaml", "_bmad-output/auto-bmad/state/epic/epic-15.yaml", tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts]
+  root_source_writes: 0
+  bookkeeping_paths: 3
+  source_successors: 2
+  conserved_source_bindings: 19
+  report_render_count: 1
+  commit_attempts: 1
+  publication_admitted: false
+  variables_admitted: false
+  CI_admitted: false
+  runtime_admitted: false
+  p5_credit: false
+  broad_review_rounds: 0
+  once_rendered_report_asof: "2026-10-16T21:53:38Z; preserves then-pending General proposal review; later PASS recorded in state only"
+  independent_review_bindings: ["{'path': 'C:\\\\Users\\\\Rasmus\\\\.codex\\\\worktrees\\\\epic-15-calendar\\\\Kopplas\\\\.env.epic15.mail-runtime\\\\epic15-generated-type-slot-implementation-8c8b317a-c3ad-4788-9568-b30497a3e187\\\\proof-manifest.json', 'bytes': 29730, 'sha256': '74a84bcedfcf8d944e3e536f2c9f894b7bbbb2d270636f864e1bcfeb8b180020'}", "{'path': 'C:\\\\Users\\\\Rasmus\\\\.codex\\\\worktrees\\\\epic-15-calendar\\\\Kopplas\\\\.env.epic15.mail-runtime\\\\epic15-generated-type-slot-implementation-8c8b317a-c3ad-4788-9568-b30497a3e187\\\\seal.json', 'bytes': 3122, 'sha256': 'ecaef77b524e1ff8cd7b36c0f4db4e037ae8eb3a85739b2c77ba0317ff793b8d'}", "{'path': 'C:\\\\Users\\\\Rasmus\\\\.codex\\\\worktrees\\\\epic-15-calendar\\\\Kopplas\\\\.env.epic15.mail-runtime\\\\epic15-generated-type-slot-implementation-8c8b317a-c3ad-4788-9568-b30497a3e187\\\\implementation-capsule.json', 'bytes': 2970, 'sha256': 'a6097ffe906eb1f5b0b5d15bb9ce427add37f1d966bf853c0e838ca487516259'}", "{'path': 'C:\\\\Users\\\\Rasmus\\\\.codex\\\\worktrees\\\\epic-15-calendar\\\\Kopplas\\\\.github\\\\workflows\\\\ci.yml', 'bytes': 72286, 'sha256': '44ffb3ceb7e851c0f59a3a9a3749135e4e536b1680d1cd3a48f9d2f668dc76c5'}", "{'path': 'C:\\\\Users\\\\Rasmus\\\\.codex\\\\worktrees\\\\epic-15-calendar\\\\Kopplas\\\\tests\\\\unit\\\\scripts\\\\verify\\\\fixed-chromium-application-admission.test.ts', 'bytes': 103781, 'sha256': '998453875982196cda773e0067dda56fe165f4094efa44add873900b9a3d0202'}"]
+q_control_compatibility_plan:
+  status: sealed-ROOT-binary-verified-awaiting-SAME-independent-High-qualification
+  manifest_sha256: fcfa808ad3e59cba0a87e2b21c441b7e98b51d0e5a2027a256e6096b09ccca03
+  plan_bindings: 38
+  control_bindings_conserved: 56
+  implementation_bindings_conserved: 89
+  mismatches: 0
+  control_authoring_admitted: false
+  runtime_admitted: false
