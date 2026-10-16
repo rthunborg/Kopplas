@@ -1182,3 +1182,37 @@ none
 **⚠️ Needs human:** (none)
 
 **Next:** NEWfinalgatecommit onlyROOTstates/report using exact reviewed UUID/message; no PUSH until Coordinator finalwindowrelease. UnrelatedPR103CI allowed/no stoppingotheractors; E16 andfeedbackmanualholds acknowledged.
+
+## Report — 2026-10-16T10:09:33Z (compiled mock independently PASS; native observation preparation next)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `45deb28`).
+**Pipeline status:** In progress: actual compiled C-mock proof independently PASS36logical/37physical,0fail/skip; native capability/application gates remain open.
+**Continues:** Prepare and independently validate smallest capability-only actual observation proposal before separate runtime admission.
+
+**Summary:** All six sequential Epic15 stories and completion gates retained;15.1 not done.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 165h 11m (≈21h 08m AI-run, ≈144h 02m human/idle wait); resumed 34×.
+
+**Stories:**
+1. 15.1 verification blocked;15.2-15.6 backlog.
+
+**Skipped:** (none)
+
+**Epic gate:** Open. P5false/broad0/3; compiledmock does not grant native/kernel/browser/product acceptance.
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** Automaticpreviews appliedTRUEverifiedbeforedeadline and LEAVEDISABLEDownerreenable; no restore/replay/deploy. EventualfrontendPR agent-fix mandatoryverified; oneepicPR/mergecommit/retainbranches.
+
+**Open questions:**
+1. Realnativecode125cause, credential/kernel behavior/fullcapability unproven; General7/1/10 phone0 and requiredvisualcomparison/application checks open.
+
+**Deferred work:**
+1. Capability-only preparation/validation/admission, actual browser verification, allremainingstory/epic/reviewgates.
+
+**⚠️ Needs human:** (none)
+
+**Next:** Local audit+bookkeeping checkpoint; return auditedcounts/sourcebindings and minimalnextobservationproposal toCoordinator. No furthernative/CI/variable/resource/sourceactions admitted.

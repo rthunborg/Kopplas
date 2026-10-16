@@ -9,10 +9,10 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-16T09:42:28Z"
+updated_at: "2026-10-16T10:09:33Z"
 started_at: "2026-10-09T13:06:12Z"
 completed_at: null
-active_seconds: 74333
+active_seconds: 75642
 timing_anchor: null
 is_first_in_epic: true
 is_last_in_epic: false
@@ -26,7 +26,7 @@ selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Owner-approved all-preview disable end state: refresh exact provider identity complete routing inventory prior flag and publication bindings before Coordinator policy/window release"
+escalation_reason: "Distinct independent actual compiled C mock audit: exact source substitution toolchain artifact provenance case coverage and strict separation from native privileged/browser acceptance"
 routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary scheduling UX specification; sensitive authorization/integrity portions explicitly delegated High\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary15.1 ATDD preparation; sensitive access assertions delegated High; shared fixture edits excluded\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -241,6 +241,9 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Preparation-only provider-side pre-push no-deploy control and shared authority conditional restoration; no mutation or publication admitted\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"One bounded read-only provider branch routing prerequisite: ordinary preview vs custom environment before owner shared-setting handoff decision\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Owner-approved all-preview disable end state: refresh exact provider identity complete routing inventory prior flag and publication bindings before Coordinator policy/window release\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Explicit owner and independent High released ONE exact preview-disable PATCH with positive readback before ROOT-only exact-head push; bounded provider transaction\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Prepared High provider executor awaits renewed bounded window after proven ZERO attempted mutation deadline refusal; same owner authorization and source bindings\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct independent actual compiled C mock audit: exact source substitution toolchain artifact provenance case coverage and strict separation from native privileged/browser acceptance\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate, trace-advisory]
 tea_rationale: "Scheduling, synchronized projections, capacity and drag/keyboard/dialog behavior"
@@ -266,7 +269,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [45a64853, f9e12a81, 279d3149, b9d61a33, 4d7911ac, 3a655a5d, a67a64dc, 66cd8436, d79fff08, bf84cf5d, 181f947f, 22cfb74a, 22cfb74a, 6fd516b0, 521d56fd, e448f856, b99e3f42, 83e27c92, 1aa7c52b, 8630b011, da3a4c59, 27d67de7, 4223e887, 9c26fd72, d75313bb, 4b0ab106, f7b4f154, 437c3da2, e6c404d3, f4a431f6, 85cae2a5, 689a1385, 1bc90218, c49ac882, 4b685196, a5d262f8, a39cd221, 704e9320, c797d815, 25390342e668dee81d6bda42bfe0b5b51ed1723b, a98fc96386df752c631c119de992fc832c8ecb4d, ea5477fff0dbd8e82abb6a376269bfcf54ae95e9, 35e904b2e0d8798f72fbb405b3a888d64fdebd45, 2a071fc49a81984ae55e9e2c08a7583444245d86, ccd7abe9ebe38d846df58087c9d94280ad1d25ab, b01a0511cd1ee66f710de21034faeae9d5537403, eaabd2d0020b391247e1a4383b0eaf6291f0ac83, 39b84268e8eeffb3f9a6ff6b055846187c166d4b, ffa4168a62851a788cea6fff244a87f12b08cca6, 049a6f0f, ef1c5a290bdc3e6b48e68ec492abc0010c636c1b, 3c07917c1a323ba280d2325d7fe050cf1574bf5e, d880cd63fa158272f206d74aa5c4b0280d0d622c, 62dbbf947a916f528e8ae32d7b768750769a8c5d, b38d358fbba883ce79662a2b0fd0cea51d27c121, 4602a2eacdac7636c67751c986b18cc3c546950f, 65207b9ecaf7e5ad39b1840bda76099805acfa57, dab81e3d21a8180a05d3db9af5dde7334f991982, 828474451a0ae833a712d64544482498e79740bd, 706c3c9c7e2f2b2178b1c3506c59a2708356141b, 24d15439ab87847ecd1234b3e475b9d76883de2f, c0a57eda240f2b17793b693b2f3fbb963ebb29ab, 11c5cd1e0a8a6fda3297a9f16a54bb48209a5d9c, 5d76de08575fb8fa09197021899d78280829d554, 81836287786a40540e96dbdf46db29c868cde41b, 48386408fc628f7341b711f177ff5833f622959c, 92dc4a5f4f7e9878e9ed9c28e00bda5d98680478, 16180cd63914a57895b36c2db060c43c74da3514, caec31b185bcad597664668d7a835c9c2096aa4d, 0a312c8fbd617d4ce03f97d5484bb23babb0686b, d5a5f85155394a0337ea92fcd606f949559b172a, becfd00e, 80c31af2, a0dd2302ead46e72e77f3293b84085c4f8fe65f3, 6f9e29656df997e2c5c6027874da4bee1ef6c17d, 5c1fb90b2f7f735259208e2d420bce489cbed598, 0d6f43ac90596b8703d8df3b9b986f9026aaaba3, 76868db295ac6b7de06a57f43164d5f02140f938, c4375f61, abaf8d81, db50a9c5, a1b83089, 6883ef61, 2441e3a2, 94baa7c7, afd9c1dd, 6d983e00, ae5b78b6, 09e70e81, 311e744f, 1d4ec146, 37fa423a, b1ad1496, "21835451", 1fadbd1f, b1f91332, 99590bfa]
+commits: [45a64853, f9e12a81, 279d3149, b9d61a33, 4d7911ac, 3a655a5d, a67a64dc, 66cd8436, d79fff08, bf84cf5d, 181f947f, 22cfb74a, 22cfb74a, 6fd516b0, 521d56fd, e448f856, b99e3f42, 83e27c92, 1aa7c52b, 8630b011, da3a4c59, 27d67de7, 4223e887, 9c26fd72, d75313bb, 4b0ab106, f7b4f154, 437c3da2, e6c404d3, f4a431f6, 85cae2a5, 689a1385, 1bc90218, c49ac882, 4b685196, a5d262f8, a39cd221, 704e9320, c797d815, 25390342e668dee81d6bda42bfe0b5b51ed1723b, a98fc96386df752c631c119de992fc832c8ecb4d, ea5477fff0dbd8e82abb6a376269bfcf54ae95e9, 35e904b2e0d8798f72fbb405b3a888d64fdebd45, 2a071fc49a81984ae55e9e2c08a7583444245d86, ccd7abe9ebe38d846df58087c9d94280ad1d25ab, b01a0511cd1ee66f710de21034faeae9d5537403, eaabd2d0020b391247e1a4383b0eaf6291f0ac83, 39b84268e8eeffb3f9a6ff6b055846187c166d4b, ffa4168a62851a788cea6fff244a87f12b08cca6, 049a6f0f, ef1c5a290bdc3e6b48e68ec492abc0010c636c1b, 3c07917c1a323ba280d2325d7fe050cf1574bf5e, d880cd63fa158272f206d74aa5c4b0280d0d622c, 62dbbf947a916f528e8ae32d7b768750769a8c5d, b38d358fbba883ce79662a2b0fd0cea51d27c121, 4602a2eacdac7636c67751c986b18cc3c546950f, 65207b9ecaf7e5ad39b1840bda76099805acfa57, dab81e3d21a8180a05d3db9af5dde7334f991982, 828474451a0ae833a712d64544482498e79740bd, 706c3c9c7e2f2b2178b1c3506c59a2708356141b, 24d15439ab87847ecd1234b3e475b9d76883de2f, c0a57eda240f2b17793b693b2f3fbb963ebb29ab, 11c5cd1e0a8a6fda3297a9f16a54bb48209a5d9c, 5d76de08575fb8fa09197021899d78280829d554, 81836287786a40540e96dbdf46db29c868cde41b, 48386408fc628f7341b711f177ff5833f622959c, 92dc4a5f4f7e9878e9ed9c28e00bda5d98680478, 16180cd63914a57895b36c2db060c43c74da3514, caec31b185bcad597664668d7a835c9c2096aa4d, 0a312c8fbd617d4ce03f97d5484bb23babb0686b, d5a5f85155394a0337ea92fcd606f949559b172a, becfd00e, 80c31af2, a0dd2302ead46e72e77f3293b84085c4f8fe65f3, 6f9e29656df997e2c5c6027874da4bee1ef6c17d, 5c1fb90b2f7f735259208e2d420bce489cbed598, 0d6f43ac90596b8703d8df3b9b986f9026aaaba3, 76868db295ac6b7de06a57f43164d5f02140f938, c4375f61, abaf8d81, db50a9c5, a1b83089, 6883ef61, 2441e3a2, 94baa7c7, afd9c1dd, 6d983e00, ae5b78b6, 09e70e81, 311e744f, 1d4ec146, 37fa423a, b1ad1496, "21835451", 1fadbd1f, b1f91332, 99590bfa, 45deb287]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -4340,14 +4343,19 @@ application_browser_vercel_provider_routing_qualification:
   publication_held: true
   owner_decision: Coordinator_to_present_all_previews_disabled_owner_handoff_no_automatic_restore
 application_browser_vercel_owner_decision:
-  status: direct_owner_approval_received_via_Coordinator
+  status: applied_true_verified_owner_handoff
   approved_project: Enhancior/kopplas
   preview_scope: ALL_project_branches
   approved_end_state: leave_automatic_previews_disabled_until_owner_reenables
+  actual_field_value: true
   automatic_restoration: false
   no_deploy_preserved: true
-  mutation_window_released: false
-  publication_released: false
+  mutation_window_closed_success: true
+  patch_attempts: 1
+  restores: 0
+  readback_completed_at: "2026-10-16T09:52:24.4806867Z"
+  readback_bytes: 900
+  readback_sha256: 7e47f30dcebef48c443b09a7ce50f6a3e22f61aaa974fef8607fa14198971bb6
 application_browser_vercel_resume_refresh:
   status: sealed_ready_for_exact_final_rebind
   source_parent: 99590bfa510cd9e98050642712a6a46259ba0409
@@ -4380,3 +4388,71 @@ frontend_pr_agent_fix_policy:
   owner_opt_out: false
   label_verified: false
   pr_created: false
+application_browser_first_provider_window:
+  status: refused_before_PATCH_deadline
+  patch_count: 0
+  push_count: 0
+  capsule_bytes: 1825
+  capsule_sha256: 93509fb93e7255f5a85feebb5f45cb7806b6401bdcb9a457b06a0ec77f3a5504
+  manifest_bytes: 725
+  manifest_sha256: 03a5fe0e6ca6aa6a3e5defbd111cd1576b28be53000471df99d163d69cc47514
+  preview_flag: ABSENT
+  native_read_exit: 0
+application_browser_renewed_provider_window:
+  T: "2026-10-16T09:51:00Z"
+  verify_by: "2026-10-16T09:53:00Z"
+  push_initiate_by: "2026-10-16T09:56:00Z"
+  reconcile_by: "2026-10-16T10:06:00Z"
+  handoff_by: "2026-10-16T10:11:00Z"
+  status: closed_successfully_reconciled_early
+  head: 45deb28751a5e0af154e8c219b3f607132a23654
+  patch_attempts: 1
+  push_attempts: 1
+  provider_readback_true: true
+  run_id: 38883625738
+  conclusion: success
+  automatic_restoration: false
+application_browser_actual_capsule_c_mock_execution:
+  status: PASS_actual_compiled_mock_independent_audit
+  executed_head: 45deb28751a5e0af154e8c219b3f607132a23654
+  run_id: 38883625738
+  workflow_id: 386543290
+  job_id: 116915989465
+  run_attempt: 1
+  push_attempts: 1
+  push_initiated_utc: "2026-10-16T09:54:04.908838Z"
+  job_started_at: "2026-10-16T09:54:13Z"
+  job_completed_at: "2026-10-16T09:54:23Z"
+  transport_entries: 130
+  transport_bytes: 43046
+  transport_sha256: 8bf652f6a91bcd2e42be83ad9d4338c2513ce9fe5c443f54ab15ff5cba45cb6c
+  artifact_id: 12038284012
+  artifact_zip_bytes: 18956
+  artifact_zip_sha256: 28179136f2b094eed013786cc8f33d695191477814f602729aa6a00cb2370223
+  artifact_entries: 17
+  log_entries: 11
+  actual_case_counts: 36_logical_37_physical_0_fail_0_skip
+  mock_process_compile_and_execution_step: success
+  native_browser_capability_admitted: false
+  p5_credit: false
+  broad_review_rounds: 0
+  audit_artifact: "_bmad-output/implementation-artifacts/story-15-1-capsule-c-mock-execution-audit-2026-10-16.md"
+  audit_bytes: 9920
+  audit_sha256: ae5f634f750b9dcd16eef815d3beaf487b9cb5cbf4d479ccf48bb526d54a0a21
+  actual_logical_cases: 36
+  actual_physical_evaluations: 37
+  actual_failed_cases: 0
+  actual_skipped_cases: 0
+  compiler_exit: 0
+  mock_exit: 0
+  compiler_version: Ubuntu Clang18.1.3
+  protected_source_bindings: 12
+  preservation_mismatches: 0
+  real_credentials_kernel_code125_cause: unproven
+  next_native_capability_admission: false
+application_browser_next_capability_observation:
+  status: preparation_required
+  native_execution_admitted: false
+  source_changes_admitted: false
+  existing_refusal_producer_compiled_mock_audit: PASS
+  scope: capability_only_actual_observation_proposal
