@@ -655,3 +655,79 @@ test("125 actual CLI reason qualification/detail bounds/nonsettling sinks retain
     assert.equal(f.writes.stdout.length,1);assert.ok(f.writes.stderr.length<=1);assert.deepEqual(Array.from(f.exits),[1]);
   }
 });
+
+// HOSTED-PATH-METADATA-TESTS-BEGIN: original assertions above are preserved.
+const pathMetadataCollector = () => {
+  const text = source(".github/workflows/ci.yml");
+  const begin = text.indexOf("          # HOSTED-PATH-METADATA-COLLECTOR-BEGIN\n");
+  const end = text.indexOf("          # HOSTED-PATH-METADATA-COLLECTOR-END", begin);
+  assert.ok(begin > 0 && end > begin);
+  return text.slice(begin + "          # HOSTED-PATH-METADATA-COLLECTOR-BEGIN\n".length, end)
+    .split("\n").map(line => line.startsWith("          ") ? line.slice(10) : line).join("\n");
+};
+const pathMetadataHarness = "import json,sys,stat,types,ast,builtins\nrequest=json.loads(sys.stdin.read())\nsource=request['source'];fault=request['fault'];calls=[];buffer=b'';opened=False;parent_opened=False;closed=[];now=0\ntree=ast.parse(source)\nassert [n for x in tree.body if isinstance(x,ast.Import) for n in [a.name for a in x.names]]==['json','os','stat','sys','time']\nallowed={'getuid','geteuid','getgid','getegid','lstat','listxattr','open','fstat','write','fsync','close'}\nassert {x.attr for x in ast.walk(tree) if isinstance(x,ast.Call) and isinstance(x.func,ast.Attribute) for x in [x.func] if isinstance(x.value,ast.Name) and x.value.id=='os'}<=allowed\nclass FakeOS:\n    O_RDONLY=0;O_WRONLY=1;O_CREAT=64;O_EXCL=128;O_APPEND=1024;O_DIRECTORY=65536;O_NOFOLLOW=131072;O_CLOEXEC=524288\n    environ={'RUNNER_TEMP':'PRIVATE-sink-parent'}\n    def __getattr__(self,name):raise AssertionError('DENIED unallocated OS effect '+name)\n    def getuid(self):return True if fault=='bad-credentials' else 0 if fault=='collector-root' else 1\n    def geteuid(self):return 0 if fault=='collector-root' else 1\n    def getgid(self):return self.geteuid()\n    def getegid(self):return self.geteuid()\n    def lstat(self,path):\n        global now\n        calls.append(['lstat',path])\n        if fault=='permission' and len([x for x in calls if x[0]=='lstat'])==2:raise PermissionError(13,'PRIVATE exception payload')\n        if fault=='deadline':now=2\n        mode=stat.S_IFLNK|0o777 if fault=='symlink' and path!='/' else stat.S_IFDIR|0o755\n        return types.SimpleNamespace(st_uid='PRIVATE' if fault=='malformed-stat' else 0,st_gid=0,st_mode=mode)\n    def listxattr(self,path,follow_symlinks):\n        calls.append(['listxattr',path,follow_symlinks]);assert follow_symlinks is False\n        if fault=='acl-unknown':raise OSError(95,'PRIVATE ACL error')\n        return ['user.PRIVATE','system.posix_acl_access'] if fault=='acl-present' else ['user.PRIVATE']\n    def open(self,path,flags,mode=None,dir_fd=None):\n        global opened,parent_opened\n        calls.append(['open',path,flags,mode,dir_fd]);assert flags&self.O_NOFOLLOW and flags&self.O_CLOEXEC\n        if dir_fd is None:\n            assert path=='PRIVATE-sink-parent' and flags&self.O_DIRECTORY\n            if fault=='parent-symlink':raise OSError(40,'PRIVATE parent')\n            parent_opened=True;return 10\n        assert dir_fd==10 and path=='fixed-chromium-hosted-path-admission.json'\n        assert flags&self.O_CREAT and flags&self.O_EXCL and mode==0o600\n        if fault in ['collision','sink-symlink']:raise FileExistsError('PRIVATE collision')\n        opened=True;return 11\n    def fstat(self,fd):\n        if fd==10:return types.SimpleNamespace(st_uid=999 if fault=='parent-owner' else self.geteuid(),st_mode=stat.S_IFDIR|(0o777 if fault=='parent-writable' else 0o700))\n        assert fd==11\n        return types.SimpleNamespace(st_uid=self.geteuid(),st_mode=stat.S_IFREG|(0o644 if fault=='sink-mode' else 0o600))\n    def write(self,fd,data):\n        global buffer\n        calls.append(['write',fd,len(data)]);assert fd==11 and len(data)<=4096\n        if fault=='sink-error':raise OSError(5,'PRIVATE sink error')\n        buffer=data[:-1] if fault=='short-write' else data\n        return len(buffer)\n    def fsync(self,fd):\n        global now\n        calls.append(['fsync',fd])\n        if fault=='late-publication':now=2\n    def close(self,fd):calls.append(['close',fd]);closed.append(fd)\nfake=FakeOS()\nserialize_count=0\ndef serialize(value,**options):\n    global serialize_count\n    serialize_count+=1\n    if fault=='overflow-always' or fault=='overflow' and serialize_count==1:return 'X'*5000\n    return json.dumps(value,**options)\npath='/PRIVATE/session/workload'\nif fault=='depth':path='/'+'/'.join(['PRIVATE']*12+['workload'])\nif fault=='input':path='/PRIVATE/../workload'\nargs=['collector',path,'123','456']\nfake_sys=types.SimpleNamespace(argv=args)\nfake_time=types.SimpleNamespace(monotonic=lambda:now)\nimports={'os':fake,'stat':stat,'sys':fake_sys,'time':fake_time,'json':types.SimpleNamespace(dumps=serialize)}\ndef only_import(name,*args,**kw):\n    assert name in imports,'DENIED unexpected import'\n    return imports[name]\nscope={'__builtins__':dict(vars(builtins),__import__=only_import)}\ntry:exec(compile(source,'actual-inline-collector','exec'),scope);raise AssertionError('missing terminal path')\nexcept SystemExit as e:code=e.code\nreceipt=None\nif buffer:\n    try:receipt=json.loads(buffer)\n    except ValueError:pass\nassert not buffer or b'PRIVATE' not in buffer\nassert all(x[0] in allowed for x in calls)\nassert not opened or 11 in closed\nassert not parent_opened or 10 in closed\nprint(json.dumps({'code':code,'published':code==0,'receipt':receipt,'bytes':len(buffer),'opened':opened,'calls':calls,'nativeActions':0}))\n";
+const pathMetadataCases = ["positive", "collector-root", "depth", "input", "symlink", "permission",
+  "malformed-stat", "bad-credentials", "acl-present", "acl-unknown", "overflow", "overflow-always",
+  "deadline", "late-publication", "collision", "sink-symlink", "parent-symlink", "parent-owner",
+  "parent-writable", "sink-mode", "sink-error", "short-write"];
+for (const fault of pathMetadataCases) test("actual path metadata collector " + fault, { timeout: 5000 }, async () => {
+  const { spawnSync } = await import("node:child_process");
+  const result = spawnSync(process.platform === "win32" ? "python" : "python3", ["-c", pathMetadataHarness], {
+    input: JSON.stringify({ source: pathMetadataCollector(), fault }), encoding: "utf8", timeout: 4000, maxBuffer: 65536,
+  });
+  assert.equal(result.error, undefined);
+  assert.equal(result.status, 0, result.stderr);
+  const value = JSON.parse(result.stdout);
+  assert.equal(value.nativeActions, 0);
+  assert.ok(value.bytes <= 4096);
+  const unavailable = ["overflow-always", "deadline", "late-publication", "collision", "sink-symlink",
+    "parent-symlink", "parent-owner", "parent-writable", "sink-mode", "sink-error", "short-write"].includes(fault);
+  assert.equal(value.published, !unavailable);
+  if (!unavailable) {
+    const data = value.receipt;
+    assert.deepEqual(Object.keys(data).sort(), ["schemaVersion", "kind", "collectionState", "reason",
+      "workloadCredentials", "intendedUid", "intendedGid", "collectorIds", "components"].sort());
+    assert.equal(data.kind, "hosted-path-metadata");
+    assert.equal(data.workloadCredentials, "UNOBSERVED");
+    assert.ok(data.components.length <= 12);
+    assert.ok(!JSON.stringify(data).includes("PRIVATE"));
+    const complete = ["positive", "collector-root", "acl-present"].includes(fault);
+    assert.equal(data.collectionState, complete ? "COMPLETE" : "UNKNOWN");
+    if (complete) {
+      assert.equal(data.intendedUid, 123); assert.equal(data.intendedGid, 456);
+      assert.equal(data.collectorIds.euid, fault === "collector-root" ? 0 : 1);
+      assert.equal(data.components.at(-1).label, "workload");
+      assert.equal(data.components.at(-2).label, "session-root");
+    }
+    if (fault === "acl-present") assert.ok(data.components.every((row: { aclPresence: string }) => row.aclPresence === "PRESENT"));
+    if (fault === "acl-unknown") assert.ok(data.components.every((row: { aclPresence: string }) => row.aclPresence === "UNKNOWN"));
+    if (fault === "overflow") { assert.equal(data.reason, "BYTE_CAP"); assert.deepEqual(data.components, []); }
+    if (fault === "depth" || fault === "input") assert.equal(value.calls.filter((row: string[]) => row[0] === "lstat").length, 0);
+    if (fault === "symlink") assert.equal(value.calls.filter((row: string[]) => row[0] === "lstat").length, 2);
+  }
+});
+test("path metadata keeps exact workflow inverse and required native success checks", () => {
+  const text = source(".github/workflows/ci.yml");
+  assert.match(text, /timeout-minutes: 2/);
+  assert.match(text, /timeout --signal=TERM --kill-after=1s 2s python3/);
+  assert.match(pathMetadataCollector(), /MAX_SECONDS = 1\.0/);
+  assert.match(pathMetadataCollector(), /MAX_BYTES = 4096/);
+  assert.match(pathMetadataCollector(), /MAX_COMPONENTS = 12/);
+  assert.match(text, /if \[ "\$FIXED_CHROMIUM_HOSTED_ADMISSION" = capability \]; then/);
+  assert.ok(text.includes(`'path_metadata_written=false' >> "$GITHUB_OUTPUT" || :`));
+  assert.ok(text.includes(`'path_metadata_written=true' >> "$GITHUB_OUTPUT" || :; else :; fi`));
+  assert.match(text, /steps\.hosted_session\.outputs\.path_metadata_written == 'true'/);
+  assert.match(text, /retention-days: 7/);
+  assert.match(text, /name: Preserve capability capsule receipt[\s\S]*?if-no-files-found: error/);
+  assert.match(text, /run: node tests\/diagnostics\/fixed-chromium-application-runner\.mjs --capability-capsule/);
+  const inverse = text.replace(/          # HOSTED-PATH-METADATA-BASH-BEGIN[\s\S]*?          # HOSTED-PATH-METADATA-BASH-END\n/, "")
+    .replace(/      # HOSTED-PATH-METADATA-UPLOAD-BEGIN[\s\S]*?      # HOSTED-PATH-METADATA-UPLOAD-END\n/, "")
+    .replace("        id: hosted_session\n", "");
+  assert.equal(sha(inverse), "9c933a75fd38b6a4ea885dd52c94e4c072df037f5bc04251a1063d99e181f77d");
+});
+test("path metadata preserves all original admission assertions as an exact prefix", () => {
+  const text = source("tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts");
+  const prefix = text.slice(0, text.indexOf("\n// HOSTED-PATH-METADATA-TESTS-BEGIN"));
+  assert.equal(Buffer.byteLength(prefix), 66757);
+  assert.equal(sha(prefix), "dc235d3d606c473d2958d7308a95beda32c326b6204334242d18768c6f22b0c4");
+});

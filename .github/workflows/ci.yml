@@ -843,6 +843,7 @@ jobs:
 
       # ROOT-SERVICE-BOOTSTRAP-BEGIN
       - name: Compile private reviewed broker and prepare exclusive hosted session
+        id: hosted_session
         timeout-minutes: 2
         env:
           ACQUIRED_CHROMIUM: ${{ steps.fixed.outputs.executable }}
@@ -898,6 +899,133 @@ jobs:
           done
           sudo -n /bin/chown "$uid:$gid" "$private_root/home"
           sudo -n /bin/chmod 0700 "$private_root/home"
+          # HOSTED-PATH-METADATA-BASH-BEGIN
+          # Diagnostic only: one-second collection, two-second TERM, one-second KILL.
+          # UNKNOWN or unavailable metadata never changes preparation/native execution.
+          printf '%s\n' 'path_metadata_written=false' >> "$GITHUB_OUTPUT" || :
+          if [ "$FIXED_CHROMIUM_HOSTED_ADMISSION" = capability ]; then
+            if /usr/bin/timeout --signal=TERM --kill-after=1s 2s python3 - "$private_root/workload" "$uid" "$gid" <<'PY_PATH_METADATA' >/dev/null 2>&1
+          # HOSTED-PATH-METADATA-COLLECTOR-BEGIN
+          import json, os, stat, sys, time
+          MAX_SECONDS = 1.0
+          MAX_BYTES = 4096
+          MAX_COMPONENTS = 12
+          SINK_NAME = 'fixed-chromium-hosted-path-admission.json'
+          class Unknown(Exception):
+              pass
+          def run_metadata():
+              start = time.monotonic()
+              def live():
+                  if time.monotonic() - start >= MAX_SECONDS:
+                      raise Unknown()
+              def number(value):
+                  return type(value) is int and 0 <= value <= 4294967295
+              receipt = {'schemaVersion': 1, 'kind': 'hosted-path-metadata', 'collectionState': 'UNKNOWN',
+                  'reason': 'INPUT', 'workloadCredentials': 'UNOBSERVED', 'intendedUid': None,
+                  'intendedGid': None, 'collectorIds': None, 'components': []}
+              reason = None
+              def unknown(value):
+                  nonlocal reason
+                  if reason is None:
+                      reason = value
+              try:
+                  live()
+                  ids = [os.getuid(), os.geteuid(), os.getgid(), os.getegid()]
+                  if not all(number(value) for value in ids):
+                      raise Unknown()
+                  receipt['collectorIds'] = dict(zip(['uid', 'euid', 'gid', 'egid'], ids))
+                  path = sys.argv[1]
+                  uid, gid = sys.argv[2:4]
+                  if len(sys.argv) != 4 or not uid.isascii() or not gid.isascii() or not uid.isdecimal() or not gid.isdecimal():
+                      raise Unknown()
+                  uid, gid = int(uid), int(gid)
+                  if not number(uid) or not number(gid) or uid == 0 or gid == 0:
+                      raise Unknown()
+                  receipt['intendedUid'], receipt['intendedGid'] = uid, gid
+                  if len(path) > 4096 or not path.startswith('/') or path.startswith('//') or '\\' in path or '\0' in path or '\n' in path or '\r' in path:
+                      raise Unknown()
+                  parts = path.split('/')[1:]
+                  if not parts or parts[-1] != 'workload' or any(part in ('', '.', '..') for part in parts):
+                      raise Unknown()
+                  paths = ['/'] + ['/' + '/'.join(parts[:i]) for i in range(1, len(parts) + 1)]
+                  if len(paths) > MAX_COMPONENTS:
+                      unknown('DEPTH')
+                  else:
+                      for index, component in enumerate(paths):
+                          row = {'index': index, 'label': 'workload' if index == len(paths) - 1 else
+                              'session-root' if index == len(paths) - 2 else 'ancestor', 'uid': None,
+                              'gid': None, 'mode': None, 'type': 'UNKNOWN', 'symlink': None, 'aclPresence': 'UNKNOWN'}
+                          receipt['components'].append(row)
+                          live()
+                          try:
+                              value = os.lstat(component)
+                              live()
+                              if not number(value.st_uid) or not number(value.st_gid) or type(value.st_mode) is not int:
+                                  unknown('FILESYSTEM')
+                                  break
+                              row.update(uid=value.st_uid, gid=value.st_gid, mode=stat.S_IMODE(value.st_mode),
+                                  symlink=stat.S_ISLNK(value.st_mode), type='symlink' if stat.S_ISLNK(value.st_mode)
+                                  else 'directory' if stat.S_ISDIR(value.st_mode) else 'other')
+                              if row['type'] != 'directory':
+                                  unknown('SYMLINK' if row['symlink'] else 'FILESYSTEM')
+                                  break
+                              try:
+                                  names = os.listxattr(component, follow_symlinks=False)
+                                  live()
+                                  row['aclPresence'] = 'PRESENT' if 'system.posix_acl_access' in names else 'ABSENT'
+                              except OSError:
+                                  unknown('ACL')
+                          except OSError:
+                              unknown('FILESYSTEM')
+                              break
+              except Unknown:
+                  unknown('DEADLINE' if time.monotonic() - start >= MAX_SECONDS else 'INPUT')
+              except (OSError, AttributeError, IndexError, ValueError, TypeError):
+                  unknown('UNSUPPORTED')
+              receipt['reason'] = reason or 'NONE'
+              receipt['collectionState'] = 'UNKNOWN' if reason else 'COMPLETE'
+              parent = sink = None
+              try:
+                  live()
+                  payload = (json.dumps(receipt, separators=(',', ':')) + '\n').encode('utf8')
+                  if len(payload) > MAX_BYTES:
+                      receipt.update(collectionState='UNKNOWN', reason='BYTE_CAP', components=[])
+                      payload = (json.dumps(receipt, separators=(',', ':')) + '\n').encode('utf8')
+                  if len(payload) > MAX_BYTES:
+                      return 1
+                  parent = os.open(os.environ['RUNNER_TEMP'], os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW | os.O_CLOEXEC)
+                  info = os.fstat(parent)
+                  live()
+                  if not stat.S_ISDIR(info.st_mode) or info.st_uid != os.geteuid() or info.st_mode & 0o022:
+                      return 1
+                  sink = os.open(SINK_NAME, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW | os.O_CLOEXEC,
+                      0o600, dir_fd=parent)
+                  info = os.fstat(sink)
+                  live()
+                  if not stat.S_ISREG(info.st_mode) or info.st_uid != os.geteuid() or stat.S_IMODE(info.st_mode) != 0o600:
+                      return 1
+                  if os.write(sink, payload) != len(payload):
+                      return 1
+                  os.fsync(sink)
+                  os.close(sink)
+                  sink = None
+                  live()
+                  return 0  # Receipt availability only; collectionState may remain UNKNOWN.
+              except (OSError, AttributeError, KeyError, Unknown):
+                  return 1
+              finally:
+                  for fd in (sink, parent):
+                      if fd is not None:
+                          try:
+                              os.close(fd)
+                          except OSError:
+                              pass
+          raise SystemExit(run_metadata())
+          # HOSTED-PATH-METADATA-COLLECTOR-END
+          PY_PATH_METADATA
+            then printf '%s\n' 'path_metadata_written=true' >> "$GITHUB_OUTPUT" || :; else :; fi
+          fi
+          # HOSTED-PATH-METADATA-BASH-END
           printf '%s\n' "FIXED_CHROMIUM_BROKER_ROOT=$private_root" "FIXED_CHROMIUM_WORKLOAD_REPO=$private_root/workload" "FIXED_CHROMIUM_BROKER_GENERATION=$generation" "FIXED_CHROMIUM_BROKER_SOURCE_SHA256=$source_sha" "FIXED_CHROMIUM_BROKER_UNIT=$unit" >> "$GITHUB_ENV"
 
       - name: Capability capsule only (no browser, application, or database execution)
@@ -912,6 +1040,16 @@ jobs:
           path: test-results/fixed-chromium-hosted-capability.json
           retention-days: 7
           if-no-files-found: error
+      # HOSTED-PATH-METADATA-UPLOAD-BEGIN
+      - name: Preserve bounded private path metadata (not capability acceptance)
+        if: ${{ always() && !cancelled() && env.FIXED_CHROMIUM_HOSTED_ADMISSION == 'capability' && steps.hosted_session.outputs.path_metadata_written == 'true' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: fixed-chromium-hosted-path-admission
+          path: ${{ runner.temp }}/fixed-chromium-hosted-path-admission.json
+          retention-days: 7
+          if-no-files-found: error
+      # HOSTED-PATH-METADATA-UPLOAD-END
       # ROOT-SERVICE-BOOTSTRAP-END
 
       - name: Isolated full158 application tests (original full General population)

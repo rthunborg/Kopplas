@@ -1354,3 +1354,43 @@ none
 **⚠️ Needs human:** (none)
 
 **Next:** Prepare and independently validate a new exact-SHA operational rebind and fresh readiness before any push or CI. No deployment.
+
+## Report — 2026-10-16T16:17:45Z (checkpoint - reviewed bounded permission metadata; verification blocked)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `48f8d7a`).
+**Pipeline status:** in-progress; Story 15.1 remains blocked by General browser and native capability verification. Focused diagnostic source review passed; no P5 or application acceptance.
+**Continues:** Prior checkpoint 48f8d7a7; all historical reports and failed attempts retained. Local checkpoint only; publication and new runtime require independent operational rebind.
+
+**Summary:** Six stories: 15.1 in progress, 15.2-15.6 backlog; none accepted. Exact N run 38920100724 completed failure. Verification, DB, dashboard and recovery passed; General and optional capability failed; native/paired probes skipped.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 171h 19m (≈24h 45m AI-run, ≈146h 34m human/idle wait); resumed 39×.
+
+**Stories:**
+1. 15.1: canonical spec validated, Contract D calendar-host obligations retained; build verification blocked. Units 2659 pass/0 fail-cancel-skip; integration 1736 pass/1 skip, including 752 passing RLS assertions as a subset; the isolated recovery proof skipped there ran separately and passed. Dashboard 57 pass/0 skip.
+2. 15.1 General: 368 expected, 1 unexpected, 13 skipped/unexecuted globally. Scheduling 7 pass, AC2 failed both attempts with net::ERR_ABORTED, 10 subsequent serial tests unexecuted. Five distinct desktop captures across retries do not satisfy all eleven visual targets.
+3. 15.1 native: workload-chdir/errno 13, native125/caller1; first runner predicate capsule-expiration-rejected; protocol-confirmed failed-stage cleanup. Denied component/ACL, actual workload credentials and later broker shutdown remain unobserved. Missing success-only receipt causes secondary upload failure; no output-path defect established.
+4. 15.1 source: optional CI bootstrap plus admission tests only. High author and distinct High implementation reviewer passed focused preparation: 147 controls (119 retained admission, 4 pilot, 22 extracted-collector and 2 conservation); lint/type/YAML/Bash/Python syntax passed. Mocks establish no hosted filesystem, timeout, upload, identity or native acceptance.
+5. 15.2-15.6: backlog; verified 15.1 E5h predecessor and renewed shared ownership admission still required. E16 schema/runtime prerequisite hold retained.
+
+**Skipped:** (none)
+
+**Epic gate:** BLOCKED. P5 false, broad review 0/3; required six review layers, completion/TEA/harvest/visual/epic gates remain. Reviewed observability is not a causal permission fix or General acceptance.
+
+**TEA:** Not run for completion; no TEA gate waived.
+
+**Retrospective:** Epic 14 October 8 accepted-with-open-items is authoritative; October 7 rejection remains historical. Epic 15 retrospective not run.
+
+**Overrides:** One epic PR; merge commit only after independent review and all required checks; retain branches; no deployment. Ordinary Sol 6.1 Low, explicit sensitive High delegates. Owner-authorized design defaults and proportional headless structure; no legacy URLs or new legacy observations. Coordinate Documents/E16/shared resources and preserve other owned checkouts.
+
+**Open questions:**
+1. Which intended workload ancestor/permission context explains chdir EACCES? Actual workload credentials and later broker shutdown remain unobserved.
+2. What caused the two aborted AC2 tree-prefetch captures? Preserve both attempts, observation budget and assertions.
+
+**Deferred work:**
+1. Collect bounded private numeric path metadata only after independent new-SHA operational rebind and separately admitted runtime. Internal 1s, outer TERM2s/KILL1s, 4096 bytes, at most 12 components, exclusive no-follow 0600 sink and fixed seven-day artifact within unchanged two-minute bootstrap. UNKNOWN diagnostics cannot grant native capability success.
+2. Complete all Story 15.1 acceptance, visual and independent review gates before 15.2; then prepare/validate each remaining story before implementation.
+
+**⚠️ Needs human:** (none)
+
+**Next:** Commit only the reviewed two source files plus the existing two states and this append-only report. Return actual commit/tree/parent/raw message/21-source metadata for the same independent High operational rebind; prepare a minimal new-SHA compatibility plan only. Do not push, create variables or dispatch CI yet.
