@@ -9,10 +9,10 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-16T22:46:26Z"
+updated_at: "2026-10-17T10:46:25Z"
 started_at: "2026-10-09T12:57:49Z"
 completed_at: null
-active_seconds: 101708
+active_seconds: 114864
 timing_anchor: null
 is_first_in_epic: false
 is_last_in_epic: false
@@ -26,7 +26,7 @@ selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Sensitive fresh resource-free private STATIC PLAN ONLY for final PRIMARY25 application helper/worker compatibility and honest total-effect delta, while independent finalsource review runs; actual nextSHA unissued and no control authoring or runtime."
+escalation_reason: "Explicit four-path auth-fixture creation-bound FD-only cleanup source implementation and bounded proofs require High for ownership, integrity, callback lifetime and failure precedence."
 routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary epic test planning; sensitive implementation/review scope routed explicitly High\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary story test-risk classification\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_triage\",\"profile\":\"light\",\"role\":\"test-risk-triage\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -147,6 +147,25 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive exact application provenance dependency expansion runner12to15 and admission controls, authoritative collection/comparison stale-hash refusal and PRIMARY21to25 schema plan; Coordinator precise two-path source/proof allocation after independent General/source-expansion PASS.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive independent focused final runner/admission exact-pathset provenance expansion and PRIMARY25 authoritative-working-binding proof review; preserve frozen General hooks and generated-file authority, no runtime/publication admission.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive fresh resource-free private STATIC PLAN ONLY for final PRIMARY25 application helper/worker compatibility and honest total-effect delta, while independent finalsource review runs; actual nextSHA unissued and no control authoring or runtime.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive independent joint actual R clean11pathcommit/PRIMARY25workingGit/trigger/retainedremoteP-vs-parentQ geometry and combined application control-plan operational rebind before any privatecontrol issuance/publication/runtime.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive fresh private application helperv2/workerv2 literal2plus1 substitutions, exactv1 inverses and actual serialized PRIMARY25 sourceguards/control proofs after independent JOINT R PASS and truthful validated PRIMARY issuance; no live variables/publication/runtime.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive independent focused joint R private helperv2/workerv2 literal inverses/PRIMARY25 copy/schema/actual serialized sourceguard and61resource-free proof qualification before fresh provider/GH operational readiness; no execution release.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Fresh bounded read-only authorization, CI variable ownership, provider no-deploy routing and synthetic export privacy readiness requires explicit High.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Independent focused operational review of sensitive variable ownership, no-deploy provider routing, public artifact privacy and hosted execution effects before any released window.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Explicitly released bounded owned GitHub variable lifecycle and exact-run hosted verification require High; ROOT retains sole Git publication/dispatch/cancel.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Read-only actual completed hosted job audit includes executed RLS/integration security evidence and required-mode skipped-count integrity.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Independent focused actual completed hosted security/RLS and required executed/skipped test evidence review; no broad story review or native credit.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Read-only failed General job diagnosis includes public-export privacy qualification, actual bounded lifecycle observations and preservation of critical failure/budget evidence while exact owned application run continues.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Independent focused General actual bounded lifecycle/export privacy and cancellation-known-unknown diagnosis review without waiving critical failure/budget/visual gates.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Private factual erratum of sensitive lifecycle identity inference after focused High review; frozen evidence preserved, no source/runtime allocation.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Released conditional restoration of two owned repository variables after fresh exact completed bound run; integrity requires own value and created/updated identities before each deletion plus full namespace proof.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Read-only actual terminal native application execution, containment and public artifact privacy diagnosis with owned lifecycle known/unknowns requires explicit High before any next source allocation.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Independent focused actual native application failure, synthetic credential privacy and bounded auth-fixture teardown/provenance proposal qualification before any source allocation.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Private fixed-auth-fixture cleanup ownership, atomicity/tooling-gap and provenance enrollment contract preparation requires High; no source/tests/runtime allocation.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Independent focused cleanup atomicity tooling-gap, creation-bound descriptor read/erasure contract amendment and added-writer/provenance scope qualification require High before source/tests.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Read-only exact pinned-loader/process/module FD lifetime, opaque ownership transfer and Node22 descriptor safety qualification requires High; bounded primary source retrieval only, no package execution or source allocation.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Independent focused pinned SDK loader lifetime, original-inode descriptor erasure ownership and four-path contract/control proposal qualification before source/tests requires High.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Explicit four-path auth-fixture creation-bound FD-only cleanup source implementation and bounded proofs require High for ownership, integrity, callback lifetime and failure precedence.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: null
 tea_selected: []
 tea_rationale: null
@@ -172,7 +191,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [99e1274e, b7f19e2d, 6f612a21, bc4163ea, 27ce6a2b, 7cdd08a6, 66cd8436, e6c404d3, 5d76de08575fb8fa09197021899d78280829d554, 81836287786a40540e96dbdf46db29c868cde41b, 48386408fc628f7341b711f177ff5833f622959c, 92dc4a5f4f7e9878e9ed9c28e00bda5d98680478, 16180cd63914a57895b36c2db060c43c74da3514, caec31b185bcad597664668d7a835c9c2096aa4d, 0a312c8fbd617d4ce03f97d5484bb23babb0686b, d5a5f85155394a0337ea92fcd606f949559b172a, becfd00e, 80c31af2, a0dd2302ead46e72e77f3293b84085c4f8fe65f3, 6f9e29656df997e2c5c6027874da4bee1ef6c17d, 5c1fb90b2f7f735259208e2d420bce489cbed598, 0d6f43ac90596b8703d8df3b9b986f9026aaaba3, 76868db295ac6b7de06a57f43164d5f02140f938, c4375f61, abaf8d81, db50a9c5, a1b83089, 6883ef61, 2441e3a2, 94baa7c7, afd9c1dd, 6d983e00, ae5b78b6, 09e70e81, 311e744f, 1d4ec146, 37fa423a, b1ad1496, "21835451", 1fadbd1f, b1f91332, 99590bfa, 45deb287, 532ebccf, 689ec7b7, cf9b89f9, 63186b1f, 48f8d7a7f170ca496b63e8120a34edb92e3ca23e, 6c0fa8fa11a1b4ab7268f623b96693affe3506b0, 83c60e0033628b4158448b9e782a9ad5a12e062f, ab5595a609092306489064f46e5a567cbfb9b34a, f2bad2b11b31b4646a3b068e17b61a044b376c0a]
+commits: [99e1274e, b7f19e2d, 6f612a21, bc4163ea, 27ce6a2b, 7cdd08a6, 66cd8436, e6c404d3, 5d76de08575fb8fa09197021899d78280829d554, 81836287786a40540e96dbdf46db29c868cde41b, 48386408fc628f7341b711f177ff5833f622959c, 92dc4a5f4f7e9878e9ed9c28e00bda5d98680478, 16180cd63914a57895b36c2db060c43c74da3514, caec31b185bcad597664668d7a835c9c2096aa4d, 0a312c8fbd617d4ce03f97d5484bb23babb0686b, d5a5f85155394a0337ea92fcd606f949559b172a, becfd00e, 80c31af2, a0dd2302ead46e72e77f3293b84085c4f8fe65f3, 6f9e29656df997e2c5c6027874da4bee1ef6c17d, 5c1fb90b2f7f735259208e2d420bce489cbed598, 0d6f43ac90596b8703d8df3b9b986f9026aaaba3, 76868db295ac6b7de06a57f43164d5f02140f938, c4375f61, abaf8d81, db50a9c5, a1b83089, 6883ef61, 2441e3a2, 94baa7c7, afd9c1dd, 6d983e00, ae5b78b6, 09e70e81, 311e744f, 1d4ec146, 37fa423a, b1ad1496, "21835451", 1fadbd1f, b1f91332, 99590bfa, 45deb287, 532ebccf, 689ec7b7, cf9b89f9, 63186b1f, 48f8d7a7f170ca496b63e8120a34edb92e3ca23e, 6c0fa8fa11a1b4ab7268f623b96693affe3506b0, 83c60e0033628b4158448b9e782a9ad5a12e062f, ab5595a609092306489064f46e5a567cbfb9b34a, f2bad2b11b31b4646a3b068e17b61a044b376c0a, 574d84d8fb84b57c04d919007403f98680314027]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -2124,7 +2143,7 @@ final25_control_compatibility_plan:
   final_SHA_still_unissued: true
   publication_geometry_for_joint_review: "new commit parent Q; retained latest remote P; normal fast-forward spans unpublished Q, fresh remote guards still required"
 r_checkpoint:
-  status: local-checkpoint-qualified
+  status: SAME-root-High-JOINT-actualR-PRIMARY25-plan-trigger-geometry-PASS
   parent: f2bad2b11b31b4646a3b068e17b61a044b376c0a
   retained_remote: ab5595a609092306489064f46e5a567cbfb9b34a
   retained_remote_is_fresh: false
@@ -2142,3 +2161,630 @@ r_checkpoint:
   p5_credit: false
   broad_rounds: 0
   review_provenance: "message-based SAME independent High PASS; exact artifact bindings in private checkpoint"
+  head: 574d84d8fb84b57c04d919007403f98680314027
+  tree: 515f26aeb404a100abe93873f5b2d1a58c40718e
+  metadata_sha256: 5c9d381020c17559f35f252b47697d8f468d3bbdd7654ed00e2319991724639e
+  raw_message_bytes: 492
+  raw_message_sha256: 9abd70e86c542dd7a33970ac9aabe68858a45e65235ba02a46d45ea3e4ef507c
+  source_bindings_strictly_actual: 25
+  conserved: 17
+  changed_or_added: 8
+  clean: true
+  publication_controls_issuance_runtime_admitted: false
+  joint_review_provenance: "Coordinator direct completed SAME High message; no separate review seal"
+  cumulative_publication_paths: 12
+  retained_remote_P_vs_parent_Q_separate: true
+r_PRIVATE_PRIMARY:
+  status: issued-truthful-actual-R25-metadata-inert-template-only
+  directory: "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\root-R-application-binding-2b6ce9d2-613d-462c-9e6c-9ad0257ce42c"
+  source_bindings: 25
+  changed_from_Q: "{\"false\": 17, \"true\": 8}"
+  operation_fields_null: true
+  unique_run_verified: false
+  clock_admission: false
+  historical_operational_freshness_only: true
+  runtime_admitted: false
+  metadata_bytes: 23859
+  metadata_sha256: 0d335db4a98b30306b50473abe410de6e6c3f3d97f6e6233815478e437228fd4
+  manifest_bytes: 2504
+  manifest_sha256: df859bd131196792a9c3c0046879c91c6959ad0591ede7464d1be141b4bd57f1
+  template_bytes: 812
+  template_sha256: 5e1b415e35e03e5b7c602c667f87b59125319248a3877b4b5573572260d8b4fe
+  proof_bytes: 1148
+  proof_sha256: 88c438d426e3900d97135335cb282e945194a18fde661a8888278af9ef2db733
+r_private_controls_v2:
+  status: SAME-independent-High-JOINT-PASS-message-based-no-separate-seal
+  PRIMARY25_exists_validated: true
+  tracked_source_changes_admitted: false
+  operational_freshness_publication_variables_CI_runtime_admitted: false
+  packet: epic15-R-application-controls-a70f38c5-adce-44fb-98b3-3b441ec1528b
+  manifest_sha256: c577682b8c50307d2a40b13d222dff329633ad6d8c781540e4d24a6bcf1c3c18
+  helper_sha256: 964f26d7483fd2d4e3adedd2098abd56bc82fdf7213e3502381e32942fe01ef3
+  worker_sha256: 4876b426ee9f5bb56c4425b38aa104d7bd5cfd87fd3c34cbafe0a0caa546c53d
+  ROOT_transport_sha256: 9ab742da431f2b418997862e8f52e96207ac26318bc22194e9464521528330bc
+  bindings_verified: 88
+  exact_v1_inverses: 2
+  PRIMARY_copies_byte_identical: 4
+  actual_R_working_Git_sources_verified: 25
+  old_control_bindings_conserved: 56
+  offline_controls_passed: 61
+  offline_controls_failed_skipped: 0
+  offline_counts: "{\"worker\": 26, \"helper\": 24, \"sourceguard\": 11, \"retained_categories\": 47, \"additional_justified_cases\": 14}"
+  mock_only: true
+  top_level_controls_WindowsJobs_API_native_backend_actions: 0
+  P_current_conserved: 2736
+  P_qualified_source_successors: 5
+  mismatches: 0
+  tracked_worktree_clean: true
+r_readiness:
+  status: window-CLOSED-actual-restoration-and-owner-hold-release-qualified
+  source_head: 574d84d8fb84b57c04d919007403f98680314027
+  execution_window_open: false
+  runtime_holds_active: false
+  push_vars_CI_runtime_admitted: false
+  owner_ACK_requests: Coordinator only after concrete future window proposal
+  p5_credit: false
+  broad_rounds: 0
+  packet: epic15-R-readiness-a31a0142-5bf3-4d96-9acb-d21d7aff4ad8
+  manifest_sha256: 152c588eaf19ab77f0ee0334e0d95a9f8666bc2444305eb6e8a861011794b040
+  verified_bindings: 166
+  mismatches: 0
+  proposed_T_UTC: "2026-10-16T23:30:00.0000000+00:00"
+  executor_READY_prepared_not_released: true
+  remote_observed_P: true
+  source_clean_R: true
+  CI_completed: 16
+  CI_live: 0
+  CI_R_baseline: 0
+  pair_ABSENT: true
+  prior8_variable_identities_conserved: true
+  provider_preview_disabled: true
+  provider_inventory_complete_empty: true
+  runtime_admitted: false
+  PRIMARY_inert_transport: root-R-application-execution-276e913f-c31d-4e9b-9a09-9186447e858d
+  PRIMARY_command_capsule_sha256: 9375e120320d69120163a081ae395dc190e6e768c94a2f53a117f222e82861e6
+  PRIMARY_guard_sha256: 9d9b52f8901ddd41449f4277a0804c16a249c24bea6190d3a9fe7c6312774813
+  PRIMARY_manifest_sha256: 2b892e3a8bc5e3c9c3ba72f82514f015183a4b8994cda235d95c2ee53f3a5587
+  PRIMARY_READY: true
+  SAME_v2_executor_current_READY: true
+  actual_E16_ACK_cursor: 29
+  actual_feedback_ACK_cursor: 16
+  ACKs_are_FINAL: false
+  no_intervening_conflict_known: true
+  execution_release_file: "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\root-R-application-execution-276e913f-c31d-4e9b-9a09-9186447e858d\\execution-release.json"
+  FINAL_received: true
+  T: "2026-10-16T23:30:00Z"
+  owner_holds_released_after_closure_required: true
+  run_id: 38981874957
+  run_attempt: 1
+  run_created_UTC: "2026-10-16T23:31:20Z"
+  dispatch_consumed_UTC: "2026-10-16T23:31:18.040203+00:00"
+  remote_published_R: true
+  ROOT_actual_binding_sha256: 658d90f8e07379463f1f266a2f882bd9e610a8997d397427ebb6a55b0a844a89
+  journal_directory: owned-variable-execution-f038f73b-8de9-4048-8ebc-7f216e5f23d4
+  journal_id: f6ca7e3d-2f82-4491-a4e9-455a3d2851fc
+  Create_native_exit: 0
+  Create_mutations: 2
+  ROOT_push_count: 1
+  ROOT_POST_count: 1
+  retry_count: 0
+  cancel_at: "2026-10-17T00:45:00Z"
+  restore_handoff_by: "2026-10-17T01:00:00Z"
+  Bind_native_exit: 0
+  Bind_mutations: 0
+  Bind_verified_UTC: "2026-10-16T23:32:08.2018469Z"
+  Bind_verified_sha256: 896546b2d50b77a3b9cb5e032522276fa513fba2b825f98ba9c48917115279a9
+  Coordinator_independent_GH_run_identity_PASS: true
+  run_terminal: true
+  run_conclusion: failure
+  Restore_native_exit: 0
+  Restore_restored: true
+  Restore_own_residue: 0
+  Restore_original8_identities_conserved: true
+  ROOT_fresh_restore_proof: 2b9922b7b3a4bdd7face4a99e0950db3cc14c73245bd6ca07cd754697c7c9cbc
+  Coordinator_closure_qualified: true
+  actual_E16_feedback_temporary_holds_released: true
+  cancel_timer_remaining: false
+  handoff_timer_remaining: false
+  cancel_count: 0
+r_completed_four_job_audit:
+  status: SAME-independent-High-PASS-message-based-no-separate-file
+  packet: epic15-R-completed-job-audit-edaa7dec-bd68-4208-a5af-209c094a95c9
+  bindings_verified: 27
+  mismatches: 0
+  run_id: 38981874957
+  run_attempt: 1
+  unit_pass: 2743
+  unit_fail_cancel_skip: 0
+  unit_suites_not_file_count: 100
+  unit_seconds: "41.86"
+  unit_wrapper_seconds: 180
+  admission_mock_pass_subset: 187
+  admission_retained_mock_controls: 175
+  DB_pass: 1736
+  DB_skip: 1
+  DB_pass_files: 144
+  DB_skip_files: 1
+  DB_seconds: "246.32"
+  DB_wrapper_seconds: 420
+  RLS_pass_subset_DB: 752
+  RLS_files_subset_DB: 50
+  dashboard_pass: 57
+  isolated_recovery_pass: 1
+  broad_recovery_skip_executed: false
+  controls_conserved: 88
+  Create_conserved: 48
+  Bind_conserved: 7
+  native_application_credit: false
+  visual_credit: false
+  P5_credit: false
+r_general_cost_Low:
+  status: completed-ROOT-note-and-actual-input-binary-verified
+  packet: R-E2E006-cost-low-40ba8106-6754-4799-a8a3-bc8954a8e349.json
+  bytes: 6910
+  sha256: 210eaa266e5511fbefa5e35cc1fea81f4af3a05023998fb9d7f33ef7a4b90e0a
+  E2E006_R_attempts_ms: [70942, 80515]
+  E2E006_R_sum_ms: 151457
+  R_general_attempt_sum_ms: 835866
+  R_general_overrun_ms: 35866
+  removable_cost_unknown: true
+  source_writes: 0
+  runtime_actions: 0
+  global_High_route_preserved: true
+  Low_elapsed_added_to_global: false
+  reason_no_addition: "Global active wall timer already covers parallel Low task interval; no double-counting"
+  implementation_admitted: false
+r_General_observation:
+  status: SAME-independent-High-evidence-PASS-and-private-factual-erratum-PASS
+  packet: epic15-R-General-observation-cf92069b-926b-464b-94b3-f8b46bf7bd31
+  review_type: message-based-no-separate-file
+  bindings: 57
+  mismatches: 0
+  logical_expected: 368
+  logical_unexpected: 1
+  logical_skipped: 13
+  physical_pass: 375
+  physical_fail: 2
+  physical_skip: 23
+  attempt_SUM_ms: 835866
+  budget_ms: 800000
+  overrun_ms: 35866
+  report_wall_ms: "893033.46"
+  earlier_admission_is_later_failed_request_proven: false
+  cancellation_origin: UNKNOWN
+  later_framework_closure: UNOBSERVED
+  desktop_targets: 5
+  desktop_PNG: 10
+  phone_PNG: 0
+  visual11_gate_met: false
+  implementation_admitted: false
+  P5_credit: false
+  erratum_packet: epic15-R-General-factual-erratum-9abd5f41-ba3e-4865-990d-d6c4c6726bc6
+  erratum_bindings: 66
+  erratum_private_external: [6, 60]
+  original_bindings_conserved: 57
+  predecessor_inverse_bytes: 2709
+  predecessor_inverse_sha256: 10d5ff96c3642696a613a761660706b5186d46c42086161e5899b3f4c57e800c
+  request_row42_identity_proven: false
+  future_join_exact_object_only: true
+  cancellation_cause_or_rerun_justified: false
+  proposal_choice_admitted: false
+r_terminal_corpus:
+  status: sealed-ROOT-binary-verified-SAME-High-terminal-application-diagnosis-active
+  packet: root-R-application-execution-276e913f-c31d-4e9b-9a09-9186447e858d
+  manifest_bytes: 1195272
+  manifest_sha256: 5ef6e6dbbd16b4be12186b66b9e20e656933e78ed4c6a17bd85ba9c8a1113363
+  entries: 3485
+  mismatches: 0
+  historical_P_current_conserved: 2736
+  historical_P_reviewed_source_successors: 5
+  R_qualified_manifests: 8
+  original_ZIPs: 11
+  original_extracted_files: 210
+  original_extracted_bytes: 52716704
+  aggregate_extraction_receipt_bytes: 144884
+  aggregate_extraction_receipt_sha256: 0857658ecd0344a4bb0fb3c6930f8b1bf23b32e807c4e5c7914082cd4abd64d5
+  artifact_code_executed: false
+  artifact_prose_read_by_ROOT: false
+  source_clean_exact_R: true
+  native_application_verdict_accepted: false
+  next_source_or_runtime_allocation: false
+  window_closed: true
+  owner_holds_active: false
+r_focus_readonly_Low:
+  status: sealed-ROOT-output-and-input-binary-verified-awaiting-independent-qualification
+  path: R-application-focus-low-3b8ae9f7-d970-4a91-a080-a903d350dd22.json
+  bytes: 9589
+  sha256: 793dd0d83e171ad05d54943bc323feb176bf5d4281333cce4bc3181bc0d84b08
+  cause: UNKNOWN
+  observed_inactive_samples: 34
+  observation_seconds: 15
+  ambient_focus_capture_fragility: proposal-only-independent-qualification-needed
+  source_writes: 0
+  runtime_actions: 0
+  private_trace_projection_auth_metadata: sanitized-key-provenance-sent-to-existing-High-for-qualification-no-values-repeated
+  global_High_route_preserved: true
+  Low_elapsed_added_global: false
+  reason_no_addition: Global active wall timer covers parallel task
+  implementation_admitted: false
+  origin_addendum: R-focus-origin-addendum-84c4850b-8dbf-4a03-a703-4a100b755bbc.json
+  origin_addendum_bytes: 7427
+  origin_addendum_sha256: d25bfc60827470d9a55f1f89ff53cd52e3e6abdebd599f47f8cb6a16dd2b1ad0
+  origin_source_standard_bindings_verified: 6
+  origin_addendum_source_writes: 0
+  origin_addendum_runtime_actions: 0
+  new_instrumentation_or_product_fix_admitted: false
+r_General_vs_APP_arithmetic_Low:
+  status: completed-ROOT-output-and-two-actual-inputs-binary-verified
+  path: R-General-vs-Application-duration-ebe7b089-1627-4ed1-b346-2af01a124ea2.json
+  bytes: 179573
+  sha256: f8a89364be69a7d99b253d126f8ed89ced6b4bf34ed9b4f109a55877236b4f54
+  structurally_matched_attempts: 400
+  unmatched_ambiguous: 0
+  delta_SUM_ms: 313018
+  positive_delta_ms: 313119
+  negative_delta_ms: -101
+  retry0_delta_ms: 252100
+  retry1_delta_ms: 60918
+  E2E006_delta_ms: 41361
+  AC2_delta_ms: 6872
+  APP_required_reduction_ms: 348884
+  cause_or_removable_cost_established: false
+  source_writes: 0
+  runtime_actions: 0
+  global_High_route_preserved: true
+  parallel_Low_elapsed_added_global: false
+r_application_terminal_diagnosis:
+  status: SAME-independent-High-evidence-and-frozen-route-privacy-PASS-message-based-no-separate-file
+  packet: epic15-R-application-terminal-diagnosis-242dd8e1-27ac-4e3a-b3bc-c96ef5dd88d3
+  diagnosis_bindings: 30
+  privacy_bindings: 5
+  mismatches: 0
+  logical_expected: 368
+  logical_skipped: 12
+  logical_flaky: 1
+  logical_unexpected: 1
+  physical_pass: 376
+  physical_fail: 2
+  physical_skip: 22
+  attempt_SUM_ms: 1148884
+  budget_ms: 800000
+  overrun_ms: 348884
+  report_wall_ms: 1212145
+  AC2_retry0_body_rejected: true
+  AC2_retry1_passed: true
+  focus_assertion_failed: true
+  auth_parent_rmdir_EACCES: true
+  observer_records_PARTIAL_overflow: true
+  phone_PNG: 0
+  visual_gate_unmet: true
+  actual_workload_ids: UNOBSERVED
+  later_FINISH_service_shutdown: UNOBSERVED
+  P5_credit: false
+  source_allocation: false
+  private_cleanup_contract_plan_allocated: true
+  frozen_privacy_no_identified_external_customer_path: true
+  every_token_independently_verified: false
+r_auth_cleanup_contract_plan:
+  status: SAME-independent-High-gap-identification-PASS-implementation-UNQUALIFIED
+  packet: epic15-R-auth-cleanup-contract-plan-61cb666d-6298-42ad-8a95-af371874d557
+  manifest_bytes: 4854
+  manifest_sha256: 416665468da9471182241ef3d5387d2e4152207b6822df6fa555c0ff87eb6e92
+  bindings: 17
+  mismatches: 0
+  original_three_path_deletion_contract_fulfillable: false
+  pathname_unlink_atomic_captured_inode_guarantee: false
+  original_creation_identity_before_read_available: false
+  alternative: PROPOSAL-only creation-bound FD read and credential erasure retaining empty owned file and directory
+  additional_global_setup_path_authorized: false
+  proposed_runtime_source_count: 17
+  proposed_PRIMARY_count: 27
+  pinned_loader_FD_lifetime_proven: true
+  controls_executed: 0
+  source_writes: 0
+  tests_run: 0
+  new_runtime_actions: 0
+  no_recursive_fixed_fallback_parent_chmod_new_privilege: true
+  implementation_admitted: false
+  review_provenance: message-based-no-separate-file
+  zero_length_original_owned_file_directory_retention_acceptance_target_for_qualification: true
+  physical_wipe_artifact_deletion_VM_disposal_claimed: false
+  four_path_implementation_allocated: true
+  bounded_readonly_pinned_loader_qualification_allocated: true
+  pinned_loader_status: SAME-independent-High-PASS-message-based-no-separate-file
+  pinned_loader_packet: epic15-pinned-loader-FD-qualification-dcf4afc1-03b6-4242-ad5e-b2d989f2fb99
+  pinned_loader_manifest_bytes: 14632
+  pinned_loader_manifest_sha256: 40df7cc5b3f54de64aa2267bf7b0dfbbda4fffd365a3a65458f15de2b0c7d5dd
+  pinned_loader_bindings: 46
+  pinned_loader_mismatches: 0
+  pinned_SDK: 1.61.1
+  package_integrity_SHA512_SHA1_match: true
+  package_manifest_matches_recorded_runtime: true
+  normal_returned_callback_same_process_before_configured_teardown_after_worker_stop: true
+  Promise_race_cancels_pending_work: false
+  interruption_timeout_callback_loss_erasure_guaranteed: false
+  planned_controls: 27
+  executed_controls: 0
+  source_or_tests_allocated: false
+  success_meaning: verified zero length original owned inode only
+  physical_wipe_disposal_or_per_call_wall_guarantee: false
+  pinned_loader_lifetime_scope: "normal pinned source path only; interruption timeout callback loss unconfirmed"
+  implementation_paths: [tests/e2e/global-setup.ts, tests/e2e/global-teardown.ts, tests/diagnostics/fixed-chromium-application-runner.mjs, tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts]
+  implementation_owner: adoption15_high explicit Sol6.1High
+  source_baseline_clean_R: true
+  bookkeeping_staging_commit_push_runtime_allocated: false
+r_focus_independent_proposal_qualification:
+  status: independent-Low-PASS-with-scope-correction
+  reviewer: unit15_timeout_review_low
+  report: "{\"path\": \".env.epic15.mail-runtime/R-focus-independent-qualification-7be9c98d-b23e-47dc-aa50-1f38c3884d7d/report.json\", \"bytes\": 5038, \"sha256\": \"d8ac5116e7ed41b8e657869445e3ba0defde6d2974d5e5d1a7a6178f16a25909\"}"
+  manifest: "{\"bytes\": 195, \"sha256\": \"86f5a7169085cebb79d8d34ef83827e3672d64ad984ff3042b7947c8e9942c3e\"}"
+  input_bindings_verified: 16
+  tracked_edits: 0
+  tests_executed: 0
+  trace_projection: false
+  runtime_cause: UNKNOWN
+  repair_allocation: false
+  broad_P5_rounds: 0
+  separate_task_active_seconds: 248
+  global_time_double_counted: false
+r_auth_cleanup_implementation_clarifications:
+  status: SAME-independent-High-PASS10bindings3hashes
+  author: adoption15_high
+  tracked_edits: 0
+  tests_executed: 0
+  dependent_edits_held: false
+  packet: ".env.epic15.mail-runtime/epic15-auth-FD-implementation-7907ff81-a9fa-4b5c-a81a-616676f3c5c8"
+  capsule_bytes: 1583
+  capsule_sha256: 3138f383309a252e7c73f51809a3982cfba726374c8af7c44f18fc6c17a87130
+  manifest_bytes: 3026
+  manifest_sha256: f4ba33fbf7938511d4249769356eabb5dfd80c20a6777cd936f4ce9d2e83aee6
+  seal_bytes: 706
+  seal_sha256: 30eff4e49d2a11968c7d71809829f5de558ffa9208df788e7928a71bbd642817
+  new_runtime_authority: false
+  simultaneous_descriptor_cap: 3
+  source_proofs_only: true
+r_focus_repair_plan_Low:
+  status: private-plan-only-dispatched
+  author: general15_codepath_low
+  model: gpt-6.1-sol
+  effort: low
+  independent_reviewer: unit15_timeout_review_low
+  source_allocation: false
+  tests_allocation: false
+  runtime_allocation: false
+  timing_task: R-focus-repair-plan-Low-task.yaml
+  global_time_double_counted: false
+r_focus_repair_source_Low:
+  status: independent-focused-source-PASS-frozen
+  author: general15_codepath_low
+  independent_reviewer: unit15_timeout_review_low
+  plan_independent_report_sha256: 48a55313bc3718f945c1a7c6533788b532784ad7c7fbb9d2a736ab3d4f3520b1
+  browser_execution: false
+  git_authority: false
+  combined_provenance_review_required: true
+  author_result_bytes: 7821
+  author_result_sha256: c540a5622e3620df32908bfdb2a50cc9ed929eb8cbd2e42712654a6e56edb068
+  independent_report_bytes: 5032
+  independent_report_sha256: a1a40c71e66192d04ed5ea910bf1c03ed2a37fa16b149dc9fb601a3ca0c6b824
+  independent_manifest_bytes: 195
+  independent_manifest_sha256: b66e0d3778224420f808d079ecc038d9bcca65d83c13032943f230bcf5c6e6cb
+  source_bindings_verified: 6
+  original_preimages_verified: 4
+  unit_pass_author_reported: 7
+  local_execution_logs_independently_verified: false
+  browser_cases_authored_not_executed: 2
+  runtime_R_cause: UNKNOWN
+  source_frozen: true
+  source_task_seconds_before_evidence_binding: 286
+  independent_task_seconds: 66
+  broad_P5_rounds: 0
+  acceptance_credit: false
+  validation_evidence_status: "original tool responses only; no durable logs; no reconstruction or rerun"
+  source_task_active_seconds: 376
+r_AC2_readiness_contract_qualification:
+  status: SAME-independent-High-PASS-closed-no-further-collection
+  delegate: application_browser15_source_review_high
+  model: gpt-6.1-sol
+  effort: high
+  source_allocation: false
+  runtime_allocation: false
+  global_time_double_counted: false
+  report_bytes: 11324
+  report_sha256: 360c36ee4e6e588124681035b49c0172c885aaeec20a30b22af7adb8eb08bde8
+  manifest_bytes: 800
+  manifest_sha256: 664b064491a9c0fe1f7d4d0acf619a3015f6bdd14f0a682b45f85fc6dbda858b
+  bindings_verified: 13
+  body_assertions_preserved: true
+  replacement_equivalence: UNKNOWN
+  actual_cancellation_cause: UNKNOWN
+  correction_proposed: false
+  separate_task_active_seconds: 211
+  acceptance_credit: false
+r_auth_cleanup_integrated_enrollment:
+  status: SAME-independent-High-exact-pathset-qualified
+  runtime_count: 21
+  PRIMARY_count: 32
+  runtime_additions_since_R: 6
+  individual_authoritative_stale_hash_refusals_required: true
+  final_combined_hashes_pending: true
+  control_issuance: false
+  source_binding_independently_verified: true
+r_budget_source_plan_Low:
+  status: UNKNOWN-closed-no-candidate
+  delegate: unit15_timeout_fix_low
+  source_allocation: false
+  runtime_allocation: false
+  measured_phase_savings: UNKNOWN
+  global_time_double_counted: false
+  report_bytes: 3013
+  report_sha256: 7d16135d8438c63be1ac43cc64aebd81362d1e9d9b3f306218a819562f09d83e
+  active_seconds: 64
+r_reporter_step_schema_High:
+  status: PARTIAL-UNKNOWN-stopped-no-projection
+  delegate: application_browser15_source_review_high
+  interpretation_allocated: false
+  runtime_allocated: false
+  global_time_double_counted: false
+  inventory_sha256: 7c4b1a79773b3ca82221ab4ffa18418bae475e796a70649d61fabe38e1f87d42
+  stop_sha256: c38c7294d5cb4f1060e3dc5c6444c9f0194555dee8e9c1bb4b5c54405cb340ba
+  manifest_sha256: a4906363256ed738e918be93e8e3567521de9781494bb4796ec76a824b1fa69e
+  recognized_nested_steps: 0
+  schema_wide_absence_claim: false
+  cap_hits: 0
+  active_seconds: 216
+r_auth_cleanup_source_realization:
+  status: SAME-independent-High-PASS-P1-CLOSED-source-mock-gate-only
+  capsule_bytes: 4540
+  capsule_sha256: b179b94dfab44872dbfc8d71d5a74e531339cfd25e670a39d4067e807330e530
+  manifest_bytes: 27834
+  manifest_sha256: 7e3790c2df2ef78f4ee5b3015980877cf3e43cf58c541d2a068a6cd12f9f4572
+  seal_bytes: 1356
+  seal_sha256: d50c382e9377a2b37454c3514568e4f88c1b7a0e6211083fac61f5c4b4e2ba46
+  private_bindings: 74
+  external_bindings: 17
+  controls_pass_author_sealed: 234
+  controls_retained: 207
+  controls_new: 27
+  historical_bindings: 3485
+  literal_conserved: 3482
+  qualified_successors: 3
+  native_FD_proc_executed: false
+  source_frozen: true
+  commit_authority: false
+  runtime_authority: false
+  combined_frozen_binding: "{\"path\": \"C:\\\\Users\\\\Rasmus\\\\.codex\\\\worktrees\\\\epic-15-calendar\\\\Kopplas\\\\.env.epic15.mail-runtime\\\\root-next-path-metadata-binding-5d9c21a1-a960-4d07-a27a-3935f610ef46\\\\R-combined-ten-path-frozen-source-binding.json\", \"bytes\": 2013, \"sha256\": \"31feacc54e947c51ed0c00e14fa0a44a1df760bdcbe72dd320965e87b746d258\", \"count\": 10}"
+  interim_finding_final: true
+  fix_allocation: false
+  Low_six_sources_frozen: true
+  fix_scope: "existing High four paths only; mandatory verified erasure failure gate and pinned TaskRunner controls"
+  prior_frozen_binding_preserved: true
+  broad_P5_rounds: 0
+  P1_successor_capsule_bytes: 3230
+  P1_successor_capsule_sha256: 28fc3b49b30dab02133c0d1a5553fe9ea51855ced373bd1cae4463941631f637
+  P1_successor_manifest_bytes: 19363
+  P1_successor_manifest_sha256: 204b63c54cc09f21a1a41b60e0410a1abeb6ef9badb56af1e9f3f872839585e3
+  P1_successor_seal_bytes: 1315
+  P1_successor_seal_sha256: 9aec17bd0b759bb6fdb558291bf964f3f26fe98d0c5d6c76edf7ec7f5a820b9e
+  P1_private_bindings: 49
+  P1_external_bindings: 14
+  P1_pinned_old_new_evaluations: 8
+  P1_control_pass_author_sealed: 234
+  P1_combined_frozen_binding: "{\"path\": \"C:\\\\Users\\\\Rasmus\\\\.codex\\\\worktrees\\\\epic-15-calendar\\\\Kopplas\\\\.env.epic15.mail-runtime\\\\root-next-path-metadata-binding-5d9c21a1-a960-4d07-a27a-3935f610ef46\\\\R-combined-ten-path-P1-successor-binding.json\", \"bytes\": 2287, \"sha256\": \"1568d71466c4d11e739d1016d6f1f28dda4d8a8b2160b88b5850854514b0115e\", \"count\": 10}"
+  P1_closed: true
+  P1_successor_bindings_independently_verified: 63
+  P1_exact_inverses_independently_verified: 8
+  controls_pass_independently_verified: 234
+  prior_private_files_independently_conserved: 74
+  review_receipt_kind: message-based-no-file
+  hosted_cleanup_verified: false
+r_application_quota_workers_High:
+  status: SAME-independent-High-PASS-CLOSED-no-reopen
+  delegate: application_browser15_source_review_high
+  implementation: false
+  experiment: false
+  global_time_double_counted: false
+  report_bytes: 8359
+  report_sha256: 83be020a733370ea4053647c4be82706514019ab4e9fdf0d3ee10b07805d2566
+  manifest_bytes: 843
+  manifest_sha256: be80963c0fbbed34a212cdb1ab3125149addd654729dd3adbbee64424ccc0985
+  input_bindings: 11
+  effective_workers: 1
+  configured_explicit_CPU_quota: false
+  configured_explicit_CPU_period: false
+  configured_explicit_cpuset: false
+  actual_host_entitlement: UNKNOWN
+  active_seconds: 222
+  setting_change_proposed: false
+r_phase_observation_plan_High:
+  status: deferred-optional-no-acceptance-dependency
+  source_allocation: false
+  runtime_allocation: false
+  global_time_double_counted: false
+  delegate: application_browser15_source_review_high
+  conditional_P1_review_dispatch_satisfied: true
+  plan_bytes: 18094
+  plan_sha256: 879452ab3799b90551cf8004ff8768cf5c52100c058340c7a5734da1444d3b95
+  guide_bytes: 2109
+  guide_sha256: 7462371e7cee0b2f1516f20d3255de3c918bfb6ba8c4f6e48c809106a7d083cf
+  manifest_bytes: 1033
+  manifest_sha256: 90c9b70a7c2e593880622fdc910a8a4c5864146d1cc5dbf2cc29b5bef023b33b
+  input_bindings_verified: 9
+  closed_phases_proposed: 26
+  max_spans_proposed: 512
+  max_stack_proposed: 8
+  max_record_bytes_proposed: 8192
+  measured_phase_cost: UNKNOWN
+  active_seconds: 409
+  headlines_and_nine_inputs_independently_verified: true
+  runtime_members_already_present: 3
+  PRIMARY_members_already_present: 4
+  runtime_count: 21
+  PRIMARY_count: 32
+  review_receipt_kind: Coordinator decision retrieved read-only after rejected outgoing handoff
+  implementation: false
+  reason: "Same High Node contract review confirms asynchronous IPC isolation insufficiency; no acceptance-critical dependency demonstrated."
+r_phase_console_transport_High:
+  status: SAME-reviewed-attribution-qualified-isolation-UNKNOWN
+  delegate: application_browser15_source_review_high
+  implementation: false
+  runtime: false
+  global_time_double_counted: false
+  report_bytes: 13671
+  report_sha256: 923253146ef8d9b2a223668eb8340397e06d28432c2c8146b23b7fed26b7ff68
+  guide_bytes: 2024
+  guide_sha256: bd3c4dc59170a556f0b6cce4692d30a3235d570267bfd1414f0a633d5f75bbd9
+  manifest_bytes: 1430
+  manifest_sha256: f24d8fd09966880675e886875a60acf6151714fd7076219b6df54c549f9974d0
+  tar_members_verified: 3
+  selected_source_lines: 271
+  preserved_inputs: 8
+  normal_body_afterEach_association_source_qualified: true
+  asynchronous_Node_Console_IPC_failure_isolation: UNKNOWN
+  active_seconds: 439
+  review_receipt_kind: Coordinator final response retrieved read-only
+  failure_isolation_proved: false
+  demonstrated_defect_claimed: false
+coordinator_blocked_actions:
+  actions: [outgoing Epic15 assignment message, coordination heartbeat update]
+  status: fresh-human-confirmation-received
+  reported_reason: prior authorization not recognized as trusted
+  root_alternative: "read-only retrieval of review decision and already-authorized internal delegation; no retry of rejected actions"
+  question_scope: "ongoing Coordinator/Epic15 assignments and existing heartbeat updates, including bounded Node22.23.3 source qualification; all gates retained"
+  rejected_actions_retried: false
+  confirmation: "Confirmed, you are authorized"
+  scope: "ongoing Coordinator/Epic15 assignments and existing heartbeat updates, including bounded Node22.23.3 source check; existing gates preserved"
+r_phase_Node_source_qualification_High:
+  status: same-independent-High-PASS-closed
+  actor: "/root/application_browser15_source_review_high"
+  effort: high
+  task_state: "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\root-next-path-metadata-binding-5d9c21a1-a960-4d07-a27a-3935f610ef46\\R-phase-Node-source-High-task.yaml"
+  public_read_cap: 8
+  source_member_bytes_cap: 262144
+  persisted_source_bytes_cap: 1048576
+  source_writes: false
+  runtime: false
+  independent_review: same Coordinator High required
+  p5: false
+  packet: "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\R-phase-Node-source-High-03f3d5a6-1de3-43ce-8081-7af013bc5c81"
+  headline_bindings_verified: 3
+  author_disposition: defer-optional-phase-observation-no-acceptance-dependency
+  public_reads: 6
+  source_bytes: 95262
+  node_commit: 80dc632040e6bada37aac1220dde9c79581c9c22
+  hosted_cause: UNKNOWN
+  review_thread: 01a13f08-adf6-72a2-bae4-ac2f1f734c2e
+  review_turn: 01a14974-afdc-7a51-9c20-28477360eff6
+  review_receipt: message-based-no-review-file
+  further_investigation: false
+reviewed_ten_path_checkpoint:
+  status: local-checkpoint-in-progress
+  parent: 574d84d8fb84b57c04d919007403f98680314027
+  sources: 10
+  bookkeeping_paths: 3
+  maximum_paths: 13
+  preparation: "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\root-reviewed-ten-path-checkpoint-39ba9ea1-579b-4221-8667-a4fc288de9a5"
+  optional_instrumentation: false
+  publication: false
+  runtime: false
+  p5: false
+  broad_review_rounds: 0

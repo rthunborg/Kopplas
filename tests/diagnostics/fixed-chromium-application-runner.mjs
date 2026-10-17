@@ -17,6 +17,9 @@ export const SOURCES = Object.freeze([CONFIG, 'tests/diagnostics/fixed-chromium-
   'tests/e2e/scheduling-views.atdd.e2e.spec.ts', 'tests/e2e/support/scheduling-views-atdd.ts',
   'tests/e2e/support/scheduling-lifecycle-metadata.ts', 'tests/e2e/support/booking-editor-atdd.ts',
   'tests/e2e/support/resource-cdp-attachment.ts',
+  'tests/e2e/global-setup.ts', 'tests/e2e/global-teardown.ts',
+  'src/components/scheduling/SchedulingWorkspace.tsx', 'src/components/scheduling/BookingBlock.tsx',
+  'src/components/scheduling/SchemaView.tsx', 'src/components/scheduling/focus-restoration.ts',
   '_bmad-output/implementation-artifacts/spec-15-1-the-five-scheduling-views-2.md',
   'package.json', 'pnpm-lock.yaml', '.nvmrc']);
 export const VISUALS = Object.freeze(['desktop-schema-week', 'desktop-resources-week', 'desktop-team-week',

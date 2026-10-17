@@ -13,7 +13,7 @@ export type CalendarViewProps = {
   readonly data: SchedulingReadData;
   readonly bookings: readonly SchedulingBookingSummary[];
   readonly onSelect: (slot: SlotSelection) => void;
-  readonly onEdit: (proposal: BookingProposal) => void;
+  readonly onEdit: (proposal: BookingProposal, origin?: HTMLElement) => void;
   readonly onDay?: (date: string) => void;
 };
 
@@ -46,7 +46,7 @@ export function CalendarSlots({ date, personId, host, onSelect, onEdit, bookings
     };
   }, []);
   const day = localDayRange(date); const clock = new Intl.DateTimeFormat("sv-SE", {timeZone:"Europe/Stockholm", hour:"2-digit", minute:"2-digit", hourCycle:"h23", timeZoneName:"shortOffset"});
-  return <div aria-label={`Tider ${date}`} className={host === "resources" ? "flex gap-1" : "space-y-1"}>
+  return <div data-focus-instance={`${host}:${date}:${personId ?? ""}`} aria-label={`Tider ${date}`} className={host === "resources" ? "flex gap-1" : "space-y-1"}>
     {Array.from({ length: Number((day.end-day.start)/BigInt(1800000000)) }, (_, index) => {
       const start = formatUtcInstant(day.start + BigInt(index) * BigInt(1800000000));
       const timeLabel = clock.format(new Date(start));
@@ -107,7 +107,7 @@ export function CalendarSlots({ date, personId, host, onSelect, onEdit, bookings
 export function SchemaView(props: CalendarViewProps) {
   const dates = schedulingPeriod(props.input.date, props.input.mode).dates;
   return <section aria-label="Schema" className="space-y-4">
-    <div aria-label="Agenda" className="grid gap-3 sm:hidden">
+    <div data-focus-instance="schema-agenda" aria-label="Agenda" className="grid gap-3 sm:hidden">
       {props.bookings.map(b => <BookingBlock key={b.id} booking={b} data={props.data} onEdit={props.onEdit} />)}
     </div>
     <div className={props.input.mode === "month" ? "overflow-x-auto" : "hidden overflow-x-auto sm:block"}>

@@ -902,10 +902,10 @@ async function actualPathCollection(missing?: string) {
   });
   try { const result = await runtime.bindings(); return { result, authoritative, readPaths }; } finally { runtime.releaseLifetime(); }
 }
-test("runtime exact15 pathset enrolls only approved three dependencies and recovers Q runner", () => {
-  assert.equal(SOURCES.length, 15); assert.equal(new Set(SOURCES).size, 15);
+test("runtime exact21 pathset enrolls approved dependencies and owned cleanup/focus and recovers Q runner", () => {
+  assert.equal(SOURCES.length, 21); assert.equal(new Set(SOURCES).size, 21);
   for (const p of runtimeAddedPaths) assert.ok(SOURCES.includes(p));
-  const inverse = source("tests/diagnostics/fixed-chromium-application-runner.mjs").replace("  'tests/e2e/support/scheduling-lifecycle-metadata.ts', 'tests/e2e/support/booking-editor-atdd.ts',\n  'tests/e2e/support/resource-cdp-attachment.ts',\n", "");
+  const inverse = source("tests/diagnostics/fixed-chromium-application-runner.mjs").replace("  'tests/e2e/global-setup.ts', 'tests/e2e/global-teardown.ts',\n  'src/components/scheduling/SchedulingWorkspace.tsx', 'src/components/scheduling/BookingBlock.tsx',\n  'src/components/scheduling/SchemaView.tsx', 'src/components/scheduling/focus-restoration.ts',\n", "").replace("  'tests/e2e/support/scheduling-lifecycle-metadata.ts', 'tests/e2e/support/booking-editor-atdd.ts',\n  'tests/e2e/support/resource-cdp-attachment.ts',\n", "");
   assert.equal(Buffer.byteLength(inverse), 45690); assert.equal(sha(inverse), "07eb719a1012e07c6db4a9fc7a5a32578eb4dd0b60f09368a170ef2c285c2617");
 });
 test("actual source shape rejects every missing path and extra or malformed binding", async () => {
@@ -915,16 +915,16 @@ test("actual source shape rejects every missing path and extra or malformed bind
   assert.throws(() => checkSourceBindings({ ...bindings(), "not-approved.ts": { bytes: 1, sha256: "a".repeat(64) } }), /binding/);
   for (const path of runtimeAddedPaths) for (const bad of [{ bytes: 0, sha256: "a".repeat(64) }, { bytes: 1, sha256: "not-hex" }, { bytes: 1, sha256: "a".repeat(64), extra: true }]) assert.throws(() => checkSourceBindings({ ...bindings(), [path]: bad }), /binding/);
 });
-test("actual production collector reads all15 authoritative source bytes without native work", async () => {
+test("actual production collector reads all21 authoritative source bytes without native work", async () => {
   const value = await actualPathCollection(); assert.deepEqual([...value.readPaths].sort(), [...SOURCES].sort());
   for (const path of SOURCES) { assert.equal(value.result[path].bytes, value.authoritative[path]!.length); assert.equal(value.result[path].sha256, sha(value.authoritative[path]!)); }
 });
 test("actual production collector refuses unavailable enrolled runtime dependency", async () => {
   for (const path of runtimeAddedPaths) await assert.rejects(actualPathCollection(path), /fixture read unavailable/);
 });
-test("actual provenance schema requires all15 sources and preserves strict top-level shape", async () => {
+test("actual provenance schema requires all21 sources and preserves strict top-level shape", async () => {
   const f = fixture(); const result = await f.run(); validateProvenance(result.record);
-  assert.equal(Object.keys(result.record.sources).length, 15);
+  assert.equal(Object.keys(result.record.sources).length, 21);
   for (const path of runtimeAddedPaths) { const value = JSON.parse(JSON.stringify(result.record)); delete value.sources[path]; assert.throws(() => validateProvenance(value), /binding/); }
   assert.throws(() => validateProvenance({ ...result.record, arbitrary: true }), /binding/);
 });
@@ -951,3 +951,262 @@ test("runtime enrollment preserves complete Q admission prefix without weakening
   const inverse = value.slice(0, value.indexOf("\n// RUNTIME-PATHSET-TESTS-BEGIN"));
   assert.equal(Buffer.byteLength(inverse), 103781); assert.equal(sha(inverse), "998453875982196cda773e0067dda56fe165f4094efa44add873900b9a3d0202");
 });
+
+// OWNED-AUTH-FD-TESTS-BEGIN
+const authRuntimeAdded = ["tests/e2e/global-setup.ts", "tests/e2e/global-teardown.ts", "src/components/scheduling/SchedulingWorkspace.tsx", "src/components/scheduling/BookingBlock.tsx", "src/components/scheduling/SchemaView.tsx", "src/components/scheduling/focus-restoration.ts"];
+type MockAuthNode = { dev: number; ino: number; uid: number; gid: number; mode: number; size: number; nlink: number; kind: string };
+function authHarness(fault = "positive") {
+  const cwd = "/var/tmp/kopplas-owned-" + "a".repeat(32) + "/workload", auth = cwd + "/tests/e2e/.auth";
+  let now = 0, nextFD = 10, active = 0, maxActive = 0, enumReads = 0, iteratorCloses = 0, iteratorOpens = 0;
+  let file: MockAuthNode | null = null, named: MockAuthNode | null = null, contents = Buffer.alloc(0), consuming = false;
+  const originalFixture = JSON.stringify({ tenantA: { id: "original-A" }, tenantB: { id: "original-B" }, auth: { token: "mock-sensitive" } });
+  const dir: MockAuthNode = { dev: 1, ino: 8, uid: 999, gid: 987, mode: 0o40755, size: 0, nlink: 1, kind: "directory" };
+  const foreign: MockAuthNode = { dev: 1, ino: 99, uid: 777, gid: 778, mode: 0o100600, size: 13, nlink: 1, kind: "file" };
+  const foreignBefore = JSON.stringify(foreign), fds = new Map<number, MockAuthNode>();
+  const operations: string[] = [], mutations: number[] = [], published: string[] = [], database: unknown[] = [];
+  const stats = (node: MockAuthNode) => ({ ...node, isDirectory: () => node.kind === "directory", isFile: () => node.kind === "file" });
+  const tick = (label: string) => { operations.push(label); if (fault === "deadline") now = 1001; };
+  const constants = { O_RDONLY: 0, O_RDWR: 2, O_CREAT: 64, O_EXCL: 128, O_DIRECTORY: 65536, O_NOFOLLOW: 131072 };
+  const io = {
+    constants, cwd, uid: 999, gid: 987, platform: fault === "unsupported" ? "win32" : "linux", now: () => now,
+    lstatSync(p: string) {
+      tick("lstat"); if (fault === "inaccessible") throw new Error("PRIVATE mock-sensitive");
+      if (p.endsWith("fixture.json")) {
+        if (consuming && fault === "substitution-before") named = foreign;
+        assert.ok(named); return stats(named);
+      }
+      if (p === auth) return stats(fault === "directory-substitution" && consuming ? { ...dir, ino: 88 } : dir);
+      const mode = p === "/var/tmp" ? 0o41777 : 0o40555;
+      return stats({ dev: 1, ino: 1, uid: fault === "foreign-parent" ? 999 : 0, gid: 0, mode: fault === "writable-parent" ? 0o40777 : mode, size: 0, nlink: 1, kind: fault === "symlink-parent" ? "symlink" : "directory" });
+    },
+    openSync(p: string, flags: number, mode?: number) {
+      tick("open"); const fd = nextFD++;
+      if (p === auth) { assert.equal(flags, constants.O_DIRECTORY | constants.O_NOFOLLOW); fds.set(fd, dir); }
+      else {
+        assert.match(p, /^\/proc\/self\/fd\/10\/fixture\.json$/);
+        assert.equal(flags, constants.O_RDWR | constants.O_CREAT | constants.O_EXCL | constants.O_NOFOLLOW); assert.equal(mode, 0o600);
+        if (fault === "collision" || fault === "symlink-file") throw new Error("PRIVATE collision");
+        file = { dev: 1, ino: 11, uid: 999, gid: 987, mode: 0o100600, size: 0, nlink: 1, kind: "file" }; named = file; fds.set(fd, file);
+      }
+      maxActive = Math.max(maxActive, ++active); return fd;
+    },
+    fstatSync(fd: number) {
+      tick("fstat"); const node = fds.get(fd); assert.ok(node);
+      if (consuming && node === file) {
+        if (fault === "unlinked") node.nlink = 0;
+        if (fault === "hardlinked") node.nlink = 2;
+        if (fault === "reused") return stats({ ...foreign, ino: 9999 });
+      }
+      return stats(node);
+    },
+    statSync(p: string) { tick("stat"); assert.equal(p, "/proc/self/fd/10"); return stats(fault === "untrusted-proc" ? { ...dir, ino: 888 } : dir); },
+    realpathSync(p: string) { tick("realpath"); assert.equal(p, "/proc/self/fd/10"); return fault === "wrong-proc" ? "/foreign" : auth; },
+    opendirSync(p: string, options: unknown) {
+      tick("opendir"); assert.equal(p, "/proc/self/fd/10"); assert.equal(JSON.stringify(options), JSON.stringify({ bufferSize: 1, recursive: false }));
+      ++iteratorOpens; maxActive = Math.max(maxActive, ++active); let index = 0;
+      const entries = consuming && fault === "unexpected-entry" ? ["fixture.json", "foreign"] : named ? ["fixture.json"] : [];
+      if (!consuming && fault === "existing-entry") entries.push("foreign");
+      return {
+        readSync() { tick("iterator.read"); ++enumReads; const name = entries[index++]; return name ? { name, isFile: () => name === "fixture.json" } : null; },
+        closeSync() { tick("iterator.close"); ++iteratorCloses; --active; if (fault === "iterator-close") throw new Error("PRIVATE close"); },
+      };
+    },
+    writeSync(fd: number, input: Buffer, offset: number, length: number, position: number) {
+      tick("write"); assert.equal(fds.get(fd), file); if (fault === "write-error") throw new Error("PRIVATE write");
+      const count = fault === "partial-write" ? 1 : length;
+      const next = Buffer.alloc(Math.max(contents.length, position + count)); contents.copy(next); input.copy(next, position, offset, offset + count); contents = next; file!.size = contents.length; return count;
+    },
+    readSync(fd: number, output: Buffer, offset: number, length: number, position: number) {
+      tick("read"); assert.equal(fds.get(fd), file); if (fault === "read-error") throw new Error("PRIVATE read");
+      if (fault === "changed-payload") { output.fill(120, offset, offset + length); return length; }
+      contents.copy(output, offset, position, position + length); return length;
+    },
+    ftruncateSync(fd: number, size: number) {
+      tick("truncate"); assert.equal(fds.get(fd), file); assert.equal(size, 0);
+      if (consuming && fault === "substitution-between") named = foreign;
+      if (consuming && fault === "hardlink-between") file!.nlink = 2;
+      if (consuming && fault === "unlink-between") file!.nlink = 0;
+      mutations.push(file!.ino); contents = Buffer.alloc(0); file!.size = 0;
+      if (fault === "truncate-error") throw new Error("PRIVATE truncate");
+    },
+    closeSync(fd: number) { tick("close"); assert.ok(fds.has(fd)); fds.delete(fd); --active; if (fault === "late-close") now = 1001; if (fault === "close-error") throw new Error("PRIVATE close"); },
+    publish(row: string) { published.push(row); if (fault === "sink-sync") throw new Error("PRIVATE sink"); if (fault === "sink-async") return Promise.reject(new Error("PRIVATE sink")); if (fault === "sink-pending") return new Promise(() => {}); },
+  };
+  const text = source("tests/e2e/global-setup.ts"), begin = text.indexOf("// OWNED-AUTH-FD-BEGIN"), end = text.indexOf("// OWNED-AUTH-FD-END");
+  assert.ok(begin > 0 && end > begin);
+  const actual = ts.transpileModule(text.slice(begin, end), { compilerOptions: { target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.CommonJS } }).outputText;
+  const scope = vm.createContext({ exports: {}, Buffer, createHash, ownedAuthFs: io });
+  vm.runInContext(actual + "\nglobalThis.authActual={createOwnedAuthFixture,installOwnedAuthFixture,finishOwnedAuthCleanup,hasOwnedAuthRoute,enter:()=>{ownedAuthRouteEntered=true;}};", scope);
+  type Holder = { consume(): Promise<{ erasure: string; closed: boolean; retained: boolean; database: string }>; result(): unknown };
+  const api = vm.runInContext("authActual", scope) as { createOwnedAuthFixture(io: unknown, text: string, cleanup: (original: unknown) => Promise<void>): Holder;
+    installOwnedAuthFixture(text: string, loader: () => Promise<(original: unknown) => Promise<void>>, io: unknown): Promise<() => Promise<void>>;
+    finishOwnedAuthCleanup(): Promise<{ erasure: string }>; enter(): void };
+  const cleanup = async (identity: unknown) => { database.push(identity); if (fault === "db-error") throw new Error("PRIVATE DB"); };
+  function create(text = originalFixture) { return api.createOwnedAuthFixture(io, text, cleanup); }
+  return { api, io, scope, originalFixture, create, cleanup, startCleanup: () => { consuming = true; }, database, mutations, operations, published,
+    snapshot: () => ({ active, maxActive, enumReads, iteratorOpens, iteratorCloses, named: named?.ino, size: file?.size, foreignUnchanged: JSON.stringify(foreign) === foreignBefore }),
+  };
+}
+async function authOutcome(fault: string) {
+  const h = authHarness(fault); let result: { erasure: string; closed: boolean; retained: boolean; database: string } | null = null;
+  try { const keeper = h.create(); h.startCleanup(); result = await keeper.consume(); } catch { /* creation refusal is an expected observation */ }
+  await Promise.resolve(); const state = h.snapshot(); assert.ok(state.maxActive <= 3 && state.iteratorOpens <= 3 && state.enumReads <= 6 && state.iteratorCloses <= 3);
+  assert.equal(state.foreignUnchanged, true); assert.ok(h.mutations.every(ino => ino === 11));
+  for (const row of h.published) { assert.ok(Buffer.byteLength(row) <= 512); assert.ok(!/mock-sensitive|PRIVATE|original-A|\/proc|\/var/.test(row)); }
+  return { h, result, state };
+}
+function actualAuthTeardown(h: ReturnType<typeof authHarness>, mode = "verify-application") {
+  const text = source("tests/e2e/global-teardown.ts"), begin = text.indexOf("export default async function globalTeardown()"), body = text.slice(begin);
+  const code = ts.transpileModule(body, { compilerOptions: { target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.CommonJS } }).outputText;
+  const ordinary: string[] = [];
+  const scope = { exports: {} as { default?: () => Promise<void> }, process: { env: { KOPPLAS_FIXED_CHROMIUM_APPLICATION_MODE: mode } },
+    hasOwnedAuthRoute: () => false, finishOwnedAuthCleanup: h.api.finishOwnedAuthCleanup,
+    readFileSync: () => { ordinary.push("read"); return h.originalFixture; }, cleanupOriginalFixture: async () => { ordinary.push("DB"); },
+    rmSync: () => { ordinary.push("remove"); }, path: { dirname: () => "/ordinary/auth" }, FIXTURE_FILE: "/ordinary/auth/fixture.json", console: { warn() {} } };
+  vm.runInNewContext(code, scope); return { run: scope.exports.default!, ordinary };
+}
+function pinnedAuthRunner(load: (file: string) => Promise<unknown>) {
+  const pinned = source(".env.epic15.mail-runtime/epic15-pinned-loader-FD-qualification-dcf4afc1-03b6-4242-ad5e-b2d989f2fb99/package__lib__runner__index.js");
+  const task = pinned.slice(pinned.indexOf("var TaskRunner = class"), pinned.indexOf("var TimeoutWatcher = class"));
+  const hooks = pinned.slice(pinned.indexOf("function createGlobalSetupTask("), pinned.indexOf("function createRemoveOutputDirsTask("));
+  const errors: unknown[] = [];
+  const scope = vm.createContext({
+    ManualPromise4: function () { const deferred = Promise.withResolvers<void>(); let done = false; return { then: deferred.promise.then.bind(deferred.promise), resolve: () => { done = true; deferred.resolve(); }, isDone: () => done }; },
+    SigIntWatcher: class { promise() { return new Promise(() => {}); } disarm() {} hadSignal() { return false; } },
+    TimeoutWatcher: class { promise = new Promise(() => {}); disarm() {} timedOut() { return false; } },
+    debug4: () => () => {}, colors5: { red: (s: string) => s }, import_util11: { serializeError: (e: unknown) => e }, loadGlobalHook: (_config: unknown, file: string) => load(file),
+  });
+  vm.runInContext(task + hooks + "globalThis.pinnedAPI={TaskRunner,createGlobalSetupTask,createGlobalTeardownTask};", scope);
+  type Task = { title: string; setup?: () => Promise<void>; teardown?: () => Promise<void> };
+  const api = vm.runInContext("pinnedAPI", scope) as {
+    TaskRunner: new (reporter: unknown, timeout: number) => { addTask(t: Task): void; run(context: unknown, deadline: number): Promise<string>; runDeferCleanup(context: unknown, deadline: number, cancel: unknown): Promise<{ status: string; cleanup(): Promise<string> }> };
+    createGlobalSetupTask(file: string, config: unknown): Task; createGlobalTeardownTask(file: string, config: unknown): Task };
+  return { ...api, errors, runner: new api.TaskRunner({ onError: (error: unknown) => errors.push(error) }, 1000), config: { config: { config: {} } } };
+}
+test("owned auth pinned returned callback runs before configured teardown in the same loader closure", async () => {
+  const h = authHarness(); h.api.enter(); const order: string[] = [];
+  const pinned = pinnedAuthRunner(async file => file === "setup" ? async () => {
+    const callback = await h.api.installOwnedAuthFixture(h.originalFixture, async () => h.cleanup, h.io);
+    return async () => { h.startCleanup(); await callback(); order.push("returned"); };
+  } : async () => { await actualAuthTeardown(h).run(); order.push("configured"); });
+  pinned.runner.addTask(pinned.createGlobalTeardownTask("teardown", { globalTeardowns: ["teardown"] }));
+  pinned.runner.addTask(pinned.createGlobalSetupTask("setup", { globalSetups: ["setup"] }));
+  assert.equal(await pinned.runner.run(pinned.config, 0), "passed");
+  assert.deepEqual(order, ["returned", "configured"]); assert.equal(h.snapshot().size, 0); assert.equal(pinned.errors.length, 0);
+});
+test("owned auth test failure stays original while cleanup either verifies or rejects", async () => {
+  for (const fault of ["positive", "close-error"]) {
+    const h = authHarness(fault); h.api.enter(); const first = new Error("original test failure");
+    const pinned = pinnedAuthRunner(async file => file === "setup" ? async () => {
+      const callback = await h.api.installOwnedAuthFixture(h.originalFixture, async () => h.cleanup, h.io);
+      return async () => { h.startCleanup(); await callback(); };
+    } : actualAuthTeardown(h).run);
+    pinned.runner.addTask(pinned.createGlobalTeardownTask("teardown", { globalTeardowns: ["teardown"] }));
+    pinned.runner.addTask(pinned.createGlobalSetupTask("setup", { globalSetups: ["setup"] }));
+    pinned.runner.addTask({ title: "test", setup: async () => { throw first; } });
+    assert.equal(await pinned.runner.run(pinned.config, 0), "failed"); assert.equal(pinned.errors[0], first); assert.equal(h.snapshot().size, 0);
+    if (fault === "positive") assert.equal(pinned.errors.length, 1);
+    else { assert.equal(pinned.errors.length, 3); for (const error of pinned.errors.slice(1)) assert.equal((error as Error).message, "e2e owned auth cleanup unverified"); }
+  }
+});
+test("owned auth setup failure before creation grants no descriptor authority", async () => {
+  const h = authHarness(); h.api.enter(); const first = new Error("original setup error");
+  await assert.rejects(h.api.installOwnedAuthFixture(h.originalFixture, async () => { throw first; }, h.io), error => error === first);
+  assert.equal((await h.api.finishOwnedAuthCleanup()).erasure, "unknown"); assert.deepEqual(h.operations, []);
+});
+test("owned auth creation write failure finalizes the original FD without replacing the first error", async () => {
+  const h = authHarness("write-error"); assert.throws(() => h.create(), /PRIVATE write/); assert.equal(h.snapshot().size, 0); assert.equal(h.snapshot().active, 0); assert.deepEqual(h.mutations, [11]);
+});
+test("owned auth pending setup cannot create after configured teardown closes its latch", async () => {
+  const h = authHarness(); h.api.enter(); let release!: (value: typeof h.cleanup) => void;
+  const pending = h.api.installOwnedAuthFixture(h.originalFixture, () => new Promise(resolve => { release = resolve; }), h.io);
+  assert.equal((await h.api.finishOwnedAuthCleanup()).erasure, "unknown"); release(h.cleanup);
+  await assert.rejects(pending, /owned auth unavailable/); assert.deepEqual(h.operations, []);
+});
+test("owned auth interruption or missing callback has no positive erasure claim", async () => {
+  const h = authHarness(); const keeper = h.create();
+  const pinned = pinnedAuthRunner(async () => { throw new Error("no loaded hook"); });
+  pinned.runner.addTask({ title: "pending setup", setup: async () => new Promise(() => {}) });
+  const cancelled = Object.assign(Promise.resolve(), { isDone: () => true, resolve() {} });
+  const result = await pinned.runner.runDeferCleanup(pinned.config, 0, cancelled);
+  assert.equal(result.status, "interrupted"); assert.equal(JSON.parse(JSON.stringify(keeper.result())).erasure, "unknown");
+  assert.equal(h.snapshot().active, 2); assert.equal(h.mutations.length, 0); // No claim about forced-termination cleanup.
+});
+test("owned auth consumes before awaiting DB and late completion cannot promote a revoked cleanup", async () => {
+  const h = authHarness(); let release!: () => void;
+  const holder = h.api.createOwnedAuthFixture(h.io, h.originalFixture, async () => new Promise<void>(resolve => { release = resolve; })); h.startCleanup();
+  const pending = holder.consume(); assert.equal((await holder.consume()).erasure, "unknown"); release(); assert.equal((await pending).erasure, "unknown"); assert.equal(h.mutations.length, 0); assert.equal(h.snapshot().active, 0);
+});
+test("owned auth authentic original fixture is read through its FD before DB identity use", async () => {
+  const { h, result } = await authOutcome("positive"); assert.equal(result?.erasure, "verified-original-zero"); assert.equal(h.database.length, 1); assert.ok(Object.isFrozen(h.database[0])); assert.ok(h.operations.indexOf("read") < h.operations.indexOf("truncate"));
+});
+test("owned auth missing or uncertain holder fails passing tests without pathname fallback", async () => {
+  const missing = authHarness(); const configured = actualAuthTeardown(missing);
+  await assert.rejects(configured.run(), { message: "e2e owned auth cleanup unverified" });
+  assert.deepEqual(configured.ordinary, []); assert.deepEqual(missing.operations, []);
+  for (const fault of ["missing", "close-error"]) {
+    const h = authHarness(fault); if (fault !== "missing") h.api.enter();
+    const pinned = pinnedAuthRunner(async file => file === "setup" ? async () => {
+      if (fault === "missing") return undefined;
+      const callback = await h.api.installOwnedAuthFixture(h.originalFixture, async () => h.cleanup, h.io);
+      return async () => { h.startCleanup(); await callback(); };
+    } : actualAuthTeardown(h).run);
+    pinned.runner.addTask(pinned.createGlobalTeardownTask("teardown", { globalTeardowns: ["teardown"] }));
+    pinned.runner.addTask(pinned.createGlobalSetupTask("setup", { globalSetups: ["setup"] }));
+    pinned.runner.addTask({ title: "passing test", setup: async () => {} });
+    assert.equal(await pinned.runner.run(pinned.config, 0), "failed");
+    assert.equal(pinned.errors.length, fault === "missing" ? 1 : 2);
+    for (const error of pinned.errors) assert.equal((error as Error).message, "e2e owned auth cleanup unverified");
+    if (fault === "missing") assert.deepEqual(h.operations, []);
+  }
+});
+test("owned auth ordinary cleanup conserves fixture read DB cleanup and recursive removal order", async () => {
+  const h = authHarness(); const configured = actualAuthTeardown(h, ""); await configured.run(); assert.deepEqual(configured.ordinary, ["read", "DB", "remove"]);
+  const setup = source("tests/e2e/global-setup.ts").replaceAll("\r\n", "\n"); assert.ok(setup.endsWith('  mkdirSync(path.dirname(FIXTURE_FILE), { recursive: true });\n  writeFileSync(FIXTURE_FILE, JSON.stringify(fixture, null, 2), "utf8");\n}\n'));
+});
+test("owned auth exclusive collision leaves foreign targets unchanged", async () => { const { h, result, state } = await authOutcome("collision"); assert.equal(result, null); assert.deepEqual(h.mutations, []); assert.equal(state.active, 0); });
+test("owned auth refuses symlink parents and final file without path fallback", async () => { for (const fault of ["symlink-parent", "symlink-file"]) { const { result, h } = await authOutcome(fault); assert.equal(result, null); assert.deepEqual(h.mutations, []); } });
+test("owned auth verified zero means original inode zero and retained directory only", async () => { const { state, result } = await authOutcome("positive"); assert.equal(state.size, 0); assert.equal(state.named, 11); assert.equal(state.active, 0); assert.equal(result?.retained, true); assert.equal(result?.closed, true); });
+test("owned auth substitution before validation cannot mutate replacement or read its data", async () => { const { h, result } = await authOutcome("substitution-before"); assert.equal(result?.erasure, "unknown"); assert.deepEqual(h.mutations, []); assert.deepEqual(h.database, []); assert.equal(h.operations.includes("read"), false); });
+test("owned auth substitution between validation and truncate affects only original inode and refuses success", async () => { const { h, result, state } = await authOutcome("substitution-between"); assert.equal(result?.erasure, "unknown"); assert.deepEqual(h.mutations, [11]); assert.equal(state.named, 99); assert.equal(state.size, 0); });
+test("owned auth unlinked original refuses positive cleanup", async () => { const { result, h } = await authOutcome("unlinked"); assert.equal(result?.erasure, "unknown"); assert.deepEqual(h.mutations, []); });
+test("owned auth additional hardlink refuses erasure and racing links stay original-inode-only", async () => {
+  const { result, h } = await authOutcome("hardlinked"); assert.equal(result?.erasure, "unknown"); assert.deepEqual(h.mutations, []);
+  for (const fault of ["hardlink-between", "unlink-between"]) { const racing = await authOutcome(fault); assert.equal(racing.result?.erasure, "unknown"); assert.deepEqual(racing.h.mutations, [11]); }
+});
+test("owned auth unexpected directory entry stops bounded enumeration with no recursive fallback", async () => { const { result, h, state } = await authOutcome("unexpected-entry"); assert.equal(result?.erasure, "unknown"); assert.deepEqual(h.mutations, []); assert.ok(state.enumReads <= 3); });
+test("owned auth closed or reused FD never receives a later operation", async () => {
+  const h = authHarness(); const keeper = h.create(); h.startCleanup(); await keeper.consume(); const count = h.operations.length; await keeper.consume(); assert.equal(h.operations.length, count);
+  const reused = await authOutcome("reused"); assert.equal(reused.result?.erasure, "unknown"); assert.deepEqual(reused.h.mutations, []); assert.equal(reused.state.active, 1);
+});
+test("owned auth close failure consumes authority without retry or positive cleanup", async () => { const { h, result } = await authOutcome("close-error"); assert.equal(result?.erasure, "unknown"); assert.equal(result?.closed, false); assert.equal(h.operations.filter(op => op === "close").length, 2); });
+test("owned auth partial writes have finite call bounds and retain original failure", async () => { const { h, result, state } = await authOutcome("partial-write"); assert.equal(result, null); assert.ok(h.operations.filter(op => op === "write").length <= 32); assert.equal(state.active, 0); assert.ok(h.mutations.every(ino => ino === 11)); });
+test("owned auth byte time metadata and proc bounds fail closed without another route", async () => {
+  const badFlags = authHarness(); badFlags.io.constants.O_NOFOLLOW = 0; assert.throws(() => badFlags.create(), /owned auth unavailable/); assert.deepEqual(badFlags.operations, []);
+  const huge = authHarness(); assert.throws(() => huge.create('"' + "a".repeat(1048576) + '"'), /owned auth unavailable/); assert.deepEqual(huge.operations, []);
+  for (const fault of ["deadline", "unsupported", "inaccessible", "foreign-parent", "writable-parent", "untrusted-proc", "wrong-proc", "directory-substitution", "iterator-close", "read-error", "changed-payload", "truncate-error", "late-close"]) { const { result } = await authOutcome(fault); assert.notEqual(result?.erasure, "verified-original-zero"); }
+});
+test("owned auth sync async and pending sink failures are nonwaiting and preserve erasure outcome", async () => { for (const fault of ["sink-sync", "sink-async", "sink-pending"]) { const { result, h } = await authOutcome(fault); assert.equal(result?.erasure, "verified-original-zero"); assert.equal(h.published.length, 1); } });
+test("owned auth database uses immutable creation identity and DB failure does not undo verified erasure", async () => {
+  const { h, result } = await authOutcome("db-error"); assert.equal(result?.database, "unknown"); assert.equal(result?.erasure, "verified-original-zero"); assert.equal(JSON.parse(JSON.stringify(h.database[0])).tenantA.id, "original-A");
+  const swapped = await authOutcome("substitution-between"); assert.equal(JSON.parse(JSON.stringify(swapped.h.database[0])).tenantA.id, "original-A");
+});
+test("owned auth actual runtime21 collector binds all six additions without native execution", async () => {
+  assert.equal(SOURCES.length, 21); assert.equal(new Set(SOURCES).size, 21); const value = await actualPathCollection(); assert.equal(Object.keys(value.result).length, 21);
+  for (const path of authRuntimeAdded) { assert.equal(value.result[path].sha256, sha(readFileSync(path))); await assert.rejects(actualPathCollection(path), /fixture read unavailable/); }
+});
+test("owned auth PRIMARY32 definition uses fixed unique seven-field source schema and exact additions", () => {
+  const expected = ["tests/e2e/global-setup.ts", "tests/e2e/global-teardown.ts", "src/components/scheduling/SchedulingWorkspace.tsx", "src/components/scheduling/BookingBlock.tsx", "src/components/scheduling/SchemaView.tsx", "src/components/scheduling/focus-restoration.ts", "tests/unit/features/scheduling/focus-restoration.test.ts"];
+  assert.equal(expected.length, 7); assert.equal(new Set(expected).size, 7); assert.ok(expected.slice(0, 6).every(p => SOURCES.includes(p))); assert.ok(!SOURCES.includes(expected[6]!));
+  const actual = source("tests/e2e/global-setup.ts"); assert.ok(!actual.includes("unlinkSync") && !actual.includes("rmdirSync"));
+  assert.match(actual, /opendirSync\(dirPath\(\), \{ bufferSize: 1, recursive: false \}\)/);
+});
+test("owned auth valid-shaped stale hashes for each six additions fail actual authoritative second collection", async () => {
+  const { checkSourceBindings } = await import("../../../diagnostics/fixed-chromium-application-runner.mjs");
+  for (const path of authRuntimeAdded) {
+    const f = fixture(), actual = bindings(), stale = { ...actual, [path]: { bytes: 10, sha256: "f".repeat(64) } }; checkSourceBindings(stale);
+    let collections = 0; f.io.bindings = async () => ++collections === 1 ? actual : stale;
+    const result = await f.run(); assert.equal(result.failure, "binding"); assert.equal(result.exitCode, 1); assert.equal(collections, 2); assert.equal(f.state.compatibility, 1); assert.equal(f.state.invocations, 0);
+  }
+});
+// OWNED-AUTH-FD-TESTS-END

@@ -15,6 +15,7 @@ import { CapacityView } from "./CapacityView";
 import { PersonalCalendarView } from "./PersonalCalendarView";
 import { IntervalSelectionDialog } from "./IntervalSelectionDialog";
 import type { BookingProposal } from "./BookingBlock";
+import { focusIdentity, restoreWorkspaceFocus, type FocusIntent } from "./focus-restoration";
 
 const eligibleFor = (data: SchedulingReadData) => ({
   personIds: data.roster?.map(p => p.id) ?? [],
@@ -33,7 +34,8 @@ export function SchedulingWorkspace({ initial, initialInput, readAction }: {
   const [editing, setEditing] = useState<{ draft: BookingFacts; bookingId?: string } | null>(null);
   const [interval, setInterval] = useState<SlotSelection | null>(null);
   const sequence = useRef(0), restored = useRef(false), invoker = useRef<HTMLElement | null>(null);
-  const pendingFocus = useRef<{ element: HTMLElement; testId: string | null; start: string | null; person: string | null; booking: string | null; row: string | null; text: string; tag: string } | null>(null);
+  const pendingFocus = useRef<FocusIntent | null>(null);
+  const dragInvoker = useRef<HTMLElement | null>(null);
   const workspace = useRef<HTMLElement | null>(null);
   const identity = useRef({ actorId: initial.data.actorId, tenantId: initial.data.tenantId });
   const data = result.data;
@@ -92,34 +94,32 @@ export function SchedulingWorkspace({ initial, initialInput, readAction }: {
     return () => cancelAnimationFrame(frame);
   }, [eligible, initialInput, read, scope]);
 
-  // Refresh replaces calendar hosts. Restore to the corresponding current control
-  // only after the read and React commit have settled, rather than the detached node.
+  // A deliberate new interaction supersedes a pending return; never steal focus later.
   useEffect(() => {
-    if (loading || editing || interval || !pendingFocus.current) return;
+    const cancel = () => { pendingFocus.current = null; };
+    document.addEventListener("pointerdown", cancel, true);
+    document.addEventListener("keydown", cancel, true);
+    return () => {
+      document.removeEventListener("pointerdown", cancel, true);
+      document.removeEventListener("keydown", cancel, true);
+    };
+  }, []);
+  // Refresh replaces hosts. Resolve one bounded attempt after the settled commit.
+  useEffect(() => {
+    if (loading || editing || interval || !pendingFocus.current || pendingFocus.current.attempted) return;
     const frame = requestAnimationFrame(() => {
       const target = pendingFocus.current;
-      if (!target || !workspace.current) return;
-      const candidates = [...workspace.current.querySelectorAll<HTMLElement>(target.tag)];
-      const current = target.element.isConnected ? target.element : candidates.find(element =>
-        element.getAttribute("data-testid") === target.testId &&
-        element.getAttribute("data-start") === target.start &&
-        element.getAttribute("data-person") === target.person &&
-        element.closest('[data-testid^="scheduling-booking-"]')?.getAttribute("data-testid") === (target.booking ?? undefined) &&
-        element.closest('[data-testid^="resource-row-"]')?.getAttribute("data-testid") === (target.row ?? undefined) &&
-        (target.testId !== null || element.textContent === target.text));
-      if (current) { current.focus(); pendingFocus.current = null; }
-      else workspace.current.querySelector<HTMLElement>('[role="alert"] button')?.focus();
+      if (!target || target.attempted || !workspace.current) return;
+      target.attempted = true;
+      if (restoreWorkspaceFocus(workspace.current, target)) pendingFocus.current = null;
+      // An unresolved intent remains marked attempted; later renders cannot steal focus.
     });
     return () => cancelAnimationFrame(frame);
   }, [loading, result, editing, interval]);
 
   function restoreAfterRefresh() {
     const element = invoker.current;
-    if (!element) return;
-    pendingFocus.current = { element, testId: element.getAttribute("data-testid"), start: element.getAttribute("data-start"),
-      person: element.getAttribute("data-person"), booking: element.closest('[data-testid^="scheduling-booking-"]')?.getAttribute("data-testid") ?? null,
-      row: element.closest('[data-testid^="resource-row-"]')?.getAttribute("data-testid") ?? null,
-      text: element.textContent ?? "", tag: element.tagName.toLowerCase() };
+    if (element) pendingFocus.current = { element, identity: focusIdentity(element), attempted: false };
   }
 
   function select(slot: SlotSelection, preserveFocus = false) {
@@ -128,8 +128,8 @@ export function SchedulingWorkspace({ initial, initialInput, readAction }: {
       jobId: null, customerId: null, facilityId: null, contactId: null, description: "", status: "planned",
       assigneeIds: slot.personId ? [slot.personId] : [], seriesId: null, occurrenceIndex: null, isException: false } });
   }
-  function edit(proposal: BookingProposal) {
-    invoker.current = document.activeElement as HTMLElement;
+  function edit(proposal: BookingProposal, origin?: HTMLElement) {
+    invoker.current = origin ?? dragInvoker.current ?? document.activeElement as HTMLElement;
     setEditing({ bookingId: proposal.booking.id, draft: { ...bookingSummaryDraft(proposal.booking),
       ...(proposal.startsAt ? { startsAt: proposal.startsAt } : {}), ...(proposal.endsAt ? { endsAt: proposal.endsAt } : {}),
       ...(proposal.assigneeIds ? { assigneeIds: proposal.assigneeIds } : {}) } });
@@ -139,7 +139,10 @@ export function SchedulingWorkspace({ initial, initialInput, readAction }: {
     onSelect: select, onEdit: edit, onDay: (date: string) => change({ ...input, mode: "day", date }) };
   const failure = error ?? data.error;
   const newSlot = () => { const start = stockholmLocalToUtc(`${input.date}T08:00:00`); return normalizeSlotSelection(start, start); };
-  return <main ref={workspace} className="min-w-0 space-y-4 p-3 sm:p-6" data-testid="scheduling-workspace">
+  return <main ref={workspace} className="min-w-0 space-y-4 p-3 sm:p-6" data-testid="scheduling-workspace"
+    onDragStartCapture={event => {
+      dragInvoker.current = event.target instanceof Element ? event.target.closest<HTMLElement>('[draggable="true"]') : null;
+    }} onDragEndCapture={() => { dragInvoker.current = null; }}>
     <h1 className="text-xl font-semibold">Planering</h1>
     <SchedulingToolbar input={input} data={loading || failure ? { ...data, openConflictCount: undefined } : data} onChange={change}
       onCreate={() => select(newSlot())}

@@ -306,7 +306,7 @@ for (const host of ["Schema", "Resurser"] as const) {
     await dialog.getByLabel("Intervall person").selectOption(h.people[0]!);
     await dialog.getByRole("button", { name: "Öppna bokningseditor" }).click();
     await expectEditor(h, { ...i, assigneeIds: [h.people[0]!] });
-    await h.fillRequired(); await h.cancel(); await expect(trigger).toBeFocused(); expect(await h.sqlBookings()).toEqual(before);
+    await h.fillRequired(); await h.cancel(); await expect(trigger).toBeFocused(); await expect(trigger).toBeVisible(); expect(await h.sqlBookings()).toEqual(before);
   });
 }
 test("[P1] 15.1-E2E-006 SCOPE-001 AC1 five projections, periods, filters and toolbar editor agree across later pages", async ({ schedulingViews: h }, testInfo) => {
@@ -662,6 +662,42 @@ test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycl
   // PASSIVE-NETWORK-END final
 });
 
+// Focus regression: refresh must resolve the visible source instance, including week duplicates.
+for (const host of ["Schema", "Resurser"] as const) {
+  test(`[P1] 15.1 focus restoration ${host} day/week origins and disappeared source`, async ({ schedulingViews: h }) => {
+    await h.seed(); await h.page.setViewportSize({ width: 1440, height: 1000 });
+    for (const period of ["day", "week"] as const) {
+      await h.open(host, period);
+      for (const kind of ["article", "edit", "resize"] as const) {
+        const block = host === "Resurser" ? h.row().getByTestId(`scheduling-booking-${h.ids.proposal}`) : h.block(h.ids.proposal);
+        const trigger = kind === "article" ? block : block.getByRole("button", { name: kind === "edit" ? "Redigera / flytta" : "Ändra längd", exact: true });
+        if (kind === "article") {
+          await trigger.focus(); await trigger.dragTo(h.slot(host, "2026-10-12T14:30"));
+        } else { await trigger.focus(); await trigger.press("Enter"); }
+        await expect(h.editor).toBeVisible(); await h.cancel();
+        await expect(trigger).toBeFocused(); await expect(trigger).toBeVisible();
+        if (host === "Schema") {
+          await expect(h.page.locator('[data-focus-instance="schema-agenda"]')).toBeHidden();
+        }
+      }
+    }
+    // Move outside this day: the original source has no current equivalent after persistence.
+    await h.open(host, "day");
+    const block = host === "Resurser" ? h.row().getByTestId(`scheduling-booking-${h.ids.proposal}`) : h.block(h.ids.proposal);
+    await block.getByRole("button", { name: "Redigera / flytta", exact: true }).click();
+    await h.editor.getByTestId("booking-start").fill("2026-10-16T14:30");
+    await h.editor.getByTestId("booking-end").fill("2026-10-16T15:00");
+    await expect(h.editor.getByTestId("booking-availability")).toBeVisible();
+    await save(h); await h.cancel(); await expect(h.editor).toHaveCount(0); await h.settle();
+    await expect(block).toHaveCount(0);
+    await expect(h.page.getByRole("tab", { selected: true })).toBeFocused();
+    await expect(h.page.getByRole("tab", { selected: true })).toBeVisible();
+    const persisted = (await h.sqlBookings()).find(row => row.id === h.ids.proposal);
+    expect(persisted).toMatchObject({ startsAt: interval("2026-10-16T14:30", "2026-10-16T15:00").startsAt,
+      endsAt: interval("2026-10-16T14:30", "2026-10-16T15:00").endsAt });
+  });
+}
+
 for (const host of ["Schema", "Resurser"] as const) for (const operation of ["move", "resize"] as const) {
   test(`[P1] 15.1-E2E-007 AC5 ${host} actual ${operation} and keyboard/click alternatives preserve review and cancellation`, async ({ resourcePage: page, schedulingViews: h }) => {
     await h.seed(); await h.addProposalPeer(); await page.setViewportSize({ width: 1440, height: 1000 });
@@ -687,7 +723,7 @@ for (const host of ["Schema", "Resurser"] as const) for (const operation of ["mo
       };
       await propose(); await h.editor.getByTestId("booking-save").click();
       await expect(h.editor.getByTestId("booking-save-error")).toContainText("Granska aktuella varningar");
-      await h.cancel(); await expect(trigger).toBeFocused(); expect(await h.sqlBookings()).toEqual(before);
+      await h.cancel(); await expect(trigger).toBeFocused(); await expect(trigger).toBeVisible(); expect(await h.sqlBookings()).toEqual(before);
       await propose(); await h.review(); await save(h);
       const after = await h.sqlBookings(); expect(after).toHaveLength(before.length);
       expect(after.filter(row => row.id !== h.ids.proposal)).toEqual(before.filter(row => row.id !== h.ids.proposal));
