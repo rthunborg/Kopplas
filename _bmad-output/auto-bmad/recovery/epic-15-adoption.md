@@ -408,3 +408,23 @@ checkpoint. Fresh exact-head standard CI, including isolated Storage and Auth,
 is still required before final source acceptance. Story 15.2 remains unapproved;
 its original author identified a bounded companion/baseline refresh without a
 kernel or scope change. No main merge, preview, deployment or release claim ran.
+
+
+## Prerequisite exact-head CI acceptance — 2026-10-19
+
+Merge commit `33c68c5aef5b75f96cf0ca5c086ebe911631db55` retains parents `eb2286365db95057c7b03571196574e8c3d746d9` and completed Jobs prerequisite `26dac3ab539ad54a79916135c53f25931e958d76`. The retained epic branch was pushed once. Standard CI [39304828183](https://github.com/rthunborg/Kopplas/actions/runs/39304828183), `release_validation=false`, completed successfully for exactly that head. All five required jobs executed successfully. The same owned dispatch state reached completed/success; the current checked-in helper uses no repository admission variables, so no variable restoration applies.
+
+Distinct Sol6.1 High provenance review passed 29 checks with zero findings. Native evidence records Linux units 2,902 passed/0 failed/0 skipped; process 43 passed; full integration 1,785 passed/0 failed/1 explicit isolated-Storage skip across 149 files; the 787 passing RLS cases across 51 files are a nonadditive subset. The isolated Storage job executed its one test successfully without skips. Eleven native browser cases passed with zero failures, skips, flaky cases or errors, each one attempt/retry0: two Auth mail, five login/context and four Jobs cases. Four local Scheduling cases remain separate evidence; neither local counts nor historical results were substituted into CI. Optional release/diagnostic jobs intentionally did not run.
+
+Root captured API responses, native JSON artifacts and exact gh stdout log bytes in ignored packet `.env.epic15.mail-runtime/story-15-2-ci-39304828183-33c68c5a/`. Capture qualifications do not assert original server transport byte identity or recomputed ZIP digests. Independent original report `.env.epic15.mail-runtime/story-15-2-ci-independent-review-20261019-179f5c4d-fc1d-4a48-87e4-00425e8075d0/report-original.md` SHA256 `09a653c1c49fa4f800b8ab38364bf882091342fd0f50ba46c0e9e5a43660fc30`; checks SHA256 `fbc0291e0578aa2935cc002c13cc0450c3cc07e712d8edf7e0d1bbf051c362c8`. Original local failures, launch failures and qualified later successes remain preserved.
+
+Coordinator confirmed the existing conditional allocation stands and no additional coordination wait is needed. The original author completed the bounded Story15.2 technical-companion refresh against33c68c5a without implementation or scope expansion; its distinct High specification validation remains pending. Canonical P3 remains open, spec_approved=false, and no implementation has begun. This is prerequisite development checkpoint acceptance, not release readiness, Epic15 completion, main-merge or deployment authorization.
+
+
+## Story15.2 current-baseline planning approval — 2026-10-19
+
+The bounded companion amendment binds source baseline33c68c5a, raw spec SHA256 `201e7c846c885d19cfe6b166cbaf9f7d8cac5e6b4b715de49de84d166037613d`, unchanged kernel `013b7ae0d0614d20dbc021885786ca1803976e10bd634ddc0bc3791b19de4ee1`, nine tasks and eight acceptance criteria. Historical76 planning and validation evidence remains unchanged. Distinct High current-source validation passed fourteen checks, the seven-point audit and six source assessments, with zero consequential findings. Independent tracked report SHA256 `48e1581f6aebcf175d2dac3e757caaffc8d2a6fff9fc2db346a925faef71fa8a`; checks SHA256 `3d333f4ada3803290c21b02eabf5467b2d1027be4fa675e04cb9a1ff2fa13b08`. Root verified the exact candidate/report hashes before approval.
+
+Root approves P3 under the unattended epic authorization after prerequisite CI and independent validation. The existing Coordinator allocation stands without an additional wait. Series registry/H4 enrollment, two series envelope rows and named batch facts/proof/forward-SQL seams are narrowly allocated; protected capacity/matrix/auth-surface paths and existing migrations remain unchanged. Reserved new migration20261019180000 was absent at the actual preapproval inventory check; recheck before creation. Additional actual overlap requires coordination before editing. Resources must be acquired through the guard only when needed.
+
+P3 is completed, spec_approved=true, sprint15.2 ready-for-dev. ATDD is selected and routed to explicit Sol6.1 High for actual authorization/transaction invariants. Timers were paused without dropping the P3 interval and restarted for P4. No implementation, development-completion claim, main merge, deployment or release-readiness claim is made.

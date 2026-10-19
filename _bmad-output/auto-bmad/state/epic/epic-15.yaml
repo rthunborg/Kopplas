@@ -9,24 +9,24 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-19T18:41:58Z"
+updated_at: "2026-10-19T19:03:11Z"
 started_at: "2026-10-09T12:57:49Z"
 completed_at: null
-active_seconds: 143082
-timing_anchor: null
+active_seconds: 143929
+timing_anchor: 1792436591
 is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: build
-selected_role: build-delegate
+selected_phase: tea_per_story
+selected_role: tea-delegate
 selected_profile: standard
 selected_model: gpt-6.1-sol
 selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Explicit four-path auth-fixture creation-bound FD-only cleanup source implementation and bounded proofs require High for ownership, integrity, callback lifetime and failure precedence."
+escalation_reason: "Automatic sensitive-task escalation: authorization, transactional-integrity"
 routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary epic test planning; sensitive implementation/review scope routed explicitly High\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary story test-risk classification\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_triage\",\"profile\":\"light\",\"role\":\"test-risk-triage\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -166,6 +166,8 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Read-only exact pinned-loader/process/module FD lifetime, opaque ownership transfer and Node22 descriptor safety qualification requires High; bounded primary source retrieval only, no package execution or source allocation.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Independent focused pinned SDK loader lifetime, original-inode descriptor erasure ownership and four-path contract/control proposal qualification before source/tests requires High.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Explicit four-path auth-fixture creation-bound FD-only cleanup source implementation and bounded proofs require High for ownership, integrity, callback lifetime and failure precedence.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: null
 tea_selected: []
 tea_rationale: null
@@ -173,7 +175,7 @@ epic_story_count: 6
 stories_after_in_epic: null
 completed_phases: [0, 1, 2]
 spec_path: null
-spec_approved: false
+spec_approved: true
 build:
   status: null
   blocking_condition: null
@@ -191,7 +193,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [99e1274e, b7f19e2d, 6f612a21, bc4163ea, 27ce6a2b, 7cdd08a6, 66cd8436, e6c404d3, 5d76de08575fb8fa09197021899d78280829d554, 81836287786a40540e96dbdf46db29c868cde41b, 48386408fc628f7341b711f177ff5833f622959c, 92dc4a5f4f7e9878e9ed9c28e00bda5d98680478, 16180cd63914a57895b36c2db060c43c74da3514, caec31b185bcad597664668d7a835c9c2096aa4d, 0a312c8fbd617d4ce03f97d5484bb23babb0686b, d5a5f85155394a0337ea92fcd606f949559b172a, becfd00e, 80c31af2, a0dd2302ead46e72e77f3293b84085c4f8fe65f3, 6f9e29656df997e2c5c6027874da4bee1ef6c17d, 5c1fb90b2f7f735259208e2d420bce489cbed598, 0d6f43ac90596b8703d8df3b9b986f9026aaaba3, 76868db295ac6b7de06a57f43164d5f02140f938, c4375f61, abaf8d81, db50a9c5, a1b83089, 6883ef61, 2441e3a2, 94baa7c7, afd9c1dd, 6d983e00, ae5b78b6, 09e70e81, 311e744f, 1d4ec146, 37fa423a, b1ad1496, "21835451", 1fadbd1f, b1f91332, 99590bfa, 45deb287, 532ebccf, 689ec7b7, cf9b89f9, 63186b1f, 48f8d7a7f170ca496b63e8120a34edb92e3ca23e, 6c0fa8fa11a1b4ab7268f623b96693affe3506b0, 83c60e0033628b4158448b9e782a9ad5a12e062f, ab5595a609092306489064f46e5a567cbfb9b34a, f2bad2b11b31b4646a3b068e17b61a044b376c0a, 574d84d8fb84b57c04d919007403f98680314027, b5814e982cc5db9c1b5285ee85b08ad77621d1e9, e067db0, 91233e4e, 33dc85c7, 22f08b4c, 955390c2, 8276d9b2, 5e8a5e33, 80e00074, f69e6cda, c9502aa3, 96eee458, 95d5e6bc, "40228616", 2c418bc8, 09c853b9, 31b780fb, 0f56d487, c8171dbf, cc6ef30a, 4c04159e, 76f50d38, eb228636]
+commits: [99e1274e, b7f19e2d, 6f612a21, bc4163ea, 27ce6a2b, 7cdd08a6, 66cd8436, e6c404d3, 5d76de08575fb8fa09197021899d78280829d554, 81836287786a40540e96dbdf46db29c868cde41b, 48386408fc628f7341b711f177ff5833f622959c, 92dc4a5f4f7e9878e9ed9c28e00bda5d98680478, 16180cd63914a57895b36c2db060c43c74da3514, caec31b185bcad597664668d7a835c9c2096aa4d, 0a312c8fbd617d4ce03f97d5484bb23babb0686b, d5a5f85155394a0337ea92fcd606f949559b172a, becfd00e, 80c31af2, a0dd2302ead46e72e77f3293b84085c4f8fe65f3, 6f9e29656df997e2c5c6027874da4bee1ef6c17d, 5c1fb90b2f7f735259208e2d420bce489cbed598, 0d6f43ac90596b8703d8df3b9b986f9026aaaba3, 76868db295ac6b7de06a57f43164d5f02140f938, c4375f61, abaf8d81, db50a9c5, a1b83089, 6883ef61, 2441e3a2, 94baa7c7, afd9c1dd, 6d983e00, ae5b78b6, 09e70e81, 311e744f, 1d4ec146, 37fa423a, b1ad1496, "21835451", 1fadbd1f, b1f91332, 99590bfa, 45deb287, 532ebccf, 689ec7b7, cf9b89f9, 63186b1f, 48f8d7a7f170ca496b63e8120a34edb92e3ca23e, 6c0fa8fa11a1b4ab7268f623b96693affe3506b0, 83c60e0033628b4158448b9e782a9ad5a12e062f, ab5595a609092306489064f46e5a567cbfb9b34a, f2bad2b11b31b4646a3b068e17b61a044b376c0a, 574d84d8fb84b57c04d919007403f98680314027, b5814e982cc5db9c1b5285ee85b08ad77621d1e9, e067db0, 91233e4e, 33dc85c7, 22f08b4c, 955390c2, 8276d9b2, 5e8a5e33, 80e00074, f69e6cda, c9502aa3, 96eee458, 95d5e6bc, "40228616", 2c418bc8, 09c853b9, 31b780fb, 0f56d487, c8171dbf, cc6ef30a, 4c04159e, 76f50d38, eb228636, 33c68c5a]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -241,8 +243,8 @@ constraints:
   - "Use reviewed reusable checkpoint CI; old diagnostic runners, variables and clocks stay inactive."
   - "E16 owns new edits to four shared seams; preserve E15 deltas at serialized integration."
   - "Historical W failures retained; broad browser/visual/manual work deferred release validation, consequential development gates required."
-  - "Coherent26dac3ab prerequisite locally verified: original-author five conflict resolutions plus distinct High source/provenance PASS; static/build,full requiredDB/RLS and8 essential browser cases passed. Fresh exact-head standard CI including isolatedStorage/Auth remains pending. Story15.2 P3 unapproved; no main merge or deployment."
-  - "Local requiredDB/RLS1785passed/0failed/1isolatedStorageSkip across149files/maxWorkers2; all prior47failures+19blocked cases now pass; original failures and21 unisolated causes retained. Reviewed baseline correction,pilot,post-suite104/key/contracts checks and8 essential browser cases passed. Local source independently reviewed; exact-head CI and15.2 specification refresh/approval remain open."
+  - "Coherent26dac3ab prerequisite integrated by merge33c68c5a and independently verified: original-author conflict resolutions, local static/build/DB/RLS/8 browser cases, and exact-head standard CI39304828183 all five required jobs passed. No main merge or deployment."
+  - "Story15.2 P3 approved after exact-head CI39304828183 and distinct High current-baseline validation PASS. Kernel013b7ae0 preserved;9 tasks/8ACs unchanged. Existing Coordinator allocation stands without additional wait: narrow series registry/H4 enrollment, two series command envelope rows, named batch facts/proof/forwardSQL seams; protected shared capacity/matrix/auth surface and old SQL stay unchanged. Migration20261019180000 reservation rechecked absent before approval; any additional actual overlap must be coordinated before editing. No main merge or deployment."
 stories_landed:
   - 15-1-the-five-scheduling-views
 epic_slug: scheduling-time-calendar

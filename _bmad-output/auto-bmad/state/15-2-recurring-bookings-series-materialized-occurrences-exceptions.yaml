@@ -9,17 +9,17 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-19T18:41:57Z"
+updated_at: "2026-10-19T19:03:11Z"
 started_at: "2026-10-19T17:01:38Z"
 completed_at: null
-active_seconds: 5717
-timing_anchor: null
+active_seconds: 6565
+timing_anchor: 1792436591
 is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: build
-selected_role: build-delegate
+selected_phase: tea_per_story
+selected_role: tea-delegate
 selected_profile: standard
 selected_model: gpt-6.1-sol
 selected_effort: high
@@ -29,21 +29,22 @@ selected_route: subagent
 escalation_reason: "Automatic sensitive-task escalation: authorization, transactional-integrity"
 routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate, trace-advisory]
 tea_rationale: "Recurrence/DST and materialized occurrence mutations with dedupe, tombstones and identity-preserving splits require integrity coverage; long-epic story advisory applies."
 epic_story_count: 6
 stories_after_in_epic: 4
-completed_phases: [0, 1, 2]
-spec_path: "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/implementation-artifacts/spec-15-2-recurring-bookings-series-materialized-occurrences-exceptions.md"
-spec_approved: false
+completed_phases: [0, 1, 2, 3]
+spec_path: "_bmad-output/implementation-artifacts/spec-15-2-recurring-bookings-series-materialized-occurrences-exceptions.md"
+spec_approved: true
 build:
-  status: null
+  status: ready-for-dev
   blocking_condition: null
   followup_review_recommended: false
   review_loop_iteration: 0
   deferred_count: 0
-  warnings: []
+  warnings: [oversized]
 followup_passes: 0
 hitl_halt: null
 review_unverified: false
@@ -54,7 +55,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [76f50d38, eb228636]
+commits: [76f50d38, eb228636, 33c68c5a]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -99,8 +100,6 @@ overrides:
   deployment: false
   owner_resume: "2026-10-19 explicit authorization; Coordinator verified recovery handoff"
 constraints:
-  - "Original candidate technical PASS against76f50d38 and kernel/history preserved. Canonical P3/spec approval remains pending exact-head prerequisite CI, bounded baseline/technical-companion refresh and distinct High validation against the integrated source."
   - "Coordinator permits own-branch coherent integration of completed 16.1 ancestor 26dac3ab539ad54a79916135c53f25931e958d76 after preparation checkpoint and actual object/ref checks; preserve E15 contracts and E16 v3 facts/proof/migrations together."
-  - "Shared 15.2 implementation requires reviewed integration and final focused allocation; migration 20261019180000_recurring_booking_series.sql is reserved subject to actual inventory recheck. No main merge, split PR or deployment authorization."
-  - "Coherent26dac3ab prerequisite locally verified: original-author five conflict resolutions plus distinct High source/provenance PASS; static/build,full requiredDB/RLS and8 essential browser cases passed. Fresh exact-head standard CI including isolatedStorage/Auth remains pending. Story15.2 P3 unapproved; no main merge or deployment."
-  - "Local requiredDB/RLS1785passed/0failed/1isolatedStorageSkip across149files/maxWorkers2; all prior47failures+19blocked cases now pass; original failures and21 unisolated causes retained. Reviewed baseline correction,pilot,post-suite104/key/contracts checks and8 essential browser cases passed. Local source independently reviewed; exact-head CI and15.2 specification refresh/approval remain open."
+  - "Coherent26dac3ab prerequisite integrated by merge33c68c5a and independently verified: original-author conflict resolutions, local static/build/DB/RLS/8 browser cases, and exact-head standard CI39304828183 all five required jobs passed. No main merge or deployment."
+  - "Story15.2 P3 approved after exact-head CI39304828183 and distinct High current-baseline validation PASS. Kernel013b7ae0 preserved;9 tasks/8ACs unchanged. Existing Coordinator allocation stands without additional wait: narrow series registry/H4 enrollment, two series command envelope rows, named batch facts/proof/forwardSQL seams; protected shared capacity/matrix/auth surface and old SQL stay unchanged. Migration20261019180000 reservation rechecked absent before approval; any additional actual overlap must be coordinated before editing. No main merge or deployment."
