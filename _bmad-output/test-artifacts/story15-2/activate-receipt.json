@@ -1,0 +1,36 @@
+{
+  "mode": "activate",
+  "sourceHead": "eb3da24daf45a13e2a29fffb020d4cd9c0c65879",
+  "executable": "C:\\nvm4w\\nodejs\\node.exe",
+  "args": [
+    "--experimental-strip-types",
+    "--import",
+    "./tests/support/register.mjs",
+    "--test",
+    "--test-reporter=tap",
+    "_bmad-output\\test-artifacts\\story15-2\\red-activation\\recurrence.test.ts",
+    "_bmad-output\\test-artifacts\\story15-2\\red-activation\\booking-series-state.test.ts"
+  ],
+  "nativeExitCode": 1,
+  "signal": null,
+  "launchError": null,
+  "tests": 46,
+  "pass": 0,
+  "fail": 46,
+  "skipped": 0,
+  "provenance": [
+    {
+      "source": "tests/unit/features/scheduling/recurrence.test.ts",
+      "sha256": "9695d4e4c6463125b81a9ed6596989e21effbea437c376b0e7bfcec63b732df3"
+    },
+    {
+      "source": "tests/unit/features/resources/booking-series-state.test.ts",
+      "sha256": "8837358b997a440e63b4cbbb55c0e269bd14b308ee57bb1488e44f143709fff8"
+    }
+  ],
+  "errorCodes": [
+    "ERR_MODULE_NOT_FOUND",
+    "ERR_TEST_FAILURE"
+  ],
+  "coverageClaim": "Pure cases executed and failed at missing production module binding. No behavioral assertions reached; no acceptance pass."
+}

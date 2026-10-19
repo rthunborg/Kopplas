@@ -1,0 +1,61 @@
+{
+  "sourceHead": "eb3da24daf45a13e2a29fffb020d4cd9c0c65879",
+  "checks": [
+    {
+      "command": "node _bmad-output/test-artifacts/story15-2/validate-atdd.mjs",
+      "nativeExitCode": 0,
+      "result": "Both worker JSONs matched disk;10 canonical files;0 active test registration sites;110 planned cases."
+    },
+    {
+      "command": "node _bmad-output/test-artifacts/story15-2/run-pure-red.mjs scaffolds",
+      "nativeExitCode": 0,
+      "tests": 46,
+      "pass": 0,
+      "fail": 0,
+      "skipped": 46,
+      "result": "Collection only; zero acceptance coverage."
+    },
+    {
+      "command": "node _bmad-output/test-artifacts/story15-2/run-pure-red.mjs activate",
+      "nativeExitCode": 1,
+      "tests": 46,
+      "pass": 0,
+      "fail": 46,
+      "skipped": 0,
+      "result": "Expected ERR_MODULE_NOT_FOUND for future recurrence/state modules; behavioral assertions not reached."
+    },
+    {
+      "command": "pnpm exec tsc --noEmit --incremental false",
+      "nativeExitCode": 0,
+      "result": "Repository semantic typecheck of added scaffold contracts; no build or runtime execution."
+    },
+    {
+      "command": "pnpm exec eslint <nine new canonical TypeScript files> _bmad-output/test-artifacts/story15-2/run-pure-red.mjs _bmad-output/test-artifacts/story15-2/validate-atdd.mjs",
+      "nativeExitCode": 1,
+      "result": "Only2 react-hooks/rules-of-hooks errors from Playwright callback named use in tests/e2e/support/booking-series-atdd.ts:166."
+    },
+    {
+      "command": "pnpm exec eslint tests/e2e/support/booking-series-atdd.ts",
+      "nativeExitCode": 0,
+      "result": "Corrected callback local variable from use to provide; embedded worker JSON refreshed. All other files were clean in original lint invocation; no behavior changed."
+    }
+  ],
+  "scaffoldCounts": {
+    "pure": 46,
+    "command": 37,
+    "rls": 14,
+    "ssr": 7,
+    "e2e": 6,
+    "total": 110
+  },
+  "executedAcceptancePasses": 0,
+  "apiBodiesExecuted": 0,
+  "rlsBodiesExecuted": 0,
+  "ssrBodiesExecuted": 0,
+  "e2eBodiesExecuted": 0,
+  "resourcesStarted": 0,
+  "browserDatabaseMutations": 0,
+  "implementationReviewRoundsConsumed": 0,
+  "developmentComplete": false,
+  "releaseReady": false
+}
