@@ -54,6 +54,7 @@ beforeAll(async () => {
   foreignTableIds = await seedEveryTenantTable(fixture.base.tenantB.id, fixture.base.adminB.id);
   bookingTableIds = Object.fromEntries(await Promise.all(TENANT_ROLES.map(async (role) => {
     const [profile] = await adminQuery<{id:string}>("insert into public.person_profiles(tenant_id,membership_id) values($1,$2) on conflict(membership_id) do update set membership_id=excluded.membership_id returning id", [fixture.base.tenantA.id,selfTableIds[role].tenant_memberships]);
+    if (role === "montor") await adminQuery("insert into public.job_members(tenant_id,job_id,person_profile_id) values($1,$2,$3)", [fixture.base.tenantA.id,ownTableIds.jobs,profile.id]);
     return [role, await seedBookingReadRows(fixture.base.tenantA.id,profile.id)] as const;
   }))) as typeof bookingTableIds;
   personalTableIds = Object.fromEntries(await Promise.all(TENANT_ROLES.map(async (role) => {
@@ -144,6 +145,11 @@ async function seedEveryTenantTable(tenantId: string, actorId: string): Promise<
   const calendarDay = (await adminQuery<{ id: string }>("insert into public.tenant_calendar_days (tenant_id, local_date, variant) values ($1, '2099-01-01', 'closed') returning id", [tenantId]))[0]?.id;
   if (!personProfile || !personWorkHours || !calendarDay) throw new Error("role harness seed: resource rows missing");
   const bookingRows = await seedBookingReadRows(tenantId, personProfile);
+  const [jobMember] = await adminQuery<{id:string}>("insert into public.job_members(tenant_id,job_id,person_profile_id) values($1,$2,$3) returning id", [tenantId,job,personProfile]);
+  const [jobRole] = await adminQuery<{id:string}>("insert into public.job_required_work_roles(tenant_id,job_id,work_role_id) values($1,$2,$3) returning id", [tenantId,job,workRole]);
+  const [jobWindow] = await adminQuery<{id:string}>("insert into public.job_access_windows(tenant_id,job_id,starts_at,ends_at) values($1,$2,'2026-10-12T06:00:00Z','2026-10-12T07:00:00Z') returning id", [tenantId,job]);
+  const [{id: prerequisite}] = await adminQuery<{id:string}>("insert into public.jobs(tenant_id,customer_id,title) values($1,$2,'Prerequisite') returning id", [tenantId,customer]);
+  const [jobDependency] = await adminQuery<{id:string}>("insert into public.job_dependencies(tenant_id,job_id,prerequisite_job_id) values($1,$2,$3) returning id", [tenantId,job,prerequisite]);
   return {
     ...bookingRows,
     tenants: tenantId, tenant_memberships: membership, membership_roles: membershipRole,
@@ -160,6 +166,7 @@ async function seedEveryTenantTable(tenantId: string, actorId: string): Promise<
     quote_events: quoteEvent, quote_review_authorizations: quoteReviewAuthorization,
     quote_acceptances: quoteAcceptance, quote_lost_reasons: quoteLostReason,
     quote_follow_ups: quoteFollowUp, jobs: job, job_events: jobEvent,
+    job_members: jobMember.id, job_required_work_roles: jobRole.id, job_access_windows: jobWindow.id, job_dependencies: jobDependency.id,
     tenant_provisioning_requests: provisioningRequest, tenant_provisioning_invites: provisioningInvite,
     person_profiles: personProfile, person_work_hours: personWorkHours, tenant_calendar_days: calendarDay,
   };

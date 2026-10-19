@@ -23,6 +23,10 @@ import { readEntityFiles } from "@/features/files/read";
 import { BookingEntry } from "@/components/resources/BookingEntry";
 import { readBookingHost, readBookingEditorOptions } from "@/features/resources/bookings-read";
 
+import { readJobCardOptions } from "@/server/read-models/my-jobs";
+import { resolveTenantContext } from "@/server/auth/resolve-tenant-context";
+import { resolveCapability } from "@/server/authz/permission-matrix";
+
 export const dynamic = "force-dynamic";
 
 export default async function JobDetailPage({
@@ -62,17 +66,23 @@ export default async function JobDetailPage({
   }
 
   // Story 8.2 — the job's own-tenant evidence files for the entity file panel (RLS-scoped).
-  const filesRead = await readEntityFiles({ ownerType: "job", ownerId: jobId });
-  const bookingHost = await readBookingHost({jobId});
-  const bookingOptions = await readBookingEditorOptions();
+  const context = await resolveTenantContext();
+  const roles = context.ok ? context.data.roles ?? [context.data.role] : [];
+  const can = (module: string, capability: string) => resolveCapability({ roles, module, capability }).granted;
+  const filesRead = can("files", "Files.View") ? await readEntityFiles({ ownerType: "job", ownerId: jobId }) : null;
+  const canBook = can("resources", "Bookings.Manage");
+  const bookingHost = canBook ? await readBookingHost({ jobId }) : null;
+  const bookingOptions = canBook ? await readBookingEditorOptions() : null;
+  const cardOptions = detail.entitlement?.canEdit ? await readJobCardOptions() : undefined;
 
   return (
     <JobDetailView
       detail={detail}
-      bookingPanel={<BookingEntry {...bookingHost} options={bookingOptions} jobId={jobId} customerId={detail.customerId ?? undefined} host="job" />}
-      filesPanel={
+      cardOptions={cardOptions}
+      bookingPanel={bookingHost && bookingOptions ? <BookingEntry {...bookingHost} options={bookingOptions} jobId={jobId} customerId={detail.customerId ?? undefined} host="job" /> : undefined}
+      filesPanel={filesRead ?
         <>
-        <EntityDocumentsLink link={await readEntityDocumentsLink({ module: "jobs", ownerType: "job", ownerId: jobId })} />
+        {can("documents", "Documents.View") && <EntityDocumentsLink link={await readEntityDocumentsLink({ module: "jobs", ownerType: "job", ownerId: jobId })} />}
         <EntityFilePanel
           ownerType="job"
           ownerId={jobId}
@@ -81,7 +91,7 @@ export default async function JobDetailPage({
           files={filesRead.files}
           readError={filesRead.error}
         />
-        </>
+        </> : undefined
       }
     />
   );

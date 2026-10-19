@@ -9,7 +9,7 @@ import {
 function valid(input: unknown) {
   const result = validateJobCard(input);
   assert.equal(result.valid, true);
-  if (!result.valid) assert.fail(JSON.stringify(result.issues));
+  if (!result.valid) assert.fail("Expected valid card");
   return result.value;
 }
 function invalid(input: unknown, field: string) {

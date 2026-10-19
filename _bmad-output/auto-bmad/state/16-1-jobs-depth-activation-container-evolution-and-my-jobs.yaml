@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-16-jobs
 status: in-progress
-updated_at: "2026-10-19T13:56:09Z"
+updated_at: "2026-10-19T14:40:44Z"
 started_at: "2026-10-15T09:23:25Z"
 completed_at: null
 active_seconds: 1945
@@ -40,7 +40,7 @@ completed_phases: [0, 1, 3, 4]
 spec_path: "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-16-jobs\\Kopplas\\_bmad-output\\implementation-artifacts\\spec-16-1-jobs-depth-activation-container-evolution-and-my-jobs.md"
 spec_approved: true
 build:
-  status: ready-for-dev
+  status: in-progress
   blocking_condition: null
   followup_review_recommended: false
   review_loop_iteration: 0
@@ -56,7 +56,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [589e5ca7, 5ffb6d8e, 2d14d7ac, 97e62221, 04cf0edf, aeb44006, c21faa3b, d33415c7, 1f8c1620]
+commits: [589e5ca7, 5ffb6d8e, 2d14d7ac, 97e62221, 04cf0edf, aeb44006, c21faa3b, d33415c7, 1f8c1620, c47b2685, "92428157", 30f8b863, dea276c7]
 phase8_steps:
   trace_gate: null
   nfr: null

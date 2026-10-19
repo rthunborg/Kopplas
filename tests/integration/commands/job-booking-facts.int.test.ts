@@ -1,7 +1,52 @@
 import { describe, expect, test } from "vitest";
 
 describe("16.1 authoritative per-booking job facts and atomic card refresh", () => {
-  test.skip("[P0] 16.1-INT-003 mixed jobs and unbound booking consume their own SQL roles/windows, unknown differs from recorded-empty", async () => {
+  test("[P0] 16.1-INT-005 card protocol rejects correctly signed cross-domain and mismatched actor/version claims atomically", async () => {
+    const h = await import("../../support/jobs-depth-atdd");
+    const j = await import("../../support/job-booking-facts-atdd");
+    const {signJobCardOutput} = await import("@/server/commands/jobs/card-proof");
+    const {signConflictOutput} = await import("@/server/bookings/conflict-attestation");
+    const {LOCAL_TEST_BOOKING_CONFLICT_SECRET: secret} = await import("../../support/test-env");
+    await h.withJobsDepthFixture(async (f) => {
+      for (const attack of ["booking-domain", "actor", "old-engine", "signature"] as const) {
+        const before = await f.snapshot();
+        const attempt = await j.observeJobCard(f.fx.adminClient, h.cardInput(f), crypto.randomUUID(), async (args) => {
+          const claims = {...args.p_claims as import("@/server/bookings/conflict-attestation").ConflictClaims};
+          const changed = {...claims, ...(attack === "actor" ? {actorId:f.fx.base.adminB.id} : {}),
+            ...(attack === "old-engine" ? {engineVersion:"booking-conflicts-v2"} : {})};
+          const output = String(args.p_output);
+          return {...args, p_claims:changed, p_signature: attack === "booking-domain" ? signConflictOutput(changed,output,secret)
+            : attack === "signature" ? "0".repeat(64) : signJobCardOutput(changed,output,secret)};
+        });
+        expect(attempt.result.ok).toBe(false);
+        expect(attempt.finalizations).toHaveLength(1);
+        expect(attempt.finalizations[0].error).toMatchObject({code:"42501"});
+        expect(await f.snapshot()).toEqual(before);
+      }
+    });
+  });
+
+  test("[P0] 16.1-INT-005 job-child change committed during the tenant-gate wait makes the prior real card proof stale", async () => {
+    const h = await import("../../support/jobs-depth-atdd");
+    const j = await import("../../support/job-booking-facts-atdd");
+    await h.withJobsDepthFixture(async (f) => {
+      expect((await h.invokeJobCard(f.fx.adminClient,"update",h.cardInput(f))).ok).toBe(true);
+      let afterExternalChange: Awaited<ReturnType<typeof f.snapshot>> | undefined;
+      const attempt = await j.observeJobCard(f.fx.plannerClient,h.cardInput(f),crypto.randomUUID(),async(args) => {
+        const reply = await j.afterTenantGateWait(f.fx.base.tenantA.id,
+          async () => await f.fx.plannerClient.rpc("finalize_job_card",args),async(query) => {
+            await query("insert into public.job_access_windows(tenant_id,job_id,starts_at,ends_at) values($1,$2,'2026-10-13T06:00:00Z','2026-10-13T07:00:00Z')",
+              [f.fx.base.tenantA.id,f.jobs.editable.id]);
+          });
+        expect(reply.data).toEqual({kind:"stale"}); expect(reply.error).toBeNull();
+        afterExternalChange = await f.snapshot();
+        return args;
+      });
+      expect(attempt.result).toMatchObject({ok:false,code:"PREVIEW_STALE"});
+      expect(await f.snapshot()).toEqual(afterExternalChange);
+    });
+  });
+  test("[P0] 16.1-INT-003 mixed jobs and unbound booking consume their own SQL roles/windows, unknown differs from recorded-empty", async () => {
     const h = await import("../../support/jobs-depth-atdd");
     const j = await import("../../support/job-booking-facts-atdd");
     const { currentAttempt } = await import("../../support/booking-editor-production");
@@ -33,7 +78,7 @@ describe("16.1 authoritative per-booking job facts and atomic card refresh", () 
     });
   });
 
-  test.skip("[P0] 16.1-INT-004 child insertion/deletion and job rebinding change canonical digest and reject genuine prior booking proof without writes", async () => {
+  test("[P0] 16.1-INT-004 child insertion/deletion and job rebinding change canonical digest and reject genuine prior booking proof without writes", async () => {
     const h=await import("../../support/jobs-depth-atdd");
     const j=await import("../../support/job-booking-facts-atdd");
     const { loadConflictBindings }=await import("../../support/booking-conflicts-atdd");
@@ -85,7 +130,7 @@ describe("16.1 authoritative per-booking job facts and atomic card refresh", () 
     });
   });
 
-  test.skip("[P0] 16.1-INT-005 card snapshot/finalize uses real signed sole-engine refresh; audit failure rolls back children/conflicts/outcomes/audit exactly", async()=>{
+  test("[P0] 16.1-INT-005 card snapshot/finalize uses real signed sole-engine refresh; audit failure rolls back children/conflicts/outcomes/audit exactly", async()=>{
     const h=await import("../../support/jobs-depth-atdd");
     const j=await import("../../support/job-booking-facts-atdd");
     const {deriveBookingConflicts}=await import("@/server/bookings/conflict-facts");
@@ -118,7 +163,7 @@ describe("16.1 authoritative per-booking job facts and atomic card refresh", () 
     });
   });
 
-  test.skip("[P0] 16.1-INT-005 finalization rechecks real current authority after explicit two-session tenant-gate wait",async()=>{
+  test("[P0] 16.1-INT-005 finalization rechecks real current authority after explicit two-session tenant-gate wait",async()=>{
     const h=await import("../../support/jobs-depth-atdd");
     const j=await import("../../support/job-booking-facts-atdd");
     const {adminQuery}=await import("../../factories/admin-sql");

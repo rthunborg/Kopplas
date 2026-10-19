@@ -21,6 +21,7 @@ import type { ReactNode } from "react";
 import Link from "next/link";
 import { oreToKronorString } from "@/features/calculations/money-input";
 import { JOB_STATUS_LABELS, type JobDetail } from "@/features/jobs/types";
+import { JobCardForm, type JobCardOptions } from "./JobCardForm";
 import { JobEditDialog } from "./JobEditDialog";
 import { JobEvidenceLink } from "./JobEvidenceLink";
 
@@ -43,12 +44,16 @@ export function JobDetailView({
   detail,
   filesPanel,
   bookingPanel,
+  cardOptions,
 }: {
   readonly detail: JobDetail;
   /** The Story 8.2 entity file panel (job_evidence upload + list), rendered when provided. */
   readonly filesPanel?: ReactNode;
   readonly bookingPanel?: ReactNode;
+  readonly cardOptions?: JobCardOptions;
 }) {
+  const canEdit = detail.entitlement?.canEdit ?? true;
+  const protectedMoney = detail.entitlement?.protectedMoney ?? true;
   const versionHref =
     detail.quoteId && detail.quoteVersionId
       ? `/quotes/${detail.quoteId}/versions/${detail.quoteVersionId}`
@@ -62,7 +67,7 @@ export function JobDetailView({
     <section
       data-testid="job-detail"
       aria-labelledby="job-detail-heading"
-      className="flex flex-col gap-6 p-6"
+      className="flex min-w-0 flex-col gap-6 p-4 sm:p-6"
     >
       {/* ── HEADER ─────────────────────────────────────────────────────────────── */}
       <header className="flex flex-col gap-2 rounded-lg border border-zinc-200 bg-white p-4">
@@ -95,11 +100,35 @@ export function JobDetailView({
       </header>
 
       {bookingPanel}
+      {!protectedMoney && <p role="note" data-testid="job-economy-entitlement" className="text-sm text-zinc-600">Ekonomiska uppgifter är inte tillgängliga</p>}
+      {detail.card && <section data-testid="job-operational-card" className="rounded-lg border border-zinc-200 bg-white p-4 text-sm">
+        <h2 className="mb-3 font-semibold">Jobbkort</h2>
+        <dl className="grid min-w-0 grid-cols-1 gap-3 sm:grid-cols-2">
+          {Object.entries({
+            "Anläggning": detail.facilityName,
+            "Kontakt": detail.contactName,
+            "Typ": detail.type === "projekt" ? "Projekt" : "Order",
+            "Prioritet": ({low:"Låg",normal:"Normal",high:"Hög",urgent:"Brådskande"} as Record<string,string>)[detail.card.priority] ?? "Okänt",
+            "Uppskattad tid (minuter)": detail.card.estimated_duration_minutes,
+            "Planerad restid (minuter)": detail.card.planned_travel_minutes,
+            "Antal personer": detail.card.crew_size,
+            "Tidigast": detail.card.earliest_date,
+            "Önskat datum": detail.card.desired_date,
+            "Senast": detail.card.latest_date,
+            "Kundens närvaro": detail.card.customer_presence_required == null ? "Okänt" : detail.card.customer_presence_required ? "Krävs" : "Krävs inte",
+            "Yrkesrollskrav": detail.card.requiredWorkRoleIds == null ? "Okända" : detail.card.requiredWorkRoleIds.length === 0 ? "Inga krav" : `${detail.card.requiredWorkRoleIds.length} valda yrkesroller`,
+            "Tillträde": detail.card.accessWindows == null ? "Okänt" : detail.card.accessWindows.length === 0 ? "Inget tidsintervall tillåtet" : `${detail.card.accessWindows.length} tidsintervall`,
+            "Adress": detail.location ? [detail.location.street,detail.location.postalCode,detail.location.city,detail.location.countryCode].filter(Boolean).join(", ") : "Okänd",
+          }).map(([label,value]) => <div key={label} className="min-w-0"><dt className="text-zinc-600">{label}</dt><dd className="break-words text-zinc-900">{value ?? "Okänt"}</dd></div>)}
+        </dl>
+        {detail.card.accessWindows && detail.card.accessWindows.length > 0 && <ul className="mt-3 flex flex-col gap-1">{detail.card.accessWindows.map((window,i) => <li key={i}>{new Date(window.startsAt).toLocaleString("sv-SE",{timeZone:"Europe/Stockholm"})} – {new Date(window.endsAt).toLocaleString("sv-SE",{timeZone:"Europe/Stockholm"})} (Stockholm)</li>)}</ul>}
+      </section>}
+      {detail.dependencyWarnings?.map((warning) => warning.status === "clear" ? null : <p key={warning.prerequisiteJobId} role="note" data-testid={warning.status === "warning" ? "job-dependency-warning" : "job-dependency-unknown"} className="rounded-md border border-zinc-300 p-3 text-sm">{warning.status === "warning" ? "Ett föregående jobb slutar efter det här jobbets planerade start." : "Datum saknas för att bedöma ett föregående jobb."} <Link href={`/jobs/${warning.prerequisiteJobId}`} className="underline">Öppna föregående jobb</Link></p>)}
 
       {/* ── SOURCE TRACEABILITY (AC1, read-only immutable refs) ────────────────── */}
       {/* A STANDALONE job has NO acceptance/commitment — render an origin note instead of the
           commitment block (money stays absent; nothing is fabricated). */}
-      {isStandalone ? (
+      {protectedMoney && (isStandalone ? (
         <div
           data-testid="job-standalone-origin"
           role="note"
@@ -165,7 +194,7 @@ export function JobDetailView({
           <div className="flex flex-col gap-1">
             <dt className="text-zinc-600">Accepterat pris:</dt>
             <dd data-testid="job-accepted-price" className="font-semibold text-zinc-900">
-              {detail.acceptedPriceOre !== null
+              {detail.acceptedPriceOre != null
                 ? `${oreToKronorString(detail.acceptedPriceOre)} kr`
                 : "—"}
             </dd>
@@ -173,7 +202,7 @@ export function JobDetailView({
           <div className="flex flex-col gap-1">
             <dt className="text-zinc-600">Ursprunglig offertsumma:</dt>
             <dd data-testid="job-source-sent-total" className="text-zinc-900">
-              {detail.sourceSentTotalOre !== null
+              {detail.sourceSentTotalOre != null
                 ? `${oreToKronorString(detail.sourceSentTotalOre)} kr`
                 : "—"}
             </dd>
@@ -234,7 +263,7 @@ export function JobDetailView({
           </p>
         </div>
       </div>
-      )}
+      ))}
 
       {/* ── LINKED FILES (owner_type='job') ────────────────────────────────────── */}
       <section
@@ -259,7 +288,7 @@ export function JobDetailView({
       {filesPanel ? <div>{filesPanel}</div> : null}
 
       {/* ── ALLOWED-EDIT AFFORDANCE (AC4) — title / status / planned dates ONLY ── */}
-      <div className="rounded-lg border border-zinc-200 bg-white p-4">
+      {canEdit && <div className="rounded-lg border border-zinc-200 bg-white p-4">
         <h2 className="mb-2 text-sm font-semibold text-zinc-900">Redigera</h2>
         <JobEditDialog
           jobId={detail.id}
@@ -268,7 +297,8 @@ export function JobDetailView({
           plannedStartDate={detail.plannedStartDate}
           plannedEndDate={detail.plannedEndDate}
         />
-      </div>
+      </div>}
+      {canEdit && cardOptions && <section className="rounded-lg border border-zinc-200 bg-white p-4"><JobCardForm jobId={detail.id} options={cardOptions} initial={{ ...detail.card, type: detail.type ?? "order", title: detail.title, customer_id: detail.customerId, planned_start_date: detail.plannedStartDate, planned_end_date: detail.plannedEndDate }} /></section>}
 
       {/* ── EVENT HISTORY (READ only) ──────────────────────────────────────────── */}
       <section

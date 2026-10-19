@@ -191,3 +191,20 @@ export async function previewJobEvidenceAction(
     formError: result.message || COMMAND_MESSAGES[result.code],
   };
 }
+import { createJobCard, updateJobCard } from "@/server/commands/jobs/save-job-card";
+
+/** The command validates the complete closed input; the action adds no authority. */
+export async function saveJobCardAction(input: Record<string, unknown>): Promise<
+  { ok: true; jobId: string } | { ok: false; message: string; code: string }
+> {
+  try {
+    const client = (await createSupabaseServerClient()) as unknown as CommandDbClient;
+    const result = await runCommand(input.id ? updateJobCard : createJobCard, { client, input });
+    if (!result.ok) return { ok: false, message: result.message || COMMAND_MESSAGES[result.code], code: result.code };
+    revalidatePath("/jobs");
+    revalidatePath(`/jobs/${result.data.jobId}`);
+    return { ok: true, jobId: result.data.jobId };
+  } catch {
+    return { ok: false, message: "Jobbet är inte bekräftat sparat. Försök igen.", code: "SERVER_ERROR" };
+  }
+}

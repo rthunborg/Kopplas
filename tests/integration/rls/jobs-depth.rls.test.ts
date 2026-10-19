@@ -1,10 +1,10 @@
 import { describe, expect, test } from "vitest";
 
-/** RED: AC02/03/11. Normal JWT/anon calls exercise actual RLS; no hooks contact DB.
+/** Executable: AC02/03/11. Normal JWT/anon calls exercise actual RLS; no hooks contact DB.
  * Complete policy/H4 inventory remains owned by the implementation/gate suite.
  */
 describe("16.1 job-depth direct boundaries", () => {
-  test.skip("[P0] 16.1-RLS-001 real roles, UNION rows, inactive actors and own-job child scope agree", async () => {
+  test("[P0] 16.1-RLS-001 real roles, UNION rows, inactive actors and own-job child scope agree", async () => {
     const h = await import("../../support/jobs-depth-atdd");
     const t = await import("../../factories/tenants");
     await h.withJobsDepthFixture(async (f) => {
@@ -42,7 +42,7 @@ describe("16.1 job-depth direct boundaries", () => {
     });
   });
 
-  test.skip("[P0] 16.1-RLS-002 direct mutation/elevation, foreign child FKs and spoofed checked actor leave no state", async () => {
+  test("[P0] 16.1-RLS-002 direct mutation/elevation, foreign child FKs and spoofed checked actor leave no state", async () => {
     const h = await import("../../support/jobs-depth-atdd");
     const { adminQuery } = await import("../../factories/admin-sql");
     await h.withJobsDepthFixture(async (f) => {
@@ -65,13 +65,13 @@ describe("16.1 job-depth direct boundaries", () => {
       // RPC ARG NAMES are proposed E16 bindings; bypasses envelope and TS validation.
       const denied = await f.fx.montorClient.rpc("snapshot_job_card", { p_tenant_id: f.fx.base.tenantA.id,
         p_actor_id: f.fx.base.adminA.id, p_command_id: crypto.randomUUID(), p_correlation_id: crypto.randomUUID(),
-        p_job_id: f.jobs.memberOrder.id, p_payload: h.cardInput(f) });
+        p_job_id: f.jobs.memberOrder.id, p_candidate_id: f.jobs.memberOrder.id, p_key_id: "test_v1", p_payload: h.cardInput(f) });
       expect(denied.error?.code).toBe("42501");
       expect(await f.snapshot()).toEqual(before);
     });
   });
 
-  test.skip("[P0] 16.1-RLS-002 checked entrypoints are hardened and all private job-card primitives refuse authenticated execution", async () => {
+  test("[P0] 16.1-RLS-002 checked entrypoints are hardened and all private job-card primitives refuse authenticated execution", async () => {
     const { adminQuery, adminSession } = await import("../../factories/admin-sql");
     const checked = await adminQuery<{ name: string; hardened: boolean; anon: boolean; authenticated: boolean }>(`select p.proname as name,
       p.prosecdef and coalesce(p.proconfig @> array['search_path=""'],false) as hardened,

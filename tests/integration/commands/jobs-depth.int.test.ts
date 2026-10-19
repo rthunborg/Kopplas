@@ -1,12 +1,29 @@
 import { describe, expect, test } from "vitest";
 
-/** RED: AC01/04/09/10. Full original acceptance concurrency/replay/source-lock
+/** Executable: AC01/04/09/10. Full original acceptance concurrency/replay/source-lock
  * regressions stay in accept-quote-and-create-job, accepted-record-lock,
  * job-source-of-truth, create-job, update-job, bookings-replay-authority and
  * booking-editor suites. These cases add E16 discriminators only.
  */
 describe("16.1 enriched card atomic command", () => {
-  test.skip("[P1] 16.1-INT-001 enriched card persists closed scalars and exact child replacement without changing source or booking IDs", async () => {
+  test("[P0] 16.1-INT-001 enriched create and response-loss replay retain one standalone identity/event/audit", async () => {
+    const h = await import("../../support/jobs-depth-atdd");
+    await h.withJobsDepthFixture(async (f) => {
+      const {id: _id, ...card} = h.cardInput(f);
+      void _id;
+      const input = {...card, candidateId:crypto.randomUUID()};
+      const created = await h.invokeJobCard(f.fx.plannerClient,"create",input);
+      expect(created).toEqual({ok:true,data:{jobId:input.candidateId}});
+      const committed = await f.snapshot();
+      expect(committed.jobs.find((r) => r.id === input.candidateId)).toMatchObject({type:"order",status:"created",
+        quote_acceptance_id:null,quote_version_id:null,customer_id:f.identity.customerId});
+      expect(await h.invokeJobCard(f.fx.plannerClient,"create",input)).toEqual(created);
+      expect(await f.snapshot()).toEqual(committed);
+      expect((await h.invokeJobCard(f.fx.plannerClient,"create",{...input,title:"Changed same command"})).ok).toBe(false);
+      expect(await f.snapshot()).toEqual(committed);
+    });
+  });
+  test("[P1] 16.1-INT-001 enriched card persists closed scalars and exact child replacement without changing source or booking IDs", async () => {
     const h = await import("../../support/jobs-depth-atdd");
     await h.withJobsDepthFixture(async (f) => {
       const before = await f.snapshot();
@@ -35,7 +52,7 @@ describe("16.1 enriched card atomic command", () => {
     });
   });
 
-  test.skip("[P0] 16.1-INT-002 SQL current-parent checks and malformed/smuggled children roll back all business, outcomes and audit", async () => {
+  test("[P0] 16.1-INT-002 SQL current-parent checks and malformed/smuggled children roll back all business, outcomes and audit", async () => {
     const h = await import("../../support/jobs-depth-atdd");
     await h.withJobsDepthFixture(async (f) => {
       const invalid: Record<string, unknown>[] = [
@@ -56,7 +73,7 @@ describe("16.1 enriched card atomic command", () => {
     });
   });
 
-  test.skip("[P0] 16.1-INT-002 unchanged old minimum create and acceptance source tuples survive enriched evolution", async () => {
+  test("[P0] 16.1-INT-002 unchanged old minimum create and acceptance source tuples survive enriched evolution", async () => {
     const h = await import("../../support/jobs-depth-atdd");
     const { runCommand } = await import("@/server/commands/envelope");
     const { createJob, updateJob } = await import("@/server/commands/jobs");

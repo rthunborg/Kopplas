@@ -2,8 +2,8 @@
 title: 'Story 16.1: Jobs Depth Activation — Container Evolution and My-Jobs'
 type: 'feature'
 created: '2026-10-15'
-status: 'ready-for-dev'
-baseline_revision: 'd6a310be4f55da0490669881737e88ce2eee8dda'
+status: 'in-progress'
+baseline_revision: 'c47b26858d7898ab03c0680826e2be7489a2ae68'
 review_loop_iteration: 0
 followup_review_recommended: false
 context:
@@ -400,3 +400,100 @@ Final readiness reread: actionable exact source/test/fixture/migration names, de
 This HALT is planning readiness, not implementation, executed acceptance, development completion or release readiness. P1–P10/fullACs remain open; pure14/18checks and source-only recovery2569passes are historical bounded evidence. No SQL or product implementation/ATDD/application test/build/resource/Git/index/sprint/state/report mutation was performed by this invocation. CLI empty reservations are disclosed, not schema proof. Root owns checkpoint/state and subsequent build/verification/review dispatch.
 
 Completion hook: applied the planning-only branch of docs/process/review-order.md, preserved planning HALT and authored no completed implementation Suggested Review Order. Supported policy delivery record/gate is required later before done/finalization; no record/pass was fabricated. No recursive HALT, deployment, merge or release claim.
+
+
+## Actual build invocation — 2026-10-19
+
+Phase5 is explicitly admitted at clean baseline c47b26858d7898ab03c0680826e2be7489a2ae68; implement the whole approved16.1 scope above and retain unfinished acceptance honestly. Exact source/test/fixture claims are the reconciled inventory; both reserved migrations may now receive their SQL as one coordinated High integrity unit. Root exclusively owns Git/index/staging/commits/push/aggregate state/report; implementation and review delegates must not mutate Git or canonical state/report. Request root checkpoint with exact reviewed file inventory if workflow reaches a commit. You are not alone: preserve E15 and unrelated edits; no other-owner adoption or revert.
+
+ATDD checkpoint c47b26858d7898ab03c0680826e2be7489a2ae68 contains21explicit new skipped cases (13DB/RLS,4essential browser,4source) and an actual detector U04 red control. Replace skips with real assertions through actual implemented interfaces; no skipped acceptance credit. Existing pure core32passes are historical bounded evidence. Minimize the existing tests/unit/features/jobs/job-card-validation.test.ts:12 TS2339 type-only fix under ordinary Low routing; fix current code/meaningful assertions, not expectations to hide failure.
+
+Node22.23.2/pnpm10.24.0 frozen dependencies are installed in this worktree, package/lock unchanged. No local resource is running. Implement source first, then coordinate exact isolated test stack inputs with root; only actor-own trusted resourceGuardContext permits launches. No invented guard optional schema, native Supabase lifecycle/reset, hosted fallback or user/E15 resource adoption. Root is preparing the documented supported Compose path. Report actual runtime blockers with owner/evidence/resume condition, not an E15 dependency. Do not relaunch or expand a harness after two failed approaches.
+
+### Implementation route — 2026-10-19
+Implementation author retains Sol High authorization/SQL/proof/current-fact integrity work. One Sol Low UI delegate owns only the P6 UI/actions paths after a stable contract handoff, under coordinator authorization; it adds no authority logic. This is source implementation, not verification or completion evidence.
+
+
+## Implementation source checkpoint — 2026-10-19
+
+Author: Sol High implementation delegate, with the explicitly allocated Sol Low P6 UI contribution. Source baseline remains c47b26858d7898ab03c0680826e2be7489a2ae68; root-owned process commits 92428157, 30f8b863 and dea276c7 are known concurrent changes. This checkpoint is implemented source ready for independent review, not development completion, story done, or release readiness. P1–P10 acceptance remains open until the required executed evidence and independent review exist.
+
+Implemented choices follow the current approved headless defaults. The original minimum-input create and lifecycle edit remain usable with their original commands; an explicit progressive-card toggle supplies the stricter enriched identity workflow. The P6 author compared JobList against c47b and restored its four filters, labels, localized dates, row links, simple-create error/empty/options states and navigation. Domain validation, the command adapter, proof and the sole detector remain separate from those replaceable components.
+
+The schema adds only the agreed scalar fields, typed existing container and four jobs children. Membership is a read foundation with no authenticated mutation or operational elevation. My Jobs uses actual active profile/member or booking-assignee relationships. The safe operational detail returns no protected amount keys for an unentitled actor, lists withheld fields, and avoids inherited quote/file reads. The existing prerequisite job read predicate remains enforced: a stored dependency whose prerequisite is invisible produces an explicit unknown date warning rather than exposing its data. No project-manager email was added to the worker projection.
+
+Card writes use SQL-canonical proposals, a complete current baseline and the existing tenant serialization gate. The HMAC key provider is reused with the separate length-prefixed kopplas.job-card.attestation.v1 domain; no new secret family, hosted configuration or public token was introduced. Finalize rechecks current authority, parents, digest, version and signed output before the scalar/child/conflict/outcome/audit transaction. New conflict identities reopen; unchanged natural identities retain existing workflow evidence. Booking snapshots/finalize use the coordinated v3 facts contract and every evaluated booking selects its own job inputs.
+
+Automatic approval review rejected an attempted combined display patch that would have added a job-bound manager email and removed the prerequisite job_can_read predicate. That patch was not applied or retried indirectly. The implemented safe route retains the predicate and represents unavailable prerequisite dates as unknown. Its unrelated location constraint/display correction was applied separately without widening access.
+
+### Executed evidence and limits
+
+- Focused Node command over the ten changed domain/fact/projection/scope/enrollment suites: native 0, 68 passed, 0 failed, 0 skipped. Log: C:/Users/Rasmus/AppData/Local/Temp/e16-focused-current.log.
+- Full Node unit command: native 0, 2611 passed, 0 failed, 1 skipped, 2612 tests across 100 suites. Log: C:/Users/Rasmus/AppData/Local/Temp/e16-unit-final-source.log. The single existing Windows skip is the Linux-xattr file-backend restore case; it is not recovery-Storage coverage and must execute in its Linux lane.
+- Proper absolute Node 22 / TypeScript command, independently run by root's tooling delegate against the current working source at dea276c7: native 0, 0 errors. Log: C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-tsc-final-verification.log. The subsequent test-helper local-name/comment cleanup is nonsemantic; exact-candidate CI still applies.
+- Production Next build: native 0. Log: C:/Users/Rasmus/AppData/Local/Temp/e16-build-source.log. Lockfile, source service-role containment and built-bundle containment passed.
+- Full ESLint initially found one allocated fixture local named module and 15 warnings. The name was repaired to bindings; focused ESLint for that helper passed without diagnostics. Prior P6 focused ESLint passes are source evidence only. The remaining warnings are existing unrelated paths; full exact-candidate CI lint remains required.
+- All 21 newly skipped ATDD assertions were activated: 13 database/RLS, 4 essential browser, 4 parser/detector source cases. Three additional real database cases cover enriched-create replay, signed-card protocol negatives and a child change during an observed tenant-gate wait. Their bodies use actual checked RPCs, ordinary JWT clients and fixture-only privileged setup. The 16 database/RLS and 4 browser cases are authored, not locally executed evidence.
+
+The root's isolated Compose request was refused before launch (HOOK_CONTEXT_UNAVAILABLE, resourceId null); no local stack was started or adopted. No database migration/seed, full integration/RLS/regression lane, direct recovery-Storage proof or essential browser journey ran here. These are required development evidence, owned by root's isolated exact-head CI lane, with resume condition a reviewed/pushed candidate whose required jobs execute successfully. No skipped runtime suite is counted as passing coverage. A delivery record with passed independent review/development evidence cannot be honestly written yet; the implementation author remains available for review fixes and final evidence reconciliation.
+
+### Deferred release validation
+
+| Item | Owner | Status/evidence | Concrete next action |
+| --- | --- | --- | --- |
+| Exhaustive device/role/browser UI matrices beyond the four essential journeys | E16 release-validation owner | Deferred; not executed in this source checkpoint | Run the tracked full release-validation lane on the final qualified candidate. |
+| Screenshot comparison, visual inspection and manual polish/walkthrough | E16 release-validation owner | Deferred under the 2026-10-19 completion policy; no historical result relabelled | Execute and retain viewport/visual/manual evidence before a release-ready claim. |
+
+Development complete still requires the applicable remaining runtime checks and independent review. Release ready additionally requires the deferred checks and existing release/merge/deployment approvals. Transferred TR03–TR16 obligations remain owned by their named sequential stories; this checkpoint gives them no completion credit.
+
+## Focused review-fix batch 1 — 2026-10-19
+
+The first independent Sol High source pass reported two P2 patches: confirmed enriched save retained a permanent disabled state across same-route refresh, and E02's confirmation regex did not match the actual Swedish message. No other consequential SQL, authorization, money or detector finding was reported in that pass. The same Sol Low P6 author fixed only JobCardForm.tsx and jobs-depth.e2e.spec.ts; the Sol High implementation author checked the changed identity/retry semantics. No broader review or specification change was started.
+
+A confirmed attempt is still cleared only after the server returns success. The component retains its current values and confirmed status across refresh, allows another edit, and clears the confirmed-only save lock when a field changes or an access-window add/remove button changes the draft. A new submit constructs a fresh command ID. An unresolved request keeps the form disabled and retries the exact retained body and ID. There is no prop-triggered reset/remount that could discard an unresolved attempt.
+
+E02 now asserts the literal server-confirmed message, equality of the failed/retried POST bodies, and two durable successful saves in the same mounted form without a reload between them. It explicitly verifies a button-only window deletion enables save before another input event, restores that interval, then checks a different command ID, the second title/duration, retained child relationship content and exactly one further audit. Its final reload/full-state readback remains. These are authored browser assertions, not locally executed browser evidence.
+
+Focused verification: the P6 author ran ESLint on the two changed files (native 0) and Playwright collection of the exact jobs-depth file (native 0, four tests collected; no execution). The implementation author ran the proper absolute Node 22/TypeScript gate (native 0, zero diagnostics), log C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-review-fix-tsc.log. The unchanged pure-unit, SQL and initial build evidence above is retained with its original provenance; no extra broad rerun is claimed for these UI fixes. Runtime acceptance and the same reviewer's narrow follow-up remain open. The sole review order and 47-file raw-hash inventory are refreshed for this patch batch.
+
+## Suggested Review Order
+
+Author: the Sol High implementation author, incorporating the recorded P6 author's baseline-preservation decisions. Refreshed after focused review-fix batch 1 against the current source working tree based on c47b268 with root-owned process head dea276c7; runtime acceptance and narrow independent follow-up remain outstanding.
+
+### Reach the personal job flow without expanding row authority
+
+The existing manager list and minimum-input creation remain intact; the enriched card is explicit progressive disclosure. Route admission comes from the active manifest, while the SQL member/assignee predicate independently restricts direct reads.
+
+- `src/app/(app)/jobs/page.tsx:18` — `personal ? readMyJobs() : readJobList()`: choose personal or entitled all-job reads.
+- `src/server/read-models/my-jobs.ts:16` — `readMyJobs`: construct only the thin public list projection.
+- `supabase/migrations/20261019133151_e16_16_1_job_depth.sql:69` — `job_can_read`: enforce current role and actual job relationship.
+- `src/features/jobs/read.ts:234` — `protectedMoney`: avoid quote/file queries on operational-only detail.
+
+### Keep enriched persistence and derived warnings one transaction
+
+The new command leaves both original APIs unchanged and accepts only the bounded enriched value object. SQL owns canonicalization/current-row authority; a separate proof domain binds the server's sole-engine result before atomic persistence and audit.
+
+- `src/features/jobs/job-card-domain.ts:59` — `validateJobCardInput`: reject smuggling and normalize bounded children.
+- `src/server/commands/jobs/save-job-card.ts:24` — `snapshot_job_card`: enter the checked canonical proposal flow.
+- `supabase/migrations/20261019133200_e16_16_1_job_booking_facts.sql:216` — `job_card_related_internal`: lock and recheck coherent current parents.
+- `supabase/migrations/20261019133200_e16_16_1_job_booking_facts.sql:323` — `finalize_job_card`: verify proof/current baseline before all durable writes.
+
+### Bind every booking to its own authoritative facts
+
+The version changes with SQL snapshots/finalize and the parser together. Complete per-job sets preserve unavailable versus recorded-empty, and the sole detector selects the evaluated booking's identity instead of sharing the candidate's requirements.
+
+- `supabase/migrations/20261019133200_e16_16_1_job_booking_facts.sql:3` — `booking_detection_facts_internal`: snapshot sorted complete job sets and booking bindings.
+- `src/features/scheduling/conflicts.ts:72` — `jobInputSets`: select each evaluated booking's own requirements/windows.
+- `tests/unit/server/bookings/job-facts.test.ts:73` — `16.1-U04`: assert mixed-job and unbound warnings without candidate bleed.
+- `tests/integration/commands/job-booking-facts.int.test.ts:4` — `16.1-INT-005`: exercise signed protocol negatives through real SQL.
+
+### Assess evidence at the boundary it actually exercises
+
+AC04/09/10 retain real enriched/original API and exact-child assertions. AC05 now also covers two successive same-form saves: uncertain retry preserves its body, while a new edit receives a fresh command identity. The focused/full Node passes prove pure behavior and registry/scope contracts; authored DB/browser bodies do not prove runtime acceptance.
+
+- `tests/integration/commands/jobs-depth.int.test.ts:26` — `exact child replacement`: assert atomic enriched values and preserved source/booking identities.
+- `src/components/jobs/JobCardForm.tsx:89` — `onChange`: unlock only the confirmed draft for another edit.
+- `src/components/jobs/JobCardForm.tsx:109` — `setSaved(false)`: include button-only access-window edits in that transition.
+- `tests/e2e/jobs/jobs-depth.e2e.spec.ts:162` — `16.1-E02`: assert retry-body equality and successive durable saves without reload.
+
+Evidence: see Executed evidence and limits above for commands, counts, logs and working-tree provenance. Required full DB/RLS, recovery-Storage and essential browser execution plus independent review remain open; exhaustive visual/manual work is explicitly deferred release validation. No development-complete or release-ready claim is made.

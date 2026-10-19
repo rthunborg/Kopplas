@@ -1,11 +1,11 @@
 import { describe, expect, test } from "vitest";
 
-/** RED: AC02/03. readMyJobs export/result names are proposed only in the helper.
+/** Executable: AC02/03. readMyJobs export/result names are proposed only in the helper.
  * Direct URLs/browser boundaries are in jobs-depth.e2e.spec.ts; this exercises
  * real JWT + live read-model/RLS paths, never canned read DTOs.
  */
 describe("16.1 My Jobs actual membership UNION booking assignment", () => {
-  test.skip("[P0] 16.1-INT-006 personal list contains complete duplicate-free order/project union", async () => {
+  test("[P0] 16.1-INT-006 personal list contains complete duplicate-free order/project union", async () => {
     const h = await import("../../../support/jobs-depth-atdd");
     await h.withJobsDepthFixture(async (f) => {
       const result = await h.readMyJobs(f.fx.montorClient);
@@ -20,7 +20,7 @@ describe("16.1 My Jobs actual membership UNION booking assignment", () => {
     });
   });
 
-  test.skip("[P0] 16.1-INT-006 assigned accepted-source detail exposes labels but no protected values anywhere", async () => {
+  test("[P0] 16.1-INT-006 assigned accepted-source detail exposes labels but no protected values anywhere", async () => {
     const h = await import("../../../support/jobs-depth-atdd");
     const { readJobDetail } = await import("@/features/jobs/read");
     await h.withJobsDepthFixture(async (f) => {
@@ -39,7 +39,7 @@ describe("16.1 My Jobs actual membership UNION booking assignment", () => {
     });
   });
 
-  test.skip("[P0] 16.1-INT-006 archive, unassignment and revoked tenant membership remove current read access", async () => {
+  test("[P0] 16.1-INT-006 archive, unassignment and revoked tenant membership remove current read access", async () => {
     const h = await import("../../../support/jobs-depth-atdd");
     const { adminQuery } = await import("../../../factories/admin-sql");
     const { readJobDetail } = await import("@/features/jobs/read");

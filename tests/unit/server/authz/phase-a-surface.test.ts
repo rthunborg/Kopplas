@@ -22,3 +22,11 @@ test("[P0] 11.2-UNIT-002 direct route authority denies absent routes and permits
   assert.equal(canAccessPhaseARoute(["saljare", "projektledare"], "/jobs/abc"), true);
   assert.equal(canAccessPhaseARoute(["unknown" as never], "/dashboard"), false);
 });
+
+// Route admission never substitutes for SQL member/assignee row scope.
+test("16.1 assigned jobs navigation admits Montor direct job routes without unrelated routes", () => {
+  assert.equal(canAccessPhaseARoute(["montor"], "/jobs"), true);
+  assert.equal(canAccessPhaseARoute(["montor"], "/jobs/any-candidate-id"), true);
+  assert.equal(canAccessPhaseARoute(["montor"], "/customers"), false);
+  assert.equal(resolvePhaseANavigation(["montor"]).filter((item) => item.href === "/jobs").length, 1);
+});

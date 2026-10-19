@@ -1,8 +1,6 @@
 /**
  * Story 16.1 ATDD: real parser and sole-detector seams, without DB or alternate detector.
- * All cases remain skipped until implementation. The jobInputs array below is a
- * REPLACEABLE fixture adapter, not a product wire-format requirement. Reconcile it
- * with SQL's eventual canonical envelope while preserving every semantic assertion.
+ * Cases exercise the complete per-job wire contract through the real parser and sole detector.
  */
 import { test } from "node:test";
 import assert from "node:assert/strict";
@@ -55,7 +53,7 @@ async function snapshot(jobInputs: JobInput[], engineVersion?: string) {
 }
 
 // This is the best first RED activation: existing parser currently rejects every non-null jobInputs.
-test.skip("[P0][16.1-U03] checked snapshot parser accepts and freezes complete own-job authoritative facts", async () => {
+test("[P0][16.1-U03] checked snapshot parser accepts and freezes complete own-job authoritative facts", async () => {
   const { parseDetectionSnapshot } = await import("@/server/bookings/conflict-facts");
   const jobInputs = [
     { jobId: JOB_A, requiredWorkRoleIds: [ROLE], accessWindows: null },
@@ -72,7 +70,7 @@ test.skip("[P0][16.1-U03] checked snapshot parser accepts and freezes complete o
   assert.ok(Object.isFrozen(full.facts.bookings));
 });
 
-test.skip("[P0][16.1-U04] mixed jobs and unbound bookings use each evaluated booking's facts without candidate bleed", async () => {
+test("[P0][16.1-U04] mixed jobs and unbound bookings use each evaluated booking's facts without candidate bleed", async () => {
   const { deriveBookingConflicts } = await import("@/server/bookings/conflict-facts");
   const jobInputs = [
     { jobId: JOB_A, requiredWorkRoleIds: [ROLE], accessWindows: null },
@@ -94,7 +92,7 @@ test.skip("[P0][16.1-U04] mixed jobs and unbound bookings use each evaluated boo
     derived.output, "canonical evaluation is independent of row order");
 });
 
-test.skip("[P0][16.1-U05] unavailable facts stay distinct from known-empty roles and restrictive empty windows", async () => {
+test("[P0][16.1-U05] unavailable facts stay distinct from known-empty roles and restrictive empty windows", async () => {
   const { parseDetectionSnapshot, deriveBookingConflicts } = await import("@/server/bookings/conflict-facts");
   const unknownInputs = [{ jobId: JOB_A, requiredWorkRoleIds: null, accessWindows: null }];
   const emptyInputs = [{ jobId: JOB_A, requiredWorkRoleIds: [], accessWindows: [] }];
@@ -114,7 +112,7 @@ test.skip("[P0][16.1-U05] unavailable facts stay distinct from known-empty roles
   [[BOOKING_A, "2026-10-12T08:00:00.000000Z", "2026-10-12T08:30:00.000000Z"]]);
 });
 
-test.skip("[P0][16.1-U09] old engine and content insertion deletion or job rebinding cannot reuse canonical claims", async () => {
+test("[P0][16.1-U09] old engine and content insertion deletion or job rebinding cannot reuse canonical claims", async () => {
   const { parseDetectionSnapshot } = await import("@/server/bookings/conflict-facts");
   const inputs = [{ jobId: JOB_A, requiredWorkRoleIds: [ROLE], accessWindows: null }];
   const row = await snapshot(inputs);

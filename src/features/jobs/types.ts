@@ -26,6 +26,7 @@ export const JOB_STATUS_LABELS: Record<JobStatus, string> = {
 
 /** A job list row — the `/jobs` index projection (thin — the detail is the heart of the story). */
 export interface JobListRow {
+  readonly type?: "order" | "projekt";
   readonly id: string;
   readonly title: string | null;
   readonly status: JobStatus;
@@ -82,6 +83,14 @@ export interface JobEventRow {
  * money value is a coerced JS number (öre).
  */
 export interface JobDetail {
+  readonly type?: "order" | "projekt";
+  readonly entitlement?: { readonly protectedMoney: boolean; readonly canEdit: boolean };
+  readonly entitlements?: { readonly withheld: readonly string[] };
+  readonly card?: import("./job-card-domain").JobCardData;
+  readonly facilityName?: string | null;
+  readonly contactName?: string | null;
+  readonly location?: import("./job-card-domain").JobLocation | null;
+  readonly dependencyWarnings?: readonly import("./dependency-warnings").JobDependencyWarning[];
   readonly id: string;
   readonly title: string | null;
   readonly status: JobStatus;
@@ -103,8 +112,8 @@ export interface JobDetail {
   readonly commitmentContactName: string | null;
   // Accepted commitment money — DISPLAYED VERBATIM from the immutable acceptance row (integer
   // öre). NULL for a standalone job (no acceptance exists — never fabricate a 0 kr commitment).
-  readonly acceptedPriceOre: number | null;
-  readonly sourceSentTotalOre: number | null;
+  readonly acceptedPriceOre?: number | null;
+  readonly sourceSentTotalOre?: number | null;
   readonly channel: string | null;
   readonly acceptedAt: string | null;
   readonly adjustmentReason: string | null;

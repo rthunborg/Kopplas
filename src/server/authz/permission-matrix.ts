@@ -70,9 +70,8 @@ export const PERMISSION_MATRIX = {
     "Economy.ViewContributionMargin": { roles: ["tenant_admin", "projektledare", "ekonomi"] },
   },
   jobs: {
-    // `Jobs.ViewAssigned` is intentionally empty: job_members does not exist
-    // until E16, so granting it here would accidentally mean tenant-wide access.
-    "Jobs.ViewAssigned": { roles: [] },
+    // Row scope remains the auth.uid-bound member/booking-assignee predicate.
+    "Jobs.ViewAssigned": { roles: ["tenant_admin", "projektledare", "montor"] },
     "Jobs.ViewAll": { roles: ["tenant_admin", "projektledare"] },
     "Jobs.Create": { roles: ["tenant_admin", "projektledare"] },
     "Jobs.Edit": { roles: ["tenant_admin", "projektledare"] },

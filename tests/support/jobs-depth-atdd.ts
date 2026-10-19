@@ -1,7 +1,7 @@
-/** Story 16.1 RED helpers. No module-level imports with runtime/database effects.
+/** Story 16.1 actual command/RLS fixture helpers. No module-level imports with runtime/database effects.
  * Existing contracts: tenants factories, envelope createJob/acceptQuoteAndCreateJob,
  * E14 bookingCommand, adminQuery and normal anon-key JWT clients.
- * PROPOSED E16 BINDINGS (not implemented/evidence): jobs.type; job_members
+ * E16 implemented bindings (execution evidence is recorded separately): jobs.type; job_members
  * (tenant_id,job_id,person_profile_id,archived_at); job_required_work_roles;
  * job_access_windows; job_dependencies. Card input/export/DTO names below must be
  * reconciled to the actual implementation before removing skips. No fake replies.
@@ -113,7 +113,7 @@ export async function createJobsDepthFixture() {
     return { fx, jobs, identity: { customerId: parents.customerId, facilityId: parents.facilityId,
       contactId: parents.contactId }, roleId: parents.workRoleId, parents,
       credentials: { manager: users.projektledare, assignedWorker: users.montor },
-      snapshot: (_jobId?: string) => jobsDepthSnapshot(fx.tenantIds),
+      snapshot: () => jobsDepthSnapshot(fx.tenantIds),
       dispose: () => t.cleanupRoleAwarePhaseAFixture(roleFixture) };
 
     async function acceptedJob(): Promise<JobHandle> {
@@ -162,8 +162,8 @@ export function cardInput(f: JobsDepthFixture, patch: Partial<JobCardInput> = {}
  */
 export async function readMyJobs(client: TestServerClient): Promise<{ rows: { id: string }[]; error: string | null }> {
   const path = "@/server/read-models/my-jobs";
-  const module = await import(path) as { readMyJobs: (client: TestServerClient) => Promise<{ rows: { id: string }[]; error: string | null }> };
-  return module.readMyJobs(client);
+  const bindings = await import(path) as { readMyJobs: (client: TestServerClient) => Promise<{ rows: { id: string }[]; error: string | null }> };
+  return bindings.readMyJobs(client);
 }
 export function protectedPaths(value: unknown, path = ""): string[] {
   if (!value || typeof value !== "object") return [];
@@ -172,4 +172,22 @@ export function protectedPaths(value: unknown, path = ""): string[] {
     return [/accepted_?price|source_?sent_?total|cost_?rate|sell_?rate|price_?ore|margin|profit|total_?ore/i.test(key) ? [next] : [],
       protectedPaths(child, next)].flat();
   });
+}
+
+/** Real H4 fixture rows: callers supply an existing same-tenant job/customer chain. */
+export async function seedJobDepthChildren(tenantId: string, actorId: string, jobId: string, workRoleId: string) {
+  const {adminQuery} = await import("../factories/admin-sql");
+  const [{id:profileId}] = await adminQuery<{id:string}>(`insert into public.person_profiles(tenant_id,membership_id)
+    select $1,id from public.tenant_memberships where tenant_id=$1 and user_id=$2
+    on conflict(membership_id) do update set membership_id=excluded.membership_id returning id`, [tenantId,actorId]);
+  const [{id:prerequisite}] = await adminQuery<{id:string}>(`insert into public.jobs(tenant_id,customer_id,title)
+    select tenant_id,customer_id,'H4 prerequisite' from public.jobs where tenant_id=$1 and id=$2 returning id`,[tenantId,jobId]);
+  await adminQuery("insert into public.job_members(tenant_id,job_id,person_profile_id) values($1,$2,$3)",[tenantId,jobId,profileId]);
+  await adminQuery("insert into public.job_required_work_roles(tenant_id,job_id,work_role_id) values($1,$2,$3)",[tenantId,jobId,workRoleId]);
+  await adminQuery("insert into public.job_access_windows(tenant_id,job_id,starts_at,ends_at) values($1,$2,'2026-10-12T06:00:00Z','2026-10-12T07:00:00Z')",[tenantId,jobId]);
+  await adminQuery("insert into public.job_dependencies(tenant_id,job_id,prerequisite_job_id) values($1,$2,$3)",[tenantId,jobId,prerequisite]);
+  for (const table of jobDepthTables.slice(1)) {
+    const [{count}] = await adminQuery<{count:number}>(`select count(*)::int count from public.${table} where tenant_id=$1 and job_id=$2`,[tenantId,jobId]);
+    if (count !== 1) throw new Error(`H4 ${table} fixture must contain one real child`);
+  }
 }

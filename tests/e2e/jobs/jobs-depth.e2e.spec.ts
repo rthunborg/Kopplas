@@ -1,5 +1,5 @@
 /**
- * Story 16.1 essential browser contracts E01–E04, RED scaffolds only.
+ * Story 16.1 essential browser contracts E01–E04, executable against the production UI.
  * Evidence: current JobList/JobDetailView/JobEditDialog, BookingEntry/BookingEditor,
  * booking-actions.ts, shared JobsDepthFixture and the resumed approved 16.1 spec.
  * No browser/service/test is started by importing this file. Every fixture is lazy.
@@ -60,6 +60,13 @@ async function openEdit(page: Page, jobId: string): Promise<Locator> {
   return form;
 }
 
+async function openCard(page: Page, jobId: string): Promise<Locator> {
+  await page.goto(`/jobs/${jobId}`);
+  const form = page.getByTestId("job-card-form");
+  await hydrated(form);
+  return form;
+}
+
 function cardRequest(request: Request, jobId: string, title?: string): boolean {
   return request.method() === "POST" && !!request.headers()["next-action"]
     && new URL(request.url()).pathname === `/jobs/${jobId}`
@@ -78,18 +85,20 @@ async function fillProgressiveCard(form: Locator, f: JobsDepthFixture, title: st
   await form.getByLabel("Titel", { exact: true }).fill(title);
   await form.getByLabel("Anläggning", { exact: true }).selectOption(f.identity.facilityId);
   await form.getByLabel("Kontakt", { exact: true }).selectOption(f.identity.contactId);
-  await form.getByLabel("Planerat startdatum", { exact: true }).fill("2026-10-12");
-  await form.getByLabel("Planerat slutdatum", { exact: true }).fill("2026-10-13");
   await form.getByTestId("job-card-planning-toggle").click();
+  await form.getByLabel("Planerad start", { exact: true }).fill("2026-10-12");
+  await form.getByLabel("Planerat slut", { exact: true }).fill("2026-10-13");
   await form.getByLabel("Prioritet", { exact: true }).selectOption("high");
-  await form.getByLabel("Beräknad tid (minuter)", { exact: true }).fill("120");
-  await form.getByLabel("Restid (minuter)", { exact: true }).fill("30");
+  await form.getByLabel("Uppskattad tid (minuter)", { exact: true }).fill("120");
+  await form.getByLabel("Planerad restid (minuter)", { exact: true }).fill("30");
   await form.getByLabel("Antal personer", { exact: true }).fill("2");
-  await form.getByLabel("Tidigaste startdatum", { exact: true }).fill("2026-10-12");
-  await form.getByLabel("Önskat slutdatum", { exact: true }).fill("2026-10-13");
-  await form.getByLabel("Senast tillåtna slutdatum", { exact: true }).fill("2026-10-14");
+  await form.getByLabel("Tidigast", { exact: true }).fill("2026-10-12");
+  await form.getByLabel("Önskat datum", { exact: true }).fill("2026-10-13");
+  await form.getByLabel("Senast", { exact: true }).fill("2026-10-14");
+  await form.getByLabel("Kraven är kända", {exact:true}).check();
   await form.getByTestId(`job-required-role-${f.roleId}`).check();
-  await form.getByRole("button", { name: "Lägg till tillträdestid", exact: true }).click();
+  await form.getByLabel("Tillträdestiderna är kända", {exact:true}).check();
+  await form.getByRole("button", { name: "Lägg till tidsintervall", exact: true }).click();
   const window = form.getByTestId("job-access-window-row");
   await expect(window).toHaveCount(1);
   await window.getByLabel("Från", { exact: true }).fill("2026-10-12T08:00");
@@ -109,8 +118,8 @@ function bookingAction(response: Response, operation: "preview" | "save", descri
   } catch { return false; }
 }
 
-test.describe("Story 16.1 essential Jobs depth journeys — ATDD RED", () => {
-  test.skip("[P0] 16.1-E01 My Jobs is the actual duplicate-free member/assignee union; direct denial and money-safe assigned detail agree", async ({ resourcePage: page }) => {
+test.describe("Story 16.1 essential Jobs depth journeys", () => {
+  test("[P0] 16.1-E01 My Jobs is the actual duplicate-free member/assignee union; direct denial and money-safe assigned detail agree", async ({ resourcePage: page }) => {
     const f = await createJobsDepthFixture();
     try {
       await page.setViewportSize({ width: 360, height: 640 });
@@ -150,14 +159,14 @@ test.describe("Story 16.1 essential Jobs depth journeys — ATDD RED", () => {
     } finally { await f.dispose(); }
   });
 
-  test.skip("[P1] 16.1-E02 phone progressive identity, scheduling and child save retains unsent input after failure; explicit retry persists across reload",
+  test("[P1] 16.1-E02 phone progressive identity, scheduling and child save retains unsent input after failure; explicit retry persists across reload",
     { annotation: [{ type: "skipNetworkMonitoring", description: "One identified job-card Server Action request is intentionally aborted before writes" }] },
     async ({ resourcePage: page }) => {
       const f = await createJobsDepthFixture();
       try {
         await page.setViewportSize({ width: 360, height: 640 });
         await signIn(page, f.credentials.manager);
-        const form = await openEdit(page, f.jobs.editable.id);
+        const form = await openCard(page, f.jobs.editable.id);
         const title = `Phone card ${f.jobs.editable.id}`;
         await fillProgressiveCard(form, f, title);
         const before = await f.snapshot();
@@ -173,15 +182,15 @@ test.describe("Story 16.1 essential Jobs depth journeys — ATDD RED", () => {
         const failed = page.waitForEvent("requestfailed", {
           predicate: (request) => cardRequest(request, f.jobs.editable.id, title),
         });
-        await form.getByTestId("job-edit-save").click();
-        await failed;
+        await form.getByTestId("job-card-save").click();
+        const failedRequest = await failed;
         expect(aborted).toBe(true);
-        await expect(form.getByTestId("job-edit-error")).toHaveAttribute("role", "alert");
+        await expect(form.getByTestId("job-card-unsent")).toHaveAttribute("role", "alert");
         await expect(form.getByTestId("job-card-unsent")).toBeVisible();
         await expect(page.getByTestId("job-card-save-status")).toHaveCount(0);
         await expect(form.getByLabel("Titel", { exact: true })).toHaveValue(title);
         await expect(form.getByLabel("Anläggning", { exact: true })).toHaveValue(f.identity.facilityId);
-        await expect(form.getByLabel("Beräknad tid (minuter)", { exact: true })).toHaveValue("120");
+        await expect(form.getByLabel("Uppskattad tid (minuter)", { exact: true })).toHaveValue("120");
         await expect(form.getByTestId(`job-required-role-${f.roleId}`)).toBeChecked();
         await expect(form.getByTestId("job-access-window-row").getByLabel("Till", { exact: true })).toHaveValue("2026-10-12T16:00");
         expect(await f.snapshot()).toEqual(before); // no optimistic card/child/audit write
@@ -192,9 +201,11 @@ test.describe("Story 16.1 essential Jobs depth journeys — ATDD RED", () => {
         await expect(retry).toBeEnabled();
         const saved = page.waitForResponse((reply) => cardRequest(reply.request(), f.jobs.editable.id, title));
         await retry.click(); // the consumed failure route now forwards the real save
-        expect((await saved).ok()).toBe(true);
-        await expect(form).toHaveCount(0);
-        await expect(page.getByTestId("job-card-save-status")).toHaveText(/sparad|sparats/i);
+        const firstSave = await saved;
+        expect(firstSave.ok()).toBe(true);
+        expect(JSON.parse(firstSave.request().postData() ?? "null")).toEqual(JSON.parse(failedRequest.postData() ?? "null"));
+        await expect(page.getByTestId("job-card-save-status")).toHaveText("Jobbet är sparat.");
+        await expect(page.getByRole("heading", { name: title, exact: true })).toBeVisible();
         const after = await f.snapshot();
         expect(after.jobs.find((row) => row.id === f.jobs.editable.id)).toMatchObject({
           type: "order", title, customer_id: f.identity.customerId, facility_id: f.identity.facilityId,
@@ -207,26 +218,66 @@ test.describe("Story 16.1 essential Jobs depth journeys — ATDD RED", () => {
         expect(after.windows.filter((row) => row.job_id === f.jobs.editable.id)).toHaveLength(1);
         expect(after.dependencies.filter((row) => row.job_id === f.jobs.editable.id)).toHaveLength(1);
         expect(after.audit.length - before.audit.length).toBe(1);
+        // Continue editing the same mounted form after its same-route refresh.
+        // No goto/reload/remount may hide a permanently disabled saved island.
+        await form.getByRole("button", { name: "Ta bort tidsintervall 1", exact: true }).click();
+        await expect(form.getByTestId("job-access-window-row")).toHaveCount(0);
+        await expect(form.getByTestId("job-card-save")).toBeEnabled();
+        await form.getByRole("button", { name: "Lägg till tidsintervall", exact: true }).click();
+        const replacementWindow = form.getByTestId("job-access-window-row");
+        await expect(replacementWindow).toHaveCount(1);
+        await replacementWindow.getByLabel("Från", { exact: true }).fill("2026-10-12T08:00");
+        await replacementWindow.getByLabel("Till", { exact: true }).fill("2026-10-12T16:00");
+        const secondTitle = `${title} second edit`;
+        await form.getByLabel("Titel", { exact: true }).fill(secondTitle);
+        await form.getByLabel("Uppskattad tid (minuter)", { exact: true }).fill("150");
+        await expect(form.getByTestId("job-card-save-status")).toHaveCount(0);
+        await expect(form.getByTestId("job-card-save")).toBeEnabled();
+        const secondSaved = page.waitForResponse((reply) => cardRequest(reply.request(), f.jobs.editable.id, secondTitle));
+        await form.getByTestId("job-card-save").click();
+        const secondSave = await secondSaved;
+        expect(secondSave.ok()).toBe(true);
+        const firstInput = JSON.parse(firstSave.request().postData() ?? "null")[0] as { commandId: string };
+        const secondInput = JSON.parse(secondSave.request().postData() ?? "null")[0] as { commandId: string };
+        expect(secondInput.commandId).not.toBe(firstInput.commandId);
+        await expect(form.getByTestId("job-card-save-status")).toHaveText("Jobbet är sparat.");
+        await expect(page.getByRole("heading", { name: secondTitle, exact: true })).toBeVisible();
+        const afterSecond = await f.snapshot();
+        expect(afterSecond.jobs.find((row) => row.id === f.jobs.editable.id)).toMatchObject({
+          title: secondTitle, estimated_duration_minutes: 150, priority: "high",
+          customer_id: f.identity.customerId, facility_id: f.identity.facilityId, contact_id: f.identity.contactId,
+          planned_travel_minutes: 30, crew_size: 2, earliest_date: "2026-10-12", desired_date: "2026-10-13",
+          latest_date: "2026-10-14", planned_start_date: "2026-10-12", planned_end_date: "2026-10-13",
+        });
+        // Child replacement may refresh row identity/timestamps; compare complete
+        // relationship content rather than treating those metadata as immutable.
+        const roleContent = (rows: typeof after.roles) => rows.map((row) => [row.tenant_id, row.job_id, row.work_role_id]).sort();
+        const windowContent = (rows: typeof after.windows) => rows.map((row) => [row.tenant_id, row.job_id, row.starts_at, row.ends_at]).sort();
+        const dependencyContent = (rows: typeof after.dependencies) => rows.map((row) => [row.tenant_id, row.job_id, row.prerequisite_job_id]).sort();
+        expect(roleContent(afterSecond.roles)).toEqual(roleContent(after.roles));
+        expect(windowContent(afterSecond.windows)).toEqual(windowContent(after.windows));
+        expect(dependencyContent(afterSecond.dependencies)).toEqual(dependencyContent(after.dependencies));
+        expect(afterSecond.audit.length - after.audit.length).toBe(1);
         await page.reload();
-        await expect(page.getByRole("heading", { name: title, exact: true })).toBeVisible();
-        const reloaded = await openEdit(page, f.jobs.editable.id);
+        await expect(page.getByRole("heading", { name: secondTitle, exact: true })).toBeVisible();
+        const reloaded = await openCard(page, f.jobs.editable.id);
         await reloaded.getByTestId("job-card-planning-toggle").click();
         await expect(reloaded.getByLabel("Kontakt", { exact: true })).toHaveValue(f.identity.contactId);
-        await expect(reloaded.getByLabel("Beräknad tid (minuter)", { exact: true })).toHaveValue("120");
-        await expect(reloaded.getByLabel("Restid (minuter)", { exact: true })).toHaveValue("30");
+        await expect(reloaded.getByLabel("Uppskattad tid (minuter)", { exact: true })).toHaveValue("150");
+        await expect(reloaded.getByLabel("Planerad restid (minuter)", { exact: true })).toHaveValue("30");
         await expect(reloaded.getByLabel("Antal personer", { exact: true })).toHaveValue("2");
         await expect(reloaded.getByLabel("Prioritet", { exact: true })).toHaveValue("high");
-        await expect(reloaded.getByLabel("Tidigaste startdatum", { exact: true })).toHaveValue("2026-10-12");
-        await expect(reloaded.getByLabel("Önskat slutdatum", { exact: true })).toHaveValue("2026-10-13");
-        await expect(reloaded.getByLabel("Senast tillåtna slutdatum", { exact: true })).toHaveValue("2026-10-14");
+        await expect(reloaded.getByLabel("Tidigast", { exact: true })).toHaveValue("2026-10-12");
+        await expect(reloaded.getByLabel("Önskat datum", { exact: true })).toHaveValue("2026-10-13");
+        await expect(reloaded.getByLabel("Senast", { exact: true })).toHaveValue("2026-10-14");
         await expect(reloaded.getByTestId(`job-required-role-${f.roleId}`)).toBeChecked();
         await expect(reloaded.getByTestId(`job-dependency-${f.jobs.prerequisite.id}`)).toBeChecked();
         await expect(reloaded.getByTestId("job-access-window-row").getByLabel("Från", { exact: true })).toHaveValue("2026-10-12T08:00");
-        expect(await f.snapshot()).toEqual(after);
+        expect(await f.snapshot()).toEqual(afterSecond);
       } finally { await f.dispose(); }
     });
 
-  test.skip("[P0] 16.1-E03 actual job-bound booking preview/save consumes requirements and windows; changed job facts invalidate review before durable save", async ({ resourcePage: page }) => {
+  test("[P0] 16.1-E03 actual job-bound booking preview/save consumes requirements and windows; changed job facts invalidate review before durable save", async ({ resourcePage: page }) => {
     const f = await createJobsDepthFixture();
     try {
       const setup = await invokeJobCard(f.fx.adminClient, "update", cardInput(f, {
@@ -299,7 +350,7 @@ test.describe("Story 16.1 essential Jobs depth journeys — ATDD RED", () => {
     } finally { await f.dispose(); }
   });
 
-  test.skip("[P1] 16.1-E04 dependency dates display unknown, a linked violated-order warning, then clear only after a durable date correction", async ({ resourcePage: page }) => {
+  test("[P1] 16.1-E04 dependency dates display unknown, a linked violated-order warning, then clear only after a durable date correction", async ({ resourcePage: page }) => {
     const f = await createJobsDepthFixture();
     try {
       expect((await invokeJobCard(f.fx.adminClient, "update", cardInput(f))).ok).toBe(true);
@@ -317,7 +368,7 @@ test.describe("Story 16.1 essential Jobs depth journeys — ATDD RED", () => {
       await page.reload();
       const warning = page.getByTestId("job-dependency-warning");
       await expect(warning).toContainText(/före|beroende|slut/i);
-      await expect(warning.getByRole("link", { name: f.jobs.prerequisite.title, exact: true }))
+      await expect(warning.getByRole("link", { name: "Öppna föregående jobb", exact: true }))
         .toHaveAttribute("href", `/jobs/${f.jobs.prerequisite.id}`);
       await expect(page.getByTestId("job-dependency-unknown")).toHaveCount(0);
       form = await openEdit(page, f.jobs.prerequisite.id);
