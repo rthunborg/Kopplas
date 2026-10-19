@@ -127,6 +127,8 @@ describe("15.2 real series authority",()=>{
       expect(await runCommand(updateBookingSeries,{client:fx.adminClient as never,input:reviewed.input})).toMatchObject({ok:true});
       const before=await realSeriesSnapshot(fx);
       const added=realSeriesInput(fx,{seriesId:original.seriesId,sourceSeriesId:original.seriesId,expectedVersion:2,rule:{...original.rule,count:4}});
+      await expect(reviewRealSeries(fx,added)).rejects.toMatchObject({code:"TENANT_ACCESS_DENIED"});
+      expect(await realSeriesSnapshot(fx)).toEqual(before);
       expect(await runCommand(updateBookingSeries,{client:fx.adminClient as never,input:{...added,editorReview:reviewed.input.editorReview}})).toMatchObject({ok:false});
       expect(await realSeriesSnapshot(fx)).toEqual(before);
       // Safe flags remain actual values after a checked one-occurrence cancellation.

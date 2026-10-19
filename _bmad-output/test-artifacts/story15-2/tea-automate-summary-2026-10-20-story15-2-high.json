@@ -1,0 +1,181 @@
+{
+  "workflow": "bmad-testarch-automate",
+  "story": "15.2",
+  "mode": "create-BMad-integrated",
+  "workflow_status": "completed-generation-and-static-validation; functional-execution-pending-Root-CI",
+  "detected_stack": "frontend",
+  "execution": {
+    "requestedMode": "auto",
+    "resolvedMode": "subagent",
+    "probeEnabled": true,
+    "supports": {
+      "subagent": true,
+      "agentTeam": false
+    },
+    "awaited_all_workers": true,
+    "routing": "gpt-6.1-sol High for actual authorization/transactional scope"
+  },
+  "total_tests": 1,
+  "revised_existing_tests": 1,
+  "new_registered_tests": 0,
+  "added_assertions": 2,
+  "api_tests": 1,
+  "e2e_tests": 0,
+  "backend_tests": 0,
+  "api_test_files": 1,
+  "e2e_test_files": 0,
+  "backend_test_files": 0,
+  "fixtures_created": 0,
+  "factories_created": 0,
+  "helpers_created": 0,
+  "priority_coverage": {
+    "P0": 1,
+    "P1": 0,
+    "P2": 0,
+    "P3": 0
+  },
+  "counts_meaning": "One revised existing P0 case, zero additional registered tests, two new UNEXECUTED assertions. Not a passing test count.",
+  "worker_outputs": [
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/tea-automate-api-tests-2026-10-20-story15-2-high.json",
+      "sha256": "a1c43f73eac96fde3263bed7e408eca1297c48c01269778a377338fb4d22cc11"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/tea-automate-e2e-tests-2026-10-20-story15-2-high.json",
+      "sha256": "2407d4ec5d1494b360db86b0c5b35801988dad7326f61fbbe84021e66ac13046"
+    }
+  ],
+  "updated_test": {
+    "file": "tests/integration/rls/booking-series.rls.test.ts",
+    "case_id": "15.2-RLS-REAL-005",
+    "old_sha256": "2533666daf6c0e8107a08f8b1ce1359da25b68f6c396339094330139e74b75d9",
+    "new_sha256": "b7cebf2c860419e411cbe6ef563ccbe6c7faccf5e1fcc6091c25cbbe24bec6c0",
+    "added_assertion_count": 2,
+    "execution_status": "UNEXECUTED"
+  },
+  "coverage_scope": "Fresh current count4 preview -> actual current SQL snapshot -> planner inactive-person-per-occurrence validation; exact TENANT_ACCESS_DENIED plus full unchanged snapshot. Does not reach finalizer; retained stale-receipt denial receives no guard-specific credit.",
+  "validation": [
+    {
+      "command": "pnpm exec eslint tests/integration/rls/booking-series.rls.test.ts",
+      "native_exit": 0,
+      "kind": "static"
+    },
+    {
+      "command": "pnpm exec tsc --noEmit --incremental false",
+      "native_exit": 0,
+      "kind": "static"
+    },
+    {
+      "command": "bounded Python aggregation/integrity checks",
+      "native_exit": 0,
+      "kind": "artifact-validation",
+      "checks": [
+        "both expected worker JSON success/schema",
+        "author JSON equals actual file bytes",
+        "new candidate hash matches",
+        "exact two-line insertion reconstructs original hash",
+        "spec hash unchanged",
+        "delivery hash unchanged",
+        "committed product/test/schema/framework inputs match qualified checkpoint",
+        "worker artifacts preserved byte-exact"
+      ]
+    }
+  ],
+  "functional_execution_this_run": {
+    "suites": 0,
+    "cases": 0,
+    "passed": 0,
+    "failed": 0,
+    "skipped": 0,
+    "new_assertions_executed": 0,
+    "interpretation": "No new functional pass or skip is claimed; no runtime or fixtures were used."
+  },
+  "historical_qualified_evidence": {
+    "source_revision": "effbf5e18e19556d0fad231d3fc01369397c8402",
+    "ci_run": 39335595653,
+    "required_jobs_passed": 5,
+    "units": {
+      "passed": 2974,
+      "skipped": 0
+    },
+    "process": {
+      "passed": 43,
+      "skipped": 0
+    },
+    "full_db": {
+      "passed": 1827,
+      "failed": 0,
+      "skipped": 52
+    },
+    "rls_included_subset": {
+      "passed": 800,
+      "skipped": 14,
+      "additive": false
+    },
+    "active_series_commands_passed": 22,
+    "active_series_rls_passed_before_edit": 5,
+    "physical_storage_separate": {
+      "passed": 1,
+      "skipped": 0
+    },
+    "auth_jobs_browser": {
+      "passed": 11,
+      "skipped": 0,
+      "scheduling_credit": false
+    },
+    "changed_local_browser": "007/008 2P then0091P across distinct commands; earlier selected series/host paths qualified reuse only",
+    "skip_explanation": "37 command scaffolds +14 RLS scaffolds +1 Storage outside isolated lane; no skip credit",
+    "new_assertions_covered": false
+  },
+  "pending_development_verification": {
+    "owner": "Root",
+    "next_action": "Independent targeted High P7 review of actual two-line test delta, then exact-source standard CI executes revised RLS005 with SUPABASE_TEST_REQUIRED=1 and executed/skipped counts; refresh evidence before renewed done/delivery admission.",
+    "local_runtime_need": "none"
+  },
+  "deferred_release_validation": [
+    {
+      "kind": "deferred-release-validation",
+      "item": "Exhaustive five-view/gesture/device combinations and screenshot/visual comparison",
+      "owner": "QA/UX",
+      "status": "deferred",
+      "evidence": "Current matrix and Oct19 development-completion policy; scoped essential host/phone receipts do not establish the expanded release matrix.",
+      "next_action": "Before release execute remaining view/device combinations and review actual screenshot differences."
+    },
+    {
+      "kind": "deferred-release-validation",
+      "item": "Manual accessibility, daylight readability and exploratory scheduling review",
+      "owner": "QA/UX",
+      "status": "deferred",
+      "evidence": "Current matrix; selected keyboard/focus/phone and SSR assertions do not establish manual accessibility certification.",
+      "next_action": "Before release record keyboard/screen-reader/zoom/daylight walkthroughs and triage consequential failures."
+    },
+    {
+      "kind": "deferred-release-validation",
+      "item": "Representative scheduling performance thresholds and workloads certification",
+      "owner": "Product/Architect",
+      "status": "deferred",
+      "evidence": "Current matrix; configured narrow pilot CI is distinct from representative Scheduling/full-page/release performance.",
+      "next_action": "Agree representative recurrence/tenant workloads and thresholds, measure production build, and record acceptance before release."
+    }
+  ],
+  "release_ready": false,
+  "playwright_utils_deviations": [
+    {
+      "file": "tests/e2e/booking-series.e2e.spec.ts",
+      "line": 7,
+      "reason": "Existing explicit package-absence note; tests import established bookingSeries fixture and real sign-in. Absent package closes mandate gate; no new vanilla test is emitted."
+    },
+    {
+      "file": "tests/e2e/support/booking-series-atdd.ts",
+      "line": 5,
+      "reason": "Existing explicit package-absence note; scoped fixture composition, actual Next-action/CDP fault observation, SQL polling and owned cleanup remain established bindings. Framework adoption is separate."
+    }
+  ],
+  "pactjs_utils_deviations": [],
+  "spec_sha256": "688977b8b6047d3cc9e4a62381598aa1df670a4075d3b7fff6e7a3d0b0364bfc",
+  "delivery_sha256": "c1d63ea5d6d610d6453852ef7a7e21c601d04d58e24faee55626a8b24d468576",
+  "runtime_launches": 0,
+  "fixture_mutations": 0,
+  "publication_actions": 0,
+  "unmeasured_parallel_speedup": true
+}

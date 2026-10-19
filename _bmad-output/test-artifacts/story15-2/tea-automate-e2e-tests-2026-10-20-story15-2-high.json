@@ -1,0 +1,192 @@
+{
+  "success": true,
+  "subagent": "e2e-tests",
+  "story": "15.2",
+  "mode": "source-and-qualified-evidence-gap-analysis",
+  "tests": [],
+  "fixture_needs": [],
+  "test_count": 0,
+  "knowledge_fragments_used": [
+    "library-integration-mandate",
+    "playwright-utils-mandate",
+    "overview",
+    "intercept-network-call",
+    "network-error-monitor",
+    "fixtures-composition",
+    "log",
+    "auth-session",
+    "network-recorder",
+    "fixture-architecture",
+    "network-first",
+    "selector-resilience",
+    "playwright-cli",
+    "evidence-integrity"
+  ],
+  "summary": "No demonstrated consequential additive E2E gap after comparing all eight approved ACs, historical ATDD, active E2E001-009 and their actual support, current build-intent matrix, and selected inherited 15.1 assertions. Generate zero duplicate tests. This worker ran no tests, browser, database, service or Git operation. Existing qualified receipts are reused with their original revision/dependency limits; this JSON is a source analysis result, not a fresh runtime pass. Release readiness remains false.",
+  "routing": {
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "reason": "Current preview/review admission, actual committed-response loss and immutable explicit retry involve authorization and transactional integrity. No nested effort-only delegation."
+  },
+  "evidence": {
+    "root": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas",
+    "qualified_product_checkpoint": "effbf5e18e19556d0fad231d3fc01369397c8402",
+    "scope_source": "_bmad-output/test-artifacts/automation-summary-15-2-recurring-bookings-series-materialized-occurrences-exceptions.md",
+    "acceptance_source": "_bmad-output/implementation-artifacts/spec-15-2-recurring-bookings-series-materialized-occurrences-exceptions.md:101-109",
+    "atdd_source": "_bmad-output/test-artifacts/atdd-checklist-15-2-recurring-bookings-series-materialized-occurrences-exceptions.md",
+    "current_matrix": "_bmad-output/test-artifacts/story15-2/build-intent-matrix.md",
+    "inspected_e2e": "tests/e2e/booking-series.e2e.spec.ts",
+    "inspected_support": "tests/e2e/support/booking-series-atdd.ts",
+    "inspected_inherited_host_assertions": "tests/e2e/scheduling-views.atdd.e2e.spec.ts",
+    "current_changed_flow_receipts": "Matrix records GLK strict007-009 original command 2P1F, then strict009-only 1P0F0S after reviewed test-binding fix. Current unique changed flows are qualified007/0082P plus0091P across distinct commands, never one invented 3-pass command.",
+    "historical_reuse": "Original genuine response-loss005, keyboard/phone006, create/exception/split001, preview002-004 and selected15.1 hosts remain historical with independent dependency/reuse qualification. They are not new exact-current executions. Original failed commands are retained.",
+    "ci_scope": "Current matrix records exacteffbf5e1 CI39335595653 required jobs passed, including all22 active15.2 command and5 active15.2 RLS cases. Its11 Auth/Jobs browser passes do not establish changed Scheduling or series coverage. The52 fullDB skips remain no coverage.",
+    "worker_runtime_execution": "none",
+    "raw_receipt_reverification": "No independent rehash or rerun of raw historical runtime receipts in this worker; reuse relies on the current qualified matrix and explicit parent admission.",
+    "source_header_caveat": "Historical RED/scaffold comments in the E2E files are not current execution evidence. Actual registrations are active and support has a real binding; current status comes from the qualified matrix, preserving original ATDD as history."
+  },
+  "coverage": [
+    {
+      "ac": "AC1",
+      "priority": "P0",
+      "existing": [
+        "E2E001",
+        "E2E002",
+        "E2E003",
+        "recurrence.test.ts UNIT001/002",
+        "REAL015/017/022"
+      ],
+      "assessment": "Existing real editor journeys pass actual recurring candidates through preview and persistence. Calendar/preset/end/DST/validation combinations belong primarily to independent goldens, shared-expansion/editor-input/planner tests and real commands as mapped in the current matrix. Repeating that matrix in browser adds no demonstrated essential-flow coverage."
+    },
+    {
+      "ac": "AC2",
+      "priority": "P0",
+      "existing": [
+        "E2E002",
+        "E2E003",
+        "E2E004",
+        "E2E007"
+      ],
+      "assessment": "002 checks ten dated rows/glyph accessible names and all warnings including occurrence12, full acknowledgment/reason, selected accepted versus unselected open persisted groups.003 holds real preview responses before triggering, checks pending/failed disabled save and no writes, prevents obsolete admission, clears review/reason and retries failed preview.004 and current007 check stale rejection, retained draft, cleared review/reason/selection, no writes and explicit fresh review/retry."
+    },
+    {
+      "ac": "AC3",
+      "priority": "P0",
+      "existing": [
+        "E2E005",
+        "E2E006",
+        "E2E007",
+        "REAL001/008/009/012/014"
+      ],
+      "assessment": "005 arms original-response loss before action; actual harness first proves the exact committed outcome using independent SQL, then fails only that original CDP response. Test checks unknown/unsent status, disabled edits/close, no automatic second attempt, one series/outcome/audit and exact durable IDs. Explicit retry must equal the original attempt and leave canonical full SQL snapshot unchanged. Atomicity/races/current-authority negatives remain real command/RLS responsibilities; do not replace them with browser mocks."
+    },
+    {
+      "ac": "AC4",
+      "priority": "P0",
+      "existing": [
+        "E2E001",
+        "E2E006",
+        "E2E009",
+        "REAL002/003/016/020/022",
+        "RLS004/005"
+      ],
+      "assessment": "001 creates and reloads, saves prefix/suffix exceptions and cancellations, then verifies their durable UUID/value/status/assignment retention through a later split and visible resource markers.006 proves phone cancellation, dirty protection, precommit failure/no-write and exact explicit retry, preserving all peer rows.009 proves effective inactive template assignee visible/checked, removable, replaced, then stored in all occurrence assignments and successor defaults."
+    },
+    {
+      "ac": "AC5",
+      "priority": "P0",
+      "existing": [
+        "E2E001",
+        "E2E007",
+        "E2E008",
+        "REAL002/006/013/017/021/022"
+      ],
+      "assessment": "001 verifies predecessor cutoff, exactly one successor, unchanged row count, per-slot identity and retained exception/tombstone transfer.007 exercises stale following metadata recovery and fresh admission.008 uses real native drag/reassignment then resize, chooses following scope, checks actual editor proposals and independently persisted exact instants/assignments. Nominal lower bounds, concurrent splits and signed-overlay negatives are already mapped to planner/real DB tests."
+    },
+    {
+      "ac": "AC6",
+      "priority": "P0",
+      "existing": [
+        "E2E002",
+        "E2E004",
+        "E2E007",
+        "REAL004/005/007/010/011/012/018/019/021"
+      ],
+      "assessment": "Browser tests cover complete warning review and selective persisted group state, genuine stale fact/version rejection and renewed explicit admission. Full complete-fact overlay/detector/transaction/proof/rollback semantics are real command/RLS obligations recorded by the matrix. No fabricated endpoint, synthesized successful receipt, HAR replay or isolated click can add that integrity proof."
+    },
+    {
+      "ac": "AC7",
+      "priority": "P0",
+      "existing": [
+        "15.1-INT001",
+        "15.2-RLS-REAL001-005",
+        "REAL009",
+        "E2E009"
+      ],
+      "assessment": "Inspected15.1INT001 asserts five manager tabs, tampered person/tenant navigation resolving to own-only visible IDs/one tab, absent manager controls and peer labels, complete actual target native response admitted, nonempty captured payloads without peer email/private manager field, then denied-role UI. Series current-role/RLS/directRPC/DML/replay boundaries remain actual normal-JWT/SQL test coverage rather than requiring duplicate UI tests for every role.009 covers the changed retained-assignee editor control."
+    },
+    {
+      "ac": "AC8",
+      "priority": "P1",
+      "existing": [
+        "E2E001-009",
+        "15.1-E2E001-006 selected nine behaviors",
+        "15.1-INT001",
+        "15.1-COMP002"
+      ],
+      "assessment": "Essential series persistence/reload/markers, phone360x640 keyboard scope and unsent/unknown retry are explicitly asserted. Inspected inherited assertions cover four actual Schema/Resurser click/drag persisted interval/person hosts, two keyboard/dialog cancel/focus hosts, five-view/filter/period/toolbar agreement, own-agenda/denied role and numeric capacity/zero budget/hidden-demand drilldown. Matrix qualifies seven original hosts plus separate successorINT001/COMP0022P; never invent a single nine-pass run or infer exhaustive visual coverage."
+    }
+  ],
+  "gaps": [
+    {
+      "kind": "deferred-release-validation",
+      "item": "Exhaustive five-view/gesture/device combinations and screenshot/visual comparison",
+      "owner": "QA/UX",
+      "status": "deferred",
+      "evidence": "Current matrix and Oct19 development-completion policy; scoped essential host/phone receipts do not establish the expanded release matrix.",
+      "next_action": "Before release execute remaining view/device combinations and review actual screenshot differences."
+    },
+    {
+      "kind": "deferred-release-validation",
+      "item": "Manual accessibility, daylight readability and exploratory scheduling review",
+      "owner": "QA/UX",
+      "status": "deferred",
+      "evidence": "Current matrix; selected keyboard/focus/phone and SSR assertions do not establish manual accessibility certification.",
+      "next_action": "Before release record keyboard/screen-reader/zoom/daylight walkthroughs and triage consequential failures."
+    },
+    {
+      "kind": "deferred-release-validation",
+      "item": "Representative scheduling performance thresholds and workloads certification",
+      "owner": "Product/Architect",
+      "status": "deferred",
+      "evidence": "Current matrix; configured narrow pilot CI is distinct from representative Scheduling/full-page/release performance.",
+      "next_action": "Agree representative recurrence/tenant workloads and thresholds, measure production build, and record acceptance before release."
+    }
+  ],
+  "essential_additive_gap_count": 0,
+  "framework_adoption": {
+    "status": "separate-framework-task",
+    "playwright_utils_flag": true,
+    "package_installed": false,
+    "two_gate_mandate_binds": false,
+    "intended_pattern": "Separately scoped framework adoption would install @seontechnologies/playwright-utils, compose one merged fixture entry point, wire auth-session provider and network-error-monitor, and assess actual Next-action/CDP observation without weakening independent SQL proof or original-response-loss semantics.",
+    "current_action": "Preserve established guarded resourcePage/bookingSeries fixtures. No dependency/config/framework migration, unavailable import, synthetic endpoint or HAR success replacement.",
+    "pact": "N/A: no independent consumer/provider boundary. No Pact broker/tool invocation."
+  },
+  "playwright_utils_deviations": [
+    {
+      "file": "tests/e2e/booking-series.e2e.spec.ts",
+      "line": 7,
+      "reason": "Existing explicit package-absence note; tests import established bookingSeries fixture and real sign-in. Absent package closes mandate gate; no new vanilla test is emitted."
+    },
+    {
+      "file": "tests/e2e/support/booking-series-atdd.ts",
+      "line": 5,
+      "reason": "Existing explicit package-absence note; scoped fixture composition, actual Next-action/CDP fault observation, SQL polling and owned cleanup remain established bindings. Framework adoption is separate."
+    }
+  ],
+  "release_ready": false,
+  "worker_writes": [
+    "C:/tmp/tea-automate-e2e-tests-2026-10-20-story15-2-high.json"
+  ]
+}
