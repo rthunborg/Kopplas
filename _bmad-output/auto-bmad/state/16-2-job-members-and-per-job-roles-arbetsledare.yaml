@@ -9,11 +9,11 @@ spec_folder: null
 story_id: null
 branch: codex/epic-16-jobs
 status: in-progress
-updated_at: "2026-10-19T17:21:42Z"
+updated_at: "2026-10-19T18:49:42Z"
 started_at: "2026-10-19T17:10:09Z"
 completed_at: null
 active_seconds: 666
-timing_anchor: null
+timing_anchor: 1792435782
 is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
@@ -88,6 +88,7 @@ overrides:
   dependency_deferral: "Defer only genuinely dependent slices with exact contract/path, owner, evidence, unblock condition and later integration/test action; continue available approved work without a whole-E15 or ACK gate."
   ownership: "Use approved E16 allocations and exact story claims; preserve E15 work."
   design_evidence: "Owner-authorized design-system/accessibility/headless defaults; no legacy URLs or observations."
+  story16_2_owner_decision: "2026-10-19: verified direct human answer in recovery task 01a153e5-e143-7d61-b8c7-77b61e334730, turn 01a1557e-e736-71f1-a3fb-a5041dfa80db. Approved zero-or-one Arbetsledare per job; admins/Projektledare appoint/replace; lead manages ordinary crew and planned start/end dates on own job. No leadership delegation, full-card/lifecycle/CRM or independent protected permission expansion."
 constraints:
   - Product implementation requires the approved story plan and manifest compliance.
   - "Use only owned resources and precise path claims; preserve E15 work."
