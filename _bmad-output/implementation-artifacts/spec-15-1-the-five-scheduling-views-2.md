@@ -115,25 +115,6 @@ deferred:
 
 ## Review Triage Log
 
-**Round 2 of 3**
-
-2026-10-19 follow-up: all six configured layers completed on latest R1 fixes and consequential unresolved findings. Original whole-change R1 coverage is qualified and reused under the development completion policy; baseline/kernel/history remain unchanged. Completed broad rounds: 2 of 3; latest-fix-only independent checks do not consume Round 3.
-
-### 2026-10-19 - Follow-up review pass (Round 2)
-- intent_gap: 0
-- bad_spec: 0
-- patch: 1: (high 0, medium 1, low 0)
-- defer: 0
-- reject: 0
-- addressed_findings:
-  - `[medium]` `[patch]` Preserve latest date navigation and actor/tenant-scoped toolbar preferences after an unqualified transport failure. Retain last-confirmed preference identity independently of cleared data/authority; actual different actor/tenant still restores only its own preferences. Added actual-component regressions and extended the essential native abort/retry case.
-
-Blind Hunter and external Sol High independently reported the same reachable bug; one claim/action is counted once. Edge Case Hunter, Verification Gap, Intent Alignment and Security completed with no actionable introduced defect. Packet `.env.epic15.mail-runtime/P7-review-round2-225af940-71fe-4e27-9def-165f4c0c7374/` retains all six ORIGINAL reports and completion records, exact fix diff and input hashes. The external reviewer ran once: trailing CMD type failed native1 with `The system cannot find the file specified.`; original -o report643B/SHA256 `2fdae6617f65784db4233edf619176c2dd7a0781fe8c387359243fd8ec8779f3` was recovered by native0 file read, no relaunch. Follow-up score3 (one medium patch), recommendation false, loop index0; two original process deferrals and oversized warning unchanged.
-
-Current source checkpoint `0f56d487f96185f111d3378f2807b89c02dc9b81`: actual-component/prefs/read26PASS/0FAIL/0SKIP; local TypeScript, focused ESLint, production build, source/built containment native0. Fresh CI39282080632 attempt1 exact0f56 completed/success: all five required jobs actual completed/success; units2860PASS/0FAIL/cancel/skip; REQUIRED DB1737PASS/0FAIL/1explicitStorageSKIP across145files, RLS752/50 non-additive subset; isolated sameStorage1PASS/0FAIL/0SKIP; Auth7PASS/0FAIL/0SKIP/flaky/retry. Required executed steps passed; optional exhaustive-browser step and release/diagnostic lanes remain skipped, not covered. Initial stale job/check-run metadata and two CLI escape-output refusals are retained; four no-cache direct Auth/DB job/check-run responses now prove completed/success, no missing conclusion inferred. CI packet `.env.epic15.mail-runtime/standard-ci-0f56d487-evidence/round2-225af940/` summary16516B/SHA256 `fd534b760a2b14306af232587e1cdbec10ed3c4dfb24668742fece01ceff000c`; manifest117entries19677B/SHA256 `e088dce087fab153d25d5cb86a2702a86c87ae031cfccdfdbb705defd7bf3f56`.
-
-Independent High latest-fix review, narrow native-test addendum and ten-prior-case bounded reuse qualification passed. New native read-recovery case at current BUILD_ID `nesAf7djR9Q3ACkckK_pa` passed1/0/0/retry0/test5528ms: two observed outgoing aborts, date14 navigation while failed, strict authority/data clearing, actual Retry preserving date14/Job/exact3IDs/error0. Ten other prior essential cases are qualified individually across the changed Workspace, not assumed unchanged or newly executed. Current essential11 =4f69+5c950+1preferences96eee+1current0f56; all SIX command history retains12PASS/4FAIL/7serialSKIP. No fresh11 run, whole failed-command success, native final-page/server-returned IO or extra RLS credit is claimed. Final independent frozen-artifact provenance review and Root delivery_gate remain required before terminal done.
-
 **Round 1 of 3**
 
 Code-review rounds completed: 1 of 3. Preparation/readiness and prior focused reviews remain separate; they did not consume broad rounds.
@@ -159,6 +140,25 @@ Code-review rounds completed: 1 of 3. Preparation/readiness and prior focused re
   - `[low]` `[patch]` Resolved actual overlapping latest-read orchestration regression; actual production-caller regression added.
 
 All six configured layers completed. The original external reviewer succeeded; its forward-slash CMD report read failed and the same immutable report was recovered with a native-zero backslash-path read, without a reviewer relaunch or new round. High security found no issue. The fixed delta received independent High security and behavior regression review; both returned no findings. Author checks: 54 focused cases passed/0 failed/skipped, final affected component check 7/0/0; nonincremental TypeScript, lint, production build and source/built containment native0. Initial fixture and lint refusals remain retained. Follow-up score: 3×10+1=31, so follow-up is recommended. New DB/JWT assertions, the selected eleven current essential native cases and exact-head full standard CI remain pending. This in-review source checkpoint is not development completion or release readiness.
+
+**Round 2 of 3**
+
+2026-10-19 follow-up: all six configured layers completed on latest R1 fixes and consequential unresolved findings. Original whole-change R1 coverage is qualified and reused under the development completion policy; baseline/kernel/history remain unchanged. Completed broad rounds: 2 of 3; latest-fix-only independent checks do not consume Round 3.
+
+### 2026-10-19 — Review pass
+- intent_gap: 0
+- bad_spec: 0
+- patch: 1: (high 0, medium 1, low 0)
+- defer: 0
+- reject: 0
+- addressed_findings:
+  - `[medium]` `[patch]` Preserve latest date navigation and actor/tenant-scoped toolbar preferences after an unqualified transport failure. Retain last-confirmed preference identity independently of cleared data/authority; actual different actor/tenant still restores only its own preferences. Added actual-component regressions and extended the essential native abort/retry case.
+
+Blind Hunter and external Sol High independently reported the same reachable bug; one claim/action is counted once. Edge Case Hunter, Verification Gap, Intent Alignment and Security completed with no actionable introduced defect. Packet `.env.epic15.mail-runtime/P7-review-round2-225af940-71fe-4e27-9def-165f4c0c7374/` retains all six ORIGINAL reports and completion records, exact fix diff and input hashes. The external reviewer ran once: trailing CMD type failed native1 with `The system cannot find the file specified.`; original -o report643B/SHA256 `2fdae6617f65784db4233edf619176c2dd7a0781fe8c387359243fd8ec8779f3` was recovered by native0 file read, no relaunch. Follow-up score3 (one medium patch), recommendation false, loop index0; two original process deferrals and oversized warning unchanged.
+
+Current source checkpoint `0f56d487f96185f111d3378f2807b89c02dc9b81`: actual-component/prefs/read26PASS/0FAIL/0SKIP; local TypeScript, focused ESLint, production build, source/built containment native0. Fresh CI39282080632 attempt1 exact0f56 completed/success: all five required jobs actual completed/success; units2860PASS/0FAIL/cancel/skip; REQUIRED DB1737PASS/0FAIL/1explicitStorageSKIP across145files, RLS752/50 non-additive subset; isolated sameStorage1PASS/0FAIL/0SKIP; Auth7PASS/0FAIL/0SKIP/flaky/retry. Required executed steps passed; optional exhaustive-browser step and release/diagnostic lanes remain skipped, not covered. Initial stale job/check-run metadata and two CLI escape-output refusals are retained; four no-cache direct Auth/DB job/check-run responses now prove completed/success, no missing conclusion inferred. CI packet `.env.epic15.mail-runtime/standard-ci-0f56d487-evidence/round2-225af940/` summary16516B/SHA256 `fd534b760a2b14306af232587e1cdbec10ed3c4dfb24668742fece01ceff000c`; manifest117entries19677B/SHA256 `e088dce087fab153d25d5cb86a2702a86c87ae031cfccdfdbb705defd7bf3f56`.
+
+Independent High latest-fix review, narrow native-test addendum and ten-prior-case bounded reuse qualification passed. New native read-recovery case at current BUILD_ID `nesAf7djR9Q3ACkckK_pa` passed1/0/0/retry0/test5528ms: two observed outgoing aborts, date14 navigation while failed, strict authority/data clearing, actual Retry preserving date14/Job/exact3IDs/error0. Ten other prior essential cases are qualified individually across the changed Workspace, not assumed unchanged or newly executed. Current essential11 =4f69+5c950+1preferences96eee+1current0f56; all SIX command history retains12PASS/4FAIL/7serialSKIP. No fresh11 run, whole failed-command success, native final-page/server-returned IO or extra RLS credit is claimed. Final independent frozen-artifact provenance review and Root delivery_gate remain required before terminal done.
 
 ## Design Notes
 
