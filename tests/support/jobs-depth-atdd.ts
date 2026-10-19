@@ -8,7 +8,10 @@
  */
 import type { Command } from "@/server/commands/envelope";
 import type { BookingFixture, DurableRow } from "./bookings-atdd";
+import * as t from "../factories/tenants";
 import type { TestServerClient } from "../factories/tenants";
+import { createJob } from "@/server/commands/jobs";
+import { markQuoteVersionSent, acceptQuoteAndCreateJob } from "@/server/commands/quotes";
 
 export const jobDepthTables = ["jobs", "job_members", "job_required_work_roles", "job_access_windows", "job_dependencies"] as const;
 export type JobCardInput = {
@@ -56,12 +59,26 @@ export async function invokeJobCard(client: TestServerClient, operation: "create
     updateJobCard: Command<unknown, { jobId: string }>;
   };
   const { runCommand } = await import("@/server/commands/envelope");
+  const diagnosticClient = new Proxy(client, { get(target, key) {
+    if (key === "rpc") return async (name: string, args: Record<string, unknown>) => {
+      const reply = await target.rpc(name, args);
+      const code = reply.error?.code;
+      if ((name === "snapshot_job_card" || name === "finalize_job_card") && typeof code === "string"
+        && /^[0-9A-Z]{5}$/.test(code)
+        && !["42501", "23503", "23514", "22P02", "22007", "22008", "22003", "BK409"].includes(code)) {
+        // Only the closed RPC name and validated SQLSTATE leave this test adapter.
+        console.error(`E16 ${name} SQLSTATE ${code}`);
+      }
+      return reply;
+    };
+    const value = Reflect.get(target, key, target);
+    return typeof value === "function" ? value.bind(target) : value;
+  } });
   return runCommand(operation === "create" ? commands.createJobCard : commands.updateJobCard,
-    { client: client as never, input, correlationId });
+    { client: diagnosticClient as never, input, correlationId });
 }
 
 export async function createJobsDepthFixture() {
-  const t = await import("../factories/tenants");
   const { adminQuery } = await import("../factories/admin-sql");
   const { assertLocalStack } = await import("./test-env");
   assertLocalStack();
@@ -87,7 +104,6 @@ export async function createJobsDepthFixture() {
     const { seedBookingParents, bookingInput, bookingCommand } = await import("./bookings-atdd");
     const parents = await seedBookingParents(base.tenantA.id);
     const { runCommand } = await import("@/server/commands/envelope");
-    const { createJob } = await import("@/server/commands/jobs");
     async function basic(title: string, foreign = false): Promise<JobHandle> {
       const customer = foreign ? await t.adminInsertCustomer({ tenant_id: base.tenantB.id,
         customer_type: "company", display_name: "Foreign workshop" }) : parents.customerId;
@@ -119,7 +135,6 @@ export async function createJobsDepthFixture() {
     async function acceptedJob(): Promise<JobHandle> {
       // Preserve actual original send/accept signatures and IDs; E16 only adds type/safe read discrimination.
       const { establishCurrentQuotePdf } = await import("./quote-pdf");
-      const { markQuoteVersionSent, acceptQuoteAndCreateJob } = await import("@/server/commands/quotes");
       const customerId = await t.adminInsertCustomer({ tenant_id: base.tenantA.id,
         customer_type: "company", display_name: "Accepted source customer" });
       await adminQuery("update public.customers set email=$2 where id=$1", [customerId, `e16-${crypto.randomUUID()}@example.test`]);

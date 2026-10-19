@@ -466,9 +466,26 @@ A focused inspection of CASE comparisons in the two new migrations found no seco
 
 Private log: C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39271273236-db-startup.log. Only the safe SQL error, migration/function/line and statement context were reported; credentials and the raw log were not published. This grammar-only patch and the refreshed trail return to the same High reviewer for a narrow startup-fix/regression check. Required runtime gates, delivery evidence and development completion remain open.
 
+## Focused CI runtime-fix batch 3 — 2026-10-19
+
+After the same High reviewer's narrow startup-fix approval, root pushed d56281f5a9d5db5feab5200d25a32a139909d84f and dispatched standard CI 39272905198 with release_validation=false. Startup/reset succeeded. Recovery-Storage job 118130883258 passed its one actual native assertion. DB job 118130883686 executed 1,546 assertions: 1,535 passed and 11 failed; of 1,752 total, 206 were pending and none todo. Browser job 118130884092 reported seven passing authentication cases and four failing Jobs cases. All four Jobs failures occurred in fixture setup before their UI journeys, not in a passing or deferred release lane.
+
+The native DB artifact full-integration.json raw SHA256 is abb42cf557ddd240c916514bf35aaaac441d4129baf49a53826ce0e24f398e87. Its failure groups are eight positive enriched-card cases (job-booking-facts: five; jobs-depth command: two; jobs-depth RLS: one), one old booking receipt version assertion and two old role-aware policy/capability assertions. The 206 pending comprise 205 H4 assertions behind a failed beforeAll and the DB lane's separately owned recovery assertion. The real signed-card protocol-negative case passed and confirmed finalize was reached; My Jobs passed all three actual assertions. None of those passes proves the positive save/refresh cases.
+
+Root allocated the following bounded repair after this evidence, without a blind retry:
+
+- The H4 own work-role INSERT at cross-tenant-isolation.rls.test.ts:450 omitted required cost_rate_ore and sell_rate_ore. It now supplies synthetic integer-ore rates matching the existing booking fixture. Both own/foreign real child fixtures and every existing assertion remain. The beforeAll failure did not execute any of the 205 H4 assertions.
+- The four browser failures reported createRoleAwarePhaseAFixture is not a function at jobs-depth-atdd.ts's native dynamic factory-facade import. That same helper now statically imports the existing tenant factory facade and the explicitly used jobs/quotes command bindings, following the existing bookings-atdd static pattern. Database work still occurs only inside invoked fixture functions; no new endpoint, provider or module-level database operation was added.
+- finalize_job_card declared local x while its conflict DELETE/INSERT used the SQL set alias x. Batch 3 renames the checked loop value to v_conflict and uses explicit conflict_row(value) columns. PostgreSQL documents ambiguous PL/pgSQL variable/column resolution as an error (https://www.postgresql.org/docs/current/plpgsql-implementation.html). SQLSTATE 42702 as the shared native card failure cause remains INFERRED: the existing command boundary returned SERVER_ERROR without exposing the original code. A source-only inverse transformation reproduced the reviewed migration's raw SHA exactly, bounding this patch to those names; actual successful persistence still requires new CI. The existing test-only command adapter now emits only a hardcoded allowed card RPC name and a validated five-character SQLSTATE for an unexpected SQL failure. It prints no message, detail, payload, identity, proof, credential or raw error.
+- Root additionally allocated tests/integration/commands/booking-editor.int.test.ts and tests/integration/rls/role-aware-phase-a-surface.atdd.int.test.ts. The former's expected receipt version is now v3; the explicit correctly signed v2 rejection remains in job-booking-facts (including the already executed protocol-negative case). The latter checks delegated job_can_read authority plus actual relationship access instead of assuming inline role text and no ViewAssigned grant. Other module role/catalog checks retain their previous predicates. Navigation admission and unassigned row admission remain distinct, and real member-positive, foreign, unassigned and archived-member negatives are asserted.
+
+Focused checks on this repair: ESLint of the four changed TypeScript helper/test files, native 0 with no diagnostics (kopplas-e16-ci-runtime-fix-lint.log); proper absolute C:/nvm4w/nodejs/node.exe and worktree TypeScript --noEmit, native 0 with zero errors (kopplas-e16-ci-runtime-fix-tsc.log); Playwright test tests/e2e/jobs/jobs-depth.e2e.spec.ts --list, native 0 with four collected, zero executed (kopplas-e16-ci-runtime-fix-collection.log). An initial lint command named a nonexistent Program Files Node executable and did not run; one correction used the discovered executable. No unchanged broad unit/build rerun or local stack fallback was performed.
+
+Private runtime logs remain under the temporary directory as kopplas-e16-ci39272905198-db-failed.log and kopplas-e16-ci39272905198-e2e-job.log; raw logs and credentials were not published. Root owns the next independently reviewed head and unique CI receipt. The sole author trail and post-write raw-hash inventory are refreshed, now 49 files including the two admitted existing tests, still nine new files. Same-reviewer narrow causal-fix review, positive DB/RLS/full H4/browser acceptance and delivery evidence remain open.
+
 ## Suggested Review Order
 
-Author: the Sol High implementation author, incorporating the recorded P6 author's baseline-preservation decisions. Refreshed after focused CI startup-fix batch 2 against checkpoint 41463a2224c9197ee53195d6df03ac82375f4aeb plus the one-line SQL grammar repair; source intent baseline c47b268 is preserved. Runtime acceptance and narrow independent follow-up remain outstanding.
+Author: the Sol High implementation author, incorporating the recorded P6 author's baseline-preservation decisions. Refreshed after focused CI runtime-fix batch 3 against reviewed/pushed checkpoint d56281f5a9d5db5feab5200d25a32a139909d84f plus the six-file causal repair below; source intent baseline c47b268 is preserved. Runtime acceptance of these repairs and the same reviewer's narrow independent follow-up remain outstanding.
 
 ### Reach the personal job flow without expanding row authority
 
@@ -481,7 +498,7 @@ The existing manager list and minimum-input creation remain intact; the enriched
 
 ### Keep enriched persistence and derived warnings one transaction
 
-The new command leaves both original APIs unchanged and accepts only the bounded enriched value object. SQL owns canonicalization/current-row authority; a separate proof domain binds the server's sole-engine result before atomic persistence and audit.
+The new command leaves both original APIs unchanged and accepts only the bounded enriched value object. SQL owns canonicalization/current-row authority; a separate proof domain binds the server's sole-engine result before atomic persistence and audit. Batch 3 separates the PL/pgSQL conflict variable from explicitly qualified SQL rows without changing that transaction.
 
 - `src/features/jobs/job-card-domain.ts:59` â€” `validateJobCardInput`: reject smuggling and normalize bounded children.
 - `src/server/commands/jobs/save-job-card.ts:24` â€” `snapshot_job_card`: enter the checked canonical proposal flow.
@@ -506,4 +523,13 @@ AC04/09/10 retain real enriched/original API and exact-child assertions. AC05 no
 - `src/components/jobs/JobCardForm.tsx:109` â€” `setSaved(false)`: include button-only access-window edits in that transition.
 - `tests/e2e/jobs/jobs-depth.e2e.spec.ts:162` â€” `16.1-E02`: assert retry-body equality and successive durable saves without reload.
 
-Evidence: see Executed evidence and limits and the two focused fix batches above for commands, counts, logs and revision provenance. CI 39271273236 failed PostgreSQL startup before tests; the operation guard grammar correction at migration line 343 needs real compile evidence from the next reviewed candidate. Required full DB/RLS, recovery-Storage and essential browser execution plus narrow independent follow-up remain open; exhaustive visual/manual work is explicitly deferred release validation. No development-complete or release-ready claim is made.
+### Repair executed failures without weakening the gates
+
+Batch 3 uses static bindings at the existing lazy fixture invocation boundary, supplies required synthetic H4 rates, and reconciles the two old test contracts with approved v3 and relationship-based jobs access. Other module checks and all H4 assertions remain; the jobs test adds real member, unassigned, archived-member and foreign-tenant read checks.
+
+- `tests/support/jobs-depth-atdd.ts:11` — `import * as t`: resolve the factory facade through Playwright's static transform.
+- `tests/integration/rls/cross-tenant-isolation.rls.test.ts:450` — `cost_rate_ore,sell_rate_ore`: seed a valid own role before all 205 H4 assertions.
+- `tests/integration/rls/role-aware-phase-a-surface.atdd.int.test.ts:274` — `assigned capability needs a current relationship`: verify actual relationship scope with ordinary JWT clients.
+- `tests/integration/commands/booking-editor.int.test.ts:101` — `booking-conflicts-v3`: expect the current receipt engine; signed old-engine rejection remains in job-booking-facts.
+
+Evidence: see Executed evidence and limits and all three focused fix batches for commands, counts, logs and revision provenance. CI 39272905198 proved startup/schema replay and recovery-Storage (1/1), but DB assertions failed 11 and 206 remained pending, while all four essential Jobs browser cases failed fixture setup. These are failed/open acceptance gates, not source-only evidence or passing coverage. This repair passed focused ESLint, proper absolute TypeScript and four-case browser collection; the SQL inverse-hash check bounds the change to names, not runtime correctness. New exact-head CI must prove successful persistence, all H4 obligations and essential browser journeys. Exhaustive visual/manual work remains deferred release validation; no development-complete or release-ready claim is made.

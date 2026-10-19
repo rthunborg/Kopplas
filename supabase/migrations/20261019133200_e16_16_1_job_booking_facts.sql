@@ -323,7 +323,7 @@ end $$;
 create function public.finalize_job_card(p_tenant_id uuid,p_actor_id uuid,p_correlation_id uuid,p_command_id uuid,
  p_job_id uuid,p_candidate_id uuid,p_payload jsonb,p_claims jsonb,p_output text,p_signature text)
 returns jsonb language plpgsql volatile security definer set search_path='' as $$
-declare p jsonb; replay jsonb; facts jsonb; secret text; output jsonb; x jsonb; issued timestamptz; expires timestamptz;
+declare p jsonb; replay jsonb; facts jsonb; secret text; output jsonb; v_conflict jsonb; issued timestamptz; expires timestamptz;
  result jsonb; digest text;
 begin
  perform public.booking_detection_gate_internal(p_tenant_id,p_actor_id);
@@ -355,11 +355,11 @@ begin
  if p_claims->>'factDigest' is distinct from encode(extensions.digest(facts::text,'sha256'),'hex') then return jsonb_build_object('kind','stale'); end if;
  -- Validate persistence references, never reimplement detector rules in SQL.
  output:=public.booking_conflict_output_internal(p_tenant_id,null,null,p_output);
- for x in select value from jsonb_array_elements(output) loop
+ for v_conflict in select value from jsonb_array_elements(output) loop
   if not exists(select 1 from public.bookings b join public.booking_assignees a on a.tenant_id=b.tenant_id and a.booking_id=b.id
-    where b.tenant_id=p_tenant_id and b.id=(x->>'booking_id')::uuid and b.status='planned' and a.person_profile_id=(x->>'affected_person_profile_id')::uuid)
-   or (x->>'related_booking_id' is not null and not exists(select 1 from public.bookings b join public.booking_assignees a on a.tenant_id=b.tenant_id and a.booking_id=b.id
-    where b.tenant_id=p_tenant_id and b.id=(x->>'related_booking_id')::uuid and b.status='planned' and a.person_profile_id=(x->>'affected_person_profile_id')::uuid))
+    where b.tenant_id=p_tenant_id and b.id=(v_conflict->>'booking_id')::uuid and b.status='planned' and a.person_profile_id=(v_conflict->>'affected_person_profile_id')::uuid)
+   or (v_conflict->>'related_booking_id' is not null and not exists(select 1 from public.bookings b join public.booking_assignees a on a.tenant_id=b.tenant_id and a.booking_id=b.id
+    where b.tenant_id=p_tenant_id and b.id=(v_conflict->>'related_booking_id')::uuid and b.status='planned' and a.person_profile_id=(v_conflict->>'affected_person_profile_id')::uuid))
    then raise exception 'job proof denied' using errcode='42501'; end if;
  end loop;
  result:=jsonb_build_object('jobId',p_candidate_id);
@@ -391,10 +391,10 @@ begin
   select p_tenant_id,p_candidate_id,(value#>>'{}')::uuid from jsonb_array_elements(p->'dependencyJobIds');
  -- Complete signed tenant output retains identical workflow identities, reopens changed identities.
  delete from public.booking_conflicts c where c.tenant_id=p_tenant_id and not exists(
-  select 1 from jsonb_array_elements(output) x where x->>'natural_key'=c.natural_key);
+  select 1 from jsonb_array_elements(output) as conflict_row(value) where conflict_row.value->>'natural_key'=c.natural_key);
  insert into public.booking_conflicts(tenant_id,booking_id,related_booking_id,affected_person_profile_id,conflict_type,starts_at,ends_at,natural_key)
-  select p_tenant_id,(x->>'booking_id')::uuid,(x->>'related_booking_id')::uuid,(x->>'affected_person_profile_id')::uuid,
-   x->>'conflict_type',(x->>'starts_at')::timestamptz,(x->>'ends_at')::timestamptz,x->>'natural_key' from jsonb_array_elements(output) x
+  select p_tenant_id,(conflict_row.value->>'booking_id')::uuid,(conflict_row.value->>'related_booking_id')::uuid,(conflict_row.value->>'affected_person_profile_id')::uuid,
+   conflict_row.value->>'conflict_type',(conflict_row.value->>'starts_at')::timestamptz,(conflict_row.value->>'ends_at')::timestamptz,conflict_row.value->>'natural_key' from jsonb_array_elements(output) as conflict_row(value)
   on conflict(tenant_id,natural_key) do nothing;
  perform public.story_11_2_record_audit_event_internal(p_tenant_id,p_actor_id,
   case when p_job_id is null then 'job.card.create' else 'job.card.update' end,
