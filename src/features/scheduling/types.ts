@@ -2,6 +2,7 @@ import type { WorkShift } from "../resources/work-hours";
 
 /** Frozen, authoritative facts only. No workflow acceptance or inferred job data. */
 export type SchedulingBooking = {
+  readonly jobId?: string | null;
   readonly id: string; readonly startsAt: string; readonly endsAt: string;
   readonly allDay: boolean; readonly status: "planned" | "cancelled"; readonly assigneeIds: readonly string[];
 };
@@ -26,8 +27,13 @@ export type SchedulingFacts = {
   readonly calendarDays: readonly { readonly date: string; readonly variant: string; readonly reductionPercent?: number }[];
   /** null and absent optional fields mean unavailable, never verified compliance. */
   readonly jobInputs: null | { readonly accessWindows?: readonly { readonly startsAt: string; readonly endsAt: string }[]; readonly requiredWorkRoleIds?: readonly string[] };
+  /** Complete authoritative sets, selected by each evaluated booking's job identity. */
+  readonly jobInputSets?: readonly JobSchedulingInputs[];
   readonly rules: SchedulingRules;
 };
+export type JobSchedulingInputs = { readonly jobId: string;
+  readonly requiredWorkRoleIds: readonly string[] | null;
+  readonly accessWindows: readonly { readonly startsAt: string; readonly endsAt: string }[] | null };
 export type ConflictType = "double_booking" | "over_capacity" | "outside_work_hours" | "outside_access_window" | "competence_missing";
 export type SchedulingConflict = {
   readonly naturalKey: string; readonly conflictType: ConflictType; readonly bookingIds: readonly string[];

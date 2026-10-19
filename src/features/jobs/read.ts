@@ -26,6 +26,7 @@
  * only; no pnr is ever selected here).
  */
 import { createSupabaseServerClient } from "@/server/db/supabase-server-client";
+import { evaluateJobDependency } from "./dependency-warnings";
 import type {
   JobDetail,
   JobDetailReadResult,
@@ -55,6 +56,7 @@ export { JOB_STATUSES } from "./types";
 /** The minimal RLS-client read surface the job read layer drives (structurally satisfied by the
  * real `@supabase/ssr` server client AND the test anon-key client). */
 export type JobReadClient = {
+  rpc?: (name: string, args?: Record<string, unknown>) => PromiseLike<{data: unknown; error: unknown}>;
   from(table: string): {
     select(columns: string): {
       eq(
@@ -123,7 +125,7 @@ export async function readJobList(
     const { data, error } = await client
       .from("jobs")
       .select(
-        "id, title, status, planned_start_date, planned_end_date, customer_id, updated_at, quote_version_id, customers(display_name), quote_versions(quote_number, quote_id)",
+        "id, type, title, status, planned_start_date, planned_end_date, customer_id, updated_at, quote_version_id, customers(display_name), quote_versions(quote_number, quote_id)",
       )
       .is("archived_at", null)
       .order("updated_at", { ascending: false });
@@ -142,6 +144,7 @@ export async function readJobList(
               | null);
         return {
           id: String(r.id),
+          type: r.type === "projekt" ? "projekt" : "order",
           title: str(r.title),
           status: (str(r.status) as JobStatus) ?? "created",
           plannedStartDate: str(r.planned_start_date),
@@ -216,6 +219,29 @@ export async function readJobDetail(
   client: JobReadClient,
   jobId: string,
 ): Promise<JobDetail | null> {
+  let operational: Partial<JobDetail> = {};
+  if (client.rpc) {
+    const {data, error} = await client.rpc("read_job_cards", {p_personal: false, p_job_id: jobId});
+    if (error || !Array.isArray(data)) throw new Error("readJobDetail: operational read failed");
+    if (!data.length) return null;
+    const row = data[0] as JobDetail & {dependencies: {id: string; plannedEndDate: string | null}[]};
+    operational = { type: row.type, card: row.card, entitlement: row.entitlement,
+      entitlements: {withheld: row.entitlement?.protectedMoney ? [] : ["acceptedPriceOre", "sourceSentTotalOre"]},
+      facilityName: row.facilityName, contactName: row.contactName, location: row.location,
+      dependencyWarnings: (row.card?.dependencyJobIds ?? []).map((id) => evaluateJobDependency({prerequisiteJobId: id,
+        dependentJobId: row.id, prerequisitePlannedEnd: row.dependencies.find((d) => d.id === id)?.plannedEndDate ?? null,
+        dependentPlannedStart: row.plannedStartDate})) };
+    if (!row.entitlement?.protectedMoney || !row.entitlement.canEdit) {
+      // Build an operational DTO without ever selecting acceptance values or broad CRM/files.
+      return {id: row.id, title: row.title, status: row.status, plannedStartDate: row.plannedStartDate,
+        plannedEndDate: row.plannedEndDate, customerId: row.customerId, currentCustomerName: row.currentCustomerName,
+        quoteAcceptanceId: row.quoteAcceptanceId, quoteVersionId: row.quoteVersionId, quoteId: null, quoteNumber: null,
+        commitmentCustomerName: null, commitmentFacilityName: null, commitmentContactName: null,
+        channel: null, acceptedAt: null, adjustmentReason: null, evidenceFileId: null, evidenceReference: null,
+        notes: null, files: [], events: [], ...operational,
+        ...(row.entitlement?.protectedMoney ? {acceptedPriceOre: oreNumber(row.acceptedPriceOre), sourceSentTotalOre: oreNumber(row.sourceSentTotalOre)} : {})};
+    }
+  }
   // The `jobs` row (own-tenant RLS; the current-customer display via the embedded relationship).
   const { data: jobRows, error: jobErr } = await client
     .from("jobs")
@@ -310,6 +336,7 @@ export async function readJobDetail(
   }));
 
   return {
+    ...operational,
     id: String(jobRaw.id),
     title: str(jobRaw.title),
     status: (str(jobRaw.status) as JobStatus) ?? "created",

@@ -430,3 +430,14 @@ existing AC, recorded so it is not re-triaged a third time.
   summary: Upstream PR-feedback mutable-workspace gate attestation candidate
   evidence: Scope: Byte-unchanged versus actual origin/main; commit ba2dcdcff1e0ef3c5c63da7f721b8507f0dde358; outside current scheduling repair Owner: PR-feedback controller maintainer Evidence: .github/workflows/pr-feedback.yml:218; external report; unchanged upstream-source comparison Next action: Focused upstream process-security qualification of test-time workspace mutation and immutable gate provenance before changing that controller; no scheduling source repair.
   severity: medium
+
+## Deferred from: build-auto review of 16-1-jobs-depth-activation-container-evolution-and-my-jobs (2026-10-19)
+
+- source_spec: `spec-16-1-jobs-depth-activation-container-evolution-and-my-jobs.md`
+  summary: Exhaustive role/device/browser matrices beyond the four essential Jobs journeys.
+  evidence: Owner: E16 UI/release-validation owner. Status: deferred under the 2026-10-19 completion policy. Exact d605295a46634e2c20013638e01c5e2a37ad0779 required Chromium smoke passed 11/11, including all four Jobs journeys on first attempts. Broader matrices and optional release_validation=false skips confer no coverage. Next action: at release stabilization, run release_validation=true and the tracked role/device/browser matrix on the qualified final epic candidate; retain results before release readiness.
+  location: _bmad-output/auto-bmad/delivery/16-1-jobs-depth-activation-container-evolution-and-my-jobs.json
+- source_spec: `spec-16-1-jobs-depth-activation-container-evolution-and-my-jobs.md`
+  summary: Screenshot comparison, visual inspection, representative manual walkthrough and polish.
+  evidence: Owner: E16 UI/release-validation owner. Status: deferred under the 2026-10-19 completion policy. No screenshot-comparison, visual or manual pass is claimed; essential connected 360x640 failure/retry/persistence has actual same-head browser evidence. Next action: before release readiness, retain screenshot comparisons and representative viewport/manual design/accessibility walkthroughs, and resolve consequential defects.
+  location: _bmad-output/auto-bmad/delivery/16-1-jobs-depth-activation-container-evolution-and-my-jobs.json

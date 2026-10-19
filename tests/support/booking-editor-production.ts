@@ -1,7 +1,6 @@
 /** Test adapters use real cookie-client actions, checked SQL, sole detector and signer.
  * Seed expectations use literal intervals/IDs, never the preview being asserted. */
 import { createHash } from "node:crypto";
-import { vi } from "vitest";
 import { adminQuery, adminSession } from "../factories/admin-sql";
 import { bookingInput, bookingCommand, bookingPublicColumns, seedBookingParents,
   type BookingFixture, type BookingInput, type DurableRow } from "./bookings-atdd";
@@ -140,6 +139,7 @@ function reviewDecision(p: Preview, selected: string[]) {
     : { ...EMPTY_BOOKING_DECISION, reviewedLogicalIds: [], selectedLogicalIds: [], receipt: p.receipt };
 }
 async function withClient<T>(client: TestServerClient, run: () => Promise<T>): Promise<T> {
+  const { vi } = await import("vitest");
   const stub = vi.spyOn(clientFactory, "createSupabaseServerClient").mockResolvedValue(client as never);
   try { return await run(); } finally { stub.mockRestore(); }
 }

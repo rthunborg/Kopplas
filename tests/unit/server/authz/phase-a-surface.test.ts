@@ -28,3 +28,11 @@ test("15.1-AC2 scheduling route uses exact existing booking view role unions", (
   for (const role of ["saljare", "ekonomi"] as const) assert.equal(canAccessPhaseARoute([role], "/scheduling"), false);
   assert.equal(canAccessPhaseARoute(["saljare", "montor"], "/scheduling"), true);
 });
+
+// Route admission never substitutes for SQL member/assignee row scope.
+test("16.1 assigned jobs navigation admits Montor direct job routes without unrelated routes", () => {
+  assert.equal(canAccessPhaseARoute(["montor"], "/jobs"), true);
+  assert.equal(canAccessPhaseARoute(["montor"], "/jobs/any-candidate-id"), true);
+  assert.equal(canAccessPhaseARoute(["montor"], "/customers"), false);
+  assert.equal(resolvePhaseANavigation(["montor"]).filter((item) => item.href === "/jobs").length, 1);
+});

@@ -261,3 +261,150 @@ The baseline, review counters and historical failures remain intact. This grants
 no waiver, merge or deployment approval. Coordinator allocation permits only
 independent 15.2 story preparation; the E16 shared-source/schema/fixture claims
 remain reserved until concrete implementation overlap is coordinated.
+
+### October 19 Story 15.2 preparation and prerequisite integration
+
+Story 15.2 preparation was checkpointed at `eb228636`, following independent
+High specification validation against baseline `76f50d38`. That technical PASS
+has not approved implementation: canonical P3 remains open and
+`spec_approved=false` while integrated-source compatibility is established.
+
+Coordinator allocated coherent integration of the completed Epic 16 ancestor
+`26dac3ab539ad54a79916135c53f25931e958d76` into this owned Epic 15 branch.
+Root began a no-commit, no-fast-forward merge after the preparation checkpoint.
+The original High author resolved the authorization-test and deployment-config
+conflicts and supplied proposals for Root's three tracking files. A distinct High
+review passed with zero consequential findings and 35 artifact/provenance
+checks. Root then adopted the exact reviewed proposals and staged all five
+resolutions. Both epics' assertions, ledger histories and sprint states survive;
+15.1 remains `review`, 15.2 `backlog`, and Epic 16/16.1 retain their incoming
+`in-progress`/`review` states. No new recurrence implementation is included.
+
+The integration preserves the existing sensitive booking/job contracts. Both
+incoming migrations retain their exact Git blobs; checkout CRLF bytes differ
+from the LF Git representation without a content change. The imported 16.1
+state records completed development/review phases and passed CI. Its older
+delivery CI prose and committed epic report remain historical; later report
+closure was Coordinator-reported worktree evidence, not newly verified committed
+terminal evidence. None of that substitutes for combined-tree acceptance.
+
+Original targeted review: ignored
+`.env.epic15.mail-runtime/story-15-2-integration-independent-review-20261019/targeted-integration-review-original.md`,
+SHA256 `5cce276b30e584e27c7c37ec4e99b5868fb881dd401ed319f03d8a274c701d63`.
+Root adoption receipt:
+`.env.epic15.mail-runtime/story-15-2-integration-root-adoption-20261019.json`.
+The preparation and integration histories remain distinct. Combined static,
+build, database/RLS, recovery-storage, essential browser and exact-head CI
+verification are pending. The own-branch merge has not been committed; no main
+merge, release-readiness approval, deployment or preview occurred.
+
+Subsequent combined-tree checks passed frozen install, audit, source containment,
+typecheck, production build and built-bundle containment. The aggregate
+`verify:development` command stopped with native exit 2 because ESLint traversed
+archived browser JavaScript in the ignored runtime directory and its formatter
+failed. That original failure is retained. A CLI-only exclusion of that exact
+ignored directory passed lint (zero errors, 17 warnings); the remaining commands
+passed separately: 2,901 unit cases, zero failed, one unexecuted Linux-only xattr
+case, and 43 process cases. Build ID is `KUjVK9V5OWOEgV1NGAS2d`.
+Independent High static-provenance review passed against 1,105 source bindings.
+This is working-tree evidence, not a fresh-clean-checkout claim.
+
+The independently reviewed SQL-only verifier confirmed the exact 102-entry
+baseline, then applied only migrations `20261019133151` and `20261019133200`
+and their ledger records in one transaction. Native exit zero and committed
+readback establish the exact 104-entry result. Sensitive RLS/grant/search-path,
+v3/v1, tenant gate and separate job-card-domain checks passed; synthetic keys,
+helpers, audit fixture and core row counts were preserved. No numeric core row
+counts were emitted. Apply receipt SHA256 is
+`975520b56b8a7eee9f3826c718132bd4b9fdba4a2b4800bf2a7c1367aedf6884`.
+
+The first full required integration run failed: native exit 1, 1,786 total,
+1,719 passed, 47 failed and 20 pending/skipped. All 16 new Epic 16 cases passed.
+The original JSON SHA256 is
+`876e9dedcc52ff8a03d38d60f30d2aeb7cbbdfaae3e00f341cc65f4cdd3ae36f`.
+Read-only diagnosis found image-wide public default ACLs and surplus existing
+authenticated grants on the retained local stack, unlike the canonical test
+baseline, plus connection-slot exhaustion with the host's high worker count.
+RLS remains forced and no authenticated DELETE policy was observed on the
+affected tables; this does not establish a reachable tenant-write bypass.
+A narrowly scoped correction and bounded-concurrency rerun plan are being
+prepared for independent High review. No repair, reset or broad retry has run.
+The failed gate is not waived or relabelled. Pilot and browser execution remain
+held; the own-branch merge is uncommitted and 15.2 approval stays open.
+
+The eight-case essential browser helper received a concrete pre-execution
+normalization finding. Its original author corrected only acceptance of the
+canonical root-slash CDP endpoint while retaining alternate-endpoint and launch
+refusals. A no-connection probe passed four cases with zero skips, and targeted
+independent High revalidation passed. This proves helper readiness only: no
+browser journey, fixture mutation, deployment or release acceptance occurred.
+
+The proposed local baseline correction subsequently received independent High
+PASS with zero findings and 19 checks. Its one-shot transaction removed exactly
+22 surplus authenticated DML capabilities (17 DELETE, three INSERT, two UPDATE)
+and applied three scoped default-ACL revocations verified against the installed
+Supabase CLI's embedded SQL. It preserved intended column grants, other roles,
+non-DML ACLs, policies, catalog, data, synthetic keys and the 104-entry ledger.
+Native exit zero and `baseline-corrected-104-verified` establish confirmed commit
+and readback. Operation receipt SHA256:
+`cb6b683d96803f3c9519c9a42695c8a28566eae12419ee4cc99d8ae6743149b3`.
+It is apply-only: an already-corrected preimage safely refuses, and uncertainty
+requires inspection rather than another correction attempt.
+
+An initial bounded-run shell invocation was refused by `cmd.exe` before pnpm
+or tests executed; native exit 1, empty stdout and no native test report remain
+preserved. This is not a database rerun result. Direct PowerShell invocation then
+started the actual full required suite with `--maxWorkers=2`, retaining every
+test and project selection and all assertions. Its overall native verdict remains pending.
+Twenty-one failures from the first run still lack a proven historical cause;
+this operational correction does not waive them or establish overall acceptance.
+
+The actual bounded full-suite run subsequently passed: native exit zero,
+1,786 total / 1,785 passed / zero failed / one explicit isolated-Storage skip,
+149 files, completed at 18:24:24Z. All 47 previously failed cases and 19 blocked
+setup cases now executed and passed, including all 16 new Epic 16 cases.
+Original native JSON SHA256:
+`f10d1822cbf5a3be3b31cd61caa68761139f754e4da4235a6fb8119cc697954e`.
+Independent High execution/provenance review passed with 24 checks and zero
+findings; it verified the one correction commit, preservation, fresh guard proof,
+unchanged source/index and actual case mappings. This does not isolate each
+historical failure's cause across the two operational changes.
+
+The sequential existing pilot passed (read p95 30.4052 ms); this is its synthetic
+profile, not representative release-performance approval. Post-suite read-only
+verification then confirmed ledger 104, synthetic keys/helpers and v3/v1/grant,
+tenant-gate and separate-card-domain checks without writes. The separate
+isolated Storage proof remains required in fresh exact-head CI.
+
+The first browser command failed before Playwright imported: Windows
+`NODE_OPTIONS` parsing removed backslashes from the quoted preload path. No
+product case, browser connection, canonical setup/teardown or fixture mutation
+occurred; there is no native browser report and no invented skipped-test count.
+All attempt bytes remain in the original packet. A new packet normalizes only
+that preload path to forward slashes and has an actual physical-Node child
+probe for the old failure and corrected success. It awaits targeted High review
+and fresh Root readiness before the eight journeys can execute. App source,
+production build and qualified environment remain unchanged.
+
+The corrected new browser packet subsequently passed all eight selected
+Scheduling001-004 and JobsE01-E04 journeys: native exit zero, one attempt each,
+zero failures, skips, flaky results or retries, 56.08 seconds. Canonical teardown
+completed without warnings and the entire `.auth` path is absent; independent
+database-fixture erasure is not claimed. Native JSON SHA256:
+`4987bf86ecfc3fec7d0916c2fbae8b09b26f52245127387cf453bb14c8eafec3`.
+Distinct High final provenance review passed with 23 checks and zero findings,
+including actual test IDs, fresh readiness (16.394 seconds), owned resources,
+unchanged source/build/environment and preservation of the original failed
+packet. Original report SHA256:
+`629c808d6d4e63dfae9d593c2d2094e0764cb3fee479cb0d3c75aaa3cda9e647`.
+
+Root released its browser `c6382fde-f918-44da-8c4c-21cb8a26e4ce`, production
+server `7e77b62f-8dda-4236-abfd-da6dbf2a25f4` and Compose usage
+`9ac88f44-0bec-4568-8fe1-25a82f8884b4`. All Stop requests returned native zero,
+`ok=true`, `stop_requested`, `verified=false`. These are accepted requests, not
+verified shutdown; saved state is retained with no removal, reset or shutdown
+poll. The local integration source is independently verified for an own-branch
+checkpoint. Fresh exact-head standard CI, including isolated Storage and Auth,
+is still required before final source acceptance. Story 15.2 remains unapproved;
+its original author identified a bounded companion/baseline refresh without a
+kernel or scope change. No main merge, preview, deployment or release claim ran.

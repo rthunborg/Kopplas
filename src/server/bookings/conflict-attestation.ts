@@ -3,7 +3,7 @@ import { createHmac, timingSafeEqual } from "node:crypto";
 
 export const BOOKING_CONFLICT_ATTESTATION_DOMAIN = "elpro.booking-conflicts.attestation.v1";
 // v2 binds complete persisted associations for aggregate capacity participants.
-export const BOOKING_CONFLICT_ENGINE_VERSION = "booking-conflicts-v2";
+export const BOOKING_CONFLICT_ENGINE_VERSION = "booking-conflicts-v3";
 export type ConflictClaims = {
   readonly tenantId: string; readonly actorId: string; readonly operation: "create" | "update";
   readonly commandId: string; readonly bookingId: string; readonly candidateDigest: string;

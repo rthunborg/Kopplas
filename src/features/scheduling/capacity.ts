@@ -44,6 +44,19 @@ export function validateSchedulingFacts(input: SchedulingFacts): void {
     validateLocalDate(day.date); calendar.add(day.date);
   }
   for (const overtime of rules.authorizedOvertime) { if (!people.has(overtime.personId)) throw new Error("Missing overtime person"); bookingRange(overtime); }
+  if (input.jobInputSets !== undefined) {
+    if (!Array.isArray(input.jobInputSets)) throw new Error("Invalid job fact sets");
+    const jobs = new Set<string>();
+    for (const job of input.jobInputSets) {
+      if (!job || typeof job.jobId !== "string" || !job.jobId || jobs.has(job.jobId)) throw new Error("Invalid job fact identity");
+      jobs.add(job.jobId);
+      if (job.requiredWorkRoleIds !== null) validateIds(job.requiredWorkRoleIds);
+      if (job.accessWindows !== null) {
+        if (!Array.isArray(job.accessWindows)) throw new Error("Invalid access windows");
+        for (const window of job.accessWindows) bookingRange(window);
+      }
+    }
+  }
   if (input.jobInputs !== null) {
     if (!input.jobInputs || typeof input.jobInputs !== "object") throw new Error("Invalid optional job facts");
     if (input.jobInputs.accessWindows !== undefined) {

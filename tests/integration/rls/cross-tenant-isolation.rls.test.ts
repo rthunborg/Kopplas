@@ -443,6 +443,12 @@ beforeAll(async () => {
     [fixture.tenantB.id],
   );
   await seedBookingReadRows(fixture.tenantB.id, profileId);
+  const {seedJobDepthChildren} = await import("../../support/jobs-depth-atdd");
+  await seedJobDepthChildren(fixture.tenantB.id, fixture.adminB.id, tenantBJobId, tenantBWorkRoleId);
+  const [{id:ownCustomer}] = await adminQuery<{id:string}>("insert into public.customers(tenant_id,customer_type,display_name) values($1,'company','H4 own job customer') returning id",[fixture.tenantA.id]);
+  const [{id:ownJob}] = await adminQuery<{id:string}>("insert into public.jobs(tenant_id,customer_id,title) values($1,$2,'H4 own job') returning id",[fixture.tenantA.id,ownCustomer]);
+  const [{id:ownRole}] = await adminQuery<{id:string}>("insert into public.work_roles(tenant_id,display_name,cost_rate_ore,sell_rate_ore) values($1,'H4 own role',20000,40000) returning id",[fixture.tenantA.id]);
+  await seedJobDepthChildren(fixture.tenantA.id, fixture.adminA.id, ownJob, ownRole);
   ctx = {
     fixture,
     tenantBAuditId,

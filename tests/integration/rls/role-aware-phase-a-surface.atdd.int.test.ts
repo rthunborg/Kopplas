@@ -147,9 +147,15 @@ describe("Story 11.2 role-aware Phase A surface", () => {
     const cases = TENANT_ROLES.flatMap((role) => TARGETS.map((target) => ({ role, target })));
     expect(cases).toHaveLength(TENANT_ROLES.length * TARGETS.length);
     const policies = await adminQuery<{ tablename: string; policyname: string; qual: string | null }>("select tablename, policyname, qual from pg_policies where schemaname = 'public'");
+    const [jobRead] = await adminQuery<{ definition: string }>(
+      "select pg_get_functiondef('public.job_can_read(uuid,uuid)'::regprocedure) as definition",
+    );
+    expect(jobRead.definition).toContain("auth.uid()");
+    expect(jobRead.definition).toContain("job_has_current_relationship");
     for (const { role, target } of cases) {
       const visibleRoutes = resolvePhaseANavigation([role]).map((item) => item.href);
-      if (target.route) expect(visibleRoutes.includes(target.route)).toBe(canRead(role, target));
+      const canNavigate = canRead(role, target) || (target.module === "jobs" && granted(role, ["jobs", "Jobs.ViewAssigned"]));
+      if (target.route) expect(visibleRoutes.includes(target.route)).toBe(canNavigate);
       if (!target.table) continue;
       const read = target.module === "foundation"
         ? await selectOwnMembership(clients[role], fixture.users[role].id)
@@ -158,10 +164,13 @@ describe("Story 11.2 role-aware Phase A surface", () => {
       expect((read.data ?? []).length > 0).toBe(canRead(role, target));
       const policy = policies.find((row) => row.tablename === target.table && row.policyname === target.policy);
       expect(policy, `${target.table}.${target.policy} must exist in the database catalog`).toBeDefined();
-      expect(policy?.qual ?? "").toContain("has_tenant_role");
+      // Jobs delegates to its current-role AND relationship predicate; other modules retain inline checks.
+      if (target.module === "jobs") expect(policy?.qual ?? "").toContain("job_can_read(tenant_id, id)");
+      const authority = target.module === "jobs" ? jobRead.definition : policy?.qual ?? "";
+      expect(authority).toContain("has_tenant_role");
       if (target.readCapability) {
         for (const allowedRole of TENANT_ROLES.filter((candidate) => granted(candidate, target.readCapability))) {
-          expect(policy?.qual ?? "").toContain(`'${allowedRole}'`);
+          expect(authority).toContain(`'${allowedRole}'`);
         }
       }
     }
@@ -262,12 +271,32 @@ describe("Story 11.2 role-aware Phase A surface", () => {
     expect(sellerDetail.detail?.acceptanceIdByVersionId).toEqual({ [quoteVersionId]: acceptanceId });
   });
 
-  test("[P1] Phase A does not infer job assignment access: only Jobs.ViewAll roles can read the seeded job", async (ctx) => {
+  test("[P1] assigned capability needs a current relationship and never reveals unassigned or foreign jobs", async (ctx) => {
     if (skipUnlessStack(ctx, stackUp)) return;
     for (const role of TENANT_ROLES) {
-      expect(resolveCapability({ roles: [role], module: "jobs", capability: "Jobs.ViewAssigned" }).granted).toBe(false);
+      expect(resolveCapability({ roles: [role], module: "jobs", capability: "Jobs.ViewAssigned" }).granted)
+        .toBe(["tenant_admin", "projektledare", "montor"].includes(role));
       const result = await selectTarget(clients[role], "jobs", targetIds.jobs);
       expect(result.error).toBeNull(); expect((result.data ?? []).length > 0).toBe(granted(role, ["jobs", "Jobs.ViewAll"]));
     }
+    const [{ id: assignedId }] = await adminQuery<{ id: string }>(
+      "insert into public.jobs(tenant_id,customer_id,title) values($1,$2,'Related role-aware job') returning id",
+      [fixture.base.tenantA.id, targetIds.crm],
+    );
+    const [{ id: profileId }] = await adminQuery<{ id: string }>(`insert into public.person_profiles(tenant_id,membership_id)
+      select tenant_id,id from public.tenant_memberships where tenant_id=$1 and user_id=$2 returning id`,
+      [fixture.base.tenantA.id, fixture.users.montor.id]);
+    await adminQuery("insert into public.job_members(tenant_id,job_id,person_profile_id) values($1,$2,$3)",
+      [fixture.base.tenantA.id, assignedId, profileId]);
+    const related = await selectTarget(clients.montor, "jobs", assignedId);
+    expect(related.error).toBeNull(); expect(related.data).toEqual([{ id: assignedId }]);
+    const foreign = await selectTarget(tenantBAdmin, "jobs", assignedId);
+    expect(foreign.error).toBeNull(); expect(foreign.data).toEqual([]);
+    await adminQuery("update public.job_members set archived_at=statement_timestamp() where tenant_id=$1 and job_id=$2",
+      [fixture.base.tenantA.id, assignedId]);
+    const archived = await selectTarget(clients.montor, "jobs", assignedId);
+    expect(archived.error).toBeNull(); expect(archived.data).toEqual([]);
+    const unassigned = await selectTarget(clients.montor, "jobs", targetIds.jobs);
+    expect(unassigned.error).toBeNull(); expect(unassigned.data).toEqual([]);
   });
 });

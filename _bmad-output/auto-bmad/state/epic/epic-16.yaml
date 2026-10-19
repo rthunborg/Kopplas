@@ -1,0 +1,116 @@
+# auto-bmad per-story state — written by scripts/state_update.py (full stable schema;
+# see references/state-and-resume.md). Prose belongs in reports/{key}.md, not here.
+story_key: epic-16
+epic_num: 16
+story_num: null
+story_suffix: ""
+story_source: sprint
+spec_folder: null
+story_id: null
+branch: codex/epic-16-jobs
+status: in-progress
+updated_at: "2026-10-19T17:07:14Z"
+started_at: "2026-10-15T08:50:46Z"
+completed_at: null
+active_seconds: 15085
+timing_anchor: null
+is_first_in_epic: false
+is_last_in_epic: false
+git_mode: remote
+base_branch: main
+selected_phase: build
+selected_role: build-delegate
+selected_profile: standard
+selected_model: gpt-6.1-sol
+selected_effort: high
+selected_host: codex
+selected_tier: subagents
+selected_route: subagent
+escalation_reason: "Automatic sensitive-task escalation: authorization, transactional-integrity"
+routing_ledger:
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Job authorization, assigned-worker money omission and acceptance transactional contract planning\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"readiness\",\"profile\":\"critical\",\"role\":\"specification-author\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Independent High contract recommendation: scope-safe membership foundation, job authorization, structural financial omission and authoritative booking revalidation\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"planning\",\"profile\":\"critical\",\"role\":\"specification-author\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Focused independent High review correction: exact per-booking duration/capacity/window/customer-presence consumer acceptance mapping\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"planning\",\"profile\":\"critical\",\"role\":\"specification-author\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary task uses Low effort\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_triage\",\"profile\":\"light\",\"role\":\"test-risk-triage\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+tea_risk: null
+tea_selected: []
+tea_rationale: null
+epic_story_count: 5
+stories_after_in_epic: null
+completed_phases: [0, 1, 2]
+spec_path: null
+spec_approved: false
+build:
+  status: null
+  blocking_condition: null
+  followup_review_recommended: false
+  review_loop_iteration: 0
+  deferred_count: 0
+  warnings: []
+followup_passes: 0
+hitl_halt: null
+review_unverified: false
+story_trace: null
+legacy_review_resume: false
+legacy_review_iteration: null
+legacy_review_loop_done: false
+legacy_external_review_iterations: null
+legacy_convergence_unverified: false
+legacy_artifact_path: null
+commits: [0586972a, d6a310be, f610bcbd, 11bf2721, bce1436b]
+phase8_steps:
+  trace_gate: null
+  nfr: null
+  test_review: null
+  reconcile: null
+  archive: null
+  retro: null
+gate_decision: null
+gate_iterations: 0
+deferred_work_archived: 0
+retro:
+  doc: null
+  verdict: null
+  open_action_items: 0
+bmad_status_flipped_at: null
+pr_url: null
+ci_run_url: null
+ci_status: unknown
+pr_merged: false
+merge_method: null
+merge_commit: null
+branch_deleted: false
+open_questions: []
+deferred_work:
+  - "[16-1-jobs-depth-activation-container-evolution-and-my-jobs] Exhaustive role/device/browser matrices beyond the four essential Jobs journeys. Owner/evidence/next action: Owner: E16 UI/release-validation owner. Status: deferred under the 2026-10-19 completion policy.\nExact d605295a46634e2c20013638e01c5e2a37ad0779 required Chromium smoke passed 11/11, including all four Jobs journeys on first attempts.\nBroader matrices and optional release_validation=false skips confer no coverage.\nNext action: at release stabilization, run release_validation=true and the tracked role/device/browser matrix on the qualified final epic candidate; retain results before release readiness. Record: _bmad-output/auto-bmad/delivery/16-1-jobs-depth-activation-container-evolution-and-my-jobs.json"
+  - "[16-1-jobs-depth-activation-container-evolution-and-my-jobs] Screenshot comparison, visual inspection, representative manual walkthrough and polish. Owner/evidence/next action: Owner: E16 UI/release-validation owner. Status: deferred under the 2026-10-19 completion policy.\nNo screenshot-comparison, visual or manual pass is claimed; essential connected 360x640 failure/retry/persistence has actual same-head browser evidence.\nNext action: before release readiness, retain screenshot comparisons and representative viewport/manual design/accessibility walkthroughs, and resolve consequential defects. Record: _bmad-output/auto-bmad/delivery/16-1-jobs-depth-activation-container-evolution-and-my-jobs.json"
+blockers: []
+overrides:
+  preflight_sync: Independent High narrow two-path generated sync approved and verified
+  unattended: Authorized by initiating delegation
+  ownership: "Owner-authorized E16 development with the recorded shared allocations and precise story claims; preserve E15 work."
+  concurrent_epics: "Human-authorized E16 concurrently with E15; E16 stories sequential"
+  merge: "No merge or deployment; publish one final Epic 16 PR."
+  design_evidence: "2026-10-15 direct human standing decision: no legacy URL reference/use/evidence; use existing design system/accessibility and maintainable headless defaults for missing UX rules. Zero legacy observations; domain/state/validation/actions/semantic models separated from replaceable usable UI/flow."
+constraints:
+  - "Use only owned E16 resources; E15 scheduling/time/diagnostic resources remain excluded."
+  - "Each later story requires its approved plan, manifest compliance and precise path claims."
+epic_slug: jobs-core
+active_story: 16-2-job-members-and-per-job-roles-arbetsledare
+stories_landed:
+  - 16-1-jobs-depth-activation-container-evolution-and-my-jobs
+stories_skipped: []
+batch_flip_done: false
+base_sha: 8cda24614e77eda33ea31fe4de61af3a19d4759d
+workflow_version: 0.31.0
+readiness_evidence: "_bmad-output/test-artifacts/epic-16/readiness-contracts-2026-10-15.md"
+readiness_evidence_sha256: E75E24522459001E1EA93AD2CBFB2FC503003327052541399386EE196C1C3152
+legacy_oracle_cancelled: true
+legacy_observations: 0
+consumer_transfer_correction: "TR13-TR16 and destination 16.4 AC04-07 are retained in the approved transfer contract. Independent High plan/source/record reviews for 16.1 completed; later consumer acceptance remains owned by its destination story."
+draft_spec_sha256: B2528135E33EF62A5D8DD9BAF98D46D4E2FD942C1550118698CB286D5EF6D1F2
+epic_test_design_status: "Design completed:17risks/70scenario contracts;zero tests executed;no readiness promotion"
+epic_test_design_sha256: 3D7D950F097E952B2F3CB250C1B9188CBE118964700063AD5AA1566519D2A169
+epic_test_design: "_bmad-output/test-artifacts/test-design-epic-16.md"

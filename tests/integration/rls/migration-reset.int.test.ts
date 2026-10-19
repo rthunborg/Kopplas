@@ -352,9 +352,13 @@ describe("Migration reset green — tenant_foundation objects present (AC1 / R-0
       "files.INSERT",
       "files.SELECT",
       "files.UPDATE",
+      "job_access_windows.SELECT",
+      "job_dependencies.SELECT",
       "job_events.INSERT",
       "job_events.SELECT",
       "job_events.UPDATE",
+      "job_members.SELECT",
+      "job_required_work_roles.SELECT",
       "job_runs.SELECT",
       "jobs.INSERT",
       "jobs.SELECT",
@@ -497,7 +501,7 @@ describe("Migration reset green — tenant_foundation objects present (AC1 / R-0
       ]);
     }
     // Resource rows are read through RLS; audited commands are their only mutation surface.
-    for (const t of ["person_profiles", "person_work_hours", "tenant_calendar_days", "bookings", "booking_assignees", "booking_conflicts"]) {
+    for (const t of ["person_profiles", "person_work_hours", "tenant_calendar_days", "bookings", "booking_assignees", "booking_conflicts", "job_members", "job_required_work_roles", "job_access_windows", "job_dependencies"]) {
       expect((cmdsByTable.get(t) ?? []).sort()).toEqual(["SELECT"]);
     }
 
