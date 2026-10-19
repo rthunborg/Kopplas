@@ -9,30 +9,31 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-19T23:10:24Z"
+updated_at: "2026-10-19T23:55:30Z"
 started_at: "2026-10-19T17:01:38Z"
 completed_at: null
-active_seconds: 21393
-timing_anchor: 1792451424
+active_seconds: 24098
+timing_anchor: 1792454130
 is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: followup_review
-selected_role: primary-reviewer
+selected_phase: final_convergence
+selected_role: final-convergence
 selected_profile: standard
 selected_model: gpt-6.1-sol
 selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Automatic sensitive-task escalation: authorization, transactional-integrity"
+escalation_reason: "Automatic sensitive-task escalation: authorization, transactional-integrity; final automatic settling round3of3 following meaningful Round2 High fixes under recorded whole-epic run interpretation"
 routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"followup_review\",\"profile\":\"standard\",\"role\":\"primary-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, transactional-integrity; final automatic settling round3of3 following meaningful Round2 High fixes under recorded whole-epic run interpretation\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"final_convergence\",\"profile\":\"standard\",\"role\":\"final-convergence\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate, trace-advisory]
 tea_rationale: "Recurrence/DST and materialized occurrence mutations with dedupe, tombstones and identity-preserving splits require integrity coverage; long-epic story advisory applies."
@@ -48,7 +49,7 @@ build:
   review_loop_iteration: 0
   deferred_count: 0
   warnings: [oversized]
-followup_passes: 0
+followup_passes: 1
 hitl_halt: null
 review_unverified: false
 story_trace: null
@@ -58,7 +59,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [76f50d38, eb228636, 33c68c5a, eb3da24d, 85755eb7, effbf5e1, 499c5baf, 7ca73633]
+commits: [76f50d38, eb228636, 33c68c5a, eb3da24d, 85755eb7, effbf5e1, 499c5baf, 7ca73633, fe99dbca, a5153188, 3145f16b, ec6226b2]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -75,7 +76,7 @@ retro:
   open_action_items: 0
 bmad_status_flipped_at: null
 pr_url: null
-ci_run_url: "https://github.com/rthunborg/Kopplas/actions/runs/39335595653"
+ci_run_url: "https://github.com/rthunborg/Kopplas/actions/runs/39342433474"
 ci_status: passed
 pr_merged: false
 merge_method: null
@@ -102,11 +103,12 @@ overrides:
   development_completion_policy: 2026-10-19
   deployment: false
   owner_resume: "2026-10-19 explicit authorization; Coordinator verified recovery handoff"
+  final_settling_within_cap: "Root interpretation of owner unattended whole-epic authorization and three-round cap: use remaining third/final settling pass after meaningful Round2 High fixes before E5h; no fourth broad review or silent recommendation clearing."
 constraints:
   - "Coordinator permits own-branch coherent integration of completed 16.1 ancestor 26dac3ab539ad54a79916135c53f25931e958d76 after preparation checkpoint and actual object/ref checks; preserve E15 contracts and E16 v3 facts/proof/migrations together."
   - "Coherent26dac3ab prerequisite integrated by merge33c68c5a and independently verified: original-author conflict resolutions, local static/build/DB/RLS/8 browser cases, and exact-head standard CI39304828183 all five required jobs passed. No main merge or deployment."
   - "Story15.2 P3 approved after exact-head CI39304828183 and distinct High current-baseline validation PASS. Kernel013b7ae0 preserved;9 tasks/8ACs unchanged. Existing Coordinator allocation stands without additional wait: narrow series registry/H4 enrollment, two series command envelope rows, named batch facts/proof/forwardSQL seams; protected shared capacity/matrix/auth surface and old SQL stay unchanged. Migration20261019180000 reservation rechecked absent before approval; any additional actual overlap must be coordinated before editing. No main merge or deployment."
-broad_review_rounds: 1
+broad_review_rounds: 2
 p5_delivery:
   source_revision: effbf5e18e19556d0fad231d3fc01369397c8402
   metadata_revision: 499c5baf48094c7fb27916953dbcb84c07228081
@@ -129,3 +131,21 @@ p6_automation:
   new_cases: 0
   new_assertions: 2
   prior_delivery_status: "historical source checkpoint qualified; refreshed test dependency needs P7 and CI before renewed admission"
+p7_round2:
+  status: "done; final settling still pending within P7"
+  source_revision: a51531888252189a3cc98798b5e8e315f0348fb0
+  metadata_revision: ec6226b23c209ee8ede907351306f8cb86fe53cd
+  patches: 3
+  high_patches: 2
+  medium_patches: 1
+  rejects: 2
+  broad_rounds: 2
+  review_cap: 3
+  nonconvergence: 0
+  ci_run: 39342433474 exact source PASS
+  delivery_sha256: 570d0c7442c4e902b4564b85a55e77b9928042fd98ac4229a3503c82bede3e06
+  root_gate: PASS native0
+  independent_provenance: PASS801253f2e8728fc32146699f1ecb940da54539ab1f15d2bc81932216ef4fe971
+  local_database: "persisted106;107 only executed in CI"
+  followup_recommended: true
+  release_ready: false
