@@ -1,5 +1,5 @@
 {
-  "status": "reviewed-source-frozen-pending-exact-source-CI-Root-gate-and-independent-provenance",
+  "status": "exact-a515-source-required-CI-qualified-awaiting-Root-delivery-gate-and-final-provenance",
   "invocation_head": "fe99dbca8da5cc71bb675a513a21a68d64f80ce5",
   "review_baseline": "85755eb7cea3affdc77dbe1d30bb18279b614c5a",
   "source_inventory": [
@@ -134,20 +134,19 @@
     }
   },
   "pending_required": [
-    "Exact-source standardCI required jobs",
-    "Native per-test revised15.2-RLS-REAL-005 PASS under SUPABASE_TEST_REQUIRED=1",
-    "Native per-test15.2-INT-REAL-023 retention/replay/new-inactive/changed-role PASS",
-    "FullDB/RLS and direct isolated physical recovery-Storage",
-    "Empty107 migration and seed replay; effective current ACL/private helper inventory",
-    "Current production build/static/fullunit/process checks",
-    "Root delivery_gate and independent frozen delivery provenance PASS"
+    "Root delivery_gate on exact frozen current record",
+    "Independent narrow frozen-record provenance PASS and explicit Root status admission"
   ],
-  "essential_browser_dependency_assessment": "Prior guarded GLK007/0082P then0091P remain historical scoped receipts. Three of433 production source files changed: editor retry callback only routes to unchanged refreshStaleSeries; actual TSX action-port regression proves DENIEDÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢explicit onRetryÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢current ownership/versionÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢retained draftÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢ready. Existing retry control/render binding and actual GLK007 metadata recovery unchanged. Server preview/save adds only rejection above existing SQL3MiB bound plus own fixed error message, with actual normal preview and positive long-ID public-input regression. New107 helper retention is bounded to same occurrence/role cancellation and requires REAL023. Root accepts composed essential coverage; no fresh DENIED browser or exhaustive matrix claim.",
+  "essential_browser_dependency_assessment": "Prior guarded GLK007/0082P then0091P remain historical scoped receipts. Three of433 production source files changed: editor retry callback only routes to unchanged refreshStaleSeries; actual TSX action-port regression proves DENIEDÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢explicit onRetryÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢current ownership/versionÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢retained draftÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ready. Existing retry control/render binding and actual GLK007 metadata recovery unchanged. Server preview/save adds only rejection above existing SQL3MiB bound plus own fixed error message, with actual normal preview and positive long-ID public-input regression. New107 helper retention is bounded to same occurrence/role cancellation and requires REAL023. Root accepts composed essential coverage; no fresh DENIED browser or exhaustive matrix claim.",
   "migration107": {
     "file": "supabase/migrations/20261020000000_booking_series_cancelled_role_retention.sql",
     "raw_sha256": "3e231ef7d1018966c1574b672123b9b7b906314f7edeb47e9791d5ee7af0dcaa",
     "own_inventory_count": 107,
-    "scope": "ONLY booking_series_row_internal(uuid,uuid,jsonb), no data transformation; separate local106ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢107 rehearsal not required by approvedcontract or independentHigh assessment."
+    "scope": "ONLY booking_series_row_internal(uuid,uuid,jsonb), no data transformation; separate local106ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢107 rehearsal not required by approvedcontract or independentHigh assessment.",
+    "functional_status": "First-attempt empty107 migration/seed replay in all3database-bearingCIjobs; checkedREAL023bodypassed",
+    "Git_LF_sha256": "3143b16557b8aeda056a206e354311298289e9787bbbb07567a126ad0ce821bc",
+    "raw_equals_Git": false,
+    "normalized_equal": true
   },
   "migration_immutability": [
     {
@@ -176,7 +175,7 @@
   "test_dependency_anchor": {
     "path": "tests/integration/rls/booking-series.rls.test.ts",
     "raw_sha256": "b7cebf2c860419e411cbe6ef563ccbe6c7faccf5e1fcc6091c25cbbe24bec6c0",
-    "functional_status": "UNEXECUTED revisedREAL005",
+    "functional_status": "PASSED native exactrun39342433474; fresh preview denial/fullsnapshot assertions executed",
     "origin": "P6fe99dbca; two fresh preview denial/full snapshot assertions, not an isolated SQL inactive guard proof"
   },
   "review_order": {
@@ -194,5 +193,331 @@
     "supabase: checked normalJWT/privatehelper/grants/failclosed boundaries; no lifecycle/hosted changes",
     "supabase-postgres-best-practices + security-privileges/security-rls-basics: preserve least privilege/RLS/current helper authority",
     "Owner exact107allocation/naming/immutable105106 and Oct19development policy supersede generic conflicting instructions"
-  ]
+  ],
+  "tested_source_checkpoint": "a51531888252189a3cc98798b5e8e315f0348fb0",
+  "requested_native_test_evidence": [
+    {
+      "case_id": "15.2-INT-REAL-023",
+      "exact_title": "15.2-INT-REAL-023 shortening with replacement defaults retains historical role only on the same cancelled slot",
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "body_lines": [
+        1139,
+        1171
+      ],
+      "sequential_reach_requirements": [
+        "Actual checked create with original role, query third slot, archive original role",
+        "Preview+checked update shortens3to2 with active replacement role/defaults, succeeds",
+        "Third slot exact projected ID/role/description/nominal/start/end preserved with cancelled and exception flags; firsttwo retain IDs and take active replacement role",
+        "Same reviewed command replay equals prior result and full snapshot unchanged",
+        "Fresh reviewed new cancelled series with inactive role and fresh reviewed existing shortenedseries cancelled old-role substitution each denied TENANT_ACCESS_DENIED and full snapshot unchanged"
+      ],
+      "limits": "Authenticated production command+checkedRPC path with SQL assertions; not a separate isolated raw-SQL-call test. Native per-test passed result plus required1 environment and no skip/early return/catch establishes completion of sequential body assertions.",
+      "status": "passed",
+      "native_assertion": {
+        "ancestorTitles": [
+          "15.2 Round2 checked cancellation retention"
+        ],
+        "fullName": "15.2 Round2 checked cancellation retention 15.2-INT-REAL-023 shortening with replacement defaults retains historical role only on the same cancelled slot",
+        "status": "passed",
+        "title": "15.2-INT-REAL-023 shortening with replacement defaults retains historical role only on the same cancelled slot",
+        "duration": 2015.0127619999985,
+        "failureMessages": [],
+        "meta": {},
+        "tags": []
+      },
+      "native_file": "/home/runner/work/Kopplas/Kopplas/tests/integration/commands/booking-series.int.test.ts",
+      "native_console_line": 23115,
+      "immutable_source_capture": "series-command-tests-source.ts",
+      "immutable_source_sha256": "0fb1db19441e2240e20b653d3bdbfea744545fe1214ca04f7191c39fb6c88e73",
+      "sequential_assertion_reach": "Per-test passed result with no failure messages and required1 actual env; immutable body awaits each callback/command/expect, no catch or silent early return beyond checked stack gate. Thus all listed sequential assertions completed; no assertion-counter instrumentation claimed."
+    },
+    {
+      "case_id": "15.2-RLS-REAL-005",
+      "exact_title": "15.2-RLS-REAL-005 inactive assignment retention belongs only to its existing occurrence",
+      "file": "tests/integration/rls/booking-series.rls.test.ts",
+      "body_lines": [
+        119,
+        141
+      ],
+      "sequential_reach_requirements": [
+        "Existing assignment retention succeeds after memberdisabled",
+        "Fresh added-count4 preview rejects TENANT_ACCESS_DENIED",
+        "Full snapshot unchanged after that fresh preview denial",
+        "Separate reused stale receipt command denied; fullsnapshot unchanged",
+        "Reactivated membership, checked single cancellation then own RLS read exact exception/status flags"
+      ],
+      "limits": "Added fresh-preview denial+snapshot assertions are stronger evidence than old stale-receipt denial alone; must verify native exact testcase passed, not infer from aggregate totals.",
+      "status": "passed",
+      "native_assertion": {
+        "ancestorTitles": [
+          "15.2 real series authority"
+        ],
+        "fullName": "15.2 real series authority 15.2-RLS-REAL-005 inactive assignment retention belongs only to its existing occurrence",
+        "status": "passed",
+        "title": "15.2-RLS-REAL-005 inactive assignment retention belongs only to its existing occurrence",
+        "duration": 2207.8776980000002,
+        "failureMessages": [],
+        "meta": {},
+        "tags": []
+      },
+      "native_file": "/home/runner/work/Kopplas/Kopplas/tests/integration/rls/booking-series.rls.test.ts",
+      "native_console_line": 23253,
+      "immutable_source_capture": "series-RLS-tests-source.ts",
+      "immutable_source_sha256": "b7cebf2c860419e411cbe6ef563ccbe6c7faccf5e1fcc6091c25cbbe24bec6c0",
+      "sequential_assertion_reach": "Per-test passed result with no failure messages and required1 actual env; immutable body awaits each callback/command/expect, no catch or silent early return beyond checked stack gate. Thus all listed sequential assertions completed; no assertion-counter instrumentation claimed."
+    }
+  ],
+  "current_CI": {
+    "run_id": 39342433474,
+    "source_sha": "a51531888252189a3cc98798b5e8e315f0348fb0",
+    "run_attempt": 1,
+    "release_validation": false,
+    "required_jobs": [
+      {
+        "id": 118366953487,
+        "name": "checkpoint-admission",
+        "status": "completed",
+        "conclusion": "success",
+        "completed_at": "2026-10-19T23:34:49Z"
+      },
+      {
+        "id": 118366987588,
+        "name": "verify",
+        "status": "completed",
+        "conclusion": "success",
+        "completed_at": "2026-10-19T23:36:55Z"
+      },
+      {
+        "id": 118367687011,
+        "name": "e2e",
+        "status": "completed",
+        "conclusion": "success",
+        "completed_at": "2026-10-19T23:41:19Z"
+      },
+      {
+        "id": 118367687013,
+        "name": "db",
+        "status": "completed",
+        "conclusion": "success",
+        "completed_at": "2026-10-19T23:45:23Z"
+      },
+      {
+        "id": 118367687037,
+        "name": "recovery-storage-loader",
+        "status": "completed",
+        "conclusion": "success",
+        "completed_at": "2026-10-19T23:41:27Z"
+      }
+    ],
+    "unit_counts": {
+      "tests": 2979,
+      "suites": 103,
+      "pass": 2979,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "process_counts": [
+      {
+        "step": "BMAD focused concurrent memlog contracts",
+        "invocation_counts": [
+          2
+        ],
+        "passed": 2,
+        "failed": 0,
+        "skipped": 0
+      },
+      {
+        "step": "Auto-BMAD focused routing and process-API contracts",
+        "invocation_counts": [
+          26,
+          10,
+          5
+        ],
+        "passed": 41,
+        "failed": 0,
+        "skipped": 0
+      }
+    ],
+    "full_DB": {
+      "passed": 1828,
+      "failed": 0,
+      "explicit_skipped": 52,
+      "total": 1880,
+      "native_file_records": 152,
+      "console_file_summary": "151 passed,1 skipped,152 total",
+      "skip_inventory": [
+        {
+          "file": "commands/booking-series.int.test.ts",
+          "skipped": 37
+        },
+        {
+          "file": "rls/booking-series.rls.test.ts",
+          "skipped": 14
+        },
+        {
+          "file": "ops/recovery-storage-immutability.int.test.ts",
+          "skipped": 1
+        }
+      ],
+      "story15_2_actual_command_passed": 23,
+      "RLS_NONADDITIVE_SUBSET": {
+        "passed": 800,
+        "failed": 0,
+        "explicit_skipped": 14,
+        "file_records": 52,
+        "included_in_full_DB": true
+      }
+    },
+    "isolated_Storage": {
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "physical_objects": 2,
+      "physical_bytes": 66,
+      "physical_loader_log_line": 28293,
+      "native_assertion": {
+        "ancestorTitles": [
+          "isolated recovery Storage physical-loader proof"
+        ],
+        "fullName": "isolated recovery Storage physical-loader proof serves loader-materialized bytes without mutating logical rows and rejects generic plus quote-PDF overwrite attempts",
+        "status": "passed",
+        "title": "serves loader-materialized bytes without mutating logical rows and rejects generic plus quote-PDF overwrite attempts",
+        "duration": 620.3746249999999,
+        "failureMessages": [],
+        "meta": {},
+        "tags": []
+      },
+      "scope": "Direct physical loader materializes bytes; executed API readback/unchanged logical-row and generic plusquotePDF overwrite denial assertion. Separate from fullDB skipped proof."
+    },
+    "empty_migration_replays": [
+      {
+        "job": "db",
+        "applied_migrations": 107,
+        "attempts": 1,
+        "failed_attempt_or_CLI_restart_recovery": 0,
+        "last_three_migrations": [
+          {
+            "line": 22991,
+            "text": "Applying migration 20261019180000_recurring_booking_series.sql..."
+          },
+          {
+            "line": 22992,
+            "text": "Applying migration 20261019220000_booking_series_integrity_followup.sql..."
+          },
+          {
+            "line": 22993,
+            "text": "Applying migration 20261020000000_booking_series_cancelled_role_retention.sql..."
+          }
+        ],
+        "completion_line": 22998
+      },
+      {
+        "job": "e2e",
+        "applied_migrations": 107,
+        "attempts": 1,
+        "failed_attempt_or_CLI_restart_recovery": 0,
+        "last_three_migrations": [
+          {
+            "line": 21762,
+            "text": "Applying migration 20261019180000_recurring_booking_series.sql..."
+          },
+          {
+            "line": 21763,
+            "text": "Applying migration 20261019220000_booking_series_integrity_followup.sql..."
+          },
+          {
+            "line": 21764,
+            "text": "Applying migration 20261020000000_booking_series_cancelled_role_retention.sql..."
+          }
+        ],
+        "completion_line": 21769
+      },
+      {
+        "job": "recovery-storage-loader",
+        "applied_migrations": 107,
+        "attempts": 1,
+        "failed_attempt_or_CLI_restart_recovery": 0,
+        "last_three_migrations": [
+          {
+            "line": 25022,
+            "text": "Applying migration 20261019180000_recurring_booking_series.sql..."
+          },
+          {
+            "line": 25023,
+            "text": "Applying migration 20261019220000_booking_series_integrity_followup.sql..."
+          },
+          {
+            "line": 25024,
+            "text": "Applying migration 20261020000000_booking_series_cancelled_role_retention.sql..."
+          }
+        ],
+        "completion_line": 25029
+      }
+    ],
+    "pilot_performance": {
+      "status": "passed",
+      "dataset": {
+        "tenantAActiveMemberships": 120,
+        "tenantBActiveMemberships": 24,
+        "tenantARoleDistribution": "five primary roles, every third membership also holds the next role",
+        "tenantBShape": "separate tenant rows for 23 of the same authenticated accounts plus its own admin"
+      },
+      "warmup_iterations": 5,
+      "measured_iterations": 25,
+      "read_p95_ms": 11.084036999999626,
+      "read_ceiling_ms": 250,
+      "CPU_permissions_p95_ms": 3.847584999999526,
+      "CPU_ceiling_ms": 25,
+      "RLS_requests_total": 50,
+      "RLS_requests_per_read": 2,
+      "RLS_requests_per_read_ceiling": 3,
+      "limits": "Local Admin-users read projection/CPU bulkpermissions only; no full-page/production/representativeScheduling release certification. Full private baseline/query-plan JSON not uploaded; native log dataset/read output and exact configured successful script/thresholds preserved."
+    },
+    "browser_smoke_scope": {
+      "passed": 11,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "retry_attempts": 0,
+      "global_errors": 0,
+      "scope": "Auth7+Jobs4 only; not Scheduling/series matrix"
+    },
+    "qualification_json": ".env.epic15.mail-runtime/story-15-2-ci-a5153188-independent/qualification-final.json",
+    "qualification_sha256": "02aa78628d14b33ea740a466b88be36899b5b01aef05ba024a618abd1f565d3b",
+    "qualification_md_sha256": "82a269469cdbbf7021ff8c148d5b862685c635f1222f0d637f6f388ed7182fe2",
+    "manifest_sha256": "1850406c59fed10dc5e66bb5e74b815bbc983c0cf9f30c7ec8659dc6edf235b8",
+    "ownership_checks_passed": 11
+  },
+  "effective_migration_byte_provenance": [
+    {
+      "file": "20261019180000_recurring_booking_series.sql",
+      "frozen_local_sha256": "24f6982758c9f46c61d3f4fd34ebaaf599a809c8cf6c72e8223544aa73c9f1bd",
+      "immutable_Git_LF_sha256": "24f6982758c9f46c61d3f4fd34ebaaf599a809c8cf6c72e8223544aa73c9f1bd",
+      "local_CRLF_count": 0,
+      "Git_CRLF_count": 0,
+      "normalized_equal": true,
+      "rewritten_by_reviewer": false
+    },
+    {
+      "file": "20261019220000_booking_series_integrity_followup.sql",
+      "frozen_local_sha256": "c55d1de17b3829e97212076d2627f5b22645126894a8deb7af4b80596b45b44d",
+      "immutable_Git_LF_sha256": "57e7e9fc930513099b20759b84fd21c2b851f154effb8a0e45c198262da4a37d",
+      "local_CRLF_count": 176,
+      "Git_CRLF_count": 0,
+      "normalized_equal": true,
+      "rewritten_by_reviewer": false
+    },
+    {
+      "file": "20261020000000_booking_series_cancelled_role_retention.sql",
+      "frozen_local_sha256": "3e231ef7d1018966c1574b672123b9b7b906314f7edeb47e9791d5ee7af0dcaa",
+      "immutable_Git_LF_sha256": "3143b16557b8aeda056a206e354311298289e9787bbbb07567a126ad0ce821bc",
+      "local_CRLF_count": 43,
+      "Git_CRLF_count": 0,
+      "normalized_equal": true,
+      "rewritten_by_reviewer": false
+    }
+  ],
+  "Root_admission": "pending, author asserts qualified evidence not renewed developmentdone"
 }

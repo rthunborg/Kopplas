@@ -2,7 +2,7 @@
 title: '15.2 — Recurring Bookings — Series, Materialized Occurrences, Exceptions'
 type: feature
 created: '2026-10-19'
-status: in-review
+status: done
 review_loop_iteration: 0
 followup_review_recommended: true
 baseline_revision: '85755eb7cea3affdc77dbe1d30bb18279b614c5a'
@@ -127,12 +127,12 @@ No review loop has run. This is a new planning contract, with no prior 15.2 appr
 - reject: 2: (high 0, medium 0, low 2)
 - addressed_findings:
   - `[high]` `[patch]` R2-01 ready preview admitted a complete plan above the SQL3MiB limit. Exact compact UTF8 serialization now gates ready/finalization with a fixed safe recovery message; actual planner/preview and exact/+1/multibyte boundary tests pass.
-  - `[high]` `[patch]` R2-03 shortening after role archival rejected a newly cancelled historical slot. New107 replaces only the existing helper cancellation predicate, preserving same tenant/occurrence/original role. REAL023 retention/replay/new-ID/changed-role checks await exact-source CI.
+  - `[high]` `[patch]` R2-03 shortening after role archival rejected a newly cancelled historical slot. New107 replaces only the existing helper cancellation predicate, preserving same tenant/occurrence/original role. Native REAL023 retention/replay/new-ID/changed-role checks passed in exacta515/run39342433474.
   - `[medium]` `[patch]` R2-04 a concurrent split between metadata reads could cache mismatched ownership and repeatedly deny explicit retry. Following retry now reloads current metadata through unchanged recovery, preserving draft and pending/unknown guards; actual TSX action-port regression passes.
 - Follow-up recommendation: true (high2/medium1/low0; weighted medium/low score3). Broad rounds2/3; nonconvergence counter0 is separate.
 - All six configured independent layers completed before triage. Initial parallel CLI hook refusals provided no review credit; native batches plus one serial prescribed external retry supplied real reports. Final CMD TYPE failure is separate from the external872-byte report.
 - Distinct High fix review caught the initial R2-02 use of a superseded4000-ID guard before runtime. Effective20261007131222 removes that limit; uncommitted cap removed and actual100-person/long-ID preview/public-input regression passed. Original RED18total15P3F includes only two confirmed defect failures and one rejected wrong-expectation failure, no false coverage credit. Current20P0F0S; full nonincremental TSC and scoped ESLint native0. High correction/helper and compact-TEXT boundary qualification PASS, no new broad round.
-- Frozen current evidence: `_bmad-output/test-artifacts/story15-2/build-round2-author-verification.json`. Revised RLS005/newREAL023 remain UNEXECUTED pending exact-source required CI/fullDB-RLS/directStorage/empty107/build, Root delivery gate and independent final provenance. Spec in-review; no renewed development-done claim.
+- Current evidence: `_bmad-output/test-artifacts/story15-2/build-round2-author-verification.json`. Exacta515/run39342433474 all5requiredjobsPASS, independentHighnativequalification02aa7862 confirms revisedRLS005/newREAL023 actualbodyexecution plus fullDB-RLS/directStorage/empty107/build. Root gate/final provenance passed and explicit status admission authorizes development done only.
 
 ### 2026-10-20 — Review pass
 
@@ -188,10 +188,12 @@ Development completion reconciles the October 19 owner policy: focused integrity
 
 ## Auto Run Result
 
-Status: in-review
-Blocking condition: pending exact-source standard CI, Root delivery gate and independent frozen-record provenance
+Status: done
+Blocking condition: none
 
-Current Round2:3patches(2high1medium),2rejects,0intent_gap/bad_spec/defer; followupTRUE, broad2/3, nonconvergence0. Current20focusedunit/actualTSX-port cases pass; nonincremental TSC/scopedESLint native0. Distinct High correction/helper and compactTEXT boundary reviews PASS. New107 retains the same-existing-occurrence/original-role on cancellation only;105/106 immutable. REAL023 and revisedRLS005 remain UNEXECUTED until native exact-sourceCI proof, with fullDB/RLS/directStorage/empty107 and allnormalrequiredjobs. Current authorverification and deliberately pending delivery carry exact hashes and composed essentialUI rationale; oldeffbf5e1/CI39335595653/deliveryc1 are historical. Root gate/provenance required before done. Three release items remain deferred; release_ready=false.
+Current Round2 exact-source evidence qualified — sourcea51531888252189a3cc98798b5e8e315f0348fb0, run39342433474 attempt1/release_validationfalse, all5requiredjobsSUCCESS and independent11ownershipchecksPASS. Actual2979unitP/43processP/fullDB1828P52S/RLS800P14S INCLUDEDsubset/directStorage1P2objects66bytes/empty107firstreplay in3jobs/AuthJobs11P0Sflakyretryerror. NativeREAL023PASSED covers3to2active replacement/historicalcancelledidentity+projectedpayload/replay/bothinactive-roledenials withfullsnapshots throughcheckedcommand/RPC. RevisedRLS005PASSED freshpreviewTENANT_ACCESS_DENIED+fullsnapshot, separatelyfromnarrowerstalereceiptdenial. Currentpilot read11.084037ms/CPU3.847585ms/2RLSreadrequests is narrowAdminusersprojection only. QualificationJSON02aa7862/manifest1850406c and exactnativebodyproof in authorverification/currentdelivery.
+
+Threepatches(2high1medium),2rejects,0intent_gap/bad_spec/defer; followupTRUE/broad2of3/nonconvergence0. Current20focusedP/staticnative0 and Highsource/helper/correction/boundary/trailPASS. Source7hashes remainfrozen;105/106immutable,107 dualrawCRLF/GitLFnormalizedequal only. Rootaccepted composed essentialUIreuse+actualcurrentTSX DENIED-retry proof; nofreshDENIEDbrowser/matrix claim. Concrete frozen delivery570d0c7442c4e902b4564b85a55e77b9928042fd98ac4229a3503c82bede3e06 passed Root mandatorygate and independent narrow provenance; explicit Root admission now authorizes development done only. Threeownerreleasedefers persist/release_readyfalse; nodeployment/mergeapproval.
 
 ### Historical P5 completed delivery — preserved, superseded for changed dependencies
 
@@ -227,7 +229,11 @@ Completion hook: planning exit only under docs/process/review-order.md. Future i
 
 ## Implementation Verification
 
-Current Round2 evidence is `_bmad-output/test-artifacts/story15-2/build-round2-author-verification.json`:20focusedP0F0S and current static checks actually executed; newREAL023/revisedRLS005/currentfullDB-RLS/Storage/empty107/build-CI pending. Root accepted composed essential coverage: actual current TSX DENIED-retry proof plus unchanged retry rendering/recovery and historical GLK007. No fresh DENIED-browser or exhaustive matrix claim. Current effective SQL and compact p_plan TEXT byte equivalence independently reviewed at High. Root gate and frozen-record provenance remain pending.
+Current Round2: independentHigh exacta515/run39342433474 qualificationPASS (JSON02aa78628d14b33ea740a466b88be36899b5b01aef05ba024a618abd1f565d3b). Actual2979unitP0S,43processP0S,fullDB1828P0F52S with23active15.2commands; RLS800P14S included/nonadditive. NativeREAL023 and revisedRLS005 passed their complete sequentialawaitedbodies under SUPABASE_TEST_REQUIRED=1; no perassertioninstrumentation or isolatedrawSQLproofclaimed. DirectphysicalStorage1P2objects66bytes separatefromfullDBskip; empty107migration/seed replay firstattempt inall3jobs. AuthJobs11P0F0S/flaky/retry/error is separateproduction-smoke proof. Currentpilot25measurements/5warmups read11.084037ms/CPU3.847585ms/2RLSrequests perread only narrowAdminusersprojection.
+
+Allsource7hashes unchanged from reviewed/testeda515; exactdualraw/Git migrationidentities retained. CurrentactualTSXDENIEDretry plus priorGLK007 unchangedrecovery/control composition supports owner-acceptedessentialreuse, nofreshbrowserclaim. Authorverification/currentdelivery retain nativeartifact/reporthashes,3releasedefers and release_readyfalse. Root mandatorygate and independent frozen-recordprovenance passed; explicit Root status admission authorizes development done only.
+
+Admitted Round2 status closure — 2026-10-20: Root delivery_gate native0/PASS, development_complete=true and approval_granted=false on unchanged frozen record570d0c7442c4e902b4564b85a55e77b9928042fd98ac4229a3503c82bede3e06. Independent High frozen-record provenance PASS `.env.epic15.mail-runtime/story-15-2-ci-a5153188-independent/delivery-provenance-a515-final.md` SHA801253f2e8728fc32146699f1ecb940da54539ab1f15d2bc81932216ef4fe971; JSONbed36e1ae522fa0e8cd7d1e08adeb0a30a48a3fe06da90aea4e890456a608c3d. Explicit Root admission authorizes this status-only done/finalization. Source remains the exact tested a51531888252189a3cc98798b5e8e315f0348fb0; current delivery and author-verification bytes remain the immutable pre-admission freeze, whose pending-gate wording records that earlier point in time. No new tests, source, runtime or review round in closure. FollowupTRUE/broad2of3/nonconvergence0, three release defers and release_ready=false persist. No merge, release or deployment approval.
 
 ### Historical P5 verification and admission — preserved
 
@@ -243,7 +249,7 @@ Admitted status closure,2026-10-20: Root gate native0/oktrue/development_complet
 
 ## Suggested Review Order
 
-Author: implementation/fix and verification delegate. Round2 refresh preserves original authored rationale and adds current fixes/evidence after invocationfe99dbca8da5cc71bb675a513a21a68d64f80ce5. Current source/SQL/test packet is frozen for required CI; historical effbf5e1/CI39335595653/localGLK remain scoped evidence, not proof of the revised tests or107.
+Author: implementation/fix and verification delegate. Round2 refresh preserves original authored rationale and adds current fixes/evidence after invocationfe99dbca8da5cc71bb675a513a21a68d64f80ce5. Current source/SQL/test packet is qualified at a515/run39342433474; Root gate/final provenance passed; explicit admission authorizes development done only. Historical effbf5e1/CI39335595653/localGLK remain scoped earlier evidence.
 
 ### Following edits retain visible intent and refresh stale ownership
 
@@ -277,7 +283,7 @@ The first-applied1800 migration is immutable. Forward220000 narrowly allows an u
 - `tests/integration/commands/booking-series.int.test.ts:1066` — `15.2-INT-REAL-020`: pairs protected retention with inactive-new-assignment denial.
 - `tests/integration/commands/booking-series.int.test.ts:1089` — `15.2-INT-REAL-021`: tests real JWT signed-overlay denial and zero durable delta.
 
-Round2 forward107 additionally permits the unchanged existing role when an omitted ordinary slot first becomes cancelled. Same tenant/booking/original role remains mandatory; new inactive assignments and substitution deny. REAL023 is pending exact-source CI, never claimed executed here.
+Round2 forward107 additionally permits the unchanged existing role when an omitted ordinary slot first becomes cancelled. Same tenant/booking/original role remains mandatory; new inactive assignments and substitution deny. Native REAL023 passed in exacta515/run39342433474 through the checkedcommand/RPC with projectedpayload/replay/denial snapshots; not an isolatedrawSQL or blanketcancellationproof.
 
 - `supabase/migrations/20261020000000_booking_series_cancelled_role_retention.sql:21` — `and (b.is_exception`: admits same-occurrence historical role on cancellation.
 - `tests/integration/commands/booking-series.int.test.ts:1139` — `15.2-INT-REAL-023`: checks retention/replay and inactive-assignment negatives.
@@ -305,9 +311,9 @@ Public occurrence metadata remains behind existing RLS; no template/outcome gran
 - `tests/e2e/booking-series.e2e.spec.ts:431` — `15.2-E2E-008`: uses native resource drag/resize and independent persisted facts.
 - `tests/e2e/booking-series.e2e.spec.ts:452` — `15.2-E2E-009`: asserts effective inactive assignee visibility and durable removal.
 
-Evidence: `_bmad-output/test-artifacts/story15-2/build-round2-author-verification.json` freezes seven source/SQL/test paths, actual20focusedP0F0S/static native0, six independent reports and targeted High correction/boundary qualifications. Three of433production files changed; precise composed essential-browser reuse is recorded. Old matrix/P5 counts remain historical at effbf5e1/CI39335595653. Revised RLS005/newREAL023 and exact-source standardCI remain pending, followed by Root gate/independent final provenance.
+Evidence: `_bmad-output/test-artifacts/story15-2/build-round2-author-verification.json` freezes seven source/SQL/test paths, actual20focusedP0F0S/staticnative0, sixindependentreports and targetedHighcorrection/boundary/trailPASS. Exacta515/run39342433474 all5requiredjobs/11ownershipchecksPASS:2979unitP43processP/fullDB1828P52S with23active15.2commands/RLS800P14S INCLUDEDsubset/directStorage1P/empty107firstreplay/AuthJobs11P. NativeREAL023 and revisedRLS005 passed complete awaitedbodyassertions under required1; not isolatedrawSQL or perassertioninstrumentation. Threeof433productionfiles changed; precise composedessentialbrowserreuse is recorded withoutfreshDENIEDbrowserclaim. Root mandatorygate/final frozen-record provenance passed; explicit admission authorizes development done only.
 
-Limits: no fresh DENIED-browser, full SQL3MiB boundary transaction, local106→107 rehearsal, exhaustive matrix or representative scheduling release-performance claim. Original skips give no coverage; RLS counts remain nonadditive.105/106 raw identities preserved;107 is helper-only forward SQL. FollowupTRUE/broad2of3/nonconvergence0; release_ready=false and3release defers persist.
+Limits:52DBskips/optionaldiagnostics give nocoverage; RLSnonadditive. No fullSQL3MiBboundarytransaction/local106to107rehearsal/exhaustivematrix/representativeSchedulingreleaseperformanceclaim. Pilotread11.084037ms/CPU3.847585ms/2RLSrequestsperread is narrowAdminuserswork only; privatefullqueryplanJSONnotuploaded.105/106rawidentitiespreserved;107localCRLF3e231e/GitLF3143b1normalizedequal only. FollowupTRUE/broad2of3/nonconvergence0; release_readyfalse and3release deferspersist.
 
 ### Review Findings
 
@@ -318,4 +324,4 @@ Configured Round1 completed:8accepted patches addressed (4high/4medium; medium s
 
 **Round 2 of 3**
 
-Six configured layers completed:3patches(2high1medium),2rejects,0intent/badspec/defer. Targeted High correction/helper/boundary PASS,20focusedP0F0S/static native0. Frozen source/SQL/test packet awaits exact-sourceCI, Root gate and independent provenance. Revised REAL005/newREAL023 UNEXECUTED; broad2/3, nonconvergence0, followupTRUE. P5 evidence remains historical at its tested source.
+Six configured layers completed:3patches(2high1medium),2rejects,0intent/badspec/defer. Targeted High correction/helper/boundary PASS,20focusedP0F0S/static native0. Frozen source/SQL/test packet passed exacta515/run39342433474 requiredCI; nativeREAL005/REAL023PASSED. Root gate/final provenance passed with explicit development-done admission; broad2/3, nonconvergence0, followupTRUE. P5 evidence remains historical at its tested source.

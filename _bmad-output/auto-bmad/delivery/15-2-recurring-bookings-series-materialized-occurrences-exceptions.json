@@ -1,35 +1,74 @@
 {
   "policy_version": "2026-10-19",
-  "record_status": "P7-reviewed-source-pending-exact-source-CI-and-Root-admission",
-  "contract_reconciliation": "Approved intent/9tasks/8AC/DesignNotes preserved. Round2 full configured six-layer review complete;3patches(2high1medium),2rejects,0intentgap/badspec/defer. FollowupTRUE, broad2/3,nonconvergence0. New107 is helper-only same-existing-occurrence historical-role cancellation retention. Original rejected4000 guard/counterexample explicitly retained as wrong-expectation history. Required development CI evidence is pending; this record MUST NOT admit done. Three owner-policy release items remain deferred, no release/deployment/merge approval.",
-  "evidence_revision": "PENDING_EXACT_SOURCE_CI",
-  "source_inventory_sha256": "38fe048a8465cc0f1217eb72a2ed4f5df0d770f728ea8bba3b6ba6916581b349",
-  "author_verification": "_bmad-output/test-artifacts/story15-2/build-round2-author-verification.json",
+  "record_status": "exact-reviewed-a515-source-development-evidence-qualified-awaiting-Root-admission",
+  "contract_reconciliation": "Approved kernel013b7ae0d0614d20dbc021885786ca1803976e10bd634ddc0bc3791b19de4ee1/9tasks/8ACs/DesignNotes preserved. Round2 six configured layers complete:3patches(2high1medium),2rejects,0intent_gap/bad_spec/defer; weightedmediumscore3/followupTRUE/broad2of3/nonconvergence0. DistinctHigh current-source/helper/correction/trail/compactTEXT-boundary reviews PASS. Rejected4000-ID guard came from supersededSQL; never executed/committed cap, positive100person/long-ID actualpreview/public-input regression retained. Applicable development evidence qualified for exacta515/run39342433474:5requiredCIjobs,2979units/43process/fullDB1828P52S(includedRLS800P14S)/directStorage1P/first107replays/nativeRLS005+REAL023 bodies. Only3of433productionfiles changed; recorded composed essentialUI reuse plus currentactualTSX DENIED-retry proof, no freshDENIEDbrowser/matrix claim. No additional local106to107 rehearsal mandated for helper-onlyCREATEORREPLACE/no datatransform; exactCI verifies effective helper/ACL and actualnewretentionnegatives. Threeowned Oct19release defers remain, no skips-as-coverage. Rootalone runs mandatorygate/narrowfinalprovenance/admission; this record asserts evidence and is not reneweddevelopmentdone/release/merge/deploymentapproval.",
+  "evidence_revision": "a51531888252189a3cc98798b5e8e315f0348fb0",
+  "worktree_evidence": {
+    "baseline": "85755eb7cea3affdc77dbe1d30bb18279b614c5a",
+    "invocation_head": "fe99dbca8da5cc71bb675a513a21a68d64f80ce5",
+    "tested_source_checkpoint": "a51531888252189a3cc98798b5e8e315f0348fb0",
+    "frozen_source7_inventory_sha256": "38fe048a8465cc0f1217eb72a2ed4f5df0d770f728ea8bba3b6ba6916581b349",
+    "author_verification": "_bmad-output/test-artifacts/story15-2/build-round2-author-verification.json",
+    "author_verification_sha256": "314cc514eff4e833637853a29ba4e2a96fb4a6435ec6c6a70d4600c33128eb3a",
+    "source433_changed_paths": [
+      "src/components/resources/BookingEditor.tsx",
+      "src/features/resources/booking-series-actions.ts",
+      "src/server/bookings/series-conflicts.ts"
+    ],
+    "source_test_schema_unchanged_since_tested_checkpoint": true,
+    "frozen_checkpoint_packet_sha256": "abec59adc86ceb778430c9708112c6922e2cdd10395f81297a3b65ce841bc8ce",
+    "Root_preflight_sha256": "9b36bc4d33bd9420eb9eeb3012094aba6674d31afea87126047b259032015c22",
+    "CI_qualification": ".env.epic15.mail-runtime/story-15-2-ci-a5153188-independent/qualification-final.json",
+    "CI_qualification_sha256": "02aa78628d14b33ea740a466b88be36899b5b01aef05ba024a618abd1f565d3b",
+    "CI_evidence_manifest_sha256": "1850406c59fed10dc5e66bb5e74b815bbc983c0cf9f30c7ec8659dc6edf235b8",
+    "historical_local_build_id": "GLKBSX62N9CbTViZM7YrP",
+    "historical_local_build_scope": "Scoped prior Scheduling/series essentials with reviewed dependency reuse; not a currenta515 local build/browser run."
+  },
   "development_checks": [
     {
-      "name": "focused-current-production-planner-and-TSX-port-regressions",
+      "name": "exacthead-required-CI-static-production-build-and-containment",
       "status": "passed",
-      "evidence": "Actual Node runner20P0F0S; two confirmed RED failures retained separately from one rejected wrong-expectation RED. See authorverification frozen source inventory/log hashes."
+      "evidence": "Run39342433474 attempt1/release_validationfalse exacta51531888252189a3cc98798b5e8e315f0348fb0:checkpoint-admission,verify,db,recovery-storage-loader,e2e SUCCESS. Nativefrozeninstall/lockfiles/blockingaudit/sourcecontainment/typecheck/lint/build/builtbundle allsuccessful; independent11ownershipbindings/qualified artifacts. No deployment/releaseapproval."
     },
     {
-      "name": "current-static-typecheck-and-scoped-lint",
+      "name": "current-focused-and-full-unit-process-contracts",
       "status": "passed",
-      "evidence": "Full nonincremental TypeScript native0 and all changedTS/TSX scopedESLint native0, logs/hash in authorverification."
+      "evidence": "CurrentCI2979P0F0S/103suites/no cancel/todo;BMAD2+Auto26+10+5=43processP0F0S. Includes actualproductionpreview oversizedplan/longID, exactserialization/+1/multibyte, normalpreview and actualTSX DENIEDretry tests. Localfocused20P0F0S separately overlaps, not additive. Original18RED15P3F has2confirmeddefectfailures+1rejectedwrongexpectation, no falsecredit."
     },
     {
-      "name": "current-required-exact-source-CI-build-unit-process-DB-RLS-Storage-empty107",
-      "status": "pending",
-      "evidence": "Root checkpoint push/standardCI pending. Need native per-test REAL023 and revisedRLS005 under SUPABASE_TEST_REQUIRED=1 plus allnormalrequiredjobs. Old exacteffbf5e1/run39335595653 is historical and cannot prove changed tests/new107."
+      "name": "required-current-full-database-RLS-and-requested-native-body-reach",
+      "status": "passed",
+      "evidence": "SUPABASE_TEST_REQUIRED=1 actualCI fullDB1880total1828P0F52explicitS/152files, all23active15.2commandsP. RLS800P14S/52files INCLUDEDsubset, neveradditive. Native exactREAL023PASSED2015.013ms completes3to2active-replacement/tombstoneID+projectedpayload/replay/newcancelled-inactive/existingrole-substitutiondenial snapshots through authenticatedcheckedcommand/RPC, not isolatedrawSQL. NativeRLS005PASSED2207.878ms completesfreshcount4previewTENANT_ACCESS_DENIED+fullsnapshotunchanged, separately from narroweroldstalereceipt denial.52skips=37commandscaffolds+14RLSscaffolds+1physicalStorageoutsideisolatedlane, nocredit. Exactnativeassertions/sourcehashes/required1proof in qualification02aa7862."
     },
     {
-      "name": "essential-connected-UI-dependency-reuse",
+      "name": "empty107-migration-seed-replay-and-current-private-ACL-integrity",
       "status": "passed",
-      "evidence": "Prior guarded GLK007/0082P then0091P remain historical scoped receipts. Three of433 production source files changed: editor retry callback only routes to unchanged refreshStaleSeries; actual TSX action-port regression proves DENIED→explicit onRetry→current ownership/version→retained draft→ready. Existing retry control/render binding and actual GLK007 metadata recovery unchanged. Server preview/save adds only rejection above existing SQL3MiB bound plus own fixed error message, with actual normal preview and positive long-ID public-input regression. New107 helper retention is bounded to same occurrence/role cancellation and requires REAL023. Root accepts composed essential coverage; no fresh DENIED browser or exhaustive matrix claim."
+      "evidence": "All107migrations/seed completedfirstattempt in db,e2e,recovery-storage schema source; zero failed/CLIrestart recovery. New107 changesonlyexistingprivateinvokerhelper same-ID/same-role cancellationretention; currenteffectiveACL/inventory checked in fullDB.105raw24f unchanged;106localCRLFc55/GitLF57e7 and107localCRLF3e231e/GitLF3143b1 normalizedequal only; all exacthashes retained. No localrehearsal/reset/reapply or rewriting of105/106."
+    },
+    {
+      "name": "direct-current-isolated-physical-recovery-Storage",
+      "status": "passed",
+      "evidence": "Separate native1P0F0S:physical2objects/66bytes, servedreadback and unchangedprotectedlogicalrows/bytes plus generic/quotePDFoverwritedenial. Exactartifact12229802604 digestcfa98e94cedda692225ddbfc0546dbb088a06e2754245b2e1951712752cc59a0, independentlybound to run/head; notcreditfromfullDBskippedcounterpart."
+    },
+    {
+      "name": "essential-connected-UI-and-normal-smoke-with-explicit-dependencies",
+      "status": "passed",
+      "evidence": "Prior guarded GLK007/0082P then0091P remain historical scoped receipts. Three of433 production source files changed: editor retry callback only routes to unchanged refreshStaleSeries; actual TSX action-port regression proves DENIEDÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢explicit onRetryÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢current ownership/versionÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢retained draftÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ready. Existing retry control/render binding and actual GLK007 metadata recovery unchanged. Server preview/save adds only rejection above existing SQL3MiB bound plus own fixed error message, with actual normal preview and positive long-ID public-input regression. New107 helper retention is bounded to same occurrence/role cancellation and requires REAL023. Root accepts composed essential coverage; no fresh DENIED browser or exhaustive matrix claim. CurrentCIAuth7+Jobs4=11P0F0S/flaky/retries/globalerrors is separate currentproduction-smoke proof, notScheduling/series coverage. Currentnormalpreview andactualTSXport tests includedin2979pass; Rootacceptedcomposedessentialcoverage without imposinglocalruntime."
+    },
+    {
+      "name": "configured-current-pilot-performance",
+      "status": "passed",
+      "evidence": "ExactCI configured120/24tenantmembership localprojection;5warmups/25measurements readp9511.084037ms<=250,syntheticpermissionsCPU3.847585ms<=25,50authenticatedRLSrequests=2/read<=3. Native log/dataset/exactcontract bound; fullprivatebaseline/queryplanJSONnotuploaded. NarrowAdminusersread/CPU only, norepresentativeScheduling/production/releasecertification."
+    },
+    {
+      "name": "author-review-trail-and-approved-contract-preservation",
+      "status": "passed",
+      "evidence": "OneauthorSRO26validrefs, independentHighfinaltrailPASSa9be0b0e04e142992063a8dd4ff2bcdfcd67ba2ad46afd8f00a64ec1fb686714. Approvedkernel/9tasks/8AC/DesignNotes preserved. Currentevidence-onlyrefresh retains source7hashes at testeda515; specSTILLin-reviewpendingRootgate/narrowfinalprovenance/statusadmission. No newbroadround.3ownedreleasedefers separate from0frontmatterdeferfindings."
     }
   ],
   "independent_review": {
     "status": "passed",
-    "evidence": "All six configured Round2 native/external reports plus distinct focusedHigh correction PASS; exactreporthashes and recovery provenance in authorverification. This is no currentCI/provenance/admission claim."
+    "evidence": "AllsixRound2configuredreports completedbeforotriage preservedwith hashes in authorverification; initialhookfailed/emptyCLI attempts getnocredit. Supportednativebatches andoneserialprescribedexternalreport collected; finalCMDTYPEtransporterror separatefromrealreview. DistinctHighcorrection/helperPASS0f167c53b965ce62f6847bc7b1d1da3e927bd09f3a97695b7ecb26da3f6aab83, exactcompactTEXTboundaryPASS1a791cebd90f1b5c1163c63156220d0b2a3a48b0946a3aef072cba92bf7c93ba and finaltrailPASSa9be... bindactualcurrentdelta. ExactCIqualification02aa78628d14b33ea740a466b88be36899b5b01aef05ba024a618abd1f565d3b independentlychecks11ownershipbindings/nativeartifactdigests/pertestbodyreach. Finalfrozen-deliveryprovenance is distinctpendingRoot-ownedstep, not claimedhere."
   },
   "deferred_release_validation": [
     {
@@ -50,11 +89,208 @@
       "item": "Representative scheduling performance thresholds/workloads certification",
       "owner": "Product/Architect",
       "status": "deferred",
-      "evidence": "Current exact-head configured pilot passed its narrow Admin-users read/permissions-CPU projection (25measurements/5warmups); it does not establish representative Scheduling recurrence/tenant workloads or release thresholds.",
+      "evidence": "Exacta515/run39342433474 configured pilot passed25measurements/5warmups, narrowAdminusers read11.084037ms/permissionsCPU3.847585ms/2RLSrequests perread; no representativeScheduling workload or release-threshold certification.",
       "next_action": "Agree representative recurrence/tenant workloads and thresholds, measure production build and record acceptance before release."
     }
   ],
   "release_ready": false,
+  "CI_provenance": {
+    "run_id": 39342433474,
+    "run_attempt": 1,
+    "source_sha": "a51531888252189a3cc98798b5e8e315f0348fb0",
+    "checkpoint_id": "8c948672-29bb-4150-8171-cc834342d17a",
+    "release_validation": false,
+    "run_url": "https://github.com/rthunborg/Kopplas/actions/runs/39342433474",
+    "required_jobs": {
+      "checkpoint-admission": "success",
+      "verify": "success",
+      "e2e": "success",
+      "db": "success",
+      "recovery-storage-loader": "success"
+    },
+    "optional_jobs_skipped_not_coverage": [
+      "dashboard-e2e",
+      "fixed-chromium-application-verification",
+      "native-stream-probe",
+      "fixed-chromium-paired-probe"
+    ],
+    "qualification_sha256": "02aa78628d14b33ea740a466b88be36899b5b01aef05ba024a618abd1f565d3b",
+    "qualification_MD_sha256": "82a269469cdbbf7021ff8c148d5b862685c635f1222f0d637f6f388ed7182fe2",
+    "manifest_sha256": "1850406c59fed10dc5e66bb5e74b815bbc983c0cf9f30c7ec8659dc6edf235b8",
+    "native_artifact_provenance": [
+      {
+        "id": 12230052516,
+        "name": "native-full-integration",
+        "digest": "sha256:a1770737fbdecc245dbde8bcf611b4d31c1120db95c7b55b0c2dd331439556aa",
+        "size_in_bytes": 96166,
+        "workflow_run": {
+          "id": 39342433474,
+          "repository_id": 1269069679,
+          "head_repository_id": 1269069679,
+          "head_branch": "codex/epic-15-scheduling-time-calendar",
+          "head_sha": "a51531888252189a3cc98798b5e8e315f0348fb0"
+        },
+        "archive_members": [
+          "full-integration.json"
+        ],
+        "downloaded_digest_matches": true
+      },
+      {
+        "id": 12229802604,
+        "name": "native-isolated-storage-recovery",
+        "digest": "sha256:cfa98e94cedda692225ddbfc0546dbb088a06e2754245b2e1951712752cc59a0",
+        "size_in_bytes": 681,
+        "workflow_run": {
+          "id": 39342433474,
+          "repository_id": 1269069679,
+          "head_repository_id": 1269069679,
+          "head_branch": "codex/epic-15-scheduling-time-calendar",
+          "head_sha": "a51531888252189a3cc98798b5e8e315f0348fb0"
+        },
+        "archive_members": [
+          "isolated-storage-recovery.json"
+        ],
+        "downloaded_digest_matches": true
+      },
+      {
+        "id": 12229617597,
+        "name": "native-general-browser",
+        "digest": "sha256:38051d5a9b52887194422c30ef2b2073e20b9c32528a98eda196903c1c014cf7",
+        "size_in_bytes": 3592,
+        "workflow_run": {
+          "id": 39342433474,
+          "repository_id": 1269069679,
+          "head_repository_id": 1269069679,
+          "head_branch": "codex/epic-15-scheduling-time-calendar",
+          "head_sha": "a51531888252189a3cc98798b5e8e315f0348fb0"
+        },
+        "archive_members": [
+          "general-browser.json"
+        ],
+        "downloaded_digest_matches": true
+      }
+    ],
+    "requested_native_cases": [
+      {
+        "case_id": "15.2-INT-REAL-023",
+        "exact_title": "15.2-INT-REAL-023 shortening with replacement defaults retains historical role only on the same cancelled slot",
+        "file": "tests/integration/commands/booking-series.int.test.ts",
+        "body_lines": [
+          1139,
+          1171
+        ],
+        "sequential_reach_requirements": [
+          "Actual checked create with original role, query third slot, archive original role",
+          "Preview+checked update shortens3to2 with active replacement role/defaults, succeeds",
+          "Third slot exact projected ID/role/description/nominal/start/end preserved with cancelled and exception flags; firsttwo retain IDs and take active replacement role",
+          "Same reviewed command replay equals prior result and full snapshot unchanged",
+          "Fresh reviewed new cancelled series with inactive role and fresh reviewed existing shortenedseries cancelled old-role substitution each denied TENANT_ACCESS_DENIED and full snapshot unchanged"
+        ],
+        "limits": "Authenticated production command+checkedRPC path with SQL assertions; not a separate isolated raw-SQL-call test. Native per-test passed result plus required1 environment and no skip/early return/catch establishes completion of sequential body assertions.",
+        "status": "passed",
+        "native_assertion": {
+          "ancestorTitles": [
+            "15.2 Round2 checked cancellation retention"
+          ],
+          "fullName": "15.2 Round2 checked cancellation retention 15.2-INT-REAL-023 shortening with replacement defaults retains historical role only on the same cancelled slot",
+          "status": "passed",
+          "title": "15.2-INT-REAL-023 shortening with replacement defaults retains historical role only on the same cancelled slot",
+          "duration": 2015.0127619999985,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        "native_file": "/home/runner/work/Kopplas/Kopplas/tests/integration/commands/booking-series.int.test.ts",
+        "native_console_line": 23115,
+        "immutable_source_capture": "series-command-tests-source.ts",
+        "immutable_source_sha256": "0fb1db19441e2240e20b653d3bdbfea744545fe1214ca04f7191c39fb6c88e73",
+        "sequential_assertion_reach": "Per-test passed result with no failure messages and required1 actual env; immutable body awaits each callback/command/expect, no catch or silent early return beyond checked stack gate. Thus all listed sequential assertions completed; no assertion-counter instrumentation claimed."
+      },
+      {
+        "case_id": "15.2-RLS-REAL-005",
+        "exact_title": "15.2-RLS-REAL-005 inactive assignment retention belongs only to its existing occurrence",
+        "file": "tests/integration/rls/booking-series.rls.test.ts",
+        "body_lines": [
+          119,
+          141
+        ],
+        "sequential_reach_requirements": [
+          "Existing assignment retention succeeds after memberdisabled",
+          "Fresh added-count4 preview rejects TENANT_ACCESS_DENIED",
+          "Full snapshot unchanged after that fresh preview denial",
+          "Separate reused stale receipt command denied; fullsnapshot unchanged",
+          "Reactivated membership, checked single cancellation then own RLS read exact exception/status flags"
+        ],
+        "limits": "Added fresh-preview denial+snapshot assertions are stronger evidence than old stale-receipt denial alone; must verify native exact testcase passed, not infer from aggregate totals.",
+        "status": "passed",
+        "native_assertion": {
+          "ancestorTitles": [
+            "15.2 real series authority"
+          ],
+          "fullName": "15.2 real series authority 15.2-RLS-REAL-005 inactive assignment retention belongs only to its existing occurrence",
+          "status": "passed",
+          "title": "15.2-RLS-REAL-005 inactive assignment retention belongs only to its existing occurrence",
+          "duration": 2207.8776980000002,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        "native_file": "/home/runner/work/Kopplas/Kopplas/tests/integration/rls/booking-series.rls.test.ts",
+        "native_console_line": 23253,
+        "immutable_source_capture": "series-RLS-tests-source.ts",
+        "immutable_source_sha256": "b7cebf2c860419e411cbe6ef563ccbe6c7faccf5e1fcc6091c25cbbe24bec6c0",
+        "sequential_assertion_reach": "Per-test passed result with no failure messages and required1 actual env; immutable body awaits each callback/command/expect, no catch or silent early return beyond checked stack gate. Thus all listed sequential assertions completed; no assertion-counter instrumentation claimed."
+      }
+    ]
+  },
+  "migration_byte_provenance": [
+    {
+      "file": "20261019180000_recurring_booking_series.sql",
+      "frozen_local_sha256": "24f6982758c9f46c61d3f4fd34ebaaf599a809c8cf6c72e8223544aa73c9f1bd",
+      "immutable_Git_LF_sha256": "24f6982758c9f46c61d3f4fd34ebaaf599a809c8cf6c72e8223544aa73c9f1bd",
+      "local_CRLF_count": 0,
+      "Git_CRLF_count": 0,
+      "normalized_equal": true,
+      "rewritten_by_reviewer": false
+    },
+    {
+      "file": "20261019220000_booking_series_integrity_followup.sql",
+      "frozen_local_sha256": "c55d1de17b3829e97212076d2627f5b22645126894a8deb7af4b80596b45b44d",
+      "immutable_Git_LF_sha256": "57e7e9fc930513099b20759b84fd21c2b851f154effb8a0e45c198262da4a37d",
+      "local_CRLF_count": 176,
+      "Git_CRLF_count": 0,
+      "normalized_equal": true,
+      "rewritten_by_reviewer": false
+    },
+    {
+      "file": "20261020000000_booking_series_cancelled_role_retention.sql",
+      "frozen_local_sha256": "3e231ef7d1018966c1574b672123b9b7b906314f7edeb47e9791d5ee7af0dcaa",
+      "immutable_Git_LF_sha256": "3143b16557b8aeda056a206e354311298289e9787bbbb07567a126ad0ce821bc",
+      "local_CRLF_count": 43,
+      "Git_CRLF_count": 0,
+      "normalized_equal": true,
+      "rewritten_by_reviewer": false
+    }
+  ],
+  "release_deferred_ledger_harvest": {
+    "status": "pendingRootP7/E5h reconciliation",
+    "target": "_bmad-output/auto-bmad/recovery/deferred-validation.md",
+    "rows": 3,
+    "existing_row_mapping": {
+      "delivery0": [
+        7,
+        8
+      ],
+      "delivery1": [
+        9
+      ],
+      "delivery2": [
+        11
+      ]
+    },
+    "ledger_updated_by_author": false,
+    "unrelated_rows": "row10/E16 untouched"
+  },
   "historical_P5_delivery": {
     "path": ".env.epic15.mail-runtime/story-15-2-round2-review-766bba00-a2a7-4353-a957-ea55eb18a2a4/historical-P5-delivery-c1d63ea5.json",
     "sha256": "c1d63ea5d6d610d6453852ef7a7e21c601d04d58e24faee55626a8b24d468576",
