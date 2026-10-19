@@ -1,7 +1,7 @@
 # CI And Quality Gates
 
 This document describes the Continuous Integration (CI) pipeline that enforces the
-Phase A quality gates. CI is the automated enforcement surface for
+Phase A and Phase B quality gates. CI is the automated enforcement surface for
 [Gate 2 — Static Quality](quality-gates.md) and the staged gate order defined in
 architecture §19.
 
@@ -9,14 +9,14 @@ The workflow lives at [`.github/workflows/ci.yml`](../../.github/workflows/ci.ym
 
 ## Scope And Principles
 
-- **Small but expandable.** Only the gates that are testable today run in CI. The
-  heavier gates (migrations, integration, RLS/storage, golden-master, secret scan)
-  are documented placeholders that later stories activate when the surfaces they
-  guard actually exist. See [Deferred Gates](#deferred-gates).
-- **No secrets, no external services.** The current pipeline references no
-  `secrets.*`, no environment variables, no external/paid service, no Supabase
-  service container, and no deploy step. Adding any of these is a stop condition
-  that requires explicit owner approval.
+- **Workflow is authoritative.** Active gates include static checks, unit/golden
+  tests, migration reset, integration/RLS, isolated recovery Storage and browser
+  partitions. The historical activation map below records their origins; use
+  the checked-in workflow for current commands, ordering and budgets.
+- **No hosted secrets or shared test services.** Jobs use isolated local test
+  stacks and synthetic test credentials; there is no deploy step. Hosted secrets,
+  remote test databases and new privileged execution modes retain their owner
+  approval gates.
 - **One source of truth for versions.** Node is derived from `.nvmrc`
   (`node-version-file: .nvmrc`) and pnpm from the `packageManager` field in
   `package.json` (via `pnpm/action-setup`), so CI versions never drift from the
@@ -112,6 +112,75 @@ lighter checks than full product PRs. When a product gate is skipped, the PR
 **must explicitly state which product gates were skipped** in the
 "Tests / Checks Run" section of the PR description (architecture §19;
 [quality-gates.md Gate 2](quality-gates.md)). Silent skipping is not allowed.
+
+## Reusable checkpoint CI (opt-in)
+
+The checked-in `scripts/ci/checkpoint-dispatch.mjs` helper dispatches the normal
+required CI jobs against an exact pushed branch revision. It needs Node from
+`.nvmrc` and an authenticated GitHub CLI with repository write and Actions access.
+No additional dependency, repository admission variable, private broker, hosted
+secret or checkpoint-specific helper is required. The ordinary hosted runners
+already provide the isolation used by the existing gates; `contents: read` is
+the workflow's only declared token permission. Checkout credentials are not
+persisted into the workload tree.
+
+Adoption requires the reviewed `workflow_dispatch` definition on the default
+branch, and this lane on the target branch. Arrange that through the existing
+merge/deployment approval process: merging the lane is not implicit permission
+to deploy. Check production auto-deployment separately before any merge. Then
+opt in a new checkpoint explicitly; do not replace an active loop's controls.
+This standard required-gate lane does not replace E15's optional privileged
+application diagnostic lane or satisfy its outstanding acceptance automatically.
+
+From the repository root, use the actual repository name, pushed branch and full
+lowercase commit SHA (placeholders below are not literal arguments):
+
+```powershell
+node scripts/ci/checkpoint-dispatch.mjs dispatch --repo OWNER/REPOSITORY --ref codex/BRANCH --sha FULL_SHA --state tmp/private/checkpoints/CHECKPOINT.json
+node scripts/ci/checkpoint-dispatch.mjs status --state tmp/private/checkpoints/CHECKPOINT.json
+node scripts/ci/checkpoint-dispatch.mjs cancel --state tmp/private/checkpoints/CHECKPOINT.json
+```
+
+The ignored state record belongs to one operation and must survive interruptions.
+It contains repository/ref/SHA, authenticated actor, workflow ID, a random
+checkpoint UUID, timestamps and the discovered native run ID; never add tokens
+or secret values. The helper exclusively creates and flushes this intent record
+before its only dispatch POST. GitHub does **not** provide idempotency from the
+UUID. Never start a new state record to blindly repeat an uncertain dispatch.
+Status reconciles the exact title and SHA with native run metadata; duplicate
+matches, actor changes, rerun attempts, changed run IDs and truncated history
+fail closed. The helper refuses to overwrite an existing record. A crash may
+leave a local `.lock` file: establish that the original helper has ended before
+manually removing only that operation's lock; preserve its state record.
+
+Each operation is bounded: each API call has a 15-second timeout, discovery scans
+at most five pages of 100 runs, and each status command takes one snapshot rather
+than starting an unattended polling loop. Queued/running requests exceeding the
+record's one-hour observation deadline return exit code 2 and require action;
+use owned cancellation or investigate. A missing run stays uncertain and must be
+reconciled manually, even after that deadline. Cancellation verifies repository,
+workflow ID/path, dispatch event, branch, SHA, checkpoint, actor, triggering actor
+and attempt before the POST. A cancellation request (including an uncertain
+response) is never resent automatically. Observe final native completion with
+`status`; cancellation acceptance alone does not prove completion. Keep the
+record and native run link for evidence; no repository variables require cleanup.
+
+Workflow admission checks dispatch inputs against `github.sha` before any
+required gate. A branch movement between preflight and dispatch fails admission;
+all checkouts use the event's immutable SHA. Different checkpoint UUIDs have
+separate concurrency groups; PR cancellation cannot cancel a checkpoint.
+Dispatch reruns fail admission: create a deliberately reviewed new checkpoint
+only after establishing the previous outcome. Run completion with `success` is
+required evidence; the helper exits 1 for completed failures, and skipped,
+cancelled or failing gates are not an acceptance waiver. Inspect native job and
+artifact evidence for the exact recorded head. Existing job timeouts, test
+budgets, migration checks, integration/RLS, recovery Storage, general browser,
+dashboard browser and cleanup steps remain in force.
+
+The helper transports GitHub API calls through argument arrays and JSON stdin,
+never a shell. Errors omit API response bodies and authentication environment.
+These controls scope routine orchestration; they do not make arbitrary branch
+code trusted or permit privileged secrets to be passed to it.
 
 ## References
 
