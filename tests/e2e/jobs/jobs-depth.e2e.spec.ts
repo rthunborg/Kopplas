@@ -1,0 +1,336 @@
+/**
+ * Story 16.1 essential browser contracts E01–E04, RED scaffolds only.
+ * Evidence: current JobList/JobDetailView/JobEditDialog, BookingEntry/BookingEditor,
+ * booking-actions.ts, shared JobsDepthFixture and the resumed approved 16.1 spec.
+ * No browser/service/test is started by importing this file. Every fixture is lazy.
+ *
+ * PROPOSED UI CONTRACTS, NOT OBSERVED UI: Mina jobb heading; the progressive card
+ * labels below; job-card-planning-toggle, job-card-unsent/retry/save-status;
+ * job-required-role-{id}, job-access-window-row, job-dependency-{id}; and
+ * job-dependency-warning/unknown and job-economy-entitlement. Reconcile these seams with the actual
+ * implementation before activation. They describe usable behavior, not CSS/layout.
+ * Existing job-edit-* / booking-* IDs and login labels are read from current code.
+ * Card failure binding below requires the new form to retain the inspected Next
+ * Server Action POST on /jobs/{id}, including its unique submitted title. If its
+ * production transport differs, bind that actual action before activation; do not
+ * introduce an invented API endpoint or a permanent success stub.
+ *
+ * playwright-utils deviation: the configured flag is true but package.json has no
+ * @seontechnologies/playwright-utils. The library two-gate rule permits existing
+ * Playwright/resourcePage conventions. No package or merged-fixture is created.
+ * Exhaustive roles/devices/browsers, screenshots and manual polish are deferred
+ * release validation (E16 UI/release owner); these skips are not passing evidence.
+ */
+import { test, expect } from "../support/resource-cdp-attachment";
+import type { Locator, Page, Request, Response } from "@playwright/test";
+import {
+  cardInput, createJobsDepthFixture, invokeJobCard, type JobsDepthFixture,
+} from "../../support/jobs-depth-atdd";
+
+type Credentials = { readonly email: string; readonly password: string };
+
+async function hydrated(locator: Locator): Promise<void> {
+  await locator.waitFor({ state: "visible" });
+  await locator.evaluate((element) => new Promise<void>((resolve) => {
+    const tick = () => Object.keys(element).some((key) => key.startsWith("__react"))
+      ? resolve() : requestAnimationFrame(tick);
+    tick();
+  }));
+}
+
+// playwright-utils deviation: no installed auth-session provider; reuse inspected login labels.
+async function signIn(page: Page, credentials: Credentials): Promise<void> {
+  await page.goto("/login");
+  const submit = page.getByRole("button", { name: "Logga in", exact: true });
+  await hydrated(submit);
+  await page.getByLabel("E-post", { exact: true }).fill(credentials.email);
+  await page.getByLabel("Lösenord", { exact: true }).fill(credentials.password);
+  await submit.click();
+  // Do not require Montör to land on a dashboard it may not be entitled to read.
+  await expect(page).not.toHaveURL(/\/login(?:\?|$)/);
+}
+
+async function openEdit(page: Page, jobId: string): Promise<Locator> {
+  await page.goto(`/jobs/${jobId}`);
+  const trigger = page.getByTestId("job-edit-open");
+  await hydrated(trigger);
+  await trigger.click();
+  const form = page.getByTestId("job-edit-dialog");
+  await expect(form).toBeVisible();
+  return form;
+}
+
+function cardRequest(request: Request, jobId: string, title?: string): boolean {
+  return request.method() === "POST" && !!request.headers()["next-action"]
+    && new URL(request.url()).pathname === `/jobs/${jobId}`
+    && (title === undefined || (request.postData() ?? "").includes(title));
+}
+
+// playwright-utils deviation: observe the actual Next action before triggering it; no fake API URL.
+async function saveCard(page: Page, form: Locator, jobId: string, title?: string): Promise<void> {
+  const saved = page.waitForResponse((response) => cardRequest(response.request(), jobId, title));
+  await form.getByTestId("job-edit-save").click();
+  expect((await saved).ok()).toBe(true);
+  await expect(form).toHaveCount(0);
+}
+
+async function fillProgressiveCard(form: Locator, f: JobsDepthFixture, title: string): Promise<void> {
+  await form.getByLabel("Titel", { exact: true }).fill(title);
+  await form.getByLabel("Anläggning", { exact: true }).selectOption(f.identity.facilityId);
+  await form.getByLabel("Kontakt", { exact: true }).selectOption(f.identity.contactId);
+  await form.getByLabel("Planerat startdatum", { exact: true }).fill("2026-10-12");
+  await form.getByLabel("Planerat slutdatum", { exact: true }).fill("2026-10-13");
+  await form.getByTestId("job-card-planning-toggle").click();
+  await form.getByLabel("Prioritet", { exact: true }).selectOption("high");
+  await form.getByLabel("Beräknad tid (minuter)", { exact: true }).fill("120");
+  await form.getByLabel("Restid (minuter)", { exact: true }).fill("30");
+  await form.getByLabel("Antal personer", { exact: true }).fill("2");
+  await form.getByLabel("Tidigaste startdatum", { exact: true }).fill("2026-10-12");
+  await form.getByLabel("Önskat slutdatum", { exact: true }).fill("2026-10-13");
+  await form.getByLabel("Senast tillåtna slutdatum", { exact: true }).fill("2026-10-14");
+  await form.getByTestId(`job-required-role-${f.roleId}`).check();
+  await form.getByRole("button", { name: "Lägg till tillträdestid", exact: true }).click();
+  const window = form.getByTestId("job-access-window-row");
+  await expect(window).toHaveCount(1);
+  await window.getByLabel("Från", { exact: true }).fill("2026-10-12T08:00");
+  await window.getByLabel("Till", { exact: true }).fill("2026-10-12T16:00");
+  await form.getByTestId(`job-dependency-${f.jobs.prerequisite.id}`).check();
+}
+
+function bookingAction(response: Response, operation: "preview" | "save", description: string): boolean {
+  const request = response.request();
+  if (request.method() !== "POST" || !request.headers()["next-action"]) return false;
+  // Inspected production transport: [candidate], with editorReview only on save.
+  try {
+    const candidate = JSON.parse(request.postData() ?? "null")?.[0] as Record<string, unknown> | undefined;
+    return !!candidate && candidate.description === description
+      && Array.isArray(candidate.assigneeIds) && candidate.assigneeIds.length === 1
+      && (operation === "save" ? "editorReview" in candidate : !("editorReview" in candidate));
+  } catch { return false; }
+}
+
+test.describe("Story 16.1 essential Jobs depth journeys — ATDD RED", () => {
+  test.skip("[P0] 16.1-E01 My Jobs is the actual duplicate-free member/assignee union; direct denial and money-safe assigned detail agree", async ({ resourcePage: page }) => {
+    const f = await createJobsDepthFixture();
+    try {
+      await page.setViewportSize({ width: 360, height: 640 });
+      await signIn(page, f.credentials.assignedWorker);
+      await page.getByRole("navigation").getByRole("link", { name: "Jobb/Order", exact: true }).click();
+      await expect(page).toHaveURL(/\/jobs$/);
+      await expect(page.getByRole("heading", { name: "Mina jobb", exact: true })).toBeVisible();
+      const rows = page.getByTestId("job-list-row");
+      const expected = [f.jobs.memberOrder, f.jobs.assigneeProject, f.jobs.both, f.jobs.acceptedAssigned];
+      await expect(rows).toHaveCount(expected.length);
+      const hrefs = await rows.getByRole("link").evaluateAll((links) => links.map((link) => link.getAttribute("href")));
+      for (const job of expected) {
+        expect(hrefs.filter((href) => href === `/jobs/${job.id}`)).toHaveLength(1);
+      }
+      for (const job of [f.jobs.unrelated, f.jobs.foreign]) {
+        await expect(rows.getByRole("link", { name: new RegExp(job.title) })).toHaveCount(0);
+        const denied = await page.goto(`/jobs/${job.id}`);
+        expect(denied?.status()).toBe(404); // current page uses generic notFound for invisible rows
+        await expect(page.getByTestId("job-detail")).toHaveCount(0);
+        await expect(page.getByText(job.title, { exact: true })).toHaveCount(0);
+        await page.goto("/jobs");
+      }
+      const response = await page.goto(`/jobs/${f.jobs.acceptedAssigned.id}`);
+      expect(response?.ok()).toBe(true);
+      await expect(page.getByTestId("job-detail")).toBeVisible();
+      await expect(page.getByTestId("job-customer")).not.toBeEmpty();
+      await expect(page.getByTestId("job-status")).not.toBeEmpty();
+      await expect(page.getByTestId("job-accepted-price")).toHaveCount(0);
+      await expect(page.getByTestId("job-source-sent-total")).toHaveCount(0);
+      await expect(page.getByTestId("job-edit-open")).toHaveCount(0);
+      // Includes SSR/RSC data, so hiding money with CSS or null/zero masking cannot pass.
+      const payload = await response!.text();
+      expect(payload).not.toMatch(/acceptedPriceOre|sourceSentTotalOre|accepted_price_ore|source_sent_total_ore/);
+      expect(payload).not.toMatch(/costRateOre|sellRateOre|cost_rate_ore|sell_rate_ore/);
+      // Proposed explicit entitlement descriptor; absence of numbers alone is insufficient.
+      await expect(page.getByTestId("job-economy-entitlement")).toHaveText(/saknar behörighet|inte tillgänglig/i);
+    } finally { await f.dispose(); }
+  });
+
+  test.skip("[P1] 16.1-E02 phone progressive identity, scheduling and child save retains unsent input after failure; explicit retry persists across reload",
+    { annotation: [{ type: "skipNetworkMonitoring", description: "One identified job-card Server Action request is intentionally aborted before writes" }] },
+    async ({ resourcePage: page }) => {
+      const f = await createJobsDepthFixture();
+      try {
+        await page.setViewportSize({ width: 360, height: 640 });
+        await signIn(page, f.credentials.manager);
+        const form = await openEdit(page, f.jobs.editable.id);
+        const title = `Phone card ${f.jobs.editable.id}`;
+        await fillProgressiveCard(form, f, title);
+        const before = await f.snapshot();
+        // playwright-utils deviation: one-shot abort matches inspected Next transport and unique draft.
+        let aborted = false;
+        const failOneCardAction = async (route: import("@playwright/test").Route) => {
+          if (!aborted && cardRequest(route.request(), f.jobs.editable.id, title)) {
+            aborted = true;
+            await route.abort("failed");
+          } else await route.continue();
+        };
+        await page.route("**/*", failOneCardAction);
+        const failed = page.waitForEvent("requestfailed", {
+          predicate: (request) => cardRequest(request, f.jobs.editable.id, title),
+        });
+        await form.getByTestId("job-edit-save").click();
+        await failed;
+        expect(aborted).toBe(true);
+        await expect(form.getByTestId("job-edit-error")).toHaveAttribute("role", "alert");
+        await expect(form.getByTestId("job-card-unsent")).toBeVisible();
+        await expect(page.getByTestId("job-card-save-status")).toHaveCount(0);
+        await expect(form.getByLabel("Titel", { exact: true })).toHaveValue(title);
+        await expect(form.getByLabel("Anläggning", { exact: true })).toHaveValue(f.identity.facilityId);
+        await expect(form.getByLabel("Beräknad tid (minuter)", { exact: true })).toHaveValue("120");
+        await expect(form.getByTestId(`job-required-role-${f.roleId}`)).toBeChecked();
+        await expect(form.getByTestId("job-access-window-row").getByLabel("Till", { exact: true })).toHaveValue("2026-10-12T16:00");
+        expect(await f.snapshot()).toEqual(before); // no optimistic card/child/audit write
+        await page.unroute("**/*", failOneCardAction);
+        const retry = form.getByTestId("job-card-retry");
+        await retry.scrollIntoViewIfNeeded();
+        await expect(retry).toBeInViewport();
+        await expect(retry).toBeEnabled();
+        const saved = page.waitForResponse((reply) => cardRequest(reply.request(), f.jobs.editable.id, title));
+        await retry.click(); // the consumed failure route now forwards the real save
+        expect((await saved).ok()).toBe(true);
+        await expect(form).toHaveCount(0);
+        await expect(page.getByTestId("job-card-save-status")).toHaveText(/sparad|sparats/i);
+        const after = await f.snapshot();
+        expect(after.jobs.find((row) => row.id === f.jobs.editable.id)).toMatchObject({
+          type: "order", title, customer_id: f.identity.customerId, facility_id: f.identity.facilityId,
+          contact_id: f.identity.contactId, priority: "high", estimated_duration_minutes: 120,
+          planned_travel_minutes: 30, crew_size: 2, earliest_date: "2026-10-12", desired_date: "2026-10-13",
+          latest_date: "2026-10-14", planned_start_date: "2026-10-12", planned_end_date: "2026-10-13",
+        });
+        expect(after.roles.filter((row) => row.job_id === f.jobs.editable.id)).toHaveLength(1);
+        expect(after.roles.find((row) => row.job_id === f.jobs.editable.id)?.work_role_id).toBe(f.roleId);
+        expect(after.windows.filter((row) => row.job_id === f.jobs.editable.id)).toHaveLength(1);
+        expect(after.dependencies.filter((row) => row.job_id === f.jobs.editable.id)).toHaveLength(1);
+        expect(after.audit.length - before.audit.length).toBe(1);
+        await page.reload();
+        await expect(page.getByRole("heading", { name: title, exact: true })).toBeVisible();
+        const reloaded = await openEdit(page, f.jobs.editable.id);
+        await reloaded.getByTestId("job-card-planning-toggle").click();
+        await expect(reloaded.getByLabel("Kontakt", { exact: true })).toHaveValue(f.identity.contactId);
+        await expect(reloaded.getByLabel("Beräknad tid (minuter)", { exact: true })).toHaveValue("120");
+        await expect(reloaded.getByLabel("Restid (minuter)", { exact: true })).toHaveValue("30");
+        await expect(reloaded.getByLabel("Antal personer", { exact: true })).toHaveValue("2");
+        await expect(reloaded.getByLabel("Prioritet", { exact: true })).toHaveValue("high");
+        await expect(reloaded.getByLabel("Tidigaste startdatum", { exact: true })).toHaveValue("2026-10-12");
+        await expect(reloaded.getByLabel("Önskat slutdatum", { exact: true })).toHaveValue("2026-10-13");
+        await expect(reloaded.getByLabel("Senast tillåtna slutdatum", { exact: true })).toHaveValue("2026-10-14");
+        await expect(reloaded.getByTestId(`job-required-role-${f.roleId}`)).toBeChecked();
+        await expect(reloaded.getByTestId(`job-dependency-${f.jobs.prerequisite.id}`)).toBeChecked();
+        await expect(reloaded.getByTestId("job-access-window-row").getByLabel("Från", { exact: true })).toHaveValue("2026-10-12T08:00");
+        expect(await f.snapshot()).toEqual(after);
+      } finally { await f.dispose(); }
+    });
+
+  test.skip("[P0] 16.1-E03 actual job-bound booking preview/save consumes requirements and windows; changed job facts invalidate review before durable save", async ({ resourcePage: page }) => {
+    const f = await createJobsDepthFixture();
+    try {
+      const setup = await invokeJobCard(f.fx.adminClient, "update", cardInput(f, {
+        accessWindows: [{ startsAt: "2026-10-12T06:00:00Z", endsAt: "2026-10-12T07:30:00Z" }],
+      }));
+      expect(setup.ok).toBe(true);
+      await signIn(page, f.credentials.manager);
+      await page.goto(`/jobs/${f.jobs.editable.id}`);
+      await hydrated(page.getByTestId("booking-entry-job"));
+      await page.getByTestId("booking-entry-job").click();
+      const sheet = page.getByRole("dialog");
+      const description = `Job facts booking ${f.jobs.editable.id}`;
+      await expect(sheet.getByTestId("booking-job")).toHaveValue(f.jobs.editable.id);
+      await sheet.getByTestId("booking-description").fill(description);
+      await sheet.getByTestId("booking-start").fill("2026-10-12T09:00");
+      await sheet.getByTestId("booking-end").fill("2026-10-12T10:00");
+      await sheet.getByTestId("booking-work-role").selectOption(f.roleId);
+      // playwright-utils deviation: real action observation registered before the final draft change.
+      const preview = page.waitForResponse((reply) => bookingAction(reply, "preview", description));
+      await sheet.getByTestId(`booking-assignee-option-${f.fx.ownProfile.id}`).check();
+      expect((await preview).ok()).toBe(true);
+      const panel = sheet.getByTestId("booking-conflict-panel");
+      await expect(panel).toContainText("Kompetens saknas");
+      await expect(panel).toContainText("Utanför tillträdestid");
+      await sheet.getByTestId("booking-review-current-warnings").check();
+      await sheet.getByTestId("booking-override-reason").fill("Reviewed original job requirements and access interval");
+      // Real normal-JWT checked card command changes facts while this browser retains its receipt.
+      const changed = await invokeJobCard(f.fx.adminClient, "update", cardInput(f, {
+        accessWindows: [{ startsAt: "2026-10-12T06:00:00Z", endsAt: "2026-10-12T07:00:00Z" }],
+      }));
+      expect(changed.ok).toBe(true);
+      const beforeStaleSave = await f.snapshot();
+      const staleSave = page.waitForResponse((reply) => bookingAction(reply, "save", description));
+      const freshPreview = page.waitForResponse((reply) => bookingAction(reply, "preview", description));
+      await sheet.getByTestId("booking-save").click();
+      expect(await (await staleSave).text()).toContain("PREVIEW_STALE");
+      expect((await freshPreview).ok()).toBe(true);
+      await expect(sheet.getByTestId("booking-save-error")).toBeVisible();
+      await expect(page.getByTestId("booking-save-status")).toHaveCount(0);
+      await expect(sheet.getByTestId("booking-review-current-warnings")).not.toBeChecked();
+      await expect(sheet.getByTestId("booking-override-reason")).toHaveValue("");
+      expect(await f.snapshot()).toEqual(beforeStaleSave); // includes outcome/conflicts/audit, not only bookings
+      await expect(panel).toContainText("Utanför tillträdestid");
+      await sheet.getByTestId("booking-review-current-warnings").check();
+      await sheet.getByTestId("booking-override-reason").fill("Reviewed current narrower access interval");
+      const save = page.waitForResponse((reply) => bookingAction(reply, "save", description));
+      await sheet.getByTestId("booking-retry").click();
+      expect((await save).ok()).toBe(true);
+      await expect(page.getByTestId("booking-save-status")).toHaveText(/sparad/i);
+      const after = await f.snapshot();
+      const created = after.bookings.filter((row) => row.description === description);
+      expect(created).toHaveLength(1);
+      expect(created[0]).toMatchObject({ job_id: f.jobs.editable.id,
+        starts_at: "2026-10-12T07:00:00+00:00", ends_at: "2026-10-12T08:00:00+00:00" });
+      expect(after.assignees.filter((row) => row.booking_id === created[0].id)
+        .map((row) => row.person_profile_id)).toEqual([f.fx.ownProfile.id]);
+      const persisted = after.conflicts.filter((row) => row.booking_id === created[0].id);
+      expect(persisted).toEqual(expect.arrayContaining([
+        expect.objectContaining({ conflict_type: "competence_missing", status: "open" }),
+        expect.objectContaining({ conflict_type: "outside_access_window", status: "open",
+          starts_at: "2026-10-12T07:00:00+00:00", ends_at: "2026-10-12T08:00:00+00:00" }),
+      ]));
+      expect(after.audit.length - beforeStaleSave.audit.length).toBe(1);
+      await page.reload();
+      const summary = page.getByTestId(`booking-summary-${created[0].id}`);
+      await expect(summary).toContainText(description);
+      await summary.getByTestId("booking-edit").click();
+      await expect(page.getByRole("dialog").getByTestId("booking-description")).toHaveValue(description);
+      expect(await f.snapshot()).toEqual(after);
+    } finally { await f.dispose(); }
+  });
+
+  test.skip("[P1] 16.1-E04 dependency dates display unknown, a linked violated-order warning, then clear only after a durable date correction", async ({ resourcePage: page }) => {
+    const f = await createJobsDepthFixture();
+    try {
+      expect((await invokeJobCard(f.fx.adminClient, "update", cardInput(f))).ok).toBe(true);
+      await signIn(page, f.credentials.manager);
+      await page.goto(`/jobs/${f.jobs.editable.id}`);
+      await expect(page.getByTestId("job-dependency-unknown")).toContainText(/okänd|saknas/i);
+      await expect(page.getByTestId("job-dependency-warning")).toHaveCount(0);
+      let form = await openEdit(page, f.jobs.editable.id);
+      await form.getByLabel("Planerat startdatum", { exact: true }).fill("2026-10-12");
+      await saveCard(page, form, f.jobs.editable.id);
+      form = await openEdit(page, f.jobs.prerequisite.id);
+      await form.getByLabel("Planerat slutdatum", { exact: true }).fill("2026-10-13");
+      await saveCard(page, form, f.jobs.prerequisite.id);
+      await page.goto(`/jobs/${f.jobs.editable.id}`);
+      await page.reload();
+      const warning = page.getByTestId("job-dependency-warning");
+      await expect(warning).toContainText(/före|beroende|slut/i);
+      await expect(warning.getByRole("link", { name: f.jobs.prerequisite.title, exact: true }))
+        .toHaveAttribute("href", `/jobs/${f.jobs.prerequisite.id}`);
+      await expect(page.getByTestId("job-dependency-unknown")).toHaveCount(0);
+      form = await openEdit(page, f.jobs.prerequisite.id);
+      await form.getByLabel("Planerat slutdatum", { exact: true }).fill("2026-10-11");
+      await saveCard(page, form, f.jobs.prerequisite.id);
+      await page.goto(`/jobs/${f.jobs.editable.id}`);
+      await page.reload();
+      await expect(page.getByTestId("job-dependency-warning")).toHaveCount(0);
+      await expect(page.getByTestId("job-dependency-unknown")).toHaveCount(0);
+      const durable = await f.snapshot();
+      expect(durable.jobs.find((row) => row.id === f.jobs.prerequisite.id)?.planned_end_date).toBe("2026-10-11");
+      expect(durable.jobs.find((row) => row.id === f.jobs.editable.id)?.planned_start_date).toBe("2026-10-12");
+      expect(durable.dependencies.filter((row) => row.job_id === f.jobs.editable.id)).toHaveLength(1);
+    } finally { await f.dispose(); }
+  });
+});
