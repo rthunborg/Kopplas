@@ -57,6 +57,16 @@ success dialog using its persistent identity and checks actual dialog absence
 before the unchanged fallback-focus and SQL assertions. A distinct Low reviewer,
 typecheck and targeted lint passed; full native focus cases remain pending.
 
+At `22f08b4c73a5e91528bd54048ef6448c5a8192f3`, Schema focus passed completely,
+including actual success-dialog closure, disappeared-source fallback and SQL
+readback. Resource focus failed before mouse-down because the helper found no
+owned activation corridor; the exact clipping/obstruction cause is unproven.
+The helper now retains its original valid first path and checks at most eight
+additional visible padding-band corridors with full source ownership. Independent
+Low review qualified the unchanged Schema path for evidence reuse and approved
+the bounded fallback; typecheck and lint passed. Resource native verification
+remains required; no Resource pass is inferred from the source review.
+
 Essential follow-up selection retains both calendar hosts' keyboard/dialog
 creation, the five usable projections, and representative Resource move plus
 Schema resize with review/cancel/no-write/persistence checks. The latter pair

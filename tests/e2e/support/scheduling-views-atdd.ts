@@ -131,30 +131,83 @@ export class SchedulingViewsHarness {
   /** Native booking drag: activate before target auto-scroll can reuse the same screen point. */
   async dragBooking(source: Locator, target: Locator): Promise<void> {
     await source.scrollIntoViewIfNeeded();
-    const start = await source.evaluate(element => {
+    const selection = await source.evaluate(element => {
       const rect = element.getBoundingClientRect(), style = getComputedStyle(element);
       const article = element.tagName === "ARTICLE";
-      // Article padding belongs to its draggable surface, not nested edit/resize buttons.
-      const x = rect.left + (article ? parseFloat(style.paddingLeft) / 2 : rect.width / 2);
-      const y = rect.top + (article ? parseFloat(style.paddingTop) / 2 : rect.height / 2);
       const travel = 16; // Deliberate physical activation, independent of subsequent scrolling.
-      const owns = (atX: number) => {
-        if (!Number.isFinite(atX) || !Number.isFinite(y) || atX <= 0 || y <= 0 || atX >= innerWidth || y >= innerHeight) return false;
-        const hit = document.elementFromPoint(atX, y);
+      const owns = (x: number, y: number) => {
+        if (!Number.isFinite(x) || !Number.isFinite(y) || x <= 0 || y <= 0 || x >= innerWidth || y >= innerHeight) return false;
+        const hit = document.elementFromPoint(x, y);
         return hit?.closest('[draggable="true"]') === element &&
           (!article || !hit.closest('a, button, input, select, textarea, [contenteditable="true"]'));
       };
-      const direction = owns(x + travel) ? 1 : owns(x - travel) ? -1 : 0;
-      if (!element.matches('[draggable="true"]') || !owns(x) || !direction) return null;
-      // Verify the entire activation corridor, not only endpoints.
-      for (let step = 1; step <= travel; step++) if (!owns(x + direction * step)) return null;
-      return { x, y, activatedX: x + direction * travel };
+      const attempts: { x: number; y: number; dx: number; dy: number; badX: number; badY: number; hitTag: string | null; hitKind: string; sourceOwned: boolean }[] = [];
+      const corridor = (x: number, y: number, dx: number, dy: number) => {
+        for (let step = 0; step <= travel; step++) {
+          const atX = x + dx * step, atY = y + dy * step;
+          if (owns(atX, atY)) continue;
+          const hit = Number.isFinite(atX) && Number.isFinite(atY) ? document.elementFromPoint(atX, atY) : null;
+          const testId = hit?.closest("[data-testid]")?.getAttribute("data-testid") ?? "";
+          attempts.push({ x, y, dx, dy, badX: atX, badY: atY, hitTag: hit?.tagName.toLowerCase() ?? null,
+            hitKind: testId.startsWith("scheduling-booking-") ? "booking" : testId === "scheduling-resize" ? "resize" : testId.endsWith("-slot") ? "slot" : "other",
+            sourceOwned: hit?.closest('[draggable="true"]') === element });
+          return null;
+        }
+        return { x, y, activatedX: x + dx * travel, activatedY: y + dy * travel };
+      };
+      // Preserve the already-proven Schema path first, including its direction choice.
+      const x = rect.left + (article ? parseFloat(style.paddingLeft) / 2 : rect.width / 2);
+      const y = rect.top + (article ? parseFloat(style.paddingTop) / 2 : rect.height / 2);
+      const direction = owns(x + travel, y) ? 1 : owns(x - travel, y) ? -1 : 0;
+      const draggable = element.matches('[draggable="true"]');
+      if (draggable && owns(x, y) && direction) {
+        const point = corridor(x, y, direction, 0);
+        if (point) return { point, diagnostic: null };
+      } else corridor(x, y, direction || 1, 0);
+
+      // A clipped card can still expose a legitimate padding edge. Intersect ancestor clips.
+      const visible = { left: Math.max(0, rect.left), top: Math.max(0, rect.top), right: Math.min(innerWidth, rect.right), bottom: Math.min(innerHeight, rect.bottom) };
+      for (let ancestor = element.parentElement; ancestor; ancestor = ancestor.parentElement) {
+        const css = getComputedStyle(ancestor), box = ancestor.getBoundingClientRect();
+        if (/auto|scroll|hidden|clip/.test(css.overflowX)) {
+          visible.left = Math.max(visible.left, box.left + ancestor.clientLeft);
+          visible.right = Math.min(visible.right, box.left + ancestor.clientLeft + ancestor.clientWidth);
+        }
+        if (/auto|scroll|hidden|clip/.test(css.overflowY)) {
+          visible.top = Math.max(visible.top, box.top + ancestor.clientTop);
+          visible.bottom = Math.min(visible.bottom, box.top + ancestor.clientTop + ancestor.clientHeight);
+        }
+      }
+      const number = (value: string) => parseFloat(value) || 0;
+      const padding = { left: number(style.paddingLeft), right: number(style.paddingRight), top: number(style.paddingTop), bottom: number(style.paddingBottom) };
+      const inner = { left: rect.left + number(style.borderLeftWidth), right: rect.right - number(style.borderRightWidth), top: rect.top + number(style.borderTopWidth), bottom: rect.bottom - number(style.borderBottomWidth) };
+      // Four padding bands for an article; the intended resize button uses its own interior.
+      const bands = article ? [
+        { ...inner, bottom: inner.top + padding.top }, { ...inner, top: inner.bottom - padding.bottom },
+        { ...inner, right: inner.left + padding.left }, { ...inner, left: inner.right - padding.right },
+      ] : [inner];
+      if (draggable) for (const band of bands) {
+        const left = Math.max(band.left, visible.left), right = Math.min(band.right, visible.right);
+        const top = Math.max(band.top, visible.top), bottom = Math.min(band.bottom, visible.bottom);
+        if (right <= left || bottom <= top) continue;
+        // At most two corridors per band; no search loop, retry or guessed outside point.
+        if (right - left > travel) {
+          const point = corridor(left + Math.min(1, (right - left - travel) / 2), (top + bottom) / 2, 1, 0);
+          if (point) return { point, diagnostic: null };
+        }
+        if (bottom - top > travel) {
+          const point = corridor((left + right) / 2, top + Math.min(1, (bottom - top - travel) / 2), 0, 1);
+          if (point) return { point, diagnostic: null };
+        }
+      }
+      return { point: null, diagnostic: { rect: { left: rect.left, top: rect.top, width: rect.width, height: rect.height }, visible, padding, draggable, article, attempts } };
     });
-    if (!start) throw new Error("Native booking drag has no visible source-owned activation corridor");
+    const start = selection.point;
+    if (!start) throw new Error(`Native booking drag has no visible source-owned activation corridor: ${JSON.stringify(selection.diagnostic)}`);
     await this.page.mouse.move(start.x, start.y);
     await this.page.mouse.down();
     try {
-      await this.page.mouse.move(start.activatedX, start.y, { steps: 4 });
+      await this.page.mouse.move(start.activatedX, start.activatedY, { steps: 4 });
       await target.scrollIntoViewIfNeeded();
       const destination = await target.evaluate(element => {
         const rect = element.getBoundingClientRect(), x = rect.left + rect.width / 2, y = rect.top + rect.height / 2;
