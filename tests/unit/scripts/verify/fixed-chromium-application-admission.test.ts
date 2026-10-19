@@ -953,6 +953,8 @@ test("runtime enrollment preserves complete Q admission prefix without weakening
 });
 
 // OWNED-AUTH-FD-TESTS-BEGIN
+import { createRequire } from "node:module";
+import { pathToFileURL } from "node:url";
 const authRuntimeAdded = ["tests/e2e/global-setup.ts", "tests/e2e/global-teardown.ts", "src/components/scheduling/SchedulingWorkspace.tsx", "src/components/scheduling/BookingBlock.tsx", "src/components/scheduling/SchemaView.tsx", "src/components/scheduling/focus-restoration.ts"];
 type MockAuthNode = { dev: number; ino: number; uid: number; gid: number; mode: number; size: number; nlink: number; kind: string };
 function authHarness(fault = "positive") {
@@ -1066,7 +1068,12 @@ function actualAuthTeardown(h: ReturnType<typeof authHarness>, mode = "verify-ap
   vm.runInNewContext(code, scope); return { run: scope.exports.default!, ordinary };
 }
 function pinnedAuthRunner(load: (file: string) => Promise<unknown>) {
-  const pinned = source(".env.epic15.mail-runtime/epic15-pinned-loader-FD-qualification-dcf4afc1-03b6-4242-ad5e-b2d989f2fb99/package__lib__runner__index.js");
+  const packagePath = createRequire(import.meta.resolve("@playwright/test/package.json")).resolve("playwright/package.json");
+  const manifest = JSON.parse(readFileSync(packagePath, "utf8")) as { name: string; version: string };
+  assert.equal(manifest.name, "playwright");
+  assert.equal(manifest.version, "1.61.1");
+  const pinned = readFileSync(new URL("./lib/runner/index.js", pathToFileURL(packagePath)), "utf8");
+  assert.equal(sha(pinned), "42772378ebad5d2387726d02d377721112edbdde99d495c1259855ddb701b08e");
   const task = pinned.slice(pinned.indexOf("var TaskRunner = class"), pinned.indexOf("var TimeoutWatcher = class"));
   const hooks = pinned.slice(pinned.indexOf("function createGlobalSetupTask("), pinned.indexOf("function createRemoveOutputDirsTask("));
   const errors: unknown[] = [];

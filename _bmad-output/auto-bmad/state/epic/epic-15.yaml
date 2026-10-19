@@ -9,11 +9,11 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-17T10:46:25Z"
+updated_at: "2026-10-19T10:13:07Z"
 started_at: "2026-10-09T12:57:49Z"
 completed_at: null
-active_seconds: 114864
-timing_anchor: null
+active_seconds: 124863
+timing_anchor: 1792404787
 is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
@@ -191,7 +191,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [99e1274e, b7f19e2d, 6f612a21, bc4163ea, 27ce6a2b, 7cdd08a6, 66cd8436, e6c404d3, 5d76de08575fb8fa09197021899d78280829d554, 81836287786a40540e96dbdf46db29c868cde41b, 48386408fc628f7341b711f177ff5833f622959c, 92dc4a5f4f7e9878e9ed9c28e00bda5d98680478, 16180cd63914a57895b36c2db060c43c74da3514, caec31b185bcad597664668d7a835c9c2096aa4d, 0a312c8fbd617d4ce03f97d5484bb23babb0686b, d5a5f85155394a0337ea92fcd606f949559b172a, becfd00e, 80c31af2, a0dd2302ead46e72e77f3293b84085c4f8fe65f3, 6f9e29656df997e2c5c6027874da4bee1ef6c17d, 5c1fb90b2f7f735259208e2d420bce489cbed598, 0d6f43ac90596b8703d8df3b9b986f9026aaaba3, 76868db295ac6b7de06a57f43164d5f02140f938, c4375f61, abaf8d81, db50a9c5, a1b83089, 6883ef61, 2441e3a2, 94baa7c7, afd9c1dd, 6d983e00, ae5b78b6, 09e70e81, 311e744f, 1d4ec146, 37fa423a, b1ad1496, "21835451", 1fadbd1f, b1f91332, 99590bfa, 45deb287, 532ebccf, 689ec7b7, cf9b89f9, 63186b1f, 48f8d7a7f170ca496b63e8120a34edb92e3ca23e, 6c0fa8fa11a1b4ab7268f623b96693affe3506b0, 83c60e0033628b4158448b9e782a9ad5a12e062f, ab5595a609092306489064f46e5a567cbfb9b34a, f2bad2b11b31b4646a3b068e17b61a044b376c0a, 574d84d8fb84b57c04d919007403f98680314027]
+commits: [99e1274e, b7f19e2d, 6f612a21, bc4163ea, 27ce6a2b, 7cdd08a6, 66cd8436, e6c404d3, 5d76de08575fb8fa09197021899d78280829d554, 81836287786a40540e96dbdf46db29c868cde41b, 48386408fc628f7341b711f177ff5833f622959c, 92dc4a5f4f7e9878e9ed9c28e00bda5d98680478, 16180cd63914a57895b36c2db060c43c74da3514, caec31b185bcad597664668d7a835c9c2096aa4d, 0a312c8fbd617d4ce03f97d5484bb23babb0686b, d5a5f85155394a0337ea92fcd606f949559b172a, becfd00e, 80c31af2, a0dd2302ead46e72e77f3293b84085c4f8fe65f3, 6f9e29656df997e2c5c6027874da4bee1ef6c17d, 5c1fb90b2f7f735259208e2d420bce489cbed598, 0d6f43ac90596b8703d8df3b9b986f9026aaaba3, 76868db295ac6b7de06a57f43164d5f02140f938, c4375f61, abaf8d81, db50a9c5, a1b83089, 6883ef61, 2441e3a2, 94baa7c7, afd9c1dd, 6d983e00, ae5b78b6, 09e70e81, 311e744f, 1d4ec146, 37fa423a, b1ad1496, "21835451", 1fadbd1f, b1f91332, 99590bfa, 45deb287, 532ebccf, 689ec7b7, cf9b89f9, 63186b1f, 48f8d7a7f170ca496b63e8120a34edb92e3ca23e, 6c0fa8fa11a1b4ab7268f623b96693affe3506b0, 83c60e0033628b4158448b9e782a9ad5a12e062f, ab5595a609092306489064f46e5a567cbfb9b34a, f2bad2b11b31b4646a3b068e17b61a044b376c0a, 574d84d8fb84b57c04d919007403f98680314027, b5814e982cc5db9c1b5285ee85b08ad77621d1e9]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -208,7 +208,7 @@ retro:
   open_action_items: 0
 bmad_status_flipped_at: null
 pr_url: null
-ci_run_url: "https://github.com/rthunborg/Kopplas/actions/runs/38910825118"
+ci_run_url: "https://github.com/rthunborg/Kopplas/actions/runs/39234451865"
 ci_status: failed
 pr_merged: false
 merge_method: null
@@ -2777,7 +2777,7 @@ r_phase_Node_source_qualification_High:
   review_receipt: message-based-no-review-file
   further_investigation: false
 reviewed_ten_path_checkpoint:
-  status: local-checkpoint-in-progress
+  status: same-independent-High-metadata-PASS-local-only
   parent: 574d84d8fb84b57c04d919007403f98680314027
   sources: 10
   bookkeeping_paths: 3
@@ -2788,3 +2788,320 @@ reviewed_ten_path_checkpoint:
   runtime: false
   p5: false
   broad_review_rounds: 0
+  head: b5814e982cc5db9c1b5285ee85b08ad77621d1e9
+  tree: c243f787b8480646b690b5bca4047552a556905c
+  actual_packet: "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\root-reviewed-ten-path-checkpoint-39ba9ea1-579b-4221-8667-a4fc288de9a5\\actual-checkpoint.json"
+  clean: true
+s_checkpoint_control_plan_High:
+  status: same-independent-High-PASS-awaiting-private-control-allocation
+  head: b5814e982cc5db9c1b5285ee85b08ad77621d1e9
+  packet: "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\epic15-S-checkpoint-control-plan-1a948557-a1f5-42b9-9569-62e78891eb22"
+  headline_bindings_verified: 5
+  primary_entries: 32
+  runtime_paths: 21
+  working_git_exact: 10
+  working_git_crlf_only: 22
+  R_conserved: 22
+  R_successors: 10
+  helper_literals: 2
+  worker_literals: 1
+  control_issuance: false
+  runtime: false
+  review_thread: 01a13f08-adf6-72a2-bae4-ac2f1f734c2e
+  review_turn: 01a1497e-3118-71b1-8bf8-f1359cc4dea9
+  bindings_independently_verified: 92
+  review_receipt: message-based-no-review-file
+s_PRIMARY32:
+  status: strictly-issued-private-control-preparation-only
+  directory: "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\root-S-primary32-binding-894a2231-2eb0-4cc1-9aff-0928c6d38f02"
+  binding: "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\root-S-primary32-binding-894a2231-2eb0-4cc1-9aff-0928c6d38f02\\root-final-binding.S.json"
+  binding_bytes: 16197
+  binding_sha256: 06f01103293ac660a0851ba321f037e1fdbb390edb2030269c32a3584a6d8279
+  manifest_bytes: 1386
+  manifest_sha256: 2135f57b4405d79672caf67363365891e240e30e05102ea2a714ab516f2f9281
+  source_count: 32
+  negative_refusals: 14
+  live_admission: false
+s_private_controls_v3_High:
+  status: same-independent-High-static-PASS
+  actor: "/root/adoption15_high"
+  effort: high
+  runtime: false
+  root_PRIMARY32_issued: true
+  tracked_writes: false
+  packet: "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\epic15-S-application-controls-a044b72e-c610-49b6-b7f2-2c28ce10e2b2"
+  headline_bindings_verified: 5
+  controls_passed: 91
+  actual_control_checks: 76
+  test_only_upstream_checks: 15
+  root_issuer_checks_separate: 14
+  live_actions: 0
+  review_thread: 01a13f08-adf6-72a2-bae4-ac2f1f734c2e
+  review_turn: 01a14989-f36e-7722-b49e-b65a28f8f006
+  independently_verified_bindings: 124
+  live_admission: false
+s_fresh_readiness_High:
+  status: same-independent-High-HOLD-ROOT-procedure-delta
+  actor: "/root/adoption15_high"
+  proposed_T: "2026-10-17T11:20:00Z"
+  proposal_only: true
+  actual_release: null
+  runtime: false
+  live_mutations: false
+  packet: "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\epic15-S-fresh-readiness-3ef9f2d6-86aa-41dd-aaf9-6a7d90939022"
+  headline_bindings_verified: 3
+  binding_count: 217
+  provider_complete_empty: true
+  prior_variables: 8
+  pair_absent: true
+  S_dispatch_baseline: 0
+  branch_nonterminal: 0
+  owner_ACKs_bound: true
+  PRIMARY_available: true
+  executor_READY: true
+  review_turn: 01a14995-3132-7d63-8867-afa689965ff1
+  verified_bindings: 217
+  helper_wiring: correct-adjacent-S32
+  proposed_window_retired: true
+  retired_T: "2026-10-17T11:20:00Z"
+  active_timers: false
+  owner_holds_activated: false
+s_ROOT_execution_correction_High:
+  status: same-narrow-High-PASS-deadline-closed
+  actor: "/root/adoption15_high"
+  effort: high
+  network: false
+  runtime: false
+  packet: "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\epic15-S-root-execution-correction-d4c9d0f6-61a0-43ef-b2b8-247bd27b47ef"
+  headline_bindings_verified: 4
+  binding_count: 198
+  targeted_actual_code_offline_passes: 17
+  whole_procedure_inverse_claimed: false
+  descendant_closure_claimed: false
+  live_actions: 0
+  review_turn: 01a149a4-0e19-7643-83dc-e20d05c1fd4f
+  verified_bindings: 198
+  fix: post-consumption-marker-current-deadline-and-budget
+  required_added_controls: 2
+  existing_controls_preserved: 15
+  deadline_fix_packet: "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\epic15-S-root-deadline-fix-8ae4bada-571b-46a1-8872-a3f354e7b550"
+  retained_passes: 15
+  new_injected_clock_controls: 2
+  both_preimages_red: true
+  inverse_exact: true
+s_reanchored_proposal:
+  T: "2026-10-17T11:45:00Z"
+  setup: "2026-10-17T11:47:00Z"
+  push_POST: "2026-10-17T11:50:00Z"
+  unique_bind: "2026-10-17T12:00:00Z"
+  owned_cancel: "2026-10-17T13:00:00Z"
+  restore_or_handoff: "2026-10-17T13:15:00Z"
+  actual_release: "2026-10-17T11:45:00Z"
+  status: retired-HOLD-readonly-CLI-refusal-no-mutations
+  actor: "/root/adoption15_high"
+  effort: high
+  packet: "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\epic15-S-reanchor-readiness-9a134753-9dfd-4632-b31a-99125ea811f0"
+  binding_count: 224
+  headline_bindings_verified: 3
+  new_owner_ACKs_bound: true
+  refreshed_GH_UTC: "2026-10-17T11:38:18Z"
+  refreshed_provider_UTC: ["2026-10-17T11:38:18Z", "2026-10-17T11:38:23Z", "2026-10-17T11:38:28Z"]
+  live_actions: 0
+  execution_release_file: "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\epic15-S-root-deadline-fix-8ae4bada-571b-46a1-8872-a3f354e7b550\\execution-release.json"
+  execution_release_sha256: cb1b5df7c1a75fd975d9a7ce1112c81c933f573a1966b9d38b567f5cf288edaa
+  operational_review_turn: 01a149aa-a35c-74b2-a4b5-d12db1d16d7d
+  final_metadata_issued: true
+  final_LOCAL: PASS32sources124controls
+  final_GH: native1-parser-refusal-before-variable-HTTP
+  capture_bindings: ["{'path': 'C:\\\\Users\\\\Rasmus\\\\.codex\\\\worktrees\\\\epic-15-calendar\\\\Kopplas\\\\.env.epic15.mail-runtime\\\\epic15-S-root-deadline-fix-8ae4bada-571b-46a1-8872-a3f354e7b550\\\\final-local-guards.json', 'bytes': 373, 'sha256': 'b6f18e3cea83e685b3a24f2c169346dd00692d2a29198d2a14db765c2ef5da0d'}", "{'path': 'C:\\\\Users\\\\Rasmus\\\\.codex\\\\worktrees\\\\epic-15-calendar\\\\Kopplas\\\\.env.epic15.mail-runtime\\\\epic15-S-root-deadline-fix-8ae4bada-571b-46a1-8872-a3f354e7b550\\\\final-variable-namespace.metadata.json', 'bytes': 818, 'sha256': '324f5162362576204123f4457eaf9157cbaef4af17c6ca2303da1a7237f9865d'}", "{'path': 'C:\\\\Users\\\\Rasmus\\\\.codex\\\\worktrees\\\\epic-15-calendar\\\\Kopplas\\\\.env.epic15.mail-runtime\\\\epic15-S-root-deadline-fix-8ae4bada-571b-46a1-8872-a3f354e7b550\\\\final-variable-namespace.stderr', 'bytes': 1578, 'sha256': '7bdf927ad941f23f9ddd4b3c6102ad2f6f50faa93c4341fd7e589c219a7c6b13'}"]
+  Create: 0
+  journal: null
+  push: 0
+  POST: 0
+  run_id: null
+  BindRun: 0
+  cancel: 0
+  Restore: 0
+  variables_written: 0
+  resources_started: 0
+  active_operation_timers: false
+  retired_T: "2026-10-17T11:45:00Z"
+  retirement_reason: "gh --slurp cannot combine with --jq; no retry"
+  owner_hold_release: Coordinator-actual-E16-and-feedback-released
+s_namespace_compatibility_High:
+  status: SAME-independent-PASS-236-bindings-14-offline
+  folder: epic15-S-namespace-compatibility-2c075c9a-c0b6-4b28-b914-ea6b9bdc5f76
+  offline_pass: 14
+  live_probe_executed: false
+  new_release_clock_issued: false
+  source_changes: 0
+  runtime_changes: 0
+  manifest_sha256: 34d5b369043c2384fcdafeaa14d973a0498c309a28d6d27940e145f67b8ffc26
+  seal_sha256: 3aaad6b2596bee03189b14fcb39590d4d59abeabb01613c38ee7507aee993853
+s_namespace_live_probe_High:
+  status: PASS-sealed
+  probe_completed_UTC: "2026-10-17T11:59:21.088739+00:00"
+  native_exit: 0
+  stdout_bytes: 838
+  stderr_bytes: 0
+  actual_parser_complete: 8
+  identities_equal: true
+  pair_absent: true
+  invocations: 1
+  retry: false
+  new_window_authority: false
+  manifest_sha256: c327475b3a1dfacbf7a797f962c7493fbc1c9e89bc61374c441ec1c0fc6d5638
+s_corrected_readiness_High:
+  status: SAME-final-PASS-317-Coordinator-FINAL-admitted-awaiting-T
+  folder: "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\epic15-S-corrected-readiness-f13a392d-bfd8-4f58-85f4-51e26d1c633b"
+  T: "2026-10-17T12:20:00.0000000+00:00"
+  private_bindings: 52
+  external_bindings: 265
+  namespace_probe_reused: true
+  new_E16_cursor: "fd90fdb3-f168-4b93-a1b5-81d43eba04e1:35"
+  new_feedback_cursor: "9a9d17d0-2b54-4e9c-9c42-1901f3e4719f:19"
+  release_active: false
+  mutations: 0
+  manifest_sha256: e00a44e53af8348adbbaf5b4b2a8f5036f82c4b6d4e77bcbb2d7cf2ede971b6f
+s_corrected_execution:
+  status: HOLD-actual-helper-ROOT-receipt-schema-mismatch-before-push
+  T: "2026-10-17T12:20:00.0000000+00:00"
+  release_sha256: 897d5a46882335ad4b57717c5c6bff9273474541f852c98ded768a7070f258ba
+  review_cursor: "e6d84694-9b2d-4a63-b71d-71aa7e0f434b:19"
+  freshness_bindings: 319
+  Create: 1
+  push: 0
+  POST: 0
+  actual_journal: "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/epic15-S-application-controls-a044b72e-c610-49b6-b7f2-2c28ce10e2b2/owned-variable-execution-00dfa0e3-16c0-4067-baf8-de61872d03fc"
+  actual_run: null
+  owned_cancel_explicitly_admitted: true
+  old_windows_retired: true
+  Create_native_exit: 0
+  owned_variables_created: 2
+  actual_journal_id: 568b1052-d949-4098-a09e-b9e4abc8972f
+  publish_consumed: false
+  dispatch_consumed: false
+  root_pair_projection_issued: false
+  source_or_receipt_edits: 0
+  normal_Restore_blocker: "requires actual bound run, none exists"
+  cleanup_or_handoff_deadline_UTC: "2026-10-17T13:50:00Z"
+  conditional_cancel_timer_active: false
+  publication_dispatch_authority: permanent-ABORT-no-future-reuse
+  owner_holds: temporary-E16-feedback-holds-actually-released-after-accepted-custody
+  abort_before_publication_receipt: "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\epic15-S-namespace-compatibility-2c075c9a-c0b6-4b28-b914-ea6b9bdc5f76\\ROOT-actual-abort-before-publication.json"
+  no_run_recovery: private-helper-and-focused-offline-proofs-authoring-only
+  cleanup_or_handoff_deadline_status: fulfilled-by-accepted-precise-custody-retired
+s_no_run_recovery_High:
+  status: custody-accepted-Recover-blocked-pending-direct-human-approval
+  folder: "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\epic15-S-no-run-recovery-6feb36e6-040b-4b3c-adf8-0e4c8c541405"
+  offline_pass: 30
+  offline_initial_fixture_failure_preserved: true
+  private_bindings: 480
+  external_bindings: 54
+  live_calls: 0
+  actual_release: null
+  actual_execution: "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\epic15-S-no-run-recovery-6feb36e6-040b-4b3c-adf8-0e4c8c541405\\recovery-execution-5faad9c9-ac36-4193-a234-b8ead894ecbf"
+  owned_residue_variables: 2
+  deadline_UTC: "2026-10-17T13:50:00Z"
+  manifest_sha256: 4451fd1a774ee40578694c72357733e4a051d678de866d9bfe575292cf2338b0
+  actual_Prepare: "{\"native_exit\": 0, \"mutations\": 0, \"residue\": 2, \"transport_count\": 9, \"transport_all_native0_closed\": true, \"full_namespace\": 10, \"original_identities_equal\": 8, \"own2_values_timestamps_match\": true, \"remote\": \"574d84d8fb84b57c04d919007403f98680314027\", \"runs_completed\": 17, \"runs_S\": 0, \"runs_live\": 0, \"manifest_sha256\": \"99af13fc8ee0997359af9a672d7a829c0a3ba89b7c787f05adf2014b026ce898\"}"
+  Recover_authority_released: false
+  Recover_actual_release: null
+  Recover_invocations: 0
+  DELETE_invocations: 0
+  Reconcile_authority_released: false
+  approval_request_owner: Coordinator
+  no_retry_or_workaround: true
+s_recovery_human_approval_hold:
+  startedUTC: "2026-10-17T12:50:19.206316+00:00"
+  reason: "automatic approval review rejected Recover release; direct human approval required for these exact two owned variable deletions despite standing authorization"
+  question_owner: Coordinator
+  variable_names: [FIXED_CHROMIUM_HOSTED_ADMISSION, FIXED_CHROMIUM_HOSTED_ADMISSION_SHA]
+  Recover_release_issued: false
+  Recover_invocations: 0
+  DELETE_invocations: 0
+  owned_variables_last_verified: 0
+  permanent_publication_abort: true
+  custody_or_precise_handoff_deadlineUTC: "2026-10-17T13:50:00Z"
+  global_timing_paused_for_human_wait: false
+  task_complete: false
+  custody_handoff_accepted: true
+  old_handoff_deadline_retired: true
+  temporary_conflict_holds_released: true
+  status: RESOLVED-actual-conditional-cleanup-RESTORED
+  approval_text: I approve the conditional deletion of those two temporary CI variables with the stated ownership checks and verification.
+  fresh_remote_or_DELETE_execution_released: false
+  human_approval_resolved: true
+  cleanup_observedUTC: "2026-10-19T09:37:23.517073+00:00"
+s_recovery_residue_custody_handoff:
+  status: Coordinator-independently-verified-and-ACCEPTED-custody-not-restoration
+  receipt: "{\"path\": \"C:\\\\Users\\\\Rasmus\\\\.codex\\\\worktrees\\\\epic-15-calendar\\\\Kopplas\\\\.env.epic15.mail-runtime\\\\epic15-S-namespace-compatibility-2c075c9a-c0b6-4b28-b914-ea6b9bdc5f76\\\\ROOT-residue-custody-handoff-after-blocked-Recover.json\", \"bytes\": 11590, \"sha256\": \"309fe910706e9a5085415821d5b7c271332b7f2dd33348b8352e6df9369d8865\"}"
+  owned_variables_last_observed: 2
+  current_remote_state: UNKNOWN
+  human_approval: pending-in-Coordinator
+  Recover_or_DELETE_invocations: 0
+  temporary_hold_release: Coordinator-ACTUALLY-delivered-E16-and-feedback-release-with-residue-noted
+  E16_schema_hold_retained: true
+  accepted_receipt_sha256: 309fe910706e9a5085415821d5b7c271332b7f2dd33348b8352e6df9369d8865
+  handoff_deadline_fulfilled_and_retired: true
+  restoration_claimed: false
+  run_or_cancel_timers_active: false
+Oct19_conditional_recovery:
+  status: actual-RESTORED-residue0
+  human_exact_approval: true
+  focused_High_delta_PASS: true
+  binding_sha256: 412829e30bb3df883513e1a3b6a0ff95a93c232eb935183482c78497203c323f
+  recovery_id: 24c5a710-5430-4b91-acf5-bf36c4b469df
+  commands_sha256: 935ef6bf166cdc323f86acdc7f4c9e7ecfd4c83c77f6930c53311da93c10087a
+  per_phase_seconds: 120
+  max_owned_deletions: 2
+  conditional_Reconcile_readonly: true
+  publication_CI_deploy_authority: false
+  observedUTC: "2026-10-19T09:37:23.517073+00:00"
+  accepted_deletions: 2
+  original8IdentityExact: true
+  pairAbsent: true
+  residue: []
+  Reconcile_invoked: false
+  recovery_result_sha256: 785e39aa8072ecb6e47c70761a4a39446874737386b8ba773a2132bad6c48f04
+  qualified_closure_accepted_by_Coordinator: true
+  no_more_cleanup_needed: true
+  old_custody_residue_closed: true
+Oct19_receipt_interface_fix:
+  status: SAME-focused-High-PASS19-inverse-16controls
+  old_operation_permanently_aborted: true
+  live_CI_push_authority: false
+  optional_diagnostics_deferred: true
+  successor_sha256: 77f2bf9b6ce0f667186a08cbca7e8950589a325af06af085fc4a17f75a435d3e
+  mutable_readonly_qualification_allocated: true
+Oct19_first_JIT_admission:
+  T: "2026-10-19T09:52:15Z"
+  status: expired-setup-HOLD-before-Create-no-mutations
+  final_guards_PASS_UTC: "2026-10-19T09:53:55.133067+00:00"
+  final_guards_sha256: 8dd2ef9e7ca0de7baf7788a5e09262dc4f4b14170388613c4e4ab1a70135005d
+  Create_invocations: 0
+  variables_created: 0
+  push_invocations: 0
+  workflow_POST_invocations: 0
+  run: null
+  run_cancel_timers_active: false
+  replacement_requested: Root-local-actualT-at-exclusive-issuance-same-assets-and-effects
+Oct19_checkpoint:
+  head: b5814e982cc5db9c1b5285ee85b08ad77621d1e9
+  operative: epic15-Oct19-jit-operative-4
+  releaseT: "2026-10-19T10:00:46.0000000+00:00"
+  normal_ff_push_verified: true
+  dispatch_count: 1
+  actualRunId: 39234451865
+  binding_sha256: 00b99f8c7849bc4675fa427088beffa8a41e762ec1a4ef4dd88f7417e194702e
+  original_variable_recovery: "RESTORED 2026-10-19T09:37:23.517073Z"
+  actual_journal: owned-variable-execution-5c802288-440d-4c39-90bd-bb7f7cb4d3b0
+  conditional_cancel_utc: "2026-10-19T11:15:46Z"
+  closure_or_handoff_utc: "2026-10-19T11:30:46Z"
+  p5_complete: false
+  broad_review_rounds: 0
+  deployment_actions: 0
+  restore: "RESTORED original8IdentityExact/pairAbsent/residue[] at2026-10-19T10:04:34.018486Z"
+  unit: "2777total/2773pass/4failed/0skipped; missing private pinnedloader source"
+  downstream: All DB/browser/application skipped
+  portable_loader_fix: "{\"path\": \"tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts\", \"working_bytes\": 137600, \"working_sha256\": \"c4a6c935533cb925090b40c9feb07737e9324716fc19fbe5185b99abbfd50857\", \"independent_focused_high_review\": \"PASS actual turn01a153a3-dad0-7be3-b6a6-0d431b9977aa\", \"reproduction\": \"Private loader path denied RED4 to GREEN4\", \"related_unit_suite\": \"214pass/0fail/0cancel/0skip\", \"negative_witnesses\": \"Wrong version and source hash refuse before TaskRunner evaluation\", \"checks\": \"Lint/full nonincremental typecheck/diff check native0\", \"source_conservation\": \"31 other source bindings and historical prefixes/inverse conserved\", \"next_checkpoint_paths\": [\"tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts\", \"_bmad-output/auto-bmad/state/15-1-the-five-scheduling-views.yaml\", \"_bmad-output/auto-bmad/state/epic/epic-15.yaml\", \"_bmad-output/auto-bmad/reports/epic-15.md\"], \"p5_complete\": false, \"broad_review_rounds\": 0}"
