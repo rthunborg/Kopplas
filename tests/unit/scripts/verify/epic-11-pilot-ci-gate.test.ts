@@ -3,13 +3,11 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { test } from "node:test";
 
-const ci = readFileSync(join(process.cwd(), ".github", "workflows", "ci.yml"), "utf8");
+const ci = readFileSync(join(process.cwd(), ".github", "workflows", "ci.yml"), "utf8").replaceAll("\r\n", "\n");
 
-test("Epic 11 NFR probe shares the bounded DB lane without becoming a historical Phase A test script", () => {
-  assert.match(
-    ci,
-    /Database, RLS, and pilot performance tests" --max-seconds 420 -- bash -c\s+'pnpm run test:int --reporter=default --reporter=github-actions --reporter=json --outputFile=test-results\/full-integration\.json && node --experimental-strip-types --import \.\/tests\/support\/register\.mjs scripts\/nfr\/epic-11-r1108-baseline\.ts'/,
-  );
+test("DB integrity and pilot probe remain required without an extra test execution stopwatch", () => {
+  assert.match(ci, /run: \|\s+pnpm run test:int --reporter=default --reporter=github-actions --reporter=json --outputFile=test-results\/full-integration\.json\s+pnpm run test:pilot-performance/);
+  assert.doesNotMatch(ci, /--max-seconds/);
   assert.doesNotMatch(ci, /test:int:pilot/);
 });
 

@@ -85,8 +85,10 @@ variables. Its implementation adds no hosted secret or privileged runtime mode.
 
 ## Independently verified prerequisite PRs
 
-Prefer a smaller, independently testable prerequisite PR when the approved
-story or ADR permits that boundary. Before extracting it, reconcile the approved
+Deliver one final epic PR. Implement concrete narrow prerequisites within its
+branch where authorized. Separate prerequisite or split PR publication requires
+owner approval of its concrete scope before publication, even when technically
+independently testable. Before extracting it, reconcile the approved
 delivery/activation contract and acceptance-criteria partition; record the
 slice's write ownership, shared semantic contracts, integration dependency and
 slice-specific tests. Concurrent work still requires explicit claims under the
@@ -122,3 +124,7 @@ Implementation requires an approved story or ADR-backed task. Within authorized 
 - Activate a pending module only within an approved activation story, in the same PR as its first schema/nav change, H4 enrollment, and deferred-token removal.
 - Keep explicit approval for PR merge and for changes to `.env` or secrets handling; current host prohibitions and destructive-action safeguards still apply.
 - Bringing any Phase C hard exclusion into active scope requires a new owner decision and linked planning artifact.
+
+## Development completion — owner decision 2026-10-19
+
+Follow [development completion and release validation](development-completion-policy.md) for ordinary gates, truthful release deferrals, bounded attempts, named blockers, compact progress and review reuse. This supersedes older exhaustive routine completion requirements; existing ownership and approval boundaries remain.
