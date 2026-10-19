@@ -54,6 +54,10 @@ running primary session was reconfigured when only a delegate was changed.
 See [the routing policy](docs/process/agent-model-routing.md) for settings,
 phase defaults, task-specific overrides and session reload limits.
 
+## Development completion policy
+
+**Owner decision — 2026-10-19:** Follow [development completion and release validation](docs/process/development-completion-policy.md). Ordinary completion requires applicable static/build checks, focused unit/integration integrity evidence, independent review and essential browser smoke. Track exhaustive browser matrices, screenshots, visual/manual checks and polish as deferred release validation; never mark unexecuted work passed. Distinguish development complete from release ready. After two failed attempts choose a simpler safe route or record blocker owner, evidence, next action and resume condition. Reuse unchanged independent review with verified provenance. Keep heartbeats compact. Deliver one final epic PR; concrete narrow prerequisites are allowed, while split publication needs owner approval before publication. Existing paused chats stay paused until explicitly resumed. Preserve resource guard, sensitive review, scope and merge/deployment approval boundaries.
+
 ## Parallel development ownership
 
 Ordinary Auto-BMAD epic runs remain sequential. Concurrent story implementation
@@ -105,3 +109,13 @@ Kopplas is a multi-tenant application for electrical contractors, built with Nex
 - Follow ADR-B009 for field workflows: connected responsive web at 360×640, explicit failure/retry, and success only after server-confirmed persistence. PWA installation, durable offline storage, queues, and synchronization remain Phase C.
 
 <!-- /bmad:context -->
+
+## Frontend PR labeling
+
+- Any agent creating or updating a PR that changes frontend pages, layouts,
+  components, styles, or other user-facing UI must add the `agent-fix` label
+  and verify that it is present before handing off the PR.
+- This also applies to mixed frontend/backend PRs.
+- Respect an explicit owner opt-out from labeling for a particular PR.
+- The label does not bypass the remediation policy, required reviews, checks,
+  or separate authorization to merge or deploy.

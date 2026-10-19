@@ -1,4 +1,5 @@
 name: CI
+run-name: ${{ github.event_name == 'workflow_dispatch' && format('checkpoint:{0}:{1}', inputs.checkpoint_id, inputs.expected_sha) || format('CI {0}', github.ref_name) }}
 
 # Phase A verification gates (architecture §19).
 # `verify` job — stages 1-5 + 10: install, lockfile guard, service-role containment
@@ -16,6 +17,21 @@ name: CI
 # the universal local-demo defaults, not real secrets).
 
 on:
+  workflow_dispatch:
+    inputs:
+      expected_sha:
+        description: Exact full lowercase source commit; must equal the dispatched branch head
+        type: string
+        required: true
+      checkpoint_id:
+        description: Unique UUID generated and persisted by checkpoint-dispatch.mjs
+        type: string
+        required: true
+      release_validation:
+        description: Also run exhaustive browser and dashboard diagnostics
+        type: boolean
+        required: false
+        default: false
   pull_request:
     # Verify the dependent Epic 11 repair PRs before their approved retarget to main.
     branches:
@@ -34,20 +50,40 @@ permissions:
 # Only cancel for pull_request events — a push→main run is never cancelled, so
 # the post-merge safety-net run always completes for every merged commit.
 concurrency:
-  group: ci-${{ github.ref }}
+  group: ci-${{ github.event_name == 'workflow_dispatch' && inputs.checkpoint_id || github.ref }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
+  checkpoint-admission:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Bind dispatch to its immutable source revision
+        env:
+          EXPECTED_SHA: ${{ inputs.expected_sha }}
+          CHECKPOINT_ID: ${{ inputs.checkpoint_id }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "$GITHUB_EVENT_NAME" = workflow_dispatch ]; then
+            [[ "$EXPECTED_SHA" =~ ^[a-f0-9]{40}$ ]]
+            [[ "$CHECKPOINT_ID" =~ ^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$ ]]
+            test "$EXPECTED_SHA" = "$GITHUB_SHA"
+            test "$GITHUB_RUN_ATTEMPT" = 1
+            test "$GITHUB_REF_TYPE" = branch
+          fi
   verify:
+    needs: [checkpoint-admission]
     runs-on: ubuntu-latest
     # Bound the job so a hung step (networked install, or the `next build`
     # Google-font fetch) fails fast instead of running to the 360-minute default.
-    timeout-minutes: 15
+    timeout-minutes: 30
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
 
       # pnpm BEFORE setup-node: setup-node's `cache: pnpm` needs pnpm on PATH.
       # action-setup reads the version from package.json "packageManager"
@@ -93,9 +129,9 @@ jobs:
         run: pnpm lint
 
       - name: Unit tests (pure logic, node --test)
-        # Test execution only: dependency installation and the later build are
-        # deliberately outside the approved 180-second unit ceiling.
-        run: node scripts/verify/run-with-time-budget.mjs --label "Unit tests" --max-seconds 180 -- pnpm run test:unit
+        # Ordinary progression has no separate execution stopwatch. The job
+        # timeout bounds stalled runs without expiring approval or a checkpoint.
+        run: pnpm run test:unit
 
       - name: BMAD focused concurrent memlog contracts
         run: pnpm run test:bmad-focused
@@ -124,7 +160,7 @@ jobs:
   # ──────────────────────────────────────────────────────────────────────────
   db:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 45
     # Gate the expensive ~20-min Supabase boot behind the fast `verify` job: if a
     # type/lint/unit error would fail `verify`, do NOT waste CI minutes spinning up
     # the local stack (review fix 2026-06-26).
@@ -136,6 +172,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
@@ -192,15 +229,9 @@ jobs:
 
       # Stage 8: DB-backed integration + cross-tenant RLS-negative suites.
       - name: Integration, RLS, and Epic 11 pilot performance gates (local stack)
-        # Fixed 420s DB+pilot ceiling derives from the complete 326.38s run;
-        # round 1.25x that measurement upward to a whole-minute bound.
-        # Starts after stack/reset, measuring test:int and the explicit NFR
-        # probe, rather than installs or Supabase startup/migration time. Keep
-        # test:int visible as the historic Phase A gate; this Epic 11 probe is
-        # deliberately not represented as a Phase A package-script result.
-        run: >-
-          node scripts/verify/run-with-time-budget.mjs --label "Database, RLS, and pilot performance tests" --max-seconds 420 -- bash -c
-          'pnpm run test:int --reporter=default --reporter=github-actions --reporter=json --outputFile=test-results/full-integration.json && node --experimental-strip-types --import ./tests/support/register.mjs scripts/nfr/epic-11-r1108-baseline.ts'
+        run: |
+          pnpm run test:int --reporter=default --reporter=github-actions --reporter=json --outputFile=test-results/full-integration.json
+          pnpm run test:pilot-performance
 
       - name: Upload native full integration JSON
         if: ${{ !cancelled() }}
@@ -221,7 +252,7 @@ jobs:
   # absent bytes can be materialized without changing protected logical rows.
   recovery-storage-loader:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 45
     needs: [verify]
     env:
       SUPABASE_TEST_REQUIRED: "1"
@@ -230,6 +261,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
@@ -384,7 +416,7 @@ jobs:
           rm -f ops/recovery/.env ops/recovery/.private.db-bootstrap.compose.yaml ops/recovery/.private.runtime.compose.yaml
   e2e:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 45
     # Same gate as `db`: only spin up the stack + browser after the fast `verify` job
     # is green. Runs in parallel with `db` (each boots its own local stack).
     needs: [verify]
@@ -402,6 +434,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
@@ -456,11 +489,17 @@ jobs:
       # The Playwright webServer builds + starts the app against the local stack
       # (NEXT_PUBLIC_* are inlined from playwright.config.ts), globalSetup seeds the
       # two-tenant fixture, and the specs drive the real browser journeys (G-2/G-3).
-      - name: E2E tests (Playwright)
-        # The configured reporter sums Playwright test attempts only. Its own
-        # production build/web-server bootstrap remains outside the approved
-        # 800-second general-browser attempt-sum execution budget.
-        run: pnpm run test:e2e
+      - name: Essential authentication smoke (production app and local Auth)
+        if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.release_validation) }}
+        env:
+          PLAYWRIGHT_JSON_OUTPUT_NAME: test-results/general-browser.json
+        run: pnpm run test:smoke
+
+      - name: Exhaustive browser validation (explicit opt-in)
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.release_validation }}
+        env:
+          PLAYWRIGHT_JSON_OUTPUT_NAME: test-results/general-browser.json
+        run: pnpm run test:e2e --reporter=list,json
 
       - name: Upload native general browser JSON
         if: ${{ !cancelled() }}
@@ -484,10 +523,12 @@ jobs:
         if: always()
         run: supabase stop
 
-  # Story19.1 required partition: isolated runner/database, own fixture setup and real read proxy.
+  # Broad UI diagnostics are deferred from ordinary progression by owner decision.
+  # Explicit release validation retains the dedicated fixtures and real read proxy.
   dashboard-e2e:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.release_validation }}
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 45
     # Same gate as `db`: only spin up the stack + browser after the fast `verify` job
     # is green. Runs in parallel with `db` (each boots its own local stack).
     needs: [verify]
@@ -502,6 +543,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
@@ -556,11 +598,10 @@ jobs:
       # The Playwright webServer builds + starts the app against the local stack
       # (NEXT_PUBLIC_* are inlined from playwright.config.ts), globalSetup seeds the
       # two-tenant fixture, and the specs drive the real browser journeys (G-2/G-3).
-      - name: Required dashboard browser tests (dedicated fixtures and read proxy)
-        # The configured reporter sums Playwright test attempts only. Its own
-        # production build/web-server bootstrap remains outside the approved
-        # five-minute browser execution budget.
-        run: pnpm exec playwright test --config tests/e2e/dashboard/playwright.ci.config.ts
+      - name: Dashboard browser validation (dedicated fixtures and read proxy)
+        env:
+          PLAYWRIGHT_JSON_OUTPUT_NAME: test-results/dashboard-browser.json
+        run: pnpm exec playwright test --config tests/e2e/dashboard/playwright.ci.config.ts --reporter=list,json
 
       - name: Upload native dashboard browser JSON
         if: ${{ !cancelled() }}

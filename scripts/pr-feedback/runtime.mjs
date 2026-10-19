@@ -60,7 +60,7 @@ async function unresolvedCommentIds(api, repo, prNumber) {
   throw new Error('Review-thread pagination bound exceeded.');
 }
 
-export const APP_TOKEN_PERMISSIONS = Object.freeze({ contents: 'write', pull_requests: 'write', issues: 'write', actions: 'read', variables: 'read' });
+export const APP_TOKEN_PERMISSIONS = Object.freeze({ contents: 'write', pull_requests: 'write', issues: 'write', actions: 'read', actions_variables: 'read' });
 
 export function assertAppInstallationPermissions(installation) {
   const missing = Object.entries(APP_TOKEN_PERMISSIONS).filter(([name, required]) => {

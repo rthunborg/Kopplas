@@ -981,6 +981,13 @@ def main(argv=None):
             parser.error("--finalize requires --story-key")
         result, code = build_finalize_result(effective_dir, args.story_key, args.ci_status,
                                              args.no_pr_draft, args.story_source)
+        from pathlib import Path
+        from delivery_gate import require_for_transition
+        errors = require_for_transition(Path(effective_dir) / (args.story_key + ".yaml"), args.story_key)
+        if errors:
+            result.update(clean_completion=False, flip_bmad_status=False, draft=True,
+                          error="development delivery gate: " + "; ".join(errors))
+            code = 1
         print(json.dumps(result, indent=2))
         return code
     if args.ci_status or args.no_pr_draft or args.story_source != "sprint":

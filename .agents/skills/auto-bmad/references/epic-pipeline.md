@@ -1,3 +1,7 @@
+# Project policy overlay — owner decision 2026-10-19
+
+Read `docs/process/development-completion-policy.md` before delegating verification or interpreting trace gates. It governs development versus deferred release evidence and supersedes older exhaustive completion gates. Before ANY done flip (including pre-retro) or finalization, obtain the delegate-authored delivery JSON and run `python {skill-root}/scripts/delivery_gate.py <record>`; nonzero blocks the claim/flip/finalization with a named actionable blocker. Never fabricate release readiness. One final epic PR; split publication requires owner approval.
+
 # Epic pipeline (`/auto-bmad epic`)
 
 Parallel opt-in: an explicit --parallel --plan invocation uses parallel-epic.md for admission, isolated worker dispatch and integration in place of sequential E5. Preserve E0/E2 and E8/E_final gates through the coordinator. Without the opt-in this file is unchanged.
