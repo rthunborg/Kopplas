@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import type { SchedulingReadInput, SchedulingReadData, SchedulingBookingSummary } from "@/features/scheduling/view-types";
-import { normalizeSlotSelection, schedulingPeriod, resourceMoveAssignees } from "@/features/scheduling/view-model";
+import { normalizeSlotSelection, schedulingPeriod, resourceMoveAssignees, calendarDropTimes } from "@/features/scheduling/view-model";
 import { bookingRange } from "@/features/scheduling/capacity";
 import { intersectRanges, localDayRange, parseUtcInstant, formatUtcInstant } from "@/features/scheduling/time-zone";
 import { BookingBlock, type BookingProposal } from "./BookingBlock";
@@ -29,8 +29,9 @@ export function CalendarSlots({ date, personId, host, onSelect, onEdit, bookings
 }) {
   const selection = useRef<string | null>(null);
   const moved = useRef(false);
+  const suppressPointerClick = useRef(false);
   useEffect(() => {
-    const cancel = () => { selection.current = null; };
+    const cancel = () => { if (selection.current) { suppressPointerClick.current = true; moved.current = false; } selection.current = null; };
     // Pointerup outside the host cannot leave an armed selection behind.
     const release = () => { queueMicrotask(cancel); };
     window.addEventListener("pointerup", release);
@@ -53,7 +54,7 @@ export function CalendarSlots({ date, personId, host, onSelect, onEdit, bookings
       const end = formatUtcInstant(parseUtcInstant(start) + BigInt(1800000000));
       const range = { start: parseUtcInstant(start), end: parseUtcInstant(end) };
       const overlapping = bookings.filter(b => intersectRanges(bookingRange(b), range));
-      const occupied = overlapping.length > 0;
+      const occupied = overlapping.some(b => b.status === "planned");
       const beginning = overlapping.filter(b => {
         const clipped = intersectRanges(bookingRange(b), localDayRange(date));
         return clipped && clipped.start >= range.start && clipped.start < range.end;
@@ -65,7 +66,7 @@ export function CalendarSlots({ date, personId, host, onSelect, onEdit, bookings
           className={`min-h-11 w-full rounded border px-2 text-left text-sm focus-visible:ring-2 focus-visible:ring-blue-600 ${occupied ? "border-blue-200 bg-blue-50" : "border-zinc-200 bg-white"}`}
           onPointerDown={event => {
             if (event.button !== 0 || occupied) return;
-            selection.current = start; moved.current = false; event.currentTarget.focus();
+            selection.current = start; moved.current = false; suppressPointerClick.current = false; event.currentTarget.focus();
           }}
           onPointerEnter={() => { if (selection.current && selection.current !== start) moved.current = true; }}
           onPointerUp={() => {
@@ -73,8 +74,10 @@ export function CalendarSlots({ date, personId, host, onSelect, onEdit, bookings
             const first = selection.current; selection.current = null;
             if (moved.current) onSelect(normalizeSlotSelection(first, start, personId));
           }}
-          onClick={() => {
-            if (!moved.current && !occupied) onSelect(normalizeSlotSelection(start, start, personId));
+          onClick={event => {
+            // Keyboard/assistive clicks (detail=0) are independent of a cancelled pointer sequence.
+            if (!(suppressPointerClick.current && event.detail!==0) && !moved.current && !occupied) onSelect(normalizeSlotSelection(start, start, personId));
+            suppressPointerClick.current = false;
             moved.current = false;
           }}
           onDragOver={event => event.preventDefault()}
@@ -83,20 +86,20 @@ export function CalendarSlots({ date, personId, host, onSelect, onEdit, bookings
             const resize = event.dataTransfer.getData("application/kopplas-resize");
             const id = resize || event.dataTransfer.getData("application/kopplas-booking");
             const booking = data?.bookings.find(b => b.id === id) ?? bookings.find(b => b.id === id);
-            if (!booking) return;
-            if (resize) {
-              if (parseUtcInstant(end) > parseUtcInstant(booking.startsAt)) onEdit({ booking, endsAt: end });
-            } else {
-              const duration = parseUtcInstant(booking.endsAt) - parseUtcInstant(booking.startsAt);
+            if (!booking || data?.canManage===false) return;
+            const times = calendarDropTimes(booking,start,end,Boolean(resize));
+            if (!times) return;
+            if (resize) onEdit({booking,...times});
+            else {
               const fromPerson = event.dataTransfer.getData("application/kopplas-person");
-              onEdit({ booking, startsAt: start, endsAt: formatUtcInstant(parseUtcInstant(start) + duration),
+              onEdit({ booking, ...times,
                 ...(personId && fromPerson ? { assigneeIds: resourceMoveAssignees(booking.assigneeIds, fromPerson, personId) } : {}) });
             }
           }}>{timeLabel}{occupied ? " · bokat" : ""}</button>
         {data && beginning.map(b => {
           const clipped = intersectRanges(bookingRange(b), localDayRange(date))!;
           return <div key={b.id} data-clipped-start={formatUtcInstant(clipped.start)} data-clipped-end={formatUtcInstant(clipped.end)}>
-            <BookingBlock booking={b} data={data} personId={personId} onEdit={onEdit} />
+            <BookingBlock booking={b} data={data} personId={personId} onEdit={onEdit} displayInterval={{startsAt:formatUtcInstant(clipped.start),endsAt:formatUtcInstant(clipped.end)}} />
           </div>;
         })}
       </div>;

@@ -66,6 +66,10 @@ describe("15.1 actual authenticated scheduling read/RLS",()=>{
       expect((await readScheduling(input("resources"),{client:client as never})).data.error).toContain("behörighet");
       const forged={...input("personal"),filters:{...EMPTY_SCHEDULING_FILTERS,personIds:[fx.coworkerProfile.id]}};
       expect((await readScheduling(forged,{client:client as never})).data.error).toContain("behörighet");
+      const initial=await readScheduling(input(),{client:client as never,initial:true});
+      expect(initial.data.error).toBeNull();expect(initial.data.canManage).toBe(false);
+      expect(initial.data.bookings.map(b=>b.id).sort()).toEqual([seed.own,seed.shared].sort());
+      expect(initial.data.bookings.every(b=>!("needsReassignment" in b))).toBe(true);expect(lifecycleCalls).toBe(0);
     });
   });
 });
@@ -116,6 +120,20 @@ const CONFLICT_COLUMNS="id,booking_id,related_booking_id,affected_person_profile
 function conflict(h:ReturnType<typeof transport>,bookingId:string,relatedBookingId:string|null,key:string,patch:Row={}):Row{return{id:randomUUID(),tenant_id:h.tenantId,booking_id:bookingId,related_booking_id:relatedBookingId,affected_person_profile_id:h.personId,conflict_type:"double_booking",starts_at:"2026-10-10T06:00:00.000000Z",ends_at:"2026-10-10T07:00:00.000000Z",natural_key:key,status:"open",...patch};}
 
 describe("15.1 production scheduling transport completeness (mock transport, no RLS credit)",()=>{
+  test("retryable IO confirms only current read authority; denied and initial own reads never retain planner authority",async()=>{
+    const manager=transport(1);manager.failPage("bookings",0);
+    const failed=await readScheduling(input(),{client:manager.client});
+    expect(failed.data.canView).toBe(false);expect(failed.data.bookings).toEqual([]);
+    expect(failed.data.errorKind).toBe("retryable");expect(failed.data.confirmedAuthority).toEqual({canView:true,canManage:true});
+    expect(failed.data).not.toHaveProperty("roster");expect(failed.data).not.toHaveProperty("capacity");
+    const own=transport(1,true);own.failPage("bookings",0);
+    const ownFailure=await readScheduling(input("personal"),{client:own.client});
+    expect(ownFailure.data.confirmedAuthority).toEqual({canView:true,canManage:false});
+    const denied=await readScheduling(input(),{client:own.client});
+    expect(denied.data.errorKind).toBe("denied");expect(denied.data).not.toHaveProperty("confirmedAuthority");
+    const initial=transport(2,true);const initialRead=await readScheduling(input(),{client:initial.client,initial:true});
+    expect(initialRead.data.error).toBeNull();expect(initialRead.data.canManage).toBe(false);expect(initialRead.data.bookings).toHaveLength(2);expect(initial.batches).toEqual([]);
+  });
   for(const count of [501,1001])test(`${count} bookings publish only after complete 500-row pages and max50 ordered flag batches`,async()=>{
     const h=transport(count),result=await readScheduling(input(),{client:h.client});
     expect(result.data.error).toBeNull();expect(result.data.bookings.map(b=>b.id).sort()).toEqual(h.ids);

@@ -9,6 +9,7 @@ import { buildScheduleReadShifts } from "@/features/resources/schedule-read";
 import { validateWorkHoursInput } from "@/features/resources/work-hours";
 import { validateCapacityInputs } from "@/features/resources/capacity-inputs";
 import type { SchedulingReadInput, SchedulingReadResult, SchedulingBookingSummary } from "@/features/scheduling/view-types";
+import { defaultSchedulingInput } from "@/features/scheduling/view-preferences";
 
 type Client = Awaited<ReturnType<typeof createSupabaseServerClient>>;
 type Row = Record<string, unknown>;
@@ -21,8 +22,10 @@ const WITHHELD = ["options", "roster", "workRoles", "capacity", "openConflictCou
 class ReadFailure extends Error { constructor(readonly code: string) { super("Scheduling read failed"); } }
 const nullable = (value: unknown) => typeof value === "string" ? value : null;
 function uuid(value: unknown): string { if (typeof value !== "string" || !UUID.test(value)) throw new ReadFailure("IO"); return value; }
-function failure(message: string, actorId = "", tenantId = ""): SchedulingReadResult {
-  return { data: { canView: false, canManage: false, actorId, tenantId, bookings: [], ownSelfPersonIds: [], error: message }, entitlements: { withheld: WITHHELD } };
+function failure(message: string, actorId = "", tenantId = "", authority = {canView:false,canManage:false}): SchedulingReadResult {
+  return { data: { canView:false,canManage:false, actorId, tenantId, bookings: [], ownSelfPersonIds: [], error: message,
+    errorKind:message===RETRY?"retryable":message===DENIED?"denied":"invalid",
+    ...(message===RETRY && authority.canView ? {confirmedAuthority:{canView:true as const,canManage:authority.canManage}} : {}) }, entitlements: { withheld: WITHHELD } };
 }
 
 /** Every page is collected before anything is published; no nested relation cap. */
@@ -58,8 +61,9 @@ export async function readBookingReassignmentFlags(client: Pick<Client, "rpc">, 
 }
 
 /** Cookie-bound production default; injected authenticated client is solely a test seam. */
-export async function readScheduling(input: SchedulingReadInput, options: { readonly client?: Client } = {}): Promise<SchedulingReadResult> {
+export async function readScheduling(input: SchedulingReadInput, options: { readonly client?: Client; readonly initial?: boolean } = {}): Promise<SchedulingReadResult> {
   let actorId = "", tenantId = "";
+  let authority = {canView:false,canManage:false};
   try {
     const client = options.client ?? await (await import("@/server/db/supabase-server-client")).createSupabaseServerClient();
     const context = await resolveTenantContext({ client });
@@ -68,6 +72,9 @@ export async function readScheduling(input: SchedulingReadInput, options: { read
     const roles = context.data.roles ?? [context.data.role];
     if (!resolveCapability({ roles, module: "scheduling", capability: "Bookings.View" }).granted) return failure(DENIED, actorId, tenantId);
     const canManage = resolveCapability({ roles, module: "resources", capability: "Bookings.Manage" }).granted;
+    authority = {canView:true,canManage};
+    // Server-only initial route selection, after current capability resolution.
+    if (options.initial && !canManage) input = defaultSchedulingInput("personal", input.date);
     try {
       validateSchedulingReadInput(input);
       if ([input.filters.personIds,input.filters.workRoleIds,input.filters.jobIds,input.filters.customerIds].some(ids => ids.some(id => !UUID.test(id)))) throw new Error();
@@ -144,6 +151,7 @@ export async function readScheduling(input: SchedulingReadInput, options: { read
     if (!editorOptions.canManage) throw new ReadFailure("42501");
     return { data: {canView:true,canManage:true,actorId,tenantId,bookings,ownSelfPersonIds,error:null,roster,workRoles,capacity,openConflictCount:counts.count,...(editorOptions ? {options:editorOptions} : {})},entitlements:{withheld:[]} };
   } catch (error) {
-    return failure(error instanceof ReadFailure && error.code === "42501" ? DENIED : error instanceof ReadFailure && error.code === "23514" ? INVALID : RETRY, actorId, tenantId);
+    const message = error instanceof ReadFailure && error.code === "42501" ? DENIED : error instanceof ReadFailure && error.code === "23514" ? INVALID : RETRY;
+    return failure(message, actorId, tenantId, message===RETRY?authority:undefined);
   }
 }

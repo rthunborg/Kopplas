@@ -2,7 +2,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { SchedulingReadInput, SchedulingReadResult, SchedulingReadData, SchedulingView } from "@/features/scheduling/view-types";
 import { defaultSchedulingInput, restoreSchedulingPreferences, saveSchedulingPreferences, reconcileSchedulingPreferences } from "@/features/scheduling/view-preferences";
-import { projectScheduling, normalizeSlotSelection, EMPTY_SCHEDULING_FILTERS } from "@/features/scheduling/view-model";
+import { projectScheduling, normalizeSlotSelection, EMPTY_SCHEDULING_FILTERS, validateSchedulingReadInput } from "@/features/scheduling/view-model";
 import { stockholmLocalToUtc } from "@/features/scheduling/time-zone";
 import type { BookingFacts } from "@/features/resources/booking-types";
 import { BookingEditor } from "../resources/BookingEditor";
@@ -16,6 +16,7 @@ import { PersonalCalendarView } from "./PersonalCalendarView";
 import { IntervalSelectionDialog } from "./IntervalSelectionDialog";
 import type { BookingProposal } from "./BookingBlock";
 import { focusIdentity, restoreWorkspaceFocus, type FocusIntent } from "./focus-restoration";
+import { runSchedulingRead, schedulingToolbarData, schedulingReadException } from "@/features/scheduling/view-model";
 
 const eligibleFor = (data: SchedulingReadData) => ({
   personIds: data.roster?.map(p => p.id) ?? [],
@@ -30,6 +31,7 @@ export function SchedulingWorkspace({ initial, initialInput, readAction }: {
   readonly readAction: (input: SchedulingReadInput) => Promise<SchedulingReadResult>;
 }) {
   const [input, setInput] = useState(initialInput), [result, setResult] = useState(initial);
+  const [toolbar, setToolbar] = useState(initial.data);
   const [loading, setLoading] = useState(false), [reset, setReset] = useState(false), [error, setError] = useState<string | null>(null);
   const [editing, setEditing] = useState<{ draft: BookingFacts; bookingId?: string } | null>(null);
   const [interval, setInterval] = useState<SlotSelection | null>(null);
@@ -39,16 +41,13 @@ export function SchedulingWorkspace({ initial, initialInput, readAction }: {
   const workspace = useRef<HTMLElement | null>(null);
   const identity = useRef({ actorId: initial.data.actorId, tenantId: initial.data.tenantId });
   const data = result.data;
-  const scope = useCallback((view: SchedulingView) => ({ actorId: data.actorId, tenantId: data.tenantId, view }), [data.actorId, data.tenantId]);
-  const eligible = useMemo(() => eligibleFor(data), [data]);
+  const scope = useCallback((view: SchedulingView) => ({ actorId: toolbar.actorId, tenantId: toolbar.tenantId, view }), [toolbar.actorId, toolbar.tenantId]);
+  const eligible = useMemo(() => eligibleFor(toolbar), [toolbar]);
 
-  const read = useCallback(async (requested: SchedulingReadInput) => {
-    const ticket = ++sequence.current;
-    setLoading(true); setError(null);
-    try {
-      let current = requested;
-      let value = await readAction(current);
-      if (ticket !== sequence.current) return;
+  const read = useCallback((requested: SchedulingReadInput) => runSchedulingRead(requested, {
+    sequence,read:readAction,
+    start:()=>{setLoading(true);setError(null);},
+    reconcile:(value,current)=>{
       if (!value.data.error && value.data.canView) {
         const identityChanged = value.data.actorId !== identity.current.actorId || value.data.tenantId !== identity.current.tenantId;
         const currentEligible = eligibleFor(value.data);
@@ -60,22 +59,32 @@ export function SchedulingWorkspace({ initial, initialInput, readAction }: {
           checked = { value: defaultSchedulingInput(view, current.date), reset: true };
           try { checked.value = restoreSchedulingPreferences(nextScope, window.localStorage, currentEligible, current.date).value; } catch { /* Safe defaults remain usable. */ }
           setEditing(null); setInterval(null);
+          // Replace old identity metadata immediately, before a possible second read.
+          setToolbar({...value.data,bookings:[],capacity:undefined,openConflictCount:undefined});
         }
         identity.current = { actorId: value.data.actorId, tenantId: value.data.tenantId };
         if (checked.reset || identityChanged) {
           current = checked.value; setInput(current); setReset(true);
           try { saveSchedulingPreferences({ ...nextScope, view: current.view }, current, window.localStorage); } catch { /* Storage is optional. */ }
-          // Identity changes may restore a different period. Read that period before publication.
-          value = await readAction(current);
-          if (ticket !== sequence.current) return;
+          // Identity changes may restore a different period. Read before publication.
+          return current;
         }
       }
-      setResult(value);
-    } catch { if (ticket === sequence.current) setError("Planeringen kunde inte läsas. Försök igen."); }
-    finally { if (ticket === sequence.current) setLoading(false); }
-  }, [readAction]);
+      return undefined;
+    },
+    publish:value=>{
+      setResult(value);setToolbar(previous=>schedulingToolbarData(previous,value.data));
+      if(value.data.error){setEditing(null);setInterval(null);}
+    },
+    failed:()=>{
+      const failure=schedulingReadException();setResult(failure);setToolbar(failure.data);
+      identity.current={actorId:"",tenantId:""};setEditing(null);setInterval(null);
+    },
+    finish:()=>setLoading(false),
+  }), [readAction]);
 
   function change(next: SchedulingReadInput) {
+    try { validateSchedulingReadInput(next); } catch { setError("Planeringens val är ogiltiga. Återställ och försök igen."); return; }
     setInput(next);
     try { saveSchedulingPreferences(scope(next.view), next, window.localStorage); } catch { /* Storage is optional. */ }
     void read(next);
@@ -144,7 +153,8 @@ export function SchedulingWorkspace({ initial, initialInput, readAction }: {
       dragInvoker.current = event.target instanceof Element ? event.target.closest<HTMLElement>('[draggable="true"]') : null;
     }} onDragEndCapture={() => { dragInvoker.current = null; }}>
     <h1 className="text-xl font-semibold">Planering</h1>
-    <SchedulingToolbar input={input} data={loading || failure ? { ...data, openConflictCount: undefined } : data} onChange={change}
+    <SchedulingToolbar input={input} data={loading || failure ? { ...toolbar, openConflictCount: undefined } : toolbar} onChange={change}
+      unavailable={loading||Boolean(failure)} onInvalid={()=>setError("Planeringens val är ogiltiga. Återställ och försök igen.")}
       onCreate={() => select(newSlot())}
       onInterval={() => { invoker.current = document.activeElement as HTMLElement; setInterval(newSlot()); }}
       onView={view => {
