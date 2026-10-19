@@ -9,11 +9,11 @@ spec_folder: null
 story_id: null
 branch: codex/epic-16-jobs
 status: in-progress
-updated_at: "2026-10-19T17:11:45Z"
+updated_at: "2026-10-19T17:21:42Z"
 started_at: "2026-10-19T17:10:09Z"
 completed_at: null
-active_seconds: 0
-timing_anchor: 1792429810
+active_seconds: 666
+timing_anchor: null
 is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
@@ -36,15 +36,15 @@ tea_rationale: "Server-side per-job authorization/elevation and composite same-t
 epic_story_count: 5
 stories_after_in_epic: 3
 completed_phases: [0, 1]
-spec_path: null
+spec_path: "C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/_bmad-output/implementation-artifacts/spec-16-2-job-members-and-per-job-roles-arbetsledare.md"
 spec_approved: false
 build:
-  status: null
-  blocking_condition: null
+  status: blocked
+  blocking_condition: intent gap
   followup_review_recommended: false
   review_loop_iteration: 0
   deferred_count: 0
-  warnings: []
+  warnings: [oversized]
 followup_passes: 0
 hitl_halt: null
 review_unverified: false
@@ -55,7 +55,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [883f4ec8]
+commits: [883f4ec8, 70ec78ee3ce7b4e2beb48f7a724e74359e7548ac]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -78,9 +78,11 @@ pr_merged: false
 merge_method: null
 merge_commit: null
 branch_deleted: false
-open_questions: []
+open_questions:
+  - "Approve zero-or-one active-member lead, manager-only designation, and lead ordinary crew plus planned start/end dates; alternatively manager-only crew with lead dates-only authority, or specify different rules."
 deferred_work: []
-blockers: []
+blockers:
+  - "Story 16.2 material authorization decision pending in spec-16-2-job-members-and-per-job-roles-arbetsledare.md: cardinality, designation writers and ordinary-crew versus dates-only lead authority."
 overrides:
   merge: "No merge or deployment; publish one final Epic 16 PR."
   dependency_deferral: "Defer only genuinely dependent slices with exact contract/path, owner, evidence, unblock condition and later integration/test action; continue available approved work without a whole-E15 or ACK gate."
