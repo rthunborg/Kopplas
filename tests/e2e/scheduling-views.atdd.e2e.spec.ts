@@ -787,7 +787,10 @@ test("[P1] 15.1-COMP-001 AC3 toolbar preferences isolate user/tenant/view and re
   await page.reload(); await h.settle(); expect(await state()).toEqual(defaults); await expect(page.getByText(/Sparade inställningar återställdes/)).toBeVisible();
   await h.filter("Person", h.people[0]!); await page.getByRole("button", { name: "Återställ filter", exact: true }).click(); await h.settle(); expect(await state()).toEqual(defaults);
   await page.addInitScript(() => { Storage.prototype.getItem = () => { throw new Error("Synthetic denied storage"); }; Storage.prototype.setItem = () => { throw new Error("Synthetic denied storage"); }; });
-  await page.reload(); await h.settle(); expect(await state()).toEqual(defaults); expect((await h.visibleIds()).length).toBe(7);
+  await page.reload(); await h.settle(); expect(await state()).toEqual(defaults);
+  // Storage denial falls back to today's week; inspect fixture bookings in their own week.
+  await h.open("Schema", "week"); expect(await state()).toEqual(defaults);
+  expect((await h.visibleIds()).length).toBe(7);
 });
 test("[P1] 15.1-COMP-001 AC3 observed real read transport failure hides stale/empty/count until retry", async ({ schedulingViews: h }) => {
   await h.seed(); await h.open("Schema"); await h.filter("Jobb", h.scenario.jobId);
