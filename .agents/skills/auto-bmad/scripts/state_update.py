@@ -2188,6 +2188,12 @@ def main(argv=None) -> int:
 
     try:
         payload = _load_json_arg(getattr(args, "json_arg", None))
+        if args.cmd in ("init", "set", "phase-done") and payload.get("status") == "done":
+            from delivery_gate import require_for_transition
+            errors = require_for_transition(args.state_file, Path(args.state_file).stem)
+            if errors:
+                raise ContractError("development delivery gate: " + "; ".join(errors))
+
         if args.cmd == "init":
             result = cmd_init(Path(args.state_file), payload)
         elif args.cmd == "set":

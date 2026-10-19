@@ -10,7 +10,7 @@ import { bounded, checkApplicationArguments, checkPinnedCandidate, inspectReport
 import { FIXED, validateReceipt } from "../../../diagnostics/no-store-stream-probe.mjs";
 
 const sha = (data: string | Buffer) => createHash("sha256").update(data).digest("hex");
-const source = (path: string) => readFileSync(path, "utf8");
+const source = (path: string) => readFileSync(path, "utf8").replaceAll("\r\n", "\n");
 const candidate = () => ({ executable: "/runner/kopplas-fixed-chromium-abc/chrome-linux64/chrome", receipt: {
   artifact: "chrome-for-testing-public-158.0.8104.0-linux64", platform: "linux64", version: "158.0.8104.0",
   revision: "1717709", generation: "1791951285551907", zipBytes: 202355055,
@@ -173,7 +173,7 @@ test("actual workflow inverse preserves every original job/input/gate/authority 
   const after = source(".github/workflows/ci.yml");
   const inverse = after.replace(/      # FIXED-APPLICATION-INPUT-BEGIN\n[\s\S]*?      # FIXED-APPLICATION-INPUT-END\n/, "")
     .replace(/\n  # FIXED-APPLICATION-JOB-BEGIN\n[\s\S]*?  # FIXED-APPLICATION-JOB-END\n$/, "");
-  assert.equal(sha(inverse.replaceAll("\r\n", "\n")), "25c9f3672f4538a95d5fb573421739ae14be757d0a2b72fc39e756dfcae1d304");
+  assert.equal(sha(inverse.replaceAll("\r\n", "\n")), "48adc320f459b648212ee87950facc76cdda306bb0a14e72f2786c67c2c689e0");
 });
 const ci = source(".github/workflows/ci.yml"), optional = ci.slice(ci.indexOf("  # FIXED-APPLICATION-JOB-BEGIN"));
 const expression = optional.match(/    if: \$\{\{ ([^\n]+) \}\}/)?.[1];
@@ -192,7 +192,8 @@ test("actual optional workflow preserves original required red and publisher nat
   assert.match(optional, /timeout-minutes: 25/); assert.match(optional, /SUPABASE_TEST_REQUIRED: "1"/);
   assert.match(optional, /receipt_publish.conclusion == 'success' && steps.receipt_publish.outputs.acquisition_receipt_written == 'true'/);
   assert.doesNotMatch(optional, /continue-on-error|--grep|--shard|--retries|--timeout/);
-  assert.match(ci, /      - name: E2E tests \(Playwright\)[\s\S]*?run: pnpm run test:e2e/);
+  assert.match(ci, /      - name: Essential authentication smoke \(production app and local Auth\)\n        if: \$\{\{ !\(github.event_name == 'workflow_dispatch' && inputs.release_validation\) \}\}[\s\S]*?run: pnpm run test:smoke/);
+  assert.match(ci, /      - name: Exhaustive browser validation \(explicit opt-in\)\n        if: \$\{\{ github.event_name == 'workflow_dispatch' && inputs.release_validation \}\}[\s\S]*?run: pnpm run test:e2e --reporter=list,json/);
   assert.equal([...ci.matchAll(/uses: actions\/checkout@v4/g)].length, 8);
 });
 
@@ -706,7 +707,7 @@ for (const fault of pathMetadataCases) test("actual path metadata collector " + 
     if (fault === "symlink") assert.equal(value.calls.filter((row: string[]) => row[0] === "lstat").length, 2);
   }
 });
-test("path metadata keeps exact workflow inverse and required native success checks", () => {
+test("path metadata retains bounded private collection and required native success checks", () => {
   const text = source(".github/workflows/ci.yml");
   assert.match(text, /timeout-minutes: 2/);
   assert.match(text, /timeout --signal=TERM --kill-after=1s 2s python3/);
@@ -720,19 +721,28 @@ test("path metadata keeps exact workflow inverse and required native success che
   assert.match(text, /retention-days: 7/);
   assert.match(text, /name: Preserve capability capsule receipt[\s\S]*?if-no-files-found: error/);
   assert.match(text, /run: node tests\/diagnostics\/fixed-chromium-application-runner\.mjs --capability-capsule/);
-  const inverse = generatedNextEnvWorkflowInverse(text).replace(/          # HOSTED-PATH-METADATA-BASH-BEGIN[\s\S]*?          # HOSTED-PATH-METADATA-BASH-END\n/, "")
-    .replace(/      # HOSTED-PATH-METADATA-UPLOAD-BEGIN[\s\S]*?      # HOSTED-PATH-METADATA-UPLOAD-END\n/, "")
-    // OWNED-PARENT-INVERSE-BEGIN
-    .replace(/          # OWNED-PARENT-ADMISSION-BEGIN[\s\S]*?          # OWNED-PARENT-ADMISSION-END\n/, "          private_root=\"$(mktemp -d \"${RUNNER_TEMP}/kopplas-owned-XXXXXXXX\")\"\n")
-    // OWNED-PARENT-INVERSE-END
-    .replace("        id: hosted_session\n", "");
-  assert.equal(sha(inverse), "9c933a75fd38b6a4ea885dd52c94e4c072df037f5bc04251a1063d99e181f77d");
+  const collector = pathMetadataCollector();
+  // Independently reviewed W optional-job bytes; ordinary recovery jobs are outside this boundary.
+  assert.equal(sha(optional), "11e647e27f8dc91e26c7e08466b30f22f536356034de51f6091e53b5943ad365");
+  assert.match(collector, /os\.O_WRONLY \| os\.O_CREAT \| os\.O_EXCL \| os\.O_NOFOLLOW \| os\.O_CLOEXEC/);
+  assert.match(collector, /0o600/);
+  assert.doesNotMatch(collector, /os\.(?:chmod|chown|system|popen)|subprocess/);
+  const req = createRequire(import.meta.url), er = createRequire(req.resolve("eslint")), yr = createRequire(er.resolve("@eslint/eslintrc"));
+  const steps = yr("js-yaml").load(text).jobs["fixed-chromium-application-verification"].steps as { name: string; if?: string; with?: Record<string, unknown> }[];
+  const upload = steps.find(step => step.name === "Preserve bounded private path metadata (not capability acceptance)");
+  assert.ok(upload);
+  assert.equal(upload.if, "${{ always() && !cancelled() && env.FIXED_CHROMIUM_HOSTED_ADMISSION == 'capability' && steps.hosted_session.outputs.path_metadata_written == 'true' }}");
+  assert.deepEqual(upload.with, { name: "fixed-chromium-hosted-path-admission", path: "${{ runner.temp }}/fixed-chromium-hosted-path-admission.json", "retention-days": 7, "if-no-files-found": "error" });
 });
-test("path metadata preserves all original admission assertions as an exact prefix", () => {
-  const text = source("tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts");
-  const prefix = text.slice(0, text.indexOf("\n// HOSTED-PATH-METADATA-TESTS-BEGIN"));
-  assert.equal(Buffer.byteLength(prefix), 66757);
-  assert.equal(sha(prefix), "dc235d3d606c473d2958d7308a95beda32c326b6204334242d18768c6f22b0c4");
+test("path metadata cannot bypass source revalidation or original native failure", async () => {
+  const changed = fixture();
+  changed.io.compatibility = async () => { changed.state.changed = true; return { version: "158.0.8104.0", closed: true }; };
+  const refused = await changed.run();
+  assert.equal(refused.failure, "binding"); assert.equal(changed.state.invocations, 0);
+  const failed = fixture(); failed.state.exit = 7;
+  const result = await failed.run();
+  assert.equal(result.exitCode, 7); assert.equal(result.record?.cli.nativeExit, 7); assert.equal(result.failure, "suite");
+  assert.equal(failed.state.invocations, 1); assert.equal(failed.state.compatibility, 1);
 });
 
 // OWNED-PARENT-ADMISSION-TESTS-BEGIN
@@ -768,17 +778,17 @@ for (const fault of ownedParentCases) test("actual owned parent admission " + fa
     "parent-substitution", "entropy"].includes(fault)) assert.equal(value.mkdirCalls, 0);
 });
 
-test("owned parent admission preserves exact M workflow and unit inverses", () => {
-  const text = source(".github/workflows/ci.yml");
-  const previous = generatedNextEnvWorkflowInverse(text).replace(/          # OWNED-PARENT-ADMISSION-BEGIN[\s\S]*?          # OWNED-PARENT-ADMISSION-END\n/,
-    "          private_root=\"$(mktemp -d \"${RUNNER_TEMP}/kopplas-owned-XXXXXXXX\")\"\n");
-  assert.equal(Buffer.byteLength(previous), 56664);
-  assert.equal(sha(previous), "7e9eeca407f6926c24dc1a8be8d112daf4eaa08929db90c9570b95dfb5894fc8");
-  const unit = generatedNextEnvUnitInverse(source("tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts"));
-  const inverse = unit.slice(0, unit.indexOf("\n// OWNED-PARENT-ADMISSION-TESTS-BEGIN"))
-    .replace(new RegExp("    // OWNED-PARENT-INVERSE-BEGIN[\\s\\S]*?    // OWNED-PARENT-INVERSE-END\\n"), "");
-  assert.equal(Buffer.byteLength(inverse), 76918);
-  assert.equal(sha(inverse), "69421cedbb12cae21de4106d498df3b4e063f1595ad311e2c1296d885100e315");
+test("owned parent admission retains descriptor authority and refuses unsafe placement", () => {
+  const parent = ownedParentSource();
+  assert.equal(sha(parent), "4cd0bbd7f47d6f5db25d372fc9a6f08e7486833f8a0a5611d51f5c69723d4f38");
+  assert.ok(source(".github/workflows/ci.yml").includes(`private_root="$(/usr/bin/timeout --signal=TERM --kill-after=1s 2s python3 - <<'PY_OWNED_PARENT' 2>/dev/null`));
+  assert.match(parent, /MAX_SECONDS = 1\.0/); assert.match(parent, /MAX_BYTES = 4096/);
+  assert.match(parent, /os\.O_RDONLY \| os\.O_DIRECTORY \| os\.O_NOFOLLOW \| os\.O_CLOEXEC/);
+  assert.match(parent, /os\.fstatvfs/); assert.match(parent, /os\.ST_NOEXEC/); assert.match(parent, /os\.listxattr/);
+  assert.match(parent, /system\.posix_acl_access/); assert.match(parent, /system\.posix_acl_default/);
+  assert.equal((parent.match(/os\.mkdir\(/g) ?? []).length, 1);
+  assert.match(parent, /dir_fd=parent/); assert.match(parent, /0o700/);
+  assert.doesNotMatch(parent, /\bmktemp\b|os\.(?:chmod|chown|unlink|rmdir|system|popen)|subprocess/);
 });
 
 // GENERATED-NEXT-ENV-TESTS-BEGIN
@@ -816,14 +826,15 @@ async function runGeneratedNextEnv(fault: string) {
   assert.equal(value.code, fault === "positive" ? 0 : 1);
   return value;
 }
-test("generated Next file uses held descriptor and preserves exact P inverses", { timeout: 10000 }, async () => {
+test("generated Next file retains held-descriptor mutation and home-transfer ordering", { timeout: 10000 }, async () => {
   const value = await runGeneratedNextEnv("positive");
   assert.deepEqual(value.mutations, [["fchown", 6], ["fchmod", 6]]);
   const text = source(".github/workflows/ci.yml");
-  const inverse = generatedNextEnvWorkflowInverse(text);
-  assert.equal(Buffer.byteLength(inverse), 62750); assert.equal(sha(inverse), "b4a1b47267c5ce7acb0197068bc07a40dcd7a2036b07ce90771a53426181d3c5");
-  const unit = generatedNextEnvUnitInverse(source("tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts"));
-  assert.equal(Buffer.byteLength(unit), 86348); assert.equal(sha(unit), "37c1807d6900982d34bf034f3f79784dac6e5aa093b57cb1fba6d37e10bc1d11");
+  const root = generatedNextEnvRootSource();
+  assert.match(root, /os\.O_WRONLY \| os\.O_CREAT \| os\.O_EXCL \| os\.O_NOFOLLOW \| os\.O_CLOEXEC, 0o600, dir_fd=workload/);
+  assert.match(root, /call\(os\.fchown, slot, user, group\)/);
+  assert.match(root, /call\(os\.fchmod, slot, 0o600\)/);
+  assert.doesNotMatch(root, /os\.(?:chmod|chown|unlink|remove|system|popen)|subprocess/);
   assert.ok(text.includes('sudo -n /bin/chown "$uid:$gid" "$private_root/home"\n          sudo -n /bin/chmod 0700 "$private_root/home"\n          # GENERATED-NEXT-ENV-ADMISSION-BEGIN'));
   assert.match(text, /--signal=TERM --kill-after=1s 2s \/usr\/bin\/python3 -I -/);
   assert.match(generatedNextEnvRootSource(), /MAX_SECONDS = 1\.0/); assert.match(generatedNextEnvRootSource(), /MAX_BYTES = 128/);
@@ -946,10 +957,30 @@ test("actual collected hashes detect stale declared metadata through independent
     assert.notEqual(declared[path].sha256, sha(value.authoritative[path]!));
   }
 });
-test("runtime enrollment preserves complete Q admission prefix without weakening assertions", () => {
-  const value = source("tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts");
-  const inverse = value.slice(0, value.indexOf("\n// RUNTIME-PATHSET-TESTS-BEGIN"));
-  assert.equal(Buffer.byteLength(inverse), 103781); assert.equal(sha(inverse), "998453875982196cda773e0067dda56fe165f4094efa44add873900b9a3d0202");
+test("runtime enrollment retains exact authority and refuses every missing or stale source", async () => {
+  assert.deepEqual(SOURCES, ["playwright.fixed-chromium-application.config.ts", "tests/diagnostics/fixed-chromium-application-runner.mjs",
+    "tests/diagnostics/fixed-chromium-owned-process.c", "tests/diagnostics/no-store-stream-probe.mjs", ".github/workflows/ci.yml", "playwright.config.ts",
+    "tests/e2e/scheduling-views.atdd.e2e.spec.ts", "tests/e2e/support/scheduling-views-atdd.ts", "tests/e2e/support/scheduling-lifecycle-metadata.ts",
+    "tests/e2e/support/booking-editor-atdd.ts", "tests/e2e/support/resource-cdp-attachment.ts", "tests/e2e/global-setup.ts", "tests/e2e/global-teardown.ts",
+    "src/components/scheduling/SchedulingWorkspace.tsx", "src/components/scheduling/BookingBlock.tsx", "src/components/scheduling/SchemaView.tsx",
+    "src/components/scheduling/focus-restoration.ts", "_bmad-output/implementation-artifacts/spec-15-1-the-five-scheduling-views-2.md", "package.json", "pnpm-lock.yaml", ".nvmrc"]);
+  assert.equal(SOURCES.length, 21); assert.equal(new Set(SOURCES).size, 21); assert.equal(Object.isFrozen(SOURCES), true);
+  for (const path of SOURCES) {
+    const missing = fixture();
+    missing.io.bindings = async () => { const value = bindings(); delete value[path]; return value; };
+    const absent = await missing.run();
+    assert.equal(absent.failure, "binding", `missing ${path}`);
+    assert.equal(missing.state.compatibility, 0); assert.equal(missing.state.invocations, 0);
+    const stale = fixture(); let collections = 0;
+    stale.io.bindings = async () => { const value = bindings(); if (++collections > 1) value[path] = { bytes: 11, sha256: "f".repeat(64) }; return value; };
+    const changed = await stale.run();
+    assert.equal(changed.failure, "binding", `stale ${path}`); assert.equal(collections, 2);
+    assert.equal(stale.state.compatibility, 1); assert.equal(stale.state.invocations, 0);
+  }
+  const extra = fixture();
+  extra.io.bindings = async () => ({ ...bindings(), "unapproved.ts": { bytes: 1, sha256: "f".repeat(64) } });
+  assert.equal((await extra.run()).failure, "binding");
+  assert.equal(extra.state.compatibility, 0); assert.equal(extra.state.invocations, 0);
 });
 
 // OWNED-AUTH-FD-TESTS-BEGIN

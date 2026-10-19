@@ -1,0 +1,275 @@
+{
+  "schemaVersion": 1,
+  "recorded": "2026-10-19",
+  "status": "handoff-proposal-not-implementation-admission",
+  "pins": {
+    "recovery": "e5e0308d8ef270fdf8b91f68c4a7675c0ee1392c",
+    "e15": "40c2cfd53561171882ef9faf440a4a19b53f21e0",
+    "e16": "97e622214b58f354c63f088c21d16db772446901"
+  },
+  "foundation": [
+    {
+      "path": "src/features/scheduling/conflicts.ts",
+      "gitBlobs": {
+        "recovery": "399122b961ae236b63fc0a4e4d49336fe66d6692",
+        "e15": "399122b961ae236b63fc0a4e4d49336fe66d6692",
+        "e16": "399122b961ae236b63fc0a4e4d49336fe66d6692"
+      },
+      "identicalAcrossPins": true
+    },
+    {
+      "path": "src/features/scheduling/types.ts",
+      "gitBlobs": {
+        "recovery": "9cb6c50e1572e9a78ba5b767baec6417475f47aa",
+        "e15": "9cb6c50e1572e9a78ba5b767baec6417475f47aa",
+        "e16": "9cb6c50e1572e9a78ba5b767baec6417475f47aa"
+      },
+      "identicalAcrossPins": true
+    },
+    {
+      "path": "src/server/authz/phase-a-surface.ts",
+      "gitBlobs": {
+        "recovery": "b37ef868804583d0a39eae2bdf03b9b39ed4fd6d",
+        "e15": "b37ef868804583d0a39eae2bdf03b9b39ed4fd6d",
+        "e16": "b37ef868804583d0a39eae2bdf03b9b39ed4fd6d"
+      },
+      "identicalAcrossPins": true
+    },
+    {
+      "path": "src/server/bookings/candidate-references.ts",
+      "gitBlobs": {
+        "recovery": "9afe1532ecceef16cc60df4535400a5406e4bced",
+        "e15": "9afe1532ecceef16cc60df4535400a5406e4bced",
+        "e16": "9afe1532ecceef16cc60df4535400a5406e4bced"
+      },
+      "identicalAcrossPins": true
+    },
+    {
+      "path": "src/server/bookings/conflict-attestation.ts",
+      "gitBlobs": {
+        "recovery": "5f67fc9ca223ca65f6b0e32d49357cf6a47f57af",
+        "e15": "5f67fc9ca223ca65f6b0e32d49357cf6a47f57af",
+        "e16": "5f67fc9ca223ca65f6b0e32d49357cf6a47f57af"
+      },
+      "identicalAcrossPins": true
+    },
+    {
+      "path": "src/server/bookings/conflict-facts.ts",
+      "gitBlobs": {
+        "recovery": "ae346fa27ff57e80ad62adcba7465310d0b86a8e",
+        "e15": "ae346fa27ff57e80ad62adcba7465310d0b86a8e",
+        "e16": "ae346fa27ff57e80ad62adcba7465310d0b86a8e"
+      },
+      "identicalAcrossPins": true
+    },
+    {
+      "path": "src/server/bookings/create-identity.ts",
+      "gitBlobs": {
+        "recovery": "dfaef1358ac5bfd46f79e08a0ab7c8b63e704487",
+        "e15": "dfaef1358ac5bfd46f79e08a0ab7c8b63e704487",
+        "e16": "dfaef1358ac5bfd46f79e08a0ab7c8b63e704487"
+      },
+      "identicalAcrossPins": true
+    },
+    {
+      "path": "src/server/bookings/editor-preview.ts",
+      "gitBlobs": {
+        "recovery": "b262f84a49b398fd1d04a46b1e3ab370ed6fc3c0",
+        "e15": "b262f84a49b398fd1d04a46b1e3ab370ed6fc3c0",
+        "e16": "b262f84a49b398fd1d04a46b1e3ab370ed6fc3c0"
+      },
+      "identicalAcrossPins": true
+    },
+    {
+      "path": "src/server/bookings/save-with-conflicts.ts",
+      "gitBlobs": {
+        "recovery": "bd80ef16253793dde04d59969b19ddd90d82b5cb",
+        "e15": "bd80ef16253793dde04d59969b19ddd90d82b5cb",
+        "e16": "bd80ef16253793dde04d59969b19ddd90d82b5cb"
+      },
+      "identicalAcrossPins": true
+    },
+    {
+      "path": "supabase/migrations/20261006101609_bookings_and_assignees.sql",
+      "gitBlobs": {
+        "recovery": "187af410a3e270146af111963b93d3d4769fb57f",
+        "e15": "187af410a3e270146af111963b93d3d4769fb57f",
+        "e16": "187af410a3e270146af111963b93d3d4769fb57f"
+      },
+      "identicalAcrossPins": true
+    },
+    {
+      "path": "supabase/migrations/20261006104143_booking_invariant_corrections.sql",
+      "gitBlobs": {
+        "recovery": "85cfdd7da4840659b68a7aefeb907213c2bf0d64",
+        "e15": "85cfdd7da4840659b68a7aefeb907213c2bf0d64",
+        "e16": "85cfdd7da4840659b68a7aefeb907213c2bf0d64"
+      },
+      "identicalAcrossPins": true
+    },
+    {
+      "path": "supabase/migrations/20261006113212_booking_replay_current_authority.sql",
+      "gitBlobs": {
+        "recovery": "22e5aeecbfb9bb2dc63a10dd0bd366334f40c5af",
+        "e15": "22e5aeecbfb9bb2dc63a10dd0bd366334f40c5af",
+        "e16": "22e5aeecbfb9bb2dc63a10dd0bd366334f40c5af"
+      },
+      "identicalAcrossPins": true
+    },
+    {
+      "path": "supabase/migrations/20261006122441_booking_conflict_detection_integration.sql",
+      "gitBlobs": {
+        "recovery": "b520d5755e727914dfcb38ed14b0879dba953b11",
+        "e15": "b520d5755e727914dfcb38ed14b0879dba953b11",
+        "e16": "b520d5755e727914dfcb38ed14b0879dba953b11"
+      },
+      "identicalAcrossPins": true
+    },
+    {
+      "path": "supabase/migrations/20261006124954_booking_invitation_post_gate_expiry.sql",
+      "gitBlobs": {
+        "recovery": "370b71320bdddc9bfd629a3a1d6f2e0ea88ce240",
+        "e15": "370b71320bdddc9bfd629a3a1d6f2e0ea88ce240",
+        "e16": "370b71320bdddc9bfd629a3a1d6f2e0ea88ce240"
+      },
+      "identicalAcrossPins": true
+    },
+    {
+      "path": "supabase/migrations/20261006144057_booking_conflict_review_integrity_fixes.sql",
+      "gitBlobs": {
+        "recovery": "f937fe7d9892d5a7a58b6736e3f7ddff841641e4",
+        "e15": "f937fe7d9892d5a7a58b6736e3f7ddff841641e4",
+        "e16": "f937fe7d9892d5a7a58b6736e3f7ddff841641e4"
+      },
+      "identicalAcrossPins": true
+    },
+    {
+      "path": "supabase/migrations/20261007120235_booking_editor_audited_override.sql",
+      "gitBlobs": {
+        "recovery": "6f8bb36356dcd1e864a51e6220bb9a955e3efe50",
+        "e15": "6f8bb36356dcd1e864a51e6220bb9a955e3efe50",
+        "e16": "6f8bb36356dcd1e864a51e6220bb9a955e3efe50"
+      },
+      "identicalAcrossPins": true
+    },
+    {
+      "path": "supabase/migrations/20261007121034_booking_editor_whole_group_validation.sql",
+      "gitBlobs": {
+        "recovery": "41e1a6088a63711a2ece4722429fc67e3e0ef014",
+        "e15": "41e1a6088a63711a2ece4722429fc67e3e0ef014",
+        "e16": "41e1a6088a63711a2ece4722429fc67e3e0ef014"
+      },
+      "identicalAcrossPins": true
+    },
+    {
+      "path": "supabase/migrations/20261007121724_booking_editor_group_alias_fix.sql",
+      "gitBlobs": {
+        "recovery": "0c7da27810c2358b73dc743757959e473ce4ee21",
+        "e15": "0c7da27810c2358b73dc743757959e473ce4ee21",
+        "e16": "0c7da27810c2358b73dc743757959e473ce4ee21"
+      },
+      "identicalAcrossPins": true
+    },
+    {
+      "path": "supabase/migrations/20261007131222_booking_editor_review_round1_fixes.sql",
+      "gitBlobs": {
+        "recovery": "9d8703c2d90f55187b4c0b8043c35afc748c7342",
+        "e15": "9d8703c2d90f55187b4c0b8043c35afc748c7342",
+        "e16": "9d8703c2d90f55187b4c0b8043c35afc748c7342"
+      },
+      "identicalAcrossPins": true
+    }
+  ],
+  "e15Reconciliation": [
+    {
+      "path": "src/scope/manifest.ts",
+      "gitBlobs": {
+        "recovery": "329cf14e7761235c1ba497d20a369dba670684f4",
+        "e15": "e79cfe6cedab15e61124e403bc87c78ee715c285",
+        "e16": "329cf14e7761235c1ba497d20a369dba670684f4"
+      },
+      "identicalAcrossPins": false
+    },
+    {
+      "path": "src/server/authz/permission-matrix.ts",
+      "gitBlobs": {
+        "recovery": "bae037e5f177e780fec004502bf263f6451849f9",
+        "e15": "9eacbb0958f96a305193fca9789dedd1dc194286",
+        "e16": "bae037e5f177e780fec004502bf263f6451849f9"
+      },
+      "identicalAcrossPins": false
+    },
+    {
+      "path": "src/features/scheduling/capacity.ts",
+      "gitBlobs": {
+        "recovery": "4552ba35c7cbe16dc0612198a23f6a854ad1b463",
+        "e15": "df7deeb0fbb75eee51a475c2c9dd5ebcbab9d582",
+        "e16": "4552ba35c7cbe16dc0612198a23f6a854ad1b463"
+      },
+      "identicalAcrossPins": false
+    },
+    {
+      "path": "tests/unit/server/authz/phase-a-surface.test.ts",
+      "gitBlobs": {
+        "recovery": "67e2ede88e4695bc21354e5339c419deff7e1e1e",
+        "e15": "986879bf2281cd2ce62cc8f4338dbe74601788b9",
+        "e16": "67e2ede88e4695bc21354e5339c419deff7e1e1e"
+      },
+      "identicalAcrossPins": false
+    },
+    {
+      "path": "src/features/resources/bookings-read.ts",
+      "gitBlobs": {
+        "recovery": "32a6db89c04b8548b2a14c95837e1a0610e42d4c",
+        "e15": "c465737d0967589191d7ce72c14dcb1ae8d1d8c9",
+        "e16": "32a6db89c04b8548b2a14c95837e1a0610e42d4c"
+      },
+      "identicalAcrossPins": false
+    },
+    {
+      "path": "src/server/read-models/scheduling.ts",
+      "gitBlobs": {
+        "recovery": null,
+        "e15": "cf54f8b77eeed156768791a6943e1b6acb84962a",
+        "e16": null
+      },
+      "identicalAcrossPins": false
+    },
+    {
+      "path": "supabase/migrations/20261013201515_story_15_1_booking_reassignment_flags.sql",
+      "gitBlobs": {
+        "recovery": null,
+        "e15": "d63bc16071ff77527d1515e002658aaf2bde17ab",
+        "e16": null
+      },
+      "identicalAcrossPins": false
+    },
+    {
+      "path": "tests/integration/scheduling/booking-reassignment-flags.int.test.ts",
+      "gitBlobs": {
+        "recovery": null,
+        "e15": "1f443790cf067a6575dcac6aefe6a2adb7d2657b",
+        "e16": null
+      },
+      "identicalAcrossPins": false
+    }
+  ],
+  "formalPlanning": [
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-16-1-jobs-depth-activation-container-evolution-and-my-jobs.md",
+      "e16GitBlob": "4743448f909ba91d4d4a448827d9cbc329fb33ee"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/epic-16-context.md",
+      "e16GitBlob": "68fc216b5639c87ee4e7afd2a0e6c8b79ff93745"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/epic-16/acceptance-transfer-matrix-2026-10-15.md",
+      "e16GitBlob": "0a992dc8d1a185c6197e6ddf0c88e252c5b8b0e4"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/test-design-epic-16.md",
+      "e16GitBlob": "f0693f1b796eb1c6608d97eac0706d86000e3d76"
+    }
+  ]
+}

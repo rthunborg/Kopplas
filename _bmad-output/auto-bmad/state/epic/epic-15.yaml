@@ -9,11 +9,11 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-19T10:13:07Z"
+updated_at: "2026-10-19T12:27:41Z"
 started_at: "2026-10-09T12:57:49Z"
 completed_at: null
 active_seconds: 124863
-timing_anchor: 1792404787
+timing_anchor: 1792412861
 is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
@@ -229,10 +229,19 @@ overrides:
   retro: "October8 accepted-with-open-items; October7 historical"
   checkpoint_push: User commit/push completed work authorization applies to reviewed preparation checkpoint while awaiting ownership
   blocked_checkpoint_push: "Owner requested commit/push; explicitly incomplete blockedcheckpoint branch only noEpicPR/finalization/merge/deploy"
-  legacy_oracle: "Standing owner design decision: no future legacy URL references browsing or evidence; missing design rules use headless domain state validation actions separated from replaceable UI with existing design system and accessibility; preserve historical records"
+  legacy_oracle: "Owner decision supersedes oracle browsing; retain historical records"
   owner_preview_policy: "Explicit owner decision: disable automatic previews for ALL Kopplas project branches and leave disabled until owner reenable; no automatic restore/replay; no-deploy remains."
   latest_project_rules: "Oct16 owner rules apply immediately; frontend finalPR requires agent-fix label application and verification; all approved scope/security/integrity/test gates preserved."
-constraints: []
+  merge_main: false
+  development_completion_policy: 2026-10-19
+  deployment: false
+  owner_resume: "2026-10-19 explicit authorization; Coordinator verified recovery handoff"
+constraints:
+  - "Sequential Epic 15; prepare and validate each story before build."
+  - "No main merge, deployment, preview or provider/secret mutations."
+  - "Use reviewed reusable checkpoint CI; old diagnostic runners, variables and clocks stay inactive."
+  - "E16 owns new edits to four shared seams; preserve E15 deltas at serialized integration."
+  - "Historical W failures retained; broad browser/visual/manual work deferred release validation, consequential development gates required."
 stories_landed: []
 epic_slug: scheduling-time-calendar
 active_story: 15-1-the-five-scheduling-views

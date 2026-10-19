@@ -830,6 +830,13 @@ def mark_status(sprint_status_path, key, status, allow_regress=False, now=None):
         _q, prev_stamp, _trail = _split_scalar_comment(lu_m.group(3))
         result["last_updated"]["previous"] = prev_stamp or None
 
+    if target == "done":
+        from delivery_gate import require_for_transition
+        errors = require_for_transition(sprint_status_path, key, "sprint")
+        if errors:
+            result["error"] = "development delivery gate: " + "; ".join(errors)
+            return result, 1
+
     if current == target:
         result["already_at_status"] = True
         return result, 0
@@ -859,6 +866,11 @@ def mark_status(sprint_status_path, key, status, allow_regress=False, now=None):
                 mine = [s for s in stories if s["epic_num"] == epic_num]
                 if mine and all(s["status"] == "done" for s in mine):
                     lift_to = "done"
+            if lift_to == "done":
+                errors = require_for_transition(sprint_status_path, epic_key, "sprint")
+                if errors:
+                    result["error"] = "epic development delivery gate: " + "; ".join(errors)
+                    return result, 1
             if lift_to:
                 _rewrite_line(lines, e_idx, e_m.group(1) + _quote_like(e_m.group(2), lift_to) + (e_m.group(3) or ""))
                 result["epic_lift"] = {"key": epic_key, "previous": e_raw, "new": lift_to}
@@ -4383,6 +4395,7 @@ def main(argv=None):
             parser.error("--mark-status requires --sprint-status")
         if not args.to:
             parser.error("--mark-status requires --to STATUS")
+
         return emit(*mark_status(args.sprint_status, args.mark_status, args.to, args.allow_regress))
     if mode == "find-spec":
         if stories_mode:

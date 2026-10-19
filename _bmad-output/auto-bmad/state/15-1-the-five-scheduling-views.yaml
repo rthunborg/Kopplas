@@ -9,11 +9,11 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-19T10:13:07Z"
+updated_at: "2026-10-19T12:30:13Z"
 started_at: "2026-10-09T13:06:12Z"
 completed_at: null
 active_seconds: 124393
-timing_anchor: 1792404787
+timing_anchor: 1792412860
 is_first_in_epic: true
 is_last_in_epic: false
 git_mode: remote
@@ -26,7 +26,7 @@ selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Explicit four-path auth-fixture creation-bound FD-only cleanup source implementation and bounded proofs require High for ownership, integrity, callback lifetime and failure precedence."
+escalation_reason: "Automatic sensitive-task escalation: authorization, transactional-integrity"
 routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary scheduling UX specification; sensitive authorization/integrity portions explicitly delegated High\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary15.1 ATDD preparation; sensitive access assertions delegated High; shared fixture edits excluded\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -339,6 +339,7 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Read-only exact pinned-loader/process/module FD lifetime, opaque ownership transfer and Node22 descriptor safety qualification requires High; bounded primary source retrieval only, no package execution or source allocation.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Independent focused pinned SDK loader lifetime, original-inode descriptor erasure ownership and four-path contract/control proposal qualification before source/tests requires High.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Explicit four-path auth-fixture creation-bound FD-only cleanup source implementation and bounded proofs require High for ownership, integrity, callback lifetime and failure precedence.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate, trace-advisory]
 tea_rationale: "Scheduling, synchronized projections, capacity and drag/keyboard/dialog behavior"
@@ -400,10 +401,19 @@ overrides:
   blocked_report_commit: "Include updatedhaltedreport with blockedcheckpoint as ownerrequested documentation/commitpush; no completedepicclaim"
   resume_2026_10_14: "Renewed proceed Epic15 instruction: continue existing blocked checkpoint, investigate supported repository-local exact-version fresh browser installation and existing CI route; preserve old HALT/evidence/gates, no global/cache/guard/SDK repair or repeated inspect_only start"
   recovery_checkpoint_commits: "Commit/push independently reviewed completed recovery test evidence under original user authorization; retain blocked spec and all unresolved gates"
-  legacy_oracle: "Standing owner design decision: no future legacy URL references browsing or evidence; missing design rules use headless domain state validation actions separated from replaceable UI with existing design system and accessibility; preserve historical records"
+  legacy_oracle: "Owner decision supersedes oracle browsing; retain historical records"
   owner_preview_policy: "Explicit owner decision: disable automatic previews for ALL Kopplas project branches and leave disabled until owner reenable; no automatic restore/replay; no-deploy remains."
   latest_project_rules: "Oct16 owner rules apply immediately; frontend finalPR requires agent-fix label application and verification; all approved scope/security/integrity/test gates preserved."
-constraints: []
+  merge_main: false
+  development_completion_policy: 2026-10-19
+  deployment: false
+  owner_resume: "2026-10-19 explicit authorization; Coordinator verified recovery handoff"
+constraints:
+  - "Sequential Epic 15; prepare and validate each story before build."
+  - "No main merge, deployment, preview or provider/secret mutations."
+  - "Use reviewed reusable checkpoint CI; old diagnostic runners, variables and clocks stay inactive."
+  - "E16 owns new edits to four shared seams; preserve E15 deltas at serialized integration."
+  - "Historical W failures retained; broad browser/visual/manual work deferred release validation, consequential development gates required."
 spec_validation:
   tasks: 10
   kernel_hash: 035ee9683e8b3e6e0420204a3ddfa8d81b0dcb6a47aa12e638673859d60cc234
