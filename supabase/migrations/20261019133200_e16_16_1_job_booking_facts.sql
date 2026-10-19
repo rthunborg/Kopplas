@@ -340,7 +340,7 @@ begin
  if p_claims is null or jsonb_typeof(p_claims)<>'object' or (select count(*) from jsonb_object_keys(p_claims))<>13
   or p_signature is null or p_signature!~'^[0-9a-f]{64}$'
   or p_claims->>'tenantId' is distinct from p_tenant_id::text or p_claims->>'actorId' is distinct from p_actor_id::text
-  or p_claims->>'operation' is distinct from case when p_job_id is null then 'create' else 'update' end
+  or p_claims->>'operation' is distinct from (case when p_job_id is null then 'create' else 'update' end)
   or p_claims->>'commandId' is distinct from p_command_id::text or p_claims->>'bookingId' is distinct from p_candidate_id::text
   or p_claims->>'candidateDigest' is distinct from digest or p_claims->>'correlationId' is distinct from p_correlation_id::text
   or p_claims->>'engineVersion' is distinct from 'booking-conflicts-v3' or p_claims->>'configVersion' is distinct from 'stockholm-capacity-v1'

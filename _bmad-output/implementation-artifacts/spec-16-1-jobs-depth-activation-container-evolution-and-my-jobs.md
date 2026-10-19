@@ -456,9 +456,19 @@ E02 now asserts the literal server-confirmed message, equality of the failed/ret
 
 Focused verification: the P6 author ran ESLint on the two changed files (native 0) and Playwright collection of the exact jobs-depth file (native 0, four tests collected; no execution). The implementation author ran the proper absolute Node 22/TypeScript gate (native 0, zero diagnostics), log C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-review-fix-tsc.log. The unchanged pure-unit, SQL and initial build evidence above is retained with its original provenance; no extra broad rerun is claimed for these UI fixes. Runtime acceptance and the same reviewer's narrow follow-up remain open. The sole review order and 47-file raw-hash inventory are refreshed for this patch batch.
 
+## Focused CI startup-fix batch 2 — 2026-10-19
+
+Root reported the reviewed source checkpoint 41463a2224c9197ee53195d6df03ac82375f4aeb pushed and standard CI run 39271273236 dispatched with release_validation=false. Its verify job passed. DB job 118125149078, essential-browser job 118125148993 and recovery-Storage job 118125149044 failed stack/schema startup before tests; missing native test reports are secondary to that startup failure. No runtime acceptance result is inferred from those jobs.
+
+The authorized private DB log inspection identified SQLSTATE 42601, syntax error at end of input, at statement 11 of 20261019133200_e16_16_1_job_booking_facts.sql while compiling finalize_job_card. PostgreSQL pointed to line 343's unparenthesized CASE in the operation comparison. The implementation author added only parentheses around that CASE expression, matching the already working finalize_booking_editor predicate. Actor, operation, candidate, digest, proof, expiry, version and transaction behavior are unchanged.
+
+A focused inspection of CASE comparisons in the two new migrations found no second instance of this parser defect: the numeric CASE is already enclosed by its containing expression, and the editor-operation comparison already uses parentheses. No implementation-mirroring string test, dependency/parser installation, broad review or unchanged unit/build rerun was added. The previous source/unit/type/build evidence remains historical evidence with its recorded provenance; it did not prove PostgreSQL compilation. The actual migration compile and runtime tests must execute on a new independently reviewed exact-head CI candidate. Root owns that new commit/push/unique receipt; no redispatch, cancellation, local resource or provider action was taken by this author.
+
+Private log: C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39271273236-db-startup.log. Only the safe SQL error, migration/function/line and statement context were reported; credentials and the raw log were not published. This grammar-only patch and the refreshed trail return to the same High reviewer for a narrow startup-fix/regression check. Required runtime gates, delivery evidence and development completion remain open.
+
 ## Suggested Review Order
 
-Author: the Sol High implementation author, incorporating the recorded P6 author's baseline-preservation decisions. Refreshed after focused review-fix batch 1 against the current source working tree based on c47b268 with root-owned process head dea276c7; runtime acceptance and narrow independent follow-up remain outstanding.
+Author: the Sol High implementation author, incorporating the recorded P6 author's baseline-preservation decisions. Refreshed after focused CI startup-fix batch 2 against checkpoint 41463a2224c9197ee53195d6df03ac82375f4aeb plus the one-line SQL grammar repair; source intent baseline c47b268 is preserved. Runtime acceptance and narrow independent follow-up remain outstanding.
 
 ### Reach the personal job flow without expanding row authority
 
@@ -496,4 +506,4 @@ AC04/09/10 retain real enriched/original API and exact-child assertions. AC05 no
 - `src/components/jobs/JobCardForm.tsx:109` — `setSaved(false)`: include button-only access-window edits in that transition.
 - `tests/e2e/jobs/jobs-depth.e2e.spec.ts:162` — `16.1-E02`: assert retry-body equality and successive durable saves without reload.
 
-Evidence: see Executed evidence and limits above for commands, counts, logs and working-tree provenance. Required full DB/RLS, recovery-Storage and essential browser execution plus independent review remain open; exhaustive visual/manual work is explicitly deferred release validation. No development-complete or release-ready claim is made.
+Evidence: see Executed evidence and limits and the two focused fix batches above for commands, counts, logs and revision provenance. CI 39271273236 failed PostgreSQL startup before tests; the operation guard grammar correction at migration line 343 needs real compile evidence from the next reviewed candidate. Required full DB/RLS, recovery-Storage and essential browser execution plus narrow independent follow-up remain open; exhaustive visual/manual work is explicitly deferred release validation. No development-complete or release-ready claim is made.
