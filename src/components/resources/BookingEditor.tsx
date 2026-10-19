@@ -117,7 +117,10 @@ export function BookingEditor({open, onClose, draft, options: initialOptions, bo
     setPreview({requestId:"stale",status:"pending",warnings:[],availabilityLabel:"Okänd"});setSeriesLoadRetry(n=>n+1);
   }
   function retryPreview() {
-    if(scope === "following" && !seriesSource){setSeriesMetadataLoading(true);setSeriesLoadRetry(n=>n+1);}else setRetry(n=>n+1);
+    if(pending || unresolved)return;
+    // A concurrent split can invalidate ownership between the two metadata reads.
+    // Explicit retry reloads it even when the previous denial was not PREVIEW_STALE.
+    if(scope === "following")refreshStaleSeries();else setRetry(n=>n+1);
   }
   useEffect(() => {
     if (!open || success || unresolved || scope === null || (scope === "following" && (!seriesSource || seriesMetadataLoading))) return;

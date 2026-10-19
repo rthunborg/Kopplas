@@ -16,10 +16,10 @@ function harness(patch:Record<string,unknown>={}){
   const require=createRequire(import.meta.url),cells:unknown[]=[],effectCells:{deps:unknown[];cleanup?:()=>void}[]=[];
   let cursor=0,effectCursor=0,tree:Node,changed=true;const effects:(()=>void)[]=[],timers=new Map<number,()=>Promise<void>>();let timerId=0;
   const rule={preset:"daily",startDate:"2026-11-02",startTime:"09:00:00",endTime:"10:00:00",endDayOffset:0,allDay:false,timeZone:"Europe/Stockholm",count:3};
-  let current={id:"source",version:1,rule,template:{...base},nominalDate:"2026-11-02"},metadataFails=false;let reads=0;const previews:Record<string,unknown>[]=[],saves:Record<string,unknown>[]=[];
+  let current={id:"source",version:1,rule,template:{...base},nominalDate:"2026-11-02"},metadataFails=false,staleCode="PREVIEW_STALE";let reads=0;const previews:Record<string,unknown>[]=[],saves:Record<string,unknown>[]=[];
   const hooks={useRef:(v:unknown)=>{const n=cursor++;return cells[n]??(cells[n]={current:v});},useState:(v:unknown)=>{const n=cursor++;if(!(n in cells))cells[n]=typeof v==="function"?(v as ()=>unknown)():v;return[cells[n],(next:unknown)=>{const value=typeof next==="function"?(next as (old:unknown)=>unknown)(cells[n]):next;if(!Object.is(value,cells[n])){cells[n]=value;changed=true;}}];},useEffect:(fn:()=>void|(()=>void),deps:unknown[]=[])=>{const n=effectCursor++,old=effectCells[n];if(!old||deps.some((v,i)=>!Object.is(v,old.deps[i]))){effects.push(()=>{old?.cleanup?.();const cleanup=fn();effectCells[n]={deps,cleanup:typeof cleanup==="function"?cleanup:undefined};});}}};
   const series={readBookingSeriesAction:async()=>{reads++;return metadataFails?{status:"error",message:"Metadata unavailable"}:{status:"success",series:structuredClone(current)};},
-    previewBookingSeriesAction:async(input:Record<string,unknown>)=>{previews.push(input);if(input.expectedVersion!==current.version||input.sourceSeriesId!==current.id)return{status:"error",code:"PREVIEW_STALE",message:"stale"};return{status:"success",preview:{receipt:"unit-port-receipt",total:3,occurrences:[],warnings:[{logicalId:"warning",rule:"outside_work_hours",personId:"person",bookingIds:[],startsAt:base.startsAt,endsAt:base.endsAt}]}};},
+    previewBookingSeriesAction:async(input:Record<string,unknown>)=>{previews.push(input);if(input.expectedVersion!==current.version||input.sourceSeriesId!==current.id)return{status:"error",code:staleCode,message:"stale"};return{status:"success",preview:{receipt:"unit-port-receipt",total:3,occurrences:[],warnings:[{logicalId:"warning",rule:"outside_work_hours",personId:"person",bookingIds:[],startsAt:base.startsAt,endsAt:base.endsAt}]}};},
     saveBookingSeriesAction:async(input:Record<string,unknown>)=>{saves.push(input);return{status:"error",code:"PREVIEW_STALE",message:"stale"};}};
   const modules:Record<string,unknown>={react:hooks,"@/components/crm/Dialog":{Dialog:"Dialog"},"@/features/resources/booking-actions":{},"@/features/resources/booking-editor-input":inputs,"@/features/resources/booking-transport":transport,"@/features/resources/booking-series-actions":series,"@/features/resources/booking-series-state":state,"./BookingRecurrenceFields":{BookingRecurrenceFields:"Fields"},"./RecurrencePreview":{RecurrencePreview:"Preview"}};
   const window={setTimeout:(fn:()=>Promise<void>)=>{timers.set(++timerId,fn);return timerId;},clearTimeout:(id:number)=>timers.delete(id),addEventListener:()=>{},removeEventListener:()=>{}};
@@ -32,7 +32,7 @@ function harness(patch:Record<string,unknown>={}){
   function find(id:string){const n=nodes(tree).find(n=>n.props["data-testid"]===id);assert.ok(n,`Missing control ${id}`);return n;}
   const invoke=(n:Node,event:string,value:unknown={})=>(n.props[event] as (value:unknown)=>unknown)(value);
   async function following(){await settle();const radio=nodes(tree).filter(n=>n.type==="input"&&n.props.name==="booking-scope")[1]!;invoke(radio,"onChange");render();invoke(find("booking-series-scope-confirm"),"onClick");await settle();}
-  return{settle,following,find,invoke,all:()=>nodes(tree),previews,saves,reads:()=>reads,latest:()=>previews.at(-1)!,current:(value:Partial<typeof current>)=>{current={...current,...value};},failMetadata:()=>{metadataFails=true;}};
+  return{settle,following,find,invoke,all:()=>nodes(tree),previews,saves,reads:()=>reads,latest:()=>previews.at(-1)!,current:(value:Partial<typeof current>)=>{current={...current,...value};},failMetadata:()=>{metadataFails=true;},denyMovedPivot:()=>{staleCode="TENANT_ACCESS_DENIED";}};
 }
 test("Round1 following preserves explicit gesture time and reassignment over stored defaults",async()=>{
   const h=harness({draft:{...base,description:"Occurrence exception",assigneeIds:["pivot-person"]},proposal:{startsAt:"2026-11-03T10:00:00.000000Z",endsAt:"2026-11-03T12:00:00.000000Z",assigneeIds:["destination"]}});
@@ -73,4 +73,13 @@ test("Round1 editor rejects an entered pre-nominal date even when equal to old s
   assert.equal(h.find("booking-start").props.value,"2026-11-02T09:00");assert.equal(h.previews.length,before);
   const preview=h.all().find(n=>n.type==="Preview")!;assert.equal(preview.props.status,"failed");assert.match(String(preview.props.error),/Startdatum.*nominella/);
   assert.equal(h.find("booking-save").props.disabled,true);assert.equal(h.saves.length,0);
+});
+test("Round2 explicit following preview retry reloads ownership after a split denial and preserves draft",async()=>{
+  const h=harness();await h.following();h.denyMovedPivot();h.current({id:"new-owner",version:2});
+  h.invoke(h.find("booking-description"),"onChange",{target:{value:"Retained race draft"}});await h.settle();
+  const failed=h.all().find(node=>node.type==="Preview")!;assert.equal(failed.props.status,"failed");assert.equal(h.reads(),1);
+  h.invoke(failed,"onRetry");await h.settle();
+  assert.equal(h.reads(),2);assert.equal(h.latest().sourceSeriesId,"new-owner");assert.equal(h.latest().expectedVersion,2);
+  assert.equal((h.latest().template as Record<string,unknown>).description,"Retained race draft");
+  assert.equal(h.all().find(node=>node.type==="Preview")!.props.status,"ready");assert.equal(h.saves.length,0);
 });

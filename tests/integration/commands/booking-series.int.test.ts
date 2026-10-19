@@ -1134,3 +1134,39 @@ describe("15.2 Round1 checked integrity regressions",()=>{
     });
   });
 });
+
+describe("15.2 Round2 checked cancellation retention",()=>{
+  test("15.2-INT-REAL-023 shortening with replacement defaults retains historical role only on the same cancelled slot",async ctx=>{
+    if(skipUnlessStack(ctx,realStackUp))return;
+    await withBookingFixture(async fx=>{
+      const parents=await seedBookingParents(fx.base.tenantA.id),replacement=crypto.randomUUID();
+      await adminQuery("insert into public.work_roles(id,tenant_id,display_name,cost_rate_ore,sell_rate_ore) values($1,$2,'Round2 replacement',20000,40000)",[replacement,fx.base.tenantA.id]);
+      const original=realSeriesInput(fx,{template:{...realSeriesInput(fx).template,workRoleId:parents.workRoleId}});
+      expect(await runCommand(createBookingSeries,{client:fx.adminClient as never,input:(await reviewRealSeries(fx,original)).input})).toMatchObject({ok:true});
+      const rows=await adminQuery<{id:string}>("select id from public.bookings where series_id=$1 order by nominal_date",[original.seriesId]);
+      const projection="select id,work_role_id,description,status,is_exception,nominal_date::text,starts_at::text,ends_at::text from public.bookings where id=$1";
+      const [lastBefore]=await adminQuery(projection,[rows[2]!.id]);
+      await adminQuery("update public.work_roles set is_active=false where id=$1 and tenant_id=$2",[parents.workRoleId,fx.base.tenantA.id]);
+      const shortened=realSeriesInput(fx,{seriesId:original.seriesId,sourceSeriesId:original.seriesId,expectedVersion:1,rule:{...original.rule,count:2},
+        template:{...original.template,workRoleId:replacement,description:"Active replacement defaults"}});
+      const ready=(await reviewRealSeries(fx,shortened)).input;
+      const saved=await runCommand(updateBookingSeries,{client:fx.adminClient as never,input:ready});
+      expect(saved).toMatchObject({ok:true});
+      expect(await adminQuery(projection,[rows[2]!.id])).toEqual([{...lastBefore,status:"cancelled",is_exception:true}]);
+      expect(await adminQuery("select id,work_role_id,status from public.bookings where series_id=$1 and status='planned' order by nominal_date",[original.seriesId]))
+        .toEqual(rows.slice(0,2).map(row=>({id:row.id,work_role_id:replacement,status:"planned"})));
+      const before=await realSeriesSnapshot(fx);
+      expect(await runCommand(updateBookingSeries,{client:fx.adminClient as never,input:ready})).toEqual(saved);
+      expect(await realSeriesSnapshot(fx)).toEqual(before);
+      // Cancellation cannot turn another occurrence's historical role into a new assignment.
+      for(const bad of [
+        realSeriesInput(fx,{template:{...original.template,status:"cancelled"}}),
+        realSeriesInput(fx,{seriesId:original.seriesId,sourceSeriesId:original.seriesId,expectedVersion:2,rule:{...original.rule,count:2},template:{...original.template,status:"cancelled"}}),
+      ]){
+        const reviewed=(await reviewRealSeries(fx,bad)).input;
+        expect(await runCommand(bad.sourceSeriesId?updateBookingSeries:createBookingSeries,{client:fx.adminClient as never,input:reviewed})).toMatchObject({ok:false,code:"TENANT_ACCESS_DENIED"});
+        expect(await realSeriesSnapshot(fx)).toEqual(before);
+      }
+    });
+  });
+});

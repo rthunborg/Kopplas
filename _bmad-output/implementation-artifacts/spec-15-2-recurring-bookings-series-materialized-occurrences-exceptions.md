@@ -2,7 +2,7 @@
 title: '15.2 — Recurring Bookings — Series, Materialized Occurrences, Exceptions'
 type: feature
 created: '2026-10-19'
-status: done
+status: in-review
 review_loop_iteration: 0
 followup_review_recommended: true
 baseline_revision: '85755eb7cea3affdc77dbe1d30bb18279b614c5a'
@@ -118,6 +118,22 @@ No review loop has run. This is a new planning contract, with no prior 15.2 appr
 
 ## Review Triage Log
 
+### 2026-10-20 — Round 2 of 3 follow-up review pass
+
+- intent_gap: 0
+- bad_spec: 0
+- patch: 3: (high 2, medium 1, low 0)
+- defer: 0
+- reject: 2: (high 0, medium 0, low 2)
+- addressed_findings:
+  - `[high]` `[patch]` R2-01 ready preview admitted a complete plan above the SQL3MiB limit. Exact compact UTF8 serialization now gates ready/finalization with a fixed safe recovery message; actual planner/preview and exact/+1/multibyte boundary tests pass.
+  - `[high]` `[patch]` R2-03 shortening after role archival rejected a newly cancelled historical slot. New107 replaces only the existing helper cancellation predicate, preserving same tenant/occurrence/original role. REAL023 retention/replay/new-ID/changed-role checks await exact-source CI.
+  - `[medium]` `[patch]` R2-04 a concurrent split between metadata reads could cache mismatched ownership and repeatedly deny explicit retry. Following retry now reloads current metadata through unchanged recovery, preserving draft and pending/unknown guards; actual TSX action-port regression passes.
+- Follow-up recommendation: true (high2/medium1/low0; weighted medium/low score3). Broad rounds2/3; nonconvergence counter0 is separate.
+- All six configured independent layers completed before triage. Initial parallel CLI hook refusals provided no review credit; native batches plus one serial prescribed external retry supplied real reports. Final CMD TYPE failure is separate from the external872-byte report.
+- Distinct High fix review caught the initial R2-02 use of a superseded4000-ID guard before runtime. Effective20261007131222 removes that limit; uncommitted cap removed and actual100-person/long-ID preview/public-input regression passed. Original RED18total15P3F includes only two confirmed defect failures and one rejected wrong-expectation failure, no false coverage credit. Current20P0F0S; full nonincremental TSC and scoped ESLint native0. High correction/helper and compact-TEXT boundary qualification PASS, no new broad round.
+- Frozen current evidence: `_bmad-output/test-artifacts/story15-2/build-round2-author-verification.json`. Revised RLS005/newREAL023 remain UNEXECUTED pending exact-source required CI/fullDB-RLS/directStorage/empty107/build, Root delivery gate and independent final provenance. Spec in-review; no renewed development-done claim.
+
 ### 2026-10-20 — Review pass
 
 - intent_gap: 0
@@ -172,6 +188,13 @@ Development completion reconciles the October 19 owner policy: focused integrity
 
 ## Auto Run Result
 
+Status: in-review
+Blocking condition: pending exact-source standard CI, Root delivery gate and independent frozen-record provenance
+
+Current Round2:3patches(2high1medium),2rejects,0intent_gap/bad_spec/defer; followupTRUE, broad2/3, nonconvergence0. Current20focusedunit/actualTSX-port cases pass; nonincremental TSC/scopedESLint native0. Distinct High correction/helper and compactTEXT boundary reviews PASS. New107 retains the same-existing-occurrence/original-role on cancellation only;105/106 immutable. REAL023 and revisedRLS005 remain UNEXECUTED until native exact-sourceCI proof, with fullDB/RLS/directStorage/empty107 and allnormalrequiredjobs. Current authorverification and deliberately pending delivery carry exact hashes and composed essentialUI rationale; oldeffbf5e1/CI39335595653/deliveryc1 are historical. Root gate/provenance required before done. Three release items remain deferred; release_ready=false.
+
+### Historical P5 completed delivery — preserved, superseded for changed dependencies
+
 Status: done
 Blocking condition: none
 
@@ -204,6 +227,10 @@ Completion hook: planning exit only under docs/process/review-order.md. Future i
 
 ## Implementation Verification
 
+Current Round2 evidence is `_bmad-output/test-artifacts/story15-2/build-round2-author-verification.json`:20focusedP0F0S and current static checks actually executed; newREAL023/revisedRLS005/currentfullDB-RLS/Storage/empty107/build-CI pending. Root accepted composed essential coverage: actual current TSX DENIED-retry proof plus unchanged retry rendering/recovery and historical GLK007. No fresh DENIED-browser or exhaustive matrix claim. Current effective SQL and compact p_plan TEXT byte equivalence independently reviewed at High. Root gate and frozen-record provenance remain pending.
+
+### Historical P5 verification and admission — preserved
+
 Author final evidence refresh,2026-10-20. Approved kernel013b7ae0d0614d20dbc021885786ca1803976e10bd634ddc0bc3791b19de4ee1, original9tasks/8AC/sourceACsketch/DesignNotes remain unchanged. All8accepted Round1 patches are addressed and independently reviewed; canonical repair-loop0/broadRound1of3/followuptrue remain distinct. Source52 hashes match reviewed checkpoint effbf5e18e19556d0fad231d3fc01369397c8402; only evidence metadata changes in this refresh. Original pending record/index and raw review/CI reports were preserved before refresh.
 
 ExactCI39335595653 attempt1/release_validationfalse completedSUCCESS: checkpoint-admission,verify,db,recovery-storage-loader,e2e allpassed. Actual2974unitP0S;43processP0S; fullDB1827P0F52S with all22active15.2command cases; RLS800P14S is nonadditive subset. Separate physicalStorage1P0S proves2physicalobjects/66bytes plus protectedrows/bytes and overwrite denial. First-attempt empty106migration/seed replay passed in all three database-bearing lanes. OrdinaryAuth/Jobs11P0S/flaky/retry/globalerrors is separate from Scheduling/series proof. Configuredpilot25measurements/5warmups readp9514.010ms<=250/permissionsCPU5.946ms<=25/2requests<=3 passed; only narrow120/24membership projection/CPU log evidence, not fullprivatequeryplan or representative Scheduling load.
@@ -216,7 +243,7 @@ Admitted status closure,2026-10-20: Root gate native0/oktrue/development_complet
 
 ## Suggested Review Order
 
-Author: implementation/fix author. Refreshed against tested source checkpointeffbf5e18e19556d0fad231d3fc01369397c8402, exactCI39335595653 and immutable local GLK/current12path packet6666a3b1; metadata-only follow-up, not final status admission.
+Author: implementation/fix and verification delegate. Round2 refresh preserves original authored rationale and adds current fixes/evidence after invocationfe99dbca8da5cc71bb675a513a21a68d64f80ce5. Current source/SQL/test packet is frozen for required CI; historical effbf5e1/CI39335595653/localGLK remain scoped evidence, not proof of the revised tests or107.
 
 ### Following edits retain visible intent and refresh stale ownership
 
@@ -227,32 +254,47 @@ AC2/3/8 keep the explicit drag/resize/reassignment proposal separate from stored
 - `src/features/resources/booking-editor-input.ts:24` — `export function followingBookingDraft`: combines stored defaults with explicit proposal only.
 - `tests/unit/features/resources/booking-series-editor.test.ts:46` — `for(const origin of ["preview","save"]`: exercises actual TSX stale recovery through action ports.
 
+Round2 explicit following retry also reloads current ownership after generic denial, preserving draft and pending/unknown protection. Actual TSX action-port proof covers this routing; unchanged recovery/rendering has scoped prior GLK007 evidence.
+
+- `src/components/resources/BookingEditor.tsx:119` — `function retryPreview()`: reloads metadata on explicit following retry.
+- `tests/unit/features/resources/booking-series-editor.test.ts:77` — `Round2 explicit following preview retry`: proves denied retry preserves draft and uses current ownership.
+
 ### Nominal ownership and requested calendar dates stay distinct
 
 AC1/4/5 honor forward requested starts and reject genuinely changed earlier coordinates. Approved Design Notes127 retains inherited scheduling anchors with unchanged or end-only changes from the nominal pivot; the editor independently rejects every entered pre-pivot date, including the ambiguous stored anchor. Date-only all-day controls pass through real conversion, validation and expansion across both DST transitions.
 
 - `src/features/scheduling/recurrence.ts:38` — `export function expandRecurrence`: expands the complete finite local calendar.
 - `src/server/bookings/series-conflicts.ts:55` — `export function planBookingSeries`: separates rule start, nominal cutoff and lineage bounds.
-- `tests/unit/server/bookings/series-plan.test.ts:44` — `Round1 unchanged stored rule with pure field change`: guards original suffix/end compatibility in the actual planner.
+- `tests/unit/server/bookings/series-plan.test.ts:47` — `Round1 unchanged stored rule with pure field change`: guards original suffix/end compatibility in the actual planner.
 - `tests/unit/features/resources/booking-editor-input.test.ts:124` — `Round1 date-only all-day converter`: checks literal spring/fall UTC boundaries through the actual caller.
 
 ### Forward SQL retains protected history without expanding assignment authority
 
-The first-applied1800 migration is immutable. Forward220000 narrowly allows an unchanged existing protected work-role reference and enforces predecessor lower bounds on requested/effective rules plus every complete row; existing protected-payload equality, auth, locks, proof domains, replay, outcomes and audit remain intact. AC4/5/6 have currentCI all22real command passes plus local106020-0221+2P;105 RED stays a failure.106 GitLF57e7 and frozenlocalCRLFc55 differ only in176line endings; neither is rewritten.
+The first-applied1800 migration is immutable. Forward220000 narrowly allows an unchanged existing protected work-role reference and enforces predecessor lower bounds on requested/effective rules plus every complete row; existing protected-payload equality, auth, locks, proof domains, replay, outcomes and audit remain intact. AC4/5/6 have historical effbf5e1/run39335595653 all22real command passes plus local106020-0221+2P;105 RED stays a failure.106 GitLF57e7 and frozenlocalCRLFc55 differ only in176line endings; neither is rewritten.
 
 - `supabase/migrations/20261019220000_booking_series_integrity_followup.sql:2` — `create or replace function public.booking_series_row_internal`: retains only existing protected historical role references.
 - `supabase/migrations/20261019220000_booking_series_integrity_followup.sql:103` — `if source.predecessor_id is not null`: rejects requested-rule or complete-row lower-bound bypasses.
 - `tests/integration/commands/booking-series.int.test.ts:1066` — `15.2-INT-REAL-020`: pairs protected retention with inactive-new-assignment denial.
 - `tests/integration/commands/booking-series.int.test.ts:1089` — `15.2-INT-REAL-021`: tests real JWT signed-overlay denial and zero durable delta.
 
+Round2 forward107 additionally permits the unchanged existing role when an omitted ordinary slot first becomes cancelled. Same tenant/booking/original role remains mandatory; new inactive assignments and substitution deny. REAL023 is pending exact-source CI, never claimed executed here.
+
+- `supabase/migrations/20261020000000_booking_series_cancelled_role_retention.sql:21` — `and (b.is_exception`: admits same-occurrence historical role on cancellation.
+- `tests/integration/commands/booking-series.int.test.ts:1139` — `15.2-INT-REAL-023`: checks retention/replay and inactive-assignment negatives.
+
 ### One current-facts transaction still owns conflicts and replay
 
-AC3/6/7 continue using the sole detector over the complete proposed overlay and one current-authority tenant gate. Separate proof/review domains, group completeness and atomic selected acceptance/outcome/audit are preserved; actual audit-failure rollback and current exact-head fullDB1827P/RLS800subset retain transaction-stage proof; skipped scaffolds give no credit.
+AC3/6/7 continue using the sole detector over the complete proposed overlay and one current-authority tenant gate. Separate proof/review domains, group completeness and atomic selected acceptance/outcome/audit are preserved; actual audit-failure rollback and historical effbf5e1/run39335595653 fullDB1827P/RLS800subset retain transaction-stage proof; skipped scaffolds give no credit.
 
 - `src/server/bookings/series-attestation.ts:5` — `export const SERIES_ATTESTATION_DOMAIN`: separates batch proof authority.
 - `src/server/bookings/series-conflicts.ts:111` — `export function deriveSeriesConflicts`: derives whole-overlay associations through the sole detector.
 - `supabase/migrations/20261019180000_recurring_booking_series.sql:151` — `create function public.finalize_booking_series`: preserves the immutable first-applied transaction baseline.
 - `tests/integration/commands/booking-series.int.test.ts:847` — `15.2-INT-REAL-007`: proves last-stage failure rolls back all durable collections.
+
+Round2 ready admission measures the exact compact p_plan TEXT sent to SQL before JSONB parsing. Later conflict-output validation has no aggregate byte cap, so JSONB whitespace cannot cause another size rejection. The boundary unit is synthetic serialization evidence, not a full SQL3MiB transaction. Effective decision SQL permits long logical IDs within transport/receipt limits.
+
+- `src/server/bookings/series-conflicts.ts:145` — `export function serializeBookingSeriesPlan`: applies SQL UTF8 bounds before ready/save.
+- `tests/unit/server/bookings/series-plan.test.ts:101` — `Round2 preview rejects`: exercises actual planner/preview over the complete oversized conflict plan.
 
 ### Match essential host proof to actual execution and unchanged dependencies
 
@@ -263,12 +305,17 @@ Public occurrence metadata remains behind existing RLS; no template/outcome gran
 - `tests/e2e/booking-series.e2e.spec.ts:431` — `15.2-E2E-008`: uses native resource drag/resize and independent persisted facts.
 - `tests/e2e/booking-series.e2e.spec.ts:452` — `15.2-E2E-009`: asserts effective inactive assignee visibility and durable removal.
 
-Evidence: `_bmad-output/test-artifacts/story15-2/build-intent-matrix.md` maps seven AC/invariant rows to exact local and current CI receipts. Exacteffbf5e1/run39335595653 all5required jobs passed:2974unitP,43processP,fullDB1827P52S with22real series passes,RLS800P14S included,separate physicalStorage1P,empty106replay/configuredpilot andAuthJobs11P. Scoped Scheduling/series browser evidence remains guarded local GLK2+1 plus reviewed unchanged-path history; CI smoke is not that coverage.
+Evidence: `_bmad-output/test-artifacts/story15-2/build-round2-author-verification.json` freezes seven source/SQL/test paths, actual20focusedP0F0S/static native0, six independent reports and targeted High correction/boundary qualifications. Three of433production files changed; precise composed essential-browser reuse is recorded. Old matrix/P5 counts remain historical at effbf5e1/CI39335595653. Revised RLS005/newREAL023 and exact-source standardCI remain pending, followed by Root gate/independent final provenance.
 
-Limits:52DB skips and optional release/probe jobs are not coverage; RLS counts are nonadditive. Pilot is a narrow120/24membership projection/CPU check, fullprivatequeryplanJSON notuploaded; representative Scheduling load remains deferred. Migration106 frozenlocalCRLFc55/GitLF57e7 are normalized-identical only. Source52 code/test/schema unchanged during metadata refresh. Root mandatorydeliverygate/narrowprovenance passed and status admission isexplicit; spec statusdone means development only, release_ready=false and3owned release defers persist.
+Limits: no fresh DENIED-browser, full SQL3MiB boundary transaction, local106→107 rehearsal, exhaustive matrix or representative scheduling release-performance claim. Original skips give no coverage; RLS counts remain nonadditive.105/106 raw identities preserved;107 is helper-only forward SQL. FollowupTRUE/broad2of3/nonconvergence0; release_ready=false and3release defers persist.
 
 ### Review Findings
 
 **Round 1 of 3**
 
 Configured Round1 completed:8accepted patches addressed (4high/4medium; medium score12; followup true),1nonconsequential reject,0intent gap/bad spec/defer. Same High targeted source/binding/Unicode/009 follow-ups passed. Dated canonical Review Triage Log above maps each fix to actual evidence. Source checkpointeffbf5e1 and exactCI39335595653 all5required jobs PASS; Root mandatorydeliverygate/narrowprovenance PASS and explicit finalstatus admission now permit development-done only.
+
+
+**Round 2 of 3**
+
+Six configured layers completed:3patches(2high1medium),2rejects,0intent/badspec/defer. Targeted High correction/helper/boundary PASS,20focusedP0F0S/static native0. Frozen source/SQL/test packet awaits exact-sourceCI, Root gate and independent provenance. Revised REAL005/newREAL023 UNEXECUTED; broad2/3, nonconvergence0, followupTRUE. P5 evidence remains historical at its tested source.

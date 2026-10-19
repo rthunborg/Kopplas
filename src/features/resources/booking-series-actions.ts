@@ -16,7 +16,7 @@ import { expandRecurrence } from "@/features/scheduling/recurrence";
 import type { BookingFacts } from "./booking-types";
 import { validateBookingCandidateReferences } from "@/server/bookings/candidate-references";
 import { bookingActionFitsTransport } from "./booking-transport";
-const failure = (code: CommandErrorCode) => ({ status: "error" as const, code, message: COMMAND_MESSAGES[code] });
+const failure = (code: CommandErrorCode, message = COMMAND_MESSAGES[code]) => ({ status: "error" as const, code, message });
 function errorCode(error: unknown): CommandErrorCode {
   if (error instanceof CommandError) return error.code;
   const code = (error as { code?: string })?.code;
@@ -42,7 +42,7 @@ export async function previewBookingSeriesAction(input: unknown) {
     const args: SeriesRpcArgs = { p_tenant_id: context.data.tenantId, p_actor_id: context.data.userId, p_correlation_id: randomUUID(),
       p_command_id: validated.data.commandId, p_input: seriesCommandPayload(validated.data) };
     return { status: "success" as const, preview: await previewBookingSeries(client as unknown as BookingRpcClient, args, validated.data) };
-  } catch (error) { return failure(errorCode(error)); }
+  } catch (error) { return failure(errorCode(error), error instanceof CommandError ? error.userMessage : undefined); }
 }
 export async function saveBookingSeriesAction(input: unknown) {
   try {

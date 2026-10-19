@@ -141,10 +141,18 @@ export function deriveSeriesConflicts(facts: FactBundle, rows: readonly SeriesRo
   }
   return { output: [...output.values()].sort((a, b) => a.natural_key.localeCompare(b.natural_key)), groups: groups.sort((a, b) => a.logicalId < b.logicalId ? -1 : a.logicalId > b.logicalId ? 1 : 0) };
 }
+/** Match the complete finalizer UTF-8 bound before exposing ready/save authority. */
+export function serializeBookingSeriesPlan(plan: SeriesPlan): string {
+  const body = JSON.stringify(plan);
+  if (Buffer.byteLength(body, "utf8") > recurrenceLimits.maxCommandBytes) throw new CommandError("VALIDATION_FAILED",
+    "Seriens konfliktunderlag är för stort. Kontrollera överlappande bokningar och minska seriens omfattning innan du försöker igen.");
+  return body;
+}
 export async function previewBookingSeries(client: BookingRpcClient, args: SeriesRpcArgs, input: BookingSeriesInput) {
   const snapshot = await snapshotBookingSeries(client, args);
   if (snapshot.kind === "replay") throw new CommandError("COMMAND_CONFLICT");
-  const plan = planBookingSeries(snapshot, input); const key = bookingConflictKeyFromEnv();
+  const plan = planBookingSeries(snapshot, input); serializeBookingSeriesPlan(plan);
+  const key = bookingConflictKeyFromEnv();
   const receipt = sealSeriesReceipt({ claims: snapshot.claims, groups: plan.groups }, key.secret);
   // Reserve the full review/selection/reason payload before exposing save authority.
   const ids = plan.groups.map(g => g.logicalId);
@@ -166,7 +174,7 @@ export async function saveBookingSeries(client: BookingRpcClient, args: SeriesRp
       Date.parse(reviewed.claims.expiresAt) <= Date.now() || JSON.stringify(reviewed.groups) !== JSON.stringify(plan.groups)) throw new CommandError("PREVIEW_STALE");
     if (JSON.stringify(decision.reviewedLogicalIds) !== JSON.stringify(plan.groups.map(g => g.logicalId))) throw new CommandError("PREVIEW_STALE");
     if (plan.groups.length && (!decision.acknowledged || !decision.reason.trim())) throw new CommandError("BOOKING_CONFLICT_UNACKNOWLEDGED");
-    const body = JSON.stringify(plan); const groups = JSON.stringify(reviewed.groups);
+    const body = serializeBookingSeriesPlan(plan); const groups = JSON.stringify(reviewed.groups);
     const result = await client.rpc("finalize_booking_series", { ...args, p_claims: snapshot.claims, p_plan: body,
       p_signature: signSeries(SERIES_ATTESTATION_DOMAIN, snapshot.claims, body, key.secret), p_review_claims: reviewed.claims,
       p_review_groups: groups, p_review_signature: signSeries(SERIES_REVIEW_DOMAIN, reviewed.claims, groups, key.secret), p_decision: decision });

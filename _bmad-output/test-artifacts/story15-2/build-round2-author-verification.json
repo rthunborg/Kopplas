@@ -1,0 +1,198 @@
+{
+  "status": "reviewed-source-frozen-pending-exact-source-CI-Root-gate-and-independent-provenance",
+  "invocation_head": "fe99dbca8da5cc71bb675a513a21a68d64f80ce5",
+  "review_baseline": "85755eb7cea3affdc77dbe1d30bb18279b614c5a",
+  "source_inventory": [
+    {
+      "path": "src/components/resources/BookingEditor.tsx",
+      "sha256": "799ae3d26ccbc0287c6eab640449ecf9a230a8d9e04a7b8b89b15ccf1d406cd3"
+    },
+    {
+      "path": "src/features/resources/booking-series-actions.ts",
+      "sha256": "533d68de3597ddf8e79b14acfdeceeb27b4b4b4ec8a84996930d55dadaf43ecc"
+    },
+    {
+      "path": "src/server/bookings/series-conflicts.ts",
+      "sha256": "363dbc60fbcb08595a15b3ed5b2b7ff3b5b144ece6454b96f48bbb831da5ff8e"
+    },
+    {
+      "path": "supabase/migrations/20261020000000_booking_series_cancelled_role_retention.sql",
+      "sha256": "3e231ef7d1018966c1574b672123b9b7b906314f7edeb47e9791d5ee7af0dcaa"
+    },
+    {
+      "path": "tests/integration/commands/booking-series.int.test.ts",
+      "sha256": "1b92d0f9ab5de22ce7c347322aa43e964167472868d2d3f9f39a3c5e248e8c36"
+    },
+    {
+      "path": "tests/unit/features/resources/booking-series-editor.test.ts",
+      "sha256": "99f44215540bbea3b17306202b4c1dd1c59473c45386dcd9e93771bfb30b720b"
+    },
+    {
+      "path": "tests/unit/server/bookings/series-plan.test.ts",
+      "sha256": "87025728822073d5e195939863c4c19fe643e894959457483c9cce9fe130e043"
+    }
+  ],
+  "source_inventory_sha256": "38fe048a8465cc0f1217eb72a2ed4f5df0d770f728ea8bba3b6ba6916581b349",
+  "production433_hash_differences": [
+    "src/components/resources/BookingEditor.tsx",
+    "src/features/resources/booking-series-actions.ts",
+    "src/server/bookings/series-conflicts.ts"
+  ],
+  "broad_review_rounds_completed": 2,
+  "review_nonconvergence_counter": 0,
+  "triage": {
+    "intent_gap": 0,
+    "bad_spec": 0,
+    "patch": 3,
+    "patch_severity": {
+      "high": 2,
+      "medium": 1,
+      "low": 0
+    },
+    "defer": 0,
+    "reject": 2,
+    "followup_review_recommended": true,
+    "weighted_medium_low_score": 3
+  },
+  "accepted": [
+    {
+      "id": "R2-01",
+      "severity": "high",
+      "fix": "Complete serialized UTF-8 plan limited before ready and finalization; fixed safe preview message."
+    },
+    {
+      "id": "R2-03",
+      "severity": "high",
+      "fix": "New107 helper permits same-existing-ID/same-original-role retention on cancellation only; no new inactive assignment."
+    },
+    {
+      "id": "R2-04",
+      "severity": "medium",
+      "fix": "Explicit following preview retry reloads current metadata after generic denial, preserving draft and pending/unknown guard."
+    }
+  ],
+  "rejected_history": "R2-02 initial4000-ID claim inspected superseded SQL. Effective20261007131222 removes cap; introduced uncommitted cap removed before runtime. Original wrong-expectation RED retained with no defect/coverage credit. Until-control interactive-test gap establishes no current consequential defect.",
+  "six_review_reports": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-2-round2-review-766bba00-a2a7-4353-a957-ea55eb18a2a4/native-blind-hunter.result.md",
+      "sha256": "72bf3eb3b34b8775144afa02b3387dd31abb21a61f1398142dfcda5f68a9d498"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-2-round2-review-766bba00-a2a7-4353-a957-ea55eb18a2a4/native-edge-case-hunter.result.json",
+      "sha256": "b0bac4a6608f7f282b38b817e6f40d4689ece8c29401be27171e6c828bd72f7a"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-2-round2-review-766bba00-a2a7-4353-a957-ea55eb18a2a4/native-verification-gap.result.md",
+      "sha256": "73d599c42bd0d64c17f857a7a5d7bb228d08ab41d48afb2ba035e30c05185184"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-2-round2-review-766bba00-a2a7-4353-a957-ea55eb18a2a4/native-intent-alignment.result.md",
+      "sha256": "0cc1fddfd6e10164bf61e2e91fdc860be3651fd6c89be5f777a924e22ec9ee89"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-2-round2-review-766bba00-a2a7-4353-a957-ea55eb18a2a4/native-auto-bmad-security.result.md",
+      "sha256": "cbda01078636d9fdbe07ea02bcdd7d2aa2c6d46e9b4b36d9bfa90e4b5293a47c"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-2-round2-review-766bba00-a2a7-4353-a957-ea55eb18a2a4/external-serial-result.md",
+      "sha256": "edc7fd6b25e4826de953b02e5778eaa9eb596d9dc2fde20fb6b041269096fb7a"
+    }
+  ],
+  "independent_targeted_high": {
+    "path": ".env.epic15.mail-runtime/story-15-2-round2-review-766bba00-a2a7-4353-a957-ea55eb18a2a4/targeted-high-final.md",
+    "sha256": "0f167c53b965ce62f6847bc7b1d1da3e927bd09f3a97695b7ecb26da3f6aab83",
+    "status": "passed-static-no-runtime"
+  },
+  "executed": {
+    "original_RED": {
+      "tests": 18,
+      "passed": 15,
+      "failed": 3,
+      "skipped": 0,
+      "valid_defect_failures": 2,
+      "rejected_wrong_expectation_failures": 1,
+      "log": ".env.epic15.mail-runtime/story-15-2-round2-review-766bba00-a2a7-4353-a957-ea55eb18a2a4/round2-red-unit.log",
+      "sha256": "da12e33118d1c8d340bf5cf2a016e015bce748b26d11dcb45fe0868a33595cdd"
+    },
+    "focused_GREEN": {
+      "tests": 20,
+      "passed": 20,
+      "failed": 0,
+      "skipped": 0,
+      "log": ".env.epic15.mail-runtime/story-15-2-round2-review-766bba00-a2a7-4353-a957-ea55eb18a2a4/round2-green-unit.log",
+      "sha256": "9604b9162908676aec707d79d9aff66e5be8f0a904c5d7af98c9f6103f3256f4"
+    },
+    "nonincremental_typecheck": {
+      "native_exit": 0,
+      "log": ".env.epic15.mail-runtime/story-15-2-round2-review-766bba00-a2a7-4353-a957-ea55eb18a2a4/round2-typecheck-final.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "scoped_lint": {
+      "native_exit": 0,
+      "log": ".env.epic15.mail-runtime/story-15-2-round2-review-766bba00-a2a7-4353-a957-ea55eb18a2a4/round2-lint-final.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "pending_required": [
+    "Exact-source standardCI required jobs",
+    "Native per-test revised15.2-RLS-REAL-005 PASS under SUPABASE_TEST_REQUIRED=1",
+    "Native per-test15.2-INT-REAL-023 retention/replay/new-inactive/changed-role PASS",
+    "FullDB/RLS and direct isolated physical recovery-Storage",
+    "Empty107 migration and seed replay; effective current ACL/private helper inventory",
+    "Current production build/static/fullunit/process checks",
+    "Root delivery_gate and independent frozen delivery provenance PASS"
+  ],
+  "essential_browser_dependency_assessment": "Prior guarded GLK007/0082P then0091P remain historical scoped receipts. Three of433 production source files changed: editor retry callback only routes to unchanged refreshStaleSeries; actual TSX action-port regression proves DENIEDÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢explicit onRetryÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢current ownership/versionÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢retained draftÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢ready. Existing retry control/render binding and actual GLK007 metadata recovery unchanged. Server preview/save adds only rejection above existing SQL3MiB bound plus own fixed error message, with actual normal preview and positive long-ID public-input regression. New107 helper retention is bounded to same occurrence/role cancellation and requires REAL023. Root accepts composed essential coverage; no fresh DENIED browser or exhaustive matrix claim.",
+  "migration107": {
+    "file": "supabase/migrations/20261020000000_booking_series_cancelled_role_retention.sql",
+    "raw_sha256": "3e231ef7d1018966c1574b672123b9b7b906314f7edeb47e9791d5ee7af0dcaa",
+    "own_inventory_count": 107,
+    "scope": "ONLY booking_series_row_internal(uuid,uuid,jsonb), no data transformation; separate local106ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢107 rehearsal not required by approvedcontract or independentHigh assessment."
+  },
+  "migration_immutability": [
+    {
+      "path": "supabase/migrations/20261019180000_recurring_booking_series.sql",
+      "raw_local_sha256": "24f6982758c9f46c61d3f4fd34ebaaf599a809c8cf6c72e8223544aa73c9f1bd",
+      "git_LF_sha256": "24f6982758c9f46c61d3f4fd34ebaaf599a809c8cf6c72e8223544aa73c9f1bd",
+      "unchanged_from_invocation": true,
+      "normalized_identical": true
+    },
+    {
+      "path": "supabase/migrations/20261019220000_booking_series_integrity_followup.sql",
+      "raw_local_sha256": "c55d1de17b3829e97212076d2627f5b22645126894a8deb7af4b80596b45b44d",
+      "git_LF_sha256": "57e7e9fc930513099b20759b84fd21c2b851f154effb8a0e45c198262da4a37d",
+      "unchanged_from_invocation": true,
+      "normalized_identical": true
+    }
+  ],
+  "release_ready": false,
+  "deferred_release_items": 3,
+  "independent_targeted_high_boundary": {
+    "path": ".env.epic15.mail-runtime/story-15-2-round2-review-766bba00-a2a7-4353-a957-ea55eb18a2a4/targeted-high-boundary.md",
+    "sha256": "1a791cebd90f1b5c1163c63156220d0b2a3a48b0946a3aef072cba92bf7c93ba",
+    "status": "passed-static-compact-p_plan-TEXT-byte-equivalence-no-downstream-aggregate-cap",
+    "limit": "Serialization-only exact-boundary unit, no complete SQL boundarytransaction claim."
+  },
+  "test_dependency_anchor": {
+    "path": "tests/integration/rls/booking-series.rls.test.ts",
+    "raw_sha256": "b7cebf2c860419e411cbe6ef563ccbe6c7faccf5e1fcc6091c25cbbe24bec6c0",
+    "functional_status": "UNEXECUTED revisedREAL005",
+    "origin": "P6fe99dbca; two fresh preview denial/full snapshot assertions, not an isolated SQL inactive guard proof"
+  },
+  "review_order": {
+    "section_count": 1,
+    "verified_refs": 26,
+    "reference_checker": "passed; node scripts/verify/check-review-order.mjs current spec",
+    "independent_trail_review": {
+      "status": "passed",
+      "path": ".env.epic15.mail-runtime/story-15-2-round2-review-766bba00-a2a7-4353-a957-ea55eb18a2a4/targeted-high-trail-final.md",
+      "sha256": "a9be0b0e04e142992063a8dd4ff2bcdfcd67ba2ad46afd8f00a64ec1fb686714"
+    }
+  },
+  "skills_applied": [
+    "frontend-component: existing design-system/control composition; no styles/layout additions",
+    "supabase: checked normalJWT/privatehelper/grants/failclosed boundaries; no lifecycle/hosted changes",
+    "supabase-postgres-best-practices + security-privileges/security-rls-basics: preserve least privilege/RLS/current helper authority",
+    "Owner exact107allocation/naming/immutable105106 and Oct19development policy supersede generic conflicting instructions"
+  ]
+}
