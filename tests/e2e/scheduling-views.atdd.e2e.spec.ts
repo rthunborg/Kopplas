@@ -795,12 +795,16 @@ test("[P1] 15.1-COMP-001 AC3 toolbar preferences isolate user/tenant/view and re
 test("[P1] 15.1-COMP-001 AC3 observed real read transport failure hides stale/empty/count until retry", async ({ schedulingViews: h }) => {
   await h.seed(); await h.open("Schema"); await h.filter("Jobb", h.scenario.jobId);
   const failed = await h.failNextRead(); await h.page.getByRole("tab", { name: "Schema", exact: true }).click(); await failed.failed;
-  await expect(h.page.getByRole("alert")).toContainText("Planeringen kunde inte läsas");
+  await expect(h.page.getByTestId("scheduling-workspace").getByRole("alert")).toContainText("Planeringen kunde inte läsas");
   expect(await h.visibleIds()).toEqual([]); await expect(h.page.getByText(/Inga bokningar matchar/)).toHaveCount(0);
   await expect(h.page.getByText(/^Konflikter \(/)).toHaveCount(0);
-  await expect(h.page.getByLabel("Jobb", { exact: true })).toHaveValue(h.scenario.jobId);
+  // An aborted action cannot confirm current planner authority; Retry must restore it.
+  for (const filter of ["Person", "Arbetsroll", "Jobb", "Kund", "Status"]) await expect(h.page.getByLabel(filter, { exact: true })).toHaveCount(0);
+  await expect(h.page.getByTestId("scheduling-new-booking")).toHaveCount(0);
+  await expect(h.page.getByRole("button", { name: "Välj intervall", exact: true })).toHaveCount(0);
   await h.page.getByRole("button", { name: "Försök igen", exact: true }).click(); await h.settle();
-  await expect(h.page.getByRole("alert")).toHaveCount(0); expect(await h.visibleIds()).toEqual([h.ids.role, h.ids.proposal, h.ids.collision].sort());
+  await expect(h.page.getByLabel("Jobb", { exact: true })).toHaveValue(h.scenario.jobId);
+  await expect(h.page.getByTestId("scheduling-workspace").getByRole("alert")).toHaveCount(0); expect(await h.visibleIds()).toEqual([h.ids.role, h.ids.proposal, h.ids.collision].sort());
 });
 test("[P1] 15.1-COMP-002 AC7 numeric capacity/zero budget/color/full hidden demand drilldown", async ({ schedulingViews: h }) => {
   await h.seed(); await h.open("Beläggning"); await h.applySharedFilters();
