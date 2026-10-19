@@ -1,4 +1,4 @@
-/** Story 16.1 actual command/RLS fixture helpers. No module-level imports with runtime/database effects.
+/** Story 16.1 actual command/RLS fixture helpers. Static bindings are runner-transformed; database work starts only inside invoked helpers.
  * Existing contracts: tenants factories, envelope createJob/acceptQuoteAndCreateJob,
  * E14 bookingCommand, adminQuery and normal anon-key JWT clients.
  * E16 implemented bindings (execution evidence is recorded separately): jobs.type; job_members
@@ -6,12 +6,17 @@
  * job_access_windows; job_dependencies. Card input/export/DTO names below must be
  * reconciled to the actual implementation before removing skips. No fake replies.
  */
-import type { Command } from "@/server/commands/envelope";
-import type { BookingFixture, DurableRow } from "./bookings-atdd";
+import { runCommand } from "@/server/commands/envelope";
+import { seedBookingParents, bookingInput, bookingCommand, type BookingFixture, type DurableRow } from "./bookings-atdd";
 import * as t from "../factories/tenants";
 import type { TestServerClient } from "../factories/tenants";
 import { createJob } from "@/server/commands/jobs";
 import { markQuoteVersionSent, acceptQuoteAndCreateJob } from "@/server/commands/quotes";
+import { createJobCard, updateJobCard } from "@/server/commands/jobs/save-job-card";
+import { readMyJobs as readMyJobsModel } from "@/server/read-models/my-jobs";
+import { adminQuery } from "../factories/admin-sql";
+import { assertLocalStack } from "./test-env";
+import { establishCurrentQuotePdf } from "./quote-pdf";
 
 export const jobDepthTables = ["jobs", "job_members", "job_required_work_roles", "job_access_windows", "job_dependencies"] as const;
 export type JobCardInput = {
@@ -35,7 +40,6 @@ export type DepthSnapshot = Record<"jobs" | "members" | "roles" | "windows" | "d
  * hide a stray child, outcome, refreshed conflict or unrelated-tenant write.
  */
 export async function jobsDepthSnapshot(tenantIds: string[]): Promise<DepthSnapshot> {
-  const { adminQuery } = await import("../factories/admin-sql");
   const entries = [
     ["jobs", "jobs"], ["members", "job_members"], ["roles", "job_required_work_roles"],
     ["windows", "job_access_windows"], ["dependencies", "job_dependencies"],
@@ -53,12 +57,6 @@ export async function jobsDepthSnapshot(tenantIds: string[]): Promise<DepthSnaps
  */
 export async function invokeJobCard(client: TestServerClient, operation: "create" | "update",
   input: JobCardInput | Record<string, unknown>, correlationId = crypto.randomUUID()): Promise<CardResult> {
-  const path = "@/server/commands/jobs/save-job-card";
-  const commands = await import(path) as {
-    createJobCard: Command<unknown, { jobId: string }>;
-    updateJobCard: Command<unknown, { jobId: string }>;
-  };
-  const { runCommand } = await import("@/server/commands/envelope");
   const diagnosticClient = new Proxy(client, { get(target, key) {
     if (key === "rpc") return async (name: string, args: Record<string, unknown>) => {
       const reply = await target.rpc(name, args);
@@ -74,13 +72,11 @@ export async function invokeJobCard(client: TestServerClient, operation: "create
     const value = Reflect.get(target, key, target);
     return typeof value === "function" ? value.bind(target) : value;
   } });
-  return runCommand(operation === "create" ? commands.createJobCard : commands.updateJobCard,
+  return runCommand(operation === "create" ? createJobCard : updateJobCard,
     { client: diagnosticClient as never, input, correlationId });
 }
 
 export async function createJobsDepthFixture() {
-  const { adminQuery } = await import("../factories/admin-sql");
-  const { assertLocalStack } = await import("./test-env");
   assertLocalStack();
   const roleFixture = await t.createRoleAwarePhaseAFixture();
   try {
@@ -101,9 +97,7 @@ export async function createJobsDepthFixture() {
     const fx: BookingFixture = { ...roleFixture, adminProfile, ownProfile, coworkerProfile,
       foreignProfile, adminClient, plannerClient, montorClient, foreignClient,
       tenantIds: [base.tenantA.id, base.tenantB.id] };
-    const { seedBookingParents, bookingInput, bookingCommand } = await import("./bookings-atdd");
     const parents = await seedBookingParents(base.tenantA.id);
-    const { runCommand } = await import("@/server/commands/envelope");
     async function basic(title: string, foreign = false): Promise<JobHandle> {
       const customer = foreign ? await t.adminInsertCustomer({ tenant_id: base.tenantB.id,
         customer_type: "company", display_name: "Foreign workshop" }) : parents.customerId;
@@ -134,7 +128,6 @@ export async function createJobsDepthFixture() {
 
     async function acceptedJob(): Promise<JobHandle> {
       // Preserve actual original send/accept signatures and IDs; E16 only adds type/safe read discrimination.
-      const { establishCurrentQuotePdf } = await import("./quote-pdf");
       const customerId = await t.adminInsertCustomer({ tenant_id: base.tenantA.id,
         customer_type: "company", display_name: "Accepted source customer" });
       await adminQuery("update public.customers set email=$2 where id=$1", [customerId, `e16-${crypto.randomUUID()}@example.test`]);
@@ -175,10 +168,8 @@ export function cardInput(f: JobsDepthFixture, patch: Partial<JobCardInput> = {}
 /** Proposed readMyJobs signature is deliberately isolated here. Detail uses actual
  * readJobDetail(client,id); an activated test must reconcile DTO names, never fake it.
  */
-export async function readMyJobs(client: TestServerClient): Promise<{ rows: { id: string }[]; error: string | null }> {
-  const path = "@/server/read-models/my-jobs";
-  const bindings = await import(path) as { readMyJobs: (client: TestServerClient) => Promise<{ rows: { id: string }[]; error: string | null }> };
-  return bindings.readMyJobs(client);
+export async function readMyJobs(client: TestServerClient): Promise<{ rows: readonly { id: string }[]; error: string | null }> {
+  return readMyJobsModel(client);
 }
 export function protectedPaths(value: unknown, path = ""): string[] {
   if (!value || typeof value !== "object") return [];
@@ -191,7 +182,6 @@ export function protectedPaths(value: unknown, path = ""): string[] {
 
 /** Real H4 fixture rows: callers supply an existing same-tenant job/customer chain. */
 export async function seedJobDepthChildren(tenantId: string, actorId: string, jobId: string, workRoleId: string) {
-  const {adminQuery} = await import("../factories/admin-sql");
   const [{id:profileId}] = await adminQuery<{id:string}>(`insert into public.person_profiles(tenant_id,membership_id)
     select $1,id from public.tenant_memberships where tenant_id=$1 and user_id=$2
     on conflict(membership_id) do update set membership_id=excluded.membership_id returning id`, [tenantId,actorId]);
