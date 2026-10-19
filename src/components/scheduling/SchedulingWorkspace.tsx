@@ -39,9 +39,10 @@ export function SchedulingWorkspace({ initial, initialInput, readAction }: {
   const pendingFocus = useRef<FocusIntent | null>(null);
   const dragInvoker = useRef<HTMLElement | null>(null);
   const workspace = useRef<HTMLElement | null>(null);
+  // Preference identity survives transport failure; displayed authority still clears.
   const identity = useRef({ actorId: initial.data.actorId, tenantId: initial.data.tenantId });
   const data = result.data;
-  const scope = useCallback((view: SchedulingView) => ({ actorId: toolbar.actorId, tenantId: toolbar.tenantId, view }), [toolbar.actorId, toolbar.tenantId]);
+  const scope = useCallback((view: SchedulingView) => ({ ...identity.current, view }), []);
   const eligible = useMemo(() => eligibleFor(toolbar), [toolbar]);
 
   const read = useCallback((requested: SchedulingReadInput) => runSchedulingRead(requested, {
@@ -78,7 +79,7 @@ export function SchedulingWorkspace({ initial, initialInput, readAction }: {
     },
     failed:()=>{
       const failure=schedulingReadException();setResult(failure);setToolbar(failure.data);
-      identity.current={actorId:"",tenantId:""};setEditing(null);setInterval(null);
+      setEditing(null);setInterval(null);
     },
     finish:()=>setLoading(false),
   }), [readAction]);
@@ -86,7 +87,9 @@ export function SchedulingWorkspace({ initial, initialInput, readAction }: {
   function change(next: SchedulingReadInput) {
     try { validateSchedulingReadInput(next); } catch { setError("Planeringens val är ogiltiga. Återställ och försök igen."); return; }
     setInput(next);
-    try { saveSchedulingPreferences(scope(next.view), next, window.localStorage); } catch { /* Storage is optional. */ }
+    if (identity.current.actorId && identity.current.tenantId) {
+      try { saveSchedulingPreferences(scope(next.view), next, window.localStorage); } catch { /* Storage is optional. */ }
+    }
     void read(next);
   }
   useEffect(() => {

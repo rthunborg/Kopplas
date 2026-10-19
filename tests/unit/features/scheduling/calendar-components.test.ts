@@ -27,13 +27,13 @@ const booking=(patch:Partial<SchedulingBookingSummary>={}):SchedulingBookingSumm
 const data=(bookings:SchedulingBookingSummary[],canManage=true):SchedulingReadData=>({bookings,canManage,canView:true,actorId:"actor",tenantId:"tenant",ownSelfPersonIds:["person"],error:null,roster:canManage?[{id:"person",label:"Person",workRoleIds:[]}]:undefined});
 
 /** Execute actual TSX handlers with hook cells and event ports, not a browser/DOM substitute. */
-function components(){
+function components(savedPreferences = new Map<string, string>()){
   const require=createRequire(import.meta.url),cells:unknown[]=[],effects:(()=>void|(()=>void))[]=[];
   const listeners=new Map<string,(event:unknown)=>void>();let cursor=0,writes=0;
   const hooks={useRef:(value:unknown)=>{const n=cursor++;return cells[n]??(cells[n]={current:value});},
     useState:(value:unknown)=>{const n=cursor++;if(!(n in cells))cells[n]=value;return[cells[n],(next:unknown)=>{cells[n]=typeof next==="function"?(next as (old:unknown)=>unknown)(cells[n]):next;}];},
     useCallback:(value:unknown)=>value,useMemo:(fn:()=>unknown)=>fn(),useEffect:(fn:()=>void|(()=>void))=>effects.push(fn)};
-  const window={addEventListener:(name:string,fn:(event:unknown)=>void)=>listeners.set(name,fn),removeEventListener:(name:string)=>listeners.delete(name),localStorage:{getItem:()=>null,setItem:()=>{writes++;}}};
+  const window={addEventListener:(name:string,fn:(event:unknown)=>void)=>listeners.set(name,fn),removeEventListener:(name:string)=>listeners.delete(name),localStorage:{getItem:(key:string)=>savedPreferences.get(key)??null,setItem:(key:string,value:string)=>{writes++;savedPreferences.set(key,value);}}};
   const modules:Record<string,unknown>={react:hooks,"@/features/scheduling/view-model":model,"@/features/scheduling/view-preferences":preferences,"@/features/scheduling/time-zone":times,"@/features/scheduling/capacity":capacity,"@/features/scheduling/view-types":types,"./focus-restoration":focus};
   const load=(file:string):Record<string,unknown>=>{
     const source=readFileSync(resolve("src/components",file),"utf8");
@@ -138,4 +138,41 @@ test("actual workspace keeps latest loading, retains qualified retry toolbar onl
   change("2026-10-15");pending[2]!.reject(new Error("unqualified transport failure"));await Promise.resolve();await Promise.resolve();
   const failed=toolbar().props.data as SchedulingReadData;
   assert.equal(failed.canManage,false);assert.equal(failed.actorId,"");assert.equal(failed.tenantId,"");assert.equal(failed.roster,undefined);assert.deepEqual(failed.bookings,[]);
+});
+
+
+test("actual workspace preserves navigation and scoped preferences after unqualified transport recovery",async()=>{
+  const saved=new Map<string,string>(),c=components(saved),pending:{resolve:(value:unknown)=>void;reject:(value:unknown)=>void}[]=[];
+  const props={initial:{data:data([booking()]),entitlements:{withheld:[]}},initialInput:input,
+    readAction:()=>new Promise((resolve,reject)=>pending.push({resolve,reject}))};
+  const toolbar=()=>children(c.render(()=>c.workspace(props))).find(node=>node.type===c.marker&&typeof node.props.onChange==="function")!;
+  const change=(date:string)=>(toolbar().props.onChange as (value:SchedulingReadInput)=>void)({...input,date});
+  change("2026-10-13");pending[0]!.reject(new Error("transport"));await Promise.resolve();await Promise.resolve();
+  const failed=toolbar().props.data as SchedulingReadData;
+  assert.equal(failed.canManage,false);assert.equal(failed.actorId,"");assert.deepEqual(failed.bookings,[]);
+  change("2026-10-14");
+  const key=preferences.schedulingPreferenceKey({actorId:"actor",tenantId:"tenant",view:"schema"});
+  assert.equal(JSON.parse(saved.get(key)!).input.date,"2026-10-14");assert.deepEqual([...saved.keys()],[key]);
+  pending[1]!.resolve({data:data([booking({id:"recovered"})]),entitlements:{withheld:[]}});await Promise.resolve();await Promise.resolve();
+  const recovered=toolbar();assert.equal((recovered.props.input as SchedulingReadInput).date,"2026-10-14");
+  assert.equal((recovered.props.data as SchedulingReadData).canManage,true);assert.equal(pending.length,2);
+});
+
+for(const changed of ["actor","tenant"] as const)test(`transport recovery still restores separately scoped preferences when ${changed} changes`,async()=>{
+  const saved=new Map<string,string>(),c=components(saved),pending:{resolve:(value:unknown)=>void;reject:(value:unknown)=>void}[]=[];
+  const nextIdentity={actorId:changed==="actor"?"other":"actor",tenantId:changed==="tenant"?"other":"tenant"};
+  const key=preferences.schedulingPreferenceKey({...nextIdentity,view:"schema"});
+  saved.set(key,JSON.stringify({version:1,input:{...input,date:"2026-10-16"}}));
+  const props={initial:{data:data([booking()]),entitlements:{withheld:[]}},initialInput:input,
+    readAction:()=>new Promise((resolve,reject)=>pending.push({resolve,reject}))};
+  const toolbar=()=>children(c.render(()=>c.workspace(props))).find(node=>node.type===c.marker&&typeof node.props.onChange==="function")!;
+  const change=(date:string)=>(toolbar().props.onChange as (value:SchedulingReadInput)=>void)({...input,date});
+  change("2026-10-13");pending[0]!.reject(new Error("transport"));await Promise.resolve();await Promise.resolve();
+  change("2026-10-14");pending[1]!.resolve({data:{...data([]),...nextIdentity},entitlements:{withheld:[]}});await Promise.resolve();await Promise.resolve();
+  assert.equal((toolbar().props.input as SchedulingReadInput).date,"2026-10-16");assert.equal(pending.length,3);
+  pending[2]!.resolve({data:{...data([]),...nextIdentity},entitlements:{withheld:[]}});await Promise.resolve();await Promise.resolve();
+  assert.equal((toolbar().props.data as SchedulingReadData).actorId,nextIdentity.actorId);
+  assert.equal((toolbar().props.data as SchedulingReadData).tenantId,nextIdentity.tenantId);
+  const oldKey=preferences.schedulingPreferenceKey({actorId:"actor",tenantId:"tenant",view:"schema"});
+  assert.equal(JSON.parse(saved.get(oldKey)!).input.date,"2026-10-14");
 });

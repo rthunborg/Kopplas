@@ -802,7 +802,24 @@ test("[P1] 15.1-COMP-001 AC3 observed real read transport failure hides stale/em
   for (const filter of ["Person", "Arbetsroll", "Jobb", "Kund", "Status"]) await expect(h.page.getByLabel(filter, { exact: true })).toHaveCount(0);
   await expect(h.page.getByTestId("scheduling-new-booking")).toHaveCount(0);
   await expect(h.page.getByRole("button", { name: "Välj intervall", exact: true })).toHaveCount(0);
+  // Date navigation issues another real read. Observe its failure before Retry.
+  const selectedDate = "2026-10-14", navigationFailed = await h.failNextRead();
+  const navigationRequest = h.page.waitForRequest(request => {
+    if (request.method() !== "POST" || !request.headers()["next-action"]) return false;
+    try { const value = JSON.parse(request.postData() ?? "null")?.[0]; return value?.view === "schema" && value?.date === selectedDate && value?.filters?.jobIds?.[0] === h.scenario.jobId; }
+    catch { return false; }
+  });
+  await h.page.getByLabel("Datum", { exact: true }).fill(selectedDate);
+  await Promise.all([navigationFailed.failed, navigationRequest]);
+  await expect(h.page.getByTestId("scheduling-workspace").getByRole("alert")).toContainText("Planeringen kunde inte läsas");
+  await expect(h.page.getByLabel("Datum", { exact: true })).toHaveValue(selectedDate);
+  expect(await h.visibleIds()).toEqual([]); await expect(h.page.getByText(/Inga bokningar matchar/)).toHaveCount(0);
+  await expect(h.page.getByText(/^Konflikter \(/)).toHaveCount(0);
+  for (const filter of ["Person", "Arbetsroll", "Jobb", "Kund", "Status"]) await expect(h.page.getByLabel(filter, { exact: true })).toHaveCount(0);
+  await expect(h.page.getByTestId("scheduling-new-booking")).toHaveCount(0);
+  await expect(h.page.getByRole("button", { name: "Välj intervall", exact: true })).toHaveCount(0);
   await h.page.getByRole("button", { name: "Försök igen", exact: true }).click(); await h.settle();
+  await expect(h.page.getByLabel("Datum", { exact: true })).toHaveValue(selectedDate);
   await expect(h.page.getByLabel("Jobb", { exact: true })).toHaveValue(h.scenario.jobId);
   await expect(h.page.getByTestId("scheduling-workspace").getByRole("alert")).toHaveCount(0); expect(await h.visibleIds()).toEqual([h.ids.role, h.ids.proposal, h.ids.collision].sort());
 });

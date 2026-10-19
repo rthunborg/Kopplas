@@ -2,9 +2,9 @@
 title: '15.1 — The Five Scheduling Views (corrected contract)'
 type: 'feature'
 created: '2026-10-13'
-status: done
+status: in-review
 review_loop_iteration: 0
-followup_review_recommended: true
+followup_review_recommended: false
 baseline_revision: 'ddd188f63e7b84c59e8f921933140ca2a2613551'
 story_key: '15-1-the-five-scheduling-views'
 supersedes: '_bmad-output/auto-bmad/preparation/story-15-1/spec-history/superseded-blocked-spec-15-1-the-five-scheduling-views.md'
@@ -115,6 +115,23 @@ deferred:
 
 ## Review Triage Log
 
+**Round 2 of 3**
+
+2026-10-19 follow-up: all six configured layers completed on latest R1 fixes and consequential unresolved findings. Original whole-change R1 coverage is qualified and reused under the development completion policy; baseline/kernel/history remain unchanged. Completed broad rounds: 2 of 3; latest-fix-only independent checks do not consume Round 3.
+
+### 2026-10-19 - Follow-up review pass (Round 2)
+- intent_gap: 0
+- bad_spec: 0
+- patch: 1: (high 0, medium 1, low 0)
+- defer: 0
+- reject: 0
+- addressed_findings:
+  - `[medium]` `[patch]` Preserve latest date navigation and actor/tenant-scoped toolbar preferences after an unqualified transport failure. Retain last-confirmed preference identity independently of cleared data/authority; actual different actor/tenant still restores only its own preferences. Added actual-component regressions and extended the essential native abort/retry case.
+
+Blind Hunter and external Sol High independently reported the same reachable bug; one claim/action is counted once. Edge Case Hunter, Verification Gap, Intent Alignment and Security completed with no actionable introduced defect. Packet `.env.epic15.mail-runtime/P7-review-round2-225af940-71fe-4e27-9def-165f4c0c7374/` retains all six ORIGINAL reports and completion records, exact fix diff and input hashes. The external reviewer ran once: trailing CMD type failed native1 with `The system cannot find the file specified.`; original -o report643B/SHA256 `2fdae6617f65784db4233edf619176c2dd7a0781fe8c387359243fd8ec8779f3` was recovered by native0 file read, no relaunch. Follow-up score3 (one medium patch), recommendation false, loop index0; two original process deferrals and oversized warning unchanged.
+
+Current verification: actual-component/prefs/read26PASS/0FAIL/0SKIP; TypeScript, focused ESLint, production build, source and built containment native0. These are current local checks, not fresh DB/native/exact-head CI. Independent High latest-fix review passed on the two-path source/unit fix; the narrow native-test addition independently passed its High addendum. Root owns current exact-head CI and the one essential native recovery case; delivery/trail reconciliation and Root delivery_gate remain required before terminal done.
+
 **Round 1 of 3**
 
 Code-review rounds completed: 1 of 3. Preparation/readiness and prior focused reviews remain separate; they did not consume broad rounds.
@@ -182,8 +199,13 @@ Current 62 skipped ATDD cases give ZERO executed coverage; preparation updates m
 
 ## Auto Run Result
 
-Status: done
-Blocking condition: none
+Status: in-review
+Blocking condition: internal verification boundary - current exact-head CI, essential native date-during-failure recovery and final delivery validation pending
+
+### Current Round 2 repair - 2026-10-19
+
+One medium patch preserves last-confirmed preference identity across unqualified transport failures while cleared authority/data remain empty. Same-actor navigation stays selected; actual actor/tenant switches restore separately scoped preferences. Source/unit paths are `src/components/scheduling/SchedulingWorkspace.tsx` and `tests/unit/features/scheduling/calendar-components.test.ts`; the existing `15.1-COMP-001 AC3 observed real read transport failure` native case is extended in `tests/e2e/scheduling-views.atdd.e2e.spec.ts` to navigate to October14 during failure, observe/abort that matching request, then Retry with exact date/Job/three-ID recovery. Review totals this pass: patch1medium, bad_spec0, intent_gap0, defer0, reject0; score3/followup false. Broad rounds2/3, loop index0, original two process deferrals unchanged. Current local checks pass; no current native/CI or terminal done claim until Root-owned gates finish. Earlier evidence below remains qualified history for unchanged behavior.
+
 
 ### Final author completion - 2026-10-19 (development complete)
 
@@ -235,6 +257,15 @@ Final narrow independent High receipt: `/root/story15_1_corrected_plan/validate_
 
 ## Suggested Review Order
 
+Current fix author: `/root/review15_1_followup_high`, explicit Sol 6.1 High, continuing only the Round2 repair trail. The original trail author is `p5_implementation_author`; its rationale and original-source evidence below are retained and qualified as history. Baseline `ddd188f63e7b84c59e8f921933140ca2a2613551` and approved kernel remain unchanged. Current status is in-review; broad rounds2/3 complete, loop index0, current patch1medium/followup false/score3. Latest source/unit repair has independent High review; native-test addendum passed; Root-owned current native/CI/delivery gates remain pending. No completion or release approval is inferred from the older terminal receipts.
+
+Round2 author rationale: preference identity and displayed authority serve separate purposes. Clearing failed toolbar data remains mandatory, while retaining only the last-confirmed identity prevents a successful same-user response from falsely restoring an older date. Actual actor or tenant changes still restore their own scoped defaults/preferences. The existing component harness now retains real storage entries, and the three new cases exercise same-user recovery, changed actor and changed tenant through actual workspace handlers. The essential native case explicitly observes and aborts the date-navigation read before actual Retry; no sleeps or implicit retry are added.
+
+- `src/components/scheduling/SchedulingWorkspace.tsx:42` - `Preference identity`: separates preference scoping/comparison from cleared displayed authority.
+- `tests/unit/features/scheduling/calendar-components.test.ts:146` - `actual workspace preserves navigation`: covers scoped storage and selected date after recovery.
+
+Prior author record (before Round2 source repair):
+
 Author: `p5_implementation_author`, explicit Sol 6.1 High, original fix author continuing the recorded reader/UI/browser author trail. Refreshed against final source/test `95d5e6bce35fe67adc178b1f3da762ea3b75e3a0` and the qualified source/build/test compositions below. Intent kernel and original baseline `ddd188f63e7b84c59e8f921933140ca2a2613551` are unchanged. Status is **done** (development complete), frontmatter review counter0; broad round1/3 complete, followup true/score31. Final independent High delivery/trail provenance review and Root delivery gate passed on the frozen record. This original-author terminal metadata reconciliation is not a new independent review or release approval.
 
 ### Role-appropriate entry and projections
@@ -273,9 +304,9 @@ Period arithmetic uses setUTCFullYear instead of Date.UTC's 0-99 remapping, vali
 - `src/features/scheduling/view-model.ts:26` — `schedulingPeriod`: validates and bounds dates before expansion.
 - `src/features/scheduling/view-model.ts:57` — `calendarDropTimes`: preserves civil-day all-day and exact timed proposals.
 - `src/components/scheduling/BookingBlock.tsx:9` — `displayInterval`: clips displayed times without changing edit facts.
-- `src/components/scheduling/SchedulingWorkspace.tsx:123` — `restoreWorkspaceFocus`: retains bounded restoration after refreshed hosts settle.
+- `src/components/scheduling/SchedulingWorkspace.tsx:126` — `restoreWorkspaceFocus`: retains bounded restoration after refreshed hosts settle.
 
-### Final executed evidence and its limits
+### Prior executed evidence and its limits (qualified across Round2)
 
 Final CI **39273703334**, attempt1, exact `95d5e6bce35fe67adc178b1f3da762ea3b75e3a0`, release_validation=false: all five required jobs passed. Native summary `.env.epic15.mail-runtime/standard-ci-95d5e6bc-evidence/82070f42-ae9d-4a71-b250-f3edc3969512/terminal-native-summary.json` is11771B/SHA256 `748647f7c6bd59b7ba35e023269c468d80f7156012ca3bdd52851ff9b1a568da`; the36-entry manifest is5970B/SHA256 `3071e3badcf13bdddccd5da146676ee929c5596f208276aa4cfbee5e0e1196e0`. Node22.23.3; units2857 passed/0 failed/cancelled/skipped; BMAD2+Auto26/10/5 passed; audit/lockfiles/static/build/source+built containment passed. REQUIRED DB1737 passed/0 failed/1 explicit Storage skip across145 files, RLS752/50files a non-additive subset. Isolated same Storage body1 passed separately without erasing the broad skip. Auth smoke7 passed/0 skipped/flaky/retries, including real local invitation/recovery; it is not General/scheduling acceptance. Existing actualJWT/RLS own-initial extension passed (no new case); exactly one new current-authority mock transport case passed with no RLS credit.
 
