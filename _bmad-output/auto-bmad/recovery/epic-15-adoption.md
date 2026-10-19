@@ -133,3 +133,63 @@ Schema focus pass. `e15-focused-native-handoff-v3.json` retains the earlier
 handoffs and historical failures. All three owned local lifecycle resources
 received successful Stop acknowledgments after verification; saved state is
 retained, and shutdown polling is not a completion gate.
+
+### October 19 — formal P5 review and current verification
+
+The lifecycle recovery checkpoint `80e00074` retained the approved baseline and
+kernel, then resumed the formal build workflow. Broad review Round 1 of 3 ran
+all six configured independent layers. Its original external reviewer completed;
+the trailing Windows report-display command failed, and the same completed report
+was recovered without launching another reviewer. Original failure evidence is
+retained. Triage recorded eleven patches, two owned process follow-ups and five
+rejections. Focused independent High reviews of the resulting security and
+behavior fixes passed. No broad review budget was reset.
+
+Reviewed application checkpoint `f69e6cda` repairs calendar boundaries, booking
+presentation and failed-read authority handling. Focused tests passed 54 cases;
+typecheck, targeted lint, production build and source/built containment passed.
+The real JWT own-agenda test extends initial-read assertions; the separate new
+authority transport test is mocked and receives no RLS credit. Standard CI at
+`c9502aa3` passed: 2,857 unit cases, seven auth cases and 1,737 database cases,
+with one explicit Storage skip covered by the separate isolated Storage pass.
+The 752-case RLS inventory is a subset of the database result, not additive.
+Intermediate CI at `96eee458` also passed. Exact logs and artifact bindings are
+retained in the owned ignored evidence packets.
+
+Essential native verification now has eleven qualified distinct case passes:
+four creation cases at `f69e6cda`, five projection/focus/move/resize cases at
+`c9502aa3`, preferences at `96eee458`, and the read-abort recovery case against
+the exact bytes subsequently committed as `95d5e6bc`. This is a composition of
+independently qualified unchanged evidence, not one fresh eleven-case command.
+Original failed commands and serial skips remain unchanged. The bounded repairs
+exclude nested status text from booking-root collection, restore the fixture week
+after the preferences reset assertion, and scope planning alerts to their actual
+workspace rather than Next's route announcer.
+
+A separate context-free High investigation resolved the final read-test binding:
+an outgoing action abort is an unqualified failure and must clear old authority.
+The approved contract expressly distinguishes it from a server-confirmed data
+I/O failure. The corrected abort case requires no stale bookings, misleading empty
+state, conflict count, planner filters or creation controls; retry must restore
+the selected job, clear the error and recover exact booking IDs. All assertions
+passed with zero skips or retries. This browser case is not final-page server-I/O
+or RLS evidence; qualified I/O retention remains separately mapped to actual
+workspace and reader tests. Independent High review approved the test correction.
+
+The tested E2E file is committed and pushed at `95d5e6bc`, with verified CRLF
+working-file to LF Git normalization; this is not binary equality between those
+two byte representations. Application, helper and production-build bindings
+remain unchanged. Fresh standard CI
+[39273703334](https://github.com/rthunborg/Kopplas/actions/runs/39273703334) passed
+for that exact head. Formal P5 finalization, the delivery gate, selected TEA and
+the required follow-up review remain outstanding. The two process follow-ups
+(optional diagnostic broker drain and upstream PR-feedback attestation) retain
+their owners and next actions; neither is represented as a passed product gate.
+
+Root requested Stop for its owned browser, Next server and isolated Compose
+usage (`da2ada62-cda2-42be-a31b-34ab1a4e4bc0`,
+`eb0b1fe4-63aa-4329-9ae7-b7212d5f654d`,
+`f8f51526-ef0a-40ea-82d3-0d05a7555de3`). All three requests returned native zero
+and `ok=true`, `stop_requested`, `verified=false`. This records accepted stop
+requests, not verified shutdown. Saved resources are retained; no shutdown poll,
+removal or reset is required. No deployment, preview or main merge occurred.
