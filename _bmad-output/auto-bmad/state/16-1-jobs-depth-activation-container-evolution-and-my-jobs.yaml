@@ -9,42 +9,43 @@ spec_folder: null
 story_id: null
 branch: codex/epic-16-jobs
 status: in-progress
-updated_at: "2026-10-19T16:31:06Z"
+updated_at: "2026-10-19T16:54:24Z"
 started_at: "2026-10-15T09:23:25Z"
 completed_at: null
-active_seconds: 1945
-timing_anchor: 1792418169
+active_seconds: 12639
+timing_anchor: 1792428864
 is_first_in_epic: true
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: build
-selected_role: build-delegate
+selected_phase: tea_per_story
+selected_role: tea-delegate
 selected_profile: standard
 selected_model: gpt-6.1-sol
 selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Automatic sensitive-task escalation: authorization, transactional-integrity"
+escalation_reason: "Post-build coverage of authorization, tenant isolation, proof validation and transactional integrity"
 routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Post-build coverage of authorization, tenant isolation, proof validation and transactional integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: Explicit schema/CHECK constraints and membership/assignment-scoped MyJobs with per-role negatives
 epic_story_count: 5
 stories_after_in_epic: 4
-completed_phases: [0, 1, 3, 4]
+completed_phases: [0, 1, 3, 4, 5]
 spec_path: "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-16-jobs\\Kopplas\\_bmad-output\\implementation-artifacts\\spec-16-1-jobs-depth-activation-container-evolution-and-my-jobs.md"
 spec_approved: true
 build:
-  status: in-progress
+  status: done
   blocking_condition: null
   followup_review_recommended: false
   review_loop_iteration: 0
-  deferred_count: 0
+  deferred_count: 2
   warnings: [oversized]
 followup_passes: 0
 hitl_halt: null
@@ -56,7 +57,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [589e5ca7, 5ffb6d8e, 2d14d7ac, 97e62221, 04cf0edf, aeb44006, c21faa3b, d33415c7, 1f8c1620, c47b2685, "92428157", 30f8b863, dea276c7, 41463a22, d56281f5, 23263e2a, 07db8b6c, 8185b07e]
+commits: [589e5ca7, 5ffb6d8e, 2d14d7ac, 97e62221, 04cf0edf, aeb44006, c21faa3b, d33415c7, 1f8c1620, c47b2685, "92428157", 30f8b863, dea276c7, 41463a22, d56281f5, 23263e2a, 07db8b6c, 8185b07e, d605295a]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -73,8 +74,8 @@ retro:
   open_action_items: 0
 bmad_status_flipped_at: null
 pr_url: null
-ci_run_url: "https://github.com/rthunborg/Kopplas/actions/runs/39283865613"
-ci_status: failed
+ci_run_url: "https://github.com/rthunborg/Kopplas/actions/runs/39286112780"
+ci_status: passed
 pr_merged: false
 merge_method: null
 merge_commit: null

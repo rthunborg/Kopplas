@@ -2,7 +2,7 @@
 title: 'Story 16.1: Jobs Depth Activation — Container Evolution and My-Jobs'
 type: 'feature'
 created: '2026-10-15'
-status: 'in-progress'
+status: 'done'
 baseline_revision: 'c47b26858d7898ab03c0680826e2be7489a2ae68'
 review_loop_iteration: 0
 followup_review_recommended: false
@@ -18,7 +18,24 @@ context:
   - 'C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/docs/recovery/epic-15-16/README.md'
   - 'C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/_bmad-output/test-artifacts/test-design-epic-16.md'
 warnings: [oversized]
-deferred: []
+deferred:
+  - summary: >-
+      Exhaustive role/device/browser matrices beyond the four essential Jobs journeys.
+    evidence: |-
+      Owner: E16 UI/release-validation owner. Status: deferred under the 2026-10-19 completion policy.
+      Exact d605295a46634e2c20013638e01c5e2a37ad0779 required Chromium smoke passed 11/11, including all four Jobs journeys on first attempts.
+      Broader matrices and optional release_validation=false skips confer no coverage.
+      Next action: at release stabilization, run release_validation=true and the tracked role/device/browser matrix on the qualified final epic candidate; retain results before release readiness.
+    location: >-
+      _bmad-output/auto-bmad/delivery/16-1-jobs-depth-activation-container-evolution-and-my-jobs.json
+  - summary: >-
+      Screenshot comparison, visual inspection, representative manual walkthrough and polish.
+    evidence: |-
+      Owner: E16 UI/release-validation owner. Status: deferred under the 2026-10-19 completion policy.
+      No screenshot-comparison, visual or manual pass is claimed; essential connected 360x640 failure/retry/persistence has actual same-head browser evidence.
+      Next action: before release readiness, retain screenshot comparisons and representative viewport/manual design/accessibility walkthroughs, and resolve consequential defects.
+    location: >-
+      _bmad-output/auto-bmad/delivery/16-1-jobs-depth-activation-container-evolution-and-my-jobs.json
 ---
 
 <intent-contract>
@@ -105,9 +122,61 @@ Current execution authority is the explicitly resumed, coordinator-allocated 202
 
 - 2026-10-19: Explicit owner resume and released exact ownership resolve the historical planning hold. Bind adopted completion policy, corrected My Jobs dependency, exact current inventory and CLI-generated empty migration pair; preserve intent/all11AC/TR01–TR16 and every historical failure. Planning-only; no product evidence or story done.
 
+- 2026-10-19: Following actual exact-d605 required CI SUCCESS, root delivery-gate SUCCESS and same High record-provenance PASS, root authorized terminal metadata closure only. Record done as development completion, actual review/evidence and two owned release deferrals. Preserve frozen intent, all 11 ACs/TR01-TR16 and every historical failure. No source/test/SQL/config/delivery-record change.
+
 ## Review Triage Log
 
-No independent review of this draft has run. Earlier readiness-packet High PASS selects preparation direction only and is not approval of these new documents.
+Historical preparation statement: no independent review of that draft had run; the earlier readiness-packet High PASS selected preparation direction only. Actual implementation reviews below supersede that planning state without relabelling it.
+
+### 2026-10-19 - Original independent High source review and targeted repairs
+
+Original independent Sol High broad source review found two P2 patches: retained saved state disabled a subsequent same-mounted-form edit, and E02's success-message regular expression did not match the actual confirmation. Batch 1 corrected both and added successive durable-save assertions. The same High reviewer checked those repairs and later actual startup/fixture corrections narrowly. These historical source findings are not newly invented findings in the configured passes below.
+
+### 2026-10-19 — Review pass
+
+Scope: Configured review pass: 23263 to 07db import repair.
+
+- intent_gap: 0
+- bad_spec: 0
+- patch: 0
+- defer: 0
+- reject: 0
+- addressed_findings:
+  - none
+
+Six configured layers actually reviewed only 23263e2aeb866904b6a6c5a1eae3f18fb93d507f to 07db8b6ca32e07e9c4f7e521a9d2e5e9704dbe37. Receipt: C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-formal-review-f192da90-de3b-4ddb-9ac2-fdb5c2c6a819/six-layer-review-receipt.json; raw SHA256 87cd2024233ee1084786e763d9b9a95c8733630726eef14442fc5f08276b51d7; recorded 2026-10-19T15:44:27.902041+00:00. Patched high/medium/low 0/0/0; score 0; follow-up false.
+
+### 2026-10-19 — Review pass
+
+Scope: Configured review pass: 07db to 8185 worker-proof repair.
+
+- intent_gap: 0
+- bad_spec: 0
+- patch: 0
+- defer: 0
+- reject: 1: (high 0, medium 0, low 1)
+- addressed_findings:
+  - none
+
+Six configured layers actually reviewed only 07db8b6ca32e07e9c4f7e521a9d2e5e9704dbe37 to 8185b07e2d56a93a4143d4a54e0182360e56ef13. Receipt: C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-formal-env-review-0a0643ce-d137-4ab6-b6fb-890963258211/six-layer-review-receipt.json; raw SHA256 d6c97487cbbe929d2d90b345414671ae5bad0ef941ca6aae624ed9f5a6dee9fc; recorded 2026-10-19T16:20:11.901551+00:00. The rejected low suggestion proposed persistent negative harness coverage; the actual reproducible five-pass native Playwright probe exercised ten invalid-pair scenarios with restoration, with no current bypass identified. This is not a deferred product defect. Patched high/medium/low 0/0/0; score 0; follow-up false.
+
+Both external Codex Sol High stages exited 0 and wrote actual 12-byte No findings. receipts, SHA256 2557f6e38ead83874f9694ea4332f459014b6921de5a7e153be890185da08ef5. Both original CMD TYPE wrappers returned native 1 during display; the actual receipts were recovered without model retries or an overall-native0 claim.
+
+### 2026-10-19 — Review pass
+
+Scope: Latest narrow E2E repair and delivery-provenance reconciliation.
+
+- intent_gap: 0
+- bad_spec: 0
+- patch: 0
+- defer: 0
+- reject: 0
+- addressed_findings:
+  - none
+
+Root records SAME independent High reviewer PASS on exactly 8185-to-d605 E01/E02 test/spec repair, bound to source inventory SHA256 429d5645381525c67df1cd5b333aad637c4171164780e4ff46c3c02ee639bab3 (51 paths/nine new). All 107 expectations and byte-identical E03/E04 tail fb4497f7a3f8276222b913f22d042b651bb27f7e9fc926eca84a71290eb39683 remain. Six configured layers were not rerun on that latest E2E delta. This provenance UNION reuses unchanged source/dependency reviews; it does not claim six whole-implementation passes.
+
+Root subsequently reports delivery_gate.py SUCCESS on record c5d859b34d1b83efcaea55765c6ff5c1af038bf7acfaea54902851f6318f39ef while the spec was in-progress, followed by SAME independent High record-provenance PASS and full exact-d605 required CI SUCCESS. Only then did root authorize this metadata-only terminal closure. Last-pass patched high/medium/low remain 0/0/0; score 0; follow-up false. No bad_spec re-derivation occurred; review_loop_iteration remains 0.
 
 ## Design Notes
 
@@ -389,7 +458,7 @@ Before development-complete/status done/finalization, author/verification delega
 No managed resource was launched here. Later verification uses guard-admitted isolated Compose/local synthetic resources and SQL-only migration replay under docs/process/local-setup.md; no native Supabase lifecycle/reset, hosted fallback or E15/user-resource adoption. After two failed operational approaches choose a simpler authorized route or record owner/evidence/next action/resume condition; avoid repeated harness loops.
 
 
-## Auto Run Result
+## Historical formal-plan Auto Run Result
 
 Status: ready-for-dev
 
@@ -529,9 +598,106 @@ The UI author executed C:/nvm4w/nodejs/node.exe node_modules/eslint/bin/eslint.j
 
 Root reports all six configured bounded reviews on the preceding accepted repair completed privately with no actionable defect; their actual scope/receipts remain root-owned, not a claim of six broad whole-implementation passes. This latest two-file selector repair returns to the same High reviewer for a narrow causal-diff/regression check. The single author trail and full 51-file/nine-new raw inventory are refreshed. Original intent, all 11 ACs/TR01-TR16, source/transaction invariants and release-only deferrals remain intact; no development-complete, done, release-ready, merge or deployment claim is made.
 
+## Auto Run Result
+
+Status: done
+Blocking condition: none
+Evidence revision: d605295a46634e2c20013638e01c5e2a37ad0779
+Release ready: false
+
+### Implemented scope and terminal ownership
+
+Development completion applies only to approved refined 16.1: additive typed containers and bounded child sets; actual member/booking-assignee My Jobs and money-safe operational reads; enriched atomic card persistence; authoritative per-booking facts/current-proof checks; usable connected mobile failure/retry. Both original creation APIs, immutable source/replay identities, lifecycle and manager list/filter/create/navigation behavior remain. Membership/designation/responsible-Arbetsledare mutations and operational elevation, work orders, later project/card consumers and workspace shell remain transferred to 16.2-16.5. No AC/TR is changed or destination acceptance claimed.
+
+Root exclusively owns Git/index/state/report/checkpoint operations. The workflow's local commit/clean-tree finish is handed back as metadata ready pending root CAS, not performed by this delegate. Root authorized done only after delivery-gate SUCCESS, same independent High record-provenance PASS and exact-head required CI SUCCESS. Root Phase5 state/mark-review, required Phase6 automate and conditional Phase7/tail remain subsequent procedure, not claimed executed here. This is neither whole-epic completion nor release/merge/deployment approval.
+
+### Files changed in the reviewed source
+
+Reviewed source inventory: 51 paths/nine new; raw SHA256 429d5645381525c67df1cd5b333aad637c4171164780e4ff46c3c02ee639bab3. Root-owned process checkpoints and the gated delivery JSON retain separate provenance. This terminal closure writes only this spec.
+
+| Repository-relative path | Purpose |
+| --- | --- |
+| `_bmad-output/implementation-artifacts/spec-16-1-jobs-depth-activation-container-evolution-and-my-jobs.md` | Approved contract, historical evidence and final author trail. |
+| `src/app/(app)/jobs/[jobId]/page.tsx` | Authorized personal/all-job or detail entry point. |
+| `src/app/(app)/jobs/page.tsx` | Authorized personal/all-job or detail entry point. |
+| `src/components/jobs/JobCardForm.tsx` | Usable progressive card/detail/list flow with original manager behavior and honest retry. |
+| `src/components/jobs/JobDetailView.tsx` | Usable progressive card/detail/list flow with original manager behavior and honest retry. |
+| `src/components/jobs/JobEditDialog.tsx` | Usable progressive card/detail/list flow with original manager behavior and honest retry. |
+| `src/components/jobs/JobList.tsx` | Usable progressive card/detail/list flow with original manager behavior and honest retry. |
+| `src/features/jobs/actions.ts` | Bounded headless card input, command adaptation or money-safe projection/types. |
+| `src/features/jobs/job-card-domain.ts` | Bounded headless card input, command adaptation or money-safe projection/types. |
+| `src/features/jobs/read.ts` | Bounded headless card input, command adaptation or money-safe projection/types. |
+| `src/features/jobs/types.ts` | Bounded headless card input, command adaptation or money-safe projection/types. |
+| `src/features/scheduling/capacity.ts` | Complete per-booking facts selection and deterministic conflict/capacity behavior. |
+| `src/features/scheduling/conflicts.ts` | Complete per-booking facts selection and deterministic conflict/capacity behavior. |
+| `src/features/scheduling/types.ts` | Complete per-booking facts selection and deterministic conflict/capacity behavior. |
+| `src/scope/manifest.ts` | Four-child enrollment in the already-active jobs module. |
+| `src/server/authz/job-access.ts` | Current relationship read authorization; no assignment mutation authority. |
+| `src/server/authz/permission-matrix.ts` | Current relationship read authorization; no assignment mutation authority. |
+| `src/server/bookings/conflict-attestation.ts` | Coordinated signed current per-job booking facts contract. |
+| `src/server/bookings/conflict-facts.ts` | Coordinated signed current per-job booking facts contract. |
+| `src/server/commands/envelope.ts` | Checked job-card command, canonical facts/proof or registered capability boundary. |
+| `src/server/commands/jobs/card-db.ts` | Checked job-card command, canonical facts/proof or registered capability boundary. |
+| `src/server/commands/jobs/card-facts.ts` | Checked job-card command, canonical facts/proof or registered capability boundary. |
+| `src/server/commands/jobs/card-proof.ts` | Checked job-card command, canonical facts/proof or registered capability boundary. |
+| `src/server/commands/jobs/index.ts` | Checked job-card command, canonical facts/proof or registered capability boundary. |
+| `src/server/commands/jobs/save-job-card.ts` | Checked job-card command, canonical facts/proof or registered capability boundary. |
+| `src/server/read-models/my-jobs.ts` | Thin duplicate-free My Jobs relationship-union projection. |
+| `supabase/migrations/20261019133151_e16_16_1_job_depth.sql` | Additive jobs schema/read policies or coordinated v3 facts/proof/atomic-finalize contracts. |
+| `supabase/migrations/20261019133200_e16_16_1_job_booking_facts.sql` | Additive jobs schema/read policies or coordinated v3 facts/proof/atomic-finalize contracts. |
+| `tests/e2e/jobs/jobs-depth.e2e.spec.ts` | Four real mobile/read/save/booking/dependency journeys. |
+| `tests/integration/commands/booking-editor.int.test.ts` | Real SQL/JWT integration, replay, enrollment or isolation assertions for this named seam. |
+| `tests/integration/commands/job-booking-facts.int.test.ts` | Real SQL/JWT integration, replay, enrollment or isolation assertions for this named seam. |
+| `tests/integration/commands/jobs-depth.int.test.ts` | Real SQL/JWT integration, replay, enrollment or isolation assertions for this named seam. |
+| `tests/integration/features/jobs/my-jobs.int.test.ts` | Real SQL/JWT integration, replay, enrollment or isolation assertions for this named seam. |
+| `tests/integration/rls/cross-tenant-isolation.rls.test.ts` | Real SQL/JWT integration, replay, enrollment or isolation assertions for this named seam. |
+| `tests/integration/rls/jobs-depth.rls.test.ts` | Real SQL/JWT integration, replay, enrollment or isolation assertions for this named seam. |
+| `tests/integration/rls/migration-reset.int.test.ts` | Real SQL/JWT integration, replay, enrollment or isolation assertions for this named seam. |
+| `tests/integration/rls/role-aware-phase-a-surface.atdd.int.test.ts` | Real SQL/JWT integration, replay, enrollment or isolation assertions for this named seam. |
+| `tests/integration/rls/role-harness.atdd.int.test.ts` | Real SQL/JWT integration, replay, enrollment or isolation assertions for this named seam. |
+| `tests/integration/rls/tenant-table-inventory.ts` | Real SQL/JWT integration, replay, enrollment or isolation assertions for this named seam. |
+| `tests/support/authz/role-harness.ts` | Lazy synthetic fixture setup, honest source typing or runner-compatible imports for this named seam. |
+| `tests/support/booking-editor-production.ts` | Lazy synthetic fixture setup, honest source typing or runner-compatible imports for this named seam. |
+| `tests/support/bookings-atdd.ts` | Lazy synthetic fixture setup, honest source typing or runner-compatible imports for this named seam. |
+| `tests/support/jobs-depth-atdd.ts` | Lazy synthetic fixture setup, honest source typing or runner-compatible imports for this named seam. |
+| `tests/unit/features/jobs/job-card-validation.test.ts` | Pure validation/facts/scope/projection assertions and preserved negatives for this named seam. |
+| `tests/unit/features/scheduling/batch-conflicts.test.ts` | Pure validation/facts/scope/projection assertions and preserved negatives for this named seam. |
+| `tests/unit/scope/manifest-derivations.test.ts` | Pure validation/facts/scope/projection assertions and preserved negatives for this named seam. |
+| `tests/unit/scope/manifest-shape.test.ts` | Pure validation/facts/scope/projection assertions and preserved negatives for this named seam. |
+| `tests/unit/server/authz/phase-a-surface.test.ts` | Pure validation/facts/scope/projection assertions and preserved negatives for this named seam. |
+| `tests/unit/server/bookings/job-facts.test.ts` | Pure validation/facts/scope/projection assertions and preserved negatives for this named seam. |
+| `tests/unit/server/commands/job-card-validation.test.ts` | Pure validation/facts/scope/projection assertions and preserved negatives for this named seam. |
+| `tests/unit/server/read-models/my-jobs.test.ts` | Pure validation/facts/scope/projection assertions and preserved negatives for this named seam. |
+
+### Review outcome and recommendation
+
+The actual provenance UNION is recorded in Review Triage Log: original independent Sol High source review plus same High narrow corrections; six configured layers on 23263-to-07db and on 07db-to-8185; SAME High latest 8185-to-d605 two-file review. No six-layer whole-source/latest-E2E execution is invented. The original two P2 patches were corrected; subsequent real CI failures retain their bounded repair history. Configured pass one had zero findings; pass two rejected one low optional persistent-harness suggestion against actual probe evidence. Latest narrow pass has intent_gap/bad_spec/patch/defer/reject all zero. Last-pass patched high/medium/low: 0/0/0; score 3*0+0 = 0; followup_review_recommended: false. review_loop_iteration remains 0 because no bad_spec re-derivation occurred. Two release-only deferred items are tracked, not manufactured review defects.
+
+### Actual exact-head verification
+
+Root confirms CI https://github.com/rthunborg/Kopplas/actions/runs/39286112780 fully SUCCESS at d605295a46634e2c20013638e01c5e2a37ad0779, all five required jobs. Earlier API-lag qualifications remain historical in the immutable pre-closure record. Failed runs 39271273236, 39272905198, 39276486099, 39279073402 and 39283865613 remain failures with their original scope/history.
+
+- Frozen install/lock guard passed; audit --audit-level=high completed with two moderate findings and no high gate failure; typecheck zero errors; ESLint zero errors/14 warnings; Next production build compiled in 9.7s with 12/12 static pages; source service-role and built-bundle containment passed.
+- Full Node units: 2,612 passed/zero failed/cancelled/skipped/todo, 100 suites. Earlier Windows-local 2,611-pass/one-skip evidence stays historical.
+- Focused process checks: test:bmad-focused two passed, test:auto-bmad-focused 41 passed (26 routing/ten Windows-PID/five delivery gate), 43 combined.
+- SUPABASE_TEST_REQUIRED=1 full integration/RLS after successful empty-history schema/reset: 1,752 total/1,751 passed/zero failed/one separate-lane recovery pending/zero todo; 146 files passed/one skipped, 244.38s. Actual new E16 groups: six job-booking-facts, four card-command, three job-RLS, three My Jobs = 16 passed. H4 cross-tenant 205 passed; Phase-A role surface seven passed.
+- The sole full-DB pending assertion is recovery-storage-immutability.int.test.ts's isolated physical-loader byte-serving/logical-row immutability/generic+quote-PDF overwrite test. Dedicated same-head recovery actually passed one/one, zero failed/pending. That DB skip is not passing coverage itself.
+- Pilot performance command passed: synthetic 120 tenant-A/24 tenant-B active memberships, five warmups/25 measured; read p95 8.939796ms; bulk effective-permissions p95 2.769070ms; 50 RLS requests/2,760 grants. These are pilot measurements, not a production SLA.
+- Production Chromium essential smoke: 11 expected/zero unexpected/skipped/flaky, 44.55s; seven auth and four Jobs passed first attempt/retry zero. E01 proves relationship union/mobile navigation/direct denial/money absence; E02 proves 360x640 actual abort/failure/exact-body retry/two successive durable edits/new identity/reload; E03 proves job-bound preview/current-fact stale rejection/durable booking-conflicts; E04 proves dependency unknown/violation/durable correction.
+
+Native artifacts: browser SHA256 a72d7d4b7a6bd7ebfb961bfb59cba858b08735cc221b21e02f973ad371ad427a; DB 4bd24ddab78ccd80c05652eabff3764ec1612cb412a6adfffcb8ebd124a58ea1; recovery 1a0067ab026a062ea6a32c5d19a9c75226a11d2c8079be11620eb75e225adc89. Exact private report/log paths and raw hashes remain in the delivery record; no raw credentials/logs are reproduced.
+
+### Delivery gate, residual limits and next procedure
+
+Record: _bmad-output/auto-bmad/delivery/16-1-jobs-depth-activation-container-evolution-and-my-jobs.json; raw SHA256 c5d859b34d1b83efcaea55765c6ff5c1af038bf7acfaea54902851f6318f39ef; policy_version 2026-10-19; evidence_revision d605295a46634e2c20013638e01c5e2a37ad0779; release_ready false. Root reports actual delivery_gate.py SUCCESS and SAME High record-provenance PASS before this authorized done transition. Record bytes remain unchanged: its pre-closure pending statements describe the ordering when written, not an unresolved final review.
+
+The two frontmatter release items include owner/status/evidence/next action. Root's supported deferred-work harvest will append them without replacing historical/E15 ledger entries; this author did not edit the ledger. Exhaustive role/device/browser and screenshot/visual/manual validation remain deferred, not passed or waived. Synthetic probes do not establish hosted external-provider behavior. Four essential journeys and consequential SQL/auth/money/integrity requirements have actual evidence; no required development failure is hidden as polish.
+
+Frozen approved intent stays identical: raw CRLF 4,131 bytes SHA256 78a32abe8467a24baaf3b128c6a3129b91f6b74e70e97292518430493979034b; canonical LF SHA256 de0db4343df0ea830fd12dd42bd7fffc420f52f9af2d390082c0da397733b88d. All 11 ACs/TR01-TR16 and historical evidence remain. Final author hook refreshes exactly one Suggested Review Order and runs its targeted reference check only; no new product test/review/resource was started.
+
 ## Suggested Review Order
 
-Author: the Sol High implementation author, incorporating the recorded P6 author's baseline-preservation decisions. Refreshed after focused E01/E02 browser-binding batch 6 against reviewed/pushed checkpoint 8185b07e2d56a93a4143d4a54e0182360e56ef13 plus the two-file E2E/trail repair below; source intent baseline c47b268 is preserved. E03/E04 have actual first-attempt passing evidence; repaired E01/E02 execution and the same reviewer's narrow independent follow-up remain outstanding.
+Author: the Sol High implementation/fix author, incorporating the recorded P6 author's baseline-preservation decisions. Final metadata refresh against independently reviewed and CI-verified d605295a46634e2c20013638e01c5e2a37ad0779, with source intent baseline c47b268 preserved. Same High narrow E2E and record-provenance reviews passed; all four Jobs journeys now have actual first-attempt passing evidence. This author guide is not a separate approval.
 
 ### Reach the personal job flow without expanding row authority
 
@@ -562,7 +728,7 @@ The version changes with SQL snapshots/finalize and the parser together. Complet
 
 ### Assess evidence at the boundary it actually exercises
 
-AC04/09/10 retain real enriched/original API and exact-child assertions. AC05 now also covers two successive same-form saves: uncertain retry preserves its body, while a new edit receives a fresh command identity. The focused/full Node passes prove pure behavior and registry/scope contracts; authored DB/browser bodies do not prove runtime acceptance.
+AC04/09/10 retain real enriched/original API and exact-child assertions. AC05 now also covers two successive same-form saves: uncertain retry preserves its body, while a new edit receives a fresh command identity. The focused/full Node passes prove pure behavior and registry/scope contracts. Same-head real SQL/RLS and browser execution additionally prove implemented outer surfaces; synthetic fixture probes retain their narrower stated limits.
 
 - `tests/integration/commands/jobs-depth.int.test.ts:26` — `exact child replacement`: assert atomic enriched values and preserved source/booking identities.
 - `src/components/jobs/JobCardForm.tsx:89` — `onChange`: unlock only the confirmed draft for another edit.
@@ -578,4 +744,6 @@ Batch 3 supplied required synthetic H4 rates and reconciled the old test contrac
 - `tests/support/booking-editor-production.ts:142` — `await import("vitest")`: load the spy only within its existing async wrapper.
 - `tests/integration/rls/role-aware-phase-a-surface.atdd.int.test.ts:274` — `assigned capability needs a current relationship`: verify actual relationship scope with ordinary JWT clients.
 
-Evidence: see Executed evidence and limits and all six focused fix batches for exact commands, counts, logs and revision provenance. Exact-8185 CI native artifacts report 1,751 DB assertions passed, zero failed and one separate-lane recovery pending, with recovery-Storage 1/1. Browser native results are nine expected/two unexpected: E03 and E04 each passed on their first attempt; E01 and E02 reached UI after real fixture creation and failed their old locators. Batch 6 retains all 107 expect calls and byte-identical E03/E04, and passes focused ESLint, proper TypeScript and four-case collection. Current selector validation is source binding and collection only, without actual selector-runtime credit. Earlier real provider/loader/Vitest-spy probes retain their recorded provenance. New exact-head CI must execute the repaired E01/E02 and preserve the other journeys. Exhaustive visual/manual work remains deferred release validation; no development-complete or release-ready claim is made.
+Evidence: the final Auto Run Result and immutable delivery record bind actual commands/native reports to d605295a46634e2c20013638e01c5e2a37ad0779 and CI 39286112780. AC01/04/09/10 map to real creation/enriched/replay/source-preservation SQL; AC02/03 to My Jobs/RLS/Phase-A relationship cases and E01 direct denial/money absence; AC05 to E02's aborted request, exact-body retry, two durable successive saves/new identity and reload; AC06/07 to mixed-job pure tests, six real booking-facts protocol tests and E03 stale-finalize assertions; AC08 to E04 unknown/violated/corrected dependency reloads; AC11 to manifest/enrollment negatives, H4's 205 actual assertions and seven Phase-A cases. All 16 new E16 DB cases and four real Jobs browser journeys passed. The DB lane's one explicit recovery skip is not coverage there; its invariant actually passed in the dedicated same-head recovery lane.
+
+Limits: fixture/probe data is synthetic and does not establish hosted external-provider behavior. CI uses its disposable stack; no local managed resource was launched after the guard refusal. Essential Chromium smoke is narrower than exhaustive role/device/browser or visual/manual validation. Those two owned release checks remain deferred; release_ready is false. All TR destination obligations retain their sequential-story ownership. No merge, deployment, whole-epic completion or later Phase6/Phase7 execution is claimed.
