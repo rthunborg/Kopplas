@@ -1,0 +1,103 @@
+{
+  "workflow": "bmad-testarch-automate",
+  "mode": "Create",
+  "integration_mode": "BMad-integrated",
+  "status": "completed",
+  "story": "15-1-the-five-scheduling-views",
+  "analysis_revision": "09c853b9eb4b54967233669a1904bfbccb39409d",
+  "evidence_revision": "95d5e6bce35fe67adc178b1f3da762ea3b75e3a0",
+  "detected_stack": "frontend",
+  "test_environment": "Next frontend with colocated server/Supabase; Node units, Vitest integration/RLS, Playwright production-server browser",
+  "execution": {
+    "requested": "auto",
+    "capability_probe": true,
+    "supports_subagent": true,
+    "supports_agent_team": false,
+    "normal_auto_resolution": "subagent",
+    "generation_targets": 0,
+    "workers_launched": 0,
+    "assessment_execution": "sequential",
+    "reason": "No new meaningful generation target. Execute empty API/E2E worker assessments locally under authorized no-duplicate-test scope; no parallel gain claimed."
+  },
+  "total_tests": 0,
+  "api_tests": 0,
+  "e2e_tests": 0,
+  "unit_tests": 0,
+  "component_tests": 0,
+  "new_test_files": 0,
+  "fixtures_created": 0,
+  "helpers_created": 0,
+  "application_test_commands_run": 0,
+  "priority_coverage": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0,
+    "P3": 0
+  },
+  "ACs_mapped": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "coverage_percentage": null,
+  "pact_mcp_reachable": false,
+  "pact_fallback_source": "provider-source",
+  "playwright_utils_package_installed": false,
+  "pact_packages_installed": false,
+  "deferred_release_validation": [
+    {
+      "item": "E15 remaining exhaustive calendar/actor/gesture browser combinations",
+      "owner": "Epic15 verification owner",
+      "status": "deferred",
+      "evidence": "Essential native11 distinct cases qualified; remaining full actor/lifecycle/gesture/device combinations and optional fixed-Chromium diagnostics have no blanket execution credit. Historical failures/skips retained. Security/RLS, integrity, basic five views and ContractD essentials remain development requirements.",
+      "next_action": "Execute remaining release-candidate combinations at stabilization; investigate consequential failures. Run optional diagnostics only for a named outcome."
+    },
+    {
+      "item": "E15 eleven visual design comparisons",
+      "owner": "Epic15 UI/release owner",
+      "status": "deferred",
+      "evidence": "No completed eleven-comparison design review supplied by functional CI/native assertions; historical0/11 retained, not reclassified.",
+      "next_action": "Capture and review all eleven comparisons against current approved design at release stabilization; retain results and repair consequential defects."
+    },
+    {
+      "item": "E15 manual phone/daylight/one-hand/assistive-tech and polish",
+      "owner": "Product/release owner",
+      "status": "deferred",
+      "evidence": "No representative-device daylight/one-hand/manual assistive-tech, timing or polish certification. Automated functional evidence remains distinct.",
+      "next_action": "Perform representative-hardware phone/daylight/one-hand/assistive-tech and polish walkthrough before the applicable release decision; record method/results."
+    },
+    {
+      "item": "E15 broad General and dashboard browser suites",
+      "owner": "Coordinator/release owner",
+      "status": "deferred",
+      "evidence": "Final CI39273703334 used release_validation=false. Auth7 passed; optional dashboard/diagnostic jobs intentionally skipped. Auth7/native11 are not broad General/dashboard acceptance.",
+      "next_action": "Deliberately dispatch release_validation=true against the qualified release candidate at stabilization, or earlier when consequential changed behavior requires broader browser evidence."
+    },
+    {
+      "item": "E15 representative performance workload/measurements/approval",
+      "owner": "Product + Architect",
+      "status": "deferred",
+      "evidence": "R-012 workload/threshold approval and full-surface measurements remain open. Harness durations/budgets and Epic11 pilot are not scheduling product-performance certification.",
+      "next_action": "Approve representative volumes and latency/resource/throughput thresholds, measure complete scheduling surfaces, and record the performance release decision."
+    }
+  ],
+  "process_deferrals": [
+    "CI/diagnostic maintainer: optional privileged diagnostic broker post-exit drain; independently qualify before future opt-in use.",
+    "PR-feedback controller maintainer: upstream mutable-workspace gate attestation candidate; focused upstream process-security qualification before controller changes."
+  ],
+  "release_ready": false,
+  "next_workflow": "Parent-owned required Phase7 follow-up review; trace remains advisory per selection.",
+  "files_created": [
+    "_bmad-output/test-artifacts/15-1-automate-api-output-2026-10-19.json",
+    "_bmad-output/test-artifacts/15-1-automate-e2e-output-2026-10-19.json",
+    "_bmad-output/test-artifacts/15-1-automate-summary-2026-10-19.json",
+    "_bmad-output/test-artifacts/15-1-automate-evidence-audit-2026-10-19.json",
+    "_bmad-output/test-artifacts/automation-summary-spec-15-1-the-five-scheduling-views.md"
+  ],
+  "new_test_rationale": "Current meaningful functional/authority/integrity cases already exist and execute at appropriate levels. Existing unexecuted authored browser cases need owned release execution, not duplicate tests. No app defect or approved-spec change found."
+}

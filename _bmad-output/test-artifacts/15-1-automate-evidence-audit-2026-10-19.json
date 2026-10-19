@@ -1,0 +1,514 @@
+{
+  "kind": "offline-local-provenance-and-inventory-audit",
+  "recorded_utc": "2026-10-19T15:43:04.177119+00:00",
+  "analysis_revision": "09c853b9eb4b54967233669a1904bfbccb39409d",
+  "evidence_revision": "95d5e6bce35fe67adc178b1f3da762ea3b75e3a0",
+  "application_test_commands_run": 0,
+  "new_tests": 0,
+  "ci_run": 39273703334,
+  "ci_manifest": {
+    "entries_checked": 36,
+    "mismatches": 0,
+    "sha256": "3071e3badcf13bdddccd5da146676ee929c5596f208276aa4cfbee5e0e1196e0",
+    "entry_results": [
+      {
+        "path": "artifact-12197201665.metadata.json",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "artifact-12197201665.stderr",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "artifact-12197201665.stdout",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "artifact-12197510972.metadata.json",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "artifact-12197510972.stderr",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "artifact-12197510972.stdout",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "artifact-12197691039.metadata.json",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "artifact-12197691039.stderr",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "artifact-12197691039.stdout",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "artifacts-auth-storage.metadata.json",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "artifacts-auth-storage.stderr",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "artifacts-auth-storage.stdout",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "artifacts-terminal.metadata.json",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "artifacts-terminal.stderr",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "artifacts-terminal.stdout",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "auth-storage-selected-summary.json",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "db-job-log-private-raw.metadata.json",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "db-job-log-private-raw.stderr",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "db-job-log-private-raw.stdout",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "jobs-terminal.metadata.json",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "jobs-terminal.stderr",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "jobs-terminal.stdout",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "jobs.metadata.json",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "jobs.stderr",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "jobs.stdout",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "run-terminal.metadata.json",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "run-terminal.stderr",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "run-terminal.stdout",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "run.metadata.json",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "run.stderr",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "run.stdout",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "terminal-native-summary.json",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "verify-job-log-private-raw.metadata.json",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "verify-job-log-private-raw.stderr",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "verify-job-log-private-raw.stdout",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      {
+        "path": "verify-selected-summary.json",
+        "bytes_match": true,
+        "sha256_match": true
+      }
+    ]
+  },
+  "terminal_summary_sha256": "748647f7c6bd59b7ba35e023269c468d80f7156012ca3bdd52851ff9b1a568da",
+  "runtime_dependency_changes_since_ci": [],
+  "application_source_changes_since_built_head": [],
+  "scheduling_integration_subset": [
+    {
+      "path": "tests/integration/scheduling/booking-reassignment-flags.int.test.ts",
+      "total": 8,
+      "passed": 8,
+      "failed": 0,
+      "skipped": 0,
+      "case_results": [
+        {
+          "title": "Admin/PL return exact ordered boolean-only payload and no writes",
+          "status": "passed"
+        },
+        {
+          "title": "current peer disable/end/reactivation/archive uses OR across all retained assignees",
+          "status": "passed"
+        },
+        {
+          "title": "unknown/foreign/mixed/null-tenant requests deny identically without partial data",
+          "status": "passed"
+        },
+        {
+          "title": "Montör even own, sales, economy, orphan, invited, disabled and ended callers deny before shape",
+          "status": "passed"
+        },
+        {
+          "title": "scalar sales/economy with secondary PL/Admin union grant and unchanged JWT revocation denies",
+          "status": "passed"
+        },
+        {
+          "title": "raw cardinality 1/50 succeeds; 0/51/null/null-elements/duplicates/multidimensional fail generically",
+          "status": "passed"
+        },
+        {
+          "title": "STABLE DEFINER empty search path and exact authenticated ACL; anon/service role cannot execute",
+          "status": "passed"
+        },
+        {
+          "title": "PL still cannot SELECT peer membership; own-active and Admin controls remain",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "path": "tests/integration/scheduling/scheduling-read.atdd.int.test.ts",
+      "total": 26,
+      "passed": 26,
+      "failed": 0,
+      "skipped": 0,
+      "case_results": [
+        {
+          "title": "manager reads complete same-tenant bookings and own agenda derives self without peer membership disclosure",
+          "status": "passed"
+        },
+        {
+          "title": "inactive historical work role retains its label without widening the active editor picker",
+          "status": "passed"
+        },
+        {
+          "title": "unentitled and inactive actors deny; supplied actor/tenant keys do not override current context",
+          "status": "passed"
+        },
+        {
+          "title": "own agenda returns own association only with omitted/listed planner fields and no lifecycle RPC",
+          "status": "passed"
+        },
+        {
+          "title": "retryable IO confirms only current read authority; denied and initial own reads never retain planner authority",
+          "status": "passed"
+        },
+        {
+          "title": "501 bookings publish only after complete 500-row pages and max50 ordered flag batches",
+          "status": "passed"
+        },
+        {
+          "title": "1001 bookings publish only after complete 500-row pages and max50 ordered flag batches",
+          "status": "passed"
+        },
+        {
+          "title": "conflict arms retain related-only/outside-period participants and dedupe symmetric cross-batch facts with max50 exact reads",
+          "status": "passed"
+        },
+        {
+          "title": "both conflict arms collect more than500 rows including final contributions before logical counting",
+          "status": "passed"
+        },
+        {
+          "title": "failed final conflict page in booking_id arm discards the whole read",
+          "status": "passed"
+        },
+        {
+          "title": "failed final conflict page in related_booking_id arm discards the whole read",
+          "status": "passed"
+        },
+        {
+          "title": "later person_profiles page failure discards all data/counts",
+          "status": "passed"
+        },
+        {
+          "title": "later person_work_hours page failure discards all data/counts",
+          "status": "passed"
+        },
+        {
+          "title": "later tenant_calendar_days page failure discards all data/counts",
+          "status": "passed"
+        },
+        {
+          "title": "later booking_conflicts page failure discards all data/counts",
+          "status": "passed"
+        },
+        {
+          "title": "501 ancillary roster/hour/calendar/conflict rows retain final-page facts and numeric demand",
+          "status": "passed"
+        },
+        {
+          "title": "failed final booking page and final lifecycle batch produce no partial or false-empty success",
+          "status": "passed"
+        },
+        {
+          "title": "malformed flags missing reject exact shape/completeness",
+          "status": "passed"
+        },
+        {
+          "title": "malformed flags extra reject exact shape/completeness",
+          "status": "passed"
+        },
+        {
+          "title": "malformed flags duplicate reject exact shape/completeness",
+          "status": "passed"
+        },
+        {
+          "title": "malformed flags wrong order reject exact shape/completeness",
+          "status": "passed"
+        },
+        {
+          "title": "malformed flags unknown key reject exact shape/completeness",
+          "status": "passed"
+        },
+        {
+          "title": "malformed flags not boolean reject exact shape/completeness",
+          "status": "passed"
+        },
+        {
+          "title": "malformed flags unknown ID reject exact shape/completeness",
+          "status": "passed"
+        },
+        {
+          "title": "malformed flags non-array reject exact shape/completeness",
+          "status": "passed"
+        },
+        {
+          "title": "own transport calls neither planner tables nor any RPC",
+          "status": "passed"
+        }
+      ]
+    }
+  ],
+  "subset_is_nonadditive": true,
+  "reader_case_distinction": {
+    "actual_JWT_RLS": 4,
+    "mock_transport_no_RLS_credit": 22,
+    "RPC_actual_DB_JWT": 8
+  },
+  "native_reports": [
+    {
+      "handoff": ".env.epic15.mail-runtime/owner-resume-focused-20261019/e15-f69-native-handoff.json",
+      "report": "e15-f69-eleven.json",
+      "report_sha256": "6964f6a6da30082f562476247774b2a6c07c10f06e9e67964d1df2cac80ebb4a",
+      "report_hash_matches": true,
+      "head": "f69e6cda271b83841d05121f73a6accbc8a21f8b",
+      "native_exit_code": 1,
+      "counts": {
+        "passed": 4,
+        "failed": 1,
+        "skipped": 6
+      },
+      "report_stats": {
+        "startTime": "2026-10-19T14:19:07.446Z",
+        "duration": 53712.401,
+        "expected": 4,
+        "skipped": 6,
+        "unexpected": 1,
+        "flaky": 0
+      },
+      "qualified_pass_titles": [
+        "[P0] 15.1-E2E-001 AC4 actual Schema click persists selected person/start/end",
+        "[P0] 15.1-E2E-002 AC4 actual Schema drag persists selected person/start/end",
+        "[P0] 15.1-E2E-003 AC4 actual Resurser click persists selected person/start/end",
+        "[P0] 15.1-E2E-004 AC4 actual Resurser drag persists selected person/start/end"
+      ]
+    },
+    {
+      "handoff": ".env.epic15.mail-runtime/owner-resume-focused-20261019/e15-c950-native-handoff.json",
+      "report": "e15-c950-seven.json",
+      "report_sha256": "243cfe62389b513c3e4bfa9fa0a07a16c8106501ad645ae3bd96949a00b36681",
+      "report_hash_matches": true,
+      "head": "c9502aa37c94fd2a6c3f6b8862089f9a469571f2",
+      "native_exit_code": 1,
+      "counts": {
+        "passed": 5,
+        "failed": 1,
+        "skipped": 1
+      },
+      "report_stats": {
+        "startTime": "2026-10-19T14:27:26.508Z",
+        "duration": 198179.19400000002,
+        "expected": 5,
+        "skipped": 1,
+        "unexpected": 1,
+        "flaky": 0
+      },
+      "qualified_pass_titles": [
+        "[P1] 15.1-E2E-006 SCOPE-001 AC1 five projections, periods, filters and toolbar editor agree across later pages",
+        "[P1] 15.1 focus restoration Schema day/week origins and disappeared source",
+        "[P1] 15.1 focus restoration Resurser day/week origins and disappeared source",
+        "[P1] 15.1-E2E-007 AC5 Schema actual resize and keyboard/click alternatives preserve review and cancellation",
+        "[P1] 15.1-E2E-007 AC5 Resurser actual move and keyboard/click alternatives preserve review and cancellation"
+      ]
+    },
+    {
+      "handoff": ".env.epic15.mail-runtime/owner-resume-focused-20261019/e15-96eee-native-handoff.json",
+      "report": "e15-96eee-two.json",
+      "report_sha256": "7dbc521ba3832de66cd6bf011769d8a7d519144600103d325b88ec7ee56d8032",
+      "report_hash_matches": true,
+      "head": "96eee458418f5cd9f235e0ba0602a497a9248817",
+      "native_exit_code": 1,
+      "counts": {
+        "passed": 1,
+        "failed": 1,
+        "skipped": 0
+      },
+      "report_stats": {
+        "startTime": "2026-10-19T14:44:01.962Z",
+        "duration": 24465.152,
+        "expected": 1,
+        "skipped": 0,
+        "unexpected": 1,
+        "flaky": 0
+      },
+      "qualified_pass_titles": [
+        "[P1] 15.1-COMP-001 AC3 toolbar preferences isolate user/tenant/view and reset corrupt/unavailable storage"
+      ]
+    },
+    {
+      "handoff": ".env.epic15.mail-runtime/owner-resume-focused-20261019/e15-abort-contract-native-handoff.json",
+      "report": "e15-abort-contract-one.json",
+      "report_sha256": "2f1a86fa555b4f1a068e089a610e17d9aed1427f151feb5bd7914c819a12754f",
+      "report_hash_matches": true,
+      "head": "96eee458418f5cd9f235e0ba0602a497a9248817",
+      "native_exit_code": 0,
+      "counts": {
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0
+      },
+      "report_stats": {
+        "startTime": "2026-10-19T14:56:19.830Z",
+        "duration": 7158.213,
+        "expected": 1,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "qualified_pass_titles": [
+        "[P1] 15.1-COMP-001 AC3 observed real read transport failure hides stale/empty/count until retry"
+      ]
+    },
+    {
+      "handoff": ".env.epic15.mail-runtime/owner-resume-focused-20261019/e15-alert-working-native-handoff.json",
+      "report": "e15-alert-working-one.json",
+      "report_sha256": "f88a93acb9a26e845da95285f507ad725bde913b0c07c3102d95fc2e1a182fdb",
+      "report_hash_matches": true,
+      "head": "96eee458418f5cd9f235e0ba0602a497a9248817",
+      "native_exit_code": 1,
+      "counts": {
+        "passed": 0,
+        "failed": 1,
+        "skipped": 0
+      },
+      "report_stats": {
+        "startTime": "2026-10-19T14:48:18.393Z",
+        "duration": 20998.229,
+        "expected": 0,
+        "skipped": 0,
+        "unexpected": 1,
+        "flaky": 0
+      },
+      "qualified_pass_titles": []
+    }
+  ],
+  "all_five_native_command_history": {
+    "passed": 11,
+    "failed": 4,
+    "skipped": 7
+  },
+  "qualified_distinct_native_passes": 11,
+  "e2e_blob_binding": {
+    "git_revision": "95d5e6bce35fe67adc178b1f3da762ea3b75e3a0",
+    "git_LF_bytes": 63165,
+    "git_LF_sha256": "3c4242f28ffeb07cce5698dd35c8b3926b6d46a3029758da4a9ddc230c7bab18",
+    "current_CRLF_to_LF_matches_git": true,
+    "historic_working_CRLF_sha256": "646845032276683e36d1e2b62835e913d66554bf53faedbc690b1557e6062b47",
+    "raw_bytes_equal_not_claimed": true
+  },
+  "independent_provenance_receipt": {
+    "bytes": 14578,
+    "sha256": "e9e5a8de60987dbee69c2a0ee4d4aebb4e7bbafb4d88b1d0c8e883bb17d5a2c3"
+  },
+  "limits": [
+    "Offline evidence validation is not a runtime test or new independent review.",
+    "11 distinct qualified case passes are not a fresh all-pass command; 4 failures and 7 serial skips retained.",
+    "Native outgoing abort is not server-returned/final-page IO evidence.",
+    "Mock transport is not RLS evidence.",
+    "Historical RED scaffold62 skipped remains zero product coverage.",
+    "No release_ready, story/epic completion, merge or deployment claim."
+  ]
+}

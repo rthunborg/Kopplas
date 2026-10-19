@@ -1,0 +1,31 @@
+{
+  "success": true,
+  "execution": "sequential-local-assessment-no-dispatch",
+  "analysis_revision": "09c853b9eb4b54967233669a1904bfbccb39409d",
+  "evidence_revision": "95d5e6bce35fe67adc178b1f3da762ea3b75e3a0",
+  "tests": [],
+  "fixture_needs": [],
+  "test_count": 0,
+  "priority_coverage": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0,
+    "P3": 0
+  },
+  "playwright_utils_deviations": [],
+  "pactjs_utils_deviations": [],
+  "subagent": "api-tests",
+  "knowledge_fragments_used": [
+    "test-levels",
+    "test-priorities",
+    "data-factories",
+    "test-quality",
+    "evidence-integrity",
+    "pact-mcp"
+  ],
+  "provider_scrutiny": "not-applicable-no-new-CDC",
+  "provider_files_read": [
+    "src/server/read-models/scheduling.ts"
+  ],
+  "summary": "Existing reader4 actualJWT+22mock and RPC8 actualDB/JWT cases passed in CI95d5. All34 are a nonadditive subset of1737. No new meaningful target or independent Pact boundary. New0, executed0 in this workflow."
+}
