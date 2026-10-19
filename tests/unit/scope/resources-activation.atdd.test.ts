@@ -20,7 +20,7 @@ test("[P0] activates resources with its six tenant tables and preserves resource
   ]);
   assert.equal(scheduling?.status, "active");
   assert.deepEqual(scheduling?.navItems, [{route:"/scheduling",group:"primary",requiredCapability:"Bookings.View"}]);
-  assert.deepEqual(scheduling?.tenantTables, []);
+  assert.deepEqual(scheduling?.tenantTables, ["booking_series"]);
   assert.deepEqual(scheduling?.widgets, []);
   assert.deepEqual(scheduling?.notificationCategories, []);
   assert.deepEqual(scheduling?.publicSurfaces, []);

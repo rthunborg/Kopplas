@@ -39,6 +39,30 @@
  * synthetic key. Genuine single/card receipts must first pass their own verifier.
  */
 import type { TestServerClient } from "../factories/tenants";
+import type { BookingFixture } from "./bookings-atdd";
+import { bookingSnapshot } from "./bookings-atdd";
+import { adminQuery } from "../factories/admin-sql";
+import { previewBookingSeries } from "@/server/bookings/series-conflicts";
+import { seriesCommandPayload, type BookingSeriesInput } from "@/server/commands/bookings/series-validation";
+import type { BookingRpcClient } from "@/server/bookings/conflict-facts";
+
+/** Executable fixtures use actual production commands and independent raw SQL. */
+export function realSeriesInput(fx: BookingFixture, patch: Partial<BookingSeriesInput> = {}): BookingSeriesInput {
+  return { commandId: crypto.randomUUID(), seriesId: crypto.randomUUID(), sourceSeriesId: null, expectedVersion: null, pivotOccurrenceId: null,
+    rule: { preset: "daily", startDate: "2026-10-12", startTime: "07:00:00", endTime: "08:00:00", endDayOffset: 0, allDay: false, timeZone: "Europe/Stockholm", count: 3 },
+    template: { startsAt: "2026-10-12T05:00:00.000000Z", endsAt: "2026-10-12T06:00:00.000000Z", allDay: false,
+      workRoleId: null, jobId: null, customerId: null, facilityId: null, contactId: null, description: "Real recurring lighting",
+      status: "planned", assigneeIds: [fx.ownProfile.id], seriesId: null, occurrenceIndex: null, isException: false }, ...patch };
+}
+export async function reviewRealSeries(fx: BookingFixture, input: BookingSeriesInput, options: {client?: TestServerClient; actorId?: string; selected?: readonly string[]} = {}) {
+  const preview = await previewBookingSeries((options.client ?? fx.adminClient) as unknown as BookingRpcClient,
+    {p_tenant_id:fx.base.tenantA.id,p_actor_id:options.actorId ?? fx.base.adminA.id,p_correlation_id:crypto.randomUUID(),p_command_id:input.commandId,p_input:seriesCommandPayload(input)},input);
+  return { preview, input: { ...input, editorReview: {receipt:preview.receipt,decision:{acknowledged:preview.warnings.length>0,
+    reviewedLogicalIds:preview.warnings.map(w=>w.logicalId),selectedLogicalIds:[...(options.selected??[])],reason:preview.warnings.length?"Reviewed every current warning":""}} } };
+}
+export async function realSeriesSnapshot(fx: BookingFixture) {
+  return { ...await bookingSnapshot(fx.tenantIds), series: await adminQuery("select * from public.booking_series where tenant_id=any($1::uuid[]) order by tenant_id,id", [fx.tenantIds]) };
+}
 
 export type Row = Record<string, unknown>;
 export type Role = "admin" | "planner" | "montor" | "sales" | "economy" |

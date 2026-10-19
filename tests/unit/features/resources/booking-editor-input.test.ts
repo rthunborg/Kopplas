@@ -8,7 +8,9 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { booking, decision, GROUP_A, GROUP_B } from "@/tests-support/booking-editor-contract";
-import { normalizeBookingDecision, prepareBookingTimes } from "@/features/resources/booking-editor-input";
+import { normalizeBookingDecision, prepareBookingTimes, followingBookingDraft, recurrenceRuleFromEditor } from "@/features/resources/booking-editor-input";
+import { expandRecurrence, validateRecurrenceRule } from "@/features/scheduling/recurrence";
+import type { BookingFacts } from "@/features/resources/booking-types";
 
 test("Round1 each untouched endpoint retains fractional precision and the later Stockholm fold instant", () => {
   const original = {startsAt: "2026-10-25T01:30:00.123456Z", endsAt: "2026-10-25T03:00:00.654321Z"};
@@ -105,4 +107,23 @@ test("[P1] 14.4-UNIT-INPUT-011 changed full-day autumn bounds span Stockholm's 2
   const actual = prepareBookingTimes({ original: booking(), startChanged: true, endChanged: true, allDay: true,
     startsAtLocal: "2026-10-25T00:00:00", endsAtLocal: "2026-10-26T00:00:00" });
   assert.deepEqual(actual, { startsAt: "2026-10-24T22:00:00.000000Z", endsAt: "2026-10-25T23:00:00.000000Z" });
+});
+
+test("Round1 following defaults use only explicit gesture fields, preserving resized fractional endpoints",()=>{
+  const template={...booking(),seriesId:null,occurrenceIndex:null,isException:false} as BookingFacts;
+  const rule={preset:"daily",startDate:"2026-10-12",startTime:"09:00:00.123456",endTime:"10:00:00.654321",endDayOffset:0,allDay:false,timeZone:"Europe/Stockholm",count:3} as const;
+  const plain=followingBookingDraft(template,rule,"2026-11-02");
+  assert.equal(plain.start,"2026-11-02T09:00:00.123456");assert.deepEqual(plain.facts,template);
+  const resized=followingBookingDraft(template,rule,"2026-11-02",{endsAt:"2026-11-02T11:30:00.000001Z",assigneeIds:["replacement"]});
+  assert.equal(resized.start,plain.start);assert.equal(resized.end,"2026-11-02T12:30:00.000001");
+  assert.deepEqual(resized.facts.assigneeIds,["replacement"]);assert.equal(resized.facts.description,template.description);
+});
+for(const [start,end,expected] of [
+  ["2026-03-28","2026-03-29",[["2026-03-27T23:00:00.000000Z","2026-03-28T23:00:00.000000Z"],["2026-03-28T23:00:00.000000Z","2026-03-29T22:00:00.000000Z"],["2026-03-29T22:00:00.000000Z","2026-03-30T22:00:00.000000Z"]]],
+  ["2026-10-24","2026-10-25",[["2026-10-23T22:00:00.000000Z","2026-10-24T22:00:00.000000Z"],["2026-10-24T22:00:00.000000Z","2026-10-25T23:00:00.000000Z"],["2026-10-25T23:00:00.000000Z","2026-10-26T23:00:00.000000Z"]]],
+] as const)test(`Round1 date-only all-day converter validates and expands Stockholm DST ${start}`,()=>{
+  const rule=recurrenceRuleFromEditor({preset:"daily",endMode:"count",count:3,weekdays:[],allDay:true,start,end});
+  assert.equal(rule.startTime,"00:00:00");assert.equal(rule.endTime,"00:00:00");assert.equal(rule.endDayOffset,1);assert.ok(validateRecurrenceRule(rule));
+  const expanded=expandRecurrence(rule);assert.equal(expanded.ok,true);if(!expanded.ok)throw new Error("Expected complete all-day schedule");
+  assert.deepEqual(expanded.occurrences.map(row=>[row.startsAt,row.endsAt]),expected);
 });

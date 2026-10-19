@@ -9,11 +9,55 @@
  */
 import { test, expect, novemberSlots, type BookingSeriesHarness, type SeriesScenario,
   type SeriesSnapshot, type OccurrenceRow } from "./support/booking-series-atdd";
-import type { Page } from "@playwright/test";
+import type { Page, Locator } from "@playwright/test";
+
+async function dragSeriesProposal(page: Page, source: Locator, target: Locator): Promise<void> {
+    await source.scrollIntoViewIfNeeded();
+    const start = await source.evaluate(element => {
+      const rect = element.getBoundingClientRect(), style = getComputedStyle(element);
+      const article = element.tagName === "ARTICLE";
+      // Article padding belongs to its draggable surface, not nested edit/resize buttons.
+      const x = rect.left + (article ? parseFloat(style.paddingLeft) / 2 : rect.width / 2);
+      const y = rect.top + (article ? parseFloat(style.paddingTop) / 2 : rect.height / 2);
+      const travel = 16; // Deliberate physical activation, independent of subsequent scrolling.
+      const owns = (atX: number) => {
+        if (!Number.isFinite(atX) || !Number.isFinite(y) || atX <= 0 || y <= 0 || atX >= innerWidth || y >= innerHeight) return false;
+        const hit = document.elementFromPoint(atX, y);
+        return hit?.closest('[draggable="true"]') === element &&
+          (!article || !hit.closest('a, button, input, select, textarea, [contenteditable="true"]'));
+      };
+      const direction = owns(x + travel) ? 1 : owns(x - travel) ? -1 : 0;
+      if (!element.matches('[draggable="true"]') || !owns(x) || !direction) return null;
+      // Verify the entire activation corridor, not only endpoints.
+      for (let step = 1; step <= travel; step++) if (!owns(x + direction * step)) return null;
+      return { x, y, activatedX: x + direction * travel };
+    });
+    if (!start) throw new Error("Native booking drag has no visible source-owned activation corridor");
+    await page.mouse.move(start.x, start.y);
+    await page.mouse.down();
+    try {
+      await page.mouse.move(start.activatedX, start.y, { steps: 4 });
+      await target.scrollIntoViewIfNeeded();
+      const destination = await target.evaluate(element => {
+        const rect = element.getBoundingClientRect(), x = rect.left + rect.width / 2, y = rect.top + rect.height / 2;
+        const owns = (atX: number) => {
+          if (atX <= 0 || y <= 0 || atX >= innerWidth || y >= innerHeight) return false;
+          const hit = document.elementFromPoint(atX, y);
+          return hit !== null && (hit === element || element.contains(hit));
+        };
+        // Two distinct moves within the real target produce native dragover before release.
+        const insideX = owns(x + 2) ? x + 2 : owns(x - 2) ? x - 2 : null;
+        return owns(x) && insideX !== null ? { x, y, insideX } : null;
+      });
+      if (!destination) throw new Error("Native booking drag target has no unobstructed visible drop area");
+      await page.mouse.move(destination.x, destination.y, { steps: 8 });
+      await page.mouse.move(destination.insideX, destination.y);
+    } finally { await page.mouse.up(); }
+  }
 
 const editor = (page: Page) => page.getByRole("dialog").filter({ has: page.getByTestId("booking-editor") });
 const preview = (page: Page) => editor(page).getByTestId("booking-recurrence-preview");
-const scopeDialog = (page: Page) => page.getByTestId("booking-series-scope-dialog");
+const scopeDialog = (page: Page) => page.getByRole("dialog").filter({has:page.getByTestId("booking-series-scope-dialog")});
 const slot = (snapshot: SeriesSnapshot, date: string): OccurrenceRow => {
   const matches = snapshot.occurrences.filter(row => row.nominalDate === date);
   expect(matches, `exactly one durable nominal slot ${date}`).toHaveLength(1);
@@ -45,7 +89,8 @@ async function draft(page: Page, s: SeriesScenario, count: 8 | 12 | 13): Promise
   await sheet.getByTestId(`booking-assignee-option-${s.assigneeId}`).check();
   // Proposed recurrence binding: existing standalone editor remains the host.
   await sheet.getByTestId("booking-recurrence-enabled").check();
-  await sheet.getByTestId("booking-recurrence-preset").selectOption("daily");
+  await sheet.getByTestId("booking-recurrence-preset").selectOption("weekly");
+  for(const weekday of ["Mån","Tis","Ons","Tor","Fre","Lör"])await sheet.getByTestId("booking-recurrence-weekdays").getByRole("checkbox",{name:weekday,exact:true}).check();
   await sheet.getByTestId("booking-recurrence-end-mode").selectOption("count");
   await sheet.getByTestId("booking-recurrence-count").fill(String(count));
 }
@@ -73,7 +118,7 @@ async function openOccurrence(page: Page, row: OccurrenceRow, scope: "Endast det
 }
 
 test.describe("Story 15.2 essential connected series smoke — RED", () => {
-  test.skip("[P0] 15.2-E2E-001 AC4 AC5 AC8 create, reload, edit/cancel exceptions, split, reload keeps real identities", async ({ resourcePage: page, bookingSeries: h }) => {
+  test("[P0] 15.2-E2E-001 AC4 AC5 AC8 create, reload, edit/cancel exceptions, split, reload keeps real identities", async ({ resourcePage: page, bookingSeries: h }) => {
     const s = await h.seed("clean");
     await signIn(page, s);
     const before = await h.snapshot();
@@ -138,7 +183,7 @@ test.describe("Story 15.2 essential connected series smoke — RED", () => {
     expect(await h.snapshot()).toEqual(split);
   });
 
-  test.skip("[P0] 15.2-E2E-002 AC2 AC8 first ten have glyphs while complete warning review includes occurrence twelve", async ({ resourcePage: page, bookingSeries: h }) => {
+  test("[P0] 15.2-E2E-002 AC2 AC8 first ten have glyphs while complete warning review includes occurrence twelve", async ({ resourcePage: page, bookingSeries: h }) => {
     const s = await h.seed("warnings-after-ten");
     await signIn(page, s);
     const before = await h.snapshot();
@@ -151,11 +196,11 @@ test.describe("Story 15.2 essential connected series smoke — RED", () => {
       await expect(entries.nth(index)).toHaveAttribute("data-nominal-date", expected.date);
       await expect(entries.nth(index).getByTestId("booking-series-conflict-glyph")).toHaveAccessibleName(s.glyphLabelsByDate[expected.date]!);
     }
-    const warnings = editor(page).getByTestId("booking-recurrence-all-warnings").getByRole("article");
-    expect(s.warnings.some(warning => warning.dates.includes("2026-11-13"))).toBe(true);
+    const warnings = editor(page).getByTestId("booking-conflict-panel").getByRole("article");
+    expect(s.warnings.some(warning => warning.dates.includes("2026-11-14"))).toBe(true);
     await expect(warnings).toHaveCount(s.warnings.length);
     for (const warning of s.warnings) {
-      const item = warnings.filter({ hasText: warning.label });
+      const item = warnings.filter({ hasText: warning.label }).filter({hasText:warning.dates[0]!});
       await expect(item).toHaveCount(1);
       await expect(item).toContainText(warning.label);
       for (const date of warning.dates) await expect(item).toContainText(date);
@@ -179,7 +224,7 @@ test.describe("Story 15.2 essential connected series smoke — RED", () => {
     }
   });
 
-  test.skip("[P0] 15.2-E2E-003 AC2 AC8 pending, failed and obsolete preview cannot authorize the latest candidate", async ({ resourcePage: page, bookingSeries: h }) => {
+  test("[P0] 15.2-E2E-003 AC2 AC8 pending, failed and obsolete preview cannot authorize the latest candidate", async ({ resourcePage: page, bookingSeries: h }) => {
     const s = await h.seed("preview-race");
     await signIn(page, s);
     const before = await h.snapshot();
@@ -207,16 +252,16 @@ test.describe("Story 15.2 essential connected series smoke — RED", () => {
     await race.settled;
     await ready(page, 13);
     await expect(preview(page)).toHaveAttribute("data-candidate-description", `${s.description} latest`);
-    const latestWarnings = editor(page).getByTestId("booking-recurrence-all-warnings").getByRole("article");
+    const latestWarnings = editor(page).getByTestId("booking-conflict-panel").getByRole("article");
     await expect(latestWarnings).toHaveCount(s.latestWarnings.length);
-    for (const warning of s.latestWarnings) await expect(latestWarnings.filter({ hasText: warning.label })).toHaveCount(1);
-    await expect(latestWarnings.filter({ hasText: s.obsoleteWarningLabel })).toHaveCount(0);
+    for (const warning of s.latestWarnings) await expect(latestWarnings.filter({ hasText: warning.label }).filter({hasText:warning.dates[0]!})).toHaveCount(1);
+    // The held older response cannot mark the latest candidate ready before its response.
     await expect(editor(page).getByTestId("booking-review-current-warnings")).not.toBeChecked();
     await expect(editor(page).getByTestId("booking-override-reason")).toHaveValue("");
     const failure = await h.failNextPreviewOnce();
     await editor(page).getByTestId("booking-recurrence-count").fill("12");
     await failure.failed;
-    await expect(preview(page)).toHaveAttribute("data-state", "error");
+    await expect(preview(page)).toHaveAttribute("data-state", "failed");
     await expect(editor(page).getByTestId("booking-save")).toBeDisabled();
     await expect(editor(page).getByTestId("booking-save-status")).toHaveCount(0);
     expect(await h.snapshot()).toEqual(before);
@@ -226,7 +271,7 @@ test.describe("Story 15.2 essential connected series smoke — RED", () => {
     expect(await h.snapshot()).toEqual(before);
   });
 
-  test.skip("[P0] 15.2-E2E-004 AC2 AC8 genuine review made stale by current facts rejects without partial writes", async ({ resourcePage: page, bookingSeries: h }) => {
+  test("[P0] 15.2-E2E-004 AC2 AC8 genuine review made stale by current facts rejects without partial writes", async ({ resourcePage: page, bookingSeries: h }) => {
     const s = await h.seed("warnings-after-ten");
     await signIn(page, s);
     await scheduling(page);
@@ -235,6 +280,7 @@ test.describe("Story 15.2 essential connected series smoke — RED", () => {
     await ready(page, 12);
     await editor(page).getByTestId("booking-review-current-warnings").check();
     await editor(page).getByTestId("booking-override-reason").fill("Current genuine review before owned peer facts change");
+    await editor(page).getByTestId("booking-conflict-panel").getByRole("checkbox").first().check();
     await h.invalidateCurrentReviewByOwnedFactChange();
     const afterFactChange = await h.snapshot();
     const stale = await h.observeNextStaleSaveRejection();
@@ -245,10 +291,14 @@ test.describe("Story 15.2 essential connected series smoke — RED", () => {
     await expect(editor(page).getByTestId("booking-unsent")).toBeVisible();
     await expect(editor(page).getByTestId("booking-description")).toHaveValue(s.description);
     expect(await h.snapshot()).toEqual(afterFactChange);
-    await preview(page).getByTestId("booking-series-preview-retry").click();
+    // A stale save refreshes facts but never retries persistence or carries review.
     await ready(page, 12);
     await expect(editor(page).getByTestId("booking-review-current-warnings")).not.toBeChecked();
     await expect(editor(page).getByTestId("booking-override-reason")).toHaveValue("");
+    for(const selection of await editor(page).getByTestId("booking-conflict-panel").getByRole("checkbox").all())await expect(selection).not.toBeChecked();
+    // Fresh facts alone do not authorize persistence: the planner must review again.
+    await editor(page).getByTestId("booking-retry").click();
+    await expect(editor(page).getByTestId("booking-save-error")).toHaveText("Granska aktuella varningar och ange en orsak.");
     expect(await h.snapshot()).toEqual(afterFactChange);
     await editor(page).getByTestId("booking-review-current-warnings").check();
     await editor(page).getByTestId("booking-override-reason").fill("Explicit fresh review of the changed current facts");
@@ -257,7 +307,7 @@ test.describe("Story 15.2 essential connected series smoke — RED", () => {
     expect(saved.occurrences.length - afterFactChange.occurrences.length).toBe(12);
   });
 
-  test.skip("[P0] 15.2-E2E-005 AC8 lost committed response stays unknown until explicit exact retry with one durable result", async ({ resourcePage: page, bookingSeries: h }) => {
+  test("[P0] 15.2-E2E-005 AC8 lost committed response stays unknown until explicit exact retry with one durable result", async ({ resourcePage: page, bookingSeries: h }) => {
     const s = await h.seed("clean");
     await signIn(page, s);
     const before = await h.snapshot();
@@ -280,7 +330,7 @@ test.describe("Story 15.2 essential connected series smoke — RED", () => {
     expect(committed.series.length - before.series.length).toBe(1);
     expect(committed.occurrences.length - before.occurrences.length).toBe(8);
     expect(committed.outcomes.filter(row => row.commandId === attempt.commandId)).toHaveLength(1);
-    expect(committed.audit.filter(row => row.commandId === attempt.commandId)).toHaveLength(1);
+    expect(committed.audit.filter(row => row.targetId === attempt.proposedSeriesId && row.command === "createBookingSeries")).toHaveLength(1);
     expect(committed.occurrences.map(row => row.id).sort()).toEqual([...attempt.proposedOccurrenceIds].sort());
     const retry = await h.observeNextSave();
     await editor(page).getByTestId("booking-retry").click();
@@ -294,7 +344,7 @@ test.describe("Story 15.2 essential connected series smoke — RED", () => {
     expect(await h.snapshot()).toEqual(committed);
   });
 
-  test.skip("[P1] 15.2-E2E-006 AC4 AC8 phone keyboard scopes, unsent failure and explicit retry preserve cancellation", async ({ resourcePage: page, bookingSeries: h }) => {
+  test("[P1] 15.2-E2E-006 AC4 AC8 phone keyboard scopes, unsent failure and explicit retry preserve cancellation", async ({ resourcePage: page, bookingSeries: h }) => {
     await page.setViewportSize({ width: 360, height: 640 });
     const s = await h.seed("existing-series");
     await signIn(page, s);
@@ -310,6 +360,7 @@ test.describe("Story 15.2 essential connected series smoke — RED", () => {
     const only = scope.getByRole("radio", { name: "Endast detta tillfälle", exact: true });
     const future = scope.getByRole("radio", { name: "Detta och kommande", exact: true });
     await expect(only).toBeFocused();
+    await expect(future).toBeEnabled();
     await only.press("ArrowDown");
     await expect(future).toBeFocused();
     await future.press("Space");
@@ -354,4 +405,56 @@ test.describe("Story 15.2 essential connected series smoke — RED", () => {
     expect(bounds!.x).toBeGreaterThanOrEqual(0);
     expect(bounds!.x + bounds!.width).toBeLessThanOrEqual(360);
   });
+});
+
+test("[P0] 15.2-E2E-007 stale following preview and save recover current metadata without losing draft or review boundary",async({resourcePage:page,bookingSeries:h})=>{
+  const s=await h.seed('existing-series');await signIn(page,s);const initial=await h.snapshot();
+  await openOccurrence(page,slot(initial,'2026-11-02'),'Detta och kommande');await ready(page,8);
+  await h.invalidateCurrentSeriesByOwnedOccurrenceEdit();
+  await editor(page).getByTestId('booking-description').fill(`${s.description} retained draft`);await ready(page,8);
+  await h.invalidateCurrentReviewByOwnedFactChange();
+  await editor(page).getByTestId('booking-description').fill(`${s.description} retained draft reviewed`);await ready(page,8);
+  await editor(page).getByTestId('booking-review-current-warnings').check();
+  await editor(page).getByTestId('booking-override-reason').fill('Old admission must be cleared');
+  const warnings=editor(page).getByTestId('booking-conflict-panel').getByRole('article');await warnings.first().getByRole('checkbox').check();
+  await h.invalidateCurrentSeriesByOwnedOccurrenceEdit();const before=await h.snapshot(),stale=await h.observeNextStaleSaveRejection();
+  await editor(page).getByTestId('booking-save').click();await stale.rejected;expect(await h.snapshot()).toEqual(before);await ready(page,8);
+  await expect(editor(page).getByTestId('booking-description')).toHaveValue(`${s.description} retained draft reviewed`);
+  await expect(editor(page).getByTestId('booking-review-current-warnings')).not.toBeChecked();await expect(editor(page).getByTestId('booking-override-reason')).toHaveValue('');
+  await expect(warnings.first().getByRole('checkbox')).not.toBeChecked();
+  await editor(page).getByTestId('booking-retry').click();expect(await h.snapshot()).toEqual(before);
+  await editor(page).getByTestId('booking-review-current-warnings').check();await editor(page).getByTestId('booking-override-reason').fill('Explicit new review');
+  await save(page,h,'booking-retry');const after=await h.snapshot();expect(after.series.length).toBe(before.series.length+1);
+  expect(after.occurrences.filter(row=>!row.isException).every(row=>row.description===`${s.description} retained draft reviewed`)).toBe(true);
+});
+
+test("[P0] 15.2-E2E-008 actual resource drag and resize proposals survive following scope and persist",async({resourcePage:page,bookingSeries:h})=>{
+  await page.setViewportSize({width:1440,height:1000});const s=await h.seed('gesture-series');await signIn(page,s);
+  await scheduling(page);await page.getByTestId('scheduling-view-resources').click();await expect(page.getByText('Läser planering…',{exact:true})).toHaveCount(0);
+  const source=page.getByTestId(`resource-row-${s.assigneeId}`).getByTestId(`scheduling-booking-${s.existingOccurrenceId}`);
+  const destination=page.getByTestId('resources-slot').and(page.locator(`[data-person="${s.replacementAssigneeId}"][data-start="2026-11-02T10:00:00.000000Z"]`));
+  await dragSeriesProposal(page,source,destination);
+  await expect(scopeDialog(page).getByRole('radio',{name:'Detta och kommande',exact:true})).toBeEnabled();
+  await scopeDialog(page).getByRole('radio',{name:'Detta och kommande',exact:true}).check();await scopeDialog(page).getByTestId('booking-series-scope-confirm').click();await ready(page,8);
+  await expect(editor(page).getByTestId('booking-start')).toHaveValue('2026-11-02T11:00');await expect(editor(page).getByTestId('booking-end')).toHaveValue('2026-11-02T12:00');
+  await expect(editor(page).getByTestId(`booking-assignee-option-${s.replacementAssigneeId}`)).toBeChecked();await save(page,h);
+  const moved=await h.snapshot();expect(moved.occurrences.every(row=>row.assigneeIds.length===1&&row.assigneeIds[0]===s.replacementAssigneeId&&row.startsAt.endsWith('T10:00:00.000000Z')&&row.endsAt.endsWith('T11:00:00.000000Z'))).toBe(true);
+  await scheduling(page);await page.getByTestId('scheduling-view-resources').click();await expect(page.getByText('Läser planering…',{exact:true})).toHaveCount(0);
+  const current=slot(moved,'2026-11-02');
+  const resize=page.getByTestId(`resource-row-${s.replacementAssigneeId}`).getByTestId(`scheduling-booking-${current.id}`).getByTestId('scheduling-resize');
+  const end=page.getByTestId('resources-slot').and(page.locator(`[data-person="${s.replacementAssigneeId}"][data-start="2026-11-02T13:30:00.000000Z"]`));
+  await dragSeriesProposal(page,resize,end);await expect(scopeDialog(page).getByRole('radio',{name:'Detta och kommande',exact:true})).toBeEnabled();
+  await scopeDialog(page).getByRole('radio',{name:'Detta och kommande',exact:true}).check();await scopeDialog(page).getByTestId('booking-series-scope-confirm').click();await ready(page,8);
+  await expect(editor(page).getByTestId('booking-start')).toHaveValue('2026-11-02T11:00');await expect(editor(page).getByTestId('booking-end')).toHaveValue('2026-11-02T15:00');await save(page,h);
+  expect((await h.snapshot()).occurrences.every(row=>row.startsAt.endsWith('T10:00:00.000000Z')&&row.endsAt.endsWith('T14:00:00.000000Z'))).toBe(true);
+});
+
+test("[P0] 15.2-E2E-009 effective inactive template assignee remains visible and removable for following edit",async({resourcePage:page,bookingSeries:h})=>{
+  const s=await h.seed('retained-assignee');await signIn(page,s);const before=await h.snapshot();
+  await openOccurrence(page,slot(before,'2026-11-02'),'Detta och kommande');
+  const retained=editor(page).getByTestId(`booking-assignee-option-${s.assigneeId}`);await expect(retained).toBeVisible();await expect(retained).toBeChecked();
+  await retained.click();await expect(retained).toHaveCount(0);await editor(page).getByTestId(`booking-assignee-option-${s.replacementAssigneeId}`).check();await ready(page,8);await save(page,h);
+  const after=await h.snapshot();expect(after.occurrences.every(row=>row.assigneeIds.length===1&&row.assigneeIds[0]===s.replacementAssigneeId)).toBe(true);
+  const target=h.attempts().at(-1)!.proposedSeriesId!;const defaults=after.rawOwnedRows!.booking_series!.find(row=>row.id===target)!.defaults as {assigneeIds:string[]};
+  expect(defaults.assigneeIds).toEqual([s.replacementAssigneeId]);
 });

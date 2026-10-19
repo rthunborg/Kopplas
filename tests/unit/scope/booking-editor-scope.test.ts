@@ -17,7 +17,7 @@ test("[P0] 14.4-GOV-001 active resources command rejects E15 fields while schedu
   assert.equal(scheduling?.status, "active");
   assert.deepEqual(scheduling?.navItems, [{route:"/scheduling",group:"primary",requiredCapability:"Bookings.View"}]);
   for (const surface of ["tenantTables", "widgets", "notificationCategories", "publicSurfaces", "fileOwnerTypes"] as const) {
-    assert.deepEqual(scheduling?.[surface], [], surface);
+    assert.deepEqual(scheduling?.[surface], surface === "tenantTables" ? ["booking_series"] : [], surface);
   }
   const input = {...booking(),commandId: "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"};
   assert.equal(validateCreateBooking(input).ok, true);

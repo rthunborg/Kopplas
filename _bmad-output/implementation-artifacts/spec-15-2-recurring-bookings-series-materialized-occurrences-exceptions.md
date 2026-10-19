@@ -2,10 +2,10 @@
 title: '15.2 — Recurring Bookings — Series, Materialized Occurrences, Exceptions'
 type: feature
 created: '2026-10-19'
-status: ready-for-dev
+status: in-review
 review_loop_iteration: 0
-followup_review_recommended: false
-baseline_revision: '33c68c5aef5b75f96cf0ca5c086ebe911631db55'
+followup_review_recommended: true
+baseline_revision: '85755eb7cea3affdc77dbe1d30bb18279b614c5a'
 story_key: '15-2-recurring-bookings-series-materialized-occurrences-exceptions'
 context:
   - docs/process/review-order.md
@@ -110,11 +110,37 @@ The complete proposed impact list and overlap classification are in `_bmad-outpu
 
 ## Spec Change Log
 
+Historical preparation record (preserved; current Round1 triage is below).
+
 No review loop has run. This is a new planning contract, with no prior 15.2 approved kernel to amend.
 
 2026-10-19 — Bounded post-integration companion amendment at33c68c5a (preparation only): Root authorized source-baseline/code-map/technical companion reconciliation after coherent E16 integration. Correct the obsolete latest-finalizer reference and bind current per-job facts, null-versus-empty semantics,13-field/domain/version invariants, complete affected-ID batch projection and additional series metadata digest. Avoid building from obsolete scalar job facts, cross-protocol proof reuse or per-booking committed loops. KEEP the exact intent block, original9tasks/8ACs/source AC sketch, original76 evidence,15.1 kernel/history and development-versus-release gates. No implementation review round or approval is manufactured.
 
 ## Review Triage Log
+
+### 2026-10-20 — Review pass
+
+- intent_gap: 0
+- bad_spec: 0
+- patch: 8: (high 4, medium 4, low 0)
+- defer: 0
+- reject: 1: (high 0, medium 0, low 1)
+- dismissed: none
+- addressed_findings:
+  - `[high]` `[patch]` R1-01 cached series identity/version after stale preview/save — current metadata reload retains draft, clears admission and fails closed; actual TSX ports plus GLK007 PASS9.907s.
+  - `[medium]` `[patch]` R1-02 following scope drops explicit gesture — separate proposal composed over defaults; Workspace unit and actual native drag/reassign+resize GLK008 PASS9.817s with SQL readback.
+  - `[high]` `[patch]` R1-03 requested date overwritten — forward rule start stays independent of nominal cutoff; genuinely changed earlier coordinates reject, inherited/end-only anchor compatibility and entered-date rejection pass actual planner/editor tests.
+  - `[medium]` `[patch]` R1-04 hidden retained template assignee — effective selected fallback is visible/removable; GLK009 PASS5.439s includes replacement, preview, saved defaults and independent SQL.
+  - `[high]` `[patch]` R1-05 protected archived work-role rejection — immutable forward106 narrowly retains unchanged historical protected role; actual105 REAL020 RED1F then106 GREEN1P includes fresh inactive-role denial and no-write snapshot.
+  - `[high]` `[patch]` R1-07 whole-successor lower lineage bound — planner and forward106 validate requested/effective rule plus every signed row; normal-JWT REAL021 PASS proves forged-overlay denial/zero writes and valid bounded edit.
+  - `[medium]` `[patch]` R1-08 moved-pivot production coverage — checked occurrence edit crosses nominal prefix, then actual planner/checked split REAL022 PASS preserves exact microseconds, UUIDs and prefix/suffix ownership.
+  - `[medium]` `[patch]` R1-09 date-only all-day caller coverage — actual editor converter through validation/expansion matches independent spring/fall midnight/exclusive-end UTC literals.
+- Rejected R1-06: conservative unknown per-option series labels make no false availability claim; complete authoritative warnings/review gates remain. No enhancement scope added.
+- Follow-up review recommendation: true (patched high4/medium4; medium score12). Same independent High targeted source/binding review passed after Unicode restoration (82offline checks) and009-only action correction (42offline checks); no new broad round.
+- Original triage78aaa6 and all six review reports remain immutable. Unicode15literal/17line restoration and009 detaching-checkbox action binding are targeted follow-up history; original failed runs remain failed. GLK changed essential flow has actual2+1 passes, never relabeled one3-pass run.
+- Source checkpoint and fresh exact-head CI/fullDB/RLS/empty replay/physical Storage/pilot remain pending. No development-complete/done or release-ready claim.
+
+### Historical preparation triage record (preserved)
 
 No implementation/code review has run. Parent-owned independent specification validation is required before approval/build; no broad review round is consumed by this plan.
 
@@ -132,6 +158,8 @@ The existing finalizer validates/replaces tenant conflict output for one candida
 
 ## Verification
 
+Historical planning verification record; current executed evidence is in Implementation Verification below.
+
 Planning-only run: process/artifact checks only; zero runtime suites, zero scaffolds/ATDD or resources. Future development follows current .github/workflows/ci.yml/verify:development plus required exact-head CI. Do not copy historical native Supabase lifecycle commands into agent execution; use resource-guard/local-setup and allocated isolated resources. Never target demo.
 
 - pnpm typecheck; pnpm lint; pnpm run test:unit; pnpm build; pnpm run verify:bundle-containment (after build), source containment/lockfile/audit and applicable process checks — expected before development completion: every applicable static/build check passes; none executed in this plan.
@@ -144,6 +172,23 @@ Development completion reconciles the October 19 owner policy: focused integrity
 
 ## Auto Run Result
 
+Status: in-review
+Blocking condition: Reviewed source checkpoint and fresh exact-head required CI (fullDB/RLS, empty migration+seed replay, physical recovery Storage and pilot performance) remain pending; no development-complete or done claim.
+
+Current P5 author result —2026-10-20: approved kernel013b7ae0d0614d20dbc021885786ca1803976e10bd634ddc0bc3791b19de4ee1 and original9tasks/8ACs/source AC sketch are unchanged. Round1 six independent layers completed;8patches addressed (4high/4medium; medium score12; followup true),0intent_gap/0bad_spec/0defer/1reject. Targeted High fix/binding follow-ups passed; all accepted fixes now have the actual focused evidence mapped below. Source checkpoint is NOT done; Root owns Git/current-head CI and final delivery admission.
+
+- Summary: complete finite materialization, protected exceptions/tombstones and nominal lineage; stale following recovery, explicit gesture/date intent and visible retained assignee fixes; narrowly reviewed forward106 role/bound guards.
+- Current build/source: GLKBSX62N9CbTViZM7YrP,433source manifestc0aadd3c/inventoryadef0cc8; current12path source-test freeze6666a3b1. Both first-applied migrations1800SHA24f and220000SHAc55 permanently immutable.
+- Review findings breakdown:8patched (high4/medium4),0deferred findings,1nonconsequential reject. Follow-up review recommendation:true, medium score12; targeted High82+42offline checks passed, without resetting broad round1.
+- Verification performed: focused42P0F0S/lint0/tsc0/build0/public/bundle0; actual106 integrity0201P plus021/0222P; changed essential browser007/0082P then0091P,0skips/flakies/globalerrors in their passing receipts. Original105 RED and2P1F browser result remain preserved. Historical fullDB1824P52S/RLS800P14S and earlier essential receipts retain explicit dependency limits, not current-head CI credit.
+- Pending development evidence: reviewed bounded source checkpoint, fresh exact-head standard CI/fullDB/RLS/empty replay/physical Storage/pilot and Root delivery gate. Delivery evidence_revision remains null until actual checkpoint; current worktree is not a revision.
+- Deferred release validation:3owned delivery items (QA/UX exhaustive visual/device matrix; QA/UX manual accessibility/daylight/exploration; Product/Architect representative scheduling performance). Frontmatter deferred findings remains0; release validation is separate and never passed by proxy.
+- Exact evidence and file inventory: build-intent-matrix.md, build-change-inventory.json, build-round1-author-verification.json and pending delivery record. No PR/push/deployment/Root state or sprint mutation by author.
+
+### Historical preparation and dispatch record (preserved; old status superseded)
+
+Current implementation dispatch —2026-10-19: Root approved P3 after independent High amended-spec validation and exact-head integration CI39304828183 passed all five required jobs. P4 ATDD completed at current implementation baseline 85755eb7cea3affdc77dbe1d30bb18279b614c5a. Root expressly authorizes implementation of this approved candidate, independent review and required verification now; earlier unapproved/planning-halt/pending-CI prose below is historical and does not reimpose those released gates. The narrow Coordinator allocation in current ownership companion stands. Read the canonical ATDD checklist _bmad-output/test-artifacts/atdd-checklist-15-2-recurring-bookings-series-materialized-occurrences-exceptions.md and its actual adapter contracts;110 skipped scaffolds are not coverage. Preserve their original receipts and activate meaningful real-path checks. Ask the parent Build Auto delegate for concrete DB/browser runtime qualification before mutable verification; old Root resource IDs are stopped and must not be reused. No unguarded service launch, reset/reseed, prior one-shot ACL correction replay, foreign checkout/resource, protected capacity/permission/auth-surface edit, push/branch/PR/deployment or Root canonical state/sprint/report/aggregate write is authorized. No additional protected shared path beyond named current allocation: identify any actual required delta to the parent before writing. This latest explicit dispatch supersedes prior preparatory pending language only; intent kernel/tasks/ACs and all verification constraints remain intact.
+
 Status: ready-for-dev
 Blocking condition: none for preparatory specification amendment; current candidate remains unapproved and P3 open pending Root exact-head CI and distinct High validation. Implementation requires actual P3 approval and reconciled concrete ownership/resource allocation before overlapping writes.
 
@@ -154,3 +199,73 @@ Runtime for this amendment:0suites/0cases executed; no coverage claim, ATDD/scaf
 Current approved-kernel metadata: no15.2 approved kernel; canonical spec_approved=false and phases[0,1,2] remain Root-owned. The candidate kernel remains013b7ae0d0614d20dbc021885786ca1803976e10bd634ddc0bc3791b19de4ee1; preservation is checked against original bytes, not forced. Original15.1 approved kernel035ee9683e8b3e6e0420204a3ddfa8d81b0dcb6a47aa12e638673859d60cc234/history are unchanged. Root will reconcile CI39304828183 and independent review before P3 approval; ready-for-dev is not authorization to invoke implementation.
 
 Completion hook: planning exit only under docs/process/review-order.md. Future implementation author writes one final Suggested Review Order after actual source/evidence; no completed implementation trail is manufactured here. Development complete remains distinct from release ready/deployment approval.
+
+
+## Implementation Verification
+
+Author Round1 bounded-fix refresh,2026-10-20. Approved original intent/kernel/tasks/ACs and Design Notes are unchanged. Eight accepted Round1 items are implemented in frozen source: stale preview/save metadata reload with retained draft and cleared admission; explicit following gesture composition; requested forward date versus nominal ownership; visible retained template assignee; protected historical-role retention; whole-successor lower lineage guard; actual production moved-pivot coverage; date-only all-day converter coverage. Conservative unknown per-option labels were rejected as nonconsequential, not expanded.
+
+Current actual focused verification:42P0F0S using actual planner/TSX hook-action ports/additive Workspace+converter tests; lint0 and typecheck0. Original RED and intermediate failures remain preserved. The single successor production build GLKBSX62N9CbTViZM7YrP passed0 with public binding inspection and bundle containment0. Frozen433source inventory adef0cc8/canonical manifest c0aadd3c. Unit boundaries are synthetic and give no SQL/RLS/browser credit. Targeted review caught test-only Unicode binding corruption;15literal values across17lines were restored to exact raw-before text, preserving all new007-009 assertions. Original c76/206 and927packet remain immutable; current test hashes5e89/3dc and wrapper1a873f83/manifestd908 use the same GLK app build. Same targeted High follow-up passed0findings with82offline checks; no browser credit.
+
+First-applied1800SHA24f remains permanently immutable. Forward220000SHA c55d1de1 changes only existing row helper/finalizer bodies for narrow protected-role retention and predecessor bounds. Root actual105 REAL020 RED1F/0P is preserved; reviewed forward106 is committed/verified, and same REAL020 GREEN1P0F reached all positive/negative assertions. Both first-applied migrations are permanently immutable. Root focused REAL021-022 passed2P0F; actual GLK007 stale recovery and008 native gesture cases passed;009 failed after a successful removal click while awaiting same-node uncheck. Only009 test binding now uses one click+explicit absence, with later persistence checks retained. Same targeted High009 follow-up passed42/42; strict009 now passed1P0F with all persistence assertions, while source checkpoint/current-head CI remain pending; no development-complete claim is made.
+
+Prior local fullDB1824P/52S (RLS800P/14S subset), series unique4+1+1 and existing-host7+2 remain exact historical results. Four app dependencies changed in this batch; unchanged reader alone does not establish their current usability. OldTfRq107-artifact preservation544777c9 retains actual raw source/build/config/bootstrap/receipts. Matrix `build-intent-matrix.md` maps each approved behavior to actual execution and limits. Fresh reviewed-checkpoint exact-head CI/fullDB/RLS/empty replay/physical Storage/pilot, delivery gate and deferred release work remain explicit; author launched no services or fixtures.
+
+## Suggested Review Order
+
+Author: implementation/fix author. Refreshed against frozen Round1 twelve-path Unicode-current packet6666a3b1 (originalff996b68/Unicode46bb preserved) and build GLKBSX62N9CbTViZM7YrP; this guide is not approval.
+
+### Following edits retain visible intent and refresh stale ownership
+
+AC2/3/8 keep the explicit drag/resize/reassignment proposal separate from stored defaults, show effective retained assignees, and reload current source ownership/version after stale preview or save. Draft values survive; receipt, review, reason, selection and unsent command identity reset, while missing metadata fails closed instead of becoming create authority.
+
+- `src/components/resources/BookingEditor.tsx:23` — `export function BookingEditor`: composes effective draft, admission and metadata recovery.
+- `src/components/scheduling/SchedulingWorkspace.tsx:144` — `function edit(proposal: BookingProposal`: preserves explicit gesture fields separately.
+- `src/features/resources/booking-editor-input.ts:24` — `export function followingBookingDraft`: combines stored defaults with explicit proposal only.
+- `tests/unit/features/resources/booking-series-editor.test.ts:46` — `for(const origin of ["preview","save"]`: exercises actual TSX stale recovery through action ports.
+
+### Nominal ownership and requested calendar dates stay distinct
+
+AC1/4/5 honor forward requested starts and reject genuinely changed earlier coordinates. Approved Design Notes127 retains inherited scheduling anchors with unchanged or end-only changes from the nominal pivot; the editor independently rejects every entered pre-pivot date, including the ambiguous stored anchor. Date-only all-day controls pass through real conversion, validation and expansion across both DST transitions.
+
+- `src/features/scheduling/recurrence.ts:38` — `export function expandRecurrence`: expands the complete finite local calendar.
+- `src/server/bookings/series-conflicts.ts:55` — `export function planBookingSeries`: separates rule start, nominal cutoff and lineage bounds.
+- `tests/unit/server/bookings/series-plan.test.ts:44` — `Round1 unchanged stored rule with pure field change`: guards original suffix/end compatibility in the actual planner.
+- `tests/unit/features/resources/booking-editor-input.test.ts:124` — `Round1 date-only all-day converter`: checks literal spring/fall UTC boundaries through the actual caller.
+
+### Forward SQL retains protected history without expanding assignment authority
+
+The first-applied1800 migration is immutable. Forward220000 narrowly allows an unchanged existing protected work-role reference and enforces predecessor lower bounds on requested/effective rules plus every complete row; existing protected-payload equality, auth, locks, proof domains, replay, outcomes and audit remain intact. AC4/5/6 require qualified106 evidence: REAL020 GREEN1P now proves both retention and denial, and021/022 passed2P0F;105 RED stays a failure.
+
+- `supabase/migrations/20261019220000_booking_series_integrity_followup.sql:2` — `create or replace function public.booking_series_row_internal`: retains only existing protected historical role references.
+- `supabase/migrations/20261019220000_booking_series_integrity_followup.sql:103` — `if source.predecessor_id is not null`: rejects requested-rule or complete-row lower-bound bypasses.
+- `tests/integration/commands/booking-series.int.test.ts:1066` — `15.2-INT-REAL-020`: pairs protected retention with inactive-new-assignment denial.
+- `tests/integration/commands/booking-series.int.test.ts:1089` — `15.2-INT-REAL-021`: tests real JWT signed-overlay denial and zero durable delta.
+
+### One current-facts transaction still owns conflicts and replay
+
+AC3/6/7 continue using the sole detector over the complete proposed overlay and one current-authority tenant gate. Separate proof/review domains, group completeness and atomic selected acceptance/outcome/audit are preserved; historical actual audit-failure rollback remains relevant to unchanged transaction stages, with fresh exact-head CI still required.
+
+- `src/server/bookings/series-attestation.ts:5` — `export const SERIES_ATTESTATION_DOMAIN`: separates batch proof authority.
+- `src/server/bookings/series-conflicts.ts:111` — `export function deriveSeriesConflicts`: derives whole-overlay associations through the sole detector.
+- `supabase/migrations/20261019180000_recurring_booking_series.sql:151` — `create function public.finalize_booking_series`: preserves the immutable first-applied transaction baseline.
+- `tests/integration/commands/booking-series.int.test.ts:847` — `15.2-INT-REAL-007`: proves last-stage failure rolls back all durable collections.
+
+### Match essential host proof to actual execution and unchanged dependencies
+
+Public occurrence metadata remains behind existing RLS; no template/outcome grants change. New real-host cases exercise changed stale recovery, native drag/resize following proposals and retained-assignee removal. Actual GLK007/008 plus strict009 prove all changed flows;009 uses one native click and explicit disappearance because the effective fallback control intentionally detaches after deselection. Historical genuine response-loss/phone/role receipts remain scoped history; Root qualified every mutable lane.
+
+- `src/features/resources/bookings-read.ts:17` — `const BOOKING_COLUMNS`: projects existing safe occurrence metadata without private outcomes.
+- `tests/e2e/booking-series.e2e.spec.ts:410` — `15.2-E2E-007`: asserts fresh stale recovery, invalidated review and explicit retry.
+- `tests/e2e/booking-series.e2e.spec.ts:431` — `15.2-E2E-008`: uses native resource drag/resize and independent persisted facts.
+- `tests/e2e/booking-series.e2e.spec.ts:452` — `15.2-E2E-009`: asserts effective inactive assignee visibility and durable removal.
+
+Evidence: `_bmad-output/test-artifacts/story15-2/build-intent-matrix.md` maps all seven AC/invariant rows to actual receipts. Current42P is unit-only; static/build/public/bundle0.105 REAL020 RED1F and106 integrity1+2P remain separate runs; GLK essential2+1P are actual passes, not one3-pass command.
+
+Limits: GLK changed essential cases passed2+1 across preserved commands; original009 pre-save failure remains failed. Fresh reviewed-checkpoint exact-head CI/physical Storage/pilot and delivery reconciliation remain required. No combined current full-suite result is invented. Historical37command/14RLS scaffolds and physical Storage skip are no coverage. Synthetic action ports do not prove auth, RLS or browser interaction; exhaustive visual/device/manual and representative scheduling performance remain deferred with named owners/next actions. No development-done or release-ready claim is made.
+
+### Review Findings
+
+**Round 1 of 3**
+
+Configured Round1 completed:8accepted patches addressed (4high/4medium; medium score12; followup true),1nonconsequential reject,0intent gap/bad spec/defer. Same High targeted source/binding/Unicode/009 follow-ups passed. Dated canonical Review Triage Log above maps each fix to actual evidence. Source checkpoint and exact-head CI remain pending; development-done is not claimed.

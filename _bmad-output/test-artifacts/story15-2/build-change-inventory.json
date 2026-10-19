@@ -1,0 +1,348 @@
+{
+  "status": "Round1-reviewed-local-focused-verified-own-file-inventory; sourcecheckpoint-and-currentCI-pending",
+  "baseline": "85755eb7cea3affdc77dbe1d30bb18279b614c5a",
+  "build_id": "GLKBSX62N9CbTViZM7YrP",
+  "source_manifest_sha256": "c0aadd3c19e468fced582c92a16ab0ab2388df64df04890f18218cad96a2a29d",
+  "files": [
+    {
+      "path": "src/components/resources/BookingEditor.tsx",
+      "sha256": "8f18dc656cf7f2820852b8179ec12419838533f1b019e29de8014585e3bf298a",
+      "tracked_delta": true,
+      "kind": "product"
+    },
+    {
+      "path": "src/components/resources/BookingEntry.tsx",
+      "sha256": "caacd5360dd81e0187dc09791ae06467c67d9a76cc7eaf20be284d7dcbf5a608",
+      "tracked_delta": true,
+      "kind": "product"
+    },
+    {
+      "path": "src/components/resources/BookingRecurrenceFields.tsx",
+      "sha256": "ad47ee793e6803dc2ab1007d1b45594b34da3e376f44abe43a3077c519e166a4",
+      "tracked_delta": false,
+      "kind": "product"
+    },
+    {
+      "path": "src/components/resources/RecurrencePreview.tsx",
+      "sha256": "62bc2bd8ae7596d0e16ef9f46efdb2de5ee43d50c1aeadb8584874592f5b877b",
+      "tracked_delta": false,
+      "kind": "product"
+    },
+    {
+      "path": "src/components/scheduling/BookingBlock.tsx",
+      "sha256": "f39eeb587d28d86064b26fe90e073e6c57b396cb95b260c7413eedde37383bf0",
+      "tracked_delta": true,
+      "kind": "product"
+    },
+    {
+      "path": "src/components/scheduling/SchedulingWorkspace.tsx",
+      "sha256": "1ee89cbf2c1680bbe78b07e93bb290fb28c02731a7211888a3bd5540f79c2701",
+      "tracked_delta": true,
+      "kind": "product"
+    },
+    {
+      "path": "src/features/resources/booking-action-state.ts",
+      "sha256": "8d595c898d98dcb29c77c80eb9fd210d6d4036465525d36a07288c81a395bdfa",
+      "tracked_delta": true,
+      "kind": "product"
+    },
+    {
+      "path": "src/features/resources/booking-editor-input.ts",
+      "sha256": "987d15ff7a7c0a4585e797aae4e8ec37493d57423faaf99c66563e23fea30820",
+      "tracked_delta": true,
+      "kind": "product"
+    },
+    {
+      "path": "src/features/resources/booking-series-actions.ts",
+      "sha256": "33b07599eef39890e093eadbb2c8a7265b3b2417043b344fbce73dd40648c15e",
+      "tracked_delta": false,
+      "kind": "product"
+    },
+    {
+      "path": "src/features/resources/booking-series-state.ts",
+      "sha256": "7fc75df78286bddc4b6dae9328484fffa06f6a6b633822528ace1a0932db9aa0",
+      "tracked_delta": false,
+      "kind": "product"
+    },
+    {
+      "path": "src/features/resources/booking-types.ts",
+      "sha256": "54398155fa56f58fa80de1acc003b55331c410fee878ab0d808d17704f4599bb",
+      "tracked_delta": true,
+      "kind": "product"
+    },
+    {
+      "path": "src/features/resources/bookings-read.ts",
+      "sha256": "c9ba98144944192b06ed2e12d9394dd9ca904642426acaffc398fd1982dfc205",
+      "tracked_delta": true,
+      "kind": "product"
+    },
+    {
+      "path": "src/features/scheduling/recurrence-types.ts",
+      "sha256": "f9293966528330be1e83b883e9da1b0b05e5b879675c7c2d8cba10d029fa1b86",
+      "tracked_delta": false,
+      "kind": "product"
+    },
+    {
+      "path": "src/features/scheduling/recurrence.ts",
+      "sha256": "1eae2f52476ed6309f88347ebd9b44b7c6a171de47d02414f006adee40f8db9a",
+      "tracked_delta": false,
+      "kind": "product"
+    },
+    {
+      "path": "src/scope/manifest.ts",
+      "sha256": "3b9f6b0669909832f1867d79a15de6c72a85bf77908cabc5f88e76ef12e7c0bb",
+      "tracked_delta": true,
+      "kind": "product"
+    },
+    {
+      "path": "src/server/bookings/series-attestation.ts",
+      "sha256": "898b6fea3c851f723b3977df6a90b3ddcd141459c54a945c3806d9aa2c954cb5",
+      "tracked_delta": false,
+      "kind": "product"
+    },
+    {
+      "path": "src/server/bookings/series-conflicts.ts",
+      "sha256": "a5f7bf7257f6896570727355137c3b5abc2416f0ba6f90acd0c5df6ac78b0852",
+      "tracked_delta": false,
+      "kind": "product"
+    },
+    {
+      "path": "src/server/commands/bookings/create-booking-series.ts",
+      "sha256": "ec6af84ed6b8360299e47273e1eb3d81d582c21096f4458789bc4dc28c490eba",
+      "tracked_delta": false,
+      "kind": "product"
+    },
+    {
+      "path": "src/server/commands/bookings/series-validation.ts",
+      "sha256": "8bc457853b735ae9ac55ee8a66768d7cb504b8fd45828f4134e2e1dd99c4e943",
+      "tracked_delta": false,
+      "kind": "product"
+    },
+    {
+      "path": "src/server/commands/bookings/update-booking-series.ts",
+      "sha256": "39099e508df9972aa7cdaf2cafb2a962132acc7a26a50cbd1035f7306cef8a4a",
+      "tracked_delta": false,
+      "kind": "product"
+    },
+    {
+      "path": "src/server/commands/envelope.ts",
+      "sha256": "b1881bf7e77f583b20cfe8ecb9cc6fc3bedfe6ce1e2475f062381e6a791fca61",
+      "tracked_delta": true,
+      "kind": "product"
+    },
+    {
+      "path": "src/server/read-models/scheduling.ts",
+      "sha256": "8b6c72dd0384937d3eb8de3cb7bf33238218474fac78bbe7680dc985e9ced098",
+      "tracked_delta": true,
+      "kind": "product"
+    },
+    {
+      "path": "supabase/migrations/20261019180000_recurring_booking_series.sql",
+      "sha256": "24f6982758c9f46c61d3f4fd34ebaaf599a809c8cf6c72e8223544aa73c9f1bd",
+      "tracked_delta": false,
+      "kind": "schema"
+    },
+    {
+      "path": "supabase/migrations/20261019220000_booking_series_integrity_followup.sql",
+      "sha256": "c55d1de17b3829e97212076d2627f5b22645126894a8deb7af4b80596b45b44d",
+      "tracked_delta": false,
+      "kind": "schema"
+    },
+    {
+      "path": "tests/e2e/booking-series.e2e.spec.ts",
+      "sha256": "2580746d53f4cdecf8c69aef9811e9c9cfb2ce0570b08e46fcc944b159916c39",
+      "tracked_delta": true,
+      "kind": "test-or-fixture"
+    },
+    {
+      "path": "tests/e2e/scheduling-views.atdd.e2e.spec.ts",
+      "sha256": "8fb6f6b48e34040c64460c58bdc32f2f65e653e3ee74a18f2ef4f8b9ffb8b7fe",
+      "tracked_delta": true,
+      "kind": "test-or-fixture"
+    },
+    {
+      "path": "tests/e2e/support/booking-series-atdd.ts",
+      "sha256": "3dc66c9d0f408d472ee1aa91406ba43ead533bf7402bf74331ae6b1a2afbc197",
+      "tracked_delta": true,
+      "kind": "test-or-fixture"
+    },
+    {
+      "path": "tests/integration/commands/booking-editor.int.test.ts",
+      "sha256": "b4fc492ffa2b2bde923f73830ed1ca23a4b4f53b6d40a928d5d7d020b0f6f102",
+      "tracked_delta": true,
+      "kind": "test-or-fixture"
+    },
+    {
+      "path": "tests/integration/commands/booking-series.int.test.ts",
+      "sha256": "02e56d8dcc25ba3394ef9ed1b2f016aa69dcfe7f9e7d964fd8b7e4bf4bccc0c6",
+      "tracked_delta": true,
+      "kind": "test-or-fixture"
+    },
+    {
+      "path": "tests/integration/components/booking-series.test.ts",
+      "sha256": "c5cb92c96f87a4967104984ba3a8688ee6e83b51cb83e482dcc5837f4fe1e6ec",
+      "tracked_delta": true,
+      "kind": "test-or-fixture"
+    },
+    {
+      "path": "tests/integration/rls/booking-series.rls.test.ts",
+      "sha256": "2533666daf6c0e8107a08f8b1ce1359da25b68f6c396339094330139e74b75d9",
+      "tracked_delta": true,
+      "kind": "test-or-fixture"
+    },
+    {
+      "path": "tests/integration/rls/cross-tenant-isolation.rls.test.ts",
+      "sha256": "0b9e105b00802aa31a8381ac707301ceb3be42f639f7f94d9e1cd07260859b42",
+      "tracked_delta": true,
+      "kind": "test-or-fixture"
+    },
+    {
+      "path": "tests/integration/rls/migration-reset.int.test.ts",
+      "sha256": "424dc91fcb30a4e9e79070e38e36f009128d36383d78738a807c115241941779",
+      "tracked_delta": true,
+      "kind": "test-or-fixture"
+    },
+    {
+      "path": "tests/integration/rls/role-harness.atdd.int.test.ts",
+      "sha256": "18859cf90994edeff6d3bcaad310877df8c485e28a0bf9760c9b2f27c3fe78cf",
+      "tracked_delta": true,
+      "kind": "test-or-fixture"
+    },
+    {
+      "path": "tests/integration/rls/tenant-table-inventory.ts",
+      "sha256": "fffec1f1ed10064666a5c44d7a042738a1c0149d75af1d417b4809c0522430d9",
+      "tracked_delta": true,
+      "kind": "test-or-fixture"
+    },
+    {
+      "path": "tests/support/authz/role-harness.ts",
+      "sha256": "291d73ad15c7a2d7c7cdb02a4b14e4a3c49a37fef62c6e4915eec78ac2734193",
+      "tracked_delta": true,
+      "kind": "test-or-fixture"
+    },
+    {
+      "path": "tests/support/booking-editor-atdd.ts",
+      "sha256": "ec5fec47ff52e008f82b8f1d258bc2f9953093ac9156459dd36fc85a22ce2b4b",
+      "tracked_delta": true,
+      "kind": "test-or-fixture"
+    },
+    {
+      "path": "tests/support/booking-editor-production.ts",
+      "sha256": "bc84ebbdd290bb26b2fcc20815a85b2d0a97210b561760ededea7b5bd2118b01",
+      "tracked_delta": true,
+      "kind": "test-or-fixture"
+    },
+    {
+      "path": "tests/support/booking-series-atdd.ts",
+      "sha256": "7197529d79f8699481e5716df59555ca82010b0c421ec6e657a8cfe947d6db34",
+      "tracked_delta": true,
+      "kind": "test-or-fixture"
+    },
+    {
+      "path": "tests/unit/features/resources/booking-editor-input.test.ts",
+      "sha256": "e0e1225b2b76f8821956071d7c0cb580e9cc496a9a116f9791c1bb8110f9fd7a",
+      "tracked_delta": true,
+      "kind": "test-or-fixture",
+      "provenance": "Authorized additive existing unit companion: following-default/explicit-gesture composition and date-only all-day DST caller coverage; already reviewed/executed in42P focused run and included in current12-path freeze6666a3b1. Metadata-only omission repair after checkpoint preflight native1 aaff2420; no test edit or rerun."
+    },
+    {
+      "path": "tests/unit/features/resources/booking-series-editor.test.ts",
+      "sha256": "9d157a2ea1a3092e6da74b2901ba0685f7f052fc19c13758a5dcff696d4dd577",
+      "tracked_delta": false,
+      "kind": "test-or-fixture"
+    },
+    {
+      "path": "tests/unit/features/resources/booking-series-state.test.ts",
+      "sha256": "72ac0ad786214fef41d07e26e394aacf39cf41e28a0a5e6164a9fbc5596eb3a4",
+      "tracked_delta": true,
+      "kind": "test-or-fixture"
+    },
+    {
+      "path": "tests/unit/features/resources/bookings-read.test.ts",
+      "sha256": "351cf791b34a75db18eabcda99f0dd82d362f7cd0053c6cb29cbfa0202d0d4e0",
+      "tracked_delta": false,
+      "kind": "test-or-fixture"
+    },
+    {
+      "path": "tests/unit/features/scheduling/calendar-components.test.ts",
+      "sha256": "48c4a8be37dad1207548027f58c9bc4ae68dedcadb3d58c117bdf1cbef6c8baa",
+      "tracked_delta": true,
+      "kind": "test-or-fixture",
+      "provenance": "Authorized additive existing unit companion: actual SchedulingWorkspace explicit-proposal propagation; existing15.1 assertions preserved; already reviewed/executed in42P focused run and included in current12-path freeze6666a3b1. Metadata-only omission repair after checkpoint preflight native1 aaff2420; no test edit or rerun."
+    },
+    {
+      "path": "tests/unit/features/scheduling/recurrence.test.ts",
+      "sha256": "80c3134f6550a802ec45b306ab4a841c10a3e4f92a3c8519530d3b43fb6b7742",
+      "tracked_delta": true,
+      "kind": "test-or-fixture"
+    },
+    {
+      "path": "tests/unit/scope/booking-editor-scope.test.ts",
+      "sha256": "b01c3218eadb398f6af83972fdb37bc1c433745379f2589c1b44145291f7d97e",
+      "tracked_delta": true,
+      "kind": "test-or-fixture"
+    },
+    {
+      "path": "tests/unit/scope/manifest-coherence.test.ts",
+      "sha256": "739798607263f8df72514e5067be1706b912124d945c22454508ba063f033cdb",
+      "tracked_delta": true,
+      "kind": "test-or-fixture"
+    },
+    {
+      "path": "tests/unit/scope/manifest-derivations.test.ts",
+      "sha256": "9a6900af64b65d0780c1e17bd71cea5948ef5513ed316d5d5169727b4d66ce49",
+      "tracked_delta": true,
+      "kind": "test-or-fixture"
+    },
+    {
+      "path": "tests/unit/scope/manifest-shape.test.ts",
+      "sha256": "e7fde3135f53d9772b4dc8318bfadcf2ac1e28ba462dbe3fb2f4b6290b789305",
+      "tracked_delta": true,
+      "kind": "test-or-fixture"
+    },
+    {
+      "path": "tests/unit/scope/resources-activation.atdd.test.ts",
+      "sha256": "ff94541d9da7aeaf431528659cd85806778e012d98d2468811d84b0fba850f26",
+      "tracked_delta": true,
+      "kind": "test-or-fixture"
+    },
+    {
+      "path": "tests/unit/server/bookings/series-plan.test.ts",
+      "sha256": "f9db8d58354dce8b28a408c0d181cfd4bdaa67070fc382d893386f216fc35d27",
+      "tracked_delta": false,
+      "kind": "test-or-fixture"
+    },
+    {
+      "path": "tests/unit/support/booking-editor-sql-inventory.test.ts",
+      "sha256": "abbc9b99eef31bb385705e77a3bce532dc63fbd419bd9bf723527d425be47d28",
+      "tracked_delta": false,
+      "kind": "test-or-fixture"
+    }
+  ],
+  "ownership": "All listed code/test delta is author implementation plus specifically reconciled shared map/enrollment/inventory/INT001 allocations. Preserve existing E16 jobs/null-empty/proof/role probes; no permission/capacity/package/lock/env/seed/Compose change. Root preparation/aggregate/state/Git artifacts excluded.",
+  "publication_limit": "Ignored runtime/bootstrap/private-binding/receipt packets are local verification provenance, not production source or automatic publication scope. All first-applied SQL24f bytes frozen.",
+  "pending": "Configured product review, reviewed source checkpoint, fresh exacthead CI/physical Storage/pilot and Root delivery gate before done.",
+  "local_essential_status": "passed across preserved4+1+1 series and7+2 existing host cases; no single all-pass run fabricated",
+  "round1_source_test_freeze": {
+    "path": ".env.epic15.mail-runtime/story-15-2-round1-author-fixes-25d131e9-9b87-4f9e-83cd-4c9bcfa2e330/source-test-freeze-009-current.json",
+    "sha256": "6666a3b1cdbf4178543fadb78fba9199b9e33c5fa19b3c08c072d6b16a39024b"
+  },
+  "historical_inventory": ".env.epic15.mail-runtime/story-15-2-round1-author-fixes-25d131e9-9b87-4f9e-83cd-4c9bcfa2e330/before-round1-trail/_bmad-output/test-artifacts/story15-2/build-change-inventory.json",
+  "review_round": 1,
+  "addressed_patch": 8,
+  "high": 4,
+  "medium": 4,
+  "medium_score": 12,
+  "followup_review_recommended": true,
+  "metadata_correction": {
+    "reason": "Two already-authorized/reviewed additive existing unit companions omitted from50-path handoff inventory",
+    "predecessor_inventory_sha256": "86fe1bd2b656c4ebd3ba2cebded0572ee79cdee0d62da89cd44f0f8cce14cbad",
+    "predecessor_inventory_copy": ".env.epic15.mail-runtime/story-15-2-round1-author-fixes-25d131e9-9b87-4f9e-83cd-4c9bcfa2e330/metadata-inventory-counter-correction-6b2a783a-2769-4120-a05c-2de243e1ec7b/_bmad-output/test-artifacts/story15-2/build-change-inventory.json",
+    "preflight_native1_sha256": "aaff24208a0f2296f71804a10d8d1f5db7e6c1d8a993a01c5e40739fe1820617",
+    "added_paths": [
+      "tests/unit/features/resources/booking-editor-input.test.ts",
+      "tests/unit/features/scheduling/calendar-components.test.ts"
+    ],
+    "source_test_changes": false
+  }
+}

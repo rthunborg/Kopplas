@@ -27,7 +27,7 @@ const booking=(patch:Partial<SchedulingBookingSummary>={}):SchedulingBookingSumm
 const data=(bookings:SchedulingBookingSummary[],canManage=true):SchedulingReadData=>({bookings,canManage,canView:true,actorId:"actor",tenantId:"tenant",ownSelfPersonIds:["person"],error:null,roster:canManage?[{id:"person",label:"Person",workRoleIds:[]}]:undefined});
 
 /** Execute actual TSX handlers with hook cells and event ports, not a browser/DOM substitute. */
-function components(savedPreferences = new Map<string, string>()){
+function components(savedPreferences = new Map<string, string>(), summaryDraft:(booking:SchedulingBookingSummary)=>unknown=()=>{throw new Error("not used by these handler tests");}){
   const require=createRequire(import.meta.url),cells:unknown[]=[],effects:(()=>void|(()=>void))[]=[];
   const listeners=new Map<string,(event:unknown)=>void>();let cursor=0,writes=0;
   const hooks={useRef:(value:unknown)=>{const n=cursor++;return cells[n]??(cells[n]={current:value});},
@@ -39,7 +39,7 @@ function components(savedPreferences = new Map<string, string>()){
     const source=readFileSync(resolve("src/components",file),"utf8");
     const output=ts.transpileModule(source,{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022,jsx:ts.JsxEmit.ReactJSX}}).outputText;
     const compiledModule={exports:{}};
-    runInNewContext(output,{module:compiledModule,exports:compiledModule.exports,require:(name:string)=>modules[name]??require(name),window,queueMicrotask});
+    runInNewContext(output,{module:compiledModule,exports:compiledModule.exports,require:(name:string)=>modules[name]??require(name),window,queueMicrotask,document:{activeElement:null}});
     return compiledModule.exports;
   };
   modules["../resources/BookingConflictPanel"]=load("resources/BookingConflictPanel.tsx");
@@ -51,7 +51,7 @@ function components(savedPreferences = new Map<string, string>()){
   modules["./SchedulingToolbar"]={SchedulingToolbar:marker};
   for(const name of ["ResourcesView","TeamView","CapacityView","PersonalCalendarView","IntervalSelectionDialog"])modules[`./${name}`]={[name]:marker};
   modules["../resources/BookingEditor"]={BookingEditor:marker};
-  modules["../resources/BookingEntry"]={bookingSummaryDraft:()=>{throw new Error("not used by these handler tests");}};
+  modules["../resources/BookingEntry"]={bookingSummaryDraft:summaryDraft};
   const workspace=load("scheduling/SchedulingWorkspace.tsx");
   type Component=(props:Record<string,unknown>)=>ElementNode;
   return {block:block.BookingBlock as Component,slots:schema.CalendarSlots as Component,personal:personal.PersonalCalendarView as Component,
@@ -175,4 +175,17 @@ for(const changed of ["actor","tenant"] as const)test(`transport recovery still 
   assert.equal((toolbar().props.data as SchedulingReadData).tenantId,nextIdentity.tenantId);
   const oldKey=preferences.schedulingPreferenceKey({actorId:"actor",tenantId:"tenant",view:"schema"});
   assert.equal(JSON.parse(saved.get(oldKey)!).input.date,"2026-10-14");
+});
+
+test("Round1 actual Workspace carries only explicit gesture proposal separately into the editor",()=>{
+  const b=booking({seriesId:"series",description:"Exception description"});
+  const c=components(new Map(),value=>({...value,seriesId:null,occurrenceIndex:null,isException:false}));
+  const props={initial:{data:{...data([b]),options:{canManage:true,people:[],workRoles:[],jobs:[],customers:[],facilities:[],contacts:[],error:null}},entitlements:{withheld:[]}},initialInput:input,readAction:async()=>{throw new Error("not used");}};
+  const view=children(c.render(()=>c.workspace(props))).find(node=>typeof node.props.onEdit==="function")!;
+  const proposal={booking:b,startsAt:"2026-10-13T09:00:00Z",endsAt:"2026-10-13T11:00:00Z",assigneeIds:["destination"]};
+  invoke(view,"onEdit",proposal);
+  const editor=children(c.render(()=>c.workspace(props))).find(node=>node.props.bookingId===b.id)!;
+  assert.equal(editor.props.seriesId,b.seriesId);
+  assert.deepEqual({...editor.props.proposal as Record<string,unknown>},{startsAt:proposal.startsAt,endsAt:proposal.endsAt,assigneeIds:proposal.assigneeIds});
+  assert.equal((editor.props.draft as Record<string,unknown>).description,b.description);
 });

@@ -318,6 +318,7 @@ describe("Migration reset green — tenant_foundation objects present (AC1 / R-0
       "audit_events.SELECT",
       "booking_assignees.SELECT",
       "booking_conflicts.SELECT",
+      "booking_series.SELECT",
       "bookings.SELECT",
       "calculation_rows.INSERT",
       "calculation_rows.SELECT",

@@ -5,6 +5,7 @@ import { defaultSchedulingInput, restoreSchedulingPreferences, saveSchedulingPre
 import { projectScheduling, normalizeSlotSelection, EMPTY_SCHEDULING_FILTERS, validateSchedulingReadInput } from "@/features/scheduling/view-model";
 import { stockholmLocalToUtc } from "@/features/scheduling/time-zone";
 import type { BookingFacts } from "@/features/resources/booking-types";
+import type { BookingEditProposal } from "@/features/resources/booking-editor-input";
 import { BookingEditor } from "../resources/BookingEditor";
 import { bookingSummaryDraft } from "../resources/BookingEntry";
 import { SchedulingToolbar } from "./SchedulingToolbar";
@@ -33,7 +34,7 @@ export function SchedulingWorkspace({ initial, initialInput, readAction }: {
   const [input, setInput] = useState(initialInput), [result, setResult] = useState(initial);
   const [toolbar, setToolbar] = useState(initial.data);
   const [loading, setLoading] = useState(false), [reset, setReset] = useState(false), [error, setError] = useState<string | null>(null);
-  const [editing, setEditing] = useState<{ draft: BookingFacts; bookingId?: string } | null>(null);
+  const [editing, setEditing] = useState<{ draft: BookingFacts; bookingId?: string; seriesId?: string | null; proposal?: BookingEditProposal } | null>(null);
   const [interval, setInterval] = useState<SlotSelection | null>(null);
   const sequence = useRef(0), restored = useRef(false), invoker = useRef<HTMLElement | null>(null);
   const pendingFocus = useRef<FocusIntent | null>(null);
@@ -142,7 +143,7 @@ export function SchedulingWorkspace({ initial, initialInput, readAction }: {
   }
   function edit(proposal: BookingProposal, origin?: HTMLElement) {
     invoker.current = origin ?? dragInvoker.current ?? document.activeElement as HTMLElement;
-    setEditing({ bookingId: proposal.booking.id, draft: { ...bookingSummaryDraft(proposal.booking),
+    setEditing({ bookingId: proposal.booking.id, seriesId: proposal.booking.seriesId, proposal:{...(proposal.startsAt ? {startsAt:proposal.startsAt}:{}),...(proposal.endsAt ? {endsAt:proposal.endsAt}:{}),...(proposal.assigneeIds ? {assigneeIds:proposal.assigneeIds}:{})}, draft: { ...bookingSummaryDraft(proposal.booking),
       ...(proposal.startsAt ? { startsAt: proposal.startsAt } : {}), ...(proposal.endsAt ? { endsAt: proposal.endsAt } : {}),
       ...(proposal.assigneeIds ? { assigneeIds: proposal.assigneeIds } : {}) } });
   }
@@ -176,7 +177,7 @@ export function SchedulingWorkspace({ initial, initialInput, readAction }: {
     </>}
     {interval && data.canManage && <IntervalSelectionDialog initial={interval} data={data}
       onClose={() => { setInterval(null); invoker.current?.focus(); }} onSelect={slot => { setInterval(null); select(slot, true); }} />}
-    {editing && data.canManage && data.options && <BookingEditor key={`${editing.bookingId ?? "new"}:${editing.draft.startsAt}:${editing.draft.endsAt}`} open draft={editing.draft} bookingId={editing.bookingId} options={data.options}
+    {editing && data.canManage && data.options && <BookingEditor key={`${editing.bookingId ?? "new"}:${editing.draft.startsAt}:${editing.draft.endsAt}`} open draft={editing.draft} bookingId={editing.bookingId} seriesId={editing.seriesId} proposal={editing.proposal} options={data.options}
       onClose={() => { restoreAfterRefresh(); setEditing(null); void read(input); }} />}
   </main>;
 }

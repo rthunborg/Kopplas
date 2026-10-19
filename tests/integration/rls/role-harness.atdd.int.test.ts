@@ -145,6 +145,7 @@ async function seedEveryTenantTable(tenantId: string, actorId: string): Promise<
   const calendarDay = (await adminQuery<{ id: string }>("insert into public.tenant_calendar_days (tenant_id, local_date, variant) values ($1, '2099-01-01', 'closed') returning id", [tenantId]))[0]?.id;
   if (!personProfile || !personWorkHours || !calendarDay) throw new Error("role harness seed: resource rows missing");
   const bookingRows = await seedBookingReadRows(tenantId, personProfile);
+  const [{id:bookingSeries}] = await adminQuery<{id:string}>("insert into public.booking_series(id,tenant_id,rule,defaults) values(gen_random_uuid(),$1,'{}','{}') returning id", [tenantId]);
   const [jobMember] = await adminQuery<{id:string}>("insert into public.job_members(tenant_id,job_id,person_profile_id) values($1,$2,$3) returning id", [tenantId,job,personProfile]);
   const [jobRole] = await adminQuery<{id:string}>("insert into public.job_required_work_roles(tenant_id,job_id,work_role_id) values($1,$2,$3) returning id", [tenantId,job,workRole]);
   const [jobWindow] = await adminQuery<{id:string}>("insert into public.job_access_windows(tenant_id,job_id,starts_at,ends_at) values($1,$2,'2026-10-12T06:00:00Z','2026-10-12T07:00:00Z') returning id", [tenantId,job]);
@@ -152,6 +153,7 @@ async function seedEveryTenantTable(tenantId: string, actorId: string): Promise<
   const [jobDependency] = await adminQuery<{id:string}>("insert into public.job_dependencies(tenant_id,job_id,prerequisite_job_id) values($1,$2,$3) returning id", [tenantId,job,prerequisite]);
   return {
     ...bookingRows,
+    booking_series: bookingSeries,
     tenants: tenantId, tenant_memberships: membership, membership_roles: membershipRole,
     membership_admin_operations: membershipOperation, audit_events: auditEvent, job_runs: jobRun,
     notifications: notification, notification_preferences: notificationPreference,

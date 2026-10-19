@@ -81,7 +81,7 @@ export async function readScheduling(input: SchedulingReadInput, options: { read
     } catch { return failure(INVALID, actorId, tenantId); }
     if (!canManage && (input.view !== "personal" || [input.filters.personIds,input.filters.workRoleIds,input.filters.jobIds,input.filters.customerIds].some(ids => ids.length))) return failure(DENIED, actorId, tenantId);
     const period = schedulingPeriod(input.date, input.mode);
-    const bookingRows = await rows(client, "bookings", "id,starts_at,ends_at,all_day,work_role_id,job_id,customer_id,facility_id,contact_id,description,status", tenantId,
+    const bookingRows = await rows(client, "bookings", "id,starts_at,ends_at,all_day,work_role_id,job_id,customer_id,facility_id,contact_id,description,status,series_id,occurrence_index,is_exception,nominal_date", tenantId,
       q => q.lt("starts_at", period.end).gt("ends_at", period.start));
     const ids = bookingRows.map(row => uuid(row.id));
     if (new Set(ids).size !== ids.length) throw new ReadFailure("IO");
@@ -92,7 +92,8 @@ export async function readScheduling(input: SchedulingReadInput, options: { read
       const booking: SchedulingBookingSummary = { id: uuid(row.id), startsAt: String(row.starts_at), endsAt: String(row.ends_at), allDay: row.all_day,
         workRoleId: nullable(row.work_role_id), jobId: nullable(row.job_id), customerId: nullable(row.customer_id), facilityId: nullable(row.facility_id), contactId: nullable(row.contact_id),
         description: row.description, status: row.status as "planned" | "cancelled", assigneeIds: [...new Set(assignments.filter(a => a.booking_id === row.id).map(a => uuid(a.person_profile_id)))].sort(),
-        seriesId: null, occurrenceIndex: null, isException: false, openConflictCount: 0 };
+        seriesId: nullable(row.series_id), occurrenceIndex: typeof row.occurrence_index === "number" ? row.occurrence_index : null,
+        isException: row.is_exception === true, nominalDate: nullable(row.nominal_date), openConflictCount: 0 };
       bookingRange(booking);
       if (!booking.assigneeIds.length) throw new ReadFailure("IO");
       return booking;

@@ -1,4 +1,4 @@
-import type { BookingFacts } from "./booking-types";
+import type { BookingOccurrence } from "./booking-types";
 import type { CommandErrorCode } from "@/server/commands/command-errors";
 
 /** Browser DTOs contain display fields only, never detector facts or private proofs. */
@@ -17,7 +17,7 @@ export type BookingEditorOptions = {
   readonly contacts: readonly (BookingOption & { readonly customerId: string; readonly facilityId: string | null })[];
   readonly error: string | null;
 };
-export type BookingSummary = BookingFacts & { readonly id: string; readonly openConflictCount: number };
+export type BookingSummary = BookingOccurrence & { readonly id: string; readonly openConflictCount: number };
 export type BookingHostReadResult = {
   readonly canView: boolean;
   readonly canManage: boolean;

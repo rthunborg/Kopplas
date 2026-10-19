@@ -2,6 +2,10 @@ import { describe, test } from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { baseRule, loadRecurrenceBindings, persistedSlot, type Rule, type Slot } from "../../../support/booking-series-unit-atdd";
+import { recurrenceEditorEndpoints, recurrenceEndpointWithClock, recurrenceRuleFromEditor } from "@/features/resources/booking-editor-input";
+import type { RecurrenceRule } from "@/features/scheduling/recurrence-types";
+import { BOOKING_ACTION_INPUT_LIMIT_BYTES, bookingActionFitsTransport } from "@/features/resources/booking-transport";
+import { openSeriesReceipt, sealSeriesReceipt, SERIES_CLAIM_FIELDS, type SeriesReceipt } from "@/server/bookings/series-attestation";
 
 // RED: T1 production recurrence module is absent. Activate only current task cases.
 // Golden expectations are independent data, never computed through the SUT.
@@ -9,8 +13,40 @@ const golden = JSON.parse(await readFile(new URL("../../../fixtures/golden/sched
   cases: { name: string; input: Rule; expected: Slot[] }[];
 };
 describe("15.2 pure bounded calendar recurrence — AC1", () => {
+  test("series encrypted receipt admits exactly 750000 bytes including authentication overhead and rejects byte plus one",()=>{
+    const secret="synthetic-unit-receipt-key";
+    const receipt:SeriesReceipt={claims:Object.fromEntries(SERIES_CLAIM_FIELDS.map(field=>[field,""])) as SeriesReceipt["claims"],groups:[]};
+    const padding=750000-28-Buffer.byteLength(JSON.stringify(receipt),"utf8");
+    const boundary={...receipt,claims:{...receipt.claims,candidateDigest:"x".repeat(padding)}};
+    const sealed=sealSeriesReceipt(boundary,secret);
+    assert.equal(Buffer.from(sealed,"base64url").length,750000);assert.deepEqual(openSeriesReceipt(sealed,secret),boundary);
+    assert.throws(()=>sealSeriesReceipt({...boundary,claims:{...boundary.claims,candidateDigest:`${boundary.claims.candidateDigest}x`}},secret),/VALIDATION_FAILED|Kontrollera/);
+  });
+  test("plain JSON action framing admits exactly three MiB and rejects byte plus one",()=>{
+    const boundary="x".repeat(BOOKING_ACTION_INPUT_LIMIT_BYTES-4);
+    assert.equal(Buffer.byteLength(JSON.stringify([boundary]),"utf8"),3*1024*1024);
+    assert.equal(bookingActionFitsTransport(boundary),true);assert.equal(bookingActionFitsTransport(`${boundary}x`),false);
+  });
+  test("following editor round trip preserves fractional clocks across a calendar month", () => {
+    const rule:RecurrenceRule={preset:"daily",startDate:"2026-10-12",startTime:"23:30:00.123456",endTime:"00:30:00.654321",endDayOffset:1,allDay:false,timeZone:"Europe/Stockholm",count:3};
+    const endpoints=recurrenceEditorEndpoints(rule,"2026-10-31");
+    assert.deepEqual(endpoints,{start:"2026-10-31T23:30:00.123456",end:"2026-11-01T00:30:00.654321"});
+    assert.equal(recurrenceEndpointWithClock(endpoints.start.slice(0,16),rule.startTime),endpoints.start);
+    assert.equal(recurrenceEndpointWithClock("2026-10-31T21:30",null),"2026-10-31T21:30");
+    const next=recurrenceRuleFromEditor({preset:rule.preset,endMode:"count",count:rule.count!,weekdays:[],allDay:false,...endpoints});
+    assert.equal(next.startTime,rule.startTime);assert.equal(next.endTime,rule.endTime);assert.equal(next.endDayOffset,1);
+    assert.equal(recurrenceRuleFromEditor({preset:"daily",endMode:"count",count:1,weekdays:[],allDay:false,start:"2026-10-12T08:30",end:"2026-10-12T09:30"}).startTime,"08:30:00");
+  });
+  test("microsecond interval within the same local second remains positive",async()=>{
+    const b=await loadRecurrenceBindings();
+    const result=b.expandRecurrence(baseRule({startTime:"07:00:00",endTime:"07:00:00.000001",count:1}));
+    assert.equal(result.ok,true);
+    if(!result.ok)throw new Error("Expected one-microsecond local interval");
+    assert.deepEqual(result.occurrences,[{nominalDate:"2026-10-12",startsAt:"2026-10-12T05:00:00.000000Z",endsAt:"2026-10-12T05:00:00.000001Z"}]);
+    assert.equal(b.expandRecurrence(baseRule({startTime:"07:00:00.000001",endTime:"07:00:00",count:1})).ok,false);
+  });
   for (const sample of golden.cases) {
-    test.skip("[P0] TEA15.2-UNIT-001 " + sample.name, async () => {
+    test("[P0] TEA15.2-UNIT-001 " + sample.name, async () => {
       // Given a finite local calendar preset and independently pinned UTC endpoints.
       const b = await loadRecurrenceBindings();
       // When the shared production expansion executes.
@@ -38,7 +74,7 @@ describe("15.2 pure bounded calendar recurrence — AC1", () => {
     ["nonpositive-interval", { endTime: "07:00:00", endDayOffset: 0 }],
   ];
   for (const [name, patch] of invalid) {
-    test.skip("[P0] TEA15.2-UNIT-001 rejects " + name + " without partial occurrences", async () => {
+    test("[P0] TEA15.2-UNIT-001 rejects " + name + " without partial occurrences", async () => {
       // Given a malformed/unbounded rule, when expanded, then return failure only.
       const b = await loadRecurrenceBindings();
       const result = b.expandRecurrence(baseRule(patch));
@@ -46,7 +82,7 @@ describe("15.2 pure bounded calendar recurrence — AC1", () => {
       assert.equal(Object.hasOwn(result, "occurrences"), false);
     });
   }
-  test.skip("[P0] TEA15.2-UNIT-002 gap-converted nonpositive endpoint rejects entire series with local date", async () => {
+  test("[P0] TEA15.2-UNIT-002 gap-converted nonpositive endpoint rejects entire series with local date", async () => {
     const b = await loadRecurrenceBindings();
     // Both local gap endpoints map to first valid 03:00; no zero-length row may escape.
     const result = b.expandRecurrence(baseRule({ startDate: "2026-03-28", startTime: "02:15:00", endTime: "02:45:00", count: 3 }));
@@ -55,7 +91,7 @@ describe("15.2 pure bounded calendar recurrence — AC1", () => {
     assert.equal(result.localDate, "2026-03-29");
     assert.equal(Object.hasOwn(result, "occurrences"), false);
   });
-  test.skip("[P1] TEA15.2-UNIT-001 previews ten while materializing all twelve without truncation", async () => {
+  test("[P1] TEA15.2-UNIT-001 previews ten while materializing all twelve without truncation", async () => {
     const b = await loadRecurrenceBindings();
     const result = b.expandRecurrence(baseRule({ count: 12 }));
     assert.equal(result.ok, true);
@@ -65,7 +101,7 @@ describe("15.2 pure bounded calendar recurrence — AC1", () => {
     assert.equal(result.occurrences[11]!.nominalDate, "2026-10-23");
     assert.deepEqual(result.preview, result.occurrences.slice(0, 10));
   });
-  test.skip("[P0] TEA15.2-UNIT-001 admits shared bound and rejects bound plus one with no partial rows", async () => {
+  test("[P0] TEA15.2-UNIT-001 admits shared bound and rejects bound plus one with no partial rows", async () => {
     const b = await loadRecurrenceBindings();
     const bound = b.recurrenceLimits.maxOccurrences;
     assert.equal(Number.isSafeInteger(bound) && bound > 0, true);
@@ -81,7 +117,7 @@ describe("15.2 pure bounded calendar recurrence — AC1", () => {
   });
 });
 describe("15.2 immutable nominal identity reconciliation — AC4/AC5", () => {
-  test.skip("[P0] TEA15.2-UNIT-002 rule omission retains exceptional slot outside generated dates", async () => {
+  test("[P0] TEA15.2-UNIT-002 rule omission retains exceptional slot outside generated dates", async () => {
     const b = await loadRecurrenceBindings();
     const exception = persistedSlot({ isException: true, description: "Protected omitted date" });
     const introduced = { nominalDate: "2026-10-13", startsAt: "2026-10-13T05:00:00.000000Z", endsAt: "2026-10-13T06:00:00.000000Z" };
@@ -90,7 +126,7 @@ describe("15.2 immutable nominal identity reconciliation — AC4/AC5", () => {
     assert.deepEqual(result.generated, [introduced]);
     assert.deepEqual(result.tombstones, []);
   });
-  test.skip("[P0] TEA15.2-UNIT-002 retains exception omitted by new rule and suppresses same nominal replacement", async () => {
+  test("[P0] TEA15.2-UNIT-002 retains exception omitted by new rule and suppresses same nominal replacement", async () => {
     const b = await loadRecurrenceBindings();
     const changed = persistedSlot({ isException: true, description: "Hand-edited", startsAt: "2026-10-14T10:00:00.000000Z", endsAt: "2026-10-14T11:00:00.000000Z" });
     const result = b.reconcileOccurrences({ existing: [changed], proposed: [
@@ -99,19 +135,19 @@ describe("15.2 immutable nominal identity reconciliation — AC4/AC5", () => {
     assert.deepEqual(result.retained, [changed]);
     assert.deepEqual(result.generated, []);
   });
-  test.skip("[P0] TEA15.2-UNIT-002 cancelled slot tombstone never regenerates", async () => {
+  test("[P0] TEA15.2-UNIT-002 cancelled slot tombstone never regenerates", async () => {
     const b = await loadRecurrenceBindings();
     const cancelled = persistedSlot({ isException: true, status: "cancelled" });
     const result = b.reconcileOccurrences({ existing: [cancelled], proposed: [cancelled], sourceSeriesId: "source-series" });
     assert.deepEqual(result.retained, [cancelled]);
     assert.deepEqual(result.generated, []);
   });
-  test.skip("[P0] TEA15.2-UNIT-002 removed generated slot becomes cancelled exceptional tombstone", async () => {
+  test("[P0] TEA15.2-UNIT-002 removed generated slot becomes cancelled exceptional tombstone", async () => {
     const b = await loadRecurrenceBindings(); const original = persistedSlot();
     const result = b.reconcileOccurrences({ existing: [original], proposed: [], sourceSeriesId: "source-series" });
     assert.deepEqual(result.tombstones, [{ ...original, isException: true, status: "cancelled" }]);
   });
-  test.skip("[P0] TEA15.2-UNIT-002 split pivot uses nominal date despite exception actual start moving into prefix", async () => {
+  test("[P0] TEA15.2-UNIT-002 split pivot uses nominal date despite exception actual start moving into prefix", async () => {
     const b = await loadRecurrenceBindings();
     const prefix = persistedSlot({ nominalDate: "2026-10-12" });
     const pivot = persistedSlot({ nominalDate: "2026-10-19", isException: true, startsAt: "2026-10-11T05:00:00.000000Z", endsAt: "2026-10-11T06:00:00.000000Z" });

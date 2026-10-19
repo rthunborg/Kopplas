@@ -28,7 +28,7 @@ export function bookingSummaryDraft(booking: BookingSummary): BookingFacts {
 }
 export function BookingEntry(props: BookingEntryProps) {
   const router = useRouter();
-  const [editing, setEditing] = useState<{draft: BookingFacts; bookingId?: string} | null>(null);
+  const [editing, setEditing] = useState<{draft: BookingFacts; bookingId?: string; seriesId?: string | null} | null>(null);
   if (!props.canView && !props.canManage && !props.error) return null;
   return <section aria-label="Bokningar" className="space-y-3">
     <div className="flex flex-wrap items-center gap-3">
@@ -36,7 +36,7 @@ export function BookingEntry(props: BookingEntryProps) {
       {props.canView && !props.error && <BookingConflictChip count={props.openConflictCount} />}
     </div>
     {props.error && <p role="alert" className="text-sm text-red-800">{props.error} <button type="button" className="min-h-11 px-3 underline" onClick={() => router.refresh()}>Försök igen</button></p>}
-    {props.canView && !props.error && <ul className="space-y-2">{props.bookings.map(booking => <li key={booking.id} data-testid={`booking-summary-${booking.id}`} className="space-y-2 rounded-md border border-zinc-200 p-3 text-sm"><p className="font-medium">{booking.description || "Bokning"}</p><p>{formatBookingTime(booking.startsAt)} – {formatBookingTime(booking.endsAt)} · {booking.status === "planned" ? "Planerad" : "Avbruten"}</p><BookingConflictChip count={booking.openConflictCount} />{props.canManage && !props.error && <button type="button" data-testid="booking-edit" className="min-h-11 px-3 text-blue-700 underline focus-visible:ring-2 focus-visible:ring-blue-600" onClick={() => setEditing({bookingId: booking.id,draft: bookingSummaryDraft(booking)})}>Redigera bokning</button>}</li>)}</ul>}
-    {editing && <BookingEditor open onClose={() => {setEditing(null); router.refresh();}} draft={editing.draft} bookingId={editing.bookingId} options={props.options} prefill={editing.bookingId ? undefined : props.prefill} />}
+    {props.canView && !props.error && <ul className="space-y-2">{props.bookings.map(booking => <li key={booking.id} data-testid={`booking-summary-${booking.id}`} className="space-y-2 rounded-md border border-zinc-200 p-3 text-sm"><p className="font-medium">{booking.description || "Bokning"}</p><p>{formatBookingTime(booking.startsAt)} – {formatBookingTime(booking.endsAt)} · {booking.status === "planned" ? "Planerad" : "Avbruten"}</p>{booking.isException && <p data-testid="booking-series-exception">avviker från serien</p>}<BookingConflictChip count={booking.openConflictCount} />{props.canManage && !props.error && <button type="button" data-testid="booking-edit" className="min-h-11 px-3 text-blue-700 underline focus-visible:ring-2 focus-visible:ring-blue-600" onClick={() => setEditing({bookingId: booking.id,seriesId: booking.seriesId,draft: bookingSummaryDraft(booking)})}>Redigera bokning</button>}</li>)}</ul>}
+    {editing && <BookingEditor open onClose={() => {setEditing(null); router.refresh();}} draft={editing.draft} bookingId={editing.bookingId} seriesId={editing.seriesId} options={props.options} prefill={editing.bookingId ? undefined : props.prefill} />}
   </section>;
 }

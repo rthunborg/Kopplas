@@ -14,7 +14,7 @@ export async function readSchedulingAction(input: SchedulingReadInput): Promise<
 
 const ERROR = "Bokningsuppgifterna kunde inte läsas. Försök igen om en stund.";
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
-const BOOKING_COLUMNS = "id,starts_at,ends_at,all_day,work_role_id,job_id,customer_id,facility_id,contact_id,description,status,booking_assignees(person_profile_id)";
+const BOOKING_COLUMNS = "id,starts_at,ends_at,all_day,work_role_id,job_id,customer_id,facility_id,contact_id,description,status,series_id,occurrence_index,is_exception,nominal_date,booking_assignees(person_profile_id)";
 type Client = Awaited<ReturnType<typeof createSupabaseServerClient>>;
 type Row = Record<string, unknown>;
 type OpenConflictRow = { readonly booking_id: string; readonly related_booking_id: string | null; readonly affected_person_profile_id: string | null; readonly conflict_type: string; readonly starts_at: string; readonly ends_at: string; readonly natural_key: string; readonly status: string };
@@ -91,7 +91,8 @@ function summary(row: Row, openConflictCount: number): BookingSummary {
     facilityId: nullable(row.facility_id), contactId: nullable(row.contact_id), description: String(row.description ?? ""),
     status: row.status === "cancelled" ? "cancelled" : "planned",
     assigneeIds: ((row.booking_assignees ?? []) as { person_profile_id: string }[]).map((item) => item.person_profile_id).sort(),
-    seriesId: null, occurrenceIndex: null, isException: false, openConflictCount };
+    seriesId: nullable(row.series_id), occurrenceIndex: typeof row.occurrence_index === "number" ? row.occurrence_index : null,
+    isException: row.is_exception === true, nominalDate: nullable(row.nominal_date), openConflictCount };
 }
 
 /** Host access never grants booking entitlement; Montör data remains own-joined under RLS. */

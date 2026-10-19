@@ -443,6 +443,7 @@ beforeAll(async () => {
     [fixture.tenantB.id],
   );
   await seedBookingReadRows(fixture.tenantB.id, profileId);
+  await adminQuery("insert into public.booking_series(id,tenant_id,rule,defaults) values(gen_random_uuid(),$1,'{}','{}')", [fixture.tenantB.id]);
   const {seedJobDepthChildren} = await import("../../support/jobs-depth-atdd");
   await seedJobDepthChildren(fixture.tenantB.id, fixture.adminB.id, tenantBJobId, tenantBWorkRoleId);
   const [{id:ownCustomer}] = await adminQuery<{id:string}>("insert into public.customers(tenant_id,customer_type,display_name) values($1,'company','H4 own job customer') returning id",[fixture.tenantA.id]);
@@ -533,7 +534,7 @@ describe("Cross-tenant RLS isolation — data-driven over the shared inventory (
       it(`[P0] SELECT: Tenant A admin reads ZERO ${table} rows belonging to Tenant B (no error leak)`, async (testCtx) => {
         if (skipUnlessStack(testCtx, stackUp)) return;
         const { column, value } = tenantBFilter(table, ctx);
-        const { data, error } = await a.from(table).select(table === "bookings" ? bookingPublicColumns : "*").eq(column, value);
+        const { data, error } = await a.from(table).select(table === "bookings" ? bookingPublicColumns : table === "booking_series" ? "id,tenant_id,rule,defaults,version,ends_before,predecessor_id,successor_id,created_at,updated_at" : "*").eq(column, value);
         if (directReadRevokedTables.has(table)) {
           expect(error?.code).toBe("42501");
           expect(data).toBeNull();

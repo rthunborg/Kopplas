@@ -422,6 +422,7 @@ test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycl
   schedulingPassiveShutdowns.set(testInfo, passive.stop);
   // PASSIVE-NETWORK-END attempt
   let requestOrdinal = 0, captureCount = 0, fulfilledCount = 0, rejectedCount = 0;
+  let preAdmissionCancellationCount = 0;
   let observerOpen = true, snapshotAttempted = false, baseline: number | null = null;
   try { baseline = performance.now(); } catch { /* Diagnostic clock is optional. */ }
   const relativeTime = () => {
@@ -473,7 +474,10 @@ test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycl
     if (shutdownStarted || !trackerOpen) return;
     const wasLive = live.delete(request);
     if (wasLive) { generation++; wake(); }
-    if (!captureActivated) return;
+    if (!captureActivated) {
+      if (wasLive) preAdmissionCancellationCount = Math.min(preAdmissionCancellationCount + 1, 1000);
+      return;
+    }
     const entry = admitted.get(request);
     if (!entry && !wasLive) return;
     let reason: unknown = unavailableReason;
@@ -616,7 +620,12 @@ test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycl
       }
     }
   };
-  const openCaptureWindow = () => { lifecycle.mark(page, "capture-open", "enter"); guardProgress(); captureActivated = true; responseAdmissionOpen = true; page.on("response", read); };
+  const openCaptureWindow = () => {
+    lifecycle.mark(page, "capture-open", "enter"); guardProgress();
+    // Post-login background cancellations are diagnostic, never privacy evidence.
+    console.info("[scheduling-pre-admission] " + JSON.stringify({ cancellationCount: preAdmissionCancellationCount, privacyCredit: false }));
+    captureActivated = true; responseAdmissionOpen = true; page.on("response", read);
+  };
   schedulingAttemptShutdowns.set(testInfo, shutdown);
   page.on("request", readRequest);
   page.on("requestfinished", readFinished);
@@ -627,8 +636,17 @@ test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycl
   // PASSIVE-NETWORK-END start
   try {
     try {
-    await guardedSignIn("montor"); guardProgress(); openCaptureWindow();
-    await navigateAfterBarrier(() => page.goto(`/scheduling?view=resources&person=${h.extraProfiles[2]}&tenant=${h.scenario.tenantIds[1]}`)); guardProgress(); await guardedSettle(); guardProgress(); await drain(); guardProgress();
+    await guardedSignIn("montor"); guardProgress();
+    const targetResponse = await navigateAfterBarrier(() => {
+      // Open only after the existing barrier drains post-login traffic, directly
+      // before this controlled tampered navigation. Later failures remain fatal.
+      openCaptureWindow();
+      return page.goto(`/scheduling?view=resources&person=${h.extraProfiles[2]}&tenant=${h.scenario.tenantIds[1]}`);
+    }); guardProgress(); await guardedSettle(); guardProgress(); await drain(); guardProgress();
+    expect(targetResponse).not.toBeNull();
+    expect(targetResponse!.ok()).toBe(true);
+    // A background/partial body cannot substitute for the actual target payload.
+    expect(admitted.get(targetResponse!.request())?.phase).toBe("complete");
     lifecycle.mark(page, "date-fill", "enter");
     await navigateAfterBarrier(() => page.getByLabel("Datum", { exact: true }).fill(DATE)); guardProgress(); await guardedSettle(); guardProgress(); await drain(); guardProgress();
     await guardedStage(() => expect(page.getByRole("tab")).toHaveCount(1)); await guardedStage(() => expect(page.getByRole("tab")).toHaveText("Min kalender"));

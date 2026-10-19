@@ -1,4 +1,143 @@
 import { describe, expect, test } from "vitest";
+import { beforeAll } from "vitest";
+import { withBookingFixture, bookingCommand, seedBookingParents } from "../../support/bookings-atdd";
+import { realSeriesInput, reviewRealSeries, realSeriesSnapshot } from "../../support/booking-series-atdd";
+import { adminQuery } from "../../factories/admin-sql";
+import { makeAuthedServerClient, makeAnonServerClient } from "../../factories/tenants";
+import { isLocalStackReachable } from "../../support/test-env";
+import { skipUnlessStack } from "../../support/stack-gate";
+import { createBookingSeries } from "@/server/commands/bookings/create-booking-series";
+import { runCommand } from "@/server/commands/envelope";
+import { seriesCommandPayload } from "@/server/commands/bookings/series-validation";
+import { updateBookingSeries } from "@/server/commands/bookings/update-booking-series";
+import { previewBookingSeries } from "@/server/bookings/series-conflicts";
+let realStackUp = false;
+beforeAll(async () => {realStackUp=await isLocalStackReachable();});
+
+describe("15.2 real series authority",()=>{
+  test("15.2-RLS-REAL-001 FORCE RLS, private outcomes and every direct DML privilege remain closed",async ctx=>{
+    if(skipUnlessStack(ctx,realStackUp))return;
+    const [security]=await adminQuery<{relrowsecurity:boolean;relforcerowsecurity:boolean;private_read:boolean;insert_allowed:boolean;update_allowed:boolean;delete_allowed:boolean}>(`select c.relrowsecurity,c.relforcerowsecurity,
+      has_column_privilege('authenticated','public.booking_series','outcomes','SELECT') private_read,
+      has_table_privilege('authenticated','public.booking_series','INSERT') insert_allowed,
+      has_table_privilege('authenticated','public.booking_series','UPDATE') update_allowed,
+      has_table_privilege('authenticated','public.booking_series','DELETE') delete_allowed
+      from pg_class c join pg_namespace n on n.oid=c.relnamespace where n.nspname='public' and c.relname='booking_series'`);
+    expect(security).toEqual({relrowsecurity:true,relforcerowsecurity:true,private_read:false,insert_allowed:false,update_allowed:false,delete_allowed:false});
+    const functions=await adminQuery<{proname:string;anon:boolean;authenticated:boolean;service:boolean;public_execute:boolean;proconfig:string[]}>(`select p.proname,p.proconfig,
+      has_function_privilege('anon',p.oid,'EXECUTE') anon,has_function_privilege('authenticated',p.oid,'EXECUTE') authenticated,
+      has_function_privilege('service_role',p.oid,'EXECUTE') service,
+      exists(select 1 from aclexplode(coalesce(p.proacl,acldefault('f',p.proowner))) a where a.grantee=0 and a.privilege_type='EXECUTE') public_execute
+      from pg_proc p join pg_namespace n on n.oid=p.pronamespace where n.nspname='public' and
+      (p.proname like 'booking_series_%' or p.proname in ('booking_occurrence_exception_internal','snapshot_booking_series','finalize_booking_series')) order by p.proname`);
+    expect(functions).toHaveLength(8);
+    for(const fn of functions){expect(fn).toMatchObject({anon:false,authenticated:["snapshot_booking_series","finalize_booking_series"].includes(fn.proname),service:false,public_execute:false});expect(fn.proconfig).toEqual(['search_path=""']);}
+  });
+  test("15.2-RLS-REAL-002 current role sets and own-only occurrence reads do not disclose templates",async ctx=>{
+    if(skipUnlessStack(ctx,realStackUp))return;
+    await withBookingFixture(async fx=>{
+      const {input}=await reviewRealSeries(fx,realSeriesInput(fx));
+      expect(await runCommand(createBookingSeries,{client:fx.adminClient as never,input})).toMatchObject({ok:true});
+      const peer=await bookingCommand("create",fx.adminClient,{...input.template,assigneeIds:[fx.coworkerProfile.id],commandId:crypto.randomUUID(),description:"Hidden peer occurrence fixture"});
+      expect(peer).toMatchObject({ok:true});if(!peer.ok)throw new Error("Expected real hidden-peer fixture");
+      const own=await fx.montorClient.from("bookings").select("id,series_id,is_exception,nominal_date").eq("tenant_id",fx.base.tenantA.id);
+      expect(own.error).toBeNull();expect(own.data).toHaveLength(3);
+      const clients=[fx.montorClient,fx.foreignClient,await makeAuthedServerClient(fx.users.saljare),await makeAuthedServerClient(fx.users.ekonomi),await makeAnonServerClient(),
+        await makeAuthedServerClient(fx.disabledUser),await makeAuthedServerClient(fx.invitedUser)];
+      const before=await realSeriesSnapshot(fx);
+      for(const client of clients){
+        const {data:{user}}=await client.auth.getUser();
+        expect(await runCommand(createBookingSeries,{client:client as never,input})).toMatchObject({ok:false});
+        const template=await client.from("booking_series").select("id,rule,defaults,version").eq("id",input.seriesId);
+        expect(template.data??[]).toEqual([]);
+        if(user)expect(template.error).toBeNull();
+        expect((await client.from("bookings").select("id,description,series_id,nominal_date,is_exception").eq("id",peer.data.bookingId)).data??[]).toEqual([]);
+        const direct={p_tenant_id:fx.base.tenantA.id,p_actor_id:user?.id??null,p_correlation_id:crypto.randomUUID(),p_command_id:input.commandId,p_input:seriesCommandPayload(input)};
+        expect((await client.rpc("snapshot_booking_series",{...direct,p_key_id:"unconfigured",p_decision:input.editorReview!.decision})).error).not.toBeNull();
+        expect((await client.rpc("finalize_booking_series",{...direct,p_claims:null,p_plan:"{}",p_signature:null,p_review_claims:null,p_review_groups:"[]",p_review_signature:null,p_decision:input.editorReview!.decision})).error).not.toBeNull();
+        expect((await client.from("booking_series").select("outcomes").eq("id",input.seriesId)).error).not.toBeNull();
+        expect((await client.from("booking_series").insert({id:crypto.randomUUID(),tenant_id:fx.base.tenantA.id,rule:input.rule,defaults:input.template})).error).not.toBeNull();
+        expect((await client.from("booking_series").update({version:999}).eq("id",input.seriesId)).error).not.toBeNull();
+        expect((await client.from("booking_series").delete().eq("id",input.seriesId)).error).not.toBeNull();
+        expect((await client.from("bookings").update({series_id:crypto.randomUUID(),is_exception:false}).eq("tenant_id",fx.base.tenantA.id)).error).not.toBeNull();
+      }
+      expect(await realSeriesSnapshot(fx)).toEqual(before);
+      const union=await makeAuthedServerClient(fx.roleUnionUser);
+      for(const [client,actorId] of [[fx.adminClient,fx.base.adminA.id],[fx.plannerClient,fx.users.projektledare.id],[union,fx.roleUnionUser.id]] as const){
+        const next=await reviewRealSeries(fx,realSeriesInput(fx),{client,actorId});
+        expect(await runCommand(createBookingSeries,{client:client as never,input:next.input})).toMatchObject({ok:true});
+        const edit=await reviewRealSeries(fx,{...next.input,commandId:crypto.randomUUID(),sourceSeriesId:next.input.seriesId,expectedVersion:1,editorReview:undefined,template:{...next.input.template,description:"Current manager update"}},{client,actorId});
+        expect(await runCommand(updateBookingSeries,{client:client as never,input:edit.input})).toMatchObject({ok:true});
+        const standalone=await bookingCommand("create",client,{...next.input.template,assigneeIds:[...next.input.template.assigneeIds],commandId:crypto.randomUUID()});
+        expect(standalone).toMatchObject({ok:true});if(!standalone.ok)throw new Error("Expected valid optional-null standalone");
+        expect(await adminQuery("select series_id,is_exception,job_id,customer_id,facility_id,contact_id from public.bookings where id=$1",[standalone.data.bookingId])).toEqual([{series_id:null,is_exception:false,job_id:null,customer_id:null,facility_id:null,contact_id:null}]);
+      }
+    });
+  });
+  test("15.2-RLS-REAL-003 revoked current authority prevents private replay and all direct proofless RPC writes",async ctx=>{
+    if(skipUnlessStack(ctx,realStackUp))return;
+    await withBookingFixture(async fx=>{
+      const {input}=await reviewRealSeries(fx,realSeriesInput(fx),{client:fx.plannerClient,actorId:fx.users.projektledare.id});
+      expect(await runCommand(createBookingSeries,{client:fx.plannerClient as never,input})).toMatchObject({ok:true});
+      await adminQuery("update public.tenant_memberships set status='disabled' where tenant_id=$1 and user_id=$2",[fx.base.tenantA.id,fx.users.projektledare.id]);
+      const before=await realSeriesSnapshot(fx);
+      expect(await runCommand(createBookingSeries,{client:fx.plannerClient as never,input})).toMatchObject({ok:false});
+      const direct=await fx.plannerClient.rpc("snapshot_booking_series",{p_tenant_id:fx.base.tenantA.id,p_actor_id:fx.users.projektledare.id,p_correlation_id:crypto.randomUUID(),p_command_id:input.commandId,p_input:seriesCommandPayload(input),p_key_id:"unconfigured",p_decision:input.editorReview!.decision});
+      expect(direct.error).not.toBeNull();expect(direct.data).toBeNull();
+      expect(await realSeriesSnapshot(fx)).toEqual(before);
+    });
+  });
+  test("15.2-RLS-REAL-004 every foreign lineage/person/link reference is denied with both tenants unchanged",async ctx=>{
+    if(skipUnlessStack(ctx,realStackUp))return;
+    await withBookingFixture(async fx=>{
+      const own=realSeriesInput(fx),foreign=realSeriesInput(fx,{template:{...own.template,assigneeIds:[fx.foreignProfile.id]}});
+      const foreignPreview=await previewBookingSeries(fx.foreignClient,{p_tenant_id:fx.base.tenantB.id,p_actor_id:fx.base.adminB.id,p_correlation_id:crypto.randomUUID(),p_command_id:foreign.commandId,p_input:seriesCommandPayload(foreign)},foreign);
+      const reviewedForeign={...foreign,editorReview:{receipt:foreignPreview.receipt,decision:{acknowledged:foreignPreview.warnings.length>0,reviewedLogicalIds:foreignPreview.warnings.map(w=>w.logicalId),selectedLogicalIds:[],reason:foreignPreview.warnings.length?"Foreign fixture actual review":""}}};
+      expect(await runCommand(createBookingSeries,{client:fx.foreignClient as never,input:reviewedForeign})).toMatchObject({ok:true});
+      const ready=await reviewRealSeries(fx,own);expect(await runCommand(createBookingSeries,{client:fx.adminClient as never,input:ready.input})).toMatchObject({ok:true});
+      const [foreignOccurrence]=await adminQuery<{id:string}>("select id from public.bookings where series_id=$1 order by nominal_date limit 1",[foreign.seriesId]);
+      const parents=await seedBookingParents(fx.base.tenantB.id);
+      const [{id:foreignJob}]=await adminQuery<{id:string}>("insert into public.jobs(tenant_id,customer_id,title) values($1,$2,'Foreign reference fixture') returning id",[fx.base.tenantB.id,parents.customerId]);
+      const before=await realSeriesSnapshot(fx);
+      for(const malicious of [
+        realSeriesInput(fx,{sourceSeriesId:foreign.seriesId,expectedVersion:1}),
+        realSeriesInput(fx,{sourceSeriesId:own.seriesId,expectedVersion:1,pivotOccurrenceId:foreignOccurrence.id}),
+        ...Object.entries({assigneeIds:[fx.foreignProfile.id],workRoleId:parents.workRoleId,jobId:foreignJob,customerId:parents.customerId,facilityId:parents.facilityId,contactId:parents.contactId}).map(([field,value])=>realSeriesInput(fx,{template:{...own.template,[field]:value}})),
+      ]){
+        let candidate=malicious;
+        try{candidate=(await reviewRealSeries(fx,malicious)).input;}catch(error){
+          expect((error as {code?:string}).code).toBe("TENANT_ACCESS_DENIED");expect(await realSeriesSnapshot(fx)).toEqual(before);continue;
+        }
+        // For link fields the genuine own receipt reaches SQL's reference checks.
+        expect(await runCommand(candidate.sourceSeriesId?updateBookingSeries:createBookingSeries,{client:fx.adminClient as never,input:candidate})).toMatchObject({ok:false});
+        expect(await realSeriesSnapshot(fx)).toEqual(before);
+      }
+      const proofless=await fx.adminClient.rpc("finalize_booking_series",{p_tenant_id:fx.base.tenantA.id,p_actor_id:fx.base.adminA.id,p_correlation_id:crypto.randomUUID(),p_command_id:crypto.randomUUID(),p_input:seriesCommandPayload(realSeriesInput(fx)),p_claims:null,p_plan:"{}",p_signature:null,p_review_claims:null,p_review_groups:"[]",p_review_signature:null,p_decision:null});
+      expect(proofless.error?.code).toBe("42501");expect(await realSeriesSnapshot(fx)).toEqual(before);
+    });
+  });
+  test("15.2-RLS-REAL-005 inactive assignment retention belongs only to its existing occurrence",async ctx=>{
+    if(skipUnlessStack(ctx,realStackUp))return;
+    await withBookingFixture(async fx=>{
+      const original=realSeriesInput(fx);const first=await reviewRealSeries(fx,original);
+      expect(await runCommand(createBookingSeries,{client:fx.adminClient as never,input:first.input})).toMatchObject({ok:true});
+      await adminQuery("update public.tenant_memberships set status='disabled' where id=$1",[fx.ownProfile.membershipId]);
+      const update=realSeriesInput(fx,{seriesId:original.seriesId,sourceSeriesId:original.seriesId,expectedVersion:1});
+      const reviewed=await reviewRealSeries(fx,update);
+      expect(await runCommand(updateBookingSeries,{client:fx.adminClient as never,input:reviewed.input})).toMatchObject({ok:true});
+      const before=await realSeriesSnapshot(fx);
+      const added=realSeriesInput(fx,{seriesId:original.seriesId,sourceSeriesId:original.seriesId,expectedVersion:2,rule:{...original.rule,count:4}});
+      expect(await runCommand(updateBookingSeries,{client:fx.adminClient as never,input:{...added,editorReview:reviewed.input.editorReview}})).toMatchObject({ok:false});
+      expect(await realSeriesSnapshot(fx)).toEqual(before);
+      // Safe flags remain actual values after a checked one-occurrence cancellation.
+      await adminQuery("update public.tenant_memberships set status='active' where id=$1",[fx.ownProfile.membershipId]);
+      const [row]=await adminQuery<{id:string}>("select id from public.bookings where series_id=$1 order by nominal_date limit 1",[original.seriesId]);
+      expect(await bookingCommand("update",fx.adminClient,{...original.template,assigneeIds:[...original.template.assigneeIds],commandId:crypto.randomUUID(),bookingId:row.id,status:"cancelled"})).toMatchObject({ok:true});
+      const read=await fx.montorClient.from("bookings").select("id,series_id,is_exception,status").eq("id",row.id);
+      expect(read.error).toBeNull();expect(read.data).toEqual([{id:row.id,series_id:original.seriesId,is_exception:true,status:"cancelled"}]);
+    });
+  });
+});
 import { loadBookingSeriesBindings, reviewed, type Fixture, type Plan,
   type Role, type SeriesBindings } from "../../support/booking-series-atdd";
 

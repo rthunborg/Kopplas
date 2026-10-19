@@ -1,0 +1,11 @@
+{
+  "buildId": "GLKBSX62N9CbTViZM7YrP",
+  "clientJsFiles": 48,
+  "bundledOwnedOrigin": true,
+  "bundledDefaultOrigin": false,
+  "bundledCanonicalSyntheticAnon": true,
+  "privateSignerAbsentClient": true,
+  "privateServiceKeyAbsentClient": true,
+  "publicOriginSha256": "3c87b1af3d744f58488912c9837bda4032e4b7949d32d83025f30d52adcece42",
+  "publicAnonSha256": "bf1725a8f98bea37e88618702e725ba84bd8acdb2647c5e0ed638bfd685791cf"
+}
