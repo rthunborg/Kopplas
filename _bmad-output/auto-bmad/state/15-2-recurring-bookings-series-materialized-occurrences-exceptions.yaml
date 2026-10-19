@@ -9,17 +9,17 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-19T19:16:48Z"
+updated_at: "2026-10-19T23:03:08Z"
 started_at: "2026-10-19T17:01:38Z"
 completed_at: null
-active_seconds: 7380
-timing_anchor: 1792437408
+active_seconds: 20958
+timing_anchor: 1792450988
 is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: build
-selected_role: build-delegate
+selected_phase: tea_per_story
+selected_role: tea-delegate
 selected_profile: standard
 selected_model: gpt-6.1-sol
 selected_effort: high
@@ -31,18 +31,19 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate, trace-advisory]
 tea_rationale: "Recurrence/DST and materialized occurrence mutations with dedupe, tombstones and identity-preserving splits require integrity coverage; long-epic story advisory applies."
 epic_story_count: 6
 stories_after_in_epic: 4
-completed_phases: [0, 1, 2, 3, 4]
+completed_phases: [0, 1, 2, 3, 4, 5]
 spec_path: "_bmad-output/implementation-artifacts/spec-15-2-recurring-bookings-series-materialized-occurrences-exceptions.md"
 spec_approved: true
 build:
-  status: ready-for-dev
+  status: done
   blocking_condition: null
-  followup_review_recommended: false
+  followup_review_recommended: true
   review_loop_iteration: 0
   deferred_count: 0
   warnings: [oversized]
@@ -56,7 +57,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [76f50d38, eb228636, 33c68c5a, eb3da24d]
+commits: [76f50d38, eb228636, 33c68c5a, eb3da24d, 85755eb7, effbf5e1, 499c5baf]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -73,8 +74,8 @@ retro:
   open_action_items: 0
 bmad_status_flipped_at: null
 pr_url: null
-ci_run_url: null
-ci_status: unknown
+ci_run_url: "https://github.com/rthunborg/Kopplas/actions/runs/39335595653"
+ci_status: passed
 pr_merged: false
 merge_method: null
 merge_commit: null
@@ -104,3 +105,16 @@ constraints:
   - "Coordinator permits own-branch coherent integration of completed 16.1 ancestor 26dac3ab539ad54a79916135c53f25931e958d76 after preparation checkpoint and actual object/ref checks; preserve E15 contracts and E16 v3 facts/proof/migrations together."
   - "Coherent26dac3ab prerequisite integrated by merge33c68c5a and independently verified: original-author conflict resolutions, local static/build/DB/RLS/8 browser cases, and exact-head standard CI39304828183 all five required jobs passed. No main merge or deployment."
   - "Story15.2 P3 approved after exact-head CI39304828183 and distinct High current-baseline validation PASS. Kernel013b7ae0 preserved;9 tasks/8ACs unchanged. Existing Coordinator allocation stands without additional wait: narrow series registry/H4 enrollment, two series command envelope rows, named batch facts/proof/forwardSQL seams; protected shared capacity/matrix/auth surface and old SQL stay unchanged. Migration20261019180000 reservation rechecked absent before approval; any additional actual overlap must be coordinated before editing. No main merge or deployment."
+broad_review_rounds: 1
+p5_delivery:
+  source_revision: effbf5e18e19556d0fad231d3fc01369397c8402
+  metadata_revision: 499c5baf48094c7fb27916953dbcb84c07228081
+  delivery_sha256: c1d63ea5d6d610d6453852ef7a7e21c601d04d58e24faee55626a8b24d468576
+  root_contract_gate: PASS native0
+  independent_provenance: PASS b88fc40faef8e3e3adc91538aa8b2589fa6cbdef1db9e0e764d5d0fd88d5755c
+  ci_run: "39335595653"
+  ci_required_jobs: 5 successful
+  broad_review_rounds: 1
+  review_cap: 3
+  release_ready: false
+  resource_stop: "3 accepted stop_requested; shutdown unverified; saved state retained"
