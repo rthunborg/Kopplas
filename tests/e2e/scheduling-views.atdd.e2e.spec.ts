@@ -688,7 +688,11 @@ for (const host of ["Schema", "Resurser"] as const) {
     await h.editor.getByTestId("booking-start").fill("2026-10-16T14:30");
     await h.editor.getByTestId("booking-end").fill("2026-10-16T15:00");
     await expect(h.editor.getByTestId("booking-availability")).toBeVisible();
-    await save(h); await h.cancel(); await expect(h.editor).toHaveCount(0); await h.settle();
+    await save(h);
+    // Success replaces booking-start, so the form-filtered h.editor is no longer its dialog identity.
+    const savedDialog = h.page.getByRole("dialog").filter({ has: h.page.getByTestId("booking-editor") });
+    await savedDialog.getByTestId("booking-close").click();
+    await expect(savedDialog).toHaveCount(0); await expect(h.editor).toHaveCount(0); await h.settle();
     await expect(block).toHaveCount(0);
     await expect(h.page.getByRole("tab", { selected: true })).toBeFocused();
     await expect(h.page.getByRole("tab", { selected: true })).toBeVisible();

@@ -48,6 +48,15 @@ reviewer qualified the two-file correction; typecheck and targeted lint passed.
 Its native browser verification remains pending. No assertion, deadline or retry
 was weakened and no product defect or focus success is inferred from this fix.
 
+At `33dc85c765b7733265cb3e798c5e8342a9dbe209`, the corrected gesture reached
+all six Schema day/week origin/cancel/focus checks. The case then failed while
+closing the saved result; Resource focus was skipped. Saving replaces the form
+with a success confirmation and leaves the dialog open. The form-filtered test
+locator therefore could not find its close control. The spec now closes the
+success dialog using its persistent identity and checks actual dialog absence
+before the unchanged fallback-focus and SQL assertions. A distinct Low reviewer,
+typecheck and targeted lint passed; full native focus cases remain pending.
+
 Essential follow-up selection retains both calendar hosts' keyboard/dialog
 creation, the five usable projections, and representative Resource move plus
 Schema resize with review/cancel/no-write/persistence checks. The latter pair
