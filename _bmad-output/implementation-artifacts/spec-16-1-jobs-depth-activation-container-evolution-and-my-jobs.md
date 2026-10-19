@@ -2,7 +2,7 @@
 title: 'Story 16.1: Jobs Depth Activation — Container Evolution and My-Jobs'
 type: 'feature'
 created: '2026-10-15'
-status: 'blocked'
+status: 'draft'
 baseline_revision: 'd6a310be4f55da0490669881737e88ce2eee8dda'
 review_loop_iteration: 0
 followup_review_recommended: false
