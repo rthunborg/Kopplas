@@ -121,7 +121,7 @@ export class SchedulingViewsHarness {
     await this.filter("Jobb", this.scenario.jobId); await this.filter("Kund", this.scenario.customerId);
   }
   async visibleIds(root: Locator = this.page.getByTestId("scheduling-workspace")): Promise<string[]> {
-    return [...new Set(await root.locator('[data-testid^="scheduling-booking-"]:visible').evaluateAll(nodes => nodes.map(n => n.getAttribute("data-testid")!.slice("scheduling-booking-".length))))].sort();
+    return [...new Set(await root.locator('article[data-testid^="scheduling-booking-"]:visible').evaluateAll(nodes => nodes.map(n => n.getAttribute("data-testid")!.slice("scheduling-booking-".length))))].sort();
   }
   slot(host: Host, local: string, person = this.people[0]!, schemaPerson = ""): Locator {
     const at = interval(local, local).startsAt.replace(".000Z", ".000000Z");
