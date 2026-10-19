@@ -1,0 +1,97 @@
+# auto-bmad per-story state — written by scripts/state_update.py (full stable schema;
+# see references/state-and-resume.md). Prose belongs in reports/{key}.md, not here.
+story_key: 16-3-arbetsorder
+epic_num: 16
+story_num: 3
+story_suffix: ""
+story_source: sprint
+spec_folder: null
+story_id: null
+branch: codex/epic-16-jobs
+status: in-progress
+updated_at: "2026-10-19T20:41:58Z"
+started_at: "2026-10-19T20:41:57Z"
+completed_at: null
+active_seconds: 0
+timing_anchor: 1792442518
+is_first_in_epic: false
+is_last_in_epic: false
+git_mode: remote
+base_branch: main
+selected_phase: build
+selected_role: build-delegate
+selected_profile: standard
+selected_model: gpt-6.1-sol
+selected_effort: high
+selected_host: codex
+selected_tier: subagents
+selected_route: subagent
+escalation_reason: "Sensitive planning: work-order same-tenant containment, creation/edit authorization, RLS and transaction integrity"
+routing_ledger:
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive planning: work-order same-tenant containment, creation/edit authorization, RLS and transaction integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+tea_risk: high
+tea_selected: [atdd, automate]
+tea_rationale: "work_orders schema, composite same-tenant FK, checked creation/edit commands and explicit RLS/role gating"
+epic_story_count: 5
+stories_after_in_epic: 2
+completed_phases: [0, 1]
+spec_path: null
+spec_approved: false
+build:
+  status: null
+  blocking_condition: null
+  followup_review_recommended: false
+  review_loop_iteration: 0
+  deferred_count: 0
+  warnings: []
+followup_passes: 0
+hitl_halt: null
+review_unverified: false
+story_trace: null
+legacy_review_resume: false
+legacy_review_iteration: null
+legacy_review_loop_done: false
+legacy_external_review_iterations: null
+legacy_convergence_unverified: false
+legacy_artifact_path: null
+commits: []
+phase8_steps:
+  trace_gate: null
+  nfr: null
+  test_review: null
+  reconcile: null
+  archive: null
+  retro: null
+gate_decision: null
+gate_iterations: 0
+deferred_work_archived: 0
+retro:
+  doc: null
+  verdict: null
+  open_action_items: 0
+bmad_status_flipped_at: null
+pr_url: null
+ci_run_url: null
+ci_status: unknown
+pr_merged: false
+merge_method: null
+merge_commit: null
+branch_deleted: false
+open_questions: []
+deferred_work: []
+blockers: []
+overrides:
+  preflight_sync: Independent High narrow two-path generated sync approved and verified
+  unattended: Authorized by initiating delegation
+  ownership: "Owner-authorized E16 development with the recorded shared allocations and precise story claims; preserve E15 work."
+  concurrent_epics: "Human-authorized E16 concurrently with E15; E16 stories sequential"
+  merge: "No merge or deployment; publish one final Epic 16 PR."
+  design_evidence: "2026-10-15 direct human standing decision: no legacy URL reference/use/evidence; use existing design system/accessibility and maintainable headless defaults for missing UX rules. Zero legacy observations; domain/state/validation/actions/semantic models separated from replaceable usable UI/flow."
+  story16_2_owner_decision: "2026-10-19: verified direct human answer in recovery task 01a153e5-e143-7d61-b8c7-77b61e334730, turn 01a1557e-e736-71f1-a3fb-a5041dfa80db. Approved zero-or-one Arbetsledare per job; admins/Projektledare appoint/replace; lead manages ordinary crew and planned start/end dates on own job. No leadership delegation, full-card/lifecycle/CRM or independent protected permission expansion."
+constraints:
+  - "Exclusive source checkout is C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas; root owns all Git/index/CI/state/sprint/ledger/report actions."
+  - "Plan only until approved ready-for-dev outcome; no product/migration writes during planning."
+  - "Preserve completed 16.1 and 16.2 source/migration history; 16.2 approved lead grant covers ordinary crew and planned dates only, not implicit new work-order authority. Resolve the approved 16.3 contract from governing requirements."
+  - "No whole-Epic-15 or messaging gate; identify only exact actual dependencies. E15 reserved migration 20261019180000; E16 existing membership migration 20261019191746."
+  - "No legacy application URLs or browsing; use current design system and owner-approved requirements."
+  - "No merge, deployment, secret/provider change or resource launch. Required integrity gates remain; broad visual/manual release work stays tracked separately."
