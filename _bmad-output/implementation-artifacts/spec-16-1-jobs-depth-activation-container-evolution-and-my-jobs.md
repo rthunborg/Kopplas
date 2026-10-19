@@ -2,7 +2,7 @@
 title: 'Story 16.1: Jobs Depth Activation — Container Evolution and My-Jobs'
 type: 'feature'
 created: '2026-10-15'
-status: 'draft'
+status: 'ready-for-dev'
 baseline_revision: 'd6a310be4f55da0490669881737e88ce2eee8dda'
 review_loop_iteration: 0
 followup_review_recommended: false
@@ -13,6 +13,9 @@ context:
   - 'C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/_bmad-output/project-context.md'
   - 'C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/docs/process/review-order.md'
   - 'C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/docs/process/agent-model-routing.md'
+  - 'C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/docs/process/development-completion-policy.md'
+  - 'C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/docs/quality/ci.md'
+  - 'C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/docs/recovery/epic-15-16/README.md'
   - 'C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/_bmad-output/test-artifacts/test-design-epic-16.md'
 warnings: [oversized]
 deferred: []
@@ -67,14 +70,14 @@ Read-only observations at original base 8cda24614e77eda33ea31fe4de61af3a19d4759d
 
 ## Tasks & Acceptance
 
-Proposed implementation allocations only. Keep every task open until actual evidence. No shared/product edit is authorized by this preparation.
+Current execution authority is the explicitly resumed, coordinator-allocated 2026-10-19 plan below. P1–P10 remain open until their actual evidence; this planning invocation writes only the admitted documents and two empty migration reservations. Earlier proposal/hold paragraphs are historical, not renewed ownership requirements.
 
 **Execution in dependency order:**
 
-- [ ] P0 — Resolve the Planning Gate, owner-authorized headless defaults, E2/test design and independent pinned-spec/shared-path admission in this spec, `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/_bmad-output/implementation-artifacts/epic-16-context.md` and `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/_bmad-output/test-artifacts/epic-16/acceptance-transfer-matrix-2026-10-15.md`; retain original/refined acceptance distinctly.
-- [ ] P1 — Generate append-only migration under `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/supabase/migrations/` for type/agreed scalar fields, minimal job_members read foundation, job_dependencies, job_access_windows and same-tenant required-work-role rows; add range/state/ACL/RLS/index constraints and checked atomic card write. No work_orders/upgrade/unnamed project columns. Coordinator reserves timestamp range before `supabase migration new e16_16_1_job_depth`; no range is allocated now.
+- [x] P0 — Reconcile the Planning Gate with the explicit owner resume, accepted headless defaults/E2/pinned preparation and coordinator shared-path allocation in this spec, `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/_bmad-output/implementation-artifacts/epic-16-context.md` and `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/_bmad-output/test-artifacts/epic-16/acceptance-transfer-matrix-2026-10-15.md`; retain original/refined acceptance distinctly.
+- [ ] P1 — Generate append-only migration under `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/supabase/migrations/` for type/agreed scalar fields, minimal job_members read foundation, job_dependencies, job_access_windows and same-tenant required-work-role rows; add range/state/ACL/RLS/index constraints and checked atomic card write. No work_orders/upgrade/unnamed project columns. Use the CLI-generated 20261019133151_e16_16_1_job_depth.sql reserved on this resume; it is empty, not implemented. The separately reserved 20261019133200_e16_16_1_job_booking_facts.sql owns the atomic authoritative integration below. Do not edit historical SQL.
 - [ ] P2 — Add hardened member-or-booking-assignee parent scope in the migration and proposed `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/src/server/authz/job-access.ts`. Bind auth.uid()/active tenant membership and real same-tenant job relationships; avoid recursive RLS and broad profile grants. Direct child reads use parent scope. Keep member writes/elevation unavailable; retain ViewAll authority.
-- [ ] P3 — Update only allocated manifest/matrix/route files listed below. Proposal: ViewAssigned admin/PL/Montor, ViewAll admin/PL unchanged; actual /jobs route admits assigned access while reads retain separate row scope. Keep existing all-jobs list for ViewAll with explicit personal view; Montor personal only. AssignUsers remains closed until 16.2. No dependency capability is invented.
+- [ ] P3 — Update only allocated manifest/matrix/route files listed below. Allocated permission contract: ViewAssigned admin/PL/Montor, ViewAll admin/PL unchanged; actual /jobs route admits assigned access while reads retain separate row scope. Keep existing all-jobs list for ViewAll with explicit personal view; Montor personal only. AssignUsers remains closed until 16.2. No dependency capability is invented.
 - [ ] P4 — Extend `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/src/server/commands/jobs/validation.ts`, `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/src/server/commands/jobs/create-job.ts`, `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/src/server/commands/jobs/jobs.ts`, `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/src/server/commands/jobs/jobs-audit-db.ts` and `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/src/server/commands/jobs/index.ts` with bounded enriched card command/adapter, preserving old calls. Reject unknown/source/actor/tenant/money input; persist related rows/audit atomically with current identity/parent checks. No 16.2 designation writes.
 - [ ] P5 — Create `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/src/server/read-models/my-jobs.ts`; extend `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/src/features/jobs/types.ts` and `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/src/features/jobs/read.ts` for safe operational projections. No acceptance money query for unentitled worker. If CRM RLS hides job labels, resolve only authorized job-bound display fields through checked narrow read, not general CRM/quote access. Do not let inherited file/booking denials blank the worker card.
 - [ ] P6 — Update `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/src/features/jobs/actions.ts`, `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/src/components/jobs/JobList.tsx`, `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/src/components/jobs/JobDetailView.tsx`, `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/src/components/jobs/JobEditDialog.tsx`, proposed `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/src/components/jobs/JobCardForm.tsx`, `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/src/app/(app)/jobs/page.tsx` and `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/src/app/(app)/jobs/[jobId]/page.tsx`. Implement real personal list/safe detail/progressive bounded form, child rows and accessible connected failure/retry. Omit transferred writable-Arbetsledare control; any display derives from membership.
@@ -100,6 +103,8 @@ Proposed implementation allocations only. Keep every task open until actual evid
 
 - 2026-10-15: New preparation draft using governing sketches and inspected contracts. Coordinator selected independently reviewed Option A structural/read membership split and explicitly transferred writable responsible-Arbetsledare field to 16.2. Companion matrix records original/refined acceptance; roles/windows authoritative integration remains16.1. Keep both creation APIs, money absence and stable IDs. This is not completed formal Build Auto planning.
 
+- 2026-10-19: Explicit owner resume and released exact ownership resolve the historical planning hold. Bind adopted completion policy, corrected My Jobs dependency, exact current inventory and CLI-generated empty migration pair; preserve intent/all11AC/TR01–TR16 and every historical failure. Planning-only; no product evidence or story done.
+
 ## Review Triage Log
 
 No independent review of this draft has run. Earlier readiness-packet High PASS selects preparation direction only and is not approval of these new documents.
@@ -122,7 +127,7 @@ Concrete defaults below are author-selected design decisions under that authorit
 - Unknown project-only scalar identities are a real product ambiguity: do not invent columns. The accepted preparation split assigns their concrete naming/disposition, conditional SQL validity and full-card integration to 16.4-AC03/TR08. No 16.1 acceptance is falsely credited for them.
 
 Minimal job_members uses same-tenant person_profiles reference, composite job/person identity and archive-over-delete. The structural designation must support later 16.2 without granting16.1 operational rights. Avoid recursive RLS/broad profile reads; helpers bind auth.uid(), qualify refs, fix empty search_path and revoke unnecessary PUBLIC/anon/service_role execution. No tenant role or second responsible-Arbetsledare storage.
-### Exact shared integration edit proposals — not allocations
+### Historical shared integration proposals — 2026-10-15; current allocation below
 
 | Exact path | Bounded proposed change |
 | --- | --- |
@@ -258,10 +263,10 @@ Coordinator's bounded E12 assessment permits considering jobs-only extensions in
 
 E15 shared semantic/claim reconciliation remains pending for the exact paths manifest.ts, permission-matrix.ts, capacity.ts and tests/unit/server/authz/phase-a-surface.test.ts already enumerated above; other proposed shared seams are not cleared by absence of a diff. All16.4 consumer paths remain EXCLUDED from16.1 ownership. E15 views/readers/time/calendar/E2E/diagnostic/CI scope remains excluded. No retained E12/E15 checkout or running resource was inspected/adopted by this formal plan.
 
-### Current formal gate condition
+### Historical formal gate condition — 2026-10-15
 
 The frozen Block If is literal: exact shared ownership unresolved at final planning prevents successful formal completion. Latest coordinator clarification expressly preserves this condition; there is no controlling appendix or readiness-to-execution waiver. All product/shared/migration/fixture/runtime paths remain on IMPLEMENTATION HOLD. At the preceding binding checkpoint, planning status remained draft pending active ownership reconciliation. The terminal final-gate assessment below controls; independent content/test-design acceptance does not grant ready-for-dev. Root owns aggregate state/git; no commit/push/branch/PR/deployment occurs here.
-## Auto Run Result
+## Historical Auto Run Result — 2026-10-15
 
 Status: blocked
 
@@ -276,3 +281,122 @@ Unresolved operational facts: exact shared source/test ownership remains unalloc
 Outcome is planning-only BLOCKED, not implementation failure or implementation admission. No step03/build/ATDD/code-review/run-time/product test/migration/source/sprint/state/git operation was performed. Root/coordinator own the pending resolution and next admission; no new human question is needed here. Current implementation HOLD covers every unallocated product/shared/migration/fixture/runtime path.
 
 Completion hook: applied the planning/blocked branch of docs/process/review-order.md; preserved blocked result, no implementation Suggested Review Order authored, no implementation author/reviewer reconciliation or recursive HALT. No commit/push/branch/PR/deployment/resource was created. Historical preparation/E0/E1/review/E2 records remain intact.
+
+## Resumed formal plan — 2026-10-19 (current)
+
+Owner explicitly resumed E16 and adopted development-completion-policy.md after recovery adoption 04cf0edff6b6d38edf40c170cd21ed730e2d9555. Root recorded the existing build/build-delegate/standard/gpt-6.1-sol/High route and both timings; clean head_before is d33415c7b09e85ad43585758b0ce2d817bd28ef8. The original blocked report was adopted unchanged; it is history, not a current dirty-tree blocker. This is the draft-spec planning route, Halt after planning; no step03 or product/SQL implementation runs here.
+
+### Actual gate reconciliation and prerequisite facts
+
+The frozen intent block, all11 retained ACs and TR01–TR16 remain unchanged. Its literal Block If remains enforced: the previously unresolved exact ownership condition is now satisfied by coordinator allocation after E15 ACK, not waived. The four released paths are src/scope/manifest.ts, src/server/authz/permission-matrix.ts, src/features/scheduling/capacity.ts and tests/unit/server/authz/phase-a-surface.test.ts. The named auth/H4/role seams and facts/proof/types/conflicts/checked SQL snapshot-finalize changes are one coordinated High integrity unit. No new ACK, whole-E15 acceptance or fabricated integrated reassignment predecessor is required for available E16 work.
+
+My Jobs uses real job_members read foundation plus existing E14 bookings/booking_assignees/person_profiles/current tenant membership, with auth.uid-bound row scope. The E15 scheduling reader and 20261013201515_story_15_1_booking_reassignment_flags.sql are not My Jobs prerequisites. They must be reconciled/tested only if that reader is actually integrated; this plan does not adopt it. Preserve current checked SECURITY DEFINER actor/tenant gates, stable source/booking identity, money omission and current role checks. jobs/layout.tsx already delegates /jobs to RouteAccessBoundary; reuse this boundary through the allocated manifest/permission/phase-a-surface seams, without broad app-shell edits.
+
+Latest direct owner sequencing instruction controls this resume: implement available approved E16 slices. If an exact unfinished E15 contract blocks one slice, record contract/path, responsible owner, actual evidence, unblock condition and later integration/test action, then continue implementable work. Preserve the blocked slice's acceptance as open; never substitute whole-E15 completion or mark the story done. No currently identified E15 contract blocks My Jobs. The future E16 job-input integrity unit is work to implement, not an external predecessor claim.
+
+### Exact implementation inventory
+
+These names bind the existing approved tasks; they grant no directory-wide ownership. Root stages/commits and dispatches implementation separately. SQL implementation requires the reserved migration pair below; no historical migration edits. E15 views/readers/time/calendar/E2E/diagnostics/CI and all16.4 scalar consumer paths remain excluded. No shared fixtures beyond the named supplementary helpers are authorized. Existing provisioning-owner metadata, onboarding/platform policies, directReadDenied/non-granting mappings and exhaustive negatives survive jobs-only H4 extensions.
+
+**Source / UI / shared seams (P1–P8):**
+
+- `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/src/scope/manifest.ts`
+- `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/src/server/authz/permission-matrix.ts`
+- `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/src/server/authz/phase-a-surface.ts`
+- `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/src/server/authz/job-access.ts`
+- `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/src/server/commands/envelope.ts`
+- `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/src/server/commands/jobs/validation.ts`
+- `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/src/server/commands/jobs/create-job.ts`
+- `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/src/server/commands/jobs/jobs.ts`
+- `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/src/server/commands/jobs/jobs-audit-db.ts`
+- `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/src/server/commands/jobs/index.ts`
+- `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/src/server/commands/jobs/save-job-card.ts`
+- `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/src/server/commands/jobs/card-db.ts`
+- `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/src/server/commands/jobs/card-proof.ts`
+- `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/src/server/commands/jobs/card-facts.ts`
+- `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/src/server/read-models/my-jobs.ts`
+- `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/src/features/jobs/job-card-domain.ts`
+- `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/src/features/jobs/dependency-warnings.ts`
+- `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/src/features/jobs/types.ts`
+- `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/src/features/jobs/read.ts`
+- `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/src/features/jobs/actions.ts`
+- `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/src/components/jobs/JobList.tsx`
+- `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/src/components/jobs/JobDetailView.tsx`
+- `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/src/components/jobs/JobEditDialog.tsx`
+- `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/src/components/jobs/JobCardForm.tsx`
+- `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/src/app/(app)/jobs/page.tsx`
+- `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/src/app/(app)/jobs/[jobId]/page.tsx`
+- `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/src/server/bookings/conflict-facts.ts`
+- `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/src/server/bookings/conflict-attestation.ts`
+- `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/src/features/scheduling/types.ts`
+- `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/src/features/scheduling/capacity.ts`
+- `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/src/features/scheduling/conflicts.ts`
+
+**Named test/metadata edits (P9):**
+
+- `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/tests/unit/features/jobs/job-card-validation.test.ts`
+- `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/tests/unit/features/jobs/dependency-warnings.test.ts`
+- `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/tests/unit/server/commands/job-card-validation.test.ts`
+- `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/tests/unit/server/read-models/my-jobs.test.ts`
+- `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/tests/unit/server/bookings/job-facts.test.ts`
+- `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/tests/integration/rls/jobs-depth.rls.test.ts`
+- `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/tests/integration/commands/jobs-depth.int.test.ts`
+- `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/tests/integration/commands/job-booking-facts.int.test.ts`
+- `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/tests/integration/features/jobs/my-jobs.int.test.ts`
+- `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/tests/e2e/jobs/jobs-depth.e2e.spec.ts`
+- `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/tests/integration/rls/tenant-table-inventory.ts`
+- `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/tests/integration/rls/migration-reset.int.test.ts`
+- `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/tests/integration/rls/role-harness.atdd.int.test.ts`
+- `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/tests/support/authz/role-harness.ts`
+- `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/tests/unit/server/authz/phase-a-surface.test.ts`
+- `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/tests/e2e/jobs/job-list-deferred-surface.e2e.spec.ts`
+- `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/tests/unit/guardrails/job-non-scope.test.ts`
+
+**Only supplementary fixture helpers:**
+
+- `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/tests/support/jobs-depth-atdd.ts`
+- `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/tests/support/job-booking-facts-atdd.ts`
+
+No generic seed/config/CI/package or other shared path is allocated. Existing focused suites named below are execution inputs; an additional edit requires an exact claim before mutation. Preserve the authored implementation review trail requirement and load frontend-component before any UI implementation.
+
+### Reserved forward migrations: empty, not implemented
+
+- `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/supabase/migrations/20261019133151_e16_16_1_job_depth.sql` — CLI `supabase migration new e16_16_1_job_depth`, native0. Type/card columns, tenant composites, structural membership and other job children, hardened row-read foundation/ACL/RLS/indexes and checked narrow operational reads. Keep membership/designation mutation/elevation in16.2. No enriched write may bypass the second migration's authoritative transaction.
+- `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/supabase/migrations/20261019133200_e16_16_1_job_booking_facts.sql` — CLI `supabase migration new e16_16_1_job_booking_facts`, native0. Job-bound canonical SQL facts, coherent version transition, checked booking snapshot/finalize/review and card snapshot/finalize/derived-refresh transaction. Preserve tenant serialization, fresh actor/relationship checks, output/domain/candidate bindings, private primitives and exact replay/selective-review semantics.
+
+Installed CLI2.115.0 --help confirms migration new creates an empty script. Both files are0bytes; generated versions are distinct, collision-free and later than current 20261009091121 latest migration. Earlier 20261015100000/20261015100001 filenames remain historical proposals, never created. Recheck complete chronology before implementing against an integrated future base; no SQL, DB contact, install or CLI upgrade occurred here. Both migrations and source changes ship coherently in the final epic diff, not as an independently live half-version.
+
+### Implementable order and retained evidence
+
+1. Reuse local checkpoint2d14d7acaa8529207413cdcef4f33ff71dd53da5 P8 pure warning and97e622214b58f354c63f088c21d16db772446901 card-core validator/state. Their distinct Low author/reviewer receipts record14 and18 focused passes respectively; these are historical bounded pure evidence, not whole AC08 or AC04/05, integration, lint/typecheck or new execution here. Existing core test is tests/unit/features/jobs/job-card-validation.test.ts; the separately named server/commands test covers enriched command boundary/old callers and is not a duplicate filename claim.
+2. Implement first-migration foundation, job-access.ts, My Jobs safe projections and allocated permission/route union; test real normal-JWT member/assignee/unrelated/foreign/inactive/role pairs, direct table/RPC/URL and structural money absence. Keep member writes unavailable and all-job manager flow intact. No E15 reader prerequisite.
+3. Implement P4/P7 card commands/DB/proof/facts and second-migration snapshot/finalize as one High integrity unit with own-job engine selection and complete insert/delete/rebind-sensitive canonical content. Version/parser/SQL/proof transition is atomic; reject old/wrong-domain/stale/forged claims. A job-card save must recompute affected persisted conflicts through signed sole-engine output and atomically commit children/outcome/audit. No parser-only or stale-derived-warning shortcut.
+4. Wire progressive usable card/My Jobs UI to headless state/actions; integrate existing dependency warning. Location/enriched identity and eligible PL remain real checked requirements. Full ACs, direct API/SQL negatives and both original create/acceptance paths require execution; standalone nullable/source stability stays intact.
+5. Run development evidence below, independent consequential review and supported delivery gate before any done/finalization. TR01–TR16 destination obligations remain open until actual owning-story evidence; no16.4 consumer is implemented or counted here.
+
+### Current verification classification — owner policy2026-10-19
+
+Retain approved/pinned product acceptance and all consequential security, money, current-fact, authorization and transactional negatives. Development requires applicable static checks, production build/source+built containment, full DB integration/RLS and complete empty-history migration/seed replay, recovery-storage integrity, focused consequential tests, independent review, and essential real changed-flow smoke. Use SUPABASE_TEST_REQUIRED=1 and record native executed/failed/skipped counts at the actual revision. No skipped body is evidence.
+
+Use checked-in pnpm run verify:development for applicable local static/build verification and standard CI/checkpoint-dispatch helper with a unique generated receipt; no private executable, global admission variable or temporary execution window. Complete DB/RLS/recovery integrity and essential auth smoke remain required in the current CI lane. For E16 essential real smoke retain normal assigned-user direct URL, money-safe detail, durable form save/reload and explicit failure/retry at360x640 plus actual job-bound preview/save persistence; these demonstrate functional acceptance rather than an exhaustive browser matrix. AC01–AC11 still require real outer-surface/integrity evidence. Existing test design stays accepted; this classification does not claim any planned scenario ran.
+
+Execute focused E16 tests listed above and existing tests/integration/commands/{accept-quote-and-create-job,create-job,update-job,job-source-of-truth,accepted-record-lock,bookings,bookings-replay-authority,booking-conflicts,booking-editor,booking-editor-review-fixes,booking-editor-round2}.int.test.ts plus tests/integration/rls/bookings.rls.test.ts; preserve unchanged proof/capacity/DST/core checks. These brace names are execution inventory only, not an edit grant. Verify actual discovered paths before running. Additional precise test edits needed by a version transition receive root claim first; do not widen ownership silently.
+
+Broad role×device×browser journeys, exhaustive screenshots/visual/manual checks and polish are deferred release validation, never passed or waived. Owner: E16 UI/release owner. Evidence: no new E16 UI acceptance in this run. Next action: run deliberate release_validation=true and representative manual/design checks at release stabilization; preserve any consequential failure as a development blocker. Transfer browser requirements retain their behavior/evidence; only exhaustive release breadth is deferred. Deferred items must be tracked in the supported delivery record/ledger before completion, not silently removed from TR rows.
+
+Before development-complete/status done/finalization, author/verification delegate writes _bmad-output/auto-bmad/delivery/16-1-jobs-depth-activation-container-evolution-and-my-jobs.json with policy_version2026-10-19, explicit pinned-contract reconciliation, actual evidence_revision/development_checks, independent_review, owned deferred_release_validation and release_ready=false. Root runs the supported delivery_gate.py; no record or pass is fabricated by this planning run. Development complete is distinct from release ready; merge/deployment remain separately authorized and previews remain disabled.
+
+No managed resource was launched here. Later verification uses guard-admitted isolated Compose/local synthetic resources and SQL-only migration replay under docs/process/local-setup.md; no native Supabase lifecycle/reset, hosted fallback or E15/user-resource adoption. After two failed operational approaches choose a simpler authorized route or record owner/evidence/next action/resume condition; avoid repeated harness loops.
+
+
+## Auto Run Result
+
+Status: ready-for-dev
+
+Invocation: draft-spec formal planning resume through generation96e8da50b6e5096e00c4; Halt after planning. Spec: C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/_bmad-output/implementation-artifacts/spec-16-1-jobs-depth-activation-container-evolution-and-my-jobs.md. Clean head_before: d33415c7b09e85ad43585758b0ce2d817bd28ef8.
+
+Final readiness reread: actionable exact source/test/fixture/migration names, dependency-ordered current tasks,11unchanged Given/When/Then outer-surface ACs, allTR01–TR16 destinations and accepted E2 bindings remain. Previous exact-ownership blocker is factually resolved by the explicit coordinator grants; no frozen condition was waived. No active intent/product gap identified in retained16.1; unnamed project-only fields and scalar consumers remain explicitly owned by16.4. Old proposed timestamps are replaced only in current execution by the two CLI-generated empty files.
+
+This HALT is planning readiness, not implementation, executed acceptance, development completion or release readiness. P1–P10/fullACs remain open; pure14/18checks and source-only recovery2569passes are historical bounded evidence. No SQL or product implementation/ATDD/application test/build/resource/Git/index/sprint/state/report mutation was performed by this invocation. CLI empty reservations are disclosed, not schema proof. Root owns checkpoint/state and subsequent build/verification/review dispatch.
+
+Completion hook: applied the planning-only branch of docs/process/review-order.md, preserved planning HALT and authored no completed implementation Suggested Review Order. Supported policy delivery record/gate is required later before done/finalization; no record/pass was fabricated. No recursive HALT, deployment, merge or release claim.

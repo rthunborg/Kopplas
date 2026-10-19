@@ -60,7 +60,7 @@
 # use the current Epic 10 statuses and approved corrective-story entries below.
 
 generated: 2026-06-12
-last_updated: 10-13-2026 21:19  # ADR-B009 connected-field course correction verified; governance Story 10.7 done, no PWA/offline functionality delivered.
+last_updated: 10-19-2026 15:36  # ADR-B009 connected-field course correction verified; governance Story 10.7 done, no PWA/offline functionality delivered.
 project: Kopplas
 project_key: NOKEY
 tracking_system: file-system
@@ -267,7 +267,7 @@ development_status:
   # ADR-B006 is recorded. E16-E18 remain Phase B and may be finalized/built as
   # connected workflows under ADR-B009, with no PWA/offline or Story 10.7 dependency.
   epic-16: backlog
-  16-1-jobs-depth-activation-container-evolution-and-my-jobs: backlog
+  16-1-jobs-depth-activation-container-evolution-and-my-jobs: ready-for-dev
   16-2-job-members-and-per-job-roles-arbetsledare: backlog
   16-3-arbetsorder: backlog
   16-4-projekt-upgrade-and-job-card-semantics: backlog

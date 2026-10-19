@@ -9,17 +9,17 @@ spec_folder: null
 story_id: null
 branch: codex/epic-16-jobs
 status: in-progress
-updated_at: "2026-10-19T13:30:00Z"
+updated_at: "2026-10-19T13:37:14Z"
 started_at: "2026-10-15T09:23:25Z"
 completed_at: null
-active_seconds: 397
-timing_anchor: 1792416600
+active_seconds: 811
+timing_anchor: 1792417034
 is_first_in_epic: true
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: build
-selected_role: build-delegate
+selected_phase: tea_per_story
+selected_role: tea-delegate
 selected_profile: standard
 selected_model: gpt-6.1-sol
 selected_effort: high
@@ -29,21 +29,22 @@ selected_route: subagent
 escalation_reason: "Automatic sensitive-task escalation: authorization, transactional-integrity"
 routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: Explicit schema/CHECK constraints and membership/assignment-scoped MyJobs with per-role negatives
 epic_story_count: 5
 stories_after_in_epic: 4
-completed_phases: [0, 1]
-spec_path: "C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/_bmad-output/implementation-artifacts/spec-16-1-jobs-depth-activation-container-evolution-and-my-jobs.md"
-spec_approved: false
+completed_phases: [0, 1, 3]
+spec_path: "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-16-jobs\\Kopplas\\_bmad-output\\implementation-artifacts\\spec-16-1-jobs-depth-activation-container-evolution-and-my-jobs.md"
+spec_approved: true
 build:
-  status: blocked
-  blocking_condition: spec failed ready-for-development standard
+  status: ready-for-dev
+  blocking_condition: null
   followup_review_recommended: false
   review_loop_iteration: 0
   deferred_count: 0
-  warnings: []
+  warnings: [oversized]
 followup_passes: 0
 hitl_halt: null
 review_unverified: false
@@ -54,7 +55,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [589e5ca7, 5ffb6d8e]
+commits: [589e5ca7, 5ffb6d8e, 2d14d7ac, 97e62221, 04cf0edf, aeb44006, c21faa3b, d33415c7]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -79,10 +80,10 @@ merge_commit: null
 branch_deleted: false
 open_questions: []
 deferred_work: []
-blockers:
-  - "Frozen final planning gate: exact shared ownership and E15 semantic reconciliation pending coordinator; no new human question"
+blockers: []
 overrides:
-  ownership: Preparation only until coordinator exact allocation and formal planning
-  merge: "Coordinator only;one final epic PR;no deployment"
-  design_evidence: "Direct owner decision: no legacy URL reference/use/evidence; existing design system/accessibility/headless maintainable defaults;zero observations"
+  ownership: "Approved named E16 scope and four shared allocations; preserve E15 assertions"
+  merge: "No merge/deploy; one final epic PR"
+  design_evidence: "Owner-authorized design-system/accessibility/headless defaults; no legacy browsing"
+  dependency_deferral: "Owner resume: defer exact genuinely dependent slices with owner/evidence/unblock/test action; continue available approved work; never mark deferred acceptance passed"
 constraints: []
