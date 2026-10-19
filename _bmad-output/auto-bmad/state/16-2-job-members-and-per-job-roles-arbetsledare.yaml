@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-16-jobs
 status: in-progress
-updated_at: "2026-10-19T20:39:52Z"
+updated_at: "2026-10-19T20:40:31Z"
 started_at: "2026-10-19T17:10:09Z"
 completed_at: null
 active_seconds: 7265
@@ -38,7 +38,7 @@ tea_selected: [atdd, automate]
 tea_rationale: "Server-side per-job authorization/elevation and composite same-tenant foreign keys: explicit permissions and data-integrity signals"
 epic_story_count: 5
 stories_after_in_epic: 3
-completed_phases: [0, 1, 3, 4, 5, 6]
+completed_phases: [0, 1, 3, 4, 5, 6, 7]
 spec_path: "C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/_bmad-output/implementation-artifacts/spec-16-2-job-members-and-per-job-roles-arbetsledare-2.md"
 spec_approved: true
 build:
@@ -49,7 +49,7 @@ build:
   deferred_count: 3
   warnings: [oversized]
 followup_passes: 0
-hitl_halt: null
+hitl_halt: "auto-continued (epic — no halt)"
 review_unverified: false
 story_trace: null
 legacy_review_resume: false
@@ -58,7 +58,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [883f4ec8, 70ec78ee3ce7b4e2beb48f7a724e74359e7548ac, abe515e2ba288550c8347132a89f12422b424b2c, 291c7bf93295bc5f7378ac35faffc410c1c60421, cc59fee206595db982d74558c837f2c56c512871, 3583bfb5fc3be5fb1f2ea2abb740435b0be9f8af, 5d5186e1cfb3e045db9ef101e1c6cf6b50133040, 65e9111fa4303f87924e84e5e96d220f777f3cfc, 20c559f60753e1bfbe2abc7937eb16ef6fca9bbc]
+commits: [883f4ec8, 70ec78ee3ce7b4e2beb48f7a724e74359e7548ac, abe515e2ba288550c8347132a89f12422b424b2c, 291c7bf93295bc5f7378ac35faffc410c1c60421, cc59fee206595db982d74558c837f2c56c512871, 3583bfb5fc3be5fb1f2ea2abb740435b0be9f8af, 5d5186e1cfb3e045db9ef101e1c6cf6b50133040, 65e9111fa4303f87924e84e5e96d220f777f3cfc, 20c559f60753e1bfbe2abc7937eb16ef6fca9bbc, faeffcf6513d5d1703ae9d5a6271b01533899d4e]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -82,7 +82,10 @@ merge_method: null
 merge_commit: null
 branch_deleted: false
 open_questions: []
-deferred_work: []
+deferred_work:
+  - "Release-validation only: Exhaustive browser, role and viewport matrices beyond the essential E01-E05 and existing smoke journeys. Classification: release validation only; not a functional acceptance gap or review finding.\nStatus: deferred\nOwner: Kopplas release-validation coordinator; root owns deferred-ledger integration\nEvidence: CI 39317194836 executed the 16 essential browser tests, including all five E01-E05 first attempt/retry 0. It did not execute the exhaustive release matrix; optional dashboard/release validation was skipped with release_validation=false and is not coverage.\nNext action: Before release readiness, the coordinator enumerates and executes the remaining role/viewport/job-kind combinations on a qualified protected runtime, records results and resolves consequential failures in the root-owned release ledger.\nThis mirrors the unchanged delivery record for supported root-owned Phase 7 harvest; required development checks are not deferred. Record: _bmad-output/auto-bmad/delivery/16-2-job-members-and-per-job-roles-arbetsledare.json#deferred_release_validation[0]"
+  - "Release-validation only: Screenshot comparisons and visual inspection of the job-members, designation and dates surfaces. Classification: release validation only; not a functional acceptance gap or review finding.\nStatus: deferred\nOwner: Kopplas release-validation coordinator; root owns deferred-ledger integration\nEvidence: No exhaustive screenshot-comparison or visual-inspection evidence is claimed. Production build and essential functional browser passes are development evidence, not visual-release evidence.\nNext action: Before release readiness, capture and inspect the approved responsive states for both job kinds, record comparison evidence and disposition in the release ledger, and obtain any separately required runtime/deployment authorization.\nThis mirrors the unchanged delivery record for supported root-owned Phase 7 harvest; required development checks are not deferred. Record: _bmad-output/auto-bmad/delivery/16-2-job-members-and-per-job-roles-arbetsledare.json#deferred_release_validation[1]"
+  - "Release-validation only: Manual walkthroughs and presentation/usability polish beyond the verified essential connected flow. Classification: release validation only; not a functional acceptance gap or review finding.\nStatus: deferred\nOwner: Kopplas release-validation coordinator; root owns deferred-ledger integration\nEvidence: Manual release walkthroughs and polish were not executed in this author run. The actual automated persistence/retry/authorization journeys passed; no functional, security, transaction or storage obligation is deferred here.\nNext action: Before release readiness, perform the recorded manual keyboard/phone/desktop walkthrough and polish review, attach evidence and resolve or explicitly disposition release issues in the root-owned ledger.\nThis mirrors the unchanged delivery record for supported root-owned Phase 7 harvest; required development checks are not deferred. Record: _bmad-output/auto-bmad/delivery/16-2-job-members-and-per-job-roles-arbetsledare.json#deferred_release_validation[2]"
 blockers: []
 overrides:
   merge: "No merge or deployment; publish one final Epic 16 PR."

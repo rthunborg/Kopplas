@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-16-jobs
 status: in-progress
-updated_at: "2026-10-19T20:39:52Z"
+updated_at: "2026-10-19T20:40:32Z"
 started_at: "2026-10-15T08:50:46Z"
 completed_at: null
 active_seconds: 22488
@@ -64,7 +64,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [0586972a, d6a310be, f610bcbd, 11bf2721, bce1436b, 5d5186e1cfb3e045db9ef101e1c6cf6b50133040]
+commits: [0586972a, d6a310be, f610bcbd, 11bf2721, bce1436b, 5d5186e1cfb3e045db9ef101e1c6cf6b50133040, faeffcf6513d5d1703ae9d5a6271b01533899d4e]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -91,6 +91,9 @@ open_questions: []
 deferred_work:
   - "[16-1-jobs-depth-activation-container-evolution-and-my-jobs] Exhaustive role/device/browser matrices beyond the four essential Jobs journeys. Owner/evidence/next action: Owner: E16 UI/release-validation owner. Status: deferred under the 2026-10-19 completion policy.\nExact d605295a46634e2c20013638e01c5e2a37ad0779 required Chromium smoke passed 11/11, including all four Jobs journeys on first attempts.\nBroader matrices and optional release_validation=false skips confer no coverage.\nNext action: at release stabilization, run release_validation=true and the tracked role/device/browser matrix on the qualified final epic candidate; retain results before release readiness. Record: _bmad-output/auto-bmad/delivery/16-1-jobs-depth-activation-container-evolution-and-my-jobs.json"
   - "[16-1-jobs-depth-activation-container-evolution-and-my-jobs] Screenshot comparison, visual inspection, representative manual walkthrough and polish. Owner/evidence/next action: Owner: E16 UI/release-validation owner. Status: deferred under the 2026-10-19 completion policy.\nNo screenshot-comparison, visual or manual pass is claimed; essential connected 360x640 failure/retry/persistence has actual same-head browser evidence.\nNext action: before release readiness, retain screenshot comparisons and representative viewport/manual design/accessibility walkthroughs, and resolve consequential defects. Record: _bmad-output/auto-bmad/delivery/16-1-jobs-depth-activation-container-evolution-and-my-jobs.json"
+  - "[16-2-job-members-and-per-job-roles-arbetsledare] Release-validation only: Exhaustive browser, role and viewport matrices beyond the essential E01-E05 and existing smoke journeys. Classification: release validation only; not a functional acceptance gap or review finding.\nStatus: deferred\nOwner: Kopplas release-validation coordinator; root owns deferred-ledger integration\nEvidence: CI 39317194836 executed the 16 essential browser tests, including all five E01-E05 first attempt/retry 0. It did not execute the exhaustive release matrix; optional dashboard/release validation was skipped with release_validation=false and is not coverage.\nNext action: Before release readiness, the coordinator enumerates and executes the remaining role/viewport/job-kind combinations on a qualified protected runtime, records results and resolves consequential failures in the root-owned release ledger.\nThis mirrors the unchanged delivery record for supported root-owned Phase 7 harvest; required development checks are not deferred. Record: _bmad-output/auto-bmad/delivery/16-2-job-members-and-per-job-roles-arbetsledare.json#deferred_release_validation[0]"
+  - "[16-2-job-members-and-per-job-roles-arbetsledare] Release-validation only: Screenshot comparisons and visual inspection of the job-members, designation and dates surfaces. Classification: release validation only; not a functional acceptance gap or review finding.\nStatus: deferred\nOwner: Kopplas release-validation coordinator; root owns deferred-ledger integration\nEvidence: No exhaustive screenshot-comparison or visual-inspection evidence is claimed. Production build and essential functional browser passes are development evidence, not visual-release evidence.\nNext action: Before release readiness, capture and inspect the approved responsive states for both job kinds, record comparison evidence and disposition in the release ledger, and obtain any separately required runtime/deployment authorization.\nThis mirrors the unchanged delivery record for supported root-owned Phase 7 harvest; required development checks are not deferred. Record: _bmad-output/auto-bmad/delivery/16-2-job-members-and-per-job-roles-arbetsledare.json#deferred_release_validation[1]"
+  - "[16-2-job-members-and-per-job-roles-arbetsledare] Release-validation only: Manual walkthroughs and presentation/usability polish beyond the verified essential connected flow. Classification: release validation only; not a functional acceptance gap or review finding.\nStatus: deferred\nOwner: Kopplas release-validation coordinator; root owns deferred-ledger integration\nEvidence: Manual release walkthroughs and polish were not executed in this author run. The actual automated persistence/retry/authorization journeys passed; no functional, security, transaction or storage obligation is deferred here.\nNext action: Before release readiness, perform the recorded manual keyboard/phone/desktop walkthrough and polish review, attach evidence and resolve or explicitly disposition release issues in the root-owned ledger.\nThis mirrors the unchanged delivery record for supported root-owned Phase 7 harvest; required development checks are not deferred. Record: _bmad-output/auto-bmad/delivery/16-2-job-members-and-per-job-roles-arbetsledare.json#deferred_release_validation[2]"
 blockers: []
 overrides:
   preflight_sync: Independent High narrow two-path generated sync approved and verified
@@ -104,9 +107,10 @@ constraints:
   - "Use only owned E16 resources; E15 scheduling/time/diagnostic resources remain excluded."
   - "Each later story requires its approved plan, manifest compliance and precise path claims."
 epic_slug: jobs-core
-active_story: 16-2-job-members-and-per-job-roles-arbetsledare
+active_story: 16-3-arbetsorder
 stories_landed:
   - 16-1-jobs-depth-activation-container-evolution-and-my-jobs
+  - 16-2-job-members-and-per-job-roles-arbetsledare
 stories_skipped: []
 batch_flip_done: false
 base_sha: 8cda24614e77eda33ea31fe4de61af3a19d4759d
