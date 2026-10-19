@@ -9,11 +9,11 @@ spec_folder: null
 story_id: null
 branch: codex/epic-16-jobs
 status: in-progress
-updated_at: "2026-10-19T20:33:09Z"
+updated_at: "2026-10-19T20:39:52Z"
 started_at: "2026-10-15T08:50:46Z"
 completed_at: null
-active_seconds: 22085
-timing_anchor: 1792441989
+active_seconds: 22488
+timing_anchor: null
 is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
