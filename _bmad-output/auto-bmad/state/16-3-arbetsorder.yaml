@@ -9,11 +9,11 @@ spec_folder: null
 story_id: null
 branch: codex/epic-16-jobs
 status: in-progress
-updated_at: "2026-10-19T20:41:58Z"
+updated_at: "2026-10-19T20:46:55Z"
 started_at: "2026-10-19T20:41:57Z"
 completed_at: null
-active_seconds: 0
-timing_anchor: 1792442518
+active_seconds: 297
+timing_anchor: null
 is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
@@ -35,11 +35,11 @@ tea_rationale: "work_orders schema, composite same-tenant FK, checked creation/e
 epic_story_count: 5
 stories_after_in_epic: 2
 completed_phases: [0, 1]
-spec_path: null
+spec_path: "C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/_bmad-output/implementation-artifacts/spec-16-3-arbetsorder.md"
 spec_approved: false
 build:
-  status: null
-  blocking_condition: null
+  status: blocked
+  blocking_condition: intent gap
   followup_review_recommended: false
   review_loop_iteration: 0
   deferred_count: 0
@@ -54,7 +54,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: []
+commits: [e1bd6b0cc9d757933fcd3d61b677d4a1fd9f0037]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -77,9 +77,12 @@ pr_merged: false
 merge_method: null
 merge_commit: null
 branch_deleted: false
-open_questions: []
+open_questions:
+  - Approve or amend the proposed manager-only work-order writers and exact status/reopen workflow.
+  - "Approve or amend the explicitly labelled cross-job parent-date delay rule, same-parent rejection and unknown missing/unreadable dates."
 deferred_work: []
-blockers: []
+blockers:
+  - "Story16.3 owner decisions pending: work-order writer/status policy and TR06 dependency timing/target semantics. Spec: spec-16-3-arbetsorder.md. No E15 or messaging prerequisite."
 overrides:
   preflight_sync: Independent High narrow two-path generated sync approved and verified
   unattended: Authorized by initiating delegation
