@@ -118,22 +118,6 @@ No review loop has run. This is a new planning contract, with no prior 15.2 appr
 
 ## Review Triage Log
 
-### 2026-10-20 — Round 2 of 3 follow-up review pass
-
-- intent_gap: 0
-- bad_spec: 0
-- patch: 3: (high 2, medium 1, low 0)
-- defer: 0
-- reject: 2: (high 0, medium 0, low 2)
-- addressed_findings:
-  - `[high]` `[patch]` R2-01 ready preview admitted a complete plan above the SQL3MiB limit. Exact compact UTF8 serialization now gates ready/finalization with a fixed safe recovery message; actual planner/preview and exact/+1/multibyte boundary tests pass.
-  - `[high]` `[patch]` R2-03 shortening after role archival rejected a newly cancelled historical slot. New107 replaces only the existing helper cancellation predicate, preserving same tenant/occurrence/original role. Native REAL023 retention/replay/new-ID/changed-role checks passed in exacta515/run39342433474.
-  - `[medium]` `[patch]` R2-04 a concurrent split between metadata reads could cache mismatched ownership and repeatedly deny explicit retry. Following retry now reloads current metadata through unchanged recovery, preserving draft and pending/unknown guards; actual TSX action-port regression passes.
-- Follow-up recommendation: true (high2/medium1/low0; weighted medium/low score3). Broad rounds2/3; nonconvergence counter0 is separate.
-- All six configured independent layers completed before triage. Initial parallel CLI hook refusals provided no review credit; native batches plus one serial prescribed external retry supplied real reports. Final CMD TYPE failure is separate from the external872-byte report.
-- Distinct High fix review caught the initial R2-02 use of a superseded4000-ID guard before runtime. Effective20261007131222 removes that limit; uncommitted cap removed and actual100-person/long-ID preview/public-input regression passed. Original RED18total15P3F includes only two confirmed defect failures and one rejected wrong-expectation failure, no false coverage credit. Current20P0F0S; full nonincremental TSC and scoped ESLint native0. High correction/helper and compact-TEXT boundary qualification PASS, no new broad round.
-- Current evidence: `_bmad-output/test-artifacts/story15-2/build-round2-author-verification.json`. Exacta515/run39342433474 all5requiredjobsPASS, independentHighnativequalification02aa7862 confirms revisedRLS005/newREAL023 actualbodyexecution plus fullDB-RLS/directStorage/empty107/build. Root gate/final provenance passed and explicit status admission authorizes development done only.
-
 ### 2026-10-20 — Review pass
 
 - intent_gap: 0
@@ -155,6 +139,25 @@ No review loop has run. This is a new planning contract, with no prior 15.2 appr
 - Follow-up review recommendation: true (patched high4/medium4; medium score12). Same independent High targeted source/binding review passed after Unicode restoration (82offline checks) and009-only action correction (42offline checks); no new broad round.
 - Original triage78aaa6 and all six review reports remain immutable. Unicode15literal/17line restoration and009 detaching-checkbox action binding are targeted follow-up history; original failed runs remain failed. GLK changed essential flow has actual2+1 passes, never relabeled one3-pass run.
 - Source checkpointeffbf5e1 and exact-head run39335595653 all5required jobs now PASS, independently qualifiedd5b0. Root deliverygate/narrowprovenance/status admission remain pending; no development-complete/done or release-ready claim.
+
+### 2026-10-20 — Review pass
+
+Round 2 of 3 follow-up review.
+
+- intent_gap: 0
+- bad_spec: 0
+- patch: 3: (high 2, medium 1, low 0)
+- defer: 0
+- reject: 2: (high 0, medium 0, low 2)
+- dismissed: none
+- addressed_findings:
+  - `[high]` `[patch]` R2-01 ready preview admitted a complete plan above the SQL3MiB limit. Exact compact UTF8 serialization now gates ready/finalization with a fixed safe recovery message; actual planner/preview and exact/+1/multibyte boundary tests pass.
+  - `[high]` `[patch]` R2-03 shortening after role archival rejected a newly cancelled historical slot. New107 replaces only the existing helper cancellation predicate, preserving same tenant/occurrence/original role. Native REAL023 retention/replay/new-ID/changed-role checks passed in exacta515/run39342433474.
+  - `[medium]` `[patch]` R2-04 a concurrent split between metadata reads could cache mismatched ownership and repeatedly deny explicit retry. Following retry now reloads current metadata through unchanged recovery, preserving draft and pending/unknown guards; actual TSX action-port regression passes.
+- Follow-up recommendation: true (high2/medium1/low0; weighted medium/low score3). Broad rounds2/3; nonconvergence counter0 is separate.
+- All six configured independent layers completed before triage. Initial parallel CLI hook refusals provided no review credit; native batches plus one serial prescribed external retry supplied real reports. Final CMD TYPE failure is separate from the external872-byte report.
+- Distinct High fix review caught the initial R2-02 use of a superseded4000-ID guard before runtime. Effective20261007131222 removes that limit; uncommitted cap removed and actual100-person/long-ID preview/public-input regression passed. Original RED18total15P3F includes only two confirmed defect failures and one rejected wrong-expectation failure, no false coverage credit. Current20P0F0S; full nonincremental TSC and scoped ESLint native0. High correction/helper and compact-TEXT boundary qualification PASS, no new broad round.
+- Current evidence: `_bmad-output/test-artifacts/story15-2/build-round2-author-verification.json`. Exacta515/run39342433474 all5requiredjobsPASS, independentHighnativequalification02aa7862 confirms revisedRLS005/newREAL023 actualbodyexecution plus fullDB-RLS/directStorage/empty107/build. Root gate/final provenance passed and explicit status admission authorizes development done only.
 
 ### Historical preparation triage record (preserved)
 
