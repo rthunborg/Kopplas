@@ -2,7 +2,7 @@
 title: '15.1 — The Five Scheduling Views (corrected contract)'
 type: 'feature'
 created: '2026-10-13'
-status: 'blocked'
+status: 'in-progress'
 review_loop_iteration: 0
 followup_review_recommended: false
 baseline_revision: 'ddd188f63e7b84c59e8f921933140ca2a2613551'
@@ -141,6 +141,19 @@ Planning executes no product/runtime tests. Implementation executes current `.gi
 Current 62 skipped ATDD cases give ZERO executed coverage; preparation updates mapping only/tests unchanged. Future receipts distinguish source inspection/mock transport from RPC/RLS/browser execution, preserving failures/skips. Manual assistive-tech/daylight/exploration/performance certification stay open until observed/approved evidence; no fabricated coverage/parity claim.
 
 ## Auto Run Result
+
+### Authorized lifecycle recovery — 2026-10-19
+
+Lifecycle recovery: in-progress. The owner explicitly resumed this existing approved specification after the narrow CI/test portability and post-reload scenario repairs. This recovers the same story for formal P5; it is not a replan, replacement contract, review-counter reset, completed implementation, or release approval.
+
+Standard CI run `39258261167`, attempt 1, on exact source `5e8a5e33f1472f20f218b4bf4b27637f63ea4e74` completed successfully. All five required jobs executed successfully: checkpoint admission, verify, full DB integration/RLS, essential authentication smoke, and isolated recovery Storage. Actual native counts: unit 2,833 passed/0 failed/0 cancelled/0 skipped; BMAD 2 and Auto-BMAD 26+10+5 passed; authentication smoke 7 passed/0 failed/0 skipped/0 flaky; integration 1,736 passed/0 failed/1 explicit skipped Storage body across 145 files, including a non-additive 752-pass RLS subset across 50 files; the separate isolated Storage proof executed 1 passed/0 failed/0 skipped. Typecheck, lint, build, source and built-bundle containment passed. Dashboard and the three optional diagnostics intentionally skipped in standard development mode and receive no execution credit.
+
+The separately owned production-app/SQL handoff at `.env.epic15.mail-runtime/owner-resume-focused-20261019/e15-focused-native-handoff-v2.json` records eight current-head cases passed across three commands, with zero failed/skipped/flaky cases or retries. Its new Schema E2E001/E2E002 execution includes create, SQL interval/person readback, actual reload, explicit Schema/day/date restoration and editor values, retaining E2E001's person filter. Other retained focused receipts keep their own exact heads and dependency qualifications; do not relabel old W whole cases or every retained case as a fresh current-head pass. Native standard CI evidence is in `.env.epic15.mail-runtime/standard-ci-5e8a5e33-evidence/5ab935f4-3890-424a-a449-ccc910a37f05/terminal-native-summary.json` and its evidence manifest. These paths are evidence outputs, never executable dependencies.
+
+The owner policy dated 2026-10-19 governs this authorized resume: retain functional acceptance, Contract D calendar-host/editor/persistence obligations, authorization/RLS, migration and transactional-integrity requirements; record exhaustive browser/visual/manual/polish work separately as deferred release validation. Historical failed, skipped and unobserved results below remain unchanged. Aggregate harness duration is not product-performance certification. Formal P5 verification and independent review remain, with broad review rounds 0 of 3. The author will later reconcile the final Suggested Review Order and provide revision-bound delivery evidence for the supported delivery gate before any completion claim. No done/review-verified status, 15.2 release, merge, publication or deployment is granted by this lifecycle edit.
+
+### Historical blocked implementation exit — 2026-10-14
+
 
 Status: blocked
 Blocking condition: implementation verification failed

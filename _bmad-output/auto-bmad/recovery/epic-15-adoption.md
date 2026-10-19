@@ -105,3 +105,31 @@ the 44-line helper from `22f08b4c`. Typecheck and targeted lint passed. Independ
 review and a fresh production build/native Resource execution remain required.
 Schema's complete `22f08b4c` focus pass is retained only subject to the reviewer's
 qualification of unchanged relevant code and dependencies. P5 remains incomplete.
+
+At pushed `5e8a5e33f1472f20f218b4bf4b27637f63ea4e74`, the production rebuild
+passed. Three bounded native commands then executed eight scheduling cases:
+Resource focus, both hosts' keyboard/dialog creation, all five projections,
+Schema resize, Resource move, and Schema click/drag creation with post-reload
+editor comparisons and retained Person filter. All eight passed with zero
+failures, skips, flaky cases or retries. Original reports and traces are retained
+outside Playwright's cleanup directory. Schema focus at `22f08b4c` remains
+independently qualified reused evidence. Historical W's 001/002 creation evidence
+retains its original retry counts; current native execution closes the changed
+Schema reload-helper coverage gap without relabelling that historical run.
+
+Standard CI run [39258261167](https://github.com/rthunborg/Kopplas/actions/runs/39258261167)
+passed for exact `5e8a5e33`: checkpoint admission, verify, complete database/RLS,
+isolated recovery Storage and essential auth smoke. Optional release diagnostics
+were intentionally unselected. The prior browser/body acquisition blocker is
+resolved; formal P5, independent broad review, applicable TEA and delivery-record
+validation remain outstanding. No story completion or release readiness is claimed.
+
+The final bounded current-layout qualification directly executed Resource click
+and drag creation at `5e8a5e33`, because their retained `91233e4e` passes predated
+the Resource wrapper change. Both passed with SQL/read-after-reload assertions
+unchanged. Final native evidence is ten current-layout passes in four commands,
+zero failures/skips/flaky cases/retries, plus the independently qualified reused
+Schema focus pass. `e15-focused-native-handoff-v3.json` retains the earlier
+handoffs and historical failures. All three owned local lifecycle resources
+received successful Stop acknowledgments after verification; saved state is
+retained, and shutdown polling is not a completion gate.
