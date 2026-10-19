@@ -67,6 +67,15 @@ Low review qualified the unchanged Schema path for evidence reuse and approved
 the bounded fallback; typecheck and lint passed. Resource native verification
 remains required; no Resource pass is inferred from the source review.
 
+At `955390c253a598a0f71ea4a46870965f4d1baeb3`, Resource source activation
+succeeded, but the target-center hit check failed before target movement. The
+slot button itself owns the native drop handler. Target selection now preserves
+the valid center path and otherwise checks bounded visible positions inside that
+same button; covering controls are never treated as valid drop areas. Independent
+Low review and static checks passed. The original Schema path remains unchanged;
+Resource execution is pending. If every bounded position is obstructed, inspect
+the emitted geometry rather than expanding another blind candidate search.
+
 Essential follow-up selection retains both calendar hosts' keyboard/dialog
 creation, the five usable projections, and representative Resource move plus
 Schema resize with review/cancel/no-write/persistence checks. The latter pair

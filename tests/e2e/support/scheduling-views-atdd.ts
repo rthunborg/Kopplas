@@ -209,20 +209,65 @@ export class SchedulingViewsHarness {
     try {
       await this.page.mouse.move(start.activatedX, start.activatedY, { steps: 4 });
       await target.scrollIntoViewIfNeeded();
-      const destination = await target.evaluate(element => {
+      const dropSelection = await target.evaluate(element => {
         const rect = element.getBoundingClientRect(), x = rect.left + rect.width / 2, y = rect.top + rect.height / 2;
-        const owns = (atX: number) => {
-          if (atX <= 0 || y <= 0 || atX >= innerWidth || y >= innerHeight) return false;
-          const hit = document.elementFromPoint(atX, y);
+        const owns = (atX: number, atY: number) => {
+          if (atX <= 0 || atY <= 0 || atX >= innerWidth || atY >= innerHeight) return false;
+          const hit = document.elementFromPoint(atX, atY);
           return hit !== null && (hit === element || element.contains(hit));
         };
-        // Two distinct moves within the real target produce native dragover before release.
-        const insideX = owns(x + 2) ? x + 2 : owns(x - 2) ? x - 2 : null;
-        return owns(x) && insideX !== null ? { x, y, insideX } : null;
+        // Preserve the previously valid centre path and its exact two native move points.
+        const insideX = owns(x + 2, y) ? x + 2 : owns(x - 2, y) ? x - 2 : null;
+        if (owns(x, y) && insideX !== null) return { point: { x, y, insideX, insideY: y }, diagnostic: null };
+
+        const visible = { left: Math.max(0, rect.left), top: Math.max(0, rect.top), right: Math.min(innerWidth, rect.right), bottom: Math.min(innerHeight, rect.bottom) };
+        for (let ancestor = element.parentElement; ancestor; ancestor = ancestor.parentElement) {
+          const css = getComputedStyle(ancestor), box = ancestor.getBoundingClientRect();
+          if (/auto|scroll|hidden|clip/.test(css.overflowX)) {
+            visible.left = Math.max(visible.left, box.left + ancestor.clientLeft);
+            visible.right = Math.min(visible.right, box.left + ancestor.clientLeft + ancestor.clientWidth);
+          }
+          if (/auto|scroll|hidden|clip/.test(css.overflowY)) {
+            visible.top = Math.max(visible.top, box.top + ancestor.clientTop);
+            visible.bottom = Math.min(visible.bottom, box.top + ancestor.clientTop + ancestor.clientHeight);
+          }
+        }
+        const describe = (atX: number, atY: number) => {
+          const hit = document.elementFromPoint(atX, atY), testId = hit?.closest("[data-testid]")?.getAttribute("data-testid") ?? "";
+          return { x: atX, y: atY, hitTag: hit?.tagName.toLowerCase() ?? null,
+            hitKind: testId.startsWith("scheduling-booking-") ? "booking" : testId === "scheduling-resize" ? "resize" : testId.endsWith("-slot") ? "slot" : "other",
+            targetOwned: hit !== null && (hit === element || element.contains(hit)) };
+        };
+        const attempts = [describe(x, y)];
+        const width = visible.right - visible.left, height = visible.bottom - visible.top;
+        if (width > 0 && height > 0) {
+          const insetX = Math.min(2, width / 4), insetY = Math.min(2, height / 4);
+          // Five measured points inside this same slot; no neighbour-cell or wrapper fallback.
+          const candidates = [
+            { x: (visible.left + visible.right) / 2, y: (visible.top + visible.bottom) / 2 },
+            { x: visible.left + insetX, y: visible.top + insetY },
+            { x: visible.right - insetX, y: visible.top + insetY },
+            { x: visible.left + insetX, y: visible.bottom - insetY },
+            { x: visible.right - insetX, y: visible.bottom - insetY },
+          ];
+          for (const point of candidates) {
+            attempts.push(describe(point.x, point.y));
+            if (!owns(point.x, point.y)) continue;
+            for (const [dx, dy] of [[2, 0], [-2, 0], [0, 2], [0, -2]]) {
+              const insideX = point.x + dx, insideY = point.y + dy;
+              if (insideX <= visible.left || insideX >= visible.right || insideY <= visible.top || insideY >= visible.bottom) continue;
+              if (owns(point.x + dx / 2, point.y + dy / 2) && owns(insideX, insideY)) {
+                return { point: { ...point, insideX, insideY }, diagnostic: null };
+              }
+            }
+          }
+        }
+        return { point: null, diagnostic: { rect: { left: rect.left, top: rect.top, width: rect.width, height: rect.height }, visible, attempts } };
       });
-      if (!destination) throw new Error("Native booking drag target has no unobstructed visible drop area");
+      const destination = dropSelection.point;
+      if (!destination) throw new Error(`Native booking drag target has no unobstructed visible drop area: ${JSON.stringify(dropSelection.diagnostic)}`);
       await this.page.mouse.move(destination.x, destination.y, { steps: 8 });
-      await this.page.mouse.move(destination.insideX, destination.y);
+      await this.page.mouse.move(destination.insideX, destination.insideY);
     } finally { await this.page.mouse.up(); }
   }
   async fillRequired(assignees: string[] = [this.people[0]!]): Promise<void> {
