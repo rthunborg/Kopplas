@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-16-jobs
 status: in-progress
-updated_at: "2026-10-19T19:15:13Z"
+updated_at: "2026-10-19T20:10:55Z"
 started_at: "2026-10-15T08:50:46Z"
 completed_at: null
 active_seconds: 17411
@@ -63,7 +63,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [0586972a, d6a310be, f610bcbd, 11bf2721, bce1436b]
+commits: [0586972a, d6a310be, f610bcbd, 11bf2721, bce1436b, 5d5186e1cfb3e045db9ef101e1c6cf6b50133040]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -80,8 +80,8 @@ retro:
   open_action_items: 0
 bmad_status_flipped_at: null
 pr_url: null
-ci_run_url: null
-ci_status: unknown
+ci_run_url: "https://github.com/rthunborg/Kopplas/actions/runs/39314732375"
+ci_status: failed
 pr_merged: false
 merge_method: null
 merge_commit: null

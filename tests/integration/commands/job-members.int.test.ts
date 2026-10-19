@@ -194,51 +194,57 @@ describe("16.2 job crew, responsible lead and dates command integrity", () => {
     });
   });
 
-  // Activate after RPCs use the established tenant/membership lock boundary and audit-fault setup is installed.
-  test("[P0] 16.2-INT-006 checked mutations recheck locked actor/target facts and audit failure rolls the entire mutation back", async () => {
+  // Each independent fixture gets the unchanged runner budget; the controlled
+  // tenant barrier and every authority/atomicity assertion stay unchanged.
+  const authorityChanges = ["actor-member-removed", "actor-lead-replaced", "actor-revoked", "actor-profile-archived", "manager-role-changed", "target-member-removed", "target-revoked", "target-profile-archived"] as const;
+  test.each(authorityChanges)("[P0] 16.2-INT-006 checked mutations recheck locked actor/target facts: %s", async (change) => {
     const h = await import("../../support/jobs-depth-atdd");
     const j = await import("../../support/job-booking-facts-atdd");
     const m = await import("../../support/job-members-atdd");
-    for (const change of ["actor-member-removed", "actor-lead-replaced", "actor-revoked", "actor-profile-archived", "manager-role-changed", "target-member-removed", "target-revoked", "target-profile-archived"] as const) {
-      await h.withJobsDepthFixture(async (f) => {
-        const job = f.jobs.memberOrder.id;
-        await m.seedMember(f, job, f.fx.ownProfile.id, true);
-        await m.seedMember(f, job, f.fx.coworkerProfile.id);
-        const targetChange = change.startsWith("target-");
-        const managerChange = change === "manager-role-changed";
-        const client = targetChange ? f.fx.adminClient : managerChange ? f.fx.plannerClient : f.fx.montorClient;
-        const actor = targetChange ? f.fx.base.adminA.id : managerChange ? f.fx.users.projektledare.id : f.fx.users.montor.id;
-        const operation = targetChange ? "lead" : "dates";
-        const input = await m.memberInput(client, job, targetChange ? { personProfileId: f.fx.coworkerProfile.id }
-          : { planned_start_date: "2026-10-20", planned_end_date: "2026-10-21" });
-        const before = await m.memberSnapshot(f);
-        let externalState = before;
-        const reply = await j.afterTenantGateWait(f.fx.base.tenantA.id,
-          async () => await m.checkedMemberCall(operation, client, f.fx.base.tenantA.id, actor, input), async (query) => {
-            const statements: Record<typeof change, [string, unknown[]]> = {
-              "actor-member-removed": ["update public.job_members set archived_at=statement_timestamp() where job_id=$1 and person_profile_id=$2", [job, f.fx.ownProfile.id]],
-              "actor-lead-replaced": ["update public.job_members set designation='member' where job_id=$1 and person_profile_id=$2", [job, f.fx.ownProfile.id]],
-              "actor-revoked": ["update public.tenant_memberships set status='disabled' where id=$1", [f.fx.ownProfile.membershipId]],
-              "actor-profile-archived": ["update public.person_profiles set archived_at=statement_timestamp() where id=$1", [f.fx.ownProfile.id]],
-              "manager-role-changed": ["update public.tenant_memberships set role='saljare' where id=$1", [f.fx.coworkerProfile.membershipId]],
-              "target-member-removed": ["update public.job_members set archived_at=statement_timestamp() where job_id=$1 and person_profile_id=$2", [job, f.fx.coworkerProfile.id]],
-              "target-revoked": ["update public.tenant_memberships set status='disabled' where id=$1", [f.fx.coworkerProfile.membershipId]],
-              "target-profile-archived": ["update public.person_profiles set archived_at=statement_timestamp() where id=$1", [f.fx.coworkerProfile.id]],
-            };
-            await query(...statements[change]);
-            if (change === "actor-lead-replaced") await query("update public.job_members set designation='arbetsledare' where job_id=$1 and person_profile_id=$2", [job, f.fx.coworkerProfile.id]);
-            // Read the intended external commit through its own session before release.
-            // The final comparison then catches any extra member/role/profile/audit write.
-            const rows = async (table: string, order: string) => (await query<{ row: import("../../support/bookings-atdd").DurableRow }>(
-              `select to_jsonb(t) as row from public.${table} t where tenant_id=any($1::uuid[]) order by ${order}`, [f.fx.tenantIds])).map((r) => r.row);
-            externalState = { ...before, members: await rows("job_members", "to_jsonb(t)::text"),
-              tenantMemberships: await rows("tenant_memberships", "id"), profiles: await rows("person_profiles", "id") };
-          });
-        expect(reply.error?.code).toBe("42501");
-        const after = await m.memberSnapshot(f);
-        expect(after).toEqual(externalState);
-      });
-    }
+    await h.withJobsDepthFixture(async (f) => {
+      const job = f.jobs.memberOrder.id;
+      await m.seedMember(f, job, f.fx.ownProfile.id, true);
+      await m.seedMember(f, job, f.fx.coworkerProfile.id);
+      const targetChange = change.startsWith("target-");
+      const managerChange = change === "manager-role-changed";
+      const client = targetChange ? f.fx.adminClient : managerChange ? f.fx.plannerClient : f.fx.montorClient;
+      const actor = targetChange ? f.fx.base.adminA.id : managerChange ? f.fx.users.projektledare.id : f.fx.users.montor.id;
+      const operation = targetChange ? "lead" : "dates";
+      const input = await m.memberInput(client, job, targetChange ? { personProfileId: f.fx.coworkerProfile.id }
+        : { planned_start_date: "2026-10-20", planned_end_date: "2026-10-21" });
+      const before = await m.memberSnapshot(f);
+      let externalState = before;
+      const reply = await j.afterTenantGateWait(f.fx.base.tenantA.id,
+        async () => await m.checkedMemberCall(operation, client, f.fx.base.tenantA.id, actor, input), async (query) => {
+          const statements: Record<typeof change, [string, unknown[]]> = {
+            "actor-member-removed": ["update public.job_members set archived_at=statement_timestamp() where job_id=$1 and person_profile_id=$2", [job, f.fx.ownProfile.id]],
+            "actor-lead-replaced": ["update public.job_members set designation='member' where job_id=$1 and person_profile_id=$2", [job, f.fx.ownProfile.id]],
+            "actor-revoked": ["update public.tenant_memberships set status='disabled' where id=$1", [f.fx.ownProfile.membershipId]],
+            "actor-profile-archived": ["update public.person_profiles set archived_at=statement_timestamp() where id=$1", [f.fx.ownProfile.id]],
+            "manager-role-changed": ["update public.tenant_memberships set role='saljare' where id=$1", [f.fx.coworkerProfile.membershipId]],
+            "target-member-removed": ["update public.job_members set archived_at=statement_timestamp() where job_id=$1 and person_profile_id=$2", [job, f.fx.coworkerProfile.id]],
+            "target-revoked": ["update public.tenant_memberships set status='disabled' where id=$1", [f.fx.coworkerProfile.membershipId]],
+            "target-profile-archived": ["update public.person_profiles set archived_at=statement_timestamp() where id=$1", [f.fx.coworkerProfile.id]],
+          };
+          await query(...statements[change]);
+          if (change === "actor-lead-replaced") await query("update public.job_members set designation='arbetsledare' where job_id=$1 and person_profile_id=$2", [job, f.fx.coworkerProfile.id]);
+          // Read the intended external commit through its own session before release.
+          // The final comparison then catches any extra member/role/profile/audit write.
+          const rows = async (table: string, order: string) => (await query<{ row: import("../../support/bookings-atdd").DurableRow }>(
+            `select to_jsonb(t) as row from public.${table} t where tenant_id=any($1::uuid[]) order by ${order}`, [f.fx.tenantIds])).map((r) => r.row);
+          externalState = { ...before, members: await rows("job_members", "to_jsonb(t)::text"),
+            tenantMemberships: await rows("tenant_memberships", "id"), profiles: await rows("person_profiles", "id") };
+        });
+      expect(reply.error?.code).toBe("42501");
+      const after = await m.memberSnapshot(f);
+      expect(after).toEqual(externalState);
+    });
+  });
+
+  test("[P0] 16.2-INT-006 audit failure rolls the entire mutation back and the same request retries once", async () => {
+    const h = await import("../../support/jobs-depth-atdd");
+    const j = await import("../../support/job-booking-facts-atdd");
+    const m = await import("../../support/job-members-atdd");
     await h.withJobsDepthFixture(async (f) => {
       const correlation = crypto.randomUUID();
       const before = await m.memberSnapshot(f);
