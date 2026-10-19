@@ -9,11 +9,11 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-19T17:01:39Z"
+updated_at: "2026-10-19T17:18:11Z"
 started_at: "2026-10-19T17:01:38Z"
 completed_at: null
-active_seconds: 0
-timing_anchor: 1792429299
+active_seconds: 963
+timing_anchor: null
 is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
@@ -35,7 +35,7 @@ tea_rationale: "Recurrence/DST and materialized occurrence mutations with dedupe
 epic_story_count: 6
 stories_after_in_epic: 4
 completed_phases: [0, 1, 2]
-spec_path: null
+spec_path: "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/implementation-artifacts/spec-15-2-recurring-bookings-series-materialized-occurrences-exceptions.md"
 spec_approved: false
 build:
   status: null
@@ -54,7 +54,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: []
+commits: [76f50d38]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -98,4 +98,7 @@ overrides:
   development_completion_policy: 2026-10-19
   deployment: false
   owner_resume: "2026-10-19 explicit authorization; Coordinator verified recovery handoff"
-constraints: []
+constraints:
+  - "Candidate spec independently passed against 76f50d38; canonical approval remains pending coherent 16.1 integration and distinct High source/spec compatibility review."
+  - "Coordinator permits own-branch coherent integration of completed 16.1 ancestor 26dac3ab539ad54a79916135c53f25931e958d76 after preparation checkpoint and actual object/ref checks; preserve E15 contracts and E16 v3 facts/proof/migrations together."
+  - "Shared 15.2 implementation requires reviewed integration and final focused allocation; migration 20261019180000_recurring_booking_series.sql is reserved subject to actual inventory recheck. No main merge, split PR or deployment authorization."
