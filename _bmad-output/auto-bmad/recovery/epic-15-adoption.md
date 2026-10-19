@@ -93,3 +93,15 @@ Reviewed checkpoint pushes and reusable standard CI are authorized. Main merge,
 deployment, previews and provider/secret mutations are outside this resume.
 Retain branches. Require delegate-authored delivery evidence and the supported
 delivery gate before completion claims or status finalization.
+
+At `8276d9b2e3c0a2dc2f9313cd3bb1e61edfe3d9ff`, Resource focus still failed:
+the intended week-view 14:30 slot was painted over by an 11:30 slot. The trace
+did not establish the painted slot's date. Source review confirmed sibling day
+wrappers could shrink below their nonshrinking half-hour columns. The author
+changed those wrappers to intrinsic width under the existing horizontal scroll
+container, preserving all days and DST-aware slot counts. The speculative source
+and target point-search additions were removed; `dragBooking` is again exactly
+the 44-line helper from `22f08b4c`. Typecheck and targeted lint passed. Independent
+review and a fresh production build/native Resource execution remain required.
+Schema's complete `22f08b4c` focus pass is retained only subject to the reviewer's
+qualification of unchanged relevant code and dependencies. P5 remains incomplete.
