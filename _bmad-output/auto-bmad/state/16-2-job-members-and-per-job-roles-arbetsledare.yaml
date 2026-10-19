@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-16-jobs
 status: in-progress
-updated_at: "2026-10-19T17:10:10Z"
+updated_at: "2026-10-19T17:11:45Z"
 started_at: "2026-10-19T17:10:09Z"
 completed_at: null
 active_seconds: 0
@@ -35,7 +35,7 @@ tea_selected: [atdd, automate]
 tea_rationale: "Server-side per-job authorization/elevation and composite same-tenant foreign keys: explicit permissions and data-integrity signals"
 epic_story_count: 5
 stories_after_in_epic: 3
-completed_phases: []
+completed_phases: [0, 1]
 spec_path: null
 spec_approved: false
 build:
@@ -55,7 +55,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: []
+commits: [883f4ec8]
 phase8_steps:
   trace_gate: null
   nfr: null
