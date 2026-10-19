@@ -2,17 +2,50 @@
 title: 'Story 16.2: Job Members and Per-Job Roles (Arbetsledare)'
 type: 'feature'
 created: '2026-10-19'
-status: 'in-progress'
+status: 'done'
 baseline_revision: 3583bfb5fc3be5fb1f2ea2abb740435b0be9f8af
 review_loop_iteration: 0
-followup_review_recommended: true
+followup_review_recommended: false
 context:
   - '{project-root}/docs/process/development-completion-policy.md'
   - '{project-root}/docs/process/agent-model-routing.md'
   - '{project-root}/docs/process/review-order.md'
   - '{project-root}/_bmad-output/implementation-artifacts/epic-16-context.md'
 warnings: [oversized]
-deferred: []
+deferred:
+  - summary: >-
+      Release-validation only: Exhaustive browser, role and viewport matrices beyond the essential E01-E05 and existing smoke journeys
+    evidence: |-
+      Classification: release validation only; not a functional acceptance gap or review finding.
+      Status: deferred
+      Owner: Kopplas release-validation coordinator; root owns deferred-ledger integration
+      Evidence: CI 39317194836 executed the 16 essential browser tests, including all five E01-E05 first attempt/retry 0. It did not execute the exhaustive release matrix; optional dashboard/release validation was skipped with release_validation=false and is not coverage.
+      Next action: Before release readiness, the coordinator enumerates and executes the remaining role/viewport/job-kind combinations on a qualified protected runtime, records results and resolves consequential failures in the root-owned release ledger.
+      This mirrors the unchanged delivery record for supported root-owned Phase 7 harvest; required development checks are not deferred.
+    location: >-
+      _bmad-output/auto-bmad/delivery/16-2-job-members-and-per-job-roles-arbetsledare.json#deferred_release_validation[0]
+  - summary: >-
+      Release-validation only: Screenshot comparisons and visual inspection of the job-members, designation and dates surfaces
+    evidence: |-
+      Classification: release validation only; not a functional acceptance gap or review finding.
+      Status: deferred
+      Owner: Kopplas release-validation coordinator; root owns deferred-ledger integration
+      Evidence: No exhaustive screenshot-comparison or visual-inspection evidence is claimed. Production build and essential functional browser passes are development evidence, not visual-release evidence.
+      Next action: Before release readiness, capture and inspect the approved responsive states for both job kinds, record comparison evidence and disposition in the release ledger, and obtain any separately required runtime/deployment authorization.
+      This mirrors the unchanged delivery record for supported root-owned Phase 7 harvest; required development checks are not deferred.
+    location: >-
+      _bmad-output/auto-bmad/delivery/16-2-job-members-and-per-job-roles-arbetsledare.json#deferred_release_validation[1]
+  - summary: >-
+      Release-validation only: Manual walkthroughs and presentation/usability polish beyond the verified essential connected flow
+    evidence: |-
+      Classification: release validation only; not a functional acceptance gap or review finding.
+      Status: deferred
+      Owner: Kopplas release-validation coordinator; root owns deferred-ledger integration
+      Evidence: Manual release walkthroughs and polish were not executed in this author run. The actual automated persistence/retry/authorization journeys passed; no functional, security, transaction or storage obligation is deferred here.
+      Next action: Before release readiness, perform the recorded manual keyboard/phone/desktop walkthrough and polish review, attach evidence and resolve or explicitly disposition release issues in the root-owned ledger.
+      This mirrors the unchanged delivery record for supported root-owned Phase 7 harvest; required development checks are not deferred.
+    location: >-
+      _bmad-output/auto-bmad/delivery/16-2-job-members-and-per-job-roles-arbetsledare.json#deferred_release_validation[2]
 ---
 
 <intent-contract>
@@ -133,6 +166,21 @@ No exact unfinished E15 contract blocks this approved plan. No other-worktree ad
 
 ## Review Triage Log
 
+### 2026-10-19 — Review pass
+
+Scope: original six configured layers, one broad Round 1; this canonical block preserves their original deduplicated findings and the implemented batch.
+
+- intent_gap: 0
+- bad_spec: 0
+- patch: 5: (high 3, medium 2, low 0)
+- defer: 0
+- reject: 6: (high 0, medium 0, low 6)
+- addressed_findings:
+  - `[high]` `[patch]` Three recorded High repairs: optional-profile manager denial, current visible assignment retry, and pristine/dirty cross-lane baselines.
+  - `[medium]` `[patch]` Two recorded Medium repairs: typed admission failure and member-read recovery.
+
+Recommendation for this original pass: true (patched high 3, medium 2, low 0; weighted medium/low score 6, and High patches present). This historical result is retained.
+
 Round 1's 14 prescriptive reports reconcile to 11 unique claims: five patches (three High, two Medium), six rejected required-patch suggestions; intent gap 0, bad spec 0, defer 0. The same High implementation author applied one bounded batch. Source-addressed does not imply executed SQL/browser evidence or reviewer acceptance; same-reviewer follow-up is limited to these fixes, regressions and unresolved consequential findings.
 
 | Unique claim | Disposition and actual action | Evidence / limit |
@@ -149,6 +197,20 @@ Round 1's 14 prescriptive reports reconcile to 11 unique claims: five patches (t
 | Add a singular-lead unique index | Rejected as a required repair: partial unique index already enforces one unarchived lead and fails historical duplicates explicitly. | Existing index and ACL/inventory assertions preserved. |
 | Add broad edited-draft browser coverage | Rejected as a separate required repair without a current bypass. | Narrow E04/E05 were added for the two observed selection/baseline defects; no exhaustive release matrix is substituted for a missing development check. |
 
+### 2026-10-19 — Review pass
+
+Scope: same independent Sol 6.1 High s162_blind's focused check of the five fixes and regressions; no additional broad review. Qualified PASS in `C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-16-2-review-afc41771-8a4c-4cb0-8a39-6349e08cfca9/focused-pass.receipt.txt`, SHA256 `52859c2a3be4e8cc44f6c08bb4f4e665f217c58d26c966fc1f27555a3e6f42b2`; all 38 source hashes and fix-diff hash matched. The receipt's then-pending runtime conditions are now supplied by exact-head CI 39317194836; its original text is preserved.
+
+- intent_gap: 0
+- bad_spec: 0
+- patch: 0: (high 0, medium 0, low 0)
+- defer: 0
+- reject: 0
+- addressed_findings:
+  - none
+
+Recommendation for this focused pass: false (patched high 0, medium 0, low 0; score 0).
+
 
 ### CI 39314732375 — bounded INT-006 harness repair
 
@@ -159,6 +221,21 @@ The failed test aggregated eight independent authority-race fixtures and one aud
 Action: replace only that aggregate with `test.each` for the exact eight race names and a separately named ninth audit rollback/retry test. All original assertion expressions, actual checked-RPC calls, controlled waits, full external-state comparisons and same-request retry/audit assertions are preserved. The global 30-second timeout, 10-second barrier, fixtures, SQL/helpers and product code are untouched. No source-bound test mirroring this registration was added.
 
 Executed on the repaired source: actual `pnpm exec vitest list tests/integration/commands/job-members.int.test.ts --json` collected **15 command tests**, including all **eight named INT-006 races plus the ninth audit case**; `pnpm typecheck` and targeted ESLint passed. Collection executes no test fixtures and is not database coverage. Parent-reported native static evidence (2,627 unit passes/0 skips), browser evidence (16 passed, including E01–05 first attempt/retry 0), and recovery evidence (1 passed) remain tied to the prior revision and unchanged product boundaries. Their actual applicability is root-owned; no passing history or failed case is rewritten. Focused independent High review and the root's real integration rerun remain required before crediting this repair or completion.
+
+### 2026-10-19 — Review pass
+
+Scope: same independent Sol 6.1 High s162_blind's focused approval of the bounded two-file timing-harness repair; no additional broad pass. Qualified PASS in `C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-16-2-review-afc41771-8a4c-4cb0-8a39-6349e08cfca9/timeout-fix-pass.receipt.txt`, SHA256 `18b7ee2c4ddf8c326b02cf4009a91024aab81339ab1a24cfd18ff15474179df2`; all assertions, checked calls, waits, awaited cleanup and retry guarantees were preserved without raising a timeout. Exact-head CI 39317194836 now proves all eight races plus the audit case passed. Original failed-run evidence and unknown interrupted iteration remain above.
+
+- intent_gap: 0
+- bad_spec: 0
+- patch: 0: (high 0, medium 0, low 0)
+- defer: 0
+- reject: 0
+- addressed_findings:
+  - none
+
+Latest recommendation: false because this actual latest pass patched high 0, medium 0, low 0; `3 × medium + low = 0`, below 5, with no High patch. The formula is pass-local; historical High patches and their true recommendation remain recorded. `review_loop_iteration: 0` tracks bad-spec re-derivation loops, not the number of broad/targeted review receipts. Review deferrals remain 0; the three release-validation deferrals live in the delivery record and await root ledger integration.
+
 
 ## Design Notes
 
@@ -180,6 +257,52 @@ Implementation must run high-risk ATDD before development and TEA automate after
 Before development-complete status, the author writes `_bmad-output/auto-bmad/delivery/16-2-job-members-and-per-job-roles-arbetsledare.json` with exact tested revision/checks/review provenance and owned deferred release validation. Root runs the executable delivery gate before done/finalization. Exhaustive browser matrices, screenshots and manual polish are deferred release validation under the 2026-10-19 policy, never a waiver of essential behavior or security tests. This plan grants no release readiness or deployment permission.
 
 ## Auto Run Result
+
+Status: done
+Blocking condition: none
+Phase: development complete under the adopted 2026-10-19 policy; root-authorized metadata closure. Release readiness remains false, and merge/deployment authorization is not granted.
+Evidence revision: `65e9111fa4303f87924e84e5e96d220f777f3cfc`; owned terminal-success CI `39317194836`, checkpoint `ef94062e-ea29-4e3a-ba6f-03f9ccee5f5e`, receipt `C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-16-2-ci-65e9111f-cc5758aa-eabd-47a8-99c2-933c31eed812.json`. This source revision was tested; subsequent author edits are only this spec and the required delivery JSON.
+
+Implemented change: audited same-tenant membership/reactivation, singular manager-appointed Arbetsledare, own-job ordinary crew/planned-date authority, narrow person projections and jobs-only admission, and explicit connected UI retry/stale consent. Existing mixed/full-card/lifecycle/consumer/money grants remain independent. The profileless-manager, current-selection, dirty-baseline and typed read-failure fixes are included; the timing-only INT006 repair preserves every original assertion.
+
+Files changed (one-line scope summaries; exact 38-file reviewed source inventory and hashes are `C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-16-2-review-afc41771-8a4c-4cb0-8a39-6349e08cfca9/inventory-timeout-fixed.json`, raw SHA256 `57e138b9cbad60d624121192fdddd06c64f1af056445791853ee52d82753db0f`):
+
+- Jobs page/app-shell entry paths: typed safe read/admission failures and jobs-only relational navigation.
+- `JobDetailView.tsx`, new `JobMembersPanel.tsx`: usable member/lead/date controls with honest persistence, retry and draft consent.
+- New `job-members-domain.ts`, reused `job-card-domain.ts` calendar predicate: closed inputs, immutable submissions and independent field baselines.
+- Jobs actions/read models/types consumers: fixed-operation actions, narrow IDs/labels/flags and structural money withholding.
+- Authorization/envelope paths: closed crew/date scope enrollment with unchanged mixed-command and independent manager/money grants.
+- New jobs member/date command wrappers and checked SQL migration: current locked authority, stable relationships, one-lead constraint and atomic audit/replay.
+- Unit/integration/RLS/role-harness/fixture paths: original contracts and focused five-fix/timeout regressions.
+- `package.json`: essential smoke retains both authentication specs and jobs-depth, adds job-members.
+- This spec: author decisions, triage, truthful history and review trail. New `_bmad-output/auto-bmad/delivery/16-2-job-members-and-per-job-roles-arbetsledare.json`: required policy evidence/deferral metadata only; no source/test/SQL/helper change after green.
+
+Actual exact-head development checks:
+
+| Check | Executed result |
+| --- | --- |
+| Static/unit/process | Typecheck/lint passed; units **2627 passed, 0 failed/cancelled/skipped/todo, 100 suites**; Python **2+26+10+5=43 passed**. |
+| Build/containment | Production build, source and bundle containment passed. |
+| Supply-chain integrity | Dependency audit and lock checks passed. |
+| Migration replay | New migration applied at startup and empty-database reset; reset attempt **1 succeeded**. Hosted isolated CI evidence. |
+| Full integration/RLS | **1773 total, 1772 passed, 0 failed, 1 pending, 0 todo**; runner files **148 passed/1 skipped of 149**. Commands **15 passed/0 skipped**, member RLS **3**, Phase A surface **7**, role-harness **10 test bodies**. Every INT006 race/audit case passed. |
+| Essential browser | **16 expected, 0 unexpected/skipped/flaky, 0 top errors**; all E01–E05 exactly one attempt/retry 0; duration **95302.69 ms**. |
+| Direct physical recovery | Same-head **1 total/1 passed/0 failed/pending**, directly executing the sole ordinary-integration pending physical-storage loader proof; no general skip waiver. |
+| Pilot performance | **5 warmup/25 measured**; read p95 **11.469548 ms**, synthetic bulk-effective-permissions p95 **4.134991 ms**. |
+
+Actual evidence paths/hashes and review union are in the delivery record. Optional dashboard/release validation was skipped (`release_validation=false`) and is not coverage. No local native Supabase execution or deployment is claimed. The failed `39314732375`/`5d5186` run remains failed (**1763 passed/1 failed/1 pending**, aggregate 30000ms timeout, interrupted iteration unknown); individual final races passed in **2.32–3.20s** and audit in **2.58s**, now proving the bounded harness repair.
+
+Review result: original **5 patches (High 3/Medium 2), 6 Low rejects, 0 review deferrals**; both focused independent High checks passed with no new patch. Latest canonical pass counts are all 0 and the workflow formula yields `followup_review_recommended: false` (High 0, Medium 0, Low 0; score 0). This reflects actual focused-review results, not a Phase 7 avoidance choice.
+
+Owned release deferrals: **3** in the delivery JSON—exhaustive browser/role/viewport matrices, screenshot/visual inspection, and manual walkthrough/polish. Owner: Kopplas release-validation coordinator; root owns ledger integration. Each has scope, evidence, status and next action. No consequential functional/security/transaction/storage check is deferred. `release_ready` remains **false**, with no release/merge/deployment approval.
+
+Completion metadata: root explicitly authorized this done transition after actual delivery_gate recheck returned native exit 0 with `ok: true`, `development_complete: true`, `errors: []`, `approval_granted: false`; the same independent High provenance reviewer returned qualified PASS for the eight evidence groups, native counts, review union, three release deferrals and review trail. Root verified all 37 source/test files unchanged from tested source `65e9111fa4303f87924e84e5e96d220f777f3cfc` and confirmed CI `39317194836` terminal SUCCESS. The delivery record remains byte-identical (SHA256 `4a0ebbc106c1df14fa2380a75e88d2d23027ca3a18910a258321d021954cd548`). This author changes only final spec completion metadata; root retains state/sprint/ledger/Git ownership.
+
+Next action: the release-validation coordinator completes the three supported release-only frontmatter/delivery obligations before any release-ready claim. Historical checkpoints and the preserved review trail describe their then-current boundaries; this explicit completion metadata records the later gate/provenance/closure result without rewriting that history.
+
+## Historical planning HALT — 2026-10-19
+
+The following is the preserved planning-only invocation outcome, superseded by the current in-progress build/evidence result above. It is not the current canonical Auto Run Result.
 
 Status: ready-for-dev
 Blocking condition: none
@@ -222,7 +345,7 @@ Deferred release validation: exhaustive browser/role/viewport matrices, screensh
 
 ## Suggested Review Order
 
-Author: Story 16.2 implementation/fix author (gpt-6.1-sol High). Refreshed after the bounded five-fix batch against the current author working tree; exact checkpoint/CI provenance remains root-owned. The existing six-layer Round 1 provenance below is preserved; follow-up scope is fixes and regressions only.
+Author: Story 16.2 implementation/fix author (gpt-6.1-sol High). Final evidence refreshed against tested source `65e9111fa4303f87924e84e5e96d220f777f3cfc` and terminal-success owned CI `39317194836`. Only spec/delivery metadata changes follow that tested source. The original six configured layers and two focused High receipts are preserved; final metadata provenance and closure remain root-owned.
 
 ### Visible drafts retain their own consent boundary
 
@@ -268,7 +391,9 @@ All 19 original acceptance contracts/assertions remain, including INT-004 genuin
 - `tests/integration/commands/job-members.int.test.ts:264` — `16.2-INT-007`: tests profileless Admin/PL across four checked operations.
 - `tests/e2e/jobs/job-members.e2e.spec.ts:359` — `16.2-E05`: checks pristine synchronization and dirty baseline refusal.
 
-Evidence: historical five-fix local typecheck/lint/build, focused **50/50**, and full units **2,626 passed/1 Windows skip** remain recorded above. The root's later source-5d5186 native results report Linux units **2,627 passed/0 skipped**, browser **16 passed** (all five E01–05 first attempt/retry 0), and recovery **1 passed**. The author independently inspected the native integration **1,763 passed/1 failed/1 pending** and exact timeout diagnostic; it proves no passing INT-006 runtime yet. The test-only repair's actual Vitest collection registers all nine INT-006 cases (15 command tests total); final typecheck and targeted lint pass. No database test ran during collection, and unit/product code was untouched, so no unrelated broad unit/build rerun was added. Independent High repair review, exact-head integration/runtime reconciliation and the delivery gate still block completion. Exhaustive visuals/manual polish remain deferred release validation.
+Evidence: actual exact-head CI `39317194836` at `65e9111fa4303f87924e84e5e96d220f777f3cfc` passed all required jobs. Native unit/process results: **2627 units passed/0 skipped** and **43 Python tests passed**; typecheck/lint/build/containment/audit/lock gates passed. Full required integration/RLS: **1772 passed/0 failed/1 pending of 1773**, including **15 command cases**, **3 membership RLS**, **7 Phase A surface**, **10 role-harness test bodies**; all eight INT006 races and the audit case passed. The sole ordinary-run pending physical-loader proof separately passed **1/1 at the same head** in direct recovery. Essential browser: **16 passed, 0 unexpected/skipped/flaky/errors**, including all E01–E05 first attempt/retry 0. Pilot: **25 measured/5 warmup**, read p95 **11.469548ms**, synthetic bulk-effective-permissions p95 **4.134991ms**. Full paths/hashes are in `_bmad-output/auto-bmad/delivery/16-2-job-members-and-per-job-roles-arbetsledare.json` and the canonical result; author verified the supplied native artifact hashes and relevant counters.
+
+Limits: historical failed run/Windows skip/collection-only checks remain historical and are not relabelled. Native ordinary-run storage pending and separate recovery pass retain their distinct dispositions. Source review is the six-layer plus two focused-High union, not a newly invented broad pass or an executed reviewer-to-DB exercise. Latest canonical review has zero patch/defer/reject and formula score 0; earlier 3 High/2 Medium patches remain recorded. Exhaustive UI matrices, visuals and manual polish are three owned deferred release items; optional skipped dashboard is not coverage. Required root delivery gate, independent final provenance review and explicit closure authorization are pending; spec remains in-progress and release-ready false.
 
 ## Configured review route — Round 1 of 3, 2026-10-19
 
@@ -287,3 +412,8 @@ Executed after fixes: focused **50/50** tests; full units **2,626 passed, 0 fail
 ## CI timeout repair author checkpoint — 2026-10-19
 
 Same High author, exactly two edited files: this spec and `tests/integration/commands/job-members.int.test.ts`. The native failure remains recorded; the exact interrupted race is unknown and no SQL bug is claimed. Actual collection verified eight separately named race cases plus the ninth audit rollback/retry case. Typecheck/targeted lint passed with no runtime resource, helper/product/SQL, timeout, dependency, environment, Git or CI mutation. The root now owns focused independent review and any exact-head CI rerun; this checkpoint grants no done/development-complete/delivery/release claim.
+
+
+## Post-green author evidence reconciliation — 2026-10-19
+
+Root explicitly authorized only this spec and the required delivery JSON after exact-head terminal-success CI. The author verified the five supplied native log/report hashes, focused-review receipt hashes and reviewed inventory hash, read the original focused PASS receipts, inspected relevant native counters and confirmed the runner's 148-passed/1-skipped file summary. Source/tests/SQL/helpers were not edited, and no tests/resources/Git/CI/state/ledger/report operations were run. No private closure proposal was needed. Root gate, independent metadata provenance and explicit closure remain outstanding. Earlier author checkpoints and planning outcomes are historical; the current canonical in-progress Auto Run Result and same Suggested Review Order carry the green evidence.
