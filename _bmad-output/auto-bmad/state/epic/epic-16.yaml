@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-16-jobs
 status: in-progress
-updated_at: "2026-10-19T17:05:09Z"
+updated_at: "2026-10-19T17:07:14Z"
 started_at: "2026-10-15T08:50:46Z"
 completed_at: null
 active_seconds: 15085
@@ -82,25 +82,25 @@ pr_merged: false
 merge_method: null
 merge_commit: null
 branch_deleted: false
-open_questions:
-  - Existing independent High reviewer narrow corrected spec/E2 disposition pending
-  - Exact shared source/fixture/migration/runtime ownership allocation pending coordinator
-deferred_work: []
+open_questions: []
+deferred_work:
+  - "[16-1-jobs-depth-activation-container-evolution-and-my-jobs] Exhaustive role/device/browser matrices beyond the four essential Jobs journeys. Owner/evidence/next action: Owner: E16 UI/release-validation owner. Status: deferred under the 2026-10-19 completion policy.\nExact d605295a46634e2c20013638e01c5e2a37ad0779 required Chromium smoke passed 11/11, including all four Jobs journeys on first attempts.\nBroader matrices and optional release_validation=false skips confer no coverage.\nNext action: at release stabilization, run release_validation=true and the tracked role/device/browser matrix on the qualified final epic candidate; retain results before release readiness. Record: _bmad-output/auto-bmad/delivery/16-1-jobs-depth-activation-container-evolution-and-my-jobs.json"
+  - "[16-1-jobs-depth-activation-container-evolution-and-my-jobs] Screenshot comparison, visual inspection, representative manual walkthrough and polish. Owner/evidence/next action: Owner: E16 UI/release-validation owner. Status: deferred under the 2026-10-19 completion policy.\nNo screenshot-comparison, visual or manual pass is claimed; essential connected 360x640 failure/retry/persistence has actual same-head browser evidence.\nNext action: before release readiness, retain screenshot comparisons and representative viewport/manual design/accessibility walkthroughs, and resolve consequential defects. Record: _bmad-output/auto-bmad/delivery/16-1-jobs-depth-activation-container-evolution-and-my-jobs.json"
 blockers: []
 overrides:
   preflight_sync: Independent High narrow two-path generated sync approved and verified
   unattended: Authorized by initiating delegation
-  ownership: "E16-specific preparation/state only; shared allocations by coordinator"
+  ownership: "Owner-authorized E16 development with the recorded shared allocations and precise story claims; preserve E15 work."
   concurrent_epics: "Human-authorized E16 concurrently with E15; E16 stories sequential"
-  merge: "Coordinator only, merge commit, retain branch; no deployment"
+  merge: "No merge or deployment; publish one final Epic 16 PR."
   design_evidence: "2026-10-15 direct human standing decision: no legacy URL reference/use/evidence; use existing design system/accessibility and maintainable headless defaults for missing UX rules. Zero legacy observations; domain/state/validation/actions/semantic models separated from replaceable usable UI/flow."
 constraints:
-  - No product/shared sprint/runtime writes before coordinator allocation
-  - E15 scheduling/time/diagnostics resources excluded
-  - Membership and work-order staging remain proposals pending independent High disposition
+  - "Use only owned E16 resources; E15 scheduling/time/diagnostic resources remain excluded."
+  - "Each later story requires its approved plan, manifest compliance and precise path claims."
 epic_slug: jobs-core
-active_story: 16-1-jobs-depth-activation-container-evolution-and-my-jobs
-stories_landed: []
+active_story: 16-2-job-members-and-per-job-roles-arbetsledare
+stories_landed:
+  - 16-1-jobs-depth-activation-container-evolution-and-my-jobs
 stories_skipped: []
 batch_flip_done: false
 base_sha: 8cda24614e77eda33ea31fe4de61af3a19d4759d
@@ -109,7 +109,7 @@ readiness_evidence: "_bmad-output/test-artifacts/epic-16/readiness-contracts-202
 readiness_evidence_sha256: E75E24522459001E1EA93AD2CBFB2FC503003327052541399386EE196C1C3152
 legacy_oracle_cancelled: true
 legacy_observations: 0
-consumer_transfer_correction: "TR13-TR16 and destination16.4-AC04-07 added; independent narrow review pending after E2 binding"
+consumer_transfer_correction: "TR13-TR16 and destination 16.4 AC04-07 are retained in the approved transfer contract. Independent High plan/source/record reviews for 16.1 completed; later consumer acceptance remains owned by its destination story."
 draft_spec_sha256: B2528135E33EF62A5D8DD9BAF98D46D4E2FD942C1550118698CB286D5EF6D1F2
 epic_test_design_status: "Design completed:17risks/70scenario contracts;zero tests executed;no readiness promotion"
 epic_test_design_sha256: 3D7D950F097E952B2F3CB250C1B9188CBE118964700063AD5AA1566519D2A169
