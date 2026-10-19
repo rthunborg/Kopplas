@@ -1,0 +1,821 @@
+{
+  "success": true,
+  "subagent": "api-tests",
+  "tests": [],
+  "test_count": 0,
+  "summary": "No consequential required development API/DB/RLS coverage gap identified in bounded Story 16.1 mapping. Reuse 16 existing active E16 database bodies (6 facts + 4 commands + 3 My Jobs + 3 RLS), exact-head native CI and unchanged retained regressions. No duplicate API tests, repository edits, test execution, resources, DB calls, hosted actions or Git mutations.",
+  "fixture_needs": [],
+  "knowledge_fragments_used": [
+    "test-levels-framework",
+    "test-priorities-matrix",
+    "test-quality",
+    "data-factories",
+    "selective-testing",
+    "ci-burn-in",
+    "playwright-utils-mandate",
+    "library-integration-mandate"
+  ],
+  "deviations": [
+    {
+      "kind": "project-framework",
+      "reason": "Existing command/RPC/database behavior runs under Vitest and Supabase normal JWT fixtures. Retain exact existing paths instead of introducing generic tests/api Playwright wrappers."
+    },
+    {
+      "kind": "generation-elided",
+      "reason": "Owner requests required consequential gaps only. Existing required assertions suffice; emit tests:[] and test_count:0 rather than duplicate behavior."
+    },
+    {
+      "kind": "execution-evidence-reused",
+      "reason": "Worker is read-only/no execution. No qualified local runtime after HOOK_CONTEXT_UNAVAILABLE; exact d605 native reports reused. Parent verified d605..6602667 changes only five closure metadata paths and relevant source/tests/SQL/dependencies/CI/configs are unchanged."
+    }
+  ],
+  "playwright_utils_deviations": [],
+  "pactjs_utils_deviations": [],
+  "library_gate": {
+    "playwright_utils": {
+      "flag": true,
+      "package_installed": false,
+      "runner_of_reused_api_tests": "Vitest",
+      "mandate_binding": false,
+      "action": "No imports, dependency edits, fixture migration or framework change."
+    },
+    "pactjs_utils": {
+      "flag": true,
+      "package_installed": false,
+      "relevant": false,
+      "broker_reachable": false,
+      "action": "No contracts/broker/provider-state generation; prior exact-namespace probe retained without repeat."
+    }
+  },
+  "provider_scrutiny": "not-applicable",
+  "provider_files_read": [],
+  "route": {
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "reason": "Actual current authorization/RLS, protected-money omission and signed transactional proof coverage."
+  },
+  "scope": {
+    "story": "16.1",
+    "checkout_revision": "660266714a26fcae22e21a8441bf4f935da94f04",
+    "evidence_revision": "d605295a46634e2c20013638e01c5e2a37ad0779",
+    "excluded": [
+      "16.2 membership mutations/leadership",
+      "16.3 work orders",
+      "16.4 scalar consumers/upgrades",
+      "16.5 workspace shell",
+      "new product/SQL/provider source review",
+      "legacy application evidence",
+      "resource or hosted actions"
+    ]
+  },
+  "coverage_reused": [
+    {
+      "file": "tests/integration/commands/job-booking-facts.int.test.ts",
+      "layer": "real-database integration/RLS; existing Vitest + normal JWT Supabase clients",
+      "actual_cases": 6,
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0,
+      "priority_coverage": {
+        "P0": 6,
+        "P1": 0,
+        "P2": 0,
+        "P3": 0
+      },
+      "tests": [
+        {
+          "name": "16.1 authoritative per-booking job facts and atomic card refresh [P0] 16.1-INT-005 card protocol rejects correctly signed cross-domain and mismatched actor/version claims atomically",
+          "acs": [
+            "AC07"
+          ],
+          "risks": [
+            "R16-02",
+            "R16-06"
+          ],
+          "assertions": "For booking-domain, actor, old-engine and signature attacks, the real finalize RPC returns 42501, the command fails, and whole tenant business snapshot remains unchanged."
+        },
+        {
+          "name": "16.1 authoritative per-booking job facts and atomic card refresh [P0] 16.1-INT-005 job-child change committed during the tenant-gate wait makes the prior real card proof stale",
+          "acs": [
+            "AC07"
+          ],
+          "risks": [
+            "R16-06"
+          ],
+          "assertions": "A second session is proven blocked at the tenant gate via pg_blocking_pids; committed child-window insertion makes the genuine prior card proof stale; original command returns PREVIEW_STALE with no extra writes."
+        },
+        {
+          "name": "16.1 authoritative per-booking job facts and atomic card refresh [P0] 16.1-INT-003 mixed jobs and unbound booking consume their own SQL roles/windows, unknown differs from recorded-empty",
+          "acs": [
+            "AC06"
+          ],
+          "risks": [
+            "R16-06",
+            "R16-07",
+            "R16-13"
+          ],
+          "assertions": "Real SQL snapshot contains disjoint job facts, unavailable nulls and recorded-empty arrays, and booking job binding. Sole detector separates competence and empty-window warnings from the unbound booking; reviewed save persists required open warnings."
+        },
+        {
+          "name": "16.1 authoritative per-booking job facts and atomic card refresh [P0] 16.1-INT-004 child insertion/deletion and job rebinding change canonical digest and reject genuine prior booking proof without writes",
+          "acs": [
+            "AC06",
+            "AC07"
+          ],
+          "risks": [
+            "R16-06",
+            "R16-07"
+          ],
+          "assertions": "Child-window insertion/deletion and existing booking job rebinding change canonical digests; genuine old booking proof finalization is stale and no-op. Correctly signed old-engine/wrong-actor and genuine other-domain/forged signatures are denied with unchanged snapshot."
+        },
+        {
+          "name": "16.1 authoritative per-booking job facts and atomic card refresh [P0] 16.1-INT-005 card snapshot/finalize uses real signed sole-engine refresh; audit failure rolls back children/conflicts/outcomes/audit exactly",
+          "acs": [
+            "AC04",
+            "AC07"
+          ],
+          "risks": [
+            "R16-05",
+            "R16-06"
+          ],
+          "assertions": "Correlation-scoped preinstalled audit failure reaches real snapshot/finalize and rolls back the complete snapshot. A new genuine command succeeds once; persisted nonresolved conflicts equal current sole-engine output, restrictive empty windows warn and removed roles no longer do; foreign job unchanged."
+        },
+        {
+          "name": "16.1 authoritative per-booking job facts and atomic card refresh [P0] 16.1-INT-005 finalization rechecks real current authority after explicit two-session tenant-gate wait",
+          "acs": [
+            "AC03",
+            "AC07"
+          ],
+          "risks": [
+            "R16-01",
+            "R16-02",
+            "R16-06"
+          ],
+          "assertions": "Observed two-session tenant-gate wait precedes actor membership disabling; real JWT finalize denies 42501, original command fails, business/child/outcome/audit snapshot stays equal while disabled membership is separately confirmed."
+        }
+      ],
+      "evidence_revision": "d605295a46634e2c20013638e01c5e2a37ad0779",
+      "execution": "reused native report; not executed by this worker"
+    },
+    {
+      "file": "tests/integration/commands/jobs-depth.int.test.ts",
+      "layer": "real-database integration/RLS; existing Vitest + normal JWT Supabase clients",
+      "actual_cases": 4,
+      "passed": 4,
+      "failed": 0,
+      "skipped": 0,
+      "priority_coverage": {
+        "P0": 3,
+        "P1": 1,
+        "P2": 0,
+        "P3": 0
+      },
+      "tests": [
+        {
+          "name": "16.1 enriched card atomic command [P0] 16.1-INT-001 enriched create and response-loss replay retain one standalone identity/event/audit",
+          "acs": [
+            "AC01",
+            "AC04",
+            "AC09",
+            "AC10"
+          ],
+          "risks": [
+            "R16-04",
+            "R16-06"
+          ],
+          "assertions": "Enriched create returns stable candidate job ID with order/created/null sources; same-body replay returns identical result and unchanged snapshot; changed-body same command is refused without state change."
+        },
+        {
+          "name": "16.1 enriched card atomic command [P1] 16.1-INT-001 enriched card persists closed scalars and exact child replacement without changing source or booking IDs",
+          "acs": [
+            "AC01",
+            "AC04",
+            "AC10"
+          ],
+          "risks": [
+            "R16-04",
+            "R16-05"
+          ],
+          "assertions": "Saved job matches closed scalar values and coherent identity; exact role/window/dependency children and one correlated audit exist, booking IDs and accepted-source job unchanged; second update explicitly replaces children with empty sets."
+        },
+        {
+          "name": "16.1 enriched card atomic command [P0] 16.1-INT-002 SQL current-parent checks and malformed/smuggled children roll back all business, outcomes and audit",
+          "acs": [
+            "AC04"
+          ],
+          "risks": [
+            "R16-02",
+            "R16-05",
+            "R16-06"
+          ],
+          "assertions": "Wrong-customer facility/contact, foreign dependency, unknown role, reversed window/dates, invalid duration and tenant/actor/source/money/unknown key smuggling return generic denial/validation failure with exact pre/post snapshot equality."
+        },
+        {
+          "name": "16.1 enriched card atomic command [P0] 16.1-INT-002 unchanged old minimum create and acceptance source tuples survive enriched evolution",
+          "acs": [
+            "AC01",
+            "AC09",
+            "AC10"
+          ],
+          "risks": [
+            "R16-04"
+          ],
+          "assertions": "Original customer-only create and original update signature succeed; order/created/null sources remain; unsupported SQL kind returns 23514; accepted source tuple is nonnull and direct clearing is denied; existing booking ID/job bindings unchanged."
+        }
+      ],
+      "evidence_revision": "d605295a46634e2c20013638e01c5e2a37ad0779",
+      "execution": "reused native report; not executed by this worker"
+    },
+    {
+      "file": "tests/integration/features/jobs/my-jobs.int.test.ts",
+      "layer": "real-database integration/RLS; existing Vitest + normal JWT Supabase clients",
+      "actual_cases": 3,
+      "passed": 3,
+      "failed": 0,
+      "skipped": 0,
+      "priority_coverage": {
+        "P0": 3,
+        "P1": 0,
+        "P2": 0,
+        "P3": 0
+      },
+      "tests": [
+        {
+          "name": "16.1 My Jobs actual membership UNION booking assignment [P0] 16.1-INT-006 personal list contains complete duplicate-free order/project union",
+          "acs": [
+            "AC02"
+          ],
+          "risks": [
+            "R16-01"
+          ],
+          "assertions": "Montor's real readMyJobs returns the exact member-order/assignee-project/both/accepted-member set once; ViewAll planner's unrelated personal projection is empty."
+        },
+        {
+          "name": "16.1 My Jobs actual membership UNION booking assignment [P0] 16.1-INT-006 assigned accepted-source detail exposes labels but no protected values anywhere",
+          "acs": [
+            "AC02",
+            "AC03"
+          ],
+          "risks": [
+            "R16-01",
+            "R16-03"
+          ],
+          "assertions": "Assigned accepted-source detail exists and has no recursively detected protected keys, explicit protectedMoney:false and allowed customer label; entitled admin sees actual 125000 money sentinels; unrelated, foreign and missing jobs all return null."
+        },
+        {
+          "name": "16.1 My Jobs actual membership UNION booking assignment [P0] 16.1-INT-006 archive, unassignment and revoked tenant membership remove current read access",
+          "acs": [
+            "AC02",
+            "AC03"
+          ],
+          "risks": [
+            "R16-01",
+            "R16-02"
+          ],
+          "assertions": "Archiving actual member relationship and deleting actual assignment remove those jobs; disabled current tenant membership removes list/detail access even using the already-issued JWT."
+        }
+      ],
+      "evidence_revision": "d605295a46634e2c20013638e01c5e2a37ad0779",
+      "execution": "reused native report; not executed by this worker"
+    },
+    {
+      "file": "tests/integration/rls/jobs-depth.rls.test.ts",
+      "layer": "real-database integration/RLS; existing Vitest + normal JWT Supabase clients",
+      "actual_cases": 3,
+      "passed": 3,
+      "failed": 0,
+      "skipped": 0,
+      "priority_coverage": {
+        "P0": 3,
+        "P1": 0,
+        "P2": 0,
+        "P3": 0
+      },
+      "tests": [
+        {
+          "name": "16.1 job-depth direct boundaries [P0] 16.1-RLS-001 real roles, UNION rows, inactive actors and own-job child scope agree",
+          "acs": [
+            "AC02",
+            "AC03",
+            "AC11"
+          ],
+          "risks": [
+            "R16-01",
+            "R16-02",
+            "R16-05"
+          ],
+          "assertions": "Direct jobs selects match exact union for Montor, ViewAll admin/planner remain tenant-bounded, all other seeded roles/invited/disabled/orphan/anon are denied; held role union positive; populated unrelated job children remain invisible."
+        },
+        {
+          "name": "16.1 job-depth direct boundaries [P0] 16.1-RLS-002 direct mutation/elevation, foreign child FKs and spoofed checked actor leave no state",
+          "acs": [
+            "AC01",
+            "AC03",
+            "AC04",
+            "AC11"
+          ],
+          "risks": [
+            "R16-01",
+            "R16-02",
+            "R16-05"
+          ],
+          "assertions": "Direct worker job edit and member insert/designation update/delete refuse with unchanged state; privileged setup proves composite foreign-profile FK 23503; spoofed checked RPC actor returns 42501 with unchanged state."
+        },
+        {
+          "name": "16.1 job-depth direct boundaries [P0] 16.1-RLS-002 checked entrypoints are hardened and all private job-card primitives refuse authenticated execution",
+          "acs": [
+            "AC03",
+            "AC07",
+            "AC11"
+          ],
+          "risks": [
+            "R16-02",
+            "R16-06"
+          ],
+          "assertions": "Actual pg_catalog inventories exact public card entrypoints as hardened/authenticated-only, private card primitives have no authenticated execute and actually fail 42501 under SET LOCAL ROLE; all four child tables have ENABLE+FORCE RLS."
+        }
+      ],
+      "evidence_revision": "d605295a46634e2c20013638e01c5e2a37ad0779",
+      "execution": "reused native report; not executed by this worker"
+    }
+  ],
+  "retained_regression_support": [
+    {
+      "file": "tests/integration/commands/accept-quote-and-create-job.int.test.ts",
+      "acs": [
+        "AC01",
+        "AC09",
+        "AC10"
+      ],
+      "risks": [
+        "R16-04"
+      ],
+      "actual_suite_passed": 14,
+      "failed": 0,
+      "skipped": 0,
+      "names": [
+        "acceptQuoteAndCreateJob — atomic accept + create job (AC1) [P0] 7.2-INT-01: happy path — records the acceptance, flips `sent → accepted`, creates the minimal job with immutable source refs, writes a `quote_events` accepted + a `job_events` created + ONE audit row, all committed together",
+        "acceptQuoteAndCreateJob — atomic accept + create job (AC1) [P0] 7.2-INT-01: the accepted instant is the EXPLICIT input (H1), NOT the injected command clock",
+        "acceptQuoteAndCreateJob — retry idempotency (AC2 — the headline) [P0] 7.2-INT-02: a second identical call returns the SAME (acceptance_id, job_id) and creates NO second acceptance/job/lifecycle-transition/event/audit",
+        "acceptQuoteAndCreateJob — retry idempotency (AC2 — the headline) [P0] 7.2-INT-02: an idempotent re-entry writes NO fresh audit row (R-710 — the retry produced no state change)",
+        "acceptQuoteAndCreateJob — DB duplicate-prevention constraints (AC2) [P0] 7.2-INT-03: a DIRECT second `quote_acceptances` INSERT for the same version violates `unique (quote_version_id)` — the DB backstop below the command",
+        "acceptQuoteAndCreateJob — DB duplicate-prevention constraints (AC2) [P0] 7.2-INT-03: a DIRECT second `jobs` INSERT for the same acceptance violates `unique (quote_acceptance_id)` — one job per acceptance",
+        "acceptQuoteAndCreateJob — atomicity / no partial state (AC3, NFR20) [P0] 7.2-INT-04: an injected mid-transaction failure at the JOB-insert boundary leaves NO acceptance, NO lifecycle change, NO job, NO event — behavioral rollback proof",
+        "acceptQuoteAndCreateJob — atomicity / no partial state (AC3, NFR20) [P0] 7.2-INT-04: a fault at the EVENT-write boundary also rolls the whole transaction back (no orphaned acceptance/job)",
+        "acceptQuoteAndCreateJob — cross-tenant + anon + non-sent rejection (AC4) [P0] 7.2-INT-05: a foreign-tenant (Tenant B) sent version id ⇒ TENANT_ACCESS_DENIED before execute; no existence disclosure; Tenant-B untouched",
+        "acceptQuoteAndCreateJob — cross-tenant + anon + non-sent rejection (AC4) [P0] 7.2-INT-05: an ANONYMOUS caller ⇒ UNAUTHENTICATED (anon must NOT execute the RPC — revoke-from-public)",
+        "acceptQuoteAndCreateJob — cross-tenant + anon + non-sent rejection (AC4) [P0] 7.2-INT-05: a non-sent (draft) version ⇒ a user-safe lifecycle rejection (VALIDATION_FAILED), no leak, no write",
+        "acceptQuoteAndCreateJob — concurrent accept (AC2 — row-lock proof) [P0] 7.2-INT-06: two PARALLEL Promise.all accepts of the same sent version ⇒ exactly ONE job; the other idempotent-returns or fails COMMAND_CONFLICT/ACCEPTANCE_ALREADY_RECORDED; NEVER two jobs (sleep-free)",
+        "acceptQuoteAndCreateJob — event/audit completeness + no-duplicate-on-retry (AC1/AC2) [P1] 7.2-INT-07: on success every expected row is present (acceptance, job, quote `accepted` event, job `created` event, ONE audit); a retry adds NO duplicate of any of them",
+        "acceptQuoteAndCreateJob — lifecycle edges (AC2, P2) [P2] 7.2-INT-08: accepting an ALREADY-accepted version (its acceptance + job already exist) idempotent-returns the EXISTING records, no error-path duplication"
+      ],
+      "notes": "Retained executed regression support from the same native report; suite counts are not added to the 16 focused E16 bodies or to new proposal count."
+    },
+    {
+      "file": "tests/integration/commands/accepted-record-lock.int.test.ts",
+      "acs": [
+        "AC09",
+        "AC10"
+      ],
+      "risks": [
+        "R16-04"
+      ],
+      "actual_suite_passed": 31,
+      "failed": 0,
+      "skipped": 0,
+      "names": [
+        "7.4-INT-01: accepted-record immutability at the COMMAND layer (AC1, R-704) [P0] 7.4-INT-01: updateJob smuggling the immutable field `quote_version_id` ⇒ VALIDATION_FAILED (row byte-unchanged)",
+        "7.4-INT-01: accepted-record immutability at the COMMAND layer (AC1, R-704) [P0] 7.4-INT-01: updateJob smuggling the immutable field `quote_acceptance_id` ⇒ VALIDATION_FAILED (row byte-unchanged)",
+        "7.4-INT-01: accepted-record immutability at the COMMAND layer (AC1, R-704) [P0] 7.4-INT-01: updateJob smuggling the immutable field `customer_id` ⇒ VALIDATION_FAILED (row byte-unchanged)",
+        "7.4-INT-01: accepted-record immutability at the COMMAND layer (AC1, R-704) [P0] 7.4-INT-01: updateJob smuggling the immutable field `accepted_price_ore` ⇒ VALIDATION_FAILED (row byte-unchanged)",
+        "7.4-INT-02: accepted-record immutability BELOW the command — the DB trigger (AC1, R-704) [P0] 7.4-INT-02: an authenticated UPDATE of quote_acceptances.`accepted_price_ore` is denied (42501), while privileged SQL proves AR704",
+        "7.4-INT-02: accepted-record immutability BELOW the command — the DB trigger (AC1, R-704) [P0] 7.4-INT-02: an authenticated UPDATE of quote_acceptances.`accepted_at` is denied (42501), while privileged SQL proves AR704",
+        "7.4-INT-02: accepted-record immutability BELOW the command — the DB trigger (AC1, R-704) [P0] 7.4-INT-02: an authenticated UPDATE of quote_acceptances.`evidence_reference` is denied (42501), while privileged SQL proves AR704",
+        "7.4-INT-02: accepted-record immutability BELOW the command — the DB trigger (AC1, R-704) [P0] 7.4-INT-02: an authenticated UPDATE of quote_acceptances.`channel` is denied (42501), while privileged SQL proves AR704",
+        "7.4-INT-02: accepted-record immutability BELOW the command — the DB trigger (AC1, R-704) [P0] 7.4-INT-02: an authenticated UPDATE of quote_acceptances.`source_sent_total_ore` is denied (42501), while privileged SQL proves AR704",
+        "7.4-INT-02: accepted-record immutability BELOW the command — the DB trigger (AC1, R-704) [P0] 7.4-INT-02: an authenticated UPDATE of quote_acceptances.`quote_version_id` is denied (42501), while privileged SQL proves AR704",
+        "7.4-INT-02: accepted-record immutability BELOW the command — the DB trigger (AC1, R-704) [P0] 7.4-INT-02: an authenticated UPDATE of jobs.`quote_acceptance_id` is denied (42501), while privileged SQL proves AR704",
+        "7.4-INT-02: accepted-record immutability BELOW the command — the DB trigger (AC1, R-704) [P0] 7.4-INT-02: an authenticated UPDATE of jobs.`quote_version_id` is denied (42501), while privileged SQL proves AR704",
+        "7.4-INT-02: accepted-record immutability BELOW the command — the DB trigger (AC1, R-704) [P0] 7.4-INT-02: an authenticated UPDATE of jobs.`customer_id` is denied (42501), while privileged SQL proves AR704",
+        "7.4-INT-02: accepted-record immutability BELOW the command — the DB trigger (AC1, R-704) [P0] 7.4-INT-02: an authenticated `archived_at` soft-delete is denied (42501); the precise privileged archival exemption succeeds",
+        "7.4-INT-02: accepted-record immutability BELOW the command — the DB trigger (AC1, R-704) [P0] 7.4-INT-02: an updateJob title/status/planned-date edit SUCCEEDS (the 7.3 allowed edit is not fought by the lock)",
+        "7.4-INT-02b: the FULL fail-closed DB surface — every locked column + the exempt precision (AC1, R-704) [P0] 7.4-INT-02b: an authenticated UPDATE of quote_acceptances.`quote_id` is denied (42501), while privileged SQL proves locked-by-default AR704",
+        "7.4-INT-02b: the FULL fail-closed DB surface — every locked column + the exempt precision (AC1, R-704) [P0] 7.4-INT-02b: an authenticated UPDATE of quote_acceptances.`adjustment_reason` is denied (42501), while privileged SQL proves locked-by-default AR704",
+        "7.4-INT-02b: the FULL fail-closed DB surface — every locked column + the exempt precision (AC1, R-704) [P0] 7.4-INT-02b: an authenticated UPDATE of quote_acceptances.`evidence_file_id` is denied (42501), while privileged SQL proves locked-by-default AR704",
+        "7.4-INT-02b: the FULL fail-closed DB surface — every locked column + the exempt precision (AC1, R-704) [P0] 7.4-INT-02b: an authenticated UPDATE of quote_acceptances.`notes` is denied (42501), while privileged SQL proves locked-by-default AR704",
+        "7.4-INT-02b: the FULL fail-closed DB surface — every locked column + the exempt precision (AC1, R-704) [P0] 7.4-INT-02b: an authenticated UPDATE of quote_acceptances.`planned_start_date` is denied (42501), while privileged SQL proves locked-by-default AR704",
+        "7.4-INT-02b: the FULL fail-closed DB surface — every locked column + the exempt precision (AC1, R-704) [P0] 7.4-INT-02b: an authenticated UPDATE of quote_acceptances.`planned_end_date` is denied (42501), while privileged SQL proves locked-by-default AR704",
+        "7.4-INT-02b: the FULL fail-closed DB surface — every locked column + the exempt precision (AC1, R-704) [P0] 7.4-INT-02b: an archived_at flip COMBINED with a locked-column change in the SAME UPDATE is REJECTED (the exempt branch does NOT let a locked column slip through)",
+        "7.4-INT-02b: the FULL fail-closed DB surface — every locked column + the exempt precision (AC1, R-704) [P0] 7.4-INT-02b: an authenticated UPDATE of jobs.`created_at` is denied (42501), while privileged SQL proves AR704",
+        "7.4-INT-02b: the FULL fail-closed DB surface — every locked column + the exempt precision (AC1, R-704) [P0] 7.4-INT-02b: authenticated facility/contact DML is denied (42501), while privileged re-pointing SUCCEEDS (deliberately UNLOCKED for SET NULL)",
+        "7.4-INT-02b: the FULL fail-closed DB surface — every locked column + the exempt precision (AC1, R-704) [P0] 7.4-INT-02b: privileged nulling jobs.`facility_id`/`contact_id` SUCCEEDS (the SET NULL cascade is never fought)",
+        "7.4-INT-03: accidental-update regression + retry-path preservation (AC2, R-704/R-714) [P0] 7.4-INT-03: an id-only `updateJob` (empty patch) is a clean no-op — no false TENANT_ACCESS_DENIED, no write, no audit row, immutable fields byte-unchanged",
+        "7.4-INT-03: accidental-update regression + retry-path preservation (AC2, R-704/R-714) [P0] 7.4-INT-03: a status-change `updateJob` appends EXACTLY ONE job_events row and never silently overwrites/hides an event; immutable fields byte-unchanged",
+        "7.4-INT-03: accidental-update regression + retry-path preservation (AC2, R-704/R-714) [P0] 7.4-INT-03: the 7.2 idempotent accept-retry is PRESERVED — a re-run on the already-accepted version returns the EXISTING (acceptanceId, jobId) with NO write (the accepted-lock trigger does NOT fire on the short-circuit)",
+        "7.4-RLS-01: cross-tenant attack on accepted records (AC3, R-701/R-704) [P0] 7.4-RLS-01: tenant A reading a tenant B quote_acceptances/jobs row via its own RLS client ⇒ zero rows (no existence disclosure)",
+        "7.4-RLS-01: cross-tenant attack on accepted records (AC3, R-701/R-704) [P0] 7.4-RLS-01: tenant A's authenticated UPDATE of a tenant B acceptance is denied (42501 before RLS), row untouched",
+        "7.4-RLS-01: cross-tenant attack on accepted records (AC3, R-701/R-704) [P0] 7.4-RLS-01: an anon (unauthenticated) caller on the LIVE updateJob command path ⇒ UNAUTHENTICATED"
+      ],
+      "notes": "Retained executed regression support from the same native report; suite counts are not added to the 16 focused E16 bodies or to new proposal count."
+    },
+    {
+      "file": "tests/integration/commands/job-source-of-truth.int.test.ts",
+      "acs": [
+        "AC03",
+        "AC09"
+      ],
+      "risks": [
+        "R16-03",
+        "R16-04"
+      ],
+      "actual_suite_passed": 4,
+      "failed": 0,
+      "skipped": 0,
+      "names": [
+        "7.3-INT-01: job detail reads from IMMUTABLE acceptance/version refs, never re-derives (R-708) [P1] 7.3-INT-01: the detail surfaces the accepted price + source sent total + frozen commitment name from the immutable refs (baseline)",
+        "7.3-INT-01: job detail reads from IMMUTABLE acceptance/version refs, never re-derives (R-708) [P1] 7.3-INT-01: renaming the LIVE customer after job creation leaves the FROZEN commitment name + accepted price UNCHANGED (the source-of-truth invariant)",
+        "7.3-INT-01: job detail reads from IMMUTABLE acceptance/version refs, never re-derives (R-708) [P1] 7.3-INT-01: the CURRENT-CRM customer link surfaces the live display name (the jobs.customer_id join is the live link, distinct from the frozen commitment name)",
+        "7.3-INT-01: job detail reads from IMMUTABLE acceptance/version refs, never re-derives (R-708) [P1] AC3: readJobDetail for a FOREIGN-tenant job id returns null (RLS invisible — no existence leak)"
+      ],
+      "notes": "Retained executed regression support from the same native report; suite counts are not added to the 16 focused E16 bodies or to new proposal count."
+    },
+    {
+      "file": "tests/integration/commands/accept-quote-and-create-job.int.test.ts",
+      "acs": [
+        "AC01",
+        "AC10"
+      ],
+      "risks": [
+        "R16-04"
+      ],
+      "actual_suite_passed": 14,
+      "failed": 0,
+      "skipped": 0,
+      "names": [
+        "acceptQuoteAndCreateJob — atomic accept + create job (AC1) [P0] 7.2-INT-01: happy path — records the acceptance, flips `sent → accepted`, creates the minimal job with immutable source refs, writes a `quote_events` accepted + a `job_events` created + ONE audit row, all committed together",
+        "acceptQuoteAndCreateJob — atomic accept + create job (AC1) [P0] 7.2-INT-01: the accepted instant is the EXPLICIT input (H1), NOT the injected command clock",
+        "acceptQuoteAndCreateJob — retry idempotency (AC2 — the headline) [P0] 7.2-INT-02: a second identical call returns the SAME (acceptance_id, job_id) and creates NO second acceptance/job/lifecycle-transition/event/audit",
+        "acceptQuoteAndCreateJob — retry idempotency (AC2 — the headline) [P0] 7.2-INT-02: an idempotent re-entry writes NO fresh audit row (R-710 — the retry produced no state change)",
+        "acceptQuoteAndCreateJob — DB duplicate-prevention constraints (AC2) [P0] 7.2-INT-03: a DIRECT second `quote_acceptances` INSERT for the same version violates `unique (quote_version_id)` — the DB backstop below the command",
+        "acceptQuoteAndCreateJob — DB duplicate-prevention constraints (AC2) [P0] 7.2-INT-03: a DIRECT second `jobs` INSERT for the same acceptance violates `unique (quote_acceptance_id)` — one job per acceptance",
+        "acceptQuoteAndCreateJob — atomicity / no partial state (AC3, NFR20) [P0] 7.2-INT-04: an injected mid-transaction failure at the JOB-insert boundary leaves NO acceptance, NO lifecycle change, NO job, NO event — behavioral rollback proof",
+        "acceptQuoteAndCreateJob — atomicity / no partial state (AC3, NFR20) [P0] 7.2-INT-04: a fault at the EVENT-write boundary also rolls the whole transaction back (no orphaned acceptance/job)",
+        "acceptQuoteAndCreateJob — cross-tenant + anon + non-sent rejection (AC4) [P0] 7.2-INT-05: a foreign-tenant (Tenant B) sent version id ⇒ TENANT_ACCESS_DENIED before execute; no existence disclosure; Tenant-B untouched",
+        "acceptQuoteAndCreateJob — cross-tenant + anon + non-sent rejection (AC4) [P0] 7.2-INT-05: an ANONYMOUS caller ⇒ UNAUTHENTICATED (anon must NOT execute the RPC — revoke-from-public)",
+        "acceptQuoteAndCreateJob — cross-tenant + anon + non-sent rejection (AC4) [P0] 7.2-INT-05: a non-sent (draft) version ⇒ a user-safe lifecycle rejection (VALIDATION_FAILED), no leak, no write",
+        "acceptQuoteAndCreateJob — concurrent accept (AC2 — row-lock proof) [P0] 7.2-INT-06: two PARALLEL Promise.all accepts of the same sent version ⇒ exactly ONE job; the other idempotent-returns or fails COMMAND_CONFLICT/ACCEPTANCE_ALREADY_RECORDED; NEVER two jobs (sleep-free)",
+        "acceptQuoteAndCreateJob — event/audit completeness + no-duplicate-on-retry (AC1/AC2) [P1] 7.2-INT-07: on success every expected row is present (acceptance, job, quote `accepted` event, job `created` event, ONE audit); a retry adds NO duplicate of any of them",
+        "acceptQuoteAndCreateJob — lifecycle edges (AC2, P2) [P2] 7.2-INT-08: accepting an ALREADY-accepted version (its acceptance + job already exist) idempotent-returns the EXISTING records, no error-path duplication"
+      ],
+      "notes": "Retained executed regression support from the same native report; suite counts are not added to the 16 focused E16 bodies or to new proposal count."
+    },
+    {
+      "file": "tests/integration/commands/update-job.int.test.ts",
+      "acs": [
+        "AC03",
+        "AC09",
+        "AC10"
+      ],
+      "risks": [
+        "R16-02",
+        "R16-04"
+      ],
+      "actual_suite_passed": 10,
+      "failed": 0,
+      "skipped": 0,
+      "names": [
+        "7.3-INT-02 + AC3: updateJob — allowed edits audited, immutable refs non-editable, tenant-isolated (R-708/R-710/R-711) [P0] AC3: updateJob on a foreign-tenant job id ⇒ TENANT_ACCESS_DENIED (RLS invisible, no existence disclosure)",
+        "7.3-INT-02 + AC3: updateJob — allowed edits audited, immutable refs non-editable, tenant-isolated (R-708/R-710/R-711) [P0] AC3: an anon (unauthenticated) caller ⇒ UNAUTHENTICATED",
+        "7.3-INT-02 + AC3: updateJob — allowed edits audited, immutable refs non-editable, tenant-isolated (R-708/R-710/R-711) [P1] 7.3-INT-02: an unknown/immutable field (quote_version_id) ⇒ VALIDATION_FAILED (not part of the input shape)",
+        "7.3-INT-02 + AC3: updateJob — allowed edits audited, immutable refs non-editable, tenant-isolated (R-708/R-710/R-711) [P1] 7.3-INT-02: an accepted-price / customer_id smuggle attempt ⇒ VALIDATION_FAILED (commitment data is not editable)",
+        "7.3-INT-02 + AC3: updateJob — allowed edits audited, immutable refs non-editable, tenant-isolated (R-708/R-710/R-711) [P1] 7.3-INT-02: a status outside the closed created|in_progress|done|cancelled set ⇒ VALIDATION_FAILED",
+        "7.3-INT-02 + AC3: updateJob — allowed edits audited, immutable refs non-editable, tenant-isolated (R-708/R-710/R-711) [P1] 7.3-INT-02: a title-only edit persists and writes EXACTLY ONE audit row with { targetId } on the target_id column + empty metadata (no status change ⇒ NO job_events row)",
+        "7.3-INT-02 + AC3: updateJob — allowed edits audited, immutable refs non-editable, tenant-isolated (R-708/R-710/R-711) [P0][11.2] Projektledare can mutate a Phase A job only through the checked command",
+        "7.3-INT-02 + AC3: updateJob — allowed edits audited, immutable refs non-editable, tenant-isolated (R-708/R-710/R-711) [P1] 7.3-INT-02: a status change persists, is audited, AND appends ONE database-timestamped job_events lifecycle row",
+        "7.3-INT-02 + AC3: updateJob — allowed edits audited, immutable refs non-editable, tenant-isolated (R-708/R-710/R-711) [P1][11.2] checked job updates preserve explicit JSON null clears",
+        "7.3-INT-02 + AC3: updateJob — allowed edits audited, immutable refs non-editable, tenant-isolated (R-708/R-710/R-711) [P1] 7.3-INT-02: an empty patch (id only, no editable fields) short-circuits — no false TENANT_ACCESS_DENIED, no audit row"
+      ],
+      "notes": "Retained executed regression support from the same native report; suite counts are not added to the 16 focused E16 bodies or to new proposal count."
+    },
+    {
+      "file": "tests/integration/commands/bookings-replay-authority.int.test.ts",
+      "acs": [
+        "AC07",
+        "AC10"
+      ],
+      "risks": [
+        "R16-02",
+        "R16-04",
+        "R16-06"
+      ],
+      "actual_suite_passed": 12,
+      "failed": 0,
+      "skipped": 0,
+      "names": [
+        "Story 14.2 completed UPDATE replay authority [P0] 14.4 preserves explicitly absent-review legacy create/update outcomes without borrowing them for override",
+        "Story 14.2 completed UPDATE replay authority [P1] 14.2-INT-003 UPDATE replay rejects stale caller after 'role downgraded and secondary roles r…'",
+        "Story 14.2 completed UPDATE replay authority [P1] 14.2-INT-003 UPDATE replay rejects stale caller after 'membership invited'",
+        "Story 14.2 completed UPDATE replay authority [P1] 14.2-INT-003 UPDATE replay rejects stale caller after 'membership disabled'",
+        "Story 14.2 replay authority after serialization waits [P1] 14.2-INT-003 'create' replay rejects 'primary and secondary roles' revoked during lock wait",
+        "Story 14.2 replay authority after serialization waits [P1] 14.2-INT-003 'update' replay rejects 'primary and secondary roles' revoked during lock wait",
+        "Story 14.2 replay authority after serialization waits [P1] 14.2-INT-003 'create' replay rejects 'secondary-only planner' revoked during lock wait",
+        "Story 14.2 replay authority after serialization waits [P1] 14.2-INT-003 'update' replay rejects 'secondary-only planner' revoked during lock wait",
+        "Story 14.2 replay authority after serialization waits [P1] 14.2-INT-003 'create' replay rejects 'disabled membership' revoked during lock wait",
+        "Story 14.2 replay authority after serialization waits [P1] 14.2-INT-003 'update' replay rejects 'disabled membership' revoked during lock wait",
+        "Story 14.2 checked SQL timestamp grammar [P1] 14.2-INT-008 'create' checked RPC rejects out-of-range clock fields",
+        "Story 14.2 checked SQL timestamp grammar [P1] 14.2-INT-008 'update' checked RPC rejects out-of-range clock fields"
+      ],
+      "notes": "Retained executed regression support from the same native report; suite counts are not added to the 16 focused E16 bodies or to new proposal count."
+    },
+    {
+      "file": "tests/integration/commands/booking-editor.int.test.ts",
+      "acs": [
+        "AC07",
+        "AC10"
+      ],
+      "risks": [
+        "R16-02",
+        "R16-04",
+        "R16-06"
+      ],
+      "actual_suite_passed": 58,
+      "failed": 0,
+      "skipped": 0,
+      "names": [
+        "Story 14.4 current candidate preview and private authority [P0] 14.4-INT-001-preview stable create UUID and candidate-only complete warnings",
+        "Story 14.4 current candidate preview and private authority [P0] 14.4-INT-001-receipt domain is distinct and binds actor candidate full groups facts versions validity",
+        "Story 14.4 deliberate whole-set review and complete selected acceptance [P0] 14.4-INT-001-create warns without acknowledgment and writes nothing",
+        "Story 14.4 deliberate whole-set review and complete selected acceptance [P0] 14.4-INT-001-update warns without acknowledgment and writes nothing",
+        "Story 14.4 deliberate whole-set review and complete selected acceptance [P0] 14.4-INT-001-reason \"\" selection=false is a durable no-op",
+        "Story 14.4 deliberate whole-set review and complete selected acceptance [P0] 14.4-INT-001-reason \" \\t\\n \" selection=false is a durable no-op",
+        "Story 14.4 deliberate whole-set review and complete selected acceptance [P0] 14.4-INT-001-reason \"\" selection=true is a durable no-op",
+        "Story 14.4 deliberate whole-set review and complete selected acceptance [P0] 14.4-INT-001-reason \" \\t\\n \" selection=true is a durable no-op",
+        "Story 14.4 deliberate whole-set review and complete selected acceptance [P0] 14.4-INT-001-partial-review subset acknowledgment is not current whole-set review",
+        "Story 14.4 deliberate whole-set review and complete selected acceptance [P0] 14.4-INT-002 selected aggregate candidate third accepts all v1/v2 keys once",
+        "Story 14.4 deliberate whole-set review and complete selected acceptance [P0] 14.4-INT-004 empty selection saves current reviewed warnings open with one audit",
+        "Story 14.4 deliberate whole-set review and complete selected acceptance [P0] 14.4-INT-003-forged-receipt cannot alter booking outcomes acceptance or audit",
+        "Story 14.4 deliberate whole-set review and complete selected acceptance [P0] 14.4-INT-003-partial-logical-group cannot alter booking outcomes acceptance or audit",
+        "Story 14.4 deliberate whole-set review and complete selected acceptance [P0] 14.4-INT-003-unrelated-logical-group cannot alter booking outcomes acceptance or audit",
+        "Story 14.4 deliberate whole-set review and complete selected acceptance [P0] 14.4-INT-003-wrong-tenant cannot alter booking outcomes acceptance or audit",
+        "Story 14.4 deliberate whole-set review and complete selected acceptance [P0] 14.4-INT-003-wrong-actor cannot alter booking outcomes acceptance or audit",
+        "Story 14.4 deliberate whole-set review and complete selected acceptance [P0] 14.4-INT-003-wrong-candidate cannot alter booking outcomes acceptance or audit",
+        "Story 14.4 deliberate whole-set review and complete selected acceptance [P0] 14.4-INT-003-wrong-target cannot alter booking outcomes acceptance or audit",
+        "Story 14.4 deliberate whole-set review and complete selected acceptance [P0] 14.4-INT-003-wrong-operation cannot alter booking outcomes acceptance or audit",
+        "Story 14.4 deliberate whole-set review and complete selected acceptance [P0] 14.4-INT-003-different-preview cannot alter booking outcomes acceptance or audit",
+        "Story 14.4 deliberate whole-set review and complete selected acceptance [P0] 14.4-INT-003-client-detector-fields cannot alter booking outcomes acceptance or audit",
+        "Story 14.4 deliberate whole-set review and complete selected acceptance [P0] 14.4-INT-003-unknown-select cannot accept a made-up logical identity",
+        "Story 14.4 deliberate whole-set review and complete selected acceptance [P0] 14.4-INT-003-detectorProofAsReceipt is denied below wrapper",
+        "Story 14.4 deliberate whole-set review and complete selected acceptance [P0] 14.4-INT-003-receiptAsDetectorProof is denied below wrapper",
+        "Story 14.4 stale reviews and transaction isolation [P0] 14.4-INT-003-stale-candidate-time requires renewed review",
+        "Story 14.4 stale reviews and transaction isolation [P0] 14.4-INT-003-stale-candidate-assignees requires renewed review",
+        "Story 14.4 stale reviews and transaction isolation [P0] 14.4-INT-003-stale-candidate-connections requires renewed review",
+        "Story 14.4 stale reviews and transaction isolation [P0] 14.4-INT-003-stale-candidate-status requires renewed review",
+        "Story 14.4 stale reviews and transaction isolation [P0] 14.4-INT-003-current-facts-schedule has one finalize no silent redetection",
+        "Story 14.4 stale reviews and transaction isolation [P0] 14.4-INT-003-current-facts-concurrent-booking has one finalize no silent redetection",
+        "Story 14.4 stale reviews and transaction isolation [P0] 14.4-INT-003-expiry fresh expired current review is exact no-op",
+        "Story 14.4 stale reviews and transaction isolation [P0] 14.4-INT-003-concurrent editors reviewed same facts commit one and force other review",
+        "Story 14.4 stale reviews and transaction isolation [P0] 14.4-INT-003-clean-review newly appearing warning cannot be saved by retained retry",
+        "Story 14.4 stale reviews and transaction isolation [P0] 14.4-INT-002-rollback-create-after_acceptance restores exact state and retries once",
+        "Story 14.4 stale reviews and transaction isolation [P0] 14.4-INT-002-rollback-create-before_audit restores exact state and retries once",
+        "Story 14.4 stale reviews and transaction isolation [P0] 14.4-INT-002-rollback-update-after_acceptance restores exact state and retries once",
+        "Story 14.4 stale reviews and transaction isolation [P0] 14.4-INT-002-rollback-update-before_audit restores exact state and retries once",
+        "Story 14.4 workflow identity and business replay [P0] 14.4-INT-005 unchanged accepted identity survives description edit and empty selection",
+        "Story 14.4 workflow identity and business replay [P0] 14.4-INT-005 changed complete collision key reopens all rows",
+        "Story 14.4 workflow identity and business replay [P0] 14.4-INT-002-replay-create lost-response equal retry excludes transport facts drift expiry",
+        "Story 14.4 workflow identity and business replay [P0] 14.4-INT-003-replay-create-selection conflicts without any second write",
+        "Story 14.4 workflow identity and business replay [P0] 14.4-INT-003-replay-create-reason conflicts without any second write",
+        "Story 14.4 workflow identity and business replay [P0] 14.4-INT-002-replay-update lost-response equal retry excludes transport facts drift expiry",
+        "Story 14.4 workflow identity and business replay [P0] 14.4-INT-003-replay-update-selection conflicts without any second write",
+        "Story 14.4 workflow identity and business replay [P0] 14.4-INT-003-replay-update-reason conflicts without any second write",
+        "Story 14.4 workflow identity and business replay [P1] 14.4-INT-002-replay-normalized reason trim and reordered logical IDs return historical result",
+        "Story 14.4 current authority on command checked RPC and reads [P0] 14.4-AC7-revoked-create replay denies both command and direct checked RPC",
+        "Story 14.4 current authority on command checked RPC and reads [P0] 14.4-AC7-revoked-update replay denies both command and direct checked RPC",
+        "Story 14.4 current authority on command checked RPC and reads [P0] 14.4-AC7-direct all fresh current obsolete finalize paths enforce human review",
+        "Story 14.4 current authority on command checked RPC and reads [P0] 14.4-AC7-acl checked receipt RPC is authenticated private helpers remain uncallable",
+        "Story 14.4 current authority on command checked RPC and reads [P0] 14.4-INT-003-direct actor timestamp status cannot be client-authored",
+        "Story 14.4 current authority on command checked RPC and reads [P0] 14.4-AC7-montor own visibility excludes coworkers preview save override",
+        "Story 14.4 current authority on command checked RPC and reads [P0] 14.4-AC7-cross-tenant-assignee generic denial exact two-tenant no-op",
+        "Story 14.4 current authority on command checked RPC and reads [P0] 14.4-AC7-cross-tenant-job generic denial exact two-tenant no-op",
+        "Story 14.4 current authority on command checked RPC and reads [P0] 14.4-AC7-cross-tenant-customer generic denial exact two-tenant no-op",
+        "Story 14.4 current authority on command checked RPC and reads [P0] 14.4-AC7-cross-tenant-facility generic denial exact two-tenant no-op",
+        "Story 14.4 current authority on command checked RPC and reads [P0] 14.4-AC7-cross-tenant-contact generic denial exact two-tenant no-op",
+        "Story 14.4 current authority on command checked RPC and reads [P0] 14.4-AC7-cross-tenant-booking generic denial exact two-tenant no-op"
+      ],
+      "notes": "Retained executed regression support from the same native report; suite counts are not added to the 16 focused E16 bodies or to new proposal count."
+    },
+    {
+      "file": "tests/integration/rls/migration-reset.int.test.ts",
+      "acs": [
+        "AC01",
+        "AC11"
+      ],
+      "risks": [
+        "R16-02",
+        "R16-15"
+      ],
+      "actual_suite_passed": 13,
+      "failed": 0,
+      "skipped": 0,
+      "names": [
+        "Story 14.3 exact checked/private conflict authority inventory [P0] snapshot/finalize are authenticated-only; every helper has empty search path and owner-only execution",
+        "Migration reset green — tenant_foundation objects present (AC1 / R-007) [10.8][P0] the complete local audit-failure seed fixture exists after reset",
+        "Migration reset green — tenant_foundation objects present (AC1 / R-007) [P0] RLS is ENABLED and FORCED on foundation authorization tables",
+        "Migration reset green — tenant_foundation objects present (AC1 / R-007) [P0] the public policy set is EXACTLY the expected per-table enumeration"
+      ],
+      "notes": "Retained executed regression support from the same native report; suite counts are not added to the 16 focused E16 bodies or to new proposal count."
+    },
+    {
+      "file": "tests/integration/rls/role-harness.atdd.int.test.ts",
+      "acs": [
+        "AC03",
+        "AC11"
+      ],
+      "risks": [
+        "R16-01",
+        "R16-02"
+      ],
+      "actual_suite_passed": 9,
+      "failed": 0,
+      "skipped": 0,
+      "names": [
+        "Story 11.4 role harness [P0] derives unique seeded-role × active table/command obligations",
+        "Story 11.4 role harness [P0] every generated table � role case executes its seeded safe RLS projection and rejects a concrete foreign row",
+        "Story 11.4 role harness [P0] each seeded role has an authenticated RLS membership boundary",
+        "Story 11.4 role harness [P0] generated command boundaries for tenant_admin execute through the production envelope without denied audit effects",
+        "Story 11.4 role harness [P0] generated command boundaries for projektledare execute through the production envelope without denied audit effects",
+        "Story 11.4 role harness [P0] generated command boundaries for montor execute through the production envelope without denied audit effects",
+        "Story 11.4 role harness [P0] generated command boundaries for saljare execute through the production envelope without denied audit effects",
+        "Story 11.4 role harness [P0] generated command boundaries for ekonomi execute through the production envelope without denied audit effects",
+        "Story 11.4 role harness [P1] database lifecycle rows project exact active-only role counts and deterministic effective unions"
+      ],
+      "notes": "Retained executed regression support from the same native report; suite counts are not added to the 16 focused E16 bodies or to new proposal count."
+    },
+    {
+      "file": "tests/integration/rls/cross-tenant-isolation.rls.test.ts",
+      "acs": [
+        "AC03",
+        "AC11"
+      ],
+      "risks": [
+        "R16-01",
+        "R16-05"
+      ],
+      "actual_suite_passed": 205,
+      "failed": 0,
+      "skipped": 0,
+      "names": [
+        "Cross-tenant RLS isolation — data-driven over the shared inventory (AC2 / R-001) table: job_members [P0] SELECT: Tenant A admin reads ZERO job_members rows belonging to Tenant B (no error leak)",
+        "Cross-tenant RLS isolation — data-driven over the shared inventory (AC2 / R-001) table: job_members [P0] INSERT: Tenant A admin cannot INSERT a job_members row carrying Tenant B ownership (no spoof)",
+        "Cross-tenant RLS isolation — data-driven over the shared inventory (AC2 / R-001) table: job_members [P0] UPDATE: Tenant A admin cannot UPDATE Tenant B's job_members rows",
+        "Cross-tenant RLS isolation — data-driven over the shared inventory (AC2 / R-001) table: job_members [P0] DELETE: Tenant A admin cannot DELETE Tenant B's job_members rows",
+        "Cross-tenant RLS isolation — data-driven over the shared inventory (AC2 / R-001) table: job_required_work_roles [P0] SELECT: Tenant A admin reads ZERO job_required_work_roles rows belonging to Tenant B (no error leak)",
+        "Cross-tenant RLS isolation — data-driven over the shared inventory (AC2 / R-001) table: job_required_work_roles [P0] INSERT: Tenant A admin cannot INSERT a job_required_work_roles row carrying Tenant B ownership (no spoof)",
+        "Cross-tenant RLS isolation — data-driven over the shared inventory (AC2 / R-001) table: job_required_work_roles [P0] UPDATE: Tenant A admin cannot UPDATE Tenant B's job_required_work_roles rows",
+        "Cross-tenant RLS isolation — data-driven over the shared inventory (AC2 / R-001) table: job_required_work_roles [P0] DELETE: Tenant A admin cannot DELETE Tenant B's job_required_work_roles rows",
+        "Cross-tenant RLS isolation — data-driven over the shared inventory (AC2 / R-001) table: job_access_windows [P0] SELECT: Tenant A admin reads ZERO job_access_windows rows belonging to Tenant B (no error leak)",
+        "Cross-tenant RLS isolation — data-driven over the shared inventory (AC2 / R-001) table: job_access_windows [P0] INSERT: Tenant A admin cannot INSERT a job_access_windows row carrying Tenant B ownership (no spoof)",
+        "Cross-tenant RLS isolation — data-driven over the shared inventory (AC2 / R-001) table: job_access_windows [P0] UPDATE: Tenant A admin cannot UPDATE Tenant B's job_access_windows rows",
+        "Cross-tenant RLS isolation — data-driven over the shared inventory (AC2 / R-001) table: job_access_windows [P0] DELETE: Tenant A admin cannot DELETE Tenant B's job_access_windows rows",
+        "Cross-tenant RLS isolation — data-driven over the shared inventory (AC2 / R-001) table: job_dependencies [P0] SELECT: Tenant A admin reads ZERO job_dependencies rows belonging to Tenant B (no error leak)",
+        "Cross-tenant RLS isolation — data-driven over the shared inventory (AC2 / R-001) table: job_dependencies [P0] INSERT: Tenant A admin cannot INSERT a job_dependencies row carrying Tenant B ownership (no spoof)",
+        "Cross-tenant RLS isolation — data-driven over the shared inventory (AC2 / R-001) table: job_dependencies [P0] UPDATE: Tenant A admin cannot UPDATE Tenant B's job_dependencies rows",
+        "Cross-tenant RLS isolation — data-driven over the shared inventory (AC2 / R-001) table: job_dependencies [P0] DELETE: Tenant A admin cannot DELETE Tenant B's job_dependencies rows"
+      ],
+      "notes": "Retained executed regression support from the same native report; suite counts are not added to the 16 focused E16 bodies or to new proposal count."
+    }
+  ],
+  "pure_support": [
+    {
+      "file": "tests/unit/server/bookings/job-facts.test.ts",
+      "count": 4,
+      "acs": [
+        "AC06",
+        "AC07"
+      ],
+      "risks": [
+        "R16-06",
+        "R16-07",
+        "R16-13"
+      ],
+      "names": [
+        "[P0][16.1-U03] checked snapshot parser accepts and freezes complete own-job authoritative facts",
+        "[P0][16.1-U04] mixed jobs and unbound bookings use each evaluated booking's facts without candidate bleed",
+        "[P0][16.1-U05] unavailable facts stay distinct from known-empty roles and restrictive empty windows",
+        "[P0][16.1-U09] old engine and content insertion deletion or job rebinding cannot reuse canonical claims"
+      ],
+      "classification": "Pure runtime parser/sole-detector tests with synthetic canonical facts; not proof of SQL/RLS execution. Parent owns actual pure execution."
+    },
+    {
+      "file": "tests/unit/features/jobs/dependency-warnings.test.ts",
+      "count": 14,
+      "acs": [
+        "AC08"
+      ],
+      "risks": [
+        "R16-12",
+        "R16-13",
+        "R16-16"
+      ],
+      "classification": "Pure linked-date unknown/warning/clear/calendar-boundary and immutability coverage; actual persisted interaction belongs to E04."
+    },
+    {
+      "file": "tests/unit/features/jobs/job-card-validation.test.ts",
+      "acs": [
+        "AC04",
+        "AC05"
+      ],
+      "risks": [
+        "R16-05",
+        "R16-11",
+        "R16-13",
+        "R16-16"
+      ],
+      "classification": "Pure closed scalar validation and draft/submission/retry identity behavior; not durable DB evidence."
+    },
+    {
+      "file": "tests/unit/server/authz/phase-a-surface.test.ts",
+      "acs": [
+        "AC03",
+        "AC11"
+      ],
+      "risks": [
+        "R16-01"
+      ],
+      "name": "16.1 assigned jobs navigation admits Montor direct job routes without unrelated routes",
+      "classification": "Pure capability/navigation derivation; direct JWT/RLS and browser evidence remain separate."
+    }
+  ],
+  "non_api_handoffs": [
+    {
+      "acs": [
+        "AC04",
+        "AC05"
+      ],
+      "lane": "Existing essential E02 browser + parent pure checks",
+      "reason": "Phone progressive-form failure/retained unsent exact retry identity/two durable saves/reload are user-flow assertions; duplicating them as API tests would not prove reachability or usability."
+    },
+    {
+      "acs": [
+        "AC08"
+      ],
+      "lane": "Existing pure dependency tests + E04 real card/date/dependency save/reload",
+      "reason": "Existing command child-persistence and foreign-child refusal complement actual dependency warning/reload in E04; no additional duplicate API proposal."
+    },
+    {
+      "acs": [
+        "AC11"
+      ],
+      "lane": "Parent process/manifest/transfer accounting plus exact policies/ACL/H4/role DB tests",
+      "reason": "TR01–TR16 destination ledger remains open according to destination evidence; no later-story acceptance credit."
+    }
+  ],
+  "evidence": {
+    "source": "_bmad-output/auto-bmad/delivery/16-1-jobs-depth-activation-container-evolution-and-my-jobs.json plus locally parsed immutable native integration report",
+    "run": "https://github.com/rthunborg/Kopplas/actions/runs/39286112780",
+    "native_report": "C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39286112780-integration-native/full-integration.json",
+    "native_report_sha256": "4bd24ddab78ccd80c05652eabff3764ec1612cb412a6adfffcb8ebd124a58ea1",
+    "full_database": {
+      "total": 1752,
+      "passed": 1751,
+      "failed": 0,
+      "skipped": 1,
+      "required_environment": "SUPABASE_TEST_REQUIRED=1",
+      "skipped_scope": "Only separate-lane recovery-storage physical assertion, not an E16 body."
+    },
+    "focused_E16": {
+      "total": 16,
+      "passed": 16,
+      "failed": 0,
+      "skipped": 0,
+      "counting": "Actual test bodies as native runner reports, never inflated by parameter loops or individual expect calls."
+    },
+    "recovery": {
+      "total": 1,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "native_report": "C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39286112780-recovery-native/isolated-storage-recovery.json",
+      "sha256": "1a0067ab026a062ea6a32c5d19a9c75226a11d2c8079be11620eb75e225adc89",
+      "provenance": "Delivery record and parent-verified immutable native evidence; worker did not execute it."
+    },
+    "unit_suite": {
+      "passed": 2612,
+      "failed": 0,
+      "skipped": 0,
+      "provenance": "Delivery-record exact-d605 Linux CI evidence, not a worker execution or count added to API coverage."
+    },
+    "historical_atdd": {
+      "new_scaffolds_then": 21,
+      "status": "Historical explicit skips; none relabelled as executed by this worker. Current active native evidence supersedes scaffold coverage status only."
+    }
+  },
+  "required_gaps": [],
+  "limitations": [
+    "No new execution/burn-in/runtime claims.",
+    "No broad source re-review after the completed review cap; assessment is acceptance-to-existing-tests mapping only.",
+    "No exhaustive role/device/browser/manual/visual release-validation pass; those remain separately deferred, never covered by API counts.",
+    "No claim that every illustrative test-design scenario has a separate test body; consequential contract evidence is reused across appropriate layers.",
+    "API coverage alone does not close browser/process acceptance. Parent aggregates their independently assigned evidence."
+  ],
+  "next_action": "Parent persists this worker payload under the story evidence subtree, combines E2E and pure results, records zero new API tests and unchanged native evidence; root retains Git/state/publication and later procedural gates."
+}

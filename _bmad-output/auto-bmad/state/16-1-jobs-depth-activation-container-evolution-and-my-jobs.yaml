@@ -9,11 +9,11 @@ spec_folder: null
 story_id: null
 branch: codex/epic-16-jobs
 status: in-progress
-updated_at: "2026-10-19T16:54:24Z"
+updated_at: "2026-10-19T17:05:09Z"
 started_at: "2026-10-15T09:23:25Z"
 completed_at: null
-active_seconds: 12639
-timing_anchor: 1792428864
+active_seconds: 13284
+timing_anchor: null
 is_first_in_epic: true
 is_last_in_epic: false
 git_mode: remote
@@ -37,7 +37,7 @@ tea_selected: [atdd, automate]
 tea_rationale: Explicit schema/CHECK constraints and membership/assignment-scoped MyJobs with per-role negatives
 epic_story_count: 5
 stories_after_in_epic: 4
-completed_phases: [0, 1, 3, 4, 5]
+completed_phases: [0, 1, 3, 4, 5, 6]
 spec_path: "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-16-jobs\\Kopplas\\_bmad-output\\implementation-artifacts\\spec-16-1-jobs-depth-activation-container-evolution-and-my-jobs.md"
 spec_approved: true
 build:
@@ -57,7 +57,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [589e5ca7, 5ffb6d8e, 2d14d7ac, 97e62221, 04cf0edf, aeb44006, c21faa3b, d33415c7, 1f8c1620, c47b2685, "92428157", 30f8b863, dea276c7, 41463a22, d56281f5, 23263e2a, 07db8b6c, 8185b07e, d605295a]
+commits: [589e5ca7, 5ffb6d8e, 2d14d7ac, 97e62221, 04cf0edf, aeb44006, c21faa3b, d33415c7, 1f8c1620, c47b2685, "92428157", 30f8b863, dea276c7, 41463a22, d56281f5, 23263e2a, 07db8b6c, 8185b07e, d605295a, "66026671"]
 phase8_steps:
   trace_gate: null
   nfr: null
