@@ -82,9 +82,9 @@ async function saveCard(page: Page, form: Locator, jobId: string, title?: string
 }
 
 async function fillProgressiveCard(form: Locator, f: JobsDepthFixture, title: string): Promise<void> {
-  await form.getByLabel("Titel", { exact: true }).fill(title);
-  await form.getByLabel("Anläggning", { exact: true }).selectOption(f.identity.facilityId);
-  await form.getByLabel("Kontakt", { exact: true }).selectOption(f.identity.contactId);
+  await form.getByRole("textbox", { name: "Titel", exact: true }).fill(title);
+  await form.getByRole("combobox", { name: "Anläggning", exact: true }).selectOption(f.identity.facilityId);
+  await form.getByRole("combobox", { name: "Kontakt", exact: true }).selectOption(f.identity.contactId);
   await form.getByTestId("job-card-planning-toggle").click();
   await form.getByLabel("Planerad start", { exact: true }).fill("2026-10-12");
   await form.getByLabel("Planerat slut", { exact: true }).fill("2026-10-13");
@@ -124,7 +124,12 @@ test.describe("Story 16.1 essential Jobs depth journeys", () => {
     try {
       await page.setViewportSize({ width: 360, height: 640 });
       await signIn(page, f.credentials.assignedWorker);
-      await page.getByRole("navigation").getByRole("link", { name: "Jobb/Order", exact: true }).click();
+      const menuButton = page.getByRole("button", { name: "Öppna meny", exact: true });
+      await hydrated(menuButton);
+      await menuButton.click();
+      await page.getByRole("dialog", { name: "Huvudmeny", exact: true })
+        .getByRole("navigation", { name: "Huvudnavigation", exact: true })
+        .getByRole("link", { name: "Jobb/Order", exact: true }).click();
       await expect(page).toHaveURL(/\/jobs$/);
       await expect(page.getByRole("heading", { name: "Mina jobb", exact: true })).toBeVisible();
       const rows = page.getByTestId("job-list-row");
@@ -188,8 +193,8 @@ test.describe("Story 16.1 essential Jobs depth journeys", () => {
         await expect(form.getByTestId("job-card-unsent")).toHaveAttribute("role", "alert");
         await expect(form.getByTestId("job-card-unsent")).toBeVisible();
         await expect(page.getByTestId("job-card-save-status")).toHaveCount(0);
-        await expect(form.getByLabel("Titel", { exact: true })).toHaveValue(title);
-        await expect(form.getByLabel("Anläggning", { exact: true })).toHaveValue(f.identity.facilityId);
+        await expect(form.getByRole("textbox", { name: "Titel", exact: true })).toHaveValue(title);
+        await expect(form.getByRole("combobox", { name: "Anläggning", exact: true })).toHaveValue(f.identity.facilityId);
         await expect(form.getByLabel("Uppskattad tid (minuter)", { exact: true })).toHaveValue("120");
         await expect(form.getByTestId(`job-required-role-${f.roleId}`)).toBeChecked();
         await expect(form.getByTestId("job-access-window-row").getByLabel("Till", { exact: true })).toHaveValue("2026-10-12T16:00");
@@ -229,7 +234,7 @@ test.describe("Story 16.1 essential Jobs depth journeys", () => {
         await replacementWindow.getByLabel("Från", { exact: true }).fill("2026-10-12T08:00");
         await replacementWindow.getByLabel("Till", { exact: true }).fill("2026-10-12T16:00");
         const secondTitle = `${title} second edit`;
-        await form.getByLabel("Titel", { exact: true }).fill(secondTitle);
+        await form.getByRole("textbox", { name: "Titel", exact: true }).fill(secondTitle);
         await form.getByLabel("Uppskattad tid (minuter)", { exact: true }).fill("150");
         await expect(form.getByTestId("job-card-save-status")).toHaveCount(0);
         await expect(form.getByTestId("job-card-save")).toBeEnabled();
@@ -262,7 +267,7 @@ test.describe("Story 16.1 essential Jobs depth journeys", () => {
         await expect(page.getByRole("heading", { name: secondTitle, exact: true })).toBeVisible();
         const reloaded = await openCard(page, f.jobs.editable.id);
         await reloaded.getByTestId("job-card-planning-toggle").click();
-        await expect(reloaded.getByLabel("Kontakt", { exact: true })).toHaveValue(f.identity.contactId);
+        await expect(reloaded.getByRole("combobox", { name: "Kontakt", exact: true })).toHaveValue(f.identity.contactId);
         await expect(reloaded.getByLabel("Uppskattad tid (minuter)", { exact: true })).toHaveValue("150");
         await expect(reloaded.getByLabel("Planerad restid (minuter)", { exact: true })).toHaveValue("30");
         await expect(reloaded.getByLabel("Antal personer", { exact: true })).toHaveValue("2");
