@@ -24,8 +24,12 @@ try {
     writeFileSync(target, source);
     if (relative === support) original = source;
   }
-  execFileSync("git", ["apply", "--check", path.join(here, "e15-reload-context.patch")], { cwd: fixture });
-  execFileSync("git", ["apply", path.join(here, "e15-reload-context.patch")], { cwd: fixture });
+  // Git objects export LF, while a Windows checkout may materialize this patch
+  // as CRLF. Normalize only the temporary patch text to that export boundary.
+  const fixturePatch = path.join(fixture, "reload-context.patch");
+  writeFileSync(fixturePatch, readFileSync(path.join(here, "e15-reload-context.patch"), "utf8").replace(/\r\n/g, "\n"));
+  execFileSync("git", ["apply", "--check", fixturePatch], { cwd: fixture });
+  execFileSync("git", ["apply", fixturePatch], { cwd: fixture });
   repaired = readFileSync(path.join(fixture, support), "utf8");
   // Compile both patched spec call sites too; this does not execute Playwright.
   for (const relative of [support, spec]) {

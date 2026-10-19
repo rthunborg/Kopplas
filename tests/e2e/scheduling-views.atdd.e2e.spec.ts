@@ -290,7 +290,7 @@ for (const [host, gesture, id] of [["Schema", "click", "001"], ["Schema", "drag"
     const created = (await h.sqlBookings()).filter(row => !before.some(old => old.id === row.id));
     expect(created).toHaveLength(1);
     expect(created[0]).toMatchObject({ startsAt: i.startsAt, endsAt: i.endsAt, assigneeIds: [h.people[0]] });
-    await expect(h.editor).toHaveCount(0); await h.reloadAndOpen(created[0]!.id);
+    await expect(h.editor).toHaveCount(0); await h.reloadAndOpen(created[0]!.id, host, i);
     await expectEditor(h, { ...i, assigneeIds: [h.people[0]!] });
   });
 }
@@ -731,7 +731,7 @@ for (const host of ["Schema", "Resurser"] as const) for (const operation of ["mo
       const states = await adminQuery<{ status: string }>("select status from public.booking_conflicts where tenant_id=$1 and (booking_id=$2 or related_booking_id=$2)", [h.scenario.tenantId, h.ids.proposal]);
       expect(states.some(row => row.status === "accepted")).toBe(true);
       expect(states.some(row => row.status === "open")).toBe(true);
-      await expect(h.editor).toHaveCount(0); await h.reloadAndOpen(h.ids.proposal); await expectEditor(h, expected); await h.cancel();
+      await expect(h.editor).toHaveCount(0); await h.reloadAndOpen(h.ids.proposal, host, expected); await expectEditor(h, expected); await h.cancel();
     }
   });
 }

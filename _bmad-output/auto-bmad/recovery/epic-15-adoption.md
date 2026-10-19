@@ -24,8 +24,10 @@ the unchanged 246 passes, the correction, and all 25 evidence bindings. This is
 combined focused evidence, not a claim that a final full 247-test run passed.
 Earlier 190/57 and 242/5 results remain historical failures.
 
-Story 15.1 is still in progress. The separately reviewed portable reload repair
-and its Windows regression correction will receive their own checkpoint. Real
+Story 15.1 is still in progress. The portable two-file reload repair and its
+Windows regression correction passed separate independent Low review. The current
+stub regression executed seven cases, all passing without skips; typecheck and
+targeted ESLint passed. This establishes no native browser or SQL coverage. Real
 persisted scheduling smoke and the required current standard CI lanes remain
 outstanding. Historical run 39237801662 stays failed; its database success is
 historical evidence only. Broad browser matrices, eleven visual checks and manual
