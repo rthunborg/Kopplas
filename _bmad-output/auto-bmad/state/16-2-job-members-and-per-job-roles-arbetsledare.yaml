@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-16-jobs
 status: in-progress
-updated_at: "2026-10-19T19:15:13Z"
+updated_at: "2026-10-19T19:53:05Z"
 started_at: "2026-10-19T17:10:09Z"
 completed_at: null
 active_seconds: 2188
@@ -41,7 +41,7 @@ completed_phases: [0, 1, 3, 4]
 spec_path: "C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/_bmad-output/implementation-artifacts/spec-16-2-job-members-and-per-job-roles-arbetsledare-2.md"
 spec_approved: true
 build:
-  status: ready-for-dev
+  status: in-progress
   blocking_condition: null
   followup_review_recommended: false
   review_loop_iteration: 0
@@ -57,7 +57,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [883f4ec8, 70ec78ee3ce7b4e2beb48f7a724e74359e7548ac, abe515e2ba288550c8347132a89f12422b424b2c, 291c7bf93295bc5f7378ac35faffc410c1c60421, cc59fee206595db982d74558c837f2c56c512871]
+commits: [883f4ec8, 70ec78ee3ce7b4e2beb48f7a724e74359e7548ac, abe515e2ba288550c8347132a89f12422b424b2c, 291c7bf93295bc5f7378ac35faffc410c1c60421, cc59fee206595db982d74558c837f2c56c512871, 3583bfb5fc3be5fb1f2ea2abb740435b0be9f8af]
 phase8_steps:
   trace_gate: null
   nfr: null

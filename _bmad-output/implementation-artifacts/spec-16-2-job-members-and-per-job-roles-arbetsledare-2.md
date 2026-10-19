@@ -2,9 +2,10 @@
 title: 'Story 16.2: Job Members and Per-Job Roles (Arbetsledare)'
 type: 'feature'
 created: '2026-10-19'
-status: 'ready-for-dev'
+status: 'in-progress'
+baseline_revision: 3583bfb5fc3be5fb1f2ea2abb740435b0be9f8af
 review_loop_iteration: 0
-followup_review_recommended: false
+followup_review_recommended: true
 context:
   - '{project-root}/docs/process/development-completion-policy.md'
   - '{project-root}/docs/process/agent-model-routing.md'
@@ -132,6 +133,22 @@ No exact unfinished E15 contract blocks this approved plan. No other-worktree ad
 
 ## Review Triage Log
 
+Round 1's 14 prescriptive reports reconcile to 11 unique claims: five patches (three High, two Medium), six rejected required-patch suggestions; intent gap 0, bad spec 0, defer 0. The same High implementation author applied one bounded batch. Source-addressed does not imply executed SQL/browser evidence or reviewer acceptance; same-reviewer follow-up is limited to these fixes, regressions and unresolved consequential findings.
+
+| Unique claim | Disposition and actual action | Evidence / limit |
+| --- | --- | --- |
+| Manager denied without optional resource profile | Patched: active independent Admin/PL authority no longer requires an actor resource profile; only the relational lead branch does. Existing identity, membership/role locks, target eligibility and replay checks remain. | INT-007 exercises all four real checked operations for both manager roles using the existing profileless orphan fixture. Active, pending CI. |
+| Deliberate assignment retry submits old A while B is visible | Patched: post-refetch assignment materializes the current valid visible selection; missing/ineligible/already-current selection disables retry. Uncertain replay retains the exact original request. | E04 asserts B alone is persisted with one audit; original uncertain-replay assertions remain. Active, pending CI. |
+| Shared refreshed token silently authorizes stale controls | Patched: each editable operation owns its value/baseline/token. Pristine controls synchronize on server/refetched/initial projections; dirty controls retain their baseline until explicit operation-specific refetch/consent. Older confirmed submissions preserve newer unsent drafts. | UNIT-005/006 passed; E05 verifies pristine A→B synchronization and dirty C refusal after a dates save. Browser pending CI. |
+| Admission infrastructure failure becomes absence/404 | Patched: discriminated admission result separates unavailable from false. A relational-only jobs route renders a generic retry state with no children on uncertainty; existing independent role grants, unrelated routes and landing remain unchanged. App navigation exposes a safe retry rather than silently hiding the path. | AUTHZ-004 passed for RPC failure/rejection/malformed reply, false/true admission and independent manager rights. Runtime pending CI. |
+| New member-read failure throws away the loaded detail | Patched: page-facing typed member-read failure preserves the authorized job detail, omits unavailable controls, and renders a generic GET retry; no SQL/payload details or false 404. | AUTHZ-004 passed against real read-wrapper error paths; production build passed. Runtime pending CI. |
+| Optimize the admission query | Rejected as a required repair: no concrete current correctness or authorization bypass. | Existing tenant-bound identity predicate retained; performance evidence remains the applicable CI lane. |
+| Add more parent locks | Rejected as a required repair absent a current bypass: existing membership/role/profile/member locks and tenant gate remain. | Actual controlled actor/target revocation tests remain intact; no weaker lock was substituted. |
+| Add an ABA ordinal | Rejected as a required repair: serialized audit ordinal is already in current expected-state/replay checks. | Existing guard preserved. |
+| Add direct SQL date validation | Rejected as a required repair: checked SQL already closes payload keys/types, casts both dates and rejects range/calendar violations. | Existing guard and assertions preserved. |
+| Add a singular-lead unique index | Rejected as a required repair: partial unique index already enforces one unarchived lead and fails historical duplicates explicitly. | Existing index and ACL/inventory assertions preserved. |
+| Add broad edited-draft browser coverage | Rejected as a separate required repair without a current bypass. | Narrow E04/E05 were added for the two observed selection/baseline defects; no exhaustive release matrix is substituted for a missing development check. |
+
 ## Design Notes
 
 Owner-authorized maintainable defaults: keep member controls in existing Översikt, use an explicit manager-only nullable lead picker among current eligible members, and render the lead dates editor separately from the manager full-card form. Headless input/state/action/projection modules keep future flow changes inexpensive; avoid a generic permissions framework. Stale writes show current state and retain the user's draft for a deliberate retry rather than silently replacing a lead or dates. These are design choices grounded in current requirements, not legacy observations.
@@ -160,3 +177,97 @@ Intent decision: resolved by root-verified direct owner answer dated 2026-10-19.
 Next phase: root pins this exact specification and admits Phase 4 ATDD after parser verification; no implementation in this invocation.
 
 Planning verification: final workflow/spec disk reread and ready-standard self-review completed; closed actor/command policy and Given/When/Then acceptance specified. Oversized warning retained. The renderer was executed once for this invocation; snapshot `_bmad/render/bmad-build-auto/kopplas-307a2bfdc280/96e8da50b6e5096e00c4/workflow.md`. Completion hook preserves this planning HALT without manufacturing an implementation review trail.
+
+## Build invocation and implementation route — 2026-10-19
+
+Exact invocation intent: `C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/_bmad-output/implementation-artifacts/spec-16-2-job-members-and-per-job-roles-arbetsledare-2.md`
+
+Renderer executed once; emitted snapshot `96e8da50b6e5096e00c4`. Step 1 routes ready-for-dev directly to Step 3. Baseline `3583bfb5fc3be5fb1f2ea2abb740435b0be9f8af`; nineteen committed ATDD scaffolds require activation. Implementation author dispatch: context-free gpt-6.1-sol High for actual scoped RBAC/RLS, SQL transactions and revocation integrity; independent review retained. Root exclusively owns Git/index, CI/state/ledger/report operations. No local resource launch; runtime evidence will come from a reviewed source checkpoint through checked-in CI. Spec remains in-progress until actual required evidence, delivery gate/provenance review and explicit root closure authorization.
+
+
+## Implementation checkpoint — 2026-10-19
+
+Status remains **in-progress**. This is the implementation author's uncommitted source checkpoint against the recorded baseline, pending the root-owned exact-head CI checkpoint, configured independent review, delivery evidence reconciliation and explicit closure authorization. Planning-only statements above are historical; they are not implementation evidence.
+
+Implemented the four fixed crew/designation/date commands, closed DTO validation, current-identity lead admission, narrow member/eligible-person read model, Översikt panel and dates-only editor. SQL uses the existing tenant mutation gate plus ordered membership, role, job, profile and member locks; current authority and target eligibility precede replay and writes. Audit metadata stores canonical request/state hashes and a serialized outcome ordinal, avoiding another outcome table and avoiding clock-based replay ordering. Lead-only authority never enters the old mixed job/card/booking commands. The full-card date validator's calendar predicate is exported for reuse, without changing its rules. Unentitled job payloads use a generic protected-money descriptor instead of serializing protected field names in withholding metadata.
+
+The CLI allocated `supabase/migrations/20261019191746_e16_16_2_job_members.sql` with Supabase CLI 2.115.0 (`migration new e16_16_2_job_members`) after its installed help was read; it is later than the reported recurrence reservation. No migration was executed here. No service, browser, Docker/WSL workload, provider, secret, environment, dependency, Git/index mutation, push, merge or deployment was started by this author.
+
+Nested route/ownership: the parent High implementation author retained SQL, command authorization, projections, domain state and actions. The explicitly isolated `members_ui` worker ran context-free **gpt-6.1-sol Low**, owning only `src/components/jobs/JobMembersPanel.tsx`; it used the existing zinc component pattern and supplied a file-only ESLint pass. That result was awaited and integrated. The repository does not contain the skill's example `nextjs-app/docs/design/DESIGN.md`/Figma reference path; the spec's owner-authorized existing-system defaults govern the panel. The React checklist was applied to event-based actions, typed server DTOs, independent drafts, accessible labels/status/errors and absence of effects/request-shared mutable state.
+
+Activation retains all **19** original ATDD bodies/assertions: four domain, three access, six command integration, three RLS, three browser journeys. Proposed DTO spellings in the domain scaffold were reconciled to the real `personProfileId` and required opaque `expectedState` contract; symbol/extra-field rejection, null/calendar/range checks, immutable retry and deliberate stale refetch assertions remain. The direct checked-SQL revoked-replay negative remains intact. Dedicated capability/envelope tests supplement these assertions. Shared role-harness metadata tables/projection adapters are unchanged; only a closed scoped-command classifier/import and jobs-related assertions were added. The smoke command now retains both authentication specs and existing jobs-depth smoke and adds job-members before its reporter option.
+
+Executed source checks:
+
+- `pnpm typecheck`: passed, including the final adapter/inventory changes.
+- Focused domain/access/navigation/enrollment/matrix/envelope command: **47 passed, 0 failed, 0 skipped**.
+- `pnpm test:unit`: **2,623 passed, 0 failed, 1 skipped** (2,624 tests, 100 suites). The skip is `tests/unit/ops/isolated-recovery-storage.test.ts` on Windows because Linux xattrs are required; it remains missing Linux execution evidence here.
+- `pnpm build`: passed production compilation, TypeScript and page generation; no application server was launched.
+- Full lint initially found the ATDD adapter's two forbidden `module` variable names; they were renamed without changing assertions. `pnpm lint` then passed with **0 errors, 14 warnings** (existing unrelated warnings). The author review-order checker passed with **17 verified references, 0 errors**.
+
+Required development evidence still outstanding: clean migration replay, full integration/RLS with `SUPABASE_TEST_REQUIRED=1` and executed/skipped counts, direct recovery-storage integrity on Linux, applicable pilot performance, the three real production-server essential browser journeys, configured independent sensitive review and exact tested checkpoint provenance. Root owns the checkpoint/CI and delivery gate. No `development_complete`, `done`, release-ready or deployment claim is made; the final delivery JSON must be written/reconciled only with actual required evidence.
+
+Deferred release validation: exhaustive browser/role/viewport matrices, screenshots, visual inspection and manual polish remain **deferred**, owned by the release-validation coordinator. Next action: record qualified release evidence in the root-owned deferred ledger/delivery artifact before release readiness. These deferrals do not cover any essential functional, authorization, transaction, recovery or persistence failure.
+
+## Suggested Review Order
+
+Author: Story 16.2 implementation/fix author (gpt-6.1-sol High). Refreshed after the bounded five-fix batch against the current author working tree; exact checkpoint/CI provenance remains root-owned. The existing six-layer Round 1 provenance below is preserved; follow-up scope is fixes and regressions only.
+
+### Visible drafts retain their own consent boundary
+
+The spec's overview composition and separate dates editor remain. Deliberate post-refetch assignment uses the current visible eligible person; an uncertain replay retains the frozen original request. Each control owns its baseline so pristine values follow server projections while dirty values cannot gain authority from an unrelated lane's refresh (AC01/02/08).
+
+- `src/components/jobs/JobMembersPanel.tsx:51` — `JobMembersPanel`: renders separately granted operational controls.
+- `src/components/jobs/JobMembersPanel.tsx:127` — `retry`: separates exact replay from current deliberate selection.
+- `src/features/jobs/job-members-domain.ts:70` — `receiveJobMemberField`: synchronizes only pristine controls.
+- `tests/unit/features/jobs/job-members-domain.test.ts:148` — `16.2-UNIT-005`: asserts cross-lane pristine/dirty consent behavior.
+
+### Operational admission never becomes a broad edit grant
+
+Only the three dedicated crew/date commands consult current relational leadership after validation; designation remains manager-only. SQL remains commit authority. Existing full-card/create/lifecycle and other consumer capabilities retain their independent policies (AC03/04).
+
+- `src/server/authz/job-command-scope.ts:3` — `const scoped`: enumerates the closed crew/date exception.
+- `src/server/commands/envelope-core.ts:231` — `if (needsJobScope)`: checks current job scope before execution.
+- `tests/unit/server/commands/envelope-core.test.ts:229` — `16.2 scoped`: asserts positive scope and unchanged mixed/unknown-command denial.
+
+### Current membership governs independent manager authority
+
+Independent active Admin/PL authority requires no optional resource profile; only current relational leadership requires one. Ordered locks, the single-lead index, canonical request/state hashes and serialized audit ordinal retain the transactional/revocation/replay boundaries. Mutation and audit commit together (AC01/02/05/06/07).
+
+- `supabase/migrations/20261019191746_e16_16_2_job_members.sql:3` — `job_members_one_current_lead`: enforces singular unarchived designation.
+- `supabase/migrations/20261019191746_e16_16_2_job_members.sql:131` — `Resource profiles are optional`: separates manager and relational-lead actor requirements.
+- `supabase/migrations/20261019191746_e16_16_2_job_members.sql:158` — `if saved.id is not null then`: validates replay after current authority checks.
+- `supabase/migrations/20261019191746_e16_16_2_job_members.sql:183` — `post_state:=`: binds the atomic audit to business state.
+
+### Unavailable reads stay actionable and fail closed
+
+Jobs admission distinguishes a confirmed absent relationship from unavailable authority; only an independently authorized role or a confirmed relationship admits content. The page's member-read wrapper preserves already authorized detail and exposes a safe retry. Narrow ID/label projections, independent money/CRM policy and unchanged tenant-role landing remain intact (AC04/05/08).
+
+- `src/server/read-models/job-members.ts:28` — `readJobMembersForPage`: maps member read failures to safe typed results.
+- `src/server/read-models/job-members.ts:34` — `readJobLeadAdmission`: distinguishes unavailable authority from false.
+- `src/components/app-shell/RouteAccessBoundary.tsx:25` — `decision === "unavailable"`: renders retry without job children.
+- `src/app/(app)/jobs/[jobId]/page.tsx:78` — `const memberRead`: retains detail when the member projection fails.
+
+### Focused regressions and actual evidence stay distinct
+
+All 19 original ATDD assertions remain active, including INT-004 genuine pre-edit card proof staleness, INT-005 direct revoked SQL replay, INT-006 controlled races/audit rollback, RLS001–003 role/privacy/ACL and E01–03 real persistence/retry/navigation. The new regressions target the concrete five-fix batch; none is credited as executed DB/browser coverage in this author run.
+
+- `tests/integration/commands/job-members.int.test.ts:258` — `16.2-INT-007`: tests profileless Admin/PL across four checked operations.
+- `tests/e2e/jobs/job-members.e2e.spec.ts:335` — `16.2-E04`: asserts the currently visible assignment is persisted.
+- `tests/e2e/jobs/job-members.e2e.spec.ts:359` — `16.2-E05`: checks pristine synchronization and dirty baseline refusal.
+- `tests/unit/server/authz/job-access.test.ts:108` — `16.2-AUTHZ-004`: exercises typed/sanitized unavailable read outcomes.
+
+Evidence: five-fix `pnpm typecheck`, targeted ESLint and production `pnpm build` passed; focused tests **50 passed, 0 failed/skipped**; full `pnpm test:unit` **2,626 passed, 0 failed, 1 skipped**, 2,627 tests/100 suites. The skip remains the Windows/Linux-xattr case and awaits Linux CI. Pure injected callbacks prove ordering, not SQL execution; synthetic harness probes never prove business bodies. Required migration/full DB/RLS/recovery/performance/essential browser evidence, targeted reviewer confirmation, exact revision and delivery gate remain outstanding. Exhaustive visuals/manual polish remain deferred release validation, never development evidence.
+
+## Configured review route — Round 1 of 3, 2026-10-19
+
+All six configured Step 4 layers actually executed against the frozen tracked-plus-new diff SHA256 `e78077629c6adc31d3543ff76ccd73f4a0ef2653a6a3e2758bb303ce8a7c1734`: independent context-free Sol 6.1 High blind, edge, verification, intent and security agents, plus exact configured external Codex High read-only command (native exit 0; nonempty receipt). Platform concurrency required queueing the final two children for freed slots, without rerunning any layer. Private provenance and source inventory: `C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-16-2-review-afc41771-8a4c-4cb0-8a39-6349e08cfca9/`. Collaboration-history receipts are original; private agent receipt files explicitly summarize them; external `.review` is native unmodified output.
+
+The five concrete repair claims go to the same Sol 6.1 High author as one batch: optional-resource-profile manager denial; stale assignment target mismatch; pristine/dirty cross-lane token synchronization; scoped admission infrastructure failure handling; member-read failure handling. Six distinct optional coverage/performance suggestions are rejected as required patches after checking the existing SQL validation/locks/index/ordinal and immutable retry guards; they identify no current bypass. Intent audit is descriptive: the current explicitly authorized implementation invocation supersedes the historical planning-run restriction; existing-detail overview composition and scoped eligible-person choices follow the approved plan, without broad consumer permission expansion. No new intent gap or E15 gate is introduced. Spec remains in-progress and required runtime remains outstanding. Follow-up reviews will target fixes/regressions and unresolved consequential findings, not repeat unchanged broad source review.
+
+
+## Round 1 author fix checkpoint — 2026-10-19
+
+The same Sol 6.1 High author applied the five concrete repairs as one bounded batch and authored the triage above. No new worker, broad review, dependency, provider, environment, Git mutation, runtime resource or deployment was introduced. The original `members_ui` Low contribution remains recorded; the state/read/authorization fixes in this batch are owned by the High author.
+
+Executed after fixes: focused **50/50** tests; full units **2,626 passed, 0 failed, 1 Windows xattr skip**; final typecheck; targeted ESLint for all changed TS/TSX/tests; fresh production build. All passed except the explicitly skipped Linux-only test, which remains unproved here. The prior full-lint receipt (0 errors/14 existing warnings) remains historical; changed fix files passed targeted lint with 0 errors/warnings. Runtime INT-007/E04/E05 additions are active and await root CI along with the original required integration/RLS/browser/recovery/performance lanes. No local runtime execution or done/development-complete/delivery claim is made. Parent now performs same-reviewer targeted checks of this batch and the refreshed author trail before the root checkpoint lane.

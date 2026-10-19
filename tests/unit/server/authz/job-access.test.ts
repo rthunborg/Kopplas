@@ -37,10 +37,10 @@ function ownLead(overrides: Partial<TrustedJobFacts> = {}): TrustedJobFacts {
   };
 }
 
-test.skip("[P0] 16.2-AUTHZ-001 current lead of any nonmanager role gets own-job crew/dates without full-card or designation", () => {
+test("[P0] 16.2-AUTHZ-001 current lead of any nonmanager role gets own-job crew/dates without full-card or designation", () => {
   for (const role of ["saljare", "ekonomi", "montor"]) {
     const access = scopedJobAccess([role], ownLead());
-    // Deliberate bounded RED probe: existing function returns undefined here.
+    // Trusted current facts derive the bounded operational descriptor.
     assert.equal(access.canManageCrew, true, role);
     assert.equal(access.canUpdatePlannedDates, true, role);
     assert.equal(access.canSetLead, false, role);
@@ -52,7 +52,7 @@ test.skip("[P0] 16.2-AUTHZ-001 current lead of any nonmanager role gets own-job 
   }
 });
 
-test.skip("[P0] 16.2-AUTHZ-002 lead A cannot manage B and absent/revoked/foreign lead facts fail closed", () => {
+test("[P0] 16.2-AUTHZ-002 lead A cannot manage B and absent/revoked/foreign lead facts fail closed", () => {
   const deniedFacts: (TrustedJobFacts | undefined)[] = [
     undefined,
     ownLead({ jobId: jobB }),
@@ -72,7 +72,7 @@ test.skip("[P0] 16.2-AUTHZ-002 lead A cannot manage B and absent/revoked/foreign
   }
 });
 
-test.skip("[P0] 16.2-AUTHZ-003 independent manager union keeps existing rights and money remains separately entitled", () => {
+test("[P0] 16.2-AUTHZ-003 independent manager union keeps existing rights and money remains separately entitled", () => {
   for (const managerRole of ["tenant_admin", "projektledare"]) {
     for (const roles of [[managerRole, "montor"], ["montor", managerRole]]) {
       const access = scopedJobAccess(roles, ownLead({ currentLead: null }));
@@ -99,4 +99,27 @@ test.skip("[P0] 16.2-AUTHZ-003 independent manager union keeps existing rights a
   assert.equal(resolveSensitiveFieldEntitlement({
     roles: ["montor", "ekonomi"], module: "quotes", field: "cost_price_ore",
   }).withheld, false);
+});
+
+
+import {readJobLeadAdmission, readJobMembersForPage, JOB_MEMBERS_READ_FAILED} from "@/server/read-models/job-members";
+import {resolveJobRouteAdmission} from "@/server/authz/job-access";
+
+test("[P0] 16.2-AUTHZ-004 unavailable admission is retryable, not absence; member read failure is typed and sanitized", async () => {
+  for (const rpc of [
+    async () => ({data: null, error: {message: "private SQL payload"}}),
+    async () => {throw new Error("private connection details");},
+    async () => ({data: null, error: null}),
+  ]) {
+    const admission = await readJobLeadAdmission("own-tenant", {rpc});
+    assert.deepEqual(admission, {ok: false, message: JOB_MEMBERS_READ_FAILED});
+    assert.equal(resolveJobRouteAdmission(["saljare"], admission), "unavailable");
+    assert.equal(resolveJobRouteAdmission(["tenant_admin"], admission), "allowed");
+    assert.deepEqual(await readJobMembersForPage({rpc}, "own-job"), {ok: false, message: JOB_MEMBERS_READ_FAILED});
+  }
+  const absent = await readJobLeadAdmission("own-tenant", {rpc: async () => ({data: false, error: null})});
+  assert.deepEqual(absent, {ok: true, admitted: false});
+  assert.equal(resolveJobRouteAdmission(["saljare"], absent), "denied");
+  const current = await readJobLeadAdmission("own-tenant", {rpc: async () => ({data: true, error: null})});
+  assert.equal(resolveJobRouteAdmission(["saljare"], current), "allowed");
 });

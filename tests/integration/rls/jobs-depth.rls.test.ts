@@ -105,3 +105,25 @@ describe("16.1 job-depth direct boundaries", () => {
     expect(forced.every((r) => r.enabled && r.forced)).toBe(true);
   });
 });
+
+
+test("[P0] 16.2 lead read predicate preserves installer member/assignee union and scopes inherited child policies", async () => {
+  const h = await import("../../support/jobs-depth-atdd");
+  const m = await import("../../support/job-members-atdd");
+  const t = await import("../../factories/tenants");
+  await h.withJobsDepthFixture(async (f) => {
+    const profile = await m.profileFor(f, f.fx.users.saljare);
+    await m.seedMember(f, f.jobs.memberOrder.id, profile.id, true);
+    const client = await t.makeAuthedServerClient(f.fx.users.saljare);
+    const members = await client.from("job_members").select("job_id");
+    expect(members.data?.every((r) => r.job_id === f.jobs.memberOrder.id)).toBe(true);
+    expect(members.data?.length).toBeGreaterThan(0);
+    for (const table of h.jobDepthTables.slice(1)) {
+      const foreign = await client.from(table).select("id").eq("job_id", f.jobs.foreign.id);
+      expect(foreign.data ?? []).toEqual([]);
+    }
+    expect((await h.readMyJobs(f.fx.montorClient)).rows.map((r) => r.id).sort()).toEqual([
+      f.jobs.memberOrder.id, f.jobs.assigneeProject.id, f.jobs.both.id, f.jobs.acceptedAssigned.id,
+    ].sort());
+  });
+});

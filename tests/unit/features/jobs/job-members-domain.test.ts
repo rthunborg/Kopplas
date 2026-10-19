@@ -9,10 +9,10 @@ import assert from "node:assert/strict";
  * SQL eligibility, atomic audit and replay authority belong to integration tests.
  */
 type Result = { readonly valid: boolean; readonly value?: Readonly<Record<string, unknown>> };
-type AssignInput = { commandId: string; jobId: string; profileId: string };
-type RemoveInput = { commandId: string; jobId: string; memberId: string };
-type LeadInput = { commandId: string; jobId: string; profileId: string | null; expectedLeadProfileId: string | null };
-type DatesInput = { commandId: string; jobId: string; planned_start_date: string | null; planned_end_date: string | null };
+type AssignInput = { commandId: string; jobId: string; expectedState: string; personProfileId: string };
+type RemoveInput = { commandId: string; jobId: string; expectedState: string; personProfileId: string };
+type LeadInput = { commandId: string; jobId: string; personProfileId: string | null; expectedState: string };
+type DatesInput = { commandId: string; jobId: string; expectedState: string; planned_start_date: string | null; planned_end_date: string | null };
 type DraftInput = Readonly<Record<string, unknown>>;
 type State = {
   readonly input: DraftInput;
@@ -51,16 +51,16 @@ const ids = {
   replacement: "16200000-0000-4000-8000-000000000005",
 };
 
-test.skip("[P0] 16.2-UNIT-001 separate operations reject invalid identities and cross-operation field smuggling", async () => {
+test("[P0] 16.2-UNIT-001 separate operations reject invalid identities and cross-operation field smuggling", async () => {
   const api = await domain();
-  const assign: AssignInput = { commandId: ids.command, jobId: ids.job, profileId: ids.profile };
-  const remove: RemoveInput = { commandId: ids.command, jobId: ids.job, memberId: ids.member };
-  const lead: LeadInput = { commandId: ids.command, jobId: ids.job, profileId: ids.profile, expectedLeadProfileId: null };
-  const dates: DatesInput = { commandId: ids.command, jobId: ids.job, planned_start_date: null, planned_end_date: null };
+  const assign: AssignInput = { commandId: ids.command, jobId: ids.job, expectedState: "a".repeat(64), personProfileId: ids.profile };
+  const remove: RemoveInput = { commandId: ids.command, jobId: ids.job, expectedState: "a".repeat(64), personProfileId: ids.member };
+  const lead: LeadInput = { commandId: ids.command, jobId: ids.job, expectedState: "a".repeat(64), personProfileId: ids.profile };
+  const dates: DatesInput = { commandId: ids.command, jobId: ids.job, expectedState: "a".repeat(64), planned_start_date: null, planned_end_date: null };
   const operations = [
-    { validate: api.validateAssignMemberInput, input: assign, target: "profileId" },
-    { validate: api.validateRemoveMemberInput, input: remove, target: "memberId" },
-    { validate: api.validateSetLeadInput, input: lead, target: "profileId" },
+    { validate: api.validateAssignMemberInput, input: assign, target: "personProfileId" },
+    { validate: api.validateRemoveMemberInput, input: remove, target: "personProfileId" },
+    { validate: api.validateSetLeadInput, input: lead, target: "personProfileId" },
     { validate: api.validatePlannedDatesInput, input: dates, target: "jobId" },
   ];
   for (const { validate, input, target } of operations) {
@@ -76,17 +76,17 @@ test.skip("[P0] 16.2-UNIT-001 separate operations reject invalid identities and 
     assert.equal(validate({ ...input, [Symbol("extra")]: true }).valid, false);
   }
   assert.equal(api.validateAssignMemberInput({ ...assign, designation: "arbetsledare" }).valid, false);
-  assert.equal(api.validateRemoveMemberInput({ ...remove, profileId: ids.profile }).valid, false);
+  assert.equal(api.validateRemoveMemberInput({ ...remove, memberId: ids.profile }).valid, false);
   assert.equal(api.validateSetLeadInput({ ...lead, planned_start_date: null }).valid, false);
-  assert.equal(api.validatePlannedDatesInput({ ...dates, profileId: ids.profile }).valid, false);
-  assert.deepEqual(api.validateSetLeadInput({ ...lead, profileId: null }), {
-    valid: true, value: { ...lead, profileId: null },
+  assert.equal(api.validatePlannedDatesInput({ ...dates, personProfileId: ids.profile }).valid, false);
+  assert.deepEqual(api.validateSetLeadInput({ ...lead, personProfileId: null }), {
+    valid: true, value: { ...lead, personProfileId: null },
   });
 });
 
-test.skip("[P0] 16.2-UNIT-002 dates-only values preserve explicit null and canonical calendar/range policy", async () => {
+test("[P0] 16.2-UNIT-002 dates-only values preserve explicit null and canonical calendar/range policy", async () => {
   const { validatePlannedDatesInput: validate } = await domain();
-  const base = { commandId: ids.command, jobId: ids.job };
+  const base = { commandId: ids.command, jobId: ids.job, expectedState: "a".repeat(64) };
   // Same policy as existing validateJobCardInput: nullable dates, real Gregorian
   // calendar dates and start <= end. No timezone, booking or new duration rule.
   for (const dates of [
@@ -107,10 +107,10 @@ test.skip("[P0] 16.2-UNIT-002 dates-only values preserve explicit null and canon
   ]) assert.equal(validate({ ...base, ...dates }).valid, false);
 });
 
-test.skip("[P1] 16.2-UNIT-003 uncertain crew retry keeps original identity and snapshot while newer draft stays unsent", async () => {
+test("[P1] 16.2-UNIT-003 uncertain crew retry keeps original identity and snapshot while newer draft stays unsent", async () => {
   const api = await domain();
-  const original = { jobId: ids.job, profileId: ids.profile };
-  const newer = { jobId: ids.job, profileId: ids.replacement };
+  const original = { jobId: ids.job, personProfileId: ids.profile };
+  const newer = { jobId: ids.job, personProfileId: ids.replacement };
   const pending = api.transitionJobMembersDraft(api.createJobMembersDraft("assign", original), {
     type: "submit", commandId: ids.command,
   });
@@ -123,9 +123,9 @@ test.skip("[P1] 16.2-UNIT-003 uncertain crew retry keeps original identity and s
   assert.notEqual(retry.status, "persisted");
 });
 
-test.skip("[P1] 16.2-UNIT-004 stale lead selection requires refetch and preserves user draft without silent resubmit", async () => {
+test("[P1] 16.2-UNIT-004 stale lead selection requires refetch and preserves user draft without silent resubmit", async () => {
   const api = await domain();
-  const draft = { jobId: ids.job, profileId: ids.replacement, expectedLeadProfileId: ids.profile };
+  const draft = { jobId: ids.job, personProfileId: ids.replacement, expectedLeadProfileId: ids.profile };
   const pending = api.transitionJobMembersDraft(api.createJobMembersDraft("set-lead", draft), {
     type: "submit", commandId: ids.command,
   });
@@ -134,10 +134,43 @@ test.skip("[P1] 16.2-UNIT-004 stale lead selection requires refetch and preserve
   assert.deepEqual(stale.input, draft);
   const refusedRetry = api.transitionJobMembersDraft(stale, { type: "retry" });
   assert.equal(refusedRetry.status, "refetch-required");
-  const current = { jobId: ids.job, profileId: null };
+  const current = { jobId: ids.job, personProfileId: null };
   const refetched = api.transitionJobMembersDraft(refusedRetry, { type: "refetched", current });
   assert.deepEqual(refetched.current, current);
   assert.deepEqual(refetched.input, draft);
   assert.notEqual(refetched.status, "submitting");
   assert.notEqual(refetched.status, "persisted");
+});
+
+
+import {createJobMemberField, editJobMemberField, receiveJobMemberField, consentJobMemberField, confirmJobMemberField} from "@/features/jobs/job-members-domain";
+
+test("[P0] 16.2-UNIT-005 cross-lane refresh updates pristine values but cannot authorize dirty controls", () => {
+  const pristineLead = createJobMemberField("lead-A", "state-A");
+  const dirtyDates = editJobMemberField(createJobMemberField({start: "", end: ""}, "state-A"), {start: "2026-10-20", end: "2026-10-21"});
+  const nextLead = receiveJobMemberField(pristineLead, "lead-B", "state-B");
+  const nextDates = receiveJobMemberField(dirtyDates, {start: "", end: ""}, "state-B");
+  assert.deepEqual(nextLead, {value: "lead-B", baseline: "lead-B", expectedState: "state-B"});
+  assert.equal(nextDates.expectedState, "state-A");
+  assert.deepEqual(nextDates.value, dirtyDates.value);
+  const consentedDates = consentJobMemberField(nextDates, {start: "", end: ""}, "state-B");
+  assert.deepEqual(consentedDates.value, dirtyDates.value);
+  assert.equal(consentedDates.expectedState, "state-B");
+  const dirtyLead = editJobMemberField(nextLead, "lead-C");
+  const refreshedLead = receiveJobMemberField(dirtyLead, "lead-B", "state-after-dates");
+  assert.equal(refreshedLead.value, "lead-C");
+  assert.equal(refreshedLead.expectedState, "state-B");
+});
+
+test("[P0] 16.2-UNIT-006 confirming an older assignment retains newer visible selection and its stale baseline", () => {
+  const submitted = editJobMemberField(createJobMemberField("", "old"), "person-A");
+  const visible = editJobMemberField(submitted, "person-B");
+  const confirmed = confirmJobMemberField(visible, "person-A", "", "committed");
+  assert.equal(confirmed.value, "person-B");
+  assert.equal(confirmed.expectedState, "old");
+  const consented = consentJobMemberField(confirmed, "", "current");
+  assert.equal(consented.value, "person-B");
+  assert.equal(consented.expectedState, "current");
+  const complete = confirmJobMemberField(consented, "person-B", "", "after-B");
+  assert.deepEqual(complete, {value: "", baseline: "", expectedState: "after-B"});
 });

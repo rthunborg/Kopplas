@@ -21,7 +21,7 @@ export type JobCardValidation =
 const keys = ["priority", "durationMinutes", "travelMinutes", "crewSize", "earliestDate", "desiredDate", "latestDate"] as const;
 
 // Calendar arithmetic only: no Date parsing, timezone, clock, or date defaults.
-function isCalendarDate(value: unknown): value is string {
+export function isCalendarDate(value: unknown): value is string {
   if (typeof value !== "string" || value.length !== 10 || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
   const [year, month, day] = value.split("-").map(Number);
   if (year < 1 || month < 1 || month > 12) return false;

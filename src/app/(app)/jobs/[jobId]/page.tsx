@@ -23,6 +23,7 @@ import { readEntityFiles } from "@/features/files/read";
 import { BookingEntry } from "@/components/resources/BookingEntry";
 import { readBookingHost, readBookingEditorOptions } from "@/features/resources/bookings-read";
 
+import { readJobMembersForPage } from "@/server/read-models/job-members";
 import { readJobCardOptions } from "@/server/read-models/my-jobs";
 import { resolveTenantContext } from "@/server/auth/resolve-tenant-context";
 import { resolveCapability } from "@/server/authz/permission-matrix";
@@ -74,10 +75,13 @@ export default async function JobDetailPage({
   const bookingHost = canBook ? await readBookingHost({ jobId }) : null;
   const bookingOptions = canBook ? await readBookingEditorOptions() : null;
   const cardOptions = detail.entitlement?.canEdit ? await readJobCardOptions() : undefined;
+  const memberRead = await readJobMembersForPage(undefined, jobId);
 
   return (
     <JobDetailView
       detail={detail}
+      members={memberRead.ok ? memberRead.projection : undefined}
+      membersError={memberRead.ok ? undefined : memberRead.message}
       cardOptions={cardOptions}
       bookingPanel={bookingHost && bookingOptions ? <BookingEntry {...bookingHost} options={bookingOptions} jobId={jobId} customerId={detail.customerId ?? undefined} host="job" /> : undefined}
       filesPanel={filesRead ?

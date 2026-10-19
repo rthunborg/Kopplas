@@ -34,6 +34,7 @@ import {
 } from "./command-errors";
 import { systemClock, type CommandClock } from "./clock";
 import type { TenantContext } from "@/server/auth/tenant-context";
+import { isJobScopedCommand } from "@/server/authz/job-command-scope";
 import { requireCapability } from "@/server/authz/require-capability";
 
 /** Outcome of the input validator (step 4). Generic on the validated value. */
@@ -103,6 +104,8 @@ export type RunCommandCoreInput<I, R, DB = unknown> = {
   readonly verifyOwnership: (
     ctx: CommandExecuteContext<I, DB>,
   ) => Promise<OwnershipResult> | OwnershipResult;
+  /** Optional trusted relationship lookup; usable only by the closed crew/dates enrollment. */
+  readonly verifyJobScope?: (ctx: CommandExecuteContext<I, DB>) => Promise<OwnershipResult> | OwnershipResult;
   /** Steps 6-7: the command body. A throw is a transient fault → SERVER_ERROR. */
   readonly execute: (ctx: CommandExecuteContext<I, DB>) => Promise<R> | R;
   /** Step 8: derive the audit metadata + target for the row (sanitized upstream). */
@@ -175,13 +178,17 @@ export async function runCommandCore<I, R, DB = unknown>(
   }
   const tenantContext = tenantContextResult.data;
 
+  let needsJobScope = false;
   if (capability) {
     const permitted = requireCapability({
       roles: tenantContext.roles,
       module: capability.module,
       capability: capability.capability,
     });
-    if (!permitted.ok) return permitted as RunCommandResult<R>;
+    if (!permitted.ok) {
+      if (!isJobScopedCommand(command, capability) || !input.verifyJobScope) return permitted as RunCommandResult<R>;
+      needsJobScope = true;
+    }
   }
 
   // ── Gate 4: typed input validation. Generic message — NEVER echo the raw value. ─
@@ -221,6 +228,13 @@ export async function runCommandCore<I, R, DB = unknown>(
   //    result is TENANT_ACCESS_DENIED; a transient DB ERROR (surfaced by the checker)
   //    or an unexpected THROW is SERVER_ERROR (retryable) — never masked as a denial.
   //    [Review][Decision][Med] / [Review][Patch][Med] ───────────────────────────
+  if (needsJobScope) {
+    try {
+      const scoped = await input.verifyJobScope!(execCtx);
+      if (!scoped.ok) return err(scoped.code, COMMAND_MESSAGES[scoped.code]);
+    } catch { return err("SERVER_ERROR", COMMAND_MESSAGES.SERVER_ERROR); }
+  }
+
   let ownership: OwnershipResult;
   try {
     ownership = await verifyOwnership(execCtx);

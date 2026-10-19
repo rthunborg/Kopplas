@@ -16,3 +16,6 @@ export {
 } from "./validation";
 
 export { createJobCard, updateJobCard } from "./save-job-card";
+
+export { assignJobMember, removeJobMember, setJobLead } from "./job-members";
+export { updateJobPlanDates } from "./job-plan-dates";

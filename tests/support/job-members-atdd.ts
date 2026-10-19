@@ -27,8 +27,8 @@ export type MemberProjection = { members: { id: string; personProfileId: string;
 
 export async function readMembers(client: TestServerClient, jobId: string): Promise<MemberProjection> {
   const path = "@/server/read-models/job-members";
-  const module = await import(path) as { readJobMembers: (client: TestServerClient, id: string) => Promise<MemberProjection> };
-  return module.readJobMembers(client, jobId);
+  const bindingModule = await import(path) as { readJobMembers: (client: TestServerClient, id: string) => Promise<MemberProjection> };
+  return bindingModule.readJobMembers(client, jobId);
 }
 export async function memberInput(client: TestServerClient, jobId: string,
   patch: Partial<MemberInput> = {}): Promise<MemberInput> {
@@ -38,8 +38,8 @@ export async function memberCommand(operation: Operation, client: TestServerClie
   correlationId = crypto.randomUUID()): Promise<MemberResult> {
   const { runCommand } = await import("@/server/commands/envelope");
   const binding = memberBindings[operation];
-  const module = await import(binding.module) as Record<string, Parameters<typeof runCommand>[0]>;
-  return runCommand(module[binding.export], { client: client as never, input, correlationId }) as Promise<MemberResult>;
+  const bindingModule = await import(binding.module) as Record<string, Parameters<typeof runCommand>[0]>;
+  return runCommand(bindingModule[binding.export], { client: client as never, input, correlationId }) as Promise<MemberResult>;
 }
 /** Direct real checked RPC bypasses the envelope/TS validator, retaining current JWT identity. */
 export function checkedMemberCall(operation: Operation, client: TestServerClient, tenantId: string, actorId: string,

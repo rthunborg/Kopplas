@@ -224,3 +224,30 @@ test("AC1: a non-auditable command does NOT write an audit row even on success (
   assert.equal(result.ok, true);
   assert.equal(auditWrites.length, 0); // only auditable commands emit a row
 });
+
+
+test("[P0] 16.2 scoped crew/dates admission follows validation and current scope; no other command bypasses capability", async () => {
+  for (const [command, name] of [["job.member.assign", "Jobs.ManageCrew"], ["job.member.remove", "Jobs.ManageCrew"], ["job.plan_dates.update", "Jobs.UpdatePlannedDates"]]) {
+    for (const allowed of [true, false]) {
+      const calls: string[] = [];
+      const result = await runCommandCore({tenantContextResult: {ok: true, data: {...ACTIVE_CTX, roles: ["saljare"]}},
+        capability: {module: "jobs", capability: name}, command, eventType: command, auditable: false, rawInput: {},
+        validate: () => {calls.push("validate"); return {ok: true, data: {jobId: TARGET_ID}};},
+        verifyJobScope: () => {calls.push("scope"); return allowed ? {ok: true} : {ok: false, code: "TENANT_ACCESS_DENIED"};},
+        verifyOwnership: () => {calls.push("ownership"); return {ok: true};},
+        execute: () => {calls.push("execute"); return {};}, recordAudit: () => {calls.push("audit");},
+      });
+      assert.equal(result.ok, allowed);
+      assert.deepEqual(calls, allowed ? ["validate", "scope", "ownership", "execute"] : ["validate", "scope"]);
+    }
+  }
+  for (const [command, capability] of [["job.lead.set", "Jobs.SetLead"], ["job.update", "Jobs.Edit"], ["job.card.update", "Jobs.Edit"], ["job.unknown", "Jobs.ManageCrew"], ["job.member.assign", "Jobs.Edit"]]) {
+    let reached = false;
+    const result = await runCommandCore({tenantContextResult: {ok: true, data: {...ACTIVE_CTX, roles: ["montor"]}},
+      capability: {module: "jobs", capability}, command, eventType: command, auditable: false, rawInput: {},
+      validate: () => {reached = true; return {ok: true, data: {}};}, verifyJobScope: () => {reached = true; return {ok: true};},
+      verifyOwnership: () => ({ok: true}), execute: () => ({}), recordAudit: () => {},
+    });
+    assert.equal(result.ok, false); assert.equal(reached, false);
+  }
+});

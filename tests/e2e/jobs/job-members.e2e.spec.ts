@@ -90,9 +90,9 @@ const unchangedDateFields = (row: Record<string, unknown> | undefined) => Object
   Object.entries(row ?? {}).filter(([key]) => !["planned_start_date", "planned_end_date", "updated_at"].includes(key)),
 );
 
-test.describe("Story 16.2 essential job-member journeys (ATDD RED)", () => {
+test.describe("Story 16.2 essential job-member journeys", () => {
   // RED: activate after real member/lead UI, checked commands and runtime are bound.
-  test.skip("[P0] 16.2-E01 manager archives/reactivates the same project member and selects/replaces/clears one order lead with stale refetch", async ({ resourcePage: page }) => {
+  test("[P0] 16.2-E01 manager archives/reactivates the same project member and selects/replaces/clears one order lead with stale refetch", async ({ resourcePage: page }) => {
     const f = await createJobsDepthFixture();
     try {
       const project = f.jobs.assigneeProject.id, order = f.jobs.memberOrder.id;
@@ -173,7 +173,7 @@ test.describe("Story 16.2 essential job-member journeys (ATDD RED)", () => {
   });
 
   // RED: bind dates-only UI/actual action, current-state retry and qualified runtime.
-  test.skip("[P0] 16.2-E02 phone lead manages ordinary crew/dates only; a lost real save response retries once, and stale dates require refetch",
+  test("[P0] 16.2-E02 phone lead manages ordinary crew/dates only; a lost real save response retries once, and stale dates require refetch",
     { annotation: [{ type: "skipNetworkMonitoring", description: "One identified real dates action is forwarded to persistence, then its response is deliberately lost" }] },
     async ({ resourcePage: page }) => {
       const f = await createJobsDepthFixture();
@@ -272,7 +272,7 @@ test.describe("Story 16.2 essential job-member journeys (ATDD RED)", () => {
     });
 
   // RED: activate after trusted relational Sales-role navigation/read admission lands.
-  test.skip("[P0] 16.2-E03 designated Sales user reaches own My Jobs/detail without money or unrelated reads, then loses access when removed", async ({ resourcePage: page }) => {
+  test("[P0] 16.2-E03 designated Sales user reaches own My Jobs/detail without money or unrelated reads, then loses access when removed", async ({ resourcePage: page }) => {
     const f: JobsDepthFixture = await createJobsDepthFixture();
     try {
       const sales = f.fx.users.saljare, profile = await profileFor(f, sales);
@@ -331,4 +331,66 @@ test.describe("Story 16.2 essential job-member journeys (ATDD RED)", () => {
       expect(await memberSnapshot(f)).toEqual(revoked);
     } finally { await f.dispose(); }
   });
+
+  test("[P0] 16.2-E04 deliberate stale assignment retry uses the currently visible eligible person", async ({resourcePage: page}) => {
+    const f = await createJobsDepthFixture();
+    try {
+      const job = f.jobs.assigneeProject.id, personA = f.fx.ownProfile.id, personB = f.fx.coworkerProfile.id;
+      await signIn(page, f.credentials.manager);
+      const panel = await membersPanel(page, job);
+      await panel.getByRole("combobox", {name: "Lägg till person", exact: true}).selectOption(personA);
+      expect((await memberCommand("dates", f.fx.adminClient, await memberInput(f.fx.adminClient, job,
+        {planned_start_date: "2026-10-20", planned_end_date: "2026-10-21"}))).ok).toBe(true);
+      await saveAction(page, job, panel.getByRole("button", {name: "Lägg till medlem", exact: true}), samePerson(personA));
+      await expect(panel.getByTestId("job-members-error")).toBeVisible();
+      await panel.getByTestId("job-members-refetch").click();
+      await expect(panel.getByTestId("job-members-retry")).toBeEnabled();
+      await panel.getByRole("combobox", {name: "Lägg till person", exact: true}).selectOption(personB);
+      const before = await memberSnapshot(f);
+      await saveAction(page, job, panel.getByTestId("job-members-retry"), samePerson(personB));
+      await expect(panel.getByTestId(`job-member-${personB}`)).toBeVisible();
+      await expect(panel.getByTestId(`job-member-${personA}`)).toHaveCount(0);
+      const after = await memberSnapshot(f);
+      expect(after.audit.length - before.audit.length).toBe(1);
+      expect((await memberRows(f, job)).map((r) => r.person_profile_id)).toEqual([personB]);
+    } finally {await f.dispose();}
+  });
+
+  test("[P0] 16.2-E05 cross-lane refetch synchronizes pristine lead and cannot silently authorize a dirty lead", async ({resourcePage: page}) => {
+    const f = await createJobsDepthFixture();
+    try {
+      const job = f.jobs.memberOrder.id, leadA = f.fx.ownProfile.id, leadB = f.fx.coworkerProfile.id, leadC = f.fx.adminProfile.id;
+      await seedMember(f, job, leadA, true);
+      await seedMember(f, job, leadB);
+      await seedMember(f, job, leadC);
+      await signIn(page, f.credentials.manager);
+      const panel = await membersPanel(page, job), dates = panel.getByTestId("job-planned-dates-form");
+      const picker = panel.getByRole("combobox", {name: "Ansvarig arbetsledare", exact: true});
+      await expect(picker).toHaveValue(leadA);
+      await dates.getByLabel("Planerat startdatum", {exact: true}).fill("2026-10-20");
+      await dates.getByLabel("Planerat slutdatum", {exact: true}).fill("2026-10-21");
+      expect((await memberCommand("lead", f.fx.adminClient, await memberInput(f.fx.adminClient, job, {personProfileId: leadB}))).ok).toBe(true);
+      await saveAction(page, job, dates.getByRole("button", {name: "Spara datum", exact: true}), datesMatch("2026-10-20", "2026-10-21"));
+      await expect(dates.getByTestId("job-plan-dates-error")).toBeVisible();
+      await dates.getByTestId("job-plan-dates-refetch").click();
+      await expect(dates.getByTestId("job-plan-dates-retry")).toBeEnabled();
+      await expect(picker).toHaveValue(leadB);
+      await picker.selectOption(leadC);
+      await saveAction(page, job, dates.getByTestId("job-plan-dates-retry"), datesMatch("2026-10-20", "2026-10-21"));
+      await expect(dates.getByTestId("job-plan-dates-save-status")).toBeVisible();
+      await expect(picker).toHaveValue(leadC);
+      const before = await memberSnapshot(f);
+      await saveAction(page, job, panel.getByRole("button", {name: "Spara arbetsledare", exact: true}), samePerson(leadC));
+      await expect(panel.getByTestId("job-members-error")).toBeVisible();
+      expect(await memberSnapshot(f)).toEqual(before);
+      expect(currentLeads(await memberRows(f, job))).toEqual([expect.objectContaining({person_profile_id: leadB})]);
+      await panel.getByTestId("job-members-refetch").click();
+      await expect(panel.getByTestId("job-members-retry")).toBeEnabled();
+      await expect(picker).toHaveValue(leadC);
+      await saveAction(page, job, panel.getByTestId("job-members-retry"), samePerson(leadC));
+      await expect(panel.getByTestId("job-members-save-status")).toBeVisible();
+      expect(currentLeads(await memberRows(f, job))).toEqual([expect.objectContaining({person_profile_id: leadC})]);
+    } finally {await f.dispose();}
+  });
+
 });

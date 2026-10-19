@@ -208,3 +208,31 @@ export async function saveJobCardAction(input: Record<string, unknown>): Promise
     return { ok: false, message: "Jobbet är inte bekräftat sparat. Försök igen.", code: "SERVER_ERROR" };
   }
 }
+
+import { assignJobMember, removeJobMember, setJobLead } from "@/server/commands/jobs/job-members";
+import { updateJobPlanDates } from "@/server/commands/jobs/job-plan-dates";
+import { readJobMembers, type JobMembersProjection } from "@/server/read-models/job-members";
+type MemberActionResult = {ok: true; projection: JobMembersProjection} | {ok: false; code: string; message: string};
+/** Each action has a fixed operation; callers cannot select a command through input. */
+async function memberAction(command: typeof assignJobMember | typeof removeJobMember | typeof setJobLead | typeof updateJobPlanDates,
+  input: Record<string, unknown>): Promise<MemberActionResult> {
+  try {
+    const client = await createSupabaseServerClient();
+    const result = await runCommand(command as import("@/server/commands/envelope").Command<unknown, {jobId: string}>, {
+      client: client as unknown as CommandDbClient, input,
+      correlationId: typeof input.commandId === "string" ? input.commandId : undefined,
+    });
+    if (!result.ok) return {ok: false, code: result.code, message: result.code === "PREVIEW_STALE"
+      ? "Jobbet har ändrats. Hämta aktuella uppgifter och försök igen." : result.message || COMMAND_MESSAGES[result.code]};
+    revalidatePath("/jobs"); revalidatePath(`/jobs/${result.data.jobId}`);
+    return {ok: true, projection: await readJobMembers(client, result.data.jobId)};
+  } catch { return {ok: false, code: "SERVER_ERROR", message: "Ändringen är inte bekräftad sparad. Försök igen eller hämta aktuella uppgifter."}; }
+}
+export async function assignJobMemberAction(input: Record<string, unknown>): Promise<MemberActionResult> { return memberAction(assignJobMember, input); }
+export async function removeJobMemberAction(input: Record<string, unknown>): Promise<MemberActionResult> { return memberAction(removeJobMember, input); }
+export async function setJobLeadAction(input: Record<string, unknown>): Promise<MemberActionResult> { return memberAction(setJobLead, input); }
+export async function updateJobPlanDatesAction(input: Record<string, unknown>): Promise<MemberActionResult> { return memberAction(updateJobPlanDates, input); }
+export async function refetchJobMembersAction(jobId: string): Promise<MemberActionResult> {
+  try { return {ok: true, projection: await readJobMembers(undefined, jobId)}; }
+  catch { return {ok: false, code: "SERVER_ERROR", message: "Uppgifterna kunde inte hämtas. Försök igen."}; }
+}

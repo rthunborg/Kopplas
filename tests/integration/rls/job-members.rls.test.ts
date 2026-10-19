@@ -1,12 +1,12 @@
 import { describe, expect, test } from "vitest";
 
-/** RED acceptance, no runtime activity on import. Normal anon-key authenticated
+/** Active acceptance, no runtime activity on import. Normal anon-key authenticated
  * clients must hit actual PostgreSQL policies and checked RPCs. Never replace
  * these with service-role clients or mock replies to make the tests green.
  */
 describe("16.2 relational job-lead RLS and checked boundaries", () => {
   // Activate after relational reads/admission and semantic member projections implement approved AC04.
-  test.skip("[P0] 16.2-RLS-001 every seeded lead role and independent role union receives own-job scope with structural money/privacy boundaries", async () => {
+  test("[P0] 16.2-RLS-001 every seeded lead role and independent role union receives own-job scope with structural money/privacy boundaries", async () => {
     const h = await import("../../support/jobs-depth-atdd");
     const m = await import("../../support/job-members-atdd");
     const t = await import("../../factories/tenants");
@@ -66,7 +66,7 @@ describe("16.2 relational job-lead RLS and checked boundaries", () => {
   });
 
   // Activate after four checked mutations and eligibility checks exist; direct table grants stay SELECT-only.
-  test.skip("[P0] 16.2-RLS-002 foreign/inactive/archived/nonmember targets, spoofing and direct DML cannot bypass checked eligibility", async () => {
+  test("[P0] 16.2-RLS-002 foreign/inactive/archived/nonmember targets, spoofing and direct DML cannot bypass checked eligibility", async () => {
     const h = await import("../../support/jobs-depth-atdd");
     const m = await import("../../support/job-members-atdd");
     const t = await import("../../factories/tenants");
@@ -127,7 +127,7 @@ describe("16.2 relational job-lead RLS and checked boundaries", () => {
   });
 
   // Activate after migration enrolls checked entrypoints/private primitives; reconcile names in the adapter.
-  test.skip("[P0] 16.2-RLS-003 checked RPC grants and forced RLS exclude anonymous execution and private helper bypass", async () => {
+  test("[P0] 16.2-RLS-003 checked RPC grants and forced RLS exclude anonymous execution and private helper bypass", async () => {
     const m = await import("../../support/job-members-atdd");
     const { adminQuery, adminSession } = await import("../../factories/admin-sql");
     const names = Object.values(m.memberBindings).map((binding) => binding.rpc).sort();

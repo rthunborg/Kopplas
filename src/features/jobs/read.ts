@@ -226,7 +226,7 @@ export async function readJobDetail(
     if (!data.length) return null;
     const row = data[0] as JobDetail & {dependencies: {id: string; plannedEndDate: string | null}[]};
     operational = { type: row.type, card: row.card, entitlement: row.entitlement,
-      entitlements: {withheld: row.entitlement?.protectedMoney ? [] : ["acceptedPriceOre", "sourceSentTotalOre"]},
+      entitlements: {withheld: row.entitlement?.protectedMoney ? [] : ["protectedMoney"]},
       facilityName: row.facilityName, contactName: row.contactName, location: row.location,
       dependencyWarnings: (row.card?.dependencyJobIds ?? []).map((id) => evaluateJobDependency({prerequisiteJobId: id,
         dependentJobId: row.id, prerequisitePlannedEnd: row.dependencies.find((d) => d.id === id)?.plannedEndDate ?? null,

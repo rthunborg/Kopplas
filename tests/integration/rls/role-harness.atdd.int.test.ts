@@ -3,7 +3,7 @@ import { afterAll, beforeAll, describe, expect, test } from "vitest";
 import { buildEffectivePermissions } from "@/server/authz/role-catalogue";
 import { roleCatalogueForAdminUsers, type AdminUserRow } from "@/features/admin-users/read";
 import { TENANT_ROLES, type TenantRole } from "@/server/authz/roles";
-import { activeRoleHarnessObligations, buildRoleHarnessCases, runCommandHarnessProbe, tableRlsProjectionAdapter } from "../../support/authz/role-harness";
+import { activeRoleHarnessObligations, buildRoleHarnessCases, isScopedJobHarnessCommand, runCommandHarnessProbe, tableRlsProjectionAdapter } from "../../support/authz/role-harness";
 import type { TenantTableName } from "./tenant-table-inventory";
 import { adminInsertAuditEvent } from "../../factories/audit-events";
 import {
@@ -231,7 +231,7 @@ describe("Story 11.4 role harness", () => {
     for (const obligation of buildRoleHarnessCases().filter((entry) => entry.kind === "command" && entry.role === role)) {
       const result = await runCommandHarnessProbe({ command: obligation.id.slice("command:".length), client: clients[obligation.role] as never });
       expect(result.ok, obligation.id).toBe(obligation.expected === "allowed");
-      if (!result.ok) expect(result.code, obligation.id).toBe("PERMISSION_DENIED");
+      if (!result.ok) expect(result.code, obligation.id).toBe(isScopedJobHarnessCommand(obligation.id.slice("command:".length)) ? "TENANT_ACCESS_DENIED" : "PERMISSION_DENIED");
     }
     const after = await adminQuery<{ count: string }>("select count(*)::text as count from public.audit_events where tenant_id = $1", [fixture.base.tenantA.id]);
     expect(after[0]?.count).toBe(before[0]?.count);
@@ -257,4 +257,29 @@ describe("Story 11.4 role harness", () => {
     expect(foreign.error).toBeNull();
     expect(foreign.data ?? []).toEqual([]);
   });
+});
+
+
+test("[P0] 16.2 existing role fixture lead exception reaches only its job and child rows", async (testCtx) => {
+  if (skipUnlessStack(testCtx, stackUp)) return;
+  const [profile] = await adminQuery<{id: string}>(`select p.id from public.person_profiles p
+    join public.tenant_memberships m on m.id=p.membership_id and m.tenant_id=p.tenant_id
+    where m.tenant_id=$1 and m.user_id=$2`, [fixture.base.tenantA.id, fixture.users.saljare.id]);
+  expect(profile).toBeDefined();
+  const client = clients.saljare;
+  await adminQuery(`insert into public.job_members(tenant_id,job_id,person_profile_id,designation)
+    values($1,$2,$3,'arbetsledare') on conflict(tenant_id,job_id,person_profile_id) do update set designation='arbetsledare',archived_at=null`,
+    [fixture.base.tenantA.id, ownTableIds.jobs, profile.id]);
+  try {
+    const own = await client.from("job_required_work_roles").select("id").eq("id", ownTableIds.job_required_work_roles);
+    expect(own.data?.map((r) => r.id)).toEqual([ownTableIds.job_required_work_roles]);
+    const foreign = await client.from("job_members").select("id").eq("id", foreignTableIds.job_members);
+    expect(foreign.data ?? []).toEqual([]);
+    const admitted = await client.rpc("job_is_current_lead", {p_tenant_id: fixture.base.tenantA.id, p_job_id: ownTableIds.jobs});
+    expect(admitted.error).toBeNull(); expect(admitted.data).toBe(true);
+    const unrelated = await client.rpc("job_is_current_lead", {p_tenant_id: fixture.base.tenantB.id, p_job_id: foreignTableIds.jobs});
+    expect(unrelated.data).toBe(false);
+  } finally {
+    await adminQuery("delete from public.job_members where tenant_id=$1 and job_id=$2 and person_profile_id=$3", [fixture.base.tenantA.id, ownTableIds.jobs, profile.id]);
+  }
 });

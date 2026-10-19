@@ -1,3 +1,4 @@
+import { isJobScopedCommand } from "@/server/authz/job-command-scope";
 import { BOOKING_PUBLIC_COLUMNS } from "@/features/resources/booking-types";
 import { COMMAND_CAPABILITIES, defineCommand, runCommand, type CommandDbClient } from "@/server/commands/envelope";
 import { PERMISSION_MATRIX } from "@/server/authz/permission-matrix";
@@ -254,4 +255,10 @@ export function tableRlsProjectionAdapter(table: string): TableRlsProjectionAdap
   const adapter = TABLE_RLS_PROJECTION_ADAPTERS[table as TenantTableName];
   if (!adapter) throw new Error(`table RLS projection adapter missing for ${table}`);
   return adapter;
+}
+
+/** These commands additionally require a current per-job relationship. Matrix probes
+ * deliberately supply none and never exercise a production business body. */
+export function isScopedJobHarnessCommand(command: string): boolean {
+  return isJobScopedCommand(command, COMMAND_CAPABILITIES[command]);
 }

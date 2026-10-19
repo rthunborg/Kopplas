@@ -669,6 +669,30 @@ it("[P0] 14.4 migration inventory has exact authenticated editor entries and pri
   }
 });
 
+it("[P0] 16.2 migration inventory retains SELECT-only members and exact checked/private ACLs", async (testCtx) => {
+  if (skipUnlessStack(testCtx, stackUp)) return;
+  const checked = ["assign_job_member_with_audit", "remove_job_member_with_audit", "set_job_lead_with_audit", "update_job_plan_dates_with_audit",
+    "read_job_members", "job_is_current_lead", "read_job_lead_admission"];
+  const helpers = ["job_member_state_internal", "job_member_expected_internal", "job_member_mutate_internal"];
+  const functions = await adminQuery<{name: string; definer: boolean; proconfig: string[] | null; anon: boolean; authenticated: boolean; service: boolean}>(`
+    select p.proname as name,p.prosecdef as definer,p.proconfig,
+      has_function_privilege('anon',p.oid,'execute') as anon,
+      has_function_privilege('authenticated',p.oid,'execute') as authenticated,
+      has_function_privilege('service_role',p.oid,'execute') as service
+    from pg_proc p join pg_namespace n on n.oid=p.pronamespace where n.nspname='public' and p.proname=any($1::text[])`, [[...checked,...helpers]]);
+  expect(functions.map((f) => f.name).sort()).toEqual([...checked,...helpers].sort());
+  for (const fn of functions) {
+    assertSearchPathExactlyEmpty(fn.name, fn.proconfig);
+    expect(fn.anon).toBe(false); expect(fn.service).toBe(false);
+    expect(fn.authenticated).toBe(checked.includes(fn.name));
+    expect(fn.definer).toBe(checked.includes(fn.name));
+  }
+  const indexes = await adminQuery<{name: string; is_unique: boolean}>(`select c.relname as name,i.indisunique as is_unique
+    from pg_index i join pg_class c on c.oid=i.indexrelid where c.relname in ('job_members_one_current_lead','job_member_command_identity')`);
+  expect(indexes.map((i) => i.name).sort()).toEqual(["job_member_command_identity", "job_members_one_current_lead"]);
+  expect(indexes.every((i) => i.is_unique)).toBe(true);
+});
+
 // Close this file's admin pool once all migration-reset assertions are done.
 afterAll(async () => {
   await closeAdminPool();

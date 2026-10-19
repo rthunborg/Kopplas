@@ -1,12 +1,12 @@
 import { describe, expect, test } from "vitest";
 
-/** ATDD RED, approved Story 16.2 -2 spec. No test body or DB work runs on import.
+/** Active ATDD acceptance, approved Story 16.2 -2 spec. No test body or DB work runs on import.
  * Reconcile proposed bindings in job-members-atdd.ts before activation; enable only
  * with the implemented commands/checked SQL and an isolated required DB lane.
  */
 describe("16.2 job crew, responsible lead and dates command integrity", () => {
   // Activate after assign/remove checked SQL, real read baseline and atomic audit exist.
-  test.skip("[P0] 16.2-INT-001 both job kinds archive/reactivate the same relationship without changing tenant roles", async () => {
+  test("[P0] 16.2-INT-001 both job kinds archive/reactivate the same relationship without changing tenant roles", async () => {
     const h = await import("../../support/jobs-depth-atdd");
     const m = await import("../../support/job-members-atdd");
     await h.withJobsDepthFixture(async (f) => {
@@ -37,7 +37,7 @@ describe("16.2 job crew, responsible lead and dates command integrity", () => {
   });
 
   // Activate after manager-only lead command + expected-current-state concurrency protection exist.
-  test.skip("[P0] 16.2-INT-002 manager select/replace/clear has one lead and competing stale replacements cannot overwrite", async () => {
+  test("[P0] 16.2-INT-002 manager select/replace/clear has one lead and competing stale replacements cannot overwrite", async () => {
     const h = await import("../../support/jobs-depth-atdd");
     const m = await import("../../support/job-members-atdd");
     await h.withJobsDepthFixture(async (f) => {
@@ -68,7 +68,7 @@ describe("16.2 job crew, responsible lead and dates command integrity", () => {
   });
 
   // Activate after scoped envelope admission and independent checked-SQL authorization exist.
-  test.skip("[P0] 16.2-INT-003 lead A can manage ordinary crew/dates only A; designation and existing mixed commands remain denied", async () => {
+  test("[P0] 16.2-INT-003 lead A can manage ordinary crew/dates only A; designation and existing mixed commands remain denied", async () => {
     const h = await import("../../support/jobs-depth-atdd");
     const m = await import("../../support/job-members-atdd");
     const { runCommand } = await import("@/server/commands/envelope");
@@ -106,7 +106,7 @@ describe("16.2 job crew, responsible lead and dates command integrity", () => {
   });
 
   // Activate after dates-only checked command exists; retain the real 16.1 signed card protocol.
-  test.skip("[P0] 16.2-INT-004 date save changes only planned fields and invalidates a genuine pre-edit card baseline", async () => {
+  test("[P0] 16.2-INT-004 date save changes only planned fields and invalidates a genuine pre-edit card baseline", async () => {
     const h = await import("../../support/jobs-depth-atdd");
     const j = await import("../../support/job-booking-facts-atdd");
     const m = await import("../../support/job-members-atdd");
@@ -146,7 +146,7 @@ describe("16.2 job crew, responsible lead and dates command integrity", () => {
   });
 
   // Activate after canonical identity/replay and current-authority validation exist in SQL.
-  test.skip("[P0] 16.2-INT-005 response-loss retry returns one outcome, rejects changed input/intervening state and rechecks current authority", async () => {
+  test("[P0] 16.2-INT-005 response-loss retry returns one outcome, rejects changed input/intervening state and rechecks current authority", async () => {
     const h = await import("../../support/jobs-depth-atdd");
     const m = await import("../../support/job-members-atdd");
     const { adminQuery } = await import("../../factories/admin-sql");
@@ -195,7 +195,7 @@ describe("16.2 job crew, responsible lead and dates command integrity", () => {
   });
 
   // Activate after RPCs use the established tenant/membership lock boundary and audit-fault setup is installed.
-  test.skip("[P0] 16.2-INT-006 checked mutations recheck locked actor/target facts and audit failure rolls the entire mutation back", async () => {
+  test("[P0] 16.2-INT-006 checked mutations recheck locked actor/target facts and audit failure rolls the entire mutation back", async () => {
     const h = await import("../../support/jobs-depth-atdd");
     const j = await import("../../support/job-booking-facts-atdd");
     const m = await import("../../support/job-members-atdd");
@@ -251,5 +251,40 @@ describe("16.2 job crew, responsible lead and dates command integrity", () => {
       expect((await m.memberCommand("assign", f.fx.adminClient, input, correlation)).ok).toBe(true);
       expect(m.auditFor(await m.memberSnapshot(f), correlation)).toHaveLength(1);
     });
+  });
+});
+
+
+test("[P0] 16.2-INT-007 active Admin and PL without optional resource profiles retain all four manager operations", async () => {
+  const h = await import("../../support/jobs-depth-atdd");
+  const m = await import("../../support/job-members-atdd");
+  const {adminQuery} = await import("../../factories/admin-sql");
+  const t = await import("../../factories/tenants");
+  await h.withJobsDepthFixture(async (f) => {
+    const job = f.jobs.unrelated.id;
+    // The established orphan fixture has no profile and is cleaned by this fixture.
+    const user = f.fx.base.orphanUser;
+    await t.adminInsertMembership({tenant_id: f.fx.base.tenantA.id, user_id: user.id, role: "tenant_admin", status: "active"});
+    for (const role of ["tenant_admin", "projektledare"] as const) {
+      await adminQuery("update public.tenant_memberships set role=$1 where tenant_id=$2 and user_id=$3", [role, f.fx.base.tenantA.id, user.id]);
+      const client = await t.makeAuthedServerClient(user);
+      expect(await adminQuery("select p.id from public.person_profiles p join public.tenant_memberships m on m.id=p.membership_id where m.user_id=$1", [user.id])).toEqual([]);
+      const before = await m.memberSnapshot(f);
+      for (const [operation, patch] of [
+        ["assign", {personProfileId: f.fx.ownProfile.id}],
+        ["lead", {personProfileId: f.fx.ownProfile.id}],
+        ["dates", {planned_start_date: "2026-10-20", planned_end_date: "2026-10-21"}],
+        ["remove", {personProfileId: f.fx.ownProfile.id}],
+      ] as const) {
+        const input = await m.memberInput(client, job, patch);
+        const correlation = crypto.randomUUID();
+        expect(await m.memberCommand(operation, client, input, correlation)).toMatchObject({ok: true, data: {jobId: job}});
+        expect(m.auditFor(await m.memberSnapshot(f), correlation)).toHaveLength(1);
+      }
+      const after = await m.memberSnapshot(f);
+      expect(after.tenantMemberships).toEqual(before.tenantMemberships);
+      expect(after.profiles).toEqual(before.profiles);
+      expect(after.bookings).toEqual(before.bookings);
+    }
   });
 });

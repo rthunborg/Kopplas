@@ -248,3 +248,16 @@ test("[Review][Patch] a THROWING buildAuditFields maps to SERVER_ERROR (the audi
   if (!result.ok) assert.equal(result.code, "SERVER_ERROR");
   assert.equal(auditWrites.length, 0);
 });
+
+
+test("[P0] 16.2 scope lookup failure and absent callback fail closed before execute/audit", async () => {
+  for (const verifyJobScope of [undefined, () => {throw new Error("database failed");}, () => ({ok: false as const, code: "SERVER_ERROR" as const})]) {
+    const {input, auditWrites} = makeScenario({tenantContextResult: {ok: true, data: {...ACTIVE_CTX, roles: ["saljare"]}},
+      command: "job.member.assign", capability: {module: "jobs", capability: "Jobs.ManageCrew"}, verifyJobScope,
+      execute: () => {throw new Error("must not execute");}});
+    const result = await runCommandCore(input);
+    assert.equal(result.ok, false);
+    if (!result.ok) assert.equal(result.code, verifyJobScope ? "SERVER_ERROR" : "PERMISSION_DENIED");
+    assert.deepEqual(auditWrites, []);
+  }
+});

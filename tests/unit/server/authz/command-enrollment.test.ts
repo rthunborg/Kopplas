@@ -71,3 +71,13 @@ test("[P0] source enrollment verification rejects duplicate declarations, stale 
   assert.throws(() => validateProductionCommandEnrollment(explicit, { "fixture.drift": { module: "crm", capability: "Customers.Edit" } }), /command capability enrollment drift/);
   assert.throws(() => validateProductionCommandEnrollment([], { "fixture.stale": { module: "crm", capability: "Customers.Create" } }), /has no production declaration/);
 });
+
+
+test("[P0] 16.2 four dedicated command enrollments keep full-card capabilities unchanged", () => {
+  assert.deepEqual(COMMAND_CAPABILITIES["job.member.assign"], {module: "jobs", capability: "Jobs.ManageCrew"});
+  assert.deepEqual(COMMAND_CAPABILITIES["job.member.remove"], {module: "jobs", capability: "Jobs.ManageCrew"});
+  assert.deepEqual(COMMAND_CAPABILITIES["job.lead.set"], {module: "jobs", capability: "Jobs.SetLead"});
+  assert.deepEqual(COMMAND_CAPABILITIES["job.plan_dates.update"], {module: "jobs", capability: "Jobs.UpdatePlannedDates"});
+  assert.deepEqual(COMMAND_CAPABILITIES["job.card.update"], {module: "jobs", capability: "Jobs.Edit"});
+  assert.equal(COMMAND_CAPABILITIES["job.member.unknown"], undefined);
+});

@@ -96,6 +96,10 @@ export const COMMAND_CAPABILITIES: Readonly<Record<string, CommandCapability>> =
   "job.update": { module: "jobs", capability: "Jobs.Edit" },
   "job.card.create": { module: "jobs", capability: "Jobs.Create" },
   "job.card.update": { module: "jobs", capability: "Jobs.Edit" },
+  "job.member.assign": { module: "jobs", capability: "Jobs.ManageCrew" },
+  "job.member.remove": { module: "jobs", capability: "Jobs.ManageCrew" },
+  "job.lead.set": { module: "jobs", capability: "Jobs.SetLead" },
+  "job.plan_dates.update": { module: "jobs", capability: "Jobs.UpdatePlannedDates" },
   "document.archive": { module: "files", capability: "Files.Edit" },
   "document.restore": { module: "files", capability: "Files.Edit" },
   "document.signedAccess.create": { module: "documents", capability: "Documents.View" },
@@ -239,6 +243,16 @@ export async function runCommand<I, R>(
       validate: config.validateInput,
       rawInput: input,
       verifyOwnership: (ctx) => verifyOwnership(config, ctx),
+      // Core admits this callback only for its exact closed crew/dates enrollment.
+      verifyJobScope: async (ctx) => {
+        const jobId = (ctx.input as {jobId?: unknown})?.jobId;
+        if (typeof jobId !== "string") return {ok: false, code: "TENANT_ACCESS_DENIED"};
+        const {data, error} = await (ctx.db as unknown as import("@/server/read-models/my-jobs").JobCardRpcClient).rpc("job_is_current_lead", {
+          p_tenant_id: ctx.tenantContext.tenantId, p_job_id: jobId,
+        });
+        if (error) return {ok: false, code: "SERVER_ERROR"};
+        return data === true ? {ok: true} : {ok: false, code: "TENANT_ACCESS_DENIED"};
+      },
       execute: config.execute,
       auditable: config.auditable,
       command: config.command,
