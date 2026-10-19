@@ -419,3 +419,14 @@ existing AC, recorded so it is not re-triaged a third time.
   evidence: Sandbox delivery uses a synthetic body; a real provider template must issue and include the public token URL while preserving its narrow capability and privacy boundary.
   location: src/server/email/templates.ts
   severity: medium
+
+## Deferred from: build-auto review of 15-1-the-five-scheduling-views (2026-10-19)
+
+- source_spec: `spec-15-1-the-five-scheduling-views-2.md`
+  summary: Optional privileged diagnostic broker can miss a final pipe write before reaping/empty fence
+  evidence: Scope: Separately opted-in inactive diagnostic lane; not standard CI/product acceptance Owner: CI/diagnostic maintainer Evidence: tests/diagnostics/fixed-chromium-owned-process.c:273 drain occurs before waitid; actual source is branch-added, optional caller only Next action: Before future opt-in diagnostic use, independently qualify and fix bounded post-exit drain with an interleaving regression; no current execution or acceptance claim.
+  severity: medium
+- source_spec: `spec-15-1-the-five-scheduling-views-2.md`
+  summary: Upstream PR-feedback mutable-workspace gate attestation candidate
+  evidence: Scope: Byte-unchanged versus actual origin/main; commit ba2dcdcff1e0ef3c5c63da7f721b8507f0dde358; outside current scheduling repair Owner: PR-feedback controller maintainer Evidence: .github/workflows/pr-feedback.yml:218; external report; unchanged upstream-source comparison Next action: Focused upstream process-security qualification of test-time workspace mutation and immutable gate provenance before changing that controller; no scheduling source repair.
+  severity: medium

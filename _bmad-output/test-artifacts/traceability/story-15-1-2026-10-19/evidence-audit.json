@@ -1,0 +1,754 @@
+{
+  "kind": "story-trace-offline-evidence-audit",
+  "recorded_utc": "2026-10-19T16:47:49.709686+00:00",
+  "analysis_revision": "cc6ef30a8cb03000ac3fcd13bb216b1e9de544c6",
+  "evidence_revision": "0f56d487f96185f111d3378f2807b89c02dc9b81",
+  "new_tests": 0,
+  "application_test_commands_run": 0,
+  "source_dependencies_changed_since_ci": [],
+  "ci_run": 39282080632,
+  "ci_manifest": {
+    "entries_checked": 117,
+    "mismatches": 0,
+    "sha256": "e088dce087fab153d25d5cb86a2702a86c87ae031cfccdfdbb705defd7bf3f56",
+    "entry_results": [
+      {
+        "path": "artifact-12201563559.metadata.json",
+        "matches": true
+      },
+      {
+        "path": "artifact-12201563559.stderr",
+        "matches": true
+      },
+      {
+        "path": "artifact-12201563559.stdout",
+        "matches": true
+      },
+      {
+        "path": "artifact-12201682947.metadata.json",
+        "matches": true
+      },
+      {
+        "path": "artifact-12201682947.stderr",
+        "matches": true
+      },
+      {
+        "path": "artifact-12201682947.stdout",
+        "matches": true
+      },
+      {
+        "path": "artifact-12201796438.metadata.json",
+        "matches": true
+      },
+      {
+        "path": "artifact-12201796438.stderr",
+        "matches": true
+      },
+      {
+        "path": "artifact-12201796438.stdout",
+        "matches": true
+      },
+      {
+        "path": "artifacts-progress4.metadata.json",
+        "matches": true
+      },
+      {
+        "path": "artifacts-progress4.stderr",
+        "matches": true
+      },
+      {
+        "path": "artifacts-progress4.stdout",
+        "matches": true
+      },
+      {
+        "path": "artifacts-terminal.metadata.json",
+        "matches": true
+      },
+      {
+        "path": "artifacts-terminal.stderr",
+        "matches": true
+      },
+      {
+        "path": "artifacts-terminal.stdout",
+        "matches": true
+      },
+      {
+        "path": "check-run-db-terminal-check.metadata.json",
+        "matches": true
+      },
+      {
+        "path": "check-run-db-terminal-check.stderr",
+        "matches": true
+      },
+      {
+        "path": "check-run-db-terminal-check.stdout",
+        "matches": true
+      },
+      {
+        "path": "check-run-e2e-terminal-check.metadata.json",
+        "matches": true
+      },
+      {
+        "path": "check-run-e2e-terminal-check.stderr",
+        "matches": true
+      },
+      {
+        "path": "check-run-e2e-terminal-check.stdout",
+        "matches": true
+      },
+      {
+        "path": "check-run-terminal-reconciliation.json",
+        "matches": true
+      },
+      {
+        "path": "direct-db-terminal-check.metadata.json",
+        "matches": true
+      },
+      {
+        "path": "direct-db-terminal-check.stderr",
+        "matches": true
+      },
+      {
+        "path": "direct-db-terminal-check.stdout",
+        "matches": true
+      },
+      {
+        "path": "direct-e2e-terminal-check.metadata.json",
+        "matches": true
+      },
+      {
+        "path": "direct-e2e-terminal-check.stderr",
+        "matches": true
+      },
+      {
+        "path": "direct-e2e-terminal-check.stdout",
+        "matches": true
+      },
+      {
+        "path": "direct-storage-terminal-check.metadata.json",
+        "matches": true
+      },
+      {
+        "path": "direct-storage-terminal-check.stderr",
+        "matches": true
+      },
+      {
+        "path": "direct-storage-terminal-check.stdout",
+        "matches": true
+      },
+      {
+        "path": "github-status-summary.raw.json",
+        "matches": true
+      },
+      {
+        "path": "job-admission-detail.metadata.json",
+        "matches": true
+      },
+      {
+        "path": "job-admission-detail.stderr",
+        "matches": true
+      },
+      {
+        "path": "job-admission-detail.stdout",
+        "matches": true
+      },
+      {
+        "path": "joblog-118158223493-raw.metadata.json",
+        "matches": true
+      },
+      {
+        "path": "joblog-118158223493-raw.stderr",
+        "matches": true
+      },
+      {
+        "path": "joblog-118158223493-raw.stdout",
+        "matches": true
+      },
+      {
+        "path": "joblog-118158223493.metadata.json",
+        "matches": true
+      },
+      {
+        "path": "joblog-118158223493.stderr",
+        "matches": true
+      },
+      {
+        "path": "joblog-118158223493.stdout",
+        "matches": true
+      },
+      {
+        "path": "joblog-118158258749-raw.metadata.json",
+        "matches": true
+      },
+      {
+        "path": "joblog-118158258749-raw.stderr",
+        "matches": true
+      },
+      {
+        "path": "joblog-118158258749-raw.stdout",
+        "matches": true
+      },
+      {
+        "path": "joblog-118158258749.metadata.json",
+        "matches": true
+      },
+      {
+        "path": "joblog-118158258749.stderr",
+        "matches": true
+      },
+      {
+        "path": "joblog-118158258749.stdout",
+        "matches": true
+      },
+      {
+        "path": "joblog-118158954214-raw.metadata.json",
+        "matches": true
+      },
+      {
+        "path": "joblog-118158954214-raw.stderr",
+        "matches": true
+      },
+      {
+        "path": "joblog-118158954214-raw.stdout",
+        "matches": true
+      },
+      {
+        "path": "joblog-118158954219-raw.metadata.json",
+        "matches": true
+      },
+      {
+        "path": "joblog-118158954219-raw.stderr",
+        "matches": true
+      },
+      {
+        "path": "joblog-118158954219-raw.stdout",
+        "matches": true
+      },
+      {
+        "path": "joblog-118158954284-raw.metadata.json",
+        "matches": true
+      },
+      {
+        "path": "joblog-118158954284-raw.stderr",
+        "matches": true
+      },
+      {
+        "path": "joblog-118158954284-raw.stdout",
+        "matches": true
+      },
+      {
+        "path": "jobs-attempt1-terminal-check.metadata.json",
+        "matches": true
+      },
+      {
+        "path": "jobs-attempt1-terminal-check.stderr",
+        "matches": true
+      },
+      {
+        "path": "jobs-attempt1-terminal-check.stdout",
+        "matches": true
+      },
+      {
+        "path": "jobs-initial.metadata.json",
+        "matches": true
+      },
+      {
+        "path": "jobs-initial.stderr",
+        "matches": true
+      },
+      {
+        "path": "jobs-initial.stdout",
+        "matches": true
+      },
+      {
+        "path": "jobs-progress1.metadata.json",
+        "matches": true
+      },
+      {
+        "path": "jobs-progress1.stderr",
+        "matches": true
+      },
+      {
+        "path": "jobs-progress1.stdout",
+        "matches": true
+      },
+      {
+        "path": "jobs-progress2.metadata.json",
+        "matches": true
+      },
+      {
+        "path": "jobs-progress2.stderr",
+        "matches": true
+      },
+      {
+        "path": "jobs-progress2.stdout",
+        "matches": true
+      },
+      {
+        "path": "jobs-progress3.metadata.json",
+        "matches": true
+      },
+      {
+        "path": "jobs-progress3.stderr",
+        "matches": true
+      },
+      {
+        "path": "jobs-progress3.stdout",
+        "matches": true
+      },
+      {
+        "path": "jobs-progress4.metadata.json",
+        "matches": true
+      },
+      {
+        "path": "jobs-progress4.stderr",
+        "matches": true
+      },
+      {
+        "path": "jobs-progress4.stdout",
+        "matches": true
+      },
+      {
+        "path": "nocache-db-checkrun.metadata.json",
+        "matches": true
+      },
+      {
+        "path": "nocache-db-checkrun.stderr",
+        "matches": true
+      },
+      {
+        "path": "nocache-db-checkrun.stdout",
+        "matches": true
+      },
+      {
+        "path": "nocache-db-job.metadata.json",
+        "matches": true
+      },
+      {
+        "path": "nocache-db-job.stderr",
+        "matches": true
+      },
+      {
+        "path": "nocache-db-job.stdout",
+        "matches": true
+      },
+      {
+        "path": "nocache-e2e-checkrun.metadata.json",
+        "matches": true
+      },
+      {
+        "path": "nocache-e2e-checkrun.stderr",
+        "matches": true
+      },
+      {
+        "path": "nocache-e2e-checkrun.stdout",
+        "matches": true
+      },
+      {
+        "path": "nocache-e2e-job.metadata.json",
+        "matches": true
+      },
+      {
+        "path": "nocache-e2e-job.stderr",
+        "matches": true
+      },
+      {
+        "path": "nocache-e2e-job.stdout",
+        "matches": true
+      },
+      {
+        "path": "nocache-reconciliation.private.json",
+        "matches": true
+      },
+      {
+        "path": "partial-auth-db-artifact-summary.json",
+        "matches": true
+      },
+      {
+        "path": "partial-terminal-storage-summary.json",
+        "matches": true
+      },
+      {
+        "path": "partial-terminal-verify-summary.json",
+        "matches": true
+      },
+      {
+        "path": "pending-deployments.metadata.json",
+        "matches": true
+      },
+      {
+        "path": "pending-deployments.stderr",
+        "matches": true
+      },
+      {
+        "path": "pending-deployments.stdout",
+        "matches": true
+      },
+      {
+        "path": "queue-diagnosis-selected.json",
+        "matches": true
+      },
+      {
+        "path": "queue-provider-incident.json",
+        "matches": true
+      },
+      {
+        "path": "queue-runs.metadata.json",
+        "matches": true
+      },
+      {
+        "path": "queue-runs.stderr",
+        "matches": true
+      },
+      {
+        "path": "queue-runs.stdout",
+        "matches": true
+      },
+      {
+        "path": "run-initial.metadata.json",
+        "matches": true
+      },
+      {
+        "path": "run-initial.stderr",
+        "matches": true
+      },
+      {
+        "path": "run-initial.stdout",
+        "matches": true
+      },
+      {
+        "path": "run-progress1.metadata.json",
+        "matches": true
+      },
+      {
+        "path": "run-progress1.stderr",
+        "matches": true
+      },
+      {
+        "path": "run-progress1.stdout",
+        "matches": true
+      },
+      {
+        "path": "run-progress2.metadata.json",
+        "matches": true
+      },
+      {
+        "path": "run-progress2.stderr",
+        "matches": true
+      },
+      {
+        "path": "run-progress2.stdout",
+        "matches": true
+      },
+      {
+        "path": "run-progress3.metadata.json",
+        "matches": true
+      },
+      {
+        "path": "run-progress3.stderr",
+        "matches": true
+      },
+      {
+        "path": "run-progress3.stdout",
+        "matches": true
+      },
+      {
+        "path": "run-progress4.metadata.json",
+        "matches": true
+      },
+      {
+        "path": "run-progress4.stderr",
+        "matches": true
+      },
+      {
+        "path": "run-progress4.stdout",
+        "matches": true
+      },
+      {
+        "path": "runner-inventory.metadata.json",
+        "matches": true
+      },
+      {
+        "path": "runner-inventory.stderr",
+        "matches": true
+      },
+      {
+        "path": "runner-inventory.stdout",
+        "matches": true
+      },
+      {
+        "path": "terminal-native-summary.json",
+        "matches": true
+      }
+    ]
+  },
+  "ci_summary_sha256": "fd534b760a2b14306af232587e1cdbec10ed3c4dfb24668742fece01ceff000c",
+  "required_jobs": [
+    {
+      "name": "checkpoint-admission",
+      "id": 118158223493,
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "verify",
+      "id": 118158258749,
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "e2e",
+      "id": 118158954214,
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "db",
+      "id": 118158954219,
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "recovery-storage-loader",
+      "id": 118158954284,
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "archive_member_bindings": [
+    {
+      "artifact": 12201796438,
+      "member": "general-browser.json",
+      "archive_and_member_verified": true
+    },
+    {
+      "artifact": 12201682947,
+      "member": "isolated-storage-recovery.json",
+      "archive_and_member_verified": true
+    },
+    {
+      "artifact": 12201563559,
+      "member": "full-integration.json",
+      "archive_and_member_verified": true
+    }
+  ],
+  "historical_native_commands": [
+    {
+      "handoff": "e15-f69-native-handoff.json",
+      "head": "f69e6cda271b83841d05121f73a6accbc8a21f8b",
+      "report": "e15-f69-eleven.json",
+      "sha256": "6964f6a6da30082f562476247774b2a6c07c10f06e9e67964d1df2cac80ebb4a",
+      "native_exit": 1,
+      "counts": {
+        "passed": 4,
+        "failed": 1,
+        "skipped": 6
+      },
+      "passed_titles": [
+        "[P0] 15.1-E2E-001 AC4 actual Schema click persists selected person/start/end",
+        "[P0] 15.1-E2E-002 AC4 actual Schema drag persists selected person/start/end",
+        "[P0] 15.1-E2E-003 AC4 actual Resurser click persists selected person/start/end",
+        "[P0] 15.1-E2E-004 AC4 actual Resurser drag persists selected person/start/end"
+      ]
+    },
+    {
+      "handoff": "e15-c950-native-handoff.json",
+      "head": "c9502aa37c94fd2a6c3f6b8862089f9a469571f2",
+      "report": "e15-c950-seven.json",
+      "sha256": "243cfe62389b513c3e4bfa9fa0a07a16c8106501ad645ae3bd96949a00b36681",
+      "native_exit": 1,
+      "counts": {
+        "passed": 5,
+        "failed": 1,
+        "skipped": 1
+      },
+      "passed_titles": [
+        "[P1] 15.1-E2E-006 SCOPE-001 AC1 five projections, periods, filters and toolbar editor agree across later pages",
+        "[P1] 15.1 focus restoration Schema day/week origins and disappeared source",
+        "[P1] 15.1 focus restoration Resurser day/week origins and disappeared source",
+        "[P1] 15.1-E2E-007 AC5 Schema actual resize and keyboard/click alternatives preserve review and cancellation",
+        "[P1] 15.1-E2E-007 AC5 Resurser actual move and keyboard/click alternatives preserve review and cancellation"
+      ]
+    },
+    {
+      "handoff": "e15-96eee-native-handoff.json",
+      "head": "96eee458418f5cd9f235e0ba0602a497a9248817",
+      "report": "e15-96eee-two.json",
+      "sha256": "7dbc521ba3832de66cd6bf011769d8a7d519144600103d325b88ec7ee56d8032",
+      "native_exit": 1,
+      "counts": {
+        "passed": 1,
+        "failed": 1,
+        "skipped": 0
+      },
+      "passed_titles": [
+        "[P1] 15.1-COMP-001 AC3 toolbar preferences isolate user/tenant/view and reset corrupt/unavailable storage"
+      ]
+    },
+    {
+      "handoff": "e15-abort-contract-native-handoff.json",
+      "head": "96eee458418f5cd9f235e0ba0602a497a9248817",
+      "report": "e15-abort-contract-one.json",
+      "sha256": "2f1a86fa555b4f1a068e089a610e17d9aed1427f151feb5bd7914c819a12754f",
+      "native_exit": 0,
+      "counts": {
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0
+      },
+      "passed_titles": [
+        "[P1] 15.1-COMP-001 AC3 observed real read transport failure hides stale/empty/count until retry"
+      ]
+    },
+    {
+      "handoff": "e15-alert-working-native-handoff.json",
+      "head": "96eee458418f5cd9f235e0ba0602a497a9248817",
+      "report": "e15-alert-working-one.json",
+      "sha256": "f88a93acb9a26e845da95285f507ad725bde913b0c07c3102d95fc2e1a182fdb",
+      "native_exit": 1,
+      "counts": {
+        "passed": 0,
+        "failed": 1,
+        "skipped": 0
+      },
+      "passed_titles": []
+    }
+  ],
+  "original_five_commands_history": {
+    "passed": 11,
+    "failed": 4,
+    "skipped": 7
+  },
+  "new_sixth_command": {
+    "handoff": "e15-0f56-native-handoff.json",
+    "head": "0f56d487f96185f111d3378f2807b89c02dc9b81",
+    "counts": {
+      "listed": 1,
+      "executed": 1,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "retries": 0
+    },
+    "duration_ms": 5528,
+    "all7bindings_verified": [
+      {
+        "path": "e15-0f56-read-one.json",
+        "matches": true
+      },
+      {
+        "path": "e15-0f56-read-one.log",
+        "matches": true
+      },
+      {
+        "path": "e15-0f56-read-one-receipt.json",
+        "matches": true
+      },
+      {
+        "path": "e15-0f56-read-one-list.log",
+        "matches": true
+      },
+      {
+        "path": "e15-0f56-source-build-qualification.json",
+        "matches": true
+      },
+      {
+        "path": "e15-0f56-readiness.json",
+        "matches": true
+      },
+      {
+        "path": "0f56-read-one-artifacts/trace-scheduling-views.atdd.e2e--2222d-ale-empty-count-until-retry-chromium.zip",
+        "matches": true
+      }
+    ],
+    "assertions": [
+      "First observed matching outgoing scheduling read action abort",
+      "Planning error present; no stale booking cards, misleading empty state or conflict count; all5planner filters and both create affordances absent",
+      "Second observed outgoing schema read request binds date2026-10-14 and existing selected Job; second route abort observed",
+      "Second failure retains date2026-10-14, hides stale/empty/count and planner authority again",
+      "Actual Retry retains selected date2026-10-14 and Job, clears scoped planning error, and returns exact3expected booking IDs"
+    ]
+  },
+  "all_six_commands_history": {
+    "passed": 12,
+    "failed": 4,
+    "skipped": 7
+  },
+  "current_essential_case_qualification": {
+    "distinct_cases": 11,
+    "fresh_cases": 1,
+    "bounded_reused_cases": 10,
+    "same_binary": false,
+    "reuse_review": {
+      "path": ".env.epic15.mail-runtime/P7-review-round2-225af940-71fe-4e27-9def-165f4c0c7374/ten-native-reuse-high.md",
+      "bytes": 8131,
+      "sha256": "767692a2b6e7723502f68e57c79593be1ef02027315157c15612407b637e2494"
+    },
+    "qualification": "Changed Workspace dependency independently assessed; only successful paths in ten named cases qualify. New enhanced read recovery is fresh at0f56."
+  },
+  "review_bindings": [
+    {
+      "path": ".env.epic15.mail-runtime/P7-review-round2-225af940-71fe-4e27-9def-165f4c0c7374/ten-native-reuse-high.md",
+      "bytes": 8131,
+      "sha256": "767692a2b6e7723502f68e57c79593be1ef02027315157c15612407b637e2494"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/P7-review-round2-225af940-71fe-4e27-9def-165f4c0c7374/final-provenance-high.md",
+      "bytes": 8853,
+      "sha256": "69600a35851accf996eb75afa829d3f56d06ee6df5bb3f723c0001aecf11fc48"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/P7-review-round2-225af940-71fe-4e27-9def-165f4c0c7374/metadata-parser-repair-high.md",
+      "bytes": 3721,
+      "sha256": "986db3cf2f4c4e465bf3f99a1b6349058e234dfe801186fd126b40633874efad"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/P7-review-round2-225af940-71fe-4e27-9def-165f4c0c7374/round2-fix-high.md",
+      "bytes": 4915,
+      "sha256": "1c57e8c46f3e12ce2a9ea401830b4265700e1bbe54339771ffb2ef94ad027f8d"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/P7-review-round2-225af940-71fe-4e27-9def-165f4c0c7374/round2-fix-high-smoke-addendum.md",
+      "bytes": 2789,
+      "sha256": "6031c7f02fa86189045483289806b6041440e44693304fa94c455a4ebaef3904"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/P7-review-round2-225af940-71fe-4e27-9def-165f4c0c7374/terminal-result.json",
+      "bytes": 3215,
+      "sha256": "582d5590b11039551c823314a1be48e8b27aa009b75131bcf81f79e6f6f8095b"
+    }
+  ],
+  "delivery": {
+    "bytes": 13996,
+    "sha256": "f5152363c1967e41341a8d09f052fa0cc7f0d35f5bd4756e61c14479230aa38f",
+    "release_ready": false
+  },
+  "gate_file_snapshot_before": {
+    "_bmad-output/test-artifacts/gate-decision.json": "3ffae1ce763d5dbf37fb00c7271af480b571ce3755166364147b1d8d53c4bf02",
+    "_bmad-output/test-artifacts/traceability/epic-14/gate-decision.json": "e44a37cd89345635964982e91b8ad0d835577e5785c805a0e870988355b0c44f",
+    "_bmad-output/test-artifacts/traceability/epic-20/gate-decision.json": "c959131cd485c5d76bd0148cc7155da7462c75e9b819e3a0ae347925c6d1929a"
+  },
+  "limits": [
+    "No raw trace/private network/header/payload data exported.",
+    "No new runtime verification or live manifest.",
+    "Actual JWT4 and mock22 and RPC8 subsets are nonadditive within1737.",
+    "Outgoing abort/date-navigation/retry is not final-page/server-returned IO or RLS.",
+    "Historical failed reports/skips retained; no fresh11 run.",
+    "Earlier pending/stale/contradictory provider snapshots remain historical; current terminal status uses original no-cache job and check-run receipts."
+  ],
+  "gate_file_snapshot_after": {
+    "_bmad-output/test-artifacts/gate-decision.json": "3ffae1ce763d5dbf37fb00c7271af480b571ce3755166364147b1d8d53c4bf02",
+    "_bmad-output/test-artifacts/traceability/epic-14/gate-decision.json": "e44a37cd89345635964982e91b8ad0d835577e5785c805a0e870988355b0c44f",
+    "_bmad-output/test-artifacts/traceability/epic-20/gate-decision.json": "c959131cd485c5d76bd0148cc7155da7462c75e9b819e3a0ae347925c6d1929a"
+  },
+  "gate_files_unchanged": true,
+  "document_validation": {
+    "JSON_valid": true,
+    "formal_ACs": 8,
+    "unique_mapped_cases": 183,
+    "mock_cases_no_RLS": 22,
+    "gate_fields_suppressed": true,
+    "advisory_thresholds_checked": true
+  }
+}

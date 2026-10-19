@@ -197,3 +197,67 @@ usage (`da2ada62-cda2-42be-a31b-34ab1a4e4bc0`,
 and `ok=true`, `stop_requested`, `verified=false`. This records accepted stop
 requests, not verified shutdown. Saved resources are retained; no shutdown poll,
 removal or reset is required. No deployment, preview or main merge occurred.
+
+### October 19 follow-up review and recovery verification
+
+The second broad review found one Medium defect: date navigation during an
+unqualified read failure lost its preference scope, so retry could restore an
+older date. The bounded repair retains the last confirmed preference identity
+separately from cleared authority. Source checkpoint `0f56d487` has 26 focused
+component cases, including same-actor, changed-actor and changed-tenant recovery,
+and independent High fix review. Broad review usage is two of three rounds;
+targeted fix, provenance and metadata checks did not start another broad round.
+
+The extended native recovery case passed once with zero failures, skips, flaky
+results or retries. Both outgoing aborts were observed; retry preserved October
+14, the selected job and the exact three booking IDs. Ten earlier distinct smoke
+passes received explicit independent High qualification across the changed
+workspace dependency. This is one fresh case plus qualified historical evidence,
+not a fresh eleven-case run. Earlier failures and serial skips remain recorded.
+
+Exact-head standard CI
+[39282080632](https://github.com/rthunborg/Kopplas/actions/runs/39282080632)
+completed successfully at `0f56d487`: 2,860 unit cases, seven authentication smoke
+cases and 1,737 database cases passed. The database suite has one explicit Storage
+skip; the same Storage body passed separately in the isolated job. The 752 RLS
+cases across 50 files are a subset of the database total. All five required jobs
+have terminal success evidence. During the reported GitHub Actions incident,
+provider responses were delayed and inconsistent; the original snapshots remain preserved, and
+direct no-cache job/check-run responses resolved the discrepancy without another
+dispatch. Independent High assessment confirmed the terminal bindings.
+
+The refreshed delivery record passed Root's executable gate and independent High
+provenance review. The author completed the actual clean-tree HALT at `c8171dbf`.
+A narrow, independently reviewed author-format correction at `cc6ef30a` then made
+the authoritative parser report the latest round's one patch and zero new
+deferrals or rejections; the Round 1 record, approved kernel and baseline remain
+intact. Follow-up recommendation is false, review-loop index zero, and the two
+process follow-ups remain. Five release-validation items remain explicitly
+deferred; development completion does not establish release readiness.
+
+Root's renewed local resource usages were released with accepted Stop requests:
+browser `0a8b124b-37a9-428b-9334-01ca8fc74f7a`, production server
+`368f7823-6b72-48d1-b52c-9eabeed786d4`, and Compose
+`86b4af2f-d77f-4802-be9c-6f2a0f571683`. Each returned native zero and `ok=true`,
+`stop_requested`, `verified=false`; this records acceptance, not verified
+shutdown. Saved data was retained, with no reset or replay.
+
+The story trace advisory passed: P0 6/6, P1 2/2 and overall 8/8 automated
+assertion mapping, with no uncovered development ACs. This is not full executed
+release coverage. Its skill gate was NOT_EVALUATED (`allow_gate=false`), and it
+added or executed zero tests. The two process follow-ups were harvested once;
+all 143,807 prior ledger bytes remain an exact prefix, preserving other sessions'
+entries. Canonical P7 is complete, with one follow-up pass and
+`review_unverified=false`. Sprint status remains `review` until the epic batch
+close. No deployment or main merge ran.
+
+Independent High history review located the aggregate flag's false-to-true
+transition at blocked-build commit `66cd8436`, before landing; all 108 reachable
+recorded anchor snapshots had an empty landed list. With canonical P7 fully
+verified, the single E5h landing write corrected that premature aggregate value
+while landing 15.1 and selecting 15.2. Root confirmed successful atomic-write
+readback and preservation of every other anchor field except its update time.
+The baseline, review counters and historical failures remain intact. This grants
+no waiver, merge or deployment approval. Coordinator allocation permits only
+independent 15.2 story preparation; the E16 shared-source/schema/fixture claims
+remain reserved until concrete implementation overlap is coordinated.
