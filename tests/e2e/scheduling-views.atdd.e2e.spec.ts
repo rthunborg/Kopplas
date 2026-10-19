@@ -672,7 +672,7 @@ for (const host of ["Schema", "Resurser"] as const) {
         const block = host === "Resurser" ? h.row().getByTestId(`scheduling-booking-${h.ids.proposal}`) : h.block(h.ids.proposal);
         const trigger = kind === "article" ? block : block.getByRole("button", { name: kind === "edit" ? "Redigera / flytta" : "Ändra längd", exact: true });
         if (kind === "article") {
-          await trigger.focus(); await trigger.dragTo(h.slot(host, "2026-10-12T14:30"));
+          await trigger.focus(); await h.dragBooking(trigger, h.slot(host, "2026-10-12T14:30"));
         } else { await trigger.focus(); await trigger.press("Enter"); }
         await expect(h.editor).toBeVisible(); await h.cancel();
         await expect(trigger).toBeFocused(); await expect(trigger).toBeVisible();
@@ -710,7 +710,7 @@ for (const host of ["Schema", "Resurser"] as const) for (const operation of ["mo
       const propose = async () => {
         if (mode === "pointer") {
           await trigger.focus();
-          await trigger.dragTo(h.slot(host, operation === "move" ? expected.startsLocal : "2026-10-12T13:00", operation === "move" && host === "Resurser" ? h.people[2] : h.people[0]));
+          await h.dragBooking(trigger, h.slot(host, operation === "move" ? expected.startsLocal : "2026-10-12T13:00", operation === "move" && host === "Resurser" ? h.people[2] : h.people[0]));
         } else {
           if (mode === "keyboard") { await trigger.focus(); await trigger.press("Enter"); } else await trigger.click();
           await expect(h.editor).toBeVisible();

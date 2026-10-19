@@ -27,13 +27,33 @@ Earlier 190/57 and 242/5 results remain historical failures.
 Story 15.1 is still in progress. The portable two-file reload repair and its
 Windows regression correction passed separate independent Low review. The current
 stub regression executed seven cases, all passing without skips; typecheck and
-targeted ESLint passed. This establishes no native browser or SQL coverage. Real
-persisted scheduling smoke and the required current standard CI lanes remain
-outstanding. Historical run 39237801662 stays failed; its database success is
+targeted ESLint passed. This stub establishes no native browser or SQL coverage.
+At pushed revision `91233e4e6fcaef85ab233f56b87c0651a95e73df`, actual local
+production-browser E2E003 and E2E004 passed Resource click and drag creation,
+including database interval/person readback and persisted editor values after
+reload. The isolated database replayed all 102 migrations and synthetic seed;
+the standard current CI lanes remain outstanding. Historical run 39237801662 stays failed; its database success is
 historical evidence only. Broad browser matrices, eleven visual checks and manual
 phone/polish checks are deferred release validation with ownership and next actions
 to be recorded in the delivery artifact and ledger. Consequential functional,
 authorization, RLS and transaction requirements remain development gates.
+
+The new Schema focus case failed twice before editor visibility; its Resource
+counterpart was skipped by serial execution. Neither receives focus coverage.
+The diagnostic trace showed identical mouse-down/up screen coordinates while
+the content scrolled 797 pixels. Native dragstart/drop was not observed. The
+test correction activates a real source-owned mouse drag before target scrolling,
+then recalculates and checks target geometry. A separate Low author and Low
+reviewer qualified the two-file correction; typecheck and targeted lint passed.
+Its native browser verification remains pending. No assertion, deadline or retry
+was weakened and no product defect or focus success is inferred from this fix.
+
+Essential follow-up selection retains both calendar hosts' keyboard/dialog
+creation, the five usable projections, and representative Resource move plus
+Schema resize with review/cancel/no-write/persistence checks. The latter pair
+covers the unique Resource assignee-replacement branch. The other move/resize
+cross-combinations are deferred release matrix cells, not passes. P5 remains
+incomplete with zero broad review rounds completed out of three.
 
 Coordinator allocated new Epic 16 edits to `src/scope/manifest.ts`,
 `src/server/authz/permission-matrix.ts`, `src/features/scheduling/capacity.ts` and

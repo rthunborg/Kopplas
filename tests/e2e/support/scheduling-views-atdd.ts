@@ -128,6 +128,50 @@ export class SchedulingViewsHarness {
     return this.page.getByTestId(host === "Schema" ? "schema-slot" : "resources-slot").and(this.page.locator(`[data-start="${at}"][data-person="${host === "Schema" ? schemaPerson : person}"]`));
   }
   row(person = this.people[0]!): Locator { return this.page.getByTestId(`resource-row-${person}`); }
+  /** Native booking drag: activate before target auto-scroll can reuse the same screen point. */
+  async dragBooking(source: Locator, target: Locator): Promise<void> {
+    await source.scrollIntoViewIfNeeded();
+    const start = await source.evaluate(element => {
+      const rect = element.getBoundingClientRect(), style = getComputedStyle(element);
+      const article = element.tagName === "ARTICLE";
+      // Article padding belongs to its draggable surface, not nested edit/resize buttons.
+      const x = rect.left + (article ? parseFloat(style.paddingLeft) / 2 : rect.width / 2);
+      const y = rect.top + (article ? parseFloat(style.paddingTop) / 2 : rect.height / 2);
+      const travel = 16; // Deliberate physical activation, independent of subsequent scrolling.
+      const owns = (atX: number) => {
+        if (!Number.isFinite(atX) || !Number.isFinite(y) || atX <= 0 || y <= 0 || atX >= innerWidth || y >= innerHeight) return false;
+        const hit = document.elementFromPoint(atX, y);
+        return hit?.closest('[draggable="true"]') === element &&
+          (!article || !hit.closest('a, button, input, select, textarea, [contenteditable="true"]'));
+      };
+      const direction = owns(x + travel) ? 1 : owns(x - travel) ? -1 : 0;
+      if (!element.matches('[draggable="true"]') || !owns(x) || !direction) return null;
+      // Verify the entire activation corridor, not only endpoints.
+      for (let step = 1; step <= travel; step++) if (!owns(x + direction * step)) return null;
+      return { x, y, activatedX: x + direction * travel };
+    });
+    if (!start) throw new Error("Native booking drag has no visible source-owned activation corridor");
+    await this.page.mouse.move(start.x, start.y);
+    await this.page.mouse.down();
+    try {
+      await this.page.mouse.move(start.activatedX, start.y, { steps: 4 });
+      await target.scrollIntoViewIfNeeded();
+      const destination = await target.evaluate(element => {
+        const rect = element.getBoundingClientRect(), x = rect.left + rect.width / 2, y = rect.top + rect.height / 2;
+        const owns = (atX: number) => {
+          if (atX <= 0 || y <= 0 || atX >= innerWidth || y >= innerHeight) return false;
+          const hit = document.elementFromPoint(atX, y);
+          return hit !== null && (hit === element || element.contains(hit));
+        };
+        // Two distinct moves within the real target produce native dragover before release.
+        const insideX = owns(x + 2) ? x + 2 : owns(x - 2) ? x - 2 : null;
+        return owns(x) && insideX !== null ? { x, y, insideX } : null;
+      });
+      if (!destination) throw new Error("Native booking drag target has no unobstructed visible drop area");
+      await this.page.mouse.move(destination.x, destination.y, { steps: 8 });
+      await this.page.mouse.move(destination.insideX, destination.y);
+    } finally { await this.page.mouse.up(); }
+  }
   async fillRequired(assignees: string[] = [this.people[0]!]): Promise<void> {
     await this.editor.getByTestId("booking-description").fill(this.scenario.description + " browser-created");
     await this.editor.getByTestId("booking-work-role").selectOption(this.scenario.workRoleId);
