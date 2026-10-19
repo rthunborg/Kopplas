@@ -15,7 +15,8 @@ import { markQuoteVersionSent, acceptQuoteAndCreateJob } from "@/server/commands
 import { createJobCard, updateJobCard } from "@/server/commands/jobs/save-job-card";
 import { readMyJobs as readMyJobsModel } from "@/server/read-models/my-jobs";
 import { adminQuery } from "../factories/admin-sql";
-import { assertLocalStack } from "./test-env";
+import { assertLocalStack, LOCAL_TEST_QUOTE_PDF_KEY_ID, LOCAL_TEST_QUOTE_PDF_SECRET,
+  LOCAL_TEST_BOOKING_CONFLICT_KEY_ID, LOCAL_TEST_BOOKING_CONFLICT_SECRET } from "./test-env";
 import { establishCurrentQuotePdf } from "./quote-pdf";
 
 export const jobDepthTables = ["jobs", "job_members", "job_required_work_roles", "job_access_windows", "job_dependencies"] as const;
@@ -76,8 +77,28 @@ export async function invokeJobCard(client: TestServerClient, operation: "create
     { client: diagnosticClient as never, input, correlationId });
 }
 
-export async function createJobsDepthFixture() {
+/** Invoked test-worker setup only: production commands still require configured proofs.
+ * Validate both pairs before changing any variable; never adopt a half/foreign pair.
+ */
+export function configureJobsDepthFixtureProofs(): void {
   assertLocalStack();
+  const pairs = [
+    ["QUOTE_PDF_ATTESTATION_KEY_ID", "QUOTE_PDF_ATTESTATION_HMAC_SECRET", LOCAL_TEST_QUOTE_PDF_KEY_ID, LOCAL_TEST_QUOTE_PDF_SECRET],
+    ["BOOKING_CONFLICT_ATTESTATION_KEY_ID", "BOOKING_CONFLICT_ATTESTATION_HMAC_SECRET", LOCAL_TEST_BOOKING_CONFLICT_KEY_ID, LOCAL_TEST_BOOKING_CONFLICT_SECRET],
+  ] as const;
+  for (const [idName, secretName, localId, localSecret] of pairs) {
+    const id = process.env[idName], secret = process.env[secretName];
+    if ((id !== undefined || secret !== undefined) && (id !== localId || secret !== localSecret)) {
+      throw new Error("Jobs fixture requires matching complete local-test proof configuration");
+    }
+  }
+  for (const [idName, secretName, localId, localSecret] of pairs) {
+    process.env[idName] ??= localId;
+    process.env[secretName] ??= localSecret;
+  }
+}
+export async function createJobsDepthFixture() {
+  configureJobsDepthFixtureProofs();
   const roleFixture = await t.createRoleAwarePhaseAFixture();
   try {
     const { base, users } = roleFixture;
