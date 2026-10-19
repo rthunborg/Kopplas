@@ -1,5 +1,5 @@
 {
-  "status": "Round1-reviewed-local-focused-verified-own-file-inventory; sourcecheckpoint-and-currentCI-pending",
+  "status": "reviewed-source52-unchanged-at-exact-qualified-CI-head; final-Root-admission-remains-authoritative",
   "baseline": "85755eb7cea3affdc77dbe1d30bb18279b614c5a",
   "build_id": "GLKBSX62N9CbTViZM7YrP",
   "source_manifest_sha256": "c0aadd3c19e468fced582c92a16ab0ab2388df64df04890f18218cad96a2a29d",
@@ -321,8 +321,8 @@
   ],
   "ownership": "All listed code/test delta is author implementation plus specifically reconciled shared map/enrollment/inventory/INT001 allocations. Preserve existing E16 jobs/null-empty/proof/role probes; no permission/capacity/package/lock/env/seed/Compose change. Root preparation/aggregate/state/Git artifacts excluded.",
   "publication_limit": "Ignored runtime/bootstrap/private-binding/receipt packets are local verification provenance, not production source or automatic publication scope. All first-applied SQL24f bytes frozen.",
-  "pending": "Configured product review, reviewed source checkpoint, fresh exacthead CI/physical Storage/pilot and Root delivery gate before done.",
-  "local_essential_status": "passed across preserved4+1+1 series and7+2 existing host cases; no single all-pass run fabricated",
+  "pending": "Root mandatory delivery/provenance/status admission remains authoritative; no release/merge/deployment approval",
+  "local_essential_status": "Historical series4+1+1/hosts7+2 plus changed GLK007/0082P and0091P with targeted unchanged-dependency review; CI AuthJobs11P is separate coverage",
   "round1_source_test_freeze": {
     "path": ".env.epic15.mail-runtime/story-15-2-round1-author-fixes-25d131e9-9b87-4f9e-83cd-4c9bcfa2e330/source-test-freeze-009-current.json",
     "sha256": "6666a3b1cdbf4178543fadb78fba9199b9e33c5fa19b3c08c072d6b16a39024b"
@@ -344,5 +344,19 @@
       "tests/unit/features/scheduling/calendar-components.test.ts"
     ],
     "source_test_changes": false
-  }
+  },
+  "source_checkpoint": "effbf5e18e19556d0fad231d3fc01369397c8402",
+  "CI_run": 39335595653,
+  "CI_attempt": 1,
+  "CI_release_validation": false,
+  "CI_required_jobs": {
+    "checkpoint-admission": "success",
+    "verify": "success",
+    "db": "success",
+    "recovery-storage-loader": "success",
+    "e2e": "success"
+  },
+  "migration106_CI_git_blob_sha256": "57e7e9fc930513099b20759b84fd21c2b851f154effb8a0e45c198262da4a37d",
+  "migration106_frozen_local_sha256": "c55d1de17b3829e97212076d2627f5b22645126894a8deb7af4b80596b45b44d",
+  "migration106_line_ending_provenance": "176CRLF local vsLF Git; normalized bytes identical, no file rewritten"
 }

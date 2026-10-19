@@ -1,21 +1,21 @@
 {
-  "status": "final-author-artifact-handoff-currentCI-pending",
+  "status": "development-done-explicit-Root-admission; exacthead-CI-qualified; release-ready-false",
   "artifacts": [
     {
       "path": "_bmad-output/implementation-artifacts/spec-15-2-recurring-bookings-series-materialized-occurrences-exceptions.md",
-      "sha256": "40dc75302e5efcb33b6a1a43703f2819b4f2bec36f30ae212cac071640ed9a15"
+      "sha256": "688977b8b6047d3cc9e4a62381598aa1df670a4075d3b7fff6e7a3d0b0364bfc"
     },
     {
       "path": "_bmad-output/test-artifacts/story15-2/build-intent-matrix.md",
-      "sha256": "97222b970e79271b13ec0fee0c127000be07a1427413811006733598fe4af9db"
+      "sha256": "706b67ab538040c2e1d7275c96331a798d98eab853dcbb68fe05f8069905a923"
     },
     {
       "path": "_bmad-output/test-artifacts/story15-2/build-implementation-handoff.md",
-      "sha256": "fb475bd45aead8375ab469f59ec20d1e2fda7e781d2985687b9310f585565078"
+      "sha256": "ba6ecee4fbbec03f1af114ac0e1480eaf24853db7ed80e847543566108306283"
     },
     {
       "path": "_bmad-output/test-artifacts/story15-2/build-change-inventory.json",
-      "sha256": "aecd6555275b412557ac96e834849bfe147b704a5b5cd89c0087f139b55fbd41"
+      "sha256": "5101b757cd237aaa2eb405324b20bb857c7fff071333a15a0df70a20273a64d0"
     },
     {
       "path": "_bmad-output/test-artifacts/story15-2/build-source-freeze.json",
@@ -23,19 +23,19 @@
     },
     {
       "path": "_bmad-output/test-artifacts/story15-2/build-round1-author-verification.json",
-      "sha256": "577717754e7ded9b14c7f4b25de58a4eaf81123ca9ff8fd6c41c3069b1f8d454"
+      "sha256": "4138004ebcb1779e2f4d9cb868e53206d040195f99a550e63df9a206216ce8da"
     },
     {
       "path": "_bmad-output/test-artifacts/story15-2/build-round1-canonical-reader.json",
-      "sha256": "5a8a4432c01e487e637678ea79890359dd6d605a798cfd831f3c5bcc39be8a4f"
+      "sha256": "688d83d66136b7734a4f57334c1f42526ba934409c4714e6fd8416bb39f627f7"
     },
     {
       "path": "_bmad-output/test-artifacts/story15-2/build-review-order-round1-final.log",
-      "sha256": "4942070ecfb39cb2bac17a941b037fb35aadc590028dc1b68e9eb3833a91bf23"
+      "sha256": "7627256629aa8161f52332b6dec7248c2f86bb2b4315f37cd9acfafd00ff900d"
     },
     {
       "path": "_bmad-output/auto-bmad/delivery/15-2-recurring-bookings-series-materialized-occurrences-exceptions.json",
-      "sha256": "134a8314e30a60302fbe3b4ff7048560b822c0d4722daa8df9fd603081f97ace"
+      "sha256": "c1d63ea5d6d610d6453852ef7a7e21c601d04d58e24faee55626a8b24d468576"
     },
     {
       "path": ".env.epic15.mail-runtime/story-15-2-round1-author-fixes-25d131e9-9b87-4f9e-83cd-4c9bcfa2e330/canonical-metadata-preservation-current.json",
@@ -44,6 +44,34 @@
     {
       "path": ".env.epic15.mail-runtime/story-15-2-round1-author-fixes-25d131e9-9b87-4f9e-83cd-4c9bcfa2e330/source-test-freeze-009-current.json",
       "sha256": "6666a3b1cdbf4178543fadb78fba9199b9e33c5fa19b3c08c072d6b16a39024b"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-2-round1-author-fixes-25d131e9-9b87-4f9e-83cd-4c9bcfa2e330/final-ci-author-refresh-6aa5b5d5-9c56-4074-9acc-fdb1e43ee1c5/preservation.json",
+      "sha256": "8520fdbb75fc3ce19c8f661619cc97ed03f086e33e4a5a485263bbb2ed389836"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-2-round1-author-fixes-25d131e9-9b87-4f9e-83cd-4c9bcfa2e330/release-deferred-p7-harvest-release-ledger-current.json",
+      "sha256": "e797e1530933af14cb099b235db5d390113730872e86b431fbed88a48641ee4c"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-2-ci-effbf5e1-independent/qualification-final.json",
+      "sha256": "d5b0b28924ff7d830b670e78bc6fc1f59e5229a65da62f92fa3a827376be0f9b"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-2-ci-effbf5e1-independent/SHA256SUMS-final.json",
+      "sha256": "5f374e5c5b6ec4c534e775af0edfef3135e5d64b81e5a445a1d1933d5691dfe6"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-2-round1-author-fixes-25d131e9-9b87-4f9e-83cd-4c9bcfa2e330/admitted-status-closure-7a1a7d6e-e8b0-44cb-b2ee-f6354d7642dd/preservation.json",
+      "sha256": "4953e187b3f473aa7579c9051c37c25e95d7d941926f4ce1e31fe0bf1979ce9e"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-2-ci-effbf5e1-independent/delivery-provenance-final.md",
+      "sha256": "b88fc40faef8e3e3adc91538aa8b2589fa6cbdef1db9e0e764d5d0fd88d5755c"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-2-ci-effbf5e1-independent/delivery-provenance-final.json",
+      "sha256": "b3abb4f0b52a4161e543d5f0c23b08f2f030fa4bbb0a41e564904a59d9682b56"
     }
   ],
   "local_round1_evidence_artifacts": [
@@ -69,7 +97,7 @@
     },
     {
       "path": "_bmad-output/test-artifacts/story15-2/build-review-order-round1-final.log",
-      "sha256": "4942070ecfb39cb2bac17a941b037fb35aadc590028dc1b68e9eb3833a91bf23"
+      "sha256": "7627256629aa8161f52332b6dec7248c2f86bb2b4315f37cd9acfafd00ff900d"
     },
     {
       "path": "_bmad-output/test-artifacts/story15-2/build-review-order-round1-sql-green.log",
@@ -101,11 +129,11 @@
     },
     {
       "path": "_bmad-output/test-artifacts/story15-2/build-round1-author-verification.json",
-      "sha256": "577717754e7ded9b14c7f4b25de58a4eaf81123ca9ff8fd6c41c3069b1f8d454"
+      "sha256": "4138004ebcb1779e2f4d9cb868e53206d040195f99a550e63df9a206216ce8da"
     },
     {
       "path": "_bmad-output/test-artifacts/story15-2/build-round1-canonical-reader.json",
-      "sha256": "5a8a4432c01e487e637678ea79890359dd6d605a798cfd831f3c5bcc39be8a4f"
+      "sha256": "688d83d66136b7734a4f57334c1f42526ba934409c4714e6fd8416bb39f627f7"
     },
     {
       "path": "_bmad-output/test-artifacts/story15-2/build-round1-compatibility-final.log",
@@ -194,7 +222,7 @@
   ],
   "implementation_file_inventory": {
     "path": "_bmad-output/test-artifacts/story15-2/build-change-inventory.json",
-    "sha256": "aecd6555275b412557ac96e834849bfe147b704a5b5cd89c0087f139b55fbd41",
+    "sha256": "5101b757cd237aaa2eb405324b20bb857c7fff071333a15a0df70a20273a64d0",
     "paths": 52,
     "product": 22,
     "schema": 2,
@@ -207,5 +235,66 @@
     "preservation": ".env.epic15.mail-runtime/story-15-2-round1-author-fixes-25d131e9-9b87-4f9e-83cd-4c9bcfa2e330/metadata-inventory-counter-correction-6b2a783a-2769-4120-a05c-2de243e1ec7b/preservation.json",
     "preservationSha256": "ee259fec119a67c2bd14619990b4bfa3bc2391cf6ef6ce3b5132d07a1405a31a",
     "scope": "Only omitted already-reviewed additive unit inventory entries, repair-loop counter0 and dependent hashes/notes. BroadRound1/followuptrue unchanged; no source/test/runtime/checkpoint done claim."
-  }
+  },
+  "evidence_revision": "effbf5e18e19556d0fad231d3fc01369397c8402",
+  "CI_run": 39335595653,
+  "source52_dependency_assessment": {
+    "evidence_revision": "effbf5e18e19556d0fad231d3fc01369397c8402",
+    "verified_raw_local_paths": 52,
+    "product": 22,
+    "schema": 2,
+    "testsOrFixtures": 28,
+    "hashMismatches": [],
+    "sourceChangesInFinalEvidenceRefresh": false,
+    "scope": "All source/test/schema inventory hashes equal pre-final-refresh/reviewed source. Four R1 UI paths changed before effbf5e1 and retain actual targeted007009/High dependency qualification; local earlier-flow reuse is scoped, no fresh whole-series/host claim. CI AuthJobs smoke remains separate.106localCRLF versus GitLF normalization is recorded, never treated as rawidentity."
+  },
+  "release_deferred_ledger_harvest": {
+    "path": ".env.epic15.mail-runtime/story-15-2-round1-author-fixes-25d131e9-9b87-4f9e-83cd-4c9bcfa2e330/release-deferred-p7-harvest-release-ledger-current.json",
+    "sha256": "e797e1530933af14cb099b235db5d390113730872e86b431fbed88a48641ee4c",
+    "status": "pendingRootP7harvest",
+    "target": "_bmad-output/auto-bmad/recovery/deferred-validation.md",
+    "target_observed_sha256": "75c62fa2e7fc31697c23439c92e6f06099185aad491aa77600a7963bba51089e",
+    "rows": 3,
+    "existing_row_mapping": {
+      "delivery0": [
+        7,
+        8
+      ],
+      "delivery1": [
+        9
+      ],
+      "delivery2": [
+        11
+      ]
+    },
+    "ledger_updated_by_author": false
+  },
+  "final_evidence_preservation": {
+    "path": ".env.epic15.mail-runtime/story-15-2-round1-author-fixes-25d131e9-9b87-4f9e-83cd-4c9bcfa2e330/final-ci-author-refresh-6aa5b5d5-9c56-4074-9acc-fdb1e43ee1c5/preservation.json",
+    "sha256": "8520fdbb75fc3ce19c8f661619cc97ed03f086e33e4a5a485263bbb2ed389836"
+  },
+  "Root_final_admission": {
+    "deliverySha256": "c1d63ea5d6d610d6453852ef7a7e21c601d04d58e24faee55626a8b24d468576",
+    "gate": {
+      "reportedBy": "Root explicit final admission",
+      "native": 0,
+      "ok": true,
+      "development_complete": true,
+      "approval_granted": false
+    },
+    "independentHighProvenance": {
+      "path": ".env.epic15.mail-runtime/story-15-2-ci-effbf5e1-independent/delivery-provenance-final.md",
+      "sha256": "b88fc40faef8e3e3adc91538aa8b2589fa6cbdef1db9e0e764d5d0fd88d5755c",
+      "JSONpath": ".env.epic15.mail-runtime/story-15-2-ci-effbf5e1-independent/delivery-provenance-final.json",
+      "JSONsha256": "b3abb4f0b52a4161e543d5f0c23b08f2f030fa4bbb0a41e564904a59d9682b56",
+      "status": "passed"
+    },
+    "statusTransitionAuthorized": true,
+    "noNewTestsOrRuntime": true,
+    "preDonePreservation": {
+      "path": ".env.epic15.mail-runtime/story-15-2-round1-author-fixes-25d131e9-9b87-4f9e-83cd-4c9bcfa2e330/admitted-status-closure-7a1a7d6e-e8b0-44cb-b2ee-f6354d7642dd/preservation.json",
+      "sha256": "4953e187b3f473aa7579c9051c37c25e95d7d941926f4ce1e31fe0bf1979ce9e"
+    }
+  },
+  "statusClosureNoSourceChanges": true
 }

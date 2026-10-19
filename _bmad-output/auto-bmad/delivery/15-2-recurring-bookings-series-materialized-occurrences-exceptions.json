@@ -1,65 +1,69 @@
 {
   "policy_version": "2026-10-19",
-  "record_status": "Round1-local-focused-and-targeted-review-passed; reviewed-source-checkpoint-and-exacthead-required-CI-pending; not-admissible-for-done",
-  "contract_reconciliation": "Approved15.2 kernel013b7ae0/9tasks/8ACs/sourceACsketch/DesignNotes127 preserved. Configured broadRound1 six layers complete,8accepted fixes(4high4medium),1nonconsequential reject,0intent_gap/bad_spec/defer. Actual42unit/lint/tsc/singleGLKbuild/public/bundle passed; Root reviewed/applied106, actual020 RED-to-GREEN1P plus021/0222P; author released changed essential browser007/0082P then0091P all assertions passed, original2P1F preserved. Unicode15literal/17line and009-only detaching-control bindings were targetedHigh follow-ups, no new broadround or app rebuild. Earlier fullDB/RLS/essential receipts retain scoped historical dependency limits. Reviewed bounded source checkpoint then fresh exacthead standard CI/fullDB/RLS/empty replay/physicalStorage/pilot and delivery gate remain required before done. Exhaustive visual/manual/device/representative scheduling performance remains3owned release-deferred items, separate from0frontmatter deferred findings.",
-  "evidence_revision": null,
-  "evidence_revision_pending_reason": "Root must record the actual independently reviewed source checkpoint before its fresh CI; current worktree is uncommitted on85755eb7cea3affdc77dbe1d30bb18279b614c5a. No revision invented.",
+  "record_status": "exact-reviewed-source-development-evidence-qualified; Root-admission-authoritative; release-ready-false",
+  "contract_reconciliation": "Approved15.2 kernel013b7ae0/9tasks/8ACs/sourceACsketch/DesignNotes127 preserved. All8accepted Round1 patches(4high4medium;mediumscore12;followuptrue),1nonconsequential reject,0intent_gap/bad_spec/defer; repair-loop0 and broadRound1of3 stay distinct. Applicable executed development evidence is qualified for exact source checkpoint effbf5e18e19556d0fad231d3fc01369397c8402: all5ordinary requiredCI jobs, fullDB/RLS/empty106replay/direct physicalStorage/configuredpilot plus scoped local essential Scheduling/series flows and independentHigh reviews.52explicit DB skips and optional release/probe jobs give no coverage; RLS800P14S is nonadditive. CI AuthJobs11P does not cover Scheduling/series; local GLK essential2+1 and earlier reviewed unchanged-path proofs remain separately attributed. Metadata-only final refresh changes no52source/test/schema files. Migration106 frozen localCRLFc55 and immutable CI/GitLF57e7 are normalized-identical, not raw-identical; both first-applied migrations stay immutable. Oct19policy defers only3owned exhaustive visual/manual/device/representative performance release checks. Root alone owns mandatory deliverygate, narrow finalprovenance, done/status admission and publication; this record asserts evidence, not development-complete/release/merge/deployment approval.",
+  "evidence_revision": "effbf5e18e19556d0fad231d3fc01369397c8402",
   "worktree_evidence": {
     "baseline": "85755eb7cea3affdc77dbe1d30bb18279b614c5a",
-    "build_id": "GLKBSX62N9CbTViZM7YrP",
-    "source_manifest_sha256": "c0aadd3c19e468fced582c92a16ab0ab2388df64df04890f18218cad96a2a29d",
-    "source_inventory_sha256": "adef0cc836eaa7c14009a20ca6db4019cedb6699c69d5821b9545b4601137611",
+    "tested_source_checkpoint": "effbf5e18e19556d0fad231d3fc01369397c8402",
+    "local_build_id": "GLKBSX62N9CbTViZM7YrP",
+    "local_source_manifest_sha256": "c0aadd3c19e468fced582c92a16ab0ab2388df64df04890f18218cad96a2a29d",
+    "local_source_inventory_sha256": "adef0cc836eaa7c14009a20ca6db4019cedb6699c69d5821b9545b4601137611",
     "change_inventory": "_bmad-output/test-artifacts/story15-2/build-change-inventory.json",
-    "change_inventory_sha256": "aecd6555275b412557ac96e834849bfe147b704a5b5cd89c0087f139b55fbd41",
+    "change_inventory_sha256": "5101b757cd237aaa2eb405324b20bb857c7fff071333a15a0df70a20273a64d0",
+    "source52_raw_local_hashes_reverified_unchanged": true,
     "audit": "_bmad-output/test-artifacts/story15-2/build-intent-matrix.md",
     "round1_source_test_freeze": ".env.epic15.mail-runtime/story-15-2-round1-author-fixes-25d131e9-9b87-4f9e-83cd-4c9bcfa2e330/source-test-freeze-009-current.json",
-    "round1_source_test_freeze_sha256": "6666a3b1cdbf4178543fadb78fba9199b9e33c5fa19b3c08c072d6b16a39024b"
+    "round1_source_test_freeze_sha256": "6666a3b1cdbf4178543fadb78fba9199b9e33c5fa19b3c08c072d6b16a39024b",
+    "ci_qualification": ".env.epic15.mail-runtime/story-15-2-ci-effbf5e1-independent/qualification-final.json",
+    "ci_qualification_sha256": "d5b0b28924ff7d830b670e78bc6fc1f59e5229a65da62f92fa3a827376be0f9b",
+    "ci_evidence_manifest_sha256": "5f374e5c5b6ec4c534e775af0edfef3135e5d64b81e5a445a1d1933d5691dfe6"
   },
   "development_checks": [
     {
-      "name": "applicable-local-static-production-build-and-public-bundle",
+      "name": "exacthead-required-CI-and-static-production-build",
       "status": "passed",
-      "evidence": "Round1 current focused lint/typecheck0; ONE productionGLKBSX62N9CbTViZM7YrP build0, public owned/canonical true/default false/private signer+service absent; bundle containment0. build-round1-compatibility-lint/typecheck.log, build-production-round1.log/build-bundle-round1.log/build-public-binding-round1.json. TfRq originals preserved544777c9 before replacement."
+      "evidence": "Run39335595653 attempt1/release_validationfalse exacteffbf5e1: checkpoint-admission,verify,db,recovery-storage-loader,e2e all SUCCESS. Verify frozen install/lockfiles/high-severity audit/sourcecontainment/typecheck/lint/build/bundle steps all succeeded. Ordinary CI, no deployment/release approval. Independent native qualificationd5b0 and immutable raw manifest5f374e5c qualify source/job/actor/attempt ownership."
     },
     {
-      "name": "focused-unit-SSR-and-regression",
+      "name": "focused-and-full-current-unit-process-contracts",
       "status": "passed",
-      "evidence": "Current42P0F0S focused actual planner/TSX hook-action ports/Workspace/converter tests; meaningful RED15total9P6F compatibility plus original4planner3F/editor4F preserved. Unit-only, no RLS/browser credit. Earlier pure50/SSR7/fullunit2951P1skip historical, no combined current total."
+      "evidence": "CI verify2974P0F0S/103suites, no cancelled/todo; BMAD2P and AutoBMAD26+10+5=41P,43process total0skip/fail. Current source actual fullunit includes focused behavior tests; earlier local42P/action-port/synthetic planner facts remain separate overlapping evidence, not additive RLS/browser credit. Native logs/counts qualified in d5b0."
     },
     {
-      "name": "required-local-database-and-RLS",
-      "status": "pending",
-      "evidence": "Root105 REAL020 RED1F0P preserved; reviewed forward106 rehearsal/apply/postinspect native0 verified. Same frozen test020106GREEN1P0F all assertions executed; strict021+022 actual2P0F57unselected, runner/wrapper0. Real lower-bound requested rules/signed extra rows/no-write and moved pivot exact ownership/instants passed. All22 active commands have historical19+current3 passes, not one fresh22 run. Full current exactheadCI/RLS still pending. Both first-applied1800SHA24f/220000SHAc55 immutable. Receipts in matrix."
-    },
-    {
-      "name": "essential-series-and-changed-host-browser",
+      "name": "required-current-full-database-and-RLS",
       "status": "passed",
-      "evidence": "CurrentGLK changed essential unique3 actual2+1:007stale following preview/save9.907s,008native drag/reassign+resize9.817s, then strict0095.439s full B replacement/preview/save/defaults/independentSQL. Passing receipts0skips/flaky/globalerrors. Original2P1F preserved; actualDOM/decodedpreview prove detaching-control mismatch, one-click+absence correction and sameHigh42/42 PASS qualify007008 unchanged-body reuse. Exact native/PW hashes and immutable packets in matrix. Historical response-loss/phone/role flows remain scoped relevant prior evidence, not new execution."
+      "evidence": "SUPABASE_TEST_REQUIRED=1 CI fullDB1879total1827P0F52explicitS,152file records(151passing/1skipped); all22active15.2commands passed. RLS800P0F14S/52file records is INCLUDED subset, never additive;5active15.2RLS bodies passed.52skips are37commandscaffolds+14RLSscaffolds+1physicalStorageoutside its isolated lane, no credit. Native-full-integration digest2e5957d456e6b3714e4a83fcc0ec0efd4aa4fb488168dcb2867db06a4c02b82a belongs to exactrun/head."
     },
     {
-      "name": "author-review-trail",
+      "name": "empty-migration-seed-replay-and-schema-integrity",
       "status": "passed",
-      "evidence": "SAME one Suggested Review Order20verified path:line/literal stops, final checker0. Canonical reader0 reads in-review/currentpendingCI, lastReview2026-10-20 patch8/reject1/intent0/badspec0/defer0, repairloop0/followuptrue (bad_spec0; broadRound1 unchanged)/deferredfrontmatter0/no parse warnings. Kernel013b7ae0/9tasks/8AC/source sketch/DesignNotes unchanged; original raw prefix archived byte-exact, explicit metadata additions not mislabeled unchanged. Seven-row matrix and final handoff current."
+      "evidence": "Actual first-attempt empty replay/seed106migrations succeeded in db,e2e and recovery-storage schema source; zero CLI restart/error-recovery attempts. First-applied1800local/Git24f identical.106localc55 has176CRLF; CI/GitLF57e7e9fc930513099b20759b84fd21c2b851f154effb8a0e45c198262da4a37d normalized-identical. No migration rewritten/reset by this author refresh; all historical apply/rollback receipts retained."
     },
     {
-      "name": "fresh-exacthead-required-CI-including-empty-migration-seed",
-      "status": "pending",
-      "evidence": "Await configured review and Root bounded reviewed source checkpoint, then all configured required CI jobs at its exact head. No pre-checkpoint CI or old33 CI relabeled current."
+      "name": "direct-current-isolated-recovery-Storage",
+      "status": "passed",
+      "evidence": "Separate recovery-storage-loader native1P0F0S:2physical loader objects/66bytes served, protected logical rows/bytes unchanged, generic and quotePDF overwrite attempts denied. Native isolated artifact digest25e85fc6812104c4f9caa04aa4e47c1995df1ae4658d155af104ac1394512bc3 bound exactrun/head. This closes required physicalStorage evidence separately from fullDB skip, not a fabricated local physical pass."
     },
     {
-      "name": "current-head-physical-recovery-storage",
-      "status": "pending",
-      "evidence": "Fresh current-head isolated Storage CI required. Prior CI39304828183 only1P0F0S is historical unchanged-path evidence; no local physical Storage proof or provision/reset authorized."
+      "name": "essential-connected-series-scheduling-and-ordinary-smoke",
+      "status": "passed",
+      "evidence": "Actual guarded local GLK changed essential007/0082P then0091P/0skip/flaky/globalerrors, all currentmetadata/review/gesture/retained-assignee/persistence SQL assertions completed. Original2P1F preserved; only009body changed and sameHigh AST/source binding qualifies007008 reuse. Earlier series4+1+1/hosts7+2 cover unchanged recovery/phone/ContractD/role paths with recorded scoped dependencies. All52source/test/schema rawlocal hashes unchanged at qualified sourceeffbf5e1; no code changed in final metadata refresh. CI ordinaryAuth7+Jobs4=11P0F0S/flaky/retry/globalerrors is SEPARATE, not Scheduling/series coverage; artifact42de3741bbe2fc44902f0e06f5d58aea9e2319a7eb31d58443ae9142ba2f4716 exactrun/head."
     },
     {
-      "name": "current-head-configured-pilot-performance",
-      "status": "pending",
-      "evidence": "Ordinary CI DB pilot-performance step must execute at reviewed exact head. Prior unchanged-path local pilot native0 is historical, not105/current CI evidence."
+      "name": "configured-current-pilot-performance",
+      "status": "passed",
+      "evidence": "Actual configured pilot succeeded:120/24tenant membership fixture,5warmups/25measurements; Admin-users readp9514.010192ms<=250; synthetic bulk-permissions CPU5.945558ms<=25;50authenticatedRLSrequests=2/read<=3. Log-emitted JSON +immutable harness/threshold captures +native step success qualified. Fullprivate baseline/queryplanJSON notuploaded. Narrow read/CPU projection only; no full-page/production/Scheduling representative-release performance credit."
+    },
+    {
+      "name": "author-intent-review-trail-and-evidence-contract",
+      "status": "passed",
+      "evidence": "One author SRO20verified stops and dated canonicalRound1 triage8patch/1reject/0intent,badspec,defer;repairloop0/followuptrue. Kernel013b7ae0d0614d20dbc021885786ca1803976e10bd634ddc0bc3791b19de4ee1/9tasks/8AC/sourceACsketch/DesignNotes unchanged. At final evidence refresh spec staysin-review pending Root gate/provenance/statusfinalization; no done claim. Original pendingrecord/index/rawreports preserved before refresh;3owned release defers separate from0frontmatter findings."
     }
   ],
   "independent_review": {
     "status": "passed",
-    "evidence": "Configured broadRound1 all six original independent layers and triage78aaa6 immutable;8patches addressed4high4medium,mediumscore12,followuptrue;1reject0intent/badspec/defer. SameHigh original4ce83f7a required only Unicode testbindings; followup545293fa passed82offline checks. Later actual009 post-click timeout was narrowly repaired one realclick+absence; Highfb6bab7e passed42/42 and actual0091P. All007008body/helpers unchanged AST proof qualifiesactual2P reuse. No new broadround. Fresh checkpoint CI and final delivery evidence still pending."
+    "evidence": "All six original independent broadRound1 layers/triage78aaa6 preserved;8patches addressed4high4medium/mediumscore12/followuptrue/repair0. SameHigh source/SQL/binding Unicode followup545293fafc21976904457795e42e4fb04ff1aef06708f9b6bc0642af48aa2cd4 passed82offline checks;009followupfb6bab7e26130166df34ef44cf3e25a29587d88de83065f2e4f53a2f7a1e9b23 passed42/42 and qualified unchanged007/008 reuse, followed by actual0091P. Independent exactCI qualificationd5b0b28924ff7d830b670e78bc6fc1f59e5229a65da62f92fa3a827376be0f9b verifies11ownership bindings, source/head/attempt/jobs/native artifact digests and actual counts. This is no new broadreview or Root final-admission claim."
   },
   "deferred_release_validation": [
     {
@@ -80,9 +84,73 @@
       "item": "Representative scheduling performance thresholds/workloads certification",
       "owner": "Product/Architect",
       "status": "deferred",
-      "evidence": "Inherited representative workload/threshold gap; separate required configured pilot CI remains pending development evidence.",
+      "evidence": "Current exact-head configured pilot passed its narrow Admin-users read/permissions-CPU projection (25measurements/5warmups); it does not establish representative Scheduling recurrence/tenant workloads or release thresholds.",
       "next_action": "Agree representative recurrence/tenant workloads and thresholds, measure production build and record acceptance before release."
     }
   ],
-  "release_ready": false
+  "release_ready": false,
+  "CI_provenance": {
+    "run_id": 39335595653,
+    "run_attempt": 1,
+    "source_sha": "effbf5e18e19556d0fad231d3fc01369397c8402",
+    "release_validation": false,
+    "run_url": "https://github.com/rthunborg/Kopplas/actions/runs/39335595653",
+    "required_jobs": {
+      "checkpoint-admission": "success",
+      "verify": "success",
+      "db": "success",
+      "recovery-storage-loader": "success",
+      "e2e": "success"
+    },
+    "optional_jobs_skipped_not_coverage": [
+      "dashboard-e2e",
+      "native-stream-probe",
+      "fixed-chromium-paired-probe",
+      "fixed-chromium-application-verification"
+    ],
+    "qualification_sha256": "d5b0b28924ff7d830b670e78bc6fc1f59e5229a65da62f92fa3a827376be0f9b",
+    "qualification_MD_sha256": "c05a074b2066a9595518272a8bcc51eee40de4bdcc334bbf2601b123162b870e",
+    "manifest_sha256": "5f374e5c5b6ec4c534e775af0edfef3135e5d64b81e5a445a1d1933d5691dfe6"
+  },
+  "migration_byte_provenance": [
+    {
+      "file": "20261019180000_recurring_booking_series.sql",
+      "git_blob_sha256": "24f6982758c9f46c61d3f4fd34ebaaf599a809c8cf6c72e8223544aa73c9f1bd",
+      "frozen_local_file_sha256": "24f6982758c9f46c61d3f4fd34ebaaf599a809c8cf6c72e8223544aa73c9f1bd",
+      "frozen_local_file_matches": true,
+      "git_blob_equals_frozen_file_after_CRLF_normalization": true,
+      "local_CRLF_count": 0,
+      "git_blob_CRLF_count": 0
+    },
+    {
+      "file": "20261019220000_booking_series_integrity_followup.sql",
+      "git_blob_sha256": "57e7e9fc930513099b20759b84fd21c2b851f154effb8a0e45c198262da4a37d",
+      "frozen_local_file_sha256": "c55d1de17b3829e97212076d2627f5b22645126894a8deb7af4b80596b45b44d",
+      "frozen_local_file_matches": true,
+      "git_blob_equals_frozen_file_after_CRLF_normalization": true,
+      "local_CRLF_count": 176,
+      "git_blob_CRLF_count": 0
+    }
+  ],
+  "release_deferred_ledger_harvest": {
+    "path": ".env.epic15.mail-runtime/story-15-2-round1-author-fixes-25d131e9-9b87-4f9e-83cd-4c9bcfa2e330/release-deferred-p7-harvest-release-ledger-current.json",
+    "sha256": "e797e1530933af14cb099b235db5d390113730872e86b431fbed88a48641ee4c",
+    "status": "pendingRootP7harvest",
+    "target": "_bmad-output/auto-bmad/recovery/deferred-validation.md",
+    "target_observed_sha256": "75c62fa2e7fc31697c23439c92e6f06099185aad491aa77600a7963bba51089e",
+    "rows": 3,
+    "existing_row_mapping": {
+      "delivery0": [
+        7,
+        8
+      ],
+      "delivery1": [
+        9
+      ],
+      "delivery2": [
+        11
+      ]
+    },
+    "ledger_updated_by_author": false
+  }
 }

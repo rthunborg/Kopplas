@@ -1,7 +1,7 @@
 {
-  "status": "Round1-local-focused-and-targeted-review-complete-for-reviewed-checkpoint; exacthead-CI-pending-not-done",
+  "status": "development-done-by-explicit-Root-admission; release-ready-false",
   "baseline": "85755eb7cea3affdc77dbe1d30bb18279b614c5a",
-  "evidence_revision": null,
+  "evidence_revision": "effbf5e18e19556d0fad231d3fc01369397c8402",
   "kernel": {
     "sha256": "013b7ae0d0614d20dbc021885786ca1803976e10bd634ddc0bc3791b19de4ee1",
     "tasks": 9,
@@ -87,7 +87,7 @@
       "reapplied": false
     },
     "runtimeEndedByRoot": true,
-    "noFreshFullDBOrRLSClaim": true
+    "noFreshFullDBOrRLSClaim": "Historical local106 inspection is not a new suite; fresh exactheadCI fullDB/RLS is recorded separately in current_CI."
   },
   "actual_author_released_browser": {
     "strict007_009": {
@@ -148,11 +148,11 @@
     "noBroadRoundReset": true
   },
   "machineReader": {
-    "status": "in-review",
+    "status": "done",
     "autoRunResult": {
       "present": true,
-      "status": "in-review",
-      "blocking_condition": "Reviewed source checkpoint and fresh exact-head required CI (fullDB/RLS, empty migration+seed replay, physical recovery Storage and pilot performance) remain pending; no development-complete or done claim."
+      "status": "done",
+      "blocking_condition": null
     },
     "lastReviewPass": {
       "date": "2026-10-20",
@@ -250,14 +250,14 @@
     },
     {
       "path": "_bmad-output/test-artifacts/story15-2/build-review-order-round1-final.log",
-      "sha256": "4942070ecfb39cb2bac17a941b037fb35aadc590028dc1b68e9eb3833a91bf23"
+      "sha256": "7627256629aa8161f52332b6dec7248c2f86bb2b4315f37cd9acfafd00ff900d"
     },
     {
       "path": "_bmad-output/test-artifacts/story15-2/build-round1-canonical-reader.json",
-      "sha256": "5a8a4432c01e487e637678ea79890359dd6d605a798cfd831f3c5bcc39be8a4f"
+      "sha256": "688d83d66136b7734a4f57334c1f42526ba934409c4714e6fd8416bb39f627f7"
     }
   ],
-  "remaining": "Reviewed source checkpoint and fresh exacthead required standardCI/fullDB/RLS/empty replay/physicalRecoveryStorage/pilot then Root delivery evidence/gate. Historical skipped scaffolds/Storage are no coverage. No author Git/state/sprint/deployment writes or resource launches.",
+  "remaining": "Three release checks deferred; RootP7harvest pending. No development blocker after actual Root gate/provenance PASS and explicit status admission. No release/merge/deployment approval.",
   "inventory_metadata_correction": {
     "paths": 52,
     "product": 22,
@@ -273,5 +273,181 @@
     "noSourceOrTestChange": true,
     "noRuntimeOrTestsRerun": true,
     "repairLoopCounter0NoBadSpecRederivation": true
+  },
+  "current_CI": {
+    "run_id": 39335595653,
+    "run_attempt": 1,
+    "source_sha": "effbf5e18e19556d0fad231d3fc01369397c8402",
+    "release_validation": false,
+    "run_url": "https://github.com/rthunborg/Kopplas/actions/runs/39335595653",
+    "required_jobs": {
+      "checkpoint-admission": "success",
+      "verify": "success",
+      "db": "success",
+      "recovery-storage-loader": "success",
+      "e2e": "success"
+    },
+    "optional_jobs_skipped_not_coverage": [
+      "dashboard-e2e",
+      "native-stream-probe",
+      "fixed-chromium-paired-probe",
+      "fixed-chromium-application-verification"
+    ],
+    "qualification_sha256": "d5b0b28924ff7d830b670e78bc6fc1f59e5229a65da62f92fa3a827376be0f9b",
+    "qualification_MD_sha256": "c05a074b2066a9595518272a8bcc51eee40de4bdcc334bbf2601b123162b870e",
+    "manifest_sha256": "5f374e5c5b6ec4c534e775af0edfef3135e5d64b81e5a445a1d1933d5691dfe6",
+    "units": {
+      "pass": 2974,
+      "fail": 0,
+      "skip": 0
+    },
+    "process": {
+      "pass": 43,
+      "fail": 0,
+      "skip": 0
+    },
+    "fullDB": {
+      "total": 1879,
+      "pass": 1827,
+      "fail": 0,
+      "skip": 52,
+      "active15_2commandsPassed": 22,
+      "active15_2RLSPassed": 5
+    },
+    "RLS_nonadditive_subset": {
+      "pass": 800,
+      "fail": 0,
+      "skip": 14,
+      "files": 52
+    },
+    "directStorage": {
+      "pass": 1,
+      "fail": 0,
+      "skip": 0,
+      "physicalObjects": 2,
+      "bytes": 66
+    },
+    "emptyFirstAttemptReplay": {
+      "migrations": 106,
+      "jobs": [
+        "db",
+        "e2e",
+        "recovery-storage-loader"
+      ]
+    },
+    "AuthJobs": {
+      "pass": 11,
+      "fail": 0,
+      "skip": 0,
+      "flaky": 0,
+      "retry": 0,
+      "globalErrors": 0,
+      "schedulingCoverage": false
+    },
+    "pilot": {
+      "measurements": 25,
+      "warmups": 5,
+      "readP95ms": 14.010192,
+      "readThresholdMs": 250,
+      "permissionsCPUms": 5.945558,
+      "permissionsThresholdMs": 25,
+      "RLSrequestsPerRead": 2,
+      "requestThreshold": 3,
+      "representativeSchedulingReleaseCredit": false,
+      "privateFullQueryPlanUploaded": false
+    }
+  },
+  "migration_byte_provenance": [
+    {
+      "file": "20261019180000_recurring_booking_series.sql",
+      "git_blob_sha256": "24f6982758c9f46c61d3f4fd34ebaaf599a809c8cf6c72e8223544aa73c9f1bd",
+      "frozen_local_file_sha256": "24f6982758c9f46c61d3f4fd34ebaaf599a809c8cf6c72e8223544aa73c9f1bd",
+      "frozen_local_file_matches": true,
+      "git_blob_equals_frozen_file_after_CRLF_normalization": true,
+      "local_CRLF_count": 0,
+      "git_blob_CRLF_count": 0
+    },
+    {
+      "file": "20261019220000_booking_series_integrity_followup.sql",
+      "git_blob_sha256": "57e7e9fc930513099b20759b84fd21c2b851f154effb8a0e45c198262da4a37d",
+      "frozen_local_file_sha256": "c55d1de17b3829e97212076d2627f5b22645126894a8deb7af4b80596b45b44d",
+      "frozen_local_file_matches": true,
+      "git_blob_equals_frozen_file_after_CRLF_normalization": true,
+      "local_CRLF_count": 176,
+      "git_blob_CRLF_count": 0
+    }
+  ],
+  "release_deferred_ledger_harvest": {
+    "path": ".env.epic15.mail-runtime/story-15-2-round1-author-fixes-25d131e9-9b87-4f9e-83cd-4c9bcfa2e330/release-deferred-p7-harvest-release-ledger-current.json",
+    "sha256": "e797e1530933af14cb099b235db5d390113730872e86b431fbed88a48641ee4c",
+    "status": "pendingRootP7harvest",
+    "target": "_bmad-output/auto-bmad/recovery/deferred-validation.md",
+    "target_observed_sha256": "75c62fa2e7fc31697c23439c92e6f06099185aad491aa77600a7963bba51089e",
+    "rows": 3,
+    "existing_row_mapping": {
+      "delivery0": [
+        7,
+        8
+      ],
+      "delivery1": [
+        9
+      ],
+      "delivery2": [
+        11
+      ]
+    },
+    "ledger_updated_by_author": false
+  },
+  "source52_dependency_assessment": {
+    "evidence_revision": "effbf5e18e19556d0fad231d3fc01369397c8402",
+    "verified_raw_local_paths": 52,
+    "product": 22,
+    "schema": 2,
+    "testsOrFixtures": 28,
+    "hashMismatches": [],
+    "sourceChangesInFinalEvidenceRefresh": false,
+    "scope": "All source/test/schema inventory hashes equal pre-final-refresh/reviewed source. Four R1 UI paths changed before effbf5e1 and retain actual targeted007009/High dependency qualification; local earlier-flow reuse is scoped, no fresh whole-series/host claim. CI AuthJobs smoke remains separate.106localCRLF versus GitLF normalization is recorded, never treated as rawidentity."
+  },
+  "final_metadata_validation": {
+    "readerNative": 0,
+    "SROcheckerNative": 0,
+    "SROsections": 1,
+    "verifiedStops": 20,
+    "kernelSha256": "013b7ae0d0614d20dbc021885786ca1803976e10bd634ddc0bc3791b19de4ee1",
+    "kernelUnchanged": true,
+    "tasks": 9,
+    "ACs": 8,
+    "sourceAcceptanceAndDesignNotesUnchanged": true,
+    "preservation": ".env.epic15.mail-runtime/story-15-2-round1-author-fixes-25d131e9-9b87-4f9e-83cd-4c9bcfa2e330/final-ci-author-refresh-6aa5b5d5-9c56-4074-9acc-fdb1e43ee1c5/preservation.json",
+    "preservationSha256": "8520fdbb75fc3ce19c8f661619cc97ed03f086e33e4a5a485263bbb2ed389836",
+    "all11PreservedCopiesVerified": true,
+    "deliveryGateRunByAuthor": false,
+    "RootAdmissionPending": false,
+    "statusClosureReaderNative": 0,
+    "statusClosureSRONative": 0,
+    "source52unchangedAfterStatusClosure": true
+  },
+  "Root_final_admission": {
+    "deliverySha256": "c1d63ea5d6d610d6453852ef7a7e21c601d04d58e24faee55626a8b24d468576",
+    "gate": {
+      "reportedBy": "Root explicit final admission",
+      "native": 0,
+      "ok": true,
+      "development_complete": true,
+      "approval_granted": false
+    },
+    "independentHighProvenance": {
+      "path": ".env.epic15.mail-runtime/story-15-2-ci-effbf5e1-independent/delivery-provenance-final.md",
+      "sha256": "b88fc40faef8e3e3adc91538aa8b2589fa6cbdef1db9e0e764d5d0fd88d5755c",
+      "JSONpath": ".env.epic15.mail-runtime/story-15-2-ci-effbf5e1-independent/delivery-provenance-final.json",
+      "JSONsha256": "b3abb4f0b52a4161e543d5f0c23b08f2f030fa4bbb0a41e564904a59d9682b56",
+      "status": "passed"
+    },
+    "statusTransitionAuthorized": true,
+    "noNewTestsOrRuntime": true,
+    "preDonePreservation": {
+      "path": ".env.epic15.mail-runtime/story-15-2-round1-author-fixes-25d131e9-9b87-4f9e-83cd-4c9bcfa2e330/admitted-status-closure-7a1a7d6e-e8b0-44cb-b2ee-f6354d7642dd/preservation.json",
+      "sha256": "4953e187b3f473aa7579c9051c37c25e95d7d941926f4ce1e31fe0bf1979ce9e"
+    }
   }
 }
