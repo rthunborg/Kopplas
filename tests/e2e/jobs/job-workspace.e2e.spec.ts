@@ -73,6 +73,7 @@ async function openListedJob(page: Page, jobId: string, title: string) {
   const link = row.getByRole("link");
   await expect(link).toHaveAttribute("href", `/jobs/${jobId}`);
   await link.click();
+  await expect(page).toHaveURL(url => url.pathname === `/jobs/${jobId}`);
 }
 function cardAction(request: Request, jobId: string, title: string): Record<string, unknown> | null {
   if (request.method() !== "POST" || !request.headers()["next-action"]
@@ -434,6 +435,7 @@ test.describe("Story 16.5 essential job workspace", () => {
       await selectTab(page, "Översikt");
       await selectTab(page, "Arbetsorder");
       await page.getByTestId(`work-order-${b}`).getByRole("button", {name: "History child B", exact: true}).click();
+      await expect(page).toHaveURL(url => url.searchParams.get("workOrder") === b);
       await expect(pane.getByLabel("Rubrik", {exact: true})).toHaveValue("History child B");
       await page.goBack();
       expect(new URL(page.url()).searchParams.get("workOrder")).toBe(a);
@@ -442,9 +444,26 @@ test.describe("Story 16.5 essential job workspace", () => {
       // Returned shared-file consumer belongs to the restored child, never the previous child.
       await expect(pane.getByTestId(`entity-file-panel-work-order-${a}`)).toBeVisible();
       await expect(pane.locator('input[name="owner_id"]')).toHaveValue(a);
+      const unsentFile = pane.getByLabel("Välj en fil att ladda upp", {exact: true});
+      await unsentFile.setInputFiles({name: "unsent-child-A.txt", mimeType: "text/plain", buffer: Buffer.from("Unsent A evidence")});
+      await pane.getByLabel("Rubrik", {exact: true}).fill("Unsent child A with file");
+      const rejectedSelection = page.waitForEvent("dialog");
+      const tryB = page.getByTestId(`work-order-${b}`).getByRole("button", {name: "History child B", exact: true}).click();
+      const selectionWarning = await rejectedSelection;
+      expect(selectionWarning.type()).toBe("confirm");
+      await selectionWarning.dismiss();
+      await tryB;
+      await expect(page).toHaveURL(url => url.searchParams.get("workOrder") === a);
+      await expect(pane.getByLabel("Rubrik", {exact: true})).toHaveValue("Unsent child A with file");
+      expect(await unsentFile.evaluate(input => Array.from((input as HTMLInputElement).files ?? [], file => file.name))).toEqual(["unsent-child-A.txt"]);
+      await expect(pane.locator('input[name="owner_id"]')).toHaveValue(a);
       await selectTab(page, "Översikt");
       await selectTab(page, "Arbetsorder");
-      await page.getByTestId(`work-order-${b}`).getByRole("button", {name: "History child B", exact: true}).click();
+      const acceptedSelection = page.waitForEvent("dialog");
+      const chooseB = page.getByTestId(`work-order-${b}`).getByRole("button", {name: "History child B", exact: true}).click();
+      await (await acceptedSelection).accept();
+      await chooseB;
+      await expect(page).toHaveURL(url => url.searchParams.get("workOrder") === b);
       await pane.getByLabel("Rubrik", {exact: true}).fill("Unsent child B draft");
       const protection = page.waitForEvent("dialog");
       const back = page.goBack();
@@ -498,4 +517,74 @@ test.describe("Story 16.5 essential job workspace", () => {
       } finally {release(); await page.unroute("**/*", holdCreate);}
     });
   });
-});
+  test("[P0] 16.5-E05 accepted child navigation wins over a late real create completion", async ({resourcePage: page}) => {
+    await withWorkspaceFixture(async f => {
+      const jobId = f.jobs.editable.id, createdTitle = "Late create must not steal navigation";
+      await saveCard(f, jobId);
+      const b = await createWorkOrder(f.fx.plannerClient, jobId, {title: "Navigation winner B"});
+      await signIn(page, f.credentials.manager);
+      await page.goto(`/jobs/${jobId}?tab=work-orders`);
+      const panel = page.getByTestId("job-work-orders-panel"), pane = page.getByTestId("work-order-pane");
+      await panel.getByRole("button", {name: "Ny arbetsorder", exact: true}).click();
+      await pane.getByLabel("Rubrik", {exact: true}).fill(createdTitle);
+      let releaseCreate!: () => void, releaseNavigation!: () => void, createReady!: () => void, navigationReady!: () => void;
+      const heldCreate = new Promise<void>(resolve => {releaseCreate = resolve;});
+      const heldNavigation = new Promise<void>(resolve => {releaseNavigation = resolve;});
+      const createCommitted = new Promise<void>(resolve => {createReady = resolve;});
+      const navigationObserved = new Promise<void>(resolve => {navigationReady = resolve;});
+      let capturedCreate = false, capturedNavigation = false;
+      const destinations: string[] = [];
+      const holdActual = async (route: Route) => {
+        const request = route.request(), url = new URL(request.url());
+        if (url.pathname !== `/jobs/${jobId}`) {await route.continue(); return;}
+        if (!capturedCreate && request.method() === "POST" && request.headers()["next-action"]
+          && request.postData()?.includes(`"title":"${createdTitle}"`)) {
+          capturedCreate = true;
+          const reply = await route.fetch();
+          expect(reply.ok()).toBe(true);
+          createReady();
+          await heldCreate;
+          await route.fulfill({response: reply});
+        } else if (request.method() === "GET" && request.headers().rsc === "1" && url.searchParams.has("workOrder")) {
+          destinations.push(url.searchParams.get("workOrder")!);
+          if (!capturedNavigation && url.searchParams.get("workOrder") === b) {
+            capturedNavigation = true;
+            const reply = await route.fetch();
+            expect(reply.ok()).toBe(true);
+            navigationReady();
+            await heldNavigation;
+            await route.fulfill({response: reply});
+          } else await route.continue();
+        } else await route.continue();
+      };
+      await page.route("**/*", holdActual);
+      let choice: Promise<void> | undefined;
+      try {
+        await pane.getByRole("button", {name: "Skapa arbetsorder", exact: true}).click();
+        await createCommitted;
+        const consent = page.waitForEvent("dialog");
+        choice = page.getByTestId(`work-order-${b}`).getByRole("button", {name: "Navigation winner B", exact: true}).click();
+        expect((await consent).type()).toBe("confirm");
+        await (await consent).accept();
+        await navigationObserved;
+        await expect(pane.getByLabel("Rubrik", {exact: true})).toBeDisabled();
+        releaseCreate();
+        await expect(pane.getByTestId("work-order-save-status")).toBeAttached();
+        const created = (await readWorkOrders(f.fx.plannerClient, jobId)).rows.filter(row => row.title === createdTitle);
+        expect(created).toHaveLength(1);
+        await expect(page.getByTestId(`work-order-${created[0].id}`)).toHaveCount(1);
+        expect(destinations).toContain(b);
+        expect(destinations).not.toContain(created[0].id);
+        releaseNavigation();
+        await choice;
+        await expect(page).toHaveURL(url => url.pathname === `/jobs/${jobId}` && url.searchParams.get("workOrder") === b);
+        await expect(pane.getByLabel("Rubrik", {exact: true})).toHaveValue("Navigation winner B");
+        await expect(pane.getByLabel("Rubrik", {exact: true})).toBeEnabled();
+        expect((await readWorkOrders(f.fx.plannerClient, jobId)).rows.filter(row => row.title === createdTitle)).toHaveLength(1);
+      } finally {
+        releaseCreate(); releaseNavigation();
+        await choice?.catch(() => {});
+        await page.unroute("**/*", holdActual);
+      }
+    });
+  });});

@@ -145,6 +145,39 @@ Same independent Sol6.1 High reviewer qualified PASS on only the five-path runti
 
 Same independent Sol6.1 High reviewer qualified PASS on only the two-path test-binding repair SHA071e04ec0346be2d69a2ff90323ad17d78d399cf015ee951a2fa956ee6a8468d and all26 frozen bindings. Receipt SHA964e5672208ed220112c7598d13f241354b54ef006cc8a77032c50b89c519369. All11 static helper substitutions retain canonical functions/arguments; exact web-first pathname waiting does not weaken any assertion. Probe source/configuration/log provenance and its binding-only limitation were verified, including first wrong-expectation failure and withdrawn absent-log claim. Latest counts all0/follow-up false. No broad/external review was repeated; required new exact-head CI remains outstanding.
 
+### 2026-10-20 — Review pass
+- intent_gap: 0
+- bad_spec: 0
+- patch: 1: (high 0, medium 1, low 0)
+- defer: 0
+- reject: 0
+- addressed_findings:
+  - none
+
+Targeted High review rejected the intermediate history repair: requesting childB before dirty consent replaces the real current-child-only file projection, unmounting childA's selected upload before its passive guard can reject navigation. The earlier private probe supplied both panels and did not mount file descendants; its green result masked this production dependency. This is an open consequential patch, no qualified checkpoint. Actual source-derived review receipt SHA06b3b1bc8c65e9e7e969a4b4adbebeb098395a20490f4711171cd8bcebb7220a. Preserve this failed review and narrow proof limitation; repair must protect the actual A file island through refused navigation, then receive same-reviewer targeted recheck. No broad/external review or runtime acceptance was claimed.
+
+### 2026-10-20 — Review pass
+- intent_gap: 0
+- bad_spec: 0
+- patch: 1: (high 0, medium 1, low 0)
+- defer: 0
+- reject: 0
+- addressed_findings:
+  - none
+
+Same High critical follow-up verified the original refused-navigation file-loss is fixed, but rejected the checkpoint for one related remaining callback race: accepted navigationB leaves the originating draft key selected until commit; an outstanding createC completion still passes receive()'s old origin-key gate and can router.replace(C), stealingB. The pending fieldset blocks new input, not this already-running callback. Receipt SHA4006b8c50f5c3e8c0da73576f92e976f7795692d952625e6dd6d31846ae59d1e. The next correction must honor exact accepted navigation intent while retaining the actual created row/list/receipt and original late-create behavior. Preserve both failed targeted reviews and their private probe limitations; current open consequential patches1/follow-up true, no broad/external review or runtime pass.
+
+### 2026-10-20 — Review pass
+- intent_gap: 0
+- bad_spec: 0
+- patch: 0
+- defer: 0
+- reject: 0
+- addressed_findings:
+  - none
+
+Same independent High reviewer qualified PASS on the latest accepted-intent callback correction and relevant preconsent/file-lock dependencies. Receipt SHA69b4070d72bdfdca14e42fd1b6ed11e93573844ada8b53d905e354bdbc86faee; reviewed delta SHA6e19b44773dda5cb825588b2f6529eea85004facee3bd10b147ee0c531c91f5f, all26 bindings, both failed targeted-review receipts and32 SRO targets verified. ConfirmedC retains row/identity; acceptedB wins, failedB reconcilesC through live query. Both related source-derived findings are resolved; latest counts all0/follow-up false. No broad/external layers were rerun. Stand-in caller probes are not browser evidence; new exact-head E03/E04/E05 and full required CI remain necessary before delivery.
+
 ## Design Notes
 
 Owner-authorized maintainable defaults under current AGENTS: keep existing global navigation; use the design system for desktop tab navigation and mobile priority tabs plus Mer with accessible names, selected state and focus handling. Maintain stable authorized panel islands keyed by job/tab, or reuse explicit dirty/pending leave guards where mounting cannot be preserved; do not silently discard existing form state. No generic navigation/state framework or offline persistence is required.
@@ -176,6 +209,12 @@ The same revision actually passed verification2740/2740,0 skip,plus43 process ch
 
 Actual owned CI39471401065 at b26cf196c5c5fc0e6d7b2de9ed28dfbf58703ca3 passed verification2740/2740 with0skip plus43 process checks. Essential browser32 cases:28 expected,4 unexpected,0 flaky,0 skipped; all21 retained job journeys and7 authentication cases passed first attempt. Native SHA256 11a282fcb1edd308f998b2df87f0a006637581a8a56228b2a558e38fdf525096. All four workspace cases remain failed: E01 first attempt read /jobs immediately after the real list link click, before the expected detail transition; retry1 and every E02-E04 attempt hit the deeper job-semantics-atdd lazy import alias resolution. The earlier workspace-helper loading fix did not close the entire test execution graph. The materially simpler repair audits all workspace runtime imports together and qualifies actual no-resource runner execution; no incremental guessed alias fallback, decoder, authority change or assertion relaxation is approved. Browser completion remains required, no delivery/done claim. Final second-run outcome is failure solely in browser. The same revision actually passed full DB1880total/1879pass/0fail/1ordinary physical-recovery skip (native SHAda65c9030401f1265ed1f859d635b54b295504939a23b583f9fd07a279e0748d); separate physical recovery1/1pass/0skip (SHA278bb3f35902985dfc099be3af52711eb7d0b3a26b8604934c0fd5c6077c2747). Required pilot used5warmup/25measured, read p95=17.622676999999385ms and syntheticBulkEffectivePermissions p95=7.034692000000177ms. These are historical exact-head results, not repaired-workspace acceptance.
 
+## Runtime evidence - third checkpoint e34997cb
+
+Actual owned CI39474099331 at e34997cbdd9071949eccc6d6c49786376c5c6c61 failed only browser:32 cases,30 expected,2 unexpected,0 flaky,0 skipped. Workspace manager/header and privacy journeys E01/E02 now passed first attempt, as did all28 retained job/authentication journeys. Native SHA256 481b7e911e3d3503ea75ff08e78a03b25fec04175b045b7e6997297ea3341004. The remaining connected-flow invariants are essential: E03 both attempts observed no confirm dialog for Back after dirty-card re-entry; E04 restored URL childA but the pane retained childB, so later file-owner assertions were not reached. Actual guard/history/caller state requires causal correction; no functional deferral or lowered assertion is approved.
+
+The same revision actually passed verification2740/2740 with0skip plus43 process checks; full DB1880total/1879pass/0fail/1ordinary physical-recovery skip (native SHAb11bd5553e79e6eaa3ab607b5a0942ba37c58bf6d96877a14e6ce5fe98d2f9fc); dedicated physical recovery separately1/1pass/0skip (SHA1fb1586ab087bb965da317b883affb440abbe6861cf61118374387525943fcf0). Required pilot5warmup/25measured:read p95=9.511504000000059ms,syntheticBulkEffectivePermissions p95=3.282032000000072ms. These are historical exact-head results, not remaining workspace acceptance. Source/spec remain in-review; no delivery/done claim.
+
 ## Auto Run Result
 
 Status: in-review
@@ -184,7 +223,7 @@ Historical planning exit: ready-for-dev, three refined ACs/TR12; the explicit Ph
 Implemented the authorized five-tab workspace, safe header/events, independent consumer gates and connected navigation. Source baseline: f96256a066db7e38d482e4538f2a0ba2472cf4b8; local preservation checkpoint4562b3feecece4e36674242c7d95a8cbf5f5b5b7 retained the original reviewed candidate. No migration, new grant, AppShell, facts/proof or historical SQL change.
 Round1: eleven patch actions applied (high1/medium8/low2), zero deferred, three rejected. Original Round1 recommendation was true (patched severity score=3×8+2=26, with one high). Targeted independent High repair verification: qualified PASS; latest patched counts high0/medium0/low0, score0, follow-up recommendation false. Original first-pass score26 and eleven actions remain historical above.
 Actual local evidence after repair: controlled focused RED3fail then GREEN13pass/0fail/0skip; explicit TSC/lint/build and source/final-bundle containment native0; completed-build sequential unit2740total/2739pass/0fail/1Windows xattr skip; job-only Playwright collection25cases/6files, including four workspace journeys, no browser execution. One author Suggested Review Order,20 verified stops/0reference errors. Earlier withdrawn combined-shell TSC claim, transient unit/build race and missing local auth-fixture full-collection failure remain historical limitations, not passes.
-First exact-head CI39467187678 at ad9c3b79 failed browser (22expected/9unexpected/1flaky/0skip) while verification2740/2740, DB1879pass/1ordinary recovery skip, dedicated recovery1/1 and pilot performance passed. The bounded five-path repair has actual local static/build/collection native0 and independent High targeted qualified PASS; a new exact-head full required CI remains pending root. Second exact-head CI39471401065 at b26cf196 failed only the four workspace browser cases (28expected/4unexpected/0flaky/0skip); verification, full DB, dedicated recovery and pilot passed. The complete static test-binding/exact-route repair has same High targeted qualified PASS, actual TSC/lint native0 and binding probe1pass plus25/6 collection. No new production change; new exact-head required CI remains pending root. No development-complete, done, release-ready or deployment approval claim. Root executable delivery gate, independent provenance and explicit authorization remain required after real runtime evidence.
+First exact-head CI39467187678 at ad9c3b79 failed browser (22expected/9unexpected/1flaky/0skip) while verification2740/2740, DB1879pass/1ordinary recovery skip, dedicated recovery1/1 and pilot performance passed. The bounded five-path repair has actual local static/build/collection native0 and independent High targeted qualified PASS; a new exact-head full required CI remains pending root. Second exact-head CI39471401065 at b26cf196 failed only the four workspace browser cases (28expected/4unexpected/0flaky/0skip); verification, full DB, dedicated recovery and pilot passed. The complete static test-binding/exact-route repair has same High targeted qualified PASS, actual TSC/lint native0 and binding probe1pass plus25/6 collection. No new production change; new exact-head required CI remains pending root. Third exact-head CI39474099331/e34997cb passed verify/full DB/dedicated recovery/pilot but failed browser30expected/2unexpected/0flaky/0skip. Current guarded-selection/accepted-intent repair is same-High targeted qualified PASS after both related failed reviews; actual caller RED-to-GREEN, TSC/lint/build/containment native0 and job collection26/6. Workspace5/intended fullsmoke33; E03/E04/E05 actual browser remains pending new root exact-head CI. No development-complete, done, release-ready or deployment approval claim. Root executable delivery gate, independent provenance and explicit authorization remain required after real runtime evidence.
 
 
 ## Suggested Review Order
@@ -210,14 +249,26 @@ Schema still uses the allocated optional normal-client seam in the existing book
 - `src/components/jobs/JobWorkspaceShell.tsx:101` — `JobWorkspaceRetry`: refreshes the actual current URL without document unload.
 - `tests/e2e/jobs/job-traceability.e2e.spec.ts:107` — `getByRole("tabpanel"`: retains the file assertion against the actual consumer.
 
-### History and late completion preserve the selected child and tab
+### Pre-navigation consent, committed child identity and file drafts
 
-A changed child query reconciles the mounted pane through the existing dirty/pending confirmation and the current visible-child set. A refused transition restores the existing child query; an accepted restoration refreshes the corresponding file island. Creation completion retains the original draft key but derives its URL from the live query, preserving a subsequently chosen tab and unrelated return parameters.
+Fix-author rationale: existing-child dirty/pending consent precedes the child-specific RSC request, so rejectingB cannot remove A's selected file input. Accepted navigation keeps committed-query adoption; a one-use exact selected-key/target acknowledgement avoids duplicate passive confirmation. Standard React useTransition disables the native ancestor fieldset, including shared file controls, until the accepted route settles, preventing newer input after consent. Unused acknowledgement is cleared on settled nonmatching transition/unmount without resetting dirty state. No cached file node or new A-authority assumption exists; actual RSC file props remain authoritative. New draft/close, existing history entries and late creation are retained.
 
-- `src/features/jobs/job-workspace-domain.ts:31` — `reconcileJobWorkspaceChild`: separates unchanged, protected and visible-child restoration.
-- `src/components/jobs/JobWorkOrdersPanel.tsx:29` — `reconcileJobWorkspaceChild`: applies history changes through the existing protection.
-- `src/components/jobs/JobWorkOrdersPanel.tsx:65` — `jobWorkspaceChildHref`: adopts creation into the live query without tab takeover.
-- `tests/e2e/jobs/job-workspace.e2e.spec.ts:424` — `16.5-E04`: AC03 two-child Back/file ownership, dirty rejection and late real creation.
+- `src/components/jobs/JobWorkOrdersPanel.tsx:62` — `function select`: obtains consent before requesting another child's RSC props.
+- `src/components/jobs/JobWorkOrdersPanel.tsx:34` — `const approved`: consumes only the matching selected-key/target consent once.
+- `src/components/jobs/JobWorkOrdersPanel.tsx:22` — `useTransition`: tracks accepted route transition pending state.
+- `src/components/jobs/JobWorkOrdersPanel.tsx:102` — `fieldset disabled`: locks actual native file and form controls during accepted leave.
+- `tests/e2e/jobs/job-workspace.e2e.spec.ts:447` — `unsentFile`: retains A's native FileList, title and owner after refusingB.
+
+The intermediate route-first repair was rejected: the earlier both-panels hook probe masked unmounting of A's actual file island before passive consent. That failed review remains in Review Triage Log. The new actual-component probe first failed/native1 becauseB was requested with zero prompts, then passed/native0 with real A-only/B-only composition, refusal-before-request, accepted transition lock/single consent and nonmatching cleanup. React hooks/router/window/Pane are instrumented stand-ins; this is caller/closure evidence, not mounted descendant, browser, live authority or DB proof. Source C:/Users/Rasmus/AppData/Local/Temp/story-16-5-file-consent-caller-probe.cjs SHA1df73950f0c97616f0ec88b7a9d81f5638ee7950431f3e03712fc59cc7ba7a1e; red log SHAaf65a890e6f6d8c9fe0ccaee3672a79d3cab8326fd862ceb760876cff11c3066; green log SHA5f60eb7e43609216d5bb45e62d9dd69c8614b2496b374fec6217d928fbadc687, logs story-16-5-file-consent-caller-{red,green}.log in that directory. Persistent E04 selects a real unsent file and dirty title, refusesB and asserts native FileList/owner remainA, then explicitly acceptsB before all original Back/newer-draft/late-create assertions; those browser assertions remain unexecuted until CI.
+
+Preconsent-batch TSC, affected lint, workspace collection4/1, production build and final-build containment all native0; persisted story-16-5-file-consent-{typecheck,lint,collection,build,containment}.log files include native codes. E03 still waits for the exact real job route in shared list entry; all refresh/Back/SPA/refusal/persistence assertions and CardForm source remain unchanged. This synchronization cause is an inference pending runtime. Preserve third-run30expected/2unexpected and every earlier failure; no exact-head acceptance or delivery claim occurs here.
+
+Fix-author accepted-intent rationale: the successful create callback still retains the real projection, confirmed child ID and same draft key, preserving server-confirmed reconciliation rather than leaving an anonymous fresh create. It suppresses only created-child router navigation while an exact accepted origin/destination intent is active; B's committed query wins. If B settles without commit, it reconciles the already-confirmed C identity using the live tab/return query after clearing intent. Pre-request consent, fieldset lock and existing origin-key guard remain; no queue, cached payload, new authority or optimisticB is introduced.
+
+- `src/components/jobs/JobWorkOrdersPanel.tsx:93` — `Keep the confirmed identity/receipt`: retains C without stealing acceptedB navigation.
+- `tests/e2e/jobs/job-workspace.e2e.spec.ts:520` — `16.5-E05`: holds real create/B RSC replies and preserves durableC plus finalB.
+
+The actual-component callback probe produced production RED/native1 (C replaced acceptedB), then GREEN/native0 for acceptedB winning with confirmedC retained, failedB reconcilingC through live query, and ordinary late creation preserving later tab/return context. Explicit hook/router/window stand-ins and actual work-order domain functions prove caller state only, not browser/DB/receipt acceptance. Source C:/Users/Rasmus/AppData/Local/Temp/story-16-5-navigation-intent-caller-probe.cjs SHA32f64023f7424b91bf39f9a36bf6770679a50e99cfeec8aeee56670787868ab8; red log SHA28ba2759c3684c3d22da716f0d6a8404158d6fae4a5b907369d862741caf45f3; green log SHAa8da58991d20f1d3b4721e9c1973e7563aa1a2ee2625cfb390c6d9f151584a71, logs story-16-5-navigation-intent-caller-{red,green}.log in that Temp directory. A separate private launcher-only ERR_UNSUPPORTED_ESM_URL_SCHEME/native1 preceded file:/// correction and actual RED; startup log SHAff885f774b0a76608580fd276dc4e91342a60a012b6300bc7e2ae2433afc50dd, not a product failure. Current TSC/lint/build/containment and job-only collection26cases/6files all native0 with persisted explicit-code story-16-5-navigation-intent-{typecheck,lint,collection,build,containment}.log. New E05 retains existing E04 late-create-to-new-tab assertions: workspace5, collected jobs26, intended fullsmoke33. No new local auth collection or browser acceptance is claimed; exact-head E03/E04/E05 remain required.
 
 ### Persistent chrome, usable panel scrolling and card leave lifecycle
 
@@ -226,7 +277,7 @@ Fix-author rationale: I chose in-flow persistent chrome with a separate bounded 
 - `src/components/jobs/JobWorkspaceShell.tsx:21` — `useLayoutEffect`: fits the viewport and cleans up disclosure/resize listeners.
 - `src/components/jobs/JobWorkspaceShell.tsx:60` — `max-h-[50%]`: bounds persistent chrome without obscuring body controls.
 - `src/components/jobs/JobWorkspaceShell.tsx:93` — `job-workspace-content`: scrolls panels independently of header and navigation.
-- `tests/e2e/jobs/job-workspace.e2e.spec.ts:118` — `Persistent header opens`: checks actual header/modal and phone booking clicks.
+- `tests/e2e/jobs/job-workspace.e2e.spec.ts:119` — `Persistent header opens`: checks actual header/modal and phone booking clicks.
 - `src/components/jobs/JobCardForm.tsx:38` — `if (!leaveArmed) return`: retains dirty/pending route-exit protection.
 - `src/components/jobs/JobCardForm.tsx:89` — `setLeaveArmed(false)`: disarms only after actual server-confirmed save.
 
@@ -235,8 +286,8 @@ Fix-author rationale: I chose in-flow persistent chrome with a separate bounded 
 The original20 ATDD bodies remain active; three additional pure cases and one browser case target the causal fixes. E02 remains the admitted ordinary-member privacy scenario because existing leads legitimately receive crew-picker labels; existing16.2-E03 still exercises the changed route as a Sales lead, and RLS03 retains current-lead/revocation/stale-write boundaries. No new personal-label source, grant, transactional action or fixture weakening was introduced.
 
 - `tests/unit/features/jobs/job-workspace-domain.test.ts:101` — `16.5-D05`: AC03 visible child restoration versus protected draft.
-- `tests/e2e/jobs/job-workspace.e2e.spec.ts:118` — `Persistent header`: actual Boka/current-job editor, header scrolling and physical modal/tab pointer checks.
-- `tests/e2e/jobs/job-workspace.e2e.spec.ts:359` — `Only the card draft`: AC03 refresh/Back/SPA refusal, same-job retention and confirmed-save navigation.
+- `tests/e2e/jobs/job-workspace.e2e.spec.ts:119` — `Persistent header`: actual Boka/current-job editor, header scrolling and physical modal/tab pointer checks.
+- `tests/e2e/jobs/job-workspace.e2e.spec.ts:360` — `Only the card draft`: AC03 refresh/Back/SPA refusal, same-job retention and confirmed-save navigation.
 - `tests/integration/rls/job-workspace.rls.test.ts:53` — `16.5-RLS-03`: AC02 current lead loses workspace and stale writes after revocation.
 
 Actual fix-batch evidence (2026-10-20): focused RED3executed/0pass/3fail/0skip exposed capped1000-versus1003 events and missing history/adoption behavior; GREEN13executed/13pass/0fail/0skip. Explicit TSC and affected eslint native0; production build native0,12/12 static pages; source and final built-bundle containment native0. Final full units ran sequentially after build:2740total/2739pass/0fail/1skip. The existing Linux-xattr recovery skip is not passing local coverage and requires its independent CI recovery lane. Job-only Playwright collection native0:25cases in6files, workspace4 plus existing21; the complete smoke union is now32 including7auth, pending actual root CI setup. The traceability file's existing fixture-dependent setup was not fabricated for collection or execution.

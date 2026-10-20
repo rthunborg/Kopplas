@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
+import { useCallback, useEffect, useRef, useState, useTransition, type ReactNode } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import type { JobWorkOrdersProjection } from "@/server/read-models/job-work-orders";
 import { resolveWorkOrderCreateSelection, selectWorkOrderDependencyWarnings, canReceiveWorkOrderPaneProjection, type WorkOrderPaneSelection } from "@/features/jobs/work-orders-domain";
@@ -19,6 +19,8 @@ export function JobWorkOrdersPanel({jobId, initial, initialWorkOrderId, filesPan
     () => initialWorkOrderId ? {id: initialWorkOrderId, key: initialWorkOrderId} : null);
   const currentSelection = useRef<WorkOrderPaneSelection>(selected);
   const dirty = useRef(false);
+  const [navigating, startNavigation] = useTransition();
+  const approvedNavigation = useRef<{fromKey: string | null; fromId: string | null; id: string} | null>(null);
   const rememberDirty = useCallback((value: boolean) => { dirty.current = value; }, []);
   if (received !== initial) { setReceived(initial); setProjection(initial); }
   const requestedId = search.get("workOrder");
@@ -29,7 +31,10 @@ export function JobWorkOrdersPanel({jobId, initial, initialWorkOrderId, filesPan
     const resolution = reconcileJobWorkspaceChild({current: currentSelection.current, requestedId,
       visibleIds: projection.rows.map(row => row.id), protectedDraft: dirty.current});
     if (resolution.kind === "keep") return;
-    if (resolution.kind === "protect" && !window.confirm("Det finns osparade eller pågående ändringar. Vill du lämna utkastet?")) {
+    const approved = approvedNavigation.current?.id === requestedId
+      && approvedNavigation.current.fromKey === (currentSelection.current?.key ?? null);
+    approvedNavigation.current = null;
+    if (resolution.kind === "protect" && !approved && !window.confirm("Det finns osparade eller pågående ändringar. Vill du lämna utkastet?")) {
       router.replace(jobWorkspaceChildHref({jobId, workOrderId: currentSelection.current?.id ?? null,
         query: new URLSearchParams(window.location.search)}), {scroll: false});
       return;
@@ -41,7 +46,31 @@ export function JobWorkOrdersPanel({jobId, initial, initialWorkOrderId, filesPan
     // Native tab history does not fetch RSC data: refresh the admitted child's file island too.
     router.refresh();
   }, [requestedId, projection.rows, jobId, router]);
+  useEffect(() => {
+    const intent = approvedNavigation.current;
+    if (!navigating && intent && intent.id !== requestedId) {
+      approvedNavigation.current = null;
+      const confirmed = currentSelection.current;
+      // A failed destination must not leave an already-confirmed create anonymous.
+      if (confirmed?.key === intent.fromKey && confirmed.id && confirmed.id !== intent.fromId) {
+        router.replace(jobWorkspaceChildHref({jobId, workOrderId: confirmed.id,
+          query: new URLSearchParams(window.location.search)}), {scroll: false});
+      }
+    }
+  }, [navigating, requestedId, jobId, router]);
+  useEffect(() => () => {approvedNavigation.current = null;}, []);
   function select(id: string | null, create = false) {
+    if (navigating) return;
+    if (id) {
+      if (id === currentSelection.current?.id) return;
+      // Consent precedes the RSC request: its child-specific file props may otherwise
+      // unmount this pane's unsent file input before the committed-query effect runs.
+      if (dirty.current && !window.confirm("Det finns osparade eller pågående ändringar. Vill du lämna utkastet?")) return;
+      approvedNavigation.current = {fromKey: currentSelection.current?.key ?? null, fromId: currentSelection.current?.id ?? null, id};
+      startNavigation(() => router.replace(jobWorkspaceChildHref({jobId, workOrderId: id,
+        query: new URLSearchParams(window.location.search), activate: true}), {scroll: false}));
+      return;
+    }
     if (dirty.current && !window.confirm("Det finns osparade ändringar. Vill du lämna utkastet?")) return;
     dirty.current = false;
     const next = id || create ? {id, key: id ?? crypto.randomUUID()} : null;
@@ -61,13 +90,16 @@ export function JobWorkOrdersPanel({jobId, initial, initialWorkOrderId, filesPan
     if (!completion?.adopted || !createdId) return;
     currentSelection.current = completion.selection;
     setSelected(completion.selection);
+    // Keep the confirmed identity/receipt, but never steal an accepted destination.
+    if (approvedNavigation.current?.fromKey === originKey) return;
     const query = new URLSearchParams(window.location.search);
     router.replace(jobWorkspaceChildHref({jobId, workOrderId: createdId, query}), {scroll: false});
   }
   const missing = selected?.id && !projection.rows.some((row) => row.id === selected.id);
   const jobEdges = projection.dependencies.some((edge) => edge.dependent.jobId === jobId && edge.dependent.workOrderId === null);
   const jobWarnings = selectWorkOrderDependencyWarnings(projection.dependencyWarnings, {jobId, workOrderId: null}).length > 0;
-  return <section data-testid="job-work-orders-panel" aria-label="Arbetsorder" className="flex min-w-0 flex-col gap-4 rounded-lg border border-zinc-200 bg-white p-4">
+  return <section aria-busy={navigating} data-testid="job-work-orders-panel" aria-label="Arbetsorder" className="flex min-w-0 flex-col gap-4 rounded-lg border border-zinc-200 bg-white p-4">
+    <fieldset disabled={navigating} className="flex min-w-0 flex-col gap-4 border-0 p-0">
     <div className="flex flex-wrap items-center justify-between gap-3">
       <h2 className="text-lg font-semibold text-zinc-900">Arbetsorder</h2>
       {projection.canEditWorkOrders && <button type="button" className="min-h-11 rounded-md bg-blue-700 px-4 py-2 text-sm font-medium text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600" onClick={() => select(null, true)}>Ny arbetsorder</button>}
@@ -86,6 +118,7 @@ export function JobWorkOrdersPanel({jobId, initial, initialWorkOrderId, filesPan
         : <WorkOrderPane key={selected.key} jobId={jobId} workOrderId={selected.id} projection={projection} filesPanel={selected.id ? filesPanels[selected.id] : undefined} onReceive={(next, createdId) => receive(next, createdId, selected.key)} onDirtyChange={rememberDirty} />}
     </>}
     {(projection.canEditJobDependencies || jobEdges || jobWarnings) && <WorkOrderPane jobId={jobId} workOrderId={null} projection={projection} onReceive={receive} jobDependenciesOnly />}
+    </fieldset>
   </section>;
 }
 

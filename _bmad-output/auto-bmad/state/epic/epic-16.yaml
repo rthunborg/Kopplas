@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-16-jobs
 status: in-progress
-updated_at: "2026-10-20T18:21:42Z"
+updated_at: "2026-10-20T19:06:06Z"
 started_at: "2026-10-15T08:50:46Z"
 completed_at: null
 active_seconds: 26679
@@ -79,7 +79,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [0586972a, d6a310be, f610bcbd, 11bf2721, bce1436b, 5d5186e1cfb3e045db9ef101e1c6cf6b50133040, faeffcf6513d5d1703ae9d5a6271b01533899d4e, f3cf100709b92637270304e78a4356082b89e9a6, 1e8632db1ad051d117c38d2e24ed5d62fc2c8a57, 103ee03540e222dff1e54995726037819539b9dd, c44e5179bfcbc210de250eb92a48734561cc0fac, 9b54ad249a1ac4fb6f73c425c89b9b749855a939, 46b1b82983f415fdd2ed214138cbd437154469aa, 1152d5bda869cab97f8b64f0b2a56f72cb9ab0bd, 2d002970fcb112db8d480068443a0cce2577bd5b, 2920b920c0ff19122051f7ef987bc222331fb94a, dd7e54d0, 6260c5a2, 643274eb, 4b7d14c8, 0e382e96, 9d4584f7, f96256a0, 4562b3fe, ad9c3b79, b26cf196]
+commits: [0586972a, d6a310be, f610bcbd, 11bf2721, bce1436b, 5d5186e1cfb3e045db9ef101e1c6cf6b50133040, faeffcf6513d5d1703ae9d5a6271b01533899d4e, f3cf100709b92637270304e78a4356082b89e9a6, 1e8632db1ad051d117c38d2e24ed5d62fc2c8a57, 103ee03540e222dff1e54995726037819539b9dd, c44e5179bfcbc210de250eb92a48734561cc0fac, 9b54ad249a1ac4fb6f73c425c89b9b749855a939, 46b1b82983f415fdd2ed214138cbd437154469aa, 1152d5bda869cab97f8b64f0b2a56f72cb9ab0bd, 2d002970fcb112db8d480068443a0cce2577bd5b, 2920b920c0ff19122051f7ef987bc222331fb94a, dd7e54d0, 6260c5a2, 643274eb, 4b7d14c8, 0e382e96, 9d4584f7, f96256a0, 4562b3fe, ad9c3b79, b26cf196, e34997cb]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -96,7 +96,7 @@ retro:
   open_action_items: 0
 bmad_status_flipped_at: null
 pr_url: null
-ci_run_url: "https://github.com/rthunborg/Kopplas/actions/runs/39471401065"
+ci_run_url: "https://github.com/rthunborg/Kopplas/actions/runs/39474099331"
 ci_status: failed
 pr_merged: false
 merge_method: null
@@ -149,6 +149,8 @@ overrides:
   story16_5_runtime_causal_repair: "FirstCI ad9c3b79 failure preserved. Exact5path repair (Shell, workspaceE2E, jobsdepthE2E, workspacehelper, spec) replaces overlapping fixed/sticky chrome with separate panel scrolling; static fixture bindings fix actual Playwright alias loading; scoped title navigation and immediate body capture retain assertions. No authority/SQL/core changes; no force clicks/timeouts/retry widening. Native TSC/lint/build/containment/import4/jobcollection25 all0 (collection only). SRO27refs0errors. Same independent Sol6.1High targeted qualifiedPASS receiptBCA3DF0B395C3D2E75E4F691FC63E1D645EA0D85AC628EBCDCC30F15DD4D73F5. Final26file6new inventory66CF38607669CBB08744EF8E6E9FCB569A31762A819BE3122A69B0827ACB8C7E rootverified0mismatches;25non-spec unchangedafterreview; specinreview/followupfalse/frozenintentretained. NewactualCIrequired; no done/delivery claim."
   story16_5_ci_attempt_2: "Exact reviewed head b26cf196c5c5fc0e6d7b2de9ed28dfbf58703ca3; owned run39471401065 browserterminalFAILURE, DB stillrunning at capture. Verify2740pass0fail0skip+43process nativeSHA0621630FC2D608C80B12D73F79EAEA5A2807DB79C469FE2233113BF59F48E580; isolatedrecovery1/1pass0skip SHA278BB3F35902985DFC099BE3AF52711EB7D0B3A26B8604934C0FD5C6077C2747. Browser32cases28firstpass4workspaceunexpected0flaky0skip nativeSHA11A282FCB1EDD308F998B2DF87F0A006637581A8A56228B2A558E38FDF525096; all28retainedpassed. Proven actual workspace test-body lazy aliasimport failure and immediate routeassertion race. Materiallydifferent repair staticallybinds complete4helperfamilygraph/all11runtimeimports and webfirstURL afteractualclick; real no-browserworker bindingprobe separately executed. No product/source widening, no doneclaim."
   story16_5_runtime_binding_repair: "SecondCI39471401065 terminalFAIL solely4workspacebrowsercases;DB1880total1879pass0fail1ordinaryrecoverypending + separate1pass0skip;pilot5/25readp95=17.622676999999385ms bulkp95=7.034692000000177ms. Full testbody graph/all11lazyimports converted to same4canonicalstatichelperfamilies plus webfirstactualURL synchronization; no productchange. ActualPlaywrightworkerprobe1pass0fail(noDB/browser/server); initialwrongexpectedcodeprobe failurepreserved. TSC/lint native0 actualtoolreceipts, empty-output absentlogs explicitlycorrected;jobcollection25/6only. SameindependentHigh targetedqualifiedPASS SHA964E5672208ED220112C7598D13F241354B54EF006CC8A77032C50B89C519369. Final26file6new inventory5DF42E38F38C2704A25571B1445628AD4E9CC8DAFEAA0BC2D486B3A008BF3167 rootverified0mismatch,exact2changedE2E/spec;25nonspecunchangedafterreview. NewexactheadCIrequired,no doneclaim."
+  story16_5_ci_attempt_3: "Exacte34997cbdd9071949eccc6d6c49786376c5c6c61 run39474099331 terminalFAIL solely2workspacebrowsercases. Verify2740pass0skip+43process;DB1880total1879pass0fail1soleordinaryrecoverypending nativeB11BD5553E79E6EAA3AB607B5A0942BA37C58BF6D96877A14E6CE5FE98D2F9FC, separateRecovery1pass0skip native1FB1586AB087BB965DA317B883AFFB440ABBE6861CF61118374387525943FCF0;pilot5/25readp95=9.511504000000059ms bulkp95=3.282032000000072ms. Browser32total30firstpass2unexpected0flaky0skip native481B7E911E3D3503EA75FF08E78A03B25FEC04175B045B7E6997297EA3341004;workspaceE01/E02+all28retainedfirstpass. E03dialogtimeout and E04childBacktoHaveValue failbothattempts, newcausalHighinspection required. Requiredfunctionalguard/draftfailures not releasepolish;no doneclaim."
+  story16_5_navigation_intent_repair: "ThirdCI E04 proven URLA/paneB actualcaller RED1->GREEN0. Intermediate routefirstfix rejected by High for selectedfileloss (receipt06B3B1BC...); preconsentfix rejected for pendingcreateC stealing acceptedB (receipt4006B8C5...). Final bounded WO panel pre-request dirty/pending consent, transitionlock of actualcurrentform/file inputs, exactintent ackcleanup; confirmedC row retained without routing over acceptedB, failedB reconcilesC usinglivequery. No cache/ACL/page/CardForm widening. E03 real list helper awaits committedroute; guardnotchanged, remaining runtimeunproven. NewE05realheldcreate/Bresponse race retainsE04assertions; intendedworkspace5/jobs26/fullsmoke33. Actualmodule RED/GREEN callerproof limits explicit, initiallauncherfailure separate. TSC/lint/build/containment native0,collection26/6only,SRO32refs0errors. SameHigh targetedPASS69B4070D72BDFDCA14E42FD1B6ED11E93573844ADA8B53D905E354BDBC86FAEE; final26/6inventory80046CC70C57F72E38E7A2B4CBD17BDF0DBA33856902CFA00BA150A60F185C1D rootverified0mismatch,25nonspecunchangedafterreview. Exact3authorpaths,newactualCIrequired,no doneclaim."
 constraints:
   - "Use only owned E16 resources; E15 scheduling/time/diagnostic resources remain excluded."
   - "Each later story requires its approved plan, manifest compliance and precise path claims."
