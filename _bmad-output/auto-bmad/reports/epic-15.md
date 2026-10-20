@@ -2442,3 +2442,220 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Qualify actual staged raw diff contexts, commit/push Root metadata checkpoint and dispatch one exact-head CI run. Independent native Sol6.1 High route recorded before activation; Root sole poller.
+
+## Report — 2026-10-20T21:53:51Z (15.5 reviewed tenth checkpoint pushed; exact-head native run queued)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `be2c1a5`).
+**Pipeline status:** Normal checkpoint commit/push completed. ONE accepted native dispatch, run39503939856 attempt1 checkpoint066f8f2d-7192-4663-b62e-2dd495314754, release-validation=false. Independent High native qualifier activated under recorded route; Root sole poller. Current native acceptance PENDING.
+**Continues:** (none — first run)
+
+**Summary:** Postcommit verified all68 source raw/native/actualHEAD identities, capsule unchanged and tree clean at push. Proof322B SHAde7c48c67cb2ae9e035af479a5ef9f6d1810ab6cb447400ecbdabcc92080a268. Later Root-only state/report bookkeeping is separate; global cleanliness is not a later blanket claim.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 272h 56m (≈54h 27m AI-run, ≈218h 28m human/idle wait); resumed 69×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** Unrestricted staged native diff check EXIT2 retained solely30 frozen raw unified-context lines; every other15 staged paths including qualification receipt native0. High bounded artifact-format acknowledgment retained; no normalization/checker/config/hook bypass or unrestrictedPASS claim. Three broad cap; no deployment/main merge; review_unverified remains true.
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Qualify all five required jobs and exact-head source/reach/serial/recovery/privacy/custody evidence. Preserve failures and skipped counts honestly; no source writes before immutable terminal packet Root admission.
+
+## Report — 2026-10-20T21:57:14Z (15.5 tenth audit failure packet admitted; bounded security triage)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `be2c1a5`).
+**Pipeline status:** Tenth exact-head native run completed FAILURE at blocking dependency audit after install/lock verification passed. Observed pnpm audit --audit-level=high exit1, five vulnerabilities (one HIGH/four MODERATE), public advisory GHSA-587h-7wmj-h5pm. All later quality checks,95 feature cases,67 separate controls and database/browser/recovery lanes UNEXECUTED; zero runtime artifacts.
+**Continues:** (none — first run)
+
+**Summary:** Root independently verified all25 packet files plus self-manifest, actual membership, exact head/attempt/all9terminaljobs,68 source raw/native/actualsource+checkpoint blobs and immutable capsule. Admission1206B SHA488f277d104a5eb6fbb1e2e6cf82e181d47cd581f1fbadd6d34422950d70635d. Manifest4308/a9afcbb4…, qualification19081/fa67a9f9…, MD2942/52159f7d… retained unchanged. No runtime/private-data/cleanup/functional-cause credit.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 272h 59m (≈54h 27m AI-run, ≈218h 32m human/idle wait); resumed 70×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** No gate suppression/waiver, dependency update/install or source write authorized by read-only proposal. No fourth broad review, deployment or main merge. Earlier43database/14browserfailures remain unresolved. Nested checkpoint metadata reader initial AttributeError stopped before cmd_set; corrected JSON decoding only, no source/evidence changes.
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Recorded sensitive gpt-6.1-sol High security-dependency-bounded-remediation-planner route before dispatch. Author may inspect source/primary advisory/graph and write only NEW owned proposal metadata. Root coordinates shared package/lock ownership before any writes; independent High exact-delta review and actual gates remain required.
+
+## Report — 2026-10-20T22:01:33Z (15.5 High dependency candidate prepared; shared allocation pending)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `be2c1a5`).
+**Pipeline status:** High read-only proposal identifies minimal exact Vite8.1.0 to8.1.6 patch and required related lock closure; all scripts/other declarations and audit gates retained. Compatibility is unexecuted; current audit findings are not declared fixed. Root verified6+self proposal artifacts and7 current raw/native/checkpoint bindings, receipt810B SHAdf581aa0cac2c7314d43084854fae656f421eb43743be58cacd6b1d125af59c6.
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 273h 03m (≈54h 27m AI-run, ≈218h 36m human/idle wait); resumed 71×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** Coordinator withdrew failed200inventory absence statement; fresh100 unavailable too. No Documents owner absence/release inferred from those failures or retained finalized E20 history. No paused monitoring resumed; no foreign checkout or resource/provider effects. No gate waiver, fourth broad review, main merge or deployment.
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Exact candidate and baseline package/lock identities sent to Coordinator for actual current/prospective E16/Documents claims and explicit bounded allocation. Source/package/lock/install remain held. Fresh independent High exact-delta review, actual validation and native gates follow any admitted implementation.
+
+## Report — 2026-10-20T22:03:17Z (15.5 bounded dependency allocation verified; High build route recorded)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `be2c1a5`).
+**Pipeline status:** Actual Coordinator completed native grant reconciles E16current/prospective package/lock claims at protected7b220c5e, retainedDocuments20.3terminal and prior exclusive dependency-maintenanceCOMPLETE claims. Root verified actual grant arguments/candidate hash/base and all3 prewrite raw/nativeHEAD bindings. Accepted allocation5420B SHA61ce9199157fe35aaa2ce50e6c6bc67be221a3ebd8975fccc56b8f2f39d0f581.
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 273h 05m (≈54h 27m AI-run, ≈218h 38m human/idle wait); resumed 72×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** All scripts/other declarations/overrides/auditthreshold/workspace/toolchain/CI/schema/runtime/provider unchanged. Failed200/100inventory never establishes absence; actual terminal claims used. No pausedsession/monitorresume, foreigncheckout writes, fourth broad review, main merge or deployment. Current tenth later checks/runtime remain unexecuted.
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Recorded sensitive Sol6.1 High build-author-bounded-vite-security-patch route BEFORE dispatch. Exact3paths: Vite8.1.0 to8.1.6 declaration only, required pnpm resolved lock closure, own Spec author trail/SRO. Lock-only ignore-scripts resolution and frozen materialization allowed; unrelated churn stops/reconciles. Existing lock/audit/type/lint/67controls/build, distinct High exact-delta review and new exact-head native CI required.
+
+## Report — 2026-10-20T22:07:33Z (15.5 exact-three Vite security patch committed; fresh High review pending)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `55db468`).
+**Pipeline status:** Append-only exact3 source commit: package.json Vite8.1.6 pin, required pnpm lock closure, Spec author trail/SRO. Root verified all69 raw/native/actualHEAD source bindings,66 unchanged paths,42 normalization differences and26 ancestry commits (16author/10Root). Identity proof38071B SHA4435b2c1d01cef9e701ad22d412da260c5d7c4e857b48c0c098d96c1c794a499. Source/index clean; Root metadata dirt remains separate.
+**Continues:** (none — first run)
+
+**Summary:** Actual unchanged audit command exit0 with0High/2Moderate; verify-lockfiles/frozen materialization/typecheck/67controls0failed0skip0cancel/productionbuild/bundlecontainment/focusedlint0errors0warnings PASS. Canonical local lint INCOMPLETE/exit1 after author stopped only captured session73611 scanning retained ignored historical Playwright assets; no evidence/config/rules changes. Full canonical lint remains required in fresh clean CI. Spec in-review/SRO61/kernel5760 unchanged.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 273h 09m (≈54h 27m AI-run, ≈218h 42m human/idle wait); resumed 73×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** Current source not yet pushed or native-qualified. Earlier audit run failed with later checks/runtime unexecuted; prior43database14browserfailures unresolved. Three broad cap/no fourth broad. No deployment/mainmerge or foreigncheckout/resource/provider changes.
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Fresh distinct context-free Sol6.1 High exact committed latest3 review route recorded before parent activation. Freeze input and preserve original report/attestation. OnPASS eleventh capsule/Root admission/checkpointpush/ONE exact-head nativeCI.
+
+## Report — 2026-10-20T22:12:47Z (15.5 exact-three dependency High review PASS; eleventh freeze pending)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `55db468`).
+**Pipeline status:** Fresh distinct context-free Sol6.1 High exact committed latest3 review PASS/zero consequential findings. Primary patched applicability,78 required changed lock package/snapshot records, closure/integrities/platforms/peers, installed bundle evidence and unchanged scripts/gates/other declarations reviewed. Original report3671B SHA15c0bcaefd07b562e486a7ed9b1b87e17c98b2918664be3d85d88e83b4ac3e2d; attestation4149B SHA83e3b0eac5db734a957ecafd38cf47e1b53462ae53ee72f03e0e8a344ce0a0c4 independently hash-verified.
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 273h 14m (≈54h 27m AI-run, ≈218h 47m human/idle wait); resumed 74×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** Reviewer registryHTTP unavailable/no fresh tarball or install/test rerun; local evidence inspected, not newly executed. Dependency byte changes invalidate whole installed-runtime reuse. Canonical local lint remains INCOMPLETE/exit1; fresh full CI mandatory. Current source nativeUNEXECUTED/old43DB14browser unresolved. No Specdrift/fourth broad review/mainmerge/deployment.
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Metadata-only eleventh capsule preserving all10failedhistories/current69bindings and exact review originals; targeted newproducer lint plus stable parent check, then Root strict admission/checkpoint push/ONE freshnativeCI.
+
+## Report — 2026-10-20T22:17:06Z (15.5 eleventh capsule admitted; fresh dependency checkpoint pending)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `55db468`).
+**Pipeline status:** Root independent strict mechanical PASS native0: all500 references/421 unique,69 source raw/native/HEAD bindings42 differences,665 historical equalities,16author+10Root ancestry,146protected and69historicalprep unchanged,10oldcapsules/failedhistories.24metadata rows:12historicalrawuncredited plus12baseline-only/no raw observations. Capsule720807/fdf228c0…, parent3266/237aba0c…, Rootadmission f0a48332eb0b9c8664ef956408767e839d8bfe3b93800227eba76ec5ada95f04.
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 273h 19m (≈54h 27m AI-run, ≈218h 52m human/idle wait); resumed 75×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** Local canonical lint INCOMPLETE, fresh full CI lint required; new3producer lintPASS and verifierlintPASS. Current nativeUNEXECUTED; dependency changes invalidate wholeinstalledruntime reuse. All10failures retained; no fourthbroad, merge or deployment.
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Native sensitive High route recorded before activation. Stage/check raw frozen review evidence, checkpoint commit/push and one releasefalse CI dispatch; Root sole poller, independent High evidence qualification.

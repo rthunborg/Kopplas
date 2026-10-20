@@ -1,0 +1,26 @@
+{
+  "kind": "author-postimplementation-route-binding",
+  "source": "55db468eef3106ca1b02dc846ba12967a28dc238",
+  "baseline": "be2c1a535dff0e58b1579fe3db5890c7819916ab",
+  "implementation_route_recorded_before_handoff": "build-native-dependency-audit-repair/build-author-bounded-vite-security-patch",
+  "review_route_recorded_before_dispatch": "review-native-dependency-latest-three/independent-context-free-vite-security-lock-reviewer",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "exact_paths": [
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+    "package.json",
+    "pnpm-lock.yaml"
+  ],
+  "allocation": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-native-dependency-audit-repair-allocation.json",
+    "bytes": 5420,
+    "sha256": "61ce9199157fe35aaa2ce50e6c6bc67be221a3ebd8975fccc56b8f2f39d0f581"
+  },
+  "authored_after_implementation": true,
+  "does_not_claim_preedit_artifact_bytes": true,
+  "cap": 3,
+  "completed_broad_rounds": 3,
+  "latest_serious_fix_only": true,
+  "fourth_broad_review": false,
+  "scope": "Exact direct Vite8.1.0->8.1.6 pin and mechanically required closure only plus authorSpectrail. All scripts/auditthreshold/workspace/override/patch/otherdeclarations unchanged; no application/schema/data/authority/provider/resource effect. FreshnativeCI mandatory; highaudit success is not oldfeaturefailure remediation."
+}

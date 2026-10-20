@@ -1,0 +1,99 @@
+{
+  "kind": "current-source-and-readonly-context-native-bindings",
+  "head": "be2c1a535dff0e58b1579fe3db5890c7819916ab",
+  "author": "380c3e720d5caaa1dc2181d70737b9320337f451",
+  "proposed_write_paths": [
+    "package.json",
+    "pnpm-lock.yaml",
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"
+  ],
+  "bindings": [
+    {
+      "path": "package.json",
+      "role": "PROPOSED_FUTURE_WRITE_NOT_ALLOCATED",
+      "raw_bytes": 2352,
+      "raw_sha256": "51854ce2f0bdbbeb97fcc0b471bc2001cea047811a99830ed219fc497c3fda2f",
+      "actual_native_git_clean_oid": "598270905d8c52582bc2256fd9f103e03913942d",
+      "checkpoint_blob_oid": "598270905d8c52582bc2256fd9f103e03913942d",
+      "checkpoint_blob_bytes": 2299,
+      "checkpoint_blob_sha256": "832ce6962f5552b0eb1f68c8bc44b9f4b757ddfce7e7b1dc99ca05b31260d468",
+      "already_in_current68_source_union": true,
+      "protected37_consumer": false
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "role": "PROPOSED_FUTURE_WRITE_NOT_ALLOCATED",
+      "raw_bytes": 166878,
+      "raw_sha256": "532abe9d606d49daa060b41ebc91bc44b359291059b8832bed98233b65299ee2",
+      "actual_native_git_clean_oid": "74ec6fee4c984ecab29cf0b6cada7852e6db2bd9",
+      "checkpoint_blob_oid": "74ec6fee4c984ecab29cf0b6cada7852e6db2bd9",
+      "checkpoint_blob_bytes": 161963,
+      "checkpoint_blob_sha256": "4335f56b85f868b1ad7e84ec7fe4c820214195068e577dd91fff0cf6c3d47b84",
+      "already_in_current68_source_union": false,
+      "protected37_consumer": false
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "role": "PROPOSED_FUTURE_WRITE_NOT_ALLOCATED",
+      "raw_bytes": 108024,
+      "raw_sha256": "2eafca41b10338575a2dad114a333d999564254829b2e3bffbee96003dc6c065",
+      "actual_native_git_clean_oid": "571dc0bbb2ff3dfb71fdfa19aa13e5ef02b2531b",
+      "checkpoint_blob_oid": "571dc0bbb2ff3dfb71fdfa19aa13e5ef02b2531b",
+      "checkpoint_blob_bytes": 106886,
+      "checkpoint_blob_sha256": "50838c6116e14f5909b2580e10b4a10423b18f1b6b4766b211e1c0dfee79576d",
+      "already_in_current68_source_union": true,
+      "protected37_consumer": false
+    },
+    {
+      "path": "pnpm-workspace.yaml",
+      "role": "READONLY_PRESERVE_UNCHANGED_CONTEXT",
+      "raw_bytes": 434,
+      "raw_sha256": "2b4869ca8af5b97c391239705229bb8ee1459a01e75873a4c0f326bd67a2773e",
+      "actual_native_git_clean_oid": "102380cce74643d682e06df30c05a10e6aa37167",
+      "checkpoint_blob_oid": "102380cce74643d682e06df30c05a10e6aa37167",
+      "checkpoint_blob_bytes": 417,
+      "checkpoint_blob_sha256": "8aa3509d64e2ea496258100228fba8120bb754cab9a7c0c26ea1dc55b3c3df41",
+      "already_in_current68_source_union": false,
+      "protected37_consumer": false
+    },
+    {
+      "path": ".nvmrc",
+      "role": "READONLY_PRESERVE_UNCHANGED_CONTEXT",
+      "raw_bytes": 4,
+      "raw_sha256": "12d3a4efa6646b3ece4782f70033b9785bf0d167b553c43e22579b031cea5c4d",
+      "actual_native_git_clean_oid": "2bd5a0a98a36cc08ada88b804d3be047e6aa5b8a",
+      "checkpoint_blob_oid": "2bd5a0a98a36cc08ada88b804d3be047e6aa5b8a",
+      "checkpoint_blob_bytes": 3,
+      "checkpoint_blob_sha256": "f14b4987904bcb5814e4459a057ed4d20f58a633152288a761214dcd28780b56",
+      "already_in_current68_source_union": false,
+      "protected37_consumer": false
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "role": "READONLY_PRESERVE_UNCHANGED_CONTEXT",
+      "raw_bytes": 75339,
+      "raw_sha256": "ffeb2a7d6080b5d07e7aede44d850e123cd5eda2ef30d877780b8ce1aab7979d",
+      "actual_native_git_clean_oid": "bf3e201438bd06912e2fc908f001049c23ca356f",
+      "checkpoint_blob_oid": "bf3e201438bd06912e2fc908f001049c23ca356f",
+      "checkpoint_blob_bytes": 73870,
+      "checkpoint_blob_sha256": "0a7c1b210e87b020e882787869cae7b9fa314068f7d561e52dd14443495d57c7",
+      "already_in_current68_source_union": true,
+      "protected37_consumer": false
+    },
+    {
+      "path": "scripts/verify/check-lockfiles.mjs",
+      "role": "READONLY_PRESERVE_UNCHANGED_CONTEXT",
+      "raw_bytes": 3908,
+      "raw_sha256": "16cbe787300f864e539d81307812d758152c1dda4a96b8f11f115a920845e511",
+      "actual_native_git_clean_oid": "90dd817bf0563a03db597bdd0645802f4d30b077",
+      "checkpoint_blob_oid": "90dd817bf0563a03db597bdd0645802f4d30b077",
+      "checkpoint_blob_bytes": 3808,
+      "checkpoint_blob_sha256": "cf767dd947545c70765c1649bf0775b62515ef64f67e329813ef9e2f67279257",
+      "already_in_current68_source_union": false,
+      "protected37_consumer": false
+    }
+  ],
+  "future_source_union_if_exact_proposal_admitted": 69,
+  "protected109_and37_unchanged": true,
+  "allocation": "NOT_GRANTED_ROOT_COORDINATES_CURRENT_SHARED_PACKAGE_LOCK_AND_DOCUMENTS_OWNERSHIP"
+}

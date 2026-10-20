@@ -1,0 +1,84 @@
+{
+  "kind": "accepted-bounded-shared-dependency-security-repair-allocation",
+  "status": "GRANTED_BY_ACTUAL_COORDINATOR_NATIVE_HANDOFF_AND_ROOT_BASELINE_VERIFIED",
+  "base_head": "be2c1a535dff0e58b1579fe3db5890c7819916ab",
+  "candidate_proposal_sha256": "c412bef2926e43d0e9e62816d9cb11a7a286a8e3671ea1f63be6864fcb42c472",
+  "proposal_manifest_sha256": "5d9c8b5f72e3f77c3067d407fa0656c10fd80bfb60fef33ce9092d7efd908192",
+  "coordinator": {
+    "thread": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+    "actual_completed_turn": "01a15b55-2fa3-7dd2-b3b0-85188b7628d0",
+    "actual_completed_native_handoff": "exec-1aadaa95-afc1-4ed9-a71d-fed1143a1ad9",
+    "candidate_base_scope_verified_from_actual_arguments": true
+  },
+  "reconciled_owners": {
+    "E16": {
+      "thread": "01a13ebb-0847-7452-a25b-a878067e8516",
+      "protected_head": "7b220c5e8fe71a81c00ded9e654e8c5c96c2b878",
+      "actual_reply_item": "msg_00547986a7b40b0c016ad7e41f4fb881918510d3cd00d514af",
+      "claims": "Package/lock no pending edits or changes since passing CI;16.5 script-only; no dependency update planned. No vulnerability conclusion about E16 inferred."
+    },
+    "Documents": {
+      "thread": "01a11ae8-4100-7042-9c22-d1aca188e683",
+      "actual_terminal_turn": "01a13465-d9cb-71f1-9020-8d8b3d7224d5",
+      "handoff_head": "1fb9a3a",
+      "status": "20.3 ready for integration terminal; retained E20finalizedPR97-99 claims reconciled by coordinator, no active followup/paused session resumed"
+    },
+    "prior_exclusive_dependency": {
+      "thread": "01a11aeb-9946-7af3-b2ee-865c34db6c24",
+      "actual_terminal_turn": "01a11b28-2322-7692-8c6d-ad0d23013d50",
+      "status": "Maintenance lane complete;PR89 merged23c48b34c8a6c9158eeaf0edfca74e628d575cbc; no further development"
+    }
+  },
+  "failed_inventory_absence_evidence": "WITHDRAWN_UNAVAILABLE; actual completed claims/owner responses used, not failed200/100 inventory or idle alone",
+  "allowed_write_paths": [
+    "package.json",
+    "pnpm-lock.yaml",
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"
+  ],
+  "verified_prewrite_bindings": [
+    {
+      "path": "package.json",
+      "role": "PROPOSED_FUTURE_WRITE_NOT_ALLOCATED",
+      "raw_bytes": 2352,
+      "raw_sha256": "51854ce2f0bdbbeb97fcc0b471bc2001cea047811a99830ed219fc497c3fda2f",
+      "actual_native_git_clean_oid": "598270905d8c52582bc2256fd9f103e03913942d",
+      "checkpoint_blob_oid": "598270905d8c52582bc2256fd9f103e03913942d",
+      "checkpoint_blob_bytes": 2299,
+      "checkpoint_blob_sha256": "832ce6962f5552b0eb1f68c8bc44b9f4b757ddfce7e7b1dc99ca05b31260d468",
+      "already_in_current68_source_union": true,
+      "protected37_consumer": false
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "role": "PROPOSED_FUTURE_WRITE_NOT_ALLOCATED",
+      "raw_bytes": 166878,
+      "raw_sha256": "532abe9d606d49daa060b41ebc91bc44b359291059b8832bed98233b65299ee2",
+      "actual_native_git_clean_oid": "74ec6fee4c984ecab29cf0b6cada7852e6db2bd9",
+      "checkpoint_blob_oid": "74ec6fee4c984ecab29cf0b6cada7852e6db2bd9",
+      "checkpoint_blob_bytes": 161963,
+      "checkpoint_blob_sha256": "4335f56b85f868b1ad7e84ec7fe4c820214195068e577dd91fff0cf6c3d47b84",
+      "already_in_current68_source_union": false,
+      "protected37_consumer": false
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "role": "PROPOSED_FUTURE_WRITE_NOT_ALLOCATED",
+      "raw_bytes": 108024,
+      "raw_sha256": "2eafca41b10338575a2dad114a333d999564254829b2e3bffbee96003dc6c065",
+      "actual_native_git_clean_oid": "571dc0bbb2ff3dfb71fdfa19aa13e5ef02b2531b",
+      "checkpoint_blob_oid": "571dc0bbb2ff3dfb71fdfa19aa13e5ef02b2531b",
+      "checkpoint_blob_bytes": 106886,
+      "checkpoint_blob_sha256": "50838c6116e14f5909b2580e10b4a10423b18f1b6b4766b211e1c0dfee79576d",
+      "already_in_current68_source_union": true,
+      "protected37_consumer": false
+    }
+  ],
+  "package_scope": "ONLY devDependencies.vite exact8.1.0 to8.1.6. Preserve all scripts/other declarations.",
+  "lock_scope": "ONLY mechanically required Vite peer-key/integrity/transitive closure; admitted pnpm resolution authoritative. Candidate picomatch>=4.0.5/rolldown~1.1.5/matching platform bindings; unrelated churn STOP/reconcile. New69th authored source-union path explicit.",
+  "spec_scope": "Author trail and Suggested Review Order only; approved5760B kernel0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977 unchanged, in-review until qualified completion.",
+  "permitted_bounded_work": "High author exact3 source edits in own checkout; lock-only ignore-scripts resolution then frozen materialization; lock/audit/type/lint/67controls/build; append-only source commit excluding Root state/prep.",
+  "required_followup": "Fresh DISTINCT context-free Sol6.1 High exact committed latest3 delta review; tenth failed packet remains immutable; new capsule/root admission/checkpointpush/ONE exact-head nativeCI; no fourth broad review.",
+  "prohibited": "No overrides/audit-threshold/workspace/toolchain/scripts/CI/schema/app/data/authority/provider/secrets/foreign-checkout changes; no deployment/mainmerge/monitorresume/managedresources by this bounded allocation.",
+  "development_complete": false,
+  "release_ready": false
+}

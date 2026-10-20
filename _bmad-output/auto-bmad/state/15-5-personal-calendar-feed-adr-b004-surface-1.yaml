@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-20T21:52:01Z"
+updated_at: "2026-10-20T22:17:06Z"
 started_at: "2026-10-20T12:18:56Z"
 completed_at: null
 active_seconds: 3572
@@ -18,7 +18,7 @@ is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: native-owned-origin-checkpoint-qualification
+selected_phase: native-dependency-checkpoint-qualification
 selected_role: independent-exact-head-native-qualification
 selected_profile: sensitive
 selected_model: gpt-6.1-sol
@@ -26,7 +26,7 @@ selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Exact-head native tenant/public-token authority, SQL integrity, serial fixtures, privacy and custody qualification; independent High native evidence reader, Root sole poller, no source writes and no fourth broad review."
+escalation_reason: "Changed security-sensitive dependency bytes invalidate installed-runtime reuse; qualify fresh full audit/lint/unit/build/native tenant/public-token/RLS/serial/privacy/custody evidence for exact checkpoint. Independent High native reader, Root sole poller; no source writes/fourth broad."
 routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"High preparation for hashed public-feed tokens, rotation/revocation and tenant/member disclosure boundaries; plan-only before distinctvalidation and ownershipallocation\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct High independent specification validation of actual public-feed token/proof/IP/limiter authorization design and exact ownership/test-key boundaries before anybuild\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"cross_model_layer\",\"profile\":\"diverse_review\",\"role\":\"independent-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -72,6 +72,10 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Working native diagnostic transport still yields44 unknown leaves/43failed API-command-RLS cases. Add only closed already-owned call-site origin/outcome classification without payload capture, authority or test-semantic changes; sensitive privacy/error-integrity boundaries, exact4ownedpaths after rejectedinsufficient2labels.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build-native-owned-origin-diagnostic-repair\",\"profile\":\"sensitive\",\"role\":\"build-author-bounded-owned-issuance-and-assertion-origins\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Exact4 owned origin/outcome andRLS001 assertion-site diagnostic changes are privacy/authorization/error-integrity sensitive. Fresh independent committed latest-fix-only review of closedlabels/alreadyconsumedclassification/calleridentity/noassertionweakening; no fourthbroad or nativecause inference.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"review-native-owned-origin-latest-four\",\"profile\":\"sensitive\",\"role\":\"independent-context-free-owned-origin-and-rls-assertion-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Exact-head native tenant/public-token authority, SQL integrity, serial fixtures, privacy and custody qualification; independent High native evidence reader, Root sole poller, no source writes and no fourth broad review.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"native-owned-origin-checkpoint-qualification\",\"profile\":\"sensitive\",\"role\":\"independent-exact-head-native-qualification\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Actual blocking dependency audit GHSA-587h-7wmj-h5pm; sensitive vulnerability remediation requires primary advisory verification, exact graph/patch proposal and shared package/lock ownership before source writes. No audit gate weakening, broad fourth review or inferred runtime causes.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"plan-native-dependency-audit-repair\",\"profile\":\"sensitive\",\"role\":\"security-dependency-bounded-remediation-planner\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Actual blocking high-severity advisory; exact version/lock closure integrity and shared ownership require explicit High implementation. Actual coordinator grant and owner claims reconciled; preserve independent exact-delta High review/cap3 and all CI gates.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build-native-dependency-audit-repair\",\"profile\":\"sensitive\",\"role\":\"build-author-bounded-vite-security-patch\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Exact committed Vite security-advisory patch, supply-chain lock integrity/necessary closure, unchanged scripts/auditpolicy and compatibility are sensitive; require fresh distinct context-free High latest3 review, no fourth broad review. Canonical local lint incomplete; fresh CI full lint mandatory.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"review-native-dependency-latest-three\",\"profile\":\"sensitive\",\"role\":\"independent-context-free-vite-security-lock-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Changed security-sensitive dependency bytes invalidate installed-runtime reuse; qualify fresh full audit/lint/unit/build/native tenant/public-token/RLS/serial/privacy/custody evidence for exact checkpoint. Independent High native reader, Root sole poller; no source writes/fourth broad.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"native-dependency-checkpoint-qualification\",\"profile\":\"sensitive\",\"role\":\"independent-exact-head-native-qualification\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: "Hashed public tokens, rotation/revocation, externalfeed andcross-tenant abuseprotection requireHigh-riskATDD+automate; lastthreeno traceadvisory"
@@ -97,7 +101,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [159557e114f18123e73282c39c90830917de9948, c42b45abbca262ff79e26da479a3032d9015aeee, b940df85acfb2de36c0dcd5000a0039758f2b820, 3a1c3bc9fbf22b13c926179288a8b6eefe440c12, ae020f63a88089966b9323c55a36b6554f7e3900, 672099e9dc6569f4ac1cb9a967037e0d91df689c, aa5733116f20015cc3d14e1441d0eab232ecc9fd, 360fe850c18552f23a2bf74d8eda865431f0af38, 611c86295540161d31169110bf2139cf1d85d708, 9487c0d9, 2674b3f7, c5758058, a76fc492, 1cea5c4c, 3383a1eb, e91b366b, e472741a, c7570096, 4562cfd0, fae644b5, 33b595a8, e3f1c2e1, cba60486, e74cae6c, 3e7b6131a00e6c7b4d25c49373d8ba1c1eefe42f, 906f80f301d8034f8efe510018137195f3e4c4eb, 6dad688ec6a51143bfee902618bb88647a81c940, 380c3e720d5caaa1dc2181d70737b9320337f451]
+commits: [159557e114f18123e73282c39c90830917de9948, c42b45abbca262ff79e26da479a3032d9015aeee, b940df85acfb2de36c0dcd5000a0039758f2b820, 3a1c3bc9fbf22b13c926179288a8b6eefe440c12, ae020f63a88089966b9323c55a36b6554f7e3900, 672099e9dc6569f4ac1cb9a967037e0d91df689c, aa5733116f20015cc3d14e1441d0eab232ecc9fd, 360fe850c18552f23a2bf74d8eda865431f0af38, 611c86295540161d31169110bf2139cf1d85d708, 9487c0d9, 2674b3f7, c5758058, a76fc492, 1cea5c4c, 3383a1eb, e91b366b, e472741a, c7570096, 4562cfd0, fae644b5, 33b595a8, e3f1c2e1, cba60486, e74cae6c, 3e7b6131a00e6c7b4d25c49373d8ba1c1eefe42f, 906f80f301d8034f8efe510018137195f3e4c4eb, 6dad688ec6a51143bfee902618bb88647a81c940, 380c3e720d5caaa1dc2181d70737b9320337f451, be2c1a535dff0e58b1579fe3db5890c7819916ab, 55db468eef3106ca1b02dc846ba12967a28dc238]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -889,7 +893,7 @@ p5_native_scenario_boundary_readonly_triage:
   serial_native_evidence: "165filesonce;6serialonce nonoverlap after159parallel completions; no inventedteardown timestamp"
   frozen_failed_packet: "{\"files\": 31, \"manifest_bytes\": 5415, \"manifest_sha256\": \"50188e3faffbd79f2c7797c2e02a19d13e170eac3b6eaf694368c0c36263d3a5\", \"qualification_bytes\": 34076, \"qualification_sha256\": \"3b8ce08067544d8e00eb7a97333b0e3c9b0a2c47259f6a9f2ed5af5072251e86\", \"markdown_bytes\": 4001, \"markdown_sha256\": \"75ce2f092b061cbb18a1317b92bfe28805275d9f96121a5bd25dab411f70dab1\", \"root_admission_bytes\": 1227, \"root_admission_sha256\": \"1e15decb78fc9060562b7b0c2a0862c407440ec7224ca54896e54845dee02fb3\"}"
 p5_native_owned_origin_diagnostic_repair:
-  status: REVIEWED_TENTH_CAPSULE_ROOT_ADMITTED_CHECKPOINT_PENDING
+  status: HISTORICAL_TENTH_AUDIT_FAILURE_ALL_RUNTIME_UNEXECUTED_PACKET_ROOT_ADMITTED
   base_head: 6dad688ec6a51143bfee902618bb88647a81c940
   accepted_scope_path: "_bmad-output/auto-bmad/preparation/story-15-5/accepted-native-owned-origin-diagnostic-repair.json"
   accepted_scope_bytes: 4462
@@ -900,7 +904,7 @@ p5_native_owned_origin_diagnostic_repair:
   scope_decision: "Rejecttwofamily-onlylabels; boundedalreadyconsumedissuanceclass+4staticRLS001sites; no rawpayload/extraoperations/assertionweakening/sharedauthoritychange"
   native_limit: "Actual first native failing branches and all43causes stillUNKNOWN. Safe unavailable/denied tags localize a failed public/RPC-result contract, not SQL privilege/proof/auth/current-state cause. Pre-manage seed/setAuthority/unmapped errors may remainUNKNOWN. If unavailable/denied/uninstrumentedUNKNOWN remains, require named-gap targeted cause-proof proposal, not assumed opaque retry. No promise all43 diagnoses or immediate SQL cause."
   review_cap: 3
-  next: "Explicit staged format qualification, Root checkpoint commit/push, one exact-head CI dispatch release-validation=false and independent High native evidence qualification. Native current source remains unexecuted until run."
+  next: "Independent High bounded terminal evidence packet, then Root all-files/hash/source admission before any source write or cause-proof repair proposal."
   development_complete: false
   release_ready: false
   source_head: 380c3e720d5caaa1dc2181d70737b9320337f451
@@ -931,3 +935,43 @@ p5_native_owned_origin_diagnostic_repair:
   unique_artifact_paths: 376
   source_equalities: 597
   snapshots: "{\"uncredited_historical_raw\": 12, \"baseline_only_no_raw\": 9}"
+  checkpoint: "{\"head\": \"be2c1a535dff0e58b1579fe3db5890c7819916ab\", \"source\": \"380c3e720d5caaa1dc2181d70737b9320337f451\", \"run_id\": 39503939856, \"attempt\": 1, \"checkpoint_id\": \"066f8f2d-7192-4663-b62e-2dd495314754\", \"state\": \".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-be2c1a53-dispatch.json\", \"release_validation\": false, \"dispatches\": 1, \"phase\": \"completed\", \"url\": \"https://github.com/rthunborg/Kopplas/actions/runs/39503939856\", \"qualifier\": \"/root/native15_5_high\", \"root_sole_poller\": true, \"native_packet_directory\": \".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-be2c1a53-ci-independent/\", \"native_acceptance\": \"UNEXECUTED_REQUIRED_RUNTIME_JOBS_SKIPPED\", \"postcommit_proof_sha256\": \"de7c48c67cb2ae9e035af479a5ef9f6d1810ab6cb447400ecbdabcc92080a268\", \"conclusion\": \"failure\", \"jobs\": [{\"id\": 118908032753, \"name\": \"checkpoint-admission\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"id\": 118908066863, \"name\": \"verify\", \"status\": \"completed\", \"conclusion\": \"failure\"}, {\"id\": 118908221085, \"name\": \"e2e\", \"status\": \"completed\", \"conclusion\": \"skipped\"}, {\"id\": 118908221151, \"name\": \"recovery-storage-loader\", \"status\": \"completed\", \"conclusion\": \"skipped\"}, {\"id\": 118908221215, \"name\": \"db\", \"status\": \"completed\", \"conclusion\": \"skipped\"}, {\"id\": 118908221423, \"name\": \"fixed-chromium-application-verification\", \"status\": \"completed\", \"conclusion\": \"skipped\"}, {\"id\": 118908221706, \"name\": \"dashboard-e2e\", \"status\": \"completed\", \"conclusion\": \"skipped\"}, {\"id\": 118908221735, \"name\": \"native-stream-probe\", \"status\": \"completed\", \"conclusion\": \"skipped\"}, {\"id\": 118908221807, \"name\": \"fixed-chromium-paired-probe\", \"status\": \"completed\", \"conclusion\": \"skipped\"}], \"terminal_facts_sha256\": \"5fb0ff4e50578ac57dcd35ab562f5ad73e93549ef3b9b1288d67188bedaec380\", \"failure_cause\": \"PENDING_INDEPENDENT_TERMINAL_PACKET\"}"
+  staged_format: "{\"unrestricted_native_exit\": 2, \"exact_single_0x20_contexts\": 30, \"all_other15_paths_native_exit\": 0, \"qualification_receipt_sha256\": \"07a769064f30bb143d1388c48bbafc3454df86d11829abaf4a9d88ff6b80ef3a\"}"
+  root_metadata_reader_stop: "Nested checkpoint came back serialized JSON string; initial update stopped AttributeError before cmd_set/writes. Corrected only metadata reader to decode checkpoint before update; no source/evidence mutation."
+  historical_record: true
+  superseded_by: p5_native_dependency_audit_repair
+  terminal_packet_admission_sha256: 488f277d104a5eb6fbb1e2e6cf82e181d47cd581f1fbadd6d34422950d70635d
+p5_native_dependency_audit_repair:
+  status: REVIEWED_ELEVENTH_CAPSULE_ROOT_ADMITTED_CHECKPOINT_PENDING
+  base_head: be2c1a535dff0e58b1579fe3db5890c7819916ab
+  source_head: 55db468eef3106ca1b02dc846ba12967a28dc238
+  run_id: 39503939856
+  attempt: 1
+  actual_stop: "verify step8 Audit dependencies (blocking, high severity)"
+  actual_summary: "{\"total\": 5, \"high\": 1, \"moderate\": 4, \"exit_code\": 1, \"public_advisory\": \"GHSA-587h-7wmj-h5pm\", \"transport_error_observed\": false}"
+  current_native: "UNEXECUTED55; prior auditfailure and43DB14browser failures retained"
+  root_packet_admission: "{\"path\": \".env.epic15.mail-runtime/story-15-5-preparation/root-failed-be2c1a53-packet-admission.json\", \"bytes\": 1206, \"sha256\": \"488f277d104a5eb6fbb1e2e6cf82e181d47cd581f1fbadd6d34422950d70635d\"}"
+  immutable_packet: "{\"directory\": \".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-be2c1a53-ci-independent/\", \"files\": 25, \"manifest_sha256\": \"a9afcbb4ebaa008228f76641aa1068e274bbcb4c719e86bcac7f40a1d0bdc7ba\", \"qualification_sha256\": \"fa67a9f9eda576bc85f1969b4ede1ccf7413ee310543fe496dc4e12684e8e825\", \"markdown_sha256\": \"52159f7d1202d38f1b855467b4f506612896742b264abb20710263703d725f35\"}"
+  write_scope: "EXACT3 highauthor source+boundedlockresolution/materialization/validation in ownedcheckout; unrelatedchurnSTOP; Rootmetadata excluded"
+  next: "Actual staged raw-context qualification, normal checkpoint commit/push, ONE releasefalse exact-head CI dispatch; independent High native qualification of current stack, no installed-runtime PASS reuse."
+  development_complete: false
+  release_ready: false
+  candidate: "{\"version_change\": \"devDependencies.vite exact8.1.0 ->8.1.6 only\", \"write_paths\": [\"package.json\", \"pnpm-lock.yaml\", \"_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md\"], \"scope\": \"Scripts/other declarations unchanged; only required Vite/peer/integrity/transitive lock closure; unrelated churn stops/reconciles. Spec trail/SRO only, kernel unchanged.\", \"author_primary_source_conclusion\": \"GHSA-587h-7wmj-h5pm affected8.0.0-8.1.5/patched8.1.6; bundled launch-editor update requires Vite patch, standalone override insufficient.\", \"compatibility\": \"UNEXECUTED; Vitest range compatibility inference, Node engine unchanged per High author\", \"manifest_sha256\": \"5d9c8b5f72e3f77c3067d407fa0656c10fd80bfb60fef33ce9092d7efd908192\", \"proposal_sha256\": \"c412bef2926e43d0e9e62816d9cb11a7a286a8e3671ea1f63be6864fcb42c472\", \"source_bindings_sha256\": \"9259deff40cc2c0e8f6121e46b6a368788d296763b918bc389cc8d27a1519fbc\", \"root_identity_receipt_sha256\": \"df581aa0cac2c7314d43084854fae656f421eb43743be58cacd6b1d125af59c6\", \"prospective_source_paths\": 69, \"implementation_install_authorized\": false, \"allocation\": \"PENDING_ACTUAL_CURRENT_PROSPECTIVE_E16_DOCUMENTS_CLAIMS_AND_BOUNDED_GRANT\", \"coordinator_thread\": \"01a1160d-b5b1-7623-a8e8-54ef3dc537ed\", \"failed_inventory_limit\": \"200 and fresh100 unavailable; no absence inferred. Successful30 alone cannot release Documents prospective claims.\"}"
+  accepted_allocation: "{\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/accepted-native-dependency-audit-repair-allocation.json\", \"bytes\": 5420, \"sha256\": \"61ce9199157fe35aaa2ce50e6c6bc67be221a3ebd8975fccc56b8f2f39d0f581\"}"
+  current_ownership: "ACTUAL_COORDINATOR_GRANT_NATIVE_COMPLETED_TURN01a15b55-2fa3-7dd2-b3b0-85188b7628d0; E16protected7b220c5e/Docs20.3terminal/prior maintenanceCOMPLETE reconciled; no failedinventoryabsence inference"
+  implementation_milestone: "{\"status\": \"LOCK_ONLY_RESOLUTION_PASS_FROZEN_MATERIALIZATION_AND_CHECKS_PENDING\", \"reported_by\": \"/root/build15_5_high\", \"pnpm\": \"10.24.0\", \"resolved_versions\": {\"vite\": \"8.1.6\", \"picomatch\": \"4.0.7\", \"rolldown\": \"1.1.5\", \"@oxc-project/types\": \"0.139.0\"}, \"matching_rolldown_platform_bindings\": 15, \"preserved\": \"scripts/overrides/postcss8.5.23 and unrelated versions unchanged perHighauthor\", \"unrelated_churn_observed\": false, \"native_acceptance_credit\": false}"
+  source_delta_base: be2c1a535dff0e58b1579fe3db5890c7819916ab
+  source_count: 69
+  raw_normalized_differences: 42
+  unchanged_source_paths_since_tenth: 66
+  author_commits: 16
+  root_commits: 10
+  root_identity_proof: "{\"path\": \".env.epic15.mail-runtime/story-15-5-preparation/root-55db468e-source-path-admission.json\", \"bytes\": 38071, \"sha256\": \"4435b2c1d01cef9e701ad22d412da260c5d7c4e857b48c0c098d96c1c794a499\"}"
+  local_checks: "{\"node_passed\": 67, \"failed\": 0, \"skipped\": 0, \"cancelled\": 0, \"audit\": {\"exit\": 0, \"high\": 0, \"moderate\": 2, \"policy_changed\": false}, \"lock_only_resolution\": \"PASS\", \"frozen_ignore_scripts_materialization\": \"PASS\", \"verify_lockfiles\": \"PASS\", \"typecheck\": \"PASS\", \"production_build\": \"PASS\", \"bundle_containment\": \"PASS\", \"focused_lint\": \"PASS0errors0warnings\", \"canonical_local_lint\": \"INCOMPLETE_NOT_PASS_owned_session73611_CtrlC_exit1_retained_ignored_historical_Playwright_assets; cleanCIcanonical_required\", \"native_staged_diff_check\": 0, \"SRO\": 61, \"kernel\": \"UNCHANGED5760B0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977\", \"no_current_native_acceptance\": true, \"initial_functional_failures\": \"NONE_REPORTED; local canonical lint incompletion retained\"}"
+  current_review: "{\"status\": \"PASS_ZERO_CONSEQUENTIAL_FINDINGS\", \"source_head\": \"55db468eef3106ca1b02dc846ba12967a28dc238\", \"before\": \"be2c1a535dff0e58b1579fe3db5890c7819916ab\", \"model\": \"gpt-6.1-sol\", \"effort\": \"high\", \"fresh_distinct_context_free\": true, \"latest_fix_only\": true, \"completed_broad_rounds\": 3, \"fourth_broad_review\": false, \"required_lock_package_snapshot_records\": 78, \"report\": {\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/native-dependency-audit-repair-review/original-review.md\", \"bytes\": 3671, \"sha256\": \"15c0bcaefd07b562e486a7ed9b1b87e17c98b2918664be3d85d88e83b4ac3e2d\"}, \"attestation\": {\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/native-dependency-audit-repair-review/original-review-attestation.json\", \"bytes\": 4149, \"sha256\": \"83e3b0eac5db734a957ecafd38cf47e1b53462ae53ee72f03e0e8a344ce0a0c4\"}, \"canonical_local_lint\": \"INCOMPLETE_EXIT1_NOT_PASS_FRESH_CANONICAL_CI_REQUIRED\", \"reviewer_limits\": \"Registry HTTP unavailable; no fresh tarball/install or test rerun. Local evidence inspected, no current nativecredit. Changed dependency bytes invalidate whole installed-runtime reuse.\", \"native\": \"UNEXECUTED_CURRENT55\", \"old_runtime_failures\": \"43DB14browser unresolved\"}"
+  capsule: "{\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-native-dependency-audit-repair.json\", \"bytes\": 720807, \"sha256\": \"fdf228c001e59f666cf362c5ee847513a90b101fb2c0188f5d8932a0d27912cd\"}"
+  parent_check: "{\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-native-dependency-audit-repair-parent-check.json\", \"bytes\": 3266, \"sha256\": \"237aba0c395a1d8037b04e106a7afb1358f2875e38ab18ebf6cc907733a16af5\"}"
+  root_admission_sha256: f0a48332eb0b9c8664ef956408767e839d8bfe3b93800227eba76ec5ada95f04
+  artifact_reference_occurrences: 500
+  unique_artifact_paths: 421
+  historical_equalities: 665
