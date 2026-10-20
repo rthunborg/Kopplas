@@ -12,7 +12,7 @@
  * playwright-utils: configured true, actual package absent; two-gate mandate inactive.
  * Deviations: existing resourcePage fixture/login, test.step, bounded expect.poll,
  * exact real-action waitForResponse and one-shot transport abort (E03 only).
- * No browser/service/DB work at collection; existing setup imports are lazy.
+ * No browser/service/DB work at collection; real setup bindings use the static runner loader.
  * API/RLS suites own full revocation, foreign-child, forbidden-reader, money and
  * booking/proof matrices. These three journeys are essential usable flow only.
  * Broad visual/manual/device/browser matrices remain release validation.
@@ -20,6 +20,10 @@
 import { test, expect } from "../support/resource-cdp-attachment";
 import type { Dialog, Locator, Page, Request, Route } from "@playwright/test";
 import { withWorkspaceFixture, readWorkspaceEvents } from "../../support/job-workspace-atdd";
+import { saveCard, upgradeInput, upgradeJob, jobSemanticsSnapshot } from "../../support/job-semantics-atdd";
+import { createWorkOrder, readWorkOrders } from "../../support/work-orders-atdd";
+import { seedMember, readMembers } from "../../support/job-members-atdd";
+import { bookingCommand, bookingInput } from "../../support/bookings-atdd";
 
 type TabName = "Översikt" | "Arbetsorder" | "Schema" | "Filer" | "Händelser";
 // playwright-utils deviation: existing bounded hydration predicate; no fixed waits.
@@ -47,7 +51,7 @@ async function selectTab(page: Page, name: TabName) {
   await expect(page.getByRole("tabpanel", { name, exact: true })).toBeVisible();
 }
 async function identity(page: Page, jobId: string, title: string) {
-  expect(new URL(page.url()).pathname).toBe(`/jobs/${jobId}`);
+  await expect(page).toHaveURL(url => url.pathname === `/jobs/${jobId}`);
   const header = page.getByTestId("job-workspace-header");
   await expect(header).toBeVisible();
   await expect(header.getByRole("heading", { name: title, exact: true })).toBeVisible();
@@ -86,14 +90,10 @@ function cardAction(request: Request, jobId: string, title: string): Record<stri
 test.describe("Story 16.5 essential job workspace", () => {
   test("[P0] 16.5-E01 manager desktop keeps real header/overview and all five consumers, shared job file and server-confirmed edit across reload", async ({ resourcePage: page }) => {
     await withWorkspaceFixture(async f => {
-      const { saveCard, upgradeInput, upgradeJob, jobSemanticsSnapshot } = await import("../../support/job-semantics-atdd");
-      const { createWorkOrder } = await import("../../support/work-orders-atdd");
-      const { seedMember } = await import("../../support/job-members-atdd");
       const jobId = f.jobs.both.id, title = `Workspace ${jobId}`;
       await saveCard(f, jobId, { title, responsible_project_manager_id: f.fx.coworkerProfile.id });
       await seedMember(f, jobId, f.fx.ownProfile.id, true);
       const child = await createWorkOrder(f.fx.plannerClient, jobId, { title: "Actual workspace work order" });
-      const {bookingCommand, bookingInput} = await import("../../support/bookings-atdd");
       const cancelled = await bookingCommand("create", f.fx.adminClient, bookingInput([f.fx.ownProfile.id], {
         jobId, description: "Cancelled workspace interval", status: "cancelled", startsAt: "2026-10-25T06:00:00Z", endsAt: "2026-10-25T07:00:00Z",
       }));
@@ -218,9 +218,6 @@ test.describe("Story 16.5 essential job workspace", () => {
 
   test("[P0] 16.5-E02 phone current member reads own booking subset, denied files fall back, and private PL/money/event payloads stay absent", async ({ resourcePage: page }) => {
     await withWorkspaceFixture(async f => {
-      const { saveCard } = await import("../../support/job-semantics-atdd");
-      const { seedMember, readMembers } = await import("../../support/job-members-atdd");
-      const { bookingCommand, bookingInput } = await import("../../support/bookings-atdd");
       const jobId = f.jobs.both.id, title = `Private worker workspace ${jobId}`;
       await saveCard(f, jobId, { title, responsible_project_manager_id: f.fx.coworkerProfile.id });
       await seedMember(f, jobId, f.fx.ownProfile.id);
@@ -292,8 +289,6 @@ test.describe("Story 16.5 essential job workspace", () => {
     { annotation: [{ type: "skipNetworkMonitoring", description: "One exactly identified card action is aborted before persistence, then retried against the real server" }] },
     async ({ resourcePage: page }) => {
       await withWorkspaceFixture(async f => {
-        const { saveCard } = await import("../../support/job-semantics-atdd");
-        const { createWorkOrder } = await import("../../support/work-orders-atdd");
         const jobId = f.jobs.editable.id, title = `Navigation ${jobId}`;
         await saveCard(f, jobId, { title });
         const child = await createWorkOrder(f.fx.plannerClient, jobId, { title: "Document-return child" });
@@ -428,8 +423,6 @@ test.describe("Story 16.5 essential job workspace", () => {
     });
   test("[P0] 16.5-E04 two-child back restores identity and files; late real create retains current tab and query", async ({resourcePage: page}) => {
     await withWorkspaceFixture(async f => {
-      const {saveCard} = await import("../../support/job-semantics-atdd");
-      const {createWorkOrder, readWorkOrders} = await import("../../support/work-orders-atdd");
       const jobId = f.jobs.editable.id;
       await saveCard(f, jobId);
       const a = await createWorkOrder(f.fx.plannerClient, jobId, {title: "History child A"});
