@@ -706,13 +706,76 @@ started locally. Distinct High exact-committed latest-delta review and new
 exact-head CI remain pending. Status stays in-review, no delivery/DONE/release
 claim, and the intent kernel is unchanged.
 
+### Native settlement and browser diagnostic repair — sixth failed checkpoint
+
+Checkpoint `fae644b5349744a531008e2224ca3a08d596836e`, run
+`39474891873` attempt 1, remains **failed**. Verify passed 3105 Node cases,
+including 30 feature and 33 separate wrapper cases; Python 43 and the separate
+recovery case passed. Both real wrapper clients proved all seven setup-authority
+facts and four privacy matches before key/child work. That preflight is bounded
+native credit, not execution of INT015 or the source RLS catalog assertions.
+The DB's first build child exited zero, then identity/cleanup guards refused;
+no receipt distinguishes missing leader, identity mismatch or group change.
+The 51 feature DB cases did not execute. Browser ran 31 cases: 17 unrelated passes
+and all 14 story cases failed, with 28 attempts including retries. Seven exposed
+response-wait timeouts; seven retained only sanitized scenario/setup failures.
+None establishes a completed browser acceptance body. All six prior capsules and
+failed packets remain immutable; the new result does not relabel older failures.
+
+Root admitted the exact six-file settlement/diagnostic repair before edits;
+`native-settlement-browser-author-route.json` records the author's Sol High route.
+An injected reproduction reached a valid captured leader disappearing during
+identity inspection, matching the failure pattern without proving its native
+cause. The wrapper now gives that path passive actual group-absence observation
+within the existing 15/5/5-second stages. It never signals a leaderless group,
+requires a valid original capture, rejects reused/mismatched identities, and
+latches observed absence before bounded child completion and output drain.
+Persistent groups retain failure and key custody. Closed process-phase codes
+expose only capture/read/mismatch/persistent-missing categories; no native
+identity or payload is emitted. COMMIT uncertainty, exact-key cleanup and the
+abnormal browser-exit custody fence remain intact.
+
+The browser delegate retained the same Next action predicates and physical
+attempt/hash/audit assertions. Own cancellable event listeners observe both
+waiters and the returned promise immediately; outer failure cannot leave a raw
+response rejection unhandled. Teardown releases transport gates, cancels future
+polling and joins actual readback/route work before SQL/Auth cleanup. Cancellation
+or timeout alone is not query settlement; failed listener removal or unverified
+work retains the canonical fixture in process custody rather than deleting its
+rows/users. Local composition uses the same canonical role-aware factory, four
+profiles and four ordinary test clients, joining seed and token/audit siblings.
+Closed diagnostic stages/categories/allowlisted SQLSTATE preserve primary and
+all cleanup failures without original messages, causes, parameters or bodies.
+No parser, application, principal, privilege, workflow or global recorder changed.
+
+Installed Playwright 1.61.1 suppresses only the DOM snapshot for the file-local
+privacy flag; message/source error-context attachments can still exist. The
+native packet has 28 metadata references, zero available attachment bodies, and
+content-check result **null/unavailable**, not privacy PASS or demonstrated leak.
+The repair retains attachments and the existing negative exit fence. Actual
+content qualification, clean child/key lifecycle and current-head native DB and
+browser acceptance remain pending.
+
+The bounded unit suite now has 47 separate cases: prior 33 plus six stopper/full-
+wrapper regressions and eight browser Promise/diagnostic/cleanup regressions.
+All 47 passed with zero failures/skips/cancellations; full typecheck and focused
+five-file lint passed with zero errors/warnings. All 40 literal stops resolve.
+Pure browser checks execute the exact uniquely bounded helper source region with
+only installed Node TypeScript stripping, not a copied implementation. Full
+helper import under the existing bare-Node alias hook fails on a same-name fixture
+directory; that plumbing remains unexecuted and unchanged. Pure seam execution
+does not qualify browser wiring, SQL or production behavior. Final check receipts
+and the refreshed author trail accompany the committed latest-delta review input.
+Distinct High exact-commit review and new Root-owned CI remain pending; status
+stays in-review, with no delivery/DONE/release claim and an unchanged intent kernel.
+
 ## Suggested Review Order
 
 Author: Story 15.5 implementation/fix author (gpt-6.1-sol High), incorporating
 explicitly delegated browser and bootstrap contributors. Refreshed after all
 Round 3 latest-fix assertions, the subsequent checkpoint repairs and bounded
 native setup diagnostics, same-connection privacy qualification and explicit
-isolated setup authority transport.
+isolated setup authority transport, bounded child settlement and browser diagnostic repair.
 Stops below resolve to final source literals before the repair commit.
 
 ### Own settings and honest lifecycle results
@@ -723,8 +786,8 @@ explicit uncertainty handling, while later authoritative status removes stale UR
 
 - `src/components/app-shell/AppShell.tsx:279` — `navigation.some`: gates the profile link on scheduling access.
 - `src/components/calendar-feed/CalendarSubscription.tsx:34` — `const current = await refresh();`: clears superseded post-commit output and success.
-- `tests/e2e/calendar-feed.e2e.spec.ts:370` — `15.5-E2E-010-`: AC2/6 actual supersession clears rendered controls and notice; execution pending.
-- `tests/e2e/calendar-feed.e2e.spec.ts:432` — `15.5-E2E-011`: AC2/6 current-revision control retains issuance; execution pending.
+- `tests/e2e/calendar-feed.e2e.spec.ts:380` — `15.5-E2E-010-`: AC2/6 actual supersession clears rendered controls and notice; execution pending.
+- `tests/e2e/calendar-feed.e2e.spec.ts:447` — `15.5-E2E-011`: AC2/6 current-revision control retains issuance; execution pending.
 
 ### Signed current-self authority and atomic writes
 
@@ -779,44 +842,38 @@ authenticated SupAdmin LOGIN+SUPER for key setup and INT015, preserving its
 restricted-session oracle. No new privileged child configuration or grant is added.
 
 - `tests/integration/commands/calendar-feed.int.test.ts:475` — `// FULL rollback comes first`: preserves rollback/reset and same/fresh catalog absence proof.
-- `scripts/ci/with-calendar-feed-runtime.mjs:255` — `export function createOwnedGroupStopper`: memoizes settlement and verifies identity before signaling.
-- `scripts/ci/with-calendar-feed-runtime.mjs:177` — `export function createTelemetryObserver`: detects leaks before dropping non-allowlisted output.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:544` — `nonzero/null-signal nested browser loss`: requires retained key custody for abnormal completion.
+- `scripts/ci/with-calendar-feed-runtime.mjs:257` — `export function createOwnedGroupStopper`: memoizes settlement, validates capture, passively observes missing-leader group absence and bounds completion/output.
+- `scripts/ci/with-calendar-feed-runtime.mjs:179` — `export function createTelemetryObserver`: detects leaks before dropping non-allowlisted output.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:812` — `nonzero/null-signal nested browser loss`: requires retained key custody for abnormal completion.
 - `tests/support/calendar-feed-ci-contract.ts:43` — `projectCalendarFeedCiCommands`: validates pinned real wrapper argv and only the two exact workflow inverses.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:30` — `CI command projection rejects`: missing/wrong entry/argv and unrelated-source/workflow negatives preserve the original inverse fence.
-- `scripts/ci/with-calendar-feed-runtime.mjs:31` — `function safeDiagnostic`: emits only fixed stages/categories and allowlisted SQLSTATE without native payloads.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:311` — `COMMIT uncertainty is not cleared`: rollback alone cannot establish key absence after attempted COMMIT.
-- `scripts/ci/with-calendar-feed-runtime.mjs:420` — `receipt.privacyPreflight = await readCalendarFeedPrivacyPreflight(db);`: rejects unsafe effective settings before entropy on the existing client.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:207` — `privacy preflight rejects incomplete`: malformed and unsafe settings cannot reach a secret or child; actual driver/same-client/query-close cases exercise the surrounding boundary.
-- `scripts/ci/with-calendar-feed-runtime.mjs:97` — `export function createCalendarFeedDatabaseClient`: fixes the same qualified source publication, canonical admin and sole captured credential; no default or alternate route.
-- `scripts/ci/with-calendar-feed-runtime.mjs:84` — `export async function readCalendarFeedSetupAuthority`: actual authenticated session/current LOGIN+SUPER proof is mandatory before mutation.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:32` — `CI command projection rejects`: missing/wrong entry/argv and unrelated-source/workflow negatives preserve the original inverse fence.
+- `scripts/ci/with-calendar-feed-runtime.mjs:32` — `function safeDiagnostic`: emits only fixed stages/categories and allowlisted SQLSTATE without native payloads.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:313` — `COMMIT uncertainty is not cleared`: rollback alone cannot establish key absence after attempted COMMIT.
+- `scripts/ci/with-calendar-feed-runtime.mjs:443` — `receipt.privacyPreflight = await readCalendarFeedPrivacyPreflight(db);`: rejects unsafe effective settings before entropy on the existing client.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:209` — `privacy preflight rejects incomplete`: malformed and unsafe settings cannot reach a secret or child; actual driver/same-client/query-close cases exercise the surrounding boundary.
+- `scripts/ci/with-calendar-feed-runtime.mjs:99` — `export function createCalendarFeedDatabaseClient`: fixes the same qualified source publication, canonical admin and sole captured credential; no default or alternate route.
+- `scripts/ci/with-calendar-feed-runtime.mjs:86` — `export async function readCalendarFeedSetupAuthority`: actual authenticated session/current LOGIN+SUPER proof is mandatory before mutation.
 - `tests/integration/commands/calendar-feed.int.test.ts:497` — `await fresh.connect(); await setupQualified(fresh); await absent(fresh);`: fresh read-only cleanup independently requalifies authority/privacy and proves absence; native execution pending.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:145` — `setup construction refuses missing`: credential/target refusals cannot reach secrets or children; actual identity negatives and child-config tests complete the bounded boundary evidence.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:147` — `setup construction refuses missing`: credential/target refusals cannot reach secrets or children; actual identity negatives and child-config tests complete the bounded boundary evidence.
 
-Evidence: the checkpoint repair records 302 executed focused Node cases with zero
-failures/skips, typecheck/focused lint and the application build. The later c575
-checkpoint passed 3095 Node units/Python/build but all three native setup paths
-failed migration compilation; it remains failed. The earlier checkpoint failed
-eight units and also remains failed, despite 30 feed Node/22 bootstrap passes.
-The later 1cea checkpoint cleared native migration compilation and passed the one
-actual isolated recovery case, but failed DB/browser wrapper setup before all
-65 feature bodies. The diagnostic working tree passed 26 injected wrapper cases,
-typecheck and focused lint. The fourth e91b checkpoint passed 3098 Node units and
-the existing recovery case, but both DB/browser failed startup42501 before
-key creation. The privacy preflight repair passed 30 bounded wrapper cases,
-including a real unconnected driver configuration check; it has no native setup
-or feature evidence. The fifth c757 checkpoint passed 3102 Node units and the
-separate recovery case, but its actual ordinary postgres identity and unsafe
-privacy facts correctly refused before key/test execution. Current setup transport
-has 33/33 bounded wrapper cases; no native authentication or feature proof.
-Current separate bootstrap inventory is 33. Other lifecycle
-dependencies are synthetic;
-operations-unit recovery assertions are static. The real recovery case has its
-separate bounded native receipt. Earlier checks retain recorded dependencies.
-All 51 native Vitest and 14 browser bodies remain pending locally; API001 covers
-live label revisions, API018 cancellation/counters, RLS008 raw status privacy,
-and E2E-001 the essential actual production lifecycle. Existing ACL/RLS010,
-serial cleanup and full regressions also require exact-head CI. All three rounds completed; authority-transport latest-delta High review, actual setup admin authentication, restricted-executor
-PG17 execution, live feature lifecycle and final exact-head qualification
-are outstanding. No provider/device/visual/performance or release-ready claim;
-the unallocated exhaustive branch remains explicitly release-blocking deferred.
+- `tests/e2e/support/calendar-feed-atdd.ts:83` — `export function createCalendarLifecycleObservations`: AC2/6 observes both transport promises and joins actual readback before teardown; pure regressions are not native acceptance.
+- `tests/e2e/support/calendar-feed-atdd.ts:25` — `export function calendarBrowserDiagnostic`: preserves closed stage/category/SQLSTATE without native error payloads.
+- `tests/e2e/support/calendar-feed-atdd.ts:687` — `if (base && cleanupAllowed)`: canonical SQL/Auth cleanup waits for verified settlement; unresolved references retain fixture custody.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:489` — `missing leaders with persistent groups`: absence is measured within existing budgets; anonymous groups grant no signaling authority.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:659` — `actual browser bounded cancellation`: timeout cannot credit in-flight SQL/readback settlement; release and real completion are distinct.
+
+Evidence: historical check receipts retain their exact revisions and dependency
+limits. The sixth checkpoint passed 3105 Node units (30 feature and 33 separate
+wrapper cases), Python43 and recovery1, with actual original-client setup7 and
+privacy4 preflight credit. It still failed DB child settlement and all14 story
+browser cases across28 attempts;51 feature DB cases remain unexecuted. The local
+repair's47 separate bounded Node cases exercise injected lifecycle and actual
+pure browser source seams only. Current-head full native DB/HTTP/RLS/INT015,
+14 browser acceptances, successful child/key cleanup and attachment-content
+privacy remain pending. Source RLS010 effective CREATE and restricted-source
+claims cannot borrow the separate real recovery CREATE=false proof. Installed
+collection and prior build checks retain their recorded scope; no local managed
+runtime was launched. All three broad rounds completed; this repair receives only
+a distinct High latest-delta review. No provider/device/visual/performance or
+release-ready claim; the unallocated exhaustive branch remains explicitly
+release-blocking deferred.

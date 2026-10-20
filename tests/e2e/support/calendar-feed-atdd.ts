@@ -1,14 +1,152 @@
 /** Real production browser adapter. Uses isolated rows and the already provisioned runtime key read-only. No key/global-IP mutation or resource startup. */
-import { expect, type Locator, type Page, type Request, type Route } from "@playwright/test";
+import { expect, type Locator, type Page, type Request, type Response, type Route } from "@playwright/test";
 import { createHash, randomBytes, randomUUID } from "node:crypto";
-import { withBookingFixture } from "../../support/bookings-atdd";
+import type { BookingFixture } from "../../support/bookings-atdd";
 import { adminQuery, adminSession } from "../../factories/admin-sql";
-import { adminInsertCustomer, adminInsertFacility, makeAuthedServerClient } from "../../factories/tenants";
+import { adminInsertCustomer, adminInsertFacility, makeAuthedServerClient, createRoleAwarePhaseAFixture, cleanupRoleAwarePhaseAFixture, type FixtureUser } from "../../factories/tenants";
 import { signIn as browserSignIn, hydrated } from "./time-reports-atdd";
 import { createJob } from "@/server/commands/jobs";
 import { runCommand } from "@/server/commands/envelope";
 
 export const CALENDAR_FIXTURE_DATE = "2026-10-12";
+
+// Pure diagnostic/observation seams: injected checks need no browser or database.
+export const calendarDiagnosticStages = ["fixture-base", "fixture-memberships", "fixture-clients", "seed-tenants", "seed-profiles", "seed-customer", "seed-facility", "seed-job", "seed-work-role", "seed-bookings", "seed-capability", "scenario", "sign-in", "navigation", "warning", "action-request", "action-response", "action-readback", "action-cancelled", "link-capture", "feed-http", "monitoring", "transport-fault", "cleanup-fault-release", "cleanup-lifecycle", "cleanup-fault-dispose", "cleanup-sql", "cleanup-canonical", "cleanup-page", "custody-retained", "unknown"] as const;
+export const calendarDiagnosticCategories = ["assertion", "timeout", "transport", "database", "cancelled", "unverified", "unknown"] as const;
+export const calendarDiagnosticSqlstates = ["23502", "23503", "23505", "23514", "22P02", "42501", "42P01", "42703", "42883", "40001", "40P01", "53300", "57014", "XX000", "CF409"] as const;
+export type CalendarDiagnosticStage = typeof calendarDiagnosticStages[number];
+export type CalendarDiagnosticCategory = typeof calendarDiagnosticCategories[number];
+const safeCalendarErrors = new WeakSet<Error>();
+function ownData(error: unknown, key: string): unknown {
+  try { return error !== null && (typeof error === "object" || typeof error === "function") ? Object.getOwnPropertyDescriptor(error, key)?.value : undefined; }
+  catch { return undefined; }
+}
+/** Never retain the original message, cause, stack, SQL arguments or properties. */
+export function calendarBrowserDiagnostic(stage: CalendarDiagnosticStage, error: unknown): Error {
+  if (error !== null && typeof error === "object" && safeCalendarErrors.has(error as Error)) return error as Error;
+  const safeStage = (calendarDiagnosticStages as readonly unknown[]).includes(stage) ? stage : "unknown";
+  const code = ownData(error, "code"), name = ownData(error, "name");
+  const sqlstate = (calendarDiagnosticSqlstates as readonly unknown[]).includes(code) ? String(code) : "unavailable";
+  const category: CalendarDiagnosticCategory = sqlstate !== "unavailable" ? "database" : name === "TimeoutError" ? "timeout"
+    : name === "AbortError" ? "cancelled" : name === "CalendarUnverified" ? "unverified" : ownData(error, "matcherResult") !== undefined ? "assertion"
+      : ["ECONNREFUSED", "ECONNRESET", "ETIMEDOUT"].includes(typeof code === "string" ? code : "") ? "transport" : "unknown";
+  const safe = new Error(`Calendar browser failure [stage=${safeStage};category=${category};sqlstate=${sqlstate}]`);
+  safeCalendarErrors.add(safe); return safe;
+}
+function calendarFailures(errors: Error[]): AggregateError {
+  const safe = new AggregateError(errors, "Calendar browser scenario or cleanup failed (closed diagnostics only)");
+  safeCalendarErrors.add(safe); return safe;
+}
+export async function calendarBrowserStep<T>(stage: CalendarDiagnosticStage, run: () => Promise<T>): Promise<T> {
+  try { return await run(); } catch (error) { throw calendarBrowserDiagnostic(stage, error); }
+}
+/** Use from finally with a captured/rethrown primary failure. Execute every
+ * cleanup step, and never replace a primary failure with a later cleanup error. */
+export async function calendarBrowserCleanup(steps: readonly { stage: CalendarDiagnosticStage; run(): Promise<unknown> }[], primary?: { error: unknown }): Promise<void> {
+  const failures: Error[] = [];
+  for (const step of steps) { try { await step.run(); } catch (error) { failures.push(calendarBrowserDiagnostic(step.stage, error)); } }
+  if (failures.length) throw calendarFailures([...(primary ? [calendarBrowserDiagnostic("scenario", primary.error)] : []), ...failures]);
+}
+async function joinedCalendarValues<T extends readonly unknown[]>(stage: CalendarDiagnosticStage, promises: { [K in keyof T]: Promise<T[K]> }): Promise<T> {
+  const results = await Promise.allSettled(promises), errors = results.flatMap(result => result.status === "rejected" ? [calendarBrowserDiagnostic(stage, result.reason)] : []);
+  if (errors.length) throw calendarFailures(errors);
+  return results.map(result => (result as PromiseFulfilledResult<unknown>).value) as unknown as T;
+}
+export type CalendarEventWaiter<T> = { promise: Promise<T>; cancel(): void };
+/** Both event rejection and cancellation are observed immediately. Unsubscribe
+ * is synchronous, including timeout/predicate failure; no native waiter lingers. */
+export function calendarEventWaiter<T>(options: {
+  subscribe(listener: (value: T) => void): void; unsubscribe(listener: (value: T) => void): void;
+  predicate(value: T): boolean; stage: "action-request" | "action-response"; timeoutMs: number;
+}): CalendarEventWaiter<T> {
+  let resolve!: (value: T) => void, reject!: (error: Error) => void, done = false;
+  let timer: ReturnType<typeof setTimeout> | undefined, disposalError: Error | undefined;
+  const promise = new Promise<T>((yes, no) => { resolve = yes; reject = no; });
+  void promise.catch(() => undefined);
+  const finish = (error?: Error, value?: T) => {
+    if (done) return; done = true;
+    if (timer) clearTimeout(timer);
+    try { options.unsubscribe(listener); }
+    catch (unsubscribeError) { disposalError = calendarBrowserDiagnostic(options.stage, unsubscribeError); error = error ? calendarFailures([error, disposalError]) : disposalError; }
+    if (error) reject(error); else resolve(value as T);
+  };
+  const listener = (value: T) => {
+    try { if (options.predicate(value)) finish(undefined, value); }
+    catch (error) { finish(calendarBrowserDiagnostic(options.stage, error)); }
+  };
+  try {
+    options.subscribe(listener);
+    if (!done) timer = setTimeout(() => finish(calendarBrowserDiagnostic(options.stage, { name: "TimeoutError" })), options.timeoutMs);
+  } catch (error) { finish(calendarBrowserDiagnostic(options.stage, error)); }
+  return { promise, cancel() { finish(calendarBrowserDiagnostic("action-cancelled", { name: "AbortError" })); if (disposalError) throw disposalError; } };
+}
+export function createCalendarLifecycleObservations(options: { settlementTimeoutMs?: number } = {}) {
+  type Pending = { cancel(): void; settled: Promise<void> };
+  const pending = new Set<Pending>(), failures: Error[] = [];
+  let closing = false, cancellationVerified = true;
+  const cancelWaiter = (waiter?: { cancel(): void }) => {
+    try { waiter?.cancel(); } catch (error) { cancellationVerified = false; failures.push(calendarBrowserDiagnostic("cleanup-lifecycle", error)); }
+  };
+  return {
+    observe<R, S, T>(input: { request(): CalendarEventWaiter<R>; response(): CalendarEventWaiter<S>; readback(request: R, signal: AbortSignal): Promise<T>; completion?(request: R): Promise<boolean> }): Promise<T> {
+      const controller = new AbortController();
+      let request: CalendarEventWaiter<R> | undefined, response: CalendarEventWaiter<S> | undefined;
+      let stage: CalendarDiagnosticStage = "action-response";
+      // Register both real events synchronously BEFORE returning to the UI trigger.
+      let setupError: unknown, setupFailed = false;
+      try {
+        if (closing) throw calendarBrowserDiagnostic("action-cancelled", { name: "AbortError" });
+        response = input.response(); void response.promise.catch(() => undefined);
+        stage = "action-request"; request = input.request(); void request.promise.catch(() => undefined);
+      } catch (error) {
+        setupError = error; setupFailed = true; cancelWaiter(response); cancelWaiter(request);
+        if (input.completion) cancellationVerified = false;
+      }
+      // A cancelled event waiter is not proof the matched HTTP request ended.
+      // Keep the actual native completion promise owned and joined independently.
+      const completion = request ? request.promise.then(async matched => {
+        try {
+          if (input.completion && !await input.completion(matched)) throw calendarBrowserDiagnostic("cleanup-lifecycle", { name: "CalendarUnverified" });
+        } catch (error) { cancellationVerified = false; throw calendarBrowserDiagnostic("cleanup-lifecycle", error); }
+      }, () => {
+        if (input.completion) {
+          // A missed/cancelled matcher cannot prove that no UI request started.
+          cancellationVerified = false;
+          throw calendarBrowserDiagnostic("cleanup-lifecycle", { name: "CalendarUnverified" });
+        }
+      }) : Promise.resolve();
+      void completion.catch(() => undefined);
+      const observation = (async () => {
+        try {
+          if (setupFailed) throw setupError;
+          const [matched] = await Promise.all([request!.promise, response!.promise]);
+          if (controller.signal.aborted) throw calendarBrowserDiagnostic("action-cancelled", { name: "AbortError" });
+          stage = "action-readback";
+          const result = await input.readback(matched, controller.signal);
+          if (controller.signal.aborted) throw calendarBrowserDiagnostic("action-cancelled", { name: "AbortError" });
+          return result;
+        } catch (error) { throw calendarBrowserDiagnostic(stage, error); }
+        finally { cancelWaiter(request); cancelWaiter(response); }
+      })();
+      // Observe the RETURNED promise too: callers can fail before awaiting it.
+      void observation.catch(() => undefined);
+      const entry: Pending = { settled: Promise.allSettled([observation, completion]).then(results => {
+        for (const result of results) if (result.status === "rejected") failures.push(calendarBrowserDiagnostic(stage, result.reason));
+      }).finally(() => pending.delete(entry)), cancel() { controller.abort(); cancelWaiter(request); cancelWaiter(response); } };
+      pending.add(entry); return observation;
+    },
+    async cancelAndSettle(): Promise<{ errors: Error[]; settled: boolean }> {
+      closing = true;
+      const active = [...pending]; for (const entry of active) entry.cancel();
+      let timer: ReturnType<typeof setTimeout> | undefined;
+      const settled = await Promise.race([Promise.all(active.map(entry => entry.settled)).then(() => true), new Promise<false>(resolve => {
+        timer = setTimeout(() => resolve(false), options.settlementTimeoutMs ?? 20_000);
+      })]);
+      if (timer) clearTimeout(timer);
+      return { settled: settled && cancellationVerified, errors: [...failures, ...(!settled ? [calendarBrowserDiagnostic("cleanup-lifecycle", { name: "TimeoutError" })] : [])] };
+    },
+  };
+}
 
 /** Accessible labels bound to the authored production components. Runtime
  * verification is performed by the required production-host browser lane. */
@@ -42,6 +180,7 @@ export function calendarUI(page: Page) {
 
 /** Keyboard traversal proves reachability; direct focus() would not prove it. */
 export async function tabTo(page: Page, target: Locator): Promise<void> {
+  return calendarBrowserStep("navigation", async () => {
   await hydrated(target);
   if (await target.evaluate((element) => element === document.activeElement)) return;
   for (let count = 0; count < 80; count++) {
@@ -49,6 +188,7 @@ export async function tabTo(page: Page, target: Locator): Promise<void> {
     if (await target.evaluate((element) => element === document.activeElement)) return;
   }
   throw new Error("Expected calendar control is not reachable by keyboard");
+  });
 }
 
 /** Actual source anchors: AppShell Huvudmeny/Huvudnavigation + Planering;
@@ -57,6 +197,7 @@ export async function tabTo(page: Page, target: Locator): Promise<void> {
  * Hydration is awaited before interaction with the production host.
  */
 export async function enterActualPersonalCalendar(page: Page, mode: "day" | "week") {
+  return calendarBrowserStep("navigation", async () => {
   await page.goto("/dashboard");
   const menu = page.getByRole("button", { name: "Öppna meny", exact: true });
   if (await menu.isVisible()) { await hydrated(menu); await menu.click(); }
@@ -73,9 +214,11 @@ export async function enterActualPersonalCalendar(page: Page, mode: "day" | "wee
   const personal = page.getByRole("region", { name: "Min kalender", exact: true });
   await expect(personal).toBeVisible();
   return personal;
+  });
 }
 
 export async function followPersonalSubscriptionByKeyboard(page: Page, mode: "day" | "week") {
+  return calendarBrowserStep("navigation", async () => {
   const personal = await enterActualPersonalCalendar(page, mode);
   const subscription = personal.getByRole("link", { name: calendarNames.title, exact: true });
   await expect(subscription).toHaveCount(1);
@@ -84,12 +227,15 @@ export async function followPersonalSubscriptionByKeyboard(page: Page, mode: "da
   await page.keyboard.press("Enter");
   await expect(page).toHaveURL(/\/settings\/calendar$/);
   await expect(page.getByRole("heading", { name: calendarNames.title, exact: true })).toBeVisible();
+  });
 }
 
 /** Both bearer access and provider retention warnings are required. */
 export async function expectAccessWarning(page: Page): Promise<void> {
+  return calendarBrowserStep("warning", async () => {
   await expect(page.getByText(/(?:alla|den) som har länken.*läsa/i)).toBeVisible();
   await expect(page.getByText(/kalender(?:app|leverantör).*behålla|redan hämtade.*(?:finnas kvar|sparas)/i)).toBeVisible();
+  });
 }
 
 declare const issuedLinkBrand: unique symbol;
@@ -133,7 +279,7 @@ export type ArmedFault = {
 export type CalendarBrowserFixture = {
   /** Fixture is tenant-isolated, with legacy NULL provisioning_state positive,
    * own/shared planned rows and peer/foreign poison rows, stable independent UIDs.
-   * Reuses withBookingFixture/FixtureUser/adminQuery; no host env file or
+   * Composes canonical role/profile/client fixtures locally; no host env file or
    * globally shared fixture/key is created in this helper.
    */
   expectedOwnEvents: SafeEvent[];
@@ -242,6 +388,30 @@ function inspectCalendar(body: string): { events: SafeEvent[]; valid: boolean } 
   return { events: events.sort((a, b) => a.uid.localeCompare(b.uid)), valid };
 }
 
+type CalendarBaseFixture = Awaited<ReturnType<typeof createRoleAwarePhaseAFixture>>;
+const retainedCalendarFixtureCustody = new Set<CalendarBaseFixture>();
+/** Equivalent to bookings-atdd::seedBookingFixture: same canonical role factory,
+ * four profile inserts and four ordinary clients, same inputs/counts/return shape.
+ * Join every seed promise before deciding whether canonical cleanup is safe. */
+async function seedCalendarBookingFixture(roleFixture: CalendarBaseFixture): Promise<BookingFixture> {
+  const { base, users } = roleFixture;
+  const seedProfile = async (tenantId: string, user: FixtureUser) => calendarBrowserStep("seed-profiles", async () => {
+    const [membership] = await adminQuery<{ id: string }>("select id from public.tenant_memberships where tenant_id=$1 and user_id=$2", [tenantId, user.id]);
+    const id = randomUUID();
+    await adminQuery("insert into public.person_profiles(id,tenant_id,membership_id) values($1,$2,$3)", [id, tenantId, membership.id]);
+    return { id, membershipId: membership.id };
+  });
+  const [adminProfile, ownProfile, coworkerProfile, foreignProfile] = await joinedCalendarValues("seed-profiles", [
+    seedProfile(base.tenantA.id, base.adminA), seedProfile(base.tenantA.id, users.montor),
+    seedProfile(base.tenantA.id, users.projektledare), seedProfile(base.tenantB.id, base.adminB),
+  ] as const);
+  const [adminClient, plannerClient, montorClient, foreignClient] = await joinedCalendarValues("fixture-clients", [
+    makeAuthedServerClient(base.adminA), makeAuthedServerClient(users.projektledare),
+    makeAuthedServerClient(users.montor), makeAuthedServerClient(base.adminB),
+  ] as const);
+  return { ...roleFixture, adminProfile, ownProfile, coworkerProfile, foreignProfile, adminClient, plannerClient, montorClient, foreignClient, tenantIds: [base.tenantA.id, base.tenantB.id] };
+}
+
 /** Fresh ordinary auth fixtures and physical SQL observations only. The caller
  * owns the production host/runtime key; missing infrastructure fails the test.
  * No global-IP reset, Vault writes, success stubs, retries or secret attachments. */
@@ -251,20 +421,27 @@ export async function withCalendarBrowserFixture(
 ): Promise<void> {
   // Even Playwright locator errors can include the one-time input in DOM context.
   // Preserve failure, but never let those native details reach JSON/HTML reports.
+  let base: CalendarBaseFixture | undefined, cleanupAllowed = true;
+  const finalErrors: Error[] = [];
   try {
-    await withBookingFixture(async fx => {
+    base = await calendarBrowserStep("fixture-base", () => createRoleAwarePhaseAFixture());
+    const fx = await seedCalendarBookingFixture(base);
+    {
       const ownTenant = fx.base.tenantA.id, foreignTenant = fx.base.tenantB.id;
       const ids = fx.tenantIds, bookingIds: string[] = [], customers: string[] = [], facilities: string[] = [], jobs: string[] = [], roles: string[] = [];
       const extraProfile = randomUUID(), privateNote = `PRIVATE-NOTE-${randomUUID()}`;
       const peerUser = fx.roleUnionUser;
-      const [peerMember] = await adminQuery<{ id: string }>("select id from public.tenant_memberships where tenant_id=$1 and user_id=$2", [ownTenant, peerUser.id]);
-      const [sellerMember] = await adminQuery<{ id: string }>("select id from public.tenant_memberships where tenant_id=$1 and user_id=$2", [ownTenant, fx.users.saljare.id]);
+      const [peerMember] = await calendarBrowserStep("fixture-memberships", () => adminQuery<{ id: string }>("select id from public.tenant_memberships where tenant_id=$1 and user_id=$2", [ownTenant, peerUser.id]));
+      const [sellerMember] = await calendarBrowserStep("fixture-memberships", () => adminQuery<{ id: string }>("select id from public.tenant_memberships where tenant_id=$1 and user_id=$2", [ownTenant, fx.users.saljare.id]));
       const subjects = { seller: { user: fx.users.saljare, membership: sellerMember.id, profile: "" }, montor: { user: fx.users.montor, membership: fx.ownProfile.membershipId, profile: fx.ownProfile.id },
         manager: { user: fx.users.projektledare, membership: fx.coworkerProfile.membershipId, profile: fx.coworkerProfile.id },
         admin: { user: fx.base.adminA, membership: fx.adminProfile.membershipId, profile: fx.adminProfile.id } };
       let subject = subjects.montor;
       const attempts: Attempt[] = [], rawLinks: string[] = [], seedHashes: string[] = [];
       const activeFaults = new Set<ArmedFault>();
+      const observations = createCalendarLifecycleObservations();
+      cleanupAllowed = false; // only the complete final settlement gate may admit deletion
+      let transportVerified = true;
       const requestListener = (request: Request) => { const input = actionInput(request); if (input) attempts.push(input); };
       page.on("request", requestListener);
       const readTokens = () => adminQuery<TokenFact>(`select id,tenant_id,membership_id,token_hash,revision,attempt_id,action,
@@ -272,8 +449,14 @@ export async function withCalendarBrowserFixture(
         from public.calendar_feed_tokens where tenant_id=any($1::uuid[]) order by tenant_id,membership_id,revision`, [ids]);
       const readAudit = () => adminQuery<AuditFact>(`select target_id,actor_user_id,command,metadata from public.audit_events
         where tenant_id=any($1::uuid[]) and command like 'calendar_feed.%' order by created_at,id`, [ids]);
+      const checkCancellation = (signal?: AbortSignal) => { if (signal?.aborted) throw calendarBrowserDiagnostic("action-cancelled", { name: "AbortError" }); };
+      const physicalRows = async (signal?: AbortSignal) => {
+        checkCancellation(signal);
+        const rows = await joinedCalendarValues("action-readback", [readTokens(), readAudit()] as const);
+        checkCancellation(signal); return rows;
+      };
       const snapshot = async (): Promise<PhysicalSnapshot> => {
-        const [tokens, audits] = await Promise.all([readTokens(), readAudit()]);
+        const [tokens, audits] = await physicalRows();
         const rows = (membership: string, userId: string): SubjectRows => {
           const own = tokens.filter(row => row.membership_id === membership), active = own.find(row => row.revoked_at === null);
           return { generationCount: own.filter(row => row.action !== "revoke").length, activeCount: own.filter(row => row.revoked_at === null).length,
@@ -288,29 +471,36 @@ export async function withCalendarBrowserFixture(
           onlyHashedCapabilitiesStored: tokens.every(row => row.action === "revoke" ? row.token_hash === null : /^[0-9a-f]{64}$/.test(row.token_hash ?? "")),
           auditContainsCapabilityOrProofOrIpOrKey: secrets.some(value => serialized.includes(value)) || /"(?:token|token_hash|tokenHash|rawUrl|issuedPath|signature|proof|ip|ip_hash|ipHash|secret|key)"\s*:/i.test(serialized) };
       };
-      const committedAttempt = async (input: Attempt): Promise<PhysicalSnapshot> => {
+      const committedAttempt = async (input: Attempt, signal?: AbortSignal): Promise<PhysicalSnapshot> => {
         await expect.poll(async () => {
-          const [tokens, audits] = await Promise.all([readTokens(), readAudit()]);
+          const [tokens, audits] = await physicalRows(signal);
           const token = tokens.find(row => row.membership_id === subject.membership && row.attempt_id === input.attemptId && row.action === input.action && row.revision === input.revision + 1);
           return !!token && audits.filter(audit => audit.target_id === token.id && audit.actor_user_id === subject.user.id && audit.metadata.attemptId === input.attemptId && audit.metadata.revision === token.revision).length === 1;
         }, { timeout: 15_000, message: "Expected exact calendar lifecycle row and attributable audit commit" }).toBe(true);
-        return snapshot();
+        checkCancellation(signal); const current = await snapshot(); checkCancellation(signal); return current;
       };
       const errors: Error[] = [];
+      let stage: CalendarDiagnosticStage = "seed-tenants";
       try {
         await adminQuery("update public.tenants set provisioning_state=null where id=any($1::uuid[])", [ids]);
+        stage = "seed-profiles";
         await adminQuery("insert into public.person_profiles(id,tenant_id,membership_id) values($1,$2,$3)", [extraProfile, ownTenant, peerMember.id]);
         if (scenario === "no-profile") await adminQuery("delete from public.person_profiles where id=$1 and tenant_id=$2", [fx.ownProfile.id, ownTenant]);
         const expectedByProfile = new Map<string, SafeEvent[]>();
         for (const tenant of ids) {
+          stage = "seed-customer";
           const customer = await adminInsertCustomer({ tenant_id: tenant, customer_type: "company", display_name: tenant === ownTenant ? "Kalendertest kund" : "FOREIGN-CUSTOMER" }); customers.push(customer);
+          stage = "seed-facility";
           const facility = await adminInsertFacility({ tenant_id: tenant, customer_id: customer, name: "Kalendertest plats" }); facilities.push(facility);
           await adminQuery("update public.facilities set address_line1='Testgatan 15',postal_code='75300',city='Uppsala' where id=$1 and tenant_id=$2", [facility, tenant]);
+          stage = "seed-job";
           const job = await runCommand(createJob, { client: (tenant === ownTenant ? fx.adminClient : fx.foreignClient) as never, input: { customer_id: customer, title: tenant === ownTenant ? "Kalendertest jobb" : "FOREIGN-JOB" }, correlationId: randomUUID() });
           if (!job.ok) throw new Error("Calendar job seed refused"); jobs.push(job.data.targetId);
+          stage = "seed-work-role";
           const [role] = await adminQuery<{ id: string }>("insert into public.work_roles(tenant_id,display_name,cost_rate_ore,sell_rate_ore) values($1,'Installation',20000,40000) returning id", [tenant]); roles.push(role.id);
           const available = [fx.ownProfile.id, fx.coworkerProfile.id, fx.adminProfile.id].filter(id => scenario !== "no-profile" || id !== fx.ownProfile.id);
           const assignments = tenant === ownTenant ? [...available.map(id => [id]), available, [extraProfile]] : [[fx.foreignProfile.id]];
+          stage = "seed-bookings";
           for (const profiles of assignments) {
             const id = randomUUID(); bookingIds.push(id);
             await adminQuery(`insert into public.bookings(id,tenant_id,starts_at,ends_at,description,work_role_id,job_id,customer_id,facility_id,create_command_id,create_payload_digest,create_result)
@@ -324,6 +514,7 @@ export async function withCalendarBrowserFixture(
         }
         // Concrete peer/foreign capabilities and aggregate poison facts. No feed
         // requests, dedicated key changes or global-IP budget writes are involved.
+        stage = "seed-capability";
         for (const [tenant, membership, count] of [[ownTenant, peerMember.id, 3], [foreignTenant, fx.foreignProfile.membershipId, 19]] as const) {
           const digest = hash(randomBytes(32).toString("base64url")); seedHashes.push(digest);
           await adminQuery(`insert into public.calendar_feed_tokens(tenant_id,membership_id,token_hash,revision,attempt_id,action,expected_revision,request_count,spike_count,last_spike_at)
@@ -332,16 +523,23 @@ export async function withCalendarBrowserFixture(
         let confirmedLink: string | null = null;
         const fixture: CalendarBrowserFixture = {
           expectedOwnEvents: [], expectedAbuse: { limitedRequests: 3, spikes: 1 },
-          async signIn(identity) { subject = subjects[identity]; fixture.expectedOwnEvents = [...(expectedByProfile.get(subject.profile) ?? [])].sort((a, b) => a.uid.localeCompare(b.uid)); await browserSignIn(page, subject.user); },
+          async signIn(identity) { subject = subjects[identity]; fixture.expectedOwnEvents = [...(expectedByProfile.get(subject.profile) ?? [])].sort((a, b) => a.uid.localeCompare(b.uid)); await calendarBrowserStep("sign-in", () => browserSignIn(page, subject.user)); },
           snapshot,
-          async observeLifecycle(action, sourcePage = page) {
-            const response = sourcePage.waitForResponse(response => actionInput(response.request())?.action === action);
-            const request = await sourcePage.waitForRequest(request => actionInput(request)?.action === action);
-            const input = actionInput(request)!;
-            await response;
-            return { committed: true, snapshot: await committedAttempt(input) };
+          observeLifecycle(action, sourcePage = page) {
+            return observations.observe({
+              // Preserve both original predicates and the 30-second transport
+              // bound. Own listeners add cancellation, not a different matcher.
+              response: () => calendarEventWaiter<Response>({ subscribe: listener => { sourcePage.on("response", listener); }, unsubscribe: listener => { sourcePage.off("response", listener); }, predicate: response => actionInput(response.request())?.action === action, stage: "action-response", timeoutMs: 30_000 }),
+              request: () => calendarEventWaiter<Request>({ subscribe: listener => { sourcePage.on("request", listener); }, unsubscribe: listener => { sourcePage.off("request", listener); }, predicate: request => actionInput(request)?.action === action, stage: "action-request", timeoutMs: 30_000 }),
+              readback: async (request, signal) => ({ committed: true, snapshot: await committedAttempt(actionInput(request)!, signal) }),
+              completion: async request => {
+                const response = await request.response();
+                return response !== null && await response.finished() === null;
+              },
+            });
           },
           async captureIssuedLink(sourcePage = page) {
+            return calendarBrowserStep("link-capture", async () => {
             const input = calendarUI(sourcePage).link; await input.waitFor({ state: "visible" });
             const url = await input.inputValue(), token = /^\/calendar\/feed\/([A-Za-z0-9_-]{43})$/.exec(new URL(url).pathname)?.[1];
             const handle = Object.freeze({}) as IssuedLinkHandle; secretLinks.set(handle, url); rawLinks.push(url); confirmedLink = url;
@@ -350,6 +548,7 @@ export async function withCalendarBrowserFixture(
             const browserStorage = await sourcePage.evaluate(() => JSON.stringify([Object.entries(localStorage), Object.entries(sessionStorage), document.cookie]));
             return { handle, canonical43Characters: canonical, hashMatchesPhysicalGeneration: !!token && current?.token_hash === hash(token),
               absentFromBrowserStorage: !browserStorage.includes(url) && !!token && !browserStorage.includes(token) };
+            });
           },
           async fetchAnonymous(handle, hostileCookiesAndValidators = false) {
             try {
@@ -363,7 +562,7 @@ export async function withCalendarBrowserFixture(
                 setCookiePresent: response.headers.has("set-cookie"), redirectPresent: response.headers.has("location"), events: parsed.events,
                 containsForbiddenFields: forbidden.some(value => body.includes(value)) || /(?:ATTENDEE|ORGANIZER|DESCRIPTION|EMAIL|cost_rate|sell_rate|token_hash|tenant_id|membership_id)/i.test(body), rfc5545Valid: parsed.valid,
                 genericInactive: response.status === 404 && body === "Kalenderlänken är inte aktiv." };
-            } catch { throw new Error("Calendar anonymous HTTP verification failed (details redacted)"); }
+            } catch (error) { throw calendarBrowserDiagnostic("feed-http", error); }
           },
           async lastUsedMatchesPhysical() {
             const used = (await snapshot()).own.lastUsedAt;
@@ -379,6 +578,7 @@ export async function withCalendarBrowserFixture(
           async armFault(kind) {
             const reached = deferred<void>(), committed = deferred<PhysicalSnapshot>(), issuedLink = deferred<IssuedLinkHandle>(), release = deferred<void>(), settled = deferred<void>();
             let consumed = false;
+            let handlerError: Error | undefined;
             const handler = async (route: Route) => {
               const input = actionInput(route.request()); if (!input || consumed) { await route.fallback(); return; } consumed = true;
               try {
@@ -402,7 +602,12 @@ export async function withCalendarBrowserFixture(
                     await route.fulfill({ response }); // unchanged real response, after explicit barrier release
                   } else { await route.abort("failed"); committed.resolve(state); reached.resolve(); }
                 }
-              } catch { const error = new Error("Calendar transport fault verification failed (details redacted)"); reached.reject(error); committed.reject(error); issuedLink.reject(error); await route.abort("failed").catch(() => undefined); }
+              } catch (error) {
+                transportVerified = false; // transport failure is not proof server/query work completed
+                handlerError = calendarBrowserDiagnostic("transport-fault", error);
+                reached.reject(handlerError); committed.reject(handlerError); issuedLink.reject(handlerError);
+                try { await route.abort("failed"); } catch (abortError) { handlerError = calendarFailures([handlerError, calendarBrowserDiagnostic("transport-fault", abortError)]); }
+              }
               finally { settled.resolve(); }
             };
             await page.route("**/settings/calendar", handler);
@@ -410,11 +615,13 @@ export async function withCalendarBrowserFixture(
               release.resolve();
               if (consumed) await Promise.race([settled.promise, new Promise<never>((_, reject) => { const timer = setTimeout(() => reject(new Error("Calendar transport settlement timeout")), 20_000); timer.unref(); })]);
               await page.unroute("**/settings/calendar", handler); activeFaults.delete(fault);
+              if (handlerError) throw handlerError;
             } };
             activeFaults.add(fault); return fault;
           },
           async attemptReceipt() { return { submittedAttempts: attempts.length, distinctAttempts: new Set(attempts.map(input => input.attemptId)).size, recoveredRawLink: await calendarUI(page).link.count() > 0 }; },
           async monitoringReceipt() {
+            return calendarBrowserStep("monitoring", async () => {
             const client = await makeAuthedServerClient(subject.user), own = await client.rpc("read_calendar_feed_abuse", { p_tenant_id: ownTenant });
             const foreign = await client.rpc("read_calendar_feed_abuse", { p_tenant_id: foreignTenant });
             const tokens = (await readTokens()).filter(row => row.tenant_id === ownTenant);
@@ -427,14 +634,23 @@ export async function withCalendarBrowserFixture(
             return { aggregateReadAllowed: !own.error && dtoValid, ownTenantOnly: !!foreign.error,
               limitedRequests: typeof data?.limited === "number" ? data.limited : 0, spikes: data?.lastSpikeAt ? 1 : 0,
               containsHashIpUrlProofKeyOrPeerDetails: !!data && !keysValid };
+            });
           },
         };
+        stage = "scenario";
         await run(fixture);
-      } catch { errors.push(new Error("Calendar scenario assertions or setup failed (sensitive details redacted)")); }
+      } catch (error) { errors.push(calendarBrowserDiagnostic(stage, error)); }
       finally {
-        page.off("request", requestListener);
-        for (const fault of activeFaults) { try { await fault.dispose(); } catch { errors.push(new Error("Calendar fault cleanup failed")); } }
-        try {
+        let releasesVerified = true;
+        try { page.off("request", requestListener); } catch (error) { releasesVerified = false; errors.push(calendarBrowserDiagnostic("cleanup-lifecycle", error)); }
+        // Release EVERY gate before cancelling/joining observations or handlers.
+        for (const fault of activeFaults) { try { await fault.release(); } catch (error) { releasesVerified = false; errors.push(calendarBrowserDiagnostic("cleanup-fault-release", error)); } }
+        try { const settlement = await observations.cancelAndSettle(); errors.push(...settlement.errors); cleanupAllowed = releasesVerified && settlement.settled && transportVerified; }
+        catch (error) { cleanupAllowed = false; errors.push(calendarBrowserDiagnostic("cleanup-lifecycle", error)); }
+        for (const fault of activeFaults) { try { await fault.dispose(); } catch (error) { cleanupAllowed = false; errors.push(calendarBrowserDiagnostic("cleanup-fault-dispose", error)); } }
+        cleanupAllowed &&= transportVerified;
+        if (!cleanupAllowed) errors.push(calendarBrowserDiagnostic("custody-retained", { name: "CalendarUnverified" }));
+        if (cleanupAllowed) try {
           await adminSession(async ({ query }) => {
             await query("begin");
             try {
@@ -455,17 +671,28 @@ export async function withCalendarBrowserFixture(
               await query("delete from public.work_roles where tenant_id=any($1::uuid[]) and id=any($2::uuid[])", [ids, roles]);
               await query("delete from public.person_profiles where tenant_id=any($1::uuid[])", [ids]);
               await query("commit");
-            } catch { await query("rollback"); throw new Error("Calendar owned row cleanup failed"); }
+            } catch (error) {
+              const primary = calendarBrowserDiagnostic("cleanup-sql", error);
+              try { await query("rollback"); } catch (rollbackError) { throw calendarFailures([primary, calendarBrowserDiagnostic("cleanup-sql", rollbackError)]); }
+              throw primary;
+            }
           });
-        } catch { errors.push(new Error("Calendar owned row cleanup failed")); }
-        if (errors.length) throw new AggregateError(errors, "Calendar browser cleanup failed (details redacted)");
+        } catch (error) { errors.push(calendarBrowserDiagnostic("cleanup-sql", error)); }
+        if (errors.length) throw calendarFailures(errors);
       }
-    });
+    }
   } catch (error) {
-    // The owned spec's isolated worker fixture also disables Playwright's
-    // automatic error-context DOM snapshots through artifact teardown.
-    await page.goto("about:blank").catch(() => undefined);
-    if (error instanceof AggregateError) throw error; // only fixed sanitized failures enter this aggregate
-    throw new Error("Calendar browser scenario failed (sensitive browser/transport/SQL details redacted)");
+    finalErrors.push(calendarBrowserDiagnostic("scenario", error));
+  } finally {
+    if (base && cleanupAllowed) {
+      try { await cleanupRoleAwarePhaseAFixture(base); } catch (error) { finalErrors.push(calendarBrowserDiagnostic("cleanup-canonical", error)); }
+    } else if (base) retainedCalendarFixtureCustody.add(base); // no SQL/Auth deletion while references remain unverified
+    if (finalErrors.length) {
+      // The file-local flag blocks DOM snapshots, not Playwright's separate
+      // message/source error-context attachment. Content remains unqualified
+      // without custody inspection; attachment metadata is neither a leak nor PASS.
+      try { await page.goto("about:blank"); } catch (error) { finalErrors.push(calendarBrowserDiagnostic("cleanup-page", error)); }
+    }
   }
+  if (finalErrors.length) throw calendarFailures(finalErrors);
 }

@@ -28,14 +28,16 @@ const SQLSTATE_CATEGORIES = new Map([
   ["42703", "undefined-column"], ["3F000", "invalid-schema"], ["23505", "unique-conflict"],
   ["57014", "query-canceled"], ["25P02", "transaction-aborted"], ["08006", "connection-failure"],
 ]);
+const PROCESS_PHASES = new Set(["capture-invalid", "identity-read-failed", "leader-mismatch", "leader-missing-group-live"]);
 function safeDiagnostic(stage, error) {
   // Inspect only an own data descriptor, never native text, getters or causes.
   let code;
   try { code = Object.getOwnPropertyDescriptor(error, "code")?.value; } catch { /* Unclassified, with no native details. */ }
   const known = typeof code === "string" && SQLSTATE_CATEGORIES.has(code);
+  const processPhase = error instanceof RuntimeFailure ? Object.getOwnPropertyDescriptor(error, "processPhase")?.value : undefined;
   return { stage: DIAGNOSTIC_STAGES.has(stage) ? stage : "runtime",
     category: known ? SQLSTATE_CATEGORIES.get(code) ?? "unclassified" : error instanceof RuntimeFailure ? "guard-refusal" : "unclassified",
-    sqlState: known ? code : null };
+    sqlState: known ? code : null, ...(PROCESS_PHASES.has(processPhase) ? { processPhase } : {}) };
 }
 const delay = (ms) => new Promise(resolveDelay => setTimeout(resolveDelay, ms));
 
@@ -253,34 +255,55 @@ async function processIdentity(pid) {
 
 /** One settlement promise owns all signals. A numeric group alone grants nothing. */
 export function createOwnedGroupStopper({ pid, done, capturedIdentity, readIdentity, groupExists, signalGroup, settleOutput, now = Date.now, sleep = delay }) {
-  let settlement;
-  const signalVerified = async signal => {
-    const original = await capturedIdentity;
-    const current = await readIdentity(pid);
-    if (!original || !current || original.pid !== pid || current.pid !== pid || original.group !== pid || current.group !== pid
-      || original.startTime !== current.startTime) fail("child-identity-unverified");
-    signalGroup(signal);
+  let settlement, absent = false, leaderMissing = false;
+  const identityFailure = phase => { throw Object.assign(new RuntimeFailure("child-identity-unverified"), { processPhase: phase }); };
+  // Once actual absence is observed, later numeric reuse is outside our custody.
+  const exists = () => {
+    if (absent) return false;
+    if (!groupExists()) absent = true;
+    return !absent;
   };
-  const waitUntilGone = async ms => {
-    const deadline = now() + ms;
-    while (groupExists() && now() < deadline) await sleep(50);
+  const readWithin = async (read, deadline) => {
+    try {
+      const identity = await bounded(Promise.resolve().then(read), Math.max(0, deadline - now()), "child-identity-unverified");
+      if (now() >= deadline) identityFailure("identity-read-failed");
+      return identity;
+    }
+    catch { identityFailure("identity-read-failed"); }
+  };
+  const stage = async (signal, deadline, original) => {
+    if (!exists()) return false;
+    if (!leaderMissing) {
+      const current = await readWithin(() => readIdentity(pid), deadline);
+      if (current === null) leaderMissing = true;
+      else if (!current || current.pid !== pid || current.group !== pid || original.startTime !== current.startTime) identityFailure("leader-mismatch");
+      else signalGroup(signal); // Never signal an anonymous descendant group.
+    }
+    while (exists() && now() < deadline) await sleep(Math.min(50, deadline - now()));
+    return !leaderMissing;
   };
   return () => {
     settlement ??= (async () => {
       let forced = false;
-      if (groupExists()) {
+      const firstDeadline = now() + 15_000;
+      const original = await readWithin(() => capturedIdentity, firstDeadline);
+      if (!Number.isSafeInteger(pid) || pid <= 0 || !original || original.pid !== pid || original.group !== pid
+        || typeof original.startTime !== "string" || !/^\d+$/.test(original.startTime)) identityFailure("capture-invalid");
+      if (exists()) {
         // Installed Playwright handles SIGINT by awaiting task teardown. Any
-        // later signal requires the same captured Linux process start time.
-        await signalVerified("SIGINT");
-        await waitUntilGone(15_000);
-        if (groupExists()) { forced = true; await signalVerified("SIGTERM"); }
-        await waitUntilGone(5_000);
-        if (groupExists()) await signalVerified("SIGKILL");
-        await waitUntilGone(5_000);
-        if (groupExists()) fail("child-custody-unverified");
+        // signal requires the same captured Linux process start time. A leader
+        // that exited during inspection gets only passive absence observation,
+        // sharing these existing stage budgets with the signaling path.
+        await stage("SIGINT", firstDeadline, original);
+        if (exists()) forced = await stage("SIGTERM", now() + 5_000, original);
+        if (exists()) await stage("SIGKILL", now() + 5_000, original);
+        if (exists()) {
+          if (leaderMissing) identityFailure("leader-missing-group-live");
+          fail("child-custody-unverified");
+        }
       }
       const result = await bounded(done, 5_000, "child-settle-unverified");
-      await settleOutput();
+      await bounded(Promise.resolve().then(settleOutput), 5_000, "child-output-unverified");
       return { forced, signal: result.signal };
     })();
     return settlement;

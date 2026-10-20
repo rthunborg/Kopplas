@@ -3,7 +3,7 @@ import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 
 const wrapperPath = new URL("../../scripts/ci/with-calendar-feed-runtime.mjs", import.meta.url);
-const wrapperSha256 = "be71fbb20f5f1cdfe0cc210340790b78e0759d0daa778ed3014995dd0bff4de7";
+const wrapperSha256 = "8f142ebe8a015aacc38ae55b37f36f98c61daa0621b62fb266c3991cedecbe8d";
 const integrationArgs = ["run", "test:int", "--reporter=default", "--reporter=github-actions", "--reporter=json", "--outputFile=test-results/full-integration.json"];
 const browserArgs = ["run", "test:smoke"];
 const stackBinding = "          CALENDAR_FEED_CI_DISPOSABLE_STACK: ${{ github.run_id }}:${{ github.run_attempt }}:${{ github.job }}";

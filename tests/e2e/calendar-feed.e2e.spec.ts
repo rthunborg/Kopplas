@@ -2,7 +2,7 @@
 import type { Page } from "@playwright/test";
 import { test as resourceTest, expect } from "./support/resource-cdp-attachment";
 import {
-  calendarNames, calendarUI, enterActualPersonalCalendar, expectAccessWarning,
+  calendarNames, calendarUI, calendarBrowserCleanup, enterActualPersonalCalendar, expectAccessWarning,
   followPersonalSubscriptionByKeyboard, tabTo, withCalendarBrowserFixture,
   type CalendarBrowserFixture, type PhysicalSnapshot, type SafeFeedReceipt,
 } from "./support/calendar-feed-atdd";
@@ -11,7 +11,9 @@ import {
 // screenshot/trace options. A unique worker fixture changes its worker-pool
 // digest, preventing reuse by unrelated smoke files. Keep the flag through test
 // artifact teardown (including failures/timeouts), then restore the prior value
-// at worker teardown. This changes no assertion/native JSON result evidence.
+// at worker teardown. Error-context message/source attachments still exist on
+// failures; attachment contents are unqualified until inspected under custody.
+// This changes no assertion/native JSON result evidence.
 const test = resourceTest.extend<Record<never, never>, { calendarArtifactPrivacy: void }>({
   calendarArtifactPrivacy: [async ({}, provide) => {
     const prior = process.env.PLAYWRIGHT_NO_COPY_PROMPT;
@@ -207,6 +209,7 @@ test.describe("15.5 Kalenderprenumeration essential production-host", () => {
       await followPersonalSubscriptionByKeyboard(page, "day");
       const held = await f.armFault("hold-before-send");
       let created: PhysicalSnapshot;
+      let heldPrimary: { error: unknown } | undefined;
       try {
         const committed = f.observeLifecycle("create");
         await calendarUI(page).create.click();
@@ -218,7 +221,8 @@ test.describe("15.5 Kalenderprenumeration essential production-host", () => {
         const result = await committed;
         expect(result.committed).toBe(true);
         created = result.snapshot;
-      } finally { await held.dispose(); }
+      } catch (error) { heldPrimary = { error }; throw error; }
+      finally { await calendarBrowserCleanup([{ stage: "cleanup-fault-dispose", run: () => held.dispose() }], heldPrimary); }
       const original = await f.captureIssuedLink();
       await calendarUI(page).rotate.click();
       await expect(page.getByRole("dialog")).toBeVisible();
@@ -228,6 +232,7 @@ test.describe("15.5 Kalenderprenumeration essential production-host", () => {
       expect(await f.snapshot()).toEqual(created);
 
       const failure = await f.armFault("fail-before-send");
+      let failurePrimary: { error: unknown } | undefined;
       try {
         await calendarUI(page).rotate.click();
         await page.getByRole("dialog").getByRole("button", { name: calendarNames.confirmRotate, exact: true }).click();
@@ -238,7 +243,8 @@ test.describe("15.5 Kalenderprenumeration essential production-host", () => {
         await expect(calendarUI(page).retry).toBeEnabled();
         expect(await f.snapshot()).toEqual(created);
         expectPublicFeed(await f.fetchAnonymous(original.handle), 200);
-      } finally { await failure.dispose(); }
+      } catch (error) { failurePrimary = { error }; throw error; }
+      finally { await calendarBrowserCleanup([{ stage: "cleanup-fault-dispose", run: () => failure.dispose() }], failurePrimary); }
       const beforeRetry = await f.snapshot();
       const retry = f.observeLifecycle("rotate");
       await calendarUI(page).retry.click();
@@ -261,6 +267,7 @@ test.describe("15.5 Kalenderprenumeration essential production-host", () => {
       await followPersonalSubscriptionByKeyboard(page, "day");
       const lost = await f.armFault("lose-committed-response");
       let committed: PhysicalSnapshot;
+      let lostPrimary: { error: unknown } | undefined;
       try {
         await calendarUI(page).create.click();
         await lost.reached;
@@ -268,7 +275,8 @@ test.describe("15.5 Kalenderprenumeration essential production-host", () => {
         expect(committed.own.activeCount).toBe(1);
         await expect(calendarUI(page).notice).toContainText(/kontrollera resultatet/i);
         await expect(calendarUI(page).link).toHaveCount(0);
-      } finally { await lost.dispose(); }
+      } catch (error) { lostPrimary = { error }; throw error; }
+      finally { await calendarBrowserCleanup([{ stage: "cleanup-fault-dispose", run: () => lost.dispose() }], lostPrimary); }
       await calendarUI(page).reconcile.click();
       await expect(calendarUI(page).notice).toContainText(/utfärdade länken kan inte återhämtas/i);
       await expect(calendarUI(page).link).toHaveCount(0);
@@ -300,6 +308,7 @@ test.describe("15.5 Kalenderprenumeration essential production-host", () => {
       if (!browser) throw new Error("Calendar phone test requires the owned browser");
       const context = await browser.newContext({ baseURL: testInfo.project.use.baseURL, viewport: { width: 360, height: 640 }, hasTouch: true });
       const page = await context.newPage();
+      let phonePrimary: { error: unknown } | undefined;
       try { await withCalendarBrowserFixture(page, "no-profile", async (f) => {
         await f.signIn("montor");
         await followPersonalSubscriptionByKeyboard(page, "day");
@@ -324,7 +333,8 @@ test.describe("15.5 Kalenderprenumeration essential production-host", () => {
         await page.keyboard.press("Enter");
         expect((await revoked).snapshot.own.activeCount).toBe(0);
         expectPublicFeed(await f.fetchAnonymous(issued.handle), 404);
-      }); } finally { await context.close(); }
+      }); } catch (error) { phonePrimary = { error }; throw error; }
+      finally { await calendarBrowserCleanup([{ stage: "cleanup-page", run: () => context.close() }], phonePrimary); }
     });
   });
 
@@ -374,6 +384,7 @@ test.describe("15.5 Kalenderprenumeration essential production-host", () => {
         const before = await f.snapshot(), held = await f.armFault("hold-committed-response");
         const pending: Promise<unknown>[] = [];
         let competingPage: Page | undefined;
+        let racePrimary: { error: unknown } | undefined;
         try {
           const original = f.observeLifecycle("create"); pending.push(original); void original.catch(() => undefined);
           await calendarUI(page).create.click();
@@ -420,10 +431,14 @@ test.describe("15.5 Kalenderprenumeration essential production-host", () => {
             expectPublicFeed(feed, 200);
             expect(feed.events).toEqual(f.expectedOwnEvents);
           }
-        } finally {
-          await held.release();
-          await Promise.allSettled(pending);
-          try { await held.dispose(); } finally { await competingPage?.close(); }
+        } catch (error) { racePrimary = { error }; throw error; }
+        finally {
+          await calendarBrowserCleanup([
+            { stage: "cleanup-fault-release", run: () => held.release() },
+            { stage: "cleanup-lifecycle", run: () => Promise.allSettled(pending) },
+            { stage: "cleanup-fault-dispose", run: () => held.dispose() },
+            { stage: "cleanup-page", run: async () => competingPage?.close() },
+          ], racePrimary);
         }
       });
     });
@@ -435,6 +450,7 @@ test.describe("15.5 Kalenderprenumeration essential production-host", () => {
       await followPersonalSubscriptionByKeyboard(page, "day");
       const before = await f.snapshot(), held = await f.armFault("hold-committed-response");
       const original = f.observeLifecycle("create"); void original.catch(() => undefined);
+      let controlPrimary: { error: unknown } | undefined;
       try {
         await calendarUI(page).create.click();
         const committed = await held.committed;
@@ -455,10 +471,13 @@ test.describe("15.5 Kalenderprenumeration essential production-host", () => {
         const feed = await f.fetchAnonymous(issued.handle);
         expectPublicFeed(feed, 200);
         expect(feed.events).toEqual(f.expectedOwnEvents);
-      } finally {
-        await held.release();
-        await Promise.allSettled([original]);
-        await held.dispose();
+      } catch (error) { controlPrimary = { error }; throw error; }
+      finally {
+        await calendarBrowserCleanup([
+          { stage: "cleanup-fault-release", run: () => held.release() },
+          { stage: "cleanup-lifecycle", run: () => Promise.allSettled([original]) },
+          { stage: "cleanup-fault-dispose", run: () => held.dispose() },
+        ], controlPrimary);
       }
     });
   });

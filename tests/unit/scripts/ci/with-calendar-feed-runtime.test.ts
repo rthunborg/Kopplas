@@ -2,6 +2,8 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
+import * as nodeModule from "node:module";
+import { EventEmitter } from "node:events";
 import { projectCalendarFeedCiCommands } from "../../../support/calendar-feed-ci-contract";
 import { INTEGRATION_ARGS, BROWSER_ARGS, FEED_FUNCTIONS, validateAdmission, validateStackIdentity, createCalendarFeedDatabaseClient, createTelemetryObserver, hasSensitiveOutput, createOwnedGroupStopper, ownsListenerRecord, waitForOwnedHttp, runCalendarFeedRuntime } from "../../../../scripts/ci/with-calendar-feed-runtime.mjs";
 
@@ -466,6 +468,272 @@ test("a reused leader before initial or escalation signal grants no foreign sign
     assert.equal(identityReads, readsAtFailure);
     assert.deepEqual(signals, replaceAfterInt ? ["SIGINT"] : []);
   }
+});
+
+test("a valid captured leader disappearing during inspection settles only after actual group absence and latches it", async () => {
+  for (const disappearance of [0, 150, 16_000, 24_000]) {
+    let time = 0, probes = 0, reads = 0, drained = 0, reused = false;
+    const signals: string[] = [];
+    const owned = { pid: 125, group: 125, startTime: "1000" };
+    const stop = createOwnedGroupStopper({ pid: 125, done: Promise.resolve({ code: 0, signal: null }), capturedIdentity: Promise.resolve(owned),
+      readIdentity: async () => { reads++; return null; }, groupExists: () => { probes++; return reads === 0 || reused || time < disappearance; },
+      signalGroup: (signal: string) => { signals.push(signal); }, settleOutput: async () => { drained++; reused = true; },
+      now: () => time, sleep: async (ms: number) => { time += ms; } });
+    const settled = await stop(), provenProbes = probes;
+    assert.deepEqual(settled, { forced: false, signal: null }); assert.equal(reads, 1); assert.equal(drained, 1);
+    assert.deepEqual(signals, []); assert.equal(time, disappearance);
+    await stop(); assert.equal(probes, provenProbes); // Drain-time numeric reuse is never adopted.
+  }
+});
+
+test("missing leaders with persistent groups exhaust only existing budgets and never authorize a signal", async () => {
+  let time = 0, reads = 0, drained = 0;
+  const signals: string[] = [];
+  const stop = createOwnedGroupStopper({ pid: 125, done: Promise.resolve({ code: 0, signal: null }),
+    capturedIdentity: Promise.resolve({ pid: 125, group: 125, startTime: "1000" }), readIdentity: async () => { reads++; return null; },
+    groupExists: () => true, signalGroup: (signal: string) => { signals.push(signal); }, settleOutput: async () => { drained++; },
+    now: () => time, sleep: async (ms: number) => { time += ms; } });
+  await assert.rejects(stop(), error => error instanceof Error && error.message === "child-identity-unverified"
+    && (error as Error & { processPhase: string }).processPhase === "leader-missing-group-live");
+  assert.equal(time, 25_000); assert.equal(reads, 1); assert.equal(drained, 0); assert.deepEqual(signals, []);
+  await assert.rejects(stop()); assert.equal(time, 25_000);
+});
+
+test("invalid capture, changed group and identity read failure remain failures even if the group later disappears", async () => {
+  const owned = { pid: 125, group: 125, startTime: "1000" };
+  for (const fixture of [
+    { capture: null, read: async () => owned, phase: "capture-invalid" },
+    { capture: { ...owned, group: 126 }, read: async () => owned, phase: "capture-invalid" },
+    { capture: { ...owned, startTime: "PRIVATE invalid" }, read: async () => owned, phase: "capture-invalid" },
+    { capture: owned, read: async () => ({ ...owned, group: 126 }), phase: "leader-mismatch" },
+    { capture: owned, read: async () => ({ ...owned, startTime: "9000" }), phase: "leader-mismatch" },
+    { capture: owned, read: async () => { throw new Error("PRIVATE process details"); }, phase: "identity-read-failed" },
+  ]) {
+    let inspected = false, signals = 0, drained = 0;
+    const stop = createOwnedGroupStopper({ pid: 125, done: Promise.resolve({ code: 0, signal: null }), capturedIdentity: Promise.resolve(fixture.capture),
+      readIdentity: async () => { inspected = true; return fixture.read(); }, groupExists: () => !inspected,
+      signalGroup: () => { signals++; }, settleOutput: async () => { drained++; } });
+    await assert.rejects(stop(), error => error instanceof Error && error.message === "child-identity-unverified"
+      && (error as Error & { processPhase: string }).processPhase === fixture.phase);
+    assert.equal(signals, 0); assert.equal(drained, 0);
+  }
+});
+
+test("verified live leaders retain escalation identity checks and forced-stop semantics", async () => {
+  let time = 0, exists = true, reads = 0;
+  const signals: string[] = [], owned = { pid: 125, group: 125, startTime: "1000" };
+  const stop = createOwnedGroupStopper({ pid: 125, done: Promise.resolve({ code: 0, signal: null }), capturedIdentity: Promise.resolve(owned),
+    readIdentity: async () => { reads++; return owned; }, groupExists: () => exists,
+    signalGroup: (signal: string) => { signals.push(signal); if (signal === "SIGKILL") exists = false; }, settleOutput: async () => undefined,
+    now: () => time, sleep: async (ms: number) => { time += ms; } });
+  assert.deepEqual(await stop(), { forced: true, signal: null });
+  assert.deepEqual(signals, ["SIGINT", "SIGTERM", "SIGKILL"]); assert.equal(reads, 3); assert.equal(time, 20_000);
+});
+
+test("actual absence cannot bypass bounded child completion or bounded output drain", async () => {
+  for (const pendingOutput of [false, true]) {
+    let drains = 0;
+    const stop = createOwnedGroupStopper({ pid: 125,
+      done: pendingOutput ? Promise.resolve({ code: 0, signal: null }) : new Promise(() => undefined),
+      capturedIdentity: Promise.resolve({ pid: 125, group: 125, startTime: "1000" }), readIdentity: async () => null,
+      groupExists: () => false, signalGroup: () => assert.fail("absent group must never be signaled"),
+      settleOutput: () => { drains++; return new Promise(() => undefined); } });
+    await assert.rejects(stop(), pendingOutput ? /child-output-unverified/ : /child-settle-unverified/);
+    assert.equal(drains, pendingOutput ? 1 : 0);
+  }
+});
+
+test("full wrapper missing-leader race deletes the exact key only after absence and output; persistent groups keep custody", async () => {
+  for (const persistent of [false, true]) {
+    const h = harness(); let time = 0, exists = true, signals = 0;
+    const launch = h.deps.launch.bind(h.deps);
+    h.deps.launch = (command, args, childEnv) => {
+      const child = launch(command, args, childEnv);
+      if (h.launches.length !== 1) return child;
+      return { ...child, stop: createOwnedGroupStopper({ pid: 125, done: child.done,
+        capturedIdentity: Promise.resolve({ pid: 125, group: 125, startTime: "1000" }),
+        readIdentity: async () => { if (!persistent) exists = false; return null; }, groupExists: () => exists,
+        signalGroup: () => { signals++; }, settleOutput: async () => { h.events.push("actual-output-drained"); },
+        now: () => time, sleep: async (ms: number) => { time += ms; } }) };
+    };
+    const result = await runFixture("db", h);
+    assert.equal(signals, 0); assert.equal(result.exitCode, persistent ? 1 : 0);
+    if (persistent) {
+      assert.deepEqual(result.receipt.failures, ["child-identity-unverified", "owned-child-cleanup-failed"]);
+      assert.equal((result.receipt.diagnostics[0] as { processPhase?: string }).processPhase, "leader-missing-group-live");
+      assert.equal(result.receipt.keyOutcome, "unverified"); assert.equal(result.receipt.keyDeleted, false);
+      assert.ok(result.receipt.custody); assert.equal(result.launches.length, 1); assert.equal(result.receipt.dbClosed, true);
+      assert.ok(!result.queries.some(call => call.sql.startsWith("delete")));
+    } else {
+      assert.equal(result.receipt.keyOutcome, "deleted-confirmed"); assert.equal(result.launches.length, 3);
+      assert.ok(result.events.indexOf("actual-output-drained") < result.events.indexOf("delete"));
+    }
+    assert.ok(!JSON.stringify(result.receipt).includes("1000"));
+  }
+});
+
+let browserSeams: Promise<typeof import("../../../e2e/support/calendar-feed-atdd")> | undefined;
+function actualBrowserSeams() {
+  // The existing bare-Node alias hook selects a sibling fixture directory before
+  // tenants.ts. Execute the actual self-contained source region, without loading
+  // its DB/browser adapters, copying implementation or changing the shared hook.
+  browserSeams ??= (async () => {
+    const source = readFileSync(new URL("../../../e2e/support/calendar-feed-atdd.ts", import.meta.url), "utf8");
+    const start = "// Pure diagnostic/observation seams:", end = "/** Accessible labels";
+    assert.equal(source.split(start).length, 2); assert.equal(source.split(end).length, 2);
+    const pureSource = source.slice(source.indexOf(start), source.indexOf(end));
+    // Installed Node22 exposes this API; repository @types/node20 predates it.
+    const strip = (nodeModule as unknown as { stripTypeScriptTypes(source: string): string }).stripTypeScriptTypes;
+    assert.equal(typeof strip, "function");
+    const executable = strip(pureSource);
+    return import(`data:text/javascript;base64,${Buffer.from(executable).toString("base64")}`);
+  })();
+  return browserSeams;
+}
+
+test("actual browser diagnostic seam emits only closed stages categories and SQLSTATE without traversing native payloads", async () => {
+  const { calendarBrowserDiagnostic } = await actualBrowserSeams();
+  let getters = 0;
+  const privateText = "PRIVATE capability proof URL key SQL parameters";
+  const hostile = Object.defineProperties({}, { code: { get() { getters++; throw new Error(privateText); } },
+    message: { value: privateText }, cause: { get() { getters++; throw new Error(privateText); } }, stack: { value: privateText } });
+  const unknown = calendarBrowserDiagnostic("not-admitted" as never, hostile);
+  assert.equal(unknown.message, "Calendar browser failure [stage=unknown;category=unknown;sqlstate=unavailable]");
+  assert.equal(getters, 0); assert.equal(unknown.cause, undefined); assert.ok(!unknown.stack?.includes(privateText));
+  const known = calendarBrowserDiagnostic("cleanup-sql", Object.assign(new Error(privateText), { code: "42501", detail: privateText, cause: hostile }));
+  assert.equal(known.message, "Calendar browser failure [stage=cleanup-sql;category=database;sqlstate=42501]");
+  assert.equal(known.cause, undefined); assert.ok(!known.stack?.includes(privateText));
+  assert.equal(calendarBrowserDiagnostic("scenario", known), known); // Preserve safe nested cleanup diagnostics.
+});
+
+test("actual browser event waiter preserves matching, removes listeners and observes timeout predicate and cancellation failures", async () => {
+  const { calendarEventWaiter } = await actualBrowserSeams();
+  const events = new EventEmitter();
+  const waiter = (predicate: (value: number) => boolean, timeoutMs = 5) => calendarEventWaiter({
+    subscribe: listener => { events.on("response", listener); }, unsubscribe: listener => { events.off("response", listener); },
+    predicate, stage: "action-response", timeoutMs });
+  const matching = waiter(value => value === 7, 100);
+  events.emit("response", 6); assert.equal(events.listenerCount("response"), 1);
+  events.emit("response", 7); assert.equal(await matching.promise, 7); assert.equal(events.listenerCount("response"), 0);
+  const timed = waiter(() => false); await assert.rejects(timed.promise, /stage=action-response;category=timeout/);
+  assert.equal(events.listenerCount("response"), 0);
+  const bad = waiter(() => { throw new Error("PRIVATE predicate value"); }); events.emit("response", 7);
+  await assert.rejects(bad.promise, error => error instanceof Error && !error.message.includes("PRIVATE"));
+  const cancelled = waiter(() => true); cancelled.cancel(); cancelled.cancel();
+  await assert.rejects(cancelled.promise, /category=cancelled/); assert.equal(events.listenerCount("response"), 0);
+});
+
+test("actual browser observation handles early response rejection and abandoned outer promise before request arrives", async () => {
+  const { calendarEventWaiter, createCalendarLifecycleObservations } = await actualBrowserSeams();
+  const events = new EventEmitter(), registry = createCalendarLifecycleObservations({ settlementTimeoutMs: 100 });
+  let readbacks = 0;
+  const waiter = (kind: "request" | "response", timeoutMs: number) => calendarEventWaiter({
+    subscribe: listener => { events.on(kind, listener); }, unsubscribe: listener => { events.off(kind, listener); },
+    predicate: () => true, stage: kind === "request" ? "action-request" : "action-response", timeoutMs });
+  const observation = registry.observe({ request: () => waiter("request", 100), response: () => waiter("response", 5),
+    readback: async () => { readbacks++; return true; } });
+  // Deliberately do not await the outer promise until after the inner rejection;
+  // node:test would report an unhandledRejection if either observer were missing.
+  await new Promise(resolve => setTimeout(resolve, 15));
+  const settled = await registry.cancelAndSettle();
+  assert.equal(settled.settled, true); assert.ok(settled.errors.length > 0); assert.equal(readbacks, 0);
+  await assert.rejects(observation, /category=timeout/);
+  assert.equal(events.listenerCount("request"), 0); assert.equal(events.listenerCount("response"), 0);
+});
+
+test("actual browser observation handles setup failure after first waiter and preserves successful real readback values", async () => {
+  const { calendarEventWaiter, createCalendarLifecycleObservations } = await actualBrowserSeams();
+  const events = new EventEmitter(), registry = createCalendarLifecycleObservations({ settlementTimeoutMs: 100 });
+  const response = () => calendarEventWaiter<number>({ subscribe: listener => { events.on("response", listener); },
+    unsubscribe: listener => { events.off("response", listener); }, predicate: () => true, stage: "action-response", timeoutMs: 100 });
+  const failed = registry.observe({ response, request() { throw new Error("PRIVATE setup details"); }, readback: async () => true });
+  await assert.rejects(failed, error => error instanceof Error && !error.message.includes("PRIVATE"));
+  assert.equal(events.listenerCount("response"), 0);
+  const success = registry.observe({ response, request: () => ({ promise: Promise.resolve(7), cancel() {} }),
+    readback: async (value, signal) => { assert.equal(signal.aborted, false); return { actualRequest: value, committed: true }; } });
+  events.emit("response", 9);
+  assert.deepEqual(await success, { actualRequest: 7, committed: true });
+  const final = await registry.cancelAndSettle(); assert.equal(final.settled, true); assert.equal(final.errors.length, 1);
+});
+
+test("actual browser bounded cancellation cannot claim in-flight readback settled and retains errors until actual completion", async () => {
+  const { createCalendarLifecycleObservations } = await actualBrowserSeams();
+  const registry = createCalendarLifecycleObservations({ settlementTimeoutMs: 5 });
+  let release!: () => void, entered!: () => void, settled = false;
+  const started = new Promise<void>(resolve => { entered = resolve; }), gate = new Promise<void>(resolve => { release = resolve; });
+  const observation = registry.observe({ request: () => ({ promise: Promise.resolve(7), cancel() {} }),
+    response: () => ({ promise: Promise.resolve(true), cancel() {} }),
+    readback: async (_request, signal) => { entered(); await gate; assert.equal(signal.aborted, true); return true; } });
+  void observation.finally(() => { settled = true; }).catch(() => undefined);
+  await started;
+  const pending = await registry.cancelAndSettle();
+  assert.equal(pending.settled, false); assert.equal(settled, false);
+  assert.ok(pending.errors.some(error => error.message.includes("stage=cleanup-lifecycle;category=timeout")));
+  release(); await assert.rejects(observation, /category=cancelled/);
+  const completed = await registry.cancelAndSettle(); assert.equal(completed.settled, true);
+  assert.ok(completed.errors.length > 0); assert.equal(settled, true);
+});
+
+test("actual browser listener removal failure keeps cancellation unverified even after all observation promises settle", async () => {
+  const { calendarEventWaiter, createCalendarLifecycleObservations } = await actualBrowserSeams();
+  const registry = createCalendarLifecycleObservations({ settlementTimeoutMs: 100 });
+  let removals = 0;
+  const observation = registry.observe({ request: () => ({ promise: Promise.resolve(7), cancel() {} }),
+    response: () => calendarEventWaiter({ subscribe() {}, unsubscribe() { removals++; throw new Error("PRIVATE listener details"); },
+      predicate: () => true, stage: "action-response", timeoutMs: 5 }), readback: async () => true });
+  await assert.rejects(observation, error => error instanceof Error && !error.message.includes("PRIVATE"));
+  const result = await registry.cancelAndSettle();
+  assert.equal(result.settled, false); assert.equal(removals, 1); assert.ok(result.errors.length > 0);
+  for (const error of result.errors) { assert.equal(error.cause, undefined); assert.ok(!error.stack?.includes("PRIVATE")); }
+});
+
+test("actual browser matched events cannot credit pending or failed HTTP completion as settled transport", async () => {
+  const { createCalendarLifecycleObservations } = await actualBrowserSeams();
+  for (const outcome of ["complete", "failed", "rejected"] as const) {
+    const registry = createCalendarLifecycleObservations({ settlementTimeoutMs: 5 });
+    let finish!: (value: boolean) => void, fail!: (error: Error) => void;
+    const completion = new Promise<boolean>((resolve, reject) => { finish = resolve; fail = reject; });
+    const observation = registry.observe({ request: () => ({ promise: Promise.resolve(7), cancel() {} }),
+      response: () => ({ promise: Promise.resolve(true), cancel() {} }), readback: async () => true,
+      completion: async request => { assert.equal(request, 7); return completion; } });
+    assert.equal(await observation, true); // Actual body completion remains a separate condition.
+    assert.equal((await registry.cancelAndSettle()).settled, false);
+    if (outcome === "rejected") fail(new Error("PRIVATE native completion details")); else finish(outcome === "complete");
+    const result = await registry.cancelAndSettle();
+    assert.equal(result.settled, outcome === "complete");
+    if (outcome !== "complete") assert.ok(result.errors.length > 0);
+    assert.ok(result.errors.every(error => !error.stack?.includes("PRIVATE") && error.cause === undefined));
+  }
+  const unmatched = createCalendarLifecycleObservations({ settlementTimeoutMs: 5 });
+  let completionCalls = 0;
+  const observation = unmatched.observe({ request: () => ({ promise: Promise.reject(new Error("PRIVATE unmatched request")), cancel() {} }),
+    response: () => ({ promise: Promise.resolve(true), cancel() {} }), readback: async () => true,
+    completion: async () => { completionCalls++; return true; } });
+  await assert.rejects(observation);
+  assert.equal((await unmatched.cancelAndSettle()).settled, false); assert.equal(completionCalls, 0);
+  const failedSetup = createCalendarLifecycleObservations({ settlementTimeoutMs: 5 });
+  const failedObservation = failedSetup.observe({ request() { throw new Error("PRIVATE listener setup"); },
+    response: () => ({ promise: Promise.resolve(true), cancel() {} }), readback: async () => true, completion: async () => true });
+  await assert.rejects(failedObservation);
+  assert.equal((await failedSetup.cancelAndSettle()).settled, false);
+});
+
+test("actual browser finally cleanup executes every step and retains primary plus all sanitized cleanup errors", async () => {
+  const { calendarBrowserCleanup } = await actualBrowserSeams();
+  const calls: string[] = [];
+  await assert.rejects(calendarBrowserCleanup([
+    { stage: "cleanup-fault-release", async run() { calls.push("release"); throw new Error("PRIVATE gate details"); } },
+    { stage: "cleanup-lifecycle", async run() { calls.push("join"); } },
+    { stage: "cleanup-page", async run() { calls.push("page"); throw Object.assign(new Error("PRIVATE page details"), { code: "42501" }); } },
+  ], { error: new Error("PRIVATE original failure") }), error => {
+    assert.ok(error instanceof AggregateError); assert.equal(error.errors.length, 3);
+    assert.ok(error.errors[0].message.includes("stage=scenario"));
+    assert.ok(error.errors[1].message.includes("stage=cleanup-fault-release"));
+    assert.ok(error.errors[2].message.includes("stage=cleanup-page;category=database;sqlstate=42501"));
+    assert.ok(error.errors.every((nested: Error) => nested.cause === undefined && !nested.stack?.includes("PRIVATE")));
+    return true;
+  });
+  assert.deepEqual(calls, ["release", "join", "page"]);
 });
 
 test("browser mode runs only existing smoke and awaits its server group before key deletion", async () => {
