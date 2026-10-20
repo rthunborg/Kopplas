@@ -1,74 +1,119 @@
 {
   "policy_version": "2026-10-19",
-  "record_status": "exact-reviewed-a515-source-development-evidence-qualified-awaiting-Root-admission",
-  "contract_reconciliation": "Approved kernel013b7ae0d0614d20dbc021885786ca1803976e10bd634ddc0bc3791b19de4ee1/9tasks/8ACs/DesignNotes preserved. Round2 six configured layers complete:3patches(2high1medium),2rejects,0intent_gap/bad_spec/defer; weightedmediumscore3/followupTRUE/broad2of3/nonconvergence0. DistinctHigh current-source/helper/correction/trail/compactTEXT-boundary reviews PASS. Rejected4000-ID guard came from supersededSQL; never executed/committed cap, positive100person/long-ID actualpreview/public-input regression retained. Applicable development evidence qualified for exacta515/run39342433474:5requiredCIjobs,2979units/43process/fullDB1828P52S(includedRLS800P14S)/directStorage1P/first107replays/nativeRLS005+REAL023 bodies. Only3of433productionfiles changed; recorded composed essentialUI reuse plus currentactualTSX DENIED-retry proof, no freshDENIEDbrowser/matrix claim. No additional local106to107 rehearsal mandated for helper-onlyCREATEORREPLACE/no datatransform; exactCI verifies effective helper/ACL and actualnewretentionnegatives. Threeowned Oct19release defers remain, no skips-as-coverage. Rootalone runs mandatorygate/narrowfinalprovenance/admission; this record asserts evidence and is not reneweddevelopmentdone/release/merge/deploymentapproval.",
-  "evidence_revision": "a51531888252189a3cc98798b5e8e315f0348fb0",
+  "record_status": "qualified-exact-a00-development-evidence-awaiting-Root-gate-and-final-frozen-provenance",
+  "contract_reconciliation": "Approved kernel013b7ae0d0614d20dbc021885786ca1803976e10bd634ddc0bc3791b19de4ee1/9tasks/8AC/DesignNotes preserved. Final broad3of3 six configured layers completed beforetriage:2medium patches/3low rejects/0intent_gap-bad_spec-defer,score6/followupTRUE/nonconvergence0 separate. R3-01 effective suffix plus affected-date recovery and R3-02 complete protected-history/newtombstone predicate/matrix are implemented; distinctHigh actualsource/artifactPASS9d22 and exacta00CIqualification2082dd02 cover finalsource. Allapplicabledevelopment evidence passed with one explicitly disclosed normalbrowserretry, no firstattemptlaterassertion credit/no cause or waiver. Existing scoped essentialbrowser reuse is separated from current syntheticports/normalAuthJobs smoke. Three Oct19 policy release defers preserve owner/status/nextaction; no skips as coverage. Rootgate/separatefrozenrecordprovenance/explicitstatusadmission are pending; this is evidence assertion, no renewed developmentdone/release/merge/deploymentapproval.",
+  "evidence_revision": "a00dd595d96a73c398328ed1778bac334aca9de6",
   "worktree_evidence": {
-    "baseline": "85755eb7cea3affdc77dbe1d30bb18279b614c5a",
-    "invocation_head": "fe99dbca8da5cc71bb675a513a21a68d64f80ce5",
-    "tested_source_checkpoint": "a51531888252189a3cc98798b5e8e315f0348fb0",
-    "frozen_source7_inventory_sha256": "38fe048a8465cc0f1217eb72a2ed4f5df0d770f728ea8bba3b6ba6916581b349",
-    "author_verification": "_bmad-output/test-artifacts/story15-2/build-round2-author-verification.json",
-    "author_verification_sha256": "314cc514eff4e833637853a29ba4e2a96fb4a6435ec6c6a70d4600c33128eb3a",
-    "source433_changed_paths": [
-      "src/components/resources/BookingEditor.tsx",
-      "src/features/resources/booking-series-actions.ts",
-      "src/server/bookings/series-conflicts.ts"
+    "tested_source_checkpoint": "a00dd595d96a73c398328ed1778bac334aca9de6",
+    "observed_metadata_only_HEAD": "308dfa3a1eede675f3932e6ffa96108594200e01",
+    "source_inventory": [
+      {
+        "path": "src/features/resources/booking-series-actions.ts",
+        "local_raw_sha256": "337d91190c8e43ad6acba7d68cfbd3d3f2388f86bedde49f368b3b3a840b04ac",
+        "Git_normalized_LF_sha256": "337d91190c8e43ad6acba7d68cfbd3d3f2388f86bedde49f368b3b3a840b04ac",
+        "CRLF_count": 0
+      },
+      {
+        "path": "src/server/bookings/series-conflicts.ts",
+        "local_raw_sha256": "45e3839f46125ebb8995b5fd134e97ea9f8c07b6b1f756c42237b001ecda53aa",
+        "Git_normalized_LF_sha256": "45e3839f46125ebb8995b5fd134e97ea9f8c07b6b1f756c42237b001ecda53aa",
+        "CRLF_count": 0
+      },
+      {
+        "path": "src/server/commands/bookings/series-validation.ts",
+        "local_raw_sha256": "bc7bbc82e58d898b7668314610d9052137e886d4add4e2ca23ea69cfa62068ee",
+        "Git_normalized_LF_sha256": "bc7bbc82e58d898b7668314610d9052137e886d4add4e2ca23ea69cfa62068ee",
+        "CRLF_count": 0
+      },
+      {
+        "path": "tests/unit/server/bookings/series-plan.test.ts",
+        "local_raw_sha256": "60cb711c59dc3cf58b3e2679443260799c88ec1b53e0be969605726da902da2e",
+        "Git_normalized_LF_sha256": "60cb711c59dc3cf58b3e2679443260799c88ec1b53e0be969605726da902da2e",
+        "CRLF_count": 0
+      }
     ],
-    "source_test_schema_unchanged_since_tested_checkpoint": true,
-    "frozen_checkpoint_packet_sha256": "abec59adc86ceb778430c9708112c6922e2cdd10395f81297a3b65ce841bc8ce",
-    "Root_preflight_sha256": "9b36bc4d33bd9420eb9eeb3012094aba6674d31afea87126047b259032015c22",
-    "CI_qualification": ".env.epic15.mail-runtime/story-15-2-ci-a5153188-independent/qualification-final.json",
-    "CI_qualification_sha256": "02aa78628d14b33ea740a466b88be36899b5b01aef05ba024a618abd1f565d3b",
-    "CI_evidence_manifest_sha256": "1850406c59fed10dc5e66bb5e74b815bbc983c0cf9f30c7ec8659dc6edf235b8",
-    "historical_local_build_id": "GLKBSX62N9CbTViZM7YrP",
-    "historical_local_build_scope": "Scoped prior Scheduling/series essentials with reviewed dependency reuse; not a currenta515 local build/browser run."
+    "source_inventory_sha256": "e6aae2115e2e9b1c680f3066c7a8f9e1a1a822fdbcd1fe95634e244002ef6e9f",
+    "author_verification": "_bmad-output/test-artifacts/story15-2/build-round3-author-verification.json",
+    "author_verification_sha256": "85b2f65cf0c6e3f8fa2d28ab43b40bc1e3113a9d53f37182136c2fceb49a82ca",
+    "source_build_test_schema_conservation": {
+      "tested_source": "a00dd595d96a73c398328ed1778bac334aca9de6",
+      "observed_metadata_HEAD": "308dfa3a1eede675f3932e6ffa96108594200e01",
+      "dependency_paths_compared": [
+        "src",
+        "public",
+        "supabase",
+        "tests",
+        "scripts",
+        ".github",
+        "package.json",
+        "pnpm-lock.yaml",
+        "next.config.ts",
+        "tsconfig.json",
+        "playwright.config.ts"
+      ],
+      "tracked_worktree_source_build_test_schema_delta": [],
+      "four_frozen_source_raw_hashes_match": true,
+      "four_tested_Git_LF_blobs_match_current_normalized_bytes": true,
+      "migration105106107_raw_and_tested_Git_LF_verified": true,
+      "scope": "No separate metadataHEADbuild or tests claimed. Only spec/author-verification/delivery author writes. Prior433production comparison versus historicala515 remains3changed/430unchanged; exact finala00 through308metadata source/build/test/schema dependencies conserved."
+    },
+    "historical_pre_finalCI_metadata": {
+      "path": ".env.epic15.mail-runtime/story-15-2-round3-review-dom7o2j1/before-exact-a00-CI-qualified-manifest.json",
+      "sha256": "e71e9e3ec6e2e387791d90d1d01ad86408f57e74660d5463a94394d43de93cea",
+      "frozen_source_packet": "d299c3408d3a500276aaa838bcc60548df809d339f4904d6bdb796c87bb27e0a"
+    },
+    "historical_admitted_delivery570d": {
+      "path": ".env.epic15.mail-runtime/story-15-2-round3-review-dom7o2j1/delivery-570d-historical.json",
+      "sha256": "570d0c7442c4e902b4564b85a55e77b9928042fd98ac4229a3503c82bede3e06",
+      "source": "a51531888252189a3cc98798b5e8e315f0348fb0",
+      "current_source_credit": false
+    }
   },
   "development_checks": [
     {
-      "name": "exacthead-required-CI-static-production-build-and-containment",
+      "name": "exact-source-required-CI-static-production-build-and-containment",
       "status": "passed",
-      "evidence": "Run39342433474 attempt1/release_validationfalse exacta51531888252189a3cc98798b5e8e315f0348fb0:checkpoint-admission,verify,db,recovery-storage-loader,e2e SUCCESS. Nativefrozeninstall/lockfiles/blockingaudit/sourcecontainment/typecheck/lint/build/builtbundle allsuccessful; independent11ownershipbindings/qualified artifacts. No deployment/releaseapproval."
+      "evidence": "Exacta00dd595d96a73c398328ed1778bac334aca9de6/run39348312783 attempt1/release_validationfalse: all5requiredjobsSUCCESS and all11identitybindingsPASS; frozeninstall/lockfiles/blockingaudit/typecheck/lint/productionbuild/source+bundlecontainment passed. No separate308metadata build claim."
     },
     {
-      "name": "current-focused-and-full-unit-process-contracts",
+      "name": "current-unit-process-and-all45-focused-native-case-bindings",
       "status": "passed",
-      "evidence": "CurrentCI2979P0F0S/103suites/no cancel/todo;BMAD2+Auto26+10+5=43processP0F0S. Includes actualproductionpreview oversizedplan/longID, exactserialization/+1/multibyte, normalpreview and actualTSX DENIEDretry tests. Localfocused20P0F0S separately overlaps, not additive. Original18RED15P3F has2confirmeddefectfailures+1rejectedwrongexpectation, no falsecredit."
+      "evidence": "Native3004P0F0skip/cancel/todo/103suites; BMAD2+Auto26+10+5=43processP0S. All45currentfocused names independently match nativeTAPOK,13R3-02matrix+32related/nonadditive subset. Matrix includes4positive scenarios and9denial scenarios, not13successfulmutations. CorrectedRED20P2F/dateRED1F/mixedRED9cases8P1F retained; wrongfixture13P9F no defect credit."
     },
     {
-      "name": "required-current-full-database-RLS-and-requested-native-body-reach",
+      "name": "required-full-database-RLS-and-requested-native-body-reach",
       "status": "passed",
-      "evidence": "SUPABASE_TEST_REQUIRED=1 actualCI fullDB1880total1828P0F52explicitS/152files, all23active15.2commandsP. RLS800P14S/52files INCLUDEDsubset, neveradditive. Native exactREAL023PASSED2015.013ms completes3to2active-replacement/tombstoneID+projectedpayload/replay/newcancelled-inactive/existingrole-substitutiondenial snapshots through authenticatedcheckedcommand/RPC, not isolatedrawSQL. NativeRLS005PASSED2207.878ms completesfreshcount4previewTENANT_ACCESS_DENIED+fullsnapshotunchanged, separately from narroweroldstalereceipt denial.52skips=37commandscaffolds+14RLSscaffolds+1physicalStorageoutsideisolatedlane, nocredit. Exactnativeassertions/sourcehashes/required1proof in qualification02aa7862."
+      "evidence": "SUPABASE_TEST_REQUIRED=1 observed actual nativeenvironment. FullDB1828P0F52explicitS/1880total/152files,23active15.2commandsP. RLS800P14S included/nonadditive. RevisedRLS005PASSED2411.957ms freshpreviewTENANT_ACCESS_DENIED+fullsnapshot distinct from stale-receipt denial. REAL023PASSED2336.738ms checked3to2active-replacement/historicalcancelledidentity+projectedpayload/replay/newinactive/substitutiondenial snapshots. Nativepass plus immutableawaitedbody reach qualified, not isolatedrawSQL/perassertioninstrumentation.52skips37commandscaffolds+14RLSscaffolds+1Storageoutsideisolatedlane give no coverage."
     },
     {
-      "name": "empty107-migration-seed-replay-and-current-private-ACL-integrity",
+      "name": "empty107-first-migration-seed-replays-and-private-ACL-integrity",
       "status": "passed",
-      "evidence": "All107migrations/seed completedfirstattempt in db,e2e,recovery-storage schema source; zero failed/CLIrestart recovery. New107 changesonlyexistingprivateinvokerhelper same-ID/same-role cancellationretention; currenteffectiveACL/inventory checked in fullDB.105raw24f unchanged;106localCRLFc55/GitLF57e7 and107localCRLF3e231e/GitLF3143b1 normalizedequal only; all exacthashes retained. No localrehearsal/reset/reapply or rewriting of105/106."
+      "evidence": "All107migrations/seed firstattempt in db,e2e,recovery schema-source, no resetfailure/CLIrestart recovery.105raw24f/106localCRLFc55 versus GitLF57e7/107localCRLF3e231e versus GitLF3143b1 preserved and normalizedequal only; exactidentities in authorrecord. EffectiveprivateACL/currentinventory qualified fullDB. No local107apply/rewrite or redundanthelper-only upgrade rehearsal claim."
     },
     {
       "name": "direct-current-isolated-physical-recovery-Storage",
       "status": "passed",
-      "evidence": "Separate native1P0F0S:physical2objects/66bytes, servedreadback and unchangedprotectedlogicalrows/bytes plus generic/quotePDFoverwritedenial. Exactartifact12229802604 digestcfa98e94cedda692225ddbfc0546dbb088a06e2754245b2e1951712752cc59a0, independentlybound to run/head; notcreditfromfullDBskippedcounterpart."
+      "evidence": "Separate isolatedStorage1P0F0S, physical2objects66bytes, servedreadback/unchangedlogicalrows and generic+quotePDFoverwrite denials. Exactartifact12231549604 ZIPdigest22f1ec29409624a5cc5cc98ee3906120b258b326621300817e35e57071db3f01 bound to finalrun/source. Not credit from skipped fullDB counterpart."
     },
     {
-      "name": "essential-connected-UI-and-normal-smoke-with-explicit-dependencies",
+      "name": "essential-connected-Scheduling-composition-and-normal-smoke-with-disclosed-retry",
       "status": "passed",
-      "evidence": "Prior guarded GLK007/0082P then0091P remain historical scoped receipts. Three of433 production source files changed: editor retry callback only routes to unchanged refreshStaleSeries; actual TSX action-port regression proves DENIEDÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢explicit onRetryÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢current ownership/versionÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢retained draftÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ready. Existing retry control/render binding and actual GLK007 metadata recovery unchanged. Server preview/save adds only rejection above existing SQL3MiB bound plus own fixed error message, with actual normal preview and positive long-ID public-input regression. New107 helper retention is bounded to same occurrence/role cancellation and requires REAL023. Root accepts composed essential coverage; no fresh DENIED browser or exhaustive matrix claim. CurrentCIAuth7+Jobs4=11P0F0S/flaky/retries/globalerrors is separate currentproduction-smoke proof, notScheduling/series coverage. Currentnormalpreview andactualTSXport tests includedin2979pass; Rootacceptedcomposedessentialcoverage without imposinglocalruntime."
+      "evidence": "Historical scoped GLK007/0082P then0091P/originalfailedreceipts retain actualhost scope. Presentation/gestures/metadatarecovery/standalonepaths unchanged from qualifieda515; prior actualTSXDENIEDretry ports plus current45public-action/envelope/planner tests compose changed pure-server decisions without freshScheduling/DENIEDbrowser/matrix claim. Final ordinaryAuthJobs smoke10firstpasses+1FLAKY/12attempts1retry/0finalfail/skip/globalerrors. E03firstattempt response.text/CDPbodyretrieval fails before PREVIEW_STALE/laterassertions, no firstattemptcredit there. ExistingunchangedCIretry1 completesbody321-354: stale/snapshot/reviewreset/UIretry/exactpersistedbooking-assignee-conflicts/oneaudit/reload. Narrowfc130dae checks unchangedstandalone route/Editor/config and no selectedrecurrence. No observedproductassertion mismatch, rootcause inference or waiver; originalfailedattempt retained."
     },
     {
-      "name": "configured-current-pilot-performance",
+      "name": "current-configured-pilot-performance-with-narrow-scope",
       "status": "passed",
-      "evidence": "ExactCI configured120/24tenantmembership localprojection;5warmups/25measurements readp9511.084037ms<=250,syntheticpermissionsCPU3.847585ms<=25,50authenticatedRLSrequests=2/read<=3. Native log/dataset/exactcontract bound; fullprivatebaseline/queryplanJSONnotuploaded. NarrowAdminusersread/CPU only, norepresentativeScheduling/production/releasecertification."
+      "evidence": "Exacta00 configured120/24memberships/5warmups25measurements: readp9518.046681ms<=250,permissionsCPU4.864174ms<=25,50RLSrequests=2/read<=3. Native dataset/log/configuredcontract bound. NarrowlocalAdminusersprojection/CPU only; fullprivatebaseline/queryplanJSONnotuploaded, no representativeScheduling/fullpage/production release certification."
     },
     {
-      "name": "author-review-trail-and-approved-contract-preservation",
+      "name": "author-SRO-and-approved-contract-conservation",
       "status": "passed",
-      "evidence": "OneauthorSRO26validrefs, independentHighfinaltrailPASSa9be0b0e04e142992063a8dd4ff2bcdfcd67ba2ad46afd8f00a64ec1fb686714. Approvedkernel/9tasks/8AC/DesignNotes preserved. Currentevidence-onlyrefresh retains source7hashes at testeda515; specSTILLin-reviewpendingRootgate/narrowfinalprovenance/statusadmission. No newbroadround.3ownedreleasedefers separate from0frontmatterdeferfindings."
+      "evidence": "One refreshed authorSRO26validrefs/checker native0; canonicalin-review/latest2medium patch3low reject/0intent_gap-bad_spec-defer/followupTRUE/score6/broad3of3/nonconvergence0. Approvedkernel013b7ae0d0614d20dbc021885786ca1803976e10bd634ddc0bc3791b19de4ee1/9tasks8AC/DesignNotes preserved. Exactsource/build/test/schema conserved a00 through308metadata. Source/finalCI evidence qualified; Rootgate/separatefrozenrecordprovenance/admission remain pending, no development-done claim."
     }
   ],
   "independent_review": {
     "status": "passed",
-    "evidence": "AllsixRound2configuredreports completedbeforotriage preservedwith hashes in authorverification; initialhookfailed/emptyCLI attempts getnocredit. Supportednativebatches andoneserialprescribedexternalreport collected; finalCMDTYPEtransporterror separatefromrealreview. DistinctHighcorrection/helperPASS0f167c53b965ce62f6847bc7b1d1da3e927bd09f3a97695b7ecb26da3f6aab83, exactcompactTEXTboundaryPASS1a791cebd90f1b5c1163c63156220d0b2a3a48b0946a3aef072cba92bf7c93ba and finaltrailPASSa9be... bindactualcurrentdelta. ExactCIqualification02aa78628d14b33ea740a466b88be36899b5b01aef05ba024a618abd1f565d3b independentlychecks11ownershipbindings/nativeartifactdigests/pertestbodyreach. Finalfrozen-deliveryprovenance is distinctpendingRoot-ownedstep, not claimedhere."
+    "evidence": "All6configured finalRound3 context-free reports completed beforetriage; initial externalTemp read denial no reviewcredit then Rootauthorized exactsame-byte ownedworkspace serial retry supplied real report. Allrawreports/hashes retained. SameindependentHigh proposalPASSf86ca7 beforeR3-02productionedit and finalactualdiff/13matrix/45related/artifactSROPASS9d22 aftercompletefix; R3-01correctionPASS7fbb retained. CurrentexactCIqualification2082dd02 verifies11ownership/all5jobs/native45TAP/RLS005/REAL023/artifactdigests and narrowbrowserretryfc130dae with originalfailedattempt preserved. This field covers independent current source/CI qualification; separate new frozen-delivery provenance and Rootadmission remain pending."
   },
   "deferred_release_validation": [
     {
@@ -89,88 +134,200 @@
       "item": "Representative scheduling performance thresholds/workloads certification",
       "owner": "Product/Architect",
       "status": "deferred",
-      "evidence": "Exacta515/run39342433474 configured pilot passed25measurements/5warmups, narrowAdminusers read11.084037ms/permissionsCPU3.847585ms/2RLSrequests perread; no representativeScheduling workload or release-threshold certification.",
+      "evidence": "Exacta00/run39348312783 currentconfigured pilot120/24memberships,5warmups25measurements readp9518.046681ms/permissionsCPU4.864174ms/2RLSrequests perread passed. Narrow localAdminusersread/CPU only; fullprivatebaseline/queryplanJSONnotuploaded. No representativeScheduling/releaseperformance certification.",
       "next_action": "Agree representative recurrence/tenant workloads and thresholds, measure production build and record acceptance before release."
     }
   ],
   "release_ready": false,
-  "CI_provenance": {
-    "run_id": 39342433474,
-    "run_attempt": 1,
-    "source_sha": "a51531888252189a3cc98798b5e8e315f0348fb0",
-    "checkpoint_id": "8c948672-29bb-4150-8171-cc834342d17a",
-    "release_validation": false,
-    "run_url": "https://github.com/rthunborg/Kopplas/actions/runs/39342433474",
-    "required_jobs": {
-      "checkpoint-admission": "success",
-      "verify": "success",
-      "e2e": "success",
-      "db": "success",
-      "recovery-storage-loader": "success"
-    },
-    "optional_jobs_skipped_not_coverage": [
-      "dashboard-e2e",
-      "fixed-chromium-application-verification",
-      "native-stream-probe",
-      "fixed-chromium-paired-probe"
+  "development_admission": {
+    "Root_delivery_gate": "pending",
+    "independent_frozen_record_provenance": "pending",
+    "Root_explicit_status_admission": "pending",
+    "spec_status": "in-review",
+    "development_complete_claimed_by_this_refresh": false,
+    "release_ready": false
+  },
+  "dependency_assessment": {
+    "production_count": 433,
+    "comparison_revision": "a51531888252189a3cc98798b5e8e315f0348fb0",
+    "changed_production_paths": [
+      "src/features/resources/booking-series-actions.ts",
+      "src/server/bookings/series-conflicts.ts",
+      "src/server/commands/bookings/series-validation.ts"
     ],
-    "qualification_sha256": "02aa78628d14b33ea740a466b88be36899b5b01aef05ba024a618abd1f565d3b",
-    "qualification_MD_sha256": "82a269469cdbbf7021ff8c148d5b862685c635f1222f0d637f6f388ed7182fe2",
-    "manifest_sha256": "1850406c59fed10dc5e66bb5e74b815bbc983c0cf9f30c7ec8659dc6edf235b8",
-    "native_artifact_provenance": [
+    "unchanged_production_count": 430,
+    "method": "Native Git normalized diff across all433 tracked src paths; four changed source/test raw and normalized hashes captured separately. Earlier attempted archive comparison normalized only local bytes and failed because Git archive exports CRLF; no evidence credit. Native Git diff is the simpler verified comparison.",
+    "unchanged": "All presentation/components, recurrence expansion, metadata read/retry composition, command envelope, receipts, detector, SQL105/106/107, RLS policies and fixtures remain unchanged from qualified a515.",
+    "essential_UI": "Prior GLK007/008 two passes then009 one pass remain scoped historical receipts, original failures retained. Unchanged actual TSX DENIED-retry action ports plus current actual public action/envelope/planner decisions compose essential proof. No changed controls/rendering/hydration/navigation/gestures. No fresh Scheduling/DENIED browser or exhaustive matrix claim. Current auth/cookie-RLS/RPC ports are synthetic and supply no SQL or persistence proof.",
+    "invalidated": "Historical a515/c533/obsolete3c runs remain source-specific history. Current final a00 normalCI/build/units/fullDB/RLS/directStorage evidence is independently qualified2082dd02.45focused nativeTAP cases include expected denials; synthetic public-action ports do not independently prove SQL/browser execution.",
+    "required_next": [
+      "Root validates this concrete frozen delivery with owned delivery_gate",
+      "Independent narrow frozen-record provenance against current qualified source/CI and author decisions",
+      "Explicit Root admission before status-only DONE/finalization; no further broad review/runtime/source change"
+    ],
+    "R3_02_delta": "Final action/test delta afterc533 is qualified by implementedHigh9d22 and exacta00CI2082dd02; exactly2unchangedc533productiondependencies series-conflicts/series-validation retain raw hashes. Current through308metadata has no app/build/test/schema delta."
+  },
+  "CI_provenance": {
+    "source_sha": "a00dd595d96a73c398328ed1778bac334aca9de6",
+    "run_id": 39348312783,
+    "run_attempt": 1,
+    "checkpoint_id": "ccdf84fd-abdd-45c4-be4a-037ae6245584",
+    "release_validation": false,
+    "run_url": "https://github.com/rthunborg/Kopplas/actions/runs/39348312783",
+    "ownership_checks": {
+      "repo": true,
+      "sha": true,
+      "branch": true,
+      "workflow_id": true,
+      "path": true,
+      "actor": true,
+      "triggering_actor": true,
+      "attempt": true,
+      "event": true,
+      "title": true,
+      "run_id": true
+    },
+    "required_jobs": [
       {
-        "id": 12230052516,
-        "name": "native-full-integration",
-        "digest": "sha256:a1770737fbdecc245dbde8bcf611b4d31c1120db95c7b55b0c2dd331439556aa",
-        "size_in_bytes": 96166,
-        "workflow_run": {
-          "id": 39342433474,
-          "repository_id": 1269069679,
-          "head_repository_id": 1269069679,
-          "head_branch": "codex/epic-15-scheduling-time-calendar",
-          "head_sha": "a51531888252189a3cc98798b5e8e315f0348fb0"
-        },
-        "archive_members": [
-          "full-integration.json"
-        ],
-        "downloaded_digest_matches": true
+        "id": 118386200163,
+        "name": "checkpoint-admission",
+        "status": "completed",
+        "conclusion": "success",
+        "completed_at": "2026-10-20T00:33:13Z"
       },
       {
-        "id": 12229802604,
-        "name": "native-isolated-storage-recovery",
-        "digest": "sha256:cfa98e94cedda692225ddbfc0546dbb088a06e2754245b2e1951712752cc59a0",
-        "size_in_bytes": 681,
-        "workflow_run": {
-          "id": 39342433474,
-          "repository_id": 1269069679,
-          "head_repository_id": 1269069679,
-          "head_branch": "codex/epic-15-scheduling-time-calendar",
-          "head_sha": "a51531888252189a3cc98798b5e8e315f0348fb0"
-        },
-        "archive_members": [
-          "isolated-storage-recovery.json"
-        ],
-        "downloaded_digest_matches": true
+        "id": 118386235564,
+        "name": "verify",
+        "status": "completed",
+        "conclusion": "success",
+        "completed_at": "2026-10-20T00:34:49Z"
       },
       {
-        "id": 12229617597,
-        "name": "native-general-browser",
-        "digest": "sha256:38051d5a9b52887194422c30ef2b2073e20b9c32528a98eda196903c1c014cf7",
-        "size_in_bytes": 3592,
-        "workflow_run": {
-          "id": 39342433474,
-          "repository_id": 1269069679,
-          "head_repository_id": 1269069679,
-          "head_branch": "codex/epic-15-scheduling-time-calendar",
-          "head_sha": "a51531888252189a3cc98798b5e8e315f0348fb0"
-        },
-        "archive_members": [
-          "general-browser.json"
-        ],
-        "downloaded_digest_matches": true
+        "id": 118386742346,
+        "name": "recovery-storage-loader",
+        "status": "completed",
+        "conclusion": "success",
+        "completed_at": "2026-10-20T00:40:07Z"
+      },
+      {
+        "id": 118386742351,
+        "name": "e2e",
+        "status": "completed",
+        "conclusion": "success",
+        "completed_at": "2026-10-20T00:39:27Z"
+      },
+      {
+        "id": 118386742408,
+        "name": "db",
+        "status": "completed",
+        "conclusion": "success",
+        "completed_at": "2026-10-20T00:44:22Z"
       }
     ],
-    "requested_native_cases": [
+    "optional_jobs": [
+      {
+        "id": 118386744351,
+        "name": "dashboard-e2e",
+        "conclusion": "skipped"
+      },
+      {
+        "id": 118388235260,
+        "name": "native-stream-probe",
+        "conclusion": "skipped"
+      },
+      {
+        "id": 118388235430,
+        "name": "fixed-chromium-application-verification",
+        "conclusion": "skipped"
+      },
+      {
+        "id": 118388235464,
+        "name": "fixed-chromium-paired-probe",
+        "conclusion": "skipped"
+      }
+    ],
+    "unit_counts": {
+      "tests": 3004,
+      "suites": 103,
+      "pass": 3004,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "process_counts": [
+      {
+        "step": "BMAD focused concurrent memlog contracts",
+        "invocation_counts": [
+          2
+        ],
+        "passed": 2,
+        "failed": 0,
+        "skipped": 0
+      },
+      {
+        "step": "Auto-BMAD focused routing and process-API contracts",
+        "invocation_counts": [
+          26,
+          10,
+          5
+        ],
+        "passed": 41,
+        "failed": 0,
+        "skipped": 0
+      }
+    ],
+    "required_stack_environment_proof": [
+      {
+        "job": "db",
+        "step": "Integration, RLS, and Epic 11 pilot performance gates (local stack)",
+        "native_log_line": 27708,
+        "value": "1"
+      },
+      {
+        "job": "recovery-storage-loader",
+        "step": "Prove physical Storage loader preserves protected rows",
+        "native_log_line": 24890,
+        "value": "1"
+      },
+      {
+        "job": "e2e",
+        "step": "Essential authentication smoke (production app and local Auth)",
+        "native_log_line": 26396,
+        "value": "1"
+      }
+    ],
+    "full_DB": {
+      "passed": 1828,
+      "failed": 0,
+      "explicit_skipped": 52,
+      "total": 1880,
+      "native_file_records": 152,
+      "console_file_summary": "151 passed,1 skipped,152 total",
+      "skip_inventory": [
+        {
+          "file": "commands/booking-series.int.test.ts",
+          "skipped": 37
+        },
+        {
+          "file": "ops/recovery-storage-immutability.int.test.ts",
+          "skipped": 1
+        },
+        {
+          "file": "rls/booking-series.rls.test.ts",
+          "skipped": 14
+        }
+      ],
+      "story15_2_actual_command_passed": 23,
+      "RLS_NONADDITIVE_SUBSET": {
+        "passed": 800,
+        "failed": 0,
+        "explicit_skipped": 14,
+        "file_records": 52,
+        "included_in_full_DB": true
+      }
+    },
+    "requested_native_test_evidence": [
       {
         "case_id": "15.2-INT-REAL-023",
         "exact_title": "15.2-INT-REAL-023 shortening with replacement defaults retains historical role only on the same cancelled slot",
@@ -195,13 +352,13 @@
           "fullName": "15.2 Round2 checked cancellation retention 15.2-INT-REAL-023 shortening with replacement defaults retains historical role only on the same cancelled slot",
           "status": "passed",
           "title": "15.2-INT-REAL-023 shortening with replacement defaults retains historical role only on the same cancelled slot",
-          "duration": 2015.0127619999985,
+          "duration": 2336.738289000008,
           "failureMessages": [],
           "meta": {},
           "tags": []
         },
         "native_file": "/home/runner/work/Kopplas/Kopplas/tests/integration/commands/booking-series.int.test.ts",
-        "native_console_line": 23115,
+        "native_console_line": 27828,
         "immutable_source_capture": "series-command-tests-source.ts",
         "immutable_source_sha256": "0fb1db19441e2240e20b653d3bdbfea744545fe1214ca04f7191c39fb6c88e73",
         "sequential_assertion_reach": "Per-test passed result with no failure messages and required1 actual env; immutable body awaits each callback/command/expect, no catch or silent early return beyond checked stack gate. Thus all listed sequential assertions completed; no assertion-counter instrumentation claimed."
@@ -230,18 +387,570 @@
           "fullName": "15.2 real series authority 15.2-RLS-REAL-005 inactive assignment retention belongs only to its existing occurrence",
           "status": "passed",
           "title": "15.2-RLS-REAL-005 inactive assignment retention belongs only to its existing occurrence",
-          "duration": 2207.8776980000002,
+          "duration": 2411.957216999999,
           "failureMessages": [],
           "meta": {},
           "tags": []
         },
         "native_file": "/home/runner/work/Kopplas/Kopplas/tests/integration/rls/booking-series.rls.test.ts",
-        "native_console_line": 23253,
+        "native_console_line": 27967,
         "immutable_source_capture": "series-RLS-tests-source.ts",
         "immutable_source_sha256": "b7cebf2c860419e411cbe6ef563ccbe6c7faccf5e1fcc6091c25cbbe24bec6c0",
         "sequential_assertion_reach": "Per-test passed result with no failure messages and required1 actual env; immutable body awaits each callback/command/expect, no catch or silent early return beyond checked stack gate. Thus all listed sequential assertions completed; no assertion-counter instrumentation claimed."
       }
-    ]
+    ],
+    "isolated_Storage": {
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "physical_objects": 2,
+      "physical_bytes": 66,
+      "physical_loader_log_line": 24902,
+      "native_assertion": {
+        "ancestorTitles": [
+          "isolated recovery Storage physical-loader proof"
+        ],
+        "fullName": "isolated recovery Storage physical-loader proof serves loader-materialized bytes without mutating logical rows and rejects generic plus quote-PDF overwrite attempts",
+        "status": "passed",
+        "title": "serves loader-materialized bytes without mutating logical rows and rejects generic plus quote-PDF overwrite attempts",
+        "duration": 523.709679,
+        "failureMessages": [],
+        "meta": {},
+        "tags": []
+      },
+      "scope": "Direct physical loader materializes bytes; executed API readback/unchanged logical-row and generic plusquotePDF overwrite denial assertion. Separate from fullDB skipped proof."
+    },
+    "empty_migration_replays": [
+      {
+        "job": "db",
+        "applied_migrations": 107,
+        "attempts": 1,
+        "failed_attempt_or_CLI_restart_recovery": 0,
+        "last_three_migrations": [
+          {
+            "line": 27692,
+            "text": "Applying migration 20261019180000_recurring_booking_series.sql..."
+          },
+          {
+            "line": 27693,
+            "text": "Applying migration 20261019220000_booking_series_integrity_followup.sql..."
+          },
+          {
+            "line": 27694,
+            "text": "Applying migration 20261020000000_booking_series_cancelled_role_retention.sql..."
+          }
+        ],
+        "completion_line": 27699
+      },
+      {
+        "job": "e2e",
+        "applied_migrations": 107,
+        "attempts": 1,
+        "failed_attempt_or_CLI_restart_recovery": 0,
+        "last_three_migrations": [
+          {
+            "line": 26381,
+            "text": "Applying migration 20261019180000_recurring_booking_series.sql..."
+          },
+          {
+            "line": 26382,
+            "text": "Applying migration 20261019220000_booking_series_integrity_followup.sql..."
+          },
+          {
+            "line": 26383,
+            "text": "Applying migration 20261020000000_booking_series_cancelled_role_retention.sql..."
+          }
+        ],
+        "completion_line": 26388
+      },
+      {
+        "job": "recovery-storage-loader",
+        "applied_migrations": 107,
+        "attempts": 1,
+        "failed_attempt_or_CLI_restart_recovery": 0,
+        "last_three_migrations": [
+          {
+            "line": 21675,
+            "text": "Applying migration 20261019180000_recurring_booking_series.sql..."
+          },
+          {
+            "line": 21676,
+            "text": "Applying migration 20261019220000_booking_series_integrity_followup.sql..."
+          },
+          {
+            "line": 21677,
+            "text": "Applying migration 20261020000000_booking_series_cancelled_role_retention.sql..."
+          }
+        ],
+        "completion_line": 21682
+      }
+    ],
+    "migration_byte_provenance": [
+      {
+        "file": "20261019180000_recurring_booking_series.sql",
+        "frozen_local_sha256": "24f6982758c9f46c61d3f4fd34ebaaf599a809c8cf6c72e8223544aa73c9f1bd",
+        "immutable_Git_LF_sha256": "24f6982758c9f46c61d3f4fd34ebaaf599a809c8cf6c72e8223544aa73c9f1bd",
+        "local_CRLF_count": 0,
+        "Git_CRLF_count": 0,
+        "normalized_equal": true,
+        "rewritten_by_reviewer": false
+      },
+      {
+        "file": "20261019220000_booking_series_integrity_followup.sql",
+        "frozen_local_sha256": "c55d1de17b3829e97212076d2627f5b22645126894a8deb7af4b80596b45b44d",
+        "immutable_Git_LF_sha256": "57e7e9fc930513099b20759b84fd21c2b851f154effb8a0e45c198262da4a37d",
+        "local_CRLF_count": 176,
+        "Git_CRLF_count": 0,
+        "normalized_equal": true,
+        "rewritten_by_reviewer": false
+      },
+      {
+        "file": "20261020000000_booking_series_cancelled_role_retention.sql",
+        "frozen_local_sha256": "3e231ef7d1018966c1574b672123b9b7b906314f7edeb47e9791d5ee7af0dcaa",
+        "immutable_Git_LF_sha256": "3143b16557b8aeda056a206e354311298289e9787bbbb07567a126ad0ce821bc",
+        "local_CRLF_count": 43,
+        "Git_CRLF_count": 0,
+        "normalized_equal": true,
+        "rewritten_by_reviewer": false
+      }
+    ],
+    "pilot_performance": {
+      "status": "passed",
+      "dataset": {
+        "tenantAActiveMemberships": 120,
+        "tenantBActiveMemberships": 24,
+        "tenantARoleDistribution": "five primary roles, every third membership also holds the next role",
+        "tenantBShape": "separate tenant rows for 23 of the same authenticated accounts plus its own admin"
+      },
+      "warmup_iterations": 5,
+      "measured_iterations": 25,
+      "read_p95_ms": 18.046680999999808,
+      "read_ceiling_ms": 250,
+      "CPU_permissions_p95_ms": 4.864173999999366,
+      "CPU_ceiling_ms": 25,
+      "RLS_requests_total": 50,
+      "RLS_requests_per_read": 2,
+      "RLS_requests_per_read_ceiling": 3,
+      "limits": "Local Admin-users read projection/CPU bulkpermissions only; no full-page/production/representativeScheduling release certification. Full private baseline/query-plan JSON not uploaded; native log dataset/read output and exact configured successful script/thresholds preserved."
+    },
+    "artifact_provenance": [
+      {
+        "id": 12231529778,
+        "name": "native-full-integration",
+        "digest": "sha256:df390bc687fb111dc1d3f883be3e0e13a85a7180a19ef99a40d4e3e6f1907413",
+        "size_in_bytes": 96358,
+        "workflow_run": {
+          "id": 39348312783,
+          "repository_id": 1269069679,
+          "head_repository_id": 1269069679,
+          "head_branch": "codex/epic-15-scheduling-time-calendar",
+          "head_sha": "a00dd595d96a73c398328ed1778bac334aca9de6"
+        },
+        "archive_members": [
+          "full-integration.json"
+        ],
+        "downloaded_digest_matches": true
+      },
+      {
+        "id": 12231549604,
+        "name": "native-isolated-storage-recovery",
+        "digest": "sha256:22f1ec29409624a5cc5cc98ee3906120b258b326621300817e35e57071db3f01",
+        "size_in_bytes": 677,
+        "workflow_run": {
+          "id": 39348312783,
+          "repository_id": 1269069679,
+          "head_repository_id": 1269069679,
+          "head_branch": "codex/epic-15-scheduling-time-calendar",
+          "head_sha": "a00dd595d96a73c398328ed1778bac334aca9de6"
+        },
+        "archive_members": [
+          "isolated-storage-recovery.json"
+        ],
+        "downloaded_digest_matches": true
+      },
+      {
+        "id": 12231504469,
+        "name": "native-general-browser",
+        "digest": "sha256:1c94c5a74c8d58c8011e67db33c0741e56f14756f0d2210bbf129b539d02951b",
+        "size_in_bytes": 4440,
+        "workflow_run": {
+          "id": 39348312783,
+          "repository_id": 1269069679,
+          "head_repository_id": 1269069679,
+          "head_branch": "codex/epic-15-scheduling-time-calendar",
+          "head_sha": "a00dd595d96a73c398328ed1778bac334aca9de6"
+        },
+        "archive_members": [
+          "general-browser.json"
+        ],
+        "downloaded_digest_matches": true
+      }
+    ],
+    "native_log_retrieval_exit": 0,
+    "limits": [
+      "52 explicit skips are37commandscaffolds+14RLSscaffolds+1Storageoutside isolated lane; no coverage credit.",
+      "RLS800P14S included in fullDB1828P52S, not additive. DirectStorage1pass is separate.",
+      "REAL023 is actual authenticated checked command/RPC body execution, not an isolated rawSQL test or every possible cancellation configuration.",
+      "RLS005 freshpreview TENANT_ACCESS_DENIED and fullrealSeriesSnapshot unchanged are now native executed assertions, separately from narrower stale-receipt rejection.",
+      "Current all45namedfocus cases are independently matched to native3004unit PASS (13matrix+32related, nonadditive). c533/a515 and local essentialbrowser remain historical. This CI does not refresh delivery/provenance/status.",
+      "No broad source review or increment: broad3of3/nonconvergence0; no tests/runtime/Gitmutation/resources/providers/settings/deployments. Root owns further gates."
+    ],
+    "qualification_refs": {
+      "report": {
+        "path": ".env.epic15.mail-runtime/story-15-2-ci-a00dd595-independent/qualification-final.md",
+        "sha256": "abdf275966b5338f4bd631d720cd4648e646acea6b2c601efe5b1c52e09d5b7c"
+      },
+      "JSON": {
+        "path": ".env.epic15.mail-runtime/story-15-2-ci-a00dd595-independent/qualification-final.json",
+        "sha256": "2082dd02bb9e844e221e4f8954bed3a04dc6be6fbeba7db4a52700bc6174d930"
+      },
+      "manifest": {
+        "path": ".env.epic15.mail-runtime/story-15-2-ci-a00dd595-independent/SHA256SUMS-final.json",
+        "sha256": "cb44b2be2b2b87c07b586ddb562f7f018e605ac84941754394bec8e71a067b4d"
+      },
+      "browser_retry": {
+        "path": ".env.epic15.mail-runtime/story-15-2-ci-a00dd595-independent/Jobs-E03-native-retry-qualification.json",
+        "sha256": "fc130dae8244293c04f8f3a0baec2512880badea52a7b1a1e46b4a1a37f137b3"
+      }
+    },
+    "focused45": {
+      "status": "45 current native TAP passed matches;13matrix+32related, nonadditive subset of3004 units",
+      "all45": [
+        {
+          "title": "Round1 following preserves explicit gesture time and reassignment over stored defaults",
+          "status": "passed",
+          "native_console_line": 5186
+        },
+        {
+          "title": "Round1 following renders a retained template assignee missing from the pivot and active roster",
+          "status": "passed",
+          "native_console_line": 5192
+        },
+        {
+          "title": "Round1 stale preview reloads current series ownership/version without erasing draft",
+          "status": "passed",
+          "native_console_line": 5198
+        },
+        {
+          "title": "Round1 stale save reloads current series ownership/version without erasing draft",
+          "status": "passed",
+          "native_console_line": 5204
+        },
+        {
+          "title": "Round1 failed metadata recovery retains draft and cannot fall through to create",
+          "status": "passed",
+          "native_console_line": 5210
+        },
+        {
+          "title": "Round1 editor rejects an entered pre-nominal date even when equal to old stored anchor",
+          "status": "passed",
+          "native_console_line": 5216
+        },
+        {
+          "title": "Round2 explicit following preview retry reloads ownership after a split denial and preserves draft",
+          "status": "passed",
+          "native_console_line": 5222
+        },
+        {
+          "title": "Round1 actual planner honors forward requested date while retaining nominal ownership cutoff",
+          "status": "passed",
+          "native_console_line": 13661
+        },
+        {
+          "title": "Round1 actual planner rejects requested dates before selected nominal cutoff",
+          "status": "passed",
+          "native_console_line": 13667
+        },
+        {
+          "title": "Round1 whole successor cannot introduce slots before its current predecessor bound",
+          "status": "passed",
+          "native_console_line": 13673
+        },
+        {
+          "title": "Round1 moved pivot production planner uses nominal slot and preserves exact exception",
+          "status": "passed",
+          "native_console_line": 13679
+        },
+        {
+          "title": "Round1 unchanged stored rule with pure field change keeps original suffix and end",
+          "status": "passed",
+          "native_console_line": 13685
+        },
+        {
+          "title": "Round1 inherited stored anchor with changed count begins at nominal pivot",
+          "status": "passed",
+          "native_console_line": 13691
+        },
+        {
+          "title": "Round1 inherited stored anchor with changed until begins at nominal pivot",
+          "status": "passed",
+          "native_console_line": 13697
+        },
+        {
+          "title": "Round1 repeated prefix unchanged rule stays below live successor bound",
+          "status": "passed",
+          "native_console_line": 13703
+        },
+        {
+          "title": "Round1 semantic inherited coordinates compare weekday sets and ignore property order",
+          "status": "passed",
+          "native_console_line": 13709
+        },
+        {
+          "title": "Round2 preview rejects a complete unrelated conflict plan over SQL's 3 MiB bound",
+          "status": "passed",
+          "native_console_line": 13715
+        },
+        {
+          "title": "Round2 preview retains long aggregate identities admitted by the latest SQL decision validator",
+          "status": "passed",
+          "native_console_line": 13721
+        },
+        {
+          "title": "Round2 serialized plan admits exactly 3 MiB UTF-8 and rejects the next multibyte character",
+          "status": "passed",
+          "native_console_line": 13727
+        },
+        {
+          "title": "Round3 public preview and save envelope expand the effective original-end suffix before DST",
+          "status": "passed",
+          "native_console_line": 13733
+        },
+        {
+          "title": "Round3 effective DST failure blocks public preview and save before finalization",
+          "status": "passed",
+          "native_console_line": 13739
+        },
+        {
+          "title": "Round3 public preview retains archived default role only for existing protected payloads",
+          "status": "passed",
+          "native_console_line": 13745
+        },
+        {
+          "title": "Round3 active replacement default preserves each protected row's own archived role",
+          "status": "passed",
+          "native_console_line": 13751
+        },
+        {
+          "title": "Round3 R3-02 completeness all protected checks effective template use through public actions",
+          "status": "passed",
+          "native_console_line": 13757
+        },
+        {
+          "title": "Round3 R3-02 completeness protected plus new tombstone checks effective template use through public actions",
+          "status": "passed",
+          "native_console_line": 13763
+        },
+        {
+          "title": "Round3 R3-02 completeness ordinary template use checks effective template use through public actions",
+          "status": "passed",
+          "native_console_line": 13769
+        },
+        {
+          "title": "Round3 R3-02 completeness new inactive assignment checks effective template use through public actions",
+          "status": "passed",
+          "native_console_line": 13775
+        },
+        {
+          "title": "Round3 R3-02 completeness inactive default substitution checks effective template use through public actions",
+          "status": "passed",
+          "native_console_line": 13781
+        },
+        {
+          "title": "Round3 R3-02 completeness foreign default checks effective template use through public actions",
+          "status": "passed",
+          "native_console_line": 13787
+        },
+        {
+          "title": "Round3 R3-02 completeness foreign retained role checks effective template use through public actions",
+          "status": "passed",
+          "native_console_line": 13793
+        },
+        {
+          "title": "Round3 R3-02 completeness foreign customer checks effective template use through public actions",
+          "status": "passed",
+          "native_console_line": 13799
+        },
+        {
+          "title": "Round3 R3-02 completeness missing signed defaults checks effective template use through public actions",
+          "status": "passed",
+          "native_console_line": 13805
+        },
+        {
+          "title": "Round3 R3-02 completeness cancelled ordinary template use checks effective template use through public actions",
+          "status": "passed",
+          "native_console_line": 13811
+        },
+        {
+          "title": "Round3 R3-02 completeness new cancelled slot checks effective template use through public actions",
+          "status": "passed",
+          "native_console_line": 13817
+        },
+        {
+          "title": "Round3 R3-02 completeness following with ordinary prefix checks effective template use through public actions",
+          "status": "passed",
+          "native_console_line": 13823
+        },
+        {
+          "title": "Round3 R3-02 completeness whole-series shortening checks effective template use through public actions",
+          "status": "passed",
+          "native_console_line": 13829
+        },
+        {
+          "title": "Round3 deferred update expansion preserves structural, count and calendar admission caps",
+          "status": "passed",
+          "native_console_line": 13835
+        },
+        {
+          "title": "Round3 public preview denies new occurrence without issuing save admission",
+          "status": "passed",
+          "native_console_line": 13841
+        },
+        {
+          "title": "Round3 public preview denies new cancelled occurrence without issuing save admission",
+          "status": "passed",
+          "native_console_line": 13847
+        },
+        {
+          "title": "Round3 public preview denies changed inactive default without issuing save admission",
+          "status": "passed",
+          "native_console_line": 13853
+        },
+        {
+          "title": "Round3 public preview denies foreign default without issuing save admission",
+          "status": "passed",
+          "native_console_line": 13859
+        },
+        {
+          "title": "Round3 public preview denies foreign protected row without issuing save admission",
+          "status": "passed",
+          "native_console_line": 13865
+        },
+        {
+          "title": "Round3 public preview denies foreign customer without issuing save admission",
+          "status": "passed",
+          "native_console_line": 13871
+        },
+        {
+          "title": "Round3 public preview denies missing signed defaults without issuing save admission",
+          "status": "passed",
+          "native_console_line": 13877
+        },
+        {
+          "title": "Round2 small valid preview still returns its complete admitted occurrence",
+          "status": "passed",
+          "native_console_line": 13883
+        }
+      ],
+      "corrected_DST": {
+        "native": {
+          "title": "Round3 effective DST failure blocks public preview and save before finalization",
+          "status": "passed",
+          "native_console_line": 13739
+        },
+        "source_start_line": 209,
+        "source_lines": [
+          "test(\"Round3 effective DST failure blocks public preview and save before finalization\",async()=>syntheticKey(async()=>{",
+          "  const h=publicSeriesCase(true);Object.assign(h.raw.rule,{count:2});",
+          "  const preview=await h.previewBookingSeriesAction(h.raw);assert.equal(preview.code,\"VALIDATION_FAILED\");",
+          "  assert.match(preview.message??\"\",/2026-03-29/,\"effective failing occurrence remains actionable in the public preview\");",
+          "  assert.equal((await h.saveBookingSeriesAction({...h.raw,editorReview:{receipt:\"untrusted\",decision:{acknowledged:false,reviewedLogicalIds:[],selectedLogicalIds:[],reason:\"\"}}})).code,\"VALIDATION_FAILED\");",
+          "  assert.equal(h.plans.length,0);",
+          "}));"
+        ],
+        "immutable_test_source_sha256": "60cb711c59dc3cf58b3e2679443260799c88ec1b53e0be969605726da902da2e",
+        "assertion": "Public preview message includes2026-03-29; test also exercises public save before finalization. Action/unit proof, not browser."
+      },
+      "limits": "Per-case native TAP outcomes checked, no inferred coverage from job summary. Includes expected-denial cases;13test passes do not mean13public command successes."
+    },
+    "browser_smoke_summary": {
+      "eventual_passed_cases": 11,
+      "expected_first_attempt_passes": 10,
+      "failed_final_cases": 0,
+      "failed_attempts": 1,
+      "skipped": 0,
+      "flaky": 1,
+      "retry_attempts": 1,
+      "attempts": 12,
+      "global_errors": 0,
+      "scope": "Auth7+Jobs4; no full Scheduling/series matrix credit"
+    },
+    "browser_flake_qualification": {
+      "kind": "bounded-JobsE03-native-retry-qualification",
+      "verdict": "No demonstrated essential product invariant failure in the recorded evidence; qualify successful normal retry with explicit flake caveat. First attempt failed in CDP response-body retrieval, not a failed product assertion. No root-cause claim.",
+      "run_id": 39348312783,
+      "source_sha": "a00dd595d96a73c398328ed1778bac334aca9de6",
+      "case_title": "[P0] 16.1-E03 actual job-bound booking preview/save consumes requirements and windows; changed job facts invalidate review before durable save",
+      "file": "jobs/jobs-depth.e2e.spec.ts",
+      "status": "flaky",
+      "normal_configured_CI_retries": 1,
+      "policy_source": "playwright-config-source.ts line39, byte-identical toc533; nativeproject retries1",
+      "session_rerun_or_retry_policy_mutation": false,
+      "attempts": [
+        {
+          "retry": 0,
+          "status": "failed",
+          "error_count": 1,
+          "observed_error": "Error: response.text: Protocol error (Network.getResponseBody): No data found for resource with given identifier\n\n  319 |       const freshPreview = page.waitForResponse((reply) => bookingAction(reply, \"preview\", description));\n  320 |       await sheet.getByTestId(\"booking-save\").click();\n> 321 |       expect(await (await staleSave).text()).toContain(\"PREVIEW_STALE\");\n      |                                      ^\n  322 |       expect((await freshPreview).ok()).toBe(true);\n  323 |       await expect(sheet.getByTestId(\"booking-save-error\")).toBeVisible();\n  324 |       await expect(page.getByTestId(\"booking-save-status\")).toHaveCount(0);\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/jobs/jobs-depth.e2e.spec.ts:321:38",
+          "failure_location": "tests/e2e/jobs/jobs-depth.e2e.spec.ts:321:38 response.text()",
+          "unreached_credit": "No credit for staleSave body contents or later stale-save/reset/persistence assertions on first attempt."
+        },
+        {
+          "retry": 1,
+          "status": "passed",
+          "error_count": 0,
+          "assertion_reach": "Actual awaited body321-354 completed:PREVIEW_STALE body, freshpreviewOK, visibleerror/no-success/unreviewed-emptyreason, fixture snapshotunchanged, explicit UIretry saveOK, exactlyone durablebooking with expectedjob/window/assignee/conflicts, exactlyoneaudit, reload/reopen and snapshotsame. Inference from native passed body with no catch, not per-assertion instrumentation."
+        }
+      ],
+      "global_errors": 0,
+      "browser_run_counts": {
+        "expected_first_attempt_passes": 10,
+        "flaky_cases": 1,
+        "eventual_passed_cases": 11,
+        "failed_final_cases": 0,
+        "failed_attempts": 1,
+        "total_attempts": 12,
+        "retry_attempts": 1,
+        "skipped": 0
+      },
+      "scoped_dependency_checks": [
+        {
+          "file": "tests/e2e/jobs/jobs-depth.e2e.spec.ts",
+          "a00_sha256": "9cc588d0256700a5389fa6daabf878d71c7b89e8795de0200cfebd8b7168bdc6",
+          "c533_sha256": "9cc588d0256700a5389fa6daabf878d71c7b89e8795de0200cfebd8b7168bdc6",
+          "unchanged": true
+        },
+        {
+          "file": "playwright.config.ts",
+          "a00_sha256": "0e4526efa03be966025de7efce0685dd755863fa8806c91e3f11d7e14b3e1a31",
+          "c533_sha256": "0e4526efa03be966025de7efce0685dd755863fa8806c91e3f11d7e14b3e1a31",
+          "unchanged": true
+        },
+        {
+          "file": "src/components/resources/BookingEditor.tsx",
+          "a00_sha256": "799ae3d26ccbc0287c6eab640449ecf9a230a8d9e04a7b8b89b15ccf1d406cd3",
+          "c533_sha256": "799ae3d26ccbc0287c6eab640449ecf9a230a8d9e04a7b8b89b15ccf1d406cd3",
+          "unchanged": true
+        },
+        {
+          "file": "src/features/resources/booking-actions.ts",
+          "a00_sha256": "d01bdde7130827f498e92abf765d6bb73ad2699df54f69568a1456701917f8d3",
+          "c533_sha256": "d01bdde7130827f498e92abf765d6bb73ad2699df54f69568a1456701917f8d3",
+          "unchanged": true
+        }
+      ],
+      "changed_a00_vs_c533_paths": [
+        "src/features/resources/booking-series-actions.ts",
+        "tests/unit/server/bookings/series-plan.test.ts"
+      ],
+      "scoped_route_assessment": "E03 new standalone booking never enables recurrence; unchangedEditor initializes recurrence.enabledfalse and calls unchanged previewBookingAction/saveBookingAction standalonebranch. Changedseriesaction branch is not selected in this case; changedunitfile is verification-only. No broadsource review or claim of universal dependency independence.",
+      "limits": [
+        "Successful retry does not erase originalfailedattempt.",
+        "CDP Network.getResponseBody error establishes response-body retrieval failure only; no assertionmismatch or durableinvariantfailure observed.",
+        "Do not infer sourcecausal rootcause, whether transport race originates in browser/tooling/environment, or waiver of a future consequential failure.",
+        "Root retains deliveryadmission; no browser/test/source edit, freshruntime or CI rerun occurred."
+      ]
+    }
   },
   "migration_byte_provenance": [
     {
@@ -272,6 +981,36 @@
       "rewritten_by_reviewer": false
     }
   ],
+  "historical_checkpoint_CI": {
+    "obsolete3c": {
+      "source": "3c871f2ff2306624e1fc8191aa378eb1d7bcd4ef",
+      "run_id": 39346496291,
+      "checkpoint_id": "be4cda95-676b-4622-97b0-84b3b1f8f120",
+      "owner": "Root",
+      "status": "completed/CANCELLED independently confirmed by Root; no final coverage",
+      "receipt": ".env.epic15.mail-runtime/story-15-2-round3-review-dom7o2j1/root-cancel-obsolete-3c871f2f.json",
+      "receipt_sha256": "548cdd2a2544bfcdf63bd3b78045b57c806c504021aab3b37a2444b8b14d3c45",
+      "current_correction_coverage": false,
+      "author_mutations": false,
+      "final_status_reported_by_Root": "completed/CANCELLED; same-state helper native1 expected nonsuccess/deadlinefalse; request receipt remains historical.",
+      "request_receipt_note": "Original request receipt remains cancellation-request-only evidence; final status came from subsequent Root same-state qualification."
+    },
+    "c533": {
+      "run_id": 39346825739,
+      "source": "c53370320baa9a7cb11dbdd71304063e6e4f53ca",
+      "status_reported_by_Root": "completed/SUCCESS native0, release_validationfalse/deadlinefalse",
+      "independent_qualification": "Historical provisional/source-specific run. Earlier in-progress wording belongs to archived freeze; current finalsource credit comes only from independently qualified a00/run39348312783.",
+      "current_R3_02_completeness_coverage": false,
+      "owner": "Root",
+      "author_CI_actions": false
+    },
+    "historical_admitted570d": {
+      "path": ".env.epic15.mail-runtime/story-15-2-round3-review-dom7o2j1/delivery-570d-historical.json",
+      "sha256": "570d0c7442c4e902b4564b85a55e77b9928042fd98ac4229a3503c82bede3e06",
+      "source": "a51531888252189a3cc98798b5e8e315f0348fb0",
+      "current_source_credit": false
+    }
+  },
   "release_deferred_ledger_harvest": {
     "status": "pendingRootP7/E5h reconciliation",
     "target": "_bmad-output/auto-bmad/recovery/deferred-validation.md",
@@ -290,11 +1029,5 @@
     },
     "ledger_updated_by_author": false,
     "unrelated_rows": "row10/E16 untouched"
-  },
-  "historical_P5_delivery": {
-    "path": ".env.epic15.mail-runtime/story-15-2-round2-review-766bba00-a2a7-4353-a957-ea55eb18a2a4/historical-P5-delivery-c1d63ea5.json",
-    "sha256": "c1d63ea5d6d610d6453852ef7a7e21c601d04d58e24faee55626a8b24d468576",
-    "source": "effbf5e18e19556d0fad231d3fc01369397c8402",
-    "not_current_dependency_evidence": true
   }
 }
