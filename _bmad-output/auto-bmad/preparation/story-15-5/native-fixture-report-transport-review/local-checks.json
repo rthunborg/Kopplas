@@ -1,0 +1,50 @@
+{
+  "kind": "actual-bounded-installed-error-transport-checks",
+  "before": "3e7b6131a00e6c7b4d25c49373d8ba1c1eefe42f",
+  "source": "906f80f301d8034f8efe510018137195f3e4c4eb",
+  "commands": [
+    {
+      "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test --test-reporter=spec tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "passed": 61,
+      "failed": 0,
+      "skipped": 0,
+      "cancelled": 0,
+      "receipt_start": "0e6925",
+      "receipt_completion": "a88c0e",
+      "limits": "58 retained +3new actual installed failTask/processError/JsonReporter in-memory controls. No Vitest run/collection/globalSetup/output file/DB/auth/browser/service. Oldnestednegative reproduces loss; repaired actualpurehelper positive preserves leaf ordering, privacy and one failed case. Synthetic transport proof/nativecredit0."
+    },
+    {
+      "command": "pnpm exec tsc --noEmit --incremental false",
+      "exit_code": 0,
+      "receipt_start": "4c5b69",
+      "receipt_completion": "14d171"
+    },
+    {
+      "command": "pnpm exec eslint tests/support/calendar-feed-atdd.ts tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "exit_code": 0,
+      "errors": 0,
+      "warnings": 0,
+      "receipt": "31cf85"
+    },
+    {
+      "command": "node scripts/verify/check-review-order.mjs <authorSpec> / exact intent kernel hash",
+      "exit_code": 0,
+      "sections": 1,
+      "literal_stops": 52,
+      "kernel_bytes": 5760,
+      "kernel_sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+      "receipt": "2526fd"
+    },
+    {
+      "command": "git diff --check -- <exact3> / git diff --cached --check + exact3 index",
+      "exit_code": 0,
+      "receipts": [
+        "2526fd",
+        "fa3438"
+      ],
+      "commit_receipt": "27e89d"
+    }
+  ],
+  "dependency_reuse": "No source changes after actual61 run except Spec evidence/SRO beforecommit. No postcommitSpecverdictdrift. Existing UI/sharedcase/operations/authority/settlement unchanged. Prior localSSR4 and eighth nativecomponents4 are separate historicalapp-byte evidence, not rerun; no new production build/fullnativePASS or inferred whole feature success.",
+  "known_limits": "All43 actual fixture causes UNKNOWN_NOT_OBSERVABLE_IN_REPORT. Exact8th input has43validoutergroups/0leafprefix; collector2validsynthetic+1invalidstagecontrol confirms no parser rejection. Fixed reporter transport does not recover upstream erased/swallowed/masked leaves or qualify browserprivacy. No broadreview4/runtime/push/DONE/delivery."
+}

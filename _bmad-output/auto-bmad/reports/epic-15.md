@@ -2222,3 +2222,67 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Qualify preserved frozen unified-diff context formatting, commit/push checkpoint, dispatch one owned exact-head CI run and independently qualify actual native evidence. Release validation false; no merge or deployment.
+
+## Report — 2026-10-20T20:56:25Z (15.5 eighth native failure qualified; bounded owned diagnostic transport repair admitted)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `3e7b613`).
+**Pipeline status:** P5 active/in-review. Eighth run39492715549attempt1 FAILED: admission/verify/recovery passed; DB/browser failed; all4 optional release jobs skipped and uncredited. All8 failures preserved.
+**Continues:** (none — first run)
+
+**Summary:** Actual Node3130/0fail/skip/cancel/todo plus43 separate process contracts passed. Full DB2039=1944PASS43FAIL52skip; story51=8PASS43FAIL0skip, all four components and exact allocated shared policy case PASS, no nonstory failures. Browser31=17otherPASS14storyFAIL/28failed attempts,0skip/flaky. Feature95=38PASS57FAIL0skip, all attempted without claiming full failed bodies. DB original auth7/privacy4, readiness and exactkeydeletion/dbclosure/custody qualification passed; browser teardown/key custody and attachment contents remain unqualified. Recovery separately1PASS includes effectivepublicCREATEfalse before physicalStorage/protectedrows/denials. Thirty-file frozen packet manifest SHA0c391a7aba536b6d6b9ba4de76573ae8c15430575b3211ef72d9a82cbd3d431f independently hash/membership/head/9job/source68 admitted by Root SHA56cea3c9e905095589afab9fa30c68b9a228699ef9bbfd75acffffe896be5ad4.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 271h 58m (≈54h 27m AI-run, ≈217h 31m human/idle wait); resumed 62×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:**
+1. All43 DB reports provide only failureMessages+emptymeta, no nested leafstage/category/SQLSTATE; actual0leaf candidates/43closed outergroups. Closed parser synthetic2positive+1negative controls have0nativecredit. Cause UNKNOWN_NOT_OBSERVABLE; outercleanupgroup notrootcauseproof.
+2. Installed Vitest one-AggregateError-level JSON transport explains nested leaf loss as source mapping; exact-three owned helper/unit/Spec repair admitted without operation/authority changes or nativefunctionalfixclaim.
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Implement and locally verify bounded owned diagnostic transport repair under explicitHigh route, append-only exact-three source commit, fresh independentHigh latest-fix review (cap3 retained), ninth freeze/checkpoint native CI. No DONE/delivery/merge/deploy.
+
+## Report — 2026-10-20T21:09:37Z (15.5 exact-three transport repair reviewed and ninth source freeze admitted)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `906f80f`).
+**Pipeline status:** P5 active/in-review. Fresh independent context-free Sol6.1High exact committed three-path latest-fix review PASS; broad cap remains3. Current native repair UNEXECUTED; all8 qualified native failures retained.
+**Continues:** (none — first run)
+
+**Summary:** Local61/61 controls passed,0fail/skip/cancel:58 retained plus3 real installed Vitest failTask/processError/publicJsonReporter in-memory controls reproduce old loss and preserve bounded ordered diagnostics in repaired shape; no native functional credit. TypeScript/focused lint passed. Approved5760-byte kernel unchanged, one Suggested Review Order with52 literalstops. Original review2119B/SHA16e9b045233c6c4ea337558446d501741f858b4755cb4808fb771cb19a09a1ca; attestation3761B/SHA18f0077138000f3922e6f7b111dde29f1b30eef092f534f70b21d9a6d6600d7a. Initial canceled C:/ inventory remains honestly recorded and contributes no outside-source evidence. Root verified68 source raw/native Git bindings,14author+8Root22ancestry,529 historicalsourceequalities,146 protectedpaths and69 oldprep. ALL385 fullrecursive artifact occurrences across329 unique paths hashverified; capsule-reported384 is the pre-summary scope excluding one precisely identified duplicate of the same142458-byte reviewinput, not an omitted verification. Capsule604468B/SHA019864c1fa982730868a3bf25c14b5b6d6464c64659c5e4b963319cc56e3c198 unchanged; finalparent3268B/SHAb0433dbc7cbc4e5582960789f1a434a101c0c031e1e9c0ada97cd95c467a4bce; RootadmissionSHAf53c745c0f60a544d46d6d280bb580565bda5ac269d026b558d0ef8769fd4412. Eighteen snapshotrows retain12raw-uncredited plus6baseline-only/no raw; reader stops corrected narrowly without artifact rewrites or initial credit.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 272h 11m (≈54h 27m AI-run, ≈217h 44m human/idle wait); resumed 63×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Preserve frozen raw-review formatting with exact staged qualifier; checkpoint/push and one fresh exact-head native CI run. Verify actual diagnostic visibility and remaining API/command/RLS/browser failures before delivery/DONE. No merge or deployment.

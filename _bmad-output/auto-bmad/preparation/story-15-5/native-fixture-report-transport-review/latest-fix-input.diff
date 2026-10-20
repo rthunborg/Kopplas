@@ -1,0 +1,1805 @@
+EXACT COMMITTED THREE-PATH LATEST-FIX-ONLY REVIEW; cap3 exhausted/no fourth broad.
+Source 906f80f301d8034f8efe510018137195f3e4c4eb; baseline 3e7b6131a00e6c7b4d25c49373d8ba1c1eefe42f; all source/Spec/input frozen, no author verdict.
+Review concrete regressions in pure already-sanitized aggregate flattening/order/primary+cleanup/finerstages/privacy/own-data/getterproxycycle/node16/depth4/truncation/UNKNOWN and actual installed one-level failTask→processError→JsonReporter controls. Preserve every operation/value/query/RPC/client/pool/principal/privilege/authority/result/settlement/custody and unchanged UI/sharedcase.
+Eighth native39492715549 FAILED despite verify3130/Python43/recovery1 and actual originalsetup7/privacy4/DBreadychildren[0,1]/keydeletedconfirmed/closed/no custody. FullDB1944P43F52skip, story8P43F0skip, components4/sharedpolicy/INT015PASS; HTTP1P19F,commands1P14F,RLS2P10F,API019/RLS010fail no later credit. Browser17otherP14storyF28attempts/child1/custody;28attachmentrefs0bodies/contentNULLunqualified.
+All43failureMessages expose onlygroupmarkers, noleafprefix; actualcause UNKNOWN_NOT_OBSERVABLE, not proof inprocess codeUNKNOWN/cleanupcause/SQLdiagnosis. Collector synthetic2valid+1invalidcontrol nativecredit0. Source one-levelunwrap then JSONstack/message projection explains loss.
+Actual61boundedNodePASS0F0skip0cancel (58+3transportcontrols), typePASS/lint0err0warn/kernel5760/SRO52. In-memory exact installed function/reporter tests use synthetic tasks, not a Vitest run/collection/globalSetup/service. No functional43cause repair or newnativePASS inferred.
+
+COMPLETE EXACT COMMITTED THREE-PATH DELTA:
+diff --git a/_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md b/_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md
+index e3a0be84..d8768aba 100644
+--- a/_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md
++++ b/_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md
+@@ -867,140 +867,206 @@ source union is68; the historical protection set and prior capsules stay intact.
+ 
+ Bounded local Node execution passed58/58, zero failures/skips/cancellations:
+ the previous51 plus seven new source-seam/catalog-assertion contracts. They prove
+ safe classification, descriptor/cycle/size negatives, retained reaching stages,
+ single invocation/value identity, upstream UNKNOWN limits and biting exact-policy
+ negatives with injected rows. They do not prove a native failing branch, SQLSTATE,
+ RLS, cleanup, browser or migration reset. The four existing SSR cases passed via
+ an in-memory Vitest configuration with `config:false` and `globalSetup:[]`;
+ there was no database/global setup or browser/server launch. Final full typecheck
+ passed; focused four-file lint passed with zero errors/warnings. The unchanged
+ 5760-byte kernel and one49-stop author review trail passed their checks.
+ The first typecheck found one new test-only self-referential parameter annotation;
+ renaming that parameter corrected it without changing executed behavior. Previous
+ build/native results remain historical dependencies, not a new build or acceptance
+ result for the changed application bytes. All seven failed packets and old
+ capsules remain immutable; a distinct High latest-delta review and fresh exact-head
+ Root CI are pending. Status remains in-review, without DONE/delivery/release claims.
+ 
++## Bounded diagnostic transport through the installed reporter — 2026-10-20
++
++Eighth checkpoint `3e7b6131a00e6c7b4d25c49373d8ba1c1eefe42f`, run39492715549,
++remains a qualified FAILURE history: full DB2039=1944 passed/43 failed/52 skipped;
++story51=8 passed/43 failed/zero skipped (HTTP1/19, commands1/14, RLS2/10,
++components4/0). The allocated exact policy-set case and INT015 passed. API019
++and RLS010 failed without downstream predicate credit. Verify3130/Python43 and
++recovery1 passed separately. Original setup7/privacy4 and actual DB readiness,
++children[0,1], exact key deletion/closed connection/no custody were qualified;
++these do not turn the DB result into acceptance. Browser31=17 other passes and
++14 story failures across28 attempts, zero skip/flaky results; abnormal browser
++teardown retained key custody. Attachment28 metadata references still had no
++available bodies, so content checks remain unavailable/unqualified.
++
++All43 fixture failure reports exposed only outer group messages, with no leaf
++category/SQLSTATE tuple. Collector positive controls accepted two valid synthetic
++tuples and rejected an invalid stage, while native input contained zero leaf-prefix
++candidates and43 valid group markers. This establishes NOT_SERIALIZED, not that
++in-process code was unknown, cleanup caused the failure or a SQL predicate failed.
++All43 actual causes remain UNKNOWN_NOT_OBSERVABLE_IN_REPORT.
++
++The installed Vitest4.1.9 runner's `failTask` unwraps exactly one AggregateError
++level (`chunk-artifact.js:3055–3073`). Actual `processError` serializes its child;
++`serialize.js:87–105` can retain nested own errors. The JSON reporter then selects
++only each remaining error's stack or message (`index.UpGiHP7g.js:3573`), dropping
++the nested leaf representation. The previous safe aggregate hierarchy therefore
++hid leaves behind the primary group after that single unwrap. Its
++canonical-fixture-cleanup group label was a container phase, not causal evidence.
++
++Root's exact three-path admission is preserved as
++`accepted-native-fixture-report-transport-repair.json`, SHA
++`0df4bb27eecb06d59f970cd11de7bda8c2f78498039cf87f47bd678d6328e23e`.
++Only the pure aggregate construction changes: after each existing guarded walk,
++flatten module-owned already-sanitized child groups into ordered leaves. Keep
++finer stages, primary/cleanup order, own-data allowlist, getter/proxy/cycle handling,
++node16/depth4 budgets and explicit truncation/UNKNOWN. No native message, stack,
++cause or arbitrary property is added. Operations, values, requests, RPCs, queries,
++clients, pools, authority, result/settlement/custody, UI and the policy case stay
++unchanged. Upstream erased/swallowed/masked errors remain unrecoverable.
++
++The existing separate bounded Node file passed61/61, zero failures/skips/cancellations:
++58 retained plus three actual installed transport controls. Tests extract the unique
++installed `failTask` body unchanged, supply actual installed `processError`, and
++invoke public `JsonReporter` against one synthetic task and an in-memory logger.
++There is no Vitest run/collection/global setup, output file, SQL/auth/browser or
++managed service. The old nested-shape negative reproduces a known in-process
++leaf missing from JSON. The actual repaired pure source transports ordered known
++42501, UNKNOWN and cleanup leaves while keeping one failed case. Hostile fields,
++getters, inherited codes, cycle/depth/node limits and truncation retain safe output.
++These synthetic controls prove transport only, with zero native acceptance credit.
++Full typecheck and focused two-file lint passed with zero errors/warnings; final
++kernel/Git checks and the single refreshed review trail precede the source commit.
++Prior localSSR4 and eighth native component4 passes remain separately scoped;
++this repair reruns neither. All eight failed packets/capsules and frozen inputs
++remain intact. Distinct High exact committed three-path latest-fix review and
++fresh Root exact-head native CI remain pending, without a fourth broad round,
++DONE/delivery/release claim or claim to have fixed the43 underlying causes.
++
+ ## Suggested Review Order
+ 
+ Author: Story 15.5 implementation/fix author (gpt-6.1-sol High), incorporating
+ explicitly delegated browser and bootstrap contributors. Refreshed after all
+ Round 3 latest-fix assertions, the subsequent checkpoint repairs and bounded
+ native setup diagnostics, same-connection privacy qualification and explicit
+ isolated setup authority transport, bounded child settlement, browser diagnostic repair,
+-actual SQL callback ownership and executed-feature fixture/status/policy repairs.
++actual SQL callback ownership, executed-feature fixture/status/policy repairs and
++bounded safe-leaf transport through the installed reporter.
+ Stops below resolve to final source literals before the repair commit.
+ 
+ ### Own settings and honest lifecycle results
+ 
+ The two personal entry points reach one settings surface; the profile entry uses
+ server-filtered navigation. Confirmations and component-memory issuance retain
+ explicit uncertainty handling, while later authoritative status removes stale URLs.
+ The error render fallback reuses the existing approved sentence without enabling
+ retry before uncertain results have been reconciled; all four isolated SSR cases passed.
+ 
+ - `src/components/app-shell/AppShell.tsx:279` — `navigation.some`: gates the profile link on scheduling access.
+ - `src/components/calendar-feed/CalendarSubscription.tsx:34` — `const current = await refresh();`: clears superseded post-commit output and success.
+ - `src/components/calendar-feed/CalendarSubscription.tsx:69` — `state?.status === "error"`: AC2/6 renders fallback guidance without changing lifecycle controls.
+ - `tests/integration/components/calendar-feed.test.ts:36` — `15.5-COMP-003`: AC2/6 existing error/retry SSR assertions passed in isolation.
+-- `tests/e2e/calendar-feed.e2e.spec.ts:380` — `15.5-E2E-010-`: AC2/6 supersession assertions failed at cba; changed-head browser evidence pending.
+-- `tests/e2e/calendar-feed.e2e.spec.ts:447` — `15.5-E2E-011`: AC2/6 current-revision browser control failed at cba; changed-head evidence pending.
++- `tests/e2e/calendar-feed.e2e.spec.ts:380` — `15.5-E2E-010-`: AC2/6 supersession cases failed at3e7; changed-head browser evidence pending.
++- `tests/e2e/calendar-feed.e2e.spec.ts:447` — `15.5-E2E-011`: AC2/6 browser control failed at3e7; changed-head evidence pending.
+ 
+ ### Signed current-self authority and atomic writes
+ 
+ Ordinary JWT commands derive self authority; SQL rechecks current exact membership
+ and role union under the scheduling tenant lock. Dedicated proofs bind privileged
+ inputs, and CAS/history/audit commit together without plaintext recovery.
+ 
+ - `src/server/commands/calendar-feed/manage-calendar-feed.ts:10` — `calendarFeedConfig`: exposes plaintext only after confirmed fresh SQL success.
+ - `src/server/commands/calendar-feed/manage-calendar-feed.ts:32` — `command: "calendar_feed.create"`: literal create/rotate/revoke declarations retain independent enrollment discovery.
+ - `supabase/migrations/20261020220000_personal_calendar_feed.sql:162` — `create function public.manage_calendar_feed`: checks signed authority, revision, replay and audit.
+ - `supabase/migrations/20261020220000_personal_calendar_feed.sql:122` — `is distinct from (case`: preserves domain branches while delimiting CASE within the PL/pgSQL IF; subsequent native stack resets compiled it.
+-- `tests/support/calendar-feed-atdd.ts:338` — `const allowed = ["membershipId"`: checks raw JWT status keys before mapper reconstruction.
+-- `tests/integration/rls/calendar-feed.rls.test.ts:129` — `15.5-RLS008`: AC1/4/9 case failed at cba; no downstream field/ACL credit inferred.
++- `tests/support/calendar-feed-atdd.ts:342` — `const allowed = ["membershipId"`: checks raw JWT status keys before mapper reconstruction.
++- `tests/integration/rls/calendar-feed.rls.test.ts:129` — `15.5-RLS008`: AC1/4/9 case failed at3e7; no downstream field/ACL credit inferred.
+ 
+ ### Complete live snapshots and essential RFC correctness
+ 
+ The exact public middleware boundary precedes authentication/cookies. Projection
+ is complete and minimal; stable IDs, every projected-source revision and explicit
+ fractional rounding produce a subscription snapshot without scheduling METHOD.
+ 
+ - `middleware.ts:40` — `request.nextUrl.pathname`: bypasses only the exact feed token segment.
+ - `supabase/migrations/20261020220000_personal_calendar_feed.sql:236` — `'updatedAt',greatest`: covers mutable booking, role, job, customer and facility revisions.
+ - `src/features/calendar-feed/icalendar.ts:40` — `export function encodeCalendarFeed`: serializes complete snapshots before streaming.
+ - `tests/unit/features/calendar-feed/icalendar.test.ts:76` — `R1-05 positive`: AC3/8 independent positive fractional and boundary vectors passed.
+ 
+ ### Durable abuse admission and hardened restore ownership
+ 
+ Independent budgets keep admitted counters through projection cancellation without
+ advancing last-use. Serial fixtures restore only their captured unknown-IP row;
+ source creator ADMIN is distinct from SET authority, while unchanged recovery
+ keeps SupAdmin-only NOADMIN. Retained unsafe roles fail closed.
+ 
+ - `supabase/migrations/20261020220000_personal_calendar_feed.sql:247` — `exception when sqlstate '57014'`: keeps projection failure inside the counter transaction.
+-- `tests/integration/calendar-feed/public-feed.int.test.ts:364` — `15.5-API018`: AC5/8 case failed at cba; changed-head durability evidence pending.
++- `tests/integration/calendar-feed/public-feed.int.test.ts:364` — `15.5-API018`: AC5/8 case failed at3e7; changed-head durability evidence pending.
+ - `supabase/migrations/20261020220000_personal_calendar_feed.sql:27` — `pg_has_role(current_user,feed_owner.oid,'SET')`: qualifies source ownership authority independently of creator ADMIN.
+-- `tests/integration/commands/calendar-feed.int.test.ts:434` — `memberships.every(row => row.inherit_option === false)`: AC4/9 INT015 native fresh/replay inherited-owner oracle passed at cba.
+-- `tests/support/calendar-feed-atdd.ts:540` — `has_schema_privilege(oid,'public','CREATE')`: reads actual effective schema privileges including PUBLIC/inherited access.
+-- `tests/integration/rls/calendar-feed.rls.test.ts:171` — `publicSchemaCreate: false`: AC4/9 RLS010 failed at cba; individual predicate reach remains unknown.
++- `tests/integration/commands/calendar-feed.int.test.ts:434` — `memberships.every(row => row.inherit_option === false)`: AC4/9 INT015 native fresh/replay inherited-owner oracle passed at3e7.
++- `tests/support/calendar-feed-atdd.ts:544` — `has_schema_privilege(oid,'public','CREATE')`: reads actual effective schema privileges including PUBLIC/inherited access.
++- `tests/integration/rls/calendar-feed.rls.test.ts:171` — `publicSchemaCreate: false`: AC4/9 RLS010 failed at3e7; individual predicate reach remains unknown.
+ - `tests/integration/ops/recovery-storage-immutability.int.test.ts:131` — `has_schema_privilege('calendar_feed_owner','public','CREATE')`: the existing recovery case checks the restored target before Storage requests; separately qualified native case.
+ 
+ ### Isolated CI custody and honest evidence limits
+ 
+ Only captured child identities and one ephemeral Vault UUID belong to the wrapper.
+ The added PG17 case qualifies that disposable stack and owns transaction-local
+ UUID roles/schema/function through dedicated connections, with no pool reuse.
+ Settlement is memoized; abnormal browser teardown retains exact job custody, while
+ privacy detection measures raw output in memory before sanitized records persist.
+ Before any secret, one fixed read-only query requires exact effective privacy on
+ the same connection later used for key creation and deletion. SET ACL facts
+ remain observations. The later admitted setup transport separately requires actual
+ authenticated SupAdmin LOGIN+SUPER for key setup and INT015, preserving its
+ restricted-session oracle. No new privileged child configuration or grant is added.
+ 
+ - `tests/integration/commands/calendar-feed.int.test.ts:475` — `// FULL rollback comes first`: preserves rollback/reset and same/fresh catalog absence proof.
+ - `scripts/ci/with-calendar-feed-runtime.mjs:257` — `export function createOwnedGroupStopper`: memoizes settlement, validates capture, passively observes missing-leader group absence and bounds completion/output.
+ - `scripts/ci/with-calendar-feed-runtime.mjs:179` — `export function createTelemetryObserver`: detects leaks before dropping non-allowlisted output.
+-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1039` — `nonzero/null-signal nested browser loss`: requires retained key custody for abnormal completion.
++- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1125` — `nonzero/null-signal nested browser loss`: requires retained key custody for abnormal completion.
+ - `tests/support/calendar-feed-ci-contract.ts:43` — `projectCalendarFeedCiCommands`: validates pinned real wrapper argv and only the two exact workflow inverses.
+-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:32` — `CI command projection rejects`: missing/wrong entry/argv and unrelated-source/workflow negatives preserve the original inverse fence.
++- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:33` — `CI command projection rejects`: missing/wrong entry/argv and unrelated-source/workflow negatives preserve the original inverse fence.
+ - `scripts/ci/with-calendar-feed-runtime.mjs:32` — `function safeDiagnostic`: emits only fixed stages/categories and allowlisted SQLSTATE without native payloads.
+-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:313` — `COMMIT uncertainty is not cleared`: rollback alone cannot establish key absence after attempted COMMIT.
++- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:314` — `COMMIT uncertainty is not cleared`: rollback alone cannot establish key absence after attempted COMMIT.
+ - `scripts/ci/with-calendar-feed-runtime.mjs:443` — `receipt.privacyPreflight = await readCalendarFeedPrivacyPreflight(db);`: rejects unsafe effective settings before entropy on the existing client.
+-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:209` — `privacy preflight rejects incomplete`: malformed and unsafe settings cannot reach a secret or child; actual driver/same-client/query-close cases exercise the surrounding boundary.
++- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:210` — `privacy preflight rejects incomplete`: malformed and unsafe settings cannot reach a secret or child; actual driver/same-client/query-close cases exercise the surrounding boundary.
+ - `scripts/ci/with-calendar-feed-runtime.mjs:99` — `export function createCalendarFeedDatabaseClient`: fixes the same qualified source publication, canonical admin and sole captured credential; no default or alternate route.
+ - `scripts/ci/with-calendar-feed-runtime.mjs:86` — `export async function readCalendarFeedSetupAuthority`: actual authenticated session/current LOGIN+SUPER proof is mandatory before mutation.
+-- `tests/integration/commands/calendar-feed.int.test.ts:497` — `await fresh.connect(); await setupQualified(fresh); await absent(fresh);`: INT015 fresh authority/privacy and exact absence oracle passed at cba.
+-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:147` — `setup construction refuses missing`: credential/target refusals cannot reach secrets or children; actual identity negatives and child-config tests complete the bounded boundary evidence.
++- `tests/integration/commands/calendar-feed.int.test.ts:497` — `await fresh.connect(); await setupQualified(fresh); await absent(fresh);`: INT015 fresh authority/privacy and exact absence oracle passed at3e7.
++- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:148` — `setup construction refuses missing`: credential/target refusals cannot reach secrets or children; actual identity negatives and child-config tests complete the bounded boundary evidence.
+ 
+ - `tests/e2e/support/calendar-feed-atdd.ts:83` — `export function createCalendarLifecycleObservations`: AC2/6 observes both transport promises and joins actual readback before teardown; pure regressions are not native acceptance.
+ - `tests/e2e/support/calendar-feed-atdd.ts:25` — `export function calendarBrowserDiagnostic`: preserves closed stage/category/SQLSTATE without native error payloads.
+ - `tests/e2e/support/calendar-feed-atdd.ts:705` — `if (base && cleanupAllowed)`: canonical SQL/Auth cleanup waits for verified settlement; unresolved references retain fixture custody.
+-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:489` — `missing leaders with persistent groups`: absence is measured within existing budgets; anonymous groups grant no signaling authority.
+-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:805` — `actual browser bounded cancellation`: timeout cannot credit in-flight SQL/readback settlement; release and real completion are distinct.
++- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:490` — `missing leaders with persistent groups`: absence is measured within existing budgets; anonymous groups grant no signaling authority.
++- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:891` — `actual browser bounded cancellation`: timeout cannot credit in-flight SQL/readback settlement; release and real completion are distinct.
+ 
+ - `tests/e2e/support/calendar-feed-atdd.ts:93` — `trackReadback<T>`: registers actual callback/query work independently of Playwright deadlines and closes before drain.
+-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:885` — `installed polling deadline cannot credit`: HTTP completion plus outer timeout cannot credit unresolved physical query siblings or callback completion.
++- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:971` — `installed polling deadline cannot credit`: HTTP completion plus outer timeout cannot credit unresolved physical query siblings or callback completion.
+ 
+ - `tests/support/calendar-feed-atdd.ts:190` — `export function calendarFixtureDiagnostic`: fixed stages/own-data SQLSTATE preserve only reaching errors within bounded aggregates.
+-- `tests/support/calendar-feed-atdd.ts:256` — `phase = "additional-users"`: marks actual callback entry; upstream lost code remains unknown.
+-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:594` — `actual fixture diagnostics preserve only`: injected classification and upstream-loss negatives are not native failure-cause proof.
+-- `tests/integration/rls/acceptance-tables-migration-reset.int.test.ts:212` — `approved role-specific policies`: exact ten-policy/role assertion preserves DELETE/ALL/extra-policy rejection.
+-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:687` — `the actual allocated policy case rejects`: injected rows exercise the actual catalog case; native reset evidence remains pending.
++- `tests/support/calendar-feed-atdd.ts:260` — `phase = "additional-users"`: marks actual callback entry; upstream lost code remains unknown.
++- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:595` — `actual fixture diagnostics preserve only`: injected classification and upstream-loss negatives are not native failure-cause proof.
++- `tests/integration/rls/acceptance-tables-migration-reset.int.test.ts:212` — `approved role-specific policies`: exact ten-policy/role case passed at3e7, retaining DELETE/ALL/extra-policy rejection.
++- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:773` — `the actual allocated policy case rejects`: injected rows exercise catalog negatives; actual3e7 policy case passed separately.
++
++- `tests/support/calendar-feed-atdd.ts:222` — `calendarFixtureSafeFailures.get(child)?.children`: flattens only guarded, already-sanitized children for the one-level reporter boundary.
++- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:720` — `installed failure transport reproduces lost`: old-shape control distinguishes JSON projection loss from in-process unknown.
++- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:732` — `actual repaired fixture diagnostics reach`: ordered safe primary/cleanup leaves remain one failed synthetic case.
+ 
+ Evidence: historical check receipts keep their exact revisions and dependency
+-limits. Seventh checkpoint cba attempted all95 feature cases:37 passed/58 failed;
+-all51 story Vitest cases ran7 passed/44 failed, and14 browser cases failed across
+-28 attempts. Separate verify3123/bootstrap51/Python43/recovery1 passed, as did
+-actual DB owned-child/key cleanup and INT015's restricted-session oracle. Browser
+-abnormal teardown retained custody; source RLS010/API019 failure and attachment
+-content unavailability receive no borrowed proof. Current58 separate bounded Node
+-cases passed; seven new contracts execute actual pure fixture/catalog assertion
+-source with injected inputs, not SQL/auth/browser acceptance. Existing four SSR
+-cases passed without global setup or a managed service. Changed-head runtime,
+-complete native success and attachment-content privacy still require Root's
+-exact-head CI. Prior builds are historical after the application copy change.
++limits. Eighth checkpoint3e7 ran all51 story Vitest cases:8 passed/43 failed;
++all four component cases and the exact shared policy case passed. Fourteen story
++browser cases failed across28 attempts. Separate verify3130/bootstrap58/Python43/
++recovery1 and actual DB child/key cleanup/INT015 passed; the full DB result still
++failed1944P43F52skip. Browser custody, RLS010/API019 failure and unavailable
++attachment content receive no borrowed proof. All43 native fixture messages had
++only group markers: no leaf serialization, no diagnosed SQL or cleanup cause.
++Current61 separate bounded Node tests passed, including three installed
++runner/processError/JsonReporter transport controls using synthetic failures.
++Actual pure source seams, injected rows and synthetic reporter tasks are not native
++SQL/auth/browser acceptance. Prior isolated localSSR4 and native component4
++passes keep their own scope; no SSR rerun here. Changed-head managed runtime,
++complete native success and attachment-content privacy require Root exact-head CI.
++Prior production builds remain historical, and no new build is claimed here.
+ All three broad rounds completed; only distinct High latest-delta review remains.
+ No provider/device/visual/performance or release-ready claim; the unallocated
+ exhaustive branch remains explicitly release-blocking deferred.
+diff --git a/tests/support/calendar-feed-atdd.ts b/tests/support/calendar-feed-atdd.ts
+index 169091c2..d712a086 100644
+--- a/tests/support/calendar-feed-atdd.ts
++++ b/tests/support/calendar-feed-atdd.ts
+@@ -200,37 +200,41 @@ export function calendarFixtureDiagnostic(stage: string, error: unknown): Error
+   };
+   function walk(value: unknown, at: CalendarFixtureDiagnosticStage, depth: number): Error {
+     // The final node is reserved for an explicit truncation marker.
+     if (++nodes >= 16) { exhausted = true; return leaf(at, "truncated"); }
+     if (depth > 4) return leaf(at, "truncated");
+     if (!objectLike(value)) return leaf(at, "unknown");
+     if (seen.has(value)) return leaf(at, "cycle");
+     seen.add(value);
+     const known = calendarFixtureSafeFailures.get(value);
+     if (known) at = known.stage;
+     try {
+       const members = known?.children ? { found: true, value: known.children } : fixtureOwnData(value, "errors");
+       if (members.found && Array.isArray(members.value)) {
+         const size = fixtureOwnData(members.value, "length");
+         if (!size.found || typeof size.value !== "number" || !Number.isSafeInteger(size.value) || size.value < 1) return leaf(at, "unknown");
+         const children: Error[] = [];
+         for (let index = 0; index < size.value && !exhausted; index++) {
+           const member = fixtureOwnData(members.value, String(index));
+-          children.push(walk(member.found ? member.value : undefined, at, depth + 1));
++          const child = walk(member.found ? member.value : undefined, at, depth + 1);
++          // Vitest unwraps one AggregateError level before JSON selects only
++          // stack/message. Flatten only our already-sanitized, bounded groups;
++          // raw native children still pass through the guarded walk above.
++          children.push(...(calendarFixtureSafeFailures.get(child)?.children ?? [child]));
+         }
+         const safe = new AggregateError(children, `Calendar fixture failure group [stage=${at}]`);
+         calendarFixtureSafeFailures.set(safe, { stage: at, children }); return safe;
+       }
+       // An accessor/malformed aggregate is unknown; never invoke it or native text.
+       if (Object.getOwnPropertyDescriptor(value, "errors")) return leaf(at, "unknown");
+       if (known) return value as Error;
+       const code = fixtureOwnData(value, "code");
+       if (code.found && typeof code.value === "string" && Object.hasOwn(calendarFixtureSqlstates, code.value)) {
+         return leaf(at, calendarFixtureSqlstates[code.value as keyof typeof calendarFixtureSqlstates], code.value);
+       }
+     } catch { /* Proxy/descriptor failure has no safe native information. */ }
+     return leaf(at, "unknown");
+   }
+   return walk(error, fixedStage, 0);
+ }
+ export async function calendarFixtureStep<T>(stage: CalendarFixtureDiagnosticStage, run: () => T | Promise<T>): Promise<T> {
+   try { return await run(); }
+diff --git a/tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts b/tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts
+index 678a980c..6bd5ce61 100644
+--- a/tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts
++++ b/tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts
+@@ -1,24 +1,25 @@
+ import assert from "node:assert/strict";
+ import { test } from "node:test";
+ import { createHash } from "node:crypto";
+ import { readFileSync } from "node:fs";
+ import * as nodeModule from "node:module";
+ import { EventEmitter } from "node:events";
++import { pathToFileURL } from "node:url";
+ import { projectCalendarFeedCiCommands } from "../../../support/calendar-feed-ci-contract";
+ import { INTEGRATION_ARGS, BROWSER_ARGS, FEED_FUNCTIONS, validateAdmission, validateStackIdentity, createCalendarFeedDatabaseClient, createTelemetryObserver, hasSensitiveOutput, createOwnedGroupStopper, ownsListenerRecord, waitForOwnedHttp, runCalendarFeedRuntime } from "../../../../scripts/ci/with-calendar-feed-runtime.mjs";
+ 
+ const env = {
+   NODE_ENV: "test" as const,
+   CI: "true", GITHUB_ACTIONS: "true", RUNNER_ENVIRONMENT: "github-hosted", GITHUB_RUN_ID: "123", GITHUB_RUN_ATTEMPT: "1", GITHUB_JOB: "db",
+   CALENDAR_FEED_CI_DISPOSABLE_STACK: "123:1:db",
+ };
+ const keyId = "f8c9b152-1e88-471a-82fa-d45a80394e40";
+ const keyUuid = "905a0de8-b110-4f89-9096-010db4c6ef12";
+ const status = { API_URL: "http://127.0.0.1:54321", DB_URL: "postgresql://postgres:postgres@127.0.0.1:54322/postgres", ANON_KEY: "test-anon", SERVICE_ROLE_KEY: "test-service" };
+ const migrations = [{ version: "20261020220000", name: "personal_calendar_feed" }];
+ function privacyRows(): Record<string, unknown>[] {
+   return ["log_statement", "log_min_error_statement", "log_parameter_max_length", "log_parameter_max_length_on_error"].map(name => ({
+     name, context: name === "log_parameter_max_length_on_error" ? "user" : "superuser", matches_required: true, can_set: false,
+     session_is_postgres: false, current_is_postgres: false, same_identity: true,
+     session_superuser: true, current_superuser: true, session_bypass_rls: true, current_bypass_rls: true,
+   }));
+@@ -669,36 +670,121 @@ test("actual fixture diagnostics keep upstream message-only replacement and swal
+   assert.ok(!fixtureFailureMessages(finalReplacement).some(message => message.includes("23503")));
+   // A canonical best-effort warning is not a rejected outcome at the owned catch.
+   const noFailure = await calendarFixtureStep("canonical-fixture-cleanup", () => "completed-without-owned-rejection");
+   assert.equal(noFailure, "completed-without-owned-rejection");
+ });
+ 
+ test("actual fixture pre-callback coarse stage and fine owned stages survive outer aggregation without invented substage", async () => {
+   const { calendarFixtureDiagnostic } = await actualFixtureDiagnostics();
+   const coarse = calendarFixtureDiagnostic("booking-fixture-before-callback", { code: "23514" });
+   const own = calendarFixtureDiagnostic("additional-users", { code: "23505" });
+   const cleanup = calendarFixtureDiagnostic("additional-auth-cleanup", new Error("PRIVATE already erased"));
+   const aggregate = calendarFixtureDiagnostic("scenario", new AggregateError([coarse, own, cleanup], "PRIVATE"));
+   const messages = fixtureFailureMessages(aggregate);
+   assert.match(messages[1], /stage=booking-fixture-before-callback;category=check-constraint/);
+   assert.match(messages[2], /stage=additional-users;category=unique-conflict/);
+   assert.match(messages[3], /stage=additional-auth-cleanup;category=unknown/);
+ });
+ 
++let installedFailureTransport: Promise<(error: unknown) => Promise<{ numFailedTests: number; testResults: { assertionResults: { failureMessages: string[] }[] }[] }>> | undefined;
++function actualInstalledFailureTransport() {
++  installedFailureTransport ??= (async () => {
++    const require = nodeModule.createRequire(import.meta.url);
++    const fromVitest = nodeModule.createRequire(require.resolve("vitest/package.json"));
++    const runnerEntry = pathToFileURL(fromVitest.resolve("@vitest/runner"));
++    const runnerSource = readFileSync(new URL("./chunk-artifact.js", runnerEntry), "utf8");
++    const start = "function failTask(result, err, diffOptions) {", end = "function markTasksAsSkipped(";
++    assert.equal(runnerSource.split(start).length, 2); assert.equal(runnerSource.split(end).length, 2);
++    const actualFailTask = runnerSource.slice(runnerSource.indexOf(start), runnerSource.indexOf(end));
++    const { processError } = await import(pathToFileURL(fromVitest.resolve("@vitest/utils/error")).href);
++    // Execute the exact installed body. These two control-error classes are not
++    // used by our AggregateError inputs; processError is the actual installation.
++    const failTask = new Function("PendingError", "TestRunAbortError", "processError", `${actualFailTask}\nreturn failTask;`)(class {}, class {}, processError) as
++      (result: { state: string; errors?: unknown[] }, error: unknown) => void;
++    const { JsonReporter } = await import("vitest/node");
++    return async error => {
++      const result: { state: string; errors?: unknown[] } = { state: "run" }; failTask(result, error);
++      const file = { type: "suite", name: "fixture transport", filepath: "fixture-transport.test.ts", tasks: [] as unknown[], result: { state: "fail" } };
++      file.tasks.push({ type: "test", name: "one failing fixture", suite: file, result, meta: {}, mode: "run" });
++      const output: string[] = [];
++      const reporter = new JsonReporter({});
++      // No runner/start/collection, output file or service: the public reporter
++      // writes its real JSON into this in-memory logger using a synthetic task.
++      reporter.onInit({ config: {}, snapshot: { summary: {} }, logger: { log(value: string) { output.push(value); }, warn() { throw Error("Unexpected reporter warning"); } } } as never);
++      await reporter.onTestRunEnd([{ task: file }] as never);
++      assert.equal(output.length, 1); return JSON.parse(output[0]);
++    };
++  })();
++  return installedFailureTransport;
++}
++
++test("installed failure transport reproduces lost nested diagnostics without treating reporter absence as unknown in process", async () => {
++  const report = await actualInstalledFailureTransport();
++  const leaf = new Error("Calendar fixture failure [stage=bind-profile;category=insufficient-privilege;sqlstate=42501]");
++  const nested = new AggregateError([leaf], "Calendar fixture failure group [stage=canonical-fixture-cleanup]");
++  const oldShape = new AggregateError([nested], "Calendar fixture failure group [stage=scenario]");
++  assert.equal(nested.errors[0], leaf); // The in-process positive control exists.
++  const json = await report(oldShape), messages = json.testResults[0].assertionResults[0].failureMessages;
++  assert.equal(json.numFailedTests, 1); assert.equal(messages.length, 1);
++  assert.match(messages[0], /group \[stage=canonical-fixture-cleanup\]/);
++  assert.ok(!messages[0].includes("sqlstate=42501"));
++});
++
++test("actual repaired fixture diagnostics reach installed JSON as ordered primary and cleanup leaves within one failed case", async () => {
++  const { calendarFixtureDiagnostic } = await actualFixtureDiagnostics(), report = await actualInstalledFailureTransport();
++  const primary = calendarFixtureDiagnostic("bind-profile", { code: "42501", message: "PRIVATE native" });
++  const unknown = calendarFixtureDiagnostic("booking-fixture-before-callback", new Error("PRIVATE lost 23503"));
++  const cleanup = calendarFixtureDiagnostic("owned-row-cleanup", { code: "23503", query: "PRIVATE query" });
++  const nested = calendarFixtureDiagnostic("canonical-fixture-cleanup", new AggregateError([primary, new AggregateError([unknown, cleanup], "PRIVATE")], "PRIVATE"));
++  const final = calendarFixtureDiagnostic("scenario", new AggregateError([nested], "PRIVATE"));
++  assert.ok(final instanceof AggregateError); assert.equal(final.errors.length, 3);
++  assert.ok(final.errors.every((error: Error) => !(error instanceof AggregateError)));
++  const json = await report(final), messages = json.testResults[0].assertionResults[0].failureMessages;
++  assert.equal(json.numFailedTests, 1); assert.equal(messages.length, 3);
++  assert.match(messages[0], /stage=bind-profile;category=insufficient-privilege;sqlstate=42501/);
++  assert.match(messages[1], /stage=booking-fixture-before-callback;category=unknown;sqlstate=unavailable/);
++  assert.match(messages[2], /stage=owned-row-cleanup;category=foreign-key;sqlstate=23503/);
++  assert.ok(!JSON.stringify(json).includes("PRIVATE"));
++});
++
++test("installed diagnostic JSON retains closed getter cycle and truncation negatives without native payload or accessor reads", async () => {
++  const { calendarFixtureDiagnostic } = await actualFixtureDiagnostics(), report = await actualInstalledFailureTransport();
++  let getters = 0;
++  const privateText = "PRIVATE URL TOKEN PROOF KEY SQL PARAMS";
++  const hostile = Object.defineProperties({}, { code: { get() { getters++; throw Error(privateText); } },
++    cause: { get() { getters++; throw Error(privateText); } }, message: { value: privateText }, detail: { value: privateText },
++    query: { value: privateText }, params: { value: [privateText] }, then: { get() { getters++; throw Error(privateText); } } });
++  const cycle: { errors: unknown[] } = { errors: [] }; cycle.errors.push(cycle);
++  let deep: unknown = { code: "42501", message: privateText };
++  for (let i = 0; i < 10; i++) deep = new AggregateError([deep], privateText);
++  const failure = calendarFixtureDiagnostic("scenario", new AggregateError([hostile, Object.create({ code: "42501" }), cycle, deep], privateText));
++  const json = await report(failure), messages = json.testResults[0].assertionResults[0].failureMessages;
++  assert.equal(json.numFailedTests, 1); assert.equal(getters, 0);
++  assert.ok(messages.some(message => message.includes("category=unknown;sqlstate=unavailable")));
++  assert.ok(messages.some(message => message.includes("category=cycle")));
++  assert.ok(messages.some(message => message.includes("category=truncated")));
++  assert.ok(!JSON.stringify(json).includes(privateText));
++  assert.ok(!messages.some(message => message.includes("sqlstate=42501")));
++  const wide = calendarFixtureDiagnostic("scenario", new AggregateError(Array.from({ length: 100 }, () => ({ code: "42501", message: privateText })), privateText));
++  const wideJson = await report(wide), wideMessages = wideJson.testResults[0].assertionResults[0].failureMessages;
++  assert.equal(wideMessages.length, 15); assert.match(wideMessages.at(-1)!, /category=truncated/);
++  assert.ok(!JSON.stringify(wideJson).includes(privateText));
++});
++
+ test("the actual allocated policy case rejects missing extra DELETE ALL names and broadened roles without filtering rows", async () => {
+   // This executes the exact catalog assertion with injected rows, not Postgres,
+   // RLS or a migration reset. Its native case and query count remain unchanged.
+   const source = readFileSync(new URL("../../../integration/rls/acceptance-tables-migration-reset.int.test.ts", import.meta.url), "utf8").replaceAll("\r\n", "\n");
+   const start = '  it("[P0] each table has exactly the approved role-specific policies (NO DELETE or ALL policy)"';
+   assert.equal(source.split(start).length, 2);
+   const at = source.indexOf(start), end = source.indexOf("\n  });", at);
+   assert.ok(end > at);
+   const strip = (nodeModule as unknown as { stripTypeScriptTypes(source: string): string }).stripTypeScriptTypes;
+   const code = strip(source.slice(at, end + "\n  });".length));
+   const tables = ["quote_acceptances", "jobs", "job_events"];
+   const rows = (table: string) => [...["INSERT", "SELECT", "UPDATE"].map(cmd => ({ policyname: `${table}_${cmd.toLowerCase()}_own`, cmd, roles: ["authenticated"] })),
+     ...(table === "jobs" ? [{ policyname: "calendar_feed_owner_jobs", cmd: "SELECT", roles: ["calendar_feed_owner"] }] : [])];
+   async function run(change: (values: ReturnType<typeof rows>, table: string) => ReturnType<typeof rows> = value => value) {
+     const queries: string[] = []; let body: (() => Promise<void>) | undefined;
+     new Function("it", "skipUnlessStack", "stackUp", "ACCEPTANCE_TABLES", "adminQuery", "expect", code)(
+       (_name: string, test: () => Promise<void>) => { body = test; }, () => false, true, tables,
+       async (sql: string, params: string[]) => { assert.equal(sql, "select policyname,cmd,roles::text[] as roles from pg_policies where schemaname = 'public' and tablename = $1"); queries.push(params[0]); return change(rows(params[0]), params[0]); },
+
+COMPLETE COMMITTED HELPER/CALLER CONTEXT; review changed pure construction while preserving operations:
+/** Story 15.5 actual command/JWT/SQL/HTTP adapters. No resource launches.
+ * Test observation shapes below normalize real results, never produce expected
+ * outcomes. Dedicated ephemeral key and actual Next host are supplied by the
+ * separately owned isolated CI runtime. Required missing infrastructure fails.
+ */
+import { randomUUID } from "node:crypto";
+import { readFile } from "node:fs/promises";
+import { expect as vitestExpect } from "vitest";
+import { adminQuery, adminSession } from "../factories/admin-sql";
+import { seedRoleAwarePhaseAUsers, makeAuthedServerClient, makeAnonServerClient, deleteAuthUser, type FixtureUser, type TestServerClient } from "../factories/tenants";
+import { withBookingFixture, bookingCommand, bookingInput, type BookingFixture } from "./bookings-atdd";
+import { realSeriesInput, reviewRealSeries } from "./booking-series-atdd";
+import { createBookingSeries } from "@/server/commands/bookings/create-booking-series";
+import { updateBookingSeries } from "@/server/commands/bookings/update-booking-series";
+import { runCommand } from "@/server/commands/envelope";
+import { manageCalendarFeed } from "@/server/commands/calendar-feed/manage-calendar-feed";
+import { readCalendarFeedStatus } from "@/server/read-models/calendar-feed";
+import { publicCalendarFeed } from "@/server/calendar-feed/public-feed";
+import { feedKeyFromEnv, issueCalendarFeedToken, hashFeedToken, FEED_SCHEMA, FETCH_DOMAIN, MANAGE_DOMAIN, signFeedProof } from "@/server/calendar-feed/attestation";
+import { hashFeedIp } from "@/server/calendar-feed/trusted-ip";
+
+/**
+ * A failing ordinary matcher prints actual/expected values. These tests inspect
+ * capabilities and hashes, so matcher errors are replaced by fixed text without
+ * a cause. Never use expect.soft, snapshots, console output or raw adapter errors.
+ * P5 adapters must similarly sanitize HTTP/RPC/SQL transport errors at source.
+ */
+function redactMatchers<T extends object>(assertion: T): T {
+  return new Proxy(assertion, { get(target, key, receiver) {
+    const value: unknown = Reflect.get(target, key, receiver);
+    if (key === "not" && value && typeof value === "object") return redactMatchers(value);
+    if (typeof value !== "function") return value;
+    return (...args: unknown[]) => {
+      try { return Reflect.apply(value, target, args); }
+      catch { throw new Error(`15.5 assertion ${String(key)} failed; sensitive values redacted`); }
+    };
+  } });
+}
+export const expectCalendar: typeof vitestExpect = new Proxy(vitestExpect, {
+  apply(target, thisArg, args) {
+    return redactMatchers(Reflect.apply(target, thisArg, args));
+  },
+});
+
+export type SubjectName = "own" | "peer" | "admin" | "planner" | "mixed" | "seller" |
+  "economy" | "foreign" | "invited" | "disabled" | "platformOnly" | "noProfile";
+export type Subject = { tenantId: string; userId: string; membershipId: string; profileId: string | null };
+export type LifecycleIntent = {
+  action: "create" | "rotate" | "revoke"; expectedRevision: number; attemptId: string; correlationId: string;
+};
+export function lifecycle(action: LifecycleIntent["action"], expectedRevision: number): LifecycleIntent {
+  return { action, expectedRevision, attemptId: randomUUID(), correlationId: randomUUID() };
+}
+export type ManagementObservation = {
+  outcome: "committed" | "replayed" | "conflict" | "denied" | "unavailable";
+  issuedUrl: string | null; revision: number | null;
+};
+export type StatusObservation = {
+  active: boolean; revision: number; lastUsedAt: string | null; usageCount: number;
+  attemptOutcome: "committed" | "not-found" | null; publicDto: Record<string, unknown>;
+};
+export type BookingSeed = {
+  id: string; subject: SubjectName; additionalAssignees: SubjectName[];
+  startsAt: string; endsAt: string; updatedAt: string; allDay: boolean;
+  status: "planned" | "cancelled"; description: string;
+  workRoleLabel: string | null; jobLabel: string | null; customerLabel: string | null;
+  facilityAddress: string | null;
+};
+export function bookingSeed(patch: Partial<BookingSeed> = {}): BookingSeed {
+  return { id: randomUUID(), subject: "own", additionalAssignees: [],
+    startsAt: "2026-10-21T06:00:00Z", endsAt: "2026-10-21T14:00:00Z",
+    updatedAt: "2026-10-20T12:00:00Z", allDay: false, status: "planned",
+    description: "PRIVATE-NOTE: ring Anna på 0700001122", workRoleLabel: "Installation",
+    jobLabel: "Belysning verkstad", customerLabel: "Testkund Väster AB",
+    facilityAddress: "Testgatan 15, Uppsala", ...patch };
+}
+export type TokenRow = {
+  id: string; tenantId: string; membershipId: string; hash: string;
+  revokedAt: string | null; createdAt: string; lastUsedAt: string | null;
+  usageCount: number; revision: number; attemptId: string;
+};
+export type AuditRow = { action: string; actorId: string; tenantId: string; attemptId: string; metadata: unknown };
+export type PhysicalState = {
+  tokens: TokenRow[]; audits: AuditRow[]; persistedRows: unknown[];
+  /** Actual row-scoped bookings/series/exceptions/conflicts/resolutions/reports/jobs readbacks. */
+  schedulingIntegrity: Record<string, unknown[]>;
+};
+export type FeedResponse = { status: number; headers: Record<string, string>; body: string };
+export type ParsedEvent = {
+  uid: string; start: string; end: string; summary: string; location: string | null;
+  properties: Record<string, string[]>;
+};
+export type ProofAttack = "missing" | "wrong-key" | "wrong-domain" | "expired" | "future" |
+  "over-60-seconds" | "tampered-token-hash" | "tampered-ip-hash" | "tampered-request-id" |
+  "tampered-actor" | "tampered-tenant" | "tampered-membership" | "tampered-action" |
+  "tampered-revision" | "tampered-attempt" | "weak-chosen-new-hash" | "changed-new-hash";
+export type RpcObservation = { denied: boolean; rows: unknown[]; sanitizedResult: unknown };
+export type AuthorityPatch = {
+  primary?: "tenant_admin" | "projektledare" | "montor" | "saljare" | "ekonomi";
+  additional?: string[]; status?: "active" | "invited" | "disabled";
+  membershipPresent?: boolean; tenantPresent?: boolean; profileArchived?: boolean;
+};
+export type AclFacts = {
+  tables: Array<{ name: string; rlsEnabled: boolean; anonSelect: boolean; authenticatedDml: boolean;
+    anonDml: boolean; publicInheritedDml: boolean; authenticatedSensitiveColumns: boolean }>;
+  functions: Array<{ purpose: "fetch" | "manage" | "status" | "abuse"; owner: string; securityDefiner: boolean; emptySearchPath: boolean;
+    anonExecute: boolean; authenticatedExecute: boolean; publicExecute: boolean }>;
+  owner: { name: string; login: boolean; inherit: boolean; superuser: boolean; bypassRls: boolean; publicSchemaCreate: boolean;
+    assumableByJwtRoles: boolean; unrelatedTableRead: boolean; generalVaultRead: boolean;
+    effectiveReadOutsideAllowedColumns: boolean; filteredHelperOnly: boolean };
+  helpers: Array<{ purpose: "canonical" | "verifier" | "filtered-secret"; jwtExecute: boolean; publicExecute: boolean; feedOwnerExecute: boolean;
+    otherRoleInheritedExecute: boolean; exactConfiguredKeyFilter: boolean }>;
+  ipColumns: string[];
+};
+export type CalendarFixture = {
+  subjects: Record<SubjectName, Subject>;
+  /** Unique fixture-owned canonical IPv6 address; never the global unknown bucket. */
+  isolatedTrustedIp: string;
+  /** Invokes real request-bound server action/command, not a hand-built signed oracle. */
+  manage(subject: SubjectName, intent: LifecycleIntent): Promise<ManagementObservation>;
+  status(subject: SubjectName, attemptId?: string): Promise<StatusObservation>;
+  /** Bypasses envelope via actual ordinary JWT RPC; overrides are attack input. */
+  rawManage(subject: SubjectName | "anon", intent: LifecycleIntent,
+    overrides?: Partial<Subject>, attack?: ProofAttack): Promise<RpcObservation>;
+  rawFetch(url: string, attack: ProofAttack | "valid" | "replay",
+    options?: { callerWindow?: number; callerLimit?: number; changedIpHash?: string }): Promise<RpcObservation>;
+  seedBookings(rows: BookingSeed[]): Promise<void>;
+  /** Real existing 15.2 commands/materialization; returns seeded surviving IDs, never expected output. */
+  seedSeries(subject: SubjectName): Promise<{ unchangedId: string; movedExceptionId: string; cancelledId: string;
+    splitSurvivingId: string; newOccurrenceIds: string[] }>;
+  changeSeries(kind: "edit" | "exception" | "cancel" | "split", id: string): Promise<void>;
+  setBooking(id: string, patch: Partial<BookingSeed>): Promise<void>;
+  editProjectedSource(id: string, source: "work_roles" | "jobs" | "customers" | "facilities", label: string, updatedAt: string): Promise<void>;
+  setAssignments(id: string, subjects: SubjectName[]): Promise<void>;
+  setAuthority(subject: SubjectName, patch: AuthorityPatch): Promise<void>;
+  setProvisioningState(subject: SubjectName, state: string | null): Promise<void>;
+  replaceMembership(subject: SubjectName): Promise<void>;
+  /** Real HTTP, redirect following and automatic retries disabled; never accepts trusted-IP input. */
+  http(url: string, options?: { headers?: Record<string, string>; query?: Record<string, string> }): Promise<FeedResponse>;
+  /** Real server orchestrator+SQL with private trusted-IP dependency seam; NOT an HTTP header. */
+  trustedFetch(url: string, canonicalIp: string): Promise<FeedResponse>;
+  physical(): Promise<PhysicalState>;
+  readAbuse(subject: SubjectName, query?: Record<string, string>): Promise<{ denied: boolean; rows: Record<string, unknown>[] }>;
+  directTable(subject: SubjectName | "anon", table: "calendar_feed_tokens" | "calendar_feed_ip_windows",
+    operation: "select" | "insert" | "update" | "delete", options?: Record<string, unknown>): Promise<RpcObservation>;
+  /** Read-only pg_catalog/has_*_privilege inspection, INCLUDING inherited PUBLIC/role ACLs. */
+  acl(): Promise<AclFacts>;
+  /** Actual captured server log/error/audit telemetry only; never print sensitive test values. */
+  telemetry(): Promise<string>;
+  /** In-memory TEST-only values for negative leak assertions; never logs/returns them to product. */
+  sensitiveTestValues(): Promise<string[]>;
+  /** Seed real existing booking/series/resolver/report/job records and return physical baseline. */
+  seedSchedulingRegressionState(): Promise<Record<string, unknown[]>>;
+};
+export type SerialControls = {
+  /** Unique allocated TEST key only; restore exact owned state, never borrowed key material. */
+  withKeyState<T>(state: "missing" | "wrong-runtime-key" | "wrong-vault-key" | "unrelated-vault-key-only",
+    run: () => Promise<T>): Promise<T>;
+  /** DB-clock fixture, not caller-signed windows/limits. Binding must prove real SQL time source. */
+  withDatabaseTime<T>(iso: string, run: () => Promise<T>): Promise<T>;
+  counters(url: string, canonicalIp: string | null): Promise<{ token: number; ip: number; windowStart: string;
+    databaseNow: string; spikeCount: number; storedIpIsKeyedHash: boolean }>;
+  withFault<T>(scope: { tenantId: string; attemptId: string; correlationId: string;
+    stage: "create-audit" | "rotate-audit" | "revoke-audit" | "projection-after-first-page" | "projection-query-canceled" | "counter-write" },
+    run: () => Promise<T>): Promise<{ result: T; stageObserved: boolean; sqlstate: string; ownedObjectsRemaining: number }>;
+  loseCommittedResponse(subject: SubjectName, intent: LifecycleIntent): Promise<void>;
+  barrier(scope: { tenantId: string; membershipId: string; attemptId: string;
+    stage: "fetch-authority-admitted" | "revoke-before-commit" | "rotate-before-commit" |
+      "management-before-authority" | "fetch-before-authority" }): Promise<{
+    waitUntilEntered(timeoutMs: number): Promise<void>; release(): Promise<void>; assertOwnedObjectsAbsent(): Promise<void>;
+  }>;
+  /** One shared conservative unknown-IP bucket, confined to these two serial files. */
+  resetOwnedUnknownIpWindow(): Promise<void>;
+  boundedInfrastructureCounts(): Promise<{ liveWindows: number; expiredWindows: number; documentedBound: number }>;
+};
+export type Lane = "row-isolated" | "serial-commands" | "serial-public";
+export type FixtureByLane<L extends Lane> = CalendarFixture &
+  (L extends "row-isolated" ? Record<never, never> : { serial: SerialControls });
+
+// Pure fixture diagnostics: no DB/client imports or native error text are read.
+export const calendarFixtureDiagnosticStages = ["booking-fixture-before-callback", "canonical-fixture-cleanup", "additional-users", "bind-membership", "bind-profile", "bind-client", "owned-row-cleanup", "additional-auth-cleanup", "cleanup-absence-check", "serial-window-setup", "serial-window-restore", "scenario", "unknown"] as const;
+export type CalendarFixtureDiagnosticStage = typeof calendarFixtureDiagnosticStages[number];
+const calendarFixtureSqlstates = { "42501": "insufficient-privilege", "42P01": "undefined-table", "42703": "undefined-column", "42883": "undefined-function", "23502": "not-null", "23503": "foreign-key", "23505": "unique-conflict", "23514": "check-constraint", "22P02": "invalid-text", "25P02": "transaction-aborted", "57014": "query-cancelled", "40001": "serialization", "40P01": "deadlock", "08006": "connection-failure" } as const;
+type CalendarFixtureSafeFailure = { stage: CalendarFixtureDiagnosticStage; children?: readonly Error[] };
+const calendarFixtureSafeFailures = new WeakMap<object, CalendarFixtureSafeFailure>();
+function fixtureOwnData(value: object, key: string): { found: boolean; value?: unknown } {
+  const descriptor = Object.getOwnPropertyDescriptor(value, key);
+  return descriptor && "value" in descriptor ? { found: true, value: descriptor.value } : { found: false };
+}
+export function calendarFixtureDiagnostic(stage: string, error: unknown): Error {
+  const fixedStage = calendarFixtureDiagnosticStages.includes(stage as CalendarFixtureDiagnosticStage) ? stage as CalendarFixtureDiagnosticStage : "unknown";
+  const objectLike = (value: unknown): value is object => (typeof value === "object" && value !== null) || typeof value === "function";
+  // Only this module's own safe objects may bypass native descriptor inspection.
+  if (objectLike(error) && calendarFixtureSafeFailures.has(error)) return error as Error;
+  let nodes = 0, exhausted = false;
+  const seen = new Set<object>();
+  const leaf = (at: CalendarFixtureDiagnosticStage, category: string, code = "unavailable") => {
+    const safe = new Error(`Calendar fixture failure [stage=${at};category=${category};sqlstate=${code}]`);
+    calendarFixtureSafeFailures.set(safe, { stage: at }); return safe;
+  };
+  function walk(value: unknown, at: CalendarFixtureDiagnosticStage, depth: number): Error {
+    // The final node is reserved for an explicit truncation marker.
+    if (++nodes >= 16) { exhausted = true; return leaf(at, "truncated"); }
+    if (depth > 4) return leaf(at, "truncated");
+    if (!objectLike(value)) return leaf(at, "unknown");
+    if (seen.has(value)) return leaf(at, "cycle");
+    seen.add(value);
+    const known = calendarFixtureSafeFailures.get(value);
+    if (known) at = known.stage;
+    try {
+      const members = known?.children ? { found: true, value: known.children } : fixtureOwnData(value, "errors");
+      if (members.found && Array.isArray(members.value)) {
+        const size = fixtureOwnData(members.value, "length");
+        if (!size.found || typeof size.value !== "number" || !Number.isSafeInteger(size.value) || size.value < 1) return leaf(at, "unknown");
+        const children: Error[] = [];
+        for (let index = 0; index < size.value && !exhausted; index++) {
+          const member = fixtureOwnData(members.value, String(index));
+          const child = walk(member.found ? member.value : undefined, at, depth + 1);
+          // Vitest unwraps one AggregateError level before JSON selects only
+          // stack/message. Flatten only our already-sanitized, bounded groups;
+          // raw native children still pass through the guarded walk above.
+          children.push(...(calendarFixtureSafeFailures.get(child)?.children ?? [child]));
+        }
+        const safe = new AggregateError(children, `Calendar fixture failure group [stage=${at}]`);
+        calendarFixtureSafeFailures.set(safe, { stage: at, children }); return safe;
+      }
+      // An accessor/malformed aggregate is unknown; never invoke it or native text.
+      if (Object.getOwnPropertyDescriptor(value, "errors")) return leaf(at, "unknown");
+      if (known) return value as Error;
+      const code = fixtureOwnData(value, "code");
+      if (code.found && typeof code.value === "string" && Object.hasOwn(calendarFixtureSqlstates, code.value)) {
+        return leaf(at, calendarFixtureSqlstates[code.value as keyof typeof calendarFixtureSqlstates], code.value);
+      }
+    } catch { /* Proxy/descriptor failure has no safe native information. */ }
+    return leaf(at, "unknown");
+  }
+  return walk(error, fixedStage, 0);
+}
+export async function calendarFixtureStep<T>(stage: CalendarFixtureDiagnosticStage, run: () => T | Promise<T>): Promise<T> {
+  try { return await run(); }
+  catch (error) { throw calendarFixtureDiagnostic(stage, error); }
+}
+// End pure fixture diagnostics.
+
+/** Row-isolated fixtures never mutate keys, global counters or fault DDL.
+ * The two allocated serial files alone receive these controls. All assertions
+ * and transport failures discard sensitive values and retain cleanup outcomes.
+ */
+export async function withCalendarFeedFixture<L extends Lane>(
+  lane: L, run: (fixture: FixtureByLane<L>) => Promise<void>,
+): Promise<void> {
+  let additionalUsers: readonly FixtureUser[] = [];
+  let primary: unknown; const ownedTenants: string[] = [], ownedUsers: string[] = [];
+  // Shared setup can already have replaced code with message-only Error. Do not
+  // guess its internal auth/SQL substage or reconstruct swallowed cleanup errors.
+  let phase: CalendarFixtureDiagnosticStage = "booking-fixture-before-callback";
+  try {
+    feedKeyFromEnv(); // no fallback, fixture fails if the owned CI key is absent
+    await withBookingFixture(async base => {
+      phase = "additional-users";
+      ownedTenants.push(...base.tenantIds);ownedUsers.push(base.base.adminA.id,base.base.adminB.id,base.base.orphanUser.id,...base.extraUsers.map(user=>user.id));
+      let failure: unknown;
+      try {
+        const extra = await calendarFixtureStep(phase, () => seedRoleAwarePhaseAUsers(base.base)); additionalUsers = extra.extraUsers;
+        phase = "bind-membership";
+        const fixture = await bindCalendarFixture(base, extra);
+        const serial = lane === "row-isolated" ? {} : { serial: await calendarSerialControls(fixture) };
+        phase = "scenario";
+        const scenario = () => calendarFixtureStep("scenario", () => run(Object.assign(fixture, serial) as FixtureByLane<L>));
+        if (lane === "row-isolated") await scenario();
+        else await withOwnedUnknownWindow(fixture, scenario);
+      } catch (error) { failure = calendarFixtureDiagnostic(phase, error); }
+      let cleanupFailure: unknown;
+      try { await cleanupCalendarOwnedRows(base.tenantIds); } catch (error) { cleanupFailure = calendarFixtureDiagnostic("owned-row-cleanup", error); }
+      phase = "canonical-fixture-cleanup";
+      if (failure || cleanupFailure) throw new AggregateError([...(failure ? [failure] : []), ...(cleanupFailure ? [cleanupFailure] : [])], "Calendar scenario/owned row cleanup failed");
+    });
+  } catch (error) { primary = calendarFixtureDiagnostic(phase, error); }
+  const cleanup = await Promise.allSettled(additionalUsers.map(user => calendarFixtureStep("additional-auth-cleanup", () => deleteAuthUser(user.id))));
+  const remainingErrors: Error[]=[];
+  try {
+    if(ownedTenants.length && (await adminQuery("select 1 from public.tenants where id=any($1::uuid[]) limit 1",[ownedTenants])).length)remainingErrors.push(calendarFixtureDiagnostic("cleanup-absence-check", new Error()));
+    if(ownedUsers.length && (await adminQuery("select 1 from auth.users where id=any($1::uuid[]) limit 1",[[...ownedUsers,...additionalUsers.map(user=>user.id)]])).length)remainingErrors.push(calendarFixtureDiagnostic("cleanup-absence-check", new Error()));
+  }catch(error){remainingErrors.push(calendarFixtureDiagnostic("cleanup-absence-check", error));}
+  if (primary || remainingErrors.length || cleanup.some(result => result.status === "rejected")) throw calendarFixtureDiagnostic("scenario", new AggregateError([
+    ...(primary ? [redactFailure(primary)] : []), ...remainingErrors,
+    ...cleanup.filter(result => result.status === "rejected").map(result => calendarFixtureDiagnostic("additional-auth-cleanup", result.reason)),
+  ], "Calendar fixture failed; primary and cleanup outcomes retained without sensitive values"));
+}
+function redactFailure(error: unknown): Error {
+  return calendarFixtureDiagnostic("scenario", error);
+}
+
+type BoundFixture = CalendarFixture & { base: BookingFixture; clients: Record<SubjectName, TestServerClient>;
+  tenantIds: string[]; keyId: string; secret: string; pendingRequests: Set<Promise<unknown>>; currentRawFetch: Record<string, unknown> | null };
+const iso = (value: unknown) => value === null ? null : new Date(String(value)).toISOString();
+function normalizedRpc(result: { data: unknown; error: unknown }): RpcObservation {
+  return { denied: !!result.error, rows: result.error ? [] : [result.data], sanitizedResult: result.error ? { denied: true } : { admitted: true } };
+}
+async function bindCalendarFixture(base: BookingFixture, extra: Awaited<ReturnType<typeof seedRoleAwarePhaseAUsers>>): Promise<BoundFixture> {
+  const key = feedKeyFromEnv(), subjects = {} as Record<SubjectName, Subject>, clients = {} as Record<SubjectName, TestServerClient>;
+  const users: Record<SubjectName, FixtureUser> = { own: base.users.montor, peer: extra.users.montor, admin: base.base.adminA,
+    planner: base.users.projektledare, mixed: base.roleUnionUser, seller: base.users.saljare, economy: base.users.ekonomi,
+    foreign: base.base.adminB, invited: base.invitedUser, disabled: base.disabledUser, platformOnly: base.base.orphanUser, noProfile: extra.users.projektledare };
+  for (const name of Object.keys(users) as SubjectName[]) {
+    const tenantId = name === "foreign" ? base.base.tenantB.id : base.base.tenantA.id;
+    const [member] = await calendarFixtureStep("bind-membership", () => adminQuery<{ id: string }>("select id from public.tenant_memberships where tenant_id=$1 and user_id=$2", [tenantId, users[name].id]));
+    let profile: string | null = null;
+    if (member && name !== "noProfile") {
+      const rows = await calendarFixtureStep("bind-profile", () => adminQuery<{ id: string }>("select id from public.person_profiles where tenant_id=$1 and membership_id=$2", [tenantId, member.id]));
+      profile = rows[0]?.id ?? (await calendarFixtureStep("bind-profile", () => adminQuery<{id:string}>("insert into public.person_profiles(tenant_id,membership_id) values($1,$2) returning id", [tenantId,member.id])))[0].id;
+    }
+    subjects[name] = { tenantId, userId: users[name].id, membershipId: member?.id ?? randomUUID(), profileId: profile };
+    clients[name] = await calendarFixtureStep("bind-client", () => makeAuthedServerClient(users[name]));
+  }
+  // A mixed allowed role is deliberately not an Admin.
+  await calendarFixtureStep("bind-membership", () => adminQuery("update public.tenant_memberships set role='saljare' where id=$1", [subjects.mixed.membershipId]));
+  await calendarFixtureStep("bind-membership", () => adminQuery("delete from public.membership_roles where membership_id=$1", [subjects.mixed.membershipId]));
+  await calendarFixtureStep("bind-membership", () => adminQuery("insert into public.membership_roles(tenant_id,membership_id,role) values($1,$2,'montor')", [subjects.mixed.tenantId,subjects.mixed.membershipId]));
+  const anon = await calendarFixtureStep("bind-client", () => makeAnonServerClient()), trackedRaw: string[] = [], trackedProof: string[] = [], seedFacts = new Map<string, BookingSeed>();
+  const randomPart = randomUUID().replaceAll("-", "").slice(0, 16).match(/.{4}/g)!.join(":");
+  const isolatedTrustedIp = `2001:db8:${randomPart}`;
+  const readRows = async (table: string) => (await adminQuery<{ row: Record<string, unknown> }>(`select to_jsonb(t) row from public.${table} t where tenant_id=any($1::uuid[]) order by tenant_id,id`, [base.tenantIds])).map(row => row.row);
+  const response = async (result: Response): Promise<FeedResponse> => ({ status: result.status, headers: Object.fromEntries(result.headers.entries()), body: await result.text() });
+  const pendingRequests = new Set<Promise<unknown>>();
+  function track<T>(request: Promise<T>): Promise<T> {
+    pendingRequests.add(request);
+    void request.then(() => pendingRequests.delete(request), () => pendingRequests.delete(request));
+    return request;
+  }
+  const fixture: BoundFixture = {
+    base, clients, subjects, pendingRequests, tenantIds: base.tenantIds, keyId:key.keyId,secret:key.secret,currentRawFetch:null,isolatedTrustedIp,
+    manage: async (subject,intent) => {
+      const result = await manageCalendarFeed(clients[subject] as never,{action:intent.action,revision:intent.expectedRevision,attemptId:intent.attemptId},intent.correlationId);
+      if (result.issuedPath) trackedRaw.push(result.issuedPath.split("/").at(-1)!);
+      return {outcome:result.outcome,revision:result.revision,issuedUrl:result.issuedPath?`${testOrigin()}${result.issuedPath}`:null};
+    },
+    status: async (subject,attemptId) => {
+      // Inspect the directly callable ordinary JWT RPC before the mapper can
+      // drop an accidentally added field. Errors never serialize raw payloads.
+      const { data, error } = await clients[subject].rpc("read_calendar_feed_status", { p_tenant_id: subjects[subject].tenantId, p_attempt_id: attemptId ?? null });
+      const allowed = ["membershipId", "active", "revision", "lastUsedAt", "usageCount", "attemptOutcome", "attemptAction", "attemptRevision"].sort();
+      if (error || !data || JSON.stringify(Object.keys(data).sort()) !== JSON.stringify(allowed)) throw new Error("Raw calendar status RPC field allowlist failed");
+      const serialized = JSON.stringify(data);
+      const physical = await adminQuery<{ token_hash: string }>("select token_hash from public.calendar_feed_tokens where tenant_id=any($1::uuid[]) and token_hash is not null", [base.tenantIds]);
+      if ([...trackedRaw, ...trackedProof, key.secret, isolatedTrustedIp, ...physical.map(row => row.token_hash)].some(value => value && serialized.includes(value)) || /calendar\/feed\//.test(serialized)) throw new Error("Raw calendar status RPC privacy failed");
+      const status = await readCalendarFeedStatus(clients[subject] as never,subjects[subject].tenantId,attemptId);
+      return {...status,publicDto:data};
+    },
+    rawManage: async (name,intent,overrides={},attack) => {
+      const subject = subjects[name === "anon" ? "own" : name], now = new Date();
+      const token = intent.action === "revoke" ? null : issueCalendarFeedToken();
+      const claims = {schema:FEED_SCHEMA,domain:MANAGE_DOMAIN,operation:intent.action,tenantId:subject.tenantId,actorId:subject.userId,membershipId:subject.membershipId,
+        revision:String(intent.expectedRevision),attemptId:intent.attemptId,newHash:token?.hash??"",correlationId:intent.correlationId,keyId:key.keyId,issuedAt:now.toISOString(),expiresAt:new Date(now.getTime()+60000).toISOString()};
+      attackClaims(claims,attack);
+      const proof = signFeedProof(claims,attack === "wrong-key" ? Buffer.alloc(32,9).toString("base64url") : key.secret); trackedProof.push(proof);
+      const args: Record<string,unknown> = {p_tenant_id:overrides.tenantId??subject.tenantId,p_actor_id:overrides.userId??subject.userId,p_membership_id:overrides.membershipId??subject.membershipId,
+        p_action:intent.action,p_expected_revision:intent.expectedRevision,p_attempt_id:intent.attemptId,p_new_hash:token?.hash??null,p_correlation_id:intent.correlationId,p_claims:attack === "missing" ? null : claims,p_signature:proof};
+      const fields: Partial<Record<ProofAttack,string>> = {"tampered-actor":"p_actor_id","tampered-tenant":"p_tenant_id","tampered-membership":"p_membership_id","tampered-attempt":"p_attempt_id"};
+      if(attack&&fields[attack])args[fields[attack]!]=randomUUID();
+      if(attack==="tampered-action")args.p_action="revoke";
+      if(attack==="tampered-revision")args.p_expected_revision=intent.expectedRevision+1;
+      if(attack==="weak-chosen-new-hash")args.p_new_hash="0".repeat(64);
+      return normalizedRpc(await (name==="anon"?anon:clients[name]).rpc("manage_calendar_feed",args));
+    },
+    rawFetch: async (url,attack,options={}) => {
+      let args = fixture.currentRawFetch;
+      if(attack!=="replay" || !args) {
+        const now=new Date(),tokenHash=hashFeedToken(tokenFromUrl(url)),ipHash=hashFeedIp(isolatedTrustedIp,key.secret);
+        const claims: Record<string,string>={schema:FEED_SCHEMA,domain:FETCH_DOMAIN,operation:"fetch",tokenHash,ipHash,requestId:randomUUID(),keyId:key.keyId,issuedAt:now.toISOString(),expiresAt:new Date(now.getTime()+60000).toISOString()};
+        attackClaims(claims,attack === "valid" ? undefined : attack as ProofAttack);
+        const proof=signFeedProof(claims,attack==="wrong-key"?Buffer.alloc(32,9).toString("base64url"):key.secret);trackedProof.push(proof);
+        args={p_token_hash:tokenHash,p_ip_hash:ipHash,p_claims:attack==="missing"?null:claims,p_signature:proof};
+        if(attack==="tampered-token-hash")args.p_token_hash="0".repeat(64);
+        if(attack==="tampered-ip-hash")args.p_ip_hash=options.changedIpHash??"f".repeat(64);
+        if(attack==="tampered-request-id")(args.p_claims as Record<string,string>).requestId=randomUUID();
+        if(options.callerWindow!==undefined)args.p_window=options.callerWindow;
+        if(options.callerLimit!==undefined)args.p_limit=options.callerLimit;
+        if(attack==="valid")fixture.currentRawFetch=args;
+      }
+      return normalizedRpc(await anon.rpc("fetch_calendar_feed",args));
+    },
+    seedBookings: async rows => {
+      for(const row of rows) {
+        const subject=subjects[row.subject], tenant=subject.tenantId;
+        const customer=row.customerLabel===null?null:(await adminQuery<{id:string}>("insert into public.customers(tenant_id,customer_type,display_name) values($1,'company',$2) returning id",[tenant,row.customerLabel]))[0].id;
+        const facility=row.facilityAddress===null||!customer?null:(await adminQuery<{id:string}>("insert into public.facilities(tenant_id,customer_id,name,address_line1) values($1,$2,'Fixture',$3) returning id",[tenant,customer,row.facilityAddress]))[0].id;
+        const role=row.workRoleLabel===null?null:(await adminQuery<{id:string}>("insert into public.work_roles(tenant_id,display_name,cost_rate_ore,sell_rate_ore) values($1,$2,100,200) returning id",[tenant,row.workRoleLabel]))[0].id;
+        const job=row.jobLabel===null||!customer?null:(await adminQuery<{id:string}>("insert into public.jobs(tenant_id,customer_id,facility_id,title) values($1,$2,$3,$4) returning id",[tenant,customer,facility,row.jobLabel]))[0].id;
+        await adminQuery("insert into public.bookings(id,tenant_id,starts_at,ends_at,updated_at,all_day,status,description,work_role_id,job_id,customer_id,facility_id,create_command_id,create_payload_digest,create_result) values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,repeat('a',64),'{}')",[row.id,tenant,row.startsAt,row.endsAt,row.updatedAt,row.allDay,row.status,row.description,role,job,customer,facility,randomUUID()]);
+        await fixture.setAssignments(row.id,[row.subject,...row.additionalAssignees]);seedFacts.set(row.id,row);
+      }
+    },
+    seedSeries: async subject => {
+      const selected={...base,ownProfile:{id:subjects[subject].profileId!,membershipId:subjects[subject].membershipId}};
+      const input=realSeriesInput(selected,{rule:{...realSeriesInput(selected).rule,count:5}}),reviewed=await reviewRealSeries(selected,input);
+      const result=await runCommand(createBookingSeries,{client:base.adminClient as never,input:reviewed.input});
+      if(!result.ok||result.data.occurrenceIds.length!==5)throw new Error("Real series fixture failed");
+      return {unchangedId:result.data.occurrenceIds[0],movedExceptionId:result.data.occurrenceIds[1],cancelledId:result.data.occurrenceIds[2],splitSurvivingId:result.data.occurrenceIds[3],newOccurrenceIds:[]};
+    },
+    changeSeries: async (kind,id) => {
+      const [row]=await adminQuery<Record<string,unknown>>("select * from public.bookings where id=$1 and tenant_id=$2",[id,base.base.tenantA.id]);
+      if(!row)throw new Error("Real occurrence missing");
+      if(kind==="split") {
+        const [series]=await adminQuery<Record<string,unknown>>("select * from public.booking_series where id=$1",[row.series_id]);
+        const input={...realSeriesInput(base),sourceSeriesId:String(row.series_id),seriesId:randomUUID(),expectedVersion:Number(series.version),pivotOccurrenceId:id};
+        const reviewed=await reviewRealSeries(base,input),result=await runCommand(updateBookingSeries,{client:base.adminClient as never,input:reviewed.input});
+        if(!result.ok)throw new Error("Real split failed");
+      } else {
+        const input=bookingInput([subjects.own.profileId!],{bookingId:id,status:kind==="cancel"?"cancelled":"planned",startsAt:kind==="exception"?"2026-11-01T07:00:00Z":String(row.starts_at),endsAt:kind==="exception"?"2026-11-01T08:00:00Z":String(row.ends_at),description:"Edited series occurrence"});
+        input.startsAt=new Date(input.startsAt).toISOString();input.endsAt=new Date(input.endsAt).toISOString();
+        const result=await bookingCommand("update",base.adminClient,input);if(!result.ok)throw new Error("Real occurrence update failed");
+      }
+    },
+    setBooking: async (id,patch) => {
+      const current=seedFacts.get(id);if(!current)throw new Error("Owned booking absent");
+      const row={...current,...patch};
+      await adminQuery("update public.bookings set starts_at=$2,ends_at=$3,status=$4,all_day=$5,updated_at=$6 where id=$1 and tenant_id=$7",[id,row.startsAt,row.endsAt,row.status,row.allDay,row.updatedAt,subjects[row.subject].tenantId]);seedFacts.set(id,row);
+    },
+    editProjectedSource: async (id,source,label,updatedAt) => {
+      const current=seedFacts.get(id); if(!current)throw new Error("Owned booking absent");
+      const refs={work_roles:"work_role_id",jobs:"job_id",customers:"customer_id",facilities:"facility_id"} as const;
+      const labels={work_roles:"display_name",jobs:"title",customers:"display_name",facilities:"address_line1"} as const;
+      if(!refs[source] || !/^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\dZ$/.test(updatedAt))throw new Error("Invalid owned projection edit");
+      await adminSession(async({query})=>{
+        await query("begin");try {
+          // Explicit source revisions are independent oracles, isolated to this
+          // fixture's rows; connection-local trigger suppression is rolled back.
+          await query("set local session_replication_role=replica");
+          const changed=await query(`update public.${source} s set ${labels[source]}=$3,updated_at=$4 from public.bookings b where b.id=$1 and b.tenant_id=$2 and s.tenant_id=b.tenant_id and s.id=b.${refs[source]} returning s.id`,[id,subjects[current.subject].tenantId,label,updatedAt]);
+          if(changed.length!==1)throw new Error("Owned projected source absent");
+          await query("commit");
+        }catch(error){await query("rollback");throw error;}
+      });
+    },
+    setAssignments: async (id,names) => {
+      const [row]=await adminQuery<{tenant_id:string}>("select tenant_id from public.bookings where id=$1 and tenant_id=any($2::uuid[])",[id,base.tenantIds]);if(!row)throw new Error("Owned booking absent");
+      await adminQuery("delete from public.booking_assignees where booking_id=$1 and tenant_id=$2",[id,row.tenant_id]);
+      for(const name of new Set(names))await adminQuery("insert into public.booking_assignees(tenant_id,booking_id,person_profile_id) values($1,$2,$3)",[row.tenant_id,id,subjects[name].profileId]);
+    },
+    setAuthority: async (name,patch) => {
+      const subject=subjects[name];
+      if(patch.tenantPresent===false) { await removeOwnedTenant(subject.tenantId);return; }
+      if(patch.membershipPresent===false) {await adminQuery("delete from public.booking_assignees where person_profile_id=$1 and tenant_id=$2",[subject.profileId,subject.tenantId]);await adminQuery("delete from public.person_profiles where membership_id=$1 and tenant_id=$2",[subject.membershipId,subject.tenantId]);await adminQuery("delete from public.tenant_memberships where id=$1 and tenant_id=$2",[subject.membershipId,subject.tenantId]);return;}
+      if(patch.primary)await adminQuery("update public.tenant_memberships set role=$2 where id=$1",[subject.membershipId,patch.primary]);
+      if(patch.status)await adminQuery("update public.tenant_memberships set status=$2 where id=$1",[subject.membershipId,patch.status]);
+      if(patch.additional) {await adminQuery("delete from public.membership_roles where membership_id=$1",[subject.membershipId]);for(const role of patch.additional)await adminQuery("insert into public.membership_roles(tenant_id,membership_id,role) values($1,$2,$3)",[subject.tenantId,subject.membershipId,role]);}
+      if(patch.profileArchived!==undefined)await adminQuery("update public.person_profiles set archived_at=case when $2 then clock_timestamp() else null end where id=$1",[subject.profileId,patch.profileArchived]);
+    },
+    setProvisioningState: async (name,state) => {await adminQuery("update public.tenants set provisioning_state=$2 where id=$1",[subjects[name].tenantId,state]);},
+    replaceMembership: async name => {
+      const subject=subjects[name];await fixture.setAuthority(name,{membershipPresent:false});
+      const [member]=await adminQuery<{id:string}>("insert into public.tenant_memberships(tenant_id,user_id,status,role) values($1,$2,'active','montor') returning id",[subject.tenantId,subject.userId]);subject.membershipId=member.id;subject.profileId=null;
+    },
+    http: (url,options={}) => track((async () => {
+      const target=new URL(url);if(target.origin!==testOrigin())throw new Error("Non-owned calendar HTTP target rejected");
+      for(const [name,value] of Object.entries(options.query??{}))target.searchParams.set(name,value);
+      try{return await response(await fetch(target,{headers:options.headers,redirect:"manual",cache:"no-store"}));}catch{throw new Error("Calendar HTTP unavailable; request redacted");}
+    })()),
+    trustedFetch: (url,ip) => track((async () => response(await publicCalendarFeed(new URL(url).pathname.split("/").at(-1)!,new Headers(),{client:anon,trustedIp:ip})))()),
+    physical: async () => {
+      const raw=await readRows("calendar_feed_tokens"),audits=(await readRows("audit_events")).filter(row=>String(row.command).startsWith("calendar_feed."));
+      audits.sort((a,b)=>Date.parse(String(a.created_at))-Date.parse(String(b.created_at)));
+      const schedulingIntegrity:Record<string,unknown[]>={};for(const table of ["bookings","booking_assignees","booking_series","booking_conflicts","booking_conflict_resolutions","time_reports","jobs"])schedulingIntegrity[table]=await readRows(table);
+      return {tokens:raw.filter(row=>row.token_hash!==null).map(row=>({id:String(row.id),tenantId:String(row.tenant_id),membershipId:String(row.membership_id),hash:String(row.token_hash),revokedAt:iso(row.revoked_at),createdAt:iso(row.created_at)!,lastUsedAt:iso(row.last_used_at),usageCount:Number(row.usage_count),revision:Number(row.revision),attemptId:String(row.attempt_id)})),
+        audits:audits.map(row=>({action:String(row.command),actorId:String(row.actor_user_id),tenantId:String(row.tenant_id),attemptId:String((row.metadata as Record<string,unknown>).attemptId),metadata:row.metadata})),persistedRows:raw,schedulingIntegrity};
+    },
+    readAbuse: async (name,query={}) => {
+      const result=await clients[name].rpc("read_calendar_feed_abuse",{p_tenant_id:query.tenantId??subjects[name].tenantId});
+      return {denied:!!result.error,rows:result.error?[]:[{requestCount:result.data.requests,limitedCount:result.data.limited,lastSpikeAt:result.data.lastSpikeAt}]};
+    },
+    directTable: async (name,table,operation) => {
+      const client=name==="anon"?anon:clients[name];let result;
+      if(operation==="select")result=await client.from(table).select("*");
+      else if(operation==="insert")result=await client.from(table).insert(table==="calendar_feed_tokens"?{tenant_id:subjects.own.tenantId,membership_id:subjects.own.membershipId,token_hash:"a".repeat(64),revision:99,attempt_id:randomUUID(),action:"create",expected_revision:0}:{ip_hash:hashFeedIp(isolatedTrustedIp,key.secret),window_start:new Date().toISOString(),request_count:1});
+      else if(operation==="update")result=await client.from(table).update(table==="calendar_feed_tokens"?{revoked_at:new Date().toISOString()}:{request_count:99}).eq(table==="calendar_feed_tokens"?"tenant_id":"ip_hash",table==="calendar_feed_tokens"?subjects.own.tenantId:hashFeedIp(isolatedTrustedIp,key.secret));
+      else result=await client.from(table).delete().eq(table==="calendar_feed_tokens"?"tenant_id":"ip_hash",table==="calendar_feed_tokens"?subjects.own.tenantId:hashFeedIp(isolatedTrustedIp,key.secret));
+      return normalizedRpc(result);
+    },
+    acl: calendarAcl,
+    telemetry: async () => {
+      const path=process.env.CALENDAR_FEED_TEST_LOG_FILE;if(!path)throw new Error("Actual sanitized server telemetry fixture absent");
+      const deadline=Date.now()+3000;
+      while(Date.now()<deadline) {
+        const value=await readFile(path,"utf8"),records=value.trim().split("\n").filter(Boolean).map(line=>JSON.parse(line) as Record<string,unknown>);
+        const observed=records.filter(row=>row.event==="calendar_feed.runtime_observation").at(-1);
+        if(records.some(row=>row.event==="calendar_feed.response") && observed && Number(observed.responseCount)>0) {
+          if(observed.sensitiveOutputDetected!==false||observed.sensitiveOutputCount!==0)throw new Error("Runtime sensitive-output detector failed");
+          return value;
+        }
+        await new Promise(resolve=>setTimeout(resolve,20));
+      }
+      throw new Error("Actual feed telemetry observation absent");
+    },
+    sensitiveTestValues: async () => [key.secret,...trackedProof],
+    seedSchedulingRegressionState: async () => {
+      await fixture.seedBookings([bookingSeed(),bookingSeed({subject:"peer"})]);await fixture.seedSeries("own");
+      const [booking]=await adminQuery<{id:string}>("select id from public.bookings where tenant_id=$1 order by id limit 1",[subjects.own.tenantId]);
+      await adminQuery("insert into public.time_reports(tenant_id,user_id,report_date,duration_minutes,filing_attempt_id,filing_digest) values($1,$2,'2026-10-12',60,$3,repeat('a',64))",[subjects.own.tenantId,subjects.own.userId,randomUUID()]);
+      await adminQuery("insert into public.booking_conflict_resolutions(tenant_id,actor_id,command_id,booking_id,request_digest,action,outcome,target_keys,affected_booking_ids,result) values($1,$2,$3,$4,repeat('a',64),'accept','accepted','[]',array[$4::uuid],'{}')",[subjects.own.tenantId,subjects.admin.userId,randomUUID(),booking.id]);
+      return (await fixture.physical()).schedulingIntegrity;
+    },
+  };
+  return fixture;
+}
+function testOrigin(): string {
+  const url=new URL(process.env.CALENDAR_FEED_TEST_BASE_URL??`http://127.0.0.1:${process.env.E2E_PORT??3100}`);
+  if(!["127.0.0.1","localhost","[::1]"].includes(url.hostname))throw new Error("Calendar test host must be owned loopback");return url.origin;
+}
+function attackClaims(claims: Record<string,string>,attack?: ProofAttack) {
+  if(attack==="wrong-domain")claims.domain="booking-conflicts";
+  if(attack==="expired") {claims.issuedAt=new Date(Date.now()-120000).toISOString();claims.expiresAt=new Date(Date.now()-60000).toISOString();}
+  if(attack==="future") {claims.issuedAt=new Date(Date.now()+60000).toISOString();claims.expiresAt=new Date(Date.now()+90000).toISOString();}
+  if(attack==="over-60-seconds")claims.expiresAt=new Date(Date.parse(claims.issuedAt)+61000).toISOString();
+}
+async function removeOwnedTenant(tenantId:string) {
+  // Ordinary cascades are retained; remove only owned restrictive booking edges first.
+  await cleanupCalendarOwnedRows([tenantId]);
+  await adminQuery("delete from public.tenants where id=$1",[tenantId]);
+}
+async function cleanupCalendarOwnedRows(tenantIds: readonly string[]) {
+  if(!tenantIds.length||tenantIds.some(id=>!/^[a-f0-9-]{36}$/i.test(id)))throw new Error("Owned tenant UUIDs required");
+  // Connection-local trigger mode follows the established immutable-report
+  // fixture cleanup. It never alters a trigger or another session. Every delete
+  // remains explicitly confined to the independently allocated tenant UUIDs.
+  const tables=["calendar_feed_tokens","audit_events","time_reports","booking_conflict_resolutions","booking_conflicts","booking_assignees","bookings","booking_series","job_members","job_required_work_roles","job_access_windows","job_dependencies","jobs","facilities","contacts","customers","person_work_hours","person_profiles","work_roles"];
+  await adminSession(async({query})=>{
+    await query("begin");
+    try {await query("set local session_replication_role=replica");for(const table of tables)await query(`delete from public.${table} where tenant_id=any($1::uuid[])`,[tenantIds]);await query("commit");}
+    catch(error){await query("rollback");throw error;}
+  });
+  for(const table of tables)if((await adminQuery(`select 1 from public.${table} where tenant_id=any($1::uuid[]) limit 1`,[tenantIds])).length)throw new Error("Owned calendar row cleanup incomplete");
+}
+
+async function calendarAcl(): Promise<AclFacts> {
+  const tables=await adminQuery<AclFacts["tables"][number]>(`select c.relname name,c.relrowsecurity "rlsEnabled",
+   has_table_privilege('anon',c.oid,'SELECT') "anonSelect",
+   has_table_privilege('authenticated',c.oid,'INSERT,UPDATE,DELETE') "authenticatedDml",
+   has_table_privilege('anon',c.oid,'INSERT,UPDATE,DELETE') "anonDml",
+   exists(select 1 from aclexplode(coalesce(c.relacl,acldefault('r',c.relowner))) a where a.grantee=0 and a.privilege_type in ('SELECT','INSERT','UPDATE','DELETE')) "publicInheritedDml",
+   exists(select 1 from pg_attribute a where a.attrelid=c.oid and a.attnum>0 and not a.attisdropped and has_column_privilege('authenticated',c.oid,a.attname,'SELECT')) "authenticatedSensitiveColumns"
+   from pg_class c where c.oid in ('public.calendar_feed_tokens'::regclass,'public.calendar_feed_ip_windows'::regclass) order by c.relname`);
+  const [owner]=await adminQuery<AclFacts["owner"]>(`select rolname name,rolcanlogin login,rolinherit inherit,rolsuper superuser,rolbypassrls "bypassRls",
+   has_schema_privilege(oid,'public','CREATE') "publicSchemaCreate",
+   (pg_has_role('anon',oid,'MEMBER') or pg_has_role('authenticated',oid,'MEMBER') or pg_has_role('service_role',oid,'MEMBER')) "assumableByJwtRoles",
+   has_table_privilege(oid,'public.contacts','SELECT') "unrelatedTableRead",has_table_privilege(oid,'vault.decrypted_secrets','SELECT') "generalVaultRead"
+   from pg_roles where rolname='calendar_feed_owner'`);
+  const allowed:Record<string,string[]>={tenants:["id"],tenant_memberships:["id","tenant_id","user_id","status","role"],membership_roles:["tenant_id","membership_id","role"],person_profiles:["id","tenant_id","membership_id","archived_at"],booking_assignees:["tenant_id","booking_id","person_profile_id"],bookings:["id","tenant_id","starts_at","ends_at","all_day","updated_at","status","work_role_id","job_id","customer_id","facility_id"],jobs:["id","tenant_id","title","customer_id","facility_id","updated_at"],customers:["id","tenant_id","display_name","updated_at"],work_roles:["id","tenant_id","display_name","updated_at"],facilities:["id","tenant_id","address_line1","address_line2","postal_code","city","updated_at"],calendar_feed_tokens:["*"],calendar_feed_ip_windows:["*"]};
+  const effective=await adminQuery<{table:string;column:string}>(`select c.relname "table",a.attname "column" from pg_class c join pg_namespace n on n.oid=c.relnamespace join pg_attribute a on a.attrelid=c.oid where n.nspname='public' and c.relkind in ('r','p') and a.attnum>0 and not a.attisdropped and has_column_privilege('calendar_feed_owner',c.oid,a.attname,'SELECT')`);
+  owner.effectiveReadOutsideAllowedColumns=effective.some(row=>!allowed[row.table]?.some(column=>column==='*'||column===row.column));
+  owner.filteredHelperOnly=!owner.generalVaultRead;
+  const definitions:Record<string,AclFacts["functions"][number]["purpose"]>={fetch_calendar_feed:"fetch",manage_calendar_feed:"manage",read_calendar_feed_status:"status",read_calendar_feed_abuse:"abuse"};
+  const functions=await adminQuery<{name:string;owner:string;securityDefiner:boolean;emptySearchPath:boolean;anonExecute:boolean;authenticatedExecute:boolean;publicExecute:boolean}>(`select p.proname name,r.rolname owner,p.prosecdef "securityDefiner",coalesce('search_path=""'=any(p.proconfig),false) "emptySearchPath",has_function_privilege('anon',p.oid,'EXECUTE') "anonExecute",has_function_privilege('authenticated',p.oid,'EXECUTE') "authenticatedExecute",exists(select 1 from aclexplode(coalesce(p.proacl,acldefault('f',p.proowner))) a where grantee=0 and privilege_type='EXECUTE') "publicExecute" from pg_proc p join pg_roles r on r.oid=p.proowner where p.pronamespace='public'::regnamespace and p.proname=any($1::text[])`,[Object.keys(definitions)]);
+  const helperNames:Record<string,AclFacts["helpers"][number]["purpose"]>={calendar_feed_attestation_payload:"canonical",calendar_feed_verify_attestation_internal:"verifier",calendar_feed_secret_internal:"filtered-secret"};
+  const helpers=await adminQuery<{name:string;jwtExecute:boolean;publicExecute:boolean;feedOwnerExecute:boolean;otherRoleInheritedExecute:boolean;source:string}>(`select p.proname name,(has_function_privilege('anon',p.oid,'EXECUTE') or has_function_privilege('authenticated',p.oid,'EXECUTE')) "jwtExecute",exists(select 1 from aclexplode(coalesce(p.proacl,acldefault('f',p.proowner))) a where grantee=0 and privilege_type='EXECUTE') "publicExecute",has_function_privilege('calendar_feed_owner',p.oid,'EXECUTE') "feedOwnerExecute",has_function_privilege('service_role',p.oid,'EXECUTE') "otherRoleInheritedExecute",p.prosrc source from pg_proc p where p.pronamespace='public'::regnamespace and p.proname=any($1::text[])`,[Object.keys(helperNames)]);
+  return {tables,owner,functions:functions.map(fn=>({...fn,purpose:definitions[fn.name]})),helpers:helpers.map(helper=>({...helper,purpose:helperNames[helper.name],exactConfiguredKeyFilter:helper.name!=="calendar_feed_secret_internal"||helper.source.includes("name='calendar_feed_attestation_' || p_key_id")})),ipColumns:(await adminQuery<{column_name:string}>("select column_name from information_schema.columns where table_schema='public' and table_name='calendar_feed_ip_windows'")).map(row=>row.column_name)};
+}
+
+/** Both allocated files are serial. Never expose the shared unknown bucket to
+ * a row-isolated fixture; restore its exact prior state after requests settle. */
+async function withOwnedUnknownWindow<T>(fx: BoundFixture, run: () => Promise<T>): Promise<T> {
+  const ipHash=hashFeedIp(null,fx.secret);
+  const [before]=await calendarFixtureStep("serial-window-setup", () => adminQuery<{window_start:string;request_count:string}>("select window_start::text,request_count::text from public.calendar_feed_ip_windows where ip_hash=$1",[ipHash]));
+  let result:T|undefined;const errors:Error[]=[];
+  try {
+    await calendarFixtureStep("serial-window-setup", () => adminQuery("delete from public.calendar_feed_ip_windows where ip_hash=$1",[ipHash]));
+    result=await run();
+  }catch(error){errors.push(redactFailure(error));}
+  while(fx.pendingRequests.size) {
+    const requests=await Promise.allSettled([...fx.pendingRequests]);
+    for(const request of requests)if(request.status==="rejected")errors.push(calendarFixtureDiagnostic("scenario", request.reason));
+  }
+  try {
+    await adminSession(async({query})=>{
+      await query("begin");try {
+        await query("delete from public.calendar_feed_ip_windows where ip_hash=$1",[ipHash]);
+        if(before)await query("insert into public.calendar_feed_ip_windows(ip_hash,window_start,request_count) values($1,$2,$3)",[ipHash,before.window_start,before.request_count]);
+        await query("commit");
+      }catch(error){await query("rollback");throw error;}
+    });
+  }catch(error){errors.push(calendarFixtureDiagnostic("serial-window-restore", error));}
+  if(errors.length)throw new AggregateError(errors,"Unknown-IP scenario and cleanup outcomes retained; values redacted");
+  return result as T;
+}
+
+async function calendarSerialControls(fx: BoundFixture): Promise<SerialControls> {
+  const keyHash=(url:string)=>hashFeedToken(tokenFromUrl(url));
+  return {
+    withKeyState: async (state,run) => {
+      const name=`calendar_feed_attestation_${fx.keyId}`;
+      const [row]=await adminQuery<{id:string}>("select id from vault.secrets where name=$1",[name]);if(!row)throw new Error("Owned test key absent");
+      let primary:unknown;let result:unknown;
+      try {
+        if(state==="missing"||state==="unrelated-vault-key-only")await adminQuery("select vault.update_secret($1::uuid,null,$2::text)",[row.id,`calendar_feed_unrelated_${randomUUID()}`]);
+        else await adminQuery("select vault.update_secret($1::uuid,$2::text)",[row.id,Buffer.alloc(32,19).toString("base64url")]);
+        result=await run();
+      } catch(error) {primary=error;}
+      let cleanup:unknown;try{await adminQuery("select vault.update_secret($1::uuid,$2::text,$3::text)",[row.id,fx.secret,name]);}catch(error){cleanup=error;}
+      if(primary||cleanup)throw new AggregateError([...(primary?[new Error("Owned key fault/assertion failed")]:[]),...(cleanup?[new Error("Owned key restore failed")]:[])],"Calendar key fault failed; values redacted");
+      return result as never;
+    },
+    withDatabaseTime: async (value,run) => {
+      if(!/^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\dZ$/.test(value))throw new Error("Invalid test clock");
+      const [before]=await adminQuery<{definition:string}>("select pg_get_functiondef('public.calendar_feed_now_internal()'::regprocedure) definition");
+      let primary:unknown,result:unknown;const errors:Error[]=[];
+      try {await adminQuery(`create or replace function public.calendar_feed_now_internal() returns timestamptz language sql volatile security invoker set search_path='' as $$ select '${value}'::timestamptz $$`);result=await run();}
+      catch(error){primary=error;errors.push(new Error("Clock fixture/assertion failed"));}
+      try {await adminQuery(before.definition);}catch{errors.push(new Error("Owned database clock restore failed"));}
+      if(primary||errors.length)throw new AggregateError(errors,"Clock fixture failure; primary and cleanup retained");return result as never;
+    },
+    counters: async (url,ip) => {
+      const [token]=await adminQuery<{request_count:string;window_start:string;spike_count:string}>("select request_count,window_start,spike_count from public.calendar_feed_tokens where token_hash=$1",[keyHash(url)]);
+      const [axis]=await adminQuery<{request_count:string;ip_hash:string}>("select request_count,ip_hash from public.calendar_feed_ip_windows where ip_hash=$1",[hashFeedIp(ip,fx.secret)]);
+      const [clock]=await adminQuery<{now:string}>("select public.calendar_feed_now_internal() now");
+      return {token:Number(token?.request_count??0),ip:Number(axis?.request_count??0),windowStart:iso(token?.window_start)!,databaseNow:iso(clock.now)!,spikeCount:Number(token?.spike_count??0),storedIpIsKeyedHash:!!axis&&/^[0-9a-f]{64}$/.test(axis.ip_hash)&&axis.ip_hash!==ip};
+    },
+    withFault: async (scope,run) => calendarFault(scope,run),
+    loseCommittedResponse: async (subject,intent) => {const result=await fx.manage(subject,intent);if(result.outcome!=="committed")throw new Error("No committed response to lose");},
+    barrier: scope => calendarBarrier(scope),
+    resetOwnedUnknownIpWindow: async () => {await adminQuery("delete from public.calendar_feed_ip_windows where ip_hash=$1",[hashFeedIp(null,fx.secret)]);},
+    boundedInfrastructureCounts: async () => {
+      const [row]=await adminQuery<{live:string;expired:string}>("select count(*) filter(where window_start>=to_timestamp(floor(extract(epoch from public.calendar_feed_now_internal())/900)*900)) live,count(*) filter(where window_start<to_timestamp(floor(extract(epoch from public.calendar_feed_now_internal())/900)*900)) expired from public.calendar_feed_ip_windows");
+      return {liveWindows:Number(row.live),expiredWindows:Number(row.expired),documentedBound:4096};
+    },
+  };
+}
+
+async function calendarFault<T>(scope: Parameters<SerialControls["withFault"]>[0],run:()=>Promise<T>): Promise<{result:T;stageObserved:boolean;sqlstate:string;ownedObjectsRemaining:number}> {
+  const suffix=randomUUID().replaceAll("-",""),fn=`cf_fault_${suffix}`,seq=`cf_seen_${suffix}`,trigger=`cf_trigger_${suffix}`;
+  const projection=scope.stage==="projection-after-first-page"||scope.stage==="projection-query-canceled";
+  const sqlstate=scope.stage==="projection-query-canceled"?"57014":"PT555";
+  const table=scope.stage.endsWith("audit")?"audit_events":"calendar_feed_tokens";
+  let definition:string|undefined,result:T|undefined,observed=false;const failures:Error[]=[];
+  try {
+    await adminSession(async({query})=>{
+      await query("begin");try{
+        await query(`create sequence public.${seq}`);
+        await query(`create function public.${fn}() returns ${projection?"text":"trigger"} language plpgsql security definer set search_path='' as $$ begin ${projection?"":`if new.tenant_id<>'${scope.tenantId}'::uuid ${table==="audit_events"?`or new.correlation_id<>'${scope.correlationId}'::uuid or new.metadata->>'attemptId'<>'${scope.attemptId}'`:""} then return new; end if;`} perform nextval('public.${seq}'); raise exception 'owned calendar fault' using errcode='${sqlstate}'; end $$`);
+        await query(`revoke all on function public.${fn}() from public,anon,authenticated,service_role`);
+        await query(`grant execute on function public.${fn}() to calendar_feed_owner`);await query("commit");
+      }catch(error){await query("rollback");throw error;}
+    });
+    if(projection) {
+      const [row]=await adminQuery<{definition:string}>("select pg_get_functiondef('public.fetch_calendar_feed(text,text,jsonb,text)'::regprocedure) definition");definition=row.definition;
+      const needle="coalesce(nullif(w.display_name,''),'Bokning')";if(!definition.includes(needle))throw new Error("Projection fault anchor missing");
+      await adminQuery(definition.replace(needle,`case when b.tenant_id='${scope.tenantId}'::uuid then public.${fn}() else ${needle} end`));
+    } else await adminQuery(`create trigger ${trigger} before ${table==="audit_events"?"insert":"update"} on public.${table} for each row execute function public.${fn}()`);
+    result=await run();const [seen]=await adminQuery<{is_called:boolean}>(`select is_called from public.${seq}`);observed=seen.is_called;
+  } catch {failures.push(new Error("Owned fault or assertion failed; values redacted"));}
+  for(const action of [async()=>{if(definition)await adminQuery(definition);else await adminQuery(`drop trigger if exists ${trigger} on public.${table}`);},async()=>{await adminQuery(`drop function if exists public.${fn}()`);},async()=>{await adminQuery(`drop sequence if exists public.${seq}`);},async()=>{const rows=await adminQuery("select 1 from pg_proc where proname=$1 union all select 1 from pg_class where relname=$2 union all select 1 from pg_trigger where tgname=$3",[fn,seq,trigger]);if(rows.length)throw new Error("Owned catalog objects remain");}])try{await action();}catch{failures.push(new Error("Owned fault cleanup failed; object values redacted"));}
+  if(failures.length)throw new AggregateError(failures,"Fault primary and cleanup outcomes retained");
+  return {result:result as T,stageObserved:observed,sqlstate:observed?sqlstate:"",ownedObjectsRemaining:0};
+}
+
+async function calendarBarrier(scope: Parameters<SerialControls["barrier"]>[0]): ReturnType<SerialControls["barrier"]> {
+  const suffix=randomUUID().replaceAll("-",""),fn=`cf_barrier_${suffix}`,trigger=`cf_barrier_t_${suffix}`,lock=Number.parseInt(suffix.slice(0,7),16);
+  let releaseGate!:()=>void,entered!:()=>void;const gate=new Promise<void>(resolve=>{releaseGate=resolve;}),ready=new Promise<void>(resolve=>{entered=resolve;});
+  const holder=adminSession(async({query})=>{await query("set statement_timeout='10s'");await query("select pg_advisory_lock(27155,$1)",[lock]);entered();try{await gate;}finally{await query("select pg_advisory_unlock(27155,$1)",[lock]);}});
+  await Promise.race([ready,holder.then(()=>{throw new Error("Barrier holder exited before readiness");})]);
+  let definition:string|undefined;const authority=scope.stage.endsWith("before-authority");
+  const table=scope.stage==="fetch-authority-admitted"?"calendar_feed_tokens":"audit_events";
+  try {if(authority) {
+    const [row]=await adminQuery<{definition:string;source:string}>("select pg_get_functiondef(oid) definition,prosrc source from pg_proc where oid='public.calendar_feed_subject_internal(uuid,uuid,uuid,boolean)'::regprocedure");definition=row.definition;
+    const expression=row.source.trim().replace(/^select\s+/i,"");
+    await adminQuery(`create or replace function public.calendar_feed_subject_internal(p_tenant uuid,p_membership uuid,p_actor uuid default null,p_admin boolean default false) returns boolean language plpgsql volatile security invoker set search_path='' as $$ begin if p_tenant='${scope.tenantId}'::uuid and p_membership='${scope.membershipId}'::uuid then perform pg_advisory_xact_lock(27155,${lock}); end if; return (${expression}); end $$`);
+  } else {
+    const condition=table==="audit_events"?`new.tenant_id='${scope.tenantId}'::uuid and new.metadata->>'attemptId'='${scope.attemptId}'`:`new.tenant_id='${scope.tenantId}'::uuid and new.membership_id='${scope.membershipId}'::uuid`;
+    await adminQuery(`create function public.${fn}() returns trigger language plpgsql security definer set search_path='' as $$ begin if ${condition} then perform pg_advisory_xact_lock(27155,${lock}); end if; return new; end $$; revoke all on function public.${fn}() from public,anon,authenticated,service_role;`);
+    await adminQuery(`create trigger ${trigger} before ${table==="audit_events"?"insert":"update"} on public.${table} for each row execute function public.${fn}()`);
+  }} catch {
+    releaseGate();const failures=[new Error("Owned barrier setup failed")];try{await holder;}catch{failures.push(new Error("Owned holder release failed"));}
+    try {if(definition)await adminQuery(definition);else {await adminQuery(`drop trigger if exists ${trigger} on public.${table}`);await adminQuery(`drop function if exists public.${fn}()`);}}catch{failures.push(new Error("Owned barrier setup cleanup failed"));}
+    throw new AggregateError(failures,"Barrier setup and cleanup outcomes retained");
+  }
+  let released=false;
+  return {
+    waitUntilEntered:async(timeoutMs)=>{const deadline=Date.now()+timeoutMs;while(Date.now()<deadline){const rows=await adminQuery("select 1 from pg_locks where locktype='advisory' and classid=27155 and objid=$1 and not granted",[lock]);if(rows.length)return;await new Promise(resolve=>setTimeout(resolve,20));}throw new Error("Owned calendar barrier was not reached");},
+    release:async()=>{if(!released){released=true;releaseGate();await holder;}},
+    assertOwnedObjectsAbsent:async()=>{
+      if(!released){released=true;releaseGate();await holder;}
+      if(definition)await adminQuery(definition);else {await adminQuery(`drop trigger if exists ${trigger} on public.${table}`);await adminQuery(`drop function if exists public.${fn}()`);}
+      const rows=await adminQuery("select 1 from pg_proc where proname=$1 union all select 1 from pg_trigger where tgname=$2",[fn,trigger]);if(rows.length)throw new Error("Owned calendar barrier cleanup failed");
+    },
+  };
+}
+
+/** Independent small RFC5545 inspection; never calls production serializer/parser. */
+export function calendarEvents(body: string): ParsedEvent[] {
+  const unfolded = body.replace(/\r\n[ \t]/g, "");
+  return [...unfolded.matchAll(/BEGIN:VEVENT\r\n([\s\S]*?)END:VEVENT\r\n/g)].map(match => {
+    const properties: Record<string, string[]> = {};
+    for (const line of match[1].split("\r\n").filter(Boolean)) {
+      const colon = line.indexOf(":");
+      if (colon < 1) throw new Error("Invalid RFC5545 property");
+      const name = line.slice(0, colon);
+      (properties[name] ??= []).push(line.slice(colon + 1));
+    }
+    const one = (name: string) => {
+      const values = properties[name];
+      if (values?.length !== 1) throw new Error(`Expected one ${name}`);
+      return values[0];
+    };
+    return { uid: one("UID"), start: properties["DTSTART;VALUE=DATE"]?.[0] ?? one("DTSTART"),
+      end: properties["DTEND;VALUE=DATE"]?.[0] ?? one("DTEND"), summary: one("SUMMARY"),
+      location: properties.LOCATION?.[0] ?? null, properties };
+  });
+}
+export function inactiveContract(response: FeedResponse) {
+  // All security/cache/content headers, not volatile Date/request tracing IDs.
+  const names = ["content-type", "cache-control", "pragma", "expires", "retry-after", "x-content-type-options",
+    "content-security-policy", "referrer-policy", "set-cookie", "location", "etag", "last-modified"];
+  return { status: response.status, body: response.body,
+    headers: Object.fromEntries(names.map(name => [name, response.headers[name] ?? null])) };
+}
+export function tokenFromUrl(url: string): string {
+  const path = new URL(url).pathname;
+  const match = /^\/calendar\/feed\/([A-Za-z0-9_-]{43})$/.exec(path);
+  if (!match) throw new Error("Expected canonical capability route");
+  return match[1];
+}
+export function issuedUrl(result: ManagementObservation): string {
+  if (result.outcome !== "committed" || !result.issuedUrl) throw new Error("Confirmed fresh issuance required");
+  return result.issuedUrl;
+}
+
+ACTUAL COMMITTED UNIT SOURCE/INSTALLED-TRANSPORT ADAPTER+CONTROLS lines576-772:
+let fixtureDiagnostics: Promise<typeof import("../../../support/calendar-feed-atdd")> | undefined;
+function actualFixtureDiagnostics() {
+  // Execute the uniquely bounded actual pure source, never its shared DB/auth
+  // imports. These injected contracts cannot prove a native failing branch/code.
+  fixtureDiagnostics ??= (async () => {
+    const source = readFileSync(new URL("../../../support/calendar-feed-atdd.ts", import.meta.url), "utf8");
+    const start = "// Pure fixture diagnostics:", end = "// End pure fixture diagnostics.";
+    assert.equal(source.split(start).length, 2); assert.equal(source.split(end).length, 2);
+    const pureSource = source.slice(source.indexOf(start), source.indexOf(end));
+    const strip = (nodeModule as unknown as { stripTypeScriptTypes(source: string): string }).stripTypeScriptTypes;
+    assert.equal(typeof strip, "function");
+    return import(`data:text/javascript;base64,${Buffer.from(strip(pureSource)).toString("base64")}`);
+  })();
+  return fixtureDiagnostics;
+}
+function fixtureFailureMessages(error: Error): string[] {
+  return [error.message, ...(error instanceof AggregateError ? error.errors.flatMap(fixtureFailureMessages) : [])];
+}
+
+test("actual fixture diagnostics preserve only allowlisted own-data SQLSTATE with no native text or payload access", async () => {
+  const { calendarFixtureDiagnostic } = await actualFixtureDiagnostics();
+  let getters = 0;
+  const privateText = "PRIVATE fixture URL token proof key SQL parameters";
+  const error = Object.defineProperties(new Error(privateText), {
+    code: { value: "42501" }, detail: { value: privateText }, query: { value: privateText },
+    cause: { get() { getters++; throw Error(privateText); } }, then: { get() { getters++; throw Error(privateText); } },
+  });
+  const safe = calendarFixtureDiagnostic("bind-membership", error);
+  assert.equal(safe.message, "Calendar fixture failure [stage=bind-membership;category=insufficient-privilege;sqlstate=42501]");
+  assert.equal(safe.cause, undefined); assert.ok(!safe.stack?.includes(privateText));
+  assert.equal(getters, 0);
+  for (const invalid of ["CF409", "42501 PRIVATE", 42501, undefined, null, Symbol("PRIVATE")]) {
+    const unknown = calendarFixtureDiagnostic("bind-profile", { code: invalid, message: privateText });
+    assert.match(unknown.message, /category=unknown;sqlstate=unavailable/);
+    assert.ok(!unknown.message.includes(privateText));
+  }
+});
+
+test("actual fixture diagnostic descriptor inspection refuses inherited accessor and malformed aggregate properties", async () => {
+  const { calendarFixtureDiagnostic } = await actualFixtureDiagnostics();
+  let getters = 0;
+  const inherited = Object.create({ code: "42501" });
+  const accessor = Object.defineProperties({}, { code: { get() { getters++; return "42501"; } },
+    errors: { get() { getters++; return [Error("PRIVATE")]; } } });
+  const trapped = new Proxy({}, { getOwnPropertyDescriptor() { throw Error("PRIVATE descriptor"); } });
+  for (const error of [inherited, accessor, trapped, { errors: "PRIVATE", code: "42501" }, { errors: [] }]) {
+    assert.match(calendarFixtureDiagnostic("not-admitted", error).message, /stage=unknown;category=unknown;sqlstate=unavailable/);
+  }
+  assert.equal(getters, 0);
+});
+
+test("actual fixture bounded aggregates retain reaching primary cleanup stages and explicitly mark cycles and truncation", async () => {
+  const { calendarFixtureDiagnostic } = await actualFixtureDiagnostics();
+  const primary = calendarFixtureDiagnostic("bind-profile", { code: "23503", message: "PRIVATE" });
+  const cleanup = calendarFixtureDiagnostic("owned-row-cleanup", { code: "42501", query: "PRIVATE" });
+  assert.equal(calendarFixtureDiagnostic("scenario", primary), primary);
+  const messages = fixtureFailureMessages(calendarFixtureDiagnostic("canonical-fixture-cleanup", new AggregateError([primary, cleanup], "PRIVATE")));
+  assert.match(messages[1], /stage=bind-profile;category=foreign-key;sqlstate=23503/);
+  assert.match(messages[2], /stage=owned-row-cleanup;category=insufficient-privilege;sqlstate=42501/);
+  assert.ok(messages.every(message => !message.includes("PRIVATE")));
+  const cycle: { errors: unknown[] } = { errors: [] }; cycle.errors.push(cycle);
+  assert.ok(fixtureFailureMessages(calendarFixtureDiagnostic("scenario", cycle)).some(message => message.includes("category=cycle")));
+  let deep: unknown = Error("PRIVATE"); for (let i = 0; i < 10; i++) deep = new AggregateError([deep], "PRIVATE");
+  assert.ok(fixtureFailureMessages(calendarFixtureDiagnostic("scenario", deep)).some(message => message.includes("category=truncated")));
+  const wide = fixtureFailureMessages(calendarFixtureDiagnostic("scenario", new AggregateError(Array.from({ length: 100 }, () => ({ code: "42501" })), "PRIVATE")));
+  assert.equal(wide.length, 16); assert.match(wide.at(-1)!, /category=truncated/);
+});
+
+test("actual fixture catch wrapper invokes operations once preserves successful values and never observes a client or thenable", async () => {
+  const { calendarFixtureStep } = await actualFixtureDiagnostics();
+  let calls = 0, payloadReads = 0;
+  const result = { ordinary: true };
+  assert.equal(await calendarFixtureStep("additional-users", () => { calls++; return result; }), result);
+  assert.equal(calls, 1);
+  const failure = Object.defineProperties({ code: "42P01" }, {
+    then: { get() { payloadReads++; throw Error("PRIVATE"); } }, client: { get() { payloadReads++; throw Error("PRIVATE"); } },
+    cause: { get() { payloadReads++; throw Error("PRIVATE"); } },
+  });
+  await assert.rejects(calendarFixtureStep("bind-profile", () => { calls++; throw failure; }), /stage=bind-profile;category=undefined-table;sqlstate=42P01/);
+  await assert.rejects(calendarFixtureStep("cleanup-absence-check", () => { calls++; return Promise.reject(failure); }), /stage=cleanup-absence-check;category=undefined-table/);
+  assert.equal(calls, 3); assert.equal(payloadReads, 0);
+});
+
+test("actual fixture diagnostics keep upstream message-only replacement and swallowed outcomes explicitly unknown", async () => {
+  const { calendarFixtureDiagnostic, calendarFixtureStep } = await actualFixtureDiagnostics();
+  // Canonical createTenant/createAuthUser/sign-in/deleteAuthUser copy message,
+  // not code. The owned catch cannot reconstruct it from message or cause.
+  const messageOnly = Object.assign(new Error("PRIVATE canonical 42501"), { cause: { code: "42501" } });
+  const first = calendarFixtureDiagnostic("booking-fixture-before-callback", messageOnly);
+  assert.equal(first.message, "Calendar fixture failure [stage=booking-fixture-before-callback;category=unknown;sqlstate=unavailable]");
+  const finalReplacement = await calendarFixtureStep("owned-row-cleanup", async () => {
+    try { throw { code: "23503" }; } finally { throw new Error("PRIVATE DISCARD replacement"); }
+  }).catch(error => error as Error);
+  assert.match(finalReplacement.message, /stage=owned-row-cleanup;category=unknown/);
+  assert.ok(!fixtureFailureMessages(finalReplacement).some(message => message.includes("23503")));
+  // A canonical best-effort warning is not a rejected outcome at the owned catch.
+  const noFailure = await calendarFixtureStep("canonical-fixture-cleanup", () => "completed-without-owned-rejection");
+  assert.equal(noFailure, "completed-without-owned-rejection");
+});
+
+test("actual fixture pre-callback coarse stage and fine owned stages survive outer aggregation without invented substage", async () => {
+  const { calendarFixtureDiagnostic } = await actualFixtureDiagnostics();
+  const coarse = calendarFixtureDiagnostic("booking-fixture-before-callback", { code: "23514" });
+  const own = calendarFixtureDiagnostic("additional-users", { code: "23505" });
+  const cleanup = calendarFixtureDiagnostic("additional-auth-cleanup", new Error("PRIVATE already erased"));
+  const aggregate = calendarFixtureDiagnostic("scenario", new AggregateError([coarse, own, cleanup], "PRIVATE"));
+  const messages = fixtureFailureMessages(aggregate);
+  assert.match(messages[1], /stage=booking-fixture-before-callback;category=check-constraint/);
+  assert.match(messages[2], /stage=additional-users;category=unique-conflict/);
+  assert.match(messages[3], /stage=additional-auth-cleanup;category=unknown/);
+});
+
+let installedFailureTransport: Promise<(error: unknown) => Promise<{ numFailedTests: number; testResults: { assertionResults: { failureMessages: string[] }[] }[] }>> | undefined;
+function actualInstalledFailureTransport() {
+  installedFailureTransport ??= (async () => {
+    const require = nodeModule.createRequire(import.meta.url);
+    const fromVitest = nodeModule.createRequire(require.resolve("vitest/package.json"));
+    const runnerEntry = pathToFileURL(fromVitest.resolve("@vitest/runner"));
+    const runnerSource = readFileSync(new URL("./chunk-artifact.js", runnerEntry), "utf8");
+    const start = "function failTask(result, err, diffOptions) {", end = "function markTasksAsSkipped(";
+    assert.equal(runnerSource.split(start).length, 2); assert.equal(runnerSource.split(end).length, 2);
+    const actualFailTask = runnerSource.slice(runnerSource.indexOf(start), runnerSource.indexOf(end));
+    const { processError } = await import(pathToFileURL(fromVitest.resolve("@vitest/utils/error")).href);
+    // Execute the exact installed body. These two control-error classes are not
+    // used by our AggregateError inputs; processError is the actual installation.
+    const failTask = new Function("PendingError", "TestRunAbortError", "processError", `${actualFailTask}\nreturn failTask;`)(class {}, class {}, processError) as
+      (result: { state: string; errors?: unknown[] }, error: unknown) => void;
+    const { JsonReporter } = await import("vitest/node");
+    return async error => {
+      const result: { state: string; errors?: unknown[] } = { state: "run" }; failTask(result, error);
+      const file = { type: "suite", name: "fixture transport", filepath: "fixture-transport.test.ts", tasks: [] as unknown[], result: { state: "fail" } };
+      file.tasks.push({ type: "test", name: "one failing fixture", suite: file, result, meta: {}, mode: "run" });
+      const output: string[] = [];
+      const reporter = new JsonReporter({});
+      // No runner/start/collection, output file or service: the public reporter
+      // writes its real JSON into this in-memory logger using a synthetic task.
+      reporter.onInit({ config: {}, snapshot: { summary: {} }, logger: { log(value: string) { output.push(value); }, warn() { throw Error("Unexpected reporter warning"); } } } as never);
+      await reporter.onTestRunEnd([{ task: file }] as never);
+      assert.equal(output.length, 1); return JSON.parse(output[0]);
+    };
+  })();
+  return installedFailureTransport;
+}
+
+test("installed failure transport reproduces lost nested diagnostics without treating reporter absence as unknown in process", async () => {
+  const report = await actualInstalledFailureTransport();
+  const leaf = new Error("Calendar fixture failure [stage=bind-profile;category=insufficient-privilege;sqlstate=42501]");
+  const nested = new AggregateError([leaf], "Calendar fixture failure group [stage=canonical-fixture-cleanup]");
+  const oldShape = new AggregateError([nested], "Calendar fixture failure group [stage=scenario]");
+  assert.equal(nested.errors[0], leaf); // The in-process positive control exists.
+  const json = await report(oldShape), messages = json.testResults[0].assertionResults[0].failureMessages;
+  assert.equal(json.numFailedTests, 1); assert.equal(messages.length, 1);
+  assert.match(messages[0], /group \[stage=canonical-fixture-cleanup\]/);
+  assert.ok(!messages[0].includes("sqlstate=42501"));
+});
+
+test("actual repaired fixture diagnostics reach installed JSON as ordered primary and cleanup leaves within one failed case", async () => {
+  const { calendarFixtureDiagnostic } = await actualFixtureDiagnostics(), report = await actualInstalledFailureTransport();
+  const primary = calendarFixtureDiagnostic("bind-profile", { code: "42501", message: "PRIVATE native" });
+  const unknown = calendarFixtureDiagnostic("booking-fixture-before-callback", new Error("PRIVATE lost 23503"));
+  const cleanup = calendarFixtureDiagnostic("owned-row-cleanup", { code: "23503", query: "PRIVATE query" });
+  const nested = calendarFixtureDiagnostic("canonical-fixture-cleanup", new AggregateError([primary, new AggregateError([unknown, cleanup], "PRIVATE")], "PRIVATE"));
+  const final = calendarFixtureDiagnostic("scenario", new AggregateError([nested], "PRIVATE"));
+  assert.ok(final instanceof AggregateError); assert.equal(final.errors.length, 3);
+  assert.ok(final.errors.every((error: Error) => !(error instanceof AggregateError)));
+  const json = await report(final), messages = json.testResults[0].assertionResults[0].failureMessages;
+  assert.equal(json.numFailedTests, 1); assert.equal(messages.length, 3);
+  assert.match(messages[0], /stage=bind-profile;category=insufficient-privilege;sqlstate=42501/);
+  assert.match(messages[1], /stage=booking-fixture-before-callback;category=unknown;sqlstate=unavailable/);
+  assert.match(messages[2], /stage=owned-row-cleanup;category=foreign-key;sqlstate=23503/);
+  assert.ok(!JSON.stringify(json).includes("PRIVATE"));
+});
+
+test("installed diagnostic JSON retains closed getter cycle and truncation negatives without native payload or accessor reads", async () => {
+  const { calendarFixtureDiagnostic } = await actualFixtureDiagnostics(), report = await actualInstalledFailureTransport();
+  let getters = 0;
+  const privateText = "PRIVATE URL TOKEN PROOF KEY SQL PARAMS";
+  const hostile = Object.defineProperties({}, { code: { get() { getters++; throw Error(privateText); } },
+    cause: { get() { getters++; throw Error(privateText); } }, message: { value: privateText }, detail: { value: privateText },
+    query: { value: privateText }, params: { value: [privateText] }, then: { get() { getters++; throw Error(privateText); } } });
+  const cycle: { errors: unknown[] } = { errors: [] }; cycle.errors.push(cycle);
+  let deep: unknown = { code: "42501", message: privateText };
+  for (let i = 0; i < 10; i++) deep = new AggregateError([deep], privateText);
+  const failure = calendarFixtureDiagnostic("scenario", new AggregateError([hostile, Object.create({ code: "42501" }), cycle, deep], privateText));
+  const json = await report(failure), messages = json.testResults[0].assertionResults[0].failureMessages;
+  assert.equal(json.numFailedTests, 1); assert.equal(getters, 0);
+  assert.ok(messages.some(message => message.includes("category=unknown;sqlstate=unavailable")));
+  assert.ok(messages.some(message => message.includes("category=cycle")));
+  assert.ok(messages.some(message => message.includes("category=truncated")));
+  assert.ok(!JSON.stringify(json).includes(privateText));
+  assert.ok(!messages.some(message => message.includes("sqlstate=42501")));
+  const wide = calendarFixtureDiagnostic("scenario", new AggregateError(Array.from({ length: 100 }, () => ({ code: "42501", message: privateText })), privateText));
+  const wideJson = await report(wide), wideMessages = wideJson.testResults[0].assertionResults[0].failureMessages;
+  assert.equal(wideMessages.length, 15); assert.match(wideMessages.at(-1)!, /category=truncated/);
+  assert.ok(!JSON.stringify(wideJson).includes(privateText));
+});
+
+
+ACTUAL INSTALLED4.1.9 TRANSPORT node_modules/.pnpm/@vitest+runner@4.1.9/node_modules/@vitest/runner/dist/chunk-artifact.js lines3055-3074:
+function failTask(result, err, diffOptions) {
+	if (err instanceof PendingError) {
+		result.state = "skip";
+		result.note = err.note;
+		result.pending = true;
+		return;
+	}
+	if (err instanceof TestRunAbortError) {
+		result.state = "skip";
+		result.note = err.message;
+		return;
+	}
+	result.state = "fail";
+	const errors = Array.isArray(err) ? err : [err];
+	for (const e of errors) {
+		const errors = e instanceof AggregateError ? e.errors.map((e) => processError(e, diffOptions)) : [processError(e, diffOptions)];
+		result.errors ??= [];
+		result.errors.push(...errors);
+	}
+}
+
+ACTUAL INSTALLED4.1.9 TRANSPORT node_modules/.pnpm/@vitest+utils@4.1.9/node_modules/@vitest/utils/dist/error.js lines1-44:
+import { format } from '@vitest/pretty-format';
+import { printDiffOrStringify, getDefaultFormatOptions } from './diff.js';
+import { serializeValue } from './serialize.js';
+import 'tinyrainbow';
+import './display.js';
+import './helpers.js';
+import './constants.js';
+
+function processError(_err, diffOptions, seen = new WeakSet()) {
+	if (!_err || typeof _err !== "object") {
+		return { message: String(_err) };
+	}
+	const err = _err;
+	if (err.showDiff || err.showDiff === undefined && err.expected !== undefined && err.actual !== undefined) {
+		const options = {
+			...diffOptions,
+			...err.diffOptions
+		};
+		err.diff = printDiffOrStringify(err.actual, err.expected, options, err);
+		err.expected = prettifyValue(err.expected, options);
+		err.actual = prettifyValue(err.actual, options);
+	}
+	// some Error implementations may not allow rewriting cause
+	// in most cases, the assignment will lead to "err.cause = err.cause"
+	try {
+		if (!seen.has(err) && typeof err.cause === "object") {
+			seen.add(err);
+			err.cause = processError(err.cause, diffOptions, seen);
+		}
+	} catch {}
+	try {
+		return serializeValue(err);
+	} catch (e) {
+		return serializeValue(new Error(`Failed to fully serialize error: ${e?.message}\nInner error message: ${err?.message}`));
+	}
+}
+function prettifyValue(value, options) {
+	if (typeof value !== "string") {
+		return format(value, getDefaultFormatOptions(options));
+	}
+	return value;
+}
+
+export { processError, serializeValue as serializeError };
+
+ACTUAL INSTALLED4.1.9 TRANSPORT node_modules/.pnpm/@vitest+utils@4.1.9/node_modules/@vitest/utils/dist/serialize.js lines1-118:
+const IS_RECORD_SYMBOL = "@@__IMMUTABLE_RECORD__@@";
+const IS_COLLECTION_SYMBOL = "@@__IMMUTABLE_ITERABLE__@@";
+function isImmutable(v) {
+	return v && (v[IS_COLLECTION_SYMBOL] || v[IS_RECORD_SYMBOL]);
+}
+const OBJECT_PROTO = Object.getPrototypeOf({});
+function getUnserializableMessage(err) {
+	if (err instanceof Error) {
+		return `<unserializable>: ${err.message}`;
+	}
+	if (typeof err === "string") {
+		return `<unserializable>: ${err}`;
+	}
+	return "<unserializable>";
+}
+// https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Structured_clone_algorithm
+function serializeValue(val, seen = new WeakMap()) {
+	if (!val || typeof val === "string") {
+		return val;
+	}
+	if (val instanceof Error && "toJSON" in val && typeof val.toJSON === "function") {
+		const jsonValue = val.toJSON();
+		if (jsonValue && jsonValue !== val && typeof jsonValue === "object") {
+			if (typeof val.message === "string") {
+				safe(() => jsonValue.message ??= normalizeErrorMessage(val.message));
+			}
+			if (typeof val.stack === "string") {
+				safe(() => jsonValue.stack ??= val.stack);
+			}
+			if (typeof val.name === "string") {
+				safe(() => jsonValue.name ??= val.name);
+			}
+			if (val.cause != null) {
+				safe(() => jsonValue.cause ??= serializeValue(val.cause, seen));
+			}
+		}
+		return serializeValue(jsonValue, seen);
+	}
+	if (typeof val === "function") {
+		return `Function<${val.name || "anonymous"}>`;
+	}
+	if (typeof val === "symbol") {
+		return val.toString();
+	}
+	if (typeof val !== "object") {
+		return val;
+	}
+	if (typeof Buffer !== "undefined" && val instanceof Buffer) {
+		return `<Buffer(${val.length}) ...>`;
+	}
+	if (typeof Uint8Array !== "undefined" && val instanceof Uint8Array) {
+		return `<Uint8Array(${val.length}) ...>`;
+	}
+	// cannot serialize immutables as immutables
+	if (isImmutable(val)) {
+		return serializeValue(val.toJSON(), seen);
+	}
+	if (val instanceof Promise || val.constructor && val.constructor.prototype === "AsyncFunction") {
+		return "Promise";
+	}
+	if (typeof Element !== "undefined" && val instanceof Element) {
+		return val.tagName;
+	}
+	if (typeof val.toJSON === "function") {
+		return serializeValue(val.toJSON(), seen);
+	}
+	if (seen.has(val)) {
+		return seen.get(val);
+	}
+	if (Array.isArray(val)) {
+		// eslint-disable-next-line unicorn/no-new-array -- we need to keep sparse arrays ([1,,3])
+		const clone = new Array(val.length);
+		seen.set(val, clone);
+		val.forEach((e, i) => {
+			try {
+				clone[i] = serializeValue(e, seen);
+			} catch (err) {
+				clone[i] = getUnserializableMessage(err);
+			}
+		});
+		return clone;
+	} else {
+		// Objects with `Error` constructors appear to cause problems during worker communication
+		// using `MessagePort`, so the serialized error object is being recreated as plain object.
+		const clone = Object.create(null);
+		seen.set(val, clone);
+		let obj = val;
+		while (obj && obj !== OBJECT_PROTO) {
+			Object.getOwnPropertyNames(obj).forEach((key) => {
+				if (key in clone) {
+					return;
+				}
+				try {
+					clone[key] = serializeValue(val[key], seen);
+				} catch (err) {
+					// delete in case it has a setter from prototype that might throw
+					delete clone[key];
+					clone[key] = getUnserializableMessage(err);
+				}
+			});
+			obj = Object.getPrototypeOf(obj);
+		}
+		if (val instanceof Error) {
+			safe(() => clone.message = normalizeErrorMessage(val.message));
+		}
+		return clone;
+	}
+}
+function safe(fn) {
+	try {
+		return fn();
+	} catch {}
+}
+function normalizeErrorMessage(message) {
+	return message.replace(/\(0\s?,\s?__vite_ssr_import_\d+__.(\w+)\)/g, "$1").replace(/__(vite_ssr_import|vi_import)_\d+__\./g, "").replace(/getByTestId('__vitest_\d+__')/g, "page");
+}
+
+export { serializeValue };
+
+ACTUAL INSTALLED4.1.9 TRANSPORT node_modules/.pnpm/vitest@4.1.9_@types+node@20_dd0c506e006b7a7a7c5015e13867d163/node_modules/vitest/dist/chunks/index.UpGiHP7g.js lines3522-3629:
+class JsonReporter {
+	start = 0;
+	ctx;
+	options;
+	coverageMap;
+	constructor(options) {
+		this.options = options;
+	}
+	onInit(ctx) {
+		this.ctx = ctx;
+		this.start = Date.now();
+		this.coverageMap = void 0;
+	}
+	onCoverage(coverageMap) {
+		this.coverageMap = coverageMap;
+	}
+	async onTestRunEnd(testModules) {
+		const files = testModules.map((testModule) => testModule.task);
+		const suites = getSuites(files);
+		const numTotalTestSuites = suites.length;
+		const tests = getTests(files);
+		const numTotalTests = tests.length;
+		const numFailedTestSuites = suites.filter((s) => s.result?.state === "fail").length;
+		const numPendingTestSuites = suites.filter((s) => s.result?.state === "run" || s.result?.state === "queued" || s.mode === "todo").length;
+		const numPassedTestSuites = numTotalTestSuites - numFailedTestSuites - numPendingTestSuites;
+		const numFailedTests = tests.filter((t) => t.result?.state === "fail").length;
+		const numPassedTests = tests.filter((t) => t.result?.state === "pass").length;
+		const numPendingTests = tests.filter((t) => t.result?.state === "run" || t.result?.state === "queued" || t.mode === "skip" || t.result?.state === "skip").length;
+		const numTodoTests = tests.filter((t) => t.mode === "todo").length;
+		const testResults = [];
+		const success = !!(files.length > 0 || this.ctx.config.passWithNoTests) && numFailedTestSuites === 0 && numFailedTests === 0;
+		const { filterMeta } = this.options;
+		for (const file of files) {
+			const tests = getTests([file]);
+			let startTime = tests.reduce((prev, next) => Math.min(prev, next.result?.startTime ?? Number.POSITIVE_INFINITY), Number.POSITIVE_INFINITY);
+			if (startTime === Number.POSITIVE_INFINITY) startTime = this.start;
+			const endTime = tests.reduce((prev, next) => Math.max(prev, (next.result?.startTime ?? 0) + (next.result?.duration ?? 0)), startTime);
+			const assertionResults = tests.map((t) => {
+				const ancestorTitles = [];
+				let iter = t.suite;
+				while (iter) {
+					ancestorTitles.push(iter.name);
+					iter = iter.suite;
+				}
+				ancestorTitles.reverse();
+				return {
+					ancestorTitles,
+					fullName: t.name ? [...ancestorTitles, t.name].join(" ") : ancestorTitles.join(" "),
+					status: StatusMap[t.result?.state || t.mode] || "skipped",
+					title: t.name,
+					duration: t.result?.duration,
+					failureMessages: t.result?.errors?.map((e) => e.stack || e.message) || [],
+					location: t.location,
+					meta: filterMeta ? (() => {
+						const filtered = {};
+						for (const key in t.meta) {
+							const value = t.meta[key];
+							if (filterMeta(key, value)) filtered[key] = value;
+						}
+						return filtered;
+					})() : t.meta,
+					tags: t.tags || []
+				};
+			});
+			if (tests.some((t) => t.result?.state === "run" || t.result?.state === "queued")) this.ctx.logger.warn("WARNING: Some tests are still running when generating the JSON report.This is likely an internal bug in Vitest.Please report it to https://github.com/vitest-dev/vitest/issues");
+			const hasFailedTests = tests.some((t) => t.result?.state === "fail");
+			testResults.push({
+				assertionResults,
+				startTime,
+				endTime,
+				status: file.result?.state === "fail" || hasFailedTests ? "failed" : "passed",
+				message: file.result?.errors?.[0]?.message ?? "",
+				name: file.filepath
+			});
+		}
+		const result = {
+			numTotalTestSuites,
+			numPassedTestSuites,
+			numFailedTestSuites,
+			numPendingTestSuites,
+			numTotalTests,
+			numPassedTests,
+			numFailedTests,
+			numPendingTests,
+			numTodoTests,
+			snapshot: this.ctx.snapshot.summary,
+			startTime: this.start,
+			success,
+			testResults,
+			coverageMap: this.coverageMap
+		};
+		await this.writeReport(JSON.stringify(result));
+	}
+	/**
+	* Writes the report to an output file if specified in the config,
+	* or logs it to the console otherwise.
+	* @param report
+	*/
+	async writeReport(report) {
+		const outputFile = this.options.outputFile ?? getOutputFile(this.ctx.config, "json");
+		if (outputFile) {
+			const reportFile = resolve$1(this.ctx.config.root, outputFile);
+			const outputDirectory = dirname(reportFile);
+			if (!existsSync(outputDirectory)) await promises.mkdir(outputDirectory, { recursive: true });
+			await promises.writeFile(reportFile, report, "utf-8");
+			this.ctx.logger.log(`JSON report written to ${reportFile}`);
+		} else this.ctx.logger.log(report);
+	}
+
+BOUND CHECK/ROUTE/ADMISSION _bmad-output/auto-bmad/preparation/story-15-5/native-fixture-report-transport-review/local-checks.json:
+{
+  "kind": "actual-bounded-installed-error-transport-checks",
+  "before": "3e7b6131a00e6c7b4d25c49373d8ba1c1eefe42f",
+  "source": "906f80f301d8034f8efe510018137195f3e4c4eb",
+  "commands": [
+    {
+      "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test --test-reporter=spec tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "passed": 61,
+      "failed": 0,
+      "skipped": 0,
+      "cancelled": 0,
+      "receipt_start": "0e6925",
+      "receipt_completion": "a88c0e",
+      "limits": "58 retained +3new actual installed failTask/processError/JsonReporter in-memory controls. No Vitest run/collection/globalSetup/output file/DB/auth/browser/service. Oldnestednegative reproduces loss; repaired actualpurehelper positive preserves leaf ordering, privacy and one failed case. Synthetic transport proof/nativecredit0."
+    },
+    {
+      "command": "pnpm exec tsc --noEmit --incremental false",
+      "exit_code": 0,
+      "receipt_start": "4c5b69",
+      "receipt_completion": "14d171"
+    },
+    {
+      "command": "pnpm exec eslint tests/support/calendar-feed-atdd.ts tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "exit_code": 0,
+      "errors": 0,
+      "warnings": 0,
+      "receipt": "31cf85"
+    },
+    {
+      "command": "node scripts/verify/check-review-order.mjs <authorSpec> / exact intent kernel hash",
+      "exit_code": 0,
+      "sections": 1,
+      "literal_stops": 52,
+      "kernel_bytes": 5760,
+      "kernel_sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+      "receipt": "2526fd"
+    },
+    {
+      "command": "git diff --check -- <exact3> / git diff --cached --check + exact3 index",
+      "exit_code": 0,
+      "receipts": [
+        "2526fd",
+        "fa3438"
+      ],
+      "commit_receipt": "27e89d"
+    }
+  ],
+  "dependency_reuse": "No source changes after actual61 run except Spec evidence/SRO beforecommit. No postcommitSpecverdictdrift. Existing UI/sharedcase/operations/authority/settlement unchanged. Prior localSSR4 and eighth nativecomponents4 are separate historicalapp-byte evidence, not rerun; no new production build/fullnativePASS or inferred whole feature success.",
+  "known_limits": "All43 actual fixture causes UNKNOWN_NOT_OBSERVABLE_IN_REPORT. Exact8th input has43validoutergroups/0leafprefix; collector2validsynthetic+1invalidstagecontrol confirms no parser rejection. Fixed reporter transport does not recover upstream erased/swallowed/masked leaves or qualify browserprivacy. No broadreview4/runtime/push/DONE/delivery."
+}
+
+BOUND CHECK/ROUTE/ADMISSION _bmad-output/auto-bmad/preparation/story-15-5/native-fixture-report-transport-review/author-route.json:
+{
+  "kind": "author-postimplementation-route-binding",
+  "root_route_recorded_before_handoff": "build-native-fixture-report-transport-repair/build-author-owned-bounded-sanitized-aggregate-transport",
+  "review_route_recorded_before_dispatch": "review-native-fixture-report-transport-latest-three/independent-context-free-owned-sanitized-error-transport-reviewer",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "before": "3e7b6131a00e6c7b4d25c49373d8ba1c1eefe42f",
+  "source": "906f80f301d8034f8efe510018137195f3e4c4eb",
+  "exact_paths": [
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+    "tests/support/calendar-feed-atdd.ts",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts"
+  ],
+  "allocation": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-native-fixture-report-transport-repair.json",
+    "bytes": 3075,
+    "sha256": "0df4bb27eecb06d59f970cd11de7bda8c2f78498039cf87f47bd678d6328e23e"
+  },
+  "authored_after_implementation": true,
+  "does_not_claim_preedit_artifact_bytes": true,
+  "scope": "Pure module-owned already-sanitized aggregate flattening/ordered leaves; actual installed in-memory transport controls; author trail only. Operations/value/authority/result/settlement/custody/UI/sharedpolicycase unchanged. Rootmetadata/preps excluded source commit.",
+  "broad_rounds": 3,
+  "cap": 3,
+  "latest_fix_only": true
+}
+
+BOUND CHECK/ROUTE/ADMISSION _bmad-output/auto-bmad/preparation/story-15-5/accepted-native-fixture-report-transport-repair.json:
+{
+  "kind": "ROOT_BOUNDED_OWNED_DIAGNOSTIC_TRANSPORT_REPAIR_ADMISSION",
+  "base_head": "3e7b6131a00e6c7b4d25c49373d8ba1c1eefe42f",
+  "author_source_head": "e74cae6cbb8ce21a5f65e74d21f3c60fbfb09314",
+  "failed_run": 39492715549,
+  "attempt": 1,
+  "failed_packet_manifest_sha256": "0c391a7aba536b6d6b9ba4de76573ae8c15430575b3211ef72d9a82cbd3d431f",
+  "root_failed_packet_admission_sha256": "56cea3c9e905095589afab9fa30c68b9a228699ef9bbfd75acffffe896be5ad4",
+  "actual_three_path_bindings": [
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "raw_bytes": 66591,
+      "raw_sha256": "53fd53e823ef02d9de01b30a0711b462aa339db86726d9d6d47e54e0ed027ccc",
+      "current_head_blob_oid": "169091c23c13c115f83fef4a817bb3712afdbbb1"
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "raw_bytes": 81852,
+      "raw_sha256": "4e1ca1def4f81e8047a352133553aec91bff4e4835230a463d257a1c4eb99921",
+      "current_head_blob_oid": "678a980c2eb9d64ebc4071b0757dac304b497a68"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "raw_bytes": 97007,
+      "raw_sha256": "29b26c72b18bacb3e7ed193f6cf7fb32486dd8c208cc574586df0733c9f1cf02",
+      "current_head_blob_oid": "e3a0be84e71e742b2350c8fa3759194009bdef9d"
+    }
+  ],
+  "scope": "Pure sanitized aggregate construction only in owned helper; existing unit tests; author Spec evidence/Suggested Review Order only, approved kernel unchanged. Flatten only module-owned already-sanitized child-group leaves at reporter-supported level, preserve ordered primary and cleanup leaves/finer stages.",
+  "preserved": "own-data SQLSTATE allowlist, guarded raw walk, getter/proxy/cycle/node16/depth4/truncation/UNKNOWN limits and sanitized stacks; exact operations, values, requests, queries, RPCs, clients, pools, principals, authority, result, settlement and custody behavior",
+  "meaningful_local_controls": "Retain existing58 cases; actual installed bounded failTask plus processError/public JsonReporter in memory: old nested negative, repaired known42501/unknown/stage/order positive, several leaves remain one failed case, hostile payload/accessor/inherited/cycle/bounds negatives. No Vitest collection/globalSetup/managed service/runtime; synthetic controls carry no native acceptance credit. Record actual executed counts.",
+  "limits": "Source-supported report transport repair only. All43 fixture causes remain UNKNOWN_NOT_OBSERVABLE; no functional/authorization fix inferred. Shared allocated policy case/UI remain unchanged; no new shared path/migration/dependency/resource ownership requested.",
+  "git": "Append-only exact-three author commit excludes Root metadata; fresh distinct context-free High exact committed three-path latest-fix review before freeze/checkpoint. No amendment/force/reset/bypass or fourth broad review.",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "source_writes_admitted": true,
+  "development_complete": false,
+  "release_ready": false
+}
+
+ROOT RECORDED ROUTE EXCERPT; mutable raw observation UNVERIFIED_UNCREDITED/excluded source commit _bmad-output/auto-bmad/state/15-5-personal-calendar-feed-adr-b004-surface-1.yaml:
+selected_phase: review-native-fixture-report-transport-latest-three
+selected_role: independent-context-free-owned-sanitized-error-transport-reviewer
+selected_profile: sensitive
+selected_model: gpt-6.1-sol
+selected_effort: high
+selected_host: codex
+selected_tier: subagents
+selected_route: subagent
+escalation_reason: "Exact-three owned helper/unit/Spec diagnostic transport repair is public-token privacy and error data integrity sensitive. Fresh independent committed latest-fix-only review; check sanitized-only flattening, bounds/order/primary+cleanup and actual installed reporter controls; no fourth broad review or native cause claim."

@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-20T20:30:28Z"
+updated_at: "2026-10-20T21:09:37Z"
 started_at: "2026-10-09T12:57:49Z"
 completed_at: null
 active_seconds: 196027
@@ -18,7 +18,7 @@ is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: qualify-native-feature-five-path-checkpoint
+selected_phase: qualify-native-fixture-report-transport-checkpoint
 selected_role: independent-native-evidence-qualifier
 selected_profile: sensitive
 selected_model: gpt-6.1-sol
@@ -26,7 +26,7 @@ selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Exact-head native authorization/RLS/public-token privacy, SQL error-data limits, transaction/cleanup and process-settlement acceptance; independent evidence qualification only, not a fourth broad code review."
+escalation_reason: "Exact-head native authorization/RLS/public-token privacy, bounded diagnostic serialization reach, transaction/cleanup and process-settlement evidence after exact-three reviewed transport fix. Independent qualification only, not a fourth broad review or underlying cause inference."
 routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary epic test planning; sensitive implementation/review scope routed explicitly High\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary story test-risk classification\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_triage\",\"profile\":\"light\",\"role\":\"test-risk-triage\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -191,6 +191,10 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"ActualCoordinatornativehandoffexec-10f00931 explicitlygrants exactsharedONEpolicycase atbaselinea614 aftercurrent/plannedE16+Documentsclaims; existing4ownedpaths plusallocated1=5, futureunion68/no protectexception. High implementminimalown-data privacydiagnostics/UIuncertainty/exactfull9+1policyset, no authority/RPC/query effects; codeindependentreview+nativegates required, no fourthbroad.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build-native-feature-five-path-repair\",\"profile\":\"sensitive\",\"role\":\"build-author-owned-diagnostics-status-and-allocated-policy-case\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct context-free High exactcommittede74cae6c vs cba60486 five-path repair: own-data allowlisted diagnosticprivacy/operationidentity/conditionalupstreamlimits, accessible uncertainUIstatus/reconcilebeforeretry, allocatedONEsharedfull9+1policyset/noDELETE_ALL_extra, Speckernel/SRO. ActualCoordinatorgrant783151c5; sensitiveRBAC/privacy/transactionintegrity, targetedlatestdelta notfourthbroad or nativePASS.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"review-native-feature-five-path-latest-delta\",\"profile\":\"sensitive\",\"role\":\"independent-context-free-fixture-diagnostics-policy-ui-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Exact-head native authorization/RLS/public-token privacy, SQL error-data limits, transaction/cleanup and process-settlement acceptance; independent evidence qualification only, not a fourth broad code review.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"qualify-native-feature-five-path-checkpoint\",\"profile\":\"sensitive\",\"role\":\"independent-native-evidence-qualifier\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Eighth exact-head DB/browser failures with qualified43 feature API/command/RLS failures and missing closed diagnostic tuples. Read-only source/report serialization and data-integrity/privacy failure-path triage; no cause inferred or privilege workaround; no fourth broad review.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"triage-native-feature-failure-serialization\",\"profile\":\"sensitive\",\"role\":\"read-only-error-transport-and-failure-path-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Actual failed43 case reports omit nested sanitized diagnostic leaves; preserve public-token privacy/error data integrity and cleanup/primary semantics while qualifying real installed reporter transport. Exact-three owned-path repair only; no native cause or privilege fix inferred.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build-native-fixture-report-transport-repair\",\"profile\":\"sensitive\",\"role\":\"build-author-owned-bounded-sanitized-aggregate-transport\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Exact-three owned helper/unit/Spec diagnostic transport repair is public-token privacy and error data integrity sensitive. Fresh independent committed latest-fix-only review; check sanitized-only flattening, bounds/order/primary+cleanup and actual installed reporter controls; no fourth broad review or native cause claim.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"review-native-fixture-report-transport-latest-three\",\"profile\":\"sensitive\",\"role\":\"independent-context-free-owned-sanitized-error-transport-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Exact-head native authorization/RLS/public-token privacy, bounded diagnostic serialization reach, transaction/cleanup and process-settlement evidence after exact-three reviewed transport fix. Independent qualification only, not a fourth broad review or underlying cause inference.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"qualify-native-fixture-report-transport-checkpoint\",\"profile\":\"sensitive\",\"role\":\"independent-native-evidence-qualifier\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: null
 tea_selected: []
 tea_rationale: null
@@ -216,7 +220,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [99e1274e, b7f19e2d, 6f612a21, bc4163ea, 27ce6a2b, 7cdd08a6, 66cd8436, e6c404d3, 5d76de08575fb8fa09197021899d78280829d554, 81836287786a40540e96dbdf46db29c868cde41b, 48386408fc628f7341b711f177ff5833f622959c, 92dc4a5f4f7e9878e9ed9c28e00bda5d98680478, 16180cd63914a57895b36c2db060c43c74da3514, caec31b185bcad597664668d7a835c9c2096aa4d, 0a312c8fbd617d4ce03f97d5484bb23babb0686b, d5a5f85155394a0337ea92fcd606f949559b172a, becfd00e, 80c31af2, a0dd2302ead46e72e77f3293b84085c4f8fe65f3, 6f9e29656df997e2c5c6027874da4bee1ef6c17d, 5c1fb90b2f7f735259208e2d420bce489cbed598, 0d6f43ac90596b8703d8df3b9b986f9026aaaba3, 76868db295ac6b7de06a57f43164d5f02140f938, c4375f61, abaf8d81, db50a9c5, a1b83089, 6883ef61, 2441e3a2, 94baa7c7, afd9c1dd, 6d983e00, ae5b78b6, 09e70e81, 311e744f, 1d4ec146, 37fa423a, b1ad1496, "21835451", 1fadbd1f, b1f91332, 99590bfa, 45deb287, 532ebccf, 689ec7b7, cf9b89f9, 63186b1f, 48f8d7a7f170ca496b63e8120a34edb92e3ca23e, 6c0fa8fa11a1b4ab7268f623b96693affe3506b0, 83c60e0033628b4158448b9e782a9ad5a12e062f, ab5595a609092306489064f46e5a567cbfb9b34a, f2bad2b11b31b4646a3b068e17b61a044b376c0a, 574d84d8fb84b57c04d919007403f98680314027, b5814e982cc5db9c1b5285ee85b08ad77621d1e9, e067db0, 91233e4e, 33dc85c7, 22f08b4c, 955390c2, 8276d9b2, 5e8a5e33, 80e00074, f69e6cda, c9502aa3, 96eee458, 95d5e6bc, "40228616", 2c418bc8, 09c853b9, 31b780fb, 0f56d487, c8171dbf, cc6ef30a, 4c04159e, 76f50d38, eb228636, 33c68c5a, eb3da24d, 85755eb7, effbf5e1, 499c5baf, 7ca73633, fe99dbca, a5153188, 3145f16b, ec6226b2, ecb3f6d0, 3c871f2f, c5337032, a00dd595, 308dfa3a, 244cf1f3, af4328ed, 3a0282a70ab9cc539e2d85bd660635820e618731, e02403ace7a0a26c8c0cd01149d88054904fb7b9, 3245042f1f9e08c3ec6c2445c1cb6109e326be33, 9548c5cd33d6696817ed334fc832b2259e592437, 8d06d549432479ad3e2261f8e746d716adcb4dd2, 3aaa522bc8448e38a7ec7ce2fecc2dbcb9b927b4, 39d02efcc3d08515fe45ad4087aeaad255f69ed6, 9b862185f6dd6485c5c8b6d87be943bb9d8c5939, 27667164a2a10a8252b12bc0a692268aaf745765, 4e727322c55a672c5ec0e244569158fe91d4847e, 2b7f6b03c70f4113a326c194264cf09205118d22, a80e615214ade42f25b18906ca8c1ee86fadc187, 58c4cac847fd0de26cd13e57f08643cd9a965cd6, dc68ea6d9f06ecae8235468a742eb1f514ded2c7, 53e91365b1c1db5042173190d7ec1550229b5c35, 6d9836044f643a5ab6df8a1dd430e2801d8a7cdc, 4633f51b19b68ef7686fdca82ae8421ef680145f, 5a04e94cad8cad3ee18f519774af1ef278e7116b, d550029abac34360af7d9d928f6e66f906665d38, 81296feda0443e1965dff304a7fbbb1a88bb5821, fe80fbaf89993bd8f57dfc30a7a489be1e9392ae, 11687c2e2fae80d87318a156505cdc910503639d, c67950dbd154126e1d3b04444d68764e3271479b, 51bbf0667f5055368e799e24b2f6ed7a20bc9665, e6dbd92b1066534568d69cade4b4303cd5e4f3df, 5040f683cf9446d39de8512cdca82242c55fca3e, 05b10ce2c35e33269e4ccb359b770fb25eae2938, eba8a9de49153bf5e9cc86098ddaf4b7c39ea058, 38b3a60257e32a482fca93e840fd7e5c858e1f86, b940df85acfb2de36c0dcd5000a0039758f2b820, 3a1c3bc9fbf22b13c926179288a8b6eefe440c12, ae020f63a88089966b9323c55a36b6554f7e3900, 672099e9dc6569f4ac1cb9a967037e0d91df689c, aa5733116f20015cc3d14e1441d0eab232ecc9fd, 360fe850c18552f23a2bf74d8eda865431f0af38, 611c86295540161d31169110bf2139cf1d85d708, 9487c0d9, 2674b3f7, c5758058, a76fc492, 1cea5c4c, 3383a1eb, e91b366b, e472741a, c7570096, 4562cfd0, fae644b5, 33b595a8, e3f1c2e1, cba60486, e74cae6c]
+commits: [99e1274e, b7f19e2d, 6f612a21, bc4163ea, 27ce6a2b, 7cdd08a6, 66cd8436, e6c404d3, 5d76de08575fb8fa09197021899d78280829d554, 81836287786a40540e96dbdf46db29c868cde41b, 48386408fc628f7341b711f177ff5833f622959c, 92dc4a5f4f7e9878e9ed9c28e00bda5d98680478, 16180cd63914a57895b36c2db060c43c74da3514, caec31b185bcad597664668d7a835c9c2096aa4d, 0a312c8fbd617d4ce03f97d5484bb23babb0686b, d5a5f85155394a0337ea92fcd606f949559b172a, becfd00e, 80c31af2, a0dd2302ead46e72e77f3293b84085c4f8fe65f3, 6f9e29656df997e2c5c6027874da4bee1ef6c17d, 5c1fb90b2f7f735259208e2d420bce489cbed598, 0d6f43ac90596b8703d8df3b9b986f9026aaaba3, 76868db295ac6b7de06a57f43164d5f02140f938, c4375f61, abaf8d81, db50a9c5, a1b83089, 6883ef61, 2441e3a2, 94baa7c7, afd9c1dd, 6d983e00, ae5b78b6, 09e70e81, 311e744f, 1d4ec146, 37fa423a, b1ad1496, "21835451", 1fadbd1f, b1f91332, 99590bfa, 45deb287, 532ebccf, 689ec7b7, cf9b89f9, 63186b1f, 48f8d7a7f170ca496b63e8120a34edb92e3ca23e, 6c0fa8fa11a1b4ab7268f623b96693affe3506b0, 83c60e0033628b4158448b9e782a9ad5a12e062f, ab5595a609092306489064f46e5a567cbfb9b34a, f2bad2b11b31b4646a3b068e17b61a044b376c0a, 574d84d8fb84b57c04d919007403f98680314027, b5814e982cc5db9c1b5285ee85b08ad77621d1e9, e067db0, 91233e4e, 33dc85c7, 22f08b4c, 955390c2, 8276d9b2, 5e8a5e33, 80e00074, f69e6cda, c9502aa3, 96eee458, 95d5e6bc, "40228616", 2c418bc8, 09c853b9, 31b780fb, 0f56d487, c8171dbf, cc6ef30a, 4c04159e, 76f50d38, eb228636, 33c68c5a, eb3da24d, 85755eb7, effbf5e1, 499c5baf, 7ca73633, fe99dbca, a5153188, 3145f16b, ec6226b2, ecb3f6d0, 3c871f2f, c5337032, a00dd595, 308dfa3a, 244cf1f3, af4328ed, 3a0282a70ab9cc539e2d85bd660635820e618731, e02403ace7a0a26c8c0cd01149d88054904fb7b9, 3245042f1f9e08c3ec6c2445c1cb6109e326be33, 9548c5cd33d6696817ed334fc832b2259e592437, 8d06d549432479ad3e2261f8e746d716adcb4dd2, 3aaa522bc8448e38a7ec7ce2fecc2dbcb9b927b4, 39d02efcc3d08515fe45ad4087aeaad255f69ed6, 9b862185f6dd6485c5c8b6d87be943bb9d8c5939, 27667164a2a10a8252b12bc0a692268aaf745765, 4e727322c55a672c5ec0e244569158fe91d4847e, 2b7f6b03c70f4113a326c194264cf09205118d22, a80e615214ade42f25b18906ca8c1ee86fadc187, 58c4cac847fd0de26cd13e57f08643cd9a965cd6, dc68ea6d9f06ecae8235468a742eb1f514ded2c7, 53e91365b1c1db5042173190d7ec1550229b5c35, 6d9836044f643a5ab6df8a1dd430e2801d8a7cdc, 4633f51b19b68ef7686fdca82ae8421ef680145f, 5a04e94cad8cad3ee18f519774af1ef278e7116b, d550029abac34360af7d9d928f6e66f906665d38, 81296feda0443e1965dff304a7fbbb1a88bb5821, fe80fbaf89993bd8f57dfc30a7a489be1e9392ae, 11687c2e2fae80d87318a156505cdc910503639d, c67950dbd154126e1d3b04444d68764e3271479b, 51bbf0667f5055368e799e24b2f6ed7a20bc9665, e6dbd92b1066534568d69cade4b4303cd5e4f3df, 5040f683cf9446d39de8512cdca82242c55fca3e, 05b10ce2c35e33269e4ccb359b770fb25eae2938, eba8a9de49153bf5e9cc86098ddaf4b7c39ea058, 38b3a60257e32a482fca93e840fd7e5c858e1f86, b940df85acfb2de36c0dcd5000a0039758f2b820, 3a1c3bc9fbf22b13c926179288a8b6eefe440c12, ae020f63a88089966b9323c55a36b6554f7e3900, 672099e9dc6569f4ac1cb9a967037e0d91df689c, aa5733116f20015cc3d14e1441d0eab232ecc9fd, 360fe850c18552f23a2bf74d8eda865431f0af38, 611c86295540161d31169110bf2139cf1d85d708, 9487c0d9, 2674b3f7, c5758058, a76fc492, 1cea5c4c, 3383a1eb, e91b366b, e472741a, c7570096, 4562cfd0, fae644b5, 33b595a8, e3f1c2e1, cba60486, e74cae6c, 3e7b6131a00e6c7b4d25c49373d8ba1c1eefe42f, 906f80f301d8034f8efe510018137195f3e4c4eb]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -3433,7 +3437,7 @@ p5_native_settlement_browser_diagnostic_repair:
   native_sourceRLS010: "ACTUAL_FAIL_REDACTED_AGGREGATE; individualeffectiveCREATE_andACLpredicates_UNQUALIFIED_not_guessedfailed"
   native_failure_classification: "API001/INT001/RLS001/RLS010_redactedaggregate_only_helper214/219_noleafSQLSTATE_causeUNKNOWN; COMP003AssertionError; oneNONSTORYacceptance-table-policy-set_assertion_accounts45thDBfailure; exactcodecontextparentONLY"
 p5_native_feature_failure_repair:
-  status: EIGHTH_FREEZE_AND_INDEPENDENT_ROOT_ADMISSION_PASS_PENDING_CHECKPOINT_CI
+  status: EIGHTH_CHECKPOINT_PUSHED_ONE_NATIVE_CI_DISPATCH_PENDING
   failed_run: 39483572143
   attempt: 1
   failed_head: cba60486b5e695b9796ef39d4492bc7f569d517b
@@ -3466,7 +3470,7 @@ p5_native_feature_failure_repair:
   shared_write_admitted: true
   shared_current_git_oid_required: a6144347879411f9972a062673d16e6fb6b6897a
   implementation_limits: "Completed exact five source paths after actual allocation; independent committed High code PASS. Freeze source/Spec/input. Upstream error erasure/masking stays UNKNOWN; no runtime PASS. No added queries/RPC/privilege effects."
-  next: "Root exact frozen raw-diff staged-format qualification; append-only checkpoint/push/one exact-head dispatch. High independent native qualification; Root sole job poller. No development/release/DONE credit."
+  next: "Root sole job poller; independent High native qualifier owns only new ignored evidence packet. Source/Spec/input frozen. All required jobs and actual execution/oracle/cleanup/privacy evidence must qualify before delivery gate."
   accepted_allocation_path: "_bmad-output/auto-bmad/preparation/story-15-5/accepted-native-feature-policy-case-allocation.json"
   accepted_allocation_bytes: 3023
   accepted_allocation_sha256: 783151c5ec5320617e922ed87716ef192a18782f2945792cbed06fe8e6ea605d
@@ -3488,7 +3492,7 @@ p5_native_feature_failure_repair:
   approved_kernel: UNCHANGED5760B0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977
   suggested_review_stops: 49
   current_review: "PASS_distinct_context_free_Sol6.1High_exact_committed_e74_vs_cba_five_path_delta; no fourth broad review"
-  current_native: "UNEXECUTED_currente74; previouscba37P58Fpreserved"
+  current_native: PENDING_exact_checkpoint_head_no_current_acceptance_credit
   code_review_bytes: 2020
   code_review_sha256: bc0ef92c720ade577624d61aab1f02169e68ff2a5e4d23e5c3a9890e293f8df0
   code_attestation_bytes: 7882
@@ -3507,3 +3511,83 @@ p5_native_feature_failure_repair:
   historical_preparation_paths: 69
   snapshot_limit: "12 historical raw observations UNVERIFIED_UNCREDITED plus 3 current baseline-only/no raw observations; baseline Git blobs verified"
   reader_stop: "Root initial current-row status assumption stopped before receipt; exact three-row baseline-only reader corrected; no artifact/source changes or initial PASS credit"
+  checkpoint_head: 3e7b6131a00e6c7b4d25c49373d8ba1c1eefe42f
+  checkpoint_id: 63406c93-b9a5-4047-b51f-bd27ac0bdda7
+  run_id: 39492715549
+  run_attempt: 1
+  release_validation: false
+  dispatch_state: ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-3e7b6131-dispatch.json"
+p5_native_feature_failure_readonly_triage:
+  status: HIGH_READONLY_TRIAGE_ADMITTED_NO_SOURCE_WRITES
+  failed_run: 39492715549
+  attempt: 1
+  head: 3e7b6131a00e6c7b4d25c49373d8ba1c1eefe42f
+  source_head: e74cae6cbb8ce21a5f65e74d21f3c60fbfb09314
+  terminal_job_facts_sha256: 6b80b5844870425f47cc56cbdbb2c3668cb538d52d46445e1c645f434246b215
+  actual_db: "{\"registered\": 2039, \"passed\": 1944, \"failed\": 43, \"skipped\": 52, \"feature_passed\": 8, \"feature_failed\": 43, \"feature_skipped\": 0, \"shared_allocated_policy_case\": \"PASS\", \"components\": \"4PASS\", \"INT015\": \"PASS\", \"API019\": \"FAIL\", \"RLS010\": \"FAIL\"}"
+  actual_verify: 3130NodePASS0skip+43separateprocessPASS
+  actual_recovery: 1separatequalifiedPASS
+  browser: "{\"registered\": 31, \"other_passed\": 17, \"feature_passed\": 0, \"feature_failed\": 14, \"skipped\": 0, \"flaky\": 0, \"failed_story_attempts\": 28, \"runtime_auth_assertions_passed\": 7, \"runtime_privacy_assertions_passed\": 4, \"child_exit\": 1, \"teardown\": \"UNVERIFIED\", \"key_outcome\": \"UNVERIFIED\", \"custody\": \"RETAINED\", \"attachment_metadata_refs\": 28, \"inline\": 0, \"available_content_files\": 0, \"content_checks\": null, \"content_status\": \"UNAVAILABLE_UNQUALIFIED\"}"
+  diagnostic_transport: "{\"affected_failed_story_cases\": 43, \"available\": \"failureMessages plus empty meta only; AggregateError and fixed OUTER canonical-fixture-cleanup group stage\", \"absent_fields\": [\"failureDetails\", \"error\", \"errors\", \"cause\", \"diagnostics\", \"annotations\"], \"leaf_stage_category_SQLSTATE\": \"NOT_SERIALIZED\", \"upstream_cause\": \"UNKNOWN_NOT_OBSERVABLE_IN_REPORT\", \"not_inferred\": [\"actual cleanup root cause\", \"native leaf unknown\", \"bad tuple\", \"diagnosed SQL error\"], \"passing_PG17_meta\": \"empty; actual passed enforced assertions remain proof\"}"
+  permitted: "Read exact frozen owned source/callers and report serialization to propose narrow cause/diagnostic transport repair; read-only shared-file context permitted; no runtime probes/resources/new queries/source writes or authority changes. Concrete proposal with exact paths/hunks/proof/limits before any next implementation route."
+  review_cap: 3
+  development_complete: false
+  release_ready: false
+  actual_feature_95: "{\"passed\": 38, \"failed\": 57, \"skipped\": 0, \"attempted\": 95, \"limit\": \"Attempted failures do not imply all bodies/assertions completed\"}"
+  diagnostic_transport_controls: "{\"valid_synthetic_tuples_accepted\": 2, \"invalid_synthetic_tuple_rejected\": 1, \"native_credit\": 0, \"native_leaf_prefix_candidates\": 0, \"valid_outer_groups\": 43, \"invalid_native_leaf_candidates\": 0, \"result\": \"NOT_SERIALIZED; no rootcause inferred\"}"
+p5_native_fixture_report_transport_repair:
+  status: NINTH_SOURCE_FREEZE_INDEPENDENT_ADMISSION_PASS_PENDING_CHECKPOINT_CI
+  base_head: 3e7b6131a00e6c7b4d25c49373d8ba1c1eefe42f
+  failed_packet_manifest_sha256: 0c391a7aba536b6d6b9ba4de76573ae8c15430575b3211ef72d9a82cbd3d431f
+  failed_qualification_sha256: 7b96136025cf8ce75d21110eb72660a0c9a4f3b27ce143daefd8dd4e15120e4c
+  failed_qualification_md_sha256: 1ac49a164b143cca11ddf2f064fab5dc024b72ae5b49aa3807f6411e07fc7000
+  root_failed_packet_admission_sha256: 56cea3c9e905095589afab9fa30c68b9a228699ef9bbfd75acffffe896be5ad4
+  accepted_scope_path: "_bmad-output/auto-bmad/preparation/story-15-5/accepted-native-fixture-report-transport-repair.json"
+  accepted_scope_bytes: 3075
+  accepted_scope_sha256: 0df4bb27eecb06d59f970cd11de7bda8c2f78498039cf87f47bd678d6328e23e
+  source_paths: 68
+  review_cap: 3
+  next: "Root exact new142458 rawdiff context25 stagedformatqualification with allotherpaths native0/Highack; append-only checkpoint/push/one newexactheadCI. All8 failures retained; current native unexecuted and43causesunknown."
+  development_complete: false
+  release_ready: false
+  local_node_passed: 61
+  local_failed: 0
+  local_skipped: 0
+  local_cancelled: 0
+  local_partition: "58 retained +3 actual installed transport controls; no native credit"
+  local_typecheck: PASS
+  local_focused_lint: PASS
+  current_review: PASS_distinct_context_free_Sol6.1High_exactcommitted906_vs3e7_latest3_no fourth broad
+  current_native: "UNEXECUTED906; all43fixturecausesUNKNOWN_NOT_OBSERVABLE; all8nativefailures retained"
+  source_head: 906f80f301d8034f8efe510018137195f3e4c4eb
+  source_delta_base: 3e7b6131a00e6c7b4d25c49373d8ba1c1eefe42f
+  latest_delta_paths: 3
+  source_raw_normalized_differences: 41
+  unchanged_paths_since_eighth: 65
+  root_source_identity_proof_bytes: 37680
+  root_source_identity_proof_sha256: 18357b1a6e927415df135f67193e2e58b9cba9ef689a26f5fcdb9c81e3ac7113
+  suggested_review_stops: 52
+  approved_kernel: UNCHANGED5760B0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977
+  code_review_bytes: 2119
+  code_review_sha256: 16e9b045233c6c4ea337558446d501741f858b4755cb4808fb771cb19a09a1ca
+  code_attestation_bytes: 3761
+  code_attestation_sha256: 18f0077138000f3922e6f7b111dde29f1b30eef092f534f70b21d9a6d6600d7a
+  review_provenance_limit: "Original honestly notes initial inventory began C:/ and was canceled; explicit ownedworktree thenverified. No outside content informed completedreview; canceledinventory is not review evidence."
+  capsule_bytes: 604468
+  capsule_sha256: 019864c1fa982730868a3bf25c14b5b6d6464c64659c5e4b963319cc56e3c198
+  parent_check_bytes: 3268
+  parent_check_sha256: b0433dbc7cbc4e5582960789f1a434a101c0c031e1e9c0ada97cd95c467a4bce
+  parent_verifier_bytes: 25027
+  parent_verifier_sha256: 88a9efe8add223cdd768166400168823208e66f1051cf353b85c6c35e61e8a16
+  root_admission_sha256: f53c745c0f60a544d46d6d280bb580565bda5ac269d026b558d0ef8769fd4412
+  artifact_occurrences_full: 385
+  capsule_reported_reference_count_core: 384
+  unique_artifact_paths: 329
+  reference_count_qualification: "ALL385 references hashed; reported384 excludes ONLY exact self-descriptive repeat at preparation_integrity.raw_review_input_single_0x20_context_lines.artifact, unchanged142458/SHA038ef...; no reference skipped/capsule rewritten"
+  historical_source_equalities: 529
+  source_author_commits: 14
+  root_ancestor_checkpoints: 8
+  protected_paths: 146
+  historical_preparation: 69
+  snapshot_rows: "12 historical mutable raw UNVERIFIED_UNCREDITED +3 historical eighth baseline-only/no raw +3 current baseline-only/no raw; exactstatuses and native baseline blobs verified"
+  reader_stops: "Parent initial core384/full385 stop preserved; Root initial receipt-hash bind hit parent pre-freeze strengthening, old2786/6572 not Root-verified; unbound-template stalehash stopped; then historical baseline-only literalstatus assumption stopped. Exact final3268/b0433+25027/88a9 frozen/bound; exact current3+historical_eighth3 reader branches corrected only. No artifact/source changes or initialPASS credit."

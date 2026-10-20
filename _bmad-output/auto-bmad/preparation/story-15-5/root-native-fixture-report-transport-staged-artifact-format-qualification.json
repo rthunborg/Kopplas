@@ -1,0 +1,69 @@
+{
+  "kind": "ROOT_FROZEN_REVIEW_ARTIFACT_STAGED_FORMAT_QUALIFICATION",
+  "source_head": "906f80f301d8034f8efe510018137195f3e4c4eb",
+  "capsule_sha256": "019864c1fa982730868a3bf25c14b5b6d6464c64659c5e4b963319cc56e3c198",
+  "observation_bytes": 1256,
+  "observation_sha256": "a4f5f8b34c21adc5979033a3e68fe652d386f779f62fccd5f25d817c78db16e9",
+  "unrestricted_native_diff_check": {
+    "exit_code": 2,
+    "result": "FAILED_PRESERVED",
+    "scope": "all15originally_staged_paths"
+  },
+  "qualification": "Only exact single-byte 0x20 empty unified-diff context lines in one immutable raw review input; frozen raw and actual index bytes/SHA match. No source-format failure waived.",
+  "frozen_files": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-fixture-report-transport-review/latest-fix-input.diff",
+      "bytes": 142458,
+      "sha256": "038ef738b106fadb8eeeb25eb2b1c143ff3693196356792e982cf5c025b270e7",
+      "raw_equals_actual_index": true,
+      "exact_single_0x20_empty_unified_context_lines": [
+        14,
+        31,
+        91,
+        101,
+        103,
+        109,
+        118,
+        120,
+        124,
+        133,
+        135,
+        139,
+        144,
+        146,
+        151,
+        163,
+        165,
+        176,
+        197,
+        205,
+        209,
+        223,
+        314,
+        336,
+        348
+      ],
+      "count": 25
+    }
+  ],
+  "total_qualified_context_lines": 25,
+  "every_other_original_staged_path": {
+    "count": 14,
+    "native_exit": 0,
+    "result": "PASS"
+  },
+  "independent_high_ack": {
+    "actor": "/root/build15_5_high",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "actual_count": 25,
+    "scope": "Exact142458-byte/SHA038ef738 input only; required empty unified context b-space only; preserve unrestricted EXIT2 FAILED; final receipt also checked with all other paths before commit."
+  },
+  "final_check_requirement": "After staging receipt, require all15 other staged paths including receipt native diff-check exit0 and same exact25 frozen context diagnostics before normal commit.",
+  "changes_to_input_source_capsule_config_hooks_checkers": false,
+  "bypass_flags_used": false,
+  "review_round_added": false,
+  "runtime_credit": false,
+  "development_complete": false,
+  "release_ready": false
+}

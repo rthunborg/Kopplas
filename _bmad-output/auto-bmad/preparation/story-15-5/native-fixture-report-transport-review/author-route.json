@@ -1,0 +1,25 @@
+{
+  "kind": "author-postimplementation-route-binding",
+  "root_route_recorded_before_handoff": "build-native-fixture-report-transport-repair/build-author-owned-bounded-sanitized-aggregate-transport",
+  "review_route_recorded_before_dispatch": "review-native-fixture-report-transport-latest-three/independent-context-free-owned-sanitized-error-transport-reviewer",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "before": "3e7b6131a00e6c7b4d25c49373d8ba1c1eefe42f",
+  "source": "906f80f301d8034f8efe510018137195f3e4c4eb",
+  "exact_paths": [
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+    "tests/support/calendar-feed-atdd.ts",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts"
+  ],
+  "allocation": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-native-fixture-report-transport-repair.json",
+    "bytes": 3075,
+    "sha256": "0df4bb27eecb06d59f970cd11de7bda8c2f78498039cf87f47bd678d6328e23e"
+  },
+  "authored_after_implementation": true,
+  "does_not_claim_preedit_artifact_bytes": true,
+  "scope": "Pure module-owned already-sanitized aggregate flattening/ordered leaves; actual installed in-memory transport controls; author trail only. Operations/value/authority/result/settlement/custody/UI/sharedpolicycase unchanged. Rootmetadata/preps excluded source commit.",
+  "broad_rounds": 3,
+  "cap": 3,
+  "latest_fix_only": true
+}
