@@ -1,0 +1,48 @@
+{
+  "kind": "Root-recorded-owner-authorized-exact-allocation",
+  "status": "ACCEPTED-conditional-scope/previous-auto-review-hold-resolved",
+  "human_authorization": {
+    "thread": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+    "turn": "01a1596e-a209-7562-9c79-da9175e0b610",
+    "message": "01a1596e-a661-70c3-9500-d699dcd27283",
+    "exact_text": "You are approved to proceed",
+    "verified_by": "Root read_thread native response after direct question naming15.5subscriptions/create-rotate-revoke/read-onlyfeed/databasecontrols/isolatedtestkeys; productionkeys/hostedenablement/deployment separate",
+    "successful_allocation_delivery": "exec-8b88050b-b582-4b32-bf7b-b6b64f1b1e16 statuscompleted"
+  },
+  "handoff_sha256": "822050eb7bf8fa78ef3e543089113b9d6ab7a46843cd36d6ca274cdb0fefa03f",
+  "inventory_successor_sha256": "a3a9d8b76f58ca8d66d4250ccc7fa0f98a925af19826cbcd337c912b2f4d1419",
+  "approved_kernel_sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+  "prior_rejection": "Historical/notexecutionauthority; resolvedonlybyfreshverifieddirecthumanapproval+successfulallocationdelivery",
+  "migration": {
+    "reserved": "20261020220000_personal_calendar_feed.sql",
+    "write_granted": true,
+    "before_creation": "Recheckfreshcombinedinventory/afterE16reserved20261020210000_e16_16_4_job_upgrade_and_scheduling.sql; E16owns210000/E15owns220000; prior105\u2013109andallhistoricalimmutable; no foreigndirtycopy",
+    "execution": "Ownisolatedbranchstack/CIonly; do notclaimownhistorycombinedE16"
+  },
+  "shared_boundaries": [
+    "Envelope/migration-reset/package: additivefeedcommandrows/ACLassertions/smokeappendONLYinownedbranch; preserveE16upgrade/member/37schemaassertions+unionatjoin, Highconflictreview/no whole16.4gate",
+    "PersonalCalendarView settingslinkONLY/noDTO-facts-proof-scalar-editor-safejobchanges",
+    "package.test:smoke appendtests/e2e/calendar-feed.e2e.spec.ts ONLY; preserveAuth/Jobsdepth/resolver/timeReports/reporters+futureE16union; nodeps/lockfile",
+    "vitest.config.ts addONLY tests/integration/commands/calendar-feed.int.test.ts and tests/integration/calendar-feed/public-feed.int.test.ts toexistingserialauditDDLinclude ANDparallel exclude; retainfourpriorfiles/order/group0paralleltrue/group1parallelfalse/globalsetup/timeouts/retry0/errorposture",
+    "Partitionunit exactsixfileexpectations retain duplicate/missing/overlap/reversed/equalorder/teardownnegatives andactualinstalledcollectionproof",
+    "RLS/componenttests parallelROWISOLATED/read-onlykey; no globalunknownIPbudget/keymutation/faultDDL"
+  ],
+  "security_boundaries": [
+    "ADR-B004exactone-tokenpublicroute preauth/env/cookies; nocookieanonclient/validfeed-onlyproof/genericfailures/noarbitrarytenant-filteroverride",
+    "DBcurrentexactmembership/Bookings.Viewunion/assignment/tenantEXISTS; no provisioningavailabilitygate; DBclock/independentIP+tokencounters",
+    "DedicatedfeedownerstrictfilteredVaulthelperonly; no generalVault/service-role/borrowedsecret/clientsecret dependencies",
+    "Rawtokenonlyconfirmedfreshissuance; uncertainattemptsanitizedstatusreconcile/no plaintextrecovery/newhasholdattempt",
+    "No rawURL/proof/IP/keylogs; sanitizedownstatus/Adminaggregate; middlewareIPtrustfailclosedunverified/noheaderguessfallback"
+  ],
+  "test_keys_resources": [
+    "Uniqueephemeral32byteTESTkey/ownedVaultnames/processruntimefixture onlyownedisolatedlocalorCI/redactedcleanup; no host.env/.env/provider/CIpersistentsecret/productionkeymutation",
+    "HostedUSE separate releaseoperatorLIVEkey+deploymentVERIFIEDIPtrust prerequisite; no deployment/mainmerge/preview/providerchanges",
+    "Owntrustedguardonlywhenresourcesneeded, uniqueproject/ports/profile/tenant/fixtures; noforeign/demo/adoption; reviewedexactheadCIprimaryallowed",
+    "TwofeedserialfilesexclusiveDB/key/unknownIPbucket/nooverlappingtestprocess; UUIDscopedfaults/barriers/boundedwaits/finally; releasebarriersbeforeawaitall; droponlyownobjects+catalogabsence; noglobaldisable/generalVaultgrant",
+    "ExistingphysicalStoragegaterequired"
+  ],
+  "completion": "NormalHighATDD/build+distinctHighreviewcap3/actualstatic-build-fullDBRLS-recovery-essentialHTTPbrowser-exactheadCI-deliverygate+truth; skips/mocksnotcoverage; releasebreadthdeferredhonestly",
+  "new_boundary": "Coordinateactualnewsharedpath/writer/publicauth/key/resourceboundaryonly; no extraACKinsideacceptedbounds",
+  "implementation_started": false,
+  "resources_started": 0
+}

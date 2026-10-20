@@ -1,0 +1,13 @@
+Listing tests:
+  [chromium] › calendar-feed.e2e.spec.ts:56:8 › 15.5 Kalenderprenumeration essential production-host ATDD RED › [P0] 15.5-E2E-001 [AC1 AC3 AC4 AC6 AC7 AC9] Planering → own issue → anonymous feed → physical last-use → rotate/revoke
+  [chromium] › calendar-feed.e2e.spec.ts:117:10 › 15.5 Kalenderprenumeration essential production-host ATDD RED › [P1] 15.5-E2E-002A [AC1 AC6] actual Egen agenda own-and-foreign exposes one keyboard subscription link
+  [chromium] › calendar-feed.e2e.spec.ts:117:10 › 15.5 Kalenderprenumeration essential production-host ATDD RED › [P1] 15.5-E2E-002B [AC1 AC6] actual Egen veckokalender own-and-foreign exposes one keyboard subscription link
+  [chromium] › calendar-feed.e2e.spec.ts:117:10 › 15.5 Kalenderprenumeration essential production-host ATDD RED › [P1] 15.5-E2E-002C [AC1 AC6] actual Egen agenda no-profile exposes one keyboard subscription link
+  [chromium] › calendar-feed.e2e.spec.ts:137:8 › 15.5 Kalenderprenumeration essential production-host ATDD RED › [P1] 15.5-E2E-003 [AC1 AC6] profile Min kalender entry reaches the same settings surface by keyboard
+  [chromium] › calendar-feed.e2e.spec.ts:154:8 › 15.5 Kalenderprenumeration essential production-host ATDD RED › [P1] 15.5-E2E-004 [AC1 AC6] never-used, clipboard denial selectable fallback and revisit never recover the one-time URL
+  [chromium] › calendar-feed.e2e.spec.ts:179:8 › 15.5 Kalenderprenumeration essential production-host ATDD RED › [P0] 15.5-E2E-005 [AC2 AC6] confirmation cancellation, pending persistence and failed rotation retry preserve old generation
+  [chromium] › calendar-feed.e2e.spec.ts:227:8 › 15.5 Kalenderprenumeration essential production-host ATDD RED › [P0] 15.5-E2E-006 [AC1 AC2 AC6] lost committed issuance reconciles sanitized metadata and needs separate explicit rotation
+  [chromium] › calendar-feed.e2e.spec.ts:264:10 › 15.5 Kalenderprenumeration essential production-host ATDD RED › connected phone essentials › [P1] 15.5-E2E-007 [AC1 AC6] 360×640 keyboard entry, touch issue and revoke confirmation remain usable
+  [chromium] › calendar-feed.e2e.spec.ts:293:8 › 15.5 Kalenderprenumeration essential production-host ATDD RED › [P0] 15.5-E2E-008 [AC1 AC5 AC6 AC9] manager self-service cannot read Admin aggregate or peer capability
+  [chromium] › calendar-feed.e2e.spec.ts:310:8 › 15.5 Kalenderprenumeration essential production-host ATDD RED › [P0] 15.5-E2E-009 [AC5 AC6 AC9] Admin sees only sanitized own-tenant abuse counters and separate own lifecycle
+Total: 11 tests in 1 file

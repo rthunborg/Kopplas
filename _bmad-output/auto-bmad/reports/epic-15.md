@@ -1635,3 +1635,40 @@ The owned run is terminal. Both temporary admission variables were conditionally
 **Next:** After directhumanapproval in Coordinator and accepted exact allocation, resume /auto-bmad epic --epic15 at15.4 P4 with approvedkernel/bindings preserved. Humanreview: /bmad-checkpoint-preview codex/epic-15-scheduling-time-calendar. Projectcontext: /bmad-project-context refresh remains recommended at completedepic end.
 
 Resume-command correction for this section: `/auto-bmad epic --epic 15` (with a space before `15`).
+
+## Report — 2026-10-20T12:59:28Z (halted — needs-human)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `c42b45a`).
+**Pipeline status:** Held before 15.5 ATDD: explicit implementation authorization and successful exact Coordinator allocation are pending after automatic approval rejected the handoff.
+**Continues:** 2026-10-20T04:21:02Z (halted — direct Coordinator approval and accepted allocation required)
+
+**Summary:** This resume completed and pushed 15.4 development closeout and prepared, independently validated, approved and pushed the 15.5 specification. Four stories are internally landed; 15.5 has no implementation changes; 15.6 remains queued.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 264h 01m (≈54h 01m AI-run, ≈210h 00m human/idle wait); resumed 45×.
+
+**Stories:**
+1. 15.1–15.3: previously internally landed; unchanged by this resume.
+2. 15.4: P5/P6/P7 complete; qualified cad4 CI39415418173 all five required jobs passed; 76 story cases and 17 first-pass browser cases; physical Storage passed; full integration 1928 passed, zero failed, 52 historical skips uncredited. Independent source review: three counted rounds (one broad, two limited) plus two narrow CI-repair follow-ups, zero remaining findings. Delivery gate and distinct High truth audit44/0 passed; P6 coverage9AC/52checks found no gaps; no additional P7 pass recommended, no trace advisory, harvest0. Sprint remains review until epic finalization.
+
+**Skipped:** (none)
+
+**Epic gate:** Not run; all six stories must land first. Inherited review_unverified=true from15.2 remains; no final PR or main merge.
+
+**TEA:** 15.4 post-dev automate: two required High assessors; 76 existing cases cover nine ACs; 52 artifact checks passed, no new tests/runtime. 15.5 triage high selects ATDD+automate; neither ran. No last-three story trace advisory.
+
+**Retrospective:** Epic15 retrospective not run. Epic14 October8 accepted-with-open-items is authoritative; October7 rejection is historical; completed15.1 ContractD evidence retained.
+
+**Overrides:** Sequential whole-epic run; Sol6.1Low ordinary/explicitHigh sensitive; no legacy URLs/evidence; independently validate every specification; review cap3; one final epic PR with agent-fix label; retain branches; no main merge or deployment.
+
+**Open questions:** (none)
+
+**Deferred work:**
+1. Six15.4 release checks remain owned and deferred in recovery/deferred-validation.md; no release-ready claim.
+2. 15.5 hosted key/IP-trust enablement and release validation remain separate from isolated development verification.
+No archive ran this resume.
+
+**⚠️ Needs human:**
+1. Approve the reviewed15.5 implementation and isolated verification: subscriptions/create-rotate-revoke tokens/read-only public feed/database-Vault-ACL controls/ephemeral test keys. Automatic approval in Coordinator rejected the execution handoff because its trusted record covers preparation only. Production keys, hosted enablement and deployment remain excluded. The current Epic15 confirmation question is pending; no approval assumed.
+
+**Next:** After explicit confirmation, obtain successful exact Coordinator allocation and resume /auto-bmad epic --epic 15 at15.5 Phase4; preserve the approved kernel0b3255e5, original failed-validation history and inherited epic review caveat. Human review: /bmad-checkpoint-preview codex/epic-15-scheduling-time-calendar. Project context: /bmad-project-context refresh is recommended after epic completion.

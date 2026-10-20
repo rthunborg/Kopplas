@@ -1,0 +1,4 @@
+tests/unit/server/calendar-feed/trusted-ip.test.ts(12,37): error TS2345: Argument of type '{ "x-forwarded-for"?: undefined; "x-real-ip"?: undefined; "x-vercel-forwarded-for"?: undefined; vercel?: undefined; } | { "x-forwarded-for": string; "x-real-ip"?: undefined; "x-vercel-forwarded-for"?: undefined; vercel?: undefined; } | { ...; } | { ...; } | { ...; }' is not assignable to parameter of type 'Record<string, string>'.
+  Type '{ "x-forwarded-for"?: undefined; "x-real-ip"?: undefined; "x-vercel-forwarded-for"?: undefined; vercel?: undefined; }' is not assignable to type 'Record<string, string>'.
+    Property '"x-forwarded-for"' is incompatible with index signature.
+      Type 'undefined' is not assignable to type 'string'.
