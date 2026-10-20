@@ -4,9 +4,15 @@ import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import * as nodeModule from "node:module";
 import { EventEmitter } from "node:events";
+import { mkdtemp, mkdir, writeFile, readFile, rm, stat } from "node:fs/promises";
+import { join, resolve } from "node:path";
+import { tmpdir } from "node:os";
 import { pathToFileURL } from "node:url";
 import { projectCalendarFeedCiCommands } from "../../../support/calendar-feed-ci-contract";
-import { INTEGRATION_ARGS, BROWSER_ARGS, FEED_FUNCTIONS, validateAdmission, validateStackIdentity, createCalendarFeedDatabaseClient, createTelemetryObserver, hasSensitiveOutput, createOwnedGroupStopper, ownsListenerRecord, waitForOwnedHttp, runCalendarFeedRuntime } from "../../../../scripts/ci/with-calendar-feed-runtime.mjs";
+import { INTEGRATION_ARGS, BROWSER_ARGS, CAUSE_PROOF_ARGS, FEED_FUNCTIONS, validateAdmission, validateStackIdentity, validateCauseProofObservation, finishCauseProof, createCalendarFeedDatabaseClient, createTelemetryObserver, hasSensitiveOutput, createOwnedGroupStopper, ownsListenerRecord, waitForOwnedHttp, runCalendarFeedRuntime } from "../../../../scripts/ci/with-calendar-feed-runtime.mjs";
+import { captureCalendarFeedTrace, recordCalendarFeedTrace, recordCalendarFeedContext, recordCalendarFeedMembership, executeCalendarFeed } from "../../../../src/server/commands/calendar-feed/calendar-feed-db";
+import { CommandError } from "../../../../src/server/commands/command-errors";
+import { validateCalendarFeedIntent } from "../../../../src/features/calendar-feed/validation";
 
 const env = {
   NODE_ENV: "test" as const,
@@ -1343,4 +1349,117 @@ test("known proof values and actual keys flag leaks while exact infrastructure a
   for (const line of clean) { assert.equal(hasSensitiveOutput(line, params), false); await observe(line); }
   assert.equal(records.length, 0);
   for (const line of ["GET - Local: http://127.0.0.1:3195", "- Local: http://127.0.0.1:3195 request", "- Network: http://203.0.113.7:3195", "- Local: http://127.0.0.1:3195 " + Buffer.alloc(32, 29).toString("base64url")]) assert.equal(hasSensitiveOutput(line, params), true);
+});
+
+
+const diagnosticEnv={...env,GITHUB_SHA:"a".repeat(40),GITHUB_EVENT_NAME:"workflow_dispatch",CALENDAR_FEED_CAUSE_PROOF_CHECKPOINT:keyId};
+const observation=()=>({kind:"calendar_feed.cause_proof",mode:"cause-proof",outcome:"AMBIGUOUS_SQL42501",events:["execute-enter","context-match","status-rpc42501"],baseline:"status",sqlState:"42501",cleanupVerified:true,ordinarySettled:true,queriesSettled:true,failures:[]});
+const traceExpected={tenantId:"owned-tenant",userId:"owned-user",membershipId:"owned-member",attemptId:"owned-attempt",action:"create",revision:0};
+test("actual per-invocation trace preserves once-call value and error identity and isolates concurrent and nested scopes",async()=>{
+  const value={},failure={private:"PRIVATE"};let calls=0;
+  const result=await captureCalendarFeedTrace(traceExpected,async()=>{calls++;recordCalendarFeedContext("owned-tenant","owned-user",{action:"create",revision:0,attemptId:"owned-attempt"});recordCalendarFeedMembership("owned-member");return value;});
+  assert.equal(calls,1);assert.equal(result.ok&&result.value,value);assert.deepEqual(result.events,["context-match","membership-match"]);
+  const bad=await captureCalendarFeedTrace(traceExpected,async()=>{throw failure;});assert.equal(!bad.ok&&bad.error,failure);
+  const [a,b]=await Promise.all([captureCalendarFeedTrace(traceExpected,async()=>{recordCalendarFeedTrace("status-enter");await Promise.resolve();recordCalendarFeedTrace("status-valid");}),captureCalendarFeedTrace(traceExpected,async()=>{recordCalendarFeedTrace("manage-enter");})]);
+  assert.deepEqual(a.events,["status-enter","status-valid"]);assert.deepEqual(b.events,["manage-enter"]);
+  const outer=await captureCalendarFeedTrace(traceExpected,async()=>{recordCalendarFeedTrace("execute-enter");const inner=await captureCalendarFeedTrace(traceExpected,async()=>{recordCalendarFeedTrace("status-enter");});assert.deepEqual(inner.events,["status-enter"]);recordCalendarFeedTrace("key-ready");});assert.deepEqual(outer.events,["execute-enter","key-ready"]);
+  recordCalendarFeedTrace("status-enter");assert.deepEqual((await captureCalendarFeedTrace(traceExpected,async()=>{})).events,[]);
+});
+test("actual trace bounds hostile expected getters and event overflow without serializing values",async()=>{
+  let getters=0,run=0;const bad=Object.defineProperty({...traceExpected},"tenantId",{get(){getters++;throw Error("PRIVATE");}});
+  await assert.rejects(captureCalendarFeedTrace(bad,async()=>{run++;}),/expected-context refused/);assert.equal(getters,0);assert.equal(run,0);
+  const result=await captureCalendarFeedTrace(traceExpected,async()=>{for(let i=0;i<40;i++)recordCalendarFeedTrace("status-enter");});assert.equal(result.events.length,16);assert.equal(result.events[15],"truncated");assert.ok(!JSON.stringify(result.events).includes("PRIVATE"));
+});
+test("actual management adapter records each existing error branch after one original RPC await",async()=>{
+  for(const [code,event]of [["42501","manage-rpc42501"],["CF409","manage-rpcCF409"],["unknown","manage-rpc-error"]] as const){let calls=0;const args={private:"PRIVATE"};const client={rpc:async(name:string,received:unknown)=>{calls++;assert.equal(name,"manage_calendar_feed");assert.equal(received,args);return{data:null,error:{code}};}};
+    const result=await captureCalendarFeedTrace(traceExpected,()=>executeCalendarFeed(client as never,args));assert.equal(result.ok,false);assert.equal(calls,1);assert.deepEqual(result.events,[event]);assert.ok(!JSON.stringify(result.events).includes("PRIVATE"));
+  }
+  const result=await captureCalendarFeedTrace(traceExpected,()=>executeCalendarFeed({rpc:async()=>({data:{outcome:"committed",revision:1},error:null})} as never,{}));assert.equal(result.ok&&result.value.revision,1);assert.deepEqual(result.events,["manage-valid"]);
+});
+test("actual baseline decision chooses one observed boundary only and pg timeout is not protocol settlement",async()=>{
+  const seams=await actualFixtureOrigins();
+  assert.equal(seams.calendarCauseProofSelection(["context-match","status-rpc42501"]),"status");
+  assert.equal(seams.calendarCauseProofSelection(["context-match","membership-match","manage-rpc42501"]),"manage");
+  for(const events of [["status-rpc42501"],["context-match","membership-mismatch","manage-rpc42501"],["context-match","status-rpc42501","truncated"],["context-match","status-rpc-error"]])assert.equal(seams.calendarCauseProofSelection(events),"not-selected");
+  let now=0;const client={readyForQuery:false};assert.equal(await seams.calendarCauseProofIdle(client,()=>now,async()=>{now+=1000;}),false);
+  now=0;assert.equal(await seams.calendarCauseProofIdle(client,()=>now,async()=>{now+=1000;if(now===3000)client.readyForQuery=true;}),true);
+});
+test("cause-proof launches only fixed one-case argv and joins diagnostic work before exact key deletion",async()=>{
+  const h=harness();let verified=false,finished=false;
+  const result=await runCalendarFeedRuntime({mode:"cause-proof",env:diagnosticEnv,platform:"linux"},{...h.deps,prepareDiagnostic:async()=>{},readDiagnostic:async()=>{verified=true;return observation();},finishDiagnostic:async(receipt:{keyDeleted:boolean})=>{assert.equal(verified,true);assert.equal(receipt.keyDeleted,true);finished=true;return true;}});
+  assert.equal(result.exitCode,0);assert.equal(h.launches.length,1);assert.equal(h.launches[0].command,"pnpm");assert.deepEqual(h.launches[0].args,CAUSE_PROOF_ARGS);assert.equal(h.launches[0].childEnv.CALENDAR_FEED_CAUSE_PROOF_MODE,"1");assert.ok(!h.events.includes("ready"));assert.ok(!h.events.includes("port-checked"));assert.equal(finished,true);assert.ok(h.events.indexOf("settled:0")<h.events.indexOf("delete"));
+});
+test("abnormal or unverified diagnostic work retains key custody and never infers cleanup from child exit",async()=>{
+  for(const failChild of [true,false]){const h=harness(failChild?{failChild:0}:{});const result=await runCalendarFeedRuntime({mode:"cause-proof",env:diagnosticEnv,platform:"linux"},{...h.deps,prepareDiagnostic:async()=>{},readDiagnostic:async()=>{throw Error("PRIVATE pending work");},finishDiagnostic:async()=>true});assert.equal(result.exitCode,1);assert.equal(result.receipt.keyDeleted,false);assert.ok(result.receipt.custody);assert.ok(!h.events.includes("delete"));assert.ok(!JSON.stringify(result.receipt).includes("PRIVATE"));}
+  const h=harness();const result=await runCalendarFeedRuntime({mode:"cause-proof",env:{...diagnosticEnv,GITHUB_RUN_ATTEMPT:"2",CALENDAR_FEED_CI_DISPOSABLE_STACK:"123:2:db"},platform:"linux"},h.deps);assert.equal(result.exitCode,1);assert.equal(h.launches.length,0);assert.ok(!h.events.includes("entropy"));
+});
+test("diagnostic wire schema refuses pending cleanup unknown fields values and getters without raw output",()=>{
+  assert.equal(validateCauseProofObservation(observation()).outcome,"AMBIGUOUS_SQL42501");
+  for(const change of [{cleanupVerified:false},{ordinarySettled:false},{queriesSettled:false},{events:["PRIVATE secret"]},{sqlState:"PRIVATE"},{extra:"PRIVATE"},{failures:["PRIVATE"]}])assert.throws(()=>validateCauseProofObservation({...observation(),...change}),/diagnostic-/);
+  let gets=0;const hostile=Object.defineProperty(observation(),"outcome",{get(){gets++;throw Error("PRIVATE");}});assert.throws(()=>validateCauseProofObservation(hostile),/diagnostic-observation-refused/);assert.equal(gets,0);
+  const cycle=observation() as unknown as {events:unknown[]};cycle.events=[cycle];assert.throws(()=>validateCauseProofObservation(cycle),/diagnostic-observation-refused/);
+});
+
+
+test("actual installed failed native report and closed observation upload distinctly without publishing custody handles",async()=>{
+  const folder=await mkdtemp(join(tmpdir(),"calendar-report-control-")), reports=join(folder,"test-results/calendar-feed-cause-proof");
+  try{
+    await mkdir(reports,{recursive:true}); const report=await actualInstalledFailureTransport();
+    const native=await report(new Error("Fixed diagnostic failure; values redacted"));
+    await writeFile(join(reports,"native.json"),JSON.stringify(native));await writeFile(join(reports,"observation.json"),JSON.stringify(observation()));
+    const receipt={childExitCodes:[1],keyDeleted:false,dbClosed:true,custody:{ownedName:"PRIVATE custody",vaultUuid:"PRIVATE UUID"},failures:["child-failed"]};
+    assert.equal(await finishCauseProof(folder,diagnosticEnv,receipt,async()=>{}, {keyId:"private-key",secret:"private-secret"}),true);
+    assert.equal((JSON.parse(await readFile(join(reports,"upload/native.json"),"utf8")) as {numFailedTests:number}).numFailedTests,1);
+    const metadata=await readFile(join(reports,"upload/receipt.json"),"utf8");assert.ok(!metadata.includes("PRIVATE"));assert.equal(JSON.parse(metadata).evidenceClass,"diagnostic-only");assert.equal(JSON.parse(metadata).custodyRetained,true);
+  }finally{assert.ok(resolve(folder).startsWith(resolve(tmpdir())+"\\" ) || resolve(folder).startsWith(resolve(tmpdir())+"/"));await rm(folder,{recursive:true,force:true});}
+});
+test("diagnostic missing or sensitive native reports fail capture and never enter the upload tree",async()=>{
+  const folder=await mkdtemp(join(tmpdir(),"calendar-report-negative-")), reports=join(folder,"test-results/calendar-feed-cause-proof");
+  try{
+    await mkdir(reports,{recursive:true});await writeFile(join(reports,"observation.json"),JSON.stringify(observation()));
+    const receipt={childExitCodes:[0],keyDeleted:true,dbClosed:true,custody:null,failures:[]};
+    assert.equal(await finishCauseProof(folder,diagnosticEnv,receipt,async()=>{}, {keyId:"key",secret:"PRIVATE sensitive"}),false);
+    await writeFile(join(reports,"native.json"),JSON.stringify({numTotalTests:1,numPendingTests:0,numFailedTests:0,numPassedTests:1,private:"PRIVATE sensitive"}));
+    assert.equal(await finishCauseProof(folder,diagnosticEnv,receipt,async()=>{}, {keyId:"key",secret:"PRIVATE sensitive"}),false);
+    await assert.rejects(stat(join(reports,"upload/native.json")));
+    assert.ok(!(await readFile(join(reports,"upload/manifest.json"),"utf8")).includes("PRIVATE"));
+    await writeFile(join(reports,"native.json"),JSON.stringify({numTotalTests:16,numPendingTests:15,numFailedTests:0,numPassedTests:1}));
+    assert.equal(await finishCauseProof(folder,diagnosticEnv,receipt,async()=>{}, {keyId:"key",secret:"PRIVATE sensitive"}),false);
+    await assert.rejects(stat(join(reports,"upload/native.json")));
+  }finally{assert.ok(resolve(folder).startsWith(resolve(tmpdir())+"\\") || resolve(folder).startsWith(resolve(tmpdir())+"/"));await rm(folder,{recursive:true,force:true});}
+});
+
+
+function actualFeedRegion(path: string, start: string, end: string | undefined, exported: string, dependencies: Record<string, unknown>) {
+  const source=readFileSync(new URL(path,import.meta.url),"utf8").replaceAll("\r\n","\n");
+  assert.equal(source.split(start).length,2);if(end)assert.equal(source.split(end).length,2);
+  const region=source.slice(source.indexOf(start),end?source.indexOf(end):undefined).replace(/^export /gm,"");
+  const strip=(nodeModule as unknown as {stripTypeScriptTypes(source:string):string}).stripTypeScriptTypes;
+  return new Function(...Object.keys(dependencies),strip(region)+"\nreturn "+exported+";")(...Object.values(dependencies));
+}
+test("actual status mapper distinguishes existing RPC and schema erasure after one await without exposing native error fields",async()=>{
+  const status=actualFeedRegion("../../../../src/server/read-models/calendar-feed.ts","export async function readCalendarFeedStatus","export async function readCalendarFeedSettings","readCalendarFeedStatus",{recordCalendarFeedTrace,CommandError});
+  for(const [reply,event]of [[{data:null,error:{code:"42501",detail:"PRIVATE"}},"status-rpc42501"],[{data:null,error:{code:"other",message:"PRIVATE"}},"status-rpc-error"],[{data:{active:"PRIVATE"},error:null},"status-schema-invalid"]] as const){let calls=0;const result=await captureCalendarFeedTrace(traceExpected,()=>status({rpc:async()=>{calls++;return reply;}},"owned-tenant","owned-attempt"));assert.equal(calls,1);assert.equal(result.ok,false);assert.deepEqual(result.events,[event]);assert.ok(!JSON.stringify(result.events).includes("PRIVATE"));}
+});
+test("actual management dispatcher keeps literal commands and unchanged stable outcomes while observing the closed envelope result once",async()=>{
+  for(const code of ["UNAUTHENTICATED","TENANT_MEMBERSHIP_REQUIRED","PERMISSION_DENIED","VALIDATION_FAILED","TENANT_ACCESS_DENIED","COMMAND_CONFLICT","SERVER_ERROR"]){let calls=0;
+    const manage=actualFeedRegion("../../../../src/server/commands/calendar-feed/manage-calendar-feed.ts","function calendarFeedConfig",undefined,"manageCalendarFeed",{
+      validateCalendarFeedIntent,defineCommand:(config:unknown)=>config,runCommand:async()=>{calls++;return{ok:false,code};},recordCalendarFeedTrace,recordCalendarFeedContext,recordCalendarFeedMembership,
+      feedKeyFromEnv:()=>{throw Error("Unexpected execute");},readCalendarFeedStatus:()=>{throw Error("Unexpected status");},executeCalendarFeed,FEED_SCHEMA:"fixed",MANAGE_DOMAIN:"fixed",issueCalendarFeedToken:()=>{},signFeedProof:()=>{}
+    });
+    const result=await captureCalendarFeedTrace(traceExpected,()=>manage({}, {action:"create",revision:0,attemptId:keyId}));assert.equal(calls,1);assert.deepEqual(result.events,["envelope-"+code]);
+    assert.equal(result.ok&&(result.value as {outcome:string}).outcome,code==="COMMAND_CONFLICT"?"conflict":code==="SERVER_ERROR"?"unavailable":"denied");
+  }
+});
+
+
+test("actual source registration guards isolate the one diagnostic declaration and preserve the fifteen normal command cases",async()=>{
+  const ts=await import("typescript");const source=readFileSync(new URL("../../../integration/commands/calendar-feed.int.test.ts",import.meta.url),"utf8");
+  const ast=ts.createSourceFile("calendar-feed.int.test.ts",source,ts.ScriptTarget.Latest,true,ts.ScriptKind.TS);
+  const guards=ast.statements.filter(ts.isIfStatement);assert.equal(guards.length,2);
+  const evaluate=(index:number,mode:string|undefined)=>new Function("process","return ("+guards[index].expression.getText(ast)+");")({env:{CALENDAR_FEED_CAUSE_PROOF_MODE:mode}});
+  assert.equal(evaluate(0,"1"),true);assert.equal(evaluate(1,"1"),false);
+  for(const mode of [undefined,"0","other"]){assert.equal(evaluate(0,mode),false);assert.equal(evaluate(1,mode),true);}
+  const names=(node:import("typescript").Node)=>{const ids:string[]=[];function walk(child:import("typescript").Node){if(ts.isCallExpression(child)&&child.expression.getText(ast)==="test"&&ts.isStringLiteral(child.arguments[0]))ids.push(child.arguments[0].text);ts.forEachChild(child,walk);}walk(node);return ids;};
+  assert.deepEqual(names(guards[0].thenStatement),["15.5-DIAG001"]);assert.equal(names(guards[1].thenStatement).length,15);assert.ok(names(guards[1].thenStatement).every(name=>name.includes("15.5-INT")));
 });

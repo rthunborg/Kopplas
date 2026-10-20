@@ -1,5 +1,7 @@
 import { createHash } from "node:crypto";
 import { describe, test } from "vitest";
+import { writeFile } from "node:fs/promises";
+import { runCalendarFeedCauseProof } from "../../support/calendar-feed-atdd";
 import { expectCalendar as expect } from "../../support/calendar-feed-atdd";
 import { withCalendarFeedFixture, lifecycle, issuedUrl, tokenFromUrl, bookingSeed,
   type ManagementObservation, type FeedResponse } from "../../support/calendar-feed-atdd";
@@ -14,7 +16,16 @@ import { withCalendarFeedFixture, lifecycle, issuedUrl, tokenFromUrl, bookingSee
 // calendar-feed/public-feed.int.test.ts in addition to the existing serial files.
 // P4: every declaration skipped; no fixture, key, SQL, HTTP or resource executes.
 
-describe("15.5 authenticated lifecycle, atomic audit and commit-order", () => {
+// Explicit diagnostic inventory only: no declaration/skip/mutation in normal95.
+if (process.env.CALENDAR_FEED_CAUSE_PROOF_MODE === "1") {
+  test("15.5-DIAG001", async () => {
+    const observation = await runCalendarFeedCauseProof();
+    await writeFile("test-results/calendar-feed-cause-proof/observation.json", JSON.stringify(observation) + "\n", { mode: 0o600 });
+    if (!observation.cleanupVerified || !observation.ordinarySettled || !observation.queriesSettled) throw new Error("Cause proof stopped with unverified custody; values redacted");
+  }, 180_000);
+}
+
+if (process.env.CALENDAR_FEED_CAUSE_PROOF_MODE !== "1") describe("15.5 authenticated lifecycle, atomic audit and commit-order", () => {
   test("[P0] 15.5-INT001 AC1 AC6 own issuance stores only SHA256 and publishes a fresh URL once", async () => {
     await withCalendarFeedFixture("serial-commands", async fx => {
       const intent = lifecycle("create", 0);

@@ -48,3 +48,13 @@ test("push CI selects its triggering SHA when pull-request context is absent", (
     assert.equal(checkoutRef(expression, { github: { event: {}, sha: pushSha } }), pushSha);
   }
 });
+
+
+test("diagnostic dispatch excludes pilot and browser/recovery while the normal full-plus-pilot pair survives",()=>{
+  const raw=readFileSync(join(process.cwd(),".github/workflows/ci.yml"),"utf8").replaceAll("\r\n","\n");
+  const diagnostic=raw.slice(raw.indexOf("      - name: Calendar feed cause proof"),raw.indexOf("      # Stage 8:"));
+  assert.ok(!diagnostic.includes("test:pilot-performance")); assert.ok(diagnostic.includes("with-calendar-feed-runtime.mjs cause-proof"));
+  for(const name of ["e2e","recovery-storage-loader"])assert.ok(raw.includes("  "+name+":\n    if: \$\{\{ !(github.event_name == 'workflow_dispatch' && inputs.calendar_feed_cause_proof) \}\}".replaceAll("\\", "")));
+  assert.match(ci,/pnpm run test:int[\s\S]*?pnpm run test:pilot-performance/);
+  assert.throws(()=>projectCalendarFeedCiCommands(raw.replace('test "$RELEASE_VALIDATION" = false','test "$RELEASE_VALIDATION" = true')));
+});

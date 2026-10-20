@@ -1,5 +1,6 @@
 import { spawnSync } from "node:child_process";
 import { randomUUID } from "node:crypto";
+import { createHash } from "node:crypto";
 import { closeSync, existsSync, fsyncSync, mkdirSync, openSync, readFileSync, renameSync, unlinkSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -10,7 +11,39 @@ const SHA = /^[a-f0-9]{40}$/;
 const ID = /^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/;
 const REPO = /^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/;
 const ACTOR = /^[A-Za-z0-9-]+(?:\[bot\])?$/;
-export const checkpointTitle = (id, sha) => `checkpoint:${id}:${sha}`;
+export const checkpointTitle = (id, sha, mode = "normal") => mode === "calendar-feed-cause-proof" ? `checkpoint:cause-proof:${id}:${sha}` : `checkpoint:${id}:${sha}`;
+function verificationMode(state) {
+  if (state.verification_mode === undefined && state.cause_proof === undefined) return state.release_validation === true ? "release" : "normal";
+  const expected = state.cause_proof === true ? "calendar-feed-cause-proof" : state.release_validation === true ? "release" : "normal";
+  if (typeof state.cause_proof !== "boolean" || state.verification_mode !== expected || (state.cause_proof && state.release_validation)) throw new Error("Invalid checkpoint verification mode.");
+  return expected;
+}
+const modeReceipt = state => ({ verification_mode: verificationMode(state), evidence_class: verificationMode(state) === "calendar-feed-cause-proof" ? "diagnostic-only" : "normal-gates-pending", acceptance_credit: 0 });
+
+/** A workflow ID being active does not prove it understands a new input. */
+export function assertCauseProofWorkflow(source) {
+  if (typeof source !== "string" || source.length > 512_000) throw new Error("Diagnostic workflow availability unverified.");
+  const text = source.replaceAll("\r\n", "\n");
+  if (!text.includes("      calendar_feed_cause_proof:\n        description: One diagnostic call and unmodified rollback-only baseline; zero acceptance\n        type: boolean\n        required: false\n        default: false\n")
+    || !text.includes("checkpoint:cause-proof:{0}:{1}") || !text.includes('test "$RELEASE_VALIDATION" = false')
+    || !text.includes("node scripts/ci/with-calendar-feed-runtime.mjs cause-proof")) throw new Error("Diagnostic workflow input/admission is unavailable; no dispatch sent.");
+}
+function diagnosticAvailability(api, options) {
+  const read = ref => {
+    const value = api("GET", `repos/${options.repo}/contents/${WORKFLOW_PATH}?ref=${encodeURIComponent(ref)}`);
+    if (value?.encoding !== "base64" || typeof value.content !== "string" || value.content.length > 700_000 || !/^[a-f0-9]{40}$/.test(value.sha ?? "")) throw new Error("Diagnostic workflow source unavailable; no dispatch sent.");
+    const bytes = Buffer.from(value.content, "base64");
+    if (createHash("sha1").update(`blob ${bytes.length}\0`).update(bytes).digest("hex") !== value.sha) throw new Error("Diagnostic workflow object mismatch; no dispatch sent.");
+    const text = bytes.toString("utf8"); assertCauseProofWorkflow(text);
+    return { text, oid: value.sha };
+  };
+  const candidate = read(options.sha);
+  if (candidate.text.replaceAll("\r\n", "\n") !== readFileSync(resolve(WORKFLOW_PATH), "utf8").replaceAll("\r\n", "\n")) throw new Error("Diagnostic candidate workflow differs from reviewed checkout; no dispatch sent.");
+  const repository = api("GET", `repos/${options.repo}`);
+  validateRequest({ ...options, ref: repository?.default_branch });
+  const primary = read(repository.default_branch);
+  return { candidate_workflow_oid: candidate.oid, default_workflow_oid: primary.oid };
+}
 
 export function validateRequest({ repo, ref, sha }) {
   if (!REPO.test(repo ?? "") || repo.includes("..")) throw new Error("Use an explicit owner/repository.");
@@ -41,6 +74,8 @@ function validateState(state) {
     throw new Error("Invalid checkpoint ownership record.");
   }
   if (state.run_id != null && (!Number.isSafeInteger(state.run_id) || state.run_id < 1)) throw new Error("Invalid recorded run ID.");
+  if (state.release_validation !== undefined && typeof state.release_validation !== "boolean") throw new Error("Invalid checkpoint release selection.");
+  verificationMode(state);
 }
 
 function save(path, state) {
@@ -57,7 +92,7 @@ function workflowMatches(run, state) {
     && run.event === "workflow_dispatch"
     && run.head_branch === state.ref
     && run.head_sha === state.sha
-    && run.display_title === checkpointTitle(state.checkpoint_id, state.sha)
+    && run.display_title === checkpointTitle(state.checkpoint_id, state.sha, verificationMode(state))
     && run.actor?.login?.toLowerCase() === state.actor.toLowerCase()
     && run.triggering_actor?.login?.toLowerCase() === state.actor.toLowerCase()
     && run.run_attempt === 1;
@@ -76,13 +111,14 @@ function discover(api, state) {
   for (let page = 1; page <= 5; page += 1) {
     const result = api("GET", `repos/${state.repo}/actions/workflows/${state.workflow_id}/runs?event=workflow_dispatch&head_sha=${state.sha}&per_page=100&page=${page}`);
     if (!Array.isArray(result?.workflow_runs)) throw new Error("Invalid workflow run listing.");
-    matches.push(...result.workflow_runs.filter((run) => run.display_title === checkpointTitle(state.checkpoint_id, state.sha)));
+    matches.push(...result.workflow_runs.filter((run) => run.display_title === checkpointTitle(state.checkpoint_id, state.sha, verificationMode(state))));
     if (matches.length > 1) throw new Error("Duplicate checkpoint runs; no mutation sent. Reconcile manually.");
     if (result.workflow_runs.length < 100) return matches[0] ?? null;
   }
   throw new Error("Run discovery exceeded its five-page bound; no mutation sent.");
 }
 
+/** @returns {Record<string, unknown>} */
 export function checkpoint(command, options, { api = githubApi, now = () => new Date() } = {}) {
   if (!["dispatch", "status", "cancel"].includes(command)) throw new Error("Use dispatch, status or cancel.");
   if (!options.state) throw new Error("--state is required; use an ignored private local path.");
@@ -96,6 +132,8 @@ export function checkpoint(command, options, { api = githubApi, now = () => new 
       if (existsSync(path)) throw new Error("Checkpoint record already exists. Use status; never retry dispatch from this record.");
       validateRequest(options);
       if (options.release_validation !== undefined && !["true", "false"].includes(options.release_validation)) throw new Error("--release-validation must be true or false.");
+      if (options.cause_proof !== undefined && !["true", "false"].includes(options.cause_proof)) throw new Error("--cause-proof must be true or false.");
+      if (options.cause_proof === "true" && options.release_validation === "true") throw new Error("Diagnostic and release modes are mutually exclusive.");
       const actor = api("GET", "user").login;
       if (!ACTOR.test(actor ?? "")) throw new Error("Cannot establish authenticated actor.");
       const permission = api("GET", `repos/${options.repo}/collaborators/${encodeURIComponent(actor)}/permission`).permission;
@@ -104,11 +142,15 @@ export function checkpoint(command, options, { api = githubApi, now = () => new 
       if (branch.commit?.sha !== options.sha) throw new Error("Remote branch differs from the requested SHA; no dispatch sent.");
       const workflow = api("GET", `repos/${options.repo}/actions/workflows/${WORKFLOW}`);
       if (workflow.path !== WORKFLOW_PATH || workflow.state !== "active" || !Number.isSafeInteger(workflow.id) || workflow.id < 1) throw new Error("Expected active CI workflow is unavailable on the default branch.");
+      const availability = options.cause_proof === "true" ? diagnosticAvailability(api, options) : undefined;
       const created = now();
       const state = {
         version: 1, repo: options.repo, ref: options.ref, sha: options.sha,
         actor, workflow_id: workflow.id, checkpoint_id: randomUUID(),
         release_validation: options.release_validation === "true",
+        cause_proof: options.cause_proof === "true",
+        verification_mode: options.cause_proof === "true" ? "calendar-feed-cause-proof" : options.release_validation === "true" ? "release" : "normal",
+        ...(availability ? { workflow_availability: availability } : {}),
         created_at: created.toISOString(), deadline_at: new Date(created.getTime() + 60 * 60 * 1000).toISOString(),
         phase: "dispatch-uncertain", run_id: null,
       };
@@ -118,14 +160,14 @@ export function checkpoint(command, options, { api = githubApi, now = () => new 
       try { writeFileSync(fd, `${JSON.stringify(state, null, 2)}\n`); fsyncSync(fd); } finally { closeSync(fd); }
       try {
         api("POST", `repos/${state.repo}/actions/workflows/${state.workflow_id}/dispatches`, {
-          ref: state.ref, inputs: { expected_sha: state.sha, checkpoint_id: state.checkpoint_id, release_validation: String(state.release_validation) },
+          ref: state.ref, inputs: { expected_sha: state.sha, checkpoint_id: state.checkpoint_id, release_validation: String(state.release_validation), ...(state.cause_proof ? { calendar_feed_cause_proof: "true" } : {}) },
         });
       } catch {
         throw new Error("Dispatch outcome uncertain. Ownership record retained; use status, never repeat dispatch.");
       }
       state.phase = "dispatched";
       save(path, state);
-      return { phase: state.phase, checkpoint_id: state.checkpoint_id, sha: state.sha, release_validation: state.release_validation, next: "Use status with this same --state record." };
+      return { phase: state.phase, checkpoint_id: state.checkpoint_id, sha: state.sha, release_validation: state.release_validation, ...modeReceipt(state), next: "Use status with this same --state record." };
     }
     const state = JSON.parse(readFileSync(path, "utf8"));
     validateState(state);
@@ -134,7 +176,7 @@ export function checkpoint(command, options, { api = githubApi, now = () => new 
     const listed = discover(api, state);
     if (!listed) {
       if (state.run_id != null) throw new Error("Recorded run is absent from discovery; reconcile manually.");
-      return { phase: "dispatch-uncertain", checkpoint_id: state.checkpoint_id, attention: "No unique matching run visible. Do not redispatch. Reconcile manually.", deadline_exceeded: now().getTime() > Date.parse(state.deadline_at) };
+      return { phase: "dispatch-uncertain", checkpoint_id: state.checkpoint_id, ...modeReceipt(state), attention: "No unique matching run visible. Do not redispatch. Reconcile manually.", deadline_exceeded: now().getTime() > Date.parse(state.deadline_at) };
     }
     const run = api("GET", `repos/${state.repo}/actions/runs/${listed.id}`);
     assertOwnedRun(run, state);
@@ -149,10 +191,11 @@ export function checkpoint(command, options, { api = githubApi, now = () => new 
       state.cancel_requested_at = now().toISOString();
       save(path, state);
       try { api("POST", `repos/${state.repo}/actions/runs/${run.id}/cancel`); } catch { throw new Error("Cancellation outcome uncertain; use status. No retry sent."); }
-      return { phase: "cancel-requested", run_id: run.id, sha: state.sha };
+      return { phase: "cancel-requested", run_id: run.id, sha: state.sha, ...modeReceipt(state) };
     }
     return { phase: state.phase, conclusion: state.conclusion, run_id: run.id, sha: state.sha,
       release_validation: state.release_validation ?? false,
+      ...modeReceipt(state),
       deadline_exceeded: run.status !== "completed" && now().getTime() > Date.parse(state.deadline_at),
       url: `https://github.com/${state.repo}/actions/runs/${run.id}` };
   } finally {
@@ -164,10 +207,10 @@ export function checkpoint(command, options, { api = githubApi, now = () => new 
 export function parseArgs(args) {
   const [command, ...rest] = args;
   const options = {};
-  const allowed = command === "dispatch" ? ["repo", "ref", "sha", "state", "release-validation"] : ["state"];
+  const allowed = command === "dispatch" ? ["repo", "ref", "sha", "state", "release-validation", "cause-proof"] : ["state"];
   for (let index = 0; index < rest.length; index += 2) {
     const key = rest[index]?.slice(2);
-    if (!rest[index]?.startsWith("--") || !allowed.includes(key) || options[key.replaceAll("-", "_")] !== undefined || !rest[index + 1] || rest[index + 1].startsWith("--")) throw new Error("Invalid, duplicate or missing option. Dispatch: --repo --ref --sha --state [--release-validation true|false]; status/cancel: --state.");
+    if (!rest[index]?.startsWith("--") || !allowed.includes(key) || options[key.replaceAll("-", "_")] !== undefined || !rest[index + 1] || rest[index + 1].startsWith("--")) throw new Error("Invalid, duplicate or missing option. Dispatch: --repo --ref --sha --state [--release-validation true|false] [--cause-proof true|false]; status/cancel: --state.");
     options[key.replaceAll("-", "_")] = rest[index + 1];
   }
   return { command, options };

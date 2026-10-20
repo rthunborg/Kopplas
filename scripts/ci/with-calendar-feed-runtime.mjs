@@ -1,8 +1,8 @@
 /** Disposable GitHub-hosted CI only. This is not local resource-launch authority. */
 import { spawn, execFile } from "node:child_process";
 import { promisify, stripVTControlCharacters } from "node:util";
-import { randomBytes, randomUUID } from "node:crypto";
-import { readdir, stat, realpath, mkdtemp, appendFile, writeFile, readFile, readlink } from "node:fs/promises";
+import { randomBytes, randomUUID, createHash } from "node:crypto";
+import { readdir, stat, realpath, mkdtemp, appendFile, writeFile, readFile, readlink, mkdir } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { resolve, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -11,6 +11,73 @@ import pg from "pg";
 
 export const INTEGRATION_ARGS = Object.freeze(["run", "test:int", "--reporter=default", "--reporter=github-actions", "--reporter=json", "--outputFile=test-results/full-integration.json"]);
 export const BROWSER_ARGS = Object.freeze(["run", "test:smoke"]);
+export const CAUSE_PROOF_ARGS = Object.freeze(["exec", "vitest", "run", "tests/integration/commands/calendar-feed.int.test.ts", "--maxWorkers=1", "--no-file-parallelism", "--testNamePattern=^15[.]5-DIAG001$", "--reporter=default", "--reporter=github-actions", "--reporter=json", "--outputFile=test-results/calendar-feed-cause-proof/native.json"]);
+export const CAUSE_PROOF_OUTCOMES = Object.freeze(["PRE_SQL_STOP", "AMBIGUOUS_SQL42501", "NONREPRODUCED", "UNKNOWN_ENGINE_ERROR", "INCOMPARABLE", "CLEANUP_UNVERIFIED", "ORDINARY_SUCCESS", "CAPTURE_UNAVAILABLE"]);
+const CAUSE_DIRECTORY = "test-results/calendar-feed-cause-proof";
+const TRACE_EVENTS = new Set(["input-invalid", "execute-enter", "key-ready", "status-enter", "status-rpc42501", "status-rpc-error", "status-schema-invalid", "status-valid", "proof-enter", "manage-enter", "manage-rpc42501", "manage-rpcCF409", "manage-rpc-error", "manage-schema-invalid", "manage-valid", "envelope-success", "envelope-UNAUTHENTICATED", "envelope-TENANT_MEMBERSHIP_REQUIRED", "envelope-PERMISSION_DENIED", "envelope-VALIDATION_FAILED", "envelope-TENANT_ACCESS_DENIED", "envelope-COMMAND_CONFLICT", "envelope-SERVER_ERROR", "envelope-other", "context-match", "context-mismatch", "membership-match", "membership-mismatch", "truncated"]);
+
+/** Validate parsed wire data without inspecting native error text or payloads. */
+export function validateCauseProofObservation(value) {
+  try {
+    const descriptors = Object.getOwnPropertyDescriptors(value);
+    const clean = Object.create(null);
+    for (const [key, descriptor] of Object.entries(descriptors)) {
+      if (!("value" in descriptor)) fail("diagnostic-observation-refused");
+      clean[key] = descriptor.value;
+    }
+    for (const name of ["events", "failures"]) {
+      if (!Array.isArray(clean[name]) || clean[name].length > 32) fail("diagnostic-observation-refused");
+      const array = clean[name], copy = [];
+      for (let i = 0; i < array.length; i++) {
+        const descriptor = Object.getOwnPropertyDescriptor(array, String(i));
+        if (!descriptor || !("value" in descriptor)) fail("diagnostic-observation-refused");
+        copy.push(descriptor.value);
+      }
+      clean[name] = copy;
+    }
+    value = clean;
+  } catch { fail("diagnostic-observation-refused"); }
+  const keys = ["kind", "mode", "outcome", "events", "baseline", "sqlState", "cleanupVerified", "ordinarySettled", "queriesSettled", "failures"];
+  if (!value || typeof value !== "object" || Object.keys(value).length !== keys.length || !keys.every(key => Object.hasOwn(value, key))
+    || value.kind !== "calendar_feed.cause_proof" || value.mode !== "cause-proof" || !CAUSE_PROOF_OUTCOMES.includes(value.outcome)
+    || !Array.isArray(value.events) || value.events.length > 16 || !value.events.every(event => typeof event === "string" && TRACE_EVENTS.has(event))
+    || !["not-selected", "status", "manage"].includes(value.baseline) || !(value.sqlState === null || SQLSTATE_CATEGORIES.has(value.sqlState) || value.sqlState === "CF409")
+    || !Array.isArray(value.failures) || value.failures.length > 32 || !value.failures.every(code => ["protocol-unsettled", "baseline-qualification-or-call", "baseline-rollback", "baseline-reset", "baseline-state", "baseline-close", "fresh-state", "fresh-qualification-or-state", "fresh-protocol", "fresh-close", "fixture-or-ordinary", "fixture-rows", "fixture-canonical", "fixture-absence", "fixture-custody-retained"].includes(code))
+    || !["cleanupVerified", "ordinarySettled", "queriesSettled"].every(key => typeof value[key] === "boolean")) fail("diagnostic-observation-refused");
+  if (!value.cleanupVerified || !value.ordinarySettled || !value.queriesSettled || value.outcome === "CLEANUP_UNVERIFIED") fail("diagnostic-settlement-unverified");
+  return value;
+}
+export async function finishCauseProof(cwd, env, receipt, observe, privacy) {
+  const folder = join(cwd, CAUSE_DIRECTORY), entries = [];
+  const upload = join(folder, "upload"); await mkdir(upload, { recursive: true });
+  let captureFailed = observe.privacyFailed?.() === true;
+  for (const name of ["native.json", "observation.json"]) {
+    try {
+      const bytes = await readFile(join(folder, name));
+      if (bytes.length > 1_000_000) fail("diagnostic-report-refused");
+      const data = JSON.parse(bytes.toString("utf8"));
+      if (hasSensitiveOutput(bytes.toString("utf8"), privacy)) fail("diagnostic-report-privacy-refused");
+      if (name === "native.json") {
+        if (data.numTotalTests !== 1 || data.numPendingTests !== 0 || !Number.isSafeInteger(data.numFailedTests) || !Number.isSafeInteger(data.numPassedTests)
+          || data.numFailedTests < 0 || data.numPassedTests < 0 || data.numPassedTests + data.numFailedTests !== 1) fail("diagnostic-report-refused");
+        await observe(bytes.toString("utf8"));
+      } else validateCauseProofObservation(data);
+      entries.push({ name, available: true, bytes: bytes.length, sha256: createHash("sha256").update(bytes).digest("hex") });
+      // Only validated copies are uploaded. A refused original is never deleted,
+      // printed, or accidentally swept into the diagnostic artifact directory.
+      await writeFile(join(upload, name), bytes, { mode: 0o600 });
+    } catch { entries.push({ name, available: false }); if (receipt.childExitCodes.length) captureFailed = true; }
+  }
+  const safe = { kind: "calendar_feed.diagnostic_receipt", mode: "cause-proof", evidenceClass: "diagnostic-only", acceptanceCredit: 0,
+    sourceSha: env.GITHUB_SHA, checkpointId: env.CALENDAR_FEED_CAUSE_PROOF_CHECKPOINT, runId: env.GITHUB_RUN_ID,
+    attempt: 1, job: env.GITHUB_JOB, childStarted: receipt.childExitCodes.length > 0,
+    reports: entries.map(({ name, available }) => ({ name, available })),
+    cleanupVerified: receipt.keyDeleted && receipt.dbClosed && receipt.custody === null,
+    custodyRetained: receipt.custody !== null, failures: [...receipt.failures], captureFailed };
+  await writeFile(join(upload, "receipt.json"), JSON.stringify(safe) + "\n", { mode: 0o600 });
+  await writeFile(join(upload, "manifest.json"), JSON.stringify({ ...safe, reports: entries }) + "\n", { mode: 0o600 });
+  return !captureFailed;
+}
 export const FEED_FUNCTIONS = Object.freeze([
   "public.fetch_calendar_feed(text,text,jsonb,text)",
   "public.manage_calendar_feed(uuid,uuid,uuid,text,integer,uuid,text,uuid,jsonb,text)",
@@ -115,7 +182,7 @@ export function createCalendarFeedDatabaseClient(stack, purpose = "runtime") {
 
 /** Pure prerequisite validation: CI flags alone do not qualify a machine. */
 export function validateAdmission(mode, env, platform) {
-  if (!["db", "browser"].includes(mode)) fail("mode-refused");
+  if (!["db", "browser", "cause-proof"].includes(mode)) fail("mode-refused");
   if (platform !== "linux" || env.CI !== "true" || env.GITHUB_ACTIONS !== "true" || env.RUNNER_ENVIRONMENT !== "github-hosted"
     || !/^\d+$/.test(env.GITHUB_RUN_ID ?? "") || !/^\d+$/.test(env.GITHUB_RUN_ATTEMPT ?? "")
     || !/^[a-zA-Z0-9_-]+$/.test(env.GITHUB_JOB ?? "")
@@ -126,6 +193,8 @@ export function validateAdmission(mode, env, platform) {
     if (env[key] && env[key] !== expected) fail("endpoint-refused");
   }
   if (env.E2E_PORT && env.E2E_PORT !== "3100") fail("port-refused");
+  if (mode === "cause-proof" && (env.GITHUB_RUN_ATTEMPT !== "1" || !/^[a-f0-9]{40}$/.test(env.GITHUB_SHA ?? "")
+    || !UUID.test(env.CALENDAR_FEED_CAUSE_PROOF_CHECKPOINT ?? "") || env.GITHUB_EVENT_NAME !== "workflow_dispatch")) fail("diagnostic-admission-refused");
 }
 
 /** Match the actual Docker publication and job-created project identity, not just loopback. */
@@ -179,7 +248,7 @@ export function hasSensitiveOutput(line, { keyId, secret, knownValues = /** @typ
 export function createTelemetryObserver({ keyId, secret, persist, knownValues = /** @type {string[]} */ ([]) }) {
   let responseCount = 0, sensitiveOutputCount = 0;
   const observation = () => persist(JSON.stringify({ event: "calendar_feed.runtime_observation", responseCount, sensitiveOutputCount, sensitiveOutputDetected: sensitiveOutputCount !== 0 }) + "\n");
-  return async (line) => {
+  const observe = async (line) => {
     let record;
     try { record = JSON.parse(line); } catch { /* Unstructured output is still inspected below. */ }
     const validResponse = record !== null && typeof record === "object" && !Array.isArray(record)
@@ -194,6 +263,7 @@ export function createTelemetryObserver({ keyId, secret, persist, knownValues = 
     await persist(JSON.stringify({ event: record.event, status: record.status }) + "\n");
     await observation();
   };
+  return Object.assign(observe, { privacyFailed: () => sensitiveOutputCount !== 0 });
 }
 
 /** Occupied listeners are refused; an existing app is never adopted or stopped. */
@@ -379,11 +449,24 @@ function defaultDependencies(env, cwd) {
       return { status, migrations, stack };
     },
     portFree: assertPortFree,
+    async prepareDiagnostic() {
+      const folder = join(cwd, CAUSE_DIRECTORY);
+      await mkdir(folder, { recursive: true });
+      if ((await readdir(folder)).length) fail("diagnostic-output-not-fresh");
+    },
+    finishDiagnostic: (receipt, observe, privacy) => finishCauseProof(cwd, env, receipt, observe, privacy),
+    async readDiagnostic() { return validateCauseProofObservation(JSON.parse(await readFile(join(cwd, CAUSE_DIRECTORY, "observation.json"), "utf8"))); },
     connect: createCalendarFeedDatabaseClient,
     async createTelemetry() { const folder = await mkdtemp(join(tmpdir(), "kopplas-feed-ci-")); const path = join(folder, "responses.jsonl"); await writeFile(path, "", { mode: 0o600 }); return { path, persist: line => appendFile(path, line, { mode: 0o600 }) }; },
     launch: (command, args, childEnv, observe) => launchOwned(command, args, childEnv, cwd, observe),
     ready: (url, child, signal) => waitForOwnedHttp({ url, child, signal }),
   };
+}
+
+/** Test-only dedicated qualification. No credential export to child environments. */
+export async function qualifyCalendarFeedCauseProof(env = process.env) {
+  validateAdmission("cause-proof", env, process.platform);
+  return defaultDependencies(env, ROOT).qualify();
 }
 
 /**
@@ -392,7 +475,7 @@ function defaultDependencies(env, cwd) {
  * @param {object} injected
  */
 export async function runCalendarFeedRuntime({ mode, env = process.env, platform = process.platform, cwd = ROOT } = {}, injected = {}) {
-  const receipt = { event: "calendar_feed.ci_lifecycle", mode: ["db", "browser"].includes(mode) ? mode : "refused", ready: false,
+  const receipt = { event: "calendar_feed.ci_lifecycle", mode: ["db", "browser", "cause-proof"].includes(mode) ? mode : "refused", ready: false,
     childExitCodes: /** @type {(number|null)[]} */ ([]), keyDeleted: false, dbClosed: false,
     failures: /** @type {string[]} */ ([]),
     diagnostics: /** @type {{stage:string, category:string, sqlState:string|null}[]} */ ([]),
@@ -401,7 +484,8 @@ export async function runCalendarFeedRuntime({ mode, env = process.env, platform
     keyOutcome: /** @type {"not-attempted" | "rollback-confirmed" | "deleted-confirmed" | "unverified"} */ ("not-attempted"),
     custody: /** @type {null | {owner:string, job:string|undefined, vaultUuid:string|null, ownedName:string|null, expiry:string, nextAction:string, resumeCondition:string}} */ (null) };
   const children = new Set();
-  let db, keyUuid, ownedName, transactionOpen = false, createUncertain = false, browserTeardownUnverified = false;
+  let db, keyUuid, ownedName, transactionOpen = false, createUncertain = false, browserTeardownUnverified = false, diagnosticUnverified = false;
+  let diagnosticPrepared = false, diagnosticObserve = async () => {}, diagnosticPrivacy = { keyId: "", secret: "" };
   let stage = "admission", createAttempted = false, commitAttempted = false, rollbackConfirmed = false;
   const abort = new AbortController();
   const deps = { ...defaultDependencies(env, cwd), ...injected };
@@ -412,12 +496,13 @@ export async function runCalendarFeedRuntime({ mode, env = process.env, platform
     const handle = launch(command, args, childEnv, observer);
     let result;
     try { result = await bounded(handle.done, timeout, "child-timeout", abort.signal); }
-    catch (error) { if (mode === "browser") browserTeardownUnverified = true; throw error; }
+    catch (error) { if (mode === "browser") browserTeardownUnverified = true; if (mode === "cause-proof") diagnosticUnverified = true; throw error; }
     receipt.childExitCodes.push(result.code);
     if (result.code !== 0 || result.signal) {
       // pnpm can map a killed nested Playwright runner to nonzero/null signal.
       // That is never independent proof of its detached server's teardown.
       if (mode === "browser") browserTeardownUnverified = true;
+      if (mode === "cause-proof") diagnosticUnverified = true;
       fail("child-failed");
     }
     const stopped = await handle.stop();
@@ -430,7 +515,8 @@ export async function runCalendarFeedRuntime({ mode, env = process.env, platform
     stage = "qualification";
     const { status, migrations, stack } = await deps.qualify(); checkSignal();
     stage = "port-check";
-    await deps.portFree(mode === "db" ? 3195 : 3100); checkSignal();
+    if (mode !== "cause-proof") await deps.portFree(mode === "db" ? 3195 : 3100); checkSignal();
+    if (mode === "cause-proof") { await deps.prepareDiagnostic(); diagnosticPrepared = true; }
     stage = "database-client";
     db = deps.connect(stack);
     // Consume asynchronous connection errors without logging driver internals.
@@ -461,6 +547,8 @@ export async function runCalendarFeedRuntime({ mode, env = process.env, platform
     stage = "telemetry";
     const telemetry = await deps.createTelemetry();
     const observe = createTelemetryObserver({ keyId, secret, persist: telemetry.persist });
+    diagnosticObserve = observe;
+    diagnosticPrivacy = { keyId, secret };
     stage = "transaction-begin";
     await db.query("begin"); transactionOpen = true;
     stage = "key-collision";
@@ -483,7 +571,11 @@ export async function runCalendarFeedRuntime({ mode, env = process.env, platform
       NEXT_PUBLIC_APP_URL: `http://127.0.0.1:${mode === "db" ? 3195 : 3100}`, E2E_PORT: "3100",
       CALENDAR_FEED_ATTESTATION_KEY_ID: keyId, CALENDAR_FEED_ATTESTATION_SECRET: secret,
       CALENDAR_FEED_TEST_LOG_FILE: telemetry.path, CALENDAR_FEED_TEST_BASE_URL: `http://127.0.0.1:${mode === "db" ? 3195 : 3100}` };
-    if (mode === "db") {
+    if (mode === "cause-proof") {
+      childEnv.CALENDAR_FEED_CAUSE_PROOF_MODE = "1";
+      await run("pnpm", CAUSE_PROOF_ARGS, childEnv, observe, 240_000);
+      try { await deps.readDiagnostic(); } catch { diagnosticUnverified = true; fail("diagnostic-settlement-unverified"); }
+    } else if (mode === "db") {
       await run(process.execPath, ["node_modules/next/dist/bin/next", "build"], childEnv, observe, 240_000);
       const server = launch(process.execPath, ["node_modules/next/dist/bin/next", "start", "--hostname", "127.0.0.1", "--port", "3195"], childEnv, observe);
       await deps.ready(childEnv.CALENDAR_FEED_TEST_BASE_URL, server, abort.signal); receipt.ready = true;
@@ -506,12 +598,13 @@ export async function runCalendarFeedRuntime({ mode, env = process.env, platform
       } catch (error) { receipt.failures.push("owned-child-cleanup-failed"); receipt.diagnostics.push(safeDiagnostic("child-cleanup", error)); }
     }
     if (browserTeardownUnverified && !receipt.failures.includes("browser-server-teardown-unverified")) receipt.failures.push("browser-server-teardown-unverified");
+    if (diagnosticUnverified) receipt.failures.push("diagnostic-work-settlement-unverified");
     if (transactionOpen) {
       try { await db.query("rollback"); transactionOpen = false; createUncertain = false; rollbackConfirmed = true; }
       catch (error) { receipt.failures.push("transaction-rollback-unverified"); receipt.diagnostics.push(safeDiagnostic("transaction-rollback", error)); }
     }
     // Never delete a key while a captured child or transaction remains unverified.
-    if (keyUuid && !transactionOpen && !browserTeardownUnverified && !receipt.failures.includes("owned-child-cleanup-failed")) {
+    if (keyUuid && !transactionOpen && !browserTeardownUnverified && !diagnosticUnverified && !receipt.failures.includes("owned-child-cleanup-failed")) {
       try {
         const result = await db.query("delete from vault.secrets where id=$1::uuid and name=$2 returning id", [keyUuid, ownedName]);
         const remaining = await db.query("select id,name from vault.secrets where id=$1::uuid", [keyUuid]);
@@ -529,6 +622,10 @@ export async function runCalendarFeedRuntime({ mode, env = process.env, platform
     }
     receipt.keyOutcome = receipt.keyDeleted ? "deleted-confirmed" : !createAttempted ? "not-attempted"
       : rollbackConfirmed && !commitAttempted ? "rollback-confirmed" : "unverified";
+  }
+  if (mode === "cause-proof" && diagnosticPrepared) {
+    try { if (!await deps.finishDiagnostic(receipt, diagnosticObserve, diagnosticPrivacy)) receipt.failures.push("diagnostic-capture-failed"); }
+    catch { receipt.failures.push("diagnostic-capture-failed"); }
   }
   return { exitCode: receipt.failures.length ? 1 : 0, receipt };
 }

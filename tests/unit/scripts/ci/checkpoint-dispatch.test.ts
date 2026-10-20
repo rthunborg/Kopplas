@@ -5,7 +5,8 @@ import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "no
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { projectCalendarFeedCiCommands } from "../../../support/calendar-feed-ci-contract";
-import { checkpoint, checkpointTitle, parseArgs, validateRequest } from "../../../../scripts/ci/checkpoint-dispatch.mjs";
+import { checkpoint, checkpointTitle, parseArgs, validateRequest, assertCauseProofWorkflow } from "../../../../scripts/ci/checkpoint-dispatch.mjs";
+import { createHash } from "node:crypto";
 
 const sha = "a".repeat(40);
 const request = { repo: "owner/repo", ref: "codex/checkpoint", sha };
@@ -20,9 +21,16 @@ function fixture() {
   let remoteSha = sha;
   let actor = "owner";
   let fullPage = false;
+  let defaultWorkflow = readFileSync(".github/workflows/ci.yml", "utf8");
   const api = (method: string, endpoint: string, body?: unknown) => {
     calls.push({ method, endpoint, body });
     if (endpoint === "user") return { login: actor };
+    if (endpoint === "repos/owner/repo") return { default_branch: "main" };
+    if (endpoint.includes("/contents/.github/workflows/ci.yml?ref=")) {
+      const text = endpoint.endsWith("ref=main") ? defaultWorkflow : readFileSync(".github/workflows/ci.yml", "utf8");
+      const bytes = Buffer.from(text);
+      return { encoding: "base64", content: bytes.toString("base64"), sha: createHash("sha1").update(`blob ${bytes.length}\0`).update(bytes).digest("hex") };
+    }
     if (endpoint.endsWith("/permission")) return { permission };
     if (endpoint.includes("/branches/")) return { commit: { sha: remoteSha } };
     if (endpoint.endsWith("/workflows/ci.yml")) return { id: 42, path: ".github/workflows/ci.yml", state: "active" };
@@ -41,7 +49,7 @@ function fixture() {
     const current = record();
     return { id: 123, repository: { full_name: request.repo }, workflow_id: 42,
       path: ".github/workflows/ci.yml", event: "workflow_dispatch", head_branch: request.ref,
-      head_sha: sha, display_title: checkpointTitle(current.checkpoint_id, sha),
+      head_sha: sha, display_title: checkpointTitle(current.checkpoint_id, sha, current.verification_mode),
       actor: { login: "owner" }, triggering_actor: { login: "owner" }, run_attempt: 1,
       status: "queued", conclusion: null, ...changes };
   };
@@ -49,7 +57,7 @@ function fixture() {
     setRuns(value: Record<string, unknown>[]) { runs = value; },
     failDispatch() { failDispatch = true; }, failCancel() { failCancel = true; },
     permission(value: string) { permission = value; }, remoteSha(value: string) { remoteSha = value; },
-    actor(value: string) { actor = value; }, fullPage() { fullPage = true; },
+    actor(value: string) { actor = value; }, fullPage() { fullPage = true; }, defaultWorkflow(value: string) { defaultWorkflow = value; },
     cleanup() { rmSync(directory, { recursive: true, force: true }); } };
 }
 function withFixture(body: (value: ReturnType<typeof fixture>) => void) {
@@ -193,9 +201,14 @@ test("native workflow admission executes exact source binding and preserves PR/p
   assert.ok(block, "extract the checked-in admission block, not a duplicate implementation");
   const script = block[1].split(/\r?\n/).map((line) => line.slice(10)).join("\n");
   const base = { GITHUB_EVENT_NAME: "workflow_dispatch", EXPECTED_SHA: sha, GITHUB_SHA: sha,
+    CAUSE_PROOF: "false", RELEASE_VALIDATION: "false", OTHER_DIAGNOSTICS: "false",
     CHECKPOINT_ID: "12345678-1234-4123-8123-123456789abc", GITHUB_RUN_ATTEMPT: "1", GITHUB_REF_TYPE: "branch" };
   const cases: [string, Record<string, string>, boolean][] = [
     ["valid dispatch", {}, true],
+    ["valid diagnostic", { CAUSE_PROOF: "true" }, true],
+    ["diagnostic release conflict", { CAUSE_PROOF: "true", RELEASE_VALIDATION: "true" }, false],
+    ["diagnostic other probe conflict", { CAUSE_PROOF: "true", OTHER_DIAGNOSTICS: "true" }, false],
+    ["diagnostic PR refused", { CAUSE_PROOF: "true", GITHUB_EVENT_NAME: "pull_request" }, false],
     ["head drift", { GITHUB_SHA: "b".repeat(40) }, false],
     ["malformed SHA", { EXPECTED_SHA: "aaaa" }, false],
     ["malformed UUID", { CHECKPOINT_ID: "not-a-checkpoint" }, false],
@@ -226,4 +239,38 @@ test("validation selection cannot introduce arbitrary workflow inputs", () => wi
   assert.equal(mutations(f).length, 0);
   assert.deepEqual(parseArgs(["dispatch", "--release-validation", "true"]).options, { release_validation: "true" });
   assert.throws(() => parseArgs(["dispatch", "--release-validation", "true", "--release-validation", "false"]));
+}));
+
+
+test("diagnostic selection is durable before the only POST and status remains zero acceptance", () => withFixture(f => {
+  const api = f.dependencies.api;
+  f.dependencies.api=(method,endpoint,body)=>{
+    if(method==="POST") { assert.equal(f.record().verification_mode,"calendar-feed-cause-proof"); assert.equal(f.record().phase,"dispatch-uncertain"); }
+    return api(method,endpoint,body);
+  };
+  const result=checkpoint("dispatch",{...request,state:f.state,cause_proof:"true"},f.dependencies);
+  assert.equal(result.evidence_class,"diagnostic-only"); assert.equal(result.acceptance_credit,0);
+  assert.deepEqual((mutations(f)[0].body as {inputs:unknown}).inputs,{expected_sha:sha,checkpoint_id:f.record().checkpoint_id,release_validation:"false",calendar_feed_cause_proof:"true"});
+  f.setRuns([f.run({status:"completed",conclusion:"success"})]);
+  assert.equal(f.status().evidence_class,"diagnostic-only"); assert.equal(f.status().acceptance_credit,0);
+  assert.throws(f.dispatch,/already exists/); assert.equal(mutations(f).length,1);
+}));
+test("diagnostic availability or mode conflicts refuse before POST and cannot fall back",()=>{
+  withFixture(f=>{f.defaultWorkflow("name: old workflow");assert.throws(()=>checkpoint("dispatch",{...request,state:f.state,cause_proof:"true"},f.dependencies),/unavailable/);assert.equal(mutations(f).length,0);});
+  for(const options of [{cause_proof:"other"},{cause_proof:"true",release_validation:"true"}])withFixture(f=>{assert.throws(()=>checkpoint("dispatch",{...request,state:f.state,...options},f.dependencies));assert.equal(mutations(f).length,0);});
+  assert.deepEqual(parseArgs(["dispatch","--cause-proof","true"]).options,{cause_proof:"true"});
+  assert.throws(()=>parseArgs(["dispatch","--cause-proof","true","--cause-proof","false"]));
+  assert.throws(()=>parseArgs(["status","--cause-proof","true"]));
+  assert.throws(()=>assertCauseProofWorkflow(readFileSync(".github/workflows/ci.yml","utf8").replace("default: false","default: true")));
+});
+test("diagnostic uncertain dispatch and wrong-mode title never select or resend normal work",()=>withFixture(f=>{
+  f.failDispatch(); assert.throws(()=>checkpoint("dispatch",{...request,state:f.state,cause_proof:"true"},f.dependencies),/uncertain/);
+  f.setRuns([f.run({display_title:checkpointTitle(f.record().checkpoint_id,sha)})]);
+  assert.equal(f.status().phase,"dispatch-uncertain"); assert.equal(f.status().evidence_class,"diagnostic-only");assert.equal(mutations(f).length,1);
+}));
+test("legacy mode-less records remain normal and corrupt diagnostic selections fail closed",()=>withFixture(f=>{
+  f.dispatch();const old=f.record();delete old.verification_mode;delete old.cause_proof;writeFileSync(f.state,JSON.stringify(old));f.setRuns([f.run()]);
+  assert.equal(f.status().verification_mode,"normal");
+  const corrupt=f.record();corrupt.cause_proof=true;corrupt.verification_mode="normal";writeFileSync(f.state,JSON.stringify(corrupt));
+  assert.throws(f.status,/verification mode/);assert.equal(mutations(f).length,1);
 }));

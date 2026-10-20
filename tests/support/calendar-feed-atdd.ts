@@ -7,13 +7,14 @@ import { randomUUID } from "node:crypto";
 import { readFile } from "node:fs/promises";
 import { expect as vitestExpect } from "vitest";
 import { adminQuery, adminSession } from "../factories/admin-sql";
-import { seedRoleAwarePhaseAUsers, makeAuthedServerClient, makeAnonServerClient, deleteAuthUser, type FixtureUser, type TestServerClient } from "../factories/tenants";
+import { seedRoleAwarePhaseAUsers, makeAuthedServerClient, makeAnonServerClient, deleteAuthUser, createRoleAwarePhaseAFixture, cleanupRoleAwarePhaseAFixture, type FixtureUser, type TestServerClient } from "../factories/tenants";
 import { withBookingFixture, bookingCommand, bookingInput, type BookingFixture } from "./bookings-atdd";
 import { realSeriesInput, reviewRealSeries } from "./booking-series-atdd";
 import { createBookingSeries } from "@/server/commands/bookings/create-booking-series";
 import { updateBookingSeries } from "@/server/commands/bookings/update-booking-series";
 import { runCommand } from "@/server/commands/envelope";
 import { manageCalendarFeed } from "@/server/commands/calendar-feed/manage-calendar-feed";
+import { captureCalendarFeedTrace, type CalendarFeedTraceEvent } from "@/server/commands/calendar-feed/calendar-feed-db";
 import { readCalendarFeedStatus } from "@/server/read-models/calendar-feed";
 import { publicCalendarFeed } from "@/server/calendar-feed/public-feed";
 import { feedKeyFromEnv, issueCalendarFeedToken, hashFeedToken, FEED_SCHEMA, FETCH_DOMAIN, MANAGE_DOMAIN, signFeedProof } from "@/server/calendar-feed/attestation";
@@ -736,4 +737,148 @@ export function issuedUrl(result: ManagementObservation): string {
   }
   if (!result.issuedUrl) throw calendarFixtureOrigin("scenario-issued-committed-missing-url");
   return result.issuedUrl;
+}
+
+
+// Cause-proof decision seam: no native error text or inferred SQL engine phase.
+export function calendarCauseProofSelection(events: readonly CalendarFeedTraceEvent[]): "status" | "manage" | "not-selected" {
+  if (!events.includes("context-match") || events.includes("context-mismatch") || events.includes("membership-mismatch") || events.includes("truncated")) return "not-selected";
+  if (events.includes("status-rpc42501")) return "status";
+  if (events.includes("manage-rpc42501") && events.includes("membership-match")) return "manage";
+  return "not-selected";
+}
+export async function calendarCauseProofIdle(client: { readyForQuery?: boolean }, now = Date.now, sleep = (ms: number) => new Promise<void>(resolve => setTimeout(resolve, ms))) {
+  const deadline = now() + 10_000;
+  // Installed pg8.22 only sets readyForQuery after the server protocol boundary.
+  // A query_timeout rejection alone is NOT proof that its server query ended.
+  while (client.readyForQuery !== true && now() < deadline) await sleep(20);
+  return client.readyForQuery === true;
+}
+// End cause-proof decision seam.
+
+/** Explicit-mode-only fixture composition. Canonical cleanup is conditional on
+ * actual command/protocol settlement; withBookingFixture's unconditional finally
+ * is deliberately not used for this diagnostic path. Normal95 cases are intact. */
+export async function runCalendarFeedCauseProof() {
+  const report = { kind: "calendar_feed.cause_proof", mode: "cause-proof", outcome: "CAPTURE_UNAVAILABLE",
+    events: [] as CalendarFeedTraceEvent[], baseline: "not-selected", sqlState: null as string | null,
+    cleanupVerified: true, ordinarySettled: true, queriesSettled: true, failures: [] as string[] };
+  let fixture: Awaited<ReturnType<typeof createRoleAwarePhaseAFixture>> | undefined;
+  const fail = (stage: string) => { report.failures.push(stage); report.cleanupVerified = false; };
+  try {
+    if (process.env.CALENDAR_FEED_CAUSE_PROOF_MODE !== "1") throw Error("Diagnostic mode refused");
+    fixture = await createRoleAwarePhaseAFixture();
+    const tenantId = fixture.base.tenantA.id, userId = fixture.users.montor.id;
+    const [member] = await adminQuery<{id:string}>("select id from public.tenant_memberships where tenant_id=$1 and user_id=$2", [tenantId,userId]);
+    if (!member) throw Error("Controlled subject unavailable");
+    const client = await makeAuthedServerClient(fixture.users.montor), intent = lifecycle("create",0);
+    // Await the ACTUAL command, not a raced timeout or public-fetch pending set.
+    report.ordinarySettled = false;
+    const observed = await captureCalendarFeedTrace({ tenantId,userId,membershipId:member.id,attemptId:intent.attemptId,action:"create",revision:0 },
+      () => manageCalendarFeed(client as never,{action:"create",revision:0,attemptId:intent.attemptId},intent.correlationId));
+    report.ordinarySettled = true; report.events = observed.events;
+    report.baseline = calendarCauseProofSelection(observed.events);
+    report.outcome = !observed.ok ? "PRE_SQL_STOP" : observed.value.outcome === "committed" ? "ORDINARY_SUCCESS"
+      : observed.events.includes("context-mismatch") || observed.events.includes("membership-mismatch") || observed.events.includes("truncated") ? "INCOMPARABLE" : "PRE_SQL_STOP";
+    if (report.baseline !== "not-selected") {
+      const runtime = await import("../../scripts/ci/with-calendar-feed-runtime.mjs");
+      const { readFile } = await import("node:fs/promises");
+      type Connection = ReturnType<typeof runtime.createCalendarFeedDatabaseClient>;
+      let db: Connection | undefined, fresh: Connection | undefined, stack: Awaited<ReturnType<typeof runtime.qualifyCalendarFeedCauseProof>> | undefined;
+      let beforeState: string | undefined, beforeCatalog: string | undefined, transaction = false;
+      const ready = async (connection: Connection) => {
+        const idle = await calendarCauseProofIdle(connection as unknown as {readyForQuery?:boolean});
+        if (!idle) { report.queriesSettled = false; fail("protocol-unsettled"); }
+        return idle;
+      };
+      const qualify = async (connection: Connection, qualification: Awaited<ReturnType<typeof runtime.qualifyCalendarFeedCauseProof>>) => {
+        await connection.connect(); await runtime.readCalendarFeedSetupAuthority(connection);
+        const privacy = await runtime.readCalendarFeedPrivacyPreflight(connection);
+        if (!privacy.controls.every(control => control.matchesRequired)) throw Error("Privacy refused");
+        const ledger = await connection.query("select version,name from supabase_migrations.schema_migrations order by version");
+        if (JSON.stringify(ledger.rows.map(row=>({version:String(row.version),name:row.name}))) !== JSON.stringify(qualification.migrations)) throw Error("Ledger refused");
+      };
+      const identity = report.baseline === "status" ? "public.read_calendar_feed_status(uuid,uuid)"
+        : "public.manage_calendar_feed(uuid,uuid,uuid,text,integer,uuid,text,uuid,jsonb,text)";
+      const catalog = async (connection: Connection) => {
+        const result = await connection.query("select p.oid::text, p.proname, p.prosrc, pg_get_userbyid(p.proowner) owner, p.prosecdef, p.proconfig, p.proacl::text from pg_proc p where p.oid=to_regprocedure($1)",[identity]);
+        if (result.rows.length !== 1) throw Error("Function identity refused");
+        const row = result.rows[0], migration = (await readFile(new URL("../../supabase/migrations/20261020220000_personal_calendar_feed.sql",import.meta.url),"utf8")).replaceAll("\r\n","\n");
+        const start = migration.indexOf("create function public."+row.proname+"("), body = migration.indexOf("as $$",start), end = migration.indexOf("$$;",body+5);
+        if (start < 0 || body < start || end < body || row.owner !== "calendar_feed_owner" || row.prosecdef !== true
+          || !row.proconfig?.includes('search_path=""') || row.prosrc.trim() !== migration.slice(body+5,end).trim()) throw Error("Original function source refused");
+        return JSON.stringify(result.rows);
+      };
+      const state = async (connection: Connection) => JSON.stringify((await connection.query(
+        "select coalesce((select jsonb_agg(to_jsonb(t) order by t.id) from public.calendar_feed_tokens t where tenant_id=$1),'[]'::jsonb) tokens, coalesce((select jsonb_agg(to_jsonb(a) order by a.id) from public.audit_events a where tenant_id=$1),'[]'::jsonb) audit",[tenantId])).rows);
+      try {
+        stack = await runtime.qualifyCalendarFeedCauseProof(); db = runtime.createCalendarFeedDatabaseClient(stack.stack,"proof");
+        db.on("error",()=>{ report.queriesSettled=false; fail("protocol-unsettled"); });
+        await qualify(db,stack);
+        beforeCatalog = await catalog(db); beforeState = await state(db);
+        await db.query("begin isolation level repeatable read"); transaction=true;
+        await db.query("set local statement_timeout='5s'; set local lock_timeout='2s'");
+        if(await state(db)!==beforeState) throw Error("Controlled snapshot changed");
+        await db.query("savepoint controlled_baseline");
+        const claims = JSON.stringify({sub:userId,role:"authenticated"});
+        await db.query("select set_config('request.jwt.claims',$1,true)",[claims]);
+        await db.query("set local session authorization authenticated");
+        const at=new Date(); let managementValues: unknown[] | undefined;
+        if(report.baseline==="manage") {
+          const key=feedKeyFromEnv(), issued=issueCalendarFeedToken(), attemptId=randomUUID(), correlationId=randomUUID();
+          const proof={schema:FEED_SCHEMA,domain:MANAGE_DOMAIN,operation:"create",tenantId,actorId:userId,membershipId:member.id,revision:"0",attemptId,newHash:issued.hash,correlationId,keyId:key.keyId,issuedAt:at.toISOString(),expiresAt:new Date(at.getTime()+60000).toISOString()};
+          managementValues=[tenantId,userId,member.id,"create",0,attemptId,issued.hash,correlationId,proof,signFeedProof(proof,key.secret)];
+        }
+        const restricted = await db.query("select session_user=current_user and current_user='authenticated' and not a.rolsuper and not a.rolbypassrls and not b.rolsuper and not b.rolbypassrls and auth.uid()=$1::uuid and current_setting('request.jwt.claims')::jsonb->>'role'='authenticated' and current_setting('log_statement')='none' and current_setting('log_min_error_statement')='panic' and current_setting('log_parameter_max_length')='0' and current_setting('log_parameter_max_length_on_error')='0' as qualified from pg_roles a join pg_roles b on b.rolname=current_user where a.rolname=session_user",[userId]);
+        if (restricted.rows.length!==1 || restricted.rows[0].qualified!==true || Date.now()-at.getTime()>5000) throw Error("Restricted identity or clock refused");
+        // This is a NEW controlled direct-SQL call, never the old JWT session,
+        // snapshot, proof bytes or first engine cause. At most ONE invocation.
+        try {
+          if(report.baseline==="status") await db.query("select public.read_calendar_feed_status($1::uuid,$2::uuid)",[tenantId,intent.attemptId]);
+          else await db.query("select public.manage_calendar_feed($1::uuid,$2::uuid,$3::uuid,$4::text,$5::integer,$6::uuid,$7::text,$8::uuid,$9::jsonb,$10::text)",managementValues);
+          report.outcome="NONREPRODUCED";
+        } catch(error) {
+          let code:unknown; try { code=Object.getOwnPropertyDescriptor(error,"code")?.value; } catch { /* UNKNOWN */ }
+          const allowed=["42501","CF409","57014","08006","25P02","42P01","42883","42703","3F000","23505"];
+          report.sqlState=typeof code==="string"&&allowed.includes(code)?code:null;
+          report.outcome=code==="42501"?"AMBIGUOUS_SQL42501":code==="CF409"?"NONREPRODUCED":"UNKNOWN_ENGINE_ERROR";
+        }
+        if (!await ready(db)) throw Error("Query protocol unverified");
+        await db.query("rollback to savepoint controlled_baseline");
+        if(Date.now()-at.getTime()>10000) report.outcome="INCOMPARABLE";
+      } catch { report.outcome="INCOMPARABLE"; report.failures.push("baseline-qualification-or-call"); }
+      finally {
+        if(db && await ready(db)) {
+          try { if(transaction) { await db.query("rollback"); transaction=false; } } catch { fail("baseline-rollback"); }
+          if(!transaction) {
+            try { await db.query("reset session authorization; reset role"); await runtime.readCalendarFeedSetupAuthority(db); } catch { fail("baseline-reset"); }
+            try { if(beforeCatalog!==undefined && await catalog(db)!==beforeCatalog || beforeState!==undefined && await state(db)!==beforeState) fail("baseline-state"); } catch { fail("baseline-state"); }
+          }
+        }
+        if(db) { try { await db.end(); } catch { fail("baseline-close"); } }
+        if(stack && report.queriesSettled && !transaction) {
+          try {
+            const again=await runtime.qualifyCalendarFeedCauseProof();
+            if(again.stack.db.Id!==stack.stack.db.Id || again.stack.gateway.Id!==stack.stack.gateway.Id) throw Error("Fresh stack identity refused");
+            fresh=runtime.createCalendarFeedDatabaseClient(again.stack,"absence");
+            fresh.on("error",()=>{ report.queriesSettled=false; fail("fresh-protocol"); });
+            await qualify(fresh,again);
+            if(beforeCatalog!==undefined && await catalog(fresh)!==beforeCatalog || beforeState!==undefined && await state(fresh)!==beforeState) fail("fresh-state");
+          } catch { fail("fresh-qualification-or-state"); }
+          finally { if(fresh) { if(!await ready(fresh)) fail("fresh-protocol"); try { await fresh.end(); } catch { fail("fresh-close"); } } }
+        }
+      }
+    }
+  } catch { fail("fixture-or-ordinary"); report.outcome="CAPTURE_UNAVAILABLE"; }
+  // No raced timeout counts as command or query completion. If unverified, keep
+  // canonical fixture custody rather than deleting rows/Auth against live refs.
+  if(fixture && report.ordinarySettled && report.queriesSettled && report.cleanupVerified) {
+    try { await cleanupCalendarOwnedRows([fixture.base.tenantA.id,fixture.base.tenantB.id]); } catch { fail("fixture-rows"); }
+    try { await cleanupRoleAwarePhaseAFixture(fixture); } catch { fail("fixture-canonical"); }
+    try {
+      if((await adminQuery("select 1 from public.tenants where id=any($1::uuid[]) limit 1",[[fixture.base.tenantA.id,fixture.base.tenantB.id]])).length) fail("fixture-absence");
+    } catch { fail("fixture-absence"); }
+  } else if(fixture) fail("fixture-custody-retained");
+  if(!report.cleanupVerified || !report.ordinarySettled || !report.queriesSettled) report.outcome="CLEANUP_UNVERIFIED";
+  return report;
 }
