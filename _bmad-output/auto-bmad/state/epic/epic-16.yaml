@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-16-jobs
 status: in-progress
-updated_at: "2026-10-20T10:26:43Z"
+updated_at: "2026-10-20T10:51:36Z"
 started_at: "2026-10-15T08:50:46Z"
 completed_at: null
 active_seconds: 23336
@@ -68,7 +68,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [0586972a, d6a310be, f610bcbd, 11bf2721, bce1436b, 5d5186e1cfb3e045db9ef101e1c6cf6b50133040, faeffcf6513d5d1703ae9d5a6271b01533899d4e, f3cf100709b92637270304e78a4356082b89e9a6, 1e8632db1ad051d117c38d2e24ed5d62fc2c8a57]
+commits: [0586972a, d6a310be, f610bcbd, 11bf2721, bce1436b, 5d5186e1cfb3e045db9ef101e1c6cf6b50133040, faeffcf6513d5d1703ae9d5a6271b01533899d4e, f3cf100709b92637270304e78a4356082b89e9a6, 1e8632db1ad051d117c38d2e24ed5d62fc2c8a57, 103ee03540e222dff1e54995726037819539b9dd]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -85,8 +85,8 @@ retro:
   open_action_items: 0
 bmad_status_flipped_at: null
 pr_url: null
-ci_run_url: "https://github.com/rthunborg/Kopplas/actions/runs/39317194836"
-ci_status: passed
+ci_run_url: "https://github.com/rthunborg/Kopplas/actions/runs/39408025018"
+ci_status: failed
 pr_merged: false
 merge_method: null
 merge_commit: null
@@ -110,6 +110,8 @@ overrides:
   story16_3_owner_decision: "2026-10-20 direct human answers verified in Coordinator task 01a1160d-b5b1-7623-a8e8-54ef3dc537ed, turn 01a15885-1599-7d52-80e9-e95058a10198: Admin/Projektledare plus current designated Arbetsledare of the parent job create/edit/assign/change work-order status; eligible parent-job members as assignees. Created->In progress->Done; Created/In progress->Cancelled; only Admin/PL reopen Done->In progress or Cancelled->Created. Ordinary members/assignees gain no additional mutation right. Work orders receive their OWN planned start/end dates, supporting meaningful same-parent work-order dependencies; do not adopt old parent-date proxy or same-parent rejection. Existing money, file and parent-job lifecycle checks remain separate."
   preview_readback_2026_10_20: "Read-only Vercel API confirmed Enhancior/kopplas prj_QYRxEeUBlCStlPL0YZd72y8245rg previewDeploymentsDisabled=true and commandForIgnoringBuildStep=exit 0. No settings changed. gitProviderOptions.createDeployments=enabled; production/main must be checked separately before any merge; none authorized."
   story16_3_reviewed_checkpoint: "Reviewed59-file checkpoint; inventory686cf60cf3a87b6c1c7f160799dc3f9f85859d176f1f692ff9bb52e0b7ddb8b5; actual6layerRound1+targetedHighPASS/reuse089A561B3618439F06724976D7C3E9377406A100EDEBB8AA2A33C75AD94B2605. Required DB/RLS/recovery/browser runtime pending; development/done/delivery unclaimed."
+  story16_3_ci_103ee035: "Historical CI39408025018 exact103ee03540e222dff1e54995726037819539b9dd terminalfailure: fullDB1839total1828pass10fail1pending; directrecovery1pass0skip; browser20firstpass1retry1pass0skip; static/unit2674pass0skip. Ten actual runtime failures in causalHigh triage; E01sync separately reviewed. Native full1A61E449413DD5FB1025F4998376A8CFDA80DDE4ECDAF8D088FF07058E3AFB09; DBlogC0C17ED09A7BEAA670412FA620357D2A68A823BF3EBBEA32D80D8D2D96E04730. Not development complete."
+  story16_3_causal_checkpoint: "Actual CI39408025018 tenfailurecauses repaired;62file inventoryA4EF68D81B83BCB6B42949ECEB0BB6894386FE32F16F861A02DFA35846721EA0; sameHighblind+securityqualifiedPASS AB0D18DCCA1402C64EEE72888423C08AE7DCF29004278D79160517AD30474FEB. Attestationpair+currentparentpreflight productfixes; SQL/zerowritesnapshot unchanged; E01exactURLwait no timeout/retryincrease. Required corrected-head runtime pending; no development/done claim."
 constraints:
   - "Use only owned E16 resources; E15 scheduling/time/diagnostic resources remain excluded."
   - "Each later story requires its approved plan, manifest compliance and precise path claims."

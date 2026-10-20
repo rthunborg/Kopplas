@@ -189,6 +189,48 @@ Scope: the parent's actual qualified focused-review union over the final fixes a
 
 Latest follow-up recommendation: false under the actual policy (High0, Medium0, Low0; score0; no unresolved serious findings). This reflects the actual qualified focused results and verified reuse, not a reset of the original pass. Required exact-checkpoint CI/runtime, delivery gate and provenance remain pending. Status remains in-review; runtime executions0; no development-complete, done or release-ready claim.
 
+### 2026-10-20 — E01 navigation synchronization follow-up
+
+Root-owned CI39408025018 on exact checkpoint `103ee03540e222dff1e54995726037819539b9dd` reported static/unit2674passed/0failed/0skipped and direct recovery1passed. Native browser evidence is20expected/1flaky/0unexpected/0skipped: E01 retry0failed18715ms because the pane Rubrik input was absent after reload, while the immediately preceding updated persisted-card assertion passed; retry1passed5589ms. E02–E05 and the old16journeys passed first attempt. These are separate failed and successful attempts, not a clean browser pass. Full database terminal evidence remains root-owned and pending at this annotation.
+
+The navigation race is a causal INFERENCE: the production create receipt starts asynchronous `router.replace` for the selected work-order URL, whereas E01 previously awaited HTTP/persistence without observing that navigation before reload. The failed-attempt URL/trace/error-context attachment was unavailable, so the exact browser URL at failure is not proven. The approved task/caller uses `?workOrder={id}` to restore pane selection. The bounded E01-only correction asserts the exact job pathname and selected workOrder ID after creation, then awaits final save feedback and confirms the same URL before reload. Every existing field/audit/persistence/reload/Files assertion is retained; no production change, timeout increase or retry increase.
+
+Actual resource-free checks: affected E2E ESLint passed; `pnpm typecheck` passed; Chromium collection remains5cases,0browser executions on this candidate. The unchanged production build/unit groups were not repeated for this synchronization-only test change. Same-High focused review and root exact-checkpoint runtime remain pending. Status/Auto Run Result remain in-review; no delivery, development-complete or done claim.
+
+### 2026-10-20 — Actual required-CI failure and bounded causal corrections
+
+The same root-owned CI39408025018 on103ee035 reached actual database terminal failure after the E01 annotation above:1839total/1828passed/10failed/1pending. The pending case is the isolated recovery physical-loader proof, executed separately with1pass. Native full-integration JSON SHA256 `1a61e449413dd5fb1025f4998376a8cfda80dde4ecdaf8d088ff07058e3afb09` and database log SHA256 `c0c17ed09a7beaa670412fa620357d2a68a823bf3ebbea32d80d8d2d96e04730` preserve this failed checkpoint. The browser20expected/1flaky history above remains unchanged. None of these failures is counted as a successful current-candidate rerun.
+
+The same Sol6.1 High author and existing explicit High Files worker checked every failure against the actual caller and enforced downstream guard, then made one bounded correction batch:
+
+| Actual failures | Cause and exact bounded correction | Preserved contract / evidence limit |
+| --- | --- | --- |
+| FILE-INT001 both kinds + FILE-INT003 (3) | Product omission in `src/server/storage/document-signed-access-attestation.ts`: `isDocumentSourcePair` lacked `work_order/job_evidence`, rejecting valid checked selected-sign challenges/proofs. Added only that exact pair. | Existing producer-purpose pairs, canonical bytes, domains, identity binding and wrong-purpose/foreign negatives remain. New tests use the real parser/sign/verify functions; SQL/runtime re-execution is pending. |
+| FILE-INT002 (1) | Product preflight checked only RLS visibility of the work order, although managers can read a historical child after parent archival. `src/server/commands/files/file-db.ts` now checks the live child and coherent live same-tenant parent before upload/link bytes. | The entire existing Files/links/audit/Storage no-write snapshot assertion is untouched. Locked SQL current-source checks and established orphan handling for actual later revocation races remain. No SQL/policy change. |
+| INT001 both kinds + INT005 (3) | Raw `pg` DATE values decoded as JS Date while the test adapter declared calendar strings. `tests/support/work-orders-atdd.ts::workOrderRows` casts only the two SQL date columns to text. | Canonical exact dates, including0001/9999/leap-day/null assertions, are unchanged; production DTOs and global type parsers are untouched. |
+| Migration-reset exact inventory (1) | The three new SELECT entries occurred twice. Removed only their duplicate line, retaining the existing sorted entries. | Closed exact111-entry policy set, one entry per new table, and old negative checks remain; static reconstruction confirms only the duplicate3bindings were removed. |
+| Generated role harness (1) | The allowed montor fixture had a current relationship only to the dependent job; typed-edge RLS correctly needs both actual endpoints readable. Seeded the own prerequisite membership for that fixture. | Actual policy, role capability enrollment, all foreign rows and hidden-edge negatives remain unchanged. |
+| RLS003 private helper probe (1) | `work_order_title_internal` is IMMUTABLE STRICT; all-null invocation folded to NULL without executing. The preceding catalog EXECUTE=false assertion already passed. Only this helper now receives a synthetic non-null text argument. | Full private-helper inventory, authenticated EXECUTE=false and actual42501 invocation assertion remain; no grants changed. |
+
+Actual Files regression RED69passed/16failed/0skipped became same-lane GREEN85passed/0failed/0skipped; broader affected Files lane96passed/0failed/0skipped. Core domain/selection/adapter/harness18passed/0failed/0skipped. Latest typecheck, affected9-file ESLint, justified production build and source/bundle containment passed. Resource-free collection remains42integration/RLS bodies and5Chromium cases; no new candidate database/browser execution. No unchanged full suite was repeated or claimed green. Same-author SRO refreshed; same-High blind/security focused review and root exact-checkpoint CI remain pending. Status stays in-review; no delivery/development-complete/done claim.
+
+Exact source ownership: only the existing E01/spec trail, four named test binding files, `file-db.ts` and `file-validation.test.ts`, plus the root-explicitly allocated attestation source/unit pair changed. All prior owners/presentation/SQL branches are preserved; the candidate inventory has62paths: the prior59 plus the2allocated attestation paths and the approved-plan `tests/unit/server/commands/file-validation.test.ts` regression seam, which previously required no change. Root owns Git/state/CI/delivery/provenance. The preserved SQL security suffix and all SQL bytes remain equal to the previously qualified candidate.
+
+### 2026-10-20 — Review pass
+
+Scope: the parent's actual SAME-High qualified focused-review union over the frozen62-file candidate `850e296d72f9a895450460fee096fc0398af0cf4789df8db6fc2b34552d1a088` and its10changed paths. Blind review qualified PASS covered the canonical date adapter, exact policy inventory, readable prerequisite fixture, non-NULL private-helper probe, E01 navigation synchronization and the wired shared Files corrections, with meaningful assertions preserved and no reachable regression reported. Security qualified PASS covered only the exact work_order/job_evidence pair and current ancestry preflight: canonical payload/domain/key/signatures/binding remain unchanged, SQL race guards remain enforced, and no grant/policy widening occurred. Reviewers executed no tests or runtime.
+
+- intent_gap: 0
+- bad_spec: 0
+- patch: 0: (high 0, medium 0, low 0)
+- defer: 0
+- reject: 0: (high 0, medium 0, low 0)
+- addressed_findings:
+  - Actual qualified blind/security focused PASS accepts the bounded causal source/test corrections; original six-layer10patch/3Lowreject and targeted2regression history remains preserved above.
+  - The prior CI39408025018 database1839total/1828pass/10fail/1pending and browser20expected/1flaky results remain historical failures/retry evidence, not a current-candidate runtime pass.
+
+Latest follow-up recommendation: false under the actual policy (High0, Medium0, Low0; score0; no unresolved serious finding reported by these focused reviews). This is the actual causal-review scope union, not a new broad review or reset of previous history. New exact-checkpoint required CI, delivery gate, independent provenance and explicit root done authorization remain pending. Status/Auto Run Result stay in-review; no current runtime, delivery, development-complete or done claim.
+
 ## Design Notes
 
 Owner-authorized presentation/validation defaults: progressive existing Arbetsorder section, list/cards plus selectable detail pane under the job URL, Swedish accessible labels, optional own date fields defaulting unknown, required bounded title/plain description, and separate command-specific draft/baseline models. The typed new dependency table keeps old job-only writes lossless and supports real same-parent sequencing without changing booking proofs. No generic permissions/state framework, optimizer or legacy observation is introduced. Keep future16.4 consumers and16.5 whole workspace requirements outside this implementation.
@@ -260,7 +302,18 @@ Snapshot SQL/authenticated concurrency, original-create SQL recovery, complete-g
 ## Suggested Review Order
 
 Author: the same Story16.3 Sol6.1 High implementation/fix author, using the recorded isolated workers.
-Refreshed against the original Round1 batch and its two bounded follow-up regressions; review provenance and runtime limits remain explicit above.
+Refreshed against the original Round1 batch, its two bounded follow-up regressions, E01 navigation synchronization and the actual required-CI causal corrections; review provenance and runtime limits remain explicit above.
+
+### Start with the actual CI failure corrections
+
+Valid own-work-order selected signing now admits its exact producer-purpose pair; upload/link preflight requires a live coherent source before bytes, while locked SQL remains authoritative (AC05/06). The unit regressions call the actual proof/preflight functions. Calendar-string and private-helper changes reconcile test adapters without weakening stored-value or access assertions.
+
+- `src/server/storage/document-signed-access-attestation.ts:302` — `isDocumentSourcePair`: adds only work_order/job_evidence to the closed pair contract.
+- `tests/unit/server/storage/document-signed-access-attestation.test.ts:194` — `[16.3][AC05] work-order evidence challenge`: exercises real canonical proof, parser and bound-identity behavior.
+- `src/server/commands/files/file-db.ts:128` — `ownerRecordVisible`: checks current child/parent ancestry before Storage, preserving all existing owner branches.
+- `tests/unit/server/commands/file-validation.test.ts:185` — `[16.3][AC05] shared work-order preflight admits`: covers live, archived, missing, foreign and fault paths before bytes.
+- `tests/support/work-orders-atdd.ts:89` — `workOrderRows`: returns SQL calendar dates as strings without changing production parsing.
+- `tests/integration/rls/work-orders.rls.test.ts:181` — `checked-title`: forces the denied private title helper to be invoked instead of folded from strict NULL.
 
 ### Start at pane selection and retained create attempts
 
@@ -305,6 +358,8 @@ The added regression assertions target the reported causal paths. Mocked read-mo
 - `tests/integration/commands/work-orders.int.test.ts:366` — `16.3-INT-003 parent job`: selects exact parent-job endpoints for delay, equality and unknown.
 - `tests/integration/commands/work-order-files.int.test.ts:237` — `16.3-FILE-INT-004`: retries authenticated known-path bytes after all valid sources expire.
 - `tests/unit/server/read-models/documents.test.ts:334` — `[16.3][P7]`: tests active/archive complete-graph true, false and fault outcomes.
-- `tests/e2e/jobs/work-orders.e2e.spec.ts:375` — `16.3-E05`: retains a definitely rejected first-create draft through explicit consent; E04 retains lost-success recovery.
+- `tests/e2e/jobs/work-orders.e2e.spec.ts:378` — `16.3-E05`: retains a definitely rejected first-create draft through explicit consent; E04 retains lost-success recovery.
 
-Evidence: latest affected13unit passes/0skips after observed4pass3fail RED; latest typecheck, affected lint, production build and containment passed. Prior full2670unit passes/one named Windows xattr skip were not rerun for unchanged groups. All20review stops resolve; current42integration/RLS plus5browser cases are collected but unexecuted. The actual same-High qualified focused-review union is recorded in the latest canonical pass above; required exact-checkpoint CI and delivery/provenance gate remain outstanding. Release breadth remains deferred under the dated completion policy and authorizes no deployment.
+- `tests/e2e/jobs/work-orders.e2e.spec.ts:107` — `toHaveURL`: E01 observes selected job/child navigation before continuing and again before reload; every prior persistence, audit and shared-file assertion remains.
+
+Evidence: latest Files RED69pass16fail became same-lane85passes, broadened96passes; core18passes; all0skips. Typecheck, affected9-file ESLint, production build and source/bundle containment passed. All27review stops resolve;42integration/RLS bodies and5Chromium cases are collected with0new runtime executions. Root CI39408025018 on103ee035 remains historical2674unit passes/0skips,1direct-recovery pass,20expected/1flaky browser and actual1828pass10fail1pending integration evidence. The actual same-High qualified blind/security focused PASS on this causal batch is recorded in the latest canonical pass above; new exact-checkpoint CI and delivery/provenance gates remain pending. Release breadth remains deferred under the dated completion policy and authorizes no deployment.

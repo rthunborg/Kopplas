@@ -178,7 +178,7 @@ describe("16.3 work-order parent scope, privacy and checked SQL boundaries", () 
     expect(checked.map((r) => r.name).sort()).toEqual(names);
     for (const row of checked) expect(row).toMatchObject({ hardened: true, anon: false, authenticated: true });
     const internals = await adminQuery<{ invocation: string; allowed: boolean }>(`select format('%I.%I(%s)',n.nspname,p.proname,
-      (select string_agg('null::'||format_type(t,null),',' order by ordinal) from unnest(p.proargtypes::oid[]) with ordinality a(t,ordinal))) as invocation,
+      (select string_agg(case when p.proname='work_order_title_internal' then quote_literal('checked-title')||'::'||format_type(t,null) else 'null::'||format_type(t,null) end,',' order by ordinal) from unnest(p.proargtypes::oid[]) with ordinality a(t,ordinal))) as invocation,
       has_function_privilege('authenticated',p.oid,'execute') as allowed from pg_proc p join pg_namespace n on n.oid=p.pronamespace
       where ((n.nspname='private' or (n.nspname='public' and p.proname like '%internal')) and p.proname like '%work_order%')
        or (n.nspname='public' and p.proname in ('story_16_3_file_link_source_eligible','story_16_3_lock_file_actor','story_16_3_assert_work_order_file_owner','story_16_3_assert_file_work_order_sources'))`);

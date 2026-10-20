@@ -356,7 +356,6 @@ describe("Migration reset green — tenant_foundation objects present (AC1 / R-0
       "files.UPDATE",
       "job_access_windows.SELECT",
       "job_dependencies.SELECT",
-      "work_orders.SELECT", "work_order_assignees.SELECT", "work_order_dependencies.SELECT",
       "job_events.INSERT",
       "job_events.SELECT",
       "job_events.UPDATE",

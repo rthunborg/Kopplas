@@ -88,7 +88,8 @@ export async function workOrdersSnapshot(f: JobsDepthFixture) {
 }
 export async function workOrderRows(f: JobsDepthFixture, jobId: string): Promise<WorkOrderRow[]> {
   const { adminQuery } = await import("../factories/admin-sql");
-  return adminQuery<WorkOrderRow>("select * from public.work_orders where tenant_id=$1 and job_id=$2 order by id", [f.fx.base.tenantA.id, jobId]);
+  // Keep SQL dates canonical at this raw pg adapter boundary; do not change global type parsers.
+  return adminQuery<WorkOrderRow>("select id,tenant_id,job_id,title,description,status,planned_start_date::text as planned_start_date,planned_end_date::text as planned_end_date from public.work_orders where tenant_id=$1 and job_id=$2 order by id", [f.fx.base.tenantA.id, jobId]);
 }
 export function workOrderAudit(snapshot: Awaited<ReturnType<typeof workOrdersSnapshot>>, correlationId: string) {
   return snapshot.audit.filter((row) => row.correlation_id === correlationId);

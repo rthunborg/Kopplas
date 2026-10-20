@@ -54,7 +54,11 @@ beforeAll(async () => {
   foreignTableIds = await seedEveryTenantTable(fixture.base.tenantB.id, fixture.base.adminB.id);
   bookingTableIds = Object.fromEntries(await Promise.all(TENANT_ROLES.map(async (role) => {
     const [profile] = await adminQuery<{id:string}>("insert into public.person_profiles(tenant_id,membership_id) values($1,$2) on conflict(membership_id) do update set membership_id=excluded.membership_id returning id", [fixture.base.tenantA.id,selfTableIds[role].tenant_memberships]);
-    if (role === "montor") await adminQuery("insert into public.job_members(tenant_id,job_id,person_profile_id) values($1,$2,$3)", [fixture.base.tenantA.id,ownTableIds.jobs,profile.id]);
+    if (role === "montor") {
+      await adminQuery("insert into public.job_members(tenant_id,job_id,person_profile_id) values($1,$2,$3)", [fixture.base.tenantA.id,ownTableIds.jobs,profile.id]);
+      // Typed-edge raw reads require both actual endpoints, not just the dependent job.
+      await adminQuery("insert into public.job_members(tenant_id,job_id,person_profile_id) select tenant_id,prerequisite_job_id,$2 from public.work_order_dependencies where id=$1", [ownTableIds.work_order_dependencies,profile.id]);
+    }
     return [role, await seedBookingReadRows(fixture.base.tenantA.id,profile.id)] as const;
   }))) as typeof bookingTableIds;
   personalTableIds = Object.fromEntries(await Promise.all(TENANT_ROLES.map(async (role) => {

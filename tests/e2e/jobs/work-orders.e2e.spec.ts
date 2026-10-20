@@ -104,6 +104,7 @@ test.describe("Story 16.3 essential work-order journeys", () => {
       const created = (await readWorkOrders(f.fx.plannerClient, jobId)).rows;
       expect(created).toHaveLength(1);
       const id = created[0].id;
+      await expect(page).toHaveURL((url) => url.pathname === `/jobs/${jobId}` && url.searchParams.get("workOrder") === id);
       expect(created[0]).toMatchObject({ jobId, title: "Montera central", status: "created",
         description: "Märk och kontrollera kretsarna", plannedStartDate: "2026-10-20", plannedEndDate: "2026-10-21" });
       const afterCreate = await workOrdersSnapshot(f);
@@ -124,6 +125,8 @@ test.describe("Story 16.3 essential work-order journeys", () => {
       const afterEdit = await workOrdersSnapshot(f);
       expect(afterEdit.audit.length - beforeEdit.audit.length).toBe(1);
       expect(afterEdit.jobs).toEqual(beforeCreate.jobs);
+      await expect(detail.getByTestId("work-order-save-status")).toHaveAttribute("role", "status");
+      await expect(page).toHaveURL((url) => url.pathname === `/jobs/${jobId}` && url.searchParams.get("workOrder") === id);
       await page.reload();
       await expect(panel.getByTestId(`work-order-${id}`)).toContainText("Montera och prova central");
       await expect(title).toHaveValue("Montera och prova central");
