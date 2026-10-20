@@ -985,6 +985,63 @@ observer, client/then instrumentation, authority workaround or new build ran.
 Fresh distinct High committed latest-four review and Root exact-head native CI
 remain pending; no fourth broad review, DONE/delivery or release claim.
 
+## Minimal Vite security patch after blocking audit - 2026-10-21
+
+Tenth checkpointbe2/run39503939856 remains FAILED: install/frozen lock validation
+passed, then pnpm audit --audit-level=high exited1 with1high/4moderate findings
+and GHSA-587h-7wmj-h5pm. All later checks,95feature cases,67separate controls
+and managed runtime were UNEXECUTED at that head. Earlier43DB/14browser failures
+remain unresolved. The tenth packet/capsule and all predecessor evidence remain
+immutable; the previous exact380 owned-origin High review passed without findings.
+
+Root/Coordinator admitted exactly package.json's devDependencies.vite key,
+mechanically required lock closure and this post-kernel author trail under
+`accepted-native-dependency-audit-repair-allocation.json`, SHA
+`61ce9199157fe35aaa2ce50e6c6bc67be221a3ebd8975fccc56b8f2f39d0f581`.
+The exact Vite pin moves8.1.0 to8.1.6, the minimum patched release on the same8.1
+branch according to the current reviewed advisory and official2026-10-06 release.
+Its bundle includes launch-editor2.14.2; overriding a separately resolved editor
+would not replace Vite's bundled2.14.1. This is an affected tool inventory and
+remediation, not evidence that production Next exposes or exploited that path.
+
+Actual pnpm10.24.0 lock-only --ignore-scripts resolution followed by frozen
+--ignore-scripts materialization passed. No unrelated manifest/script/version or
+lock settings/override/patch changes occurred. The required closure is Vite8.1.6,
+picomatch4.0.7, rolldown1.1.5 with15 matching platform bindings, and rolldown's
+@oxc-project/types0.139.0. Existing postcss8.5.23 stays fixed. Vitest4.1.9 and
+mocker retain versions and resolve the same Vite8.1.6 via changed peer snapshot
+keys. Vite's integrity is the actual registry/pnpm value
+`sha512-aRAHIxx5SW5zc1sMqFwJU/t5qaFfXb5Hj0J7W0VXihu/X99+346tz6080tO1T1xVIJORX/b3zVTXGFqUXh35uw==`.
+Installed bundle region markers confirm launch-editor and middleware2.14.2.
+Vite's Nodeengine remains ^20.19.0 || >=22.12.0, compatible with existing22;
+Vitest's existing ^8.0.0 range accepts the candidate. No schema/data/application,
+privilege/authority/provider/secret/workflow/toolchain or workspace change occurs.
+The new lockfile source path expands the authored union68 to69; protected109SQL
+and37consumer files stay unchanged. Old installed dependency contexts remain
+historical, not new-byte proof for the changed graph.
+
+Actual post-materialization pnpm audit --audit-level=high passed exit0, reporting
+2moderate findings and no high findings; no ignore, threshold change or retry was
+used. Do not infer identities of the remaining moderate findings or claim all
+advisories gone. verify:lockfiles, full TypeScript,67/67bounded Node controls
+(0fail/skip/cancel), production Next build and built-bundle containment passed.
+These controls retain61+6 with no new version-mirror tests, no Vitest runner,
+collection/globalSetup or DB/browser execution. Full local pnpm run lint traversed
+ignored retained historical Playwright report assets and was terminated through
+only its captured command session (exit1); it is INCOMPLETE, not PASS. Focused
+ESLint on the existing three calendar-feed fixture/control files passed with
+0errors/0warnings. No historical report deletion, ignore/config change or blanket
+warning attribution occurred. Clean-checkout canonical lint remains mandatory CI.
+
+The approved5760-byte intent contract stays unchanged/in-review. One refreshed
+review trail and native/staged Git checks precede the append-only exact three-file
+commit. Fresh distinct context-free High review of the exact dependency delta and
+Root exact-head normal CI remain pending. A successful audit permits later gates;
+it does not establish compatibility of the full native feature, resolve43DB and
+14browser failures, or qualify browser attachment content. No managed service,
+local qualification, blind CI retry, fourth broad review, push, merge/deployment,
+DONE/delivery or release claim is made.
+
 ## Suggested Review Order
 
 Author: Story 15.5 implementation/fix author (gpt-6.1-sol High), incorporating
@@ -993,7 +1050,7 @@ Round 3 latest-fix assertions, the subsequent checkpoint repairs and bounded
 native setup diagnostics, same-connection privacy qualification and explicit
 isolated setup authority transport, bounded child settlement, browser diagnostic repair,
 actual SQL callback ownership, executed-feature fixture/status/policy repairs and
-bounded safe-leaf transport through the installed reporter and closed owned scenario origins.
+bounded safe-leaf transport through the installed reporter, closed owned scenario origins and the minimal Vite security patch.
 Stops below resolve to final source literals before the repair commit.
 
 ### Own settings and honest lifecycle results
@@ -1136,3 +1193,21 @@ branches and all43 causes remain unknown. Fixed outcome tags cannot distinguish
 collapsed backend causes. Native acceptance, RLS010/API019 later predicates and
 browser attachment privacy remain pending. Distinct High latest-four review is
 pending; prior review/SSR/runtime receipts retain their historical dependency scope.
+
+### Patch the bundled tool without weakening the gate
+
+The same-branch minimum patched Vite replaces its bundled editor. Only its required
+lock closure changes; scripts, Vitest versions, overrides and audit threshold stay
+fixed. Local synthetic controls/build do not replace fresh native qualification.
+
+- `package.json:50` — `"vite": "8.1.6"`: pins the patched tool without changing scripts.
+- `pnpm-lock.yaml:2297` — `vite@8.1.6:`: binds the actual registry integrity and unchanged engine.
+- `pnpm-lock.yaml:2059` — `rolldown@1.1.5:`: carries the required types and matching platform bindings.
+
+Evidence: frozen installation, high-threshold audit (exit0/2moderate/no high),
+lock guard, full typecheck,67bounded controls, production build and bundle
+containment passed after materialization. Focused lint passed0errors/0warnings;
+canonical local lint was terminated/incomplete after scanning ignored historical
+assets and receives no PASS credit. Clean-CI canonical lint/native gates and fresh
+independent exact dependency-delta review remain pending. All prior failed heads
+and the43DB/14browser gaps remain failed/unresolved; no whole-native reuse.
