@@ -1711,3 +1711,71 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Run one reviewed exact-head checkpoint CI; qualify native counts, ownership/recovery/direct Storage, HTTP/browser and telemetry. Then delivery gate plus distinct truth audit before 15.5 completion, followed by15.6 andE8.
+
+## Report — 2026-10-20T16:11:33Z (continued — 15.5 native unit failure under bounded repair)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `9487c0d`).
+**Pipeline status:** IN PROGRESS. Exact-head native run39451957379 attempt1 failed the required unit step (3086 passed,8 failed,0 skipped); database,recovery Storage and browser jobs did not execute. No development-complete claim.
+**Continues:** (none — first run)
+
+**Summary:** Stories15.1–15.4 internally landed;15.5 remains in-review during bounded CI repair;15.6 and E8 gates/retrospective/delivery remain pending.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 267h 13m (≈54h 27m AI-run, ≈212h 46m human/idle wait); resumed 47×.
+
+**Stories:**
+1. 15.1–15.4 internally landed;15.5 active with three counted reviews retained;15.6 backlog.
+
+**Skipped:** (none)
+
+**Epic gate:** PENDING — no E8 development/trace completion marker.
+
+**TEA:** Native30feature Node cases and22 separate wrapper simulations passed before failure; remaining65feature runtime cases unexecuted. High qualifier verified60source and507dependency bindings; packet manifest11files plus itself verified by Root. Local repaired7-file batch302/302 is author evidence, not new CI or runtime acceptance.
+
+**Retrospective:** PENDING. Epic14 October8 accepted-with-open-items remains authoritative; October7 rejection historical.
+
+**Overrides:** One final epic PR; inherited review_unverified=true retained. No main merge or deployment; branches retained. Owner-authorized design decisions replace legacy oracle checks; historical evidence preserved.
+
+**Open questions:** (none)
+
+**Deferred work:**
+1. Release-validation items remain deferred with named owners; optional release jobs skipped/uncredited.
+
+**⚠️ Needs human:**
+1. None. Existing owner authorization applies. Exact6shared CI test/helper paths allocated by Coordinator after E16/retained Documents scope reconciliation; no foreign checkout changes.
+
+**Next:** Complete targeted independent High latest-fix review and source/dependency successor bindings, push owned checkpoint, dispatch one new exact-head CI run. No fourth broad review; no merge/deployment.
+
+## Report — 2026-10-20T16:24:16Z (checkpoint — reviewed 15.5 CI repair)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `2674b3f`).
+**Pipeline status:** IN PROGRESS. Bounded9-file repair independently reviewed by distinct High delegate with no consequential findings; source admission passed. Required new exact-head native CI pending. Prior9487 run remains failed and65feature runtime cases remain unexecuted.
+**Continues:** (none — first run)
+
+**Summary:** Four of six stories internally landed.15.5 remains in-review;15.6 and E8 completion/retrospective/delivery pending.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 267h 26m (≈54h 27m AI-run, ≈212h 59m human/idle wait); resumed 48×.
+
+**Stories:**
+1. 15.1–15.4 internally landed;15.5 active;15.6 backlog.
+
+**Skipped:** (none)
+
+**Epic gate:** PENDING — no whole-epic completion marker.
+
+**TEA:** Author local302/3020skip,typecheck and production build passed; lint0errors/2warnings. Updated inventory95feature plus23separate wrapper simulations. Root verified66source paths,6author commits,85artifact references/84unique files,146historical/protected blobs,69historical preparation blobs and60historical611-to948source equalities. These are source/provenance checks, not new runtime acceptance.
+
+**Retrospective:** PENDING. Epic14 October8 accepted-with-open-items authoritative; October7 rejection historical.
+
+**Overrides:** Three broad reviews retained; latest CI repair review limited to its delta. Inherited review_unverified=true retained; one final epic PR, no main merge, branches retained, no deployment or provider/production-secret change.
+
+**Open questions:** (none)
+
+**Deferred work:**
+1. Named release validation remains deferred; no release-ready claim.
+
+**⚠️ Needs human:**
+1. None. Coordinator allocated exact6 shared CI helper/test paths after E16 and Documents scope reconciliation. No foreign checkout edits.
+
+**Next:** Push reviewed repair checkpoint and dispatch one new exact-head CI; independently qualify required actual native evidence before delivery gate or done status.

@@ -1,0 +1,18 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import crypto from 'node:crypto';
+import {execFileSync} from 'node:child_process';
+const root='C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas';
+const prep='_bmad-output/auto-bmad/preparation/story-15-5';const dir=path.join(root,prep,'ci-repair-review');
+const before='9487c0d9dc6f622b472780587e20e834abf98595';const head='2674b3f7fa5e7853314923a0ceed52d84fcf0677';
+const git=(args,input)=>execFileSync('git',args,{cwd:root,input,windowsHide:true,stdio:['pipe','pipe','pipe']});const hash=x=>crypto.createHash('sha256').update(x).digest('hex');
+if(git(['rev-parse','HEAD']).toString().trim()!==head)throw new Error('HEAD mismatch');
+const sourcePaths=git(['diff','--name-only',before,head]).toString().trim().split('\n');
+if(sourcePaths.length!==9)throw new Error('Source repair path count mismatch');
+const contextPaths=[path.join(prep,'accepted-ci-contract-repair-allocation.json'),path.join(prep,'ci-repair-route.json'),'.env.epic15.mail-runtime/story-15-5-preparation/checkpoint-9487c0d9-ci-independent/native-qualification.md'];
+const buffers=[Buffer.from(`POST-CAP LATEST CI REPAIR DELTA REVIEW ONLY, NOT FOURTH BROAD REVIEW. All prior18 original review layers and latest assertion fix PASS reused unchanged. Source ${before} -> ${head}; actual failed run39451957379 attempt1 unit3094/3086pass/8fail/0skip; admissionPASS, required DB/recovery/browser skipped/unexecuted. New local focused302/302pass0skip; feature95 unchanged, injected bootstrap23 separate. Preserve original611freeze/948failure. Native successor stillpending.\n\nACTUAL COMMITTED NINE-PATH REPAIR DELTA:\n`),git(['diff','--binary',before,head])];
+const contexts=contextPaths.map(p=>{const bytes=fs.readFileSync(path.join(root,p));buffers.push(Buffer.from(`\nREAD-ONLY ALLOCATION/FAILED-EVIDENCE CONTEXT: ${p}\n`),bytes);return{path:p,bytes:bytes.length,sha256:hash(bytes)};});
+const input=Buffer.concat(buffers);fs.writeFileSync(path.join(dir,'latest-delta-input.diff'),input);
+const bindings=sourcePaths.map(p=>{const bytes=fs.readFileSync(path.join(root,p));const committed=git(['cat-file','blob',`${head}:${p}`]);return{path:p,raw_bytes:bytes.length,raw_sha256:hash(bytes),head_bytes:committed.length,head_sha256:hash(committed),head_blob:git(['rev-parse',`${head}:${p}`]).toString().trim(),worktree_clean_blob:git(['hash-object',`--path=${p}`,'--stdin'],bytes).toString().trim()};});
+const binding={kind:'post-cap-latest-CI-repair-delta-only',completed_review_rounds:3,cap:3,fourth_broad_review:false,before,source_head:head,input_bytes:input.length,input_sha256:hash(input),source_paths:sourcePaths,bindings,contexts,route_before_dispatch:{reviewer:'ci_repair_delta_review',model:'gpt-6.1-sol',effort:'high',context_free:true,distinct_from_author:true,reason:'CI required evidence/admission fences, wrapper command integrity and literal command authorization enrollment'},scope:'Only latest nine-path repair and consequential regressions; no broad unchanged review or cap increment.',runtime:'No local native runtime/qualification; required successor exact-head CI remains pending.'};
+fs.writeFileSync(path.join(dir,'input-binding.json'),JSON.stringify(binding,null,2)+'\n');process.stdout.write(JSON.stringify({sourceHead:head,inputBytes:input.length,inputSha256:hash(input),sourcePaths})+'\n');

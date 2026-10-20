@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-20T15:48:39Z"
+updated_at: "2026-10-20T16:24:16Z"
 started_at: "2026-10-20T12:18:56Z"
 completed_at: null
 active_seconds: 3572
@@ -18,15 +18,15 @@ is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: build
-selected_role: build-delegate
-selected_profile: standard
+selected_phase: build-native-qualification
+selected_role: independent-native-evidence-qualifier
+selected_profile: sensitive
 selected_model: gpt-6.1-sol
 selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Approved15.5 implementation of public-feed tokens/Vault/RLS/IP attestation and transactional rate integrity after approvedSpec, exact accepted ownership and committed RED ATDD artifact normalization"
+escalation_reason: "Reuse distinct High qualifier for new exact-head CI evidence after independently reviewed bounded repair2674; verify native security/role/recovery/privacy assertions and provenance, not a fourth code review."
 routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"High preparation for hashed public-feed tokens, rotation/revocation and tenant/member disclosure boundaries; plan-only before distinctvalidation and ownershipallocation\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct High independent specification validation of actual public-feed token/proof/IP/limiter authorization design and exact ownership/test-key boundaries before anybuild\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"cross_model_layer\",\"profile\":\"diverse_review\",\"role\":\"independent-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -37,6 +37,9 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Owner-approved15.5 implementation of public-feed token/Vault/RLS/IP-proof and concurrentrateintegrity after independentlyapprovedSpec+exactCoordinatorallocation+committedREDATDD\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Retain SAME High ATDD parent for bounded captured-lint EOF artifact normalization after Root committed despite diffcheck failure; no semantic/source/test/runtime changes or new review\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Approved15.5 implementation of public-feed tokens/Vault/RLS/IP attestation and transactional rate integrity after approvedSpec, exact accepted ownership and committed RED ATDD artifact normalization\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Independent qualification of exact-head native tenant isolation, privileged role lifecycle, calendar capability privacy, recovery and transactional integrity evidence. Not an additional code-review round.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build-native-qualification\",\"profile\":\"sensitive\",\"role\":\"independent-native-evidence-qualifier\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Exact-head CI revealed eight node unit failures at shared mandatory command/report/CI contract checks and literal command enrollment. Parent High author diagnoses narrow delta; ownership coordination before new shared paths and distinct High latest-fix review required; cap three unchanged.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build-ci-repair\",\"profile\":\"sensitive\",\"role\":\"build-author-ci-failure-repair\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Reuse distinct High qualifier for new exact-head CI evidence after independently reviewed bounded repair2674; verify native security/role/recovery/privacy assertions and provenance, not a fourth code review.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build-native-qualification\",\"profile\":\"sensitive\",\"role\":\"independent-native-evidence-qualifier\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: "Hashed public tokens, rotation/revocation, externalfeed andcross-tenant abuseprotection requireHigh-riskATDD+automate; lastthreeno traceadvisory"
@@ -62,7 +65,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [159557e114f18123e73282c39c90830917de9948, c42b45abbca262ff79e26da479a3032d9015aeee, b940df85acfb2de36c0dcd5000a0039758f2b820, 3a1c3bc9fbf22b13c926179288a8b6eefe440c12, ae020f63a88089966b9323c55a36b6554f7e3900, 672099e9dc6569f4ac1cb9a967037e0d91df689c, aa5733116f20015cc3d14e1441d0eab232ecc9fd, 360fe850c18552f23a2bf74d8eda865431f0af38, 611c86295540161d31169110bf2139cf1d85d708]
+commits: [159557e114f18123e73282c39c90830917de9948, c42b45abbca262ff79e26da479a3032d9015aeee, b940df85acfb2de36c0dcd5000a0039758f2b820, 3a1c3bc9fbf22b13c926179288a8b6eefe440c12, ae020f63a88089966b9323c55a36b6554f7e3900, 672099e9dc6569f4ac1cb9a967037e0d91df689c, aa5733116f20015cc3d14e1441d0eab232ecc9fd, 360fe850c18552f23a2bf74d8eda865431f0af38, 611c86295540161d31169110bf2139cf1d85d708, 9487c0d9, 2674b3f7]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -257,8 +260,74 @@ p5_source_checkpoint:
   native_gates: ALLUNEXECUTED/fullDBRLS+physicalStorage+recovery+HTTPbrowser+installedcollection required
   development_complete: false
   release_ready: false
-  next: "Rootcheckpointbookkeepingcommit/push/ONElogicalexactheadCI; distinctHighnativequalification/deliveryGate/freshtruth beforeDONE"
+  next: "Bounded author CI-failure diagnosis; coordinate any new shared paths before edits; targeted independent High review only latest fixes, no fourth broad round"
   raw_review_diff_format_qualification: "_bmad-output/auto-bmad/preparation/story-15-5/root-staged-artifact-format-qualification.json"
   raw_review_diff_format_qualification_sha256: 421b06701c7c0260deafac012f66acd7f163df38257cb8c2e198f1d2b3acb59e
   unrestricted_staged_diff_check: "FAILED-exit-2-preserved; exactly 152 required single-space unified-diff context lines in four byte-frozen inputs"
   all_other_staged_paths_diff_check: "PASS-native-exit-0; no whitespace configuration or hook bypass"
+  checkpoint_head: 9487c0d9dc6f622b472780587e20e834abf98595
+  ci_run_id: 39451957379
+  ci_attempt: 1
+  ci_conclusion: failure
+  ci_reached: "admission passed; verify typecheck/lint/audit/lockfiles/source containment passed; node unit 3086 passed / 8 failed / 0 skipped"
+  ci_unexecuted: "production build/bundle/process contracts; required database/recovery-storage/browser jobs skipped, uncredited"
+  native_qualification: "PENDING failed-run packet; no development-complete claim"
+  failed_ci_native_qualification: ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-9487c0d9-ci-independent/native-qualification.json"
+  failed_ci_native_qualification_sha256: eb6a839dc5b6a894bc8f45d499ae92cf44511aed1d6cc8658f3cf76c60a9a69d
+  failed_ci_packet_manifest_sha256: 9f5de2a586c2ab50b4b22387e8c5ca833a24e9cc66b6f53d024f14ab918f2bd7
+  failed_ci_packet_root_admission_sha256: 81ebb342560dd14da44ef6171505099b3cb063bd504532b06a332cee76effdd5
+  failed_ci_qualified_source_bindings: 60
+  failed_ci_qualified_dependency_rows: 507
+  failed_ci_feature_node_units_passed: 30
+  failed_ci_separate_wrapper_simulations_passed: 22
+  failed_ci_remaining_feature_cases_unexecuted: 65
+p5_ci_repair_ownership:
+  status: accepted-bounded-six-path-allocation
+  coordinator_thread: 01a1160d-b5b1-7623-a8e8-54ef3dc537ed
+  request_turn: 01a15a06-93bb-7bf2-b19f-21fd5bc82351
+  precision_turn: 01a15a07-b5cc-7102-9049-62b3c8066631
+  held_paths_json: "[\"tests/support/calendar-feed-ci-contract.ts\", \"tests/unit/docs/acceptance-gate-report-validators.test.ts\", \"tests/unit/scripts/ci/checkpoint-dispatch.test.ts\", \"tests/unit/scripts/verify/ci-native-test-reports.test.ts\", \"tests/unit/scripts/verify/epic-11-pilot-ci-gate.test.ts\", \"tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts\"]"
+  coordinator_observation: "Six paths clean in Epic16 checkout; awaiting explicit active-claim confirmation; no foreign checkout edits"
+  limits: "Existing wrapper allocation only; no new workflow/runtime/Vault/key/provider authority. Required negative/honesty/report/upload/authority/pilot fences and original workflow inverse hash retained. Three-round cap unchanged."
+  allocation_receipt: "_bmad-output/auto-bmad/preparation/story-15-5/accepted-ci-contract-repair-allocation.json"
+  allocation_receipt_sha256: f0c35067c1691c7df20e5ebc25ca5fec89e718f2d98a01d6d62bf2902c153cf7
+  allocation_turn: 01a15a0f-3ed5-7460-8f79-f1546e348bf0
+  allocation_delivery_tool: exec-57c22b2e-a74d-452c-bf76-76fd50848f31
+  protected_e16_head: bbfa9265cd9732ddd8355f256a4fd90a6111c0b5
+  root_all_six_untouched_before_grant: true
+p5_ci_repair_checkpoint:
+  source_head: 2674b3f7fa5e7853314923a0ceed52d84fcf0677
+  source_paths_changed: 9
+  local_focused_passed: 302
+  local_focused_failed: 0
+  local_focused_skipped: 0
+  feature_cases: 95
+  separate_wrapper_simulation_cases: 23
+  typecheck: PASS-author actual exit0
+  production_build: PASS-author actual exit0
+  lint: "0 errors / 2 warnings; no unsupported preexisting attribution"
+  suggested_review_stops: 23
+  targeted_independent_review: "PASS — distinct context-free Sol6.1High latest repair/consequential regressions only; not fourth broad round"
+  review_input_bytes: 41327
+  review_input_sha256: a899b8b58c1039dccafbcc36558516a06249af0db9dcecf4461be2b26c27978b
+  successor_capsule: "_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-ci-repair.json"
+  native_successor: "UNEXECUTED; prior9487 failure preserved"
+  development_complete: false
+  release_ready: false
+  successor_capsule_sha256: 8c6a67b9d4ba912311d888a2a63b1e7e628803395b791367e0b68c31d25072a7
+  successor_parent_check_sha256: aa168a49bde9fa41a020aca65e40c6cdaa64c0c231a441a86af3ca68d157d563
+  root_source_admission: PASS-source-checkpoint-only
+  root_source_admission_sha256: 371b07563d7b9a1ecd3b817bd2aa4bc8a2ea61828ff7e3b5b2e485d913515214
+  current_source_paths: 66
+  source_author_commits: 6
+  artifact_references: 85
+  artifact_unique_files: 84
+  historical_migrations_unchanged: 109
+  protected_consumers_unchanged: 37
+  historical_preparation_blobs_unchanged: 69
+  prior611_vs_failed948_source_equalities: 60
+  next: "Root checkpoint commit/push then one new logical exact-head CI; prior948 failure and unexecuted65 runtime cases retained"
+  raw_review_input_format_qualification: "_bmad-output/auto-bmad/preparation/story-15-5/root-ci-repair-staged-artifact-format-qualification.json"
+  raw_review_input_format_qualification_sha256: f791989bc5f42559d5c545fca488e01b3297ce6d59bdc1578d3ec0f32b5ed3b7
+  unrestricted_staged_diff_check: "FAILED-native2 retained; exactly15 required byte0x20 unified-diff empty context lines in only fifth frozen raw input"
+  all_other_staged_diff_check: "PASS-native0; exact input byte/SHA+raw/index context proof; High parent bounded format assessment accepted; no configuration/checker/hook bypass"

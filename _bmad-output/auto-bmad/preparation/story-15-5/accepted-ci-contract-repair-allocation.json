@@ -1,0 +1,72 @@
+{
+  "kind": "accepted-bounded-ci-contract-repair-ownership-allocation",
+  "story": "15.5",
+  "root_head_before_shared_edits": "9487c0d9dc6f622b472780587e20e834abf98595",
+  "coordinator_thread": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "coordinator_turn": "01a15a0f-3ed5-7460-8f79-f1546e348bf0",
+  "verified_delivery_tool": "exec-57c22b2e-a74d-452c-bf76-76fd50848f31",
+  "delivery_status": "completed",
+  "coordinator_independent_e16_reads": [
+    "exec-d6ddcc91-8ac7-4306-93c0-63c0071ae9cd",
+    "exec-10811c6d-ac72-4abc-82a5-9761784cf502"
+  ],
+  "e16_observation": "Coordinator read actual E16 response: no active Story16.5 claims or dirty/untracked changes among all six paths; Coordinator own status inspection agreed. Root verified this Coordinator record, not foreign source contents.",
+  "protected_e16_head": "bbfa9265cd9732ddd8355f256a4fd90a6111c0b5",
+  "documents_observation": "Coordinator reports no active Documents claim known; six CI test/helper paths outside retained Documents implementation scope.",
+  "allocated_paths": [
+    "tests/support/calendar-feed-ci-contract.ts",
+    "tests/unit/docs/acceptance-gate-report-validators.test.ts",
+    "tests/unit/scripts/ci/checkpoint-dispatch.test.ts",
+    "tests/unit/scripts/verify/ci-native-test-reports.test.ts",
+    "tests/unit/scripts/verify/epic-11-pilot-ci-gate.test.ts",
+    "tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts"
+  ],
+  "root_before_edit_check": {
+    "all_six_status_clean": true,
+    "new_helper_absent": true,
+    "existing_path_bindings": [
+      {
+        "path": "tests/unit/docs/acceptance-gate-report-validators.test.ts",
+        "before_bytes": 58948,
+        "before_sha256": "8d87a7abf59b1907299e6a8612b715fedef6240cda61937e857f376e27f15310",
+        "head_blob_oid": "3c5446a150f8f27c88aabb613cbccefd3eccaf25"
+      },
+      {
+        "path": "tests/unit/scripts/ci/checkpoint-dispatch.test.ts",
+        "before_bytes": 14850,
+        "before_sha256": "76ed2b8d0b1e05cd310de2d2684e900be2a0a90a4e27c6ca617023c7616507c2",
+        "head_blob_oid": "6e760d7527b00d8402e47b9ba5a4b5b0e47d633d"
+      },
+      {
+        "path": "tests/unit/scripts/verify/ci-native-test-reports.test.ts",
+        "before_bytes": 2559,
+        "before_sha256": "cab22ac6a0b4d4e5fd8bf2fe034b5193ef98376469d387880c42358a08320f91",
+        "head_blob_oid": "3a8bff8f219fb1177310b8e57ed53fa107ceab62"
+      },
+      {
+        "path": "tests/unit/scripts/verify/epic-11-pilot-ci-gate.test.ts",
+        "before_bytes": 2407,
+        "before_sha256": "2566d313277d51c1f7e446d4bac4dbf6bd08a6c1868412c4ad26e4b58544aeeb",
+        "head_blob_oid": "4780b4f1ff8f7d2f6bf8dc2e92e979b6273a9932"
+      },
+      {
+        "path": "tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts",
+        "before_bytes": 140634,
+        "before_sha256": "5bccef9b63b8f8191c63f2db1b7673325c5352156f2c366e280a04114782bc28",
+        "head_blob_oid": "2c8114aa9612330580002ecad2fc41725e4d902b"
+      }
+    ]
+  },
+  "constraints": [
+    "Only own Epic15 checkout; no foreign checkout edits.",
+    "Pin reviewed wrapper LF-normalized SHA; parse literal fixed argv without eval or import execution.",
+    "Verify exact DB/browser workflow entries and actual exported argv.",
+    "Inverse only two admitted workflow fragments; preserve every other byte and original pre-feed fixed-Chromium hash.",
+    "Preserve required/optional/job/authority/native-success/upload/honesty/pilot/negative fences.",
+    "Existing allocated wrapper unit file may add specified mutations and actual launched-argv assertions.",
+    "No new workflow/runtime/Vault/key/provider effect.",
+    "Distinct latest-fix High review only; three broad rounds remain cap.",
+    "Preserve sourcefreeze611 and failed checkpoint9487 evidence; no acceptance inferred.",
+    "No further ownership acknowledgement inside exact bounds; monitoring remains paused."
+  ]
+}

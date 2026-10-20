@@ -1,0 +1,109 @@
+{
+  "status": "PASS-artifact-format-qualification-only",
+  "source_head": "2674b3f7fa5e7853314923a0ceed52d84fcf0677",
+  "unrestricted_check": {
+    "exit_code": 2,
+    "status": "FAILED-retained",
+    "stdout_sha256": "20f79540d9553c6affb1eede4efd870f05af319424f81abe1cf0ecc84ca9d5cf",
+    "stderr_bytes": 0
+  },
+  "qualified_context_line_count": 15,
+  "violations": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/ci-repair-review/latest-delta-input.diff",
+      "line": 11,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/ci-repair-review/latest-delta-input.diff",
+      "line": 71,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/ci-repair-review/latest-delta-input.diff",
+      "line": 78,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/ci-repair-review/latest-delta-input.diff",
+      "line": 80,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/ci-repair-review/latest-delta-input.diff",
+      "line": 84,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/ci-repair-review/latest-delta-input.diff",
+      "line": 130,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/ci-repair-review/latest-delta-input.diff",
+      "line": 240,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/ci-repair-review/latest-delta-input.diff",
+      "line": 250,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/ci-repair-review/latest-delta-input.diff",
+      "line": 262,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/ci-repair-review/latest-delta-input.diff",
+      "line": 266,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/ci-repair-review/latest-delta-input.diff",
+      "line": 284,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/ci-repair-review/latest-delta-input.diff",
+      "line": 361,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/ci-repair-review/latest-delta-input.diff",
+      "line": 365,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/ci-repair-review/latest-delta-input.diff",
+      "line": 377,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/ci-repair-review/latest-delta-input.diff",
+      "line": 380,
+      "exact_content_hex": "20"
+    }
+  ],
+  "frozen_input": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/ci-repair-review/latest-delta-input.diff",
+    "bytes": 41327,
+    "sha256": "a899b8b58c1039dccafbcc36558516a06249af0db9dcecf4461be2b26c27978b"
+  },
+  "all_other_staged_paths_native_check": {
+    "argv": [
+      "git",
+      "diff",
+      "--cached",
+      "--check",
+      "--",
+      ".",
+      ":(exclude)_bmad-output/auto-bmad/preparation/story-15-5/ci-repair-review/latest-delta-input.diff"
+    ],
+    "exit_code": 0,
+    "stdout_bytes": 0,
+    "stderr_bytes": 0
+  },
+  "source_freeze_successor_sha256": "8c6a67b9d4ba912311d888a2a63b1e7e628803395b791367e0b68c31d25072a7",
+  "limit": "Required unified-diff empty context syntax only. No frozen evidence/source/config mutation or hook bypass; not code review or runtime qualification."
+}

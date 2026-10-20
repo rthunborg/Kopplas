@@ -1,0 +1,28 @@
+{
+  "failed_head":"9487c0d9dc6f622b472780587e20e834abf98595",
+  "failed_run":"39451957379",
+  "attempt":1,
+  "actual_unit_counts":{"total":3094,"passed":3086,"failed":8,"skipped":0},
+  "route_before_dispatch":{"author":"implementation_author","model":"gpt-6.1-sol","effort":"high","reason":"Sensitive fixed CI runtime/required evidence contracts and literal command authorization enrollment"},
+  "known_failures":[
+    "tests/unit/docs/acceptance-gate-report-validators.test.ts:415,449",
+    "tests/unit/scripts/ci/checkpoint-dispatch.test.ts:152",
+    "tests/unit/scripts/verify/ci-native-test-reports.test.ts:9",
+    "tests/unit/scripts/verify/epic-11-pilot-ci-gate.test.ts:8",
+    "tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts:172,191",
+    "tests/unit/server/authz/command-enrollment.test.ts:13 -> src/server/commands/calendar-feed/manage-calendar-feed.ts:12"
+  ],
+  "authorization":"Diagnose actual failures read-only under existing High author route. Existing owned manage-calendar-feed source correction allowed when diagnosed. Existing wrapper/test/workflow three-path allocation remains narrow. Any new shared checker/test path write requires exact Root/Coordinator ownership admission before mutation.",
+  "constraints":"Maintain actual required checks and negative/inverse/failure fences; no blanket weakening or comment-only literal appeasement. No local native runtime/resource/qualification. Root dirty state excluded from any author commit. Original 611/9487 source freezes and failed native run retained historically; successor capsule required after repair.",
+  "shared_allocation_after_diagnosis":{
+    "status":"GRANTED before any six-path write",
+    "receipt":"accepted-ci-contract-repair-allocation.json",
+    "receipt_sha256":"f0c35067c1691c7df20e5ebc25ca5fec89e718f2d98a01d6d62bf2902c153cf7",
+    "coordinator_turn":"01a15a0f-3ed5-7460-8f79-f1546e348bf0",
+    "successful_tool":"exec-57c22b2e-a74d-452c-bf76-76fd50848f31",
+    "e16_protected_head":"bbfa9265cd9732ddd8355f256a4fd90a6111c0b5",
+    "paths":["tests/support/calendar-feed-ci-contract.ts","tests/unit/docs/acceptance-gate-report-validators.test.ts","tests/unit/scripts/ci/checkpoint-dispatch.test.ts","tests/unit/scripts/verify/ci-native-test-reports.test.ts","tests/unit/scripts/verify/epic-11-pilot-ci-gate.test.ts","tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts"],
+    "conditions":"Pinned LF-normalized wrapper source SHA, no eval/import side effects; reverse only two exact admitted workflow fragments and preserve all other bytes; original fixed-Chromium hash unchanged; preserve existing canonical checks and all negative/authority/job/optional/required-red/native-success/upload fences. Real negatives for wrong/missing entries/argv/reporters/native JSON and unrelated workflow/wrapper drift; independent actual launch argv assertions. No workflow/runtime/key/provider expansion. Root state and allocation receipt excluded author source commits."
+  },
+  "post_cap":"Three broad rounds completed. New sensitive CI repair receives distinct High review of only latest delta and consequential regressions; no fourth broad roster."
+}
