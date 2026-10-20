@@ -82,12 +82,27 @@ export function calendarEventWaiter<T>(options: {
 }
 export function createCalendarLifecycleObservations(options: { settlementTimeoutMs?: number } = {}) {
   type Pending = { cancel(): void; settled: Promise<void> };
-  const pending = new Set<Pending>(), failures: Error[] = [];
+  const pending = new Set<Pending>(), actualWork = new Set<Promise<void>>(), failures: Error[] = [];
   let closing = false, cancellationVerified = true;
   const cancelWaiter = (waiter?: { cancel(): void }) => {
     try { waiter?.cancel(); } catch (error) { cancellationVerified = false; failures.push(calendarBrowserDiagnostic("cleanup-lifecycle", error)); }
   };
   return {
+    /** Own the actual callback/query, independently of a caller's deadline race.
+     * Non-async deliberately returns the exact immediately observed promise. */
+    trackReadback<T>(run: () => Promise<T>): Promise<T> {
+      const work = Promise.resolve().then(() => {
+        // Registration and invocation are separate microtasks: close must also
+        // stop work registered just before teardown but not yet started.
+        if (closing) throw calendarBrowserDiagnostic("action-cancelled", { name: "AbortError" });
+        return run();
+      }).catch(error => { throw calendarBrowserDiagnostic("action-readback", error); });
+      void work.catch(() => undefined);
+      const settled = work.then(() => undefined, error => { failures.push(calendarBrowserDiagnostic("action-readback", error)); });
+      actualWork.add(settled);
+      void settled.then(() => actualWork.delete(settled));
+      return work;
+    },
     observe<R, S, T>(input: { request(): CalendarEventWaiter<R>; response(): CalendarEventWaiter<S>; readback(request: R, signal: AbortSignal): Promise<T>; completion?(request: R): Promise<boolean> }): Promise<T> {
       const controller = new AbortController();
       let request: CalendarEventWaiter<R> | undefined, response: CalendarEventWaiter<S> | undefined;
@@ -136,10 +151,13 @@ export function createCalendarLifecycleObservations(options: { settlementTimeout
       pending.add(entry); return observation;
     },
     async cancelAndSettle(): Promise<{ errors: Error[]; settled: boolean }> {
+      // Close BEFORE capturing work. Late poll callbacks cannot launch queries,
+      // and an expect.poll timeout never substitutes for actual SQL settlement.
       closing = true;
       const active = [...pending]; for (const entry of active) entry.cancel();
+      const work = [...actualWork];
       let timer: ReturnType<typeof setTimeout> | undefined;
-      const settled = await Promise.race([Promise.all(active.map(entry => entry.settled)).then(() => true), new Promise<false>(resolve => {
+      const settled = await Promise.race([Promise.all([...active.map(entry => entry.settled), ...work]).then(() => true), new Promise<false>(resolve => {
         timer = setTimeout(() => resolve(false), options.settlementTimeoutMs ?? 20_000);
       })]);
       if (timer) clearTimeout(timer);
@@ -444,11 +462,11 @@ export async function withCalendarBrowserFixture(
       let transportVerified = true;
       const requestListener = (request: Request) => { const input = actionInput(request); if (input) attempts.push(input); };
       page.on("request", requestListener);
-      const readTokens = () => adminQuery<TokenFact>(`select id,tenant_id,membership_id,token_hash,revision,attempt_id,action,
+      const readTokens = () => observations.trackReadback(() => adminQuery<TokenFact>(`select id,tenant_id,membership_id,token_hash,revision,attempt_id,action,
         revoked_at::text,usage_count::text,last_used_at::text,request_count::text,spike_count::text,last_spike_at::text
-        from public.calendar_feed_tokens where tenant_id=any($1::uuid[]) order by tenant_id,membership_id,revision`, [ids]);
-      const readAudit = () => adminQuery<AuditFact>(`select target_id,actor_user_id,command,metadata from public.audit_events
-        where tenant_id=any($1::uuid[]) and command like 'calendar_feed.%' order by created_at,id`, [ids]);
+        from public.calendar_feed_tokens where tenant_id=any($1::uuid[]) order by tenant_id,membership_id,revision`, [ids]));
+      const readAudit = () => observations.trackReadback(() => adminQuery<AuditFact>(`select target_id,actor_user_id,command,metadata from public.audit_events
+        where tenant_id=any($1::uuid[]) and command like 'calendar_feed.%' order by created_at,id`, [ids]));
       const checkCancellation = (signal?: AbortSignal) => { if (signal?.aborted) throw calendarBrowserDiagnostic("action-cancelled", { name: "AbortError" }); };
       const physicalRows = async (signal?: AbortSignal) => {
         checkCancellation(signal);
@@ -472,11 +490,11 @@ export async function withCalendarBrowserFixture(
           auditContainsCapabilityOrProofOrIpOrKey: secrets.some(value => serialized.includes(value)) || /"(?:token|token_hash|tokenHash|rawUrl|issuedPath|signature|proof|ip|ip_hash|ipHash|secret|key)"\s*:/i.test(serialized) };
       };
       const committedAttempt = async (input: Attempt, signal?: AbortSignal): Promise<PhysicalSnapshot> => {
-        await expect.poll(async () => {
+        await expect.poll(() => observations.trackReadback(async () => {
           const [tokens, audits] = await physicalRows(signal);
           const token = tokens.find(row => row.membership_id === subject.membership && row.attempt_id === input.attemptId && row.action === input.action && row.revision === input.revision + 1);
           return !!token && audits.filter(audit => audit.target_id === token.id && audit.actor_user_id === subject.user.id && audit.metadata.attemptId === input.attemptId && audit.metadata.revision === token.revision).length === 1;
-        }, { timeout: 15_000, message: "Expected exact calendar lifecycle row and attributable audit commit" }).toBe(true);
+        }), { timeout: 15_000, message: "Expected exact calendar lifecycle row and attributable audit commit" }).toBe(true);
         checkCancellation(signal); const current = await snapshot(); checkCancellation(signal); return current;
       };
       const errors: Error[] = [];

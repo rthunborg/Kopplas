@@ -769,13 +769,50 @@ and the refreshed author trail accompany the committed latest-delta review input
 Distinct High exact-commit review and new Root-owned CI remain pending; status
 stays in-review, with no delivery/DONE/release claim and an unchanged intent kernel.
 
+### Latest-finding follow-up — actual SQL callback settlement
+
+The distinct High review of committed `33b595a8b7c001bd89788fb1c0e8cd9c626e03ec`
+reported one P2 custody defect; that assessment remains **not passed**. Installed
+Playwright 1.61.1 races each expect.poll callback against its deadline without
+joining an unfinished callback. The outer observation and HTTP body could finish
+while the physical token/audit query promises remained active. Joining only the
+outer observation therefore did not justify SQL/Auth fixture cleanup.
+
+Root admitted only helper, existing unit and author Spec changes under the
+recorded High route `author-native-poll-query-settlement-route.json`. The registry
+now synchronously owns actual callback and query promises independently of the
+poll wrapper. Its non-async tracker immediately observes the exact returned
+promise; the non-async token/audit factories return it without another adopting
+wrapper. Teardown closes registration before capturing and draining work, and
+checks the latch again before invoking queued factories. Late poll callbacks
+cannot launch SQL. Both physical query siblings and the actual poll callback
+remain owned until real completion; the existing 20-second drain timeout retains
+custody rather than crediting absence. The 15-second poll, original matchers,
+physical attempt/hash/audit assertions and primary/all cleanup errors remain.
+No wrapper, SHA pin, browser scenario, application, privilege or runtime changes.
+
+Four new bounded regressions exercise the installed polling deadline with injected
+SQL promises and successful HTTP completion, pending/rejected siblings, queued/
+late launch refusal and abandoned synchronous/native rejections. They execute
+actual pure helper source and the installed polling helper, with no SQL/browser
+or managed resource. Previous 47/47 and 326/326 results remain historical33b
+facts. Current bounded units passed **51/51**, zero failures/skips/cancellations;
+full typecheck and focused two-file lint passed with zero errors/warnings. Final
+42-stop/kernel/Git checks accompany the committed three-path review input.
+The unchanged parts of the prior six-path assessment are reused explicitly;
+new review is latest-finding/consequential-regression only, not a fourth broad
+round or a whole-source PASS. All six failed native histories, fourteen browser
+failures/28 attempts, 51 unexecuted DB cases and unavailable attachment content
+remain unchanged. Fresh exact-head Root CI and distinct High follow-up review
+are pending; status remains in-review without delivery/DONE/release claims.
+
 ## Suggested Review Order
 
 Author: Story 15.5 implementation/fix author (gpt-6.1-sol High), incorporating
 explicitly delegated browser and bootstrap contributors. Refreshed after all
 Round 3 latest-fix assertions, the subsequent checkpoint repairs and bounded
 native setup diagnostics, same-connection privacy qualification and explicit
-isolated setup authority transport, bounded child settlement and browser diagnostic repair.
+isolated setup authority transport, bounded child settlement, browser diagnostic repair and actual SQL callback ownership.
 Stops below resolve to final source literals before the repair commit.
 
 ### Own settings and honest lifecycle results
@@ -844,7 +881,7 @@ restricted-session oracle. No new privileged child configuration or grant is add
 - `tests/integration/commands/calendar-feed.int.test.ts:475` — `// FULL rollback comes first`: preserves rollback/reset and same/fresh catalog absence proof.
 - `scripts/ci/with-calendar-feed-runtime.mjs:257` — `export function createOwnedGroupStopper`: memoizes settlement, validates capture, passively observes missing-leader group absence and bounds completion/output.
 - `scripts/ci/with-calendar-feed-runtime.mjs:179` — `export function createTelemetryObserver`: detects leaks before dropping non-allowlisted output.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:812` — `nonzero/null-signal nested browser loss`: requires retained key custody for abnormal completion.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:893` — `nonzero/null-signal nested browser loss`: requires retained key custody for abnormal completion.
 - `tests/support/calendar-feed-ci-contract.ts:43` — `projectCalendarFeedCiCommands`: validates pinned real wrapper argv and only the two exact workflow inverses.
 - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:32` — `CI command projection rejects`: missing/wrong entry/argv and unrelated-source/workflow negatives preserve the original inverse fence.
 - `scripts/ci/with-calendar-feed-runtime.mjs:32` — `function safeDiagnostic`: emits only fixed stages/categories and allowlisted SQLSTATE without native payloads.
@@ -858,16 +895,19 @@ restricted-session oracle. No new privileged child configuration or grant is add
 
 - `tests/e2e/support/calendar-feed-atdd.ts:83` — `export function createCalendarLifecycleObservations`: AC2/6 observes both transport promises and joins actual readback before teardown; pure regressions are not native acceptance.
 - `tests/e2e/support/calendar-feed-atdd.ts:25` — `export function calendarBrowserDiagnostic`: preserves closed stage/category/SQLSTATE without native error payloads.
-- `tests/e2e/support/calendar-feed-atdd.ts:687` — `if (base && cleanupAllowed)`: canonical SQL/Auth cleanup waits for verified settlement; unresolved references retain fixture custody.
+- `tests/e2e/support/calendar-feed-atdd.ts:705` — `if (base && cleanupAllowed)`: canonical SQL/Auth cleanup waits for verified settlement; unresolved references retain fixture custody.
 - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:489` — `missing leaders with persistent groups`: absence is measured within existing budgets; anonymous groups grant no signaling authority.
 - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:659` — `actual browser bounded cancellation`: timeout cannot credit in-flight SQL/readback settlement; release and real completion are distinct.
+
+- `tests/e2e/support/calendar-feed-atdd.ts:93` — `trackReadback<T>`: registers actual callback/query work independently of Playwright deadlines and closes before drain.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:739` — `installed polling deadline cannot credit`: HTTP completion plus outer timeout cannot credit unresolved physical query siblings or callback completion.
 
 Evidence: historical check receipts retain their exact revisions and dependency
 limits. The sixth checkpoint passed 3105 Node units (30 feature and 33 separate
 wrapper cases), Python43 and recovery1, with actual original-client setup7 and
 privacy4 preflight credit. It still failed DB child settlement and all14 story
 browser cases across28 attempts;51 feature DB cases remain unexecuted. The local
-repair's47 separate bounded Node cases exercise injected lifecycle and actual
+33b repair's47 separate bounded Node cases exercise injected lifecycle and actual
 pure browser source seams only. Current-head full native DB/HTTP/RLS/INT015,
 14 browser acceptances, successful child/key cleanup and attachment-content
 privacy remain pending. Source RLS010 effective CREATE and restricted-source

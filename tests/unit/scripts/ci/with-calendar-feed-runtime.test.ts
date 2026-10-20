@@ -736,6 +736,87 @@ test("actual browser finally cleanup executes every step and retains primary plu
   assert.deepEqual(calls, ["release", "join", "page"]);
 });
 
+test("installed polling deadline cannot credit pending actual SQL callbacks despite successful HTTP completion", async () => {
+  const { createCalendarLifecycleObservations } = await actualBrowserSeams();
+  const { iso } = nodeModule.createRequire(import.meta.url)("../../../../node_modules/.pnpm/playwright-core@1.61.1/node_modules/playwright-core/lib/coreBundle.js") as {
+    iso: { monotonicTime(): number; pollAgainstDeadline(callback: () => Promise<{ continuePolling: boolean; result: boolean }>, deadline: number, intervals: number[]): Promise<{ timedOut: boolean }> };
+  };
+  const registry = createCalendarLifecycleObservations({ settlementTimeoutMs: 5 });
+  let releaseTokens!: () => void, releaseAudit!: () => void, finishedQueries = 0, httpComplete = false, callbackCompleted = false;
+  const tokens = new Promise<void>(resolve => { releaseTokens = resolve; }), audit = new Promise<void>(resolve => { releaseAudit = resolve; });
+  const observation = registry.observe({ request: () => ({ promise: Promise.resolve(7), cancel() {} }),
+    response: () => ({ promise: Promise.resolve(true), cancel() {} }), completion: async () => { httpComplete = true; return true; },
+    readback: async (_request, signal) => {
+      const result = await iso.pollAgainstDeadline(() => registry.trackReadback(async () => {
+        await Promise.allSettled([
+          registry.trackReadback(() => tokens.then(() => { finishedQueries++; })),
+          registry.trackReadback(() => audit.then(() => { finishedQueries++; })),
+        ]);
+        callbackCompleted = true;
+        if (signal.aborted) throw Object.assign(new Error("Injected cancellation"), { name: "AbortError" });
+        return { continuePolling: false, result: true };
+      }), iso.monotonicTime() + 100, [1]);
+      if (result.timedOut) throw Object.assign(new Error("Injected polling deadline"), { name: "TimeoutError" });
+      return true;
+    } });
+  await assert.rejects(observation, /category=timeout/);
+  assert.equal(httpComplete, true); assert.equal(finishedQueries, 0);
+  assert.equal((await registry.cancelAndSettle()).settled, false);
+  releaseTokens(); assert.equal((await registry.cancelAndSettle()).settled, false); assert.equal(finishedQueries, 1);
+  releaseAudit(); const actual = await registry.cancelAndSettle();
+  assert.equal(actual.settled, true); assert.equal(finishedQueries, 2);
+  assert.equal(callbackCompleted, true);
+  assert.ok(actual.errors.some(error => error.message.includes("category=timeout")));
+});
+
+test("tracked sibling SQL failures remain owned through outer deadline and preserve every sanitized failure", async () => {
+  const { createCalendarLifecycleObservations } = await actualBrowserSeams();
+  const registry = createCalendarLifecycleObservations({ settlementTimeoutMs: 5 });
+  let rejectTokens!: (error: Error) => void, rejectAudit!: (error: Error) => void, started!: () => void;
+  const tokens = new Promise<void>((_resolve, reject) => { rejectTokens = reject; });
+  const audit = new Promise<void>((_resolve, reject) => { rejectAudit = reject; });
+  const entered = new Promise<void>(resolve => { started = resolve; });
+  const callback = registry.trackReadback(async () => {
+    const siblings = [registry.trackReadback(() => tokens), registry.trackReadback(() => audit)]; started();
+    await Promise.allSettled(siblings); throw new Error("PRIVATE callback failure");
+  });
+  await entered;
+  rejectTokens(Object.assign(new Error("PRIVATE token query"), { code: "42501" }));
+  const first = await registry.cancelAndSettle(); assert.equal(first.settled, false);
+  rejectAudit(Object.assign(new Error("PRIVATE audit query"), { code: "57014" }));
+  await assert.rejects(callback, error => error instanceof Error && !error.message.includes("PRIVATE"));
+  const final = await registry.cancelAndSettle(); assert.equal(final.settled, true);
+  assert.ok(final.errors.some(error => error.message.includes("sqlstate=42501")));
+  assert.ok(final.errors.some(error => error.message.includes("sqlstate=57014")));
+  assert.ok(final.errors.length >= 3);
+  assert.ok(final.errors.every(error => error.cause === undefined && !error.stack?.includes("PRIVATE")));
+});
+
+test("readback ownership closes before drain and refuses queued and late callbacks without launching SQL", async () => {
+  const { createCalendarLifecycleObservations } = await actualBrowserSeams();
+  const registry = createCalendarLifecycleObservations({ settlementTimeoutMs: 5 }); let launches = 0;
+  const queued = registry.trackReadback(async () => { launches++; return true; });
+  const draining = registry.cancelAndSettle(); // closes synchronously before queued factory invocation
+  await assert.rejects(queued, /category=cancelled/);
+  assert.equal((await draining).settled, true); assert.equal(launches, 0);
+  const late = registry.trackReadback(async () => { launches++; return true; });
+  await assert.rejects(late, /category=cancelled/); assert.equal(launches, 0);
+  assert.ok((await registry.cancelAndSettle()).errors.length >= 2);
+});
+
+test("the exact returned readback promise observes abandoned factory and native query rejections immediately", async () => {
+  const { createCalendarLifecycleObservations } = await actualBrowserSeams();
+  const registry = createCalendarLifecycleObservations({ settlementTimeoutMs: 5 });
+  // Intentionally abandon both returned promises until the next turn; node:test
+  // detects any unobserved adopting async wrapper or rejection branch.
+  const sync = registry.trackReadback(() => { throw new Error("PRIVATE sync query"); });
+  const async = registry.trackReadback(() => Promise.reject(Object.assign(new Error("PRIVATE async query"), { code: "42501" })));
+  await new Promise(resolve => setImmediate(resolve));
+  await assert.rejects(sync, error => error instanceof Error && !error.stack?.includes("PRIVATE"));
+  await assert.rejects(async, /sqlstate=42501/);
+  const final = await registry.cancelAndSettle(); assert.equal(final.settled, true); assert.equal(final.errors.length, 2);
+});
+
 test("browser mode runs only existing smoke and awaits its server group before key deletion", async () => {
   const result = await runFixture("browser");
   assert.equal(result.exitCode, 0); assert.equal(result.launches.length, 1);
