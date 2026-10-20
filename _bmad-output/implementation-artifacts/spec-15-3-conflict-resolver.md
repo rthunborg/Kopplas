@@ -3,7 +3,7 @@ title: '15.3 — Conflict Resolver'
 type: 'feature'
 created: '2026-10-20'
 status: 'in-review'
-review_loop_iteration: 2
+review_loop_iteration: 3
 followup_review_recommended: false
 baseline_revision: '3245042f1f9e08c3ec6c2445c1cb6109e326be33'
 context:
@@ -213,7 +213,7 @@ Required runtime matrix is now INT-001…017 (17cases), RLS-001…004, READ-001�
 
 ## Suggested Review Order
 
-Author: implementation delegate named above. Refreshed at source `a80e615214ade42f25b18906ca8c1ee86fadc187`, seven paths after failed CI checkpoint2b7f6b03. Frozen Intent/ACs and previous repair mappings remain unchanged. The prior independent pass qualifies its old snapshot; this delta awaits targeted High verification.
+Author: implementation delegate named above. Refreshed at source `a80e615214ade42f25b18906ca8c1ee86fadc187`, seven paths after failed CI checkpoint2b7f6b03. Frozen Intent/ACs and previous repair mappings remain unchanged. The final counted round3 High targeted review passed this source/metadata snapshot with zero findings; only author documentation changes in this reconciliation.
 
 ### Reach a complete, honest conflict queue
 
@@ -251,13 +251,13 @@ AC6/8 retains unknown attempts until explicit replay and reports success only af
 - `tests/e2e/conflict-resolver.e2e.spec.ts:28` — `Bokningarnas tidslinje`: exactly two visible timeline participants.
 - `tests/e2e/conflict-resolver.e2e.spec.ts:71` — `const changes=`: exactly two histories, separately remaining and resolved.
 
-Evidence: failed CI and latest local results are detailed below. At a80e, full unit3019P0F1S, focused real-validator7P0F0S, transport36P0F4filteredS, typecheck/lint/build/bundle PASS; browser collection3active0skip0executed. Limits: no local DB/Storage/browser execution; the four filtered DB cases remain active/default-real in normal required CI. Booking-read mock facts run the actual parser/detector but mock authority/SQL; scheduling projected groups exercise transport only. Old fault/lock passes do not qualify the changed migration. No hidden RPC code, E2E002 cause or unavailable trace is inferred. Latest-delta independent High review and actual exact-head CI remain required. No development-complete/release-ready claim.
+Evidence: failed CI and latest local results are detailed below. At a80e, full unit3019P0F1S, focused real-validator7P0F0S, transport36P0F4filteredS, typecheck/lint/build/bundle PASS; browser collection3active0skip0executed. Limits: no local DB/Storage/browser execution; the four filtered DB cases remain active/default-real in normal required CI. Booking-read mock facts run the actual parser/detector but mock authority/SQL; scheduling projected groups exercise transport only. Old fault/lock passes do not qualify the changed migration. No hidden RPC code, E2E002 cause or unavailable trace is inferred. Latest-delta independent High review is passed; actual new exact-head CI and final delivery/provenance admission remain required. No development-complete/release-ready claim.
 
 ## Auto Run Result
 
-Status: in-review. Current a80e source awaits independent latest-delta High verification and Root exact-head CI qualification. Previous source approval and failed CI remain historical evidence. Delivery refuses completion for three required runtime checks plus pending delta review. Root owns CI/push, canonical state/sprint/aggregate ledgers and final provenance/delivery admission. `development_complete=false`; `release_ready=false`.
+Status: in-review. Current a80e source passed independent latest-delta High verification at metadata58c4; Root new exact-head CI qualification remains pending. Failed CI remains historical evidence. Delivery refuses completion for exactly three required runtime checks. Root owns CI/push, canonical state/sprint/aggregate ledgers and final provenance/delivery admission. `development_complete=false`; `release_ready=false`.
 
-Author validation: exactly one Suggested Review Order with16 concrete stops, checked against current source. Native-success direct Storage still awaits distinct assertion/count qualification. Expected delivery-gate refusal is never presented as a pass.
+Author validation: exactly one Suggested Review Order with16 concrete stops, checked against current source. Native-success direct Storage still awaits distinct assertion/count qualification; all three runtime checks are pending the new exact head. Expected delivery-gate refusal is never presented as a pass.
 
 ## Independent Follow-up Review
 
@@ -296,3 +296,18 @@ Source `a80e615214ade42f25b18906ca8c1ee86fadc187` changes7paths after2b7; invent
 Actual latest local commands: pnpm typecheck PASS; pnpm lint --ignore-pattern '.env*/**' PASS(0errors17existingwarnings, ignored generated evidence only); pnpm build PASS; pnpm verify:bundle-containment PASS; git diff --check PASS. pnpm test:unit3020tests/103suites=3019P0F1S, same existing Windows xattrs skip. Focused node resolver file7P0F0S. Installed Vitest startVitest API config:false/globalSetup:[]/exact two read-file includes/mocked-transport name filter:36P0F4name-filteredS of40declared. Four filtered cases remain actual active DB tests. Playwright --list --reporter=json:3registered0skip-annotated0runtime-results/errors[]. Earlier RED/failure/skip histories remain above. Unchanged dependency/install/audit/lockfile/service-role/process checks reuse prior evidence, with no decorative rerun.
 
 Counted reviews remain2/3 plus one prior separate exact-locator check. Previous independent pass does not approve this source; parent will dispatch final guarded independent SolHigh review limited to actual CI repair delta. No new broad unchanged pass, local DB/browser execution, old migration/environment/workflow change, push or resource operation. Spec remains in-review and delivery incomplete pending review, actual runtime and Root admission.
+
+## CI Repair Independent Review
+
+**Round 3 of 3**
+
+2026-10-20: final automatic counted round; context-free gpt-6.1-sol High targeted review of the coherent failed-CI repair delta at sourcea80e615214ade42f25b18906ca8c1ee86fadc187 / metadata58c4cac847fd0de26cd13e57f08643cd9a965cd6. Limited to changed lines, observed failures and consequential regressions; no unchanged broad pass. Runtime requalification remains pending; no fourth broad review is authorized.
+
+
+Final round3 result: independent gpt-6.1-sol High targeted review PASS, findings0/required_repairs0; triage high0/medium0/low0/intent_gap0/bad_spec0/defer0/reject0, follow-up recommendation false. Counted reviews are now3/3: one broad six-layer review, one targeted13-repair review and this targeted actual-CI repair review; the earlier same-reviewer exact-locator check remains separately recorded. No fourth broad pass is warranted or authorized.
+
+The reviewer bound source `a80e615214ade42f25b18906ca8c1ee86fadc187`, metadata `58c4cac847fd0de26cd13e57f08643cd9a965cd6`, all56source and2metadata blobs, nine-path repair input SHA256 `705cfb3dfeccd5b1eb4c070c1da38e016fbe1b10cac729543d74670876a9dc99` and conservation manifest SHA256 `82df5da03c0a7a4523789d473a93975e689ff742f98c41cf728ab0935f98a4d7`. The disclosed coordinator round3 appendix was outside that pinned input and is preserved here. Actual independent bounded probes:7P0F0S focused resolver/validator;36P0F4name-filtered actualDB cases in transport files, with no DB probe;16SROrefs0errors. Privacy/default-real scan/derived identity/fail-closed behavior, no-body diagnostics, proof/authorization and SQL permitted-field invariants were source-checked. These are reviewer probes/source inspection, not additional author execution or runtime qualification.
+
+Raw `.env.epic15.mail-runtime/story-15-3-build-review-round-3/review.raw.md` SHA256 `a9a1309061ffe7cd13e013549e09d37334cec7cd49e6a0cda93ef2129c13a646`; `summary.json` in the same directory records completed round3, source_checkpoint_ready, findings0, required_repairs0, new_runtime_executed0, development_completefalse and release_readyfalse. The reviewer confirmed the historical failedCI1851P10F52S and browser12P2F0S0flaky counts, and expressly did not establish E2E002's cause or runtime repair. The original failed/unreached history above remains intact.
+
+This author reconciliation changes only spec/delivery, conserves all56source blobs and the frozen Intent/ACs, refreshes the same16-stop guide and keeps spec in-review. Current independent_review is passed, while fullDB/RLS, direct recovery-Storage and essential browser checks are pending new exact-head execution/qualification. Expected delivery refusal is exactly those three runtime checks; Root final delivery/provenance admission remains required. No local runtime/resource/state/environment/source/push changes, new broad checks or completion claim.
