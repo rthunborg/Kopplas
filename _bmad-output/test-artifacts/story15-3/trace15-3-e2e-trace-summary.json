@@ -1,0 +1,200 @@
+{
+  "schema_version": "0.2.0",
+  "snapshot_at": "2026-10-20T03:59:17.917586+00:00",
+  "repo": "Kopplas",
+  "collection_mode": "contract_static",
+  "collection_status": "COLLECTED",
+  "inventory_basis": "acceptance_criteria",
+  "gate_basis": "none",
+  "source_sha": "51bbf0667f5055368e799e24b2f6ed7a20bc9665",
+  "target": {
+    "type": "story",
+    "id": "15.3",
+    "label": "Conflict Resolver"
+  },
+  "decision_mode": "deterministic",
+  "evaluator": "auto-bmad TEA delegate (gpt-6.1-sol High)",
+  "confidence": "high",
+  "oracle": {
+    "resolution_mode": "formal_requirements",
+    "confidence": "high",
+    "sources": [
+      "_bmad-output/implementation-artifacts/spec-15-3-conflict-resolver.md:95"
+    ],
+    "external_pointer_status": "not_used",
+    "synthetic": false
+  },
+  "coverage": {
+    "inventory": {
+      "covered": 8,
+      "total": 8,
+      "pct": 100
+    },
+    "priority_breakdown": {
+      "P0": {
+        "total": 5,
+        "covered": 5,
+        "pct": 100
+      },
+      "P1": {
+        "total": 3,
+        "covered": 3,
+        "pct": 100
+      },
+      "P2": {
+        "total": 0,
+        "covered": 0,
+        "pct": 100
+      },
+      "P3": {
+        "total": 0,
+        "covered": 0,
+        "pct": 100
+      }
+    },
+    "by_level": {
+      "e2e": {
+        "tests": 3,
+        "criteria_covered": 7
+      },
+      "api": {
+        "tests": 23,
+        "criteria_covered": 8
+      },
+      "component": {
+        "tests": 2,
+        "criteria_covered": 3
+      },
+      "unit": {
+        "tests": 16,
+        "criteria_covered": 7
+      },
+      "live": {
+        "tests": 0,
+        "criteria_covered": 0
+      },
+      "other": {
+        "tests": 0,
+        "criteria_covered": 0
+      }
+    }
+  },
+  "tests": {
+    "files": 9,
+    "cases": 44,
+    "skipped_cases": 0,
+    "fixme_cases": 0,
+    "pending_cases": 0
+  },
+  "risk_summary": {
+    "critical_open": 0,
+    "high_open": 0,
+    "medium_open": 0,
+    "low_open": 0
+  },
+  "heuristics": {
+    "endpoint_gaps": 0,
+    "auth_negative_path_status": "present",
+    "error_path_status": "present",
+    "ui_journey_status": "not_applicable",
+    "ui_state_status": "not_applicable",
+    "formal_ui_browser_limit": "AC3 suggestion-menu selection unexecuted; production API coverage exists"
+  },
+  "live_evidence": {
+    "present": false,
+    "results_file": "_bmad-output/test-artifacts/live-verification-results.json",
+    "freshness": "not_present",
+    "recorded_source_sha": "",
+    "current_source_sha": "51bbf0667f5055368e799e24b2f6ed7a20bc9665",
+    "producer": "",
+    "counted": 0,
+    "stale": 0,
+    "unverifiable": 0,
+    "failed": 0,
+    "contradicted": 0,
+    "blocked": 0,
+    "skipped": 0,
+    "unmatched": 0,
+    "invalid": 0,
+    "requirements_live_only": 0
+  },
+  "blockers": [],
+  "recommendations": [
+    {
+      "priority": "INFORMATIONAL",
+      "action": "Retain three existing release-validation areas and the explicit browser suggestion-menu evidence limit; Root owns ledger synchronization",
+      "requirements": [
+        "AC3",
+        "AC8"
+      ]
+    }
+  ],
+  "links": {
+    "trace_report_path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-3\\trace15-3-matrix.md",
+    "trace_report_url": "",
+    "artifact_url": "",
+    "journey_evidence_url": ""
+  },
+  "allow_gate": false,
+  "actual_skill_gate": "NOT_EVALUATED",
+  "gate_eligible": false,
+  "gate_rationale": "Gate decision skipped because allow_gate=false and collection_status=COLLECTED.",
+  "advisory": {
+    "verdict": "PASS",
+    "kind": "non-gating coverage-only advice",
+    "p0": 100,
+    "p1": 100,
+    "overall": 100,
+    "covered_acs": [
+      "AC1",
+      "AC2",
+      "AC3",
+      "AC4",
+      "AC5",
+      "AC6",
+      "AC7",
+      "AC8"
+    ],
+    "uncovered_acs": [],
+    "rules": "P0<100 or overall<80 or P1<80 FAIL; P1>=90 PASS; otherwise CONCERNS; noP1 effective100"
+  },
+  "evidence": {
+    "tested_head": "d550029abac34360af7d9d928f6e66f906665d38",
+    "run_id": "39363860222",
+    "attempt": 1,
+    "reused": true,
+    "new_runtime_executed": 0,
+    "focused_unit_passed": 16,
+    "focused_integration_passed": 25,
+    "focused_real_database_cases": 23,
+    "focused_browser_passed": 3,
+    "full_integration": {
+      "passed": 1862,
+      "failed": 0,
+      "skipped": 52
+    },
+    "unit": {
+      "passed": 3020,
+      "failed": 0,
+      "skipped": 0
+    },
+    "browser": {
+      "cases": 14,
+      "attempts": 14,
+      "passed": 14,
+      "retry": 0,
+      "skip": 0,
+      "flaky": 0
+    }
+  },
+  "limitations": [
+    "Flytta/Omfordela browser suggestion-menu selection unexecuted; no browser AC3 credit",
+    "E2E003 does not read exact booking times/assignments/audit; INT and E2E002 provide named fields",
+    "SSR2 static structure only; no physical DB or keyboard/layout credit",
+    "52 full integration skips and four optional release jobs are noncoverage",
+    "Admin synthetic pilot is not representative Scheduling/R012 performance",
+    "Loop variants and declared parameterization are not additional native cases",
+    "All release validation remains explicitly deferred; release_ready=false"
+  ],
+  "release_ready": false
+}
