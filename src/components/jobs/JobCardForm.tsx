@@ -4,7 +4,7 @@ import { useRef, useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { TextField, SelectField } from "@/components/crm/FormField";
 import { saveJobCardAction } from "@/features/jobs/actions";
-import { stockholmLocalToUtc } from "@/features/scheduling/time-zone";
+import { prepareJobCardAccessWindow } from "@/features/jobs/job-card-domain";
 
 function utcToStockholmLocal(value: string): string {
   const parts = Object.fromEntries(new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/Stockholm", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", hourCycle: "h23" }).formatToParts(new Date(value)).map((p) => [p.type, p.value]));
@@ -76,7 +76,7 @@ export function JobCardForm({ jobId, initial = {}, options }: {
         responsible_project_manager_id: text("responsible_project_manager_id"),
         locationOverride: override ? { street: text("street"), postalCode: text("postalCode"), city: text("city"), countryCode: text("countryCode") } : null,
         requiredWorkRoleIds: rolesKnown ? [...selectedRoles] : null,
-        accessWindows: windowsKnown ? windows.map((w) => ({ startsAt: w.startsAt === w.originalStartLocal ? w.originalStartsAt : stockholmLocalToUtc(w.startsAt.length === 16 ? `${w.startsAt}:00` : w.startsAt), endsAt: w.endsAt === w.originalEndLocal ? w.originalEndsAt : stockholmLocalToUtc(w.endsAt.length === 16 ? `${w.endsAt}:00` : w.endsAt) })) : null,
+        accessWindows: windowsKnown ? windows.map(prepareJobCardAccessWindow) : null,
         dependencyJobIds: form.getAll("dependency").map(String),
       };
       attempt.current = input; void send(input);

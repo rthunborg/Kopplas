@@ -1,4 +1,4 @@
-import {formatUtcInstant, parseUtcInstant} from "@/features/scheduling/time-zone";
+import {formatUtcInstant, parseUtcInstant, stockholmLocalToUtc} from "@/features/scheduling/time-zone";
 /** Pure card values/state: no persistence, eligibility, or authorization. */
 export type JobPriority = "low" | "normal" | "high" | "urgent";
 export interface JobCardValue {
@@ -51,6 +51,19 @@ export interface JobCardData {
   readonly dependencyJobIds: readonly string[];
 }
 export type JobCardInput = JobCardData & { readonly commandId: string; readonly candidateId?: string; readonly id?: string };
+
+/** Preserve loaded instants exactly; only edited wall-time boundaries are reparsed. */
+export function prepareJobCardAccessWindow(window: {
+  readonly startsAt: string; readonly endsAt: string;
+  readonly originalStartsAt?: string; readonly originalEndsAt?: string;
+  readonly originalStartLocal?: string; readonly originalEndLocal?: string;
+}): { startsAt: string; endsAt: string } {
+  const boundary = (local: string, original?: string, originalLocal?: string) => formatUtcInstant(parseUtcInstant(
+    local === originalLocal && original !== undefined ? original : stockholmLocalToUtc(local.length === 16 ? `${local}:00` : local)));
+  return { startsAt: boundary(window.startsAt, window.originalStartsAt, window.originalStartLocal),
+    endsAt: boundary(window.endsAt, window.originalEndsAt, window.originalEndLocal) };
+}
+
 const uuid = (v: unknown): v is string => typeof v === "string" && /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i.test(v);
 const cardKeys = ["type", "title", "customer_id", "facility_id", "contact_id", "priority", "estimated_duration_minutes",
   "planned_travel_minutes", "crew_size", "earliest_date", "desired_date", "latest_date", "planned_start_date", "planned_end_date",
