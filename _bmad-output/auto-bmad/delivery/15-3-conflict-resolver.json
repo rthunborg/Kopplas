@@ -1,0 +1,60 @@
+{
+  "policy_version": "2026-10-19",
+  "contract_reconciliation": "Approved frozen Story15.3 Intent and AC1–8 remain unchanged. Applicable development requirements include static/build, full required DB/RLS, direct recovery-Storage, focused integrity and essential production browser smokes plus independent High review. October19 owner policy defers exhaustive screenshot/device/gesture, visual/manual accessibility/daylight/exploration and representative performance certification to release validation; no consequential integrity or functional failure is deferred. This checkpoint is intentionally incomplete pending Root exact-head execution and delivery admission, with no done/development-complete claim.",
+  "evidence_revision": "9548c5cd33d6696817ed334fc832b2259e592437 (implementation source); baseline3245042f1f9e08c3ec6c2445c1cb6109e326be33; binary Git diff SHA2564c5f754411c7883638a63b85ed5b8544058995319918b2de4c015e6fdcc9f1ef. Subsequent author documentation records these source results.",
+  "development_checks": [
+    {
+      "name": "Applicable static, dependency and production build checks",
+      "status": "passed",
+      "evidence": "Local implementation worktree subsequently committed as evidence_revision: pnpm install --frozen-lockfile; pnpm typecheck; pnpm lint --ignore-pattern '.env*/**' (0 errors/17 existing warnings, excluded ignored generated evidence only); pnpm build; pnpm audit --audit-level=high (exit0,2moderate); pnpm verify:lockfiles; pnpm verify:service-role-containment; pnpm verify:bundle-containment. Final INT012/partition edits additionally typechecked/focused linted. No dependency/lockfile change. Full verify:development wrapper not claimed; constituent steps executed with disclosed bounded lint."
+    },
+    {
+      "name": "Focused domain and full unit/process checks",
+      "status": "passed",
+      "evidence": "Focused resolver8P0F0S; installed-Vitest partition/order3P0F0S. Final pnpm test:unit3012tests103suites3011P0F1S; exact existing Windows Linux-xattrs skip tests/unit/ops/isolated-recovery-storage.test.ts:16 is not coverage. History retained: domain6P2fixture-F0S before Sunday/DST correction; full2992P19F1S, then3010P1F1S before authorized production-binding/manifest/metadata/partition companions. pnpm test:bmad-focused2P; test:auto-bmad-focused26P+10P+5P."
+    },
+    {
+      "name": "Full required DB/RLS, current-history replay and resolver integrity",
+      "status": "pending",
+      "evidence": "Zero local executions. Root must run exact reviewed checkpoint with SUPABASE_TEST_REQUIRED=1 full pnpm test:int and inspect actual pass/fail/skip counts, empty current-history replay/seed/H4/policy agreement, INT001–012, READ001–002, RLS001–004 and COMP001(2SSRcases), plus existing single/series/job-card/role/notification regressions. INT006 per-correlation owner-only UUID hooks observe P5301/P5302 stage and full persisted rollback; INT008 observes actual tenant-lock wait before revocation. Exclusive owned isolated disposable CI lane only; no local DDL/resource admission inherited."
+    },
+    {
+      "name": "Direct recovery-Storage integrity",
+      "status": "pending",
+      "evidence": "No local DB/Storage execution; existing Windows xattrs unit skipped. Root exact-head Ubuntu required recovery-Storage lane must actually execute direct persisted integrity checks, with actual counts and no skipped coverage."
+    },
+    {
+      "name": "Essential production browser smoke",
+      "status": "pending",
+      "evidence": "Zero browser executions. Root exact-head test:smoke retains Auth/mail/Jobs and includes actual resolver E2E001 chip/detail/selective acceptance/reload/history/notification, E2E002 common-series protected/stable row readbacks, E2E003360x640keyboard/lost-real-response/explicit replay physical counts. Playwright configured production web server required."
+    }
+  ],
+  "independent_review": {
+    "status": "pending",
+    "evidence": "Independent gpt-6.1-sol High source review must bind the actual implementation source hashes/commit and author Suggested Review Order; Root then qualifies exact-head execution/provenance and runs delivery_gate.py. No completed review round or approval is claimed here."
+  },
+  "deferred_release_validation": [
+    {
+      "item": "Exhaustive resolver view/device/gesture/browser permutations and screenshot/visual comparison",
+      "owner": "Release validation owner, coordinated by Root",
+      "status": "deferred",
+      "evidence": "Not executed; development covers only the3essential resolver browser flows after CI qualification. Historical15.1/15.2 observations are not new resolver visual evidence.",
+      "next_action": "Root mirror this item into the existing deferred release ledger; release owner schedule and record the exhaustive matrix against a qualified release candidate."
+    },
+    {
+      "item": "Manual accessibility, daylight, exploratory walkthrough and visual polish",
+      "owner": "Release validation owner, coordinated by Root",
+      "status": "deferred",
+      "evidence": "Not executed; SSR structure and essential keyboard smoke do not replace manual accessibility/exploration. Functional accessibility failures in essential flow still block development.",
+      "next_action": "Root mirror ownership/status into the deferred ledger; release owner run and triage manual checks on the release candidate before release readiness."
+    },
+    {
+      "item": "Representative resolver performance certification and inherited epic release validation",
+      "owner": "Release validation owner, coordinated by Root",
+      "status": "deferred",
+      "evidence": "No representative performance measurement or inherited release-work closure claimed; source uses bounded suggestion search and full facts scan without certification.",
+      "next_action": "Root retain inherited15.1/15.2 and Epic14 open release work, add resolver performance scope to the ledger and schedule representative measurement before release readiness."
+    }
+  ],
+  "release_ready": false
+}

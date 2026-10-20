@@ -2,10 +2,10 @@
 title: '15.3 — Conflict Resolver'
 type: 'feature'
 created: '2026-10-20'
-status: 'ready-for-dev'
+status: 'in-progress'
 review_loop_iteration: 0
 followup_review_recommended: false
-baseline_revision: '3a0282a70ab9cc539e2d85bd660635820e618731'
+baseline_revision: '3245042f1f9e08c3ec6c2445c1cb6109e326be33'
 context:
   - docs/process/review-order.md
   - docs/process/development-completion-policy.md
@@ -119,7 +119,7 @@ Trace TEA15.3-INT-001…006, E2E-001, COMP-001 to actual assertions/results. Inc
 
 Future delivery explicitly defers exhaustive view/device/gesture/browser matrices, screenshots/visual comparison, manual accessibility/daylight/exploration, representative performance certification and polish to release validation with owner/status/evidence/next action. Never defer consequential broken functionality or claim unexecuted work passed. Development-complete is distinct from release-ready; separate merge/deployment approval persists. After two unsuccessful same approaches inspect and choose a simpler authorized route or record owner/evidence/next action/resume condition. Root owns resources/Git/CI/aggregate ledgers; no deployment or separate PR is authorized.
 
-## Auto Run Result
+## Historical Planning Result
 
 Status: ready-for-dev
 Blocking condition: none for planning.
@@ -127,3 +127,100 @@ Blocking condition: none for planning.
 HALT after planning. One source AC sketch is preserved verbatim; nine tasks/eight Given/When/Then ACs, both supporting companions, seven-point immediate audit, coherence/preservation self-validation and helper reader/discovery are complete. Intent-contract is the Build Auto sprint kernel, not a separate SPEC.md. The oversized warning is retained. Root independent High validation/approval/freeze and concrete Coordinator allocation of exact shared seams/new migration/isolated fixtures/resources precede any implementation. New ledger and defaults remain proposed technical choices pending that validation.
 
 This delegate performed zero product tests, ATDD/scaffolds, app/schema/test changes, runtime launches, CI, Git commits/push/PRs, hosted changes or deployment. Existing source/history/context/state preserved. Actual routes: Sol6.1 High planning author; synchronous context-free Sol6.1 High read-only contract explorer, route capsule in private preparation. No implementation/review round consumed. Completion hook preserves planning status and creates no completed Suggested Review Order or development-complete/release-ready claim. Baseline3a0282a70ab9cc539e2d85bd660635820e618731.
+
+## Implementation Route
+
+2026-10-20: Build Auto implementation author dispatched as context-free gpt-6.1-sol High for actual authorization/RLS and transactional-integrity scope. Frozen P3 contract and bounded allocations are released by Root at source 3245042f1f9e08c3ec6c2445c1cb6109e326be33; implementation/review remains subject to exact allocated scope, resource/CI coordination and delivery admission. Independent review starts at round 0/3.
+
+## Implementation Checkpoint — 2026-10-20
+
+Author: implementation delegate `/root/build15_3_high/implementation`, gpt-6.1-sol High. Source commit `9548c5cd33d6696817ed334fc832b2259e592437`, baseline `3245042f1f9e08c3ec6c2445c1cb6109e326be33`; 54 allocated app/schema/test/config paths. Binary Git diff SHA256 `4c5f754411c7883638a63b85ed5b8544058995319918b2de4c015e6fdcc9f1ef`. No legacy observations, new permissions, E16.2/16.3 imports, runtime launches, database changes, pushes or deployment were performed by this author.
+
+T1–T6 source implementation is complete. T7/T8 have executable acceptance bodies, with runtime validation still pending; T9 remains incomplete until independent High review, exact-head CI and Root delivery admission. Existing provisional skipped resolver scaffolds were replaced by real command/readback/browser bodies, retaining INT-001…006 obligations and adding the matrix below; no scaffold or skip is counted as passing coverage. The frozen Intent and AC1–8 above are unchanged.
+
+The owner-authorized UI defaults use existing chips, native queue buttons, text timelines, Dialog and BookingEditor. Domain scope/suggestions/attempt state and server actions remain separate from presentation. Suggestions are bounded to 14 local days, 15-minute starts plus actual window boundaries, and 10 results; candidate-related sole-engine conflicts determine availability, with actual capacity/load and unknown states. Whole-series means the existing current segment, common clocks/all-day/default assignment only: dates, recurrence bounds, identity, metadata, exceptions and cancelled tombstones remain protected. These are the recorded implementation choices, grounded in the approved design companion and October15 owner decision.
+
+The reserved migration is `20261020180000_conflict_resolver.sql`. It composes only each effective single/series/job-card complete-refresh seam using `pg_get_functiondef`, requiring exactly one matching block and failing on absent/ambiguous shapes. This preserves surrounding current and later earlier-timestamp writer authority rather than copying an obsolete finalizer. No old migration changed and no missing E16 integration was introduced. INT-005 separately invokes all three actual writers for terminal retention and returning-identity reopening; INT-001 checks effective bodies use the helper. Execution of those assertions and empty-history replay remains required CI evidence.
+
+### Executed local evidence
+
+All checks below ran against the implementation worktree subsequently committed as `9548c5cd33d6696817ed334fc832b2259e592437`; the final partition expectation changes no production code. Final integration-body and partition edits received a further typecheck/focused ESLint check. Git blob hashes and binary diff are recorded in private `author-checkpoint-source-manifest.json`; private logs are evidence only and are excluded from commits.
+
+| Check | Actual outcome |
+| --- | --- |
+| `pnpm install --frozen-lockfile` | PASS; lockfile unchanged. |
+| `pnpm typecheck` | PASS, including final INT-012 body. |
+| `pnpm lint --ignore-pattern '.env*/**'` | PASS, 0 errors/17 existing warnings. `git ls-files '.env*'` lists only `.env.example` and `.env.test.example`; excluded directories contain ignored generated evidence, not tracked source. Initial unbounded lint traversed generated Playwright report JS and was interrupted; it is not claimed passed. |
+| `pnpm build` | PASS; production page and API routes generated. |
+| `pnpm audit --audit-level=high` | Exit 0; 2 moderate findings, no high/critical threshold failure. |
+| `pnpm verify:lockfiles`, `verify:service-role-containment`, `verify:bundle-containment` | Each PASS, built artifact scanned. |
+| Four focused resolver unit files via Node test runner | 8 passed/0 failed/0 skipped. Initial run 6 passed/2 failed was a DST fixture expectation error: Sundays are closed in the existing sole engine; corrected literal next-Monday expectations then passed. |
+| Installed-Vitest partition/order focused file | 3 passed/0 failed/0 skipped; real runner collects each integration file exactly once and awaits group teardown. |
+| Final `pnpm test:unit` | 3012 tests, 103 suites; 3011 passed/0 failed/1 skipped. Earlier full runs were 2992 passed/19 failed/1 skipped, then 3010 passed/1 failed/1 skipped. The 19 failures exposed real chip/read-model dependency ports, manifest/category pins and explicit role metadata; the last failure pinned the pre-resolver DDL partition. Authorized companion fixes preserve production bindings, existing assertions and fail-loud scope checks. |
+| `pnpm test:bmad-focused`; `pnpm test:auto-bmad-focused` | 2 passed; then 26+10+5 passed, no failures. |
+
+The sole local unit skip is `tests/unit/ops/isolated-recovery-storage.test.ts:16`, the existing Windows conditional requiring Linux xattrs. It must execute on Ubuntu CI; it is not local recovery-Storage evidence. The full `verify:development` wrapper was not claimed executed: its supported constituent steps ran with the explicitly disclosed bounded lint invocation. The observed two focused RED results were fixture errors, not a captured production-domain TDD red-to-green cycle; negative authority/unknown/tamper assertions passing in the focused suite are unit evidence only.
+
+### Required runtime matrix — authored, not executed locally
+
+| IDs | Required assertions / AC mapping |
+| --- | --- |
+| READ-001…002, COMP-001 (2 SSR cases) | AC1/2/8: four-booking/multi-assignee completeness, contextual peers, checked time, denied/error versus successful empty, native queue/target controls. SSR assertions do not prove interaction. |
+| INT-001, INT-005 | AC4/5/8: target outcomes; each actual effective single/series/job-card writer retains terminal history and reopens returning keys; immutable replay unchanged. |
+| INT-002…004, INT-010 | AC5/6/8: accept-only never updates bookings/series; selective immutable history; partial aggregate/stale workflow/description/customer negatives; concurrent exact replay; genuine editor/series receipt and genuine single signature cross-domain denial. |
+| INT-006, INT-008 | AC6/8: real post-booking fault, stage-reached audit/notification rollback and lock-observed revocation for fresh/replayed commands. |
+| INT-007, INT-011…012 | AC3/4/7: full 12-occurrence common overlay including warnings beyond10, protected rows; mixed v3 job identity/null/empty facts; actual available slot/person suggestion, stale denial and fresh checked commit. |
+| INT-009, RLS-001…004 | AC6/8: affected actor/former/current assignee union, preference and same-day event dedupe, no booking email; current multi-role/foreign/anonymous/inactive/own-only surfaces, safe projection/private-column denial and actual RPC/helper ACLs. |
+| E2E-001…003 | AC1–8 essential production flow: chip/detail/selective accept/reload; common-series fix with physical protected-row readback; 360×640 keyboard edit, lost real response, retained input, explicit exact replay and durable row counts. |
+
+INT-006 uses the existing real `after_booking` fault plus two per-case UUID-named owner-only `test_support` trigger functions. Each has empty search_path and revoked client EXECUTE, is correlation scoped, and is dropped in awaited `finally`. The audit trigger first observes the accepted target and raises exact SQLSTATE P5301; the notification trigger first observes the immutable ledger joined to the actual audit event/correlation and raises P5302. A real-client RPC observer asserts that exact SQLSTATE came from the finalizer; independent persisted before/after snapshots compare both tenants' bookings, assignments, conflicts, audit, ledger, notifications and series. No proxy manufactures successful execution or error codes.
+
+INT-008 holds the exact tenant advisory lock in an owner SQL transaction, starts the real authenticated planner command, observes its actual lock wait using `pg_blocking_pids`, revokes membership, then unlocks and awaits the pending operation before checking no changes. Error cleanup rolls back/unlocks and awaits pending work. Fixture cleanup removes only fixture-tenant append-only ledger rows in a transaction with transaction-local replication mode, before the existing fixture teardown; no global setting persists. Resolver command tests share the existing `integration-audit-ddl` project with job-runs, `fileParallelism:false`, groupOrder1 after the parallel group. Separate processes are not serialized: hook execution requires Root's exclusive owned isolated disposable CI lane and reviewed source binding. Allocation authorizes the mechanism; actual stage reach and cleanup must still be observed in CI.
+
+## Suggested Review Order
+
+Author: the implementation delegate named above. Refreshed against source commit `9548c5cd33d6696817ed334fc832b2259e592437`; this section and pending delivery record are the subsequent author documentation change.
+
+### Reach a complete, honest conflict queue
+
+AC1/2 uses current complete SQL facts and the existing deterministic detector before applying context, so peers stay visible and failed reads remain unknown. Existing entry chips route into a replaceable master/detail presentation with explicit target selection.
+
+- `src/app/(app)/scheduling/conflicts/page.tsx:5` — `ConflictsPage`: protected production entry point.
+- `src/server/read-models/booking-conflicts.ts:20` — `scanBookingConflicts`: complete checked facts and actual detection time.
+- `src/components/scheduling/ConflictDetail.tsx:6` — `ConflictDetail`: full participant detail and explicit target controls.
+- `tests/integration/read-models/booking-conflicts.int.test.ts:9` — `15.3-READ-001`: complete aggregate peers across contextual scope.
+
+### Preview once, commit only current reviewed facts
+
+AC3/4/7/8 reuses the sole engine and existing series planner, with a resolver-specific baseline and distinct encrypted receipt/proof domains. Common-series edits preserve the original segment bounds and protected rows; suggestions confer no authority without renewed checked preview.
+
+- `src/features/scheduling/conflict-suggestions.ts:7` — `evaluateConflictCandidate`: actual load/capacity and fail-closed unknown availability.
+- `src/server/bookings/conflict-resolution.ts:38` — `planConflictResolution`: common overlay and preserved series ownership.
+- `src/server/bookings/conflict-resolution-attestation.ts:4` — `RESOLUTION_DOMAIN`: exact separate resolver attestation domain.
+- `tests/integration/commands/conflict-resolver.int.test.ts:42` — `15.3-INT-012`: actual suggestions, stale denial and checked commit.
+
+### Persist workflow, replay and notifications atomically
+
+The append-only ledger avoids accept-only occurrence divergence and supplies durable replay independent of mutable booking references. AC5/6/8 keeps audit, resolution, targeted workflow and preference-filtered assignee notifications in one transaction; the forward composition preserves surrounding writer contracts and refuses unknown seams.
+
+- `supabase/migrations/20261020180000_conflict_resolver.sql:2` — `booking_conflict_resolutions`: manager-safe projection and immutable outcomes.
+- `supabase/migrations/20261020180000_conflict_resolver.sql:110` — `finalize_booking_conflict_resolution`: checked authority, proof and atomic effects.
+- `supabase/migrations/20261020180000_conflict_resolver.sql:272` — `Expected exactly one complete booking refresh`: fail-loud effective-writer composition.
+- `tests/integration/commands/conflict-resolver.int.test.ts:144` — `15.3-INT-006`: observed fault stages and full persisted rollback snapshots.
+
+### Check retry behavior and the evidence boundary
+
+AC6/8 retains an unknown attempt until explicit replay and reports success after persistence. INT-002…011 and RLS-001…004 cover selective history, current roles, all three writers, genuine proofs, full-segment preservation, mixed job inputs and recipient/channel safety; E2E-001…003 cover the usable essential flows. The runtime matrix above names each invariant and its limits.
+
+- `src/features/scheduling/conflict-resolver-state.ts:3` — `resolverAttemptAfter`: retain exact request on unknown outcome.
+- `tests/integration/commands/conflict-resolver.int.test.ts:174` — `15.3-INT-008`: actual blocked fresh/replay authority revocation.
+- `tests/e2e/conflict-resolver.e2e.spec.ts:37` — `15.3-E2E-003`: keyboard/lost-response retry with physical readbacks.
+- `tests/unit/scripts/verify/integration-test-partitions.test.ts:33` — `installed Vitest collects`: real partition and ordering validation.
+
+Evidence: local commands/counts and failure history are recorded above; the source commit is the verified baseline-to-source boundary. Limits: zero local DB/RLS/Storage/browser execution; migration SQL syntax/replay and actual hook cleanup remain unqualified until CI. Unit read-model ports inject SQL-shaped facts into actual production modules, not actual auth/RLS; SSR is structure only. No external mail/integration, exhaustive screenshot/device matrix, manual accessibility or representative performance execution is claimed.
+
+## Auto Run Result
+
+Status: in-progress; source implementation checkpoint ready for independent High review. Development completion remains pending exact-head full required DB/RLS, direct recovery-Storage, essential browser execution, independent review/provenance and Root delivery gate. Draft `_bmad-output/auto-bmad/delivery/15-3-conflict-resolver.json` deliberately records those pending checks and cannot admit done. Root alone owns state/sprint/aggregate ledgers, CI/push and release/deployment authority. Deferred release items in that record must be mirrored by Root into its existing ledger. `release_ready=false`.
+
+Author checks: `check-review-order.mjs` passes with exactly one section, 16 verified path/line stops and zero reference errors. The draft delivery gate returns `development_complete:false`, with three pending runtime checks plus pending independent review; this expected refusal is not a completion failure disguised as a pass. Resume after Root supplies actual exact-head results and independent provenance, then this author refreshes the same section/record before Root admission.
