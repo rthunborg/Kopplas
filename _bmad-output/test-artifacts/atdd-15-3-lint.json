@@ -1,0 +1,6 @@
+{
+  "command": "node node_modules/eslint/bin/eslint.js tests/integration/commands/conflict-resolver.int.test.ts tests/integration/rls/conflict-resolver.rls.test.ts tests/integration/read-models/booking-conflicts.int.test.ts tests/e2e/conflict-resolver.e2e.spec.ts",
+  "exitCode": 0,
+  "output": "",
+  "acceptanceBodiesExecuted": 0
+}

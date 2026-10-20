@@ -9,17 +9,17 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-20T01:23:13Z"
+updated_at: "2026-10-20T01:33:48Z"
 started_at: "2026-10-20T01:09:10Z"
 completed_at: null
-active_seconds: 778
-timing_anchor: 1792459393
+active_seconds: 1364
+timing_anchor: 1792459994
 is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: tea_per_story
-selected_role: tea-delegate
+selected_phase: build
+selected_role: build-delegate
 selected_profile: standard
 selected_model: gpt-6.1-sol
 selected_effort: high
@@ -30,12 +30,15 @@ escalation_reason: "Automatic sensitive-task escalation: authorization, transact
 routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate, trace-advisory]
 tea_rationale: "Scheduling conflict resolution includes recurring-series bulk changes and persistent accepted-conflict identity; six-story/after3 long-epic trace advisory applies."
 epic_story_count: 6
 stories_after_in_epic: 3
-completed_phases: [0, 1, 2, 3]
+completed_phases: [0, 1, 2, 3, 4]
 spec_path: "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\implementation-artifacts\\spec-15-3-conflict-resolver.md"
 spec_approved: true
 build:
@@ -55,7 +58,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [3a0282a70ab9cc539e2d85bd660635820e618731]
+commits: [3a0282a70ab9cc539e2d85bd660635820e618731, e02403ace7a0a26c8c0cd01149d88054904fb7b9]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -121,3 +124,34 @@ p3_preparation:
   resources_started: 0
   product_implementation_started: false
   broad_review_rounds: 0
+p4_atdd:
+  status: created-red-scaffolds-not-executed-acceptance
+  test_files: 4
+  declared_skips: 13
+  declarations_by_suite: "{\"command\": 6, \"RLS\": 2, \"read\": 2, \"browser\": 3}"
+  acceptance_bodies_executed: 0
+  runner_skip_count: unmeasured
+  missing_seam_probes: "{\"passed\": 0, \"failed\": 3, \"skipped\": 0}"
+  static_typecheck_lint_AST: passed
+  AC_mapping: 8
+  checklist: "_bmad-output/test-artifacts/atdd-checklist-spec-15-3-conflict-resolver.md"
+  required_development_gaps: proof/locking/rollback/all-three-refresh-writers/suggestions and all other named integrity activation gaps remain development requirements
+  route: Sol6.1High parent/API/E2E synchronous
+  runtime_started: 0
+additional_smoke_allocation:
+  receipt: ".env.epic15.mail-runtime\\story-15-3-preparation\\root-coordinator-allocation-smoke-successor-20261020.json"
+  sha256: 376e89026afb3642e024d32496d5cbccad2597d00884d68a5a30484ede946bd9
+  path: package.json
+  only_field: "scripts.test:smoke"
+  append: tests/e2e/conflict-resolver.e2e.spec.ts
+  P5_required_resolver_bodies_executed: 3
+  P5_resolver_skips_required: 0
+  E16_later_join: "union-existingAuth-Jobsdepth-plus-jobmembers-plus-resolver; no missing-file import"
+baseline_CI_3a:
+  run: 39352496057
+  head: 3a0282a70ab9cc539e2d85bd660635820e618731
+  status: independentPASS-with-one-disclosed-browserflake
+  report_sha256: 548449cee32e0e8f28f623d94ae33d8a08dc29509d28214e763675041c1394fa
+  root_qualified_receipt_sha256: 4fc7db2ec695159c50ae499658b07cb06320d28224285e898525b588cbd25066
+  story15_3_implementation_coverage: false
+  release_validation: false

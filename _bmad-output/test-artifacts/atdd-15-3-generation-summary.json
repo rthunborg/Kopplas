@@ -1,0 +1,107 @@
+{
+  "success": true,
+  "workflow": "bmad-testarch-atdd",
+  "storyId": "15.3",
+  "phase": "RED scaffolds, acceptance unexecuted",
+  "baseHead": "e02403ace7a0a26c8c0cd01149d88054904fb7b9",
+  "frozenSpecSha256": "451795a63f9fd046ccc6f89a9e91f192b1f0f21beddf7a9a5391c0a6b8ccc873",
+  "mode": "subagent",
+  "route": "gpt-6.1-sol High parent + API and E2E generation workers",
+  "generatedFiles": [
+    {
+      "path": "tests/integration/commands/conflict-resolver.int.test.ts",
+      "lines": 233,
+      "skippedDeclarations": 6,
+      "runnerSkippedCount": null,
+      "acceptanceBodiesExecuted": 0,
+      "priorities": {
+        "P0": 6,
+        "P1": 0,
+        "P2": 0,
+        "P3": 0
+      },
+      "sha256": "b12ae962429f6b26a7d50744fccc2c011c37980413a87ea17bcc4efd1e3d8a64"
+    },
+    {
+      "path": "tests/integration/rls/conflict-resolver.rls.test.ts",
+      "lines": 95,
+      "skippedDeclarations": 2,
+      "runnerSkippedCount": null,
+      "acceptanceBodiesExecuted": 0,
+      "priorities": {
+        "P0": 2,
+        "P1": 0,
+        "P2": 0,
+        "P3": 0
+      },
+      "sha256": "515d9b7cd46a2d0c8028bd49e5f77db378081b17672a8356ba03b8ae1aaa5434"
+    },
+    {
+      "path": "tests/integration/read-models/booking-conflicts.int.test.ts",
+      "lines": 88,
+      "skippedDeclarations": 2,
+      "runnerSkippedCount": null,
+      "acceptanceBodiesExecuted": 0,
+      "priorities": {
+        "P0": 0,
+        "P1": 2,
+        "P2": 0,
+        "P3": 0
+      },
+      "sha256": "869661e3f590d5b2ed61846a70e96a6f6088c789b837abd914d1147a69c053bc"
+    },
+    {
+      "path": "tests/e2e/conflict-resolver.e2e.spec.ts",
+      "lines": 295,
+      "skippedDeclarations": 3,
+      "runnerSkippedCount": null,
+      "acceptanceBodiesExecuted": 0,
+      "priorities": {
+        "P0": 2,
+        "P1": 1,
+        "P2": 0,
+        "P3": 0
+      },
+      "sha256": "ce56ce76ee9c031d432d9de29ea2a968dfe6ce232a943ec41893e3863f45d291"
+    }
+  ],
+  "skippedDeclarations": 13,
+  "runnerSkippedCount": null,
+  "acceptanceBodiesExecuted": 0,
+  "acceptancePassed": 0,
+  "acceptanceFailed": 0,
+  "missingSeamProbes": {
+    "passed": 0,
+    "failed": 3,
+    "skipped": 0,
+    "evidence": "_bmad-output/test-artifacts/atdd-15-3-red-evidence.json"
+  },
+  "newSharedFixtures": 0,
+  "newDependencies": 0,
+  "managedResourcesStarted": 0,
+  "notes": [
+    "Scaffold declaration counts are not runner counts or coverage.",
+    "TypeScript AST parse/no-active/focus/placeholder checks passed; no DB/browser/CI ran.",
+    "Required development activation gaps remain in checklist and worker JSON.",
+    "Full DB/RLS/directStorage/executed-count and independent High review gates remain unchanged."
+  ],
+  "workflowComplete": true,
+  "checklistPath": "_bmad-output/test-artifacts/atdd-checklist-spec-15-3-conflict-resolver.md",
+  "allEightAcceptanceCriteriaMapped": true,
+  "developmentComplete": false,
+  "releaseReady": false,
+  "staticValidation": {
+    "ast": "passed",
+    "typecheck": "passed",
+    "focusedLint": "passed with no warnings/errors",
+    "specUnchanged": true
+  },
+  "ciSelection": {
+    "currentOrdinarySmokeSelectsResolver": false,
+    "p5ApprovedPath": "package.json scripts.test:smoke",
+    "p5Required": "all three activated resolver cases in ordinary exact-head CI, zero skipped resolver cases",
+    "allocationReceipt": ".env.epic15.mail-runtime/story-15-3-preparation/root-coordinator-allocation-smoke-successor-20261020.json",
+    "allocationReceiptSha256": "376e89026afb3642e024d32496d5cbccad2597d00884d68a5a30484ede946bd9"
+  },
+  "requiredDevelopmentGaps": "Checklist T1–T9 and API worker required_development_activation_gaps; no gap is passing coverage or deferred release."
+}
