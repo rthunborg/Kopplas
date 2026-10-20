@@ -111,12 +111,13 @@ test.describe("Story16.4 essential real booking consumers — RED", () => {
       const common = { planned_start_date: "2026-10-20", planned_end_date: "2026-10-22",
         earliest_date: "2026-10-19", desired_date: "2026-10-20", latest_date: "2026-10-21",
         requiredWorkRoleIds: [], accessWindows: null };
+      // Install facts before the checked card writes refresh all tenant conflicts.
+      await schedule(f, [f.fx.ownProfile.id]);
       await saveCard(f, known, { ...common, estimated_duration_minutes: 120, crew_size: 2,
         planned_travel_minutes: 30, customer_presence_required: true });
       await saveCard(f, other, { ...common, estimated_duration_minutes: 90, customer_presence_required: false });
       await saveCard(f, unknown, { ...common, estimated_duration_minutes: null, customer_presence_required: null });
       await page.clock.setFixedTime(new Date("2026-10-18T06:00:00Z"));
-      await schedule(f, [f.fx.ownProfile.id]);
       await signIn(page, f.credentials.manager);
       const form = await openJobBooking(page, known); // actual BookingEntry host, no isolated widget
       await expect.poll(() => elapsed(form)).toBe(120); // D, neither N*D=240 nor D+T=150
@@ -154,6 +155,7 @@ test.describe("Story16.4 essential real booking consumers — RED", () => {
       await expect(form.getByTestId("booking-review-current-warnings")).toHaveCount(0);
       await expect(form.getByTestId("booking-override-reason")).toHaveCount(0);
       const before = await jobSemanticsSnapshot(f);
+      expect(before.conflicts).toHaveLength(0);
       const sent = await save(page, form, known, description); // date warnings do not create hard save prohibition
       expect(sent.jobId).toBe(known);
       expect(parseUtcInstant(sent.startsAt)).toBe(parseUtcInstant("2026-10-22T06:00:00Z"));

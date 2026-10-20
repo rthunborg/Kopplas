@@ -76,8 +76,8 @@ async function editFullCard(page: Page, f: JobsDepthFixture, jobId: string, titl
   const card = page.getByTestId("job-card-form");
   await ready(card);
   await card.getByRole("textbox", { name: "Titel", exact: true }).fill(title);
-  await expect(card.getByLabel("Kund", { exact: true })).toHaveValue(customerId);
-  await card.getByLabel("Anläggning", { exact: true }).selectOption(facilityId);
+  await expect(card.getByRole("combobox", { name: "Kund", exact: true })).toHaveValue(customerId);
+  await card.getByRole("combobox", { name: "Anläggning", exact: true }).selectOption(facilityId);
   await card.getByRole("combobox", { name: "Kontakt", exact: true }).selectOption(contactId);
   await card.getByTestId("job-card-planning-toggle").click();
   for (const [label, value] of [

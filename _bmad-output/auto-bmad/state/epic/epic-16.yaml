@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-16-jobs
 status: in-progress
-updated_at: "2026-10-20T13:57:13Z"
+updated_at: "2026-10-20T14:17:30Z"
 started_at: "2026-10-15T08:50:46Z"
 completed_at: null
 active_seconds: 23852
@@ -74,7 +74,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [0586972a, d6a310be, f610bcbd, 11bf2721, bce1436b, 5d5186e1cfb3e045db9ef101e1c6cf6b50133040, faeffcf6513d5d1703ae9d5a6271b01533899d4e, f3cf100709b92637270304e78a4356082b89e9a6, 1e8632db1ad051d117c38d2e24ed5d62fc2c8a57, 103ee03540e222dff1e54995726037819539b9dd, c44e5179bfcbc210de250eb92a48734561cc0fac, 9b54ad249a1ac4fb6f73c425c89b9b749855a939, 46b1b82983f415fdd2ed214138cbd437154469aa, 1152d5bda869cab97f8b64f0b2a56f72cb9ab0bd, 2d002970fcb112db8d480068443a0cce2577bd5b, 2920b920c0ff19122051f7ef987bc222331fb94a, dd7e54d0]
+commits: [0586972a, d6a310be, f610bcbd, 11bf2721, bce1436b, 5d5186e1cfb3e045db9ef101e1c6cf6b50133040, faeffcf6513d5d1703ae9d5a6271b01533899d4e, f3cf100709b92637270304e78a4356082b89e9a6, 1e8632db1ad051d117c38d2e24ed5d62fc2c8a57, 103ee03540e222dff1e54995726037819539b9dd, c44e5179bfcbc210de250eb92a48734561cc0fac, 9b54ad249a1ac4fb6f73c425c89b9b749855a939, 46b1b82983f415fdd2ed214138cbd437154469aa, 1152d5bda869cab97f8b64f0b2a56f72cb9ab0bd, 2d002970fcb112db8d480068443a0cce2577bd5b, 2920b920c0ff19122051f7ef987bc222331fb94a, dd7e54d0, 6260c5a2]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -128,6 +128,7 @@ overrides:
   story16_4_external_review_authorization: "Direct human 2026-10-20: Authorize this external review. Scope: required read-only configured Codex CLI gpt-6.1-sol High review; frozen private Story 16.4 source/test/spec diff, 44 files, 161676 bytes, SHA256 2BC99E5BA50155E93683945C0686120484BE735FA0546E5FA34C0E04455D7E9E. Prior automatic approval refusal preserved; no model stage ran before this grant."
   story16_4_reviewed_checkpoint: "All six Round1 layers actual, external native0 receipt SHA0E19578A24CB188A2DC251F6AC2062CA0DF335C85D556D8456207C195B75CC30 after explicit human grant; targeted Sol6.1 High blind/security PASS and lower-bound PASS. Final45-path/9new inventory SHA7A11DCB2DF8A1292386413FAA3B33D01F44C626569FD147A14630CF64CA0BC27 independently verified0mismatches. Full local unit2722pass0fail1existing platformskip; TSC/lint/build/containment/lock pass, lowerfix RED1 then7pass0skip.34 integration and7browser collected only, runtime pending. Source/spec in-review; no development-complete claim."
   story16_4_first_runtime: "Exact checkpoint dd7e54d08bdda0dfdf1a39610fc05310e486a909 CI39432791404 terminal FAILURE. Verify2723pass0skip plus43processchecks; directrecovery1/1pass0skip. FullDB1873total1868pass4fail1pending; pendingphysicalrecovery separatelypassed. Browser22firstpass6failedbothattempts0flaky0skip. Native fullDB SHA A58C2FD7691518112BD1EA63086868C8BF7C5B38A45DDCF2F80F905F051FE2BC, browser457C134A364C379421E6CD7C9B306B62E17B8FB97B7617AC45CB34668B189923,recovery75E4CE02183AB1C803FE32BDC4D81F9CB06E1464F9B0E94E3347324D25F73D7D. Pilot performance unexecuted after integration failure; non-gating auth baseline22.7/58.9ms only. Bounded High causal diagnosis/fixes and targeted review required before newhead/newdispatch; source remains in-review."
+  story16_4_second_runtime: "Exact6260c5a2544dc0999cc9700935edcd4e5cce54ac CI39435738491: verify2723unitpass0skip+43process; DB1873total1872pass0fail1ordinaryrecoverypending,separatephysicalrecovery1/1pass. Actualpilot readp95=12.394076999999925ms,syntheticbulkpermissionp95=4.995358000000124ms,5warmup25measured. Browser26firstpass2failedbothattempts0flaky0skip. NativeDB SHA DA2D9268A1940E2D43FE85E55BB8A93E565B793B87F43810D967F88E3E3A4473; browser23A7B6F0C05907EA64F5A97ED9FC8057A8A033351538712F71FA4C51CE2E45F2; recovery28A1DC89452736D2B6E1F3EB7600BEFB732A4D6E968C3D4B7CEE427B3C9CE145. Simplercomplete-sourcecontract diagnosis found fixtureorder derivedconflict baseline and2remainingselectlocators; preserve exactrowconservation/assertions. Overallfailed; no runtimecompletionclaim; bounded2E2E+specfix/targetedHighreview before newhead."
 constraints:
   - "Use only owned E16 resources; E15 scheduling/time/diagnostic resources remain excluded."
   - "Each later story requires its approved plan, manifest compliance and precise path claims."

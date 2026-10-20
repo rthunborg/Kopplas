@@ -168,6 +168,15 @@ Root reported five internal review layers completed (security: no findings). Con
 - reject: 0: (high 0, medium 0, low 0)
 - addressed_findings: none — latest same-blind High targeted CI-repair recheck qualified PASS on DD1DFF91, five changed hashes / 41 unchanged dependencies; this is not another broad review round. Required exact-head runtime/performance evidence remains pending.
 
+### 2026-10-20 — Review pass
+
+- intent_gap: 0
+- bad_spec: 0
+- patch: 0: (high 0, medium 0, low 0)
+- defer: 0
+- reject: 0: (high 0, medium 0, low 0)
+- addressed_findings: none — latest same-blind High targeted CI2 repair recheck qualified PASS on 373AF3AC, three changed hashes / 43 unchanged dependencies. This is a narrow causal recheck, not a new broad review; new exact-head required CI remains pending.
+
 ## Review Findings
 
 **Round 1 of 3**
@@ -235,9 +244,9 @@ No checks below have been executed for16.4. Prior16.3 CI39410923156 is continuit
 
 Status: in-review
 
-Current result: root checkpoint `dd7e54d08bdda0dfdf1a39610fc05310e486a909` executed CI39432791404. Full verification passed 2,723 units / 0 skipped and 43 process tests, with typecheck/lint/build passing; direct Storage recovery passed 1 / 0 skipped. Required database and essential browser lanes failed as recorded below. The admitted causal test repair changes only four test files and this evidence/SRO; production, SQL, proof and authority dependencies remain unchanged. Same independent High narrow review qualified PASS on inventory `dd1dff91b338d2ffac51609a9b81c0321222054e6edc82ada5656aaf8dfd3c2f`, binding five changed hashes and 41 unchanged dependencies. New exact-head required CI remains pending. Earlier qualified six-layer/targeted review provenance is retained; it is not represented as a review of this later batch.
+Current result: root checkpoint `6260c5a2544dc0999cc9700935edcd4e5cce54ac` ran CI39435738491. Its general browser lane counted 26 expected / 2 unexpected / 0 flaky / 0 skipped, with both failures on retry 0 and 1. The prior four other failed journeys now passed first attempt; neither remaining failure is reclassified as pass. The source-proven arrangement/selectors repair below changes only the two existing E2E files and this spec; all production, SQL, proof, authority and integration-test bindings remain unchanged. Same independent High narrow review qualified PASS on inventory `373af3acec1c59dfb9a22e7d219f63705922fc9ab924b270eb619123bf1880e4`, binding three changed hashes / 43 unchanged dependencies. Root confirmed this second CI database result: 1,873 total / 1,872 passed / 0 failed / 1 ordinary physical-recovery skip, with separate direct recovery 1 passed / 0 skipped. Pilot performance completed 5 warmups / 25 measured iterations: read p95 12.394076999999925 ms and bulk permissions p95 4.995358000000124 ms. Overall CI still failed its two browser cases; new exact-head required CI remains pending. Earlier qualified six-layer and targeted reviews remain historical provenance.
 
-Actual current local checks: affected four-file ESLint and full TypeScript --noEmit --incremental false native 0; native collection lists 85 integration cases in the two affected integration files and 7 browser cases in the two essential files. Collection is not execution. No local service/browser/DB launch or repeat full suite occurred. The author SRO has 21 verified stops. Status remains in-review; no development-complete, done, delivery-pass or release-ready claim is made.
+Actual current local checks: affected two-file ESLint and full TypeScript --noEmit --incremental false native 0; native collection lists the same 7 essential browser cases. Collection is not execution. No local service/browser/DB launch or redundant full-unit/build run occurred. The author SRO has 21 verified stops. Status remains in-review; no development-complete, done, delivery-pass or release-ready claim is made.
 
 ### Historical planning-only result — preserved
 
@@ -295,10 +304,24 @@ Affected lint and full typecheck native 0; collection only: 58 existing booking-
 
 Same independent High narrow causal review completed: no consequential issue; exact UTC comparisons, immutable save/retry identity, persistence/authority checks and invalid-candidate no-write assertions remain. Receipt: `C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-16-4-review-c2eea236-b5c7-4e65-b9d4-bb296d96e162/targeted-ci-fix-review.txt` (actual collaboration PASS relayed by parent, bound to DD1DFF91 inventory; receipt hash not yet supplied). Runtime and performance remain pending.
 
+## Second Exact-Head Browser Failure and Source-Contract Repair
+
+CI39435738491 browser receipt: `C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39435738491-browser-native/general-browser.json`, SHA256 `23A7B6F0C05907EA64F5A97ED9FC8057A8A033351538712F71FA4C51CE2E45F2`, checkpoint `6260c5a2544dc0999cc9700935edcd4e5cce54ac`. It reports 26 expected / 2 unexpected / 0 flaky / 0 skipped; Consumer-E01 and Upgrade-E01 failed both attempts. Root reports separate recovery 1 passed; the database run was still running at the initial repair boundary. Its subsequently confirmed result and pilot performance are recorded below; the overall run remains failed.
+
+Consumer-E01's native diff showed four old Oct12/13 outside-work-hours/over-capacity rows becoming an empty set. The fixture creates those bookings without weekly hours, then this test installed Mon–Fri08–16 after its three checked card writes. The schedule RPC updates hours/audit without refreshing derived conflicts; the later normal booking commit recomputes the complete signed tenant conflict set and removes obsolete keys. The now-covered Oct12/13 08–09 local bookings therefore correctly lose those conflicts. The repair moves that same schedule arrangement before the existing three checked card writes, whose full refresh establishes a stable baseline before the browser mutation. It explicitly requires zero baseline conflicts and retains the whole before/after conflict equality, exact UTC/persistence/default/edit/hint and reopened-duration assertions. No row filtering, conflict deletion or baseline moved past the save under test is introduced.
+
+A single bounded audit covered every remaining Upgrade-E01 field and assertion against JobCardForm, EntityFilePanel, the operational card, member/work-order rows and upgrade contracts. Both wrapping Kund/Anläggning labels include select option descendants; exact getByLabel text matching is unsuitable. Both now use the actual accessible combobox names, following the established jobs-depth test. Separate primitive labels, required text controls, checkbox/window/dependency hooks, permitted text/plain upload, file region/status/list rows, Projekt/Pågår/member/work-order selectors, whole child/card preservation and single event/audit checks match their source contracts and remain required. This audit is not execution proof of the remaining journey.
+
+Affected lint and full TypeScript native 0; native collection 7 / 2 files. Logs: `C:/Users/Rasmus/AppData/Local/Temp/kopplas-164-ci2-fix-lint.log`, `kopplas-164-ci2-fix-typecheck.log`, and `kopplas-164-ci2-fix-collection.log` in that folder. No production/SQL/helper/card-command/environment/dependency changes, forced clicks, timeout/retry increases, skips or weakened preservation assertions occurred. Same-High narrow causal review and new exact-head CI remain required; no further broad review or blind CI retry is substituted for diagnosis.
+
+Same independent High latest CI2 causal review qualified PASS on 373AF3AC (three changed hashes / 43 unchanged dependencies): scheduling facts precede checked refresh and the tested booking, zero-baseline assertion strengthens whole conflict equality, and customer/site combobox checks remain. Receipt: `C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-16-4-review-c2eea236-b5c7-4e65-b9d4-bb296d96e162/targeted-ci2-fix-review.txt`, SHA256 `BD8381BD1FEFAF17A542FE16D5474C6884E5CD4D792FB81A35707E6C5F9B7ADB`. Latest targeted findings are zero; this does not claim six-layer reexecution.
+
+Root's actual second-CI database receipt: `C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39435738491-integration-native/full-integration.json`, SHA256 `DA2D9268A1940E2D43FE85E55BB8A93E565B793B87F43810D967F88E3E3A4473`: 1,873 total / 1,872 passed / 0 failed / 1 ordinary physical-recovery skip, supplemented by separate recovery 1 passed / 0 skipped. Database log: `C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39435738491-db.log`, SHA256 `F300BA816E3A49A4F10F609E41E745F9DB615E5895AEED64816FFE1327F5F93E`. Actual pilot performance: 5 warmups / 25 measured, read p95 12.394076999999925 ms and bulk permissions p95 4.995358000000124 ms. Non-gating auth baseline is separate. These results bind checkpoint6260c5a2; overall CI failed two browser journeys, so the reviewed repair still requires new exact-head required CI. No done/development-complete/delivery-pass assertion is made.
+
 ## Suggested Review Order
 
 Author: Story16.4 implementation/fix author (Sol 6.1 High), preserving the bounded pure-module child's recorded arithmetic rationale.
-Refreshed after the bounded CI test-contract repair against checkpoint `dd7e54d08bdda0dfdf1a39610fc05310e486a909`; original implementation baseline and intent are preserved.
+Refreshed after the bounded second-CI arrangement/selector repair against checkpoint `6260c5a2544dc0999cc9700935edcd4e5cce54ac`; original implementation baseline and intent are preserved.
 
 ### Follow confirmation and recovery in the actual upgrade dialog
 
@@ -334,8 +357,8 @@ Only untouched create defaults follow earliest or selected-job duration; CRM rem
 
 - `src/features/jobs/job-scheduling-consumers.ts:48` — `input.interval.startProvenance === "derived"`: bounds only an untouched derived start.
 - `src/components/resources/BookingEditor.tsx:79` — `function defaultInterval`: retains canonical untouched starts and updates derived intervals.
-- `tests/e2e/jobs/job-scheduling-consumers.e2e.spec.ts:277` — `16.4-Consumer-E03`: checks current earliest, CRM fallback and late options.
-- `tests/e2e/jobs/job-scheduling-consumers.e2e.spec.ts:312` — `16.4-Consumer-E04`: checks canonical instants through actual DST controls.
+- `tests/e2e/jobs/job-scheduling-consumers.e2e.spec.ts:279` — `16.4-Consumer-E03`: checks current earliest, CRM fallback and late options.
+- `tests/e2e/jobs/job-scheduling-consumers.e2e.spec.ts:314` — `16.4-Consumer-E04`: checks canonical instants through actual DST controls.
 
 ### Keep optional demand calculation exact and bounded
 
@@ -346,4 +369,4 @@ The approved formula and matched pool/window remain unchanged. Whole-window actu
 - `tests/unit/features/scheduling/job-demand-advisory.test.ts:147` — `16.4-F03`: covers both instant boundaries and centuries-window availability.
 - `tests/integration/commands/job-scheduling-consumers.int.test.ts:276` — `16.4-INT-F01`: asserts real preview and save remain usable.
 
-Evidence and limits: the Implementation Evidence and Round 1 Causal Patch Evidence sections preserve actual commands/counts and the AC01–07 mapping. F01 plus Upgrade-E03 target patches 1–3; F02 plus Consumer-E01/E03/E04 target patches 4–7/12–14; F03/INT-F01 target patches 8–9; F04/INT-F02 target patch 10; valid-hash INT-U02 targets patch 11. Original upgrade preservation/concurrency/revocation/audit and mixed-job/current-fact proof assertions remain intact. New browser/integration cases are collected, not locally executed. Same independent High targeted source/fix reviews are qualified through the recorded unchanged-dependency union. CI39432791404 full verification and separate direct recovery passed, while its required integration/browser lanes failed. The four-test-file repair has qualified same-High narrow review; new exact-head required CI and pilot performance remain pending. No development-complete or release-ready assertion is made.
+Evidence and limits: the Implementation Evidence and Round 1 Causal Patch Evidence sections preserve actual commands/counts and the AC01–07 mapping. F01 plus Upgrade-E03 target patches 1–3; F02 plus Consumer-E01/E03/E04 target patches 4–7/12–14; F03/INT-F01 target patches 8–9; F04/INT-F02 target patch 10; valid-hash INT-U02 targets patch 11. Original upgrade preservation/concurrency/revocation/audit and mixed-job/current-fact proof assertions remain intact. New browser/integration cases are collected, not locally executed. Same independent High targeted source/fix reviews are qualified through the recorded unchanged-dependency union. CI39432791404 full verification and separate direct recovery passed, while its required integration/browser lanes failed. The first four-test-file repair has qualified same-High narrow review. Second-CI source-proven arrangement/selector repairs preserve the original assertions and have qualified same-High narrow review. The second CI database/direct recovery/pilot performance passed as recorded; its overall result remains failed on two browser cases, and new exact-head required CI remains pending. No development-complete or release-ready assertion is made.
