@@ -7,6 +7,10 @@ import { runInNewContext } from "node:vm";
 import ts from "typescript";
 import * as permissions from "@/server/authz/permission-matrix";
 import * as times from "@/features/scheduling/time-zone";
+import * as resolver from "@/server/bookings/conflict-resolution";
+import * as series from "@/server/bookings/series-conflicts";
+import * as scope from "@/features/scheduling/conflict-resolver";
+import { DEFAULT_SCHEDULING_RULES } from "@/features/scheduling/types";
 import type { BookingHostReadResult } from "@/features/resources/booking-action-state";
 
 type Row = Record<string, unknown>;
@@ -20,7 +24,17 @@ function booking(id: string, metadata: Row): Row {
     create_payload_digest: "private-command-digest", update_outcomes: { secret: "private-outcome" }, ...metadata };
 }
 function bindRead(rows: Row[]) {
-  const client = { from(table: string) {
+  const client = { async rpc(name: string) {
+    assert.equal(name,"booking_conflict_resolver_snapshot");
+    // Query-port fixture only: feed the actual scan/detector the same tenant slice.
+    const visible=rows.filter(r=>r.tenant_id===TENANT);
+    const bookings=visible.map(r=>({id:r.id,startsAt:r.starts_at,endsAt:r.ends_at,allDay:r.all_day,status:r.status,jobId:r.job_id,assigneeIds:[PERSON]}));
+    const facts={detection:{bookings,profiles:[{id:PERSON,membershipId:PERSON,employmentPercentage:100,defaultWorkRoleId:null,archivedAt:null}],
+      memberships:[{id:PERSON,userId:PERSON,status:"active",role:"tenant_admin",roles:["tenant_admin"]}],workRoles:[],jobInputs:[],calendarDays:[],
+      hours:[{id:"schedule",personProfileId:PERSON,entryKind:"weekly_shift",weekday:1,localDate:null,exceptionKind:null,startsAt:"08:00",endsAt:"17:00"}],rules:DEFAULT_SCHEDULING_RULES},
+      series:[],occurrences:[],workflow:[],bookings:visible.map(r=>({id:r.id,payload:{startsAt:r.starts_at,endsAt:r.ends_at}}))};
+    return {data:{kind:"snapshot",canonicalFacts:JSON.stringify(facts),checkedAt:"2026-11-02T07:00:00Z",claims:null},error:null};
+  }, from(table: string) {
     if (!["bookings", "booking_conflicts"].includes(table)) throw new Error("Unexpected read table");
     const filters: [string, unknown][] = []; let columns = "";
     const query = {
@@ -47,7 +61,16 @@ function bindRead(rows: Row[]) {
       data: { tenantId: TENANT, userId: PERSON, role: "tenant_admin", roles: ["tenant_admin"], status: "active" } }) },
     "@/server/authz/permission-matrix": permissions,
     "@/features/scheduling/time-zone": times,
+    "@/server/bookings/conflict-resolution": resolver,
+    "@/server/bookings/series-conflicts": series,
+    "@/features/scheduling/conflict-resolver": scope,
+    "@/features/resources/bookings-read": {readBookingEditorOptions:()=>{throw new Error("Options port is outside this metadata unit test");}},
   };
+  const scanSource=readFileSync("src/server/read-models/booking-conflicts.ts","utf8");
+  const scanCompiled=ts.transpileModule(scanSource,{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText;
+  const scanModule={exports:{}};
+  runInNewContext(scanCompiled,{module:scanModule,exports:scanModule.exports,require:(name:string)=>modules[name]??require(name)});
+  modules["@/server/read-models/booking-conflicts"]=scanModule.exports;
   const source = readFileSync("src/features/resources/bookings-read.ts", "utf8");
   const compiled = ts.transpileModule(source, { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 } }).outputText;
   const compiledModule = { exports: {} };

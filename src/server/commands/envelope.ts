@@ -111,6 +111,7 @@ export const COMMAND_CAPABILITIES: Readonly<Record<string, CommandCapability>> =
   updateBooking: { module: "resources", capability: "Bookings.Manage" },
   createBookingSeries: { module: "resources", capability: "Bookings.Manage" },
   updateBookingSeries: { module: "resources", capability: "Bookings.Manage" },
+  resolveBookingConflict: { module: "resources", capability: "Bookings.Manage" },
 };
 
 /**

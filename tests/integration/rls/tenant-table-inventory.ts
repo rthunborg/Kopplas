@@ -173,6 +173,7 @@ export type TenantTableName =
   | "person_work_hours"
   | "tenant_calendar_days"
   | "bookings"
+  | "booking_conflict_resolutions"
   | "booking_series"
   | "booking_assignees"
   | "booking_conflicts";
@@ -336,6 +337,7 @@ export type MutationDenialKind = "privilege" | "rls-invisible";
  * branch of the cross-tenant suite.
  */
 export function updateDenialKind(table: TenantTableName): MutationDenialKind {
+  if (table === "booking_conflict_resolutions") return "privilege";
   if (table === "booking_series") return "privilege";
   if (isJobDepthTable(table)) return "privilege";
   switch (table) {
@@ -471,6 +473,7 @@ export function spoofedRowFor(
   ctx: InventoryContext,
 ): Record<string, unknown> {
   const { fixture } = ctx;
+  if (table === "booking_conflict_resolutions") return { id: crypto.randomUUID(), tenant_id: fixture.tenantB.id, actor_id: fixture.adminA.id, command_id:crypto.randomUUID(), booking_id:crypto.randomUUID(), request_digest:"a".repeat(64), action:"accept",outcome:"accepted",target_keys:[],affected_booking_ids:[],result:{} };
   if (table === "booking_series") return { id: crypto.randomUUID(), tenant_id: fixture.tenantB.id, rule: {}, defaults: {} };
   if (isJobDepthTable(table)) return jobChildRow(table, ctx.fixture.tenantB.id, requireCrmId(ctx.tenantBJobId, "tenantBJobId", table));
   switch (table) {
@@ -946,6 +949,7 @@ export function tenantBFilter(
   ctx: InventoryContext,
 ): { column: string; value: string } {
   if (isJobDepthTable(table)) return {column: "job_id", value: requireCrmId(ctx.tenantBJobId, "tenantBJobId", table)};
+  if (table === "booking_conflict_resolutions") return { column:"tenant_id",value:ctx.fixture.tenantB.id };
   if (table === "booking_series") return { column: "tenant_id", value: ctx.fixture.tenantB.id };
   switch (table) {
     case "tenants":
@@ -1193,6 +1197,7 @@ export function tenantBFilter(
 export function hijackMutationFor(
   table: TenantTableName,
 ): Record<string, unknown> {
+  if (table === "booking_conflict_resolutions") return {outcome:"remaining"};
   if (table === "booking_series") return { version: 999 };
   if (isJobDepthTable(table)) return {job_id: crypto.randomUUID()};
   switch (table) {
@@ -1310,6 +1315,7 @@ export function hijackMutationFor(
  * Settings tables added in Story 3.3; CRM tables in Story 3.1.
  */
 export function rlsInvisibleLabelColumn(table: TenantTableName): string {
+  if (table === "booking_conflict_resolutions") return "id";
   if (table === "booking_series") return "id";
   if (isJobDepthTable(table)) return "job_id";
   switch (table) {
@@ -1435,6 +1441,7 @@ export function anonRowFor(
   ctx: InventoryContext,
 ): Record<string, unknown> {
   const { fixture } = ctx;
+  if (table === "booking_conflict_resolutions") return { id:crypto.randomUUID(),tenant_id:fixture.tenantA.id };
   if (table === "booking_series") return { id: crypto.randomUUID(), tenant_id: fixture.tenantA.id, rule: {}, defaults: {} };
   if (isJobDepthTable(table)) return jobChildRow(table, ctx.fixture.tenantA.id, crypto.randomUUID());
   switch (table) {
@@ -1747,6 +1754,7 @@ export function anonFilterFor(
   ctx: InventoryContext,
 ): { column: string; value: string } {
   if (isJobDepthTable(table)) return {column: "tenant_id", value: ctx.fixture.tenantA.id};
+  if (table === "booking_conflict_resolutions") return {column:"tenant_id",value:ctx.fixture.tenantA.id};
   if (table === "booking_series") return { column: "tenant_id", value: ctx.fixture.tenantA.id };
   switch (table) {
     case "tenants":
@@ -1810,6 +1818,7 @@ export function anonFilterFor(
 export function anonMutationFor(
   table: TenantTableName,
 ): Record<string, unknown> {
+  if (table === "booking_conflict_resolutions") return {outcome:"remaining"};
   if (table === "booking_series") return { version: 999 };
   if (isJobDepthTable(table)) return {job_id: crypto.randomUUID()};
   switch (table) {

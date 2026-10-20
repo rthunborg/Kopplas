@@ -109,7 +109,7 @@ export function planBookingSeries(snapshot: SeriesSnapshot, input: BookingSeries
 /** Scheduling rules remain exclusively in detectAllBookingConflicts. This maps
  * its complete identities into the existing persistence association schema.
  */
-export function deriveSeriesConflicts(facts: FactBundle, rows: readonly SeriesRow[]) {
+export function deriveSeriesConflicts(facts: FactBundle, rows: readonly SeriesRow[], includeAllGroups = false) {
   const affected = new Set(rows.map(row => row.id));
   const bookings: SchedulingBooking[] = [...facts.bookings.filter(row => !affected.has(row.id)), ...rows.map(row => ({ id: row.id,
     startsAt: row.payload.startsAt, endsAt: row.payload.endsAt, allDay: row.payload.allDay, status: row.payload.status,
@@ -123,7 +123,7 @@ export function deriveSeriesConflicts(facts: FactBundle, rows: readonly SeriesRo
       workRoleIds: profile.defaultWorkRoleId && facts.workRoles.some(r => r.id === profile.defaultWorkRoleId && r.isActive) ? [profile.defaultWorkRoleId] : [] };
   });
   const candidate = bookings[0];
-  if (!candidate) throw new CommandError("VALIDATION_FAILED");
+  if (!candidate) return {output:[] as DerivedConflict[],groups:[] as LogicalConflictGroup[]};
   const input: SchedulingFacts = { candidate, existingBookings: bookings.slice(1), people, rules: facts.rules, jobInputs: null, jobInputSets: facts.jobInputs,
     calendarDays: facts.calendarDays.map(row => ({ date: row.date, variant: row.variant, ...(row.reductionPercent !== null ? { reductionPercent: row.reductionPercent } : {}) })) };
   const output = new Map<string, DerivedConflict>(); const groups: LogicalConflictGroup[] = [];
@@ -137,7 +137,7 @@ export function deriveSeriesConflicts(facts: FactBundle, rows: readonly SeriesRo
       const key = `v2:${hash(JSON.stringify([conflict.naturalKey, personId, id]))}`;
       output.set(key, { ...base, booking_id: id, related_booking_id: conflict.bookingIds[0]!, natural_key: key }); keys.push(key);
     }
-    if (conflict.bookingIds.some(id => affected.has(id))) groups.push({ logicalId, keys: keys.sort(), personId,
+    if (includeAllGroups || conflict.bookingIds.some(id => affected.has(id))) groups.push({ logicalId, keys: keys.sort(), personId,
       bookingIds: conflict.bookingIds, rule: conflict.conflictType, startsAt: conflict.startsAt, endsAt: conflict.endsAt });
   }
   return { output: [...output.values()].sort((a, b) => a.natural_key.localeCompare(b.natural_key)), groups: groups.sort((a, b) => a.logicalId < b.logicalId ? -1 : a.logicalId > b.logicalId ? 1 : 0) };

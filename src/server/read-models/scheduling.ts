@@ -107,7 +107,12 @@ export async function readScheduling(input: SchedulingReadInput, options: { read
           q => q.in(column, batch)));
       }
     }
-    const counts = openBookingConflictCounts([...new Map(conflicts.map(r => [uuid(r.id),r])).values()] as never, ids);
+    let counts = openBookingConflictCounts([...new Map(conflicts.map(r => [uuid(r.id),r])).values()] as never, ids);
+    if(canManage){
+      const scan=await (await import("./booking-conflicts")).scanBookingConflicts(client,tenantId,actorId);
+      const groups=scan.groups.filter(g=>g.status==="open"&&g.bookingIds.some(id=>ids.includes(id)));
+      counts={count:groups.length,byBooking:new Map(ids.map(id=>[id,groups.filter(g=>g.bookingIds.includes(id)).length]))};
+    }
     const counted = summaries.map(b => ({...b,openConflictCount:counts.byBooking.get(b.id) ?? 0}));
     if (!canManage) {
       // The RLS association slice is own-only, including shared bookings. No profile lookup.

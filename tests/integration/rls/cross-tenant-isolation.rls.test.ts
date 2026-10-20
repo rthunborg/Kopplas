@@ -534,7 +534,7 @@ describe("Cross-tenant RLS isolation — data-driven over the shared inventory (
       it(`[P0] SELECT: Tenant A admin reads ZERO ${table} rows belonging to Tenant B (no error leak)`, async (testCtx) => {
         if (skipUnlessStack(testCtx, stackUp)) return;
         const { column, value } = tenantBFilter(table, ctx);
-        const { data, error } = await a.from(table).select(table === "bookings" ? bookingPublicColumns : table === "booking_series" ? "id,tenant_id,rule,defaults,version,ends_before,predecessor_id,successor_id,created_at,updated_at" : "*").eq(column, value);
+        const { data, error } = await a.from(table).select(table === "booking_conflict_resolutions" ? "id,tenant_id,booking_id,actor_id,action,outcome,affected_booking_ids,created_at" : table === "bookings" ? bookingPublicColumns : table === "booking_series" ? "id,tenant_id,rule,defaults,version,ends_before,predecessor_id,successor_id,created_at,updated_at" : "*").eq(column, value);
         if (directReadRevokedTables.has(table)) {
           expect(error?.code).toBe("42501");
           expect(data).toBeNull();

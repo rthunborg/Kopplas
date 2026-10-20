@@ -268,9 +268,9 @@ export const SCOPE_MANIFEST: ScopeManifest = {
       activatedAt: "2026-10-13",
       // Later scheduling stories enroll their own surfaces when implemented.
       navItems: [{ route: "/scheduling", group: "primary", requiredCapability: "Bookings.View" }],
-      tenantTables: ["booking_series"],
+      tenantTables: ["booking_series", "booking_conflict_resolutions"],
       widgets: [],
-      notificationCategories: [],
+      notificationCategories: ["booking.changed"],
       publicSurfaces: [],
       fileOwnerTypes: [],
     },

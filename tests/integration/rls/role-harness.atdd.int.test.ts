@@ -17,7 +17,7 @@ import {
   adminUpdateQuoteVersionStatus, cleanupRoleAwarePhaseAFixture, createRoleAwarePhaseAFixture,
   makeAuthedServerClient, type RoleAwarePhaseAFixture, type TestServerClient,
 } from "../../factories/tenants";
-import { adminQuery, closeAdminPool } from "../../factories/admin-sql";
+import { adminQuery, adminSession, closeAdminPool } from "../../factories/admin-sql";
 import { isLocalStackReachable } from "../../support/test-env";
 import { skipUnlessStack } from "../../support/stack-gate";
 
@@ -66,7 +66,10 @@ beforeAll(async () => {
   }))) as Record<TenantRole, Pick<Record<TenantTableName, string>, "notifications" | "notification_preferences">>;
 });
 afterAll(async () => {
-  if (stackUp && fixture) await cleanupRoleAwarePhaseAFixture(fixture);
+  if (stackUp && fixture) {
+    await adminSession(async ({query})=>{await query("begin");try{await query("set local session_replication_role=replica");await query("delete from public.booking_conflict_resolutions where tenant_id=any($1::uuid[])",[[fixture.base.tenantA.id,fixture.base.tenantB.id]]);await query("commit");}catch(e){await query("rollback");throw e;}});
+    await cleanupRoleAwarePhaseAFixture(fixture);
+  }
   if (stackUp) await closeAdminPool();
 });
 
@@ -151,7 +154,9 @@ async function seedEveryTenantTable(tenantId: string, actorId: string): Promise<
   const [jobWindow] = await adminQuery<{id:string}>("insert into public.job_access_windows(tenant_id,job_id,starts_at,ends_at) values($1,$2,'2026-10-12T06:00:00Z','2026-10-12T07:00:00Z') returning id", [tenantId,job]);
   const [{id: prerequisite}] = await adminQuery<{id:string}>("insert into public.jobs(tenant_id,customer_id,title) values($1,$2,'Prerequisite') returning id", [tenantId,customer]);
   const [jobDependency] = await adminQuery<{id:string}>("insert into public.job_dependencies(tenant_id,job_id,prerequisite_job_id) values($1,$2,$3) returning id", [tenantId,job,prerequisite]);
+  const [{id:resolution}] = await adminQuery<{id:string}>("insert into public.booking_conflict_resolutions(tenant_id,actor_id,command_id,booking_id,request_digest,action,outcome,target_keys,affected_booking_ids,result) values($1,$2,gen_random_uuid(),$3,repeat('a',64),'accept','accepted','[]',array[$3::uuid],'{}') returning id",[tenantId,actorId,bookingRows.bookings]);
   return {
+    booking_conflict_resolutions:resolution,
     ...bookingRows,
     booking_series: bookingSeries,
     tenants: tenantId, tenant_memberships: membership, membership_roles: membershipRole,

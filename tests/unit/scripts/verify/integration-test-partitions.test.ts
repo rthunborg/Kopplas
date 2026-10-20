@@ -45,7 +45,7 @@ test("installed Vitest collects every integration file once and preserves requir
     assert.equal((parallel.config as typeof parallel.config & { fileParallelism: boolean }).fileParallelism, true);
     assert.equal((ddl.config as typeof ddl.config & { fileParallelism: boolean }).fileParallelism, false);
     assertOrdered(parallel.config.sequence.groupOrder, ddl.config.sequence.groupOrder);
-    assert.deepEqual(specs.filter((spec) => spec.project === ddl).map((spec) => slash(relative(root, spec.moduleId))), [ddlFile]);
+    assert.deepEqual(specs.filter((spec) => spec.project === ddl).map((spec) => slash(relative(root, spec.moduleId))), ["tests/integration/commands/conflict-resolver.int.test.ts", ddlFile]);
     assert.ok(specs.filter((spec) => spec.project === parallel).every((spec) => slash(relative(root, spec.moduleId)) !== ddlFile));
     const setup = runner.config.globalSetup;
     assert.ok((Array.isArray(setup) ? setup : [setup]).some((path) => slash(path).endsWith("tests/support/global-setup.ts")));

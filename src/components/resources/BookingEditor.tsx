@@ -20,11 +20,12 @@ export function bookingLocalInput(value: string): string {
   const parts = Object.fromEntries(new Intl.DateTimeFormat("en-GB", {timeZone: "Europe/Stockholm", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", hourCycle: "h23"}).formatToParts(new Date(value)).map(p => [p.type,p.value]));
   return `${parts.year}-${parts.month}-${parts.day}T${parts.hour}:${parts.minute}`;
 }
-export function BookingEditor({open, onClose, draft, options: initialOptions, bookingId, seriesId, prefill, initialPreview, proposal}: {
+export function BookingEditor({open, onClose, draft, options: initialOptions, bookingId, seriesId, prefill, initialPreview, proposal, resolverAdapter}: {
   readonly open: boolean; readonly onClose: () => void; readonly draft: BookingFacts;
   readonly options: BookingEditorOptions; readonly bookingId?: string; readonly seriesId?: string | null; readonly prefill?: BookingPrefill;
   readonly initialPreview?: BookingPreviewDisplay;
   readonly proposal?: BookingEditProposal;
+  readonly resolverAdapter?: {preview:typeof previewBookingAction;save:typeof saveBookingAction;description?:string;commonSeries?:boolean};
 }) {
   const [options, setOptions] = useState(initialOptions);
   const [optionsLoading, setOptionsLoading] = useState(false);
@@ -140,7 +141,7 @@ export function BookingEditor({open, onClose, draft, options: initialOptions, bo
               personLabel:people.find(p=>p.id===w.personId)?.label??"Resursperson",bookingLabels:w.bookingIds.map(id=>`Bokning ${id}`)}))});
           return;
         }
-        const result = await previewBookingAction(candidate());
+        const result = await (resolverAdapter?.preview ?? previewBookingAction)(candidate());
         if (sequence.current !== current) return;
         if (result.status === "error") { deliverPreview(current, {requestId: String(current),status: "error", warnings: [], availabilityLabel: "Okänd", errorMessage: result.message}); return; }
         receipt.current = result.preview.receipt;
@@ -173,7 +174,7 @@ export function BookingEditor({open, onClose, draft, options: initialOptions, bo
     setPending(true); setError(null);
     try {
       attempted.current = input;
-      const result = recurrence.enabled ? await saveBookingSeriesAction(input) : await saveBookingAction(input);
+      const result = recurrence.enabled ? await saveBookingSeriesAction(input) : await (resolverAdapter?.save ?? saveBookingAction)(input);
       if (result.status === "success") {attempted.current = null; setUnresolved(false); setSuccess(true); setDirty(false);} else {
         setError(result.message);
         if (retainUnresolvedBookingAttempt(result.code, wasUnresolved)) setUnresolved(true);
@@ -218,7 +219,7 @@ export function BookingEditor({open, onClose, draft, options: initialOptions, bo
         facilityId: contact.facilityId ?? (contact.customerId === currentCustomer ? facts.facilityId : null)} : {})});
     }
   }
-  const optional = (name: "jobId" | "customerId" | "facilityId" | "contactId", label: string, entries: readonly {id: string; label: string}[]) => <label className="space-y-1"><span className="text-sm font-medium">{label}</span><select name={name} data-testid={`booking-${name.replace("Id", "")}`} value={facts[name] ?? ""} className={fieldClass} onChange={e => connection(name, e.target.value)}><option value="">Ingen koppling</option>{facts[name] && !entries.some(item => item.id === facts[name]) && <option value={facts[name]!} disabled>Nuvarande koppling (ej tillgänglig för nya val) · {facts[name]}</option>}{entries.map(item => <option key={item.id} value={item.id}>{item.label}</option>)}</select></label>;
+  const optional = (name: "jobId" | "customerId" | "facilityId" | "contactId", label: string, entries: readonly {id: string; label: string}[]) => <label className="space-y-1"><span className="text-sm font-medium">{label}</span><select name={name} disabled={resolverAdapter?.commonSeries} data-testid={`booking-${name.replace("Id", "")}`} value={facts[name] ?? ""} className={fieldClass} onChange={e => connection(name, e.target.value)}><option value="">Ingen koppling</option>{facts[name] && !entries.some(item => item.id === facts[name]) && <option value={facts[name]!} disabled>Nuvarande koppling (ej tillgänglig för nya val) · {facts[name]}</option>}{entries.map(item => <option key={item.id} value={item.id}>{item.label}</option>)}</select></label>;
   if (scope === null) return <Dialog open={open} onClose={onClose} title="Redigera återkommande bokning"><div data-testid="booking-series-scope-dialog" className="space-y-3"><p>Vilka tillfällen vill du ändra?</p>
     {error && <p role="alert">{error}<button type="button" className={buttonClass} onClick={()=>setSeriesLoadRetry(n=>n+1)}>Försök igen</button></p>}
     <fieldset className="space-y-3"><legend>Omfattning</legend>
@@ -237,13 +238,14 @@ export function BookingEditor({open, onClose, draft, options: initialOptions, bo
       <div data-testid="booking-editor-sheet" className="space-y-5"><div data-testid="booking-editor-scroll-body" className="space-y-5">
       {success ? <p role="status" data-testid="booking-save-status" className="rounded-md bg-green-50 p-3 text-green-900">Sparad i systemet</p> : <>
       <p data-testid="booking-unsent" className="text-sm text-zinc-600">Utkast ej skickat</p>
+      {resolverAdapter?.description && <p role="status">{resolverAdapter.description}</p>}
       {unresolved && <p role="status" data-testid="booking-unresolved-save">Sparresultatet är okänt. Försök igen med samma utkast innan du ändrar eller stänger bokningen.</p>}
       {options.error && <p role="alert" data-testid="booking-options-error">{options.error}</p>}
       <button type="button" data-testid="booking-options-retry" className={buttonClass} disabled={pending || unresolved || optionsLoading} onClick={retryOptions}>{optionsLoading ? "Läser bokningsval…" : options.error ? "Läs bokningsval igen" : "Uppdatera bokningsval"}</button>
       <fieldset disabled={pending || unresolved} className="space-y-4"><legend className="font-semibold">Tilldelade</legend>
       <label className="block space-y-1"><span className="text-sm">Filtrera arbetsroll</span><select ref={initialField} data-testid="booking-work-role-filter" className={fieldClass} value={roleFilter} onChange={e => setRoleFilter(e.target.value)}><option value="">Alla arbetsroller</option>{options.workRoles.map(r => <option key={r.id} value={r.id}>{r.label}</option>)}</select></label>
       {people.filter(p => !roleFilter || p.defaultWorkRoleId === roleFilter || p.workRoleIds.includes(roleFilter) || facts.assigneeIds.includes(p.id)).map(p => <label key={p.id} className="flex min-h-11 items-center gap-3 text-sm"><input name="assigneeIds" type="checkbox" value={p.id} data-testid={`booking-assignee-option-${p.id}`} checked={facts.assigneeIds.includes(p.id)} onChange={e => change({assigneeIds: e.target.checked ? [...facts.assigneeIds,p.id] : facts.assigneeIds.filter(id => id !== p.id)})} /><span>{p.label} · {preview.status === "ready" && availability.find(a => a.personId === p.id) ? availability.find(a => a.personId === p.id)!.available ? "Tillgänglig" : "Upptagen" : "Okänd"}</span></label>)}
-      <label className="block space-y-1"><span>Arbetsroll</span><select name="workRoleId" data-testid="booking-work-role" className={fieldClass} value={facts.workRoleId ?? ""} onChange={e => change({workRoleId: e.target.value || null})}><option value="">Ingen arbetsroll</option>{facts.workRoleId && !options.workRoles.some(role => role.id === facts.workRoleId) && <option value={facts.workRoleId} disabled>Nuvarande arbetsroll (ej tillgänglig för nya val) · {facts.workRoleId}</option>}{options.workRoles.map(r => <option key={r.id} value={r.id}>{r.label}</option>)}</select></label>
+      <label className="block space-y-1"><span>Arbetsroll</span><select name="workRoleId" disabled={resolverAdapter?.commonSeries} data-testid="booking-work-role" className={fieldClass} value={facts.workRoleId ?? ""} onChange={e => change({workRoleId: e.target.value || null})}><option value="">Ingen arbetsroll</option>{facts.workRoleId && !options.workRoles.some(role => role.id === facts.workRoleId) && <option value={facts.workRoleId} disabled>Nuvarande arbetsroll (ej tillgänglig för nya val) · {facts.workRoleId}</option>}{options.workRoles.map(r => <option key={r.id} value={r.id}>{r.label}</option>)}</select></label>
       <label className="flex min-h-11 items-center gap-3"><input name="allDay" data-testid="booking-all-day" type="checkbox" checked={facts.allDay} onChange={e => {setRetainedClocks({start:null,end:null});if (!e.target.checked) {setStart(value => value.length === 10 ? `${value}T00:00` : value); setEnd(value => value.length === 10 ? `${value}T00:00` : value);} setStartChanged(true); setEndChanged(true); change({allDay: e.target.checked});}} />Heldag</label>
       <p className="text-xs text-zinc-600">Tid i Stockholm. För heldag är slutdatum den första dagen efter bokningen.</p>
       <div className="grid gap-3 sm:grid-cols-2"><label className="space-y-1"><span>Start</span><input name="startsAt" data-testid="booking-start" type={facts.allDay ? "date" : "datetime-local"} min={scope === "following" && seriesSource ? seriesSource.nominalDate + (facts.allDay ? "" : "T00:00") : undefined} className={fieldClass} value={facts.allDay ? start.slice(0,10) : start} onChange={e => {setStart(e.target.value);setRetainedClocks(value=>({...value,start:null})); setStartChanged(true); change({});}} required /></label><label className="space-y-1"><span>Slut</span><input name="endsAt" data-testid="booking-end" type={facts.allDay ? "date" : "datetime-local"} className={fieldClass} value={facts.allDay ? end.slice(0,10) : end} onChange={e => {setEnd(e.target.value);setRetainedClocks(value=>({...value,end:null})); setEndChanged(true); change({});}} required /></label></div>
@@ -252,8 +254,8 @@ export function BookingEditor({open, onClose, draft, options: initialOptions, bo
       {scope === "following" && <p className="text-sm text-zinc-600">Oförändrat antal behåller seriens ursprungliga slut. Ändrat antal räknas från det valda tillfället. Avvikelser och avbrutna tillfällen behålls.</p>}
       {scope === "following" && !seriesSource && !seriesMetadataLoading && <p role="alert">Serien kunde inte läsas. Behåll utkastet. <button type="button" className={buttonClass} onClick={retryPreview}>Försök igen</button></p>}
       {recurrence.enabled && <RecurrencePreview status={preview.status === "ready" ? "ready" : preview.status === "error" ? "failed":"pending"} items={seriesItems} total={seriesTotal} warningCount={preview.warnings.length} error={preview.errorMessage} candidateDescription={facts.description} onRetry={retryPreview} />}
-      <label className="block space-y-1"><span>Beskrivning</span><textarea name="description" data-testid="booking-description" className={fieldClass} value={facts.description} onChange={e => change({description: e.target.value})} /></label>
-      <label className="block space-y-1"><span>Status</span><select name="status" data-testid="booking-status" className={fieldClass} value={facts.status} onChange={e => change({status: e.target.value as BookingFacts["status"]})}><option value="planned">Planerad</option><option value="cancelled">Avbruten</option></select></label>
+      <label className="block space-y-1"><span>Beskrivning</span><textarea name="description" disabled={resolverAdapter?.commonSeries} data-testid="booking-description" className={fieldClass} value={facts.description} onChange={e => change({description: e.target.value})} /></label>
+      <label className="block space-y-1"><span>Status</span><select name="status" disabled={resolverAdapter?.commonSeries} data-testid="booking-status" className={fieldClass} value={facts.status} onChange={e => change({status: e.target.value as BookingFacts["status"]})}><option value="planned">Planerad</option><option value="cancelled">Avbruten</option></select></label>
       </fieldset>
       <BookingConflictPanel preview={preview} onRetry={retryPreview} selected={selected} onSelect={pending || unresolved || discard ? undefined : (id, checked) => {setSelected(values => checked ? [...values,id] : values.filter(value => value !== id)); setDirty(true);}} />
       {preview.status === "ready" && preview.warnings.length > 0 && <fieldset disabled={pending || unresolved} className="space-y-3"><label className="flex min-h-11 items-center gap-3"><input type="checkbox" data-testid="booking-review-current-warnings" checked={reviewed} onChange={e => {setReviewed(e.target.checked); setDirty(true);}} />Jag har granskat samtliga aktuella varningar</label><label className="block space-y-1"><span>Orsak för att boka ändå</span><textarea data-testid="booking-override-reason" className={fieldClass} maxLength={2000} value={reason} onChange={e => {setReason(e.target.value); setDirty(true);}} /></label><p className="text-sm text-zinc-600">Endast valda konflikter accepteras. Övriga granskade konflikter förblir öppna.</p></fieldset>}

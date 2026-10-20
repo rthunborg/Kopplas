@@ -1,232 +1,217 @@
-import { describe, expect, test } from "vitest";
-import { runCommand, type Command } from "@/server/commands/envelope";
-import { createBookingSeries } from "@/server/commands/bookings/create-booking-series";
-import { createJobCard } from "@/server/commands/jobs/save-job-card";
-import { adminQuery } from "../../factories/admin-sql";
-import { bookingCommand, bookingSnapshot, seedBookingParents, withBookingFixture,
-  type BookingFixture, type DurableRow } from "../../support/bookings-atdd";
-import { loadBookingEditorBindings } from "../../support/booking-editor-atdd";
-import { realSeriesInput, reviewRealSeries } from "../../support/booking-series-atdd";
-
-/* Provider source: current envelope, editor production fixture, sole detector,
- * series-conflicts and save-job-card; frozen spec15.3 + current-contracts-and-design.
- * No independent provider boundary/Pact; utils package/runner gates are closed.
- * All cases remain RED/unexecuted. Resume ONLY after real resolver SQL/command,
- * allocated isolated REQUIRED DB lane and the normalization below are reconciled.
- * No response schema exists yet: assertions cover only the behavioral projection.
- */
-type Group = { logicalId: string; keys: string[]; bookingIds: string[]; status: string };
-type Attempt = { commandId: string; bookingId: string; action: "move" | "accept";
-  targetLogicalIds: string[]; candidate?: Record<string, unknown>; review?: {
-    receipt: string; reviewedLogicalIds: string[]; selectedLogicalIds: string[]; reason: string } };
-type Preview = { receipt: string; groups: Group[]; factDigest: string; baselineDigest: string };
-type Result = { ok: true; data: { actionId: string; resolvedLogicalIds: string[] } }
-  | { ok: false; code: string; message: string };
-/* TEST-OWNED normalization contract, NOT an approved production API. At activation
- * bind these candidate export/signature names to actual exports; keep real Results,
- * signed receipts and identifiers. Never implement them as fabricated responses. */
-async function resolver() {
-  const commandPath = "@/server/commands/bookings/resolve-booking-conflict";
-  const previewPath = "@/server/bookings/conflict-resolution";
-  const commandModule = await import(commandPath);
-  const previewModule = await import(previewPath);
-  expect(commandModule.resolveBookingConflict, "Missing real resolveBookingConflict command").toBeDefined();
-  expect(previewModule.previewBookingConflictResolution, "Bind actual resolver preview export/signature").toBeTypeOf("function");
-  return {
-    preview: previewModule.previewBookingConflictResolution as (client: BookingFixture["plannerClient"], input: Attempt) => Promise<Preview>,
-    save: (fx: BookingFixture, input: Attempt, correlationId = crypto.randomUUID()) =>
-      runCommand(commandModule.resolveBookingConflict as Command<Attempt, { actionId: string; resolvedLogicalIds: string[] }>,
-        { client: fx.plannerClient as never, input, correlationId }) as Promise<Result>,
-  };
+import {beforeAll,describe,expect,test,vi} from "vitest";
+import * as dbFactory from "@/server/db/supabase-server-client";
+import {conflictSuggestionsAction} from "@/features/resources/booking-conflict-actions";
+import {runCommand} from "@/server/commands/envelope";
+import {resolveBookingConflict} from "@/server/commands/bookings/resolve-booking-conflict";
+import {snapshotConflictResolver,previewConflictResolution,planConflictResolution,type ResolutionArgs} from "@/server/bookings/conflict-resolution";
+import {openResolutionReceipt,sealResolutionReceipt,signResolution} from "@/server/bookings/conflict-resolution-attestation";
+import {bookingConflictKeyFromEnv,signConflictOutput,type ConflictClaims} from "@/server/bookings/conflict-attestation";
+import {snapshotBookingConflicts,previewBookingConflicts} from "@/server/bookings/conflict-facts";
+import {previewBookingEditor} from "@/server/bookings/editor-preview";
+import {scanBookingConflicts} from "@/server/read-models/booking-conflicts";
+import type {ResolutionInput,ResolutionRequest} from "@/features/scheduling/conflict-resolver-types";
+import {adminQuery,adminSession} from "../../factories/admin-sql";
+import {bookingCommand,bookingInput,bookingSnapshot,withBookingFixture,withBookingFault,seedBookingParents,type BookingFixture} from "../../support/bookings-atdd";
+import {realSeriesInput,reviewRealSeries} from "../../support/booking-series-atdd";
+import {createBookingSeries} from "@/server/commands/bookings/create-booking-series";
+import {invokeJobCard} from "../../support/jobs-depth-atdd";
+import {isLocalStackReachable} from "../../support/test-env";
+import {skipUnlessStack} from "../../support/stack-gate";
+import {waitForBlocked} from "../../support/booking-conflicts-atdd";
+import {resolutionRequest} from "@/server/commands/bookings/conflict-resolution-validation";
+let up=false;beforeAll(async()=>{up=await isLocalStackReachable();});
+async function fixture(run:(fx:BookingFixture)=>Promise<void>){await withBookingFixture(async fx=>{try{await run(fx);}finally{
+  await adminSession(async({query})=>{await query("begin");try{await query("set local session_replication_role=replica");await query("delete from public.booking_conflict_resolutions where tenant_id=any($1::uuid[])",[fx.tenantIds]);await query("commit");}catch(e){await query("rollback");throw e;}});
+}});}
+const args=(fx:BookingFixture,commandId=crypto.randomUUID()):ResolutionArgs=>({p_tenant_id:fx.base.tenantA.id,p_actor_id:fx.base.adminA.id,p_correlation_id:crypto.randomUUID(),p_command_id:commandId});
+async function state(fx:BookingFixture){return {...await bookingSnapshot(fx.tenantIds),ledger:await adminQuery("select * from public.booking_conflict_resolutions where tenant_id=any($1::uuid[]) order by id",[fx.tenantIds]),notifications:await adminQuery("select * from public.notifications where tenant_id=any($1::uuid[]) order by id",[fx.tenantIds]),series:await adminQuery("select * from public.booking_series where tenant_id=any($1::uuid[]) order by id",[fx.tenantIds])};}
+async function seed(fx:BookingFixture,count=2){
+  for(const profile of [fx.ownProfile,fx.adminProfile,fx.coworkerProfile])for(let d=1;d<=5;d++)await adminQuery("insert into public.person_work_hours(tenant_id,person_profile_id,entry_kind,weekday,starts_at,ends_at) values($1,$2,'weekly_shift',$3,'07:00','17:00')",[fx.base.tenantA.id,profile.id,d]);
+  const ids:string[]=[];for(let i=0;i<count;i++){const result=await bookingCommand("create",fx.adminClient,bookingInput([fx.ownProfile.id],{startsAt:"2026-10-12T06:00:00Z",endsAt:"2026-10-12T07:00:00Z",description:`Resolver participant ${i}`}));expect(result.ok).toBe(true);if(!result.ok)throw new Error(result.code);ids.push(result.data.bookingId);}
+  return ids;
 }
-async function rows(table: string, fx: BookingFixture): Promise<DurableRow[]> {
-  // Closed table names below only; full physical rows, private outcomes/timestamps retained.
-  return (await adminQuery<{ row: DurableRow }>(`select to_jsonb(t) as row from public.${table} t
-    where tenant_id=any($1::uuid[]) order by to_jsonb(t)::text`, [fx.tenantIds])).map(r => r.row);
+async function prepare(fx:BookingFixture,bookingId:string,action:ResolutionInput["action"]="accept",patch:Partial<ResolutionRequest>={}){
+  const scan=await scanBookingConflicts(fx.adminClient as never,fx.base.tenantA.id,fx.base.adminA.id),booking=scan.bookings.find(b=>b.id===bookingId)!;
+  const target=scan.groups.find(g=>g.rule==="double_booking"&&g.bookingIds.includes(bookingId))??scan.groups.find(g=>g.bookingIds.includes(bookingId));if(!target)throw new Error("Expected real detected target");
+  const input:ResolutionInput={commandId:crypto.randomUUID(),bookingId,action,targetLogicalIds:[target.logicalId],payload:action==="accept"?null:{...booking.payload,startsAt:"2026-10-12T09:00:00.000000Z",endsAt:"2026-10-12T10:00:00.000000Z"},wholeSeries:false,...patch};
+  const preview=await previewConflictResolution(fx.adminClient,args(fx,input.commandId),input);
+  return {input:{...input,review:{receipt:preview.receipt,decision:{acknowledged:preview.warnings.length>0,reason:preview.warnings.length?"Reviewed current complete warnings":"",reviewedLogicalIds:preview.warnings.map(g=>g.logicalId),selectedLogicalIds:action==="accept"?input.targetLogicalIds:[]}}},preview,target};
 }
-async function snapshot(fx: BookingFixture) {
-  return { ...await bookingSnapshot(fx.tenantIds), series: await rows("booking_series", fx),
-    history: await rows("booking_conflict_resolutions", fx), notifications: await rows("notifications", fx),
-    preferences: await rows("notification_preferences", fx) };
-}
-async function seeded(fx: BookingFixture) {
-  const editor = await loadBookingEditorBindings();
-  const plan = await editor.seedMixed(fx, "update");
-  const preview = await editor.preview(fx.plannerClient, "update", plan.input);
-  expect(preview.ok).toBe(true);
-  if (!preview.ok) throw new Error(preview.code);
-  expect(await editor.save(fx.plannerClient, "update", { ...plan.input, decision: {
-    receipt: preview.data.receipt, acknowledged: true,
-    reviewedLogicalIds: preview.data.warnings.map(w => w.naturalKey), selectedLogicalIds: [],
-    reason: "Reviewed literal four-booking fixture" } }, crypto.randomUUID())).toMatchObject({ ok: true });
-  return plan;
-}
-async function reviewed(fx: BookingFixture, draft: Attempt, selected: string[] = []) {
-  const b = await resolver();
-  const p = await b.preview(fx.plannerClient, draft);
-  return { b, p, input: { ...draft, review: { receipt: p.receipt,
-    reviewedLogicalIds: p.groups.map(g => g.logicalId), selectedLogicalIds: selected,
-    reason: "Coordinated with affected electricians" } } };
-}
-function committed(result: Result) {
-  expect(result.ok).toBe(true);
-  if (!result.ok) throw new Error(`Real resolver rejected: ${result.code}`);
-  return result.data;
-}
-const sorted = (values: string[]) => [...values].sort();
-const targetRows = (rs: DurableRow[], keys: string[]) => rs.filter(r => keys.includes(String(r.natural_key)));
-
-// Skip reason for every case: resolver production seam/normalization and isolated DB
-// admission are absent. Unskip only after binding; these are obligations, not coverage.
-describe("Story15.3 checked resolver ATDD (unexecuted RED)", () => {
-  test.skip("[P0] 15.3-INT-001 move commits only reviewed overlay, resolved associations and immutable event (AC4/6/8)", async () => {
-    await withBookingFixture(async fx => {
-      const plan = await seeded(fx);
-      const attempt = await reviewed(fx, { commandId: crypto.randomUUID(), bookingId: plan.input.bookingId!, action: "move",
-        targetLogicalIds: plan.expectedGroups.map(g => g.naturalKey), candidate: { ...plan.canonicalCandidate,
-          startsAt: "2026-10-14T06:00:00Z", endsAt: "2026-10-14T07:00:00Z" } });
-      const before = await snapshot(fx);
-      const result = committed(await attempt.b.save(fx, attempt.input));
-      const after = await snapshot(fx);
-      expect(sorted(result.resolvedLogicalIds)).toEqual(sorted(plan.expectedGroups.map(g => g.naturalKey)));
-      const resolved = targetRows(after.conflicts, plan.expectedGroups.flatMap(g => g.persistedKeys));
-      expect(resolved).toHaveLength(plan.expectedGroups.flatMap(g => g.persistedKeys).length);
-      for (const row of resolved) expect(row).toMatchObject({ status: "resolved", resolved_by_membership_id: fx.coworkerProfile.membershipId,
-        resolved_at: expect.any(String), resolution_outcome: expect.any(String) });
-      expect(after.bookings.filter(r => r.id !== plan.input.bookingId)).toEqual(before.bookings.filter(r => r.id !== plan.input.bookingId));
-      expect(after.assignees).toEqual(before.assignees);
-      expect(after.history).toHaveLength(before.history.length + 1);
-      expect(after.audit).toHaveLength(before.audit.length + 1);
-      for (const [table, values] of Object.entries(after)) expect(values.filter(r => r.tenant_id === fx.base.tenantB.id))
-        .toEqual(before[table as keyof typeof before].filter(r => r.tenant_id === fx.base.tenantB.id));
-      const messages = after.notifications.filter(r => r.category === "booking.changed" && r.logical_subject_id === result.actionId);
-      expect(messages.map(r => r.recipient_user_id)).toEqual([fx.users.montor.id]);
-      expect(messages[0]?.route).toMatch(/^\/scheduling(?:[/?]|$)/);
-      expect(messages[0]?.route).not.toContain("conflicts");
-    });
+async function command(fx:BookingFixture,input:ResolutionInput,correlationId=crypto.randomUUID()) {return runCommand(resolveBookingConflict,{client:fx.adminClient as never,input,correlationId});}
+describe("15.3 actual checked resolver transactions",()=>{
+ test("15.3-INT-012 real available slot and matching-role person suggestions commit through fresh checked preview",async ctx=>{if(skipUnlessStack(ctx,up))return;
+  for(const mode of ["move","reassign"] as const)await fixture(async fx=>{
+   const ids=await seed(fx),parents=await seedBookingParents(fx.base.tenantA.id);
+   await adminQuery("update public.person_profiles set default_work_role_id=$2 where id=any($1::uuid[])",[[fx.ownProfile.id,fx.coworkerProfile.id],parents.workRoleId]);
+   const port=vi.spyOn(dbFactory,"createSupabaseServerClient").mockResolvedValue(fx.adminClient as never);
+   let suggestions:Awaited<ReturnType<typeof conflictSuggestionsAction>>;
+   try{suggestions=await conflictSuggestionsAction(ids[0],mode==="reassign"?fx.ownProfile.id:undefined);}finally{port.mockRestore();}
+   expect(suggestions.status).toBe("success");if(suggestions.status!=="success")throw new Error(suggestions.code);
+   const scan=await scanBookingConflicts(fx.adminClient as never,fx.base.tenantA.id,fx.base.adminA.id),booking=scan.bookings.find(b=>b.id===ids[0])!;
+   const candidate=mode==="move"?suggestions.slots[0]:suggestions.people.find(p=>p.personId===fx.coworkerProfile.id);
+   expect(candidate?.availability).toMatchObject({status:"available",capacityMinutes:600,loadMinutes:mode==="move"?60:0});
+   expect(suggestions.people.some(p=>p.personId===fx.adminProfile.id)).toBe(false);
+   if(!candidate)throw new Error("Expected an actual available suggestion");
+   const payload=mode==="move"&&"startsAt" in candidate?{...booking.payload,startsAt:candidate.startsAt,endsAt:candidate.endsAt}:{...booking.payload,assigneeIds:[fx.coworkerProfile.id]};
+   const ready=await prepare(fx,ids[0],mode,{payload});
+   await adminQuery("update public.person_profiles set employment_percentage=75 where id=$1",[fx.ownProfile.id]);const before=await state(fx);
+   expect(await command(fx,ready.input)).toMatchObject({ok:false,code:"PREVIEW_STALE"});expect(await state(fx)).toEqual(before);
+   const fresh=await prepare(fx,ids[0],mode,{payload});expect(await command(fx,fresh.input)).toMatchObject({ok:true,data:{outcome:"resolved"}});
+   const persisted=await scanBookingConflicts(fx.adminClient as never,fx.base.tenantA.id,fx.base.adminA.id);
+   expect(persisted.bookings.find(b=>b.id===ids[0])?.payload).toMatchObject(payload);expect(persisted.groups.some(g=>g.logicalId===fresh.target.logicalId)).toBe(false);
   });
-
-  test.skip("[P0] 15.3-INT-002 accepts complete selected group only, rejects partial/unrelated/blank, changes no occurrence (AC5/7/8)", async () => {
-    await withBookingFixture(async fx => {
-      const plan = await seeded(fx), selected = plan.selected;
-      const draft: Attempt = { commandId: crypto.randomUUID(), bookingId: plan.input.bookingId!, action: "accept",
-        targetLogicalIds: [selected.naturalKey] };
-      const attempt = await reviewed(fx, draft, [selected.naturalKey]);
-      expect(selected.persistedKeys.length).toBeGreaterThan(1);
-      const before = await snapshot(fx);
-      for (const invalid of [ { ...attempt.input, review: { ...attempt.input.review, reason: " \n\t " } },
-        { ...attempt.input, targetLogicalIds: [selected.persistedKeys[0]!] },
-        { ...attempt.input, targetLogicalIds: plan.unrelatedKeys } ]) {
-        expect(await attempt.b.save(fx, invalid)).toMatchObject({ ok: false });
-        expect(await snapshot(fx)).toEqual(before);
-      }
-      committed(await attempt.b.save(fx, attempt.input));
-      const after = await snapshot(fx);
-      expect(after.bookings).toEqual(before.bookings); // includes is_exception, nominal date, updated_at and outcomes
-      expect(after.assignees).toEqual(before.assignees);
-      expect(after.series).toEqual(before.series);
-      expect(sorted(after.conflicts.filter(r => r.status === "accepted").map(r => String(r.natural_key))))
-        .toEqual(sorted(selected.persistedKeys));
-      expect(targetRows(after.conflicts, plan.otherReviewedKeys)).toEqual(targetRows(before.conflicts, plan.otherReviewedKeys));
-    });
+ });
+ test("15.3-INT-002 accept-only is selective, immutable, replayable and never diverges an occurrence",async ctx=>{if(skipUnlessStack(ctx,up))return;await fixture(async fx=>{
+  await seed(fx);const series=realSeriesInput(fx,{template:{...realSeriesInput(fx).template,startsAt:"2026-10-12T06:00:00Z",endsAt:"2026-10-12T07:00:00Z"},rule:{...realSeriesInput(fx).rule,startTime:"08:00:00",endTime:"09:00:00"}});
+  expect(await runCommand(createBookingSeries,{client:fx.adminClient as never,input:(await reviewRealSeries(fx,series)).input})).toMatchObject({ok:true});
+  const [{id}]=await adminQuery<{id:string}>("select id from public.bookings where series_id=$1 order by nominal_date",[series.seriesId]);const ready=await prepare(fx,id),before=await state(fx),result=await command(fx,ready.input);expect(result).toMatchObject({ok:true,data:{outcome:"accepted"}});
+  const after=await state(fx);expect(after.bookings).toEqual(before.bookings);expect(after.assignees).toEqual(before.assignees);expect(after.series).toEqual(before.series);
+  expect(after.ledger).toHaveLength(1);expect(after.audit).toHaveLength(before.audit.length+1);expect(after.notifications).toHaveLength(1);
+  const selected=after.conflicts.filter(c=>ready.target.keys.includes(String(c.natural_key)));expect(selected).toHaveLength(ready.target.keys.length);expect(selected.every(c=>c.status==="accepted"&&c.accepted_by_membership_id===fx.adminProfile.membershipId&&c.accepted_at!==null)).toBe(true);
+  expect(after.conflicts.filter(c=>!ready.target.keys.includes(String(c.natural_key))).every(c=>c.status==="open")).toBe(true);
+  expect(await command(fx,ready.input)).toEqual(result);expect(await state(fx)).toEqual(after);
+  expect(await command(fx,{...ready.input,review:{...ready.input.review!,decision:{...ready.input.review!.decision,reason:"Changed content"}}})).toMatchObject({ok:false,code:"COMMAND_CONFLICT"});expect(await state(fx)).toEqual(after);
+  await expect(adminQuery("update public.booking_conflict_resolutions set outcome='remaining' where id=$1",[after.ledger[0].id])).rejects.toMatchObject({code:"42501"});
+ });});
+ test("15.3-INT-001 move resolves only disappeared targets; later single, series and job-card writers retain/reopen history",async ctx=>{if(skipUnlessStack(ctx,up))return;await fixture(async fx=>{
+  const ids=await seed(fx),ready=await prepare(fx,ids[0],"move"),result=await command(fx,ready.input);expect(result).toMatchObject({ok:true,data:{outcome:"resolved"}});
+  const history=await adminQuery("select * from public.booking_conflict_resolutions where tenant_id=$1",[fx.base.tenantA.id]);
+  expect(await adminQuery("select status from public.booking_conflicts where tenant_id=$1 and natural_key=any($2::text[])",[fx.base.tenantA.id,ready.target.keys])).toEqual(ready.target.keys.map(()=>({status:"resolved"})));
+  const scan=await scanBookingConflicts(fx.adminClient as never,fx.base.tenantA.id,fx.base.adminA.id),b=scan.bookings.find(b=>b.id===ids[0])!;
+  expect(await bookingCommand("update",fx.adminClient,{...b.payload,assigneeIds:[...b.payload.assigneeIds],bookingId:b.id,commandId:crypto.randomUUID(),description:"Unrelated description refresh"})).toMatchObject({ok:true});
+  const series=realSeriesInput(fx,{rule:{...realSeriesInput(fx).rule,startDate:"2026-10-15"}});expect(await runCommand(createBookingSeries,{client:fx.adminClient as never,input:(await reviewRealSeries(fx,series)).input})).toMatchObject({ok:true});
+  const parents=await seedBookingParents(fx.base.tenantA.id);const card={commandId:crypto.randomUUID(),type:"order",title:"Refresh unrelated card",customer_id:parents.customerId,facility_id:parents.facilityId,contact_id:parents.contactId,
+   priority:"normal",estimated_duration_minutes:null,planned_travel_minutes:null,crew_size:null,earliest_date:null,desired_date:null,latest_date:null,customer_presence_required:false,
+   requiredWorkRoleIds:null,accessWindows:null,dependencyJobIds:[]};
+  expect(await invokeJobCard(fx.adminClient,"create",card)).toMatchObject({ok:true});
+  expect(await adminQuery("select status from public.booking_conflicts where tenant_id=$1 and natural_key=any($2::text[])",[fx.base.tenantA.id,ready.target.keys])).toEqual(ready.target.keys.map(()=>({status:"resolved"})));
+  expect(await bookingCommand("update",fx.adminClient,{...b.payload,assigneeIds:[...b.payload.assigneeIds],bookingId:b.id,commandId:crypto.randomUUID(),startsAt:"2026-10-12T06:00:00.000000Z",endsAt:"2026-10-12T07:00:00.000000Z"})).toMatchObject({ok:true});
+  expect((await adminQuery("select status,resolved_at,resolution_outcome from public.booking_conflicts where tenant_id=$1 and natural_key=any($2::text[])",[fx.base.tenantA.id,ready.target.keys])).every(c=>c.status==="open"&&c.resolved_at===null&&c.resolution_outcome===null)).toBe(true);
+  expect(await adminQuery("select * from public.booking_conflict_resolutions where tenant_id=$1",[fx.base.tenantA.id])).toEqual(history);expect(await command(fx,ready.input)).toEqual(result);
+  const bodies=await adminQuery<{name:string;body:string}>("select proname name,prosrc body from pg_proc where oid=any(array['public.booking_commit_editor_internal(uuid,uuid,uuid,uuid,uuid,jsonb,uuid,jsonb,jsonb,jsonb)'::regprocedure,'public.finalize_booking_series(uuid,uuid,uuid,uuid,jsonb,jsonb,text,text,jsonb,text,text,jsonb)'::regprocedure,'public.finalize_job_card(uuid,uuid,uuid,uuid,uuid,uuid,jsonb,jsonb,text,text)'::regprocedure])");
+  expect(bodies).toHaveLength(3);expect(bodies.every(b=>b.body.includes('perform public.booking_conflict_refresh_internal('))).toBe(true);
+ });});
+ test("15.3-INT-003 current workflow, description/customer baseline and complete aggregate proofs reject stale/partial/unrelated writes",async ctx=>{if(skipUnlessStack(ctx,up))return;await fixture(async fx=>{
+  const ids=await seed(fx,4);for(const id of ids)await adminQuery("update public.bookings set ends_at='2026-10-12T15:00:00Z' where id=$1",[id]);
+  const scan=await scanBookingConflicts(fx.adminClient as never,fx.base.tenantA.id,fx.base.adminA.id),aggregate=scan.groups.find(g=>g.rule==="over_capacity"&&g.bookingIds.length===4)!;expect(aggregate.keys.length).toBe(3);
+  const ready=await prepare(fx,ids[2],"accept",{targetLogicalIds:[aggregate.logicalId]});
+  const a=args(fx,ready.input.commandId),snapshot=await snapshotConflictResolver(fx.adminClient,a,resolutionRequest(ready.input));if(snapshot.kind!=="snapshot")throw new Error();
+  const plan=planConflictResolution(snapshot,ready.input),key=bookingConflictKeyFromEnv(),partial={...plan,targets:plan.targets.map(g=>({...g,keys:g.keys.slice(0,1)}))};
+  const before=await state(fx),body=JSON.stringify(partial),denied=await fx.adminClient.rpc("finalize_booking_conflict_resolution",{...a,p_input:((({review:_,...request})=>{void _;return request;})(ready.input)),p_decision:ready.input.review!.decision,p_claims:snapshot.claims,p_plan:body,p_signature:signResolution(snapshot.claims,body,key.secret)});
+  expect(denied.error?.code).toBe("42501");expect(await state(fx)).toEqual(before);
+  const other=await prepare(fx,ids[2]);await adminQuery("update public.bookings set description='Changed after preview' where id=$1",[ids[2]]);const changed=await state(fx);
+  expect(await command(fx,other.input)).toMatchObject({ok:false,code:"PREVIEW_STALE"});expect(await state(fx)).toEqual(changed);
+  const customer=await prepare(fx,ids[2]),parents=await seedBookingParents(fx.base.tenantA.id);await adminQuery("update public.bookings set customer_id=$2 where id=$1",[ids[2],parents.customerId]);const customerChanged=await state(fx);
+  expect(await command(fx,customer.input)).toMatchObject({ok:false,code:"PREVIEW_STALE"});expect(await state(fx)).toEqual(customerChanged);
+  const workflow=await prepare(fx,ids[2]);await command(fx,(await prepare(fx,ids[2])).input);const accepted=await state(fx);expect(await command(fx,workflow.input)).toMatchObject({ok:false,code:"PREVIEW_STALE"});expect(await state(fx)).toEqual(accepted);
+  expect(await command(fx,{...workflow.input,commandId:crypto.randomUUID(),targetLogicalIds:["unrelated"]})).toMatchObject({ok:false});
+ });});
+ test("15.3-INT-010 genuine single and series review receipts and genuine single signature cannot authorize resolver",async ctx=>{if(skipUnlessStack(ctx,up))return;await fixture(async fx=>{
+  const ids=await seed(fx),ready=await prepare(fx,ids[0]),scan=await scanBookingConflicts(fx.adminClient as never,fx.base.tenantA.id,fx.base.adminA.id),payload=scan.bookings.find(b=>b.id===ids[0])!.payload;
+  const a=args(fx,ready.input.commandId),donor=await previewBookingEditor(fx.adminClient,{...a,p_booking_id:ids[0],p_payload:payload}),before=await state(fx);
+  expect(await command(fx,{...ready.input,review:{...ready.input.review!,receipt:donor.receipt}})).toMatchObject({ok:false,code:"TENANT_ACCESS_DENIED"});
+  const series=await reviewRealSeries(fx,realSeriesInput(fx));expect(await command(fx,{...ready.input,review:{...ready.input.review!,receipt:series.preview.receipt}})).toMatchObject({ok:false,code:"TENANT_ACCESS_DENIED"});
+  const single=await snapshotBookingConflicts(fx.adminClient,{...a,p_booking_id:ids[0],p_payload:payload},bookingConflictKeyFromEnv().keyId);if(single.kind!=="snapshot")throw new Error();
+  const output=JSON.stringify(previewBookingConflicts(single)),singleSignature=signConflictOutput(single as ConflictClaims,output,bookingConflictKeyFromEnv().secret);
+  const snapshot=await snapshotConflictResolver(fx.adminClient,a,resolutionRequest(ready.input));if(snapshot.kind!=="snapshot")throw new Error();
+  const {review:_,...request}=ready.input;void _;
+  const denied=await fx.adminClient.rpc("finalize_booking_conflict_resolution",{...a,p_input:request,p_decision:ready.input.review!.decision,p_claims:snapshot.claims,p_plan:JSON.stringify(planConflictResolution(snapshot,ready.input)),p_signature:singleSignature});expect(denied.error?.code).toBe("42501");expect(await state(fx)).toEqual(before);
+ });});
+ test("15.3-INT-004 exact concurrent replay/lost response emits one event; expired receipt replay survives facts but revoked authority denies",async ctx=>{if(skipUnlessStack(ctx,up))return;await fixture(async fx=>{
+  const ids=await seed(fx),ready=await prepare(fx,ids[0]),results=await Promise.all([command(fx,ready.input),command(fx,ready.input)]);expect(results[0]).toEqual(results[1]);expect(results[0]).toMatchObject({ok:true});
+  expect(await adminQuery("select id from public.booking_conflict_resolutions where tenant_id=$1",[fx.base.tenantA.id])).toHaveLength(1);expect(await adminQuery("select id from public.notifications where tenant_id=$1 and category='booking.changed'",[fx.base.tenantA.id])).toHaveLength(1);
+  const key=bookingConflictKeyFromEnv(),receipt=openResolutionReceipt(ready.input.review!.receipt,key.secret),expired=sealResolutionReceipt({...receipt,claims:{...receipt.claims,issuedAt:"2020-01-01T00:00:00Z",expiresAt:"2020-01-01T00:01:00Z"}},key.secret);
+  await adminQuery("update public.person_profiles set employment_percentage=75 where id=$1",[fx.ownProfile.id]);const before=await state(fx);
+  expect(await command(fx,{...ready.input,review:{...ready.input.review!,receipt:expired}})).toEqual(results[0]);expect(await state(fx)).toEqual(before);
+  await adminQuery("update public.tenant_memberships set status='revoked' where id=$1",[fx.adminProfile.membershipId]);expect(await command(fx,ready.input)).toMatchObject({ok:false});
+ });});
+ test("15.3-INT-005 every effective single/series/job-card writer retains resolved rows and itself reopens a returning identity",async ctx=>{if(skipUnlessStack(ctx,up))return;
+  for(const writer of ["single","series","job-card"] as const)await fixture(async fx=>{
+   const ids=await seed(fx),ready=await prepare(fx,ids[0],"move");expect(await command(fx,ready.input)).toMatchObject({ok:true});
+   const terminal=await state(fx),keys=ready.target.keys,terminalRows=terminal.conflicts.filter(c=>keys.includes(String(c.natural_key)));expect(terminalRows).toHaveLength(keys.length);expect(terminalRows.every(r=>r.status==="resolved")).toBe(true);
+   const refresh=async()=>{
+    if(writer==="single"){const scan=await scanBookingConflicts(fx.adminClient as never,fx.base.tenantA.id,fx.base.adminA.id),b=scan.bookings.find(b=>b.id===ids[0])!;return bookingCommand("update",fx.adminClient,{...b.payload,assigneeIds:[...b.payload.assigneeIds],bookingId:b.id,commandId:crypto.randomUUID(),description:"Current single refresh"});}
+    if(writer==="series"){const base=realSeriesInput(fx),input=realSeriesInput(fx,{rule:{...base.rule,startDate:"2026-11-02",count:1},template:{...base.template,startsAt:"2026-11-02T06:00:00Z",endsAt:"2026-11-02T07:00:00Z",assigneeIds:[fx.adminProfile.id]}});return runCommand(createBookingSeries,{client:fx.adminClient as never,input:(await reviewRealSeries(fx,input)).input});}
+    const p=await seedBookingParents(fx.base.tenantA.id);return invokeJobCard(fx.adminClient,"create",{commandId:crypto.randomUUID(),type:"order",title:"Actual job-card refresh",customer_id:p.customerId,facility_id:p.facilityId,contact_id:p.contactId,priority:"normal",estimated_duration_minutes:null,planned_travel_minutes:null,crew_size:null,earliest_date:null,desired_date:null,latest_date:null,customer_presence_required:false,requiredWorkRoleIds:null,accessWindows:null,dependencyJobIds:[]});
+   };
+   expect(await refresh()).toMatchObject({ok:true});expect((await state(fx)).conflicts.filter(c=>keys.includes(String(c.natural_key)))).toEqual(terminalRows);
+   await adminQuery("update public.bookings set starts_at='2026-10-12T06:00:00Z',ends_at='2026-10-12T07:00:00Z' where id=$1",[ids[0]]);
+   expect(await refresh()).toMatchObject({ok:true});const reopened=await state(fx),returning=reopened.conflicts.filter(c=>keys.includes(String(c.natural_key)));expect(returning).toHaveLength(keys.length);
+   expect(returning.every(r=>r.status==="open"&&r.resolved_at===null&&r.resolved_by_membership_id===null&&r.resolution_outcome===null)).toBe(true);expect(reopened.ledger).toEqual(terminal.ledger);
+   expect(await command(fx,ready.input)).toMatchObject({ok:true});expect(await state(fx)).toEqual(reopened);
   });
-
-  test.skip("[P0] 15.3-INT-003 genuine preview rejects workflow-only and editable-only stale baseline (AC3/4/5/8)", async () => {
-    for (const change of ["workflow", "description", "customer"] as const) await withBookingFixture(async fx => {
-      const plan = await seeded(fx);
-      const attempt = await reviewed(fx, { commandId: crypto.randomUUID(), bookingId: plan.input.bookingId!, action: "accept",
-        targetLogicalIds: [plan.selected.naturalKey] }, [plan.selected.naturalKey]);
-      // Receipt is issued by the real preview; never alter unsigned claims or mock verifier.
-      if (change === "workflow") await adminQuery("update public.booking_conflicts set status='accepted',acceptance_reason='Other current decision',accepted_by_membership_id=$2,accepted_at=clock_timestamp() where natural_key=$1 and tenant_id=$3",
-        [plan.selected.persistedKeys[0], fx.coworkerProfile.membershipId, fx.base.tenantA.id]);
-      else if (change === "description") await adminQuery("update public.bookings set description='Current edited description' where id=$1", [plan.input.bookingId]);
-      else { const parents = await seedBookingParents(fx.base.tenantA.id);
-        await adminQuery("update public.bookings set customer_id=$2 where id=$1", [plan.input.bookingId, parents.customerId]); }
-      const current = await attempt.b.preview(fx.plannerClient, attempt.input);
-      expect(current.factDigest).toBe(attempt.p.factDigest);
-      expect(current.baselineDigest).not.toBe(attempt.p.baselineDigest);
-      const before = await snapshot(fx);
-      expect(await attempt.b.save(fx, attempt.input)).toMatchObject({ ok: false });
-      expect(await snapshot(fx)).toEqual(before);
-    });
+ });
+ test("15.3-INT-006 audit and notification failure roll back booking, conflicts, ledger and every effect",async ctx=>{if(skipUnlessStack(ctx,up))return;await fixture(async fx=>{
+  const ids=await seed(fx),accept=await prepare(fx,ids[0]),ready=await prepare(fx,ids[0],"move"),correlation=crypto.randomUUID(),before=await state(fx);
+  // Existing real post-booking fault proves a changed booking never partially commits.
+  expect(await withBookingFault(correlation,"after_booking",()=>command(fx,ready.input,correlation))).toMatchObject({ok:false});expect(await state(fx)).toEqual(before);
+  const auditName=`resolver_audit_${crypto.randomUUID().replaceAll("-","")}`;let reached=false;
+  await adminQuery(`create function test_support.${auditName}() returns trigger language plpgsql set search_path='' as $$ begin if new.correlation_id='${correlation}' then if not exists(select 1 from public.booking_conflicts where tenant_id=new.tenant_id and status='accepted' and natural_key=any(array[${accept.target.keys.map(k=>`'${k}'`).join(",")}])) then raise exception 'acceptance stage not reached';end if;raise exception 'accepted before audit' using errcode='P5301';end if;return new;end $$;revoke all on function test_support.${auditName}() from public,anon,authenticated,service_role;create trigger ${auditName} before insert on public.audit_events for each row execute function test_support.${auditName}()`);
+  try{const client=new Proxy(fx.adminClient,{get(target,key){if(key==="rpc")return async(name:string,args:Record<string,unknown>)=>{const reply=await target.rpc(name,args);if(name==="finalize_booking_conflict_resolution"&&reply.error?.code==="P5301")reached=true;return reply;};const value=Reflect.get(target,key,target);return typeof value==="function"?value.bind(target):value;}});
+   expect(await runCommand(resolveBookingConflict,{client:client as never,input:accept.input,correlationId:correlation})).toMatchObject({ok:false});expect(reached).toBe(true);expect(await state(fx)).toEqual(before);
+  }finally{await adminQuery(`drop trigger ${auditName} on public.audit_events;drop function test_support.${auditName}()`);}
+  // A per-correlation trigger executes after booking/workflow/ledger/audit and before notification INSERT.
+  const suffix=crypto.randomUUID().replaceAll("-",""),name=`resolver_fault_${suffix}`;
+  let notificationReached=false;
+  await adminQuery(`create function test_support.${name}() returns trigger language plpgsql set search_path='' as $$ begin if current_setting('app.booking_correlation_id',true)='${correlation}' then if not exists(select 1 from public.booking_conflict_resolutions r join public.audit_events a on a.id=r.id and a.tenant_id=r.tenant_id where r.id=new.logical_subject_id and r.command_id='${ready.input.commandId}' and a.correlation_id='${correlation}') then raise exception 'notification stage not reached';end if;raise exception 'resolver notification fault' using errcode='P5302'; end if;return new;end $$;revoke all on function test_support.${name}() from public,anon,authenticated,service_role;create trigger ${name} before insert on public.notifications for each row execute function test_support.${name}()`);
+  try{const client=new Proxy(fx.adminClient,{get(target,key){if(key==="rpc")return async(name:string,args:Record<string,unknown>)=>{const reply=await target.rpc(name,args);if(name==="finalize_booking_conflict_resolution"&&reply.error?.code==="P5302")notificationReached=true;return reply;};const value=Reflect.get(target,key,target);return typeof value==="function"?value.bind(target):value;}});
+   expect(await runCommand(resolveBookingConflict,{client:client as never,input:ready.input,correlationId:correlation})).toMatchObject({ok:false});expect(notificationReached).toBe(true);expect(await state(fx)).toEqual(before);
+  }finally{await adminQuery(`drop trigger ${name} on public.notifications;drop function test_support.${name}()`);}
+  expect(await command(fx,ready.input,correlation)).toMatchObject({ok:true});
+ });});
+ test("15.3-INT-007 current-segment common fix preserves bounds, stable ids, exceptions and tombstones",async ctx=>{if(skipUnlessStack(ctx,up))return;await fixture(async fx=>{
+  await seed(fx);const base=realSeriesInput(fx,{rule:{...realSeriesInput(fx).rule,count:12,startTime:"08:00:00",endTime:"09:00:00"}});expect(await runCommand(createBookingSeries,{client:fx.adminClient as never,input:(await reviewRealSeries(fx,base)).input})).toMatchObject({ok:true});
+  const rows=await adminQuery<{id:string;nominal_date:Date;status:string}>("select id,nominal_date,status from public.bookings where series_id=$1 order by nominal_date",[base.seriesId]);
+  await adminQuery("update public.bookings set is_exception=true,description='Preserved exception' where id=$1",[rows[1].id]);await adminQuery("update public.bookings set status='cancelled',is_exception=true where id=$1",[rows[2].id]);
+  expect(await bookingCommand("create",fx.adminClient,bookingInput([fx.ownProfile.id],{startsAt:"2026-10-23T09:00:00Z",endsAt:"2026-10-23T10:00:00Z"}))).toMatchObject({ok:true});
+  const protectedBefore=await adminQuery("select * from public.bookings where id=any($1::uuid[]) order by id",[[rows[1].id,rows[2].id]]);
+  const ready=await prepare(fx,rows[0].id,"move",{wholeSeries:true,payload:{...base.template,startsAt:"2026-10-12T09:00:00.000000Z",endsAt:"2026-10-12T10:00:00.000000Z"}});
+  expect(ready.preview.affectedBookingIds).toHaveLength(12);expect(ready.preview.untouchedBookingIds).toEqual(expect.arrayContaining([rows[1].id,rows[2].id]));expect(ready.preview.warnings.some(g=>g.bookingIds.some(id=>rows.slice(10).some(r=>r.id===id)))).toBe(true);
+  expect(await command(fx,ready.input)).toMatchObject({ok:true});expect(await adminQuery("select * from public.bookings where id=any($1::uuid[]) order by id",[[rows[1].id,rows[2].id]])).toEqual(protectedBefore);
+  expect(await adminQuery("select id,nominal_date,status from public.bookings where series_id=$1 order by nominal_date",[base.seriesId])).toEqual(rows.map((r,i)=>({...r,status:i===2?"cancelled":r.status})));
+  const before=await state(fx);expect(await command(fx,{...ready.input,commandId:crypto.randomUUID()})).toMatchObject({ok:false,code:"TENANT_ACCESS_DENIED"});expect(await state(fx)).toEqual(before);
+ });});
+ test("15.3-INT-008 role revocation while actually waiting denies both a fresh command and immutable replay",async ctx=>{if(skipUnlessStack(ctx,up))return;
+  for(const replay of [false,true])await fixture(async fx=>{
+   const ids=await seed(fx),ready=await prepare(fx,ids[0]),a={...args(fx,ready.input.commandId),p_actor_id:fx.users.projektledare.id};
+   const preview=await previewConflictResolution(fx.plannerClient,a,ready.input),input={...ready.input,review:{...ready.input.review!,receipt:preview.receipt}};
+   if(replay)expect(await runCommand(resolveBookingConflict,{client:fx.plannerClient as never,input})).toMatchObject({ok:true});
+   const before=await state(fx);let pending:Promise<unknown>|null=null;
+   await adminSession(async({query})=>{await query("begin");try{
+    const [blocker]=await query<{pid:number}>("select pg_backend_pid() pid,pg_advisory_xact_lock(hashtextextended($1,0))",[fx.base.tenantA.id]);
+    pending=runCommand(resolveBookingConflict,{client:fx.plannerClient as never,input});await waitForBlocked(blocker.pid,1);
+    await adminQuery("update public.tenant_memberships set status='disabled' where id=$1",[fx.coworkerProfile.membershipId]);await query("commit");
+   }catch(e){await query("rollback");if(pending)await pending;throw e;}});
+   expect(await pending).toMatchObject({ok:false,code:"TENANT_ACCESS_DENIED"});expect(await state(fx)).toEqual(before);
   });
-
-  test.skip("[P0] 15.3-INT-004 identical concurrent replay writes once; changed key and revoked replay write nothing (AC6/8)", async () => {
-    await withBookingFixture(async fx => {
-      const plan = await seeded(fx);
-      const a = await reviewed(fx, { commandId: crypto.randomUUID(), bookingId: plan.input.bookingId!, action: "accept",
-        targetLogicalIds: [plan.selected.naturalKey] }, [plan.selected.naturalKey]);
-      const before = await snapshot(fx);
-      const results = await Promise.all([a.b.save(fx, a.input), a.b.save(fx, structuredClone(a.input))]);
-      committed(results[0]!); expect(results[1]).toEqual(results[0]);
-      const after = await snapshot(fx);
-      expect(after.history.length - before.history.length).toBe(1);
-      expect(after.audit.length - before.audit.length).toBe(1);
-      expect(await a.b.save(fx, a.input)).toEqual(results[0]);
-      expect(await snapshot(fx)).toEqual(after);
-      expect(await a.b.save(fx, { ...a.input, review: { ...a.input.review, reason: "Changed same-key intent" } })).toMatchObject({ ok: false });
-      expect(await snapshot(fx)).toEqual(after);
-      await adminQuery("update public.tenant_memberships set status='inactive' where id=$1", [fx.coworkerProfile.membershipId]);
-      const revoked = await snapshot(fx);
-      expect(await a.b.save(fx, a.input)).toMatchObject({ ok: false });
-      expect(await snapshot(fx)).toEqual(revoked);
-      // Lock-observed revocation WHILE waiting and lost-response/expired-proof replay
-      // need allocated observers. Promise.all alone is NOT evidence of actual lock wait.
-    });
-  });
-
-  test.skip("[P0] 15.3-INT-005 all three actual effective writers retain resolved rows then reopen returning identities (AC5/6/8)", async () => {
-    for (const writer of ["single", "series", "job-card"] as const) await withBookingFixture(async fx => {
-      const plan = await seeded(fx);
-      const a = await reviewed(fx, { commandId: crypto.randomUUID(), bookingId: plan.input.bookingId!, action: "move",
-        targetLogicalIds: plan.expectedGroups.map(g => g.naturalKey), candidate: { ...plan.canonicalCandidate,
-          startsAt: "2026-10-14T06:00:00Z", endsAt: "2026-10-14T07:00:00Z" } });
-      committed(await a.b.save(fx, a.input));
-      const terminal = await snapshot(fx), keys = plan.expectedGroups.flatMap(g => g.persistedKeys);
-      expect(targetRows(terminal.conflicts, keys).every(r => r.status === "resolved")).toBe(true);
-      const refresh = async () => {
-        if (writer === "single") return bookingCommand("update", fx.plannerClient, { ...plan.input,
-          bookingId: plan.peerIds[0], commandId: crypto.randomUUID(), description: "Actual single refresh" });
-        if (writer === "series") { const base = realSeriesInput(fx); const input = realSeriesInput(fx, { commandId: crypto.randomUUID(), rule: { ...base.rule, startDate: "2026-11-02", count: 1 }, template: { ...base.template, startsAt: "2026-11-02T06:00:00Z", endsAt: "2026-11-02T07:00:00Z", assigneeIds: [fx.adminProfile.id] } });
-          const review = await reviewRealSeries(fx, input, { client: fx.plannerClient, actorId: fx.users.projektledare.id });
-          return runCommand(createBookingSeries, { client: fx.plannerClient as never, input: review.input }); }
-        const p = await seedBookingParents(fx.base.tenantA.id);
-        return runCommand(createJobCard, { client: fx.plannerClient as never, input: {
-          commandId: crypto.randomUUID(), type: "order", title: "Actual job-card refresh",
-          customer_id: p.customerId, facility_id: p.facilityId, contact_id: p.contactId,
-          priority: "normal", estimated_duration_minutes: null, planned_travel_minutes: null, crew_size: null,
-          earliest_date: null, desired_date: null, latest_date: null, customer_presence_required: false,
-          requiredWorkRoleIds: null, accessWindows: null, dependencyJobIds: [] } });
-      };
-      expect(await refresh()).toMatchObject({ ok: true });
-      expect(targetRows((await snapshot(fx)).conflicts, keys)).toEqual(targetRows(terminal.conflicts, keys));
-      // Local fixture setup restores literal facts WITHOUT calling any refresh writer.
-      await adminQuery("update public.bookings set starts_at=$2,ends_at=$3 where id=$1", [plan.input.bookingId, plan.input.startsAt, plan.input.endsAt]);
-      expect(await refresh()).toMatchObject({ ok: true });
-      const reopened = await snapshot(fx);
-      const returning = targetRows(reopened.conflicts, keys);
-      expect(returning).toHaveLength(keys.length);
-      for (const row of returning) expect(row).toMatchObject({ status: "open", resolved_at: null, resolved_by_membership_id: null, resolution_outcome: null });
-      expect(reopened.history).toEqual(terminal.history);
-      expect(await a.b.save(fx, a.input)).toMatchObject({ ok: true });
-      expect(await snapshot(fx)).toEqual(reopened);
-    });
-  });
-  test.skip("[P0] 15.3-INT-006 failure after real acceptance before audit rolls back every physical row (AC4/5/6/8)", async () => {
-    await withBookingFixture(async fx => {
-      const plan = await seeded(fx), editor = await loadBookingEditorBindings();
-      const a = await reviewed(fx, { commandId: crypto.randomUUID(), bookingId: plan.input.bookingId!, action: "accept",
-        targetLogicalIds: [plan.selected.naturalKey] }, [plan.selected.naturalKey]);
-      const before = await snapshot(fx), correlation = crypto.randomUUID();
-      // Existing helper installs only owned correlation-scoped local fault machinery.
-      // Activation requires isolated serial DDL allocation and resolver correlation binding.
-      const fault = await editor.withFault(fx, correlation, "before_audit", () => a.b.save(fx, a.input, correlation));
-      expect(fault.reached).toBe(true);
-      expect(fault.acceptedKeysObserved.sort()).toEqual(plan.selected.persistedKeys.sort());
-      expect(fault.value).toMatchObject({ ok: false });
-      expect(await snapshot(fx)).toEqual(before);
-      committed(await a.b.save(fx, a.input));
-      expect((await snapshot(fx)).history).toHaveLength(before.history.length + 1);
-    });
-  });
+ });
+ test("15.3-INT-009 before/after recipient union includes affected actor, honors preferences and dedupes by event rather than day",async ctx=>{if(skipUnlessStack(ctx,up))return;await fixture(async fx=>{
+  const ids=await seed(fx);for(const id of ids)await adminQuery("insert into public.booking_assignees(tenant_id,booking_id,person_profile_id) values($1,$2,$3)",[fx.base.tenantA.id,id,fx.adminProfile.id]);
+  const scan=await scanBookingConflicts(fx.adminClient as never,fx.base.tenantA.id,fx.base.adminA.id),b=scan.bookings.find(b=>b.id===ids[0])!;
+  const ready=await prepare(fx,ids[0],"reassign",{payload:{...b.payload,assigneeIds:[fx.adminProfile.id,fx.coworkerProfile.id].sort()}});
+  expect(await command(fx,ready.input)).toMatchObject({ok:true});
+  const notes=await adminQuery<{recipient_user_id:string;body:string;route:string;logical_subject_id:string}>("select recipient_user_id,body,route,logical_subject_id from public.notifications where tenant_id=$1 and category='booking.changed' order by recipient_user_id",[fx.base.tenantA.id]);
+  expect(notes.map(n=>n.recipient_user_id).sort()).toEqual([fx.users.montor.id,fx.base.adminA.id,fx.users.projektledare.id].sort());
+  expect(notes.find(n=>n.recipient_user_id===fx.users.montor.id)?.body).toContain("tidigare tilldelning");expect(notes.every(n=>n.route==="/scheduling")).toBe(true);
+  await adminQuery("insert into public.notification_preferences(tenant_id,user_id,category,channel,enabled) values($1,$2,'booking.changed','in_app',false)",[fx.base.tenantA.id,fx.users.projektledare.id]);
+  const next=await prepare(fx,ids[0]);expect(await command(fx,next.input)).toMatchObject({ok:true});
+  const all=await adminQuery<{recipient_user_id:string;logical_subject_id:string}>("select recipient_user_id,logical_subject_id from public.notifications where tenant_id=$1 and category='booking.changed'",[fx.base.tenantA.id]);
+  expect(all.filter(n=>n.recipient_user_id===fx.base.adminA.id)).toHaveLength(2);expect(all.filter(n=>n.recipient_user_id===fx.users.projektledare.id)).toHaveLength(1);expect(new Set(all.map(n=>n.logical_subject_id)).size).toBe(2);
+  expect(await fx.montorClient.from("notification_preferences").insert({tenant_id:fx.base.tenantA.id,user_id:fx.users.montor.id,category:"booking.changed",channel:"email",enabled:true})).toMatchObject({error:{code:"23514"}});
+ });});
+ test("15.3-INT-011 complete v3 mixed job facts retain job identity and independent unavailable/empty rules",async ctx=>{if(skipUnlessStack(ctx,up))return;await fixture(async fx=>{
+  await seed(fx);const p=await seedBookingParents(fx.base.tenantA.id),jobs=Array.from({length:3},()=>crypto.randomUUID()).sort(),bookings:string[]=[];
+  for(let i=0;i<3;i++)await adminQuery("insert into public.jobs(id,tenant_id,customer_id,title,required_roles_recorded,access_windows_recorded) values($1,$2,$3,$4,$5,$6)",[jobs[i],fx.base.tenantA.id,p.customerId,`Mixed resolver job ${i}`,i!==0,i!==1]);
+  await adminQuery("insert into public.job_required_work_roles(tenant_id,job_id,work_role_id) values($1,$2,$3)",[fx.base.tenantA.id,jobs[2],p.workRoleId]);
+  await adminQuery("insert into public.job_access_windows(tenant_id,job_id,starts_at,ends_at) values($1,$2,'2026-10-14T06:30:00Z','2026-10-14T07:00:00Z')",[fx.base.tenantA.id,jobs[2]]);
+  for(let i=0;i<4;i++){const result=await bookingCommand("create",fx.adminClient,bookingInput([fx.ownProfile.id],{jobId:jobs[i]??null,startsAt:`2026-10-${12+i}T06:00:00Z`,endsAt:`2026-10-${12+i}T07:00:00Z`}));expect(result.ok).toBe(true);if(result.ok)bookings.push(result.data.bookingId);}
+  const s=await snapshotConflictResolver(fx.adminClient,args(fx),null);if(s.kind!=="snapshot")throw new Error();
+  expect(s.facts.detection.jobInputs).toEqual([{jobId:jobs[0],requiredWorkRoleIds:null,accessWindows:[]},{jobId:jobs[1],requiredWorkRoleIds:[],accessWindows:null},{jobId:jobs[2],requiredWorkRoleIds:[p.workRoleId],accessWindows:[{startsAt:"2026-10-14T06:30:00.000000Z",endsAt:"2026-10-14T07:00:00.000000Z"}]}]);
+  expect(s.facts.detection.bookings.filter(b=>bookings.includes(b.id)).map(b=>b.jobId).sort()).toEqual([null,...jobs].sort());
+  const scan=await scanBookingConflicts(fx.adminClient as never,fx.base.tenantA.id,fx.base.adminA.id);
+  expect(scan.groups.filter(g=>g.rule==="outside_access_window").flatMap(g=>g.bookingIds).sort()).toEqual([bookings[0],bookings[2]].sort());
+  expect(scan.groups.filter(g=>g.rule==="competence_missing").flatMap(g=>g.bookingIds)).toEqual([bookings[2]]);
+  const ready=await prepare(fx,bookings[0]);await adminQuery("insert into public.job_access_windows(tenant_id,job_id,starts_at,ends_at) values($1,$2,'2026-10-12T06:00:00Z','2026-10-12T07:00:00Z')",[fx.base.tenantA.id,jobs[0]]);const before=await state(fx);
+  expect(await command(fx,ready.input)).toMatchObject({ok:false,code:"PREVIEW_STALE"});expect(await state(fx)).toEqual(before);
+ });});
 });

@@ -13,6 +13,7 @@ import * as times from "@/features/scheduling/time-zone";
 import * as capacity from "@/features/scheduling/capacity";
 import * as types from "@/features/scheduling/view-types";
 import * as focus from "@/components/scheduling/focus-restoration";
+import * as resolver from "@/features/scheduling/conflict-resolver";
 import type { SchedulingBookingSummary, SchedulingReadData, SchedulingReadInput } from "@/features/scheduling/view-types";
 
 type ElementNode={type:unknown;props:Record<string,unknown>};
@@ -43,6 +44,8 @@ function components(savedPreferences = new Map<string, string>(), summaryDraft:(
     return compiledModule.exports;
   };
   modules["../resources/BookingConflictPanel"]=load("resources/BookingConflictPanel.tsx");
+  modules["@/features/scheduling/conflict-resolver"]=resolver;
+  modules["../resources/BookingConflictChip"]=load("resources/BookingConflictChip.tsx");
   const block=load("scheduling/BookingBlock.tsx");modules["./BookingBlock"]=block;
   const schema=load("scheduling/SchemaView.tsx");modules["./SchemaView"]=schema;
   const personal=load("scheduling/PersonalCalendarView.tsx");

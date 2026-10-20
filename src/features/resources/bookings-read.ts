@@ -58,7 +58,7 @@ export function openBookingConflictCounts(rows: readonly OpenConflictRow[], visi
   const aggregateRows = new Map<string, OpenConflictRow[]>();
   const aggregateKey = (row: OpenConflictRow) => JSON.stringify([row.conflict_type, row.affected_person_profile_id,
     formatUtcInstant(parseUtcInstant(row.starts_at)), formatUtcInstant(parseUtcInstant(row.ends_at))]);
-  for (const row of rows) if (row.conflict_type === "over_capacity") {
+  for (const row of rows) if (row.conflict_type === "over_capacity" && row.status !== "resolved") {
     const key = aggregateKey(row);
     aggregateRows.set(key, [...(aggregateRows.get(key) ?? []), row]);
   }
@@ -110,7 +110,12 @@ export async function readBookingHost(scope: { readonly jobId?: string; readonly
     const tenantId = context.data.tenantId;
     const bookings = await readRows(client, "bookings", BOOKING_COLUMNS, tenantId, filters);
     const conflicts = bookings.length ? await readRows(client, "booking_conflicts", "booking_id,related_booking_id,affected_person_profile_id,conflict_type,starts_at,ends_at,natural_key,status", tenantId) : [];
-    const counts = openBookingConflictCounts(conflicts as unknown as OpenConflictRow[], bookings.map((row) => String(row.id)));
+    let counts = openBookingConflictCounts(conflicts as unknown as OpenConflictRow[], bookings.map((row) => String(row.id)));
+    if (canManage) {
+      const scan=await (await import("@/server/read-models/booking-conflicts")).scanBookingConflicts(client,tenantId,context.data.userId);
+      const visible=new Set(bookings.map(b=>String(b.id))),groups=scan.groups.filter(g=>g.status==="open"&&g.bookingIds.some(id=>visible.has(id)));
+      counts={count:groups.length,byBooking:new Map([...visible].map(id=>[id,groups.filter(g=>g.bookingIds.includes(id)).length]))};
+    }
     return { canView, canManage, bookings: bookings.map((row) => summary(row, counts.byBooking.get(String(row.id)) ?? 0)).sort((a, b) => a.startsAt.localeCompare(b.startsAt)), openConflictCount: counts.count, error: null };
   } catch { return emptyHost(ERROR); }
 }

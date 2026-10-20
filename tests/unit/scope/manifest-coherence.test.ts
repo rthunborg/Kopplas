@@ -94,9 +94,9 @@ test("15.1-SCOPE-001 scheduling activation owns only its current nav and preserv
   assert.equal(scheduling.status, "active");
   assert.equal(scheduling.activatedAt, "2026-10-13");
   assert.deepEqual(scheduling.navItems, [{route:"/scheduling",group:"primary",requiredCapability:"Bookings.View"}]);
-  assert.deepEqual(scheduling.tenantTables, ["booking_series"]);
+  assert.deepEqual(scheduling.tenantTables, ["booking_series", "booking_conflict_resolutions"]);
   assert.deepEqual(scheduling.publicSurfaces, []);
-  assert.deepEqual(scheduling.notificationCategories, []);
+  assert.deepEqual(scheduling.notificationCategories, ["booking.changed"]);
   assert.ok(resources.tenantTables.includes("bookings"));
   assert.equal(manifest.modules.find(m => m.id === "documents")!.status, "active");
 });
