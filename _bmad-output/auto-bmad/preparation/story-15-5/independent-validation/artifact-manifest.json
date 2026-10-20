@@ -1,0 +1,11 @@
+{
+  "baseline_revision": "159557e114f18123e73282c39c90830917de9948",
+  "candidate_kernel_sha256": "e0f81d85be76f7d33a1c17e6db2a47002f2ea8692571e415c91be338087985b8",
+  "candidate_raw_spec_sha256": "0fac6de1fea61340517fbb865efc20830a764220f3b7030e3abed302cd138b88",
+  "status": "FAIL",
+  "sha256": {
+    "_bmad-output/auto-bmad/preparation/story-15-5/independent-validation/validation-report.json": "06cd1977c389e1b7b7e476fe5b54dc19a258987f6fda6723c3d93c15b92eb39a",
+    "_bmad-output/auto-bmad/preparation/story-15-5/independent-validation/validation-report.md": "8508ff2615633a5236770a098cff5f5fea91db6de0b7823bb3ffd0940f1af638",
+    "_bmad-output/auto-bmad/preparation/story-15-5/independent-validation/validate-independent.py": "a639081ddf1eeaf2c40741254a6c139da608712522fb698bcf9e4ae7e60fa2dd"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "head_before": "159557e114f18123e73282c39c90830917de9948",
+  "tracked_changes": [],
+  "cached_context_sha256": "f41bccd2029d5dbd027f9b98c3f7b3e8b93b4ce7627331ec7bcf2592aded910a",
+  "method": "canonical HEAD and clean tracked Git status; initial clean status obtained before owned artifact writes; compact receipt taken before readiness gate",
+  "source_paths": [
+    "src/",
+    "supabase/",
+    "tests/",
+    "scripts/",
+    "package.json",
+    "pnpm-lock.yaml",
+    "AGENTS.md",
+    "_bmad-output/implementation-artifacts/sprint-status.yaml",
+    "_bmad-output/auto-bmad/state.yaml"
+  ]
+}

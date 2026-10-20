@@ -9,11 +9,11 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-20T12:18:58Z"
+updated_at: "2026-10-20T12:56:46Z"
 started_at: "2026-10-20T12:18:56Z"
 completed_at: null
-active_seconds: 0
-timing_anchor: 1792498738
+active_seconds: 2045
+timing_anchor: null
 is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
@@ -26,24 +26,28 @@ selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "High preparation for hashed public-feed tokens, rotation/revocation and tenant/member disclosure boundaries; plan-only before distinctvalidation and ownershipallocation"
+escalation_reason: "Approval-metadata-only pinning of independently passed15.5public-token specification; actualkernel unchanged, noimplementationgrant"
 routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"High preparation for hashed public-feed tokens, rotation/revocation and tenant/member disclosure boundaries; plan-only before distinctvalidation and ownershipallocation\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct High independent specification validation of actual public-feed token/proof/IP/limiter authorization design and exact ownership/test-key boundaries before anybuild\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"cross_model_layer\",\"profile\":\"diverse_review\",\"role\":\"independent-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Bounded15.5planning repair of independently found undefinedtenantpredicate and missingpersonalcalendarentry; actualpublic-token authorization remainsHigh, spec/preparationonly\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"SAME distinct High targeted revalidation of two15.5planfixes and consequential regressions; reuse unchanged14-check securityassessment, code-reviewrounds0\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"cross_model_layer\",\"profile\":\"diverse_review\",\"role\":\"independent-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Approval-metadata-only pinning of independently passed15.5public-token specification; actualkernel unchanged, noimplementationgrant\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: "Hashed public tokens, rotation/revocation, externalfeed andcross-tenant abuseprotection requireHigh-riskATDD+automate; lastthreeno traceadvisory"
 epic_story_count: 6
 stories_after_in_epic: 1
-completed_phases: [0, 1, 2]
-spec_path: null
-spec_approved: false
+completed_phases: [0, 1, 2, 3]
+spec_path: "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\implementation-artifacts\\spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"
+spec_approved: true
 build:
-  status: null
+  status: ready-for-dev
   blocking_condition: null
   followup_review_recommended: false
   review_loop_iteration: 0
   deferred_count: 0
-  warnings: []
+  warnings: [oversized]
 followup_passes: 0
 hitl_halt: null
 review_unverified: false
@@ -54,7 +58,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: []
+commits: [159557e114f18123e73282c39c90830917de9948]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -79,7 +83,8 @@ merge_commit: null
 branch_deleted: false
 open_questions: []
 deferred_work: []
-blockers: []
+blockers:
+  - "Automatic approval rejected the Coordinator 15.5 implementation allocation as preparation-only. Owner: human. Evidence: Coordinator turn01a1595c-2a2d-7252-b2dc-f7e1520e6115; inventory a3a9d8b7 and handoff822050eb. Resume after explicit approval of reviewed public-feed/token/Vault/ACL implementation and isolated ephemeral test keys, then successful exact Coordinator allocation; production keys/hosted enablement/deployment excluded."
 overrides:
   oracle: "Owner2026-10-15 prohibits legacyURLs/browsing; useapprovedrequirements/existingdesignsystem/accessibility andrecordowner-authorizeddefaults, notlegacyobservations."
   ownership: "Own15.5spec/ownedepic15context/preparationonly initially; exactsharedsource/schema/test/resource handoff withCoordinator before overlappingimplementation; no foreigncheckoutwrites or pausedsessionresume"
@@ -107,3 +112,80 @@ constraints:
   - "Inheritedepicreview_unverifiedTRUEfrom15.2 remains; finaloneepicPRdraftunlessactualoverride; agent-fixlabelverify/attach, retainbranches, no mainmerge/deployment/provider/secretschanges."
   - "E14Oct8accepted-with-open-items authoritative; Oct7rejectionhistorical. CarryQA48/performance/manual obligations; staleContractDaction historicallyopen but15.1integratedevidencehandled, do notreopenwithoutactualregression."
   - "Actualpublictoken/auth/RLS/tenantisolation/transactionalintegrityHigh; ordinaryworkLow; independentreview/3roundcap preserved. Developmentcomplete distinctfromsixdeferredreleasechecks."
+p3_author_plan:
+  HALT: ready-for-dev
+  baseline: 159557e114f18123e73282c39c90830917de9948
+  tasks: 10
+  GWT_ACs: 9
+  candidate_kernel_sha256: e0f81d85be76f7d33a1c17e6db2a47002f2ea8692571e415c91be338087985b8
+  approved_kernel: null
+  spec_raw_sha256: 0fac6de1fea61340517fbb865efc20830a764220f3b7030e3abed302cd138b88
+  manifest_sha256: bcaf54e0f8914e777acc281413de5652902734e6ba8c7c99218f1893bde419e5
+  root_verified_bindings: 14
+  audit: 7/7+validator+reader+discovery+preservationPASS
+  canonical_parse_warnings: []
+  source_schema_test_state_sprint_unchanged_by_author: true
+  implementation_started: false
+  resources_started: 0
+p3_validation:
+  status: independentPASS/approvalpinpending/implementationheld
+  initial: "{\"status\": \"initialFAIL-two-bounded-findings\", \"checks\": 14, \"passed\": 12, \"failed\": 2, \"findings\": [\"F15.5-01\", \"F15.5-02\"], \"report_sha256\": \"06cd1977c389e1b7b7e476fe5b54dc19a258987f6fda6723c3d93c15b92eb39a\", \"manifest_sha256\": \"b731aece483dba4365f22446aa6cce489aff79af52b6f42e64e9af07d5f05cc8\", \"Root_receipt_sha256\": \"8ef7282f5efd4c7630ebf9555e4ba3f5237e3aadc0885771642f860bfa7a5de9\", \"original_author_files_conserved\": 15, \"source_snapshots_conserved\": 40, \"code_review_rounds\": 0, \"implementation_admitted\": false, \"resources\": 0, \"next\": \"OriginalauthorboundedSpecrepair/thenSAMEdistinctHigh targetedrevalidation\"}"
+  revalidation: "{\"checks\": 6, \"passed\": 6, \"remaining_findings\": 0, \"reused_initial_PASS_assessments\": 12, \"report_hashes\": {\"validation-report.json\": \"452cddf59ca6b91b0af64e78cff3f920c5e84341a27ce13bb99f9aa3dec0a344\", \"validation-report.md\": \"719e5446464d1bda58580d778dd9ba12159ac190f0805937720f8e24431a4294\", \"validate-independent.py\": \"e2004280f70cc81398c72bcc6a6f89a6b27a6c743e1299d00b324a7b6f9a7dee\", \"artifact-manifest.json\": \"8ee6152af26e88df68cb64092c62a90cde64fcb0704f884ce4e025ac0ec4f7a8\"}, \"candidate_kernel\": \"0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977\", \"raw_Spec\": \"e5b90560af2187f263a19fc2a2889d615a7bf059b35d99da7355f264514c2d02\", \"author_successor_bindings\": 30, \"original15snapshots_conserved\": true, \"initial4independentfiles_conserved\": true, \"source40conserved\": true, \"code_review_rounds\": 0, \"implementation_resources\": 0}"
+p3_spec_repair:
+  status: ready-for-dev-revisedcandidate-unapproved
+  findings_addressed: [F15.5-01, F15.5-02]
+  tasks: 10
+  GWT_ACs: 9
+  candidate_kernel_sha256: 0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977
+  Spec_raw_sha256: e5b90560af2187f263a19fc2a2889d615a7bf059b35d99da7355f264514c2d02
+  successor_manifest_sha256: 879e0e5ce51aab56a18a22d1b2aea6ea658f1ca31cc638e723c5ad6b36741e72
+  Root_verified_bindings: 30
+  original15snapshot_manifest_sha256: 3e333d3a5248def87b32b29f556a1f60f9158f9d4b6eef1c32a497c2091b86e1
+  original_independent4conserved: true
+  HEADunchanged: 159557e114f18123e73282c39c90830917de9948
+  audit: 7/7+reader/discovery/preservation/validatorPASS
+  approved_kernel: null
+  implementation_resources: 0
+  next: SAMEdistinctHighTARGETEDrevalidationbeforereadyapproval
+p3_preparation:
+  status: independently-validated-approved-and-frozen
+  baseline: 159557e114f18123e73282c39c90830917de9948
+  approved_kernel_sha256: 0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977
+  prepin_raw_Spec_sha256: e5b90560af2187f263a19fc2a2889d615a7bf059b35d99da7355f264514c2d02
+  approved_raw_Spec_sha256: ce07c0361f3ab47005f326efb199443c777ae6c5c89a62650a20b9af68ee7144
+  manifest_sha256: c5c764796b218a7e0903bbb258fb0b2eafc15d28476cae86679d2ba2d4fa13b2
+  approval_sha256: 7e8f6a00d0536622764f478f0baff919c22abc0c7f1e29a1c0da9a049759e771
+  Root_verified_author_bindings: 35
+  tasks: 10
+  GWT_ACs: 9
+  independent_initial: 14checks12PASS2FAIL retained/initial15snapshotsconserved
+  independent_targeted: 6PASS0FAIL/F01F02closed/reuse12initialPASS
+  current_findings: 0
+  independent_report_sha256: 452cddf59ca6b91b0af64e78cff3f920c5e84341a27ce13bb99f9aa3dec0a344
+  independent_manifest_sha256: 8ee6152af26e88df68cb64092c62a90cde64fcb0704f884ce4e025ac0ec4f7a8
+  independent8files_immutable: true
+  source40conserved: true
+  approval_delta: Onlytwofrontmatterapprovalfields+approvalmetadata paragraph/author exactreconstruction
+  canonical_parse_warnings: []
+  implementation_started: false
+  resources_started: 0
+  Coordinator_allocation: PENDINGconcreteHighscope/nameonlyreserved/noP4orbuildadmission
+ownership_coordination:
+  status: needs-human-automatic-approval-rejected-execution-handoff
+  handoff_sha256: 822050eb7bf8fa78ef3e543089113b9d6ab7a46843cd36d6ca274cdb0fefa03f
+  partial_receipt_sha256: 9e95940f492c8ec401cfad24a489ea5bff8dbf61bc8f9bb4502b3a10011a1cf6
+  E16_actual_head: 77d11b6f
+  E16_active: 16.4implementation/dirtysharedfiles
+  migration_name_reserved: 20261020220000_personal_calendar_feed.sql
+  migration_write_grant: false
+  source_test_resource_grant: false
+  next: "Freshdirecthuman15.5implementation+isolatedverificationapproval THENsuccessfulCoordinatorexactallocation; no retry/workaround/indirectexecutionbeforeapproval"
+  implementation_resources: 0
+  implementation_grant_delivered: false
+  reviewed_scope: "CoordinatorSAMEHighscopePASS only; rejectedconditionalgrantNOTauthority"
+  rejection_origin: Coordinator turn01a1595c-2a2d-7252-b2dc-f7e1520e6115 send_message_to_thread exec-4935a8d6-8962-4665-a090-ac28bc845a16 failed automaticapproval
+  rejection_reason: "TrustedCoordinatorauthorizationseenPREPARATIONONLY, notpublicfeed/migration/tokenVault/ACL/ephemeraltestkeyimplementation"
+  inventory_successor_sha256: a3a9d8b76f58ca8d66d4250ccc7fa0f98a925af19826cbcd337c912b2f4d1419
+  inventory_successor_receipt_sha256: 16e67dd012b566380ad760c62a6ea57a549e8a9551fa72921cadb1bbb9db4303
+  human_confirmation: "Asyncquestion incurrentEpic15thread pending; Coordinatoralsopresentedconfirmation; noneassumed"
+  implementation_tests_resources: 0

@@ -1,0 +1,26 @@
+{
+  "phase": "preparation-only-ownership-inventory-successor",
+  "status": "PROPOSED/PENDING-human-and-Coordinator-allocation",
+  "inventory_path": "_bmad-output/auto-bmad/preparation/story-15-5/ownership-inventory-successor.md",
+  "inventory_sha256": "a3a9d8b76f58ca8d66d4250ccc7fa0f98a925af19826cbcd337c912b2f4d1419",
+  "baseline_revision": "159557e114f18123e73282c39c90830917de9948",
+  "original_manifest_sha256_unchanged": "c5c764796b218a7e0903bbb258fb0b2eafc15d28476cae86679d2ba2d4fa13b2",
+  "original_manifest_bindings_verified_unchanged": 35,
+  "independent_files_verified_unchanged": 8,
+  "source_snapshots_verified_unchanged": 40,
+  "root_owned_state_hashes_unchanged": {
+    "_bmad-output/auto-bmad/state/15-5-personal-calendar-feed-adr-b004-surface-1.yaml": "6f23e57f1b2b39fe25c259b763630a02dc2acb3a24c6d985935f0d9de8617a82",
+    "_bmad-output/auto-bmad/state/epic/epic-15.yaml": "920c3c6c55b486b7d45fc6e2909bb5284bae7bc32576f0aa384fb7cc40628694"
+  },
+  "approved_kernel_unchanged": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+  "handoff_sha256_unchanged": "822050eb7bf8fa78ef3e543089113b9d6ab7a46843cd36d6ca274cdb0fefa03f",
+  "only_new_files": [
+    "_bmad-output/auto-bmad/preparation/story-15-5/ownership-inventory-successor.md",
+    "_bmad-output/auto-bmad/preparation/story-15-5/ownership-inventory-successor.json"
+  ],
+  "source_test_config_changes": 0,
+  "tests_executed": 0,
+  "implementation_changes": 0,
+  "resources_started": 0,
+  "execution_authority": false
+}

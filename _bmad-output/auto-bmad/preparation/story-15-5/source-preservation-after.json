@@ -1,0 +1,17 @@
+{
+  "head_after": "159557e114f18123e73282c39c90830917de9948",
+  "author_tracked_changes": [],
+  "cached_context_sha256": "f41bccd2029d5dbd027f9b98c3f7b3e8b93b4ce7627331ec7bcf2592aded910a",
+  "known_root_owned_state_hashes_unchanged": {
+    "_bmad-output/auto-bmad/state/15-5-personal-calendar-feed-adr-b004-surface-1.yaml": "acb913f0f79210cd9356f966f3d516c6670ac320453e438fd64687b4cb98eac1",
+    "_bmad-output/auto-bmad/state/epic/epic-15.yaml": "67d53a629e121a49294d2e0eb8c833033a0aae68933424fdee94ffa3d22c2290"
+  },
+  "original_candidate_snapshot_files_verified": 15,
+  "independent_report_files_unchanged": 4,
+  "validated_candidate_snapshot_files_verified": 3,
+  "all_independent_report_files_unchanged": 8,
+  "independent_source_snapshots_verified": 40,
+  "owned_untracked_only_apart_from_immutable_independent_reports": true,
+  "source_schema_tests_dependencies_env_sprint_unchanged": true,
+  "passed": true
+}
