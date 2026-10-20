@@ -11,6 +11,7 @@ import { bookingConflictKeyFromEnv } from "./conflict-attestation";
 import type { BookingRpcClient, DerivedConflict, LogicalConflictGroup } from "./conflict-facts";
 import { deriveSeriesConflicts, planBookingSeries, type SeriesSnapshot, type SeriesRow } from "./series-conflicts";
 import { openResolutionReceipt, RESOLUTION_FIELDS, sealResolutionReceipt, signResolution, type ResolutionClaims } from "./conflict-resolution-attestation";
+import {formatUtcInstant,parseUtcInstant} from "@/features/scheduling/time-zone";
 export type ResolverFacts = SeriesSnapshot["facts"] & { bookings: ResolverBooking[]; workflow: {natural_key:string;status:string}[] };
 export type ResolverSnapshot = {kind:"snapshot";claims:ResolutionClaims;facts:ResolverFacts;checkedAt:string};
 export type ResolutionArgs = { p_tenant_id:string;p_actor_id:string;p_correlation_id:string;p_command_id:string };
@@ -34,20 +35,26 @@ export async function snapshotConflictResolver(client:BookingRpcClient,args:Reso
 export function resolverGroups(snapshot:ResolverSnapshot,groups:readonly LogicalConflictGroup[]):ResolverGroup[] {
   return groups.map(g=>({...g,status:g.keys.every(k=>snapshot.facts.workflow.some(w=>w.natural_key===k&&w.status==="accepted"))?"accepted":"open"}));
 }
-function local(value:string){const p=Object.fromEntries(new Intl.DateTimeFormat("en-GB",{timeZone:"Europe/Stockholm",year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",second:"2-digit",hourCycle:"h23"}).formatToParts(new Date(value)).map(p=>[p.type,p.value]));return `${p.year}-${p.month}-${p.day}T${p.hour}:${p.minute}:${p.second}`;}
+function local(value:string){const p=Object.fromEntries(new Intl.DateTimeFormat("en-GB",{timeZone:"Europe/Stockholm",year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",second:"2-digit",hourCycle:"h23"}).formatToParts(new Date(value)).map(p=>[p.type,p.value]));return `${p.year}-${p.month}-${p.day}T${p.hour}:${p.minute}:${p.second}.${formatUtcInstant(parseUtcInstant(value)).slice(20,26)}`;}
 export function planConflictResolution(snapshot:ResolverSnapshot,input:ResolutionRequest) {
   const booking=snapshot.facts.bookings.find(b=>b.id===input.bookingId);if(!booking)throw new CommandError("TENANT_ACCESS_DENIED");
   const before=deriveSeriesConflicts(snapshot.facts.detection,[],true);
   const beforeGroups=before.groups.filter(g=>g.bookingIds.includes(input.bookingId));
   const targets=beforeGroups.filter(g=>input.targetLogicalIds.includes(g.logicalId));
   if(targets.length!==input.targetLogicalIds.length)throw new CommandError("PREVIEW_STALE");
-  let rows:SeriesRow[]=[];let series:null|{id:string;rule:import("@/features/scheduling/recurrence-types").RecurrenceRule;template:NonNullable<ResolutionInput["payload"]>;version:number}=null;
+  let rows:SeriesRow[]=[];let series:null|{id:string;sourceId:string;pivot:string|null;rule:import("@/features/scheduling/recurrence-types").RecurrenceRule;template:NonNullable<ResolutionInput["payload"]>;version:number}=null;
   if(input.action!=="accept"){
     if(!input.payload)throw new CommandError("VALIDATION_FAILED");
-    if(input.wholeSeries){
+    if(input.following){
+      const source=snapshot.facts.series.find(s=>s.id===booking.seriesId);
+      if(!source||input.following.sourceSeriesId!==source.id||input.following.pivotOccurrenceId!==booking.id)throw new CommandError("TENANT_ACCESS_DENIED");
+      const plan=planBookingSeries(snapshot as unknown as SeriesSnapshot,input.following);
+      rows=plan.rows;series={id:input.following.seriesId,sourceId:source.id,pivot:plan.pivot,rule:plan.rule,template:input.following.template,version:source.version};
+    }else if(input.wholeSeries){
       const source=snapshot.facts.series.find(s=>s.id===booking.seriesId);if(!source)throw new CommandError("VALIDATION_FAILED");
       if(["description","workRoleId","jobId","customerId","facilityId","contactId","status"].some(k=>input.payload![k as keyof typeof input.payload]!==booking.payload[k as keyof typeof booking.payload])||
-        local(input.payload.startsAt).slice(0,10)!==local(booking.payload.startsAt).slice(0,10)||local(input.payload.endsAt).slice(0,10)!==local(booking.payload.endsAt).slice(0,10))throw new CommandError("VALIDATION_FAILED");
+        local(input.payload.startsAt).slice(0,10)!==local(booking.payload.startsAt).slice(0,10)||
+        (input.payload.allDay===booking.payload.allDay&&local(input.payload.endsAt).slice(0,10)!==local(booking.payload.endsAt).slice(0,10)))throw new CommandError("VALIDATION_FAILED");
       // Common changes keep original nominal anchor/end bounds and protected siblings.
       const start=local(input.payload.startsAt),end=local(input.payload.endsAt);
       const timeRule=recurrenceRuleFromEditor({preset:source.rule.preset,endMode:source.rule.count!==undefined?"count":"until",count:source.rule.count??1,untilDate:source.rule.untilDate,
@@ -55,7 +62,7 @@ export function planConflictResolution(snapshot:ResolverSnapshot,input:Resolutio
       const rule={...source.rule,startTime:timeRule.startTime,endTime:timeRule.endTime,endDayOffset:timeRule.endDayOffset,allDay:timeRule.allDay};
       const template={...source.defaults,startsAt:input.payload.startsAt,endsAt:input.payload.endsAt,allDay:input.payload.allDay,assigneeIds:input.payload.assigneeIds};
       const plan=planBookingSeries(snapshot as unknown as SeriesSnapshot,{commandId:input.commandId,seriesId:source.id,sourceSeriesId:source.id,expectedVersion:source.version,pivotOccurrenceId:null,rule,template});
-      rows=plan.rows;series={id:source.id,rule:plan.rule,template,version:source.version};
+      rows=plan.rows;series={id:source.id,sourceId:source.id,pivot:null,rule:plan.rule,template,version:source.version};
     }else rows=[{id:booking.id,payload:input.payload,seriesId:booking.seriesId??"",nominalDate:booking.nominalDate??"",index:0,isException:booking.isException}];
   }
   const after=input.action==="accept"?before:deriveSeriesConflicts(snapshot.facts.detection,rows,true);
@@ -76,7 +83,8 @@ export async function previewConflictResolution(client:BookingRpcClient,args:Res
   try {const s=await snapshotConflictResolver(client,args,resolutionRequest(input));if(s.kind==="replay")throw new CommandError("COMMAND_CONFLICT");
     const plan=planConflictResolution(s,input),body=JSON.stringify(plan);if(Buffer.byteLength(body)>3145728)throw new CommandError("VALIDATION_FAILED");
     return {receipt:sealResolutionReceipt({claims:s.claims,planDigest:hash(body)},bookingConflictKeyFromEnv().secret),warnings:resolverGroups(s,plan.groups),targets:resolverGroups(s,plan.targets),
-      affectedBookingIds:plan.rows.length?plan.rows.map(r=>r.id):[input.bookingId],untouchedBookingIds:plan.rows.filter(r=>r.isException||r.payload.status==="cancelled").map(r=>r.id)};
+      affectedBookingIds:plan.rows.length?plan.rows.map(r=>r.id):[input.bookingId],untouchedBookingIds:plan.rows.filter(r=>r.isException||r.payload.status==="cancelled").map(r=>r.id),
+      occurrences:plan.rows.map(r=>({id:r.id,nominalDate:r.nominalDate,startsAt:r.payload.startsAt,endsAt:r.payload.endsAt,isException:r.isException,status:r.payload.status,hasConflicts:plan.groups.some(g=>g.bookingIds.includes(r.id))}))};
   }catch(e){resolutionError(e);}
 }
 export async function commitConflictResolution(client:BookingRpcClient,args:ResolutionArgs,input:ResolutionInput):Promise<ResolutionResult> {

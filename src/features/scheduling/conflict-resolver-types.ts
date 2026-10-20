@@ -9,7 +9,9 @@ export type ResolverHistory = { id: string; action: string; outcome: string; act
 export type ResolverData = { groups: ResolverGroup[]; bookings: ResolverBooking[]; checkedAt: string; options: BookingEditorOptions; history: ResolverHistory[] };
 export type ResolverRead = { status: "success"; data: ResolverData } | { status: "error"; message: string };
 export type ResolutionRequest = { commandId: string; bookingId: string; action: "accept" | "move" | "reassign" | "adjust";
-  targetLogicalIds: readonly string[]; payload: BookingFacts | null; wholeSeries: boolean };
+  targetLogicalIds: readonly string[]; payload: BookingFacts | null; wholeSeries: boolean;
+  following?: Omit<import("@/server/commands/bookings/series-validation").BookingSeriesInput,"editorReview"> };
 export type ResolutionInput = ResolutionRequest & { review?: { receipt: string; decision: BookingDecision } };
 export type ResolutionResult = { resolutionId: string; bookingId: string; outcome: "accepted" | "resolved" | "remaining"; affectedBookingIds: string[] };
-export type ResolutionPreview = { receipt: string; warnings: ResolverGroup[]; targets: ResolverGroup[]; affectedBookingIds: string[]; untouchedBookingIds: string[] };
+export type ResolutionPreview = { receipt: string; warnings: ResolverGroup[]; targets: ResolverGroup[]; affectedBookingIds: string[]; untouchedBookingIds: string[];
+  occurrences: {id:string;nominalDate:string;startsAt:string;endsAt:string;isException:boolean;status:BookingFacts["status"];hasConflicts:boolean}[] };

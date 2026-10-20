@@ -112,7 +112,7 @@ create function public.finalize_booking_conflict_resolution(p_tenant_id uuid,p_a
 language plpgsql volatile security definer set search_path='' as $$
 declare replay jsonb; secret text; proof bytea:=''::bytea; field text; val text; issued timestamptz; expires timestamptz;
  facts jsonb; plan jsonb; output jsonb; before_output jsonb; groups jsonb; targets jsonb; rows jsonb; decision jsonb; row jsonb; payload jsonb; filtered jsonb;
- old public.bookings; source public.booking_series; member uuid; before_users uuid[]; affected uuid[]; notify_ids uuid[]; ids uuid[]; result jsonb; event uuid;
+ old public.bookings; existing_row public.bookings; source public.booking_series; pivot date; target_series uuid; member uuid; before_users uuid[]; affected uuid[]; notify_ids uuid[]; ids uuid[]; result jsonb; event uuid;
  outcome text; candidate uuid; selected_ids jsonb;
 begin
  perform public.booking_detection_gate_internal(p_tenant_id,p_actor_id);
@@ -163,27 +163,51 @@ begin
  if p_input->>'action'='accept' then
   if jsonb_array_length(rows)<>0 or p_input->'payload'<>'null'::jsonb or (p_input->>'wholeSeries')::boolean
    or decision->'selectedLogicalIds' is distinct from p_input->'targetLogicalIds' or decision->>'reason'=''
-   or exists(select 1 from jsonb_array_elements(targets) t,jsonb_array_elements_text(t->'keys') k where exists(select 1 from public.booking_conflicts c where c.tenant_id=p_tenant_id and c.natural_key=k and c.status<>'open'))
+   or exists(select 1 from jsonb_array_elements(targets) t,jsonb_array_elements_text(t->'keys') k where exists(select 1 from public.booking_conflicts c where c.tenant_id=p_tenant_id and c.natural_key=k and c.status='accepted'))
    then raise exception 'booking proof denied' using errcode='42501'; end if;
   select array_agg(distinct id::uuid order by id::uuid) into affected from jsonb_array_elements(targets) t,jsonb_array_elements_text(t->'bookingIds') id;
   notify_ids:=affected;
  else
   if jsonb_array_length(rows)=0 then raise exception 'booking proof denied' using errcode='42501'; end if;
-  if (p_input->>'wholeSeries')::boolean then
+  if (p_input->>'wholeSeries')::boolean or p_input->'following' is not null then
    select * into source from public.booking_series where tenant_id=p_tenant_id and id=old.series_id for update;
-   if not found or plan->'series'->>'id' is distinct from source.id::text or (plan->'series'->>'version')::integer is distinct from source.version
-    or exists(select 1 from public.bookings b where b.tenant_id=p_tenant_id and b.series_id=source.id and not exists(select 1 from jsonb_array_elements(rows) r where r->>'id'=b.id::text))
-    or exists(select 1 from jsonb_array_elements(rows) r where not exists(select 1 from public.bookings b where b.tenant_id=p_tenant_id and b.series_id=source.id and b.id=(r->>'id')::uuid and b.nominal_date::text=r->>'nominalDate'))
+   if not found or plan->'series'->>'sourceId' is distinct from source.id::text or (plan->'series'->>'version')::integer is distinct from source.version
     then raise exception 'booking proof denied' using errcode='42501'; end if;
-   -- This lane only edits common clocks/default assignment in the existing segment.
-   if (plan->'series'->'rule'-array['startTime','endTime','endDayOffset','allDay']) is distinct from (source.rule-array['startTime','endTime','endDayOffset','allDay'])
+   target_series:=(plan->'series'->>'id')::uuid;
+   if p_input->'following' is not null then
+    pivot:=old.nominal_date;
+    if pivot is null or target_series=source.id or exists(select 1 from public.booking_series where id=target_series)
+     or p_input->'following'->>'sourceSeriesId' is distinct from source.id::text
+     or p_input->'following'->>'seriesId' is distinct from target_series::text
+     or p_input->'following'->>'pivotOccurrenceId' is distinct from old.id::text
+     or (p_input->'following'->>'expectedVersion')::integer is distinct from source.version
+     or plan->'series'->>'pivot' is distinct from pivot::text
+     or (p_input->'following'->'rule'->>'startDate')::date<pivot
+     or (plan->'series'->'rule'->>'startDate')::date<pivot
+     or plan->'series'->'template' is distinct from p_input->'following'->'template'
+     then raise exception 'booking proof denied' using errcode='42501'; end if;
+   elsif target_series<>source.id or plan->'series'->>'pivot' is not null or
+    (plan->'series'->'rule'-array['startTime','endTime','endDayOffset','allDay']) is distinct from (source.rule-array['startTime','endTime','endDayOffset','allDay'])
+    then raise exception 'booking proof denied' using errcode='42501'; end if;
+   if source.predecessor_id is not null and not exists(select 1 from public.booking_series predecessor
+    where predecessor.tenant_id=p_tenant_id and predecessor.id=source.predecessor_id and predecessor.ends_before is not null
+     and (plan->'series'->'rule'->>'startDate')::date>=predecessor.ends_before
+     and not exists(select 1 from jsonb_array_elements(rows) r where (r->>'nominalDate')::date<predecessor.ends_before))
+    then raise exception 'booking proof denied' using errcode='42501'; end if;
+   -- All existing addressed slots survive; no row may cross a successor's bound.
+   if exists(select 1 from public.bookings b where b.tenant_id=p_tenant_id and b.series_id=source.id and (pivot is null or b.nominal_date>=pivot)
+     and not exists(select 1 from jsonb_array_elements(rows) r where r->>'id'=b.id::text and r->>'nominalDate'=b.nominal_date::text))
+    or exists(select 1 from jsonb_array_elements(rows) r where r->>'seriesId' is distinct from target_series::text
+     or (pivot is not null and (r->>'nominalDate')::date<pivot)
+     or (source.ends_before is not null and (r->>'nominalDate')::date>=source.ends_before)
+     or (pivot is null and not exists(select 1 from public.bookings b where b.tenant_id=p_tenant_id and b.series_id=source.id and b.id=(r->>'id')::uuid and b.nominal_date::text=r->>'nominalDate')))
     then raise exception 'booking proof denied' using errcode='42501'; end if;
   elsif jsonb_array_length(rows)<>1 or rows->0->>'id' is distinct from candidate::text or rows->0->'payload' is distinct from p_input->'payload'
    then raise exception 'booking proof denied' using errcode='42501'; end if;
   select array_agg((value->>'id')::uuid order by value->>'id') into affected from jsonb_array_elements(rows);
   -- Protected/unchanged siblings are reviewed, but have no changed-booking recipient effect.
   select coalesce(array_agg((r->>'id')::uuid),'{}'::uuid[]) into notify_ids from jsonb_array_elements(rows) r
-   where exists(select 1 from jsonb_array_elements(facts->'bookings') b where b->>'id'=r->>'id' and b->'payload' is distinct from r->'payload'
+   where not exists(select 1 from jsonb_array_elements(facts->'bookings') b where b->>'id'=r->>'id') or exists(select 1 from jsonb_array_elements(facts->'bookings') b where b->>'id'=r->>'id' and b->'payload' is distinct from r->'payload'
     and (source.id is null or (not (b->>'isException')::boolean and b->'payload'->>'status'<>'cancelled')));
  end if;
  select coalesce(array_agg(distinct m.user_id),'{}'::uuid[]) into before_users from public.booking_assignees a
@@ -193,19 +217,42 @@ begin
  perform set_config('app.booking_correlation_id',p_correlation_id::text,true);perform set_config('app.booking_command_id',p_command_id::text,true);
  if source.id is not null then
   perform set_config('app.booking_series_write','checked',true);
-  update public.booking_series set rule=plan->'series'->'rule',defaults=plan->'series'->'template',version=version+1,updated_at=statement_timestamp() where tenant_id=p_tenant_id and id=source.id;
+  if pivot is not null then
+   insert into public.booking_series(id,tenant_id,rule,defaults,predecessor_id,successor_id,ends_before)
+   values(target_series,p_tenant_id,plan->'series'->'rule',plan->'series'->'template',source.id,source.successor_id,source.ends_before);
+   update public.booking_series set predecessor_id=target_series,version=version+1,updated_at=statement_timestamp() where tenant_id=p_tenant_id and id=source.successor_id;
+   update public.booking_series set ends_before=pivot,successor_id=target_series,version=version+1,updated_at=statement_timestamp() where tenant_id=p_tenant_id and id=source.id;
+  else
+   update public.booking_series set rule=plan->'series'->'rule',defaults=plan->'series'->'template',version=version+1,updated_at=statement_timestamp() where tenant_id=p_tenant_id and id=source.id;
+  end if;
  end if;
  for row in select value from jsonb_array_elements(rows) order by value->>'id' loop
-  if not exists(select 1 from public.bookings where tenant_id=p_tenant_id and id=(row->>'id')::uuid) then raise exception 'booking denied' using errcode='42501'; end if;
-  if source.id is not null and exists(select 1 from public.bookings b where b.tenant_id=p_tenant_id and b.id=(row->>'id')::uuid and (b.is_exception or b.status='cancelled')) then
-   if not exists(select 1 from jsonb_array_elements(facts->'bookings') b where b->>'id'=row->>'id' and b->'payload'=row->'payload') then raise exception 'booking proof denied' using errcode='42501'; end if;
-   continue;
+  select * into existing_row from public.bookings where id=(row->>'id')::uuid for update;
+  if existing_row.id is not null and (existing_row.tenant_id<>p_tenant_id or
+   (source.id is not null and (existing_row.series_id is distinct from source.id or existing_row.nominal_date::text is distinct from row->>'nominalDate')))
+   then raise exception 'booking denied' using errcode='42501'; end if;
+  if existing_row.id is null and pivot is null then raise exception 'booking denied' using errcode='42501'; end if;
+  if source.id is not null and existing_row.id is not null and (existing_row.is_exception or existing_row.status='cancelled') then
+   if not (row->>'isException')::boolean or not exists(select 1 from jsonb_array_elements(facts->'bookings') b where b->>'id'=row->>'id' and b->'payload'=row->'payload') then raise exception 'booking proof denied' using errcode='42501'; end if;
+   if pivot is null then continue; end if;
   end if;
-  if exists(select 1 from jsonb_array_elements(facts->'bookings') b where b->>'id'=row->>'id' and b->'payload'=row->'payload') then continue; end if;
+  if pivot is null and exists(select 1 from jsonb_array_elements(facts->'bookings') b where b->>'id'=row->>'id' and b->'payload'=row->'payload') then continue; end if;
   payload:=public.booking_series_row_internal(p_tenant_id,(row->>'id')::uuid,row->'payload');
-  update public.bookings set starts_at=(payload->>'startsAt')::timestamptz,ends_at=(payload->>'endsAt')::timestamptz,all_day=(payload->>'allDay')::boolean,
-   work_role_id=(payload->>'workRoleId')::uuid,job_id=(payload->>'jobId')::uuid,customer_id=(payload->>'customerId')::uuid,facility_id=(payload->>'facilityId')::uuid,contact_id=(payload->>'contactId')::uuid,
-   description=payload->>'description',status=payload->>'status',updated_at=statement_timestamp() where tenant_id=p_tenant_id and id=(row->>'id')::uuid;
+  if pivot is not null then
+   insert into public.bookings(id,tenant_id,starts_at,ends_at,all_day,work_role_id,job_id,customer_id,facility_id,contact_id,description,status,
+    series_id,nominal_date,occurrence_index,is_exception,create_command_id,create_payload_digest,create_result)
+   values((row->>'id')::uuid,p_tenant_id,(payload->>'startsAt')::timestamptz,(payload->>'endsAt')::timestamptz,(payload->>'allDay')::boolean,
+    (payload->>'workRoleId')::uuid,(payload->>'jobId')::uuid,(payload->>'customerId')::uuid,(payload->>'facilityId')::uuid,(payload->>'contactId')::uuid,
+    payload->>'description',payload->>'status',target_series,(row->>'nominalDate')::date,(row->>'index')::integer,(row->>'isException')::boolean,
+    (row->>'id')::uuid,encode(extensions.digest(payload::text,'sha256'),'hex'),jsonb_build_object('bookingId',row->>'id'))
+   on conflict(id) do update set starts_at=excluded.starts_at,ends_at=excluded.ends_at,all_day=excluded.all_day,work_role_id=excluded.work_role_id,
+    job_id=excluded.job_id,customer_id=excluded.customer_id,facility_id=excluded.facility_id,contact_id=excluded.contact_id,
+    description=excluded.description,status=excluded.status,series_id=excluded.series_id,occurrence_index=excluded.occurrence_index,is_exception=excluded.is_exception,updated_at=statement_timestamp();
+  else
+   update public.bookings set starts_at=(payload->>'startsAt')::timestamptz,ends_at=(payload->>'endsAt')::timestamptz,all_day=(payload->>'allDay')::boolean,
+    work_role_id=(payload->>'workRoleId')::uuid,job_id=(payload->>'jobId')::uuid,customer_id=(payload->>'customerId')::uuid,facility_id=(payload->>'facilityId')::uuid,contact_id=(payload->>'contactId')::uuid,
+    description=payload->>'description',status=payload->>'status',updated_at=statement_timestamp() where tenant_id=p_tenant_id and id=(row->>'id')::uuid;
+  end if;
   select array_agg(value::uuid) into ids from jsonb_array_elements_text(payload->'assigneeIds');
   delete from public.booking_assignees where tenant_id=p_tenant_id and booking_id=(row->>'id')::uuid and not(person_profile_id=any(ids));
   insert into public.booking_assignees(tenant_id,booking_id,person_profile_id) select p_tenant_id,(row->>'id')::uuid,a from unnest(ids) a

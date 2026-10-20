@@ -6,9 +6,14 @@ const facts:SchedulingFacts={candidate:{id:"candidate",jobId:null,startsAt:"2026
  people:[{id:"person",employmentPercentage:25,shifts:[{weekday:1,start:"08:00",end:"12:00",breaks:[]}],exceptions:[],workRoleIds:[]}],calendarDays:[],jobInputs:null,jobInputSets:[],rules:DEFAULT_SCHEDULING_RULES};
 test("AC3 schedule-derived capacity and unrelated tenant conflicts do not suppress candidate suggestions",()=>{
   const input={...facts,existingBookings:[{...facts.candidate,id:"unrelated",assigneeIds:["other"]},{...facts.candidate,id:"unrelated2",assigneeIds:["other"]}],people:[...facts.people,{...facts.people[0]!,id:"other"}]};
-  assert.deepEqual(evaluateConflictCandidate(input,input.candidate),{status:"available",loadMinutes:0,capacityMinutes:240});
+  assert.deepEqual(evaluateConflictCandidate(input,input.candidate),{status:"available",loadMinutes:0,capacityMinutes:240,measurementDate:"2026-10-12"});
   const slots=suggestConflictSlots(facts);assert.equal(slots.length,CONFLICT_SUGGESTION_LIMITS.results);
   assert.equal(slots[0]!.startsAt,"2026-10-12T06:00:00.000000Z");assert.equal(slots[0]!.endsAt,"2026-10-12T07:00:00.000000Z");
+});
+test("R1-09 multi-day availability labels actual start-date load rather than implying a total",()=>{
+ const candidate={...facts.candidate,endsAt:"2026-10-13T07:00:00Z"};
+ assert.deepEqual(evaluateConflictCandidate(facts,candidate),{status:"busy",loadMinutes:0,capacityMinutes:240,measurementDate:"2026-10-12"});
+ assert.equal(evaluateConflictCandidate({...facts,people:[]},candidate).measurementDate,null);
 });
 test("AC3 cancelled and malformed schedule facts are unknown, empty known job access is busy",()=>{
   assert.equal(evaluateConflictCandidate(facts,{...facts.candidate,status:"cancelled"}).status,"unknown");

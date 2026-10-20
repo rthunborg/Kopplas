@@ -3,17 +3,17 @@ import { dailyCapacity } from "./capacity";
 import { formatUtcInstant, localDateForInstant, nextLocalDate, parseUtcInstant, stockholmLocalToUtc } from "./time-zone";
 import type { SchedulingBooking, SchedulingFacts } from "./types";
 export const CONFLICT_SUGGESTION_LIMITS = Object.freeze({ days: 14, stepMinutes: 15, results: 10 });
-export type Availability = { status: "available" | "busy" | "unknown"; loadMinutes: number | null; capacityMinutes: number | null };
+export type Availability = { status: "available" | "busy" | "unknown"; loadMinutes: number | null; capacityMinutes: number | null; measurementDate:string|null };
 export function evaluateConflictCandidate(facts: SchedulingFacts, candidate: SchedulingBooking): Availability {
-  if (candidate.status === "cancelled") return {status:"unknown",loadMinutes:null,capacityMinutes:null};
+  if (candidate.status === "cancelled") return {status:"unknown",loadMinutes:null,capacityMinutes:null,measurementDate:null};
   try {
     const input = {...facts,candidate,existingBookings:facts.existingBookings.filter(b=>b.id!==candidate.id)};
     const groups = detectAllBookingConflicts(input).filter(g=>g.bookingIds.includes(candidate.id));
     const date = localDateForInstant(parseUtcInstant(candidate.startsAt));
     const capacity = candidate.assigneeIds.map(id=>dailyCapacity(input,input.people.find(p=>p.id===id)!,date));
-    return { status: groups.length ? "busy" : "available", loadMinutes: capacity.reduce((n,c)=>n+c.terms.existingBookingMinutes,0),
+    return { status: groups.length ? "busy" : "available", measurementDate:date,loadMinutes: capacity.reduce((n,c)=>n+c.terms.existingBookingMinutes,0),
       capacityMinutes: capacity.reduce((n,c)=>n+c.terms.scheduledMinutes-c.terms.holidayClosedMinutes-c.terms.absenceMinutes-c.terms.blockedMinutes-c.terms.bufferMinutes,0) };
-  } catch { return {status:"unknown",loadMinutes:null,capacityMinutes:null}; }
+  } catch { return {status:"unknown",loadMinutes:null,capacityMinutes:null,measurementDate:null}; }
 }
 /** Finite convenience search. Final checked preview/commit always re-evaluates facts. */
 export function suggestConflictSlots(facts: SchedulingFacts): { startsAt: string; endsAt: string; availability: Availability }[] {

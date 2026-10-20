@@ -25,7 +25,7 @@ export function BookingEditor({open, onClose, draft, options: initialOptions, bo
   readonly options: BookingEditorOptions; readonly bookingId?: string; readonly seriesId?: string | null; readonly prefill?: BookingPrefill;
   readonly initialPreview?: BookingPreviewDisplay;
   readonly proposal?: BookingEditProposal;
-  readonly resolverAdapter?: {preview:typeof previewBookingAction;save:typeof saveBookingAction;description?:string;commonSeries?:boolean};
+  readonly resolverAdapter?: {preview:typeof previewBookingAction;save:typeof saveBookingAction;previewSeries:typeof previewBookingSeriesAction;saveSeries:typeof saveBookingSeriesAction;description?:string;commonSeries?:boolean};
 }) {
   const [options, setOptions] = useState(initialOptions);
   const [optionsLoading, setOptionsLoading] = useState(false);
@@ -130,7 +130,7 @@ export function BookingEditor({open, onClose, draft, options: initialOptions, bo
     const timer = window.setTimeout(async () => {
       try {
         if (recurrence.enabled) {
-          const result = await previewBookingSeriesAction(candidate());
+          const result = await (resolverAdapter?.previewSeries ?? previewBookingSeriesAction)(candidate());
           if (sequence.current !== current) return;
           if(result.status === "error") {if(result.code === "PREVIEW_STALE" && scope === "following"){refreshStaleSeries();return;}setSeriesItems([]); setSeriesTotal(0); deliverPreview(current,{requestId:String(current),status:"error",warnings:[],availabilityLabel:"Okänd",errorMessage:result.message}); return;}
           receipt.current=result.preview.receipt;
@@ -174,7 +174,7 @@ export function BookingEditor({open, onClose, draft, options: initialOptions, bo
     setPending(true); setError(null);
     try {
       attempted.current = input;
-      const result = recurrence.enabled ? await saveBookingSeriesAction(input) : await (resolverAdapter?.save ?? saveBookingAction)(input);
+      const result = recurrence.enabled ? await (resolverAdapter?.saveSeries ?? saveBookingSeriesAction)(input) : await (resolverAdapter?.save ?? saveBookingAction)(input);
       if (result.status === "success") {attempted.current = null; setUnresolved(false); setSuccess(true); setDirty(false);} else {
         setError(result.message);
         if (retainUnresolvedBookingAttempt(result.code, wasUnresolved)) setUnresolved(true);
