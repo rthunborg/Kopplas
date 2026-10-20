@@ -17,10 +17,15 @@ const migrations = [{ version: "20261020220000", name: "personal_calendar_feed" 
 function privacyRows(): Record<string, unknown>[] {
   return ["log_statement", "log_min_error_statement", "log_parameter_max_length", "log_parameter_max_length_on_error"].map(name => ({
     name, context: name === "log_parameter_max_length_on_error" ? "user" : "superuser", matches_required: true, can_set: false,
-    session_is_postgres: true, current_is_postgres: true, same_identity: true,
-    session_superuser: false, current_superuser: false, session_bypass_rls: false, current_bypass_rls: false,
+    session_is_postgres: false, current_is_postgres: false, same_identity: true,
+    session_superuser: true, current_superuser: true, session_bypass_rls: true, current_bypass_rls: true,
   }));
 }
+function authorityRow(): Record<string, unknown> {
+  return { session_is_setup_admin: true, current_is_setup_admin: true, same_identity: true,
+    session_login: true, current_login: true, session_superuser: true, current_superuser: true };
+}
+const setupPassword = "PRIVATE fixture existing container credential";
 
 test("CI command projection rejects entry and argv drift and cannot erase unrelated workflow or wrapper changes", () => {
   const workflow = readFileSync(new URL("../../../../.github/workflows/ci.yml", import.meta.url), "utf8").replaceAll("\r\n", "\n");
@@ -72,7 +77,7 @@ function harness(options: {
   let signal: () => void = () => undefined;
   const deps = {
     registerSignal(handler: () => void) { events.push("signals-registered"); signal = handler; return () => events.push("signals-unregistered"); },
-    async qualify() { events.push("qualified"); return { status, migrations }; },
+    async qualify() { events.push("qualified"); return { status, migrations, stack: identity() }; },
     async portFree() { events.push("port-checked"); if (options.occupied) throw new Error("fixture occupied"); },
     connect() {
       events.push("client-created");
@@ -82,6 +87,7 @@ function harness(options: {
           events.push(sql.startsWith("select vault.create_secret") ? "create" : sql.startsWith("delete") ? "delete" : sql);
           const call = { sql, params }; queries.push(call);
           const override = options.query?.(call); if (override) return override;
+          if (sql.startsWith("select session_user='supabase_admin'")) return { rows: [authorityRow()] };
           if (sql.startsWith("with required(name,value)")) return { rows: privacyRows() };
           if (sql.includes("schema_migrations")) return { rows: migrations };
           if (sql.includes("from pg_proc")) return { rows: FEED_FUNCTIONS.map(() => ({ owner: "calendar_feed_owner", definer: true })) };
@@ -111,20 +117,90 @@ async function runFixture(mode: string, h = harness()) {
   return { ...h, ...result };
 }
 
-test("real pg client startup uses only explicit USERSET privacy option instead of ambient PGOPTIONS", async () => {
-  const previous = process.env.PGOPTIONS;
-  process.env.PGOPTIONS = "PRIVATE untrusted ambient options";
+test("real pg setup client fixes captured credential principal publication and all four privacy startup controls", async () => {
+  const previous = Object.fromEntries(["PGOPTIONS", "PGUSER", "PGPASSWORD", "PGHOST", "PGPORT", "PGDATABASE", "PGSSLMODE"].map(key => [key, process.env[key]]));
+  for (const key of Object.keys(previous)) process.env[key] = "PRIVATE untrusted ambient choice";
   try {
-    const client = createCalendarFeedDatabaseClient(status);
-    // pg8.22 exposes these installed internals, omitted from its public types.
-    const installed = client as unknown as { getStartupConf(): { options: string; statement_timeout: string };
-      connectionParameters: { query_timeout: number } };
-    assert.equal(installed.getStartupConf().options, "-c log_parameter_max_length_on_error=0");
-    assert.equal(installed.getStartupConf().statement_timeout, "8000");
-    assert.equal(installed.connectionParameters.query_timeout, 10_000);
-    await client.end(); // Construction/end only: never connect or launch a service.
+    for (const purpose of ["runtime", "proof", "absence"]) {
+      const client = createCalendarFeedDatabaseClient(identity(), purpose);
+      // pg8.22 exposes these installed internals, omitted from its public types.
+      const installed = client as unknown as { getStartupConf(): { options: string; statement_timeout: string; user: string; database: string; lock_timeout?: string };
+        connectionParameters: { query_timeout: number; password: string; host: string; port: number; ssl: boolean } };
+      const startup = installed.getStartupConf(), config = installed.connectionParameters;
+      assert.equal(startup.options, "-c log_statement=none -c log_min_error_statement=panic -c log_parameter_max_length=0 -c log_parameter_max_length_on_error=0"
+        + (purpose === "absence" ? " -c default_transaction_read_only=on" : ""));
+      assert.equal(startup.user, "supabase_admin"); assert.equal(startup.database, "postgres");
+      assert.equal(config.host, "127.0.0.1"); assert.equal(config.port, 54322); assert.equal(config.ssl, false);
+      assert.ok(config.password === setupPassword); // No credential value in assertion diagnostics.
+      assert.equal(startup.statement_timeout, purpose === "runtime" ? "8000" : "5000");
+      assert.equal(config.query_timeout, purpose === "runtime" ? 10_000 : 7_000);
+      if (purpose !== "runtime") assert.equal(startup.lock_timeout, "2000");
+      await client.end(); // Construction/end only: never connect or launch a service.
+    }
   } finally {
-    if (previous === undefined) delete process.env.PGOPTIONS; else process.env.PGOPTIONS = previous;
+    for (const [key, value] of Object.entries(previous)) { if (value === undefined) delete process.env[key]; else process.env[key] = value; }
+  }
+});
+
+test("setup construction refuses missing duplicate malformed or foreign source credentials without guesses or fallback", async () => {
+  const changes = [
+    (v: ReturnType<typeof identity>) => { v.db.Config.Env = []; },
+    (v: ReturnType<typeof identity>) => { v.db.Config.Env = ["POSTGRES_PASSWORD="]; },
+    (v: ReturnType<typeof identity>) => { v.db.Config.Env.push(`POSTGRES_PASSWORD=${setupPassword}`); },
+    (v: ReturnType<typeof identity>) => { v.db.Config.Env = ["PGPASSWORD=PRIVATE wrong source"]; },
+    (v: ReturnType<typeof identity>) => { v.db.Config.Env = ["POSTGRES_PASSWORD=PRIVATE\0invalid"]; },
+    (v: ReturnType<typeof identity>) => { (v.db.Config as { Env: unknown }).Env = [null]; },
+    (v: ReturnType<typeof identity>) => { (v.db.Config as { Env: unknown }).Env = undefined; },
+    (v: ReturnType<typeof identity>) => { v.db.Name = "/supabase_db_foreign"; },
+    (v: ReturnType<typeof identity>) => { v.status.DB_URL = "postgresql://PRIVATE.invalid/foreign"; },
+    (v: ReturnType<typeof identity>) => { v.db.Created = "2026-10-19T10:00:00Z"; },
+  ];
+  for (const change of changes) {
+    const stack = identity(); change(stack);
+    const h = harness();
+    const result = await runCalendarFeedRuntime({ mode: "db", env, platform: "linux" }, { ...h.deps,
+      qualify: async () => ({ status, migrations, stack }), connect: createCalendarFeedDatabaseClient });
+    assert.equal(result.exitCode, 1); assert.equal(result.receipt.keyOutcome, "not-attempted");
+    assert.equal(h.launches.length, 0); assert.ok(!h.events.includes("entropy") && !h.events.includes("key-id"));
+    assert.equal(h.queries.length, 0); assert.equal(result.receipt.setupAuthority, null);
+    assert.equal(result.receipt.diagnostics[0].stage, "database-client");
+    assert.ok(!JSON.stringify(result.receipt).includes("PRIVATE"));
+  }
+  assert.throws(() => createCalendarFeedDatabaseClient(identity(), "alternate"), /setup-purpose-refused/);
+});
+
+test("actual setup authority rejects every false missing malformed duplicate or unexpected identity before secrets", async () => {
+  const malformed = [
+    [] as Record<string, unknown>[], [authorityRow(), authorityRow()],
+    ...Object.keys(authorityRow()).map(key => [{ ...authorityRow(), [key]: false }]),
+    ...Object.keys(authorityRow()).map(key => [{ ...authorityRow(), [key]: "true" }]),
+    [{ ...authorityRow(), raw_identity: "PRIVATE unknown role" }],
+    (() => { const row = authorityRow(); delete row.session_superuser; return [row]; })(),
+  ];
+  for (const rows of malformed) {
+    const result = await runFixture("db", harness({ query(call) {
+      return call.sql.startsWith("select session_user='supabase_admin'") ? { rows } : undefined;
+    } }));
+    assert.equal(result.exitCode, 1); assert.deepEqual(result.receipt.failures, ["setup-authority-refused"]);
+    assert.equal(result.receipt.diagnostics[0].stage, "setup-authority");
+    assert.equal(result.receipt.keyOutcome, "not-attempted"); assert.equal(result.receipt.dbClosed, true);
+    assert.equal(result.receipt.privacyPreflight, null); assert.equal(result.launches.length, 0);
+    assert.ok(!result.events.includes("entropy") && !result.events.includes("key-id"));
+    assert.equal(result.queries.length, 1); assert.ok(!JSON.stringify(result.receipt).includes("PRIVATE"));
+  }
+});
+
+test("setup credentials never add privileged configuration to application or test children", async () => {
+  for (const mode of ["db", "browser"]) {
+    const result = await runFixture(mode);
+    assert.equal(result.exitCode, 0);
+    for (const child of result.launches) {
+      assert.equal(child.childEnv.SUPABASE_TEST_DB_URL, status.DB_URL);
+      assert.ok(!Object.values(child.childEnv).some(value => value === setupPassword));
+      assert.ok(!Object.keys(child.childEnv).some(key => /(?:SETUP|ADMIN_DB|POSTGRES_PASSWORD)/.test(key)));
+      assert.ok(!Object.values(child.childEnv).some(value => typeof value === "string" && value.includes("supabase_admin")));
+    }
+    assert.ok(!JSON.stringify(result.receipt).includes(setupPassword));
   }
 });
 
@@ -158,24 +234,22 @@ test("privacy preflight rejects incomplete unknown duplicate malformed contexts 
   }
 });
 
-test("same client privacy proof precedes entropy and key transaction without making identity or SET authority a gate", async () => {
-  const result = await runFixture("db", harness({ query(call) {
-    if (call.sql.startsWith("with required(name,value)")) return { rows: privacyRows().map(row => ({ ...row,
-      session_is_postgres: false, current_is_postgres: false, same_identity: false })) };
-    return undefined;
-  } }));
+test("same client setup authority and privacy proof precede entropy without making SET ACL observations a gate", async () => {
+  const result = await runFixture("db");
   assert.equal(result.exitCode, 0); assert.equal(result.events.filter(event => event === "client-created").length, 1);
   const proof = result.queries.find(call => call.sql.startsWith("with required(name,value)"))!;
   assert.equal(proof.params, undefined); assert.ok(proof.sql.includes("current_setting(s.name)=r.value"));
   assert.ok(!/\b(?:set_config|alter|grant|set role)\b/i.test(proof.sql));
   assert.ok(result.events.indexOf("connected") < result.events.indexOf(proof.sql));
+  assert.ok(result.events.indexOf(result.queries[0].sql) < result.events.indexOf(proof.sql));
+  assert.deepEqual(result.receipt.setupAuthority, authorityRow());
   assert.ok(result.events.indexOf(proof.sql) < result.events.indexOf("key-id"));
   assert.ok(result.events.indexOf(proof.sql) < result.events.indexOf("entropy"));
   assert.ok(result.events.indexOf("entropy") < result.events.indexOf("begin"));
   assert.ok(result.events.indexOf("delete") < result.events.indexOf("db-closed"));
   assert.ok(result.receipt.privacyPreflight?.controls.every(control => control.matchesRequired && control.canSet === false));
-  assert.equal(result.receipt.privacyPreflight?.principal.same_identity, false);
-  assert.equal(result.receipt.privacyPreflight?.principal.current_superuser, false);
+  assert.equal(result.receipt.privacyPreflight?.principal.same_identity, true);
+  assert.equal(result.receipt.privacyPreflight?.principal.current_superuser, true);
   assert.equal(result.receipt.keyOutcome, "deleted-confirmed");
 });
 
@@ -193,7 +267,7 @@ test("privacy query and close failures retain separate sanitized diagnostics wit
   ]);
   assert.equal(result.receipt.privacyPreflight, null); assert.equal(result.receipt.keyOutcome, "not-attempted");
   assert.equal(result.launches.length, 0); assert.ok(!result.events.includes("entropy"));
-  assert.equal(result.queries.length, 1); assert.equal(JSON.stringify(result.receipt).includes(privateText), false);
+  assert.equal(result.queries.length, 2); assert.equal(JSON.stringify(result.receipt).includes(privateText), false);
 });
 
 test("setup failures report the reached fixed stage and allowlisted SQLSTATE without native details", async () => {
@@ -201,7 +275,7 @@ test("setup failures report the reached fixed stage and allowlisted SQLSTATE wit
   const error = Object.assign(new Error(privateText), { code: "42501", detail: privateText, hint: privateText,
     query: privateText, params: [privateText], cause: new Error(privateText) });
   for (const [stage, query] of [
-    ["database-connect", null], ["migration-ledger", "select version,name"], ["feed-functions", "select p.oid"],
+    ["database-connect", null], ["setup-authority", "select session_user='supabase_admin'"], ["migration-ledger", "select version,name"], ["feed-functions", "select p.oid"],
     ["transaction-begin", "begin"], ["key-collision", "select id from vault.secrets where name=$1"],
   ] as const) {
     const h = harness({ connectFailure: query === null ? error : undefined,
@@ -275,7 +349,7 @@ test("CI admission rejects arbitrary modes, local actors, hosted URLs and mismat
 function identity() {
   const jwt = (role: string) => `header.${Buffer.from(JSON.stringify({ iss: "supabase-demo", role })).toString("base64url")}.signature`;
   const container = (kind: "db" | "kong") => ({ Id: (kind === "db" ? "a" : "b").repeat(64), Name: `/supabase_${kind}_kopplas`, Created: "2026-10-20T10:01:00Z", State: { Running: true },
-    Config: { Labels: { "com.supabase.cli.project": "kopplas" } }, NetworkSettings: { Networks: { project: { NetworkID: "c".repeat(64) } },
+    Config: { Labels: { "com.supabase.cli.project": "kopplas" }, Env: [`POSTGRES_PASSWORD=${setupPassword}`] }, NetworkSettings: { Networks: { project: { NetworkID: "c".repeat(64) } },
       Ports: { [kind === "db" ? "5432/tcp" : "8000/tcp"]: [{ HostIp: "127.0.0.1", HostPort: kind === "db" ? "54322" : "54321" }] } } });
   return { db: container("db"), gateway: container("kong"), checkoutTime: Date.parse("2026-10-20T10:00:00Z"), now: Date.parse("2026-10-20T10:02:00Z"),
     status: { ...status, ANON_KEY: jwt("anon"), SERVICE_ROLE_KEY: jwt("service_role") } };

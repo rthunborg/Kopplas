@@ -20,7 +20,7 @@ const ROOT = resolve(fileURLToPath(new URL("../..", import.meta.url)));
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/;
 class RuntimeFailure extends Error {}
 const fail = (code) => { throw new RuntimeFailure(code); };
-const DIAGNOSTIC_STAGES = new Set(["admission", "qualification", "port-check", "database-client", "database-connect", "privacy-preflight", "migration-ledger", "feed-functions",
+const DIAGNOSTIC_STAGES = new Set(["admission", "qualification", "port-check", "database-client", "database-connect", "setup-authority", "privacy-preflight", "migration-ledger", "feed-functions",
   "key-id", "entropy", "telemetry", "transaction-begin", "key-collision", "key-create", "transaction-commit", "runtime",
   "child-cleanup", "transaction-rollback", "key-cleanup", "database-close"]);
 const SQLSTATE_CATEGORIES = new Map([
@@ -57,8 +57,11 @@ from required r join pg_settings s on s.name=r.name
 join pg_roles a on a.rolname=session_user join pg_roles b on b.rolname=current_user
 order by s.name`;
 
-/** No native setting values or role names leave this fixed read-only query. */
-async function readPrivacyPreflight(db) {
+/**
+ * No native setting values or role names leave this fixed read-only query.
+ * @returns {Promise<{controls:{name:string,context:string,matchesRequired:boolean,canSet:boolean}[],principal:Record<string,boolean>}>}
+ */
+export async function readCalendarFeedPrivacyPreflight(db) {
   const { rows } = await db.query(PRIVACY_PREFLIGHT_SQL);
   const keys = ["name", "context", "matches_required", "can_set", ...PRINCIPAL_FACTS];
   const seen = new Set();
@@ -77,10 +80,35 @@ async function readPrivacyPreflight(db) {
   return { controls: rows.map(row => ({ name: row.name, context: row.context, matchesRequired: row.matches_required, canSet: row.can_set })), principal };
 }
 
-/** Construction only; startup cannot inherit ambient PGOPTIONS. */
-export function createCalendarFeedDatabaseClient(status) {
-  return new pg.Client({ connectionString: status.DB_URL, connectionTimeoutMillis: 5_000, query_timeout: 10_000, statement_timeout: 8_000,
-    options: "-c log_parameter_max_length_on_error=0" });
+/** Actual authenticated setup authority; never substitute SET ROLE or BYPASSRLS. */
+export async function readCalendarFeedSetupAuthority(db) {
+  const { rows } = await db.query(`select session_user='supabase_admin' as session_is_setup_admin,
+    current_user='supabase_admin' as current_is_setup_admin,session_user=current_user as same_identity,
+    a.rolcanlogin as session_login,b.rolcanlogin as current_login,
+    a.rolsuper as session_superuser,b.rolsuper as current_superuser
+    from pg_roles a join pg_roles b on b.rolname=current_user where a.rolname=session_user`);
+  const keys = ["session_is_setup_admin", "current_is_setup_admin", "same_identity", "session_login", "current_login", "session_superuser", "current_superuser"];
+  if (!Array.isArray(rows) || rows.length !== 1 || !rows[0] || Object.keys(rows[0]).length !== keys.length
+    || !keys.every(key => Object.hasOwn(rows[0], key) && rows[0][key] === true)) fail("setup-authority-refused");
+  return Object.fromEntries(keys.map(key => [key, true]));
+}
+
+/** Fixed setup call sites only; this is not a process sandbox or a pool. */
+export function createCalendarFeedDatabaseClient(stack, purpose = "runtime") {
+  validateStackIdentity(stack);
+  if (!["runtime", "proof", "absence"].includes(purpose)) fail("setup-purpose-refused");
+  const entries = stack.db.Config.Env;
+  if (!Array.isArray(entries) || !entries.every(value => typeof value === "string")) fail("setup-credential-refused");
+  const candidates = entries.filter(value => value.startsWith("POSTGRES_PASSWORD="));
+  if (candidates.length !== 1) fail("setup-credential-refused");
+  const password = candidates[0].slice("POSTGRES_PASSWORD=".length);
+  if (!password || password.includes("\0")) fail("setup-credential-refused");
+  const proof = purpose !== "runtime";
+  return new pg.Client({ host: "127.0.0.1", port: 54322, database: "postgres", user: "supabase_admin", password, ssl: false,
+    connectionTimeoutMillis: 5_000, query_timeout: proof ? 7_000 : 10_000, statement_timeout: proof ? 5_000 : 8_000,
+    ...(proof ? { lock_timeout: 2_000 } : {}),
+    options: "-c log_statement=none -c log_min_error_statement=panic -c log_parameter_max_length=0 -c log_parameter_max_length_on_error=0"
+      + (purpose === "absence" ? " -c default_transaction_read_only=on" : "") });
 }
 
 /** Pure prerequisite validation: CI flags alone do not qualify a machine. */
@@ -320,11 +348,12 @@ function defaultDependencies(env, cwd) {
       const checkoutTime = (await stat(gitPath)).birthtimeMs;
       const containers = JSON.parse(await capture("docker", ["inspect", "supabase_db_kopplas", "supabase_kong_kopplas"]));
       const status = JSON.parse(await capture("supabase", ["status", "--output", "json"]));
-      validateStackIdentity({ db: containers[0], gateway: containers[1], checkoutTime, now: Date.now(), status });
+      const stack = { db: containers[0], gateway: containers[1], checkoutTime, now: Date.now(), status };
+      validateStackIdentity(stack);
       const entries = await readdir(join(cwd, "supabase", "migrations"));
       const migrations = entries.filter(name => /^\d{14}_.+\.sql$/.test(name)).sort().map(name => ({ version: name.slice(0, 14), name: name.slice(15, -4) }));
       if (!migrations.some(row => row.name === "personal_calendar_feed") || new Set(migrations.map(row => row.version)).size !== migrations.length) fail("migration-source-refused");
-      return { status, migrations };
+      return { status, migrations, stack };
     },
     portFree: assertPortFree,
     connect: createCalendarFeedDatabaseClient,
@@ -344,6 +373,7 @@ export async function runCalendarFeedRuntime({ mode, env = process.env, platform
     childExitCodes: /** @type {(number|null)[]} */ ([]), keyDeleted: false, dbClosed: false,
     failures: /** @type {string[]} */ ([]),
     diagnostics: /** @type {{stage:string, category:string, sqlState:string|null}[]} */ ([]),
+    setupAuthority: /** @type {null | Record<string,boolean>} */ (null),
     privacyPreflight: /** @type {null | {controls:{name:string,context:string,matchesRequired:boolean,canSet:boolean}[],principal:Record<string,boolean>}} */ (null),
     keyOutcome: /** @type {"not-attempted" | "rollback-confirmed" | "deleted-confirmed" | "unverified"} */ ("not-attempted"),
     custody: /** @type {null | {owner:string, job:string|undefined, vaultUuid:string|null, ownedName:string|null, expiry:string, nextAction:string, resumeCondition:string}} */ (null) };
@@ -375,17 +405,19 @@ export async function runCalendarFeedRuntime({ mode, env = process.env, platform
     validateAdmission(mode, env, platform);
     unregister = deps.registerSignal(() => abort.abort()); // Before any resource mutation.
     stage = "qualification";
-    const { status, migrations } = await deps.qualify(); checkSignal();
+    const { status, migrations, stack } = await deps.qualify(); checkSignal();
     stage = "port-check";
     await deps.portFree(mode === "db" ? 3195 : 3100); checkSignal();
     stage = "database-client";
-    db = deps.connect(status);
+    db = deps.connect(stack);
     // Consume asynchronous connection errors without logging driver internals.
     db.on?.("error", () => abort.abort());
     stage = "database-connect";
     await db.connect(); checkSignal();
+    stage = "setup-authority";
+    receipt.setupAuthority = await readCalendarFeedSetupAuthority(db); checkSignal();
     stage = "privacy-preflight";
-    receipt.privacyPreflight = await readPrivacyPreflight(db);
+    receipt.privacyPreflight = await readCalendarFeedPrivacyPreflight(db);
     if (!receipt.privacyPreflight.controls.every(control => control.matchesRequired)) fail("privacy-preflight-refused");
     checkSignal();
     stage = "migration-ledger";

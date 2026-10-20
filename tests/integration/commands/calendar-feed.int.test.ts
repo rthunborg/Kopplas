@@ -277,7 +277,6 @@ describe("15.5 authenticated lifecycle, atomic audit and commit-order", () => {
   test("[P0] 15.5-INT015 AC4 AC9 native PG17 restricted creator executes the exact owner bootstrap and SET ownership", async context => {
     // This case has its own disposable direct connections: an unverified session
     // is closed, never returned to an application/test pool. No resource startup.
-    const { Client } = await import("pg");
     const { randomUUID } = await import("node:crypto");
     const { readFile, readdir, realpath, stat } = await import("node:fs/promises");
     const { join } = await import("node:path");
@@ -285,7 +284,8 @@ describe("15.5 authenticated lifecycle, atomic audit and commit-order", () => {
     const { execFile } = await import("node:child_process");
     const { promisify } = await import("node:util");
     const { assertLocalStack, LOCAL_SUPABASE_DB_URL } = await import("../../support/test-env");
-    const { validateAdmission, validateStackIdentity, FEED_FUNCTIONS } = await import("../../../scripts/ci/with-calendar-feed-runtime.mjs");
+    const { validateAdmission, validateStackIdentity, FEED_FUNCTIONS, createCalendarFeedDatabaseClient,
+      readCalendarFeedSetupAuthority, readCalendarFeedPrivacyPreflight } = await import("../../../scripts/ci/with-calendar-feed-runtime.mjs");
     const suffix = randomUUID().replaceAll("-", "");
     const migrator = `cf_m_${suffix}`, owner = `cf_o_${suffix}`, schema = `cf_s_${suffix}`, fn = `cf_f_${suffix}`;
     const root = fileURLToPath(new URL("../../../", import.meta.url));
@@ -293,17 +293,24 @@ describe("15.5 authenticated lifecycle, atomic audit and commit-order", () => {
     let stage = "qualification", connected = false, original: string | undefined, transportFailed = false, cleaning = false;
     const primaryDeadline = Date.now() + 80_000;
     let nativeVersion: { serverVersion: string; serverVersionNum: number } | undefined;
+    let stack: Parameters<typeof createCalendarFeedDatabaseClient>[0] | undefined;
+    let client: ReturnType<typeof createCalendarFeedDatabaseClient> | undefined;
     function directClient(readOnly = false) {
-      try { return new Client({ connectionString: LOCAL_SUPABASE_DB_URL, connectionTimeoutMillis: 5_000,
-        query_timeout: 7_000, statement_timeout: 5_000, lock_timeout: 2_000,
-        ...(readOnly ? { options: "-c default_transaction_read_only=on" } : {}) }); }
+      try {
+        if (!stack) throw new Error("Qualified setup unavailable");
+        return createCalendarFeedDatabaseClient(stack, readOnly ? "absence" : "proof");
+      }
       catch { throw new Error("PG17 proof connection configuration refused; details redacted"); }
     }
-    const client = directClient();
-    client.on("error", () => { transportFailed = true; });
+    async function setupQualified(connection: ReturnType<typeof createCalendarFeedDatabaseClient>) {
+      await readCalendarFeedSetupAuthority(connection);
+      const privacy = await readCalendarFeedPrivacyPreflight(connection);
+      if (!privacy.controls.every(control => control.matchesRequired)) throw new Error("PG17 setup privacy refused");
+    }
     const pending = new Set<Promise<unknown>>();
     async function sql<Row extends import("pg").QueryResultRow = import("pg").QueryResultRow>(text: string, values: unknown[] = []) {
       if (!cleaning && Date.now() > primaryDeadline) throw new Error("PG17 proof primary deadline exceeded");
+      if (!client) throw new Error("PG17 proof client unavailable");
       const request = client.query<Row>(text, values); pending.add(request);
       try { return await request; } finally { pending.delete(request); }
     }
@@ -319,6 +326,8 @@ describe("15.5 authenticated lifecycle, atomic audit and commit-order", () => {
       const { rows: [identity] } = await sql<{ session: string; current: string; super: boolean }>(
         "select session_user::text session,current_user::text current,r.rolsuper super from pg_roles r where r.rolname=current_user");
       if (!original || identity.session !== original || identity.current !== original || !identity.super) throw new Error("Original isolated identity not restored");
+      if (!client) throw new Error("PG17 proof original client unavailable");
+      await setupQualified(client);
     }
     function redacted(error: unknown, label: string): Error {
       return error instanceof AggregateError ? new AggregateError(error.errors.map(item => redacted(item, label)), label) : new Error(label);
@@ -337,7 +346,7 @@ describe("15.5 authenticated lifecycle, atomic audit and commit-order", () => {
       expect(observed?.code).toBe(code);
       if (message !== undefined) expect(observed?.message).toBe(message);
     }
-    async function absent(connection: InstanceType<typeof Client>) {
+    async function absent(connection: ReturnType<typeof createCalendarFeedDatabaseClient>) {
       // Both same and fresh connections observe committed catalogs read-only.
       const errors: Error[] = []; let opened = false;
       try {
@@ -365,7 +374,8 @@ describe("15.5 authenticated lifecycle, atomic audit and commit-order", () => {
         { cwd: root, shell: false, timeout: 15_000, maxBuffer: 2_000_000 })).stdout);
       const status = JSON.parse((await capture("supabase", ["status", "--output", "json"],
         { cwd: root, shell: false, timeout: 15_000, maxBuffer: 2_000_000 })).stdout);
-      validateStackIdentity({ db: containers[0], gateway: containers[1], checkoutTime: git.birthtimeMs, now: Date.now(), status });
+      stack = { db: containers[0], gateway: containers[1], checkoutTime: git.birthtimeMs, now: Date.now(), status };
+      validateStackIdentity(stack);
       expect(status.DB_URL === LOCAL_SUPABASE_DB_URL).toBe(true);
       const migrations = (await readdir(join(root, "supabase/migrations"))).filter(name => /^\d{14}_.+\.sql$/.test(name)).sort()
         .map(name => ({ version: name.slice(0, 14), name: name.slice(15, -4) }));
@@ -374,7 +384,11 @@ describe("15.5 authenticated lifecycle, atomic audit and commit-order", () => {
       if (!leading || source.split(leading).length !== 2 || !source.slice(source.indexOf(leading) + leading.length).trimStart().startsWith("grant usage,create on schema public")) throw new Error("Unique leading source bootstrap unavailable");
       const bootstrap = leading.replace(/\bcalendar_feed_owner\b/g, owner).replace(/\bpostgres\b/g, migrator);
       if (bootstrap.replaceAll(owner, "calendar_feed_owner").replaceAll(migrator, "postgres") !== leading) throw new Error("Non-reversible source bootstrap substitution");
+      client = directClient(); client.on("error", () => { transportFailed = true; });
+      stage = "setup-connect";
       await client.connect(); connected = true;
+      stage = "setup-authority-privacy";
+      await setupQualified(client);
       const { rows: [identity] } = await sql<{ session: string; current: string; super: boolean; session_super: boolean; server_version: string; server_version_num: string }>(
         "select session_user::text session,current_user::text current,r.rolsuper super,s.rolsuper session_super,current_setting('server_version') server_version,current_setting('server_version_num') server_version_num from pg_roles r join pg_roles s on s.rolname=session_user where r.rolname=current_user");
       original = identity.session;
@@ -461,7 +475,7 @@ describe("15.5 authenticated lifecycle, atomic audit and commit-order", () => {
     // FULL rollback comes first even after an unexpected aborted transaction.
     // Reset inside an aborted transaction would fail and cannot qualify cleanup.
     for (const result of await Promise.allSettled([...pending])) if (result.status === "rejected") failures.push(new Error("Pending PG17 proof query failed"));
-    if (connected) {
+    if (connected && client) {
       let rolledBack = false;
       try { await sql("rollback"); rolledBack = true; } catch { failures.push(new Error("PG17 proof full rollback failed")); }
       if (rolledBack) {
@@ -471,16 +485,16 @@ describe("15.5 authenticated lifecycle, atomic audit and commit-order", () => {
         try { await absent(client); } catch (error) { failures.push(redacted(error, "PG17 proof same-connection absence unverified")); }
       }
     }
-    try { await client.end(); } catch { failures.push(new Error("PG17 proof direct connection close failed")); }
+    if (client) try { await client.end(); } catch { failures.push(new Error("PG17 proof direct connection close failed")); }
     if (transportFailed) failures.push(new Error("PG17 proof direct connection transport failed"));
     // Fresh connection independently observes committed catalogs; no unverified
     // connection is ever pooled or left with a modified session authorization.
     if (connected) {
-      let fresh: InstanceType<typeof Client> | undefined;
+      let fresh: ReturnType<typeof createCalendarFeedDatabaseClient> | undefined;
       let freshTransportFailed = false;
       try {
         fresh = directClient(true); fresh.on("error", () => { freshTransportFailed = true; });
-        await fresh.connect(); await absent(fresh);
+        await fresh.connect(); await setupQualified(fresh); await absent(fresh);
       } catch (error) { failures.push(redacted(error, "PG17 proof fresh read-only absence unverified")); }
       if (fresh) try { await fresh.end(); } catch { failures.push(new Error("PG17 proof fresh connection close failed")); }
       if (freshTransportFailed) failures.push(new Error("PG17 proof fresh connection transport failed"));
