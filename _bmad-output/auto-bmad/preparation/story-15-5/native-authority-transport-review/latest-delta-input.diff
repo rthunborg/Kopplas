@@ -1,0 +1,2526 @@
+POST-CAP EXACT COMMITTED AUTHORITY TRANSPORT DELTA ONLY; not a fourth broad review.
+Source 4562cfd0031b32b6921f668cd953384b64116973, baseline c7570096435dfbae2f6a535be46e61daaf9e28dc; only five admitted existing paths.
+Fifth native run39468849461 remainsFAIL: postgres session=current, superfalse/bypassRLStrue,3privacy mismatches, no key/child; verify3102/Python43/build/recovery1 separatePASS.65feature bodies unexecuted.
+Review admitted sole same-fresh-qualified-source POSTGRES_PASSWORD memory use, fixed SupAdmin/publication, no guesses/default/fallback/alternate/retry/privilege repair; actual original session=current SupAdminLOGIN+SUPER and exact4sameclient privacy BEFORE mutation.
+Review INT015 only: original authenticatedSuper and restricted SESSION AUTHORIZATION/session=current/sevenattrs/actualsource/baseline/SET/USAGE/INHERIT/owner/savepoint/fullrollback/same-freshabsence preserved; fresh independently qualifies. No new privileged child config or pool; no sandbox/value-separation claims. Fixedargv/COMMIT/custody/cleanup/redaction/SHA/inverse/drift fences retained.
+33/33boundedNodePASS0skip,tscPASS,lint0errors0warnings,SRO35/kernelPASS; no native credential mapping/auth success or current CI claim. Source/Spec frozen after commit; no post-review metadata mutation proposed.
+
+EXACT FIVE-PATH COMMITTED DELTA:
+diff --git a/_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md b/_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md
+index 1057b3de..2a0b3489 100644
+--- a/_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md
++++ b/_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md
+@@ -634,38 +634,98 @@ there is no fallback, privilege/configuration grant or alternate principal.
+ Fixed argv, workflow inverses, original inverse hash, child ownership, COMMIT
+ uncertainty, exact UUID/name deletion and custody branches remain unchanged.
+ The actual wrapper LF SHA pin is refreshed. Local bounded evidence is 30/30
+ injected/adapter Node tests, zero failures/skips, including four new preflight
+ cases. They cover all four unsafe controls, incomplete/duplicate/unknown/type/
+ context failures, zero secret/launch operations on refusal, same-client ordering,
+ actual installed driver startup configuration, diagnostic-only identity/SET facts,
+ and separate sanitized query/close failures. Full typecheck and focused lint
+ passed with zero lint errors/warnings; receipts accompany the committed review
+ input. No native runtime or resource was
+ started locally; existing application and feature tests are unchanged. Feature
+ inventory remains 95 and separate bootstrap inventory is 30. Distinct High review
+ of the exact committed four-path delta and a new exact-head CI remain pending;
+ no prior native default or success is assumed. Status stays in-review, without
+ delivery, done or release-ready claims.
+ 
++## Isolated authenticated setup transport repair — 2026-10-20
++
++Fifth checkpoint `c7570096435dfbae2f6a535be46e61daaf9e28dc`, run
++`39468849461` attempt 1, remains **failed**. Verify passed 3102 Node cases and
++Python 43/build/containment; the separate recovery case passed. Both wrappers
++actually connected as session=current postgres, with superuser=false and
++BYPASSRLS=true. Three required privacy matches were false, on-error matched,
++and no entropy/key/child followed. A canSet=false observation is not an actual
++SET trial or a general USERSET prohibition. INT015 was still unexecuted and its
++original authenticated-superuser prerequisite cannot be credited from that role.
++All 65 feature runtime bodies remain pending. All five capsules and failed
++packets preserve their historical facts without retroactive reclassification.
++
++Root/Coordinator explicitly admitted the independently High-reviewed proposal's
++credential-use/transport effect in `accepted-native-authority-boundary-allocation.json`.
++The author recorded Sol High routing before edits in
++`author-native-authority-transport-route.json`. The fixed setup constructor
++revalidates the same fresh source stack and accepts only its sole nonempty
++captured POSTGRES_PASSWORD entry, in memory. It fixes the existing local DB
++publication and supabase_admin login, with no guessed/default credential, caller
++admin URL, alternate route, retry, role elevation or permission repair. Existing
++ordinary DB configuration, generic pools and child configuration are unchanged.
++The admin credential mapping/TCP login remains unverified until admitted CI;
++authentication failure must stop, not select another identity.
++
++The original four session-only startup logging controls are restored on this
++setup connection. After authentication, a separate fixed read-only authority
++query requires actual session=current supabase_admin and both LOGIN+SUPER flags;
++the same client's strict four-control privacy proof still precedes UUID/entropy,
++Vault, telemetry and children. Raw credential/role/setting/driver payloads never
++enter receipts. SET ACL and postgres/BYPASSRLS facts remain diagnostic; this
++explicit setup authority gate is distinct from those observations. No persistent
++GUC, grant, existing role, provider, workflow or migration changes are introduced.
++
++Only existing INT015 changes its original and fresh client construction to that
++qualified route. Actual original-superuser/native-PG17 proof stays mandatory.
++Restricted SESSION AUTHORIZATION and immediately asserted session=current owned
++migrator, seven attributes, native baseline, fresh/replay bootstrap, SET/USAGE/
++INHERIT, owner operations, savepoint/full rollback and same/fresh absence remain.
++Reset and fresh read-only connections independently qualify identity/privacy.
++UUID-schema CREATE does not substitute for real public-schema prerequisites.
++Primary and cleanup failures stay visible; no unverified connection is pooled.
++Wrapper COMMIT uncertainty, exact UUID/name cleanup, child settlement and custody
++are unchanged. Exports constrain call sites; this Docker-enabled isolated job is
++not a process sandbox. No new privileged child field/DSN is added; no physical
++credential separation is claimed if existing principals reuse a password value.
++
++The wrapper's actual LF SHA pin is refreshed. Local bounded wrapper evidence is
++33/33 Node cases, zero failures/skips: real unconnected pg startup/purpose/timeouts,
++ambient-input exclusion, strict source credential/identity negatives, zero
++secret/launch on refusal, ordinary child configuration and existing privacy/
++COMMIT/cleanup/argv/drift fences. Full typecheck and focused four-file lint passed
++with zero lint errors/warnings; all 35 stops in the single refreshed author trail
++resolve. Receipts accompany the exact committed review input. Existing feature case
++inventory remains 95; bootstrap33 is separate. No native runtime or resource was
++started locally. Distinct High exact-committed latest-delta review and new
++exact-head CI remain pending. Status stays in-review, no delivery/DONE/release
++claim, and the intent kernel is unchanged.
++
+ ## Suggested Review Order
+ 
+ Author: Story 15.5 implementation/fix author (gpt-6.1-sol High), incorporating
+ explicitly delegated browser and bootstrap contributors. Refreshed after all
+ Round 3 latest-fix assertions, the subsequent checkpoint repairs and bounded
+-native setup diagnostics and same-connection privacy qualification.
++native setup diagnostics, same-connection privacy qualification and explicit
++isolated setup authority transport.
+ Stops below resolve to final source literals before the repair commit.
+ 
+ ### Own settings and honest lifecycle results
+ 
+ The two personal entry points reach one settings surface; the profile entry uses
+ server-filtered navigation. Confirmations and component-memory issuance retain
+ explicit uncertainty handling, while later authoritative status removes stale URLs.
+ 
+ - `src/components/app-shell/AppShell.tsx:279` — `navigation.some`: gates the profile link on scheduling access.
+ - `src/components/calendar-feed/CalendarSubscription.tsx:34` — `const current = await refresh();`: clears superseded post-commit output and success.
+ - `tests/e2e/calendar-feed.e2e.spec.ts:370` — `15.5-E2E-010-`: AC2/6 actual supersession clears rendered controls and notice; execution pending.
+ - `tests/e2e/calendar-feed.e2e.spec.ts:432` — `15.5-E2E-011`: AC2/6 current-revision control retains issuance; execution pending.
+ 
+ ### Signed current-self authority and atomic writes
+ 
+ Ordinary JWT commands derive self authority; SQL rechecks current exact membership
+@@ -687,66 +747,76 @@ fractional rounding produce a subscription snapshot without scheduling METHOD.
+ 
+ - `middleware.ts:40` — `request.nextUrl.pathname`: bypasses only the exact feed token segment.
+ - `supabase/migrations/20261020220000_personal_calendar_feed.sql:236` — `'updatedAt',greatest`: covers mutable booking, role, job, customer and facility revisions.
+ - `src/features/calendar-feed/icalendar.ts:40` — `export function encodeCalendarFeed`: serializes complete snapshots before streaming.
+ - `tests/unit/features/calendar-feed/icalendar.test.ts:76` — `R1-05 positive`: AC3/8 independent positive fractional and boundary vectors passed.
+ 
+ ### Durable abuse admission and hardened restore ownership
+ 
+ Independent budgets keep admitted counters through projection cancellation without
+ advancing last-use. Serial fixtures restore only their captured unknown-IP row;
+ source creator ADMIN is distinct from SET authority, while unchanged recovery
+ keeps SupAdmin-only NOADMIN. Retained unsafe roles fail closed.
+ 
+ - `supabase/migrations/20261020220000_personal_calendar_feed.sql:247` — `exception when sqlstate '57014'`: keeps projection failure inside the counter transaction.
+ - `tests/integration/calendar-feed/public-feed.int.test.ts:364` — `15.5-API018`: AC5/8 durable token/IP and last-use assertions; execution pending.
+ - `supabase/migrations/20261020220000_personal_calendar_feed.sql:27` — `pg_has_role(current_user,feed_owner.oid,'SET')`: qualifies source ownership authority independently of creator ADMIN.
+-- `tests/integration/commands/calendar-feed.int.test.ts:420` — `memberships.every(row => row.inherit_option === false)`: AC4/9 fresh/replay inherited-owner privileges denied; native execution pending.
++- `tests/integration/commands/calendar-feed.int.test.ts:434` — `memberships.every(row => row.inherit_option === false)`: AC4/9 fresh/replay inherited-owner privileges denied; native execution pending.
+ - `tests/support/calendar-feed-atdd.ts:472` — `has_schema_privilege(oid,'public','CREATE')`: reads actual effective schema privileges including PUBLIC/inherited access.
+ - `tests/integration/rls/calendar-feed.rls.test.ts:171` — `publicSchemaCreate: false`: AC4/9 existing RLS010 requires effective CREATE absence; execution pending.
+ - `tests/integration/ops/recovery-storage-immutability.int.test.ts:131` — `has_schema_privilege('calendar_feed_owner','public','CREATE')`: the existing recovery case checks the restored target before Storage requests; separately qualified native case.
+ 
+ ### Isolated CI custody and honest evidence limits
+ 
+ Only captured child identities and one ephemeral Vault UUID belong to the wrapper.
+ The added PG17 case qualifies that disposable stack and owns transaction-local
+ UUID roles/schema/function through dedicated connections, with no pool reuse.
+ Settlement is memoized; abnormal browser teardown retains exact job custody, while
+ privacy detection measures raw output in memory before sanitized records persist.
+ Before any secret, one fixed read-only query requires exact effective privacy on
+-the same connection later used for key creation and deletion. Identity and SET
+-facts remain observations, so the repair adds no privilege requirement or grant.
+-
+-- `tests/integration/commands/calendar-feed.int.test.ts:461` — `// FULL rollback comes first`: preserves rollback/reset and same/fresh catalog absence proof.
+-- `scripts/ci/with-calendar-feed-runtime.mjs:227` — `export function createOwnedGroupStopper`: memoizes settlement and verifies identity before signaling.
+-- `scripts/ci/with-calendar-feed-runtime.mjs:149` — `export function createTelemetryObserver`: detects leaks before dropping non-allowlisted output.
+-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:470` — `nonzero/null-signal nested browser loss`: requires retained key custody for abnormal completion.
++the same connection later used for key creation and deletion. SET ACL facts
++remain observations. The later admitted setup transport separately requires actual
++authenticated SupAdmin LOGIN+SUPER for key setup and INT015, preserving its
++restricted-session oracle. No new privileged child configuration or grant is added.
++
++- `tests/integration/commands/calendar-feed.int.test.ts:475` — `// FULL rollback comes first`: preserves rollback/reset and same/fresh catalog absence proof.
++- `scripts/ci/with-calendar-feed-runtime.mjs:255` — `export function createOwnedGroupStopper`: memoizes settlement and verifies identity before signaling.
++- `scripts/ci/with-calendar-feed-runtime.mjs:177` — `export function createTelemetryObserver`: detects leaks before dropping non-allowlisted output.
++- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:544` — `nonzero/null-signal nested browser loss`: requires retained key custody for abnormal completion.
+ - `tests/support/calendar-feed-ci-contract.ts:43` — `projectCalendarFeedCiCommands`: validates pinned real wrapper argv and only the two exact workflow inverses.
+-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:25` — `CI command projection rejects`: missing/wrong entry/argv and unrelated-source/workflow negatives preserve the original inverse fence.
++- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:30` — `CI command projection rejects`: missing/wrong entry/argv and unrelated-source/workflow negatives preserve the original inverse fence.
+ - `scripts/ci/with-calendar-feed-runtime.mjs:31` — `function safeDiagnostic`: emits only fixed stages/categories and allowlisted SQLSTATE without native payloads.
+-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:237` — `COMMIT uncertainty is not cleared`: rollback alone cannot establish key absence after attempted COMMIT.
+-- `scripts/ci/with-calendar-feed-runtime.mjs:388` — `receipt.privacyPreflight = await readPrivacyPreflight(db);`: rejects unsafe effective settings before entropy on the existing client.
+-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:131` — `privacy preflight rejects incomplete`: malformed and unsafe settings cannot reach a secret or child; actual driver/same-client/query-close cases exercise the surrounding boundary.
++- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:311` — `COMMIT uncertainty is not cleared`: rollback alone cannot establish key absence after attempted COMMIT.
++- `scripts/ci/with-calendar-feed-runtime.mjs:420` — `receipt.privacyPreflight = await readCalendarFeedPrivacyPreflight(db);`: rejects unsafe effective settings before entropy on the existing client.
++- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:207` — `privacy preflight rejects incomplete`: malformed and unsafe settings cannot reach a secret or child; actual driver/same-client/query-close cases exercise the surrounding boundary.
++- `scripts/ci/with-calendar-feed-runtime.mjs:97` — `export function createCalendarFeedDatabaseClient`: fixes the same qualified source publication, canonical admin and sole captured credential; no default or alternate route.
++- `scripts/ci/with-calendar-feed-runtime.mjs:84` — `export async function readCalendarFeedSetupAuthority`: actual authenticated session/current LOGIN+SUPER proof is mandatory before mutation.
++- `tests/integration/commands/calendar-feed.int.test.ts:497` — `await fresh.connect(); await setupQualified(fresh); await absent(fresh);`: fresh read-only cleanup independently requalifies authority/privacy and proves absence; native execution pending.
++- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:145` — `setup construction refuses missing`: credential/target refusals cannot reach secrets or children; actual identity negatives and child-config tests complete the bounded boundary evidence.
+ 
+ Evidence: the checkpoint repair records 302 executed focused Node cases with zero
+ failures/skips, typecheck/focused lint and the application build. The later c575
+ checkpoint passed 3095 Node units/Python/build but all three native setup paths
+ failed migration compilation; it remains failed. The earlier checkpoint failed
+ eight units and also remains failed, despite 30 feed Node/22 bootstrap passes.
+ The later 1cea checkpoint cleared native migration compilation and passed the one
+ actual isolated recovery case, but failed DB/browser wrapper setup before all
+ 65 feature bodies. The diagnostic working tree passed 26 injected wrapper cases,
+ typecheck and focused lint. The fourth e91b checkpoint passed 3098 Node units and
+ the existing recovery case, but both DB/browser failed startup42501 before
+ key creation. The privacy preflight repair passed 30 bounded wrapper cases,
+ including a real unconnected driver configuration check; it has no native setup
+-or feature evidence. Current separate bootstrap inventory is 30. Other lifecycle
++or feature evidence. The fifth c757 checkpoint passed 3102 Node units and the
++separate recovery case, but its actual ordinary postgres identity and unsafe
++privacy facts correctly refused before key/test execution. Current setup transport
++has 33/33 bounded wrapper cases; no native authentication or feature proof.
++Current separate bootstrap inventory is 33. Other lifecycle
+ dependencies are synthetic;
+ operations-unit recovery assertions are static. The real recovery case has its
+ separate bounded native receipt. Earlier checks retain recorded dependencies.
+ All 51 native Vitest and 14 browser bodies remain pending locally; API001 covers
+ live label revisions, API018 cancellation/counters, RLS008 raw status privacy,
+ and E2E-001 the essential actual production lifecycle. Existing ACL/RLS010,
+-serial cleanup and full regressions also require exact-head CI. All three rounds completed; privacy-preflight latest-delta High review, restricted-executor
++serial cleanup and full regressions also require exact-head CI. All three rounds completed; authority-transport latest-delta High review, actual setup admin authentication, restricted-executor
+ PG17 execution, live feature lifecycle and final exact-head qualification
+ are outstanding. No provider/device/visual/performance or release-ready claim;
+ the unallocated exhaustive branch remains explicitly release-blocking deferred.
+diff --git a/scripts/ci/with-calendar-feed-runtime.mjs b/scripts/ci/with-calendar-feed-runtime.mjs
+index 671d0890..dbcd8177 100644
+--- a/scripts/ci/with-calendar-feed-runtime.mjs
++++ b/scripts/ci/with-calendar-feed-runtime.mjs
+@@ -7,33 +7,33 @@ import { tmpdir } from "node:os";
+ import { resolve, join } from "node:path";
+ import { fileURLToPath } from "node:url";
+ import { createServer, isIP } from "node:net";
+ import pg from "pg";
+ 
+ export const INTEGRATION_ARGS = Object.freeze(["run", "test:int", "--reporter=default", "--reporter=github-actions", "--reporter=json", "--outputFile=test-results/full-integration.json"]);
+ export const BROWSER_ARGS = Object.freeze(["run", "test:smoke"]);
+ export const FEED_FUNCTIONS = Object.freeze([
+   "public.fetch_calendar_feed(text,text,jsonb,text)",
+   "public.manage_calendar_feed(uuid,uuid,uuid,text,integer,uuid,text,uuid,jsonb,text)",
+   "public.read_calendar_feed_status(uuid,uuid)", "public.read_calendar_feed_abuse(uuid)",
+ ]);
+ const ROOT = resolve(fileURLToPath(new URL("../..", import.meta.url)));
+ const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/;
+ class RuntimeFailure extends Error {}
+ const fail = (code) => { throw new RuntimeFailure(code); };
+-const DIAGNOSTIC_STAGES = new Set(["admission", "qualification", "port-check", "database-client", "database-connect", "privacy-preflight", "migration-ledger", "feed-functions",
++const DIAGNOSTIC_STAGES = new Set(["admission", "qualification", "port-check", "database-client", "database-connect", "setup-authority", "privacy-preflight", "migration-ledger", "feed-functions",
+   "key-id", "entropy", "telemetry", "transaction-begin", "key-collision", "key-create", "transaction-commit", "runtime",
+   "child-cleanup", "transaction-rollback", "key-cleanup", "database-close"]);
+ const SQLSTATE_CATEGORIES = new Map([
+   ["42501", "insufficient-privilege"], ["42P01", "undefined-table"], ["42883", "undefined-function"],
+   ["42703", "undefined-column"], ["3F000", "invalid-schema"], ["23505", "unique-conflict"],
+   ["57014", "query-canceled"], ["25P02", "transaction-aborted"], ["08006", "connection-failure"],
+ ]);
+ function safeDiagnostic(stage, error) {
+   // Inspect only an own data descriptor, never native text, getters or causes.
+   let code;
+   try { code = Object.getOwnPropertyDescriptor(error, "code")?.value; } catch { /* Unclassified, with no native details. */ }
+   const known = typeof code === "string" && SQLSTATE_CATEGORIES.has(code);
+   return { stage: DIAGNOSTIC_STAGES.has(stage) ? stage : "runtime",
+     category: known ? SQLSTATE_CATEGORIES.get(code) ?? "unclassified" : error instanceof RuntimeFailure ? "guard-refusal" : "unclassified",
+     sqlState: known ? code : null };
+ }
+@@ -44,56 +44,84 @@ const PRIVACY_CONTROLS = new Map([
+   ["log_parameter_max_length", "superuser"], ["log_parameter_max_length_on_error", "user"],
+ ]);
+ const PRINCIPAL_FACTS = ["session_is_postgres", "current_is_postgres", "same_identity", "session_superuser", "current_superuser", "session_bypass_rls", "current_bypass_rls"];
+ const PRIVACY_PREFLIGHT_SQL = `with required(name,value) as (values
+   ('log_statement','none'),('log_min_error_statement','panic'),
+   ('log_parameter_max_length','0'),('log_parameter_max_length_on_error','0'))
+ select s.name,s.context,current_setting(s.name)=r.value as matches_required,
+   has_parameter_privilege(current_user,s.name,'SET') as can_set,
+   session_user='postgres' as session_is_postgres,current_user='postgres' as current_is_postgres,
+   session_user=current_user as same_identity,
+   a.rolsuper as session_superuser,b.rolsuper as current_superuser,
+   a.rolbypassrls as session_bypass_rls,b.rolbypassrls as current_bypass_rls
+ from required r join pg_settings s on s.name=r.name
+ join pg_roles a on a.rolname=session_user join pg_roles b on b.rolname=current_user
+ order by s.name`;
+ 
+-/** No native setting values or role names leave this fixed read-only query. */
+-async function readPrivacyPreflight(db) {
++/**
++ * No native setting values or role names leave this fixed read-only query.
++ * @returns {Promise<{controls:{name:string,context:string,matchesRequired:boolean,canSet:boolean}[],principal:Record<string,boolean>}>}
++ */
++export async function readCalendarFeedPrivacyPreflight(db) {
+   const { rows } = await db.query(PRIVACY_PREFLIGHT_SQL);
+   const keys = ["name", "context", "matches_required", "can_set", ...PRINCIPAL_FACTS];
+   const seen = new Set();
+   if (!Array.isArray(rows) || rows.length !== PRIVACY_CONTROLS.size) fail("privacy-preflight-refused");
+   for (const row of rows) {
+     if (!row || Object.keys(row).length !== keys.length || !keys.every(key => Object.hasOwn(row, key))
+       || typeof row.name !== "string" || !PRIVACY_CONTROLS.has(row.name) || seen.has(row.name)
+       || row.context !== PRIVACY_CONTROLS.get(row.name)
+       || !["matches_required", "can_set", ...PRINCIPAL_FACTS].every(key => typeof row[key] === "boolean")) fail("privacy-preflight-refused");
+     seen.add(row.name);
+   }
+   // Identity/SET authority is observed only: effective privacy, not an inferred
+   // superuser or permission grant, is the continuation condition.
+   const principal = Object.fromEntries(PRINCIPAL_FACTS.map(key => [key, rows[0][key]]));
+   if (rows.some(row => PRINCIPAL_FACTS.some(key => row[key] !== principal[key]))) fail("privacy-preflight-refused");
+   return { controls: rows.map(row => ({ name: row.name, context: row.context, matchesRequired: row.matches_required, canSet: row.can_set })), principal };
+ }
+ 
+-/** Construction only; startup cannot inherit ambient PGOPTIONS. */
+-export function createCalendarFeedDatabaseClient(status) {
+-  return new pg.Client({ connectionString: status.DB_URL, connectionTimeoutMillis: 5_000, query_timeout: 10_000, statement_timeout: 8_000,
+-    options: "-c log_parameter_max_length_on_error=0" });
++/** Actual authenticated setup authority; never substitute SET ROLE or BYPASSRLS. */
++export async function readCalendarFeedSetupAuthority(db) {
++  const { rows } = await db.query(`select session_user='supabase_admin' as session_is_setup_admin,
++    current_user='supabase_admin' as current_is_setup_admin,session_user=current_user as same_identity,
++    a.rolcanlogin as session_login,b.rolcanlogin as current_login,
++    a.rolsuper as session_superuser,b.rolsuper as current_superuser
++    from pg_roles a join pg_roles b on b.rolname=current_user where a.rolname=session_user`);
++  const keys = ["session_is_setup_admin", "current_is_setup_admin", "same_identity", "session_login", "current_login", "session_superuser", "current_superuser"];
++  if (!Array.isArray(rows) || rows.length !== 1 || !rows[0] || Object.keys(rows[0]).length !== keys.length
++    || !keys.every(key => Object.hasOwn(rows[0], key) && rows[0][key] === true)) fail("setup-authority-refused");
++  return Object.fromEntries(keys.map(key => [key, true]));
++}
++
++/** Fixed setup call sites only; this is not a process sandbox or a pool. */
++export function createCalendarFeedDatabaseClient(stack, purpose = "runtime") {
++  validateStackIdentity(stack);
++  if (!["runtime", "proof", "absence"].includes(purpose)) fail("setup-purpose-refused");
++  const entries = stack.db.Config.Env;
++  if (!Array.isArray(entries) || !entries.every(value => typeof value === "string")) fail("setup-credential-refused");
++  const candidates = entries.filter(value => value.startsWith("POSTGRES_PASSWORD="));
++  if (candidates.length !== 1) fail("setup-credential-refused");
++  const password = candidates[0].slice("POSTGRES_PASSWORD=".length);
++  if (!password || password.includes("\0")) fail("setup-credential-refused");
++  const proof = purpose !== "runtime";
++  return new pg.Client({ host: "127.0.0.1", port: 54322, database: "postgres", user: "supabase_admin", password, ssl: false,
++    connectionTimeoutMillis: 5_000, query_timeout: proof ? 7_000 : 10_000, statement_timeout: proof ? 5_000 : 8_000,
++    ...(proof ? { lock_timeout: 2_000 } : {}),
++    options: "-c log_statement=none -c log_min_error_statement=panic -c log_parameter_max_length=0 -c log_parameter_max_length_on_error=0"
++      + (purpose === "absence" ? " -c default_transaction_read_only=on" : "") });
+ }
+ 
+ /** Pure prerequisite validation: CI flags alone do not qualify a machine. */
+ export function validateAdmission(mode, env, platform) {
+   if (!["db", "browser"].includes(mode)) fail("mode-refused");
+   if (platform !== "linux" || env.CI !== "true" || env.GITHUB_ACTIONS !== "true" || env.RUNNER_ENVIRONMENT !== "github-hosted"
+     || !/^\d+$/.test(env.GITHUB_RUN_ID ?? "") || !/^\d+$/.test(env.GITHUB_RUN_ATTEMPT ?? "")
+     || !/^[a-zA-Z0-9_-]+$/.test(env.GITHUB_JOB ?? "")
+     || env.CALENDAR_FEED_CI_DISPOSABLE_STACK !== `${env.GITHUB_RUN_ID}:${env.GITHUB_RUN_ATTEMPT}:${env.GITHUB_JOB}`
+     || env.VERCEL || env.VERCEL_ENV || env.CALENDAR_FEED_VERIFIED_VERCEL_IP) fail("ci-admission-refused");
+   for (const [key, expected] of [["SUPABASE_TEST_URL", "http://127.0.0.1:54321"], ["SUPABASE_TEST_DB_URL", "postgresql://postgres:postgres@127.0.0.1:54322/postgres"],
+     ["NEXT_PUBLIC_SUPABASE_URL", "http://127.0.0.1:54321"]]) {
+     if (env[key] && env[key] !== expected) fail("endpoint-refused");
+   }
+   if (env.E2E_PORT && env.E2E_PORT !== "3100") fail("port-refused");
+ }
+@@ -307,98 +335,102 @@ function launchOwned(command, args, env, cwd, observe) {
+ function defaultDependencies(env, cwd) {
+   const exec = promisify(execFile);
+   const capture = async (command, args) => {
+     try { return (await exec(command, args, { cwd, env, timeout: 15_000, maxBuffer: 2_000_000 })).stdout; }
+     catch { fail("qualification-command-failed"); }
+   };
+   return {
+     now: Date.now, sleep: delay, uuid: randomUUID, entropy: randomBytes,
+     registerSignal(handler) { process.on("SIGINT", handler); process.on("SIGTERM", handler); return () => { process.off("SIGINT", handler); process.off("SIGTERM", handler); }; },
+     async qualify() {
+       if (await realpath(cwd) !== await realpath(env.GITHUB_WORKSPACE ?? "")) fail("checkout-path-refused");
+       const gitPath = join(cwd, ".git");
+       if (!(await stat(gitPath)).isDirectory()) fail("checkout-identity-refused");
+       const checkoutTime = (await stat(gitPath)).birthtimeMs;
+       const containers = JSON.parse(await capture("docker", ["inspect", "supabase_db_kopplas", "supabase_kong_kopplas"]));
+       const status = JSON.parse(await capture("supabase", ["status", "--output", "json"]));
+-      validateStackIdentity({ db: containers[0], gateway: containers[1], checkoutTime, now: Date.now(), status });
++      const stack = { db: containers[0], gateway: containers[1], checkoutTime, now: Date.now(), status };
++      validateStackIdentity(stack);
+       const entries = await readdir(join(cwd, "supabase", "migrations"));
+       const migrations = entries.filter(name => /^\d{14}_.+\.sql$/.test(name)).sort().map(name => ({ version: name.slice(0, 14), name: name.slice(15, -4) }));
+       if (!migrations.some(row => row.name === "personal_calendar_feed") || new Set(migrations.map(row => row.version)).size !== migrations.length) fail("migration-source-refused");
+-      return { status, migrations };
++      return { status, migrations, stack };
+     },
+     portFree: assertPortFree,
+     connect: createCalendarFeedDatabaseClient,
+     async createTelemetry() { const folder = await mkdtemp(join(tmpdir(), "kopplas-feed-ci-")); const path = join(folder, "responses.jsonl"); await writeFile(path, "", { mode: 0o600 }); return { path, persist: line => appendFile(path, line, { mode: 0o600 }) }; },
+     launch: (command, args, childEnv, observe) => launchOwned(command, args, childEnv, cwd, observe),
+     ready: (url, child, signal) => waitForOwnedHttp({ url, child, signal }),
+   };
+ }
+ 
+ /**
+  * Injected seams permit lifecycle tests without any process/DB/resource launch.
+  * @param {{mode?: string, env?: NodeJS.ProcessEnv, platform?: NodeJS.Platform, cwd?: string}} options
+  * @param {object} injected
+  */
+ export async function runCalendarFeedRuntime({ mode, env = process.env, platform = process.platform, cwd = ROOT } = {}, injected = {}) {
+   const receipt = { event: "calendar_feed.ci_lifecycle", mode: ["db", "browser"].includes(mode) ? mode : "refused", ready: false,
+     childExitCodes: /** @type {(number|null)[]} */ ([]), keyDeleted: false, dbClosed: false,
+     failures: /** @type {string[]} */ ([]),
+     diagnostics: /** @type {{stage:string, category:string, sqlState:string|null}[]} */ ([]),
++    setupAuthority: /** @type {null | Record<string,boolean>} */ (null),
+     privacyPreflight: /** @type {null | {controls:{name:string,context:string,matchesRequired:boolean,canSet:boolean}[],principal:Record<string,boolean>}} */ (null),
+     keyOutcome: /** @type {"not-attempted" | "rollback-confirmed" | "deleted-confirmed" | "unverified"} */ ("not-attempted"),
+     custody: /** @type {null | {owner:string, job:string|undefined, vaultUuid:string|null, ownedName:string|null, expiry:string, nextAction:string, resumeCondition:string}} */ (null) };
+   const children = new Set();
+   let db, keyUuid, ownedName, transactionOpen = false, createUncertain = false, browserTeardownUnverified = false;
+   let stage = "admission", createAttempted = false, commitAttempted = false, rollbackConfirmed = false;
+   const abort = new AbortController();
+   const deps = { ...defaultDependencies(env, cwd), ...injected };
+   let unregister = () => undefined;
+   const checkSignal = () => { if (abort.signal.aborted) fail("interrupted"); };
+   const launch = (command, args, childEnv, observer) => { checkSignal(); const handle = deps.launch(command, [...args], childEnv, observer); children.add(handle); return handle; };
+   const run = async (command, args, childEnv, observer, timeout) => {
+     const handle = launch(command, args, childEnv, observer);
+     let result;
+     try { result = await bounded(handle.done, timeout, "child-timeout", abort.signal); }
+     catch (error) { if (mode === "browser") browserTeardownUnverified = true; throw error; }
+     receipt.childExitCodes.push(result.code);
+     if (result.code !== 0 || result.signal) {
+       // pnpm can map a killed nested Playwright runner to nonzero/null signal.
+       // That is never independent proof of its detached server's teardown.
+       if (mode === "browser") browserTeardownUnverified = true;
+       fail("child-failed");
+     }
+     const stopped = await handle.stop();
+     if (mode === "browser" && (stopped?.forced || stopped?.signal)) { browserTeardownUnverified = true; fail("browser-server-teardown-unverified"); }
+     children.delete(handle); // Proven settlement cannot be signalled again later.
+   };
+   try {
+     validateAdmission(mode, env, platform);
+     unregister = deps.registerSignal(() => abort.abort()); // Before any resource mutation.
+     stage = "qualification";
+-    const { status, migrations } = await deps.qualify(); checkSignal();
++    const { status, migrations, stack } = await deps.qualify(); checkSignal();
+     stage = "port-check";
+     await deps.portFree(mode === "db" ? 3195 : 3100); checkSignal();
+     stage = "database-client";
+-    db = deps.connect(status);
++    db = deps.connect(stack);
+     // Consume asynchronous connection errors without logging driver internals.
+     db.on?.("error", () => abort.abort());
+     stage = "database-connect";
+     await db.connect(); checkSignal();
++    stage = "setup-authority";
++    receipt.setupAuthority = await readCalendarFeedSetupAuthority(db); checkSignal();
+     stage = "privacy-preflight";
+-    receipt.privacyPreflight = await readPrivacyPreflight(db);
++    receipt.privacyPreflight = await readCalendarFeedPrivacyPreflight(db);
+     if (!receipt.privacyPreflight.controls.every(control => control.matchesRequired)) fail("privacy-preflight-refused");
+     checkSignal();
+     stage = "migration-ledger";
+     const ledger = await db.query("select version,name from supabase_migrations.schema_migrations order by version");
+     if (JSON.stringify(ledger.rows.map(row => ({ version: String(row.version), name: row.name }))) !== JSON.stringify(migrations)) fail("migration-ledger-refused");
+     stage = "feed-functions";
+     const functions = await db.query("select p.oid::regprocedure::text as identity, pg_get_userbyid(p.proowner) as owner, p.prosecdef as definer from pg_proc p where p.oid=any(array[" + FEED_FUNCTIONS.map((_, i) => `to_regprocedure($${i + 1})`).join(",") + "])", FEED_FUNCTIONS);
+     if (functions.rows.length !== FEED_FUNCTIONS.length || functions.rows.some(row => row.owner !== "calendar_feed_owner" || row.definer !== true)) fail("feed-functions-refused");
+     checkSignal();
+     stage = "key-id";
+     const keySuffix = deps.uuid();
+     if (!UUID.test(keySuffix)) fail("key-id-refused");
+     const keyId = `ci_${keySuffix}`;
+     ownedName = `calendar_feed_attestation_${keyId}`;
+     stage = "entropy";
+     const secret = Buffer.from(deps.entropy(32)).toString("base64url");
+diff --git a/tests/integration/commands/calendar-feed.int.test.ts b/tests/integration/commands/calendar-feed.int.test.ts
+index 9d638f3c..178491d5 100644
+--- a/tests/integration/commands/calendar-feed.int.test.ts
++++ b/tests/integration/commands/calendar-feed.int.test.ts
+@@ -264,130 +264,144 @@ describe("15.5 authenticated lifecycle, atomic audit and commit-order", () => {
+       expect(await fx.status("own")).toMatchObject({ lastUsedAt: null, usageCount: 0 });
+       await fx.serial.withDatabaseTime("2026-10-20T12:07:00Z", async () => {
+         expect((await fx.trustedFetch(url, "192.0.2.16")).status).toBe(200);
+         expect(await fx.status("own")).toMatchObject({ lastUsedAt: "2026-10-20T12:07:00.000Z", usageCount: 1 });
+       });
+       const status = await fx.status("own"), physical = await fx.physical();
+       expect(physical.tokens.find(row => row.revokedAt === null)?.lastUsedAt).toBe(status.lastUsedAt);
+       expect(JSON.stringify(status.publicDto)).not.toContain(tokenFromUrl(url));
+       expect(JSON.stringify(status.publicDto)).not.toContain(physical.tokens[0].hash);
+     });
+   });
+ 
+ 
+   test("[P0] 15.5-INT015 AC4 AC9 native PG17 restricted creator executes the exact owner bootstrap and SET ownership", async context => {
+     // This case has its own disposable direct connections: an unverified session
+     // is closed, never returned to an application/test pool. No resource startup.
+-    const { Client } = await import("pg");
+     const { randomUUID } = await import("node:crypto");
+     const { readFile, readdir, realpath, stat } = await import("node:fs/promises");
+     const { join } = await import("node:path");
+     const { fileURLToPath } = await import("node:url");
+     const { execFile } = await import("node:child_process");
+     const { promisify } = await import("node:util");
+     const { assertLocalStack, LOCAL_SUPABASE_DB_URL } = await import("../../support/test-env");
+-    const { validateAdmission, validateStackIdentity, FEED_FUNCTIONS } = await import("../../../scripts/ci/with-calendar-feed-runtime.mjs");
++    const { validateAdmission, validateStackIdentity, FEED_FUNCTIONS, createCalendarFeedDatabaseClient,
++      readCalendarFeedSetupAuthority, readCalendarFeedPrivacyPreflight } = await import("../../../scripts/ci/with-calendar-feed-runtime.mjs");
+     const suffix = randomUUID().replaceAll("-", "");
+     const migrator = `cf_m_${suffix}`, owner = `cf_o_${suffix}`, schema = `cf_s_${suffix}`, fn = `cf_f_${suffix}`;
+     const root = fileURLToPath(new URL("../../../", import.meta.url));
+     const failures: Error[] = [];
+     let stage = "qualification", connected = false, original: string | undefined, transportFailed = false, cleaning = false;
+     const primaryDeadline = Date.now() + 80_000;
+     let nativeVersion: { serverVersion: string; serverVersionNum: number } | undefined;
++    let stack: Parameters<typeof createCalendarFeedDatabaseClient>[0] | undefined;
++    let client: ReturnType<typeof createCalendarFeedDatabaseClient> | undefined;
+     function directClient(readOnly = false) {
+-      try { return new Client({ connectionString: LOCAL_SUPABASE_DB_URL, connectionTimeoutMillis: 5_000,
+-        query_timeout: 7_000, statement_timeout: 5_000, lock_timeout: 2_000,
+-        ...(readOnly ? { options: "-c default_transaction_read_only=on" } : {}) }); }
++      try {
++        if (!stack) throw new Error("Qualified setup unavailable");
++        return createCalendarFeedDatabaseClient(stack, readOnly ? "absence" : "proof");
++      }
+       catch { throw new Error("PG17 proof connection configuration refused; details redacted"); }
+     }
+-    const client = directClient();
+-    client.on("error", () => { transportFailed = true; });
++    async function setupQualified(connection: ReturnType<typeof createCalendarFeedDatabaseClient>) {
++      await readCalendarFeedSetupAuthority(connection);
++      const privacy = await readCalendarFeedPrivacyPreflight(connection);
++      if (!privacy.controls.every(control => control.matchesRequired)) throw new Error("PG17 setup privacy refused");
++    }
+     const pending = new Set<Promise<unknown>>();
+     async function sql<Row extends import("pg").QueryResultRow = import("pg").QueryResultRow>(text: string, values: unknown[] = []) {
+       if (!cleaning && Date.now() > primaryDeadline) throw new Error("PG17 proof primary deadline exceeded");
++      if (!client) throw new Error("PG17 proof client unavailable");
+       const request = client.query<Row>(text, values); pending.add(request);
+       try { return await request; } finally { pending.delete(request); }
+     }
+     // Every credited source/SET/ownership operation follows this immediate check.
+     async function restricted() {
+       const { rows: [identity] } = await sql<{ session: string; current: string; rolcanlogin: boolean; rolinherit: boolean; rolsuper: boolean;
+         rolcreatedb: boolean; rolcreaterole: boolean; rolreplication: boolean; rolbypassrls: boolean; self_grant: string }>(
+         "select session_user::text session,current_user::text current,r.rolcanlogin,r.rolinherit,r.rolsuper,r.rolcreatedb,r.rolcreaterole,r.rolreplication,r.rolbypassrls,current_setting('createrole_self_grant') self_grant from pg_roles r where r.rolname=current_user");
+       expect(identity).toMatchObject({ session: migrator, current: migrator, rolcanlogin: false, rolinherit: false,
+         rolsuper: false, rolcreatedb: false, rolcreaterole: true, rolreplication: false, rolbypassrls: false, self_grant: "" });
+     }
+     async function originalIdentity() {
+       const { rows: [identity] } = await sql<{ session: string; current: string; super: boolean }>(
+         "select session_user::text session,current_user::text current,r.rolsuper super from pg_roles r where r.rolname=current_user");
+       if (!original || identity.session !== original || identity.current !== original || !identity.super) throw new Error("Original isolated identity not restored");
++      if (!client) throw new Error("PG17 proof original client unavailable");
++      await setupQualified(client);
+     }
+     function redacted(error: unknown, label: string): Error {
+       return error instanceof AggregateError ? new AggregateError(error.errors.map(item => redacted(item, label)), label) : new Error(label);
+     }
+     async function expectedFailure(name: string, operation: () => Promise<unknown>, code: string, message?: string) {
+       await sql(`savepoint ${name}`);
+       let observed: { code?: string; message?: string } | undefined;
+       try { await operation(); } catch (error) { observed = error as typeof observed; }
+       const cleanup: Error[] = []; let restored = false;
+       try { await sql(`rollback to savepoint ${name}`); restored = true; }
+       catch { cleanup.push(new Error("Expected-error savepoint rollback failed")); }
+       if (restored) try { await sql(`release savepoint ${name}`); }
+       catch { cleanup.push(new Error("Expected-error savepoint release failed")); }
+       if (cleanup.length) throw new AggregateError([...(observed ? [new Error("Guard operation outcome retained; details redacted")] : []), ...cleanup], "Expected-error primary and cleanup failures");
+       // Always restore the savepoint before making assertions after an error.
+       expect(observed?.code).toBe(code);
+       if (message !== undefined) expect(observed?.message).toBe(message);
+     }
+-    async function absent(connection: InstanceType<typeof Client>) {
++    async function absent(connection: ReturnType<typeof createCalendarFeedDatabaseClient>) {
+       // Both same and fresh connections observe committed catalogs read-only.
+       const errors: Error[] = []; let opened = false;
+       try {
+         await connection.query("begin read only"); opened = true;
+         const { rows: [counts] } = await connection.query<{ roles: number; schemas: number; functions: number }>(
+           "select (select count(*)::integer from pg_roles where rolname=any($1::text[])) roles,(select count(*)::integer from pg_namespace where nspname=$2) schemas,(select count(*)::integer from pg_proc where proname=$3) functions", [[migrator, owner], schema, fn]);
+         expect(counts).toEqual({ roles: 0, schemas: 0, functions: 0 });
+       } catch { errors.push(new Error("Owned catalog absence not proven")); }
+       if (opened) try { await connection.query("rollback"); }
+       catch { errors.push(new Error("Read-only catalog transaction rollback failed")); }
+       if (errors.length) throw new AggregateError(errors, "Catalog proof and cleanup outcomes retained");
+     }
+     try {
+       assertLocalStack();
+       validateAdmission("db", process.env, process.platform);
+       expect(process.env.SUPABASE_TEST_REQUIRED).toBe("1");
+       const endpoint = new URL(LOCAL_SUPABASE_DB_URL);
+       expect(["127.0.0.1", "localhost", "[::1]"].includes(endpoint.hostname)).toBe(true);
+       expect(await realpath(root)).toBe(await realpath(process.env.GITHUB_WORKSPACE ?? ""));
+       const git = await stat(join(root, ".git")); expect(git.isDirectory()).toBe(true);
+       // Fixed read-only commands reuse the existing wrapper's actual admission.
+       // Captured Docker/status JSON and errors remain in memory, never in evidence.
+       const capture = promisify(execFile);
+       const containers = JSON.parse((await capture("docker", ["inspect", "supabase_db_kopplas", "supabase_kong_kopplas"],
+         { cwd: root, shell: false, timeout: 15_000, maxBuffer: 2_000_000 })).stdout);
+       const status = JSON.parse((await capture("supabase", ["status", "--output", "json"],
+         { cwd: root, shell: false, timeout: 15_000, maxBuffer: 2_000_000 })).stdout);
+-      validateStackIdentity({ db: containers[0], gateway: containers[1], checkoutTime: git.birthtimeMs, now: Date.now(), status });
++      stack = { db: containers[0], gateway: containers[1], checkoutTime: git.birthtimeMs, now: Date.now(), status };
++      validateStackIdentity(stack);
+       expect(status.DB_URL === LOCAL_SUPABASE_DB_URL).toBe(true);
+       const migrations = (await readdir(join(root, "supabase/migrations"))).filter(name => /^\d{14}_.+\.sql$/.test(name)).sort()
+         .map(name => ({ version: name.slice(0, 14), name: name.slice(15, -4) }));
+       const source = await readFile(join(root, "supabase/migrations/20261020220000_personal_calendar_feed.sql"), "utf8");
+       const leading = /^-- Story[^\n]*\r?\n(do \$\$[\s\S]*?\r?\n\$\$;)/.exec(source)?.[1];
+       if (!leading || source.split(leading).length !== 2 || !source.slice(source.indexOf(leading) + leading.length).trimStart().startsWith("grant usage,create on schema public")) throw new Error("Unique leading source bootstrap unavailable");
+       const bootstrap = leading.replace(/\bcalendar_feed_owner\b/g, owner).replace(/\bpostgres\b/g, migrator);
+       if (bootstrap.replaceAll(owner, "calendar_feed_owner").replaceAll(migrator, "postgres") !== leading) throw new Error("Non-reversible source bootstrap substitution");
++      client = directClient(); client.on("error", () => { transportFailed = true; });
++      stage = "setup-connect";
+       await client.connect(); connected = true;
++      stage = "setup-authority-privacy";
++      await setupQualified(client);
+       const { rows: [identity] } = await sql<{ session: string; current: string; super: boolean; session_super: boolean; server_version: string; server_version_num: string }>(
+         "select session_user::text session,current_user::text current,r.rolsuper super,s.rolsuper session_super,current_setting('server_version') server_version,current_setting('server_version_num') server_version_num from pg_roles r join pg_roles s on s.rolname=session_user where r.rolname=current_user");
+       original = identity.session;
+       if (identity.current !== original || !identity.super || !identity.session_super || Math.floor(Number(identity.server_version_num) / 10000) !== 17) throw new Error("Isolated native PG17 superuser qualification failed");
+       nativeVersion = { serverVersion: identity.server_version, serverVersionNum: Number(identity.server_version_num) };
+       const { rows: ledger } = await sql("select version,name from supabase_migrations.schema_migrations order by version");
+       expect(JSON.stringify(ledger.map(row => ({ version: String(row.version), name: row.name }))) === JSON.stringify(migrations)).toBe(true);
+       const { rows: functions } = await sql("select p.oid::regprocedure::text identity,pg_get_userbyid(p.proowner) owner,p.prosecdef definer from pg_proc p where p.oid=any(array[" + FEED_FUNCTIONS.map((_: string, i: number) => `to_regprocedure($${i + 1})`).join(",") + "])", [...FEED_FUNCTIONS]);
+       expect(functions.length).toBe(FEED_FUNCTIONS.length);
+       expect(functions.every(row => row.owner === "calendar_feed_owner" && row.definer === true)).toBe(true);
+       await absent(client);
+       await context.annotate(JSON.stringify({ ...nativeVersion, isolatedStackQualified: true }), "calendar-feed-pg17-observed");
+       stage = "transaction-setup";
+       await sql("begin");
+       await sql(`create role ${migrator} nologin noinherit nosuperuser nocreatedb createrole noreplication nobypassrls`);
+       await sql(`create schema ${schema} authorization ${migrator}`);
+@@ -448,45 +462,45 @@ describe("15.5 authenticated lifecycle, atomic audit and commit-order", () => {
+       await expectedFailure("unsafe_membership", async () => {
+         await sql("reset session authorization"); await sql("reset role"); await originalIdentity();
+         // Setup affects only the two owned roles. Remove forward grants and
+         // their dependent self-grants before adding the inverse: no engine-cycle
+         // refusal can stand in for the exact source guard's exception.
+         await sql(`revoke ${owner} from ${migrator} cascade`);
+         await sql(`grant ${migrator} to ${owner} with admin false`);
+         await sql(`set local session authorization ${migrator}`);
+         await restricted(); await sql(bootstrap);
+       }, "P0001", `${owner} has unexpected membership`);
+       await restricted(); await assertOwner();
+     } catch (error) { failures.push(redacted(error, `PG17 owner proof failed at ${stage}; details redacted`)); }
+     cleaning = true;
+     // FULL rollback comes first even after an unexpected aborted transaction.
+     // Reset inside an aborted transaction would fail and cannot qualify cleanup.
+     for (const result of await Promise.allSettled([...pending])) if (result.status === "rejected") failures.push(new Error("Pending PG17 proof query failed"));
+-    if (connected) {
++    if (connected && client) {
+       let rolledBack = false;
+       try { await sql("rollback"); rolledBack = true; } catch { failures.push(new Error("PG17 proof full rollback failed")); }
+       if (rolledBack) {
+         try { await sql("reset session authorization"); } catch { failures.push(new Error("PG17 proof session identity reset failed")); }
+         try { await sql("reset role"); } catch { failures.push(new Error("PG17 proof role reset failed")); }
+         try { await originalIdentity(); } catch { failures.push(new Error("PG17 proof original identity unverified")); }
+         try { await absent(client); } catch (error) { failures.push(redacted(error, "PG17 proof same-connection absence unverified")); }
+       }
+     }
+-    try { await client.end(); } catch { failures.push(new Error("PG17 proof direct connection close failed")); }
++    if (client) try { await client.end(); } catch { failures.push(new Error("PG17 proof direct connection close failed")); }
+     if (transportFailed) failures.push(new Error("PG17 proof direct connection transport failed"));
+     // Fresh connection independently observes committed catalogs; no unverified
+     // connection is ever pooled or left with a modified session authorization.
+     if (connected) {
+-      let fresh: InstanceType<typeof Client> | undefined;
++      let fresh: ReturnType<typeof createCalendarFeedDatabaseClient> | undefined;
+       let freshTransportFailed = false;
+       try {
+         fresh = directClient(true); fresh.on("error", () => { freshTransportFailed = true; });
+-        await fresh.connect(); await absent(fresh);
++        await fresh.connect(); await setupQualified(fresh); await absent(fresh);
+       } catch (error) { failures.push(redacted(error, "PG17 proof fresh read-only absence unverified")); }
+       if (fresh) try { await fresh.end(); } catch { failures.push(new Error("PG17 proof fresh connection close failed")); }
+       if (freshTransportFailed) failures.push(new Error("PG17 proof fresh connection transport failed"));
+     }
+     if (failures.length) throw new AggregateError(failures, "PG17 owner proof/cleanup failed; sensitive details redacted");
+     await context.annotate(JSON.stringify({ ...nativeVersion, restrictedFreshReplay: true, engineAdmin: true, engineSet: false,
+       restrictedSetAndOwnership: true, unsafeAttributeAndMembershipGuards: true, sameAndFreshAbsent: true }), "calendar-feed-pg17-qualified");
+   }, 180_000);
+ });
+diff --git a/tests/support/calendar-feed-ci-contract.ts b/tests/support/calendar-feed-ci-contract.ts
+index f206f3c7..ee8c690c 100644
+--- a/tests/support/calendar-feed-ci-contract.ts
++++ b/tests/support/calendar-feed-ci-contract.ts
+@@ -1,22 +1,22 @@
+ import assert from "node:assert/strict";
+ import { createHash } from "node:crypto";
+ import { readFileSync } from "node:fs";
+ 
+ const wrapperPath = new URL("../../scripts/ci/with-calendar-feed-runtime.mjs", import.meta.url);
+-const wrapperSha256 = "b8eb57816e3c35ac1331cac1de56864ba82b34a99d31c7f6d315efcd440d47ef";
++const wrapperSha256 = "be71fbb20f5f1cdfe0cc210340790b78e0759d0daa778ed3014995dd0bff4de7";
+ const integrationArgs = ["run", "test:int", "--reporter=default", "--reporter=github-actions", "--reporter=json", "--outputFile=test-results/full-integration.json"];
+ const browserArgs = ["run", "test:smoke"];
+ const stackBinding = "          CALENDAR_FEED_CI_DISPOSABLE_STACK: ${{ github.run_id }}:${{ github.run_attempt }}:${{ github.job }}";
+ const dbEntry = [
+   "      - name: Integration, RLS, and Epic 11 pilot performance gates (local stack)",
+   "        env:",
+   "          # This opt-in alone is insufficient: the wrapper also proves this",
+   "          # hosted job's fresh Docker identities, publications and current ledger.",
+   stackBinding,
+   "        run: |",
+   "          node scripts/ci/with-calendar-feed-runtime.mjs db",
+   "          pnpm run test:pilot-performance",
+ ].join("\n") + "\n";
+ const browserEntry = [
+   "      - name: Essential authentication smoke (production app and local Auth)",
+   "        if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.release_validation) }}",
+diff --git a/tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts b/tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts
+index e25329e6..47438cd6 100644
+--- a/tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts
++++ b/tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts
+@@ -4,36 +4,41 @@ import { createHash } from "node:crypto";
+ import { readFileSync } from "node:fs";
+ import { projectCalendarFeedCiCommands } from "../../../support/calendar-feed-ci-contract";
+ import { INTEGRATION_ARGS, BROWSER_ARGS, FEED_FUNCTIONS, validateAdmission, validateStackIdentity, createCalendarFeedDatabaseClient, createTelemetryObserver, hasSensitiveOutput, createOwnedGroupStopper, ownsListenerRecord, waitForOwnedHttp, runCalendarFeedRuntime } from "../../../../scripts/ci/with-calendar-feed-runtime.mjs";
+ 
+ const env = {
+   NODE_ENV: "test" as const,
+   CI: "true", GITHUB_ACTIONS: "true", RUNNER_ENVIRONMENT: "github-hosted", GITHUB_RUN_ID: "123", GITHUB_RUN_ATTEMPT: "1", GITHUB_JOB: "db",
+   CALENDAR_FEED_CI_DISPOSABLE_STACK: "123:1:db",
+ };
+ const keyId = "f8c9b152-1e88-471a-82fa-d45a80394e40";
+ const keyUuid = "905a0de8-b110-4f89-9096-010db4c6ef12";
+ const status = { API_URL: "http://127.0.0.1:54321", DB_URL: "postgresql://postgres:postgres@127.0.0.1:54322/postgres", ANON_KEY: "test-anon", SERVICE_ROLE_KEY: "test-service" };
+ const migrations = [{ version: "20261020220000", name: "personal_calendar_feed" }];
+ function privacyRows(): Record<string, unknown>[] {
+   return ["log_statement", "log_min_error_statement", "log_parameter_max_length", "log_parameter_max_length_on_error"].map(name => ({
+     name, context: name === "log_parameter_max_length_on_error" ? "user" : "superuser", matches_required: true, can_set: false,
+-    session_is_postgres: true, current_is_postgres: true, same_identity: true,
+-    session_superuser: false, current_superuser: false, session_bypass_rls: false, current_bypass_rls: false,
++    session_is_postgres: false, current_is_postgres: false, same_identity: true,
++    session_superuser: true, current_superuser: true, session_bypass_rls: true, current_bypass_rls: true,
+   }));
+ }
++function authorityRow(): Record<string, unknown> {
++  return { session_is_setup_admin: true, current_is_setup_admin: true, same_identity: true,
++    session_login: true, current_login: true, session_superuser: true, current_superuser: true };
++}
++const setupPassword = "PRIVATE fixture existing container credential";
+ 
+ test("CI command projection rejects entry and argv drift and cannot erase unrelated workflow or wrapper changes", () => {
+   const workflow = readFileSync(new URL("../../../../.github/workflows/ci.yml", import.meta.url), "utf8").replaceAll("\r\n", "\n");
+   const wrapper = readFileSync(new URL("../../../../scripts/ci/with-calendar-feed-runtime.mjs", import.meta.url), "utf8").replaceAll("\r\n", "\n");
+   const projected = projectCalendarFeedCiCommands(workflow, wrapper);
+   assert.ok(projected.includes("pnpm run test:int --reporter=default --reporter=github-actions --reporter=json --outputFile=test-results/full-integration.json"));
+   assert.ok(projected.includes("run: pnpm run test:smoke"));
+   for (const [before, after] of [
+     ["node scripts/ci/with-calendar-feed-runtime.mjs db", "pnpm run test:int"],
+     ["node scripts/ci/with-calendar-feed-runtime.mjs db", "node scripts/ci/with-calendar-feed-runtime.mjs browser"],
+     ["node scripts/ci/with-calendar-feed-runtime.mjs browser", "pnpm run test:smoke"],
+     ["node scripts/ci/with-calendar-feed-runtime.mjs browser", "node scripts/ci/with-calendar-feed-runtime.mjs browser --grep feed"],
+     ["      - name: Essential authentication smoke (production app and local Auth)", "      - name: Changed smoke gate"],
+   ]) {
+     assert.ok(workflow.includes(before));
+     assert.throws(() => projectCalendarFeedCiCommands(workflow.replace(before, after), wrapper), /exact workflow entry/);
+@@ -59,85 +64,156 @@ test("CI command projection rejects entry and argv drift and cannot erase unrela
+   assert.ok(unrelated.startsWith("# unrelated workflow drift\n"));
+   assert.notEqual(inverseHash(unrelated), originalHash);
+ });
+ type Query = { sql: string; params?: unknown[] };
+ function harness(options: {
+   query?: (call: Query) => { rows: Record<string, unknown>[] } | undefined;
+   failChild?: number; failStops?: boolean; occupied?: boolean; readinessFailure?: boolean; signalAtCreate?: boolean; closeFailure?: boolean;
+   forcedStop?: boolean;
+   connectFailure?: unknown;
+ } = {}) {
+   const events: string[] = [];
+   const queries: Query[] = [];
+   const launches: { command: string; args: string[]; childEnv: Record<string, string> }[] = [];
+   let signal: () => void = () => undefined;
+   const deps = {
+     registerSignal(handler: () => void) { events.push("signals-registered"); signal = handler; return () => events.push("signals-unregistered"); },
+-    async qualify() { events.push("qualified"); return { status, migrations }; },
++    async qualify() { events.push("qualified"); return { status, migrations, stack: identity() }; },
+     async portFree() { events.push("port-checked"); if (options.occupied) throw new Error("fixture occupied"); },
+     connect() {
+       events.push("client-created");
+       return {
+         async connect() { events.push("connected"); if (options.connectFailure !== undefined) throw options.connectFailure; },
+         async query(sql: string, params?: unknown[]) {
+           events.push(sql.startsWith("select vault.create_secret") ? "create" : sql.startsWith("delete") ? "delete" : sql);
+           const call = { sql, params }; queries.push(call);
+           const override = options.query?.(call); if (override) return override;
++          if (sql.startsWith("select session_user='supabase_admin'")) return { rows: [authorityRow()] };
+           if (sql.startsWith("with required(name,value)")) return { rows: privacyRows() };
+           if (sql.includes("schema_migrations")) return { rows: migrations };
+           if (sql.includes("from pg_proc")) return { rows: FEED_FUNCTIONS.map(() => ({ owner: "calendar_feed_owner", definer: true })) };
+           if (sql.startsWith("select vault.create_secret")) { if (options.signalAtCreate) signal(); return { rows: [{ id: keyUuid }] }; }
+           if (sql.startsWith("delete")) return { rows: [{ id: keyUuid }] };
+           return { rows: [] };
+         },
+         async end() { events.push("db-closed"); if (options.closeFailure) throw new Error("fixture close"); },
+       };
+     },
+     uuid: () => { events.push("key-id"); return keyId; }, entropy: () => { events.push("entropy"); return Buffer.alloc(32, 7); },
+     async createTelemetry() { return { path: "/private/allowlisted.jsonl", persist: async () => undefined }; },
+     launch(command: string, args: string[], childEnv: Record<string, string>) {
+       const index = launches.length;
+       launches.push({ command, args, childEnv }); events.push(`launch:${index}`);
+       const isServer = args.includes("start");
+       let finish: (result: { code: number; signal: null }) => void = () => undefined;
+       const done = isServer ? new Promise<{ code: number; signal: null }>(resolve => { finish = resolve; }) : Promise.resolve({ code: options.failChild === index ? 17 : 0, signal: null });
+       return { done, async stop() { events.push(`settled:${index}`); finish({ code: 0, signal: null }); if (options.failStops) throw new Error("fixture custody"); return { forced: options.forcedStop ?? false, signal: null }; } };
+     },
+     async ready() { events.push("ready"); if (options.readinessFailure) throw new Error("fixture readiness"); },
+   };
+   return { deps, events, queries, launches, signal: () => signal() };
+ }
+ async function runFixture(mode: string, h = harness()) {
+   const result = await runCalendarFeedRuntime({ mode, env, platform: "linux" }, h.deps);
+   return { ...h, ...result };
+ }
+ 
+-test("real pg client startup uses only explicit USERSET privacy option instead of ambient PGOPTIONS", async () => {
+-  const previous = process.env.PGOPTIONS;
+-  process.env.PGOPTIONS = "PRIVATE untrusted ambient options";
++test("real pg setup client fixes captured credential principal publication and all four privacy startup controls", async () => {
++  const previous = Object.fromEntries(["PGOPTIONS", "PGUSER", "PGPASSWORD", "PGHOST", "PGPORT", "PGDATABASE", "PGSSLMODE"].map(key => [key, process.env[key]]));
++  for (const key of Object.keys(previous)) process.env[key] = "PRIVATE untrusted ambient choice";
+   try {
+-    const client = createCalendarFeedDatabaseClient(status);
+-    // pg8.22 exposes these installed internals, omitted from its public types.
+-    const installed = client as unknown as { getStartupConf(): { options: string; statement_timeout: string };
+-      connectionParameters: { query_timeout: number } };
+-    assert.equal(installed.getStartupConf().options, "-c log_parameter_max_length_on_error=0");
+-    assert.equal(installed.getStartupConf().statement_timeout, "8000");
+-    assert.equal(installed.connectionParameters.query_timeout, 10_000);
+-    await client.end(); // Construction/end only: never connect or launch a service.
++    for (const purpose of ["runtime", "proof", "absence"]) {
++      const client = createCalendarFeedDatabaseClient(identity(), purpose);
++      // pg8.22 exposes these installed internals, omitted from its public types.
++      const installed = client as unknown as { getStartupConf(): { options: string; statement_timeout: string; user: string; database: string; lock_timeout?: string };
++        connectionParameters: { query_timeout: number; password: string; host: string; port: number; ssl: boolean } };
++      const startup = installed.getStartupConf(), config = installed.connectionParameters;
++      assert.equal(startup.options, "-c log_statement=none -c log_min_error_statement=panic -c log_parameter_max_length=0 -c log_parameter_max_length_on_error=0"
++        + (purpose === "absence" ? " -c default_transaction_read_only=on" : ""));
++      assert.equal(startup.user, "supabase_admin"); assert.equal(startup.database, "postgres");
++      assert.equal(config.host, "127.0.0.1"); assert.equal(config.port, 54322); assert.equal(config.ssl, false);
++      assert.ok(config.password === setupPassword); // No credential value in assertion diagnostics.
++      assert.equal(startup.statement_timeout, purpose === "runtime" ? "8000" : "5000");
++      assert.equal(config.query_timeout, purpose === "runtime" ? 10_000 : 7_000);
++      if (purpose !== "runtime") assert.equal(startup.lock_timeout, "2000");
++      await client.end(); // Construction/end only: never connect or launch a service.
++    }
+   } finally {
+-    if (previous === undefined) delete process.env.PGOPTIONS; else process.env.PGOPTIONS = previous;
++    for (const [key, value] of Object.entries(previous)) { if (value === undefined) delete process.env[key]; else process.env[key] = value; }
++  }
++});
++
++test("setup construction refuses missing duplicate malformed or foreign source credentials without guesses or fallback", async () => {
++  const changes = [
++    (v: ReturnType<typeof identity>) => { v.db.Config.Env = []; },
++    (v: ReturnType<typeof identity>) => { v.db.Config.Env = ["POSTGRES_PASSWORD="]; },
++    (v: ReturnType<typeof identity>) => { v.db.Config.Env.push(`POSTGRES_PASSWORD=${setupPassword}`); },
++    (v: ReturnType<typeof identity>) => { v.db.Config.Env = ["PGPASSWORD=PRIVATE wrong source"]; },
++    (v: ReturnType<typeof identity>) => { v.db.Config.Env = ["POSTGRES_PASSWORD=PRIVATE\0invalid"]; },
++    (v: ReturnType<typeof identity>) => { (v.db.Config as { Env: unknown }).Env = [null]; },
++    (v: ReturnType<typeof identity>) => { (v.db.Config as { Env: unknown }).Env = undefined; },
++    (v: ReturnType<typeof identity>) => { v.db.Name = "/supabase_db_foreign"; },
++    (v: ReturnType<typeof identity>) => { v.status.DB_URL = "postgresql://PRIVATE.invalid/foreign"; },
++    (v: ReturnType<typeof identity>) => { v.db.Created = "2026-10-19T10:00:00Z"; },
++  ];
++  for (const change of changes) {
++    const stack = identity(); change(stack);
++    const h = harness();
++    const result = await runCalendarFeedRuntime({ mode: "db", env, platform: "linux" }, { ...h.deps,
++      qualify: async () => ({ status, migrations, stack }), connect: createCalendarFeedDatabaseClient });
++    assert.equal(result.exitCode, 1); assert.equal(result.receipt.keyOutcome, "not-attempted");
++    assert.equal(h.launches.length, 0); assert.ok(!h.events.includes("entropy") && !h.events.includes("key-id"));
++    assert.equal(h.queries.length, 0); assert.equal(result.receipt.setupAuthority, null);
++    assert.equal(result.receipt.diagnostics[0].stage, "database-client");
++    assert.ok(!JSON.stringify(result.receipt).includes("PRIVATE"));
++  }
++  assert.throws(() => createCalendarFeedDatabaseClient(identity(), "alternate"), /setup-purpose-refused/);
++});
++
++test("actual setup authority rejects every false missing malformed duplicate or unexpected identity before secrets", async () => {
++  const malformed = [
++    [] as Record<string, unknown>[], [authorityRow(), authorityRow()],
++    ...Object.keys(authorityRow()).map(key => [{ ...authorityRow(), [key]: false }]),
++    ...Object.keys(authorityRow()).map(key => [{ ...authorityRow(), [key]: "true" }]),
++    [{ ...authorityRow(), raw_identity: "PRIVATE unknown role" }],
++    (() => { const row = authorityRow(); delete row.session_superuser; return [row]; })(),
++  ];
++  for (const rows of malformed) {
++    const result = await runFixture("db", harness({ query(call) {
++      return call.sql.startsWith("select session_user='supabase_admin'") ? { rows } : undefined;
++    } }));
++    assert.equal(result.exitCode, 1); assert.deepEqual(result.receipt.failures, ["setup-authority-refused"]);
++    assert.equal(result.receipt.diagnostics[0].stage, "setup-authority");
++    assert.equal(result.receipt.keyOutcome, "not-attempted"); assert.equal(result.receipt.dbClosed, true);
++    assert.equal(result.receipt.privacyPreflight, null); assert.equal(result.launches.length, 0);
++    assert.ok(!result.events.includes("entropy") && !result.events.includes("key-id"));
++    assert.equal(result.queries.length, 1); assert.ok(!JSON.stringify(result.receipt).includes("PRIVATE"));
++  }
++});
++
++test("setup credentials never add privileged configuration to application or test children", async () => {
++  for (const mode of ["db", "browser"]) {
++    const result = await runFixture(mode);
++    assert.equal(result.exitCode, 0);
++    for (const child of result.launches) {
++      assert.equal(child.childEnv.SUPABASE_TEST_DB_URL, status.DB_URL);
++      assert.ok(!Object.values(child.childEnv).some(value => value === setupPassword));
++      assert.ok(!Object.keys(child.childEnv).some(key => /(?:SETUP|ADMIN_DB|POSTGRES_PASSWORD)/.test(key)));
++      assert.ok(!Object.values(child.childEnv).some(value => typeof value === "string" && value.includes("supabase_admin")));
++    }
++    assert.ok(!JSON.stringify(result.receipt).includes(setupPassword));
+   }
+ });
+ 
+ test("privacy preflight rejects incomplete unknown duplicate malformed contexts and unsafe controls before any secret", async () => {
+   const malformed: ((rows: Record<string, unknown>[]) => unknown)[] = [
+     () => null, rows => rows.slice(1), rows => [...rows, rows[0]],
+     rows => { rows[1] = { ...rows[0] }; return rows; },
+     rows => { rows[0].name = "PRIVATE unknown control"; return rows; },
+     rows => { rows[0].context = "user"; return rows; },
+     rows => { rows[3].context = "superuser"; return rows; },
+     rows => { rows[0].matches_required = "true"; return rows; },
+     rows => { rows[0].can_set = 1; return rows; },
+     rows => { rows[0].session_superuser = null; return rows; },
+     rows => { delete rows[0].can_set; return rows; },
+     rows => { rows[0].raw_value = "PRIVATE native payload"; return rows; },
+     rows => { rows[0].same_identity = false; return rows; },
+@@ -145,76 +221,74 @@ test("privacy preflight rejects incomplete unknown duplicate malformed contexts
+   ];
+   for (const mutate of malformed) {
+     const result = await runFixture("db", harness({ query(call) {
+       if (call.sql.startsWith("with required(name,value)")) return { rows: mutate(privacyRows()) as Record<string, unknown>[] };
+       return undefined;
+     } }));
+     assert.equal(result.exitCode, 1); assert.deepEqual(result.receipt.failures, ["privacy-preflight-refused"]);
+     assert.deepEqual(result.receipt.diagnostics, [{ stage: "privacy-preflight", category: "guard-refusal", sqlState: null }]);
+     assert.equal(result.receipt.keyOutcome, "not-attempted"); assert.equal(result.receipt.dbClosed, true);
+     assert.equal(result.launches.length, 0);
+     assert.ok(!result.events.includes("entropy") && !result.events.includes("key-id"));
+     assert.ok(!result.queries.some(call => call.sql === "begin" || call.sql.includes("vault.")));
+     assert.equal(JSON.stringify(result.receipt).includes("PRIVATE"), false);
+   }
+ });
+ 
+-test("same client privacy proof precedes entropy and key transaction without making identity or SET authority a gate", async () => {
+-  const result = await runFixture("db", harness({ query(call) {
+-    if (call.sql.startsWith("with required(name,value)")) return { rows: privacyRows().map(row => ({ ...row,
+-      session_is_postgres: false, current_is_postgres: false, same_identity: false })) };
+-    return undefined;
+-  } }));
++test("same client setup authority and privacy proof precede entropy without making SET ACL observations a gate", async () => {
++  const result = await runFixture("db");
+   assert.equal(result.exitCode, 0); assert.equal(result.events.filter(event => event === "client-created").length, 1);
+   const proof = result.queries.find(call => call.sql.startsWith("with required(name,value)"))!;
+   assert.equal(proof.params, undefined); assert.ok(proof.sql.includes("current_setting(s.name)=r.value"));
+   assert.ok(!/\b(?:set_config|alter|grant|set role)\b/i.test(proof.sql));
+   assert.ok(result.events.indexOf("connected") < result.events.indexOf(proof.sql));
++  assert.ok(result.events.indexOf(result.queries[0].sql) < result.events.indexOf(proof.sql));
++  assert.deepEqual(result.receipt.setupAuthority, authorityRow());
+   assert.ok(result.events.indexOf(proof.sql) < result.events.indexOf("key-id"));
+   assert.ok(result.events.indexOf(proof.sql) < result.events.indexOf("entropy"));
+   assert.ok(result.events.indexOf("entropy") < result.events.indexOf("begin"));
+   assert.ok(result.events.indexOf("delete") < result.events.indexOf("db-closed"));
+   assert.ok(result.receipt.privacyPreflight?.controls.every(control => control.matchesRequired && control.canSet === false));
+-  assert.equal(result.receipt.privacyPreflight?.principal.same_identity, false);
+-  assert.equal(result.receipt.privacyPreflight?.principal.current_superuser, false);
++  assert.equal(result.receipt.privacyPreflight?.principal.same_identity, true);
++  assert.equal(result.receipt.privacyPreflight?.principal.current_superuser, true);
+   assert.equal(result.receipt.keyOutcome, "deleted-confirmed");
+ });
+ 
+ test("privacy query and close failures retain separate sanitized diagnostics with no secret or fallback", async () => {
+   const privateText = "PRIVATE native SQL value params detail hint URL token proof key";
+   const result = await runFixture("browser", harness({ closeFailure: true, query(call) {
+     if (call.sql.startsWith("with required(name,value)")) throw Object.assign(new Error(privateText), { code: "42501", detail: privateText });
+     return undefined;
+   } }));
+   assert.equal(result.exitCode, 1); assert.equal(result.receipt.dbClosed, false);
+   assert.deepEqual(result.receipt.failures, ["runtime-failed", "db-close-unverified"]);
+   assert.deepEqual(result.receipt.diagnostics, [
+     { stage: "privacy-preflight", category: "insufficient-privilege", sqlState: "42501" },
+     { stage: "database-close", category: "unclassified", sqlState: null },
+   ]);
+   assert.equal(result.receipt.privacyPreflight, null); assert.equal(result.receipt.keyOutcome, "not-attempted");
+   assert.equal(result.launches.length, 0); assert.ok(!result.events.includes("entropy"));
+-  assert.equal(result.queries.length, 1); assert.equal(JSON.stringify(result.receipt).includes(privateText), false);
++  assert.equal(result.queries.length, 2); assert.equal(JSON.stringify(result.receipt).includes(privateText), false);
+ });
+ 
+ test("setup failures report the reached fixed stage and allowlisted SQLSTATE without native details", async () => {
+   const privateText = "PRIVATE native query params detail hint stack cause URL token proof key 2001:db8::1";
+   const error = Object.assign(new Error(privateText), { code: "42501", detail: privateText, hint: privateText,
+     query: privateText, params: [privateText], cause: new Error(privateText) });
+   for (const [stage, query] of [
+-    ["database-connect", null], ["migration-ledger", "select version,name"], ["feed-functions", "select p.oid"],
++    ["database-connect", null], ["setup-authority", "select session_user='supabase_admin'"], ["migration-ledger", "select version,name"], ["feed-functions", "select p.oid"],
+     ["transaction-begin", "begin"], ["key-collision", "select id from vault.secrets where name=$1"],
+   ] as const) {
+     const h = harness({ connectFailure: query === null ? error : undefined,
+       query(call) { if (query !== null && call.sql.startsWith(query)) throw error; return undefined; } });
+     const result = await runFixture("db", h);
+     assert.equal(result.exitCode, 1); assert.deepEqual(result.receipt.failures, ["runtime-failed"]);
+     assert.deepEqual(result.receipt.diagnostics, [{ stage, category: "insufficient-privilege", sqlState: "42501" }]);
+     assert.equal(result.receipt.keyOutcome, "not-attempted"); assert.equal(result.receipt.dbClosed, true);
+     assert.equal(result.launches.length, 0); assert.equal(result.queries.some(call => call.sql.includes("vault.create_secret")), false);
+     assert.equal(JSON.stringify(result.receipt).includes(privateText), false);
+     if (stage === "key-collision") assert.ok(result.events.includes("rollback"));
+   }
+ });
+ 
+ test("setup diagnostics ignore unknown inherited or accessor SQLSTATE and never traverse error payloads", async () => {
+   const privateText = "PRIVATE payload must not enter diagnostics";
+@@ -262,33 +336,33 @@ test("COMMIT uncertainty is not cleared by ROLLBACK and only exact UUID cleanup
+ test("CI admission rejects arbitrary modes, local actors, hosted URLs and mismatched job identities", () => {
+   validateAdmission("db", env, "linux");
+   const refused = [
+     { mode: "pnpm test", env, platform: "linux" }, { mode: "browser extra", env, platform: "linux" },
+     { mode: "db", env, platform: "win32" },
+     ...[{ CI: "1" }, { GITHUB_ACTIONS: "false" }, { RUNNER_ENVIRONMENT: "self-hosted" }, { GITHUB_RUN_ID: "" },
+       { CALENDAR_FEED_CI_DISPOSABLE_STACK: "another-job" }, { VERCEL: "1" }, { CALENDAR_FEED_VERIFIED_VERCEL_IP: "1" },
+       { SUPABASE_TEST_URL: "https://example.supabase.co" }, { SUPABASE_TEST_DB_URL: "postgresql://host/database" },
+       { NEXT_PUBLIC_SUPABASE_URL: "http://localhost:54321" }, { E2E_PORT: "3000" }].map(change => ({ mode: "db", env: { ...env, ...change }, platform: "linux" })),
+   ];
+   for (const entry of refused) assert.throws(() => validateAdmission(entry.mode, entry.env, entry.platform));
+ });
+ 
+ function identity() {
+   const jwt = (role: string) => `header.${Buffer.from(JSON.stringify({ iss: "supabase-demo", role })).toString("base64url")}.signature`;
+   const container = (kind: "db" | "kong") => ({ Id: (kind === "db" ? "a" : "b").repeat(64), Name: `/supabase_${kind}_kopplas`, Created: "2026-10-20T10:01:00Z", State: { Running: true },
+-    Config: { Labels: { "com.supabase.cli.project": "kopplas" } }, NetworkSettings: { Networks: { project: { NetworkID: "c".repeat(64) } },
++    Config: { Labels: { "com.supabase.cli.project": "kopplas" }, Env: [`POSTGRES_PASSWORD=${setupPassword}`] }, NetworkSettings: { Networks: { project: { NetworkID: "c".repeat(64) } },
+       Ports: { [kind === "db" ? "5432/tcp" : "8000/tcp"]: [{ HostIp: "127.0.0.1", HostPort: kind === "db" ? "54322" : "54321" }] } } });
+   return { db: container("db"), gateway: container("kong"), checkoutTime: Date.parse("2026-10-20T10:00:00Z"), now: Date.parse("2026-10-20T10:02:00Z"),
+     status: { ...status, ANON_KEY: jwt("anon"), SERVICE_ROLE_KEY: jwt("service_role") } };
+ }
+ 
+ test("stack qualification proves fresh Docker identity, labels, shared network, publication and demo issuer", () => {
+   validateStackIdentity(identity());
+   const changes = [
+     (v: ReturnType<typeof identity>) => { v.checkoutTime = 0; },
+     (v: ReturnType<typeof identity>) => { v.checkoutTime = Number.NaN; },
+     (v: ReturnType<typeof identity>) => { v.checkoutTime = v.now + 1; },
+     (v: ReturnType<typeof identity>) => { v.db.Created = "invalid"; },
+     (v: ReturnType<typeof identity>) => { v.db.Created = "2026-10-19T10:00:00Z"; },
+     (v: ReturnType<typeof identity>) => { v.db.Created = "2026-10-21T10:00:00Z"; },
+     (v: ReturnType<typeof identity>) => { v.db.Id = ""; },
+     (v: ReturnType<typeof identity>) => { v.db.Name = "/foreign"; },
+
+COMPLETE COMMITTED WRAPPER CONTEXT; unchanged custody branches are context, not a broad audit:
+/** Disposable GitHub-hosted CI only. This is not local resource-launch authority. */
+import { spawn, execFile } from "node:child_process";
+import { promisify, stripVTControlCharacters } from "node:util";
+import { randomBytes, randomUUID } from "node:crypto";
+import { readdir, stat, realpath, mkdtemp, appendFile, writeFile, readFile, readlink } from "node:fs/promises";
+import { tmpdir } from "node:os";
+import { resolve, join } from "node:path";
+import { fileURLToPath } from "node:url";
+import { createServer, isIP } from "node:net";
+import pg from "pg";
+
+export const INTEGRATION_ARGS = Object.freeze(["run", "test:int", "--reporter=default", "--reporter=github-actions", "--reporter=json", "--outputFile=test-results/full-integration.json"]);
+export const BROWSER_ARGS = Object.freeze(["run", "test:smoke"]);
+export const FEED_FUNCTIONS = Object.freeze([
+  "public.fetch_calendar_feed(text,text,jsonb,text)",
+  "public.manage_calendar_feed(uuid,uuid,uuid,text,integer,uuid,text,uuid,jsonb,text)",
+  "public.read_calendar_feed_status(uuid,uuid)", "public.read_calendar_feed_abuse(uuid)",
+]);
+const ROOT = resolve(fileURLToPath(new URL("../..", import.meta.url)));
+const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/;
+class RuntimeFailure extends Error {}
+const fail = (code) => { throw new RuntimeFailure(code); };
+const DIAGNOSTIC_STAGES = new Set(["admission", "qualification", "port-check", "database-client", "database-connect", "setup-authority", "privacy-preflight", "migration-ledger", "feed-functions",
+  "key-id", "entropy", "telemetry", "transaction-begin", "key-collision", "key-create", "transaction-commit", "runtime",
+  "child-cleanup", "transaction-rollback", "key-cleanup", "database-close"]);
+const SQLSTATE_CATEGORIES = new Map([
+  ["42501", "insufficient-privilege"], ["42P01", "undefined-table"], ["42883", "undefined-function"],
+  ["42703", "undefined-column"], ["3F000", "invalid-schema"], ["23505", "unique-conflict"],
+  ["57014", "query-canceled"], ["25P02", "transaction-aborted"], ["08006", "connection-failure"],
+]);
+function safeDiagnostic(stage, error) {
+  // Inspect only an own data descriptor, never native text, getters or causes.
+  let code;
+  try { code = Object.getOwnPropertyDescriptor(error, "code")?.value; } catch { /* Unclassified, with no native details. */ }
+  const known = typeof code === "string" && SQLSTATE_CATEGORIES.has(code);
+  return { stage: DIAGNOSTIC_STAGES.has(stage) ? stage : "runtime",
+    category: known ? SQLSTATE_CATEGORIES.get(code) ?? "unclassified" : error instanceof RuntimeFailure ? "guard-refusal" : "unclassified",
+    sqlState: known ? code : null };
+}
+const delay = (ms) => new Promise(resolveDelay => setTimeout(resolveDelay, ms));
+
+const PRIVACY_CONTROLS = new Map([
+  ["log_statement", "superuser"], ["log_min_error_statement", "superuser"],
+  ["log_parameter_max_length", "superuser"], ["log_parameter_max_length_on_error", "user"],
+]);
+const PRINCIPAL_FACTS = ["session_is_postgres", "current_is_postgres", "same_identity", "session_superuser", "current_superuser", "session_bypass_rls", "current_bypass_rls"];
+const PRIVACY_PREFLIGHT_SQL = `with required(name,value) as (values
+  ('log_statement','none'),('log_min_error_statement','panic'),
+  ('log_parameter_max_length','0'),('log_parameter_max_length_on_error','0'))
+select s.name,s.context,current_setting(s.name)=r.value as matches_required,
+  has_parameter_privilege(current_user,s.name,'SET') as can_set,
+  session_user='postgres' as session_is_postgres,current_user='postgres' as current_is_postgres,
+  session_user=current_user as same_identity,
+  a.rolsuper as session_superuser,b.rolsuper as current_superuser,
+  a.rolbypassrls as session_bypass_rls,b.rolbypassrls as current_bypass_rls
+from required r join pg_settings s on s.name=r.name
+join pg_roles a on a.rolname=session_user join pg_roles b on b.rolname=current_user
+order by s.name`;
+
+/**
+ * No native setting values or role names leave this fixed read-only query.
+ * @returns {Promise<{controls:{name:string,context:string,matchesRequired:boolean,canSet:boolean}[],principal:Record<string,boolean>}>}
+ */
+export async function readCalendarFeedPrivacyPreflight(db) {
+  const { rows } = await db.query(PRIVACY_PREFLIGHT_SQL);
+  const keys = ["name", "context", "matches_required", "can_set", ...PRINCIPAL_FACTS];
+  const seen = new Set();
+  if (!Array.isArray(rows) || rows.length !== PRIVACY_CONTROLS.size) fail("privacy-preflight-refused");
+  for (const row of rows) {
+    if (!row || Object.keys(row).length !== keys.length || !keys.every(key => Object.hasOwn(row, key))
+      || typeof row.name !== "string" || !PRIVACY_CONTROLS.has(row.name) || seen.has(row.name)
+      || row.context !== PRIVACY_CONTROLS.get(row.name)
+      || !["matches_required", "can_set", ...PRINCIPAL_FACTS].every(key => typeof row[key] === "boolean")) fail("privacy-preflight-refused");
+    seen.add(row.name);
+  }
+  // Identity/SET authority is observed only: effective privacy, not an inferred
+  // superuser or permission grant, is the continuation condition.
+  const principal = Object.fromEntries(PRINCIPAL_FACTS.map(key => [key, rows[0][key]]));
+  if (rows.some(row => PRINCIPAL_FACTS.some(key => row[key] !== principal[key]))) fail("privacy-preflight-refused");
+  return { controls: rows.map(row => ({ name: row.name, context: row.context, matchesRequired: row.matches_required, canSet: row.can_set })), principal };
+}
+
+/** Actual authenticated setup authority; never substitute SET ROLE or BYPASSRLS. */
+export async function readCalendarFeedSetupAuthority(db) {
+  const { rows } = await db.query(`select session_user='supabase_admin' as session_is_setup_admin,
+    current_user='supabase_admin' as current_is_setup_admin,session_user=current_user as same_identity,
+    a.rolcanlogin as session_login,b.rolcanlogin as current_login,
+    a.rolsuper as session_superuser,b.rolsuper as current_superuser
+    from pg_roles a join pg_roles b on b.rolname=current_user where a.rolname=session_user`);
+  const keys = ["session_is_setup_admin", "current_is_setup_admin", "same_identity", "session_login", "current_login", "session_superuser", "current_superuser"];
+  if (!Array.isArray(rows) || rows.length !== 1 || !rows[0] || Object.keys(rows[0]).length !== keys.length
+    || !keys.every(key => Object.hasOwn(rows[0], key) && rows[0][key] === true)) fail("setup-authority-refused");
+  return Object.fromEntries(keys.map(key => [key, true]));
+}
+
+/** Fixed setup call sites only; this is not a process sandbox or a pool. */
+export function createCalendarFeedDatabaseClient(stack, purpose = "runtime") {
+  validateStackIdentity(stack);
+  if (!["runtime", "proof", "absence"].includes(purpose)) fail("setup-purpose-refused");
+  const entries = stack.db.Config.Env;
+  if (!Array.isArray(entries) || !entries.every(value => typeof value === "string")) fail("setup-credential-refused");
+  const candidates = entries.filter(value => value.startsWith("POSTGRES_PASSWORD="));
+  if (candidates.length !== 1) fail("setup-credential-refused");
+  const password = candidates[0].slice("POSTGRES_PASSWORD=".length);
+  if (!password || password.includes("\0")) fail("setup-credential-refused");
+  const proof = purpose !== "runtime";
+  return new pg.Client({ host: "127.0.0.1", port: 54322, database: "postgres", user: "supabase_admin", password, ssl: false,
+    connectionTimeoutMillis: 5_000, query_timeout: proof ? 7_000 : 10_000, statement_timeout: proof ? 5_000 : 8_000,
+    ...(proof ? { lock_timeout: 2_000 } : {}),
+    options: "-c log_statement=none -c log_min_error_statement=panic -c log_parameter_max_length=0 -c log_parameter_max_length_on_error=0"
+      + (purpose === "absence" ? " -c default_transaction_read_only=on" : "") });
+}
+
+/** Pure prerequisite validation: CI flags alone do not qualify a machine. */
+export function validateAdmission(mode, env, platform) {
+  if (!["db", "browser"].includes(mode)) fail("mode-refused");
+  if (platform !== "linux" || env.CI !== "true" || env.GITHUB_ACTIONS !== "true" || env.RUNNER_ENVIRONMENT !== "github-hosted"
+    || !/^\d+$/.test(env.GITHUB_RUN_ID ?? "") || !/^\d+$/.test(env.GITHUB_RUN_ATTEMPT ?? "")
+    || !/^[a-zA-Z0-9_-]+$/.test(env.GITHUB_JOB ?? "")
+    || env.CALENDAR_FEED_CI_DISPOSABLE_STACK !== `${env.GITHUB_RUN_ID}:${env.GITHUB_RUN_ATTEMPT}:${env.GITHUB_JOB}`
+    || env.VERCEL || env.VERCEL_ENV || env.CALENDAR_FEED_VERIFIED_VERCEL_IP) fail("ci-admission-refused");
+  for (const [key, expected] of [["SUPABASE_TEST_URL", "http://127.0.0.1:54321"], ["SUPABASE_TEST_DB_URL", "postgresql://postgres:postgres@127.0.0.1:54322/postgres"],
+    ["NEXT_PUBLIC_SUPABASE_URL", "http://127.0.0.1:54321"]]) {
+    if (env[key] && env[key] !== expected) fail("endpoint-refused");
+  }
+  if (env.E2E_PORT && env.E2E_PORT !== "3100") fail("port-refused");
+}
+
+/** Match the actual Docker publication and job-created project identity, not just loopback. */
+export function validateStackIdentity({ db, gateway, checkoutTime, now, status }) {
+  if (!Number.isFinite(checkoutTime) || checkoutTime <= 0 || checkoutTime > now) fail("checkout-identity-refused");
+  for (const [container, name] of [[db, "/supabase_db_kopplas"], [gateway, "/supabase_kong_kopplas"]]) {
+    const created = Date.parse(container?.Created);
+    if (!/^[0-9a-f]{64}$/.test(container?.Id ?? "") || container.Name !== name || container.State?.Running !== true
+      || container.Config?.Labels?.["com.supabase.cli.project"] !== "kopplas"
+      || !Number.isFinite(created) || created < checkoutTime || created > now) fail("stack-identity-refused");
+  }
+  const networkIds = container => Object.values(container.NetworkSettings?.Networks ?? {}).map(network => network.NetworkID);
+  if (!networkIds(db).some(id => /^[0-9a-f]{64}$/.test(id ?? "") && networkIds(gateway).includes(id))) fail("stack-network-refused");
+  for (const [container, internal, external] of [[db, "5432/tcp", "54322"], [gateway, "8000/tcp", "54321"]]) {
+    const bindings = container.NetworkSettings?.Ports?.[internal];
+    if (!Array.isArray(bindings) || !bindings.some(binding => binding.HostPort === external && ["127.0.0.1", "0.0.0.0"].includes(binding.HostIp))
+      || bindings.some(binding => binding.HostPort !== external)) fail("stack-port-refused");
+  }
+  if (status?.API_URL !== "http://127.0.0.1:54321" || status?.DB_URL !== "postgresql://postgres:postgres@127.0.0.1:54322/postgres"
+    || !status.ANON_KEY || !status.SERVICE_ROLE_KEY) fail("stack-status-refused");
+  for (const [key, role] of [[status.ANON_KEY, "anon"], [status.SERVICE_ROLE_KEY, "service_role"]]) {
+    let claims;
+    try { claims = JSON.parse(Buffer.from(key.split(".")[1], "base64url").toString("utf8")); } catch { fail("stack-key-refused"); }
+    if (claims.iss !== "supabase-demo" || claims.role !== role) fail("stack-key-refused");
+  }
+}
+
+/** Recognize only the exact non-request Next startup address formats. */
+function isSafeInfrastructureAddress(line) {
+  return /^\s*(?:\[WebServer\]\s*)?- (?:Local|Network):\s+http:\/\/127\.0\.0\.1:(?:3100|3195)\s*$/.test(stripVTControlCharacters(line));
+}
+
+/** Inspect raw output in memory before dropping it; never return its contents. */
+export function hasSensitiveOutput(line, { keyId, secret, knownValues = /** @type {string[]} */ ([]) }) {
+  if ([keyId, secret, ...knownValues].some(value => value && line.includes(value))) return true;
+  if (/\/calendar\/feed\/[A-Za-z0-9_%=-]+|x-vercel-forwarded-for|["']?(?:proof|signature|tokenHash|ipHash)["']?\s*[:=]/i.test(line)) return true;
+  if (/(?<![a-f0-9])[a-f0-9]{64}(?![a-f0-9])/i.test(line)) return true;
+  // A capability or base64-encoded SHA256 proof has exactly 32 canonical bytes.
+  for (const match of line.matchAll(/(?<![A-Za-z0-9+/_-])[A-Za-z0-9+/_-]{43}=?(?![A-Za-z0-9+/_=-])/g)) {
+    const raw = match[0];
+    const bytes = Buffer.from(raw, "base64url");
+    if (bytes.length === 32 && [bytes.toString("base64url"), bytes.toString("base64")].includes(raw)) return true;
+  }
+  if (isSafeInfrastructureAddress(line)) return false;
+  for (const match of line.matchAll(/(?<![\d.])(?:\d{1,3}\.){3}\d{1,3}(?![\d.])/g)) if (isIP(match[0]) === 4) return true;
+  for (const match of line.matchAll(/(?<![a-f0-9:])(?:[a-f0-9]{0,4}:){2,}[a-f0-9:.]*(?:%[a-z0-9_.-]+)?/gi)) if (isIP(match[0]) === 6) return true;
+  return false;
+}
+
+/** Never return/persist raw lines. Detection runs before filtering. */
+export function createTelemetryObserver({ keyId, secret, persist, knownValues = /** @type {string[]} */ ([]) }) {
+  let responseCount = 0, sensitiveOutputCount = 0;
+  const observation = () => persist(JSON.stringify({ event: "calendar_feed.runtime_observation", responseCount, sensitiveOutputCount, sensitiveOutputDetected: sensitiveOutputCount !== 0 }) + "\n");
+  return async (line) => {
+    let record;
+    try { record = JSON.parse(line); } catch { /* Unstructured output is still inspected below. */ }
+    const validResponse = record !== null && typeof record === "object" && !Array.isArray(record)
+      && Object.keys(record).sort().join(",") === "event,status" && record.event === "calendar_feed.response" && [200, 404, 429, 503].includes(record.status);
+    const unexpectedResponse = record?.event === "calendar_feed.response" && !validResponse;
+    if (hasSensitiveOutput(line, { keyId, secret, knownValues }) || unexpectedResponse) {
+      sensitiveOutputCount++;
+      await observation();
+    }
+    if (!validResponse) return;
+    responseCount++;
+    await persist(JSON.stringify({ event: record.event, status: record.status }) + "\n");
+    await observation();
+  };
+}
+
+/** Occupied listeners are refused; an existing app is never adopted or stopped. */
+async function assertPortFree(port) {
+  await new Promise((accept, reject) => {
+    const server = createServer();
+    server.once("error", () => reject(new RuntimeFailure("port-occupied")));
+    server.listen({ host: "127.0.0.1", port, exclusive: true }, () => server.close(error => error ? reject(new RuntimeFailure("port-probe-failed")) : accept()));
+  });
+}
+
+/** Linux socket inode proof binds readiness to this captured Next PID. */
+export function ownsListenerRecord(port, socketLinks, tcpTable) {
+  const localAddress = `0100007F:${port.toString(16).toUpperCase().padStart(4, "0")}`;
+  const inodes = new Set(socketLinks.map(link => /^socket:\[(\d+)\]$/.exec(link)?.[1]).filter(Boolean));
+  return tcpTable.split("\n").slice(1).some(line => {
+    const fields = line.trim().split(/\s+/);
+    return fields[1] === localAddress && fields[3] === "0A" && inodes.has(fields[9]);
+  });
+}
+
+/** Inject the clock and HTTP transport to test readiness without real listeners. */
+export async function waitForOwnedHttp({ url, child, signal, now = Date.now, sleep = delay, request = fetch }) {
+  const deadline = now() + 60_000;
+  let exited = false; child.done.then(() => { exited = true; });
+  while (now() < deadline && !signal.aborted && !exited) {
+    try {
+      if (!await child.ownsListener(3195)) { await sleep(250); continue; }
+      const response = await request(`${url}/login`, { redirect: "manual", signal: AbortSignal.timeout(2_000) });
+      await response.body?.cancel();
+      if (response.status === 200 && !exited && await child.ownsListener(3195)) return;
+    } catch { /* No raw request/error output. */ }
+    await sleep(250);
+  }
+  fail("readiness-failed");
+}
+
+/** Bound a pending operation; the underlying pg/socket has its own matching timeout. */
+async function bounded(promise, ms, code, signal) {
+  let timer, onAbort;
+  try {
+    return await Promise.race([promise, new Promise((_, reject) => {
+      timer = setTimeout(() => reject(new RuntimeFailure(code)), ms);
+      onAbort = () => reject(new RuntimeFailure("interrupted"));
+      if (signal?.aborted) onAbort(); else signal?.addEventListener("abort", onAbort, { once: true });
+    })]);
+  } finally { clearTimeout(timer); signal?.removeEventListener("abort", onAbort); }
+}
+
+async function processIdentity(pid) {
+  if (!pid) return null;
+  try {
+    const raw = await readFile(`/proc/${pid}/stat`, "utf8");
+    const tail = raw.slice(raw.lastIndexOf(")") + 2).trim().split(/\s+/);
+    if (!/^\d+$/.test(tail[19] ?? "")) fail("child-identity-unverified");
+    return { pid, group: Number(tail[2]), startTime: tail[19] };
+  } catch (error) { if (error.code === "ENOENT") return null; fail("child-identity-unverified"); }
+}
+
+/** One settlement promise owns all signals. A numeric group alone grants nothing. */
+export function createOwnedGroupStopper({ pid, done, capturedIdentity, readIdentity, groupExists, signalGroup, settleOutput, now = Date.now, sleep = delay }) {
+  let settlement;
+  const signalVerified = async signal => {
+    const original = await capturedIdentity;
+    const current = await readIdentity(pid);
+    if (!original || !current || original.pid !== pid || current.pid !== pid || original.group !== pid || current.group !== pid
+      || original.startTime !== current.startTime) fail("child-identity-unverified");
+    signalGroup(signal);
+  };
+  const waitUntilGone = async ms => {
+    const deadline = now() + ms;
+    while (groupExists() && now() < deadline) await sleep(50);
+  };
+  return () => {
+    settlement ??= (async () => {
+      let forced = false;
+      if (groupExists()) {
+        // Installed Playwright handles SIGINT by awaiting task teardown. Any
+        // later signal requires the same captured Linux process start time.
+        await signalVerified("SIGINT");
+        await waitUntilGone(15_000);
+        if (groupExists()) { forced = true; await signalVerified("SIGTERM"); }
+        await waitUntilGone(5_000);
+        if (groupExists()) await signalVerified("SIGKILL");
+        await waitUntilGone(5_000);
+        if (groupExists()) fail("child-custody-unverified");
+      }
+      const result = await bounded(done, 5_000, "child-settle-unverified");
+      await settleOutput();
+      return { forced, signal: result.signal };
+    })();
+    return settlement;
+  };
+}
+
+function launchOwned(command, args, env, cwd, observe) {
+  const child = spawn(command, args, { cwd, env, detached: true, shell: false, stdio: ["ignore", "pipe", "pipe"] });
+  const capturedIdentity = processIdentity(child.pid);
+  capturedIdentity.catch(() => undefined); // The settlement path preserves failure.
+  // Register listeners immediately; neither spawn errors nor output escape to raw logs.
+  let output = Promise.resolve();
+  for (const stream of [child.stdout, child.stderr]) {
+    let pending = "";
+    stream?.setEncoding("utf8");
+    stream?.on("data", chunk => {
+      pending += chunk;
+      const lines = pending.split(/\r?\n/); pending = lines.pop() ?? "";
+      if (pending.length > 16_384) { lines.push(pending); pending = ""; }
+      for (const line of lines) output = output.then(() => observe(line));
+      // Attach a rejection observer now; the error still propagates through settleOutput.
+      output.catch(() => undefined);
+    });
+    stream?.on("end", () => { if (pending) { output = output.then(() => observe(pending)); output.catch(() => undefined); } });
+  }
+  const done = new Promise(resolveDone => {
+    child.once("error", () => resolveDone({ code: null, signal: null }));
+    child.once("close", (code, signal) => resolveDone({ code, signal }));
+  });
+  const groupExists = () => {
+    if (!child.pid) return false;
+    try { process.kill(-child.pid, 0); return true; } catch (error) { if (error.code === "ESRCH") return false; throw new RuntimeFailure("child-custody-unverified"); }
+  };
+  const stop = createOwnedGroupStopper({ pid: child.pid, done, capturedIdentity, readIdentity: processIdentity, groupExists,
+    signalGroup: signal => {
+      try { process.kill(-child.pid, signal); } catch (error) { if (error.code !== "ESRCH") fail("child-signal-unverified"); }
+    }, settleOutput: () => output });
+  return {
+    done,
+    async ownsListener(port) {
+      if (!child.pid) return false;
+      try {
+        const fdDirectory = `/proc/${child.pid}/fd`;
+        const links = await Promise.all((await readdir(fdDirectory)).map(async fd => { try { return await readlink(`${fdDirectory}/${fd}`); } catch { return ""; } }));
+        return ownsListenerRecord(port, links, await readFile("/proc/net/tcp", "utf8"));
+      } catch { return false; }
+    },
+    stop,
+  };
+}
+
+function defaultDependencies(env, cwd) {
+  const exec = promisify(execFile);
+  const capture = async (command, args) => {
+    try { return (await exec(command, args, { cwd, env, timeout: 15_000, maxBuffer: 2_000_000 })).stdout; }
+    catch { fail("qualification-command-failed"); }
+  };
+  return {
+    now: Date.now, sleep: delay, uuid: randomUUID, entropy: randomBytes,
+    registerSignal(handler) { process.on("SIGINT", handler); process.on("SIGTERM", handler); return () => { process.off("SIGINT", handler); process.off("SIGTERM", handler); }; },
+    async qualify() {
+      if (await realpath(cwd) !== await realpath(env.GITHUB_WORKSPACE ?? "")) fail("checkout-path-refused");
+      const gitPath = join(cwd, ".git");
+      if (!(await stat(gitPath)).isDirectory()) fail("checkout-identity-refused");
+      const checkoutTime = (await stat(gitPath)).birthtimeMs;
+      const containers = JSON.parse(await capture("docker", ["inspect", "supabase_db_kopplas", "supabase_kong_kopplas"]));
+      const status = JSON.parse(await capture("supabase", ["status", "--output", "json"]));
+      const stack = { db: containers[0], gateway: containers[1], checkoutTime, now: Date.now(), status };
+      validateStackIdentity(stack);
+      const entries = await readdir(join(cwd, "supabase", "migrations"));
+      const migrations = entries.filter(name => /^\d{14}_.+\.sql$/.test(name)).sort().map(name => ({ version: name.slice(0, 14), name: name.slice(15, -4) }));
+      if (!migrations.some(row => row.name === "personal_calendar_feed") || new Set(migrations.map(row => row.version)).size !== migrations.length) fail("migration-source-refused");
+      return { status, migrations, stack };
+    },
+    portFree: assertPortFree,
+    connect: createCalendarFeedDatabaseClient,
+    async createTelemetry() { const folder = await mkdtemp(join(tmpdir(), "kopplas-feed-ci-")); const path = join(folder, "responses.jsonl"); await writeFile(path, "", { mode: 0o600 }); return { path, persist: line => appendFile(path, line, { mode: 0o600 }) }; },
+    launch: (command, args, childEnv, observe) => launchOwned(command, args, childEnv, cwd, observe),
+    ready: (url, child, signal) => waitForOwnedHttp({ url, child, signal }),
+  };
+}
+
+/**
+ * Injected seams permit lifecycle tests without any process/DB/resource launch.
+ * @param {{mode?: string, env?: NodeJS.ProcessEnv, platform?: NodeJS.Platform, cwd?: string}} options
+ * @param {object} injected
+ */
+export async function runCalendarFeedRuntime({ mode, env = process.env, platform = process.platform, cwd = ROOT } = {}, injected = {}) {
+  const receipt = { event: "calendar_feed.ci_lifecycle", mode: ["db", "browser"].includes(mode) ? mode : "refused", ready: false,
+    childExitCodes: /** @type {(number|null)[]} */ ([]), keyDeleted: false, dbClosed: false,
+    failures: /** @type {string[]} */ ([]),
+    diagnostics: /** @type {{stage:string, category:string, sqlState:string|null}[]} */ ([]),
+    setupAuthority: /** @type {null | Record<string,boolean>} */ (null),
+    privacyPreflight: /** @type {null | {controls:{name:string,context:string,matchesRequired:boolean,canSet:boolean}[],principal:Record<string,boolean>}} */ (null),
+    keyOutcome: /** @type {"not-attempted" | "rollback-confirmed" | "deleted-confirmed" | "unverified"} */ ("not-attempted"),
+    custody: /** @type {null | {owner:string, job:string|undefined, vaultUuid:string|null, ownedName:string|null, expiry:string, nextAction:string, resumeCondition:string}} */ (null) };
+  const children = new Set();
+  let db, keyUuid, ownedName, transactionOpen = false, createUncertain = false, browserTeardownUnverified = false;
+  let stage = "admission", createAttempted = false, commitAttempted = false, rollbackConfirmed = false;
+  const abort = new AbortController();
+  const deps = { ...defaultDependencies(env, cwd), ...injected };
+  let unregister = () => undefined;
+  const checkSignal = () => { if (abort.signal.aborted) fail("interrupted"); };
+  const launch = (command, args, childEnv, observer) => { checkSignal(); const handle = deps.launch(command, [...args], childEnv, observer); children.add(handle); return handle; };
+  const run = async (command, args, childEnv, observer, timeout) => {
+    const handle = launch(command, args, childEnv, observer);
+    let result;
+    try { result = await bounded(handle.done, timeout, "child-timeout", abort.signal); }
+    catch (error) { if (mode === "browser") browserTeardownUnverified = true; throw error; }
+    receipt.childExitCodes.push(result.code);
+    if (result.code !== 0 || result.signal) {
+      // pnpm can map a killed nested Playwright runner to nonzero/null signal.
+      // That is never independent proof of its detached server's teardown.
+      if (mode === "browser") browserTeardownUnverified = true;
+      fail("child-failed");
+    }
+    const stopped = await handle.stop();
+    if (mode === "browser" && (stopped?.forced || stopped?.signal)) { browserTeardownUnverified = true; fail("browser-server-teardown-unverified"); }
+    children.delete(handle); // Proven settlement cannot be signalled again later.
+  };
+  try {
+    validateAdmission(mode, env, platform);
+    unregister = deps.registerSignal(() => abort.abort()); // Before any resource mutation.
+    stage = "qualification";
+    const { status, migrations, stack } = await deps.qualify(); checkSignal();
+    stage = "port-check";
+    await deps.portFree(mode === "db" ? 3195 : 3100); checkSignal();
+    stage = "database-client";
+    db = deps.connect(stack);
+    // Consume asynchronous connection errors without logging driver internals.
+    db.on?.("error", () => abort.abort());
+    stage = "database-connect";
+    await db.connect(); checkSignal();
+    stage = "setup-authority";
+    receipt.setupAuthority = await readCalendarFeedSetupAuthority(db); checkSignal();
+    stage = "privacy-preflight";
+    receipt.privacyPreflight = await readCalendarFeedPrivacyPreflight(db);
+    if (!receipt.privacyPreflight.controls.every(control => control.matchesRequired)) fail("privacy-preflight-refused");
+    checkSignal();
+    stage = "migration-ledger";
+    const ledger = await db.query("select version,name from supabase_migrations.schema_migrations order by version");
+    if (JSON.stringify(ledger.rows.map(row => ({ version: String(row.version), name: row.name }))) !== JSON.stringify(migrations)) fail("migration-ledger-refused");
+    stage = "feed-functions";
+    const functions = await db.query("select p.oid::regprocedure::text as identity, pg_get_userbyid(p.proowner) as owner, p.prosecdef as definer from pg_proc p where p.oid=any(array[" + FEED_FUNCTIONS.map((_, i) => `to_regprocedure($${i + 1})`).join(",") + "])", FEED_FUNCTIONS);
+    if (functions.rows.length !== FEED_FUNCTIONS.length || functions.rows.some(row => row.owner !== "calendar_feed_owner" || row.definer !== true)) fail("feed-functions-refused");
+    checkSignal();
+    stage = "key-id";
+    const keySuffix = deps.uuid();
+    if (!UUID.test(keySuffix)) fail("key-id-refused");
+    const keyId = `ci_${keySuffix}`;
+    ownedName = `calendar_feed_attestation_${keyId}`;
+    stage = "entropy";
+    const secret = Buffer.from(deps.entropy(32)).toString("base64url");
+    if (!/^[A-Za-z0-9_-]{43}$/.test(secret)) fail("entropy-refused");
+    stage = "telemetry";
+    const telemetry = await deps.createTelemetry();
+    const observe = createTelemetryObserver({ keyId, secret, persist: telemetry.persist });
+    stage = "transaction-begin";
+    await db.query("begin"); transactionOpen = true;
+    stage = "key-collision";
+    const collision = await db.query("select id from vault.secrets where name=$1", [ownedName]);
+    if (collision.rows.length) fail("key-collision-refused");
+    checkSignal();
+    stage = "key-create";
+    createUncertain = true; createAttempted = true;
+    const created = await db.query("select vault.create_secret($1,$2,$3) as id", [secret, ownedName, "Disposable calendar feed CI verification"]);
+    keyUuid = created.rows[0]?.id;
+    if (!UUID.test(keyUuid ?? "")) { keyUuid = undefined; fail("key-create-unverified"); }
+    checkSignal();
+    stage = "transaction-commit";
+    commitAttempted = true; // Irrevocable: a lost COMMIT response cannot be disproved by ROLLBACK.
+    await db.query("commit"); transactionOpen = false; createUncertain = false;
+    stage = "runtime";
+    const childEnv = { ...env, SUPABASE_TEST_REQUIRED: "1", SUPABASE_TEST_URL: status.API_URL, SUPABASE_TEST_ANON_KEY: status.ANON_KEY,
+      SUPABASE_TEST_SERVICE_ROLE_KEY: status.SERVICE_ROLE_KEY, SUPABASE_TEST_DB_URL: status.DB_URL,
+      NEXT_PUBLIC_SUPABASE_URL: status.API_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY: status.ANON_KEY,
+      NEXT_PUBLIC_APP_URL: `http://127.0.0.1:${mode === "db" ? 3195 : 3100}`, E2E_PORT: "3100",
+      CALENDAR_FEED_ATTESTATION_KEY_ID: keyId, CALENDAR_FEED_ATTESTATION_SECRET: secret,
+      CALENDAR_FEED_TEST_LOG_FILE: telemetry.path, CALENDAR_FEED_TEST_BASE_URL: `http://127.0.0.1:${mode === "db" ? 3195 : 3100}` };
+    if (mode === "db") {
+      await run(process.execPath, ["node_modules/next/dist/bin/next", "build"], childEnv, observe, 240_000);
+      const server = launch(process.execPath, ["node_modules/next/dist/bin/next", "start", "--hostname", "127.0.0.1", "--port", "3195"], childEnv, observe);
+      await deps.ready(childEnv.CALENDAR_FEED_TEST_BASE_URL, server, abort.signal); receipt.ready = true;
+      await run("pnpm", INTEGRATION_ARGS, childEnv, observe, 1_800_000);
+    } else {
+      await run("pnpm", BROWSER_ARGS, childEnv, observe, 1_800_000);
+    }
+    checkSignal();
+  } catch (error) {
+    // Only our fixed codes are emitted; never preserve native driver/request/assertion details.
+    const code = error instanceof RuntimeFailure ? error.message : "runtime-failed";
+    receipt.failures.push(code);
+    receipt.diagnostics.push(safeDiagnostic(stage, error));
+  } finally {
+    for (const handle of [...children].reverse()) {
+      try {
+        const stopped = await handle.stop();
+        if (mode === "browser" && (stopped?.forced || stopped?.signal)) browserTeardownUnverified = true;
+        children.delete(handle);
+      } catch (error) { receipt.failures.push("owned-child-cleanup-failed"); receipt.diagnostics.push(safeDiagnostic("child-cleanup", error)); }
+    }
+    if (browserTeardownUnverified && !receipt.failures.includes("browser-server-teardown-unverified")) receipt.failures.push("browser-server-teardown-unverified");
+    if (transactionOpen) {
+      try { await db.query("rollback"); transactionOpen = false; createUncertain = false; rollbackConfirmed = true; }
+      catch (error) { receipt.failures.push("transaction-rollback-unverified"); receipt.diagnostics.push(safeDiagnostic("transaction-rollback", error)); }
+    }
+    // Never delete a key while a captured child or transaction remains unverified.
+    if (keyUuid && !transactionOpen && !browserTeardownUnverified && !receipt.failures.includes("owned-child-cleanup-failed")) {
+      try {
+        const result = await db.query("delete from vault.secrets where id=$1::uuid and name=$2 returning id", [keyUuid, ownedName]);
+        const remaining = await db.query("select id,name from vault.secrets where id=$1::uuid", [keyUuid]);
+        if (remaining.rows.length || result.rows.some(row => row.id !== keyUuid)) fail("key-delete-unverified");
+        receipt.keyDeleted = true;
+      } catch (error) { receipt.failures.push("owned-key-cleanup-failed"); receipt.diagnostics.push(safeDiagnostic("key-cleanup", error)); }
+    } else if (createUncertain) receipt.failures.push("key-create-outcome-unverified");
+    if (db) { try { await bounded(db.end(), 5_000, "db-close-unverified"); receipt.dbClosed = true; } catch (error) { receipt.failures.push("db-close-unverified"); receipt.diagnostics.push(safeDiagnostic("database-close", error)); } }
+    unregister();
+    if (receipt.failures.length && (createUncertain || (keyUuid && !receipt.keyDeleted) || receipt.failures.some(code => code.includes("cleanup") || code.includes("unverified")))) {
+      receipt.custody = { owner: "Isolated CI job operator", job: env.CALENDAR_FEED_CI_DISPOSABLE_STACK,
+        vaultUuid: keyUuid ?? null, ownedName: ownedName ?? null, expiry: "Destruction of this disposable GitHub-hosted job",
+        nextAction: "Inspect captured CI child/key ownership in the disposable job; do not retry creation or delete by name.",
+        resumeCondition: "Owned children settled and the captured UUID/name key is confirmed absent, or the entire disposable job has ended." };
+    }
+    receipt.keyOutcome = receipt.keyDeleted ? "deleted-confirmed" : !createAttempted ? "not-attempted"
+      : rollbackConfirmed && !commitAttempted ? "rollback-confirmed" : "unverified";
+  }
+  return { exitCode: receipt.failures.length ? 1 : 0, receipt };
+}
+
+if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  const result = await runCalendarFeedRuntime({ mode: process.argv.length === 3 ? process.argv[2] : undefined });
+  console.log(JSON.stringify(result.receipt));
+  process.exitCode = result.exitCode;
+}
+
+COMPLETE EXISTING INT015 THROUGH FILE END; preserve every oracle and cleanup assertion, no local native execution:
+  test("[P0] 15.5-INT015 AC4 AC9 native PG17 restricted creator executes the exact owner bootstrap and SET ownership", async context => {
+    // This case has its own disposable direct connections: an unverified session
+    // is closed, never returned to an application/test pool. No resource startup.
+    const { randomUUID } = await import("node:crypto");
+    const { readFile, readdir, realpath, stat } = await import("node:fs/promises");
+    const { join } = await import("node:path");
+    const { fileURLToPath } = await import("node:url");
+    const { execFile } = await import("node:child_process");
+    const { promisify } = await import("node:util");
+    const { assertLocalStack, LOCAL_SUPABASE_DB_URL } = await import("../../support/test-env");
+    const { validateAdmission, validateStackIdentity, FEED_FUNCTIONS, createCalendarFeedDatabaseClient,
+      readCalendarFeedSetupAuthority, readCalendarFeedPrivacyPreflight } = await import("../../../scripts/ci/with-calendar-feed-runtime.mjs");
+    const suffix = randomUUID().replaceAll("-", "");
+    const migrator = `cf_m_${suffix}`, owner = `cf_o_${suffix}`, schema = `cf_s_${suffix}`, fn = `cf_f_${suffix}`;
+    const root = fileURLToPath(new URL("../../../", import.meta.url));
+    const failures: Error[] = [];
+    let stage = "qualification", connected = false, original: string | undefined, transportFailed = false, cleaning = false;
+    const primaryDeadline = Date.now() + 80_000;
+    let nativeVersion: { serverVersion: string; serverVersionNum: number } | undefined;
+    let stack: Parameters<typeof createCalendarFeedDatabaseClient>[0] | undefined;
+    let client: ReturnType<typeof createCalendarFeedDatabaseClient> | undefined;
+    function directClient(readOnly = false) {
+      try {
+        if (!stack) throw new Error("Qualified setup unavailable");
+        return createCalendarFeedDatabaseClient(stack, readOnly ? "absence" : "proof");
+      }
+      catch { throw new Error("PG17 proof connection configuration refused; details redacted"); }
+    }
+    async function setupQualified(connection: ReturnType<typeof createCalendarFeedDatabaseClient>) {
+      await readCalendarFeedSetupAuthority(connection);
+      const privacy = await readCalendarFeedPrivacyPreflight(connection);
+      if (!privacy.controls.every(control => control.matchesRequired)) throw new Error("PG17 setup privacy refused");
+    }
+    const pending = new Set<Promise<unknown>>();
+    async function sql<Row extends import("pg").QueryResultRow = import("pg").QueryResultRow>(text: string, values: unknown[] = []) {
+      if (!cleaning && Date.now() > primaryDeadline) throw new Error("PG17 proof primary deadline exceeded");
+      if (!client) throw new Error("PG17 proof client unavailable");
+      const request = client.query<Row>(text, values); pending.add(request);
+      try { return await request; } finally { pending.delete(request); }
+    }
+    // Every credited source/SET/ownership operation follows this immediate check.
+    async function restricted() {
+      const { rows: [identity] } = await sql<{ session: string; current: string; rolcanlogin: boolean; rolinherit: boolean; rolsuper: boolean;
+        rolcreatedb: boolean; rolcreaterole: boolean; rolreplication: boolean; rolbypassrls: boolean; self_grant: string }>(
+        "select session_user::text session,current_user::text current,r.rolcanlogin,r.rolinherit,r.rolsuper,r.rolcreatedb,r.rolcreaterole,r.rolreplication,r.rolbypassrls,current_setting('createrole_self_grant') self_grant from pg_roles r where r.rolname=current_user");
+      expect(identity).toMatchObject({ session: migrator, current: migrator, rolcanlogin: false, rolinherit: false,
+        rolsuper: false, rolcreatedb: false, rolcreaterole: true, rolreplication: false, rolbypassrls: false, self_grant: "" });
+    }
+    async function originalIdentity() {
+      const { rows: [identity] } = await sql<{ session: string; current: string; super: boolean }>(
+        "select session_user::text session,current_user::text current,r.rolsuper super from pg_roles r where r.rolname=current_user");
+      if (!original || identity.session !== original || identity.current !== original || !identity.super) throw new Error("Original isolated identity not restored");
+      if (!client) throw new Error("PG17 proof original client unavailable");
+      await setupQualified(client);
+    }
+    function redacted(error: unknown, label: string): Error {
+      return error instanceof AggregateError ? new AggregateError(error.errors.map(item => redacted(item, label)), label) : new Error(label);
+    }
+    async function expectedFailure(name: string, operation: () => Promise<unknown>, code: string, message?: string) {
+      await sql(`savepoint ${name}`);
+      let observed: { code?: string; message?: string } | undefined;
+      try { await operation(); } catch (error) { observed = error as typeof observed; }
+      const cleanup: Error[] = []; let restored = false;
+      try { await sql(`rollback to savepoint ${name}`); restored = true; }
+      catch { cleanup.push(new Error("Expected-error savepoint rollback failed")); }
+      if (restored) try { await sql(`release savepoint ${name}`); }
+      catch { cleanup.push(new Error("Expected-error savepoint release failed")); }
+      if (cleanup.length) throw new AggregateError([...(observed ? [new Error("Guard operation outcome retained; details redacted")] : []), ...cleanup], "Expected-error primary and cleanup failures");
+      // Always restore the savepoint before making assertions after an error.
+      expect(observed?.code).toBe(code);
+      if (message !== undefined) expect(observed?.message).toBe(message);
+    }
+    async function absent(connection: ReturnType<typeof createCalendarFeedDatabaseClient>) {
+      // Both same and fresh connections observe committed catalogs read-only.
+      const errors: Error[] = []; let opened = false;
+      try {
+        await connection.query("begin read only"); opened = true;
+        const { rows: [counts] } = await connection.query<{ roles: number; schemas: number; functions: number }>(
+          "select (select count(*)::integer from pg_roles where rolname=any($1::text[])) roles,(select count(*)::integer from pg_namespace where nspname=$2) schemas,(select count(*)::integer from pg_proc where proname=$3) functions", [[migrator, owner], schema, fn]);
+        expect(counts).toEqual({ roles: 0, schemas: 0, functions: 0 });
+      } catch { errors.push(new Error("Owned catalog absence not proven")); }
+      if (opened) try { await connection.query("rollback"); }
+      catch { errors.push(new Error("Read-only catalog transaction rollback failed")); }
+      if (errors.length) throw new AggregateError(errors, "Catalog proof and cleanup outcomes retained");
+    }
+    try {
+      assertLocalStack();
+      validateAdmission("db", process.env, process.platform);
+      expect(process.env.SUPABASE_TEST_REQUIRED).toBe("1");
+      const endpoint = new URL(LOCAL_SUPABASE_DB_URL);
+      expect(["127.0.0.1", "localhost", "[::1]"].includes(endpoint.hostname)).toBe(true);
+      expect(await realpath(root)).toBe(await realpath(process.env.GITHUB_WORKSPACE ?? ""));
+      const git = await stat(join(root, ".git")); expect(git.isDirectory()).toBe(true);
+      // Fixed read-only commands reuse the existing wrapper's actual admission.
+      // Captured Docker/status JSON and errors remain in memory, never in evidence.
+      const capture = promisify(execFile);
+      const containers = JSON.parse((await capture("docker", ["inspect", "supabase_db_kopplas", "supabase_kong_kopplas"],
+        { cwd: root, shell: false, timeout: 15_000, maxBuffer: 2_000_000 })).stdout);
+      const status = JSON.parse((await capture("supabase", ["status", "--output", "json"],
+        { cwd: root, shell: false, timeout: 15_000, maxBuffer: 2_000_000 })).stdout);
+      stack = { db: containers[0], gateway: containers[1], checkoutTime: git.birthtimeMs, now: Date.now(), status };
+      validateStackIdentity(stack);
+      expect(status.DB_URL === LOCAL_SUPABASE_DB_URL).toBe(true);
+      const migrations = (await readdir(join(root, "supabase/migrations"))).filter(name => /^\d{14}_.+\.sql$/.test(name)).sort()
+        .map(name => ({ version: name.slice(0, 14), name: name.slice(15, -4) }));
+      const source = await readFile(join(root, "supabase/migrations/20261020220000_personal_calendar_feed.sql"), "utf8");
+      const leading = /^-- Story[^\n]*\r?\n(do \$\$[\s\S]*?\r?\n\$\$;)/.exec(source)?.[1];
+      if (!leading || source.split(leading).length !== 2 || !source.slice(source.indexOf(leading) + leading.length).trimStart().startsWith("grant usage,create on schema public")) throw new Error("Unique leading source bootstrap unavailable");
+      const bootstrap = leading.replace(/\bcalendar_feed_owner\b/g, owner).replace(/\bpostgres\b/g, migrator);
+      if (bootstrap.replaceAll(owner, "calendar_feed_owner").replaceAll(migrator, "postgres") !== leading) throw new Error("Non-reversible source bootstrap substitution");
+      client = directClient(); client.on("error", () => { transportFailed = true; });
+      stage = "setup-connect";
+      await client.connect(); connected = true;
+      stage = "setup-authority-privacy";
+      await setupQualified(client);
+      const { rows: [identity] } = await sql<{ session: string; current: string; super: boolean; session_super: boolean; server_version: string; server_version_num: string }>(
+        "select session_user::text session,current_user::text current,r.rolsuper super,s.rolsuper session_super,current_setting('server_version') server_version,current_setting('server_version_num') server_version_num from pg_roles r join pg_roles s on s.rolname=session_user where r.rolname=current_user");
+      original = identity.session;
+      if (identity.current !== original || !identity.super || !identity.session_super || Math.floor(Number(identity.server_version_num) / 10000) !== 17) throw new Error("Isolated native PG17 superuser qualification failed");
+      nativeVersion = { serverVersion: identity.server_version, serverVersionNum: Number(identity.server_version_num) };
+      const { rows: ledger } = await sql("select version,name from supabase_migrations.schema_migrations order by version");
+      expect(JSON.stringify(ledger.map(row => ({ version: String(row.version), name: row.name }))) === JSON.stringify(migrations)).toBe(true);
+      const { rows: functions } = await sql("select p.oid::regprocedure::text identity,pg_get_userbyid(p.proowner) owner,p.prosecdef definer from pg_proc p where p.oid=any(array[" + FEED_FUNCTIONS.map((_: string, i: number) => `to_regprocedure($${i + 1})`).join(",") + "])", [...FEED_FUNCTIONS]);
+      expect(functions.length).toBe(FEED_FUNCTIONS.length);
+      expect(functions.every(row => row.owner === "calendar_feed_owner" && row.definer === true)).toBe(true);
+      await absent(client);
+      await context.annotate(JSON.stringify({ ...nativeVersion, isolatedStackQualified: true }), "calendar-feed-pg17-observed");
+      stage = "transaction-setup";
+      await sql("begin");
+      await sql(`create role ${migrator} nologin noinherit nosuperuser nocreatedb createrole noreplication nobypassrls`);
+      await sql(`create schema ${schema} authorization ${migrator}`);
+      await sql(`set local session authorization ${migrator}`);
+      await restricted();
+      stage = "native-engine-baseline";
+      await sql("savepoint native_baseline");
+      await restricted();
+      await sql(`create role ${owner} nologin noinherit nosuperuser nocreatedb nocreaterole noreplication nobypassrls`);
+      const { rows: baseline } = await sql<{ admin_option: boolean; set_option: boolean; inherit_option: boolean }>(
+        "select m.admin_option,m.set_option,m.inherit_option from pg_auth_members m join pg_roles r on r.oid=m.roleid join pg_roles u on u.oid=m.member where r.rolname=$1 and u.rolname=$2", [owner, migrator]);
+      expect(baseline).toEqual([{ admin_option: true, set_option: false, inherit_option: false }]);
+      await expectedFailure("native_set_denied", async () => {
+        await restricted(); await sql(`set local role ${owner}`);
+      }, "42501");
+      await sql("rollback to savepoint native_baseline");
+      await sql("release savepoint native_baseline");
+      expect((await sql("select 1 from pg_roles where rolname=$1", [owner])).rows).toHaveLength(0);
+      stage = "restricted-fresh-source";
+      await restricted(); await sql(bootstrap); // exact source statements, genuinely absent target
+      const assertOwner = async () => {
+        const { rows: [role] } = await sql("select rolcanlogin,rolinherit,rolsuper,rolcreatedb,rolcreaterole,rolreplication,rolbypassrls from pg_roles where rolname=$1", [owner]);
+        expect(role).toEqual({ rolcanlogin: false, rolinherit: false, rolsuper: false, rolcreatedb: false,
+          rolcreaterole: false, rolreplication: false, rolbypassrls: false });
+        const { rows: [authority] } = await sql("select pg_has_role(current_user,$1,'SET') can_set,pg_has_role(current_user,$1,'USAGE') can_use,exists(select 1 from pg_auth_members m join pg_roles r on r.oid=m.roleid where r.rolname=$1 and m.admin_option) creator_admin", [owner]);
+        expect(authority).toEqual({ can_set: true, can_use: false, creator_admin: true });
+        const { rows: memberships } = await sql<{ inherit_option: boolean }>(
+          "select m.inherit_option from pg_auth_members m join pg_roles r on r.oid=m.roleid join pg_roles u on u.oid=m.member where r.rolname=$1 and u.rolname=$2", [owner, migrator]);
+        expect(memberships.length).toBeGreaterThan(0);
+        expect(memberships.every(row => row.inherit_option === false)).toBe(true);
+      };
+      await assertOwner();
+      stage = "restricted-source-replay";
+      await restricted(); await sql(bootstrap); await assertOwner();
+      expect((await sql("select 1 from pg_roles where rolname=any($1::text[])", [[migrator, owner]])).rows).toHaveLength(2);
+      stage = "restricted-object-ownership";
+      // UUID-schema CREATE is a transaction-only fixture prerequisite. It does
+      // not qualify real public-schema source/recovery ownership privileges.
+      await restricted(); await sql(`grant usage,create on schema ${schema} to ${owner}`);
+      await restricted(); await sql(`create function ${schema}.${fn}() returns integer language sql security invoker set search_path='' as $$ select 1 $$`);
+      await restricted(); await sql(`revoke all on function ${schema}.${fn}() from public`);
+      await restricted(); await sql(`grant execute on function ${schema}.${fn}() to ${owner}`);
+      await restricted(); await sql(`set local role ${owner}`);
+      const { rows: [switched] } = await sql("select session_user::text session,current_user::text current,r.rolsuper,r.rolcanlogin,r.rolinherit,r.rolcreatedb,r.rolcreaterole,r.rolreplication,r.rolbypassrls from pg_roles r where r.rolname=current_user");
+      expect(switched).toEqual({ session: migrator, current: owner, rolsuper: false, rolcanlogin: false, rolinherit: false,
+        rolcreatedb: false, rolcreaterole: false, rolreplication: false, rolbypassrls: false });
+      expect((await sql(`select ${schema}.${fn}() value`)).rows[0].value).toBe(1);
+      await sql("reset role");
+      await restricted(); await sql(`alter function ${schema}.${fn}() owner to ${owner}`);
+      expect((await sql("select pg_get_userbyid(p.proowner) owner,p.prosecdef definer from pg_proc p join pg_namespace n on n.oid=p.pronamespace where n.nspname=$1 and p.proname=$2", [schema, fn])).rows).toEqual([{ owner, definer: false }]);
+      stage = "unsafe-retained-attributes";
+      await expectedFailure("unsafe_attributes", async () => {
+        await restricted(); await sql(`alter role ${owner} inherit`); // only owned role, still NOLOGIN
+        await restricted(); await sql(bootstrap);
+      }, "P0001", `${owner} is not hardened`);
+      await assertOwner();
+      stage = "unsafe-retained-membership";
+      await expectedFailure("unsafe_membership", async () => {
+        await sql("reset session authorization"); await sql("reset role"); await originalIdentity();
+        // Setup affects only the two owned roles. Remove forward grants and
+        // their dependent self-grants before adding the inverse: no engine-cycle
+        // refusal can stand in for the exact source guard's exception.
+        await sql(`revoke ${owner} from ${migrator} cascade`);
+        await sql(`grant ${migrator} to ${owner} with admin false`);
+        await sql(`set local session authorization ${migrator}`);
+        await restricted(); await sql(bootstrap);
+      }, "P0001", `${owner} has unexpected membership`);
+      await restricted(); await assertOwner();
+    } catch (error) { failures.push(redacted(error, `PG17 owner proof failed at ${stage}; details redacted`)); }
+    cleaning = true;
+    // FULL rollback comes first even after an unexpected aborted transaction.
+    // Reset inside an aborted transaction would fail and cannot qualify cleanup.
+    for (const result of await Promise.allSettled([...pending])) if (result.status === "rejected") failures.push(new Error("Pending PG17 proof query failed"));
+    if (connected && client) {
+      let rolledBack = false;
+      try { await sql("rollback"); rolledBack = true; } catch { failures.push(new Error("PG17 proof full rollback failed")); }
+      if (rolledBack) {
+        try { await sql("reset session authorization"); } catch { failures.push(new Error("PG17 proof session identity reset failed")); }
+        try { await sql("reset role"); } catch { failures.push(new Error("PG17 proof role reset failed")); }
+        try { await originalIdentity(); } catch { failures.push(new Error("PG17 proof original identity unverified")); }
+        try { await absent(client); } catch (error) { failures.push(redacted(error, "PG17 proof same-connection absence unverified")); }
+      }
+    }
+    if (client) try { await client.end(); } catch { failures.push(new Error("PG17 proof direct connection close failed")); }
+    if (transportFailed) failures.push(new Error("PG17 proof direct connection transport failed"));
+    // Fresh connection independently observes committed catalogs; no unverified
+    // connection is ever pooled or left with a modified session authorization.
+    if (connected) {
+      let fresh: ReturnType<typeof createCalendarFeedDatabaseClient> | undefined;
+      let freshTransportFailed = false;
+      try {
+        fresh = directClient(true); fresh.on("error", () => { freshTransportFailed = true; });
+        await fresh.connect(); await setupQualified(fresh); await absent(fresh);
+      } catch (error) { failures.push(redacted(error, "PG17 proof fresh read-only absence unverified")); }
+      if (fresh) try { await fresh.end(); } catch { failures.push(new Error("PG17 proof fresh connection close failed")); }
+      if (freshTransportFailed) failures.push(new Error("PG17 proof fresh connection transport failed"));
+    }
+    if (failures.length) throw new AggregateError(failures, "PG17 owner proof/cleanup failed; sensitive details redacted");
+    await context.annotate(JSON.stringify({ ...nativeVersion, restrictedFreshReplay: true, engineAdmin: true, engineSet: false,
+      restrictedSetAndOwnership: true, unsafeAttributeAndMembershipGuards: true, sameAndFreshAbsent: true }), "calendar-feed-pg17-qualified");
+  }, 180_000);
+});
+
+BOUND AUTHORITY/CHECKS/SANITIZED NATIVE CONTEXT: _bmad-output/auto-bmad/preparation/story-15-5/author-native-authority-transport-route.json
+{
+  "kind": "author-isolated-supadmin-transport-implementation-route",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "reason": "Explicit setup credential use, authenticated superuser boundary, same-session privacy and restricted-session transactional proof require High.",
+  "source_before": "c7570096435dfbae2f6a535be46e61daaf9e28dc",
+  "reviewed_source": "e472741a91f58c5ef9e623720e2bba0d1164c360",
+  "allocation": { "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-native-authority-boundary-allocation.json", "bytes": 5160, "sha256": "91097d8da439a9a88d99453e52416dcfa4799ccf3a3b5d834d86acd44a22df13" },
+  "proposal": { "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-authority-boundary-proposal.md", "bytes": 16753, "sha256": "d3a0e8c4da3bb1cfd2adffd74e576cc9adf6fd0afb5e9a264433d948b20791b4" },
+  "actual_evidence": "Fifth run39468849461 failed: authenticated postgres session=current, both super false, bypassRLS true; three required privacy matches false/on_error true. Verify3102/Python43/recovery1 separate PASS;65 feature bodies unexecuted. Source admin credential mapping/auth remains unverified.",
+  "owned_paths": [
+    "scripts/ci/with-calendar-feed-runtime.mjs",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+    "tests/support/calendar-feed-ci-contract.ts",
+    "tests/integration/commands/calendar-feed.int.test.ts",
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"
+  ],
+  "bounds": "Sole existing nonempty POSTGRES_PASSWORD from the same freshly qualified source container, memory only; fixed SupAdmin/local publication; actual original session=current LOGIN+SUPER and four effective privacy values before key/fixture mutation. No guesses, fallback, retry route, alternate transport/target, grants, role elevation, persistent GUC or new privileged child/generic pool configuration.",
+  "preservation": "INT015 only: original exact two UUID roles/transaction scope, restricted SESSION AUTHORIZATION and immediate identity/attribute/source/SET/owner checks, expected savepoint/full rollback, same/fresh absence and independently qualified fresh identity/privacy. Preserve wrapper fixed argv, COMMIT uncertainty, exact UUID/name cleanup, settlement, redaction and custody. No process sandbox or native success claim.",
+  "execution": "Bounded Node/type/lint/kernel/SRO/Git checks only, no local managed runtime/DB/Docker/Supabase/browser qualification. Exact five-path Conventional body source commit before distinct context-free High latest-delta review; no push; cap3. Root metadata/receipts/capsules excluded.",
+  "written_before_source_edits": true
+}
+
+BOUND AUTHORITY/CHECKS/SANITIZED NATIVE CONTEXT: _bmad-output/auto-bmad/preparation/story-15-5/accepted-native-authority-boundary-allocation.json
+{
+  "schema_version": 1,
+  "kind": "accepted-five-path-native-authority-boundary-allocation",
+  "status": "ACCEPTED_CONDITIONAL_IMPLEMENTATION_ONLY",
+  "source_thread_id": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "source_turn_id": "01a15a80-828c-7851-a8cb-f5e9a162d993",
+  "native_handoff_tool_id": "exec-cd4c0015-e5d0-457b-840b-7d2a6bf02f36",
+  "native_handoff_status": "completed",
+  "actual_incoming_handoff_received": true,
+  "proposal": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-authority-boundary-proposal.md",
+    "bytes": 16753,
+    "sha256": "d3a0e8c4da3bb1cfd2adffd74e576cc9adf6fd0afb5e9a264433d948b20791b4"
+  },
+  "independent_proposal_review": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-authority-boundary-proposal-review/original-review.md",
+    "bytes": 1075,
+    "sha256": "b822dd0bb78ae76540b8283aee068708947cbfe7c7036c77102f42dcfd184a1c",
+    "attestation_sha256": "93164d01ad3aecad2ff8a0edb061b0268f02315f65ab32c257f604ec17662802",
+    "status": "PASS_DESIGN_ONLY"
+  },
+  "coordinator_high_assessment": {
+    "thread_id": "01a13ebf-ebf4-78a1-b25d-7adecead611f",
+    "turn_id": "01a15a7a-8e17-7141-825f-f58cee8ecd3f",
+    "result": "PASS bounded Root/Coordinator admission; no additional human authorization gap; explicit effect admission required and delivered"
+  },
+  "source_baseline": "e472741a91f58c5ef9e623720e2bba0d1164c360",
+  "checkpoint_baseline": "c7570096435dfbae2f6a535be46e61daaf9e28dc",
+  "paths": [
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "scope": "Exact reviewed same-container authenticated setup effect only"
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "scope": "Bounded transport/identity/privacy/custody regressions"
+    },
+    {
+      "path": "tests/support/calendar-feed-ci-contract.ts",
+      "scope": "Exact reviewed wrapper SHA pin only; all existing fences retained"
+    },
+    {
+      "path": "tests/integration/commands/calendar-feed.int.test.ts",
+      "scope": "INT015 only; existing two-role restricted-session oracle and transactional scope retained"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "scope": "Author trail and Suggested Review Order only; approved intent unchanged"
+    }
+  ],
+  "protected_owner_head": "ad9c3b79a4244333384e6d0970e13586f7a05739",
+  "ownership": "Coordinator verified exact four feed paths clean in E16; outside known16.5 workspace claims. No active Documents claim known. Conditional hold only newly conflicting affected scope.",
+  "admitted_effect_exact": "Coordinator explicitly ADMITS exact same-container credential-use/authenticated setup effect and allocates ONLY five proposed existing paths under verified proposal d3a0e8c4da3bb1cfd2adffd74e576cc9adf6fd0afb5e9a264433d948b20791b4. SAME High PASS/no further human gap received and hashes verified. E16 actual owner commentary confirms no current edits on four calendar-feed paths; Root status clean at protected ad9c3b79a4244333384e6d0970e13586f7a05739; these feed-owned wrapper/INT015 scopes remain outside known16.5 workspace claims. No active Documents claim known; no foreign checkout edits or shared runtime adoption. Five paths: wrapper; wrapper unit suite; contract helper SHA pin ONLY; commands/calendar-feed.int.test.ts INT015 ONLY; authorSpec/SRO. Use sole nonempty captured POSTGRES_PASSWORD memory-only from SAME freshly-qualified job-owned source container, fixed canonical SupAdmin TCP existing publication. No guessed/default/fallback/alternate target/retry route/privilege repair. Actual sameclient session=current=supabase_admin LOGIN+SUPER AND all4 exactprivacychecks BEFORE any key/fixture mutation; failclosed if unavailable. No privileged configuration in app/testchildenv/genericpools; exports are callsitecontrols not sandboxclaim. INT015 original2roles/restrictedSESSIONAUTHORIZATION/transaction-onlyeffects retained; fresh cleanup/absenceconnections independently qualify identity/privacy. Preserve COMMIT uncertainty/exactUUID+name cleanup/settledrequests/sanitizedfailures/operatorcustody when unverified, no manufacturedcleanupsuccess. No workflow/migration/recovery/provider/hostedsecret/resourcelaunch expansion. Native credentialmapping/authauthority UNVERIFIED until actual CI; priorrun39468849461 remainsFAIL/sourcepostgres observations preserved. ExistingHighauthor may implement; DISTINCT changed-line High review before ONE next exact-head native CI under standing authorization; no broadre-review/duplicatepacket. Monitoring stayspaused/no deployment. If a new actual conflicting claim appears, hold only affected scope and report.",
+  "required_next": "Recorded explicit High implementation route; distinct changed-line High code review; Root checkpoint admission and one new exact-head CI",
+  "native_prerequisites": "Admin credential mapping/TCP LOGIN+SUPER and runtime privacy remain UNVERIFIED; failed run39468849461 stays failed",
+  "development_complete": false,
+  "release_ready": false,
+  "resource_launch_authorized": false,
+  "deployment_authorized": false
+}
+
+BOUND AUTHORITY/CHECKS/SANITIZED NATIVE CONTEXT: _bmad-output/auto-bmad/preparation/story-15-5/native-authority-boundary-proposal.md
+# Story 15.5 isolated setup authority and transport proposal
+
+Status: **PROPOSAL ONLY — source and all five capsules frozen.** Author route:
+`gpt-6.1-sol`, `high`, sensitive isolated setup, credential custody and restricted
+session proof. Root recorded `build-native-authority-boundary-design` /
+`build-author-isolated-setup-authority-design` before this read-only work. This
+document is the only new artifact; no source, configuration, process, credential,
+database or hosted mutation is authorized by it. Distinct context-free High
+review of this proposal precedes Root admission, any Coordinator ownership
+clarification, and a separately recorded implementation route. Broad review cap
+remains three; this is not a fourth story review.
+
+## Actual evidence and the two remaining prerequisites
+
+Frozen source is `e472741a91f58c5ef9e623720e2bba0d1164c360`; fifth checkpoint is
+`c7570096435dfbae2f6a535be46e61daaf9e28dc`, run `39468849461` attempt 1, **failed**.
+Native verify passed 3102 Node cases, Python 43, build and containment. The
+separate one-case isolated recovery job passed. The 51 feature Vitest and 14
+browser bodies remain unexecuted; no key or child followed the wrapper refusal.
+
+Both wrappers actually connected to the qualified source publication as
+session=current=`postgres`. Both observed superuser flags were false and both
+BYPASSRLS flags true. Four strictly valid privacy rows were returned: the three
+SUSET controls did not match the required values; USERSET on-error matched.
+All `canSet` observations were false. Those observations are not an actual SET
+trial, do not prohibit USERSET generally, and reveal no raw effective values.
+The fourth run's startup42501 and earlier generic failures retain their separate
+historical meanings; no retroactive diagnosis is made.
+
+The existing key-bearing connection cannot continue under the required privacy
+contract with those observed settings. Independently, INT015's fixed
+`LOCAL_SUPABASE_DB_URL` transport cannot meet its original authenticated-superuser
+precondition with the observed source `postgres` role. Do not weaken that
+precondition, replace SESSION AUTHORIZATION with SET ROLE, or credit a bypass-RLS
+role as a superuser.
+
+The fifth immutable packet is under
+`C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/checkpoint-c7570096-ci-independent/`:
+
+| Artifact | Bytes | SHA256 |
+| --- | ---: | --- |
+| native-qualification.json | 20237 | `8790401b0ae1441e88c32b81d71ecfbe0cdf1c5e1c2631f6dc082552fac5638e` |
+| native-qualification.md | 3404 | `512f7132d08e2bd44f195ce66f9d8ccb24d56c2ada28094ca43e6e348a815ec3` |
+| manifest.json (18 listed files, self separate) | 3039 | `dc8bee5066b45e02ae8305e3873fb035e942fa5f6b3f4f2bf7d667a07220c8dc` |
+
+Sibling `root-failed-c757-packet-admission.json` has SHA256
+`bc57e48417de15ba5f0911e4ec1cdc1d207b6954a5f1f4404a9b8b9924299c76`.
+Its integrity PASS does not change the native failure. All five preceding
+capsules and all five failed packets remain immutable.
+
+## Selected candidate: existing admin login over the existing pg transport
+
+Use the existing source container's canonical `supabase_admin` principal through
+the existing direct `node-pg` TCP transport to the **same already qualified** local
+DB publication. Keep the ordinary `postgres` connection and all application/test
+defaults unchanged. Do not introduce a custom psql stream/protocol adapter,
+another database, another principal, a proxy, a SECURITY DEFINER test RPC,
+membership grants, parameter grants or an elevated application client.
+
+The credential candidate comes solely from exactly one nonempty existing
+`POSTGRES_PASSWORD` entry in **that same source DB container's** in-memory Docker
+inspect `Config.Env`, already captured by the fresh-stack qualification. Reject
+missing/duplicate/invalid entries. Never use a default literal, the password
+portion of another principal's DSN, host environment PGPASSWORD/PGUSER, a caller
+selected admin URL, the recovery target's generated credential, or fallback
+credential attempts. Do not create/reset a password or copy a credential into
+an environment file. This new credential use is in-memory explicit `pg.Client`
+configuration; it produces no privileged serialized DSN, command argument, log,
+receipt, assertion dump or additional child environment field.
+
+**Unverified prerequisite:** repository source does not prove that the CLI source
+container exposes that environment entry, that it authenticates `supabase_admin`
+over TCP, or that this source principal is an authenticated superuser. This
+proposal does not assert any of those facts. The implementation would attempt
+this one exact existing credential/principal route, then require actual
+authentication and identity qualification before any key/fixture mutation. An
+absent credential, auth refusal, non-superuser or different session is a bounded
+failure with zero key/fixture work, no alternate principal/transport, and no
+automatic privilege/configuration repair. Root must decide any further route
+from that new evidence; there is no blind retry or invented credential mapping.
+
+## Admission, session privacy and principal proof
+
+1. Retain actual hosted/disposable admission, repository/check-out binding,
+   newly created exact Docker IDs/labels/network/publications, current migration
+   ledger and real feed-function owner checks. A CI flag or loopback address is
+   insufficient. Read the candidate credential only from the qualified source DB
+   object; keep it bound to that container ID. Reject an unexpected container or
+   any configurable role/endpoint selector. Root grants no new resource launch.
+2. Construct the setup client with explicit fixed local host, published port,
+   database and `user: supabase_admin`, plus that observed credential. Do not
+   parse a caller-supplied privileged URL or let node-pg ambient PG options select
+   an identity. Preserve existing connection/query/statement bounds. The only
+   startup GUC options are the original four session-only privacy controls
+   `log_statement=none`, `log_min_error_statement=panic`,
+   `log_parameter_max_length=0`, `log_parameter_max_length_on_error=0` (and the
+   existing fixed read-only option for the fresh absence connection). This
+   restores the initial privacy intent using the explicit setup principal;
+   nothing persists at server/database/role level and no SET privilege is granted.
+3. Immediately after successful authentication, read fixed booleans proving
+   session_user=current_user=`supabase_admin`, both actual session/current roles
+   are LOGIN and SUPERUSER, and neither identity was achieved through SET ROLE.
+   Require all of those actual identity facts. Require native PG17 in INT015 as
+   before. Other role attributes may be observed as closed booleans; no missing
+   privilege is repaired and no ordinary role's attributes are changed. These
+   are explicit **setup authority** prerequisites, separate from diagnostic-only
+   `canSet` observations in the privacy proof.
+4. On that **same live client**, retain the strict read-only exact-four
+   names/types/contexts/effective-value checks before UUID, entropy, telemetry,
+   Vault or a fixture. All four must match `none/panic/0/0`. Unknown, missing,
+   duplicate, malformed, mismatched or failed facts close/fail without fallback.
+   Continue on that client through the key transaction, COMMIT and exact-key
+   cleanup. No earlier run or server default supplies this proof. Read-only
+   qualification queries before privacy proof contain no runtime secret.
+5. Only explicit setup call sites authenticate as the admin. The Next build/server,
+   Playwright process and generic test/admin pools keep their existing ordinary
+   DB/JWT configuration, byte-for-byte. No admin URL/client handle or new setup
+   credential/capability environment field is passed to a child. INT015
+   independently uses the same fixed, admitted constructor from
+   its already qualified source-container observation; the full test runner is
+   not handed an extra credential. Its existing Docker read-only observation
+   authority is not enlarged to lifecycle commands. This is call-site authority
+   control, not a process sandbox: the isolated job already has Docker access.
+   If the image reuses a password value across existing principals, ordinary
+   child DB credentials may already contain the same bytes. Do not claim physical
+   credential separation or value absence in that case. Tests must prove no new
+   privileged configuration is distributed, rather than assert an impossible
+   absence of a value already present in unchanged ordinary configuration.
+
+The proposed authenticated setup route can change session-local startup settings;
+no existing database role, membership, PUBLIC/schema ACL, persistent setting or
+application authority changes. A superuser setup session is already the original
+accepted INT015 effect boundary, not the restricted principal credited by the
+test. Its actual availability on the source stack is still unverified.
+
+## INT015 keeps the original restricted oracle and cleanup
+
+Move only its direct connection construction to the qualified setup constructor;
+leave the single case, exact two UUID NOLOGIN roles, UUID schema/harmless function,
+transaction-local effects, leading actual migration DO extraction and reversible
+role-name-only substitutions intact. Do not change real `calendar_feed_owner`
+membership, source migration or recovery bootstrap.
+
+Before mutation, the original **authenticated** session must actually be the
+qualified SupAdmin superuser with session=current. Setup creates only the owned
+fixture. Every credited source, SET and ownership operation must still immediately
+follow `SET LOCAL SESSION AUTHORIZATION` plus proof that both identities are the
+owned restricted migrator, with its exact restricted attributes and self-grant
+setting. Preserve separate native creator ADMIN/SET/INHERIT baseline, savepoint
+rollback before genuinely fresh source creation, fresh/replay seven attributes,
+SET=true, USAGE=false, nonempty/all INHERIT=false membership proof, native guard
+failures and actual restricted function ownership. No SECURITY DEFINER wrapper
+or mere SET ROLE may stand in for that proof.
+
+Retain pending-query settlement; expected errors roll back their savepoints
+before assertions. Unexpected abort requires full rollback before identity reset.
+Superuser reset/setup cannot receive restricted-operation credit. Verify actual
+original session/current identity after reset, then same-connection absence.
+Fresh read-only absence uses another independently authenticated same fixed setup
+route, requires its identity/privacy qualification, observes exact owned roles/
+schema/function absence, and closes without pooling. Keep primary and every
+cleanup/transport/identity/absence failure; close failure never becomes success.
+Transactional UUID-schema CREATE remains unrelated to real public-schema
+source/recovery prerequisite proof.
+
+The wrapper preserves irreversible COMMIT uncertainty, captured child settlement,
+exact UUID/name deletion and independent absence read, no name-only fallback,
+and job-operator custody on unverified outcomes. A failed setup qualification has
+not-attempted key outcome. After key mutation, no new transport/authority fallback
+can manufacture cleanup success. Credentials/connection references are released
+after all own requests and cleanup settle; JavaScript string zeroization is not
+claimed. Raw driver error fields and Docker/status payloads remain in memory;
+only fixed stages/categories and validated nonsecret booleans are persisted.
+
+## Exact proposed source scope and bounded verification
+
+| Path | Proposed responsibility and scope |
+| --- | --- |
+| `scripts/ci/with-calendar-feed-runtime.mjs` | Return the qualified source DB observation internally; shared explicit setup client constructor; credential-source guards; fixed admin identity and same-client privacy gates; original four startup controls. Existing argv/lifecycle/COMMIT/cleanup/custody unchanged. No new command or workflow. |
+| `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts` | Existing file only: real unconnected pg constructor/startup tests plus injected credential/principal/privacy failure and ordering/custody tests. No actual service/qualification execution. |
+| `tests/support/calendar-feed-ci-contract.ts` | Only refresh actual LF wrapper SHA after the reviewed implementation. Preserve exact entry/argv projection and all unrelated-source/workflow drift negatives and original inverse hash. |
+| `tests/integration/commands/calendar-feed.int.test.ts` | Existing INT015 only: use the shared qualified constructor for original and fresh read-only sessions; retain every restricted identity/operation/rollback/absence assertion. No new case, object or role effect. |
+| `_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md` | Author technical choice/evidence limits and single SRO after implementation; intent kernel and historical approvals immutable. |
+
+No new helper/dependency/shared environment/workflow/recovery/migration path is
+proposed. The constructor is already exported by the owned wrapper, and INT015
+already imports its validators. This is a new **credential-use and authenticated
+setup transport effect**, so the original superuser allocation alone must not be
+presented as implementation admission. Root handles explicit review/admission and
+any Coordinator clarification for the exact existing INT015/wrapper boundaries;
+the author does not contact other owners or write those sources now.
+
+Meaningful bounded tests must demonstrate: no guessing/duplicates/missing
+credential or alternate endpoint; explicit real-driver startup/config excludes
+ambient identity/options; wrong/partial/non-super/session-mismatched authority
+and unsafe privacy block UUID/entropy/Vault/fixtures/children; setup proof and
+key/cleanup use one client; fresh absence requalifies independently; child
+configuration remains exactly ordinary with no new privileged field/DSN;
+safe primary-plus-cleanup outcomes
+and unchanged COMMIT/custody; actual argv/inverse/drift fences. Run only affected
+Node cases, full typecheck/focused lint and kernel/SRO/diff checks locally. Test
+counts follow actual implementation, not a predicted number. Native PG17 setup,
+restricted proof and feed bodies require new exact-head isolated CI after distinct
+High review of the implemented delta; no current native success is promised.
+
+## Evidence for the selected boundaries, and explicit limits
+
+- Existing original allocation: `accepted-pg17-probe-allocation.json`, especially
+  initially authenticated isolated superuser, restricted SESSION AUTHORIZATION,
+  seven attributes, exact two-role effects, and all cleanup/absence conditions.
+- Existing `code-review-round-2/source-role-disposition.json` binds PostgreSQL17
+  [SESSION AUTHORIZATION](https://www.postgresql.org/docs/17/sql-set-session-authorization.html)
+  and [SET ROLE](https://www.postgresql.org/docs/17/sql-set-role.html) semantics.
+  This design reused that already recorded primary analysis; no native probe or
+  new remote infrastructure observation occurred.
+- Existing source: wrapper source admission/fixed publication and pg constructor;
+  INT015 lines296-302,378-385 and restricted/reset/absence logic. The
+  `tests/support/test-env.ts` local-superuser comment is not authority: actual
+  fifth-run facts contradict it for this route. No general test-env rewrite is
+  proposed.
+- Existing `.github/workflows/ci.yml:325` uses source-container psql as postgres;
+  lines348/405 authenticate the **separate** isolated recovery target as
+  supabase_admin. `scripts/ops/write-recovery-runtime-config.mjs` generates that
+  target's private password; `ops/recovery/bootstrap-roles.sql` initializes only
+  its existing runtime role passwords. Neither proves a source admin password or
+  source SupAdmin superuser login. Do not reuse the recovery credential/target.
+- Installed pg8.22.0 startup/config behavior was already inspected and bound in
+  `author-native-privacy-preflight-route.json`: explicit constructor settings
+  override ambient PG choices. The proposed source credential/role mapping still
+  needs actual single-route authentication and catalog proof in an admitted CI
+  run. If unavailable, stop with that named prerequisite gap rather than elevate
+  postgres, grant SET, change HBA, use peer-socket fallback or relax either oracle.
+
+This document grants no action. Root owns review dispatch, admission, bookkeeping,
+the next checkpoint/CI and any effect/ownership coordination. Source remains
+frozen, status in-review, development and release incomplete, no delivery/DONE.
+
+BOUND AUTHORITY/CHECKS/SANITIZED NATIVE CONTEXT: _bmad-output/auto-bmad/preparation/story-15-5/native-authority-boundary-proposal-review/original-review.md
+PASS — proposal only; no actionable design findings.
+
+Verified the proposal’s 16,753-byte size and SHA256 `d3a0e8c4da3bb1cfd2adffd74e576cc9adf6fd0afb5e9a264433d948b20791b4`. The five named source paths match frozen revision `e472741a91f58c5ef9e623720e2bba0d1164c360`.
+
+The proposal adequately constrains credential custody, fixed endpoint/principal selection, same-client identity/privacy qualification, restricted SESSION AUTHORIZATION evidence, cleanup, uncertainty, and child configuration.
+
+Conditions remain:
+
+- Source `POSTGRES_PASSWORD` mapping, TCP authentication, and actual SupAdmin LOGIN+SUPER availability require admitted native evidence.
+- Root must explicitly admit the new credential-use/setup-authority effect for both wrappers and INT015, resolving any Coordinator ownership clarification first.
+- Implementation requires distinct targeted High review before exact-head CI.
+
+This review authorizes no implementation, credential access, probe, resource launch, or deployment. No files or runtime resources were changed. Story review count remains three.
+
+BOUND AUTHORITY/CHECKS/SANITIZED NATIVE CONTEXT: _bmad-output/auto-bmad/preparation/story-15-5/native-authority-boundary-proposal-review/original-review-attestation.json
+{
+  "schema_version": 1,
+  "kind": "independent-sensitive-permission-transport-proposal-review-attestation",
+  "result": "PASS",
+  "scope": "Concrete permission/transport proposal only; no actionable design findings; not a broad story-code review",
+  "reviewer": {
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "context_free": true,
+    "distinct_from_author": true,
+    "task": "/root/build15_5_high/authority_transport_proposal_review"
+  },
+  "proposal": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-authority-boundary-proposal.md",
+    "bytes": 16753,
+    "sha256": "d3a0e8c4da3bb1cfd2adffd74e576cc9adf6fd0afb5e9a264433d948b20791b4"
+  },
+  "observed_actual_head": "c7570096435dfbae2f6a535be46e61daaf9e28dc",
+  "frozen_source_revision": "e472741a91f58c5ef9e623720e2bba0d1164c360",
+  "source_binding": "Original review observed an empty git diff against frozen_source_revision for all five proposed source paths; e472741a is not claimed as actual HEAD.",
+  "original_report": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-authority-boundary-proposal-review/original-review.md",
+    "bytes": 1075,
+    "sha256": "b822dd0bb78ae76540b8283aee068708947cbfe7c7036c77102f42dcfd184a1c",
+    "preservation": "Exact completed original final report text, persisted with UTF-8 no BOM and LF final newline; no re-review."
+  },
+  "native_prerequisites_unverified": [
+    "Source Config.Env.POSTGRES_PASSWORD mapping to supabase_admin",
+    "TCP authentication with that sole existing candidate credential",
+    "Authenticated source supabase_admin LOGIN and SUPERUSER availability"
+  ],
+  "admission_required": "Root must explicitly admit the new credential-use/authenticated setup effect for both wrappers and existing INT015 and resolve any Coordinator ownership clarification before source writes or effects.",
+  "implementation_admitted_by_review": false,
+  "native_or_resource_probe_admitted_by_review": false,
+  "source_writes": 0,
+  "runtime_executions": 0,
+  "tests_executed": 0,
+  "resources_started": 0,
+  "commits_created": 0,
+  "review_rerun": false,
+  "completed_story_code_review_rounds": 3,
+  "increments_story_code_review_cap": false,
+  "persistence_only": "After the original read-only review completed, the parent assigned creation of only this attestation and original-review.md. The original report statement that no files were changed describes the completed review before this persistence step."
+}
+
+BOUND AUTHORITY/CHECKS/SANITIZED NATIVE CONTEXT: _bmad-output/auto-bmad/preparation/story-15-5/native-authority-transport-review/local-checks.json
+{
+  "kind": "author-bounded-authority-transport-checks",
+  "base_head_during_checks": "c7570096435dfbae2f6a535be46e61daaf9e28dc",
+  "committed_source": "4562cfd0031b32b6921f668cd953384b64116973",
+  "source_state_during_checks": "Exact five-path working code/test delta, committed after checks; Spec evidence prose refreshed before commit. Root metadata separately dirty/excluded. No post-commit source/Spec edits.",
+  "checks": [
+    { "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test --test-reporter=spec tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts", "result": "PASS", "passed": 33, "failed": 0, "skipped": 0, "cancelled": 0, "receipt_chunk": "f71091", "dependency": "Injected runtime/DB lifecycle. Real pg8.22 client construction/startup serialization/end for fixed runtime/proof/absence purposes; no connect/service. MODULE_TYPELESS_PACKAGE_JSON warning emitted." },
+    { "command": "pnpm exec tsc --noEmit --incremental false", "result": "PASS", "exit_code": 0, "receipt_start": "1042fa", "receipt_completion": "216df6" },
+    { "command": "pnpm exec eslint scripts/ci/with-calendar-feed-runtime.mjs tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts tests/support/calendar-feed-ci-contract.ts tests/integration/commands/calendar-feed.int.test.ts", "result": "PASS", "errors": 0, "warnings": 0, "receipt_chunk": "5611fb" },
+    { "command": "node scripts/verify/check-review-order.mjs _bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md", "result": "PASS", "stops": 35, "sections": 1, "errors": [], "receipt_chunk": "9bd1ef", "literal_validation": "refresh-review-order.mjs resolved all35 actual path/line literals and required unchanged frozen kernel SHA0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977" },
+    { "command": "git diff --check -- <exact five allocated source paths>", "result": "PASS", "receipt_chunk": "b323fe" },
+    { "command": "git diff --cached --check", "result": "PASS", "receipt_chunk": "4d5c1a", "exact_five_path_inventory_receipt": "73d339" }
+  ],
+  "intermediate_result": "Initial33/33 passed. First tsc identified an implicit-any consumer of the newly exported JS privacy helper; added explicit exported JSDoc return contract, refreshed actual wrapper pin, then final33/33/type/lint passed. No native oracle execution or static-as-runtime credit.",
+  "preservation": "Original workflow inverse48adc320f459b648212ee87950facc76cdda306bb0a14e72f2786c67c2c689e0, all entry/argv/reporters/nativeJSON/unrelated drift negatives, COMMIT uncertainty/captured settlement/exact-key cleanup/custody; INT015 remains one case and all restricted/session/role/source/SET/owner/savepoint/fullrollback/same-fresh absence assertions retained.",
+  "limits": "Feature95 case inventory unchanged; bootstrap33 separate. Actual admin credential mapping/TCP/login-superuser/privacy not executed locally. All65 feature Vitest/browser bodies unexecuted. Historical fifth verify3102/Python43/build/recovery1 passes are bounded failed-head evidence; no current native success. No app source change/build rerun, no global fullunit rerun, resources, local DB/Docker/Supabase/browser qualification, push or CI dispatch."
+}
+
+BOUND AUTHORITY/CHECKS/SANITIZED NATIVE CONTEXT: .env.epic15.mail-runtime/story-15-5-preparation/checkpoint-c7570096-ci-independent/native-qualification.md
+# Story 15.5 privacy-preflight checkpoint native qualification
+
+Status: **FAILED_NATIVE_PRIVACY_PREFLIGHT_PENDING_ROUTE**. Development complete: false. Release ready: false.
+
+Source `e472741a91f58c5ef9e623720e2bba0d1164c360`; checkpoint `c7570096435dfbae2f6a535be46e61daaf9e28dc`; run 39468849461 attempt 1; checkpoint d5143bc7-1f0f-48f3-b60d-fe798eba0f8c; release_validation=false. Same independent High native qualifier; no fourth broad review.
+
+Admission, verify and isolated recovery passed. Native unit execution was **3,102 passed, zero failures, skips or cancellations**: all 30 feature units, 30 separate wrapper simulations and three installed partition contracts. The job separately passed 43 Python process tests, production build and containment. All three source starts/resets passed.
+
+DB and browser wrappers connected and read valid four-row same-client privacy facts, then refused at **privacy-preflight / guard-refusal; keyOutcome=not-attempted**. Three matchesRequired flags were false: log_statement, log_min_error_statement and log_parameter_max_length, all with superuser context. log_parameter_max_length_on_error had user context and matched. All recorded canSet flags were false; no actual SET trial or general USERSET prohibition is inferred. The typed current/session fixed identity and same_identity facts were true; both superuser facts false and both bypass-RLS facts true. These are existing role observations, not a new elevation. Raw effective values were never returned or persisted.
+
+No entropy/key/child/feed test execution followed. Both receipts report ready=false, no child exit records, keyDeleted=false, dbClosed=true and custody=null. All 51 feature Vitest and 14 browser bodies remain unexecuted; current runner skip counts remain null. Actual six-file DB runtime, restricted PG17 fixture, source RLS010 privileges/catalog, HTTP/telemetry privacy and prior browser smoke remain unqualified. The observed source identity does not qualify the restricted fixture's privileged setup prerequisite.
+
+The separate recovery native case passed with zero failed/pending cases, including same-restored-target effective public CREATE=false, actual Storage bytes/info, unchanged protected rows and overwrite denial. Exactly one hash-bound recovery artifact exists. All four optional release jobs were skipped and receive no credit. Historical 52 skips and the RLS14 subset do not supply current coverage.
+
+All 67 source raw/clean/blob bindings and 1,289 current code/tool Git bindings matched the frozen source/checkpoint at recorded snapshot. Historical 507 rows are 504 matching plus three changed, without whole-scope prior PASS reuse. Root's source 67/nine author commits and latest targeted review are attributed to its hash-bound fifth admission receipt. Six mutable Root raw observations are UNVERIFIED_UNCREDITED baseline only; current route artifacts are separately bound.
+
+Root owns the next bounded isolated-setup route and any reviewed repair. No GUC/role/grant mutation, source fix, tracked write, delivery record, status flip, rerun, resource launch or hosted/provider/merge/deploy action occurred. Prior failure packets remain unchanged.
+
+Only bounded facts, outcomes and hashes persist; no raw native SQL error/message/hint/stack/parameters or sensitive runtime payloads. manifest.json lists every packet file except itself, whose digest is returned to Root.
+
+BOUND AUTHORITY/CHECKS/SANITIZED NATIVE CONTEXT: .env.epic15.mail-runtime/story-15-5-preparation/checkpoint-c7570096-ci-independent/native-runtime-log-extracts.json
+{
+  "run_id": 39468849461,
+  "attempt": 1,
+  "head": "c7570096435dfbae2f6a535be46e61daaf9e28dc",
+  "jobs": [
+    {
+      "job": "db",
+      "id": 118788760874,
+      "conclusion": "failure",
+      "raw_log_bytes": 94484,
+      "raw_log_sha256": "cec75bfca4c5f4ae780049c83bf1d0a34c0a9648ded078086222faef8e406418",
+      "storage": "Raw log inspected in memory only; fixed fields and sanitized excerpts persisted",
+      "lifecycle": [
+        {
+          "event": "calendar_feed.ci_lifecycle",
+          "mode": "db",
+          "ready": false,
+          "childExitCodes": [],
+          "keyDeleted": false,
+          "dbClosed": true,
+          "failures": [
+            "privacy-preflight-refused"
+          ],
+          "keyOutcome": "not-attempted",
+          "privacyPreflight": {
+            "schemaValid": true,
+            "controls": [
+              {
+                "name": "log_min_error_statement",
+                "context": "superuser",
+                "matchesRequired": false,
+                "canSet": false
+              },
+              {
+                "name": "log_parameter_max_length",
+                "context": "superuser",
+                "matchesRequired": false,
+                "canSet": false
+              },
+              {
+                "name": "log_parameter_max_length_on_error",
+                "context": "user",
+                "matchesRequired": true,
+                "canSet": false
+              },
+              {
+                "name": "log_statement",
+                "context": "superuser",
+                "matchesRequired": false,
+                "canSet": false
+              }
+            ],
+            "principal": {
+              "session_is_postgres": true,
+              "current_is_postgres": true,
+              "same_identity": true,
+              "session_superuser": false,
+              "current_superuser": false,
+              "session_bypass_rls": true,
+              "current_bypass_rls": true
+            }
+          },
+          "diagnostics": [
+            {
+              "stage": "privacy-preflight",
+              "category": "guard-refusal",
+              "sqlState": null
+            }
+          ],
+          "custody": null
+        }
+      ],
+      "diagnostic": [
+        {
+          "line": 1189,
+          "text": "[Lifecycle receipt extracted separately]"
+        },
+        {
+          "line": 1190,
+          "text": "##[error]Process completed with exit code 1."
+        },
+        {
+          "line": 1206,
+          "text": "##[error]No files were found with the provided path: test-results/full-integration.json. No artifacts will be uploaded."
+        }
+      ]
+    },
+    {
+      "job": "e2e",
+      "id": 118788760920,
+      "conclusion": "failure",
+      "raw_log_bytes": 122143,
+      "raw_log_sha256": "9ddae67cb1da3fb3e48e47d2f1a1af9117d5a97a6c4a26078d420caf14309e43",
+      "storage": "Raw log inspected in memory only; fixed fields and sanitized excerpts persisted",
+      "lifecycle": [
+        {
+          "event": "calendar_feed.ci_lifecycle",
+          "mode": "browser",
+          "ready": false,
+          "childExitCodes": [],
+          "keyDeleted": false,
+          "dbClosed": true,
+          "failures": [
+            "privacy-preflight-refused"
+          ],
+          "keyOutcome": "not-attempted",
+          "privacyPreflight": {
+            "schemaValid": true,
+            "controls": [
+              {
+                "name": "log_min_error_statement",
+                "context": "superuser",
+                "matchesRequired": false,
+                "canSet": false
+              },
+              {
+                "name": "log_parameter_max_length",
+                "context": "superuser",
+                "matchesRequired": false,
+                "canSet": false
+              },
+              {
+                "name": "log_parameter_max_length_on_error",
+                "context": "user",
+                "matchesRequired": true,
+                "canSet": false
+              },
+              {
+                "name": "log_statement",
+                "context": "superuser",
+                "matchesRequired": false,
+                "canSet": false
+              }
+            ],
+            "principal": {
+              "session_is_postgres": true,
+              "current_is_postgres": true,
+              "same_identity": true,
+              "session_superuser": false,
+              "current_superuser": false,
+              "session_bypass_rls": true,
+              "current_bypass_rls": true
+            }
+          },
+          "diagnostics": [
+            {
+              "stage": "privacy-preflight",
+              "category": "guard-refusal",
+              "sqlState": null
+            }
+          ],
+          "custody": null
+        }
+      ],
+      "diagnostic": [
+        {
+          "line": 1440,
+          "text": "[Lifecycle receipt extracted separately]"
+        },
+        {
+          "line": 1441,
+          "text": "##[error]Process completed with exit code 1."
+        },
+        {
+          "line": 1459,
+          "text": "##[error]No files were found with the provided path: test-results/general-browser.json. No artifacts will be uploaded."
+        }
+      ]
+    },
+    {
+      "job": "recovery-storage-loader",
+      "id": 118788761109,
+      "conclusion": "success",
+      "raw_log_bytes": 282886,
+      "raw_log_sha256": "978ecc8bb1ce33f5521002724474f77c041288aee06a7b229c70e26cbdd36f9d",
+      "storage": "Raw log inspected in memory only; fixed fields and sanitized excerpts persisted",
+      "lifecycle": [],
+      "diagnostic": [
+        {
+          "line": 4566,
+          "text": " Test Files  1 passed (1)"
+        },
+        {
+          "line": 4567,
+          "text": "      Tests  1 passed (1)"
+        },
+        {
+          "line": 4571,
+          "text": "JSON report written to /home/runner/work/Kopplas/Kopplas/test-results/isolated-storage-recovery.json"
+        }
+      ]
+    }
+  ]
+}
+
+BOUND AUTHORITY/CHECKS/SANITIZED NATIVE CONTEXT: .env.epic15.mail-runtime/story-15-5-preparation/checkpoint-c7570096-ci-independent/manifest.json
+{
+  "kind": "complete-independent-packet-file-manifest",
+  "self_excluded": true,
+  "count": 18,
+  "files": [
+    {
+      "path": "artifact-native-isolated-storage-recovery-extraction.json",
+      "bytes": 1788,
+      "sha256": "986ac33d206d9c4e1c8f195a6db4b070bc89178101a69fc63868ee36fe04f861"
+    },
+    {
+      "path": "collect-native-artifacts.py",
+      "bytes": 6803,
+      "sha256": "912f7d4c27346025368f848cc6fbde8016208b6104fd54ba73af8a9939c93911"
+    },
+    {
+      "path": "collect-runtime.mjs",
+      "bytes": 4759,
+      "sha256": "e5fecbcb217186798ebf1e82e0034505c5e238121420409b057e4b73355aa39c"
+    },
+    {
+      "path": "collect-verify.mjs",
+      "bytes": 2656,
+      "sha256": "98be8864afa4e731ebc4a8b2b525bb8139c1ef2453900d410abd0ab8097b149a"
+    },
+    {
+      "path": "current-input-bindings.json",
+      "bytes": 310893,
+      "sha256": "972277fd02ab634f69c1e8c66f422f2b0942a2a6b6dd9db401de34512df6db95"
+    },
+    {
+      "path": "dependency-bindings.json",
+      "bytes": 229187,
+      "sha256": "a4dc41441abf67ee7729c09d099d5632aec2c9b3cd6f7819bd80844553aa2efd"
+    },
+    {
+      "path": "finalize-packet.mjs",
+      "bytes": 18275,
+      "sha256": "f060ac9b0d0dd4d2a319c3b8665c82855dac5c54397b7164f1525e0a902cde7a"
+    },
+    {
+      "path": "native-artifact-receipts.json",
+      "bytes": 1098,
+      "sha256": "243850dd0900692e6a915c12cb2f4a34617b88eb1d582bbe856a591b6d834575"
+    },
+    {
+      "path": "native-assertion-reach.json",
+      "bytes": 5381,
+      "sha256": "4e1c6acf9f4741d4c853dc43d687dbfd3ebbe66746369e3b94bedd7f6cd3b1b5"
+    },
+    {
+      "path": "native-qualification.json",
+      "bytes": 20237,
+      "sha256": "8790401b0ae1441e88c32b81d71ecfbe0cdf1c5e1c2631f6dc082552fac5638e"
+    },
+    {
+      "path": "native-qualification.md",
+      "bytes": 3404,
+      "sha256": "512f7132d08e2bd44f195ce66f9d8ccb24d56c2ada28094ca43e6e348a815ec3"
+    },
+    {
+      "path": "native-run-jobs-artifacts.json",
+      "bytes": 23619,
+      "sha256": "fbb76703cf4b5f5c36613cd381f67717e66ca87f5c26516d3883764c26b500bf"
+    },
+    {
+      "path": "native-runtime-log-extracts.json",
+      "bytes": 5947,
+      "sha256": "fe164a36fa42f72a9c826f7e7d8ba371e6218f81bba3dd7c9499ac0f64f1caec"
+    },
+    {
+      "path": "native-verify-evidence.json",
+      "bytes": 14634,
+      "sha256": "f0fbab7d5472b53ead890ee646be4cc22624e76e5afd3ff875b1c04ff8cef2ae"
+    },
+    {
+      "path": "prepare-bindings.mjs",
+      "bytes": 3742,
+      "sha256": "c3927257335d428270633a0ddc0d56326045561373748ba125acdfa3f9c55920"
+    },
+    {
+      "path": "qualification-in-progress.json",
+      "bytes": 749,
+      "sha256": "33e1a1c7002911619ab0a1917f47ecc087f45433e243cd3112082e8639ca953a"
+    },
+    {
+      "path": "qualify-assertion-reach.mjs",
+      "bytes": 4904,
+      "sha256": "0df637eefe195eb041ae43aaaf4d8075cb51992b89ede4cda5e84804208993d7"
+    },
+    {
+      "path": "source-path-bindings.json",
+      "bytes": 48465,
+      "sha256": "23b7fb64db42f606b2220cc5528b6c79cbe9cd16ae8b876aa9b8052328bda69d"
+    }
+  ]
+}
+
+BOUND AUTHORITY/CHECKS/SANITIZED NATIVE CONTEXT: .env.epic15.mail-runtime/story-15-5-preparation/root-failed-c757-packet-admission.json
+{
+  "status": "PASS_PACKET_INTEGRITY_ONLY",
+  "native_conclusion": "FAILURE",
+  "checkpoint_head": "c7570096435dfbae2f6a535be46e61daaf9e28dc",
+  "run_id": 39468849461,
+  "attempt": 1,
+  "files_checked": 18,
+  "manifest_self_checked": true,
+  "bindings": {
+    "native-qualification.json": "8790401b0ae1441e88c32b81d71ecfbe0cdf1c5e1c2631f6dc082552fac5638e",
+    "native-qualification.md": "512f7132d08e2bd44f195ce66f9d8ccb24d56c2ada28094ca43e6e348a815ec3",
+    "manifest.json": "dc8bee5066b45e02ae8305e3873fb035e942fa5f6b3f4f2bf7d667a07220c8dc"
+  },
+  "safe_diagnostic": {
+    "stage": "privacy-preflight",
+    "category": "guard-refusal",
+    "sqlState": null,
+    "keyOutcome": "not-attempted",
+    "required_setting_matches": 1,
+    "required_setting_mismatches": 3,
+    "effective_values": "NOT_RETURNED_OR_PERSISTED",
+    "actual_SET_trials": 0
+  },
+  "feature_native_unexecuted": 65,
+  "development_complete": false,
+  "release_ready": false
+}
+
+ROOT IMPLEMENTATION ROUTE: _bmad-output/auto-bmad/state/15-5-personal-calendar-feed-adr-b004-surface-1.yaml lines21-29; snapshot only
+selected_phase: build-native-authority-transport-repair
+selected_role: build-author-isolated-supadmin-transport
+selected_profile: sensitive
+selected_model: gpt-6.1-sol
+selected_effort: high
+selected_host: codex
+selected_tier: subagents
+selected_route: subagent
+escalation_reason: "Coordinator explicitly admitted exact existing-SupAdmin credential-use/authenticated isolated setup after independent High design/effect review and current ownership check. Secret custody, permissions, PG17 restricted-session proof and transaction cleanup require explicit High; only five paths."

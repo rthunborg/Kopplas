@@ -1,0 +1,204 @@
+{
+  "kind": "post-cap-latest-committed-isolated-setup-authority-transport-delta-only",
+  "completed_review_rounds": 3,
+  "cap": 3,
+  "fourth_broad_review": false,
+  "before": "c7570096435dfbae2f6a535be46e61daaf9e28dc",
+  "source_head": "4562cfd0031b32b6921f668cd953384b64116973",
+  "source_state": "EXACT_COMMITTED_FIVE_PATH_DELTA",
+  "input_bytes": 179712,
+  "input_sha256": "cd9514d6a6552bb57e432acb6f4b4c6075af6f141e9e5691613c81391bf94da6",
+  "diff_bytes": 78561,
+  "diff_sha256": "e389388170cc8e1da1e8d37abd40d344d9cb44548d686d6b95a7ee0a5b76be67",
+  "paths": [
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+    "scripts/ci/with-calendar-feed-runtime.mjs",
+    "tests/integration/commands/calendar-feed.int.test.ts",
+    "tests/support/calendar-feed-ci-contract.ts",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts"
+  ],
+  "bindings": [
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "raw_bytes": 82681,
+      "raw_sha256": "6af0ec49a252dd762e9badaf12b9446eccf279d8e680c6233f0950d15ee37c68",
+      "actual_git_clean_oid": "2a0b34892f2af542f71e1a7804e6ea4cd48cca3e",
+      "git_clean_normalized_bytes": 82681,
+      "git_clean_normalized_sha256": "6af0ec49a252dd762e9badaf12b9446eccf279d8e680c6233f0950d15ee37c68",
+      "head_blob_oid": "2a0b34892f2af542f71e1a7804e6ea4cd48cca3e",
+      "head_blob_bytes": 82681,
+      "head_blob_sha256": "6af0ec49a252dd762e9badaf12b9446eccf279d8e680c6233f0950d15ee37c68",
+      "source_committed": true,
+      "raw_equals_normalized": true,
+      "baseline_blob_oid": "1057b3de8304f5e8bf1bec4b524f41c68ad44398",
+      "baseline_bytes": 77098,
+      "baseline_sha256": "35e708bf717ef86b40ed9afcfc301977caca39689ecdc9229e305a0aaf549411"
+    },
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "raw_bytes": 33317,
+      "raw_sha256": "be71fbb20f5f1cdfe0cc210340790b78e0759d0daa778ed3014995dd0bff4de7",
+      "actual_git_clean_oid": "dbcd8177485be71da06ce242b254b95a04e9e03e",
+      "git_clean_normalized_bytes": 33317,
+      "git_clean_normalized_sha256": "be71fbb20f5f1cdfe0cc210340790b78e0759d0daa778ed3014995dd0bff4de7",
+      "head_blob_oid": "dbcd8177485be71da06ce242b254b95a04e9e03e",
+      "head_blob_bytes": 33317,
+      "head_blob_sha256": "be71fbb20f5f1cdfe0cc210340790b78e0759d0daa778ed3014995dd0bff4de7",
+      "source_committed": true,
+      "raw_equals_normalized": true,
+      "baseline_blob_oid": "671d0890cf4fc2348b49a2d7bb0df04df13763db",
+      "baseline_bytes": 30917,
+      "baseline_sha256": "b8eb57816e3c35ac1331cac1de56864ba82b34a99d31c7f6d315efcd440d47ef"
+    },
+    {
+      "path": "tests/integration/commands/calendar-feed.int.test.ts",
+      "raw_bytes": 36136,
+      "raw_sha256": "da67a1bdfbe9eae9e0199e1ee1cddd6dd00863e263af7cf6a1aaa6dc3f092891",
+      "actual_git_clean_oid": "178491d5b34b37dcf6fab346250e653418ca9428",
+      "git_clean_normalized_bytes": 36136,
+      "git_clean_normalized_sha256": "da67a1bdfbe9eae9e0199e1ee1cddd6dd00863e263af7cf6a1aaa6dc3f092891",
+      "head_blob_oid": "178491d5b34b37dcf6fab346250e653418ca9428",
+      "head_blob_bytes": 36136,
+      "head_blob_sha256": "da67a1bdfbe9eae9e0199e1ee1cddd6dd00863e263af7cf6a1aaa6dc3f092891",
+      "source_committed": true,
+      "raw_equals_normalized": true,
+      "baseline_blob_oid": "9d638f3cf65206fa098e8b9daa7cb5ee756c51f7",
+      "baseline_bytes": 35243,
+      "baseline_sha256": "f6fadad80bd1523a3bd9852d8ff77ad2b9bd399861c55ce2ede6eb7f49ed6d95"
+    },
+    {
+      "path": "tests/support/calendar-feed-ci-contract.ts",
+      "raw_bytes": 3777,
+      "raw_sha256": "36febdaa7141b3eef50083871ea34d2b64001c44b4a9f870fafeb430d8dcea18",
+      "actual_git_clean_oid": "ee8c690c8959a8598f8d8b1924e307a81502d64f",
+      "git_clean_normalized_bytes": 3777,
+      "git_clean_normalized_sha256": "36febdaa7141b3eef50083871ea34d2b64001c44b4a9f870fafeb430d8dcea18",
+      "head_blob_oid": "ee8c690c8959a8598f8d8b1924e307a81502d64f",
+      "head_blob_bytes": 3777,
+      "head_blob_sha256": "36febdaa7141b3eef50083871ea34d2b64001c44b4a9f870fafeb430d8dcea18",
+      "source_committed": true,
+      "raw_equals_normalized": true,
+      "baseline_blob_oid": "f206f3c7a13f98a6beed5f4eebdd4b5c8467caba",
+      "baseline_bytes": 3777,
+      "baseline_sha256": "dd4db2e1d581b1ef0c0e5cc92a39f2aa3119caf0324ddede6899abd511667db6"
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "raw_bytes": 44519,
+      "raw_sha256": "ac85a7fb043076946d445ae14cf113328138b483d38bb822ff89ac01192a120b",
+      "actual_git_clean_oid": "47438cd667d076ad167c37cd35d56adf20dbb9c9",
+      "git_clean_normalized_bytes": 44519,
+      "git_clean_normalized_sha256": "ac85a7fb043076946d445ae14cf113328138b483d38bb822ff89ac01192a120b",
+      "head_blob_oid": "47438cd667d076ad167c37cd35d56adf20dbb9c9",
+      "head_blob_bytes": 44519,
+      "head_blob_sha256": "ac85a7fb043076946d445ae14cf113328138b483d38bb822ff89ac01192a120b",
+      "source_committed": true,
+      "raw_equals_normalized": true,
+      "baseline_blob_oid": "e25329e69a54ce688ae6069ecd2cd2732feabc92",
+      "baseline_bytes": 38947,
+      "baseline_sha256": "d86ce8f7fb5269d6d5e1ce7028012e1aaeec3dcf8a8be28e335004ba71aa9d7e"
+    }
+  ],
+  "contexts": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/author-native-authority-transport-route.json",
+      "raw_bytes": 2669,
+      "raw_sha256": "affb030d99fac59a17b5e0459b880e0e9344ba6c9479578f122e1a24dc577bd1",
+      "included_lf_bytes": 2669,
+      "included_lf_sha256": "affb030d99fac59a17b5e0459b880e0e9344ba6c9479578f122e1a24dc577bd1"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-native-authority-boundary-allocation.json",
+      "raw_bytes": 5160,
+      "raw_sha256": "91097d8da439a9a88d99453e52416dcfa4799ccf3a3b5d834d86acd44a22df13",
+      "included_lf_bytes": 5160,
+      "included_lf_sha256": "91097d8da439a9a88d99453e52416dcfa4799ccf3a3b5d834d86acd44a22df13"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-authority-boundary-proposal.md",
+      "raw_bytes": 16753,
+      "raw_sha256": "d3a0e8c4da3bb1cfd2adffd74e576cc9adf6fd0afb5e9a264433d948b20791b4",
+      "included_lf_bytes": 16753,
+      "included_lf_sha256": "d3a0e8c4da3bb1cfd2adffd74e576cc9adf6fd0afb5e9a264433d948b20791b4"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-authority-boundary-proposal-review/original-review.md",
+      "raw_bytes": 1075,
+      "raw_sha256": "b822dd0bb78ae76540b8283aee068708947cbfe7c7036c77102f42dcfd184a1c",
+      "included_lf_bytes": 1075,
+      "included_lf_sha256": "b822dd0bb78ae76540b8283aee068708947cbfe7c7036c77102f42dcfd184a1c"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-authority-boundary-proposal-review/original-review-attestation.json",
+      "raw_bytes": 2460,
+      "raw_sha256": "93164d01ad3aecad2ff8a0edb061b0268f02315f65ab32c257f604ec17662802",
+      "included_lf_bytes": 2460,
+      "included_lf_sha256": "93164d01ad3aecad2ff8a0edb061b0268f02315f65ab32c257f604ec17662802"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-authority-transport-review/local-checks.json",
+      "raw_bytes": 3241,
+      "raw_sha256": "3fb2ff8676afb5a959f6a8759bfbf4add19901207a1b6462abf45d669b9bb060",
+      "included_lf_bytes": 3241,
+      "included_lf_sha256": "3fb2ff8676afb5a959f6a8759bfbf4add19901207a1b6462abf45d669b9bb060"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-c7570096-ci-independent/native-qualification.md",
+      "raw_bytes": 3404,
+      "raw_sha256": "512f7132d08e2bd44f195ce66f9d8ccb24d56c2ada28094ca43e6e348a815ec3",
+      "included_lf_bytes": 3404,
+      "included_lf_sha256": "512f7132d08e2bd44f195ce66f9d8ccb24d56c2ada28094ca43e6e348a815ec3"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-c7570096-ci-independent/native-runtime-log-extracts.json",
+      "raw_bytes": 5947,
+      "raw_sha256": "fe164a36fa42f72a9c826f7e7d8ba371e6218f81bba3dd7c9499ac0f64f1caec",
+      "included_lf_bytes": 5947,
+      "included_lf_sha256": "fe164a36fa42f72a9c826f7e7d8ba371e6218f81bba3dd7c9499ac0f64f1caec"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-c7570096-ci-independent/manifest.json",
+      "raw_bytes": 3039,
+      "raw_sha256": "dc8bee5066b45e02ae8305e3873fb035e942fa5f6b3f4f2bf7d667a07220c8dc",
+      "included_lf_bytes": 3039,
+      "included_lf_sha256": "dc8bee5066b45e02ae8305e3873fb035e942fa5f6b3f4f2bf7d667a07220c8dc"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-failed-c757-packet-admission.json",
+      "raw_bytes": 976,
+      "raw_sha256": "bc57e48417de15ba5f0911e4ec1cdc1d207b6954a5f1f4404a9b8b9924299c76",
+      "included_lf_bytes": 949,
+      "included_lf_sha256": "d562d032c5b5d8efeff1118ce30ceb26bca19774758ce32ca47f784b55daa4f9"
+    }
+  ],
+  "complete_wrapper_context": {
+    "bytes": 33317,
+    "sha256": "be71fbb20f5f1cdfe0cc210340790b78e0759d0daa778ed3014995dd0bff4de7"
+  },
+  "complete_INT015_context": {
+    "bytes": 19375,
+    "sha256": "843529483246b34815e5e3b9db5888909198aa717142c1973062455b50316f14"
+  },
+  "normalization": "Raw hashes separate; LF bytes require unfiltered Git hash equality with actual --path clean OID, HEAD blobOID and byte equality. No source object writes/staging/commits by reader.",
+  "root_authorization": {
+    "path": "_bmad-output/auto-bmad/state/15-5-personal-calendar-feed-adr-b004-surface-1.yaml",
+    "raw_bytes_uncredited_mutable_snapshot": 44696,
+    "raw_sha256_uncredited_mutable_snapshot": "4bd4b9c96d433642b726aaad3e518b4e2518da7a5e4a723d7f50a6b117241d4e",
+    "included_lines": [
+      21,
+      29
+    ],
+    "included_lf_bytes": 578,
+    "included_lf_sha256": "cd0779b337ef009f0d8cbe45bad2d13dbe5cc6896ba08349654c48f5f53a9782",
+    "owner": "Root",
+    "source_commit_excluded": true
+  },
+  "review_route": {
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "context_free": true,
+    "distinct_from_author": true,
+    "scope": "Latest exact five-path delta and consequential regressions only. Design PASS is not code PASS; no fourth broad review."
+  },
+  "native_limits": "Source admin credential mapping/TCP/loginSuper and effective privacy are unverified until exact-head isolated CI. No local native/DB/runtime/probe.65feature bodies pending, previous5runsFAIL/recovery1separate; no delivery/DONE."
+}

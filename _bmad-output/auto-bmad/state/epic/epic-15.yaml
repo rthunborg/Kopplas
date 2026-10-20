@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-20T17:44:53Z"
+updated_at: "2026-10-20T18:26:23Z"
 started_at: "2026-10-09T12:57:49Z"
 completed_at: null
 active_seconds: 196027
@@ -18,7 +18,7 @@ is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: build-native-privacy-preflight-qualification
+selected_phase: build-native-authority-transport-qualification
 selected_role: native-ci-evidence-qualifier
 selected_profile: sensitive
 selected_model: gpt-6.1-sol
@@ -26,7 +26,7 @@ selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Actual same-connection privacy, key custody, RLS/PG17 authority and transactional cleanup qualification require explicit High; exact committed delta independently reviewed, broad cap3 retained."
+escalation_reason: "Actual admitted same-container admin authentication, secret custody/privacy, PG17 restricted-session oracle, RLS and transaction cleanup require explicit High native qualification. Exact five-path committed source independently reviewed; broad cap3 retained."
 routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary epic test planning; sensitive implementation/review scope routed explicitly High\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary story test-risk classification\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_triage\",\"profile\":\"light\",\"role\":\"test-risk-triage\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -173,6 +173,9 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Actual public-token/key custody, authorization/RLS, transactional uncertainty and native integrity evidence require explicit High. Latest source independently targeted-reviewed; broad cap3 retained.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build-native-diagnostic-qualification\",\"profile\":\"sensitive\",\"role\":\"native-ci-evidence-qualifier\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Observed42501 startup rejection before key/test mutation; same-connection privacy validation and transactional key custody are sensitive security/integrity work. Existing four-path allocation; no privilege or configuration expansion.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build-native-privacy-preflight-repair\",\"profile\":\"sensitive\",\"role\":\"build-author-same-connection-privacy-preflight\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Actual same-connection privacy, key custody, RLS/PG17 authority and transactional cleanup qualification require explicit High; exact committed delta independently reviewed, broad cap3 retained.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build-native-privacy-preflight-qualification\",\"profile\":\"sensitive\",\"role\":\"native-ci-evidence-qualifier\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Observed non-superuser source principal cannot satisfy logging gate; PG17 fixture original-superuser prerequisite unexecuted. Sensitive authority/secret custody design required, read-only proposal before changes.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build-native-authority-boundary-design\",\"profile\":\"sensitive\",\"role\":\"build-author-isolated-setup-authority-design\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Coordinator explicitly admitted exact existing-SupAdmin credential-use/authenticated isolated setup after independent High design/effect review and current ownership check. Secret custody, permissions, PG17 restricted-session proof and transaction cleanup require explicit High; only five paths.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build-native-authority-transport-repair\",\"profile\":\"sensitive\",\"role\":\"build-author-isolated-supadmin-transport\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Actual admitted same-container admin authentication, secret custody/privacy, PG17 restricted-session oracle, RLS and transaction cleanup require explicit High native qualification. Exact five-path committed source independently reviewed; broad cap3 retained.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build-native-authority-transport-qualification\",\"profile\":\"sensitive\",\"role\":\"native-ci-evidence-qualifier\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: null
 tea_selected: []
 tea_rationale: null
@@ -198,7 +201,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [99e1274e, b7f19e2d, 6f612a21, bc4163ea, 27ce6a2b, 7cdd08a6, 66cd8436, e6c404d3, 5d76de08575fb8fa09197021899d78280829d554, 81836287786a40540e96dbdf46db29c868cde41b, 48386408fc628f7341b711f177ff5833f622959c, 92dc4a5f4f7e9878e9ed9c28e00bda5d98680478, 16180cd63914a57895b36c2db060c43c74da3514, caec31b185bcad597664668d7a835c9c2096aa4d, 0a312c8fbd617d4ce03f97d5484bb23babb0686b, d5a5f85155394a0337ea92fcd606f949559b172a, becfd00e, 80c31af2, a0dd2302ead46e72e77f3293b84085c4f8fe65f3, 6f9e29656df997e2c5c6027874da4bee1ef6c17d, 5c1fb90b2f7f735259208e2d420bce489cbed598, 0d6f43ac90596b8703d8df3b9b986f9026aaaba3, 76868db295ac6b7de06a57f43164d5f02140f938, c4375f61, abaf8d81, db50a9c5, a1b83089, 6883ef61, 2441e3a2, 94baa7c7, afd9c1dd, 6d983e00, ae5b78b6, 09e70e81, 311e744f, 1d4ec146, 37fa423a, b1ad1496, "21835451", 1fadbd1f, b1f91332, 99590bfa, 45deb287, 532ebccf, 689ec7b7, cf9b89f9, 63186b1f, 48f8d7a7f170ca496b63e8120a34edb92e3ca23e, 6c0fa8fa11a1b4ab7268f623b96693affe3506b0, 83c60e0033628b4158448b9e782a9ad5a12e062f, ab5595a609092306489064f46e5a567cbfb9b34a, f2bad2b11b31b4646a3b068e17b61a044b376c0a, 574d84d8fb84b57c04d919007403f98680314027, b5814e982cc5db9c1b5285ee85b08ad77621d1e9, e067db0, 91233e4e, 33dc85c7, 22f08b4c, 955390c2, 8276d9b2, 5e8a5e33, 80e00074, f69e6cda, c9502aa3, 96eee458, 95d5e6bc, "40228616", 2c418bc8, 09c853b9, 31b780fb, 0f56d487, c8171dbf, cc6ef30a, 4c04159e, 76f50d38, eb228636, 33c68c5a, eb3da24d, 85755eb7, effbf5e1, 499c5baf, 7ca73633, fe99dbca, a5153188, 3145f16b, ec6226b2, ecb3f6d0, 3c871f2f, c5337032, a00dd595, 308dfa3a, 244cf1f3, af4328ed, 3a0282a70ab9cc539e2d85bd660635820e618731, e02403ace7a0a26c8c0cd01149d88054904fb7b9, 3245042f1f9e08c3ec6c2445c1cb6109e326be33, 9548c5cd33d6696817ed334fc832b2259e592437, 8d06d549432479ad3e2261f8e746d716adcb4dd2, 3aaa522bc8448e38a7ec7ce2fecc2dbcb9b927b4, 39d02efcc3d08515fe45ad4087aeaad255f69ed6, 9b862185f6dd6485c5c8b6d87be943bb9d8c5939, 27667164a2a10a8252b12bc0a692268aaf745765, 4e727322c55a672c5ec0e244569158fe91d4847e, 2b7f6b03c70f4113a326c194264cf09205118d22, a80e615214ade42f25b18906ca8c1ee86fadc187, 58c4cac847fd0de26cd13e57f08643cd9a965cd6, dc68ea6d9f06ecae8235468a742eb1f514ded2c7, 53e91365b1c1db5042173190d7ec1550229b5c35, 6d9836044f643a5ab6df8a1dd430e2801d8a7cdc, 4633f51b19b68ef7686fdca82ae8421ef680145f, 5a04e94cad8cad3ee18f519774af1ef278e7116b, d550029abac34360af7d9d928f6e66f906665d38, 81296feda0443e1965dff304a7fbbb1a88bb5821, fe80fbaf89993bd8f57dfc30a7a489be1e9392ae, 11687c2e2fae80d87318a156505cdc910503639d, c67950dbd154126e1d3b04444d68764e3271479b, 51bbf0667f5055368e799e24b2f6ed7a20bc9665, e6dbd92b1066534568d69cade4b4303cd5e4f3df, 5040f683cf9446d39de8512cdca82242c55fca3e, 05b10ce2c35e33269e4ccb359b770fb25eae2938, eba8a9de49153bf5e9cc86098ddaf4b7c39ea058, 38b3a60257e32a482fca93e840fd7e5c858e1f86, b940df85acfb2de36c0dcd5000a0039758f2b820, 3a1c3bc9fbf22b13c926179288a8b6eefe440c12, ae020f63a88089966b9323c55a36b6554f7e3900, 672099e9dc6569f4ac1cb9a967037e0d91df689c, aa5733116f20015cc3d14e1441d0eab232ecc9fd, 360fe850c18552f23a2bf74d8eda865431f0af38, 611c86295540161d31169110bf2139cf1d85d708, 9487c0d9, 2674b3f7, c5758058, a76fc492, 1cea5c4c, 3383a1eb, e91b366b, e472741a]
+commits: [99e1274e, b7f19e2d, 6f612a21, bc4163ea, 27ce6a2b, 7cdd08a6, 66cd8436, e6c404d3, 5d76de08575fb8fa09197021899d78280829d554, 81836287786a40540e96dbdf46db29c868cde41b, 48386408fc628f7341b711f177ff5833f622959c, 92dc4a5f4f7e9878e9ed9c28e00bda5d98680478, 16180cd63914a57895b36c2db060c43c74da3514, caec31b185bcad597664668d7a835c9c2096aa4d, 0a312c8fbd617d4ce03f97d5484bb23babb0686b, d5a5f85155394a0337ea92fcd606f949559b172a, becfd00e, 80c31af2, a0dd2302ead46e72e77f3293b84085c4f8fe65f3, 6f9e29656df997e2c5c6027874da4bee1ef6c17d, 5c1fb90b2f7f735259208e2d420bce489cbed598, 0d6f43ac90596b8703d8df3b9b986f9026aaaba3, 76868db295ac6b7de06a57f43164d5f02140f938, c4375f61, abaf8d81, db50a9c5, a1b83089, 6883ef61, 2441e3a2, 94baa7c7, afd9c1dd, 6d983e00, ae5b78b6, 09e70e81, 311e744f, 1d4ec146, 37fa423a, b1ad1496, "21835451", 1fadbd1f, b1f91332, 99590bfa, 45deb287, 532ebccf, 689ec7b7, cf9b89f9, 63186b1f, 48f8d7a7f170ca496b63e8120a34edb92e3ca23e, 6c0fa8fa11a1b4ab7268f623b96693affe3506b0, 83c60e0033628b4158448b9e782a9ad5a12e062f, ab5595a609092306489064f46e5a567cbfb9b34a, f2bad2b11b31b4646a3b068e17b61a044b376c0a, 574d84d8fb84b57c04d919007403f98680314027, b5814e982cc5db9c1b5285ee85b08ad77621d1e9, e067db0, 91233e4e, 33dc85c7, 22f08b4c, 955390c2, 8276d9b2, 5e8a5e33, 80e00074, f69e6cda, c9502aa3, 96eee458, 95d5e6bc, "40228616", 2c418bc8, 09c853b9, 31b780fb, 0f56d487, c8171dbf, cc6ef30a, 4c04159e, 76f50d38, eb228636, 33c68c5a, eb3da24d, 85755eb7, effbf5e1, 499c5baf, 7ca73633, fe99dbca, a5153188, 3145f16b, ec6226b2, ecb3f6d0, 3c871f2f, c5337032, a00dd595, 308dfa3a, 244cf1f3, af4328ed, 3a0282a70ab9cc539e2d85bd660635820e618731, e02403ace7a0a26c8c0cd01149d88054904fb7b9, 3245042f1f9e08c3ec6c2445c1cb6109e326be33, 9548c5cd33d6696817ed334fc832b2259e592437, 8d06d549432479ad3e2261f8e746d716adcb4dd2, 3aaa522bc8448e38a7ec7ce2fecc2dbcb9b927b4, 39d02efcc3d08515fe45ad4087aeaad255f69ed6, 9b862185f6dd6485c5c8b6d87be943bb9d8c5939, 27667164a2a10a8252b12bc0a692268aaf745765, 4e727322c55a672c5ec0e244569158fe91d4847e, 2b7f6b03c70f4113a326c194264cf09205118d22, a80e615214ade42f25b18906ca8c1ee86fadc187, 58c4cac847fd0de26cd13e57f08643cd9a965cd6, dc68ea6d9f06ecae8235468a742eb1f514ded2c7, 53e91365b1c1db5042173190d7ec1550229b5c35, 6d9836044f643a5ab6df8a1dd430e2801d8a7cdc, 4633f51b19b68ef7686fdca82ae8421ef680145f, 5a04e94cad8cad3ee18f519774af1ef278e7116b, d550029abac34360af7d9d928f6e66f906665d38, 81296feda0443e1965dff304a7fbbb1a88bb5821, fe80fbaf89993bd8f57dfc30a7a489be1e9392ae, 11687c2e2fae80d87318a156505cdc910503639d, c67950dbd154126e1d3b04444d68764e3271479b, 51bbf0667f5055368e799e24b2f6ed7a20bc9665, e6dbd92b1066534568d69cade4b4303cd5e4f3df, 5040f683cf9446d39de8512cdca82242c55fca3e, 05b10ce2c35e33269e4ccb359b770fb25eae2938, eba8a9de49153bf5e9cc86098ddaf4b7c39ea058, 38b3a60257e32a482fca93e840fd7e5c858e1f86, b940df85acfb2de36c0dcd5000a0039758f2b820, 3a1c3bc9fbf22b13c926179288a8b6eefe440c12, ae020f63a88089966b9323c55a36b6554f7e3900, 672099e9dc6569f4ac1cb9a967037e0d91df689c, aa5733116f20015cc3d14e1441d0eab232ecc9fd, 360fe850c18552f23a2bf74d8eda865431f0af38, 611c86295540161d31169110bf2139cf1d85d708, 9487c0d9, 2674b3f7, c5758058, a76fc492, 1cea5c4c, 3383a1eb, e91b366b, e472741a, c7570096, 4562cfd0]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -3220,13 +3223,13 @@ p5_native_privacy_preflight_repair:
   baseline_checkpoint: e91b366b8b362f8ffbd867940dfe1cd2d817e72b
   failed_run_id: 39464940677
   failed_attempt: 1
-  failed_packet_manifest_sha256: a60c7129f9e963cbb5ce3bbc328758cf917133159dded752c3e21918df0bcfca
-  failed_packet_root_admission_sha256: 338150a6bdc532946a2aa9efcb24fb193c01da1ed1218fcd06eff24492999f4b
-  status: REVIEWED_CHECKPOINT_READY_NATIVE_PENDING
+  failed_packet_manifest_sha256: dc8bee5066b45e02ae8305e3873fb035e942fa5f6b3f4f2bf7d667a07220c8dc
+  failed_packet_root_admission_sha256: bc57e48417de15ba5f0911e4ec1cdc1d207b6954a5f1f4404a9b8b9924299c76
+  status: NATIVE_PRIVACY_GUARD_REFUSAL_AUTHORITY_ROUTE_PENDING
   paths: [scripts/ci/with-calendar-feed-runtime.mjs, tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts, tests/support/calendar-feed-ci-contract.ts, "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"]
   selection: "Same pg.Client, existing USERSET zero-error-parameters startup option; fixed readonly four-setting exact complete validation before entropy/key/child; continue only all match none/panic/0/0; else sanitized failclosed and close. No fallback/SET/grants/role/credential/persistentGUC/migration/workflow/provider changes. Identity/context/SET facts diagnostic-only."
   independent_review: PASS_DISTINCT_CONTEXT_FREE_HIGH_EXACT_COMMITTED_FOUR_PATH_DELTA_CAP3
-  native_runtime: PENDING_NEW_EXACT_HEAD_CI
+  native_runtime: FAILED_CLOSED_AT_OBSERVED_PRIVACY_BOUNDARY
   development_complete: false
   release_ready: false
   source_head: e472741a91f58c5ef9e623720e2bba0d1164c360
@@ -3246,4 +3249,61 @@ p5_native_privacy_preflight_repair:
   unique_frozen_artifact_paths: 161
   failed_checkpoint_source_equalities: 260
   historical_mutable_raw_observations: 6
-  next: "Root reviewed checkpoint push and one exact-head native CI; no native privacy setting matches assumed."
+  next: "High read-only authority route design within original isolated superuser fixture authorization; no privacy/PG17 weakening or new privileges/principals/provider changes without concrete reviewed ownership/authority admission."
+  checkpoint_head: c7570096435dfbae2f6a535be46e61daaf9e28dc
+  checkpoint_id: d5143bc7-1f0f-48f3-b60d-fe798eba0f8c
+  run_id: 39468849461
+  attempt: 1
+  native_conclusion: FAILURE
+  required_jobs: "{\"checkpoint-admission\": \"SUCCESS\", \"verify\": \"SUCCESS\", \"db\": \"FAILURE\", \"recovery-storage-loader\": \"SUCCESS\", \"e2e\": \"FAILURE\"}"
+  native_unit_passed: 3102
+  native_unit_failed: 0
+  native_unit_skipped: 0
+  native_python_separate_passed: 43
+  native_recovery_separate_passed: 1
+  native_privacy_preflight: "{\"stage\": \"privacy-preflight\", \"category\": \"guard-refusal\", \"sqlState\": null, \"keyOutcome\": \"not-attempted\", \"connected_principal\": \"postgres\", \"same_session_current\": true, \"superuser\": false, \"bypass_rls\": true, \"required_match_false\": [\"log_statement\", \"log_min_error_statement\", \"log_parameter_max_length\"], \"required_match_true\": [\"log_parameter_max_length_on_error\"], \"catalog_canSet_all_false\": \"Diagnostic only; not an observed SET attempt or USERSET prohibition\", \"effective_values\": \"NOT_RETURNED_OR_PERSISTED\"}"
+  remaining65feature_runtime_cases: "UNEXECUTED; no key or child launch"
+  failed_packet_qualification_sha256: 8790401b0ae1441e88c32b81d71ecfbe0cdf1c5e1c2631f6dc082552fac5638e
+p5_native_authority_design:
+  status: REVIEWED_ADMITTED_SIXTH_CHECKPOINT_READY_NATIVE_PENDING
+  proposal_sha256: d3a0e8c4da3bb1cfd2adffd74e576cc9adf6fd0afb5e9a264433d948b20791b4
+  proposal_review_sha256: b822dd0bb78ae76540b8283aee068708947cbfe7c7036c77102f42dcfd184a1c
+  accepted_allocation_path: "_bmad-output/auto-bmad/preparation/story-15-5/accepted-native-authority-boundary-allocation.json"
+  accepted_allocation_bytes: 5160
+  accepted_allocation_sha256: 91097d8da439a9a88d99453e52416dcfa4799ccf3a3b5d834d86acd44a22df13
+  coordinator_turn: 01a15a80-828c-7851-a8cb-f5e9a162d993
+  actual_native_handoff: exec-cd4c0015-e5d0-457b-840b-7d2a6bf02f36
+  protected_owner_head: ad9c3b79a4244333384e6d0970e13586f7a05739
+  exact_source_paths: 5
+  implementation_admitted: true
+  source_head: 4562cfd0031b32b6921f668cd953384b64116973
+  native_prerequisites: "UNVERIFIED; no current-source native auth/privacy or65feature bodies credited"
+  code_review: "PASS_DISTINCT_CONTEXT_FREE_SOL61_HIGH_EXACT_COMMITTED_FIVE_PATH_DELTA_NO_CONSEQUENTIAL_FINDINGS; design review not substituted"
+  development_complete: false
+  release_ready: false
+  source_paths: 67
+  source_author_commits: 10
+  source_delta_paths: 5
+  raw_normalized_differences: 40
+  root_source_identity_proof_sha256: f67fea7132ef6393cc8ca76f28467d3d3ab927c8fae5d73e04c48f17d1130f28
+  local_wrapper_passed: 33
+  local_wrapper_failed: 0
+  local_wrapper_skipped: 0
+  local_typecheck: PASS-authoractual
+  local_focused_lint: PASS0errors0warnings-authoractual
+  suggested_review_stops: 35
+  approved_kernel: UNCHANGED-authoractual
+  native_authentication_and65feature_bodies: UNEXECUTED_UNQUALIFIED
+  code_review_input_bytes: 179712
+  code_review_input_sha256: cd9514d6a6552bb57e432acb6f4b4c6075af6f141e9e5691613c81391bf94da6
+  sixth_capsule: PENDING_IMMUTABLE_CAPSULE_AND_PARENT_CHECK
+  broad_review_rounds: 3
+  next: "Root checkpoint commit/push/one dispatch; qualify actual fixed source admin authentication, privacy, PG17 oracle and all required tests before delivery."
+  sixth_capsule_sha256: 53868286b715fe0dc076db934d75a280b0b5d2c82d3b4aabab6505237504474c
+  sixth_parent_check_sha256: 9bcc9d08748128fc6738da6a583fe111e251e294a56bc0ce12365813356bebce
+  root_sixth_admission_sha256: d0b29c8c4668c724173213981b5be0a85b8fb39b9150a22df845fba3a7ae6e25
+  frozen_artifact_reference_occurrences: 207
+  unique_frozen_artifact_paths: 191
+  failed_checkpoint_source_equalities: 327
+  historical_mutable_raw_observations: 9
+  native_runtime: PENDING_ONE_NEW_REVIEWED_EXACT_HEAD_CI

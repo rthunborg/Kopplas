@@ -1915,3 +1915,105 @@ No archive ran this resume.
 1. None within existing exact four-path allocation.
 
 **Next:** Actual native qualification, then delivery gate and fresh independent provenance audit if all required checks pass.
+
+## Report — 2026-10-20T17:56:31Z (continuing — observed isolated setup authority boundary)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `c757009`).
+**Pipeline status:** Story15.5 P5 active. Exact c7570096 run39468849461 attempt1 failed closed at privacy preflight; development completion false.
+**Continues:** High author is preparing the smallest concrete isolated setup authority/transport proposal covering privacy and the original-superuser PG17 fixture prerequisite; distinct High proposal review precedes any changed effect admission.
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 268h 58m (≈54h 27m AI-run, ≈214h 31m human/idle wait); resumed 53×.
+
+**Stories:**
+1. 15.1–15.4 landed internally;15.5 in review;15.6 backlog.
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** Actual native3102unitPASS0failed0skip including30feed+30separatewrapper;43Python and native physical recovery1PASS separately. Fifth failed packet18files+self mechanically verified.
+
+**Retrospective:** (none)
+
+**Overrides:** No new privileges, principal creation, persistent configuration, provider/deployment changes or legacy evidence. Preserve all five failed runs, three-round broad cap and final draft predicate.
+
+**Open questions:**
+1. Observed postgres session/current non-superuser with BYPASSRLS; three superuser-context logging checks mismatch, one USERSET check matches. Catalog canSet facts are diagnostic only; no SET trial occurred. Native effective values were not returned/persisted. Key not attempted; no child launched; all65 runtime feature bodies unexecuted.
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:**
+1. None requested while the concrete safe route and its authority/ownership fit are being assessed.
+
+**Next:** Review concrete proposal; reconcile precise effect/ownership boundary before implementation; no blind rerun.
+
+## Report — 2026-10-20T18:11:54Z (continuing — coordinated isolated setup allocation admitted)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `c757009`).
+**Pipeline status:** Story15.5 P5 active. Concrete five-path same-container authenticated setup proposal and independent High design review passed; Coordinator explicitly admitted the effect and ownership scope.
+**Continues:** Existing explicit High author implements only the admitted five paths, followed by distinct changed-line High review, Root checkpoint admission and one exact-head native CI.
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 269h 14m (≈54h 27m AI-run, ≈214h 46m human/idle wait); resumed 54×.
+
+**Stories:**
+1. 15.1–15.4 landed internally;15.5 in review;15.6 backlog.
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** All five failed CI histories retained; previous3102unit/43process/recovery1PASS stay scoped to actual failed native checkpoint. New code and runtime evidence pending.
+
+**Retrospective:** (none)
+
+**Overrides:** Accepted allocation SHA91097d8da439a9a88d99453e52416dcfa4799ccf3a3b5d834d86acd44a22df13; no workflow/migration/recovery/provider/hosted-secret/resource-launch expansion or foreign checkout edits. No deployment/main merge. Three broad review rounds remain capped; monitoring stays paused.
+
+**Open questions:**
+1. Actual source SupAdmin credential mapping/TCP LOGIN+SUPER and four privacy settings remain unverified runtime prerequisites. All65 feed native feature bodies remain unexecuted.
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:**
+1. No additional authorization gap identified by Coordinator High review; exact conditional effect explicitly admitted.
+
+**Next:** Committed repair, independent targeted High review, actual native privacy/authority and feature test qualification.
+
+## Report — 2026-10-20T18:26:23Z (continuing — reviewed admitted isolated authority checkpoint)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `4562cfd`).
+**Pipeline status:** Story15.5 P5 active. Source4562cfd0 exact five-path admitted repair independently High code-reviewed without consequential findings; sixth source record mechanically admitted.
+**Continues:** Push checkpoint and dispatch one exact-head native CI; explicit High qualifier checks real identity/privacy, PG17 restricted-session proof, full integration/RLS and essential browser execution.
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 269h 28m (≈54h 27m AI-run, ≈215h 01m human/idle wait); resumed 55×.
+
+**Stories:**
+1. 15.1–15.4 landed internally;15.5 in review;15.6 backlog.
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** Author wrapper33/33PASS0skip; typecheck/lint/source diff/kernel/SRO35PASS. Independent committed-delta High review and207artifact refs/191unique/327failed-head source equalities verified; these are not runtime passes.
+
+**Retrospective:** (none)
+
+**Overrides:** Exact five-path allocation91097 remains binding. No workflow/migration/recovery/provider/hosted-secret/resource-launch expansion, foreign checkout changes, main merge or deployment. Five prior failed runs preserved, three-round broad cap retained, final draft predicate unchanged.
+
+**Open questions:**
+1. Actual source SupAdmin credential mapping/authentication/privacy remain unverified. All65 native feed feature bodies remain unexecuted.
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:**
+1. None within explicitly reconciled/admitted conditional scope.
+
+**Next:** Actual native evidence and delivery/truth gates if all required checks pass.
