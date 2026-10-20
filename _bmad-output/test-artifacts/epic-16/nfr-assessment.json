@@ -1,0 +1,1276 @@
+{
+  "workflow": "bmad-testarch-nfr",
+  "mode": "Create",
+  "scope": "Epic16 advisory evidence audit",
+  "workflow_status": "complete",
+  "assessment_date": "2026-10-20T21:18:37.940Z",
+  "source_sha": "7b220c5e8fe71a81c00ded9e654e8c5c96c2b878",
+  "evidence_revision": "54ac91ec2c912afe3b6772fcb8daa11fb282d36a",
+  "ci_run": "39490485088",
+  "overall_status": "CONCERNS",
+  "overall_risk": "MEDIUM",
+  "total_findings": 31,
+  "counts": {
+    "PASS": 17,
+    "CONCERNS": 14,
+    "FAIL": 0
+  },
+  "critical_issues": 0,
+  "high_priority_issues": 0,
+  "consequential_defects_identified": 0,
+  "blockers": [],
+  "waivers": [],
+  "release_ready": false,
+  "release_checks": {
+    "count": 14,
+    "status": "DEFERRED",
+    "owner": "Root-coordinated release-validation owners",
+    "executed": false,
+    "waived": false
+  },
+  "domain_summary": {
+    "security": {
+      "status": "CONCERNS",
+      "risk": "MEDIUM",
+      "PASS": 8,
+      "CONCERNS": 3,
+      "FAIL": 0
+    },
+    "performance": {
+      "status": "CONCERNS",
+      "risk": "MEDIUM",
+      "PASS": 1,
+      "CONCERNS": 4,
+      "FAIL": 0
+    },
+    "reliability": {
+      "status": "CONCERNS",
+      "risk": "MEDIUM",
+      "PASS": 4,
+      "CONCERNS": 3,
+      "FAIL": 0
+    },
+    "maintainability": {
+      "status": "CONCERNS",
+      "risk": "MEDIUM",
+      "PASS": 4,
+      "CONCERNS": 4,
+      "FAIL": 0
+    }
+  },
+  "domain_assessments": {
+    "security": {
+      "domain": "security",
+      "assessed_at": "2026-10-20T21:10:30.4548174Z",
+      "risk_level": "MEDIUM",
+      "success": true,
+      "testsExecuted": 0,
+      "provenance": {
+        "source_sha": "7b220c5e8fe71a81c00ded9e654e8c5c96c2b878",
+        "evidence_revision": "54ac91ec2c912afe3b6772fcb8daa11fb282d36a",
+        "ci_run": "39490485088",
+        "applicability": "Parent-verified empty functional/dependency diff and matching 25 bound inventory files; reused unchanged independent High review, not a new broad source audit.",
+        "collection": "Read-only security evidence assessment; bounded assertion/native/log inspection only. No test, build, database, browser, provider, resource or external action. Only this scratch JSON was written.",
+        "matrix": "_bmad-output/test-artifacts/epic-16/coverage-matrix.json: 36/36 acceptance criteria FULL, 269 canonical anchors; acceptance coverage does not certify comprehensive security."
+      },
+      "findings": [
+        {
+          "id": "E16-SEC-01",
+          "category": "Authentication and authorization: tenant/job/child boundaries",
+          "status": "PASS",
+          "description": "Normal authenticated JWT and anonymous negative pairs exercise actual tenant/job RLS, seeded roles and independent role unions. Membership alone and work-order assignment alone grant no wider job access; foreign, unrelated and wrong-parent workspace/child URLs return no protected rows or identities. Manager, designated lead and ordinary member capabilities remain distinct.",
+          "evidence": [
+            "tests/integration/rls/jobs-depth.rls.test.ts:7,45,110",
+            "tests/integration/rls/job-members.rls.test.ts:9,69",
+            "tests/integration/rls/work-orders.rls.test.ts:10,75,125",
+            "tests/integration/rls/job-workspace.rls.test.ts:7,32",
+            "C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39490485088-integration-native/full-integration.json: jobs-depth.rls 4/4, job-members.rls 3/3, work-orders.rls 3/3, job-workspace.rls 3/3 assertions passed, no pending in these files"
+          ],
+          "threshold": "NFR42/43: zero unauthorized command, tenant row, parent or child access across the approved negative pairs.",
+          "actual": "All 13 assertions in the four directly inspected RLS files passed in current applicable native CI; inspected assertions discriminate permitted and denied actors and compare hidden identifiers/payloads.",
+          "owner": "Epic16 implementation/security owner",
+          "next_action": "Retain these normal-JWT and direct-SQL negative pairs for future boundary changes; no corrective action identified."
+        },
+        {
+          "id": "E16-SEC-02",
+          "category": "Authorization freshness and profile eligibility",
+          "status": "PASS",
+          "description": "Evidence checks current role, membership, designation, target eligibility and profile archival, including existing JWT reuse and replay after revocation. Profileless independently authorized Admin/PL retain intended manager rights. This finding evaluates current-authority security; the reliability worker owns the detailed race/atomicity assessment.",
+          "evidence": [
+            "tests/integration/commands/job-members.int.test.ts:200,264",
+            "tests/integration/commands/work-orders.int.test.ts:56,291",
+            "tests/integration/commands/job-upgrade.int.test.ts:86,116",
+            "tests/integration/rls/job-workspace.rls.test.ts:53",
+            "C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39490485088-integration-native/full-integration.json: job-members command 15/15, work-orders command 25/25, job-upgrade command 7/7 passed"
+          ],
+          "threshold": "NFR42/43: zero authority retained from revoked membership/role/designation or ineligible profile; authoritative current SQL facts decide checked access.",
+          "actual": "Native mapped current-authority scenarios passed. Inspected member negatives require 42501 and unchanged state apart from the deliberate external authority update; upgrade replay with the same revoked JWT is denied.",
+          "owner": "Epic16 implementation/security owner",
+          "next_action": "Preserve the current-facts checks and profileless-manager positive control; no new broader review round required for unchanged source."
+        },
+        {
+          "id": "E16-SEC-03",
+          "category": "Data protection: structural projection and disclosure",
+          "status": "PASS",
+          "description": "Money remains independently entitled; designation adds no financial grant. Work-order, member, workspace header and event projections omit money/auth/private-person/raw-event fields structurally. Hidden prerequisites remain anonymous unknowns without leaking IDs, dates or labels. A nonmember responsible PL uses an unavailable-name state unless an already entitled projection supplies a label.",
+          "evidence": [
+            "tests/integration/rls/job-members.rls.test.ts:9",
+            "tests/integration/rls/work-orders.rls.test.ts:10,75",
+            "tests/integration/features/jobs/job-workspace.int.test.ts:27",
+            "tests/unit/server/read-models/job-events.test.ts:9,41,52",
+            "tests/unit/server/read-models/job-workspace.test.ts:26,35",
+            "tests/e2e/jobs/job-workspace.e2e.spec.ts:307; current native 16.5-E02 first-attempt pass",
+            "C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39490485088-verify.log:2740 unit tests passed, zero skips"
+          ],
+          "threshold": "NFR44: zero protected keys or values in unentitled server DTOs or serialized UI payloads; safe event output only id/type/time.",
+          "actual": "Inspected assertions verify exact member/event key sets and forbidden serialized values, prevent forbidden directory/file/picker reads, and distinguish independently entitled money positives from lead-only negatives. Current mapped unit/integration/browser evidence passed.",
+          "owner": "Epic16 read-model/security owner",
+          "next_action": "Retain exact-key and serialized-value assertions when projections change; no disclosure bypass identified."
+        },
+        {
+          "id": "E16-SEC-04",
+          "category": "Private files: independent rights, source graph and Storage",
+          "status": "PASS",
+          "description": "Actual shared upload/link/generic-sign/selected-link/context/lifecycle consumers require independent Files rights plus current child and parent source eligibility. Lead/member/assignee status does not grant Files. Foreign/type/link/wrong-owner/archived-parent substitutions fail. Direct authenticated known-path Storage downloads are tested separately from signing wrappers, including invalid alternate sources and foreign-present versus absent indistinguishability.",
+          "evidence": [
+            "tests/integration/commands/work-order-files.int.test.ts:61,107,172,237,269,301",
+            "tests/unit/server/storage/document-signed-access-attestation.test.ts:194 and following bound-identity/purpose negatives",
+            "C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39490485088-integration-native/full-integration.json: work-order-files 14/14 passed, no skipped/pending assertions"
+          ],
+          "threshold": "NFR42/43/44: zero unauthorized private bytes, signed URL, lifecycle hints, protected metadata or child/parent substitution; selected proof binds tenant/owner/link/file/object identity and purpose.",
+          "actual": "All 14 current native file assertions passed; bounded inspection confirmed real normal-JWT consumer/Storage calls, positive byte readback, denied requests without URL/data/audit side effects, and exact proof binding negative pairs.",
+          "owner": "Epic16 Files/security owner",
+          "next_action": "Preserve independent source/parent/Files checks for every access path; no new bucket, purpose, key or scan gate is requested."
+        },
+        {
+          "id": "E16-SEC-05",
+          "category": "Signed proof boundaries and authoritative facts",
+          "status": "PASS",
+          "description": "Job-card and booking signatures remain domain separated; correctly signed obsolete facts/versions are rejected by real finalizers. The existing SQL two-minute ceiling is retained rather than replaced with an invented TTL.",
+          "evidence": [
+            "tests/unit/server/commands/job-card-validation.test.ts:28",
+            "tests/integration/commands/job-booking-facts.int.test.ts:29,81",
+            "tests/integration/commands/job-scheduling-consumers.int.test.ts:158",
+            "supabase/migrations/20261020210000_e16_16_4_job_upgrade_and_scheduling.sql:108,122,239",
+            "_bmad-output/test-artifacts/epic-16/coverage-matrix.json: mapped native passed proof/current-facts anchors"
+          ],
+          "threshold": "No cross-domain, obsolete-version, changed-authority/job-facts proof accepted; retain existing two-minute SQL proof ceiling.",
+          "actual": "Inspected signatures fail cross-domain or changed actor/output checks; current mapped native finalizer negatives passed. Bounded SQL inspection shows expires<=issued and expires>issued+interval '2 minutes' rejection with current expiry checks. No new expiry experiment was executed.",
+          "owner": "Epic16 command/security owner",
+          "next_action": "Retain existing proof binding/current-facts/lifetime contract; no TTL change or new broad review requested."
+        },
+        {
+          "id": "E16-SEC-06",
+          "category": "API/privileged entrypoints and client secret containment",
+          "status": "PASS",
+          "description": "Checked entrypoints are explicitly hardened and deny anonymous execution; private primitives refuse authenticated execution and new child tables enforce RLS with no direct mutation grants. Existing source and production-bundle guards passed for service-role exposure. This is bounded privileged-boundary evidence, not certification that all secrets or all API risks were scanned.",
+          "evidence": [
+            "tests/integration/rls/jobs-depth.rls.test.ts:74",
+            "tests/integration/rls/job-members.rls.test.ts:130",
+            "tests/integration/rls/work-orders.rls.test.ts:125",
+            "tests/unit/scripts/verify/jobs-service-role-containment.test.ts:8",
+            "C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39490485088-verify.log:296,18850",
+            "C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-16-5-review-dgnle5ul/security.review.md: No findings"
+          ],
+          "threshold": "Zero client service-role exposure or unauthenticated privileged capability; checked SQL cannot be bypassed through direct grants/private helpers.",
+          "actual": "Current native RLS tests inspect hardened empty search_path and effective grants, attempt denied helper calls as authenticated, and verify forced/enabled RLS. Both actual source and built .next containment guards passed. Reused unchanged independent High review reported no findings.",
+          "owner": "Epic16 security owner",
+          "next_action": "Keep source and bundle guards plus effective-grant/direct-call negatives; no concrete bypass identified."
+        },
+        {
+          "id": "E16-SEC-07",
+          "category": "Active scope and allowed consumers",
+          "status": "PASS",
+          "description": "Job surfaces and child ownership remain jobs-enrolled; workspace consumers follow active manifest modules and independent capabilities. Schema uses active resources, while pending scheduling gains no surface or implicit grant. Phase C/pending surfaces are guarded by manifest and scope tests.",
+          "evidence": [
+            "tests/unit/features/jobs/job-workspace-domain.test.ts:25,51",
+            "tests/unit/scope/manifest-coherence.test.ts:91",
+            "tests/unit/scope/manifest-derivations.test.ts:159",
+            "tests/unit/guardrails/job-non-scope.test.ts:116",
+            "_bmad-output/test-artifacts/epic-16/coverage-matrix.json:16.1-AC11 24 mapped anchors; current unit/native RLS inventory evidence"
+          ],
+          "threshold": "NFR51/FR129: only active, manifest-enrolled live surfaces; no Phase C/pending consumer or new authorization grant.",
+          "actual": "Current mapped scope/H4/exact-policy unit and integration evidence passed; inspected domain cases remove consumers when owners become pending and distinguish manager/member/lead tab sets without granting access.",
+          "owner": "Epic16 scope owner",
+          "next_action": "Preserve manifest-derived gates on later activation changes; no scope defect identified."
+        },
+        {
+          "id": "E16-SEC-08",
+          "category": "Input validation: approved Jobs command boundary",
+          "status": "PASS",
+          "description": "Closed job-card validation rejects injected actor/tenant/money/identity fields and malformed child/date inputs. Direct checked RPC and relational-constraint negatives remain independent of TypeScript wrappers. This finding covers the approved command shape and substitution boundary only.",
+          "evidence": [
+            "tests/unit/server/commands/job-card-validation.test.ts:9",
+            "tests/integration/rls/jobs-depth.rls.test.ts:45",
+            "tests/integration/rls/job-members.rls.test.ts:69",
+            "tests/integration/rls/work-orders.rls.test.ts:125",
+            "C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39490485088-verify.log and integration-native/full-integration.json: mapped assertions passed"
+          ],
+          "threshold": "Zero caller-controlled tenant/actor/protected-field elevation or malformed child/foreign-parent substitution accepted through the approved command paths.",
+          "actual": "Inspected unit cases reject unsupported privileged keys without coercion; actual normal-JWT SQL negatives and independent composite-FK 23503 controls passed. No generalized SQLi/XSS/CSRF claim follows from this evidence.",
+          "owner": "Epic16 command/security owner",
+          "next_action": "Retain closed validators and below-wrapper negatives; broader web security remains separately unmeasured."
+        },
+        {
+          "id": "E16-SEC-09",
+          "category": "Authentication/session and deployed encryption breadth",
+          "status": "CONCERNS",
+          "description": "The supplied Epic16 evidence does not establish current deployed MFA/session lifecycle, TLS configuration, encryption at rest/database/key settings or operational credential revocation posture. Tenant/profile revocation controls above are verified but do not prove these broader controls.",
+          "evidence": [
+            "C:/Users/Rasmus/AppData/Local/Temp/tea-nfr-context-2026-10-20T21-04-49-580Z.json: no approved measured deployment/security-operations baseline",
+            ".agents/skills/bmad-testarch-nfr/steps-c/nfr-status-definitions.md: UNKNOWN evidence must be CONCERNS"
+          ],
+          "threshold": "UNKNOWN for broad deployed MFA/session/encryption controls in this bounded Epic16 assessment.",
+          "actual": "Not measured or inspected; no deployment/provider/session/secret access was performed and no missing implementation or reachable defect is asserted.",
+          "owner": "Platform/security operations owner",
+          "next_action": "If broader operational assurance is required, define its applicable target and retain qualified existing configuration/operational evidence under a separately authorized assessment. Advisory evidence gap; not a new Epic16 development gate."
+        },
+        {
+          "id": "E16-SEC-10",
+          "category": "Web/API security breadth",
+          "status": "CONCERNS",
+          "description": "Bounded command validation and authorization evidence do not constitute a comprehensive XSS/CSRF/SQL-injection penetration assessment, nor establish rate-limit, CORS and deployed header effectiveness for every endpoint.",
+          "evidence": [
+            "_bmad-output/test-artifacts/epic-16/coverage-matrix.json: contract_static acceptance coverage only",
+            "C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39490485088-verify.log: actual CI checks, not a penetration-test report"
+          ],
+          "threshold": "UNKNOWN for comprehensive web/API attack coverage and operational rate-limit/CORS/header targets.",
+          "actual": "No new dynamic scan or broad source audit executed. Existing CI contains security-header/containment checks, but this assessment does not inflate them into all-endpoint assurance.",
+          "owner": "Platform/application security owner",
+          "next_action": "Keep the verified scoped controls; define and collect broader threat/control evidence only when separately required. This is advisory and does not invent an OWASP scan gate or a concrete vulnerability."
+        },
+        {
+          "id": "E16-SEC-11",
+          "category": "Secrets management and supply-chain assurance breadth",
+          "status": "CONCERNS",
+          "description": "Source/bundle service-role containment and proof binding are evidenced, while operational rotation/key-management and comprehensive secret scanning are unmeasured here. The actual dependency gate must be described by its real threshold and retained advisory result.",
+          "evidence": [
+            "C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39490485088-verify.log:266-279 pnpm audit --audit-level=high completed with two moderate vulnerabilities",
+            "C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39490485088-verify.log:296,18850 containment passed"
+          ],
+          "threshold": "Existing dependency gate: no high/critical accepted by pnpm audit --audit-level=high; broader operational rotation/key-management/secret-scan target UNKNOWN.",
+          "actual": "Existing CI high-level dependency gate passed with two moderate advisories, not zero vulnerabilities. No new scan, credential/key inspection or rotation occurred. No Epic16-reachable exploit is identified from the moderate summary.",
+          "owner": "Platform security/dependency owner",
+          "next_action": "Retain the two moderate advisory facts and use the existing dependency triage process; separately record operational key/rotation evidence if required. No new mandatory scan or legal program is introduced."
+        }
+      ],
+      "compliance": {
+        "SOC2": {
+          "status": "N/A",
+          "reason": "No Epic16 certification/attestation requirement supplied; no compliance pass claimed."
+        },
+        "GDPR": {
+          "status": "N/A",
+          "reason": "Full legal/GDPR program is a recorded Phase C exclusion for this task. Scoped privacy/access findings above do not establish legal compliance or waive general obligations."
+        },
+        "HIPAA": {
+          "status": "N/A",
+          "reason": "No approved Epic16 applicability or requirement supplied."
+        },
+        "PCI-DSS": {
+          "status": "N/A",
+          "reason": "No approved Epic16 payment-card processing/compliance scope supplied."
+        },
+        "ISO27001": {
+          "status": "N/A",
+          "reason": "No Epic16 certification requirement supplied; no certification claim."
+        }
+      },
+      "priority_actions": [
+        {
+          "priority": "advisory",
+          "owner": "Epic16 evidence/release owner",
+          "action": "Retain qualified browser evidence: 33 complete passes means 31 first-attempt plus two full retries, not first-pass clean; all five workspace journeys passed first attempt."
+        },
+        {
+          "priority": "advisory",
+          "owner": "Platform/application security owner",
+          "action": "Track unmeasured operational/web/API/secret-management security breadth separately if broader assurance is required; no new development scan or certification gate."
+        },
+        {
+          "priority": "advisory",
+          "owner": "Platform security/dependency owner",
+          "action": "Retain and triage the two moderate dependency advisories under the existing process; the current high/critical gate passed."
+        }
+      ],
+      "evidence_gaps": [
+        {
+          "id": "E16-SEC-GAP-01",
+          "status": "CONCERNS",
+          "scope": "Broader MFA/session, deployed encryption, all-endpoint web/API defenses, operational rotation/key-management and comprehensive secret/penetration scans",
+          "owner": "Platform/application security operations owner",
+          "next_action": "Define applicable targets and retain separately qualified evidence if requested; do not infer controls absent or compliant from CI green."
+        },
+        {
+          "id": "E16-SEC-CAVEAT-02",
+          "status": "CONCERNS",
+          "scope": "Retained browser first attempts",
+          "evidence": "C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-16-5-review-dgnle5ul/seventh-retry-independent-qualification.md",
+          "actual": "16.1-E03 first response-body retrieval failure has unknown cause. 16.3-E01 first observed audit0 after HTTP200 before confirmed save; action outcome/timing/cause unresolved and pure observer instability not proven. Full original retries passed. Independent High found no concrete consequential audit bypass and accepted only the explicit qualification.",
+          "owner": "Epic16 evidence/release owner",
+          "next_action": "Preserve failed attempts and uncertainty alongside passing retries; do not call them first-pass clean or a waiver."
+        },
+        {
+          "id": "E16-SEC-CAVEAT-03",
+          "status": "N/A",
+          "scope": "14 release-only deferred checks",
+          "actual": "Remain deferred under the development-completion policy; none is a security, authorization, functional or data-integrity waiver. Release readiness remains false.",
+          "owner": "Epic16 release validation owner",
+          "next_action": "Retain owned release validation ledger and execute required release work before any release-ready claim."
+        }
+      ],
+      "summary": "Scoped Epic16 security controls meet the supplied zero-unauthorized-access/disclosure thresholds in current applicable normal-JWT/direct-SQL/native evidence, supported by unchanged independent High review. No concrete critical security defect or privilege/invariant bypass identified. Overall MEDIUM reflects advisory unmeasured security breadth and retained evidence caveats, not a new reachable vulnerability or mandatory development blocker. Native global evidence is 2740 unit passes/zero skips, DB1879 passes plus one ordinary recovery pending with separate recovery1/1, and browser31 first passes plus2 qualified full retries. No comprehensive OWASP, penetration-test, encryption-operation, legal compliance or release-readiness claim is made."
+    },
+    "performance": {
+      "success": true,
+      "domain": "performance",
+      "assessed_at": "2026-10-20T21:08:50.3878883Z",
+      "risk_level": "MEDIUM",
+      "advisory": true,
+      "testsExecuted": 0,
+      "source_sha": "7b220c5e8fe71a81c00ded9e654e8c5c96c2b878",
+      "evidence_revision": "54ac91ec2c912afe3b6772fcb8daa11fb282d36a",
+      "ci_run": "39490485088",
+      "provenance": {
+        "audit_mode": "Read-only audit of existing evidence; no tests, resources, browser, database, provider or external calls executed.",
+        "reuse_basis": "Parent reconciled current source, dependencies, configuration and SQL as unchanged from the tested functional revision; no new equivalence claim derived by this worker.",
+        "native_log": "C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39490485088-db.log",
+        "native_log_sha256": "99a4e7e12fe4f300ce744861ebecaf599ede547a4ff75a6185af6fb2661048cd",
+        "native_log_hash_verified_in_this_audit": true,
+        "threshold_source": "_bmad-output/test-artifacts/test-design-epic-16.md:117-130,320-326",
+        "pilot_threshold_source": "scripts/nfr/epic-11-pilot-limits.ts:3-9"
+      },
+      "findings": [
+        {
+          "id": "PERF-16-01",
+          "category": "Scoped local RBAC pilot",
+          "status": "PASS",
+          "description": "The existing local Epic 11 admin-users/RBAC pilot meets its approved read, CPU-only bulk calculation and authenticated request ceilings at the exact approved two-tenant fixture profile. This result applies only to those measured functions.",
+          "threshold": {
+            "scope": "Local admin-users projection and synthetic effective-permissions calculation; not Jobs or a full-page target",
+            "tenantAActiveMemberships": 120,
+            "tenantBActiveMemberships": 24,
+            "readP95Ms_lte": 250,
+            "syntheticBulkEffectivePermissionsP95Ms_lte": 25,
+            "authenticatedRlsRequestsPerRead_lte": 3,
+            "source": "scripts/nfr/epic-11-pilot-limits.ts:3-9"
+          },
+          "actual": {
+            "tenantAActiveMemberships": 120,
+            "tenantBActiveMemberships": 24,
+            "tenantARoleDistribution": "Five primary roles; every third membership also holds the next role",
+            "tenantBShape": "Separate tenant rows for 23 of the same authenticated accounts plus its own admin",
+            "warmupIterations": 5,
+            "measuredIterations": 25,
+            "readP95Ms": 7.985169000000042,
+            "syntheticBulkEffectivePermissionsP95Ms": 2.968015999999807,
+            "authenticatedRlsRequestsPerRead": 2,
+            "authenticatedRlsRequestsTotal": 50,
+            "membershipPages": 25,
+            "rolePages": 25,
+            "effectivePermissionGrantCount": 2984,
+            "gate_result": "The script rejects fixture drift and any breached ceiling; the native log completes its output and proceeds to the next CI step without a pilot gate failure."
+          },
+          "evidence": [
+            "C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39490485088-db.log:1900-1990; complete pilot output inspected, SHA256 verified",
+            "scripts/nfr/epic-11-r1108-baseline.ts:149-156 exact-profile admission",
+            "scripts/nfr/epic-11-r1108-baseline.ts:179-208 actual authenticated admin-users reader, 5 warmups, 25 measured samples and ceiling assessment",
+            "scripts/nfr/epic-11-r1108-baseline.ts:250-262 documented metric exclusions and failed-assessment throw"
+          ],
+          "owner": "Existing RBAC pilot maintainer / performance executor",
+          "next_action": "Retain this scoped regression baseline. Do not relabel it as Jobs latency, full-page response time, production load, throughput or CPU utilization evidence."
+        },
+        {
+          "id": "PERF-16-02",
+          "category": "Jobs response times and representative volume",
+          "status": "CONCERNS",
+          "description": "Epic 16 assigned-list, complete facts and save latency have no accepted numeric target or representative Jobs-volume profile. Existing functional and paging-completeness evidence cannot establish response-time compliance.",
+          "threshold": "UNKNOWN: numeric Jobs assigned-list/facts/save latency and representative volume; explicitly unresolved in approved Epic 16 plan",
+          "actual": "UNKNOWN: no current target-matched Jobs latency/volume baseline supplied. The existing 1003-event paging regression proves completeness only. Generic template examples and unrelated authentication baselines are not accepted Jobs targets.",
+          "evidence": [
+            "_bmad-output/test-artifacts/test-design-epic-16.md:112 risk R16-14: score 4, no approved job-specific latency/volume threshold; architect/product plus executor own the follow-up",
+            "_bmad-output/test-artifacts/test-design-epic-16.md:128 performance/scalability: declared-volume baseline, query plans, roundtrips and environment required; numeric latency/volume UNKNOWN",
+            "_bmad-output/test-artifacts/test-design-epic-16.md:320,326 P2 informational targets cannot convert UNKNOWN performance into PASS",
+            "C:/Users/Rasmus/AppData/Local/Temp/tea-nfr-context-2026-10-20T21-04-49-580Z.json: nfr_thresholds.performance.epic16_job_latency_volume",
+            "_bmad-output/planning-artifacts/prd.md:488-490 frozen NFR24 qualitative pilot responsiveness; NFR25 explicit completion/failure status for waits; NFR26 beyond-pilot targets deferred until External Beta sizing. No numeric Jobs threshold."
+          ],
+          "owner": "Architect/product and performance executor",
+          "next_action": "Before a Jobs performance claim, agree the representative assigned-job/facts/events/save profile and acceptance targets, then capture environment, query plans, roundtrips and latency using the authorized existing execution lane. No new load dependency is allocated."
+        },
+        {
+          "id": "PERF-16-03",
+          "category": "Throughput and concurrent capacity",
+          "status": "CONCERNS",
+          "description": "The serial local RBAC pilot does not measure Jobs requests per second, concurrent users, sustained load or production database capacity.",
+          "threshold": "UNKNOWN: accepted Jobs/production requests-per-second and concurrency targets",
+          "actual": "UNKNOWN: no target-matched throughput or concurrency measurements supplied. Twenty-five serial pilot samples are not a load test.",
+          "evidence": [
+            "C:/Users/Rasmus/AppData/Local/Temp/tea-nfr-context-2026-10-20T21-04-49-580Z.json: nfr_thresholds.performance.production_throughput_cpu_memory",
+            "scripts/nfr/epic-11-r1108-baseline.ts:190-203 serial measured read and synthetic calculation loop",
+            "scripts/nfr/epic-11-r1108-baseline.ts:252-256 local-only pilot and full-page/production-load exclusions",
+            "_bmad-output/planning-artifacts/prd.md:490 NFR26 defers beyond-pilot performance targets pending External Beta sizing"
+          ],
+          "owner": "Architect/product and performance executor",
+          "next_action": "Define capacity expectations and representative concurrency if a production performance claim is required; measure that approved profile before making the claim. Missing evidence remains advisory CONCERNS, not an inferred functional failure."
+        },
+        {
+          "id": "PERF-16-04",
+          "category": "Resource usage",
+          "status": "CONCERNS",
+          "description": "No accepted Jobs/production CPU, memory or connection-pool target and measurement was supplied. A CPU-only calculation duration does not report CPU utilization or memory capacity.",
+          "threshold": "UNKNOWN: CPU utilization, memory and database connection-pool capacity targets",
+          "actual": "UNKNOWN: sustained CPU/memory/pool usage under a representative Jobs workload",
+          "evidence": [
+            "C:/Users/Rasmus/AppData/Local/Temp/tea-nfr-context-2026-10-20T21-04-49-580Z.json: nfr_thresholds.performance.production_throughput_cpu_memory",
+            "scripts/nfr/epic-11-r1108-baseline.ts:196-202 synthetic CPU-only effective-permissions duration scope",
+            "_bmad-output/test-artifacts/test-design-epic-16.md:128,326 unresolved performance target"
+          ],
+          "owner": "Architect/product and performance executor",
+          "next_action": "Decide the resource dimensions needed for the approved Jobs profile and collect corresponding measurements before capacity claims. No service, cache or infrastructure change is justified by the present evidence alone."
+        },
+        {
+          "id": "PERF-16-05",
+          "category": "Optimization and Jobs query cost",
+          "status": "CONCERNS",
+          "description": "The approved plan asks for declared-volume query-plan/roundtrip evidence for assigned-list/facts/save. The RBAC pilot only bounds its own two authenticated requests and writes a tenant-membership plan; it cannot qualify Jobs query cost or establish a need for caching, CDN or new services.",
+          "threshold": "UNKNOWN: accepted Jobs query-cost/roundtrip baseline at representative volume; no caching/CDN/lazy-loading requirement established by the supplied performance contract",
+          "actual": "Scoped RBAC roundtrips meet their known ceiling; target-matched Jobs optimization evidence is UNKNOWN",
+          "evidence": [
+            "_bmad-output/test-artifacts/test-design-epic-16.md:112,128 R16-14 declared-volume/query-plan/roundtrip follow-up",
+            "scripts/nfr/epic-11-r1108-baseline.ts:211-218 tenant-membership-only EXPLAIN",
+            "C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39490485088-db.log:1982-1987 scoped measured request counter"
+          ],
+          "owner": "Architect/product and performance executor",
+          "next_action": "Inspect Jobs query plans and roundtrips as part of the agreed representative baseline; propose proportionate optimization only if measured evidence identifies an actual need."
+        }
+      ],
+      "compliance": {
+        "approved_local_RBAC_pilot_only": "PASS",
+        "epic16_Jobs_latency_and_volume": "CONCERNS",
+        "production_throughput_and_concurrency": "CONCERNS",
+        "CPU_memory_and_connection_pool_capacity": "CONCERNS",
+        "Jobs_query_cost_and_optimization_baseline": "CONCERNS",
+        "overall_performance": "CONCERNS"
+      },
+      "priority_actions": [
+        "Architect/product and performance executor: define and accept Jobs assigned-list/facts/save targets and representative fixture profile before a Jobs performance claim.",
+        "Performance executor: collect declared-volume environment, query-plan, roundtrip and latency evidence within the approved existing verification lane once targets exist; qualify throughput/resource evidence separately if required.",
+        "Retain the narrow local RBAC pilot PASS and preserve all UNKNOWN dimensions as advisory CONCERNS; do not infer missing measurements as functional failures or introduce unneeded infrastructure."
+      ],
+      "evidence_gaps": [
+        "Accepted Jobs numeric latency and representative-volume thresholds are UNKNOWN.",
+        "Target-matched Jobs assigned-list/facts/save latency, query-plan and roundtrip baseline is not supplied.",
+        "Production throughput/concurrency and sustained CPU/memory/pool thresholds and measurements are UNKNOWN.",
+        "The native console excerpt contains pilot dataset/read facts, not the full persisted private baseline JSON environment and query-plan payload; the script scope and gates were inspected directly.",
+        "Fourteen owned release-validation breadth/visual/manual items remain DEFERRED; this audit neither passes nor waives them and makes no release-ready claim."
+      ],
+      "summary": "Advisory performance result: CONCERNS. The current native CI local RBAC pilot meets all three approved scoped ceilings at its exact 120/24-membership profile. Jobs latency, representative volume, production capacity and resource usage remain UNKNOWN; no performance failure or production/readiness claim is inferred. No tests executed in this audit."
+    },
+    "reliability": {
+      "domain": "reliability",
+      "assessed_at": "2026-10-20T21:11:49Z",
+      "risk_level": "MEDIUM",
+      "success": true,
+      "testsExecuted": 0,
+      "assessment_mode": "Read-only reuse of current coverage anchors, targeted actual test assertions and native CI receipts; no tests or operational actions executed.",
+      "routing": {
+        "model": "gpt-6.1-sol",
+        "effort": "high",
+        "reason": "Transactional integrity, current authority after lock waits, and conflict/replay judgment."
+      },
+      "provenance": {
+        "source_sha": "7b220c5e8fe71a81c00ded9e654e8c5c96c2b878",
+        "evidence_revision": "54ac91ec2c912afe3b6772fcb8daa11fb282d36a",
+        "ci_run": "39490485088",
+        "applicability": "Parent-provided unchanged relevant source/test/dependency provenance; current matrix records empty applicability diff and 25 checked inventory entries without mismatches. Worker did not run Git or repeat that broad audit.",
+        "matrix": "_bmad-output/test-artifacts/epic-16/coverage-matrix.json: 36/36 FULL acceptance criteria; 269 canonical anchors, not 269 independently executed cases.",
+        "native_hashes_verified": {
+          "integration": "028e6dc91a52dc12ccb73b7a1ebd20fe71a1c436f2740671ee736ea35ef46d6e",
+          "browser": "c08263b31221e0bb82649df83bf7e7b98b85dd2a6ff6aaaf5f5844790094e1f0",
+          "recovery": "c2d82e2c9dc1ef156656c14cd079a129042a0c375ee881fbe99a62b7c31e4a78",
+          "independent_retry_qualification": "f7731a4ceb1f4d01b01594dacb1059ee26ba0377df2523e8ed01377eb6f1425d"
+        }
+      },
+      "findings": [
+        {
+          "id": "REL16-01",
+          "category": "Fault atomicity and audited outcomes",
+          "status": "PASS",
+          "description": "Scoped job/member/work-order/upgrade fault injection demonstrates whole-snapshot rollback and one attributable committed outcome on exact retry; no partial business, event, request-outcome or audit state is evidenced.",
+          "threshold": "NFR20 and NFR23 carried into Phase B; zero partial state under failure and audited attributable corrections; Epic16 AC atomicity contracts.",
+          "actual": "Native required integration lane: 1880 total, 1879 passed, zero failed, one ordinary physical-recovery case skipped and separately executed 1/1 with zero skips. Relevant 16.1-INT-001/002, 16.2-INT-006 audit fault, 16.3-INT-005/007 and 16.4-INT-U03 passed. Actual assertions compare durable snapshots around rejected audit writes and check one audit/event after retry.",
+          "evidence": [
+            "_bmad-output/planning-artifacts/prd.md:481,484",
+            "_bmad-output/planning-artifacts/prd-phase-b.md:432",
+            "tests/integration/commands/job-members.int.test.ts:244",
+            "tests/integration/commands/work-orders.int.test.ts:335",
+            "tests/integration/commands/job-upgrade.int.test.ts:71",
+            "C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39490485088-integration-native/full-integration.json",
+            "C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39490485088-db.log: SUPABASE_TEST_REQUIRED=1"
+          ],
+          "owner": "Epic16 implementation owner",
+          "next_action": "Retain the exact-revision native receipts and the distinct ordinary-skip/separate-recovery accounting in the advisory report."
+        },
+        {
+          "id": "REL16-02",
+          "category": "Current authority after lock wait and replay",
+          "status": "PASS",
+          "description": "Observed lock-wait tests judge current actor, target and parent facts after concurrent revocation or replacement and conserve the externally committed state on denial.",
+          "threshold": "Zero stale-authority mutation, duplicate audit or partial result after lock wait/replay; AC16.2-07, AC16.3-04, AC16.4-02.",
+          "actual": "All native 16.2-INT-006 actor/target variants, 16.3-INT-006 locked-fact variants and 16.4-INT-U05 role-revoked/parent-archived variants passed. 16.2 assertions await the tenant-gate wait, apply explicit competing state changes and compare the final snapshot with only that external change. Replay authority is covered by 16.2-INT-005, 16.3-INT-004/009 and 16.4-INT-U04.",
+          "evidence": [
+            "tests/integration/commands/job-members.int.test.ts:149,200",
+            "tests/integration/commands/work-orders.int.test.ts:208,411",
+            "_bmad-output/test-artifacts/epic-16/coverage-matrix.json:16.2-AC07,16.3-AC04,16.4-AC02",
+            "C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39490485088-integration-native/full-integration.json"
+          ],
+          "owner": "Epic16 implementation owner",
+          "next_action": "Keep current-authority and lock-wait cases mandatory when these transaction boundaries change."
+        },
+        {
+          "id": "REL16-03",
+          "category": "Exact retry, CAS and uncertain-response recovery",
+          "status": "PASS",
+          "description": "Exact retries preserve original request identity and outcome; changed payloads or stale baselines cannot overwrite intervening state. Lost create reconciliation recovers the original child without consuming a newer draft or creating another audit.",
+          "threshold": "Stable command/input identity; current-state CAS; no duplicate outcome under concurrency/response loss; fresh explicit consent after definitively uncommitted stale create.",
+          "actual": "Native 16.2-INT-002/005, 16.3-INT-004/008/009/010 and 16.4-INT-U02 passed. 16.3-INT-009 asserts original identity after an intervening edit, one child and audit, refusal of changed input and no replay after authority removal. Native 16.3-E02/E04/E05 and 16.4-Upgrade-E02/E03 passed first attempt; exact transport interception forwards the real action before losing its response.",
+          "evidence": [
+            "tests/integration/commands/work-orders.int.test.ts:411",
+            "tests/e2e/jobs/work-orders.e2e.spec.ts:160,316,378",
+            "tests/unit/features/jobs/job-card-validation.test.ts:100",
+            "tests/unit/features/jobs/job-members-domain.test.ts:110,126,165",
+            "C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39490485088-integration-native/full-integration.json",
+            "C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39490485088-browser-native/general-browser.json"
+          ],
+          "owner": "Epic16 implementation owner",
+          "next_action": "Preserve explicit retry/refetch and immutable submitted identity; do not introduce automatic resubmission from a changed draft."
+        },
+        {
+          "id": "REL16-04",
+          "category": "Connected phone failure and persistence semantics",
+          "status": "PASS",
+          "description": "Essential connected 360x640 flows preserve visible unsent input, expose reachable explicit retry/refetch, keep newer edits during delayed completions and announce success only after actual server persistence.",
+          "threshold": "ADR-B009/NFR53 and Epic16 connected-web ACs; explicit failure/retry, retained unsent state, server-confirmed persistence; no durable offline infrastructure.",
+          "actual": "16.1-E02, 16.2-E02/E04/E05, 16.3-E02/E04/E05 and 16.4 retry/refetch smoke passed first attempt. All five 16.5 workspace cases passed first attempt. Targeted 16.3-E02 assertions prove real upstream commit, failed response, no success announcement, exact retried input, unchanged durable snapshot and retained newer title. 16.5-E03 proves no state after pre-persistence abort, honest alert, retained draft, exact retry, persisted title and reload.",
+          "evidence": [
+            "tests/e2e/jobs/jobs-depth.e2e.spec.ts:171",
+            "tests/e2e/jobs/work-orders.e2e.spec.ts:160",
+            "tests/e2e/jobs/job-workspace.e2e.spec.ts:376",
+            "_bmad-output/test-artifacts/epic-16/coverage-matrix.json:16.1-AC05,16.2-AC08,16.3-AC07,16.5-AC03",
+            "C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39490485088-browser-native/general-browser.json"
+          ],
+          "owner": "Epic16 implementation owner",
+          "next_action": "Retain scoped essential-smoke evidence; leave the 14 tracked breadth/visual/manual release checks deferred with owners and next actions. They are neither passed nor waived, and are not missing development checks."
+        },
+        {
+          "id": "REL16-05",
+          "category": "Retained browser retry evidence qualification",
+          "status": "CONCERNS",
+          "description": "Complete retry journeys passed and independent High review found no identified consequential production defect, but first-attempt cause and outcome uncertainty remain visible reliability caveats.",
+          "threshold": "Current essential smoke must demonstrate the full usable/integrity journey; retry evidence must retain failed attempts and explain its limits rather than claim first-pass success or waive an integrity failure.",
+          "actual": "Native browser report records 33 cases:31 first-attempt passes, two passed on retry, zero unexpected failures/skips. 16.1-E03 initially failed retrieving Chromium response body; precise cause unknown. 16.3-E01 initially observed audit delta zero before confirmed-save feedback; HTTP200 does not prove application success and first action outcome/timing remain unresolved. Pure observer instability is not proven. Complete retries passed; checked transaction/success path exposed no identified audit bypass. Qualification is acceptable with retained uncertainty, not first-pass-clean or a waiver.",
+          "evidence": [
+            "C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39490485088-browser-native/general-browser.json",
+            "C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-16-5-review-dgnle5ul/seventh-retry-independent-qualification.md",
+            "_bmad-output/test-artifacts/epic-16/coverage-matrix.json:execution_caveats"
+          ],
+          "owner": "Epic16 QA/verification owner",
+          "next_action": "Carry both failed attempts and the independent qualification into final evidence. On a future authorized relevant run retain action result, durable outcome and timing diagnostics if either recurs; do not invent a production defect or relabel the initial audit observation as proven harmless."
+        },
+        {
+          "id": "REL16-06",
+          "category": "Availability, error rate and operational incident recovery",
+          "status": "CONCERNS",
+          "description": "Operational reliability cannot be scored as meeting a production objective because Epic16 availability, error-rate and MTTR thresholds and measurements are UNKNOWN.",
+          "threshold": "UNKNOWN: approved availability/SLA, acceptable operational error rate and MTTR; no generic numeric target is adopted.",
+          "actual": "Existing native tests establish bounded functional integrity under tested faults, not uptime history or production error/incident recovery measurements. No measured operational baseline was supplied in the scoped evidence.",
+          "evidence": [
+            "C:/Users/Rasmus/AppData/Local/Temp/tea-nfr-context-2026-10-20T21-04-49-580Z.json:nfr_thresholds.reliability",
+            "_bmad-output/planning-artifacts/prd.md:481,484,488,490",
+            ".agents/skills/bmad-testarch-nfr/steps-c/nfr-status-definitions.md"
+          ],
+          "owner": "Product owner and operations owner",
+          "next_action": "Define applicable production service/error/incident targets and retain measured operational evidence in the authorized release/operations lane; this advisory does not initiate deployment or new infrastructure."
+        },
+        {
+          "id": "REL16-07",
+          "category": "Operational observability and service fault tolerance",
+          "status": "CONCERNS",
+          "description": "Audited command outcomes and explicit user-driven recovery have evidence; production error tracking, alerting and service-failover behavior are not established by these receipts.",
+          "threshold": "UNKNOWN: operational telemetry/alerting and production service-failover targets. Scoped audited-command and explicit user retry requirements are known and covered separately.",
+          "actual": "Transaction/audit fault and retry tests passed. Native reports do not demonstrate production monitoring, alert routing, availability under service loss or measured failover. A generic skill checklist is not authorization or a requirement for a new health endpoint, circuit breaker or three automatic retries.",
+          "evidence": [
+            "C:/Users/Rasmus/AppData/Local/Temp/tea-nfr-context-2026-10-20T21-04-49-580Z.json:nfr_thresholds.reliability.production_failover,adr8_additional.monitorability",
+            "C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39490485088-integration-native/full-integration.json",
+            ".agents/skills/bmad-testarch-nfr/steps-c/step-04c-subagent-reliability.md"
+          ],
+          "owner": "Operations owner",
+          "next_action": "Reconcile production monitoring and service-failover evidence against owner-approved targets in the authorized operational readiness assessment, retaining UNKNOWN until measured."
+        }
+      ],
+      "compliance": {
+        "NFR20_scoped_atomicity": "PASS",
+        "NFR23_scoped_audited_outcomes": "PASS",
+        "current_authority_after_lock_wait_replay": "PASS",
+        "exact_retry_CAS_input_identity": "PASS",
+        "ADR_B009_NFR53_connected_essential_flow": "PASS",
+        "qualified_browser_evidence": "CONCERNS",
+        "availability_error_rate_MTTR": "CONCERNS",
+        "operational_observability_service_failover": "CONCERNS",
+        "release_ready": false
+      },
+      "priority_actions": [
+        "Preserve the 16.1-E03 and 16.3-E01 first-attempt uncertainty plus independent High qualification alongside successful complete retries.",
+        "Retain exact-revision receipts, required integration execution counts, and distinct direct-recovery proof without treating a skipped ordinary case as a pass.",
+        "Operations/product owners define applicable availability/error/MTTR/monitoring/failover targets and attach measured evidence in an authorized later lane."
+      ],
+      "evidence_gaps": [
+        {
+          "scope": "Operational reliability",
+          "status": "UNKNOWN",
+          "details": "Availability/SLA, error-rate, MTTR, telemetry/alerts and production service failover have no supplied approved numeric threshold or measured baseline."
+        },
+        {
+          "scope": "Qualified browser attempts",
+          "status": "CONCERNS",
+          "details": "First16.1-E03 response-body lookup cause unknown; first16.3-E01 action outcome/timing unresolved, no proven pure-observer cause or identified audit bypass."
+        }
+      ],
+      "evidence_limits": [
+        {
+          "scope": "ADR8 disaster recovery",
+          "assessed_by_this_worker": false,
+          "details": "Separate RTO/RPO/backup/regional recovery category has no automated Step04 domain worker and is recorded by the parent as UNKNOWN/not automatically assessed; no independently scored DR finding is asserted here."
+        },
+        {
+          "scope": "Direct physical storage integrity",
+          "details": "Hash-verified isolated recovery native receipt passes1/1 with zero skips and proves loader-materialized bytes, unchanged logical rows and rejection of generic/quote-PDF overwrite attempts. It does not prove backup completeness, regional recovery or measured RTO/RPO."
+        },
+        {
+          "scope": "Release validation",
+          "details": "The14 owned breadth/visual/manual release checks stay deferred under the2026-10-19 completion policy; no release-readiness, merge or deployment approval is given."
+        },
+        {
+          "scope": "Performance",
+          "details": "Frozen NFR24 is qualitative pilot responsiveness; NFR26 defers beyond-pilot targets. No availability or reliability numeric threshold is invented from those performance requirements."
+        },
+        {
+          "scope": "Connected-only contract",
+          "details": "No PWA/offline queue, synchronization infrastructure, health endpoint, circuit breaker or automatic retry count is invented as an Epic16 requirement."
+        }
+      ],
+      "summary": "Scoped atomicity, current-authority, exact retry/CAS and essential connected failure/persistence behavior PASS on existing exact-revision evidence. Overall reliability remains CONCERNS because retained browser retries have unresolved initial-attempt uncertainty and operational availability/error/MTTR/monitoring/failover targets and evidence are UNKNOWN. No new production defect is established. Separate DR and deferred release validation are not scored as automated passes; testsExecuted=0."
+    },
+    "maintainability": {
+      "domain": "maintainability",
+      "assessed_at": "2026-10-20T21:13:06.561Z",
+      "risk_level": "MEDIUM",
+      "success": true,
+      "testsExecuted": 0,
+      "scope": {
+        "epic": 16,
+        "advisory": true,
+        "source_sha": "7b220c5e8fe71a81c00ded9e654e8c5c96c2b878",
+        "evidence_revision": "54ac91ec2c912afe3b6772fcb8daa11fb282d36a",
+        "ci_run": "39490485088",
+        "method": "Bounded existing review stops, scoped architecture examples, trace and native CI evidence; no new source audit, tests, resources, CI or external actions."
+      },
+      "findings": [
+        {
+          "id": "M16-01",
+          "category": "Headless separation",
+          "status": "PASS",
+          "description": "Existing reviewed implementation separates pure job validation/draft transitions and bounded workspace selection from server actions, semantic read DTOs and replaceable usable presentation.",
+          "threshold": "Owner-authorized proportional domain/state/validation/actions/semantic DTO separation; no generic framework required.",
+          "actual": "job-members-domain contains closed validators and immutable draft transitions; job-workspace-domain contains tab/query/child navigation behavior; actions.ts delegates writes through the existing command envelope; job-workspace.ts composes a typed header with explicit assignment states. Current author review orders bind these seams to real consumers and unit/API/browser cases.",
+          "evidence": [
+            "src/features/jobs/job-members-domain.ts:1-79",
+            "src/features/jobs/job-workspace-domain.ts:1-43",
+            "src/features/jobs/actions.ts:22-30",
+            "src/server/read-models/job-workspace.ts:12-46",
+            "_bmad-output/implementation-artifacts/spec-16-5-job-workspace-shell.md:308",
+            "_bmad-output/implementation-artifacts/spec-16-4-projekt-upgrade-and-job-card-semantics-2.md:422",
+            "_bmad-output/implementation-artifacts/spec-16-2-job-members-and-per-job-roles-arbetsledare-2.md:346"
+          ],
+          "owner": "Jobs implementation maintainer",
+          "next_action": "Preserve these seams during changes; use targeted reviewed refactoring only for a concrete maintenance problem."
+        },
+        {
+          "id": "M16-02",
+          "category": "Requirements coverage and regression evidence",
+          "status": "PASS",
+          "description": "Current trace supplies complete approved development requirement coverage with actual applicable execution; this is not a code-coverage metric.",
+          "threshold": "All 36 approved development ACs and retained transfer obligations have source-backed appropriate evidence.",
+          "actual": "36/36 FULL (29 P0,7 P1);269 unique static anchors across52files (88unit,155API/RLS,26Jobs E2E). Existing CI2740unit passes/0skip plus43process checks; required DB1879passes/1ordinary recovery pending plus separate direct recovery1pass; browser33complete passes=31first+2qualified full retries; all5workspace first attempt. All5 post-development automation mappings have0gaps/0newtests per supplied current reconciliation.",
+          "evidence": [
+            "_bmad-output/test-artifacts/epic-16/coverage-matrix.json",
+            "_bmad-output/test-artifacts/epic-16/traceability-matrix.md:29-46",
+            "_bmad-output/test-artifacts/epic-16/traceability-matrix.md:114-126",
+            "_bmad-output/implementation-artifacts/spec-16-5-job-workspace-shell.md:290-296"
+          ],
+          "owner": "Epic16 test maintainer",
+          "next_action": "Retain exact native/revision provenance, the ordinary recovery pending distinction and both qualified retry histories. Preserve unresolved first16.1-E03 response-body cause and16.3-E01 audit-zero action outcome/timing; no audit bypass is identified. Fourteen owned release breadth/visual/manual items remain deferred, not waived or newly blocking development."
+        },
+        {
+          "id": "M16-03",
+          "category": "Measured test coverage and trend",
+          "status": "CONCERNS",
+          "description": "No current branch/line coverage report or trend evidence is supplied; acceptance coverage does not prove measured coverage.",
+          "threshold": "Changed-domain branch target>=80% IF instrumented (test-design-epic-16:321); reference NFR criteria>=80% advisory coverage metric. No new coverage dependency allocated.",
+          "actual": "Branch percentage UNKNOWN; line percentage UNKNOWN; trend UNKNOWN. Existing 100% requirements trace cannot substitute for these measurements.",
+          "evidence": [
+            "_bmad-output/test-artifacts/test-design-epic-16.md:321",
+            "_bmad-output/test-artifacts/epic-16/coverage-matrix.json:coverage_basis",
+            "_bmad-output/test-artifacts/epic-16/traceability-matrix.md:44"
+          ],
+          "owner": "Test/CI maintainer",
+          "next_action": "Before claiming numerical coverage, locate any existing instrumented report and record its revision/scope/trend. Otherwise keep UNKNOWN; do not introduce a new instrumentation package merely to satisfy this advisory audit."
+        },
+        {
+          "id": "M16-04",
+          "category": "Code duplication",
+          "status": "CONCERNS",
+          "description": "No measured duplication report is supplied.",
+          "threshold": "Reference NFR criteria duplication<5% is an advisory framework metric, not an established measured result.",
+          "actual": "Duplicated percentage, largest duplicated regions and trend UNKNOWN. Scoped existing reuse is evidenced but cannot establish a numerical threshold.",
+          "evidence": [
+            "C:/Users/Rasmus/AppData/Local/Temp/tea-nfr-context-2026-10-20T21-04-49-580Z.json:nfr_thresholds.maintainability",
+            "tests/support/job-workspace-atdd.ts:6-29",
+            "src/features/jobs/job-members-domain.ts:1"
+          ],
+          "owner": "Jobs/quality maintainer",
+          "next_action": "Obtain an existing scoped duplication measurement before any numerical compliance claim. Refactor only an identified consequential duplication problem; no speculative framework or broad rewrite."
+        },
+        {
+          "id": "M16-05",
+          "category": "Dependency vulnerability gate",
+          "status": "PASS",
+          "description": "The actual current CI high-severity dependency gate passed within its stated scope.",
+          "threshold": "No critical/high accepted by pnpm audit --audit-level=high.",
+          "actual": "CI39490485088 frozen-lock install and audit completed successfully. Native audit reports2moderate vulnerabilities; this is not zero vulnerabilities. No fresh audit executed.",
+          "evidence": [
+            "C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39490485088-verify.log:206-207",
+            "C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39490485088-verify.log:266-280"
+          ],
+          "owner": "Dependency maintainer",
+          "next_action": "Retain the two moderate advisories in dependency triage; inspect affected paths and available compatible fixes before any change. Do not infer runtime exploitability or blindly upgrade dependencies."
+        },
+        {
+          "id": "M16-06",
+          "category": "Dependency lifecycle and remediation",
+          "status": "CONCERNS",
+          "description": "The high-severity audit gate does not measure dependency freshness, maintenance status or remediation age.",
+          "threshold": "No approved numeric freshness/remediation target supplied; supporting evidence UNKNOWN.",
+          "actual": "Outdated/unmaintained dependency inventory and time-to-remediate UNKNOWN; moderate advisory detail/ownership is not established by the bounded native summary.",
+          "evidence": [
+            "C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39490485088-verify.log:266-280"
+          ],
+          "owner": "Dependency maintainer",
+          "next_action": "Record affected advisory/dependency paths, disposition and an owner during normal dependency maintenance before making broader dependency-health claims."
+        },
+        {
+          "id": "M16-07",
+          "category": "Static/build process and fixture reuse",
+          "status": "PASS",
+          "description": "Existing current native CI verifies the bounded build/static process; synthetic fixture adapters reuse existing cleanup ownership.",
+          "threshold": "Applicable typecheck/lint/production build/frozen-lock/source and final-bundle containment; reusable invocation-only fixtures with cleanup.",
+          "actual": "Current native CI passed required static/build/containment and43process checks. Workspace fixture delegates to withJobsDepthFixture; jobs-depth disposes in finally and cleans role-aware fixture on setup failure. No database work on helper import. Scoped examples establish reuse/cleanup structure, not a fresh full test-quality review.",
+          "evidence": [
+            "_bmad-output/implementation-artifacts/spec-16-5-job-workspace-shell.md:296",
+            "C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39490485088-verify.log:297",
+            "C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39490485088-verify.log:313",
+            "C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39490485088-verify.log:18752",
+            "C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39490485088-verify.log:18850",
+            "tests/support/job-workspace-atdd.ts:1-29",
+            "tests/support/jobs-depth-atdd.ts:148-177"
+          ],
+          "owner": "CI/test fixture maintainer",
+          "next_action": "Preserve existing scoped fixtures, invocation-only setup and finally cleanup; retain required native execution counts. Hosted rollout/rollback remains outside this assessment."
+        },
+        {
+          "id": "M16-08",
+          "category": "Operational observability",
+          "status": "CONCERNS",
+          "description": "Critical command outcome/audit assertions are evidenced; production structured logging/error tracking coverage is not established.",
+          "threshold": "Critical command outcome auditing known; production structured log schema/samples/format assertions, error tracking, log levels and operational context UNKNOWN.",
+          "actual": "Trace includes actual audit fault rollback/exact replay tests and safe event projections. Neither proves deployment-wide structured operational telemetry or error tracking. No vendor-specific requirement inferred. First16.3-E01 audit-zero action outcome/timing remains unresolved; enforced transactional paths and successful full retry identify no concrete production audit bypass.",
+          "evidence": [
+            "_bmad-output/test-artifacts/epic-16/traceability-matrix.md:362-365",
+            "_bmad-output/test-artifacts/epic-16/traceability-matrix.md:450-467",
+            "_bmad-output/test-artifacts/epic-16/traceability-matrix.md:564-571",
+            "_bmad-output/implementation-artifacts/spec-16-5-job-workspace-shell.md:294"
+          ],
+          "owner": "Application operations owner",
+          "next_action": "Before operational-readiness claims, supply existing structured log schema/sample/assertions and error-capture evidence with safe correlation context. Keep unresolved first-attempt evidence visible; do not invent Sentry adoption or claim audits alone prove observability."
+        }
+      ],
+      "compliance": {
+        "headless_separation": "PASS",
+        "requirements_coverage": "PASS",
+        "coverage_80pct": "CONCERNS",
+        "duplication_5pct": "CONCERNS",
+        "vulnerability_scan": "PASS",
+        "dependency_lifecycle": "CONCERNS",
+        "static_build_fixture_process": "PASS",
+        "observability": "CONCERNS"
+      },
+      "priority_actions": [
+        "Retain qualified browser retry provenance and unresolved first-attempt outcomes without all-first-pass or zero-flakiness claims.",
+        "Keep branch/line/trend and duplication metrics UNKNOWN until existing scoped measurement evidence is supplied; no new dependency allocated.",
+        "Triage the two moderate dependency advisories using affected paths and compatible fixes; do not claim a vulnerability-free tree.",
+        "Supply existing operational logging/error-capture evidence before broader operational readiness claims."
+      ],
+      "evidence_gaps": [
+        "Measured branch and line coverage plus trend.",
+        "Measured duplication percentage, largest regions and trend.",
+        "Dependency maintenance/freshness inventory, advisory detail and remediation age.",
+        "Production structured logging schema/samples/format assertions, levels/context and error tracking coverage.",
+        "First16.1-E03 precise response-body retrieval cause and first16.3-E01 action outcome/timing remain unresolved and independently qualified.",
+        "Fourteen release breadth/visual/manual validations remain owned/deferred; not executed or waived. Disaster recovery RTO/RPO/backup/regional evidence belongs to separate ADR8 assessment, not this automated domain."
+      ],
+      "summary": "CONCERNS (advisory): current reviewed headless architecture, full development requirements trace, build/static/fixture process and high-severity dependency gate have scoped evidence. Numerical coverage/duplication, dependency lifecycle and production observability remain unmeasured. No new P0 or concrete maintainability blocker identified; no release/merge/deployment approval implied."
+    }
+  },
+  "thresholds": {
+    "security": {
+      "authz": "NFR42/43 zero unauthorized command/row/parent access; current membership/roles/job checks with negative pairs",
+      "sensitiveFields": "NFR44 zero protected keys/values without independent entitlement; designation grants no money",
+      "fileSecrets": "Independent child+parent+Files rights, no client/service-role/private-person/raw-event disclosure",
+      "scope": "NFR51/FR129 active jobs enrollment; no pending/PhaseC surfaces",
+      "proof": "Existing two-minute SQL proof ceiling/current authoritative job facts, no invented TTL"
+    },
+    "performance": {
+      "epic16_job_latency_volume": "UNKNOWN",
+      "production_throughput_cpu_memory": "UNKNOWN",
+      "pilot": {
+        "scope": "Only approved local Epic11 admin-users/RBAC two-tenant read, not a Jobs latency/load target",
+        "tenantA": 120,
+        "tenantB": 24,
+        "readP95Ms": 250,
+        "bulkPermissionsP95Ms": 25,
+        "authenticatedRequestsPerRead": 3,
+        "source": "scripts/nfr/epic-11-pilot-limits.ts:3-9"
+      }
+    },
+    "reliability": {
+      "atomicityReplay": "Zero partial state/event/audit, no stale authority after lock wait or replay; exact response-loss retry identity",
+      "connected": "ADR-B009/NFR53 connected360x640 retained unsent data, explicit retry, success only after server persistence",
+      "availability_error_rate_mttr": "UNKNOWN",
+      "production_failover": "UNKNOWN",
+      "recovery": "Direct isolated physical storage recovery1/1pass is scoped integrity proof, not measured RTO/RPO"
+    },
+    "maintainability": {
+      "headless": "Domain/state/validation/actions/semantic DTO separate from replaceable usable UI, existing fixture/command/read reuse; no generic framework",
+      "changedDomainBranchTarget": "80% if instrumented per test-design-epic-16:321; actual instrumentation evidence UNKNOWN",
+      "referenceCoverage": "NFR-criteria advisory CI metric target>=80%; no current measured report",
+      "referenceDuplication": "NFR-criteria advisory jscpd target<5%; measured report UNKNOWN",
+      "vulnerabilities": "No critical/high accepted by actual CI dependency gate; verify exact scope from CI, no fresh scan",
+      "observability": "Critical commands audited; production error tracking/operational telemetry evidence UNKNOWN"
+    }
+  },
+  "adr8_additional": {
+    "test_data": "Existing synthetic isolated two-tenant fixtures+cleanup; current actual required reset/seed",
+    "disaster_recovery": "RTO/RPO/backup/regional recovery UNKNOWN; no automated domain worker evaluates DR. Direct storage recovery proves only stated integrity.",
+    "monitorability": "Audited command outcomes known; production telemetry/error tracking/monitoring UNKNOWN",
+    "qos_qoe": "Essential connected360x640 keyboard/draft/failure actual smoke; exhaustive breadth/visual/manual14owneddeferred",
+    "deployability": "Current required build/frozen-lock/migration-reset/containment evidence known; hosted rollout/rollback not authorized or audited"
+  },
+  "adr29_score": "NOT_EVALUATED: qualitative crosswalk only; 31domain findings are not29ADR criteria",
+  "compliance_summary": {
+    "SOC2": "N/A",
+    "GDPR": "N/A",
+    "HIPAA": "N/A",
+    "PCI-DSS": "N/A",
+    "ISO27001": "N/A",
+    "approved_local_RBAC_pilot_only": "PASS",
+    "epic16_Jobs_latency_and_volume": "PARTIAL",
+    "production_throughput_and_concurrency": "PARTIAL",
+    "CPU_memory_and_connection_pool_capacity": "PARTIAL",
+    "Jobs_query_cost_and_optimization_baseline": "PARTIAL",
+    "overall_performance": "PARTIAL",
+    "NFR20_scoped_atomicity": "PASS",
+    "NFR23_scoped_audited_outcomes": "PASS",
+    "current_authority_after_lock_wait_replay": "PASS",
+    "exact_retry_CAS_input_identity": "PASS",
+    "ADR_B009_NFR53_connected_essential_flow": "PASS",
+    "qualified_browser_evidence": "PARTIAL",
+    "availability_error_rate_MTTR": "PARTIAL",
+    "operational_observability_service_failover": "PARTIAL",
+    "headless_separation": "PASS",
+    "requirements_coverage": "PASS",
+    "coverage_80pct": "PARTIAL",
+    "duplication_5pct": "PARTIAL",
+    "vulnerability_scan": "PASS",
+    "dependency_lifecycle": "PARTIAL",
+    "static_build_fixture_process": "PASS",
+    "observability": "PARTIAL"
+  },
+  "compliance_inputs": {
+    "SOC2": [
+      {
+        "domain": "security",
+        "status": "N/A",
+        "reason": "No Epic16 certification/attestation requirement supplied; no compliance pass claimed."
+      }
+    ],
+    "GDPR": [
+      {
+        "domain": "security",
+        "status": "N/A",
+        "reason": "Full legal/GDPR program is a recorded Phase C exclusion for this task. Scoped privacy/access findings above do not establish legal compliance or waive general obligations."
+      }
+    ],
+    "HIPAA": [
+      {
+        "domain": "security",
+        "status": "N/A",
+        "reason": "No approved Epic16 applicability or requirement supplied."
+      }
+    ],
+    "PCI-DSS": [
+      {
+        "domain": "security",
+        "status": "N/A",
+        "reason": "No approved Epic16 payment-card processing/compliance scope supplied."
+      }
+    ],
+    "ISO27001": [
+      {
+        "domain": "security",
+        "status": "N/A",
+        "reason": "No Epic16 certification requirement supplied; no certification claim."
+      }
+    ],
+    "approved_local_RBAC_pilot_only": [
+      {
+        "domain": "performance",
+        "status": "PASS"
+      }
+    ],
+    "epic16_Jobs_latency_and_volume": [
+      {
+        "domain": "performance",
+        "status": "CONCERNS"
+      }
+    ],
+    "production_throughput_and_concurrency": [
+      {
+        "domain": "performance",
+        "status": "CONCERNS"
+      }
+    ],
+    "CPU_memory_and_connection_pool_capacity": [
+      {
+        "domain": "performance",
+        "status": "CONCERNS"
+      }
+    ],
+    "Jobs_query_cost_and_optimization_baseline": [
+      {
+        "domain": "performance",
+        "status": "CONCERNS"
+      }
+    ],
+    "overall_performance": [
+      {
+        "domain": "performance",
+        "status": "CONCERNS"
+      }
+    ],
+    "NFR20_scoped_atomicity": [
+      {
+        "domain": "reliability",
+        "status": "PASS"
+      }
+    ],
+    "NFR23_scoped_audited_outcomes": [
+      {
+        "domain": "reliability",
+        "status": "PASS"
+      }
+    ],
+    "current_authority_after_lock_wait_replay": [
+      {
+        "domain": "reliability",
+        "status": "PASS"
+      }
+    ],
+    "exact_retry_CAS_input_identity": [
+      {
+        "domain": "reliability",
+        "status": "PASS"
+      }
+    ],
+    "ADR_B009_NFR53_connected_essential_flow": [
+      {
+        "domain": "reliability",
+        "status": "PASS"
+      }
+    ],
+    "qualified_browser_evidence": [
+      {
+        "domain": "reliability",
+        "status": "CONCERNS"
+      }
+    ],
+    "availability_error_rate_MTTR": [
+      {
+        "domain": "reliability",
+        "status": "CONCERNS"
+      }
+    ],
+    "operational_observability_service_failover": [
+      {
+        "domain": "reliability",
+        "status": "CONCERNS"
+      }
+    ],
+    "headless_separation": [
+      {
+        "domain": "maintainability",
+        "status": "PASS"
+      }
+    ],
+    "requirements_coverage": [
+      {
+        "domain": "maintainability",
+        "status": "PASS"
+      }
+    ],
+    "coverage_80pct": [
+      {
+        "domain": "maintainability",
+        "status": "CONCERNS"
+      }
+    ],
+    "duplication_5pct": [
+      {
+        "domain": "maintainability",
+        "status": "CONCERNS"
+      }
+    ],
+    "vulnerability_scan": [
+      {
+        "domain": "maintainability",
+        "status": "PASS"
+      }
+    ],
+    "dependency_lifecycle": [
+      {
+        "domain": "maintainability",
+        "status": "CONCERNS"
+      }
+    ],
+    "static_build_fixture_process": [
+      {
+        "domain": "maintainability",
+        "status": "PASS"
+      }
+    ],
+    "observability": [
+      {
+        "domain": "maintainability",
+        "status": "CONCERNS"
+      }
+    ]
+  },
+  "cross_domain_risks": [
+    {
+      "domains": [
+        "performance",
+        "reliability"
+      ],
+      "impact": "MEDIUM",
+      "description": "Unknown Jobs volume/latency and production capacity/availability targets limit broader operational confidence. The measured RBAC pilot is not a Jobs or production SLO."
+    },
+    {
+      "domains": [
+        "reliability",
+        "maintainability"
+      ],
+      "impact": "MEDIUM",
+      "description": "Unmeasured telemetry and branch/duplication metrics plus two qualified retry uncertainties limit diagnosis/trend confidence. No reachable defect or low measured coverage is inferred."
+    }
+  ],
+  "priority_actions": [
+    {
+      "domain": "security",
+      "action": {
+        "priority": "advisory",
+        "owner": "Epic16 evidence/release owner",
+        "action": "Retain qualified browser evidence: 33 complete passes means 31 first-attempt plus two full retries, not first-pass clean; all five workspace journeys passed first attempt."
+      },
+      "urgency": "NORMAL"
+    },
+    {
+      "domain": "security",
+      "action": {
+        "priority": "advisory",
+        "owner": "Platform/application security owner",
+        "action": "Track unmeasured operational/web/API/secret-management security breadth separately if broader assurance is required; no new development scan or certification gate."
+      },
+      "urgency": "NORMAL"
+    },
+    {
+      "domain": "security",
+      "action": {
+        "priority": "advisory",
+        "owner": "Platform security/dependency owner",
+        "action": "Retain and triage the two moderate dependency advisories under the existing process; the current high/critical gate passed."
+      },
+      "urgency": "NORMAL"
+    },
+    {
+      "domain": "performance",
+      "action": "Architect/product and performance executor: define and accept Jobs assigned-list/facts/save targets and representative fixture profile before a Jobs performance claim.",
+      "urgency": "NORMAL"
+    },
+    {
+      "domain": "performance",
+      "action": "Performance executor: collect declared-volume environment, query-plan, roundtrip and latency evidence within the approved existing verification lane once targets exist; qualify throughput/resource evidence separately if required.",
+      "urgency": "NORMAL"
+    },
+    {
+      "domain": "performance",
+      "action": "Retain the narrow local RBAC pilot PASS and preserve all UNKNOWN dimensions as advisory CONCERNS; do not infer missing measurements as functional failures or introduce unneeded infrastructure.",
+      "urgency": "NORMAL"
+    },
+    {
+      "domain": "reliability",
+      "action": "Preserve the 16.1-E03 and 16.3-E01 first-attempt uncertainty plus independent High qualification alongside successful complete retries.",
+      "urgency": "NORMAL"
+    },
+    {
+      "domain": "reliability",
+      "action": "Retain exact-revision receipts, required integration execution counts, and distinct direct-recovery proof without treating a skipped ordinary case as a pass.",
+      "urgency": "NORMAL"
+    },
+    {
+      "domain": "reliability",
+      "action": "Operations/product owners define applicable availability/error/MTTR/monitoring/failover targets and attach measured evidence in an authorized later lane.",
+      "urgency": "NORMAL"
+    },
+    {
+      "domain": "maintainability",
+      "action": "Retain qualified browser retry provenance and unresolved first-attempt outcomes without all-first-pass or zero-flakiness claims.",
+      "urgency": "NORMAL"
+    },
+    {
+      "domain": "maintainability",
+      "action": "Keep branch/line/trend and duplication metrics UNKNOWN until existing scoped measurement evidence is supplied; no new dependency allocated.",
+      "urgency": "NORMAL"
+    },
+    {
+      "domain": "maintainability",
+      "action": "Triage the two moderate dependency advisories using affected paths and compatible fixes; do not claim a vulnerability-free tree.",
+      "urgency": "NORMAL"
+    },
+    {
+      "domain": "maintainability",
+      "action": "Supply existing operational logging/error-capture evidence before broader operational readiness claims.",
+      "urgency": "NORMAL"
+    }
+  ],
+  "subagent_execution": "SUBAGENT (4NFR domains),context-free Sol6.1High,all foreground awaited",
+  "performance_gain": "Not measured;no speedup claim",
+  "workers": [
+    {
+      "domain": "security",
+      "route": "gpt-6.1-sol/high/codex/subagents",
+      "context": "none",
+      "completed": true,
+      "path": "C:/Users/Rasmus/AppData/Local/Temp/tea-nfr-security-2026-10-20T21-04-49-580Z.json",
+      "sha256": "9D7348551CF0CA5E57A4B1E5607ED77843167C369A9AC1B044A68657DE666D7E"
+    },
+    {
+      "domain": "performance",
+      "route": "gpt-6.1-sol/high/codex/subagents",
+      "context": "none",
+      "completed": true,
+      "path": "C:/Users/Rasmus/AppData/Local/Temp/tea-nfr-performance-2026-10-20T21-04-49-580Z.json",
+      "sha256": "B3ADD08CC9DD6936E8195B97430321BF890EC879A831198445D76D43650DCC19"
+    },
+    {
+      "domain": "reliability",
+      "route": "gpt-6.1-sol/high/codex/subagents",
+      "context": "none",
+      "completed": true,
+      "path": "C:/Users/Rasmus/AppData/Local/Temp/tea-nfr-reliability-2026-10-20T21-04-49-580Z.json",
+      "sha256": "D6A875807456FB33B6FC60AE241932120DEB143F826415BD84FD308A259BAA16"
+    },
+    {
+      "domain": "maintainability",
+      "route": "gpt-6.1-sol/high/codex/subagents",
+      "context": "none",
+      "completed": true,
+      "path": "C:/Users/Rasmus/AppData/Local/Temp/tea-nfr-maintainability-2026-10-20T21-04-49-580Z.json",
+      "sha256": "8AFAF70932D2A0F43F30C4494F5490C0C68DF2B144AA442E24B7AC01293380DE"
+    }
+  ],
+  "native_evidence": [
+    {
+      "kind": "verify",
+      "path": "C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39490485088-verify.log",
+      "sha256": "24FBA4F37AEA028DD760FE599B724701DB31B57C3FE9DBD6DB276A6E6312A004",
+      "result": "2740/2740 units,100suites,0fail/skip;43process;TSC/lint/productionbuild/frozenlock/containment passed; high dependency gate passed with TWO MODERATE advisories",
+      "reused": true
+    },
+    {
+      "kind": "integration",
+      "path": "C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39490485088-integration-native/full-integration.json",
+      "sha256": "028E6DC91A52DC12CCB73B7A1EBD20FE71A1C436F2740671EE736EA35EF46D6E",
+      "result": "1880total,1879pass,0fail,1ordinary physical-recovery pending/skipped;SUPABASE_TEST_REQUIRED=1",
+      "reused": true
+    },
+    {
+      "kind": "recovery",
+      "path": "C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39490485088-recovery-native/isolated-storage-recovery.json",
+      "sha256": "C2D82E2C9DC1EF156656C14CD079A129042A0C375EE881FBE99A62B7C31E4A78",
+      "result": "Separate isolated Storage physical recovery1/1pass,0skip; ordinary skip is not relabelled",
+      "reused": true
+    },
+    {
+      "kind": "browser",
+      "path": "C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39490485088-browser-native/general-browser.json",
+      "sha256": "C08263B31221E0BB82649DF83BF7E7B98B85DD2A6FF6AAAF5F5844790094E1F0",
+      "result": "33completed passes:31first-attempt+2fullretries;native expected31/flaky2/unexpected0/skipped0;all5workspace first-attempt",
+      "reused": true
+    },
+    {
+      "kind": "db",
+      "path": "C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39490485088-db.log",
+      "sha256": "99A4E7E12FE4F300CE744861EBECAF599EDE547A4FF75A6185AF6FB2661048CD",
+      "result": "Approved RBAC pilot5warmups/25measurements;readp95=7.985169000000042ms;bulkpermissionsp95=2.968015999999807ms;2authenticated requests/read",
+      "reused": true
+    }
+  ],
+  "newly_executed_tests": 0,
+  "newly_added_tests": 0,
+  "source_tests_dependencies_changed": false,
+  "checks_newly_run": [
+    "Bounded read-only source/test/evidence applicability inspection by four workers",
+    "Native receipt SHA256 revalidation",
+    "Four-worker JSON/status/threshold/compliance aggregation and artifact read-back validation"
+  ],
+  "evidence_limits": [
+    "Jobs latency/volume and production throughput/resource targets UNKNOWN",
+    "Availability/error-rate/MTTR, deployed monitoring/failover targets/evidence UNKNOWN",
+    "Branch/line coverage,duplication percentage/trend UNKNOWN",
+    "Broader deployed security/secret management and all-endpoint assurance unmeasured",
+    "Two moderate dependency advisories retained;maintenance/freshness details unmeasured",
+    "Two qualified browser first-attempt uncertainties retained;no first-pass-clean/pure-observer-cause claim",
+    "RTO/RPO/backup/regional recovery UNKNOWN;Storage recovery is scoped integrity proof",
+    "Old story1-4 receipts historical;current global CI qualifies changed consumer seams",
+    "14release-only checks DEFERRED;no release/deployment/certification claim"
+  ],
+  "validation": {
+    "all_four_workers_successful": true,
+    "unknowns_not_passed": true,
+    "compliance_boolean_release_ready_not_scored": true,
+    "all_NA_compliance_preserved": true,
+    "template_sections_populated_or_explicitly_NA": true,
+    "no_runtime_or_browser_sessions_created": true,
+    "prior_trace_gate_not_modified": true
+  },
+  "next_workflow": "Parent dispatches test-review sequentially;no test-review/reconcile executed here"
+}
