@@ -24,6 +24,7 @@ import { JobCardForm, type JobCardOptions } from "./JobCardForm";
 import { JobMembersPanel } from "./JobMembersPanel";
 import type { JobMembersProjection } from "@/server/read-models/job-members";
 import { JobEditDialog } from "./JobEditDialog";
+import {JobWorkspaceRetry} from "./JobWorkspaceShell";
 import { JobEvidenceLink } from "./JobEvidenceLink";
 
 function formatDate(iso: string | null): string {
@@ -63,7 +64,7 @@ export function JobDetailView({
     >
       {members && <JobMembersPanel jobId={detail.id} initial={members} />}
       {membersError && <section role="alert" data-testid="job-members-read-failed" className="rounded-lg border border-red-300 bg-red-50 p-4 text-sm text-red-800">
-        <p>{membersError}</p><form action={`/jobs/${detail.id}`} method="get"><button type="submit" className="mt-3 min-h-11 underline">Hämta medlemmar igen</button></form>
+        <p>{membersError}</p><JobWorkspaceRetry>Hämta medlemmar igen</JobWorkspaceRetry>
       </section>}
       {!protectedMoney && <p role="note" data-testid="job-economy-entitlement" className="text-sm text-zinc-600">Ekonomiska uppgifter är inte tillgängliga</p>}
       {detail.card && <section data-testid="job-operational-card" className="rounded-lg border border-zinc-200 bg-white p-4 text-sm">

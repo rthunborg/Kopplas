@@ -26,3 +26,20 @@ export function jobWorkspaceHref(input: {jobId: string; tab: JobWorkspaceTab; qu
   query.set("tab", input.tab);
   return `/jobs/${encodeURIComponent(input.jobId)}?${query}`;
 }
+
+/** History restoration must never silently replace another child's protected draft. */
+export function reconcileJobWorkspaceChild(input: {
+  current: {id: string | null; key: string} | null; requestedId: string | null;
+  visibleIds: readonly string[]; protectedDraft: boolean;
+}): {kind: "keep"} | {kind: "select" | "protect"; id: string | null} {
+  const id = input.requestedId && input.visibleIds.includes(input.requestedId) ? input.requestedId : null;
+  if ((input.current?.id ?? null) === id) return {kind: "keep"};
+  return {kind: input.protectedDraft ? "protect" : "select", id};
+}
+/** A late completion uses the live query; only explicit child navigation activates its tab. */
+export function jobWorkspaceChildHref(input: {jobId: string; workOrderId: string | null; query: URLSearchParams; activate?: boolean}): string {
+  const query = new URLSearchParams(input.query);
+  if (input.activate) query.set("tab", "work-orders");
+  if (input.workOrderId) query.set("workOrder", input.workOrderId); else query.delete("workOrder");
+  return `/jobs/${encodeURIComponent(input.jobId)}${query.size ? `?${query}` : ""}`;
+}

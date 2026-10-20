@@ -1,9 +1,10 @@
 "use client";
 
-import { useCallback, useRef, useState, type ReactNode } from "react";
+import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import type { JobWorkOrdersProjection } from "@/server/read-models/job-work-orders";
 import { resolveWorkOrderCreateSelection, selectWorkOrderDependencyWarnings, canReceiveWorkOrderPaneProjection, type WorkOrderPaneSelection } from "@/features/jobs/work-orders-domain";
+import {reconcileJobWorkspaceChild, jobWorkspaceChildHref} from "@/features/jobs/job-workspace-domain";
 import { WorkOrderPane, WORK_ORDER_STATUS_LABELS } from "./WorkOrderPane";
 
 /** Cards and selection are presentation only; the projection supplies current capabilities. */
@@ -20,13 +21,33 @@ export function JobWorkOrdersPanel({jobId, initial, initialWorkOrderId, filesPan
   const dirty = useRef(false);
   const rememberDirty = useCallback((value: boolean) => { dirty.current = value; }, []);
   if (received !== initial) { setReceived(initial); setProjection(initial); }
+  const requestedId = search.get("workOrder");
+  const previousRequested = useRef(requestedId);
+  useEffect(() => {
+    if (previousRequested.current === requestedId) return;
+    previousRequested.current = requestedId;
+    const resolution = reconcileJobWorkspaceChild({current: currentSelection.current, requestedId,
+      visibleIds: projection.rows.map(row => row.id), protectedDraft: dirty.current});
+    if (resolution.kind === "keep") return;
+    if (resolution.kind === "protect" && !window.confirm("Det finns osparade eller pågående ändringar. Vill du lämna utkastet?")) {
+      router.replace(jobWorkspaceChildHref({jobId, workOrderId: currentSelection.current?.id ?? null,
+        query: new URLSearchParams(window.location.search)}), {scroll: false});
+      return;
+    }
+    dirty.current = false;
+    const next = resolution.id ? {id: resolution.id, key: resolution.id} : null;
+    currentSelection.current = next;
+    setSelected(next);
+    // Native tab history does not fetch RSC data: refresh the admitted child's file island too.
+    router.refresh();
+  }, [requestedId, projection.rows, jobId, router]);
   function select(id: string | null, create = false) {
     if (dirty.current && !window.confirm("Det finns osparade ändringar. Vill du lämna utkastet?")) return;
     dirty.current = false;
     const next = id || create ? {id, key: id ?? crypto.randomUUID()} : null;
     currentSelection.current = next;
     setSelected(next);
-    const query = new URLSearchParams(search.toString());
+    const query = new URLSearchParams(window.location.search);
     query.set("tab", "work-orders");
     if (id) query.set("workOrder", id); else query.delete("workOrder");
     router.replace(`/jobs/${jobId}${query.size ? `?${query}` : ""}`, {scroll: false});
@@ -40,10 +61,8 @@ export function JobWorkOrdersPanel({jobId, initial, initialWorkOrderId, filesPan
     if (!completion?.adopted || !createdId) return;
     currentSelection.current = completion.selection;
     setSelected(completion.selection);
-    const query = new URLSearchParams(search.toString());
-    query.set("tab", "work-orders");
-    query.set("workOrder", createdId);
-    router.replace(`/jobs/${jobId}?${query}`, {scroll: false});
+    const query = new URLSearchParams(window.location.search);
+    router.replace(jobWorkspaceChildHref({jobId, workOrderId: createdId, query}), {scroll: false});
   }
   const missing = selected?.id && !projection.rows.some((row) => row.id === selected.id);
   const jobEdges = projection.dependencies.some((edge) => edge.dependent.jobId === jobId && edge.dependent.workOrderId === null);

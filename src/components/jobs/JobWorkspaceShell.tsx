@@ -1,7 +1,7 @@
 "use client";
 
-import {useRef, useState, type KeyboardEvent, type ReactNode} from "react";
-import {useSearchParams} from "next/navigation";
+import {useLayoutEffect, useRef, useState, type KeyboardEvent, type ReactNode} from "react";
+import {useRouter, useSearchParams} from "next/navigation";
 import {jobWorkspaceHref, selectJobWorkspaceTab, type JobWorkspaceTab, type JobWorkspaceTabDescriptor} from "@/features/jobs/job-workspace-domain";
 import {JOB_STATUS_LABELS, type JobStatus} from "@/features/jobs/types";
 import type {AssignmentLabel, JobWorkspaceHeader} from "@/server/read-models/job-workspace";
@@ -16,12 +16,28 @@ export function JobWorkspaceShell({header, tabs, panels, actions, canBook}: {
   panels: Partial<Record<JobWorkspaceTab, ReactNode>>; actions?: ReactNode; canBook: boolean;
 }) {
   const search = useSearchParams();
+  const workspaceRef = useRef<HTMLElement>(null);
+  useLayoutEffect(() => {
+    const workspace = workspaceRef.current;
+    if (!workspace) return;
+    const main = workspace.closest("main");
+    function fit() {
+      const top = workspace!.getBoundingClientRect().top + window.scrollY;
+      const bottom = main ? parseFloat(getComputedStyle(main).paddingBottom) : 0;
+      workspace!.style.height = `${Math.max(1, window.innerHeight - top - bottom)}px`;
+    }
+    fit();
+    const observer = new ResizeObserver(fit);
+    if (main?.parentElement) observer.observe(main.parentElement);
+    window.addEventListener("resize", fit);
+    return () => {observer.disconnect(); window.removeEventListener("resize", fit);};
+  }, []);
   const selected = selectJobWorkspaceTab({availableTabs: tabs.map(tab => tab.id), tab: search.get("tab"), workOrder: search.get("workOrder")});
   const [more, setMore] = useState(false);
   const tabRefs = useRef<Partial<Record<JobWorkspaceTab, HTMLButtonElement | null>>>({});
   const priority = tabs.slice(0, 3).map(tab => tab.id);
   function choose(id: JobWorkspaceTab) {
-    window.history.pushState(null, "", jobWorkspaceHref({jobId: header.id, tab: id, query: new URLSearchParams(search.toString())}));
+    window.history.pushState(null, "", jobWorkspaceHref({jobId: header.id, tab: id, query: new URLSearchParams(window.location.search)}));
   }
   function keyboard(event: KeyboardEvent<HTMLButtonElement>, id: JobWorkspaceTab) {
     const index = tabs.findIndex(tab => tab.id === id);
@@ -35,8 +51,8 @@ export function JobWorkspaceShell({header, tabs, panels, actions, canBook}: {
     else tabRefs.current[target]?.focus();
   }
   const overflow = more;
-  return <section data-testid="job-workspace" className="flex min-w-0 flex-col gap-4 p-4 pb-28 sm:p-6 sm:pb-6">
-    <header data-testid="job-workspace-header" className="sticky top-0 z-10 space-y-3 rounded-lg border border-zinc-200 bg-white p-4">
+  return <section ref={workspaceRef} data-testid="job-workspace" className="flex min-h-0 min-w-0 flex-col gap-4 overflow-y-auto overscroll-contain p-4 pb-28 sm:p-6 sm:pb-6">
+    <header data-testid="job-workspace-header" className="sticky top-0 z-30 shrink-0 space-y-3 rounded-lg border border-zinc-200 bg-white p-4">
       <div className="flex flex-wrap items-center gap-3">
         <h1 id="job-detail-heading" className="min-w-0 flex-1 break-words text-2xl font-semibold text-zinc-900">{header.title ?? header.customer ?? "Jobb"}</h1>
         <span data-testid="job-workspace-type" className="rounded-md border border-zinc-300 px-2 py-1 text-sm">{header.type === "projekt" ? "Projekt" : "Order"}</span>
@@ -67,4 +83,10 @@ export function JobWorkspaceShell({header, tabs, panels, actions, canBook}: {
     {tabs.map(tab => <div key={tab.id} id={`job-panel-${tab.id}`} role="tabpanel" aria-labelledby={`job-tab-${tab.id}`} tabIndex={0}
       hidden={selected !== tab.id} className="min-w-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">{panels[tab.id]}</div>)}
   </section>;
+}
+
+/** Refresh the current URL without unloading another mounted panel's draft. */
+export function JobWorkspaceRetry({children}: {children: ReactNode}) {
+  const router = useRouter();
+  return <button type="button" onClick={() => router.refresh()} className={`${control} text-blue-700 underline`}>{children}</button>;
 }

@@ -2,7 +2,7 @@ import Link from "next/link";
 import {notFound} from "next/navigation";
 import type {ReactNode} from "react";
 import {JobDetailView} from "@/components/jobs/JobDetailView";
-import {JobWorkspaceShell} from "@/components/jobs/JobWorkspaceShell";
+import {JobWorkspaceShell, JobWorkspaceRetry} from "@/components/jobs/JobWorkspaceShell";
 import {JobWorkspaceSchedule} from "@/components/jobs/JobWorkspaceSchedule";
 import {JobEventsPanel} from "@/components/jobs/JobEventsPanel";
 import {JobUpgradeDialog} from "@/components/jobs/JobUpgradeDialog";
@@ -23,7 +23,7 @@ export default async function JobDetailPage({params, searchParams}: {
   const {workspace, error} = await readJobWorkspace(undefined, jobId, await searchParams);
   if (error) return <section className="mx-auto max-w-3xl p-4"><div role="alert" data-testid="job-detail-failed" className="rounded-lg border border-red-300 bg-red-50 p-6">
     <p className="text-sm font-medium text-red-800">Jobbet kunde inte läsas in.</p><p className="mt-1 text-sm text-red-700">{error}</p>
-    <form action={`/jobs/${jobId}`} method="get"><button type="submit" className="mt-3 min-h-11 px-3 underline">Försök igen</button></form>
+    <JobWorkspaceRetry>Försök igen</JobWorkspaceRetry>
     <Link href="/jobs" className="mt-4 inline-flex min-h-11 items-center rounded-md border border-red-300 bg-white px-3 text-sm text-red-800">Tillbaka till jobb</Link>
   </div></section>;
   if (!workspace) notFound();
@@ -44,7 +44,7 @@ export default async function JobDetailPage({params, searchParams}: {
     }));
   }
   const workOrders = workspace.workOrders ? <JobWorkOrdersPanel jobId={jobId} initial={workspace.workOrders} initialWorkOrderId={workspace.selectedWorkOrderId} filesPanels={workOrderFiles} />
-    : <section role="alert" data-testid="job-work-orders-read-failed" className="rounded-lg border border-red-300 bg-red-50 p-4 text-sm text-red-800"><p>{workspace.workOrdersError}</p><form action={`/jobs/${jobId}`} method="get"><input type="hidden" name="tab" value="work-orders" /><button type="submit" className="mt-3 min-h-11 underline">Hämta arbetsorder igen</button></form></section>;
+    : <section role="alert" data-testid="job-work-orders-read-failed" className="rounded-lg border border-red-300 bg-red-50 p-4 text-sm text-red-800"><p>{workspace.workOrdersError}</p><JobWorkspaceRetry>Hämta arbetsorder igen</JobWorkspaceRetry></section>;
   return <JobWorkspaceShell header={workspace.header} tabs={workspace.tabs} canBook={workspace.schedule?.canManage === true && workspace.schedule.options?.canManage === true}
     actions={detail.entitlement?.canEdit && detail.type && members.ok ? <JobUpgradeDialog jobId={jobId} type={detail.type} expectedState={members.projection.expectedState} /> : undefined}
     panels={{overview: <div className="space-y-6"><JobDetailView detail={detail} members={members.ok ? members.projection : undefined} membersError={members.ok ? undefined : members.message} cardOptions={workspace.cardOptions} />{workspace.events && <JobEventsPanel events={workspace.events} compact />}</div>,

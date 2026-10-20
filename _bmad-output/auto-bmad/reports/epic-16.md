@@ -186,3 +186,75 @@
 1. Project owner: answer the three scope/formula/allocation questions. No E15 or acknowledgment blocker.
 
 **Next:** After answers, re-plan Story 16.4 and resume /auto-bmad epic --epic 16. Refresh project context after epic completion.
+
+## Report — 2026-10-20T16:39:20Z (halted — external review approval pending)
+
+**Epic:** `16` — 5 stories.
+**Branch:** `codex/epic-16-jobs` (HEAD `4562b3f`).
+**Pipeline status:** needs-human — Story16.5 external transfer authorization pending
+**Continues:** Resume the existing frozen Phase5 review after direct authorization; no new broad review or duplicate launch.
+
+**Summary:** Stories16.1–16.4 development complete. Story16.5 implementation remains in-review; aggregate review and runtime gates pending.
+
+**Timing:** started 2026-10-15T08:50:46Z; completed in progress — elapsed 127h 48m (≈7h 24m AI-run, ≈120h 23m human/idle wait); resumed 5×.
+
+**Stories:**
+1. 16.1 done;16.2 done;16.3 done;16.4 done (CI39445650692 success,2727units1872INT+separateRecovery28first-attemptbrowser).16.5 frozen locally at4562b3fe,not complete.
+
+**Skipped:**
+1. none
+
+**Epic gate:** not run — final story incomplete
+
+**TEA:** 16.5ATDD20active scenarios;10pure executed.16.4post-dev7AC/0gaps/0newtests.
+
+**Retrospective:** not run
+
+**Overrides:** Sol6.1High sensitive work; one final epic PR; no merge/deployment/provider changes; broader visual/manual validation deferred.
+
+**Open questions:**
+1. Authorize required read-only external Codex review of frozen16.5diff:24files88303bytes,SHA1704C73B45D065888CF96B3CA01055B1A7F6BFFBEDA94AB6B0BEE104DDA03133.
+
+**Deferred work:**
+1. 11 owned release-only items retained for completed16.1–16.4;16.5external review/triage/fixes/CI/delivery still required development work.
+No items archived during this halt.
+
+**⚠️ Needs human:**
+1. Answer the pending transfer-authorization question. No upload was attempted; prior approval covered16.4only.
+
+**Next:** Authorize this16.5payload to resume existing review. Current spec staysin-review; no deployment or release-readiness approval.
+
+## Report — 2026-10-20T17:33:28Z (checkpoint — reviewed Story16.5 source)
+
+**Epic:** `16` — 5 stories.
+**Branch:** `codex/epic-16-jobs` (HEAD `4562b3f`).
+**Pipeline status:** In progress — source review passed; exact-head runtime CI is next.
+**Continues:** The transfer approval is resolved. Continue with owned checkpoint CI and required delivery gates.
+
+**Summary:** Stories16.1–16.4 are development complete. Story16.5 is in review with frozen, independently reviewed source.
+
+**Timing:** started 2026-10-15T08:50:46Z; completed in progress — elapsed 128h 42m (≈7h 24m AI-run, ≈121h 18m human/idle wait); resumed 6×.
+
+**Stories:**
+1. 16.1,16.2,16.3 and16.4: development complete; release validation remains tracked.
+2. 16.5: all six review layers and targeted High causal recheck passed; runtime evidence pending.
+
+**Skipped:** (none)
+
+**Epic gate:** Not run until the final story completes.
+
+**TEA:** Story16.5 has20 ATDD scenarios activated; local pure regression evidence passes. No database or browser runtime coverage claimed yet.
+
+**Retrospective:** Not run.
+
+**Overrides:** One final epic PR. No merge, deployment, provider or secret changes. Sol6.1High for sensitive work.
+
+**Open questions:** (none)
+
+**Deferred work:**
+1. Eleven owned release-only validation items remain tracked for completed stories. Story16.5 required runtime gates remain development work, not deferred acceptance.
+No items archived.
+
+**⚠️ Needs human:** (none)
+
+**Next:** Push the reviewed checkpoint and execute the owned exact-head CI. Author delivery, root gate and independent provenance must pass before done.

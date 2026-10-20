@@ -88,6 +88,41 @@ Binding requirements: `epics-phase-b.md:1597–1599` Story 16.5; `architecture-p
 
 **Round 1 of 3**
 
+### 2026-10-20 — Review pass
+- intent_gap: 0
+- bad_spec: 0
+- patch: 11: (high 1, medium 8, low 2)
+- defer: 0
+- reject: 3: (high 0, medium 0, low 3)
+- addressed_findings:
+  - `[medium]` `[patch]` Page the safe event projection with timestamp/ID ordering; the 1000-row truncation regression failed before and passes after repair.
+  - `[medium]` `[patch]` Bound workspace scrolling so its header persists without changing AppShell.
+  - `[medium]` `[patch]` Place header/modal stacking above workspace navigation; add the real backdrop/navigation regression.
+  - `[high]` `[patch]` Reconcile child history with current selection and file ownership through existing dirty/pending protection; add two-child Back coverage.
+  - `[medium]` `[patch]` Adopt late creation against the live query without stealing a subsequently selected tab or return parameter.
+  - `[medium]` `[patch]` Retry a root read at the current URL without discarding tab/child context.
+  - `[medium]` `[patch]` Retry work-order/member reads without unloading another mounted panel's draft.
+  - `[medium]` `[patch]` Label cancelled booking intervals explicitly in the new mini-timeline.
+  - `[low]` `[patch]` Rebind the retained traceability journey to Filer/Händelser without deleting its assertions.
+  - `[medium]` `[patch]` Protect dirty/pending/unresolved full-card state on reload or route exit, disarming only after confirmed save; preserve the payload/attempt/window construction.
+  - `[low]` `[patch]` Exercise the actual header Boka caller and current-job editor context.
+
+The first nine items are the confirmed causal findings. The last two complete the explicit AC03 leave obligation and changed-caller verification. Browser assertions are declared and collected, not executed locally. Descriptive observations about pending runtime and the approved dedicated-event boundary are not counted as new defects. The historical planning halt is superseded by explicit Phase5 authorization; existing 16.2 lead-route coverage remains applicable, and a mirrored event-error render test is optional because the real reader distinguishes failure and the component checks error first. No functional/security acceptance is deferred.
+
+Round1 provenance: all five internal High layers completed against raw diff SHA1704c73b45d065888cf96b3ca01055b1a7f6bffbeda94ab6b0bee104dda03133. The first configured external command exited native0 with a read-denial result, not findings. Root-authorized byte-identical readable-path recovery exited native0 and returned two duplicate findings; actual receipt SHA7bc08ef96f96371156e72be31190c9394ae926b66990bf55c78c0b3ca2f19570. Independent targeted High verification of this repair batch subsequently qualified PASS in the entry below. No broad layer was rerun.
+
+### 2026-10-20 — Review pass
+- intent_gap: 0
+- bad_spec: 0
+- patch: 0
+- defer: 0
+- reject: 0
+- addressed_findings:
+  - none
+
+Targeted independent Sol6.1 High recheck only: qualified PASS on the repaired thirteen-path delta, all twenty-six frozen bindings and relevant unchanged dependencies. The same reviewer checked cooperating navigation guards, opaque installed-router history state, later allowed navigation, late completion/file ownership, pagination, retries, stacking and the author trail. No broad or external layer was repeated. Actual receipt SHA 1885b3c10b005afb232563915672a5ac1f364a175214ed579286e7f4b1b3e202. Latest patched severity counts high0/medium0/low0, score0; follow-up recommendation false. Original eleven actions and their first-pass recommendation remain above. Required runtime evidence remains pending root CI.
+
+
 ## Design Notes
 
 Owner-authorized maintainable defaults under current AGENTS: keep existing global navigation; use the design system for desktop tab navigation and mobile priority tabs plus Mer with accessible names, selected state and focus handling. Maintain stable authorized panel islands keyed by job/tab, or reuse explicit dirty/pending leave guards where mounting cannot be preserved; do not silently discard existing form state. No generic navigation/state framework or offline persistence is required.
@@ -110,63 +145,67 @@ Planning evidence only: two context-free Sol6.1 High requirements/consumer explo
 
 ## Auto Run Result
 
-Status: ready-for-dev
+Status: in-review
 Blocking condition: none
-Ready-for-development gate: workflow and written specification re-read; actionable dependency-ordered paths, three surface-level Given/When/Then criteria, complete I/O boundaries and no unresolved intent gap.
-Planning only. Three refined ACs preserve Story16.5/TR12. No implementation, migration reservation, resource launch or release claim.
+Historical planning exit: ready-for-dev, three refined ACs/TR12; the explicit Phase5 resume now authorizes implementation. Frozen intent remains unchanged.
+Implemented the authorized five-tab workspace, safe header/events, independent consumer gates and connected navigation. Source baseline: f96256a066db7e38d482e4538f2a0ba2472cf4b8; local preservation checkpoint4562b3feecece4e36674242c7d95a8cbf5f5b5b7 retained the original reviewed candidate. No migration, new grant, AppShell, facts/proof or historical SQL change.
+Round1: eleven patch actions applied (high1/medium8/low2), zero deferred, three rejected. Original Round1 recommendation was true (patched severity score=3×8+2=26, with one high). Targeted independent High repair verification: qualified PASS; latest patched counts high0/medium0/low0, score0, follow-up recommendation false. Original first-pass score26 and eleven actions remain historical above.
+Actual local evidence after repair: controlled focused RED3fail then GREEN13pass/0fail/0skip; explicit TSC/lint/build and source/final-bundle containment native0; completed-build sequential unit2740total/2739pass/0fail/1Windows xattr skip; job-only Playwright collection25cases/6files, including four workspace journeys, no browser execution. One author Suggested Review Order,20 verified stops/0reference errors. Earlier withdrawn combined-shell TSC claim, transient unit/build race and missing local auth-fixture full-collection failure remain historical limitations, not passes.
+Required exact-head DB/RLS/recovery/pilot/production-browser CI remains pending root. No development-complete, done, release-ready or deployment approval claim. Root executable delivery gate, independent provenance and explicit authorization remain required after real runtime evidence.
+
 
 ## Suggested Review Order
 
-Author: Story16.5 implementation delegate (Sol6.1 High).
-Refreshed against the final uncommitted Story16.5 working tree on baseline `f96256a066db7e38d482e4538f2a0ba2472cf4b8`. The frozen intent block remains SHA256 `84e6bca5a0696386eba53f7ee5d670c1ebfed42446154614f30ad365f8071bc8`.
+Author: Story16.5 implementation/fix delegate (Sol6.1 High).
+Refreshed against the final uncommitted causal-fix tree on reviewed candidate `4562b3feecece4e36674242c7d95a8cbf5f5b5b7`; original story source baseline remains `f96256a066db7e38d482e4538f2a0ba2472cf4b8`. Frozen intent SHA256 remains `84e6bca5a0696386eba53f7ee5d670c1ebfed42446154614f30ad365f8071bc8`.
 
-### One stable job entry and persistent authorized content
+### Stable admission, safe labels and complete real events
 
-The existing detail route now composes the workspace after the checked root read. Existing full-card, source, member and upgrade consumers keep their existing action authority; files retain the shared owner model.
+The existing route enters through the checked root reader before composing independently authorized consumers. Header labels come only from visible current-job members or the separately entitled manager picker, never eligiblePeople. Safe event history now pages below the API cap with timestamp/ID ordering, so the overview's latest three include the actual newest events; page failure returns a retryable error rather than partial history.
 
-- `src/app/(app)/jobs/[jobId]/page.tsx:23` — `readJobWorkspace`: admits the root before subordinate page consumers.
-- `src/app/(app)/jobs/[jobId]/page.tsx:48` — `JobWorkspaceShell`: supplies safe header and authorized panel islands.
-- `src/app/(app)/jobs/[jobId]/page.tsx:55` — `EntityFilePanel`: preserves shared job file ownership.
-- `tests/e2e/jobs/job-workspace.e2e.spec.ts:76` — `16.5-E01`: AC01/AC02 real consumers, source and confirmed persistence.
+- `src/app/(app)/jobs/[jobId]/page.tsx:23` — `readJobWorkspace`: admits the root before subordinate page reads.
+- `src/server/read-models/job-workspace.ts:24` — `projectJobWorkspaceHeader`: preserves truthful assignment states without a directory expansion.
+- `src/server/read-models/job-events.ts:17` — `.range(offset, offset + 499)`: keeps safe current-job events complete and ordered.
+- `tests/unit/server/read-models/job-events.test.ts:61` — `16.5-UNIT-EVENTS-04`: AC02 retains the newest upgrade beyond 1,000 rows.
 
-### Header privacy and independent consumer authority
+### Actual consumers and retries retain the current context
 
-The composer derives the closed tab set from the active manifest and current matrix after real job admission, then retains checked per-consumer readers. Header labels use current visible members or the separately entitled existing manager card picker; crew-management eligiblePeople never supplies a header label. A nonmember PL remains assigned with name unavailable. Dedicated event DTOs contain only ID, type and timestamp.
+Schema still uses the allocated optional normal-client seam in the existing booking readers; the cookie default and independent manager options gate remain. Cancelled intervals now state their status. Root, work-order and member-error recovery uses current-URL refresh rather than full GET, preserving bounded query context and mounted sibling drafts. The retained traceability journey now navigates to the actual shared file and event tabs without removing its source, content, permission or persistence checks.
 
-- `src/server/read-models/job-workspace.ts:24` — `projectJobWorkspaceHeader`: distinguishes assignment, unavailable read and authorized names.
-- `src/features/jobs/job-workspace-domain.ts:8` — `availableJobWorkspaceTabs`: filters the five current consumers without relational grant inflation.
-- `src/server/read-models/job-workspace.ts:64` — `events: []`: excludes the old reference-bearing detail events from workspace DTOs.
-- `src/server/read-models/job-events.ts:14` — `.eq("job_id", jobId)`: scopes explicit safe event columns through normal-client RLS.
+- `src/features/resources/bookings-read.ts:91` — `readBookingHost`: retains the existing normal-JWT/cookie authority.
+- `src/components/jobs/JobWorkspaceSchedule.tsx:14` — `booking.status === "cancelled"`: distinguishes cancelled timeline intervals.
+- `src/components/jobs/JobWorkspaceShell.tsx:89` — `JobWorkspaceRetry`: refreshes the actual current URL without document unload.
+- `tests/e2e/jobs/job-traceability.e2e.spec.ts:107` — `getByRole("tabpanel"`: retains the file assertion against the actual consumer.
 
-### Read-only Schema and retained connected actions
+### History and late completion preserve the selected child and tab
 
-The allocated optional normal-client parameter in the existing E14 booking readers enables actual JWT integration tests without copying query, entitlement or picker logic; omitting it still creates the existing cookie client. Schema reuses that host and its real visible intervals, and options exist only for managers. Error and true-empty rendering remain distinct; commands, booking facts and proofs are unchanged.
+A changed child query reconciles the mounted pane through the existing dirty/pending confirmation and the current visible-child set. A refused transition restores the existing child query; an accepted restoration refreshes the corresponding file island. Creation completion retains the original draft key but derives its URL from the live query, preserving a subsequently chosen tab and unrelated return parameters.
 
-- `src/features/resources/bookings-read.ts:91` — `readBookingHost`: preserves tenant/auth/query authority with an optional normal client.
-- `src/features/resources/bookings-read.ts:116` — `readBookingEditorOptions`: retains the independent manager gate and cookie default.
-- `src/components/jobs/JobWorkspaceSchedule.tsx:11` — `BookingEntry`: hosts the real preconnected editor and read-only subset.
-- `tests/integration/features/jobs/job-workspace.int.test.ts:62` — `16.5-INT-03`: AC02 compares actual worker JWT host and manager options.
+- `src/features/jobs/job-workspace-domain.ts:31` — `reconcileJobWorkspaceChild`: separates unchanged, protected and visible-child restoration.
+- `src/components/jobs/JobWorkOrdersPanel.tsx:29` — `reconcileJobWorkspaceChild`: applies history changes through the existing protection.
+- `src/components/jobs/JobWorkOrdersPanel.tsx:65` — `jobWorkspaceChildHref`: adopts creation into the live query without tab takeover.
+- `tests/e2e/jobs/job-workspace.e2e.spec.ts:406` — `16.5-E04`: AC03 two-child Back/file ownership, dirty rejection and late real creation.
 
-### URL, keyboard and phone navigation preserve drafts
+### Persistent header, modal pointer protection and card leave lifecycle
 
-The shell uses the current URL for selection and native same-document history for tab changes. Authorized panels stay mounted under hidden panels, retaining unsent and pending form state. Existing work-order query updates add the explicit tab while preserving their own selection and dirty guards. Priority tabs plus Mer, manual keyboard activation and a compact persistent header are owner-authorized design defaults under the spec's Design Notes.
+The workspace owns its measured available viewport and scroll region, preserving its header without editing AppShell. Header stacking now keeps its inline upgrade modal above workspace navigation while the shared Dialog stays unchanged. The allocated card-only lifecycle arms on edits/submission, protects refresh, cross-route Back and same-origin SPA links, and removes its listeners only after confirmed persistence or unmount. Same-job tab/query changes retain the mounted draft and do not warn; the history guard preserves opaque existing Next state without interpreting it.
 
-- `src/components/jobs/JobWorkspaceShell.tsx:24` — `window.history.pushState`: preserves job, child and unrelated query state.
-- `src/components/jobs/JobWorkspaceShell.tsx:26` — `function keyboard`: implements arrows and Home/End without silently activating another panel.
-- `src/components/jobs/JobWorkspaceShell.tsx:68` — `hidden={selected !== tab.id}`: keeps authorized drafts mounted.
-- `tests/e2e/jobs/job-workspace.e2e.spec.ts:235` — `16.5-E03`: AC03 deep links, back/refresh, Mer, draft retention and honest same-input retry.
+- `src/components/jobs/JobWorkspaceShell.tsx:20` — `useLayoutEffect`: bounds the workspace to its available viewport.
+- `src/components/jobs/JobWorkspaceShell.tsx:55` — `z-30`: keeps the upgrade modal above sibling navigation.
+- `src/components/jobs/JobCardForm.tsx:38` — `if (!leaveArmed) return`: installs leave protection only while required.
+- `src/components/jobs/JobCardForm.tsx:89` — `setLeaveArmed(false)`: disarms only after actual server-confirmed save.
 
-### Evidence and limits at handoff
+### Focused regressions, unchanged authority and honest limits
 
-Ten activated pure cases cover matrix/activation, bounded URLs, safe labels, event structural omission and empty-versus-error. Four integration and three RLS bodies use actual production readers and fresh existing fixtures; three essential browser bodies retain actual server persistence and transport-failure assertions. E02 deliberately uses an ordinary member with another visible member as lead: existing authorized leads already receive crew-picker labels, so asserting their absence from every lead SSR payload would contradict the unchanged16.2 crew workflow. Its nonmember-PL/header/privacy assertions remain; current relational lead and revocation coverage remains in RLS03 and existing16.2 journeys.
+The original20 ATDD bodies remain active; three additional pure cases and one browser case target the causal fixes. E02 remains the admitted ordinary-member privacy scenario because existing leads legitimately receive crew-picker labels; existing16.2-E03 still exercises the changed route as a Sales lead, and RLS03 retains current-lead/revocation/stale-write boundaries. No new personal-label source, grant, transactional action or fixture weakening was introduced.
 
-- `tests/unit/server/read-models/job-workspace.test.ts:26` — `16.5-UNIT-HEADER-02`: AC01 assigned-name fallback differs from unassigned/read failure.
-- `tests/unit/server/read-models/job-events.test.ts:9` — `16.5-UNIT-EVENTS-01`: AC02 structurally omits raw event fields in production.
+- `tests/unit/features/jobs/job-workspace-domain.test.ts:101` — `16.5-D05`: AC03 visible child restoration versus protected draft.
+- `tests/e2e/jobs/job-workspace.e2e.spec.ts:107` — `Persistent header`: actual Boka/current-job editor, header scrolling and physical modal/tab pointer checks.
+- `tests/e2e/jobs/job-workspace.e2e.spec.ts:341` — `Only the card draft`: AC03 refresh/Back/SPA refusal, same-job retention and confirmed-save navigation.
 - `tests/integration/rls/job-workspace.rls.test.ts:53` — `16.5-RLS-03`: AC02 current lead loses workspace and stale writes after revocation.
-- `tests/e2e/jobs/job-workspace.e2e.spec.ts:163` — `16.5-E02`: AC01/AC02 worker subsets, safe PL fallback and protected serialized-payload absence.
 
-Evidence in this working tree (2026-10-20): absolute Node `C:/nvm4w/nodejs/node.exe`; explicit `tsc --noEmit --incremental false` native0; full eslint native0 (0 errors,14 pre-existing warnings), final changed-path eslint native0 (0 diagnostics); production `next build` native0,12/12 static pages; focused Node pure suite10 executed/10pass/0fail/0skip; full Node unit suite2737total/2736pass/0fail/1skip. That skip requires Linux xattrs and belongs to the separately executed CI recovery lane, not local coverage. Final source and built-bundle containment pass. Job-only Playwright `--list` native0,24cases in6files (new3 and existing21), collection only. The full8file smoke collection attempts native1 before collection because the existing auth spec requires absent `tests/e2e/.auth/fixture.json`; no local fixture, environment or service was fabricated. `test:smoke` retains its existing seven paths and appends the workspace file before its reporter. Four existing job files receive only necessary moved-tab navigation; job-members remains unchanged and every prior assertion is retained.
+Actual fix-batch evidence (2026-10-20): focused RED3executed/0pass/3fail/0skip exposed capped1000-versus1003 events and missing history/adoption behavior; GREEN13executed/13pass/0fail/0skip. Explicit TSC and affected eslint native0; production build native0,12/12 static pages; source and final built-bundle containment native0. Final full units ran sequentially after build:2740total/2739pass/0fail/1skip. The existing Linux-xattr recovery skip is not passing local coverage and requires its independent CI recovery lane. Job-only Playwright collection native0:25cases in6files, workspace4 plus existing21; the complete smoke union is now32 including7auth, pending actual root CI setup. The traceability file's existing fixture-dependent setup was not fabricated for collection or execution.
 
-Actual bounded logs: `C:/Users/Rasmus/AppData/Local/Temp/story-16-5-unit.log`, `C:/Users/Rasmus/AppData/Local/Temp/story-16-5-lint.log`, `C:/Users/Rasmus/AppData/Local/Temp/story-16-5-build.log`, `C:/Users/Rasmus/AppData/Local/Temp/story-16-5-collection.log`. The initial extraction/compiler defects were corrected; an initial unit/build overlap exposed an unreadable transient build artifact, and the successful unit run occurred after build completion. No review acceptance or runtime evidence is implied by static success.
+Logs: `C:/Users/Rasmus/AppData/Local/Temp/story-16-5-fix-red.log`, `story-16-5-fix-pure.log`, `story-16-5-fix-typecheck.log`, `story-16-5-fix-lint.log`, `story-16-5-fix-build.log`, `story-16-5-fix-containment.log`, `story-16-5-fix-unit.log`, `story-16-5-fix-collection.log` in that same directory. Earlier evidence remains historical: the initial corrected TSC/JSX extraction failure, the first full-unit/build overlap's unreadable transient artifact, and the first external review source-read denial are not relabelled as passes. Root's corrected external recovery completed native0 with two duplicate modal/history findings. This author performed no external upload or broad review; the final causal diff requires root's targeted independent High recheck.
 
-Limits: integration4/RLS3/browser3 are activated but unexecuted locally; required full DB/RLS, empty-DB, recovery-storage integrity, money/current-authority, pilot and actual complete31browser-smoke evidence remain root-owned CI work. The pure event query client is injected deterministic data, not live RLS evidence. The unchanged default cookie path requires the actual essential browser run. Configured independent High review remains pending; external review is withheld pending the exact payload's direct human authorization. No resources, services, browser, SQL, dependency, secret, provider, deployment or Git mutation was performed. Broad device/role/browser matrices, screenshots and visual/manual review remain deferred release validation owned by root/release owner, next action: execute the qualified release lane after development evidence. Story remains in-progress; no development-complete or release-ready claim is made.
+Limits: browser assertions are declared/collected, not executed here. Required integration4/RLS3, all essential browser flows (workspace4 plus retained journeys), full DB/empty-DB, integrity/recovery and pilot evidence remain root-owned CI work. Pure event fixtures do not prove live RLS, and refresh/error presentation plus browser history/modal behavior still require that runtime evidence. Broad device/role/browser matrices, screenshots and visual/manual review remain deferred release validation owned by root/release owner; next action is its qualified release lane after development evidence. No services, resources, browser launch, SQL, dependencies, environment/secrets, providers, Git/state mutation, deployment or development-complete/release-ready claim occurred in this author batch. Story remains in-review pending the existing gates.

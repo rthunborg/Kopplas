@@ -82,6 +82,11 @@ test.describe("Story 16.5 essential job workspace", () => {
       await saveCard(f, jobId, { title, responsible_project_manager_id: f.fx.coworkerProfile.id });
       await seedMember(f, jobId, f.fx.ownProfile.id, true);
       const child = await createWorkOrder(f.fx.plannerClient, jobId, { title: "Actual workspace work order" });
+      const {bookingCommand, bookingInput} = await import("../../support/bookings-atdd");
+      const cancelled = await bookingCommand("create", f.fx.adminClient, bookingInput([f.fx.ownProfile.id], {
+        jobId, description: "Cancelled workspace interval", status: "cancelled", startsAt: "2026-10-25T06:00:00Z", endsAt: "2026-10-25T07:00:00Z",
+      }));
+      expect(cancelled.ok).toBe(true);
       const before = await f.snapshot();
       const bookings = before.bookings.filter(row => row.job_id === jobId);
       expect(bookings.length).toBeGreaterThan(0);
@@ -99,6 +104,33 @@ test.describe("Story 16.5 essential job workspace", () => {
       await expect(page.getByTestId("job-upgrade-open")).toBeVisible();
       await expect(page.getByTestId("job-standalone-origin")).toBeVisible();
 
+      await test.step("Persistent header opens the actual preconnected booking editor and covers navigation with its modal", async () => {
+        const header = page.getByTestId("job-workspace-header");
+        await header.getByRole("button", {name: "Boka", exact: true}).click();
+        await expect(page.getByRole("tab", {name: "Schema", exact: true})).toHaveAttribute("aria-selected", "true");
+        const editor = page.getByTestId("booking-editor");
+        await expect(editor).toBeVisible();
+        await expect(editor.getByTestId("booking-job")).toHaveValue(jobId);
+        await page.getByRole("dialog").getByRole("button", {name: "Stäng", exact: true}).click();
+        await expect(editor).toHaveCount(0);
+        await selectTab(page, "Översikt");
+        await page.getByTestId("job-workspace").evaluate(element => {element.scrollTop = element.scrollHeight;});
+        await expect(header).toBeInViewport();
+        await page.setViewportSize({width: 360, height: 640});
+        await page.getByTestId("job-workspace").evaluate(element => {element.scrollTop = element.scrollHeight;});
+        await expect(header).toBeInViewport();
+        await header.getByTestId("job-upgrade-open").click();
+        await expect(page.getByTestId("job-upgrade-dialog")).toBeVisible();
+        const tab = page.getByRole("tab", {name: "Arbetsorder", exact: true});
+        const box = await tab.boundingBox();
+        expect(box).not.toBeNull();
+        // A physical pointer hit at the underlying tab must hit the modal backdrop, never activate navigation.
+        await page.mouse.click(box!.x + box!.width / 2, box!.y + box!.height / 2);
+        await expect(page.getByRole("tab", {name: "Översikt", exact: true})).toHaveAttribute("aria-selected", "true");
+        await expect(page.getByTestId("job-upgrade-dialog")).toHaveCount(0);
+        await page.setViewportSize({width: 1280, height: 900});
+      });
+
       await test.step("Each tab mounts the real authorized consumer and retains the same header", async () => {
         await selectTab(page, "Arbetsorder");
         await expect(page.getByTestId(`work-order-${child}`)).toContainText("Actual workspace work order");
@@ -108,6 +140,7 @@ test.describe("Story 16.5 essential job workspace", () => {
           await expect(page.getByTestId(`booking-summary-${booking.id}`)).toBeVisible();
           await expect(page.getByTestId("booking-mini-timeline").getByTestId(`booking-interval-${booking.id}`)).toBeVisible();
         }
+        if (cancelled.ok) await expect(page.getByTestId(`booking-interval-${cancelled.data.bookingId}`)).toContainText("Avbruten");
         await expect(page.getByTestId("booking-entry-job")).toBeVisible();
         await expect(page.getByTestId("booking-edit").first()).toBeVisible();
         await identity(page, jobId, title);
@@ -294,11 +327,47 @@ test.describe("Story 16.5 essential job workspace", () => {
         // Explicitly abandon only after proving protection/preservation, before a separate card draft.
         const acceptLeave = async (dialog: Dialog) => { await dialog.accept(); };
         page.on("dialog", acceptLeave);
-        try { await selectTab(page, "Översikt"); }
-        finally { page.off("dialog", acceptLeave); }
+        try {
+          await selectTab(page, "Arbetsorder");
+          await page.getByRole("button", {name: "Stäng arbetsorder", exact: true}).click();
+          await selectTab(page, "Översikt");
+        } finally { page.off("dialog", acceptLeave); }
+        // Establish a real prior SPA route before arming the card-only leave guard.
+        await page.goto("/jobs");
+        await page.getByRole("link", {name: title, exact: true}).click();
         const card = page.getByTestId("job-card-form"), changed = `${title} retry`;
         await ready(card);
         await card.getByRole("textbox", { name: "Titel", exact: true }).fill(changed);
+        await test.step("Only the card draft blocks refresh, browser Back and SPA exit; same-job tabs retain it", async () => {
+          const prompt = page.waitForEvent("dialog");
+          const reload = page.reload().catch(error => error);
+          const unload = await prompt;
+          expect(unload.type()).toBe("beforeunload");
+          await unload.dismiss();
+          await reload;
+          await expect(card.getByRole("textbox", {name: "Titel", exact: true})).toHaveValue(changed);
+          await page.setViewportSize({width: 1280, height: 900});
+          const backPrompt = page.waitForEvent("dialog");
+          const away = page.goBack().catch(error => error);
+          const back = await backPrompt;
+          expect(back.type()).toBe("confirm");
+          expect(back.message()).toContain("jobbkortet");
+          await back.dismiss();
+          await away;
+          await expect(card.getByRole("textbox", {name: "Titel", exact: true})).toHaveValue(changed);
+          expect(new URL(page.url()).pathname).toBe(`/jobs/${jobId}`);
+          const exitPrompt = page.waitForEvent("dialog");
+          const leave = page.getByRole("navigation", {name: "Huvudnavigation", exact: true}).getByRole("link", {name: "Jobb/Order", exact: true}).click();
+          const exit = await exitPrompt;
+          expect(exit.type()).toBe("confirm");
+          expect(exit.message()).toContain("jobbkortet");
+          await exit.dismiss();
+          await leave;
+          expect(new URL(page.url()).pathname).toBe(`/jobs/${jobId}`);
+          await selectTab(page, "Schema");
+          await selectTab(page, "Översikt");
+          await expect(card.getByRole("textbox", {name: "Titel", exact: true})).toHaveValue(changed);
+        });
         const before = await f.snapshot();
         let intercepted = false, failedInput: Record<string, unknown> | null = null;
         // playwright-utils deviation: one-shot exact real transport failure; never synthetic success.
@@ -330,6 +399,87 @@ test.describe("Story 16.5 essential job workspace", () => {
         expect((await f.snapshot()).jobs.find(row => row.id === jobId)?.title).toBe(changed);
         await page.reload();
         await identity(page, jobId, changed);
+        await page.getByRole("navigation", {name: "Huvudnavigation", exact: true}).getByRole("link", {name: "Jobb/Order", exact: true}).click();
+        await expect(page).toHaveURL(/\/jobs$/);
       });
     });
+  test("[P0] 16.5-E04 two-child back restores identity and files; late real create retains current tab and query", async ({resourcePage: page}) => {
+    await withWorkspaceFixture(async f => {
+      const {saveCard} = await import("../../support/job-semantics-atdd");
+      const {createWorkOrder, readWorkOrders} = await import("../../support/work-orders-atdd");
+      const jobId = f.jobs.editable.id;
+      await saveCard(f, jobId);
+      const a = await createWorkOrder(f.fx.plannerClient, jobId, {title: "History child A"});
+      const b = await createWorkOrder(f.fx.plannerClient, jobId, {title: "History child B"});
+      await signIn(page, f.credentials.manager);
+      await page.goto(`/jobs/${jobId}?tab=work-orders&workOrder=${a}&returnTo=%2Fdocuments`);
+      const pane = page.getByTestId("work-order-pane");
+      await expect(pane.getByLabel("Rubrik", {exact: true})).toHaveValue("History child A");
+      await selectTab(page, "Översikt");
+      await selectTab(page, "Arbetsorder");
+      await page.getByTestId(`work-order-${b}`).getByRole("button", {name: "History child B", exact: true}).click();
+      await expect(pane.getByLabel("Rubrik", {exact: true})).toHaveValue("History child B");
+      await page.goBack();
+      expect(new URL(page.url()).searchParams.get("workOrder")).toBe(a);
+      await selectTab(page, "Arbetsorder");
+      await expect(pane.getByLabel("Rubrik", {exact: true})).toHaveValue("History child A");
+      // Returned shared-file consumer belongs to the restored child, never the previous child.
+      await expect(pane.getByTestId(`entity-file-panel-work-order-${a}`)).toBeVisible();
+      await expect(pane.locator('input[name="owner_id"]')).toHaveValue(a);
+      await selectTab(page, "Översikt");
+      await selectTab(page, "Arbetsorder");
+      await page.getByTestId(`work-order-${b}`).getByRole("button", {name: "History child B", exact: true}).click();
+      await pane.getByLabel("Rubrik", {exact: true}).fill("Unsent child B draft");
+      const protection = page.waitForEvent("dialog");
+      const back = page.goBack();
+      const warning = await protection;
+      expect(warning.type()).toBe("confirm");
+      expect(warning.message()).toMatch(/osparad|pågående|utkast/i);
+      await warning.dismiss();
+      await back;
+      await expect(page).toHaveURL(url => url.searchParams.get("workOrder") === b);
+      await selectTab(page, "Arbetsorder");
+      await expect(pane.getByLabel("Rubrik", {exact: true})).toHaveValue("Unsent child B draft");
+      const abandon = page.waitForEvent("dialog");
+      const close = page.getByRole("button", {name: "Stäng arbetsorder", exact: true}).click();
+      await (await abandon).accept();
+      await close;
+      const panel = page.getByTestId("job-work-orders-panel");
+      await panel.getByRole("button", {name: "Ny arbetsorder", exact: true}).click();
+      await pane.getByLabel("Rubrik", {exact: true}).fill("Late workspace child");
+      let release!: () => void, observed!: () => void;
+      const held = new Promise<void>(resolve => {release = resolve;});
+      const committed = new Promise<void>(resolve => {observed = resolve;});
+      let captured = false;
+      const holdCreate = async (route: Route) => {
+        const request = route.request();
+        if (!captured && request.method() === "POST" && request.headers()["next-action"] && new URL(request.url()).pathname === `/jobs/${jobId}`
+          && request.postData()?.includes('"title":"Late workspace child"')) {
+          captured = true;
+          const reply = await route.fetch();
+          expect(reply.ok()).toBe(true);
+          observed();
+          await held;
+          await route.fulfill({response: reply});
+        } else await route.continue();
+      };
+      await page.route("**/*", holdCreate);
+      try {
+        await pane.getByRole("button", {name: "Skapa arbetsorder", exact: true}).click();
+        await committed;
+        await selectTab(page, "Händelser");
+        const query = new URLSearchParams(new URL(page.url()).search);
+        query.set("returnTo", "/files?search=kept");
+        await page.evaluate(query => window.history.replaceState(window.history.state, "", `?${query}`), query.toString());
+        release();
+        await expect(pane.getByTestId("work-order-save-status")).toBeAttached();
+        await expect(page.getByRole("tab", {name: "Händelser", exact: true})).toHaveAttribute("aria-selected", "true");
+        const current = new URL(page.url());
+        expect(current.searchParams.get("returnTo")).toBe("/files?search=kept");
+        const rows = (await readWorkOrders(f.fx.plannerClient, jobId)).rows.filter(row => row.title === "Late workspace child");
+        expect(rows).toHaveLength(1);
+        expect(current.searchParams.get("workOrder")).toBe(rows[0].id);
+      } finally {release(); await page.unroute("**/*", holdCreate);}
+    });
+  });
 });

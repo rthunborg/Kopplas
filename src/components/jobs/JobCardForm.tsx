@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef, useState, type FormEvent } from "react";
-import { useRouter } from "next/navigation";
+import { useEffect, useRef, useState, type FormEvent } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { TextField, SelectField } from "@/components/crm/FormField";
 import { saveJobCardAction } from "@/features/jobs/actions";
 import { prepareJobCardAccessWindow } from "@/features/jobs/job-card-domain";
@@ -28,6 +28,44 @@ export function JobCardForm({ jobId, initial = {}, options }: {
   jobId?: string; initial?: JobCardInitial; options: JobCardOptions;
 }) {
   const router = useRouter();
+  const leaveRequired = useRef(false);
+  const [leaveArmed, setLeaveArmed] = useState(false);
+  function requireLeave() {leaveRequired.current = true; setLeaveArmed(true);}
+  const search = useSearchParams();
+  const currentLocation = useRef<{href: string; state: unknown} | null>(null);
+  useEffect(() => {currentLocation.current = {href: window.location.href, state: window.history.state};}, [search]);
+  useEffect(() => {
+    if (!leaveArmed) return;
+    const unload = (event: BeforeUnloadEvent) => {
+      if (!leaveRequired.current) return;
+      event.preventDefault();
+      event.returnValue = "";
+    };
+    const leave = (event: MouseEvent) => {
+      if (!leaveRequired.current || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      const target = event.target instanceof Element ? event.target.closest<HTMLAnchorElement>("a[href]") : null;
+      if (!target || target.download || (target.target && target.target !== "_self")) return;
+      const destination = new URL(target.href, window.location.href);
+      // Same-job query/tab navigation retains this island and must not warn.
+      if (destination.origin !== window.location.origin || destination.pathname === window.location.pathname) return;
+      if (!window.confirm("Det finns osparade eller pågående ändringar i jobbkortet. Vill du lämna utkastet?")) {
+        event.preventDefault(); event.stopImmediatePropagation();
+      }
+    };
+    const back = (event: PopStateEvent) => {
+      const previous = currentLocation.current;
+      if (!leaveRequired.current || !previous || new URL(previous.href).pathname === window.location.pathname) return;
+      if (!window.confirm("Det finns osparade eller pågående ändringar i jobbkortet. Vill du lämna utkastet?")) {
+        // Capture before Next handles the pop: keep the current mounted draft and its router tree.
+        event.stopImmediatePropagation();
+        window.history.pushState(previous.state, "", previous.href);
+      }
+    };
+    window.addEventListener("popstate", back, true);
+    window.addEventListener("beforeunload", unload);
+    document.addEventListener("click", leave, true);
+    return () => {window.removeEventListener("popstate", back, true); window.removeEventListener("beforeunload", unload); document.removeEventListener("click", leave, true);};
+  }, [leaveArmed]);
   const attempt = useRef<Record<string, unknown> | null>(null);
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -43,10 +81,12 @@ export function JobCardForm({ jobId, initial = {}, options }: {
   const value = (name: string) => String(initial[name] ?? "");
   const choices = (items: readonly {id: string; label: string}[]) => [{ value: "", label: "Välj…" }, ...items.map((item) => ({ value: item.id, label: item.label }))];
   async function send(input: Record<string, unknown>) {
+    requireLeave();
     setPending(true); setError(null);
     try {
       const result = await saveJobCardAction(input);
       if (result.ok) {
+        leaveRequired.current = false; setLeaveArmed(false);
         setSaved(true); setUnresolved(false); attempt.current = null;
         router.push(`/jobs/${result.jobId}`); router.refresh();
       } else {
@@ -86,7 +126,7 @@ export function JobCardForm({ jobId, initial = {}, options }: {
   // A confirmed save is locked against duplicate submit until the user changes a
   // field. Same-route refresh preserves this island, so the edit event starts the
   // next draft explicitly; unresolved attempts remain disabled and untouched.
-  return <form onSubmit={submit} onChange={() => { if (saved) setSaved(false); }} data-testid="job-card-form" className="flex w-full min-w-0 max-w-2xl flex-col gap-4">
+  return <form onSubmit={submit} onChangeCapture={requireLeave} onChange={() => { if (saved) setSaved(false); }} data-testid="job-card-form" className="flex w-full min-w-0 max-w-2xl flex-col gap-4">
     {options.error && <p role="alert">Valen kunde inte läsas. Ladda om sidan för att försöka igen.</p>}
     {error && <p role="alert" data-testid="job-card-unsent" className="rounded-md border border-red-300 bg-red-50 p-3 text-sm text-red-800">Inte bekräftat sparat. {error} Dina uppgifter finns kvar.</p>}
     {unresolved && <button data-testid="job-card-retry" type="button" disabled={pending} onClick={() => attempt.current && void send(attempt.current)} className={control}>Försök spara igen</button>}
@@ -106,7 +146,7 @@ export function JobCardForm({ jobId, initial = {}, options }: {
         <label className="flex items-center gap-2"><input type="checkbox" checked={override} onChange={(e) => setOverride(e.target.checked)} />Annan adress än anläggningen</label>
         {override && [["street","Gatuadress"],["postalCode","Postnummer"],["city","Ort"],["countryCode","Landskod (två bokstäver)"]].map(([name,label]) => <TextField key={name} name={name} label={label} defaultValue={address?.[name] ?? ""} required={name !== "postalCode"} />)}
         <fieldset className="flex flex-col gap-2"><legend>Yrkesroller</legend><label><input type="checkbox" checked={rolesKnown} onChange={(e) => setRolesKnown(e.target.checked)} /> Kraven är kända</label>{rolesKnown ? <><p className="text-sm">Inget val betyder att inga yrkesroller krävs.</p>{[...options.workRoles, ...((initial.requiredWorkRoleIds as string[] | null | undefined) ?? []).filter((id) => !options.workRoles.some((r) => r.id === id)).map((id) => ({id,label:"Tidigare vald yrkesroll (kontrollera valet)"}))].map((r) => <label key={r.id}><input type="checkbox" name="work_role" data-testid={`job-required-role-${r.id}`} value={r.id} checked={selectedRoles.includes(r.id)} onChange={(e) => setSelectedRoles((current) => e.target.checked ? [...current, r.id] : current.filter((id) => id !== r.id))} /> {r.label}</label>)}</> : <p className="text-sm">Kraven är okända.</p>}</fieldset>
-        <fieldset className="flex min-w-0 flex-col gap-2"><legend>Tillträdestider (Europe/Stockholm)</legend><label><input type="checkbox" checked={windowsKnown} onChange={(e) => setWindowsKnown(e.target.checked)} /> Tillträdestiderna är kända</label>{windowsKnown ? <>{windows.length === 0 && <p role="note" className="text-sm">Inga tillträdestider: inget tidsintervall är tillåtet. Lägg till tider eller välj okänt.</p>}{windows.map((w,i) => <div key={i} data-testid="job-access-window-row" className="flex min-w-0 flex-col gap-2 rounded-md border border-zinc-300 p-3"><label className="flex min-w-0 flex-col">Från<input type="datetime-local" required className={`${control} w-full min-w-0`} value={w.startsAt} onChange={(e) => setWindows(windows.map((old,n) => n === i ? {...old, startsAt:e.target.value} : old))} /></label><label className="flex min-w-0 flex-col">Till<input type="datetime-local" required className={`${control} w-full min-w-0`} value={w.endsAt} onChange={(e) => setWindows(windows.map((old,n) => n === i ? {...old, endsAt:e.target.value} : old))} /></label><button type="button" onClick={() => { setSaved(false); setWindows(windows.filter((_,n) => n !== i)); }} className={control}>Ta bort tidsintervall {i+1}</button></div>)}<button type="button" className={control} onClick={() => { setSaved(false); setWindows([...windows,{startsAt:"",endsAt:""}]); }}>Lägg till tidsintervall</button></> : <p className="text-sm">Tillträdet är okänt.</p>}</fieldset>
+        <fieldset className="flex min-w-0 flex-col gap-2"><legend>Tillträdestider (Europe/Stockholm)</legend><label><input type="checkbox" checked={windowsKnown} onChange={(e) => setWindowsKnown(e.target.checked)} /> Tillträdestiderna är kända</label>{windowsKnown ? <>{windows.length === 0 && <p role="note" className="text-sm">Inga tillträdestider: inget tidsintervall är tillåtet. Lägg till tider eller välj okänt.</p>}{windows.map((w,i) => <div key={i} data-testid="job-access-window-row" className="flex min-w-0 flex-col gap-2 rounded-md border border-zinc-300 p-3"><label className="flex min-w-0 flex-col">Från<input type="datetime-local" required className={`${control} w-full min-w-0`} value={w.startsAt} onChange={(e) => setWindows(windows.map((old,n) => n === i ? {...old, startsAt:e.target.value} : old))} /></label><label className="flex min-w-0 flex-col">Till<input type="datetime-local" required className={`${control} w-full min-w-0`} value={w.endsAt} onChange={(e) => setWindows(windows.map((old,n) => n === i ? {...old, endsAt:e.target.value} : old))} /></label><button type="button" onClick={() => { requireLeave(); setSaved(false); setWindows(windows.filter((_,n) => n !== i)); }} className={control}>Ta bort tidsintervall {i+1}</button></div>)}<button type="button" className={control} onClick={() => { requireLeave(); setSaved(false); setWindows([...windows,{startsAt:"",endsAt:""}]); }}>Lägg till tidsintervall</button></> : <p className="text-sm">Tillträdet är okänt.</p>}</fieldset>
         <fieldset className="flex flex-col gap-2"><legend>Jobb som ska vara klara först</legend>{[...options.jobs, ...((initial.dependencyJobIds as string[] | null | undefined) ?? []).filter((id) => !options.jobs.some((j) => j.id === id)).map((id) => ({id,label:"Tidigare valt föregående jobb"}))].filter((j) => j.id !== jobId).map((j) => <label key={j.id}><input type="checkbox" name="dependency" data-testid={`job-dependency-${j.id}`} value={j.id} defaultChecked={(initial.dependencyJobIds as string[] | undefined)?.includes(j.id)} /> {j.label}</label>)}</fieldset>
       </div></details>
       <button type="submit" data-testid="job-card-save" disabled={pending || saved || !customer || !facility} className="min-h-11 rounded-md bg-blue-700 px-4 py-2 text-sm font-medium text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 disabled:opacity-60">{pending ? "Sparar…" : "Spara jobb"}</button>

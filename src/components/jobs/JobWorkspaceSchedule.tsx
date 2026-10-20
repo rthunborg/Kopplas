@@ -11,7 +11,7 @@ export function JobWorkspaceSchedule({schedule, jobId, customerId}: {
     <BookingEntry {...schedule} options={schedule.options} jobId={jobId} customerId={customerId ?? undefined} host="job" />
     {!schedule.error && schedule.canView && schedule.bookings.length > 0 && <section data-testid="booking-mini-timeline" aria-label="Bokningarnas tidslinje" className="space-y-2 text-sm">
       <h3 className="font-semibold">Tidslinje</h3><ol className="space-y-3 border-l-2 border-blue-700 pl-3">{schedule.bookings.map(booking => <li key={booking.id} data-testid={`booking-interval-${booking.id}`}>
-        <p className="font-medium">{booking.description || "Bokning"}</p><time dateTime={booking.startsAt}>{formatBookingTime(booking.startsAt)}</time> – <time dateTime={booking.endsAt}>{formatBookingTime(booking.endsAt)}</time>
+        <p className="font-medium">{booking.description || "Bokning"}</p><p>{booking.status === "cancelled" ? "Avbruten" : "Planerad"}</p><time dateTime={booking.startsAt}>{formatBookingTime(booking.startsAt)}</time> – <time dateTime={booking.endsAt}>{formatBookingTime(booking.endsAt)}</time>
       </li>)}</ol>
     </section>}
   </div>;

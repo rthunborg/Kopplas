@@ -98,3 +98,24 @@ test("[P1] 16.5-D04 tab URLs preserve the stable job, child selection and unrela
   assert.equal(domain.selectJobWorkspaceTab({ availableTabs: ["overview", "work-orders"],
     tab: url.searchParams.get("tab"), workOrder: url.searchParams.get("workOrder") }), "work-orders");
 });
+test("[P0] 16.5-D05 child history restores only visible identities and protects an active draft", async () => {
+  const path = "@/features/jobs/job-workspace-domain";
+  const {reconcileJobWorkspaceChild} = await import(path);
+  const input = {current: {id: "B", key: "draft-B"}, requestedId: "A", visibleIds: ["A", "B"], protectedDraft: false};
+  assert.deepEqual(reconcileJobWorkspaceChild(input), {kind: "select", id: "A"});
+  assert.deepEqual(reconcileJobWorkspaceChild({...input, protectedDraft: true}), {kind: "protect", id: "A"});
+  assert.deepEqual(reconcileJobWorkspaceChild({...input, requestedId: "foreign"}), {kind: "select", id: null});
+  assert.deepEqual(reconcileJobWorkspaceChild({...input, requestedId: "B", protectedDraft: true}), {kind: "keep"});
+  assert.deepEqual(reconcileJobWorkspaceChild({...input, current: {id: null, key: "new-draft"}, requestedId: null, protectedDraft: true}), {kind: "keep"});
+});
+
+test("[P1] 16.5-D06 created child adoption preserves the live tab and return query", async () => {
+  const path = "@/features/jobs/job-workspace-domain";
+  const {jobWorkspaceChildHref} = await import(path);
+  const query = new URLSearchParams("tab=files&returnTo=%2Fdocuments&workOrder=old");
+  const result = new URL(jobWorkspaceChildHref({jobId: "job", workOrderId: "new", query}), "https://workspace.invalid");
+  assert.equal(result.searchParams.get("tab"), "files");
+  assert.equal(result.searchParams.get("returnTo"), "/documents");
+  assert.equal(result.searchParams.get("workOrder"), "new");
+  assert.equal(query.get("workOrder"), "old");
+});
