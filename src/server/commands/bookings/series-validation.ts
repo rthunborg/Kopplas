@@ -25,7 +25,11 @@ export function validateBookingSeries(raw: unknown, update = false): ValidationR
     (v.pivotOccurrenceId != null && (typeof v.pivotOccurrenceId !== "string" || !uuid.test(v.pivotOccurrenceId))) ||
     (!update && v.pivotOccurrenceId != null)) return invalid;
   const rule = validateRecurrenceRule(v.rule);
-  if (!rule || (rule.count ?? 0) > recurrenceLimits.maxOccurrences || !expandRecurrence(rule).ok) return invalid;
+  // Updates acquire their effective anchor/end from the current signed snapshot.
+  // Expanding the submitted count here can include dates outside that suffix.
+  if (!rule || (rule.count ?? 0) > recurrenceLimits.maxOccurrences ||
+    (rule.untilDate && (Date.parse(`${rule.untilDate}T00:00:00Z`) - Date.parse(`${rule.startDate}T00:00:00Z`)) / 86_400_000 > recurrenceLimits.maxCalendarDays) ||
+    (!update && !expandRecurrence(rule).ok)) return invalid;
   if (!v.template || typeof v.template !== "object") return invalid;
   const template = validateCreateBooking({ ...v.template, commandId: v.commandId, ...(v.editorReview ? { editorReview: v.editorReview } : {}) });
   if (!template.ok) return invalid;

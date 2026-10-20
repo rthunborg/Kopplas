@@ -18,7 +18,7 @@ import { openSeriesReceipt, sealSeriesReceipt, SERIES_ATTESTATION_DOMAIN, SERIES
 
 export type SeriesStoredOccurrence = { id: string; nominalDate: string; isException: boolean; payload: BookingFacts };
 export type SeriesSnapshot = { kind: "snapshot"; claims: SeriesClaims; canonicalFacts: string;
-  facts: { detection: FactBundle; series: { id: string; rule: RecurrenceRule; version: number; endsBefore: string | null; predecessorId: string | null; successorId: string | null }[];
+  facts: { detection: FactBundle; series: { id: string; rule: RecurrenceRule; defaults: BookingFacts; version: number; endsBefore: string | null; predecessorId: string | null; successorId: string | null }[];
     occurrences: (SeriesStoredOccurrence & { seriesId: string; index: number })[] } };
 export type SeriesRow = { id: string; nominalDate: string; isException: boolean; payload: BookingFacts; seriesId: string; index: number };
 export type SeriesPlan = { rows: SeriesRow[]; output: DerivedConflict[]; groups: LogicalConflictGroup[]; rule: RecurrenceRule; pivot: string | null };
@@ -148,10 +148,12 @@ export function serializeBookingSeriesPlan(plan: SeriesPlan): string {
     "Seriens konfliktunderlag är för stort. Kontrollera överlappande bokningar och minska seriens omfattning innan du försöker igen.");
   return body;
 }
-export async function previewBookingSeries(client: BookingRpcClient, args: SeriesRpcArgs, input: BookingSeriesInput) {
+export async function previewBookingSeries(client: BookingRpcClient, args: SeriesRpcArgs, input: BookingSeriesInput,
+  validateReferences?: (snapshot: SeriesSnapshot, plan: SeriesPlan) => Promise<void>) {
   const snapshot = await snapshotBookingSeries(client, args);
   if (snapshot.kind === "replay") throw new CommandError("COMMAND_CONFLICT");
   const plan = planBookingSeries(snapshot, input); serializeBookingSeriesPlan(plan);
+  await validateReferences?.(snapshot, plan);
   const key = bookingConflictKeyFromEnv();
   const receipt = sealSeriesReceipt({ claims: snapshot.claims, groups: plan.groups }, key.secret);
   // Reserve the full review/selection/reason payload before exposing save authority.

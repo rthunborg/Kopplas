@@ -9,7 +9,7 @@ import { CommandError, COMMAND_MESSAGES, type CommandErrorCode } from "@/server/
 import { createBookingSeries } from "@/server/commands/bookings/create-booking-series";
 import { updateBookingSeries } from "@/server/commands/bookings/update-booking-series";
 import { validateBookingSeries, seriesCommandPayload } from "@/server/commands/bookings/series-validation";
-import { previewBookingSeries, type SeriesRpcArgs } from "@/server/bookings/series-conflicts";
+import { previewBookingSeries, type SeriesRpcArgs, type SeriesSnapshot, type SeriesPlan } from "@/server/bookings/series-conflicts";
 import type { BookingRpcClient } from "@/server/bookings/conflict-facts";
 import type { RecurrenceRule } from "@/features/scheduling/recurrence-types";
 import { expandRecurrence } from "@/features/scheduling/recurrence";
@@ -26,6 +26,36 @@ function errorCode(error: unknown): CommandErrorCode {
   return "SERVER_ERROR";
 }
 const isUpdate = (input: unknown) => !!input && typeof input === "object" && !!(input as { sourceSeriesId?: string }).sourceSeriesId;
+async function validateEffectiveReferences(client: Awaited<ReturnType<typeof createSupabaseServerClient>>, tenantId: string,
+  input: import("@/server/commands/bookings/series-validation").BookingSeriesInput, snapshot: SeriesSnapshot, plan: SeriesPlan) {
+  const existing = snapshot.facts.occurrences.filter(row => row.seriesId === input.sourceSeriesId);
+  const source = snapshot.facts.series.find(row => row.id === input.sourceSeriesId);
+  const unusedTemplate = plan.rows.every(row => existing.some(old => old.id === row.id && old.payload === row.payload));
+  const checked = new Set<string>(), roles = new Set<string>();
+  async function validate(candidate: BookingFacts, retainsRole: boolean) {
+    // Only the role's active requirement is waived, after proving exact retention.
+    // Its existence/tenant and all other reference relationships remain checked.
+    if (retainsRole && candidate.workRoleId) {
+      if (!roles.has(candidate.workRoleId)) {
+        const role = await client.from("work_roles").select("id").eq("tenant_id", tenantId).eq("id", candidate.workRoleId).maybeSingle();
+        if (role.error) throw new CommandError("SERVER_ERROR");
+        if (!role.data) throw new CommandError("TENANT_ACCESS_DENIED");
+        roles.add(candidate.workRoleId);
+      }
+      candidate = { ...candidate, workRoleId: null };
+    }
+    const key = JSON.stringify([candidate.workRoleId,candidate.customerId,candidate.jobId,candidate.facilityId,candidate.contactId]);
+    if (!checked.has(key)) { await validateBookingCandidateReferences(client, tenantId, candidate); checked.add(key); }
+  }
+  await validate(input.template, unusedTemplate && !!source?.defaults && source.defaults.workRoleId === input.template.workRoleId);
+  for (const row of plan.rows) {
+    const old = existing.find(old => old.id === row.id);
+    // Match the current SQL107 helper: same occurrence and original role only.
+    const retainsRole = !!old && old.payload.workRoleId === row.payload.workRoleId &&
+      (old.isException || old.payload.status === "cancelled" || row.payload.status === "cancelled");
+    await validate(row.payload, retainsRole);
+  }
+}
 export async function previewBookingSeriesAction(input: unknown) {
   try {
     if (!bookingActionFitsTransport(input)) return failure("VALIDATION_FAILED");
@@ -38,10 +68,10 @@ export async function previewBookingSeriesAction(input: unknown) {
       if (!expansion.ok && expansion.localDate) return { ...failure(validated.code), message: `Tillfället ${expansion.localDate} får ingen positiv tidslängd efter Stockholms tidsomställning. Ändra tiderna och försök igen.` };
       return failure(validated.code);
     }
-    await validateBookingCandidateReferences(client, context.data.tenantId, validated.data.template);
     const args: SeriesRpcArgs = { p_tenant_id: context.data.tenantId, p_actor_id: context.data.userId, p_correlation_id: randomUUID(),
       p_command_id: validated.data.commandId, p_input: seriesCommandPayload(validated.data) };
-    return { status: "success" as const, preview: await previewBookingSeries(client as unknown as BookingRpcClient, args, validated.data) };
+    return { status: "success" as const, preview: await previewBookingSeries(client as unknown as BookingRpcClient, args, validated.data,
+      (snapshot, plan) => validateEffectiveReferences(client, context.data.tenantId, validated.data, snapshot, plan)) };
   } catch (error) { return failure(errorCode(error), error instanceof CommandError ? error.userMessage : undefined); }
 }
 export async function saveBookingSeriesAction(input: unknown) {
