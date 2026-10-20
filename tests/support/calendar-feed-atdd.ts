@@ -215,7 +215,11 @@ export function calendarFixtureDiagnostic(stage: string, error: unknown): Error 
         const children: Error[] = [];
         for (let index = 0; index < size.value && !exhausted; index++) {
           const member = fixtureOwnData(members.value, String(index));
-          children.push(walk(member.found ? member.value : undefined, at, depth + 1));
+          const child = walk(member.found ? member.value : undefined, at, depth + 1);
+          // Vitest unwraps one AggregateError level before JSON selects only
+          // stack/message. Flatten only our already-sanitized, bounded groups;
+          // raw native children still pass through the guarded walk above.
+          children.push(...(calendarFixtureSafeFailures.get(child)?.children ?? [child]));
         }
         const safe = new AggregateError(children, `Calendar fixture failure group [stage=${at}]`);
         calendarFixtureSafeFailures.set(safe, { stage: at, children }); return safe;

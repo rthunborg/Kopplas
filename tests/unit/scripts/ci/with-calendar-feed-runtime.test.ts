@@ -4,6 +4,7 @@ import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import * as nodeModule from "node:module";
 import { EventEmitter } from "node:events";
+import { pathToFileURL } from "node:url";
 import { projectCalendarFeedCiCommands } from "../../../support/calendar-feed-ci-contract";
 import { INTEGRATION_ARGS, BROWSER_ARGS, FEED_FUNCTIONS, validateAdmission, validateStackIdentity, createCalendarFeedDatabaseClient, createTelemetryObserver, hasSensitiveOutput, createOwnedGroupStopper, ownsListenerRecord, waitForOwnedHttp, runCalendarFeedRuntime } from "../../../../scripts/ci/with-calendar-feed-runtime.mjs";
 
@@ -682,6 +683,91 @@ test("actual fixture pre-callback coarse stage and fine owned stages survive out
   assert.match(messages[1], /stage=booking-fixture-before-callback;category=check-constraint/);
   assert.match(messages[2], /stage=additional-users;category=unique-conflict/);
   assert.match(messages[3], /stage=additional-auth-cleanup;category=unknown/);
+});
+
+let installedFailureTransport: Promise<(error: unknown) => Promise<{ numFailedTests: number; testResults: { assertionResults: { failureMessages: string[] }[] }[] }>> | undefined;
+function actualInstalledFailureTransport() {
+  installedFailureTransport ??= (async () => {
+    const require = nodeModule.createRequire(import.meta.url);
+    const fromVitest = nodeModule.createRequire(require.resolve("vitest/package.json"));
+    const runnerEntry = pathToFileURL(fromVitest.resolve("@vitest/runner"));
+    const runnerSource = readFileSync(new URL("./chunk-artifact.js", runnerEntry), "utf8");
+    const start = "function failTask(result, err, diffOptions) {", end = "function markTasksAsSkipped(";
+    assert.equal(runnerSource.split(start).length, 2); assert.equal(runnerSource.split(end).length, 2);
+    const actualFailTask = runnerSource.slice(runnerSource.indexOf(start), runnerSource.indexOf(end));
+    const { processError } = await import(pathToFileURL(fromVitest.resolve("@vitest/utils/error")).href);
+    // Execute the exact installed body. These two control-error classes are not
+    // used by our AggregateError inputs; processError is the actual installation.
+    const failTask = new Function("PendingError", "TestRunAbortError", "processError", `${actualFailTask}\nreturn failTask;`)(class {}, class {}, processError) as
+      (result: { state: string; errors?: unknown[] }, error: unknown) => void;
+    const { JsonReporter } = await import("vitest/node");
+    return async error => {
+      const result: { state: string; errors?: unknown[] } = { state: "run" }; failTask(result, error);
+      const file = { type: "suite", name: "fixture transport", filepath: "fixture-transport.test.ts", tasks: [] as unknown[], result: { state: "fail" } };
+      file.tasks.push({ type: "test", name: "one failing fixture", suite: file, result, meta: {}, mode: "run" });
+      const output: string[] = [];
+      const reporter = new JsonReporter({});
+      // No runner/start/collection, output file or service: the public reporter
+      // writes its real JSON into this in-memory logger using a synthetic task.
+      reporter.onInit({ config: {}, snapshot: { summary: {} }, logger: { log(value: string) { output.push(value); }, warn() { throw Error("Unexpected reporter warning"); } } } as never);
+      await reporter.onTestRunEnd([{ task: file }] as never);
+      assert.equal(output.length, 1); return JSON.parse(output[0]);
+    };
+  })();
+  return installedFailureTransport;
+}
+
+test("installed failure transport reproduces lost nested diagnostics without treating reporter absence as unknown in process", async () => {
+  const report = await actualInstalledFailureTransport();
+  const leaf = new Error("Calendar fixture failure [stage=bind-profile;category=insufficient-privilege;sqlstate=42501]");
+  const nested = new AggregateError([leaf], "Calendar fixture failure group [stage=canonical-fixture-cleanup]");
+  const oldShape = new AggregateError([nested], "Calendar fixture failure group [stage=scenario]");
+  assert.equal(nested.errors[0], leaf); // The in-process positive control exists.
+  const json = await report(oldShape), messages = json.testResults[0].assertionResults[0].failureMessages;
+  assert.equal(json.numFailedTests, 1); assert.equal(messages.length, 1);
+  assert.match(messages[0], /group \[stage=canonical-fixture-cleanup\]/);
+  assert.ok(!messages[0].includes("sqlstate=42501"));
+});
+
+test("actual repaired fixture diagnostics reach installed JSON as ordered primary and cleanup leaves within one failed case", async () => {
+  const { calendarFixtureDiagnostic } = await actualFixtureDiagnostics(), report = await actualInstalledFailureTransport();
+  const primary = calendarFixtureDiagnostic("bind-profile", { code: "42501", message: "PRIVATE native" });
+  const unknown = calendarFixtureDiagnostic("booking-fixture-before-callback", new Error("PRIVATE lost 23503"));
+  const cleanup = calendarFixtureDiagnostic("owned-row-cleanup", { code: "23503", query: "PRIVATE query" });
+  const nested = calendarFixtureDiagnostic("canonical-fixture-cleanup", new AggregateError([primary, new AggregateError([unknown, cleanup], "PRIVATE")], "PRIVATE"));
+  const final = calendarFixtureDiagnostic("scenario", new AggregateError([nested], "PRIVATE"));
+  assert.ok(final instanceof AggregateError); assert.equal(final.errors.length, 3);
+  assert.ok(final.errors.every((error: Error) => !(error instanceof AggregateError)));
+  const json = await report(final), messages = json.testResults[0].assertionResults[0].failureMessages;
+  assert.equal(json.numFailedTests, 1); assert.equal(messages.length, 3);
+  assert.match(messages[0], /stage=bind-profile;category=insufficient-privilege;sqlstate=42501/);
+  assert.match(messages[1], /stage=booking-fixture-before-callback;category=unknown;sqlstate=unavailable/);
+  assert.match(messages[2], /stage=owned-row-cleanup;category=foreign-key;sqlstate=23503/);
+  assert.ok(!JSON.stringify(json).includes("PRIVATE"));
+});
+
+test("installed diagnostic JSON retains closed getter cycle and truncation negatives without native payload or accessor reads", async () => {
+  const { calendarFixtureDiagnostic } = await actualFixtureDiagnostics(), report = await actualInstalledFailureTransport();
+  let getters = 0;
+  const privateText = "PRIVATE URL TOKEN PROOF KEY SQL PARAMS";
+  const hostile = Object.defineProperties({}, { code: { get() { getters++; throw Error(privateText); } },
+    cause: { get() { getters++; throw Error(privateText); } }, message: { value: privateText }, detail: { value: privateText },
+    query: { value: privateText }, params: { value: [privateText] }, then: { get() { getters++; throw Error(privateText); } } });
+  const cycle: { errors: unknown[] } = { errors: [] }; cycle.errors.push(cycle);
+  let deep: unknown = { code: "42501", message: privateText };
+  for (let i = 0; i < 10; i++) deep = new AggregateError([deep], privateText);
+  const failure = calendarFixtureDiagnostic("scenario", new AggregateError([hostile, Object.create({ code: "42501" }), cycle, deep], privateText));
+  const json = await report(failure), messages = json.testResults[0].assertionResults[0].failureMessages;
+  assert.equal(json.numFailedTests, 1); assert.equal(getters, 0);
+  assert.ok(messages.some(message => message.includes("category=unknown;sqlstate=unavailable")));
+  assert.ok(messages.some(message => message.includes("category=cycle")));
+  assert.ok(messages.some(message => message.includes("category=truncated")));
+  assert.ok(!JSON.stringify(json).includes(privateText));
+  assert.ok(!messages.some(message => message.includes("sqlstate=42501")));
+  const wide = calendarFixtureDiagnostic("scenario", new AggregateError(Array.from({ length: 100 }, () => ({ code: "42501", message: privateText })), privateText));
+  const wideJson = await report(wide), wideMessages = wideJson.testResults[0].assertionResults[0].failureMessages;
+  assert.equal(wideMessages.length, 15); assert.match(wideMessages.at(-1)!, /category=truncated/);
+  assert.ok(!JSON.stringify(wideJson).includes(privateText));
 });
 
 test("the actual allocated policy case rejects missing extra DELETE ALL names and broadened roles without filtering rows", async () => {
