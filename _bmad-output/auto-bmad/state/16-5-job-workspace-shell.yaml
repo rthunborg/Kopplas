@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-16-jobs
 status: in-progress
-updated_at: "2026-10-20T15:42:25Z"
+updated_at: "2026-10-20T15:59:08Z"
 started_at: "2026-10-20T15:42:25Z"
 completed_at: null
 active_seconds: 0
@@ -18,32 +18,33 @@ is_first_in_epic: false
 is_last_in_epic: true
 git_mode: remote
 base_branch: main
-selected_phase: build
-selected_role: build-delegate
+selected_phase: tea_per_story
+selected_role: tea-delegate
 selected_profile: standard
 selected_model: gpt-6.1-sol
 selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Story16.5 role-dependent budget exclusion and per-tab permission matrix x activation enforcement are sensitive authorization scope; planning and implementation use High."
+escalation_reason: "Story16.5 ATDD covers direct-reader authorization, role-dependent structural money omission and manifest activation; sensitive High evidence required."
 routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Story16.5 role-dependent budget exclusion and per-tab permission matrix x activation enforcement are sensitive authorization scope; planning and implementation use High.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Story16.5 ATDD covers direct-reader authorization, role-dependent structural money omission and manifest activation; sensitive High evidence required.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: Role-dependent budget exclusion and per-tab visibility require permission matrix times activation enforcement.
 epic_story_count: 5
 stories_after_in_epic: 0
-completed_phases: [0, 1]
-spec_path: null
+completed_phases: [0, 1, 3]
+spec_path: "C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/_bmad-output/implementation-artifacts/spec-16-5-job-workspace-shell.md"
 spec_approved: true
 build:
-  status: null
+  status: ready-for-dev
   blocking_condition: null
   followup_review_recommended: false
   review_loop_iteration: 0
   deferred_count: 0
-  warnings: []
+  warnings: [oversized]
 followup_passes: 0
 hitl_halt: null
 review_unverified: false
@@ -54,7 +55,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: []
+commits: [bbfa9265]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -82,6 +83,7 @@ deferred_work: []
 blockers: []
 overrides:
   epic_run: "Sequential Epic16 continuation; final Story16.5. One final epic PR; no merge/deployment/provider/secrets changes. Standing independently reviewed checkpoint pushes/owned CI authorized. Root owns Git/state/ledger/report; generic delegates own all story work."
+  story16_5_approved_plan: "Authoritative parser ready-for-dev/no blocker;3AC/TR12;specSHA C84BE8587D0F84F4BFCCC4B8BB1635B534E687D372FA9086D3CC87350299EE8F;frozenintent84e6bca5a0696386eba53f7ee5d670c1ebfed42446154614f30ad365f8071bc8. High requirements/consumer exploration;five authorized tabs/directURL+reader negatives/structural money omission/safeevents/responsiblePL privacy fallback. No migration/RPC/grant/AppShell change, no new email entitlement or historical rejection bypass. Oversized advisory only. Planning-only no product writes."
 constraints:
   - "Exclusive checkout C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas; no foreign dirty-source copying."
   - "Planning only until approved ready-for-dev spec; no product/schema/dependency changes during planning."
