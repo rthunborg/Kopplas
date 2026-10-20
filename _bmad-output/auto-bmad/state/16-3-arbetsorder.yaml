@@ -9,42 +9,43 @@ spec_folder: null
 story_id: null
 branch: codex/epic-16-jobs
 status: in-progress
-updated_at: "2026-10-20T10:51:36Z"
+updated_at: "2026-10-20T11:12:29Z"
 started_at: "2026-10-19T20:41:57Z"
 completed_at: null
 active_seconds: 786
-timing_anchor: 1792488234
+timing_anchor: 1792494749
 is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: build
-selected_role: build-delegate
+selected_phase: tea_per_story
+selected_role: tea-delegate
 selected_profile: standard
 selected_model: gpt-6.1-sol
 selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Sensitive implementation: current per-job work-order authority, manager-only reopen, tenant isolation, dependency CAS, file-link authority and atomic audit"
+escalation_reason: "Sensitive post-development coverage assessment: work-order current authority, RLS, dependency transactions, storage proof and retry integrity"
 routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive planning: work-order same-tenant containment, creation/edit authorization, RLS and transaction integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive ATDD: work-order ownership, per-job lead authority, manager-only reopen, dependency cycles, date and file-link integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive implementation: current per-job work-order authority, manager-only reopen, tenant isolation, dependency CAS, file-link authority and atomic audit\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive post-development coverage assessment: work-order current authority, RLS, dependency transactions, storage proof and retry integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: "work_orders schema, composite same-tenant FK, checked creation/edit commands and explicit RLS/role gating"
 epic_story_count: 5
 stories_after_in_epic: 2
-completed_phases: [0, 1, 3, 4]
+completed_phases: [0, 1, 3, 4, 5]
 spec_path: "C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/_bmad-output/implementation-artifacts/spec-16-3-arbetsorder-2.md"
 spec_approved: true
 build:
-  status: in-review
+  status: done
   blocking_condition: null
   followup_review_recommended: false
   review_loop_iteration: 0
-  deferred_count: 0
+  deferred_count: 3
   warnings: [oversized]
 followup_passes: 0
 hitl_halt: null
@@ -56,7 +57,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [e1bd6b0cc9d757933fcd3d61b677d4a1fd9f0037, 90f53dc852a7a0044ef20f163699c96ad6f9a541, 8031726df492022ac32aaae207ab5e7bd35d5a3b, f3cf100709b92637270304e78a4356082b89e9a6, 1e8632db1ad051d117c38d2e24ed5d62fc2c8a57, 103ee03540e222dff1e54995726037819539b9dd]
+commits: [e1bd6b0cc9d757933fcd3d61b677d4a1fd9f0037, 90f53dc852a7a0044ef20f163699c96ad6f9a541, 8031726df492022ac32aaae207ab5e7bd35d5a3b, f3cf100709b92637270304e78a4356082b89e9a6, 1e8632db1ad051d117c38d2e24ed5d62fc2c8a57, 103ee03540e222dff1e54995726037819539b9dd, c44e5179bfcbc210de250eb92a48734561cc0fac]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -73,8 +74,8 @@ retro:
   open_action_items: 0
 bmad_status_flipped_at: null
 pr_url: null
-ci_run_url: "https://github.com/rthunborg/Kopplas/actions/runs/39408025018"
-ci_status: failed
+ci_run_url: "https://github.com/rthunborg/Kopplas/actions/runs/39410923156"
+ci_status: passed
 pr_merged: false
 merge_method: null
 merge_commit: null
@@ -94,6 +95,8 @@ overrides:
   story16_3_reviewed_checkpoint: "Reviewed59-file checkpoint; inventory686cf60cf3a87b6c1c7f160799dc3f9f85859d176f1f692ff9bb52e0b7ddb8b5; actual6layerRound1+targetedHighPASS/reuse089A561B3618439F06724976D7C3E9377406A100EDEBB8AA2A33C75AD94B2605. Required DB/RLS/recovery/browser runtime pending; development/done/delivery unclaimed."
   story16_3_ci_103ee035: "Historical CI39408025018 exact103ee03540e222dff1e54995726037819539b9dd terminalfailure: fullDB1839total1828pass10fail1pending; directrecovery1pass0skip; browser20firstpass1retry1pass0skip; static/unit2674pass0skip. Ten actual runtime failures in causalHigh triage; E01sync separately reviewed. Native full1A61E449413DD5FB1025F4998376A8CFDA80DDE4ECDAF8D088FF07058E3AFB09; DBlogC0C17ED09A7BEAA670412FA620357D2A68A823BF3EBBEA32D80D8D2D96E04730. Not development complete."
   story16_3_causal_checkpoint: "Actual CI39408025018 tenfailurecauses repaired;62file inventoryA4EF68D81B83BCB6B42949ECEB0BB6894386FE32F16F861A02DFA35846721EA0; sameHighblind+securityqualifiedPASS AB0D18DCCA1402C64EEE72888423C08AE7DCF29004278D79160517AD30474FEB. Attestationpair+currentparentpreflight productfixes; SQL/zerowritesnapshot unchanged; E01exactURLwait no timeout/retryincrease. Required corrected-head runtime pending; no development/done claim."
+  story16_3_ci_c44e5179: "TerminalSUCCESS39410923156 exactc44e5179bfcbc210de250eb92a48734561cc0fac. Unit2702pass0skip;fullDB1839total1838pass0fail1pending isolatedrecovery separately1pass0skip;42WOint/RLSallpass;21browserfirstattempt0flaky0skip;requiredstatic/build/perfPASS. Delivery/provenance/rootgate stillpending; no developmentcomplete/statusdone authorization."
+  story16_3_development_gate: "Before done: root delivery_gate actualnative0 oktrue/errors[]/approvalfalse onB7475881; sameindependentHighprovenancePASS033C19E03D6966A1FF3C3955BE447249E92917695FF978804C7E9AA6B654A6E1; explicitrootdoneauthorization thenauthorHALTdone. RequiredCI39410923156 exactc44green. release_readyfalse;3ownedrelease-onlydefers."
 constraints:
   - "Exclusive source checkout is C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas; root owns all Git/index/CI/state/sprint/ledger/report actions."
   - "Plan only until approved ready-for-dev outcome; no product/migration writes during planning."

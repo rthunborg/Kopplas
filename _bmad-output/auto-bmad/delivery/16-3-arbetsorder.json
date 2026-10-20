@@ -1,0 +1,75 @@
+{
+  "policy_version": "2026-10-19",
+  "contract_reconciliation": "The approved Story16.3 -2 intent, AC01-AC07 and transactional/current-authority/shared-file invariants remain unchanged (intent SHA25610fc77a13490f69154d0b48f3c020adc99f11714a411f98549c452422d8895dc). The explicitly authorized current run applies docs/process/development-completion-policy.md: applicable static/build/full required DB-RLS/direct recovery/focused consequential integrity/independent review/essential browser checks have exact-revision executed evidence below. Older exhaustive browser/screenshot/visual/manual gates are the three owned release-only deferrals; no functional/security/data-integrity gate is weakened or deferred. The ordinary-lane pending physical-loader proof passed separately1/1 at the same head. Failed103ee035/CI39408025018 remains1839total1828pass10fail1pending with E01 retry0 pane-absent failure after persisted-card pass and retry1 success; its navigation cause remains an inference because failed URL/trace were unavailable. All original six-layer10patch/3Lowreject, targeted2regression fixes and later qualified causal blind/security PASS history is preserved. This metadata-only record changes no source/test/SQL or evidence revision. Root delivery_gate, independent final provenance review and explicit done authorization remain pending; spec stays in-review. No release readiness, merge or deployment authorization is claimed.",
+  "evidence_revision": "c44e5179bfcbc210de250eb92a48734561cc0fac",
+  "development_checks": [
+    {
+      "name": "Static checks, full unit suite and focused process checks",
+      "status": "passed",
+      "evidence": "Exact evidence revision c44e5179bfcbc210de250eb92a48734561cc0fac; root-owned CI 39410923156, actual terminal SUCCESS/native0 for all required jobs; release_validation=false. C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39410923156-verify.log SHA256 fb23afd19dc827b3ee21788710b2b5657f0657bd91be5f7fe3197429b8435656: typecheck/lint passed;2702 unit tests passed in100 suites,0failed/0skipped. Focused process groups2+26+10+5=43passed. Linux CI executes the historically Windows-skipped xattr case."
+    },
+    {
+      "name": "Production build and source/bundle containment",
+      "status": "passed",
+      "evidence": "Exact evidence revision c44e5179bfcbc210de250eb92a48734561cc0fac; root-owned CI 39410923156, actual terminal SUCCESS/native0 for all required jobs; release_validation=false. C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39410923156-verify.log SHA256 fb23afd19dc827b3ee21788710b2b5657f0657bd91be5f7fe3197429b8435656: production build and source/built-bundle containment passed. No deployment or author-owned runtime launch is claimed."
+    },
+    {
+      "name": "Dependency audit and frozen lockfile integrity",
+      "status": "passed",
+      "evidence": "Exact evidence revision c44e5179bfcbc210de250eb92a48734561cc0fac; root-owned CI 39410923156, actual terminal SUCCESS/native0 for all required jobs; release_validation=false. C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39410923156-verify.log SHA256 fb23afd19dc827b3ee21788710b2b5657f0657bd91be5f7fe3197429b8435656: dependency audit and frozen lockfile/integrity checks passed."
+    },
+    {
+      "name": "Migration startup and empty-database reset",
+      "status": "passed",
+      "evidence": "Exact evidence revision c44e5179bfcbc210de250eb92a48734561cc0fac; root-owned CI 39410923156, actual terminal SUCCESS/native0 for all required jobs; release_validation=false. C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39410923156-db.log SHA256 dc437a34582ed983c45049ad4bebffd4c0935ea5e40f99bb4deb5ac761aedd2c: migration startup and empty-database reset passed, including the owned20261020200000_e16_16_3_work_orders.sql. No reset retry count is inferred."
+    },
+    {
+      "name": "Full required integration/RLS and focused work-order integrity",
+      "status": "passed",
+      "evidence": "Exact evidence revision c44e5179bfcbc210de250eb92a48734561cc0fac; root-owned CI 39410923156, actual terminal SUCCESS/native0 for all required jobs; release_validation=false. C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39410923156-db.log SHA256 dc437a34582ed983c45049ad4bebffd4c0935ea5e40f99bb4deb5ac761aedd2c records SUPABASE_TEST_REQUIRED=1. Native C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39410923156-integration-native/full-integration.json SHA2563180f5ff3f0fc33752cf6b095a7b8eaaebe9c4587aefb68ba2abc3fe178a13a0, artifact12259228684:1839total/1838passed/0failed/1pending. Work-order Files14/14, commands25/25 and RLS3/3 passed; prior members15+3 and jobs-depth4+4 passed. Sole pending tests/integration/ops/recovery-storage-immutability.int.test.ts physical-loader proof passed separately1/1 at this same revision below; no claim that all1839 ran in this lane."
+    },
+    {
+      "name": "Essential production-server browser flow",
+      "status": "passed",
+      "evidence": "Exact evidence revision c44e5179bfcbc210de250eb92a48734561cc0fac; root-owned CI 39410923156, actual terminal SUCCESS/native0 for all required jobs; release_validation=false. C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39410923156-browser-native/general-browser.json SHA256 ffd4f3adcabf17ba9c22904a3e4d5224023f066da632cfbb09ac1460d29ee8bd, artifact12259790668:21expected/0unexpected/0skipped/0flaky. Work-order E01-E05 and the old16journeys all passed first attempt/retry0. Optional dashboard was skipped by release_validation=false and is not coverage."
+    },
+    {
+      "name": "Direct physical recovery-storage integrity",
+      "status": "passed",
+      "evidence": "Exact evidence revision c44e5179bfcbc210de250eb92a48734561cc0fac; root-owned CI 39410923156, actual terminal SUCCESS/native0 for all required jobs; release_validation=false. C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39410923156-recovery-native/isolated-storage-recovery.json SHA25625d08cf93dd291e512e092fbb7f6fc58b594bbd6db199239f74cbdf57ca71069, artifact12260440004:1passed/0failed/0pending/0skipped. This same-revision dedicated run executes the sole ordinary-lane pending physical-loader proof without relabelling that pending result."
+    },
+    {
+      "name": "Applicable pilot performance baseline",
+      "status": "passed",
+      "evidence": "Exact evidence revision c44e5179bfcbc210de250eb92a48734561cc0fac; root-owned CI 39410923156, actual terminal SUCCESS/native0 for all required jobs; release_validation=false. C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39410923156-db.log SHA256 dc437a34582ed983c45049ad4bebffd4c0935ea5e40f99bb4deb5ac761aedd2c:5warmup/25measured samples; read p95=15.401552999999694ms; bulk-effective-permissions p95=8.037403999999697ms; applicable pilot gate passed. These are pilot/synthetic measurements, not production throughput; older nonauthoritative12.3/60.7 baselines are nongating."
+    }
+  ],
+  "independent_review": {
+    "status": "passed",
+    "evidence": "Actual configured six-layer source review completed: five independent context-free Sol6.1 High reviews plus configured external Codex High native0; private primary trail C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-16-3-review-0b64b48d-a755-4b30-8203-5d7a78c8600f/review-provenance.json, external cross-model.diff.review SHA2563194c93b376581cbd1bbe12da374edc320176f6af2f55a93e889bea677873ee6. Original10patchH5M5/3Lowreject were addressed/preserved; same blind High qualified PASS covers the2targeted regressions, with securityP5/P6/P7/P9 reuse bound to unchanged dependencies. Both same High blind/security reviewers then qualified PASS on the10-path causal batch frozen by inventory850e296d72f9a895450460fee096fc0398af0cf4789df8db6fc2b34552d1a088; author-only review metadata inventorya4ef68d81b83bcb6b42949eceb0bb6894386fe32f16f861a02dfa35846721ea0 was root-CAS verified into c44e5179bfcbc210de250eb92a48734561cc0fac. These actual reviews report no unresolved consequential defect; reviewers did not execute runtime. This post-green delivery/spec metadata still needs root delivery_gate and independent provenance reconciliation."
+  },
+  "deferred_release_validation": [
+    {
+      "item": "Exhaustive browser, role, viewport and job-kind matrices beyond the essential work-order E01-E05 and existing smoke",
+      "owner": "Kopplas release-validation coordinator; root owns deferred-ledger integration",
+      "status": "deferred",
+      "evidence": "CI39410923156 passed21essential journeys first attempt; exhaustive release matrices were not executed. Optional dashboard skipped with release_validation=false is not coverage.",
+      "next_action": "Before release readiness, enumerate and execute the remaining qualified role/viewport/job-kind matrix, record evidence and resolve consequential failures in the root-owned release ledger."
+    },
+    {
+      "item": "Screenshot comparisons and visual inspection of work-order cards, pane, dependencies and shared Files states",
+      "owner": "Kopplas release-validation coordinator; root owns deferred-ledger integration",
+      "status": "deferred",
+      "evidence": "No exhaustive screenshot-comparison or visual-inspection evidence is claimed. Production build and functional browser passes are development evidence.",
+      "next_action": "Before release readiness, capture and inspect approved responsive states for both job kinds and record comparison evidence/disposition under separately qualified runtime and deployment authorization."
+    },
+    {
+      "item": "Manual keyboard/phone/desktop walkthroughs and presentation/usability polish beyond the essential connected flow",
+      "owner": "Kopplas release-validation coordinator; root owns deferred-ledger integration",
+      "status": "deferred",
+      "evidence": "Manual release walkthroughs and polish were not executed in this author run; no functional, authorization, tenant-isolation, transaction or Storage requirement is deferred.",
+      "next_action": "Before release readiness, perform the manual responsive/keyboard walkthrough and polish review, attach evidence and resolve or explicitly disposition release issues in the root-owned ledger."
+    }
+  ],
+  "release_ready": false
+}

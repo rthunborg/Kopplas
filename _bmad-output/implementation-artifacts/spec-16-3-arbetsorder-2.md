@@ -2,7 +2,7 @@
 title: 'Story 16.3 — Arbetsorder'
 type: 'feature'
 created: '2026-10-20'
-status: 'in-review'
+status: 'done'
 baseline_revision: '1e8632db1ad051d117c38d2e24ed5d62fc2c8a57'
 review_loop_iteration: 0
 followup_review_recommended: false
@@ -11,7 +11,43 @@ context:
   - '{project-root}/docs/process/review-order.md'
   - '{project-root}/docs/process/agent-model-routing.md'
 warnings: [oversized]
-deferred: []
+deferred:
+  - summary: >-
+      Release-validation only: Exhaustive browser, role, viewport and job-kind matrices beyond the essential work-order E01-E05 and existing smoke
+    evidence: |-
+      Classification: release validation only; not a functional/security acceptance gap.
+      Scope: Exhaustive browser, role, viewport and job-kind matrices beyond the essential work-order E01-E05 and existing smoke
+      Owner: Kopplas release-validation coordinator; root owns deferred-ledger integration
+      Status: deferred
+      Evidence: CI39410923156 passed21essential journeys first attempt; exhaustive release matrices were not executed. Optional dashboard skipped with release_validation=false is not coverage.
+      Next action: Before release readiness, enumerate and execute the remaining qualified role/viewport/job-kind matrix, record evidence and resolve consequential failures in the root-owned release ledger.
+      Mirrors the delivery record for supported root-owned Phase 7 harvest; required development checks are not deferred.
+    location: >-
+      _bmad-output/auto-bmad/delivery/16-3-arbetsorder.json#deferred_release_validation[0]
+  - summary: >-
+      Release-validation only: Screenshot comparisons and visual inspection of work-order cards, pane, dependencies and shared Files states
+    evidence: |-
+      Classification: release validation only; not a functional/security acceptance gap.
+      Scope: Screenshot comparisons and visual inspection of work-order cards, pane, dependencies and shared Files states
+      Owner: Kopplas release-validation coordinator; root owns deferred-ledger integration
+      Status: deferred
+      Evidence: No exhaustive screenshot-comparison or visual-inspection evidence is claimed. Production build and functional browser passes are development evidence.
+      Next action: Before release readiness, capture and inspect approved responsive states for both job kinds and record comparison evidence/disposition under separately qualified runtime and deployment authorization.
+      Mirrors the delivery record for supported root-owned Phase 7 harvest; required development checks are not deferred.
+    location: >-
+      _bmad-output/auto-bmad/delivery/16-3-arbetsorder.json#deferred_release_validation[1]
+  - summary: >-
+      Release-validation only: Manual keyboard/phone/desktop walkthroughs and presentation/usability polish beyond the essential connected flow
+    evidence: |-
+      Classification: release validation only; not a functional/security acceptance gap.
+      Scope: Manual keyboard/phone/desktop walkthroughs and presentation/usability polish beyond the essential connected flow
+      Owner: Kopplas release-validation coordinator; root owns deferred-ledger integration
+      Status: deferred
+      Evidence: Manual release walkthroughs and polish were not executed in this author run; no functional, authorization, tenant-isolation, transaction or Storage requirement is deferred.
+      Next action: Before release readiness, perform the manual responsive/keyboard walkthrough and polish review, attach evidence and resolve or explicitly disposition release issues in the root-owned ledger.
+      Mirrors the delivery record for supported root-owned Phase 7 harvest; required development checks are not deferred.
+    location: >-
+      _bmad-output/auto-bmad/delivery/16-3-arbetsorder.json#deferred_release_validation[2]
 ---
 
 <intent-contract>
@@ -231,6 +267,16 @@ Scope: the parent's actual SAME-High qualified focused-review union over the fro
 
 Latest follow-up recommendation: false under the actual policy (High0, Medium0, Low0; score0; no unresolved serious finding reported by these focused reviews). This is the actual causal-review scope union, not a new broad review or reset of previous history. New exact-checkpoint required CI, delivery gate, independent provenance and explicit root done authorization remain pending. Status/Auto Run Result stay in-review; no current runtime, delivery, development-complete or done claim.
 
+### 2026-10-20 — Exact-checkpoint required CI and delivery evidence
+
+Root-owned CI39410923156 reached actual terminal SUCCESS/native0 for all required jobs at exact evidence revision `c44e5179bfcbc210de250eb92a48734561cc0fac`; release_validation=false. Actual static/unit/process/build/containment/audit/lock checks passed:2702unit tests/100suites/0fail/0skip and43focused process checks (2+26+10+5). Migration startup and empty-database reset passed; no retry count is inferred. Required SUPABASE_TEST_REQUIRED=1 integration/RLS reports1839total/1838pass/0fail/1pending. That sole physical-loader recovery proof passed separately1/1 at the same head; the ordinary pending result is not relabelled and not all1839are claimed executed in its lane. Work-order Files14/14, commands25/25 and RLS3/3 passed; old members15+3 and jobs-depth4+4 passed.
+
+Essential browser native evidence reports21expected/0unexpected/0skip/0flaky: E01–E05 and all old16journeys passed first attempt/retry0. Actual applicable pilot baseline passed with5warmup/25measured samples, read p95=15.401552999999694ms and bulk-effective-permissions p95=8.037403999999697ms. These are pilot/synthetic measurements, not production throughput. Optional dashboard skipped in ordinary development mode is not coverage.
+
+`_bmad-output/auto-bmad/delivery/16-3-arbetsorder.json` binds all8applicable passed development groups, exact evidence revision, native report/log paths and SHA256 hashes, actual independent source-review union and the3owned release-only deferrals. The supported frontmatter mirrors their scope/owner/status/evidence/next action for root Phase7 harvest. Exhaustive matrices, screenshot/visual inspection and manual polish remain deferred, never functional/security/data-integrity failures recategorized as polish. The failed103ee035/CI39408025018 database10fail and E01 retry0fail/retry1pass, original six layers10patch/3Lowreject, targeted2regression fixes and later qualified causal PASS remain preserved above.
+
+Only this delivery/spec/SRO metadata changed after the exact reviewed/tested source checkpoint; code/tests/SQL remain frozen. Root actual delivery_gate passed native0 on delivery SHA256 `b7475881ce50f863deefe5620ff398cccf3412b693454e6263a203111232ff13`: ok=true, development_complete=true, errors=[], approval_granted=false. Independent final provenance reconciliation and explicit root done authorization remain pending. Status and Auto Run Result remain in-review; release_ready=false. No final development-complete/done, release, merge or deployment claim is made.
+
 ## Design Notes
 
 Owner-authorized presentation/validation defaults: progressive existing Arbetsorder section, list/cards plus selectable detail pane under the job URL, Swedish accessible labels, optional own date fields defaulting unknown, required bounded title/plain description, and separate command-specific draft/baseline models. The typed new dependency table keeps old job-only writes lossless and supports real same-parent sequencing without changing booking proofs. No generic permissions/state framework, optimizer or legacy observation is introduced. Keep future16.4 consumers and16.5 whole workspace requirements outside this implementation.
@@ -245,11 +291,23 @@ Broad device/browser matrices, screenshot/visual/manual breadth are owned releas
 
 ## Auto Run Result
 
+Status: done
+Blocking condition: none
+
+HALT — done, development completion only for Story16.3. Root explicitly authorized this terminal transition after actual delivery_gate native0 returned ok=true/development_complete=true/errors=[]/approval_granted=false on the unchanged delivery record SHA256 `b7475881ce50f863deefe5620ff398cccf3412b693454e6263a203111232ff13`, and the same independent High final provenance reviewer returned qualified PASS, receipt SHA256 `033c19e03d6966a1ff3c3955be447249e92917695ff978804c7e9aa6b654a6e1`. Root freshly verified the record, preclosure spec074fd5cb and provenance receipt match.
+
+Evidence revision: `c44e5179bfcbc210de250eb92a48734561cc0fac`; required CI39410923156 terminal SUCCESS. All8applicable development groups and actual source-review union are recorded in `_bmad-output/auto-bmad/delivery/16-3-arbetsorder.json`. Required integration1838pass/0fail/1ordinary pending of1839is complemented by the separately passed physical-loader proof1/1; browser21first-attempt passes/0skip/0flaky includes E01–E05. The61source bindings and delivery JSON remain unchanged; this author edits only final canonical spec completion metadata.
+
+Latest review: intent_gap0/bad_spec0/patch0/defer0/reject0; followup_review_recommended=false. Original six-layer10patch/3Lowreject, targeted2regressions, causal qualified PASS and prior103ee035 database10fail/E01retry0fail/retry1pass history remain preserved. Deferred release validation:3owned items mirrored in frontmatter; warnings:oversized. release_ready=false; no whole-epic completion, merge or deployment authorization. Root retains all subsequent phase, state, sprint, ledger, report and Git operations.
+
+## Historical planning HALT — 2026-10-20
+
+The following preclosure planning text is preserved verbatim as history and is not the canonical Auto Run Result.
+
 Status: in-review
 Blocking condition: none
 
 HALT after planning. Clarified contract and seven outer-surface ACs pass the ready-for-development self-review: named ordered tasks, closed actor/lifecycle/date/dependency semantics, own-file integration, precise shared handoff and planned verification. The narrow read-projection clarification preserves unknown prerequisites without direct-table identifier leakage. Original blocked artifact and both direct-human decisions are preserved. No implementation, migration reservation, application test or release claim. Next phase: root plan approval/parser pin, then Phase4 high-risk ATDD; implementation remains separately admitted.
-
 
 ## Build invocation and implementation route — 2026-10-20
 
@@ -362,4 +420,6 @@ The added regression assertions target the reported causal paths. Mocked read-mo
 
 - `tests/e2e/jobs/work-orders.e2e.spec.ts:107` — `toHaveURL`: E01 observes selected job/child navigation before continuing and again before reload; every prior persistence, audit and shared-file assertion remains.
 
-Evidence: latest Files RED69pass16fail became same-lane85passes, broadened96passes; core18passes; all0skips. Typecheck, affected9-file ESLint, production build and source/bundle containment passed. All27review stops resolve;42integration/RLS bodies and5Chromium cases are collected with0new runtime executions. Root CI39408025018 on103ee035 remains historical2674unit passes/0skips,1direct-recovery pass,20expected/1flaky browser and actual1828pass10fail1pending integration evidence. The actual same-High qualified blind/security focused PASS on this causal batch is recorded in the latest canonical pass above; new exact-checkpoint CI and delivery/provenance gates remain pending. Release breadth remains deferred under the dated completion policy and authorizes no deployment.
+- `_bmad-output/auto-bmad/delivery/16-3-arbetsorder.json:4` — `evidence_revision`: binds the8executed development groups, actual review union and3owned release deferrals to the exact reviewed/tested checkpoint.
+
+Evidence: exact c44e5179 CI39410923156 passed2702units/100suites/0skip,43process checks, static/build/audit/lock/containment, empty-database migration/reset and applicable pilot baseline. Required integration1838pass/0fail/1pending of1839is complemented by the separately executed physical-loader proof1/1; browser21passed first attempt/0skip/0flaky includes all5work-order journeys. All28review stops resolve. Native paths/hashes are bound in the delivery record; prior103ee035 ten database failures and flaky E01 remain historical. Same-High source-review union, actual root delivery_gate (native0; approval_granted=false) and independent High final provenance qualified PASS are complete; root explicitly authorized the development-only done transition recorded in Auto Run Result. Release breadth remains deferred and release_ready=false; no deployment authorization.
