@@ -20,6 +20,23 @@ const ROOT = resolve(fileURLToPath(new URL("../..", import.meta.url)));
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/;
 class RuntimeFailure extends Error {}
 const fail = (code) => { throw new RuntimeFailure(code); };
+const DIAGNOSTIC_STAGES = new Set(["admission", "qualification", "port-check", "database-client", "database-connect", "migration-ledger", "feed-functions",
+  "key-id", "entropy", "telemetry", "transaction-begin", "key-collision", "key-create", "transaction-commit", "runtime",
+  "child-cleanup", "transaction-rollback", "key-cleanup", "database-close"]);
+const SQLSTATE_CATEGORIES = new Map([
+  ["42501", "insufficient-privilege"], ["42P01", "undefined-table"], ["42883", "undefined-function"],
+  ["42703", "undefined-column"], ["3F000", "invalid-schema"], ["23505", "unique-conflict"],
+  ["57014", "query-canceled"], ["25P02", "transaction-aborted"], ["08006", "connection-failure"],
+]);
+function safeDiagnostic(stage, error) {
+  // Inspect only an own data descriptor, never native text, getters or causes.
+  let code;
+  try { code = Object.getOwnPropertyDescriptor(error, "code")?.value; } catch { /* Unclassified, with no native details. */ }
+  const known = typeof code === "string" && SQLSTATE_CATEGORIES.has(code);
+  return { stage: DIAGNOSTIC_STAGES.has(stage) ? stage : "runtime",
+    category: known ? SQLSTATE_CATEGORIES.get(code) ?? "unclassified" : error instanceof RuntimeFailure ? "guard-refusal" : "unclassified",
+    sqlState: known ? code : null };
+}
 const delay = (ms) => new Promise(resolveDelay => setTimeout(resolveDelay, ms));
 
 /** Pure prerequisite validation: CI flags alone do not qualify a machine. */
@@ -285,9 +302,12 @@ export async function runCalendarFeedRuntime({ mode, env = process.env, platform
   const receipt = { event: "calendar_feed.ci_lifecycle", mode: ["db", "browser"].includes(mode) ? mode : "refused", ready: false,
     childExitCodes: /** @type {(number|null)[]} */ ([]), keyDeleted: false, dbClosed: false,
     failures: /** @type {string[]} */ ([]),
+    diagnostics: /** @type {{stage:string, category:string, sqlState:string|null}[]} */ ([]),
+    keyOutcome: /** @type {"not-attempted" | "rollback-confirmed" | "deleted-confirmed" | "unverified"} */ ("not-attempted"),
     custody: /** @type {null | {owner:string, job:string|undefined, vaultUuid:string|null, ownedName:string|null, expiry:string, nextAction:string, resumeCondition:string}} */ (null) };
   const children = new Set();
   let db, keyUuid, ownedName, transactionOpen = false, createUncertain = false, browserTeardownUnverified = false;
+  let stage = "admission", createAttempted = false, commitAttempted = false, rollbackConfirmed = false;
   const abort = new AbortController();
   const deps = { ...defaultDependencies(env, cwd), ...injected };
   let unregister = () => undefined;
@@ -312,35 +332,50 @@ export async function runCalendarFeedRuntime({ mode, env = process.env, platform
   try {
     validateAdmission(mode, env, platform);
     unregister = deps.registerSignal(() => abort.abort()); // Before any resource mutation.
+    stage = "qualification";
     const { status, migrations } = await deps.qualify(); checkSignal();
+    stage = "port-check";
     await deps.portFree(mode === "db" ? 3195 : 3100); checkSignal();
+    stage = "database-client";
     db = deps.connect(status);
     // Consume asynchronous connection errors without logging driver internals.
     db.on?.("error", () => abort.abort());
+    stage = "database-connect";
     await db.connect(); checkSignal();
+    stage = "migration-ledger";
     const ledger = await db.query("select version,name from supabase_migrations.schema_migrations order by version");
     if (JSON.stringify(ledger.rows.map(row => ({ version: String(row.version), name: row.name }))) !== JSON.stringify(migrations)) fail("migration-ledger-refused");
+    stage = "feed-functions";
     const functions = await db.query("select p.oid::regprocedure::text as identity, pg_get_userbyid(p.proowner) as owner, p.prosecdef as definer from pg_proc p where p.oid=any(array[" + FEED_FUNCTIONS.map((_, i) => `to_regprocedure($${i + 1})`).join(",") + "])", FEED_FUNCTIONS);
     if (functions.rows.length !== FEED_FUNCTIONS.length || functions.rows.some(row => row.owner !== "calendar_feed_owner" || row.definer !== true)) fail("feed-functions-refused");
     checkSignal();
+    stage = "key-id";
     const keySuffix = deps.uuid();
     if (!UUID.test(keySuffix)) fail("key-id-refused");
     const keyId = `ci_${keySuffix}`;
     ownedName = `calendar_feed_attestation_${keyId}`;
+    stage = "entropy";
     const secret = Buffer.from(deps.entropy(32)).toString("base64url");
     if (!/^[A-Za-z0-9_-]{43}$/.test(secret)) fail("entropy-refused");
+    stage = "telemetry";
     const telemetry = await deps.createTelemetry();
     const observe = createTelemetryObserver({ keyId, secret, persist: telemetry.persist });
+    stage = "transaction-begin";
     await db.query("begin"); transactionOpen = true;
+    stage = "key-collision";
     const collision = await db.query("select id from vault.secrets where name=$1", [ownedName]);
     if (collision.rows.length) fail("key-collision-refused");
     checkSignal();
-    createUncertain = true;
+    stage = "key-create";
+    createUncertain = true; createAttempted = true;
     const created = await db.query("select vault.create_secret($1,$2,$3) as id", [secret, ownedName, "Disposable calendar feed CI verification"]);
     keyUuid = created.rows[0]?.id;
     if (!UUID.test(keyUuid ?? "")) { keyUuid = undefined; fail("key-create-unverified"); }
     checkSignal();
+    stage = "transaction-commit";
+    commitAttempted = true; // Irrevocable: a lost COMMIT response cannot be disproved by ROLLBACK.
     await db.query("commit"); transactionOpen = false; createUncertain = false;
+    stage = "runtime";
     const childEnv = { ...env, SUPABASE_TEST_REQUIRED: "1", SUPABASE_TEST_URL: status.API_URL, SUPABASE_TEST_ANON_KEY: status.ANON_KEY,
       SUPABASE_TEST_SERVICE_ROLE_KEY: status.SERVICE_ROLE_KEY, SUPABASE_TEST_DB_URL: status.DB_URL,
       NEXT_PUBLIC_SUPABASE_URL: status.API_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY: status.ANON_KEY,
@@ -360,18 +395,19 @@ export async function runCalendarFeedRuntime({ mode, env = process.env, platform
     // Only our fixed codes are emitted; never preserve native driver/request/assertion details.
     const code = error instanceof RuntimeFailure ? error.message : "runtime-failed";
     receipt.failures.push(code);
+    receipt.diagnostics.push(safeDiagnostic(stage, error));
   } finally {
     for (const handle of [...children].reverse()) {
       try {
         const stopped = await handle.stop();
         if (mode === "browser" && (stopped?.forced || stopped?.signal)) browserTeardownUnverified = true;
         children.delete(handle);
-      } catch { receipt.failures.push("owned-child-cleanup-failed"); }
+      } catch (error) { receipt.failures.push("owned-child-cleanup-failed"); receipt.diagnostics.push(safeDiagnostic("child-cleanup", error)); }
     }
     if (browserTeardownUnverified && !receipt.failures.includes("browser-server-teardown-unverified")) receipt.failures.push("browser-server-teardown-unverified");
     if (transactionOpen) {
-      try { await db.query("rollback"); transactionOpen = false; createUncertain = false; }
-      catch { receipt.failures.push("transaction-rollback-unverified"); }
+      try { await db.query("rollback"); transactionOpen = false; createUncertain = false; rollbackConfirmed = true; }
+      catch (error) { receipt.failures.push("transaction-rollback-unverified"); receipt.diagnostics.push(safeDiagnostic("transaction-rollback", error)); }
     }
     // Never delete a key while a captured child or transaction remains unverified.
     if (keyUuid && !transactionOpen && !browserTeardownUnverified && !receipt.failures.includes("owned-child-cleanup-failed")) {
@@ -380,9 +416,9 @@ export async function runCalendarFeedRuntime({ mode, env = process.env, platform
         const remaining = await db.query("select id,name from vault.secrets where id=$1::uuid", [keyUuid]);
         if (remaining.rows.length || result.rows.some(row => row.id !== keyUuid)) fail("key-delete-unverified");
         receipt.keyDeleted = true;
-      } catch { receipt.failures.push("owned-key-cleanup-failed"); }
+      } catch (error) { receipt.failures.push("owned-key-cleanup-failed"); receipt.diagnostics.push(safeDiagnostic("key-cleanup", error)); }
     } else if (createUncertain) receipt.failures.push("key-create-outcome-unverified");
-    if (db) { try { await bounded(db.end(), 5_000, "db-close-unverified"); receipt.dbClosed = true; } catch { receipt.failures.push("db-close-unverified"); } }
+    if (db) { try { await bounded(db.end(), 5_000, "db-close-unverified"); receipt.dbClosed = true; } catch (error) { receipt.failures.push("db-close-unverified"); receipt.diagnostics.push(safeDiagnostic("database-close", error)); } }
     unregister();
     if (receipt.failures.length && (createUncertain || (keyUuid && !receipt.keyDeleted) || receipt.failures.some(code => code.includes("cleanup") || code.includes("unverified")))) {
       receipt.custody = { owner: "Isolated CI job operator", job: env.CALENDAR_FEED_CI_DISPOSABLE_STACK,
@@ -390,6 +426,8 @@ export async function runCalendarFeedRuntime({ mode, env = process.env, platform
         nextAction: "Inspect captured CI child/key ownership in the disposable job; do not retry creation or delete by name.",
         resumeCondition: "Owned children settled and the captured UUID/name key is confirmed absent, or the entire disposable job has ended." };
     }
+    receipt.keyOutcome = receipt.keyDeleted ? "deleted-confirmed" : !createAttempted ? "not-attempted"
+      : rollbackConfirmed && !commitAttempted ? "rollback-confirmed" : "unverified";
   }
   return { exitCode: receipt.failures.length ? 1 : 0, receipt };
 }

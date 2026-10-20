@@ -57,6 +57,7 @@ function harness(options: {
   query?: (call: Query) => { rows: Record<string, unknown>[] } | undefined;
   failChild?: number; failStops?: boolean; occupied?: boolean; readinessFailure?: boolean; signalAtCreate?: boolean; closeFailure?: boolean;
   forcedStop?: boolean;
+  connectFailure?: unknown;
 } = {}) {
   const events: string[] = [];
   const queries: Query[] = [];
@@ -68,7 +69,7 @@ function harness(options: {
     async portFree() { events.push("port-checked"); if (options.occupied) throw new Error("fixture occupied"); },
     connect() {
       return {
-        async connect() { events.push("connected"); },
+        async connect() { events.push("connected"); if (options.connectFailure !== undefined) throw options.connectFailure; },
         async query(sql: string, params?: unknown[]) {
           events.push(sql.startsWith("select vault.create_secret") ? "create" : sql.startsWith("delete") ? "delete" : sql);
           const call = { sql, params }; queries.push(call);
@@ -100,6 +101,69 @@ async function runFixture(mode: string, h = harness()) {
   const result = await runCalendarFeedRuntime({ mode, env, platform: "linux" }, h.deps);
   return { ...h, ...result };
 }
+
+test("setup failures report the reached fixed stage and allowlisted SQLSTATE without native details", async () => {
+  const privateText = "PRIVATE native query params detail hint stack cause URL token proof key 2001:db8::1";
+  const error = Object.assign(new Error(privateText), { code: "42501", detail: privateText, hint: privateText,
+    query: privateText, params: [privateText], cause: new Error(privateText) });
+  for (const [stage, query] of [
+    ["database-connect", null], ["migration-ledger", "select version,name"], ["feed-functions", "select p.oid"],
+    ["transaction-begin", "begin"], ["key-collision", "select id from vault.secrets where name=$1"],
+  ] as const) {
+    const h = harness({ connectFailure: query === null ? error : undefined,
+      query(call) { if (query !== null && call.sql.startsWith(query)) throw error; return undefined; } });
+    const result = await runFixture("db", h);
+    assert.equal(result.exitCode, 1); assert.deepEqual(result.receipt.failures, ["runtime-failed"]);
+    assert.deepEqual(result.receipt.diagnostics, [{ stage, category: "insufficient-privilege", sqlState: "42501" }]);
+    assert.equal(result.receipt.keyOutcome, "not-attempted"); assert.equal(result.receipt.dbClosed, true);
+    assert.equal(result.launches.length, 0); assert.equal(result.queries.some(call => call.sql.includes("vault.create_secret")), false);
+    assert.equal(JSON.stringify(result.receipt).includes(privateText), false);
+    if (stage === "key-collision") assert.ok(result.events.includes("rollback"));
+  }
+});
+
+test("setup diagnostics ignore unknown inherited or accessor SQLSTATE and never traverse error payloads", async () => {
+  const privateText = "PRIVATE payload must not enter diagnostics";
+  const unknown = Object.assign(new Error(privateText), { code: privateText });
+  const inherited = Object.create({ code: "42501" });
+  const accessor = new Error(privateText);
+  let getterReads = 0;
+  for (const field of ["code", "detail", "hint", "query", "params", "cause", "toJSON"])
+    Object.defineProperty(accessor, field, { get() { getterReads++; throw new Error(privateText); } });
+  for (const error of [unknown, inherited, accessor]) {
+    const result = await runFixture("db", harness({ connectFailure: error }));
+    assert.equal(result.exitCode, 1);
+    assert.deepEqual(result.receipt.diagnostics, [{ stage: "database-connect", category: "unclassified", sqlState: null }]);
+    assert.equal(result.receipt.keyOutcome, "not-attempted"); assert.equal(result.receipt.dbClosed, true);
+    assert.equal(JSON.stringify(result.receipt).includes(privateText), false);
+  }
+  assert.equal(getterReads, 0);
+});
+
+test("COMMIT uncertainty is not cleared by ROLLBACK and only exact UUID cleanup can confirm absence", async () => {
+  for (const deleteFails of [true, false]) {
+    const result = await runFixture("db", harness({ query(call) {
+      if (call.sql === "commit") throw Object.assign(new Error("PRIVATE lost commit response"), { code: "08006" });
+      if (deleteFails && call.sql.startsWith("delete")) throw Object.assign(new Error("PRIVATE cleanup"), { code: "42501" });
+      return undefined;
+    } }));
+    assert.equal(result.exitCode, 1); assert.equal(result.launches.length, 0); assert.equal(result.receipt.dbClosed, true);
+    assert.ok(result.events.includes("rollback"));
+    assert.equal(result.receipt.keyOutcome, deleteFails ? "unverified" : "deleted-confirmed");
+    assert.equal(result.receipt.keyDeleted, !deleteFails);
+    assert.deepEqual(result.receipt.diagnostics[0], { stage: "transaction-commit", category: "connection-failure", sqlState: "08006" });
+    if (deleteFails) {
+      assert.deepEqual(result.receipt.diagnostics[1], { stage: "key-cleanup", category: "insufficient-privilege", sqlState: "42501" });
+      assert.equal(result.receipt.custody?.vaultUuid, keyUuid);
+    } else {
+      assert.equal(result.receipt.custody, null);
+      assert.deepEqual(result.queries.find(call => call.sql.startsWith("delete"))?.params,
+        [keyUuid, `calendar_feed_attestation_ci_${keyId}`]);
+      assert.ok(result.queries.some(call => call.sql === "select id,name from vault.secrets where id=$1::uuid"));
+    }
+    assert.equal(JSON.stringify(result.receipt).includes("PRIVATE"), false);
+  }
+});
 
 test("CI admission rejects arbitrary modes, local actors, hosted URLs and mismatched job identities", () => {
   validateAdmission("db", env, "linux");
@@ -268,6 +332,8 @@ test("uncertain create is not retried and confirmed rollback avoids name-only cl
   assert.equal(result.queries.filter(call => call.sql.includes("vault.create_secret")).length, 1);
   assert.ok(result.queries.some(call => call.sql === "rollback"));
   assert.ok(!result.queries.some(call => call.sql.startsWith("delete")));
+  assert.equal(result.receipt.keyOutcome, "rollback-confirmed");
+  assert.deepEqual(result.receipt.diagnostics, [{ stage: "key-create", category: "unclassified", sqlState: null }]);
   assert.ok(!JSON.stringify(result.receipt).includes("private SQL"));
 });
 
@@ -293,6 +359,8 @@ test("all child and DB cleanup failures survive primary failure; unverified chil
   assert.ok(result.receipt.failures.includes("owned-child-cleanup-failed")); assert.ok(result.receipt.failures.includes("db-close-unverified"));
   assert.equal(result.receipt.keyDeleted, false); assert.ok(result.receipt.custody);
   assert.ok(!result.queries.some(call => call.sql.startsWith("delete")));
+  assert.equal(result.receipt.keyOutcome, "unverified");
+  assert.deepEqual(result.receipt.diagnostics.map(item => item.stage), ["runtime", "child-cleanup", "database-close"]);
 });
 
 test("forced browser runner cleanup cannot claim the detached Playwright server settled or delete its key", async () => {
@@ -324,6 +392,11 @@ test("uncertain create plus rollback failure retains both failures and named cus
   assert.equal(result.exitCode, 1);
   assert.deepEqual(result.receipt.failures, ["runtime-failed", "transaction-rollback-unverified", "key-create-outcome-unverified"]);
   assert.ok(result.receipt.custody); assert.equal(result.receipt.dbClosed, true);
+  assert.equal(result.receipt.keyOutcome, "unverified");
+  assert.deepEqual(result.receipt.diagnostics, [
+    { stage: "key-create", category: "unclassified", sqlState: null },
+    { stage: "transaction-rollback", category: "unclassified", sqlState: null },
+  ]);
 });
 
 test("telemetry persists actual allowlisted markers and measured leak flags, never raw lines", async () => {

@@ -539,12 +539,77 @@ their revisions and dependency limits; they were not rerun for SQL/native-test-o
 changes and do not compile this migration. Native and cached Git diff checks and
 the single review trail's actual path/line/literal anchors are checked before commit.
 
+## Native setup diagnostic repair — 2026-10-20
+
+Third checkpoint `1cea5c4caa4996566ca95f5b872c6623da22f807`, run
+`39460389509` attempt 1, remains **failed**. Native verify passed 3095 Node
+tests with zero failures/skips/cancellations, Python 43, build and bundle guard.
+All three stack starts/resets now passed, clearing the SQL compilation blocker
+and giving reached real migration engine operations their own bounded credit.
+The existing isolated recovery case also passed: actual restored-target effective
+CREATE=false, physical Storage bytes/info, unchanged protected rows and overwrite
+denials. That one case is separate from feature95. The immutable third packet's
+manifest SHA256 is `c961673416fa0f1aa9ec527d63096906daa7cd375be8d51fff44597e71303fc8`.
+
+DB and browser then emitted only `runtime-failed`, ready=false, empty child exit
+codes, keyDeleted=false, dbClosed=true and custody=null. No exact setup stage,
+connection/key outcome, child readiness or feature execution can be inferred from
+those receipts. The 51 feed Vitest and 14 browser bodies, source RLS010, public
+HTTP/telemetry and INT015 remain unexecuted. There is no functional setup fix based
+on a guessed cause. All three prior capsules and failed packets remain immutable.
+
+Root authorized a diagnostic-only change to the existing wrapper/unit file and
+test-contract pin. The author recorded explicit Sol High routing before edits in
+`author-native-setup-diagnostic-route.json`. Receipts now include a closed fixed
+stage and category plus only nine allowlisted SQLSTATE values (others become
+unclassified/null). Native code is read only through its own data descriptor;
+no native message, detail, hint, query, parameters, stack, cause, status payload
+or secret-bearing data is serialized. Primary and cleanup diagnostics stay
+separate. Fixed commands, admission, privileges and cleanup/custody branches
+are unchanged.
+
+The diagnostic `keyOutcome` is derived from actual control-flow confirmations,
+never custody=null: not-attempted, rollback-confirmed before any COMMIT attempt,
+deleted-confirmed through existing exact UUID/name deletion plus absence read,
+or unverified. The COMMIT-attempt flag is irrevocable; later successful ROLLBACK
+cannot alone prove absence after a lost COMMIT response. This records uncertainty
+without repairing or broadening the existing cleanup policy.
+
+The wrapper's actual LF-normalized SHA256 is now
+`3b680b435875ab7023f12db379d4f90fcd2705c6b4a778fad2a68de4ac709ac2`;
+the test-only contract pin matches it. The original workflow inverse hash and all
+entry/argv/reporters/native-JSON/unrelated-drift negatives remain unchanged.
+Actual bounded checks on this working source: the existing wrapper Node file
+passed **26/26, zero failures/skips**, including three new diagnostic/uncertainty
+cases. Full typecheck and focused three-file ESLint passed with zero lint errors
+or warnings. These injected tests exercise real wrapper failure and cleanup
+branches; they do not diagnose the native setup cause or prove live key custody.
+No unrelated passing test/build lane was rerun, and no native runtime/resource
+or qualification command was started locally. Feature inventory remains **95**,
+original 83 retained; the separate bootstrap suite is now **26**.
+
+The single author review trail is refreshed to the diagnostic working tree.
+Distinct High latest-delta review must precede the proposed source commit and
+new exact-head diagnostic CI; this is not a fourth broad review. Root metadata
+and the author route stay outside source commits. Status remains in-review,
+without delivery, done, successful CI or release-ready claims.
+
+Post-review verdict metadata: the distinct context-free Sol High latest-delta
+review passed the four uncommitted working-file versions bound by the frozen
+43,259-byte input SHA256 `6066a8c53d71c299f4f5aaa4da16ba680d440c087c5681e6713d842340479f4d`.
+This was a working-tree review against HEAD1cea, not a review of a later
+commit. The three final code/test files retain the reviewed raw/Git-clean
+bindings. This added paragraph is a separate post-review spec metadata delta;
+no exact-byte review claim covers the amended spec. The intent kernel and
+29-stop review section are unchanged. Native setup cause and 65 feature bodies
+remain unverified pending the next exact-head diagnostic CI.
+
 ## Suggested Review Order
 
 Author: Story 15.5 implementation/fix author (gpt-6.1-sol High), incorporating
 explicitly delegated browser and bootstrap contributors. Refreshed after all
-Round 3 latest-fix assertions, checkpoint CI repair, native SQL syntax correction
-and the effective public-schema privilege assertions.
+Round 3 latest-fix assertions, the subsequent checkpoint repairs and bounded
+native setup diagnostics.
 Stops below resolve to final source literals before the repair commit.
 
 ### Own settings and honest lifecycle results
@@ -606,25 +671,30 @@ Settlement is memoized; abnormal browser teardown retains exact job custody, whi
 privacy detection measures raw output in memory before sanitized records persist.
 
 - `tests/integration/commands/calendar-feed.int.test.ts:461` — `// FULL rollback comes first`: preserves rollback/reset and same/fresh catalog absence proof.
-- `scripts/ci/with-calendar-feed-runtime.mjs:166` — `export function createOwnedGroupStopper`: memoizes settlement and verifies identity before signaling.
-- `scripts/ci/with-calendar-feed-runtime.mjs:88` — `export function createTelemetryObserver`: detects leaks before dropping non-allowlisted output.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:308` — `nonzero/null-signal nested browser loss`: requires retained key custody for abnormal completion.
+- `scripts/ci/with-calendar-feed-runtime.mjs:183` — `export function createOwnedGroupStopper`: memoizes settlement and verifies identity before signaling.
+- `scripts/ci/with-calendar-feed-runtime.mjs:105` — `export function createTelemetryObserver`: detects leaks before dropping non-allowlisted output.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:376` — `nonzero/null-signal nested browser loss`: requires retained key custody for abnormal completion.
 - `tests/support/calendar-feed-ci-contract.ts:43` — `projectCalendarFeedCiCommands`: validates pinned real wrapper argv and only the two exact workflow inverses.
 - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:18` — `CI command projection rejects`: missing/wrong entry/argv and unrelated-source/workflow negatives preserve the original inverse fence.
+- `scripts/ci/with-calendar-feed-runtime.mjs:31` — `function safeDiagnostic`: emits only fixed stages/categories and allowlisted SQLSTATE without native payloads.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:143` — `COMMIT uncertainty is not cleared`: rollback alone cannot establish key absence after attempted COMMIT.
 
 Evidence: the checkpoint repair records 302 executed focused Node cases with zero
 failures/skips, typecheck/focused lint and the application build. The later c575
 checkpoint passed 3095 Node units/Python/build but all three native setup paths
 failed migration compilation; it remains failed. The earlier checkpoint failed
 eight units and also remains failed, despite 30 feed Node/22 bootstrap passes.
-The new SQL correction and catalog assertions have no native execution evidence.
-Current separate bootstrap
-inventory is 23. Its dependencies are synthetic; recovery assertions are static,
-not restore evidence. Earlier passing checks retain their recorded dependencies.
+The later 1cea checkpoint cleared native migration compilation and passed the one
+actual isolated recovery case, but failed DB/browser wrapper setup before all
+65 feature bodies. The diagnostic working tree passed 26 injected wrapper cases,
+typecheck and focused lint; it has no new native setup or feature evidence.
+Current separate bootstrap inventory is 26. Its dependencies are synthetic;
+operations-unit recovery assertions are static. The real recovery case has its
+separate bounded native receipt. Earlier checks retain recorded dependencies.
 All 51 native Vitest and 14 browser bodies remain pending locally; API001 covers
 live label revisions, API018 cancellation/counters, RLS008 raw status privacy,
 and E2E-001 the essential actual production lifecycle. Existing ACL/RLS010,
-serial cleanup and full regressions also require exact-head CI. All three rounds completed; native-SQL/schema-assertion latest-delta High review, restricted-executor
-PG17 execution, live lifecycle/recovery and final truth qualification
+serial cleanup and full regressions also require exact-head CI. All three rounds completed; diagnostic latest-delta High review, restricted-executor
+PG17 execution, live feature lifecycle and final exact-head qualification
 are outstanding. No provider/device/visual/performance or release-ready claim;
 the unallocated exhaustive branch remains explicitly release-blocking deferred.
