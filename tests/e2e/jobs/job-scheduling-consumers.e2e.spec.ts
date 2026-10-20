@@ -21,6 +21,7 @@ import type { Locator, Page, Request, Route } from "@playwright/test";
 import { createJobsDepthFixture, type JobsDepthFixture } from "../../support/jobs-depth-atdd";
 import { demandScenario, jobSemanticsSnapshot, readBookingSemantics, saveCard } from "../../support/job-semantics-atdd";
 import type { BookingInput } from "../../support/bookings-atdd";
+import { parseUtcInstant } from "../../../src/features/scheduling/time-zone";
 
 type Credentials = { email: string; password: string };
 // playwright-utils deviation: project auth-session provider/package absent.
@@ -154,11 +155,14 @@ test.describe("Story16.4 essential real booking consumers — RED", () => {
       await expect(form.getByTestId("booking-override-reason")).toHaveCount(0);
       const before = await jobSemanticsSnapshot(f);
       const sent = await save(page, form, known, description); // date warnings do not create hard save prohibition
-      expect(sent).toMatchObject({ jobId: known, startsAt: "2026-10-22T06:00:00.000Z", endsAt: "2026-10-22T07:15:00.000Z" });
+      expect(sent.jobId).toBe(known);
+      expect(parseUtcInstant(sent.startsAt)).toBe(parseUtcInstant("2026-10-22T06:00:00Z"));
+      expect(parseUtcInstant(sent.endsAt)).toBe(parseUtcInstant("2026-10-22T07:15:00Z"));
       const after = await jobSemanticsSnapshot(f);
       const rows = after.bookings.filter(row => !before.bookings.some(old => old.id === row.id));
-      expect(rows).toEqual([expect.objectContaining({ job_id: known, description,
-        starts_at: "2026-10-22T06:00:00+00:00", ends_at: "2026-10-22T07:15:00+00:00" })]);
+      expect(rows).toEqual([expect.objectContaining({ job_id: known, description })]);
+      expect(parseUtcInstant(String(rows[0].starts_at))).toBe(parseUtcInstant("2026-10-22T06:00:00Z"));
+      expect(parseUtcInstant(String(rows[0].ends_at))).toBe(parseUtcInstant("2026-10-22T07:15:00Z"));
       expect(after.conflicts).toEqual(before.conflicts); // soft date/demand advice is never persisted conflict debt
       const bookingId = String(rows[0].id);
       await saveCard(f, known, { ...common, estimated_duration_minutes: 180, customer_presence_required: true });
@@ -206,7 +210,7 @@ test.describe("Story16.4 essential real booking consumers — RED", () => {
       expect(after.conflicts).toEqual(before.conflicts);
       expect(after.audit.length - before.audit.length).toBe(1);
       // Supplemental readback uses the actual production consumer, never local arithmetic.
-      const checked = await readBookingSemantics(f.fx.plannerClient, { ...sent, intervalSource: "existing" });
+      const checked = await readBookingSemantics(f.fx.plannerClient, { ...sent, commandId: crypto.randomUUID(), intervalSource: "existing" });
       expect(checked.advisory).toEqual({ state: "known", totalDemand: 300, allocatedCurrentJob: 120,
         remainingDemand: 180, remainingCapacity: 120, shortfall: 60 });
       await page.reload();
@@ -274,14 +278,16 @@ test.describe("Story16.4 essential real booking consumers — RED", () => {
     const f=await createJobsDepthFixture();let hold:((route:Route)=>Promise<void>)|undefined;let release=()=>{};
     try {
       const known=f.jobs.editable.id,other=f.jobs.memberOrder.id;
-      await saveCard(f,known,{estimated_duration_minutes:120,earliest_date:"2026-10-20",accessWindows:null,requiredWorkRoleIds:[]});
-      await saveCard(f,other,{estimated_duration_minutes:90,earliest_date:"2026-10-22",accessWindows:null,requiredWorkRoleIds:[]});
+      await saveCard(f,known,{estimated_duration_minutes:120,earliest_date:"2026-10-20",desired_date:null,latest_date:null,accessWindows:null,requiredWorkRoleIds:[]});
+      await saveCard(f,other,{estimated_duration_minutes:90,earliest_date:"2026-10-22",desired_date:null,latest_date:null,accessWindows:null,requiredWorkRoleIds:[]});
       await page.clock.setFixedTime(new Date("2026-10-18T06:00:00Z"));
       await signIn(page,f.credentials.manager);const form=await openJobBooking(page,known);
+      await form.getByTestId(`booking-assignee-option-${f.fx.ownProfile.id}`).check();
+      await expect(form.getByTestId("booking-availability")).toBeVisible();
       await expect(form.getByTestId("booking-start")).toHaveValue("2026-10-20T08:00");await expect.poll(()=>elapsed(form)).toBe(120);
       await form.getByTestId("booking-job").selectOption(other);
       await expect(form.getByTestId("booking-start")).toHaveValue("2026-10-22T08:00");await expect.poll(()=>elapsed(form)).toBe(90);
-      await saveCard(f,other,{estimated_duration_minutes:90,earliest_date:"2026-10-23",accessWindows:null,requiredWorkRoleIds:[]});
+      await saveCard(f,other,{estimated_duration_minutes:90,earliest_date:"2026-10-23",desired_date:null,latest_date:null,accessWindows:null,requiredWorkRoleIds:[]});
       await form.getByTestId("booking-description").fill("Refresh current earliest");
       await expect(form.getByTestId("booking-start")).toHaveValue("2026-10-23T08:00");await expect.poll(()=>elapsed(form)).toBe(90);
       for(const field of ["customer","facility","contact"]) {
@@ -311,20 +317,24 @@ test.describe("Story16.4 essential real booking consumers — RED", () => {
       await saveCard(f,other,{estimated_duration_minutes:60,earliest_date:null,desired_date:null,latest_date:null,accessWindows:null,requiredWorkRoleIds:[]});
       await page.clock.setFixedTime(new Date("2026-10-25T01:30:00Z"));await signIn(page,f.credentials.manager);
       let form=await openJobBooking(page,known);await expect.poll(()=>elapsed(form)).toBe(60);
+      await form.getByTestId(`booking-assignee-option-${f.fx.ownProfile.id}`).check();
+      await expect(form.getByTestId("booking-availability")).toBeVisible();
       const identity="second fold start retained";await form.getByTestId("booking-description").fill(identity);
-      const changed=page.waitForRequest(request=>{const input=action(request,known,identity,"preview",other);return input?.jobId===other && input.startsAt==="2026-10-25T01:00:00.000Z" && input.endsAt==="2026-10-25T02:00:00Z";});
+      const changed=page.waitForRequest(request=>{const input=action(request,known,identity,"preview",other);return input?.jobId===other && parseUtcInstant(input.startsAt)===parseUtcInstant("2026-10-25T01:00:00Z") && parseUtcInstant(input.endsAt)===parseUtcInstant("2026-10-25T02:00:00Z");});
       await form.getByTestId("booking-job").selectOption(other);await changed;
       await expect(form.getByTestId("booking-start")).toHaveValue("2026-10-25T02:00");await expect(form.getByTestId("booking-end")).toHaveValue("2026-10-25T03:00");
       await saveCard(f,known,{estimated_duration_minutes:30,earliest_date:null,desired_date:null,latest_date:null,accessWindows:null,requiredWorkRoleIds:[]});
       await form.getByTestId("booking-close").click();await form.getByTestId("booking-discard").click();
       await page.clock.setFixedTime(new Date("2026-10-25T00:00:00Z"));form=await openJobBooking(page,known);
       await expect(form.getByTestId("booking-end")).toHaveValue("2026-10-25T02:30");
+      await form.getByTestId(`booking-assignee-option-${f.fx.ownProfile.id}`).check();
+      await expect(form.getByTestId("booking-availability")).toBeVisible();
       await saveCard(f,known,{estimated_duration_minutes:90,earliest_date:null,desired_date:null,latest_date:null,accessWindows:null,requiredWorkRoleIds:[]});
       const description="same wall end different instant";
-      const fresh=page.waitForRequest(request=>{const input=action(request,known,description,"preview");return !!input && Date.parse(input.endsAt)===Date.parse("2026-10-25T01:30:00Z");});
+      const fresh=page.waitForRequest(request=>{const input=action(request,known,description,"preview");return !!input && parseUtcInstant(input.endsAt)===parseUtcInstant("2026-10-25T01:30:00Z");});
       await form.getByTestId("booking-description").fill(description);await fresh;
       await expect(form.getByTestId("booking-end")).toHaveValue("2026-10-25T02:30");
-      const edited=page.waitForRequest(request=>{const input=action(request,known,description,"preview");return !!input && Date.parse(input.startsAt)===Date.parse("2026-10-25T00:30:00Z") && Date.parse(input.endsAt)===Date.parse("2026-10-25T02:00:00Z");});
+      const edited=page.waitForRequest(request=>{const input=action(request,known,description,"preview");return !!input && parseUtcInstant(input.startsAt)===parseUtcInstant("2026-10-25T00:30:00Z") && parseUtcInstant(input.endsAt)===parseUtcInstant("2026-10-25T02:00:00Z");});
       await form.getByTestId("booking-start").fill("2026-10-25T02:30");await edited;
     } finally {await f.dispose();}
   });

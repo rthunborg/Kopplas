@@ -24,6 +24,7 @@ import { jobSemanticsSnapshot, readJobSemantics, saveCard, type UpgradeInput } f
 import { bookingCommand, bookingInput } from "../../support/bookings-atdd";
 import { adminInsertContact, adminInsertFacility } from "../../factories/tenants";
 import { adminQuery } from "../../factories/admin-sql";
+import { parseUtcInstant } from "../../../src/features/scheduling/time-zone";
 
 type Credentials = { email: string; password: string };
 // playwright-utils deviation: current fixture has no auth-session provider.
@@ -74,10 +75,10 @@ async function editFullCard(page: Page, f: JobsDepthFixture, jobId: string, titl
   await page.goto(`/jobs/${jobId}`);
   const card = page.getByTestId("job-card-form");
   await ready(card);
-  await card.getByLabel("Titel", { exact: true }).fill(title);
+  await card.getByRole("textbox", { name: "Titel", exact: true }).fill(title);
   await expect(card.getByLabel("Kund", { exact: true })).toHaveValue(customerId);
   await card.getByLabel("Anläggning", { exact: true }).selectOption(facilityId);
-  await card.getByLabel("Kontakt", { exact: true }).selectOption(contactId);
+  await card.getByRole("combobox", { name: "Kontakt", exact: true }).selectOption(contactId);
   await card.getByTestId("job-card-planning-toggle").click();
   for (const [label, value] of [
     ["Uppskattad tid (minuter)", "120"], ["Planerad restid (minuter)", "30"], ["Antal personer", "2"],
@@ -90,7 +91,7 @@ async function editFullCard(page: Page, f: JobsDepthFixture, jobId: string, titl
   await card.getByLabel("Annan adress än anläggningen", { exact: true }).check();
   for (const [label, value] of [["Gatuadress", "Testgatan 16"], ["Postnummer", "12345"],
     ["Ort", "Teststad"], ["Landskod (två bokstäver)", "SE"]])
-    await card.getByLabel(label, { exact: true }).fill(value);
+    await card.getByRole("textbox", { name: label, exact: true }).fill(value);
   await card.getByLabel("Kraven är kända", { exact: true }).check();
   await card.getByTestId(`job-required-role-${f.roleId}`).check();
   await card.getByLabel("Tillträdestiderna är kända", { exact: true }).check();
@@ -119,7 +120,9 @@ async function editFullCard(page: Page, f: JobsDepthFixture, jobId: string, titl
     responsible_project_manager_id: f.fx.coworkerProfile.id, customer_presence_required: true,
     locationOverride: { street: "Testgatan 16", postalCode: "12345", city: "Teststad", countryCode: "SE" },
     requiredWorkRoleIds: [f.roleId], dependencyJobIds: [f.jobs.prerequisite.id] });
-  expect(persisted.card.accessWindows).toEqual([{ startsAt: "2026-10-20T06:00:00Z", endsAt: "2026-10-20T14:00:00Z" }]);
+  expect(persisted.card.accessWindows).toHaveLength(1);
+  expect(parseUtcInstant(persisted.card.accessWindows![0].startsAt)).toBe(parseUtcInstant("2026-10-20T06:00:00Z"));
+  expect(parseUtcInstant(persisted.card.accessWindows![0].endsAt)).toBe(parseUtcInstant("2026-10-20T14:00:00Z"));
   await expect(page.getByTestId("job-operational-card")).toContainText("Testgatan 16");
   await expect(page.getByTestId("job-project-only-fields")).toHaveCount(0);
   await expect(page.getByTestId("payment-plan-editor")).toHaveCount(0);
@@ -269,7 +272,7 @@ test.describe("Story16.4 same-row Projekt upgrade — RED", () => {
       await adminQuery("update public.tenant_memberships set role='saljare' where id=$1",[membership]);
       const before=await jobSemanticsSnapshot(f);
       await pane.getByTestId("job-upgrade-confirm").click();await expect(pane.getByTestId("job-upgrade-error")).toBeVisible();
-      await page.getByRole("button",{name:"Stäng dialogruta",exact:true}).filter({visible:true}).last().click();
+      await page.getByRole("dialog",{name:"Uppgradera till projekt",exact:true}).getByRole("button",{name:"Stäng",exact:true}).click();
       await expect(pane).toHaveCount(0);expect(await jobSemanticsSnapshot(f)).toEqual(before);
       await adminQuery("update public.tenant_memberships set role=$2 where id=$1",[membership,prior.role]);
       for(const role of roles)await adminQuery("insert into public.membership_roles(tenant_id,membership_id,role) values($1,$2,$3)",[f.fx.base.tenantA.id,membership,role.role]);

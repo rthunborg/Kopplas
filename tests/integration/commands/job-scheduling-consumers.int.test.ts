@@ -1,4 +1,5 @@
 import { describe, expect, test } from "vitest";
+import { parseUtcInstant } from "../../../src/features/scheduling/time-zone";
 /** Story16.4 RED actual consumer/checked SQL contracts. No production code is
  * exercised on collection. Future DTO/export names live only in the thin adapter.
  * Existing independently checked booking permissions and E14 review remain. */
@@ -20,8 +21,13 @@ describe("16.4 card and actual booking semantics", () => {
         accessWindows:[{startsAt:"2026-10-20T06:00:00Z",endsAt:"2026-10-20T14:00:00Z"}],dependencyJobIds:[f.jobs.prerequisite.id],
         locationOverride:{street:"Testgatan 12",postalCode:"11122",city:"Teststad",countryCode:"SE"}});
       const read = await s.readJobSemantics(f.fx.adminClient,job);
-      const {commandId:_command,id:_id,...fields} = input; void _command; void _id;
+      const {commandId:_command,id:_id,accessWindows,...fields} = input; void _command; void _id;
       expect(read.card).toMatchObject(fields); expect(read.leadPersonProfileId).toBe(f.fx.ownProfile.id);
+      expect(read.card.accessWindows).toHaveLength(accessWindows!.length);
+      for (const [index, window] of accessWindows!.entries()) {
+        expect(parseUtcInstant(read.card.accessWindows![index].startsAt)).toBe(parseUtcInstant(window.startsAt));
+        expect(parseUtcInstant(read.card.accessWindows![index].endsAt)).toBe(parseUtcInstant(window.endsAt));
+      }
       expect(read.workOrders).toContainEqual(expect.objectContaining({id:wo,plannedStartDate:"2026-10-21",plannedEndDate:"2026-10-22"}));
       expect(read.dependencies).toContainEqual({dependentJobId:job,dependentWorkOrderId:wo,prerequisiteJobId:f.jobs.prerequisite.id,prerequisiteWorkOrderId:prerequisite});
       const after = await w.workOrdersSnapshot(f); expect(after.workOrders).toEqual(before.workOrders); expect(after.workOrderDependencies).toEqual(before.workOrderDependencies);
@@ -111,7 +117,22 @@ describe("16.4 card and actual booking semantics", () => {
       expect((await s.readBookingSemantics(f.fx.adminClient,a.request)).advisory.totalDemand).toBe(240);
       await s.saveCard(f,a.jobId,{planned_travel_minutes:null});
       expect((await s.readBookingSemantics(f.fx.adminClient,a.request)).advisory).toMatchObject({state:"unknown",totalDemand:null,shortfall:null});
-      expect((await s.readBookingSemantics(f.fx.adminClient,{...a.request,assigneeIds:[]})).advisory.state).toBe("unknown");
+      // Empty eligible pools are an advisory-domain input, while an actual booking
+      // still requires an assignee. Keep these distinct enforced contracts visible.
+      await s.saveCard(f,a.jobId,{planned_start_date:"2026-10-20",planned_end_date:"2026-10-20",planned_travel_minutes:0});
+      const complete = await s.readBookingSemantics(f.fx.adminClient,a.request);
+      expect(complete.advisory.state).toBe("known");
+      const {snapshot} = await s.bookingFacts(f.fx.adminClient,complete.input);
+      const {schedulingFactsForSnapshot} = await import("../../../src/server/bookings/conflict-facts");
+      const {evaluateJobDemandAdvisory} = await import("../../../src/features/scheduling/job-demand-advisory");
+      const job = snapshot.facts.jobInputs.find(row => row.jobId === a.jobId)!;
+      expect(evaluateJobDemandAdvisory({job:{jobId:job.jobId,durationMinutes:job.estimatedDurationMinutes!,
+        crewSize:job.crewSize!,travelMinutes:job.plannedTravelMinutes!,plannedStartDate:job.plannedStartDate!,
+        plannedEndDate:job.plannedEndDate!},eligiblePersonIds:[],facts:schedulingFactsForSnapshot(snapshot)})).toEqual({kind:"unknown"});
+      const beforeInvalid = await s.jobSemanticsSnapshot(f);
+      await expect(s.readBookingSemantics(f.fx.adminClient,{...a.request,assigneeIds:[]}))
+        .rejects.toMatchObject({code:"23514",message:"booking input invalid"});
+      expect(await s.jobSemanticsSnapshot(f)).toEqual(beforeInvalid);
     });
   });
 
