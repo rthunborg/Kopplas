@@ -258,3 +258,43 @@ No items archived.
 **⚠️ Needs human:** (none)
 
 **Next:** Push the reviewed checkpoint and execute the owned exact-head CI. Author delivery, root gate and independent provenance must pass before done.
+
+## Report — 2026-10-20T22:42:57Z (development complete; one epic PR pending publication)
+
+**Epic:** `16` — 5 stories.
+**Branch:** `codex/epic-16-jobs` (HEAD `0549e4f`).
+**Pipeline status:** Development complete: five stories marked done at E8b; exact-head CI passed and independent delivery provenance qualified. Release readiness remains false.
+**Continues:** Authorized Epic16 run; all five stories landed, no skipped stories.
+
+**Summary:** Jobs depth, membership and Arbetsledare scope, work orders with shared files and dependencies, Order-to-Projekt/card/scheduling semantics, and the five-tab workspace. Narrow independently reviewed Vite 8.1.6 prerequisite clears the new high audit gate.
+
+**Timing:** started 2026-10-15T08:50:46Z; completed in progress — elapsed 133h 52m (≈13h 03m AI-run, ≈120h 48m human/idle wait); resumed 7×.
+
+**Stories:**
+1. 16-1-jobs-depth-activation-container-evolution-and-my-jobs: build done; follow-up passes 0; deferred 2; independent review qualified; epic trace FULL.
+2. 16-2-job-members-and-per-job-roles-arbetsledare: build done; follow-up passes 0; deferred 3; independent review qualified; epic trace FULL.
+3. 16-3-arbetsorder: build done; follow-up passes 0; deferred 3; independent review qualified; epic trace FULL.
+4. 16-4-projekt-upgrade-and-job-card-semantics: build done; follow-up passes 0; deferred 3; independent review qualified; epic trace FULL.
+5. 16-5-job-workspace-shell: build done; follow-up passes 0; deferred 3; independent review qualified; epic trace FULL.
+
+**Skipped:** (none)
+
+**Epic gate:** PASS: 36/36 acceptance criteria (29 P0, 7 P1); executable delivery gate native 0, no errors; independent High provenance: zero mismatches across 56 referenced files. No release approval granted.
+
+**TEA:** Trace PASS. NFR CONCERNS/MEDIUM and test quality 0/F Request Changes remain ADVISORY, not relabelled passes or functional waivers. CI39506156300 at 656f5532: 2740 unit +43 process, 1879 DB +separate 1 recovery, all33 browser first-attempt passes/no retries. Ordinary recovery skip is not counted as executed coverage. Scoped RBAC pilot passed; no Jobs-scale or production-capacity claim.
+
+**Retrospective:** accepted-with-open-items: _bmad-output/implementation-artifacts/epic-16-retro-2026-10-21.md; seven owned open actions; headless skill update/detection/validation native0.
+
+**Overrides:** One final PR; no merge or deployment. No legacy application browsing. Owner-authorized design defaults and separate explicit Story16.4/16.5 private external-review approvals retained. Development-completion policy reconciles older exhaustive release gates; exact checkpoint CI used release_validation=false. No new broad review after the cap.
+
+**Open questions:** (none)
+
+**Deferred work:**
+1. 14 owned release-only matrix/visual/manual checks remain deferred with evidence and next actions in delivery/epic-16.json.
+2. Seven retrospective actions cover release validation, NFR targets, two moderate dependency reports, bounded test-quality maintenance, ledger evidence, CI diagnostics and navigation lifecycle maintenance.
+Archived only proven ledger item111;185 entries retained, including27 incomplete heuristic resolved hints.
+
+**⚠️ Needs human:**
+1. Review the final epic PR. Release validation and any future merge/deployment require their existing separate approvals.
+
+**Next:** Human review: /bmad-checkpoint-preview codex/epic-16-jobs. Project context: run /bmad-project-context refresh (recommended after an epic).
