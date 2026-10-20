@@ -3,7 +3,7 @@ title: '15.3 — Conflict Resolver'
 type: 'feature'
 created: '2026-10-20'
 status: 'in-review'
-review_loop_iteration: 3
+review_loop_iteration: 0
 followup_review_recommended: false
 baseline_revision: '3245042f1f9e08c3ec6c2445c1cb6109e326be33'
 context:
@@ -213,7 +213,7 @@ Required runtime matrix is now INT-001…017 (17cases), RLS-001…004, READ-001�
 
 ## Suggested Review Order
 
-Author: implementation delegate named above. Refreshed at source `a80e615214ade42f25b18906ca8c1ee86fadc187`, seven paths after failed CI checkpoint2b7f6b03. Frozen Intent/ACs and previous repair mappings remain unchanged. The final counted round3 High targeted review passed this source/metadata snapshot with zero findings; only author documentation changes in this reconciliation.
+Author: implementation delegate named above. Refreshed at test-only source `6d9836044f643a5ab6df8a1dd430e2801d8a7cdc`, one exactly allocated Jobs E03 path after failed CI checkpoint53e91365. All56 prior source blobs, frozen Intent/ACs and previous repair mappings remain unchanged. Counted source review remains3/3; only latest-delta independent verification of this transport assertion change is pending, with no fourth broad pass.
 
 ### Reach a complete, honest conflict queue
 
@@ -244,20 +244,20 @@ AC5/6/8 keeps checked authority, workflow, ledger, audit and notifications in on
 
 ### Check retry behavior and the evidence boundary
 
-AC6/8 retains unknown attempts until explicit replay and reports success only after persistence. E2E001 checks both participants in the named timeline; E2E002 retains the original success assertion/timeout with safe failure-only diagnostics; E2E003 keeps both durable outcome histories.
+AC6/8 retains unknown attempts until explicit replay and reports success only after persistence. All three resolver browser bodies now passed at53e; the separate Jobs E03 stale-save check uses a fresh exact domain-mapped UI message instead of unavailable Chromium response-body extraction, preserving reset/rollback/retry/durable assertions.
 
 - `src/features/scheduling/conflict-resolver-state.ts:8` — `resolverAttemptForFailure`: definite denial versus already unknown classification.
-- `src/components/scheduling/ConflictResolver.tsx:49` — `renewAcceptance`: preserve reason and require current acknowledgment.
+- `tests/e2e/jobs/jobs-depth.e2e.spec.ts:325` — `COMMAND_MESSAGES.PREVIEW_STALE`: fresh exact stale-domain error, with unchanged rollback/retry assertions.
 - `tests/e2e/conflict-resolver.e2e.spec.ts:28` — `Bokningarnas tidslinje`: exactly two visible timeline participants.
 - `tests/e2e/conflict-resolver.e2e.spec.ts:71` — `const changes=`: exactly two histories, separately remaining and resolved.
 
-Evidence: failed CI and latest local results are detailed below. At a80e, full unit3019P0F1S, focused real-validator7P0F0S, transport36P0F4filteredS, typecheck/lint/build/bundle PASS; browser collection3active0skip0executed. Limits: no local DB/Storage/browser execution; the four filtered DB cases remain active/default-real in normal required CI. Booking-read mock facts run the actual parser/detector but mock authority/SQL; scheduling projected groups exercise transport only. Old fault/lock passes do not qualify the changed migration. No hidden RPC code, E2E002 cause or unavailable trace is inferred. Latest-delta independent High review is passed; actual new exact-head CI and final delivery/provenance admission remain required. No development-complete/release-ready claim.
+Evidence: independently qualified CI39362047987 at53e passed fullDB1862P0F52S, all25resolver integration/4real default-read cases, all3resolver browsers on first attempt and direct Storage1P0F0S. Whole run still failed Jobs E03 on both attempts before its stale-domain assertion; later E03 readbacks remain uncredited. Latest one-file repair typecheck/focusedlint/diffcheck PASS; collection4Jobs+3resolver=7active0skip0executed. Limits: no local runtime, no runtime pass yet for changed E03, unknown underlying CDP body-unavailability cause; earlier E2E002 attribution also remains unknown despite its new pass. Mock projections retain transport-only limits. Unchanged production/unit/build/DB resolver evidence is reused only through byte-identical source conservation; latest narrow verification and new overall exact-head CI remain required.
 
 ## Auto Run Result
 
-Status: in-review. Current a80e source passed independent latest-delta High verification at metadata58c4; Root new exact-head CI qualification remains pending. Failed CI remains historical evidence. Delivery refuses completion for exactly three required runtime checks. Root owns CI/push, canonical state/sprint/aggregate ledgers and final provenance/delivery admission. `development_complete=false`; `release_ready=false`.
+Status: in-review. Production/resolver source retains the passed final3/3 targeted review and qualified53e runtime evidence; latest E03 test-only delta awaits independent verification and Root new overall exact-head CI. Delivery keeps all three runtime checks pending for the new head and independent_review pending for this latest assertion delta. The53e whole run is FAIL, not waived. Root retains final delivery/provenance admission; `development_complete=false`; `release_ready=false`.
 
-Author validation: exactly one Suggested Review Order with16 concrete stops, checked against current source. Native-success direct Storage still awaits distinct assertion/count qualification; all three runtime checks are pending the new exact head. Expected delivery-gate refusal is never presented as a pass.
+Exactly one author Suggested Review Order retains16 concrete verified stops. Review rounds remain3/3 plus the prior separate locator check; no fourth broadpass. The frontmatter review_loop_iteration is restored to0 because it counts bad_spec re-derivations, of which there were0; it is separate from counted review-round headers/history. Expected delivery refusal includes three pending runtime checks and pending latest-delta independent verification.
 
 ## Independent Follow-up Review
 
@@ -311,3 +311,27 @@ The reviewer bound source `a80e615214ade42f25b18906ca8c1ee86fadc187`, metadata `
 Raw `.env.epic15.mail-runtime/story-15-3-build-review-round-3/review.raw.md` SHA256 `a9a1309061ffe7cd13e013549e09d37334cec7cd49e6a0cda93ef2129c13a646`; `summary.json` in the same directory records completed round3, source_checkpoint_ready, findings0, required_repairs0, new_runtime_executed0, development_completefalse and release_readyfalse. The reviewer confirmed the historical failedCI1851P10F52S and browser12P2F0S0flaky counts, and expressly did not establish E2E002's cause or runtime repair. The original failed/unreached history above remains intact.
 
 This author reconciliation changes only spec/delivery, conserves all56source blobs and the frozen Intent/ACs, refreshes the same16-stop guide and keeps spec in-review. Current independent_review is passed, while fullDB/RLS, direct recovery-Storage and essential browser checks are pending new exact-head execution/qualification. Expected delivery refusal is exactly those three runtime checks; Root final delivery/provenance admission remains required. No local runtime/resource/state/environment/source/push changes, new broad checks or completion claim.
+
+
+## Jobs E03 Transport Assertion Checkpoint — 2026-10-20
+
+Independent Sol6.1High native qualification of CI39362047987/attempt1 at `53e91365b1c1db5042173190d7ec1550229b5c35` is FAIL solely for unchanged Jobs16.1-E03. FullDB1914declared=1862P0F52S across156files(155passed1skipped); all17resolver command bodies,4resolverRLS,2READ and2SSR cases passed,25/25 with0resolver skips. INT002/005/007/017 completed all previously unreached acceptance/three-writer/protected-row/microsecond/all-day readbacks. Four authenticated scheduling cases used actual default scans and passed;23projected transport and13mock host cases passed without DB/RLS credit. All3resolver browser cases passed first attempt, including acceptance, protected/ordinary sibling readbacks and following split; earlier E2E002 cause remains unknown, not retrospectively assigned.
+
+Native full browser result13P1F of14cases/15attempts,0skip0flaky/globalerrors[]. JobsE03 failed both attempts at old line321 on response.text(): Chromium Network.getResponseBody reported no data before the PREVIEW_STALE assertion. Fresh-preview, rollback/reset/retry/durable booking/assignee/conflict/audit/reload assertions after that point were unproven. Body-unavailability cause remains UNKNOWN; no product failure or waiver inferred. Native units3020P0F0S include actual Linux xattrs; Python process2/26/10/5PASS. Migration108 startup plus first reset passed all3isolated job stacks without reset retry; old105/106/107 remain immutable. Direct isolated physical Storage1P0F0S qualified persisted PDF bytes/metadata/protected rows and overwrite denials. Existing52explicit fullDB skips (37Story15.2command+14Story15.2RLS+1disabled isolatedStorage) remain noncoverage; direct Storage separately executed. Narrow Admin synthetic pilot executed, providing no Scheduling/R012/representative performance certification. Optional four release jobs remained skipped/noncoverage. Whole run did not pass.
+
+Qualified report `.env.epic15.mail-runtime/story-15-3-preparation/checkpoint-53e91365-ci-independent/report.json` SHA256 `ac1258c68b0b732a63c2dec111113420fd27772287400bb8cd9f8065ffa34d2e`; report.md SHA256 `f2d84d499a71eaf48df593b5782482c4d2e5b73db2db5b64a3d14ac2c12baccb`. The report binds all56previous source blobs and distinguishes actual fault/lock stage assertions from printed traces. Previous2b7failure/unreached history and original review reports remain preserved above.
+
+Coordinator explicit SolHigh FINAL CONDITIONAL PASS allocates exactly `tests/e2e/jobs/jobs-depth.e2e.spec.ts` for E03 transport assertions, receipt `root-coordinator-E03-transport-allocation-20261020.json` SHA256 `e99ce1ec1366887c38cdecc2e20405a1f9a9ceb895e1d25cab233a64b739a0fb`. Source `6d9836044f643a5ab6df8a1dd430e2801d8a7cdc` changes only that file(4insertions2deletions): existing COMMAND_MESSAGES import; pre-click save-error absence proves freshness; response.ok checks transport only; exact UI message equals COMMAND_MESSAGES.PREVIEW_STALE. Production failure(code) maps to this unique safe message, and BookingEditor renders result.message; only the PREVIEW_STALE branch resets acknowledgment/reason and refreshes receipt. No product/helper/config/matcher/mock/catch/skip/timeout change or body logging. This is a bounded transport assertion repair, not an inferred production fix.
+
+| Preserved E03 invariant | Final assertion stop and evidence |
+| --- | --- |
+| Real action correlation excludes preview | bookingAction at110 unchanged: Next-action POST, unique fixture description, one assignee, editorReview presence; before-click waiters unchanged. |
+| Fresh stale-domain failure, not HTTP business success | Error absent319 before click; response.ok323 transport only; freshPreview.ok324 and exact domain-mapped UI error325. |
+| No false durable success; current review invalidated | No success status326; acknowledgment unchecked327; reason empty328; actual fresh-preview response retained. |
+| Complete rollback rather than booking-only check | Whole f.snapshot equality329 still includes private outcomes, conflicts, both tenant state and audit. |
+| Explicit reviewed retry and one durable result | Reacknowledge/refill reason331–332; real save waiter333/retry334; one created booking, exact dates/assignee/conflicts and audit delta retained. |
+| Persistence survives reload | Reloaded summary/editor and whole snapshot equality at end unchanged. |
+
+The real POST matcher and complete tail from no-success status through reset/rollback/retry/readbacks were byte-compared to53e and are unchanged. Latest actual local checks: pnpm typecheck PASS; pnpm exec eslint tests/e2e/jobs/jobs-depth.e2e.spec.ts PASS; git diff --check PASS; configured Playwright --list --reporter=json registers4Jobs+3resolver=7active0skip0runtime-results/errors[]. No local runtime or new unit/build rerun: production/unit/dependency source is unchanged, so prior qualified53e/static/build/unit/DB resolver evidence is reused honestly. The changed E03 body still needs latest-delta independent High verification and new overall exact-head CI. Current3/3 cap/history remain, with no fourth broad review; bad_spec derivation counter corrected to0, not a cap reset.
+
+Private `author-E03-transport-source-manifest.json` SHA256 `a639cff9c787efa6f5fadb9b2cb834c3ce57cc10069a52522c0ddaac391f15aa` pins57owned source paths: all56previous Git blobs unchanged plus the exact allocated Jobs test. One-path53e-to-source binary delta SHA256 `2e504284ca1f121fba0255f27ed7f69f280915e985f511c9e439d1f92391acc1`; Jobs test Git-blob SHA256 `32550831c5800a87c16c40684a7024613566cbe625757f8e1cab968e4e3a1a34`; baseline source-only diff SHA256 `23ddfcef65cc87c7d3c1179776eff5dfed94d07ea64e941afbfb649b2b183279`. This subsequent author spec/delivery refresh preserves source and frozen Intent/ACs; no push/CI/resource/environment/oldmigration/canonical-state changes or completion claim.
