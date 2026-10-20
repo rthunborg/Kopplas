@@ -71,3 +71,41 @@
 2. Cross-thread coordination replies remain unsent: direct authorization requested after automatic approval rejected earlier sends.
 
 **Next:** Answer the authorization question, then resume /auto-bmad epic --epic 16. Human review: /bmad-checkpoint-preview codex/epic-16-jobs.
+
+## Report — 2026-10-19T20:47:29Z (halted — needs-human)
+
+**Epic:** `16` — 5 stories.
+**Branch:** `codex/epic-16-jobs` (HEAD `90f53dc`).
+**Pipeline status:** Stories16.1 and16.2 landed; Story16.3 Phase3 blocked on intent gap. Epic incomplete.
+**Continues:** (none — first run)
+
+**Summary:** Two of five stories landed with verified development evidence; active16.3Arbetsorder awaits two owner decisions. No whole-E15 or messaging prerequisite.
+
+**Timing:** started 2026-10-15T08:50:46Z; completed in progress — elapsed 107h 56m (≈6h 20m AI-run, ≈101h 35m human/idle wait); resumed 2×.
+
+**Stories:**
+1. 16.1: landed, required CI passed. 16.2: landed through phases3–7; approved crew/lead/date implementation, CI39317194836 passed at65e9111f, delivery gate and independent High review passed, release_ready=false. 16.3: blocked plan90f53dc8; no implementation or migration reservation. 16.4–16.5 not started.
+
+**Skipped:**
+1. None.
+
+**Epic gate:** Not reached; no epic completion or release-readiness claim.
+
+**TEA:** 16.2 ATDD plus post-development automate complete: all8AC mapped,0requiredgaps,0newpostdevtests, no reruns. 16.3 risk high; ATDD/automate selected but not started.
+
+**Retrospective:** (none)
+
+**Overrides:** Sequential epic, one final PR, no merge/deploy/provider or secret changes. Required integrity checks retained; broad UI validation deferred honestly.
+
+**Open questions:**
+1. Who may create/edit/assign/change status on work orders, and approve or amend the proposed status/reopen workflow?
+2. For work-order dependency delay warnings, approve labelled cross-job parent-date semantics with same-parent rejection/unknown missing dates, or specify work-order timing?
+
+**Deferred work:**
+1. 16.1 existing two release-validation obligations retained.
+2. 16.2 three owned release-only browser/visual/manual obligations harvested:15linesadded0removed; no functional or integrity acceptance deferred.
+
+**⚠️ Needs human:**
+1. Answer the two pending16.3owner questions. Proposed choices are not approved.
+
+**Next:** Answer the pending questions, then resume /auto-bmad epic --epic 16. Human review: /bmad-checkpoint-preview codex/epic-16-jobs.
