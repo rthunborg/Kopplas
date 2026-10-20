@@ -2,7 +2,7 @@
 title: 'Story 16.4 — Projekt Upgrade and Job-Card Semantics'
 type: 'feature'
 created: '2026-10-20'
-status: 'in-review'
+status: 'done'
 baseline_revision: '77d11b6f18570e075dd858096194e497d99f95b1'
 review_loop_iteration: 0
 followup_review_recommended: false
@@ -11,7 +11,28 @@ context:
   - '{project-root}/docs/process/review-order.md'
   - '{project-root}/docs/process/agent-model-routing.md'
 warnings: [oversized, multiple-goals]
-deferred: []
+deferred:
+  - summary: >-
+      Release-only exhaustive browser matrix beyond the seven essential Story16.4 journeys: additional role, viewport and interaction combinations for upgrade/full-card/booking consumers.
+    evidence: >-
+      Status: deferred. Owner: Epic16 release validation owner (root). Required exact-head essential smoke passed all seven new and 21 existing journeys; exhaustive release_validation dispatch was false and this breadth was not executed. No functional/security acceptance is deferred. Next action: At the Epic16 release checkpoint, run the owned optional release-validation browser matrix and record its exact-head results.
+    location: >-
+      _bmad-output/auto-bmad/delivery/16-4-projekt-upgrade-and-job-card-semantics.json#/deferred_release_validation/0
+    severity: low
+  - summary: >-
+      Release-only screenshot comparison and visual review of full-card, upgrade confirmation and booking consumer presentation across release viewports.
+    evidence: >-
+      Status: deferred. Owner: Epic16 release validation owner (root). Functional production browser smoke passed; exhaustive screenshots/visual comparison were not executed. Existing design-system presentation is retained. Next action: Capture the release-state screenshots, compare the approved design-system layouts and record visual findings and fixes in release validation.
+    location: >-
+      _bmad-output/auto-bmad/delivery/16-4-projekt-upgrade-and-job-card-semantics.json#/deferred_release_validation/1
+    severity: low
+  - summary: >-
+      Release-only manual walkthrough and presentation polish for the completed card/upgrade/booking flows.
+    evidence: >-
+      Status: deferred. Owner: Epic16 release validation owner (root). Automated required persistence, authority, retry and conservation journeys passed; manual release walkthrough/polish was not executed. Consequential functional/security defects remain development requirements. Next action: Perform the Epic16 release walkthrough, resolve recorded presentation-polish findings, and attach the manual evidence before release readiness.
+    location: >-
+      _bmad-output/auto-bmad/delivery/16-4-projekt-upgrade-and-job-card-semantics.json#/deferred_release_validation/2
+    severity: low
 ---
 
 <intent-contract>
@@ -269,11 +290,14 @@ No checks below have been executed for16.4. Prior16.3 CI39410923156 is continuit
 
 ## Auto Run Result
 
-Status: in-review
+Status: done
+Blocking condition: none
 
-Current result: checkpoint `0e382e96be497f562f46bbbc36956eec65efac8d` ran CI39443082042: 27 first-attempt browser passes / 1 unexpected / 0 flaky / 0 skipped. The retained actual-request diagnostic rejected only accessWindows in both Upgrade-E01 attempts. The source boundary is now proven: read_job_cards returns offset timestamps, unchanged form windows preserve them, and the strict command contract requires canonical Z. The admitted pure serializer canonicalizes exact original instants and converts only edited boundaries; no validator, SQL or authority boundary changed. Same independent High targeted causal review qualified PASS on inventory `acda7a38b017a26f486227adcf9f3fd27b2fc6e2694f3065955421806f63c523` (four changed hashes / 45 unchanged dependencies). Exact-head required CI remains pending; the source correction is locally proven and independently reviewed, not runtime accepted. Earlier failed CI/diagnostic stages remain historical evidence.
+Current result: all required CI jobs completed SUCCESS/native0 on exact revision `9d4584f7d86721f07e88a94cf2b15e940a2b7266`, run39445650692; release_validation=false. Full verification passed 2,727 units / 0 skipped in 100 suites plus 43 process checks, static checks/build/containment/audit/lock checks. Required integration passed 1,872 / 0 failed with the sole ordinary physical-recovery skip supplemented by separate direct recovery 1/1 / 0 skipped. Production smoke passed 28/28 first attempt, including all seven Story16.4 and 21 prior journeys, with zero unexpected/flaky/skipped. Required pilot performance passed 5 warmups / 25 measured. The actual loaded-window serializer fix now has exact-head browser confirmation of full-card persistence, upgrade and conservation; five failed CI attempts remain preserved as history.
 
-Actual current local checks: source-extracted assembler RED native 1 -> GREEN native 0, exact microseconds retained; two focused existing unit files 25 passed / 0 failed / 0 skipped (four new regressions); affected ESLint, full TypeScript --noEmit --incremental false and production build native 0; native browser collection 7. No local DB/browser/service or redundant full-unit run occurred. The single author SRO has 27 verified stops. Root confirmed fifth-CI database 1,873 total / 1,872 passed / 0 failed / 1 ordinary physical-recovery skip, separate recovery 1 passed, and pilot 5 warmups / 25 measured (read p95 13.832416000000194 ms; bulk permissions p95 5.901257000000442 ms). Overall that run remains failed on the sole access-window browser assertion; this new helper is not yet runtime proven. Status remains in-review; no development-complete, done, delivery-pass or all-runtime-pass claim is made.
+The author wrote the delivery record at `_bmad-output/auto-bmad/delivery/16-4-projekt-upgrade-and-job-card-semantics.json`, SHA256 `1f00841349a76edaeb3f09223d4e524d472139f1ef3f994e8bccf4db2ac50eca`. Root executed the actual delivery_gate: native0, ok=true, errors=[], approval_granted=false. This validates the record contract, not its provenance. Independent High delivery-provenance review qualified PASS and root explicitly authorized final development-done metadata. Phase5 terminal HALT: development complete; no blocking condition remains. The three owned release-only deferrals are mirrored in the single supported frontmatter list; release_ready=false. Latest source review findings remain zero / followup=false. This done status means development completion only. Release readiness remains false; merge, deployment and whole-epic completion are not authorized or claimed.
+
+Final completion evidence: root executed delivery_gate on record SHA256 `1f00841349a76edaeb3f09223d4e524d472139f1ef3f994e8bccf4db2ac50eca`, native0 / ok=true / development_complete=true / errors=[] / approval_granted=false. Same independent High delivery-provenance review then qualified PASS against actual native CI and unchanged source bindings: `C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-16-4-review-c2eea236-b5c7-4e65-b9d4-bb296d96e162/delivery-provenance-review.txt`, SHA256 `EC6D92F15DDB747B28D60772247A601A1FC7A400B41AA73BE2F2C87C9F14789B`. Root's subsequent explicit done-metadata authorization closes this development boundary; the gate itself grants no approval. Latest review counts remain all zero, followup=false, review loop0; warnings oversized/multiple-goals and three owned release-only deferrals remain.
 
 ### Historical planning-only result — preserved
 
@@ -383,10 +407,22 @@ The same actual source-assembler reproduction is GREEN native 0, exact instants/
 
 Latest same independent High production window review qualified PASS on ACDA7A (four changed hashes / 45 unchanged dependencies): existing exact parser/formatter canonicalizes the chosen original or edited boundary; offsets, microseconds, second-fold identity, independent edits, strict validator and authority remain intact. Receipt: `C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-16-4-review-c2eea236-b5c7-4e65-b9d4-bb296d96e162/targeted-ci5-window-review.txt`, SHA256 `BFFBBA38043A68A71E905313C369040625896FA3F4046EA2FD968AD3C3A25048`. Latest findings zero; this is a targeted causal review, not six-layer reexecution. New serializer remains locally proven and independently reviewed, pending actual exact-head CI acceptance.
 
+## Exact-Head Required CI and Author Delivery Evidence
+
+Evidence revision `9d4584f7d86721f07e88a94cf2b15e940a2b7266`; root-owned CI39445650692 completed all required jobs SUCCESS/native0 with release_validation=false. The new metadata changes no source/test/migration binding and does not claim another six-layer review. Original six actual Round1 layers, initial external refusal/direct-human grant, targeted causal review receipts and all five failed CI histories remain above. Latest production-window review BFFBBA38 and source-assembler RED→GREEN are now supplemented by actual successful full-card/upgrade browser persistence at this exact head.
+
+- Verification: `C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39445650692-verify.log`, SHA256 `80BF353A7573A8F530F1ABBB91079B859B656D7B6BE21232E4EF7B68E94D01FB`: 2,727 units passed / 0 skipped / 100 suites; process2+26+10+5=43 passed; typecheck/lint/build/source-and-bundle containment/dependency audit/lock checks passed.
+- Required database: `C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39445650692-integration-native/full-integration.json`, SHA256 `400A3BAA1D95BD58F41AA99C0D2879A222C48DDF1A9C662029D744C8A75A69C5`, artifact12276212989: 1,873 total / 1,872 passed / 0 failed / 1 sole ordinary physical-recovery skip; consumers27/27 and upgrade7/7 passed. Isolated forward migration/reset/seed and required SUPABASE_TEST_REQUIRED=1 lane succeeded.
+- Separate physical recovery: `C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39445650692-recovery-native/isolated-storage-recovery.json`, SHA256 `1F23070E0727053A67F92AEFEC0CD105A2BB8D5C8BDE4A5D64D7C1CD598E2DDE`, artifact12276571819: 1/1 passed / 0 skipped. The ordinary skip itself is not counted executed.
+- Essential production browser: `C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39445650692-browser-native/general-browser.json`, SHA256 `9B93411E65D32E0DD6F4FA91D45E43A691A4DA2D5ECDDB6A3D46AF928387B321`, artifact12275982390: 28/28 retry0 first-attempt passes / 0 unexpected/flaky/skipped. Upgrade-E01 now confirms full-card saves on both kinds, same-ID upgrade, source/child/event/audit conservation; all four actual consumer journeys pass.
+- Required pilot performance: `C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39445650692-db.log`, SHA256 `73ABCAF4DCCF498C95E122FF18FE5489A3CA12E3AC074CB1BAEE5CF76853DF8A`: 5 warmups / 25 measured, read p95 13.464025999999649 ms and bulk permissions p95 5.2704610000000685 ms. Auth30.4/80.1 baseline is separate/non-gating.
+
+The delivery record groups eight applicable executed checks and preserves the independent source-review union without self-certifying its own new evidence. Root's actual delivery_gate passed native0 with no errors and no approval granted. Independent High delivery-provenance review qualified PASS (EC6D92F1 receipt above), followed by explicit root development-done authorization. Only exhaustive browser breadth, screenshots/visual review, and manual presentation walkthrough/polish remain deferred to the Epic16 release validation owner (root), each with scope/evidence/next action in both the record and supported frontmatter. Essential functionality, security/RLS, proof/transaction/recovery and performance are not deferred. Release readiness remains false.
+
 ## Suggested Review Order
 
 Author: Story16.4 implementation/fix author (Sol 6.1 High), preserving the bounded pure-module child's recorded arithmetic rationale.
-Refreshed after the proven fifth-CI access-window serialization fix against checkpoint `0e382e96be497f562f46bbbc36956eec65efac8d`; original implementation baseline and intent are preserved.
+Refreshed after exact-head required CI success on `9d4584f7d86721f07e88a94cf2b15e940a2b7266`, root delivery-gate native0, independent High provenance PASS and explicit root development-done authorization; original baseline, intent, release-only obligations and review provenance are preserved.
 
 ### Preserve loaded access-window instants at the real form boundary
 
@@ -445,4 +481,8 @@ The approved formula and matched pool/window remain unchanged. Whole-window actu
 - `tests/unit/features/scheduling/job-demand-advisory.test.ts:147` — `16.4-F03`: covers both instant boundaries and centuries-window availability.
 - `tests/integration/commands/job-scheduling-consumers.int.test.ts:276` — `16.4-INT-F01`: asserts real preview and save remain usable.
 
-Evidence and limits: the Implementation Evidence and Round 1 Causal Patch Evidence sections preserve actual commands/counts and the AC01–07 mapping. F01 plus Upgrade-E03 target patches 1–3; F02 plus Consumer-E01/E03/E04 target patches 4–7/12–14; F03/INT-F01 target patches 8–9; F04/INT-F02 target patch 10; valid-hash INT-U02 targets patch 11. Original upgrade preservation/concurrency/revocation/audit and mixed-job/current-fact proof assertions remain intact. New browser/integration cases are collected, not locally executed. Same independent High targeted source/fix reviews are qualified through the recorded unchanged-dependency union. CI39432791404 full verification and separate direct recovery passed, while its required integration/browser lanes failed. The first four-test-file repair has qualified same-High narrow review. Second-CI source-proven arrangement/selector repairs preserve the original assertions and have qualified same-High narrow review. The second CI database/direct recovery/pilot performance passed as recorded; its overall result remains failed on two browser cases, and new exact-head required CI remains pending. The third CI leaves one unresolved full-card save outcome; the confirmed-save assertion has qualified narrow review. Fourth-CI feedback establishes an invalid-input result; the stronger actual-input stage diagnostic has qualified narrow diagnostic/privacy review and awaits execution, with the cause unresolved at that earlier boundary. The fifth-CI diagnostic now proves the loaded-offset access-window mismatch; the exact serializer correction has qualified targeted causal review and awaits runtime CI. No development-complete or release-ready assertion is made.
+Evidence and limits: AC01–02/TR10 are now executed by upgrade7/7 integration and Upgrade-E01/E02/E03; AC03/TR08–09 by both C01 kinds and full-card/source/child conservation in Upgrade-E01; AC04/TR13 by pure F02/F05, INT-C02 and Consumer-E01/E03/E04; AC05/TR14 by matched-pool pure/golden/INT-C03–C05/C10 and Consumer-E02; AC06–07/TR15–16 by selected-job/current-fact/proof cases and the actual consumer journeys. The loaded-window F05/source-assembler RED→GREEN and same-High causal PASS are supplemented by exact-head browser persistence. All required current CI results above passed; the ordinary physical-loader skip has its separate1/1 executed proof. The original six-layer plus targeted unchanged-dependency review union is retained, without claiming six-layer reexecution on the final serializer. Root's actual delivery contract gate passed; same independent High delivery-provenance review qualified PASS with receipt EC6D92F1 and root explicitly authorized development-done metadata. Phase5 halts done for development only; blocking condition none. The three owned release-only obligations are deferred, not passed; release_ready=false.
+
+### Reconcile delivery evidence and release-only obligations
+
+- `_bmad-output/auto-bmad/delivery/16-4-projekt-upgrade-and-job-card-semantics.json:2` — `"policy_version"`: eight applicable executed groups, exact evidence head, independent source-review union, three owned release-only deferrals and release_ready=false; root contract gate does not self-prove provenance.
