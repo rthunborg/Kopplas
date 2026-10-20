@@ -1,0 +1,185 @@
+{
+  "schema_version": "0.2.0",
+  "snapshot_at": "2026-10-20T01:04:41.253706+00:00",
+  "repo": "Kopplas",
+  "collection_mode": "contract_static",
+  "collection_status": "COLLECTED",
+  "inventory_basis": "acceptance_criteria",
+  "gate_basis": "none",
+  "source_sha": "244cf1f31b8fd749588070ecd20d2dd3b1f4a26a",
+  "tested_source_sha": "a00dd595d96a73c398328ed1778bac334aca9de6",
+  "target": {
+    "type": "story",
+    "id": "15.2",
+    "label": "Recurring Bookings — Series, Materialized Occurrences, Exceptions"
+  },
+  "decision_mode": "advisory-only",
+  "evaluator": "TEA gpt-6.1-sol High",
+  "confidence": "high",
+  "oracle": {
+    "resolution_mode": "formal_requirements",
+    "confidence": "high",
+    "sources": [
+      "_bmad-output/implementation-artifacts/spec-15-2-recurring-bookings-series-materialized-occurrences-exceptions.md"
+    ],
+    "external_pointer_status": "not_used",
+    "synthetic": false
+  },
+  "allow_gate": false,
+  "skill_gate": "NOT_EVALUATED",
+  "coverage": {
+    "inventory": {
+      "covered": 8,
+      "total": 8,
+      "pct": 100
+    },
+    "priority_breakdown": {
+      "P0": {
+        "total": 6,
+        "covered": 6,
+        "pct": 100
+      },
+      "P1": {
+        "total": 2,
+        "covered": 2,
+        "pct": 100
+      },
+      "P2": {
+        "total": 0,
+        "covered": 0,
+        "pct": 100
+      },
+      "P3": {
+        "total": 0,
+        "covered": 0,
+        "pct": 100
+      }
+    },
+    "by_level": {
+      "e2e": {
+        "tests": 9,
+        "criteria_covered": 5
+      },
+      "api": {
+        "tests": 28,
+        "criteria_covered": 7
+      },
+      "component": {
+        "tests": 7,
+        "criteria_covered": 2
+      },
+      "unit": {
+        "tests": 82,
+        "criteria_covered": 7
+      },
+      "live": {
+        "tests": 0,
+        "criteria_covered": 0
+      },
+      "other": {
+        "tests": 0,
+        "criteria_covered": 0
+      }
+    }
+  },
+  "tests": {
+    "files": 7,
+    "cases": 126,
+    "skipped_cases": 0,
+    "fixme_cases": 0,
+    "pending_cases": 0
+  },
+  "inventory_count_limit": "126 concrete mapped identities, including9historical/composed E2E and7SSR; not126fresh current test executions or exhaustive test census",
+  "risk_summary": {
+    "critical_open": 0,
+    "high_open": 0,
+    "medium_open": 0,
+    "low_open": 0
+  },
+  "heuristics": {
+    "endpoint_gaps": 0,
+    "auth_negative_path_status": "present",
+    "error_path_status": "present",
+    "ui_journey_status": "not_applicable",
+    "ui_state_status": "not_applicable"
+  },
+  "live_evidence": {
+    "present": false,
+    "results_file": "",
+    "freshness": "not_present",
+    "recorded_source_sha": "",
+    "current_source_sha": "244cf1f31b8fd749588070ecd20d2dd3b1f4a26a",
+    "producer": "",
+    "counted": 0,
+    "stale": 0,
+    "unverifiable": 0,
+    "failed": 0,
+    "contradicted": 0,
+    "blocked": 0,
+    "skipped": 0,
+    "unmatched": 0,
+    "invalid": 0,
+    "requirements_live_only": 0
+  },
+  "blockers": [],
+  "recommendations": [
+    {
+      "priority": "INFO",
+      "action": "Root harvest this story trace and retain three release-validation rows with existing owners; no new broad review or development remediation required."
+    }
+  ],
+  "links": {
+    "trace_report_path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/test-artifacts/story15-2/traceability-matrix-15-2-2026-10-20-high-advisory.md",
+    "trace_report_url": "",
+    "artifact_url": "",
+    "journey_evidence_url": ""
+  },
+  "advisory": {
+    "verdict": "PASS",
+    "basis": "FULL mapped development AC coverage, qualified composite evidence; not execution percentage",
+    "P0": "6/6=100%",
+    "P1": "2/2=100%",
+    "overall": "8/8=100%",
+    "missing_required_development_ACs": [],
+    "universal_executed_coverage_percentage": null,
+    "gating_or_deployment_authorization": false
+  },
+  "execution_summary": {
+    "new_test_execution_in_trace": false,
+    "CI_run_id": 39348312783,
+    "unit": "3004P0F0S;45focused names are included,13matrix+32related",
+    "process": "43P0F0S",
+    "full_DB": "1828P0F52explicitS;23active15.2commands included",
+    "RLS": "800P0F14S included nonadditive subset;5active15.2RLS passed",
+    "isolated_Storage": "1P0F0S separate direct physical lane",
+    "migrations": "107 first-reset/seed passes in3jobs;localDB remains106",
+    "AuthJobs_browser": "10firstpasses+1FLAKY;12attempts1retry0finalfail/skip/globalerrors;NOT Scheduling matrix",
+    "Scheduling_browser": "Specific composed historical actual receipts, GLK007/0082P then strict0091P; current server delta qualified by action/unit/DB evidence; no freshwholematrix",
+    "overall_executed_coverage_percentage": null
+  },
+  "deferred_release_validation": [
+    {
+      "item": "Exhaustive five-view/gesture/device and screenshot/visual matrix",
+      "owner": "QA/UX",
+      "status": "deferred",
+      "evidence": "Owner Oct19 policy; actual selected essential host receipts are narrower than exhaustive release matrix.",
+      "next_action": "Before release execute tracked remaining view/device/gesture matrix, inspect image differences, record evidence and triage consequential failures."
+    },
+    {
+      "item": "Manual accessibility/daylight/exploratory scheduling validation",
+      "owner": "QA/UX",
+      "status": "deferred",
+      "evidence": "SSR/selected real keyboard/phone evidence does not establish manual accessibility or readability certification.",
+      "next_action": "Before release perform recorded keyboard/screen-reader/zoom/daylight walkthroughs and exploratory checks; resolve consequential findings."
+    },
+    {
+      "item": "Representative scheduling performance thresholds/workloads certification",
+      "owner": "Product/Architect",
+      "status": "deferred",
+      "evidence": "Exacta00/run39348312783 currentconfigured pilot120/24memberships,5warmups25measurements readp9518.046681ms/permissionsCPU4.864174ms/2RLSrequests perread passed. Narrow localAdminusersread/CPU only; fullprivatebaseline/queryplanJSONnotuploaded. No representativeScheduling/releaseperformance certification.",
+      "next_action": "Agree representative recurrence/tenant workloads and thresholds, measure production build and record acceptance before release."
+    }
+  ],
+  "release_ready": false,
+  "excluded_scaffolds_count": 51
+}

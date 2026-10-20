@@ -9,24 +9,24 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-20T00:34:31Z"
+updated_at: "2026-10-20T01:05:59Z"
 started_at: "2026-10-19T17:01:38Z"
 completed_at: null
-active_seconds: 24098
-timing_anchor: 1792454130
+active_seconds: 28295
+timing_anchor: null
 is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: final_convergence
-selected_role: final-convergence
+selected_phase: tea_per_story
+selected_role: tea-delegate
 selected_profile: standard
 selected_model: gpt-6.1-sol
 selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Automatic sensitive-task escalation: authorization, transactional-integrity; final automatic settling round3of3 following meaningful Round2 High fixes under recorded whole-epic run interpretation"
+escalation_reason: "Automatic sensitive-task escalation: authorization, transactional-integrity"
 routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -34,12 +34,13 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"followup_review\",\"profile\":\"standard\",\"role\":\"primary-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, transactional-integrity; final automatic settling round3of3 following meaningful Round2 High fixes under recorded whole-epic run interpretation\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"final_convergence\",\"profile\":\"standard\",\"role\":\"final-convergence\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate, trace-advisory]
 tea_rationale: "Recurrence/DST and materialized occurrence mutations with dedupe, tombstones and identity-preserving splits require integrity coverage; long-epic story advisory applies."
 epic_story_count: 6
 stories_after_in_epic: 4
-completed_phases: [0, 1, 2, 3, 4, 5, 6]
+completed_phases: [0, 1, 2, 3, 4, 5, 6, 7]
 spec_path: "_bmad-output/implementation-artifacts/spec-15-2-recurring-bookings-series-materialized-occurrences-exceptions.md"
 spec_approved: true
 build:
@@ -49,17 +50,20 @@ build:
   review_loop_iteration: 0
   deferred_count: 0
   warnings: [oversized]
-followup_passes: 1
-hitl_halt: null
-review_unverified: false
-story_trace: null
+followup_passes: 2
+hitl_halt: "auto-continued (epic — no halt)"
+review_unverified: true
+story_trace:
+  verdict: PASS
+  uncovered: []
+  ran: true
 legacy_review_resume: false
 legacy_review_iteration: null
 legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [76f50d38, eb228636, 33c68c5a, eb3da24d, 85755eb7, effbf5e1, 499c5baf, 7ca73633, fe99dbca, a5153188, 3145f16b, ec6226b2, ecb3f6d0, 3c871f2f, c5337032, a00dd595]
+commits: [76f50d38, eb228636, 33c68c5a, eb3da24d, 85755eb7, effbf5e1, 499c5baf, 7ca73633, fe99dbca, a5153188, 3145f16b, ec6226b2, ecb3f6d0, 3c871f2f, c5337032, a00dd595, 308dfa3a, 244cf1f3]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -77,7 +81,7 @@ retro:
 bmad_status_flipped_at: null
 pr_url: null
 ci_run_url: "https://github.com/rthunborg/Kopplas/actions/runs/39348312783"
-ci_status: null
+ci_status: passed
 pr_merged: false
 merge_method: null
 merge_commit: null
@@ -127,7 +131,7 @@ p6_automation:
   candidate_sha256: b7cebf2c860419e411cbe6ef563ccbe6c7faccf5e1fcc6091c25cbbe24bec6c0
   lint: passed native0
   typecheck: passed native0
-  functional_execution: UNEXECUTED pending exact-source CI
+  functional_execution: "OriginalP6assessmentUNEXECUTED; revisedRLS005 lateractuallypassed exacta00CI39348312783 (alsohistoricala515/c533)"
   new_cases: 0
   new_assertions: 2
   prior_delivery_status: "historical source checkpoint qualified; refreshed test dependency needs P7 and CI before renewed admission"
@@ -150,7 +154,7 @@ p7_round2:
   followup_recommended: true
   release_ready: false
 p7_round3:
-  status: "in-progress; all3broadrounds complete; P7 closeout pending exactfinalsourceCI"
+  status: "P7complete; actualfinal3of3 HALTdone+trace+harvest+releaseledger reconciled"
   source_revision: a00dd595d96a73c398328ed1778bac334aca9de6
   broad_rounds: 3
   review_cap: 3
@@ -163,12 +167,25 @@ p7_round3:
   focused: "45P0F0S;13matrix+32related; actual mixedtombstone RED8P1F retained"
   static: fullnonincrementalTSC0/scopedlint0
   targeted_High_report: 9d22c98c681df3cf98080174ebffca36abe0b86d726fae716c151094505b47b0
-  ci_run: "39348312783 in_progress; release_validationfalse"
+  ci_run: 39348312783 exacta00 qualifiedPASSwith1browserflake
   ci_record: ".env.epic15.mail-runtime/standard-ci-a00dd595-20261020.json"
   prior_c533_CI: "39346825739 exactc533 SUCCESS independentlyqualified; notfinalactioncoverage"
   obsolete_3c_CI: "39346496291 completed/cancelled; nofinalcoverage"
   delivery_gate: pending author exactfinalCI refresh thenRootgate+independentfrozenrecordprovenance
-  spec_status: "in-review; oneSRO26refs; latestparser2patch3reject/TRUE/nonconvergence0"
+  spec_status: "done; parsewarningsnone; oneSRO26refs; 2patch3rejectTRUE/nonconv0"
   local_database: "persisted106; no local107apply or newruntime"
   release_ready: false
   deployment_actions: 0
+  metadata_revision: 244cf1f31b8fd749588070ecd20d2dd3b1f4a26a
+  delivery_sha256: a40a8ec4a3b78e63809d99f18f34b0648f1e708aa4ba472e17792699db3a7048
+  root_gate: PASSnative0 fa55cb7b297c4819e65fc2d9ac57b47652e2cd3fd8066186252f4946c2f03cc1
+  independent_provenance: PASS17505c8a5fdaa884c66fe7a16e01f2c388155114dc28090431e33a33380c6be7
+  root_status_admission: 3c5183f51c6db90d5ed98e4cef08d3ec392c9e41e9e9ce5215bedd197faeda6b
+  browser: "10firstpasses+1flaky/12attempts1retry/0finalfail,skips,globalerrors; qualified unchangedstandaloneE03 retry"
+  pilot: readp9518.046681ms/CPU4.864174ms/2requests narrowAdminusers only
+  trace_advisory: "PASS; skillgateNOT_EVALUATED/allow_gatefalse;P0mapping6of6/P1mapping2of2/overall8of8;not100percentexecution"
+  uncovered_development_ACs: []
+  review_deferred_harvested: 0
+  release_delivery_items: 3
+  release_ledger_mapping: "item0 rows7+8;item1 row9;item2 row11;owners/status/history preserved;General/E16 unchanged"
+  release_ledger_sha256: 8f877cc30fa0c8f94640ed862cd00434c5376058e445072b613385de941a0e88
