@@ -1,0 +1,69 @@
+{
+  "kind": "final-limited-latest-detachment-review",
+  "round": 3,
+  "rounds_completed_before": 2,
+  "cap": 3,
+  "rederivation_iteration": 0,
+  "before": "1f19e3f3b7562bd43732dc61c17a9d0b1b5cee34",
+  "source_head": "3bd815887a6c4a246d94956eb021b1b6ea0525c2",
+  "input_sha256": "92ec897c3ef096dec65d645078c6d7723e2865b8d6e571ba5addca573ba4112f",
+  "input_bytes": 67026,
+  "route": {
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "context": "none",
+    "reason": "duration and UTC provenance critical correctness; independent author separation"
+  },
+  "scope": "Only R2-01/R1-03 and R2-02/R1-02 closure plus consequential latest-line regressions; unchanged prior full roster and qualified native Round2 evidence reused. No fourth broad pass.",
+  "changed_paths": [
+    "src/components/time-reports/TimeReportEntry.tsx",
+    "tests/integration/components/time-reports.test.ts",
+    "_bmad-output/implementation-artifacts/spec-15-4-time-reporting-filing-timesheet-review.md"
+  ],
+  "full_context": [
+    "src/components/time-reports/TimeReportEntry.tsx",
+    "src/components/time-reports/TimeReportForm.tsx",
+    "src/features/time-reports/action-state.ts",
+    "src/features/time-reports/types.ts",
+    "src/features/time-reports/validation.ts",
+    "tests/integration/components/time-reports.test.ts"
+  ],
+  "source_binding": [
+    {
+      "path": "src/components/time-reports/TimeReportEntry.tsx",
+      "raw_sha256": "c94823a0c2c3125e14dfdc7ea0404c9a3e1352d81a52925eef694faf60a3eb70",
+      "git_blob": "f978473cec149870a69ce8ebebcb3275a0442fa5"
+    },
+    {
+      "path": "tests/integration/components/time-reports.test.ts",
+      "raw_sha256": "9155511d8d977dd8456803ef97f2e9b39d043479c5a2ad8ad48bafa740f6d04e",
+      "git_blob": "38b3b150fbb8c90052105f576416f12a285ea14a"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-4-time-reporting-filing-timesheet-review.md",
+      "raw_sha256": "19dbc3cdc57fc822a7fe47b7fce073a1262ffd3190bfeb8a701a12cd85520371",
+      "git_blob": "d5334d093c9443a71f226088a5ded40901450a47"
+    },
+    {
+      "path": "src/components/time-reports/TimeReportForm.tsx",
+      "raw_sha256": "bfb0b789fc927275338009c0ced82f0279ef878a39a5b0369a5a788f2adda2b9",
+      "git_blob": "bb4c3fd82038a848403d2069aecefa11757c906d"
+    },
+    {
+      "path": "src/features/time-reports/action-state.ts",
+      "raw_sha256": "ae620d28f6e725bc55bdff13ddb0efabaa455a357d27cfea9b05979b1eef41be",
+      "git_blob": "3c9164cb5aef59a5f55c931b051f70d449ff5690"
+    },
+    {
+      "path": "src/features/time-reports/types.ts",
+      "raw_sha256": "66c34cb38b433d8cbb25823e8f1209be35afc89d9345f186606777a990e6b660",
+      "git_blob": "058b07a94163ec391bb59824a09acbd6eb87c1de"
+    },
+    {
+      "path": "src/features/time-reports/validation.ts",
+      "raw_sha256": "84ddbbc582435e60f04532e90e007636d72498cfa8bc3029e0ba86e7b6c3a0a2",
+      "git_blob": "2afbaadbf93c504576464c18ed0d5b23d34f7fab"
+    }
+  ],
+  "runtime_limits": "No DB/RLS/Storage/browser executed;38DB+3browser pending Root exact-head CI."
+}

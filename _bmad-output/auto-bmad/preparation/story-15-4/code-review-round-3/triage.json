@@ -1,0 +1,31 @@
+{
+  "round": 3,
+  "counted_rounds": 3,
+  "cap": 3,
+  "source_head": "3bd815887a6c4a246d94956eb021b1b6ea0525c2",
+  "input_sha256": "92ec897c3ef096dec65d645078c6d7723e2865b8d6e571ba5addca573ba4112f",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "original_report_sha256": "b18721dcc05b6d9a4da5c025de0737f0cfc9f55705cb09d95eec79601426c16f",
+  "report_authorship": "original independent reviewer, exact saved bytes",
+  "triage": {
+    "patch": 0,
+    "intent_gap": 0,
+    "bad_spec": 0,
+    "defer": 0,
+    "reject": 0,
+    "score": 0,
+    "followup_recommended": false
+  },
+  "closed": [
+    "R2-01/R1-03 canonical duration preserved on detachment",
+    "R2-02/R1-02 unchanged UTC endpoint provenance preserved on detachment"
+  ],
+  "rederivation_iteration": 0,
+  "prior_review_reuse": "R1 full six-layer source review plus R2 limited High and qualified native Sol High review, with exact source/input bindings. Original R1 wrapper exit1 remains failed history. No fourth broad pass.",
+  "limits": [
+    "Source review only; no DB/RLS/Storage/browser execution",
+    "38 DB and 3 essential browser cases pending Root exact-head CI",
+    "in-review until actual CI plus author delivery/Root gate/distinct truth acceptance"
+  ]
+}

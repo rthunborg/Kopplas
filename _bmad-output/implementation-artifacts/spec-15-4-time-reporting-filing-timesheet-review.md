@@ -4,7 +4,7 @@ type: 'feature'
 created: '2026-10-20'
 status: 'in-review'
 review_loop_iteration: 0
-followup_review_recommended: true
+followup_review_recommended: false
 baseline_revision: '4862704665cb12e4f577ecac59ee173c49c36763'
 context:
   - docs/process/review-order.md
@@ -112,9 +112,11 @@ The ownership handoff lists exact new/shared candidate paths, semantic limits, n
 
 ## Review Findings
 
-### Round 3 of 3 — pending
+### Round 3 of 3 — completed
 
-Final automatic limited review is pending dispatch and covers only the latest detachment fixes and their residuals. This header records the round before dispatch; it claims no completed review or acceptance. Status remains in-review, re-derivation remains0, and Round2 history is preserved below.
+The independent gpt-6.1-sol High reviewer returned PASS with zero findings for the final LIMITED detachment-fix review at source HEAD `3bd815887a6c4a246d94956eb021b1b6ea0525c2`, compared with fix baseline `1f19e3f3b7562bd43732dc61c17a9d0b1b5cee34`. R2-01/R1-03 and R2-02/R1-02 are closed at source level. This completes three of three review rounds, with re-derivation0; it does not establish runtime verification, development completion or release readiness. Status remains in-review.
+
+Exact review bindings: the reviewer read all670 lines/67,026 raw bytes of packet SHA256 `92ec897c3ef096dec65d645078c6d7723e2865b8d6e571ba5addca573ba4112f`, and all3,114 bytes of input-binding SHA256 `6350c45d564ec8b8557c1f6b74842abc23485b7b8807bb0a7038d9d0ea4c102e`. Its seven source-binding raw hashes/Git blob IDs and HEAD were verified by that reviewer; their authoritative entries remain in the unchanged `preparation/story-15-4/code-review-round-3/input-binding.json` under `_bmad-output/auto-bmad`. The original report is `preparation/story-15-4/code-review-round-3/original-review-report.md` (7,315 bytes, SHA256 `b18721dcc05b6d9a4da5c025de0737f0cfc9f55705cb09d95eec79601426c16f`); its attestation is2,578 bytes, SHA256 `01cee7aeb25b582962cf02530a23efd024e77c0147a562f5d89b8d61baae8874`. These are review provenance, not test execution. The reviewer performed bounded read-only file/Git/hash inspection and reused prior review evidence without reopening unchanged SQL/RLS scope.
 
 ## Review Triage Log
 
@@ -126,6 +128,8 @@ Coordinator's final R1-06 allocation authorizes only the unapplied109 affected-r
 
 2026-10-20 Round 2 of 3: the qualified native read-only CLI completed with exit0 and observed gpt-6.1-sol High; command qualification does not accept the source. Its R1-03 residual and the parent's focused R1-02 detachment trace are accepted as two patches in the same bounded relationship-removal operation: R2-01 Medium and R2-02 High. Accounting: patch2, intent_gap0, bad_spec0, defer0, reject0, follow-up score3, re-derivation0; `followup_review_recommended: true` remains. The original High author fixes these allocated controller/test/spec paths directly, with no nested delegation, new path/contract, runtime or kernel change. Original Round1 reports and failed-wrapper history remain preserved. Root's final LIMITED Round3 is confined to these fixes/residuals and does not authorize another broad review.
 
+2026-10-20 Round 3 of 3 completed: final LIMITED source-review PASS, zero findings; patch0, intent_gap0, bad_spec0, defer0, reject0, score0, re-derivation0 and `followup_review_recommended: false`. Both detachment residuals are closed against the exact bindings above. Prior failed-wrapper, residual-finding and red-test history remains intact. No fourth broad review is authorized; required exact-head CI and truthful delivery evidence remain development gates.
+
 ## Design Notes
 
 Round 2 detachment correction: booking/job links and the duration's source are separate concerns. Selecting Utan bokning now clears only the two relationships; the unchanged canonical minutes and UTC endpoint provenance continue to describe the displayed draft. Choosing another booking still replaces the prefill, while editing hours still invalidates canonical minutes and edited interval endpoints still parse independently. This prevents a valid20-minute draft being rejected through generated decimal hours and prevents an unchanged late-fold60-minute interval being reinterpreted as120 minutes.
@@ -136,9 +140,9 @@ The design companion records the rationale for scoped capability names, immutabl
 
 ## Verification
 
-### Implementation checkpoint — 2026-10-20
+### Historical implementation checkpoint — 2026-10-20
 
-Current result: implementation is ready for independent source review, with required runtime evidence pending. This is an uncommitted working-tree check against baseline `4862704665cb12e4f577ecac59ee173c49c36763`; Root owns the later source commit, review/CI admission and exact-head evidence. Status remains in-progress. The frozen LF intent-contract SHA256 is still `3c701d71dba37a136ae104fd24c3b223ef46081913301fb43ff92baca3f16ffb`.
+Historical result at this checkpoint: implementation was ready for independent source review, with required runtime evidence pending. This was an uncommitted working-tree check against baseline `4862704665cb12e4f577ecac59ee173c49c36763`; its planned source-commit ownership wording is superseded by the current reconciliation below. Status then remained in-progress. The frozen LF intent-contract SHA256 was `3c701d71dba37a136ae104fd24c3b223ef46081913301fb43ff92baca3f16ffb`.
 
 Implemented T1–T6/T8 and the executable test/essential-browser source for T7/T9. All original 50 skipped declarations are active and statically bound to production exports; six additional boundary assertions bring the report suite inventory to 56 declarations with zero explicit skips. Commands11/RLS7/read7/nudge9/essential-browser3 still require actual execution. The component suite has seven executed SSR assertions; report pure units have twelve executed assertions. Collection is discovery only: it confirms three essential browser cases and exact serial membership of report command+nudge files, while report read/RLS/component remain parallel. T7/T9/T10 completion still requires their remaining actual gates and author evidence refresh.
 
@@ -156,7 +160,7 @@ Deferred release work retains the existing owners: QA/UX owns exhaustive device/
 
 Fixture limit for independent review: `cleanupOwnedTimeReports` uses the repository's test-admin transaction convention, with `SET LOCAL session_replication_role=replica` on one connection and deletion restricted to explicit owned tenant report rows; commit/rollback restores the session setting. It makes no global/catalog/production-trigger change. The two fault suites remain serialized after the parallel group; their stage-aware temporary audit triggers and cleanup assertions still need real CI execution. Beforeunload/Dialog guards preserve pending/uncertain input in the connected UI; custom browser-history interception and durable/offline storage are absent.
 
-### Round 1 fix checkpoint — 2026-10-20
+### Historical Round 1 fix checkpoint — 2026-10-20
 
 This synchronous original-author batch fixes the nine accepted Round 1 findings against source commit `73169cc0c75d88fbb16dc999ef99cbd9028ff361`; changes remain uncommitted for Root's scoped fix commit and independent focused review. Accounting is one counted review round of three, zero re-derivations, patch9 (High3/Medium6), intent_gap0, bad_spec0, defer0, reject0; follow-up score18 and the High patches retain `followup_review_recommended: true`. The external wrapper remains failed/unqualified; its recovered report is triage input, not a passed review layer.
 
@@ -174,7 +178,7 @@ Actual bounded evidence after the UI/domain fix integration:
 
 The source inventory now has 73 report declarations: pure17/component15/command11/RLS7/read7/nudge13/browser3, with zero explicit skips. The original 50 skipped declarations remain active; this batch adds five pure, eight component and four nudge declarations to the preceding56. Component execution and unit execution do not establish the unexecuted SQL/browser outcomes. Actual REQUIRED integration/RLS, migration/reset/seed/ACL, recovery Storage and production-browser checks remain pending Root's exclusive exact-head CI. The LF kernel digest remains `3c701d71dba37a136ae104fd24c3b223ef46081913301fb43ff92baca3f16ffb`; original preparation files are unchanged. No runtime, commit, delivery pass or done status is claimed.
 
-### Round 2 detachment checkpoint — 2026-10-20
+### Historical Round 2 detachment checkpoint — 2026-10-20
 
 This bounded original-author fix is an uncommitted working tree against `1f19e3f3b7562bd43732dc61c17a9d0b1b5cee34`, retaining in-review status. Two actual-controller regressions select a genuine supplied booking through the production handler, detach it, submit through the production handler, and assert20/60 minutes with both relationship IDs null. Additional assertions retain explicit edited-hours rejection and independently unchanged late-fold start provenance after editing the other endpoint.
 
@@ -188,6 +192,14 @@ Actual evidence:
 
 The report inventory is now75 active declarations: pure17/component17/command11/RLS7/read7/nudge13/browser3, zero explicit skips. Both new declarations are actual controller regressions; the original50 remain active. SQL/RLS/migration/Storage/browser execution and Linux xattr remain pending Root's exact-head CI; no runtime, Git, dependency, schema or API action occurred in this batch. The same20-stop author trail below is refreshed for both residuals and correctly attributes genuine service-writer assertions to NUDGE011. Its checker passed with one section,20 stops and zero errors; `git diff --check` passed. The LF kernel SHA256 remains `3c701d71dba37a136ae104fd24c3b223ef46081913301fb43ff92baca3f16ffb`.
 
+### Round 3 source-review reconciliation — 2026-10-20
+
+The independent final LIMITED review at `3bd815887a6c4a246d94956eb021b1b6ea0525c2` passed with zero findings and closed both detachment residuals. The original report and exact packet/source bindings are recorded in Review Findings. This author reconciliation changes reporting/SRO only; no product source or tests were changed or rerun. The preceding implementation/Round1/Round2 working-tree checkpoints are explicitly historical evidence, including every failure, skip and synthetic boundary.
+
+Current source inventory remains75 active report declarations with zero explicit skips: pure17/component17/command11/RLS7/read7/nudge13/browser3. Actual author evidence remains Round2's17/17 component and17/17 pure passes, type/scoped-lint/build/containment passes; the last full-unit execution remains Round1's3,041 total/3,040 passed/zero failed/one Windows xattr skip. The independent reviewer inspected that evidence without rerunning it. The38 command/RLS/read/nudge cases and three browser cases, migration/reset/seed/ACL, physical recovery Storage, Linux xattr and canonical clean-checkout gates still await Root's exact-head CI. No runtime or passing delivery artifact is asserted.
+
+The build delegate performs authorized scoped source commits; Root owns checkpoint push, CI/resource admission and aggregate state/delivery truth. Source review is complete within its final limited scope; status remains in-review until required CI/delivery evidence permits a later transition. Reporting validation here is limited to the same20-stop SRO checker, diff check and frozen-kernel conservation; no additional broad review, implementation test run, runtime or deployment is authorized by this reconciliation.
+
 ### Historical preparation evidence
 
 This planning run executes artifact/process checks only: source AC comparison, seven-point immediate story audit, READY standard, spec reader/discovery, exact raw/kernel hashes and clean tracked-source/cached-context preservation. Zero app/schema/test/scaffold/runtime/CI execution is claimed. Root separately dispatches independent High specification validation.
@@ -200,8 +212,8 @@ Deferred release validation retains exhaustive browser/device/view matrices, scr
 
 ## Auto Run Result
 
-Status: in-review — the original author applied the two bounded Round 2 detachment patches after the nine Round 1 patches; final LIMITED fix review and Root-owned exact-head CI remain pending.
-Blocking condition: required database/RLS/migration/Storage/browser evidence has not executed for this implementation, and the fixed source has not been independently accepted. Native read-only CLI qualification succeeded in Round2 while identifying a source residual; the failed Round1 wrapper remains historical. No runtime or ownership expansion is requested; resume through the allocated limited-review/CI lane.
+Status: in-review — source-review reconciliation is complete through final LIMITED Round3 PASS/zero findings; Root-owned exact-head CI and truthful delivery evidence remain pending.
+Blocking condition: required database/RLS/migration/Storage/browser and remaining clean-checkout evidence has not executed for this implementation. Native read-only CLI qualification succeeded in Round2, both residuals closed in Round3, and the failed Round1 wrapper remains historical. No unresolved source finding is asserted. Resume through the allocated Root CI/delivery lane without a fourth broad review or runtime/ownership expansion.
 
 ### Historical preparation result
 
@@ -215,7 +227,7 @@ Root then obtains Coordinator allocation of exact shared semantic deltas, a uniq
 ## Suggested Review Order
 
 Author: original Story15.4 implementation author, gpt-6.1-sol High; the same bounded High UI/integrity authors' fixes are reconciled here.
-Refreshed against the Round2 detachment fix working tree based on `1f19e3f3b7562bd43732dc61c17a9d0b1b5cee34`, 2026-10-20. The frozen intent contract is unchanged; in-review status and required runtime limits remain.
+Refreshed against reviewed source HEAD `3bd815887a6c4a246d94956eb021b1b6ea0525c2`, 2026-10-20, after final LIMITED Round3 PASS/zero findings. This reporting-only reconciliation preserves the rationale and stops; frozen intent, in-review status and required runtime limits remain.
 
 ### Own capture and honest retry
 
@@ -262,4 +274,4 @@ NUDGE001 retains real SQL spring/fall, midnight and exclusive-end vectors; NUDGE
 - `tests/integration/read-models/time-reports.int.test.ts:37` — `15.4-READ-002`: asserts complete filtered review and standalone totals.
 - `tests/support/time-reports-atdd.ts:165` — `cleanupOwnedTimeReports`: confines immutable-fixture cleanup to explicitly owned tenants.
 
-Evidence: Round2 records actual old-source15-pass/two-failure reproduction, then component17/17 (eight SSR/nine controller VM), pure units17/17, type/scoped-lint/build/containment passes and75 active declarations. The last full-unit run remains Round1's3,040 passed/zero failed/one Windows xattr skip. VM substitutes hook scheduling, action transport and router effects; SSR proves markup. Neither proves DOM/focus, authorization, network or persistence. Earlier failures, qualified native review provenance and unexecuted database/browser limits remain recorded. Required migration/RLS/Storage/browser execution, Linux xattr, canonical clean-checkout lint, final LIMITED fix review and passing delivery remain Root-owned; release matrices/manual timing/performance stay deferred. No done/development-complete/release-ready claim is made.
+Evidence: historical Round2 records actual old-source15-pass/two-failure reproduction, then component17/17 (eight SSR/nine controller VM), pure units17/17, type/scoped-lint/build/containment passes and75 active declarations. The last full-unit run remains Round1's3,040 passed/zero failed/one Windows xattr skip. Independent final LIMITED Round3 passed with zero findings and closed both detachment residuals at the bound source HEAD; it inspected author evidence without rerunning tests or broadly re-auditing unchanged scope. VM substitutes hook scheduling, action transport and router effects; SSR proves markup. Neither proves DOM/focus, authorization, network or persistence. Earlier failures and exact review bindings remain recorded. Required migration/RLS/Storage/browser execution, Linux xattr, canonical clean-checkout lint and passing delivery remain Root-owned; release matrices/manual timing/performance stay deferred. No done/development-complete/release-ready claim is made.

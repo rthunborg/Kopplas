@@ -1,0 +1,670 @@
+# Final LIMITED Round3: latest detachment fix only; no broad unchanged audit
+diff --git a/_bmad-output/implementation-artifacts/spec-15-4-time-reporting-filing-timesheet-review.md b/_bmad-output/implementation-artifacts/spec-15-4-time-reporting-filing-timesheet-review.md
+index dd690cf0..d5334d09 100644
+--- a/_bmad-output/implementation-artifacts/spec-15-4-time-reporting-filing-timesheet-review.md
++++ b/_bmad-output/implementation-artifacts/spec-15-4-time-reporting-filing-timesheet-review.md
+@@ -110,6 +110,12 @@ The ownership handoff lists exact new/shared candidate paths, semantic limits, n
+ 
+ 2026-10-20 implementation route: Sol 6.1 High author retains SQL/commands/read models/nudge and integration authority; one context-free Sol 6.1 High UI/domain delegate owns only the allocated feature/UI/booking-action caller and focused unit/component files. High is selected because action-state replay and request-bound actions are sensitive. No runtime or Git authority is delegated.
+ 
++## Review Findings
++
++### Round 3 of 3 — pending
++
++Final automatic limited review is pending dispatch and covers only the latest detachment fixes and their residuals. This header records the round before dispatch; it claims no completed review or acceptance. Status remains in-review, re-derivation remains0, and Round2 history is preserved below.
++
+ ## Review Triage Log
+ 
+ 2026-10-20 Round 1 of 3: nine accepted patch findings (three High, six Medium), zero intent/spec gaps and re-derivation iteration zero. The external wrapper failed with exit 1 (`The system cannot find the file specified.`); its recovered report is triage input only, with actual external model metadata unavailable. Source was not accepted. The original Sol 6.1 High author retains the synchronous fix batch. The existing UI author is re-engaged at Sol 6.1 High for R1-01–05/08/09 in its original feature/controller/component/E2E paths; the implementation author retains decimal arithmetic R1-07, proposed preference-serialization R1-06 and final integration/SRO. High covers uncertain filing integrity and shared SQL serialization. No nested runtime, commit, broad review or kernel change is delegated. The new preference write contract awaits Coordinator reconciliation before any SQL write.
+@@ -118,8 +124,12 @@ The existing integrity-test author is re-engaged at Sol 6.1 High only for R1-06
+ 
+ Coordinator's final R1-06 allocation authorizes only the unapplied109 affected-row preference contract and allocated serial tests. The earlier membership-scanning statement-trigger proposal was rejected and was never written. The implemented invoker row trigger tries the distinct sorted affected OLD/NEW tenant gates for nudge INSERT/UPSERT/UPDATE/DELETE and category/tenant moves; a busy gate raises `55P03` and aborts the transaction for explicit retry. It never waits after a tuple lock and has no authenticated, service, definer, JWT or native-fixture exemption. The producer retains its tenant gate and current preference predicate but drops preference tuple locks, allowing writers to reach the nonblocking gate. Current preference reads occur after the advisory wait under the existing READ COMMITTED/volatile-RPC contract; no broader isolation guarantee is asserted. Existing API failure/retry behavior, RLS, categories, grants, membership/role/profile locks and atomic notification/audit effects remain. The precise shared semantic delta and bounded UUID/session-scoped test barrier were allocated before their writes.
+ 
++2026-10-20 Round 2 of 3: the qualified native read-only CLI completed with exit0 and observed gpt-6.1-sol High; command qualification does not accept the source. Its R1-03 residual and the parent's focused R1-02 detachment trace are accepted as two patches in the same bounded relationship-removal operation: R2-01 Medium and R2-02 High. Accounting: patch2, intent_gap0, bad_spec0, defer0, reject0, follow-up score3, re-derivation0; `followup_review_recommended: true` remains. The original High author fixes these allocated controller/test/spec paths directly, with no nested delegation, new path/contract, runtime or kernel change. Original Round1 reports and failed-wrapper history remain preserved. Root's final LIMITED Round3 is confined to these fixes/residuals and does not authorize another broad review.
++
+ ## Design Notes
+ 
++Round 2 detachment correction: booking/job links and the duration's source are separate concerns. Selecting Utan bokning now clears only the two relationships; the unchanged canonical minutes and UTC endpoint provenance continue to describe the displayed draft. Choosing another booking still replaces the prefill, while editing hours still invalidates canonical minutes and edited interval endpoints still parse independently. This prevents a valid20-minute draft being rejected through generated decimal hours and prevents an unchanged late-fold60-minute interval being reinterpreted as120 minutes.
++
+ Round 1 arithmetic correction: report-vs-booked delta now subtracts the inputs' decimal numeric representations with integer scaling, then converts the decimal result to the existing numeric DTO. This preserves the received booked provenance, including 60.1 minutes, and displays 75−60.1 as 14.9 minutes without adding binary subtraction digits. It introduces no money arithmetic or report-duration rounding; filed minutes remain integers. Six focused domain assertions passed with zero skips during the fix batch, including independent tenths and micro/exponent boundaries. Final integrated evidence is recorded separately after all fixes settle.
+ 
+ The design companion records the rationale for scoped capability names, immutable filing plus minimal reviewer metadata, booked-minute snapshot, exact retry semantics, same-tenant/assignment enforcement and bounded seven-day in_app nudge defaults. These are maintainable technical choices within approved behavior under owner authority; Root's distinct High validation may identify a bounded correction before freeze. Do not infer a separate canonical SPEC.md: this sprint BuildAuto spec's intent-contract is its kernel; exact candidate hashes are in the preparation validation receipt. No approved kernel binding is claimed before Root freeze.
+@@ -164,6 +174,20 @@ Actual bounded evidence after the UI/domain fix integration:
+ 
+ The source inventory now has 73 report declarations: pure17/component15/command11/RLS7/read7/nudge13/browser3, with zero explicit skips. The original 50 skipped declarations remain active; this batch adds five pure, eight component and four nudge declarations to the preceding56. Component execution and unit execution do not establish the unexecuted SQL/browser outcomes. Actual REQUIRED integration/RLS, migration/reset/seed/ACL, recovery Storage and production-browser checks remain pending Root's exclusive exact-head CI. The LF kernel digest remains `3c701d71dba37a136ae104fd24c3b223ef46081913301fb43ff92baca3f16ffb`; original preparation files are unchanged. No runtime, commit, delivery pass or done status is claimed.
+ 
++### Round 2 detachment checkpoint — 2026-10-20
++
++This bounded original-author fix is an uncommitted working tree against `1f19e3f3b7562bd43732dc61c17a9d0b1b5cee34`, retaining in-review status. Two actual-controller regressions select a genuine supplied booking through the production handler, detach it, submit through the production handler, and assert20/60 minutes with both relationship IDs null. Additional assertions retain explicit edited-hours rejection and independently unchanged late-fold start provenance after editing the other endpoint.
++
++Actual evidence:
++
++- Before the product fix, `pnpm exec vitest run tests/integration/components/time-reports.test.ts --project integration-parallel` executed17 cases:15 passed, two failed, zero skipped. R2-01 produced zero requests instead of one; R2-02 submitted120 rather than60 minutes. This is an actual old-source red run with the new controller tests, not a synthetic helper-only probe.
++- After the narrow detachment fix, the same command passed17/17 with zero failures/skips: eight SSR and nine actual-controller VM cases. Standard checked-in config/globalSetup was retained. VM still substitutes hook scheduling, action/read transport and router effects; no DOM/focus, database, browser or persistence outcome is inferred.
++- `node --experimental-strip-types --import ./tests/support/register.mjs --test tests/unit/features/time-reports/domain.test.ts tests/unit/features/time-reports/validation.test.ts tests/unit/features/time-reports/action-state.test.ts` passed17/17, zero failed/skipped.
++- `pnpm exec tsc --noEmit --incremental false` passed. `pnpm exec eslint src/components/time-reports/TimeReportEntry.tsx tests/integration/components/time-reports.test.ts` passed with zero errors/warnings.
++- `pnpm build`, `pnpm run verify:service-role-containment` and `pnpm run verify:bundle-containment` passed after the final product change. Unchanged full-unit/dependency/process outcomes are retained as historical evidence without repeat execution.
++
++The report inventory is now75 active declarations: pure17/component17/command11/RLS7/read7/nudge13/browser3, zero explicit skips. Both new declarations are actual controller regressions; the original50 remain active. SQL/RLS/migration/Storage/browser execution and Linux xattr remain pending Root's exact-head CI; no runtime, Git, dependency, schema or API action occurred in this batch. The same20-stop author trail below is refreshed for both residuals and correctly attributes genuine service-writer assertions to NUDGE011. Its checker passed with one section,20 stops and zero errors; `git diff --check` passed. The LF kernel SHA256 remains `3c701d71dba37a136ae104fd24c3b223ef46081913301fb43ff92baca3f16ffb`.
++
+ ### Historical preparation evidence
+ 
+ This planning run executes artifact/process checks only: source AC comparison, seven-point immediate story audit, READY standard, spec reader/discovery, exact raw/kernel hashes and clean tracked-source/cached-context preservation. Zero app/schema/test/scaffold/runtime/CI execution is claimed. Root separately dispatches independent High specification validation.
+@@ -176,8 +200,8 @@ Deferred release validation retains exhaustive browser/device/view matrices, scr
+ 
+ ## Auto Run Result
+ 
+-Status: in-review — the original author applied all nine Round 1 patches; independent focused fix review and Root-owned exact-head CI remain pending.
+-Blocking condition: required database/RLS/migration/Storage/browser evidence has not executed for this implementation, and the fixed source has not been independently accepted. The external wrapper remains failed/unqualified pending Root's bounded qualification. No runtime or ownership expansion is requested; resume through the already allocated review/CI lane.
++Status: in-review — the original author applied the two bounded Round 2 detachment patches after the nine Round 1 patches; final LIMITED fix review and Root-owned exact-head CI remain pending.
++Blocking condition: required database/RLS/migration/Storage/browser evidence has not executed for this implementation, and the fixed source has not been independently accepted. Native read-only CLI qualification succeeded in Round2 while identifying a source residual; the failed Round1 wrapper remains historical. No runtime or ownership expansion is requested; resume through the allocated limited-review/CI lane.
+ 
+ ### Historical preparation result
+ 
+@@ -191,16 +215,16 @@ Root then obtains Coordinator allocation of exact shared semantic deltas, a uniq
+ ## Suggested Review Order
+ 
+ Author: original Story15.4 implementation author, gpt-6.1-sol High; the same bounded High UI/integrity authors' fixes are reconciled here.
+-Refreshed against the Round1 fix working tree based on `73169cc0c75d88fbb16dc999ef99cbd9028ff361`, 2026-10-20. The frozen intent contract is unchanged; in-review status and required runtime limits remain.
++Refreshed against the Round2 detachment fix working tree based on `1f19e3f3b7562bd43732dc61c17a9d0b1b5cee34`, 2026-10-20. The frozen intent contract is unchanged; in-review status and required runtime limits remain.
+ 
+ ### Own capture and honest retry
+ 
+-Entry now consumes the headless attempt/draft transitions. A denied retry cannot resolve an earlier unknown commit; independent untouched UTC endpoints retain their fold/microsecond identity, canonical booking minutes survive mode switches, and standalone start defaults the date until explicitly changed. AC1/2/6 are asserted through actual controller handlers and exact-input units; browser2 extends the same-attempt persistence scenario.
++Entry consumes the headless attempt/draft transitions. Detaching clears booking/job relationships while retaining canonical duration and independently unchanged UTC endpoint provenance; edited input keeps exact validation. AC1/2/6 actual-controller regressions submit detached20-minute hours and late-fold60-minute intervals, while existing tests retain unknown-attempt, standalone-date and edited-endpoint behavior.
+ 
+-- `src/components/time-reports/TimeReportEntry.tsx:13` — `TimeReportEntry`: freezes unresolved attempts and composes connected capture.
++- `src/components/time-reports/TimeReportEntry.tsx:28` — `chooseBooking`: detaches relationships while retaining duration and endpoint provenance.
+ - `src/features/time-reports/action-state.ts:36` — `timeReportDraftMinutes`: preserves untouched endpoints and exact canonical duration.
+-- `tests/integration/components/time-reports.test.ts:133` — `R1-01`: exercises actual filing handlers across loss, denial and confirmation.
+-- `tests/e2e/time-reports.e2e.spec.ts:76` — `15.4-E2E-002`: checks persisted same-attempt reconciliation after restored authority.
++- `tests/integration/components/time-reports.test.ts:193` — `R2-01`: submits detached canonical minutes and rejects edited rounded hours.
++- `tests/integration/components/time-reports.test.ts:203` — `R2-02`: submits detached late-fold minutes with cleared booking/job links.
+ 
+ ### Current authority and one attributable write
+ 
+@@ -231,11 +255,11 @@ The existing jobs client supplies exact tenant/as-of/cursor scope. The allocated
+ 
+ ### Integrity evidence and operational limits
+ 
+-NUDGE001 retains real SQL spring/fall, midnight and exclusive-end vectors; NUDGE004 retains frozen continuation beyond25 recipients. NUDGE012/013 assert affected-tenant/membership/category/service behavior and exact private trigger ACLs. These and command/RLS/read/browser bodies are active source awaiting Root CI. The temporary barrier releases its control gate before settling all pending sessions and exact catalog teardown; owned report cleanup retains its disclosed transaction-local test-admin bypass.
++NUDGE001 retains real SQL spring/fall, midnight and exclusive-end vectors; NUDGE004 retains frozen continuation beyond25 recipients. NUDGE011 contains the genuine injected service-JWT preference-write assertions; NUDGE012/013 assert affected-tenant/membership/category behavior and exact private trigger ACLs. These and command/RLS/read/browser bodies are active source awaiting Root CI. The temporary barrier releases its control gate before settling all pending sessions and exact catalog teardown; owned report cleanup retains its disclosed transaction-local test-admin bypass.
+ 
+ - `tests/integration/notifications/time-report-nudge-producer.int.test.ts:356` — `15.4-NUDGE-012`: asserts affected tenants and current membership without exemptions.
+ - `tests/integration/rls/migration-reset.int.test.ts:700` — `privateFunctions`: enrolls the new invoker trigger in the closed ACL set.
+ - `tests/integration/read-models/time-reports.int.test.ts:37` — `15.4-READ-002`: asserts complete filtered review and standalone totals.
+ - `tests/support/time-reports-atdd.ts:165` — `cleanupOwnedTimeReports`: confines immutable-fixture cleanup to explicitly owned tenants.
+ 
+-Evidence: the Round1 checkpoint above records focused17/17 pure units, component15/15 (8 SSR and7 actual-controller VM cases), full units3,040 passed/zero failed/one Windows xattr skip, type/source-lint/build/containment checks and source inventory. VM substitutes hook scheduling, action transport and router effects; SSR proves markup. Neither proves DOM/focus, authorization, network or persistence. The original failed-unit history, external-wrapper failure and unexecuted database/browser limits remain recorded. Required migration/RLS/Storage/browser execution, Linux xattr, canonical clean-checkout lint, independent focused fix review and passing delivery remain Root-owned; release matrices/manual timing/performance stay deferred. No done/development-complete/release-ready claim is made.
++Evidence: Round2 records actual old-source15-pass/two-failure reproduction, then component17/17 (eight SSR/nine controller VM), pure units17/17, type/scoped-lint/build/containment passes and75 active declarations. The last full-unit run remains Round1's3,040 passed/zero failed/one Windows xattr skip. VM substitutes hook scheduling, action transport and router effects; SSR proves markup. Neither proves DOM/focus, authorization, network or persistence. Earlier failures, qualified native review provenance and unexecuted database/browser limits remain recorded. Required migration/RLS/Storage/browser execution, Linux xattr, canonical clean-checkout lint, final LIMITED fix review and passing delivery remain Root-owned; release matrices/manual timing/performance stay deferred. No done/development-complete/release-ready claim is made.
+diff --git a/src/components/time-reports/TimeReportEntry.tsx b/src/components/time-reports/TimeReportEntry.tsx
+index 3b65d354..f978473c 100644
+--- a/src/components/time-reports/TimeReportEntry.tsx
++++ b/src/components/time-reports/TimeReportEntry.tsx
+@@ -24,7 +24,8 @@ export function TimeReportEntry({prefill,jobs=[],bookings=[],onSaved,label}:{rea
+ 
+  function change(patch:Partial<TimeReportDraft>){if(inFlight.current||(attempt.current&&!canEditTimeReportAttempt(attempt.current)))return;dirty.current=true;setDraft(row=>updateTimeReportDraft(row,patch));setState({status:"draft"});}
+ 
+- function chooseBooking(id:string){if(inFlight.current||attempt.current)return;const chosen=bookings.find(row=>row.bookingId===id);original.current=chosen;dirty.current=true;setDraft(row=>chosen?{...timeReportDraftFromBooking(chosen),note:row.note}:{...row,bookingId:null,jobId:null,exactPrefillUnavailable:false,canonicalHoursMinutes:null});setState({status:"draft"});}
++ // Detachment changes relationships, not the existing duration or endpoint provenance.
++ function chooseBooking(id:string){if(inFlight.current||attempt.current)return;const chosen=bookings.find(row=>row.bookingId===id);if(chosen)original.current=chosen;dirty.current=true;setDraft(row=>chosen?{...timeReportDraftFromBooking(chosen),note:row.note}:{...row,bookingId:null,jobId:null});setState({status:"draft"});}
+ 
+  async function submit(retry=false){
+ 
+diff --git a/tests/integration/components/time-reports.test.ts b/tests/integration/components/time-reports.test.ts
+index bf9cf72e..38b3b150 100644
+--- a/tests/integration/components/time-reports.test.ts
++++ b/tests/integration/components/time-reports.test.ts
+@@ -120,8 +120,8 @@ function actualController(name:"TimeReportEntry"|"TimeReportReview"|"TimeReportW
+   const component=exported[name] as (props:Record<string,unknown>)=>unknown;
+   return {render:()=>{cursor=0;return component(props);},confirm,refresh};
+ }
+-function entryController(prefill?:TimeReportBookingPrefill,responses:TimeReportMutationResult[]=[{status:"success",reportId:"confirmed"}]) {
+- const requests:ReportInput[]=[];const controller=actualController("TimeReportEntry",{prefill},{fileTimeReportAction:async(input:ReportInput)=>{requests.push(input);const result=responses.shift();if(!result)throw new Error("Missing owned action response");return result;}});
++function entryController(prefill?:TimeReportBookingPrefill,responses:TimeReportMutationResult[]=[{status:"success",reportId:"confirmed"}],bookings:readonly TimeReportBookingPrefill[]=[]) {
++ const requests:ReportInput[]=[];const controller=actualController("TimeReportEntry",{prefill,bookings},{fileTimeReportAction:async(input:ReportInput)=>{requests.push(input);const result=responses.shift();if(!result)throw new Error("Missing owned action response");return result;}});
+  fire(findControllerNode(controller.render(),node=>node.type==="button"),"onClick");
+  const form=()=>findControllerNode(controller.render(),node=>node.type===TimeReportForm);
+  return {...controller,form,requests};
+@@ -190,4 +190,22 @@ describe("actual time report controller interaction regressions",()=>{
+   const html=renderToStaticMarkup(createElement(TimeReportReview,{report:{...reviewReport,status:"submitted"},canReview:true}));
+   expect(html).toContain('data-testid="time-report-booked-at-filing">1 h 0,1 min');expect(html).toContain('data-testid="time-report-booked-delta">+0 h 14,9 min');expect(html).not.toContain("14,899999999999999");
+  });
++ test("R2-01 actual booking detachment keeps twenty canonical minutes in hours mode and clears both relationships",async()=>{
++  const source={...ownPrefill,startsAt:"2026-10-20T06:00:00Z",endsAt:"2026-10-20T06:20:00Z",date:"2026-10-20",minutes:20,jobId:reviewReport.jobId};
++  const entry=entryController(undefined,undefined,[source]);
++  fire(entry.form(),"onBookingChange",source.bookingId);fire(entry.form(),"onChange",{mode:"hours",note:"Keep declared time"});fire(entry.form(),"onBookingChange","");
++  await fire(entry.form(),"onSubmit");expect(entry.requests).toHaveLength(1);
++  expect(entry.requests[0]).toMatchObject({date:source.date,minutes:20,bookingId:null,jobId:null,note:"Keep declared time"});
++  expect((entry.form().props.state as {status:string}).status).toBe("confirmed");
++  const edited=entryController(undefined,undefined,[source]);fire(edited.form(),"onBookingChange",source.bookingId);fire(edited.form(),"onChange",{mode:"hours"});fire(edited.form(),"onBookingChange","");fire(edited.form(),"onChange",{hours:"0.3333333333333333"});
++  await fire(edited.form(),"onSubmit");expect(edited.requests).toHaveLength(0);expect((edited.form().props.state as {status:string}).status).toBe("rejected");
++ });
++ test("R2-02 actual booking detachment preserves unchanged late-fold UTC endpoints through standalone submission",async()=>{
++  const source={...ownPrefill,jobId:reviewReport.jobId},entry=entryController(undefined,undefined,[source]);
++  fire(entry.form(),"onBookingChange",source.bookingId);fire(entry.form(),"onBookingChange","");await fire(entry.form(),"onSubmit");
++  expect(entry.requests).toHaveLength(1);expect(entry.requests[0]).toMatchObject({date:source.date,minutes:60,bookingId:null,jobId:null});
++  expect((entry.form().props.state as {status:string}).status).toBe("confirmed");
++  const adjusted=entryController(undefined,undefined,[source]);fire(adjusted.form(),"onBookingChange",source.bookingId);fire(adjusted.form(),"onBookingChange","");fire(adjusted.form(),"onChange",{endsAtLocal:"2026-10-25T04:30"});
++  await fire(adjusted.form(),"onSubmit");expect(adjusted.requests[0]).toMatchObject({minutes:120,bookingId:null,jobId:null});
++ });
+ });
+
+
+# FULL CURRENT CONTEXT: src/components/time-reports/TimeReportEntry.tsx
+"use client";
+import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
+import { Dialog } from "@/components/crm/Dialog";
+import { fileTimeReportAction } from "@/features/time-reports/actions";
+import { normalizeReportNote, validateReportInput } from "@/features/time-reports/validation";
+import { canEditTimeReportAttempt, timeReportAttemptAfter, timeReportDraftFromBooking, timeReportDraftMinutes, updateTimeReportDraft, type TimeReportAttempt } from "@/features/time-reports/action-state";
+import type { ReportInput, TimeReportBookingPrefill, TimeReportDraft } from "@/features/time-reports/types";
+import { TimeReportForm, timeReportButtonClass } from "./TimeReportForm";
+
+/** Reusable own-report capture; the checked command remains the authorization boundary. */
+
+export function TimeReportEntry({prefill,jobs=[],bookings=[],onSaved,label}:{readonly prefill?:TimeReportBookingPrefill;readonly jobs?:readonly {id:string;label:string}[];readonly bookings?:readonly TimeReportBookingPrefill[];readonly onSaved?:()=>void;readonly label?:string}) {
+
+ const router=useRouter(),[open,setOpen]=useState(false),[draft,setDraft]=useState(()=>timeReportDraftFromBooking(prefill)),[state,setState]=useState<{status:string;message?:string}>({status:"draft"}),[discard,setDiscard]=useState(false);
+
+ const attempt=useRef<TimeReportAttempt<ReportInput>|null>(null),inFlight=useRef(false),original=useRef(prefill),dirty=useRef(false);
+
+ const unresolved=state.status==="unknown"||state.status==="pending";
+
+ useEffect(()=>{if(!open)return;const guard=(event:BeforeUnloadEvent)=>{if(unresolved||dirty.current){event.preventDefault();}};window.addEventListener("beforeunload",guard);return()=>window.removeEventListener("beforeunload",guard);},[open,unresolved]);
+
+ function close(){if(unresolved)return;if(dirty.current&&state.status!=="confirmed"){setDiscard(true);return;}setOpen(false);}
+
+ function change(patch:Partial<TimeReportDraft>){if(inFlight.current||(attempt.current&&!canEditTimeReportAttempt(attempt.current)))return;dirty.current=true;setDraft(row=>updateTimeReportDraft(row,patch));setState({status:"draft"});}
+
+ // Detachment changes relationships, not the existing duration or endpoint provenance.
+ function chooseBooking(id:string){if(inFlight.current||attempt.current)return;const chosen=bookings.find(row=>row.bookingId===id);if(chosen)original.current=chosen;dirty.current=true;setDraft(row=>chosen?{...timeReportDraftFromBooking(chosen),note:row.note}:{...row,bookingId:null,jobId:null});setState({status:"draft"});}
+
+ async function submit(retry=false){
+
+  if(inFlight.current)return;
+
+  if(!retry){if(attempt.current)return;const minutes=timeReportDraftMinutes(draft,original.current);const note=normalizeReportNote(draft.note);
+
+   if(minutes===null||!note.ok){setState({status:"rejected",message:"Ange en positiv tid i hela minuter och högst 2 000 tecken i anteckningen."});return;}
+
+   const validated=validateReportInput({attemptId:crypto.randomUUID(),date:draft.date,minutes,note:note.value,bookingId:draft.bookingId,jobId:draft.jobId});if(!validated.ok){setState({status:"rejected",message:"Kontrollera datum och tid."});return;}attempt.current={status:"pending",request:Object.freeze(validated.data)};
+
+  }
+
+  if(!attempt.current)return;if(retry)attempt.current=timeReportAttemptAfter(attempt.current,"retry");if(attempt.current.status!=="pending")return;inFlight.current=true;setState({status:"pending"});const sending=attempt.current;
+
+  try{
+   const result=await fileTimeReportAction(sending.request);
+   attempt.current=timeReportAttemptAfter(sending,result.status==="success"?"success":result.uncertain?"unknown":"rejected");
+   if(attempt.current.status==="confirmed"){dirty.current=false;setState({status:"confirmed"});try{onSaved?.();router.refresh();}catch{}}
+   else {const status=attempt.current.status;setState({status,message:result.status==="error"?result.message:undefined});if(status==="rejected")attempt.current=null;}
+  }catch{attempt.current=timeReportAttemptAfter(sending,"unknown");setState({status:"unknown",message:"Anslutning krävs. Försök igen med samma uppgifter."});}finally{inFlight.current=false;}
+
+ }
+
+ return <><button type="button" data-testid={prefill?`time-report-entry-${prefill.bookingId}`:"new-time-report"} className={timeReportButtonClass} onClick={()=>{original.current=prefill;setDraft(timeReportDraftFromBooking(prefill));setState({status:"draft"});attempt.current=null;dirty.current=false;setDiscard(false);setOpen(true);}}>{label??(prefill?"Rapportera tid":"Ny tidrapport")}</button>
+
+  <Dialog open={open} title="Ny tidrapport" variant="sheet" onClose={close} busy={unresolved}>
+
+   {discard?<div className="space-y-4"><p>Du har osparade ändringar. Vill du lämna formuläret?</p><button type="button" className={timeReportButtonClass} onClick={()=>setDiscard(false)}>Fortsätt redigera</button><button type="button" className={timeReportButtonClass} onClick={()=>{dirty.current=false;setOpen(false);}}>Lämna utan att spara</button></div>:<TimeReportForm draft={draft} state={state} onChange={change} onSubmit={()=>submit()} onRetry={()=>submit(true)} jobs={jobs} bookings={bookings} onBookingChange={chooseBooking}/>}
+
+  </Dialog>
+
+ </>;
+
+}
+
+
+
+# FULL CURRENT CONTEXT: src/components/time-reports/TimeReportForm.tsx
+"use client";
+import { useId } from "react";
+import type { TimeReportBookingPrefill, TimeReportDraft } from "@/features/time-reports/types";
+
+export const timeReportFieldClass="min-h-12 w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600";
+
+export const timeReportButtonClass="min-h-12 rounded-md border border-zinc-300 bg-white px-4 py-2 text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 disabled:opacity-60";
+
+export function TimeReportForm({draft,state,onChange,onSubmit,onRetry,jobs=[],bookings=[],onBookingChange}:{readonly draft:TimeReportDraft;readonly state:{status:string;message?:string};readonly onChange?:(patch:Partial<TimeReportDraft>)=>void;readonly onSubmit:()=>void;readonly onRetry:()=>void;readonly jobs?:readonly {id:string;label:string}[];readonly bookings?:readonly TimeReportBookingPrefill[];readonly onBookingChange?:(id:string)=>void}) {
+
+ const id=useId(),locked=["pending","unknown","confirmed"].includes(state.status),mode=draft.mode??"hours";
+
+ return <form className="space-y-4" onSubmit={event=>{event.preventDefault();if(!locked)onSubmit();}}>
+
+  <p role="status" aria-live="polite" className="text-sm font-medium">{state.status==="confirmed"?<><span data-testid="time-report-submit-status">Rapporterad</span> · sparad i systemet</>:state.status==="pending"?"Sparar…":"Osänd"}</p>
+
+  {draft.exactPrefillUnavailable&&<p className="text-sm text-amber-900">Bokningens exakta intervall kan inte förifyllas som hela minuter. Ange rapporterad tid.</p>}
+
+  {state.message&&<p id={`${id}-error`} role="alert" className="text-sm text-red-800">{state.message}</p>}
+
+  <fieldset disabled={locked} aria-describedby={state.message?`${id}-error`:undefined} className="space-y-4 disabled:opacity-70">
+
+   {bookings.length>0&&<label className="block space-y-1"><span>Bokning (valfri)</span><select className={timeReportFieldClass} value={draft.bookingId??""} onChange={event=>onBookingChange?.(event.target.value)}><option value="">Utan bokning</option>{bookings.map(booking=><option key={booking.bookingId} value={booking.bookingId}>{booking.date} · {booking.jobLabel??"Bokning"}</option>)}</select></label>}
+
+   <label className="block space-y-1"><span>Datum</span><input required type="date" aria-label="Datum" className={timeReportFieldClass} value={draft.date} onChange={event=>onChange?.({date:event.target.value})}/></label>
+
+   <label className="block space-y-1"><span>Ange tid som</span><select className={timeReportFieldClass} value={mode} onChange={event=>onChange?.({mode:event.target.value as "hours"|"interval"})}><option value="hours">Antal timmar</option><option value="interval">Start och slut</option></select></label>
+
+   {mode==="hours"?<label className="block space-y-1"><span>Timmar</span><input required inputMode="decimal" type="text" aria-label="Timmar" className={timeReportFieldClass} value={draft.hours} onChange={event=>onChange?.({hours:event.target.value})}/><span className="text-sm text-zinc-600">Exempel: 1,25 = 1 timme 15 minuter. Hela minuter krävs.</span></label>:<div className="space-y-3"><p className="text-sm text-zinc-600">Start och slut i svensk tid (Europe/Stockholm).</p><label className="block space-y-1"><span>Start</span><input required type="datetime-local" className={timeReportFieldClass} value={draft.startsAtLocal??""} onChange={event=>onChange?.({startsAtLocal:event.target.value})}/></label><label className="block space-y-1"><span>Slut</span><input required type="datetime-local" className={timeReportFieldClass} value={draft.endsAtLocal??""} onChange={event=>onChange?.({endsAtLocal:event.target.value})}/></label></div>}
+
+   {draft.bookingId?<div className="space-y-2"><p className="text-sm">Kopplad till bokning. Tiden kan justeras.</p><label className="block space-y-1"><span>Jobb</span><select aria-label="Jobb" disabled className={timeReportFieldClass} value={draft.jobId??""}><option value={draft.jobId??""}>{draft.jobId?jobs.find(job=>job.id===draft.jobId)?.label??"Kopplat jobb":"Utan jobb"}</option></select></label></div>:<label className="block space-y-1"><span>Jobb (valfritt)</span><select aria-label="Jobb" className={timeReportFieldClass} value={draft.jobId??""} onChange={event=>onChange?.({jobId:event.target.value||null})}><option value="">Utan jobb</option>{jobs.map(job=><option key={job.id} value={job.id}>{job.label}</option>)}</select></label>}
+
+   <label className="block space-y-1"><span>Anteckning (valfri)</span><textarea aria-label="Anteckning" maxLength={2000} rows={3} className={timeReportFieldClass} value={draft.note} onChange={event=>onChange?.({note:event.target.value})}/></label>
+
+  </fieldset>
+
+  {state.status==="unknown"?<div className="space-y-2"><p className="text-sm">Svaret saknas. Uppgifterna är låsta tills samma försök har bekräftats.</p><button type="button" onClick={onRetry} className={timeReportButtonClass}>Försök igen med samma försök</button></div>:state.status!=="confirmed"&&<div className="sticky bottom-0 bg-white py-2"><button type="submit" disabled={locked} className={`${timeReportButtonClass} w-full bg-blue-700 text-white`}>{state.status==="pending"?"Sparar…":"Rapportera tid"}</button></div>}
+
+ </form>;
+
+}
+
+
+
+# FULL CURRENT CONTEXT: src/features/time-reports/action-state.ts
+import { reportLocalInput, reportMinutesBetween, reportToday } from "./domain";
+import { stockholmLocalToUtc } from "@/features/scheduling/time-zone";
+import { isReportDate, parseReportHours } from "./validation";
+import type { TimeReportBookingPrefill, TimeReportDraft } from "./types";
+
+export type TimeReportAttempt<T>={readonly status:"draft"|"pending"|"unknown"|"rejected"|"confirmed";readonly request:T;readonly hasUnknownOutcome?:boolean;readonly message?:string};
+/** Once a response is lost, later denials cannot establish that the first write failed. */
+export function timeReportAttemptAfter<T>(state:TimeReportAttempt<T>,event:"unknown"|"retry"|"success"|"rejected"):TimeReportAttempt<T>{
+  if(state.status==="confirmed")return state;
+  if(event==="retry")return state.status==="unknown"?{...state,status:"pending",hasUnknownOutcome:true}:state;
+  if(state.status!=="pending")return state;
+  if(event==="success")return {...state,status:"confirmed",hasUnknownOutcome:false};
+  if(event==="unknown"||state.hasUnknownOutcome)return {...state,status:"unknown",hasUnknownOutcome:true};
+  return {...state,status:"rejected"};
+}
+export function canEditTimeReportAttempt(state:{status:string}):boolean{return state.status==="draft"||state.status==="rejected";}
+export function currentTimeReportResponse(current:number,response:number):boolean{return current===response;}
+export function annotationOutcomeAfter<T extends {status:string;hasUnknownOutcome?:boolean}>(state:T,event:"pending"|"stale"|"success"|"unknown"|"rejected"){
+  if(event==="stale")return {...state,status:"refresh-required",hasUnknownOutcome:false};
+  if(event==="success")return {...state,status:"confirmed",hasUnknownOutcome:false};
+  if(event==="pending")return {...state,status:"pending",hasUnknownOutcome:state.hasUnknownOutcome||state.status==="unknown"};
+  if(event==="unknown"||state.hasUnknownOutcome)return {...state,status:"unknown",hasUnknownOutcome:true};
+  return {...state,status:"error"};
+}
+export function timeReportDraftFromBooking(prefill?:TimeReportBookingPrefill):TimeReportDraft {
+  return {date:prefill?.date??reportToday(),dateEdited:false,hours:prefill?(prefill.minutes===null?"":String(prefill.minutes/60)):"1",canonicalHoursMinutes:prefill?.minutes??null,note:"",bookingId:prefill?.bookingId??null,jobId:prefill?.jobId??null,mode:prefill&&prefill.minutes!==null?"interval":"hours",exactPrefillUnavailable:prefill?.minutes===null,startsAtLocal:prefill?reportLocalInput(prefill.startsAt):"",endsAtLocal:prefill?reportLocalInput(prefill.endsAt):""};
+}
+export function updateTimeReportDraft(draft:TimeReportDraft,patch:Partial<TimeReportDraft>):TimeReportDraft {
+  const next={...draft,...patch};
+  if(patch.hours!==undefined)next.canonicalHoursMinutes=null;
+  if(patch.date!==undefined)next.dateEdited=true;
+  if(patch.startsAtLocal!==undefined&&!next.dateEdited&&isReportDate(patch.startsAtLocal.slice(0,10)))next.date=patch.startsAtLocal.slice(0,10);
+  return next;
+}
+/** Preserve each untouched authoritative endpoint separately, including fold offset and microseconds. */
+export function timeReportDraftMinutes(draft:TimeReportDraft,source?:TimeReportBookingPrefill):number|null {
+  if(draft.mode!=="interval")return draft.canonicalHoursMinutes??parseReportHours(draft.hours);
+  try {
+    const endpoint=(value:string|undefined,original:string|undefined)=>original&&value===reportLocalInput(original)?original:stockholmLocalToUtc(value?.length===16?`${value}:00`:value??"");
+    return reportMinutesBetween(endpoint(draft.startsAtLocal,source?.startsAt),endpoint(draft.endsAtLocal,source?.endsAt));
+  }catch{return null;}
+}
+export function timeReportNavigationAllowed(state:{status:string;dirty:boolean},confirmDiscard:()=>boolean):boolean {
+  if(state.status==="pending"||state.status==="unknown")return false;
+  return !state.dirty||confirmDiscard();
+}
+
+
+# FULL CURRENT CONTEXT: src/features/time-reports/types.ts
+/** Safe client DTOs; private command digests and actor/tenant authority never cross this seam. */
+
+export type ReportInput = { readonly attemptId: string; readonly date: string; readonly minutes: number; readonly note: string | null; readonly bookingId: string | null; readonly jobId: string | null };
+
+export type AnnotationInput = { readonly attemptId: string; readonly reportId: string; readonly expectedRevision: number; readonly note: string | null };
+
+export type TimeReport = { readonly id: string; readonly userId: string; readonly date: string; readonly minutes: number; readonly note: string | null; readonly bookingId: string | null; readonly jobId: string | null; readonly status: "submitted"; readonly bookedMinutesAtFiling: number | null; readonly deltaMinutes?: number | null; readonly reviewNote: string | null; readonly reviewRevision: number; readonly reviewedBy: string | null; readonly reviewedAt: string | null; readonly createdAt: string; readonly personLabel?: string; readonly jobLabel?: string };
+
+export type TimeReportBookingPrefill = { readonly bookingId: string; readonly startsAt: string; readonly endsAt: string; readonly minutes: number | null; readonly jobId: string | null; readonly date: string; readonly jobLabel?: string };
+
+export type TimeReportActionDescriptor = { readonly canReportOwn: boolean; readonly ownSelfPersonIds: readonly string[] };
+
+export type TimeReportQuery = { readonly week?: string; readonly weekStart?: string; readonly mode?: "own" | "review"; readonly personId?: string; readonly jobId?: string; readonly prefillBookingId?: string };
+
+export type TimeReportReadData = { readonly userId: string; readonly canReportOwn: boolean; readonly canReview: boolean; readonly weekStart: string; readonly reports: readonly TimeReport[]; readonly bookedDates: readonly string[]; readonly jobs: readonly {id:string;label:string}[]; readonly people: readonly {id:string;label:string}[]; readonly bookings: readonly TimeReportBookingPrefill[]; readonly prefill: TimeReportBookingPrefill | null; readonly totalMinutes: number; readonly missingDates: readonly string[]; readonly byPerson: readonly {userId:string;minutes:number}[]; readonly byJob: readonly {jobId:string|null;minutes:number}[] };
+
+export type TimeReportReadResult = {readonly ok:true;readonly status:"success";readonly data:TimeReportReadData}|{readonly ok:false;readonly status:"error";readonly code:string;readonly message?:string};
+
+export type TimeReportMutationResult = {readonly status:"success";readonly reportId:string}|{readonly status:"error";readonly code:string;readonly message:string;readonly uncertain:boolean};
+
+export type TimeReportDraft = {readonly date:string;readonly hours:string;readonly note:string;readonly bookingId:string|null;readonly jobId:string|null;readonly mode?:"hours"|"interval";readonly startsAtLocal?:string;readonly endsAtLocal?:string;readonly exactPrefillUnavailable?:boolean;readonly dateEdited?:boolean;readonly canonicalHoursMinutes?:number|null};
+
+
+
+# FULL CURRENT CONTEXT: src/features/time-reports/validation.ts
+import { validateLocalDate } from "@/features/scheduling/time-zone";
+import type { AnnotationInput, ReportInput } from "./types";
+
+export const MAX_REPORT_MINUTES = 2147483647;
+
+export function isReportDate(value: unknown): value is string { if(typeof value!=="string")return false;try{validateLocalDate(value);return true;}catch{return false;} }
+
+/** Decimal arithmetic avoids rounding fractional minutes into accepted time. */
+
+export function parseReportHours(value: string): number | null {
+
+  const match = /^(\d{1,10})(?:[.,](\d{1,10}))?$/.exec(value.trim()); if(!match)return null;
+
+  const fraction=match[2]??"", scale=BigInt(10)**BigInt(fraction.length);
+
+  const numerator=(BigInt(match[1]!)*scale+BigInt(fraction||"0"))*BigInt(60);
+
+  if(numerator%scale!==BigInt(0))return null;const minutes=numerator/scale;
+
+  return minutes>BigInt(0)&&minutes<=BigInt(MAX_REPORT_MINUTES)?Number(minutes):null;
+
+}
+
+export function normalizeReportNote(value: unknown): {ok:true;value:string|null}|{ok:false} {
+
+  if(value===null||value===undefined)return {ok:true,value:null};if(typeof value!=="string")return {ok:false};const note=value.trim();return note.length<=2000?{ok:true,value:note||null}:{ok:false};
+
+}
+
+const uuid=(value:unknown):value is string=>typeof value==="string"&&/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(value);
+
+export function validateReportInput(value:unknown): {ok:true;data:ReportInput}|{ok:false;code:"VALIDATION_FAILED"} {
+
+  const invalid={ok:false as const,code:"VALIDATION_FAILED" as const};if(!value||typeof value!=="object")return invalid;const row=value as Record<string,unknown>,note=normalizeReportNote(row.note);
+
+  if(!uuid(row.attemptId)||!isReportDate(row.date)||typeof row.minutes!=="number"||!Number.isInteger(row.minutes)||row.minutes<1||row.minutes>MAX_REPORT_MINUTES||!note.ok||(row.bookingId!=null&&!uuid(row.bookingId))||(row.jobId!=null&&!uuid(row.jobId)))return invalid;
+
+  return {ok:true,data:{attemptId:row.attemptId,date:row.date,minutes:row.minutes,note:note.value,bookingId:row.bookingId as string|null??null,jobId:row.jobId as string|null??null}};
+
+}
+
+export function validateAnnotationInput(value:unknown): {ok:true;data:AnnotationInput}|{ok:false;code:"VALIDATION_FAILED"} {
+
+  const invalid={ok:false as const,code:"VALIDATION_FAILED" as const};if(!value||typeof value!=="object")return invalid;const row=value as Record<string,unknown>,note=normalizeReportNote(row.note);
+
+  if(!uuid(row.attemptId)||!uuid(row.reportId)||typeof row.expectedRevision!=="number"||!Number.isSafeInteger(row.expectedRevision)||row.expectedRevision<0||!note.ok)return invalid;
+
+  return {ok:true,data:{attemptId:row.attemptId,reportId:row.reportId,expectedRevision:row.expectedRevision,note:note.value}};
+
+}
+
+
+
+# FULL CURRENT CONTEXT: tests/integration/components/time-reports.test.ts
+/** Rendered-state and actual TSX controller tests. The VM substitutes hook scheduling
+ * and action transport; DOM focus, network, authorization and physical persistence
+ * remain the separate essential browser/database lanes. */
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
+import { runInNewContext } from "node:vm";
+import ts from "typescript";
+import * as attemptState from "@/features/time-reports/action-state";
+import * as reportDomain from "@/features/time-reports/domain";
+import * as reportValidation from "@/features/time-reports/validation";
+import * as formModule from "@/components/time-reports/TimeReportForm";
+import * as personalModule from "@/components/time-reports/PersonalTimesheet";
+import { TimeReportEntry } from "@/components/time-reports/TimeReportEntry";
+import type { ReportInput, TimeReportBookingPrefill, TimeReportMutationResult, TimeReportReadResult } from "@/features/time-reports/types";
+import * as jsxRuntime from "react/jsx-runtime";
+import { describe, expect, test, vi } from "vitest";
+import { createElement, isValidElement, type ReactElement } from "react";
+import { renderToStaticMarkup } from "react-dom/server";
+import { TimeReportForm } from "@/components/time-reports/TimeReportForm";
+import { PersonalTimesheet } from "@/components/time-reports/PersonalTimesheet";
+import { TimeReportReview } from "@/components/time-reports/TimeReportReview";
+
+describe("15.4-COMP-001 honest accessible report states (SSR only)", () => {
+  test("confirmed filing exposes the exact persisted-success browser seam", () => {
+    const html = renderToStaticMarkup(createElement(TimeReportForm, {
+      draft: { date: "2026-10-20", hours: "1", note: "", bookingId: null, jobId: null },
+      state: { status: "confirmed" }, onSubmit: () => {}, onRetry: () => {},
+    }));
+    expect(html).toContain('data-testid="time-report-submit-status">Rapporterad</span>');
+    expect(html).toContain("sparad i systemet");
+  });
+
+  test("[P1] 15.4-COMP-001A AC1 AC2 unsent failure retains labelled values and explicit retry", async () => {
+    const html = renderToStaticMarkup(createElement(TimeReportForm, {
+      draft: { date: "2026-10-20", hours: "1,25", note: "Behåll anteckningen", bookingId: null, jobId: null },
+      state: { status: "unknown", message: "Anslutning krävs" }, onSubmit: () => {}, onRetry: () => {},
+    }));
+    expect(html).toContain("Osänd");
+    expect(html).toContain("1,25");
+    expect(html).toContain("Behåll anteckningen");
+    expect(html).toContain("Försök igen");
+    expect(html).not.toContain("Rapporterad");
+    expect(html).toMatch(/<label|aria-label=/);
+  });
+
+  test("[P1] 15.4-COMP-001B AC2 pending is announced without submitted success", async () => {
+    const html = renderToStaticMarkup(createElement(TimeReportForm, {
+      draft: { date: "2026-10-20", hours: "1", note: "", bookingId: null, jobId: null },
+      state: { status: "pending" }, onSubmit: () => {}, onRetry: () => {},
+    }));
+    expect(html).toContain("Sparar");
+    expect(html).toMatch(/role="status"|aria-live=/);
+    expect(html).not.toContain("Rapporterad");
+  });
+
+  test("[P1] 15.4-COMP-001C AC3 failed week read is connection error with retry rather than zero total", async () => {
+    const html = renderToStaticMarkup(createElement(PersonalTimesheet, {
+      result: { ok: false, code: "READ_FAILED" }, weekStart: "2026-10-19", onRetry: () => {},
+    }));
+    expect(html).toContain("Anslutning krävs");
+    expect(html).toContain("Försök igen");
+    expect(html).not.toMatch(/0(?:[,.]0+)?\s*(?:h|timmar)/);
+    expect(html).not.toContain("Inga tidrapporter");
+  });
+
+  test("[P1] 15.4-COMP-001D AC4 AC9 standalone comparison remains absent and review cannot approve", async () => {
+    const html = renderToStaticMarkup(createElement(TimeReportReview, {
+      report: { id: "standalone", date: "2026-10-20", minutes: 75, bookedMinutesAtFiling: null,
+        bookingId: null, jobId: null, status: "submitted", note: "Fältarbete", reviewNote: null, reviewRevision: 0 },
+      canReview: true, onAnnotate: () => {},
+    }));
+    expect(html).toContain("Fältarbete");
+    expect(html).not.toMatch(/Bokat[^<]*0|Godkänn|Avvisa|Fakturera|kr\/h/);
+    expect(html).toMatch(/Anteckning|Granskningsnotering|Granskningsanteckning/);
+  });
+});
+
+describe("fractional booked-minute provenance", () => {
+  test("unavailable exact prefill is honest and requires explicit reported hours", () => {
+    const html=renderToStaticMarkup(createElement(TimeReportForm, {
+      draft:{date:"2026-10-20",hours:"",note:"",bookingId:"booking",jobId:null,mode:"hours",exactPrefillUnavailable:true},
+      state:{status:"draft"},onSubmit:()=>{},onRetry:()=>{},
+    }));
+    expect(html).toContain("Bokningens exakta intervall kan inte förifyllas som hela minuter. Ange rapporterad tid.");
+    expect(html).toMatch(/aria-label="Timmar"[^>]*value=""/);
+    expect(html).toContain("Osänd");
+    expect(html).not.toContain("time-report-submit-status");
+  });
+  test("review preserves fractional booked provenance and comparison without rounding", () => {
+    const html=renderToStaticMarkup(createElement(TimeReportReview, {
+      report:{id:"fractional",date:"2026-10-20",minutes:75,bookedMinutesAtFiling:90.5,bookingId:"booking",jobId:null,status:"submitted",note:null,reviewNote:null,reviewRevision:0},
+      canReview:true,onAnnotate:()=>{},
+    }));
+    expect(html).toContain('data-testid="time-report-booked-at-filing">1 h 30,5 min');
+    expect(html).toContain('data-testid="time-report-booked-delta">−0 h 15,5 min');
+  });
+});
+
+/** Execute the actual TSX controllers and their rendered event handlers. This bounded
+ * VM substitutes hook scheduling, router effects and action transport only. It does
+ * not claim DOM focus, network, authorization, database persistence or browser proof. */
+type ControllerNode=ReactElement<Record<string,unknown>>;
+function findControllerNode(tree:unknown,predicate:(node:ControllerNode)=>boolean):ControllerNode {
+  if(Array.isArray(tree)){for(const child of tree){try{return findControllerNode(child,predicate);}catch{}}}
+  else if(isValidElement(tree)){const node=tree as ControllerNode;if(predicate(node))return node;return findControllerNode(node.props.children,predicate);}
+  throw new Error("Actual controller node not found");
+}
+function controllerText(tree:unknown):string {if(Array.isArray(tree))return tree.map(controllerText).join("");if(isValidElement(tree))return controllerText((tree.props as Record<string,unknown>).children);return typeof tree==="string"||typeof tree==="number"?String(tree):"";}
+function fire(node:ControllerNode,event:string,value?:unknown):unknown {const handler=node.props[event];if(typeof handler!=="function")throw new Error(`Missing actual ${event} handler`);return handler(value);}
+function deferred<T>(){let resolve!:(value:T)=>void;const promise=new Promise<T>(done=>{resolve=done;});return {promise,resolve};}
+function actualController(name:"TimeReportEntry"|"TimeReportReview"|"TimeReportWorkspace",props:Record<string,unknown>,actions:Record<string,unknown>={}) {
+  const slots:unknown[]=[];let cursor=0;
+  const confirm=vi.fn(()=>false),refresh=vi.fn();
+  const hooks={useState:(initial:unknown)=>{const i=cursor++;if(!(i in slots))slots[i]=typeof initial==="function"?initial():initial;return [slots[i],(value:unknown)=>{slots[i]=typeof value==="function"?value(slots[i]):value;}];},useRef:(initial:unknown)=>{const i=cursor++;if(!(i in slots))slots[i]={current:initial};return slots[i];},useEffect:()=>{},useId:()=>"controller-id"};
+  const modules:Record<string,unknown>={react:hooks,"react/jsx-runtime":jsxRuntime,"next/navigation":{useRouter:()=>({refresh})},"@/components/crm/Dialog":{Dialog:"Dialog"},"@/features/time-reports/actions":actions,"@/features/time-reports/action-state":attemptState,"@/features/time-reports/domain":reportDomain,"@/features/time-reports/validation":reportValidation,"./TimeReportForm":formModule,"./PersonalTimesheet":personalModule,"./TimeReportEntry":{TimeReportEntry},"./TimeReportReview":{TimeReportReview}};
+  const source=readFileSync(resolve(process.cwd(),`src/components/time-reports/${name}.tsx`),"utf8");
+  const output=ts.transpileModule(source,{fileName:`${name}.tsx`,compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022,jsx:ts.JsxEmit.ReactJSX}}).outputText;
+  const exported:Record<string,unknown>={};
+  runInNewContext(output,{exports:exported,require:(key:string)=>{if(!(key in modules))throw new Error(`Unexpected controller dependency ${key}`);return modules[key];},crypto:globalThis.crypto,window:{confirm,addEventListener(){},removeEventListener(){}}});
+  const component=exported[name] as (props:Record<string,unknown>)=>unknown;
+  return {render:()=>{cursor=0;return component(props);},confirm,refresh};
+}
+function entryController(prefill?:TimeReportBookingPrefill,responses:TimeReportMutationResult[]=[{status:"success",reportId:"confirmed"}],bookings:readonly TimeReportBookingPrefill[]=[]) {
+ const requests:ReportInput[]=[];const controller=actualController("TimeReportEntry",{prefill,bookings},{fileTimeReportAction:async(input:ReportInput)=>{requests.push(input);const result=responses.shift();if(!result)throw new Error("Missing owned action response");return result;}});
+ fire(findControllerNode(controller.render(),node=>node.type==="button"),"onClick");
+ const form=()=>findControllerNode(controller.render(),node=>node.type===TimeReportForm);
+ return {...controller,form,requests};
+}
+const ownPrefill:TimeReportBookingPrefill={bookingId:"5cc959bf-c106-45c3-8241-44f1101c6860",date:"2026-10-25",startsAt:"2026-10-25T01:30:00Z",endsAt:"2026-10-25T02:30:00Z",minutes:60,jobId:null};
+const reviewReport={id:"2b538f2c-37a5-45e6-baca-03db78dbb21b",date:"2026-10-20",minutes:75,bookedMinutesAtFiling:60.1,bookingId:ownPrefill.bookingId,jobId:"a0a2a2c6-6aad-4cc4-95a9-7a1c7419bd86",status:"submitted",note:null,reviewNote:null,reviewRevision:2};
+
+describe("actual time report controller interaction regressions",()=>{
+ test("R1-01 a lost response then authority denial retains the exact attempt and editing lock until confirmation",async()=>{
+  const entry=entryController(undefined,[{status:"error",code:"SERVER_ERROR",message:"Lost response",uncertain:true},{status:"error",code:"PERMISSION_DENIED",message:"Access denied",uncertain:false},{status:"success",reportId:"same-report"}]);
+  fire(entry.form(),"onChange",{hours:"1,25",note:"Retain this note"});await fire(entry.form(),"onSubmit");
+  expect((entry.form().props.state as {status:string}).status).toBe("unknown");await fire(entry.form(),"onRetry");
+  expect((entry.form().props.state as {status:string}).status).toBe("unknown");
+  fire(entry.form(),"onChange",{note:"Must not replace the uncertain payload"});expect((entry.form().props.draft as {note:string}).note).toBe("Retain this note");
+  expect(renderToStaticMarkup(createElement(TimeReportForm,entry.form().props as Parameters<typeof TimeReportForm>[0]))).toContain('fieldset disabled=""');
+  await fire(entry.form(),"onRetry");expect((entry.form().props.state as {status:string}).status).toBe("confirmed");
+  expect(entry.requests).toHaveLength(3);expect(entry.requests[1]).toBe(entry.requests[0]);expect(entry.requests[2]).toBe(entry.requests[0]);expect(Object.isFrozen(entry.requests[0])).toBe(true);
+ });
+ test("R1-02 actual filing preserves the late fold start when only the local end changes",async()=>{
+  const entry=entryController(ownPrefill);fire(entry.form(),"onChange",{endsAtLocal:"2026-10-25T04:30"});await fire(entry.form(),"onSubmit");expect(entry.requests[0].minutes).toBe(120);
+  const micros=entryController({...ownPrefill,startsAt:"2026-10-25T01:30:00.000001Z",endsAt:"2026-10-25T02:30:00.000001Z"});
+  fire(micros.form(),"onChange",{endsAtLocal:"2026-10-25T04:30"});await fire(micros.form(),"onSubmit");expect(micros.requests).toHaveLength(0);expect((micros.form().props.state as {status:string}).status).toBe("rejected");
+  const unchangedEnd=entryController({...ownPrefill,startsAt:"2026-10-25T00:30:00Z",endsAt:"2026-10-25T02:30:00.000001Z",minutes:null});
+  fire(unchangedEnd.form(),"onChange",{mode:"interval",startsAtLocal:"2026-10-25T02:00"});await fire(unchangedEnd.form(),"onSubmit");expect(unchangedEnd.requests).toHaveLength(0);
+ });
+ test("R1-03 actual hours mode keeps canonical twenty minutes, but explicit rounded input cannot file",async()=>{
+  const source={...ownPrefill,startsAt:"2026-10-20T06:00:00Z",endsAt:"2026-10-20T06:20:00Z",date:"2026-10-20",minutes:20};
+  const entry=entryController(source);fire(entry.form(),"onChange",{mode:"hours"});await fire(entry.form(),"onSubmit");expect(entry.requests[0].minutes).toBe(20);
+  const edited=entryController(source);fire(edited.form(),"onChange",{mode:"hours"});fire(edited.form(),"onChange",{hours:"0.3333333333333333"});await fire(edited.form(),"onSubmit");expect(edited.requests).toHaveLength(0);
+ });
+ test("R1-04 actual standalone first start defaults its day until date is explicitly chosen",()=>{
+  const entry=entryController();fire(entry.form(),"onChange",{mode:"interval"});fire(entry.form(),"onChange",{startsAtLocal:"2026-10-12T23:30"});expect((entry.form().props.draft as {date:string}).date).toBe("2026-10-12");
+  fire(entry.form(),"onChange",{date:"2026-10-14"});fire(entry.form(),"onChange",{startsAtLocal:"2026-10-13T00:30"});expect((entry.form().props.draft as {date:string}).date).toBe("2026-10-14");
+ });
+ test("R1-05 actual booking links confirm dirty discard and block pending/unknown navigation without losing the note",async()=>{
+  const pending=deferred<TimeReportMutationResult>(),requests:unknown[]=[];
+  const review=actualController("TimeReportReview",{report:reviewReport,canReview:true,onAnnotate:(input:unknown)=>{requests.push(input);return pending.promise;}});
+  const note=()=>findControllerNode(review.render(),node=>node.type==="textarea");
+  fire(note(),"onChange",{target:{value:"Unsaved review note"}});
+  const clickLink=(href="/scheduling",event="onClick")=>{const links=findControllerNode(review.render(),node=>node.type===personalModule.TimeReportLinks);const rendered=personalModule.TimeReportLinks(links.props as Parameters<typeof personalModule.TimeReportLinks>[0]);const link=findControllerNode(rendered,node=>node.props.href===href);const preventDefault=vi.fn();fire(link,event,{preventDefault});return preventDefault;};
+  expect(clickLink()).toHaveBeenCalledOnce();expect(review.confirm).toHaveBeenCalledOnce();expect(note().props.value).toBe("Unsaved review note");
+  expect(clickLink(`/jobs/${reviewReport.jobId}`)).toHaveBeenCalledOnce();expect(review.confirm).toHaveBeenCalledTimes(2);
+  review.confirm.mockReturnValueOnce(true);expect(clickLink()).not.toHaveBeenCalled();
+  const saving=fire(findControllerNode(review.render(),node=>node.type==="form"),"onSubmit",{preventDefault(){}});
+  expect(clickLink()).toHaveBeenCalledOnce();expect(review.confirm).toHaveBeenCalledTimes(3);
+  expect(clickLink(`/jobs/${reviewReport.jobId}`,"onAuxClick")).toHaveBeenCalledOnce();
+  pending.resolve({status:"error",code:"SERVER_ERROR",message:"Lost annotation response",uncertain:true});await saving;
+  expect(clickLink()).toHaveBeenCalledOnce();expect(clickLink(`/jobs/${reviewReport.jobId}`)).toHaveBeenCalledOnce();expect(review.confirm).toHaveBeenCalledTimes(3);expect(note().props.value).toBe("Unsaved review note");expect(note().props.disabled).toBe(true);expect(requests).toHaveLength(1);
+ });
+ test("R1-08 actual stale annotation locks editing, requires refresh and never calls onSaved",async()=>{
+  const onSaved=vi.fn(),review=actualController("TimeReportReview",{report:reviewReport,canReview:true,onSaved,onAnnotate:async()=>({status:"error",code:"COMMAND_CONFLICT",message:"stale",uncertain:false})});
+  fire(findControllerNode(review.render(),node=>node.type==="textarea"),"onChange",{target:{value:"Stale annotation"}});
+  await fire(findControllerNode(review.render(),node=>node.type==="form"),"onSubmit",{preventDefault(){}});
+  expect(findControllerNode(review.render(),node=>node.type==="textarea").props.disabled).toBe(true);expect(controllerText(review.render())).toContain("Läs in tidrapporten igen.");expect(controllerText(review.render())).toContain("Läs in igen");expect(controllerText(review.render())).not.toContain("Anteckningen är sparad.");expect(onSaved).not.toHaveBeenCalled();
+ });
+ test("R1-09 actual workspace keeps the newest selection when an older read resolves later",async()=>{
+  const result=(weekStart:string,totalMinutes:number):TimeReportReadResult=>({ok:true,status:"success",data:{userId:"own",canReportOwn:true,canReview:false,weekStart,reports:[],bookedDates:[],jobs:[],people:[],bookings:[],prefill:null,totalMinutes,missingDates:[],byPerson:[],byJob:[]}});
+  const first=deferred<TimeReportReadResult>(),second=deferred<TimeReportReadResult>();let count=0;
+  const workspace=actualController("TimeReportWorkspace",{initial:result("2026-10-05",1),initialQuery:{mode:"own",weekStart:"2026-10-05"},readAction:()=>++count===1?first.promise:second.promise});
+  const date=()=>findControllerNode(workspace.render(),node=>node.type==="input"&&node.props.type==="date");
+  const old=fire(date(),"onChange",{target:{value:"2026-10-12"}}),latest=fire(date(),"onChange",{target:{value:"2026-10-19"}});
+  second.resolve(result("2026-10-19",19));await latest;first.resolve(result("2026-10-12",12));await old;
+  expect(date().props.value).toBe("2026-10-19");const sheet=findControllerNode(workspace.render(),node=>node.type===PersonalTimesheet);expect((sheet.props.result as Extract<TimeReportReadResult,{ok:true}>).data.totalMinutes).toBe(19);expect(sheet.props.weekStart).toBe("2026-10-19");
+ });
+ test("R1-07 actual review markup preserves raw decimal booked provenance and exact decimal delta",()=>{
+  const html=renderToStaticMarkup(createElement(TimeReportReview,{report:{...reviewReport,status:"submitted"},canReview:true}));
+  expect(html).toContain('data-testid="time-report-booked-at-filing">1 h 0,1 min');expect(html).toContain('data-testid="time-report-booked-delta">+0 h 14,9 min');expect(html).not.toContain("14,899999999999999");
+ });
+ test("R2-01 actual booking detachment keeps twenty canonical minutes in hours mode and clears both relationships",async()=>{
+  const source={...ownPrefill,startsAt:"2026-10-20T06:00:00Z",endsAt:"2026-10-20T06:20:00Z",date:"2026-10-20",minutes:20,jobId:reviewReport.jobId};
+  const entry=entryController(undefined,undefined,[source]);
+  fire(entry.form(),"onBookingChange",source.bookingId);fire(entry.form(),"onChange",{mode:"hours",note:"Keep declared time"});fire(entry.form(),"onBookingChange","");
+  await fire(entry.form(),"onSubmit");expect(entry.requests).toHaveLength(1);
+  expect(entry.requests[0]).toMatchObject({date:source.date,minutes:20,bookingId:null,jobId:null,note:"Keep declared time"});
+  expect((entry.form().props.state as {status:string}).status).toBe("confirmed");
+  const edited=entryController(undefined,undefined,[source]);fire(edited.form(),"onBookingChange",source.bookingId);fire(edited.form(),"onChange",{mode:"hours"});fire(edited.form(),"onBookingChange","");fire(edited.form(),"onChange",{hours:"0.3333333333333333"});
+  await fire(edited.form(),"onSubmit");expect(edited.requests).toHaveLength(0);expect((edited.form().props.state as {status:string}).status).toBe("rejected");
+ });
+ test("R2-02 actual booking detachment preserves unchanged late-fold UTC endpoints through standalone submission",async()=>{
+  const source={...ownPrefill,jobId:reviewReport.jobId},entry=entryController(undefined,undefined,[source]);
+  fire(entry.form(),"onBookingChange",source.bookingId);fire(entry.form(),"onBookingChange","");await fire(entry.form(),"onSubmit");
+  expect(entry.requests).toHaveLength(1);expect(entry.requests[0]).toMatchObject({date:source.date,minutes:60,bookingId:null,jobId:null});
+  expect((entry.form().props.state as {status:string}).status).toBe("confirmed");
+  const adjusted=entryController(undefined,undefined,[source]);fire(adjusted.form(),"onBookingChange",source.bookingId);fire(adjusted.form(),"onBookingChange","");fire(adjusted.form(),"onChange",{endsAtLocal:"2026-10-25T04:30"});
+  await fire(adjusted.form(),"onSubmit");expect(adjusted.requests[0]).toMatchObject({minutes:120,bookingId:null,jobId:null});
+ });
+});
+
+
+# R2 residuals
+{
+  "round": 2,
+  "counted_rounds": 2,
+  "cap": 3,
+  "rederivation_iteration": 0,
+  "source_head": "1f19e3f3b7562bd43732dc61c17a9d0b1b5cee34",
+  "input_sha256": "ec5d409b466b789a2e658e46f65c313046fa5b57ed001d5e53949456219cb2d4",
+  "targeted_internal_result": "Original report resolves all nine at source level; native external and parent focused trace identify residual detachment boundaries below. Preserve original report without rewriting.",
+  "external_native": {
+    "exit": 0,
+    "observed_model": "gpt-6.1-sol",
+    "observed_effort": "high",
+    "sandbox": "read-only",
+    "approval": "never",
+    "report_bytes": 587,
+    "report_sha256": "9230d36a5f2219a4f0c1dc681971c5d930bea7f14d0725d4c5352a359cbc33c9",
+    "result": "One R1-03 residual finding; command plumbing qualified, source not accepted."
+  },
+  "triage": {
+    "intent_gap": 0,
+    "bad_spec": 0,
+    "patch": 2,
+    "patch_high": 1,
+    "patch_medium": 1,
+    "defer": 0,
+    "reject": 0,
+    "followup_recommended": true,
+    "score": 3
+  },
+  "findings": [
+    {
+      "id": "R2-01",
+      "original": "R1-03",
+      "severity": "medium",
+      "location": "src/components/time-reports/TimeReportEntry.tsx:27",
+      "claim": "Removing booking relationship clears canonical minutes while generated nonterminating decimal hour string remains; valid20-minute hours submission fails. Preserve duration when only relationship changes.",
+      "source": "qualified native CLI report; parent downstream source verified"
+    },
+    {
+      "id": "R2-02",
+      "original": "R1-02",
+      "severity": "high",
+      "location": "src/components/time-reports/TimeReportEntry.tsx:27",
+      "claim": "Same detach operation drops original UTC endpoint source. Unchanged late-fold01:30Z-to02:30Z interval changes60to120minutes under standalone local reparsing. Preserve endpoint provenance when only relationship changes.",
+      "source": "parent focused production-helper execution and actual caller trace",
+      "actual_probe": {
+        "command": "node --experimental-strip-types --import ./tests/support/register.mjs -e [production action-state helper latefold detachment probe]",
+        "exit": 0,
+        "before_detach_minutes": 60,
+        "current_detached_minutes": 120,
+        "scope": "pure helper execution plus source-confirmed current chooseBooking detachment composition; no component/DB/browser claim"
+      }
+    }
+  ],
+  "fix_route": {
+    "agent": "original author",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "scope": "ONE detachment operation, preserve duration/provenance, actual controller regression for both modes, minor SRO attribution; no new files/contracts/runtime"
+  },
+  "next": "Final LIMITED round3 latest detach fix only, reuse unchanged prior reviews. No fourth broad pass."
+}
