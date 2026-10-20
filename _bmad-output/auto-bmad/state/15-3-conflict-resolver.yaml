@@ -1,0 +1,105 @@
+# auto-bmad per-story state — written by scripts/state_update.py (full stable schema;
+# see references/state-and-resume.md). Prose belongs in reports/{key}.md, not here.
+story_key: 15-3-conflict-resolver
+epic_num: 15
+story_num: 3
+story_suffix: ""
+story_source: sprint
+spec_folder: null
+story_id: null
+branch: codex/epic-15-scheduling-time-calendar
+status: in-progress
+updated_at: "2026-10-20T01:09:45Z"
+started_at: "2026-10-20T01:09:10Z"
+completed_at: null
+active_seconds: 0
+timing_anchor: 1792458585
+is_first_in_epic: false
+is_last_in_epic: false
+git_mode: remote
+base_branch: main
+selected_phase: build
+selected_role: build-delegate
+selected_profile: standard
+selected_model: gpt-6.1-sol
+selected_effort: high
+selected_host: codex
+selected_tier: subagents
+selected_route: subagent
+escalation_reason: "Automatic sensitive-task escalation: authorization, transactional-integrity"
+routing_ledger:
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+tea_risk: high
+tea_selected: [atdd, automate, trace-advisory]
+tea_rationale: "Scheduling conflict resolution includes recurring-series bulk changes and persistent accepted-conflict identity; six-story/after3 long-epic trace advisory applies."
+epic_story_count: 6
+stories_after_in_epic: 3
+completed_phases: [0, 1, 2]
+spec_path: null
+spec_approved: false
+build:
+  status: null
+  blocking_condition: null
+  followup_review_recommended: false
+  review_loop_iteration: 0
+  deferred_count: 0
+  warnings: []
+followup_passes: 0
+hitl_halt: null
+review_unverified: false
+story_trace: null
+legacy_review_resume: false
+legacy_review_iteration: null
+legacy_review_loop_done: false
+legacy_external_review_iterations: null
+legacy_convergence_unverified: false
+legacy_artifact_path: null
+commits: []
+phase8_steps:
+  trace_gate: null
+  nfr: null
+  test_review: null
+  reconcile: null
+  archive: null
+  retro: null
+gate_decision: null
+gate_iterations: 0
+deferred_work_archived: 0
+retro:
+  doc: null
+  verdict: null
+  open_action_items: 0
+bmad_status_flipped_at: null
+pr_url: null
+ci_run_url: null
+ci_status: unknown
+pr_merged: false
+merge_method: null
+merge_commit: null
+branch_deleted: false
+open_questions: []
+deferred_work: []
+blockers: []
+overrides:
+  oracle: "Owner2026-10-15 prohibits legacyURLs/browsing; useapprovedrequirements/existingdesignsystem/accessibility andrecordowner-authorizeddefaults, notlegacyobservations."
+  ownership: "Own15.3spec/epic15contextpreparationonlyinitially; coordinateactualDocuments/E16sharedfiles/migrations/mutablefixturesbeforeoverlappingimplementation."
+  spec_validation: Prepare and independently validate every story specification before build.
+  unattended: "Full sequential epic request; ordinarySol6.1Low, actualsensitiveSol6.1High delegates."
+  calendar_host: "ContractD acceptance transferred/carried in15.1; preserveintegratedoutcomes."
+  deploy: Forbidden
+  merge: "No main merge this run; retainbranches; onefinalepicPR."
+  merge_main: false
+  retro: "Epic14 October8 accepted-with-open-items authoritative; October7 rejection historical."
+  checkpoint_push: "Reviewedboundedcheckpointpushes/standardCI authorized; preserveownership/exactsourceevidence andno deployment."
+  development_completion_policy: 2026-10-19
+  deployment: false
+  one_epic_pr: true
+  owner_preview_policy: "AutomaticPreviewsremain disabled untilownerreenables; no manualdeployment/provider/secrets changes authorized."
+  frontend_final_PR: "Apply and verify agent-fix label; attach finalepicPR."
+  owner_resume: "Explicit owner authorization after2026-10-19 development-completion policy; no implicit paused-session resumes."
+constraints:
+  - "Predecessor15.1/15.2 internallylanded; currentapplication sourcea00dd595 qualified exactCI39348312783 withdisclosedunchangedJobsE03 flakyretry; metadataRoot244/af4328 appdependenciesunchanged. Thisispredecessorevidence, not15.3implementationcoverage."
+  - "Fresh15.3plan writesonly ownspec+ownedepic15context, then distinct High validation. No app/schema/test/runtime changes beforeapprovedspec andconcreteoverlapallocation."
+  - "ExistingDocuments/E16claims remain reserved byactualscope. Preserve16.2membership/schema/ACLassertions onlaterintegration andderive migrationinventory fromactualcombinedhistory; do notmodifyforeigncheckouts."
+  - "No newlegacy observations or inferredparity. MaintainapprovedPhaseBscope, headlessdomain/state/validation/actions withusableUI, authorization/transactioninvariants, independentreviewandthree-roundcap."
+  - "Fresh20OctCoordinator snapshot 05b65e8c75f01ff19e2f37bf9680500d84cea3134e28fcdaf69f1e0a8fe55dcb: Documentsnoactiveclaim/E16idle90f53dc8,16.3noimplementationreservation; protectedv3facts/perbookingjobId/distinctproof/currentlocks/conflictrefresh andE16logicalsharedownershipremain. No new15.3migration/resourceallocated; exactactualoverlapbeforeedits; nonoverlappingownspec/contextmayproceed."
