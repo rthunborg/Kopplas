@@ -3,8 +3,8 @@ title: '15.3 — Conflict Resolver'
 type: 'feature'
 created: '2026-10-20'
 status: 'in-review'
-review_loop_iteration: 1
-followup_review_recommended: true
+review_loop_iteration: 2
+followup_review_recommended: false
 baseline_revision: '3245042f1f9e08c3ec6c2445c1cb6109e326be33'
 context:
   - docs/process/review-order.md
@@ -213,7 +213,7 @@ Required runtime matrix is now INT-001…017 (17cases), RLS-001…004, READ-001�
 
 ## Suggested Review Order
 
-Author: the implementation delegate named above. Refreshed after the consolidated round1 batch against source commit `3aaa522bc8448e38a7ec7ce2fecc2dbcb9b927b4`; this section and pending delivery record are the subsequent author documentation change. The13finding-to-test mappings and actual execution limits are above.
+Author: the implementation delegate named above. Refreshed after the narrow round2 test-body repair at `9b862185f6dd6485c5c8b6d87be943bb9d8c5939`; production/unit source remains `3aaa522bc8448e38a7ec7ce2fecc2dbcb9b927b4`. This section and pending delivery record are the subsequent author documentation change. The13round1 finding-to-test mappings above remain applicable; round2 repairs the strict history locator without removing either event.
 
 ### Reach a complete, honest conflict queue
 
@@ -249,12 +249,26 @@ AC6/8 retains an unknown attempt until explicit replay, releases first definite 
 - `src/features/scheduling/conflict-resolver-state.ts:8` — `resolverAttemptForFailure`: definite denial versus already unknown classification.
 - `src/components/scheduling/ConflictResolver.tsx:49` — `renewAcceptance`: preserve reason and require current acknowledgment.
 - `tests/e2e/conflict-resolver.e2e.spec.ts:16` — `15.3-E2E-001`: actual denial/staleness/unknown acceptance navigation and replay.
-- `tests/e2e/conflict-resolver.e2e.spec.ts:52` — `15.3-E2E-003`: truthful remaining notice and keyboard/lost-response readbacks.
+- `tests/e2e/conflict-resolver.e2e.spec.ts:61` — `const changes=`: exactly two history rows, separately remaining and resolved.
 
 Evidence: local commands/counts and failure history are recorded above; the source commit is the verified baseline-to-source boundary. Limits: zero local DB/RLS/Storage/browser execution; migration SQL syntax/replay and actual hook cleanup remain unqualified until CI. Unit read-model ports inject SQL-shaped facts into actual production modules, not actual auth/RLS; SSR is structure only. No external mail/integration, exhaustive screenshot/device matrix, manual accessibility or representative performance execution is claimed.
 
 ## Auto Run Result
 
-Status: in-review; consolidated round1 repairs source checkpoint ready for targeted independent High verification. Development completion remains pending exact-head full required DB/RLS, direct recovery-Storage, essential browser execution, independent fix review/provenance and Root delivery gate. Draft `_bmad-output/auto-bmad/delivery/15-3-conflict-resolver.json` deliberately records those pending checks and cannot admit done. Root alone owns state/sprint/aggregate ledgers, CI/push and release/deployment authority. Deferred release items in that record must be mirrored by Root into its existing ledger. `release_ready=false`.
+Status: in-review; round2 narrow test-body repair ready for the same reviewer's targeted assertion verification. Development completion remains pending exact-head full required DB/RLS, direct recovery-Storage, essential browser execution, final fix/provenance qualification and Root delivery gate. Draft `_bmad-output/auto-bmad/delivery/15-3-conflict-resolver.json` deliberately records those pending checks and cannot admit done. Root alone owns state/sprint/aggregate ledgers, CI/push and release/deployment authority. Deferred release items in that record must be mirrored by Root into its existing ledger. `release_ready=false`.
 
 Author checks: `check-review-order.mjs` passes with exactly one section, 16 verified path/line stops and zero reference errors. The draft delivery gate returns `development_complete:false`, with three pending runtime checks plus pending independent review; this expected refusal is not a completion failure disguised as a pass. Resume after Root supplies actual exact-head results and independent provenance, then this author refreshes the same section/record before Root admission.
+
+## Independent Follow-up Review
+
+**Round 2 of 3**
+
+2026-10-20: context-free gpt-6.1-sol High targeted verification of the13 round1 repairs, changed lines and consequential regressions at source3aaa522bc8448e38a7ec7ce2fecc2dbcb9b927b4 / metadata39d02efcc3d08515fe45ad4087aeaad255f69ed6. This is a counted follow-up round, not an unchanged broad pass. Runtime execution remains pending exact-head CI.
+
+All13 round1 repairs independently verified fixed; no reachable production correctness, authorization or transaction defect found. The reviewer independently qualified all56 Git blobs/path set and the author trail, and ran14 bounded domain/state/suggestion probes (14passed/0failed/0skipped). This is reported reviewer execution, distinct from the author's checks and from DB/browser execution.
+
+Round2 triage: 1 medium test-body patch; high0/low0/intent_gap0/bad_spec0/defer0/reject0; score3, follow-up recommendation false. R2-01: E2E-003 deliberately persists two adjustment histories, so its single strict `getByText(/Bokning ändrad/)` locator was ambiguous. Author now asserts exactly two history list items, exactly one visible remaining item and exactly one visible resolved item; persisted result outcomes must independently equal remaining/resolved. Existing ledger/replay/notification count2 assertions are preserved. No first-item selection, arbitrary narrowing, production change or unit change was used.
+
+Narrow source/test fix `9b862185f6dd6485c5c8b6d87be943bb9d8c5939`, one path after `39d02efcc3d08515fe45ad4087aeaad255f69ed6`; binary delta SHA256 `86b4877e516e060ddcbe1862367609503a02c9f4186806e539ecc148c2b8bfa8`, test Git-blob SHA256 `a53267d6c494594edaa8fb8793e9a212cc4d60f58a4545f17fc8256693fc537b`. Author `pnpm typecheck` and focused ESLint pass. `pnpm exec playwright test tests/e2e/conflict-resolver.e2e.spec.ts --list --reporter=json` registers3active tests,0skipped,0execution results; all expectedStatus values are passed with no skip annotations. This is collection only, not passing browser execution. Prior round1 build/full unit3018P0F1S, production/static/containment evidence remains applicable because only this test-body assertion and author documentation changed; no unchanged broad checks were rerun merely to decorate the record.
+
+Counted review rounds remain2/3. The same reviewer's requested narrow assertion check is subsequent targeted verification, not a new broad pass; parent guard accounting remains authoritative. Runtime remains0 for this author and required CI/delivery evidence stays pending. The same Suggested Review Order is refreshed above; frozen intent/ACs and all failure/skip history remain preserved.
