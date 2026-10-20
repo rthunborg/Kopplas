@@ -15,7 +15,7 @@ export const REPORT_DATE = "2026-10-12";
 export type ReportRow = {
   id: string; tenant_id: string; user_id: string; report_date: string;
   duration_minutes: number; booking_id: string | null; job_id: string | null;
-  note: string | null; status: string; booked_minutes_at_filing: number | null;
+  note: string | null; status: string; booked_minutes_at_filing: string | null;
   created_at: string; review_note: string | null; reviewed_by: string | null;
   reviewed_at: string | null; review_revision: number;
 };

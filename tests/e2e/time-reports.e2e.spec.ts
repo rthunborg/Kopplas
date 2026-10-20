@@ -58,8 +58,14 @@ test.describe("15.4 essential production-host time reporting", () => {
       expect(rows).toHaveLength(1);
       expect(rows[0]).toMatchObject({ tenant_id: f.fx.base.tenantA.id,
         user_id: f.fx.users.montor.id, report_date: REPORT_DATE, duration_minutes: 180,
-        status: "submitted", booking_id: f.ownBooking, job_id: f.job.id,
-        booked_minutes_at_filing: 120 });
+        status: "submitted", booking_id: f.ownBooking, job_id: f.job.id });
+      // Raw node-pg numeric remains a decimal string; compare exactly in SQL.
+      const booked = await adminQuery<{ matches_expected_booked_minutes: boolean | null }>(
+        `select booked_minutes_at_filing=120::numeric as matches_expected_booked_minutes
+         from public.time_reports where tenant_id=$1::uuid and id=$2::uuid`,
+        [f.fx.base.tenantA.id, rows[0].id]);
+      expect(booked).toHaveLength(1);
+      expect(booked[0].matches_expected_booked_minutes).toBe(true);
       expect(durable.reports.length - before.reports.length).toBe(1);
       const audits = durable.audit.filter((row) => row.target_id === rows[0].id);
       expect(audits).toHaveLength(1);
