@@ -80,7 +80,8 @@ export function planBookingSeries(snapshot: SeriesSnapshot, input: BookingSeries
     }
   }
   const expanded = expandRecurrence(rule);
-  if (!expanded.ok) throw new CommandError("VALIDATION_FAILED");
+  if (!expanded.ok) throw new CommandError("VALIDATION_FAILED", expanded.localDate ?
+    `Tillfället ${expanded.localDate} får ingen positiv tidslängd efter Stockholms tidsomställning. Ändra tiderna och försök igen.` : undefined);
   const slots = expanded.occurrences.filter(slot => (!source?.endsBefore || slot.nominalDate < source.endsBefore) && (!pivot || slot.nominalDate >= pivot));
   if (predecessor?.endsBefore && slots.some(slot=>slot.nominalDate < predecessor.endsBefore!)) throw new CommandError("VALIDATION_FAILED");
   if (!slots.length) throw new CommandError("VALIDATION_FAILED");

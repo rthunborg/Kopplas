@@ -188,7 +188,7 @@ function publicSeriesCase(dst = false) {
   modules["@/server/commands/bookings/create-booking-series"]=load("src/server/commands/bookings/create-booking-series.ts");
   modules["@/server/commands/bookings/update-booking-series"]=load("src/server/commands/bookings/update-booking-series.ts");
   const actions=load("src/features/resources/booking-series-actions.ts") as {
-    previewBookingSeriesAction:(input:unknown)=>Promise<{status:string;code?:string;preview?:Awaited<ReturnType<typeof previewBookingSeries>>}>;
+    previewBookingSeriesAction:(input:unknown)=>Promise<{status:string;code?:string;message?:string;preview?:Awaited<ReturnType<typeof previewBookingSeries>>}>;
     saveBookingSeriesAction:(input:unknown)=>Promise<{status:string;code?:string}>;
   };
   async function save(preview:NonNullable<Awaited<ReturnType<typeof actions.previewBookingSeriesAction>>["preview"]>){return actions.saveBookingSeriesAction({...raw,
@@ -206,7 +206,8 @@ test("Round3 public preview and save envelope expand the effective original-end 
 }));
 test("Round3 effective DST failure blocks public preview and save before finalization",async()=>syntheticKey(async()=>{
   const h=publicSeriesCase(true);Object.assign(h.raw.rule,{count:2});
-  assert.equal((await h.previewBookingSeriesAction(h.raw)).code,"VALIDATION_FAILED");
+  const preview=await h.previewBookingSeriesAction(h.raw);assert.equal(preview.code,"VALIDATION_FAILED");
+  assert.match(preview.message??"",/2026-03-29/,"effective failing occurrence remains actionable in the public preview");
   assert.equal((await h.saveBookingSeriesAction({...h.raw,editorReview:{receipt:"untrusted",decision:{acknowledged:false,reviewedLogicalIds:[],selectedLogicalIds:[],reason:""}}})).code,"VALIDATION_FAILED");
   assert.equal(h.plans.length,0);
 }));
