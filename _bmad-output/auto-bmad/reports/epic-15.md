@@ -1595,3 +1595,43 @@ The pushed checkpoint S stopped at the required unit gate: 2,773 passes and four
 The one-file repair resolves the installed pinned Playwright 1.61.1 loader and verifies its qualified source hash before evaluation. With the private path denied, the four failures reproduce before the repair and all four pass afterward; the related suite passes 214 tests with no failures, cancellation or skips. Wrong-version and wrong-hash witnesses refuse before TaskRunner evaluation. Lint, full nonincremental typecheck and diff validation pass. Independent Sol High focused review passes; the 31 other source bindings and historical prefix/inverse assertions remain conserved.
 
 The owned run is terminal. Both temporary admission variables were conditionally removed; a fresh identity-only namespace read confirms all original eight variable identities unchanged and the pair absent, with no residue. No deployment occurred. Story 15.1 remains blocked on hosted verification and later completion gates; P5 is incomplete, broad review rounds remain 0/3, and 15.2 is not released.
+
+## Report — 2026-10-20T04:21:02Z (halted — direct Coordinator approval and accepted allocation required)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `eba8a9d`).
+**Pipeline status:** Epic15 incomplete;15.1–3 internally landed;15.4 specification approved, P4/P5 unstarted; sensitive implementation allocation delivery rejected by automatic approval.
+**Continues:** ## Report — 2026-10-16T22:46:22Z (checkpoint - reviewed lifecycle observations and exact provenance expansion; runtime pending)
+
+**Summary:** This continuation completed15.3 P6 automation/P7trace/ledger/atomiclanding and pushedcloseoute6dbd92b. Prepared15.4 at5040, distinctHigh validationPASS26/26/0findings; froze10tasks/9ACs/kernel3c701d71/specraw7933d020 and19bindings. Pushedplan05b10ce2 and preparation-only ownershipsuccessor/holdcheckpointeba8a9de. No15.4implementation/runtime occurred.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 255h 23m (≈49h 07m AI-run, ≈206h 15m human/idle wait); resumed 44×.
+
+**Stories:**
+1. 15.1: previously internally landed; historical evidence unchanged this continuation.
+2. 15.2: previously internally landed; inherited review_unverifiedTRUE preserved, no fourth broad review.
+3. 15.3: P5 admitted before this continuation; P6assessment22/22; P7advisoryPASS8/8requiredACs/actualskillgateNOT_EVALUATED allow_gatefalse;0reviewdeferrals harvested;3releaseitems synchronized; internallylanded.
+4. 15.4: ready-for-dev/approved after distinctSolHigh26checks; newshortownershipsuccessor only; accepted source/SQL/config/test/resource allocation absent; P4/P5 notstarted.
+5. 15.5–15.6: backlog; not started.
+
+**Skipped:** (none)
+
+**Epic gate:** Not run; E8 requires remainingstories. No epic development-complete/release-ready or finalization claim.
+
+**TEA:** 15.3automate reused qualifiedd550/run39363860222:16focusedunit/25resolverDB-RLS-read-SSR/3essentialbrowser; source57 unchanged. TraceP0 5/5,P1 3/3,overall8/8 advisoryPASS, actualgateNOT_EVALUATED/allowfalse;12artifactchecks. No newtests/runtime/CI/reviewrounds.15.4LowtriageHIGH selectsatdd+automate; no last-three storytraceadvisory.
+
+**Retrospective:** Epic15 not run; Epic14 October8 accepted-with-open-items remains authoritative, October7 historical.
+
+**Overrides:** Sequential oneepicbranch/finalPR only; explicitSol6.1Low ordinary/High sensitive; specvalidationbeforebuild; no legacyURLs/browsing; no mainmerge/deployment/provider/secrets/pausedsessionresume; retainbranches.
+
+**Open questions:** (none)
+
+**Deferred work:**
+1. Existing exhaustivebrowser/visual/device,manualaccessibility/daylight/exploration/polish and representativeScheduling/R012/resolverperformance remain deferred withowners/actions in recovery/deferred-validation.md; ledgerSHA91ae99df2afe212206110cecbe72d13053f836f8b7fd9dec6ac30cfd4d79eb78. General/E16 rows conserved. No consequentialfunctional/security/integrity failure deferred.
+
+**⚠️ Needs human:**
+1. Coordinator reports automatic approval rejected both implementation-allocation messages: earlierpause, then cross-chatresumeproof treated asuntrusted/notexactscopeauthorization. Human must approve reviewed15.4ownfiling/AdminPLreview/in_appnudge+forwardmigration20261020190000_time_reports.sql+named2serialDDLtestfiles+smokeregistration directly in Coordinator, then Coordinator must deliver accepted exact allocation. No retry/workaround/indirectauthority; reservation/proposal/PASS is not sourceexecutiongrant.
+
+**Next:** After directhumanapproval in Coordinator and accepted exact allocation, resume /auto-bmad epic --epic15 at15.4 P4 with approvedkernel/bindings preserved. Humanreview: /bmad-checkpoint-preview codex/epic-15-scheduling-time-calendar. Projectcontext: /bmad-project-context refresh remains recommended at completedepic end.
+
+Resume-command correction for this section: `/auto-bmad epic --epic 15` (with a space before `15`).
