@@ -2,9 +2,9 @@
 title: '15.3 — Conflict Resolver'
 type: 'feature'
 created: '2026-10-20'
-status: 'in-progress'
-review_loop_iteration: 0
-followup_review_recommended: false
+status: 'in-review'
+review_loop_iteration: 1
+followup_review_recommended: true
 baseline_revision: '3245042f1f9e08c3ec6c2445c1cb6109e326be33'
 context:
   - docs/process/review-order.md
@@ -105,6 +105,30 @@ Exact proposed source/test/shared seams, forward SQL function inventory, new-tab
 
 ## Review Triage Log
 
+### Review Findings
+
+**Round 1 of 3**
+
+Route: context-free gpt-6.1-sol High for all source-review layers because this diff changes current authorization, RLS and transaction integrity. Review input source9548c5cd33d6696817ed334fc832b2259e592437 / metadata8d06d549432479ad3e2261f8e746d716adcb4dd2; required runtime execution is pending exact-head CI. No development-complete claim.
+
+All six independent High layers completed. Consolidated adjudication: 13 patches (2 high, 11 medium), intent_gap0/bad_spec0/defer0/reject0; security reported No findings. Cross-layer duplicates are deduplicated. Frozen intent is unchanged. This author applied one consolidated fix batch; completed source review rounds remain 1/3 here. Author verification below is not an independent review round. The next independent check targets these fixes/regressions under the parent's actual guard accounting; no unchanged broad review is requested. Follow-up recommended: true (score33).
+
+| Finding | Author repair | Regression mapping (runtime cases remain unexecuted) |
+| --- | --- | --- |
+| R1-01 high | Validated current identities may have retained resolved rows; refresh reopens/clears terminal fields before selective acceptance, while accepted groups remain denied. | INT-013 changes only capacity facts after resolution, then accepts the same returning identity and checks cleared terminal metadata/already-accepted denial. |
+| R1-02 medium | Strictly validated following-series input passes through resolver preview/save adapters into the same atomic finalizer; source/successor bounds, protected payloads and stable slots follow the existing series planner. Ordinary series commits are not called by resolver recurrence paths. | Actual planner unit; INT-016 existing-successor/prefix/protected/suffix readbacks and one audit/outcome/replay; E2E-002 explicit Detta och kommande plus ordinary persisted sibling times. |
+| R1-03 medium | First definite authorization denial releases the acceptance attempt; an already unknown attempt retains its exact identity on denied retry. | New state unit exercises all four denial codes and SERVER_ERROR; E2E-001 disables/restores actual membership and checks editability. |
+| R1-04 medium | Stale acceptance keeps the unsent reason and dialog, renews the real preview, clears acknowledgment and requires review again; unsuccessful renewal remains blocked with explicit retry. | E2E-001 changes real baseline facts, retains literal reason and requires renewed checkbox acknowledgment. |
+| R1-05 medium | Acceptance adds history/unload protection and unsent-discard confirmation; pending/unknown attempts cannot be discarded or navigated away through the established back pattern. | E2E-001 loses a real committed response, observes actual popstate, checks unload cancellation and replays one durable event. Synthetic unload-event dispatch checks listener behavior, not a full browser-restart recovery claim. |
+| R1-06 medium | Common changes preserve nominal start/recurrence bounds while permitting valid timed/all-day exclusive-end conversion both directions. | Independent literal planner unit plus INT-017 persisted SQL endpoints/bounds both directions. |
+| R1-07 medium | Common preview identifies every protected occurrence by date, description and exception/cancelled status before confirmation. | E2E-002 identifies the protected exception and cancelled date in the actual editor. |
+| R1-08 medium | Integration prepare helper invokes the real production validator before receipt issuance, matching command normalization and honoring the actual selected target. | Canonicalization/idempotence unit uses real UUID input; all INT positive previews use real production normalization, not manufactured positive proofs. |
+| R1-09 medium | Availability includes its actual Stockholm measurement date and the UI explicitly labels start-date load/capacity for multi-day bookings. | New multi-day unit checks dated start-day measurement and unknown null date; no total-period capacity claim. |
+| R1-10 high | Local clock extraction preserves all six fractional digits before the shared recurrence planner. Assignment-only common changes retain exact subsecond endpoints. | Independent literal planner test changes assignment on a100ms occurrence; INT-017 reads persisted fractional endpoints/assignees for both ordinary occurrences. |
+| R1-11 medium | Added independent times/assignees readbacks for every ordinary sibling, including conflict-free siblings; existing protected full-row checks remain intact. | INT-007 reads all10ordinary rows in the12-slot series; E2E-002 reads all3ordinary rows in5slots, then2following rows. |
+| R1-12 medium | Successful remaining targets persist outcome/history/open workflow and use a shared explicit remaining notice. | State notice unit; INT-014 result/ledger/history/open workflow; E2E-003 actual visible notice and physical remaining result before its later resolution/retry. |
+| R1-13 medium | Removed-target replay with a new key expects actual PREVIEW_STALE; genuine identity mismatch is a separate still-current-target scenario. | INT-007 stale after successful removal; INT-015 genuine receipt/new command mismatch with current target and unchanged physical snapshot. |
+
 ## Design Notes
 
 Owner-authorized maintainable defaults, bounded suggestion semantics, current-segment meaning, immutable ledger choice, fresh-check recency and proof/refresh contracts are recorded in current-contracts-and-design.md. They interpret the approved resolver behavior; no new legacy evidence or approval is asserted. New ledger is supporting transactional/history infrastructure, avoiding accidental recurrence mutation or fragile replay anchors. Exact shared allocation and timestamp remain Root's implementation prerequisite.
@@ -177,9 +201,19 @@ INT-006 uses the existing real `after_booking` fault plus two per-case UUID-name
 
 INT-008 holds the exact tenant advisory lock in an owner SQL transaction, starts the real authenticated planner command, observes its actual lock wait using `pg_blocking_pids`, revokes membership, then unlocks and awaits the pending operation before checking no changes. Error cleanup rolls back/unlocks and awaits pending work. Fixture cleanup removes only fixture-tenant append-only ledger rows in a transaction with transaction-local replication mode, before the existing fixture teardown; no global setting persists. Resolver command tests share the existing `integration-audit-ddl` project with job-runs, `fileParallelism:false`, groupOrder1 after the parallel group. Separate processes are not serialized: hook execution requires Root's exclusive owned isolated disposable CI lane and reviewed source binding. Allocation authorizes the mechanism; actual stage reach and cleanup must still be observed in CI.
 
+## Round 1 Repair Checkpoint — 2026-10-20
+
+Source fix commit `3aaa522bc8448e38a7ec7ce2fecc2dbcb9b927b4` changes13existing allocated paths after `8d06d549432479ad3e2261f8e746d716adcb4dd2`. The initial checkpoint/evidence above is retained as history. Final source inventory remains54app/schema/test/config paths versus baseline; the full56-path Git diff also includes the prior two author documentation files. Private `author-round1-source-manifest.json` pins every Git blob, full baseline diff SHA256 `b445da7571ecaf33e41ff156ce0f1545195cf5fdb107ad6b7732127175e6e6c9`, source-only baseline diff `00bfcecf70c8e5600724159dce596484ae27ce9bc86bb649cbff0e09d31d522f`, and round1 delta `4b2b8493b91cec835ff0c06c1583ba23e53acef3d992a6d6045129faa95a709a`. Manifest file SHA256 `73e2bf67b08d79c2e330f6df92e208f6d30248ba20d96978a048a1d9e153ed29`.
+
+Executed author verification: actual production planner regressions first2P/3F/0S, then5P/0F/0S after fixes. Expanded four-file focused matrix15P/0F/0S; its later canonicalization fixture initially produced14P/1F because a non-UUID unit person reached the real validator, then passed after using a real UUID. Final full `pnpm test:unit`:3019tests/103suites,3018P/0F/1S; exact same existing Windows Linux-xattrs skip remains. `pnpm typecheck`, bounded full lint (0errors/17existing warnings), production build and final changed-file ESLint all pass. After the final UI proposal-preservation and INT-017 additions, typecheck/focused ESLint/build/built-bundle containment and the full unit suite were rerun and pass. Unchanged frozen-install/audit-threshold/lockfile/service-role/process evidence above is reused with unchanged dependencies and check implementations; no rerun is claimed for those checks.
+
+R1-02 materializes the reviewed planner rows directly inside the resolver finalizer, with the same suffix split lineage semantics and checked series-write setting; it does not invoke a separate ordinary series mutation or emit an additional ordinary-series audit. Prefix and an existing later successor's booking rows remain untouched; selected protected suffix payloads/IDs remain exact while their series ownership moves as the existing suffix protocol requires. Common full-segment protected rows retain full-row equality. Candidate/fact/plan proof binding, current role locks, per-row reference validation, complete output validation, one resolver history/audit transaction and exact replay remain in force. No new shared path, grant, helper/factory hook, old migration, resource or environment change was introduced.
+
+Required runtime matrix is now INT-001…017 (17cases), RLS-001…004, READ-001…002, COMP-001(2SSRcases), E2E-001…003 (still3essential browser tests, strengthened within their existing bodies). All original rollback/lock/refresh/ACL/channel obligations above remain. Zero DB/RLS/Storage/browser executions by this author; all new persisted assertions, migration108 replay, hook stages and browser interactions still need Root's reviewed exact-head CI qualification. This is a source checkpoint, not development completion.
+
 ## Suggested Review Order
 
-Author: the implementation delegate named above. Refreshed against source commit `9548c5cd33d6696817ed334fc832b2259e592437`; this section and pending delivery record are the subsequent author documentation change.
+Author: the implementation delegate named above. Refreshed after the consolidated round1 batch against source commit `3aaa522bc8448e38a7ec7ce2fecc2dbcb9b927b4`; this section and pending delivery record are the subsequent author documentation change. The13finding-to-test mappings and actual execution limits are above.
 
 ### Reach a complete, honest conflict queue
 
@@ -192,35 +226,35 @@ AC1/2 uses current complete SQL facts and the existing deterministic detector be
 
 ### Preview once, commit only current reviewed facts
 
-AC3/4/7/8 reuses the sole engine and existing series planner, with a resolver-specific baseline and distinct encrypted receipt/proof domains. Common-series edits preserve the original segment bounds and protected rows; suggestions confer no authority without renewed checked preview.
+AC3/4/7/8 reuses the sole engine and existing series planner, with a resolver-specific baseline and distinct encrypted receipt/proof domains. Round1 restores the explicit following-series path inside the resolver transaction and exact fractional/all-day common endpoints; dated suggestions still confer no authority without checked preview.
 
 - `src/features/scheduling/conflict-suggestions.ts:7` — `evaluateConflictCandidate`: actual load/capacity and fail-closed unknown availability.
-- `src/server/bookings/conflict-resolution.ts:38` — `planConflictResolution`: common overlay and preserved series ownership.
-- `src/server/bookings/conflict-resolution-attestation.ts:4` — `RESOLUTION_DOMAIN`: exact separate resolver attestation domain.
-- `tests/integration/commands/conflict-resolver.int.test.ts:42` — `15.3-INT-012`: actual suggestions, stale denial and checked commit.
+- `src/server/bookings/conflict-resolution.ts:39` — `planConflictResolution`: common/following overlays with preserved series ownership.
+- `src/components/scheduling/ConflictResolver.tsx:54` — `followingRequest`: resolver-bound following preview/save inputs.
+- `tests/unit/features/scheduling/conflict-resolver.test.ts:29` — `R1-10 assignment-only`: exact independent fractional endpoint assertions.
 
 ### Persist workflow, replay and notifications atomically
 
-The append-only ledger avoids accept-only occurrence divergence and supplies durable replay independent of mutable booking references. AC5/6/8 keeps audit, resolution, targeted workflow and preference-filtered assignee notifications in one transaction; the forward composition preserves surrounding writer contracts and refuses unknown seams.
+The append-only ledger avoids accept-only occurrence divergence and supplies durable replay independent of mutable booking references. AC5/6/8 keeps audit, resolution, workflow and notifications in one transaction; round1 allows validated returning resolved identities to reopen before acceptance while denying already accepted identities. Forward composition still preserves surrounding writer contracts and refuses unknown seams.
 
-- `supabase/migrations/20261020180000_conflict_resolver.sql:2` — `booking_conflict_resolutions`: manager-safe projection and immutable outcomes.
+- `tests/integration/commands/conflict-resolver.int.test.ts:57` — `15.3-INT-013`: capacity-only identity return and cleared terminal metadata.
 - `supabase/migrations/20261020180000_conflict_resolver.sql:110` — `finalize_booking_conflict_resolution`: checked authority, proof and atomic effects.
-- `supabase/migrations/20261020180000_conflict_resolver.sql:272` — `Expected exactly one complete booking refresh`: fail-loud effective-writer composition.
-- `tests/integration/commands/conflict-resolver.int.test.ts:144` — `15.3-INT-006`: observed fault stages and full persisted rollback snapshots.
+- `supabase/migrations/20261020180000_conflict_resolver.sql:319` — `Expected exactly one complete booking refresh`: fail-loud effective-writer composition.
+- `tests/integration/commands/conflict-resolver.int.test.ts:211` — `15.3-INT-006`: observed fault stages and full persisted rollback snapshots.
 
 ### Check retry behavior and the evidence boundary
 
-AC6/8 retains an unknown attempt until explicit replay and reports success after persistence. INT-002…011 and RLS-001…004 cover selective history, current roles, all three writers, genuine proofs, full-segment preservation, mixed job inputs and recipient/channel safety; E2E-001…003 cover the usable essential flows. The runtime matrix above names each invariant and its limits.
+AC6/8 retains an unknown attempt until explicit replay, releases first definite denials and reports success only after persistence. Round1 preserves unsent acceptance reasons through renewed review, protects navigation and explicitly reports remaining outcomes. INT-001…017/RLS-001…004 and the3essential browser bodies map the consequential boundaries above; runtime assertions are still unexecuted.
 
-- `src/features/scheduling/conflict-resolver-state.ts:3` — `resolverAttemptAfter`: retain exact request on unknown outcome.
-- `tests/integration/commands/conflict-resolver.int.test.ts:174` — `15.3-INT-008`: actual blocked fresh/replay authority revocation.
-- `tests/e2e/conflict-resolver.e2e.spec.ts:37` — `15.3-E2E-003`: keyboard/lost-response retry with physical readbacks.
-- `tests/unit/scripts/verify/integration-test-partitions.test.ts:33` — `installed Vitest collects`: real partition and ordering validation.
+- `src/features/scheduling/conflict-resolver-state.ts:8` — `resolverAttemptForFailure`: definite denial versus already unknown classification.
+- `src/components/scheduling/ConflictResolver.tsx:49` — `renewAcceptance`: preserve reason and require current acknowledgment.
+- `tests/e2e/conflict-resolver.e2e.spec.ts:16` — `15.3-E2E-001`: actual denial/staleness/unknown acceptance navigation and replay.
+- `tests/e2e/conflict-resolver.e2e.spec.ts:52` — `15.3-E2E-003`: truthful remaining notice and keyboard/lost-response readbacks.
 
 Evidence: local commands/counts and failure history are recorded above; the source commit is the verified baseline-to-source boundary. Limits: zero local DB/RLS/Storage/browser execution; migration SQL syntax/replay and actual hook cleanup remain unqualified until CI. Unit read-model ports inject SQL-shaped facts into actual production modules, not actual auth/RLS; SSR is structure only. No external mail/integration, exhaustive screenshot/device matrix, manual accessibility or representative performance execution is claimed.
 
 ## Auto Run Result
 
-Status: in-progress; source implementation checkpoint ready for independent High review. Development completion remains pending exact-head full required DB/RLS, direct recovery-Storage, essential browser execution, independent review/provenance and Root delivery gate. Draft `_bmad-output/auto-bmad/delivery/15-3-conflict-resolver.json` deliberately records those pending checks and cannot admit done. Root alone owns state/sprint/aggregate ledgers, CI/push and release/deployment authority. Deferred release items in that record must be mirrored by Root into its existing ledger. `release_ready=false`.
+Status: in-review; consolidated round1 repairs source checkpoint ready for targeted independent High verification. Development completion remains pending exact-head full required DB/RLS, direct recovery-Storage, essential browser execution, independent fix review/provenance and Root delivery gate. Draft `_bmad-output/auto-bmad/delivery/15-3-conflict-resolver.json` deliberately records those pending checks and cannot admit done. Root alone owns state/sprint/aggregate ledgers, CI/push and release/deployment authority. Deferred release items in that record must be mirrored by Root into its existing ledger. `release_ready=false`.
 
 Author checks: `check-review-order.mjs` passes with exactly one section, 16 verified path/line stops and zero reference errors. The draft delivery gate returns `development_complete:false`, with three pending runtime checks plus pending independent review; this expected refusal is not a completion failure disguised as a pass. Resume after Root supplies actual exact-head results and independent provenance, then this author refreshes the same section/record before Root admission.
