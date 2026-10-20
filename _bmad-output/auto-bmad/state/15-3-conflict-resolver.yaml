@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-20T01:33:48Z"
+updated_at: "2026-10-20T02:29:54Z"
 started_at: "2026-10-20T01:09:10Z"
 completed_at: null
 active_seconds: 1364
@@ -42,7 +42,7 @@ completed_phases: [0, 1, 2, 3, 4]
 spec_path: "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\implementation-artifacts\\spec-15-3-conflict-resolver.md"
 spec_approved: true
 build:
-  status: ready-for-dev
+  status: in-review
   blocking_condition: null
   followup_review_recommended: false
   review_loop_iteration: 0
@@ -58,7 +58,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [3a0282a70ab9cc539e2d85bd660635820e618731, e02403ace7a0a26c8c0cd01149d88054904fb7b9]
+commits: [3a0282a70ab9cc539e2d85bd660635820e618731, e02403ace7a0a26c8c0cd01149d88054904fb7b9, 3245042f1f9e08c3ec6c2445c1cb6109e326be33, 9548c5cd33d6696817ed334fc832b2259e592437, 8d06d549432479ad3e2261f8e746d716adcb4dd2, 3aaa522bc8448e38a7ec7ce2fecc2dbcb9b927b4, 39d02efcc3d08515fe45ad4087aeaad255f69ed6, 9b862185f6dd6485c5c8b6d87be943bb9d8c5939, 27667164a2a10a8252b12bc0a692268aaf745765, 4e727322c55a672c5ec0e244569158fe91d4847e]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -155,3 +155,28 @@ baseline_CI_3a:
   root_qualified_receipt_sha256: 4fc7db2ec695159c50ae499658b07cb06320d28224285e898525b588cbd25066
   story15_3_implementation_coverage: false
   release_validation: false
+p5_checkpoint:
+  status: independently-reviewed-runtime-pending
+  author_head: 4e727322c55a672c5ec0e244569158fe91d4847e
+  source_test: 9b862185f6dd6485c5c8b6d87be943bb9d8c5939
+  production_unit_source: 3aaa522bc8448e38a7ec7ce2fecc2dbcb9b927b4
+  source_manifest_sha256: a4cca5a858c1547dbc8a48e3612322cd5d75b99b34785a99192a6ecc001bb5e3
+  source_paths_verified: 54
+  counted_review_rounds: 2
+  review_cap: 3
+  broad_rounds: 1
+  targeted_rounds: 1
+  separate_exact_assertion_checks: 1
+  unresolved_findings: 0
+  review_sha256: 910a036833a498a187c1786dc92ddfce0801523ccfdb70a09107827ada3b5bba
+  exact_check_sha256: ffe5beda8308eb760bbc9037b43e2ed29bde19ab177729b22afb697aa4a57149
+  unit: "3018passed/0failed/1Windows-Linux-xattr-skip;3019total"
+  focused: "15passed/0failed/0skipped;reviewer14passed bounded subset nonadditive"
+  static: "typecheck/changedlint/build/bundlePASS;boundedfulllint0errors17existingwarnings"
+  SRO: oneauthorsection16verifiedreferences0errors
+  runtime_executed: 0
+  verification_route: "CI-primary-standard-release_validation:false"
+  required_runtime: fullDB/RLS/directisolatedStorage/all3resolveressentialbrowserbodies0resolver-skips
+  development_complete: false
+  release_ready: false
+  resources_started: 0
