@@ -3,8 +3,8 @@ title: '15.5 — Personal Calendar Feed (ADR-B004 Surface #1)'
 type: 'feature'
 created: '2026-10-20'
 status: 'in-review'
-review_loop_iteration: 2
-followup_review_recommended: true
+review_loop_iteration: 3
+followup_review_recommended: false
 baseline_revision: '3a1c3bc9fbf22b13c926179288a8b6eefe440c12'
 approved_kernel: '0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977'
 approval_record: '_bmad-output/auto-bmad/preparation/story-15-5/approval.json'
@@ -168,6 +168,31 @@ Rendered URL/copy removal and supersession announcement are asserted without
 manual refresh; the current-revision control retains them. All original 11 cases
 and privacy controls remain, plus three race/control cases. Both accepted patches
 are source-complete; native role, SQL/HTTP and actual browser evidence is pending.
+
+**Round 3 of 3**
+
+Final automatic targeted review at `360fe850c18552f23a2bf74d8eda865431f0af38`:
+review the two accepted Round 2 fixes, their single separately allocated native
+PG17 proof case and consequential regressions only. Reuse unchanged Round 1/2
+assessments and provenance. All sensitive layers use context-free gpt-6.1-sol
+High; the external reviewer uses the qualified native read-only CLI route.
+Required exact-head runtime evidence remains pending Root CI. After this round,
+do not start a fourth broad review; follow-ups are limited to latest-fix
+regressions and unresolved serious findings under the project owner policy.
+
+Round 3 completed all six layers at source `360fe850c18552f23a2bf74d8eda865431f0af38`.
+Only R3-01 is accepted: a medium verification gap in the resulting owner-membership
+inheritance assertions. Five layers, including qualified native external Sol High
+(exit 0), reported no findings/divergence. Accepted triage is
+`code-review-round-3/triage.json`, SHA256
+`10054ed013d3f6bb8161cdad32007f2f64c1773930e711d5de53848f70ff13ff`.
+The author corrected only the allocated latest case: its shared post-bootstrap
+assertion now requires every exact owner-to-executor membership row to have
+INHERIT FALSE and the actual restricted executor's USAGE to be false after both
+fresh source execution and replay. Existing SET/ADMIN/seven owner attributes,
+identity/source/savepoint/cleanup assertions are preserved. The three completed
+rounds exhaust the cap; only this latest fix's distinct High regression check
+and unresolved serious findings may receive further review. No fourth broad pass.
 
 ## Design Notes
 
@@ -379,11 +404,31 @@ must precede Root exact-head CI. The actual restricted-executor test, full requi
 native lanes and source/recovery public-schema qualification remain pending.
 Status stays in-review, follow-up recommended, no delivery/development-complete claim.
 
+## Round 3 latest-fix verification — 2026-10-20
+
+R3-01 adds only read assertions inside the existing `assertOwner` helper used after
+both fresh bootstrap and replay: `pg_has_role(current_user, exact_owner, 'USAGE')`
+must be false, and all nonempty exact owner/executor membership rows must have
+`inherit_option=false`. Checking actual resulting memberships closes the gap that
+would allow a source WITH INHERIT TRUE regression despite a passing engine
+baseline/static wording assertion. Every earlier proof and cleanup remains.
+There is no additional role, object, process, command or fixture effect, and the
+95-case inventory remains unchanged (30 feed Node, 51 native Vitest, 14 browser).
+
+Focused ESLint and full source typecheck passed for this assertion correction.
+No native case or qualification command was executed. Unchanged earlier static,
+unit/build and independent review evidence is reused with its recorded provenance;
+it is not runtime evidence for INT015. One author review section is refreshed
+against the final changed source. Distinct High latest-fix-only review, actual
+restricted PG17 execution, required full native lanes, public-schema source/recovery
+qualification and final truth assessment remain pending Root's exact-head lane.
+Status remains in-review; no delivery/development-complete/release-ready claim.
+
 ## Suggested Review Order
 
 Author: Story 15.5 implementation/fix author (gpt-6.1-sol High), incorporating
 explicitly delegated browser and bootstrap contributors. Refreshed after all
-Round 2 source/browser fixes, the allocated native proof case and recorded static checks. Stops below resolve
+Round 3 latest-fix inheritance assertions and recorded static checks. Stops below resolve
 to final source literals before the fix commit.
 
 ### Own settings and honest lifecycle results
@@ -429,7 +474,7 @@ keeps SupAdmin-only NOADMIN. Retained unsafe roles fail closed.
 - `supabase/migrations/20261020220000_personal_calendar_feed.sql:247` — `exception when sqlstate '57014'`: keeps projection failure inside the counter transaction.
 - `tests/integration/calendar-feed/public-feed.int.test.ts:364` — `15.5-API018`: AC5/8 durable token/IP and last-use assertions; execution pending.
 - `supabase/migrations/20261020220000_personal_calendar_feed.sql:27` — `pg_has_role(current_user,feed_owner.oid,'SET')`: qualifies source ownership authority independently of creator ADMIN.
-- `tests/integration/commands/calendar-feed.int.test.ts:277` — `15.5-INT015`: AC4/9 exact-source restricted-creator proof; native execution pending.
+- `tests/integration/commands/calendar-feed.int.test.ts:420` — `memberships.every(row => row.inherit_option === false)`: AC4/9 fresh/replay inherited-owner privileges denied; native execution pending.
 
 ### Isolated CI custody and honest evidence limits
 
@@ -439,7 +484,7 @@ UUID roles/schema/function through dedicated connections, with no pool reuse.
 Settlement is memoized; abnormal browser teardown retains exact job custody, while
 privacy detection measures raw output in memory before sanitized records persist.
 
-- `tests/integration/commands/calendar-feed.int.test.ts:457` — `// FULL rollback comes first`: preserves rollback/reset and same/fresh catalog absence proof.
+- `tests/integration/commands/calendar-feed.int.test.ts:461` — `// FULL rollback comes first`: preserves rollback/reset and same/fresh catalog absence proof.
 - `scripts/ci/with-calendar-feed-runtime.mjs:166` — `export function createOwnedGroupStopper`: memoizes settlement and verifies identity before signaling.
 - `scripts/ci/with-calendar-feed-runtime.mjs:88` — `export function createTelemetryObserver`: detects leaks before dropping non-allowlisted output.
 - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:264` — `nonzero/null-signal nested browser loss`: requires retained key custody for abnormal completion.
@@ -451,6 +496,7 @@ synthetic; operations recovery assertions are static, not restore evidence.
 All 51 native Vitest and 14 browser bodies remain pending locally; API001 covers
 live label revisions, API018 cancellation/counters, RLS008 raw status privacy,
 and E2E-001 the essential actual production lifecycle. Existing ACL/RLS010,
-serial cleanup and full regressions also require exact-head CI. Round 2 completed; targeted High follow-up, restricted-executor PG17 proof, live lifecycle/recovery and final truth qualification
+serial cleanup and full regressions also require exact-head CI. All three rounds completed; latest-fix-only High regression review, restricted-executor
+PG17 execution, live lifecycle/recovery and final truth qualification
 are outstanding. No provider/device/visual/performance or release-ready claim;
 the unallocated exhaustive branch remains explicitly release-blocking deferred.

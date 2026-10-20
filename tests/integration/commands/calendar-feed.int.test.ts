@@ -412,8 +412,12 @@ describe("15.5 authenticated lifecycle, atomic audit and commit-order", () => {
         const { rows: [role] } = await sql("select rolcanlogin,rolinherit,rolsuper,rolcreatedb,rolcreaterole,rolreplication,rolbypassrls from pg_roles where rolname=$1", [owner]);
         expect(role).toEqual({ rolcanlogin: false, rolinherit: false, rolsuper: false, rolcreatedb: false,
           rolcreaterole: false, rolreplication: false, rolbypassrls: false });
-        const { rows: [authority] } = await sql("select pg_has_role(current_user,$1,'SET') can_set,exists(select 1 from pg_auth_members m join pg_roles r on r.oid=m.roleid where r.rolname=$1 and m.admin_option) creator_admin", [owner]);
-        expect(authority).toEqual({ can_set: true, creator_admin: true });
+        const { rows: [authority] } = await sql("select pg_has_role(current_user,$1,'SET') can_set,pg_has_role(current_user,$1,'USAGE') can_use,exists(select 1 from pg_auth_members m join pg_roles r on r.oid=m.roleid where r.rolname=$1 and m.admin_option) creator_admin", [owner]);
+        expect(authority).toEqual({ can_set: true, can_use: false, creator_admin: true });
+        const { rows: memberships } = await sql<{ inherit_option: boolean }>(
+          "select m.inherit_option from pg_auth_members m join pg_roles r on r.oid=m.roleid join pg_roles u on u.oid=m.member where r.rolname=$1 and u.rolname=$2", [owner, migrator]);
+        expect(memberships.length).toBeGreaterThan(0);
+        expect(memberships.every(row => row.inherit_option === false)).toBe(true);
       };
       await assertOwner();
       stage = "restricted-source-replay";
