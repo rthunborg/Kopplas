@@ -28,8 +28,8 @@
     {
       "path": "_bmad-output/auto-bmad/preparation/story-15-5/atdd/lint.txt",
       "absolutePath": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/auto-bmad/preparation/story-15-5/atdd/lint.txt",
-      "bytes": 420,
-      "sha256": "d28898e29bd762dcea81825ca8155fb5a258290a989b4dc4c9b7db0c4e7a3e40"
+      "bytes": 418,
+      "sha256": "f165984e1844d3182017177dec2f8d40f4e3113141f93ab5739e597e84f1293c"
     },
     {
       "path": "_bmad-output/auto-bmad/preparation/story-15-5/atdd/native-red-probe.txt",
@@ -221,5 +221,29 @@
   "existingFilesModified": [],
   "frozenSpecManifest": "_bmad-output/auto-bmad/preparation/story-15-5/artifact-manifest.json",
   "frozenSpecManifestSHA256": "c5c764796b218a7e0903bbb258fb0b2eafc15d28476cae86679d2ba2d4fa13b2",
-  "note": "This ATDD manifest is new and separate from the unchanged frozen35-binding specification manifest. It intentionally excludes its own digest."
+  "note": "This ATDD manifest is new and separate from the unchanged frozen35-binding specification manifest. It intentionally excludes its own digest.",
+  "receiptPresentationNormalization": {
+    "reason": "Remove only the trailing blank EOF from the lint presentation; native facts are unchanged.",
+    "originalCommit": "b940df85acfb2de36c0dcd5000a0039758f2b820",
+    "rawLintProvenance": {
+      "gitRef": "b940df85acfb2de36c0dcd5000a0039758f2b820:_bmad-output/auto-bmad/preparation/story-15-5/atdd/lint.txt",
+      "gitBlob": "ccd5fefde33d7bf00b8830494926a49a977f8627",
+      "gitBlobSHA256": "9bd460bf881e37299aec4ec3ebb01027261207ad1d1e68da5e6608ed698bf3e3",
+      "rawBytes": 420,
+      "rawSHA256": "d28898e29bd762dcea81825ca8155fb5a258290a989b4dc4c9b7db0c4e7a3e40",
+      "reconstruction": "Git core.autocrlf=true stored LF. Replace each Git-blob LF with CRLF to reconstruct the original raw capture; reconstructed bytes verified against the original manifest binding."
+    },
+    "originalManifest": {
+      "gitRef": "b940df85acfb2de36c0dcd5000a0039758f2b820:_bmad-output/auto-bmad/preparation/story-15-5/atdd/artifact-manifest.json",
+      "gitBlob": "84b5d68cb835d93b4e58177f126ff671802771c3",
+      "sha256": "da7148a1ced26496c0dbbbf8850381dfc7102bcc863ccbef6446dc18ba752675"
+    },
+    "normalizedPresentation": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/atdd/lint.txt",
+      "bytes": 418,
+      "sha256": "f165984e1844d3182017177dec2f8d40f4e3113141f93ab5739e597e84f1293c"
+    },
+    "nativeFactsUnchanged": true,
+    "note": "Normalized presentation is not byte-identical to the original raw capture. No lint/test/review/runtime command was rerun."
+  }
 }

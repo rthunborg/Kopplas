@@ -9,11 +9,11 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-20T13:30:21Z"
+updated_at: "2026-10-20T13:37:17Z"
 started_at: "2026-10-20T12:18:56Z"
 completed_at: null
-active_seconds: 3157
-timing_anchor: 1792503021
+active_seconds: 3572
+timing_anchor: 1792503437
 is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
@@ -26,7 +26,7 @@ selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: Owner-approved15.5 implementation of public-feed token/Vault/RLS/IP-proof and concurrentrateintegrity after independentlyapprovedSpec+exactCoordinatorallocation+committedREDATDD
+escalation_reason: "Approved15.5 implementation of public-feed tokens/Vault/RLS/IP attestation and transactional rate integrity after approvedSpec, exact accepted ownership and committed RED ATDD artifact normalization"
 routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"High preparation for hashed public-feed tokens, rotation/revocation and tenant/member disclosure boundaries; plan-only before distinctvalidation and ownershipallocation\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct High independent specification validation of actual public-feed token/proof/IP/limiter authorization design and exact ownership/test-key boundaries before anybuild\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"cross_model_layer\",\"profile\":\"diverse_review\",\"role\":\"independent-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -35,6 +35,8 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Approval-metadata-only pinning of independently passed15.5public-token specification; actualkernel unchanged, noimplementationgrant\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Owner-approved15.5ATDD for public-feed token/Vault/RLS/trustedIP and concurrentrateintegrity; acceptedexactallocation after verifiedhumanapproval\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Owner-approved15.5 implementation of public-feed token/Vault/RLS/IP-proof and concurrentrateintegrity after independentlyapprovedSpec+exactCoordinatorallocation+committedREDATDD\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Retain SAME High ATDD parent for bounded captured-lint EOF artifact normalization after Root committed despite diffcheck failure; no semantic/source/test/runtime changes or new review\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Approved15.5 implementation of public-feed tokens/Vault/RLS/IP attestation and transactional rate integrity after approvedSpec, exact accepted ownership and committed RED ATDD artifact normalization\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: "Hashed public tokens, rotation/revocation, externalfeed andcross-tenant abuseprotection requireHigh-riskATDD+automate; lastthreeno traceadvisory"
@@ -60,7 +62,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [159557e114f18123e73282c39c90830917de9948, c42b45abbca262ff79e26da479a3032d9015aeee]
+commits: [159557e114f18123e73282c39c90830917de9948, c42b45abbca262ff79e26da479a3032d9015aeee, b940df85acfb2de36c0dcd5000a0039758f2b820]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -219,7 +221,8 @@ p4_atdd:
   historical40sources_conserved: true
   companion8snapshots_conserved: true
   root_verified_newfile_bindings: 36
-  manifest_sha256: da7148a1ced26496c0dbbbf8850381dfc7102bcc863ccbef6446dc18ba752675
+  manifest_sha256: e768167dbe1db793538f5becf669856747c406475289d0ea9dcefabb0d6e936f
   implementation_started: false
   resources_started: 0
   P5_required: "Bindrealadapters/activateall80declarations83expanded orupdatedtruthfulinventory; actualsixserialonce/nonoverlap/fullDBRLS/HTTP/browser/Storage/build/CI; no mocks/skipscredit"
+  artifact_normalization: "{\"status\": \"artifact-only-verified\", \"prior_commit\": \"b940df85acfb2de36c0dcd5000a0039758f2b820\", \"original_manifest_sha256\": \"da7148a1ced26496c0dbbbf8850381dfc7102bcc863ccbef6446dc18ba752675\", \"current_manifest_sha256\": \"e768167dbe1db793538f5becf669856747c406475289d0ea9dcefabb0d6e936f\", \"normalized_lint_sha256\": \"f165984e1844d3182017177dec2f8d40f4e3113141f93ab5739e597e84f1293c\", \"all_36_bindings_verified\": true, \"frozen_35_bindings_verified\": true, \"test_source_changes\": 0, \"native_facts_unchanged\": true}"

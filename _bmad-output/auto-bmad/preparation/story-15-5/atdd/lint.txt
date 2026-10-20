@@ -5,4 +5,3 @@ C:\Users\Rasmus\.codex\worktrees\epic-15-calendar\Kopplas\tests\e2e\support\cale
   197:3  warning  '_run' is defined but never used       @typescript-eslint/no-unused-vars
 
 ✖ 3 problems (0 errors, 3 warnings)
-
