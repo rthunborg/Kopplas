@@ -213,51 +213,51 @@ Required runtime matrix is now INT-001…017 (17cases), RLS-001…004, READ-001�
 
 ## Suggested Review Order
 
-Author: the implementation delegate named above. Refreshed after the narrow round2 test-body repair at `9b862185f6dd6485c5c8b6d87be943bb9d8c5939`; production/unit source remains `3aaa522bc8448e38a7ec7ce2fecc2dbcb9b927b4`. This section and pending delivery record are the subsequent author documentation change. The13round1 finding-to-test mappings above remain applicable; round2 repairs the strict history locator without removing either event.
+Author: implementation delegate named above. Refreshed at source `a80e615214ade42f25b18906ca8c1ee86fadc187`, seven paths after failed CI checkpoint2b7f6b03. Frozen Intent/ACs and previous repair mappings remain unchanged. The prior independent pass qualifies its old snapshot; this delta awaits targeted High verification.
 
 ### Reach a complete, honest conflict queue
 
-AC1/2 uses current complete SQL facts and the existing deterministic detector before applying context, so peers stay visible and failed reads remain unknown. Existing entry chips route into a replaceable master/detail presentation with explicit target selection.
+AC1/2 uses complete checked facts and the deterministic detector before contextual filtering. The internal read dependency seam preserves that production default after current context/Manage authorization; projected mock groups preserve transport counts without claiming detector/RLS coverage.
 
-- `src/app/(app)/scheduling/conflicts/page.tsx:5` — `ConflictsPage`: protected production entry point.
+- `src/app/(app)/scheduling/conflicts/page.tsx:5` — `ConflictsPage`: protected production entry.
 - `src/server/read-models/booking-conflicts.ts:20` — `scanBookingConflicts`: complete checked facts and actual detection time.
-- `src/components/scheduling/ConflictDetail.tsx:6` — `ConflictDetail`: full participant detail and explicit target controls.
-- `tests/integration/read-models/booking-conflicts.int.test.ts:9` — `15.3-READ-001`: complete aggregate peers across contextual scope.
+- `src/server/read-models/scheduling.ts:115` — `options.conflictScan`: internal dependency receives derived identities after authorization.
+- `tests/integration/scheduling/scheduling-read.atdd.int.test.ts:141` — `internal projected scan`: derived client/identities and failed-scan privacy assertions.
 
 ### Preview once, commit only current reviewed facts
 
-AC3/4/7/8 reuses the sole engine and existing series planner, with a resolver-specific baseline and distinct encrypted receipt/proof domains. Round1 restores the explicit following-series path inside the resolver transaction and exact fractional/all-day common endpoints; dated suggestions still confer no authority without checked preview.
+AC3/4/7/8 reuses the sole engine and series planner with distinct receipt/proof domains. The fixture now applies actual production normalization before preview, matching command candidate bytes; common/following scope, microseconds and protected rows retain existing assertions.
 
-- `src/features/scheduling/conflict-suggestions.ts:7` — `evaluateConflictCandidate`: actual load/capacity and fail-closed unknown availability.
-- `src/server/bookings/conflict-resolution.ts:39` — `planConflictResolution`: common/following overlays with preserved series ownership.
+- `tests/integration/commands/conflict-resolver.int.test.ts:25` — `reviewRealSeries`: actual validation before real receipt issuance.
+- `src/server/bookings/conflict-resolution.ts:39` — `planConflictResolution`: common/following overlays preserve series ownership.
 - `src/components/scheduling/ConflictResolver.tsx:54` — `followingRequest`: resolver-bound following preview/save inputs.
-- `tests/unit/features/scheduling/conflict-resolver.test.ts:29` — `R1-10 assignment-only`: exact independent fractional endpoint assertions.
+- `tests/unit/features/scheduling/conflict-resolver.test.ts:55` — `CI series fixture preview`: canonicalization mismatch and idempotence regression.
 
 ### Persist workflow, replay and notifications atomically
 
-The append-only ledger avoids accept-only occurrence divergence and supplies durable replay independent of mutable booking references. AC5/6/8 keeps audit, resolution, workflow and notifications in one transaction; round1 allows validated returning resolved identities to reopen before acceptance while denying already accepted identities. Forward composition still preserves surrounding writer contracts and refuses unknown seams.
+AC5/6/8 keeps checked authority, workflow, ledger, audit and notifications in one transaction. Explicit JSON extraction parentheses repair the common-rule comparison while retaining its permitted-field invariant; fail-loud writer composition and genuine fault/lock tests remain intact.
 
-- `tests/integration/commands/conflict-resolver.int.test.ts:57` — `15.3-INT-013`: capacity-only identity return and cleared terminal metadata.
 - `supabase/migrations/20261020180000_conflict_resolver.sql:110` — `finalize_booking_conflict_resolution`: checked authority, proof and atomic effects.
+- `supabase/migrations/20261020180000_conflict_resolver.sql:190` — `plan->'series'->'rule'`: extract JSON before permitted-field subtraction.
 - `supabase/migrations/20261020180000_conflict_resolver.sql:319` — `Expected exactly one complete booking refresh`: fail-loud effective-writer composition.
-- `tests/integration/commands/conflict-resolver.int.test.ts:211` — `15.3-INT-006`: observed fault stages and full persisted rollback snapshots.
+- `tests/integration/commands/conflict-resolver.int.test.ts:223` — `15.3-INT-006`: observed fault stages and persisted rollback snapshots.
 
 ### Check retry behavior and the evidence boundary
 
-AC6/8 retains an unknown attempt until explicit replay, releases first definite denials and reports success only after persistence. Round1 preserves unsent acceptance reasons through renewed review, protects navigation and explicitly reports remaining outcomes. INT-001…017/RLS-001…004 and the3essential browser bodies map the consequential boundaries above; runtime assertions are still unexecuted.
+AC6/8 retains unknown attempts until explicit replay and reports success only after persistence. E2E001 checks both participants in the named timeline; E2E002 retains the original success assertion/timeout with safe failure-only diagnostics; E2E003 keeps both durable outcome histories.
 
 - `src/features/scheduling/conflict-resolver-state.ts:8` — `resolverAttemptForFailure`: definite denial versus already unknown classification.
 - `src/components/scheduling/ConflictResolver.tsx:49` — `renewAcceptance`: preserve reason and require current acknowledgment.
-- `tests/e2e/conflict-resolver.e2e.spec.ts:16` — `15.3-E2E-001`: actual denial/staleness/unknown acceptance navigation and replay.
-- `tests/e2e/conflict-resolver.e2e.spec.ts:61` — `const changes=`: exactly two history rows, separately remaining and resolved.
+- `tests/e2e/conflict-resolver.e2e.spec.ts:28` — `Bokningarnas tidslinje`: exactly two visible timeline participants.
+- `tests/e2e/conflict-resolver.e2e.spec.ts:71` — `const changes=`: exactly two histories, separately remaining and resolved.
 
-Evidence: local commands/counts and failure history are recorded above; source/test `9b862185f6dd6485c5c8b6d87be943bb9d8c5939` and metadata `27667164a2a10a8252b12bc0a692268aaf745765` received independent High source-checkpoint qualification with zero unresolved findings. The reviewer verified all56 Git blobs, path scope and this author trail; the exact54 source paths remain conserved through this documentation-only reconciliation. Limits: zero local DB/RLS/Storage/browser execution; migration SQL syntax/replay and actual hook cleanup remain unqualified until CI. Unit read-model ports inject SQL-shaped facts into actual production modules, not actual auth/RLS; SSR is structure only. No external mail/integration, exhaustive screenshot/device matrix, manual accessibility or representative performance execution is claimed.
+Evidence: failed CI and latest local results are detailed below. At a80e, full unit3019P0F1S, focused real-validator7P0F0S, transport36P0F4filteredS, typecheck/lint/build/bundle PASS; browser collection3active0skip0executed. Limits: no local DB/Storage/browser execution; the four filtered DB cases remain active/default-real in normal required CI. Booking-read mock facts run the actual parser/detector but mock authority/SQL; scheduling projected groups exercise transport only. Old fault/lock passes do not qualify the changed migration. No hidden RPC code, E2E002 cause or unavailable trace is inferred. Latest-delta independent High review and actual exact-head CI remain required. No development-complete/release-ready claim.
 
 ## Auto Run Result
 
-Status: in-review; independently reviewed source checkpoint ready for Root's normal exact-head CI qualification, with zero unresolved source findings. Development completion remains pending full required DB/RLS, direct recovery-Storage and essential browser execution, followed by Root's final runtime/provenance delivery admission. Draft `_bmad-output/auto-bmad/delivery/15-3-conflict-resolver.json` deliberately retains those three pending runtime checks and cannot admit done. Root alone owns state/sprint/aggregate ledgers, CI/push and release/deployment authority. Deferred release items in that record must be mirrored by Root into its existing ledger. `development_complete=false`; `release_ready=false`.
+Status: in-review. Current a80e source awaits independent latest-delta High verification and Root exact-head CI qualification. Previous source approval and failed CI remain historical evidence. Delivery refuses completion for three required runtime checks plus pending delta review. Root owns CI/push, canonical state/sprint/aggregate ledgers and final provenance/delivery admission. `development_complete=false`; `release_ready=false`.
 
-Author checks: `check-review-order.mjs` passes with exactly one section, 16 verified path/line stops and zero reference errors. Independent source review is passed for the checkpoint. The draft delivery gate still returns `development_complete:false` for exactly three pending runtime checks; this expected refusal is not a completion failure disguised as a pass. Resume after Root supplies actual exact-head results and runtime provenance, then this author refreshes the same section/record before Root admission.
+Author validation: exactly one Suggested Review Order with16 concrete stops, checked against current source. Native-success direct Storage still awaits distinct assertion/count qualification. Expected delivery-gate refusal is never presented as a pass.
 
 ## Independent Follow-up Review
 
@@ -272,3 +272,27 @@ Round2 triage: 1 medium test-body patch; high0/low0/intent_gap0/bad_spec0/defer0
 Narrow source/test fix `9b862185f6dd6485c5c8b6d87be943bb9d8c5939`, one path after `39d02efcc3d08515fe45ad4087aeaad255f69ed6`; binary delta SHA256 `86b4877e516e060ddcbe1862367609503a02c9f4186806e539ecc148c2b8bfa8`, test Git-blob SHA256 `a53267d6c494594edaa8fb8793e9a212cc4d60f58a4545f17fc8256693fc537b`. Author `pnpm typecheck` and focused ESLint pass. `pnpm exec playwright test tests/e2e/conflict-resolver.e2e.spec.ts --list --reporter=json` registers3active tests,0skipped,0execution results; all expectedStatus values are passed with no skip annotations. This is collection only, not passing browser execution. Prior round1 build/full unit3018P0F1S, production/static/containment evidence remains applicable because only this test-body assertion and author documentation changed; no unchanged broad checks were rerun merely to decorate the record.
 
 Counted review rounds remain2/3: one broad six-layer review and one targeted verification of the13 fixes. The same High reviewer completed one separately recorded exact-locator check, confirmed R2-01 fixed and qualified the source checkpoint with zero unresolved findings. It is not a new broad pass; parent guard accounting remains authoritative. Raw `review.raw.md` SHA256 `910a036833a498a187c1786dc92ddfce0801523ccfdb70a09107827ada3b5bba` and `narrow-check.raw.md` SHA256 `ffe5beda8308eb760bbc9037b43e2ed29bde19ab177729b22afb697aa4a57149` are preserved under `.env.epic15.mail-runtime/story-15-3-build-review-round-2/`, alongside `summary.json`. The narrow check verifies source/test9b862185, metadata27667164, all56 prior manifest blobs, the exact two outcomes and intact replay/count assertions, with no product drift. This author reconciles only spec/delivery documentation after that pass; the same Suggested Review Order is refreshed above without moving any source stop. Runtime remains0 for this author and three required CI checks stay pending. Frozen intent/ACs and all failure/skip history remain preserved.
+
+## Failed CI and Coherent Repair Checkpoint — 2026-10-20
+
+Root standard CI39359274325/attempt1 at2b7f6b03c70f4113a326c194264cf09205118d22 is terminal FAILURE. Actual completed logs/JSON are under `.env.epic15.mail-runtime/story-15-3-preparation/checkpoint-2b7f6b03-ci-independent/`. FullDB1913declared=1851P10F52S;156files=152P3F1S; nativeexit1; pilotNOTEXECUTED. E2E12P2F0S0flaky; both failures repeated on retry1. Admission/static/native directStorage jobs succeeded; directStorage assertion qualification is not inferred from job status. Four optional release diagnostics were skipped with no coverage credit.
+
+| Actual boundary | Evidence-based repair | Limits/verification |
+| --- | --- | --- |
+| INT002 series creation and INT005 series refresh ok:false | Raw template seconds previewed before real command validation canonicalized six fractional digits. Resolver-suite helper now calls actual validateBookingSeries before existing real preview/command. | Real-validator probe accepted input, changed startsAt/endsAt and showed unequal raw/normalized candidate digests; focused canonicalization/idempotence unit7P0F0S. CI matcher hid actual code; no code inferred. |
+| INT017 common assignment and INT007 common-series ok:false | Confirmed source grouping defect in108: subtraction bound inside JSON right operand. Explicit parentheses extract series.rule before subtracting exactly the same permitted keys. | Source parse defect follows official precedence; no local SQL execution or actual CI SQLSTATE claimed. Later INT017 fractional/all-day and INT007 sibling assertions were unreached and require CI. |
+| Booking host defaults1to0 and five scheduling transport errors | Old mock RPC transports returned picker rows for every RPC or rejected real snapshot RPC. Booking harness now dispatches exact names and feeds same-fixture canonical booking/assignment/schedule facts to actual parser/detector; unknown RPC rejects. Scheduling harness explicitly projects fixture groups through the internal dependency. | Transport36P0F4filteredS. Existing4/1003/501 counts, per-booking/outside-period participants, opaque IDs, <=50batches, paging and privacy retained. New derived identity/no-scan/fail-closed negatives pass. Projection is transport-only. |
+| E2E001 strict description matched timeline paragraph and select option before acceptance | Assert exactly two items and both exact visible participant descriptions inside actual named timeline. | No first()/arbitrary narrowing or durable count change. Collection only; acceptance uncredited until CI. |
+| E2E002 save success absent after15s on both attempts | Cause UNKNOWN. Original essential assertion/timeout retained. Added failure-only allowlisted error classifications/state booleans/HTTP statuses; command diagnostics only stable domaincode and allowlisted RPC SQLSTATE. | Never print token/receipt/request-or-response body/arbitrary visible text/SQLmessage/URL. No actual trace/error-context bytes or captured server/console cause available. A new instrumented exact-head execution differs materially from blind retry. |
+
+[PostgreSQL operator precedence, Table4.2](https://www.postgresql.org/docs/current/sql-syntax-lexical.html#SQL-PRECEDENCE) places binary +/- above other operators and applies operator names independently of operand types. This confirms the source expression defect; it does not prove the unobserved CI SQLSTATE or E2E002 attribution.
+
+Actual historical partial passes:13of17resolver commands, all4resolverRLS,2READ,2SSR; INT006 observed P5301/P5302 audit/notification stage and complete persisted rollback; INT008 observed tenant-lock revocation. INT005 complete three-writer loop remains unproven; INT002 acceptance, INT007/017 later readbacks and E2E001 acceptance/E2E002 sibling/following assertions were unreached. Auth/mail,4Jobs-depth and resolverE2E003 passed. No partial result qualifies fullDB/browser; all52DB skips remain disclosed.
+
+Coordinator explicit SolHigh granted exact two shared read-test paths plus existing scheduling.ts internal scan port; receipt `root-coordinator-read-fixtures-allocation-20261020.json` SHA256 `d9a808cbb816f77f9062c66d0c82b35e5503f0ac455a8a0d95b4f0c8d2bfe6e7`. Internal options are separate from SchedulingReadInput; the port receives the existing client and derived tenant/actor only after resolved context/Bookings.Manage, defaulting to actual scan. No action/browser selection, fail-open, grant or projection widening. Four real authenticated cases have no override, remain active in normal CI and retain required-stack behavior. Their reachability beforeAll moved into their own describe so the transport-only name-filtered run makes no stack probe; four filtered cases are never passed DB coverage.
+
+Source `a80e615214ade42f25b18906ca8c1ee86fadc187` changes7paths after2b7; inventory54to56 only for the two allocated shared tests. Private `author-ci-repair-source-manifest.json` pins all56 Git blobs: file SHA256 `ebde1d8aeeeb6d95934f2c6c945eb64d95b43bee59488075ea3ea32f25cd8b42`, batch binary diff SHA256 `aed73d23f4fccb4017918a1ced2527e0a0ca3157876a9addacf72bd473ab4cad`, baseline source-only diff SHA256 `2a0c60ff4e4534e336d4566c119860d735e32c3da9ad5e49faeb9c36c6f7a212`.
+
+Actual latest local commands: pnpm typecheck PASS; pnpm lint --ignore-pattern '.env*/**' PASS(0errors17existingwarnings, ignored generated evidence only); pnpm build PASS; pnpm verify:bundle-containment PASS; git diff --check PASS. pnpm test:unit3020tests/103suites=3019P0F1S, same existing Windows xattrs skip. Focused node resolver file7P0F0S. Installed Vitest startVitest API config:false/globalSetup:[]/exact two read-file includes/mocked-transport name filter:36P0F4name-filteredS of40declared. Four filtered cases remain actual active DB tests. Playwright --list --reporter=json:3registered0skip-annotated0runtime-results/errors[]. Earlier RED/failure/skip histories remain above. Unchanged dependency/install/audit/lockfile/service-role/process checks reuse prior evidence, with no decorative rerun.
+
+Counted reviews remain2/3 plus one prior separate exact-locator check. Previous independent pass does not approve this source; parent will dispatch final guarded independent SolHigh review limited to actual CI repair delta. No new broad unchanged pass, local DB/browser execution, old migration/environment/workflow change, push or resource operation. Spec remains in-review and delivery incomplete pending review, actual runtime and Root admission.
