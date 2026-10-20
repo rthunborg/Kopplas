@@ -25,6 +25,7 @@ import { bookingCommand, bookingInput } from "../../support/bookings-atdd";
 import { adminInsertContact, adminInsertFacility } from "../../factories/tenants";
 import { adminQuery } from "../../factories/admin-sql";
 import { parseUtcInstant } from "../../../src/features/scheduling/time-zone";
+import { validateJobCardInput } from "../../../src/features/jobs/job-card-domain";
 
 type Credentials = { email: string; password: string };
 // playwright-utils deviation: current fixture has no auth-session provider.
@@ -109,7 +110,37 @@ async function editFullCard(page: Page, f: JobsDepthFixture, jobId: string, titl
       && (request.postData() ?? "").includes(title);
   });
   await card.getByTestId("job-card-save").click();
-  expect((await saved).ok()).toBe(true);
+  const response = await saved;
+  expect(response.ok()).toBe(true);
+  // This plain-object action uses one JSON argument. Inspect only the exact
+  // observed request locally; never persist/log its body or any field values.
+  let args: unknown = null;
+  try { args = JSON.parse(response.request().postData() ?? "null"); } catch { /* Safe structural assertion below. */ }
+  const singleObject = Array.isArray(args) && args.length === 1 && args[0] !== null
+    && typeof args[0] === "object" && !Array.isArray(args[0]);
+  expect(singleObject, "Observed card action must contain one plain object argument").toBe(true);
+  const submitted = (args as [Record<string, unknown>])[0];
+  expect(submitted.id === jobId && submitted.title === title,
+    "Validate only the exact intended job/title card action").toBe(true);
+  // Pure reference values describe the existing test contract, never a request
+  // replacement. Single-field probes cannot mutate or authorize the actual save.
+  const reference = { commandId: "00000000-0000-4000-8000-000000000001", id: jobId, type: "order", title,
+    customer_id: customerId, facility_id: facilityId, contact_id: contactId, priority: "high",
+    estimated_duration_minutes: 120, planned_travel_minutes: 30, crew_size: 2,
+    earliest_date: "2026-10-19", desired_date: "2026-10-20", latest_date: "2026-10-21",
+    planned_start_date: "2026-10-20", planned_end_date: "2026-10-20", customer_presence_required: true,
+    responsible_project_manager_id: f.fx.coworkerProfile.id,
+    locationOverride: { street: "Testgatan 16", postalCode: "12345", city: "Teststad", countryCode: "SE" },
+    requiredWorkRoleIds: [f.roleId], dependencyJobIds: [f.jobs.prerequisite.id],
+    accessWindows: [{ startsAt: "2026-10-20T06:00:00Z", endsAt: "2026-10-20T14:00:00Z" }] };
+  expect(validateJobCardInput(reference, "update").valid, "Pure card reference must satisfy the production validator").toBe(true);
+  const validation = validateJobCardInput(submitted, "update");
+  const fieldNames = Object.keys(submitted).sort();
+  const unknownFields = fieldNames.filter(name => !Object.hasOwn(reference, name));
+  const knownFields = Object.fromEntries(Object.entries(submitted).filter(([name]) => Object.hasOwn(reference, name)));
+  const invalidFields = validation.valid ? [] : [...unknownFields, ...Object.keys(reference).filter(name =>
+    validateJobCardInput({ ...knownFields, [name]: reference[name as keyof typeof reference] }, "update").valid)].sort();
+  expect(validation.valid, JSON.stringify({ fieldNames, invalidFields, inputStageValid: validation.valid })).toBe(true);
   // A Next action may return HTTP 200 for a refused save. Require the actual
   // form outcome; report only its existing user-safe visible feedback on failure.
   const outcome = card.getByTestId("job-card-save-status").or(card.getByTestId("job-card-unsent"));

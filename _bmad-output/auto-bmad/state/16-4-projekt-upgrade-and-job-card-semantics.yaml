@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-16-jobs
 status: in-progress
-updated_at: "2026-10-20T14:31:47Z"
+updated_at: "2026-10-20T14:47:51Z"
 started_at: "2026-10-20T11:20:42Z"
 completed_at: null
 active_seconds: 516
@@ -58,7 +58,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [2d002970fcb112db8d480068443a0cce2577bd5b, 2920b920c0ff19122051f7ef987bc222331fb94a, ebd03a4e4c5226a2b3926bcdcbd2c2a29d18e776, dd7e54d0, 6260c5a2, 643274eb]
+commits: [2d002970fcb112db8d480068443a0cce2577bd5b, 2920b920c0ff19122051f7ef987bc222331fb94a, ebd03a4e4c5226a2b3926bcdcbd2c2a29d18e776, dd7e54d0, 6260c5a2, 643274eb, 4b7d14c8]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -100,6 +100,7 @@ overrides:
   story16_4_first_runtime: "Exact checkpoint dd7e54d08bdda0dfdf1a39610fc05310e486a909 CI39432791404 terminal FAILURE. Verify2723pass0skip plus43processchecks; directrecovery1/1pass0skip. FullDB1873total1868pass4fail1pending; pendingphysicalrecovery separatelypassed. Browser22firstpass6failedbothattempts0flaky0skip. Native fullDB SHA A58C2FD7691518112BD1EA63086868C8BF7C5B38A45DDCF2F80F905F051FE2BC, browser457C134A364C379421E6CD7C9B306B62E17B8FB97B7617AC45CB34668B189923,recovery75E4CE02183AB1C803FE32BDC4D81F9CB06E1464F9B0E94E3347324D25F73D7D. Pilot performance unexecuted after integration failure; non-gating auth baseline22.7/58.9ms only. Bounded High causal diagnosis/fixes and targeted review required before newhead/newdispatch; source remains in-review."
   story16_4_second_runtime: "Exact6260c5a2544dc0999cc9700935edcd4e5cce54ac CI39435738491: verify2723unitpass0skip+43process; DB1873total1872pass0fail1ordinaryrecoverypending,separatephysicalrecovery1/1pass. Actualpilot readp95=12.394076999999925ms,syntheticbulkpermissionp95=4.995358000000124ms,5warmup25measured. Browser26firstpass2failedbothattempts0flaky0skip. NativeDB SHA DA2D9268A1940E2D43FE85E55BB8A93E565B793B87F43810D967F88E3E3A4473; browser23A7B6F0C05907EA64F5A97ED9FC8057A8A033351538712F71FA4C51CE2E45F2; recovery28A1DC89452736D2B6E1F3EB7600BEFB732A4D6E968C3D4B7CEE427B3C9CE145. Simplercomplete-sourcecontract diagnosis found fixtureorder derivedconflict baseline and2remainingselectlocators; preserve exactrowconservation/assertions. Overallfailed; no runtimecompletionclaim; bounded2E2E+specfix/targetedHighreview before newhead."
   story16_4_third_runtime: "Exact643274eb5eb59f3a4c22666250d31b3f5a880015 CI39438104931: verify2723unitpass0skip+43process; DB1873total1872pass0fail1soleordinaryrecoverypending,separatephysicalrecovery1/1pass. Actualpilot5warmup25measured readp95=10.571949000000131ms syntheticbulkpermissionp95=4.079482999999527ms. Browser27firstpass1UpgradeE01failedbothattempts0flaky0skip: durable title remains old; HTTP200 not save-success. NativeDB SHA550005B1EF9CC8A200C171C97D943D6604C0DE47648F64BAF0100C08B2E2034B;browserB6E86D84BC143D8A469C6A2253C8F69AC1A8A1BA8B87504FE87E3FC896A368D0;recovery1DFDBF646D0046E70A254E88035714A90D7D58BBE30E9C0A40507E851B769CD1. Fullsourceaudit could not establish refusalcode; materiallydifferent bounded realUI save-feedback diagnostic before unchanged durable readback proposed, not a productfixclaim. Source remainsin-review and overallCIfailed."
+  story16_4_diagnostic_runtime: "Exact4b7d14c8a26dd7cf2c49a68d53c949d7089e4575 CI39440305909:verify2723pass0skip+43process;DB1873total1872pass0fail1soleordinaryrecoverypending,separate1/1pass. Actualpilot5warmup25measuredreadp95=14.811200999999528ms syntheticbulkpermissionp95=3.1435139999998682ms. Browser27firstpass1UpgradeE01failedbothattempts0flaky0skip, meaningful realUI feedback proves invalidinput/retaineddata, notcommit. NativeDBSHA858AA24711A825E84CE8124F80F03B7A3F064E03216F43A2B48C8A96D5641AE2;browser72CDF6B5B9CA2AD0074BAA5C3079BE65216889A660D1C3E6BF915757A8AED031;recovery7F5297F26E625E6367861A9B030F4637C04113D86B9C1BFB53C17EAD8228580C. NoDBintendedFormDataassemblyproductionvalidator probe passes but does notproveactualbrowserpayload. Existingnativebrowserlog inspected before any stage-safe newdiagnostic; no productionfixcause proven. In-review, no developmentcompleteclaim."
 constraints:
   - "Exclusive checkout C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas; root owns all Git/index/commits/push/CI/state/sprint/ledger/report actions."
   - "Formal planning only until approved ready-for-dev plan; no product/migration/dependency writes during planning."
