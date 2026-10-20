@@ -1,0 +1,1371 @@
+diff --git a/_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md b/_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md
+index 864a8315..4bc8a444 100644
+--- a/_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md
++++ b/_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md
+@@ -2,9 +2,9 @@
+ title: '15.5 — Personal Calendar Feed (ADR-B004 Surface #1)'
+ type: 'feature'
+ created: '2026-10-20'
+-status: 'in-progress'
+-review_loop_iteration: 0
+-followup_review_recommended: false
++status: 'in-review'
++review_loop_iteration: 1
++followup_review_recommended: true
+ baseline_revision: '3a1c3bc9fbf22b13c926179288a8b6eefe440c12'
+ approved_kernel: '0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977'
+ approval_record: '_bmad-output/auto-bmad/preparation/story-15-5/approval.json'
+@@ -110,12 +110,72 @@ Exact new source/test/doc paths and existing shared semantics are enumerated in
+ 
+ ## Review Triage Log
+ 
++### Review Findings
++
++**Round 1 of 3**
++
++**Round 2 of 3**
++
++Targeted follow-up at `672099e9dc6569f4ac1cb9a967037e0d91df689c`: verify the eleven accepted Round 1 fixes and their regressions only. Reuse unchanged independent Round 1 assessments with original provenance; no new broad scope or spec audit. All sensitive reviewers remain context-free gpt-6.1-sol High. Native exact-head runtime qualification remains pending.
++
++Review started at source head `ae020f63a88089966b9323c55a36b6554f7e3900`; zero prior completed rounds. Context-free gpt-6.1-sol High for all actual authorization/public-token/RLS/secret/transactional/lifecycle review scope; six installed Build Auto layers, including distinct bootstrap lifecycle and external native Codex review. Local source gates are recorded; required exact-head CI execution remains pending. Reviewer launch batches respect the available actor slots; no triage or source fixes before all layers finish.
++
++Round 1 completed: **6 layers, 17 raw claims, 13 deduplicated claims: 11 patch,
++1 reject, 1 release defer**. Original reports, the external native qualification,
++and the global-lock clarification/rejection remain preserved in
++`_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/`;
++`triage.json` SHA256 `ca281ac5bd9ec76451c9e9ee5044b794f5a3aed0c009056e2dda24be401f15c9`
++is the accepted fix scope. Follow-up review is recommended for the sensitive fixes;
++this is completed round 1 of the three-round cap, not an additional broad review.
++
++| Finding | Applied action | Evidence limit |
++| --- | --- | --- |
++| R1-01/02 | Absent-only feed owner creation, seven attributes and retained membership checked; recovery grants only existing supabase_admin without admin option, source migration grants postgres. | Named recovery Compose unit case is static; real replay/restore and restore-principal ownership/schema-CREATE prerequisites remain CI requirements. |
++| R1-04 | Projection catches SQLSTATE57014 in its subtransaction; UUID-scoped serial fault asserts durable token/IP admission and unchanged last-use. | Real SQL fault body/HTTP execution pending. |
++| R1-05/06 | Microsecond ordering, positive RFC-second projection, optional METHOD omitted, revision derived from booking/work-role/job/customer/facility updates. | Independent Node vectors pass; live joined-label vectors await SQL/HTTP CI. |
++| R1-07 | Automatic status refresh clears a superseded issuance and its stale success message. | Headless state race assertion passes; actual browser execution pending. |
++| R1-08/11 | CI child settlement memoized, identities rechecked before signals; abnormal browser exits retain key custody; privacy detection inspects raw lines before allowlisting. | 22 injected bootstrap tests pass; synthetic dependencies do not prove live lifecycle/privacy. |
++| R1-10 | Profile entry follows existing server-filtered scheduling navigation. Existing E2E-003 also checks denied seller entry/destination. | Browser execution pending; all 11 cases retained. |
++| R1-12 | Status fixture checks exact ordinary-JWT RPC keys and physical hash/known secret absence before mapper; RLS008 retains direct payload assertions. | Native JWT/SQL execution pending. |
++| R1-13 | Each allocated serial fixture captures, resets and restores only its keyed unknown-IP row after pending requests settle; primary/cleanup failures retained. | Native serial execution pending; row-isolated fixtures never acquire this control. |
++
++R1-03 remains **rejected as an unproven functional/performance claim**. The original
++High clarification did not identify a permitted workload that bypasses an invariant;
++early lock release would weaken the hard cardinality bound. Keep the transaction
++lock and already-deferred representative performance qualification unchanged.
++R1-09 remains **release-blocking deferred**, owner Root/CI release operator:
++the optional exhaustive branch is explicitly unallocated and unchanged. Before
++`release_validation=true` qualification, obtain its exact runtime/lifecycle
++allocation and execute the native exhaustive branch with every active case.
++This is not development evidence and is never a passed release check.
++
+ ## Design Notes
+ 
+ Current-contracts-and-design.md records the owner-authorized defaults: dedicated projection instead of manager-wide reader, Node 32-byte issuance with feed-only attestation, CAS/attempt reconciliation without plaintext escrow, independent 60/120-per-15-minute windows, conservative unknown-IP bucket, same-page sanitized Admin queue, complete live materialized feed with no invented horizon and safe work-role/Bokning title rather than arbitrary booking description. These are proportional supporting implementations of explicit ADR requirements, not new product features or verified legacy observations. All consumer/provider interoperability beyond essential RFC/HTTP correctness is deferred release validation. Stream only after complete authority/query success so a broken query cannot emit a partial valid calendar.
+ 
+ Implementation author later writes exactly one final author-written Suggested Review Order after code/evidence exist and validates actual stops using `node scripts/verify/check-review-order.mjs <this-spec>`. No guessed future line numbers/trail are created during planning. Root never authors spec/code.
+ 
++Post-review technical corrections (R1-05/06): reuse the scheduling microsecond
++parser for authority/order, then floor timed starts and ceil timed ends to RFC5545
++whole seconds. At the final representable second in year 9999, saturate the end;
++if that collapses the interval, move its start back one second. This deliberate
++export rounding keeps positive fractional intervals nonempty, with at most
++one second of boundary adjustment, while exact-second ordinary/DST/all-day
++behavior and stable UIDs are kept. Component revision is the greatest update
++of booking, work role, job, customer and facility; only those update columns are
++added to the owner allowlist. Omit optional METHOD for a subscription snapshot,
++so DTSTAMP and LAST-MODIFIED both describe the current component revision under
++[RFC5545 sections 3.8.7.2/3](https://www.rfc-editor.org/rfc/rfc5545.html#section-3.8.7.2).
++These narrow source corrections do not rewrite the approved kernel or historical
++companion and do not claim provider interoperability.
++
++Keep the current-self role union, transactional lifecycle/audit/CAS, cookie-free
++public boundary, complete minimal live snapshot, hard global cardinality lock,
++independent budgets and no-plaintext recovery behavior unchanged. Recovery creates
++only the absent exact feed role and fails closed on unsafe retained attributes or
++grants, rather than repairing a cluster role. No persistent schema CREATE,
++superuser/BYPASSRLS, runtime/JWT membership or general Vault grant is introduced.
++
+ ## Verification
+ 
+ Planning executes only source AC comparison, immediate seven-point author audit, READY self-review, canonical spec reader/discovery, candidate kernel/raw hashes and tracked-source/context preservation. No ATDD, application unit/integration/build/browser/runtime or CI execution is claimed. Root next dispatches distinct independent Sol High specification validation and freezes only after applicable preservation/validation; candidate kernel is not approved.
+@@ -192,76 +252,106 @@ and verified-IP provisioning. Each needs its previously recorded next action and
+ actual release evidence. Functional/security/native development failures remain
+ blocking and cannot be recategorized as deferred polish.
+ 
++## Round 1 fix verification — 2026-10-20
++
++All 11 accepted patches are applied in this working tree, including the two
++explicitly delegated bootstrap fixes. No prepared declaration was removed or
++skipped: all 83 prepared expanded cases remain, plus eight new Node regression
++cases (30 feed Node cases total). Existing API001/API018/RLS008 and E2E-003 gained
++assertions without replacing their earlier assertions. E2E-003 is the existing
++profile-entry case; it now includes a denied seller vector, not a new test.
++
++Actual targeted command:
++`node --experimental-strip-types --import ./tests/support/register.mjs --test tests/unit/features/calendar-feed/icalendar.test.ts tests/unit/features/calendar-feed/action-state.test.ts tests/unit/ops/pilot-operations.test.ts tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts`
++**63 passed, 0 failed, 0 skipped**: serializer 13, action-state 4, existing operations
++24, bootstrap 22. The operations recovery case reads source only; bootstrap
++process/DB transports are injected. Full source typecheck and focused ESLint passed.
++Production build passed (compile 3.5s, TypeScript 5.6s, 12/12 static pages);
++service-role and built-bundle containment passed. An initial build exposed mixed
++encoding in two newly edited Swedish text lines; both were repaired to valid
++UTF-8 and the build/focused lint passed. A mistyped bundle-guard path failed to
++resolve before the canonical `check-bundle-containment.mjs` passed.
++
++The isolated SQL/HTTP/RLS and actual production-browser/recovery bodies remain
++unexecuted locally, as required by execution admission. In particular, SQLSTATE57014
++is a scoped real-SQL fault vector, not evidence of an executed native timeout;
++raw status/privacy and unknown-IP cleanup need native execution. Required full
++integration, installed six-file collection, recovery Storage/principal checks,
++essential browser, targeted High follow-up and truth qualification remain Root's
++exact-head CI/review work. No resources, key, Vault, environment or hosted settings
++were changed. Keep status in-review, follow-up recommended, no delivery JSON or
++development-complete/release-ready claim. The optional exhaustive release branch
++remains release-blocking deferred as recorded above.
++
+ ## Suggested Review Order
+ 
+-Author: Story 15.5 implementation author (gpt-6.1-sol High), incorporating the
+-explicitly delegated browser-binding and CI-runtime contributors' recorded choices.
+-Refreshed against the final source working tree before the source handoff commit;
+-the following stops were read and their one-based lines verified on 2026-10-20.
++Author: Story 15.5 implementation/fix author (gpt-6.1-sol High), incorporating
++explicitly delegated browser and bootstrap contributors. Refreshed after all
++Round 1 fixes and relevant checks; stops below resolve to final source literals.
+ 
+ ### Own settings and honest lifecycle results
+ 
+-Both existing personal entry points reach one settings surface. The existing
+-Dialog and component-memory state provide confirmation, copy fallback and explicit
+-uncertainty reconciliation; a lost issued URL requires a separate rotation.
++The two personal entry points reach one settings surface; the profile entry uses
++server-filtered navigation. Confirmations and component-memory issuance retain
++explicit uncertainty handling, while later authoritative status removes stale URLs.
+ 
+-- `src/components/scheduling/PersonalCalendarView.tsx:6` — `Kalenderprenumeration`: links agenda, week and empty states.
+-- `src/components/calendar-feed/CalendarSubscription.tsx:37` — `reconcile`: distinguishes saved, absent and superseded attempts.
+-- `tests/unit/features/calendar-feed/action-state.test.ts:10` — `15.5-UNIT-009`: exercises AC2 lost-response state without plaintext recovery.
+-- `tests/e2e/calendar-feed.e2e.spec.ts:71` — `15.5-E2E-001`: binds AC1/3/4/6/7/9 actual personal-view lifecycle journey; execution pending.
++- `src/components/app-shell/AppShell.tsx:279` — `navigation.some`: gates the profile link on scheduling access.
++- `src/components/calendar-feed/CalendarSubscription.tsx:34` — `const current = await refresh();`: clears superseded post-commit output and success.
++- `tests/unit/features/calendar-feed/action-state.test.ts:41` — `R1-07`: AC1/2 concurrent revoke/rotation state regression passed.
++- `tests/e2e/calendar-feed.e2e.spec.ts:155` — `15.5-E2E-003`: AC1/6 allowed and denied profile journey; execution pending.
+ 
+ ### Signed current-self authority and atomic writes
+ 
+-The ordinary JWT envelope derives self authority, while SQL repeats current exact
+-membership and role-union checks under the scheduling tenant lock. Dedicated
+-feed-only length-prefixed proofs prevent callers choosing an IP or weak token hash;
+-lifecycle history, CAS and audit commit together without plaintext escrow.
+-
+-- `src/server/commands/calendar-feed/manage-calendar-feed.ts:10` — `calendarFeedCommand`: issues plaintext only after confirmed fresh SQL success.
+-- `src/server/calendar-feed/attestation.ts:10` — `canonicalFeedProof`: binds dedicated operation-specific fields.
+-- `supabase/migrations/20261020220000_personal_calendar_feed.sql:134` — `manage_calendar_feed`: checks signed inputs, revision, replay and audit transaction.
+-- `tests/integration/commands/calendar-feed.int.test.ts:74` — `15.5-INT004`: AC2 changed-hash/action/revision replay assertions; native execution pending.
+-
+-### Isolated complete live calendar
+-
+-The public route has a cookie-free anon client and exact early middleware bypass.
+-One SQL JSON result contains only current own materialized planned bookings; the
+-encoder finishes before streaming, retaining IDs, UTC instants, Stockholm dates
+-and octet-safe escaping without a row cap, recurrence expansion or date horizon.
+-
+-- `middleware.ts:40` — `request.nextUrl.pathname`: bypasses only one feed token segment before auth/environment work.
+-- `src/server/calendar-feed/public-feed.ts:19` — `eventsFromResult`: enforces the complete minimal event shape before serialization.
+-- `src/features/calendar-feed/icalendar.ts:28` — `encodeCalendarFeed`: emits stable RFC5545 snapshots.
+-- `tests/unit/features/calendar-feed/icalendar.test.ts:50` — `15.5-UNIT-004`: AC8 independent injection, UTF-8 and folding assertions passed.
+-
+-### Independent abuse limits and least privilege
+-
+-Both database-owned axes count independently and commit invalid/limited outcomes;
+-projection faults preserve admitted counters without claiming a successful fetch.
+-The global IP table has no subject association, and only sanitized Admin aggregates
+-leave SQL. Hosted IP trust remains explicitly disabled until qualified by operations.
+-
+-- `supabase/migrations/20261020220000_personal_calendar_feed.sql:180` — `Global cardinality`: bounds global windows before tenant authority and token counters.
+-- `supabase/migrations/20261020220000_personal_calendar_feed.sql:79` — `calendar_feed_secret_internal`: filters dedicated keys without general owner Vault access.
+-- `tests/integration/calendar-feed/public-feed.int.test.ts:72` — `15.5-API003`: AC5 independent 60/token boundary; HTTP/DB execution pending.
+-- `tests/integration/rls/calendar-feed.rls.test.ts:167` — `15.5-RLS010`: AC4/9 effective owner, inherited ACL and filtered-helper assertions; execution pending.
+-
+-### Exact-head verification and release operations
+-
+-The separately allocated CI wrapper qualifies fresh local-stack identity, owns
+-only captured child processes and an exact ephemeral Vault UUID, and retains
+-primary/cleanup failures. Its injected unit evidence does not certify the live
+-lane. The full development gate and delivery truth record remain Root-owned.
+-
+-- `scripts/ci/with-calendar-feed-runtime.mjs:41` — `validateStackIdentity`: qualifies isolated stack identity before key setup.
+-- `scripts/ci/with-calendar-feed-runtime.mjs:226` — `runCalendarFeedRuntime`: orders key, fixed gate, owned child and cleanup lifecycles.
+-- `scripts/ci/with-calendar-feed-runtime.mjs:66` — `createTelemetryObserver`: retains measured sanitized output observations only.
+-- `docs/security/calendar-feed-operations.md:10` — `Hosted readiness`: records separately authorized key and trusted-IP prerequisites.
+-
+-Evidence: the actual local commands/counts and contributor provenance are recorded
+-in Implementation Verification above. Limits: middleware unit dependencies and
+-bootstrap process/DB dependencies are synthetic; component coverage is SSR only;
+-all 50 native integration/component and 11 actual browser bodies are unexecuted
+-locally. Required full DB/RLS/HTTP, recovery, browser, independent High review and
+-truth checks remain pending. No release matrix, live key, hosted IP trust,
+-performance target or deployment readiness is claimed.
++Ordinary JWT commands derive self authority; SQL rechecks current exact membership
++and role union under the scheduling tenant lock. Dedicated proofs bind privileged
++inputs, and CAS/history/audit commit together without plaintext recovery.
++
++- `src/server/commands/calendar-feed/manage-calendar-feed.ts:10` — `calendarFeedCommand`: exposes plaintext only after confirmed fresh SQL success.
++- `supabase/migrations/20261020220000_personal_calendar_feed.sql:154` — `create function public.manage_calendar_feed`: checks signed authority, revision, replay and audit.
++- `tests/support/calendar-feed-atdd.ts:270` — `const allowed = ["membershipId"`: checks raw JWT status keys before mapper reconstruction.
++- `tests/integration/rls/calendar-feed.rls.test.ts:129` — `15.5-RLS008`: AC1/4/9 raw status/hash and direct-DML assertions; execution pending.
++
++### Complete live snapshots and essential RFC correctness
++
++The exact public middleware boundary precedes authentication/cookies. Projection
++is complete and minimal; stable IDs, every projected-source revision and explicit
++fractional rounding produce a subscription snapshot without scheduling METHOD.
++
++- `middleware.ts:40` — `request.nextUrl.pathname`: bypasses only the exact feed token segment.
++- `supabase/migrations/20261020220000_personal_calendar_feed.sql:228` — `'updatedAt',greatest`: covers mutable booking, role, job, customer and facility revisions.
++- `src/features/calendar-feed/icalendar.ts:40` — `export function encodeCalendarFeed`: serializes complete snapshots before streaming.
++- `tests/unit/features/calendar-feed/icalendar.test.ts:76` — `R1-05 positive`: AC3/8 independent positive fractional and boundary vectors passed.
++
++### Durable abuse admission and hardened restore ownership
++
++Independent budgets keep admitted counters through projection cancellation without
++advancing last-use. Serial fixtures restore only their captured unknown-IP row;
++recovery and migration guards validate retained roles instead of repairing them.
++
++- `supabase/migrations/20261020220000_personal_calendar_feed.sql:239` — `exception when sqlstate '57014'`: keeps projection failure inside the counter transaction.
++- `tests/integration/calendar-feed/public-feed.int.test.ts:364` — `15.5-API018`: AC5/8 durable token/IP and last-use assertions; execution pending.
++- `ops/recovery/bootstrap-roles.sql:62` — `if not exists(select 1 from pg_roles where rolname='calendar_feed_owner')`: creates only the absent isolated restore owner.
++- `tests/unit/ops/pilot-operations.test.ts:220` — `recovery Compose sources`: guards seven attributes, exact grants and preserved recovery settings.
++
++### Isolated CI custody and honest evidence limits
++
++Only captured child identities and one ephemeral Vault UUID belong to the wrapper.
++Settlement is memoized; abnormal browser teardown retains exact job custody, while
++privacy detection measures raw output in memory before sanitized records persist.
++
++- `scripts/ci/with-calendar-feed-runtime.mjs:284` — `export async function runCalendarFeedRuntime`: orders admission, key, fixed gate and cleanup.
++- `scripts/ci/with-calendar-feed-runtime.mjs:166` — `export function createOwnedGroupStopper`: memoizes settlement and verifies identity before signaling.
++- `scripts/ci/with-calendar-feed-runtime.mjs:88` — `export function createTelemetryObserver`: detects leaks before dropping non-allowlisted output.
++- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:264` — `nonzero/null-signal nested browser loss`: requires retained key custody for abnormal completion.
++
++Evidence: Round 1 fix verification above records 63 executed Node cases with zero
++failures/skips, focused static checks, production build and guard results. These
++are current working-tree checks before the fix commit. Bootstrap dependencies are
++synthetic; operations recovery assertions are static, not restore evidence.
++All 50 native Vitest and 11 browser bodies remain pending locally; API001 covers
++live label revisions, API018 cancellation/counters, RLS008 raw status privacy,
++and E2E-001 the essential actual production lifecycle. Existing ACL/RLS010,
++serial cleanup and full regressions also require exact-head CI. Round 1 completed,
++but targeted High follow-up, live lifecycle/recovery and final truth qualification
++are outstanding. No provider/device/visual/performance or release-ready claim;
++the unallocated exhaustive branch remains explicitly release-blocking deferred.
+diff --git a/ops/recovery/bootstrap-roles.sql b/ops/recovery/bootstrap-roles.sql
+index 344f17a5..6f1bb539 100644
+--- a/ops/recovery/bootstrap-roles.sql
++++ b/ops/recovery/bootstrap-roles.sql
+@@ -54,6 +54,31 @@ BEGIN
+ END
+ $$;
+ 
++-- Logical feed function owners must exist before the schema restore. Only the
++-- isolated restore principal receives membership; JWT/runtime roles do not.
++do $$
++declare feed_owner record;
++begin
++ if not exists(select 1 from pg_roles where rolname='calendar_feed_owner') then
++  create role calendar_feed_owner nologin noinherit nosuperuser nocreatedb nocreaterole noreplication nobypassrls;
++ end if;
++ select * into feed_owner from pg_roles where rolname='calendar_feed_owner';
++ if feed_owner.rolcanlogin or feed_owner.rolinherit or feed_owner.rolsuper or feed_owner.rolcreatedb
++    or feed_owner.rolcreaterole or feed_owner.rolreplication or feed_owner.rolbypassrls then
++  raise exception 'calendar_feed_owner is not hardened';
++ end if;
++ -- Fail closed for retained grants; do not repair privileged or runtime roles.
++ if exists(select 1 from pg_auth_members m where m.member=feed_owner.oid
++   or (m.roleid=feed_owner.oid and (m.member<>(select oid from pg_roles where rolname='supabase_admin') or m.admin_option))) then
++  raise exception 'calendar_feed_owner has unexpected membership';
++ end if;
++ if not exists(select 1 from pg_roles where rolname='supabase_admin') then
++  raise exception 'calendar feed ownership principal absent';
++ end if;
++ grant calendar_feed_owner to supabase_admin with admin false;
++end
++$$;
++
+ -- ALTER ROLE is repeatable and keeps the generated recovery credential out of logs.
+ \set pgpass `echo "$POSTGRES_PASSWORD"`
+ ALTER USER authenticator WITH PASSWORD :'pgpass';
+diff --git a/scripts/ci/with-calendar-feed-runtime.mjs b/scripts/ci/with-calendar-feed-runtime.mjs
+index 5dbc292b..1b286b87 100644
+--- a/scripts/ci/with-calendar-feed-runtime.mjs
++++ b/scripts/ci/with-calendar-feed-runtime.mjs
+@@ -1,12 +1,12 @@
+ /** Disposable GitHub-hosted CI only. This is not local resource-launch authority. */
+ import { spawn, execFile } from "node:child_process";
+-import { promisify } from "node:util";
++import { promisify, stripVTControlCharacters } from "node:util";
+ import { randomBytes, randomUUID } from "node:crypto";
+ import { readdir, stat, realpath, mkdtemp, appendFile, writeFile, readFile, readlink } from "node:fs/promises";
+ import { tmpdir } from "node:os";
+ import { resolve, join } from "node:path";
+ import { fileURLToPath } from "node:url";
+-import { createServer } from "node:net";
++import { createServer, isIP } from "node:net";
+ import pg from "pg";
+ 
+ export const INTEGRATION_ARGS = Object.freeze(["run", "test:int", "--reporter=default", "--reporter=github-actions", "--reporter=json", "--outputFile=test-results/full-integration.json"]);
+@@ -62,18 +62,43 @@ export function validateStackIdentity({ db, gateway, checkoutTime, now, status }
+   }
+ }
+ 
++/** Recognize only the exact non-request Next startup address formats. */
++function isSafeInfrastructureAddress(line) {
++  return /^\s*(?:\[WebServer\]\s*)?- (?:Local|Network):\s+http:\/\/127\.0\.0\.1:(?:3100|3195)\s*$/.test(stripVTControlCharacters(line));
++}
++
++/** Inspect raw output in memory before dropping it; never return its contents. */
++export function hasSensitiveOutput(line, { keyId, secret, knownValues = /** @type {string[]} */ ([]) }) {
++  if ([keyId, secret, ...knownValues].some(value => value && line.includes(value))) return true;
++  if (/\/calendar\/feed\/[A-Za-z0-9_%=-]+|x-vercel-forwarded-for|["']?(?:proof|signature|tokenHash|ipHash)["']?\s*[:=]/i.test(line)) return true;
++  if (/(?<![a-f0-9])[a-f0-9]{64}(?![a-f0-9])/i.test(line)) return true;
++  // A capability or base64-encoded SHA256 proof has exactly 32 canonical bytes.
++  for (const match of line.matchAll(/(?<![A-Za-z0-9+/_-])[A-Za-z0-9+/_-]{43}=?(?![A-Za-z0-9+/_=-])/g)) {
++    const raw = match[0];
++    const bytes = Buffer.from(raw, "base64url");
++    if (bytes.length === 32 && [bytes.toString("base64url"), bytes.toString("base64")].includes(raw)) return true;
++  }
++  if (isSafeInfrastructureAddress(line)) return false;
++  for (const match of line.matchAll(/(?<![\d.])(?:\d{1,3}\.){3}\d{1,3}(?![\d.])/g)) if (isIP(match[0]) === 4) return true;
++  for (const match of line.matchAll(/(?<![a-f0-9:])(?:[a-f0-9]{0,4}:){2,}[a-f0-9:.]*(?:%[a-z0-9_.-]+)?/gi)) if (isIP(match[0]) === 6) return true;
++  return false;
++}
++
+ /** Never return/persist raw lines. Detection runs before filtering. */
+-export function createTelemetryObserver({ keyId, secret, persist }) {
++export function createTelemetryObserver({ keyId, secret, persist, knownValues = /** @type {string[]} */ ([]) }) {
+   let responseCount = 0, sensitiveOutputCount = 0;
+   const observation = () => persist(JSON.stringify({ event: "calendar_feed.runtime_observation", responseCount, sensitiveOutputCount, sensitiveOutputDetected: sensitiveOutputCount !== 0 }) + "\n");
+   return async (line) => {
+-    if (line.includes(secret) || line.includes(keyId) || /\/calendar\/feed\/[A-Za-z0-9_%=-]+|x-vercel-forwarded-for|"(?:proof|signature|tokenHash|ipHash)"\s*:/i.test(line)) {
++    let record;
++    try { record = JSON.parse(line); } catch { /* Unstructured output is still inspected below. */ }
++    const validResponse = record !== null && typeof record === "object" && !Array.isArray(record)
++      && Object.keys(record).sort().join(",") === "event,status" && record.event === "calendar_feed.response" && [200, 404, 429, 503].includes(record.status);
++    const unexpectedResponse = record?.event === "calendar_feed.response" && !validResponse;
++    if (hasSensitiveOutput(line, { keyId, secret, knownValues }) || unexpectedResponse) {
+       sensitiveOutputCount++;
+       await observation();
+     }
+-    let record;
+-    try { record = JSON.parse(line); } catch { return; }
+-    if (Object.keys(record ?? {}).sort().join(",") !== "event,status" || record.event !== "calendar_feed.response" || ![200, 404, 429, 503].includes(record.status)) return;
++    if (!validResponse) return;
+     responseCount++;
+     await persist(JSON.stringify({ event: record.event, status: record.status }) + "\n");
+     await observation();
+@@ -127,8 +152,56 @@ async function bounded(promise, ms, code, signal) {
+   } finally { clearTimeout(timer); signal?.removeEventListener("abort", onAbort); }
+ }
+ 
++async function processIdentity(pid) {
++  if (!pid) return null;
++  try {
++    const raw = await readFile(`/proc/${pid}/stat`, "utf8");
++    const tail = raw.slice(raw.lastIndexOf(")") + 2).trim().split(/\s+/);
++    if (!/^\d+$/.test(tail[19] ?? "")) fail("child-identity-unverified");
++    return { pid, group: Number(tail[2]), startTime: tail[19] };
++  } catch (error) { if (error.code === "ENOENT") return null; fail("child-identity-unverified"); }
++}
++
++/** One settlement promise owns all signals. A numeric group alone grants nothing. */
++export function createOwnedGroupStopper({ pid, done, capturedIdentity, readIdentity, groupExists, signalGroup, settleOutput, now = Date.now, sleep = delay }) {
++  let settlement;
++  const signalVerified = async signal => {
++    const original = await capturedIdentity;
++    const current = await readIdentity(pid);
++    if (!original || !current || original.pid !== pid || current.pid !== pid || original.group !== pid || current.group !== pid
++      || original.startTime !== current.startTime) fail("child-identity-unverified");
++    signalGroup(signal);
++  };
++  const waitUntilGone = async ms => {
++    const deadline = now() + ms;
++    while (groupExists() && now() < deadline) await sleep(50);
++  };
++  return () => {
++    settlement ??= (async () => {
++      let forced = false;
++      if (groupExists()) {
++        // Installed Playwright handles SIGINT by awaiting task teardown. Any
++        // later signal requires the same captured Linux process start time.
++        await signalVerified("SIGINT");
++        await waitUntilGone(15_000);
++        if (groupExists()) { forced = true; await signalVerified("SIGTERM"); }
++        await waitUntilGone(5_000);
++        if (groupExists()) await signalVerified("SIGKILL");
++        await waitUntilGone(5_000);
++        if (groupExists()) fail("child-custody-unverified");
++      }
++      const result = await bounded(done, 5_000, "child-settle-unverified");
++      await settleOutput();
++      return { forced, signal: result.signal };
++    })();
++    return settlement;
++  };
++}
++
+ function launchOwned(command, args, env, cwd, observe) {
+   const child = spawn(command, args, { cwd, env, detached: true, shell: false, stdio: ["ignore", "pipe", "pipe"] });
++  const capturedIdentity = processIdentity(child.pid);
++  capturedIdentity.catch(() => undefined); // The settlement path preserves failure.
+   // Register listeners immediately; neither spawn errors nor output escape to raw logs.
+   let output = Promise.resolve();
+   for (const stream of [child.stdout, child.stderr]) {
+@@ -152,6 +225,10 @@ function launchOwned(command, args, env, cwd, observe) {
+     if (!child.pid) return false;
+     try { process.kill(-child.pid, 0); return true; } catch (error) { if (error.code === "ESRCH") return false; throw new RuntimeFailure("child-custody-unverified"); }
+   };
++  const stop = createOwnedGroupStopper({ pid: child.pid, done, capturedIdentity, readIdentity: processIdentity, groupExists,
++    signalGroup: signal => {
++      try { process.kill(-child.pid, signal); } catch (error) { if (error.code !== "ESRCH") fail("child-signal-unverified"); }
++    }, settleOutput: () => output });
+   return {
+     done,
+     async ownsListener(port) {
+@@ -162,26 +239,7 @@ function launchOwned(command, args, env, cwd, observe) {
+         return ownsListenerRecord(port, links, await readFile("/proc/net/tcp", "utf8"));
+       } catch { return false; }
+     },
+-    async stop() {
+-      let forced = false;
+-      if (groupExists()) {
+-        // Playwright's SIGINT task cancellation awaits its separate webServer
+-        // process group. A forced runner exit cannot prove that teardown.
+-        process.kill(-child.pid, "SIGINT");
+-        const deadline = Date.now() + 15_000;
+-        while (groupExists() && Date.now() < deadline) await delay(50);
+-        if (groupExists()) { forced = true; process.kill(-child.pid, "SIGTERM"); }
+-        const termDeadline = Date.now() + 5_000;
+-        while (groupExists() && Date.now() < termDeadline) await delay(50);
+-        if (groupExists()) process.kill(-child.pid, "SIGKILL");
+-        const killDeadline = Date.now() + 5_000;
+-        while (groupExists() && Date.now() < killDeadline) await delay(50);
+-        if (groupExists()) fail("child-custody-unverified");
+-      }
+-      const result = await bounded(done, 5_000, "child-settle-unverified");
+-      await output;
+-      return { forced, signal: result.signal };
+-    },
++    stop,
+   };
+ }
+ 
+@@ -228,20 +286,28 @@ export async function runCalendarFeedRuntime({ mode, env = process.env, platform
+     childExitCodes: /** @type {(number|null)[]} */ ([]), keyDeleted: false, dbClosed: false,
+     failures: /** @type {string[]} */ ([]),
+     custody: /** @type {null | {owner:string, job:string|undefined, vaultUuid:string|null, ownedName:string|null, expiry:string, nextAction:string, resumeCondition:string}} */ (null) };
+-  const children = [];
++  const children = new Set();
+   let db, keyUuid, ownedName, transactionOpen = false, createUncertain = false, browserTeardownUnverified = false;
+   const abort = new AbortController();
+   const deps = { ...defaultDependencies(env, cwd), ...injected };
+   let unregister = () => undefined;
+   const checkSignal = () => { if (abort.signal.aborted) fail("interrupted"); };
+-  const launch = (command, args, childEnv, observer) => { checkSignal(); const handle = deps.launch(command, [...args], childEnv, observer); children.push(handle); return handle; };
++  const launch = (command, args, childEnv, observer) => { checkSignal(); const handle = deps.launch(command, [...args], childEnv, observer); children.add(handle); return handle; };
+   const run = async (command, args, childEnv, observer, timeout) => {
+     const handle = launch(command, args, childEnv, observer);
+-    const result = await bounded(handle.done, timeout, "child-timeout", abort.signal);
++    let result;
++    try { result = await bounded(handle.done, timeout, "child-timeout", abort.signal); }
++    catch (error) { if (mode === "browser") browserTeardownUnverified = true; throw error; }
+     receipt.childExitCodes.push(result.code);
+-    if (result.code !== 0 || result.signal) fail("child-failed");
++    if (result.code !== 0 || result.signal) {
++      // pnpm can map a killed nested Playwright runner to nonzero/null signal.
++      // That is never independent proof of its detached server's teardown.
++      if (mode === "browser") browserTeardownUnverified = true;
++      fail("child-failed");
++    }
+     const stopped = await handle.stop();
+     if (mode === "browser" && (stopped?.forced || stopped?.signal)) { browserTeardownUnverified = true; fail("browser-server-teardown-unverified"); }
++    children.delete(handle); // Proven settlement cannot be signalled again later.
+   };
+   try {
+     validateAdmission(mode, env, platform);
+@@ -299,6 +365,7 @@ export async function runCalendarFeedRuntime({ mode, env = process.env, platform
+       try {
+         const stopped = await handle.stop();
+         if (mode === "browser" && (stopped?.forced || stopped?.signal)) browserTeardownUnverified = true;
++        children.delete(handle);
+       } catch { receipt.failures.push("owned-child-cleanup-failed"); }
+     }
+     if (browserTeardownUnverified && !receipt.failures.includes("browser-server-teardown-unverified")) receipt.failures.push("browser-server-teardown-unverified");
+diff --git a/src/components/app-shell/AppShell.tsx b/src/components/app-shell/AppShell.tsx
+index 3a239479..be0694d0 100644
+--- a/src/components/app-shell/AppShell.tsx
++++ b/src/components/app-shell/AppShell.tsx
+@@ -276,7 +276,7 @@ export function AppShell({
+               <NotificationBell />
+               <div className="relative">
+                 <button type="button" aria-label="Profil" aria-expanded={profileOpen} onClick={() => setProfileOpen((current) => !current)} className="text-sm text-zinc-700">Profil</button>
+-                {profileOpen && <div className="absolute left-0 z-50 mt-2 rounded border bg-white p-2 shadow sm:left-auto sm:right-0"><Link className="flex min-h-11 items-center whitespace-nowrap focus-visible:ring-2 focus-visible:ring-blue-600" href="/settings/calendar" onClick={() => setProfileOpen(false)}>Min kalender</Link><Link href="/settings/notifications" onClick={() => setProfileOpen(false)}>Notisinställningar</Link></div>}
++                {profileOpen && <div className="absolute left-0 z-50 mt-2 rounded border bg-white p-2 shadow sm:left-auto sm:right-0">{navigation.some(item => item.href === "/scheduling") && <Link className="flex min-h-11 items-center whitespace-nowrap focus-visible:ring-2 focus-visible:ring-blue-600" href="/settings/calendar" onClick={() => setProfileOpen(false)}>Min kalender</Link>}<Link href="/settings/notifications" onClick={() => setProfileOpen(false)}>Notisinställningar</Link></div>}
+               </div>
+               {(context.tenantName || context.userEmail) && (
+                 <div className="flex min-w-0 flex-1 flex-col items-end leading-tight sm:flex-none">
+diff --git a/src/components/calendar-feed/CalendarSubscription.tsx b/src/components/calendar-feed/CalendarSubscription.tsx
+index bdecc613..456bacd7 100644
+--- a/src/components/calendar-feed/CalendarSubscription.tsx
++++ b/src/components/calendar-feed/CalendarSubscription.tsx
+@@ -3,7 +3,7 @@ import Link from "next/link";
+ import { useRef, useState } from "react";
+ import { Dialog } from "@/components/crm/Dialog";
+ import { manageCalendarFeedAction, readCalendarFeedSettingsAction } from "@/features/calendar-feed/actions";
+-import { pendingCalendarFeed, transitionCalendarFeed, type CalendarFeedActionState } from "@/features/calendar-feed/action-state";
++import { pendingCalendarFeed, transitionCalendarFeed, reconcileCalendarFeedIssuance, type CalendarFeedActionState } from "@/features/calendar-feed/action-state";
+ import type { CalendarFeedAction, CalendarFeedStatus } from "@/features/calendar-feed/types";
+ 
+ const button = "min-h-11 rounded-md border border-zinc-300 px-4 py-2 text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 disabled:opacity-60";
+@@ -30,7 +30,13 @@ export function CalendarSubscription({ initial, initialState = null }: { readonl
+         setMessage(action === "revoke" ? "Prenumerationen är återkallad." : "Länken är skapad. Kopiera den nu; den visas bara den här gången.");
+       } else if (result.outcome === "replayed") { setState(transitionCalendarFeed(pending, "reconciled-committed")); setMessage("Ändringen är sparad. Länken kan inte återhämtas. Rotera för att få en ny länk."); }
+       else { setState(transitionCalendarFeed(pending, retry ? "unknown" : "denied")); setMessage("Ändringen kunde inte bekräftas. Kontrollera status och försök igen."); }
+-      try { await refresh(); } catch { setMessage(m => `${m} Statusen kunde inte uppdateras. Försök igen.`); }
++      try {
++        const current = await refresh();
++        if (result.outcome === "committed" && (!current.active && action !== "revoke" || current.revision !== result.revision)) {
++          setState(previous => previous ? reconcileCalendarFeedIssuance(previous, current) : previous);
++          setMessage("Statusen har ändrats. Välj en ny ändring utifrån aktuell status.");
++        }
++      } catch { setMessage(m => `${m} Statusen kunde inte uppdateras. Försök igen.`); }
+     } catch { setState(transitionCalendarFeed(pending, "unknown")); setMessage("Anslutningen bröts. Kontrollera resultatet innan du försöker igen."); }
+     finally { setBusy(false); setConfirm(null); }
+   }
+@@ -43,7 +49,7 @@ export function CalendarSubscription({ initial, initialState = null }: { readonl
+         else if (current.revision === state.request.revision) { setState(transitionCalendarFeed(state, "reconciled-not-found")); setMessage("Inget sparat resultat hittades. Försök igen med samma ändring."); }
+         else { setState(transitionCalendarFeed(state, "superseded-response")); setMessage("Statusen har ändrats. Välj en ny ändring utifrån aktuell status."); }
+       } else {
+-        if (state?.rawUrl && (!current.active || current.revision !== state.confirmedRevision)) setState(transitionCalendarFeed(state, "superseded-response"));
++        if (state) setState(reconcileCalendarFeedIssuance(state, current));
+         setMessage("Statusen är uppdaterad.");
+       }
+     } catch { setMessage("Statusen kunde inte hämtas. Försök igen."); }
+diff --git a/src/features/calendar-feed/action-state.ts b/src/features/calendar-feed/action-state.ts
+index 1d5faf79..e66778a8 100644
+--- a/src/features/calendar-feed/action-state.ts
++++ b/src/features/calendar-feed/action-state.ts
+@@ -9,3 +9,8 @@ export function transitionCalendarFeed(state: CalendarFeedActionState, event: st
+   if (event === "reconciled-not-found") return { ...base, status: "retry", canMutate: false };
+   return { ...base, status: event === "revoked" ? "revoked" : "error", canMutate: true };
+ }
++
++/** A later authoritative status may supersede a just-committed issuance. */
++export function reconcileCalendarFeedIssuance(state: CalendarFeedActionState, current: { active: boolean; revision: number }): CalendarFeedActionState {
++  return state.rawUrl && (!current.active || current.revision !== state.confirmedRevision) ? transitionCalendarFeed(state, "superseded-response") : state;
++}
+diff --git a/src/features/calendar-feed/icalendar.ts b/src/features/calendar-feed/icalendar.ts
+index 01ee860b..cf81dc18 100644
+--- a/src/features/calendar-feed/icalendar.ts
++++ b/src/features/calendar-feed/icalendar.ts
+@@ -1,16 +1,28 @@
+ import type { CalendarFeedEvent } from "./types";
+ 
+-const stockholm = new Intl.DateTimeFormat("sv-SE", { timeZone: "Europe/Stockholm", year: "numeric", month: "2-digit", day: "2-digit" });
+-function instant(value: string): Date {
+-  if (!/^[0-9]{4}-\d\d-\d\dT(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:\.\d{1,6})?(?:Z|[+-](?:[01]\d|2[0-3]):[0-5]\d)$/.test(value) || value.startsWith("0000")) throw new Error("Calendar unavailable");
+-  const day = new Date(`${value.slice(0,10)}T00:00:00Z`);
+-  if (!Number.isFinite(day.getTime()) || day.toISOString().slice(0,10) !== value.slice(0,10)) throw new Error("Calendar unavailable");
+-  const date = new Date(value);
+-  if (!Number.isFinite(date.getTime())) throw new Error("Calendar unavailable");
+-  return date;
++import { parseUtcInstant, formatUtcInstant, localDateForInstant } from "@/features/scheduling/time-zone";
++
++const second = BigInt(1000000);
++const lastSecond = parseUtcInstant("9999-12-31T23:59:59Z");
++function instant(value: string): bigint {
++  try { return parseUtcInstant(value); } catch { throw new Error("Calendar unavailable"); }
++}
++function floorSecond(value: bigint): bigint { return (value >= BigInt(0) ? value / second : (value - second + BigInt(1)) / second) * second; }
++function utc(value: bigint): string {
++  const formatted = formatUtcInstant(value);
++  if (!/^\d{4}-/.test(formatted) || formatted.startsWith("0000")) throw new Error("Calendar unavailable");
++  return formatted.slice(0,19).replace(/[-:]/g, "") + "Z";
++}
++/** RFC5545 has whole seconds. Expand outward, saturating the final supported
++ * second at year 9999; move start back one second if saturation collapses it. */
++function timedRange(start: bigint, end: bigint): [string, string] {
++  let projectedStart = floorSecond(start);
++  let projectedEnd = floorSecond(end) + (end % second === BigInt(0) ? BigInt(0) : second);
++  if (projectedEnd > lastSecond) projectedEnd = lastSecond;
++  if (projectedStart >= projectedEnd) projectedStart = projectedEnd - second;
++  return [utc(projectedStart), utc(projectedEnd)];
+ }
+-function utc(value: string): string { return instant(value).toISOString().slice(0, 19).replace(/[-:]/g, "") + "Z"; }
+-function localDay(value: string): string { return stockholm.format(instant(value)).replaceAll("-", ""); }
++function localDay(value: bigint): string { return localDateForInstant(value).replaceAll("-", ""); }
+ function escape(value: string): string {
+   return value.replaceAll("\\", "\\\\").replace(/\r\n|\r|\n/g, "\\n").replaceAll(";", "\\;").replaceAll(",", "\\,").replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/g, "");
+ }
+@@ -26,14 +38,17 @@ function fold(value: string): string {
+ }
+ /** Full snapshots use materialized booking IDs; no recurrence re-expansion or horizon. */
+ export function encodeCalendarFeed(events: readonly CalendarFeedEvent[]): string {
+-  const lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Kopplas//Personal calendar//SV", "CALSCALE:GREGORIAN", "METHOD:PUBLISH"];
++  const lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Kopplas//Personal calendar//SV", "CALSCALE:GREGORIAN"];
+   const seen = new Set<string>();
+   for (const event of events) {
+-    if (!event.id || /[\r\n]/.test(event.id) || seen.has(event.id) || instant(event.endsAt) <= instant(event.startsAt)) throw new Error("Calendar unavailable");
++    const start = instant(event.startsAt), end = instant(event.endsAt);
++    if (!event.id || /[\r\n]/.test(event.id) || seen.has(event.id) || end <= start) throw new Error("Calendar unavailable");
++    const [timedStart, timedEnd] = event.allDay ? ["", ""] : timedRange(start, end);
++    const stamp = utc(floorSecond(instant(event.updatedAt)));
+     seen.add(event.id);
+-    lines.push("BEGIN:VEVENT", `UID:${escape(event.id)}@bookings.kopplas`, `DTSTAMP:${utc(event.updatedAt)}`, `LAST-MODIFIED:${utc(event.updatedAt)}`,
+-      event.allDay ? `DTSTART;VALUE=DATE:${localDay(event.startsAt)}` : `DTSTART:${utc(event.startsAt)}`,
+-      event.allDay ? `DTEND;VALUE=DATE:${localDay(event.endsAt)}` : `DTEND:${utc(event.endsAt)}`,
++    lines.push("BEGIN:VEVENT", `UID:${escape(event.id)}@bookings.kopplas`, `DTSTAMP:${stamp}`, `LAST-MODIFIED:${stamp}`,
++      event.allDay ? `DTSTART;VALUE=DATE:${localDay(start)}` : `DTSTART:${timedStart}`,
++      event.allDay ? `DTEND;VALUE=DATE:${localDay(end)}` : `DTEND:${timedEnd}`,
+       `SUMMARY:${escape([event.title, event.jobLabel, event.customerLabel].filter(Boolean).join(" – "))}`);
+     if (event.location) lines.push(`LOCATION:${escape(event.location)}`);
+     lines.push("END:VEVENT");
+diff --git a/supabase/migrations/20261020220000_personal_calendar_feed.sql b/supabase/migrations/20261020220000_personal_calendar_feed.sql
+index 6ccb76db..dcbea374 100644
+--- a/supabase/migrations/20261020220000_personal_calendar_feed.sql
++++ b/supabase/migrations/20261020220000_personal_calendar_feed.sql
+@@ -1,6 +1,26 @@
+ -- Story 15.5 / ADR-B004. Capability hashes and sanitized lifecycle history only.
+-create role calendar_feed_owner nologin noinherit nosuperuser nocreatedb nocreaterole noreplication nobypassrls;
+-grant calendar_feed_owner to postgres;
++do $$
++declare feed_owner record;
++begin
++ if not exists(select 1 from pg_roles where rolname='calendar_feed_owner') then
++  create role calendar_feed_owner nologin noinherit nosuperuser nocreatedb nocreaterole noreplication nobypassrls;
++ end if;
++ select * into feed_owner from pg_roles where rolname='calendar_feed_owner';
++ if feed_owner.rolcanlogin or feed_owner.rolinherit or feed_owner.rolsuper or feed_owner.rolcreatedb
++    or feed_owner.rolcreaterole or feed_owner.rolreplication or feed_owner.rolbypassrls then
++  raise exception 'calendar_feed_owner is not hardened';
++ end if;
++ -- Fail closed for retained grants; do not repair privileged or runtime roles.
++ if exists(select 1 from pg_auth_members m where m.member=feed_owner.oid
++   or (m.roleid=feed_owner.oid and (m.member<>(select oid from pg_roles where rolname='postgres') or m.admin_option))) then
++  raise exception 'calendar_feed_owner has unexpected membership';
++ end if;
++ if not exists(select 1 from pg_roles where rolname='postgres') then
++  raise exception 'calendar feed ownership principal absent';
++ end if;
++ grant calendar_feed_owner to postgres with admin false;
++end
++$$;
+ grant usage,create on schema public to calendar_feed_owner;
+ grant usage on schema auth,extensions to calendar_feed_owner;
+ grant execute on function auth.uid() to calendar_feed_owner;
+@@ -47,9 +67,9 @@ grant select(tenant_id,membership_id,role) on public.membership_roles to calenda
+ grant select(id,tenant_id,membership_id,archived_at) on public.person_profiles to calendar_feed_owner;
+ grant select(tenant_id,booking_id,person_profile_id) on public.booking_assignees to calendar_feed_owner;
+ grant select(id,tenant_id,starts_at,ends_at,all_day,updated_at,status,work_role_id,job_id,customer_id,facility_id) on public.bookings to calendar_feed_owner;
+-grant select(id,tenant_id,title,customer_id,facility_id) on public.jobs to calendar_feed_owner;
+-grant select(id,tenant_id,display_name) on public.customers,public.work_roles to calendar_feed_owner;
+-grant select(id,tenant_id,address_line1,address_line2,postal_code,city) on public.facilities to calendar_feed_owner;
++grant select(id,tenant_id,title,customer_id,facility_id,updated_at) on public.jobs to calendar_feed_owner;
++grant select(id,tenant_id,display_name,updated_at) on public.customers,public.work_roles to calendar_feed_owner;
++grant select(id,tenant_id,address_line1,address_line2,postal_code,city,updated_at) on public.facilities to calendar_feed_owner;
+ grant insert(tenant_id,actor_user_id,command,event_type,target_type,target_id,correlation_id,metadata) on public.audit_events to calendar_feed_owner;
+ create policy calendar_feed_owner_tenants on public.tenants for select to calendar_feed_owner using(true);
+ create policy calendar_feed_owner_memberships on public.tenant_memberships for select to calendar_feed_owner using(true);
+@@ -205,7 +225,7 @@ begin
+  -- Projection faults roll back only their subtransaction; admitted abuse counters
+  -- stay durable and no successful-use timestamp is written for a failed feed.
+  begin
+- select coalesce(jsonb_agg(jsonb_strip_nulls(jsonb_build_object('id',b.id,'startsAt',b.starts_at,'endsAt',b.ends_at,'allDay',b.all_day,'updatedAt',b.updated_at,
++ select coalesce(jsonb_agg(jsonb_strip_nulls(jsonb_build_object('id',b.id,'startsAt',b.starts_at,'endsAt',b.ends_at,'allDay',b.all_day,'updatedAt',greatest(b.updated_at,w.updated_at,j.updated_at,c.updated_at,f.updated_at),
+   'title',coalesce(nullif(w.display_name,''),'Bokning'),'jobLabel',j.title,'customerLabel',c.display_name,
+   'location',nullif(concat_ws(', ',nullif(f.address_line1,''),nullif(f.address_line2,''),nullif(concat_ws(' ',nullif(f.postal_code,''),nullif(f.city,'')),'')),''))) order by b.starts_at,b.id),'[]'::jsonb) into events
+  from public.bookings b
+@@ -216,7 +236,7 @@ begin
+  where b.tenant_id=token.tenant_id and b.status='planned' and exists(
+   select 1 from public.booking_assignees a join public.person_profiles p on p.id=a.person_profile_id and p.tenant_id=a.tenant_id
+   where a.tenant_id=b.tenant_id and a.booking_id=b.id and p.membership_id=token.membership_id and p.archived_at is null);
+- exception when others then return jsonb_build_object('status',503); end;
++ exception when sqlstate '57014' or others then return jsonb_build_object('status',503); end;
+  update public.calendar_feed_tokens set last_used_at=now_at,usage_count=least(usage_count+1,9007199254740991) where id=token.id;
+  return jsonb_build_object('status',200,'events',events);
+ end $$;
+diff --git a/tests/e2e/calendar-feed.e2e.spec.ts b/tests/e2e/calendar-feed.e2e.spec.ts
+index 8dbe68da..21c2ce87 100644
+--- a/tests/e2e/calendar-feed.e2e.spec.ts
++++ b/tests/e2e/calendar-feed.e2e.spec.ts
+@@ -166,6 +166,13 @@ test.describe("15.5 Kalenderprenumeration essential production-host", () => {
+       await expect(page).toHaveURL(/\/settings\/calendar$/);
+       await expect(page.getByRole("heading", { name: calendarNames.title, exact: true })).toHaveCount(1);
+       await expect(calendarUI(page).create).toHaveCount(1);
++      await f.signIn("seller");
++      await page.goto("/dashboard");
++      await page.getByRole("button", { name: "Profil", exact: true }).click();
++      await expect(page.getByRole("link", { name: "Min kalender", exact: true })).toHaveCount(0);
++      await expect(page.getByRole("link", { name: "Notisinställningar", exact: true })).toBeVisible();
++      await page.goto("/settings/calendar");
++      await expect(calendarUI(page).create).toHaveCount(0);
+     });
+   });
+ 
+diff --git a/tests/e2e/support/calendar-feed-atdd.ts b/tests/e2e/support/calendar-feed-atdd.ts
+index 48782706..232a4174 100644
+--- a/tests/e2e/support/calendar-feed-atdd.ts
++++ b/tests/e2e/support/calendar-feed-atdd.ts
+@@ -135,7 +135,7 @@ export type CalendarBrowserFixture = {
+    */
+   expectedOwnEvents: SafeEvent[];
+   expectedAbuse: { limitedRequests: number; spikes: number };
+-  signIn: (identity: "montor" | "manager" | "admin") => Promise<void>;
++  signIn: (identity: "montor" | "manager" | "admin" | "seller") => Promise<void>;
+   snapshot: () => Promise<PhysicalSnapshot>;
+   /** Register actual action transport listener BEFORE triggering the UI action;
+    * bind actual Next action input, never guess an /api endpoint or RPC payload.
+@@ -253,7 +253,8 @@ export async function withCalendarBrowserFixture(
+       const extraProfile = randomUUID(), privateNote = `PRIVATE-NOTE-${randomUUID()}`;
+       const peerUser = fx.roleUnionUser;
+       const [peerMember] = await adminQuery<{ id: string }>("select id from public.tenant_memberships where tenant_id=$1 and user_id=$2", [ownTenant, peerUser.id]);
+-      const subjects = { montor: { user: fx.users.montor, membership: fx.ownProfile.membershipId, profile: fx.ownProfile.id },
++      const [sellerMember] = await adminQuery<{ id: string }>("select id from public.tenant_memberships where tenant_id=$1 and user_id=$2", [ownTenant, fx.users.saljare.id]);
++      const subjects = { seller: { user: fx.users.saljare, membership: sellerMember.id, profile: "" }, montor: { user: fx.users.montor, membership: fx.ownProfile.membershipId, profile: fx.ownProfile.id },
+         manager: { user: fx.users.projektledare, membership: fx.coworkerProfile.membershipId, profile: fx.coworkerProfile.id },
+         admin: { user: fx.base.adminA, membership: fx.adminProfile.membershipId, profile: fx.adminProfile.id } };
+       let subject = subjects.montor;
+diff --git a/tests/integration/calendar-feed/public-feed.int.test.ts b/tests/integration/calendar-feed/public-feed.int.test.ts
+index 1a701905..63cb860f 100644
+--- a/tests/integration/calendar-feed/public-feed.int.test.ts
++++ b/tests/integration/calendar-feed/public-feed.int.test.ts
+@@ -42,6 +42,17 @@ describe("15.5 public capability HTTP, projection and independent abuse budgets"
+       expect(events[0].properties).not.toHaveProperty("ATTENDEE");
+       expect(events[0].properties).not.toHaveProperty("ORGANIZER");
+       expect(events[0].properties).not.toHaveProperty("URL");
++      let revision = 2031;
++      for (const source of ["work_roles", "jobs", "customers", "facilities"] as const) {
++        const updatedAt = `${revision}-01-01T12:00:00Z`, label = `Changed ${source}`;
++        await fx.editProjectedSource(own.id, source, label, updatedAt);
++        const edited = calendarEvents((await fx.http(url)).body)[0];
++        expect(edited.uid).toBe(events[0].uid);
++        expect(source === "facilities" ? edited.location : edited.summary).toContain(label);
++        expect(edited.properties["DTSTAMP"]).toEqual([`${revision}0101T120000Z`]);
++        expect(edited.properties["LAST-MODIFIED"]).toEqual([`${revision}0101T120000Z`]);
++        revision++;
++      }
+     });
+   });
+ 
+@@ -354,8 +365,8 @@ describe("15.5 public capability HTTP, projection and independent abuse budgets"
+     await withCalendarFeedFixture("serial-public", async fx => {
+       await fx.seedBookings(Array.from({ length: 1_001 }, () => bookingSeed()));
+       const url = issuedUrl(await fx.manage("own", lifecycle("create", 0)));
+-      for (const stage of ["projection-after-first-page", "counter-write"] as const) {
+-        const before = await fx.serial.counters(url, fx.isolatedTrustedIp);
++      for (const stage of ["projection-after-first-page", "projection-query-canceled", "counter-write"] as const) {
++        const before = await fx.serial.counters(url, null);
+         const receipt = await fx.serial.withFault({ tenantId: fx.subjects.own.tenantId,
+           attemptId: randomUUID(), correlationId: randomUUID(), stage }, () => fx.http(url));
+         expect(receipt.stageObserved).toBe(true); expect(receipt.ownedObjectsRemaining).toBe(0);
+@@ -364,8 +375,10 @@ describe("15.5 public capability HTTP, projection and independent abuse budgets"
+         expect(receipt.result.body).not.toContain("BEGIN:VEVENT");
+         expect(receipt.result.body).not.toContain("SQL");
+         expect(receipt.result.headers["cache-control"]).toContain("no-store");
+-        if (stage === "projection-after-first-page") {
+-          expect((await fx.serial.counters(url, fx.isolatedTrustedIp)).token).toBe(before.token + 1);
++        if (stage !== "counter-write") {
++          expect(receipt.sqlstate).toBe(stage === "projection-query-canceled" ? "57014" : "PT555");
++          expect((await fx.serial.counters(url, null)).ip).toBe(before.ip + 1);
++          expect((await fx.serial.counters(url, null)).token).toBe(before.token + 1);
+           expect((await fx.status("own")).usageCount).toBe(0);
+           expect((await fx.status("own")).lastUsedAt).toBeNull();
+         }
+diff --git a/tests/integration/rls/calendar-feed.rls.test.ts b/tests/integration/rls/calendar-feed.rls.test.ts
+index 1b92e875..aab4f5b1 100644
+--- a/tests/integration/rls/calendar-feed.rls.test.ts
++++ b/tests/integration/rls/calendar-feed.rls.test.ts
+@@ -141,6 +141,7 @@ describe("15.5 exact self authority, raw SQL boundary and least privilege", () =
+       for (const caller of ["own", "admin", "planner"] as const) {
+         const status = await fx.status(caller);
+         const serialized = JSON.stringify(status.publicDto);
++        expect(Object.keys(status.publicDto).sort()).toEqual(["membershipId", "active", "revision", "lastUsedAt", "usageCount", "attemptOutcome", "attemptAction", "attemptRevision"].sort());
+         expect(serialized).not.toContain(before.tokens[0].hash);
+         expect(serialized).not.toContain(fx.subjects.peer.membershipId);
+       }
+diff --git a/tests/support/calendar-feed-atdd.ts b/tests/support/calendar-feed-atdd.ts
+index a48c5408..e5c67e8a 100644
+--- a/tests/support/calendar-feed-atdd.ts
++++ b/tests/support/calendar-feed-atdd.ts
+@@ -130,6 +130,7 @@ export type CalendarFixture = {
+     splitSurvivingId: string; newOccurrenceIds: string[] }>;
+   changeSeries(kind: "edit" | "exception" | "cancel" | "split", id: string): Promise<void>;
+   setBooking(id: string, patch: Partial<BookingSeed>): Promise<void>;
++  editProjectedSource(id: string, source: "work_roles" | "jobs" | "customers" | "facilities", label: string, updatedAt: string): Promise<void>;
+   setAssignments(id: string, subjects: SubjectName[]): Promise<void>;
+   setAuthority(subject: SubjectName, patch: AuthorityPatch): Promise<void>;
+   setProvisioningState(subject: SubjectName, state: string | null): Promise<void>;
+@@ -157,10 +158,10 @@ export type SerialControls = {
+     run: () => Promise<T>): Promise<T>;
+   /** DB-clock fixture, not caller-signed windows/limits. Binding must prove real SQL time source. */
+   withDatabaseTime<T>(iso: string, run: () => Promise<T>): Promise<T>;
+-  counters(url: string, canonicalIp: string): Promise<{ token: number; ip: number; windowStart: string;
++  counters(url: string, canonicalIp: string | null): Promise<{ token: number; ip: number; windowStart: string;
+     databaseNow: string; spikeCount: number; storedIpIsKeyedHash: boolean }>;
+   withFault<T>(scope: { tenantId: string; attemptId: string; correlationId: string;
+-    stage: "create-audit" | "rotate-audit" | "revoke-audit" | "projection-after-first-page" | "counter-write" },
++    stage: "create-audit" | "rotate-audit" | "revoke-audit" | "projection-after-first-page" | "projection-query-canceled" | "counter-write" },
+     run: () => Promise<T>): Promise<{ result: T; stageObserved: boolean; sqlstate: string; ownedObjectsRemaining: number }>;
+   loseCommittedResponse(subject: SubjectName, intent: LifecycleIntent): Promise<void>;
+   barrier(scope: { tenantId: string; membershipId: string; attemptId: string;
+@@ -194,7 +195,9 @@ export async function withCalendarFeedFixture<L extends Lane>(
+         const extra = await seedRoleAwarePhaseAUsers(base.base); additionalUsers = extra.extraUsers;
+         const fixture = await bindCalendarFixture(base, extra);
+         const serial = lane === "row-isolated" ? {} : { serial: await calendarSerialControls(fixture) };
+-        await run(Object.assign(fixture, serial) as FixtureByLane<L>);
++        const scenario = () => run(Object.assign(fixture, serial) as FixtureByLane<L>);
++        if (lane === "row-isolated") await scenario();
++        else await withOwnedUnknownWindow(fixture, scenario);
+       } catch (error) { failure = error; }
+       let cleanupFailure: unknown;
+       try { await cleanupCalendarOwnedRows(base.tenantIds); } catch (error) { cleanupFailure = error; }
+@@ -217,7 +220,7 @@ function redactFailure(error: unknown): Error {
+ }
+ 
+ type BoundFixture = CalendarFixture & { base: BookingFixture; clients: Record<SubjectName, TestServerClient>;
+-  tenantIds: string[]; keyId: string; secret: string; currentRawFetch: Record<string, unknown> | null };
++  tenantIds: string[]; keyId: string; secret: string; pendingRequests: Set<Promise<unknown>>; currentRawFetch: Record<string, unknown> | null };
+ const iso = (value: unknown) => value === null ? null : new Date(String(value)).toISOString();
+ function normalizedRpc(result: { data: unknown; error: unknown }): RpcObservation {
+   return { denied: !!result.error, rows: result.error ? [] : [result.data], sanitizedResult: result.error ? { denied: true } : { admitted: true } };
+@@ -247,16 +250,30 @@ async function bindCalendarFixture(base: BookingFixture, extra: Awaited<ReturnTy
+   const isolatedTrustedIp = `2001:db8:${randomPart}`;
+   const readRows = async (table: string) => (await adminQuery<{ row: Record<string, unknown> }>(`select to_jsonb(t) row from public.${table} t where tenant_id=any($1::uuid[]) order by tenant_id,id`, [base.tenantIds])).map(row => row.row);
+   const response = async (result: Response): Promise<FeedResponse> => ({ status: result.status, headers: Object.fromEntries(result.headers.entries()), body: await result.text() });
++  const pendingRequests = new Set<Promise<unknown>>();
++  function track<T>(request: Promise<T>): Promise<T> {
++    pendingRequests.add(request);
++    void request.then(() => pendingRequests.delete(request), () => pendingRequests.delete(request));
++    return request;
++  }
+   const fixture: BoundFixture = {
+-    base, clients, subjects, tenantIds: base.tenantIds, keyId:key.keyId,secret:key.secret,currentRawFetch:null,isolatedTrustedIp,
++    base, clients, subjects, pendingRequests, tenantIds: base.tenantIds, keyId:key.keyId,secret:key.secret,currentRawFetch:null,isolatedTrustedIp,
+     manage: async (subject,intent) => {
+       const result = await manageCalendarFeed(clients[subject] as never,{action:intent.action,revision:intent.expectedRevision,attemptId:intent.attemptId},intent.correlationId);
+       if (result.issuedPath) trackedRaw.push(result.issuedPath.split("/").at(-1)!);
+       return {outcome:result.outcome,revision:result.revision,issuedUrl:result.issuedPath?`${testOrigin()}${result.issuedPath}`:null};
+     },
+     status: async (subject,attemptId) => {
++      // Inspect the directly callable ordinary JWT RPC before the mapper can
++      // drop an accidentally added field. Errors never serialize raw payloads.
++      const { data, error } = await clients[subject].rpc("read_calendar_feed_status", { p_tenant_id: subjects[subject].tenantId, p_attempt_id: attemptId ?? null });
++      const allowed = ["membershipId", "active", "revision", "lastUsedAt", "usageCount", "attemptOutcome", "attemptAction", "attemptRevision"].sort();
++      if (error || !data || JSON.stringify(Object.keys(data).sort()) !== JSON.stringify(allowed)) throw new Error("Raw calendar status RPC field allowlist failed");
++      const serialized = JSON.stringify(data);
++      const physical = await adminQuery<{ token_hash: string }>("select token_hash from public.calendar_feed_tokens where tenant_id=any($1::uuid[]) and token_hash is not null", [base.tenantIds]);
++      if ([...trackedRaw, ...trackedProof, key.secret, isolatedTrustedIp, ...physical.map(row => row.token_hash)].some(value => value && serialized.includes(value)) || /calendar\/feed\//.test(serialized)) throw new Error("Raw calendar status RPC privacy failed");
+       const status = await readCalendarFeedStatus(clients[subject] as never,subjects[subject].tenantId,attemptId);
+-      return {...status,publicDto:{...status}};
++      return {...status,publicDto:data};
+     },
+     rawManage: async (name,intent,overrides={},attack) => {
+       const subject = subjects[name === "anon" ? "own" : name], now = new Date();
+@@ -328,6 +345,22 @@ async function bindCalendarFixture(base: BookingFixture, extra: Awaited<ReturnTy
+       const row={...current,...patch};
+       await adminQuery("update public.bookings set starts_at=$2,ends_at=$3,status=$4,all_day=$5,updated_at=$6 where id=$1 and tenant_id=$7",[id,row.startsAt,row.endsAt,row.status,row.allDay,row.updatedAt,subjects[row.subject].tenantId]);seedFacts.set(id,row);
+     },
++    editProjectedSource: async (id,source,label,updatedAt) => {
++      const current=seedFacts.get(id); if(!current)throw new Error("Owned booking absent");
++      const refs={work_roles:"work_role_id",jobs:"job_id",customers:"customer_id",facilities:"facility_id"} as const;
++      const labels={work_roles:"display_name",jobs:"title",customers:"display_name",facilities:"address_line1"} as const;
++      if(!refs[source] || !/^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\dZ$/.test(updatedAt))throw new Error("Invalid owned projection edit");
++      await adminSession(async({query})=>{
++        await query("begin");try {
++          // Explicit source revisions are independent oracles, isolated to this
++          // fixture's rows; connection-local trigger suppression is rolled back.
++          await query("set local session_replication_role=replica");
++          const changed=await query(`update public.${source} s set ${labels[source]}=$3,updated_at=$4 from public.bookings b where b.id=$1 and b.tenant_id=$2 and s.tenant_id=b.tenant_id and s.id=b.${refs[source]} returning s.id`,[id,subjects[current.subject].tenantId,label,updatedAt]);
++          if(changed.length!==1)throw new Error("Owned projected source absent");
++          await query("commit");
++        }catch(error){await query("rollback");throw error;}
++      });
++    },
+     setAssignments: async (id,names) => {
+       const [row]=await adminQuery<{tenant_id:string}>("select tenant_id from public.bookings where id=$1 and tenant_id=any($2::uuid[])",[id,base.tenantIds]);if(!row)throw new Error("Owned booking absent");
+       await adminQuery("delete from public.booking_assignees where booking_id=$1 and tenant_id=$2",[id,row.tenant_id]);
+@@ -347,12 +380,12 @@ async function bindCalendarFixture(base: BookingFixture, extra: Awaited<ReturnTy
+       const subject=subjects[name];await fixture.setAuthority(name,{membershipPresent:false});
+       const [member]=await adminQuery<{id:string}>("insert into public.tenant_memberships(tenant_id,user_id,status,role) values($1,$2,'active','montor') returning id",[subject.tenantId,subject.userId]);subject.membershipId=member.id;subject.profileId=null;
+     },
+-    http: async (url,options={}) => {
++    http: (url,options={}) => track((async () => {
+       const target=new URL(url);if(target.origin!==testOrigin())throw new Error("Non-owned calendar HTTP target rejected");
+       for(const [name,value] of Object.entries(options.query??{}))target.searchParams.set(name,value);
+       try{return await response(await fetch(target,{headers:options.headers,redirect:"manual",cache:"no-store"}));}catch{throw new Error("Calendar HTTP unavailable; request redacted");}
+-    },
+-    trustedFetch: async (url,ip) => response(await publicCalendarFeed(new URL(url).pathname.split("/").at(-1)!,new Headers(),{client:anon,trustedIp:ip})),
++    })()),
++    trustedFetch: (url,ip) => track((async () => response(await publicCalendarFeed(new URL(url).pathname.split("/").at(-1)!,new Headers(),{client:anon,trustedIp:ip})))()),
+     physical: async () => {
+       const raw=await readRows("calendar_feed_tokens"),audits=(await readRows("audit_events")).filter(row=>String(row.command).startsWith("calendar_feed."));
+       audits.sort((a,b)=>Date.parse(String(a.created_at))-Date.parse(String(b.created_at)));
+@@ -439,7 +472,7 @@ async function calendarAcl(): Promise<AclFacts> {
+    (pg_has_role('anon',oid,'MEMBER') or pg_has_role('authenticated',oid,'MEMBER') or pg_has_role('service_role',oid,'MEMBER')) "assumableByJwtRoles",
+    has_table_privilege(oid,'public.contacts','SELECT') "unrelatedTableRead",has_table_privilege(oid,'vault.decrypted_secrets','SELECT') "generalVaultRead"
+    from pg_roles where rolname='calendar_feed_owner'`);
+-  const allowed:Record<string,string[]>={tenants:["id"],tenant_memberships:["id","tenant_id","user_id","status","role"],membership_roles:["tenant_id","membership_id","role"],person_profiles:["id","tenant_id","membership_id","archived_at"],booking_assignees:["tenant_id","booking_id","person_profile_id"],bookings:["id","tenant_id","starts_at","ends_at","all_day","updated_at","status","work_role_id","job_id","customer_id","facility_id"],jobs:["id","tenant_id","title","customer_id","facility_id"],customers:["id","tenant_id","display_name"],work_roles:["id","tenant_id","display_name"],facilities:["id","tenant_id","address_line1","address_line2","postal_code","city"],calendar_feed_tokens:["*"],calendar_feed_ip_windows:["*"]};
++  const allowed:Record<string,string[]>={tenants:["id"],tenant_memberships:["id","tenant_id","user_id","status","role"],membership_roles:["tenant_id","membership_id","role"],person_profiles:["id","tenant_id","membership_id","archived_at"],booking_assignees:["tenant_id","booking_id","person_profile_id"],bookings:["id","tenant_id","starts_at","ends_at","all_day","updated_at","status","work_role_id","job_id","customer_id","facility_id"],jobs:["id","tenant_id","title","customer_id","facility_id","updated_at"],customers:["id","tenant_id","display_name","updated_at"],work_roles:["id","tenant_id","display_name","updated_at"],facilities:["id","tenant_id","address_line1","address_line2","postal_code","city","updated_at"],calendar_feed_tokens:["*"],calendar_feed_ip_windows:["*"]};
+   const effective=await adminQuery<{table:string;column:string}>(`select c.relname "table",a.attname "column" from pg_class c join pg_namespace n on n.oid=c.relnamespace join pg_attribute a on a.attrelid=c.oid where n.nspname='public' and c.relkind in ('r','p') and a.attnum>0 and not a.attisdropped and has_column_privilege('calendar_feed_owner',c.oid,a.attname,'SELECT')`);
+   owner.effectiveReadOutsideAllowedColumns=effective.some(row=>!allowed[row.table]?.some(column=>column==='*'||column===row.column));
+   owner.filteredHelperOnly=!owner.generalVaultRead;
+@@ -450,6 +483,33 @@ async function calendarAcl(): Promise<AclFacts> {
+   return {tables,owner,functions:functions.map(fn=>({...fn,purpose:definitions[fn.name]})),helpers:helpers.map(helper=>({...helper,purpose:helperNames[helper.name],exactConfiguredKeyFilter:helper.name!=="calendar_feed_secret_internal"||helper.source.includes("name='calendar_feed_attestation_' || p_key_id")})),ipColumns:(await adminQuery<{column_name:string}>("select column_name from information_schema.columns where table_schema='public' and table_name='calendar_feed_ip_windows'")).map(row=>row.column_name)};
+ }
+ 
++/** Both allocated files are serial. Never expose the shared unknown bucket to
++ * a row-isolated fixture; restore its exact prior state after requests settle. */
++async function withOwnedUnknownWindow<T>(fx: BoundFixture, run: () => Promise<T>): Promise<T> {
++  const ipHash=hashFeedIp(null,fx.secret);
++  const [before]=await adminQuery<{window_start:string;request_count:string}>("select window_start::text,request_count::text from public.calendar_feed_ip_windows where ip_hash=$1",[ipHash]);
++  let result:T|undefined;const errors:Error[]=[];
++  try {
++    await adminQuery("delete from public.calendar_feed_ip_windows where ip_hash=$1",[ipHash]);
++    result=await run();
++  }catch(error){errors.push(redactFailure(error));}
++  while(fx.pendingRequests.size) {
++    const requests=await Promise.allSettled([...fx.pendingRequests]);
++    for(const request of requests)if(request.status==="rejected")errors.push(new Error("Owned pending calendar request failed"));
++  }
++  try {
++    await adminSession(async({query})=>{
++      await query("begin");try {
++        await query("delete from public.calendar_feed_ip_windows where ip_hash=$1",[ipHash]);
++        if(before)await query("insert into public.calendar_feed_ip_windows(ip_hash,window_start,request_count) values($1,$2,$3)",[ipHash,before.window_start,before.request_count]);
++        await query("commit");
++      }catch(error){await query("rollback");throw error;}
++    });
++  }catch{errors.push(new Error("Owned unknown-IP window restore failed"));}
++  if(errors.length)throw new AggregateError(errors,"Unknown-IP scenario and cleanup outcomes retained; values redacted");
++  return result as T;
++}
++
+ async function calendarSerialControls(fx: BoundFixture): Promise<SerialControls> {
+   const keyHash=(url:string)=>hashFeedToken(tokenFromUrl(url));
+   return {
+@@ -494,14 +554,15 @@ async function calendarSerialControls(fx: BoundFixture): Promise<SerialControls>
+ 
+ async function calendarFault<T>(scope: Parameters<SerialControls["withFault"]>[0],run:()=>Promise<T>): Promise<{result:T;stageObserved:boolean;sqlstate:string;ownedObjectsRemaining:number}> {
+   const suffix=randomUUID().replaceAll("-",""),fn=`cf_fault_${suffix}`,seq=`cf_seen_${suffix}`,trigger=`cf_trigger_${suffix}`;
+-  const projection=scope.stage==="projection-after-first-page";
++  const projection=scope.stage==="projection-after-first-page"||scope.stage==="projection-query-canceled";
++  const sqlstate=scope.stage==="projection-query-canceled"?"57014":"PT555";
+   const table=scope.stage.endsWith("audit")?"audit_events":"calendar_feed_tokens";
+   let definition:string|undefined,result:T|undefined,observed=false;const failures:Error[]=[];
+   try {
+     await adminSession(async({query})=>{
+       await query("begin");try{
+         await query(`create sequence public.${seq}`);
+-        await query(`create function public.${fn}() returns ${projection?"text":"trigger"} language plpgsql security definer set search_path='' as $$ begin ${projection?"":`if new.tenant_id<>'${scope.tenantId}'::uuid ${table==="audit_events"?`or new.correlation_id<>'${scope.correlationId}'::uuid or new.metadata->>'attemptId'<>'${scope.attemptId}'`:""} then return new; end if;`} perform nextval('public.${seq}'); raise exception 'owned calendar fault' using errcode='PT555'; end $$`);
++        await query(`create function public.${fn}() returns ${projection?"text":"trigger"} language plpgsql security definer set search_path='' as $$ begin ${projection?"":`if new.tenant_id<>'${scope.tenantId}'::uuid ${table==="audit_events"?`or new.correlation_id<>'${scope.correlationId}'::uuid or new.metadata->>'attemptId'<>'${scope.attemptId}'`:""} then return new; end if;`} perform nextval('public.${seq}'); raise exception 'owned calendar fault' using errcode='${sqlstate}'; end $$`);
+         await query(`revoke all on function public.${fn}() from public,anon,authenticated,service_role`);
+         await query(`grant execute on function public.${fn}() to calendar_feed_owner`);await query("commit");
+       }catch(error){await query("rollback");throw error;}
+@@ -515,7 +576,7 @@ async function calendarFault<T>(scope: Parameters<SerialControls["withFault"]>[0
+   } catch {failures.push(new Error("Owned fault or assertion failed; values redacted"));}
+   for(const action of [async()=>{if(definition)await adminQuery(definition);else await adminQuery(`drop trigger if exists ${trigger} on public.${table}`);},async()=>{await adminQuery(`drop function if exists public.${fn}()`);},async()=>{await adminQuery(`drop sequence if exists public.${seq}`);},async()=>{const rows=await adminQuery("select 1 from pg_proc where proname=$1 union all select 1 from pg_class where relname=$2 union all select 1 from pg_trigger where tgname=$3",[fn,seq,trigger]);if(rows.length)throw new Error("Owned catalog objects remain");}])try{await action();}catch{failures.push(new Error("Owned fault cleanup failed; object values redacted"));}
+   if(failures.length)throw new AggregateError(failures,"Fault primary and cleanup outcomes retained");
+-  return {result:result as T,stageObserved:observed,sqlstate:observed?"PT555":"",ownedObjectsRemaining:0};
++  return {result:result as T,stageObserved:observed,sqlstate:observed?sqlstate:"",ownedObjectsRemaining:0};
+ }
+ 
+ async function calendarBarrier(scope: Parameters<SerialControls["barrier"]>[0]): ReturnType<SerialControls["barrier"]> {
+diff --git a/tests/unit/features/calendar-feed/action-state.test.ts b/tests/unit/features/calendar-feed/action-state.test.ts
+index 1f1065eb..953b0dcf 100644
+--- a/tests/unit/features/calendar-feed/action-state.test.ts
++++ b/tests/unit/features/calendar-feed/action-state.test.ts
+@@ -37,3 +37,16 @@ test("[P0] 15.5-UNIT-011 AC1 AC2 only confirmed current issuance exposes one-tim
+   }
+   assert.equal(subject.after(pending, "stale-response", { revision: 2, rawUrl: url }).rawUrl, undefined);
+ });
++
++test("R1-07 authoritative post-commit refresh removes a concurrent revoke/rotation URL and retains current issuance", async () => {
++  const { pendingCalendarFeed, transitionCalendarFeed, reconcileCalendarFeedIssuance } = await import("@/features/calendar-feed/action-state");
++  const pending = pendingCalendarFeed(request());
++  const fresh = transitionCalendarFeed(pending, "confirmed-fresh", { revision: 4, attemptId: pending.request.attemptId, rawUrl: "https://calendar.invalid/one-time" });
++  for (const changed of [{ active: false, revision: 5 }, { active: true, revision: 5 }]) {
++    // A separate committed operation wins before this issuance's status response.
++    const refreshed = reconcileCalendarFeedIssuance(fresh, await Promise.resolve(changed));
++    assert.equal(refreshed.rawUrl, undefined); assert.equal(refreshed.status, "error");
++    assert.equal(refreshed.canMutate, true);
++  }
++  assert.equal(reconcileCalendarFeedIssuance(fresh, { active: true, revision: 4 }), fresh);
++});
+diff --git a/tests/unit/features/calendar-feed/icalendar.test.ts b/tests/unit/features/calendar-feed/icalendar.test.ts
+index aede3f80..834025e8 100644
+--- a/tests/unit/features/calendar-feed/icalendar.test.ts
++++ b/tests/unit/features/calendar-feed/icalendar.test.ts
+@@ -1,5 +1,5 @@
+-/** RED contract vectors. Bind the adapter to the actual T1 serializer in P5;
+- * it is not a replacement serializer and no production export name is assumed. */
++/** Prepared RED-phase vectors, now bound to the production T1 serializer.
++ * Independent RFC parsing below preserves the original contract oracle. */
+ import assert from "node:assert/strict";
+ import { test } from "node:test";
+ 
+@@ -66,3 +66,26 @@ test("[P1] 15.5-UNIT-005 AC3 AC8 empty and >PostgREST-cap input are complete cal
+   assert.equal(lines.filter(line => line === "BEGIN:VEVENT").length, events.length);
+   assert.equal(new Set(lines.filter(line => line.startsWith("UID:"))).size, events.length);
+ });
++
++for (const vector of [
++  { start: "2026-10-25T00:30:00.000001Z", end: "2026-10-25T00:30:00.000002Z", projectedStart: "20261025T003000Z", projectedEnd: "20261025T003001Z" },
++  { start: "2026-10-25T00:30:00.1Z", end: "2026-10-25T00:30:00.9Z", projectedStart: "20261025T003000Z", projectedEnd: "20261025T003001Z" },
++  { start: "2026-10-25T00:30:00.999999Z", end: "2026-10-25T00:30:01Z", projectedStart: "20261025T003000Z", projectedEnd: "20261025T003001Z" },
++  { start: "1969-12-31T23:59:59.999998Z", end: "1969-12-31T23:59:59.999999Z", projectedStart: "19691231T235959Z", projectedEnd: "19700101T000000Z" },
++  { start: "9999-12-31T23:59:59.000001Z", end: "9999-12-31T23:59:59.999999Z", projectedStart: "99991231T235958Z", projectedEnd: "99991231T235959Z" },
++]) test(`R1-05 positive microsecond range projects to distinct supported RFC seconds ${vector.start}`, async () => {
++  const lines = properties((await encoder())([booking({ startsAt: vector.start, endsAt: vector.end })]));
++  assert.ok(lines.includes(`DTSTART:${vector.projectedStart}`));
++  assert.ok(lines.includes(`DTEND:${vector.projectedEnd}`));
++});
++test("R1-05 microsecond ordering rejects reversed intervals within one millisecond", async () => {
++  const encode = await encoder();
++  assert.throws(() => encode([booking({ startsAt: "2026-10-25T00:30:00.000002Z", endsAt: "2026-10-25T00:30:00.000001Z" })]), /Calendar unavailable/);
++});
++test("R1-06 snapshot omits METHOD and both revision stamps advance while UID stays stable", async () => {
++  const encode = await encoder(), before = properties(encode([booking()]));
++  const after = properties(encode([booking({ title: "Ny roll", jobLabel: "Nytt jobb", customerLabel: "Ny kund", location: "Ny adress", updatedAt: "2026-10-21T09:30:00.123456Z" })]));
++  assert.equal(after.some(line => line.startsWith("METHOD:")), false);
++  assert.equal(after.find(line => line.startsWith("UID:")), before.find(line => line.startsWith("UID:")));
++  assert.ok(after.includes("DTSTAMP:20261021T093000Z")); assert.ok(after.includes("LAST-MODIFIED:20261021T093000Z"));
++});
+diff --git a/tests/unit/ops/pilot-operations.test.ts b/tests/unit/ops/pilot-operations.test.ts
+index 0bfd01e4..4bdf6b74 100644
+--- a/tests/unit/ops/pilot-operations.test.ts
++++ b/tests/unit/ops/pilot-operations.test.ts
+@@ -241,6 +241,21 @@ test('recovery Compose sources leave per-drill values in ignored static private
+   assert.match(roles, /ALTER USER supabase_auth_admin WITH PASSWORD/);
+   assert.match(roles, /ALTER USER supabase_storage_admin WITH PASSWORD/);
+   assert.doesNotMatch(roles, /ALTER USER pgbouncer|ALTER USER supabase_functions_admin/);
++  const feedBlock = roles.slice(roles.indexOf('-- Logical feed function owners'), roles.indexOf('-- ALTER ROLE is repeatable'));
++  assert.match(feedBlock, /if not exists\(select 1 from pg_roles where rolname='calendar_feed_owner'\) then\s+create role calendar_feed_owner/i);
++  for (const attribute of ['rolcanlogin', 'rolinherit', 'rolsuper', 'rolcreatedb', 'rolcreaterole', 'rolreplication', 'rolbypassrls']) assert.match(feedBlock, new RegExp(`feed_owner\\.${attribute}`));
++  assert.match(feedBlock, /m\.member=feed_owner\.oid/);
++  assert.match(feedBlock, /m\.roleid=feed_owner\.oid[\s\S]*rolname='supabase_admin'[\s\S]*m\.admin_option/);
++  assert.match(feedBlock, /raise exception 'calendar_feed_owner has unexpected membership'/);
++  assert.deepEqual([...feedBlock.matchAll(/grant calendar_feed_owner to (\w+) with admin false/gi)].map(match => match[1]), ['supabase_admin']);
++  assert.doesNotMatch(feedBlock, /alter role|grant.*(?:authenticator|anon|authenticated|service_role)|grant.*(?:create on|superuser|bypassrls)/i);
++  const feedMigration = await readFile(new URL('../../../supabase/migrations/20261020220000_personal_calendar_feed.sql', import.meta.url), 'utf8');
++  const migrationGuard = feedMigration.slice(0, feedMigration.indexOf('grant usage,create on schema public'));
++  assert.match(migrationGuard, /if not exists\(select 1 from pg_roles where rolname='calendar_feed_owner'\) then/i);
++  for (const attribute of ['rolcanlogin', 'rolinherit', 'rolsuper', 'rolcreatedb', 'rolcreaterole', 'rolreplication', 'rolbypassrls']) assert.match(migrationGuard, new RegExp(`feed_owner\\.${attribute}`));
++  assert.match(migrationGuard, /rolname='postgres'/);
++  assert.match(migrationGuard, /grant calendar_feed_owner to postgres with admin false/);
++  assert.doesNotMatch(migrationGuard, /alter role|to supabase_admin/i);
+   for (const restoreEntryPoint of [rehearsalWorkflow, runbook]) {
+     assert.match(restoreEntryPoint, /-U supabase_admin -d postgres/);
+     assert.doesNotMatch(restoreEntryPoint, /-U postgres -d postgres/);
+diff --git a/tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts b/tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts
+index ad0862c2..32c90a6e 100644
+--- a/tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts
++++ b/tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts
+@@ -1,6 +1,6 @@
+ import assert from "node:assert/strict";
+ import { test } from "node:test";
+-import { INTEGRATION_ARGS, BROWSER_ARGS, FEED_FUNCTIONS, validateAdmission, validateStackIdentity, createTelemetryObserver, ownsListenerRecord, waitForOwnedHttp, runCalendarFeedRuntime } from "../../../../scripts/ci/with-calendar-feed-runtime.mjs";
++import { INTEGRATION_ARGS, BROWSER_ARGS, FEED_FUNCTIONS, validateAdmission, validateStackIdentity, createTelemetryObserver, hasSensitiveOutput, createOwnedGroupStopper, ownsListenerRecord, waitForOwnedHttp, runCalendarFeedRuntime } from "../../../../scripts/ci/with-calendar-feed-runtime.mjs";
+ 
+ const env = {
+   NODE_ENV: "test" as const,
+@@ -157,6 +157,40 @@ test("DB mode fixes full argv, builds with the child's public config and settles
+   assert.match(deletion!.sql, /where id=\$1::uuid and name=\$2/);
+   assert.deepEqual(deletion!.params, [keyUuid, `calendar_feed_attestation_ci_${keyId}`]);
+   assert.ok(result.events.indexOf("delete") < result.events.indexOf("db-closed"));
++  for (const index of [0, 1, 2]) assert.equal(result.events.filter(event => event === `settled:${index}`).length, 1);
++});
++
++test("settlement is memoized before concurrent or much later stop calls can see a reused group", async () => {
++  let exists = true, probes = 0, outputSettles = 0;
++  const signals: string[] = [];
++  let current = { pid: 125, group: 125, startTime: "1000" };
++  const stop = createOwnedGroupStopper({ pid: 125, done: Promise.resolve({ code: 0, signal: null }), capturedIdentity: Promise.resolve({ ...current }),
++    readIdentity: async () => current, groupExists: () => { probes++; return exists; }, signalGroup: (signal: string) => { signals.push(signal); exists = false; },
++    settleOutput: async () => { outputSettles++; }, now: () => 0, sleep: async () => undefined });
++  const first = stop(), simultaneous = stop();
++  assert.equal(first, simultaneous);
++  await first;
++  const provenProbes = probes;
++  exists = true; current = { pid: 125, group: 125, startTime: "9000" }; // A foreign process later owns the same numeric group.
++  assert.equal(stop(), first); await stop();
++  assert.equal(probes, provenProbes); assert.equal(outputSettles, 1); assert.deepEqual(signals, ["SIGINT"]);
++});
++
++test("a reused leader before initial or escalation signal grants no foreign signal authority", async () => {
++  for (const replaceAfterInt of [false, true]) {
++    let time = 0, identityReads = 0;
++    const signals: string[] = [];
++    const owned = { pid: 125, group: 125, startTime: "1000" };
++    const stop = createOwnedGroupStopper({ pid: 125, done: new Promise(() => undefined), capturedIdentity: Promise.resolve(owned),
++      readIdentity: async () => { identityReads++; return { ...owned, startTime: replaceAfterInt && identityReads === 1 ? "1000" : "9000" }; },
++      groupExists: () => true, signalGroup: (signal: string) => { signals.push(signal); }, settleOutput: async () => undefined,
++      now: () => time, sleep: async (ms: number) => { time += ms; } });
++    await assert.rejects(stop(), /child-identity-unverified/);
++    const readsAtFailure = identityReads;
++    await assert.rejects(stop(), /child-identity-unverified/);
++    assert.equal(identityReads, readsAtFailure);
++    assert.deepEqual(signals, replaceAfterInt ? ["SIGINT"] : []);
++  }
+ });
+ 
+ test("browser mode runs only existing smoke and awaits its server group before key deletion", async () => {
+@@ -227,6 +261,20 @@ test("forced browser runner cleanup cannot claim the detached Playwright server
+   assert.ok(!result.queries.some(call => call.sql.startsWith("delete")));
+ });
+ 
++test("nonzero/null-signal nested browser loss retains key custody despite a settled pnpm group", async () => {
++  // This injected handle is pnpm only: no captured handle proves settlement of
++  // the nested Playwright server, even when pnpm itself stopped cleanly.
++  const result = await runFixture("browser", harness({ failChild: 0 }));
++  assert.deepEqual(result.receipt.childExitCodes, [17]);
++  assert.equal(result.exitCode, 1); assert.equal(result.receipt.keyDeleted, false);
++  assert.ok(result.receipt.failures.includes("child-failed"));
++  assert.ok(result.receipt.failures.includes("browser-server-teardown-unverified"));
++  assert.ok(result.events.includes("settled:0"));
++  assert.equal(result.receipt.custody?.vaultUuid, keyUuid);
++  assert.equal(result.receipt.custody?.ownedName, `calendar_feed_attestation_ci_${keyId}`);
++  assert.ok(!result.queries.some(call => call.sql.startsWith("delete")));
++});
++
+ test("uncertain create plus rollback failure retains both failures and named custody", async () => {
+   const result = await runFixture("browser", harness({ query(call) { if (call.sql.includes("vault.create_secret") || call.sql === "rollback") throw new Error("private failure"); return undefined; } }));
+   assert.equal(result.exitCode, 1);
+@@ -238,7 +286,6 @@ test("telemetry persists actual allowlisted markers and measured leak flags, nev
+   const persisted: string[] = [];
+   const observe = createTelemetryObserver({ keyId: "owned-key-id", secret: "owned-private-key", persist: async (line: string) => { persisted.push(line); } });
+   await observe("Next banner");
+-  await observe('{"event":"calendar_feed.response","status":200,"url":"private"}');
+   assert.equal(persisted.length, 0);
+   await observe('{"event":"calendar_feed.response","status":200}');
+   assert.deepEqual(JSON.parse(persisted[1]), { event: "calendar_feed.runtime_observation", responseCount: 1, sensitiveOutputCount: 0, sensitiveOutputDetected: false });
+@@ -248,3 +295,35 @@ test("telemetry persists actual allowlisted markers and measured leak flags, nev
+   assert.deepEqual(JSON.parse(persisted[4]), { event: "calendar_feed.runtime_observation", responseCount: 2, sensitiveOutputCount: 1, sensitiveOutputDetected: true });
+   assert.ok(!persisted.join("").includes("sensitive-capability")); assert.ok(!persisted.join("").includes("owned-private-key"));
+ });
++
++test("standalone and unexpected JSON sensitive values are detected before filtering without retaining them", async () => {
++  const raw = Buffer.alloc(32, 29).toString("base64url");
++  const proof = Buffer.alloc(32, 203).toString("base64");
++  const hash = "9f".repeat(32);
++  const vectors = [raw, proof, hash, hash.toUpperCase(), "203.0.113.7", "2001:db8:1234:5678:abcd:ef01:2345:6789", "2001:db8::7", "::1", "::ffff:192.0.2.7", "fe80::1%eth0",
++    JSON.stringify({ arbitrary: raw }), JSON.stringify({ extra: hash }), JSON.stringify({ diagnostic: "203.0.113.7" }),
++    JSON.stringify({ diagnostic: "[2001:db8::7]" }), JSON.stringify({ unexpected: proof }),
++    JSON.stringify({ event: "calendar_feed.response", status: 200, unrelated: "unexpected field" })];
++  for (const vector of vectors) {
++    const records: string[] = [];
++    const observe = createTelemetryObserver({ keyId: "owned-key", secret: "owned-secret", persist: async (line: string) => { records.push(line); } });
++    await observe(vector);
++    await observe('{"event":"calendar_feed.response","status":200}');
++    const latest = JSON.parse(records.at(-1)!);
++    assert.equal(latest.sensitiveOutputDetected, true); assert.equal(latest.sensitiveOutputCount, 1); assert.equal(latest.responseCount, 1);
++    assert.equal(records.some(record => record.includes(vector)), false);
++    assert.ok(records.every(record => ["calendar_feed.response", "calendar_feed.runtime_observation"].includes(JSON.parse(record).event)));
++  }
++});
++
++test("known proof values and actual keys flag leaks while exact infrastructure and unrelated ordinary output stay clean", async () => {
++  const params = { keyId: "owned-key", secret: "owned-secret", knownValues: ["fixture-proof-with-noncanonical-representation"] };
++  for (const line of ["owned-key", "owned-secret", "fixture-proof-with-noncanonical-representation"]) assert.equal(hasSensitiveOutput(line, params), true);
++  const clean = ["Next banner", "✓ Compiled successfully in 9.2s", "17 tests passed; 0 skipped", '{"diagnostic":"ordinary","durationMs":15}',
++    "- Local:         http://127.0.0.1:3195", "\u001b[32m- Network:       http://127.0.0.1:3100\u001b[0m"];
++  const records: string[] = [];
++  const observe = createTelemetryObserver({ ...params, persist: async (line: string) => { records.push(line); } });
++  for (const line of clean) { assert.equal(hasSensitiveOutput(line, params), false); await observe(line); }
++  assert.equal(records.length, 0);
++  for (const line of ["GET - Local: http://127.0.0.1:3195", "- Local: http://127.0.0.1:3195 request", "- Network: http://203.0.113.7:3195", "- Local: http://127.0.0.1:3195 " + Buffer.alloc(32, 29).toString("base64url")]) assert.equal(hasSensitiveOutput(line, params), true);
++});
+
+--- TARGETED REVIEW CONTEXT: _bmad-output/auto-bmad/preparation/story-15-5/accepted-recovery-allocation.json ---
+{
+  "kind": "Root-recorded-narrow-recovery-allocation",
+  "received_at": "2026-10-20T14:26:58.750354+00:00",
+  "source": "Coordinator01a1160d-b5b1-7623-a8e8-54ef3dc537ed SAMEexplicitSolHigh FINAL CONDITIONALGRANT",
+  "condition_before_write": "Actual all6Round1 triage confirms defect",
+  "paths": [
+    "ops/recovery/bootstrap-roles.sql:feedroleblockONLY",
+    "tests/unit/ops/pilot-operations.test.ts:existingnamedrecoveryComposecaseONLY"
+  ],
+  "no_foreign_ownership_collision_or_Documents_claim_reported": true,
+  "conditions": [
+    "Create calendar_feed_owner ONLY absent; validate new+retained ALL7 negative role attributes; unsafe existing failclosed/no globalALTER",
+    "Recovery membership only existing supabase_admin NOADMINOPTION; noauthenticator/anon/authenticated/service_role/recoveryruntime grant; reject unexpected retained runtime/JWT membership",
+    "Preserve provisioning role block/three existing login roles/passwords/DBsettings",
+    "Own UNAPPLIED feedmigration matching idempotent attribute guard within existing allocation; distinguish migrationexecutor from recoverymembership",
+    "Owner for restored policies/functions only; preserve FORCE RLS/owner policies/narrowACL; no unrelatedtable/generalVaultownership",
+    "Actual required recovery replay proves SupAdmin ownershiptransfers incl schemaCREATE prerequisite; precise failure reported, no persistentCREATE/superuser/BYPASS/JWT workaround",
+    "Unit guards idempotency/all7attrs/exactmembership/noJWT-runtime grants preserving negatives; static notrestoreevidence",
+    "DistinctHigh actualfix followup and exacthead recoveryCI required; noCompose/workflow/provider/globalrole/hostedrestore permission"
+  ],
+  "runtime_actions": 0
+}
+
+--- TARGETED REVIEW CONTEXT: _bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/triage.json ---
+{
+  "round": 1,
+  "completed_rounds": 1,
+  "cap": 3,
+  "review_loop_iteration": 0,
+  "source_head": "ae020f63a88089966b9323c55a36b6554f7e3900",
+  "baseline": "3a1c3bc9fbf22b13c926179288a8b6eefe440c12",
+  "input_sha256": "911ea7c6215a7323a460cee594cf625bbb3d1a753db29c7510c290822956f5cf",
+  "layers_completed": 6,
+  "raw_claims": 17,
+  "unique_claims": 13,
+  "classification": {
+    "intent_gap": 0,
+    "bad_spec": 0,
+    "patch": 11,
+    "defer": 1,
+    "reject": 1
+  },
+  "route_before_fix_dispatch": {
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "reason": "Public-token authorization/RLS, transactional counters, role ownership and CI key/process lifecycle fixes; actual sensitive changed lines",
+    "author": "implementation_author"
+  },
+  "findings": [
+    {
+      "id": "R1-01",
+      "category": "patch",
+      "severity": "high",
+      "source": "blind",
+      "file": "supabase/migrations/20261020220000_personal_calendar_feed.sql:235",
+      "claim": "Required isolated recovery restore lacks calendar_feed_owner",
+      "fix": "Add only allocated feed role block to ops/recovery/bootstrap-roles.sql and named existing pilot-operations recovery Compose unit case. Absent-only create; validate seven role attributes and retained membership; restore principal only supabase_admin, no admin option or runtime/JWT grants. Preserve existing provisioning/runtime/password/settings. Actual restore evidence remains mandatory CI.",
+      "allocation": "accepted-recovery-allocation.json SHA324b587635d247df329f74813fd3de7027e1d499cb706e829953eb3a1bdb24ce"
+    },
+    {
+      "id": "R1-02",
+      "category": "patch",
+      "severity": "high",
+      "source": "blind",
+      "file": "supabase/migrations/20261020220000_personal_calendar_feed.sql:2",
+      "claim": "Unconditional cluster-scoped role creation breaks replay",
+      "fix": "Idempotent absent-only creation with fail-closed retained seven-attribute and unexpected runtime/JWT membership validation. Migration executor grant is distinct from isolated recovery membership. Own migration is unapplied; historical migrations unchanged."
+    },
+    {
+      "id": "R1-03",
+      "category": "reject",
+      "severity": "none",
+      "source": "blind+same-finding clarification",
+      "file": "supabase/migrations/20261020220000_personal_calendar_feed.sql:182",
+      "claim": "Global cardinality transaction lock causes cross-tenant functional failure",
+      "reason": "Source establishes blocking coupling, but original High reviewer explicitly could not substantiate a permitted operation/workload causing timeout, budget failure or isolation bypass. Approved default requires hard-bounded cardinality and atomic counters; suggested early release/session lock misses uncommitted rows and weakens that bound. Treat original stronger claim as unproven performance concern; no new defense-in-depth/protocol change or passed performance claim. Representative workload qualification remains already deferred."
+    },
+    {
+      "id": "R1-04",
+      "category": "patch",
+      "severity": "high",
+      "source": "blind",
+      "file": "supabase/migrations/20261020220000_personal_calendar_feed.sql:219",
+      "claim": "Projection query_canceled escapes WHEN OTHERS and rolls back admitted counters",
+      "fix": "Handle SQLSTATE57014 within projection subtransaction and assert admitted token/IP counter persistence and no last-used update with scoped real SQL cancellation/fault in allocated serial test; retain generic503 and cleanup."
+    },
+    {
+      "id": "R1-05",
+      "category": "patch",
+      "severity": "high",
+      "source": "blind+external",
+      "file": "src/features/calendar-feed/icalendar.ts:12",
+      "claim": "Accepted microsecond booking intervals become empty/equal timestamps or whole-feed503",
+      "fix": "Use existing microsecond-preserving parser for ordering and define positive-duration whole-second RFC5545 export. Preserve supported fractional booking authority, UID, DST/all-day and independent bytes; regressions for submillisecond and same-second intervals. Record proportional rounding choice."
+    },
+    {
+      "id": "R1-06",
+      "category": "patch",
+      "severity": "medium",
+      "source": "blind+RFC5545 source check",
+      "file": "supabase/migrations/20261020220000_personal_calendar_feed.sql:208",
+      "claim": "Component revision timestamps ignore changed projected labels; METHOD stamp semantics also inconsistent",
+      "fix": "Keep full live minimal projection and stable UID, derive current component timestamp from every projected mutable source. For a subscription representation omit optional METHOD or supply proper creation stamp; RFC5545 sections3.8.7.2/3.8.7.3 checked at https://www.rfc-editor.org/rfc/rfc5545.html. Preserve frozen planning history; record narrow post-review technical correction and independent edit vectors, no provider-interoperability pass claim."
+    },
+    {
+      "id": "R1-07",
+      "category": "patch",
+      "severity": "medium",
+      "source": "blind+edge",
+      "file": "src/components/calendar-feed/CalendarSubscription.tsx:33",
+      "claim": "Automatic post-commit refresh retains now-superseded issued URL",
+      "fix": "Apply current active/revision supersession check after automatic refresh, clear obsolete raw URL and stale success message; consequential race regression using actual state/UI seam, preserve honest lost-response behavior."
+    },
+    {
+      "id": "R1-08",
+      "category": "patch",
+      "severity": "high",
+      "source": "blind+security+external",
+      "file": "scripts/ci/with-calendar-feed-runtime.mjs:165",
+      "claim": "Repeated stop can signal reused group; abnormal nested browser exit may delete key before detached server settlement",
+      "fix": "Memoize proven settlement and avoid re-signaling settled numeric handles; verify identity before further signaling. Any abnormal browser completion without independently proven normal teardown is unverified and must fail, preserve exact owned key UUID/name/job custody until disposable-job destruction, primary plus cleanup failures. Add null-signal/nonzero nested-runner case and repeated-stop/no foreign signal injected tests."
+    },
+    {
+      "id": "R1-09",
+      "category": "defer",
+      "severity": "medium",
+      "source": "blind",
+      "file": "tests/e2e/calendar-feed.e2e.spec.ts:71",
+      "claim": "Unwrapped optional exhaustive release branch lacks feed runtime",
+      "owner": "Root/CI release operator",
+      "status": "deferred",
+      "development_blocking": false,
+      "release_blocking": true,
+      "reason": "Specific owner allocation explicitly excludes and preserves exhaustive branch/commands/conditions and requires future exact-scope feed release-runtime integration; development completion policy defers this release breadth. Do not drop/skip new feed cases or claim exhaustive pass.",
+      "next_action": "Before release_validation=true qualification, obtain exact Coordinator allocation for equivalent isolated ephemeral key/runtime lifecycle and then execute native exhaustive branch. No writes to this branch in current fix."
+    },
+    {
+      "id": "R1-10",
+      "category": "patch",
+      "severity": "low",
+      "source": "blind",
+      "file": "src/components/app-shell/AppShell.tsx:279",
+      "claim": "Profile link sends denied scheduling roles to inaccessible destination",
+      "fix": "Condition existing profile entry on server-filtered scheduling navigation/capability result, no client role grants. Add assertion to already-owned denied-role browser case; no unrelated shared test expansion."
+    },
+    {
+      "id": "R1-11",
+      "category": "patch",
+      "severity": "medium",
+      "source": "verification",
+      "file": "scripts/ci/with-calendar-feed-runtime.mjs:70",
+      "claim": "API019 privacy proof discards unrecognized raw output before detecting standalone token/hash/IP leaks",
+      "fix": "Detect known/generic raw capability/proof/hash/IP representations and unexpected response fields before filtering; safely distinguish known non-request infrastructure output. Inject realistic standalone/JSON sensitive leak vectors, keep only sanitized detection receipts and actual marker observations; preserve native artifact confidentiality."
+    },
+    {
+      "id": "R1-12",
+      "category": "patch",
+      "severity": "medium",
+      "source": "verification",
+      "file": "tests/support/calendar-feed-atdd.ts:258",
+      "claim": "Status privacy assertions inspect reconstructed mapper DTO instead of directly callable RPC payload",
+      "fix": "Ordinary authenticated raw status RPC exact key/field allow-list and absence of physical hash/URL/IP/proof; retain higher-level mapper tests, current-authority/reconcile cases and redacted assertion failure behavior."
+    },
+    {
+      "id": "R1-13",
+      "category": "patch",
+      "severity": "high",
+      "source": "verification",
+      "file": "tests/integration/calendar-feed/public-feed.int.test.ts:193",
+      "claim": "API009 leaves global unknown-IP budget exhausted for later serial HTTP scenarios",
+      "fix": "Capture/reset/restore only allocated isolated unknown-IP fixture in serial finally or explicit scenario initial state; settle all requests before cleanup, preserve cleanup failures and no parallel/global side effects."
+    }
+  ],
+  "followup_review_recommended": true,
+  "runtime": "No native DB/RLS/HTTP/browser/recovery/installed collection executed; all remain Root exact-head CI requirements.",
+  "source_fixes_started": false
+}
+
+--- TARGETED REVIEW CONTEXT: _bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/global-lock-clarification-original.md ---
+The source establishes blocking coupling, but I cannot substantiate the stronger functional-failure claim. Ordinary scheduling writes and `admin_manage_membership` hold the matching tenant transaction lock; however, I have no evidence that a permitted invocation holds it—or that an accepted feed projects—long enough to cause a timeout or budget failure. The original finding should therefore be treated as an unproven availability/performance concern, not a demonstrated isolation defect.
+
+I cannot identify a small equivalent fix under the stated constraints. Releasing the global lock before commit lets concurrent admissions miss uncommitted IP rows and exceed the cardinality bound. Replacing it with a session lock does not resolve that visibility problem.
+
+Separate committed admission requires another transaction/protocol. Fixed deterministic buckets could retain three columns and bounded cardinality, but introduce earlier shared-IP collisions and change the approved budgeting policy. Neither is a justified routine fix for this finding without further design/evidence.

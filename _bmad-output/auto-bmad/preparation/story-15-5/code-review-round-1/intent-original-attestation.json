@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "artifact_kind": "later-persistence-of-original-completed-intent-review",
+  "persisted_at_utc": "2026-10-20T14:26:07.7236075Z",
+  "review_round": 1,
+  "original_source_head": "ae020f63a88089966b9323c55a36b6554f7e3900",
+  "original_baseline": "3a1c3bc9fbf22b13c926179288a8b6eefe440c12",
+  "original_input_binding": {
+    "diff_path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+    "diff_sha256": "911ea7c6215a7323a460cee594cf625bbb3d1a753db29c7510c290822956f5cf",
+    "intent_path": "_bmad-output/auto-bmad/preparation/story-15-5/candidate-intent-contract.txt",
+    "intent_kernel_sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+    "intent_hash_definition": "UTF-8 LF, both intent-contract tags included, no appended newline; as supplied in the original input binding"
+  },
+  "original_route": {
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "route_provenance": "Explicit route in original parent task input binding"
+  },
+  "native_original_completion_provenance": {
+    "task": "/root/build15_5_high/round1_intent",
+    "delivery": "Original completed final-channel report delivered natively to parent /root/build15_5_high before the artifact-persistence follow-up",
+    "original_saved_to_file": false,
+    "original_native_completion_timestamp": "Not independently available in this persistence operation"
+  },
+  "report": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/intent-original.md",
+    "encoding": "UTF-8 without BOM",
+    "line_endings": "LF",
+    "appended_newline": false,
+    "bytes": 4193,
+    "sha256": "a0126aacbfa5a8439304a2b02ddeaf8232fc7d573fd4c8694440cd17ac2a3761",
+    "preserved_verbatim": true
+  },
+  "persistence_only": true,
+  "new_review_performed": false,
+  "new_source_validation_performed": false,
+  "findings_code_spec_edits": false,
+  "resources_started": 0
+}

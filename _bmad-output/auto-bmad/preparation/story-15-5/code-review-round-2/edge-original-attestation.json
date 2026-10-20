@@ -1,0 +1,11 @@
+{
+  "original_source_commit": "672099e9dc6569f4ac1cb9a967037e0d91df689c",
+  "diff_sha256": "6fc14dc66c147c9d7b438744aa7a68c7ff8fe4e12495f12d9c5b0d1e563c8e10",
+  "report_file": "edge-original.md",
+  "report_encoding": "UTF-8 without BOM",
+  "report_bytes": 2,
+  "report_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "original_completed_review_unchanged": true,
+  "persistence_only": true,
+  "new_review_or_source_inspection": false
+}

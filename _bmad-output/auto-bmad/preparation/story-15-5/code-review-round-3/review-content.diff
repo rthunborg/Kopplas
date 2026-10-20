@@ -1,0 +1,902 @@
+Story15.5 FINAL Round3 targeted follow-up. Source before 672099e9dc6569f4ac1cb9a967037e0d91df689c; source HEAD 360fe850c18552f23a2bf74d8eda865431f0af38. Review only two R2 fixes, the separately admitted native proof and consequential regressions. Unchanged R1/R2 reviews reused; no fourth broad review. Native DB/RLS/HTTP/browser/recovery/installed-collection evidence remains PENDING Root CI.
+
+FROZEN INTENT:
+<intent-contract>
+
+## Intent
+
+**Problem:** Users cannot subscribe to their own current bookings from an external calendar or safely manage that read capability. Public disclosure must remain limited to the exact subject and survive immediate rotation/revocation and abuse controls.
+
+**Approach:** Add authenticated self-service Kalenderprenumeration and one isolated live iCalendar GET capability, backed by hashed random tokens, atomic audited lifecycle, a dedicated minimal own-booking projection and independent database token/IP limits with sanitized Admin monitoring. Keep validation, lifecycle state/actions and serialization separate from replaceable UI.
+
+## Boundaries & Constraints
+
+**Always:** FR91/NFR46/AC-B1b-7 and accepted inline ADR-B004 govern. Generate 32 CSPRNG bytes server-side as base64url; persist only SHA-256, bind to exact tenant/current membership and keep at most one active generation. Management uses current authenticated Bookings.View self authority, checked SQL, expected revision/attempt and atomic audit; no manager/peer elevation. Fetch derives tenant/subject solely from the token, requires the tenant row to exist, the exact token-bound/current self membership status to be active and its current Bookings.View role union to allow access, plus unarchived own profile/assignment, returns each current materialized planned own booking once and only minimal times/title/job/customer label/location. No profile means an empty valid calendar, no team fallback. Rotate/revoke serialize with fetch authority; no post-revocation new request succeeds. Lost issued responses reconcile metadata then require explicit new rotation because plaintext is unrecoverable. Enforce independently atomic per-token and cross-token per-IP-hash 900-second budgets 60/120, uniform invalid-token responses,429/Retry-After, no shared cache or auth shell/session dependency. Dedicated server-only feed proof binds canonical trusted IP/hash and lifecycle inputs to prevent direct-RPC spoof/weak chosen-hash bypass; no service role. All new tenant objects/public surface enroll coherently in manifest/H4/ACL tests. Connected settings works by keyboard and 360×640; success follows confirmed persistence only. Full ADR-B004 abuse suite is required before ship.
+
+**Block If:** Root has not independently validated/frozen this candidate and admitted ATDD/build; Coordinator has not allocated the exact shared deltas, fresh combined migration chronology/reservation and isolated mutable fixtures/resources; or actual implementation exposes a material authorization/data-integrity/product ambiguity outside these approved/default decisions. Hosted feed enablement additionally requires release operator's separately authorized dedicated key/Vault/runtime and trusted-IP evidence. These are later execution/release prerequisites, not missing planning intent. After two failed attempts choose a simpler safe authorized route or retain named owner/evidence/next action/resume condition.
+
+**Never:** Store/recover/log/audit/cache raw URL/token/proof/key/IP; use UUID/identity-derived tokens; trust tenant/subject overrides, arbitrary forwarded IPs, unsigned direct RPC arguments or manager-wide scheduling reads. No cookie/session/tenant-context/nav dependency in public feed path, no broad anon table grants, service role, arbitrary projection, privileged mutation or fourth public surface. No money, co-assignee/peer details, contacts/notes, tenant enumeration, portal/customer login/signing, AI/optimization, offline/PWA/queue/sync, new job/economy/payroll/email/provider surface or general legal/retention program. Preserve15.1–15.4 booking/series/resolver/time-report invariants and E16 actual claims; no absent unreviewed imports or permanent v3 assumption. This planning run edits only this spec/new15.5 preparation: no app/schema/tests/scaffolds/dependencies/env/runtime/CI/foreign checkout/state/sprint/Git commit/push/PR/merge/deploy/secrets changes or legacy URL/browsing/evidence.
+
+## I/O & Edge-Case Matrix
+
+| Scenario | Input / State | Expected Output / Behavior | Error Handling |
+| --- | --- | --- | --- |
+| Own issuance | Active authorized subject creates or rotates with current revision/attempt | Fresh 43-character 32-byte capability URL once; hash-only generation and audit commit together; rotate revokes old | Invalid/stale/foreign/inactive action generic denial; audit failure rolls back all |
+| Unknown issued result | Commit response lost, retry or concurrent create/rotate/revoke | Sanitized attempt/revision reconciliation; no duplicate mutation/audit or plaintext recovery; explicit separate rotation recovers a lost link | UI pending/uncertain state and explicit retry; never claim success without confirmation |
+| Live valid feed | Own/shared/recurring/edited/moved/all-day/DST booking data | Complete minimal own planned events; stable booking UID; current exceptions; cancelled/reassigned/archived-profile rows omitted | Current role/membership/token invalidation gives generic inactive; database failure503, never partial/empty success |
+| Abuse and forgery | Invalid token classes, multiple tokens/IPs, concurrent requests, forged proof/IP/hash | Independent database windows/counters; common invalid404; shared-IP429 or active-token429 with Retry-After; sanitized Admin spike summary | Missing/expired/wrong-domain proof denied, no broad lookup; missing IP uses shared unknown bucket |
+| Public isolation | No cookies, hostile cookies/headers/query tenant overrides, cache validators | Only capability controls own projection; no auth refresh, shell, session, cache reuse, redirects or cookies | No secret/tenant/subject oracle; invalid classes have identical response contract under equal IP history |
+
+</intent-contract>
+
+COMMITTED SOURCE DELTA:
+diff --git a/_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md b/_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md
+index 9edbc659..d4cc09fc 100644
+--- a/_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md
++++ b/_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md
+@@ -3,7 +3,7 @@ title: '15.5 — Personal Calendar Feed (ADR-B004 Surface #1)'
+ type: 'feature'
+ created: '2026-10-20'
+ status: 'in-review'
+-review_loop_iteration: 1
++review_loop_iteration: 2
+ followup_review_recommended: true
+ baseline_revision: '3a1c3bc9fbf22b13c926179288a8b6eefe440c12'
+ approved_kernel: '0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977'
+@@ -145,6 +145,30 @@ the optional exhaustive branch is explicitly unallocated and unchanged. Before
+ allocation and execute the native exhaustive branch with every active case.
+ This is not development evidence and is never a passed release check.
+ 
++**Round 2 of 3**
++
++Targeted follow-up at `672099e9dc6569f4ac1cb9a967037e0d91df689c`: verify the eleven accepted Round 1 fixes and their regressions only. Reuse unchanged independent Round 1 assessments with original provenance; no new broad scope or spec audit. All sensitive reviewers remain context-free gpt-6.1-sol High. Native exact-head runtime qualification remains pending.
++
++Round 2 completed all six layers with **two unique patch findings**. Accepted
++triage is `code-review-round-2/triage.json`, SHA256
++`16d7c37aa94cdab2fbc3ca40cee536ad342e48579160f4346539d5a01a133867`.
++R2-01 is corrected under Root's SAME High clarification: source `postgres`
++creator ADMIN membership is permitted, independently of SET authority. The source
++guard keeps all seven negative owner attributes and rejects owner-outbound or
++unexpected grantee memberships; it explicitly grants SET TRUE/INHERIT FALSE and
++checks the actual executor's SET capability before ownership transfer. The
++recovery SQL remains byte-unchanged, SupAdmin-only and strictly NOADMIN. No native
++role or schema/function proof fixture is allocated in this fix batch; any such
++future test effect requires Root's separate exact admission and PG17 evidence.
++
++R2-02 is authored and integrated in the existing two E2E files: the real issuance
++response is held after exact SQL attempt/hash/audit readback, a second real settings
++page commits rotate/revoke, then unchanged real response bytes are released.
++Rendered URL/copy removal and supersession announcement are asserted without
++manual refresh; the current-revision control retains them. All original 11 cases
++and privacy controls remain, plus three race/control cases. Both accepted patches
++are source-complete; native role, SQL/HTTP and actual browser evidence is pending.
++
+ ## Design Notes
+ 
+ Current-contracts-and-design.md records the owner-authorized defaults: dedicated projection instead of manager-wide reader, Node 32-byte issuance with feed-only attestation, CAS/attempt reconciliation without plaintext escrow, independent 60/120-per-15-minute windows, conservative unknown-IP bucket, same-page sanitized Admin queue, complete live materialized feed with no invented horizon and safe work-role/Bokning title rather than arbitrary booking description. These are proportional supporting implementations of explicit ADR requirements, not new product features or verified legacy observations. All consumer/provider interoperability beyond essential RFC/HTTP correctness is deferred release validation. Stream only after complete authority/query success so a broken query cannot emit a partial valid calendar.
+@@ -165,6 +189,17 @@ so DTSTAMP and LAST-MODIFIED both describe the current component revision under
+ These narrow source corrections do not rewrite the approved kernel or historical
+ companion and do not claim provider interoperability.
+ 
++Round 2 technical correction: PostgreSQL17's restricted CREATEROLE creator
++receives ADMIN TRUE with SET FALSE/INHERIT FALSE. ADMIN allows membership management;
++SET authorizes ownership transfer. Preserve that native source-creator authority,
++then grant only SET explicitly and disable inherited owner privileges for the
++trusted source executor; test its SET ability instead of inferring it from ADMIN.
++This source policy does not apply to isolated recovery's strict NOADMIN principal.
++See [PostgreSQL17 role attributes](https://www.postgresql.org/docs/17/role-attributes.html),
++[GRANT membership options](https://www.postgresql.org/docs/17/sql-grant.html), and
++[pg_has_role SET](https://www.postgresql.org/docs/17/functions-info.html).
++No hosted catalog observation or restricted-executor native execution is claimed.
++
+ Keep the current-self role union, transactional lifecycle/audit/CAS, cookie-free
+ public boundary, complete minimal live snapshot, hard global cardinality lock,
+ independent budgets and no-plaintext recovery behavior unchanged. Recovery creates
+@@ -279,11 +314,77 @@ were changed. Keep status in-review, follow-up recommended, no delivery JSON or
+ development-complete/release-ready claim. The optional exhaustive release branch
+ remains release-blocking deferred as recorded above.
+ 
++## Round 2 fix verification — 2026-10-20
++
++Browser contributor released exactly `tests/e2e/calendar-feed.e2e.spec.ts` and
++`tests/e2e/support/calendar-feed-atdd.ts` after adding three active rendered
++race/control cases, for **14 browser cases**. Child-reported typecheck, focused
++ESLint, native diff check and Playwright `--list` discovery (14 cases/one file)
++passed; these unchanged source checks are reused with that provenance. Discovery
++is not browser execution. No new runtime/build/unit result is claimed for this
++browser/helper change. The source-role correction additionally passed the focused
++existing named static case:
++`node --experimental-strip-types --import ./tests/support/register.mjs --test --test-name-pattern="recovery Compose sources" tests/unit/ops/pilot-operations.test.ts`
++**1 passed, 0 failed, 0 skipped**; focused ESLint on that changed assertion file
++passed. This proves the source contract assertion, not PG17 execution. Recovery
++SQL is unchanged. No application runtime source changed after the Round 1 build,
++so its recorded production-build evidence is reused rather than rerun. Original
++83 prepared expanded cases remain; additions now comprise eight Node regressions
++and three browser race/control cases, yielding 30 feed Node, 50 native Vitest and
++14 browser cases overall. The frozen intent is unchanged. No resource launch,
++native test-role effect or development-complete claim is made by this fix handoff.
++
++## Native PG17 proof-case source verification — 2026-10-20
++
++Root/Coordinator's later exact allocation `accepted-pg17-probe-allocation.json`
++(SHA256 `bc3f01da175a7f2ed4589c9cad86baff4cec4329c293597becba4b5a05d6e2b6`) supersedes only the earlier held test-effect
++statement. Added exactly one active case, `15.5-INT015`, to the existing serial
++command file. The original 83 prepared expanded cases and later additions remain:
++current inventory is **30 feed Node, 51 native Vitest, 14 browser cases**.
++
++The case first reuses existing wrapper admission/stack validators with bounded,
++fixed-argv read-only Docker/status observations, workspace/checkout identity,
++complete migration ledger and actual checked feed-function owners. Raw command
++JSON/errors stay in memory. It then requires observed native major17 and both
++original session/current identities to be the authenticated isolated superuser;
++no existing role is elevated. Native server version values are recorded through
++safe Vitest annotations only when actually observed; no version result is invented.
++
++Exactly two UUID-owned NOLOGIN roles, one UUID schema and one harmless invoker
++function are transaction-local. A restricted session authorization, not merely
++SET ROLE under a superuser session, is asserted immediately before each credited
++source/SET/ownership operation. Separate engine-baseline creator ADMIN/SET/INHERIT
++and createrole_self_grant checks roll back before the actual leading source DO
++block genuinely creates its fresh target. Role-name substitutions are reversible;
++every source guard statement remains. Replay and unsafe attribute/membership
++vectors require the exact bootstrap exception after savepoint rollback. The
++inverse-membership setup first removes forward/dependent grants between only
++the two owned roles, so engine-cycle rejection cannot count as guard evidence.
++
++UUID-schema CREATE is only a transaction-local fixture prerequisite, not proof
++of real source/recovery public-schema privileges. Expected errors restore their
++savepoints before assertions. Unexpected failure triggers full rollback before
++session/role resets; dedicated direct connections never enter a pool. Primary,
++transport and all cleanup failures are retained without raw causes/values. Both
++the original and a fresh read-only connection must prove both roles/schema/function
++absent. Existing roles, public schema, JWT, Vault, hosted state, processes and
++workflows receive no mutation from this test fixture.
++
++Actual checks on the authored source: full typecheck and focused ESLint passed.
++No native test, Vitest collection/globalSetup, Docker/Supabase qualification command,
++DB connection or runtime was executed locally. Existing production build and
++unchanged unit/browser-discovery evidence remain reusable with their recorded
++provenance; they do not execute INT015. Distinct changed-line High Round 3 review
++must precede Root exact-head CI. The actual restricted-executor test, full required
++native lanes and source/recovery public-schema qualification remain pending.
++Status stays in-review, follow-up recommended, no delivery/development-complete claim.
++
+ ## Suggested Review Order
+ 
+ Author: Story 15.5 implementation/fix author (gpt-6.1-sol High), incorporating
+ explicitly delegated browser and bootstrap contributors. Refreshed after all
+-Round 1 fixes and relevant checks; stops below resolve to final source literals.
++Round 2 source/browser fixes, the allocated native proof case and recorded static checks. Stops below resolve
++to final source literals before the fix commit.
+ 
+ ### Own settings and honest lifecycle results
+ 
+@@ -293,8 +394,8 @@ explicit uncertainty handling, while later authoritative status removes stale UR
+ 
+ - `src/components/app-shell/AppShell.tsx:279` — `navigation.some`: gates the profile link on scheduling access.
+ - `src/components/calendar-feed/CalendarSubscription.tsx:34` — `const current = await refresh();`: clears superseded post-commit output and success.
+-- `tests/unit/features/calendar-feed/action-state.test.ts:41` — `R1-07`: AC1/2 concurrent revoke/rotation state regression passed.
+-- `tests/e2e/calendar-feed.e2e.spec.ts:155` — `15.5-E2E-003`: AC1/6 allowed and denied profile journey; execution pending.
++- `tests/e2e/calendar-feed.e2e.spec.ts:370` — `15.5-E2E-010-`: AC2/6 actual supersession clears rendered controls and notice; execution pending.
++- `tests/e2e/calendar-feed.e2e.spec.ts:432` — `15.5-E2E-011`: AC2/6 current-revision control retains issuance; execution pending.
+ 
+ ### Signed current-self authority and atomic writes
+ 
+@@ -303,7 +404,7 @@ and role union under the scheduling tenant lock. Dedicated proofs bind privilege
+ inputs, and CAS/history/audit commit together without plaintext recovery.
+ 
+ - `src/server/commands/calendar-feed/manage-calendar-feed.ts:10` — `calendarFeedCommand`: exposes plaintext only after confirmed fresh SQL success.
+-- `supabase/migrations/20261020220000_personal_calendar_feed.sql:154` — `create function public.manage_calendar_feed`: checks signed authority, revision, replay and audit.
++- `supabase/migrations/20261020220000_personal_calendar_feed.sql:162` — `create function public.manage_calendar_feed`: checks signed authority, revision, replay and audit.
+ - `tests/support/calendar-feed-atdd.ts:270` — `const allowed = ["membershipId"`: checks raw JWT status keys before mapper reconstruction.
+ - `tests/integration/rls/calendar-feed.rls.test.ts:129` — `15.5-RLS008`: AC1/4/9 raw status/hash and direct-DML assertions; execution pending.
+ 
+@@ -314,7 +415,7 @@ is complete and minimal; stable IDs, every projected-source revision and explici
+ fractional rounding produce a subscription snapshot without scheduling METHOD.
+ 
+ - `middleware.ts:40` — `request.nextUrl.pathname`: bypasses only the exact feed token segment.
+-- `supabase/migrations/20261020220000_personal_calendar_feed.sql:228` — `'updatedAt',greatest`: covers mutable booking, role, job, customer and facility revisions.
++- `supabase/migrations/20261020220000_personal_calendar_feed.sql:236` — `'updatedAt',greatest`: covers mutable booking, role, job, customer and facility revisions.
+ - `src/features/calendar-feed/icalendar.ts:40` — `export function encodeCalendarFeed`: serializes complete snapshots before streaming.
+ - `tests/unit/features/calendar-feed/icalendar.test.ts:76` — `R1-05 positive`: AC3/8 independent positive fractional and boundary vectors passed.
+ 
+@@ -322,20 +423,23 @@ fractional rounding produce a subscription snapshot without scheduling METHOD.
+ 
+ Independent budgets keep admitted counters through projection cancellation without
+ advancing last-use. Serial fixtures restore only their captured unknown-IP row;
+-recovery and migration guards validate retained roles instead of repairing them.
++source creator ADMIN is distinct from SET authority, while unchanged recovery
++keeps SupAdmin-only NOADMIN. Retained unsafe roles fail closed.
+ 
+-- `supabase/migrations/20261020220000_personal_calendar_feed.sql:239` — `exception when sqlstate '57014'`: keeps projection failure inside the counter transaction.
++- `supabase/migrations/20261020220000_personal_calendar_feed.sql:247` — `exception when sqlstate '57014'`: keeps projection failure inside the counter transaction.
+ - `tests/integration/calendar-feed/public-feed.int.test.ts:364` — `15.5-API018`: AC5/8 durable token/IP and last-use assertions; execution pending.
+-- `ops/recovery/bootstrap-roles.sql:62` — `if not exists(select 1 from pg_roles where rolname='calendar_feed_owner')`: creates only the absent isolated restore owner.
+-- `tests/unit/ops/pilot-operations.test.ts:220` — `recovery Compose sources`: guards seven attributes, exact grants and preserved recovery settings.
++- `supabase/migrations/20261020220000_personal_calendar_feed.sql:27` — `pg_has_role(current_user,feed_owner.oid,'SET')`: qualifies source ownership authority independently of creator ADMIN.
++- `tests/integration/commands/calendar-feed.int.test.ts:277` — `15.5-INT015`: AC4/9 exact-source restricted-creator proof; native execution pending.
+ 
+ ### Isolated CI custody and honest evidence limits
+ 
+ Only captured child identities and one ephemeral Vault UUID belong to the wrapper.
++The added PG17 case qualifies that disposable stack and owns transaction-local
++UUID roles/schema/function through dedicated connections, with no pool reuse.
+ Settlement is memoized; abnormal browser teardown retains exact job custody, while
+ privacy detection measures raw output in memory before sanitized records persist.
+ 
+-- `scripts/ci/with-calendar-feed-runtime.mjs:284` — `export async function runCalendarFeedRuntime`: orders admission, key, fixed gate and cleanup.
++- `tests/integration/commands/calendar-feed.int.test.ts:457` — `// FULL rollback comes first`: preserves rollback/reset and same/fresh catalog absence proof.
+ - `scripts/ci/with-calendar-feed-runtime.mjs:166` — `export function createOwnedGroupStopper`: memoizes settlement and verifies identity before signaling.
+ - `scripts/ci/with-calendar-feed-runtime.mjs:88` — `export function createTelemetryObserver`: detects leaks before dropping non-allowlisted output.
+ - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:264` — `nonzero/null-signal nested browser loss`: requires retained key custody for abnormal completion.
+@@ -344,10 +448,9 @@ Evidence: Round 1 fix verification above records 63 executed Node cases with zer
+ failures/skips, focused static checks, production build and guard results. These
+ are current working-tree checks before the fix commit. Bootstrap dependencies are
+ synthetic; operations recovery assertions are static, not restore evidence.
+-All 50 native Vitest and 11 browser bodies remain pending locally; API001 covers
++All 51 native Vitest and 14 browser bodies remain pending locally; API001 covers
+ live label revisions, API018 cancellation/counters, RLS008 raw status privacy,
+ and E2E-001 the essential actual production lifecycle. Existing ACL/RLS010,
+-serial cleanup and full regressions also require exact-head CI. Round 1 completed,
+-but targeted High follow-up, live lifecycle/recovery and final truth qualification
++serial cleanup and full regressions also require exact-head CI. Round 2 completed; targeted High follow-up, restricted-executor PG17 proof, live lifecycle/recovery and final truth qualification
+ are outstanding. No provider/device/visual/performance or release-ready claim;
+ the unallocated exhaustive branch remains explicitly release-blocking deferred.
+diff --git a/supabase/migrations/20261020220000_personal_calendar_feed.sql b/supabase/migrations/20261020220000_personal_calendar_feed.sql
+index dcbea374..a871be0a 100644
+--- a/supabase/migrations/20261020220000_personal_calendar_feed.sql
++++ b/supabase/migrations/20261020220000_personal_calendar_feed.sql
+@@ -10,15 +10,23 @@ begin
+     or feed_owner.rolcreaterole or feed_owner.rolreplication or feed_owner.rolbypassrls then
+   raise exception 'calendar_feed_owner is not hardened';
+  end if;
+- -- Fail closed for retained grants; do not repair privileged or runtime roles.
++ -- Only the trusted source executor may be a member. PostgreSQL17 gives a
++ -- non-superuser creator ADMIN TRUE, SET FALSE, INHERIT FALSE; ADMIN is not
++ -- SET authority. The isolated recovery SupAdmin NOADMIN guard is separate.
+  if exists(select 1 from pg_auth_members m where m.member=feed_owner.oid
+-   or (m.roleid=feed_owner.oid and (m.member<>(select oid from pg_roles where rolname='postgres') or m.admin_option))) then
++   or (m.roleid=feed_owner.oid and m.member<>(select oid from pg_roles where rolname='postgres'))) then
+   raise exception 'calendar_feed_owner has unexpected membership';
+  end if;
+  if not exists(select 1 from pg_roles where rolname='postgres') then
+   raise exception 'calendar feed ownership principal absent';
+  end if;
+- grant calendar_feed_owner to postgres with admin false;
++ -- Preserve native creator ADMIN authority; qualify ownership transfer via SET
++ -- without inherited privileges or any new runtime/JWT membership.
++ grant calendar_feed_owner to postgres with set true;
++ grant calendar_feed_owner to postgres with inherit false;
++ if not pg_has_role(current_user,feed_owner.oid,'SET') then
++  raise exception 'calendar feed source executor cannot transfer ownership';
++ end if;
+ end
+ $$;
+ grant usage,create on schema public to calendar_feed_owner;
+diff --git a/tests/e2e/calendar-feed.e2e.spec.ts b/tests/e2e/calendar-feed.e2e.spec.ts
+index 21c2ce87..cfc80717 100644
+--- a/tests/e2e/calendar-feed.e2e.spec.ts
++++ b/tests/e2e/calendar-feed.e2e.spec.ts
+@@ -365,4 +365,101 @@ test.describe("15.5 Kalenderprenumeration essential production-host", () => {
+       expectIsolated(before, snapshot); // Admin management remains self-only
+     });
+   });
++
++  for (const competingAction of ["rotate", "revoke"] as const) {
++    test(`[P0] 15.5-E2E-010-${competingAction} [AC2 AC6] automatic refresh removes a superseded issuance and success announcement after concurrent ${competingAction}`, async ({ resourcePage: page }) => {
++      await withCalendarBrowserFixture(page, "own-and-foreign", async f => {
++        await f.signIn("montor");
++        await followPersonalSubscriptionByKeyboard(page, "day");
++        const before = await f.snapshot(), held = await f.armFault("hold-committed-response");
++        const pending: Promise<unknown>[] = [];
++        let competingPage: Page | undefined;
++        try {
++          const original = f.observeLifecycle("create"); pending.push(original); void original.catch(() => undefined);
++          await calendarUI(page).create.click();
++          const first = await held.committed, originalLink = await held.issuedLink;
++          expect(first.own.revision - before.own.revision).toBe(1);
++          expect(first.own.audit.length - before.own.audit.length).toBe(1);
++          await expect(calendarUI(page).link).toHaveCount(0);
++          await expect(calendarUI(page).notice).toHaveText("Arbetar…");
++          expectPublicFeed(await f.fetchAnonymous(originalLink), 200);
++
++          // Same real session, separate settings instance; the original page's
++          // response remains held until this independently audited command commits.
++          competingPage = await page.context().newPage();
++          await competingPage.goto("/settings/calendar");
++          const control = calendarUI(competingPage)[competingAction];
++          await tabTo(competingPage, control);
++          await competingPage.keyboard.press("Enter");
++          const competing = f.observeLifecycle(competingAction, competingPage); pending.push(competing); void competing.catch(() => undefined);
++          await competingPage.getByRole("dialog").getByRole("button", { name: competingAction === "rotate" ? calendarNames.confirmRotate : calendarNames.confirmRevoke, exact: true }).click();
++          const newer = await competing;
++          expect(newer.committed).toBe(true);
++          expect(newer.snapshot.own.revision - first.own.revision).toBe(1);
++          expect(newer.snapshot.own.audit.length - first.own.audit.length).toBe(1);
++          expect(newer.snapshot.own.audit.at(-1)).toEqual({ action: competingAction, actorMatchesSubject: true });
++          expect(newer.snapshot.own.activeCount).toBe(competingAction === "rotate" ? 1 : 0);
++          const currentLink = competingAction === "rotate" ? await f.captureIssuedLink(competingPage) : null;
++          if (currentLink) expect(currentLink.hashMatchesPhysicalGeneration).toBe(true);
++
++          await held.release(); // release before joining the original pending action
++          await original;
++          // This is mutate()'s automatic refresh; no explicit refresh/reload is
++          // allowed here, since either would hide a missing refresh/state/message wire.
++          await expect(calendarUI(page).notice).toHaveText("Statusen har ändrats. Välj en ny ändring utifrån aktuell status.");
++          await expect(calendarUI(page).notice).not.toContainText("Länken är skapad. Kopiera den nu");
++          await expect(calendarUI(page).link).toHaveCount(0);
++          await expect(calendarUI(page).copy).toHaveCount(0);
++          const after = await f.snapshot();
++          expect(after.own.revision).toBe(newer.snapshot.own.revision);
++          expect(after.own.audit).toEqual(newer.snapshot.own.audit);
++          expectIsolated(before, after);
++          expectPublicFeed(await f.fetchAnonymous(originalLink), 404);
++          if (currentLink) {
++            const feed = await f.fetchAnonymous(currentLink.handle);
++            expectPublicFeed(feed, 200);
++            expect(feed.events).toEqual(f.expectedOwnEvents);
++          }
++        } finally {
++          await held.release();
++          await Promise.allSettled(pending);
++          try { await held.dispose(); } finally { await competingPage?.close(); }
++        }
++      });
++    });
++  }
++
++  test("[P0] 15.5-E2E-011 [AC2 AC6] automatic refresh retains the current issuance, copy control and success announcement", async ({ resourcePage: page }) => {
++    await withCalendarBrowserFixture(page, "own-and-foreign", async f => {
++      await f.signIn("montor");
++      await followPersonalSubscriptionByKeyboard(page, "day");
++      const before = await f.snapshot(), held = await f.armFault("hold-committed-response");
++      const original = f.observeLifecycle("create"); void original.catch(() => undefined);
++      try {
++        await calendarUI(page).create.click();
++        const committed = await held.committed;
++        expect(committed.own.revision - before.own.revision).toBe(1);
++        await expect(calendarUI(page).link).toHaveCount(0);
++        await held.release();
++        await original;
++        // A visible success announcement means the automatic refresh completed
++        // and busy ended. Only then verify that reconciliation retained this URL.
++        await expect(calendarUI(page).notice).toHaveText("Länken är skapad. Kopiera den nu; den visas bara den här gången.");
++        await expect(calendarUI(page).copy).toBeVisible();
++        const issued = await f.captureIssuedLink();
++        expect(issued.canonical43Characters).toBe(true);
++        expect(issued.hashMatchesPhysicalGeneration).toBe(true);
++        expect(issued.absentFromBrowserStorage).toBe(true);
++        expect(await f.snapshot()).toEqual(committed);
++        expectIsolated(before, committed);
++        const feed = await f.fetchAnonymous(issued.handle);
++        expectPublicFeed(feed, 200);
++        expect(feed.events).toEqual(f.expectedOwnEvents);
++      } finally {
++        await held.release();
++        await Promise.allSettled([original]);
++        await held.dispose();
++      }
++    });
++  });
+ });
+diff --git a/tests/e2e/support/calendar-feed-atdd.ts b/tests/e2e/support/calendar-feed-atdd.ts
+index 232a4174..5a46a74d 100644
+--- a/tests/e2e/support/calendar-feed-atdd.ts
++++ b/tests/e2e/support/calendar-feed-atdd.ts
+@@ -123,6 +123,9 @@ export type ArmedFault = {
+   reached: Promise<void>;
+   /** SQL commit readback, not a fulfilled/stubbed response. */
+   committed: Promise<PhysicalSnapshot>;
++  /** Only hold-committed-response exposes the real response's issued link,
++   * privately hash-checked against that attempt before returning an opaque handle. */
++  issuedLink: Promise<IssuedLinkHandle>;
+   release: () => Promise<void>;
+   dispose: () => Promise<void>;
+ };
+@@ -141,12 +144,12 @@ export type CalendarBrowserFixture = {
+    * bind actual Next action input, never guess an /api endpoint or RPC payload.
+    * Transport 2xx alone is insufficient: join exact subject/attempt SQL commit.
+    */
+-  observeLifecycle: (action: LifecycleAction) => Promise<LifecycleObservation>;
++  observeLifecycle: (action: LifecycleAction, sourcePage?: Page) => Promise<LifecycleObservation>;
+   /** Read the one-time accessible input without exposing its value in assertions.
+    * Format/hash/no-storage checks return booleans only. Capture errors discard
+    * cause/request/response/DOM bodies and use a fixed redacted message.
+    */
+-  captureIssuedLink: () => Promise<{
++  captureIssuedLink: (sourcePage?: Page) => Promise<{
+     handle: IssuedLinkHandle; canonical43Characters: boolean;
+     hashMatchesPhysicalGeneration: boolean; absentFromBrowserStorage: boolean;
+   }>;
+@@ -167,9 +170,11 @@ export type CalendarBrowserFixture = {
+   /** Transport-only fault, registered BEFORE actions. Never synthesize success.
+    * Hold-before-send proves pending; fail-before-send proves zero writes; lost
+    * response forwards real request and confirms SQL commit before aborting bytes.
++   * Hold-committed-response returns those same real response bytes only after
++   * release, allowing a second settings page to commit a competing revision.
+    * Restore all routes/listeners and release owned gates in finally, bounded.
+    */
+-  armFault: (kind: "hold-before-send" | "fail-before-send" | "lose-committed-response") => Promise<ArmedFault>;
++  armFault: (kind: "hold-before-send" | "fail-before-send" | "lose-committed-response" | "hold-committed-response") => Promise<ArmedFault>;
+   /** Test-normalized sanitized current-self attempt metadata; no new RPC shape. */
+   attemptReceipt: () => Promise<{
+     submittedAttempts: number; distinctAttempts: number; recoveredRawLink: boolean;
+@@ -329,20 +334,20 @@ export async function withCalendarBrowserFixture(
+           expectedOwnEvents: [], expectedAbuse: { limitedRequests: 3, spikes: 1 },
+           async signIn(identity) { subject = subjects[identity]; fixture.expectedOwnEvents = [...(expectedByProfile.get(subject.profile) ?? [])].sort((a, b) => a.uid.localeCompare(b.uid)); await browserSignIn(page, subject.user); },
+           snapshot,
+-          async observeLifecycle(action) {
+-            const response = page.waitForResponse(response => actionInput(response.request())?.action === action);
+-            const request = await page.waitForRequest(request => actionInput(request)?.action === action);
++          async observeLifecycle(action, sourcePage = page) {
++            const response = sourcePage.waitForResponse(response => actionInput(response.request())?.action === action);
++            const request = await sourcePage.waitForRequest(request => actionInput(request)?.action === action);
+             const input = actionInput(request)!;
+             await response;
+             return { committed: true, snapshot: await committedAttempt(input) };
+           },
+-          async captureIssuedLink() {
+-            const input = calendarUI(page).link; await input.waitFor({ state: "visible" });
++          async captureIssuedLink(sourcePage = page) {
++            const input = calendarUI(sourcePage).link; await input.waitFor({ state: "visible" });
+             const url = await input.inputValue(), token = /^\/calendar\/feed\/([A-Za-z0-9_-]{43})$/.exec(new URL(url).pathname)?.[1];
+             const handle = Object.freeze({}) as IssuedLinkHandle; secretLinks.set(handle, url); rawLinks.push(url); confirmedLink = url;
+-            const canonical = new URL(url).origin === new URL(page.url()).origin && !!token && Buffer.from(token, "base64url").length === 32 && Buffer.from(token, "base64url").toString("base64url") === token;
++            const canonical = new URL(url).origin === new URL(sourcePage.url()).origin && !!token && Buffer.from(token, "base64url").length === 32 && Buffer.from(token, "base64url").toString("base64url") === token;
+             const current = (await readTokens()).find(row => row.membership_id === subject.membership && row.revoked_at === null);
+-            const browserStorage = await page.evaluate(() => JSON.stringify([Object.entries(localStorage), Object.entries(sessionStorage), document.cookie]));
++            const browserStorage = await sourcePage.evaluate(() => JSON.stringify([Object.entries(localStorage), Object.entries(sessionStorage), document.cookie]));
+             return { handle, canonical43Characters: canonical, hashMatchesPhysicalGeneration: !!token && current?.token_hash === hash(token),
+               absentFromBrowserStorage: !browserStorage.includes(url) && !!token && !browserStorage.includes(token) };
+           },
+@@ -372,7 +377,7 @@ export async function withCalendarBrowserFixture(
+           },
+           async denyClipboard() { await page.context().clearPermissions(); await page.evaluate(() => Object.defineProperty(navigator, "clipboard", { configurable: true, value: { writeText: async () => { throw new DOMException("Clipboard permission denied", "NotAllowedError"); } } })); },
+           async armFault(kind) {
+-            const reached = deferred<void>(), committed = deferred<PhysicalSnapshot>(), release = deferred<void>(), settled = deferred<void>();
++            const reached = deferred<void>(), committed = deferred<PhysicalSnapshot>(), issuedLink = deferred<IssuedLinkHandle>(), release = deferred<void>(), settled = deferred<void>();
+             let consumed = false;
+             const handler = async (route: Route) => {
+               const input = actionInput(route.request()); if (!input || consumed) { await route.fallback(); return; } consumed = true;
+@@ -382,12 +387,26 @@ export async function withCalendarBrowserFixture(
+                   await route.continue();
+                 } else if (kind === "fail-before-send") { await route.abort("failed"); reached.resolve(); }
+                 else { const response = await route.fetch({ timeout: 15_000 }); if (!response.ok()) throw new Error("Calendar response failed");
+-                  const state = await committedAttempt(input); await route.abort("failed"); committed.resolve(state); reached.resolve(); }
+-              } catch { const error = new Error("Calendar transport fault verification failed (details redacted)"); reached.reject(error); committed.reject(error); await route.abort("failed").catch(() => undefined); }
++                  const state = await committedAttempt(input);
++                  if (kind === "hold-committed-response") {
++                    // Inspect only the actual Next action bytes, never construct a
++                    // success response. Match the returned path to this exact SQL
++                    // attempt's capability before keeping it behind an opaque handle.
++                    const paths = [...new Set((await response.text()).match(/\/calendar\/feed\/[A-Za-z0-9_-]{43}(?![A-Za-z0-9_-])/g) ?? [])];
++                    const row = (await readTokens()).find(row => row.membership_id === subject.membership && row.attempt_id === input.attemptId);
++                    if (paths.length !== 1 || row?.token_hash !== hash(paths[0].split("/").at(-1)!)) throw new Error("Calendar held issuance mismatch");
++                    const url = new URL(paths[0], page.url()).href, handle = Object.freeze({}) as IssuedLinkHandle;
++                    secretLinks.set(handle, url); rawLinks.push(url); issuedLink.resolve(handle);
++                    committed.resolve(state); reached.resolve();
++                    await Promise.race([release.promise, new Promise<never>((_, reject) => { const timer = setTimeout(() => reject(new Error("Calendar committed response hold timeout")), 20_000); timer.unref(); })]);
++                    await route.fulfill({ response }); // unchanged real response, after explicit barrier release
++                  } else { await route.abort("failed"); committed.resolve(state); reached.resolve(); }
++                }
++              } catch { const error = new Error("Calendar transport fault verification failed (details redacted)"); reached.reject(error); committed.reject(error); issuedLink.reject(error); await route.abort("failed").catch(() => undefined); }
+               finally { settled.resolve(); }
+             };
+             await page.route("**/settings/calendar", handler);
+-            const fault: ArmedFault = { reached: reached.promise, committed: committed.promise, release: async () => { release.resolve(); }, dispose: async () => {
++            const fault: ArmedFault = { reached: reached.promise, committed: committed.promise, issuedLink: issuedLink.promise, release: async () => { release.resolve(); }, dispose: async () => {
+               release.resolve();
+               if (consumed) await Promise.race([settled.promise, new Promise<never>((_, reject) => { const timer = setTimeout(() => reject(new Error("Calendar transport settlement timeout")), 20_000); timer.unref(); })]);
+               await page.unroute("**/settings/calendar", handler); activeFaults.delete(fault);
+diff --git a/tests/integration/commands/calendar-feed.int.test.ts b/tests/integration/commands/calendar-feed.int.test.ts
+index 888d4457..9f8f3f1e 100644
+--- a/tests/integration/commands/calendar-feed.int.test.ts
++++ b/tests/integration/commands/calendar-feed.int.test.ts
+@@ -272,4 +272,217 @@ describe("15.5 authenticated lifecycle, atomic audit and commit-order", () => {
+       expect(JSON.stringify(status.publicDto)).not.toContain(physical.tokens[0].hash);
+     });
+   });
++
++
++  test("[P0] 15.5-INT015 AC4 AC9 native PG17 restricted creator executes the exact owner bootstrap and SET ownership", async context => {
++    // This case has its own disposable direct connections: an unverified session
++    // is closed, never returned to an application/test pool. No resource startup.
++    const { Client } = await import("pg");
++    const { randomUUID } = await import("node:crypto");
++    const { readFile, readdir, realpath, stat } = await import("node:fs/promises");
++    const { join } = await import("node:path");
++    const { fileURLToPath } = await import("node:url");
++    const { execFile } = await import("node:child_process");
++    const { promisify } = await import("node:util");
++    const { assertLocalStack, LOCAL_SUPABASE_DB_URL } = await import("../../support/test-env");
++    const { validateAdmission, validateStackIdentity, FEED_FUNCTIONS } = await import("../../../scripts/ci/with-calendar-feed-runtime.mjs");
++    const suffix = randomUUID().replaceAll("-", "");
++    const migrator = `cf_m_${suffix}`, owner = `cf_o_${suffix}`, schema = `cf_s_${suffix}`, fn = `cf_f_${suffix}`;
++    const root = fileURLToPath(new URL("../../../", import.meta.url));
++    const failures: Error[] = [];
++    let stage = "qualification", connected = false, original: string | undefined, transportFailed = false, cleaning = false;
++    const primaryDeadline = Date.now() + 80_000;
++    let nativeVersion: { serverVersion: string; serverVersionNum: number } | undefined;
++    function directClient(readOnly = false) {
++      try { return new Client({ connectionString: LOCAL_SUPABASE_DB_URL, connectionTimeoutMillis: 5_000,
++        query_timeout: 7_000, statement_timeout: 5_000, lock_timeout: 2_000,
++        ...(readOnly ? { options: "-c default_transaction_read_only=on" } : {}) }); }
++      catch { throw new Error("PG17 proof connection configuration refused; details redacted"); }
++    }
++    const client = directClient();
++    client.on("error", () => { transportFailed = true; });
++    const pending = new Set<Promise<unknown>>();
++    async function sql<Row extends import("pg").QueryResultRow = import("pg").QueryResultRow>(text: string, values: unknown[] = []) {
++      if (!cleaning && Date.now() > primaryDeadline) throw new Error("PG17 proof primary deadline exceeded");
++      const request = client.query<Row>(text, values); pending.add(request);
++      try { return await request; } finally { pending.delete(request); }
++    }
++    // Every credited source/SET/ownership operation follows this immediate check.
++    async function restricted() {
++      const { rows: [identity] } = await sql<{ session: string; current: string; rolcanlogin: boolean; rolinherit: boolean; rolsuper: boolean;
++        rolcreatedb: boolean; rolcreaterole: boolean; rolreplication: boolean; rolbypassrls: boolean; self_grant: string }>(
++        "select session_user::text session,current_user::text current,r.rolcanlogin,r.rolinherit,r.rolsuper,r.rolcreatedb,r.rolcreaterole,r.rolreplication,r.rolbypassrls,current_setting('createrole_self_grant') self_grant from pg_roles r where r.rolname=current_user");
++      expect(identity).toMatchObject({ session: migrator, current: migrator, rolcanlogin: false, rolinherit: false,
++        rolsuper: false, rolcreatedb: false, rolcreaterole: true, rolreplication: false, rolbypassrls: false, self_grant: "" });
++    }
++    async function originalIdentity() {
++      const { rows: [identity] } = await sql<{ session: string; current: string; super: boolean }>(
++        "select session_user::text session,current_user::text current,r.rolsuper super from pg_roles r where r.rolname=current_user");
++      if (!original || identity.session !== original || identity.current !== original || !identity.super) throw new Error("Original isolated identity not restored");
++    }
++    function redacted(error: unknown, label: string): Error {
++      return error instanceof AggregateError ? new AggregateError(error.errors.map(item => redacted(item, label)), label) : new Error(label);
++    }
++    async function expectedFailure(name: string, operation: () => Promise<unknown>, code: string, message?: string) {
++      await sql(`savepoint ${name}`);
++      let observed: { code?: string; message?: string } | undefined;
++      try { await operation(); } catch (error) { observed = error as typeof observed; }
++      const cleanup: Error[] = []; let restored = false;
++      try { await sql(`rollback to savepoint ${name}`); restored = true; }
++      catch { cleanup.push(new Error("Expected-error savepoint rollback failed")); }
++      if (restored) try { await sql(`release savepoint ${name}`); }
++      catch { cleanup.push(new Error("Expected-error savepoint release failed")); }
++      if (cleanup.length) throw new AggregateError([...(observed ? [new Error("Guard operation outcome retained; details redacted")] : []), ...cleanup], "Expected-error primary and cleanup failures");
++      // Always restore the savepoint before making assertions after an error.
++      expect(observed?.code).toBe(code);
++      if (message !== undefined) expect(observed?.message).toBe(message);
++    }
++    async function absent(connection: InstanceType<typeof Client>) {
++      // Both same and fresh connections observe committed catalogs read-only.
++      const errors: Error[] = []; let opened = false;
++      try {
++        await connection.query("begin read only"); opened = true;
++        const { rows: [counts] } = await connection.query<{ roles: number; schemas: number; functions: number }>(
++          "select (select count(*)::integer from pg_roles where rolname=any($1::text[])) roles,(select count(*)::integer from pg_namespace where nspname=$2) schemas,(select count(*)::integer from pg_proc where proname=$3) functions", [[migrator, owner], schema, fn]);
++        expect(counts).toEqual({ roles: 0, schemas: 0, functions: 0 });
++      } catch { errors.push(new Error("Owned catalog absence not proven")); }
++      if (opened) try { await connection.query("rollback"); }
++      catch { errors.push(new Error("Read-only catalog transaction rollback failed")); }
++      if (errors.length) throw new AggregateError(errors, "Catalog proof and cleanup outcomes retained");
++    }
++    try {
++      assertLocalStack();
++      validateAdmission("db", process.env, process.platform);
++      expect(process.env.SUPABASE_TEST_REQUIRED).toBe("1");
++      const endpoint = new URL(LOCAL_SUPABASE_DB_URL);
++      expect(["127.0.0.1", "localhost", "[::1]"].includes(endpoint.hostname)).toBe(true);
++      expect(await realpath(root)).toBe(await realpath(process.env.GITHUB_WORKSPACE ?? ""));
++      const git = await stat(join(root, ".git")); expect(git.isDirectory()).toBe(true);
++      // Fixed read-only commands reuse the existing wrapper's actual admission.
++      // Captured Docker/status JSON and errors remain in memory, never in evidence.
++      const capture = promisify(execFile);
++      const containers = JSON.parse((await capture("docker", ["inspect", "supabase_db_kopplas", "supabase_kong_kopplas"],
++        { cwd: root, shell: false, timeout: 15_000, maxBuffer: 2_000_000 })).stdout);
++      const status = JSON.parse((await capture("supabase", ["status", "--output", "json"],
++        { cwd: root, shell: false, timeout: 15_000, maxBuffer: 2_000_000 })).stdout);
++      validateStackIdentity({ db: containers[0], gateway: containers[1], checkoutTime: git.birthtimeMs, now: Date.now(), status });
++      expect(status.DB_URL === LOCAL_SUPABASE_DB_URL).toBe(true);
++      const migrations = (await readdir(join(root, "supabase/migrations"))).filter(name => /^\d{14}_.+\.sql$/.test(name)).sort()
++        .map(name => ({ version: name.slice(0, 14), name: name.slice(15, -4) }));
++      const source = await readFile(join(root, "supabase/migrations/20261020220000_personal_calendar_feed.sql"), "utf8");
++      const leading = /^-- Story[^\n]*\r?\n(do \$\$[\s\S]*?\r?\n\$\$;)/.exec(source)?.[1];
++      if (!leading || source.split(leading).length !== 2 || !source.slice(source.indexOf(leading) + leading.length).trimStart().startsWith("grant usage,create on schema public")) throw new Error("Unique leading source bootstrap unavailable");
++      const bootstrap = leading.replace(/\bcalendar_feed_owner\b/g, owner).replace(/\bpostgres\b/g, migrator);
++      if (bootstrap.replaceAll(owner, "calendar_feed_owner").replaceAll(migrator, "postgres") !== leading) throw new Error("Non-reversible source bootstrap substitution");
++      await client.connect(); connected = true;
++      const { rows: [identity] } = await sql<{ session: string; current: string; super: boolean; session_super: boolean; server_version: string; server_version_num: string }>(
++        "select session_user::text session,current_user::text current,r.rolsuper super,s.rolsuper session_super,current_setting('server_version') server_version,current_setting('server_version_num') server_version_num from pg_roles r join pg_roles s on s.rolname=session_user where r.rolname=current_user");
++      original = identity.session;
++      if (identity.current !== original || !identity.super || !identity.session_super || Math.floor(Number(identity.server_version_num) / 10000) !== 17) throw new Error("Isolated native PG17 superuser qualification failed");
++      nativeVersion = { serverVersion: identity.server_version, serverVersionNum: Number(identity.server_version_num) };
++      const { rows: ledger } = await sql("select version,name from supabase_migrations.schema_migrations order by version");
++      expect(JSON.stringify(ledger.map(row => ({ version: String(row.version), name: row.name }))) === JSON.stringify(migrations)).toBe(true);
++      const { rows: functions } = await sql("select p.oid::regprocedure::text identity,pg_get_userbyid(p.proowner) owner,p.prosecdef definer from pg_proc p where p.oid=any(array[" + FEED_FUNCTIONS.map((_: string, i: number) => `to_regprocedure($${i + 1})`).join(",") + "])", [...FEED_FUNCTIONS]);
++      expect(functions.length).toBe(FEED_FUNCTIONS.length);
++      expect(functions.every(row => row.owner === "calendar_feed_owner" && row.definer === true)).toBe(true);
++      await absent(client);
++      await context.annotate(JSON.stringify({ ...nativeVersion, isolatedStackQualified: true }), "calendar-feed-pg17-observed");
++      stage = "transaction-setup";
++      await sql("begin");
++      await sql(`create role ${migrator} nologin noinherit nosuperuser nocreatedb createrole noreplication nobypassrls`);
++      await sql(`create schema ${schema} authorization ${migrator}`);
++      await sql(`set local session authorization ${migrator}`);
++      await restricted();
++      stage = "native-engine-baseline";
++      await sql("savepoint native_baseline");
++      await restricted();
++      await sql(`create role ${owner} nologin noinherit nosuperuser nocreatedb nocreaterole noreplication nobypassrls`);
++      const { rows: baseline } = await sql<{ admin_option: boolean; set_option: boolean; inherit_option: boolean }>(
++        "select m.admin_option,m.set_option,m.inherit_option from pg_auth_members m join pg_roles r on r.oid=m.roleid join pg_roles u on u.oid=m.member where r.rolname=$1 and u.rolname=$2", [owner, migrator]);
++      expect(baseline).toEqual([{ admin_option: true, set_option: false, inherit_option: false }]);
++      await expectedFailure("native_set_denied", async () => {
++        await restricted(); await sql(`set local role ${owner}`);
++      }, "42501");
++      await sql("rollback to savepoint native_baseline");
++      await sql("release savepoint native_baseline");
++      expect((await sql("select 1 from pg_roles where rolname=$1", [owner])).rows).toHaveLength(0);
++      stage = "restricted-fresh-source";
++      await restricted(); await sql(bootstrap); // exact source statements, genuinely absent target
++      const assertOwner = async () => {
++        const { rows: [role] } = await sql("select rolcanlogin,rolinherit,rolsuper,rolcreatedb,rolcreaterole,rolreplication,rolbypassrls from pg_roles where rolname=$1", [owner]);
++        expect(role).toEqual({ rolcanlogin: false, rolinherit: false, rolsuper: false, rolcreatedb: false,
++          rolcreaterole: false, rolreplication: false, rolbypassrls: false });
++        const { rows: [authority] } = await sql("select pg_has_role(current_user,$1,'SET') can_set,exists(select 1 from pg_auth_members m join pg_roles r on r.oid=m.roleid where r.rolname=$1 and m.admin_option) creator_admin", [owner]);
++        expect(authority).toEqual({ can_set: true, creator_admin: true });
++      };
++      await assertOwner();
++      stage = "restricted-source-replay";
++      await restricted(); await sql(bootstrap); await assertOwner();
++      expect((await sql("select 1 from pg_roles where rolname=any($1::text[])", [[migrator, owner]])).rows).toHaveLength(2);
++      stage = "restricted-object-ownership";
++      // UUID-schema CREATE is a transaction-only fixture prerequisite. It does
++      // not qualify real public-schema source/recovery ownership privileges.
++      await restricted(); await sql(`grant usage,create on schema ${schema} to ${owner}`);
++      await restricted(); await sql(`create function ${schema}.${fn}() returns integer language sql security invoker set search_path='' as $$ select 1 $$`);
++      await restricted(); await sql(`revoke all on function ${schema}.${fn}() from public`);
++      await restricted(); await sql(`grant execute on function ${schema}.${fn}() to ${owner}`);
++      await restricted(); await sql(`set local role ${owner}`);
++      const { rows: [switched] } = await sql("select session_user::text session,current_user::text current,r.rolsuper,r.rolcanlogin,r.rolinherit,r.rolcreatedb,r.rolcreaterole,r.rolreplication,r.rolbypassrls from pg_roles r where r.rolname=current_user");
++      expect(switched).toEqual({ session: migrator, current: owner, rolsuper: false, rolcanlogin: false, rolinherit: false,
++        rolcreatedb: false, rolcreaterole: false, rolreplication: false, rolbypassrls: false });
++      expect((await sql(`select ${schema}.${fn}() value`)).rows[0].value).toBe(1);
++      await sql("reset role");
++      await restricted(); await sql(`alter function ${schema}.${fn}() owner to ${owner}`);
++      expect((await sql("select pg_get_userbyid(p.proowner) owner,p.prosecdef definer from pg_proc p join pg_namespace n on n.oid=p.pronamespace where n.nspname=$1 and p.proname=$2", [schema, fn])).rows).toEqual([{ owner, definer: false }]);
++      stage = "unsafe-retained-attributes";
++      await expectedFailure("unsafe_attributes", async () => {
++        await restricted(); await sql(`alter role ${owner} inherit`); // only owned role, still NOLOGIN
++        await restricted(); await sql(bootstrap);
++      }, "P0001", `${owner} is not hardened`);
++      await assertOwner();
++      stage = "unsafe-retained-membership";
++      await expectedFailure("unsafe_membership", async () => {
++        await sql("reset session authorization"); await sql("reset role"); await originalIdentity();
++        // Setup affects only the two owned roles. Remove forward grants and
++        // their dependent self-grants before adding the inverse: no engine-cycle
++        // refusal can stand in for the exact source guard's exception.
++        await sql(`revoke ${owner} from ${migrator} cascade`);
++        await sql(`grant ${migrator} to ${owner} with admin false`);
++        await sql(`set local session authorization ${migrator}`);
++        await restricted(); await sql(bootstrap);
++      }, "P0001", `${owner} has unexpected membership`);
++      await restricted(); await assertOwner();
++    } catch (error) { failures.push(redacted(error, `PG17 owner proof failed at ${stage}; details redacted`)); }
++    cleaning = true;
++    // FULL rollback comes first even after an unexpected aborted transaction.
++    // Reset inside an aborted transaction would fail and cannot qualify cleanup.
++    for (const result of await Promise.allSettled([...pending])) if (result.status === "rejected") failures.push(new Error("Pending PG17 proof query failed"));
++    if (connected) {
++      let rolledBack = false;
++      try { await sql("rollback"); rolledBack = true; } catch { failures.push(new Error("PG17 proof full rollback failed")); }
++      if (rolledBack) {
++        try { await sql("reset session authorization"); } catch { failures.push(new Error("PG17 proof session identity reset failed")); }
++        try { await sql("reset role"); } catch { failures.push(new Error("PG17 proof role reset failed")); }
++        try { await originalIdentity(); } catch { failures.push(new Error("PG17 proof original identity unverified")); }
++        try { await absent(client); } catch (error) { failures.push(redacted(error, "PG17 proof same-connection absence unverified")); }
++      }
++    }
++    try { await client.end(); } catch { failures.push(new Error("PG17 proof direct connection close failed")); }
++    if (transportFailed) failures.push(new Error("PG17 proof direct connection transport failed"));
++    // Fresh connection independently observes committed catalogs; no unverified
++    // connection is ever pooled or left with a modified session authorization.
++    if (connected) {
++      let fresh: InstanceType<typeof Client> | undefined;
++      let freshTransportFailed = false;
++      try {
++        fresh = directClient(true); fresh.on("error", () => { freshTransportFailed = true; });
++        await fresh.connect(); await absent(fresh);
++      } catch (error) { failures.push(redacted(error, "PG17 proof fresh read-only absence unverified")); }
++      if (fresh) try { await fresh.end(); } catch { failures.push(new Error("PG17 proof fresh connection close failed")); }
++      if (freshTransportFailed) failures.push(new Error("PG17 proof fresh connection transport failed"));
++    }
++    if (failures.length) throw new AggregateError(failures, "PG17 owner proof/cleanup failed; sensitive details redacted");
++    await context.annotate(JSON.stringify({ ...nativeVersion, restrictedFreshReplay: true, engineAdmin: true, engineSet: false,
++      restrictedSetAndOwnership: true, unsafeAttributeAndMembershipGuards: true, sameAndFreshAbsent: true }), "calendar-feed-pg17-qualified");
++  }, 180_000);
+ });
+diff --git a/tests/unit/ops/pilot-operations.test.ts b/tests/unit/ops/pilot-operations.test.ts
+index 4bdf6b74..5628c63a 100644
+--- a/tests/unit/ops/pilot-operations.test.ts
++++ b/tests/unit/ops/pilot-operations.test.ts
+@@ -254,7 +254,11 @@ test('recovery Compose sources leave per-drill values in ignored static private
+   assert.match(migrationGuard, /if not exists\(select 1 from pg_roles where rolname='calendar_feed_owner'\) then/i);
+   for (const attribute of ['rolcanlogin', 'rolinherit', 'rolsuper', 'rolcreatedb', 'rolcreaterole', 'rolreplication', 'rolbypassrls']) assert.match(migrationGuard, new RegExp(`feed_owner\\.${attribute}`));
+   assert.match(migrationGuard, /rolname='postgres'/);
+-  assert.match(migrationGuard, /grant calendar_feed_owner to postgres with admin false/);
++  assert.match(migrationGuard, /grant calendar_feed_owner to postgres with set true/);
++  assert.match(migrationGuard, /grant calendar_feed_owner to postgres with inherit false/);
++  assert.match(migrationGuard, /pg_has_role\(current_user,feed_owner\.oid,'SET'\)/);
++  assert.match(migrationGuard, /m\.member=feed_owner\.oid/);
++  assert.doesNotMatch(migrationGuard, /m\.admin_option|with admin false/);
+   assert.doesNotMatch(migrationGuard, /alter role|to supabase_admin/i);
+   for (const restoreEntryPoint of [rehearsalWorkflow, runbook]) {
+     assert.match(restoreEntryPoint, /-U supabase_admin -d postgres/);
+
+UNCOMMITTED REVIEW-GUARD METADATA ONLY:
+diff --git a/_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md b/_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md
+index d4cc09fc..f0ce5329 100644
+--- a/_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md
++++ b/_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md
+@@ -169,6 +169,17 @@ manual refresh; the current-revision control retains them. All original 11 cases
+ and privacy controls remain, plus three race/control cases. Both accepted patches
+ are source-complete; native role, SQL/HTTP and actual browser evidence is pending.
+ 
++**Round 3 of 3**
++
++Final automatic targeted review at `360fe850c18552f23a2bf74d8eda865431f0af38`:
++review the two accepted Round 2 fixes, their single separately allocated native
++PG17 proof case and consequential regressions only. Reuse unchanged Round 1/2
++assessments and provenance. All sensitive layers use context-free gpt-6.1-sol
++High; the external reviewer uses the qualified native read-only CLI route.
++Required exact-head runtime evidence remains pending Root CI. After this round,
++do not start a fourth broad review; follow-ups are limited to latest-fix
++regressions and unresolved serious findings under the project owner policy.
++
+ ## Design Notes
+ 
+ Current-contracts-and-design.md records the owner-authorized defaults: dedicated projection instead of manager-wide reader, Node 32-byte issuance with feed-only attestation, CAS/attempt reconciliation without plaintext escrow, independent 60/120-per-15-minute windows, conservative unknown-IP bucket, same-page sanitized Admin queue, complete live materialized feed with no invented horizon and safe work-role/Bokning title rather than arbitrary booking description. These are proportional supporting implementations of explicit ADR requirements, not new product features or verified legacy observations. All consumer/provider interoperability beyond essential RFC/HTTP correctness is deferred release validation. Stream only after complete authority/query success so a broken query cannot emit a partial valid calendar.
+
+READ-ONLY AUTHORITY/TRIAGE CONTEXT: code-review-round-2/triage.json
+{
+  "round": 2,
+  "completed_rounds": 2,
+  "cap": 3,
+  "source_head": "672099e9dc6569f4ac1cb9a967037e0d91df689c",
+  "before": "ae020f63a88089966b9323c55a36b6554f7e3900",
+  "input_sha256": "6fc14dc66c147c9d7b438744aa7a68c7ff8fe4e12495f12d9c5b0d1e563c8e10",
+  "layers_completed": 6,
+  "classification": {
+    "intent_gap": 0,
+    "bad_spec": 0,
+    "patch": 2,
+    "defer": 0,
+    "reject": 0
+  },
+  "findings": [
+    {
+      "id": "R2-01",
+      "prior_finding": "R1-02",
+      "category": "patch",
+      "severity": "high",
+      "source": "blind",
+      "file": "supabase/migrations/20261020220000_personal_calendar_feed.sql:15",
+      "claim": "Fresh restricted PG17 CREATEROLE executor receives native creator ADMIN TRUE/SET FALSE membership and current guard rejects it before normalization",
+      "basis": "PostgreSQL17 role-attributes/GRANT primary docs and Supabase restricted-postgres primary docs; no hosted catalog observation. Local superuser execution is not proof of this caller.",
+      "status": "source fix held for SAME High source-executor versus recovery-membership interpretation; no new native test roles allocated",
+      "fix_constraints": "Preserve seven negative owner attributes, fail-closed unsafe retained/runtime/JWT membership, source postgres migration executor distinct from strictly NOADMIN recovery SupAdmin. Verify actual ownership SET ability. Do not infer waiver or grant broader privileges. Any two-UUID-role transactional native test effect requires separate exact allocation, actual pinned DB major/version proof, rollback/catalog absence; no role writes until admitted.",
+      "primary_sources": [
+        "https://www.postgresql.org/docs/17/role-attributes.html",
+        "https://www.postgresql.org/docs/17/sql-grant.html",
+        "https://supabase.com/docs/guides/database/postgres/roles-superuser"
+      ]
+    },
+    {
+      "id": "R2-02",
+      "prior_finding": "R1-07",
+      "category": "patch",
+      "severity": "medium",
+      "source": "verification",
+      "file": "src/components/calendar-feed/CalendarSubscription.tsx:35",
+      "claim": "New helper regression test does not exercise actual automatic refresh wiring/rendered URL removal and stale success announcement",
+      "fix": "Add controlled actual issuance/automatic-refresh race in already-owned E2E files: competing rotation/revoke commits before original issuance response is released, assert rendered URL/copy controls removed and supersession announcement replaces old success; current-revision control retained. Actual production response/action/DB/UI, no mocked success. Preserve all original11 cases, privacy fixture and redacted assertions. No local resources/runtime execution."
+    }
+  ],
+  "route_before_dispatch": {
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "reason": "Public-capability confidential UI/actual mutation race plus sensitive role-owner authority correction",
+    "ui_author": "browser_test_binding",
+    "ui_ownership": [
+      "tests/e2e/calendar-feed.e2e.spec.ts",
+      "tests/e2e/support/calendar-feed-atdd.ts"
+    ],
+    "main_author": "implementation_author",
+    "commit": "Main author integrates/commits; child no commit/push; Root metadata excluded"
+  },
+  "followup_review_recommended": true,
+  "runtime": "Native DB/RLS/HTTP/browser/recovery and installed collection remain pending; no two-testrole effect or hosted mutation allocated. One initial verification path failure was unexecuted/uncredited and repaired with exact absolute path/login:false before actual completed review."
+}
+
+READ-ONLY AUTHORITY/TRIAGE CONTEXT: source-creator-boundary-clarification.json
+{
+  "kind": "Root-recorded-interpretation-of-existing-distinct-source-and-recovery-allocation",
+  "recorded_at": "2026-10-20T14:59:36.729598+00:00",
+  "source": "Coordinator SAMEexplicitSolHigh focused interpretation",
+  "successful_delivery_verified_by_Root": "Coordinator native read_thread turn01a159d0-077d-7250-916b-e05682e657d9/tool exec-8dd266d0-6c0e-4846-909c-aaa789ece1fd statuscompleted",
+  "human_authorization": "Existing direct owner15.5 implementation/isolatedverification authorization remains controlling; Coordinator also reports later focusedhandoff approval; Root did not independently observe newhumaninput in API itemstream",
+  "historical_failed_handoffs_not_authority": [
+    "exec-e03d0526-8ee0-48bf-881a-08ce31659b22",
+    "exec-26df60d0-08cc-4b0c-a992-cc4f18369b5b",
+    "exec-d6908f50-7a9a-4b59-af59-c42b588d0637"
+  ],
+  "interpretation": [
+    "Source trustedpostgres nativePG17 creatorADMIN is distinct from recoveryNoADMIN; sourceguard must not blindly reject expectednativecreatorADMIN",
+    "NativeADMIN doesnot supplySET; actual narrowlyscoped sourceexecutorSET/ownership must be qualified",
+    "Preserve all7 hardenedtargetroleattrs/unexpectedinbound+outboundmembership andJWT-runtime denials",
+    "Recovery remains existingSupabaseAdmin-onlyNoADMIN; neverimportsourceexception",
+    "No persistentCREATE/BYPASS/superuser/JWT workaround; mandatoryactualrecoverybootstrapprincipal/ownertransfer evidence",
+    "Pinned17.6.1.136 compose image is sourceidentityonly; actualCI version required for nativeclaims"
+  ],
+  "new_two_testrole_effect": "UNALLOCATED; exactshortproposal beforewrite/runtime: actualmajor/exactsourceextraction/rolenamesonly/existingoperatorSETauthority/fresh-replay-unsafe+SETownership/SAVEPOINTexpectedfailures/unconditionalRESET-ROLLBACK-settledrefs-catalogabsence",
+  "other_scope": "Existingowned UI refresh race mayproceed; finaltargetedHighreview cap3; no runtime/deploy/monitoringresume"
+}
+
+READ-ONLY AUTHORITY/TRIAGE CONTEXT: accepted-pg17-probe-allocation.json
+{
+  "kind": "Root-recorded-narrow-native-PG17-probe-effect-allocation",
+  "received_at": "2026-10-20T15:08:08.876473+00:00",
+  "source": "Coordinator SAMEexplicitSolHigh completed PASS/allocate; native handoff received",
+  "scope": "Append ONLY one native case to existing serial tests/integration/commands/calendar-feed.int.test.ts",
+  "objects": "EXACT2uniqueownedNOLOGINroles(restrictedCREATEROLEmigrator+owner),UUIDschema+harmlessfunction; one transaction/existing isolatedfullDBjob+connection",
+  "conditions": [
+    "Native version/server_version_num major17 + existing disposable-stack identity beforemutation; pinnedimage alone notproof",
+    "Initially authenticated isolatedsuperuser required; failqualificationifunavailable/no existingroleelevation",
+    "SET LOCAL SESSION AUTHORIZATION ownmigrator; bothsession_user/current_user +allrestrictedattrs checked immediatelybeforeEACH creditedsource/SET/owneroperation; noSECURITYDEFINER wrapper; super onlysetup/reset/rollback",
+    "Extractunique actualLEADINGmigrationDO block; reversible rolenameONLY substitutions/everyguardstatementretained",
+    "Separate restrictedenginebaseline createsownertarget/observes nativeADMIN-SET-INHERIT+createrole_self_grant; rollbacksavepoint before actualbootstrap GENUINELYFRESHcreate",
+    "Unsafe membershipcase reachesbootstrapguard; enginecycle refusal NOTguardproof; fixturefault affectsONLY2ownednewroles",
+    "RestrictedSET+ownedfunctiontransfer; transactiononlyUUIDschemaCREATE fixtureprerequisites NOTactualsource/recoverypublicschema lifecycleproof",
+    "Expectederror rollbacktosavepoint BEFORE furtherassertions; unexpectedabortedtransaction FULLROLLBACK FIRST thenRESETSESSIONAUTHORIZATION/RESETROLE+verifyidentity",
+    "Boundqueries/locks/settleallpromises/unconditionalrollback/preserveprimaryANDallcleanupfailures; neverreturnunverifiedconntopool",
+    "Same+freshreadonlyconnectionproveexact2roles/schema/functionABSENT; failureblocksproof",
+    "No existingroleALTER/persistentCREATE/BYPASS/JWT/Vault/hosted/newprocess/workflow/resourceexpansion",
+    "DistinctchangedlineHighreview before RootCI; actualsource/recoveryqualificationsmandatory; no newbroadreview/packet; monitoringPAUSED"
+  ],
+  "runtime_executions": 0
+}
+
+READ-ONLY AUTHORITY/TRIAGE CONTEXT: code-review-round-2/source-role-disposition.json
+{
+  "finding": "R2-01",
+  "authority": "Root relayed Coordinator SAME gpt-6.1-sol High interpretation after focused direct owner approval; this does not resume paused monitoring",
+  "source_migration": "Trusted postgres source creator is distinct from the recovery SupAdmin principal. PostgreSQL17 native CREATEROLE creator ADMIN is permitted for postgres; ADMIN does not confer SET. The source guard must not apply the recovery-only NOADMIN rule to this creator.",
+  "preserve": [
+    "All seven negative target-owner role attributes",
+    "No owner outbound memberships or unexpected inbound grantees",
+    "JWT and runtime principal denials",
+    "Narrow source-executor SET and ownership ability",
+    "Recovery SupAdmin-only membership with NOADMIN remains unchanged",
+    "No persistent schema CREATE, BYPASSRLS, superuser, JWT or general Vault workaround"
+  ],
+  "author_plan": "Permit trusted source postgres creator ADMIN; explicitly grant SET TRUE and INHERIT FALSE without clearing native ADMIN; assert current executor pg_has_role SET before ownership DDL. Existing named static source assertion may be refreshed. Recovery SQL byte-unchanged.",
+  "native_fixture": "Two-role transaction test remains unallocated and unwritten pending exact effect disposition. Source pins alone are not native version or restricted execution evidence.",
+  "identity_proof": "SET ROLE alone leaves session_user unchanged, so a superuser session can select any role without proving restricted SET. Proposed proof uses SET LOCAL SESSION AUTHORIZATION and asserts session_user=current_user=restricted owned migrator before tested operations. Primary PostgreSQL17 documents and REL_17_STABLE source inspected read-only; no runtime execution.",
+  "primary_sources": [
+    "https://www.postgresql.org/docs/17/sql-set-role.html",
+    "https://www.postgresql.org/docs/17/sql-set-session-authorization.html",
+    "https://raw.githubusercontent.com/postgres/postgres/REL_17_STABLE/src/backend/commands/alter.c",
+    "https://raw.githubusercontent.com/postgres/postgres/REL_17_STABLE/src/backend/utils/adt/acl.c"
+  ],
+  "review": "Final targeted Round3 after stable source fixes; distinct sensitive High review required, no fourth broad review."
+}
+
+READ-ONLY AUTHORITY/TRIAGE CONTEXT: code-review-round-2/native-role-case-allocation.json
+{
+  "authority": "Root relayed Coordinator SAME gpt-6.1-sol High FINAL PASS/ALLOCATE; paused monitoring remains paused",
+  "route_before_dispatch": {"author":"implementation_author","model":"gpt-6.1-sol","effort":"high","reason":"Restricted operator role creation/SET/ownership and fail-closed transaction cleanup"},
+  "write_scope": "Append exactly one native case to existing serial tests/integration/commands/calendar-feed.int.test.ts; author spec/trail refresh remains owned",
+  "effect": "Exactly two UUID-owned NOLOGIN roles, one UUID schema and harmless function, all one rollback-only transaction in the existing isolated full-DB job/connection; no new process/workflow/hosted effects",
+  "identity": "Original authenticated isolated superuser required; restricted credit uses SET LOCAL SESSION AUTHORIZATION and immediately reasserts both IDs and restricted attributes before each credited source/SET/ownership operation. No SECURITY DEFINER wrapper or elevation of existing roles.",
+  "source": "Unique actual leading migration DO block; reversible role-name-only substitution preserving every statement/guard. Separate native creator baseline qualifies createrole_self_grant and rolls its savepoint back before genuinely fresh exact bootstrap.",
+  "faults": "Owned-role-only unsafe attributes/membership must exercise source guard, not engine cycle rejection. Every expected error rolls back to its savepoint before further assertions.",
+  "cleanup": "Bound queries/locks; settle all promises. Unexpected abort requires full rollback before identity reset. Unconditional rollback, reset and identity verification; preserve primary plus every cleanup failure; never release unverified pooled connection. Same and fresh read-only connection assert exact role/schema/function absence.",
+  "limits": "Transactional fixture schema CREATE is not source/recovery public-schema lifecycle proof. No existing role ALTER, persistent CREATE, BYPASSRLS, JWT, Vault, hosted or resource expansion. Native execution remains pending reviewed Root exact-head CI.",
+  "qualification_interpretation": "Root clarified ordinary bounded read-only qualification commands are within the grant, not managed workload effects. Reuse existing exported validators with fixed allowlisted execFile argv, shell false and bounded timeouts. Docker inspect/Supabase status observations captured and parsed only in memory; never raw stdout, JSON, error causes, SQL arguments or assertion dumps. Qualify before mutation; no shared wrapper/path/marker writes or lifecycle commands.",
+  "review": "Final targeted Round3 only after stable fixture/source; actual source/recovery ownership qualification remains mandatory. Include read-only qualification and sanitization in High source review."
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "kind": "later-persistence-of-original-completed-native-review",
+  "layer": "verification-gap",
+  "round": 1,
+  "original_input_binding": "input-binding.json",
+  "original_input_sha256": "911ea7c6215a7323a460cee594cf625bbb3d1a753db29c7510c290822956f5cf",
+  "original_input_bytes": 325115,
+  "original_source_head": "ae020f63a88089966b9323c55a36b6554f7e3900",
+  "original_baseline": "3a1c3bc9fbf22b13c926179288a8b6eefe440c12",
+  "original_model": "gpt-6.1-sol",
+  "original_effort": "high",
+  "original_completion_provenance": {
+    "mechanism": "Native collaboration subagent final response",
+    "actor": "/root/build15_5_high/round1_verification",
+    "parent": "/root/build15_5_high",
+    "original_completed_before_persistence_request": true,
+    "content_source": "Original completed final report delivered in this actor conversation; reproduced verbatim without findings changes",
+    "original_completion_timestamp": "Not asserted; use native conversation provenance"
+  },
+  "persistence": {
+    "recorded_at_utc": "2026-10-20T14:26:00.9175571Z",
+    "later_artifact_persistence_only": true,
+    "originally_saved_as_file": false,
+    "new_review_performed": false,
+    "new_source_validation_performed": false,
+    "findings_changed": false,
+    "runtime_execution_performed": false
+  },
+  "report": {
+    "path": "verification-original.md",
+    "encoding": "UTF-8 without BOM",
+    "line_endings": "LF",
+    "terminal_newline": false,
+    "bytes": 3800,
+    "sha256": "dd1495d37f7be8daf7d6d2c86d41bd6b8e6d2dbcfcc206b4a76de0fff22821ee"
+  }
+}

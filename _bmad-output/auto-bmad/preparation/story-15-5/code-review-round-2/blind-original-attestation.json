@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "kind": "later-persistence-of-original-completed-native-review",
+  "round": 2,
+  "layer": "blind",
+  "reviewer_task": "/root/build15_5_high/round2_blind",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "input_path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-2/review-content.diff",
+  "input_sha256": "6fc14dc66c147c9d7b438744aa7a68c7ff8fe4e12495f12d9c5b0d1e563c8e10",
+  "source_head": "672099e9dc6569f4ac1cb9a967037e0d91df689c",
+  "before_head": "ae020f63a88089966b9323c55a36b6554f7e3900",
+  "native_completion": {
+    "mechanism": "Native collaboration subagent final response delivered to parent",
+    "completed_before_persistence_request": true,
+    "original_completion_timestamp": null,
+    "report_preserved_verbatim": true
+  },
+  "persistence": {
+    "persisted_at_utc": "2026-10-20T14:52:53.8103270Z",
+    "later_persistence_only": true,
+    "originally_saved_claim": false,
+    "new_review_or_source_validation": false
+  },
+  "report_path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-2/blind-original.md",
+  "report_encoding": "UTF-8 without BOM; LF; no added terminal newline",
+  "report_bytes": 1030,
+  "report_sha256": "7f861610373f5ab80896e4925f6c2ababc68a09d2179352a491f4cefce3d3c61"
+}

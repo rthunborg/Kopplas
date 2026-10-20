@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "kind": "later-artifact-persistence-of-original-completed-security-review",
+  "persisted_at": "2026-10-20T14:25:06.2079785Z",
+  "reviewer_task": "/root/build15_5_high/round1_security",
+  "original_input_diff_path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+  "original_input_sha256": "911ea7c6215a7323a460cee594cf625bbb3d1a753db29c7510c290822956f5cf",
+  "original_input_bytes": 325115,
+  "original_source_head": "ae020f63a88089966b9323c55a36b6554f7e3900",
+  "original_baseline": "3a1c3bc9fbf22b13c926179288a8b6eefe440c12",
+  "model": "gpt-6.1-sol",
+  "reasoning_effort": "high",
+  "native_original_completion_provenance": {
+    "channel": "final",
+    "status": "completed before this artifact-persistence follow-up",
+    "source": "Original native final response from this independent security-review child task, delivered to its parent",
+    "native_completion_id": null,
+    "completion_id_note": "No separate native completion identifier was exposed to this task",
+    "original_report_saved_at_completion": false
+  },
+  "persistence_only": true,
+  "new_review_or_source_validation": false,
+  "report": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/security-original.md",
+    "encoding": "UTF-8 without BOM",
+    "bytes": 1141,
+    "sha256": "7de06d96aa781627dd9c9a2412a49758455c4948c26c7658a533af49c46c11b8",
+    "content": "Original completed final report verbatim"
+  }
+}

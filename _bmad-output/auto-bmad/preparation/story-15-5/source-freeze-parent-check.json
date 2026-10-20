@@ -1,0 +1,26 @@
+{
+  "kind": "independent-build-parent-binding-check",
+  "status": "PASS",
+  "source_head": "611c86295540161d31169110bf2139cf1d85d708",
+  "capsule_sha256": "2d1e982a10701831a71b8da9cf13ac03234b41499ad525bb8d84464910094e03",
+  "capsule_bytes": 287745,
+  "source_bindings": 60,
+  "raw_normalized_differences": 35,
+  "artifact_hash_bindings": 65,
+  "unchanged_blob_bindings": 146,
+  "reused_dependency_blob_bindings": 507,
+  "historical_migrations": 109,
+  "protected_consumers": 37,
+  "kernel_sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+  "review_rounds": 3,
+  "original_review_layers": 18,
+  "inventory": {
+    "feature95": true,
+    "node": 30,
+    "vitest": 51,
+    "browser": 14,
+    "bootstrap_separate": 22
+  },
+  "limits": "Hash/path/provenance and capsule-accounting check only. Source semantics reuse completed independent review layers and latest-fix PASS; static inventory is not installed collection; native/runtime remains unexecuted pending Root exact-head CI.",
+  "errors": []
+}

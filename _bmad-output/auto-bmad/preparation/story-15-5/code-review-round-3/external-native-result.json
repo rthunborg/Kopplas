@@ -1,0 +1,17 @@
+{
+  "sourceHead": "360fe850c18552f23a2bf74d8eda865431f0af38",
+  "inputSha256": "18c68c9e6a2cdf51439d2c496025ad6cac1adaf846f43a060b6d9a84eac0f164",
+  "temporaryInput": "C:\\Users\\Rasmus\\AppData\\Local\\Temp\\auto-bmad-15-5-round3-48e0594f-b9de-4180-83b9-cae429263130.diff",
+  "nativeExit": 0,
+  "signal": null,
+  "timedOut": false,
+  "requestedModel": "gpt-6.1-sol",
+  "requestedEffort": "high",
+  "observedModelAndEffort": [
+    "model: gpt-6.1-sol",
+    "reasoning effort: high"
+  ],
+  "reportBytes": 12,
+  "reportSha256": "2557f6e38ead83874f9694ea4332f459014b6921de5a7e153be890185da08ef5",
+  "route": "native Node-to-Codex CLI; read-only/never/ephemeral; proven qualified route instead of historically failed cmd wrapper"
+}

@@ -1,0 +1,59 @@
+{
+  "round": 2,
+  "completed_rounds": 2,
+  "cap": 3,
+  "source_head": "672099e9dc6569f4ac1cb9a967037e0d91df689c",
+  "before": "ae020f63a88089966b9323c55a36b6554f7e3900",
+  "input_sha256": "6fc14dc66c147c9d7b438744aa7a68c7ff8fe4e12495f12d9c5b0d1e563c8e10",
+  "layers_completed": 6,
+  "classification": {
+    "intent_gap": 0,
+    "bad_spec": 0,
+    "patch": 2,
+    "defer": 0,
+    "reject": 0
+  },
+  "findings": [
+    {
+      "id": "R2-01",
+      "prior_finding": "R1-02",
+      "category": "patch",
+      "severity": "high",
+      "source": "blind",
+      "file": "supabase/migrations/20261020220000_personal_calendar_feed.sql:15",
+      "claim": "Fresh restricted PG17 CREATEROLE executor receives native creator ADMIN TRUE/SET FALSE membership and current guard rejects it before normalization",
+      "basis": "PostgreSQL17 role-attributes/GRANT primary docs and Supabase restricted-postgres primary docs; no hosted catalog observation. Local superuser execution is not proof of this caller.",
+      "status": "source fix held for SAME High source-executor versus recovery-membership interpretation; no new native test roles allocated",
+      "fix_constraints": "Preserve seven negative owner attributes, fail-closed unsafe retained/runtime/JWT membership, source postgres migration executor distinct from strictly NOADMIN recovery SupAdmin. Verify actual ownership SET ability. Do not infer waiver or grant broader privileges. Any two-UUID-role transactional native test effect requires separate exact allocation, actual pinned DB major/version proof, rollback/catalog absence; no role writes until admitted.",
+      "primary_sources": [
+        "https://www.postgresql.org/docs/17/role-attributes.html",
+        "https://www.postgresql.org/docs/17/sql-grant.html",
+        "https://supabase.com/docs/guides/database/postgres/roles-superuser"
+      ]
+    },
+    {
+      "id": "R2-02",
+      "prior_finding": "R1-07",
+      "category": "patch",
+      "severity": "medium",
+      "source": "verification",
+      "file": "src/components/calendar-feed/CalendarSubscription.tsx:35",
+      "claim": "New helper regression test does not exercise actual automatic refresh wiring/rendered URL removal and stale success announcement",
+      "fix": "Add controlled actual issuance/automatic-refresh race in already-owned E2E files: competing rotation/revoke commits before original issuance response is released, assert rendered URL/copy controls removed and supersession announcement replaces old success; current-revision control retained. Actual production response/action/DB/UI, no mocked success. Preserve all original11 cases, privacy fixture and redacted assertions. No local resources/runtime execution."
+    }
+  ],
+  "route_before_dispatch": {
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "reason": "Public-capability confidential UI/actual mutation race plus sensitive role-owner authority correction",
+    "ui_author": "browser_test_binding",
+    "ui_ownership": [
+      "tests/e2e/calendar-feed.e2e.spec.ts",
+      "tests/e2e/support/calendar-feed-atdd.ts"
+    ],
+    "main_author": "implementation_author",
+    "commit": "Main author integrates/commits; child no commit/push; Root metadata excluded"
+  },
+  "followup_review_recommended": true,
+  "runtime": "Native DB/RLS/HTTP/browser/recovery and installed collection remain pending; no two-testrole effect or hosted mutation allocated. One initial verification path failure was unexecuted/uncredited and repaired with exact absolute path/login:false before actual completed review."
+}

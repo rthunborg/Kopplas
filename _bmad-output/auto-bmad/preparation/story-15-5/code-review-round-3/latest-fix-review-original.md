@@ -1,0 +1,3 @@
+PASS. R3-01 is resolved in `tests/integration/commands/calendar-feed.int.test.ts:415–424`: after fresh bootstrap and replay, `assertOwner` requires effective USAGE=false and nonempty exact owner/executor membership rows with every `inherit_option=false`. Existing SET/ADMIN, seven role attributes, restricted identity, source execution and cleanup assertions remain intact. No consequential latest-fix defect found; the affected author trail accurately preserves pending runtime evidence.
+
+Reviewed the complete 12,817-byte input with matching SHA256 `d1023ad79193131e12bd7f85b9f2990b96b3d2e792d337e48dba324103bd6b56`. This was a bounded source review only. Native PG17, DB/RLS/HTTP/browser/recovery and installed collection evidence remains pending Root exact-head CI.

@@ -1,0 +1,9 @@
+{
+  "phase": "Round1 bounded bootstrap fixes",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "reason": "Sensitive captured-child ownership, detached browser teardown, Vault key custody and raw output privacy verification",
+  "findings": ["R1-08", "R1-11"],
+  "ownership": ["scripts/ci/with-calendar-feed-runtime.mjs", ".github/workflows/ci.yml", "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts"],
+  "exclusions": "No exhaustive release branch edits; no local processes/DB/Vault/browser; main author integrates and commits; no source overlap while child active"
+}

@@ -1,0 +1,30 @@
+{
+  "round": 3,
+  "completed_rounds": 3,
+  "cap": 3,
+  "source_head": "360fe850c18552f23a2bf74d8eda865431f0af38",
+  "before": "672099e9dc6569f4ac1cb9a967037e0d91df689c",
+  "input_sha256": "18c68c9e6a2cdf51439d2c496025ad6cac1adaf846f43a060b6d9a84eac0f164",
+  "layers_completed": 6,
+  "classification": {"intent_gap":0,"bad_spec":0,"patch":1,"defer":0,"reject":0},
+  "findings": [{
+    "id":"R3-01",
+    "source":"verification",
+    "category":"patch",
+    "severity":"medium",
+    "file":"tests/integration/commands/calendar-feed.int.test.ts:410",
+    "claim":"Restricted native owner proof does not assert resulting membership inheritance after fresh bootstrap/replay; the pre-bootstrap baseline and static wording assertion cannot establish that runtime contract.",
+    "consequence":"A source WITH INHERIT TRUE regression could satisfy native owner SET/ADMIN assertions despite violating the explicit no-inherited-owner-privilege contract.",
+    "fix":"Inside the existing single allocated case, extend the post-bootstrap assertOwner check used after both fresh and replay: all exact owner-to-executor membership rows have inherit_option false, and pg_has_role of the current restricted executor to exact owner with USAGE is false. Preserve both identity assertions immediately before credited operations, existing SET/ADMIN and all negative owner attrs, rollback and absence checks.",
+    "status":"accepted bounded latest-fix assertion correction; no new role/object/process/command effect or broad review"
+  }],
+  "external_native_exit":0,
+  "external_observed_model":"gpt-6.1-sol",
+  "external_observed_effort":"high",
+  "external_report_sha256":"2557f6e38ead83874f9694ea4332f459014b6921de5a7e153be890185da08ef5",
+  "followup_review_recommended":false,
+  "patch_score":{"high":0,"medium":1,"low":0,"weighted_score":3},
+  "post_cap":"No fourth broad pass. The project owner policy permits only review of this latest bounded fix/regressions and unresolved serious findings. A distinct High reviewer will inspect this assertion correction only; unchanged six-layer results are reused.",
+  "route_before_dispatch":{"author":"implementation_author","model":"gpt-6.1-sol","effort":"high","reason":"Restricted role inheritance and truth of native authorization proof","write_scope":["tests/integration/commands/calendar-feed.int.test.ts","_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"]},
+  "runtime":"All native DB/RLS/HTTP/browser/recovery and installed collection remain pending reviewed Root exact-head CI. No native test or read-only Docker/Supabase qualification executed locally."
+}

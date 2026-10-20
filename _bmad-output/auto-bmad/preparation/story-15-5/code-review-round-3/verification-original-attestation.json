@@ -1,0 +1,20 @@
+{
+  "round": 3,
+  "layer": "verification",
+  "task": "/root/build15_5_high/round3_verification",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "source": "360fe850c18552f23a2bf74d8eda865431f0af38",
+  "before": "672099e9dc6569f4ac1cb9a967037e0d91df689c",
+  "input_sha256": "18c68c9e6a2cdf51439d2c496025ad6cac1adaf846f43a060b6d9a84eac0f164",
+  "native_final_completed_before_later_persistence": true,
+  "persistence_only": true,
+  "new_review": false,
+  "report_file": "verification-original.md",
+  "report_bytes": 1846,
+  "report_sha256": "fdb4ad240c5ea386ae9cca4af2668fb3d32634824b25bde9e0494f3e53e981ad",
+  "report_encoding": "UTF-8 without BOM",
+  "report_line_endings": "LF",
+  "report_trailing_newline": false,
+  "runtime_executions": 0
+}

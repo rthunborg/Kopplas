@@ -1,0 +1,15 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import crypto from 'node:crypto';
+import { execFileSync } from 'node:child_process';
+const root='C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas';
+const dir=path.join(root,'_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-3');
+const before='360fe850c18552f23a2bf74d8eda865431f0af38';
+const head='611c86295540161d31169110bf2139cf1d85d708';
+const git=args=>execFileSync('git',args,{cwd:root,windowsHide:true,stdio:['ignore','pipe','pipe']});
+const hash=data=>crypto.createHash('sha256').update(data).digest('hex');
+if(git(['rev-parse','HEAD']).toString().trim()!==head)throw new Error('HEAD mismatch');
+const input=Buffer.concat([Buffer.from('Post-cap bounded latest-fix regression check ONLY, not a fourth broad review. R3-01 membership inheritance proof correction and affected author trail only. All unchanged completed R1/R2/R3 review reused; runtime remains pending.\n\nORIGINAL ACCEPTED CLAIM:\n'),fs.readFileSync(path.join(dir,'verification-original.md')),Buffer.from('\n\nLATEST FIX DELTA:\n'),git(['diff','--binary',before,head])]);
+fs.writeFileSync(path.join(dir,'latest-fix-input.diff'),input);
+const route={completed_rounds:3,cap:3,not_a_fourth_broad_review:true,before,source_head:head,input_sha256:hash(input),input_bytes:input.length,scope:'Only R3-01 effective USAGE and exact membership inheritance assertions after fresh/replay and affected author trail; consequential latest-fix regressions only.',route_before_dispatch:{reviewer:'round3_verification',distinct_from_implementation_author:true,model:'gpt-6.1-sol',effort:'high',reason:'Truth of restricted role authorization proof'},unchanged_reviews:'All six completed R3 reports plus R1/R2 reused, original hashes preserved.',runtime:'No native execution or local qualification; required Root exact-head CI still pending.'};
+fs.writeFileSync(path.join(dir,'latest-fix-input-binding.json'),JSON.stringify(route,null,2)+'\n');process.stdout.write(JSON.stringify(route)+'\n');

@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "phase": "same-story-test-bootstrap-implementation",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "risk_domains": [
+    "secrets",
+    "public-tokens",
+    "security",
+    "transactional-integrity"
+  ],
+  "reason": "Dedicated ephemeral Vault key and isolated CI child lifecycle across DB HTTP/browser gates; sensitive actual-source review required before CI",
+  "authority": "Root forwarded Coordinator SAME explicit Sol6.1High final conditional allocation PASS 2026-10-20",
+  "proposal_sha256": "d6d82ba08850710267db6e0009ce323ffc754e3b0dcfb6ca7724c800429748f9",
+  "ownership": [
+    "scripts/ci/with-calendar-feed-runtime.mjs",
+    ".github/workflows/ci.yml",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts"
+  ],
+  "scope": "CI.yml existing DB integration and ordinary essential browser steps only; release branch unallocated",
+  "local_execution": "No managed resource/local server/Vault launch; unit injected seams only",
+  "commit": "Main author integrates/commits; child no commit/push"
+}

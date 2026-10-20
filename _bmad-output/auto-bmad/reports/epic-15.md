@@ -1672,3 +1672,42 @@ No archive ran this resume.
 1. Approve the reviewed15.5 implementation and isolated verification: subscriptions/create-rotate-revoke tokens/read-only public feed/database-Vault-ACL controls/ephemeral test keys. Automatic approval in Coordinator rejected the execution handoff because its trusted record covers preparation only. Production keys, hosted enablement and deployment remain excluded. The current Epic15 confirmation question is pending; no approval assumed.
 
 **Next:** After explicit confirmation, obtain successful exact Coordinator allocation and resume /auto-bmad epic --epic 15 at15.5 Phase4; preserve the approved kernel0b3255e5, original failed-validation history and inherited epic review caveat. Human review: /bmad-checkpoint-preview codex/epic-15-scheduling-time-calendar. Project context: /bmad-project-context refresh is recommended after epic completion.
+
+## Report — 2026-10-20T15:43:13Z (resumed — reviewed 15.5 source checkpoint)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `611c862`).
+**Pipeline status:** In progress: 15.5 source and independent reviews complete; native qualification pending. No development-complete or release-ready claim.
+**Continues:** Historical execution-handoff holds resolved by owner authorization and exact scoped allocations; original rejection records remain historical.
+
+**Summary:** Four stories internally landed. Personal calendar subscriptions are committed and source-reviewed; one exact-head CI checkpoint is next. Min dag and epic-end gates remain.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 266h 45m (≈54h 27m AI-run, ≈212h 18m human/idle wait); resumed 46×.
+
+**Stories:**
+1. 15.1 — scheduling views internally landed; Contract D host acceptance evidence retained.
+2. 15.2 — recurring bookings internally landed; inherited review_unverified remains true on the epic.
+3. 15.3 — conflict resolver internally landed; qualified native evidence retained.
+4. 15.4 — time reporting internally landed; cad4d37f CI39415418173 qualified.
+5. 15.5 — source611c8629: 60 source paths; three counted review rounds plus distinct latest-fix-only High PASS; 95 feed cases and22 injected bootstrap tests; required native lanes unexecuted.
+6. 15.6 — backlog; prepare and independently validate specification before build.
+
+**Skipped:** (none)
+
+**Epic gate:** Pending E8 after all six stories; inherited review_unverified means final epic PR remains draft unless an actual override is recorded.
+
+**TEA:** 15.5 RED ATDD complete; post-development automation and epic trace/NFR/test-review gates pending.
+
+**Retrospective:** Epic14 October8 accepted-with-open-items remains authoritative; October7 rejection historical. Epic15 retrospective pending.
+
+**Overrides:** Sequential epic; Sol6.1Low ordinary/explicitHigh sensitive; owner-authorized design defaults with no legacy browsing/evidence; no deployment/main merge; retain branch; one final epic PR with verified agent-fix label.
+
+**Open questions:** (none)
+
+**Deferred work:**
+1. Exhaustive browser/client interoperability, visual/manual accessibility, performance and polish require separate recorded release validation; not passed or waived.
+2. Hosted live key/IP-trust enablement and exhaustive release runtime branch remain outside this checkpoint.
+
+**⚠️ Needs human:** (none)
+
+**Next:** Run one reviewed exact-head checkpoint CI; qualify native counts, ownership/recovery/direct Storage, HTTP/browser and telemetry. Then delivery gate plus distinct truth audit before 15.5 completion, followed by15.6 andE8.

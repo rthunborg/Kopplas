@@ -1,0 +1,97 @@
+{
+  "round": 3,
+  "prior_completed_rounds": 2,
+  "cap": 3,
+  "before": "672099e9dc6569f4ac1cb9a967037e0d91df689c",
+  "source_head": "360fe850c18552f23a2bf74d8eda865431f0af38",
+  "input_sha256": "18c68c9e6a2cdf51439d2c496025ad6cac1adaf846f43a060b6d9a84eac0f164",
+  "input_bytes": 77068,
+  "paths": [
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+    "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+    "tests/e2e/calendar-feed.e2e.spec.ts",
+    "tests/e2e/support/calendar-feed-atdd.ts",
+    "tests/integration/commands/calendar-feed.int.test.ts",
+    "tests/unit/ops/pilot-operations.test.ts"
+  ],
+  "bindings": [
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "rawBytes": 55631,
+      "rawSha256": "2e1907f4fd5044caa63b7dcfd0f2460f2dbca60c1867a6baf862d2375ca64ec2",
+      "headBytes": 54993,
+      "headSha256": "027e28db8df2da97c61357c1ca353918bd81b68abceecd09cc01a2563b287db0",
+      "headBlob": "d4cc09fc7e982057cb929000e3c8dcd430f0a638",
+      "worktreeGitNormalizedBlob": "f0ce5329a7714dbe671214f5a39ab40abdcef7e3"
+    },
+    {
+      "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+      "rawBytes": 24433,
+      "rawSha256": "e74d93ff46bb256bfdef762c526cfada7566629277210b8b7e11d21961d826e4",
+      "headBytes": 24433,
+      "headSha256": "e74d93ff46bb256bfdef762c526cfada7566629277210b8b7e11d21961d826e4",
+      "headBlob": "a871be0a035a6411210a11211532474c1d68c64a",
+      "worktreeGitNormalizedBlob": "a871be0a035a6411210a11211532474c1d68c64a"
+    },
+    {
+      "path": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "rawBytes": 26131,
+      "rawSha256": "91badac1a1ace1b1f9e2d57f12db1eb50d36d8a5ef30f5f4aaa0881ba9ef7b23",
+      "headBytes": 26131,
+      "headSha256": "91badac1a1ace1b1f9e2d57f12db1eb50d36d8a5ef30f5f4aaa0881ba9ef7b23",
+      "headBlob": "cfc80717073d823847d514ed2555a8e19e7b1136",
+      "worktreeGitNormalizedBlob": "cfc80717073d823847d514ed2555a8e19e7b1136"
+    },
+    {
+      "path": "tests/e2e/support/calendar-feed-atdd.ts",
+      "rawBytes": 37137,
+      "rawSha256": "0adf9ae2005dd509911a33194c61715897cf8e03eb880ed63b39d1ea1ae73b20",
+      "headBytes": 36666,
+      "headSha256": "727f93563c209a2462152d8f6bb062732aa7dbf381f0d3aaa1c9524aee0cc08a",
+      "headBlob": "5a46a74d4b5fa3e7dce77da54ce29d9d956dfe6c",
+      "worktreeGitNormalizedBlob": "5a46a74d4b5fa3e7dce77da54ce29d9d956dfe6c"
+    },
+    {
+      "path": "tests/integration/commands/calendar-feed.int.test.ts",
+      "rawBytes": 34782,
+      "rawSha256": "335028fe29c0d2f9163f55c664b30912a758583c76c9de2a102272702edf3140",
+      "headBytes": 34782,
+      "headSha256": "335028fe29c0d2f9163f55c664b30912a758583c76c9de2a102272702edf3140",
+      "headBlob": "9f8f3f1e706301d0aabad3da08312e97ac3d8998",
+      "worktreeGitNormalizedBlob": "9f8f3f1e706301d0aabad3da08312e97ac3d8998"
+    },
+    {
+      "path": "tests/unit/ops/pilot-operations.test.ts",
+      "rawBytes": 35108,
+      "rawSha256": "be13d379c2e9fea8b0aea12d33a2b1d0ce0f6fd1d8b714f6d9ba40cc3b68c91e",
+      "headBytes": 35108,
+      "headSha256": "be13d379c2e9fea8b0aea12d33a2b1d0ce0f6fd1d8b714f6d9ba40cc3b68c91e",
+      "headBlob": "5628c63a423a77a3d43e9d607ee69db32e19ef6f",
+      "worktreeGitNormalizedBlob": "5628c63a423a77a3d43e9d607ee69db32e19ef6f"
+    }
+  ],
+  "guard_metadata_uncommitted": true,
+  "kernel_sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+  "contexts": [
+    "code-review-round-2/triage.json",
+    "source-creator-boundary-clarification.json",
+    "accepted-pg17-probe-allocation.json",
+    "code-review-round-2/source-role-disposition.json",
+    "code-review-round-2/native-role-case-allocation.json"
+  ],
+  "scope": "Latest two fixes, allocated restricted-PG17 proof and consequential regressions only; all unchanged R1/R2 assessments reused.",
+  "route_before_dispatch": {
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "reason": "Sensitive public capability UI race, restricted role ownership and cleanup/qualification sanitization",
+    "layers": [
+      "blind-hunter",
+      "edge-case-hunter",
+      "verification-gap",
+      "intent-alignment",
+      "auto-bmad-security",
+      "auto-bmad-cross-model"
+    ]
+  },
+  "runtime": "Native execution remains pending Root exact-head CI; no local Docker/Supabase qualification or managed resource launch."
+}

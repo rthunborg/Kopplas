@@ -1,0 +1,496 @@
+{
+  "round": 1,
+  "prior_completed_rounds": 0,
+  "source_head": "ae020f63a88089966b9323c55a36b6554f7e3900",
+  "baseline": "3a1c3bc9fbf22b13c926179288a8b6eefe440c12",
+  "input_sha256": "911ea7c6215a7323a460cee594cf625bbb3d1a753db29c7510c290822956f5cf",
+  "input_bytes": 325115,
+  "source_path_count": 58,
+  "source_bindings": [
+    {
+      "path": ".github/workflows/ci.yml",
+      "raw_sha256": "ffeb2a7d6080b5d07e7aede44d850e123cd5eda2ef30d877780b8ce1aab7979d",
+      "raw_bytes": 75339,
+      "head_git_normalized_sha256": "0a7c1b210e87b020e882787869cae7b9fa314068f7d561e52dd14443495d57c7",
+      "head_blob_id": "bf3e201438bd06912e2fc908f001049c23ca356f",
+      "worktree_blob_id": "bf3e201438bd06912e2fc908f001049c23ca356f"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "raw_sha256": "9661d1865940f31da1360fc40498db75ad82a0bd0eb758b0f000b4854c251cb0",
+      "raw_bytes": 40386,
+      "head_git_normalized_sha256": "975ed71c3cef39e06e8bfcc8bb7f2c7e02f56c993c385f0a6963ed08d9725418",
+      "head_blob_id": "864a831518a974b24bffe54410fb94139ed10380",
+      "worktree_blob_id": "9d3447a3a27f9a33a49b2e1d583193b8c3b601bc"
+    },
+    {
+      "path": "docs/security/calendar-feed-operations.md",
+      "raw_sha256": "a27bd951f01ac1536d7ce34c545e0f51c5e4fce8114eaf2bb7c63f06aa58b494",
+      "raw_bytes": 4251,
+      "head_git_normalized_sha256": "a27bd951f01ac1536d7ce34c545e0f51c5e4fce8114eaf2bb7c63f06aa58b494",
+      "head_blob_id": "2e337daea57f82ff146bf8a458161bde4c6ac2a5",
+      "worktree_blob_id": "2e337daea57f82ff146bf8a458161bde4c6ac2a5"
+    },
+    {
+      "path": "middleware.ts",
+      "raw_sha256": "228c1aee2ea3952788fe231f73e852ea020ca81fa812d5248e52f5564155fcad",
+      "raw_bytes": 4842,
+      "head_git_normalized_sha256": "fa43d6c746d11d1ab8d854cef9128bb69023f8a8865e3e3b250dd2ebee383fe5",
+      "head_blob_id": "aaed428ce41103ad1994187151bbcd6a69d1dadd",
+      "worktree_blob_id": "aaed428ce41103ad1994187151bbcd6a69d1dadd"
+    },
+    {
+      "path": "package.json",
+      "raw_sha256": "51854ce2f0bdbbeb97fcc0b471bc2001cea047811a99830ed219fc497c3fda2f",
+      "raw_bytes": 2352,
+      "head_git_normalized_sha256": "832ce6962f5552b0eb1f68c8bc44b9f4b757ddfce7e7b1dc99ca05b31260d468",
+      "head_blob_id": "598270905d8c52582bc2256fd9f103e03913942d",
+      "worktree_blob_id": "598270905d8c52582bc2256fd9f103e03913942d"
+    },
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "raw_sha256": "89e6214e774ca25aa4f0da2a89a0b54320b7e58f83fa6a4d655a509ce5cb0aa7",
+      "raw_bytes": 21660,
+      "head_git_normalized_sha256": "89e6214e774ca25aa4f0da2a89a0b54320b7e58f83fa6a4d655a509ce5cb0aa7",
+      "head_blob_id": "5dbc292bea744d222a336878dc234aef9836a3b6",
+      "worktree_blob_id": "5dbc292bea744d222a336878dc234aef9836a3b6"
+    },
+    {
+      "path": "scripts/verify/check-service-role-containment.mjs",
+      "raw_sha256": "6eaec1f8ee90dd5375625b3c0d54c545c12074f0c1b6d5499a0bd5fc940ebde5",
+      "raw_bytes": 15806,
+      "head_git_normalized_sha256": "cae0878c509fecfb9d2bab4ccf60eb6fa8edd7f5cf5bf96da430409cfed39273",
+      "head_blob_id": "e7fbfbaad84b9c5540ef5b5f7806b5adec07ff3c",
+      "worktree_blob_id": "e7fbfbaad84b9c5540ef5b5f7806b5adec07ff3c"
+    },
+    {
+      "path": "src/app/(app)/(calendar-settings)/settings/calendar/layout.tsx",
+      "raw_sha256": "059061edd5b6c8cb1a5b618d468cd2d1eb417c01dd3aeb48a61912d7d7549f98",
+      "raw_bytes": 352,
+      "head_git_normalized_sha256": "059061edd5b6c8cb1a5b618d468cd2d1eb417c01dd3aeb48a61912d7d7549f98",
+      "head_blob_id": "e54bbc369a4d616a2aa5e78509ebbb2074b273f0",
+      "worktree_blob_id": "e54bbc369a4d616a2aa5e78509ebbb2074b273f0"
+    },
+    {
+      "path": "src/app/(app)/(calendar-settings)/settings/calendar/page.tsx",
+      "raw_sha256": "a450be320b7d29c6d2c71b7b06371b8c60922cef4cf8a18b5ecc17681bea1a0f",
+      "raw_bytes": 513,
+      "head_git_normalized_sha256": "a450be320b7d29c6d2c71b7b06371b8c60922cef4cf8a18b5ecc17681bea1a0f",
+      "head_blob_id": "bb74cf0a651200ff62329945871d6ec80378e9ad",
+      "worktree_blob_id": "bb74cf0a651200ff62329945871d6ec80378e9ad"
+    },
+    {
+      "path": "src/app/(public)/calendar/feed/[token]/route.ts",
+      "raw_sha256": "2b748231df19c3ba795ce65956a66c9e86187bbd34b5d194ea64e931abc52679",
+      "raw_bytes": 319,
+      "head_git_normalized_sha256": "2b748231df19c3ba795ce65956a66c9e86187bbd34b5d194ea64e931abc52679",
+      "head_blob_id": "6a499bf035df7e1720e4a6fc82e65dd80d4b7f09",
+      "worktree_blob_id": "6a499bf035df7e1720e4a6fc82e65dd80d4b7f09"
+    },
+    {
+      "path": "src/app/(public)/layout.tsx",
+      "raw_sha256": "ecfb73888ee4f6206c3ab3d254c399938b501cd852511b0e077e23cf427ec822",
+      "raw_bytes": 112,
+      "head_git_normalized_sha256": "ecfb73888ee4f6206c3ab3d254c399938b501cd852511b0e077e23cf427ec822",
+      "head_blob_id": "fe46e33866a3181a720082ae699faa0eb68665a6",
+      "worktree_blob_id": "fe46e33866a3181a720082ae699faa0eb68665a6"
+    },
+    {
+      "path": "src/components/app-shell/AppShell.tsx",
+      "raw_sha256": "aecc83b8541cc020a37af4102d698d1d5ae0d7f47631f76f9cdce720432dba6e",
+      "raw_bytes": 17069,
+      "head_git_normalized_sha256": "5be6e6aa362e05cccf47d3f26b1026e2c531f8a8ee3ac9e5907baa460ddd0fab",
+      "head_blob_id": "3a2394793c87edc8028386fafdc34b0c1bf20406",
+      "worktree_blob_id": "3a2394793c87edc8028386fafdc34b0c1bf20406"
+    },
+    {
+      "path": "src/components/calendar-feed/CalendarFeedAbuseQueue.tsx",
+      "raw_sha256": "3c0425ff4eb51b4955f8d486ece313e408d636dc0591271a2a99f56e1ae12340",
+      "raw_bytes": 810,
+      "head_git_normalized_sha256": "3c0425ff4eb51b4955f8d486ece313e408d636dc0591271a2a99f56e1ae12340",
+      "head_blob_id": "148ab87e9a4b08facb2ce131d306d4ad4d9670fe",
+      "worktree_blob_id": "148ab87e9a4b08facb2ce131d306d4ad4d9670fe"
+    },
+    {
+      "path": "src/components/calendar-feed/CalendarSubscription.tsx",
+      "raw_sha256": "394eb9f07ddd57b40ad969db5e3da50d75750d720ffd030a33514d9e8678e65b",
+      "raw_bytes": 8255,
+      "head_git_normalized_sha256": "394eb9f07ddd57b40ad969db5e3da50d75750d720ffd030a33514d9e8678e65b",
+      "head_blob_id": "bdecc613d137f006bfc87e134d06f781bc227f6a",
+      "worktree_blob_id": "bdecc613d137f006bfc87e134d06f781bc227f6a"
+    },
+    {
+      "path": "src/components/scheduling/PersonalCalendarView.tsx",
+      "raw_sha256": "f70bf49b2d6fac7a9c194d1f2c5bb09d76abd997956095771d6a705029e14202",
+      "raw_bytes": 905,
+      "head_git_normalized_sha256": "d426154fb3888241ed6b36e98c3b25756f40f85c059dca9bf0785b88bc6eade1",
+      "head_blob_id": "529a9485cba52b6c16fc0837fea1da62e279e806",
+      "worktree_blob_id": "529a9485cba52b6c16fc0837fea1da62e279e806"
+    },
+    {
+      "path": "src/features/calendar-feed/action-state.ts",
+      "raw_sha256": "a0a91a3e9d34fc6cf0d9e33f9ae962725ad93169383f7c826e7288bcd63f7e8e",
+      "raw_bytes": 1457,
+      "head_git_normalized_sha256": "a0a91a3e9d34fc6cf0d9e33f9ae962725ad93169383f7c826e7288bcd63f7e8e",
+      "head_blob_id": "1d5faf79a3d0d6d157fdcbfee6dbc2cabf2edfa1",
+      "worktree_blob_id": "1d5faf79a3d0d6d157fdcbfee6dbc2cabf2edfa1"
+    },
+    {
+      "path": "src/features/calendar-feed/actions.ts",
+      "raw_sha256": "07693f8404a5db358b2656600eae263b86e53cf27711e3a57d641a992a118fbd",
+      "raw_bytes": 801,
+      "head_git_normalized_sha256": "07693f8404a5db358b2656600eae263b86e53cf27711e3a57d641a992a118fbd",
+      "head_blob_id": "210f2903ed6fbf8ab6d9d408864284c3ef9498b5",
+      "worktree_blob_id": "210f2903ed6fbf8ab6d9d408864284c3ef9498b5"
+    },
+    {
+      "path": "src/features/calendar-feed/icalendar.ts",
+      "raw_sha256": "2190058885893b3069f29dc115eaa412e4e31c06d304f8eeae115d114efa8ba0",
+      "raw_bytes": 2849,
+      "head_git_normalized_sha256": "2190058885893b3069f29dc115eaa412e4e31c06d304f8eeae115d114efa8ba0",
+      "head_blob_id": "01ee860be966c420b96983433e0e349962b7fe15",
+      "worktree_blob_id": "01ee860be966c420b96983433e0e349962b7fe15"
+    },
+    {
+      "path": "src/features/calendar-feed/types.ts",
+      "raw_sha256": "a4575491dc0f9c0fad557ee9ad039df9d340e03f92e337b4bed4e0212f3c822e",
+      "raw_bytes": 959,
+      "head_git_normalized_sha256": "a4575491dc0f9c0fad557ee9ad039df9d340e03f92e337b4bed4e0212f3c822e",
+      "head_blob_id": "6cfaae1198c04db7d87a8f640c9f9d270c5f13e1",
+      "worktree_blob_id": "6cfaae1198c04db7d87a8f640c9f9d270c5f13e1"
+    },
+    {
+      "path": "src/features/calendar-feed/validation.ts",
+      "raw_sha256": "a7fed6f5053c5dbd9a77f585222d7b1baf0a9fec22860824879928a1c8dc7d20",
+      "raw_bytes": 1123,
+      "head_git_normalized_sha256": "a7fed6f5053c5dbd9a77f585222d7b1baf0a9fec22860824879928a1c8dc7d20",
+      "head_blob_id": "456d92828beaf8cde818853af2fbd70097e6b5ff",
+      "worktree_blob_id": "456d92828beaf8cde818853af2fbd70097e6b5ff"
+    },
+    {
+      "path": "src/scope/manifest.ts",
+      "raw_sha256": "df7b4d9d21e701548eb54cffaa1841eced560a3a69f3aab808b8c9d820a8d765",
+      "raw_bytes": 18310,
+      "head_git_normalized_sha256": "5a0154fa1fdfdce452b6d5a44719cab6e6f5c2b481f0ee9e867db27552f7a969",
+      "head_blob_id": "5d2c8f0d2a04426bda4ac03f4926db078456c3ad",
+      "worktree_blob_id": "5d2c8f0d2a04426bda4ac03f4926db078456c3ad"
+    },
+    {
+      "path": "src/server/calendar-feed/attestation.ts",
+      "raw_sha256": "002dd9a2222457f6e9928bed24b2b5a5426571720119033a72a2ba3b8632c2a5",
+      "raw_bytes": 3543,
+      "head_git_normalized_sha256": "002dd9a2222457f6e9928bed24b2b5a5426571720119033a72a2ba3b8632c2a5",
+      "head_blob_id": "7fd549fbec4b52f1c1751d742616d265d95cb5b8",
+      "worktree_blob_id": "7fd549fbec4b52f1c1751d742616d265d95cb5b8"
+    },
+    {
+      "path": "src/server/calendar-feed/policy.ts",
+      "raw_sha256": "3362f0959ffc0209b928955586dfa0c03c851e3e8ccfe7090feab4bef23f6147",
+      "raw_bytes": 143,
+      "head_git_normalized_sha256": "3362f0959ffc0209b928955586dfa0c03c851e3e8ccfe7090feab4bef23f6147",
+      "head_blob_id": "b99b0253f32d128aed98f9bef5d879b7de4eff9f",
+      "worktree_blob_id": "b99b0253f32d128aed98f9bef5d879b7de4eff9f"
+    },
+    {
+      "path": "src/server/calendar-feed/public-feed.ts",
+      "raw_sha256": "c997e3f4e576b7f6da6a6155fa559fbdfc473db807e3a85cfd9f5e25ac2d7b8c",
+      "raw_bytes": 4421,
+      "head_git_normalized_sha256": "c997e3f4e576b7f6da6a6155fa559fbdfc473db807e3a85cfd9f5e25ac2d7b8c",
+      "head_blob_id": "230f65dac3fbd97ad6d41c1d5a26cd5490382656",
+      "worktree_blob_id": "230f65dac3fbd97ad6d41c1d5a26cd5490382656"
+    },
+    {
+      "path": "src/server/calendar-feed/trusted-ip.ts",
+      "raw_sha256": "545a12e0c2492a92003d46b21a1818e9ae06759e53e32ebecf85037f698a543e",
+      "raw_bytes": 1196,
+      "head_git_normalized_sha256": "545a12e0c2492a92003d46b21a1818e9ae06759e53e32ebecf85037f698a543e",
+      "head_blob_id": "48041b7409ee6a82d43f27ff0e1e338a55923fef",
+      "worktree_blob_id": "48041b7409ee6a82d43f27ff0e1e338a55923fef"
+    },
+    {
+      "path": "src/server/commands/calendar-feed/calendar-feed-db.ts",
+      "raw_sha256": "1223d202b250b69ea9ed7de3aa8f3621324b6ff9e1c01bcd06cd80b96d680d43",
+      "raw_bytes": 1054,
+      "head_git_normalized_sha256": "1223d202b250b69ea9ed7de3aa8f3621324b6ff9e1c01bcd06cd80b96d680d43",
+      "head_blob_id": "b9ad7ddcb31e9b51a2c7836589bf4df7da6cb2c7",
+      "worktree_blob_id": "b9ad7ddcb31e9b51a2c7836589bf4df7da6cb2c7"
+    },
+    {
+      "path": "src/server/commands/calendar-feed/manage-calendar-feed.ts",
+      "raw_sha256": "8cc4cd82c76d2b831c60622cae968d386728090562bc65d64c7ae4e678bfa84d",
+      "raw_bytes": 3376,
+      "head_git_normalized_sha256": "8cc4cd82c76d2b831c60622cae968d386728090562bc65d64c7ae4e678bfa84d",
+      "head_blob_id": "88ee66a72193abeedab7ff8be66a0bf605de9047",
+      "worktree_blob_id": "88ee66a72193abeedab7ff8be66a0bf605de9047"
+    },
+    {
+      "path": "src/server/commands/envelope.ts",
+      "raw_sha256": "b9f88aa193e3fe1a5ced9e741382131a28b0dbff4db0c79f515d932d5927d38a",
+      "raw_bytes": 17101,
+      "head_git_normalized_sha256": "bebaa7827e701ee9cb1e8b77deeade619ad198f379fb1216494141bbc337cf02",
+      "head_blob_id": "6e1381aeb9babc09ab1b25ab3cd06e42d15c7102",
+      "worktree_blob_id": "6e1381aeb9babc09ab1b25ab3cd06e42d15c7102"
+    },
+    {
+      "path": "src/server/db/supabase-public-client.ts",
+      "raw_sha256": "af93dc1a36ce3e98394cbf01751fc62b8538c0f1f022bdafdaeb143e51f4e466",
+      "raw_bytes": 505,
+      "head_git_normalized_sha256": "af93dc1a36ce3e98394cbf01751fc62b8538c0f1f022bdafdaeb143e51f4e466",
+      "head_blob_id": "a6f550ed29147b310f6753417da02cfedb415403",
+      "worktree_blob_id": "a6f550ed29147b310f6753417da02cfedb415403"
+    },
+    {
+      "path": "src/server/read-models/calendar-feed.ts",
+      "raw_sha256": "487198b2ebaebf6d80f86b00e40e8e36ed1d1cb73f12b9df296913e8de45671e",
+      "raw_bytes": 3111,
+      "head_git_normalized_sha256": "487198b2ebaebf6d80f86b00e40e8e36ed1d1cb73f12b9df296913e8de45671e",
+      "head_blob_id": "131fe1ae486e2a9fd4517125ba4c8e889ce27ac1",
+      "worktree_blob_id": "131fe1ae486e2a9fd4517125ba4c8e889ce27ac1"
+    },
+    {
+      "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+      "raw_sha256": "7828018f031ae3ca7cb13aa358658461aeb11fbb04299718f7b9d6231a000bf5",
+      "raw_bytes": 23098,
+      "head_git_normalized_sha256": "448eba88f96064b567115a638eb0e0ca0abb46149913aa3d53730f87097619d7",
+      "head_blob_id": "6ccb76db52f82a00e5325436e7849ef1c4f32218",
+      "worktree_blob_id": "6ccb76db52f82a00e5325436e7849ef1c4f32218"
+    },
+    {
+      "path": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "raw_sha256": "d7d66a44ff6f7c0a278e358f8bfa3a6c593f6e93b3bf6c46c4be532f820f9e1b",
+      "raw_bytes": 19825,
+      "head_git_normalized_sha256": "d7d66a44ff6f7c0a278e358f8bfa3a6c593f6e93b3bf6c46c4be532f820f9e1b",
+      "head_blob_id": "8dbe68dad609e1ab2c26fb1317e635166a09797b",
+      "worktree_blob_id": "8dbe68dad609e1ab2c26fb1317e635166a09797b"
+    },
+    {
+      "path": "tests/e2e/support/calendar-feed-atdd.ts",
+      "raw_sha256": "3d33553accf24bd0bb5d2ac99e8bc01c96f5445aee90876ef9704f4e04d18bbb",
+      "raw_bytes": 34400,
+      "head_git_normalized_sha256": "3d33553accf24bd0bb5d2ac99e8bc01c96f5445aee90876ef9704f4e04d18bbb",
+      "head_blob_id": "487827060525a06c61f0c354a31c3d341337c870",
+      "worktree_blob_id": "487827060525a06c61f0c354a31c3d341337c870"
+    },
+    {
+      "path": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "raw_sha256": "8129b32f6da19820bdc79b63d6b32f8fe545c2eedc47ef1887b2fcd32ebcaf3e",
+      "raw_bytes": 26061,
+      "head_git_normalized_sha256": "d8b9d17ae59c4f9bb32bb840e7fa65b57a42bea3006ce4c6d02cbaf9500bc405",
+      "head_blob_id": "1a701905544ca4bff113b4c35c4a4b4c339aa79d",
+      "worktree_blob_id": "1a701905544ca4bff113b4c35c4a4b4c339aa79d"
+    },
+    {
+      "path": "tests/integration/commands/calendar-feed.int.test.ts",
+      "raw_sha256": "62a0e46ba77a041abfbe5e31807aa85879f570cd22545ba9d238236ae215649c",
+      "raw_bytes": 17038,
+      "head_git_normalized_sha256": "b4ead1823db892fbe2b7de5bfbb848a5a0ec9a993f1b6ec4d5309562eda620b6",
+      "head_blob_id": "888d44572f4b6200a4156aa9df52bd4839b493aa",
+      "worktree_blob_id": "888d44572f4b6200a4156aa9df52bd4839b493aa"
+    },
+    {
+      "path": "tests/integration/components/calendar-feed.test.ts",
+      "raw_sha256": "6ac7a41a4dca5bccf4aae4300be8ccf38689b3ae19ceb4daa9c8c22d7282db42",
+      "raw_bytes": 3534,
+      "head_git_normalized_sha256": "70775d21c58ae45841ee07384472fbb2ed30729f56b579314fa2952135af5ec9",
+      "head_blob_id": "86f7a8add2ee0fdfaeda52b10166b7914198cb4d",
+      "worktree_blob_id": "86f7a8add2ee0fdfaeda52b10166b7914198cb4d"
+    },
+    {
+      "path": "tests/integration/rls/calendar-feed.rls.test.ts",
+      "raw_sha256": "dfc22e05dedd19855f4274ea950432ff1949c6a7e816add690e7d43a0de48dfe",
+      "raw_bytes": 14443,
+      "head_git_normalized_sha256": "00e1c540ecbb9b99c523a6a43e060c79474f29b4c8dea1e2a1177e4ef94cb839",
+      "head_blob_id": "1b92e875781aa21b73f59307c73c351197b3ce6d",
+      "worktree_blob_id": "1b92e875781aa21b73f59307c73c351197b3ce6d"
+    },
+    {
+      "path": "tests/integration/rls/cross-tenant-isolation.rls.test.ts",
+      "raw_sha256": "44fd6b6777c3c3c1c99ee6ac576240561f0a19b66c7088440cf414faf5f9c101",
+      "raw_bytes": 40640,
+      "head_git_normalized_sha256": "791e8cc320a02cacf2b52701c24d1cdf81964afe9ea0451a7f716d410709c1e2",
+      "head_blob_id": "3ba2d14351c43cd988c82f8f7f0ffd62a11f9d9a",
+      "worktree_blob_id": "3ba2d14351c43cd988c82f8f7f0ffd62a11f9d9a"
+    },
+    {
+      "path": "tests/integration/rls/migration-reset.int.test.ts",
+      "raw_sha256": "291971b7e06d66a14988174ba378cd61814b3d3c9fbd0bf708ca59b919edad97",
+      "raw_bytes": 36735,
+      "head_git_normalized_sha256": "75d29ccdb208850009c1f76556f242ffe81807ec077a5edf533e964906845206",
+      "head_blob_id": "263e6d650190fe012997aaf2f128767fd3c96399",
+      "worktree_blob_id": "263e6d650190fe012997aaf2f128767fd3c96399"
+    },
+    {
+      "path": "tests/integration/rls/role-harness.atdd.int.test.ts",
+      "raw_sha256": "42e10db1a915f26cb0d732dfd56301d062dc046129e006e88da1b5e493b1f522",
+      "raw_bytes": 28367,
+      "head_git_normalized_sha256": "e20c0e31cf595e82b38c48100bd68fe82a237acf652f284af5547bc543c29aa5",
+      "head_blob_id": "7c829bd759e410f1fe2a929dcc43d7b133679627",
+      "worktree_blob_id": "7c829bd759e410f1fe2a929dcc43d7b133679627"
+    },
+    {
+      "path": "tests/integration/rls/tenant-table-inventory.ts",
+      "raw_sha256": "531dcd3ab659b67ba41035691aad65d77310f1ab367a3c94ef0006843dd32309",
+      "raw_bytes": 103434,
+      "head_git_normalized_sha256": "7b855ba58c3ae1f36c56fba65311bd50951f86145e551bb25f56a4541a9ec7ce",
+      "head_blob_id": "925764138215e4fdb6db039568540439d6036449",
+      "worktree_blob_id": "925764138215e4fdb6db039568540439d6036449"
+    },
+    {
+      "path": "tests/support/authz/role-harness.ts",
+      "raw_sha256": "3d3e518c0f70bd44a934275d25088e715a3acbc2e16ed3a8e3346f2bfec358c0",
+      "raw_bytes": 15759,
+      "head_git_normalized_sha256": "73e3372433ae8e720e1ebf0955419fec5242f5e6257fec77552bd87c122754c1",
+      "head_blob_id": "8175a21fae261b8efea3f803cd2439edd374a8d7",
+      "worktree_blob_id": "8175a21fae261b8efea3f803cd2439edd374a8d7"
+    },
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "raw_sha256": "ee843707fab95b6c1f7c0b04c1350e483249cce02dd97c03ec70d70087b810b7",
+      "raw_bytes": 55808,
+      "head_git_normalized_sha256": "819c1880b276b72554afead81bb83e8468cc3236a2361f4ec70f511f74d765aa",
+      "head_blob_id": "a48c5408bc5c028206214adfe7913ac0578019a2",
+      "worktree_blob_id": "a48c5408bc5c028206214adfe7913ac0578019a2"
+    },
+    {
+      "path": "tests/unit/features/calendar-feed/action-state.test.ts",
+      "raw_sha256": "09eb000bcbedd89317b7d43cb4404f691a2f94fb061015a2728a0174650e0966",
+      "raw_bytes": 3079,
+      "head_git_normalized_sha256": "9f64cf6837ca55ca5aa0a6ff8001f6ac725aa34b99ca92fc72a7b381343eb0e4",
+      "head_blob_id": "1f1065ebef4c8347026f28e57a4aaf75588f507a",
+      "worktree_blob_id": "1f1065ebef4c8347026f28e57a4aaf75588f507a"
+    },
+    {
+      "path": "tests/unit/features/calendar-feed/icalendar.test.ts",
+      "raw_sha256": "8f2997202a474d13aa5cc508452ca8943ebb5ca3b9407a23c2434820e255112b",
+      "raw_bytes": 4576,
+      "head_git_normalized_sha256": "6cc1f331284f6e972d0b594effc39b6738d325786d62d75b6ad6866726c21a3f",
+      "head_blob_id": "aede3f8081f92a444dfd0635fdfd217cc126e893",
+      "worktree_blob_id": "aede3f8081f92a444dfd0635fdfd217cc126e893"
+    },
+    {
+      "path": "tests/unit/features/calendar-feed/validation.test.ts",
+      "raw_sha256": "1f1f2fda1a02070d5d02298d53d21ff258fe5276976bd441da3c017db538647f",
+      "raw_bytes": 2581,
+      "head_git_normalized_sha256": "953a906010ad8bcf5912872db48a881b194599a9e793f1d7ce37fcdabf947a76",
+      "head_blob_id": "093858972ec1058edf8454a0e2584eda4f67d8e4",
+      "worktree_blob_id": "093858972ec1058edf8454a0e2584eda4f67d8e4"
+    },
+    {
+      "path": "tests/unit/scope/booking-editor-scope.test.ts",
+      "raw_sha256": "643f862ff30ff826c3c3a2447b294931d2aad36cb55931e31789dec794986ede",
+      "raw_bytes": 2143,
+      "head_git_normalized_sha256": "5550cbc4a1175ca745fae9ab780b48a3dd5a78861882bb9c66c7c15ef65f5acb",
+      "head_blob_id": "9697b15be13f5c4bc639c7987f30961ed4b56592",
+      "worktree_blob_id": "9697b15be13f5c4bc639c7987f30961ed4b56592"
+    },
+    {
+      "path": "tests/unit/scope/manifest-coherence.test.ts",
+      "raw_sha256": "7f00ff1a27cb0a260a32b690046a0175f3b7090bb9893f664f31353be6109486",
+      "raw_bytes": 16009,
+      "head_git_normalized_sha256": "1f334cd9cd69f290ec12197e229f4e85bebecab831bf43fe384b40a88fa51722",
+      "head_blob_id": "a2196980f3ffcedc8f5631749e50193ccf451aac",
+      "worktree_blob_id": "a2196980f3ffcedc8f5631749e50193ccf451aac"
+    },
+    {
+      "path": "tests/unit/scope/manifest-derivations.test.ts",
+      "raw_sha256": "29b4a2647de1ea4ebe1857f5f300494a039e4c986df0bd68e9a2c70d5ca170d6",
+      "raw_bytes": 9000,
+      "head_git_normalized_sha256": "d908da7ef3b71684cec08a13153d2c69c109276850f7969b2806421ab52bc8f2",
+      "head_blob_id": "c4109872cb67f2b4299e4a853d02a86f553973e9",
+      "worktree_blob_id": "c4109872cb67f2b4299e4a853d02a86f553973e9"
+    },
+    {
+      "path": "tests/unit/scope/manifest-shape.test.ts",
+      "raw_sha256": "3092592321b5e9a2a923a95fccc1f8ec1a19b1cdf36ee2b06f8cac02b2ed1b40",
+      "raw_bytes": 10648,
+      "head_git_normalized_sha256": "6227e6220d184a18418083c10ae8c3909179e965da8477a5c8909da8aad30a50",
+      "head_blob_id": "2def2661deab2acf1a20c97a108b4424869ccfc0",
+      "worktree_blob_id": "2def2661deab2acf1a20c97a108b4424869ccfc0"
+    },
+    {
+      "path": "tests/unit/scope/resources-activation.atdd.test.ts",
+      "raw_sha256": "4bc8bf9fb08c33cd446b1e2c9e0d8b5addea89a46add567188889aa39d99c068",
+      "raw_bytes": 1680,
+      "head_git_normalized_sha256": "8e2619a9feff891bad02cd3bd806984b1158e5eaf8428bd190442f94ed73fcb2",
+      "head_blob_id": "16715ae5dcb0e6b48ce6ceeb10fca2d2b9cdae8a",
+      "worktree_blob_id": "16715ae5dcb0e6b48ce6ceeb10fca2d2b9cdae8a"
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "raw_sha256": "d9ba214064698ffdf79af6369800f5dcf4ab33651caa8931c375b20183fc6b0f",
+      "raw_bytes": 18217,
+      "head_git_normalized_sha256": "d9ba214064698ffdf79af6369800f5dcf4ab33651caa8931c375b20183fc6b0f",
+      "head_blob_id": "ad0862c2072f24b2a188c9e509967aba83f187ec",
+      "worktree_blob_id": "ad0862c2072f24b2a188c9e509967aba83f187ec"
+    },
+    {
+      "path": "tests/unit/scripts/verify/email-delivery-containment.atdd.test.ts",
+      "raw_sha256": "61290cccfc72bb2407a945344b4c00b2d950a81119977a305b9f4fa42a0bb87d",
+      "raw_bytes": 3062,
+      "head_git_normalized_sha256": "a29c884f12042477979797b304b3026376f3a47336542111e62a7825bffcdb4a",
+      "head_blob_id": "b580e38f016843584623ec4fdbbf050a4cb2a9be",
+      "worktree_blob_id": "b580e38f016843584623ec4fdbbf050a4cb2a9be"
+    },
+    {
+      "path": "tests/unit/scripts/verify/integration-test-partitions.test.ts",
+      "raw_sha256": "0556b02982fcf2b66d4ecf3f2c06828ea83f13a4a310555e9a6cd7c96c4c555e",
+      "raw_bytes": 8628,
+      "head_git_normalized_sha256": "79817b8418557df79669167c2c42d8b0063415da5fba2e43b61cd4516b6fb76f",
+      "head_blob_id": "b109fe505ab12e755289170802cbda503025a0a5",
+      "worktree_blob_id": "b109fe505ab12e755289170802cbda503025a0a5"
+    },
+    {
+      "path": "tests/unit/server/calendar-feed/attestation.test.ts",
+      "raw_sha256": "b7e33cfbe5f4ef1e2352d65117ba63fcb2601eb771027bad9ca359b2029b8003",
+      "raw_bytes": 4728,
+      "head_git_normalized_sha256": "9468d5d3c61cabc7c1eca67b14d65ae72e5d3a498cc4eeebbc8254a6e2dd6f0c",
+      "head_blob_id": "730c4eab336c5d8e91c28ebef3519e0fc54870f8",
+      "worktree_blob_id": "730c4eab336c5d8e91c28ebef3519e0fc54870f8"
+    },
+    {
+      "path": "tests/unit/server/calendar-feed/public-shell.test.ts",
+      "raw_sha256": "f02a1015ba35b08d9c6cc2926f1b8f8c5cb8c736feba3e260b9c51a1ccd33386",
+      "raw_bytes": 4458,
+      "head_git_normalized_sha256": "335a1d26a1e845085c804d85160f91fa605a3ef95df9779ba2f924d44e2a0994",
+      "head_blob_id": "a445da964dac94961ae1e0cf2b3829fc79e0bd8c",
+      "worktree_blob_id": "a445da964dac94961ae1e0cf2b3829fc79e0bd8c"
+    },
+    {
+      "path": "tests/unit/server/calendar-feed/trusted-ip.test.ts",
+      "raw_sha256": "e9afe40327412798a22f2af0100b8df9c1911c42338cf452c241272a648420e0",
+      "raw_bytes": 2416,
+      "head_git_normalized_sha256": "e9b700099017309ec77c8c9cb53e4c2e769df0e18fb446d28b8e70c1153e554f",
+      "head_blob_id": "84b7ba8986e7d4cd2db2e293489f037c77f1e116",
+      "worktree_blob_id": "84b7ba8986e7d4cd2db2e293489f037c77f1e116"
+    },
+    {
+      "path": "vitest.config.ts",
+      "raw_sha256": "83e6ae86cdc6c36f44108eb279ff724d426fc362b6b204fc144f5816fc659bb8",
+      "raw_bytes": 3602,
+      "head_git_normalized_sha256": "5f2cb605e2109c38a5606c035ab71fbba935e5f32713257f2a75cb66fb87c123",
+      "head_blob_id": "d18bd17d6558e02549b4296f976acb0f9d831e0b",
+      "worktree_blob_id": "d18bd17d6558e02549b4296f976acb0f9d831e0b"
+    }
+  ],
+  "context_only_root_metadata": [
+    "_bmad-output/auto-bmad/preparation/story-15-5/accepted-bootstrap-allocation.json",
+    "_bmad-output/auto-bmad/preparation/story-15-5/bootstrap-proposal.md",
+    "_bmad-output/auto-bmad/preparation/story-15-5/build-bootstrap-route.json",
+    "_bmad-output/auto-bmad/preparation/story-15-5/build-browser-binding-route.json"
+  ],
+  "uncommitted_spec_metadata": "status in-review +Round1header only; kernel unchanged",
+  "routes": {
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "reason": "actual public tokens authorization RLS secrets transactional and CI child lifecycle",
+    "layers": [
+      "blind-hunter",
+      "edge-case-hunter",
+      "verification-gap",
+      "intent-alignment",
+      "auto-bmad-security",
+      "auto-bmad-cross-model"
+    ]
+  },
+  "runtime_evidence": "Required native DB/RLS/HTTP/browser/recovery/installed-collection pending Root exact-head CI; no source inspection substitutes"
+}

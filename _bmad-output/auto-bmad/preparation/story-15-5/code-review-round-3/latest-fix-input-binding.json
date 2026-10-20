@@ -1,0 +1,19 @@
+{
+  "completed_rounds": 3,
+  "cap": 3,
+  "not_a_fourth_broad_review": true,
+  "before": "360fe850c18552f23a2bf74d8eda865431f0af38",
+  "source_head": "611c86295540161d31169110bf2139cf1d85d708",
+  "input_sha256": "d1023ad79193131e12bd7f85b9f2990b96b3d2e792d337e48dba324103bd6b56",
+  "input_bytes": 12817,
+  "scope": "Only R3-01 effective USAGE and exact membership inheritance assertions after fresh/replay and affected author trail; consequential latest-fix regressions only.",
+  "route_before_dispatch": {
+    "reviewer": "round3_verification",
+    "distinct_from_implementation_author": true,
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "reason": "Truth of restricted role authorization proof"
+  },
+  "unchanged_reviews": "All six completed R3 reports plus R1/R2 reused, original hashes preserved.",
+  "runtime": "No native execution or local qualification; required Root exact-head CI still pending."
+}
