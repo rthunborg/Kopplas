@@ -1,0 +1,31 @@
+{
+  "kind": "author-same-connection-privacy-preflight-route",
+  "source_before": "e91b366b8b362f8ffbd867940dfe1cd2d817e72b",
+  "reviewed_source": "3383a1eb4607ddea035e79fb8433dc89a5137530",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "reason": "Observed startup 42501 before key creation requires privacy-preserving same-connection qualification; secret custody and fail-closed continuation are sensitive.",
+  "evidence": {
+    "run": 39464940677,
+    "observed": "DB and browser database-connect / insufficient-privilege / 42501; keyOutcome not-attempted, no children, dbClosed true. Verify3098 and recovery1 passed separately;65 feature bodies unexecuted.",
+    "unknown": "Neither the denied parameter nor the connected principal or effective settings was observed. Earlier generic failures are not retroactively labeled42501.",
+    "primary_pg17_branch_not_immutable_revision": "REL_17_STABLE",
+    "primary_sources": [
+      { "url": "https://raw.githubusercontent.com/postgres/postgres/REL_17_STABLE/src/backend/utils/misc/guc_tables.c", "lines": "2899 SUSET log_parameter_max_length;2910 USERSET log_parameter_max_length_on_error;4610 SUSET log_min_error_statement;4620 SUSET log_statement" },
+      { "url": "https://raw.githubusercontent.com/postgres/postgres/REL_17_STABLE/src/backend/utils/misc/guc.c", "lines": "3364-3380 SUSET ACL_SET and insufficient_privilege;3384-3386 USERSET" },
+      { "url": "https://www.postgresql.org/docs/17/protocol-flow.html#PROTOCOL-FLOW-START-UP", "fact": "Requested runtime settings apply before ReadyForQuery." }
+    ],
+    "installed_driver": { "version": "8.22.0", "package": "node_modules/pg/package.json", "startup": "node_modules/pg/lib/client.js:534-560; options558-559", "environment_precedence": "node_modules/pg/lib/connection-parameters.js:9-22,83" },
+    "inference_limit": "Three SUSET startup controls support a permission hypothesis; primary source does not identify the actual denied parameter. Runtime exact-value checks, not defaults or prior CI, authorize continuation."
+  },
+  "owned_paths": [
+    "scripts/ci/with-calendar-feed-runtime.mjs",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+    "tests/support/calendar-feed-ci-contract.ts",
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"
+  ],
+  "allowed_delta": "Explicit USERSET startup on_error=0; fixed readonly exact-four control checks on the same client before entropy/key/children. Continue only with strict complete unique names/types/contexts and effective none/panic/0/0. Identity and SET booleans are diagnostic only. Preserve fixed commands, privileges, COMMIT uncertainty, cleanup and custody.",
+  "forbidden": "No raw settings/native errors/SQL args/status/URLs; no SET, grants, credentials, principal changes, persistent GUC, migration, workflow, provider, managed runtime or local qualification.",
+  "execution": "Bounded injected Node/type/lint/kernel/SRO checks. Commit exact four paths before committed-source distinct context-free High latest-delta-only review. No push; cap3 unchanged; Root metadata excluded.",
+  "written_before_source_edits": true
+}

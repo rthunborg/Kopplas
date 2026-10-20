@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-20T17:17:49Z"
+updated_at: "2026-10-20T17:44:53Z"
 started_at: "2026-10-20T12:18:56Z"
 completed_at: null
 active_seconds: 3572
@@ -18,7 +18,7 @@ is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: build-native-diagnostic-qualification
+selected_phase: build-native-privacy-preflight-qualification
 selected_role: native-ci-evidence-qualifier
 selected_profile: sensitive
 selected_model: gpt-6.1-sol
@@ -26,7 +26,7 @@ selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Actual public-token/key custody, authorization/RLS, transactional uncertainty and native integrity evidence require explicit High. Latest source independently targeted-reviewed; broad cap3 retained."
+escalation_reason: "Actual same-connection privacy, key custody, RLS/PG17 authority and transactional cleanup qualification require explicit High; exact committed delta independently reviewed, broad cap3 retained."
 routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"High preparation for hashed public-feed tokens, rotation/revocation and tenant/member disclosure boundaries; plan-only before distinctvalidation and ownershipallocation\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct High independent specification validation of actual public-feed token/proof/IP/limiter authorization design and exact ownership/test-key boundaries before anybuild\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"cross_model_layer\",\"profile\":\"diverse_review\",\"role\":\"independent-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -44,6 +44,8 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Same distinct High qualifier verifies new exact-head native compilation, real source/recovery effective privileges and all runtime gates after latest-delta reviewed a76 SQL repair; not fourth broad code review.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build-native-qualification\",\"profile\":\"sensitive\",\"role\":\"independent-native-evidence-qualifier\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Exact1cea clears compilation and recovery but sanitized wrapper failures before children expose insufficient safe diagnosis. SameHigh author records narrow allowlisted stage/SQLSTATE only in already-owned3paths; preserve privacy/failclosed/custody/argv/sourcehash fences, targeted High review, no broad review or speculative functional change.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build-native-diagnostic-repair\",\"profile\":\"sensitive\",\"role\":\"build-author-safe-wrapper-diagnostics\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Actual public-token/key custody, authorization/RLS, transactional uncertainty and native integrity evidence require explicit High. Latest source independently targeted-reviewed; broad cap3 retained.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build-native-diagnostic-qualification\",\"profile\":\"sensitive\",\"role\":\"native-ci-evidence-qualifier\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Observed42501 startup rejection before key/test mutation; same-connection privacy validation and transactional key custody are sensitive security/integrity work. Existing four-path allocation; no privilege or configuration expansion.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build-native-privacy-preflight-repair\",\"profile\":\"sensitive\",\"role\":\"build-author-same-connection-privacy-preflight\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Actual same-connection privacy, key custody, RLS/PG17 authority and transactional cleanup qualification require explicit High; exact committed delta independently reviewed, broad cap3 retained.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build-native-privacy-preflight-qualification\",\"profile\":\"sensitive\",\"role\":\"native-ci-evidence-qualifier\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: "Hashed public tokens, rotation/revocation, externalfeed andcross-tenant abuseprotection requireHigh-riskATDD+automate; lastthreeno traceadvisory"
@@ -69,7 +71,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [159557e114f18123e73282c39c90830917de9948, c42b45abbca262ff79e26da479a3032d9015aeee, b940df85acfb2de36c0dcd5000a0039758f2b820, 3a1c3bc9fbf22b13c926179288a8b6eefe440c12, ae020f63a88089966b9323c55a36b6554f7e3900, 672099e9dc6569f4ac1cb9a967037e0d91df689c, aa5733116f20015cc3d14e1441d0eab232ecc9fd, 360fe850c18552f23a2bf74d8eda865431f0af38, 611c86295540161d31169110bf2139cf1d85d708, 9487c0d9, 2674b3f7, c5758058, a76fc492, 1cea5c4c, 3383a1eb]
+commits: [159557e114f18123e73282c39c90830917de9948, c42b45abbca262ff79e26da479a3032d9015aeee, b940df85acfb2de36c0dcd5000a0039758f2b820, 3a1c3bc9fbf22b13c926179288a8b6eefe440c12, ae020f63a88089966b9323c55a36b6554f7e3900, 672099e9dc6569f4ac1cb9a967037e0d91df689c, aa5733116f20015cc3d14e1441d0eab232ecc9fd, 360fe850c18552f23a2bf74d8eda865431f0af38, 611c86295540161d31169110bf2139cf1d85d708, 9487c0d9, 2674b3f7, c5758058, a76fc492, 1cea5c4c, 3383a1eb, e91b366b, e472741a]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -427,12 +429,12 @@ p5_native_diagnostic_checkpoint:
   root_review_commit_provenance_sha256: 823e4670bcd8ddc2befc980754c8700a11a22cbb524fdfc4c4e3c30e693d723d
   root_current_source_admission_sha256: adb6a4a3efb2fd12681edc0ef8f769ebd4594a472761c5b6b1cc6be6f4f5e171
   fourth_capsule: PASS-mechanical-admission-only
-  native_setup_cause: "UNKNOWN; diagnostic-only change, no functional setupfix"
+  native_setup_cause: "Connection startup privilege rejection observed; individual startup option or connected identity not proven. Author read-only evidence-based diagnosis pending."
   last_native1cea: "FAILED DB/e2e wrapper beforechildren; verify3095 and realcompile/recoveryPASS preserved separately"
-  remaining65feature_runtime_cases: UNEXECUTED
+  remaining65feature_runtime_cases: "UNEXECUTED; neither DB nor browser runner launched"
   development_complete: false
   release_ready: false
-  next: "Reviewed diagnostic checkpoint push; one exact-head native CI; identify sanitized setup stage/category without crediting pending bodies."
+  next: "Preserve fourth failed nativepacket, then bounded evidence-backed repair proposal retaining privacy/privilege boundaries."
   capsule_sha256: 0665da8a44b228583e2dfbd81be3266d6d7cfcd465b6558b7295c1ebfaeb7ee5
   parent_check_sha256: 1c19b24a7742c4c6c7f90a3db7a743bfb6cd67ea838b46d175862b36b4d9a6cd
   root_fourth_admission_sha256: 53d4bccd7f5b8379a771d21051adc08d215d0d012e8a013852817fefce2838c3
@@ -440,3 +442,44 @@ p5_native_diagnostic_checkpoint:
   unique_artifact_paths: 133
   failed_checkpoint_source_equalities: 193
   historical_mutable_snapshot_raw: "UNVERIFIED_UNCREDITED; baseline blobs only verified"
+  checkpoint_head: e91b366b8b362f8ffbd867940dfe1cd2d817e72b
+  checkpoint_id: 498e8ab4-5cc3-4803-b09e-52c04d33fa1a
+  run_id: 39464940677
+  attempt: 1
+  native_conclusion: FAILURE
+  required_jobs: "{\"checkpoint-admission\": \"SUCCESS\", \"verify\": \"SUCCESS\", \"db\": \"FAILURE\", \"recovery-storage-loader\": \"SUCCESS\", \"e2e\": \"FAILURE\"}"
+  native_unit_passed: 3098
+  native_unit_failed: 0
+  native_unit_skipped: 0
+  native_setup_diagnostic: "{\"stage\": \"database-connect\", \"category\": \"insufficient-privilege\", \"sqlState\": \"42501\", \"keyOutcome\": \"not-attempted\", \"childExitCodes\": [], \"ready\": false}"
+p5_native_privacy_preflight_repair:
+  baseline_checkpoint: e91b366b8b362f8ffbd867940dfe1cd2d817e72b
+  failed_run_id: 39464940677
+  failed_attempt: 1
+  failed_packet_manifest_sha256: a60c7129f9e963cbb5ce3bbc328758cf917133159dded752c3e21918df0bcfca
+  failed_packet_root_admission_sha256: 338150a6bdc532946a2aa9efcb24fb193c01da1ed1218fcd06eff24492999f4b
+  status: REVIEWED_CHECKPOINT_READY_NATIVE_PENDING
+  paths: [scripts/ci/with-calendar-feed-runtime.mjs, tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts, tests/support/calendar-feed-ci-contract.ts, "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"]
+  selection: "Same pg.Client, existing USERSET zero-error-parameters startup option; fixed readonly four-setting exact complete validation before entropy/key/child; continue only all match none/panic/0/0; else sanitized failclosed and close. No fallback/SET/grants/role/credential/persistentGUC/migration/workflow/provider changes. Identity/context/SET facts diagnostic-only."
+  independent_review: PASS_DISTINCT_CONTEXT_FREE_HIGH_EXACT_COMMITTED_FOUR_PATH_DELTA_CAP3
+  native_runtime: PENDING_NEW_EXACT_HEAD_CI
+  development_complete: false
+  release_ready: false
+  source_head: e472741a91f58c5ef9e623720e2bba0d1164c360
+  source_paths: 67
+  source_author_commits: 9
+  root_source_identity_proof_sha256: 15bba4a76c4f0c339d69f4b08fd574aca0246eabf83ee78c46ac4a3e9630dcb4
+  local_wrapper_passed: 30
+  local_wrapper_skipped: 0
+  local_focused_lint: PASS
+  independent_review_input_bytes: 96857
+  independent_review_input_sha256: 1474a3f537ee994df1cfd1d72660983f64688b87b2e79a7388e907f05fa9c6f9
+  suggested_review_stops: 31
+  fifth_capsule_sha256: 2ffc1ee4b9bebb6e1531467bc919a7c779a58befc1c1333cdba656179b1db68e
+  fifth_parent_check_sha256: 7b3f34a18d8fe26a3ab90fecb4bbbd22446e501d399d1dc26432dfcfe19f31a8
+  root_fifth_admission_sha256: 197a8d310eee24d72a08908431457d5d055dbab13ee900b7b27d9ad815768eb4
+  frozen_artifact_reference_occurrences: 171
+  unique_frozen_artifact_paths: 161
+  failed_checkpoint_source_equalities: 260
+  historical_mutable_raw_observations: 6
+  next: "Root reviewed checkpoint push and one exact-head native CI; no native privacy setting matches assumed."

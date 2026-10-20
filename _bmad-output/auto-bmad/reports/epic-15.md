@@ -1847,3 +1847,71 @@ No archive ran this resume.
 1. None for this bounded authorized checkpoint.
 
 **Next:** Native exact-head diagnostic qualification; no fourth broad review.
+
+## Report — 2026-10-20T17:30:25Z (continuing — native connection privacy preflight repair)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `e91b366`).
+**Pipeline status:** Story15.5 P5 active. Diagnostic run39464940677 attempt1 failed at DB and browser connection startup; development completion remains false.
+**Continues:** Explicit High author is implementing the bounded same-connection runtime privacy preflight; distinct targeted High review follows within the existing three-round broad cap.
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 268h 32m (≈54h 27m AI-run, ≈214h 05m human/idle wait); resumed 51×.
+
+**Stories:**
+1. 15.1–15.4 landed internally; 15.5 in review; 15.6 backlog.
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** Actual3098unitPASS0failed0skip;30feedunit and26separatewrapper tests included;43Python separately. Migration compile and native physical recovery1PASS; these do not cover DB/browser feature bodies.
+
+**Retrospective:** (none)
+
+**Overrides:** No main merge/deploy/provider or persistent privilege/configuration changes. No legacy evidence. Retain branch/worktree and final draft predicate.
+
+**Open questions:**
+1. Observed database-connect / insufficient-privilege /42501; key not attempted, child not launched. Specific denied startup setting not observed. All65 native feature bodies unexecuted.
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:**
+1. None within existing exact four-path ownership allocation.
+
+**Next:** Reviewed repair checkpoint, then one new exact-head native CI. Keep fourth failed packet immutable.
+
+## Report — 2026-10-20T17:44:53Z (continuing — reviewed same-connection privacy checkpoint)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `e472741`).
+**Pipeline status:** Story15.5 P5 active. Source e472741a exact four-path repair independently High reviewed with no findings; native runtime pending.
+**Continues:** Push the admitted fifth source record and dispatch one exact-head native CI.
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 268h 47m (≈54h 27m AI-run, ≈214h 19m human/idle wait); resumed 52×.
+
+**Stories:**
+1. 15.1–15.4 landed internally;15.5 in review;15.6 backlog.
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** Author wrapper30/30PASS0skip; focused lintPASS; High review checked31 review stops. Previous native3098unit/43Python/recovery1PASS remain separate from current pending native execution.
+
+**Retrospective:** (none)
+
+**Overrides:** No main merge or deployment; retain branch/worktree; final review_unverified draft predicate retained. No privilege/role/persistent configuration/workflow/provider expansion; no legacy evidence.
+
+**Open questions:**
+1. Current effective PostgreSQL logging values are not yet observed. Strict same-client runtime checks must pass before key handling or child launch; mismatch fails closed. All65 native feature bodies remain uncredited.
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:**
+1. None within existing exact four-path allocation.
+
+**Next:** Actual native qualification, then delivery gate and fresh independent provenance audit if all required checks pass.
