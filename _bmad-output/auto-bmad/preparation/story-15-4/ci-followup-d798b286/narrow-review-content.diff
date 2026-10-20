@@ -1,0 +1,1032 @@
+# NARROW latest-two-E2E-path CI regression follow-up2;3counted=1broad+2limited retained
+diff --git a/_bmad-output/implementation-artifacts/spec-15-4-time-reporting-filing-timesheet-review.md b/_bmad-output/implementation-artifacts/spec-15-4-time-reporting-filing-timesheet-review.md
+index fe73a3f8..5f2e74f1 100644
+--- a/_bmad-output/implementation-artifacts/spec-15-4-time-reporting-filing-timesheet-review.md
++++ b/_bmad-output/implementation-artifacts/spec-15-4-time-reporting-filing-timesheet-review.md
+@@ -4,7 +4,7 @@ type: 'feature'
+ created: '2026-10-20'
+ status: 'in-review'
+ review_loop_iteration: 0
+-followup_review_recommended: false
++followup_review_recommended: true
+ baseline_revision: '4862704665cb12e4f577ecac59ee173c49c36763'
+ context:
+   - docs/process/review-order.md
+@@ -126,6 +126,8 @@ The review closes the local client injection, scoped cleanup/error retention, ex
+ 
+ ## Review Triage Log
+ 
++2026-10-20 second separate narrow CI follow-up: the retained original gpt-6.1-sol High author received `ci-followup-d798b286/route.json` before dispatch and Root's actual browser-only failure admission before writes. Authorization is limited to two existing E2E files plus this spec for truthful raw-pg numeric typing and exact tenant/report-scoped SQL numeric comparison. Root later admitted the FULL CI2 failure packet without a scope change. Three counted rounds remain ONE broad R1 plus TWO limited R2/R3, re-derivation0; separate narrow follow-up1 completed PASS/zero findings, while separate narrow follow-up2 is pending for this latest two-path repair. `followup_review_recommended: true` applies only to that distinct High narrow regression check, not a fourth broad/counted round. Earlier sourcefreeze/review/native packets and Root-owned dirty state remain untouched.
++
+ 2026-10-20 historical qualified CI failure repair dispatch: Root admitted the terminal failed run39408197808/attempt1 at `51f37bc965b9e9fb7b65f7cd66cc24cb4e9b48d7` and released only five source/test paths plus this spec. The persisted `ci-followup-51f37bc9/route.json` selected the original gpt-6.1-sol High author before dispatch for service-client/fixture integrity and accessible controls. Three counted rounds were completed: one broad R1 plus two limited R2/R3, re-derivation0. At dispatch `followup_review_recommended: true` required only a DISTINCT High narrow CI-repair regression review, never a fourth broad/counted round. No nested delegate or runtime was used. The original sourcefreeze/preparation/review evidence remained unchanged; Root's dirty canonical state was excluded from author staging.
+ 
+ 2026-10-20 separate narrow CI-repair follow-up completed: independent gpt-6.1-sol High PASS at `71f061b83de04d8f888aaa18f98c4e1960d9d9f4`, zero consequential findings; patch0, intent_gap0, bad_spec0, defer0, reject0, re-derivation0 and `followup_review_recommended: false`. Accounting remains exactly THREE counted reviews (ONE broad R1, TWO limited R2/R3), plus this separate narrow CI follow-up. The immutable71f061b8 commit body's shorthand is preserved as historical text and does not change this accounting. Latest source repairs are closed within their allocated scope; failed native execution and unreached successor tails are not accepted by this source review.
+@@ -142,6 +144,8 @@ Coordinator's final R1-06 allocation authorizes only the unapplied109 affected-r
+ 
+ ## Design Notes
+ 
++Second CI repair choice: browser physical snapshots use node-pg's default exact decimal-string representation for PostgreSQL numeric. ReportRow now declares `booked_minutes_at_filing` as string|null; the test retains all other physical row expectations and proves the booked value through a typed SQL BOOLEAN equality to120::numeric, scoped by BOTH tenant and report UUID parameters, requiring one row/true. No JS numeric coercion, decimal scale/string pin, rounding, parser override or production numeric change is introduced.
++
+ CI repair choices: the fixture injects the existing local-only `tenants::admin()` service-JWT client after `assertLocalStack`, matching the test environment authority without requiring or mutating application env/config. Generated recipient assignment/booking/profile UUIDs are removed with normal FK enforcement before auth deletion; callback and every cleanup failure are retained, and all owned auth deletion promises settle before reporting. Explicit Person/Jobb aria-labels disambiguate the review selects while retaining visible labels/options. Browser capture is scoped to one visible own-week context/card with explicit cardinality, preserving global peer absence and the entire capture/persistence/reload tail. The quote guard adds only the already approved `/time-reports` route to its exact active set.
+ 
+ Round 2 detachment correction: booking/job links and the duration's source are separate concerns. Selecting Utan bokning now clears only the two relationships; the unchanged canonical minutes and UTC endpoint provenance continue to describe the displayed draft. Choosing another booking still replaces the prefill, while editing hours still invalidates canonical minutes and edited interval endpoints still parse independently. This prevents a valid20-minute draft being rejected through generated decimal hours and prevents an unchanged late-fold60-minute interval being reinterpreted as120 minutes.
+@@ -230,12 +234,24 @@ The bounded repair changes only the five allocated source/test files and this sp
+ 
+ Inventory is76 active report declarations, zero explicit skips: pure17/component18/command11/RLS7/read7/nudge13/browser3. The same-SRO checker passed one section/20 stops/zero errors; `git diff --check` passed. LF kernel conservation passed at `3c701d71dba37a136ae104fd24c3b223ef46081913301fb43ff92baca3f16ffb`. Failed-head results and unreached tails remain recorded; successor exact-head CI must execute them. The original sourcefreeze and preparation/review artifacts are conserved. No SQL/app service/env/config/CI/dependency/seed/resource change, local DB/browser runtime, passing delivery, done or development-complete claim is made. An authorized exact-six-path source commit precedes the distinct High narrow repair review and Root's successor admission/rerun; canonical state and parent route are not staged.
+ 
+-### Narrow CI-repair review reconciliation — 2026-10-20
++### Historical narrow CI-repair review reconciliation — 2026-10-20
+ 
+ The distinct High narrow follow-up passed with zero findings at `71f061b83de04d8f888aaa18f98c4e1960d9d9f4`; exact input/report/source-binding provenance is recorded in Review Findings. This author update changes this spec/SRO only and does not rerun implementation checks or change the five repaired source/test files. Three counted reviews remain one broad R1 plus two limited R2/R3; this narrow CI follow-up is separate. Follow-up is now false for the reviewed source. Original artifacts, historical commit-body shorthand, failures, unknown callback cause and all evidence limits remain preserved.
+ 
+ Inventory remains76 active declarations with zero explicit skips. The prior local24/24 component+quote and17/17 pure passes, type/scoped-lint/build/containment outcomes and substituted-port VM limitations remain author evidence from the repair checkpoint; this metadata reconciliation adds no test execution. Failed-head integration1,915P/12F/52S and browser15 expected/two unexpected remain qualified failures. Actual successor nudge/normal-FK/Auth cleanup/browser tails and required complete exact-head CI/delivery gates remain pending; source-review PASS grants no runtime or delivery credit. Validation here is limited to the one20-stop SRO checker, diff check and frozen-kernel conservation. No commit, source change, runtime, push or state edit occurs in this reconciliation.
+ 
++### Admitted CI2 failure and exact numeric assertion repair — 2026-10-20
++
++Current repair baseline is `d798b28609676198e5f975d1a5ea3d301a84b647`; run39412225741/attempt1/checkpoint `dd65c17d-77c5-4db0-8e84-cbdce9640573` remains a qualified FAILURE. Root's before-write browser admission (`root-browser-d798b286-admission.json`, SHA256 `8e65f67195c3902cc1a4bff37b48680fbc44f450a3524fdcf7aa658c55681264`, errors[]) verified136 browser/source files and current provenance (109 bindings/60 sources/124 Git snapshots). During the bounded repair Root admitted the FULL packet:331 native files and all report digests verified; receipt `root-checkpoint-d798b286-qualified-failure.json` SHA256 `3df9de8682bd6ed2057d78499a0728ce769d1134beb4f2209ec1a5306d57db38`, errors[]. The author read the updated persisted route and both receipts under `.env.epic15.mail-runtime/story-15-4-preparation/`. Full-packet qualification is complete; successful successor runtime acceptance is not.
++
++Root's admitted CI2 qualification reports1,980 integration cases across161 files:1,928 passed/zero failed/52 historical skips. The RLS subset is nonadditive843 cases=829 passed/14 historical skips. All56 story integration cases passed:38 REAL DB plus18 component, including all13 nudge bodies. NUDGE001 reached SQL DST/midnight/exclusive-end vectors;008 reached P5403 atomic rollback;010 reached observable opt-out-first waits;011 reached the post-predicate55P03/genuine service writer/explicit retry and await/finally catalog-cleanup assertions. Current NUDGE004 reached its full callback and cleanup successfully; the old51f masked callback cause/reach remains UNKNOWN. All four serial files ran once after parallel execution without overlap; migration109 startup/reset in all three jobs, physical Storage and static gates passed. This admits those exact old-d798 results without turning the overall failed run into PASS.
++
++Browser17 cases/18 attempts:16 expected/one unexpected/zero flaky/skipped/global errors. All14 prior smoke cases, E2E002 and E2E003 passed first attempt. E2E003 now reached its Person/Jobb filters, annotation/reload/Admin refusal tails. E2E001 failed both attempts at physical row matching: expected JS number120, actual PostgreSQL numeric raw string `120.0000000000000000`. It DID reach unique visible own context/card, global peer absence, capture/editable prefill, form changes, confirmed Rapporterad and one physical report row. The row matcher stopped BEFORE report-count delta/audit/week/missing-date/reload assertions; those remaining tails and the new SQL BOOLEAN assertion require actual successor execution. No DOM-trace diagnosis is needed or claimed for this native assertion-value mismatch.
++
++The repair changes only ReportRow's raw numeric type and that physical assertion. It removes only the incorrect number property from the matcher, adds exact SQL `booked_minutes_at_filing=120::numeric` under both tenant/report IDs, and requires exactly one true row. Every other physical/core/count/audit/week/missing-date/reload/peer assertion remains. There is no parser/production/schema/env/config/CI/dependency/credential/runtime change and no new test declaration: inventory remains76 active report declarations, zero explicit skips, with exactly the same three essential browser flows.
++
++Actual proportional checks: `pnpm exec tsc --noEmit --incremental false` passed; `pnpm exec eslint tests/e2e/support/time-reports-atdd.ts tests/e2e/time-reports.e2e.spec.ts` passed with zero errors/warnings; `pnpm exec playwright test tests/e2e/time-reports.e2e.spec.ts --list` discovered exactly three flows (collection only). Unchanged app build/source/bundle/dependency/unit evidence is reused from the recorded71f repair and bound d798 source; no gratuitous build/full-unit or mocked SQL BOOLEAN probe was run. Local SQL/browser execution remains absent. The same-SRO checker passed one section/20 stops/zero errors; diff check passed; kernel conservation passed at `3c701d71dba37a136ae104fd24c3b223ef46081913301fb43ff92baca3f16ffb`. An authorized exact-three-path commit precedes distinct High narrow follow-up2 and Root's successor execution; state and parent route are excluded. Status remains in-review, with no passing delivery/DONE/development-complete claim.
++
+ ### Historical preparation evidence
+ 
+ This planning run executes artifact/process checks only: source AC comparison, seven-point immediate story audit, READY standard, spec reader/discovery, exact raw/kernel hashes and clean tracked-source/cached-context preservation. Zero app/schema/test/scaffold/runtime/CI execution is claimed. Root separately dispatches independent High specification validation.
+@@ -250,8 +266,8 @@ Deferred release validation retains exhaustive browser/device/view matrices, scr
+ 
+ Status: in-review
+ 
+-Current result: the qualified failed-head CI is preserved; its bounded repairs passed local checks and distinct High narrow source/regression review with zero findings at71f061b8. THREE counted reviews are complete (ONE broad R1, TWO limited R2/R3), plus that separate narrow CI follow-up; re-derivation0 and follow-up false. Root's successor exact-head CI/delivery evidence remains pending.
+-Blocking condition: run39408197808 failed integration and essential browser bodies at the recorded stops. The repaired successor has not yet passed native execution; UNKNOWN NUDGE004 earlier callback cause and unreached tails retain their explicit limits. No fourth broad/counted review, runtime expansion, delivery pass or done transition is implied.
++Current result: admitted CI2 atd798 passed all38 report DB/18 component cases and16 browser bodies, but remains FAILURE solely at E2E001's raw numeric matcher. The exact two-path physical assertion repair passed proportional local checks and awaits separate narrow follow-up2 and Root's successor execution. THREE counted reviews remain ONE broad R1 plus TWO limited R2/R3; separate narrow follow-up1 passed, re-derivation0, current follow-up true for the new narrow scope only.
++Blocking condition: the new SQL BOOLEAN comparison and E2E001's later report-count/audit/week/missing-date/reload tails have not executed for the repaired successor. Old51f NUDGE004 masked callback cause remains UNKNOWN despite currentd798 callback/cleanup success. No fourth broad/counted review, runtime expansion, passing delivery or done transition is implied.
+ 
+ ### Historical preparation result
+ 
+@@ -265,20 +281,20 @@ Root then obtains Coordinator allocation of exact shared semantic deltas, a uniq
+ ## Suggested Review Order
+ 
+ Author: original Story15.4 implementation/fix author, gpt-6.1-sol High. This same trail reconciles the bounded CI repair; no new broad review is requested.
+-Refreshed against narrow-reviewed source `71f061b83de04d8f888aaa18f98c4e1960d9d9f4`, 2026-10-20, after independent High PASS/zero findings. Exact accounting is one broad R1 plus two limited R2/R3, then the separate narrow CI-repair follow-up. Original sourcefreeze/failure/review artifacts remain immutable; only successor CI/delivery evidence is pending, and status stays in-review.
++Refreshed against the numeric-assertion repair working tree based on admitted failed CI2 source `d798b28609676198e5f975d1a5ea3d301a84b647`, 2026-10-20. Exact accounting is one broad R1 plus two limited R2/R3, completed separate narrow follow-up1 and pending narrow follow-up2. Original sourcefreeze/failure/review artifacts remain immutable; current type/SQL assertion and remaining browser tail need successor review/execution, with status in-review.
+ 
+-### Own capture in the visible calendar
++### Own capture and exact physical comparison
+ 
+-Entry retains the approved exact-duration/provenance and unresolved-attempt behavior. The repaired essential browser case chooses the visible own-week context and requires one visible own card; global peer absence and the entire prefill/report/audit/week/reload tail remain. Failed-head browser001 reached neither capture nor those tails; the repaired selector is source awaiting actual rerun.
++Entry retains exact-duration/provenance and unresolved-attempt behavior. Admitted CI2 reached unique own-card capture, edited prefill, confirmation and one physical row, then failed on the test's JS-number expectation for raw pg numeric. Raw decimal provenance now remains string|null, while exact SQL numeric equality proves120 under both tenant/report IDs; all other report/audit/week/reload/peer assertions remain and the unreached tails still require successor execution.
+ 
+-- `src/components/time-reports/TimeReportEntry.tsx:28` — `chooseBooking`: detaches links while retaining duration and UTC provenance.
++- `tests/e2e/support/time-reports-atdd.ts:18` — `booked_minutes_at_filing: string | null`: preserves raw PostgreSQL numeric representation.
+ - `src/features/time-reports/action-state.ts:36` — `timeReportDraftMinutes`: preserves independently unchanged endpoints and exact canonical minutes.
+ - `tests/e2e/time-reports.e2e.spec.ts:31` — `const ownWeek`: requires one visible own-week context before unique-card capture.
+-- `tests/integration/components/time-reports.test.ts:194` — `R2-01`: submits detached canonical minutes and rejects explicitly edited rounding.
++- `tests/e2e/time-reports.e2e.spec.ts:64` — `booked_minutes_at_filing=120::numeric`: compares the exact value under tenant and report UUIDs.
+ 
+ ### Current authority and attributable persistence
+ 
+-SQL authority, immutable filing and reviewer CAS are unchanged by this repair. Failed-head native CI passed all11 command,7 RLS and7 read cases, including filing/annotation atomic fault bodies; this is actual predecessor evidence, distinct from the eleven failed nudge bodies and two blocked browser tails.
++SQL authority, immutable filing and reviewer CAS are unchanged by this test-only repair. Admitted d798 native qualification passed all38 report DB cases, including filing/annotation and nudge atomic fault bodies. That predecessor evidence does not award the separately unreached E2E001 audit/count/week/reload tail or execute the new exact SQL BOOLEAN assertion.
+ 
+ - `supabase/migrations/20261020190000_time_reports.sql:48` — `time_report_actor_gate_internal`: checks current role authority before replay.
+ - `supabase/migrations/20261020190000_time_reports.sql:62` — `file_time_report`: binds actor, attempt, references and booked provenance.
+@@ -287,7 +303,7 @@ SQL authority, immutable filing and reviewer CAS are unchanged by this repair. F
+ 
+ ### Accessible filters and complete projections
+ 
+-Person and Jobb now have explicit accessible names while retaining visible labels/options and exact browser assertions. The new real-workspace SSR assertion proves emitted names; failed-head browser003 passed initial totals but did not reach filters/annotation/reload. Existing complete paging, standalone groups and decimal booked provenance remain unchanged and retain their recorded tests.
++Person and Jobb retain explicit accessible names, visible labels/options and exact browser assertions. Admitted d798 browser003 passed its actual filters/annotation/reload/Admin refusal tail, while the real-workspace SSR assertion separately proves emitted names. Complete paging, standalone groups and decimal booked provenance are unchanged and retain the admitted DB evidence.
+ 
+ - `src/components/time-reports/TimeReportWorkspace.tsx:31` — `aria-label="Person"`: names both review filter selects explicitly.
+ - `tests/integration/components/time-reports.test.ts:212` — `CI repair review selectors`: asserts exact names and retained real selector options.
+@@ -296,7 +312,7 @@ Person and Jobb now have explicit accessible names while retaining visible label
+ 
+ ### Genuine local service injection and bounded reminders
+ 
+-The fixture now injects the existing local-only tenants admin service-JWT client after its guard, avoiding application env dependency or mutation. Production dispatch/RPC and affected-tenant preference semantics are unchanged. Native NUDGE012/013 passed; the other eleven cases need rerun, including real SQL DST vectors, opt-out orderings and nudge fault rollback. NUDGE011 contains the genuine service-writer assertion, which its failed-head client stop never reached.
++The fixture retains the guarded existing local test service-JWT injection; production dispatch/RPC and preference semantics are unchanged. Admitted d798 qualification passed all13 nudge bodies, including real SQL DST vectors, opt-out ordering, nudge fault rollback and NUDGE011's genuine service-writer/55P03/explicit-retry/finally assertions. The old51f client failures remain historical and are not rewritten by these successor passes.
+ 
+ - `tests/support/time-reports-atdd.ts:154` — `jobsClient`: injects the guarded existing local test service client.
+ - `supabase/migrations/20261020190000_time_reports.sql:186` — `time_report_preference_gate`: tries affected tenant gates without waiting or writer exemptions.
+@@ -305,11 +321,11 @@ The fixture now injects the existing local-only tenants admin service-JWT client
+ 
+ ### Scoped cleanup and exact surface evidence
+ 
+-Generated assignment/booking/profile UUID children are removed in dependency order before all owned auth deletion promises settle; callback and every cleanup failure remain attributable. NUDGE004's earlier callback cause is still UNKNOWN until actual rerun. The quote guard admits only the approved active route and retains every quote/widget/email/table/Phase C assertion. Native trace paths are references only; no actual DOM trace bytes support a stronger claim.
++Generated UUID children are removed in dependency order before all owned auth deletion promises settle; callback and every cleanup failure remain attributable. Currentd798 NUDGE004 callback/cleanup passed, while its old51f masked callback cause remains UNKNOWN. The quote guard preserves every quote/widget/email/table/Phase C assertion. The new browser repair asserts a database BOOLEAN without JS coercion, scale pinning or a parser override; no extra mock or DOM-trace claim substitutes for successor execution.
+ 
+ - `tests/support/time-reports-atdd.ts:200` — `withNudgeRecipients`: tracks exact owned IDs and settles all actor cleanup.
+ - `tests/support/time-reports-atdd.ts:42` — `throwFixtureFailures`: preserves primary error and every cleanup failure.
+ - `tests/integration/features/quotes/quote-pipeline-non-scope-guard.int.test.ts:28` — `APPROVED_ACTIVE_NAV_ROUTES`: pins the exact ten approved active nav routes.
+ - `tests/support/time-reports-atdd.ts:171` — `cleanupOwnedTimeReports`: confines the disclosed transaction-local report bypass to owned tenants.
+ 
+-Evidence: the historical CI repair checkpoint records local red22-pass/two-failure then green24/24 component+quote guards,17/17 pure units, type/scoped-lint/build/containment passes, and76 active report declarations with zero explicit skips. Four actual-fixture VM scenarios substitute SQL/Auth/service ports; all owned auth deletion promises settled (63 measured per probe), but no FK/Auth/JWT runtime proof is inferred. The first exploratory probe's cross-realm assertion error remains recorded. Distinct High narrow source review passed with zero findings at71f061b8 and inspected this evidence without rerunning it. Historical failed-head CI passed3,041 Linux units without skips and direct physical Storage, but full integration remained1,915P/12F/52S and browser15 expected/two unexpected. UNKNOWN NUDGE004 callback cause and previously unreached nudge/browser tails remain pending successor execution. SSR/VM does not prove DOM, authorization, network or persistence. Successor native CI and passing delivery remain pending; exhaustive visual/manual/timing/performance release work stays deferred. No done/development-complete/release-ready claim is made.
++Evidence: current type check and exact-two-file lint passed; collection lists the same three essential flows. No SQL BOOLEAN/browser body ran locally and no build/unit/mock probe was repeated. Admitted CI2 reports1,928P/0F/52 historical skips, all38 report DB/18 component passes, and browser16 expected/one unexpected; E2E001 stopped before its audit/count/week/reload tail. Historical51f failures, old UNKNOWN NUDGE004 cause, four substituted-port VM limits and prior narrow review provenance remain preserved. Inventory remains76 active declarations with zero explicit skips. Current separate narrow follow-up2, exact SQL BOOLEAN/remaining browser tail and successor successful CI/delivery remain pending; exhaustive visual/manual/timing/performance release work stays deferred. No done/development-complete/release-ready claim is made.
+diff --git a/tests/e2e/support/time-reports-atdd.ts b/tests/e2e/support/time-reports-atdd.ts
+index f08bd21c..6fdebf5c 100644
+--- a/tests/e2e/support/time-reports-atdd.ts
++++ b/tests/e2e/support/time-reports-atdd.ts
+@@ -15,7 +15,7 @@ export const REPORT_DATE = "2026-10-12";
+ export type ReportRow = {
+   id: string; tenant_id: string; user_id: string; report_date: string;
+   duration_minutes: number; booking_id: string | null; job_id: string | null;
+-  note: string | null; status: string; booked_minutes_at_filing: number | null;
++  note: string | null; status: string; booked_minutes_at_filing: string | null;
+   created_at: string; review_note: string | null; reviewed_by: string | null;
+   reviewed_at: string | null; review_revision: number;
+ };
+diff --git a/tests/e2e/time-reports.e2e.spec.ts b/tests/e2e/time-reports.e2e.spec.ts
+index 19e70b20..f58b55e7 100644
+--- a/tests/e2e/time-reports.e2e.spec.ts
++++ b/tests/e2e/time-reports.e2e.spec.ts
+@@ -58,8 +58,14 @@ test.describe("15.4 essential production-host time reporting", () => {
+       expect(rows).toHaveLength(1);
+       expect(rows[0]).toMatchObject({ tenant_id: f.fx.base.tenantA.id,
+         user_id: f.fx.users.montor.id, report_date: REPORT_DATE, duration_minutes: 180,
+-        status: "submitted", booking_id: f.ownBooking, job_id: f.job.id,
+-        booked_minutes_at_filing: 120 });
++        status: "submitted", booking_id: f.ownBooking, job_id: f.job.id });
++      // Raw node-pg numeric remains a decimal string; compare exactly in SQL.
++      const booked = await adminQuery<{ matches_expected_booked_minutes: boolean | null }>(
++        `select booked_minutes_at_filing=120::numeric as matches_expected_booked_minutes
++         from public.time_reports where tenant_id=$1::uuid and id=$2::uuid`,
++        [f.fx.base.tenantA.id, rows[0].id]);
++      expect(booked).toHaveLength(1);
++      expect(booked[0].matches_expected_booked_minutes).toBe(true);
+       expect(durable.reports.length - before.reports.length).toBe(1);
+       const audits = durable.audit.filter((row) => row.target_id === rows[0].id);
+       expect(audits).toHaveLength(1);
+
+
+# FULL CURRENT CHANGED FILE: _bmad-output/implementation-artifacts/spec-15-4-time-reporting-filing-timesheet-review.md
+---
+title: '15.4 — Time Reporting — Filing, Timesheet, Review'
+type: 'feature'
+created: '2026-10-20'
+status: 'in-review'
+review_loop_iteration: 0
+followup_review_recommended: true
+baseline_revision: '4862704665cb12e4f577ecac59ee173c49c36763'
+context:
+  - docs/process/review-order.md
+  - docs/process/development-completion-policy.md
+  - docs/process/agent-model-routing.md
+  - docs/process/local-setup.md
+  - _bmad-output/test-artifacts/test-design-epic-15.md
+  - _bmad-output/auto-bmad/preparation/story-15-4/implementation-ownership-handoff.md
+  - _bmad-output/auto-bmad/preparation/story-15-4/current-contracts-and-design.md
+warnings: [oversized]
+deferred: []
+---
+
+<intent-contract>
+
+## Intent
+
+**Problem:** People can see their bookings but cannot file server-confirmed time, inspect their week or give planners a trustworthy review basis. Missing time has no scoped reminder producer.
+
+**Approach:** Add own-row submitted-only time reporting from current booking cards or a standalone form, an own weekly timesheet, PL/Admin review/annotation and bounded E13 in-app nudges. Separate duration/date/state/validation/actions from replaceable presentation; retain reusable booking/job links without valuation.
+
+## Boundaries & Constraints
+
+**Always:** Phase B FR90/FR92 and architecture §10.6 apply. Derive tenant/reporter/actor from current authenticated membership; ReportOwn never grants peer filing, Review grants tenant-scoped read and annotation only. Enforce same-tenant references and own planned-booking assignment inside checked SQL; a standalone row may omit both links. Positive whole-minute duration and real local date are authoritative, with `submitted` the sole status. Freeze a linked booking's nonmonetary booked-duration comparison at filing. One attributable report+audit transaction, actor-bound attempt/digest, current-authority replay and conflict detection for changed retry content prevent duplicates/partial writes. RLS, explicit narrow ACLs and exhaustive manifest/H4 enrollment independently protect direct paths. Connected desktop/360×640 UI retains suitable unsent input on failure and confirms submitted only after server persistence. Review metadata cannot alter filed time. Nudges use the existing authenticated E13 runner, explicit bounded tenant scope, current preferences and stable recipient/date dedupe; no client/read/filing service-role path.
+
+**Block If:** Root has not independently validated/frozen this spec or Coordinator has not allocated its exact shared deltas, isolated fixtures/resources and a new migration sorting after current108; or implementation discovers an unresolvable authorization/data-integrity requirement or material product ambiguity beyond the approved requirements/defaults. Allocation/validation are later implementation prerequisites, not missing planning intent. After two failures of one approach choose a simpler authorized route or name owner/evidence/next action/resume condition.
+
+**Never:** On-behalf filing; manager visibility used as own assignment; UI-only authorization; client actor/creation-time/tenant authority; stale replay grants; separate report-then-audit writes; raw service-role booking-grant widening; money/rate/salary/valuation columns or reads; approval/rejection/billing states; mutation of accepted quote/job commitments or booking conflict acceptance; report self-correction/deletion/retention program. No new job/economy/billing workspace, calendar feed, Min dag landing, AI/optimizer, offline/PWA/queue/sync, provider/email go-live, public privileged path or other Phase C surface. No legacy URLs/evidence/browsing, foreign checkout copying, absent E16 imports, deployment/PR/push/merge/secrets/state/sprint changes in this planning run.
+
+## I/O & Edge-Case Matrix
+
+| Scenario | Input / State | Expected Output / Behavior | Error Handling |
+| --- | --- | --- | --- |
+| Booking or standalone filing | Own planned booking or Ny tidrapport; adjusted interval/hours/date; optional note/job | Prefill is editable; checked SQL stores actor's submitted report and attributable audit, stable optional links and booked-minute snapshot | Wrong tenant/owner/job pair, inactive membership, invalid date/duration or unavailable reference fails generically with no write |
+| Unknown outcome/retry | Saved response is lost, same attempt retried, or changed payload reuses key | Exact authorized replay returns original own report, one row/audit; concurrent duplicates converge | Preserve exact uncertain payload/token and Osänd input; reconcile before editing; changed key content conflicts, revoked current authority denies |
+| Personal week | Connected own reports and weekday bookings | Own day rows/chips/minute totals and missing-booked-day indicators; failed reads never mean zero | No peer records/roster/money; Anslutning krävs with explicit retry when unavailable |
+| Review/annotation | Admin/PL person/job/week filters and report sheet | Complete per-person/job sums, labelled report-vs-booked-at-filing delta and one current review note with actor/time/revision; status remains submitted | Standalone has no fabricated booked value; stale annotations refresh; reviewer cannot rewrite reporter/core fields |
+| Nudge | Completed local weekday has own planned booking but no own submitted row | Hourly bounded existing runner emits at most one in_app reminder per eligible recipient/date, preferences honored | Frozen7-date window/cursor, explicit tenant scope and atomic checks; failures retry without duplicates or exposed booking facts |
+
+</intent-contract>
+
+## Source Acceptance and Provenance
+
+AC sketch: `time_reports` own-row-scoped (user, date, duration, optional booking/job links, note; `status` column ships `submitted`-only — the reserved approval seam, decided at the B1b→B2 checkpoint per AB-A10); filing from booking cards pre-filled (≤30-second one-hand phone flow) or standalone (`Ny tidrapport`, PB-D12); suitable unsent input survives a transient request failure, remains labelled unsent, and explicit retry is available; the `submitted` domain/UI state appears only after server persistence; personal week timesheet with missing-day nudge indicators (+ `time_report.nudge` producer registered in E13's registry); desktop review surface for PL/Admin (person/job/week filters, per-job/person sums, report-vs-booked delta highlight, review/annotate affordances — no hard approval state); hours flow onward valued only in economy read-models (report rows carry no money); per-role RLS (own rows vs review scope).
+
+**No Design Gate Criteria for this story.** Story15.4 in epics-phase-b.md supplies the AC sketch above without four-part Visual/Behaviour/Animation/Visual-validation gates. Binding Phase B UX§§4.7/4.8/6/10 still applies. October19 completion policy defers exhaustive visual/manual/release checks and actual ≤30-second one-hand timing; usable essential functionality, authorization and persistence still require executed development evidence.
+
+References: AGENTS.md; _bmad-output/project-context.md; current epic-15-context.md; epics-phase-b.md Story15.4; prd-phase-b.md FR90/FR92 and PB-D12; architecture-phase-b.md §§3.3–3.7/4/9.2/10.6/11/14/16; ux-design-specification-phase-b.md §§4.7/4.8/6/10; listed companions and TEA15.4 scenarios. Current Phase B sources supersede historical Phase A source names used by installed templates. No nextjs-app/docs/design/DESIGN.md or supplied Figma exists; actual globals.css/Dialog/editor patterns and owner-authorized defaults govern, without new legacy observations.
+
+Continuity: valid cached Epic15 context and completed15.3 were loaded;15.1–3 stay preserved. Current source HEAD is `5040f683cf9446d39de8512cdca82242c55fca3e`; prior15.3 CI39363860222/atd550/all5PASS is predecessor evidence only. Keep v3 facts/proof domains/exact13 claims, tenant locks, resolver shared refresh/ledger/in_app booking.changed and recurrence exceptions/tombstones/stable IDs.105/106/107/current108 migrations are immutable. Current16.1 is a landed dependency; unfinished16.2/16.3 is not imported or required. Inherited epic review_unverifiedTRUE remains Root-owned. Epic14 October8 accepted-with-open-items carries48 quality advisories, unapproved performance targets and unexecuted manual work; historical ContractD transfer already handled by15.1 is not reopened.
+
+## Code Map
+
+- `src/scope/manifest.ts:263`, `src/server/authz/permission-matrix.ts:39`, `src/components/app-shell/nav-items.ts:28` — active scheduling owns no time-report surface yet; add only allocated report table/route/category and scoped operations, not future feed/MyDay.
+- `supabase/migrations/20260929120000_resource_person_profiles_and_work_hours.sql:6`, `supabase/migrations/20261006104143_booking_invariant_corrections.sql:13`; `src/server/read-models/scheduling.ts:120` — membership→profile→assignment ownership; existing own helper explicitly requires Montör and cannot validate PL/Admin own filing alone.
+- `supabase/migrations/20261019133151_e16_16_1_job_depth.sql:57`, `supabase/migrations/20260709120000_acceptance_to_job_model.sql:169` — reuse current job visibility and same-tenant links; no quote/job acceptance or lifecycle approval inference.
+- `src/server/commands/envelope.ts:51,197,217`, `src/server/commands/bookings/create-booking.ts:7`; `supabase/migrations/20261006101609_bookings_and_assignees.sql:181` — capability/envelope, SQL-owned audit and durable command replay patterns. Check current authority under lock before replay; do not edit historical SQL.
+- `src/features/scheduling/time-zone.ts:10,45,63,67,97` — real date validation, Stockholm conversion, local-day boundaries and elapsed minutes; reuse with independent DST goldens, never derive time by employment percentage or naive wall-clock subtraction.
+- `src/components/scheduling/BookingBlock.tsx:7`, `src/components/resources/BookingEntry.tsx:29`, `src/components/crm/Dialog.tsx`, `src/app/globals.css` — actual booking entry/host and existing controls/styles; add own-report action without changing editor/resolver gestures.
+- `src/app/(app)/customers/[customerId]/page.tsx:146`, `src/app/(app)/jobs/[jobId]/page.tsx:82`, `src/app/(app)/jobs/page.tsx:21` — current BookingEntry callers need minimal own report-action metadata from the new report read model; exact E16-adjacent candidate deltas require Coordinator allocation.
+- `src/server/notifications/registry.ts:3`, `src/server/jobs/producers.ts:28`, `src/app/api/jobs/run/route.ts:120`, `src/server/jobs/runner.ts:67`; `src/server/notifications/follow-up-producer.ts:96` — existing manifest/category/producer/dispatch/UTC-cadence/cursor seams. Booking raw service-role ACL is revoked at `20261006101609_bookings_and_assignees.sql:104`; a bounded service-only RPC is required instead of copied raw scans.
+- `supabase/migrations/20260923170000_in_app_notifications.sql:3`, `supabase/migrations/20261020180000_conflict_resolver.sql:85,92`; `supabase/migrations/20260928110819_epic_13_reviewbot_followup_atomic_job_run_audit_and_config_recovery.sql:45` — existing notification recipient/date uniqueness, current booking.changed constraints, checked emitter and service-only RPC grant precedents.
+- `tests/integration/rls/tenant-table-inventory.ts`, `tests/support/authz/role-harness.ts:15,216`, `tests/factories/tenants/core.ts:223`, `tests/support/bookings-atdd.ts:187`, `tests/e2e/support/scheduling-views-atdd.ts:48`, `tests/e2e/conflict-resolver.e2e.spec.ts:33` — exhaustive enrollment and isolated role/booking fixtures; actual committed-response-loss retry precedent. `tests/e2e/jobs/job-list-deferred-surface.e2e.spec.ts:76,123` needs content-scoped absence checks while preserving the job-timesheet boundary at130.
+
+## Files Created / Files Modified
+
+The ownership handoff lists exact new/shared candidate paths, semantic limits, new migration requirements, tests/helpers and mutable resources. It is an allocation proposal, not a write claim. No dependency/lockfile/.env/config/shared-governance change or future E16 file is proposed. A newly discovered shared path or semantics requires a bounded ownership successor before overlapping writes.
+
+## Tasks & Acceptance
+
+**Execution (dependency order; Root validation and Coordinator allocation precede writes):**
+
+- [ ] T1 — `src/features/time-reports/types.ts`, `validation.ts`, `domain.ts`, `action-state.ts`: implement client-safe report/annotation/attempt contracts, exact minute/date/interval parsing, own week/missing-day/totals/delta projections and honest unknown-outcome state; pin I/O edge cases. Supports AC1–8.
+- [ ] T2 — new Coordinator-allocated `supabase/migrations/` migration, logical basename `time_reports` with unique timestamp after20261020180000: add table/composite FKs/safe SELECT RLS+ACLs, checked own filing/annotation with durable attempt/revision, immutable core/snapshot and atomic audit; add bounded service-only nudge RPC and coherent category constraints. Enroll only report table/route/category in `src/scope/manifest.ts`. Supporting infrastructure for AC1/2/4–9.
+- [ ] T3 — `src/server/authz/permission-matrix.ts`, `src/server/commands/envelope.ts`; new `src/server/commands/time-reports/file-time-report.ts`, `annotate-time-report.ts`, `time-report-db.ts`: register ReportOwn/AdminPLMontör and Review/AdminPL; use checked SQL on request-bound ordinary clients, generic errors and no duplicate outer audit. Supports AC1/2/4–8.
+- [ ] T4 — `src/server/read-models/time-reports.ts` (new): own/review scoped paged reads, safe currently authorized optional selectors and current-user booking prefill; complete week/person/job sums and explicit read failures; no money/private attempt fields. Supports AC1/3/4/8/9.
+- [ ] T5 — `src/server/notifications/time-report-nudge-producer.ts` (new), `src/server/notifications/registry.ts`, `src/server/jobs/producers.ts`, `src/app/api/jobs/run/route.ts`: wire hourly bounded current-preference in_app nudge using T2 RPC/frozen cursor and existing runner; retain all E13 release/containment and booking.changed behavior. Supports AC5/8.
+- [ ] T6 — `src/features/time-reports/actions.ts`, `src/app/(app)/time-reports/layout.tsx`, `page.tsx`, five named new UI files in handoff; existing nav-items.ts/BookingBlock.tsx/BookingEntry.tsx: deliver protected dynamic route, own week/reviewer mode, prefilled and standalone filing, editable interval/hours, review sheet and honest connection/unsent/retry feedback with keyboard/focus/360×640 controls. Supports AC1–6/8/9; reusable entry remains a15.6 seam.
+- [ ] T7 — `tests/unit/features/time-reports/domain.test.ts`, `tests/integration/commands/time-reports.int.test.ts`, `tests/integration/rls/time-reports.rls.test.ts`, other exact new read/producer/component suites/helpers in handoff: prove all I/O edges with independent date/minute/DST oracles, own/other/foreign/mixed/revoked roles, assignment/link races, exact replay/duplicates/audit rollback, annotation revision/core immutability, paginated sums and nudge scope/preferences/cursor/dedupe. Supports AC1–9; TEA15.4-RLS-001/INT-001…004/COMP-001.
+- [ ] T8 — `tests/integration/rls/tenant-table-inventory.ts`, `tests/support/authz/role-harness.ts`, `tests/e2e/jobs/job-list-deferred-surface.e2e.spec.ts` and exact shared cross-tenant/migration-reset/scope/matrix/category/producer tests in handoff: enroll the new table/route/operation/category without relaxing exact assertions; narrow the whole-body tidrapport absence guard to existing job content while preserving deferred job-timesheet absence. Supporting infrastructure; all ACs and unchanged15.1–3/job/E13 regressions.
+- [ ] T9 — `tests/e2e/time-reports.e2e.spec.ts`, `tests/e2e/support/time-reports-atdd.ts` (new): essential actual configured-production browser booking-card and standalone filing→persisted own week→PL review/filter/annotate→reload, plus360×640 keyboard/transient/lost-response explicit same-attempt retry with physical row/audit readbacks. Supports AC1–8/TEA15.4-E2E-001; no mocked success or next dev.
+- [ ] T10 — this spec and future `_bmad-output/auto-bmad/delivery/15-4-time-reporting-filing-timesheet-review.json`: author records actual gates/counts/revision, independent High review, approved-contract reconciliation, deferred release ownership and one author-written Suggested Review Order with verified stops; Root runs delivery gate before done. Supporting completion infrastructure, no completed trail/delivery record is manufactured in planning.
+
+**Acceptance Criteria:**
+
+- AC1 — Given an authenticated reporting-capable user on an own planned booking card or Ny tidrapport, when the form opens, is adjusted and submitted, then booking times/job prefill or optional standalone links are shown and the actual own submitted report/date/minutes/note/links appear after server-confirmed persistence; desktop and360×640 controls remain usable by keyboard and touch.
+- AC2 — Given a transient failure, lost committed response, concurrent duplicate or changed retry payload, when the user explicitly retries, then suitable unsent input remains labelled unsent until confirmation, an exact authorized attempt yields one report and one audit, changed content under its key is rejected, and audit/reference/authorization failure leaves no partial result.
+- AC3 — Given a successfully loaded personal week, when date navigation or refresh occurs, then only the caller's day rows, reported hours and booking/job chips appear with correct totals and weekday-booking-without-report nudges; a failed read offers Anslutning krävs/retry and never an empty-success or false zero state.
+- AC4 — Given PL/Admin review access, when person/job/week filters or a report sheet are used, then complete authorized per-person/job reported sums include standalone groups, the linked report delta uses clearly labelled booked-at-filing minutes, and an annotation saves reviewer/time/revision without changing submitted status or filed core fields; standalone/inaccessible live booking facts are never fabricated as zero booked time.
+- AC5 — Given an eligible missing weekday in the frozen preceding seven completed local dates, when the hourly existing E13 runner processes bounded pages or retries, then only active authorized recipients with own planned bookings/no submitted day report receive at most one time_report.nudge in_app per date, with preference opt-out respected, no today/future/other-tenant leak and no mail/provider behavior change.
+- AC6 — Given invalid/overflow/nonminute duration, invalid local date, mismatched booking/job, cancelled/foreign/unassigned booking or unavailable reference, when filing is attempted through form, command or direct RPC, then validation/current own authorization rejects generically without writes; valid standalone filing requires neither booking/job nor person profile, and DST elapsed-time prefill has independently correct minutes.
+- AC7 — Given two reviewers or a lost annotation response, when notes are saved or retried, then expected revision and exact latest-attempt identity prevent stale overwrite/duplicate audit, superseded retries require refresh, and every direct attempt to change report identity/date/duration/reporter note/links/snapshot/status or delete is denied.
+- AC8 — Given anonymous, own-only, foreign-tenant, inactive/revoked, seller/economy/platform-only and valid mixed-role callers, when report selectors/reads/aggregates/filing/annotation/replay/direct DB/RPC/producer surfaces are exercised, then current matrix/RLS/column grants and same-tenant/actor rules hold independently of the UI, with no peer or private-attempt/money disclosure and no unauthorized partial audit/notification effect.
+- AC9 — Given persisted time reports linked to existing jobs or bookings, when the stable authorized time read seam is consumed by job/period, then exact user/date/minutes and optional stable IDs are available without re-entry, booked comparison remains stable after booking changes, and report rows/projections contain no rates/money/approval states; existing15.1–3/E13/current job behavior remains intact.
+
+## Spec Change Log
+
+2026-10-20 author boundary correction under approved maintainable defaults: genuine booking intervals can contain seconds/microseconds, so booked-at-filing provenance uses positive numeric elapsed minutes. Filed report duration remains a positive PostgreSQL integer with no rounding. An interval that cannot prefill whole report minutes retains its own booking/action/reference and asks for an explicit whole-minute declaration; it must not fail an otherwise valid own week. Existing High UI and integrity authors receive only their original disjoint files for this correction and boundary assertions. Kernel and product scope are unchanged.
+
+2026-10-20 Coordinator successor allocation received through Root: the implementation author extends only `tests/unit/features/scheduling/calendar-components.test.ts` (VM report-entry dependency enrollment and real BookingBlock own-action/propflow assertion) and `tests/unit/scripts/verify/integration-test-partitions.test.ts` (exact four-file serial membership and parallel exclusions). The existing scheduling and partition negatives remain. These repair the twelve reproduced unit failures caused by new imports/exact enrollment; no product behavior or runtime authority expands.
+
+2026-10-20 focused test-author route: context-free Sol 6.1 High owns allocated integration/RLS/harness/E2E/config/scope assertions only, because real authorization, audit rollback and isolated fault-DDL assertions are sensitive. Execution remains static only; Root owns DB/browser admission.
+
+2026-10-20 implementation route: Sol 6.1 High author retains SQL/commands/read models/nudge and integration authority; one context-free Sol 6.1 High UI/domain delegate owns only the allocated feature/UI/booking-action caller and focused unit/component files. High is selected because action-state replay and request-bound actions are sensitive. No runtime or Git authority is delegated.
+
+## Review Findings
+
+### Round 3 of 3 — completed
+
+The independent gpt-6.1-sol High reviewer returned PASS with zero findings for the final LIMITED detachment-fix review at source HEAD `3bd815887a6c4a246d94956eb021b1b6ea0525c2`, compared with fix baseline `1f19e3f3b7562bd43732dc61c17a9d0b1b5cee34`. R2-01/R1-03 and R2-02/R1-02 are closed at source level. This completes three of three review rounds, with re-derivation0; it does not establish runtime verification, development completion or release readiness. Status remains in-review.
+
+Exact review bindings: the reviewer read all670 lines/67,026 raw bytes of packet SHA256 `92ec897c3ef096dec65d645078c6d7723e2865b8d6e571ba5addca573ba4112f`, and all3,114 bytes of input-binding SHA256 `6350c45d564ec8b8557c1f6b74842abc23485b7b8807bb0a7038d9d0ea4c102e`. Its seven source-binding raw hashes/Git blob IDs and HEAD were verified by that reviewer; their authoritative entries remain in the unchanged `preparation/story-15-4/code-review-round-3/input-binding.json` under `_bmad-output/auto-bmad`. The original report is `preparation/story-15-4/code-review-round-3/original-review-report.md` (7,315 bytes, SHA256 `b18721dcc05b6d9a4da5c025de0737f0cfc9f55705cb09d95eec79601426c16f`); its attestation is2,578 bytes, SHA256 `01cee7aeb25b582962cf02530a23efd024e77c0147a562f5d89b8d61baae8874`. These are review provenance, not test execution. The reviewer performed bounded read-only file/Git/hash inspection and reused prior review evidence without reopening unchanged SQL/RLS scope.
+
+### Narrow CI-repair follow-up — completed
+
+Independent gpt-6.1-sol High review returned PASS with zero consequential findings for the six allocated latest-fix files at source `71f061b83de04d8f888aaa18f98c4e1960d9d9f4`, compared with failed CI source `51f37bc965b9e9fb7b65f7cd66cc24cb4e9b48d7`. The reviewer read all1,492 lines/172,930 bytes of final input SHA256 `5b557495c2866a81ac62c432f0d9db9bae72cc8dce69d230ddc74f961eaa762b` and its3,287-byte binding SHA256 `60c2a06d77f3c78e14daacabf93a9dc1425c9089319fbe944b76c14e7b2accdf`; all six raw source hashes/Git blob IDs and exact path scope were verified. The unchanged original report is `_bmad-output/auto-bmad/preparation/story-15-4/ci-followup-51f37bc9/narrow-original-review-report.md` (9,619 bytes, SHA256 `440fdd06d559898c6da1cafe98f5a07fa4f8e828f67cb9c5dd8a315c2de1ac99`); its attestation is2,610 bytes, SHA256 `53fd9d9b3bd5955f3e84c2174a78ffd8814dfff9eeb3dd2c245cb45c6beb6a02`.
+
+The review closes the local client injection, scoped cleanup/error retention, explicit select names, unique visible own-card selector and exact nav pin at source level. It inspected author evidence without rerunning tests or native qualification. This separate narrow follow-up adds no counted automatic round: exact accounting is one broad R1 and two limited R2/R3, plus this follow-up, re-derivation0. Failed51f native results, UNKNOWN NUDGE004 earlier callback cause and all unreached successor tails remain pending actual CI. Status remains in-review; no passing delivery, done or development-complete claim follows.
+
+## Review Triage Log
+
+2026-10-20 second separate narrow CI follow-up: the retained original gpt-6.1-sol High author received `ci-followup-d798b286/route.json` before dispatch and Root's actual browser-only failure admission before writes. Authorization is limited to two existing E2E files plus this spec for truthful raw-pg numeric typing and exact tenant/report-scoped SQL numeric comparison. Root later admitted the FULL CI2 failure packet without a scope change. Three counted rounds remain ONE broad R1 plus TWO limited R2/R3, re-derivation0; separate narrow follow-up1 completed PASS/zero findings, while separate narrow follow-up2 is pending for this latest two-path repair. `followup_review_recommended: true` applies only to that distinct High narrow regression check, not a fourth broad/counted round. Earlier sourcefreeze/review/native packets and Root-owned dirty state remain untouched.
+
+2026-10-20 historical qualified CI failure repair dispatch: Root admitted the terminal failed run39408197808/attempt1 at `51f37bc965b9e9fb7b65f7cd66cc24cb4e9b48d7` and released only five source/test paths plus this spec. The persisted `ci-followup-51f37bc9/route.json` selected the original gpt-6.1-sol High author before dispatch for service-client/fixture integrity and accessible controls. Three counted rounds were completed: one broad R1 plus two limited R2/R3, re-derivation0. At dispatch `followup_review_recommended: true` required only a DISTINCT High narrow CI-repair regression review, never a fourth broad/counted round. No nested delegate or runtime was used. The original sourcefreeze/preparation/review evidence remained unchanged; Root's dirty canonical state was excluded from author staging.
+
+2026-10-20 separate narrow CI-repair follow-up completed: independent gpt-6.1-sol High PASS at `71f061b83de04d8f888aaa18f98c4e1960d9d9f4`, zero consequential findings; patch0, intent_gap0, bad_spec0, defer0, reject0, re-derivation0 and `followup_review_recommended: false`. Accounting remains exactly THREE counted reviews (ONE broad R1, TWO limited R2/R3), plus this separate narrow CI follow-up. The immutable71f061b8 commit body's shorthand is preserved as historical text and does not change this accounting. Latest source repairs are closed within their allocated scope; failed native execution and unreached successor tails are not accepted by this source review.
+
+2026-10-20 Round 1 of 3: nine accepted patch findings (three High, six Medium), zero intent/spec gaps and re-derivation iteration zero. The external wrapper failed with exit 1 (`The system cannot find the file specified.`); its recovered report is triage input only, with actual external model metadata unavailable. Source was not accepted. The original Sol 6.1 High author retains the synchronous fix batch. The existing UI author is re-engaged at Sol 6.1 High for R1-01–05/08/09 in its original feature/controller/component/E2E paths; the implementation author retains decimal arithmetic R1-07, proposed preference-serialization R1-06 and final integration/SRO. High covers uncertain filing integrity and shared SQL serialization. No nested runtime, commit, broad review or kernel change is delegated. The new preference write contract awaits Coordinator reconciliation before any SQL write.
+
+The existing integrity-test author is re-engaged at Sol 6.1 High only for R1-06 deterministic two-session/barrier assertions in the allocated serial nudge suite. It writes no preference trigger or shared contract and starts no runtime; the new contract remains on hold until actual semantic allocation.
+
+Coordinator's final R1-06 allocation authorizes only the unapplied109 affected-row preference contract and allocated serial tests. The earlier membership-scanning statement-trigger proposal was rejected and was never written. The implemented invoker row trigger tries the distinct sorted affected OLD/NEW tenant gates for nudge INSERT/UPSERT/UPDATE/DELETE and category/tenant moves; a busy gate raises `55P03` and aborts the transaction for explicit retry. It never waits after a tuple lock and has no authenticated, service, definer, JWT or native-fixture exemption. The producer retains its tenant gate and current preference predicate but drops preference tuple locks, allowing writers to reach the nonblocking gate. Current preference reads occur after the advisory wait under the existing READ COMMITTED/volatile-RPC contract; no broader isolation guarantee is asserted. Existing API failure/retry behavior, RLS, categories, grants, membership/role/profile locks and atomic notification/audit effects remain. The precise shared semantic delta and bounded UUID/session-scoped test barrier were allocated before their writes.
+
+2026-10-20 Round 2 of 3: the qualified native read-only CLI completed with exit0 and observed gpt-6.1-sol High; command qualification does not accept the source. Its R1-03 residual and the parent's focused R1-02 detachment trace are accepted as two patches in the same bounded relationship-removal operation: R2-01 Medium and R2-02 High. Accounting: patch2, intent_gap0, bad_spec0, defer0, reject0, follow-up score3, re-derivation0; `followup_review_recommended: true` remains. The original High author fixes these allocated controller/test/spec paths directly, with no nested delegation, new path/contract, runtime or kernel change. Original Round1 reports and failed-wrapper history remain preserved. Root's final LIMITED Round3 is confined to these fixes/residuals and does not authorize another broad review.
+
+2026-10-20 Round 3 of 3 completed: final LIMITED source-review PASS, zero findings; patch0, intent_gap0, bad_spec0, defer0, reject0, score0, re-derivation0 and `followup_review_recommended: false`. Both detachment residuals are closed against the exact bindings above. Prior failed-wrapper, residual-finding and red-test history remains intact. No fourth broad review is authorized; required exact-head CI and truthful delivery evidence remain development gates.
+
+## Design Notes
+
+Second CI repair choice: browser physical snapshots use node-pg's default exact decimal-string representation for PostgreSQL numeric. ReportRow now declares `booked_minutes_at_filing` as string|null; the test retains all other physical row expectations and proves the booked value through a typed SQL BOOLEAN equality to120::numeric, scoped by BOTH tenant and report UUID parameters, requiring one row/true. No JS numeric coercion, decimal scale/string pin, rounding, parser override or production numeric change is introduced.
+
+CI repair choices: the fixture injects the existing local-only `tenants::admin()` service-JWT client after `assertLocalStack`, matching the test environment authority without requiring or mutating application env/config. Generated recipient assignment/booking/profile UUIDs are removed with normal FK enforcement before auth deletion; callback and every cleanup failure are retained, and all owned auth deletion promises settle before reporting. Explicit Person/Jobb aria-labels disambiguate the review selects while retaining visible labels/options. Browser capture is scoped to one visible own-week context/card with explicit cardinality, preserving global peer absence and the entire capture/persistence/reload tail. The quote guard adds only the already approved `/time-reports` route to its exact active set.
+
+Round 2 detachment correction: booking/job links and the duration's source are separate concerns. Selecting Utan bokning now clears only the two relationships; the unchanged canonical minutes and UTC endpoint provenance continue to describe the displayed draft. Choosing another booking still replaces the prefill, while editing hours still invalidates canonical minutes and edited interval endpoints still parse independently. This prevents a valid20-minute draft being rejected through generated decimal hours and prevents an unchanged late-fold60-minute interval being reinterpreted as120 minutes.
+
+Round 1 arithmetic correction: report-vs-booked delta now subtracts the inputs' decimal numeric representations with integer scaling, then converts the decimal result to the existing numeric DTO. This preserves the received booked provenance, including 60.1 minutes, and displays 75−60.1 as 14.9 minutes without adding binary subtraction digits. It introduces no money arithmetic or report-duration rounding; filed minutes remain integers. Six focused domain assertions passed with zero skips during the fix batch, including independent tenths and micro/exponent boundaries. Final integrated evidence is recorded separately after all fixes settle.
+
+The design companion records the rationale for scoped capability names, immutable filing plus minimal reviewer metadata, booked-minute snapshot, exact retry semantics, same-tenant/assignment enforcement and bounded seven-day in_app nudge defaults. These are maintainable technical choices within approved behavior under owner authority; Root's distinct High validation may identify a bounded correction before freeze. Do not infer a separate canonical SPEC.md: this sprint BuildAuto spec's intent-contract is its kernel; exact candidate hashes are in the preparation validation receipt. No approved kernel binding is claimed before Root freeze.
+
+## Verification
+
+### Historical implementation checkpoint — 2026-10-20
+
+Historical result at this checkpoint: implementation was ready for independent source review, with required runtime evidence pending. This was an uncommitted working-tree check against baseline `4862704665cb12e4f577ecac59ee173c49c36763`; its planned source-commit ownership wording is superseded by the current reconciliation below. Status then remained in-progress. The frozen LF intent-contract SHA256 was `3c701d71dba37a136ae104fd24c3b223ef46081913301fb43ff92baca3f16ffb`.
+
+Implemented T1–T6/T8 and the executable test/essential-browser source for T7/T9. All original 50 skipped declarations are active and statically bound to production exports; six additional boundary assertions bring the report suite inventory to 56 declarations with zero explicit skips. Commands11/RLS7/read7/nudge9/essential-browser3 still require actual execution. The component suite has seven executed SSR assertions; report pure units have twelve executed assertions. Collection is discovery only: it confirms three essential browser cases and exact serial membership of report command+nudge files, while report read/RLS/component remain parallel. T7/T9/T10 completion still requires their remaining actual gates and author evidence refresh.
+
+Actual bounded checks in this run:
+
+- `pnpm typecheck` passed after the final fractional-booking change.
+- `pnpm exec eslint src tests scripts` passed with zero errors and 17 existing warnings. The ordinary `pnpm lint` attempt was interrupted after traversing retained ignored `.env.epic15.mail-runtime` trace assets; canonical clean-checkout lint remains for CI. No ESLint configuration or ignored artifacts were changed.
+- Final `pnpm run test:unit`: 3,036 tests, 3,035 passed, zero failed, one Windows-only skip. That skip is `versioned file-backend restore preserves the DB-owned identity and refuses overwrite`, which requires Linux xattrs and remains required in CI. Before the two-path allocation/fix, two full runs each had 3,034 tests, 3,021 passed, 12 failed and one skip. Focused reproduction identified eleven calendar VM-loader failures on the newly imported report entry and one exact serial-partition expected-set failure. The allocated fixes preserve existing negatives and add real BookingBlock own-action/propflow coverage; their focused rerun passed all 15 assertions. After those fixes and before the fractional boundary correction, the full run had 3,035 tests, 3,034 passed, zero failed and one skip.
+- Focused report pure units passed 12/12 with zero skips; isolated SSR component assertions passed 7/7 with zero skips. SSR uses synthetic props and proves rendered states only; it does not prove interaction, focus, transport or persistence. The shared scope/matrix/category/producer focused unit run passed 48/48 with zero skips.
+- `pnpm build` passed after final product-source changes and generated the dynamic `/time-reports` route. Source and built-bundle service-role containment and the lockfile guard passed. Parent independently executed `pnpm install --frozen-lockfile`, `pnpm audit --audit-level=high` (zero high findings, two moderate advisories), `test:bmad-focused` (2 passed) and `test:auto-bmad-focused` (41 passed); dependency/process sources were unchanged by this story.
+
+No database, Storage, browser, application server, Compose, native Supabase or CI runtime was started or adopted by this author or its two bounded authors. Actual REQUIRED full integration/RLS, current-history migration replay/seed/ACL verification, physical recovery-Storage checks and the three configured-production essential browser flows are pending Root's independently reviewed exact-head CI lane. Independent High review is pending. No development-complete/done/release-ready assertion or passing delivery JSON is written here.
+
+Deferred release work retains the existing owners: QA/UX owns exhaustive device/view/browser matrices, screenshot comparison, manual accessibility/daylight/exploration and actual ≤30-second one-hand timing; Product/Architect owns representative workload/threshold approval before performance certification; the delivery owner owns polish. Evidence is unexecuted/deferred, and the next action is a separately admitted release-validation run plus recorded manual/performance outcomes. Consequential functionality and integrity remain development gates. No deployment/merge/publication approval is implied.
+
+Fixture limit for independent review: `cleanupOwnedTimeReports` uses the repository's test-admin transaction convention, with `SET LOCAL session_replication_role=replica` on one connection and deletion restricted to explicit owned tenant report rows; commit/rollback restores the session setting. It makes no global/catalog/production-trigger change. The two fault suites remain serialized after the parallel group; their stage-aware temporary audit triggers and cleanup assertions still need real CI execution. Beforeunload/Dialog guards preserve pending/uncertain input in the connected UI; custom browser-history interception and durable/offline storage are absent.
+
+### Historical Round 1 fix checkpoint — 2026-10-20
+
+This synchronous original-author batch fixes the nine accepted Round 1 findings against source commit `73169cc0c75d88fbb16dc999ef99cbd9028ff361`; changes remain uncommitted for Root's scoped fix commit and independent focused review. Accounting is one counted review round of three, zero re-derivations, patch9 (High3/Medium6), intent_gap0, bad_spec0, defer0, reject0; follow-up score18 and the High patches retain `followup_review_recommended: true`. The external wrapper remains failed/unqualified; its recovered report is triage input, not a passed review layer.
+
+R1-01 preserves the unresolved exact attempt across a definite denied retry. R1-02 preserves each unchanged UTC endpoint independently, including fold offset/microseconds. R1-03 retains canonical prefilled minutes across modes while edited decimal hours still require exact whole minutes. R1-04 defaults the first standalone start's date until explicit date selection. R1-05 guards review links with the same dirty/pending/unknown state. R1-06 adds the allocated all-writer affected-tenant nonblocking preference contract and both acknowledged-order race assertions. R1-07 uses decimal-safe delta subtraction without altering the booked snapshot. R1-08/09 bind the tested stale-annotation and latest-response behavior to production controllers, with meaningful actual-handler assertions. No intent/kernel change, new path, API/grant, dependency, isolation level or runtime expansion is introduced.
+
+Actual bounded evidence after the UI/domain fix integration:
+
+- `node --experimental-strip-types --import ./tests/support/register.mjs --test tests/unit/features/time-reports/domain.test.ts tests/unit/features/time-reports/validation.test.ts tests/unit/features/time-reports/action-state.test.ts`: 17 passed, zero failed/skipped, executed by the same bounded High UI author.
+- `pnpm exec vitest run tests/integration/components/time-reports.test.ts --project integration-parallel`: 15 passed, zero failed/skipped (eight SSR and seven actual TSX-controller VM cases), executed by that author using the checked-in standard config/globalSetup. The selected component suite has no database test body; config reachability checks are not database coverage. VM replaces hook scheduling, action/read transport and router effects; it proves handler decisions/propflow, not DOM/focus, authorization or persistence.
+- `pnpm run test:unit`: 3,041 total, 3,040 passed, zero failed, one existing Windows/Linux-xattr skip. The exact skipped file-backend restore test remains required in Linux CI. Earlier 3,034-test/12-failure runs and their causal repairs above remain historical evidence.
+- `pnpm typecheck` and final `pnpm exec tsc --noEmit --incremental false` passed. `pnpm exec eslint src tests scripts` passed with zero errors and 17 existing warnings; final focused lint of the nudge and migration-reset test files passed with zero errors/warnings after the integrity handoff. Canonical clean-checkout lint remains CI-owned after the historical interrupted root scan.
+- `pnpm build`, `pnpm run verify:service-role-containment`, `pnpm run verify:bundle-containment` and `pnpm run verify:lockfiles` passed. No dependency/process source changed, so the earlier frozen-install/audit/process outcomes are retained without duplicate execution.
+- Browser discovery lists the three existing essential flows only. Serial discovery with the actual configured `integration-audit-ddl` project lists exactly job-runs, conflict-resolver, report-command and nudge files. An initial inventory call used nonexistent project `integration-serial` and exited1; correcting the project filter passed without source/config changes. Discovery is not test execution.
+- `node scripts/verify/check-review-order.mjs _bmad-output/implementation-artifacts/spec-15-4-time-reporting-filing-timesheet-review.md` passed with one section, 20 verified stops and zero errors after correcting two stops moved by the final test edit. `git diff --check` passed.
+
+The source inventory now has 73 report declarations: pure17/component15/command11/RLS7/read7/nudge13/browser3, with zero explicit skips. The original 50 skipped declarations remain active; this batch adds five pure, eight component and four nudge declarations to the preceding56. Component execution and unit execution do not establish the unexecuted SQL/browser outcomes. Actual REQUIRED integration/RLS, migration/reset/seed/ACL, recovery Storage and production-browser checks remain pending Root's exclusive exact-head CI. The LF kernel digest remains `3c701d71dba37a136ae104fd24c3b223ef46081913301fb43ff92baca3f16ffb`; original preparation files are unchanged. No runtime, commit, delivery pass or done status is claimed.
+
+### Historical Round 2 detachment checkpoint — 2026-10-20
+
+This bounded original-author fix is an uncommitted working tree against `1f19e3f3b7562bd43732dc61c17a9d0b1b5cee34`, retaining in-review status. Two actual-controller regressions select a genuine supplied booking through the production handler, detach it, submit through the production handler, and assert20/60 minutes with both relationship IDs null. Additional assertions retain explicit edited-hours rejection and independently unchanged late-fold start provenance after editing the other endpoint.
+
+Actual evidence:
+
+- Before the product fix, `pnpm exec vitest run tests/integration/components/time-reports.test.ts --project integration-parallel` executed17 cases:15 passed, two failed, zero skipped. R2-01 produced zero requests instead of one; R2-02 submitted120 rather than60 minutes. This is an actual old-source red run with the new controller tests, not a synthetic helper-only probe.
+- After the narrow detachment fix, the same command passed17/17 with zero failures/skips: eight SSR and nine actual-controller VM cases. Standard checked-in config/globalSetup was retained. VM still substitutes hook scheduling, action/read transport and router effects; no DOM/focus, database, browser or persistence outcome is inferred.
+- `node --experimental-strip-types --import ./tests/support/register.mjs --test tests/unit/features/time-reports/domain.test.ts tests/unit/features/time-reports/validation.test.ts tests/unit/features/time-reports/action-state.test.ts` passed17/17, zero failed/skipped.
+- `pnpm exec tsc --noEmit --incremental false` passed. `pnpm exec eslint src/components/time-reports/TimeReportEntry.tsx tests/integration/components/time-reports.test.ts` passed with zero errors/warnings.
+- `pnpm build`, `pnpm run verify:service-role-containment` and `pnpm run verify:bundle-containment` passed after the final product change. Unchanged full-unit/dependency/process outcomes are retained as historical evidence without repeat execution.
+
+The report inventory is now75 active declarations: pure17/component17/command11/RLS7/read7/nudge13/browser3, zero explicit skips. Both new declarations are actual controller regressions; the original50 remain active. SQL/RLS/migration/Storage/browser execution and Linux xattr remain pending Root's exact-head CI; no runtime, Git, dependency, schema or API action occurred in this batch. The same20-stop author trail below is refreshed for both residuals and correctly attributes genuine service-writer assertions to NUDGE011. Its checker passed with one section,20 stops and zero errors; `git diff --check` passed. The LF kernel SHA256 remains `3c701d71dba37a136ae104fd24c3b223ef46081913301fb43ff92baca3f16ffb`.
+
+### Historical Round 3 source-review reconciliation — 2026-10-20
+
+The independent final LIMITED review at `3bd815887a6c4a246d94956eb021b1b6ea0525c2` passed with zero findings and closed both detachment residuals. The original report and exact packet/source bindings are recorded in Review Findings. This author reconciliation changes reporting/SRO only; no product source or tests were changed or rerun. The preceding implementation/Round1/Round2 working-tree checkpoints are explicitly historical evidence, including every failure, skip and synthetic boundary.
+
+Current source inventory remains75 active report declarations with zero explicit skips: pure17/component17/command11/RLS7/read7/nudge13/browser3. Actual author evidence remains Round2's17/17 component and17/17 pure passes, type/scoped-lint/build/containment passes; the last full-unit execution remains Round1's3,041 total/3,040 passed/zero failed/one Windows xattr skip. The independent reviewer inspected that evidence without rerunning it. The38 command/RLS/read/nudge cases and three browser cases, migration/reset/seed/ACL, physical recovery Storage, Linux xattr and canonical clean-checkout gates still await Root's exact-head CI. No runtime or passing delivery artifact is asserted.
+
+The build delegate performs authorized scoped source commits; Root owns checkpoint push, CI/resource admission and aggregate state/delivery truth. Source review is complete within its final limited scope; status remains in-review until required CI/delivery evidence permits a later transition. Reporting validation here is limited to the same20-stop SRO checker, diff check and frozen-kernel conservation; no additional broad review, implementation test run, runtime or deployment is authorized by this reconciliation.
+
+### Historical qualified CI failure and bounded repair — 2026-10-20
+
+Root's independently qualified FAILURE is run39408197808, head `51f37bc965b9e9fb7b65f7cd66cc24cb4e9b48d7`, attempt1, checkpoint `dd4a731e-baa2-4df5-8caf-e9cc2d6accb4`. The author read the persisted route, Root receipt and qualifier report plus integration/browser failure qualifications in `.env.epic15.mail-runtime/story-15-4-preparation/checkpoint-51f37bc9-ci-independent/`. Root verified193 native files and three report hashes; its receipt SHA256 is `d0534b6c0a80ee7aecd5ffc74e71998f2e3b7a150fc53997b1fe2abbdc215b21`. This is failed-head evidence, not acceptance of the repaired successor.
+
+Actual failed-head CI: canonical verify passed frozen install/audit, type/lint/build, source/bundle containment, all3,041 units with zero failures/skips (including actual Linux xattr), and43 focused process assertions. Full integration was1,979 cases:1,915 passed/12 failed/52 historical skips. Story15.4's55 integration cases were44 passed/11 failed/zero skipped:17 component and27 real DB passes,11 nudge failures. All11 command,7 RLS,7 read and NUDGE012/013 bodies passed. Migration109 applied at startup and reset in each db/e2e/recovery job; the independent physical Storage proof passed1/1 with two objects/66 bytes. These results do not erase failing essential bodies.
+
+Ten nudge cases (001/002/003/005/006/010/011/007/008/009) failed at `jobsClient`'s missing NEXT_PUBLIC_SUPABASE_URL before the real producer/dispatch. Therefore SQL DST/midnight/exclusive-end vectors; concurrent dedupe; current-preference/role branches; actual opt-out-first waits; post-predicate55P03/service-writer/history/retry/barrier cleanup; filing-before-nudge suppression; and nudge atomic fault/SQLSTATE/cleanup tails were not reached. In009 registration metadata passed before the client failure. NUDGE004's visible error was auth-user cleanup; it masked an UNKNOWN earlier callback cause/reach. The repair does not invent that earlier cause or award cursor/pagination/tail coverage before a real rerun.
+
+Native browser17 cases/19 attempts had15 expected/2 unexpected/zero flaky/skipped/global errors. All14 prior smoke bodies and E2E002 passed first attempt; E2E002 reached lost committed response → revoked denial → restored same frozen attempt, no duplicate report/audit and reload/no-profile assertions. Both E2E001 attempts stopped on three responsive own-card matches after peer RPC denial/snapshot/login/date/period, before peer-card absence/capture/prefill/filing/report-audit/week/reload tails. Both E2E003 attempts passed initial physical fixtures/visible rows/person/job/unlinked totals, then found no exact Person selector; filter/annotation/attribution/audit/reload/Admin/own-only tails were unreached. Available native bytes contain locator errors and runner-local trace/error-context references; no trace, error-context or HTML bytes were uploaded, so no actual DOM-trace diagnosis is claimed.
+
+The bounded repair changes only the five allocated source/test files and this spec. Local evidence against that failed source baseline:
+
+- Standard component+quote-source-guard Vitest run first reproduced22 passes/two failures/zero skips after adding the explicit-name SSR assertion, then passed24/24: component18 and quote guards6. Existing quote/widget/email/table/Phase C assertions remain active; only the approved route pin changes. Component18 is nine SSR plus nine actual-controller VM cases; the new SSR proves explicit emitted names/options, not browser accessibility or filtering completion.
+- Focused domain/validation/action-state unit command passed17/17 with zero failures/skips. `pnpm exec tsc --noEmit --incremental false`, scoped ESLint across all five changed source/test paths (zero errors/warnings), `pnpm build`, source containment and built-bundle containment passed. Browser discovery still lists exactly the existing three essential flows; no browser body ran locally. Unchanged full-unit/dependency/process checks were not repeated.
+- Four bounded executions of the actual fixture module in a VM passed success, callback-only failure, combined callback+cleanup failures and cleanup-only failure. Substituted SQL/Auth/service ports verified exact generated-ID query scope/dependency order, original callback identity/cause plus every cleanup error, local guard/admin-port injection, and all owned auth deletion promises settled (63 measured and asserted per probe). These are control-flow probes, not real SQL/FK/Auth/JWT proof. The initial exploratory probe failed its own cross-realm array comparison; the probe assertion was corrected without a product-source change, and all four scenarios then passed.
+
+Inventory is76 active report declarations, zero explicit skips: pure17/component18/command11/RLS7/read7/nudge13/browser3. The same-SRO checker passed one section/20 stops/zero errors; `git diff --check` passed. LF kernel conservation passed at `3c701d71dba37a136ae104fd24c3b223ef46081913301fb43ff92baca3f16ffb`. Failed-head results and unreached tails remain recorded; successor exact-head CI must execute them. The original sourcefreeze and preparation/review artifacts are conserved. No SQL/app service/env/config/CI/dependency/seed/resource change, local DB/browser runtime, passing delivery, done or development-complete claim is made. An authorized exact-six-path source commit precedes the distinct High narrow repair review and Root's successor admission/rerun; canonical state and parent route are not staged.
+
+### Historical narrow CI-repair review reconciliation — 2026-10-20
+
+The distinct High narrow follow-up passed with zero findings at `71f061b83de04d8f888aaa18f98c4e1960d9d9f4`; exact input/report/source-binding provenance is recorded in Review Findings. This author update changes this spec/SRO only and does not rerun implementation checks or change the five repaired source/test files. Three counted reviews remain one broad R1 plus two limited R2/R3; this narrow CI follow-up is separate. Follow-up is now false for the reviewed source. Original artifacts, historical commit-body shorthand, failures, unknown callback cause and all evidence limits remain preserved.
+
+Inventory remains76 active declarations with zero explicit skips. The prior local24/24 component+quote and17/17 pure passes, type/scoped-lint/build/containment outcomes and substituted-port VM limitations remain author evidence from the repair checkpoint; this metadata reconciliation adds no test execution. Failed-head integration1,915P/12F/52S and browser15 expected/two unexpected remain qualified failures. Actual successor nudge/normal-FK/Auth cleanup/browser tails and required complete exact-head CI/delivery gates remain pending; source-review PASS grants no runtime or delivery credit. Validation here is limited to the one20-stop SRO checker, diff check and frozen-kernel conservation. No commit, source change, runtime, push or state edit occurs in this reconciliation.
+
+### Admitted CI2 failure and exact numeric assertion repair — 2026-10-20
+
+Current repair baseline is `d798b28609676198e5f975d1a5ea3d301a84b647`; run39412225741/attempt1/checkpoint `dd65c17d-77c5-4db0-8e84-cbdce9640573` remains a qualified FAILURE. Root's before-write browser admission (`root-browser-d798b286-admission.json`, SHA256 `8e65f67195c3902cc1a4bff37b48680fbc44f450a3524fdcf7aa658c55681264`, errors[]) verified136 browser/source files and current provenance (109 bindings/60 sources/124 Git snapshots). During the bounded repair Root admitted the FULL packet:331 native files and all report digests verified; receipt `root-checkpoint-d798b286-qualified-failure.json` SHA256 `3df9de8682bd6ed2057d78499a0728ce769d1134beb4f2209ec1a5306d57db38`, errors[]. The author read the updated persisted route and both receipts under `.env.epic15.mail-runtime/story-15-4-preparation/`. Full-packet qualification is complete; successful successor runtime acceptance is not.
+
+Root's admitted CI2 qualification reports1,980 integration cases across161 files:1,928 passed/zero failed/52 historical skips. The RLS subset is nonadditive843 cases=829 passed/14 historical skips. All56 story integration cases passed:38 REAL DB plus18 component, including all13 nudge bodies. NUDGE001 reached SQL DST/midnight/exclusive-end vectors;008 reached P5403 atomic rollback;010 reached observable opt-out-first waits;011 reached the post-predicate55P03/genuine service writer/explicit retry and await/finally catalog-cleanup assertions. Current NUDGE004 reached its full callback and cleanup successfully; the old51f masked callback cause/reach remains UNKNOWN. All four serial files ran once after parallel execution without overlap; migration109 startup/reset in all three jobs, physical Storage and static gates passed. This admits those exact old-d798 results without turning the overall failed run into PASS.
+
+Browser17 cases/18 attempts:16 expected/one unexpected/zero flaky/skipped/global errors. All14 prior smoke cases, E2E002 and E2E003 passed first attempt. E2E003 now reached its Person/Jobb filters, annotation/reload/Admin refusal tails. E2E001 failed both attempts at physical row matching: expected JS number120, actual PostgreSQL numeric raw string `120.0000000000000000`. It DID reach unique visible own context/card, global peer absence, capture/editable prefill, form changes, confirmed Rapporterad and one physical report row. The row matcher stopped BEFORE report-count delta/audit/week/missing-date/reload assertions; those remaining tails and the new SQL BOOLEAN assertion require actual successor execution. No DOM-trace diagnosis is needed or claimed for this native assertion-value mismatch.
+
+The repair changes only ReportRow's raw numeric type and that physical assertion. It removes only the incorrect number property from the matcher, adds exact SQL `booked_minutes_at_filing=120::numeric` under both tenant/report IDs, and requires exactly one true row. Every other physical/core/count/audit/week/missing-date/reload/peer assertion remains. There is no parser/production/schema/env/config/CI/dependency/credential/runtime change and no new test declaration: inventory remains76 active report declarations, zero explicit skips, with exactly the same three essential browser flows.
+
+Actual proportional checks: `pnpm exec tsc --noEmit --incremental false` passed; `pnpm exec eslint tests/e2e/support/time-reports-atdd.ts tests/e2e/time-reports.e2e.spec.ts` passed with zero errors/warnings; `pnpm exec playwright test tests/e2e/time-reports.e2e.spec.ts --list` discovered exactly three flows (collection only). Unchanged app build/source/bundle/dependency/unit evidence is reused from the recorded71f repair and bound d798 source; no gratuitous build/full-unit or mocked SQL BOOLEAN probe was run. Local SQL/browser execution remains absent. The same-SRO checker passed one section/20 stops/zero errors; diff check passed; kernel conservation passed at `3c701d71dba37a136ae104fd24c3b223ef46081913301fb43ff92baca3f16ffb`. An authorized exact-three-path commit precedes distinct High narrow follow-up2 and Root's successor execution; state and parent route are excluded. Status remains in-review, with no passing delivery/DONE/development-complete claim.
+
+### Historical preparation evidence
+
+This planning run executes artifact/process checks only: source AC comparison, seven-point immediate story audit, READY standard, spec reader/discovery, exact raw/kernel hashes and clean tracked-source/cached-context preservation. Zero app/schema/test/scaffold/runtime/CI execution is claimed. Root separately dispatches independent High specification validation.
+
+Future development: frozen install; applicable `pnpm run verify:development`, `pnpm audit --audit-level=high`; full `SUPABASE_TEST_REQUIRED=1 pnpm run test:int` with actual counts, all new focused integrity suites plus existing booking/series/resolver/job/E13/role regressions; complete current-history migration replay/seed/H4/exact-policy/ACL agreement; direct physical recovery-Storage integrity; essential configured-production Playwright time-reports and ordinary auth smoke; independent High review of actual sensitive diff. Record executed/failed/skipped counts and exact revision. No skipped suite, synthetic envelope, test collection or predecessor CI grants report acceptance.
+
+Cover actual wrapper/direct-RLS positive controls, current-role revocation/replay, assignment reparenting and same-tenant links, report/annotation audit fault rollback, concurrent idempotency, complete paging/standalone totals, both Stockholm DST transitions/overnight/local week boundaries, booked snapshot after booking changes, bounded producer cursor beyond25 recipients and7 dates, own recipient preferences/races, service-only ACL denial and preserved booking.changed/channel checks. Trace TEA15.4-RLS-001/INT-001…004/COMP-001/E2E-001 to real assertions and outcomes.
+
+Deferred release validation retains exhaustive browser/device/view matrices, screenshots/visual comparison, manual accessibility/daylight/exploration and actual≤30-second one-hand timing (QA/UX), representative performance certification after Product/Architect approves targets, and polish (delivery owner). Record status/evidence/next action in later delivery/ledger; unexecuted means deferred, never passed. Consequential functionality/security/integrity failure still blocks development. Development-complete does not mean release-ready or authorize merge/deploy; no automatic previews/manual deployment is authorized. Root owns resources/Git/CI/state/aggregate ledgers; inherited review_unverifiedTRUE is preserved.
+
+## Auto Run Result
+
+Status: in-review
+
+Current result: admitted CI2 atd798 passed all38 report DB/18 component cases and16 browser bodies, but remains FAILURE solely at E2E001's raw numeric matcher. The exact two-path physical assertion repair passed proportional local checks and awaits separate narrow follow-up2 and Root's successor execution. THREE counted reviews remain ONE broad R1 plus TWO limited R2/R3; separate narrow follow-up1 passed, re-derivation0, current follow-up true for the new narrow scope only.
+Blocking condition: the new SQL BOOLEAN comparison and E2E001's later report-count/audit/week/missing-date/reload tails have not executed for the repaired successor. Old51f NUDGE004 masked callback cause remains UNKNOWN despite currentd798 callback/cleanup success. No fourth broad/counted review, runtime expansion, passing delivery or done transition is implied.
+
+### Historical preparation result
+
+Status: ready-for-dev
+Blocking condition: none for planning.
+
+HALT after planning. One original source AC sketch is preserved verbatim, with ten path-bound tasks and nine Given/When/Then ACs, exact candidate ownership and design companions, immediate seven-point audit and author READY self-review. No product intent gap was found. The intent-contract is the sprint BuildAuto kernel; candidate raw/LF kernel hashes and reader/discovery/preservation results are in preparation validation receipts. Approved kernel remains null pending Root's distinct independent High validation and freeze.
+
+Root then obtains Coordinator allocation of exact shared semantic deltas, a unique new migration timestamp after20261020180000 and isolated mutable fixtures/resources before implementation. Three existing BookingEntry caller pages are explicit candidate metadata-only deltas, not permission to touch E16-owned job semantics. This run changes only this spec and its owned preparation artifacts; cached Epic15 context, all tracked source/history/state/sprint and inherited review_unverifiedTRUE remain unchanged. No app/schema/tests/scaffolds/dependencies/env, runtime/CI, Git commit/push/PR, provider/hosted changes or deployment occurred. Routes: Sol High author and one synchronous context-free Sol High read-only explorer, completed before HALT; no implementation/review round consumed. Completion hook preserves planning status and creates no completed Suggested Review Order or delivery/development-complete/release-ready claim.
+
+## Suggested Review Order
+
+Author: original Story15.4 implementation/fix author, gpt-6.1-sol High. This same trail reconciles the bounded CI repair; no new broad review is requested.
+Refreshed against the numeric-assertion repair working tree based on admitted failed CI2 source `d798b28609676198e5f975d1a5ea3d301a84b647`, 2026-10-20. Exact accounting is one broad R1 plus two limited R2/R3, completed separate narrow follow-up1 and pending narrow follow-up2. Original sourcefreeze/failure/review artifacts remain immutable; current type/SQL assertion and remaining browser tail need successor review/execution, with status in-review.
+
+### Own capture and exact physical comparison
+
+Entry retains exact-duration/provenance and unresolved-attempt behavior. Admitted CI2 reached unique own-card capture, edited prefill, confirmation and one physical row, then failed on the test's JS-number expectation for raw pg numeric. Raw decimal provenance now remains string|null, while exact SQL numeric equality proves120 under both tenant/report IDs; all other report/audit/week/reload/peer assertions remain and the unreached tails still require successor execution.
+
+- `tests/e2e/support/time-reports-atdd.ts:18` — `booked_minutes_at_filing: string | null`: preserves raw PostgreSQL numeric representation.
+- `src/features/time-reports/action-state.ts:36` — `timeReportDraftMinutes`: preserves independently unchanged endpoints and exact canonical minutes.
+- `tests/e2e/time-reports.e2e.spec.ts:31` — `const ownWeek`: requires one visible own-week context before unique-card capture.
+- `tests/e2e/time-reports.e2e.spec.ts:64` — `booked_minutes_at_filing=120::numeric`: compares the exact value under tenant and report UUIDs.
+
+### Current authority and attributable persistence
+
+SQL authority, immutable filing and reviewer CAS are unchanged by this test-only repair. Admitted d798 native qualification passed all38 report DB cases, including filing/annotation and nudge atomic fault bodies. That predecessor evidence does not award the separately unreached E2E001 audit/count/week/reload tail or execute the new exact SQL BOOLEAN assertion.
+
+- `supabase/migrations/20261020190000_time_reports.sql:48` — `time_report_actor_gate_internal`: checks current role authority before replay.
+- `supabase/migrations/20261020190000_time_reports.sql:62` — `file_time_report`: binds actor, attempt, references and booked provenance.
+- `supabase/migrations/20261020190000_time_reports.sql:122` — `annotate_time_report`: checks revision and latest exact retry.
+- `tests/integration/commands/time-reports.int.test.ts:193` — `15.4-INT-009`: asserts business stage and atomic audit rollback.
+
+### Accessible filters and complete projections
+
+Person and Jobb retain explicit accessible names, visible labels/options and exact browser assertions. Admitted d798 browser003 passed its actual filters/annotation/reload/Admin refusal tail, while the real-workspace SSR assertion separately proves emitted names. Complete paging, standalone groups and decimal booked provenance are unchanged and retain the admitted DB evidence.
+
+- `src/components/time-reports/TimeReportWorkspace.tsx:31` — `aria-label="Person"`: names both review filter selects explicitly.
+- `tests/integration/components/time-reports.test.ts:212` — `CI repair review selectors`: asserts exact names and retained real selector options.
+- `src/features/time-reports/domain.ts:28` — `reportedBookedDelta`: subtracts decimal minutes without rounding the snapshot.
+- `tests/integration/read-models/time-reports.int.test.ts:37` — `15.4-READ-002`: asserts complete filtered review and standalone totals.
+
+### Genuine local service injection and bounded reminders
+
+The fixture retains the guarded existing local test service-JWT injection; production dispatch/RPC and preference semantics are unchanged. Admitted d798 qualification passed all13 nudge bodies, including real SQL DST vectors, opt-out ordering, nudge fault rollback and NUDGE011's genuine service-writer/55P03/explicit-retry/finally assertions. The old51f client failures remain historical and are not rewritten by these successor passes.
+
+- `tests/support/time-reports-atdd.ts:154` — `jobsClient`: injects the guarded existing local test service client.
+- `supabase/migrations/20261020190000_time_reports.sql:186` — `time_report_preference_gate`: tries affected tenant gates without waiting or writer exemptions.
+- `supabase/migrations/20261020190000_time_reports.sql:209` — `emit_time_report_nudges`: retains bounded predicates, dedupe and atomic effects.
+- `tests/integration/notifications/time-report-nudge-producer.int.test.ts:268` — `15.4-NUDGE-011`: asserts post-predicate writer failure, rollback and explicit retry.
+
+### Scoped cleanup and exact surface evidence
+
+Generated UUID children are removed in dependency order before all owned auth deletion promises settle; callback and every cleanup failure remain attributable. Currentd798 NUDGE004 callback/cleanup passed, while its old51f masked callback cause remains UNKNOWN. The quote guard preserves every quote/widget/email/table/Phase C assertion. The new browser repair asserts a database BOOLEAN without JS coercion, scale pinning or a parser override; no extra mock or DOM-trace claim substitutes for successor execution.
+
+- `tests/support/time-reports-atdd.ts:200` — `withNudgeRecipients`: tracks exact owned IDs and settles all actor cleanup.
+- `tests/support/time-reports-atdd.ts:42` — `throwFixtureFailures`: preserves primary error and every cleanup failure.
+- `tests/integration/features/quotes/quote-pipeline-non-scope-guard.int.test.ts:28` — `APPROVED_ACTIVE_NAV_ROUTES`: pins the exact ten approved active nav routes.
+- `tests/support/time-reports-atdd.ts:171` — `cleanupOwnedTimeReports`: confines the disclosed transaction-local report bypass to owned tenants.
+
+Evidence: current type check and exact-two-file lint passed; collection lists the same three essential flows. No SQL BOOLEAN/browser body ran locally and no build/unit/mock probe was repeated. Admitted CI2 reports1,928P/0F/52 historical skips, all38 report DB/18 component passes, and browser16 expected/one unexpected; E2E001 stopped before its audit/count/week/reload tail. Historical51f failures, old UNKNOWN NUDGE004 cause, four substituted-port VM limits and prior narrow review provenance remain preserved. Inventory remains76 active declarations with zero explicit skips. Current separate narrow follow-up2, exact SQL BOOLEAN/remaining browser tail and successor successful CI/delivery remain pending; exhaustive visual/manual/timing/performance release work stays deferred. No done/development-complete/release-ready claim is made.
+
+
+# FULL CURRENT CHANGED FILE: tests/e2e/support/time-reports-atdd.ts
+/** Isolated real time-report browser fixtures; no runtime launch or success stub.
+ * Native Playwright follows the existing resourcePage/tenant factory conventions.
+ */
+import { randomUUID } from "node:crypto";
+import type { Locator, Page, Request, Route } from "@playwright/test";
+import { expect } from "./resource-cdp-attachment";
+import { withBookingFixture, type BookingFixture } from "../../support/bookings-atdd";
+import { fileReport, reportInput } from "../../support/time-reports-atdd";
+import { adminInsertCustomer, makeAuthedServerClient, type FixtureUser } from "../../factories/tenants";
+import { adminQuery, adminSession } from "../../factories/admin-sql";
+import { createJob } from "@/server/commands/jobs";
+import { runCommand } from "@/server/commands/envelope";
+
+export const REPORT_DATE = "2026-10-12";
+export type ReportRow = {
+  id: string; tenant_id: string; user_id: string; report_date: string;
+  duration_minutes: number; booking_id: string | null; job_id: string | null;
+  note: string | null; status: string; booked_minutes_at_filing: string | null;
+  created_at: string; review_note: string | null; reviewed_by: string | null;
+  reviewed_at: string | null; review_revision: number;
+};
+export type AuditRow = {
+  id: string; tenant_id: string; actor_user_id: string | null; target_id: string | null;
+  command: string; event_type: string; created_at: string;
+};
+export type ReportSnapshot = { reports: ReportRow[]; audit: AuditRow[] };
+export type TimeReportBrowserFixture = {
+  fx: BookingFixture;
+  ownBooking: string; peerBooking: string; missingBooking: string;
+  job: { id: string; title: string }; otherJob: { id: string; title: string };
+  marker: string; noProfile: FixtureUser;
+  noProfileClient: Awaited<ReturnType<typeof makeAuthedServerClient>>;
+  snapshot: () => Promise<ReportSnapshot>;
+};
+
+/** Full physical safe report fields and audit identity for BOTH owned tenants.
+ * No rate/money data or private attempt/digest is read. UI success is insufficient.
+ */
+export async function reportSnapshot(tenantIds: readonly string[]): Promise<ReportSnapshot> {
+  const reports = await adminQuery<ReportRow>(`select id,tenant_id,user_id,
+    report_date::text,duration_minutes,booking_id,job_id,note,status,
+    booked_minutes_at_filing,created_at::text,review_note,reviewed_by,
+    reviewed_at::text,review_revision from public.time_reports
+    where tenant_id=any($1::uuid[]) order by tenant_id,id`, [tenantIds]);
+  const audit = await adminQuery<AuditRow>(`select id,tenant_id,actor_user_id,target_id,
+    command,event_type,created_at::text from public.audit_events
+    where tenant_id=any($1::uuid[]) order by tenant_id,id`, [tenantIds]);
+  return { reports, audit };
+}
+
+/** Reuses fresh role-aware tenants; never changes a shared smoke identity.
+ * All setup jobs use the real normal-JWT checked command. Booking rows are
+ * dedicated input fixtures, using the existing seedReadFixtures SQL shape.
+ */
+export async function withTimeReportBrowserFixture(
+  run: (fixture: TimeReportBrowserFixture) => Promise<void>,
+): Promise<void> {
+  await withBookingFixture(async (fx) => {
+    const marker = `time-report-${randomUUID()}`;
+    const bookingIds = [randomUUID(), randomUUID(), randomUUID()];
+    const jobs: string[] = [], customers: string[] = [];
+    try {
+      const customerId = await adminInsertCustomer({ tenant_id: fx.base.tenantA.id,
+        customer_type: "company", display_name: marker });
+      customers.push(customerId);
+      const makeJob = async (suffix: string) => {
+        const title = `${marker} ${suffix}`;
+        const result = await runCommand(createJob, { client: fx.adminClient as never,
+          input: { customer_id: customerId, title }, correlationId: randomUUID() });
+        if (!result.ok) throw new Error(`Time report job fixture refused: ${result.code}`);
+        jobs.push(result.data.targetId);
+        return { id: result.data.targetId, title };
+      };
+      const job = await makeJob("installation"), otherJob = await makeJob("service");
+      // Current E16.1 job_can_read requires own membership or assignment for
+      // Montör; this explicit owned relationship makes optional-job filing real.
+      await adminQuery(`insert into public.job_members(tenant_id,job_id,person_profile_id)
+        values($1,$2,$3)`, [fx.base.tenantA.id, otherJob.id, fx.ownProfile.id]);
+      // Fixed independent October oracle: 08:00–10:00 Stockholm = 06:00–08:00Z,
+      // exactly 120 elapsed minutes. The later day has a planned missing-time chip.
+      for (const [index, profile] of [fx.ownProfile.id, fx.coworkerProfile.id, fx.ownProfile.id].entries()) {
+        const date = index === 2 ? "2026-10-13" : REPORT_DATE;
+        await adminQuery(`insert into public.bookings(id,tenant_id,starts_at,ends_at,
+          description,job_id,customer_id,create_command_id,create_payload_digest,create_result)
+          values($1,$2,$3,$4,$5,$6,$7,$8,repeat('a',64),jsonb_build_object('bookingId',$1::uuid::text))`,
+        [bookingIds[index], fx.base.tenantA.id, `${date}T06:00:00Z`, `${date}T08:00:00Z`,
+          `${marker} booking ${index}`, job.id, customerId, randomUUID()]);
+        await adminQuery(`insert into public.booking_assignees(tenant_id,booking_id,person_profile_id)
+          values($1,$2,$3)`, [fx.base.tenantA.id, bookingIds[index], profile]);
+      }
+      const noProfile = fx.roleUnionUser;
+      const noProfileClient = await makeAuthedServerClient(noProfile);
+      expect(await adminQuery(`select p.id from public.person_profiles p join public.tenant_memberships m
+        on m.id=p.membership_id and m.tenant_id=p.tenant_id where m.user_id=$1 and m.tenant_id=$2`,
+      [noProfile.id, fx.base.tenantA.id])).toEqual([]);
+      await run({ fx, marker, ownBooking: bookingIds[0], peerBooking: bookingIds[1],
+        missingBooking: bookingIds[2], job, otherJob, noProfile, noProfileClient,
+        snapshot: () => reportSnapshot(fx.tenantIds) });
+    } finally {
+      // Test-only immutable-row bypass, bounded to this factory's two tenants and
+      // exact parent IDs. Restore connection enforcement before returning it.
+      // Base factory then owns role/profile/user/tenant teardown. No lifecycle stop.
+      await adminSession(async ({ query }) => {
+        await query("begin");
+        try {
+          await query("set local session_replication_role=replica");
+          await query("delete from public.time_reports where tenant_id=any($1::uuid[])", [fx.tenantIds]);
+          await query("delete from public.audit_events where tenant_id=any($1::uuid[])", [fx.tenantIds]);
+          await query("delete from public.booking_conflicts where tenant_id=$1 and (booking_id=any($2::uuid[]) or related_booking_id=any($2::uuid[]))", [fx.base.tenantA.id, bookingIds]);
+          await query("delete from public.booking_assignees where tenant_id=$1 and booking_id=any($2::uuid[])", [fx.base.tenantA.id, bookingIds]);
+          await query("delete from public.bookings where tenant_id=$1 and id=any($2::uuid[])", [fx.base.tenantA.id, bookingIds]);
+          await query("delete from public.job_events where tenant_id=$1 and job_id=any($2::uuid[])", [fx.base.tenantA.id, jobs]);
+          await query("delete from public.job_members where tenant_id=$1 and job_id=any($2::uuid[])", [fx.base.tenantA.id, jobs]);
+          await query("delete from public.jobs where tenant_id=$1 and id=any($2::uuid[])", [fx.base.tenantA.id, jobs]);
+          await query("delete from public.customers where tenant_id=$1 and id=any($2::uuid[])", [fx.base.tenantA.id, customers]);
+          await query("set local session_replication_role=origin");
+          await query("commit");
+        } catch (error) { await query("rollback"); throw error; }
+      });
+    }
+  });
+}
+
+export async function hydrated(locator: Locator): Promise<void> {
+  await locator.waitFor({ state: "visible" });
+  await locator.evaluate((element) => new Promise<void>((resolve) => {
+    const tick = () => Object.keys(element).some((key) => key.startsWith("__react"))
+      ? resolve() : requestAnimationFrame(tick);
+    tick();
+  }));
+}
+
+// playwright-utils deviation: package/auth provider absent; actual inspected login.
+export async function signIn(page: Page, user: FixtureUser): Promise<void> {
+  await page.context().clearCookies();
+  await page.goto("/login");
+  const submit = page.getByRole("button", { name: "Logga in", exact: true });
+  await hydrated(submit);
+  await page.getByLabel("E-post", { exact: true }).fill(user.email);
+  await page.getByLabel("Lösenord", { exact: true }).fill(user.password);
+  await submit.click();
+  await expect(page).not.toHaveURL(/\/login(?:\?|$)/);
+}
+
+/** Semantic selectors bound to the Story 15.4 UI. */
+export function filingDialog(page: Page): Locator {
+  return page.getByRole("dialog", { name: "Ny tidrapport", exact: true });
+}
+export async function openStandalone(page: Page): Promise<Locator> {
+  await page.goto("/time-reports");
+  const open = page.getByRole("button", { name: "Ny tidrapport", exact: true });
+  await hydrated(open);
+  await open.click();
+  const form = filingDialog(page);
+  await expect(form).toBeVisible();
+  return form;
+}
+export async function openWeek(page: Page): Promise<Locator> {
+  await page.goto("/time-reports");
+  const week = page.getByLabel("Vecka", { exact: true });
+  await hydrated(week);
+  await week.fill(REPORT_DATE);
+  const sheet = page.getByRole("region", { name: "Min vecka", exact: true });
+  await expect(sheet).toBeVisible();
+  return sheet;
+}
+
+/** Observe the production Next Server Action on the current host route. */
+export function isFilingRequest(request: Request, marker: string): boolean {
+  return request.method() === "POST" && !!request.headers()["next-action"]
+    && ["/time-reports", "/scheduling"].includes(new URL(request.url()).pathname)
+    && (request.postData() ?? "").includes(marker);
+}
+export type FilingAttempt = {
+  attemptId: string; date: string; minutes: number; note: string | null;
+  bookingId: string | null; jobId: string | null;
+};
+export function filingAttempt(request: Request): FilingAttempt {
+  const args: unknown = JSON.parse(request.postData() ?? "null");
+  const input = Array.isArray(args) ? args[0] as Record<string, unknown> | undefined : undefined;
+  expect(input).toBeTruthy();
+  expect(input?.attemptId).toMatch(/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i);
+  expect(typeof input?.date).toBe("string");
+  expect(Number.isInteger(input?.minutes)).toBe(true);
+  // Pick the approved payload fields; unrelated transport correlation may change.
+  return { attemptId: input!.attemptId as string, date: input!.date as string,
+    minutes: input!.minutes as number, note: input!.note as string | null,
+    bookingId: input!.bookingId as string | null, jobId: input!.jobId as string | null };
+}
+
+/** Real commit → physical row/audit readback → abort response. No fulfilled success.
+ * Installed BEFORE navigation. Every explicit retry shares the exact attempt.
+ * The first request fails before server work; the second commits but loses its
+ * response. Later denied/authorized retries reach the real server unchanged.
+ */
+export async function failThenLoseCommittedResponse(
+  page: Page, fixture: TimeReportBrowserFixture, marker: string,
+) {
+  const attempts: FilingAttempt[] = [];
+  let failedResolve!: () => void, committedResolve!: (state: ReportSnapshot) => void;
+  let failedReject!: (error: unknown) => void, committedReject!: (error: unknown) => void;
+  const failed = new Promise<void>((resolve, reject) => { failedResolve = resolve; failedReject = reject; });
+  const committed = new Promise<ReportSnapshot>((resolve, reject) => { committedResolve = resolve; committedReject = reject; });
+  // Both barriers may reject on one route error before the journey reaches the
+  // second await. Preserve their rejection while avoiding an unhandled sibling.
+  void failed.catch(() => undefined);
+  void committed.catch(() => undefined);
+  const before = await fixture.snapshot();
+  // playwright-utils deviation: real Next action fault interception; package absent.
+  const handler = async (route: Route) => {
+    if (!isFilingRequest(route.request(), marker)) { await route.fallback(); return; }
+    try {
+      attempts.push(filingAttempt(route.request()));
+      if (attempts.length === 1) {
+        await route.abort("failed");
+        expect(await fixture.snapshot()).toEqual(before);
+        failedResolve();
+      } else if (attempts.length === 2) {
+        expect(attempts[1]).toEqual(attempts[0]);
+        const response = await route.fetch();
+        expect(response.ok()).toBe(true); // Transport only; physical commit below.
+        const state = await fixture.snapshot();
+        const rows = state.reports.filter((row) => row.note === marker);
+        expect(rows).toHaveLength(1);
+        expect(rows[0]).toMatchObject({ user_id: fixture.noProfile.id, status: "submitted",
+          duration_minutes: 75, report_date: REPORT_DATE, booking_id: null, job_id: null });
+        expect(state.audit.filter((row) => row.target_id === rows[0].id)).toHaveLength(1);
+        expect(state.reports.length - before.reports.length).toBe(1);
+        expect(state.audit.length - before.audit.length).toBe(1);
+        await route.abort("failed");
+        committedResolve(state);
+      } else {
+        expect(attempts[attempts.length - 1]).toEqual(attempts[0]);
+        await route.continue();
+      }
+    } catch (error) {
+      // Reject both barriers immediately; never let an interception error turn
+      // into an unexplained locator timeout or an apparent successful test.
+      failedReject(error); committedReject(error);
+      throw error;
+    }
+  };
+  await page.route("**/*", handler);
+  return { attempts, failed, committed, dispose: () => page.unroute("**/*", handler) };
+}
+
+/** Real production filing for review setup and negatives; no direct report INSERT. */
+export async function seedReviewReports(f: TimeReportBrowserFixture) {
+  const seed = async (client: Parameters<typeof fileReport>[0], patch: Parameters<typeof reportInput>[0]) => {
+    const result = await fileReport(client, reportInput(patch));
+    expect(result.ok).toBe(true);
+    if (!result.ok) throw new Error(`Time report fixture filing refused: ${result.code}`);
+    return result.data.reportId;
+  };
+  const own = await seed(f.fx.montorClient, { minutes: 180, bookingId: f.ownBooking,
+    jobId: f.job.id, note: `${f.marker} own linked` });
+  const ownUnlinked = await seed(f.fx.montorClient, { minutes: 45, note: `${f.marker} own standalone` });
+  const ownOtherJob = await seed(f.fx.montorClient, { minutes: 60, jobId: f.otherJob.id,
+    note: `${f.marker} other job` });
+  const peer = await seed(f.fx.plannerClient, { minutes: 90, bookingId: f.peerBooking,
+    jobId: f.job.id, note: `${f.marker} peer linked` });
+  const peerUnlinked = await seed(f.fx.plannerClient, { minutes: 30, note: `${f.marker} peer standalone` });
+  const otherWeek = await seed(f.fx.montorClient, { date: "2026-10-19", minutes: 660,
+    note: `${f.marker} other week` });
+  const foreign = await seed(f.fx.foreignClient, { minutes: 420, note: `${f.marker} foreign` });
+  return { own, ownUnlinked, ownOtherJob, peer, peerUnlinked, otherWeek, foreign };
+}
+
+
+# FULL CURRENT CHANGED FILE: tests/e2e/time-reports.e2e.spec.ts
+/** Essential configured-production browser acceptance. All successful persistence
+ * is verified by physical owned report/audit readbacks. Transport faults never
+ * fabricate success. Native Playwright follows existing resourcePage conventions.
+ * This source is runnable coverage; no browser/DB result is claimed by authoring it.
+ */
+import { test, expect } from "./support/resource-cdp-attachment";
+import {
+  REPORT_DATE, filingDialog, hydrated, isFilingRequest, openStandalone, openWeek,
+  signIn, withTimeReportBrowserFixture, failThenLoseCommittedResponse, seedReviewReports,
+} from "./support/time-reports-atdd";
+import { fileReport, reportInput } from "../support/time-reports-atdd";
+import { adminQuery } from "../factories/admin-sql";
+
+test.describe("15.4 essential production-host time reporting", () => {
+  test("[P0] 15.4-E2E-001 own booking editable prefill → filed report → persisted own week", async ({ resourcePage: page }) => {
+    await withTimeReportBrowserFixture(async (f) => {
+      // Concrete peer booking exists. A normal own-only JWT must fail filing it,
+      // independently of the absence of its card/action from the personal UI.
+      const beforeDenied = await f.snapshot();
+      const denied = await fileReport(f.fx.montorClient, reportInput({ bookingId: f.peerBooking,
+        jobId: f.job.id, note: `${f.marker} denied peer` }));
+      expect(denied).toMatchObject({ ok: false, code: "TENANT_ACCESS_DENIED" });
+      expect(await f.snapshot()).toEqual(beforeDenied);
+
+      await signIn(page, f.fx.users.montor);
+      await page.goto("/scheduling");
+      const date = page.getByLabel("Datum", { exact: true });
+      await hydrated(date);
+      await date.fill(REPORT_DATE);
+      await page.getByLabel("Period", { exact: true }).selectOption("week");
+      const ownWeek = page.getByRole("region", { name: "Min kalender", exact: true })
+        .getByLabel("Egen veckokalender", { exact: true }).filter({ visible: true });
+      await expect(ownWeek).toHaveCount(1);
+      await expect(ownWeek).toBeVisible();
+      const card = ownWeek.getByTestId(`scheduling-booking-${f.ownBooking}`).filter({ visible: true });
+      await expect(card).toHaveCount(1);
+      await expect(card).toBeVisible();
+      await expect(page.getByTestId(`scheduling-booking-${f.peerBooking}`)).toHaveCount(0);
+      const capture = card.getByRole("button", { name: "Rapportera tid", exact: true });
+      await capture.click();
+      const form = filingDialog(page);
+      await expect(form.getByLabel("Datum", { exact: true })).toHaveValue(REPORT_DATE);
+      await expect(form.getByLabel("Start", { exact: true })).toHaveValue("2026-10-12T08:00");
+      await expect(form.getByLabel("Slut", { exact: true })).toHaveValue("2026-10-12T10:00");
+      await expect(form.getByLabel("Jobb", { exact: true })).toHaveValue(f.job.id);
+      await expect(form.getByText("Osänd", { exact: true })).toBeVisible();
+      await form.getByLabel("Slut", { exact: true }).fill("2026-10-12T11:00");
+      await form.getByLabel("Anteckning", { exact: true }).fill(f.marker);
+      const before = await f.snapshot();
+      // playwright-utils deviation: installed package gate is false. Observe the
+      // actual proposed Next action before clicking; transport alone is not success.
+      const saved = page.waitForResponse((reply) => isFilingRequest(reply.request(), f.marker));
+      await form.getByRole("button", { name: "Rapportera tid", exact: true }).click();
+      expect((await saved).ok()).toBe(true);
+      await expect(page.getByTestId("time-report-submit-status")).toHaveText("Rapporterad");
+      const durable = await f.snapshot();
+      const rows = durable.reports.filter((row) => row.note === f.marker);
+      expect(rows).toHaveLength(1);
+      expect(rows[0]).toMatchObject({ tenant_id: f.fx.base.tenantA.id,
+        user_id: f.fx.users.montor.id, report_date: REPORT_DATE, duration_minutes: 180,
+        status: "submitted", booking_id: f.ownBooking, job_id: f.job.id });
+      // Raw node-pg numeric remains a decimal string; compare exactly in SQL.
+      const booked = await adminQuery<{ matches_expected_booked_minutes: boolean | null }>(
+        `select booked_minutes_at_filing=120::numeric as matches_expected_booked_minutes
+         from public.time_reports where tenant_id=$1::uuid and id=$2::uuid`,
+        [f.fx.base.tenantA.id, rows[0].id]);
+      expect(booked).toHaveLength(1);
+      expect(booked[0].matches_expected_booked_minutes).toBe(true);
+      expect(durable.reports.length - before.reports.length).toBe(1);
+      const audits = durable.audit.filter((row) => row.target_id === rows[0].id);
+      expect(audits).toHaveLength(1);
+      expect(audits[0]).toMatchObject({ tenant_id: f.fx.base.tenantA.id, actor_user_id: f.fx.users.montor.id });
+      expect(durable.audit.length - before.audit.length).toBe(1);
+      const week = await openWeek(page);
+      await expect(week.getByTestId(`time-report-row-${rows[0].id}`)).toContainText("3 h");
+      await expect(week.getByTestId(`time-report-row-${rows[0].id}`)).toContainText(f.job.title);
+      await expect(week.getByTestId("time-report-week-total")).toHaveText("3 h");
+      await expect(week.getByTestId("time-report-missing-2026-10-13")).toBeVisible();
+      await expect(page.getByLabel("Person", { exact: true })).toHaveCount(0);
+      await page.reload();
+      const reloaded = await openWeek(page);
+      await expect(reloaded.getByTestId(`time-report-row-${rows[0].id}`)).toContainText(f.marker);
+      expect(await f.snapshot()).toEqual(durable);
+    });
+  });
+
+  test("[P0] 15.4-E2E-002 no-profile standalone at 360×640 retains its attempt through lost commit, revoked denial and restored retry", async ({ resourcePage: page }) => {
+    await withTimeReportBrowserFixture(async (f) => {
+      await page.setViewportSize({ width: 360, height: 640 });
+      // Register real failure interception BEFORE navigation; never fabricate a 2xx.
+      const fault = await failThenLoseCommittedResponse(page, f, f.marker);
+      try {
+        await signIn(page, f.noProfile);
+        const form = await openStandalone(page);
+        await form.getByLabel("Datum", { exact: true }).fill(REPORT_DATE);
+        await form.getByLabel("Timmar", { exact: true }).fill("1,25");
+        await form.getByLabel("Anteckning", { exact: true }).fill(f.marker);
+        await expect(form.getByLabel("Jobb", { exact: true })).toHaveValue("");
+        await expect(form.getByText("Osänd", { exact: true })).toBeVisible();
+        const submit = form.getByRole("button", { name: "Rapportera tid", exact: true });
+        const size = await submit.boundingBox();
+        expect(size).not.toBeNull();
+        expect(size!.height).toBeGreaterThanOrEqual(48);
+        await submit.focus();
+        await expect(submit).toBeFocused();
+        await page.keyboard.press("Enter");
+        await fault.failed;
+        await expect(form.getByLabel("Timmar", { exact: true })).toHaveValue("1,25");
+        await expect(form.getByLabel("Anteckning", { exact: true })).toHaveValue(f.marker);
+        await expect(form.getByText("Osänd", { exact: true })).toBeVisible();
+        await expect(page.getByTestId("time-report-submit-status")).toHaveCount(0);
+        const retry = form.getByRole("button", { name: "Försök igen med samma försök", exact: true });
+        await expect(retry).toBeVisible();
+        await retry.focus();
+        await expect(retry).toBeFocused();
+        await page.keyboard.press("Enter");
+        const committed = await fault.committed; // SQL proves commit before response was aborted.
+        expect(fault.attempts).toHaveLength(2);
+        expect(fault.attempts[1]).toEqual(fault.attempts[0]);
+        await expect(form.getByText("Osänd", { exact: true })).toBeVisible();
+        await expect(page.getByTestId("time-report-submit-status")).toHaveCount(0);
+        await expect(form.getByLabel("Anteckning", { exact: true })).toHaveValue(f.marker);
+        // An unknown committed outcome must reconcile the frozen attempt before
+        // editing. This is in-memory connected retry, with no automatic resending.
+        await expect(form.getByLabel("Timmar", { exact: true })).toBeDisabled();
+        await expect(retry).toBeEnabled();
+        // R1-01: a denial after a lost commit cannot prove that the original
+        // write failed. Revoke only this fixture's membership, then restore its
+        // exact previous state before reconciling the same frozen request.
+        const memberships=await adminQuery<{id:string;status:string}>(
+          "select id,status from public.tenant_memberships where tenant_id=$1 and user_id=$2",
+          [f.fx.base.tenantA.id,f.noProfile.id]);
+        expect(memberships).toHaveLength(1);
+        const membership=memberships[0];
+        await adminQuery("update public.tenant_memberships set status='disabled' where id=$1",[membership.id]);
+        try {
+          const deniedResponse=page.waitForResponse((reply)=>isFilingRequest(reply.request(),f.marker));
+          await retry.focus();await page.keyboard.press("Enter");
+          const deniedBody=await(await deniedResponse).text();
+          expect(deniedBody).toContain('"status":"error"');
+          expect(deniedBody).toContain('"uncertain":false');
+          await expect(form.getByText("Osänd",{exact:true})).toBeVisible();
+          await expect(form.getByLabel("Timmar",{exact:true})).toBeDisabled();
+          await expect(form.getByLabel("Anteckning",{exact:true})).toHaveValue(f.marker);
+          await expect(retry).toBeEnabled();
+          expect(fault.attempts).toHaveLength(3);expect(fault.attempts[2]).toEqual(fault.attempts[0]);
+          expect(await f.snapshot()).toEqual(committed);
+        } finally {
+          await adminQuery("update public.tenant_memberships set status=$2 where id=$1",[membership.id,membership.status]);
+        }
+        const confirmed = page.waitForResponse((reply) => isFilingRequest(reply.request(), f.marker));
+        await retry.focus();
+        await page.keyboard.press("Enter");
+        expect((await confirmed).ok()).toBe(true);
+        await expect(page.getByTestId("time-report-submit-status")).toHaveText("Rapporterad");
+        expect(fault.attempts).toHaveLength(4);
+        expect(fault.attempts[3]).toEqual(fault.attempts[0]);
+        expect(await f.snapshot()).toEqual(committed); // Exactly one row AND one audit.
+        await page.reload();
+        const week = await openWeek(page);
+        const row = committed.reports.find((report) => report.note === f.marker)!;
+        await expect(week.getByTestId(`time-report-row-${row.id}`)).toContainText(f.marker);
+        await expect(week.getByTestId("time-report-week-total")).toHaveText("1 h 15 min");
+        expect(await f.snapshot()).toEqual(committed);
+        expect(await adminQuery(`select p.id from public.person_profiles p join public.tenant_memberships m
+          on m.id=p.membership_id where m.user_id=$1 and m.tenant_id=$2`,
+        [f.noProfile.id, f.fx.base.tenantA.id])).toEqual([]);
+      } finally { await fault.dispose(); }
+    });
+  });
+
+  test("[P1] 15.4-E2E-003 PL/Admin complete person/job/week review totals and attributed annotation survive reload", async ({ resourcePage: page }) => {
+    await withTimeReportBrowserFixture(async (f) => {
+      const ids = await seedReviewReports(f);
+      const initial = await f.snapshot();
+      expect(initial.reports).toHaveLength(7); // Five current tenant/week rows plus two excluded controls.
+      await signIn(page, f.fx.users.projektledare);
+      await page.goto("/time-reports");
+      const reviewTab = page.getByRole("tab", { name: "Granska", exact: true });
+      await hydrated(reviewTab);
+      await reviewTab.click();
+      await page.getByLabel("Vecka", { exact: true }).fill(REPORT_DATE);
+      const review = page.getByRole("region", { name: "Granska tidrapporter", exact: true });
+      await expect(review.getByTestId("time-report-review-total")).toHaveText("6 h 45 min");
+      for (const id of [ids.own, ids.ownUnlinked, ids.ownOtherJob, ids.peer, ids.peerUnlinked]) {
+        await expect(review.getByTestId(`time-report-row-${id}`)).toBeVisible();
+      }
+      for (const id of [ids.otherWeek, ids.foreign]) await expect(review.getByTestId(`time-report-row-${id}`)).toHaveCount(0);
+      await expect(review.getByTestId(`time-report-person-total-${f.fx.users.montor.id}`)).toHaveText("4 h 45 min");
+      await expect(review.getByTestId(`time-report-person-total-${f.fx.users.projektledare.id}`)).toHaveText("2 h");
+      await expect(review.getByTestId(`time-report-job-total-${f.job.id}`)).toHaveText("4 h 30 min");
+      await expect(review.getByTestId(`time-report-job-total-${f.otherJob.id}`)).toHaveText("1 h");
+      await expect(review.getByTestId("time-report-unlinked-total")).toHaveText("1 h 15 min");
+      await page.getByLabel("Person", { exact: true }).selectOption(f.fx.users.montor.id);
+      await expect(review.getByTestId("time-report-review-total")).toHaveText("4 h 45 min");
+      await expect(review.getByTestId(`time-report-row-${ids.peer}`)).toHaveCount(0);
+      await page.getByLabel("Jobb", { exact: true }).selectOption(f.job.id);
+      await expect(review.getByTestId("time-report-review-total")).toHaveText("3 h");
+      await page.getByLabel("Person", { exact: true }).selectOption("");
+      await expect(review.getByTestId("time-report-review-total")).toHaveText("4 h 30 min");
+      await page.getByLabel("Jobb", { exact: true }).selectOption("");
+      await expect(review.getByTestId("time-report-review-total")).toHaveText("6 h 45 min");
+      await page.getByLabel("Vecka", { exact: true }).fill("2026-10-19");
+      await expect(review.getByTestId("time-report-review-total")).toHaveText("11 h");
+      await expect(review.getByTestId(`time-report-row-${ids.otherWeek}`)).toBeVisible();
+      await page.getByLabel("Vecka", { exact: true }).fill(REPORT_DATE);
+      await review.getByTestId(`time-report-row-${ids.own}`).getByRole("button", { name: "Granska", exact: true }).click();
+      const sheet = page.getByRole("dialog", { name: "Granska tidrapport", exact: true });
+      await expect(sheet.getByText("Bokad tid vid rapportering", { exact: true })).toBeVisible();
+      await expect(sheet.getByTestId("time-report-booked-at-filing")).toHaveText("2 h");
+      await expect(sheet.getByTestId("time-report-booked-delta")).toHaveText("+1 h");
+      await sheet.getByLabel("Granskningsanteckning", { exact: true }).fill(`${f.marker} reviewed`);
+      const annotationSaved = page.waitForResponse((reply) => isFilingRequest(reply.request(), `${f.marker} reviewed`));
+      await sheet.getByRole("button", { name: "Spara anteckning", exact: true }).click();
+      expect((await annotationSaved).ok()).toBe(true);
+      await expect(page.getByTestId("time-report-review-status")).toHaveText("Anteckningen är sparad.");
+      const annotated = await f.snapshot();
+      const before = initial.reports.find((row) => row.id === ids.own)!;
+      const after = annotated.reports.find((row) => row.id === ids.own)!;
+      const core = (row: typeof before) => Object.fromEntries(Object.entries(row).filter(([field]) =>
+        !["review_note","reviewed_by","reviewed_at","review_revision"].includes(field)));
+      const coreBefore = core(before), coreAfter = core(after);
+      expect(coreAfter).toEqual(coreBefore);
+      expect(after).toMatchObject({ status: "submitted", review_note: `${f.marker} reviewed`,
+        reviewed_by: f.fx.users.projektledare.id, review_revision: before.review_revision + 1 });
+      expect(Number.isFinite(Date.parse(after.reviewed_at!))).toBe(true);
+      expect(annotated.reports.filter((row) => row.id !== ids.own)).toEqual(initial.reports.filter((row) => row.id !== ids.own));
+      const newAudit = annotated.audit.filter((row) => !initial.audit.some((prior) => prior.id === row.id));
+      expect(newAudit).toHaveLength(1);
+      expect(newAudit[0]).toMatchObject({ target_id: ids.own, actor_user_id: f.fx.users.projektledare.id });
+      await page.reload();
+      await page.getByRole("tab", { name: "Granska", exact: true }).click();
+      await page.getByLabel("Vecka", { exact: true }).fill(REPORT_DATE);
+      await review.getByTestId(`time-report-row-${ids.own}`).getByRole("button", { name: "Granska", exact: true }).click();
+      await expect(sheet.getByLabel("Granskningsanteckning", { exact: true })).toHaveValue(`${f.marker} reviewed`);
+      await expect(sheet.getByTestId("time-report-review-attribution")).toContainText(/granskad|antecknad/i);
+      await sheet.getByRole("button", { name: "Stäng", exact: true }).click();
+      await review.getByTestId(`time-report-row-${ids.ownUnlinked}`).getByRole("button", { name: "Granska", exact: true }).click();
+      await expect(sheet.getByTestId("time-report-booked-at-filing")).toHaveCount(0);
+      await expect(sheet.getByTestId("time-report-booked-delta")).toHaveCount(0);
+      expect(await f.snapshot()).toEqual(annotated);
+      // Admin also has review, while a reviewer's view of another person's booking
+      // still cannot create an on-behalf report. Prove refusal with physical state.
+      await signIn(page, f.fx.base.adminA);
+      await page.goto("/time-reports");
+      await page.getByRole("tab", { name: "Granska", exact: true }).click();
+      await page.getByLabel("Vecka", { exact: true }).fill(REPORT_DATE);
+      await expect(review.getByTestId("time-report-review-total")).toHaveText("6 h 45 min");
+      const denied = await fileReport(f.fx.adminClient, reportInput({ bookingId: f.ownBooking,
+        jobId: f.job.id, note: `${f.marker} denied manager on behalf` }));
+      expect(denied).toMatchObject({ ok: false, code: "TENANT_ACCESS_DENIED" });
+      expect(await f.snapshot()).toEqual(annotated);
+      await signIn(page, f.fx.users.montor);
+      const ownWeek = await openWeek(page);
+      await expect(ownWeek.getByTestId("time-report-week-total")).toHaveText("4 h 45 min");
+      for (const id of [ids.peer, ids.peerUnlinked, ids.foreign]) {
+        await expect(page.getByTestId(`time-report-row-${id}`)).toHaveCount(0);
+      }
+      await expect(page.getByLabel("Person", { exact: true })).toHaveCount(0);
+      expect(await f.snapshot()).toEqual(annotated);
+    });
+  });
+});

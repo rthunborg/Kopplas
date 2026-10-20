@@ -1,0 +1,30 @@
+{
+  "kind": "second-separate-narrow-CI-followup-triage",
+  "completed_counted_rounds": 3,
+  "counted_breakdown": "1broadR1+2limitedR2/R3",
+  "separate_narrow_followups_completed": 2,
+  "not_a_fourth_broad_review": true,
+  "source_head": "f20208dca11f4f1f4106cab4a4f8322b945ace21",
+  "input_sha256": "d8031d6886aa36cce98fed0e37b880cfd084033842eaad925bcc17aca1f6d67b",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "result": "passed",
+  "findings": [],
+  "original_report_sha256": "d95e2166a67fcdf139b0a7fab6714b3c60fcab7c360da9fc4e86929fd32d6d8b",
+  "triage": {
+    "patch": 0,
+    "intent_gap": 0,
+    "bad_spec": 0,
+    "defer": 0,
+    "reject": 0,
+    "followup_recommended": false
+  },
+  "rederivation_iteration": 0,
+  "limits": [
+    "Latest2E2Epaths+spec only; no unchanged broad audit.",
+    "ExactSQLboolean+remainingE2E001audit/week/missingdate/reloadtails require actual successorCI.",
+    "CI2DB38/component18/nudge13/physicalStorage/static passed at immutable d798; overallCI2FAILURE retained.",
+    "Historical firstCI NUDGE004 earliercallback remainsUNKNOWN; currentCI2fullcallback+cleanupPASS.",
+    "Statusin-review until actual successfulCI plus author delivery/Rootgate/distincttruth."
+  ]
+}

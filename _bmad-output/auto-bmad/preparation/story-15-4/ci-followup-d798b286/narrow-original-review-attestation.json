@@ -1,0 +1,52 @@
+{
+  "kind": "original-reviewer-authored-second-separate-narrow-CI-followup",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "independent_from_author": true,
+  "source_head": "f20208dca11f4f1f4106cab4a4f8322b945ace21",
+  "before": "d798b28609676198e5f975d1a5ea3d301a84b647",
+  "counted_rounds": 3,
+  "counted_cap": 3,
+  "counted_breakdown": {
+    "broad": 1,
+    "limited": 2
+  },
+  "completed_prior_separate_narrow_followups": 1,
+  "current_separate_narrow_followup": 2,
+  "not_a_fourth_broad_or_counted_automatic_round": true,
+  "rederivation_iteration": 0,
+  "input_bytes": 131976,
+  "input_lines": 1032,
+  "input_raw_sha256": "d8031d6886aa36cce98fed0e37b880cfd084033842eaad925bcc17aca1f6d67b",
+  "input_binding_bytes": 1908,
+  "input_binding_raw_sha256": "4a175c982056f367e2a33fd1cf5bc4a7c52f7f865846c76cf9a740dea167f079",
+  "all_input_read": true,
+  "source_bindings_verified": 3,
+  "source_head_verified": true,
+  "changed_paths_exactly_allocated": 3,
+  "report_bytes": 7641,
+  "report_raw_sha256": "d95e2166a67fcdf139b0a7fab6714b3c60fcab7c360da9fc4e86929fd32d6d8b",
+  "report_path": "_bmad-output/auto-bmad/preparation/story-15-4/ci-followup-d798b286/narrow-original-review-report.md",
+  "report_authorship": "Original reviewer-authored bytes",
+  "verdict": "passed-narrow-source-review",
+  "findings_count": 0,
+  "findings": [],
+  "failed_native_receipt_sha256": "3df9de8682bd6ed2057d78499a0728ce769d1134beb4f2209ec1a5306d57db38",
+  "failed_native_report_sha256": "063bc74820c9bf19b90724a65d19091c911829b64488793e27a09117ea772345",
+  "qualified_native_files_reported_by_receipt": 331,
+  "historical_NUDGE004_callback": "Old51f UNKNOWN; admitted d798 full callback/cleanup passed",
+  "limits": [
+    "Bounded source/Git/hash inspection only; zero tests/SQL/browser/build/runtime execution by reviewer.",
+    "Consume Root FULL qualified FAILURE; no repeat331file artifact qualification.",
+    "Actual predecessor integration1980=1928P0F52historicalS; all38reportDB+18component+13nudge passed; browser16expected1unexpected.",
+    "E2E001 later row/count/audit/week/missing-date/noPerson/reload tail remains unreached and new SQLboolean requires successor execution.",
+    "No native trace/error-context/HTML bytes inspected; references only.",
+    "Author type/lint/discovery/SRO/diff/kernel outcomes inspected, not rerun; unchanged app/unit/build evidence reused.",
+    "No development-complete/DONE/release-ready/merge/deployment approval; Root dirty state untouched."
+  ],
+  "allowed_writes": [
+    "narrow-original-review-report.md",
+    "narrow-original-review-attestation.json"
+  ],
+  "nested_delegates": 0
+}

@@ -1,0 +1,38 @@
+{
+  "kind": "second-separate-narrow-CI-followup",
+  "counted_rounds": 3,
+  "counted_cap": 3,
+  "counted_breakdown": "1broadR1+2limitedR2/R3",
+  "separate_narrow_followup": 2,
+  "not_fourth_broad_review": true,
+  "before": "d798b28609676198e5f975d1a5ea3d301a84b647",
+  "source_head": "f20208dca11f4f1f4106cab4a4f8322b945ace21",
+  "input_bytes": 131976,
+  "input_lines": 1032,
+  "input_sha256": "d8031d6886aa36cce98fed0e37b880cfd084033842eaad925bcc17aca1f6d67b",
+  "route": {
+    "reviewer": "retained distinct r3_detachment_high",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "reason": "Exact physical nonmonetary numeric evidence and preservation of all consequential assertion tails"
+  },
+  "scope": "Only rawpg numeric snapshot typing and tenant+report-scoped SQLboolean exact120::numeric replacement; fullE2Ebodies retained; authorSRO/meta. No production/schema/otherunchangedreview.",
+  "source_binding": [
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-4-time-reporting-filing-timesheet-review.md",
+      "raw_sha256": "4085de86e332237c9ab5050fd4563efd93448137e6c38924a1d1984c32dd261d",
+      "git_blob": "5f2e74f10a80dad8865625a63922f07cf2393963"
+    },
+    {
+      "path": "tests/e2e/support/time-reports-atdd.ts",
+      "raw_sha256": "21bd3e1f62b4a6f4e194bf68093e180d3427717ae73d613f24a2d36cbffdd3c1",
+      "git_blob": "6fdebf5c7e1bc56ca3bf54f60c6399e9231f84a1"
+    },
+    {
+      "path": "tests/e2e/time-reports.e2e.spec.ts",
+      "raw_sha256": "af8426958dae73e77006ae9ada9cba013003956eb8b273c67a88ad8fda825166",
+      "git_blob": "f58b55e7811f3cc54e3526df9e48ee5cb5acdc55"
+    }
+  ],
+  "native_failure": "Qualified run39412225741/d798/attempt1: ALL38DB+18component/13nudge PASS; browser16P1F and E2E001 physicalnumericmatch stop. Later audit/week/reloadtailunreached; historical004callbackUNKNOWN. No native trace/HTML bytes."
+}
