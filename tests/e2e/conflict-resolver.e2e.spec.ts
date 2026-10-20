@@ -58,6 +58,8 @@ test.describe("15.3 essential production-host resolver",()=>{
   await page.getByTestId("booking-save").click();await expect(page.getByTestId("booking-unresolved-save")).toBeVisible();expect(dropped).toBe(true);await expect(page.getByTestId("booking-start")).toHaveValue("2026-10-12T11:00");
   const committed=await adminQuery("select id,command_id,result from public.booking_conflict_resolutions where tenant_id=$1 order by id",[fx.base.tenantA.id]);expect(committed).toHaveLength(2);await page.getByTestId("booking-retry").click();await expect(page.getByTestId("booking-save-status")).toBeVisible();
   expect(await adminQuery("select id,command_id,result from public.booking_conflict_resolutions where tenant_id=$1 order by id",[fx.base.tenantA.id])).toEqual(committed);expect(await adminQuery("select id from public.notifications where tenant_id=$1 and category='booking.changed'",[fx.base.tenantA.id])).toHaveLength(2);
-  await page.unroute("**/scheduling/conflicts*");await page.reload();await expect(page.getByRole("region",{name:"Händelser"}).getByText(/Bokning ändrad/)).toBeVisible();expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
+  await page.unroute("**/scheduling/conflicts*");await page.reload();const changes=page.getByRole("region",{name:"Händelser"}).getByRole("listitem").filter({hasText:"Bokning ändrad"});await expect(changes).toHaveCount(2);
+  const remaining=changes.filter({hasText:"Konflikt kvarstår"}),resolved=changes.filter({hasText:"Konflikt åtgärdad"});await expect(remaining).toHaveCount(1);await expect(remaining).toBeVisible();await expect(resolved).toHaveCount(1);await expect(resolved).toBeVisible();
+  expect(committed.map(r=>(r.result as {outcome:string}).outcome).sort()).toEqual(["remaining","resolved"]);expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
  });});
 });
