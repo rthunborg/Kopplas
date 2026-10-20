@@ -1,0 +1,61 @@
+{
+  "outcome": "done",
+  "scope": "bounded P3 companion allocation inventory amendment only",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "changed_paths": [
+    "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\auto-bmad\\preparation\\story-15-3\\implementation-ownership-handoff.md",
+    "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\auto-bmad\\preparation\\story-15-3\\validation.json",
+    "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\auto-bmad\\preparation\\story-15-3\\artifact-manifest.json",
+    "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\auto-bmad\\preparation\\story-15-3\\inventory-amendment-validation.json"
+  ],
+  "before_sha256": {
+    "implementation-ownership-handoff.md": "61c279618cd8dcba2287f2b6f5dd6017ba0fb43d55daa96537d7a589c6ef467f",
+    "validation.json": "ede741753832b75fe15ea45048ed547eeb8205688d8dbce20f57557ecef8e577",
+    "artifact-manifest.json": "772fdb85c6a4c2891ece0734ffaa859978770f9349f991b813ca70c2168be574"
+  },
+  "after_content_sha256": {
+    "implementation-ownership-handoff.md": "554fe3b71f0e53e502676e1c3cfed2f6028835762757c7a17a621c3d0ac29f87",
+    "validation.json": "6e118d98a5dbc4f79aa4a2a5add70d23b40b1699e553e4ff155486f56dfa24b3"
+  },
+  "spec_raw_sha256": "451795a63f9fd046ccc6f89a9e91f192b1f0f21beddf7a9a5391c0a6b8ccc873",
+  "intent_kernel_sha256": "aa081c72088e5019d311764e68a0fb495822422dbb677b23f0db6f7e0c5d17a1",
+  "spec_and_kernel_unchanged": true,
+  "conserved_existing_files_checked": 1150,
+  "changed_conserved_paths": [],
+  "prior_migration_proposal": {
+    "logical_basename": "conflict_resolver",
+    "timestamp_allocated": false
+  },
+  "reserved_migration": {
+    "logical_basename": "conflict_resolver",
+    "filename": "supabase/migrations/20261020180000_conflict_resolver.sql",
+    "timestamp_reserved": true,
+    "reservation_owner": "Coordinator",
+    "final_shared_allocation_granted": false,
+    "sql_write_grant": false,
+    "conditional_allocation_pass": true
+  },
+  "added_shared_paths": [
+    "tests/support/authz/role-harness.ts",
+    "tests/integration/rls/role-harness.atdd.int.test.ts"
+  ],
+  "runtime_tests_executed": 0,
+  "resources_started": 0,
+  "independent_successor_verification": "pending-root",
+  "final_allocation_granted": false,
+  "coordinator_conditional_allocation": {
+    "status": "FINAL CONDITIONAL ALLOCATION PASS reported by Root",
+    "receipt": ".env.epic15.mail-runtime/story-15-3-preparation/root-coordinator-allocation-20261020.json",
+    "scope": "original exact inventory plus two named role-harness paths",
+    "remaining_conditions": [
+      "independent bounded-successor verification",
+      "Root implementation release",
+      "migration name recheck before creation"
+    ],
+    "planning_task_write_authority": "own companion/validation receipts only"
+  },
+  "product_paths_unchanged_since_original_plan": true,
+  "changed_product_paths": [],
+  "effective_implementation_write_release": false
+}

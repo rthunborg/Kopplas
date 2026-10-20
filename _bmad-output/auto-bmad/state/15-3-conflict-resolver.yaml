@@ -9,17 +9,17 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-20T01:09:45Z"
+updated_at: "2026-10-20T01:23:13Z"
 started_at: "2026-10-20T01:09:10Z"
 completed_at: null
-active_seconds: 0
-timing_anchor: 1792458585
+active_seconds: 778
+timing_anchor: 1792459393
 is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: build
-selected_role: build-delegate
+selected_phase: tea_per_story
+selected_role: tea-delegate
 selected_profile: standard
 selected_model: gpt-6.1-sol
 selected_effort: high
@@ -29,21 +29,22 @@ selected_route: subagent
 escalation_reason: "Automatic sensitive-task escalation: authorization, transactional-integrity"
 routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate, trace-advisory]
 tea_rationale: "Scheduling conflict resolution includes recurring-series bulk changes and persistent accepted-conflict identity; six-story/after3 long-epic trace advisory applies."
 epic_story_count: 6
 stories_after_in_epic: 3
-completed_phases: [0, 1, 2]
-spec_path: null
-spec_approved: false
+completed_phases: [0, 1, 2, 3]
+spec_path: "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\implementation-artifacts\\spec-15-3-conflict-resolver.md"
+spec_approved: true
 build:
-  status: null
+  status: ready-for-dev
   blocking_condition: null
   followup_review_recommended: false
   review_loop_iteration: 0
   deferred_count: 0
-  warnings: []
+  warnings: [oversized]
 followup_passes: 0
 hitl_halt: null
 review_unverified: false
@@ -54,7 +55,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: []
+commits: [3a0282a70ab9cc539e2d85bd660635820e618731]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -103,3 +104,20 @@ constraints:
   - "ExistingDocuments/E16claims remain reserved byactualscope. Preserve16.2membership/schema/ACLassertions onlaterintegration andderive migrationinventory fromactualcombinedhistory; do notmodifyforeigncheckouts."
   - "No newlegacy observations or inferredparity. MaintainapprovedPhaseBscope, headlessdomain/state/validation/actions withusableUI, authorization/transactioninvariants, independentreviewandthree-roundcap."
   - "Fresh20OctCoordinator snapshot 05b65e8c75f01ff19e2f37bf9680500d84cea3134e28fcdaf69f1e0a8fe55dcb: Documentsnoactiveclaim/E16idle90f53dc8,16.3noimplementationreservation; protectedv3facts/perbookingjobId/distinctproof/currentlocks/conflictrefresh andE16logicalsharedownershipremain. No new15.3migration/resourceallocated; exactactualoverlapbeforeedits; nonoverlappingownspec/contextmayproceed."
+p3_preparation:
+  status: independently-validated-and-frozen
+  baseline: 3a0282a70ab9cc539e2d85bd660635820e618731
+  spec_raw_sha256: 451795a63f9fd046ccc6f89a9e91f192b1f0f21beddf7a9a5391c0a6b8ccc873
+  kernel_sha256: aa081c72088e5019d311764e68a0fb495822422dbb677b23f0db6f7e0c5d17a1
+  independent_successor_report: "_bmad-output/auto-bmad/preparation/story-15-3/independent-validation/spec-validation-inventory-successor-20261020.md"
+  independent_successor_sha256: baf46d6545f95b77c6bddc851d185f6894b03c0f0a1795a6710ab8211779d571
+  verified_author_artifacts: 13
+  protected_sources: 1150
+  coordinator_allocation_status: SAME-Sol6.1High-FINAL-CONDITIONAL-PASS
+  coordinator_receipt: ".env.epic15.mail-runtime\\story-15-3-preparation\\root-coordinator-allocation-20261020.json"
+  coordinator_receipt_sha256: c88c8a805cd30cd92c18934709341d7071d5823902ce7ad0655e02b4bcf69897
+  migration_reserved: 20261020180000_conflict_resolver.sql
+  migration_recheck_before_creation: true
+  resources_started: 0
+  product_implementation_started: false
+  broad_review_rounds: 0
