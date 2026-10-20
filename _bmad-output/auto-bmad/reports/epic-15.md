@@ -2286,3 +2286,159 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Preserve frozen raw-review formatting with exact staged qualifier; checkpoint/push and one fresh exact-head native CI run. Verify actual diagnostic visibility and remaining API/command/RLS/browser failures before delivery/DONE. No merge or deployment.
+
+## Report — 2026-10-20T21:33:26Z (15.5 ninth native failure qualified; owned-origin proposal under High read-only review)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `6dad688`).
+**Pipeline status:** P5 active/in-review. Ninth run39498246931attempt1 completedFAILURE:3of5requiredjobs passed(admission/verify/recovery); DB/browser failed. All4optionaljobs skipped/uncredited;9failed histories retained.
+**Continues:** (none — first run)
+
+**Summary:** Actual Node3133PASS/0fail/skip/cancel/todo,103suites including30feature and61separate wrapper/pure/installedreporter controls, plus43separate process contractsPASS. Native recovery1PASS separatefrom95. FullDB2039=1944PASS43FAIL52skip/165files; story51=8PASS43FAIL0skip; allocated9+1policycase and4componentsPASS/no nonstoryfailure. All6serialfilesonce/nonoverlap after159parallelcompletions; no inventedteardowntimestamp. Browser31=17otherPASS14storyFAIL/28failedattempts,0skip/flaky. Feature95attempted38PASS57FAIL0skip; failedlaterbodies/assertionsuncredited. OriginalDBauthority7/privacy4/readiness/exactkeydeletion/dbclosure/custodyqualified; browsercustody/teardown and28expectedattachmentbodycontents remain unavailable/unqualified. Reporttransportfix now observed:43failedcases expose44validclosed scenario/unknown/null leaves(42single+INT009twoordered),0invalid/knownSQLSTATE. Upstream causes remainUNKNOWN; this is no longer missingserialization. Sanitizedleafstack outerawaitframes cannot identify originalthrow or canonicalcreator/redactor/cause. All31packetfiles+selfhash/membership/exacthead/attempt/9jobs/source68raw+nativeclean/136actualsourcecheckpointblobs independently admitted RootSHA1e15decb78fc9060562b7b0c2a0862c407440ec7224ca54896e54845dee02fb3; manifestSHA50188e3faffbd79f2c7797c2e02a19d13e170eac3b6eaf694368c0c36263d3a5.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 272h 35m (≈54h 27m AI-run, ≈218h 08m human/idle wait); resumed 64×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** SameHighauthor read-only pressuretests whether two owned closed-origin labels would make nextnativeobservation actionable; may report smallest already-owned caller context if necessary, without raw matcher/response/nativepayload capture or extra operations/observers. Sourcewrites remain held pending sufficient concreteproposal and recordedboundedbuildroute. No sharedcanonical/authority change justified; cap3 independenttargetedreview retained. Continue15.5 requiredgates then15.6/epiccloseout; no merge/deploy.
+
+## Report — 2026-10-20T21:36:07Z (15.5 bounded four-path owned-origin diagnostic repair admitted)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `6dad688`).
+**Pipeline status:** P5 active/in-review; ninth native95attempted38PASS57FAIL remains unresolved. SameSol6.1High author activated for bounded already-owned four-path build; no current repair acceptance credit.
+**Continues:** (none — first run)
+
+**Summary:** High read-only pressure test rejected two family-only labels as insufficient. Strengthened proposal adds only already-consumed closed issuance outcome classifications, fixed matcher/token-route/HTTP origins and four compile-time RLS001 allowed-subject assertion sites through synchronous once-call wrapper. Scope: owned helper, existing unit control file, author Spec trail and ONLYRLS001 assertions in already-owned calendar-feed.rls.test.ts. Root verified all4 current raw/nativeclean/HEADblob bindings, allin68 owned source paths and nonein146 protected/shared paths. No shared ownership/resource expansion, operation/value/request/query/RPC/client/.then/pool/principal/authority/expectation/settlement change or arbitrary matcher/native payload capture. Admission4462B/SHA76a6c87a3e87fac2b36b3b231b4de09461a691ae5ad2ca480e3f090d47a09d0a, explicitHighroute recorded before handoff.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 272h 38m (≈54h 27m AI-run, ≈218h 11m human/idle wait); resumed 65×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:**
+1. Actual first native branches/all43causes remainUNKNOWN. A future unavailable/denied origin identifies only a failed public/RPC-result contract, not SQL privilege/proof/auth/current-state cause. Unmapped errors require targeted cause-proof proposal rather than assumed opaque retry.
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Retain61controls plus faithful live caller/guard/matcher/installedreporter controls and actual new counts; type/lint/diff/kernel/SRO; append-only exact4 source commit; fresh independentHigh committed latest4 review withincap3, then10thfreeze/checkpointnativeCI. All9failedpackets/capsules/a84refretained. No delivery/DONE/merge/deploy.
+
+## Report — 2026-10-20T21:45:21Z (15.5 exact-four source committed; independent targeted review pending)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `380c3e7`).
+**Pipeline status:** P5 active. Exact four owned-path diagnostic repair committed append-only; local 67 passed, zero failed/skipped/cancelled. Typecheck, focused lint and author diff checks passed. Native acceptance for this source is UNEXECUTED. Three broad review rounds remain the cap.
+**Continues:** (none — first run)
+
+**Summary:** Four of six stories landed internally. Epic review_unverified stays true; no finalization or release readiness claimed. Root independently verified all 68 raw/native/HEAD source bindings, 64 unchanged paths, 42 actual normalization differences and 15 author plus 9 Root commits. Identity proof f8d0d28e7fd9ec581f5f7b34880f535cb160db5a8cc1d6eeff4ed943b88fc9fe; 37670 bytes.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 272h 47m (≈54h 27m AI-run, ≈218h 20m human/idle wait); resumed 66×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** No fourth broad review; no deployment or main merge. Ninth failed CI packet remains immutable; 43 story DB and 14 story browser failures are not waived, and local synthetic/caller controls carry zero native credit.
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Recorded review-native-owned-origin-latest-four / independent-context-free-owned-origin-and-rls-assertion-reviewer / sensitive / gpt-6.1-sol High before dispatch; foreground parent activated to freeze exact committed input and dispatch fresh distinct reviewer. After PASS, tenth capsule, Root admission, checkpoint push and one native CI dispatch.
+
+## Report — 2026-10-20T21:47:49Z (15.5 targeted High review PASS; native acceptance pending)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `380c3e7`).
+**Pipeline status:** Fresh distinct context-free gpt-6.1-sol High exact committed four-path latest-fix review PASS; zero consequential findings. Three completed broad rounds; no fourth broad review. Source/Spec/input remain frozen.
+**Continues:** (none — first run)
+
+**Summary:** Root verified original report1794B SHA a31f74723bfb8b6b12c892679564654513b27df4e46f030330cda288eea8dda5 and actual original-review-attestation.json4107B SHA70dc57f0d7f4a81d017dee361411895a3b2ec57b3258d0f64f09370ab997df20. Initial metadata reader used an absent filename, stopped before attestation credit, and was corrected using actual inventory; artifacts unchanged.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 272h 50m (≈54h 27m AI-run, ≈218h 22m human/idle wait); resumed 67×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** Current native unexecuted. Closed diagnostic origins localize public/RPC contract outcomes; prior43 backend causes remain UNKNOWN. No deployment/main merge; epic review_unverified remains true.
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Author prepares tenth metadata-only capsule and parent mechanical check. Root independently admits all bindings before checkpoint commit/push and one exact-head native CI dispatch.
+
+## Report — 2026-10-20T21:52:01Z (15.5 tenth capsule mechanically admitted; checkpoint native CI pending)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `380c3e7`).
+**Pipeline status:** Root strict mechanical admission PASS native0: all442 references/376 unique, current68 raw/normalized/HEAD bindings with42 actual differences,597 historical source equalities,146 protected paths and69 preparation blobs unchanged,15 author+9 Root ancestry. Nine immutable failed histories retained. Twelve historical raw observations remain uncredited and nine metadata rows are baseline-object-only.
+**Continues:** (none — first run)
+
+**Summary:** Capsule662207B SHA9e962d4d40d5962370ce461c282f93927f6e779cbde6af514bbfdeef892d9c3e; parent3275B SHA8c424fd403d59767109a40dce158c7dc8ff03e097142fb4dca6ae6dd1612751b; Root receipt SHA bd815aab64d3c994322520afc1fcc6727f226e41d309a61bf157546b9dc88f12. Exact-four independent High PASS and67 local controls carry no native credit. Ninth immutable384-core/385-full count qualification preserved.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 272h 54m (≈54h 27m AI-run, ≈218h 27m human/idle wait); resumed 68×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** P5 active; no story done/delivery or release readiness claimed. Current native unexecuted. New author generator separator-encoding stop and parent old-three-path-field stop retained as corrected-reader failures; capsule/source/input unchanged. No deployment or main merge.
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Qualify actual staged raw diff contexts, commit/push Root metadata checkpoint and dispatch one exact-head CI run. Independent native Sol6.1 High route recorded before activation; Root sole poller.

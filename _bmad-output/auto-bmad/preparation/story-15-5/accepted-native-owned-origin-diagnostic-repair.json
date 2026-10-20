@@ -1,0 +1,54 @@
+{
+  "kind": "ROOT_BOUNDED_ALREADY_OWNED_ORIGIN_DIAGNOSTIC_REPAIR_ADMISSION",
+  "base_head": "6dad688ec6a51143bfee902618bb88647a81c940",
+  "author_source_head": "906f80f301d8034f8efe510018137195f3e4c4eb",
+  "failed_run": 39498246931,
+  "attempt": 1,
+  "root_failed_packet_admission_sha256": "1e15decb78fc9060562b7b0c2a0862c407440ec7224ca54896e54845dee02fb3",
+  "failed_manifest_sha256": "50188e3faffbd79f2c7797c2e02a19d13e170eac3b6eaf694368c0c36263d3a5",
+  "actual_four_path_bindings": [
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "raw_bytes": 66919,
+      "raw_sha256": "c04a8041429361b1cb1cbfa21394bc8f12032c7a58d752e269851c0a10e05349",
+      "actual_head_blob_oid": "d712a086a457a7e71ab8c8028e4803674658838c",
+      "already_owned": true,
+      "protected_shared_path": false
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "raw_bytes": 88963,
+      "raw_sha256": "993b6e4151bca6a1b6655d0fa97a2016d58f4003916c5d2904fbf34f768b069e",
+      "actual_head_blob_oid": "6bd5ce61427c7e77203b64bf35e1765be2de3877",
+      "already_owned": true,
+      "protected_shared_path": false
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "raw_bytes": 101920,
+      "raw_sha256": "c167919993c9a6306d616d75937ae7df627efdac348472d2ec8672ea358c5f6a",
+      "actual_head_blob_oid": "d8768abae03342de2f424a9a24b4f43e416bda6d",
+      "already_owned": true,
+      "protected_shared_path": false
+    },
+    {
+      "path": "tests/integration/rls/calendar-feed.rls.test.ts",
+      "raw_bytes": 14662,
+      "raw_sha256": "21175773b745729deae8162e24f551f3f8eea57bdd9221cd0d0a2df1f479a7a8",
+      "actual_head_blob_oid": "1ccff56bc5ceac55835dbbc31f3d5135fc0b0fbe",
+      "already_owned": true,
+      "protected_shared_path": false
+    }
+  ],
+  "decision": "Two family-only labels alone were rejected as insufficient. Admit smallest strengthened already-owned four-path scope; no shared ownership expansion.",
+  "scope": "Helper registers compile-time closed origins only at existing matcher catch, issuance guard, token-route guard and HTTP catch. Classify ONLY issuance outcomes already consumed: denied/unavailable/conflict/replayed/unknown-noncommitted versus committed-missing-url. Only RLS001 existing allowed-subject assertions receive own/admin/planner/mixed compile-time site constants through synchronous once-call wrapper; preserve all loops/RPC/expectations and return identity. Unit existing controls plus faithful live/caller/installed reporter controls. Spec author evidence/SRO only, approved kernel unchanged.",
+  "privacy_and_behavior": "No generic matcher arguments/actual/expected or native error/message/cause/stack/body/URL/token parsing/capture. Sanitized errors created at owned sites may retain ordinary controlled source frames. Preserve raw own-data budgets/SQLSTATEallowlist/getterproxycyclebounds/UNKNOWN and all guard branches/return/calls/args/values/results/requests/query/RPC/client/.then/pool/principal/authority/settlement/custody behavior. No generalized observer, extra operation, weakened assertion or shared/protected write.",
+  "meaningful_local_controls": "Retain61; exact first INT/API/RLS callbacks with injected stopping fixtures + live guards/matcher + installedJSON reporter; closedbranches/stages/oncecall/valueidentity/no latercalls/privacy/accessors. Synthetic/caller controls have0nativecredit. Record actual observed counts; wholeTypeScript/focusedlint/diff/kernel/SRO before append-onlycommit.",
+  "limits": "Actual first native failing branches and all43causes stillUNKNOWN. Safe unavailable/denied tags localize a failed public/RPC-result contract, not SQL privilege/proof/auth/current-state cause. Pre-manage seed/setAuthority/unmapped errors may remainUNKNOWN. If unavailable/denied/uninstrumentedUNKNOWN remains, require named-gap targeted cause-proof proposal, not assumed opaque retry. No promise all43 diagnoses or immediate SQL cause.",
+  "git_review": "Append-only exact4 author commit excludes Root metadata; fresh distinct context-free Sol6.1High exact committed latest4review before tenthfreeze/checkpoint. Broadreviewcap3/no fourthbroad; all9failedpackets/capsules/a84refretained.",
+  "source_writes_admitted": true,
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "development_complete": false,
+  "release_ready": false
+}

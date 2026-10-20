@@ -1,0 +1,69 @@
+{
+  "kind": "bounded-frozen-review-input-artifact-format-qualification",
+  "source_head": "380c3e720d5caaa1dc2181d70737b9320337f451",
+  "status": "UNRESTRICTED_NATIVE_EXIT2_FAILED_RETAINED_EXACT_CONTEXT_ONLY",
+  "initial_observation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-tenth-staged-format-initial-observation.json",
+    "bytes": 1299,
+    "sha256": "1d66f343682b2fa2787bee47cb05a0d6128e4bd4b42fb4a850dc03d9807fb891"
+  },
+  "artifact": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-owned-origin-review/latest-fix-input.diff",
+    "bytes": 192805,
+    "sha256": "fcfa587e3989de855708ccbf2ccfea3a5ddab850cd1616f3979e9930ce278f78",
+    "raw_equals_actual_index": true
+  },
+  "native_unrestricted_exit": 2,
+  "actual_only_findings": {
+    "kind": "single-byte0x20 empty unified-diff context lines",
+    "count": 30,
+    "one_based_lines": [
+      31,
+      78,
+      88,
+      90,
+      96,
+      103,
+      105,
+      109,
+      117,
+      119,
+      123,
+      128,
+      130,
+      135,
+      144,
+      146,
+      157,
+      173,
+      180,
+      184,
+      193,
+      200,
+      251,
+      260,
+      285,
+      299,
+      323,
+      350,
+      480,
+      643
+    ]
+  },
+  "other_staged_paths_before_receipt": 14,
+  "other_staged_native_exit": 0,
+  "high_parent_acknowledgment": {
+    "actor": "/root/build15_5_high",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "actual_count_acknowledged": 30,
+    "assessment": "Actual30 diagnostics exactly match required byte0x20 empty unified-context lines at listed positions in frozen192805B/fcfa587e input; actual raw/index equality and all other14 staged paths native0 qualify this artifact-format exception only. Unrestricted native check remains EXIT2 FAILED."
+  },
+  "raw_bytes_normalized_or_changed": false,
+  "checker_config_hooks_changed_or_bypassed": false,
+  "source_capsule_original_reviews_changed": false,
+  "unrestricted_pass_claimed": false,
+  "fourth_broad_review": false,
+  "native_acceptance_credit": false,
+  "next": "Stage this receipt; independently repeat unrestricted check retaining exit2/exact30 and all other15 staged paths including receipt native0. Normal commit/push only; no force/amend/no-verify."
+}

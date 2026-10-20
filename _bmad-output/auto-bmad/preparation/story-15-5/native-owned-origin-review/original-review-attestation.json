@@ -1,0 +1,90 @@
+{
+  "kind": "original-independent-context-free-owned-origin-four-path-review-attestation",
+  "verdict": "PASS",
+  "finding_count": 0,
+  "reviewer": "/root/build15_5_high/native_owned_origin_four_review",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "distinct_from_author": true,
+  "fresh_context_free": true,
+  "before": "6dad688ec6a51143bfee902618bb88647a81c940",
+  "source_head": "380c3e720d5caaa1dc2181d70737b9320337f451",
+  "paths": [
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+    "tests/integration/rls/calendar-feed.rls.test.ts",
+    "tests/support/calendar-feed-atdd.ts",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts"
+  ],
+  "input": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-owned-origin-review/latest-fix-input.diff",
+    "bytes": 192805,
+    "sha256": "fcfa587e3989de855708ccbf2ccfea3a5ddab850cd1616f3979e9930ce278f78"
+  },
+  "binding": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-owned-origin-review/input-binding.json",
+    "bytes": 13959,
+    "sha256": "57a73ec7025a165f4396128c9742f438fd673ad1453525e3754fa5c9e5805b9f"
+  },
+  "original_report": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-owned-origin-review/original-review.md",
+    "bytes": 1794,
+    "sha256": "a31f74723bfb8b6b12c892679564654513b27df4e46f030330cda288eea8dda5",
+    "preserved_original_final_text": true
+  },
+  "completed_broad_rounds": 3,
+  "cap": 3,
+  "latest_fix_only": true,
+  "fourth_broad_review": false,
+  "kernel_bytes": 5760,
+  "kernel_sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+  "suggested_review_order_literal_stops": 58,
+  "spec_status": "in-review",
+  "spec_after_review_delta": false,
+  "local_checks_inspected_not_rerun": {
+    "node_passed": 67,
+    "node_failed": 0,
+    "node_skipped": 0,
+    "node_cancelled": 0,
+    "retained": 61,
+    "new_live_source_caller_controls": 6,
+    "typecheck": "PASS",
+    "focused_lint_errors": 0,
+    "focused_lint_warnings": 0
+  },
+  "native_credit_for_controls": 0,
+  "current_native": "UNEXECUTED_PENDING_ROOT_EXACT_HEAD_CI",
+  "actual43prior_causes_and_first_branch": "UNKNOWN",
+  "closed_origins_are_contract_localization_not_backend_cause_proof": true,
+  "all9failed_native_histories_preserved": true,
+  "reviewer_no_edits_tests_runtime_resources_commits_pushes": true,
+  "parent_current_four_bindings": [
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "raw_sha256": "2eafca41b10338575a2dad114a333d999564254829b2e3bffbee96003dc6c065",
+      "head_blob_oid": "571dc0bbb2ff3dfb71fdfa19aa13e5ef02b2531b",
+      "head_blob_sha256": "50838c6116e14f5909b2580e10b4a10423b18f1b6b4766b211e1c0dfee79576d",
+      "current_raw_gitclean_committed_and_index": "PASS"
+    },
+    {
+      "path": "tests/integration/rls/calendar-feed.rls.test.ts",
+      "raw_sha256": "4579e0f2aadd7957766145679930fc49de06c876ffcc01b3e8b7c761f6d8d552",
+      "head_blob_oid": "68f5522bb859349588c4a5ca09702ced8f91752c",
+      "head_blob_sha256": "c768e4fb8b56d097fbc7cf2ea9238d526dc98e07582fad573057ffb3f036f564",
+      "current_raw_gitclean_committed_and_index": "PASS"
+    },
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "raw_sha256": "c6afda12230f3aea89693afba24be6b457ddfe0df0e3b0fc2c9d5d995824ab78",
+      "head_blob_oid": "fce69a9da924b0127517b56a645e8cde2cd6fe75",
+      "head_blob_sha256": "1536a68c58e0b5bd7cb8e8c818779181d1ed0f3d869542dc03ed9bd88e0c2478",
+      "current_raw_gitclean_committed_and_index": "PASS"
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "raw_sha256": "412ee7364fd4b301102eb70e4a68fade800014d634039b1622baa99725784c19",
+      "head_blob_oid": "7d08c0a31c6ddd3e27212dfd63aa6cadc546f88d",
+      "head_blob_sha256": "412ee7364fd4b301102eb70e4a68fade800014d634039b1622baa99725784c19",
+      "current_raw_gitclean_committed_and_index": "PASS"
+    }
+  ]
+}
