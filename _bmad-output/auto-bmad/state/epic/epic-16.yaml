@@ -9,24 +9,24 @@ spec_folder: null
 story_id: null
 branch: codex/epic-16-jobs
 status: in-progress
-updated_at: "2026-10-20T20:45:19Z"
+updated_at: "2026-10-20T22:10:24Z"
 started_at: "2026-10-15T08:50:46Z"
 completed_at: null
-active_seconds: 40106
-timing_anchor: 1792529119
+active_seconds: 44496
+timing_anchor: 1792533617
 is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: tea_epic
-selected_role: tea-delegate
-selected_profile: standard
+selected_phase: security_layer
+selected_role: security-reviewer
+selected_profile: critical
 selected_model: gpt-6.1-sol
 selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "FinalEpic16 trace gate reconciles tenant/RBAC, money omission, transactional command/proof and file isolation coverage; sensitive evidence requires High."
+escalation_reason: "Own-lock audit confirms a new HIGH gate failure; retain High for narrow Vite security patch and independent review before exact-head CI and delivery refresh."
 routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Job authorization, assigned-worker money omission and acceptance transactional contract planning\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"readiness\",\"profile\":\"critical\",\"role\":\"specification-author\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Independent High contract recommendation: scope-safe membership foundation, job authorization, structural financial omission and authoritative booking revalidation\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"planning\",\"profile\":\"critical\",\"role\":\"specification-author\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -56,12 +56,18 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Story16.5 implementation after approved plan and ATDD: sensitive reader/tab authorization, structural money omission and privacy; retain High.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Story16.5 post-development coverage reconciliation includes sensitive reader authorization, file-owner isolation, money omission and transactional draft/navigation persistence; use High and actual native evidence with retry caveat.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"FinalEpic16 trace gate reconciles tenant/RBAC, money omission, transactional command/proof and file isolation coverage; sensitive evidence requires High.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Epic16 advisory NFR audit includes actual tenant/RBAC, file/money confidentiality, command/audit/proof integrity and authorization evidence; use High.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic_audit\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Epic16 advisory test-quality review includes authorization/tenant isolation, money omission, audit/transaction and file/navigation persistence assertions; use High on complete Git-derived test set.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic_audit\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Deferred ledger includes actual authorization/RLS, money and transactional-integrity closures; conservative code-evidence reconciliation requires High.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"deferred_reconcile\",\"profile\":\"standard\",\"role\":\"deferred-reconciler\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Epic16 final delivery reconciliation must qualify current cross-story authorization, money omission, file isolation and transactional integrity evidence plus advisory review caveats.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"epic_delivery\",\"profile\":\"standard\",\"role\":\"delivery-author\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"A new external-checkout audit notice is unqualified for this lockfile; bounded read-only current-lock audit and vulnerability reachability classification before final delivery avoids false applicability claims.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Own-lock audit confirms a new HIGH gate failure; retain High for narrow Vite security patch and independent review before exact-head CI and delivery refresh.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: null
 tea_selected: []
 tea_rationale: null
 epic_story_count: 5
 stories_after_in_epic: null
-completed_phases: [0, 1, 2, 5]
+completed_phases: [0, 1, 2, 5, 81]
 spec_path: null
 spec_approved: false
 build:
@@ -81,17 +87,17 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [0586972a, d6a310be, f610bcbd, 11bf2721, bce1436b, 5d5186e1cfb3e045db9ef101e1c6cf6b50133040, faeffcf6513d5d1703ae9d5a6271b01533899d4e, f3cf100709b92637270304e78a4356082b89e9a6, 1e8632db1ad051d117c38d2e24ed5d62fc2c8a57, 103ee03540e222dff1e54995726037819539b9dd, c44e5179bfcbc210de250eb92a48734561cc0fac, 9b54ad249a1ac4fb6f73c425c89b9b749855a939, 46b1b82983f415fdd2ed214138cbd437154469aa, 1152d5bda869cab97f8b64f0b2a56f72cb9ab0bd, 2d002970fcb112db8d480068443a0cce2577bd5b, 2920b920c0ff19122051f7ef987bc222331fb94a, dd7e54d0, 6260c5a2, 643274eb, 4b7d14c8, 0e382e96, 9d4584f7, f96256a0, 4562b3fe, ad9c3b79, b26cf196, e34997cb, 1d35e347, b0cd4c32, 1bf3444e, 54ac91ec, 0112e829, f4607047]
+commits: [0586972a, d6a310be, f610bcbd, 11bf2721, bce1436b, 5d5186e1cfb3e045db9ef101e1c6cf6b50133040, faeffcf6513d5d1703ae9d5a6271b01533899d4e, f3cf100709b92637270304e78a4356082b89e9a6, 1e8632db1ad051d117c38d2e24ed5d62fc2c8a57, 103ee03540e222dff1e54995726037819539b9dd, c44e5179bfcbc210de250eb92a48734561cc0fac, 9b54ad249a1ac4fb6f73c425c89b9b749855a939, 46b1b82983f415fdd2ed214138cbd437154469aa, 1152d5bda869cab97f8b64f0b2a56f72cb9ab0bd, 2d002970fcb112db8d480068443a0cce2577bd5b, 2920b920c0ff19122051f7ef987bc222331fb94a, dd7e54d0, 6260c5a2, 643274eb, 4b7d14c8, 0e382e96, 9d4584f7, f96256a0, 4562b3fe, ad9c3b79, b26cf196, e34997cb, 1d35e347, b0cd4c32, 1bf3444e, 54ac91ec, 0112e829, f4607047, 7b220c5e]
 phase8_steps:
-  trace_gate: null
-  nfr: null
-  test_review: null
-  reconcile: null
-  archive: null
+  trace_gate: done
+  nfr: done
+  test_review: done
+  reconcile: done
+  archive: done
   retro: null
-gate_decision: null
+gate_decision: PASS
 gate_iterations: 0
-deferred_work_archived: 0
+deferred_work_archived: 1
 retro:
   doc: null
   verdict: null
@@ -165,6 +171,13 @@ overrides:
   story16_5_ci_attempt_7: "Exact54ac91ec2c912afe3b6772fcb8daa11fb282d36a ownedrun39490485088 TERMINALSUCCESS;allrequiredjobsPASS,optionalreleasedashboardSKIPPED/releasevalidationfalse. Unit2740pass0fail0skip+43process. DB1880total1879pass0fail1soleordinaryrecoverypending native028E6DC91A52DC12CCB73B7A1EBD20FE71A1C436F2740671EE736EA35EF46D6E;separateRecovery1pass0skip C2D82E2C9DC1EF156656C14CD079A129042A0C375EE881FBE99A62B7C31E4A78. Pilot5warmup25measuredreadp95=7.985169000000042ms bulkp95=2.968015999999807ms. Browser33allpassed31first+2retry,no unexpected/skip nativeC08263B31221E0BB82649DF83BF7E7B98B85DD2A6FF6AAAF5F5844790094E1F0;all5workspacefirstPASS. Retained16.1E03Chromiumresponsebodylookup and16.3E01result-unqualifiedHTTP200/audit0firstfail,fullretriesPASS;underlyingfirstbranchunknown,pendingindependentHighqualification,notfirstpass/purecauseclaim. Delivery/rootgate/provenance/donepending;release_readyfalse."
   story16_5_automate: "ActualPhase6HighTEA +2contextfreeHighworkers completedall3AC/TR12 map25activatedcases(13unit4INT3RLS5browser),19P0/6P1;0consequentialgaps0newtests0reruns. All25source/testhashesmatch,currentdiffsource/deps/config/SQLemptyfrom54ac; nativeCI39490485088 reusedtruthfully(31first+2retry,5workspacefirst,ordinaryrecoveryskipisolatedpass). Summary4BFBC7F085B95BD6A017DE9EE55AB373301A66467F3A73A1B7CCD2B7DA9E27C9. ThreeownedreleasechecksremainDEFERRED/release_readyfalse."
   story16_5_landed: "Phases0,1,3,4,5,6,7complete;actualdeliverygate+Highprovenance,CI39490485088 successwith31first2retrycaveat;Phase6all3AC0gaps0newtests0reruns;3ownedreleaseentriesharvested. Lastof5storieslanded;allremain sprintreviewuntil qualifiedepicbatch. Release_readyfalse."
+  epic16_trace: "ActualformalE8tracePASSdevelopment:36/36ACFULL(29P0/7P1,all100%),TR01-16mapped,0uncovered/partial/critical/highgaps.269deduplicatedactiveanchors52files(88unit155API/RLS26JobsE2E).3contextfreeSolHighworkersawaited. Current54acCIunchangedapplicabilityverified;0testsran,31first+2retrycaveats retained,14ownedreleasechecksDEFERRED. GateJSON60CA9EBA3C15709699CD584AB1B84D6544FC4683549C6E6156CE2E393DF1FFE3;rootverifiedall4artifacthashes. NFR/testreviewpending;release_readyfalse."
+  epic16_nfr: "ActualformalNFRCONCERNS/MEDIUM:31findings17PASS14CONCERNS0FAIL,noconsequentialdefect/blocker/waiver.4contextfreeSolHighworkersawaited;0tests/added/reruns,current54acnativeevidencereusedtruthfully. UnknownJobs latency/volume,productioncapacity/availability,operational security/telemetry,branch/duplication/DRtargets;2moderatedependencyadvisoriesrequiretriage.14ownedreleasechecks+2retrycaveats preserved,release_readyfalse. Markdown238B07E5B0A01C6B0F07DC7BB4A38F045F48D063D96CC5EBD6E50BAF2455496A;JSON3FC4CD9753C6331708EA5737BE4843961242AA45E6B6090749803E0FA927865E rootverified."
+  epic16_test_review: "Actualheadlessadvisorytestreview0/100F,computedRequestChanges(globalrubricretained):after51dedup0CRITICAL4HIGH70MEDIUM2LOW;3conditionaloracleweaknesses+1supportfilesize,51grouping,12readiness,9othermaintainabilityobservations. Boundedcrosschecksidentifyactualunconditionalcoveragedestinations/SQLguards,nofoundmissingdevelopmentinvariant/guardbypass/proddefect;no style/duplicatecoverage repaircycle or functionalwaiver. Complete110fileaccounting109reviewed(96test13supportconfig)+1explicitJSONfixtureexclusion,5mirrorpairsbound.4contextfreeHighworkers,0testsrun,source/depsunchanged. L2prioritymarkerownerlimitationNOT_EVALUATED,notfabricatedPASS. MarkdownC45BD4317E32156EB13752EF3AA9A503E2A70A06649D3938EC553A3D30A4C2F8;JSONFECB842D18FAE346B8CA7C549AF291E60D2E3C8B46161574BEA8F8F03E00A0A5 rootverified.14ownedreleasechecks+2retrycaveatsretained;release_readyfalse."
+  epic16_deferred_reconcile: "Highreconcilerinspected159open/partial;marked1fullyresolved(ID111livefacility/contactprojection),kept158/all14releaseunchanged. Rootcomparedbefore/afterplans186entries:ONLYID111changed;beforeD78F0A874B873A78BF6BB6EEC5999FB6916C7CA667AA322CC9477CA7668614EF/after8BCF8BA729A544C44A9A29964F38D7CA2937FC7D2A3F0610ACDB1872CF22E8CA. Existing27resolvedhintsareNOTfullclosureproof(textstilldeferred/wontfix/open/crossrefs/closed-typewords),allkept;ID5currentbothnullindicatorconditionunclosedexplicit. RootarchiveCASactualnative0movedONLY111toresolvedledger;no product/spec/testedits,no falseclosure/deletion.14ownedreleasechecksremainDEFERRED."
+  dependency_audit_20261021: "{\"command\": \"pnpm audit --audit-level=high\", \"revision\": \"7b220c5e8fe71a81c00ded9e654e8c5c96c2b878\", \"receipt\": \"C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-dependency-audit-2026-10-20T22-01-07-024Z/receipt.json\", \"high\": 1, \"moderate\": 4, \"status\": \"narrow repair delegated; completion gate pending\", \"affected\": \"vite 8.1.0\", \"exit_code\": 1, \"production_reachability\": \"not established\", \"advisory\": \"GHSA-587h-7wmj-h5pm\", \"candidate\": \"vite 8.1.6, generated lock only\"}"
+  dependency_repair_20261021: "{\"author\": \"e16_test_design gpt-6.1-sol High\", \"package_sha256\": \"A4DF3D4730CE1DDA7F7118EA7F5E32EBCD457C5CF2FB67DBA4064BB201EE93EE\", \"runtime\": \"patched runtime untested locally; fresh frozen-install CI pending\", \"assessment_sha256\": \"206C31C60D1029F9947B0631B118B5986CC6AAE774DCD3EDD07B211DA899616B\", \"audit_exit_code\": 0, \"json_audit_exit_code\": 1, \"assessment\": \"C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-vite-repair-2026-10-20T22-06-26-688Z/repair-assessment.json\", \"independent_review\": \"pending\", \"moderate\": 2, \"files\": [\"package.json\", \"pnpm-lock.yaml\"], \"lock_sha256\": \"84C969AE2B2DFDBB0F88AFBA7890C58F36B2415BB02E255E1A99BF8AAF60450F\", \"high\": 0}"
+  dependency_patch_independent_review: "{\"sha256\": \"DCB4A24EB5CA6DAB35C920208A8CEF8632621917D499712BBD79F1C7617E0357\", \"status\": \"qualified PASS; no consequential defect\", \"reviewer\": \"context-free gpt-6.1-sol High\", \"fresh_runtime_ci\": \"pending\", \"receipt\": \"C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-vite-repair-2026-10-20T22-06-26-688Z/targeted-independent-security-review.md\"}"
 constraints:
   - "Use only owned E16 resources; E15 scheduling/time/diagnostic resources remain excluded."
   - "Each later story requires its approved plan, manifest compliance and precise path claims."
