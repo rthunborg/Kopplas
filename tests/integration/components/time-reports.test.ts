@@ -19,6 +19,7 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { TimeReportForm } from "@/components/time-reports/TimeReportForm";
 import { PersonalTimesheet } from "@/components/time-reports/PersonalTimesheet";
 import { TimeReportReview } from "@/components/time-reports/TimeReportReview";
+import { TimeReportWorkspace } from "@/components/time-reports/TimeReportWorkspace";
 
 describe("15.4-COMP-001 honest accessible report states (SSR only)", () => {
   test("confirmed filing exposes the exact persisted-success browser seam", () => {
@@ -207,5 +208,12 @@ describe("actual time report controller interaction regressions",()=>{
   expect((entry.form().props.state as {status:string}).status).toBe("confirmed");
   const adjusted=entryController(undefined,undefined,[source]);fire(adjusted.form(),"onBookingChange",source.bookingId);fire(adjusted.form(),"onBookingChange","");fire(adjusted.form(),"onChange",{endsAtLocal:"2026-10-25T04:30"});
   await fire(adjusted.form(),"onSubmit");expect(adjusted.requests[0]).toMatchObject({minutes:120,bookingId:null,jobId:null});
+ });
+ test("CI repair review selectors expose exact explicit Person and Jobb accessible names",()=>{
+  const initial:TimeReportReadResult={ok:true,status:"success",data:{userId:"reviewer",canReportOwn:false,canReview:true,weekStart:"2026-10-19",reports:[],bookedDates:[],jobs:[{id:"job",label:"Verkstad"}],people:[{id:"person",label:"Montör"}],bookings:[],prefill:null,totalMinutes:0,missingDates:[],byPerson:[],byJob:[]}};
+  const html=renderToStaticMarkup(createElement(TimeReportWorkspace,{initial,initialQuery:{mode:"review",weekStart:"2026-10-19"}}));
+  expect(html.match(/<select\b[^>]*aria-label="Person"/g)).toHaveLength(1);
+  expect(html.match(/<select\b[^>]*aria-label="Jobb"/g)).toHaveLength(1);
+  expect(html).toContain("Alla personer");expect(html).toContain("Alla jobb och utan jobb");expect(html).toContain("Montör");expect(html).toContain("Verkstad");
  });
 });

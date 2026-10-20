@@ -35,6 +35,7 @@ const APPROVED_ACTIVE_NAV_ROUTES = [
   "/files",
   "/settings",
   "/scheduling",
+  "/time-reports",
 ].sort();
 
 const READ_MODELS_DIR = path.join(process.cwd(), "src", "server", "read-models");

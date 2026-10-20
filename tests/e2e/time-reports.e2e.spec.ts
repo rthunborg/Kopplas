@@ -28,7 +28,12 @@ test.describe("15.4 essential production-host time reporting", () => {
       await hydrated(date);
       await date.fill(REPORT_DATE);
       await page.getByLabel("Period", { exact: true }).selectOption("week");
-      const card = page.getByTestId(`scheduling-booking-${f.ownBooking}`);
+      const ownWeek = page.getByRole("region", { name: "Min kalender", exact: true })
+        .getByLabel("Egen veckokalender", { exact: true }).filter({ visible: true });
+      await expect(ownWeek).toHaveCount(1);
+      await expect(ownWeek).toBeVisible();
+      const card = ownWeek.getByTestId(`scheduling-booking-${f.ownBooking}`).filter({ visible: true });
+      await expect(card).toHaveCount(1);
       await expect(card).toBeVisible();
       await expect(page.getByTestId(`scheduling-booking-${f.peerBooking}`)).toHaveCount(0);
       const capture = card.getByRole("button", { name: "Rapportera tid", exact: true });

@@ -1,6 +1,6 @@
 /** Story 15.4 real checked-command fixtures. No service/database work at import time. */
 import { adminQuery, adminSession } from "../factories/admin-sql";
-import { makeAuthedServerClient, seedRoleAwarePhaseAUsers, deleteAuthUser, type TestServerClient } from "../factories/tenants";
+import { admin, makeAuthedServerClient, seedRoleAwarePhaseAUsers, deleteAuthUser, type TestServerClient } from "../factories/tenants";
 import { withBookingFixture, type BookingFixture, seedBookingParents } from "./bookings-atdd";
 
 import { fileTimeReport } from "@/server/commands/time-reports/file-time-report";
@@ -39,6 +39,11 @@ export function reportId(result: ReportResult): string {
   return result.data.reportId;
 }
 export type TimeReportFixture = BookingFixture & { clients: Record<string, TestServerClient> };
+function throwFixtureFailures(primary:{error:unknown}|undefined,cleanupErrors:unknown[],message:string):void {
+  if(primary&&!cleanupErrors.length)throw primary.error;
+  const errors=primary?[primary.error,...cleanupErrors]:cleanupErrors;
+  if(errors.length)throw new AggregateError(errors,message,primary?{cause:primary.error}:undefined);
+}
 export async function withTimeReportFixture(run: (fx: TimeReportFixture) => Promise<void>) {
   await withBookingFixture(async fx => {
     const users = { admin: fx.base.adminA, planner: fx.users.projektledare, own: fx.users.montor,
@@ -46,8 +51,10 @@ export async function withTimeReportFixture(run: (fx: TimeReportFixture) => Prom
       invited: fx.invitedUser, disabled: fx.disabledUser, orphan: fx.base.orphanUser, foreign: fx.base.adminB };
     const reused: Record<string,TestServerClient> = {admin:fx.adminClient,planner:fx.plannerClient,own:fx.montorClient,foreign:fx.foreignClient};
     const clients = Object.fromEntries(await Promise.all(Object.entries(users).map(async ([key, user]) => [key, reused[key] ?? await makeAuthedServerClient(user)])));
-    try { await run({ ...fx, clients }); }
-    finally { await cleanupOwnedTimeReports(fx.tenantIds); }
+    let primary:{error:unknown}|undefined;const cleanupErrors:unknown[]=[];
+    try { await run({ ...fx, clients }); } catch(error) { primary={error}; }
+    try { await cleanupOwnedTimeReports(fx.tenantIds); } catch(error) { cleanupErrors.push(error); }
+    throwFixtureFailures(primary,cleanupErrors,"Time-report callback and/or owned report cleanup failed");
   });
 }
 export async function setRoles(tenantId: string, userId: string, primary: string, supplemental: string[] = [], status = "active") {
@@ -140,15 +147,14 @@ export async function withReportAuditFault<T>(scope: { tenantId: string; correla
   }
 }
 
-/** Existing jobs-owned constructor is injected; no credential/config imported here. */
+/** Inject the existing LOCAL-only test service-JWT client into the real producer.
+ * Dedicated SUPABASE_TEST_* authority belongs to tenants::admin()/test-env;
+ * application NEXT_PUBLIC_* config is neither required nor mutated by fixtures.
+ */
 export async function jobsClient() {
-  const { assertLocalStack, LOCAL_SUPABASE_URL } = await import("./test-env");
-  const { getSupabasePublicEnv } = await import("@/server/db/supabase-env");
+  const { assertLocalStack } = await import("./test-env");
   assertLocalStack();
-  if (new URL(getSupabasePublicEnv().url).origin !== new URL(LOCAL_SUPABASE_URL).origin)
-    throw new Error("Jobs fixture requires the Root-allocated local test origin");
-  const { createJobsServiceClient } = await import("@/server/jobs/service-client");
-  return createJobsServiceClient();
+  return admin();
 }
 export async function produceNudges(client: TestServerClient, tenantId: string, options: { asOf: string; cursor?: string; correlationId?: string }) {
   return emitTimeReportNudges(client, tenantId, options);
@@ -192,22 +198,38 @@ export async function seedCheckedReport(tenantId: string, actorId: string, input
 }
 
 export async function withNudgeRecipients(fx: TimeReportFixture, run: (recipients: Array<{ userId: string; profileId: string }>) => Promise<void>) {
-  const ownedUsers: string[] = [], recipients: Array<{ userId: string; profileId: string }> = [];
+  const tenantId=fx.base.tenantA.id,ownedUsers:string[]=[],ownedProfiles:string[]=[],ownedBookings:string[]=[];
+  const recipients:Array<{userId:string;profileId:string}>=[];
+  let primary:{error:unknown}|undefined;const cleanupErrors:unknown[]=[];
   try {
     for (let batch = 0; batch < 9; batch++) {
       const extra = await seedRoleAwarePhaseAUsers(fx.base);
       ownedUsers.push(...extra.extraUsers.map(u => u.id));
       for (const user of [extra.users.projektledare, extra.users.montor, extra.roleUnionUser]) {
         const profileId = crypto.randomUUID();
-        await adminQuery("insert into public.person_profiles(id,tenant_id,membership_id) select $1,$2,id from public.tenant_memberships where tenant_id=$2 and user_id=$3", [profileId, fx.base.tenantA.id, user.id]);
-        await seedReportBooking(fx, { profileIds: [profileId], startsAt: "2026-10-19T06:00:00Z", endsAt: "2026-10-19T07:00:00Z" });
+        ownedProfiles.push(profileId);
+        await adminQuery("insert into public.person_profiles(id,tenant_id,membership_id) select $1,$2,id from public.tenant_memberships where tenant_id=$2 and user_id=$3", [profileId, tenantId, user.id]);
+        ownedBookings.push(await seedReportBooking(fx, { profileIds: [profileId], startsAt: "2026-10-19T06:00:00Z", endsAt: "2026-10-19T07:00:00Z" }));
         recipients.push({ userId: user.id, profileId });
       }
     }
     await run(recipients);
-  } finally {
-    // All producer/race promises must have settled in run before actor cleanup.
-    await cleanupOwnedTimeReports([fx.base.tenantA.id]);
-    for (const userId of ownedUsers) await deleteAuthUser(userId);
+  } catch(error) { primary={error}; }
+  // The awaited callback must settle all producer/race promises before cleanup.
+  // Restrictive assignment -> profile -> membership FKs require this order.
+  // Every normal-enforcement delete is limited to this tenant + generated IDs;
+  // unexpected foreign references fail loudly rather than being removed.
+  const cleanup=[
+    async()=>{await cleanupOwnedTimeReports([tenantId]);},
+    async()=>{if(ownedBookings.length&&ownedProfiles.length)await adminQuery("delete from public.booking_assignees where tenant_id=$1 and booking_id=any($2::uuid[]) and person_profile_id=any($3::uuid[])",[tenantId,ownedBookings,ownedProfiles]);},
+    async()=>{if(ownedBookings.length)await adminQuery("delete from public.bookings where tenant_id=$1 and id=any($2::uuid[])",[tenantId,ownedBookings]);},
+    async()=>{if(ownedProfiles.length)await adminQuery(`delete from public.person_profiles p using public.tenant_memberships m
+      where p.tenant_id=$1 and p.id=any($2::uuid[]) and m.tenant_id=p.tenant_id and m.id=p.membership_id and m.user_id=any($3::uuid[])`,[tenantId,ownedProfiles,ownedUsers]);},
+  ];
+  for(const remove of cleanup) {
+    try { await remove(); } catch(error) { cleanupErrors.push(error); }
   }
+  const removed=await Promise.allSettled(ownedUsers.map(userId=>deleteAuthUser(userId)));
+  for(const result of removed)if(result.status==="rejected")cleanupErrors.push(result.reason);
+  throwFixtureFailures(primary,cleanupErrors,"Nudge recipient callback and/or owned fixture cleanup failed");
 }
