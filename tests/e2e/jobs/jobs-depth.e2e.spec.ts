@@ -23,6 +23,7 @@
  */
 import { test, expect } from "../support/resource-cdp-attachment";
 import type { Locator, Page, Request, Response } from "@playwright/test";
+import { COMMAND_MESSAGES } from "@/server/commands/command-errors";
 import {
   cardInput, createJobsDepthFixture, invokeJobCard, type JobsDepthFixture,
 } from "../../support/jobs-depth-atdd";
@@ -315,12 +316,13 @@ test.describe("Story 16.1 essential Jobs depth journeys", () => {
       }));
       expect(changed.ok).toBe(true);
       const beforeStaleSave = await f.snapshot();
+      await expect(sheet.getByTestId("booking-save-error")).toHaveCount(0);
       const staleSave = page.waitForResponse((reply) => bookingAction(reply, "save", description));
       const freshPreview = page.waitForResponse((reply) => bookingAction(reply, "preview", description));
       await sheet.getByTestId("booking-save").click();
-      expect(await (await staleSave).text()).toContain("PREVIEW_STALE");
+      expect((await staleSave).ok()).toBe(true); // Transport only; exact domain failure is asserted below.
       expect((await freshPreview).ok()).toBe(true);
-      await expect(sheet.getByTestId("booking-save-error")).toBeVisible();
+      await expect(sheet.getByTestId("booking-save-error")).toHaveText(COMMAND_MESSAGES.PREVIEW_STALE);
       await expect(page.getByTestId("booking-save-status")).toHaveCount(0);
       await expect(sheet.getByTestId("booking-review-current-warnings")).not.toBeChecked();
       await expect(sheet.getByTestId("booking-override-reason")).toHaveValue("");
