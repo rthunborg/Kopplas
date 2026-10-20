@@ -1,0 +1,62 @@
+{
+  "round": 2,
+  "counted_rounds": 2,
+  "cap": 3,
+  "rederivation_iteration": 0,
+  "source_head": "1f19e3f3b7562bd43732dc61c17a9d0b1b5cee34",
+  "input_sha256": "ec5d409b466b789a2e658e46f65c313046fa5b57ed001d5e53949456219cb2d4",
+  "targeted_internal_result": "Original report resolves all nine at source level; native external and parent focused trace identify residual detachment boundaries below. Preserve original report without rewriting.",
+  "external_native": {
+    "exit": 0,
+    "observed_model": "gpt-6.1-sol",
+    "observed_effort": "high",
+    "sandbox": "read-only",
+    "approval": "never",
+    "report_bytes": 587,
+    "report_sha256": "9230d36a5f2219a4f0c1dc681971c5d930bea7f14d0725d4c5352a359cbc33c9",
+    "result": "One R1-03 residual finding; command plumbing qualified, source not accepted."
+  },
+  "triage": {
+    "intent_gap": 0,
+    "bad_spec": 0,
+    "patch": 2,
+    "patch_high": 1,
+    "patch_medium": 1,
+    "defer": 0,
+    "reject": 0,
+    "followup_recommended": true,
+    "score": 3
+  },
+  "findings": [
+    {
+      "id": "R2-01",
+      "original": "R1-03",
+      "severity": "medium",
+      "location": "src/components/time-reports/TimeReportEntry.tsx:27",
+      "claim": "Removing booking relationship clears canonical minutes while generated nonterminating decimal hour string remains; valid20-minute hours submission fails. Preserve duration when only relationship changes.",
+      "source": "qualified native CLI report; parent downstream source verified"
+    },
+    {
+      "id": "R2-02",
+      "original": "R1-02",
+      "severity": "high",
+      "location": "src/components/time-reports/TimeReportEntry.tsx:27",
+      "claim": "Same detach operation drops original UTC endpoint source. Unchanged late-fold01:30Z-to02:30Z interval changes60to120minutes under standalone local reparsing. Preserve endpoint provenance when only relationship changes.",
+      "source": "parent focused production-helper execution and actual caller trace",
+      "actual_probe": {
+        "command": "node --experimental-strip-types --import ./tests/support/register.mjs -e [production action-state helper latefold detachment probe]",
+        "exit": 0,
+        "before_detach_minutes": 60,
+        "current_detached_minutes": 120,
+        "scope": "pure helper execution plus source-confirmed current chooseBooking detachment composition; no component/DB/browser claim"
+      }
+    }
+  ],
+  "fix_route": {
+    "agent": "original author",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "scope": "ONE detachment operation, preserve duration/provenance, actual controller regression for both modes, minor SRO attribution; no new files/contracts/runtime"
+  },
+  "next": "Final LIMITED round3 latest detach fix only, reuse unchanged prior reviews. No fourth broad pass."
+}

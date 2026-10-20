@@ -24,7 +24,8 @@ export function TimeReportEntry({prefill,jobs=[],bookings=[],onSaved,label}:{rea
 
  function change(patch:Partial<TimeReportDraft>){if(inFlight.current||(attempt.current&&!canEditTimeReportAttempt(attempt.current)))return;dirty.current=true;setDraft(row=>updateTimeReportDraft(row,patch));setState({status:"draft"});}
 
- function chooseBooking(id:string){if(inFlight.current||attempt.current)return;const chosen=bookings.find(row=>row.bookingId===id);original.current=chosen;dirty.current=true;setDraft(row=>chosen?{...timeReportDraftFromBooking(chosen),note:row.note}:{...row,bookingId:null,jobId:null,exactPrefillUnavailable:false,canonicalHoursMinutes:null});setState({status:"draft"});}
+ // Detachment changes relationships, not the existing duration or endpoint provenance.
+ function chooseBooking(id:string){if(inFlight.current||attempt.current)return;const chosen=bookings.find(row=>row.bookingId===id);if(chosen)original.current=chosen;dirty.current=true;setDraft(row=>chosen?{...timeReportDraftFromBooking(chosen),note:row.note}:{...row,bookingId:null,jobId:null});setState({status:"draft"});}
 
  async function submit(retry=false){
 

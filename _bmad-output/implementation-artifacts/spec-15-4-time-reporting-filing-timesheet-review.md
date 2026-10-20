@@ -110,6 +110,12 @@ The ownership handoff lists exact new/shared candidate paths, semantic limits, n
 
 2026-10-20 implementation route: Sol 6.1 High author retains SQL/commands/read models/nudge and integration authority; one context-free Sol 6.1 High UI/domain delegate owns only the allocated feature/UI/booking-action caller and focused unit/component files. High is selected because action-state replay and request-bound actions are sensitive. No runtime or Git authority is delegated.
 
+## Review Findings
+
+### Round 3 of 3 — pending
+
+Final automatic limited review is pending dispatch and covers only the latest detachment fixes and their residuals. This header records the round before dispatch; it claims no completed review or acceptance. Status remains in-review, re-derivation remains0, and Round2 history is preserved below.
+
 ## Review Triage Log
 
 2026-10-20 Round 1 of 3: nine accepted patch findings (three High, six Medium), zero intent/spec gaps and re-derivation iteration zero. The external wrapper failed with exit 1 (`The system cannot find the file specified.`); its recovered report is triage input only, with actual external model metadata unavailable. Source was not accepted. The original Sol 6.1 High author retains the synchronous fix batch. The existing UI author is re-engaged at Sol 6.1 High for R1-01–05/08/09 in its original feature/controller/component/E2E paths; the implementation author retains decimal arithmetic R1-07, proposed preference-serialization R1-06 and final integration/SRO. High covers uncertain filing integrity and shared SQL serialization. No nested runtime, commit, broad review or kernel change is delegated. The new preference write contract awaits Coordinator reconciliation before any SQL write.
@@ -118,7 +124,11 @@ The existing integrity-test author is re-engaged at Sol 6.1 High only for R1-06 
 
 Coordinator's final R1-06 allocation authorizes only the unapplied109 affected-row preference contract and allocated serial tests. The earlier membership-scanning statement-trigger proposal was rejected and was never written. The implemented invoker row trigger tries the distinct sorted affected OLD/NEW tenant gates for nudge INSERT/UPSERT/UPDATE/DELETE and category/tenant moves; a busy gate raises `55P03` and aborts the transaction for explicit retry. It never waits after a tuple lock and has no authenticated, service, definer, JWT or native-fixture exemption. The producer retains its tenant gate and current preference predicate but drops preference tuple locks, allowing writers to reach the nonblocking gate. Current preference reads occur after the advisory wait under the existing READ COMMITTED/volatile-RPC contract; no broader isolation guarantee is asserted. Existing API failure/retry behavior, RLS, categories, grants, membership/role/profile locks and atomic notification/audit effects remain. The precise shared semantic delta and bounded UUID/session-scoped test barrier were allocated before their writes.
 
+2026-10-20 Round 2 of 3: the qualified native read-only CLI completed with exit0 and observed gpt-6.1-sol High; command qualification does not accept the source. Its R1-03 residual and the parent's focused R1-02 detachment trace are accepted as two patches in the same bounded relationship-removal operation: R2-01 Medium and R2-02 High. Accounting: patch2, intent_gap0, bad_spec0, defer0, reject0, follow-up score3, re-derivation0; `followup_review_recommended: true` remains. The original High author fixes these allocated controller/test/spec paths directly, with no nested delegation, new path/contract, runtime or kernel change. Original Round1 reports and failed-wrapper history remain preserved. Root's final LIMITED Round3 is confined to these fixes/residuals and does not authorize another broad review.
+
 ## Design Notes
+
+Round 2 detachment correction: booking/job links and the duration's source are separate concerns. Selecting Utan bokning now clears only the two relationships; the unchanged canonical minutes and UTC endpoint provenance continue to describe the displayed draft. Choosing another booking still replaces the prefill, while editing hours still invalidates canonical minutes and edited interval endpoints still parse independently. This prevents a valid20-minute draft being rejected through generated decimal hours and prevents an unchanged late-fold60-minute interval being reinterpreted as120 minutes.
 
 Round 1 arithmetic correction: report-vs-booked delta now subtracts the inputs' decimal numeric representations with integer scaling, then converts the decimal result to the existing numeric DTO. This preserves the received booked provenance, including 60.1 minutes, and displays 75−60.1 as 14.9 minutes without adding binary subtraction digits. It introduces no money arithmetic or report-duration rounding; filed minutes remain integers. Six focused domain assertions passed with zero skips during the fix batch, including independent tenths and micro/exponent boundaries. Final integrated evidence is recorded separately after all fixes settle.
 
@@ -164,6 +174,20 @@ Actual bounded evidence after the UI/domain fix integration:
 
 The source inventory now has 73 report declarations: pure17/component15/command11/RLS7/read7/nudge13/browser3, with zero explicit skips. The original 50 skipped declarations remain active; this batch adds five pure, eight component and four nudge declarations to the preceding56. Component execution and unit execution do not establish the unexecuted SQL/browser outcomes. Actual REQUIRED integration/RLS, migration/reset/seed/ACL, recovery Storage and production-browser checks remain pending Root's exclusive exact-head CI. The LF kernel digest remains `3c701d71dba37a136ae104fd24c3b223ef46081913301fb43ff92baca3f16ffb`; original preparation files are unchanged. No runtime, commit, delivery pass or done status is claimed.
 
+### Round 2 detachment checkpoint — 2026-10-20
+
+This bounded original-author fix is an uncommitted working tree against `1f19e3f3b7562bd43732dc61c17a9d0b1b5cee34`, retaining in-review status. Two actual-controller regressions select a genuine supplied booking through the production handler, detach it, submit through the production handler, and assert20/60 minutes with both relationship IDs null. Additional assertions retain explicit edited-hours rejection and independently unchanged late-fold start provenance after editing the other endpoint.
+
+Actual evidence:
+
+- Before the product fix, `pnpm exec vitest run tests/integration/components/time-reports.test.ts --project integration-parallel` executed17 cases:15 passed, two failed, zero skipped. R2-01 produced zero requests instead of one; R2-02 submitted120 rather than60 minutes. This is an actual old-source red run with the new controller tests, not a synthetic helper-only probe.
+- After the narrow detachment fix, the same command passed17/17 with zero failures/skips: eight SSR and nine actual-controller VM cases. Standard checked-in config/globalSetup was retained. VM still substitutes hook scheduling, action/read transport and router effects; no DOM/focus, database, browser or persistence outcome is inferred.
+- `node --experimental-strip-types --import ./tests/support/register.mjs --test tests/unit/features/time-reports/domain.test.ts tests/unit/features/time-reports/validation.test.ts tests/unit/features/time-reports/action-state.test.ts` passed17/17, zero failed/skipped.
+- `pnpm exec tsc --noEmit --incremental false` passed. `pnpm exec eslint src/components/time-reports/TimeReportEntry.tsx tests/integration/components/time-reports.test.ts` passed with zero errors/warnings.
+- `pnpm build`, `pnpm run verify:service-role-containment` and `pnpm run verify:bundle-containment` passed after the final product change. Unchanged full-unit/dependency/process outcomes are retained as historical evidence without repeat execution.
+
+The report inventory is now75 active declarations: pure17/component17/command11/RLS7/read7/nudge13/browser3, zero explicit skips. Both new declarations are actual controller regressions; the original50 remain active. SQL/RLS/migration/Storage/browser execution and Linux xattr remain pending Root's exact-head CI; no runtime, Git, dependency, schema or API action occurred in this batch. The same20-stop author trail below is refreshed for both residuals and correctly attributes genuine service-writer assertions to NUDGE011. Its checker passed with one section,20 stops and zero errors; `git diff --check` passed. The LF kernel SHA256 remains `3c701d71dba37a136ae104fd24c3b223ef46081913301fb43ff92baca3f16ffb`.
+
 ### Historical preparation evidence
 
 This planning run executes artifact/process checks only: source AC comparison, seven-point immediate story audit, READY standard, spec reader/discovery, exact raw/kernel hashes and clean tracked-source/cached-context preservation. Zero app/schema/test/scaffold/runtime/CI execution is claimed. Root separately dispatches independent High specification validation.
@@ -176,8 +200,8 @@ Deferred release validation retains exhaustive browser/device/view matrices, scr
 
 ## Auto Run Result
 
-Status: in-review — the original author applied all nine Round 1 patches; independent focused fix review and Root-owned exact-head CI remain pending.
-Blocking condition: required database/RLS/migration/Storage/browser evidence has not executed for this implementation, and the fixed source has not been independently accepted. The external wrapper remains failed/unqualified pending Root's bounded qualification. No runtime or ownership expansion is requested; resume through the already allocated review/CI lane.
+Status: in-review — the original author applied the two bounded Round 2 detachment patches after the nine Round 1 patches; final LIMITED fix review and Root-owned exact-head CI remain pending.
+Blocking condition: required database/RLS/migration/Storage/browser evidence has not executed for this implementation, and the fixed source has not been independently accepted. Native read-only CLI qualification succeeded in Round2 while identifying a source residual; the failed Round1 wrapper remains historical. No runtime or ownership expansion is requested; resume through the allocated limited-review/CI lane.
 
 ### Historical preparation result
 
@@ -191,16 +215,16 @@ Root then obtains Coordinator allocation of exact shared semantic deltas, a uniq
 ## Suggested Review Order
 
 Author: original Story15.4 implementation author, gpt-6.1-sol High; the same bounded High UI/integrity authors' fixes are reconciled here.
-Refreshed against the Round1 fix working tree based on `73169cc0c75d88fbb16dc999ef99cbd9028ff361`, 2026-10-20. The frozen intent contract is unchanged; in-review status and required runtime limits remain.
+Refreshed against the Round2 detachment fix working tree based on `1f19e3f3b7562bd43732dc61c17a9d0b1b5cee34`, 2026-10-20. The frozen intent contract is unchanged; in-review status and required runtime limits remain.
 
 ### Own capture and honest retry
 
-Entry now consumes the headless attempt/draft transitions. A denied retry cannot resolve an earlier unknown commit; independent untouched UTC endpoints retain their fold/microsecond identity, canonical booking minutes survive mode switches, and standalone start defaults the date until explicitly changed. AC1/2/6 are asserted through actual controller handlers and exact-input units; browser2 extends the same-attempt persistence scenario.
+Entry consumes the headless attempt/draft transitions. Detaching clears booking/job relationships while retaining canonical duration and independently unchanged UTC endpoint provenance; edited input keeps exact validation. AC1/2/6 actual-controller regressions submit detached20-minute hours and late-fold60-minute intervals, while existing tests retain unknown-attempt, standalone-date and edited-endpoint behavior.
 
-- `src/components/time-reports/TimeReportEntry.tsx:13` — `TimeReportEntry`: freezes unresolved attempts and composes connected capture.
+- `src/components/time-reports/TimeReportEntry.tsx:28` — `chooseBooking`: detaches relationships while retaining duration and endpoint provenance.
 - `src/features/time-reports/action-state.ts:36` — `timeReportDraftMinutes`: preserves untouched endpoints and exact canonical duration.
-- `tests/integration/components/time-reports.test.ts:133` — `R1-01`: exercises actual filing handlers across loss, denial and confirmation.
-- `tests/e2e/time-reports.e2e.spec.ts:76` — `15.4-E2E-002`: checks persisted same-attempt reconciliation after restored authority.
+- `tests/integration/components/time-reports.test.ts:193` — `R2-01`: submits detached canonical minutes and rejects edited rounded hours.
+- `tests/integration/components/time-reports.test.ts:203` — `R2-02`: submits detached late-fold minutes with cleared booking/job links.
 
 ### Current authority and one attributable write
 
@@ -231,11 +255,11 @@ The existing jobs client supplies exact tenant/as-of/cursor scope. The allocated
 
 ### Integrity evidence and operational limits
 
-NUDGE001 retains real SQL spring/fall, midnight and exclusive-end vectors; NUDGE004 retains frozen continuation beyond25 recipients. NUDGE012/013 assert affected-tenant/membership/category/service behavior and exact private trigger ACLs. These and command/RLS/read/browser bodies are active source awaiting Root CI. The temporary barrier releases its control gate before settling all pending sessions and exact catalog teardown; owned report cleanup retains its disclosed transaction-local test-admin bypass.
+NUDGE001 retains real SQL spring/fall, midnight and exclusive-end vectors; NUDGE004 retains frozen continuation beyond25 recipients. NUDGE011 contains the genuine injected service-JWT preference-write assertions; NUDGE012/013 assert affected-tenant/membership/category behavior and exact private trigger ACLs. These and command/RLS/read/browser bodies are active source awaiting Root CI. The temporary barrier releases its control gate before settling all pending sessions and exact catalog teardown; owned report cleanup retains its disclosed transaction-local test-admin bypass.
 
 - `tests/integration/notifications/time-report-nudge-producer.int.test.ts:356` — `15.4-NUDGE-012`: asserts affected tenants and current membership without exemptions.
 - `tests/integration/rls/migration-reset.int.test.ts:700` — `privateFunctions`: enrolls the new invoker trigger in the closed ACL set.
 - `tests/integration/read-models/time-reports.int.test.ts:37` — `15.4-READ-002`: asserts complete filtered review and standalone totals.
 - `tests/support/time-reports-atdd.ts:165` — `cleanupOwnedTimeReports`: confines immutable-fixture cleanup to explicitly owned tenants.
 
-Evidence: the Round1 checkpoint above records focused17/17 pure units, component15/15 (8 SSR and7 actual-controller VM cases), full units3,040 passed/zero failed/one Windows xattr skip, type/source-lint/build/containment checks and source inventory. VM substitutes hook scheduling, action transport and router effects; SSR proves markup. Neither proves DOM/focus, authorization, network or persistence. The original failed-unit history, external-wrapper failure and unexecuted database/browser limits remain recorded. Required migration/RLS/Storage/browser execution, Linux xattr, canonical clean-checkout lint, independent focused fix review and passing delivery remain Root-owned; release matrices/manual timing/performance stay deferred. No done/development-complete/release-ready claim is made.
+Evidence: Round2 records actual old-source15-pass/two-failure reproduction, then component17/17 (eight SSR/nine controller VM), pure units17/17, type/scoped-lint/build/containment passes and75 active declarations. The last full-unit run remains Round1's3,040 passed/zero failed/one Windows xattr skip. VM substitutes hook scheduling, action transport and router effects; SSR proves markup. Neither proves DOM/focus, authorization, network or persistence. Earlier failures, qualified native review provenance and unexecuted database/browser limits remain recorded. Required migration/RLS/Storage/browser execution, Linux xattr, canonical clean-checkout lint, final LIMITED fix review and passing delivery remain Root-owned; release matrices/manual timing/performance stay deferred. No done/development-complete/release-ready claim is made.

@@ -1,0 +1,16 @@
+{
+  "sourceHead": "1f19e3f3b7562bd43732dc61c17a9d0b1b5cee34",
+  "inputSha256": "ec5d409b466b789a2e658e46f65c313046fa5b57ed001d5e53949456219cb2d4",
+  "nativeExit": 0,
+  "requestedModel": "gpt-6.1-sol",
+  "requestedEffort": "high",
+  "observedModelAndEffort": [
+    "model: gpt-6.1-sol",
+    "reasoning effort: high"
+  ],
+  "diagnosticLog": "C:\\Users\\Rasmus\\AppData\\Local\\Temp\\auto-bmad-15-4-round2-1f19e3f3b756.diff.native.log",
+  "logSessionIdentifiers": "redacted",
+  "reportExists": true,
+  "reportBytes": 587,
+  "reportSha256": "9230d36a5f2219a4f0c1dc681971c5d930bea7f14d0725d4c5352a359cbc33c9"
+}

@@ -120,8 +120,8 @@ function actualController(name:"TimeReportEntry"|"TimeReportReview"|"TimeReportW
   const component=exported[name] as (props:Record<string,unknown>)=>unknown;
   return {render:()=>{cursor=0;return component(props);},confirm,refresh};
 }
-function entryController(prefill?:TimeReportBookingPrefill,responses:TimeReportMutationResult[]=[{status:"success",reportId:"confirmed"}]) {
- const requests:ReportInput[]=[];const controller=actualController("TimeReportEntry",{prefill},{fileTimeReportAction:async(input:ReportInput)=>{requests.push(input);const result=responses.shift();if(!result)throw new Error("Missing owned action response");return result;}});
+function entryController(prefill?:TimeReportBookingPrefill,responses:TimeReportMutationResult[]=[{status:"success",reportId:"confirmed"}],bookings:readonly TimeReportBookingPrefill[]=[]) {
+ const requests:ReportInput[]=[];const controller=actualController("TimeReportEntry",{prefill,bookings},{fileTimeReportAction:async(input:ReportInput)=>{requests.push(input);const result=responses.shift();if(!result)throw new Error("Missing owned action response");return result;}});
  fire(findControllerNode(controller.render(),node=>node.type==="button"),"onClick");
  const form=()=>findControllerNode(controller.render(),node=>node.type===TimeReportForm);
  return {...controller,form,requests};
@@ -189,5 +189,23 @@ describe("actual time report controller interaction regressions",()=>{
  test("R1-07 actual review markup preserves raw decimal booked provenance and exact decimal delta",()=>{
   const html=renderToStaticMarkup(createElement(TimeReportReview,{report:{...reviewReport,status:"submitted"},canReview:true}));
   expect(html).toContain('data-testid="time-report-booked-at-filing">1 h 0,1 min');expect(html).toContain('data-testid="time-report-booked-delta">+0 h 14,9 min');expect(html).not.toContain("14,899999999999999");
+ });
+ test("R2-01 actual booking detachment keeps twenty canonical minutes in hours mode and clears both relationships",async()=>{
+  const source={...ownPrefill,startsAt:"2026-10-20T06:00:00Z",endsAt:"2026-10-20T06:20:00Z",date:"2026-10-20",minutes:20,jobId:reviewReport.jobId};
+  const entry=entryController(undefined,undefined,[source]);
+  fire(entry.form(),"onBookingChange",source.bookingId);fire(entry.form(),"onChange",{mode:"hours",note:"Keep declared time"});fire(entry.form(),"onBookingChange","");
+  await fire(entry.form(),"onSubmit");expect(entry.requests).toHaveLength(1);
+  expect(entry.requests[0]).toMatchObject({date:source.date,minutes:20,bookingId:null,jobId:null,note:"Keep declared time"});
+  expect((entry.form().props.state as {status:string}).status).toBe("confirmed");
+  const edited=entryController(undefined,undefined,[source]);fire(edited.form(),"onBookingChange",source.bookingId);fire(edited.form(),"onChange",{mode:"hours"});fire(edited.form(),"onBookingChange","");fire(edited.form(),"onChange",{hours:"0.3333333333333333"});
+  await fire(edited.form(),"onSubmit");expect(edited.requests).toHaveLength(0);expect((edited.form().props.state as {status:string}).status).toBe("rejected");
+ });
+ test("R2-02 actual booking detachment preserves unchanged late-fold UTC endpoints through standalone submission",async()=>{
+  const source={...ownPrefill,jobId:reviewReport.jobId},entry=entryController(undefined,undefined,[source]);
+  fire(entry.form(),"onBookingChange",source.bookingId);fire(entry.form(),"onBookingChange","");await fire(entry.form(),"onSubmit");
+  expect(entry.requests).toHaveLength(1);expect(entry.requests[0]).toMatchObject({date:source.date,minutes:60,bookingId:null,jobId:null});
+  expect((entry.form().props.state as {status:string}).status).toBe("confirmed");
+  const adjusted=entryController(undefined,undefined,[source]);fire(adjusted.form(),"onBookingChange",source.bookingId);fire(adjusted.form(),"onBookingChange","");fire(adjusted.form(),"onChange",{endsAtLocal:"2026-10-25T04:30"});
+  await fire(adjusted.form(),"onSubmit");expect(adjusted.requests[0]).toMatchObject({minutes:120,bookingId:null,jobId:null});
  });
 });
