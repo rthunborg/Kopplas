@@ -17,6 +17,7 @@ export function JobWorkspaceShell({header, tabs, panels, actions, canBook}: {
 }) {
   const search = useSearchParams();
   const workspaceRef = useRef<HTMLElement>(null);
+  const detailsRef = useRef<HTMLDetailsElement>(null);
   useLayoutEffect(() => {
     const workspace = workspaceRef.current;
     if (!workspace) return;
@@ -27,10 +28,14 @@ export function JobWorkspaceShell({header, tabs, panels, actions, canBook}: {
       workspace!.style.height = `${Math.max(1, window.innerHeight - top - bottom)}px`;
     }
     fit();
+    const desktop = window.matchMedia("(min-width: 640px)");
+    const disclose = () => {if (detailsRef.current) detailsRef.current.open = desktop.matches;};
+    disclose();
+    desktop.addEventListener("change", disclose);
     const observer = new ResizeObserver(fit);
     if (main?.parentElement) observer.observe(main.parentElement);
     window.addEventListener("resize", fit);
-    return () => {observer.disconnect(); window.removeEventListener("resize", fit);};
+    return () => {desktop.removeEventListener("change", disclose); observer.disconnect(); window.removeEventListener("resize", fit);};
   }, []);
   const selected = selectJobWorkspaceTab({availableTabs: tabs.map(tab => tab.id), tab: search.get("tab"), workOrder: search.get("workOrder")});
   const [more, setMore] = useState(false);
@@ -51,25 +56,30 @@ export function JobWorkspaceShell({header, tabs, panels, actions, canBook}: {
     else tabRefs.current[target]?.focus();
   }
   const overflow = more;
-  return <section ref={workspaceRef} data-testid="job-workspace" className="flex min-h-0 min-w-0 flex-col gap-4 overflow-y-auto overscroll-contain p-4 pb-28 sm:p-6 sm:pb-6">
-    <header data-testid="job-workspace-header" className="sticky top-0 z-30 shrink-0 space-y-3 rounded-lg border border-zinc-200 bg-white p-4">
+  return <section ref={workspaceRef} data-testid="job-workspace" className="flex min-h-0 min-w-0 flex-col gap-2 overflow-hidden p-2 sm:gap-4 sm:p-4">
+    <header data-testid="job-workspace-header" className="relative z-30 max-h-[50%] shrink-0 space-y-2 overflow-y-auto rounded-lg border border-zinc-200 bg-white p-2 sm:space-y-3 sm:p-4">
       <div className="flex flex-wrap items-center gap-3">
-        <h1 id="job-detail-heading" className="min-w-0 flex-1 break-words text-2xl font-semibold text-zinc-900">{header.title ?? header.customer ?? "Jobb"}</h1>
+        <h1 id="job-detail-heading" className="line-clamp-2 min-w-0 flex-1 break-words text-lg font-semibold text-zinc-900 sm:text-2xl">{header.title ?? header.customer ?? "Jobb"}</h1>
         <span data-testid="job-workspace-type" className="rounded-md border border-zinc-300 px-2 py-1 text-sm">{header.type === "projekt" ? "Projekt" : "Order"}</span>
         <span data-testid="job-status" className="rounded-md border border-zinc-300 bg-zinc-50 px-2 py-1 text-sm font-medium text-zinc-800">{JOB_STATUS_LABELS[header.status as JobStatus] ?? "Okänd status"}</span>
       </div>
-      <dl className="grid min-w-0 grid-cols-2 gap-2 text-sm lg:grid-cols-3">
-        {([["Kund", "job-customer", header.customer], ["Anläggning", "job-site", header.site], ["Kontakt", "job-contact", header.contact]] as const).map(([label, id, value]) => <div key={id} className="min-w-0"><dt className="text-zinc-600">{label}</dt><dd data-testid={id} className="break-words font-medium text-zinc-900">{value ?? "Saknas"}</dd></div>)}
-        <div className="min-w-0"><dt className="text-zinc-600">Projektledare</dt><dd data-testid="job-responsible-pl" data-state={header.responsibleProjectManager.state} className="break-words">{assignmentText(header.responsibleProjectManager)}</dd></div>
-        <div className="min-w-0"><dt className="text-zinc-600">Arbetsledare</dt><dd data-testid="job-lead" data-state={header.lead.state} className="break-words">{assignmentText(header.lead)}</dd></div>
-        <div><dt className="text-zinc-600">Planerat</dt><dd data-testid="job-planned-dates">{header.plannedStartDate ?? "Okänd start"} – {header.plannedEndDate ?? "Okänt slut"}</dd></div>
+      <dl className="grid min-w-0 grid-cols-2 gap-2 text-xs sm:text-sm lg:grid-cols-3">
+        <div className="min-w-0"><dt className="text-zinc-600">Projektledare</dt><dd data-testid="job-responsible-pl" data-state={header.responsibleProjectManager.state} title={assignmentText(header.responsibleProjectManager)} className="truncate">{assignmentText(header.responsibleProjectManager)}</dd></div>
+        <div className="min-w-0"><dt className="text-zinc-600">Arbetsledare</dt><dd data-testid="job-lead" data-state={header.lead.state} title={assignmentText(header.lead)} className="truncate">{assignmentText(header.lead)}</dd></div>
+        <div className="col-span-2 lg:col-span-1"><dt className="text-zinc-600">Planerat</dt><dd data-testid="job-planned-dates">{header.plannedStartDate ?? "Okänd start"} – {header.plannedEndDate ?? "Okänt slut"}</dd></div>
       </dl>
-      {(canBook || actions) && <div className="flex flex-wrap gap-3">{canBook && <button type="button" className={`${control} border border-blue-700 text-blue-700`} onClick={() => {
+      <details ref={detailsRef} data-testid="job-workspace-details" className="text-sm">
+        <summary className="min-h-11 cursor-pointer py-2 font-medium text-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">Kund, anläggning och kontakt</summary>
+        <dl className="grid min-w-0 grid-cols-1 gap-2 sm:grid-cols-3">
+          {([["Kund", "job-customer", header.customer], ["Anläggning", "job-site", header.site], ["Kontakt", "job-contact", header.contact]] as const).map(([label, id, value]) => <div key={id} className="min-w-0"><dt className="text-zinc-600">{label}</dt><dd data-testid={id} className="break-words font-medium text-zinc-900">{value ?? "Saknas"}</dd></div>)}
+        </dl>
+      </details>
+      {(canBook || actions) && <div className="flex flex-wrap gap-2">{canBook && <button type="button" className={`${control} border border-blue-700 text-blue-700`} onClick={() => {
         choose("schedule");
         requestAnimationFrame(() => { document.querySelector<HTMLButtonElement>('[data-testid="booking-entry-job"]')?.click(); });
       }}>Boka</button>}{actions}</div>}
     </header>
-    <nav aria-label="Jobbets vyer" className="fixed inset-x-0 bottom-0 z-20 border-t border-zinc-200 bg-white p-2 sm:static sm:rounded-lg sm:border sm:p-2">
+    <nav aria-label="Jobbets vyer" className="relative z-20 order-3 shrink-0 rounded-lg border border-zinc-200 bg-white p-1 sm:order-none sm:p-2">
       <div role="tablist" aria-label="Jobbets vyer" className="flex flex-wrap gap-1">
         {tabs.map(tab => <button key={tab.id} type="button" role="tab" id={`job-tab-${tab.id}`} aria-controls={`job-panel-${tab.id}`} aria-selected={selected === tab.id}
           tabIndex={selected === tab.id ? 0 : -1} ref={element => {tabRefs.current[tab.id] = element;}}
@@ -80,8 +90,10 @@ export function JobWorkspaceShell({header, tabs, panels, actions, canBook}: {
         {tabs.length > 3 && <button type="button" aria-expanded={overflow} aria-label="Mer" onClick={() => setMore(!overflow)} className={`${control} text-blue-700 sm:hidden`}>Mer</button>}
       </div>
     </nav>
+    <div data-testid="job-workspace-content" className="order-2 min-h-0 flex-1 overflow-y-auto overscroll-contain sm:order-none">
     {tabs.map(tab => <div key={tab.id} id={`job-panel-${tab.id}`} role="tabpanel" aria-labelledby={`job-tab-${tab.id}`} tabIndex={0}
       hidden={selected !== tab.id} className="min-w-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">{panels[tab.id]}</div>)}
+    </div>
   </section>;
 }
 

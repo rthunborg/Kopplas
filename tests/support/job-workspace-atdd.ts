@@ -3,7 +3,9 @@
  * Playwright-utils flag=true/package absent; existing Node/Vitest runners apply.
  */
 import type { TestServerClient } from "../factories/tenants";
-import type { JobsDepthFixture } from "./jobs-depth-atdd";
+import {withJobsDepthFixture, type JobsDepthFixture} from "./jobs-depth-atdd";
+import {readJobWorkspace} from "@/server/read-models/job-workspace";
+import {readJobEvents, type JobEventsClient} from "@/server/read-models/job-events";
 import type { JobDetail } from "@/features/jobs/types";
 export type WorkspaceFixture = JobsDepthFixture;
 export type WorkspaceQuery = { tab?: string; workOrder?: string };
@@ -19,17 +21,13 @@ export type Workspace = { jobId: string; header: WorkspaceHeader; detail: JobDet
   events?: { rows: readonly SafeJobEvent[]; error: string | null };
   workOrders?: { rows: readonly { id: string; jobId: string }[] }; cardOptions?: unknown };
 export type WorkspaceRead = { workspace: Workspace | null; error: string | null };
+// Static bindings stay inside the runner's normal alias-aware loader. Database work remains invocation-only.
 export async function withWorkspaceFixture(run: (fixture: WorkspaceFixture) => Promise<void>): Promise<void> {
-  const { withJobsDepthFixture } = await import("./jobs-depth-atdd");
   await withJobsDepthFixture(run);
 }
 export async function readWorkspace(client: TestServerClient, jobId: string, query: WorkspaceQuery = {}): Promise<WorkspaceRead> {
-  const path = "@/server/read-models/job-workspace";
-  const binding = await import(path) as { readJobWorkspace: (client: TestServerClient, id: string, query: WorkspaceQuery) => Promise<WorkspaceRead> };
-  return binding.readJobWorkspace(client, jobId, query);
+  return readJobWorkspace(client, jobId, query);
 }
 export async function readWorkspaceEvents(client: TestServerClient, jobId: string): Promise<{ rows: readonly SafeJobEvent[]; error: string | null }> {
-  const path = "@/server/read-models/job-events";
-  const binding = await import(path) as { readJobEvents: (client: TestServerClient, id: string) => Promise<{ rows: readonly SafeJobEvent[]; error: string | null }> };
-  return binding.readJobEvents(client, jobId);
+  return readJobEvents(client as unknown as JobEventsClient, jobId);
 }

@@ -52,12 +52,23 @@ async function identity(page: Page, jobId: string, title: string) {
   await expect(header).toBeVisible();
   await expect(header.getByRole("heading", { name: title, exact: true })).toBeVisible();
   await expect(header.getByTestId("job-status")).toBeVisible();
+  const details = header.getByTestId("job-workspace-details");
+  const disclosed = await details.getAttribute("open") === null;
+  if (disclosed) await details.locator("summary").click();
   await expect(header.getByTestId("job-customer")).toContainText("Workshop customer");
   await expect(header.getByTestId("job-site")).toContainText("Workshop");
   await expect(header.getByTestId("job-contact")).toContainText("Workshop contact");
   await expect(header.getByTestId("job-planned-dates")).toContainText("2026-10-12");
   await expect(header.getByTestId("job-responsible-pl")).toBeVisible();
   await expect(header.getByTestId("job-lead")).toBeVisible();
+  if (disclosed) await details.locator("summary").click();
+}
+async function openListedJob(page: Page, jobId: string, title: string) {
+  const row = page.getByTestId("job-list-row").filter({hasText: title});
+  await expect(row.getByText(title, {exact: true})).toBeVisible();
+  const link = row.getByRole("link");
+  await expect(link).toHaveAttribute("href", `/jobs/${jobId}`);
+  await link.click();
 }
 function cardAction(request: Request, jobId: string, title: string): Record<string, unknown> | null {
   if (request.method() !== "POST" || !request.headers()["next-action"]
@@ -94,7 +105,7 @@ test.describe("Story 16.5 essential job workspace", () => {
       await signIn(page, f.credentials.manager);
       // Existing title/list entry, then stable route; no new entry point.
       await page.goto("/jobs");
-      await page.getByRole("link", { name: title, exact: true }).click();
+      await openListedJob(page, jobId, title);
       await identity(page, jobId, title);
       await expect(page.getByRole("tab")).toHaveText(["Översikt", "Arbetsorder", "Schema", "Filer", "Händelser"]);
       await expect(page.getByTestId("job-workspace-type")).toContainText("Order");
@@ -114,11 +125,15 @@ test.describe("Story 16.5 essential job workspace", () => {
         await page.getByRole("dialog").getByRole("button", {name: "Stäng", exact: true}).click();
         await expect(editor).toHaveCount(0);
         await selectTab(page, "Översikt");
-        await page.getByTestId("job-workspace").evaluate(element => {element.scrollTop = element.scrollHeight;});
+        await page.getByTestId("job-workspace-content").evaluate(element => {element.scrollTop = element.scrollHeight;});
         await expect(header).toBeInViewport();
+        const viewport = await page.getByTestId("job-workspace-content").boundingBox();
+        expect(viewport!.height).toBeGreaterThanOrEqual(96);
         await page.setViewportSize({width: 360, height: 640});
-        await page.getByTestId("job-workspace").evaluate(element => {element.scrollTop = element.scrollHeight;});
+        await page.getByTestId("job-workspace-content").evaluate(element => {element.scrollTop = element.scrollHeight;});
         await expect(header).toBeInViewport();
+        const phoneViewport = await page.getByTestId("job-workspace-content").boundingBox();
+        expect(phoneViewport!.height).toBeGreaterThanOrEqual(96);
         await header.getByTestId("job-upgrade-open").click();
         await expect(page.getByTestId("job-upgrade-dialog")).toBeVisible();
         const tab = page.getByRole("tab", {name: "Arbetsorder", exact: true});
@@ -128,6 +143,14 @@ test.describe("Story 16.5 essential job workspace", () => {
         await page.mouse.click(box!.x + box!.width / 2, box!.y + box!.height / 2);
         await expect(page.getByRole("tab", {name: "Översikt", exact: true})).toHaveAttribute("aria-selected", "true");
         await expect(page.getByTestId("job-upgrade-dialog")).toHaveCount(0);
+        // Ordinary pointer interaction in the phone body remains reachable below the persistent chrome.
+        await selectTab(page, "Schema");
+        await page.getByTestId("booking-entry-job").click();
+        await expect(editor).toBeVisible();
+        await expect(editor.getByTestId("booking-job")).toHaveValue(jobId);
+        await page.getByRole("dialog").getByRole("button", {name: "Stäng", exact: true}).click();
+        await expect(editor).toHaveCount(0);
+        await selectTab(page, "Översikt");
         await page.setViewportSize({width: 1280, height: 900});
       });
 
@@ -334,7 +357,7 @@ test.describe("Story 16.5 essential job workspace", () => {
         } finally { page.off("dialog", acceptLeave); }
         // Establish a real prior SPA route before arming the card-only leave guard.
         await page.goto("/jobs");
-        await page.getByRole("link", {name: title, exact: true}).click();
+        await openListedJob(page, jobId, title);
         const card = page.getByTestId("job-card-form"), changed = `${title} retry`;
         await ready(card);
         await card.getByRole("textbox", { name: "Titel", exact: true }).fill(changed);

@@ -150,7 +150,11 @@ test.describe("Story 16.1 essential Jobs depth journeys", () => {
       const response = await page.goto(`/jobs/${f.jobs.acceptedAssigned.id}`);
       expect(response?.ok()).toBe(true);
       await expect(page.getByTestId("job-detail")).toBeVisible();
+      const customerDetails = page.getByTestId("job-workspace-details");
+      await customerDetails.locator("summary").click();
+      await expect(page.getByTestId("job-customer")).toBeVisible();
       await expect(page.getByTestId("job-customer")).not.toBeEmpty();
+      await customerDetails.locator("summary").click();
       await expect(page.getByTestId("job-status")).not.toBeEmpty();
       await expect(page.getByTestId("job-accepted-price")).toHaveCount(0);
       await expect(page.getByTestId("job-source-sent-total")).toHaveCount(0);
@@ -315,10 +319,11 @@ test.describe("Story 16.1 essential Jobs depth journeys", () => {
       }));
       expect(changed.ok).toBe(true);
       const beforeStaleSave = await f.snapshot();
-      const staleSave = page.waitForResponse((reply) => bookingAction(reply, "save", description));
+      const staleSave = page.waitForResponse((reply) => bookingAction(reply, "save", description))
+        .then(async reply => ({reply, body: await reply.text()}));
       const freshPreview = page.waitForResponse((reply) => bookingAction(reply, "preview", description));
       await sheet.getByTestId("booking-save").click();
-      expect(await (await staleSave).text()).toContain("PREVIEW_STALE");
+      expect((await staleSave).body).toContain("PREVIEW_STALE");
       expect((await freshPreview).ok()).toBe(true);
       await expect(sheet.getByTestId("booking-save-error")).toBeVisible();
       await expect(page.getByTestId("booking-save-status")).toHaveCount(0);

@@ -123,6 +123,17 @@ Round1 provenance: all five internal High layers completed against raw diff SHA1
 Targeted independent Sol6.1 High recheck only: qualified PASS on the repaired thirteen-path delta, all twenty-six frozen bindings and relevant unchanged dependencies. The same reviewer checked cooperating navigation guards, opaque installed-router history state, later allowed navigation, late completion/file ownership, pagination, retries, stacking and the author trail. No broad or external layer was repeated. Actual receipt SHA 1885b3c10b005afb232563915672a5ac1f364a175214ed579286e7f4b1b3e202. Latest patched severity counts high0/medium0/low0, score0; follow-up recommendation false. Original eleven actions and their first-pass recommendation remain above. Required runtime evidence remains pending root CI.
 
 
+### 2026-10-20 — Review pass
+- intent_gap: 0
+- bad_spec: 0
+- patch: 0
+- defer: 0
+- reject: 0
+- addressed_findings:
+  - none
+
+Same independent Sol6.1 High reviewer qualified PASS on only the five-path runtime repair delta SHA530af26004dfe0dc2eed7f5e69889a9849c83641f2774b5c401eb9b00c043d9d, all26 frozen bindings and relevant unchanged dependencies. Actual receipt SHAbca3df0b395c3d2e75e4f691fc63e1d645ea0d85ac628ebcdcc30f15dd4d73f5. Separate scrolling, fixed modal stacking, invocation-only static fixture loading and real list/refusal/persistence assertions were checked. No broad/external layer was rerun. Latest counts remain all0/follow-up false. Failed CI39467187678 is preserved; member/work-order observer outcomes and repaired browser behavior still require a successful new exact-head CI. Collection/build are not runtime acceptance.
+
 ## Design Notes
 
 Owner-authorized maintainable defaults under current AGENTS: keep existing global navigation; use the design system for desktop tab navigation and mobile priority tabs plus Mer with accessible names, selected state and focus handling. Maintain stable authorized panel islands keyed by job/tab, or reuse explicit dirty/pending leave guards where mounting cannot be preserved; do not silently discard existing form state. No generic navigation/state framework or offline persistence is required.
@@ -143,6 +154,13 @@ Planning evidence only: two context-free Sol6.1 High requirements/consumer explo
 - Independent configured High review and targeted fixes under the three-broad-round cap; verify direct routes/readers, unsafe payload absence and retained action boundaries. Any new external private diff upload requires applicable direct human authorization; the earlier exact16.4 payload grant is not blanket permission.
 - Author actual delivery JSON and final Suggested Review Order; root executable delivery gate and independent High provenance review precede explicit root authorization to mark done. Prior story CI is baseline continuity only. Broad visual/manual/browser matrices remain separately owned release validation, never a deferral of failing functional/security acceptance. Development completion does not imply release readiness or deployment approval.
 
+## Runtime evidence - first checkpoint ad9c3b79
+
+Actual owned CI39467187678 at ad9c3b79a4244333384e6d0970e13586f7a05739 failed its essential production-browser lane:32 cases,22 expected,9 unexpected,1 flaky,0 skipped. Native report SHA256 0aca765dddc0e41dac7f32010b2ec33c13f8e741d2db4646e9e5c3bf7e7ee618. Workspace fixture alias imports, actual sticky header/mobile-tab interception and lead/work-order action observers are under causal repair; the exact native assertions remain acceptance obligations. Jobs-depth E03 failed its first response-body read with Network.getResponseBody/no data, then passed retry1; that is flaky evidence, not a first-attempt pass. No failing behavior is deferred as release polish.
+
+The same revision actually passed verification2740/2740,0 skip,plus43 process checks; full DB1880 total/1879 passed/0 failed/1 ordinary physical-recovery skip, including workspace INT4/RLS3; direct isolated physical recovery separately1/1 passed/0 skipped. Required pilot performance used5 warmup/25 measured:read p95=7.89618100000007ms,syntheticBulkEffectivePermissions p95=3.4589670000000297ms. Native DB SHA256 7d0b3b1d3111dc7401b6f6f3a3f152668d800c5147b791d85f2117c690429240; direct recovery SHA256 65646ec3458504c59520165910097616afd8ca8c045378afd6928e5dd027e7a3. These are historical exact-head results; a reviewed repair requires new exact-head required CI. Story remains in-review, no delivery/development-complete claim. Original review union and targeted receipts remain above; only latest causal changes receive focused independent High recheck.
+
+
 ## Auto Run Result
 
 Status: in-review
@@ -151,7 +169,7 @@ Historical planning exit: ready-for-dev, three refined ACs/TR12; the explicit Ph
 Implemented the authorized five-tab workspace, safe header/events, independent consumer gates and connected navigation. Source baseline: f96256a066db7e38d482e4538f2a0ba2472cf4b8; local preservation checkpoint4562b3feecece4e36674242c7d95a8cbf5f5b5b7 retained the original reviewed candidate. No migration, new grant, AppShell, facts/proof or historical SQL change.
 Round1: eleven patch actions applied (high1/medium8/low2), zero deferred, three rejected. Original Round1 recommendation was true (patched severity score=3×8+2=26, with one high). Targeted independent High repair verification: qualified PASS; latest patched counts high0/medium0/low0, score0, follow-up recommendation false. Original first-pass score26 and eleven actions remain historical above.
 Actual local evidence after repair: controlled focused RED3fail then GREEN13pass/0fail/0skip; explicit TSC/lint/build and source/final-bundle containment native0; completed-build sequential unit2740total/2739pass/0fail/1Windows xattr skip; job-only Playwright collection25cases/6files, including four workspace journeys, no browser execution. One author Suggested Review Order,20 verified stops/0reference errors. Earlier withdrawn combined-shell TSC claim, transient unit/build race and missing local auth-fixture full-collection failure remain historical limitations, not passes.
-Required exact-head DB/RLS/recovery/pilot/production-browser CI remains pending root. No development-complete, done, release-ready or deployment approval claim. Root executable delivery gate, independent provenance and explicit authorization remain required after real runtime evidence.
+First exact-head CI39467187678 at ad9c3b79 failed browser (22expected/9unexpected/1flaky/0skip) while verification2740/2740, DB1879pass/1ordinary recovery skip, dedicated recovery1/1 and pilot performance passed. The bounded five-path repair has actual local static/build/collection native0 and independent High targeted qualified PASS; a new exact-head full required CI remains pending root. No development-complete, done, release-ready or deployment approval claim. Root executable delivery gate, independent provenance and explicit authorization remain required after real runtime evidence.
 
 
 ## Suggested Review Order
@@ -174,7 +192,7 @@ Schema still uses the allocated optional normal-client seam in the existing book
 
 - `src/features/resources/bookings-read.ts:91` — `readBookingHost`: retains the existing normal-JWT/cookie authority.
 - `src/components/jobs/JobWorkspaceSchedule.tsx:14` — `booking.status === "cancelled"`: distinguishes cancelled timeline intervals.
-- `src/components/jobs/JobWorkspaceShell.tsx:89` — `JobWorkspaceRetry`: refreshes the actual current URL without document unload.
+- `src/components/jobs/JobWorkspaceShell.tsx:101` — `JobWorkspaceRetry`: refreshes the actual current URL without document unload.
 - `tests/e2e/jobs/job-traceability.e2e.spec.ts:107` — `getByRole("tabpanel"`: retains the file assertion against the actual consumer.
 
 ### History and late completion preserve the selected child and tab
@@ -184,15 +202,17 @@ A changed child query reconciles the mounted pane through the existing dirty/pen
 - `src/features/jobs/job-workspace-domain.ts:31` — `reconcileJobWorkspaceChild`: separates unchanged, protected and visible-child restoration.
 - `src/components/jobs/JobWorkOrdersPanel.tsx:29` — `reconcileJobWorkspaceChild`: applies history changes through the existing protection.
 - `src/components/jobs/JobWorkOrdersPanel.tsx:65` — `jobWorkspaceChildHref`: adopts creation into the live query without tab takeover.
-- `tests/e2e/jobs/job-workspace.e2e.spec.ts:406` — `16.5-E04`: AC03 two-child Back/file ownership, dirty rejection and late real creation.
+- `tests/e2e/jobs/job-workspace.e2e.spec.ts:429` — `16.5-E04`: AC03 two-child Back/file ownership, dirty rejection and late real creation.
 
-### Persistent header, modal pointer protection and card leave lifecycle
+### Persistent chrome, usable panel scrolling and card leave lifecycle
 
-The workspace owns its measured available viewport and scroll region, preserving its header without editing AppShell. Header stacking now keeps its inline upgrade modal above workspace navigation while the shared Dialog stays unchanged. The allocated card-only lifecycle arms on edits/submission, protects refresh, cross-route Back and same-origin SPA links, and removes its listeners only after confirmed persistence or unmount. Same-job tab/query changes retain the mounted draft and do not warn; the history guard preserves opaque existing Next state without interpreting it.
+Fix-author rationale: I chose in-flow persistent chrome with a separate bounded panel scroller to remove native pointer interception without changing AppShell. Phone CRM details use native disclosure; primary identity, truthful PL/lead assignment state and planned dates remain present. The capped header retains its higher stacking context for the existing upgrade dialog; shared Dialog is unchanged. The existing card leave lifecycle and cooperating child/history guards are unchanged by this repair.
 
-- `src/components/jobs/JobWorkspaceShell.tsx:20` — `useLayoutEffect`: bounds the workspace to its available viewport.
-- `src/components/jobs/JobWorkspaceShell.tsx:55` — `z-30`: keeps the upgrade modal above sibling navigation.
-- `src/components/jobs/JobCardForm.tsx:38` — `if (!leaveArmed) return`: installs leave protection only while required.
+- `src/components/jobs/JobWorkspaceShell.tsx:21` — `useLayoutEffect`: fits the viewport and cleans up disclosure/resize listeners.
+- `src/components/jobs/JobWorkspaceShell.tsx:60` — `max-h-[50%]`: bounds persistent chrome without obscuring body controls.
+- `src/components/jobs/JobWorkspaceShell.tsx:93` — `job-workspace-content`: scrolls panels independently of header and navigation.
+- `tests/e2e/jobs/job-workspace.e2e.spec.ts:118` — `Persistent header opens`: checks actual header/modal and phone booking clicks.
+- `src/components/jobs/JobCardForm.tsx:38` — `if (!leaveArmed) return`: retains dirty/pending route-exit protection.
 - `src/components/jobs/JobCardForm.tsx:89` — `setLeaveArmed(false)`: disarms only after actual server-confirmed save.
 
 ### Focused regressions, unchanged authority and honest limits
@@ -200,8 +220,8 @@ The workspace owns its measured available viewport and scroll region, preserving
 The original20 ATDD bodies remain active; three additional pure cases and one browser case target the causal fixes. E02 remains the admitted ordinary-member privacy scenario because existing leads legitimately receive crew-picker labels; existing16.2-E03 still exercises the changed route as a Sales lead, and RLS03 retains current-lead/revocation/stale-write boundaries. No new personal-label source, grant, transactional action or fixture weakening was introduced.
 
 - `tests/unit/features/jobs/job-workspace-domain.test.ts:101` — `16.5-D05`: AC03 visible child restoration versus protected draft.
-- `tests/e2e/jobs/job-workspace.e2e.spec.ts:107` — `Persistent header`: actual Boka/current-job editor, header scrolling and physical modal/tab pointer checks.
-- `tests/e2e/jobs/job-workspace.e2e.spec.ts:341` — `Only the card draft`: AC03 refresh/Back/SPA refusal, same-job retention and confirmed-save navigation.
+- `tests/e2e/jobs/job-workspace.e2e.spec.ts:118` — `Persistent header`: actual Boka/current-job editor, header scrolling and physical modal/tab pointer checks.
+- `tests/e2e/jobs/job-workspace.e2e.spec.ts:364` — `Only the card draft`: AC03 refresh/Back/SPA refusal, same-job retention and confirmed-save navigation.
 - `tests/integration/rls/job-workspace.rls.test.ts:53` — `16.5-RLS-03`: AC02 current lead loses workspace and stale writes after revocation.
 
 Actual fix-batch evidence (2026-10-20): focused RED3executed/0pass/3fail/0skip exposed capped1000-versus1003 events and missing history/adoption behavior; GREEN13executed/13pass/0fail/0skip. Explicit TSC and affected eslint native0; production build native0,12/12 static pages; source and final built-bundle containment native0. Final full units ran sequentially after build:2740total/2739pass/0fail/1skip. The existing Linux-xattr recovery skip is not passing local coverage and requires its independent CI recovery lane. Job-only Playwright collection native0:25cases in6files, workspace4 plus existing21; the complete smoke union is now32 including7auth, pending actual root CI setup. The traceability file's existing fixture-dependent setup was not fabricated for collection or execution.
@@ -209,3 +229,16 @@ Actual fix-batch evidence (2026-10-20): focused RED3executed/0pass/3fail/0skip e
 Logs: `C:/Users/Rasmus/AppData/Local/Temp/story-16-5-fix-red.log`, `story-16-5-fix-pure.log`, `story-16-5-fix-typecheck.log`, `story-16-5-fix-lint.log`, `story-16-5-fix-build.log`, `story-16-5-fix-containment.log`, `story-16-5-fix-unit.log`, `story-16-5-fix-collection.log` in that same directory. Earlier evidence remains historical: the initial corrected TSC/JSX extraction failure, the first full-unit/build overlap's unreadable transient artifact, and the first external review source-read denial are not relabelled as passes. Root's corrected external recovery completed native0 with two duplicate modal/history findings. This author performed no external upload or broad review; the final causal diff requires root's targeted independent High recheck.
 
 Limits: browser assertions are declared/collected, not executed here. Required integration4/RLS3, all essential browser flows (workspace4 plus retained journeys), full DB/empty-DB, integrity/recovery and pilot evidence remain root-owned CI work. Pure event fixtures do not prove live RLS, and refresh/error presentation plus browser history/modal behavior still require that runtime evidence. Broad device/role/browser matrices, screenshots and visual/manual review remain deferred release validation owned by root/release owner; next action is its qualified release lane after development evidence. No services, resources, browser launch, SQL, dependencies, environment/secrets, providers, Git/state mutation, deployment or development-complete/release-ready claim occurred in this author batch. Story remains in-review pending the existing gates.
+
+
+### Native fixture loading, real title entry and response observation
+
+Fix-author rationale: static alias-aware bindings load the actual fixture/readers while all database work remains invocation-only. List entry selects the real title-bearing row, verifies its exact job href and clicks its real link; its accessible name includes other row text. Native disclosure preserves every CRM value/visibility check. Real stale-response body capture starts immediately at matching response observation, before subsequent refresh can lose the body. Member/work-order exact-path observers remain unchanged because tab query parameters were already handled; their timeout repair remains a runtime hypothesis until CI.
+
+- `tests/support/job-workspace-atdd.ts:24` — `Static bindings`: loads actual dependencies without module-level database work.
+- `tests/e2e/jobs/job-workspace.e2e.spec.ts:66` — `openListedJob`: verifies the real row, exact href and title before navigation.
+- `tests/e2e/jobs/jobs-depth.e2e.spec.ts:153` — `customerDetails`: preserves phone customer visibility and nonempty checks.
+- `tests/e2e/jobs/jobs-depth.e2e.spec.ts:322` — `const staleSave`: starts actual response-body capture at observation.
+- `tests/e2e/jobs/jobs-depth.e2e.spec.ts:326` — `PREVIEW_STALE`: retains refusal, fresh-preview and durable-save assertions.
+
+Actual bounded repair checks all returned native0: explicit TSC, affected ESLint (four paths/no diagnostics), production build, completed-build containment, actual Playwright import probe4 cases/1 file and job-only collection25 cases/6 files. Logs are C:/Users/Rasmus/AppData/Local/Temp/story-16-5-browser-repair-{typecheck,lint,build,containment,collection}.log and story-16-5-native-import-probe.log. No unit/security broad rerun was needed for unchanged domain/authority dependencies; historical evidence is retained. Browser pointer, response-loss and persistence assertions are declared and locally unexecuted; a new reviewed exact-head CI is required. Failed ad9c counts and its flaky retry remain above, never reclassified as release-only work. Root owns checkpoint/CI, then delivery gate and provenance before any done authorization.
