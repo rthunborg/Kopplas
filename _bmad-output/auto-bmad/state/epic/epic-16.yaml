@@ -9,11 +9,11 @@ spec_folder: null
 story_id: null
 branch: codex/epic-16-jobs
 status: in-progress
-updated_at: "2026-10-20T20:37:42Z"
+updated_at: "2026-10-20T20:44:45Z"
 started_at: "2026-10-15T08:50:46Z"
 completed_at: null
-active_seconds: 39683
-timing_anchor: 1792528662
+active_seconds: 40106
+timing_anchor: null
 is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
@@ -80,7 +80,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [0586972a, d6a310be, f610bcbd, 11bf2721, bce1436b, 5d5186e1cfb3e045db9ef101e1c6cf6b50133040, faeffcf6513d5d1703ae9d5a6271b01533899d4e, f3cf100709b92637270304e78a4356082b89e9a6, 1e8632db1ad051d117c38d2e24ed5d62fc2c8a57, 103ee03540e222dff1e54995726037819539b9dd, c44e5179bfcbc210de250eb92a48734561cc0fac, 9b54ad249a1ac4fb6f73c425c89b9b749855a939, 46b1b82983f415fdd2ed214138cbd437154469aa, 1152d5bda869cab97f8b64f0b2a56f72cb9ab0bd, 2d002970fcb112db8d480068443a0cce2577bd5b, 2920b920c0ff19122051f7ef987bc222331fb94a, dd7e54d0, 6260c5a2, 643274eb, 4b7d14c8, 0e382e96, 9d4584f7, f96256a0, 4562b3fe, ad9c3b79, b26cf196, e34997cb, 1d35e347, b0cd4c32, 1bf3444e, 54ac91ec]
+commits: [0586972a, d6a310be, f610bcbd, 11bf2721, bce1436b, 5d5186e1cfb3e045db9ef101e1c6cf6b50133040, faeffcf6513d5d1703ae9d5a6271b01533899d4e, f3cf100709b92637270304e78a4356082b89e9a6, 1e8632db1ad051d117c38d2e24ed5d62fc2c8a57, 103ee03540e222dff1e54995726037819539b9dd, c44e5179bfcbc210de250eb92a48734561cc0fac, 9b54ad249a1ac4fb6f73c425c89b9b749855a939, 46b1b82983f415fdd2ed214138cbd437154469aa, 1152d5bda869cab97f8b64f0b2a56f72cb9ab0bd, 2d002970fcb112db8d480068443a0cce2577bd5b, 2920b920c0ff19122051f7ef987bc222331fb94a, dd7e54d0, 6260c5a2, 643274eb, 4b7d14c8, 0e382e96, 9d4584f7, f96256a0, 4562b3fe, ad9c3b79, b26cf196, e34997cb, 1d35e347, b0cd4c32, 1bf3444e, 54ac91ec, 0112e829]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -159,6 +159,7 @@ overrides:
   story16_5_ci_attempt_6: "Exact1bf3444ed5e49ee0632a0b6d28a17eb976386b6b run39487625801 browserFAIL32expected1unexpected0flaky0skip/33; E01/E02/E04/E05+28retainedfirstPASS. E03bothattemptsWHOLECASE60000ms timeout(changedfromdialogtimeout),actualblockingcall/diagnosticinspectionrequired,no passinferred. NativeJSON295A29C1E8701177BE5715108B4CA6E4C3F9AB90D009B30216B3890E4A9F1498;browserlogD9B67A8D2A371937EC7C4BFDF66A489DF972F8D48B630854B30A70632715E4AE. Verify2740pass0skip+43process CC9F9DEDD4CACBF03CFAC17EFEBAEED51BEF095209E05A7077EF679D63E3AF14;Recovery1pass0skip BA365AF80036E3A81021019D169F5ED1F04E5F5904E5ADA7A8F0CDAC1FD6D113;DBstillrunningatcapture. No blankettimeoutincrease/functionalwaiver/doneclaim."
   story16_5_refused_action_observer: "SixthCI39487625801 actualcancellableprecommitconfirm/refusalprovenbothattempts,currentjobarmed,no unmount/opaquewrite;fullE03then60stimeout. ExistingPWreload/gobackcommitwaiter absentonrefusal,30sreloadwasted actualtimestamp;Backawaitblockingderivedfromtrace/linearflow,notdirectstack. Exact2lineE2E nativewindow.location.reload/history.back issueactualbrowseractions withdialogwaitbeforeaction;alltype/message/dismiss/sameURL/input/SPA/retry/save/persistassertionsretained,no timeout/retry/catch/split. ActualadapterRED1->GREEN0(no-commitstandinlimits),TSC/lint/5collection0,SRO45refs0errors;productionguardandother24bindingsunchanged. SAMEHighqualifiedPASS04F96A6D20B7D07F9C518EAB8B406D7623CF46D98AC2FA84F85143613F931AD2;final26/6inventoryD1F08C69CEE65EEBC28208A483D3F9FC3AF30525F299FC8014D5A1DEDD256196 rootverified0mismatch,exact2paths,25nonspecunchangedafterreview. SixthDBactual1879pass1ordinaryrecoveryskip+separate1pass nativeE9D07406E78DEC94DB883653D46E95A6BD94AB0B8684A5F1BBDCCCBC041F7766,pilot5/25readp95=12.261700999999448ms bulkp95=5.346536000000015ms. NewactualCIrequired,no fullE03/doneclaim."
   story16_5_ci_attempt_7: "Exact54ac91ec2c912afe3b6772fcb8daa11fb282d36a ownedrun39490485088 TERMINALSUCCESS;allrequiredjobsPASS,optionalreleasedashboardSKIPPED/releasevalidationfalse. Unit2740pass0fail0skip+43process. DB1880total1879pass0fail1soleordinaryrecoverypending native028E6DC91A52DC12CCB73B7A1EBD20FE71A1C436F2740671EE736EA35EF46D6E;separateRecovery1pass0skip C2D82E2C9DC1EF156656C14CD079A129042A0C375EE881FBE99A62B7C31E4A78. Pilot5warmup25measuredreadp95=7.985169000000042ms bulkp95=2.968015999999807ms. Browser33allpassed31first+2retry,no unexpected/skip nativeC08263B31221E0BB82649DF83BF7E7B98B85DD2A6FF6AAAF5F5844790094E1F0;all5workspacefirstPASS. Retained16.1E03Chromiumresponsebodylookup and16.3E01result-unqualifiedHTTP200/audit0firstfail,fullretriesPASS;underlyingfirstbranchunknown,pendingindependentHighqualification,notfirstpass/purecauseclaim. Delivery/rootgate/provenance/donepending;release_readyfalse."
+  story16_5_automate: "ActualPhase6HighTEA +2contextfreeHighworkers completedall3AC/TR12 map25activatedcases(13unit4INT3RLS5browser),19P0/6P1;0consequentialgaps0newtests0reruns. All25source/testhashesmatch,currentdiffsource/deps/config/SQLemptyfrom54ac; nativeCI39490485088 reusedtruthfully(31first+2retry,5workspacefirst,ordinaryrecoveryskipisolatedpass). Summary4BFBC7F085B95BD6A017DE9EE55AB373301A66467F3A73A1B7CCD2B7DA9E27C9. ThreeownedreleasechecksremainDEFERRED/release_readyfalse."
 constraints:
   - "Use only owned E16 resources; E15 scheduling/time/diagnostic resources remain excluded."
   - "Each later story requires its approved plan, manifest compliance and precise path claims."
