@@ -30,7 +30,10 @@ async function validateEffectiveReferences(client: Awaited<ReturnType<typeof cre
   input: import("@/server/commands/bookings/series-validation").BookingSeriesInput, snapshot: SeriesSnapshot, plan: SeriesPlan) {
   const existing = snapshot.facts.occurrences.filter(row => row.seriesId === input.sourceSeriesId);
   const source = snapshot.facts.series.find(row => row.id === input.sourceSeriesId);
-  const unusedTemplate = plan.rows.every(row => existing.some(old => old.id === row.id && old.payload === row.payload));
+  // The planner marks protected history and omitted old slots as exceptions.
+  // Every matched ordinary or new slot uses the template, even when cancelled.
+  const templateApplied = plan.rows.some(row => !row.isException);
+  const unusedTemplate = !templateApplied && plan.rows.every(row => existing.some(old => old.id === row.id));
   const checked = new Set<string>(), roles = new Set<string>();
   async function validate(candidate: BookingFacts, retainsRole: boolean) {
     // Only the role's active requirement is waived, after proving exact retention.

@@ -173,7 +173,9 @@ function publicSeriesCase(dst = false) {
         return{data:{kind:"snapshot",claims,canonicalFacts},error:null};
       }
       assert.equal(name,"finalize_booking_series");plans.push(JSON.parse(args.p_plan as string));
-      return{data:{kind:"committed",result:{seriesId:target,successorSeriesId:target,occurrenceIds:plans.at(-1)!.rows.map(row=>row.id)}},error:null};
+      const committed=args.p_input as {seriesId:string;pivotOccurrenceId:string|null};
+      return{data:{kind:"committed",result:{seriesId:committed.seriesId,successorSeriesId:committed.pivotOccurrenceId?committed.seriesId:null,
+        occurrenceIds:plans.at(-1)!.rows.map(row=>row.id)}},error:null};
     }};
   const require=createRequire(import.meta.url),modules:Record<string,unknown>={"next/cache":{revalidatePath:()=>{}},
     "@/server/db/supabase-server-client":{createSupabaseServerClient:async()=>client},
@@ -221,6 +223,47 @@ test("Round3 active replacement default preserves each protected row's own archi
   const h=publicSeriesCase();h.protect();h.roles.set(h.otherRole,true);h.raw.template.workRoleId=h.otherRole;
   const preview=await h.previewBookingSeriesAction(h.raw);assert.equal(preview.status,"success");
   assert.equal((await h.save(preview.preview!)).status,"success");assert.ok(h.plans[0]!.rows.every(row=>row.payload.workRoleId===h.role));
+}));
+for(const scenario of ["all protected","protected plus new tombstone","ordinary template use","new inactive assignment","inactive default substitution","foreign default","foreign retained role","foreign customer","missing signed defaults","cancelled ordinary template use","new cancelled slot","following with ordinary prefix","whole-series shortening"] as const)
+test(`Round3 R3-02 completeness ${scenario} checks effective template use through public actions`,async()=>syntheticKey(async()=>{
+  const h=publicSeriesCase();h.protect();h.raw.pivotOccurrenceId=h.facts.occurrences[0]!.id;
+  Object.assign(h.raw.rule,{startDate:"2026-10-12",count:2});
+  if(scenario!=="all protected"&&scenario!=="new cancelled slot")Object.assign(h.facts.occurrences[2]!,{isException:false,payload:{...h.facts.occurrences[2]!.payload,status:"planned"}});
+  if(scenario==="ordinary template use")h.facts.occurrences[0]!.isException=false;
+  if(scenario==="new inactive assignment")Object.assign(h.raw.rule,{count:4});
+  if(scenario==="inactive default substitution"){h.roles.set(h.otherRole,false);h.raw.template.workRoleId=h.otherRole;}
+  if(scenario==="foreign default")h.raw.template.workRoleId=h.otherRole;
+  if(scenario==="foreign retained role")h.facts.occurrences[2]!.payload.workRoleId=h.otherRole;
+  if(scenario==="foreign customer")Object.assign(h.raw.template,{customerId:"00000000-0000-4000-8000-000000000099"});
+  if(scenario==="missing signed defaults")delete(h.facts.series[0] as {defaults?:unknown}).defaults;
+  if(scenario==="cancelled ordinary template use"){h.facts.occurrences[0]!.isException=false;Object.assign(h.raw.template,{status:"cancelled"});}
+  if(scenario==="new cancelled slot"){Object.assign(h.raw.rule,{count:4});Object.assign(h.raw.template,{status:"cancelled"});}
+  if(scenario==="following with ordinary prefix"){
+    h.facts.occurrences[0]!.isException=false;h.raw.pivotOccurrenceId=h.facts.occurrences[1]!.id;
+    Object.assign(h.raw.rule,{startDate:"2026-10-13",count:1});
+  }
+  if(scenario==="whole-series shortening")Object.assign(h.raw,{seriesId:h.raw.sourceSeriesId,pivotOccurrenceId:null});
+  const checked=validateBookingSeries(h.raw,true);assert.ok(checked.ok,"fixture passes public update input validation");
+  const expectedPlan=planBookingSeries({facts:h.facts} as unknown as SeriesSnapshot,checked.data);
+  if(scenario==="protected plus new tombstone"||scenario==="following with ordinary prefix"||scenario==="whole-series shortening"){
+    const retained=scenario==="following with ordinary prefix"?h.facts.occurrences.slice(1):h.facts.occurrences;
+    assert.deepEqual(expectedPlan.rows.map(row=>row.id),retained.map(row=>row.id));
+    assert.ok(expectedPlan.rows.every(row=>row.payload.workRoleId===h.role&&row.payload.description==="Existing"));
+    assert.equal(expectedPlan.rows.at(-1)!.payload.status,"cancelled");assert.equal(expectedPlan.rows.at(-1)!.isException,true);
+    assert.deepEqual(expectedPlan.rows.at(-1)!.payload,{...h.facts.occurrences[2]!.payload,status:"cancelled"});
+  }
+  if(scenario==="cancelled ordinary template use")assert.ok(expectedPlan.rows.some(row=>!row.isException&&row.payload.status==="cancelled"&&row.payload.description==="Changed default"));
+  if(scenario==="new cancelled slot")assert.ok(expectedPlan.rows.some(row=>!h.facts.occurrences.some(old=>old.id===row.id)&&!row.isException&&row.payload.status==="cancelled"));
+  const preview=await h.previewBookingSeriesAction(h.raw);
+  if(scenario==="all protected"||scenario==="protected plus new tombstone"||scenario==="following with ordinary prefix"||scenario==="whole-series shortening"){
+    assert.deepEqual(h.calls,["snapshot_booking_series"],"public action reached current-facts admission without finalization");
+    assert.ok(h.queries.some(q=>q.table==="work_roles"&&q.filters.tenant_id&&q.filters.id===h.role),"existing tenant role was read through the cookie-RLS port");
+    assert.equal(preview.status,"success",JSON.stringify(preview));assert.equal((await h.save(preview.preview!)).status,"success");
+    assert.deepEqual(h.plans[0]!.rows,expectedPlan.rows);
+  }else{
+    assert.equal(preview.code,"TENANT_ACCESS_DENIED");assert.equal(preview.preview,undefined);
+    assert.equal((await h.saveBookingSeriesAction(h.raw)).code,"BOOKING_CONFLICT_UNACKNOWLEDGED");assert.equal(h.plans.length,0);
+  }
 }));
 test("Round3 deferred update expansion preserves structural, count and calendar admission caps",async()=>syntheticKey(async()=>{
   for(const patch of [{count:129},{count:undefined,untilDate:"2127-01-01"},{startTime:"25:00:00"}]){
