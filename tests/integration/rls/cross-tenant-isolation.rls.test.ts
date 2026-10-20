@@ -1,3 +1,4 @@
+import { cleanupOwnedTimeReports, seedCheckedReport, reportPublicColumns } from "../../support/time-reports-atdd";
 /**
  * Story 2.2 — AUTHORITATIVE cross-tenant RLS negatives (AC2 / R-001, P0).
  *
@@ -450,6 +451,8 @@ beforeAll(async () => {
   const [{id:ownJob}] = await adminQuery<{id:string}>("insert into public.jobs(tenant_id,customer_id,title) values($1,$2,'H4 own job') returning id",[fixture.tenantA.id,ownCustomer]);
   const [{id:ownRole}] = await adminQuery<{id:string}>("insert into public.work_roles(tenant_id,display_name,cost_rate_ore,sell_rate_ore) values($1,'H4 own role',20000,40000) returning id",[fixture.tenantA.id]);
   await seedJobDepthChildren(fixture.tenantA.id, fixture.adminA.id, ownJob, ownRole);
+  const report = await seedCheckedReport(fixture.tenantB.id, fixture.adminB.id);
+  expect(await adminQuery("select id from public.time_reports where id=$1 and tenant_id=$2", [report,fixture.tenantB.id])).toEqual([{id:report}]);
   ctx = {
     fixture,
     tenantBAuditId,
@@ -483,7 +486,10 @@ beforeAll(async () => {
 });
 
 afterAll(async () => {
-  if (stackUp && fixture) await cleanupFixture(fixture);
+  if (stackUp && fixture) {
+    await cleanupOwnedTimeReports([fixture.tenantA.id,fixture.tenantB.id]);
+    await cleanupFixture(fixture);
+  }
 });
 
 describe("Cross-tenant RLS isolation — data-driven over the shared inventory (AC2 / R-001)", () => {
@@ -494,7 +500,7 @@ describe("Cross-tenant RLS isolation — data-driven over the shared inventory (
   const seededMutationTargets = new Set<TenantTableName>([
     "tenants", "tenant_memberships", "company_settings", "quote_terms", "work_roles", "articles",
     "calculations", "calculation_sections", "calculation_rows", "jobs", "job_events", "files", "file_links",
-    "membership_admin_operations", "person_profiles", "person_work_hours", "tenant_calendar_days",
+    "time_reports", "membership_admin_operations", "person_profiles", "person_work_hours", "tenant_calendar_days",
   ]);
   // Story 11.2 moves audited Phase A mutations behind checked transactional
   // wrappers and revokes their direct authenticated DML grants. Keep that
@@ -534,7 +540,7 @@ describe("Cross-tenant RLS isolation — data-driven over the shared inventory (
       it(`[P0] SELECT: Tenant A admin reads ZERO ${table} rows belonging to Tenant B (no error leak)`, async (testCtx) => {
         if (skipUnlessStack(testCtx, stackUp)) return;
         const { column, value } = tenantBFilter(table, ctx);
-        const { data, error } = await a.from(table).select(table === "booking_conflict_resolutions" ? "id,tenant_id,booking_id,actor_id,action,outcome,affected_booking_ids,created_at" : table === "bookings" ? bookingPublicColumns : table === "booking_series" ? "id,tenant_id,rule,defaults,version,ends_before,predecessor_id,successor_id,created_at,updated_at" : "*").eq(column, value);
+        const { data, error } = await a.from(table).select(table === "time_reports" ? reportPublicColumns : table === "booking_conflict_resolutions" ? "id,tenant_id,booking_id,actor_id,action,outcome,affected_booking_ids,created_at" : table === "bookings" ? bookingPublicColumns : table === "booking_series" ? "id,tenant_id,rule,defaults,version,ends_before,predecessor_id,successor_id,created_at,updated_at" : "*").eq(column, value);
         if (directReadRevokedTables.has(table)) {
           expect(error?.code).toBe("42501");
           expect(data).toBeNull();

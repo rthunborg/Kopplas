@@ -1,3 +1,4 @@
+import { readTimeReportActionDescriptor } from "@/server/read-models/time-reports";
 import { EntityDocumentsLink } from "@/components/documents/EntityDocumentsLink";
 import { readEntityDocumentsLink } from "@/server/read-models/document-context";
 /**
@@ -79,7 +80,7 @@ export default async function JobDetailPage({
     <JobDetailView
       detail={detail}
       cardOptions={cardOptions}
-      bookingPanel={bookingHost && bookingOptions ? <BookingEntry {...bookingHost} options={bookingOptions} jobId={jobId} customerId={detail.customerId ?? undefined} host="job" /> : undefined}
+      bookingPanel={bookingHost && bookingOptions ? <BookingEntry reportAction={await readTimeReportActionDescriptor()} {...bookingHost} options={bookingOptions} jobId={jobId} customerId={detail.customerId ?? undefined} host="job" /> : undefined}
       filesPanel={filesRead ?
         <>
         {can("documents", "Documents.View") && <EntityDocumentsLink link={await readEntityDocumentsLink({ module: "jobs", ownerType: "job", ownerId: jobId })} />}

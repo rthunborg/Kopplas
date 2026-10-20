@@ -66,14 +66,14 @@ async function openJobList(page: Page): Promise<void> {
   await waitForHydrated(page.getByTestId("job-list"));
 }
 
-// Deferred-module surface labels/tokens that must NOT appear anywhere on the rendered job pages
+// Deferred-module surface labels/tokens remain whole-body checks. The sanctioned
+// Tidrapporter shell link is scoped separately to existing job-list content.
 // (Swedish + English forms). Case-insensitive body-text scan on top of the testid-level checks.
 const FORBIDDEN_VISIBLE_TEXT = [
   /fältarbetare/i,
   /field.?worker/i,
   /schemal[aä]gg/i,
   /schedule/i,
-  /tidrapport/i,
   /timesheet/i,
   /time.?material/i,
   /avvikelse/i,
@@ -121,6 +121,7 @@ test.describe("job/order list — filter/search + deferred-surface absence (AC2,
   }) => {
     await openJobList(page);
     const body = await page.locator("body").innerText();
+    expect(await page.getByTestId("job-list").innerText()).not.toMatch(/tidrapport/i);
     for (const forbidden of FORBIDDEN_VISIBLE_TEXT) {
       expect(body).not.toMatch(forbidden);
     }

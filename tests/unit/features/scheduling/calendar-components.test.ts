@@ -14,6 +14,7 @@ import * as capacity from "@/features/scheduling/capacity";
 import * as types from "@/features/scheduling/view-types";
 import * as focus from "@/components/scheduling/focus-restoration";
 import * as resolver from "@/features/scheduling/conflict-resolver";
+import * as reportDomain from "@/features/time-reports/domain";
 import type { SchedulingBookingSummary, SchedulingReadData, SchedulingReadInput } from "@/features/scheduling/view-types";
 
 type ElementNode={type:unknown;props:Record<string,unknown>};
@@ -36,6 +37,11 @@ function components(savedPreferences = new Map<string, string>(), summaryDraft:(
     useCallback:(value:unknown)=>value,useMemo:(fn:()=>unknown)=>fn(),useEffect:(fn:()=>void|(()=>void))=>effects.push(fn)};
   const window={addEventListener:(name:string,fn:(event:unknown)=>void)=>listeners.set(name,fn),removeEventListener:(name:string)=>listeners.delete(name),localStorage:{getItem:(key:string)=>savedPreferences.get(key)??null,setItem:(key:string,value:string)=>{writes++;savedPreferences.set(key,value);}}};
   const modules:Record<string,unknown>={react:hooks,"@/features/scheduling/view-model":model,"@/features/scheduling/view-preferences":preferences,"@/features/scheduling/time-zone":times,"@/features/scheduling/capacity":capacity,"@/features/scheduling/view-types":types,"./focus-restoration":focus};
+  // The VM owns only the scheduling host. The actual filing component is covered
+  // by report SSR and production browser tests; retain its real host prop flow.
+  const reportEntry=()=>null;
+  modules["@/components/time-reports/TimeReportEntry"]={TimeReportEntry:reportEntry};
+  modules["@/features/time-reports/domain"]=reportDomain;
   const load=(file:string):Record<string,unknown>=>{
     const source=readFileSync(resolve("src/components",file),"utf8");
     const output=ts.transpileModule(source,{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022,jsx:ts.JsxEmit.ReactJSX}}).outputText;
@@ -58,7 +64,7 @@ function components(savedPreferences = new Map<string, string>(), summaryDraft:(
   const workspace=load("scheduling/SchedulingWorkspace.tsx");
   type Component=(props:Record<string,unknown>)=>ElementNode;
   return {block:block.BookingBlock as Component,slots:schema.CalendarSlots as Component,personal:personal.PersonalCalendarView as Component,
-    toolbar:toolbar.SchedulingToolbar as Component,workspace:workspace.SchedulingWorkspace as Component,marker,listeners,effects,
+    toolbar:toolbar.SchedulingToolbar as Component,workspace:workspace.SchedulingWorkspace as Component,marker,reportEntry,listeners,effects,
     render:(fn:()=>ElementNode)=>{cursor=0;return fn();},writes:()=>writes};
 }
 function slot(nodes:ElementNode[],start="2026-10-12T12:30:00.000000Z"){return nodes.find(node=>node.props["data-testid"]==="schema-slot"&&node.props["data-start"]===start)!;}
@@ -71,6 +77,15 @@ test("personal week preserves manager controls and own-only entitlement without 
     // One agenda and one grid instance each retain the same actual entitlement.
     assert.equal(html.includes("Redigera / flytta"),manager);assert.equal(html.includes('draggable="true"'),manager);
     if(!manager)assert.match(html,/disabled=""/);
+  }
+});
+test("actual BookingBlock offers only own planned reporting and preserves authoritative prefill facts",()=>{
+  for(const manager of [true,false])for(const owns of [true,false])for(const status of ["planned","cancelled"] as const){
+    const c=components(),b=booking({status,jobId:"job",assigneeIds:[owns?"person":"peer"],endsAt:"2026-10-12T08:00:00Z"});
+    const tree=c.block({booking:b,data:data([b],manager),onEdit:()=>{}});
+    const actions=children(tree).filter(node=>node.type===c.reportEntry);
+    assert.equal(actions.length,owns&&status==="planned"?1:0,"manager visibility never grants peer filing");
+    if(actions.length)assert.equal(JSON.stringify(actions[0]!.props.prefill),JSON.stringify({bookingId:"booking",startsAt:"2026-10-12T06:00:00Z",endsAt:"2026-10-12T08:00:00Z",minutes:120,jobId:"job",date:"2026-10-12"}));
   }
 });
 test("cancelled historical cards display status without blocking a free creation slot",()=>{

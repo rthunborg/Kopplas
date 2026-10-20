@@ -10,6 +10,7 @@ import integrationConfig from "../../../../vitest.config";
 
 const root = fileURLToPath(new URL("../../../../", import.meta.url));
 const ddlFile = "tests/integration/jobs/job-runs.int.test.ts";
+const ddlFiles = ["tests/integration/commands/conflict-resolver.int.test.ts", "tests/integration/commands/time-reports.int.test.ts", ddlFile, "tests/integration/notifications/time-report-nudge-producer.int.test.ts"];
 const configPath = join(root, "vitest.config.ts");
 const slash = (value: string) => value.replaceAll("\\", "/");
 
@@ -45,8 +46,8 @@ test("installed Vitest collects every integration file once and preserves requir
     assert.equal((parallel.config as typeof parallel.config & { fileParallelism: boolean }).fileParallelism, true);
     assert.equal((ddl.config as typeof ddl.config & { fileParallelism: boolean }).fileParallelism, false);
     assertOrdered(parallel.config.sequence.groupOrder, ddl.config.sequence.groupOrder);
-    assert.deepEqual(specs.filter((spec) => spec.project === ddl).map((spec) => slash(relative(root, spec.moduleId))), ["tests/integration/commands/conflict-resolver.int.test.ts", ddlFile]);
-    assert.ok(specs.filter((spec) => spec.project === parallel).every((spec) => slash(relative(root, spec.moduleId)) !== ddlFile));
+    assert.deepEqual(specs.filter((spec) => spec.project === ddl).map((spec) => slash(relative(root, spec.moduleId))), ddlFiles);
+    assert.ok(specs.filter((spec) => spec.project === parallel).every((spec) => !ddlFiles.includes(slash(relative(root, spec.moduleId)))));
     const setup = runner.config.globalSetup;
     assert.ok((Array.isArray(setup) ? setup : [setup]).some((path) => slash(path).endsWith("tests/support/global-setup.ts")));
     for (const project of runner.projects) {

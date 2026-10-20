@@ -1,3 +1,4 @@
+import { readTimeReportActionDescriptor } from "@/server/read-models/time-reports";
 import Link from "next/link";
 import { JobList } from "@/components/jobs/JobList";
 import { readJobList } from "@/features/jobs/read";
@@ -18,7 +19,7 @@ export default async function JobsPage({ searchParams }: { searchParams?: Promis
   const { rows, error } = await (personal ? readMyJobs() : readJobList());
   const options = canCreate ? await readJobCardOptions() : undefined;
   const canBook = resolveCapability({ roles, module: "resources", capability: "Bookings.Manage" }).granted;
-  const bookingPanel = canBook ? <BookingEntry {...await readBookingHost({})} options={await readBookingEditorOptions()} host="toolbar" /> : undefined;
+  const bookingPanel = canBook ? <BookingEntry reportAction={await readTimeReportActionDescriptor()} {...await readBookingHost({})} options={await readBookingEditorOptions()} host="toolbar" /> : undefined;
   return <>
     {canViewAll && <nav aria-label="Urval av jobb" className="flex flex-wrap gap-4 px-4 pt-4 text-sm"><Link href="/jobs" aria-current={!personal ? "page" : undefined} className="underline">Alla jobb</Link><Link href="/jobs?view=mine" aria-current={personal ? "page" : undefined} className="underline">Mina jobb</Link></nav>}
     <JobList rows={rows} loadError={error} customerOptions={options?.customers ?? []} optionsLoadError={options?.error != null} cardOptions={options} canCreate={canCreate} personal={personal} bookingPanel={bookingPanel} />

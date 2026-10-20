@@ -1,9 +1,5 @@
-/** Story 15.4 browser ATDD support; lazy isolated data only, never a runtime launch.
- * P4 PROPOSED bindings (not observed): reportInput/fileReport and the report column
- * names below must be reconciled with P5. Existing tenant/booking factories and
- * login/scheduling selectors are inspected repository contracts. No success stub.
- * playwright-utils deviation: flag=true but package is absent; reuse the existing
- * resourcePage/vanilla Playwright conventions. No dependency/merged fixture added.
+/** Isolated real time-report browser fixtures; no runtime launch or success stub.
+ * Native Playwright follows the existing resourcePage/tenant factory conventions.
  */
 import { randomUUID } from "node:crypto";
 import type { Locator, Page, Request, Route } from "@playwright/test";
@@ -39,7 +35,6 @@ export type TimeReportBrowserFixture = {
 
 /** Full physical safe report fields and audit identity for BOTH owned tenants.
  * No rate/money data or private attempt/digest is read. UI success is insufficient.
- * P5 confirm column spellings; no migration exists at scaffold generation time.
  */
 export async function reportSnapshot(tenantIds: readonly string[]): Promise<ReportSnapshot> {
   const reports = await adminQuery<ReportRow>(`select id,tenant_id,user_id,
@@ -147,7 +142,7 @@ export async function signIn(page: Page, user: FixtureUser): Promise<void> {
   await expect(page).not.toHaveURL(/\/login(?:\?|$)/);
 }
 
-/** P4 planned semantic dialog/labels/test IDs, requiring P5 confirmation. */
+/** Semantic selectors bound to the Story 15.4 UI. */
 export function filingDialog(page: Page): Locator {
   return page.getByRole("dialog", { name: "Ny tidrapport", exact: true });
 }
@@ -170,9 +165,7 @@ export async function openWeek(page: Page): Promise<Locator> {
   return sheet;
 }
 
-/** The transport is a PROPOSED Next Server Action on existing host routes,
- * never an invented HTTP endpoint. P5 must bind the real action/request shape.
- */
+/** Observe the production Next Server Action on the current host route. */
 export function isFilingRequest(request: Request, marker: string): boolean {
   return request.method() === "POST" && !!request.headers()["next-action"]
     && ["/time-reports", "/scheduling"].includes(new URL(request.url()).pathname)

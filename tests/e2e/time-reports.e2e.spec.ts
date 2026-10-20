@@ -1,21 +1,7 @@
-/**
- * Story 15.4 essential E2E RED acceptance scaffolds. All three stay test.skip()
- * until P5 reconciles and implements the approved behavior and executes them.
- * Evidence: frozen 15.4 AC1–4/6–8, current-contracts-and-design.md, existing
- * resourcePage, tenant/bookings factories and real resolver response-loss proof.
- *
- * PROPOSED, NOT OBSERVED: the time-report dialog/field/action names and test IDs,
- * review filters/total formatting, report SQL columns, input/export names and
- * Next-action body binding. Confirm each in P5; do not treat these as observations
- * or replace physical persistence assertions with a mock. Existing login and
- * scheduling-booking-{id}/Datum/Period/Min kalender selectors were read in source.
- *
- * playwright-utils deviation: config=true but @seontechnologies/playwright-utils
- * is absent from package.json. Its two-gate mandate is inactive. Reuse the existing
- * resourcePage, native request interception and real factory patterns. No package,
- * merged fixture or configuration edit is authorized. A future adoption belongs
- * in the framework workflow, separately from this story's red scaffold.
- * No browser, service, database or test execution occurred while authoring this.
+/** Essential configured-production browser acceptance. All successful persistence
+ * is verified by physical owned report/audit readbacks. Transport faults never
+ * fabricate success. Native Playwright follows existing resourcePage conventions.
+ * This source is runnable coverage; no browser/DB result is claimed by authoring it.
  */
 import { test, expect } from "./support/resource-cdp-attachment";
 import {
@@ -25,8 +11,8 @@ import {
 import { fileReport, reportInput } from "../support/time-reports-atdd";
 import { adminQuery } from "../factories/admin-sql";
 
-test.describe("15.4 essential production-host time reporting (RED)", () => {
-  test.skip("[P0] 15.4-E2E-001 own booking editable prefill → filed report → persisted own week", async ({ resourcePage: page }) => {
+test.describe("15.4 essential production-host time reporting", () => {
+  test("[P0] 15.4-E2E-001 own booking editable prefill → filed report → persisted own week", async ({ resourcePage: page }) => {
     await withTimeReportBrowserFixture(async (f) => {
       // Concrete peer booking exists. A normal own-only JWT must fail filing it,
       // independently of the absence of its card/action from the personal UI.
@@ -87,7 +73,7 @@ test.describe("15.4 essential production-host time reporting (RED)", () => {
     });
   });
 
-  test.skip("[P0] 15.4-E2E-002 no-profile standalone at 360×640 keeps unsent input through failure/lost commit and keyboard same-attempt retry", async ({ resourcePage: page }) => {
+  test("[P0] 15.4-E2E-002 no-profile standalone at 360×640 keeps unsent input through failure/lost commit and keyboard same-attempt retry", async ({ resourcePage: page }) => {
     await withTimeReportBrowserFixture(async (f) => {
       await page.setViewportSize({ width: 360, height: 640 });
       // Register real failure interception BEFORE navigation; never fabricate a 2xx.
@@ -148,7 +134,7 @@ test.describe("15.4 essential production-host time reporting (RED)", () => {
     });
   });
 
-  test.skip("[P1] 15.4-E2E-003 PL/Admin complete person/job/week review totals and attributed annotation survive reload", async ({ resourcePage: page }) => {
+  test("[P1] 15.4-E2E-003 PL/Admin complete person/job/week review totals and attributed annotation survive reload", async ({ resourcePage: page }) => {
     await withTimeReportBrowserFixture(async (f) => {
       const ids = await seedReviewReports(f);
       const initial = await f.snapshot();
@@ -196,10 +182,9 @@ test.describe("15.4 essential production-host time reporting (RED)", () => {
       const annotated = await f.snapshot();
       const before = initial.reports.find((row) => row.id === ids.own)!;
       const after = annotated.reports.find((row) => row.id === ids.own)!;
-      const { review_note: _noteBefore, reviewed_by: _actorBefore, reviewed_at: _timeBefore,
-        review_revision: _revisionBefore, ...coreBefore } = before;
-      const { review_note: _noteAfter, reviewed_by: _actorAfter, reviewed_at: _timeAfter,
-        review_revision: _revisionAfter, ...coreAfter } = after;
+      const core = (row: typeof before) => Object.fromEntries(Object.entries(row).filter(([field]) =>
+        !["review_note","reviewed_by","reviewed_at","review_revision"].includes(field)));
+      const coreBefore = core(before), coreAfter = core(after);
       expect(coreAfter).toEqual(coreBefore);
       expect(after).toMatchObject({ status: "submitted", review_note: `${f.marker} reviewed`,
         reviewed_by: f.fx.users.projektledare.id, review_revision: before.review_revision + 1 });

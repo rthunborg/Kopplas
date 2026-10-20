@@ -15,9 +15,9 @@ test("[P0] 14.4-GOV-001 active resources command rejects E15 fields while schedu
   const scheduling = SCOPE_MANIFEST.modules.find((module) => module.id === "scheduling");
   assert.equal(resources?.status, "active");
   assert.equal(scheduling?.status, "active");
-  assert.deepEqual(scheduling?.navItems, [{route:"/scheduling",group:"primary",requiredCapability:"Bookings.View"}]);
+  assert.deepEqual(scheduling?.navItems, [{route:"/scheduling",group:"primary",requiredCapability:"Bookings.View"},{route:"/time-reports",group:"primary",requiredCapability:"TimeReports.ReportOwn"}]);
   for (const surface of ["tenantTables", "widgets", "notificationCategories", "publicSurfaces", "fileOwnerTypes"] as const) {
-    assert.deepEqual(scheduling?.[surface], surface === "tenantTables" ? ["booking_series", "booking_conflict_resolutions"] : surface === "notificationCategories" ? ["booking.changed"] : [], surface);
+    assert.deepEqual(scheduling?.[surface], surface === "tenantTables" ? ["booking_series", "booking_conflict_resolutions", "time_reports"] : surface === "notificationCategories" ? ["booking.changed", "time_report.nudge"] : [], surface);
   }
   const input = {...booking(),commandId: "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"};
   assert.equal(validateCreateBooking(input).ok, true);

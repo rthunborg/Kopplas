@@ -1,14 +1,16 @@
-/** Story 15.4 RED scaffolding. All report/RPC/export names below are PLANNED seams.
- * Bind them to the implementation at activation; retain the behavioral assertions.
- * No service/database work occurs at import time. No generic TODO fixture throws.
- */
+/** Story 15.4 real checked-command fixtures. No service/database work at import time. */
 import { adminQuery, adminSession } from "../factories/admin-sql";
 import { makeAuthedServerClient, seedRoleAwarePhaseAUsers, deleteAuthUser, type TestServerClient } from "../factories/tenants";
 import { withBookingFixture, type BookingFixture, seedBookingParents } from "./bookings-atdd";
 
-export type ReportInput = { attemptId: string; date: string; minutes: number; note: string | null; bookingId: string | null; jobId: string | null };
-export type AnnotationInput = { attemptId: string; reportId: string; expectedRevision: number; note: string | null };
-export type ReportResult = { ok: true; data: { reportId: string } } | { ok: false; code: string; message?: string };
+import { fileTimeReport } from "@/server/commands/time-reports/file-time-report";
+import { annotateTimeReport } from "@/server/commands/time-reports/annotate-time-report";
+import { runCommand, type CommandDbClient } from "@/server/commands/envelope";
+import { readTimeReports } from "@/server/read-models/time-reports";
+import { emitTimeReportNudges } from "@/server/notifications/time-report-nudge-producer";
+import type { ReportInput, AnnotationInput, TimeReportQuery, TimeReportReadResult } from "@/features/time-reports/types";
+export type { ReportInput, AnnotationInput } from "@/features/time-reports/types";
+export type ReportResult = Awaited<ReturnType<typeof fileReport>>;
 export const reportPublicColumns = "id,tenant_id,user_id,report_date,duration_minutes,booking_id,job_id,note,status,booked_minutes_at_filing,created_at,review_note,reviewed_by,reviewed_at,review_revision";
 export const reportPrivateColumns = ["filing_attempt_id", "filing_digest", "review_attempt_id", "review_digest"] as const;
 export function reportInput(patch: Partial<ReportInput> = {}): ReportInput {
@@ -16,18 +18,14 @@ export function reportInput(patch: Partial<ReportInput> = {}): ReportInput {
     note: "Installerade belysning i verkstaden", bookingId: null, jobId: null, ...patch };
 }
 
-// Variable imports intentionally defer missing planned modules until an activated body runs.
-export async function fileReport(client: TestServerClient, input: ReportInput, correlationId = crypto.randomUUID()): Promise<ReportResult> {
-  const path = "../../src/server/commands/time-reports/file-time-report";
-  const [{ fileTimeReport }, { runCommand }] = await Promise.all([import(path), import("@/server/commands/envelope")]);
-  return runCommand(fileTimeReport, { client: client as never, input, correlationId }) as Promise<ReportResult>;
+// Execute the actual request-bound adapters with this fixture's ordinary client.
+export async function fileReport(client: TestServerClient, input: ReportInput, correlationId = crypto.randomUUID()) {
+  return runCommand(fileTimeReport, { client: client as unknown as CommandDbClient, input, correlationId });
 }
-export async function annotateReport(client: TestServerClient, input: AnnotationInput, correlationId = crypto.randomUUID()): Promise<ReportResult> {
-  const path = "../../src/server/commands/time-reports/annotate-time-report";
-  const [{ annotateTimeReport }, { runCommand }] = await Promise.all([import(path), import("@/server/commands/envelope")]);
-  return runCommand(annotateTimeReport, { client: client as never, input, correlationId }) as Promise<ReportResult>;
+export async function annotateReport(client: TestServerClient, input: AnnotationInput, correlationId = crypto.randomUUID()) {
+  return runCommand(annotateTimeReport, { client: client as unknown as CommandDbClient, input, correlationId });
 }
-// Provider endpoints: PLANNED authenticated RPCs; these bypass the TS envelope on purpose.
+// Direct checked authenticated RPCs bypass the TS envelope on purpose.
 export async function checkedFileReport(client: TestServerClient, tenantId: string, actorId: string, input: ReportInput, correlationId = crypto.randomUUID()) {
   return client.rpc("file_time_report", { p_tenant_id: tenantId, p_actor_id: actorId,
     p_attempt_id: input.attemptId, p_payload: input, p_correlation_id: correlationId });
@@ -46,10 +44,10 @@ export async function withTimeReportFixture(run: (fx: TimeReportFixture) => Prom
     const users = { admin: fx.base.adminA, planner: fx.users.projektledare, own: fx.users.montor,
       seller: fx.users.saljare, economy: fx.users.ekonomi, mixed: fx.roleUnionUser,
       invited: fx.invitedUser, disabled: fx.disabledUser, orphan: fx.base.orphanUser, foreign: fx.base.adminB };
-    const clients = Object.fromEntries(await Promise.all(Object.entries(users).map(async ([key, user]) => [key, await makeAuthedServerClient(user)])));
-    // Existing factory owns only this run's tenant/users. P5 must verify its cascade
-    // also removes the new report children; do not disable production triggers here.
-    await run({ ...fx, clients });
+    const reused: Record<string,TestServerClient> = {admin:fx.adminClient,planner:fx.plannerClient,own:fx.montorClient,foreign:fx.foreignClient};
+    const clients = Object.fromEntries(await Promise.all(Object.entries(users).map(async ([key, user]) => [key, reused[key] ?? await makeAuthedServerClient(user)])));
+    try { await run({ ...fx, clients }); }
+    finally { await cleanupOwnedTimeReports(fx.tenantIds); }
   });
 }
 export async function setRoles(tenantId: string, userId: string, primary: string, supplemental: string[] = [], status = "active") {
@@ -153,17 +151,46 @@ export async function jobsClient() {
   return createJobsServiceClient();
 }
 export async function produceNudges(client: TestServerClient, tenantId: string, options: { asOf: string; cursor?: string; correlationId?: string }) {
-  const path = "../../src/server/notifications/time-report-nudge-producer";
-  const { emitTimeReportNudges } = await import(path);
-  return emitTimeReportNudges(client, tenantId, options) as Promise<{ count: number; cursor?: string }>;
+  return emitTimeReportNudges(client, tenantId, options);
 }
-export async function readReports(client: TestServerClient, query: Record<string, unknown>) {
-  const path = "../../src/server/read-models/time-reports";
-  const { readTimeReports } = await import(path);
+export async function readReports(client: TestServerClient, query: TimeReportQuery): Promise<TimeReportReadResult> {
   return readTimeReports(query, { client });
 }
 
 /** >25 genuine eligible recipients without changing shared seed users. */
+/** Test-local removal of immutable children before the owning factory removes users.
+ * Transaction-local bypass is confined to the explicit owned tenants and connection.
+ * Never changes production functions, grants or a shared trigger.
+ */
+export async function cleanupOwnedTimeReports(tenantIds: readonly string[]) {
+  if (!tenantIds.length || tenantIds.some(id => !/^[a-f0-9-]{36}$/i.test(id))) throw new Error("Owned tenant UUIDs required");
+  await adminSession(async ({ query }) => {
+    await query("begin");
+    try {
+      await query("set local session_replication_role=replica");
+      await query("delete from public.time_reports where tenant_id=any($1::uuid[])", [tenantIds]);
+      await query("commit");
+    } catch (error) { await query("rollback"); throw error; }
+  });
+}
+
+/** Seed a genuine submitted row under its actor JWT/SQL role, with real command audit. */
+export async function seedCheckedReport(tenantId: string, actorId: string, input = reportInput()) {
+  return adminSession(async ({ query }) => {
+    await query("begin");
+    try {
+      await query("select set_config('request.jwt.claim.sub',$1,true)", [actorId]);
+      await query("set local role authenticated");
+      const [row] = await query<{ result: { reportId: string } }>(
+        "select public.file_time_report($1::uuid,$2::uuid,$3::uuid,$4::jsonb,$5::uuid) result",
+        [tenantId, actorId, input.attemptId, JSON.stringify(input), crypto.randomUUID()]);
+      if (!row?.result.reportId) throw new Error("Checked report fixture did not persist");
+      await query("commit");
+      return row.result.reportId;
+    } catch (error) { await query("rollback"); throw error; }
+  });
+}
+
 export async function withNudgeRecipients(fx: TimeReportFixture, run: (recipients: Array<{ userId: string; profileId: string }>) => Promise<void>) {
   const ownedUsers: string[] = [], recipients: Array<{ userId: string; profileId: string }> = [];
   try {
@@ -180,6 +207,7 @@ export async function withNudgeRecipients(fx: TimeReportFixture, run: (recipient
     await run(recipients);
   } finally {
     // All producer/race promises must have settled in run before actor cleanup.
+    await cleanupOwnedTimeReports([fx.base.tenantA.id]);
     for (const userId of ownedUsers) await deleteAuthUser(userId);
   }
 }

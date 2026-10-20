@@ -4,12 +4,9 @@ import { withTimeReportFixture, reportInput, fileReport, annotateReport, checked
   checkedAnnotateReport, reportId, reportState, seedReportBooking, seedReportJob,
   whileTenantBlocked, observeRpcCodes, withReportAuditFault } from "../../support/time-reports-atdd";
 
-/** RED: planned exports/RPC/column names are documented in the allocated helper.
- * Activate only with REQUIRED local DB evidence and the exact serial DDL lane.
- * Provider: real runCommand -> authenticated checked SQL, never a mock persistence API.
- */
+/** Real runCommand → authenticated checked SQL; fault cases require the serial DDL lane. */
 describe("Story 15.4 real command and transaction acceptance", () => {
-  test.skip("[P0] 15.4-INT-001 AC1 AC6 AC8 own planned booking files exact submitted minutes for Admin PL and Montor", async () => {
+  test("[P0] 15.4-INT-001 AC1 AC6 AC8 own planned booking files exact submitted minutes for Admin PL and Montor", async () => {
     await withTimeReportFixture(async fx => {
       const tenant = fx.base.tenantA.id;
       for (const [client, user, profile] of [[fx.adminClient, fx.base.adminA.id, fx.adminProfile.id],
@@ -29,7 +26,7 @@ describe("Story 15.4 real command and transaction acceptance", () => {
     });
   });
 
-  test.skip("[P0] 15.4-INT-002 AC1 AC6 standalone requires neither link nor profile and deliberate same-day rows stay distinct", async () => {
+  test("[P0] 15.4-INT-002 AC1 AC6 standalone requires neither link nor profile and deliberate same-day rows stay distinct", async () => {
     await withTimeReportFixture(async fx => {
       expect(await adminQuery("select p.id from public.person_profiles p join public.tenant_memberships m on m.id=p.membership_id where m.user_id=$1", [fx.roleUnionUser.id])).toEqual([]);
       const first = reportId(await fileReport(fx.clients.mixed, reportInput({ minutes: 37 })));
@@ -41,7 +38,7 @@ describe("Story 15.4 real command and transaction acceptance", () => {
     });
   });
 
-  test.skip("[P0] 15.4-INT-003 AC2 AC8 concurrent exact retry converges; changed content and another actor never reuse the result", async () => {
+  test("[P0] 15.4-INT-003 AC2 AC8 concurrent exact retry converges; changed content and another actor never reuse the result", async () => {
     await withTimeReportFixture(async fx => {
       const input = reportInput(), before = await reportState(fx.tenantIds);
       const results = await Promise.all(Array.from({ length: 3 }, () => fileReport(fx.montorClient, input)));
@@ -59,7 +56,7 @@ describe("Story 15.4 real command and transaction acceptance", () => {
     });
   });
 
-  test.skip("[P0] 15.4-INT-004 AC6 AC8 SQL rejects bad references and exact-minute/date boundaries without partial writes", async () => {
+  test("[P0] 15.4-INT-004 AC6 AC8 SQL rejects bad references and exact-minute/date boundaries without partial writes", async () => {
     await withTimeReportFixture(async fx => {
       const own = await seedReportBooking(fx), peer = await seedReportBooking(fx, { profileIds: [fx.coworkerProfile.id] });
       const cancelled = await seedReportBooking(fx, { status: "cancelled" });
@@ -78,10 +75,55 @@ describe("Story 15.4 real command and transaction acceptance", () => {
       }
       expect(await fileReport(fx.montorClient, reportInput({ bookingId: linked, minutes: 1 }))).toMatchObject({ ok: true });
       expect(await fileReport(fx.montorClient, reportInput({ minutes: 2147483647 }))).toMatchObject({ ok: true });
+      // Independent UTC goldens cross both Stockholm clock changes. SQL freezes
+      // elapsed minutes, including the repeated fall hour, rather than wall time.
+      for (const transition of [
+        { date:"2026-03-29", startsAt:"2026-03-29T00:30:00Z", endsAt:"2026-03-29T01:30:00Z" },
+        { date:"2026-10-25", startsAt:"2026-10-25T00:30:00Z", endsAt:"2026-10-25T01:30:00Z" },
+      ]) {
+        const bookingId = await seedReportBooking(fx,transition);
+        const id = reportId(await fileReport(fx.montorClient,reportInput({date:transition.date,bookingId,minutes:60})));
+        expect((await reportState(fx.tenantIds)).reports.find(row => row.id===id)).toMatchObject({report_date:transition.date,duration_minutes:60,booked_minutes_at_filing:60});
+      }
     });
   });
 
-  test.skip("[P0] 15.4-INT-005 AC2 AC4 AC9 snapshot and exact replay survive live booking changes and removed assignment", async () => {
+  test("[P0] 15.4-INT-011 AC1 AC6 AC9 genuine fractional booked intervals retain exact snapshots with whole-minute filed time", async () => {
+    await withTimeReportFixture(async fx => {
+      // Booked provenance is elapsed numeric minutes. It must not impose the
+      // separately enforced whole-minute declaration rule on genuine bookings.
+      const vectors = [
+        { endsAt:"2026-10-12T06:01:00.000060Z", snapshot:"1.000001", text:/^1\.0000010*$/ },
+        { endsAt:"2026-10-12T06:00:30Z", snapshot:"0.5", text:/^0\.50*$/ },
+      ];
+      for (const vector of vectors) {
+        const bookingId = await seedReportBooking(fx, {startsAt:"2026-10-12T06:00:00Z",endsAt:vector.endsAt});
+        const correlationId=crypto.randomUUID(), before=await reportState(fx.tenantIds);
+        const input=reportInput({bookingId,minutes:37});
+        const result=await fileReport(fx.montorClient,input,correlationId), id=reportId(result);
+        // Read PostgreSQL numeric as TEXT, never through a JS number/rounding
+        // oracle. Trailing numeric scale is permitted; the decimal digits are exact.
+        const rows=await adminQuery<{minutes:number; snapshot:string; exact:boolean}>(
+          `select duration_minutes minutes,booked_minutes_at_filing::text snapshot,
+            booked_minutes_at_filing=$3::numeric exact from public.time_reports where tenant_id=$1 and id=$2`,
+          [fx.base.tenantA.id,id,vector.snapshot]);
+        expect(rows).toHaveLength(1); expect(rows[0]).toMatchObject({minutes:37,exact:true});
+        expect(rows[0].snapshot).toMatch(vector.text);
+        const after=await reportState(fx.tenantIds);
+        expect(after.reports.length-before.reports.length).toBe(1);
+        expect(after.audit.filter(row => row.correlation_id===correlationId)).toMatchObject([{target_id:id,actor_user_id:fx.users.montor.id}]);
+        expect(after.bookings).toEqual(before.bookings); expect(after.assignments).toEqual(before.assignments);
+        expect(await fileReport(fx.montorClient,input,correlationId)).toEqual(result);
+        expect(await reportState(fx.tenantIds)).toEqual(after);
+        const fractionalReport=reportInput({bookingId,minutes:1.5});
+        expect(await fileReport(fx.montorClient,fractionalReport)).toMatchObject({ok:false,code:"VALIDATION_FAILED"});
+        expect((await checkedFileReport(fx.montorClient,fx.base.tenantA.id,fx.users.montor.id,fractionalReport)).error?.code).toBe("23514");
+        expect(await reportState(fx.tenantIds)).toEqual(after);
+      }
+    });
+  });
+
+  test("[P0] 15.4-INT-005 AC2 AC4 AC9 snapshot and exact replay survive live booking changes and removed assignment", async () => {
     await withTimeReportFixture(async fx => {
       const job = await seedReportJob(fx.base.tenantA.id), bookingId = await seedReportBooking(fx, { jobId: job });
       const input = reportInput({ bookingId, minutes: 420 }), result = await fileReport(fx.montorClient, input), id = reportId(result);
@@ -95,7 +137,7 @@ describe("Story 15.4 real command and transaction acceptance", () => {
     });
   });
 
-  test.skip("[P0] 15.4-INT-006 AC2 AC8 current SQL authority is rechecked after actual tenant-lock wait for fresh and replay", async () => {
+  test("[P0] 15.4-INT-006 AC2 AC8 current SQL authority is rechecked after actual tenant-lock wait for fresh and replay", async () => {
     for (const replay of [false, true]) await withTimeReportFixture(async fx => {
       const input = reportInput(); if (replay) reportId(await fileReport(fx.montorClient, input));
       const before = await reportState(fx.tenantIds);
@@ -106,14 +148,15 @@ describe("Story 15.4 real command and transaction acceptance", () => {
     });
   });
 
-  test.skip("[P0] 15.4-INT-007 AC6 AC8 locked assignment booking status and job relation cannot change before fresh filing", async () => {
-    for (const mutation of ["assignment", "cancelled", "job"] as const) await withTimeReportFixture(async fx => {
+  test("[P0] 15.4-INT-007 AC6 AC8 locked assignment booking status and job relation cannot change before fresh filing", async () => {
+    for (const mutation of ["assignment", "profile", "cancelled", "job"] as const) await withTimeReportFixture(async fx => {
       const job = await seedReportJob(fx.base.tenantA.id), otherJob = await seedReportJob(fx.base.tenantA.id);
       const bookingId = await seedReportBooking(fx, { jobId: job });
       const before = await reportState(fx.tenantIds);
       const result = await whileTenantBlocked(fx.base.tenantA.id,
         () => checkedFileReport(fx.montorClient, fx.base.tenantA.id, fx.users.montor.id, reportInput({ bookingId, jobId: job })),
         async () => { if (mutation === "assignment") await adminQuery("delete from public.booking_assignees where booking_id=$1", [bookingId]);
+          else if (mutation === "profile") await adminQuery("update public.person_profiles set membership_id=(select id from public.tenant_memberships where tenant_id=$1 and user_id=$2) where id=$3", [fx.base.tenantA.id, fx.roleUnionUser.id, fx.ownProfile.id]);
           else if (mutation === "cancelled") await adminQuery("update public.bookings set status='cancelled' where id=$1", [bookingId]);
           else await adminQuery("update public.bookings set job_id=$2 where id=$1", [bookingId, otherJob]); });
       expect(result.error).not.toBeNull(); const after = await reportState(fx.tenantIds);
@@ -121,7 +164,7 @@ describe("Story 15.4 real command and transaction acceptance", () => {
     });
   });
 
-  test.skip("[P0] 15.4-INT-008 AC4 AC7 annotation CAS latest exact retry and blank clear preserve every filed core field", async () => {
+  test("[P0] 15.4-INT-008 AC4 AC7 annotation CAS latest exact retry and blank clear preserve every filed core field", async () => {
     await withTimeReportFixture(async fx => {
       const id = reportId(await fileReport(fx.montorClient, reportInput()));
       const core = (await reportState(fx.tenantIds)).reports.find(r => r.id === id)!;
@@ -147,7 +190,7 @@ describe("Story 15.4 real command and transaction acceptance", () => {
     });
   });
 
-  test.skip("[P0] 15.4-INT-009 AC2 AC7 audit fault proves filing or review stage then rolls all effects back", async () => {
+  test("[P0] 15.4-INT-009 AC2 AC7 audit fault proves filing or review stage then rolls all effects back", async () => {
     // SERIAL ONLY: Root-exclusive isolated stack, parallel group settled. No concurrent DDL.
     for (const stage of ["filing", "annotation"] as const) await withTimeReportFixture(async fx => {
       const id = stage === "annotation" ? reportId(await fileReport(fx.montorClient, reportInput())) : undefined;
@@ -164,7 +207,7 @@ describe("Story 15.4 real command and transaction acceptance", () => {
     });
   });
 
-  test.skip("[P0] 15.4-INT-010 AC7 AC8 revoked reviewer cannot replay latest annotation and superseded attempt cannot overwrite", async () => {
+  test("[P0] 15.4-INT-010 AC7 AC8 revoked reviewer cannot replay latest annotation and superseded attempt cannot overwrite", async () => {
     await withTimeReportFixture(async fx => {
       const id = reportId(await fileReport(fx.montorClient, reportInput()));
       const input = { attemptId: crypto.randomUUID(), reportId: id, expectedRevision: 0, note: "Granskning" };

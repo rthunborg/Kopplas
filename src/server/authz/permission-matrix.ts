@@ -36,7 +36,11 @@ export const PERMISSION_MATRIX = {
     "Bookings.View": BOOKINGS_VIEW,
     "Bookings.Manage": { roles: ["tenant_admin", "projektledare"] },
   },
-  scheduling: { "Bookings.View": BOOKINGS_VIEW },
+  scheduling: {
+    "Bookings.View": BOOKINGS_VIEW,
+    "TimeReports.ReportOwn": { roles: ["tenant_admin", "projektledare", "montor"] },
+    "TimeReports.Review": { roles: ["tenant_admin", "projektledare"] },
+  },
   dashboard: { "Dashboard.View": { roles: ["tenant_admin", "projektledare", "montor", "saljare", "ekonomi"] } },
   crm: {
     "Customers.View": { roles: ["tenant_admin", "projektledare", "saljare"] },

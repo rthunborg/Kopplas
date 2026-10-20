@@ -4,6 +4,7 @@ export const NOTIFICATION_CATEGORIES = [
   { category: "quote.follow_up_due", module: "quotes", defaultEnabled: true, essential: true, label: "Viktig uppföljning av offert", channels: ["in_app", "email"] },
   { category: "quote.delivery", module: "notifications", defaultEnabled: true, essential: false, label: "Offertleverans", channels: ["email"] },
   { category: "booking.changed", module: "scheduling", defaultEnabled: true, essential: false, label: "Ändringar i planeringen", channels: ["in_app"] },
+  { category: "time_report.nudge", module: "scheduling", defaultEnabled: true, essential: false, label: "Påminnelse om tidrapport", channels: ["in_app"] },
 ] as const;
 
 export type NotificationCategory = (typeof NOTIFICATION_CATEGORIES)[number]["category"];

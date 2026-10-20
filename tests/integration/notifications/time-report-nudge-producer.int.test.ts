@@ -5,11 +5,11 @@ import { withTimeReportFixture, seedReportBooking, reportInput, fileReport, repo
   jobsClient, reportState, observeRpcCodes, withReportAuditFault, withNudgeRecipients, whileTenantBlocked } from "../../support/time-reports-atdd";
 
 const asOf = "2026-10-19T22:30:00.000Z"; // Stockholm Tue20: previous completed local dates13..19.
-// PLANNED producer/RPC: emitTimeReportNudges(injectedJobsClient,tenantId,{asOf,cursor,correlationId}).
+// Checked producer/RPC: emitTimeReportNudges(injectedJobsClient,tenantId,{asOf,cursor,correlationId}).
 // SQL computes eligibility + preferences + absence under tenant serialization;
 // adapter must not scan bookings/memberships a second time or return their facts.
-describe("Story 15.4 existing E13 in-app nudge producer acceptance (RED)", () => {
-  test.skip("[P0] 15.4-NUDGE-001 AC5 AC8 frozen seven completed Stockholm dates exclude weekend today future old and reported day", async () => {
+describe("Story 15.4 existing E13 in-app nudge producer acceptance", () => {
+  test("[P0] 15.4-NUDGE-001 AC5 AC8 frozen seven completed Stockholm dates exclude weekend today future old and reported day", async () => {
     await withTimeReportFixture(async fx => {
       for (const day of [12, 13, 14, 15, 16, 17, 18, 19, 20, 21]) await seedReportBooking(fx, {
         startsAt: `2026-10-${day}T06:00:00Z`, endsAt: `2026-10-${day}T07:00:00Z` });
@@ -31,15 +31,47 @@ describe("Story 15.4 existing E13 in-app nudge producer acceptance (RED)", () =>
       expect(after.reports).toEqual(before.reports);
       expect(JSON.stringify(result)).not.toMatch(/userId|booking|report|note|email|title|body/i);
     });
+    // Exercise the actual SQL producer with independently pinned Stockholm UTC
+    // boundaries: transition Sundays are 23/25h; local days are half-open.
+    const vectors = [
+      { name: "spring", asOf: "2026-03-30T22:30:00Z", intervals: [
+        ["2026-03-28T23:00:00Z", "2026-03-29T22:00:00Z", 1380],
+        ["2026-03-29T22:00:00Z", "2026-03-29T22:01:00Z", 1]], dates: ["2026-03-30"] },
+      { name: "fall", asOf: "2026-10-26T23:30:00Z", intervals: [
+        ["2026-10-24T22:00:00Z", "2026-10-25T23:00:00Z", 1500],
+        ["2026-10-26T22:30:00Z", "2026-10-26T23:00:00Z", 30]], dates: ["2026-10-26"] },
+      { name: "cross-midnight", asOf, intervals: [
+        ["2026-10-13T21:30:00Z", "2026-10-13T22:30:00Z", 60]], dates: ["2026-10-13", "2026-10-14"] },
+      { name: "exclusive-end", asOf, intervals: [
+        ["2026-10-12T22:00:00Z", "2026-10-13T22:00:00Z", 1440]], dates: ["2026-10-13"] },
+    ] as const;
+    for (const vector of vectors) await withTimeReportFixture(async fx => {
+      for (const [startsAt, endsAt, minutes] of vector.intervals) {
+        const booking = await seedReportBooking(fx, { startsAt, endsAt });
+        const [physical] = await adminQuery<{ minutes: number }>(
+          "select (extract(epoch from (ends_at-starts_at))/60)::int minutes from public.bookings where tenant_id=$1 and id=$2",
+          [fx.base.tenantA.id, booking]);
+        expect(physical.minutes, vector.name).toBe(minutes);
+      }
+      const before = await reportState(fx.tenantIds);
+      const emitted = await produceNudges(await jobsClient(), fx.base.tenantA.id, { asOf: vector.asOf });
+      expect(emitted, vector.name).toEqual({ count: vector.dates.length });
+      const after = await reportState(fx.tenantIds);
+      const reminders = after.notifications.filter(n => n.category === "time_report.nudge");
+      expect(reminders.map(n => n.logical_period).sort(), vector.name).toEqual([...vector.dates]);
+      expect(reminders.every(n => n.recipient_user_id === fx.users.montor.id && n.tenant_id === fx.base.tenantA.id)).toBe(true);
+      expect(after.audit.length - before.audit.length).toBe(vector.dates.length);
+      expect(after.reports).toEqual(before.reports);
+    });
   });
 
-  test.skip("[P0] 15.4-NUDGE-002 AC5 AC8 adapter uses one scoped checked RPC injected client and leaves raw booking ACL revoked", async () => {
+  test("[P0] 15.4-NUDGE-002 AC5 AC8 adapter uses one scoped checked RPC injected client and leaves raw booking ACL revoked", async () => {
     await withTimeReportFixture(async fx => {
       await seedReportBooking(fx, { startsAt: "2026-10-19T06:00:00Z", endsAt: "2026-10-19T07:00:00Z" });
       const service = await jobsClient(), calls: Array<{ name: string; args: Record<string, unknown> }> = [];
       const contained = new Proxy(service, { get(target, key) {
         if (key === "from") return () => { throw new Error("Nudge adapter attempted unrestricted second scan"); };
-        if (key === "rpc") return async (name: string, args: Record<string, unknown>) => { calls.push({ name, args }); return target.rpc(name, args); };
+        if (key === "rpc") return (name: string, args: Record<string, unknown>) => { calls.push({ name, args }); return target.rpc(name, args); };
         const value = Reflect.get(target, key, target); return typeof value === "function" ? value.bind(target) : value;
       } });
       const result = await produceNudges(contained, fx.base.tenantA.id, { asOf });
@@ -53,7 +85,7 @@ describe("Story 15.4 existing E13 in-app nudge producer acceptance (RED)", () =>
     });
   });
 
-  test.skip("[P0] 15.4-NUDGE-003 AC5 AC8 current opt-out inactive role loss archived profile and cancelled booking suppress recipients", async () => {
+  test("[P0] 15.4-NUDGE-003 AC5 AC8 current opt-out inactive role loss archived profile and cancelled booking suppress recipients", async () => {
     for (const reason of ["preference", "inactive", "role", "archived", "cancelled"] as const) await withTimeReportFixture(async fx => {
       const booking = await seedReportBooking(fx, { startsAt: "2026-10-19T06:00:00Z", endsAt: "2026-10-19T07:00:00Z" });
       if (reason === "preference") await adminQuery("insert into public.notification_preferences(tenant_id,user_id,category,channel,enabled) values($1,$2,'time_report.nudge','in_app',false)", [fx.base.tenantA.id, fx.users.montor.id]);
@@ -67,7 +99,7 @@ describe("Story 15.4 existing E13 in-app nudge producer acceptance (RED)", () =>
     });
   });
 
-  test.skip("[P0] 15.4-NUDGE-004 AC5 AC8 more than25 real recipients continue stable frozen scoped cursor without gaps duplicates or fact return", async () => {
+  test("[P0] 15.4-NUDGE-004 AC5 AC8 more than25 real recipients continue stable frozen scoped cursor without gaps duplicates or fact return", async () => {
     await withTimeReportFixture(async fx => { await withNudgeRecipients(fx, async recipients => {
       expect(recipients).toHaveLength(27);
       const service = await jobsClient(), first = await produceNudges(service, fx.base.tenantA.id, { asOf });
@@ -83,6 +115,26 @@ describe("Story 15.4 existing E13 in-app nudge producer acceptance (RED)", () =>
       const notes = (await reportState(fx.tenantIds)).notifications.filter(n => n.category === "time_report.nudge");
       expect(notes.map(n => n.recipient_user_id).sort()).toEqual(recipients.map(r => r.userId).sort());
       expect(notes.every(n => n.logical_period === "2026-10-19")).toBe(true);
+      const { handleJobsRunRequest } = await import("@/app/api/jobs/run/route");
+      const { ACTIVE_PRODUCERS } = await import("@/server/jobs/producers");
+      const producer = ACTIVE_PRODUCERS.find(p => p.id === "scheduling.time-report-nudges")!;
+      const resumedCalls: Array<Record<string,unknown>> = [];
+      const observed = new Proxy(service, { get(target,key) {
+        if (key === "rpc") return (name:string,args:Record<string,unknown>) => {
+          if (name === "emit_time_report_nudges") resumedCalls.push(args);
+          return target.rpc(name,args); // Preserve the real query's abortSignal chain.
+        };
+        const value=Reflect.get(target,key,target); return typeof value === "function" ? value.bind(target) : value;
+      } });
+      const beforeResume = await reportState(fx.tenantIds);
+      const response = await handleJobsRunRequest(new Request("http://localhost/api/jobs/run", {method:"POST"}), {
+        authorize:()=>true, createClient:()=>observed, producers:[producer], now:()=>new Date("2026-10-22T00:00:00Z"),
+        run:async dependencies => { await dependencies.execute(producer,fx.base.tenantA.id,first.cursor); return {outcome:"completed" as const}; },
+      });
+      expect(response.status).toBe(200); expect(resumedCalls).toHaveLength(1);
+      expect(resumedCalls[0]).toMatchObject({p_tenant_id:fx.base.tenantA.id,p_cursor:first.cursor});
+      expect(new Date(String(resumedCalls[0].p_as_of)).toISOString()).toBe(new Date(asOf).toISOString());
+      expect(await reportState(fx.tenantIds)).toEqual(beforeResume); // Actual already-emitted page remains idempotent.
       const beforeBadCursor = await reportState(fx.tenantIds);
       await expect(produceNudges(service, fx.base.tenantB.id, { asOf, cursor: first.cursor })).rejects.toThrow();
       await expect(produceNudges(service, fx.base.tenantA.id, { asOf: "2026-10-20T22:30:00Z", cursor: first.cursor })).rejects.toThrow();
@@ -91,7 +143,7 @@ describe("Story 15.4 existing E13 in-app nudge producer acceptance (RED)", () =>
     }); });
   });
 
-  test.skip("[P0] 15.4-NUDGE-005 AC5 duplicate concurrent hourly retries emit zero new notification or audit effects", async () => {
+  test("[P0] 15.4-NUDGE-005 AC5 duplicate concurrent hourly retries emit zero new notification or audit effects", async () => {
     await withTimeReportFixture(async fx => {
       await seedReportBooking(fx, { startsAt: "2026-10-19T06:00:00Z", endsAt: "2026-10-19T07:00:00Z" });
       const service = await jobsClient(), before = await reportState(fx.tenantIds);
@@ -104,7 +156,7 @@ describe("Story 15.4 existing E13 in-app nudge producer acceptance (RED)", () =>
     });
   });
 
-  test.skip("[P0] 15.4-NUDGE-006 AC5 AC8 tenant lock checks current preferences and membership after actual blocked producer", async () => {
+  test("[P0] 15.4-NUDGE-006 AC5 AC8 tenant lock checks current preferences and membership after actual blocked producer", async () => {
     for (const revoke of ["preference", "membership"] as const) await withTimeReportFixture(async fx => {
       await seedReportBooking(fx, { startsAt: "2026-10-19T06:00:00Z", endsAt: "2026-10-19T07:00:00Z" });
       const service = await jobsClient(), before = await reportState(fx.tenantIds);
@@ -117,7 +169,7 @@ describe("Story 15.4 existing E13 in-app nudge producer acceptance (RED)", () =>
     });
   });
 
-  test.skip("[P0] 15.4-NUDGE-007 AC2 AC5 filing committed before serialized nudge predicate suppresses notification", async () => {
+  test("[P0] 15.4-NUDGE-007 AC2 AC5 filing committed before serialized nudge predicate suppresses notification", async () => {
     await withTimeReportFixture(async fx => {
       await seedReportBooking(fx, { startsAt: "2026-10-19T06:00:00Z", endsAt: "2026-10-19T07:00:00Z" });
       const service = await jobsClient(), input = reportInput({ date: "2026-10-19", minutes: 1 });
@@ -147,7 +199,7 @@ describe("Story 15.4 existing E13 in-app nudge producer acceptance (RED)", () =>
     });
   });
 
-  test.skip("[P0] 15.4-NUDGE-008 AC5 atomic system audit failure verifies inserted recipient-date nudge then rolls it back", async () => {
+  test("[P0] 15.4-NUDGE-008 AC5 atomic system audit failure verifies inserted recipient-date nudge then rolls it back", async () => {
     // SERIAL ONLY, Root-exclusive stack; all pending operations settle before fault teardown.
     await withTimeReportFixture(async fx => {
       await seedReportBooking(fx, { startsAt: "2026-10-19T06:00:00Z", endsAt: "2026-10-19T07:00:00Z" });
@@ -163,7 +215,7 @@ describe("Story 15.4 existing E13 in-app nudge producer acceptance (RED)", () =>
     });
   });
 
-  test.skip("[P0] 15.4-NUDGE-009 AC5 AC8 existing authenticated jobs dispatch passes exact tenant and frozen run instant to real nudge adapter", async () => {
+  test("[P0] 15.4-NUDGE-009 AC5 AC8 existing authenticated jobs dispatch passes exact tenant and frozen run instant to real nudge adapter", async () => {
     await withTimeReportFixture(async fx => {
       await seedReportBooking(fx, { startsAt: "2026-10-19T06:00:00Z", endsAt: "2026-10-19T07:00:00Z" });
       const { handleJobsRunRequest } = await import("@/app/api/jobs/run/route");
@@ -172,7 +224,7 @@ describe("Story 15.4 existing E13 in-app nudge producer acceptance (RED)", () =>
       expect(producer).toMatchObject({ module: "scheduling", category: "time_report.nudge", schedule: "0 * * * *", essential: false });
       const service = await jobsClient(), calls: Array<Record<string, unknown>> = [];
       const observed = new Proxy(service, { get(target, key) {
-        if (key === "rpc") return async (name: string, args: Record<string, unknown>) => { if (name === "emit_time_report_nudges") calls.push(args); return target.rpc(name, args); };
+        if (key === "rpc") return (name: string, args: Record<string, unknown>) => { if (name === "emit_time_report_nudges") calls.push(args); return target.rpc(name, args); };
         const value = Reflect.get(target, key, target); return typeof value === "function" ? value.bind(target) : value;
       } });
       const frozen = new Date("2026-10-20T00:00:00Z"); let afterDispatch = false;

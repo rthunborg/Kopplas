@@ -68,3 +68,16 @@ test("14.2 booking read/write capabilities preserve Montor own-read permission a
   assert.equal(resolveCapability({roles:[role],module:"resources",capability:"Bookings.Manage"}).granted,["tenant_admin","projektledare"].includes(role));
  }
 });
+
+
+test("15.4 ReportOwn and Review preserve the exact reporting/reviewer role union", () => {
+  assert.deepEqual(PERMISSION_MATRIX.scheduling["TimeReports.ReportOwn"].roles, ["tenant_admin", "projektledare", "montor"]);
+  assert.deepEqual(PERMISSION_MATRIX.scheduling["TimeReports.Review"].roles, ["tenant_admin", "projektledare"]);
+  for (const role of ["tenant_admin", "projektledare", "montor", "saljare", "ekonomi"] as const) {
+    assert.equal(resolveCapability({roles:[role],module:"scheduling",capability:"TimeReports.ReportOwn"}).granted, ["tenant_admin","projektledare","montor"].includes(role));
+    assert.equal(resolveCapability({roles:[role],module:"scheduling",capability:"TimeReports.Review"}).granted, ["tenant_admin","projektledare"].includes(role));
+  }
+  assert.equal(resolveCapability({roles:["saljare","montor"],module:"scheduling",capability:"TimeReports.ReportOwn"}).granted,true);
+  assert.equal(resolveCapability({roles:["saljare","montor"],module:"scheduling",capability:"TimeReports.Review"}).granted,false);
+  assert.equal(resolveCapability({roles:["ekonomi","projektledare"],module:"scheduling",capability:"TimeReports.Review"}).granted,true);
+});

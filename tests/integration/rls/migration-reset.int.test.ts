@@ -416,6 +416,7 @@ describe("Migration reset green — tenant_foundation objects present (AC1 / R-0
       "tenant_provisioning_requests.ALL",
       "tenants.ALL",
       "tenants.SELECT",
+      "time_reports.SELECT",
       "work_roles.INSERT",
       "work_roles.SELECT",
       "work_roles.UPDATE",
@@ -503,7 +504,7 @@ describe("Migration reset green — tenant_foundation objects present (AC1 / R-0
       ]);
     }
     // Resource rows are read through RLS; audited commands are their only mutation surface.
-    for (const t of ["person_profiles", "person_work_hours", "tenant_calendar_days", "bookings", "booking_assignees", "booking_conflicts", "job_members", "job_required_work_roles", "job_access_windows", "job_dependencies"]) {
+    for (const t of ["person_profiles", "person_work_hours", "tenant_calendar_days", "bookings", "booking_assignees", "booking_conflicts", "job_members", "job_required_work_roles", "job_access_windows", "job_dependencies", "time_reports"]) {
       expect((cmdsByTable.get(t) ?? []).sort()).toEqual(["SELECT"]);
     }
 
@@ -674,4 +675,43 @@ it("[P0] 14.4 migration inventory has exact authenticated editor entries and pri
 // Close this file's admin pool once all migration-reset assertions are done.
 afterAll(async () => {
   await closeAdminPool();
+});
+
+
+it("[P0] 15.4 migration enrolls exact safe columns, composite links and hardened command/service-only ACLs", async ctx => {
+  if (skipUnlessStack(ctx, stackUp)) return;
+  const { reportPublicColumns, reportPrivateColumns } = await import("../../support/time-reports-atdd");
+  const [table] = await adminQuery<{ enabled:boolean; forced:boolean; safe:string[]; authenticated_dml:boolean; anon_read:boolean; service_read:boolean }>(`
+    select c.relrowsecurity enabled,c.relforcerowsecurity forced,
+      array(select a.attname::text from pg_attribute a where a.attrelid=c.oid and a.attnum>0 and not a.attisdropped
+        and has_column_privilege('authenticated',c.oid,a.attname,'SELECT') order by a.attname) safe,
+      has_table_privilege('authenticated',c.oid,'INSERT,UPDATE,DELETE') authenticated_dml,
+      has_any_column_privilege('anon',c.oid,'SELECT') anon_read,
+      has_any_column_privilege('service_role',c.oid,'SELECT') service_read
+    from pg_class c where c.oid='public.time_reports'::regclass`);
+  expect(table).toEqual({enabled:true,forced:true,safe:reportPublicColumns.split(",").sort(),authenticated_dml:false,anon_read:false,service_read:false});
+  expect(table.safe.some(column => (reportPrivateColumns as readonly string[]).includes(column))).toBe(false);
+  const fks = await adminQuery<{definition:string}>("select pg_get_constraintdef(oid) definition from pg_constraint where conrelid='public.time_reports'::regclass and contype='f'");
+  for (const parent of ["booking_id, tenant_id) REFERENCES bookings(id, tenant_id)","job_id, tenant_id) REFERENCES jobs(id, tenant_id)"]) {
+    expect(fks.some(fk => fk.definition.includes(parent))).toBe(true);
+  }
+  const checked = ["file_time_report(uuid,uuid,uuid,jsonb,uuid)","annotate_time_report(uuid,uuid,uuid,jsonb,uuid)","time_report_own_context(uuid,timestamp with time zone,timestamp with time zone)"];
+  const service = "emit_time_report_nudges(uuid,timestamp with time zone,text,uuid)";
+  const privateFunctions = ["time_report_actor_gate_internal(uuid,uuid,boolean)","time_report_immutable_core()"];
+  const functions = await adminQuery<{signature:string; definer:boolean; config:string[]|null; public_execute:boolean; anon:boolean; authenticated:boolean; service:boolean}>(`
+    select p.oid::regprocedure::text signature,p.prosecdef definer,p.proconfig config,
+      exists(select 1 from aclexplode(coalesce(p.proacl,acldefault('f',p.proowner))) a where a.grantee=0 and a.privilege_type='EXECUTE') public_execute,
+      has_function_privilege('anon',p.oid,'EXECUTE') anon,has_function_privilege('authenticated',p.oid,'EXECUTE') authenticated,
+      has_function_privilege('service_role',p.oid,'EXECUTE') service
+    from pg_proc p join pg_namespace n on n.oid=p.pronamespace where n.nspname='public' and p.proname in
+      ('file_time_report','annotate_time_report','time_report_own_context','emit_time_report_nudges','time_report_actor_gate_internal','time_report_immutable_core')`);
+  expect(functions.map(fn => fn.signature).sort()).toEqual([...checked,service,...privateFunctions].sort());
+  for (const fn of functions) {
+    assertSearchPathExactlyEmpty(fn.signature,fn.config);
+    expect(fn.definer).toBe(checked.includes(fn.signature)||fn.signature===service);
+    expect(fn.public_execute).toBe(false); expect(fn.anon).toBe(false);
+    expect(fn.authenticated).toBe(checked.includes(fn.signature)); expect(fn.service).toBe(fn.signature===service);
+  }
+  const triggers = await adminQuery<{name:string}>("select tgname name from pg_trigger where tgrelid='public.time_reports'::regclass and not tgisinternal");
+  expect(triggers.map(t => t.name)).toEqual(["time_reports_immutable_core"]);
 });
