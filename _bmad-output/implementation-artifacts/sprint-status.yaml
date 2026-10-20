@@ -60,7 +60,7 @@
 # use the current Epic 10 statuses and approved corrective-story entries below.
 
 generated: 2026-06-12
-last_updated: 10-20-2026 11:05  # ADR-B009 connected-field course correction verified; governance Story 10.7 done, no PWA/offline functionality delivered.
+last_updated: 10-20-2026 11:23  # ADR-B009 connected-field course correction verified; governance Story 10.7 done, no PWA/offline functionality delivered.
 project: Kopplas
 project_key: NOKEY
 tracking_system: file-system
@@ -269,7 +269,7 @@ development_status:
   epic-16: in-progress
   16-1-jobs-depth-activation-container-evolution-and-my-jobs: review
   16-2-job-members-and-per-job-roles-arbetsledare: review
-  16-3-arbetsorder: ready-for-dev
+  16-3-arbetsorder: in-progress
   16-4-projekt-upgrade-and-job-card-semantics: backlog
   16-5-job-workspace-shell: backlog
   epic-16-retrospective: optional

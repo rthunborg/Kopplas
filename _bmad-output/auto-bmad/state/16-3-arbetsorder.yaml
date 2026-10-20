@@ -9,33 +9,34 @@ spec_folder: null
 story_id: null
 branch: codex/epic-16-jobs
 status: in-progress
-updated_at: "2026-10-20T09:05:57Z"
+updated_at: "2026-10-20T09:23:54Z"
 started_at: "2026-10-19T20:41:57Z"
 completed_at: null
 active_seconds: 786
-timing_anchor: 1792487157
+timing_anchor: 1792488234
 is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: tea_per_story
-selected_role: tea-delegate
+selected_phase: build
+selected_role: build-delegate
 selected_profile: standard
 selected_model: gpt-6.1-sol
 selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Sensitive ATDD: work-order ownership, per-job lead authority, manager-only reopen, dependency cycles, date and file-link integrity"
+escalation_reason: "Sensitive implementation: current per-job work-order authority, manager-only reopen, tenant isolation, dependency CAS, file-link authority and atomic audit"
 routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive planning: work-order same-tenant containment, creation/edit authorization, RLS and transaction integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive ATDD: work-order ownership, per-job lead authority, manager-only reopen, dependency cycles, date and file-link integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive implementation: current per-job work-order authority, manager-only reopen, tenant isolation, dependency CAS, file-link authority and atomic audit\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: "work_orders schema, composite same-tenant FK, checked creation/edit commands and explicit RLS/role gating"
 epic_story_count: 5
 stories_after_in_epic: 2
-completed_phases: [0, 1, 3]
+completed_phases: [0, 1, 3, 4]
 spec_path: "C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/_bmad-output/implementation-artifacts/spec-16-3-arbetsorder-2.md"
 spec_approved: true
 build:
