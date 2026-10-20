@@ -2,7 +2,7 @@
 title: '15.4 — Time Reporting — Filing, Timesheet, Review'
 type: 'feature'
 created: '2026-10-20'
-status: 'in-review'
+status: 'done'
 review_loop_iteration: 0
 followup_review_recommended: false
 baseline_revision: '4862704665cb12e4f577ecac59ee173c49c36763'
@@ -111,6 +111,8 @@ The ownership handoff lists exact new/shared candidate paths, semantic limits, n
 2026-10-20 implementation route: Sol 6.1 High author retains SQL/commands/read models/nudge and integration authority; one context-free Sol 6.1 High UI/domain delegate owns only the allocated feature/UI/booking-action caller and focused unit/component files. High is selected because action-state replay and request-bound actions are sensitive. No runtime or Git authority is delegated.
 
 ## Review Findings
+
+The source-review outcomes below retain their historical checkpoint status and evidence limits. Final qualified CI3, delivery-gate and independent truth-audit acceptance are recorded in the final development-completion reconciliation; they do not retroactively change earlier failed runs or unreached tails.
 
 ### Round 3 of 3 — completed
 
@@ -260,11 +262,23 @@ The repair changes only ReportRow's raw numeric type and that physical assertion
 
 Actual proportional checks: `pnpm exec tsc --noEmit --incremental false` passed; `pnpm exec eslint tests/e2e/support/time-reports-atdd.ts tests/e2e/time-reports.e2e.spec.ts` passed with zero errors/warnings; `pnpm exec playwright test tests/e2e/time-reports.e2e.spec.ts --list` discovered exactly three flows (collection only). Unchanged app build/source/bundle/dependency/unit evidence is reused from the recorded71f repair and bound d798 source; no gratuitous build/full-unit or mocked SQL BOOLEAN probe was run. Local SQL/browser execution remains absent. The same-SRO checker passed one section/20 stops/zero errors; diff check passed; kernel conservation passed at `3c701d71dba37a136ae104fd24c3b223ef46081913301fb43ff92baca3f16ffb`. An authorized exact-three-path commit precedes distinct High narrow follow-up2 and Root's successor execution; state and parent route are excluded. Status remains in-review, with no passing delivery/DONE/development-complete claim.
 
-### Second narrow CI review reconciliation — 2026-10-20
+### Historical second narrow CI review reconciliation — 2026-10-20
 
 Second separate High narrow follow-up passed with zero findings at `f20208dca11f4f1f4106cab4a4f8322b945ace21`; exact input/report/three-source binding provenance is recorded in Review Findings. This spec/SRO-only update changes no source or test and reruns no implementation gate. Current source follow-up is false, re-derivation0; exact accounting remains THREE counted reviews (ONE broad, TWO limited) PLUS TWO separate narrow CI follow-ups. All original preparation/freeze/review/native packets remain unchanged.
 
 The full d798 CI2 failure packet remains admitted:1,928 integration passes/zero failures/52 historical skips,38 report DB plus18 component passes, browser16 expected/one unexpected. These are predecessor outcomes; the exact SQL BOOLEAN assertion and remaining E2E001 count/audit/week/missing-date/reload tails have not executed for the repaired successor. Old51f NUDGE004 masked callback cause remains UNKNOWN despite currentd798 callback/cleanup success. Inventory remains76 declarations/zero explicit skips; local proportional checks remain historical evidence. Validation of this reporting reconciliation is limited to the same20-stop SRO checker, diff check and frozen-kernel conservation. Status remains in-review for Root's successor CI/delivery truth; no commit, runtime, passing delivery or DONE is asserted here.
+
+### Final development-completion reconciliation — 2026-10-20
+
+Root admitted status-only closure after exact native CI3 run39415418173/attempt1/checkpoint420be87e-0913-42fe-8909-f7fda85cb934 at evidence revision `cad4d37facf8cbf5d9c0c3701117d5b4f21d4de1` ([native run](https://github.com/rthunborg/Kopplas/actions/runs/39415418173)). All five required jobs passed; release_validation=false. Root's qualified PASS receipt SHA256 is `a5b997dfb7ca0b17273fee5414e0ca24150ff2aae6dcc9eea78a23369cc802f3`, with errors[] and all24 conditions true. The independent native qualifier report.md/report.json/manifest hashes are respectively `b6c35394f5a34ee1f00e4fc87d246f1dc1f66e5017a28fda718753806b69e599`, `d92811e5c91ae4429fd14e40d5a68a32adc3c7b87cb4c166cdcea88ffc54a360` and `d3558fc2b6a98f1ac4fdf32eff6b497a9ea28dcc367ff6bd1c64bb4b8479733a`; all190 native files,60 frozen source paths,116 metadata bindings and124 Git snapshots were qualified.
+
+Actual native results:3,041 unit passes/zero failures/skips, including Linux xattr;43 focused process passes; full integration1,980=1,928 passes/zero failures/52 historical explicit skips across161 files. The nonadditive RLS subset is843=829 passes/14 historical skips. All76 story assertions passed:17 pure,18 component,38 real DB and3 browser; all13 nudge bodies passed. The52 historical skips (37 command RED,14 RLS RED,1 separately isolated Storage declaration) remain uncovered, not passing coverage. The separate physical Storage proof passed1/0/0 with two actual objects/66 bytes. Native browser union17/17 passed FIRST attempt,17 attempts, zero failures/retries/flaky/skips/global errors; prior14 smoke cases were preserved.
+
+Current E2E001 executed the exact tenant/report-scoped SQL numeric BOOLEAN120 assertion with one true row and ALL count/audit/week/missing-date/reload tails. E2E002 executed lost-commit→revoke→restore same-attempt retry without duplicate report/audit; E2E003 executed Person/Jobb filtering, annotation/reload and Admin refusal. Real DB bodies include SQL spring/fall DST and exclusive-end vectors, current-authority/RLS/atomic filing and annotation rollback,27-recipient cursor paging, P5403 nudge rollback, observable opt-out-first waiting and post-predicate55P03 for authenticated/genuine service writers, explicit retry, gate release before awaiting all pending operations and exact UUID catalog cleanup. Current NUDGE004 full callback and normal FK/Auth cleanup passed. Four serial files executed exactly once after parallel without overlap; migration109 startup/reset passed in all three required jobs and immutable105–108/H4/policy/ACL history was conserved. These current passes do not retrocredit either failed51f/d798 packet or explain the old51f NUDGE004 masked callback cause, which remains UNKNOWN. Substituted-port VM/SSR probes remain limited and supply no real SQL/Auth proof. No trace/HTML/error-context bytes were uploaded or inspected. The executed admin-users-only pilot supplies no representative Scheduling/performance certification.
+
+The byte-frozen delivery JSON is25,618 bytes, SHA256 `acc8cecee0cca409860cd5ec5fdfac0aa81400acccbeb7f88dd5c91cd6537ab6`. Root's executable delivery gate passed native exit0/errors[], development_complete=true, approval_granted=false (receipt SHA256 `820355cf3af1b01b389b83b76994d129d946d4f0d2ec95386364ea2a9363d7f5`). A DISTINCT fresh gpt-6.1-sol High truth audit then passed44 checks/zero errors/discrepancies. Consume only `development-completion-cad4d37f/truth-audit/final-audit.md` (4,117 bytes, SHA256 `9da0830c66262d50074474855e015b4e71c2cc06f7869856f83c25560a223517`) and `final-audit.json` (37,879 bytes, SHA256 `0bb6a1cbb414ead7d3404efc08c72632268c5fee8a39c71a5bffba2857155e29`). Earlier preserved audit files were a superseded auditor basename-key collision attempt; the FINAL audit uses full repository paths and proves56 integration bodies. This tooling correction changes no product/native/delivery evidence. Root's status-only admission SHA256 is `0ec8d7a34a9f1c8a696182cac5c83dd61311746599ea360fe008b0d4623c6132`, errors[]. No gate, audit or runtime is repeated by this metadata-only closure.
+
+Status is done; development_complete=true, release_ready=false. Review accounting remains THREE counted rounds (ONE broad R1 plus TWO limited R2/R3), PLUS TWO separate narrow CI follow-ups; no fourth broad review, re-derivation0, followup_review_recommended=false, deferred spec patch count0. R1's failed/unqualified wrapper, R2's qualified native Sol High command with residual findings, initial12 unit failures/causal repairs, interrupted local lint and historical Windows xattr skip remain preserved. Inherited Epic15 review_unverifiedTRUE/draft caveat remains; story completion does not certify the epic. All six owned release-validation deferrals remain in the delivery record and Root's ledger: exhaustive device/browser/view matrices; screenshots/visual comparison; manual accessibility/daylight/exploration; actual<=30-second one-hand timing (QA/UX); representative workload/target approval/performance certification (Product/Architect); polish (Delivery owner). They remain unexecuted/deferred, distinct from zero spec patch deferrals. No merge/deploy/publication/Preview authorization is granted. This author changes only spec status/evidence/SRO metadata and commits it with the unchanged delivery JSON; Root retains state/ledger/push/CI ownership.
 
 ### Historical preparation evidence
 
@@ -278,15 +292,14 @@ Deferred release validation retains exhaustive browser/device/view matrices, scr
 
 ## Auto Run Result
 
-Status: in-review
+Status: done
+Blocking condition: none
 
-Current result: admitted CI2 atd798 passed all38 report DB/18 component cases and16 browser bodies, but remains FAILURE solely at E2E001's old raw numeric matcher. The exact two-path repair passed proportional checks and distinct High second separate narrow follow-up with zero findings atf20208dc. THREE counted reviews remain ONE broad R1 plus TWO limited R2/R3, PLUS TWO completed separate narrow CI follow-ups; re-derivation0 and current source follow-up false. Root's successor execution/delivery evidence remains pending.
-Blocking condition: the new SQL BOOLEAN comparison and E2E001's later report-count/audit/week/missing-date/reload tails have not executed for the repaired successor. Old51f NUDGE004 masked callback cause remains UNKNOWN despite currentd798 callback/cleanup success. No fourth broad/counted review, runtime expansion, passing delivery or done transition is implied.
+Current result: development_complete=true after exact-head CI3 atcad4d37f (five required jobs passed), Root executable delivery-gate PASS and DISTINCT fresh High FINAL truth audit44/44 with zero errors/discrepancies. All76 story assertions passed; exact native counts and provenance are recorded above and in the unchanged delivery JSON. Current source follow-up is false, review_loop_iteration0 and deferred spec patch count0. THREE counted reviews remain ONE broad R1 plus TWO limited R2/R3, PLUS TWO separate narrow CI follow-ups. release_ready=false; all six owned release-validation items remain deferred. Inherited Epic15 review_unverifiedTRUE remains. Earlier failures/uncovered skips/UNKNOWN old004 cause and historical unreached tails remain historical; current successor passes do not rewrite them. No merge/deploy approval.
 
 ### Historical preparation result
 
-Status: ready-for-dev
-Blocking condition: none for planning.
+Historical planning checkpoint: ready-for-dev, with no planning blocker.
 
 HALT after planning. One original source AC sketch is preserved verbatim, with ten path-bound tasks and nine Given/When/Then ACs, exact candidate ownership and design companions, immediate seven-point audit and author READY self-review. No product intent gap was found. The intent-contract is the sprint BuildAuto kernel; candidate raw/LF kernel hashes and reader/discovery/preservation results are in preparation validation receipts. Approved kernel remains null pending Root's distinct independent High validation and freeze.
 
@@ -295,11 +308,11 @@ Root then obtains Coordinator allocation of exact shared semantic deltas, a uniq
 ## Suggested Review Order
 
 Author: original Story15.4 implementation/fix author, gpt-6.1-sol High. This same trail reconciles the bounded CI repair; no new broad review is requested.
-Refreshed against reviewed repair source `f20208dca11f4f1f4106cab4a4f8322b945ace21`, 2026-10-20, after distinct High second separate narrow PASS/zero findings. Exact accounting is one broad R1 plus two limited R2/R3, PLUS TWO completed separate narrow CI follow-ups. Original sourcefreeze/failure/review artifacts remain immutable; the new SQL assertion and remaining browser tail still need successor execution, with status in-review.
+Refreshed against independently reviewed source `f20208dca11f4f1f4106cab4a4f8322b945ace21`, byte-conserved at qualified CI3 evidence revision `cad4d37facf8cbf5d9c0c3701117d5b4f21d4de1`,2026-10-20. Exact accounting remains one broad R1 plus two limited R2/R3, PLUS TWO separate narrow CI follow-ups. Root's executable delivery gate and DISTINCT fresh High FINAL truth audit44/44 passed; this status-only refresh adds no code review or runtime. Original sourcefreeze/failure/review artifacts remain immutable. Development is complete; release_ready=false and six owned release checks remain deferred.
 
 ### Own capture and exact physical comparison
 
-Entry retains exact-duration/provenance and unresolved-attempt behavior. Admitted CI2 reached unique own-card capture, edited prefill, confirmation and one physical row, then failed on the test's JS-number expectation for raw pg numeric. Raw decimal provenance now remains string|null, while exact SQL numeric equality proves120 under both tenant/report IDs; all other report/audit/week/reload/peer assertions remain and the unreached tails still require successor execution.
+Entry retains exact-duration/provenance and unresolved-attempt behavior. CI3 E2E001 now passed unique visible own-card capture, editable prefill, confirmed persistence, exact tenant/report SQL numeric BOOLEAN120 (one row/true), global peer absence and ALL count/audit/week/missing-date/reload tails. Raw decimal provenance remains string|null without rounding or parser changes. CI2's earlier numeric matcher failure remains historical.
 
 - `tests/e2e/support/time-reports-atdd.ts:18` — `booked_minutes_at_filing: string | null`: preserves raw PostgreSQL numeric representation.
 - `src/features/time-reports/action-state.ts:36` — `timeReportDraftMinutes`: preserves independently unchanged endpoints and exact canonical minutes.
@@ -308,7 +321,7 @@ Entry retains exact-duration/provenance and unresolved-attempt behavior. Admitte
 
 ### Current authority and attributable persistence
 
-SQL authority, immutable filing and reviewer CAS are unchanged by this test-only repair. Admitted d798 native qualification passed all38 report DB cases, including filing/annotation and nudge atomic fault bodies. That predecessor evidence does not award the separately unreached E2E001 audit/count/week/reload tail or execute the new exact SQL BOOLEAN assertion.
+SQL authority, immutable filing and reviewer CAS retain the reviewed source. Qualified CI3 passed all38 report DB bodies, including current authority after lock wait, direct RLS/ACL/core immutability, filing/annotation and nudge atomic rollback. E2E001 separately passed its exact SQL BOOLEAN and complete audit/count/week/reload tail; predecessor failure packets retain their original reach limits.
 
 - `supabase/migrations/20261020190000_time_reports.sql:48` — `time_report_actor_gate_internal`: checks current role authority before replay.
 - `supabase/migrations/20261020190000_time_reports.sql:62` — `file_time_report`: binds actor, attempt, references and booked provenance.
@@ -317,7 +330,7 @@ SQL authority, immutable filing and reviewer CAS are unchanged by this test-only
 
 ### Accessible filters and complete projections
 
-Person and Jobb retain explicit accessible names, visible labels/options and exact browser assertions. Admitted d798 browser003 passed its actual filters/annotation/reload/Admin refusal tail, while the real-workspace SSR assertion separately proves emitted names. Complete paging, standalone groups and decimal booked provenance are unchanged and retain the admitted DB evidence.
+Person and Jobb retain explicit accessible names, visible labels/options and exact browser assertions. CI3 browser003 passed actual person/job/week filters, annotation/reload/Admin refusal;18 component bodies and7 read DB bodies separately passed emitted names, actual controller behavior, complete paging/standalone groups and decimal booked provenance. Component/transport-fault assertions are not counted as DB or browser proof.
 
 - `src/components/time-reports/TimeReportWorkspace.tsx:31` — `aria-label="Person"`: names both review filter selects explicitly.
 - `tests/integration/components/time-reports.test.ts:212` — `CI repair review selectors`: asserts exact names and retained real selector options.
@@ -326,7 +339,7 @@ Person and Jobb retain explicit accessible names, visible labels/options and exa
 
 ### Genuine local service injection and bounded reminders
 
-The fixture retains the guarded existing local test service-JWT injection; production dispatch/RPC and preference semantics are unchanged. Admitted d798 qualification passed all13 nudge bodies, including real SQL DST vectors, opt-out ordering, nudge fault rollback and NUDGE011's genuine service-writer/55P03/explicit-retry/finally assertions. The old51f client failures remain historical and are not rewritten by these successor passes.
+The fixture retains guarded existing local test service-JWT injection. CI3 passed all13 real nudge bodies: SQL DST/midnight/exclusive-end vectors,27-recipient cursor dispatch, atomic P5403 rollback, observable opt-out-first waits, and NUDGE011 post-predicate authenticated/genuine service-writer55P03, unchanged state, explicit retry, gate-release-before-await and exact catalog cleanup. Current preference reads remain after the tenant gate under READ COMMITTED/VOLATILE; no broader isolation guarantee is claimed. Old51f pre-producer client failures remain historical.
 
 - `tests/support/time-reports-atdd.ts:154` — `jobsClient`: injects the guarded existing local test service client.
 - `supabase/migrations/20261020190000_time_reports.sql:186` — `time_report_preference_gate`: tries affected tenant gates without waiting or writer exemptions.
@@ -335,11 +348,11 @@ The fixture retains the guarded existing local test service-JWT injection; produ
 
 ### Scoped cleanup and exact surface evidence
 
-Generated UUID children are removed in dependency order before all owned auth deletion promises settle; callback and every cleanup failure remain attributable. Currentd798 NUDGE004 callback/cleanup passed, while its old51f masked callback cause remains UNKNOWN. The quote guard preserves every quote/widget/email/table/Phase C assertion. The new browser repair asserts a database BOOLEAN without JS coercion, scale pinning or a parser override; no extra mock or DOM-trace claim substitutes for successor execution.
+Generated UUID children are removed in dependency order before all owned auth deletion promises settle; callback and every cleanup failure remain attributable. CI3 NUDGE004 full callback and normal FK/Auth cleanup passed, while its old51f masked callback cause remains UNKNOWN. Quote scope guards retain all quote/widget/email/table/Phase C assertions. The disclosed report-fixture bypass remains one transaction-local setting for exact owned tenants, distinct from production enforcement/fault/barrier proof. No trace/HTML bytes were inspected.
 
 - `tests/support/time-reports-atdd.ts:200` — `withNudgeRecipients`: tracks exact owned IDs and settles all actor cleanup.
 - `tests/support/time-reports-atdd.ts:42` — `throwFixtureFailures`: preserves primary error and every cleanup failure.
 - `tests/integration/features/quotes/quote-pipeline-non-scope-guard.int.test.ts:28` — `APPROVED_ACTIVE_NAV_ROUTES`: pins the exact ten approved active nav routes.
 - `tests/support/time-reports-atdd.ts:171` — `cleanupOwnedTimeReports`: confines the disclosed transaction-local report bypass to owned tenants.
 
-Evidence: historical repair type check and exact-two-file lint passed; collection lists the same three essential flows. No SQL BOOLEAN/browser body ran locally and no build/unit/mock probe was repeated. Distinct High second separate narrow source review passed with zero findings atf20208dc and inspected these checks without rerunning them. Admitted CI2 reports1,928P/0F/52 historical skips, all38 report DB/18 component passes, and browser16 expected/one unexpected; E2E001 stopped before its audit/count/week/reload tail. Historical51f failures, old UNKNOWN NUDGE004 cause, four substituted-port VM limits and exact review provenance remain preserved. Inventory remains76 active declarations with zero explicit skips. The new exact SQL BOOLEAN/remaining browser tail and successful successor CI/delivery remain pending; exhaustive visual/manual/timing/performance release work stays deferred. No done/development-complete/release-ready claim is made.
+Evidence: exact native CI3 atcad4d37f/run39415418173 passed five required jobs:3,041 units/zero failures/skips including Linux xattr;43 process passes;1,980 integration declarations=1,928P/0F/52 historical uncovered skips; nonadditive RLS829P/14S; all76 story bodies=17pure/18component/38realDB/3browser. Browser union17/17 passed first attempt with no failures/flaky/skips/errors; separate physical Storage1P/0F/0S/two objects66bytes. Four serial files ran once after parallel without overlap; migration109 startup/reset passed in all three required jobs. Root's delivery gate passed exit0/errors[] and development_complete=true; DISTINCT fresh High FINAL truth audit passed44checks/0errors/discrepancies, bound to delivery SHA256acc8cecee0cca409860cd5ec5fdfac0aa81400acccbeb7f88dd5c91cd6537ab6. Exact receipts/digests and preserved initial unit failures, interrupted lint, both failed native checkpoints, old UNKNOWN004 and substituted-port VM limits are above/in delivery. This one20-stop trail retains useful literal production/test anchors; metadata closure runs only canonical reader/SRO/diff/kernel/source conservation. Development is complete; six owned exhaustive visual/manual/timing/performance/polish release items remain deferred, release_ready=false, inherited epic review_unverifiedTRUE remains and no merge/deploy approval is granted.
