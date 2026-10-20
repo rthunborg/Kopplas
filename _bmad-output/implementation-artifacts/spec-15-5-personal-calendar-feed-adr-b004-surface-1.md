@@ -334,11 +334,56 @@ and three browser race/control cases, yielding 30 feed Node, 50 native Vitest an
 14 browser cases overall. The frozen intent is unchanged. No resource launch,
 native test-role effect or development-complete claim is made by this fix handoff.
 
+## Native PG17 proof-case source verification — 2026-10-20
+
+Root/Coordinator's later exact allocation `accepted-pg17-probe-allocation.json`
+(SHA256 `bc3f01da175a7f2ed4589c9cad86baff4cec4329c293597becba4b5a05d6e2b6`) supersedes only the earlier held test-effect
+statement. Added exactly one active case, `15.5-INT015`, to the existing serial
+command file. The original 83 prepared expanded cases and later additions remain:
+current inventory is **30 feed Node, 51 native Vitest, 14 browser cases**.
+
+The case first reuses existing wrapper admission/stack validators with bounded,
+fixed-argv read-only Docker/status observations, workspace/checkout identity,
+complete migration ledger and actual checked feed-function owners. Raw command
+JSON/errors stay in memory. It then requires observed native major17 and both
+original session/current identities to be the authenticated isolated superuser;
+no existing role is elevated. Native server version values are recorded through
+safe Vitest annotations only when actually observed; no version result is invented.
+
+Exactly two UUID-owned NOLOGIN roles, one UUID schema and one harmless invoker
+function are transaction-local. A restricted session authorization, not merely
+SET ROLE under a superuser session, is asserted immediately before each credited
+source/SET/ownership operation. Separate engine-baseline creator ADMIN/SET/INHERIT
+and createrole_self_grant checks roll back before the actual leading source DO
+block genuinely creates its fresh target. Role-name substitutions are reversible;
+every source guard statement remains. Replay and unsafe attribute/membership
+vectors require the exact bootstrap exception after savepoint rollback. The
+inverse-membership setup first removes forward/dependent grants between only
+the two owned roles, so engine-cycle rejection cannot count as guard evidence.
+
+UUID-schema CREATE is only a transaction-local fixture prerequisite, not proof
+of real source/recovery public-schema privileges. Expected errors restore their
+savepoints before assertions. Unexpected failure triggers full rollback before
+session/role resets; dedicated direct connections never enter a pool. Primary,
+transport and all cleanup failures are retained without raw causes/values. Both
+the original and a fresh read-only connection must prove both roles/schema/function
+absent. Existing roles, public schema, JWT, Vault, hosted state, processes and
+workflows receive no mutation from this test fixture.
+
+Actual checks on the authored source: full typecheck and focused ESLint passed.
+No native test, Vitest collection/globalSetup, Docker/Supabase qualification command,
+DB connection or runtime was executed locally. Existing production build and
+unchanged unit/browser-discovery evidence remain reusable with their recorded
+provenance; they do not execute INT015. Distinct changed-line High Round 3 review
+must precede Root exact-head CI. The actual restricted-executor test, full required
+native lanes and source/recovery public-schema qualification remain pending.
+Status stays in-review, follow-up recommended, no delivery/development-complete claim.
+
 ## Suggested Review Order
 
 Author: Story 15.5 implementation/fix author (gpt-6.1-sol High), incorporating
 explicitly delegated browser and bootstrap contributors. Refreshed after all
-Round 2 source/browser fixes and relevant recorded checks. Stops below resolve
+Round 2 source/browser fixes, the allocated native proof case and recorded static checks. Stops below resolve
 to final source literals before the fix commit.
 
 ### Own settings and honest lifecycle results
@@ -384,15 +429,17 @@ keeps SupAdmin-only NOADMIN. Retained unsafe roles fail closed.
 - `supabase/migrations/20261020220000_personal_calendar_feed.sql:247` — `exception when sqlstate '57014'`: keeps projection failure inside the counter transaction.
 - `tests/integration/calendar-feed/public-feed.int.test.ts:364` — `15.5-API018`: AC5/8 durable token/IP and last-use assertions; execution pending.
 - `supabase/migrations/20261020220000_personal_calendar_feed.sql:27` — `pg_has_role(current_user,feed_owner.oid,'SET')`: qualifies source ownership authority independently of creator ADMIN.
-- `tests/unit/ops/pilot-operations.test.ts:220` — `recovery Compose sources`: guards seven attributes, exact grants and preserved recovery settings.
+- `tests/integration/commands/calendar-feed.int.test.ts:277` — `15.5-INT015`: AC4/9 exact-source restricted-creator proof; native execution pending.
 
 ### Isolated CI custody and honest evidence limits
 
 Only captured child identities and one ephemeral Vault UUID belong to the wrapper.
+The added PG17 case qualifies that disposable stack and owns transaction-local
+UUID roles/schema/function through dedicated connections, with no pool reuse.
 Settlement is memoized; abnormal browser teardown retains exact job custody, while
 privacy detection measures raw output in memory before sanitized records persist.
 
-- `scripts/ci/with-calendar-feed-runtime.mjs:284` — `export async function runCalendarFeedRuntime`: orders admission, key, fixed gate and cleanup.
+- `tests/integration/commands/calendar-feed.int.test.ts:457` — `// FULL rollback comes first`: preserves rollback/reset and same/fresh catalog absence proof.
 - `scripts/ci/with-calendar-feed-runtime.mjs:166` — `export function createOwnedGroupStopper`: memoizes settlement and verifies identity before signaling.
 - `scripts/ci/with-calendar-feed-runtime.mjs:88` — `export function createTelemetryObserver`: detects leaks before dropping non-allowlisted output.
 - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:264` — `nonzero/null-signal nested browser loss`: requires retained key custody for abnormal completion.
@@ -401,7 +448,7 @@ Evidence: Round 1 fix verification above records 63 executed Node cases with zer
 failures/skips, focused static checks, production build and guard results. These
 are current working-tree checks before the fix commit. Bootstrap dependencies are
 synthetic; operations recovery assertions are static, not restore evidence.
-All 50 native Vitest and 14 browser bodies remain pending locally; API001 covers
+All 51 native Vitest and 14 browser bodies remain pending locally; API001 covers
 live label revisions, API018 cancellation/counters, RLS008 raw status privacy,
 and E2E-001 the essential actual production lifecycle. Existing ACL/RLS010,
 serial cleanup and full regressions also require exact-head CI. Round 2 completed; targeted High follow-up, restricted-executor PG17 proof, live lifecycle/recovery and final truth qualification
