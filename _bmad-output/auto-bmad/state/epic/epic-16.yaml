@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-16-jobs
 status: in-progress
-updated_at: "2026-10-20T11:12:29Z"
+updated_at: "2026-10-20T11:18:51Z"
 started_at: "2026-10-15T08:50:46Z"
 completed_at: null
 active_seconds: 23336
@@ -69,7 +69,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [0586972a, d6a310be, f610bcbd, 11bf2721, bce1436b, 5d5186e1cfb3e045db9ef101e1c6cf6b50133040, faeffcf6513d5d1703ae9d5a6271b01533899d4e, f3cf100709b92637270304e78a4356082b89e9a6, 1e8632db1ad051d117c38d2e24ed5d62fc2c8a57, 103ee03540e222dff1e54995726037819539b9dd, c44e5179bfcbc210de250eb92a48734561cc0fac]
+commits: [0586972a, d6a310be, f610bcbd, 11bf2721, bce1436b, 5d5186e1cfb3e045db9ef101e1c6cf6b50133040, faeffcf6513d5d1703ae9d5a6271b01533899d4e, f3cf100709b92637270304e78a4356082b89e9a6, 1e8632db1ad051d117c38d2e24ed5d62fc2c8a57, 103ee03540e222dff1e54995726037819539b9dd, c44e5179bfcbc210de250eb92a48734561cc0fac, 9b54ad249a1ac4fb6f73c425c89b9b749855a939]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -114,6 +114,7 @@ overrides:
   story16_3_ci_103ee035: "Historical CI39408025018 exact103ee03540e222dff1e54995726037819539b9dd terminalfailure: fullDB1839total1828pass10fail1pending; directrecovery1pass0skip; browser20firstpass1retry1pass0skip; static/unit2674pass0skip. Ten actual runtime failures in causalHigh triage; E01sync separately reviewed. Native full1A61E449413DD5FB1025F4998376A8CFDA80DDE4ECDAF8D088FF07058E3AFB09; DBlogC0C17ED09A7BEAA670412FA620357D2A68A823BF3EBBEA32D80D8D2D96E04730. Not development complete."
   story16_3_causal_checkpoint: "Actual CI39408025018 tenfailurecauses repaired;62file inventoryA4EF68D81B83BCB6B42949ECEB0BB6894386FE32F16F861A02DFA35846721EA0; sameHighblind+securityqualifiedPASS AB0D18DCCA1402C64EEE72888423C08AE7DCF29004278D79160517AD30474FEB. Attestationpair+currentparentpreflight productfixes; SQL/zerowritesnapshot unchanged; E01exactURLwait no timeout/retryincrease. Required corrected-head runtime pending; no development/done claim."
   story16_3_ci_c44e5179: "TerminalSUCCESS39410923156 exactc44e5179bfcbc210de250eb92a48734561cc0fac. Unit2702pass0skip;fullDB1839total1838pass0fail1pending isolatedrecovery separately1pass0skip;42WOint/RLSallpass;21browserfirstattempt0flaky0skip;requiredstatic/build/perfPASS. Delivery/provenance/rootgate stillpending; no developmentcomplete/statusdone authorization."
+  story16_3_automate: "ActualPhase6completedbyHighTEA+2contextfreeHighworkers:7ACmapped0consequentialgaps0newtests0reruns;nativec44/CI39410923156 reusedafterhash/applicabilityverification. Summary1DCCDBA308714662A962A7E8FB05374C1075B043065BB247355DC8DB1A3F3433;3release-onlychecksremainowneddeferred."
 constraints:
   - "Use only owned E16 resources; E15 scheduling/time/diagnostic resources remain excluded."
   - "Each later story requires its approved plan, manifest compliance and precise path claims."
