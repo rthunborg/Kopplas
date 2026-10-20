@@ -1,0 +1,318 @@
+POST-CAP LATEST NATIVE SQL REPAIR/EXACT PRIVILEGE ASSERTIONS ONLY; not fourth broad review. Sourcec57580580217e34a0b933a23f7c36737306333b7->a76fc492a5273da776ba807559b2eb81d41bfe10. Actualc575run39457178499: admission+verifyPASS(unit3095/3095P0skip,Python43/build/bundle), ALLthree runtime stackstarts failed SAMEownedmigration statement43 SQLSTATE42601. Nativebodies65unexecuted/API0. Earlier pull retries recovered. Fix2parentheses only plus exactread-only realowner effectivepublicCREATEfalse assertions in existingRLS010 and sameexistingRecoverycase. No newcase/count/DDL/grant/SET/role/object/key/workflow/resourceeffects. Feature95/bootstrap23. All earlier unchanged reviews reused.
+
+COMMITTED FIVE-PATH DELTA:
+diff --git a/_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md b/_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md
+index 41841f90..92ea0e5b 100644
+--- a/_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md
++++ b/_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md
+@@ -482,11 +482,69 @@ browser, recovery and installed-collection evidence remains unexecuted. No local
+ runtime/qualification command or resource was launched. Three broad rounds are
+ complete; no fourth broad review, delivery JSON, done or release-ready claim.
+ 
++## Native SQL compile repair and effective-schema assertions — 2026-10-20
++
++The second checkpoint `c57580580217e34a0b933a23f7c36737306333b7`, run
++`39457178499` attempt 1, passed **3095/3095 Node units, zero failures/skips**,
++the three partition units, Python 43, production build and bundle containment.
++Its DB, recovery and browser jobs all stopped at statement 43 of this unapplied
++migration with SQLSTATE `42601`. The immutable native context
++`checkpoint-c5758058-ci-independent/native-static-sql-failure-context.json`
++records log lines 983–992: the caret points to the first CASE-branch THEN in
++`calendar_feed_verify_attestation_internal`. The complete failed packet's
++manifest SHA256 is `0819c8fe8dd279578c1a9a8b88074c11f1c3abce1d0df206d92d42d55f8a0e1c`.
++No complete real ownership/grant/revoke lifecycle or native feature body is
++credited after this failure: API execution artifacts remain zero, and the 65
++Vitest/browser feature bodies remain unexecuted. Both failed checkpoints and
++their predecessor capsules stay immutable; a passed unit subset is not a passed CI.
++
++The author inspected the exact source/error context and the same file's CASE
++uses. The sole bare CASE in a PL/pgSQL IF condition now has parentheses around
++the CASE expression. This two-character syntax correction separates its THEN
++from the enclosing IF terminator; branches, null handling, domains, guard order,
++role hardening, proofs, claims and transactions are unchanged. Assignment and
++already-delimited SQL CASE expressions were preserved. Required native migration
++compilation remains the regression gate; no static string mirror is substituted
++for execution and no local SQL runtime was started.
++
++Read-only source investigation also found that the existing RLS010 effective
++ACL assertions omitted effective public-schema CREATE absence. A direct REVOKE
++does not establish absence through PUBLIC/inherited grants. The existing fixture
++now queries `has_schema_privilege` for the real owner, and existing RLS010 requires
++`publicSchemaCreate=false`. Root/Coordinator additionally allocated only the
++existing recovery Storage test's single case (`accepted-recovery-schema-assertion-allocation.json`,
++SHA256 `2fa8883400517d3bb268c9d1ab42605811df4669c264bb58b468b4f8479358c8`).
++Before its Storage checks, the same fixed Compose/psql SupAdmin target performs
++one bounded read-only catalog SELECT and fails unless effective CREATE is false.
++The 15-second command limit and fixed sanitized failure expose no raw output,
++SQL argv or error cause. No roles, DDL, SET, grants, objects, keys, workflows,
++inputs or workloads were added or changed by these assertions.
++
++Reached real migration/restore statements can establish their actual guards,
++grants, transfers and revocation once native execution completes; absent emitted
++identity logs alone are not a defect. No new restricted-real-source claim is
++made. The separate UUID-schema INT015 proof keeps its explicit evidence limits.
++No new case or fixture was added: feature inventory remains **95 (30 Node,
++51 Vitest, 14 browser)**, original 83 retained, and bootstrap units remain **23
++separate**. This repair requires targeted High latest-delta review and new
++exact-head native CI; it does not increment the three completed broad rounds.
++Root metadata and all immutable source-freeze/failed-packet artifacts are excluded
++from the author source commit. Status remains in-review, no delivery/done claim.
++
++Actual bounded checks on these four source files before the repair commit:
++full `pnpm exec tsc --noEmit --incremental false` passed; focused
++`pnpm exec eslint tests/support/calendar-feed-atdd.ts tests/integration/rls/calendar-feed.rls.test.ts tests/integration/ops/recovery-storage-immutability.int.test.ts`
++passed with zero errors/warnings. Earlier executed Node/build results retain
++their revisions and dependency limits; they were not rerun for SQL/native-test-only
++changes and do not compile this migration. Native and cached Git diff checks and
++the single review trail's actual path/line/literal anchors are checked before commit.
++
+ ## Suggested Review Order
+ 
+ Author: Story 15.5 implementation/fix author (gpt-6.1-sol High), incorporating
+ explicitly delegated browser and bootstrap contributors. Refreshed after all
+-Round 3 latest-fix inheritance assertions and the bounded checkpoint CI repair.
++Round 3 latest-fix assertions, checkpoint CI repair, native SQL syntax correction
++and the effective public-schema privilege assertions.
+ Stops below resolve to final source literals before the repair commit.
+ 
+ ### Own settings and honest lifecycle results
+@@ -509,6 +567,7 @@ inputs, and CAS/history/audit commit together without plaintext recovery.
+ - `src/server/commands/calendar-feed/manage-calendar-feed.ts:10` — `calendarFeedConfig`: exposes plaintext only after confirmed fresh SQL success.
+ - `src/server/commands/calendar-feed/manage-calendar-feed.ts:32` — `command: "calendar_feed.create"`: literal create/rotate/revoke declarations retain independent enrollment discovery.
+ - `supabase/migrations/20261020220000_personal_calendar_feed.sql:162` — `create function public.manage_calendar_feed`: checks signed authority, revision, replay and audit.
++- `supabase/migrations/20261020220000_personal_calendar_feed.sql:122` — `is distinct from (case`: preserves domain branches while delimiting CASE within the PL/pgSQL IF; native compilation pending.
+ - `tests/support/calendar-feed-atdd.ts:270` — `const allowed = ["membershipId"`: checks raw JWT status keys before mapper reconstruction.
+ - `tests/integration/rls/calendar-feed.rls.test.ts:129` — `15.5-RLS008`: AC1/4/9 raw status/hash and direct-DML assertions; execution pending.
+ 
+@@ -534,6 +593,9 @@ keeps SupAdmin-only NOADMIN. Retained unsafe roles fail closed.
+ - `tests/integration/calendar-feed/public-feed.int.test.ts:364` — `15.5-API018`: AC5/8 durable token/IP and last-use assertions; execution pending.
+ - `supabase/migrations/20261020220000_personal_calendar_feed.sql:27` — `pg_has_role(current_user,feed_owner.oid,'SET')`: qualifies source ownership authority independently of creator ADMIN.
+ - `tests/integration/commands/calendar-feed.int.test.ts:420` — `memberships.every(row => row.inherit_option === false)`: AC4/9 fresh/replay inherited-owner privileges denied; native execution pending.
++- `tests/support/calendar-feed-atdd.ts:472` — `has_schema_privilege(oid,'public','CREATE')`: reads actual effective schema privileges including PUBLIC/inherited access.
++- `tests/integration/rls/calendar-feed.rls.test.ts:171` — `publicSchemaCreate: false`: AC4/9 existing RLS010 requires effective CREATE absence; execution pending.
++- `tests/integration/ops/recovery-storage-immutability.int.test.ts:131` — `has_schema_privilege('calendar_feed_owner','public','CREATE')`: the existing recovery case checks the restored target before Storage requests; execution pending.
+ 
+ ### Isolated CI custody and honest evidence limits
+ 
+@@ -551,15 +613,18 @@ privacy detection measures raw output in memory before sanitized records persist
+ - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:18` — `CI command projection rejects`: missing/wrong entry/argv and unrelated-source/workflow negatives preserve the original inverse fence.
+ 
+ Evidence: the checkpoint repair records 302 executed focused Node cases with zero
+-failures/skips, final typecheck/focused lint and the fresh application build.
+-The previous checkpoint failed eight unit tests; it remains failed historical
+-evidence, despite its 30 feed Node/22 bootstrap passes. Current separate bootstrap
++failures/skips, typecheck/focused lint and the application build. The later c575
++checkpoint passed 3095 Node units/Python/build but all three native setup paths
++failed migration compilation; it remains failed. The earlier checkpoint failed
++eight units and also remains failed, despite 30 feed Node/22 bootstrap passes.
++The new SQL correction and catalog assertions have no native execution evidence.
++Current separate bootstrap
+ inventory is 23. Its dependencies are synthetic; recovery assertions are static,
+ not restore evidence. Earlier passing checks retain their recorded dependencies.
+ All 51 native Vitest and 14 browser bodies remain pending locally; API001 covers
+ live label revisions, API018 cancellation/counters, RLS008 raw status privacy,
+ and E2E-001 the essential actual production lifecycle. Existing ACL/RLS010,
+-serial cleanup and full regressions also require exact-head CI. All three rounds completed; CI-repair latest-delta High regression review, restricted-executor
++serial cleanup and full regressions also require exact-head CI. All three rounds completed; native-SQL/schema-assertion latest-delta High review, restricted-executor
+ PG17 execution, live lifecycle/recovery and final truth qualification
+ are outstanding. No provider/device/visual/performance or release-ready claim;
+ the unallocated exhaustive branch remains explicitly release-blocking deferred.
+diff --git a/supabase/migrations/20261020220000_personal_calendar_feed.sql b/supabase/migrations/20261020220000_personal_calendar_feed.sql
+index a871be0a..c5d6d53f 100644
+--- a/supabase/migrations/20261020220000_personal_calendar_feed.sql
++++ b/supabase/migrations/20261020220000_personal_calendar_feed.sql
+@@ -119,7 +119,7 @@ declare secret text; decoded bytea; issued timestamptz; expires timestamptz; now
+ begin
+  if p_claims is null or jsonb_typeof(p_claims)<>'object' or p_signature is null or p_signature !~ '^[0-9a-f]{64}$'
+   or p_claims->>'schema' is distinct from 'kopplas.calendar-feed.v1' or p_claims->>'operation' is distinct from p_operation
+-  or p_claims->>'domain' is distinct from case when p_operation='fetch' then 'kopplas.calendar-feed.fetch.v1' else 'kopplas.calendar-feed.manage.v1' end then return false; end if;
++  or p_claims->>'domain' is distinct from (case when p_operation='fetch' then 'kopplas.calendar-feed.fetch.v1' else 'kopplas.calendar-feed.manage.v1' end) then return false; end if;
+  keys:=case when p_operation='fetch' then array['schema','domain','operation','tokenHash','ipHash','requestId','keyId','issuedAt','expiresAt']
+  else array['schema','domain','operation','tenantId','actorId','membershipId','revision','attemptId','newHash','correlationId','keyId','issuedAt','expiresAt'] end;
+  if (select count(*) from jsonb_object_keys(p_claims))<>cardinality(keys)
+diff --git a/tests/integration/ops/recovery-storage-immutability.int.test.ts b/tests/integration/ops/recovery-storage-immutability.int.test.ts
+index b113e291..19341337 100644
+--- a/tests/integration/ops/recovery-storage-immutability.int.test.ts
++++ b/tests/integration/ops/recovery-storage-immutability.int.test.ts
+@@ -122,6 +122,19 @@ suite("isolated recovery Storage physical-loader proof", () => {
+     if (!Array.isArray(before) || before.length !== fixture.objects.length) {
+       throw new Error("isolated recovery Storage proof pre-loader row snapshot is invalid");
+     }
++    // Check effective privileges after the real restore/bootstrap, including
++    // PUBLIC and inherited grants; a direct REVOKE alone cannot prove absence.
++    try {
++      const result = await execFileAsync("docker", [
++        "compose", ...recoveryComposeFiles, "exec", "-T", "db", "psql",
++        "-At", "-v", "ON_ERROR_STOP=1", "-U", "supabase_admin", "-d", "postgres",
++        "-c", "select has_schema_privilege('calendar_feed_owner','public','CREATE');",
++      ], { windowsHide: true, timeout: 15_000, maxBuffer: 64 * 1024 });
++      if (result.stdout.trim() !== "f") throw new Error("Recovery feed schema privilege not verified");
++    } catch {
++      // Never expose raw process output, SQL argv or a transport error cause.
++      throw new Error("Recovery feed schema privilege not verified");
++    }
+     await assertApiObjects(base, fixture.objects);
+     expect(await storageRows()).toEqual(before);
+     for (const object of fixture.objects) {
+diff --git a/tests/integration/rls/calendar-feed.rls.test.ts b/tests/integration/rls/calendar-feed.rls.test.ts
+index aab4f5b1..1ccff56b 100644
+--- a/tests/integration/rls/calendar-feed.rls.test.ts
++++ b/tests/integration/rls/calendar-feed.rls.test.ts
+@@ -168,7 +168,7 @@ describe("15.5 exact self authority, raw SQL boundary and least privilege", () =
+   test("[P0] 15.5-RLS010 AC4 AC9 dedicated owner and filtered Vault helper retain strict effective inherited ACLs", async () => {
+     await withCalendarFeedFixture("row-isolated", async fx => {
+       const facts = await fx.acl();
+-      expect(facts.owner).toMatchObject({ login: false, inherit: false, superuser: false, bypassRls: false,
++      expect(facts.owner).toMatchObject({ login: false, inherit: false, superuser: false, bypassRls: false, publicSchemaCreate: false,
+         assumableByJwtRoles: false, unrelatedTableRead: false, generalVaultRead: false,
+         effectiveReadOutsideAllowedColumns: false, filteredHelperOnly: true });
+       expect(facts.functions.map(fn => fn.purpose).sort()).toEqual(["abuse", "fetch", "manage", "status"]);
+diff --git a/tests/support/calendar-feed-atdd.ts b/tests/support/calendar-feed-atdd.ts
+index e5c67e8a..67e5000a 100644
+--- a/tests/support/calendar-feed-atdd.ts
++++ b/tests/support/calendar-feed-atdd.ts
+@@ -105,7 +105,7 @@ export type AclFacts = {
+     anonDml: boolean; publicInheritedDml: boolean; authenticatedSensitiveColumns: boolean }>;
+   functions: Array<{ purpose: "fetch" | "manage" | "status" | "abuse"; owner: string; securityDefiner: boolean; emptySearchPath: boolean;
+     anonExecute: boolean; authenticatedExecute: boolean; publicExecute: boolean }>;
+-  owner: { name: string; login: boolean; inherit: boolean; superuser: boolean; bypassRls: boolean;
++  owner: { name: string; login: boolean; inherit: boolean; superuser: boolean; bypassRls: boolean; publicSchemaCreate: boolean;
+     assumableByJwtRoles: boolean; unrelatedTableRead: boolean; generalVaultRead: boolean;
+     effectiveReadOutsideAllowedColumns: boolean; filteredHelperOnly: boolean };
+   helpers: Array<{ purpose: "canonical" | "verifier" | "filtered-secret"; jwtExecute: boolean; publicExecute: boolean; feedOwnerExecute: boolean;
+@@ -469,6 +469,7 @@ async function calendarAcl(): Promise<AclFacts> {
+    exists(select 1 from pg_attribute a where a.attrelid=c.oid and a.attnum>0 and not a.attisdropped and has_column_privilege('authenticated',c.oid,a.attname,'SELECT')) "authenticatedSensitiveColumns"
+    from pg_class c where c.oid in ('public.calendar_feed_tokens'::regclass,'public.calendar_feed_ip_windows'::regclass) order by c.relname`);
+   const [owner]=await adminQuery<AclFacts["owner"]>(`select rolname name,rolcanlogin login,rolinherit inherit,rolsuper superuser,rolbypassrls "bypassRls",
++   has_schema_privilege(oid,'public','CREATE') "publicSchemaCreate",
+    (pg_has_role('anon',oid,'MEMBER') or pg_has_role('authenticated',oid,'MEMBER') or pg_has_role('service_role',oid,'MEMBER')) "assumableByJwtRoles",
+    has_table_privilege(oid,'public.contacts','SELECT') "unrelatedTableRead",has_table_privilege(oid,'vault.decrypted_secrets','SELECT') "generalVaultRead"
+    from pg_roles where rolname='calendar_feed_owner'`);
+
+READ-ONLY ALLOCATION/ACTUAL NATIVE FAILURE CONTEXT:_bmad-output/auto-bmad/preparation/story-15-5/accepted-recovery-schema-assertion-allocation.json
+{
+  "kind": "accepted-bounded-readonly-recovery-schema-assertion-allocation",
+  "story": "15.5",
+  "coordinator_thread": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "coordinator_turn": "01a15a29-b751-78a0-bf63-e5a6728e476c",
+  "verified_delivery_tool": "exec-4f18c16f-8290-4e31-bb12-60b2764796be",
+  "verified_delivery_status": "completed",
+  "coordinator_e16_read_tool": "exec-21c6170d-2ed3-47d9-8092-28f8b5ce2feb",
+  "protected_e16_head": "f96256a066db7e38d482e4538f2a0ba2472cf4b8",
+  "ownership_observation": "Coordinator read actual E16 owner reply: no active/prospective16.5 claim, outside frozen inventory, clean/no untracked; Coordinator own inspection agreed. No active retained Documents claim known. Root verified Coordinator record and own before-edit path status, no foreign source/checkout edits.",
+  "allocated_path": "tests/integration/ops/recovery-storage-immutability.int.test.ts",
+  "existing_case_only": true,
+  "root_before_edit": {
+    "head": "c57580580217e34a0b933a23f7c36737306333b7",
+    "path_clean": true,
+    "raw_bytes": 6743,
+    "raw_sha256": "e88cae024093614e95977ae0b382eefc1c13e9b83009697d9c601359685c31bb",
+    "head_blob_oid": "b113e291f47e17121790a718567f39564a8a89d3"
+  },
+  "constraints": [
+    "Same qualified compose exec db psql -U supabase_admin connection before existing Storage checks.",
+    "Fixed bounded read-only catalog assertion of canonical calendar-owner effective public-schema CREATE=false including inherited/PUBLIC. Resolve actual reviewed catalog identity, not coordination shorthand.",
+    "Sanitized fixed failure and bounded timeout.",
+    "No role creation/rename, query input expansion, DDL/grant/SET/object/key/workflow/workload/elevation.",
+    "No new case, fixture or case count.",
+    "Only own checkout; no foreign writes.",
+    "Distinct High latest-fix review; three broad rounds cap unchanged.",
+    "Prior source freezes and both failed CI packets preserved; static evidence is not runtime success.",
+    "Exact ownership hold cleared; monitoring remains paused."
+  ]
+}
+
+READ-ONLY ALLOCATION/ACTUAL NATIVE FAILURE CONTEXT:_bmad-output/auto-bmad/preparation/story-15-5/native-sql-compile-repair-route.json
+{
+  "checkpoint":"c57580580217e34a0b933a23f7c36737306333b7",
+  "run":"39457178499",
+  "attempt":1,
+  "actual_failure":"All DB/e2e/recovery stack startup reached owned feed migration and failed statement43 calendar_feed_verify_attestation_internal(jsonb,text,text), SQLSTATE42601 syntax error at end of input; caret at first CASE-branch THEN in the IF expression at source line122.",
+  "route_before_dispatch":{"author":"implementation_author","model":"gpt-6.1-sol","effort":"high","reason":"Feed-only attestation authorization guard SQL compilation; preserve exact validation semantics"},
+  "authorization":"Root explicitly permits exact syntax diagnosis/fix in already owned unapplied migration after reading exact native context. No new shared effect. Root separately recorded build-native-setup-repair High.",
+  "source_scope":"supabase/migrations/20261020220000_personal_calendar_feed.sql and necessary author spec/trail only; regression additions only existing owned paths/effects",
+  "native_context":"Native DB log983-992/source line122: unparenthesized CASE in IF domain comparison; qualifier saved native-static-sql-failure-context.json in current independent packet. Earlier pull retries recovered and are not terminal cause.",
+  "limits":"No local DB/Docker/Supabase/Next/browser/runtime or blind rerun. Preserve guards/role/transaction semantics and historical freezes/failed runs. All body/native acceptance unexecuted; source migration compile failure only.",
+  "proof_proposal_hold":"Historical initial disposition: effective CREATE proof additions held pending exact Root/Coordinator disposition.",
+  "proof_proposal_disposition":{
+    "owned_paths":"Root admitted existing support ACL read-only has_schema_privilege plus existing RLS010 false assertion, no case/count/fixture change.",
+    "recovery_grant_receipt":"accepted-recovery-schema-assertion-allocation.json",
+    "recovery_grant_sha256":"2fa8883400517d3bb268c9d1ab42605811df4669c264bb58b468b4f8479358c8",
+    "coordinator_turn":"01a15a29-b751-78a0-bf63-e5a6728e476c",
+    "successful_tool":"exec-4f18c16f-8290-4e31-bb12-60b2764796be",
+    "protected_e16_head":"f96256a066db7e38d482e4538f2a0ba2472cf4b8",
+    "recovery_scope":"Existing single tests/integration/ops/recovery-storage-immutability.int.test.ts case only: fixed bounded read-only catalog SELECT on same compose exec db psql -U supabase_admin target before Storage checks; effective calendar owner public CREATE false including PUBLIC/inherited privileges.",
+    "limits":"No new case/count/fixture/DDL/role/grant/SET/object/key/workflow/workload/elevation/input expansion; fixed sanitized failure and timeout; Root metadata excluded source commits."
+  },
+  "review":"Distinct High latest-fix-only review after stable delta; cap3 unchanged, no fourth broad pass."
+}
+
+READ-ONLY ALLOCATION/ACTUAL NATIVE FAILURE CONTEXT:.env.epic15.mail-runtime/story-15-5-preparation/checkpoint-c5758058-ci-independent/native-qualification.md
+# Story 15.5 repaired checkpoint native qualification
+
+Status: **FAILED_NATIVE_MIGRATION_PENDING_REPAIR**. Development complete: false. Release ready: false.
+
+Source `2674b3f7fa5e7853314923a0ceed52d84fcf0677`; checkpoint `c57580580217e34a0b933a23f7c36737306333b7`; run 39457178499 attempt 1; checkpoint 638d008f-bb9b-42b4-9d0a-48d8a54b0b4f; release_validation=false. This is evidence qualification by the same independent High agent.
+
+Admission and verify passed. Native verify: **3,095 tests passed, zero failures, skips or cancellations**. All 30 feature Node cases, 23 separate wrapper simulations, three installed Vitest partition contracts and 43 Python process contracts passed. Production build and bundle containment passed.
+
+All three native stack/source starts reached migration 20261020220000_personal_calendar_feed.sql and failed compiling statement 43: **SQLSTATE 42601, syntax error at end of input**, in calendar_feed_verify_attestation_internal(jsonb,text,text). Exact static SQL context and sanitized evidence from each job are preserved. Earlier registry rate/data-limit retries progressed into migrations; they are not the terminal cause.
+
+Required db, e2e and recovery-storage-loader jobs failed. Their mandatory JSON uploads failed because test producers never ran; the completed-run artifacts API returned zero artifacts. All four optional release jobs were skipped and receive no credit. All 51 feature Vitest and 14 feed browser bodies remain unexecuted. Native database serial execution, restricted PG17 proof, complete source/recovery public-schema lifecycle, physical Storage, wrapper runtime telemetry/lifecycle and prior browser smoke remain unqualified. Unknown runner skip counts are null, never claimed zero.
+
+All 66 actual source raw/clean/blob bindings matched frozen source and checkpoint at the recorded snapshot. Of 507 historical dependency rows, 505 match and two changed inputs require current evidence; whole-scope predecessor reuse is false. New native units verify wrapper and command enrollment; the build compiles the management declarations. Native command behavior remains unexecuted. Root's six commits, 85 artifact references (84 unique files), 146 history/protected bindings and 69 historical preparation checks are attributed reuse.
+
+Root owns bounded migration repair, targeted independent review, a new freeze and the next exact-head CI operation. No automatic rerun, tracked write, delivery record, status flip, hosted secret/provider/merge/deployment change or managed resource action occurred. Real principal/schema qualification remains separate; no defect is inferred merely from missing logs.
+
+The JSON extracts are qualifier-authored. Raw logs were inspected in memory only, with original bytes and SHA retained. manifest.json enumerates every packet file except itself; its digest is returned to Root. The old 9487 failure packet remains unchanged.
+
+READ-ONLY ALLOCATION/ACTUAL NATIVE FAILURE CONTEXT:.env.epic15.mail-runtime/story-15-5-preparation/checkpoint-c5758058-ci-independent/native-static-sql-failure-context.json
+{
+  "job_id": 118748019792,
+  "run_id": 39457178499,
+  "attempt": 1,
+  "head": "c57580580217e34a0b933a23f7c36737306333b7",
+  "raw_log_sha256": "db6d3703f7256d864fc2202356fe403341d88c696d18960a28aaa61d41f79186",
+  "static_source_context": [
+    {
+      "line": 983,
+      "text": "ERROR: syntax error at end of input (SQLSTATE 42601)"
+    },
+    {
+      "line": 984,
+      "text": "At statement: 43"
+    },
+    {
+      "line": 985,
+      "text": "create function public.calendar_feed_verify_attestation_internal(p_claims jsonb,p_signature text,p_operation text) returns boolean"
+    },
+    {
+      "line": 986,
+      "text": "language plpgsql volatile security invoker set search_path='' as $$"
+    },
+    {
+      "line": 987,
+      "text": "declare secret text; decoded bytea; issued timestamptz; expires timestamptz; now_at timestamptz:=clock_timestamp(); keys text[];"
+    },
+    {
+      "line": 988,
+      "text": "begin"
+    },
+    {
+      "line": 989,
+      "text": " if p_claims is null or jsonb_typeof(p_claims)<>'object' or p_signature is null or p_signature !~ '^[0-9a-f]{64}$'"
+    },
+    {
+      "line": 990,
+      "text": "  or p_claims->>'schema' is distinct from 'kopplas.calendar-feed.v1' or p_claims->>'operation' is distinct from p_operation"
+    },
+    {
+      "line": 991,
+      "text": "  or p_claims->>'domain' is distinct from case when p_operation='fetch' then 'kopplas.calendar-feed.fetch.v1' else 'kopplas.calendar-feed.manage.v1' end then return false; end if;"
+    },
+    {
+      "line": 992,
+      "text": "                                                                       ^"
+    }
+  ]
+}

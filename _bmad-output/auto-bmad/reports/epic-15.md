@@ -1779,3 +1779,37 @@ No archive ran this resume.
 1. None. Coordinator allocated exact6 shared CI helper/test paths after E16 and Documents scope reconciliation. No foreign checkout edits.
 
 **Next:** Push reviewed repair checkpoint and dispatch one new exact-head CI; independently qualify required actual native evidence before delivery gate or done status.
+
+## Report — 2026-10-20T16:45:30Z (checkpoint — reviewed 15.5 native SQL repair)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `a76fc49`).
+**Pipeline status:** IN PROGRESS. Distinct High latest-delta review passed the5-file SQL syntax/read-only privilege assertion repair. New exact-head native compilation and65feature runtime cases remain pending. Both previous native runs retain their actual failure.
+**Continues:** (none — first run)
+
+**Summary:** Four of six stories internally landed;15.5 in-review,15.6 and E8 gates/retrospective/delivery pending.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 267h 47m (≈54h 27m AI-run, ≈213h 20m human/idle wait); resumed 49×.
+
+**Stories:**
+1. 15.1–15.4 internally landed;15.5 active;15.6 backlog.
+
+**Skipped:** (none)
+
+**Epic gate:** PENDING — no whole-epic completion marker.
+
+**TEA:** Prior c575 run verify actually passed3095units/0fail/0skip,30feature units,23separate wrapper simulations and43Python contracts/build. All3 runtime jobs then failed migration statement43 SQLSTATE42601 before bodies. Current source repair typecheck/lint0errors0warnings/kernel/SRO27 passed; no native compile credit. Root bound67source files/7author commits,112artifact references/110unique files,146historical/protected blobs,69historical prep and126immutable source/failed-head equalities.
+
+**Retrospective:** PENDING; Epic14 October8 accepted-with-open-items remains authoritative; October7 historical.
+
+**Overrides:** Three broad rounds retained; latest fixes independently reviewed only in their delta. Inherited review_unverified=true; one final epic PR, no main merge, branch retained, no deployment/provider/production-secret changes.
+
+**Open questions:** (none)
+
+**Deferred work:**
+1. Named release validation stays deferred; release_ready=false.
+
+**⚠️ Needs human:**
+1. None. Coordinator exact shared recovery-test allocation accepted after E16/Documents ownership reconciliation. No foreign checkout edits.
+
+**Next:** Push reviewed checkpoint and dispatch one new exact-head CI. Independently qualify native compilation and all required runtime/privacy/privilege gates before delivery/done.

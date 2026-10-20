@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-20T16:24:16Z"
+updated_at: "2026-10-20T16:46:02Z"
 started_at: "2026-10-20T12:18:56Z"
 completed_at: null
 active_seconds: 3572
@@ -26,7 +26,7 @@ selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Reuse distinct High qualifier for new exact-head CI evidence after independently reviewed bounded repair2674; verify native security/role/recovery/privacy assertions and provenance, not a fourth code review."
+escalation_reason: "Same distinct High qualifier verifies new exact-head native compilation, real source/recovery effective privileges and all runtime gates after latest-delta reviewed a76 SQL repair; not fourth broad code review."
 routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"High preparation for hashed public-feed tokens, rotation/revocation and tenant/member disclosure boundaries; plan-only before distinctvalidation and ownershipallocation\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct High independent specification validation of actual public-feed token/proof/IP/limiter authorization design and exact ownership/test-key boundaries before anybuild\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"cross_model_layer\",\"profile\":\"diverse_review\",\"role\":\"independent-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -40,6 +40,8 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Independent qualification of exact-head native tenant isolation, privileged role lifecycle, calendar capability privacy, recovery and transactional integrity evidence. Not an additional code-review round.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build-native-qualification\",\"profile\":\"sensitive\",\"role\":\"independent-native-evidence-qualifier\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Exact-head CI revealed eight node unit failures at shared mandatory command/report/CI contract checks and literal command enrollment. Parent High author diagnoses narrow delta; ownership coordination before new shared paths and distinct High latest-fix review required; cap three unchanged.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build-ci-repair\",\"profile\":\"sensitive\",\"role\":\"build-author-ci-failure-repair\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Reuse distinct High qualifier for new exact-head CI evidence after independently reviewed bounded repair2674; verify native security/role/recovery/privacy assertions and provenance, not a fourth code review.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build-native-qualification\",\"profile\":\"sensitive\",\"role\":\"independent-native-evidence-qualifier\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Actual new checkpoint c575 native verify passes3095 units but all3 required runtime jobs fail stack/schema-source setup. Same High author diagnoses sanitized native cause and actual principal/schema boundary; scope/ownership coordination before expanded shared effects, no fourth broad review.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build-native-setup-repair\",\"profile\":\"sensitive\",\"role\":\"build-author-native-setup-diagnosis\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Same distinct High qualifier verifies new exact-head native compilation, real source/recovery effective privileges and all runtime gates after latest-delta reviewed a76 SQL repair; not fourth broad code review.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build-native-qualification\",\"profile\":\"sensitive\",\"role\":\"independent-native-evidence-qualifier\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: "Hashed public tokens, rotation/revocation, externalfeed andcross-tenant abuseprotection requireHigh-riskATDD+automate; lastthreeno traceadvisory"
@@ -65,7 +67,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [159557e114f18123e73282c39c90830917de9948, c42b45abbca262ff79e26da479a3032d9015aeee, b940df85acfb2de36c0dcd5000a0039758f2b820, 3a1c3bc9fbf22b13c926179288a8b6eefe440c12, ae020f63a88089966b9323c55a36b6554f7e3900, 672099e9dc6569f4ac1cb9a967037e0d91df689c, aa5733116f20015cc3d14e1441d0eab232ecc9fd, 360fe850c18552f23a2bf74d8eda865431f0af38, 611c86295540161d31169110bf2139cf1d85d708, 9487c0d9, 2674b3f7]
+commits: [159557e114f18123e73282c39c90830917de9948, c42b45abbca262ff79e26da479a3032d9015aeee, b940df85acfb2de36c0dcd5000a0039758f2b820, 3a1c3bc9fbf22b13c926179288a8b6eefe440c12, ae020f63a88089966b9323c55a36b6554f7e3900, 672099e9dc6569f4ac1cb9a967037e0d91df689c, aa5733116f20015cc3d14e1441d0eab232ecc9fd, 360fe850c18552f23a2bf74d8eda865431f0af38, 611c86295540161d31169110bf2139cf1d85d708, 9487c0d9, 2674b3f7, c5758058, a76fc492]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -311,7 +313,7 @@ p5_ci_repair_checkpoint:
   review_input_bytes: 41327
   review_input_sha256: a899b8b58c1039dccafbcc36558516a06249af0db9dcecf4461be2b26c27978b
   successor_capsule: "_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-ci-repair.json"
-  native_successor: "UNEXECUTED; prior9487 failure preserved"
+  native_successor: "FAILED at startup; all65 feature runtime cases UNEXECUTED; no skip credit"
   development_complete: false
   release_ready: false
   successor_capsule_sha256: 8c6a67b9d4ba912311d888a2a63b1e7e628803395b791367e0b68c31d25072a7
@@ -326,8 +328,67 @@ p5_ci_repair_checkpoint:
   protected_consumers_unchanged: 37
   historical_preparation_blobs_unchanged: 69
   prior611_vs_failed948_source_equalities: 60
-  next: "Root checkpoint commit/push then one new logical exact-head CI; prior948 failure and unexecuted65 runtime cases retained"
+  next: "Owned migration syntax repair plus exact read-only privilege assertions; shared recovery assertion path held pending Coordinator; targeted High review and successor capsule before new exact-head CI"
   raw_review_input_format_qualification: "_bmad-output/auto-bmad/preparation/story-15-5/root-ci-repair-staged-artifact-format-qualification.json"
   raw_review_input_format_qualification_sha256: f791989bc5f42559d5c545fca488e01b3297ce6d59bdc1578d3ec0f32b5ed3b7
   unrestricted_staged_diff_check: "FAILED-native2 retained; exactly15 required byte0x20 unified-diff empty context lines in only fifth frozen raw input"
   all_other_staged_diff_check: "PASS-native0; exact input byte/SHA+raw/index context proof; High parent bounded format assessment accepted; no configuration/checker/hook bypass"
+  checkpoint_head: c57580580217e34a0b933a23f7c36737306333b7
+  ci_run_id: 39457178499
+  ci_attempt: 1
+  ci_conclusion: failure
+  ci_required_jobs: "admission PASS; verify PASS; db/e2e/recovery-storage-loader FAIL at stack/schema-source startup plus required missing JSON uploads"
+  ci_native_unit_passed: 3095
+  ci_native_unit_failed: 0
+  ci_native_unit_skipped: 0
+  ci_native_feature_units_passed: 30
+  ci_native_separate_wrapper_simulations_passed: 23
+  ci_python_process_contracts_passed: 43
+  failed_native_packet_manifest_sha256: 0819c8fe8dd279578c1a9a8b88074c11f1c3abce1d0df206d92d42d55f8a0e1c
+  failed_native_qualification_sha256: 33abbd4ca452147cd2ab1360a63ad786f290b35c4bf2fe417bcd6108bd3535f0
+  failed_native_packet_root_admission_sha256: afcd13c75eec11828421b9c5df9a356c3d30554a817d8cf06bb47fa970a2f508
+  native_terminal_cause: "All3 stack setups reached owned migration20261020220000 statement43 then SQLSTATE42601; recovered registry retries were not terminal cause"
+p5_recovery_schema_assertion_ownership:
+  status: accepted-exact-one-path-existing-case-readonly
+  receipt: "_bmad-output/auto-bmad/preparation/story-15-5/accepted-recovery-schema-assertion-allocation.json"
+  sha256: 2fa8883400517d3bb268c9d1ab42605811df4669c264bb58b468b4f8479358c8
+  coordinator_turn: 01a15a29-b751-78a0-bf63-e5a6728e476c
+  delivery_tool: exec-4f18c16f-8290-4e31-bb12-60b2764796be
+  protected_e16_head: f96256a066db7e38d482e4538f2a0ba2472cf4b8
+  root_path_clean_before_grant: true
+  limits: "Same connection, fixed effective CREATE=false canonical owner catalog assertion; no new privileges/objects/SET/workloads/workflow/key/fixtures/cases; no foreign checkout edits; cap3 retained"
+p5_native_sql_repair_checkpoint:
+  source_head: a76fc492a5273da776ba807559b2eb81d41bfe10
+  source_delta_paths: 5
+  cumulative_source_paths: 67
+  author_commits: 7
+  feature_cases: 95
+  separate_wrapper_simulation_cases: 23
+  targeted_independent_review: "PASS-distinct-context-free-Sol6.1High-latestSQL/proofdelta-only; no fourth broad round"
+  review_input_bytes: 26657
+  review_input_sha256: 9d56d85a52a2fe9e804c6b55ccae357746879de509f2efc49eaf3325cd2924cd
+  local_typecheck: PASS
+  local_lint: PASS-0errors-0warnings
+  approved_kernel: "PASS-parentauthorcheck; approved0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977 preserved"
+  suggested_review_stops: 27
+  root_source_binding_admission_sha256: 025d93cfb3311a39348c716da8d68167d546e23240c6c3db9f84004c8278a9f7
+  root_protected_path_admission_sha256: 9f2e5363f56b88ea717bc5f4bf057a42a523e5cf415a3c7c66fdb025aa5ef8a9
+  historical_and_protected_blobs_unchanged: 146
+  third_capsule: "_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-native-sql-repair.json"
+  native_compile_and_remaining65cases: "UNEXECUTED; previous2674/c575 actual verify3095P preserved separately from all3 compile failures"
+  development_complete: false
+  release_ready: false
+  next: "Root checkpoint/push then one new exact-head CI; native SQL compilation/65 runtime cases pending; both failed runs retained"
+  third_capsule_sha256: 3a4391820a34d7b9feca705d329e19eb2d7a5060f29edcfe53d5a7294c7a4c65
+  parent_check_sha256: f1251836cd1ed9af2a96f742477f2637ef985fece80a9f0a5f0abf736cb33c55
+  root_capsule_admission: PASS-source-checkpoint-only
+  root_capsule_admission_sha256: c23b85b5eff7f63e83b4e72336b22e6eaa041dda2a2c9d117551a88d0bb2a58d
+  artifact_references: 112
+  unique_artifact_files: 110
+  historical_source_failed_head_equalities: 126
+  historical_preparation_blobs_unchanged: 69
+  raw_normalized_differences: 40
+  raw_review_input_format_qualification: "_bmad-output/auto-bmad/preparation/story-15-5/root-native-sql-repair-staged-artifact-format-qualification.json"
+  raw_review_input_format_qualification_sha256: 90ba1bb21dd26af26c36cc21ab38dc6e8b162dc083d3743ed9503b1ac1d275ca
+  unrestricted_staged_diff_check: "FAILED-native2 retained; only7 required0x20 unified-diffcontext lines in exact sixth frozen input"
+  all_other_staged_diff_check: "PASS-native0, all7 raw/index lines and frozenSHA/bytes proven; High parent exact bounded assessment accepted; no bypass"

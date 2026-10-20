@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "kind": "original-native-sql-latest-delta-review-attestation",
+  "verdict": "PASS",
+  "source": "a76fc492a5273da776ba807559b2eb81d41bfe10",
+  "before": "c57580580217e34a0b933a23f7c36737306333b7",
+  "input": {
+    "path": "latest-delta-input.diff",
+    "bytes": 26657,
+    "sha256": "9d56d85a52a2fe9e804c6b55ccae357746879de509f2efc49eaf3325cd2924cd",
+    "completeRead": true
+  },
+  "reviewer": {
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "contextFree": true,
+    "distinctFromAuthor": true,
+    "task": "native_sql_delta_review"
+  },
+  "completion": {
+    "originalNativeCompletionBeforeLaterPersistence": true,
+    "reportPreservedVerbatim": true,
+    "persistenceOnly": true,
+    "furtherReviewPerformed": false,
+    "fourthBroadReview": false,
+    "completedBroadRounds": 3
+  },
+  "execution": {
+    "sqlExecuted": false,
+    "nativeCompilationPerformed": false,
+    "runtimeTestsExecuted": false,
+    "resourcesStarted": false,
+    "sourceWritten": false,
+    "note": "Source inspection and official PostgreSQL documentation only during original review; no execution proof."
+  },
+  "report": {
+    "path": "original-review.md",
+    "encoding": "UTF-8 without BOM",
+    "lineEndings": "LF",
+    "bytes": 1442,
+    "sha256": "90edb90e6ce2c13e768ffc14e25df7dce98f1f5dc94fa7986454905485f403ff"
+  },
+  "limits": "Native compilation, all 65 runtime bodies, real migration/restore privilege lifecycle and API execution remain unverified; both failed checkpoints remain failed. No restricted-real-principal proof inferred from INT015; no new identity-log gate."
+}
