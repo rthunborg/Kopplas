@@ -20,7 +20,7 @@ const ROOT = resolve(fileURLToPath(new URL("../..", import.meta.url)));
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/;
 class RuntimeFailure extends Error {}
 const fail = (code) => { throw new RuntimeFailure(code); };
-const DIAGNOSTIC_STAGES = new Set(["admission", "qualification", "port-check", "database-client", "database-connect", "migration-ledger", "feed-functions",
+const DIAGNOSTIC_STAGES = new Set(["admission", "qualification", "port-check", "database-client", "database-connect", "privacy-preflight", "migration-ledger", "feed-functions",
   "key-id", "entropy", "telemetry", "transaction-begin", "key-collision", "key-create", "transaction-commit", "runtime",
   "child-cleanup", "transaction-rollback", "key-cleanup", "database-close"]);
 const SQLSTATE_CATEGORIES = new Map([
@@ -38,6 +38,50 @@ function safeDiagnostic(stage, error) {
     sqlState: known ? code : null };
 }
 const delay = (ms) => new Promise(resolveDelay => setTimeout(resolveDelay, ms));
+
+const PRIVACY_CONTROLS = new Map([
+  ["log_statement", "superuser"], ["log_min_error_statement", "superuser"],
+  ["log_parameter_max_length", "superuser"], ["log_parameter_max_length_on_error", "user"],
+]);
+const PRINCIPAL_FACTS = ["session_is_postgres", "current_is_postgres", "same_identity", "session_superuser", "current_superuser", "session_bypass_rls", "current_bypass_rls"];
+const PRIVACY_PREFLIGHT_SQL = `with required(name,value) as (values
+  ('log_statement','none'),('log_min_error_statement','panic'),
+  ('log_parameter_max_length','0'),('log_parameter_max_length_on_error','0'))
+select s.name,s.context,current_setting(s.name)=r.value as matches_required,
+  has_parameter_privilege(current_user,s.name,'SET') as can_set,
+  session_user='postgres' as session_is_postgres,current_user='postgres' as current_is_postgres,
+  session_user=current_user as same_identity,
+  a.rolsuper as session_superuser,b.rolsuper as current_superuser,
+  a.rolbypassrls as session_bypass_rls,b.rolbypassrls as current_bypass_rls
+from required r join pg_settings s on s.name=r.name
+join pg_roles a on a.rolname=session_user join pg_roles b on b.rolname=current_user
+order by s.name`;
+
+/** No native setting values or role names leave this fixed read-only query. */
+async function readPrivacyPreflight(db) {
+  const { rows } = await db.query(PRIVACY_PREFLIGHT_SQL);
+  const keys = ["name", "context", "matches_required", "can_set", ...PRINCIPAL_FACTS];
+  const seen = new Set();
+  if (!Array.isArray(rows) || rows.length !== PRIVACY_CONTROLS.size) fail("privacy-preflight-refused");
+  for (const row of rows) {
+    if (!row || Object.keys(row).length !== keys.length || !keys.every(key => Object.hasOwn(row, key))
+      || typeof row.name !== "string" || !PRIVACY_CONTROLS.has(row.name) || seen.has(row.name)
+      || row.context !== PRIVACY_CONTROLS.get(row.name)
+      || !["matches_required", "can_set", ...PRINCIPAL_FACTS].every(key => typeof row[key] === "boolean")) fail("privacy-preflight-refused");
+    seen.add(row.name);
+  }
+  // Identity/SET authority is observed only: effective privacy, not an inferred
+  // superuser or permission grant, is the continuation condition.
+  const principal = Object.fromEntries(PRINCIPAL_FACTS.map(key => [key, rows[0][key]]));
+  if (rows.some(row => PRINCIPAL_FACTS.some(key => row[key] !== principal[key]))) fail("privacy-preflight-refused");
+  return { controls: rows.map(row => ({ name: row.name, context: row.context, matchesRequired: row.matches_required, canSet: row.can_set })), principal };
+}
+
+/** Construction only; startup cannot inherit ambient PGOPTIONS. */
+export function createCalendarFeedDatabaseClient(status) {
+  return new pg.Client({ connectionString: status.DB_URL, connectionTimeoutMillis: 5_000, query_timeout: 10_000, statement_timeout: 8_000,
+    options: "-c log_parameter_max_length_on_error=0" });
+}
 
 /** Pure prerequisite validation: CI flags alone do not qualify a machine. */
 export function validateAdmission(mode, env, platform) {
@@ -283,10 +327,7 @@ function defaultDependencies(env, cwd) {
       return { status, migrations };
     },
     portFree: assertPortFree,
-    connect(status) { return new pg.Client({ connectionString: status.DB_URL, connectionTimeoutMillis: 5_000, query_timeout: 10_000, statement_timeout: 8_000,
-      // Session-only settings: native PostgreSQL error/statement logging must
-      // not persist the ephemeral secret's extended-query bind parameters.
-      options: "-c log_statement=none -c log_min_error_statement=panic -c log_parameter_max_length=0 -c log_parameter_max_length_on_error=0" }); },
+    connect: createCalendarFeedDatabaseClient,
     async createTelemetry() { const folder = await mkdtemp(join(tmpdir(), "kopplas-feed-ci-")); const path = join(folder, "responses.jsonl"); await writeFile(path, "", { mode: 0o600 }); return { path, persist: line => appendFile(path, line, { mode: 0o600 }) }; },
     launch: (command, args, childEnv, observe) => launchOwned(command, args, childEnv, cwd, observe),
     ready: (url, child, signal) => waitForOwnedHttp({ url, child, signal }),
@@ -303,6 +344,7 @@ export async function runCalendarFeedRuntime({ mode, env = process.env, platform
     childExitCodes: /** @type {(number|null)[]} */ ([]), keyDeleted: false, dbClosed: false,
     failures: /** @type {string[]} */ ([]),
     diagnostics: /** @type {{stage:string, category:string, sqlState:string|null}[]} */ ([]),
+    privacyPreflight: /** @type {null | {controls:{name:string,context:string,matchesRequired:boolean,canSet:boolean}[],principal:Record<string,boolean>}} */ (null),
     keyOutcome: /** @type {"not-attempted" | "rollback-confirmed" | "deleted-confirmed" | "unverified"} */ ("not-attempted"),
     custody: /** @type {null | {owner:string, job:string|undefined, vaultUuid:string|null, ownedName:string|null, expiry:string, nextAction:string, resumeCondition:string}} */ (null) };
   const children = new Set();
@@ -342,6 +384,10 @@ export async function runCalendarFeedRuntime({ mode, env = process.env, platform
     db.on?.("error", () => abort.abort());
     stage = "database-connect";
     await db.connect(); checkSignal();
+    stage = "privacy-preflight";
+    receipt.privacyPreflight = await readPrivacyPreflight(db);
+    if (!receipt.privacyPreflight.controls.every(control => control.matchesRequired)) fail("privacy-preflight-refused");
+    checkSignal();
     stage = "migration-ledger";
     const ledger = await db.query("select version,name from supabase_migrations.schema_migrations order by version");
     if (JSON.stringify(ledger.rows.map(row => ({ version: String(row.version), name: row.name }))) !== JSON.stringify(migrations)) fail("migration-ledger-refused");

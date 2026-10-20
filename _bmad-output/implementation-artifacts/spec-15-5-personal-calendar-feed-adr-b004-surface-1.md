@@ -604,12 +604,55 @@ no exact-byte review claim covers the amended spec. The intent kernel and
 29-stop review section are unchanged. Native setup cause and 65 feature bodies
 remain unverified pending the next exact-head diagnostic CI.
 
+## Same-connection privacy preflight repair — 2026-10-20
+
+Fourth checkpoint `e91b366b8b362f8ffbd867940dfe1cd2d817e72b`, run
+`39464940677` attempt 1, remains **failed**. Its DB and browser receipts reached
+database-connect / insufficient-privilege / SQLSTATE42501, keyOutcome not-attempted,
+no children and dbClosed=true. Native verify passed 3098 Node tests; the existing
+one-case recovery proof passed separately. All 65 feature runtime bodies remain
+unexecuted. The failed packet and all four preceding source capsules remain
+immutable. Neither the denied parameter nor an observed connected principal or
+effective setting is established by that startup rejection. Earlier generic
+failures retain their original unknown classification.
+
+Root authorized the four-file repair and the author recorded explicit Sol High
+routing before edits in `author-native-privacy-preflight-route.json`. PostgreSQL
+17's documented SUSET/USERSET distinction supports a startup permission hypothesis,
+not a native diagnosis of the denied setting. The selected proportional repair
+uses only the USERSET `log_parameter_max_length_on_error=0` startup option,
+explicitly excluding ambient PGOPTIONS. A fixed read-only query on the same
+client then requires exactly four unique, strictly typed controls with expected
+contexts and effective values `none/panic/0/0`. Missing, unknown, duplicate,
+malformed or mismatched facts fail closed before UUID/entropy, Vault, telemetry or
+children. Only closed names/contexts and booleans enter the receipt; actual
+setting values, role names and native error payloads do not. Identity and SET
+authority booleans are diagnostic observations, never a new superuser/privilege
+gate. The qualifying client remains the key transaction and cleanup client;
+there is no fallback, privilege/configuration grant or alternate principal.
+
+Fixed argv, workflow inverses, original inverse hash, child ownership, COMMIT
+uncertainty, exact UUID/name deletion and custody branches remain unchanged.
+The actual wrapper LF SHA pin is refreshed. Local bounded evidence is 30/30
+injected/adapter Node tests, zero failures/skips, including four new preflight
+cases. They cover all four unsafe controls, incomplete/duplicate/unknown/type/
+context failures, zero secret/launch operations on refusal, same-client ordering,
+actual installed driver startup configuration, diagnostic-only identity/SET facts,
+and separate sanitized query/close failures. Full typecheck and focused lint
+passed with zero lint errors/warnings; receipts accompany the committed review
+input. No native runtime or resource was
+started locally; existing application and feature tests are unchanged. Feature
+inventory remains 95 and separate bootstrap inventory is 30. Distinct High review
+of the exact committed four-path delta and a new exact-head CI remain pending;
+no prior native default or success is assumed. Status stays in-review, without
+delivery, done or release-ready claims.
+
 ## Suggested Review Order
 
 Author: Story 15.5 implementation/fix author (gpt-6.1-sol High), incorporating
 explicitly delegated browser and bootstrap contributors. Refreshed after all
 Round 3 latest-fix assertions, the subsequent checkpoint repairs and bounded
-native setup diagnostics.
+native setup diagnostics and same-connection privacy qualification.
 Stops below resolve to final source literals before the repair commit.
 
 ### Own settings and honest lifecycle results
@@ -632,7 +675,7 @@ inputs, and CAS/history/audit commit together without plaintext recovery.
 - `src/server/commands/calendar-feed/manage-calendar-feed.ts:10` — `calendarFeedConfig`: exposes plaintext only after confirmed fresh SQL success.
 - `src/server/commands/calendar-feed/manage-calendar-feed.ts:32` — `command: "calendar_feed.create"`: literal create/rotate/revoke declarations retain independent enrollment discovery.
 - `supabase/migrations/20261020220000_personal_calendar_feed.sql:162` — `create function public.manage_calendar_feed`: checks signed authority, revision, replay and audit.
-- `supabase/migrations/20261020220000_personal_calendar_feed.sql:122` — `is distinct from (case`: preserves domain branches while delimiting CASE within the PL/pgSQL IF; native compilation pending.
+- `supabase/migrations/20261020220000_personal_calendar_feed.sql:122` — `is distinct from (case`: preserves domain branches while delimiting CASE within the PL/pgSQL IF; subsequent native stack resets compiled it.
 - `tests/support/calendar-feed-atdd.ts:270` — `const allowed = ["membershipId"`: checks raw JWT status keys before mapper reconstruction.
 - `tests/integration/rls/calendar-feed.rls.test.ts:129` — `15.5-RLS008`: AC1/4/9 raw status/hash and direct-DML assertions; execution pending.
 
@@ -660,7 +703,7 @@ keeps SupAdmin-only NOADMIN. Retained unsafe roles fail closed.
 - `tests/integration/commands/calendar-feed.int.test.ts:420` — `memberships.every(row => row.inherit_option === false)`: AC4/9 fresh/replay inherited-owner privileges denied; native execution pending.
 - `tests/support/calendar-feed-atdd.ts:472` — `has_schema_privilege(oid,'public','CREATE')`: reads actual effective schema privileges including PUBLIC/inherited access.
 - `tests/integration/rls/calendar-feed.rls.test.ts:171` — `publicSchemaCreate: false`: AC4/9 existing RLS010 requires effective CREATE absence; execution pending.
-- `tests/integration/ops/recovery-storage-immutability.int.test.ts:131` — `has_schema_privilege('calendar_feed_owner','public','CREATE')`: the existing recovery case checks the restored target before Storage requests; execution pending.
+- `tests/integration/ops/recovery-storage-immutability.int.test.ts:131` — `has_schema_privilege('calendar_feed_owner','public','CREATE')`: the existing recovery case checks the restored target before Storage requests; separately qualified native case.
 
 ### Isolated CI custody and honest evidence limits
 
@@ -669,15 +712,20 @@ The added PG17 case qualifies that disposable stack and owns transaction-local
 UUID roles/schema/function through dedicated connections, with no pool reuse.
 Settlement is memoized; abnormal browser teardown retains exact job custody, while
 privacy detection measures raw output in memory before sanitized records persist.
+Before any secret, one fixed read-only query requires exact effective privacy on
+the same connection later used for key creation and deletion. Identity and SET
+facts remain observations, so the repair adds no privilege requirement or grant.
 
 - `tests/integration/commands/calendar-feed.int.test.ts:461` — `// FULL rollback comes first`: preserves rollback/reset and same/fresh catalog absence proof.
-- `scripts/ci/with-calendar-feed-runtime.mjs:183` — `export function createOwnedGroupStopper`: memoizes settlement and verifies identity before signaling.
-- `scripts/ci/with-calendar-feed-runtime.mjs:105` — `export function createTelemetryObserver`: detects leaks before dropping non-allowlisted output.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:376` — `nonzero/null-signal nested browser loss`: requires retained key custody for abnormal completion.
+- `scripts/ci/with-calendar-feed-runtime.mjs:227` — `export function createOwnedGroupStopper`: memoizes settlement and verifies identity before signaling.
+- `scripts/ci/with-calendar-feed-runtime.mjs:149` — `export function createTelemetryObserver`: detects leaks before dropping non-allowlisted output.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:470` — `nonzero/null-signal nested browser loss`: requires retained key custody for abnormal completion.
 - `tests/support/calendar-feed-ci-contract.ts:43` — `projectCalendarFeedCiCommands`: validates pinned real wrapper argv and only the two exact workflow inverses.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:18` — `CI command projection rejects`: missing/wrong entry/argv and unrelated-source/workflow negatives preserve the original inverse fence.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:25` — `CI command projection rejects`: missing/wrong entry/argv and unrelated-source/workflow negatives preserve the original inverse fence.
 - `scripts/ci/with-calendar-feed-runtime.mjs:31` — `function safeDiagnostic`: emits only fixed stages/categories and allowlisted SQLSTATE without native payloads.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:143` — `COMMIT uncertainty is not cleared`: rollback alone cannot establish key absence after attempted COMMIT.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:237` — `COMMIT uncertainty is not cleared`: rollback alone cannot establish key absence after attempted COMMIT.
+- `scripts/ci/with-calendar-feed-runtime.mjs:388` — `receipt.privacyPreflight = await readPrivacyPreflight(db);`: rejects unsafe effective settings before entropy on the existing client.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:131` — `privacy preflight rejects incomplete`: malformed and unsafe settings cannot reach a secret or child; actual driver/same-client/query-close cases exercise the surrounding boundary.
 
 Evidence: the checkpoint repair records 302 executed focused Node cases with zero
 failures/skips, typecheck/focused lint and the application build. The later c575
@@ -687,14 +735,18 @@ eight units and also remains failed, despite 30 feed Node/22 bootstrap passes.
 The later 1cea checkpoint cleared native migration compilation and passed the one
 actual isolated recovery case, but failed DB/browser wrapper setup before all
 65 feature bodies. The diagnostic working tree passed 26 injected wrapper cases,
-typecheck and focused lint; it has no new native setup or feature evidence.
-Current separate bootstrap inventory is 26. Its dependencies are synthetic;
+typecheck and focused lint. The fourth e91b checkpoint passed 3098 Node units and
+the existing recovery case, but both DB/browser failed startup42501 before
+key creation. The privacy preflight repair passed 30 bounded wrapper cases,
+including a real unconnected driver configuration check; it has no native setup
+or feature evidence. Current separate bootstrap inventory is 30. Other lifecycle
+dependencies are synthetic;
 operations-unit recovery assertions are static. The real recovery case has its
 separate bounded native receipt. Earlier checks retain recorded dependencies.
 All 51 native Vitest and 14 browser bodies remain pending locally; API001 covers
 live label revisions, API018 cancellation/counters, RLS008 raw status privacy,
 and E2E-001 the essential actual production lifecycle. Existing ACL/RLS010,
-serial cleanup and full regressions also require exact-head CI. All three rounds completed; diagnostic latest-delta High review, restricted-executor
+serial cleanup and full regressions also require exact-head CI. All three rounds completed; privacy-preflight latest-delta High review, restricted-executor
 PG17 execution, live feature lifecycle and final exact-head qualification
 are outstanding. No provider/device/visual/performance or release-ready claim;
 the unallocated exhaustive branch remains explicitly release-blocking deferred.

@@ -3,7 +3,7 @@ import { test } from "node:test";
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { projectCalendarFeedCiCommands } from "../../../support/calendar-feed-ci-contract";
-import { INTEGRATION_ARGS, BROWSER_ARGS, FEED_FUNCTIONS, validateAdmission, validateStackIdentity, createTelemetryObserver, hasSensitiveOutput, createOwnedGroupStopper, ownsListenerRecord, waitForOwnedHttp, runCalendarFeedRuntime } from "../../../../scripts/ci/with-calendar-feed-runtime.mjs";
+import { INTEGRATION_ARGS, BROWSER_ARGS, FEED_FUNCTIONS, validateAdmission, validateStackIdentity, createCalendarFeedDatabaseClient, createTelemetryObserver, hasSensitiveOutput, createOwnedGroupStopper, ownsListenerRecord, waitForOwnedHttp, runCalendarFeedRuntime } from "../../../../scripts/ci/with-calendar-feed-runtime.mjs";
 
 const env = {
   NODE_ENV: "test" as const,
@@ -14,6 +14,13 @@ const keyId = "f8c9b152-1e88-471a-82fa-d45a80394e40";
 const keyUuid = "905a0de8-b110-4f89-9096-010db4c6ef12";
 const status = { API_URL: "http://127.0.0.1:54321", DB_URL: "postgresql://postgres:postgres@127.0.0.1:54322/postgres", ANON_KEY: "test-anon", SERVICE_ROLE_KEY: "test-service" };
 const migrations = [{ version: "20261020220000", name: "personal_calendar_feed" }];
+function privacyRows(): Record<string, unknown>[] {
+  return ["log_statement", "log_min_error_statement", "log_parameter_max_length", "log_parameter_max_length_on_error"].map(name => ({
+    name, context: name === "log_parameter_max_length_on_error" ? "user" : "superuser", matches_required: true, can_set: false,
+    session_is_postgres: true, current_is_postgres: true, same_identity: true,
+    session_superuser: false, current_superuser: false, session_bypass_rls: false, current_bypass_rls: false,
+  }));
+}
 
 test("CI command projection rejects entry and argv drift and cannot erase unrelated workflow or wrapper changes", () => {
   const workflow = readFileSync(new URL("../../../../.github/workflows/ci.yml", import.meta.url), "utf8").replaceAll("\r\n", "\n");
@@ -68,12 +75,14 @@ function harness(options: {
     async qualify() { events.push("qualified"); return { status, migrations }; },
     async portFree() { events.push("port-checked"); if (options.occupied) throw new Error("fixture occupied"); },
     connect() {
+      events.push("client-created");
       return {
         async connect() { events.push("connected"); if (options.connectFailure !== undefined) throw options.connectFailure; },
         async query(sql: string, params?: unknown[]) {
           events.push(sql.startsWith("select vault.create_secret") ? "create" : sql.startsWith("delete") ? "delete" : sql);
           const call = { sql, params }; queries.push(call);
           const override = options.query?.(call); if (override) return override;
+          if (sql.startsWith("with required(name,value)")) return { rows: privacyRows() };
           if (sql.includes("schema_migrations")) return { rows: migrations };
           if (sql.includes("from pg_proc")) return { rows: FEED_FUNCTIONS.map(() => ({ owner: "calendar_feed_owner", definer: true })) };
           if (sql.startsWith("select vault.create_secret")) { if (options.signalAtCreate) signal(); return { rows: [{ id: keyUuid }] }; }
@@ -83,7 +92,7 @@ function harness(options: {
         async end() { events.push("db-closed"); if (options.closeFailure) throw new Error("fixture close"); },
       };
     },
-    uuid: () => keyId, entropy: () => Buffer.alloc(32, 7),
+    uuid: () => { events.push("key-id"); return keyId; }, entropy: () => { events.push("entropy"); return Buffer.alloc(32, 7); },
     async createTelemetry() { return { path: "/private/allowlisted.jsonl", persist: async () => undefined }; },
     launch(command: string, args: string[], childEnv: Record<string, string>) {
       const index = launches.length;
@@ -101,6 +110,91 @@ async function runFixture(mode: string, h = harness()) {
   const result = await runCalendarFeedRuntime({ mode, env, platform: "linux" }, h.deps);
   return { ...h, ...result };
 }
+
+test("real pg client startup uses only explicit USERSET privacy option instead of ambient PGOPTIONS", async () => {
+  const previous = process.env.PGOPTIONS;
+  process.env.PGOPTIONS = "PRIVATE untrusted ambient options";
+  try {
+    const client = createCalendarFeedDatabaseClient(status);
+    // pg8.22 exposes these installed internals, omitted from its public types.
+    const installed = client as unknown as { getStartupConf(): { options: string; statement_timeout: string };
+      connectionParameters: { query_timeout: number } };
+    assert.equal(installed.getStartupConf().options, "-c log_parameter_max_length_on_error=0");
+    assert.equal(installed.getStartupConf().statement_timeout, "8000");
+    assert.equal(installed.connectionParameters.query_timeout, 10_000);
+    await client.end(); // Construction/end only: never connect or launch a service.
+  } finally {
+    if (previous === undefined) delete process.env.PGOPTIONS; else process.env.PGOPTIONS = previous;
+  }
+});
+
+test("privacy preflight rejects incomplete unknown duplicate malformed contexts and unsafe controls before any secret", async () => {
+  const malformed: ((rows: Record<string, unknown>[]) => unknown)[] = [
+    () => null, rows => rows.slice(1), rows => [...rows, rows[0]],
+    rows => { rows[1] = { ...rows[0] }; return rows; },
+    rows => { rows[0].name = "PRIVATE unknown control"; return rows; },
+    rows => { rows[0].context = "user"; return rows; },
+    rows => { rows[3].context = "superuser"; return rows; },
+    rows => { rows[0].matches_required = "true"; return rows; },
+    rows => { rows[0].can_set = 1; return rows; },
+    rows => { rows[0].session_superuser = null; return rows; },
+    rows => { delete rows[0].can_set; return rows; },
+    rows => { rows[0].raw_value = "PRIVATE native payload"; return rows; },
+    rows => { rows[0].same_identity = false; return rows; },
+    ...[0, 1, 2, 3].map(index => (rows: Record<string, unknown>[]) => { rows[index].matches_required = false; return rows; }),
+  ];
+  for (const mutate of malformed) {
+    const result = await runFixture("db", harness({ query(call) {
+      if (call.sql.startsWith("with required(name,value)")) return { rows: mutate(privacyRows()) as Record<string, unknown>[] };
+      return undefined;
+    } }));
+    assert.equal(result.exitCode, 1); assert.deepEqual(result.receipt.failures, ["privacy-preflight-refused"]);
+    assert.deepEqual(result.receipt.diagnostics, [{ stage: "privacy-preflight", category: "guard-refusal", sqlState: null }]);
+    assert.equal(result.receipt.keyOutcome, "not-attempted"); assert.equal(result.receipt.dbClosed, true);
+    assert.equal(result.launches.length, 0);
+    assert.ok(!result.events.includes("entropy") && !result.events.includes("key-id"));
+    assert.ok(!result.queries.some(call => call.sql === "begin" || call.sql.includes("vault.")));
+    assert.equal(JSON.stringify(result.receipt).includes("PRIVATE"), false);
+  }
+});
+
+test("same client privacy proof precedes entropy and key transaction without making identity or SET authority a gate", async () => {
+  const result = await runFixture("db", harness({ query(call) {
+    if (call.sql.startsWith("with required(name,value)")) return { rows: privacyRows().map(row => ({ ...row,
+      session_is_postgres: false, current_is_postgres: false, same_identity: false })) };
+    return undefined;
+  } }));
+  assert.equal(result.exitCode, 0); assert.equal(result.events.filter(event => event === "client-created").length, 1);
+  const proof = result.queries.find(call => call.sql.startsWith("with required(name,value)"))!;
+  assert.equal(proof.params, undefined); assert.ok(proof.sql.includes("current_setting(s.name)=r.value"));
+  assert.ok(!/\b(?:set_config|alter|grant|set role)\b/i.test(proof.sql));
+  assert.ok(result.events.indexOf("connected") < result.events.indexOf(proof.sql));
+  assert.ok(result.events.indexOf(proof.sql) < result.events.indexOf("key-id"));
+  assert.ok(result.events.indexOf(proof.sql) < result.events.indexOf("entropy"));
+  assert.ok(result.events.indexOf("entropy") < result.events.indexOf("begin"));
+  assert.ok(result.events.indexOf("delete") < result.events.indexOf("db-closed"));
+  assert.ok(result.receipt.privacyPreflight?.controls.every(control => control.matchesRequired && control.canSet === false));
+  assert.equal(result.receipt.privacyPreflight?.principal.same_identity, false);
+  assert.equal(result.receipt.privacyPreflight?.principal.current_superuser, false);
+  assert.equal(result.receipt.keyOutcome, "deleted-confirmed");
+});
+
+test("privacy query and close failures retain separate sanitized diagnostics with no secret or fallback", async () => {
+  const privateText = "PRIVATE native SQL value params detail hint URL token proof key";
+  const result = await runFixture("browser", harness({ closeFailure: true, query(call) {
+    if (call.sql.startsWith("with required(name,value)")) throw Object.assign(new Error(privateText), { code: "42501", detail: privateText });
+    return undefined;
+  } }));
+  assert.equal(result.exitCode, 1); assert.equal(result.receipt.dbClosed, false);
+  assert.deepEqual(result.receipt.failures, ["runtime-failed", "db-close-unverified"]);
+  assert.deepEqual(result.receipt.diagnostics, [
+    { stage: "privacy-preflight", category: "insufficient-privilege", sqlState: "42501" },
+    { stage: "database-close", category: "unclassified", sqlState: null },
+  ]);
+  assert.equal(result.receipt.privacyPreflight, null); assert.equal(result.receipt.keyOutcome, "not-attempted");
+  assert.equal(result.launches.length, 0); assert.ok(!result.events.includes("entropy"));
+  assert.equal(result.queries.length, 1); assert.equal(JSON.stringify(result.receipt).includes(privateText), false);
+});
 
 test("setup failures report the reached fixed stage and allowlisted SQLSTATE without native details", async () => {
   const privateText = "PRIVATE native query params detail hint stack cause URL token proof key 2001:db8::1";
