@@ -482,11 +482,69 @@ browser, recovery and installed-collection evidence remains unexecuted. No local
 runtime/qualification command or resource was launched. Three broad rounds are
 complete; no fourth broad review, delivery JSON, done or release-ready claim.
 
+## Native SQL compile repair and effective-schema assertions — 2026-10-20
+
+The second checkpoint `c57580580217e34a0b933a23f7c36737306333b7`, run
+`39457178499` attempt 1, passed **3095/3095 Node units, zero failures/skips**,
+the three partition units, Python 43, production build and bundle containment.
+Its DB, recovery and browser jobs all stopped at statement 43 of this unapplied
+migration with SQLSTATE `42601`. The immutable native context
+`checkpoint-c5758058-ci-independent/native-static-sql-failure-context.json`
+records log lines 983–992: the caret points to the first CASE-branch THEN in
+`calendar_feed_verify_attestation_internal`. The complete failed packet's
+manifest SHA256 is `0819c8fe8dd279578c1a9a8b88074c11f1c3abce1d0df206d92d42d55f8a0e1c`.
+No complete real ownership/grant/revoke lifecycle or native feature body is
+credited after this failure: API execution artifacts remain zero, and the 65
+Vitest/browser feature bodies remain unexecuted. Both failed checkpoints and
+their predecessor capsules stay immutable; a passed unit subset is not a passed CI.
+
+The author inspected the exact source/error context and the same file's CASE
+uses. The sole bare CASE in a PL/pgSQL IF condition now has parentheses around
+the CASE expression. This two-character syntax correction separates its THEN
+from the enclosing IF terminator; branches, null handling, domains, guard order,
+role hardening, proofs, claims and transactions are unchanged. Assignment and
+already-delimited SQL CASE expressions were preserved. Required native migration
+compilation remains the regression gate; no static string mirror is substituted
+for execution and no local SQL runtime was started.
+
+Read-only source investigation also found that the existing RLS010 effective
+ACL assertions omitted effective public-schema CREATE absence. A direct REVOKE
+does not establish absence through PUBLIC/inherited grants. The existing fixture
+now queries `has_schema_privilege` for the real owner, and existing RLS010 requires
+`publicSchemaCreate=false`. Root/Coordinator additionally allocated only the
+existing recovery Storage test's single case (`accepted-recovery-schema-assertion-allocation.json`,
+SHA256 `2fa8883400517d3bb268c9d1ab42605811df4669c264bb58b468b4f8479358c8`).
+Before its Storage checks, the same fixed Compose/psql SupAdmin target performs
+one bounded read-only catalog SELECT and fails unless effective CREATE is false.
+The 15-second command limit and fixed sanitized failure expose no raw output,
+SQL argv or error cause. No roles, DDL, SET, grants, objects, keys, workflows,
+inputs or workloads were added or changed by these assertions.
+
+Reached real migration/restore statements can establish their actual guards,
+grants, transfers and revocation once native execution completes; absent emitted
+identity logs alone are not a defect. No new restricted-real-source claim is
+made. The separate UUID-schema INT015 proof keeps its explicit evidence limits.
+No new case or fixture was added: feature inventory remains **95 (30 Node,
+51 Vitest, 14 browser)**, original 83 retained, and bootstrap units remain **23
+separate**. This repair requires targeted High latest-delta review and new
+exact-head native CI; it does not increment the three completed broad rounds.
+Root metadata and all immutable source-freeze/failed-packet artifacts are excluded
+from the author source commit. Status remains in-review, no delivery/done claim.
+
+Actual bounded checks on these four source files before the repair commit:
+full `pnpm exec tsc --noEmit --incremental false` passed; focused
+`pnpm exec eslint tests/support/calendar-feed-atdd.ts tests/integration/rls/calendar-feed.rls.test.ts tests/integration/ops/recovery-storage-immutability.int.test.ts`
+passed with zero errors/warnings. Earlier executed Node/build results retain
+their revisions and dependency limits; they were not rerun for SQL/native-test-only
+changes and do not compile this migration. Native and cached Git diff checks and
+the single review trail's actual path/line/literal anchors are checked before commit.
+
 ## Suggested Review Order
 
 Author: Story 15.5 implementation/fix author (gpt-6.1-sol High), incorporating
 explicitly delegated browser and bootstrap contributors. Refreshed after all
-Round 3 latest-fix inheritance assertions and the bounded checkpoint CI repair.
+Round 3 latest-fix assertions, checkpoint CI repair, native SQL syntax correction
+and the effective public-schema privilege assertions.
 Stops below resolve to final source literals before the repair commit.
 
 ### Own settings and honest lifecycle results
@@ -509,6 +567,7 @@ inputs, and CAS/history/audit commit together without plaintext recovery.
 - `src/server/commands/calendar-feed/manage-calendar-feed.ts:10` — `calendarFeedConfig`: exposes plaintext only after confirmed fresh SQL success.
 - `src/server/commands/calendar-feed/manage-calendar-feed.ts:32` — `command: "calendar_feed.create"`: literal create/rotate/revoke declarations retain independent enrollment discovery.
 - `supabase/migrations/20261020220000_personal_calendar_feed.sql:162` — `create function public.manage_calendar_feed`: checks signed authority, revision, replay and audit.
+- `supabase/migrations/20261020220000_personal_calendar_feed.sql:122` — `is distinct from (case`: preserves domain branches while delimiting CASE within the PL/pgSQL IF; native compilation pending.
 - `tests/support/calendar-feed-atdd.ts:270` — `const allowed = ["membershipId"`: checks raw JWT status keys before mapper reconstruction.
 - `tests/integration/rls/calendar-feed.rls.test.ts:129` — `15.5-RLS008`: AC1/4/9 raw status/hash and direct-DML assertions; execution pending.
 
@@ -534,6 +593,9 @@ keeps SupAdmin-only NOADMIN. Retained unsafe roles fail closed.
 - `tests/integration/calendar-feed/public-feed.int.test.ts:364` — `15.5-API018`: AC5/8 durable token/IP and last-use assertions; execution pending.
 - `supabase/migrations/20261020220000_personal_calendar_feed.sql:27` — `pg_has_role(current_user,feed_owner.oid,'SET')`: qualifies source ownership authority independently of creator ADMIN.
 - `tests/integration/commands/calendar-feed.int.test.ts:420` — `memberships.every(row => row.inherit_option === false)`: AC4/9 fresh/replay inherited-owner privileges denied; native execution pending.
+- `tests/support/calendar-feed-atdd.ts:472` — `has_schema_privilege(oid,'public','CREATE')`: reads actual effective schema privileges including PUBLIC/inherited access.
+- `tests/integration/rls/calendar-feed.rls.test.ts:171` — `publicSchemaCreate: false`: AC4/9 existing RLS010 requires effective CREATE absence; execution pending.
+- `tests/integration/ops/recovery-storage-immutability.int.test.ts:131` — `has_schema_privilege('calendar_feed_owner','public','CREATE')`: the existing recovery case checks the restored target before Storage requests; execution pending.
 
 ### Isolated CI custody and honest evidence limits
 
@@ -551,15 +613,18 @@ privacy detection measures raw output in memory before sanitized records persist
 - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:18` — `CI command projection rejects`: missing/wrong entry/argv and unrelated-source/workflow negatives preserve the original inverse fence.
 
 Evidence: the checkpoint repair records 302 executed focused Node cases with zero
-failures/skips, final typecheck/focused lint and the fresh application build.
-The previous checkpoint failed eight unit tests; it remains failed historical
-evidence, despite its 30 feed Node/22 bootstrap passes. Current separate bootstrap
+failures/skips, typecheck/focused lint and the application build. The later c575
+checkpoint passed 3095 Node units/Python/build but all three native setup paths
+failed migration compilation; it remains failed. The earlier checkpoint failed
+eight units and also remains failed, despite 30 feed Node/22 bootstrap passes.
+The new SQL correction and catalog assertions have no native execution evidence.
+Current separate bootstrap
 inventory is 23. Its dependencies are synthetic; recovery assertions are static,
 not restore evidence. Earlier passing checks retain their recorded dependencies.
 All 51 native Vitest and 14 browser bodies remain pending locally; API001 covers
 live label revisions, API018 cancellation/counters, RLS008 raw status privacy,
 and E2E-001 the essential actual production lifecycle. Existing ACL/RLS010,
-serial cleanup and full regressions also require exact-head CI. All three rounds completed; CI-repair latest-delta High regression review, restricted-executor
+serial cleanup and full regressions also require exact-head CI. All three rounds completed; native-SQL/schema-assertion latest-delta High review, restricted-executor
 PG17 execution, live lifecycle/recovery and final truth qualification
 are outstanding. No provider/device/visual/performance or release-ready claim;
 the unallocated exhaustive branch remains explicitly release-blocking deferred.

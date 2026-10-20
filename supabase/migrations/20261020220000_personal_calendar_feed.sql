@@ -119,7 +119,7 @@ declare secret text; decoded bytea; issued timestamptz; expires timestamptz; now
 begin
  if p_claims is null or jsonb_typeof(p_claims)<>'object' or p_signature is null or p_signature !~ '^[0-9a-f]{64}$'
   or p_claims->>'schema' is distinct from 'kopplas.calendar-feed.v1' or p_claims->>'operation' is distinct from p_operation
-  or p_claims->>'domain' is distinct from case when p_operation='fetch' then 'kopplas.calendar-feed.fetch.v1' else 'kopplas.calendar-feed.manage.v1' end then return false; end if;
+  or p_claims->>'domain' is distinct from (case when p_operation='fetch' then 'kopplas.calendar-feed.fetch.v1' else 'kopplas.calendar-feed.manage.v1' end) then return false; end if;
  keys:=case when p_operation='fetch' then array['schema','domain','operation','tokenHash','ipHash','requestId','keyId','issuedAt','expiresAt']
  else array['schema','domain','operation','tenantId','actorId','membershipId','revision','attemptId','newHash','correlationId','keyId','issuedAt','expiresAt'] end;
  if (select count(*) from jsonb_object_keys(p_claims))<>cardinality(keys)

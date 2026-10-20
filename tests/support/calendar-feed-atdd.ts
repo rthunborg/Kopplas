@@ -105,7 +105,7 @@ export type AclFacts = {
     anonDml: boolean; publicInheritedDml: boolean; authenticatedSensitiveColumns: boolean }>;
   functions: Array<{ purpose: "fetch" | "manage" | "status" | "abuse"; owner: string; securityDefiner: boolean; emptySearchPath: boolean;
     anonExecute: boolean; authenticatedExecute: boolean; publicExecute: boolean }>;
-  owner: { name: string; login: boolean; inherit: boolean; superuser: boolean; bypassRls: boolean;
+  owner: { name: string; login: boolean; inherit: boolean; superuser: boolean; bypassRls: boolean; publicSchemaCreate: boolean;
     assumableByJwtRoles: boolean; unrelatedTableRead: boolean; generalVaultRead: boolean;
     effectiveReadOutsideAllowedColumns: boolean; filteredHelperOnly: boolean };
   helpers: Array<{ purpose: "canonical" | "verifier" | "filtered-secret"; jwtExecute: boolean; publicExecute: boolean; feedOwnerExecute: boolean;
@@ -469,6 +469,7 @@ async function calendarAcl(): Promise<AclFacts> {
    exists(select 1 from pg_attribute a where a.attrelid=c.oid and a.attnum>0 and not a.attisdropped and has_column_privilege('authenticated',c.oid,a.attname,'SELECT')) "authenticatedSensitiveColumns"
    from pg_class c where c.oid in ('public.calendar_feed_tokens'::regclass,'public.calendar_feed_ip_windows'::regclass) order by c.relname`);
   const [owner]=await adminQuery<AclFacts["owner"]>(`select rolname name,rolcanlogin login,rolinherit inherit,rolsuper superuser,rolbypassrls "bypassRls",
+   has_schema_privilege(oid,'public','CREATE') "publicSchemaCreate",
    (pg_has_role('anon',oid,'MEMBER') or pg_has_role('authenticated',oid,'MEMBER') or pg_has_role('service_role',oid,'MEMBER')) "assumableByJwtRoles",
    has_table_privilege(oid,'public.contacts','SELECT') "unrelatedTableRead",has_table_privilege(oid,'vault.decrypted_secrets','SELECT') "generalVaultRead"
    from pg_roles where rolname='calendar_feed_owner'`);

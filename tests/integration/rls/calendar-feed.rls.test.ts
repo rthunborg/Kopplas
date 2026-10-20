@@ -168,7 +168,7 @@ describe("15.5 exact self authority, raw SQL boundary and least privilege", () =
   test("[P0] 15.5-RLS010 AC4 AC9 dedicated owner and filtered Vault helper retain strict effective inherited ACLs", async () => {
     await withCalendarFeedFixture("row-isolated", async fx => {
       const facts = await fx.acl();
-      expect(facts.owner).toMatchObject({ login: false, inherit: false, superuser: false, bypassRls: false,
+      expect(facts.owner).toMatchObject({ login: false, inherit: false, superuser: false, bypassRls: false, publicSchemaCreate: false,
         assumableByJwtRoles: false, unrelatedTableRead: false, generalVaultRead: false,
         effectiveReadOutsideAllowedColumns: false, filteredHelperOnly: true });
       expect(facts.functions.map(fn => fn.purpose).sort()).toEqual(["abuse", "fetch", "manage", "status"]);
