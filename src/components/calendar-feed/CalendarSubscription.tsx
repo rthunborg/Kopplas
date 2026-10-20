@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useRef, useState } from "react";
 import { Dialog } from "@/components/crm/Dialog";
 import { manageCalendarFeedAction, readCalendarFeedSettingsAction } from "@/features/calendar-feed/actions";
-import { pendingCalendarFeed, transitionCalendarFeed, type CalendarFeedActionState } from "@/features/calendar-feed/action-state";
+import { pendingCalendarFeed, transitionCalendarFeed, reconcileCalendarFeedIssuance, type CalendarFeedActionState } from "@/features/calendar-feed/action-state";
 import type { CalendarFeedAction, CalendarFeedStatus } from "@/features/calendar-feed/types";
 
 const button = "min-h-11 rounded-md border border-zinc-300 px-4 py-2 text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 disabled:opacity-60";
@@ -30,7 +30,13 @@ export function CalendarSubscription({ initial, initialState = null }: { readonl
         setMessage(action === "revoke" ? "Prenumerationen är återkallad." : "Länken är skapad. Kopiera den nu; den visas bara den här gången.");
       } else if (result.outcome === "replayed") { setState(transitionCalendarFeed(pending, "reconciled-committed")); setMessage("Ändringen är sparad. Länken kan inte återhämtas. Rotera för att få en ny länk."); }
       else { setState(transitionCalendarFeed(pending, retry ? "unknown" : "denied")); setMessage("Ändringen kunde inte bekräftas. Kontrollera status och försök igen."); }
-      try { await refresh(); } catch { setMessage(m => `${m} Statusen kunde inte uppdateras. Försök igen.`); }
+      try {
+        const current = await refresh();
+        if (result.outcome === "committed" && (!current.active && action !== "revoke" || current.revision !== result.revision)) {
+          setState(previous => previous ? reconcileCalendarFeedIssuance(previous, current) : previous);
+          setMessage("Statusen har ändrats. Välj en ny ändring utifrån aktuell status.");
+        }
+      } catch { setMessage(m => `${m} Statusen kunde inte uppdateras. Försök igen.`); }
     } catch { setState(transitionCalendarFeed(pending, "unknown")); setMessage("Anslutningen bröts. Kontrollera resultatet innan du försöker igen."); }
     finally { setBusy(false); setConfirm(null); }
   }
@@ -43,7 +49,7 @@ export function CalendarSubscription({ initial, initialState = null }: { readonl
         else if (current.revision === state.request.revision) { setState(transitionCalendarFeed(state, "reconciled-not-found")); setMessage("Inget sparat resultat hittades. Försök igen med samma ändring."); }
         else { setState(transitionCalendarFeed(state, "superseded-response")); setMessage("Statusen har ändrats. Välj en ny ändring utifrån aktuell status."); }
       } else {
-        if (state?.rawUrl && (!current.active || current.revision !== state.confirmedRevision)) setState(transitionCalendarFeed(state, "superseded-response"));
+        if (state) setState(reconcileCalendarFeedIssuance(state, current));
         setMessage("Statusen är uppdaterad.");
       }
     } catch { setMessage("Statusen kunde inte hämtas. Försök igen."); }

@@ -1,5 +1,5 @@
-/** RED contract vectors. Bind the adapter to the actual T1 serializer in P5;
- * it is not a replacement serializer and no production export name is assumed. */
+/** Prepared RED-phase vectors, now bound to the production T1 serializer.
+ * Independent RFC parsing below preserves the original contract oracle. */
 import assert from "node:assert/strict";
 import { test } from "node:test";
 
@@ -65,4 +65,27 @@ test("[P1] 15.5-UNIT-005 AC3 AC8 empty and >PostgREST-cap input are complete cal
   const lines = properties(encode(events));
   assert.equal(lines.filter(line => line === "BEGIN:VEVENT").length, events.length);
   assert.equal(new Set(lines.filter(line => line.startsWith("UID:"))).size, events.length);
+});
+
+for (const vector of [
+  { start: "2026-10-25T00:30:00.000001Z", end: "2026-10-25T00:30:00.000002Z", projectedStart: "20261025T003000Z", projectedEnd: "20261025T003001Z" },
+  { start: "2026-10-25T00:30:00.1Z", end: "2026-10-25T00:30:00.9Z", projectedStart: "20261025T003000Z", projectedEnd: "20261025T003001Z" },
+  { start: "2026-10-25T00:30:00.999999Z", end: "2026-10-25T00:30:01Z", projectedStart: "20261025T003000Z", projectedEnd: "20261025T003001Z" },
+  { start: "1969-12-31T23:59:59.999998Z", end: "1969-12-31T23:59:59.999999Z", projectedStart: "19691231T235959Z", projectedEnd: "19700101T000000Z" },
+  { start: "9999-12-31T23:59:59.000001Z", end: "9999-12-31T23:59:59.999999Z", projectedStart: "99991231T235958Z", projectedEnd: "99991231T235959Z" },
+]) test(`R1-05 positive microsecond range projects to distinct supported RFC seconds ${vector.start}`, async () => {
+  const lines = properties((await encoder())([booking({ startsAt: vector.start, endsAt: vector.end })]));
+  assert.ok(lines.includes(`DTSTART:${vector.projectedStart}`));
+  assert.ok(lines.includes(`DTEND:${vector.projectedEnd}`));
+});
+test("R1-05 microsecond ordering rejects reversed intervals within one millisecond", async () => {
+  const encode = await encoder();
+  assert.throws(() => encode([booking({ startsAt: "2026-10-25T00:30:00.000002Z", endsAt: "2026-10-25T00:30:00.000001Z" })]), /Calendar unavailable/);
+});
+test("R1-06 snapshot omits METHOD and both revision stamps advance while UID stays stable", async () => {
+  const encode = await encoder(), before = properties(encode([booking()]));
+  const after = properties(encode([booking({ title: "Ny roll", jobLabel: "Nytt jobb", customerLabel: "Ny kund", location: "Ny adress", updatedAt: "2026-10-21T09:30:00.123456Z" })]));
+  assert.equal(after.some(line => line.startsWith("METHOD:")), false);
+  assert.equal(after.find(line => line.startsWith("UID:")), before.find(line => line.startsWith("UID:")));
+  assert.ok(after.includes("DTSTAMP:20261021T093000Z")); assert.ok(after.includes("LAST-MODIFIED:20261021T093000Z"));
 });

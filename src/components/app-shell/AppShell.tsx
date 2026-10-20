@@ -276,7 +276,7 @@ export function AppShell({
               <NotificationBell />
               <div className="relative">
                 <button type="button" aria-label="Profil" aria-expanded={profileOpen} onClick={() => setProfileOpen((current) => !current)} className="text-sm text-zinc-700">Profil</button>
-                {profileOpen && <div className="absolute left-0 z-50 mt-2 rounded border bg-white p-2 shadow sm:left-auto sm:right-0"><Link className="flex min-h-11 items-center whitespace-nowrap focus-visible:ring-2 focus-visible:ring-blue-600" href="/settings/calendar" onClick={() => setProfileOpen(false)}>Min kalender</Link><Link href="/settings/notifications" onClick={() => setProfileOpen(false)}>Notisinställningar</Link></div>}
+                {profileOpen && <div className="absolute left-0 z-50 mt-2 rounded border bg-white p-2 shadow sm:left-auto sm:right-0">{navigation.some(item => item.href === "/scheduling") && <Link className="flex min-h-11 items-center whitespace-nowrap focus-visible:ring-2 focus-visible:ring-blue-600" href="/settings/calendar" onClick={() => setProfileOpen(false)}>Min kalender</Link>}<Link href="/settings/notifications" onClick={() => setProfileOpen(false)}>Notisinställningar</Link></div>}
               </div>
               {(context.tenantName || context.userEmail) && (
                 <div className="flex min-w-0 flex-1 flex-col items-end leading-tight sm:flex-none">

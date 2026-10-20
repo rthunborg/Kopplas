@@ -2,9 +2,9 @@
 title: '15.5 — Personal Calendar Feed (ADR-B004 Surface #1)'
 type: 'feature'
 created: '2026-10-20'
-status: 'in-progress'
-review_loop_iteration: 0
-followup_review_recommended: false
+status: 'in-review'
+review_loop_iteration: 1
+followup_review_recommended: true
 baseline_revision: '3a1c3bc9fbf22b13c926179288a8b6eefe440c12'
 approved_kernel: '0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977'
 approval_record: '_bmad-output/auto-bmad/preparation/story-15-5/approval.json'
@@ -110,11 +110,67 @@ Exact new source/test/doc paths and existing shared semantics are enumerated in 
 
 ## Review Triage Log
 
+### Review Findings
+
+**Round 1 of 3**
+
+Review started at source head `ae020f63a88089966b9323c55a36b6554f7e3900`; zero prior completed rounds. Context-free gpt-6.1-sol High for all actual authorization/public-token/RLS/secret/transactional/lifecycle review scope; six installed Build Auto layers, including distinct bootstrap lifecycle and external native Codex review. Local source gates are recorded; required exact-head CI execution remains pending. Reviewer launch batches respect the available actor slots; no triage or source fixes before all layers finish.
+
+Round 1 completed: **6 layers, 17 raw claims, 13 deduplicated claims: 11 patch,
+1 reject, 1 release defer**. Original reports, the external native qualification,
+and the global-lock clarification/rejection remain preserved in
+`_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/`;
+`triage.json` SHA256 `ca281ac5bd9ec76451c9e9ee5044b794f5a3aed0c009056e2dda24be401f15c9`
+is the accepted fix scope. Follow-up review is recommended for the sensitive fixes;
+this is completed round 1 of the three-round cap, not an additional broad review.
+
+| Finding | Applied action | Evidence limit |
+| --- | --- | --- |
+| R1-01/02 | Absent-only feed owner creation, seven attributes and retained membership checked; recovery grants only existing supabase_admin without admin option, source migration grants postgres. | Named recovery Compose unit case is static; real replay/restore and restore-principal ownership/schema-CREATE prerequisites remain CI requirements. |
+| R1-04 | Projection catches SQLSTATE57014 in its subtransaction; UUID-scoped serial fault asserts durable token/IP admission and unchanged last-use. | Real SQL fault body/HTTP execution pending. |
+| R1-05/06 | Microsecond ordering, positive RFC-second projection, optional METHOD omitted, revision derived from booking/work-role/job/customer/facility updates. | Independent Node vectors pass; live joined-label vectors await SQL/HTTP CI. |
+| R1-07 | Automatic status refresh clears a superseded issuance and its stale success message. | Headless state race assertion passes; actual browser execution pending. |
+| R1-08/11 | CI child settlement memoized, identities rechecked before signals; abnormal browser exits retain key custody; privacy detection inspects raw lines before allowlisting. | 22 injected bootstrap tests pass; synthetic dependencies do not prove live lifecycle/privacy. |
+| R1-10 | Profile entry follows existing server-filtered scheduling navigation. Existing E2E-003 also checks denied seller entry/destination. | Browser execution pending; all 11 cases retained. |
+| R1-12 | Status fixture checks exact ordinary-JWT RPC keys and physical hash/known secret absence before mapper; RLS008 retains direct payload assertions. | Native JWT/SQL execution pending. |
+| R1-13 | Each allocated serial fixture captures, resets and restores only its keyed unknown-IP row after pending requests settle; primary/cleanup failures retained. | Native serial execution pending; row-isolated fixtures never acquire this control. |
+
+R1-03 remains **rejected as an unproven functional/performance claim**. The original
+High clarification did not identify a permitted workload that bypasses an invariant;
+early lock release would weaken the hard cardinality bound. Keep the transaction
+lock and already-deferred representative performance qualification unchanged.
+R1-09 remains **release-blocking deferred**, owner Root/CI release operator:
+the optional exhaustive branch is explicitly unallocated and unchanged. Before
+`release_validation=true` qualification, obtain its exact runtime/lifecycle
+allocation and execute the native exhaustive branch with every active case.
+This is not development evidence and is never a passed release check.
+
 ## Design Notes
 
 Current-contracts-and-design.md records the owner-authorized defaults: dedicated projection instead of manager-wide reader, Node 32-byte issuance with feed-only attestation, CAS/attempt reconciliation without plaintext escrow, independent 60/120-per-15-minute windows, conservative unknown-IP bucket, same-page sanitized Admin queue, complete live materialized feed with no invented horizon and safe work-role/Bokning title rather than arbitrary booking description. These are proportional supporting implementations of explicit ADR requirements, not new product features or verified legacy observations. All consumer/provider interoperability beyond essential RFC/HTTP correctness is deferred release validation. Stream only after complete authority/query success so a broken query cannot emit a partial valid calendar.
 
 Implementation author later writes exactly one final author-written Suggested Review Order after code/evidence exist and validates actual stops using `node scripts/verify/check-review-order.mjs <this-spec>`. No guessed future line numbers/trail are created during planning. Root never authors spec/code.
+
+Post-review technical corrections (R1-05/06): reuse the scheduling microsecond
+parser for authority/order, then floor timed starts and ceil timed ends to RFC5545
+whole seconds. At the final representable second in year 9999, saturate the end;
+if that collapses the interval, move its start back one second. This deliberate
+export rounding keeps positive fractional intervals nonempty, with at most
+one second of boundary adjustment, while exact-second ordinary/DST/all-day
+behavior and stable UIDs are kept. Component revision is the greatest update
+of booking, work role, job, customer and facility; only those update columns are
+added to the owner allowlist. Omit optional METHOD for a subscription snapshot,
+so DTSTAMP and LAST-MODIFIED both describe the current component revision under
+[RFC5545 sections 3.8.7.2/3](https://www.rfc-editor.org/rfc/rfc5545.html#section-3.8.7.2).
+These narrow source corrections do not rewrite the approved kernel or historical
+companion and do not claim provider interoperability.
+
+Keep the current-self role union, transactional lifecycle/audit/CAS, cookie-free
+public boundary, complete minimal live snapshot, hard global cardinality lock,
+independent budgets and no-plaintext recovery behavior unchanged. Recovery creates
+only the absent exact feed role and fails closed on unsafe retained attributes or
+grants, rather than repairing a cluster role. No persistent schema CREATE,
+superuser/BYPASSRLS, runtime/JWT membership or general Vault grant is introduced.
 
 ## Verification
 
@@ -192,76 +248,106 @@ and verified-IP provisioning. Each needs its previously recorded next action and
 actual release evidence. Functional/security/native development failures remain
 blocking and cannot be recategorized as deferred polish.
 
+## Round 1 fix verification — 2026-10-20
+
+All 11 accepted patches are applied in this working tree, including the two
+explicitly delegated bootstrap fixes. No prepared declaration was removed or
+skipped: all 83 prepared expanded cases remain, plus eight new Node regression
+cases (30 feed Node cases total). Existing API001/API018/RLS008 and E2E-003 gained
+assertions without replacing their earlier assertions. E2E-003 is the existing
+profile-entry case; it now includes a denied seller vector, not a new test.
+
+Actual targeted command:
+`node --experimental-strip-types --import ./tests/support/register.mjs --test tests/unit/features/calendar-feed/icalendar.test.ts tests/unit/features/calendar-feed/action-state.test.ts tests/unit/ops/pilot-operations.test.ts tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts`
+**63 passed, 0 failed, 0 skipped**: serializer 13, action-state 4, existing operations
+24, bootstrap 22. The operations recovery case reads source only; bootstrap
+process/DB transports are injected. Full source typecheck and focused ESLint passed.
+Production build passed (compile 3.5s, TypeScript 5.6s, 12/12 static pages);
+service-role and built-bundle containment passed. An initial build exposed mixed
+encoding in two newly edited Swedish text lines; both were repaired to valid
+UTF-8 and the build/focused lint passed. A mistyped bundle-guard path failed to
+resolve before the canonical `check-bundle-containment.mjs` passed.
+
+The isolated SQL/HTTP/RLS and actual production-browser/recovery bodies remain
+unexecuted locally, as required by execution admission. In particular, SQLSTATE57014
+is a scoped real-SQL fault vector, not evidence of an executed native timeout;
+raw status/privacy and unknown-IP cleanup need native execution. Required full
+integration, installed six-file collection, recovery Storage/principal checks,
+essential browser, targeted High follow-up and truth qualification remain Root's
+exact-head CI/review work. No resources, key, Vault, environment or hosted settings
+were changed. Keep status in-review, follow-up recommended, no delivery JSON or
+development-complete/release-ready claim. The optional exhaustive release branch
+remains release-blocking deferred as recorded above.
+
 ## Suggested Review Order
 
-Author: Story 15.5 implementation author (gpt-6.1-sol High), incorporating the
-explicitly delegated browser-binding and CI-runtime contributors' recorded choices.
-Refreshed against the final source working tree before the source handoff commit;
-the following stops were read and their one-based lines verified on 2026-10-20.
+Author: Story 15.5 implementation/fix author (gpt-6.1-sol High), incorporating
+explicitly delegated browser and bootstrap contributors. Refreshed after all
+Round 1 fixes and relevant checks; stops below resolve to final source literals.
 
 ### Own settings and honest lifecycle results
 
-Both existing personal entry points reach one settings surface. The existing
-Dialog and component-memory state provide confirmation, copy fallback and explicit
-uncertainty reconciliation; a lost issued URL requires a separate rotation.
+The two personal entry points reach one settings surface; the profile entry uses
+server-filtered navigation. Confirmations and component-memory issuance retain
+explicit uncertainty handling, while later authoritative status removes stale URLs.
 
-- `src/components/scheduling/PersonalCalendarView.tsx:6` — `Kalenderprenumeration`: links agenda, week and empty states.
-- `src/components/calendar-feed/CalendarSubscription.tsx:37` — `reconcile`: distinguishes saved, absent and superseded attempts.
-- `tests/unit/features/calendar-feed/action-state.test.ts:10` — `15.5-UNIT-009`: exercises AC2 lost-response state without plaintext recovery.
-- `tests/e2e/calendar-feed.e2e.spec.ts:71` — `15.5-E2E-001`: binds AC1/3/4/6/7/9 actual personal-view lifecycle journey; execution pending.
+- `src/components/app-shell/AppShell.tsx:279` — `navigation.some`: gates the profile link on scheduling access.
+- `src/components/calendar-feed/CalendarSubscription.tsx:34` — `const current = await refresh();`: clears superseded post-commit output and success.
+- `tests/unit/features/calendar-feed/action-state.test.ts:41` — `R1-07`: AC1/2 concurrent revoke/rotation state regression passed.
+- `tests/e2e/calendar-feed.e2e.spec.ts:155` — `15.5-E2E-003`: AC1/6 allowed and denied profile journey; execution pending.
 
 ### Signed current-self authority and atomic writes
 
-The ordinary JWT envelope derives self authority, while SQL repeats current exact
-membership and role-union checks under the scheduling tenant lock. Dedicated
-feed-only length-prefixed proofs prevent callers choosing an IP or weak token hash;
-lifecycle history, CAS and audit commit together without plaintext escrow.
+Ordinary JWT commands derive self authority; SQL rechecks current exact membership
+and role union under the scheduling tenant lock. Dedicated proofs bind privileged
+inputs, and CAS/history/audit commit together without plaintext recovery.
 
-- `src/server/commands/calendar-feed/manage-calendar-feed.ts:10` — `calendarFeedCommand`: issues plaintext only after confirmed fresh SQL success.
-- `src/server/calendar-feed/attestation.ts:10` — `canonicalFeedProof`: binds dedicated operation-specific fields.
-- `supabase/migrations/20261020220000_personal_calendar_feed.sql:134` — `manage_calendar_feed`: checks signed inputs, revision, replay and audit transaction.
-- `tests/integration/commands/calendar-feed.int.test.ts:74` — `15.5-INT004`: AC2 changed-hash/action/revision replay assertions; native execution pending.
+- `src/server/commands/calendar-feed/manage-calendar-feed.ts:10` — `calendarFeedCommand`: exposes plaintext only after confirmed fresh SQL success.
+- `supabase/migrations/20261020220000_personal_calendar_feed.sql:154` — `create function public.manage_calendar_feed`: checks signed authority, revision, replay and audit.
+- `tests/support/calendar-feed-atdd.ts:270` — `const allowed = ["membershipId"`: checks raw JWT status keys before mapper reconstruction.
+- `tests/integration/rls/calendar-feed.rls.test.ts:129` — `15.5-RLS008`: AC1/4/9 raw status/hash and direct-DML assertions; execution pending.
 
-### Isolated complete live calendar
+### Complete live snapshots and essential RFC correctness
 
-The public route has a cookie-free anon client and exact early middleware bypass.
-One SQL JSON result contains only current own materialized planned bookings; the
-encoder finishes before streaming, retaining IDs, UTC instants, Stockholm dates
-and octet-safe escaping without a row cap, recurrence expansion or date horizon.
+The exact public middleware boundary precedes authentication/cookies. Projection
+is complete and minimal; stable IDs, every projected-source revision and explicit
+fractional rounding produce a subscription snapshot without scheduling METHOD.
 
-- `middleware.ts:40` — `request.nextUrl.pathname`: bypasses only one feed token segment before auth/environment work.
-- `src/server/calendar-feed/public-feed.ts:19` — `eventsFromResult`: enforces the complete minimal event shape before serialization.
-- `src/features/calendar-feed/icalendar.ts:28` — `encodeCalendarFeed`: emits stable RFC5545 snapshots.
-- `tests/unit/features/calendar-feed/icalendar.test.ts:50` — `15.5-UNIT-004`: AC8 independent injection, UTF-8 and folding assertions passed.
+- `middleware.ts:40` — `request.nextUrl.pathname`: bypasses only the exact feed token segment.
+- `supabase/migrations/20261020220000_personal_calendar_feed.sql:228` — `'updatedAt',greatest`: covers mutable booking, role, job, customer and facility revisions.
+- `src/features/calendar-feed/icalendar.ts:40` — `export function encodeCalendarFeed`: serializes complete snapshots before streaming.
+- `tests/unit/features/calendar-feed/icalendar.test.ts:76` — `R1-05 positive`: AC3/8 independent positive fractional and boundary vectors passed.
 
-### Independent abuse limits and least privilege
+### Durable abuse admission and hardened restore ownership
 
-Both database-owned axes count independently and commit invalid/limited outcomes;
-projection faults preserve admitted counters without claiming a successful fetch.
-The global IP table has no subject association, and only sanitized Admin aggregates
-leave SQL. Hosted IP trust remains explicitly disabled until qualified by operations.
+Independent budgets keep admitted counters through projection cancellation without
+advancing last-use. Serial fixtures restore only their captured unknown-IP row;
+recovery and migration guards validate retained roles instead of repairing them.
 
-- `supabase/migrations/20261020220000_personal_calendar_feed.sql:180` — `Global cardinality`: bounds global windows before tenant authority and token counters.
-- `supabase/migrations/20261020220000_personal_calendar_feed.sql:79` — `calendar_feed_secret_internal`: filters dedicated keys without general owner Vault access.
-- `tests/integration/calendar-feed/public-feed.int.test.ts:72` — `15.5-API003`: AC5 independent 60/token boundary; HTTP/DB execution pending.
-- `tests/integration/rls/calendar-feed.rls.test.ts:167` — `15.5-RLS010`: AC4/9 effective owner, inherited ACL and filtered-helper assertions; execution pending.
+- `supabase/migrations/20261020220000_personal_calendar_feed.sql:239` — `exception when sqlstate '57014'`: keeps projection failure inside the counter transaction.
+- `tests/integration/calendar-feed/public-feed.int.test.ts:364` — `15.5-API018`: AC5/8 durable token/IP and last-use assertions; execution pending.
+- `ops/recovery/bootstrap-roles.sql:62` — `if not exists(select 1 from pg_roles where rolname='calendar_feed_owner')`: creates only the absent isolated restore owner.
+- `tests/unit/ops/pilot-operations.test.ts:220` — `recovery Compose sources`: guards seven attributes, exact grants and preserved recovery settings.
 
-### Exact-head verification and release operations
+### Isolated CI custody and honest evidence limits
 
-The separately allocated CI wrapper qualifies fresh local-stack identity, owns
-only captured child processes and an exact ephemeral Vault UUID, and retains
-primary/cleanup failures. Its injected unit evidence does not certify the live
-lane. The full development gate and delivery truth record remain Root-owned.
+Only captured child identities and one ephemeral Vault UUID belong to the wrapper.
+Settlement is memoized; abnormal browser teardown retains exact job custody, while
+privacy detection measures raw output in memory before sanitized records persist.
 
-- `scripts/ci/with-calendar-feed-runtime.mjs:41` — `validateStackIdentity`: qualifies isolated stack identity before key setup.
-- `scripts/ci/with-calendar-feed-runtime.mjs:226` — `runCalendarFeedRuntime`: orders key, fixed gate, owned child and cleanup lifecycles.
-- `scripts/ci/with-calendar-feed-runtime.mjs:66` — `createTelemetryObserver`: retains measured sanitized output observations only.
-- `docs/security/calendar-feed-operations.md:10` — `Hosted readiness`: records separately authorized key and trusted-IP prerequisites.
+- `scripts/ci/with-calendar-feed-runtime.mjs:284` — `export async function runCalendarFeedRuntime`: orders admission, key, fixed gate and cleanup.
+- `scripts/ci/with-calendar-feed-runtime.mjs:166` — `export function createOwnedGroupStopper`: memoizes settlement and verifies identity before signaling.
+- `scripts/ci/with-calendar-feed-runtime.mjs:88` — `export function createTelemetryObserver`: detects leaks before dropping non-allowlisted output.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:264` — `nonzero/null-signal nested browser loss`: requires retained key custody for abnormal completion.
 
-Evidence: the actual local commands/counts and contributor provenance are recorded
-in Implementation Verification above. Limits: middleware unit dependencies and
-bootstrap process/DB dependencies are synthetic; component coverage is SSR only;
-all 50 native integration/component and 11 actual browser bodies are unexecuted
-locally. Required full DB/RLS/HTTP, recovery, browser, independent High review and
-truth checks remain pending. No release matrix, live key, hosted IP trust,
-performance target or deployment readiness is claimed.
+Evidence: Round 1 fix verification above records 63 executed Node cases with zero
+failures/skips, focused static checks, production build and guard results. These
+are current working-tree checks before the fix commit. Bootstrap dependencies are
+synthetic; operations recovery assertions are static, not restore evidence.
+All 50 native Vitest and 11 browser bodies remain pending locally; API001 covers
+live label revisions, API018 cancellation/counters, RLS008 raw status privacy,
+and E2E-001 the essential actual production lifecycle. Existing ACL/RLS010,
+serial cleanup and full regressions also require exact-head CI. Round 1 completed,
+but targeted High follow-up, live lifecycle/recovery and final truth qualification
+are outstanding. No provider/device/visual/performance or release-ready claim;
+the unallocated exhaustive branch remains explicitly release-blocking deferred.

@@ -37,3 +37,16 @@ test("[P0] 15.5-UNIT-011 AC1 AC2 only confirmed current issuance exposes one-tim
   }
   assert.equal(subject.after(pending, "stale-response", { revision: 2, rawUrl: url }).rawUrl, undefined);
 });
+
+test("R1-07 authoritative post-commit refresh removes a concurrent revoke/rotation URL and retains current issuance", async () => {
+  const { pendingCalendarFeed, transitionCalendarFeed, reconcileCalendarFeedIssuance } = await import("@/features/calendar-feed/action-state");
+  const pending = pendingCalendarFeed(request());
+  const fresh = transitionCalendarFeed(pending, "confirmed-fresh", { revision: 4, attemptId: pending.request.attemptId, rawUrl: "https://calendar.invalid/one-time" });
+  for (const changed of [{ active: false, revision: 5 }, { active: true, revision: 5 }]) {
+    // A separate committed operation wins before this issuance's status response.
+    const refreshed = reconcileCalendarFeedIssuance(fresh, await Promise.resolve(changed));
+    assert.equal(refreshed.rawUrl, undefined); assert.equal(refreshed.status, "error");
+    assert.equal(refreshed.canMutate, true);
+  }
+  assert.equal(reconcileCalendarFeedIssuance(fresh, { active: true, revision: 4 }), fresh);
+});

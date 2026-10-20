@@ -9,3 +9,8 @@ export function transitionCalendarFeed(state: CalendarFeedActionState, event: st
   if (event === "reconciled-not-found") return { ...base, status: "retry", canMutate: false };
   return { ...base, status: event === "revoked" ? "revoked" : "error", canMutate: true };
 }
+
+/** A later authoritative status may supersede a just-committed issuance. */
+export function reconcileCalendarFeedIssuance(state: CalendarFeedActionState, current: { active: boolean; revision: number }): CalendarFeedActionState {
+  return state.rawUrl && (!current.active || current.revision !== state.confirmedRevision) ? transitionCalendarFeed(state, "superseded-response") : state;
+}

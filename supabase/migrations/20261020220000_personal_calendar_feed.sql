@@ -1,6 +1,26 @@
 -- Story 15.5 / ADR-B004. Capability hashes and sanitized lifecycle history only.
-create role calendar_feed_owner nologin noinherit nosuperuser nocreatedb nocreaterole noreplication nobypassrls;
-grant calendar_feed_owner to postgres;
+do $$
+declare feed_owner record;
+begin
+ if not exists(select 1 from pg_roles where rolname='calendar_feed_owner') then
+  create role calendar_feed_owner nologin noinherit nosuperuser nocreatedb nocreaterole noreplication nobypassrls;
+ end if;
+ select * into feed_owner from pg_roles where rolname='calendar_feed_owner';
+ if feed_owner.rolcanlogin or feed_owner.rolinherit or feed_owner.rolsuper or feed_owner.rolcreatedb
+    or feed_owner.rolcreaterole or feed_owner.rolreplication or feed_owner.rolbypassrls then
+  raise exception 'calendar_feed_owner is not hardened';
+ end if;
+ -- Fail closed for retained grants; do not repair privileged or runtime roles.
+ if exists(select 1 from pg_auth_members m where m.member=feed_owner.oid
+   or (m.roleid=feed_owner.oid and (m.member<>(select oid from pg_roles where rolname='postgres') or m.admin_option))) then
+  raise exception 'calendar_feed_owner has unexpected membership';
+ end if;
+ if not exists(select 1 from pg_roles where rolname='postgres') then
+  raise exception 'calendar feed ownership principal absent';
+ end if;
+ grant calendar_feed_owner to postgres with admin false;
+end
+$$;
 grant usage,create on schema public to calendar_feed_owner;
 grant usage on schema auth,extensions to calendar_feed_owner;
 grant execute on function auth.uid() to calendar_feed_owner;
@@ -47,9 +67,9 @@ grant select(tenant_id,membership_id,role) on public.membership_roles to calenda
 grant select(id,tenant_id,membership_id,archived_at) on public.person_profiles to calendar_feed_owner;
 grant select(tenant_id,booking_id,person_profile_id) on public.booking_assignees to calendar_feed_owner;
 grant select(id,tenant_id,starts_at,ends_at,all_day,updated_at,status,work_role_id,job_id,customer_id,facility_id) on public.bookings to calendar_feed_owner;
-grant select(id,tenant_id,title,customer_id,facility_id) on public.jobs to calendar_feed_owner;
-grant select(id,tenant_id,display_name) on public.customers,public.work_roles to calendar_feed_owner;
-grant select(id,tenant_id,address_line1,address_line2,postal_code,city) on public.facilities to calendar_feed_owner;
+grant select(id,tenant_id,title,customer_id,facility_id,updated_at) on public.jobs to calendar_feed_owner;
+grant select(id,tenant_id,display_name,updated_at) on public.customers,public.work_roles to calendar_feed_owner;
+grant select(id,tenant_id,address_line1,address_line2,postal_code,city,updated_at) on public.facilities to calendar_feed_owner;
 grant insert(tenant_id,actor_user_id,command,event_type,target_type,target_id,correlation_id,metadata) on public.audit_events to calendar_feed_owner;
 create policy calendar_feed_owner_tenants on public.tenants for select to calendar_feed_owner using(true);
 create policy calendar_feed_owner_memberships on public.tenant_memberships for select to calendar_feed_owner using(true);
@@ -205,7 +225,7 @@ begin
  -- Projection faults roll back only their subtransaction; admitted abuse counters
  -- stay durable and no successful-use timestamp is written for a failed feed.
  begin
- select coalesce(jsonb_agg(jsonb_strip_nulls(jsonb_build_object('id',b.id,'startsAt',b.starts_at,'endsAt',b.ends_at,'allDay',b.all_day,'updatedAt',b.updated_at,
+ select coalesce(jsonb_agg(jsonb_strip_nulls(jsonb_build_object('id',b.id,'startsAt',b.starts_at,'endsAt',b.ends_at,'allDay',b.all_day,'updatedAt',greatest(b.updated_at,w.updated_at,j.updated_at,c.updated_at,f.updated_at),
   'title',coalesce(nullif(w.display_name,''),'Bokning'),'jobLabel',j.title,'customerLabel',c.display_name,
   'location',nullif(concat_ws(', ',nullif(f.address_line1,''),nullif(f.address_line2,''),nullif(concat_ws(' ',nullif(f.postal_code,''),nullif(f.city,'')),'')),''))) order by b.starts_at,b.id),'[]'::jsonb) into events
  from public.bookings b
@@ -216,7 +236,7 @@ begin
  where b.tenant_id=token.tenant_id and b.status='planned' and exists(
   select 1 from public.booking_assignees a join public.person_profiles p on p.id=a.person_profile_id and p.tenant_id=a.tenant_id
   where a.tenant_id=b.tenant_id and a.booking_id=b.id and p.membership_id=token.membership_id and p.archived_at is null);
- exception when others then return jsonb_build_object('status',503); end;
+ exception when sqlstate '57014' or others then return jsonb_build_object('status',503); end;
  update public.calendar_feed_tokens set last_used_at=now_at,usage_count=least(usage_count+1,9007199254740991) where id=token.id;
  return jsonb_build_object('status',200,'events',events);
 end $$;

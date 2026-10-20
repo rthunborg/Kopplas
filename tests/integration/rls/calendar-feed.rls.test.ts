@@ -141,6 +141,7 @@ describe("15.5 exact self authority, raw SQL boundary and least privilege", () =
       for (const caller of ["own", "admin", "planner"] as const) {
         const status = await fx.status(caller);
         const serialized = JSON.stringify(status.publicDto);
+        expect(Object.keys(status.publicDto).sort()).toEqual(["membershipId", "active", "revision", "lastUsedAt", "usageCount", "attemptOutcome", "attemptAction", "attemptRevision"].sort());
         expect(serialized).not.toContain(before.tokens[0].hash);
         expect(serialized).not.toContain(fx.subjects.peer.membershipId);
       }

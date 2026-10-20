@@ -166,6 +166,13 @@ test.describe("15.5 Kalenderprenumeration essential production-host", () => {
       await expect(page).toHaveURL(/\/settings\/calendar$/);
       await expect(page.getByRole("heading", { name: calendarNames.title, exact: true })).toHaveCount(1);
       await expect(calendarUI(page).create).toHaveCount(1);
+      await f.signIn("seller");
+      await page.goto("/dashboard");
+      await page.getByRole("button", { name: "Profil", exact: true }).click();
+      await expect(page.getByRole("link", { name: "Min kalender", exact: true })).toHaveCount(0);
+      await expect(page.getByRole("link", { name: "Notisinställningar", exact: true })).toBeVisible();
+      await page.goto("/settings/calendar");
+      await expect(calendarUI(page).create).toHaveCount(0);
     });
   });
 

@@ -42,6 +42,17 @@ describe("15.5 public capability HTTP, projection and independent abuse budgets"
       expect(events[0].properties).not.toHaveProperty("ATTENDEE");
       expect(events[0].properties).not.toHaveProperty("ORGANIZER");
       expect(events[0].properties).not.toHaveProperty("URL");
+      let revision = 2031;
+      for (const source of ["work_roles", "jobs", "customers", "facilities"] as const) {
+        const updatedAt = `${revision}-01-01T12:00:00Z`, label = `Changed ${source}`;
+        await fx.editProjectedSource(own.id, source, label, updatedAt);
+        const edited = calendarEvents((await fx.http(url)).body)[0];
+        expect(edited.uid).toBe(events[0].uid);
+        expect(source === "facilities" ? edited.location : edited.summary).toContain(label);
+        expect(edited.properties["DTSTAMP"]).toEqual([`${revision}0101T120000Z`]);
+        expect(edited.properties["LAST-MODIFIED"]).toEqual([`${revision}0101T120000Z`]);
+        revision++;
+      }
     });
   });
 
@@ -354,8 +365,8 @@ describe("15.5 public capability HTTP, projection and independent abuse budgets"
     await withCalendarFeedFixture("serial-public", async fx => {
       await fx.seedBookings(Array.from({ length: 1_001 }, () => bookingSeed()));
       const url = issuedUrl(await fx.manage("own", lifecycle("create", 0)));
-      for (const stage of ["projection-after-first-page", "counter-write"] as const) {
-        const before = await fx.serial.counters(url, fx.isolatedTrustedIp);
+      for (const stage of ["projection-after-first-page", "projection-query-canceled", "counter-write"] as const) {
+        const before = await fx.serial.counters(url, null);
         const receipt = await fx.serial.withFault({ tenantId: fx.subjects.own.tenantId,
           attemptId: randomUUID(), correlationId: randomUUID(), stage }, () => fx.http(url));
         expect(receipt.stageObserved).toBe(true); expect(receipt.ownedObjectsRemaining).toBe(0);
@@ -364,8 +375,10 @@ describe("15.5 public capability HTTP, projection and independent abuse budgets"
         expect(receipt.result.body).not.toContain("BEGIN:VEVENT");
         expect(receipt.result.body).not.toContain("SQL");
         expect(receipt.result.headers["cache-control"]).toContain("no-store");
-        if (stage === "projection-after-first-page") {
-          expect((await fx.serial.counters(url, fx.isolatedTrustedIp)).token).toBe(before.token + 1);
+        if (stage !== "counter-write") {
+          expect(receipt.sqlstate).toBe(stage === "projection-query-canceled" ? "57014" : "PT555");
+          expect((await fx.serial.counters(url, null)).ip).toBe(before.ip + 1);
+          expect((await fx.serial.counters(url, null)).token).toBe(before.token + 1);
           expect((await fx.status("own")).usageCount).toBe(0);
           expect((await fx.status("own")).lastUsedAt).toBeNull();
         }

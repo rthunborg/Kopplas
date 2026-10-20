@@ -1,12 +1,12 @@
 /** Disposable GitHub-hosted CI only. This is not local resource-launch authority. */
 import { spawn, execFile } from "node:child_process";
-import { promisify } from "node:util";
+import { promisify, stripVTControlCharacters } from "node:util";
 import { randomBytes, randomUUID } from "node:crypto";
 import { readdir, stat, realpath, mkdtemp, appendFile, writeFile, readFile, readlink } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { resolve, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { createServer } from "node:net";
+import { createServer, isIP } from "node:net";
 import pg from "pg";
 
 export const INTEGRATION_ARGS = Object.freeze(["run", "test:int", "--reporter=default", "--reporter=github-actions", "--reporter=json", "--outputFile=test-results/full-integration.json"]);
@@ -62,18 +62,43 @@ export function validateStackIdentity({ db, gateway, checkoutTime, now, status }
   }
 }
 
+/** Recognize only the exact non-request Next startup address formats. */
+function isSafeInfrastructureAddress(line) {
+  return /^\s*(?:\[WebServer\]\s*)?- (?:Local|Network):\s+http:\/\/127\.0\.0\.1:(?:3100|3195)\s*$/.test(stripVTControlCharacters(line));
+}
+
+/** Inspect raw output in memory before dropping it; never return its contents. */
+export function hasSensitiveOutput(line, { keyId, secret, knownValues = /** @type {string[]} */ ([]) }) {
+  if ([keyId, secret, ...knownValues].some(value => value && line.includes(value))) return true;
+  if (/\/calendar\/feed\/[A-Za-z0-9_%=-]+|x-vercel-forwarded-for|["']?(?:proof|signature|tokenHash|ipHash)["']?\s*[:=]/i.test(line)) return true;
+  if (/(?<![a-f0-9])[a-f0-9]{64}(?![a-f0-9])/i.test(line)) return true;
+  // A capability or base64-encoded SHA256 proof has exactly 32 canonical bytes.
+  for (const match of line.matchAll(/(?<![A-Za-z0-9+/_-])[A-Za-z0-9+/_-]{43}=?(?![A-Za-z0-9+/_=-])/g)) {
+    const raw = match[0];
+    const bytes = Buffer.from(raw, "base64url");
+    if (bytes.length === 32 && [bytes.toString("base64url"), bytes.toString("base64")].includes(raw)) return true;
+  }
+  if (isSafeInfrastructureAddress(line)) return false;
+  for (const match of line.matchAll(/(?<![\d.])(?:\d{1,3}\.){3}\d{1,3}(?![\d.])/g)) if (isIP(match[0]) === 4) return true;
+  for (const match of line.matchAll(/(?<![a-f0-9:])(?:[a-f0-9]{0,4}:){2,}[a-f0-9:.]*(?:%[a-z0-9_.-]+)?/gi)) if (isIP(match[0]) === 6) return true;
+  return false;
+}
+
 /** Never return/persist raw lines. Detection runs before filtering. */
-export function createTelemetryObserver({ keyId, secret, persist }) {
+export function createTelemetryObserver({ keyId, secret, persist, knownValues = /** @type {string[]} */ ([]) }) {
   let responseCount = 0, sensitiveOutputCount = 0;
   const observation = () => persist(JSON.stringify({ event: "calendar_feed.runtime_observation", responseCount, sensitiveOutputCount, sensitiveOutputDetected: sensitiveOutputCount !== 0 }) + "\n");
   return async (line) => {
-    if (line.includes(secret) || line.includes(keyId) || /\/calendar\/feed\/[A-Za-z0-9_%=-]+|x-vercel-forwarded-for|"(?:proof|signature|tokenHash|ipHash)"\s*:/i.test(line)) {
+    let record;
+    try { record = JSON.parse(line); } catch { /* Unstructured output is still inspected below. */ }
+    const validResponse = record !== null && typeof record === "object" && !Array.isArray(record)
+      && Object.keys(record).sort().join(",") === "event,status" && record.event === "calendar_feed.response" && [200, 404, 429, 503].includes(record.status);
+    const unexpectedResponse = record?.event === "calendar_feed.response" && !validResponse;
+    if (hasSensitiveOutput(line, { keyId, secret, knownValues }) || unexpectedResponse) {
       sensitiveOutputCount++;
       await observation();
     }
-    let record;
-    try { record = JSON.parse(line); } catch { return; }
-    if (Object.keys(record ?? {}).sort().join(",") !== "event,status" || record.event !== "calendar_feed.response" || ![200, 404, 429, 503].includes(record.status)) return;
+    if (!validResponse) return;
     responseCount++;
     await persist(JSON.stringify({ event: record.event, status: record.status }) + "\n");
     await observation();
@@ -127,8 +152,56 @@ async function bounded(promise, ms, code, signal) {
   } finally { clearTimeout(timer); signal?.removeEventListener("abort", onAbort); }
 }
 
+async function processIdentity(pid) {
+  if (!pid) return null;
+  try {
+    const raw = await readFile(`/proc/${pid}/stat`, "utf8");
+    const tail = raw.slice(raw.lastIndexOf(")") + 2).trim().split(/\s+/);
+    if (!/^\d+$/.test(tail[19] ?? "")) fail("child-identity-unverified");
+    return { pid, group: Number(tail[2]), startTime: tail[19] };
+  } catch (error) { if (error.code === "ENOENT") return null; fail("child-identity-unverified"); }
+}
+
+/** One settlement promise owns all signals. A numeric group alone grants nothing. */
+export function createOwnedGroupStopper({ pid, done, capturedIdentity, readIdentity, groupExists, signalGroup, settleOutput, now = Date.now, sleep = delay }) {
+  let settlement;
+  const signalVerified = async signal => {
+    const original = await capturedIdentity;
+    const current = await readIdentity(pid);
+    if (!original || !current || original.pid !== pid || current.pid !== pid || original.group !== pid || current.group !== pid
+      || original.startTime !== current.startTime) fail("child-identity-unverified");
+    signalGroup(signal);
+  };
+  const waitUntilGone = async ms => {
+    const deadline = now() + ms;
+    while (groupExists() && now() < deadline) await sleep(50);
+  };
+  return () => {
+    settlement ??= (async () => {
+      let forced = false;
+      if (groupExists()) {
+        // Installed Playwright handles SIGINT by awaiting task teardown. Any
+        // later signal requires the same captured Linux process start time.
+        await signalVerified("SIGINT");
+        await waitUntilGone(15_000);
+        if (groupExists()) { forced = true; await signalVerified("SIGTERM"); }
+        await waitUntilGone(5_000);
+        if (groupExists()) await signalVerified("SIGKILL");
+        await waitUntilGone(5_000);
+        if (groupExists()) fail("child-custody-unverified");
+      }
+      const result = await bounded(done, 5_000, "child-settle-unverified");
+      await settleOutput();
+      return { forced, signal: result.signal };
+    })();
+    return settlement;
+  };
+}
+
 function launchOwned(command, args, env, cwd, observe) {
   const child = spawn(command, args, { cwd, env, detached: true, shell: false, stdio: ["ignore", "pipe", "pipe"] });
+  const capturedIdentity = processIdentity(child.pid);
+  capturedIdentity.catch(() => undefined); // The settlement path preserves failure.
   // Register listeners immediately; neither spawn errors nor output escape to raw logs.
   let output = Promise.resolve();
   for (const stream of [child.stdout, child.stderr]) {
@@ -152,6 +225,10 @@ function launchOwned(command, args, env, cwd, observe) {
     if (!child.pid) return false;
     try { process.kill(-child.pid, 0); return true; } catch (error) { if (error.code === "ESRCH") return false; throw new RuntimeFailure("child-custody-unverified"); }
   };
+  const stop = createOwnedGroupStopper({ pid: child.pid, done, capturedIdentity, readIdentity: processIdentity, groupExists,
+    signalGroup: signal => {
+      try { process.kill(-child.pid, signal); } catch (error) { if (error.code !== "ESRCH") fail("child-signal-unverified"); }
+    }, settleOutput: () => output });
   return {
     done,
     async ownsListener(port) {
@@ -162,26 +239,7 @@ function launchOwned(command, args, env, cwd, observe) {
         return ownsListenerRecord(port, links, await readFile("/proc/net/tcp", "utf8"));
       } catch { return false; }
     },
-    async stop() {
-      let forced = false;
-      if (groupExists()) {
-        // Playwright's SIGINT task cancellation awaits its separate webServer
-        // process group. A forced runner exit cannot prove that teardown.
-        process.kill(-child.pid, "SIGINT");
-        const deadline = Date.now() + 15_000;
-        while (groupExists() && Date.now() < deadline) await delay(50);
-        if (groupExists()) { forced = true; process.kill(-child.pid, "SIGTERM"); }
-        const termDeadline = Date.now() + 5_000;
-        while (groupExists() && Date.now() < termDeadline) await delay(50);
-        if (groupExists()) process.kill(-child.pid, "SIGKILL");
-        const killDeadline = Date.now() + 5_000;
-        while (groupExists() && Date.now() < killDeadline) await delay(50);
-        if (groupExists()) fail("child-custody-unverified");
-      }
-      const result = await bounded(done, 5_000, "child-settle-unverified");
-      await output;
-      return { forced, signal: result.signal };
-    },
+    stop,
   };
 }
 
@@ -228,20 +286,28 @@ export async function runCalendarFeedRuntime({ mode, env = process.env, platform
     childExitCodes: /** @type {(number|null)[]} */ ([]), keyDeleted: false, dbClosed: false,
     failures: /** @type {string[]} */ ([]),
     custody: /** @type {null | {owner:string, job:string|undefined, vaultUuid:string|null, ownedName:string|null, expiry:string, nextAction:string, resumeCondition:string}} */ (null) };
-  const children = [];
+  const children = new Set();
   let db, keyUuid, ownedName, transactionOpen = false, createUncertain = false, browserTeardownUnverified = false;
   const abort = new AbortController();
   const deps = { ...defaultDependencies(env, cwd), ...injected };
   let unregister = () => undefined;
   const checkSignal = () => { if (abort.signal.aborted) fail("interrupted"); };
-  const launch = (command, args, childEnv, observer) => { checkSignal(); const handle = deps.launch(command, [...args], childEnv, observer); children.push(handle); return handle; };
+  const launch = (command, args, childEnv, observer) => { checkSignal(); const handle = deps.launch(command, [...args], childEnv, observer); children.add(handle); return handle; };
   const run = async (command, args, childEnv, observer, timeout) => {
     const handle = launch(command, args, childEnv, observer);
-    const result = await bounded(handle.done, timeout, "child-timeout", abort.signal);
+    let result;
+    try { result = await bounded(handle.done, timeout, "child-timeout", abort.signal); }
+    catch (error) { if (mode === "browser") browserTeardownUnverified = true; throw error; }
     receipt.childExitCodes.push(result.code);
-    if (result.code !== 0 || result.signal) fail("child-failed");
+    if (result.code !== 0 || result.signal) {
+      // pnpm can map a killed nested Playwright runner to nonzero/null signal.
+      // That is never independent proof of its detached server's teardown.
+      if (mode === "browser") browserTeardownUnverified = true;
+      fail("child-failed");
+    }
     const stopped = await handle.stop();
     if (mode === "browser" && (stopped?.forced || stopped?.signal)) { browserTeardownUnverified = true; fail("browser-server-teardown-unverified"); }
+    children.delete(handle); // Proven settlement cannot be signalled again later.
   };
   try {
     validateAdmission(mode, env, platform);
@@ -299,6 +365,7 @@ export async function runCalendarFeedRuntime({ mode, env = process.env, platform
       try {
         const stopped = await handle.stop();
         if (mode === "browser" && (stopped?.forced || stopped?.signal)) browserTeardownUnverified = true;
+        children.delete(handle);
       } catch { receipt.failures.push("owned-child-cleanup-failed"); }
     }
     if (browserTeardownUnverified && !receipt.failures.includes("browser-server-teardown-unverified")) receipt.failures.push("browser-server-teardown-unverified");

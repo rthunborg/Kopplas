@@ -135,7 +135,7 @@ export type CalendarBrowserFixture = {
    */
   expectedOwnEvents: SafeEvent[];
   expectedAbuse: { limitedRequests: number; spikes: number };
-  signIn: (identity: "montor" | "manager" | "admin") => Promise<void>;
+  signIn: (identity: "montor" | "manager" | "admin" | "seller") => Promise<void>;
   snapshot: () => Promise<PhysicalSnapshot>;
   /** Register actual action transport listener BEFORE triggering the UI action;
    * bind actual Next action input, never guess an /api endpoint or RPC payload.
@@ -253,7 +253,8 @@ export async function withCalendarBrowserFixture(
       const extraProfile = randomUUID(), privateNote = `PRIVATE-NOTE-${randomUUID()}`;
       const peerUser = fx.roleUnionUser;
       const [peerMember] = await adminQuery<{ id: string }>("select id from public.tenant_memberships where tenant_id=$1 and user_id=$2", [ownTenant, peerUser.id]);
-      const subjects = { montor: { user: fx.users.montor, membership: fx.ownProfile.membershipId, profile: fx.ownProfile.id },
+      const [sellerMember] = await adminQuery<{ id: string }>("select id from public.tenant_memberships where tenant_id=$1 and user_id=$2", [ownTenant, fx.users.saljare.id]);
+      const subjects = { seller: { user: fx.users.saljare, membership: sellerMember.id, profile: "" }, montor: { user: fx.users.montor, membership: fx.ownProfile.membershipId, profile: fx.ownProfile.id },
         manager: { user: fx.users.projektledare, membership: fx.coworkerProfile.membershipId, profile: fx.coworkerProfile.id },
         admin: { user: fx.base.adminA, membership: fx.adminProfile.membershipId, profile: fx.adminProfile.id } };
       let subject = subjects.montor;

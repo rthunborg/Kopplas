@@ -1,16 +1,28 @@
 import type { CalendarFeedEvent } from "./types";
 
-const stockholm = new Intl.DateTimeFormat("sv-SE", { timeZone: "Europe/Stockholm", year: "numeric", month: "2-digit", day: "2-digit" });
-function instant(value: string): Date {
-  if (!/^[0-9]{4}-\d\d-\d\dT(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:\.\d{1,6})?(?:Z|[+-](?:[01]\d|2[0-3]):[0-5]\d)$/.test(value) || value.startsWith("0000")) throw new Error("Calendar unavailable");
-  const day = new Date(`${value.slice(0,10)}T00:00:00Z`);
-  if (!Number.isFinite(day.getTime()) || day.toISOString().slice(0,10) !== value.slice(0,10)) throw new Error("Calendar unavailable");
-  const date = new Date(value);
-  if (!Number.isFinite(date.getTime())) throw new Error("Calendar unavailable");
-  return date;
+import { parseUtcInstant, formatUtcInstant, localDateForInstant } from "@/features/scheduling/time-zone";
+
+const second = BigInt(1000000);
+const lastSecond = parseUtcInstant("9999-12-31T23:59:59Z");
+function instant(value: string): bigint {
+  try { return parseUtcInstant(value); } catch { throw new Error("Calendar unavailable"); }
 }
-function utc(value: string): string { return instant(value).toISOString().slice(0, 19).replace(/[-:]/g, "") + "Z"; }
-function localDay(value: string): string { return stockholm.format(instant(value)).replaceAll("-", ""); }
+function floorSecond(value: bigint): bigint { return (value >= BigInt(0) ? value / second : (value - second + BigInt(1)) / second) * second; }
+function utc(value: bigint): string {
+  const formatted = formatUtcInstant(value);
+  if (!/^\d{4}-/.test(formatted) || formatted.startsWith("0000")) throw new Error("Calendar unavailable");
+  return formatted.slice(0,19).replace(/[-:]/g, "") + "Z";
+}
+/** RFC5545 has whole seconds. Expand outward, saturating the final supported
+ * second at year 9999; move start back one second if saturation collapses it. */
+function timedRange(start: bigint, end: bigint): [string, string] {
+  let projectedStart = floorSecond(start);
+  let projectedEnd = floorSecond(end) + (end % second === BigInt(0) ? BigInt(0) : second);
+  if (projectedEnd > lastSecond) projectedEnd = lastSecond;
+  if (projectedStart >= projectedEnd) projectedStart = projectedEnd - second;
+  return [utc(projectedStart), utc(projectedEnd)];
+}
+function localDay(value: bigint): string { return localDateForInstant(value).replaceAll("-", ""); }
 function escape(value: string): string {
   return value.replaceAll("\\", "\\\\").replace(/\r\n|\r|\n/g, "\\n").replaceAll(";", "\\;").replaceAll(",", "\\,").replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/g, "");
 }
@@ -26,14 +38,17 @@ function fold(value: string): string {
 }
 /** Full snapshots use materialized booking IDs; no recurrence re-expansion or horizon. */
 export function encodeCalendarFeed(events: readonly CalendarFeedEvent[]): string {
-  const lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Kopplas//Personal calendar//SV", "CALSCALE:GREGORIAN", "METHOD:PUBLISH"];
+  const lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Kopplas//Personal calendar//SV", "CALSCALE:GREGORIAN"];
   const seen = new Set<string>();
   for (const event of events) {
-    if (!event.id || /[\r\n]/.test(event.id) || seen.has(event.id) || instant(event.endsAt) <= instant(event.startsAt)) throw new Error("Calendar unavailable");
+    const start = instant(event.startsAt), end = instant(event.endsAt);
+    if (!event.id || /[\r\n]/.test(event.id) || seen.has(event.id) || end <= start) throw new Error("Calendar unavailable");
+    const [timedStart, timedEnd] = event.allDay ? ["", ""] : timedRange(start, end);
+    const stamp = utc(floorSecond(instant(event.updatedAt)));
     seen.add(event.id);
-    lines.push("BEGIN:VEVENT", `UID:${escape(event.id)}@bookings.kopplas`, `DTSTAMP:${utc(event.updatedAt)}`, `LAST-MODIFIED:${utc(event.updatedAt)}`,
-      event.allDay ? `DTSTART;VALUE=DATE:${localDay(event.startsAt)}` : `DTSTART:${utc(event.startsAt)}`,
-      event.allDay ? `DTEND;VALUE=DATE:${localDay(event.endsAt)}` : `DTEND:${utc(event.endsAt)}`,
+    lines.push("BEGIN:VEVENT", `UID:${escape(event.id)}@bookings.kopplas`, `DTSTAMP:${stamp}`, `LAST-MODIFIED:${stamp}`,
+      event.allDay ? `DTSTART;VALUE=DATE:${localDay(start)}` : `DTSTART:${timedStart}`,
+      event.allDay ? `DTEND;VALUE=DATE:${localDay(end)}` : `DTEND:${timedEnd}`,
       `SUMMARY:${escape([event.title, event.jobLabel, event.customerLabel].filter(Boolean).join(" – "))}`);
     if (event.location) lines.push(`LOCATION:${escape(event.location)}`);
     lines.push("END:VEVENT");

@@ -130,6 +130,7 @@ export type CalendarFixture = {
     splitSurvivingId: string; newOccurrenceIds: string[] }>;
   changeSeries(kind: "edit" | "exception" | "cancel" | "split", id: string): Promise<void>;
   setBooking(id: string, patch: Partial<BookingSeed>): Promise<void>;
+  editProjectedSource(id: string, source: "work_roles" | "jobs" | "customers" | "facilities", label: string, updatedAt: string): Promise<void>;
   setAssignments(id: string, subjects: SubjectName[]): Promise<void>;
   setAuthority(subject: SubjectName, patch: AuthorityPatch): Promise<void>;
   setProvisioningState(subject: SubjectName, state: string | null): Promise<void>;
@@ -157,10 +158,10 @@ export type SerialControls = {
     run: () => Promise<T>): Promise<T>;
   /** DB-clock fixture, not caller-signed windows/limits. Binding must prove real SQL time source. */
   withDatabaseTime<T>(iso: string, run: () => Promise<T>): Promise<T>;
-  counters(url: string, canonicalIp: string): Promise<{ token: number; ip: number; windowStart: string;
+  counters(url: string, canonicalIp: string | null): Promise<{ token: number; ip: number; windowStart: string;
     databaseNow: string; spikeCount: number; storedIpIsKeyedHash: boolean }>;
   withFault<T>(scope: { tenantId: string; attemptId: string; correlationId: string;
-    stage: "create-audit" | "rotate-audit" | "revoke-audit" | "projection-after-first-page" | "counter-write" },
+    stage: "create-audit" | "rotate-audit" | "revoke-audit" | "projection-after-first-page" | "projection-query-canceled" | "counter-write" },
     run: () => Promise<T>): Promise<{ result: T; stageObserved: boolean; sqlstate: string; ownedObjectsRemaining: number }>;
   loseCommittedResponse(subject: SubjectName, intent: LifecycleIntent): Promise<void>;
   barrier(scope: { tenantId: string; membershipId: string; attemptId: string;
@@ -194,7 +195,9 @@ export async function withCalendarFeedFixture<L extends Lane>(
         const extra = await seedRoleAwarePhaseAUsers(base.base); additionalUsers = extra.extraUsers;
         const fixture = await bindCalendarFixture(base, extra);
         const serial = lane === "row-isolated" ? {} : { serial: await calendarSerialControls(fixture) };
-        await run(Object.assign(fixture, serial) as FixtureByLane<L>);
+        const scenario = () => run(Object.assign(fixture, serial) as FixtureByLane<L>);
+        if (lane === "row-isolated") await scenario();
+        else await withOwnedUnknownWindow(fixture, scenario);
       } catch (error) { failure = error; }
       let cleanupFailure: unknown;
       try { await cleanupCalendarOwnedRows(base.tenantIds); } catch (error) { cleanupFailure = error; }
@@ -217,7 +220,7 @@ function redactFailure(error: unknown): Error {
 }
 
 type BoundFixture = CalendarFixture & { base: BookingFixture; clients: Record<SubjectName, TestServerClient>;
-  tenantIds: string[]; keyId: string; secret: string; currentRawFetch: Record<string, unknown> | null };
+  tenantIds: string[]; keyId: string; secret: string; pendingRequests: Set<Promise<unknown>>; currentRawFetch: Record<string, unknown> | null };
 const iso = (value: unknown) => value === null ? null : new Date(String(value)).toISOString();
 function normalizedRpc(result: { data: unknown; error: unknown }): RpcObservation {
   return { denied: !!result.error, rows: result.error ? [] : [result.data], sanitizedResult: result.error ? { denied: true } : { admitted: true } };
@@ -247,16 +250,30 @@ async function bindCalendarFixture(base: BookingFixture, extra: Awaited<ReturnTy
   const isolatedTrustedIp = `2001:db8:${randomPart}`;
   const readRows = async (table: string) => (await adminQuery<{ row: Record<string, unknown> }>(`select to_jsonb(t) row from public.${table} t where tenant_id=any($1::uuid[]) order by tenant_id,id`, [base.tenantIds])).map(row => row.row);
   const response = async (result: Response): Promise<FeedResponse> => ({ status: result.status, headers: Object.fromEntries(result.headers.entries()), body: await result.text() });
+  const pendingRequests = new Set<Promise<unknown>>();
+  function track<T>(request: Promise<T>): Promise<T> {
+    pendingRequests.add(request);
+    void request.then(() => pendingRequests.delete(request), () => pendingRequests.delete(request));
+    return request;
+  }
   const fixture: BoundFixture = {
-    base, clients, subjects, tenantIds: base.tenantIds, keyId:key.keyId,secret:key.secret,currentRawFetch:null,isolatedTrustedIp,
+    base, clients, subjects, pendingRequests, tenantIds: base.tenantIds, keyId:key.keyId,secret:key.secret,currentRawFetch:null,isolatedTrustedIp,
     manage: async (subject,intent) => {
       const result = await manageCalendarFeed(clients[subject] as never,{action:intent.action,revision:intent.expectedRevision,attemptId:intent.attemptId},intent.correlationId);
       if (result.issuedPath) trackedRaw.push(result.issuedPath.split("/").at(-1)!);
       return {outcome:result.outcome,revision:result.revision,issuedUrl:result.issuedPath?`${testOrigin()}${result.issuedPath}`:null};
     },
     status: async (subject,attemptId) => {
+      // Inspect the directly callable ordinary JWT RPC before the mapper can
+      // drop an accidentally added field. Errors never serialize raw payloads.
+      const { data, error } = await clients[subject].rpc("read_calendar_feed_status", { p_tenant_id: subjects[subject].tenantId, p_attempt_id: attemptId ?? null });
+      const allowed = ["membershipId", "active", "revision", "lastUsedAt", "usageCount", "attemptOutcome", "attemptAction", "attemptRevision"].sort();
+      if (error || !data || JSON.stringify(Object.keys(data).sort()) !== JSON.stringify(allowed)) throw new Error("Raw calendar status RPC field allowlist failed");
+      const serialized = JSON.stringify(data);
+      const physical = await adminQuery<{ token_hash: string }>("select token_hash from public.calendar_feed_tokens where tenant_id=any($1::uuid[]) and token_hash is not null", [base.tenantIds]);
+      if ([...trackedRaw, ...trackedProof, key.secret, isolatedTrustedIp, ...physical.map(row => row.token_hash)].some(value => value && serialized.includes(value)) || /calendar\/feed\//.test(serialized)) throw new Error("Raw calendar status RPC privacy failed");
       const status = await readCalendarFeedStatus(clients[subject] as never,subjects[subject].tenantId,attemptId);
-      return {...status,publicDto:{...status}};
+      return {...status,publicDto:data};
     },
     rawManage: async (name,intent,overrides={},attack) => {
       const subject = subjects[name === "anon" ? "own" : name], now = new Date();
@@ -328,6 +345,22 @@ async function bindCalendarFixture(base: BookingFixture, extra: Awaited<ReturnTy
       const row={...current,...patch};
       await adminQuery("update public.bookings set starts_at=$2,ends_at=$3,status=$4,all_day=$5,updated_at=$6 where id=$1 and tenant_id=$7",[id,row.startsAt,row.endsAt,row.status,row.allDay,row.updatedAt,subjects[row.subject].tenantId]);seedFacts.set(id,row);
     },
+    editProjectedSource: async (id,source,label,updatedAt) => {
+      const current=seedFacts.get(id); if(!current)throw new Error("Owned booking absent");
+      const refs={work_roles:"work_role_id",jobs:"job_id",customers:"customer_id",facilities:"facility_id"} as const;
+      const labels={work_roles:"display_name",jobs:"title",customers:"display_name",facilities:"address_line1"} as const;
+      if(!refs[source] || !/^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\dZ$/.test(updatedAt))throw new Error("Invalid owned projection edit");
+      await adminSession(async({query})=>{
+        await query("begin");try {
+          // Explicit source revisions are independent oracles, isolated to this
+          // fixture's rows; connection-local trigger suppression is rolled back.
+          await query("set local session_replication_role=replica");
+          const changed=await query(`update public.${source} s set ${labels[source]}=$3,updated_at=$4 from public.bookings b where b.id=$1 and b.tenant_id=$2 and s.tenant_id=b.tenant_id and s.id=b.${refs[source]} returning s.id`,[id,subjects[current.subject].tenantId,label,updatedAt]);
+          if(changed.length!==1)throw new Error("Owned projected source absent");
+          await query("commit");
+        }catch(error){await query("rollback");throw error;}
+      });
+    },
     setAssignments: async (id,names) => {
       const [row]=await adminQuery<{tenant_id:string}>("select tenant_id from public.bookings where id=$1 and tenant_id=any($2::uuid[])",[id,base.tenantIds]);if(!row)throw new Error("Owned booking absent");
       await adminQuery("delete from public.booking_assignees where booking_id=$1 and tenant_id=$2",[id,row.tenant_id]);
@@ -347,12 +380,12 @@ async function bindCalendarFixture(base: BookingFixture, extra: Awaited<ReturnTy
       const subject=subjects[name];await fixture.setAuthority(name,{membershipPresent:false});
       const [member]=await adminQuery<{id:string}>("insert into public.tenant_memberships(tenant_id,user_id,status,role) values($1,$2,'active','montor') returning id",[subject.tenantId,subject.userId]);subject.membershipId=member.id;subject.profileId=null;
     },
-    http: async (url,options={}) => {
+    http: (url,options={}) => track((async () => {
       const target=new URL(url);if(target.origin!==testOrigin())throw new Error("Non-owned calendar HTTP target rejected");
       for(const [name,value] of Object.entries(options.query??{}))target.searchParams.set(name,value);
       try{return await response(await fetch(target,{headers:options.headers,redirect:"manual",cache:"no-store"}));}catch{throw new Error("Calendar HTTP unavailable; request redacted");}
-    },
-    trustedFetch: async (url,ip) => response(await publicCalendarFeed(new URL(url).pathname.split("/").at(-1)!,new Headers(),{client:anon,trustedIp:ip})),
+    })()),
+    trustedFetch: (url,ip) => track((async () => response(await publicCalendarFeed(new URL(url).pathname.split("/").at(-1)!,new Headers(),{client:anon,trustedIp:ip})))()),
     physical: async () => {
       const raw=await readRows("calendar_feed_tokens"),audits=(await readRows("audit_events")).filter(row=>String(row.command).startsWith("calendar_feed."));
       audits.sort((a,b)=>Date.parse(String(a.created_at))-Date.parse(String(b.created_at)));
@@ -439,7 +472,7 @@ async function calendarAcl(): Promise<AclFacts> {
    (pg_has_role('anon',oid,'MEMBER') or pg_has_role('authenticated',oid,'MEMBER') or pg_has_role('service_role',oid,'MEMBER')) "assumableByJwtRoles",
    has_table_privilege(oid,'public.contacts','SELECT') "unrelatedTableRead",has_table_privilege(oid,'vault.decrypted_secrets','SELECT') "generalVaultRead"
    from pg_roles where rolname='calendar_feed_owner'`);
-  const allowed:Record<string,string[]>={tenants:["id"],tenant_memberships:["id","tenant_id","user_id","status","role"],membership_roles:["tenant_id","membership_id","role"],person_profiles:["id","tenant_id","membership_id","archived_at"],booking_assignees:["tenant_id","booking_id","person_profile_id"],bookings:["id","tenant_id","starts_at","ends_at","all_day","updated_at","status","work_role_id","job_id","customer_id","facility_id"],jobs:["id","tenant_id","title","customer_id","facility_id"],customers:["id","tenant_id","display_name"],work_roles:["id","tenant_id","display_name"],facilities:["id","tenant_id","address_line1","address_line2","postal_code","city"],calendar_feed_tokens:["*"],calendar_feed_ip_windows:["*"]};
+  const allowed:Record<string,string[]>={tenants:["id"],tenant_memberships:["id","tenant_id","user_id","status","role"],membership_roles:["tenant_id","membership_id","role"],person_profiles:["id","tenant_id","membership_id","archived_at"],booking_assignees:["tenant_id","booking_id","person_profile_id"],bookings:["id","tenant_id","starts_at","ends_at","all_day","updated_at","status","work_role_id","job_id","customer_id","facility_id"],jobs:["id","tenant_id","title","customer_id","facility_id","updated_at"],customers:["id","tenant_id","display_name","updated_at"],work_roles:["id","tenant_id","display_name","updated_at"],facilities:["id","tenant_id","address_line1","address_line2","postal_code","city","updated_at"],calendar_feed_tokens:["*"],calendar_feed_ip_windows:["*"]};
   const effective=await adminQuery<{table:string;column:string}>(`select c.relname "table",a.attname "column" from pg_class c join pg_namespace n on n.oid=c.relnamespace join pg_attribute a on a.attrelid=c.oid where n.nspname='public' and c.relkind in ('r','p') and a.attnum>0 and not a.attisdropped and has_column_privilege('calendar_feed_owner',c.oid,a.attname,'SELECT')`);
   owner.effectiveReadOutsideAllowedColumns=effective.some(row=>!allowed[row.table]?.some(column=>column==='*'||column===row.column));
   owner.filteredHelperOnly=!owner.generalVaultRead;
@@ -448,6 +481,33 @@ async function calendarAcl(): Promise<AclFacts> {
   const helperNames:Record<string,AclFacts["helpers"][number]["purpose"]>={calendar_feed_attestation_payload:"canonical",calendar_feed_verify_attestation_internal:"verifier",calendar_feed_secret_internal:"filtered-secret"};
   const helpers=await adminQuery<{name:string;jwtExecute:boolean;publicExecute:boolean;feedOwnerExecute:boolean;otherRoleInheritedExecute:boolean;source:string}>(`select p.proname name,(has_function_privilege('anon',p.oid,'EXECUTE') or has_function_privilege('authenticated',p.oid,'EXECUTE')) "jwtExecute",exists(select 1 from aclexplode(coalesce(p.proacl,acldefault('f',p.proowner))) a where grantee=0 and privilege_type='EXECUTE') "publicExecute",has_function_privilege('calendar_feed_owner',p.oid,'EXECUTE') "feedOwnerExecute",has_function_privilege('service_role',p.oid,'EXECUTE') "otherRoleInheritedExecute",p.prosrc source from pg_proc p where p.pronamespace='public'::regnamespace and p.proname=any($1::text[])`,[Object.keys(helperNames)]);
   return {tables,owner,functions:functions.map(fn=>({...fn,purpose:definitions[fn.name]})),helpers:helpers.map(helper=>({...helper,purpose:helperNames[helper.name],exactConfiguredKeyFilter:helper.name!=="calendar_feed_secret_internal"||helper.source.includes("name='calendar_feed_attestation_' || p_key_id")})),ipColumns:(await adminQuery<{column_name:string}>("select column_name from information_schema.columns where table_schema='public' and table_name='calendar_feed_ip_windows'")).map(row=>row.column_name)};
+}
+
+/** Both allocated files are serial. Never expose the shared unknown bucket to
+ * a row-isolated fixture; restore its exact prior state after requests settle. */
+async function withOwnedUnknownWindow<T>(fx: BoundFixture, run: () => Promise<T>): Promise<T> {
+  const ipHash=hashFeedIp(null,fx.secret);
+  const [before]=await adminQuery<{window_start:string;request_count:string}>("select window_start::text,request_count::text from public.calendar_feed_ip_windows where ip_hash=$1",[ipHash]);
+  let result:T|undefined;const errors:Error[]=[];
+  try {
+    await adminQuery("delete from public.calendar_feed_ip_windows where ip_hash=$1",[ipHash]);
+    result=await run();
+  }catch(error){errors.push(redactFailure(error));}
+  while(fx.pendingRequests.size) {
+    const requests=await Promise.allSettled([...fx.pendingRequests]);
+    for(const request of requests)if(request.status==="rejected")errors.push(new Error("Owned pending calendar request failed"));
+  }
+  try {
+    await adminSession(async({query})=>{
+      await query("begin");try {
+        await query("delete from public.calendar_feed_ip_windows where ip_hash=$1",[ipHash]);
+        if(before)await query("insert into public.calendar_feed_ip_windows(ip_hash,window_start,request_count) values($1,$2,$3)",[ipHash,before.window_start,before.request_count]);
+        await query("commit");
+      }catch(error){await query("rollback");throw error;}
+    });
+  }catch{errors.push(new Error("Owned unknown-IP window restore failed"));}
+  if(errors.length)throw new AggregateError(errors,"Unknown-IP scenario and cleanup outcomes retained; values redacted");
+  return result as T;
 }
 
 async function calendarSerialControls(fx: BoundFixture): Promise<SerialControls> {
@@ -494,14 +554,15 @@ async function calendarSerialControls(fx: BoundFixture): Promise<SerialControls>
 
 async function calendarFault<T>(scope: Parameters<SerialControls["withFault"]>[0],run:()=>Promise<T>): Promise<{result:T;stageObserved:boolean;sqlstate:string;ownedObjectsRemaining:number}> {
   const suffix=randomUUID().replaceAll("-",""),fn=`cf_fault_${suffix}`,seq=`cf_seen_${suffix}`,trigger=`cf_trigger_${suffix}`;
-  const projection=scope.stage==="projection-after-first-page";
+  const projection=scope.stage==="projection-after-first-page"||scope.stage==="projection-query-canceled";
+  const sqlstate=scope.stage==="projection-query-canceled"?"57014":"PT555";
   const table=scope.stage.endsWith("audit")?"audit_events":"calendar_feed_tokens";
   let definition:string|undefined,result:T|undefined,observed=false;const failures:Error[]=[];
   try {
     await adminSession(async({query})=>{
       await query("begin");try{
         await query(`create sequence public.${seq}`);
-        await query(`create function public.${fn}() returns ${projection?"text":"trigger"} language plpgsql security definer set search_path='' as $$ begin ${projection?"":`if new.tenant_id<>'${scope.tenantId}'::uuid ${table==="audit_events"?`or new.correlation_id<>'${scope.correlationId}'::uuid or new.metadata->>'attemptId'<>'${scope.attemptId}'`:""} then return new; end if;`} perform nextval('public.${seq}'); raise exception 'owned calendar fault' using errcode='PT555'; end $$`);
+        await query(`create function public.${fn}() returns ${projection?"text":"trigger"} language plpgsql security definer set search_path='' as $$ begin ${projection?"":`if new.tenant_id<>'${scope.tenantId}'::uuid ${table==="audit_events"?`or new.correlation_id<>'${scope.correlationId}'::uuid or new.metadata->>'attemptId'<>'${scope.attemptId}'`:""} then return new; end if;`} perform nextval('public.${seq}'); raise exception 'owned calendar fault' using errcode='${sqlstate}'; end $$`);
         await query(`revoke all on function public.${fn}() from public,anon,authenticated,service_role`);
         await query(`grant execute on function public.${fn}() to calendar_feed_owner`);await query("commit");
       }catch(error){await query("rollback");throw error;}
@@ -515,7 +576,7 @@ async function calendarFault<T>(scope: Parameters<SerialControls["withFault"]>[0
   } catch {failures.push(new Error("Owned fault or assertion failed; values redacted"));}
   for(const action of [async()=>{if(definition)await adminQuery(definition);else await adminQuery(`drop trigger if exists ${trigger} on public.${table}`);},async()=>{await adminQuery(`drop function if exists public.${fn}()`);},async()=>{await adminQuery(`drop sequence if exists public.${seq}`);},async()=>{const rows=await adminQuery("select 1 from pg_proc where proname=$1 union all select 1 from pg_class where relname=$2 union all select 1 from pg_trigger where tgname=$3",[fn,seq,trigger]);if(rows.length)throw new Error("Owned catalog objects remain");}])try{await action();}catch{failures.push(new Error("Owned fault cleanup failed; object values redacted"));}
   if(failures.length)throw new AggregateError(failures,"Fault primary and cleanup outcomes retained");
-  return {result:result as T,stageObserved:observed,sqlstate:observed?"PT555":"",ownedObjectsRemaining:0};
+  return {result:result as T,stageObserved:observed,sqlstate:observed?sqlstate:"",ownedObjectsRemaining:0};
 }
 
 async function calendarBarrier(scope: Parameters<SerialControls["barrier"]>[0]): ReturnType<SerialControls["barrier"]> {

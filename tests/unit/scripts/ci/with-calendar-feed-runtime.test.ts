@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { INTEGRATION_ARGS, BROWSER_ARGS, FEED_FUNCTIONS, validateAdmission, validateStackIdentity, createTelemetryObserver, ownsListenerRecord, waitForOwnedHttp, runCalendarFeedRuntime } from "../../../../scripts/ci/with-calendar-feed-runtime.mjs";
+import { INTEGRATION_ARGS, BROWSER_ARGS, FEED_FUNCTIONS, validateAdmission, validateStackIdentity, createTelemetryObserver, hasSensitiveOutput, createOwnedGroupStopper, ownsListenerRecord, waitForOwnedHttp, runCalendarFeedRuntime } from "../../../../scripts/ci/with-calendar-feed-runtime.mjs";
 
 const env = {
   NODE_ENV: "test" as const,
@@ -157,6 +157,40 @@ test("DB mode fixes full argv, builds with the child's public config and settles
   assert.match(deletion!.sql, /where id=\$1::uuid and name=\$2/);
   assert.deepEqual(deletion!.params, [keyUuid, `calendar_feed_attestation_ci_${keyId}`]);
   assert.ok(result.events.indexOf("delete") < result.events.indexOf("db-closed"));
+  for (const index of [0, 1, 2]) assert.equal(result.events.filter(event => event === `settled:${index}`).length, 1);
+});
+
+test("settlement is memoized before concurrent or much later stop calls can see a reused group", async () => {
+  let exists = true, probes = 0, outputSettles = 0;
+  const signals: string[] = [];
+  let current = { pid: 125, group: 125, startTime: "1000" };
+  const stop = createOwnedGroupStopper({ pid: 125, done: Promise.resolve({ code: 0, signal: null }), capturedIdentity: Promise.resolve({ ...current }),
+    readIdentity: async () => current, groupExists: () => { probes++; return exists; }, signalGroup: (signal: string) => { signals.push(signal); exists = false; },
+    settleOutput: async () => { outputSettles++; }, now: () => 0, sleep: async () => undefined });
+  const first = stop(), simultaneous = stop();
+  assert.equal(first, simultaneous);
+  await first;
+  const provenProbes = probes;
+  exists = true; current = { pid: 125, group: 125, startTime: "9000" }; // A foreign process later owns the same numeric group.
+  assert.equal(stop(), first); await stop();
+  assert.equal(probes, provenProbes); assert.equal(outputSettles, 1); assert.deepEqual(signals, ["SIGINT"]);
+});
+
+test("a reused leader before initial or escalation signal grants no foreign signal authority", async () => {
+  for (const replaceAfterInt of [false, true]) {
+    let time = 0, identityReads = 0;
+    const signals: string[] = [];
+    const owned = { pid: 125, group: 125, startTime: "1000" };
+    const stop = createOwnedGroupStopper({ pid: 125, done: new Promise(() => undefined), capturedIdentity: Promise.resolve(owned),
+      readIdentity: async () => { identityReads++; return { ...owned, startTime: replaceAfterInt && identityReads === 1 ? "1000" : "9000" }; },
+      groupExists: () => true, signalGroup: (signal: string) => { signals.push(signal); }, settleOutput: async () => undefined,
+      now: () => time, sleep: async (ms: number) => { time += ms; } });
+    await assert.rejects(stop(), /child-identity-unverified/);
+    const readsAtFailure = identityReads;
+    await assert.rejects(stop(), /child-identity-unverified/);
+    assert.equal(identityReads, readsAtFailure);
+    assert.deepEqual(signals, replaceAfterInt ? ["SIGINT"] : []);
+  }
 });
 
 test("browser mode runs only existing smoke and awaits its server group before key deletion", async () => {
@@ -227,6 +261,20 @@ test("forced browser runner cleanup cannot claim the detached Playwright server 
   assert.ok(!result.queries.some(call => call.sql.startsWith("delete")));
 });
 
+test("nonzero/null-signal nested browser loss retains key custody despite a settled pnpm group", async () => {
+  // This injected handle is pnpm only: no captured handle proves settlement of
+  // the nested Playwright server, even when pnpm itself stopped cleanly.
+  const result = await runFixture("browser", harness({ failChild: 0 }));
+  assert.deepEqual(result.receipt.childExitCodes, [17]);
+  assert.equal(result.exitCode, 1); assert.equal(result.receipt.keyDeleted, false);
+  assert.ok(result.receipt.failures.includes("child-failed"));
+  assert.ok(result.receipt.failures.includes("browser-server-teardown-unverified"));
+  assert.ok(result.events.includes("settled:0"));
+  assert.equal(result.receipt.custody?.vaultUuid, keyUuid);
+  assert.equal(result.receipt.custody?.ownedName, `calendar_feed_attestation_ci_${keyId}`);
+  assert.ok(!result.queries.some(call => call.sql.startsWith("delete")));
+});
+
 test("uncertain create plus rollback failure retains both failures and named custody", async () => {
   const result = await runFixture("browser", harness({ query(call) { if (call.sql.includes("vault.create_secret") || call.sql === "rollback") throw new Error("private failure"); return undefined; } }));
   assert.equal(result.exitCode, 1);
@@ -238,7 +286,6 @@ test("telemetry persists actual allowlisted markers and measured leak flags, nev
   const persisted: string[] = [];
   const observe = createTelemetryObserver({ keyId: "owned-key-id", secret: "owned-private-key", persist: async (line: string) => { persisted.push(line); } });
   await observe("Next banner");
-  await observe('{"event":"calendar_feed.response","status":200,"url":"private"}');
   assert.equal(persisted.length, 0);
   await observe('{"event":"calendar_feed.response","status":200}');
   assert.deepEqual(JSON.parse(persisted[1]), { event: "calendar_feed.runtime_observation", responseCount: 1, sensitiveOutputCount: 0, sensitiveOutputDetected: false });
@@ -247,4 +294,36 @@ test("telemetry persists actual allowlisted markers and measured leak flags, nev
   await observe('{"event":"calendar_feed.response","status":404}');
   assert.deepEqual(JSON.parse(persisted[4]), { event: "calendar_feed.runtime_observation", responseCount: 2, sensitiveOutputCount: 1, sensitiveOutputDetected: true });
   assert.ok(!persisted.join("").includes("sensitive-capability")); assert.ok(!persisted.join("").includes("owned-private-key"));
+});
+
+test("standalone and unexpected JSON sensitive values are detected before filtering without retaining them", async () => {
+  const raw = Buffer.alloc(32, 29).toString("base64url");
+  const proof = Buffer.alloc(32, 203).toString("base64");
+  const hash = "9f".repeat(32);
+  const vectors = [raw, proof, hash, hash.toUpperCase(), "203.0.113.7", "2001:db8:1234:5678:abcd:ef01:2345:6789", "2001:db8::7", "::1", "::ffff:192.0.2.7", "fe80::1%eth0",
+    JSON.stringify({ arbitrary: raw }), JSON.stringify({ extra: hash }), JSON.stringify({ diagnostic: "203.0.113.7" }),
+    JSON.stringify({ diagnostic: "[2001:db8::7]" }), JSON.stringify({ unexpected: proof }),
+    JSON.stringify({ event: "calendar_feed.response", status: 200, unrelated: "unexpected field" })];
+  for (const vector of vectors) {
+    const records: string[] = [];
+    const observe = createTelemetryObserver({ keyId: "owned-key", secret: "owned-secret", persist: async (line: string) => { records.push(line); } });
+    await observe(vector);
+    await observe('{"event":"calendar_feed.response","status":200}');
+    const latest = JSON.parse(records.at(-1)!);
+    assert.equal(latest.sensitiveOutputDetected, true); assert.equal(latest.sensitiveOutputCount, 1); assert.equal(latest.responseCount, 1);
+    assert.equal(records.some(record => record.includes(vector)), false);
+    assert.ok(records.every(record => ["calendar_feed.response", "calendar_feed.runtime_observation"].includes(JSON.parse(record).event)));
+  }
+});
+
+test("known proof values and actual keys flag leaks while exact infrastructure and unrelated ordinary output stay clean", async () => {
+  const params = { keyId: "owned-key", secret: "owned-secret", knownValues: ["fixture-proof-with-noncanonical-representation"] };
+  for (const line of ["owned-key", "owned-secret", "fixture-proof-with-noncanonical-representation"]) assert.equal(hasSensitiveOutput(line, params), true);
+  const clean = ["Next banner", "✓ Compiled successfully in 9.2s", "17 tests passed; 0 skipped", '{"diagnostic":"ordinary","durationMs":15}',
+    "- Local:         http://127.0.0.1:3195", "\u001b[32m- Network:       http://127.0.0.1:3100\u001b[0m"];
+  const records: string[] = [];
+  const observe = createTelemetryObserver({ ...params, persist: async (line: string) => { records.push(line); } });
+  for (const line of clean) { assert.equal(hasSensitiveOutput(line, params), false); await observe(line); }
+  assert.equal(records.length, 0);
+  for (const line of ["GET - Local: http://127.0.0.1:3195", "- Local: http://127.0.0.1:3195 request", "- Network: http://203.0.113.7:3195", "- Local: http://127.0.0.1:3195 " + Buffer.alloc(32, 29).toString("base64url")]) assert.equal(hasSensitiveOutput(line, params), true);
 });
