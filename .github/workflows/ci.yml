@@ -248,8 +248,12 @@ jobs:
 
       # Stage 8: DB-backed integration + cross-tenant RLS-negative suites.
       - name: Integration, RLS, and Epic 11 pilot performance gates (local stack)
+        env:
+          # This opt-in alone is insufficient: the wrapper also proves this
+          # hosted job's fresh Docker identities, publications and current ledger.
+          CALENDAR_FEED_CI_DISPOSABLE_STACK: ${{ github.run_id }}:${{ github.run_attempt }}:${{ github.job }}
         run: |
-          pnpm run test:int --reporter=default --reporter=github-actions --reporter=json --outputFile=test-results/full-integration.json
+          node scripts/ci/with-calendar-feed-runtime.mjs db
           pnpm run test:pilot-performance
 
       - name: Upload native full integration JSON
@@ -512,7 +516,8 @@ jobs:
         if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.release_validation) }}
         env:
           PLAYWRIGHT_JSON_OUTPUT_NAME: test-results/general-browser.json
-        run: pnpm run test:smoke
+          CALENDAR_FEED_CI_DISPOSABLE_STACK: ${{ github.run_id }}:${{ github.run_attempt }}:${{ github.job }}
+        run: node scripts/ci/with-calendar-feed-runtime.mjs browser
 
       - name: Exhaustive browser validation (explicit opt-in)
         if: ${{ github.event_name == 'workflow_dispatch' && inputs.release_validation }}

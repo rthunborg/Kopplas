@@ -310,7 +310,7 @@ describe("Migration reset green — tenant_foundation objects present (AC1 / R-0
     // self-read policy, onboarding's tenant-membership UPDATE policy, and the
     // dedicated Decision 8A provisioning-owner policies. The owner policies
     // remain explicit here so future authority broadening fails this check.
-    expect(rows.map((r) => `${r.tablename}.${r.cmd}`).sort()).toEqual([
+    expect(rows.filter(r => r.roles !== "calendar_feed_owner").map((r) => `${r.tablename}.${r.cmd}`).sort()).toEqual([
       "articles.INSERT",
       "articles.SELECT",
       "articles.UPDATE",
@@ -421,6 +421,9 @@ describe("Migration reset green — tenant_foundation objects present (AC1 / R-0
       "work_roles.SELECT",
       "work_roles.UPDATE",
     ]);
+    expect(rows.filter(r => r.roles === "calendar_feed_owner").map(r => `${r.tablename}.${r.cmd}`).sort()).toEqual([
+      "audit_events.INSERT", "booking_assignees.SELECT", "bookings.SELECT", "calendar_feed_ip_windows.ALL", "calendar_feed_tokens.ALL", "customers.SELECT", "facilities.SELECT", "jobs.SELECT", "membership_roles.SELECT", "person_profiles.SELECT", "tenant_memberships.SELECT", "tenants.SELECT", "work_roles.SELECT",
+    ]);
     const provisioningOwnerPolicies = rows
       .filter((row) => row.roles === "provisioning_function_owner")
       .map((row) => `${row.tablename}.${row.cmd}`)
@@ -441,7 +444,7 @@ describe("Migration reset green — tenant_foundation objects present (AC1 / R-0
     // The Decision 8A policies stay in the exact inventory above but do not
     // alter the tenant-admin command contract below.
     const appRows = rows.filter(
-      (row) => row.roles !== "provisioning_function_owner",
+      (row) => row.roles !== "provisioning_function_owner" && row.roles !== "calendar_feed_owner",
     );
     // Foundation tables are SELECT-only except tenant_memberships, whose
     // onboarding dismissal state has the sanctioned authenticated UPDATE. CRM tables are

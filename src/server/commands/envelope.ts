@@ -49,6 +49,9 @@ type CommandCapability = NonNullable<CommandConfig<unknown, unknown>["capability
  * It remains server-only and is validated against the active matrix by tests.
  */
 export const COMMAND_CAPABILITIES: Readonly<Record<string, CommandCapability>> = {
+  "calendar_feed.create": { module: "scheduling", capability: "Bookings.View" },
+  "calendar_feed.rotate": { module: "scheduling", capability: "Bookings.View" },
+  "calendar_feed.revoke": { module: "scheduling", capability: "Bookings.View" },
   "time_report.file": { module: "scheduling", capability: "TimeReports.ReportOwn" },
   "time_report.annotate": { module: "scheduling", capability: "TimeReports.Review" },
   "customer.create": { module: "crm", capability: "Customers.Create" },

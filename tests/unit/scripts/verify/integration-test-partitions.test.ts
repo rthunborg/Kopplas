@@ -10,7 +10,7 @@ import integrationConfig from "../../../../vitest.config";
 
 const root = fileURLToPath(new URL("../../../../", import.meta.url));
 const ddlFile = "tests/integration/jobs/job-runs.int.test.ts";
-const ddlFiles = ["tests/integration/commands/conflict-resolver.int.test.ts", "tests/integration/commands/time-reports.int.test.ts", ddlFile, "tests/integration/notifications/time-report-nudge-producer.int.test.ts"];
+const ddlFiles = ["tests/integration/calendar-feed/public-feed.int.test.ts", "tests/integration/commands/calendar-feed.int.test.ts", "tests/integration/commands/conflict-resolver.int.test.ts", "tests/integration/commands/time-reports.int.test.ts", ddlFile, "tests/integration/notifications/time-report-nudge-producer.int.test.ts"];
 const configPath = join(root, "vitest.config.ts");
 const slash = (value: string) => value.replaceAll("\\", "/");
 

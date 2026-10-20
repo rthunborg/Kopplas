@@ -13,8 +13,8 @@ import { withCalendarFeedFixture, lifecycle, issuedUrl, bookingSeed, calendarEve
 // unknown-IP HTTP requests or resets. P5 consumes allocated key read-only; direct
 // proof probes use fixture-owned IP hashes and row-owned subjects exclusively.
 
-describe("15.5 exact self authority, raw SQL boundary and least privilege RED", () => {
-  test.skip("[P0] 15.5-RLS001 AC1 AC4 AC9 ordinary SQL current role union authorizes own management only", async () => {
+describe("15.5 exact self authority, raw SQL boundary and least privilege", () => {
+  test("[P0] 15.5-RLS001 AC1 AC4 AC9 ordinary SQL current role union authorizes own management only", async () => {
     await withCalendarFeedFixture("row-isolated", async fx => {
       await fx.setAuthority("mixed", { primary: "saljare", additional: ["montor"] });
       const allowed: SubjectName[] = ["own", "admin", "planner", "mixed"];
@@ -35,7 +35,7 @@ describe("15.5 exact self authority, raw SQL boundary and least privilege RED", 
     });
   });
 
-  test.skip("[P0] 15.5-RLS002 AC1 AC4 AC9 admin manager peer foreign and platform cannot act on behalf of a subject", async () => {
+  test("[P0] 15.5-RLS002 AC1 AC4 AC9 admin manager peer foreign and platform cannot act on behalf of a subject", async () => {
     await withCalendarFeedFixture("row-isolated", async fx => {
       const before = await fx.physical();
       for (const caller of ["admin", "planner", "peer", "foreign", "platformOnly"] as const) {
@@ -49,7 +49,7 @@ describe("15.5 exact self authority, raw SQL boundary and least privilege RED", 
     });
   });
 
-  test.skip("[P0] 15.5-RLS003 AC4 AC9 legacy NULL and non-ready provisioning state preserve active membership access", async () => {
+  test("[P0] 15.5-RLS003 AC4 AC9 legacy NULL and non-ready provisioning state preserve active membership access", async () => {
     await withCalendarFeedFixture("row-isolated", async fx => {
       await fx.setProvisioningState("own", null);
       const first = await fx.manage("own", lifecycle("create", 0)), url = issuedUrl(first);
@@ -63,7 +63,7 @@ describe("15.5 exact self authority, raw SQL boundary and least privilege RED", 
     });
   });
 
-  test.skip("[P0] 15.5-RLS004 AC4 AC9 current role removal and inactive invited missing exact membership fail despite an old JWT", async () => {
+  test("[P0] 15.5-RLS004 AC4 AC9 current role removal and inactive invited missing exact membership fail despite an old JWT", async () => {
     await withCalendarFeedFixture("row-isolated", async fx => {
       const first = await fx.manage("own", lifecycle("create", 0)), url = issuedUrl(first);
       await fx.setAuthority("own", { primary: "saljare", additional: [] });
@@ -80,7 +80,7 @@ describe("15.5 exact self authority, raw SQL boundary and least privilege RED", 
     });
   });
 
-  test.skip("[P0] 15.5-RLS005 AC1 AC4 AC9 membership replacement invalidates an active old capability", async () => {
+  test("[P0] 15.5-RLS005 AC1 AC4 AC9 membership replacement invalidates an active old capability", async () => {
     await withCalendarFeedFixture("row-isolated", async fx => {
       const first = await fx.manage("own", lifecycle("create", 0)), url = issuedUrl(first);
       const originalMembership = fx.subjects.own.membershipId;
@@ -92,7 +92,7 @@ describe("15.5 exact self authority, raw SQL boundary and least privilege RED", 
     });
   });
 
-  test.skip("[P0] 15.5-RLS006 AC3 AC9 manager feed contains only exact assigned planned bookings once", async () => {
+  test("[P0] 15.5-RLS006 AC3 AC9 manager feed contains only exact assigned planned bookings once", async () => {
     await withCalendarFeedFixture("row-isolated", async fx => {
       const own = bookingSeed({ subject: "planner", additionalAssignees: ["peer", "own"] });
       const peer = bookingSeed({ subject: "peer" }), foreign = bookingSeed({ subject: "foreign" });
@@ -110,7 +110,7 @@ describe("15.5 exact self authority, raw SQL boundary and least privilege RED", 
     });
   });
 
-  test.skip("[P0] 15.5-RLS007 AC3 AC4 AC9 no profile and archived profile yield a valid empty calendar without team fallback", async () => {
+  test("[P0] 15.5-RLS007 AC3 AC4 AC9 no profile and archived profile yield a valid empty calendar without team fallback", async () => {
     await withCalendarFeedFixture("row-isolated", async fx => {
       await fx.seedBookings([bookingSeed({ subject: "peer" }), bookingSeed({ subject: "own" })]);
       const emptyUrl = issuedUrl(await fx.manage("noProfile", lifecycle("create", 0)));
@@ -126,7 +126,7 @@ describe("15.5 exact self authority, raw SQL boundary and least privilege RED", 
     });
   });
 
-  test.skip("[P0] 15.5-RLS008 AC1 AC4 AC9 direct token DML and sensitive column reads are denied to all JWT roles", async () => {
+  test("[P0] 15.5-RLS008 AC1 AC4 AC9 direct token DML and sensitive column reads are denied to all JWT roles", async () => {
     await withCalendarFeedFixture("row-isolated", async fx => {
       await fx.manage("own", lifecycle("create", 0));
       const before = await fx.physical();
@@ -147,7 +147,7 @@ describe("15.5 exact self authority, raw SQL boundary and least privilege RED", 
     });
   });
 
-  test.skip("[P0] 15.5-RLS009 AC4 AC5 AC9 global IP table has RLS and no effective JWT SELECT DML or subject linkage", async () => {
+  test("[P0] 15.5-RLS009 AC4 AC5 AC9 global IP table has RLS and no effective JWT SELECT DML or subject linkage", async () => {
     await withCalendarFeedFixture("row-isolated", async fx => {
       const facts = await fx.acl();
       expect(facts.tables.map(table => table.name).sort()).toEqual(["calendar_feed_ip_windows", "calendar_feed_tokens"]);
@@ -164,7 +164,7 @@ describe("15.5 exact self authority, raw SQL boundary and least privilege RED", 
     });
   });
 
-  test.skip("[P0] 15.5-RLS010 AC4 AC9 dedicated owner and filtered Vault helper retain strict effective inherited ACLs", async () => {
+  test("[P0] 15.5-RLS010 AC4 AC9 dedicated owner and filtered Vault helper retain strict effective inherited ACLs", async () => {
     await withCalendarFeedFixture("row-isolated", async fx => {
       const facts = await fx.acl();
       expect(facts.owner).toMatchObject({ login: false, inherit: false, superuser: false, bypassRls: false,
@@ -186,7 +186,7 @@ describe("15.5 exact self authority, raw SQL boundary and least privilege RED", 
     });
   });
 
-  test.skip("[P0] 15.5-RLS011 AC4 AC5 AC6 Admin monitoring is sanitized tenant-only and ordinary roles cannot read it", async () => {
+  test("[P0] 15.5-RLS011 AC4 AC5 AC6 Admin monitoring is sanitized tenant-only and ordinary roles cannot read it", async () => {
     await withCalendarFeedFixture("row-isolated", async fx => {
       const ownUrl = issuedUrl(await fx.manage("own", lifecycle("create", 0)));
       const foreignUrl = issuedUrl(await fx.manage("foreign", lifecycle("create", 0)));
@@ -212,7 +212,7 @@ describe("15.5 exact self authority, raw SQL boundary and least privilege RED", 
     });
   });
 
-  test.skip("[P0] 15.5-RLS012 AC4 AC9 missing own tenant invalidates an issued capability through SQL authority and constraints", async () => {
+  test("[P0] 15.5-RLS012 AC4 AC9 missing own tenant invalidates an issued capability through SQL authority and constraints", async () => {
     await withCalendarFeedFixture("row-isolated", async fx => {
       const first = await fx.manage("own", lifecycle("create", 0)), url = issuedUrl(first);
       expect((await fx.trustedFetch(url, fx.isolatedTrustedIp)).status).toBe(200);

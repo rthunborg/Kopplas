@@ -15,8 +15,8 @@ import { withCalendarFeedFixture, lifecycle, issuedUrl, tokenFromUrl, bookingSee
 // Trusted-axis cases call REAL orchestration+SQL through private dependency seams;
 // http() cases call real production HTTP without retries. These are distinct lanes.
 
-describe("15.5 public capability HTTP, projection and independent abuse budgets RED", () => {
-  test.skip("[P0] 15.5-API001 AC3 AC4 AC9 own minimal projection rejects tenant subject and date overrides", async () => {
+describe("15.5 public capability HTTP, projection and independent abuse budgets", () => {
+  test("[P0] 15.5-API001 AC3 AC4 AC9 own minimal projection rejects tenant subject and date overrides", async () => {
     await withCalendarFeedFixture("serial-public", async fx => {
       const own = bookingSeed({ additionalAssignees: ["peer"] }), peer = bookingSeed({ subject: "peer" });
       const foreign = bookingSeed({ subject: "foreign" });
@@ -45,7 +45,7 @@ describe("15.5 public capability HTTP, projection and independent abuse budgets 
     });
   });
 
-  test.skip("[P0] 15.5-API002 AC4 AC7 revoked rotated unknown and malformed have equal-history generic HTTP404", async () => {
+  test("[P0] 15.5-API002 AC4 AC7 revoked rotated unknown and malformed have equal-history generic HTTP404", async () => {
     await withCalendarFeedFixture("serial-public", async fx => {
       const created = await fx.manage("own", lifecycle("create", 0)), rotatedUrl = issuedUrl(created);
       const rotated = await fx.manage("own", lifecycle("rotate", created.revision!)), revokedUrl = issuedUrl(rotated);
@@ -69,7 +69,7 @@ describe("15.5 public capability HTTP, projection and independent abuse budgets 
     });
   });
 
-  test.skip("[P0] 15.5-API003 AC5 sixty per token across independent IPs then61 is limited", async () => {
+  test("[P0] 15.5-API003 AC5 sixty per token across independent IPs then61 is limited", async () => {
     await withCalendarFeedFixture("serial-public", async fx => {
       const url = issuedUrl(await fx.manage("own", lifecycle("create", 0)));
       await fx.serial.withDatabaseTime("2026-10-20T12:05:00Z", async () => {
@@ -85,7 +85,7 @@ describe("15.5 public capability HTTP, projection and independent abuse budgets 
     });
   });
 
-  test.skip("[P0] 15.5-API004 AC5 one IP across multiple tokens reaches120 independently of token budgets", async () => {
+  test("[P0] 15.5-API004 AC5 one IP across multiple tokens reaches120 independently of token budgets", async () => {
     await withCalendarFeedFixture("serial-public", async fx => {
       const urls = await Promise.all((["own", "peer", "planner"] as const)
         .map(async subject => issuedUrl(await fx.manage(subject, lifecycle("create", 0)))));
@@ -103,7 +103,7 @@ describe("15.5 public capability HTTP, projection and independent abuse budgets 
     });
   });
 
-  test.skip("[P0] 15.5-API005 AC5 token boundary under65 concurrent requests admits exactly60 without lost increments", async () => {
+  test("[P0] 15.5-API005 AC5 token boundary under65 concurrent requests admits exactly60 without lost increments", async () => {
     await withCalendarFeedFixture("serial-public", async fx => {
       const url = issuedUrl(await fx.manage("own", lifecycle("create", 0)));
       await fx.serial.withDatabaseTime("2026-10-20T12:05:00Z", async () => {
@@ -116,7 +116,7 @@ describe("15.5 public capability HTTP, projection and independent abuse budgets 
     });
   });
 
-  test.skip("[P0] 15.5-API006 AC5 IP boundary under125 concurrent cross-token requests admits exactly120", async () => {
+  test("[P0] 15.5-API006 AC5 IP boundary under125 concurrent cross-token requests admits exactly120", async () => {
     await withCalendarFeedFixture("serial-public", async fx => {
       const urls = await Promise.all((["own", "peer", "planner"] as const)
         .map(async subject => issuedUrl(await fx.manage(subject, lifecycle("create", 0)))));
@@ -131,7 +131,7 @@ describe("15.5 public capability HTTP, projection and independent abuse budgets 
     });
   });
 
-  test.skip("[P0] 15.5-API007 AC5 DB clock owns fixed window and rollover restores both independent budgets", async () => {
+  test("[P0] 15.5-API007 AC5 DB clock owns fixed window and rollover restores both independent budgets", async () => {
     await withCalendarFeedFixture("serial-public", async fx => {
       const url = issuedUrl(await fx.manage("own", lifecycle("create", 0))), ip = "2001:db8:4::1";
       await fx.serial.withDatabaseTime("2026-10-20T12:14:59Z", async () => {
@@ -153,7 +153,7 @@ describe("15.5 public capability HTTP, projection and independent abuse budgets 
     });
   });
 
-  test.skip("[P0] 15.5-API008 AC4 AC5 unknown malformed rotated and revoked consume common IP budget and limited failures persist", async () => {
+  test("[P0] 15.5-API008 AC4 AC5 unknown malformed rotated and revoked consume common IP budget and limited failures persist", async () => {
     await withCalendarFeedFixture("serial-public", async fx => {
       const first = await fx.manage("own", lifecycle("create", 0)), rotatedUrl = issuedUrl(first);
       const rotated = await fx.manage("own", lifecycle("rotate", first.revision!)), revokedUrl = issuedUrl(rotated);
@@ -179,7 +179,7 @@ describe("15.5 public capability HTTP, projection and independent abuse budgets 
     });
   });
 
-  test.skip("[P0] 15.5-API009 AC4 AC5 AC7 arbitrary forwarded headers cannot escape shared unknown-IP enforcement", async () => {
+  test("[P0] 15.5-API009 AC4 AC5 AC7 arbitrary forwarded headers cannot escape shared unknown-IP enforcement", async () => {
     await withCalendarFeedFixture("serial-public", async fx => {
       const url = issuedUrl(await fx.manage("own", lifecycle("create", 0))), origin = new URL(url).origin;
       const unknown = `${origin}/calendar/feed/${Buffer.alloc(32, 11).toString("base64url")}`;
@@ -194,7 +194,7 @@ describe("15.5 public capability HTTP, projection and independent abuse budgets 
     });
   });
 
-  test.skip("[P0] 15.5-API010 AC4 AC5 raw RPC proof forgery cannot choose hash IP domain key or time; replay is counted", async () => {
+  test("[P0] 15.5-API010 AC4 AC5 raw RPC proof forgery cannot choose hash IP domain key or time; replay is counted", async () => {
     await withCalendarFeedFixture("serial-public", async fx => {
       const url = issuedUrl(await fx.manage("own", lifecycle("create", 0)));
       await fx.seedBookings([bookingSeed()]);
@@ -219,7 +219,7 @@ describe("15.5 public capability HTTP, projection and independent abuse budgets 
     });
   });
 
-  test.skip("[P0] 15.5-API011 AC1 AC4 raw lifecycle proof binds every authority action revision attempt and new hash", async () => {
+  test("[P0] 15.5-API011 AC1 AC4 raw lifecycle proof binds every authority action revision attempt and new hash", async () => {
     await withCalendarFeedFixture("serial-public", async fx => {
       const before = await fx.physical();
       for (const attack of ["missing", "wrong-key", "wrong-domain", "expired", "future", "over-60-seconds",
@@ -233,7 +233,7 @@ describe("15.5 public capability HTTP, projection and independent abuse budgets 
     });
   });
 
-  test.skip("[P0] 15.5-API012 AC4 AC8 missing or mismatched dedicated key never borrows another Vault secret", async () => {
+  test("[P0] 15.5-API012 AC4 AC8 missing or mismatched dedicated key never borrows another Vault secret", async () => {
     await withCalendarFeedFixture("serial-public", async fx => {
       const url = issuedUrl(await fx.manage("own", lifecycle("create", 0)));
       const failures: FeedResponse[] = [];
@@ -251,7 +251,7 @@ describe("15.5 public capability HTTP, projection and independent abuse budgets 
     });
   });
 
-  test.skip("[P0] 15.5-API013 AC3 AC7 AC8 complete materialized feed exceeds PostgREST row cap with no arbitrary horizon", async () => {
+  test("[P0] 15.5-API013 AC3 AC7 AC8 complete materialized feed exceeds PostgREST row cap with no arbitrary horizon", async () => {
     await withCalendarFeedFixture("serial-public", async fx => {
       const rows = Array.from({ length: 1_007 }, (_, i) => bookingSeed({
         startsAt: new Date(Date.UTC(2024, 0, 1, i * 24)).toISOString(),
@@ -270,7 +270,7 @@ describe("15.5 public capability HTTP, projection and independent abuse budgets 
     });
   });
 
-  test.skip("[P0] 15.5-API014 AC3 AC8 independent parser sees escaped labels and no injected properties or UTF8 splits", async () => {
+  test("[P0] 15.5-API014 AC3 AC8 independent parser sees escaped labels and no injected properties or UTF8 splits", async () => {
     await withCalendarFeedFixture("serial-public", async fx => {
       const label = `Åäö 🔌,\\;${"Lång etikett ".repeat(20)}\r\nATTENDEE:mailto:private@example.invalid`;
       const row = bookingSeed({ workRoleLabel: label, facilityAddress: "Port A; plan 2, Uppsala\nBEGIN:VEVENT" });
@@ -293,7 +293,7 @@ describe("15.5 public capability HTTP, projection and independent abuse budgets 
     });
   });
 
-  test.skip("[P1] 15.5-API015 AC3 AC8 Stockholm DST all-day exclusive dates and overnight UTC instants are independent", async () => {
+  test("[P1] 15.5-API015 AC3 AC8 Stockholm DST all-day exclusive dates and overnight UTC instants are independent", async () => {
     await withCalendarFeedFixture("serial-public", async fx => {
       const spring = bookingSeed({ allDay: true, startsAt: "2026-03-28T23:00:00Z", endsAt: "2026-03-29T22:00:00Z" });
       const autumn = bookingSeed({ allDay: true, startsAt: "2026-10-24T22:00:00Z", endsAt: "2026-10-25T23:00:00Z" });
@@ -309,7 +309,7 @@ describe("15.5 public capability HTTP, projection and independent abuse budgets 
     });
   });
 
-  test.skip("[P0] 15.5-API016 AC3 AC9 live edit exception cancel and series split preserve surviving booking UIDs", async () => {
+  test("[P0] 15.5-API016 AC3 AC9 live edit exception cancel and series split preserve surviving booking UIDs", async () => {
     await withCalendarFeedFixture("serial-public", async fx => {
       const series = await fx.seedSeries("own"), url = issuedUrl(await fx.manage("own", lifecycle("create", 0)));
       const before = calendarEvents((await fx.http(url)).body);
@@ -330,7 +330,7 @@ describe("15.5 public capability HTTP, projection and independent abuse budgets 
     });
   });
 
-  test.skip("[P0] 15.5-API017 AC7 hostile cookies auth headers validators never authenticate cache or redirect public feed", async () => {
+  test("[P0] 15.5-API017 AC7 hostile cookies auth headers validators never authenticate cache or redirect public feed", async () => {
     await withCalendarFeedFixture("serial-public", async fx => {
       const url = issuedUrl(await fx.manage("own", lifecycle("create", 0)));
       const bare = await fx.http(url);
@@ -350,11 +350,12 @@ describe("15.5 public capability HTTP, projection and independent abuse budgets 
     });
   });
 
-  test.skip("[P0] 15.5-API018 AC5 AC8 projection and counter failures return503 before any partial or false empty feed", async () => {
+  test("[P0] 15.5-API018 AC5 AC8 projection and counter failures return503 before any partial or false empty feed", async () => {
     await withCalendarFeedFixture("serial-public", async fx => {
       await fx.seedBookings(Array.from({ length: 1_001 }, () => bookingSeed()));
       const url = issuedUrl(await fx.manage("own", lifecycle("create", 0)));
       for (const stage of ["projection-after-first-page", "counter-write"] as const) {
+        const before = await fx.serial.counters(url, fx.isolatedTrustedIp);
         const receipt = await fx.serial.withFault({ tenantId: fx.subjects.own.tenantId,
           attemptId: randomUUID(), correlationId: randomUUID(), stage }, () => fx.http(url));
         expect(receipt.stageObserved).toBe(true); expect(receipt.ownedObjectsRemaining).toBe(0);
@@ -363,14 +364,20 @@ describe("15.5 public capability HTTP, projection and independent abuse budgets 
         expect(receipt.result.body).not.toContain("BEGIN:VEVENT");
         expect(receipt.result.body).not.toContain("SQL");
         expect(receipt.result.headers["cache-control"]).toContain("no-store");
+        if (stage === "projection-after-first-page") {
+          expect((await fx.serial.counters(url, fx.isolatedTrustedIp)).token).toBe(before.token + 1);
+          expect((await fx.status("own")).usageCount).toBe(0);
+          expect((await fx.status("own")).lastUsedAt).toBeNull();
+        }
       }
     });
   });
 
-  test.skip("[P0] 15.5-API019 AC1 AC4 AC5 AC9 logs audit and public errors disclose no raw token hash proof key or IP", async () => {
+  test("[P0] 15.5-API019 AC1 AC4 AC5 AC9 logs audit and public errors disclose no raw token hash proof key or IP", async () => {
     await withCalendarFeedFixture("serial-public", async fx => {
       const url = issuedUrl(await fx.manage("own", lifecycle("create", 0)));
       await fx.trustedFetch(url, fx.isolatedTrustedIp);
+      expect((await fx.http(url)).status).toBe(200); // actual server telemetry, independently of the in-process seam
       const error = await fx.rawFetch(url, "tampered-token-hash");
       const physical = await fx.physical(), monitoring = await fx.readAbuse("admin");
       const observable = [await fx.telemetry(), JSON.stringify(physical.audits),
@@ -383,7 +390,7 @@ describe("15.5 public capability HTTP, projection and independent abuse budgets 
     });
   });
 
-  test.skip("[P0] 15.5-API020 AC3 AC9 feed reads preserve existing booking series resolver reports and job facts", async () => {
+  test("[P0] 15.5-API020 AC3 AC9 feed reads preserve existing booking series resolver reports and job facts", async () => {
     await withCalendarFeedFixture("serial-public", async fx => {
       const baseline = await fx.seedSchedulingRegressionState();
       const url = issuedUrl(await fx.manage("own", lifecycle("create", 0)));

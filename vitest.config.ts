@@ -42,7 +42,7 @@ export default defineConfig({
         test: {
           name: "integration-parallel",
           include: ["tests/integration/**/*.{test,spec}.ts"],
-          exclude: ["tests/integration/jobs/job-runs.int.test.ts", "tests/integration/commands/conflict-resolver.int.test.ts", "tests/integration/commands/time-reports.int.test.ts", "tests/integration/notifications/time-report-nudge-producer.int.test.ts"],
+          exclude: ["tests/integration/jobs/job-runs.int.test.ts", "tests/integration/commands/conflict-resolver.int.test.ts", "tests/integration/commands/time-reports.int.test.ts", "tests/integration/notifications/time-report-nudge-producer.int.test.ts", "tests/integration/commands/calendar-feed.int.test.ts", "tests/integration/calendar-feed/public-feed.int.test.ts"],
           sequence: { groupOrder: 0 },
         },
       },
@@ -50,7 +50,7 @@ export default defineConfig({
         extends: true,
         test: {
           name: "integration-audit-ddl",
-          include: ["tests/integration/jobs/job-runs.int.test.ts", "tests/integration/commands/conflict-resolver.int.test.ts", "tests/integration/commands/time-reports.int.test.ts", "tests/integration/notifications/time-report-nudge-producer.int.test.ts"],
+          include: ["tests/integration/jobs/job-runs.int.test.ts", "tests/integration/commands/conflict-resolver.int.test.ts", "tests/integration/commands/time-reports.int.test.ts", "tests/integration/notifications/time-report-nudge-producer.int.test.ts", "tests/integration/commands/calendar-feed.int.test.ts", "tests/integration/calendar-feed/public-feed.int.test.ts"],
           fileParallelism: false,
           sequence: { groupOrder: 1 },
         },

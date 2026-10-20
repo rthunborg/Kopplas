@@ -23,7 +23,7 @@
     "verify:lockfiles": "node scripts/verify/check-lockfiles.mjs",
     "verify:service-role-containment": "node scripts/verify/check-service-role-containment.mjs",
     "verify:bundle-containment": "node scripts/verify/check-bundle-containment.mjs",
-    "test:smoke": "playwright test tests/e2e/auth/login-and-tenant-context.e2e.spec.ts tests/e2e/auth/auth-mail-callback.e2e.spec.ts tests/e2e/jobs/jobs-depth.e2e.spec.ts tests/e2e/conflict-resolver.e2e.spec.ts tests/e2e/time-reports.e2e.spec.ts --reporter=list,json",
+    "test:smoke": "playwright test tests/e2e/auth/login-and-tenant-context.e2e.spec.ts tests/e2e/auth/auth-mail-callback.e2e.spec.ts tests/e2e/jobs/jobs-depth.e2e.spec.ts tests/e2e/conflict-resolver.e2e.spec.ts tests/e2e/time-reports.e2e.spec.ts tests/e2e/calendar-feed.e2e.spec.ts --reporter=list,json",
     "verify:development": "node scripts/ci/verify-development.mjs"
   },
   "dependencies": {

@@ -7,7 +7,7 @@ type Event = { id: string; startsAt: string; endsAt: string; allDay: boolean;
   updatedAt: string; title: string; jobLabel?: string; customerLabel?: string; location?: string };
 type Encoder = (events: readonly Event[]) => string;
 async function encoder(): Promise<Encoder> {
-  throw new Error("15.5 RED: bind actual src/features/calendar-feed/icalendar.ts encoder; no fixture oracle");
+  return (await import("@/features/calendar-feed/icalendar")).encodeCalendarFeed;
 }
 const booking = (patch: Partial<Event> = {}): Event => ({ id: "1c53a406-cd13-4f3e-bf0b-1484172036fb",
   startsAt: "2026-10-25T00:30:00Z", endsAt: "2026-10-25T01:30:00Z", allDay: false,
@@ -20,8 +20,8 @@ function properties(ics: string): string[] {
   return ics.replace(/\r\n[ \t]/g, "").split("\r\n");
 }
 
-// P4 RED: activate in P5 after binding the real subject and confirming the failing assertion.
-test.skip("[P1] 15.5-UNIT-001 AC3 AC8 timed autumn fold preserves independent UTC instants", async () => {
+// Actual implementation binding; independent contract vectors retained.
+test("[P1] 15.5-UNIT-001 AC3 AC8 timed autumn fold preserves independent UTC instants", async () => {
   // Given distinct UTC instants in the repeated Stockholm hour; when serialized; then exact Z values survive.
   const lines = properties((await encoder())([booking()]));
   assert.ok(lines.includes("DTSTART:20261025T003000Z"));
@@ -31,23 +31,23 @@ test.skip("[P1] 15.5-UNIT-001 AC3 AC8 timed autumn fold preserves independent UT
 for (const vector of [
   { id: "spring", start: "2026-03-28T23:00:00Z", end: "2026-03-29T22:00:00Z", day: "20260329", next: "20260330" },
   { id: "autumn", start: "2026-10-24T22:00:00Z", end: "2026-10-25T23:00:00Z", day: "20261025", next: "20261026" },
-]) // P4 RED: activate in P5 after binding the real subject and confirming the failing assertion.
-test.skip(`[P1] 15.5-UNIT-002-${vector.id} AC3 AC8 all-day Stockholm exclusive end across DST`, async () => {
+]) // Actual implementation binding; independent contract vectors retained.
+test(`[P1] 15.5-UNIT-002-${vector.id} AC3 AC8 all-day Stockholm exclusive end across DST`, async () => {
   const lines = properties((await encoder())([booking({ allDay: true, startsAt: vector.start, endsAt: vector.end })]));
   assert.ok(lines.includes(`DTSTART;VALUE=DATE:${vector.day}`));
   assert.ok(lines.includes(`DTEND;VALUE=DATE:${vector.next}`));
   assert.equal(lines.some(line => /^DTSTART:/.test(line)), false);
 });
-// P4 RED: activate in P5 after binding the real subject and confirming the failing assertion.
-test.skip("[P1] 15.5-UNIT-003 AC3 AC8 edit/split with retained booking ID retains UID and stable update stamp", async () => {
+// Actual implementation binding; independent contract vectors retained.
+test("[P1] 15.5-UNIT-003 AC3 AC8 edit/split with retained booking ID retains UID and stable update stamp", async () => {
   const encode = await encoder(), initial = properties(encode([booking()]));
   const edited = properties(encode([booking({ startsAt: "2026-10-26T07:00:00Z", endsAt: "2026-10-26T08:00:00Z" })]));
   const uid = initial.find(line => line.startsWith("UID:"));
   assert.ok(uid?.includes(booking().id)); assert.equal(edited.find(line => line.startsWith("UID:")), uid);
   assert.equal(edited.find(line => line.startsWith("DTSTAMP:")), "DTSTAMP:20261020T080000Z");
 });
-// P4 RED: activate in P5 after binding the real subject and confirming the failing assertion.
-test.skip("[P0] 15.5-UNIT-004 AC8 malicious UTF8 text is escaped and octet folded without property injection", async () => {
+// Actual implementation binding; independent contract vectors retained.
+test("[P0] 15.5-UNIT-004 AC8 malicious UTF8 text is escaped and octet folded without property injection", async () => {
   const title = "Å🔌".repeat(40) + ",;\\\r\nATTENDEE:mailto:peer@example.invalid";
   const ics = (await encoder())([booking({ title, location: "A;B,C\\D\nE" })]);
   const lines = properties(ics);
@@ -57,8 +57,8 @@ test.skip("[P0] 15.5-UNIT-004 AC8 malicious UTF8 text is escaped and octet folde
   assert.equal(Buffer.from(ics, "utf8").toString("utf8"), ics);
   assert.equal(ics.includes("\ufffd"), false);
 });
-// P4 RED: activate in P5 after binding the real subject and confirming the failing assertion.
-test.skip("[P1] 15.5-UNIT-005 AC3 AC8 empty and >PostgREST-cap input are complete calendars", async () => {
+// Actual implementation binding; independent contract vectors retained.
+test("[P1] 15.5-UNIT-005 AC3 AC8 empty and >PostgREST-cap input are complete calendars", async () => {
   const encode = await encoder();
   assert.ok(properties(encode([])).includes("END:VCALENDAR"));
   const events = Array.from({ length: 1005 }, (_, i) => booking({ id: `independent-booking-${i}` }));

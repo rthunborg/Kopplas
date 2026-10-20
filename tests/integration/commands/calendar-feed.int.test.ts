@@ -14,8 +14,8 @@ import { withCalendarFeedFixture, lifecycle, issuedUrl, tokenFromUrl, bookingSee
 // calendar-feed/public-feed.int.test.ts in addition to the existing serial files.
 // P4: every declaration skipped; no fixture, key, SQL, HTTP or resource executes.
 
-describe("15.5 authenticated lifecycle, atomic audit and commit-order RED", () => {
-  test.skip("[P0] 15.5-INT001 AC1 AC6 own issuance stores only SHA256 and publishes a fresh URL once", async () => {
+describe("15.5 authenticated lifecycle, atomic audit and commit-order", () => {
+  test("[P0] 15.5-INT001 AC1 AC6 own issuance stores only SHA256 and publishes a fresh URL once", async () => {
     await withCalendarFeedFixture("serial-commands", async fx => {
       const intent = lifecycle("create", 0);
       const result = await fx.manage("own", intent), url = issuedUrl(result), raw = tokenFromUrl(url);
@@ -38,7 +38,7 @@ describe("15.5 authenticated lifecycle, atomic audit and commit-order RED", () =
     });
   });
 
-  test.skip("[P0] 15.5-INT002 AC1 AC2 rotate revokes old generation and revoke is audited once", async () => {
+  test("[P0] 15.5-INT002 AC1 AC2 rotate revokes old generation and revoke is audited once", async () => {
     await withCalendarFeedFixture("serial-commands", async fx => {
       const first = await fx.manage("own", lifecycle("create", 0)), oldUrl = issuedUrl(first);
       const rotated = await fx.manage("own", lifecycle("rotate", first.revision!)), newUrl = issuedUrl(rotated);
@@ -57,7 +57,7 @@ describe("15.5 authenticated lifecycle, atomic audit and commit-order RED", () =
     });
   });
 
-  test.skip("[P0] 15.5-INT003 AC2 concurrent CAS rotations cannot overwrite or create two active generations", async () => {
+  test("[P0] 15.5-INT003 AC2 concurrent CAS rotations cannot overwrite or create two active generations", async () => {
     await withCalendarFeedFixture("serial-commands", async fx => {
       const first = await fx.manage("own", lifecycle("create", 0));
       const results = await Promise.all([fx.manage("own", lifecycle("rotate", first.revision!)),
@@ -71,7 +71,7 @@ describe("15.5 authenticated lifecycle, atomic audit and commit-order RED", () =
     });
   });
 
-  test.skip("[P0] 15.5-INT004 AC2 exact attempt replay is sanitized and old attempt cannot accept a different new hash", async () => {
+  test("[P0] 15.5-INT004 AC2 exact attempt replay is sanitized and old attempt cannot accept a different new hash", async () => {
     await withCalendarFeedFixture("serial-commands", async fx => {
       const create = lifecycle("create", 0), first = await fx.manage("own", create);
       const before = await fx.physical(), replay = await fx.manage("own", create);
@@ -79,6 +79,8 @@ describe("15.5 authenticated lifecycle, atomic audit and commit-order RED", () =
       const changed = await fx.rawManage("own", create, {}, "changed-new-hash");
       expect(changed.denied).toBe(true);
       expect(changed.rows).toEqual([]);
+      expect((await fx.manage("own", { ...create, action: "rotate" })).outcome).toBe("conflict");
+      expect((await fx.manage("own", { ...create, expectedRevision: 99 })).outcome).toBe("conflict");
       const after = await fx.physical();
       expect(after.tokens).toEqual(before.tokens);
       expect(after.audits).toEqual(before.audits);
@@ -86,7 +88,7 @@ describe("15.5 authenticated lifecycle, atomic audit and commit-order RED", () =
     });
   });
 
-  test.skip("[P0] 15.5-INT005 AC2 lost committed response reconciles metadata and needs a separate explicit rotation", async () => {
+  test("[P0] 15.5-INT005 AC2 lost committed response reconciles metadata and needs a separate explicit rotation", async () => {
     await withCalendarFeedFixture("serial-commands", async fx => {
       const intent = lifecycle("create", 0);
       await fx.serial.loseCommittedResponse("own", intent);
@@ -109,7 +111,7 @@ describe("15.5 authenticated lifecycle, atomic audit and commit-order RED", () =
     });
   });
 
-  test.skip("[P0] 15.5-INT006 AC1 AC2 create audit fault proves intended stage then rolls back generation", async () => {
+  test("[P0] 15.5-INT006 AC1 AC2 create audit fault proves intended stage then rolls back generation", async () => {
     await withCalendarFeedFixture("serial-commands", async fx => {
       const intent = lifecycle("create", 0), before = await fx.physical();
       const receipt = await fx.serial.withFault({ tenantId: fx.subjects.own.tenantId,
@@ -124,7 +126,7 @@ describe("15.5 authenticated lifecycle, atomic audit and commit-order RED", () =
     });
   });
 
-  test.skip("[P0] 15.5-INT007 AC2 failed rotation audit leaves old usable and installs no new generation", async () => {
+  test("[P0] 15.5-INT007 AC2 failed rotation audit leaves old usable and installs no new generation", async () => {
     await withCalendarFeedFixture("serial-commands", async fx => {
       const first = await fx.manage("own", lifecycle("create", 0)), oldUrl = issuedUrl(first);
       const intent = lifecycle("rotate", first.revision!), before = await fx.physical();
@@ -139,7 +141,7 @@ describe("15.5 authenticated lifecycle, atomic audit and commit-order RED", () =
     });
   });
 
-  test.skip("[P0] 15.5-INT008 AC2 failed revoke audit leaves token usable with no false revocation", async () => {
+  test("[P0] 15.5-INT008 AC2 failed revoke audit leaves token usable with no false revocation", async () => {
     await withCalendarFeedFixture("serial-commands", async fx => {
       const first = await fx.manage("own", lifecycle("create", 0)), url = issuedUrl(first);
       const intent = lifecycle("revoke", first.revision!), before = await fx.physical();
@@ -154,7 +156,7 @@ describe("15.5 authenticated lifecycle, atomic audit and commit-order RED", () =
     });
   });
 
-  test.skip("[P0] 15.5-INT009 AC2 AC4 AC9 current role loss committed before authority blocks queued management", async () => {
+  test("[P0] 15.5-INT009 AC2 AC4 AC9 current role loss committed before authority blocks queued management", async () => {
     await withCalendarFeedFixture("serial-commands", async fx => {
       const intent = lifecycle("create", 0), subject = fx.subjects.own;
       const barrier = await fx.serial.barrier({ ...subject, attemptId: intent.attemptId, stage: "management-before-authority" });
@@ -175,7 +177,7 @@ describe("15.5 authenticated lifecycle, atomic audit and commit-order RED", () =
     });
   });
 
-  test.skip("[P0] 15.5-INT010 AC2 AC9 admitted fetch may finish before revoke while later fetch is denied", async () => {
+  test("[P0] 15.5-INT010 AC2 AC9 admitted fetch may finish before revoke while later fetch is denied", async () => {
     await withCalendarFeedFixture("serial-commands", async fx => {
       await fx.seedBookings([bookingSeed()]);
       const first = await fx.manage("own", lifecycle("create", 0)), url = issuedUrl(first);
@@ -197,7 +199,7 @@ describe("15.5 authenticated lifecycle, atomic audit and commit-order RED", () =
     });
   });
 
-  test.skip("[P0] 15.5-INT011 AC2 AC9 revoke commits before a waiting fetch and prevents its disclosure", async () => {
+  test("[P0] 15.5-INT011 AC2 AC9 revoke commits before a waiting fetch and prevents its disclosure", async () => {
     await withCalendarFeedFixture("serial-commands", async fx => {
       const first = await fx.manage("own", lifecycle("create", 0)), url = issuedUrl(first);
       const intent = lifecycle("revoke", first.revision!);
@@ -218,7 +220,7 @@ describe("15.5 authenticated lifecycle, atomic audit and commit-order RED", () =
     });
   });
 
-  test.skip("[P0] 15.5-INT012 AC1 AC2 AC9 committed rotation rejects waiting old fetch and preserves new token", async () => {
+  test("[P0] 15.5-INT012 AC1 AC2 AC9 committed rotation rejects waiting old fetch and preserves new token", async () => {
     await withCalendarFeedFixture("serial-commands", async fx => {
       const first = await fx.manage("own", lifecycle("create", 0)), oldUrl = issuedUrl(first);
       const intent = lifecycle("rotate", first.revision!);
@@ -239,7 +241,7 @@ describe("15.5 authenticated lifecycle, atomic audit and commit-order RED", () =
     });
   });
 
-  test.skip("[P0] 15.5-INT013 AC2 simultaneous initial create and later revoke/rotate never resurrect stale intent", async () => {
+  test("[P0] 15.5-INT013 AC2 simultaneous initial create and later revoke/rotate never resurrect stale intent", async () => {
     await withCalendarFeedFixture("serial-commands", async fx => {
       const initial = await Promise.all([fx.manage("own", lifecycle("create", 0)), fx.manage("own", lifecycle("create", 0))]);
       expect(initial.map(row => row.outcome).sort()).toEqual(["committed", "conflict"]);
@@ -256,7 +258,7 @@ describe("15.5 authenticated lifecycle, atomic audit and commit-order RED", () =
     });
   });
 
-  test.skip("[P1] 15.5-INT014 AC6 last-used is database admitted fetch time and lifecycle alone never increments usage", async () => {
+  test("[P1] 15.5-INT014 AC6 last-used is database admitted fetch time and lifecycle alone never increments usage", async () => {
     await withCalendarFeedFixture("serial-commands", async fx => {
       const first = await fx.manage("own", lifecycle("create", 0)), url = issuedUrl(first);
       expect(await fx.status("own")).toMatchObject({ lastUsedAt: null, usageCount: 0 });

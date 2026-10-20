@@ -25,6 +25,7 @@ export const TABLE_PROJECTION_CAPABILITIES: Readonly<Record<string, string>> = {
   jobs: "Jobs.ViewAssigned", job_events: "Jobs.ViewAssigned",
   job_members: "Jobs.ViewAssigned", job_required_work_roles: "Jobs.ViewAssigned", job_access_windows: "Jobs.ViewAssigned", job_dependencies: "Jobs.ViewAssigned",
   bookings: "Bookings.View", booking_assignees: "Bookings.View", booking_conflicts: "Bookings.View",
+  calendar_feed_tokens: "Bookings.View",
   time_reports: "TimeReports.ReportOwn",
   booking_series: "Bookings.View",
   // Scheduling's existing read metadata; the explicit SQL manager-role boundary below is authoritative.
@@ -34,6 +35,7 @@ export const TABLE_PROJECTION_CAPABILITIES: Readonly<Record<string, string>> = {
 
 /** Existing RLS self-context contract, intentionally broader than Memberships.Manage. */
 export const TABLE_DIRECT_RLS_ALLOWED_ROLES: Readonly<Partial<Record<TenantTableName, readonly TenantRole[]>>> = {
+  calendar_feed_tokens: [],
   booking_series: ["tenant_admin", "projektledare"],
   booking_conflict_resolutions: ["tenant_admin", "projektledare"],
   // 20260907171252: active users must resolve their tenant context and own membership roles.
@@ -247,6 +249,7 @@ export const TABLE_RLS_PROJECTION_ADAPTERS: Readonly<Record<TenantTableName, Tab
   bookings: { projection: BOOKING_PUBLIC_COLUMNS, read: (client: RlsReadClient,id: string) => client.from("bookings").select(BOOKING_PUBLIC_COLUMNS).eq("id",id) },
   booking_assignees: idProjection("booking_assignees"),
   booking_conflicts: idProjection("booking_conflicts"),
+  calendar_feed_tokens: keyProjection("calendar_feed_tokens", "id", true),
   time_reports: idProjection("time_reports"),
   booking_series: idProjection("booking_series"),
   booking_conflict_resolutions: idProjection("booking_conflict_resolutions"),

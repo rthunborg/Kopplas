@@ -269,10 +269,10 @@ export const SCOPE_MANIFEST: ScopeManifest = {
       // Later scheduling stories enroll their own surfaces when implemented.
       navItems: [{ route: "/scheduling", group: "primary", requiredCapability: "Bookings.View" },
         { route: "/time-reports", group: "primary", requiredCapability: "TimeReports.ReportOwn" }],
-      tenantTables: ["booking_series", "booking_conflict_resolutions", "time_reports"],
+      tenantTables: ["booking_series", "booking_conflict_resolutions", "time_reports", "calendar_feed_tokens"],
       widgets: [],
       notificationCategories: ["booking.changed", "time_report.nudge"],
-      publicSurfaces: [],
+      publicSurfaces: ["calendar_feed"],
       fileOwnerTypes: [],
     },
 

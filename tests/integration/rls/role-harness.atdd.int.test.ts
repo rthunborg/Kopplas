@@ -161,7 +161,9 @@ async function seedEveryTenantTable(tenantId: string, actorId: string): Promise<
   const [jobDependency] = await adminQuery<{id:string}>("insert into public.job_dependencies(tenant_id,job_id,prerequisite_job_id) values($1,$2,$3) returning id", [tenantId,job,prerequisite]);
   const [{id:resolution}] = await adminQuery<{id:string}>("insert into public.booking_conflict_resolutions(tenant_id,actor_id,command_id,booking_id,request_digest,action,outcome,target_keys,affected_booking_ids,result) values($1,$2,gen_random_uuid(),$3,repeat('a',64),'accept','accepted','[]',array[$3::uuid],'{}') returning id",[tenantId,actorId,bookingRows.bookings]);
   const timeReport = await seedCheckedReport(tenantId, actorId);
+  const [{id:feedToken}] = await adminQuery<{id:string}>("insert into public.calendar_feed_tokens(tenant_id,membership_id,token_hash,revision,attempt_id,action,expected_revision) values($1,$2,encode(extensions.gen_random_bytes(32),'hex'),1,gen_random_uuid(),'create',0) returning id",[tenantId,membership]);
   return {
+    calendar_feed_tokens: feedToken,
     time_reports: timeReport,
     booking_conflict_resolutions:resolution,
     ...bookingRows,

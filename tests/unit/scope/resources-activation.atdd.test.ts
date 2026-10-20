@@ -20,9 +20,9 @@ test("[P0] activates resources with its six tenant tables and preserves resource
   ]);
   assert.equal(scheduling?.status, "active");
   assert.deepEqual(scheduling?.navItems, [{route:"/scheduling",group:"primary",requiredCapability:"Bookings.View"},{route:"/time-reports",group:"primary",requiredCapability:"TimeReports.ReportOwn"}]);
-  assert.deepEqual(scheduling?.tenantTables, ["booking_series", "booking_conflict_resolutions", "time_reports"]);
+  assert.deepEqual(scheduling?.tenantTables, ["booking_series", "booking_conflict_resolutions", "time_reports", "calendar_feed_tokens"]);
   assert.deepEqual(scheduling?.widgets, []);
   assert.deepEqual(scheduling?.notificationCategories, ["booking.changed", "time_report.nudge"]);
-  assert.deepEqual(scheduling?.publicSurfaces, []);
+  assert.deepEqual(scheduling?.publicSurfaces, ["calendar_feed"]);
   assert.deepEqual(scheduling?.fileOwnerTypes, []);
 });

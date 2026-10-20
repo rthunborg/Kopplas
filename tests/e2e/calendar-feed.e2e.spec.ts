@@ -1,17 +1,31 @@
-/** P4 RED ONLY: 11 skipped essential browser cases, zero acceptance evidence.
- * P5 must bind the fail-closed driver before activation. No recording/runtime
- * observation was performed. Proposed new selectors are listed in worker JSON.
- * playwright-utils two-gate decision: flag=true, package absent; vanilla style.
- */
-import { test, expect, type Page } from "@playwright/test";
+/** Essential production-host browser coverage. Real Next actions, anonymous HTTP and physical SQL readbacks. */
+import type { Page } from "@playwright/test";
+import { test as resourceTest, expect } from "./support/resource-cdp-attachment";
 import {
   calendarNames, calendarUI, enterActualPersonalCalendar, expectAccessWarning,
   followPersonalSubscriptionByKeyboard, tabTo, withCalendarBrowserFixture,
   type CalendarBrowserFixture, type PhysicalSnapshot, type SafeFeedReceipt,
 } from "./support/calendar-feed-atdd";
 
+// Playwright 1.61's automatic error-context DOM snapshot is independent of
+// screenshot/trace options. A unique worker fixture changes its worker-pool
+// digest, preventing reuse by unrelated smoke files. Keep the flag through test
+// artifact teardown (including failures/timeouts), then restore the prior value
+// at worker teardown. This changes no assertion/native JSON result evidence.
+const test = resourceTest.extend<Record<never, never>, { calendarArtifactPrivacy: void }>({
+  calendarArtifactPrivacy: [async ({}, provide) => {
+    const prior = process.env.PLAYWRIGHT_NO_COPY_PROMPT;
+    process.env.PLAYWRIGHT_NO_COPY_PROMPT = "1";
+    try { await provide(); }
+    finally {
+      if (prior === undefined) delete process.env.PLAYWRIGHT_NO_COPY_PROMPT;
+      else process.env.PLAYWRIGHT_NO_COPY_PROMPT = prior;
+    }
+  }, { scope: "worker", auto: true }],
+});
+
 // One-time capability must never enter trace/HAR/video/screenshots/reporter data.
-// P5's driver also sanitizes raw HTTP/DOM errors; no cause/body/URL attachment.
+// The driver also sanitizes raw HTTP/DOM errors; no cause/body/URL attachment.
 test.use({ trace: "off", screenshot: "off", video: "off" });
 
 function expectPrivateStorage(snapshot: PhysicalSnapshot) {
@@ -36,6 +50,7 @@ function expectPublicFeed(receipt: SafeFeedReceipt, expectedStatus: number) {
     expect(receipt.rfc5545Valid).toBe(true);
   } else {
     expect(receipt.events).toEqual([]);
+    if (expectedStatus === 404) expect(receipt.genericInactive).toBe(true);
   }
 }
 
@@ -52,8 +67,8 @@ async function issueFromUI(page: Page, fixture: CalendarBrowserFixture) {
   return { issued, snapshot: result.snapshot };
 }
 
-test.describe("15.5 Kalenderprenumeration essential production-host ATDD RED", () => {
-  test.skip("[P0] 15.5-E2E-001 [AC1 AC3 AC4 AC6 AC7 AC9] Planering → own issue → anonymous feed → physical last-use → rotate/revoke", async ({ page }) => {
+test.describe("15.5 Kalenderprenumeration essential production-host", () => {
+  test("[P0] 15.5-E2E-001 [AC1 AC3 AC4 AC6 AC7 AC9] Planering → own issue → anonymous feed → physical last-use → rotate/revoke", async ({ resourcePage: page }) => {
     await withCalendarBrowserFixture(page, "own-and-foreign", async (f) => {
       await f.signIn("montor");
       await followPersonalSubscriptionByKeyboard(page, "day");
@@ -79,6 +94,9 @@ test.describe("15.5 Kalenderprenumeration essential production-host ATDD RED", (
       expect(await f.lastUsedMatchesPhysical()).toBe(true);
       await expect(calendarUI(page).link).toHaveCount(0);
       await expect(calendarUI(page).abuse).toHaveCount(0);
+      const hostile = await f.fetchAnonymous(first.handle, true);
+      expectPublicFeed(hostile, 200);
+      expect(hostile.events).toEqual(f.expectedOwnEvents);
 
       await calendarUI(page).rotate.click();
       const rotatedCall = f.observeLifecycle("rotate");
@@ -114,7 +132,7 @@ test.describe("15.5 Kalenderprenumeration essential production-host ATDD RED", (
     { id: "002B", mode: "week", scenario: "own-and-foreign", host: "Egen veckokalender" },
     { id: "002C", mode: "day", scenario: "no-profile", host: "Egen agenda" },
   ] as const) {
-    test.skip(`[P1] 15.5-E2E-${variant.id} [AC1 AC6] actual ${variant.host} ${variant.scenario} exposes one keyboard subscription link`, async ({ page }) => {
+    test(`[P1] 15.5-E2E-${variant.id} [AC1 AC6] actual ${variant.host} ${variant.scenario} exposes one keyboard subscription link`, async ({ resourcePage: page }) => {
       await withCalendarBrowserFixture(page, variant.scenario, async (f) => {
         await f.signIn("montor");
         const personal = await enterActualPersonalCalendar(page, variant.mode);
@@ -134,7 +152,7 @@ test.describe("15.5 Kalenderprenumeration essential production-host ATDD RED", (
     });
   }
 
-  test.skip("[P1] 15.5-E2E-003 [AC1 AC6] profile Min kalender entry reaches the same settings surface by keyboard", async ({ page }) => {
+  test("[P1] 15.5-E2E-003 [AC1 AC6] profile Min kalender entry reaches the same settings surface by keyboard", async ({ resourcePage: page }) => {
     await withCalendarBrowserFixture(page, "own-and-foreign", async (f) => {
       await f.signIn("montor");
       await page.goto("/dashboard");
@@ -151,7 +169,7 @@ test.describe("15.5 Kalenderprenumeration essential production-host ATDD RED", (
     });
   });
 
-  test.skip("[P1] 15.5-E2E-004 [AC1 AC6] never-used, clipboard denial selectable fallback and revisit never recover the one-time URL", async ({ page }) => {
+  test("[P1] 15.5-E2E-004 [AC1 AC6] never-used, clipboard denial selectable fallback and revisit never recover the one-time URL", async ({ resourcePage: page }) => {
     await withCalendarBrowserFixture(page, "own-and-foreign", async (f) => {
       await f.signIn("montor");
       await followPersonalSubscriptionByKeyboard(page, "day");
@@ -161,7 +179,7 @@ test.describe("15.5 Kalenderprenumeration essential production-host ATDD RED", (
       expect(snapshot.own.lastUsedAt).toBeNull();
       await expect(page.getByText(/Aldrig hämtad|Inte hämtad ännu/i)).toBeVisible();
       await calendarUI(page).copy.click();
-      await expect(page.getByRole("alert")).toContainText(/kopiera.*(?:manuellt|själv)|markera.*länk/i);
+      await expect(calendarUI(page).notice).toContainText(/markera och kopiera länken/i);
       await tabTo(page, calendarUI(page).link);
       await page.keyboard.press("ControlOrMeta+A");
       expect(await f.checkIssuedLinkFallback()).toEqual({
@@ -170,13 +188,13 @@ test.describe("15.5 Kalenderprenumeration essential production-host ATDD RED", (
       await page.reload();
       await expect(calendarUI(page).link).toHaveCount(0);
       await expect(calendarUI(page).copy).toHaveCount(0);
-      await expect(page.getByText(/(?:förlorat|tappat|sparat).*länk|länk.*(?:återskapas|visas igen)/i)).toBeVisible();
+      await expect(page.getByText(/befintliga länken visas inte igen/i)).toBeVisible();
       await expect(calendarUI(page).rotate).toBeEnabled();
       expect(await f.snapshot()).toEqual(snapshot); // revisit must not silently rotate
     });
   });
 
-  test.skip("[P0] 15.5-E2E-005 [AC2 AC6] confirmation cancellation, pending persistence and failed rotation retry preserve old generation", async ({ page }) => {
+  test("[P0] 15.5-E2E-005 [AC2 AC6] confirmation cancellation, pending persistence and failed rotation retry preserve old generation", async ({ resourcePage: page }) => {
     await withCalendarBrowserFixture(page, "own-and-foreign", async (f) => {
       await f.signIn("montor");
       await followPersonalSubscriptionByKeyboard(page, "day");
@@ -207,7 +225,9 @@ test.describe("15.5 Kalenderprenumeration essential production-host ATDD RED", (
         await calendarUI(page).rotate.click();
         await page.getByRole("dialog").getByRole("button", { name: calendarNames.confirmRotate, exact: true }).click();
         await failure.reached;
-        await expect(page.getByRole("alert")).toContainText(/försök igen|kunde inte/i);
+        await expect(calendarUI(page).notice).toContainText(/kontrollera resultatet/i);
+        await calendarUI(page).reconcile.click();
+        await expect(calendarUI(page).notice).toContainText(/inget sparat resultat/i);
         await expect(calendarUI(page).retry).toBeEnabled();
         expect(await f.snapshot()).toEqual(created);
         expectPublicFeed(await f.fetchAnonymous(original.handle), 200);
@@ -220,11 +240,15 @@ test.describe("15.5 Kalenderprenumeration essential production-host ATDD RED", (
       expect(retried.snapshot.own.generationCount - beforeRetry.own.generationCount).toBe(1);
       expect(retried.snapshot.own.audit.length - beforeRetry.own.audit.length).toBe(1);
       expectIsolated(created, retried.snapshot);
+      const fresh = await f.captureIssuedLink();
+      expect(fresh.hashMatchesPhysicalGeneration).toBe(true);
+      expect(await f.attemptReceipt()).toEqual({ submittedAttempts: 3, distinctAttempts: 2, recoveredRawLink: true });
       expectPublicFeed(await f.fetchAnonymous(original.handle), 404);
+      expectPublicFeed(await f.fetchAnonymous(fresh.handle), 200);
     });
   });
 
-  test.skip("[P0] 15.5-E2E-006 [AC1 AC2 AC6] lost committed issuance reconciles sanitized metadata and needs separate explicit rotation", async ({ page }) => {
+  test("[P0] 15.5-E2E-006 [AC1 AC2 AC6] lost committed issuance reconciles sanitized metadata and needs separate explicit rotation", async ({ resourcePage: page }) => {
     await withCalendarBrowserFixture(page, "own-and-foreign", async (f) => {
       await f.signIn("montor");
       await followPersonalSubscriptionByKeyboard(page, "day");
@@ -235,11 +259,11 @@ test.describe("15.5 Kalenderprenumeration essential production-host ATDD RED", (
         await lost.reached;
         committed = await lost.committed; // actual SQL commit precedes transport abort
         expect(committed.own.activeCount).toBe(1);
-        await expect(page.getByRole("alert")).toContainText(/okänt|kontrollera|kunde inte bekräfta/i);
+        await expect(calendarUI(page).notice).toContainText(/kontrollera resultatet/i);
         await expect(calendarUI(page).link).toHaveCount(0);
       } finally { await lost.dispose(); }
       await calendarUI(page).reconcile.click();
-      await expect(page.getByText(/länk.*(?:återskapas|visas igen)|(?:förlorat|tappat).*länk/i)).toBeVisible();
+      await expect(calendarUI(page).notice).toContainText(/utfärdade länken kan inte återhämtas/i);
       await expect(calendarUI(page).link).toHaveCount(0);
       expect(await f.snapshot()).toEqual(committed);
       expect(await f.attemptReceipt()).toEqual({ submittedAttempts: 1, distinctAttempts: 1, recoveredRawLink: false });
@@ -261,8 +285,15 @@ test.describe("15.5 Kalenderprenumeration essential production-host ATDD RED", (
 
   test.describe("connected phone essentials", () => {
     test.use({ viewport: { width: 360, height: 640 }, hasTouch: true });
-    test.skip("[P1] 15.5-E2E-007 [AC1 AC6] 360×640 keyboard entry, touch issue and revoke confirmation remain usable", async ({ page }) => {
-      await withCalendarBrowserFixture(page, "no-profile", async (f) => {
+    test("[P1] 15.5-E2E-007 [AC1 AC6] 360×640 keyboard entry, touch issue and revoke confirmation remain usable", async ({ resourcePage }, testInfo) => {
+      // CDP resourcePage intentionally supplies its own context. Create this
+      // test's touch-enabled context on that same owned browser so its options
+      // are real under both CDP and the configured native Playwright runner.
+      const browser = resourcePage.context().browser();
+      if (!browser) throw new Error("Calendar phone test requires the owned browser");
+      const context = await browser.newContext({ baseURL: testInfo.project.use.baseURL, viewport: { width: 360, height: 640 }, hasTouch: true });
+      const page = await context.newPage();
+      try { await withCalendarBrowserFixture(page, "no-profile", async (f) => {
         await f.signIn("montor");
         await followPersonalSubscriptionByKeyboard(page, "day");
         await expectAccessWarning(page);
@@ -286,11 +317,11 @@ test.describe("15.5 Kalenderprenumeration essential production-host ATDD RED", (
         await page.keyboard.press("Enter");
         expect((await revoked).snapshot.own.activeCount).toBe(0);
         expectPublicFeed(await f.fetchAnonymous(issued.handle), 404);
-      });
+      }); } finally { await context.close(); }
     });
   });
 
-  test.skip("[P0] 15.5-E2E-008 [AC1 AC5 AC6 AC9] manager self-service cannot read Admin aggregate or peer capability", async ({ page }) => {
+  test("[P0] 15.5-E2E-008 [AC1 AC5 AC6 AC9] manager self-service cannot read Admin aggregate or peer capability", async ({ resourcePage: page }) => {
     await withCalendarBrowserFixture(page, "admin-monitoring", async (f) => {
       await f.signIn("manager");
       await followPersonalSubscriptionByKeyboard(page, "week");
@@ -307,7 +338,7 @@ test.describe("15.5 Kalenderprenumeration essential production-host ATDD RED", (
     });
   });
 
-  test.skip("[P0] 15.5-E2E-009 [AC5 AC6 AC9] Admin sees only sanitized own-tenant abuse counters and separate own lifecycle", async ({ page }) => {
+  test("[P0] 15.5-E2E-009 [AC5 AC6 AC9] Admin sees only sanitized own-tenant abuse counters and separate own lifecycle", async ({ resourcePage: page }) => {
     await withCalendarBrowserFixture(page, "admin-monitoring", async (f) => {
       await f.signIn("admin");
       await followPersonalSubscriptionByKeyboard(page, "week");

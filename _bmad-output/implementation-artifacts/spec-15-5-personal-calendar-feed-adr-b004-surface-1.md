@@ -2,10 +2,10 @@
 title: '15.5 — Personal Calendar Feed (ADR-B004 Surface #1)'
 type: 'feature'
 created: '2026-10-20'
-status: 'ready-for-dev'
+status: 'in-progress'
 review_loop_iteration: 0
 followup_review_recommended: false
-baseline_revision: '159557e114f18123e73282c39c90830917de9948'
+baseline_revision: '3a1c3bc9fbf22b13c926179288a8b6eefe440c12'
 approved_kernel: '0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977'
 approval_record: '_bmad-output/auto-bmad/preparation/story-15-5/approval.json'
 context:
@@ -136,3 +136,132 @@ HALT after planning. Author READY/self-audit passed with 10 tasks and 9 Given/Wh
 Bounded author repair completed for initial findings F15.5-01/F15.5-02 only. Current ready-for-dev remains a candidate, not approval; initial independent FAIL and12 unchanged PASS assessments remain historical in immutable independent-validation/. New candidate hashes/receipts supersede only author preparation metadata. No implementation/resource admission or runtime execution occurs.
 
 Approval metadata — 2026-10-20: independently validated kernel pinned in frontmatter and approval.json after targeted High PASS6/6; initial FAIL history preserved. This supersedes pending-approval metadata only. Status remains ready-for-dev; implementation, ownership, migration, test-key/runtime and resource admission remain held for Root/Coordinator. No product contract, task or AC changed.
+
+## Implementation Execution Admission
+
+2026-10-20 — Implementation mode admitted by Root after verified direct owner approval and accepted exact Coordinator allocation. Read `_bmad-output/auto-bmad/preparation/story-15-5/accepted-ownership-allocation.json` (SHA256 a00bd6d75e7d3c56e0e5985dce9f6c26e43776be6c3670ae319159bdbe1ac0ed) and `ownership-inventory-successor.md`; historical planning-only holds are superseded only within these exact bounds. Fresh Root/Coordinator inventory confirms E16 actual HEAD 77d11b6f18570e075dd858096194e497d99f95b1, active16.4, reserved/untracked 20261020210000 migration, and allocated E15 20261020220000_personal_calendar_feed.sql absent in both inventories and later than the combined reservations. Creation in this owned branch is admitted; foreign dirty SQL remains excluded.
+
+Build workflow execution route: context-free implementation author gpt-6.1-sol High, selected for public tokens, authorization/RLS, dedicated Vault secrets and transactional integrity; independent reviews select High for the same actual diff. Before dispatch this route is recorded here. An already-routed High author does not recursively delegate merely for effort. Author commits story source per git-and-pr.md and never pushes. Root owns bookkeeping commits, all pushes, canonical state/sprint/aggregate ledgers and resource lifecycle. Author must not launch managed background/DB/Next/browser resources, run Vitest collectTests/globalSetup, or Playwright auto webServer. Bounded unit/type/lint/build source verification is allowed. Full DB/RLS/HTTP/browser installed collection and recovery-storage evidence will use Root-managed exact-head CI after independently reviewed source freeze; report pending evidence honestly and retain in-review until Root qualification and distinct truth review. This execution metadata is outside the immutable approved intent contract.
+
+## Implementation Verification — source handoff 2026-10-20
+
+Source implementation and all 83 prepared expanded acceptance cases are now bound:
+22 Node unit cases, 50 Vitest lifecycle/API/RLS/component cases and 11 browser
+cases. No prepared case was dropped. The original ATDD manifests and planning
+receipts remain historical; their hashes are not current execution evidence.
+
+The implementation author applied the frontend-component and Supabase skills,
+the Supabase PostgreSQL security guidance, and the React best-practices review.
+Missing historical DESIGN/Figma references were resolved under the recorded
+owner-authorized existing Dialog/globals/settings defaults. No legacy observation
+was made. The allocated migration was CLI-created, then only that newly created
+file was moved to the Coordinator's reserved `20261020220000` name after Root's
+fresh combined-history receipt. No earlier migration or E16 worktree was edited.
+
+Actual local execution against the final source working tree before its source
+commit: focused combined Node command **90 passed, 0 failed, 0 skipped**, including
+all 22 feed unit cases (action-state 3, iCalendar 6, validation 3, attestation 4,
+trusted-IP 3, public-shell 3); typecheck passed; explicit owned-source ESLint
+passed; production `pnpm build` passed (compile 4.6s, TypeScript 20.8s, 12/12
+static pages, dynamic feed/settings routes); service-role, lockfile and built
+bundle guards passed. Initial scope-count/import-path failures were corrected
+before the final 90-case pass. Broad local `pnpm lint` was interrupted because
+it scanned retained ignored historical CI trace assets; those assets and lint
+configuration were not changed. Full clean-checkout canonical lint remains CI work.
+
+Root-authorized disjoint Sol High contributors supplied the two browser files
+and the three isolated-runtime/CI files. Their reported checks: browser source
+ESLint/typecheck/diff check passed and Playwright discovery listed 11 cases
+(discovery only); bootstrap injected tests **17 passed, 0 failed, 0 skipped**,
+focused ESLint/typecheck/diff check passed. The latter simulate process/DB
+dependencies and do not prove live runtime ownership or Vault cleanup. The
+bootstrap source requires its own distinct High lifecycle review before CI.
+
+Required native full integration/RLS/ACL and installed six-file collection,
+physical recovery Storage integrity, actual public HTTP and essential production
+browser execution, independent High implementation review and final truth audit
+are **pending Root's exact-head lane**. No runtime, database, Vault key, managed
+resource, deployment or hosted configuration was launched or changed locally.
+No delivery JSON or development-complete/release-ready claim is fabricated.
+Root retains the existing in-progress/in-review gate and `release_ready=false`.
+
+Deferred release validation is unchanged: QA/UX owns provider/device/visual/manual
+accessibility matrices and screenshots; Product/Architect/operations owns approved
+representative volumes and performance targets; release operator owns hosted key
+and verified-IP provisioning. Each needs its previously recorded next action and
+actual release evidence. Functional/security/native development failures remain
+blocking and cannot be recategorized as deferred polish.
+
+## Suggested Review Order
+
+Author: Story 15.5 implementation author (gpt-6.1-sol High), incorporating the
+explicitly delegated browser-binding and CI-runtime contributors' recorded choices.
+Refreshed against the final source working tree before the source handoff commit;
+the following stops were read and their one-based lines verified on 2026-10-20.
+
+### Own settings and honest lifecycle results
+
+Both existing personal entry points reach one settings surface. The existing
+Dialog and component-memory state provide confirmation, copy fallback and explicit
+uncertainty reconciliation; a lost issued URL requires a separate rotation.
+
+- `src/components/scheduling/PersonalCalendarView.tsx:6` — `Kalenderprenumeration`: links agenda, week and empty states.
+- `src/components/calendar-feed/CalendarSubscription.tsx:37` — `reconcile`: distinguishes saved, absent and superseded attempts.
+- `tests/unit/features/calendar-feed/action-state.test.ts:10` — `15.5-UNIT-009`: exercises AC2 lost-response state without plaintext recovery.
+- `tests/e2e/calendar-feed.e2e.spec.ts:71` — `15.5-E2E-001`: binds AC1/3/4/6/7/9 actual personal-view lifecycle journey; execution pending.
+
+### Signed current-self authority and atomic writes
+
+The ordinary JWT envelope derives self authority, while SQL repeats current exact
+membership and role-union checks under the scheduling tenant lock. Dedicated
+feed-only length-prefixed proofs prevent callers choosing an IP or weak token hash;
+lifecycle history, CAS and audit commit together without plaintext escrow.
+
+- `src/server/commands/calendar-feed/manage-calendar-feed.ts:10` — `calendarFeedCommand`: issues plaintext only after confirmed fresh SQL success.
+- `src/server/calendar-feed/attestation.ts:10` — `canonicalFeedProof`: binds dedicated operation-specific fields.
+- `supabase/migrations/20261020220000_personal_calendar_feed.sql:134` — `manage_calendar_feed`: checks signed inputs, revision, replay and audit transaction.
+- `tests/integration/commands/calendar-feed.int.test.ts:74` — `15.5-INT004`: AC2 changed-hash/action/revision replay assertions; native execution pending.
+
+### Isolated complete live calendar
+
+The public route has a cookie-free anon client and exact early middleware bypass.
+One SQL JSON result contains only current own materialized planned bookings; the
+encoder finishes before streaming, retaining IDs, UTC instants, Stockholm dates
+and octet-safe escaping without a row cap, recurrence expansion or date horizon.
+
+- `middleware.ts:40` — `request.nextUrl.pathname`: bypasses only one feed token segment before auth/environment work.
+- `src/server/calendar-feed/public-feed.ts:19` — `eventsFromResult`: enforces the complete minimal event shape before serialization.
+- `src/features/calendar-feed/icalendar.ts:28` — `encodeCalendarFeed`: emits stable RFC5545 snapshots.
+- `tests/unit/features/calendar-feed/icalendar.test.ts:50` — `15.5-UNIT-004`: AC8 independent injection, UTF-8 and folding assertions passed.
+
+### Independent abuse limits and least privilege
+
+Both database-owned axes count independently and commit invalid/limited outcomes;
+projection faults preserve admitted counters without claiming a successful fetch.
+The global IP table has no subject association, and only sanitized Admin aggregates
+leave SQL. Hosted IP trust remains explicitly disabled until qualified by operations.
+
+- `supabase/migrations/20261020220000_personal_calendar_feed.sql:180` — `Global cardinality`: bounds global windows before tenant authority and token counters.
+- `supabase/migrations/20261020220000_personal_calendar_feed.sql:79` — `calendar_feed_secret_internal`: filters dedicated keys without general owner Vault access.
+- `tests/integration/calendar-feed/public-feed.int.test.ts:72` — `15.5-API003`: AC5 independent 60/token boundary; HTTP/DB execution pending.
+- `tests/integration/rls/calendar-feed.rls.test.ts:167` — `15.5-RLS010`: AC4/9 effective owner, inherited ACL and filtered-helper assertions; execution pending.
+
+### Exact-head verification and release operations
+
+The separately allocated CI wrapper qualifies fresh local-stack identity, owns
+only captured child processes and an exact ephemeral Vault UUID, and retains
+primary/cleanup failures. Its injected unit evidence does not certify the live
+lane. The full development gate and delivery truth record remain Root-owned.
+
+- `scripts/ci/with-calendar-feed-runtime.mjs:41` — `validateStackIdentity`: qualifies isolated stack identity before key setup.
+- `scripts/ci/with-calendar-feed-runtime.mjs:226` — `runCalendarFeedRuntime`: orders key, fixed gate, owned child and cleanup lifecycles.
+- `scripts/ci/with-calendar-feed-runtime.mjs:66` — `createTelemetryObserver`: retains measured sanitized output observations only.
+- `docs/security/calendar-feed-operations.md:10` — `Hosted readiness`: records separately authorized key and trusted-IP prerequisites.
+
+Evidence: the actual local commands/counts and contributor provenance are recorded
+in Implementation Verification above. Limits: middleware unit dependencies and
+bootstrap process/DB dependencies are synthetic; component coverage is SSR only;
+all 50 native integration/component and 11 actual browser bodies are unexecuted
+locally. Required full DB/RLS/HTTP, recovery, browser, independent High review and
+truth checks remain pending. No release matrix, live key, hosted IP trust,
+performance target or deployment readiness is claimed.
