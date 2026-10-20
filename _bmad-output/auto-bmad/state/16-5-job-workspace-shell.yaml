@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-16-jobs
 status: in-progress
-updated_at: "2026-10-20T20:44:45Z"
+updated_at: "2026-10-20T20:45:18Z"
 started_at: "2026-10-20T15:42:25Z"
 completed_at: null
 active_seconds: 16254
@@ -37,7 +37,7 @@ tea_selected: [atdd, automate]
 tea_rationale: Role-dependent budget exclusion and per-tab visibility require permission matrix times activation enforcement.
 epic_story_count: 5
 stories_after_in_epic: 0
-completed_phases: [0, 1, 3, 4, 5, 6]
+completed_phases: [0, 1, 3, 4, 5, 6, 7]
 spec_path: "C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/_bmad-output/implementation-artifacts/spec-16-5-job-workspace-shell.md"
 spec_approved: true
 build:
@@ -48,7 +48,7 @@ build:
   deferred_count: 3
   warnings: [oversized]
 followup_passes: 0
-hitl_halt: null
+hitl_halt: "auto-continued (epic — no halt)"
 review_unverified: false
 story_trace: null
 legacy_review_resume: false
@@ -57,7 +57,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [bbfa9265, f830a4ca, f96256a0, 4562b3fe, ad9c3b79, b26cf196, e34997cb, 1d35e347, b0cd4c32, 1bf3444e, 54ac91ec, 0112e829]
+commits: [bbfa9265, f830a4ca, f96256a0, 4562b3fe, ad9c3b79, b26cf196, e34997cb, 1d35e347, b0cd4c32, 1bf3444e, 54ac91ec, 0112e829, f4607047]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -81,7 +81,10 @@ merge_method: null
 merge_commit: null
 branch_deleted: false
 open_questions: []
-deferred_work: []
+deferred_work:
+  - "Release-only exhaustive role,viewport and browser matrix beyond the five essential workspace journeys and retained smoke, including remaining traceability/navigation permutations. Status: deferred. Owner: Epic16 release validation owner (root). All five workspace journeys passed first attempt; complete required smoke passed33 cases with two honestly qualified retained retries. Optional release_validation=false; exhaustive breadth was not executed. No functional/security failure is deferred. Next action: Run the owned optional Epic16 release-validation matrix on the qualified release head and attach exact results."
+  - "Release-only screenshot comparison and visual review of workspace header,tabs,panels and dialogs across release viewports. Status: deferred. Owner: Epic16 release validation owner (root). Essential production interaction and persistence checks executed; exhaustive screenshots and visual comparison were not executed. Next action: Capture release-state screenshots,compare the existing design-system layouts and record visual findings before release readiness."
+  - "Release-only manual connected-field walkthrough and presentation polish of workspace,child/file navigation and explicit retry flows. Status: deferred. Owner: Epic16 release validation owner (root). Automated essential retention,refusal,retry and persistence acceptance executed; manual release walkthrough/polish was not executed. Consequential behavior remains a development requirement. Next action: Perform the Epic16 release walkthrough,resolve presentation-polish findings and attach manual evidence before release readiness."
 blockers: []
 overrides:
   epic_run: "Sequential Epic16 continuation; final Story16.5. One final epic PR; no merge/deployment/provider/secrets changes. Standing independently reviewed checkpoint pushes/owned CI authorized. Root owns Git/state/ledger/report; generic delegates own all story work."
@@ -106,6 +109,7 @@ overrides:
   story16_5_ci_attempt_7: "Exact54ac91ec2c912afe3b6772fcb8daa11fb282d36a ownedrun39490485088 TERMINALSUCCESS;allrequiredjobsPASS,optionalreleasedashboardSKIPPED/releasevalidationfalse. Unit2740pass0fail0skip+43process. DB1880total1879pass0fail1soleordinaryrecoverypending native028E6DC91A52DC12CCB73B7A1EBD20FE71A1C436F2740671EE736EA35EF46D6E;separateRecovery1pass0skip C2D82E2C9DC1EF156656C14CD079A129042A0C375EE881FBE99A62B7C31E4A78. Pilot5warmup25measuredreadp95=7.985169000000042ms bulkp95=2.968015999999807ms. Browser33allpassed31first+2retry,no unexpected/skip nativeC08263B31221E0BB82649DF83BF7E7B98B85DD2A6FF6AAAF5F5844790094E1F0;all5workspacefirstPASS. Retained16.1E03Chromiumresponsebodylookup and16.3E01result-unqualifiedHTTP200/audit0firstfail,fullretriesPASS;underlyingfirstbranchunknown,pendingindependentHighqualification,notfirstpass/purecauseclaim. Delivery/rootgate/provenance/donepending;release_readyfalse."
   story16_5_development_gate: "Actualrootdeliverygate0 oktrue/errors[]/approvalfalse;recordE8E40059FAD0642403F56C9BB654678106879E7BFDDE721C0FF78D6DD24B14E9. SAMEHighindependentprovenancequalifiedPASS E51CAA77A2BFD76B4836E7B514980B2A05CF685894784F58CBEE02A897AA0CE4;explicitrootmetadataDONEauthorizationthenauthorstatusdone. Terminal27inventory6A69A16F62DEC69DF7271BE5355787464E46EA7BD677043B2D7AD83140A6B6C8 rootverified0mismatch,25source/testbindingsunchanged frompassing54ac. Browser33pass31first2retrycaveat+unknownfirstE01outcome explicit;all5workspacefirstpass. Threeownedreleaseonlydefers,release_readyfalse. Phase5complete,sprintreviewuntilfinalepicbatch."
   story16_5_automate: "ActualPhase6HighTEA +2contextfreeHighworkers completedall3AC/TR12 map25activatedcases(13unit4INT3RLS5browser),19P0/6P1;0consequentialgaps0newtests0reruns. All25source/testhashesmatch,currentdiffsource/deps/config/SQLemptyfrom54ac; nativeCI39490485088 reusedtruthfully(31first+2retry,5workspacefirst,ordinaryrecoveryskipisolatedpass). Summary4BFBC7F085B95BD6A017DE9EE55AB373301A66467F3A73A1B7CCD2B7DA9E27C9. ThreeownedreleasechecksremainDEFERRED/release_readyfalse."
+  story16_5_phase7: "Configuredfollowuprecommendedandlatestrecommendationfalse:no redundantbroadpass. Existingactual6layer+targetedHighreview/provenancequalified;review_unverifiedfalse. Traceadvisorydormant5stories<6. Harvest3ownedrelease-onlychecks;no functional/securityfailuredeferred. Sprintreviewuntilfinalbatch."
 constraints:
   - "Exclusive checkout C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas; no foreign dirty-source copying."
   - "Planning only until approved ready-for-dev spec; no product/schema/dependency changes during planning."

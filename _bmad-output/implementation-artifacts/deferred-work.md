@@ -478,3 +478,21 @@ existing AC, recorded so it is not re-triaged a third time.
   evidence: Status: deferred. Owner: Epic16 release validation owner (root). Automated required persistence, authority, retry and conservation journeys passed; manual release walkthrough/polish was not executed. Consequential functional/security defects remain development requirements. Next action: Perform the Epic16 release walkthrough, resolve recorded presentation-polish findings, and attach the manual evidence before release readiness.
   location: _bmad-output/auto-bmad/delivery/16-4-projekt-upgrade-and-job-card-semantics.json#/deferred_release_validation/2
   severity: low
+
+## Deferred from: build-auto review of 16-5-job-workspace-shell (2026-10-20)
+
+- source_spec: `spec-16-5-job-workspace-shell.md`
+  summary: Release-only exhaustive role,viewport and browser matrix beyond the five essential workspace journeys and retained smoke, including remaining traceability/navigation permutations.
+  evidence: Status: deferred. Owner: Epic16 release validation owner (root). All five workspace journeys passed first attempt; complete required smoke passed33 cases with two honestly qualified retained retries. Optional release_validation=false; exhaustive breadth was not executed. No functional/security failure is deferred. Next action: Run the owned optional Epic16 release-validation matrix on the qualified release head and attach exact results.
+  location: _bmad-output/auto-bmad/delivery/16-5-job-workspace-shell.json#/deferred_release_validation/0
+  severity: low
+- source_spec: `spec-16-5-job-workspace-shell.md`
+  summary: Release-only screenshot comparison and visual review of workspace header,tabs,panels and dialogs across release viewports.
+  evidence: Status: deferred. Owner: Epic16 release validation owner (root). Essential production interaction and persistence checks executed; exhaustive screenshots and visual comparison were not executed. Next action: Capture release-state screenshots,compare the existing design-system layouts and record visual findings before release readiness.
+  location: _bmad-output/auto-bmad/delivery/16-5-job-workspace-shell.json#/deferred_release_validation/1
+  severity: low
+- source_spec: `spec-16-5-job-workspace-shell.md`
+  summary: Release-only manual connected-field walkthrough and presentation polish of workspace,child/file navigation and explicit retry flows.
+  evidence: Status: deferred. Owner: Epic16 release validation owner (root). Automated essential retention,refusal,retry and persistence acceptance executed; manual release walkthrough/polish was not executed. Consequential behavior remains a development requirement. Next action: Perform the Epic16 release walkthrough,resolve presentation-polish findings and attach manual evidence before release readiness.
+  location: _bmad-output/auto-bmad/delivery/16-5-job-workspace-shell.json#/deferred_release_validation/2
+  severity: low
