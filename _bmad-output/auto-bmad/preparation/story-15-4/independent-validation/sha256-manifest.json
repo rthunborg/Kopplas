@@ -1,0 +1,10 @@
+{
+  "kind": "independent-validation-artifact-bindings",
+  "baseline_revision": "5040f683cf9446d39de8512cdca82242c55fca3e",
+  "sha256": {
+    "check-candidate.py": "b6ee395d7bcf416b94ccfcacd84563c0e8c0f5eb0234128212897c474a048c11",
+    "machine-checks.json": "81f15eb3577c8118af5bf4b40cd5ab4c2484e23bd65db6c973ab2ff00425261c",
+    "report.md": "e386834d6fb944f9fc68c75593a4ecc7e2ff198122626b0c611fb863cdf7e95a",
+    "report.json": "bc2a5e15a4a588a6de0dd974ca40424927767abd1ad5e88ead7e2d33245bfdaa"
+  }
+}
