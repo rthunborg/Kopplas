@@ -1,8 +1,7 @@
 import { randomUUID } from "node:crypto";
 import { describe, test } from "vitest";
 import { expectCalendar as expect } from "../../support/calendar-feed-atdd";
-import { withCalendarFeedFixture, lifecycle, issuedUrl, bookingSeed, calendarEvents,
-  type SubjectName } from "../../support/calendar-feed-atdd";
+import { withCalendarFeedFixture, lifecycle, issuedUrl, bookingSeed, calendarEvents, calendarFixtureAssertionAt } from "../../support/calendar-feed-atdd";
 
 // Provider endpoint: TODO — checked management/status/fetch/abuse RPCs await real
 // P5 identifiers/signatures; normalized receipt purposes below are not SQL names.
@@ -17,10 +16,11 @@ describe("15.5 exact self authority, raw SQL boundary and least privilege", () =
   test("[P0] 15.5-RLS001 AC1 AC4 AC9 ordinary SQL current role union authorizes own management only", async () => {
     await withCalendarFeedFixture("row-isolated", async fx => {
       await fx.setAuthority("mixed", { primary: "saljare", additional: ["montor"] });
-      const allowed: SubjectName[] = ["own", "admin", "planner", "mixed"];
+      const allowedSites = { own: "scenario-rls001-own", admin: "scenario-rls001-admin", planner: "scenario-rls001-planner", mixed: "scenario-rls001-mixed" } as const;
+      const allowed: Array<keyof typeof allowedSites> = ["own", "admin", "planner", "mixed"];
       for (const subject of allowed) {
         const result = await fx.rawManage(subject, lifecycle("create", 0));
-        expect(result.denied, subject).toBe(false);
+        calendarFixtureAssertionAt(allowedSites[subject], () => expect(result.denied, subject).toBe(false));
       }
       for (const subject of ["seller", "economy", "invited", "disabled", "platformOnly", "anon"] as const) {
         const before = await fx.physical();

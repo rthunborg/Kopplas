@@ -32,7 +32,7 @@ function redactMatchers<T extends object>(assertion: T): T {
     if (typeof value !== "function") return value;
     return (...args: unknown[]) => {
       try { return Reflect.apply(value, target, args); }
-      catch { throw new Error(`15.5 assertion ${String(key)} failed; sensitive values redacted`); }
+      catch { throw calendarFixtureOrigin("scenario-assertion"); }
     };
   } });
 }
@@ -178,11 +178,22 @@ export type FixtureByLane<L extends Lane> = CalendarFixture &
   (L extends "row-isolated" ? Record<never, never> : { serial: SerialControls });
 
 // Pure fixture diagnostics: no DB/client imports or native error text are read.
-export const calendarFixtureDiagnosticStages = ["booking-fixture-before-callback", "canonical-fixture-cleanup", "additional-users", "bind-membership", "bind-profile", "bind-client", "owned-row-cleanup", "additional-auth-cleanup", "cleanup-absence-check", "serial-window-setup", "serial-window-restore", "scenario", "unknown"] as const;
+export const calendarFixtureOwnedOrigins = ["scenario-assertion", "scenario-issued-denied", "scenario-issued-unavailable", "scenario-issued-conflict", "scenario-issued-replayed", "scenario-issued-unknown-noncommitted", "scenario-issued-committed-missing-url", "scenario-canonical-token-route", "scenario-http-transport", "scenario-rls001-own", "scenario-rls001-admin", "scenario-rls001-planner", "scenario-rls001-mixed"] as const;
+export type CalendarFixtureOwnedOrigin = typeof calendarFixtureOwnedOrigins[number];
+export const calendarFixtureDiagnosticStages = ["booking-fixture-before-callback", "canonical-fixture-cleanup", "additional-users", "bind-membership", "bind-profile", "bind-client", "owned-row-cleanup", "additional-auth-cleanup", "cleanup-absence-check", "serial-window-setup", "serial-window-restore", "scenario", "unknown", ...calendarFixtureOwnedOrigins] as const;
 export type CalendarFixtureDiagnosticStage = typeof calendarFixtureDiagnosticStages[number];
 const calendarFixtureSqlstates = { "42501": "insufficient-privilege", "42P01": "undefined-table", "42703": "undefined-column", "42883": "undefined-function", "23502": "not-null", "23503": "foreign-key", "23505": "unique-conflict", "23514": "check-constraint", "22P02": "invalid-text", "25P02": "transaction-aborted", "57014": "query-cancelled", "40001": "serialization", "40P01": "deadlock", "08006": "connection-failure" } as const;
 type CalendarFixtureSafeFailure = { stage: CalendarFixtureDiagnosticStage; children?: readonly Error[] };
 const calendarFixtureSafeFailures = new WeakMap<object, CalendarFixtureSafeFailure>();
+/** Closed owned origin only: never inspect a native error or matcher arguments. */
+export function calendarFixtureOrigin(origin: CalendarFixtureOwnedOrigin): Error {
+  const stage = calendarFixtureOwnedOrigins.includes(origin) ? origin : "scenario-assertion";
+  const safe = new Error(`Calendar fixture failure [stage=${stage};category=unknown;sqlstate=unavailable]`);
+  calendarFixtureSafeFailures.set(safe, { stage }); return safe;
+}
+export function calendarFixtureAssertionAt<T>(site: "scenario-rls001-own" | "scenario-rls001-admin" | "scenario-rls001-planner" | "scenario-rls001-mixed", run: () => T): T {
+  try { return run(); } catch { throw calendarFixtureOrigin(site); }
+}
 function fixtureOwnData(value: object, key: string): { found: boolean; value?: unknown } {
   const descriptor = Object.getOwnPropertyDescriptor(value, key);
   return descriptor && "value" in descriptor ? { found: true, value: descriptor.value } : { found: false };
@@ -455,7 +466,7 @@ async function bindCalendarFixture(base: BookingFixture, extra: Awaited<ReturnTy
     http: (url,options={}) => track((async () => {
       const target=new URL(url);if(target.origin!==testOrigin())throw new Error("Non-owned calendar HTTP target rejected");
       for(const [name,value] of Object.entries(options.query??{}))target.searchParams.set(name,value);
-      try{return await response(await fetch(target,{headers:options.headers,redirect:"manual",cache:"no-store"}));}catch{throw new Error("Calendar HTTP unavailable; request redacted");}
+      try{return await response(await fetch(target,{headers:options.headers,redirect:"manual",cache:"no-store"}));}catch{throw calendarFixtureOrigin("scenario-http-transport");}
     })()),
     trustedFetch: (url,ip) => track((async () => response(await publicCalendarFeed(new URL(url).pathname.split("/").at(-1)!,new Headers(),{client:anon,trustedIp:ip})))()),
     physical: async () => {
@@ -715,10 +726,14 @@ export function inactiveContract(response: FeedResponse) {
 export function tokenFromUrl(url: string): string {
   const path = new URL(url).pathname;
   const match = /^\/calendar\/feed\/([A-Za-z0-9_-]{43})$/.exec(path);
-  if (!match) throw new Error("Expected canonical capability route");
+  if (!match) throw calendarFixtureOrigin("scenario-canonical-token-route");
   return match[1];
 }
 export function issuedUrl(result: ManagementObservation): string {
-  if (result.outcome !== "committed" || !result.issuedUrl) throw new Error("Confirmed fresh issuance required");
+  const outcome = result.outcome;
+  if (outcome !== "committed") {
+    throw calendarFixtureOrigin(outcome === "denied" ? "scenario-issued-denied" : outcome === "unavailable" ? "scenario-issued-unavailable" : outcome === "conflict" ? "scenario-issued-conflict" : outcome === "replayed" ? "scenario-issued-replayed" : "scenario-issued-unknown-noncommitted");
+  }
+  if (!result.issuedUrl) throw calendarFixtureOrigin("scenario-issued-committed-missing-url");
   return result.issuedUrl;
 }

@@ -717,6 +717,157 @@ function actualInstalledFailureTransport() {
   return installedFailureTransport;
 }
 
+async function actualFixtureOrigins() {
+    const source = readFileSync(new URL("../../../support/calendar-feed-atdd.ts", import.meta.url), "utf8");
+    const between = (start: string, end: string) => {
+      assert.equal(source.split(start).length, 2); assert.equal(source.split(end).length, 2);
+      return source.slice(source.indexOf(start), source.indexOf(end));
+    };
+    const pure = between("// Pure fixture diagnostics:", "// End pure fixture diagnostics.");
+    const matcher = between("function redactMatchers", "export const expectCalendar");
+    const guards = source.slice(source.indexOf("export function tokenFromUrl"));
+    assert.equal(source.split("export function tokenFromUrl").length, 2);
+    const strip = (nodeModule as unknown as { stripTypeScriptTypes(source: string): string }).stripTypeScriptTypes;
+    return import(`data:text/javascript;base64,${Buffer.from(strip(`${pure}\n${matcher}\n${guards}\nexport { redactMatchers };`)).toString("base64")}`);
+}
+
+async function actualFirstCalendarCase(path: string, dependencies: Record<string, unknown>) {
+  const source = readFileSync(new URL(path, import.meta.url), "utf8").replaceAll("\r\n", "\n");
+  const start = source.indexOf('  test("[P0] 15.5-'); assert.ok(start >= 0);
+  const end = source.indexOf("\n  });", start); assert.ok(end > start);
+  const strip = (nodeModule as unknown as { stripTypeScriptTypes(source: string): string }).stripTypeScriptTypes;
+  let callback: (() => Promise<void>) | undefined;
+  new Function("test", ...Object.keys(dependencies), strip(source.slice(start, end + "\n  });".length)))(
+    (_name: string, run: () => Promise<void>) => { callback = run; }, ...Object.values(dependencies));
+  assert.ok(callback); return callback();
+}
+
+test("live issuance guards expose only closed consumed outcome classes and retain success identity and access order", async () => {
+  const { issuedUrl, tokenFromUrl, calendarFixtureDiagnostic } = await actualFixtureOrigins();
+  const report = await actualInstalledFailureTransport();
+  let forbiddenReads = 0;
+  for (const outcome of ["denied", "unavailable", "conflict", "replayed", "PRIVATE unexpected"]) {
+    let reads = 0;
+    const result = Object.defineProperties({}, { outcome: { get() { reads++; return outcome; } },
+      issuedUrl: { get() { forbiddenReads++; throw Error("PRIVATE URL"); } },
+      cause: { get() { forbiddenReads++; throw Error("PRIVATE cause"); } } });
+    let failure!: Error;
+    try { issuedUrl(result); assert.fail("Expected closed issuance guard"); } catch (error) { failure = error as Error; }
+    const stage = outcome.startsWith("PRIVATE") ? "unknown-noncommitted" : outcome;
+    assert.match(failure.message, new RegExp(`stage=scenario-issued-${stage};category=unknown`));
+    assert.equal(reads, 1); assert.equal(calendarFixtureDiagnostic("scenario", failure), failure);
+    const json = await report(failure); assert.equal(json.numFailedTests, 1);
+    assert.ok(!JSON.stringify(json).includes("PRIVATE"));
+  }
+  assert.equal(forbiddenReads, 0);
+  assert.throws(() => issuedUrl({ outcome: "committed", issuedUrl: null }), /scenario-issued-committed-missing-url/);
+  const url = `https://example.invalid/calendar/feed/${"a".repeat(43)}`, accesses: string[] = [];
+  const committed = Object.defineProperties({}, { outcome: { get() { accesses.push("outcome"); return "committed"; } },
+    issuedUrl: { get() { accesses.push("url"); return url; } } });
+  assert.equal(issuedUrl(committed), url); assert.deepEqual(accesses, ["outcome", "url", "url"]);
+  assert.equal(tokenFromUrl(url), "a".repeat(43));
+  assert.throws(() => tokenFromUrl("https://example.invalid/PRIVATE"), /scenario-canonical-token-route/);
+});
+
+test("live matcher and synchronous allowed-site wrappers preserve once calls values and controlled callsite frames without native field reads", async () => {
+  const { redactMatchers, calendarFixtureAssertionAt, calendarFixtureDiagnostic } = await actualFixtureOrigins();
+  let calls = 0, reads = 0;
+  const hostile = Object.defineProperties({}, Object.fromEntries(["message", "stack", "cause", "code", "actual", "expected", "then"].map(key => [key, { get() { reads++; throw Error("PRIVATE"); } }])));
+  const marker = {}, args = [Symbol("PRIVATE argument")];
+  const assertion = redactMatchers({ pass(...received: unknown[]) { calls++; assert.equal(received[0], args[0]); return marker; }, fail() { calls++; throw hostile; } });
+  assert.equal(assertion.pass(...args), marker); assert.equal(calls, 1);
+  let failure!: Error;
+  function controlledAssertionCallsite() { assertion.fail(); }
+  try { controlledAssertionCallsite(); } catch (error) { failure = error as Error; }
+  assert.match(failure.message, /stage=scenario-assertion;category=unknown/);
+  assert.ok(failure.stack?.includes("controlledAssertionCallsite"));
+  assert.equal(calendarFixtureDiagnostic("scenario", failure), failure);
+  assert.equal(calendarFixtureAssertionAt("scenario-rls001-own", () => marker), marker);
+  for (const site of ["own", "admin", "planner", "mixed"]) {
+    assert.throws(() => calendarFixtureAssertionAt(`scenario-rls001-${site}`, () => { calls++; throw hostile; }), new RegExp(`stage=scenario-rls001-${site}`));
+  }
+  assert.equal(calls, 6); assert.equal(reads, 0); assert.ok(!failure.stack?.includes("PRIVATE"));
+});
+
+test("actual first INT001 and API001 callbacks stop at the live issuance guard after exactly their existing preceding operations", async () => {
+  const seams = await actualFixtureOrigins(), report = await actualInstalledFailureTransport();
+  for (const [path, expected] of [
+    ["../../../integration/commands/calendar-feed.int.test.ts", ["manage"]],
+    ["../../../integration/calendar-feed/public-feed.int.test.ts", ["seed", "manage"]],
+  ] as const) {
+    const calls: string[] = [];
+    const fixture = { async seedBookings() { calls.push("seed"); }, async manage() { calls.push("manage"); return { outcome: "unavailable", issuedUrl: null }; } };
+    const failure = await actualFirstCalendarCase(path, { withCalendarFeedFixture: async (_lane: string, run: (fx: unknown) => Promise<void>) => run(fixture),
+      lifecycle: () => ({}), bookingSeed: (value: unknown) => value, issuedUrl: seams.issuedUrl, tokenFromUrl: seams.tokenFromUrl }).then(() => assert.fail("Expected first callback failure"), error => error);
+    assert.deepEqual(calls, expected); assert.match(failure.message, /scenario-issued-unavailable/);
+    const json = await report(seams.calendarFixtureDiagnostic("scenario", failure));
+    assert.equal(json.numFailedTests, 1); assert.match(json.testResults[0].assertionResults[0].failureMessages[0], /scenario-issued-unavailable/);
+  }
+});
+
+test("actual first RLS001 callback identifies each allowed subject without altering preceding calls or inspecting matcher arguments", async () => {
+  const seams = await actualFixtureOrigins(), report = await actualInstalledFailureTransport();
+  for (const failingSubject of ["own", "admin", "planner", "mixed"]) {
+    const calls: string[] = [], subjects = ["own", "admin", "planner", "mixed"];
+    const fixture = { async setAuthority() { calls.push("authority"); }, async rawManage(subject: string) { calls.push(subject); return { denied: subject === failingSubject }; } };
+    const failure = await actualFirstCalendarCase("../../../integration/rls/calendar-feed.rls.test.ts", {
+      withCalendarFeedFixture: async (_lane: string, run: (fx: unknown) => Promise<void>) => run(fixture), lifecycle: () => ({}),
+      calendarFixtureAssertionAt: seams.calendarFixtureAssertionAt,
+      expect: (actual: unknown) => seams.redactMatchers({ toBe(expected: unknown) { assert.equal(actual, expected); } }),
+    }).then(() => assert.fail("Expected subject failure"), error => error);
+    assert.deepEqual(calls, ["authority", ...subjects.slice(0, subjects.indexOf(failingSubject) + 1)]);
+    const json = await report(seams.calendarFixtureDiagnostic("scenario", failure));
+    assert.equal(json.numFailedTests, 1); assert.match(json.testResults[0].assertionResults[0].failureMessages[0], new RegExp(`scenario-rls001-${failingSubject}`));
+  }
+});
+
+test("actual first callbacks retain precise safe assertion frames and unknown upstream limits after successful issuance", async () => {
+  const seams = await actualFixtureOrigins(), report = await actualInstalledFailureTransport();
+  const url = `https://example.invalid/calendar/feed/${"a".repeat(43)}`;
+  const expect = (actual: unknown) => seams.redactMatchers({ toBe(expected: unknown) { assert.equal(actual, expected); },
+    toHaveLength(expected: number) { assert.equal((actual as unknown[]).length, expected); } });
+  for (const path of ["../../../integration/commands/calendar-feed.int.test.ts", "../../../integration/calendar-feed/public-feed.int.test.ts"]) {
+    const calls: string[] = [];
+    const fixture = { subjects: { foreign: { tenantId: "foreign" }, peer: { membershipId: "peer", userId: "peer" } },
+      async seedBookings() { calls.push("seed"); }, async manage() { calls.push("manage"); return { outcome: "committed", issuedUrl: url }; },
+      async physical() { calls.push("physical"); return { tokens: [] }; }, async http() { calls.push("http"); return { status: 503 }; } };
+    const failure = await actualFirstCalendarCase(path, { withCalendarFeedFixture: async (_lane: string, run: (fx: unknown) => Promise<void>) => run(fixture),
+      lifecycle: () => ({}), bookingSeed: (value: unknown) => value, issuedUrl: seams.issuedUrl, tokenFromUrl: seams.tokenFromUrl, expect }).then(() => assert.fail("Expected actual first assertion failure"), error => error);
+    assert.deepEqual(calls, path.includes("commands") ? ["manage", "physical"] : ["seed", "manage", "http"]);
+    const messages = (await report(seams.calendarFixtureDiagnostic("scenario", failure))).testResults[0].assertionResults[0].failureMessages;
+    assert.equal(messages.length, 1); assert.match(messages[0], /stage=scenario-assertion/);
+    assert.ok(messages[0].includes("eval at actualFirstCalendarCase"));
+  }
+  // A pre-guard rejection has no invented issuance origin. Direct own code may
+  // survive, but erased/unmapped upstream information stays explicitly unknown.
+  for (const rejection of [new Error("PRIVATE erased upstream"), { code: "42501", detail: "PRIVATE" }]) {
+    let manages = 0;
+    const failure = await actualFirstCalendarCase("../../../integration/calendar-feed/public-feed.int.test.ts", {
+      withCalendarFeedFixture: async (_lane: string, run: (fx: unknown) => Promise<void>) => run({ seedBookings: async () => { throw rejection; }, manage: async () => { manages++; } }),
+      bookingSeed: (value: unknown) => value,
+    }).catch(error => seams.calendarFixtureDiagnostic("scenario", error));
+    assert.equal(manages, 0); assert.match(failure.message, /stage=scenario;/);
+    assert.ok(!failure.stack?.includes("PRIVATE"));
+    assert.match(failure.message, rejection instanceof Error ? /category=unknown;sqlstate=unavailable/ : /category=insufficient-privilege;sqlstate=42501/);
+  }
+});
+
+test("live owned HTTP catch emits fixed origin and preserves the existing fetch arguments without examining its rejection", async () => {
+  const seams = await actualFixtureOrigins();
+  const source = readFileSync(new URL("../../../support/calendar-feed-atdd.ts", import.meta.url), "utf8");
+  const start = "    http: (url,options={}) =>", end = "    trustedFetch:";
+  assert.equal(source.split(start).length, 2); assert.equal(source.split(end).length, 2);
+  const httpSource = source.slice(source.indexOf(start), source.indexOf(end));
+  const strip = (nodeModule as unknown as { stripTypeScriptTypes(source: string): string }).stripTypeScriptTypes;
+  let calls = 0, reads = 0; const headers = {}, hostile = Object.defineProperty({}, "message", { get() { reads++; throw Error("PRIVATE"); } });
+  const make = (fetch: (...args: unknown[]) => Promise<unknown>, response: (value: unknown) => unknown) => new Function("track", "testOrigin", "fetch", "response", "calendarFixtureOrigin", `return ${strip(`({${httpSource}}).http`)};`)(
+    (value: unknown) => value, () => "https://example.invalid", fetch, response, seams.calendarFixtureOrigin);
+  const http = make(async (target, options) => { calls++; assert.ok(target instanceof URL); assert.equal(target.searchParams.get("from"), "1900"); assert.deepEqual(options, { headers, redirect: "manual", cache: "no-store" }); throw hostile; }, value => value);
+  await assert.rejects(http("https://example.invalid/calendar/feed/opaque", { headers, query: { from: "1900" } }), /scenario-http-transport/);
+  assert.equal(calls, 1); assert.equal(reads, 0);
+  const result = {}; assert.equal(await make(async () => result, value => value)("https://example.invalid/calendar/feed/opaque"), result);
+});
+
 test("installed failure transport reproduces lost nested diagnostics without treating reporter absence as unknown in process", async () => {
   const report = await actualInstalledFailureTransport();
   const leaf = new Error("Calendar fixture failure [stage=bind-profile;category=insufficient-privilege;sqlstate=42501]");
