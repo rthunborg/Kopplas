@@ -1,0 +1,1492 @@
+# NARROW CI repair regression review ONLY; 3 counted rounds retained (1 broad R1 + 2 limited R2/R3)
+diff --git a/_bmad-output/implementation-artifacts/spec-15-4-time-reporting-filing-timesheet-review.md b/_bmad-output/implementation-artifacts/spec-15-4-time-reporting-filing-timesheet-review.md
+index bd09d6ba..8eb573b4 100644
+--- a/_bmad-output/implementation-artifacts/spec-15-4-time-reporting-filing-timesheet-review.md
++++ b/_bmad-output/implementation-artifacts/spec-15-4-time-reporting-filing-timesheet-review.md
+@@ -4,7 +4,7 @@ type: 'feature'
+ created: '2026-10-20'
+ status: 'in-review'
+ review_loop_iteration: 0
+-followup_review_recommended: false
++followup_review_recommended: true
+ baseline_revision: '4862704665cb12e4f577ecac59ee173c49c36763'
+ context:
+   - docs/process/review-order.md
+@@ -120,6 +120,8 @@ Exact review bindings: the reviewer read all670 lines/67,026 raw bytes of packet
+ 
+ ## Review Triage Log
+ 
++2026-10-20 qualified CI failure repair: Root admitted the terminal failed run39408197808/attempt1 at `51f37bc965b9e9fb7b65f7cd66cc24cb4e9b48d7` and released only five source/test paths plus this spec. The persisted `ci-followup-51f37bc9/route.json` selected the original gpt-6.1-sol High author before dispatch for service-client/fixture integrity and accessible controls. All three broad rounds remain completed, re-derivation0; `followup_review_recommended: true` now requires only a DISTINCT High narrow CI-repair regression review, never a fourth broad round. No nested delegate or runtime is used. The original sourcefreeze/preparation/review evidence remains unchanged; Root's dirty canonical state is excluded from author staging.
++
+ 2026-10-20 Round 1 of 3: nine accepted patch findings (three High, six Medium), zero intent/spec gaps and re-derivation iteration zero. The external wrapper failed with exit 1 (`The system cannot find the file specified.`); its recovered report is triage input only, with actual external model metadata unavailable. Source was not accepted. The original Sol 6.1 High author retains the synchronous fix batch. The existing UI author is re-engaged at Sol 6.1 High for R1-01–05/08/09 in its original feature/controller/component/E2E paths; the implementation author retains decimal arithmetic R1-07, proposed preference-serialization R1-06 and final integration/SRO. High covers uncertain filing integrity and shared SQL serialization. No nested runtime, commit, broad review or kernel change is delegated. The new preference write contract awaits Coordinator reconciliation before any SQL write.
+ 
+ The existing integrity-test author is re-engaged at Sol 6.1 High only for R1-06 deterministic two-session/barrier assertions in the allocated serial nudge suite. It writes no preference trigger or shared contract and starts no runtime; the new contract remains on hold until actual semantic allocation.
+@@ -132,6 +134,8 @@ Coordinator's final R1-06 allocation authorizes only the unapplied109 affected-r
+ 
+ ## Design Notes
+ 
++CI repair choices: the fixture injects the existing local-only `tenants::admin()` service-JWT client after `assertLocalStack`, matching the test environment authority without requiring or mutating application env/config. Generated recipient assignment/booking/profile UUIDs are removed with normal FK enforcement before auth deletion; callback and every cleanup failure are retained, and all owned auth deletion promises settle before reporting. Explicit Person/Jobb aria-labels disambiguate the review selects while retaining visible labels/options. Browser capture is scoped to one visible own-week context/card with explicit cardinality, preserving global peer absence and the entire capture/persistence/reload tail. The quote guard adds only the already approved `/time-reports` route to its exact active set.
++
+ Round 2 detachment correction: booking/job links and the duration's source are separate concerns. Selecting Utan bokning now clears only the two relationships; the unchanged canonical minutes and UTC endpoint provenance continue to describe the displayed draft. Choosing another booking still replaces the prefill, while editing hours still invalidates canonical minutes and edited interval endpoints still parse independently. This prevents a valid20-minute draft being rejected through generated decimal hours and prevents an unchanged late-fold60-minute interval being reinterpreted as120 minutes.
+ 
+ Round 1 arithmetic correction: report-vs-booked delta now subtracts the inputs' decimal numeric representations with integer scaling, then converts the decimal result to the existing numeric DTO. This preserves the received booked provenance, including 60.1 minutes, and displays 75−60.1 as 14.9 minutes without adding binary subtraction digits. It introduces no money arithmetic or report-duration rounding; filed minutes remain integers. Six focused domain assertions passed with zero skips during the fix batch, including independent tenths and micro/exponent boundaries. Final integrated evidence is recorded separately after all fixes settle.
+@@ -192,7 +196,7 @@ Actual evidence:
+ 
+ The report inventory is now75 active declarations: pure17/component17/command11/RLS7/read7/nudge13/browser3, zero explicit skips. Both new declarations are actual controller regressions; the original50 remain active. SQL/RLS/migration/Storage/browser execution and Linux xattr remain pending Root's exact-head CI; no runtime, Git, dependency, schema or API action occurred in this batch. The same20-stop author trail below is refreshed for both residuals and correctly attributes genuine service-writer assertions to NUDGE011. Its checker passed with one section,20 stops and zero errors; `git diff --check` passed. The LF kernel SHA256 remains `3c701d71dba37a136ae104fd24c3b223ef46081913301fb43ff92baca3f16ffb`.
+ 
+-### Round 3 source-review reconciliation — 2026-10-20
++### Historical Round 3 source-review reconciliation — 2026-10-20
+ 
+ The independent final LIMITED review at `3bd815887a6c4a246d94956eb021b1b6ea0525c2` passed with zero findings and closed both detachment residuals. The original report and exact packet/source bindings are recorded in Review Findings. This author reconciliation changes reporting/SRO only; no product source or tests were changed or rerun. The preceding implementation/Round1/Round2 working-tree checkpoints are explicitly historical evidence, including every failure, skip and synthetic boundary.
+ 
+@@ -200,6 +204,24 @@ Current source inventory remains75 active report declarations with zero explicit
+ 
+ The build delegate performs authorized scoped source commits; Root owns checkpoint push, CI/resource admission and aggregate state/delivery truth. Source review is complete within its final limited scope; status remains in-review until required CI/delivery evidence permits a later transition. Reporting validation here is limited to the same20-stop SRO checker, diff check and frozen-kernel conservation; no additional broad review, implementation test run, runtime or deployment is authorized by this reconciliation.
+ 
++### Qualified CI failure and bounded repair — 2026-10-20
++
++Root's independently qualified FAILURE is run39408197808, head `51f37bc965b9e9fb7b65f7cd66cc24cb4e9b48d7`, attempt1, checkpoint `dd4a731e-baa2-4df5-8caf-e9cc2d6accb4`. The author read the persisted route, Root receipt and qualifier report plus integration/browser failure qualifications in `.env.epic15.mail-runtime/story-15-4-preparation/checkpoint-51f37bc9-ci-independent/`. Root verified193 native files and three report hashes; its receipt SHA256 is `d0534b6c0a80ee7aecd5ffc74e71998f2e3b7a150fc53997b1fe2abbdc215b21`. This is failed-head evidence, not acceptance of the repaired successor.
++
++Actual failed-head CI: canonical verify passed frozen install/audit, type/lint/build, source/bundle containment, all3,041 units with zero failures/skips (including actual Linux xattr), and43 focused process assertions. Full integration was1,979 cases:1,915 passed/12 failed/52 historical skips. Story15.4's55 integration cases were44 passed/11 failed/zero skipped:17 component and27 real DB passes,11 nudge failures. All11 command,7 RLS,7 read and NUDGE012/013 bodies passed. Migration109 applied at startup and reset in each db/e2e/recovery job; the independent physical Storage proof passed1/1 with two objects/66 bytes. These results do not erase failing essential bodies.
++
++Ten nudge cases (001/002/003/005/006/010/011/007/008/009) failed at `jobsClient`'s missing NEXT_PUBLIC_SUPABASE_URL before the real producer/dispatch. Therefore SQL DST/midnight/exclusive-end vectors; concurrent dedupe; current-preference/role branches; actual opt-out-first waits; post-predicate55P03/service-writer/history/retry/barrier cleanup; filing-before-nudge suppression; and nudge atomic fault/SQLSTATE/cleanup tails were not reached. In009 registration metadata passed before the client failure. NUDGE004's visible error was auth-user cleanup; it masked an UNKNOWN earlier callback cause/reach. The repair does not invent that earlier cause or award cursor/pagination/tail coverage before a real rerun.
++
++Native browser17 cases/19 attempts had15 expected/2 unexpected/zero flaky/skipped/global errors. All14 prior smoke bodies and E2E002 passed first attempt; E2E002 reached lost committed response → revoked denial → restored same frozen attempt, no duplicate report/audit and reload/no-profile assertions. Both E2E001 attempts stopped on three responsive own-card matches after peer RPC denial/snapshot/login/date/period, before peer-card absence/capture/prefill/filing/report-audit/week/reload tails. Both E2E003 attempts passed initial physical fixtures/visible rows/person/job/unlinked totals, then found no exact Person selector; filter/annotation/attribution/audit/reload/Admin/own-only tails were unreached. Available native bytes contain locator errors and runner-local trace/error-context references; no trace, error-context or HTML bytes were uploaded, so no actual DOM-trace diagnosis is claimed.
++
++The bounded repair changes only the five allocated source/test files and this spec. Local evidence against that failed source baseline:
++
++- Standard component+quote-source-guard Vitest run first reproduced22 passes/two failures/zero skips after adding the explicit-name SSR assertion, then passed24/24: component18 and quote guards6. Existing quote/widget/email/table/Phase C assertions remain active; only the approved route pin changes. Component18 is nine SSR plus nine actual-controller VM cases; the new SSR proves explicit emitted names/options, not browser accessibility or filtering completion.
++- Focused domain/validation/action-state unit command passed17/17 with zero failures/skips. `pnpm exec tsc --noEmit --incremental false`, scoped ESLint across all five changed source/test paths (zero errors/warnings), `pnpm build`, source containment and built-bundle containment passed. Browser discovery still lists exactly the existing three essential flows; no browser body ran locally. Unchanged full-unit/dependency/process checks were not repeated.
++- Four bounded executions of the actual fixture module in a VM passed success, callback-only failure, combined callback+cleanup failures and cleanup-only failure. Substituted SQL/Auth/service ports verified exact generated-ID query scope/dependency order, original callback identity/cause plus every cleanup error, local guard/admin-port injection, and all owned auth deletion promises settled (63 measured and asserted per probe). These are control-flow probes, not real SQL/FK/Auth/JWT proof. The initial exploratory probe failed its own cross-realm array comparison; the probe assertion was corrected without a product-source change, and all four scenarios then passed.
++
++Inventory is76 active report declarations, zero explicit skips: pure17/component18/command11/RLS7/read7/nudge13/browser3. The same-SRO checker passed one section/20 stops/zero errors; `git diff --check` passed. LF kernel conservation passed at `3c701d71dba37a136ae104fd24c3b223ef46081913301fb43ff92baca3f16ffb`. Failed-head results and unreached tails remain recorded; successor exact-head CI must execute them. The original sourcefreeze and preparation/review artifacts are conserved. No SQL/app service/env/config/CI/dependency/seed/resource change, local DB/browser runtime, passing delivery, done or development-complete claim is made. An authorized exact-six-path source commit precedes the distinct High narrow repair review and Root's successor admission/rerun; canonical state and parent route are not staged.
++
+ ### Historical preparation evidence
+ 
+ This planning run executes artifact/process checks only: source AC comparison, seven-point immediate story audit, READY standard, spec reader/discovery, exact raw/kernel hashes and clean tracked-source/cached-context preservation. Zero app/schema/test/scaffold/runtime/CI execution is claimed. Root separately dispatches independent High specification validation.
+@@ -212,8 +234,10 @@ Deferred release validation retains exhaustive browser/device/view matrices, scr
+ 
+ ## Auto Run Result
+ 
+-Status: in-review — source-review reconciliation is complete through final LIMITED Round3 PASS/zero findings; Root-owned exact-head CI and truthful delivery evidence remain pending.
+-Blocking condition: required database/RLS/migration/Storage/browser and remaining clean-checkout evidence has not executed for this implementation. Native read-only CLI qualification succeeded in Round2, both residuals closed in Round3, and the failed Round1 wrapper remains historical. No unresolved source finding is asserted. Resume through the allocated Root CI/delivery lane without a fourth broad review or runtime/ownership expansion.
++Status: in-review
++
++Current result: the qualified failed-head CI is preserved and its bounded fixture/accessibility/selector/nav repairs have passed the recorded local checks. Three broad source-review rounds remain completed; the latest repair requires a distinct High narrow regression review and successor Root exact-head CI/delivery evidence.
++Blocking condition: run39408197808 failed integration and essential browser bodies at the recorded stops. The successor repair has not yet passed native execution or narrow independent review. No fourth broad review, runtime expansion, delivery pass or done transition is implied.
+ 
+ ### Historical preparation result
+ 
+@@ -226,52 +250,52 @@ Root then obtains Coordinator allocation of exact shared semantic deltas, a uniq
+ 
+ ## Suggested Review Order
+ 
+-Author: original Story15.4 implementation author, gpt-6.1-sol High; the same bounded High UI/integrity authors' fixes are reconciled here.
+-Refreshed against reviewed source HEAD `3bd815887a6c4a246d94956eb021b1b6ea0525c2`, 2026-10-20, after final LIMITED Round3 PASS/zero findings. This reporting-only reconciliation preserves the rationale and stops; frozen intent, in-review status and required runtime limits remain.
++Author: original Story15.4 implementation/fix author, gpt-6.1-sol High. This same trail reconciles the bounded CI repair; no new broad review is requested.
++Refreshed against the repaired working tree based on failed CI source `51f37bc965b9e9fb7b65f7cd66cc24cb4e9b48d7`, 2026-10-20. The three completed source-review rounds and original sourcefreeze remain immutable predecessor evidence. Current fixes await distinct High narrow regression review and successor CI; status stays in-review.
+ 
+-### Own capture and honest retry
++### Own capture in the visible calendar
+ 
+-Entry consumes the headless attempt/draft transitions. Detaching clears booking/job relationships while retaining canonical duration and independently unchanged UTC endpoint provenance; edited input keeps exact validation. AC1/2/6 actual-controller regressions submit detached20-minute hours and late-fold60-minute intervals, while existing tests retain unknown-attempt, standalone-date and edited-endpoint behavior.
++Entry retains the approved exact-duration/provenance and unresolved-attempt behavior. The repaired essential browser case chooses the visible own-week context and requires one visible own card; global peer absence and the entire prefill/report/audit/week/reload tail remain. Failed-head browser001 reached neither capture nor those tails; the repaired selector is source awaiting actual rerun.
+ 
+-- `src/components/time-reports/TimeReportEntry.tsx:28` — `chooseBooking`: detaches relationships while retaining duration and endpoint provenance.
+-- `src/features/time-reports/action-state.ts:36` — `timeReportDraftMinutes`: preserves untouched endpoints and exact canonical duration.
+-- `tests/integration/components/time-reports.test.ts:193` — `R2-01`: submits detached canonical minutes and rejects edited rounded hours.
+-- `tests/integration/components/time-reports.test.ts:203` — `R2-02`: submits detached late-fold minutes with cleared booking/job links.
++- `src/components/time-reports/TimeReportEntry.tsx:28` — `chooseBooking`: detaches links while retaining duration and UTC provenance.
++- `src/features/time-reports/action-state.ts:36` — `timeReportDraftMinutes`: preserves independently unchanged endpoints and exact canonical minutes.
++- `tests/e2e/time-reports.e2e.spec.ts:31` — `const ownWeek`: requires one visible own-week context before unique-card capture.
++- `tests/integration/components/time-reports.test.ts:194` — `R2-01`: submits detached canonical minutes and rejects explicitly edited rounding.
+ 
+-### Current authority and one attributable write
++### Current authority and attributable persistence
+ 
+-SQL checks the current role union under tenant serialization before replay, then locks own assignment and same-tenant job references. Immutable filing and reviewer CAS each persist with their attributable audit in one transaction; AC2/7/8 fault tests inspect physical rollback, while ACL/RLS tests protect direct paths.
++SQL authority, immutable filing and reviewer CAS are unchanged by this repair. Failed-head native CI passed all11 command,7 RLS and7 read cases, including filing/annotation atomic fault bodies; this is actual predecessor evidence, distinct from the eleven failed nudge bodies and two blocked browser tails.
+ 
+-- `supabase/migrations/20261020190000_time_reports.sql:48` — `time_report_actor_gate_internal`: checks current authority before replay.
++- `supabase/migrations/20261020190000_time_reports.sql:48` — `time_report_actor_gate_internal`: checks current role authority before replay.
+ - `supabase/migrations/20261020190000_time_reports.sql:62` — `file_time_report`: binds actor, attempt, references and booked provenance.
+ - `supabase/migrations/20261020190000_time_reports.sql:122` — `annotate_time_report`: checks revision and latest exact retry.
+-- `tests/integration/commands/time-reports.int.test.ts:193` — `15.4-INT-009`: proves business stage and atomic audit rollback.
++- `tests/integration/commands/time-reports.int.test.ts:193` — `15.4-INT-009`: asserts business stage and atomic audit rollback.
+ 
+-### Complete projections and guarded review
++### Accessible filters and complete projections
+ 
+-The existing complete-page read model retains AC3/4/9 totals, filters and standalone groups. Production review now consumes stale-outcome/navigation guards and workspace response ordering; decimal-scaled subtraction preserves raw booked provenance without binary display digits. Actual TSX cases assert stale no-save, guarded links and out-of-order results; READ002 and READ007 retain SQL-backed projection assertions.
++Person and Jobb now have explicit accessible names while retaining visible labels/options and exact browser assertions. The new real-workspace SSR assertion proves emitted names; failed-head browser003 passed initial totals but did not reach filters/annotation/reload. Existing complete paging, standalone groups and decimal booked provenance remain unchanged and retain their recorded tests.
+ 
+-- `src/components/time-reports/TimeReportReview.tsx:11` — `TimeReportReview`: guards notes, frozen attempts and internal links.
+-- `src/components/time-reports/TimeReportWorkspace.tsx:14` — `TimeReportWorkspace`: publishes only the current request's response.
+-- `src/features/time-reports/domain.ts:28` — `reportedBookedDelta`: subtracts decimal minutes without snapshot rounding.
+-- `tests/integration/components/time-reports.test.ts:180` — `R1-09`: asserts latest selection and actual rendered result.
++- `src/components/time-reports/TimeReportWorkspace.tsx:31` — `aria-label="Person"`: names both review filter selects explicitly.
++- `tests/integration/components/time-reports.test.ts:212` — `CI repair review selectors`: asserts exact names and retained real selector options.
++- `src/features/time-reports/domain.ts:28` — `reportedBookedDelta`: subtracts decimal minutes without rounding the snapshot.
++- `tests/integration/read-models/time-reports.int.test.ts:37` — `15.4-READ-002`: asserts complete filtered review and standalone totals.
+ 
+-### Current preferences under bounded serialization
++### Genuine local service injection and bounded reminders
+ 
+-The existing jobs client supplies exact tenant/as-of/cursor scope. The allocated affected-row trigger makes every preference writer try OLD/NEW tenant gates and abort explicitly with55P03 when busy; removing producer preference tuple locks lets existing-row writers reach that guard. The producer re-reads the current predicate after its tenant wait under existing READ COMMITTED/volatile semantics; no broader isolation contract is claimed. AC5 source tests cover both acknowledged orders, real post-predicate barriers, explicit retry, service writes and tenant moves.
++The fixture now injects the existing local-only tenants admin service-JWT client after its guard, avoiding application env dependency or mutation. Production dispatch/RPC and affected-tenant preference semantics are unchanged. Native NUDGE012/013 passed; the other eleven cases need rerun, including real SQL DST vectors, opt-out orderings and nudge fault rollback. NUDGE011 contains the genuine service-writer assertion, which its failed-head client stop never reached.
+ 
++- `tests/support/time-reports-atdd.ts:154` — `jobsClient`: injects the guarded existing local test service client.
+ - `supabase/migrations/20261020190000_time_reports.sql:186` — `time_report_preference_gate`: tries affected tenant gates without waiting or writer exemptions.
+ - `supabase/migrations/20261020190000_time_reports.sql:209` — `emit_time_report_nudges`: retains bounded predicates, dedupe and atomic effects.
+-- `tests/integration/notifications/time-report-nudge-producer.int.test.ts:224` — `15.4-NUDGE-010`: observes producer waiting until authenticated opt-out commits.
+-- `tests/integration/notifications/time-report-nudge-producer.int.test.ts:268` — `15.4-NUDGE-011`: observes post-predicate producer and exact retryable writer failure.
++- `tests/integration/notifications/time-report-nudge-producer.int.test.ts:268` — `15.4-NUDGE-011`: asserts post-predicate writer failure, rollback and explicit retry.
+ 
+-### Integrity evidence and operational limits
++### Scoped cleanup and exact surface evidence
+ 
+-NUDGE001 retains real SQL spring/fall, midnight and exclusive-end vectors; NUDGE004 retains frozen continuation beyond25 recipients. NUDGE011 contains the genuine injected service-JWT preference-write assertions; NUDGE012/013 assert affected-tenant/membership/category behavior and exact private trigger ACLs. These and command/RLS/read/browser bodies are active source awaiting Root CI. The temporary barrier releases its control gate before settling all pending sessions and exact catalog teardown; owned report cleanup retains its disclosed transaction-local test-admin bypass.
++Generated assignment/booking/profile UUID children are removed in dependency order before all owned auth deletion promises settle; callback and every cleanup failure remain attributable. NUDGE004's earlier callback cause is still UNKNOWN until actual rerun. The quote guard admits only the approved active route and retains every quote/widget/email/table/Phase C assertion. Native trace paths are references only; no actual DOM trace bytes support a stronger claim.
+ 
+-- `tests/integration/notifications/time-report-nudge-producer.int.test.ts:356` — `15.4-NUDGE-012`: asserts affected tenants and current membership without exemptions.
+-- `tests/integration/rls/migration-reset.int.test.ts:700` — `privateFunctions`: enrolls the new invoker trigger in the closed ACL set.
+-- `tests/integration/read-models/time-reports.int.test.ts:37` — `15.4-READ-002`: asserts complete filtered review and standalone totals.
+-- `tests/support/time-reports-atdd.ts:165` — `cleanupOwnedTimeReports`: confines immutable-fixture cleanup to explicitly owned tenants.
++- `tests/support/time-reports-atdd.ts:200` — `withNudgeRecipients`: tracks exact owned IDs and settles all actor cleanup.
++- `tests/support/time-reports-atdd.ts:42` — `throwFixtureFailures`: preserves primary error and every cleanup failure.
++- `tests/integration/features/quotes/quote-pipeline-non-scope-guard.int.test.ts:28` — `APPROVED_ACTIVE_NAV_ROUTES`: pins the exact ten approved active nav routes.
++- `tests/support/time-reports-atdd.ts:171` — `cleanupOwnedTimeReports`: confines the disclosed transaction-local report bypass to owned tenants.
+ 
+-Evidence: historical Round2 records actual old-source15-pass/two-failure reproduction, then component17/17 (eight SSR/nine controller VM), pure units17/17, type/scoped-lint/build/containment passes and75 active declarations. The last full-unit run remains Round1's3,040 passed/zero failed/one Windows xattr skip. Independent final LIMITED Round3 passed with zero findings and closed both detachment residuals at the bound source HEAD; it inspected author evidence without rerunning tests or broadly re-auditing unchanged scope. VM substitutes hook scheduling, action transport and router effects; SSR proves markup. Neither proves DOM/focus, authorization, network or persistence. Earlier failures and exact review bindings remain recorded. Required migration/RLS/Storage/browser execution, Linux xattr, canonical clean-checkout lint and passing delivery remain Root-owned; release matrices/manual timing/performance stay deferred. No done/development-complete/release-ready claim is made.
++Evidence: the CI repair checkpoint records local red22-pass/two-failure then green24/24 component+quote guards,17/17 pure units, type/scoped-lint/build/containment passes, and76 active report declarations with zero explicit skips. Four actual-fixture VM scenarios substitute SQL/Auth/service ports; all owned auth deletion promises settled (63 measured per probe), but no FK/Auth/JWT runtime proof is inferred. The first exploratory probe's cross-realm assertion error remains recorded. Historical failed-head CI passed3,041 Linux units without skips and direct physical Storage, but full integration remained1,915P/12F/52S and browser15 expected/two unexpected. SSR/VM does not prove DOM, authorization, network or persistence. The narrow repair review, successor native nudge/browser tails and passing delivery remain pending; exhaustive visual/manual/timing/performance release work stays deferred. No done/development-complete/release-ready claim is made.
+diff --git a/src/components/time-reports/TimeReportWorkspace.tsx b/src/components/time-reports/TimeReportWorkspace.tsx
+index e93b3aec..9450c1f3 100644
+--- a/src/components/time-reports/TimeReportWorkspace.tsx
++++ b/src/components/time-reports/TimeReportWorkspace.tsx
+@@ -28,7 +28,7 @@ export function TimeReportWorkspace({initial,initialQuery,readAction=readTimeRep
+ 
+   {authority?.canReview&&<nav role="tablist" aria-label="Tidrapportläge" className="flex flex-wrap gap-3"><button type="button" role="tab" aria-selected={!review} className={timeReportButtonClass} onClick={()=>void load({weekStart:week,mode:"own"})}>Min vecka</button><button type="button" role="tab" aria-selected={review} className={timeReportButtonClass} onClick={()=>void load({weekStart:week,mode:"review"})}>Granska</button></nav>}
+ 
+-  {review&&authority?.canReview&&<div className="flex flex-wrap gap-3"><label className="min-w-0 flex-1 space-y-1"><span>Person</span><select className={timeReportFieldClass} value={query.personId??""} onChange={event=>void load({...query,personId:event.target.value||undefined})}><option value="">Alla personer</option>{(result.ok?result.data.people:authority.people).map(person=><option key={person.id} value={person.id}>{person.label}</option>)}</select></label><label className="min-w-0 flex-1 space-y-1"><span>Jobb</span><select className={timeReportFieldClass} value={query.jobId??""} onChange={event=>void load({...query,jobId:event.target.value||undefined})}><option value="">Alla jobb och utan jobb</option>{(result.ok?result.data.jobs:authority.jobs).map(job=><option key={job.id} value={job.id}>{job.label}</option>)}</select></label></div>}
++  {review&&authority?.canReview&&<div className="flex flex-wrap gap-3"><label className="min-w-0 flex-1 space-y-1"><span>Person</span><select aria-label="Person" className={timeReportFieldClass} value={query.personId??""} onChange={event=>void load({...query,personId:event.target.value||undefined})}><option value="">Alla personer</option>{(result.ok?result.data.people:authority.people).map(person=><option key={person.id} value={person.id}>{person.label}</option>)}</select></label><label className="min-w-0 flex-1 space-y-1"><span>Jobb</span><select aria-label="Jobb" className={timeReportFieldClass} value={query.jobId??""} onChange={event=>void load({...query,jobId:event.target.value||undefined})}><option value="">Alla jobb och utan jobb</option>{(result.ok?result.data.jobs:authority.jobs).map(job=><option key={job.id} value={job.id}>{job.label}</option>)}</select></label></div>}
+ 
+   {loading?<p role="status">Läser tidrapporter…</p>:review?(result.ok?<section aria-label="Granska tidrapporter" className="space-y-4"><p className="text-lg font-medium">Rapporterat i urvalet: <span data-testid="time-report-review-total">{formatReportMinutes(result.data.totalMinutes)}</span></p><div className="grid gap-4 sm:grid-cols-2"><div><h2 className="font-medium">Per person</h2><ul>{result.data.byPerson.map(row=><li key={row.userId}>{result.data.people.find(person=>person.id===row.userId)?.label??`Person ${row.userId.slice(0,8)}`}: <span data-testid={`time-report-person-total-${row.userId}`}>{formatReportMinutes(row.minutes)}</span></li>)}</ul></div><div><h2 className="font-medium">Per jobb</h2><ul>{result.data.byJob.map(row=><li key={row.jobId??"unlinked"}>{row.jobId?result.data.jobs.find(job=>job.id===row.jobId)?.label??"Jobb":"Utan jobb"}: <span data-testid={row.jobId?`time-report-job-total-${row.jobId}`:"time-report-unlinked-total"}>{formatReportMinutes(row.minutes)}</span></li>)}</ul></div></div>{result.data.reports.length===0?<p>Inga tidrapporter i urvalet.</p>:<ul className="space-y-3">{result.data.reports.map(report=><li key={report.id} data-testid={`time-report-row-${report.id}`} className="space-y-2 rounded-md border border-zinc-200 p-4"><p>{report.personLabel??result.data.people.find(person=>person.id===report.userId)?.label??"Person"} · {report.date} · {formatReportMinutes(report.minutes)}</p><TimeReportLinks report={report}/><button type="button" className={timeReportButtonClass} onClick={()=>setSelected(report)}>Granska</button></li>)}</ul>}</section>:<PersonalTimesheet result={result} weekStart={week} onRetry={()=>void load()}/>):<PersonalTimesheet result={result} weekStart={week} onRetry={()=>void load()} onReport={setSelected}/>}
+ 
+diff --git a/tests/e2e/time-reports.e2e.spec.ts b/tests/e2e/time-reports.e2e.spec.ts
+index 02934016..19e70b20 100644
+--- a/tests/e2e/time-reports.e2e.spec.ts
++++ b/tests/e2e/time-reports.e2e.spec.ts
+@@ -28,7 +28,12 @@ test.describe("15.4 essential production-host time reporting", () => {
+       await hydrated(date);
+       await date.fill(REPORT_DATE);
+       await page.getByLabel("Period", { exact: true }).selectOption("week");
+-      const card = page.getByTestId(`scheduling-booking-${f.ownBooking}`);
++      const ownWeek = page.getByRole("region", { name: "Min kalender", exact: true })
++        .getByLabel("Egen veckokalender", { exact: true }).filter({ visible: true });
++      await expect(ownWeek).toHaveCount(1);
++      await expect(ownWeek).toBeVisible();
++      const card = ownWeek.getByTestId(`scheduling-booking-${f.ownBooking}`).filter({ visible: true });
++      await expect(card).toHaveCount(1);
+       await expect(card).toBeVisible();
+       await expect(page.getByTestId(`scheduling-booking-${f.peerBooking}`)).toHaveCount(0);
+       const capture = card.getByRole("button", { name: "Rapportera tid", exact: true });
+diff --git a/tests/integration/components/time-reports.test.ts b/tests/integration/components/time-reports.test.ts
+index 38b3b150..5a57c92a 100644
+--- a/tests/integration/components/time-reports.test.ts
++++ b/tests/integration/components/time-reports.test.ts
+@@ -19,6 +19,7 @@ import { renderToStaticMarkup } from "react-dom/server";
+ import { TimeReportForm } from "@/components/time-reports/TimeReportForm";
+ import { PersonalTimesheet } from "@/components/time-reports/PersonalTimesheet";
+ import { TimeReportReview } from "@/components/time-reports/TimeReportReview";
++import { TimeReportWorkspace } from "@/components/time-reports/TimeReportWorkspace";
+ 
+ describe("15.4-COMP-001 honest accessible report states (SSR only)", () => {
+   test("confirmed filing exposes the exact persisted-success browser seam", () => {
+@@ -208,4 +209,11 @@ describe("actual time report controller interaction regressions",()=>{
+   const adjusted=entryController(undefined,undefined,[source]);fire(adjusted.form(),"onBookingChange",source.bookingId);fire(adjusted.form(),"onBookingChange","");fire(adjusted.form(),"onChange",{endsAtLocal:"2026-10-25T04:30"});
+   await fire(adjusted.form(),"onSubmit");expect(adjusted.requests[0]).toMatchObject({minutes:120,bookingId:null,jobId:null});
+  });
++ test("CI repair review selectors expose exact explicit Person and Jobb accessible names",()=>{
++  const initial:TimeReportReadResult={ok:true,status:"success",data:{userId:"reviewer",canReportOwn:false,canReview:true,weekStart:"2026-10-19",reports:[],bookedDates:[],jobs:[{id:"job",label:"Verkstad"}],people:[{id:"person",label:"Montör"}],bookings:[],prefill:null,totalMinutes:0,missingDates:[],byPerson:[],byJob:[]}};
++  const html=renderToStaticMarkup(createElement(TimeReportWorkspace,{initial,initialQuery:{mode:"review",weekStart:"2026-10-19"}}));
++  expect(html.match(/<select\b[^>]*aria-label="Person"/g)).toHaveLength(1);
++  expect(html.match(/<select\b[^>]*aria-label="Jobb"/g)).toHaveLength(1);
++  expect(html).toContain("Alla personer");expect(html).toContain("Alla jobb och utan jobb");expect(html).toContain("Montör");expect(html).toContain("Verkstad");
++ });
+ });
+diff --git a/tests/integration/features/quotes/quote-pipeline-non-scope-guard.int.test.ts b/tests/integration/features/quotes/quote-pipeline-non-scope-guard.int.test.ts
+index c434dc4a..6572dceb 100644
+--- a/tests/integration/features/quotes/quote-pipeline-non-scope-guard.int.test.ts
++++ b/tests/integration/features/quotes/quote-pipeline-non-scope-guard.int.test.ts
+@@ -35,6 +35,7 @@ const APPROVED_ACTIVE_NAV_ROUTES = [
+   "/files",
+   "/settings",
+   "/scheduling",
++  "/time-reports",
+ ].sort();
+ 
+ const READ_MODELS_DIR = path.join(process.cwd(), "src", "server", "read-models");
+diff --git a/tests/support/time-reports-atdd.ts b/tests/support/time-reports-atdd.ts
+index 055a9ba5..7cb3857d 100644
+--- a/tests/support/time-reports-atdd.ts
++++ b/tests/support/time-reports-atdd.ts
+@@ -1,6 +1,6 @@
+ /** Story 15.4 real checked-command fixtures. No service/database work at import time. */
+ import { adminQuery, adminSession } from "../factories/admin-sql";
+-import { makeAuthedServerClient, seedRoleAwarePhaseAUsers, deleteAuthUser, type TestServerClient } from "../factories/tenants";
++import { admin, makeAuthedServerClient, seedRoleAwarePhaseAUsers, deleteAuthUser, type TestServerClient } from "../factories/tenants";
+ import { withBookingFixture, type BookingFixture, seedBookingParents } from "./bookings-atdd";
+ 
+ import { fileTimeReport } from "@/server/commands/time-reports/file-time-report";
+@@ -39,6 +39,11 @@ export function reportId(result: ReportResult): string {
+   return result.data.reportId;
+ }
+ export type TimeReportFixture = BookingFixture & { clients: Record<string, TestServerClient> };
++function throwFixtureFailures(primary:{error:unknown}|undefined,cleanupErrors:unknown[],message:string):void {
++  if(primary&&!cleanupErrors.length)throw primary.error;
++  const errors=primary?[primary.error,...cleanupErrors]:cleanupErrors;
++  if(errors.length)throw new AggregateError(errors,message,primary?{cause:primary.error}:undefined);
++}
+ export async function withTimeReportFixture(run: (fx: TimeReportFixture) => Promise<void>) {
+   await withBookingFixture(async fx => {
+     const users = { admin: fx.base.adminA, planner: fx.users.projektledare, own: fx.users.montor,
+@@ -46,8 +51,10 @@ export async function withTimeReportFixture(run: (fx: TimeReportFixture) => Prom
+       invited: fx.invitedUser, disabled: fx.disabledUser, orphan: fx.base.orphanUser, foreign: fx.base.adminB };
+     const reused: Record<string,TestServerClient> = {admin:fx.adminClient,planner:fx.plannerClient,own:fx.montorClient,foreign:fx.foreignClient};
+     const clients = Object.fromEntries(await Promise.all(Object.entries(users).map(async ([key, user]) => [key, reused[key] ?? await makeAuthedServerClient(user)])));
+-    try { await run({ ...fx, clients }); }
+-    finally { await cleanupOwnedTimeReports(fx.tenantIds); }
++    let primary:{error:unknown}|undefined;const cleanupErrors:unknown[]=[];
++    try { await run({ ...fx, clients }); } catch(error) { primary={error}; }
++    try { await cleanupOwnedTimeReports(fx.tenantIds); } catch(error) { cleanupErrors.push(error); }
++    throwFixtureFailures(primary,cleanupErrors,"Time-report callback and/or owned report cleanup failed");
+   });
+ }
+ export async function setRoles(tenantId: string, userId: string, primary: string, supplemental: string[] = [], status = "active") {
+@@ -140,15 +147,14 @@ export async function withReportAuditFault<T>(scope: { tenantId: string; correla
+   }
+ }
+ 
+-/** Existing jobs-owned constructor is injected; no credential/config imported here. */
++/** Inject the existing LOCAL-only test service-JWT client into the real producer.
++ * Dedicated SUPABASE_TEST_* authority belongs to tenants::admin()/test-env;
++ * application NEXT_PUBLIC_* config is neither required nor mutated by fixtures.
++ */
+ export async function jobsClient() {
+-  const { assertLocalStack, LOCAL_SUPABASE_URL } = await import("./test-env");
+-  const { getSupabasePublicEnv } = await import("@/server/db/supabase-env");
++  const { assertLocalStack } = await import("./test-env");
+   assertLocalStack();
+-  if (new URL(getSupabasePublicEnv().url).origin !== new URL(LOCAL_SUPABASE_URL).origin)
+-    throw new Error("Jobs fixture requires the Root-allocated local test origin");
+-  const { createJobsServiceClient } = await import("@/server/jobs/service-client");
+-  return createJobsServiceClient();
++  return admin();
+ }
+ export async function produceNudges(client: TestServerClient, tenantId: string, options: { asOf: string; cursor?: string; correlationId?: string }) {
+   return emitTimeReportNudges(client, tenantId, options);
+@@ -192,22 +198,38 @@ export async function seedCheckedReport(tenantId: string, actorId: string, input
+ }
+ 
+ export async function withNudgeRecipients(fx: TimeReportFixture, run: (recipients: Array<{ userId: string; profileId: string }>) => Promise<void>) {
+-  const ownedUsers: string[] = [], recipients: Array<{ userId: string; profileId: string }> = [];
++  const tenantId=fx.base.tenantA.id,ownedUsers:string[]=[],ownedProfiles:string[]=[],ownedBookings:string[]=[];
++  const recipients:Array<{userId:string;profileId:string}>=[];
++  let primary:{error:unknown}|undefined;const cleanupErrors:unknown[]=[];
+   try {
+     for (let batch = 0; batch < 9; batch++) {
+       const extra = await seedRoleAwarePhaseAUsers(fx.base);
+       ownedUsers.push(...extra.extraUsers.map(u => u.id));
+       for (const user of [extra.users.projektledare, extra.users.montor, extra.roleUnionUser]) {
+         const profileId = crypto.randomUUID();
+-        await adminQuery("insert into public.person_profiles(id,tenant_id,membership_id) select $1,$2,id from public.tenant_memberships where tenant_id=$2 and user_id=$3", [profileId, fx.base.tenantA.id, user.id]);
+-        await seedReportBooking(fx, { profileIds: [profileId], startsAt: "2026-10-19T06:00:00Z", endsAt: "2026-10-19T07:00:00Z" });
++        ownedProfiles.push(profileId);
++        await adminQuery("insert into public.person_profiles(id,tenant_id,membership_id) select $1,$2,id from public.tenant_memberships where tenant_id=$2 and user_id=$3", [profileId, tenantId, user.id]);
++        ownedBookings.push(await seedReportBooking(fx, { profileIds: [profileId], startsAt: "2026-10-19T06:00:00Z", endsAt: "2026-10-19T07:00:00Z" }));
+         recipients.push({ userId: user.id, profileId });
+       }
+     }
+     await run(recipients);
+-  } finally {
+-    // All producer/race promises must have settled in run before actor cleanup.
+-    await cleanupOwnedTimeReports([fx.base.tenantA.id]);
+-    for (const userId of ownedUsers) await deleteAuthUser(userId);
++  } catch(error) { primary={error}; }
++  // The awaited callback must settle all producer/race promises before cleanup.
++  // Restrictive assignment -> profile -> membership FKs require this order.
++  // Every normal-enforcement delete is limited to this tenant + generated IDs;
++  // unexpected foreign references fail loudly rather than being removed.
++  const cleanup=[
++    async()=>{await cleanupOwnedTimeReports([tenantId]);},
++    async()=>{if(ownedBookings.length&&ownedProfiles.length)await adminQuery("delete from public.booking_assignees where tenant_id=$1 and booking_id=any($2::uuid[]) and person_profile_id=any($3::uuid[])",[tenantId,ownedBookings,ownedProfiles]);},
++    async()=>{if(ownedBookings.length)await adminQuery("delete from public.bookings where tenant_id=$1 and id=any($2::uuid[])",[tenantId,ownedBookings]);},
++    async()=>{if(ownedProfiles.length)await adminQuery(`delete from public.person_profiles p using public.tenant_memberships m
++      where p.tenant_id=$1 and p.id=any($2::uuid[]) and m.tenant_id=p.tenant_id and m.id=p.membership_id and m.user_id=any($3::uuid[])`,[tenantId,ownedProfiles,ownedUsers]);},
++  ];
++  for(const remove of cleanup) {
++    try { await remove(); } catch(error) { cleanupErrors.push(error); }
+   }
++  const removed=await Promise.allSettled(ownedUsers.map(userId=>deleteAuthUser(userId)));
++  for(const result of removed)if(result.status==="rejected")cleanupErrors.push(result.reason);
++  throwFixtureFailures(primary,cleanupErrors,"Nudge recipient callback and/or owned fixture cleanup failed");
+ }
+
+
+# FULL CURRENT CHANGED FILE: _bmad-output/implementation-artifacts/spec-15-4-time-reporting-filing-timesheet-review.md
+---
+title: '15.4 — Time Reporting — Filing, Timesheet, Review'
+type: 'feature'
+created: '2026-10-20'
+status: 'in-review'
+review_loop_iteration: 0
+followup_review_recommended: true
+baseline_revision: '4862704665cb12e4f577ecac59ee173c49c36763'
+context:
+  - docs/process/review-order.md
+  - docs/process/development-completion-policy.md
+  - docs/process/agent-model-routing.md
+  - docs/process/local-setup.md
+  - _bmad-output/test-artifacts/test-design-epic-15.md
+  - _bmad-output/auto-bmad/preparation/story-15-4/implementation-ownership-handoff.md
+  - _bmad-output/auto-bmad/preparation/story-15-4/current-contracts-and-design.md
+warnings: [oversized]
+deferred: []
+---
+
+<intent-contract>
+
+## Intent
+
+**Problem:** People can see their bookings but cannot file server-confirmed time, inspect their week or give planners a trustworthy review basis. Missing time has no scoped reminder producer.
+
+**Approach:** Add own-row submitted-only time reporting from current booking cards or a standalone form, an own weekly timesheet, PL/Admin review/annotation and bounded E13 in-app nudges. Separate duration/date/state/validation/actions from replaceable presentation; retain reusable booking/job links without valuation.
+
+## Boundaries & Constraints
+
+**Always:** Phase B FR90/FR92 and architecture §10.6 apply. Derive tenant/reporter/actor from current authenticated membership; ReportOwn never grants peer filing, Review grants tenant-scoped read and annotation only. Enforce same-tenant references and own planned-booking assignment inside checked SQL; a standalone row may omit both links. Positive whole-minute duration and real local date are authoritative, with `submitted` the sole status. Freeze a linked booking's nonmonetary booked-duration comparison at filing. One attributable report+audit transaction, actor-bound attempt/digest, current-authority replay and conflict detection for changed retry content prevent duplicates/partial writes. RLS, explicit narrow ACLs and exhaustive manifest/H4 enrollment independently protect direct paths. Connected desktop/360×640 UI retains suitable unsent input on failure and confirms submitted only after server persistence. Review metadata cannot alter filed time. Nudges use the existing authenticated E13 runner, explicit bounded tenant scope, current preferences and stable recipient/date dedupe; no client/read/filing service-role path.
+
+**Block If:** Root has not independently validated/frozen this spec or Coordinator has not allocated its exact shared deltas, isolated fixtures/resources and a new migration sorting after current108; or implementation discovers an unresolvable authorization/data-integrity requirement or material product ambiguity beyond the approved requirements/defaults. Allocation/validation are later implementation prerequisites, not missing planning intent. After two failures of one approach choose a simpler authorized route or name owner/evidence/next action/resume condition.
+
+**Never:** On-behalf filing; manager visibility used as own assignment; UI-only authorization; client actor/creation-time/tenant authority; stale replay grants; separate report-then-audit writes; raw service-role booking-grant widening; money/rate/salary/valuation columns or reads; approval/rejection/billing states; mutation of accepted quote/job commitments or booking conflict acceptance; report self-correction/deletion/retention program. No new job/economy/billing workspace, calendar feed, Min dag landing, AI/optimizer, offline/PWA/queue/sync, provider/email go-live, public privileged path or other Phase C surface. No legacy URLs/evidence/browsing, foreign checkout copying, absent E16 imports, deployment/PR/push/merge/secrets/state/sprint changes in this planning run.
+
+## I/O & Edge-Case Matrix
+
+| Scenario | Input / State | Expected Output / Behavior | Error Handling |
+| --- | --- | --- | --- |
+| Booking or standalone filing | Own planned booking or Ny tidrapport; adjusted interval/hours/date; optional note/job | Prefill is editable; checked SQL stores actor's submitted report and attributable audit, stable optional links and booked-minute snapshot | Wrong tenant/owner/job pair, inactive membership, invalid date/duration or unavailable reference fails generically with no write |
+| Unknown outcome/retry | Saved response is lost, same attempt retried, or changed payload reuses key | Exact authorized replay returns original own report, one row/audit; concurrent duplicates converge | Preserve exact uncertain payload/token and Osänd input; reconcile before editing; changed key content conflicts, revoked current authority denies |
+| Personal week | Connected own reports and weekday bookings | Own day rows/chips/minute totals and missing-booked-day indicators; failed reads never mean zero | No peer records/roster/money; Anslutning krävs with explicit retry when unavailable |
+| Review/annotation | Admin/PL person/job/week filters and report sheet | Complete per-person/job sums, labelled report-vs-booked-at-filing delta and one current review note with actor/time/revision; status remains submitted | Standalone has no fabricated booked value; stale annotations refresh; reviewer cannot rewrite reporter/core fields |
+| Nudge | Completed local weekday has own planned booking but no own submitted row | Hourly bounded existing runner emits at most one in_app reminder per eligible recipient/date, preferences honored | Frozen7-date window/cursor, explicit tenant scope and atomic checks; failures retry without duplicates or exposed booking facts |
+
+</intent-contract>
+
+## Source Acceptance and Provenance
+
+AC sketch: `time_reports` own-row-scoped (user, date, duration, optional booking/job links, note; `status` column ships `submitted`-only — the reserved approval seam, decided at the B1b→B2 checkpoint per AB-A10); filing from booking cards pre-filled (≤30-second one-hand phone flow) or standalone (`Ny tidrapport`, PB-D12); suitable unsent input survives a transient request failure, remains labelled unsent, and explicit retry is available; the `submitted` domain/UI state appears only after server persistence; personal week timesheet with missing-day nudge indicators (+ `time_report.nudge` producer registered in E13's registry); desktop review surface for PL/Admin (person/job/week filters, per-job/person sums, report-vs-booked delta highlight, review/annotate affordances — no hard approval state); hours flow onward valued only in economy read-models (report rows carry no money); per-role RLS (own rows vs review scope).
+
+**No Design Gate Criteria for this story.** Story15.4 in epics-phase-b.md supplies the AC sketch above without four-part Visual/Behaviour/Animation/Visual-validation gates. Binding Phase B UX§§4.7/4.8/6/10 still applies. October19 completion policy defers exhaustive visual/manual/release checks and actual ≤30-second one-hand timing; usable essential functionality, authorization and persistence still require executed development evidence.
+
+References: AGENTS.md; _bmad-output/project-context.md; current epic-15-context.md; epics-phase-b.md Story15.4; prd-phase-b.md FR90/FR92 and PB-D12; architecture-phase-b.md §§3.3–3.7/4/9.2/10.6/11/14/16; ux-design-specification-phase-b.md §§4.7/4.8/6/10; listed companions and TEA15.4 scenarios. Current Phase B sources supersede historical Phase A source names used by installed templates. No nextjs-app/docs/design/DESIGN.md or supplied Figma exists; actual globals.css/Dialog/editor patterns and owner-authorized defaults govern, without new legacy observations.
+
+Continuity: valid cached Epic15 context and completed15.3 were loaded;15.1–3 stay preserved. Current source HEAD is `5040f683cf9446d39de8512cdca82242c55fca3e`; prior15.3 CI39363860222/atd550/all5PASS is predecessor evidence only. Keep v3 facts/proof domains/exact13 claims, tenant locks, resolver shared refresh/ledger/in_app booking.changed and recurrence exceptions/tombstones/stable IDs.105/106/107/current108 migrations are immutable. Current16.1 is a landed dependency; unfinished16.2/16.3 is not imported or required. Inherited epic review_unverifiedTRUE remains Root-owned. Epic14 October8 accepted-with-open-items carries48 quality advisories, unapproved performance targets and unexecuted manual work; historical ContractD transfer already handled by15.1 is not reopened.
+
+## Code Map
+
+- `src/scope/manifest.ts:263`, `src/server/authz/permission-matrix.ts:39`, `src/components/app-shell/nav-items.ts:28` — active scheduling owns no time-report surface yet; add only allocated report table/route/category and scoped operations, not future feed/MyDay.
+- `supabase/migrations/20260929120000_resource_person_profiles_and_work_hours.sql:6`, `supabase/migrations/20261006104143_booking_invariant_corrections.sql:13`; `src/server/read-models/scheduling.ts:120` — membership→profile→assignment ownership; existing own helper explicitly requires Montör and cannot validate PL/Admin own filing alone.
+- `supabase/migrations/20261019133151_e16_16_1_job_depth.sql:57`, `supabase/migrations/20260709120000_acceptance_to_job_model.sql:169` — reuse current job visibility and same-tenant links; no quote/job acceptance or lifecycle approval inference.
+- `src/server/commands/envelope.ts:51,197,217`, `src/server/commands/bookings/create-booking.ts:7`; `supabase/migrations/20261006101609_bookings_and_assignees.sql:181` — capability/envelope, SQL-owned audit and durable command replay patterns. Check current authority under lock before replay; do not edit historical SQL.
+- `src/features/scheduling/time-zone.ts:10,45,63,67,97` — real date validation, Stockholm conversion, local-day boundaries and elapsed minutes; reuse with independent DST goldens, never derive time by employment percentage or naive wall-clock subtraction.
+- `src/components/scheduling/BookingBlock.tsx:7`, `src/components/resources/BookingEntry.tsx:29`, `src/components/crm/Dialog.tsx`, `src/app/globals.css` — actual booking entry/host and existing controls/styles; add own-report action without changing editor/resolver gestures.
+- `src/app/(app)/customers/[customerId]/page.tsx:146`, `src/app/(app)/jobs/[jobId]/page.tsx:82`, `src/app/(app)/jobs/page.tsx:21` — current BookingEntry callers need minimal own report-action metadata from the new report read model; exact E16-adjacent candidate deltas require Coordinator allocation.
+- `src/server/notifications/registry.ts:3`, `src/server/jobs/producers.ts:28`, `src/app/api/jobs/run/route.ts:120`, `src/server/jobs/runner.ts:67`; `src/server/notifications/follow-up-producer.ts:96` — existing manifest/category/producer/dispatch/UTC-cadence/cursor seams. Booking raw service-role ACL is revoked at `20261006101609_bookings_and_assignees.sql:104`; a bounded service-only RPC is required instead of copied raw scans.
+- `supabase/migrations/20260923170000_in_app_notifications.sql:3`, `supabase/migrations/20261020180000_conflict_resolver.sql:85,92`; `supabase/migrations/20260928110819_epic_13_reviewbot_followup_atomic_job_run_audit_and_config_recovery.sql:45` — existing notification recipient/date uniqueness, current booking.changed constraints, checked emitter and service-only RPC grant precedents.
+- `tests/integration/rls/tenant-table-inventory.ts`, `tests/support/authz/role-harness.ts:15,216`, `tests/factories/tenants/core.ts:223`, `tests/support/bookings-atdd.ts:187`, `tests/e2e/support/scheduling-views-atdd.ts:48`, `tests/e2e/conflict-resolver.e2e.spec.ts:33` — exhaustive enrollment and isolated role/booking fixtures; actual committed-response-loss retry precedent. `tests/e2e/jobs/job-list-deferred-surface.e2e.spec.ts:76,123` needs content-scoped absence checks while preserving the job-timesheet boundary at130.
+
+## Files Created / Files Modified
+
+The ownership handoff lists exact new/shared candidate paths, semantic limits, new migration requirements, tests/helpers and mutable resources. It is an allocation proposal, not a write claim. No dependency/lockfile/.env/config/shared-governance change or future E16 file is proposed. A newly discovered shared path or semantics requires a bounded ownership successor before overlapping writes.
+
+## Tasks & Acceptance
+
+**Execution (dependency order; Root validation and Coordinator allocation precede writes):**
+
+- [ ] T1 — `src/features/time-reports/types.ts`, `validation.ts`, `domain.ts`, `action-state.ts`: implement client-safe report/annotation/attempt contracts, exact minute/date/interval parsing, own week/missing-day/totals/delta projections and honest unknown-outcome state; pin I/O edge cases. Supports AC1–8.
+- [ ] T2 — new Coordinator-allocated `supabase/migrations/` migration, logical basename `time_reports` with unique timestamp after20261020180000: add table/composite FKs/safe SELECT RLS+ACLs, checked own filing/annotation with durable attempt/revision, immutable core/snapshot and atomic audit; add bounded service-only nudge RPC and coherent category constraints. Enroll only report table/route/category in `src/scope/manifest.ts`. Supporting infrastructure for AC1/2/4–9.
+- [ ] T3 — `src/server/authz/permission-matrix.ts`, `src/server/commands/envelope.ts`; new `src/server/commands/time-reports/file-time-report.ts`, `annotate-time-report.ts`, `time-report-db.ts`: register ReportOwn/AdminPLMontör and Review/AdminPL; use checked SQL on request-bound ordinary clients, generic errors and no duplicate outer audit. Supports AC1/2/4–8.
+- [ ] T4 — `src/server/read-models/time-reports.ts` (new): own/review scoped paged reads, safe currently authorized optional selectors and current-user booking prefill; complete week/person/job sums and explicit read failures; no money/private attempt fields. Supports AC1/3/4/8/9.
+- [ ] T5 — `src/server/notifications/time-report-nudge-producer.ts` (new), `src/server/notifications/registry.ts`, `src/server/jobs/producers.ts`, `src/app/api/jobs/run/route.ts`: wire hourly bounded current-preference in_app nudge using T2 RPC/frozen cursor and existing runner; retain all E13 release/containment and booking.changed behavior. Supports AC5/8.
+- [ ] T6 — `src/features/time-reports/actions.ts`, `src/app/(app)/time-reports/layout.tsx`, `page.tsx`, five named new UI files in handoff; existing nav-items.ts/BookingBlock.tsx/BookingEntry.tsx: deliver protected dynamic route, own week/reviewer mode, prefilled and standalone filing, editable interval/hours, review sheet and honest connection/unsent/retry feedback with keyboard/focus/360×640 controls. Supports AC1–6/8/9; reusable entry remains a15.6 seam.
+- [ ] T7 — `tests/unit/features/time-reports/domain.test.ts`, `tests/integration/commands/time-reports.int.test.ts`, `tests/integration/rls/time-reports.rls.test.ts`, other exact new read/producer/component suites/helpers in handoff: prove all I/O edges with independent date/minute/DST oracles, own/other/foreign/mixed/revoked roles, assignment/link races, exact replay/duplicates/audit rollback, annotation revision/core immutability, paginated sums and nudge scope/preferences/cursor/dedupe. Supports AC1–9; TEA15.4-RLS-001/INT-001…004/COMP-001.
+- [ ] T8 — `tests/integration/rls/tenant-table-inventory.ts`, `tests/support/authz/role-harness.ts`, `tests/e2e/jobs/job-list-deferred-surface.e2e.spec.ts` and exact shared cross-tenant/migration-reset/scope/matrix/category/producer tests in handoff: enroll the new table/route/operation/category without relaxing exact assertions; narrow the whole-body tidrapport absence guard to existing job content while preserving deferred job-timesheet absence. Supporting infrastructure; all ACs and unchanged15.1–3/job/E13 regressions.
+- [ ] T9 — `tests/e2e/time-reports.e2e.spec.ts`, `tests/e2e/support/time-reports-atdd.ts` (new): essential actual configured-production browser booking-card and standalone filing→persisted own week→PL review/filter/annotate→reload, plus360×640 keyboard/transient/lost-response explicit same-attempt retry with physical row/audit readbacks. Supports AC1–8/TEA15.4-E2E-001; no mocked success or next dev.
+- [ ] T10 — this spec and future `_bmad-output/auto-bmad/delivery/15-4-time-reporting-filing-timesheet-review.json`: author records actual gates/counts/revision, independent High review, approved-contract reconciliation, deferred release ownership and one author-written Suggested Review Order with verified stops; Root runs delivery gate before done. Supporting completion infrastructure, no completed trail/delivery record is manufactured in planning.
+
+**Acceptance Criteria:**
+
+- AC1 — Given an authenticated reporting-capable user on an own planned booking card or Ny tidrapport, when the form opens, is adjusted and submitted, then booking times/job prefill or optional standalone links are shown and the actual own submitted report/date/minutes/note/links appear after server-confirmed persistence; desktop and360×640 controls remain usable by keyboard and touch.
+- AC2 — Given a transient failure, lost committed response, concurrent duplicate or changed retry payload, when the user explicitly retries, then suitable unsent input remains labelled unsent until confirmation, an exact authorized attempt yields one report and one audit, changed content under its key is rejected, and audit/reference/authorization failure leaves no partial result.
+- AC3 — Given a successfully loaded personal week, when date navigation or refresh occurs, then only the caller's day rows, reported hours and booking/job chips appear with correct totals and weekday-booking-without-report nudges; a failed read offers Anslutning krävs/retry and never an empty-success or false zero state.
+- AC4 — Given PL/Admin review access, when person/job/week filters or a report sheet are used, then complete authorized per-person/job reported sums include standalone groups, the linked report delta uses clearly labelled booked-at-filing minutes, and an annotation saves reviewer/time/revision without changing submitted status or filed core fields; standalone/inaccessible live booking facts are never fabricated as zero booked time.
+- AC5 — Given an eligible missing weekday in the frozen preceding seven completed local dates, when the hourly existing E13 runner processes bounded pages or retries, then only active authorized recipients with own planned bookings/no submitted day report receive at most one time_report.nudge in_app per date, with preference opt-out respected, no today/future/other-tenant leak and no mail/provider behavior change.
+- AC6 — Given invalid/overflow/nonminute duration, invalid local date, mismatched booking/job, cancelled/foreign/unassigned booking or unavailable reference, when filing is attempted through form, command or direct RPC, then validation/current own authorization rejects generically without writes; valid standalone filing requires neither booking/job nor person profile, and DST elapsed-time prefill has independently correct minutes.
+- AC7 — Given two reviewers or a lost annotation response, when notes are saved or retried, then expected revision and exact latest-attempt identity prevent stale overwrite/duplicate audit, superseded retries require refresh, and every direct attempt to change report identity/date/duration/reporter note/links/snapshot/status or delete is denied.
+- AC8 — Given anonymous, own-only, foreign-tenant, inactive/revoked, seller/economy/platform-only and valid mixed-role callers, when report selectors/reads/aggregates/filing/annotation/replay/direct DB/RPC/producer surfaces are exercised, then current matrix/RLS/column grants and same-tenant/actor rules hold independently of the UI, with no peer or private-attempt/money disclosure and no unauthorized partial audit/notification effect.
+- AC9 — Given persisted time reports linked to existing jobs or bookings, when the stable authorized time read seam is consumed by job/period, then exact user/date/minutes and optional stable IDs are available without re-entry, booked comparison remains stable after booking changes, and report rows/projections contain no rates/money/approval states; existing15.1–3/E13/current job behavior remains intact.
+
+## Spec Change Log
+
+2026-10-20 author boundary correction under approved maintainable defaults: genuine booking intervals can contain seconds/microseconds, so booked-at-filing provenance uses positive numeric elapsed minutes. Filed report duration remains a positive PostgreSQL integer with no rounding. An interval that cannot prefill whole report minutes retains its own booking/action/reference and asks for an explicit whole-minute declaration; it must not fail an otherwise valid own week. Existing High UI and integrity authors receive only their original disjoint files for this correction and boundary assertions. Kernel and product scope are unchanged.
+
+2026-10-20 Coordinator successor allocation received through Root: the implementation author extends only `tests/unit/features/scheduling/calendar-components.test.ts` (VM report-entry dependency enrollment and real BookingBlock own-action/propflow assertion) and `tests/unit/scripts/verify/integration-test-partitions.test.ts` (exact four-file serial membership and parallel exclusions). The existing scheduling and partition negatives remain. These repair the twelve reproduced unit failures caused by new imports/exact enrollment; no product behavior or runtime authority expands.
+
+2026-10-20 focused test-author route: context-free Sol 6.1 High owns allocated integration/RLS/harness/E2E/config/scope assertions only, because real authorization, audit rollback and isolated fault-DDL assertions are sensitive. Execution remains static only; Root owns DB/browser admission.
+
+2026-10-20 implementation route: Sol 6.1 High author retains SQL/commands/read models/nudge and integration authority; one context-free Sol 6.1 High UI/domain delegate owns only the allocated feature/UI/booking-action caller and focused unit/component files. High is selected because action-state replay and request-bound actions are sensitive. No runtime or Git authority is delegated.
+
+## Review Findings
+
+### Round 3 of 3 — completed
+
+The independent gpt-6.1-sol High reviewer returned PASS with zero findings for the final LIMITED detachment-fix review at source HEAD `3bd815887a6c4a246d94956eb021b1b6ea0525c2`, compared with fix baseline `1f19e3f3b7562bd43732dc61c17a9d0b1b5cee34`. R2-01/R1-03 and R2-02/R1-02 are closed at source level. This completes three of three review rounds, with re-derivation0; it does not establish runtime verification, development completion or release readiness. Status remains in-review.
+
+Exact review bindings: the reviewer read all670 lines/67,026 raw bytes of packet SHA256 `92ec897c3ef096dec65d645078c6d7723e2865b8d6e571ba5addca573ba4112f`, and all3,114 bytes of input-binding SHA256 `6350c45d564ec8b8557c1f6b74842abc23485b7b8807bb0a7038d9d0ea4c102e`. Its seven source-binding raw hashes/Git blob IDs and HEAD were verified by that reviewer; their authoritative entries remain in the unchanged `preparation/story-15-4/code-review-round-3/input-binding.json` under `_bmad-output/auto-bmad`. The original report is `preparation/story-15-4/code-review-round-3/original-review-report.md` (7,315 bytes, SHA256 `b18721dcc05b6d9a4da5c025de0737f0cfc9f55705cb09d95eec79601426c16f`); its attestation is2,578 bytes, SHA256 `01cee7aeb25b582962cf02530a23efd024e77c0147a562f5d89b8d61baae8874`. These are review provenance, not test execution. The reviewer performed bounded read-only file/Git/hash inspection and reused prior review evidence without reopening unchanged SQL/RLS scope.
+
+## Review Triage Log
+
+2026-10-20 qualified CI failure repair: Root admitted the terminal failed run39408197808/attempt1 at `51f37bc965b9e9fb7b65f7cd66cc24cb4e9b48d7` and released only five source/test paths plus this spec. The persisted `ci-followup-51f37bc9/route.json` selected the original gpt-6.1-sol High author before dispatch for service-client/fixture integrity and accessible controls. All three broad rounds remain completed, re-derivation0; `followup_review_recommended: true` now requires only a DISTINCT High narrow CI-repair regression review, never a fourth broad round. No nested delegate or runtime is used. The original sourcefreeze/preparation/review evidence remains unchanged; Root's dirty canonical state is excluded from author staging.
+
+2026-10-20 Round 1 of 3: nine accepted patch findings (three High, six Medium), zero intent/spec gaps and re-derivation iteration zero. The external wrapper failed with exit 1 (`The system cannot find the file specified.`); its recovered report is triage input only, with actual external model metadata unavailable. Source was not accepted. The original Sol 6.1 High author retains the synchronous fix batch. The existing UI author is re-engaged at Sol 6.1 High for R1-01–05/08/09 in its original feature/controller/component/E2E paths; the implementation author retains decimal arithmetic R1-07, proposed preference-serialization R1-06 and final integration/SRO. High covers uncertain filing integrity and shared SQL serialization. No nested runtime, commit, broad review or kernel change is delegated. The new preference write contract awaits Coordinator reconciliation before any SQL write.
+
+The existing integrity-test author is re-engaged at Sol 6.1 High only for R1-06 deterministic two-session/barrier assertions in the allocated serial nudge suite. It writes no preference trigger or shared contract and starts no runtime; the new contract remains on hold until actual semantic allocation.
+
+Coordinator's final R1-06 allocation authorizes only the unapplied109 affected-row preference contract and allocated serial tests. The earlier membership-scanning statement-trigger proposal was rejected and was never written. The implemented invoker row trigger tries the distinct sorted affected OLD/NEW tenant gates for nudge INSERT/UPSERT/UPDATE/DELETE and category/tenant moves; a busy gate raises `55P03` and aborts the transaction for explicit retry. It never waits after a tuple lock and has no authenticated, service, definer, JWT or native-fixture exemption. The producer retains its tenant gate and current preference predicate but drops preference tuple locks, allowing writers to reach the nonblocking gate. Current preference reads occur after the advisory wait under the existing READ COMMITTED/volatile-RPC contract; no broader isolation guarantee is asserted. Existing API failure/retry behavior, RLS, categories, grants, membership/role/profile locks and atomic notification/audit effects remain. The precise shared semantic delta and bounded UUID/session-scoped test barrier were allocated before their writes.
+
+2026-10-20 Round 2 of 3: the qualified native read-only CLI completed with exit0 and observed gpt-6.1-sol High; command qualification does not accept the source. Its R1-03 residual and the parent's focused R1-02 detachment trace are accepted as two patches in the same bounded relationship-removal operation: R2-01 Medium and R2-02 High. Accounting: patch2, intent_gap0, bad_spec0, defer0, reject0, follow-up score3, re-derivation0; `followup_review_recommended: true` remains. The original High author fixes these allocated controller/test/spec paths directly, with no nested delegation, new path/contract, runtime or kernel change. Original Round1 reports and failed-wrapper history remain preserved. Root's final LIMITED Round3 is confined to these fixes/residuals and does not authorize another broad review.
+
+2026-10-20 Round 3 of 3 completed: final LIMITED source-review PASS, zero findings; patch0, intent_gap0, bad_spec0, defer0, reject0, score0, re-derivation0 and `followup_review_recommended: false`. Both detachment residuals are closed against the exact bindings above. Prior failed-wrapper, residual-finding and red-test history remains intact. No fourth broad review is authorized; required exact-head CI and truthful delivery evidence remain development gates.
+
+## Design Notes
+
+CI repair choices: the fixture injects the existing local-only `tenants::admin()` service-JWT client after `assertLocalStack`, matching the test environment authority without requiring or mutating application env/config. Generated recipient assignment/booking/profile UUIDs are removed with normal FK enforcement before auth deletion; callback and every cleanup failure are retained, and all owned auth deletion promises settle before reporting. Explicit Person/Jobb aria-labels disambiguate the review selects while retaining visible labels/options. Browser capture is scoped to one visible own-week context/card with explicit cardinality, preserving global peer absence and the entire capture/persistence/reload tail. The quote guard adds only the already approved `/time-reports` route to its exact active set.
+
+Round 2 detachment correction: booking/job links and the duration's source are separate concerns. Selecting Utan bokning now clears only the two relationships; the unchanged canonical minutes and UTC endpoint provenance continue to describe the displayed draft. Choosing another booking still replaces the prefill, while editing hours still invalidates canonical minutes and edited interval endpoints still parse independently. This prevents a valid20-minute draft being rejected through generated decimal hours and prevents an unchanged late-fold60-minute interval being reinterpreted as120 minutes.
+
+Round 1 arithmetic correction: report-vs-booked delta now subtracts the inputs' decimal numeric representations with integer scaling, then converts the decimal result to the existing numeric DTO. This preserves the received booked provenance, including 60.1 minutes, and displays 75−60.1 as 14.9 minutes without adding binary subtraction digits. It introduces no money arithmetic or report-duration rounding; filed minutes remain integers. Six focused domain assertions passed with zero skips during the fix batch, including independent tenths and micro/exponent boundaries. Final integrated evidence is recorded separately after all fixes settle.
+
+The design companion records the rationale for scoped capability names, immutable filing plus minimal reviewer metadata, booked-minute snapshot, exact retry semantics, same-tenant/assignment enforcement and bounded seven-day in_app nudge defaults. These are maintainable technical choices within approved behavior under owner authority; Root's distinct High validation may identify a bounded correction before freeze. Do not infer a separate canonical SPEC.md: this sprint BuildAuto spec's intent-contract is its kernel; exact candidate hashes are in the preparation validation receipt. No approved kernel binding is claimed before Root freeze.
+
+## Verification
+
+### Historical implementation checkpoint — 2026-10-20
+
+Historical result at this checkpoint: implementation was ready for independent source review, with required runtime evidence pending. This was an uncommitted working-tree check against baseline `4862704665cb12e4f577ecac59ee173c49c36763`; its planned source-commit ownership wording is superseded by the current reconciliation below. Status then remained in-progress. The frozen LF intent-contract SHA256 was `3c701d71dba37a136ae104fd24c3b223ef46081913301fb43ff92baca3f16ffb`.
+
+Implemented T1–T6/T8 and the executable test/essential-browser source for T7/T9. All original 50 skipped declarations are active and statically bound to production exports; six additional boundary assertions bring the report suite inventory to 56 declarations with zero explicit skips. Commands11/RLS7/read7/nudge9/essential-browser3 still require actual execution. The component suite has seven executed SSR assertions; report pure units have twelve executed assertions. Collection is discovery only: it confirms three essential browser cases and exact serial membership of report command+nudge files, while report read/RLS/component remain parallel. T7/T9/T10 completion still requires their remaining actual gates and author evidence refresh.
+
+Actual bounded checks in this run:
+
+- `pnpm typecheck` passed after the final fractional-booking change.
+- `pnpm exec eslint src tests scripts` passed with zero errors and 17 existing warnings. The ordinary `pnpm lint` attempt was interrupted after traversing retained ignored `.env.epic15.mail-runtime` trace assets; canonical clean-checkout lint remains for CI. No ESLint configuration or ignored artifacts were changed.
+- Final `pnpm run test:unit`: 3,036 tests, 3,035 passed, zero failed, one Windows-only skip. That skip is `versioned file-backend restore preserves the DB-owned identity and refuses overwrite`, which requires Linux xattrs and remains required in CI. Before the two-path allocation/fix, two full runs each had 3,034 tests, 3,021 passed, 12 failed and one skip. Focused reproduction identified eleven calendar VM-loader failures on the newly imported report entry and one exact serial-partition expected-set failure. The allocated fixes preserve existing negatives and add real BookingBlock own-action/propflow coverage; their focused rerun passed all 15 assertions. After those fixes and before the fractional boundary correction, the full run had 3,035 tests, 3,034 passed, zero failed and one skip.
+- Focused report pure units passed 12/12 with zero skips; isolated SSR component assertions passed 7/7 with zero skips. SSR uses synthetic props and proves rendered states only; it does not prove interaction, focus, transport or persistence. The shared scope/matrix/category/producer focused unit run passed 48/48 with zero skips.
+- `pnpm build` passed after final product-source changes and generated the dynamic `/time-reports` route. Source and built-bundle service-role containment and the lockfile guard passed. Parent independently executed `pnpm install --frozen-lockfile`, `pnpm audit --audit-level=high` (zero high findings, two moderate advisories), `test:bmad-focused` (2 passed) and `test:auto-bmad-focused` (41 passed); dependency/process sources were unchanged by this story.
+
+No database, Storage, browser, application server, Compose, native Supabase or CI runtime was started or adopted by this author or its two bounded authors. Actual REQUIRED full integration/RLS, current-history migration replay/seed/ACL verification, physical recovery-Storage checks and the three configured-production essential browser flows are pending Root's independently reviewed exact-head CI lane. Independent High review is pending. No development-complete/done/release-ready assertion or passing delivery JSON is written here.
+
+Deferred release work retains the existing owners: QA/UX owns exhaustive device/view/browser matrices, screenshot comparison, manual accessibility/daylight/exploration and actual ≤30-second one-hand timing; Product/Architect owns representative workload/threshold approval before performance certification; the delivery owner owns polish. Evidence is unexecuted/deferred, and the next action is a separately admitted release-validation run plus recorded manual/performance outcomes. Consequential functionality and integrity remain development gates. No deployment/merge/publication approval is implied.
+
+Fixture limit for independent review: `cleanupOwnedTimeReports` uses the repository's test-admin transaction convention, with `SET LOCAL session_replication_role=replica` on one connection and deletion restricted to explicit owned tenant report rows; commit/rollback restores the session setting. It makes no global/catalog/production-trigger change. The two fault suites remain serialized after the parallel group; their stage-aware temporary audit triggers and cleanup assertions still need real CI execution. Beforeunload/Dialog guards preserve pending/uncertain input in the connected UI; custom browser-history interception and durable/offline storage are absent.
+
+### Historical Round 1 fix checkpoint — 2026-10-20
+
+This synchronous original-author batch fixes the nine accepted Round 1 findings against source commit `73169cc0c75d88fbb16dc999ef99cbd9028ff361`; changes remain uncommitted for Root's scoped fix commit and independent focused review. Accounting is one counted review round of three, zero re-derivations, patch9 (High3/Medium6), intent_gap0, bad_spec0, defer0, reject0; follow-up score18 and the High patches retain `followup_review_recommended: true`. The external wrapper remains failed/unqualified; its recovered report is triage input, not a passed review layer.
+
+R1-01 preserves the unresolved exact attempt across a definite denied retry. R1-02 preserves each unchanged UTC endpoint independently, including fold offset/microseconds. R1-03 retains canonical prefilled minutes across modes while edited decimal hours still require exact whole minutes. R1-04 defaults the first standalone start's date until explicit date selection. R1-05 guards review links with the same dirty/pending/unknown state. R1-06 adds the allocated all-writer affected-tenant nonblocking preference contract and both acknowledged-order race assertions. R1-07 uses decimal-safe delta subtraction without altering the booked snapshot. R1-08/09 bind the tested stale-annotation and latest-response behavior to production controllers, with meaningful actual-handler assertions. No intent/kernel change, new path, API/grant, dependency, isolation level or runtime expansion is introduced.
+
+Actual bounded evidence after the UI/domain fix integration:
+
+- `node --experimental-strip-types --import ./tests/support/register.mjs --test tests/unit/features/time-reports/domain.test.ts tests/unit/features/time-reports/validation.test.ts tests/unit/features/time-reports/action-state.test.ts`: 17 passed, zero failed/skipped, executed by the same bounded High UI author.
+- `pnpm exec vitest run tests/integration/components/time-reports.test.ts --project integration-parallel`: 15 passed, zero failed/skipped (eight SSR and seven actual TSX-controller VM cases), executed by that author using the checked-in standard config/globalSetup. The selected component suite has no database test body; config reachability checks are not database coverage. VM replaces hook scheduling, action/read transport and router effects; it proves handler decisions/propflow, not DOM/focus, authorization or persistence.
+- `pnpm run test:unit`: 3,041 total, 3,040 passed, zero failed, one existing Windows/Linux-xattr skip. The exact skipped file-backend restore test remains required in Linux CI. Earlier 3,034-test/12-failure runs and their causal repairs above remain historical evidence.
+- `pnpm typecheck` and final `pnpm exec tsc --noEmit --incremental false` passed. `pnpm exec eslint src tests scripts` passed with zero errors and 17 existing warnings; final focused lint of the nudge and migration-reset test files passed with zero errors/warnings after the integrity handoff. Canonical clean-checkout lint remains CI-owned after the historical interrupted root scan.
+- `pnpm build`, `pnpm run verify:service-role-containment`, `pnpm run verify:bundle-containment` and `pnpm run verify:lockfiles` passed. No dependency/process source changed, so the earlier frozen-install/audit/process outcomes are retained without duplicate execution.
+- Browser discovery lists the three existing essential flows only. Serial discovery with the actual configured `integration-audit-ddl` project lists exactly job-runs, conflict-resolver, report-command and nudge files. An initial inventory call used nonexistent project `integration-serial` and exited1; correcting the project filter passed without source/config changes. Discovery is not test execution.
+- `node scripts/verify/check-review-order.mjs _bmad-output/implementation-artifacts/spec-15-4-time-reporting-filing-timesheet-review.md` passed with one section, 20 verified stops and zero errors after correcting two stops moved by the final test edit. `git diff --check` passed.
+
+The source inventory now has 73 report declarations: pure17/component15/command11/RLS7/read7/nudge13/browser3, with zero explicit skips. The original 50 skipped declarations remain active; this batch adds five pure, eight component and four nudge declarations to the preceding56. Component execution and unit execution do not establish the unexecuted SQL/browser outcomes. Actual REQUIRED integration/RLS, migration/reset/seed/ACL, recovery Storage and production-browser checks remain pending Root's exclusive exact-head CI. The LF kernel digest remains `3c701d71dba37a136ae104fd24c3b223ef46081913301fb43ff92baca3f16ffb`; original preparation files are unchanged. No runtime, commit, delivery pass or done status is claimed.
+
+### Historical Round 2 detachment checkpoint — 2026-10-20
+
+This bounded original-author fix is an uncommitted working tree against `1f19e3f3b7562bd43732dc61c17a9d0b1b5cee34`, retaining in-review status. Two actual-controller regressions select a genuine supplied booking through the production handler, detach it, submit through the production handler, and assert20/60 minutes with both relationship IDs null. Additional assertions retain explicit edited-hours rejection and independently unchanged late-fold start provenance after editing the other endpoint.
+
+Actual evidence:
+
+- Before the product fix, `pnpm exec vitest run tests/integration/components/time-reports.test.ts --project integration-parallel` executed17 cases:15 passed, two failed, zero skipped. R2-01 produced zero requests instead of one; R2-02 submitted120 rather than60 minutes. This is an actual old-source red run with the new controller tests, not a synthetic helper-only probe.
+- After the narrow detachment fix, the same command passed17/17 with zero failures/skips: eight SSR and nine actual-controller VM cases. Standard checked-in config/globalSetup was retained. VM still substitutes hook scheduling, action/read transport and router effects; no DOM/focus, database, browser or persistence outcome is inferred.
+- `node --experimental-strip-types --import ./tests/support/register.mjs --test tests/unit/features/time-reports/domain.test.ts tests/unit/features/time-reports/validation.test.ts tests/unit/features/time-reports/action-state.test.ts` passed17/17, zero failed/skipped.
+- `pnpm exec tsc --noEmit --incremental false` passed. `pnpm exec eslint src/components/time-reports/TimeReportEntry.tsx tests/integration/components/time-reports.test.ts` passed with zero errors/warnings.
+- `pnpm build`, `pnpm run verify:service-role-containment` and `pnpm run verify:bundle-containment` passed after the final product change. Unchanged full-unit/dependency/process outcomes are retained as historical evidence without repeat execution.
+
+The report inventory is now75 active declarations: pure17/component17/command11/RLS7/read7/nudge13/browser3, zero explicit skips. Both new declarations are actual controller regressions; the original50 remain active. SQL/RLS/migration/Storage/browser execution and Linux xattr remain pending Root's exact-head CI; no runtime, Git, dependency, schema or API action occurred in this batch. The same20-stop author trail below is refreshed for both residuals and correctly attributes genuine service-writer assertions to NUDGE011. Its checker passed with one section,20 stops and zero errors; `git diff --check` passed. The LF kernel SHA256 remains `3c701d71dba37a136ae104fd24c3b223ef46081913301fb43ff92baca3f16ffb`.
+
+### Historical Round 3 source-review reconciliation — 2026-10-20
+
+The independent final LIMITED review at `3bd815887a6c4a246d94956eb021b1b6ea0525c2` passed with zero findings and closed both detachment residuals. The original report and exact packet/source bindings are recorded in Review Findings. This author reconciliation changes reporting/SRO only; no product source or tests were changed or rerun. The preceding implementation/Round1/Round2 working-tree checkpoints are explicitly historical evidence, including every failure, skip and synthetic boundary.
+
+Current source inventory remains75 active report declarations with zero explicit skips: pure17/component17/command11/RLS7/read7/nudge13/browser3. Actual author evidence remains Round2's17/17 component and17/17 pure passes, type/scoped-lint/build/containment passes; the last full-unit execution remains Round1's3,041 total/3,040 passed/zero failed/one Windows xattr skip. The independent reviewer inspected that evidence without rerunning it. The38 command/RLS/read/nudge cases and three browser cases, migration/reset/seed/ACL, physical recovery Storage, Linux xattr and canonical clean-checkout gates still await Root's exact-head CI. No runtime or passing delivery artifact is asserted.
+
+The build delegate performs authorized scoped source commits; Root owns checkpoint push, CI/resource admission and aggregate state/delivery truth. Source review is complete within its final limited scope; status remains in-review until required CI/delivery evidence permits a later transition. Reporting validation here is limited to the same20-stop SRO checker, diff check and frozen-kernel conservation; no additional broad review, implementation test run, runtime or deployment is authorized by this reconciliation.
+
+### Qualified CI failure and bounded repair — 2026-10-20
+
+Root's independently qualified FAILURE is run39408197808, head `51f37bc965b9e9fb7b65f7cd66cc24cb4e9b48d7`, attempt1, checkpoint `dd4a731e-baa2-4df5-8caf-e9cc2d6accb4`. The author read the persisted route, Root receipt and qualifier report plus integration/browser failure qualifications in `.env.epic15.mail-runtime/story-15-4-preparation/checkpoint-51f37bc9-ci-independent/`. Root verified193 native files and three report hashes; its receipt SHA256 is `d0534b6c0a80ee7aecd5ffc74e71998f2e3b7a150fc53997b1fe2abbdc215b21`. This is failed-head evidence, not acceptance of the repaired successor.
+
+Actual failed-head CI: canonical verify passed frozen install/audit, type/lint/build, source/bundle containment, all3,041 units with zero failures/skips (including actual Linux xattr), and43 focused process assertions. Full integration was1,979 cases:1,915 passed/12 failed/52 historical skips. Story15.4's55 integration cases were44 passed/11 failed/zero skipped:17 component and27 real DB passes,11 nudge failures. All11 command,7 RLS,7 read and NUDGE012/013 bodies passed. Migration109 applied at startup and reset in each db/e2e/recovery job; the independent physical Storage proof passed1/1 with two objects/66 bytes. These results do not erase failing essential bodies.
+
+Ten nudge cases (001/002/003/005/006/010/011/007/008/009) failed at `jobsClient`'s missing NEXT_PUBLIC_SUPABASE_URL before the real producer/dispatch. Therefore SQL DST/midnight/exclusive-end vectors; concurrent dedupe; current-preference/role branches; actual opt-out-first waits; post-predicate55P03/service-writer/history/retry/barrier cleanup; filing-before-nudge suppression; and nudge atomic fault/SQLSTATE/cleanup tails were not reached. In009 registration metadata passed before the client failure. NUDGE004's visible error was auth-user cleanup; it masked an UNKNOWN earlier callback cause/reach. The repair does not invent that earlier cause or award cursor/pagination/tail coverage before a real rerun.
+
+Native browser17 cases/19 attempts had15 expected/2 unexpected/zero flaky/skipped/global errors. All14 prior smoke bodies and E2E002 passed first attempt; E2E002 reached lost committed response → revoked denial → restored same frozen attempt, no duplicate report/audit and reload/no-profile assertions. Both E2E001 attempts stopped on three responsive own-card matches after peer RPC denial/snapshot/login/date/period, before peer-card absence/capture/prefill/filing/report-audit/week/reload tails. Both E2E003 attempts passed initial physical fixtures/visible rows/person/job/unlinked totals, then found no exact Person selector; filter/annotation/attribution/audit/reload/Admin/own-only tails were unreached. Available native bytes contain locator errors and runner-local trace/error-context references; no trace, error-context or HTML bytes were uploaded, so no actual DOM-trace diagnosis is claimed.
+
+The bounded repair changes only the five allocated source/test files and this spec. Local evidence against that failed source baseline:
+
+- Standard component+quote-source-guard Vitest run first reproduced22 passes/two failures/zero skips after adding the explicit-name SSR assertion, then passed24/24: component18 and quote guards6. Existing quote/widget/email/table/Phase C assertions remain active; only the approved route pin changes. Component18 is nine SSR plus nine actual-controller VM cases; the new SSR proves explicit emitted names/options, not browser accessibility or filtering completion.
+- Focused domain/validation/action-state unit command passed17/17 with zero failures/skips. `pnpm exec tsc --noEmit --incremental false`, scoped ESLint across all five changed source/test paths (zero errors/warnings), `pnpm build`, source containment and built-bundle containment passed. Browser discovery still lists exactly the existing three essential flows; no browser body ran locally. Unchanged full-unit/dependency/process checks were not repeated.
+- Four bounded executions of the actual fixture module in a VM passed success, callback-only failure, combined callback+cleanup failures and cleanup-only failure. Substituted SQL/Auth/service ports verified exact generated-ID query scope/dependency order, original callback identity/cause plus every cleanup error, local guard/admin-port injection, and all owned auth deletion promises settled (63 measured and asserted per probe). These are control-flow probes, not real SQL/FK/Auth/JWT proof. The initial exploratory probe failed its own cross-realm array comparison; the probe assertion was corrected without a product-source change, and all four scenarios then passed.
+
+Inventory is76 active report declarations, zero explicit skips: pure17/component18/command11/RLS7/read7/nudge13/browser3. The same-SRO checker passed one section/20 stops/zero errors; `git diff --check` passed. LF kernel conservation passed at `3c701d71dba37a136ae104fd24c3b223ef46081913301fb43ff92baca3f16ffb`. Failed-head results and unreached tails remain recorded; successor exact-head CI must execute them. The original sourcefreeze and preparation/review artifacts are conserved. No SQL/app service/env/config/CI/dependency/seed/resource change, local DB/browser runtime, passing delivery, done or development-complete claim is made. An authorized exact-six-path source commit precedes the distinct High narrow repair review and Root's successor admission/rerun; canonical state and parent route are not staged.
+
+### Historical preparation evidence
+
+This planning run executes artifact/process checks only: source AC comparison, seven-point immediate story audit, READY standard, spec reader/discovery, exact raw/kernel hashes and clean tracked-source/cached-context preservation. Zero app/schema/test/scaffold/runtime/CI execution is claimed. Root separately dispatches independent High specification validation.
+
+Future development: frozen install; applicable `pnpm run verify:development`, `pnpm audit --audit-level=high`; full `SUPABASE_TEST_REQUIRED=1 pnpm run test:int` with actual counts, all new focused integrity suites plus existing booking/series/resolver/job/E13/role regressions; complete current-history migration replay/seed/H4/exact-policy/ACL agreement; direct physical recovery-Storage integrity; essential configured-production Playwright time-reports and ordinary auth smoke; independent High review of actual sensitive diff. Record executed/failed/skipped counts and exact revision. No skipped suite, synthetic envelope, test collection or predecessor CI grants report acceptance.
+
+Cover actual wrapper/direct-RLS positive controls, current-role revocation/replay, assignment reparenting and same-tenant links, report/annotation audit fault rollback, concurrent idempotency, complete paging/standalone totals, both Stockholm DST transitions/overnight/local week boundaries, booked snapshot after booking changes, bounded producer cursor beyond25 recipients and7 dates, own recipient preferences/races, service-only ACL denial and preserved booking.changed/channel checks. Trace TEA15.4-RLS-001/INT-001…004/COMP-001/E2E-001 to real assertions and outcomes.
+
+Deferred release validation retains exhaustive browser/device/view matrices, screenshots/visual comparison, manual accessibility/daylight/exploration and actual≤30-second one-hand timing (QA/UX), representative performance certification after Product/Architect approves targets, and polish (delivery owner). Record status/evidence/next action in later delivery/ledger; unexecuted means deferred, never passed. Consequential functionality/security/integrity failure still blocks development. Development-complete does not mean release-ready or authorize merge/deploy; no automatic previews/manual deployment is authorized. Root owns resources/Git/CI/state/aggregate ledgers; inherited review_unverifiedTRUE is preserved.
+
+## Auto Run Result
+
+Status: in-review
+
+Current result: the qualified failed-head CI is preserved and its bounded fixture/accessibility/selector/nav repairs have passed the recorded local checks. Three broad source-review rounds remain completed; the latest repair requires a distinct High narrow regression review and successor Root exact-head CI/delivery evidence.
+Blocking condition: run39408197808 failed integration and essential browser bodies at the recorded stops. The successor repair has not yet passed native execution or narrow independent review. No fourth broad review, runtime expansion, delivery pass or done transition is implied.
+
+### Historical preparation result
+
+Status: ready-for-dev
+Blocking condition: none for planning.
+
+HALT after planning. One original source AC sketch is preserved verbatim, with ten path-bound tasks and nine Given/When/Then ACs, exact candidate ownership and design companions, immediate seven-point audit and author READY self-review. No product intent gap was found. The intent-contract is the sprint BuildAuto kernel; candidate raw/LF kernel hashes and reader/discovery/preservation results are in preparation validation receipts. Approved kernel remains null pending Root's distinct independent High validation and freeze.
+
+Root then obtains Coordinator allocation of exact shared semantic deltas, a unique new migration timestamp after20261020180000 and isolated mutable fixtures/resources before implementation. Three existing BookingEntry caller pages are explicit candidate metadata-only deltas, not permission to touch E16-owned job semantics. This run changes only this spec and its owned preparation artifacts; cached Epic15 context, all tracked source/history/state/sprint and inherited review_unverifiedTRUE remain unchanged. No app/schema/tests/scaffolds/dependencies/env, runtime/CI, Git commit/push/PR, provider/hosted changes or deployment occurred. Routes: Sol High author and one synchronous context-free Sol High read-only explorer, completed before HALT; no implementation/review round consumed. Completion hook preserves planning status and creates no completed Suggested Review Order or delivery/development-complete/release-ready claim.
+
+## Suggested Review Order
+
+Author: original Story15.4 implementation/fix author, gpt-6.1-sol High. This same trail reconciles the bounded CI repair; no new broad review is requested.
+Refreshed against the repaired working tree based on failed CI source `51f37bc965b9e9fb7b65f7cd66cc24cb4e9b48d7`, 2026-10-20. The three completed source-review rounds and original sourcefreeze remain immutable predecessor evidence. Current fixes await distinct High narrow regression review and successor CI; status stays in-review.
+
+### Own capture in the visible calendar
+
+Entry retains the approved exact-duration/provenance and unresolved-attempt behavior. The repaired essential browser case chooses the visible own-week context and requires one visible own card; global peer absence and the entire prefill/report/audit/week/reload tail remain. Failed-head browser001 reached neither capture nor those tails; the repaired selector is source awaiting actual rerun.
+
+- `src/components/time-reports/TimeReportEntry.tsx:28` — `chooseBooking`: detaches links while retaining duration and UTC provenance.
+- `src/features/time-reports/action-state.ts:36` — `timeReportDraftMinutes`: preserves independently unchanged endpoints and exact canonical minutes.
+- `tests/e2e/time-reports.e2e.spec.ts:31` — `const ownWeek`: requires one visible own-week context before unique-card capture.
+- `tests/integration/components/time-reports.test.ts:194` — `R2-01`: submits detached canonical minutes and rejects explicitly edited rounding.
+
+### Current authority and attributable persistence
+
+SQL authority, immutable filing and reviewer CAS are unchanged by this repair. Failed-head native CI passed all11 command,7 RLS and7 read cases, including filing/annotation atomic fault bodies; this is actual predecessor evidence, distinct from the eleven failed nudge bodies and two blocked browser tails.
+
+- `supabase/migrations/20261020190000_time_reports.sql:48` — `time_report_actor_gate_internal`: checks current role authority before replay.
+- `supabase/migrations/20261020190000_time_reports.sql:62` — `file_time_report`: binds actor, attempt, references and booked provenance.
+- `supabase/migrations/20261020190000_time_reports.sql:122` — `annotate_time_report`: checks revision and latest exact retry.
+- `tests/integration/commands/time-reports.int.test.ts:193` — `15.4-INT-009`: asserts business stage and atomic audit rollback.
+
+### Accessible filters and complete projections
+
+Person and Jobb now have explicit accessible names while retaining visible labels/options and exact browser assertions. The new real-workspace SSR assertion proves emitted names; failed-head browser003 passed initial totals but did not reach filters/annotation/reload. Existing complete paging, standalone groups and decimal booked provenance remain unchanged and retain their recorded tests.
+
+- `src/components/time-reports/TimeReportWorkspace.tsx:31` — `aria-label="Person"`: names both review filter selects explicitly.
+- `tests/integration/components/time-reports.test.ts:212` — `CI repair review selectors`: asserts exact names and retained real selector options.
+- `src/features/time-reports/domain.ts:28` — `reportedBookedDelta`: subtracts decimal minutes without rounding the snapshot.
+- `tests/integration/read-models/time-reports.int.test.ts:37` — `15.4-READ-002`: asserts complete filtered review and standalone totals.
+
+### Genuine local service injection and bounded reminders
+
+The fixture now injects the existing local-only tenants admin service-JWT client after its guard, avoiding application env dependency or mutation. Production dispatch/RPC and affected-tenant preference semantics are unchanged. Native NUDGE012/013 passed; the other eleven cases need rerun, including real SQL DST vectors, opt-out orderings and nudge fault rollback. NUDGE011 contains the genuine service-writer assertion, which its failed-head client stop never reached.
+
+- `tests/support/time-reports-atdd.ts:154` — `jobsClient`: injects the guarded existing local test service client.
+- `supabase/migrations/20261020190000_time_reports.sql:186` — `time_report_preference_gate`: tries affected tenant gates without waiting or writer exemptions.
+- `supabase/migrations/20261020190000_time_reports.sql:209` — `emit_time_report_nudges`: retains bounded predicates, dedupe and atomic effects.
+- `tests/integration/notifications/time-report-nudge-producer.int.test.ts:268` — `15.4-NUDGE-011`: asserts post-predicate writer failure, rollback and explicit retry.
+
+### Scoped cleanup and exact surface evidence
+
+Generated assignment/booking/profile UUID children are removed in dependency order before all owned auth deletion promises settle; callback and every cleanup failure remain attributable. NUDGE004's earlier callback cause is still UNKNOWN until actual rerun. The quote guard admits only the approved active route and retains every quote/widget/email/table/Phase C assertion. Native trace paths are references only; no actual DOM trace bytes support a stronger claim.
+
+- `tests/support/time-reports-atdd.ts:200` — `withNudgeRecipients`: tracks exact owned IDs and settles all actor cleanup.
+- `tests/support/time-reports-atdd.ts:42` — `throwFixtureFailures`: preserves primary error and every cleanup failure.
+- `tests/integration/features/quotes/quote-pipeline-non-scope-guard.int.test.ts:28` — `APPROVED_ACTIVE_NAV_ROUTES`: pins the exact ten approved active nav routes.
+- `tests/support/time-reports-atdd.ts:171` — `cleanupOwnedTimeReports`: confines the disclosed transaction-local report bypass to owned tenants.
+
+Evidence: the CI repair checkpoint records local red22-pass/two-failure then green24/24 component+quote guards,17/17 pure units, type/scoped-lint/build/containment passes, and76 active report declarations with zero explicit skips. Four actual-fixture VM scenarios substitute SQL/Auth/service ports; all owned auth deletion promises settled (63 measured per probe), but no FK/Auth/JWT runtime proof is inferred. The first exploratory probe's cross-realm assertion error remains recorded. Historical failed-head CI passed3,041 Linux units without skips and direct physical Storage, but full integration remained1,915P/12F/52S and browser15 expected/two unexpected. SSR/VM does not prove DOM, authorization, network or persistence. The narrow repair review, successor native nudge/browser tails and passing delivery remain pending; exhaustive visual/manual/timing/performance release work stays deferred. No done/development-complete/release-ready claim is made.
+
+
+# FULL CURRENT CHANGED FILE: src/components/time-reports/TimeReportWorkspace.tsx
+"use client";
+import { useRef, useState } from "react";
+import { Dialog } from "@/components/crm/Dialog";
+import { readTimeReportsAction } from "@/features/time-reports/actions";
+import { formatReportMinutes, reportWeekStart, shiftReportDate } from "@/features/time-reports/domain";
+import { currentTimeReportResponse } from "@/features/time-reports/action-state";
+import { isReportDate } from "@/features/time-reports/validation";
+import type { TimeReport, TimeReportQuery, TimeReportReadResult } from "@/features/time-reports/types";
+import { PersonalTimesheet, TimeReportLinks } from "./PersonalTimesheet";
+import { TimeReportEntry } from "./TimeReportEntry";
+import { TimeReportReview } from "./TimeReportReview";
+import { timeReportButtonClass, timeReportFieldClass } from "./TimeReportForm";
+
+export function TimeReportWorkspace({initial,initialQuery,readAction=readTimeReportsAction}:{readonly initial:TimeReportReadResult;readonly initialQuery:TimeReportQuery;readonly readAction?:(query:TimeReportQuery)=>Promise<TimeReportReadResult>}) {
+
+ const [result,setResult]=useState(initial),[query,setQuery]=useState(initialQuery),[loading,setLoading]=useState(false),[selected,setSelected]=useState<TimeReport|null>(null),[reviewBusy,setReviewBusy]=useState(false),[reviewDirty,setReviewDirty]=useState(false),sequence=useRef(0);
+
+ const [authority,setAuthority]=useState(initial.ok?initial.data:null);
+ const week=query.weekStart??query.week??(initial.ok?initial.data.weekStart:""),review=query.mode==="review";
+
+ async function load(next:TimeReportQuery=query){const current=++sequence.current;setQuery(next);setLoading(true);try{const read=await readAction(next);if(currentTimeReportResponse(sequence.current,current)){setResult(read);if(read.ok)setAuthority(read.data);}}catch{if(currentTimeReportResponse(sequence.current,current))setResult({ok:false,status:"error",code:"READ_FAILED"});}finally{if(currentTimeReportResponse(sequence.current,current))setLoading(false);}}
+
+ function refresh(){setSelected(null);setReviewDirty(false);setReviewBusy(false);void load();}
+
+ return <main className="mx-auto max-w-6xl space-y-6 p-4 sm:p-6"><div className="flex flex-wrap items-center justify-between gap-3"><h1 className="text-2xl font-semibold">Tidrapporter</h1>{authority?.canReportOwn&&<TimeReportEntry jobs={result.ok?result.data.jobs:[]} bookings={result.ok?result.data.bookings:[]} onSaved={()=>void load()}/>}</div>
+
+  <div className="flex flex-wrap items-end gap-3"><label className="space-y-1"><span className="block text-sm">Vecka</span><input type="date" className={timeReportFieldClass} value={week} onChange={event=>{if(isReportDate(event.target.value))return load({...query,week:undefined,weekStart:reportWeekStart(event.target.value)});}}/></label><button type="button" disabled={!week} className={timeReportButtonClass} onClick={()=>void load({...query,week:undefined,weekStart:shiftReportDate(week,-7)})}>Föregående vecka</button><button type="button" disabled={!week} className={timeReportButtonClass} onClick={()=>void load({...query,week:undefined,weekStart:shiftReportDate(week,7)})}>Nästa vecka</button><button type="button" className={timeReportButtonClass} onClick={()=>void load()}>Uppdatera</button></div>
+
+  {authority?.canReview&&<nav role="tablist" aria-label="Tidrapportläge" className="flex flex-wrap gap-3"><button type="button" role="tab" aria-selected={!review} className={timeReportButtonClass} onClick={()=>void load({weekStart:week,mode:"own"})}>Min vecka</button><button type="button" role="tab" aria-selected={review} className={timeReportButtonClass} onClick={()=>void load({weekStart:week,mode:"review"})}>Granska</button></nav>}
+
+  {review&&authority?.canReview&&<div className="flex flex-wrap gap-3"><label className="min-w-0 flex-1 space-y-1"><span>Person</span><select aria-label="Person" className={timeReportFieldClass} value={query.personId??""} onChange={event=>void load({...query,personId:event.target.value||undefined})}><option value="">Alla personer</option>{(result.ok?result.data.people:authority.people).map(person=><option key={person.id} value={person.id}>{person.label}</option>)}</select></label><label className="min-w-0 flex-1 space-y-1"><span>Jobb</span><select aria-label="Jobb" className={timeReportFieldClass} value={query.jobId??""} onChange={event=>void load({...query,jobId:event.target.value||undefined})}><option value="">Alla jobb och utan jobb</option>{(result.ok?result.data.jobs:authority.jobs).map(job=><option key={job.id} value={job.id}>{job.label}</option>)}</select></label></div>}
+
+  {loading?<p role="status">Läser tidrapporter…</p>:review?(result.ok?<section aria-label="Granska tidrapporter" className="space-y-4"><p className="text-lg font-medium">Rapporterat i urvalet: <span data-testid="time-report-review-total">{formatReportMinutes(result.data.totalMinutes)}</span></p><div className="grid gap-4 sm:grid-cols-2"><div><h2 className="font-medium">Per person</h2><ul>{result.data.byPerson.map(row=><li key={row.userId}>{result.data.people.find(person=>person.id===row.userId)?.label??`Person ${row.userId.slice(0,8)}`}: <span data-testid={`time-report-person-total-${row.userId}`}>{formatReportMinutes(row.minutes)}</span></li>)}</ul></div><div><h2 className="font-medium">Per jobb</h2><ul>{result.data.byJob.map(row=><li key={row.jobId??"unlinked"}>{row.jobId?result.data.jobs.find(job=>job.id===row.jobId)?.label??"Jobb":"Utan jobb"}: <span data-testid={row.jobId?`time-report-job-total-${row.jobId}`:"time-report-unlinked-total"}>{formatReportMinutes(row.minutes)}</span></li>)}</ul></div></div>{result.data.reports.length===0?<p>Inga tidrapporter i urvalet.</p>:<ul className="space-y-3">{result.data.reports.map(report=><li key={report.id} data-testid={`time-report-row-${report.id}`} className="space-y-2 rounded-md border border-zinc-200 p-4"><p>{report.personLabel??result.data.people.find(person=>person.id===report.userId)?.label??"Person"} · {report.date} · {formatReportMinutes(report.minutes)}</p><TimeReportLinks report={report}/><button type="button" className={timeReportButtonClass} onClick={()=>setSelected(report)}>Granska</button></li>)}</ul>}</section>:<PersonalTimesheet result={result} weekStart={week} onRetry={()=>void load()}/>):<PersonalTimesheet result={result} weekStart={week} onRetry={()=>void load()} onReport={setSelected}/>}
+
+  <Dialog open={selected!==null} title={review?"Granska tidrapport":"Tidrapport"} variant="sheet" busy={reviewBusy} onClose={()=>{if(!reviewBusy&&(!reviewDirty||window.confirm("Du har osparade ändringar. Lämna utan att spara?"))){setSelected(null);setReviewDirty(false);}}}>{selected&&<TimeReportReview key={selected.id} report={selected} canReview={review&&!!authority?.canReview} onSaved={()=>void load()} onRefresh={refresh} onBusyChange={setReviewBusy} onDirtyChange={setReviewDirty}/>}</Dialog>
+
+ </main>;
+
+}
+
+
+
+# FULL CURRENT CHANGED FILE: tests/e2e/time-reports.e2e.spec.ts
+/** Essential configured-production browser acceptance. All successful persistence
+ * is verified by physical owned report/audit readbacks. Transport faults never
+ * fabricate success. Native Playwright follows existing resourcePage conventions.
+ * This source is runnable coverage; no browser/DB result is claimed by authoring it.
+ */
+import { test, expect } from "./support/resource-cdp-attachment";
+import {
+  REPORT_DATE, filingDialog, hydrated, isFilingRequest, openStandalone, openWeek,
+  signIn, withTimeReportBrowserFixture, failThenLoseCommittedResponse, seedReviewReports,
+} from "./support/time-reports-atdd";
+import { fileReport, reportInput } from "../support/time-reports-atdd";
+import { adminQuery } from "../factories/admin-sql";
+
+test.describe("15.4 essential production-host time reporting", () => {
+  test("[P0] 15.4-E2E-001 own booking editable prefill → filed report → persisted own week", async ({ resourcePage: page }) => {
+    await withTimeReportBrowserFixture(async (f) => {
+      // Concrete peer booking exists. A normal own-only JWT must fail filing it,
+      // independently of the absence of its card/action from the personal UI.
+      const beforeDenied = await f.snapshot();
+      const denied = await fileReport(f.fx.montorClient, reportInput({ bookingId: f.peerBooking,
+        jobId: f.job.id, note: `${f.marker} denied peer` }));
+      expect(denied).toMatchObject({ ok: false, code: "TENANT_ACCESS_DENIED" });
+      expect(await f.snapshot()).toEqual(beforeDenied);
+
+      await signIn(page, f.fx.users.montor);
+      await page.goto("/scheduling");
+      const date = page.getByLabel("Datum", { exact: true });
+      await hydrated(date);
+      await date.fill(REPORT_DATE);
+      await page.getByLabel("Period", { exact: true }).selectOption("week");
+      const ownWeek = page.getByRole("region", { name: "Min kalender", exact: true })
+        .getByLabel("Egen veckokalender", { exact: true }).filter({ visible: true });
+      await expect(ownWeek).toHaveCount(1);
+      await expect(ownWeek).toBeVisible();
+      const card = ownWeek.getByTestId(`scheduling-booking-${f.ownBooking}`).filter({ visible: true });
+      await expect(card).toHaveCount(1);
+      await expect(card).toBeVisible();
+      await expect(page.getByTestId(`scheduling-booking-${f.peerBooking}`)).toHaveCount(0);
+      const capture = card.getByRole("button", { name: "Rapportera tid", exact: true });
+      await capture.click();
+      const form = filingDialog(page);
+      await expect(form.getByLabel("Datum", { exact: true })).toHaveValue(REPORT_DATE);
+      await expect(form.getByLabel("Start", { exact: true })).toHaveValue("2026-10-12T08:00");
+      await expect(form.getByLabel("Slut", { exact: true })).toHaveValue("2026-10-12T10:00");
+      await expect(form.getByLabel("Jobb", { exact: true })).toHaveValue(f.job.id);
+      await expect(form.getByText("Osänd", { exact: true })).toBeVisible();
+      await form.getByLabel("Slut", { exact: true }).fill("2026-10-12T11:00");
+      await form.getByLabel("Anteckning", { exact: true }).fill(f.marker);
+      const before = await f.snapshot();
+      // playwright-utils deviation: installed package gate is false. Observe the
+      // actual proposed Next action before clicking; transport alone is not success.
+      const saved = page.waitForResponse((reply) => isFilingRequest(reply.request(), f.marker));
+      await form.getByRole("button", { name: "Rapportera tid", exact: true }).click();
+      expect((await saved).ok()).toBe(true);
+      await expect(page.getByTestId("time-report-submit-status")).toHaveText("Rapporterad");
+      const durable = await f.snapshot();
+      const rows = durable.reports.filter((row) => row.note === f.marker);
+      expect(rows).toHaveLength(1);
+      expect(rows[0]).toMatchObject({ tenant_id: f.fx.base.tenantA.id,
+        user_id: f.fx.users.montor.id, report_date: REPORT_DATE, duration_minutes: 180,
+        status: "submitted", booking_id: f.ownBooking, job_id: f.job.id,
+        booked_minutes_at_filing: 120 });
+      expect(durable.reports.length - before.reports.length).toBe(1);
+      const audits = durable.audit.filter((row) => row.target_id === rows[0].id);
+      expect(audits).toHaveLength(1);
+      expect(audits[0]).toMatchObject({ tenant_id: f.fx.base.tenantA.id, actor_user_id: f.fx.users.montor.id });
+      expect(durable.audit.length - before.audit.length).toBe(1);
+      const week = await openWeek(page);
+      await expect(week.getByTestId(`time-report-row-${rows[0].id}`)).toContainText("3 h");
+      await expect(week.getByTestId(`time-report-row-${rows[0].id}`)).toContainText(f.job.title);
+      await expect(week.getByTestId("time-report-week-total")).toHaveText("3 h");
+      await expect(week.getByTestId("time-report-missing-2026-10-13")).toBeVisible();
+      await expect(page.getByLabel("Person", { exact: true })).toHaveCount(0);
+      await page.reload();
+      const reloaded = await openWeek(page);
+      await expect(reloaded.getByTestId(`time-report-row-${rows[0].id}`)).toContainText(f.marker);
+      expect(await f.snapshot()).toEqual(durable);
+    });
+  });
+
+  test("[P0] 15.4-E2E-002 no-profile standalone at 360×640 retains its attempt through lost commit, revoked denial and restored retry", async ({ resourcePage: page }) => {
+    await withTimeReportBrowserFixture(async (f) => {
+      await page.setViewportSize({ width: 360, height: 640 });
+      // Register real failure interception BEFORE navigation; never fabricate a 2xx.
+      const fault = await failThenLoseCommittedResponse(page, f, f.marker);
+      try {
+        await signIn(page, f.noProfile);
+        const form = await openStandalone(page);
+        await form.getByLabel("Datum", { exact: true }).fill(REPORT_DATE);
+        await form.getByLabel("Timmar", { exact: true }).fill("1,25");
+        await form.getByLabel("Anteckning", { exact: true }).fill(f.marker);
+        await expect(form.getByLabel("Jobb", { exact: true })).toHaveValue("");
+        await expect(form.getByText("Osänd", { exact: true })).toBeVisible();
+        const submit = form.getByRole("button", { name: "Rapportera tid", exact: true });
+        const size = await submit.boundingBox();
+        expect(size).not.toBeNull();
+        expect(size!.height).toBeGreaterThanOrEqual(48);
+        await submit.focus();
+        await expect(submit).toBeFocused();
+        await page.keyboard.press("Enter");
+        await fault.failed;
+        await expect(form.getByLabel("Timmar", { exact: true })).toHaveValue("1,25");
+        await expect(form.getByLabel("Anteckning", { exact: true })).toHaveValue(f.marker);
+        await expect(form.getByText("Osänd", { exact: true })).toBeVisible();
+        await expect(page.getByTestId("time-report-submit-status")).toHaveCount(0);
+        const retry = form.getByRole("button", { name: "Försök igen med samma försök", exact: true });
+        await expect(retry).toBeVisible();
+        await retry.focus();
+        await expect(retry).toBeFocused();
+        await page.keyboard.press("Enter");
+        const committed = await fault.committed; // SQL proves commit before response was aborted.
+        expect(fault.attempts).toHaveLength(2);
+        expect(fault.attempts[1]).toEqual(fault.attempts[0]);
+        await expect(form.getByText("Osänd", { exact: true })).toBeVisible();
+        await expect(page.getByTestId("time-report-submit-status")).toHaveCount(0);
+        await expect(form.getByLabel("Anteckning", { exact: true })).toHaveValue(f.marker);
+        // An unknown committed outcome must reconcile the frozen attempt before
+        // editing. This is in-memory connected retry, with no automatic resending.
+        await expect(form.getByLabel("Timmar", { exact: true })).toBeDisabled();
+        await expect(retry).toBeEnabled();
+        // R1-01: a denial after a lost commit cannot prove that the original
+        // write failed. Revoke only this fixture's membership, then restore its
+        // exact previous state before reconciling the same frozen request.
+        const memberships=await adminQuery<{id:string;status:string}>(
+          "select id,status from public.tenant_memberships where tenant_id=$1 and user_id=$2",
+          [f.fx.base.tenantA.id,f.noProfile.id]);
+        expect(memberships).toHaveLength(1);
+        const membership=memberships[0];
+        await adminQuery("update public.tenant_memberships set status='disabled' where id=$1",[membership.id]);
+        try {
+          const deniedResponse=page.waitForResponse((reply)=>isFilingRequest(reply.request(),f.marker));
+          await retry.focus();await page.keyboard.press("Enter");
+          const deniedBody=await(await deniedResponse).text();
+          expect(deniedBody).toContain('"status":"error"');
+          expect(deniedBody).toContain('"uncertain":false');
+          await expect(form.getByText("Osänd",{exact:true})).toBeVisible();
+          await expect(form.getByLabel("Timmar",{exact:true})).toBeDisabled();
+          await expect(form.getByLabel("Anteckning",{exact:true})).toHaveValue(f.marker);
+          await expect(retry).toBeEnabled();
+          expect(fault.attempts).toHaveLength(3);expect(fault.attempts[2]).toEqual(fault.attempts[0]);
+          expect(await f.snapshot()).toEqual(committed);
+        } finally {
+          await adminQuery("update public.tenant_memberships set status=$2 where id=$1",[membership.id,membership.status]);
+        }
+        const confirmed = page.waitForResponse((reply) => isFilingRequest(reply.request(), f.marker));
+        await retry.focus();
+        await page.keyboard.press("Enter");
+        expect((await confirmed).ok()).toBe(true);
+        await expect(page.getByTestId("time-report-submit-status")).toHaveText("Rapporterad");
+        expect(fault.attempts).toHaveLength(4);
+        expect(fault.attempts[3]).toEqual(fault.attempts[0]);
+        expect(await f.snapshot()).toEqual(committed); // Exactly one row AND one audit.
+        await page.reload();
+        const week = await openWeek(page);
+        const row = committed.reports.find((report) => report.note === f.marker)!;
+        await expect(week.getByTestId(`time-report-row-${row.id}`)).toContainText(f.marker);
+        await expect(week.getByTestId("time-report-week-total")).toHaveText("1 h 15 min");
+        expect(await f.snapshot()).toEqual(committed);
+        expect(await adminQuery(`select p.id from public.person_profiles p join public.tenant_memberships m
+          on m.id=p.membership_id where m.user_id=$1 and m.tenant_id=$2`,
+        [f.noProfile.id, f.fx.base.tenantA.id])).toEqual([]);
+      } finally { await fault.dispose(); }
+    });
+  });
+
+  test("[P1] 15.4-E2E-003 PL/Admin complete person/job/week review totals and attributed annotation survive reload", async ({ resourcePage: page }) => {
+    await withTimeReportBrowserFixture(async (f) => {
+      const ids = await seedReviewReports(f);
+      const initial = await f.snapshot();
+      expect(initial.reports).toHaveLength(7); // Five current tenant/week rows plus two excluded controls.
+      await signIn(page, f.fx.users.projektledare);
+      await page.goto("/time-reports");
+      const reviewTab = page.getByRole("tab", { name: "Granska", exact: true });
+      await hydrated(reviewTab);
+      await reviewTab.click();
+      await page.getByLabel("Vecka", { exact: true }).fill(REPORT_DATE);
+      const review = page.getByRole("region", { name: "Granska tidrapporter", exact: true });
+      await expect(review.getByTestId("time-report-review-total")).toHaveText("6 h 45 min");
+      for (const id of [ids.own, ids.ownUnlinked, ids.ownOtherJob, ids.peer, ids.peerUnlinked]) {
+        await expect(review.getByTestId(`time-report-row-${id}`)).toBeVisible();
+      }
+      for (const id of [ids.otherWeek, ids.foreign]) await expect(review.getByTestId(`time-report-row-${id}`)).toHaveCount(0);
+      await expect(review.getByTestId(`time-report-person-total-${f.fx.users.montor.id}`)).toHaveText("4 h 45 min");
+      await expect(review.getByTestId(`time-report-person-total-${f.fx.users.projektledare.id}`)).toHaveText("2 h");
+      await expect(review.getByTestId(`time-report-job-total-${f.job.id}`)).toHaveText("4 h 30 min");
+      await expect(review.getByTestId(`time-report-job-total-${f.otherJob.id}`)).toHaveText("1 h");
+      await expect(review.getByTestId("time-report-unlinked-total")).toHaveText("1 h 15 min");
+      await page.getByLabel("Person", { exact: true }).selectOption(f.fx.users.montor.id);
+      await expect(review.getByTestId("time-report-review-total")).toHaveText("4 h 45 min");
+      await expect(review.getByTestId(`time-report-row-${ids.peer}`)).toHaveCount(0);
+      await page.getByLabel("Jobb", { exact: true }).selectOption(f.job.id);
+      await expect(review.getByTestId("time-report-review-total")).toHaveText("3 h");
+      await page.getByLabel("Person", { exact: true }).selectOption("");
+      await expect(review.getByTestId("time-report-review-total")).toHaveText("4 h 30 min");
+      await page.getByLabel("Jobb", { exact: true }).selectOption("");
+      await expect(review.getByTestId("time-report-review-total")).toHaveText("6 h 45 min");
+      await page.getByLabel("Vecka", { exact: true }).fill("2026-10-19");
+      await expect(review.getByTestId("time-report-review-total")).toHaveText("11 h");
+      await expect(review.getByTestId(`time-report-row-${ids.otherWeek}`)).toBeVisible();
+      await page.getByLabel("Vecka", { exact: true }).fill(REPORT_DATE);
+      await review.getByTestId(`time-report-row-${ids.own}`).getByRole("button", { name: "Granska", exact: true }).click();
+      const sheet = page.getByRole("dialog", { name: "Granska tidrapport", exact: true });
+      await expect(sheet.getByText("Bokad tid vid rapportering", { exact: true })).toBeVisible();
+      await expect(sheet.getByTestId("time-report-booked-at-filing")).toHaveText("2 h");
+      await expect(sheet.getByTestId("time-report-booked-delta")).toHaveText("+1 h");
+      await sheet.getByLabel("Granskningsanteckning", { exact: true }).fill(`${f.marker} reviewed`);
+      const annotationSaved = page.waitForResponse((reply) => isFilingRequest(reply.request(), `${f.marker} reviewed`));
+      await sheet.getByRole("button", { name: "Spara anteckning", exact: true }).click();
+      expect((await annotationSaved).ok()).toBe(true);
+      await expect(page.getByTestId("time-report-review-status")).toHaveText("Anteckningen är sparad.");
+      const annotated = await f.snapshot();
+      const before = initial.reports.find((row) => row.id === ids.own)!;
+      const after = annotated.reports.find((row) => row.id === ids.own)!;
+      const core = (row: typeof before) => Object.fromEntries(Object.entries(row).filter(([field]) =>
+        !["review_note","reviewed_by","reviewed_at","review_revision"].includes(field)));
+      const coreBefore = core(before), coreAfter = core(after);
+      expect(coreAfter).toEqual(coreBefore);
+      expect(after).toMatchObject({ status: "submitted", review_note: `${f.marker} reviewed`,
+        reviewed_by: f.fx.users.projektledare.id, review_revision: before.review_revision + 1 });
+      expect(Number.isFinite(Date.parse(after.reviewed_at!))).toBe(true);
+      expect(annotated.reports.filter((row) => row.id !== ids.own)).toEqual(initial.reports.filter((row) => row.id !== ids.own));
+      const newAudit = annotated.audit.filter((row) => !initial.audit.some((prior) => prior.id === row.id));
+      expect(newAudit).toHaveLength(1);
+      expect(newAudit[0]).toMatchObject({ target_id: ids.own, actor_user_id: f.fx.users.projektledare.id });
+      await page.reload();
+      await page.getByRole("tab", { name: "Granska", exact: true }).click();
+      await page.getByLabel("Vecka", { exact: true }).fill(REPORT_DATE);
+      await review.getByTestId(`time-report-row-${ids.own}`).getByRole("button", { name: "Granska", exact: true }).click();
+      await expect(sheet.getByLabel("Granskningsanteckning", { exact: true })).toHaveValue(`${f.marker} reviewed`);
+      await expect(sheet.getByTestId("time-report-review-attribution")).toContainText(/granskad|antecknad/i);
+      await sheet.getByRole("button", { name: "Stäng", exact: true }).click();
+      await review.getByTestId(`time-report-row-${ids.ownUnlinked}`).getByRole("button", { name: "Granska", exact: true }).click();
+      await expect(sheet.getByTestId("time-report-booked-at-filing")).toHaveCount(0);
+      await expect(sheet.getByTestId("time-report-booked-delta")).toHaveCount(0);
+      expect(await f.snapshot()).toEqual(annotated);
+      // Admin also has review, while a reviewer's view of another person's booking
+      // still cannot create an on-behalf report. Prove refusal with physical state.
+      await signIn(page, f.fx.base.adminA);
+      await page.goto("/time-reports");
+      await page.getByRole("tab", { name: "Granska", exact: true }).click();
+      await page.getByLabel("Vecka", { exact: true }).fill(REPORT_DATE);
+      await expect(review.getByTestId("time-report-review-total")).toHaveText("6 h 45 min");
+      const denied = await fileReport(f.fx.adminClient, reportInput({ bookingId: f.ownBooking,
+        jobId: f.job.id, note: `${f.marker} denied manager on behalf` }));
+      expect(denied).toMatchObject({ ok: false, code: "TENANT_ACCESS_DENIED" });
+      expect(await f.snapshot()).toEqual(annotated);
+      await signIn(page, f.fx.users.montor);
+      const ownWeek = await openWeek(page);
+      await expect(ownWeek.getByTestId("time-report-week-total")).toHaveText("4 h 45 min");
+      for (const id of [ids.peer, ids.peerUnlinked, ids.foreign]) {
+        await expect(page.getByTestId(`time-report-row-${id}`)).toHaveCount(0);
+      }
+      await expect(page.getByLabel("Person", { exact: true })).toHaveCount(0);
+      expect(await f.snapshot()).toEqual(annotated);
+    });
+  });
+});
+
+
+# FULL CURRENT CHANGED FILE: tests/integration/components/time-reports.test.ts
+/** Rendered-state and actual TSX controller tests. The VM substitutes hook scheduling
+ * and action transport; DOM focus, network, authorization and physical persistence
+ * remain the separate essential browser/database lanes. */
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
+import { runInNewContext } from "node:vm";
+import ts from "typescript";
+import * as attemptState from "@/features/time-reports/action-state";
+import * as reportDomain from "@/features/time-reports/domain";
+import * as reportValidation from "@/features/time-reports/validation";
+import * as formModule from "@/components/time-reports/TimeReportForm";
+import * as personalModule from "@/components/time-reports/PersonalTimesheet";
+import { TimeReportEntry } from "@/components/time-reports/TimeReportEntry";
+import type { ReportInput, TimeReportBookingPrefill, TimeReportMutationResult, TimeReportReadResult } from "@/features/time-reports/types";
+import * as jsxRuntime from "react/jsx-runtime";
+import { describe, expect, test, vi } from "vitest";
+import { createElement, isValidElement, type ReactElement } from "react";
+import { renderToStaticMarkup } from "react-dom/server";
+import { TimeReportForm } from "@/components/time-reports/TimeReportForm";
+import { PersonalTimesheet } from "@/components/time-reports/PersonalTimesheet";
+import { TimeReportReview } from "@/components/time-reports/TimeReportReview";
+import { TimeReportWorkspace } from "@/components/time-reports/TimeReportWorkspace";
+
+describe("15.4-COMP-001 honest accessible report states (SSR only)", () => {
+  test("confirmed filing exposes the exact persisted-success browser seam", () => {
+    const html = renderToStaticMarkup(createElement(TimeReportForm, {
+      draft: { date: "2026-10-20", hours: "1", note: "", bookingId: null, jobId: null },
+      state: { status: "confirmed" }, onSubmit: () => {}, onRetry: () => {},
+    }));
+    expect(html).toContain('data-testid="time-report-submit-status">Rapporterad</span>');
+    expect(html).toContain("sparad i systemet");
+  });
+
+  test("[P1] 15.4-COMP-001A AC1 AC2 unsent failure retains labelled values and explicit retry", async () => {
+    const html = renderToStaticMarkup(createElement(TimeReportForm, {
+      draft: { date: "2026-10-20", hours: "1,25", note: "Behåll anteckningen", bookingId: null, jobId: null },
+      state: { status: "unknown", message: "Anslutning krävs" }, onSubmit: () => {}, onRetry: () => {},
+    }));
+    expect(html).toContain("Osänd");
+    expect(html).toContain("1,25");
+    expect(html).toContain("Behåll anteckningen");
+    expect(html).toContain("Försök igen");
+    expect(html).not.toContain("Rapporterad");
+    expect(html).toMatch(/<label|aria-label=/);
+  });
+
+  test("[P1] 15.4-COMP-001B AC2 pending is announced without submitted success", async () => {
+    const html = renderToStaticMarkup(createElement(TimeReportForm, {
+      draft: { date: "2026-10-20", hours: "1", note: "", bookingId: null, jobId: null },
+      state: { status: "pending" }, onSubmit: () => {}, onRetry: () => {},
+    }));
+    expect(html).toContain("Sparar");
+    expect(html).toMatch(/role="status"|aria-live=/);
+    expect(html).not.toContain("Rapporterad");
+  });
+
+  test("[P1] 15.4-COMP-001C AC3 failed week read is connection error with retry rather than zero total", async () => {
+    const html = renderToStaticMarkup(createElement(PersonalTimesheet, {
+      result: { ok: false, code: "READ_FAILED" }, weekStart: "2026-10-19", onRetry: () => {},
+    }));
+    expect(html).toContain("Anslutning krävs");
+    expect(html).toContain("Försök igen");
+    expect(html).not.toMatch(/0(?:[,.]0+)?\s*(?:h|timmar)/);
+    expect(html).not.toContain("Inga tidrapporter");
+  });
+
+  test("[P1] 15.4-COMP-001D AC4 AC9 standalone comparison remains absent and review cannot approve", async () => {
+    const html = renderToStaticMarkup(createElement(TimeReportReview, {
+      report: { id: "standalone", date: "2026-10-20", minutes: 75, bookedMinutesAtFiling: null,
+        bookingId: null, jobId: null, status: "submitted", note: "Fältarbete", reviewNote: null, reviewRevision: 0 },
+      canReview: true, onAnnotate: () => {},
+    }));
+    expect(html).toContain("Fältarbete");
+    expect(html).not.toMatch(/Bokat[^<]*0|Godkänn|Avvisa|Fakturera|kr\/h/);
+    expect(html).toMatch(/Anteckning|Granskningsnotering|Granskningsanteckning/);
+  });
+});
+
+describe("fractional booked-minute provenance", () => {
+  test("unavailable exact prefill is honest and requires explicit reported hours", () => {
+    const html=renderToStaticMarkup(createElement(TimeReportForm, {
+      draft:{date:"2026-10-20",hours:"",note:"",bookingId:"booking",jobId:null,mode:"hours",exactPrefillUnavailable:true},
+      state:{status:"draft"},onSubmit:()=>{},onRetry:()=>{},
+    }));
+    expect(html).toContain("Bokningens exakta intervall kan inte förifyllas som hela minuter. Ange rapporterad tid.");
+    expect(html).toMatch(/aria-label="Timmar"[^>]*value=""/);
+    expect(html).toContain("Osänd");
+    expect(html).not.toContain("time-report-submit-status");
+  });
+  test("review preserves fractional booked provenance and comparison without rounding", () => {
+    const html=renderToStaticMarkup(createElement(TimeReportReview, {
+      report:{id:"fractional",date:"2026-10-20",minutes:75,bookedMinutesAtFiling:90.5,bookingId:"booking",jobId:null,status:"submitted",note:null,reviewNote:null,reviewRevision:0},
+      canReview:true,onAnnotate:()=>{},
+    }));
+    expect(html).toContain('data-testid="time-report-booked-at-filing">1 h 30,5 min');
+    expect(html).toContain('data-testid="time-report-booked-delta">−0 h 15,5 min');
+  });
+});
+
+/** Execute the actual TSX controllers and their rendered event handlers. This bounded
+ * VM substitutes hook scheduling, router effects and action transport only. It does
+ * not claim DOM focus, network, authorization, database persistence or browser proof. */
+type ControllerNode=ReactElement<Record<string,unknown>>;
+function findControllerNode(tree:unknown,predicate:(node:ControllerNode)=>boolean):ControllerNode {
+  if(Array.isArray(tree)){for(const child of tree){try{return findControllerNode(child,predicate);}catch{}}}
+  else if(isValidElement(tree)){const node=tree as ControllerNode;if(predicate(node))return node;return findControllerNode(node.props.children,predicate);}
+  throw new Error("Actual controller node not found");
+}
+function controllerText(tree:unknown):string {if(Array.isArray(tree))return tree.map(controllerText).join("");if(isValidElement(tree))return controllerText((tree.props as Record<string,unknown>).children);return typeof tree==="string"||typeof tree==="number"?String(tree):"";}
+function fire(node:ControllerNode,event:string,value?:unknown):unknown {const handler=node.props[event];if(typeof handler!=="function")throw new Error(`Missing actual ${event} handler`);return handler(value);}
+function deferred<T>(){let resolve!:(value:T)=>void;const promise=new Promise<T>(done=>{resolve=done;});return {promise,resolve};}
+function actualController(name:"TimeReportEntry"|"TimeReportReview"|"TimeReportWorkspace",props:Record<string,unknown>,actions:Record<string,unknown>={}) {
+  const slots:unknown[]=[];let cursor=0;
+  const confirm=vi.fn(()=>false),refresh=vi.fn();
+  const hooks={useState:(initial:unknown)=>{const i=cursor++;if(!(i in slots))slots[i]=typeof initial==="function"?initial():initial;return [slots[i],(value:unknown)=>{slots[i]=typeof value==="function"?value(slots[i]):value;}];},useRef:(initial:unknown)=>{const i=cursor++;if(!(i in slots))slots[i]={current:initial};return slots[i];},useEffect:()=>{},useId:()=>"controller-id"};
+  const modules:Record<string,unknown>={react:hooks,"react/jsx-runtime":jsxRuntime,"next/navigation":{useRouter:()=>({refresh})},"@/components/crm/Dialog":{Dialog:"Dialog"},"@/features/time-reports/actions":actions,"@/features/time-reports/action-state":attemptState,"@/features/time-reports/domain":reportDomain,"@/features/time-reports/validation":reportValidation,"./TimeReportForm":formModule,"./PersonalTimesheet":personalModule,"./TimeReportEntry":{TimeReportEntry},"./TimeReportReview":{TimeReportReview}};
+  const source=readFileSync(resolve(process.cwd(),`src/components/time-reports/${name}.tsx`),"utf8");
+  const output=ts.transpileModule(source,{fileName:`${name}.tsx`,compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022,jsx:ts.JsxEmit.ReactJSX}}).outputText;
+  const exported:Record<string,unknown>={};
+  runInNewContext(output,{exports:exported,require:(key:string)=>{if(!(key in modules))throw new Error(`Unexpected controller dependency ${key}`);return modules[key];},crypto:globalThis.crypto,window:{confirm,addEventListener(){},removeEventListener(){}}});
+  const component=exported[name] as (props:Record<string,unknown>)=>unknown;
+  return {render:()=>{cursor=0;return component(props);},confirm,refresh};
+}
+function entryController(prefill?:TimeReportBookingPrefill,responses:TimeReportMutationResult[]=[{status:"success",reportId:"confirmed"}],bookings:readonly TimeReportBookingPrefill[]=[]) {
+ const requests:ReportInput[]=[];const controller=actualController("TimeReportEntry",{prefill,bookings},{fileTimeReportAction:async(input:ReportInput)=>{requests.push(input);const result=responses.shift();if(!result)throw new Error("Missing owned action response");return result;}});
+ fire(findControllerNode(controller.render(),node=>node.type==="button"),"onClick");
+ const form=()=>findControllerNode(controller.render(),node=>node.type===TimeReportForm);
+ return {...controller,form,requests};
+}
+const ownPrefill:TimeReportBookingPrefill={bookingId:"5cc959bf-c106-45c3-8241-44f1101c6860",date:"2026-10-25",startsAt:"2026-10-25T01:30:00Z",endsAt:"2026-10-25T02:30:00Z",minutes:60,jobId:null};
+const reviewReport={id:"2b538f2c-37a5-45e6-baca-03db78dbb21b",date:"2026-10-20",minutes:75,bookedMinutesAtFiling:60.1,bookingId:ownPrefill.bookingId,jobId:"a0a2a2c6-6aad-4cc4-95a9-7a1c7419bd86",status:"submitted",note:null,reviewNote:null,reviewRevision:2};
+
+describe("actual time report controller interaction regressions",()=>{
+ test("R1-01 a lost response then authority denial retains the exact attempt and editing lock until confirmation",async()=>{
+  const entry=entryController(undefined,[{status:"error",code:"SERVER_ERROR",message:"Lost response",uncertain:true},{status:"error",code:"PERMISSION_DENIED",message:"Access denied",uncertain:false},{status:"success",reportId:"same-report"}]);
+  fire(entry.form(),"onChange",{hours:"1,25",note:"Retain this note"});await fire(entry.form(),"onSubmit");
+  expect((entry.form().props.state as {status:string}).status).toBe("unknown");await fire(entry.form(),"onRetry");
+  expect((entry.form().props.state as {status:string}).status).toBe("unknown");
+  fire(entry.form(),"onChange",{note:"Must not replace the uncertain payload"});expect((entry.form().props.draft as {note:string}).note).toBe("Retain this note");
+  expect(renderToStaticMarkup(createElement(TimeReportForm,entry.form().props as Parameters<typeof TimeReportForm>[0]))).toContain('fieldset disabled=""');
+  await fire(entry.form(),"onRetry");expect((entry.form().props.state as {status:string}).status).toBe("confirmed");
+  expect(entry.requests).toHaveLength(3);expect(entry.requests[1]).toBe(entry.requests[0]);expect(entry.requests[2]).toBe(entry.requests[0]);expect(Object.isFrozen(entry.requests[0])).toBe(true);
+ });
+ test("R1-02 actual filing preserves the late fold start when only the local end changes",async()=>{
+  const entry=entryController(ownPrefill);fire(entry.form(),"onChange",{endsAtLocal:"2026-10-25T04:30"});await fire(entry.form(),"onSubmit");expect(entry.requests[0].minutes).toBe(120);
+  const micros=entryController({...ownPrefill,startsAt:"2026-10-25T01:30:00.000001Z",endsAt:"2026-10-25T02:30:00.000001Z"});
+  fire(micros.form(),"onChange",{endsAtLocal:"2026-10-25T04:30"});await fire(micros.form(),"onSubmit");expect(micros.requests).toHaveLength(0);expect((micros.form().props.state as {status:string}).status).toBe("rejected");
+  const unchangedEnd=entryController({...ownPrefill,startsAt:"2026-10-25T00:30:00Z",endsAt:"2026-10-25T02:30:00.000001Z",minutes:null});
+  fire(unchangedEnd.form(),"onChange",{mode:"interval",startsAtLocal:"2026-10-25T02:00"});await fire(unchangedEnd.form(),"onSubmit");expect(unchangedEnd.requests).toHaveLength(0);
+ });
+ test("R1-03 actual hours mode keeps canonical twenty minutes, but explicit rounded input cannot file",async()=>{
+  const source={...ownPrefill,startsAt:"2026-10-20T06:00:00Z",endsAt:"2026-10-20T06:20:00Z",date:"2026-10-20",minutes:20};
+  const entry=entryController(source);fire(entry.form(),"onChange",{mode:"hours"});await fire(entry.form(),"onSubmit");expect(entry.requests[0].minutes).toBe(20);
+  const edited=entryController(source);fire(edited.form(),"onChange",{mode:"hours"});fire(edited.form(),"onChange",{hours:"0.3333333333333333"});await fire(edited.form(),"onSubmit");expect(edited.requests).toHaveLength(0);
+ });
+ test("R1-04 actual standalone first start defaults its day until date is explicitly chosen",()=>{
+  const entry=entryController();fire(entry.form(),"onChange",{mode:"interval"});fire(entry.form(),"onChange",{startsAtLocal:"2026-10-12T23:30"});expect((entry.form().props.draft as {date:string}).date).toBe("2026-10-12");
+  fire(entry.form(),"onChange",{date:"2026-10-14"});fire(entry.form(),"onChange",{startsAtLocal:"2026-10-13T00:30"});expect((entry.form().props.draft as {date:string}).date).toBe("2026-10-14");
+ });
+ test("R1-05 actual booking links confirm dirty discard and block pending/unknown navigation without losing the note",async()=>{
+  const pending=deferred<TimeReportMutationResult>(),requests:unknown[]=[];
+  const review=actualController("TimeReportReview",{report:reviewReport,canReview:true,onAnnotate:(input:unknown)=>{requests.push(input);return pending.promise;}});
+  const note=()=>findControllerNode(review.render(),node=>node.type==="textarea");
+  fire(note(),"onChange",{target:{value:"Unsaved review note"}});
+  const clickLink=(href="/scheduling",event="onClick")=>{const links=findControllerNode(review.render(),node=>node.type===personalModule.TimeReportLinks);const rendered=personalModule.TimeReportLinks(links.props as Parameters<typeof personalModule.TimeReportLinks>[0]);const link=findControllerNode(rendered,node=>node.props.href===href);const preventDefault=vi.fn();fire(link,event,{preventDefault});return preventDefault;};
+  expect(clickLink()).toHaveBeenCalledOnce();expect(review.confirm).toHaveBeenCalledOnce();expect(note().props.value).toBe("Unsaved review note");
+  expect(clickLink(`/jobs/${reviewReport.jobId}`)).toHaveBeenCalledOnce();expect(review.confirm).toHaveBeenCalledTimes(2);
+  review.confirm.mockReturnValueOnce(true);expect(clickLink()).not.toHaveBeenCalled();
+  const saving=fire(findControllerNode(review.render(),node=>node.type==="form"),"onSubmit",{preventDefault(){}});
+  expect(clickLink()).toHaveBeenCalledOnce();expect(review.confirm).toHaveBeenCalledTimes(3);
+  expect(clickLink(`/jobs/${reviewReport.jobId}`,"onAuxClick")).toHaveBeenCalledOnce();
+  pending.resolve({status:"error",code:"SERVER_ERROR",message:"Lost annotation response",uncertain:true});await saving;
+  expect(clickLink()).toHaveBeenCalledOnce();expect(clickLink(`/jobs/${reviewReport.jobId}`)).toHaveBeenCalledOnce();expect(review.confirm).toHaveBeenCalledTimes(3);expect(note().props.value).toBe("Unsaved review note");expect(note().props.disabled).toBe(true);expect(requests).toHaveLength(1);
+ });
+ test("R1-08 actual stale annotation locks editing, requires refresh and never calls onSaved",async()=>{
+  const onSaved=vi.fn(),review=actualController("TimeReportReview",{report:reviewReport,canReview:true,onSaved,onAnnotate:async()=>({status:"error",code:"COMMAND_CONFLICT",message:"stale",uncertain:false})});
+  fire(findControllerNode(review.render(),node=>node.type==="textarea"),"onChange",{target:{value:"Stale annotation"}});
+  await fire(findControllerNode(review.render(),node=>node.type==="form"),"onSubmit",{preventDefault(){}});
+  expect(findControllerNode(review.render(),node=>node.type==="textarea").props.disabled).toBe(true);expect(controllerText(review.render())).toContain("Läs in tidrapporten igen.");expect(controllerText(review.render())).toContain("Läs in igen");expect(controllerText(review.render())).not.toContain("Anteckningen är sparad.");expect(onSaved).not.toHaveBeenCalled();
+ });
+ test("R1-09 actual workspace keeps the newest selection when an older read resolves later",async()=>{
+  const result=(weekStart:string,totalMinutes:number):TimeReportReadResult=>({ok:true,status:"success",data:{userId:"own",canReportOwn:true,canReview:false,weekStart,reports:[],bookedDates:[],jobs:[],people:[],bookings:[],prefill:null,totalMinutes,missingDates:[],byPerson:[],byJob:[]}});
+  const first=deferred<TimeReportReadResult>(),second=deferred<TimeReportReadResult>();let count=0;
+  const workspace=actualController("TimeReportWorkspace",{initial:result("2026-10-05",1),initialQuery:{mode:"own",weekStart:"2026-10-05"},readAction:()=>++count===1?first.promise:second.promise});
+  const date=()=>findControllerNode(workspace.render(),node=>node.type==="input"&&node.props.type==="date");
+  const old=fire(date(),"onChange",{target:{value:"2026-10-12"}}),latest=fire(date(),"onChange",{target:{value:"2026-10-19"}});
+  second.resolve(result("2026-10-19",19));await latest;first.resolve(result("2026-10-12",12));await old;
+  expect(date().props.value).toBe("2026-10-19");const sheet=findControllerNode(workspace.render(),node=>node.type===PersonalTimesheet);expect((sheet.props.result as Extract<TimeReportReadResult,{ok:true}>).data.totalMinutes).toBe(19);expect(sheet.props.weekStart).toBe("2026-10-19");
+ });
+ test("R1-07 actual review markup preserves raw decimal booked provenance and exact decimal delta",()=>{
+  const html=renderToStaticMarkup(createElement(TimeReportReview,{report:{...reviewReport,status:"submitted"},canReview:true}));
+  expect(html).toContain('data-testid="time-report-booked-at-filing">1 h 0,1 min');expect(html).toContain('data-testid="time-report-booked-delta">+0 h 14,9 min');expect(html).not.toContain("14,899999999999999");
+ });
+ test("R2-01 actual booking detachment keeps twenty canonical minutes in hours mode and clears both relationships",async()=>{
+  const source={...ownPrefill,startsAt:"2026-10-20T06:00:00Z",endsAt:"2026-10-20T06:20:00Z",date:"2026-10-20",minutes:20,jobId:reviewReport.jobId};
+  const entry=entryController(undefined,undefined,[source]);
+  fire(entry.form(),"onBookingChange",source.bookingId);fire(entry.form(),"onChange",{mode:"hours",note:"Keep declared time"});fire(entry.form(),"onBookingChange","");
+  await fire(entry.form(),"onSubmit");expect(entry.requests).toHaveLength(1);
+  expect(entry.requests[0]).toMatchObject({date:source.date,minutes:20,bookingId:null,jobId:null,note:"Keep declared time"});
+  expect((entry.form().props.state as {status:string}).status).toBe("confirmed");
+  const edited=entryController(undefined,undefined,[source]);fire(edited.form(),"onBookingChange",source.bookingId);fire(edited.form(),"onChange",{mode:"hours"});fire(edited.form(),"onBookingChange","");fire(edited.form(),"onChange",{hours:"0.3333333333333333"});
+  await fire(edited.form(),"onSubmit");expect(edited.requests).toHaveLength(0);expect((edited.form().props.state as {status:string}).status).toBe("rejected");
+ });
+ test("R2-02 actual booking detachment preserves unchanged late-fold UTC endpoints through standalone submission",async()=>{
+  const source={...ownPrefill,jobId:reviewReport.jobId},entry=entryController(undefined,undefined,[source]);
+  fire(entry.form(),"onBookingChange",source.bookingId);fire(entry.form(),"onBookingChange","");await fire(entry.form(),"onSubmit");
+  expect(entry.requests).toHaveLength(1);expect(entry.requests[0]).toMatchObject({date:source.date,minutes:60,bookingId:null,jobId:null});
+  expect((entry.form().props.state as {status:string}).status).toBe("confirmed");
+  const adjusted=entryController(undefined,undefined,[source]);fire(adjusted.form(),"onBookingChange",source.bookingId);fire(adjusted.form(),"onBookingChange","");fire(adjusted.form(),"onChange",{endsAtLocal:"2026-10-25T04:30"});
+  await fire(adjusted.form(),"onSubmit");expect(adjusted.requests[0]).toMatchObject({minutes:120,bookingId:null,jobId:null});
+ });
+ test("CI repair review selectors expose exact explicit Person and Jobb accessible names",()=>{
+  const initial:TimeReportReadResult={ok:true,status:"success",data:{userId:"reviewer",canReportOwn:false,canReview:true,weekStart:"2026-10-19",reports:[],bookedDates:[],jobs:[{id:"job",label:"Verkstad"}],people:[{id:"person",label:"Montör"}],bookings:[],prefill:null,totalMinutes:0,missingDates:[],byPerson:[],byJob:[]}};
+  const html=renderToStaticMarkup(createElement(TimeReportWorkspace,{initial,initialQuery:{mode:"review",weekStart:"2026-10-19"}}));
+  expect(html.match(/<select\b[^>]*aria-label="Person"/g)).toHaveLength(1);
+  expect(html.match(/<select\b[^>]*aria-label="Jobb"/g)).toHaveLength(1);
+  expect(html).toContain("Alla personer");expect(html).toContain("Alla jobb och utan jobb");expect(html).toContain("Montör");expect(html).toContain("Verkstad");
+ });
+});
+
+
+# FULL CURRENT CHANGED FILE: tests/integration/features/quotes/quote-pipeline-non-scope-guard.int.test.ts
+/**
+ * Story 10.4 — the NON-SCOPE guard (10.4-INT-03, P2, AC3; test-design-epic-10.md R-1045).
+ * The E10 read-model shipped without a new analytics/nav/email surface. Story 19.1 now consumes
+ * that read-model through the explicitly approved `quote-pipeline` dashboard widget (PB-D7 / FR107).
+ * Keep the widget inventory exact: only that sanctioned E19 registration may exist; no separate
+ * analytics/reports page, extra quote nav item, or email-send path may grow here.
+ *
+ * The current manifest-governed pins:
+ *   - the `quotes` module declares only `quote-pipeline` and its SINGLE `/quotes` nav item;
+ *   - the complete active widget inventory contains only the approved Story 19.1 widget;
+ *   - the derived active nav route set admits only approved Phase A/RBAC/scheduling entries;
+ *   - the governed `TENANT_TABLES` set derives from active manifest modules;
+ *   - the read-model source path imports NO email/notification send path (Epic 13 owns reminders).
+ *
+ * Later manifest-governed stories may advance these explicit inventory pins. This guard preserves
+ * the E10 boundary while admitting the owner-approved E19 consumer; extra widgets still fail loudly.
+ * The source scan remains unskipped, and the `existsSync` guard keeps it safe.
+ *
+ * [Source: story 10.4 AC3 + Task 5; test-design-epic-10.md#10.4-INT-03, R-1045;
+ *  spec-19-1-dashboard-framework-and-quote-pipeline.md, Boundaries / Evidence]
+ */
+import { describe, it, expect } from "vitest";
+import { existsSync, readFileSync, readdirSync } from "node:fs";
+import path from "node:path";
+import { SCOPE_MANIFEST } from "@/scope/manifest";
+import { TENANT_TABLES } from "../../rls/tenant-table-inventory";
+
+const APPROVED_ACTIVE_NAV_ROUTES = [
+  "/admin/users",
+  "/dashboard",
+  "/customers",
+  "/calculations",
+  "/quotes",
+  "/jobs",
+  "/files",
+  "/settings",
+  "/scheduling",
+  "/time-reports",
+].sort();
+
+const READ_MODELS_DIR = path.join(process.cwd(), "src", "server", "read-models");
+// Any token that would betray a notification / email send path leaking onto the read-model surface.
+const EMAIL_PATH_TOKENS = /sendMail|sendEmail|nodemailer|resend|smtp|notification.*send|mailer/i;
+
+describe("10.4-INT-03: non-scope guard — no new analytics surface / no email-send path", () => {
+  it("the quotes module declares only the approved Story 19.1 quote-pipeline widget", () => {
+    const quotes = SCOPE_MANIFEST.modules.find((m) => m.id === "quotes");
+    expect(quotes).toBeDefined();
+    expect(quotes?.widgets).toEqual(["quote-pipeline"]);
+  });
+
+  it("the quotes module keeps its SINGLE /quotes nav item (no new nav item)", () => {
+    const quotes = SCOPE_MANIFEST.modules.find((m) => m.id === "quotes");
+    expect(quotes?.navItems.map((n) => n.route)).toEqual(["/quotes"]);
+  });
+
+  it("the derived active nav route set admits the approved scheduling activation (no analytics/reports page)", () => {
+    const routes = SCOPE_MANIFEST.modules
+      .filter((m) => m.status === "active")
+      .flatMap((m) => m.navItems.map((n) => n.route))
+      .sort();
+    expect([...new Set(routes)]).toEqual(APPROVED_ACTIVE_NAV_ROUTES);
+  });
+
+  it("the active widget inventory contains only the approved Story 19.1 quote-pipeline widget", () => {
+    const widgets = SCOPE_MANIFEST.modules
+      .filter((m) => m.status === "active")
+      .flatMap((m) => m.widgets);
+    expect(widgets).toEqual(["quote-pipeline"]);
+  });
+
+  it("the governed tenant-table inventory derives from the active manifest modules", () => {
+    const activeManifestTenantTables = SCOPE_MANIFEST.modules
+      .filter((m) => m.status === "active")
+      .flatMap((m) => m.tenantTables);
+    expect([...TENANT_TABLES].sort()).toEqual(
+      [...new Set(activeManifestTenantTables)].sort(),
+    );
+  });
+
+  it("the read-model source path imports NO email/notification send path (Epic 13 owns reminders)", () => {
+    expect(existsSync(READ_MODELS_DIR)).toBe(true);
+    const files = readdirSync(READ_MODELS_DIR).filter((f) => f.endsWith(".ts"));
+    for (const f of files) {
+      const src = readFileSync(path.join(READ_MODELS_DIR, f), "utf8");
+      expect(src).not.toMatch(EMAIL_PATH_TOKENS);
+    }
+  });
+});
+
+
+# FULL CURRENT CHANGED FILE: tests/support/time-reports-atdd.ts
+/** Story 15.4 real checked-command fixtures. No service/database work at import time. */
+import { adminQuery, adminSession } from "../factories/admin-sql";
+import { admin, makeAuthedServerClient, seedRoleAwarePhaseAUsers, deleteAuthUser, type TestServerClient } from "../factories/tenants";
+import { withBookingFixture, type BookingFixture, seedBookingParents } from "./bookings-atdd";
+
+import { fileTimeReport } from "@/server/commands/time-reports/file-time-report";
+import { annotateTimeReport } from "@/server/commands/time-reports/annotate-time-report";
+import { runCommand, type CommandDbClient } from "@/server/commands/envelope";
+import { readTimeReports } from "@/server/read-models/time-reports";
+import { emitTimeReportNudges } from "@/server/notifications/time-report-nudge-producer";
+import type { ReportInput, AnnotationInput, TimeReportQuery, TimeReportReadResult } from "@/features/time-reports/types";
+export type { ReportInput, AnnotationInput } from "@/features/time-reports/types";
+export type ReportResult = Awaited<ReturnType<typeof fileReport>>;
+export const reportPublicColumns = "id,tenant_id,user_id,report_date,duration_minutes,booking_id,job_id,note,status,booked_minutes_at_filing,created_at,review_note,reviewed_by,reviewed_at,review_revision";
+export const reportPrivateColumns = ["filing_attempt_id", "filing_digest", "review_attempt_id", "review_digest"] as const;
+export function reportInput(patch: Partial<ReportInput> = {}): ReportInput {
+  return { attemptId: crypto.randomUUID(), date: "2026-10-12", minutes: 450,
+    note: "Installerade belysning i verkstaden", bookingId: null, jobId: null, ...patch };
+}
+
+// Execute the actual request-bound adapters with this fixture's ordinary client.
+export async function fileReport(client: TestServerClient, input: ReportInput, correlationId = crypto.randomUUID()) {
+  return runCommand(fileTimeReport, { client: client as unknown as CommandDbClient, input, correlationId });
+}
+export async function annotateReport(client: TestServerClient, input: AnnotationInput, correlationId = crypto.randomUUID()) {
+  return runCommand(annotateTimeReport, { client: client as unknown as CommandDbClient, input, correlationId });
+}
+// Direct checked authenticated RPCs bypass the TS envelope on purpose.
+export async function checkedFileReport(client: TestServerClient, tenantId: string, actorId: string, input: ReportInput, correlationId = crypto.randomUUID()) {
+  return client.rpc("file_time_report", { p_tenant_id: tenantId, p_actor_id: actorId,
+    p_attempt_id: input.attemptId, p_payload: input, p_correlation_id: correlationId });
+}
+export async function checkedAnnotateReport(client: TestServerClient, tenantId: string, actorId: string, input: AnnotationInput, correlationId = crypto.randomUUID()) {
+  return client.rpc("annotate_time_report", { p_tenant_id: tenantId, p_actor_id: actorId,
+    p_attempt_id: input.attemptId, p_payload: input, p_correlation_id: correlationId });
+}
+export function reportId(result: ReportResult): string {
+  if (!result.ok) throw new Error(`Expected persisted report; got ${result.code}`);
+  return result.data.reportId;
+}
+export type TimeReportFixture = BookingFixture & { clients: Record<string, TestServerClient> };
+function throwFixtureFailures(primary:{error:unknown}|undefined,cleanupErrors:unknown[],message:string):void {
+  if(primary&&!cleanupErrors.length)throw primary.error;
+  const errors=primary?[primary.error,...cleanupErrors]:cleanupErrors;
+  if(errors.length)throw new AggregateError(errors,message,primary?{cause:primary.error}:undefined);
+}
+export async function withTimeReportFixture(run: (fx: TimeReportFixture) => Promise<void>) {
+  await withBookingFixture(async fx => {
+    const users = { admin: fx.base.adminA, planner: fx.users.projektledare, own: fx.users.montor,
+      seller: fx.users.saljare, economy: fx.users.ekonomi, mixed: fx.roleUnionUser,
+      invited: fx.invitedUser, disabled: fx.disabledUser, orphan: fx.base.orphanUser, foreign: fx.base.adminB };
+    const reused: Record<string,TestServerClient> = {admin:fx.adminClient,planner:fx.plannerClient,own:fx.montorClient,foreign:fx.foreignClient};
+    const clients = Object.fromEntries(await Promise.all(Object.entries(users).map(async ([key, user]) => [key, reused[key] ?? await makeAuthedServerClient(user)])));
+    let primary:{error:unknown}|undefined;const cleanupErrors:unknown[]=[];
+    try { await run({ ...fx, clients }); } catch(error) { primary={error}; }
+    try { await cleanupOwnedTimeReports(fx.tenantIds); } catch(error) { cleanupErrors.push(error); }
+    throwFixtureFailures(primary,cleanupErrors,"Time-report callback and/or owned report cleanup failed");
+  });
+}
+export async function setRoles(tenantId: string, userId: string, primary: string, supplemental: string[] = [], status = "active") {
+  await adminQuery("update public.tenant_memberships set role=$3,status=$4 where tenant_id=$1 and user_id=$2", [tenantId, userId, primary, status]);
+  await adminQuery("delete from public.membership_roles where tenant_id=$1 and membership_id in(select id from public.tenant_memberships where tenant_id=$1 and user_id=$2)", [tenantId, userId]);
+  for (const role of supplemental) await adminQuery("insert into public.membership_roles(tenant_id,membership_id,role) select tenant_id,id,$3 from public.tenant_memberships where tenant_id=$1 and user_id=$2", [tenantId, userId, role]);
+}
+export async function seedReportBooking(fx: BookingFixture, opts: { tenantId?: string; profileIds?: string[]; startsAt?: string; endsAt?: string; jobId?: string | null; status?: string } = {}) {
+  const id = crypto.randomUUID(), tenantId = opts.tenantId ?? fx.base.tenantA.id;
+  await adminQuery(`insert into public.bookings(id,tenant_id,starts_at,ends_at,description,status,job_id,create_command_id,create_payload_digest,create_result)
+    values($1,$2,$3,$4,'Report fixture',$5,$6,$7,repeat('a',64),jsonb_build_object('bookingId',$1::uuid::text))`,
+  [id, tenantId, opts.startsAt ?? "2026-10-12T06:00:00Z", opts.endsAt ?? "2026-10-12T14:00:00Z", opts.status ?? "planned", opts.jobId ?? null, crypto.randomUUID()]);
+  for (const profileId of opts.profileIds ?? [fx.ownProfile.id]) await adminQuery("insert into public.booking_assignees(tenant_id,booking_id,person_profile_id) values($1,$2,$3)", [tenantId, id, profileId]);
+  return id;
+}
+export async function seedReportJob(tenantId: string) {
+  const parents = await seedBookingParents(tenantId), id = crypto.randomUUID();
+  await adminQuery("insert into public.jobs(id,tenant_id,customer_id,title) values($1,$2,$3,'Tidrapport verkstad')", [id, tenantId, parents.customerId]);
+  return id;
+}
+/** Physical, tenant-scoped state, independent of read-model projections. */
+export async function reportState(tenantIds: string[]) {
+  const read = async (table: string) => (await adminQuery<{ row: Record<string, unknown> }>(
+    `select to_jsonb(t) row from public.${table} t where tenant_id=any($1::uuid[]) order by id`, [tenantIds])).map(x => x.row);
+  const [reports, audit, notifications, bookings, assignments, conflicts, resolutions, jobs] = await Promise.all(
+    ["time_reports", "audit_events", "notifications", "bookings", "booking_assignees", "booking_conflicts", "booking_conflict_resolutions", "jobs"].map(read));
+  return { reports, audit, notifications, bookings, assignments, conflicts, resolutions, jobs };
+}
+export function observeRpcCodes(client: TestServerClient) {
+  const codes: string[] = [];
+  const observed = new Proxy(client, { get(target, key) {
+    if (key === "rpc") return async (name: string, args: Record<string, unknown>) => {
+      const result = await target.rpc(name, args); if (result.error?.code) codes.push(result.error.code); return result;
+    };
+    const value = Reflect.get(target, key, target); return typeof value === "function" ? value.bind(target) : value;
+  } });
+  return { client: observed, codes };
+}
+/** SQL lock barrier: no sleeps, wait for the actual backend to block on this tenant. */
+export async function whileTenantBlocked<T>(tenantId: string, start: () => Promise<T>, mutate: () => Promise<void>): Promise<T> {
+  let pending: Promise<T> | undefined;
+  await adminSession(async ({ query }) => {
+    await query("begin");
+    try {
+      const [owner] = await query<{ pid: number }>("select pg_backend_pid() pid,pg_advisory_xact_lock(hashtextextended($1,0))", [tenantId]);
+      pending = start();
+      const deadline = Date.now() + 10_000;
+      let blocked = false;
+      while (!blocked && Date.now() < deadline) {
+        const [row] = await adminQuery<{ blocked: boolean }>("select exists(select 1 from pg_stat_activity where $1=any(pg_blocking_pids(pid))) blocked", [owner.pid]);
+        blocked = row.blocked;
+      }
+      if (!blocked) throw new Error("Tenant lock barrier not reached; no race evidence");
+      await mutate(); await query("commit");
+    } catch (error) {
+      await query("rollback"); if (pending) await pending.catch(() => undefined); throw error;
+    }
+  });
+  return pending!;
+}
+/** ONLY the two allocated serial files may call this. Root must provide an exclusive
+ * isolated DB; parallel integration group must have settled. No seed/shared hook edits.
+ * Trigger proves an in-transaction business stage, then raises a unique SQLSTATE.
+ */
+export async function withReportAuditFault<T>(scope: { tenantId: string; correlationId: string; attemptId?: string; reportId?: string;
+  recipientId?: string; date?: string; stage: "filing" | "annotation" | "nudge" }, run: () => Promise<T>) {
+  const name = `tr_atdd_${crypto.randomUUID().replaceAll("-", "")}`;
+  for (const id of [scope.tenantId, scope.correlationId, scope.attemptId, scope.reportId, scope.recipientId].filter(Boolean))
+    if (!/^[a-f0-9-]{36}$/i.test(id!)) throw new Error("Fault scope requires generated UUIDs");
+  if (scope.date && !/^\d{4}-\d{2}-\d{2}$/.test(scope.date)) throw new Error("Invalid fault date");
+  const code = scope.stage === "filing" ? "P5401" : scope.stage === "annotation" ? "P5402" : "P5403";
+  const stage = scope.stage === "filing"
+    ? `exists(select 1 from public.time_reports r where r.tenant_id=new.tenant_id and r.filing_attempt_id='${scope.attemptId}'::uuid and r.id=new.target_id)`
+    : scope.stage === "annotation"
+      ? `exists(select 1 from public.time_reports r where r.tenant_id=new.tenant_id and r.id='${scope.reportId}'::uuid and r.review_attempt_id='${scope.attemptId}'::uuid and r.id=new.target_id)`
+      : `exists(select 1 from public.notifications n where n.tenant_id=new.tenant_id and n.recipient_user_id='${scope.recipientId}'::uuid and n.category='time_report.nudge' and n.logical_subject_id='${scope.recipientId}'::uuid and n.logical_period='${scope.date}'::date and n.id=new.target_id)`;
+  await adminQuery(`create function test_support.${name}() returns trigger language plpgsql set search_path='' as $$ begin
+    if new.tenant_id='${scope.tenantId}'::uuid and new.correlation_id='${scope.correlationId}'::uuid then
+      if not (${stage}) then raise exception 'time report intended stage absent' using errcode='P5499'; end if;
+      raise exception 'time report stage verified' using errcode='${code}'; end if; return new; end $$;
+    revoke all on function test_support.${name}() from public,anon,authenticated,service_role;
+    create trigger ${name} before insert on public.audit_events for each row execute function test_support.${name}()`);
+  // Await the complete callback (including every Promise.all race) before teardown.
+  try { return { value: await run(), sqlstate: code }; }
+  finally {
+    await adminQuery(`drop trigger ${name} on public.audit_events;drop function test_support.${name}()`);
+    const [remaining] = await adminQuery<{ n: number }>(`select ((select count(*) from pg_trigger where tgname=$1)+
+      (select count(*) from pg_proc p join pg_namespace n on n.oid=p.pronamespace where n.nspname='test_support' and p.proname=$1))::int n`, [name]);
+    if (remaining.n !== 0) throw new Error(`Owned fault object cleanup failed: ${name}`);
+  }
+}
+
+/** Inject the existing LOCAL-only test service-JWT client into the real producer.
+ * Dedicated SUPABASE_TEST_* authority belongs to tenants::admin()/test-env;
+ * application NEXT_PUBLIC_* config is neither required nor mutated by fixtures.
+ */
+export async function jobsClient() {
+  const { assertLocalStack } = await import("./test-env");
+  assertLocalStack();
+  return admin();
+}
+export async function produceNudges(client: TestServerClient, tenantId: string, options: { asOf: string; cursor?: string; correlationId?: string }) {
+  return emitTimeReportNudges(client, tenantId, options);
+}
+export async function readReports(client: TestServerClient, query: TimeReportQuery): Promise<TimeReportReadResult> {
+  return readTimeReports(query, { client });
+}
+
+/** >25 genuine eligible recipients without changing shared seed users. */
+/** Test-local removal of immutable children before the owning factory removes users.
+ * Transaction-local bypass is confined to the explicit owned tenants and connection.
+ * Never changes production functions, grants or a shared trigger.
+ */
+export async function cleanupOwnedTimeReports(tenantIds: readonly string[]) {
+  if (!tenantIds.length || tenantIds.some(id => !/^[a-f0-9-]{36}$/i.test(id))) throw new Error("Owned tenant UUIDs required");
+  await adminSession(async ({ query }) => {
+    await query("begin");
+    try {
+      await query("set local session_replication_role=replica");
+      await query("delete from public.time_reports where tenant_id=any($1::uuid[])", [tenantIds]);
+      await query("commit");
+    } catch (error) { await query("rollback"); throw error; }
+  });
+}
+
+/** Seed a genuine submitted row under its actor JWT/SQL role, with real command audit. */
+export async function seedCheckedReport(tenantId: string, actorId: string, input = reportInput()) {
+  return adminSession(async ({ query }) => {
+    await query("begin");
+    try {
+      await query("select set_config('request.jwt.claim.sub',$1,true)", [actorId]);
+      await query("set local role authenticated");
+      const [row] = await query<{ result: { reportId: string } }>(
+        "select public.file_time_report($1::uuid,$2::uuid,$3::uuid,$4::jsonb,$5::uuid) result",
+        [tenantId, actorId, input.attemptId, JSON.stringify(input), crypto.randomUUID()]);
+      if (!row?.result.reportId) throw new Error("Checked report fixture did not persist");
+      await query("commit");
+      return row.result.reportId;
+    } catch (error) { await query("rollback"); throw error; }
+  });
+}
+
+export async function withNudgeRecipients(fx: TimeReportFixture, run: (recipients: Array<{ userId: string; profileId: string }>) => Promise<void>) {
+  const tenantId=fx.base.tenantA.id,ownedUsers:string[]=[],ownedProfiles:string[]=[],ownedBookings:string[]=[];
+  const recipients:Array<{userId:string;profileId:string}>=[];
+  let primary:{error:unknown}|undefined;const cleanupErrors:unknown[]=[];
+  try {
+    for (let batch = 0; batch < 9; batch++) {
+      const extra = await seedRoleAwarePhaseAUsers(fx.base);
+      ownedUsers.push(...extra.extraUsers.map(u => u.id));
+      for (const user of [extra.users.projektledare, extra.users.montor, extra.roleUnionUser]) {
+        const profileId = crypto.randomUUID();
+        ownedProfiles.push(profileId);
+        await adminQuery("insert into public.person_profiles(id,tenant_id,membership_id) select $1,$2,id from public.tenant_memberships where tenant_id=$2 and user_id=$3", [profileId, tenantId, user.id]);
+        ownedBookings.push(await seedReportBooking(fx, { profileIds: [profileId], startsAt: "2026-10-19T06:00:00Z", endsAt: "2026-10-19T07:00:00Z" }));
+        recipients.push({ userId: user.id, profileId });
+      }
+    }
+    await run(recipients);
+  } catch(error) { primary={error}; }
+  // The awaited callback must settle all producer/race promises before cleanup.
+  // Restrictive assignment -> profile -> membership FKs require this order.
+  // Every normal-enforcement delete is limited to this tenant + generated IDs;
+  // unexpected foreign references fail loudly rather than being removed.
+  const cleanup=[
+    async()=>{await cleanupOwnedTimeReports([tenantId]);},
+    async()=>{if(ownedBookings.length&&ownedProfiles.length)await adminQuery("delete from public.booking_assignees where tenant_id=$1 and booking_id=any($2::uuid[]) and person_profile_id=any($3::uuid[])",[tenantId,ownedBookings,ownedProfiles]);},
+    async()=>{if(ownedBookings.length)await adminQuery("delete from public.bookings where tenant_id=$1 and id=any($2::uuid[])",[tenantId,ownedBookings]);},
+    async()=>{if(ownedProfiles.length)await adminQuery(`delete from public.person_profiles p using public.tenant_memberships m
+      where p.tenant_id=$1 and p.id=any($2::uuid[]) and m.tenant_id=p.tenant_id and m.id=p.membership_id and m.user_id=any($3::uuid[])`,[tenantId,ownedProfiles,ownedUsers]);},
+  ];
+  for(const remove of cleanup) {
+    try { await remove(); } catch(error) { cleanupErrors.push(error); }
+  }
+  const removed=await Promise.allSettled(ownedUsers.map(userId=>deleteAuthUser(userId)));
+  for(const result of removed)if(result.status==="rejected")cleanupErrors.push(result.reason);
+  throwFixtureFailures(primary,cleanupErrors,"Nudge recipient callback and/or owned fixture cleanup failed");
+}
