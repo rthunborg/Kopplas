@@ -110,6 +110,13 @@ async function editFullCard(page: Page, f: JobsDepthFixture, jobId: string, titl
   });
   await card.getByTestId("job-card-save").click();
   expect((await saved).ok()).toBe(true);
+  // A Next action may return HTTP 200 for a refused save. Require the actual
+  // form outcome; report only its existing user-safe visible feedback on failure.
+  const outcome = card.getByTestId("job-card-save-status").or(card.getByTestId("job-card-unsent"));
+  await expect(outcome).toBeVisible();
+  const outcomeMessage = await outcome.innerText();
+  expect(await outcome.getAttribute("data-testid"), outcomeMessage).toBe("job-card-save-status");
+  await expect(outcome).toHaveText("Jobbet är sparat.");
   await expect.poll(async () => (await readJobSemantics(f.fx.plannerClient, jobId)).card.title).toBe(title);
   await page.reload();
   const persisted = await readJobSemantics(f.fx.plannerClient, jobId);

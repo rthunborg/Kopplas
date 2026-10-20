@@ -177,6 +177,15 @@ Root reported five internal review layers completed (security: no findings). Con
 - reject: 0: (high 0, medium 0, low 0)
 - addressed_findings: none — latest same-blind High targeted CI2 repair recheck qualified PASS on 373AF3AC, three changed hashes / 43 unchanged dependencies. This is a narrow causal recheck, not a new broad review; new exact-head required CI remains pending.
 
+### 2026-10-20 — Review pass
+
+- intent_gap: 0
+- bad_spec: 0
+- patch: 0: (high 0, medium 0, low 0)
+- defer: 0
+- reject: 0: (high 0, medium 0, low 0)
+- addressed_findings: none — latest same-blind High diagnostic assertion review qualified PASS on 6907A4, two changed hashes / 44 unchanged dependencies. The unresolved save cause requires actual diagnostic CI; no new broad review or product-fix verdict is claimed.
+
 ## Review Findings
 
 **Round 1 of 3**
@@ -244,9 +253,9 @@ No checks below have been executed for16.4. Prior16.3 CI39410923156 is continuit
 
 Status: in-review
 
-Current result: root checkpoint `6260c5a2544dc0999cc9700935edcd4e5cce54ac` ran CI39435738491. Its general browser lane counted 26 expected / 2 unexpected / 0 flaky / 0 skipped, with both failures on retry 0 and 1. The prior four other failed journeys now passed first attempt; neither remaining failure is reclassified as pass. The source-proven arrangement/selectors repair below changes only the two existing E2E files and this spec; all production, SQL, proof, authority and integration-test bindings remain unchanged. Same independent High narrow review qualified PASS on inventory `373af3acec1c59dfb9a22e7d219f63705922fc9ab924b270eb619123bf1880e4`, binding three changed hashes / 43 unchanged dependencies. Root confirmed this second CI database result: 1,873 total / 1,872 passed / 0 failed / 1 ordinary physical-recovery skip, with separate direct recovery 1 passed / 0 skipped. Pilot performance completed 5 warmups / 25 measured iterations: read p95 12.394076999999925 ms and bulk permissions p95 4.995358000000124 ms. Overall CI still failed its two browser cases; new exact-head required CI remains pending. Earlier qualified six-layer and targeted reviews remain historical provenance.
+Current result: checkpoint `643274eb5eb59f3a4c22666250d31b3f5a880015` ran CI39438104931. General browser counted 27 first-attempt passes / 1 unexpected / 0 flaky / 0 skipped; Upgrade-E01 failed both attempts while polling the unchanged title after an HTTP200 response. All four consumer journeys passed first attempt. A bounded complete source audit did not establish the save refusal reason or a production defect; the admitted diagnostic acceptance assertion below now requires the form's actual confirmed-save feedback before the unchanged persistence poll. It is not a product repair or passing runtime evidence. Same independent High narrow diagnostic review qualified PASS on inventory `6907a4ac1584cb81ea0235e04b49a1bb9114c21efeefc3c17af7520a77d7d039` (two changed hashes / 44 unchanged dependencies); next exact-head diagnostic CI remains pending. Prior qualified reviews and database/recovery/performance receipts remain separately bound to their recorded checkpoints; root confirmed the third database lane: 1,873 total / 1,872 passed / 0 failed / 1 ordinary physical-recovery skip, with separate recovery 1 passed. Actual pilot performance completed 5 warmups / 25 measured iterations: read p95 10.571949000000131 ms and bulk permissions p95 4.079482999999527 ms. Overall CI still failed one browser journey and the save cause remains unknown.
 
-Actual current local checks: affected two-file ESLint and full TypeScript --noEmit --incremental false native 0; native collection lists the same 7 essential browser cases. Collection is not execution. No local service/browser/DB launch or redundant full-unit/build run occurred. The author SRO has 21 verified stops. Status remains in-review; no development-complete, done, delivery-pass or release-ready claim is made.
+Actual current local checks: affected-file ESLint and full TypeScript --noEmit --incremental false native 0; native collection lists the same 7 essential browser cases. Collection is not execution. No local service/browser/DB launch or redundant full-unit/build run occurred. The author SRO has 22 verified stops. Status remains in-review; no development-complete, done, delivery-pass or release-ready claim is made.
 
 ### Historical planning-only result — preserved
 
@@ -318,10 +327,24 @@ Same independent High latest CI2 causal review qualified PASS on 373AF3AC (three
 
 Root's actual second-CI database receipt: `C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39435738491-integration-native/full-integration.json`, SHA256 `DA2D9268A1940E2D43FE85E55BB8A93E565B793B87F43810D967F88E3E3A4473`: 1,873 total / 1,872 passed / 0 failed / 1 ordinary physical-recovery skip, supplemented by separate recovery 1 passed / 0 skipped. Database log: `C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39435738491-db.log`, SHA256 `F300BA816E3A49A4F10F609E41E745F9DB615E5895AEED64816FFE1327F5F93E`. Actual pilot performance: 5 warmups / 25 measured, read p95 12.394076999999925 ms and bulk permissions p95 4.995358000000124 ms. Non-gating auth baseline is separate. These results bind checkpoint6260c5a2; overall CI failed two browser journeys, so the reviewed repair still requires new exact-head required CI. No done/development-complete/delivery-pass assertion is made.
 
+## Third-CI Save-Outcome Evidence Gap
+
+CI39438104931 browser receipt: `C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39438104931-browser-native/general-browser.json`, SHA256 `B6E86D84BC143D8A469C6A2253C8F69AC1A8A1BA8B87504FE87E3FC896A368D0`, checkpoint `643274eb5eb59f3a4c22666250d31b3f5a880015`. It reports 27 first-attempt passes / 1 unexpected / 0 flaky / 0 skipped. Upgrade-E01 failed both attempts with requested title "Order card before upgrade" versus durable "Workshop rewiring"; HTTP200 does not identify an action result. No actual refusal code or visible form feedback was recorded by that assertion. All four Consumer cases, including stable conflict conservation, passed first attempt.
+
+The bounded source audit traced the complete form assembly, action result mapping, closed TypeScript validator, checked related-row gates, snapshot/detector/finalizer and remaining card/child assertions. Intended scalar/date/window/address/type values and the arranged accepted customer/site/contact, active project-manager/role/dependency and existing booking parent relationships do not establish an invalid fixture or guard violation. The actual browser-submitted outcome remains unknown; no product cause is invented from the unchanged title.
+
+The admitted change affects only editFullCard in the existing upgrade E2E: after the observed real response, wait for the unique form-scoped existing success-or-error feedback, include only its current user-safe visible text as assertion context, require job-card-save-status and "Jobbet är sparat.", then retain the exact durable-title poll and every full-card/child/source/event/audit assertion. This stronger acceptance assertion will expose a real refusal or distinguish a confirmed-save/readback defect in next exact-head CI. No raw action transport decoder, payload/proof logging, production debugging, authority injection, timeout/retry change or weakened check was added.
+
+Affected-file lint and full TypeScript native 0; native collection 7 / 2 files. Logs: `C:/Users/Rasmus/AppData/Local/Temp/kopplas-164-ci3-diagnostic-lint.log`, `kopplas-164-ci3-diagnostic-typecheck.log`, and `kopplas-164-ci3-diagnostic-collection.log` in that folder. Prior full verification/recovery counts remain retained at their actual heads; the third database lane was still running at the root's dispatch boundary. Same-High narrow diagnostic review is now qualified PASS; next exact-head diagnostic CI remains pending. This is an evidence-producing acceptance assertion, not a claimed fix of the unresolved save failure.
+
+Latest same independent High diagnostic review qualified PASS on 6907A4 (two changed hashes / 44 unchanged dependencies): actual confirmed feedback precedes unchanged durable readback and preservation checks; only existing safe visible context is exposed, and no save-cause fix is claimed. Receipt: `C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-16-4-review-c2eea236-b5c7-4e65-b9d4-bb296d96e162/targeted-ci3-diagnostic-review.txt`, SHA256 `E592516A78AFF520309D3EFC6DABFE38F9CE63CDFD825D2CA295DD882987C4BE`.
+
+Third-CI database receipt: `C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39438104931-integration-native/full-integration.json`, SHA256 `550005B1EF9CC8A200C171C97D943D6604C0DE47648F64BAF0100C08B2E2034B`: 1,873 total / 1,872 passed / 0 failed / 1 ordinary physical-recovery skip, with separate direct recovery 1 passed. Database log: `C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39438104931-db.log`, SHA256 `A4BE5286D5B8C28EDF38D6BF93858C1D5F1E92CB6E33494DC75A91717DFD1CFE`. Actual pilot performance: 5 warmups / 25 measured, read p95 10.571949000000131 ms and bulk permissions p95 4.079482999999527 ms; auth baseline is separate and non-gating. These results bind643274eb; overall run failed one browser journey, the save cause remains unresolved, and next reviewed-head CI must execute the outcome diagnostic. No all-runtime-pass, done or delivery claim follows.
+
 ## Suggested Review Order
 
 Author: Story16.4 implementation/fix author (Sol 6.1 High), preserving the bounded pure-module child's recorded arithmetic rationale.
-Refreshed after the bounded second-CI arrangement/selector repair against checkpoint `6260c5a2544dc0999cc9700935edcd4e5cce54ac`; original implementation baseline and intent are preserved.
+Refreshed after the admitted third-CI save-outcome acceptance assertion against checkpoint `643274eb5eb59f3a4c22666250d31b3f5a880015`; original implementation baseline and intent are preserved.
 
 ### Follow confirmation and recovery in the actual upgrade dialog
 
@@ -330,7 +353,8 @@ The independent manager entry and truthful one-way consequences remain. Definiti
 - `src/components/jobs/JobDetailView.tsx:112` — `<JobUpgradeDialog`: connects manager detail to confirmation.
 - `src/components/jobs/JobUpgradeDialog.tsx:20` — `async function refetch`: catches read failure and guards concurrent operations.
 - `src/features/jobs/job-upgrade-domain.ts:35` — `export function canDismissJobUpgradeDraft`: distinguishes definitive refusal from uncertain outcome.
-- `tests/e2e/jobs/job-upgrade.e2e.spec.ts:264` — `16.4-Upgrade-E03`: checks actual rejection and refetch recovery.
+- `tests/e2e/jobs/job-upgrade.e2e.spec.ts:271` — `16.4-Upgrade-E03`: checks actual rejection and refetch recovery.
+- `tests/e2e/jobs/job-upgrade.e2e.spec.ts:115` — `const outcome =`: requires actual form-confirmed save before durable readback, surfacing existing user-safe refusal feedback.
 
 ### Retain the same-row transactional and replay boundary
 
@@ -369,4 +393,4 @@ The approved formula and matched pool/window remain unchanged. Whole-window actu
 - `tests/unit/features/scheduling/job-demand-advisory.test.ts:147` — `16.4-F03`: covers both instant boundaries and centuries-window availability.
 - `tests/integration/commands/job-scheduling-consumers.int.test.ts:276` — `16.4-INT-F01`: asserts real preview and save remain usable.
 
-Evidence and limits: the Implementation Evidence and Round 1 Causal Patch Evidence sections preserve actual commands/counts and the AC01–07 mapping. F01 plus Upgrade-E03 target patches 1–3; F02 plus Consumer-E01/E03/E04 target patches 4–7/12–14; F03/INT-F01 target patches 8–9; F04/INT-F02 target patch 10; valid-hash INT-U02 targets patch 11. Original upgrade preservation/concurrency/revocation/audit and mixed-job/current-fact proof assertions remain intact. New browser/integration cases are collected, not locally executed. Same independent High targeted source/fix reviews are qualified through the recorded unchanged-dependency union. CI39432791404 full verification and separate direct recovery passed, while its required integration/browser lanes failed. The first four-test-file repair has qualified same-High narrow review. Second-CI source-proven arrangement/selector repairs preserve the original assertions and have qualified same-High narrow review. The second CI database/direct recovery/pilot performance passed as recorded; its overall result remains failed on two browser cases, and new exact-head required CI remains pending. No development-complete or release-ready assertion is made.
+Evidence and limits: the Implementation Evidence and Round 1 Causal Patch Evidence sections preserve actual commands/counts and the AC01–07 mapping. F01 plus Upgrade-E03 target patches 1–3; F02 plus Consumer-E01/E03/E04 target patches 4–7/12–14; F03/INT-F01 target patches 8–9; F04/INT-F02 target patch 10; valid-hash INT-U02 targets patch 11. Original upgrade preservation/concurrency/revocation/audit and mixed-job/current-fact proof assertions remain intact. New browser/integration cases are collected, not locally executed. Same independent High targeted source/fix reviews are qualified through the recorded unchanged-dependency union. CI39432791404 full verification and separate direct recovery passed, while its required integration/browser lanes failed. The first four-test-file repair has qualified same-High narrow review. Second-CI source-proven arrangement/selector repairs preserve the original assertions and have qualified same-High narrow review. The second CI database/direct recovery/pilot performance passed as recorded; its overall result remains failed on two browser cases, and new exact-head required CI remains pending. The third CI leaves one unresolved full-card save outcome; the strengthened acceptance assertion has qualified narrow review and awaits diagnostic execution. No development-complete or release-ready assertion is made.
