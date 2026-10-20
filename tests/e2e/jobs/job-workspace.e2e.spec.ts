@@ -50,6 +50,82 @@ async function selectTab(page: Page, name: TabName) {
   await expect(tab).toHaveAttribute("aria-selected", "true");
   await expect(page.getByRole("tabpanel", { name, exact: true })).toBeVisible();
 }
+// Temporary E03 runtime evidence: bounded paths/actions/armed booleans/key NAMES only.
+async function installCardHistoryDiagnostics(page: Page, jobId: string) {
+  const prefix = "16.5-E03-HISTORY ";
+  page.on("console", message => {if (message.text().startsWith(prefix)) console.info(message.text());});
+  await page.evaluate(({prefix, expectedPath}) => {
+    let count = 0;
+    const active = new Map<EventListenerOrEventListenerObject, EventListener>();
+    const add = window.addEventListener, remove = window.removeEventListener;
+    const confirm = window.confirm, push = history.pushState, replace = history.replaceState;
+    const knownKeys = new Set(["__NA", "__N", "_N", "__PRIVATE_NEXTJS_INTERNALS_TREE", "bookingEditor", "key"]);
+    const keys = (state: unknown) => state && typeof state === "object"
+      ? [...new Set(Object.keys(state).map(key => knownKeys.has(key) ? key : "[other-key]"))].sort() : [];
+    const pathCategory = (target: string | URL | null | undefined) => {
+      const path = new URL(target ?? location.href, location.href).pathname;
+      return path === expectedPath ? "/jobs/current-job" : path === "/jobs" ? "/jobs"
+        : /^\/jobs\/[^/]+$/.test(path) ? "/jobs/other-job" : path === "/login" ? "/login" : "/other";
+    };
+    const emit = (kind: string, target?: string | URL | null, state?: unknown) => {
+      if (count++ >= 64) return;
+      try {
+        console.info(prefix + JSON.stringify({kind, path: pathCategory(target),
+          armed: active.size > 0, historyKeys: keys(state === undefined ? history.state : state)}));
+      } catch { /* Diagnostic failure must never affect the original navigation. */ }
+    };
+    const capture = (options?: boolean | AddEventListenerOptions | EventListenerOptions) => options === true || (typeof options === "object" && options.capture === true);
+    // Observe before the application guard, without cancelling or modifying the event.
+    add.call(window, "popstate", event => emit("pop-observed", location.href, (event as PopStateEvent).state), true);
+    add.call(window, "beforeunload", () => emit("beforeunload-observed"));
+    const stages = new Set(["after-dirty-fill", "before-cancelled-reload", "before-back"]);
+    add.call(window, "workspace-history-stage", event => {
+      const stage = (event as CustomEvent<string>).detail;
+      if (stages.has(stage)) emit(stage);
+    });
+    window.addEventListener = function(this: Window, type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions) {
+      if (type !== "popstate" || !capture(options)) return add.call(this, type, listener, options);
+      // Only the actual card guard's ordinary capture registration is tracked.
+      // Automatic once/signal removal cannot be inferred from add/remove calls.
+      if (typeof options === "object" && (options.once || options.signal)) {
+        emit("capture-listener-untracked-options");
+        return add.call(this, type, listener, options);
+      }
+      let wrapped = active.get(listener);
+      if (!wrapped) {
+        wrapped = function(this: Window, event: Event) {
+          emit("guard-pop-enter");
+          try {return typeof listener === "function" ? listener.call(this, event) : listener.handleEvent(event);}
+          finally {emit("guard-pop-exit");}
+        };
+        active.set(listener, wrapped);
+      }
+      const result = add.call(this, type, wrapped, options);
+      emit("guard-listener-added");
+      return result;
+    } as typeof window.addEventListener;
+    window.removeEventListener = function(this: Window, type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions) {
+      if (type !== "popstate" || !capture(options)) return remove.call(this, type, listener, options);
+      const wrapped = active.get(listener);
+      active.delete(listener);
+      const result = remove.call(this, type, wrapped ?? listener, options);
+      emit("guard-listener-removed");
+      return result;
+    } as typeof window.removeEventListener;
+    window.confirm = function(this: Window, message?: string) {
+      emit("confirm-request");
+      const accepted = confirm.call(this, message);
+      emit(accepted ? "confirm-accepted" : "confirm-refused");
+      return accepted;
+    };
+    history.pushState = function(data: unknown, unused: string, url?: string | URL | null) {emit("history-push", url, data); return push.call(this, data, unused, url);};
+    history.replaceState = function(data: unknown, unused: string, url?: string | URL | null) {emit("history-replace", url, data); return replace.call(this, data, unused, url);};
+    emit("diagnostic-installed");
+  }, {prefix, expectedPath: `/jobs/${jobId}`});
+}
+async function cardHistoryStage(page: Page, stage: string) {
+  await page.evaluate(stage => window.dispatchEvent(new CustomEvent("workspace-history-stage", {detail: stage})), stage);
+}
 async function identity(page: Page, jobId: string, title: string) {
   await expect(page).toHaveURL(url => url.pathname === `/jobs/${jobId}`);
   const header = page.getByTestId("job-workspace-header");
@@ -353,11 +429,14 @@ test.describe("Story 16.5 essential job workspace", () => {
         } finally { page.off("dialog", acceptLeave); }
         // Establish a real prior SPA route before arming the card-only leave guard.
         await page.goto("/jobs");
+        await installCardHistoryDiagnostics(page, jobId);
         await openListedJob(page, jobId, title);
         const card = page.getByTestId("job-card-form"), changed = `${title} retry`;
         await ready(card);
         await card.getByRole("textbox", { name: "Titel", exact: true }).fill(changed);
+        await cardHistoryStage(page, "after-dirty-fill");
         await test.step("Only the card draft blocks refresh, browser Back and SPA exit; same-job tabs retain it", async () => {
+          await cardHistoryStage(page, "before-cancelled-reload");
           const prompt = page.waitForEvent("dialog");
           const reload = page.reload().catch(error => error);
           const unload = await prompt;
@@ -366,6 +445,7 @@ test.describe("Story 16.5 essential job workspace", () => {
           await reload;
           await expect(card.getByRole("textbox", {name: "Titel", exact: true})).toHaveValue(changed);
           await page.setViewportSize({width: 1280, height: 900});
+          await cardHistoryStage(page, "before-back");
           const backPrompt = page.waitForEvent("dialog");
           const away = page.goBack().catch(error => error);
           const back = await backPrompt;
@@ -509,11 +589,13 @@ test.describe("Story 16.5 essential job workspace", () => {
         release();
         await expect(pane.getByTestId("work-order-save-status")).toBeAttached();
         await expect(page.getByRole("tab", {name: "Händelser", exact: true})).toHaveAttribute("aria-selected", "true");
-        const current = new URL(page.url());
-        expect(current.searchParams.get("returnTo")).toBe("/files?search=kept");
         const rows = (await readWorkOrders(f.fx.plannerClient, jobId)).rows.filter(row => row.title === "Late workspace child");
         expect(rows).toHaveLength(1);
+        await expect(page).toHaveURL(url => url.pathname === `/jobs/${jobId}` && url.searchParams.get("workOrder") === rows[0].id);
+        const current = new URL(page.url());
+        expect(current.searchParams.get("returnTo")).toBe("/files?search=kept");
         expect(current.searchParams.get("workOrder")).toBe(rows[0].id);
+        await expect(page.getByRole("tab", {name: "Händelser", exact: true})).toHaveAttribute("aria-selected", "true");
       } finally {release(); await page.unroute("**/*", holdCreate);}
     });
   });
