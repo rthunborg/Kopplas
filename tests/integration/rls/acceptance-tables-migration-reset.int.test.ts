@@ -209,16 +209,22 @@ describe("Acceptance/job migration reset — three new commitment tables (AC4/AC
     }
   });
 
-  it("[P0] each table has exactly the own-tenant SELECT/INSERT/UPDATE policies (NO DELETE policy)", async (testCtx) => {
+  it("[P0] each table has exactly the approved role-specific policies (NO DELETE or ALL policy)", async (testCtx) => {
     if (skipUnlessStack(testCtx, stackUp)) return;
     for (const table of ACCEPTANCE_TABLES) {
-      const rows = await adminQuery<{ cmd: string }>(
-        `select cmd from pg_policies where schemaname = 'public' and tablename = $1`,
+      type Policy = { policyname: string; cmd: string; roles: string[] };
+      const rows = await adminQuery<Policy>(
+        `select policyname,cmd,roles::text[] as roles from pg_policies where schemaname = 'public' and tablename = $1`,
         [table],
       );
-      const cmds = rows.map((r) => r.cmd).sort();
-      // pg_policies cmd values: 'SELECT' | 'INSERT' | 'UPDATE' | 'DELETE' | 'ALL'.
-      expect(cmds).toEqual(["INSERT", "SELECT", "UPDATE"]);
+      const expected: Policy[] = ["INSERT", "SELECT", "UPDATE"].map((cmd) => ({
+        policyname: `${table}_${cmd.toLowerCase()}_own`, cmd, roles: ["authenticated"],
+      }));
+      // The dedicated feed owner can read only its approved projected job columns.
+      // Do not filter away any other policy or role: extra grants must still fail.
+      if (table === "jobs") expected.push({ policyname: "calendar_feed_owner_jobs", cmd: "SELECT", roles: ["calendar_feed_owner"] });
+      const order = (a: Policy, b: Policy) => a.policyname.localeCompare(b.policyname);
+      expect(rows.sort(order)).toEqual(expected.sort(order));
     }
   });
 

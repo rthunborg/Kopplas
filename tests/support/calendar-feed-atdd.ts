@@ -177,6 +177,67 @@ export type Lane = "row-isolated" | "serial-commands" | "serial-public";
 export type FixtureByLane<L extends Lane> = CalendarFixture &
   (L extends "row-isolated" ? Record<never, never> : { serial: SerialControls });
 
+// Pure fixture diagnostics: no DB/client imports or native error text are read.
+export const calendarFixtureDiagnosticStages = ["booking-fixture-before-callback", "canonical-fixture-cleanup", "additional-users", "bind-membership", "bind-profile", "bind-client", "owned-row-cleanup", "additional-auth-cleanup", "cleanup-absence-check", "serial-window-setup", "serial-window-restore", "scenario", "unknown"] as const;
+export type CalendarFixtureDiagnosticStage = typeof calendarFixtureDiagnosticStages[number];
+const calendarFixtureSqlstates = { "42501": "insufficient-privilege", "42P01": "undefined-table", "42703": "undefined-column", "42883": "undefined-function", "23502": "not-null", "23503": "foreign-key", "23505": "unique-conflict", "23514": "check-constraint", "22P02": "invalid-text", "25P02": "transaction-aborted", "57014": "query-cancelled", "40001": "serialization", "40P01": "deadlock", "08006": "connection-failure" } as const;
+type CalendarFixtureSafeFailure = { stage: CalendarFixtureDiagnosticStage; children?: readonly Error[] };
+const calendarFixtureSafeFailures = new WeakMap<object, CalendarFixtureSafeFailure>();
+function fixtureOwnData(value: object, key: string): { found: boolean; value?: unknown } {
+  const descriptor = Object.getOwnPropertyDescriptor(value, key);
+  return descriptor && "value" in descriptor ? { found: true, value: descriptor.value } : { found: false };
+}
+export function calendarFixtureDiagnostic(stage: string, error: unknown): Error {
+  const fixedStage = calendarFixtureDiagnosticStages.includes(stage as CalendarFixtureDiagnosticStage) ? stage as CalendarFixtureDiagnosticStage : "unknown";
+  const objectLike = (value: unknown): value is object => (typeof value === "object" && value !== null) || typeof value === "function";
+  // Only this module's own safe objects may bypass native descriptor inspection.
+  if (objectLike(error) && calendarFixtureSafeFailures.has(error)) return error as Error;
+  let nodes = 0, exhausted = false;
+  const seen = new Set<object>();
+  const leaf = (at: CalendarFixtureDiagnosticStage, category: string, code = "unavailable") => {
+    const safe = new Error(`Calendar fixture failure [stage=${at};category=${category};sqlstate=${code}]`);
+    calendarFixtureSafeFailures.set(safe, { stage: at }); return safe;
+  };
+  function walk(value: unknown, at: CalendarFixtureDiagnosticStage, depth: number): Error {
+    // The final node is reserved for an explicit truncation marker.
+    if (++nodes >= 16) { exhausted = true; return leaf(at, "truncated"); }
+    if (depth > 4) return leaf(at, "truncated");
+    if (!objectLike(value)) return leaf(at, "unknown");
+    if (seen.has(value)) return leaf(at, "cycle");
+    seen.add(value);
+    const known = calendarFixtureSafeFailures.get(value);
+    if (known) at = known.stage;
+    try {
+      const members = known?.children ? { found: true, value: known.children } : fixtureOwnData(value, "errors");
+      if (members.found && Array.isArray(members.value)) {
+        const size = fixtureOwnData(members.value, "length");
+        if (!size.found || typeof size.value !== "number" || !Number.isSafeInteger(size.value) || size.value < 1) return leaf(at, "unknown");
+        const children: Error[] = [];
+        for (let index = 0; index < size.value && !exhausted; index++) {
+          const member = fixtureOwnData(members.value, String(index));
+          children.push(walk(member.found ? member.value : undefined, at, depth + 1));
+        }
+        const safe = new AggregateError(children, `Calendar fixture failure group [stage=${at}]`);
+        calendarFixtureSafeFailures.set(safe, { stage: at, children }); return safe;
+      }
+      // An accessor/malformed aggregate is unknown; never invoke it or native text.
+      if (Object.getOwnPropertyDescriptor(value, "errors")) return leaf(at, "unknown");
+      if (known) return value as Error;
+      const code = fixtureOwnData(value, "code");
+      if (code.found && typeof code.value === "string" && Object.hasOwn(calendarFixtureSqlstates, code.value)) {
+        return leaf(at, calendarFixtureSqlstates[code.value as keyof typeof calendarFixtureSqlstates], code.value);
+      }
+    } catch { /* Proxy/descriptor failure has no safe native information. */ }
+    return leaf(at, "unknown");
+  }
+  return walk(error, fixedStage, 0);
+}
+export async function calendarFixtureStep<T>(stage: CalendarFixtureDiagnosticStage, run: () => T | Promise<T>): Promise<T> {
+  try { return await run(); }
+  catch (error) { throw calendarFixtureDiagnostic(stage, error); }
+}
+// End pure fixture diagnostics.
+
 /** Row-isolated fixtures never mutate keys, global counters or fault DDL.
  * The two allocated serial files alone receive these controls. All assertions
  * and transport failures discard sensitive values and retain cleanup outcomes.
@@ -186,37 +247,44 @@ export async function withCalendarFeedFixture<L extends Lane>(
 ): Promise<void> {
   let additionalUsers: readonly FixtureUser[] = [];
   let primary: unknown; const ownedTenants: string[] = [], ownedUsers: string[] = [];
+  // Shared setup can already have replaced code with message-only Error. Do not
+  // guess its internal auth/SQL substage or reconstruct swallowed cleanup errors.
+  let phase: CalendarFixtureDiagnosticStage = "booking-fixture-before-callback";
   try {
     feedKeyFromEnv(); // no fallback, fixture fails if the owned CI key is absent
     await withBookingFixture(async base => {
+      phase = "additional-users";
       ownedTenants.push(...base.tenantIds);ownedUsers.push(base.base.adminA.id,base.base.adminB.id,base.base.orphanUser.id,...base.extraUsers.map(user=>user.id));
       let failure: unknown;
       try {
-        const extra = await seedRoleAwarePhaseAUsers(base.base); additionalUsers = extra.extraUsers;
+        const extra = await calendarFixtureStep(phase, () => seedRoleAwarePhaseAUsers(base.base)); additionalUsers = extra.extraUsers;
+        phase = "bind-membership";
         const fixture = await bindCalendarFixture(base, extra);
         const serial = lane === "row-isolated" ? {} : { serial: await calendarSerialControls(fixture) };
-        const scenario = () => run(Object.assign(fixture, serial) as FixtureByLane<L>);
+        phase = "scenario";
+        const scenario = () => calendarFixtureStep("scenario", () => run(Object.assign(fixture, serial) as FixtureByLane<L>));
         if (lane === "row-isolated") await scenario();
         else await withOwnedUnknownWindow(fixture, scenario);
-      } catch (error) { failure = error; }
+      } catch (error) { failure = calendarFixtureDiagnostic(phase, error); }
       let cleanupFailure: unknown;
-      try { await cleanupCalendarOwnedRows(base.tenantIds); } catch (error) { cleanupFailure = error; }
+      try { await cleanupCalendarOwnedRows(base.tenantIds); } catch (error) { cleanupFailure = calendarFixtureDiagnostic("owned-row-cleanup", error); }
+      phase = "canonical-fixture-cleanup";
       if (failure || cleanupFailure) throw new AggregateError([...(failure ? [failure] : []), ...(cleanupFailure ? [cleanupFailure] : [])], "Calendar scenario/owned row cleanup failed");
     });
-  } catch (error) { primary = error; }
-  const cleanup = await Promise.allSettled(additionalUsers.map(user => deleteAuthUser(user.id)));
+  } catch (error) { primary = calendarFixtureDiagnostic(phase, error); }
+  const cleanup = await Promise.allSettled(additionalUsers.map(user => calendarFixtureStep("additional-auth-cleanup", () => deleteAuthUser(user.id))));
   const remainingErrors: Error[]=[];
   try {
-    if(ownedTenants.length && (await adminQuery("select 1 from public.tenants where id=any($1::uuid[]) limit 1",[ownedTenants])).length)remainingErrors.push(new Error("Owned tenant cleanup incomplete"));
-    if(ownedUsers.length && (await adminQuery("select 1 from auth.users where id=any($1::uuid[]) limit 1",[[...ownedUsers,...additionalUsers.map(user=>user.id)]])).length)remainingErrors.push(new Error("Owned auth user cleanup incomplete"));
-  }catch{remainingErrors.push(new Error("Owned cleanup verification unavailable"));}
-  if (primary || remainingErrors.length || cleanup.some(result => result.status === "rejected")) throw new AggregateError([
+    if(ownedTenants.length && (await adminQuery("select 1 from public.tenants where id=any($1::uuid[]) limit 1",[ownedTenants])).length)remainingErrors.push(calendarFixtureDiagnostic("cleanup-absence-check", new Error()));
+    if(ownedUsers.length && (await adminQuery("select 1 from auth.users where id=any($1::uuid[]) limit 1",[[...ownedUsers,...additionalUsers.map(user=>user.id)]])).length)remainingErrors.push(calendarFixtureDiagnostic("cleanup-absence-check", new Error()));
+  }catch(error){remainingErrors.push(calendarFixtureDiagnostic("cleanup-absence-check", error));}
+  if (primary || remainingErrors.length || cleanup.some(result => result.status === "rejected")) throw calendarFixtureDiagnostic("scenario", new AggregateError([
     ...(primary ? [redactFailure(primary)] : []), ...remainingErrors,
-    ...cleanup.filter(result => result.status === "rejected").map(() => new Error("Calendar owned user cleanup failed")),
-  ], "Calendar fixture failed; primary and cleanup outcomes retained without sensitive values");
+    ...cleanup.filter(result => result.status === "rejected").map(result => calendarFixtureDiagnostic("additional-auth-cleanup", result.reason)),
+  ], "Calendar fixture failed; primary and cleanup outcomes retained without sensitive values"));
 }
 function redactFailure(error: unknown): Error {
-  return error instanceof AggregateError ? new AggregateError(error.errors.map(redactFailure),"Calendar failure group; sensitive details redacted") : new Error("Calendar fixture or assertion failed; sensitive details redacted");
+  return calendarFixtureDiagnostic("scenario", error);
 }
 
 type BoundFixture = CalendarFixture & { base: BookingFixture; clients: Record<SubjectName, TestServerClient>;
@@ -232,20 +300,20 @@ async function bindCalendarFixture(base: BookingFixture, extra: Awaited<ReturnTy
     foreign: base.base.adminB, invited: base.invitedUser, disabled: base.disabledUser, platformOnly: base.base.orphanUser, noProfile: extra.users.projektledare };
   for (const name of Object.keys(users) as SubjectName[]) {
     const tenantId = name === "foreign" ? base.base.tenantB.id : base.base.tenantA.id;
-    const [member] = await adminQuery<{ id: string }>("select id from public.tenant_memberships where tenant_id=$1 and user_id=$2", [tenantId, users[name].id]);
+    const [member] = await calendarFixtureStep("bind-membership", () => adminQuery<{ id: string }>("select id from public.tenant_memberships where tenant_id=$1 and user_id=$2", [tenantId, users[name].id]));
     let profile: string | null = null;
     if (member && name !== "noProfile") {
-      const rows = await adminQuery<{ id: string }>("select id from public.person_profiles where tenant_id=$1 and membership_id=$2", [tenantId, member.id]);
-      profile = rows[0]?.id ?? (await adminQuery<{id:string}>("insert into public.person_profiles(tenant_id,membership_id) values($1,$2) returning id", [tenantId,member.id]))[0].id;
+      const rows = await calendarFixtureStep("bind-profile", () => adminQuery<{ id: string }>("select id from public.person_profiles where tenant_id=$1 and membership_id=$2", [tenantId, member.id]));
+      profile = rows[0]?.id ?? (await calendarFixtureStep("bind-profile", () => adminQuery<{id:string}>("insert into public.person_profiles(tenant_id,membership_id) values($1,$2) returning id", [tenantId,member.id])))[0].id;
     }
     subjects[name] = { tenantId, userId: users[name].id, membershipId: member?.id ?? randomUUID(), profileId: profile };
-    clients[name] = await makeAuthedServerClient(users[name]);
+    clients[name] = await calendarFixtureStep("bind-client", () => makeAuthedServerClient(users[name]));
   }
   // A mixed allowed role is deliberately not an Admin.
-  await adminQuery("update public.tenant_memberships set role='saljare' where id=$1", [subjects.mixed.membershipId]);
-  await adminQuery("delete from public.membership_roles where membership_id=$1", [subjects.mixed.membershipId]);
-  await adminQuery("insert into public.membership_roles(tenant_id,membership_id,role) values($1,$2,'montor')", [subjects.mixed.tenantId,subjects.mixed.membershipId]);
-  const anon = await makeAnonServerClient(), trackedRaw: string[] = [], trackedProof: string[] = [], seedFacts = new Map<string, BookingSeed>();
+  await calendarFixtureStep("bind-membership", () => adminQuery("update public.tenant_memberships set role='saljare' where id=$1", [subjects.mixed.membershipId]));
+  await calendarFixtureStep("bind-membership", () => adminQuery("delete from public.membership_roles where membership_id=$1", [subjects.mixed.membershipId]));
+  await calendarFixtureStep("bind-membership", () => adminQuery("insert into public.membership_roles(tenant_id,membership_id,role) values($1,$2,'montor')", [subjects.mixed.tenantId,subjects.mixed.membershipId]));
+  const anon = await calendarFixtureStep("bind-client", () => makeAnonServerClient()), trackedRaw: string[] = [], trackedProof: string[] = [], seedFacts = new Map<string, BookingSeed>();
   const randomPart = randomUUID().replaceAll("-", "").slice(0, 16).match(/.{4}/g)!.join(":");
   const isolatedTrustedIp = `2001:db8:${randomPart}`;
   const readRows = async (table: string) => (await adminQuery<{ row: Record<string, unknown> }>(`select to_jsonb(t) row from public.${table} t where tenant_id=any($1::uuid[]) order by tenant_id,id`, [base.tenantIds])).map(row => row.row);
@@ -488,15 +556,15 @@ async function calendarAcl(): Promise<AclFacts> {
  * a row-isolated fixture; restore its exact prior state after requests settle. */
 async function withOwnedUnknownWindow<T>(fx: BoundFixture, run: () => Promise<T>): Promise<T> {
   const ipHash=hashFeedIp(null,fx.secret);
-  const [before]=await adminQuery<{window_start:string;request_count:string}>("select window_start::text,request_count::text from public.calendar_feed_ip_windows where ip_hash=$1",[ipHash]);
+  const [before]=await calendarFixtureStep("serial-window-setup", () => adminQuery<{window_start:string;request_count:string}>("select window_start::text,request_count::text from public.calendar_feed_ip_windows where ip_hash=$1",[ipHash]));
   let result:T|undefined;const errors:Error[]=[];
   try {
-    await adminQuery("delete from public.calendar_feed_ip_windows where ip_hash=$1",[ipHash]);
+    await calendarFixtureStep("serial-window-setup", () => adminQuery("delete from public.calendar_feed_ip_windows where ip_hash=$1",[ipHash]));
     result=await run();
   }catch(error){errors.push(redactFailure(error));}
   while(fx.pendingRequests.size) {
     const requests=await Promise.allSettled([...fx.pendingRequests]);
-    for(const request of requests)if(request.status==="rejected")errors.push(new Error("Owned pending calendar request failed"));
+    for(const request of requests)if(request.status==="rejected")errors.push(calendarFixtureDiagnostic("scenario", request.reason));
   }
   try {
     await adminSession(async({query})=>{
@@ -506,7 +574,7 @@ async function withOwnedUnknownWindow<T>(fx: BoundFixture, run: () => Promise<T>
         await query("commit");
       }catch(error){await query("rollback");throw error;}
     });
-  }catch{errors.push(new Error("Owned unknown-IP window restore failed"));}
+  }catch(error){errors.push(calendarFixtureDiagnostic("serial-window-restore", error));}
   if(errors.length)throw new AggregateError(errors,"Unknown-IP scenario and cleanup outcomes retained; values redacted");
   return result as T;
 }

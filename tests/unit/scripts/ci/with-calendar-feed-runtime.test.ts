@@ -572,6 +572,152 @@ test("full wrapper missing-leader race deletes the exact key only after absence 
   }
 });
 
+let fixtureDiagnostics: Promise<typeof import("../../../support/calendar-feed-atdd")> | undefined;
+function actualFixtureDiagnostics() {
+  // Execute the uniquely bounded actual pure source, never its shared DB/auth
+  // imports. These injected contracts cannot prove a native failing branch/code.
+  fixtureDiagnostics ??= (async () => {
+    const source = readFileSync(new URL("../../../support/calendar-feed-atdd.ts", import.meta.url), "utf8");
+    const start = "// Pure fixture diagnostics:", end = "// End pure fixture diagnostics.";
+    assert.equal(source.split(start).length, 2); assert.equal(source.split(end).length, 2);
+    const pureSource = source.slice(source.indexOf(start), source.indexOf(end));
+    const strip = (nodeModule as unknown as { stripTypeScriptTypes(source: string): string }).stripTypeScriptTypes;
+    assert.equal(typeof strip, "function");
+    return import(`data:text/javascript;base64,${Buffer.from(strip(pureSource)).toString("base64")}`);
+  })();
+  return fixtureDiagnostics;
+}
+function fixtureFailureMessages(error: Error): string[] {
+  return [error.message, ...(error instanceof AggregateError ? error.errors.flatMap(fixtureFailureMessages) : [])];
+}
+
+test("actual fixture diagnostics preserve only allowlisted own-data SQLSTATE with no native text or payload access", async () => {
+  const { calendarFixtureDiagnostic } = await actualFixtureDiagnostics();
+  let getters = 0;
+  const privateText = "PRIVATE fixture URL token proof key SQL parameters";
+  const error = Object.defineProperties(new Error(privateText), {
+    code: { value: "42501" }, detail: { value: privateText }, query: { value: privateText },
+    cause: { get() { getters++; throw Error(privateText); } }, then: { get() { getters++; throw Error(privateText); } },
+  });
+  const safe = calendarFixtureDiagnostic("bind-membership", error);
+  assert.equal(safe.message, "Calendar fixture failure [stage=bind-membership;category=insufficient-privilege;sqlstate=42501]");
+  assert.equal(safe.cause, undefined); assert.ok(!safe.stack?.includes(privateText));
+  assert.equal(getters, 0);
+  for (const invalid of ["CF409", "42501 PRIVATE", 42501, undefined, null, Symbol("PRIVATE")]) {
+    const unknown = calendarFixtureDiagnostic("bind-profile", { code: invalid, message: privateText });
+    assert.match(unknown.message, /category=unknown;sqlstate=unavailable/);
+    assert.ok(!unknown.message.includes(privateText));
+  }
+});
+
+test("actual fixture diagnostic descriptor inspection refuses inherited accessor and malformed aggregate properties", async () => {
+  const { calendarFixtureDiagnostic } = await actualFixtureDiagnostics();
+  let getters = 0;
+  const inherited = Object.create({ code: "42501" });
+  const accessor = Object.defineProperties({}, { code: { get() { getters++; return "42501"; } },
+    errors: { get() { getters++; return [Error("PRIVATE")]; } } });
+  const trapped = new Proxy({}, { getOwnPropertyDescriptor() { throw Error("PRIVATE descriptor"); } });
+  for (const error of [inherited, accessor, trapped, { errors: "PRIVATE", code: "42501" }, { errors: [] }]) {
+    assert.match(calendarFixtureDiagnostic("not-admitted", error).message, /stage=unknown;category=unknown;sqlstate=unavailable/);
+  }
+  assert.equal(getters, 0);
+});
+
+test("actual fixture bounded aggregates retain reaching primary cleanup stages and explicitly mark cycles and truncation", async () => {
+  const { calendarFixtureDiagnostic } = await actualFixtureDiagnostics();
+  const primary = calendarFixtureDiagnostic("bind-profile", { code: "23503", message: "PRIVATE" });
+  const cleanup = calendarFixtureDiagnostic("owned-row-cleanup", { code: "42501", query: "PRIVATE" });
+  assert.equal(calendarFixtureDiagnostic("scenario", primary), primary);
+  const messages = fixtureFailureMessages(calendarFixtureDiagnostic("canonical-fixture-cleanup", new AggregateError([primary, cleanup], "PRIVATE")));
+  assert.match(messages[1], /stage=bind-profile;category=foreign-key;sqlstate=23503/);
+  assert.match(messages[2], /stage=owned-row-cleanup;category=insufficient-privilege;sqlstate=42501/);
+  assert.ok(messages.every(message => !message.includes("PRIVATE")));
+  const cycle: { errors: unknown[] } = { errors: [] }; cycle.errors.push(cycle);
+  assert.ok(fixtureFailureMessages(calendarFixtureDiagnostic("scenario", cycle)).some(message => message.includes("category=cycle")));
+  let deep: unknown = Error("PRIVATE"); for (let i = 0; i < 10; i++) deep = new AggregateError([deep], "PRIVATE");
+  assert.ok(fixtureFailureMessages(calendarFixtureDiagnostic("scenario", deep)).some(message => message.includes("category=truncated")));
+  const wide = fixtureFailureMessages(calendarFixtureDiagnostic("scenario", new AggregateError(Array.from({ length: 100 }, () => ({ code: "42501" })), "PRIVATE")));
+  assert.equal(wide.length, 16); assert.match(wide.at(-1)!, /category=truncated/);
+});
+
+test("actual fixture catch wrapper invokes operations once preserves successful values and never observes a client or thenable", async () => {
+  const { calendarFixtureStep } = await actualFixtureDiagnostics();
+  let calls = 0, payloadReads = 0;
+  const result = { ordinary: true };
+  assert.equal(await calendarFixtureStep("additional-users", () => { calls++; return result; }), result);
+  assert.equal(calls, 1);
+  const failure = Object.defineProperties({ code: "42P01" }, {
+    then: { get() { payloadReads++; throw Error("PRIVATE"); } }, client: { get() { payloadReads++; throw Error("PRIVATE"); } },
+    cause: { get() { payloadReads++; throw Error("PRIVATE"); } },
+  });
+  await assert.rejects(calendarFixtureStep("bind-profile", () => { calls++; throw failure; }), /stage=bind-profile;category=undefined-table;sqlstate=42P01/);
+  await assert.rejects(calendarFixtureStep("cleanup-absence-check", () => { calls++; return Promise.reject(failure); }), /stage=cleanup-absence-check;category=undefined-table/);
+  assert.equal(calls, 3); assert.equal(payloadReads, 0);
+});
+
+test("actual fixture diagnostics keep upstream message-only replacement and swallowed outcomes explicitly unknown", async () => {
+  const { calendarFixtureDiagnostic, calendarFixtureStep } = await actualFixtureDiagnostics();
+  // Canonical createTenant/createAuthUser/sign-in/deleteAuthUser copy message,
+  // not code. The owned catch cannot reconstruct it from message or cause.
+  const messageOnly = Object.assign(new Error("PRIVATE canonical 42501"), { cause: { code: "42501" } });
+  const first = calendarFixtureDiagnostic("booking-fixture-before-callback", messageOnly);
+  assert.equal(first.message, "Calendar fixture failure [stage=booking-fixture-before-callback;category=unknown;sqlstate=unavailable]");
+  const finalReplacement = await calendarFixtureStep("owned-row-cleanup", async () => {
+    try { throw { code: "23503" }; } finally { throw new Error("PRIVATE DISCARD replacement"); }
+  }).catch(error => error as Error);
+  assert.match(finalReplacement.message, /stage=owned-row-cleanup;category=unknown/);
+  assert.ok(!fixtureFailureMessages(finalReplacement).some(message => message.includes("23503")));
+  // A canonical best-effort warning is not a rejected outcome at the owned catch.
+  const noFailure = await calendarFixtureStep("canonical-fixture-cleanup", () => "completed-without-owned-rejection");
+  assert.equal(noFailure, "completed-without-owned-rejection");
+});
+
+test("actual fixture pre-callback coarse stage and fine owned stages survive outer aggregation without invented substage", async () => {
+  const { calendarFixtureDiagnostic } = await actualFixtureDiagnostics();
+  const coarse = calendarFixtureDiagnostic("booking-fixture-before-callback", { code: "23514" });
+  const own = calendarFixtureDiagnostic("additional-users", { code: "23505" });
+  const cleanup = calendarFixtureDiagnostic("additional-auth-cleanup", new Error("PRIVATE already erased"));
+  const aggregate = calendarFixtureDiagnostic("scenario", new AggregateError([coarse, own, cleanup], "PRIVATE"));
+  const messages = fixtureFailureMessages(aggregate);
+  assert.match(messages[1], /stage=booking-fixture-before-callback;category=check-constraint/);
+  assert.match(messages[2], /stage=additional-users;category=unique-conflict/);
+  assert.match(messages[3], /stage=additional-auth-cleanup;category=unknown/);
+});
+
+test("the actual allocated policy case rejects missing extra DELETE ALL names and broadened roles without filtering rows", async () => {
+  // This executes the exact catalog assertion with injected rows, not Postgres,
+  // RLS or a migration reset. Its native case and query count remain unchanged.
+  const source = readFileSync(new URL("../../../integration/rls/acceptance-tables-migration-reset.int.test.ts", import.meta.url), "utf8").replaceAll("\r\n", "\n");
+  const start = '  it("[P0] each table has exactly the approved role-specific policies (NO DELETE or ALL policy)"';
+  assert.equal(source.split(start).length, 2);
+  const at = source.indexOf(start), end = source.indexOf("\n  });", at);
+  assert.ok(end > at);
+  const strip = (nodeModule as unknown as { stripTypeScriptTypes(source: string): string }).stripTypeScriptTypes;
+  const code = strip(source.slice(at, end + "\n  });".length));
+  const tables = ["quote_acceptances", "jobs", "job_events"];
+  const rows = (table: string) => [...["INSERT", "SELECT", "UPDATE"].map(cmd => ({ policyname: `${table}_${cmd.toLowerCase()}_own`, cmd, roles: ["authenticated"] })),
+    ...(table === "jobs" ? [{ policyname: "calendar_feed_owner_jobs", cmd: "SELECT", roles: ["calendar_feed_owner"] }] : [])];
+  async function run(change: (values: ReturnType<typeof rows>, table: string) => ReturnType<typeof rows> = value => value) {
+    const queries: string[] = []; let body: (() => Promise<void>) | undefined;
+    new Function("it", "skipUnlessStack", "stackUp", "ACCEPTANCE_TABLES", "adminQuery", "expect", code)(
+      (_name: string, test: () => Promise<void>) => { body = test; }, () => false, true, tables,
+      async (sql: string, params: string[]) => { assert.equal(sql, "select policyname,cmd,roles::text[] as roles from pg_policies where schemaname = 'public' and tablename = $1"); queries.push(params[0]); return change(rows(params[0]), params[0]); },
+      (value: unknown) => ({ toEqual(expected: unknown) { assert.deepEqual(value, expected); } }),
+    );
+    assert.ok(body); await body(); assert.deepEqual(queries, tables);
+  }
+  await run();
+  for (const mutate of [
+    (r: ReturnType<typeof rows>) => r.slice(0, -1),
+    (r: ReturnType<typeof rows>) => [...r, { policyname: "extra", cmd: "SELECT", roles: ["authenticated"] }],
+    (r: ReturnType<typeof rows>) => r.map((row, i) => i ? row : { ...row, cmd: "DELETE" }),
+    (r: ReturnType<typeof rows>) => r.map((row, i) => i ? row : { ...row, cmd: "ALL" }),
+    (r: ReturnType<typeof rows>) => r.map((row, i) => i ? row : { ...row, policyname: "renamed" }),
+    (r: ReturnType<typeof rows>) => r.map(row => row.policyname === "calendar_feed_owner_jobs" ? { ...row, roles: ["authenticated"] } : row),
+    (r: ReturnType<typeof rows>) => r.map(row => row.policyname === "calendar_feed_owner_jobs" ? { ...row, roles: ["calendar_feed_owner", "public"] } : row),
+  ]) await assert.rejects(run((r, table) => table === "jobs" ? mutate(r) : r));
+});
+
 let browserSeams: Promise<typeof import("../../../e2e/support/calendar-feed-atdd")> | undefined;
 function actualBrowserSeams() {
   // The existing bare-Node alias hook selects a sibling fixture directory before

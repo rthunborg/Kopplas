@@ -806,13 +806,90 @@ failures/28 attempts, 51 unexecuted DB cases and unavailable attachment content
 remain unchanged. Fresh exact-head Root CI and distinct High follow-up review
 are pending; status remains in-review without delivery/DONE/release claims.
 
+## Executed feature failures: bounded fixture diagnostics and status fallback — 2026-10-20
+
+Checkpoint `cba60486b5e695b9796ef39d4492bc7f569d517b`, run39483572143,
+is a qualified seventh FAILURE history. DB2039 comprised1942 passed,45 failed
+and52 pending; all51 story Vitest cases were attempted with7 passed/44 failed:
+commands1/14 (INT015 passed), HTTP1/19 (API011 passed), components3/1
+(COMP003 failed), and RLS2/10 (RLS002/009 passed). The45th DB failure was
+the nonstory acceptance-table policy-set assertion. Browser31 comprised17 other
+passes and14 story failures across28 attempts, zero skips/flaky results. Feature95
+therefore reached37 passes/58 failures/zero unexecuted cases; attempted does not
+mean every downstream assertion ran. Verify3123, separate bootstrap51, Python43
+and recovery1 passed. DB child/key cleanup actually completed with no custody;
+browser abnormal teardown retained key custody. Both original clients qualified
+setup7/privacy4. INT015's actual restricted-session/bootstrap/ownership/absence
+oracle passed; failed source RLS010/API019 cannot borrow that credit or the
+separate recovery proof. Attachment28 metadata references had no available bodies;
+content privacy remains unavailable, not passed.
+
+First API001/INT001/RLS001 exposed only the owned helper's redacted aggregate,
+not a structured leaf SQLSTATE or a proven RPC/permission/proof/schema cause.
+The admitted proposal and distinct context-free High design review are preserved
+under `native-feature-failure-repair-proposal/` and its sibling review directory.
+The proposal SHA is `bc9456fd765d5c57c4a2a4445667aecc29d17199a1c88b8451ba4106c93954e7`;
+the original design verdict SHA is
+`58ba05c45f0b74bb33bd97120f2240c66e061076d16648adffd41d0af148f1cc`.
+Those are design/proof provenance, not source or native acceptance approval.
+
+The owned fixture now preserves only fixed stages and allowlisted own-data
+SQLSTATE/category values at existing setup/cleanup catches. Depth4/node16
+aggregate bounds have explicit cycle/truncation/unknown failures; native messages,
+stacks, causes, query/params, accessors, result payloads and secrets are not copied.
+Known safe errors preserve their finer owned stage through outer aggregation.
+Pre-callback canonical setup stays a coarse stage: canonical auth/tenant/sign-in
+message-only replacement has already lost code, canonical best-effort warnings
+are not rejected outcomes, and rollback/DISCARD/finally may replace an earlier
+error. Only errors actually reaching an owned catch can be retained. Missing
+information remains UNKNOWN; no parsing of messages or invented original cause.
+No four-RPC observer, extra `.then`, client/result modification, query/request,
+pool, privilege, Vault or production public-handler change was introduced.
+
+COMP003's actual first SSR assertion failed because an injected error state had
+no runtime message. The existing live status region now falls back to the same
+approved failure sentence used by mutation denial. Runtime messages still win;
+unknown results remain blocked and require reconciliation before same-attempt
+retry. No button, request, state transition, eligibility or success behavior changes.
+The frontend-component skill, existing approved settings design and Phase B
+Swedish error guidance were applied; no layout/token/visual-reference change.
+
+Root's exact shared-case allocation is recorded in
+`accepted-native-feature-policy-case-allocation.json` (SHA
+`783151c5ec5320617e922ed87716ef192a18782f2945792cbed06fe8e6ea605d`).
+Only the existing acceptance-table catalog case changes: all nine authenticated
+policies across three tables plus one dedicated calendar owner SELECT on jobs
+must match exact policyname/cmd/roles, ten rows total (four on jobs). No row/role
+filter hides extra policies; DELETE, ALL, extra/renamed policies and broadened
+roles fail. Its three queries, required-stack gate, fixtures and DDL are unchanged.
+This newly allocated source path was outside source67 and protected37: the new
+source union is68; the historical protection set and prior capsules stay intact.
+
+Bounded local Node execution passed58/58, zero failures/skips/cancellations:
+the previous51 plus seven new source-seam/catalog-assertion contracts. They prove
+safe classification, descriptor/cycle/size negatives, retained reaching stages,
+single invocation/value identity, upstream UNKNOWN limits and biting exact-policy
+negatives with injected rows. They do not prove a native failing branch, SQLSTATE,
+RLS, cleanup, browser or migration reset. The four existing SSR cases passed via
+an in-memory Vitest configuration with `config:false` and `globalSetup:[]`;
+there was no database/global setup or browser/server launch. Final full typecheck
+passed; focused four-file lint passed with zero errors/warnings. The unchanged
+5760-byte kernel and one49-stop author review trail passed their checks.
+The first typecheck found one new test-only self-referential parameter annotation;
+renaming that parameter corrected it without changing executed behavior. Previous
+build/native results remain historical dependencies, not a new build or acceptance
+result for the changed application bytes. All seven failed packets and old
+capsules remain immutable; a distinct High latest-delta review and fresh exact-head
+Root CI are pending. Status remains in-review, without DONE/delivery/release claims.
+
 ## Suggested Review Order
 
 Author: Story 15.5 implementation/fix author (gpt-6.1-sol High), incorporating
 explicitly delegated browser and bootstrap contributors. Refreshed after all
 Round 3 latest-fix assertions, the subsequent checkpoint repairs and bounded
 native setup diagnostics, same-connection privacy qualification and explicit
-isolated setup authority transport, bounded child settlement, browser diagnostic repair and actual SQL callback ownership.
+isolated setup authority transport, bounded child settlement, browser diagnostic repair,
+actual SQL callback ownership and executed-feature fixture/status/policy repairs.
 Stops below resolve to final source literals before the repair commit.
 
 ### Own settings and honest lifecycle results
@@ -820,11 +897,15 @@ Stops below resolve to final source literals before the repair commit.
 The two personal entry points reach one settings surface; the profile entry uses
 server-filtered navigation. Confirmations and component-memory issuance retain
 explicit uncertainty handling, while later authoritative status removes stale URLs.
+The error render fallback reuses the existing approved sentence without enabling
+retry before uncertain results have been reconciled; all four isolated SSR cases passed.
 
 - `src/components/app-shell/AppShell.tsx:279` — `navigation.some`: gates the profile link on scheduling access.
 - `src/components/calendar-feed/CalendarSubscription.tsx:34` — `const current = await refresh();`: clears superseded post-commit output and success.
-- `tests/e2e/calendar-feed.e2e.spec.ts:380` — `15.5-E2E-010-`: AC2/6 actual supersession clears rendered controls and notice; execution pending.
-- `tests/e2e/calendar-feed.e2e.spec.ts:447` — `15.5-E2E-011`: AC2/6 current-revision control retains issuance; execution pending.
+- `src/components/calendar-feed/CalendarSubscription.tsx:69` — `state?.status === "error"`: AC2/6 renders fallback guidance without changing lifecycle controls.
+- `tests/integration/components/calendar-feed.test.ts:36` — `15.5-COMP-003`: AC2/6 existing error/retry SSR assertions passed in isolation.
+- `tests/e2e/calendar-feed.e2e.spec.ts:380` — `15.5-E2E-010-`: AC2/6 supersession assertions failed at cba; changed-head browser evidence pending.
+- `tests/e2e/calendar-feed.e2e.spec.ts:447` — `15.5-E2E-011`: AC2/6 current-revision browser control failed at cba; changed-head evidence pending.
 
 ### Signed current-self authority and atomic writes
 
@@ -836,8 +917,8 @@ inputs, and CAS/history/audit commit together without plaintext recovery.
 - `src/server/commands/calendar-feed/manage-calendar-feed.ts:32` — `command: "calendar_feed.create"`: literal create/rotate/revoke declarations retain independent enrollment discovery.
 - `supabase/migrations/20261020220000_personal_calendar_feed.sql:162` — `create function public.manage_calendar_feed`: checks signed authority, revision, replay and audit.
 - `supabase/migrations/20261020220000_personal_calendar_feed.sql:122` — `is distinct from (case`: preserves domain branches while delimiting CASE within the PL/pgSQL IF; subsequent native stack resets compiled it.
-- `tests/support/calendar-feed-atdd.ts:270` — `const allowed = ["membershipId"`: checks raw JWT status keys before mapper reconstruction.
-- `tests/integration/rls/calendar-feed.rls.test.ts:129` — `15.5-RLS008`: AC1/4/9 raw status/hash and direct-DML assertions; execution pending.
+- `tests/support/calendar-feed-atdd.ts:338` — `const allowed = ["membershipId"`: checks raw JWT status keys before mapper reconstruction.
+- `tests/integration/rls/calendar-feed.rls.test.ts:129` — `15.5-RLS008`: AC1/4/9 case failed at cba; no downstream field/ACL credit inferred.
 
 ### Complete live snapshots and essential RFC correctness
 
@@ -858,11 +939,11 @@ source creator ADMIN is distinct from SET authority, while unchanged recovery
 keeps SupAdmin-only NOADMIN. Retained unsafe roles fail closed.
 
 - `supabase/migrations/20261020220000_personal_calendar_feed.sql:247` — `exception when sqlstate '57014'`: keeps projection failure inside the counter transaction.
-- `tests/integration/calendar-feed/public-feed.int.test.ts:364` — `15.5-API018`: AC5/8 durable token/IP and last-use assertions; execution pending.
+- `tests/integration/calendar-feed/public-feed.int.test.ts:364` — `15.5-API018`: AC5/8 case failed at cba; changed-head durability evidence pending.
 - `supabase/migrations/20261020220000_personal_calendar_feed.sql:27` — `pg_has_role(current_user,feed_owner.oid,'SET')`: qualifies source ownership authority independently of creator ADMIN.
-- `tests/integration/commands/calendar-feed.int.test.ts:434` — `memberships.every(row => row.inherit_option === false)`: AC4/9 fresh/replay inherited-owner privileges denied; native execution pending.
-- `tests/support/calendar-feed-atdd.ts:472` — `has_schema_privilege(oid,'public','CREATE')`: reads actual effective schema privileges including PUBLIC/inherited access.
-- `tests/integration/rls/calendar-feed.rls.test.ts:171` — `publicSchemaCreate: false`: AC4/9 existing RLS010 requires effective CREATE absence; execution pending.
+- `tests/integration/commands/calendar-feed.int.test.ts:434` — `memberships.every(row => row.inherit_option === false)`: AC4/9 INT015 native fresh/replay inherited-owner oracle passed at cba.
+- `tests/support/calendar-feed-atdd.ts:540` — `has_schema_privilege(oid,'public','CREATE')`: reads actual effective schema privileges including PUBLIC/inherited access.
+- `tests/integration/rls/calendar-feed.rls.test.ts:171` — `publicSchemaCreate: false`: AC4/9 RLS010 failed at cba; individual predicate reach remains unknown.
 - `tests/integration/ops/recovery-storage-immutability.int.test.ts:131` — `has_schema_privilege('calendar_feed_owner','public','CREATE')`: the existing recovery case checks the restored target before Storage requests; separately qualified native case.
 
 ### Isolated CI custody and honest evidence limits
@@ -881,7 +962,7 @@ restricted-session oracle. No new privileged child configuration or grant is add
 - `tests/integration/commands/calendar-feed.int.test.ts:475` — `// FULL rollback comes first`: preserves rollback/reset and same/fresh catalog absence proof.
 - `scripts/ci/with-calendar-feed-runtime.mjs:257` — `export function createOwnedGroupStopper`: memoizes settlement, validates capture, passively observes missing-leader group absence and bounds completion/output.
 - `scripts/ci/with-calendar-feed-runtime.mjs:179` — `export function createTelemetryObserver`: detects leaks before dropping non-allowlisted output.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:893` — `nonzero/null-signal nested browser loss`: requires retained key custody for abnormal completion.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1039` — `nonzero/null-signal nested browser loss`: requires retained key custody for abnormal completion.
 - `tests/support/calendar-feed-ci-contract.ts:43` — `projectCalendarFeedCiCommands`: validates pinned real wrapper argv and only the two exact workflow inverses.
 - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:32` — `CI command projection rejects`: missing/wrong entry/argv and unrelated-source/workflow negatives preserve the original inverse fence.
 - `scripts/ci/with-calendar-feed-runtime.mjs:32` — `function safeDiagnostic`: emits only fixed stages/categories and allowlisted SQLSTATE without native payloads.
@@ -890,30 +971,36 @@ restricted-session oracle. No new privileged child configuration or grant is add
 - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:209` — `privacy preflight rejects incomplete`: malformed and unsafe settings cannot reach a secret or child; actual driver/same-client/query-close cases exercise the surrounding boundary.
 - `scripts/ci/with-calendar-feed-runtime.mjs:99` — `export function createCalendarFeedDatabaseClient`: fixes the same qualified source publication, canonical admin and sole captured credential; no default or alternate route.
 - `scripts/ci/with-calendar-feed-runtime.mjs:86` — `export async function readCalendarFeedSetupAuthority`: actual authenticated session/current LOGIN+SUPER proof is mandatory before mutation.
-- `tests/integration/commands/calendar-feed.int.test.ts:497` — `await fresh.connect(); await setupQualified(fresh); await absent(fresh);`: fresh read-only cleanup independently requalifies authority/privacy and proves absence; native execution pending.
+- `tests/integration/commands/calendar-feed.int.test.ts:497` — `await fresh.connect(); await setupQualified(fresh); await absent(fresh);`: INT015 fresh authority/privacy and exact absence oracle passed at cba.
 - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:147` — `setup construction refuses missing`: credential/target refusals cannot reach secrets or children; actual identity negatives and child-config tests complete the bounded boundary evidence.
 
 - `tests/e2e/support/calendar-feed-atdd.ts:83` — `export function createCalendarLifecycleObservations`: AC2/6 observes both transport promises and joins actual readback before teardown; pure regressions are not native acceptance.
 - `tests/e2e/support/calendar-feed-atdd.ts:25` — `export function calendarBrowserDiagnostic`: preserves closed stage/category/SQLSTATE without native error payloads.
 - `tests/e2e/support/calendar-feed-atdd.ts:705` — `if (base && cleanupAllowed)`: canonical SQL/Auth cleanup waits for verified settlement; unresolved references retain fixture custody.
 - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:489` — `missing leaders with persistent groups`: absence is measured within existing budgets; anonymous groups grant no signaling authority.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:659` — `actual browser bounded cancellation`: timeout cannot credit in-flight SQL/readback settlement; release and real completion are distinct.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:805` — `actual browser bounded cancellation`: timeout cannot credit in-flight SQL/readback settlement; release and real completion are distinct.
 
 - `tests/e2e/support/calendar-feed-atdd.ts:93` — `trackReadback<T>`: registers actual callback/query work independently of Playwright deadlines and closes before drain.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:739` — `installed polling deadline cannot credit`: HTTP completion plus outer timeout cannot credit unresolved physical query siblings or callback completion.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:885` — `installed polling deadline cannot credit`: HTTP completion plus outer timeout cannot credit unresolved physical query siblings or callback completion.
 
-Evidence: historical check receipts retain their exact revisions and dependency
-limits. The sixth checkpoint passed 3105 Node units (30 feature and 33 separate
-wrapper cases), Python43 and recovery1, with actual original-client setup7 and
-privacy4 preflight credit. It still failed DB child settlement and all14 story
-browser cases across28 attempts;51 feature DB cases remain unexecuted. The local
-33b repair's47 separate bounded Node cases exercise injected lifecycle and actual
-pure browser source seams only. Current-head full native DB/HTTP/RLS/INT015,
-14 browser acceptances, successful child/key cleanup and attachment-content
-privacy remain pending. Source RLS010 effective CREATE and restricted-source
-claims cannot borrow the separate real recovery CREATE=false proof. Installed
-collection and prior build checks retain their recorded scope; no local managed
-runtime was launched. All three broad rounds completed; this repair receives only
-a distinct High latest-delta review. No provider/device/visual/performance or
-release-ready claim; the unallocated exhaustive branch remains explicitly
-release-blocking deferred.
+- `tests/support/calendar-feed-atdd.ts:190` — `export function calendarFixtureDiagnostic`: fixed stages/own-data SQLSTATE preserve only reaching errors within bounded aggregates.
+- `tests/support/calendar-feed-atdd.ts:256` — `phase = "additional-users"`: marks actual callback entry; upstream lost code remains unknown.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:594` — `actual fixture diagnostics preserve only`: injected classification and upstream-loss negatives are not native failure-cause proof.
+- `tests/integration/rls/acceptance-tables-migration-reset.int.test.ts:212` — `approved role-specific policies`: exact ten-policy/role assertion preserves DELETE/ALL/extra-policy rejection.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:687` — `the actual allocated policy case rejects`: injected rows exercise the actual catalog case; native reset evidence remains pending.
+
+Evidence: historical check receipts keep their exact revisions and dependency
+limits. Seventh checkpoint cba attempted all95 feature cases:37 passed/58 failed;
+all51 story Vitest cases ran7 passed/44 failed, and14 browser cases failed across
+28 attempts. Separate verify3123/bootstrap51/Python43/recovery1 passed, as did
+actual DB owned-child/key cleanup and INT015's restricted-session oracle. Browser
+abnormal teardown retained custody; source RLS010/API019 failure and attachment
+content unavailability receive no borrowed proof. Current58 separate bounded Node
+cases passed; seven new contracts execute actual pure fixture/catalog assertion
+source with injected inputs, not SQL/auth/browser acceptance. Existing four SSR
+cases passed without global setup or a managed service. Changed-head runtime,
+complete native success and attachment-content privacy still require Root's
+exact-head CI. Prior builds are historical after the application copy change.
+All three broad rounds completed; only distinct High latest-delta review remains.
+No provider/device/visual/performance or release-ready claim; the unallocated
+exhaustive branch remains explicitly release-blocking deferred.
