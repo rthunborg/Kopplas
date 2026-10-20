@@ -100,6 +100,9 @@ export function ownerTableFor(ownerType: ActiveOwnerType): string {
       // Story 7.3 activation: the job-evidence owner side resolves the job under own-tenant RLS
       // (a foreign job owner id ⇒ zero rows ⇒ TENANT_ACCESS_DENIED; R-802 both-side check).
       return "jobs";
+    case "work_order":
+      // Caller RLS requires the current, coherent parent job as well as Files authority.
+      return "work_orders";
     default:
       // Exhaustiveness guard (mirrors the codebase-standard assertNever discipline):
       // adding a 5th ACTIVE_OWNER_TYPES member without a branch here is a COMPILE

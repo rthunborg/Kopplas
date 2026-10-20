@@ -227,7 +227,7 @@ test("AC1: a non-auditable command does NOT write an audit row even on success (
 
 
 test("[P0] 16.2 scoped crew/dates admission follows validation and current scope; no other command bypasses capability", async () => {
-  for (const [command, name] of [["job.member.assign", "Jobs.ManageCrew"], ["job.member.remove", "Jobs.ManageCrew"], ["job.plan_dates.update", "Jobs.UpdatePlannedDates"]]) {
+  for (const [command, name] of [["job.member.assign", "Jobs.ManageCrew"], ["job.member.remove", "Jobs.ManageCrew"], ["job.plan_dates.update", "Jobs.UpdatePlannedDates"], ...["work_order.create", "work_order.update", "work_order.assignees.set", "work_order.status.set", "work_order.dependencies.set"].map(command => [command, "Jobs.WorkOrders.Edit"])]) {
     for (const allowed of [true, false]) {
       const calls: string[] = [];
       const result = await runCommandCore({tenantContextResult: {ok: true, data: {...ACTIVE_CTX, roles: ["saljare"]}},
@@ -241,7 +241,7 @@ test("[P0] 16.2 scoped crew/dates admission follows validation and current scope
       assert.deepEqual(calls, allowed ? ["validate", "scope", "ownership", "execute"] : ["validate", "scope"]);
     }
   }
-  for (const [command, capability] of [["job.lead.set", "Jobs.SetLead"], ["job.update", "Jobs.Edit"], ["job.card.update", "Jobs.Edit"], ["job.unknown", "Jobs.ManageCrew"], ["job.member.assign", "Jobs.Edit"]]) {
+  for (const [command, capability] of [["job.work_order_dependencies.set", "Jobs.Edit"], ["work_order.status.set", "Jobs.Edit"], ["work_order.unknown", "Jobs.WorkOrders.Edit"], ["job.lead.set", "Jobs.SetLead"], ["job.update", "Jobs.Edit"], ["job.card.update", "Jobs.Edit"], ["job.unknown", "Jobs.ManageCrew"], ["job.member.assign", "Jobs.Edit"]]) {
     let reached = false;
     const result = await runCommandCore({tenantContextResult: {ok: true, data: {...ACTIVE_CTX, roles: ["montor"]}},
       capability: {module: "jobs", capability}, command, eventType: command, auditable: false, rawInput: {},
@@ -251,3 +251,4 @@ test("[P0] 16.2 scoped crew/dates admission follows validation and current scope
     assert.equal(result.ok, false); assert.equal(reached, false);
   }
 });
+

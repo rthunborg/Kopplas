@@ -217,3 +217,12 @@ export async function seedJobDepthChildren(tenantId: string, actorId: string, jo
     if (count !== 1) throw new Error(`H4 ${table} fixture must contain one real child`);
   }
 }
+
+/** Real H4 work-order rows; lazy and confined to the existing depth fixture. */
+export async function seedWorkOrderReadRows(tenantId: string, jobId: string) {
+  const [{id: person}] = await adminQuery<{id:string}>("select person_profile_id id from public.job_members where tenant_id=$1 and job_id=$2 order by id limit 1",[tenantId,jobId]);
+  const [{id: order}] = await adminQuery<{id:string}>("insert into public.work_orders(tenant_id,job_id,title) values($1,$2,'H4 work order') returning id",[tenantId,jobId]);
+  const [{id: prerequisite}] = await adminQuery<{id:string}>("insert into public.work_orders(tenant_id,job_id,title) values($1,$2,'H4 prerequisite') returning id",[tenantId,jobId]);
+  await adminQuery("insert into public.work_order_assignees(tenant_id,job_id,work_order_id,person_profile_id) values($1,$2,$3,$4)",[tenantId,jobId,order,person]);
+  await adminQuery("insert into public.work_order_dependencies(tenant_id,dependent_job_id,dependent_work_order_id,prerequisite_job_id,prerequisite_work_order_id) values($1,$2,$3,$2,$4)",[tenantId,jobId,order,prerequisite]);
+}

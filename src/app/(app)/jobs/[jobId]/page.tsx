@@ -23,6 +23,9 @@ import { readEntityFiles } from "@/features/files/read";
 import { BookingEntry } from "@/components/resources/BookingEntry";
 import { readBookingHost, readBookingEditorOptions } from "@/features/resources/bookings-read";
 
+import { JobWorkOrdersPanel } from "@/components/jobs/JobWorkOrdersPanel";
+import { readJobWorkOrdersForPage } from "@/server/read-models/job-work-orders";
+import type { ReactNode } from "react";
 import { readJobMembersForPage } from "@/server/read-models/job-members";
 import { readJobCardOptions } from "@/server/read-models/my-jobs";
 import { resolveTenantContext } from "@/server/auth/resolve-tenant-context";
@@ -32,8 +35,10 @@ export const dynamic = "force-dynamic";
 
 export default async function JobDetailPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ jobId: string }>;
+  searchParams?: Promise<{workOrder?: string}>;
 }) {
   const { jobId } = await params;
   const { detail, error } = await readJobDetailForPage(jobId);
@@ -75,11 +80,25 @@ export default async function JobDetailPage({
   const bookingHost = canBook ? await readBookingHost({ jobId }) : null;
   const bookingOptions = canBook ? await readBookingEditorOptions() : null;
   const cardOptions = detail.entitlement?.canEdit ? await readJobCardOptions() : undefined;
-  const memberRead = await readJobMembersForPage(undefined, jobId);
+  const [memberRead, workOrderRead] = await Promise.all([readJobMembersForPage(undefined, jobId), readJobWorkOrdersForPage(undefined, jobId)]);
+  const selectedWorkOrder = (await searchParams)?.workOrder;
+  const workOrderFiles: Record<string, ReactNode> = {};
+  if (workOrderRead.ok && can("files", "Files.View")) {
+    // File entitlement is independent of work-order designation or assignment.
+    await Promise.all(workOrderRead.projection.rows.filter((row) => row.id === selectedWorkOrder).map(async (row) => {
+      const read = await readEntityFiles({ownerType: "work_order", ownerId: row.id});
+      workOrderFiles[row.id] = <>
+        {can("documents", "Documents.View") && <EntityDocumentsLink link={await readEntityDocumentsLink({module: "jobs", ownerType: "work_order", ownerId: row.id})} />}
+        <EntityFilePanel ownerType="work_order" ownerId={row.id} parentJobId={jobId} purpose="job_evidence" ownerLabel={row.title} files={read.files} readError={read.error} testIdSuffix={`work-order-${row.id}`} />
+      </>;
+    }));
+  }
 
   return (
     <JobDetailView
       detail={detail}
+      workOrdersPanel={workOrderRead.ok ? <JobWorkOrdersPanel jobId={jobId} initial={workOrderRead.projection} initialWorkOrderId={selectedWorkOrder} filesPanels={workOrderFiles} />
+        : <section role="alert" data-testid="job-work-orders-read-failed" className="rounded-lg border border-red-300 bg-red-50 p-4 text-sm text-red-800"><p>{workOrderRead.message}</p><form action={`/jobs/${jobId}`} method="get"><button type="submit" className="mt-3 min-h-11 underline">Hämta arbetsorder igen</button></form></section>}
       members={memberRead.ok ? memberRead.projection : undefined}
       membersError={memberRead.ok ? undefined : memberRead.message}
       cardOptions={cardOptions}
@@ -100,3 +119,5 @@ export default async function JobDetailPage({
     />
   );
 }
+
+

@@ -1,4 +1,4 @@
-/** Story 16.3 RED seam over committed 16.1/16.2 fixtures. No DB work on import.
+/** Story 16.3 actual seam over committed 16.1/16.2 fixtures. No DB work on import.
  * Activate after checked SQL/read projections exist and reconcile ONLY these
  * replaceable export/RPC/DTO spellings. They are not additional product policy.
  * Calls forward real commands/normal JWT RPCs; there are no synthetic replies.
@@ -39,19 +39,24 @@ export type WorkOrderProjection = { rows: { id: string; jobId: string; title: st
 
 export async function readWorkOrders(client: TestServerClient, jobId: string): Promise<WorkOrderProjection> {
   const path = "@/server/read-models/job-work-orders";
-  const module = await import(path) as { readJobWorkOrders: (client: TestServerClient, id: string) => Promise<WorkOrderProjection> };
-  return module.readJobWorkOrders(client, jobId);
+  const bindings = await import(path) as { readJobWorkOrders: (client: TestServerClient, id: string) => Promise<WorkOrderProjection> };
+  return bindings.readJobWorkOrders(client, jobId);
 }
 export async function workOrderInput(client: TestServerClient, jobId: string,
   patch: Partial<WorkOrderInput> = {}): Promise<WorkOrderInput> {
-  return { commandId: crypto.randomUUID(), jobId, expectedState: (await readWorkOrders(client, jobId)).expectedState, ...patch };
+  const projection = await readWorkOrders(client, jobId);
+  const row = projection.rows.find(r => r.id === patch.workOrderId);
+  const fields = patch.title !== undefined || patch.description !== undefined || patch.planned_start_date !== undefined || patch.planned_end_date !== undefined;
+  return { commandId: crypto.randomUUID(), jobId, expectedState: projection.expectedState,
+    ...(fields ? {title: row?.title ?? "Work order", description: row?.description ?? null,
+      planned_start_date: row?.plannedStartDate ?? null, planned_end_date: row?.plannedEndDate ?? null} : {}), ...patch };
 }
 export async function workOrderCommand(operation: WorkOrderOperation, client: TestServerClient,
   input: WorkOrderInput | Record<string, unknown>, correlationId = crypto.randomUUID()): Promise<WorkOrderResult> {
   const { runCommand } = await import("@/server/commands/envelope");
   const path = "@/server/commands/jobs/work-orders";
-  const module = await import(path) as Record<string, Parameters<typeof runCommand>[0]>;
-  return runCommand(module[workOrderBindings[operation].export], { client: client as never, input, correlationId }) as Promise<WorkOrderResult>;
+  const bindings = await import(path) as Record<string, Parameters<typeof runCommand>[0]>;
+  return runCommand(bindings[workOrderBindings[operation].export], { client: client as never, input, correlationId }) as Promise<WorkOrderResult>;
 }
 /** Bypasses envelope/TypeScript validation; SQL must bind the current JWT actor. */
 export function checkedWorkOrderCall(operation: WorkOrderOperation, client: TestServerClient, tenantId: string,
@@ -102,3 +107,5 @@ export function observeWorkOrderClient(client: TestServerClient) {
   } });
   return { client: proxy, calls };
 }
+
+

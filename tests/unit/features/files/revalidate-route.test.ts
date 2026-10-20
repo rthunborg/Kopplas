@@ -169,3 +169,12 @@ test("[8-review][resolve] a crafted parent value (a path, not a UUID) is rejecte
     null,
   );
 });
+
+test("[16.3][AC05] work-order file changes refresh only the UUID-gated parent job template", () => {
+  const base = { ownerType: "work_order", ownerId: FACILITY, ...NO_PARENTS };
+  assert.equal(resolveRevalidateRoute({ ...base, parentJobId: JOB }), `/jobs/${JOB}`);
+  assert.equal(resolveRevalidateRoute(base), null);
+  for (const parentJobId of ["/", "../jobs/" + JOB, "not-a-uuid", ""]) {
+    assert.equal(resolveRevalidateRoute({ ...base, parentJobId }), null);
+  }
+});

@@ -2,12 +2,12 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { validateUploadFile } from "@/server/commands/files/validation";
 
-/** Story 16.3 AC05 RED against the ACTUAL existing production request validator.
+/** Story 16.3 AC05 activated against the ACTUAL existing production request validator.
  * Activate with the work_order owner extension; no proposed module/stub needed.
  * The same valid metadata succeeds for an existing job before asserting the new
  * work-order behavior, so failure is owner enrollment rather than fixture shape.
  */
-test.skip("[P0] 16.3-FILE-UNIT-001 shared upload accepts work_order/job_evidence while preserving closed owner/purpose validation", () => {
+test("[P0] 16.3-FILE-UNIT-001 shared upload accepts work_order/job_evidence while preserving closed owner/purpose validation", () => {
   const input = {
     owner_type: "job", owner_id: "16300000-0000-4000-8000-000000000003",
     purpose: "job_evidence", display_name: "Distribution board.pdf",

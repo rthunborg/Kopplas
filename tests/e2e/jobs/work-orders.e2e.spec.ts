@@ -1,6 +1,6 @@
 /**
- * Story 16.3 essential browser RED contracts (approved -2 spec AC01–07).
- * Exactly three skips; no database or browser work on import. Activate only after
+ * Story 16.3 essential browser contracts (approved -2 spec AC01–07).
+ * Three activated journeys; no database or browser work on import. Execution requires
  * checked commands, real projections/shared files and a qualified production
  * Playwright runtime exist. The integration suites own both-kind/role/ACL/graph/
  * revocation/replay/rollback matrices; these journeys prove the usable flow.
@@ -79,7 +79,7 @@ const titleIs = (title: string): Match => (input) => input.title === title;
 const statusIs = (status: string): Match => (input) => input.status === status;
 
 test.describe("Story 16.3 essential work-order journeys", () => {
-  test.skip("[P0] 16.3-E01 manager creates and edits own dates/plural assignees, reloads and opens an own shared file", async ({ resourcePage: page }) => {
+  test("[P0] 16.3-E01 manager creates and edits own dates/plural assignees, reloads and opens an own shared file", async ({ resourcePage: page }) => {
     const f = await createJobsDepthFixture();
     try {
       const jobId = f.jobs.assigneeProject.id;
@@ -154,7 +154,7 @@ test.describe("Story 16.3 essential work-order journeys", () => {
     } finally { await f.dispose(); }
   });
 
-  test.skip("[P1] 16.3-E02 phone lead progresses status; lost-response/stale retries retain newer draft and cannot reopen",
+  test("[P1] 16.3-E02 phone lead progresses status; lost-response/stale retries retain newer draft and cannot reopen",
     { annotation: [{ type: "skipNetworkMonitoring", description: "One specifically matched real work-order update commits upstream before its response is deliberately lost" }] },
     async ({ resourcePage: page }) => {
       const f = await createJobsDepthFixture();
@@ -248,7 +248,7 @@ test.describe("Story 16.3 essential work-order journeys", () => {
       } finally { await f.dispose(); }
     });
 
-  test.skip("[P0] 16.3-E03 distinct same-parent work orders warn from their own dates, clear at equality and show unknown; scoped reads/writes remain bounded", async ({ resourcePage: page }) => {
+  test("[P0] 16.3-E03 distinct same-parent work orders warn from their own dates, clear at equality and show unknown; scoped reads/writes remain bounded", async ({ resourcePage: page }) => {
     const f = await createJobsDepthFixture();
     try {
       const jobId = f.jobs.memberOrder.id;
@@ -309,4 +309,98 @@ test.describe("Story 16.3 essential work-order journeys", () => {
       expect(await workOrdersSnapshot(f)).toEqual(ordinary);
     } finally { await f.dispose(); }
   });
+
+  test("[P0] 16.3-E04 lost create reconciles the original child after another mutation without a duplicate or newer-draft loss",
+    { annotation: [{ type: "skipNetworkMonitoring", description: "One matched real create commits before its response is deliberately lost; reconciliation must recover the same durable child" }] },
+    async ({ resourcePage: page }) => {
+      const f = await createJobsDepthFixture();
+      try {
+        const jobId = f.jobs.assigneeProject.id;
+        await signIn(page, f.credentials.manager);
+        await page.goto(`/jobs/${jobId}`);
+        const panel = page.getByTestId("job-work-orders-panel");
+        await ready(panel);
+        await panel.getByRole("button", {name: "Ny arbetsorder", exact: true}).click();
+        const detail = page.getByTestId("work-order-pane");
+        const title = detail.getByLabel("Rubrik", {exact: true});
+        await title.fill("Original creation before response loss");
+        const match: Match = (input) => !input.workOrderId && input.title === "Original creation before response loss";
+        let consumed = false;
+        let release!: () => void, committedSignal!: () => void;
+        const held = new Promise<void>((resolve) => { release = resolve; });
+        const committed = new Promise<void>((resolve) => { committedSignal = resolve; });
+        // playwright-utils deviation: one exact real action is forwarded, then only its response is lost.
+        const loseResponse = async (route: Route) => {
+          if (!consumed && matchesAction(route.request(), jobId, match)) {
+            consumed = true;
+            const upstream = await route.fetch();
+            expect(upstream.ok()).toBe(true);
+            committedSignal();
+            await held;
+            await route.abort("failed");
+          } else await route.continue();
+        };
+        await page.route("**/*", loseResponse);
+        const failed = page.waitForEvent("requestfailed", {predicate: (request) => matchesAction(request, jobId, match)});
+        try {
+          await detail.getByRole("button", {name: "Skapa arbetsorder", exact: true}).click();
+          await committed;
+          const created = (await readWorkOrders(f.fx.plannerClient, jobId)).rows;
+          expect(created).toHaveLength(1);
+          const id = created[0].id;
+          await title.fill("Newer unsent create draft");
+          expect((await workOrderCommand("update", f.fx.adminClient, await workOrderInput(f.fx.adminClient, jobId,
+            {workOrderId: id, title: "Independent edit after creation"}))).ok).toBe(true);
+          const durable = await workOrdersSnapshot(f);
+          release();
+          const failedRequest = await failed;
+          await expect(detail.getByTestId("work-order-error")).toBeVisible();
+          await expect(detail.getByTestId("work-order-refetch")).toHaveCount(0);
+          await expect(title).toHaveValue("Newer unsent create draft");
+          const replay = await save(page, jobId, detail.getByTestId("work-order-retry"), match);
+          expect(replay.ok()).toBe(true);
+          expect(actionInput(replay.request(), jobId)).toEqual(actionInput(failedRequest, jobId));
+          await expect(detail.getByTestId("work-order-save-status")).toBeVisible();
+          await expect(title).toHaveValue("Newer unsent create draft");
+          await expect(detail.getByRole("button", {name: "Skapa arbetsorder", exact: true})).toHaveCount(0);
+          await expect(detail.getByRole("button", {name: "Spara arbetsorder", exact: true})).toBeVisible();
+          await expect(page).toHaveURL(new RegExp(`workOrder=${id}`));
+          expect(await workOrdersSnapshot(f)).toEqual(durable);
+          expect((await readWorkOrders(f.fx.plannerClient, jobId)).rows).toEqual([
+            expect.objectContaining({id, title: "Independent edit after creation"}),
+          ]);
+        } finally { release(); await page.unroute("**/*", loseResponse); }
+      } finally { await f.dispose(); }
+    });
+  test("[P0] 16.3-E05 never-committed stale create retains draft until explicit refresh/consent and creates once", async ({resourcePage:page}) => {
+    const f=await createJobsDepthFixture();
+    try {
+      const jobId=f.jobs.assigneeProject.id;
+      await signIn(page,f.credentials.manager); await page.goto(`/jobs/${jobId}`);
+      const panel=page.getByTestId("job-work-orders-panel"); await ready(panel);
+      await panel.getByRole("button",{name:"Ny arbetsorder",exact:true}).click();
+      const detail=page.getByTestId("work-order-pane"),title=detail.getByLabel("Rubrik",{exact:true});
+      await title.fill("Retained draft after first stale create");
+      const other=await createWorkOrder(f.fx.adminClient,jobId,{title:"Concurrent child before first create submit"});
+      const durable=await workOrdersSnapshot(f);
+      const refused=await save(page,jobId,detail.getByRole("button",{name:"Skapa arbetsorder",exact:true}),titleIs("Retained draft after first stale create"));
+      const original=actionInput(refused.request(),jobId)!; expect(original).not.toBeNull();
+      await expect(detail.getByTestId("work-order-error")).toBeVisible();
+      await expect(title).toHaveValue("Retained draft after first stale create");
+      await expect(detail.getByTestId("work-order-retry")).toBeDisabled();
+      await expect(detail.getByTestId("work-order-refetch")).toBeVisible();
+      expect(await workOrdersSnapshot(f)).toEqual(durable);
+      await detail.getByTestId("work-order-refetch").click();
+      await expect(detail.getByTestId("work-order-retry")).toBeEnabled();
+      await expect(title).toHaveValue("Retained draft after first stale create");
+      const confirmed=await save(page,jobId,detail.getByTestId("work-order-retry"),titleIs("Retained draft after first stale create"));
+      expect(actionInput(confirmed.request(),jobId)?.commandId).not.toBe(original.commandId);
+      await expect(detail.getByTestId("work-order-save-status")).toBeVisible();
+      const after=await workOrdersSnapshot(f),rows=(await readWorkOrders(f.fx.plannerClient,jobId)).rows;
+      expect(rows).toHaveLength(2); expect(rows.some(r=>r.id===other)).toBe(true);
+      expect(rows.filter(r=>r.title==="Retained draft after first stale create")).toHaveLength(1);
+      expect(after.audit.length-durable.audit.length).toBe(1);
+    } finally {await f.dispose();}
+  });
+
 });

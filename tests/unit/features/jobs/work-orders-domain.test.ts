@@ -53,7 +53,7 @@ const ids = {
 const identity = { commandId: ids.command, jobId: ids.job, expectedState: "a".repeat(64) };
 const fields = { title: "Install board", description: null, planned_start_date: null, planned_end_date: null };
 
-test.skip("[P0] 16.3-UNIT-001 create/update are closed and normalize bounded title/plain description", async () => {
+test("[P0] 16.3-UNIT-001 create/update are closed and normalize bounded title/plain description", async () => {
   const api = await domain();
   for (const [validate, input] of [
     [api.validateCreateWorkOrderInput, { ...identity, ...fields }],
@@ -81,7 +81,7 @@ test.skip("[P0] 16.3-UNIT-001 create/update are closed and normalize bounded tit
   assert.equal(api.validateUpdateWorkOrderInput({ ...identity, workOrderId: ids.order, ...fields, title: "Correct label" }).valid, true);
 });
 
-test.skip("[P0] 16.3-UNIT-002 own nullable Gregorian dates preserve equality and reject noncanonical/out-of-range values", async () => {
+test("[P0] 16.3-UNIT-002 own nullable Gregorian dates preserve equality and reject noncanonical/out-of-range values", async () => {
   const { validateCreateWorkOrderInput: create, validateUpdateWorkOrderInput: update } = await domain();
   for (const [validate, base] of [[create, { ...identity, ...fields }], [update, { ...identity, workOrderId: ids.order, ...fields }]] as const) {
     for (const dates of [
@@ -99,7 +99,7 @@ test.skip("[P0] 16.3-UNIT-002 own nullable Gregorian dates preserve equality and
   }
 });
 
-test.skip("[P0] 16.3-UNIT-003 status graph has four states and exactly two independently manager-only reopen edges", async () => {
+test("[P0] 16.3-UNIT-003 status graph has four states and exactly two independently manager-only reopen edges", async () => {
   const api = await domain();
   const ordinary = new Set(["created:in_progress", "created:cancelled", "in_progress:done", "in_progress:cancelled"]);
   const reopen = new Set(["done:in_progress", "cancelled:created"]);
@@ -118,7 +118,7 @@ test.skip("[P0] 16.3-UNIT-003 status graph has four states and exactly two indep
   // not extra graph edges or a client-supplied reopen capability.
 });
 
-test.skip("[P0] 16.3-UNIT-004 plural assignment and typed dependency inputs reject smuggling/self/duplicates but admit distinct same-parent orders", async () => {
+test("[P0] 16.3-UNIT-004 plural assignment and typed dependency inputs reject smuggling/self/duplicates but admit distinct same-parent orders", async () => {
   const api = await domain();
   const base = { ...identity, workOrderId: ids.order };
   for (const personProfileIds of [[], [ids.person], [ids.person, ids.otherPerson]]) {
@@ -145,7 +145,7 @@ test.skip("[P0] 16.3-UNIT-004 plural assignment and typed dependency inputs reje
   // current person membership and endpoint parent coherence are checked in SQL.
 });
 
-test.skip("[P0] 16.3-UNIT-005 warning compares actual typed endpoint dates; equality clears and unreadable timing stays anonymous unknown", async () => {
+test("[P0] 16.3-UNIT-005 warning compares actual typed endpoint dates; equality clears and unreadable timing stays anonymous unknown", async () => {
   const api = await domain();
   const order = { jobId: ids.job, workOrderId: ids.order, readable: true, plannedStartDate: "2026-10-20", plannedEndDate: "2026-10-21" };
   const prerequisite = { jobId: ids.job, workOrderId: ids.prerequisite, readable: true, plannedStartDate: "2026-10-01", plannedEndDate: "2026-10-22" };
@@ -166,7 +166,7 @@ test.skip("[P0] 16.3-UNIT-005 warning compares actual typed endpoint dates; equa
   // never inherit a parent date. Only the actual resolved endpoint is supplied.
 });
 
-test.skip("[P0] 16.3-UNIT-006 uncertain retry/late confirmation retain newer input and dirty fields keep their original consent baseline", async () => {
+test("[P0] 16.3-UNIT-006 uncertain retry/late confirmation retain newer input and dirty fields keep their original consent baseline", async () => {
   const api = await domain();
   const original = { ...identity, workOrderId: ids.order, ...fields };
   const newer = { ...original, title: "Newer unsent label" };
@@ -195,7 +195,15 @@ test.skip("[P0] 16.3-UNIT-006 uncertain retry/late confirmation retain newer inp
   assert.deepEqual(received, { value: visible, baseline, expectedState: "state-A" });
   const late = api.confirmWorkOrderField(received, submitted, { title: "" }, "committed");
   assert.deepEqual(late, received);
+  const reverted = api.editWorkOrderField(field, baseline);
+  const confirmedRevert = api.confirmWorkOrderField(reverted, submitted, {title: "Server"}, "committed");
+  assert.deepEqual(confirmedRevert.value, baseline);
+  assert.equal(confirmedRevert.expectedState, "state-A");
+  assert.deepEqual(api.receiveWorkOrderField(confirmedRevert, {title: "Server"}, "state-C"), confirmedRevert);
   const consented = api.consentWorkOrderField(late, { title: "Server" }, "state-B");
   assert.deepEqual(consented.value, visible);
   assert.equal(consented.expectedState, "state-B");
 });
+
+
+

@@ -81,3 +81,10 @@ test("[P0] 16.2 four dedicated command enrollments keep full-card capabilities u
   assert.deepEqual(COMMAND_CAPABILITIES["job.card.update"], {module: "jobs", capability: "Jobs.Edit"});
   assert.equal(COMMAND_CAPABILITIES["job.member.unknown"], undefined);
 });
+
+test("[P0] 16.3 explicit work-order commands retain manager-only parent dependencies and narrow lead admission", () => {
+ for (const command of ["work_order.create", "work_order.update", "work_order.assignees.set", "work_order.status.set", "work_order.dependencies.set"])
+  assert.deepEqual(COMMAND_CAPABILITIES[command], {module: "jobs", capability: "Jobs.WorkOrders.Edit"});
+ assert.deepEqual(COMMAND_CAPABILITIES["job.work_order_dependencies.set"], {module: "jobs", capability: "Jobs.Edit"});
+ assert.equal(COMMAND_CAPABILITIES["work_order.reopen"], undefined);
+});

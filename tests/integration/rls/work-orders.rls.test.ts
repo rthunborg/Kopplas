@@ -1,13 +1,13 @@
 import { describe, expect, test } from "vitest";
 
-/** RED: no runtime setup on import. Activate only with the 16.3 migration,
+/** Activated: no runtime setup on import. Requires the 16.3 migration,
  * checked commands/read projections and isolated SUPABASE_TEST_REQUIRED=1 lane.
  * All tested actors use existing anon-key JWT clients; admin SQL only arranges
  * fixtures/introspects constraints. Future schema/DTO names live in the adapter.
  */
 describe("16.3 work-order parent scope, privacy and checked SQL boundaries", () => {
   // Activation: parent-scoped relational reads, per-operation flags and current role union.
-  test.skip("[P0] 16.3-RLS-001 seeded roles/union/current lead follow parent reads and assignment alone adds no authority", async () => {
+  test("[P0] 16.3-RLS-001 seeded roles/union/current lead follow parent reads and assignment alone adds no authority", async () => {
     const h = await import("../../support/jobs-depth-atdd");
     const m = await import("../../support/job-members-atdd");
     const w = await import("../../support/work-orders-atdd");
@@ -72,7 +72,7 @@ describe("16.3 work-order parent scope, privacy and checked SQL boundaries", () 
   });
 
   // Activation: checked anonymous unknown projection and both-endpoint raw SELECT boundary.
-  test.skip("[P0] 16.3-RLS-002 hidden prerequisite becomes anonymous unknown without leaking IDs/dates/labels or picker authority", async () => {
+  test("[P0] 16.3-RLS-002 hidden prerequisite becomes anonymous unknown without leaking IDs/dates/labels or picker authority", async () => {
     const h = await import("../../support/jobs-depth-atdd");
     const m = await import("../../support/job-members-atdd");
     const w = await import("../../support/work-orders-atdd");
@@ -86,14 +86,14 @@ describe("16.3 work-order parent scope, privacy and checked SQL boundaries", () 
       expect((await w.workOrderCommand("dependencies", f.fx.adminClient, await w.workOrderInput(f.fx.adminClient, job,
         { workOrderId: dependent, prerequisites: [{ jobId: hiddenParent, workOrderId: hidden }] }))).ok).toBe(true);
       const lead = await w.readWorkOrders(f.fx.montorClient, job);
-      expect(lead.dependencyWarnings).toContainEqual({ state: "unknown" });
+      expect(lead.dependencyWarnings).toContainEqual({ state: "unknown", dependent: {jobId: job, workOrderId: dependent} });
       const serialized = JSON.stringify(lead);
       for (const secret of [hidden, hiddenNew, hiddenParent, "Private prerequisite calibration", "2026-11-19"]) expect(serialized).not.toContain(secret);
       const raw = await f.fx.montorClient.from("work_order_dependencies").select("*").eq("dependent_job_id", job);
       expect(raw.error === null || raw.error.code === "42501").toBe(true);
       expect(raw.data ?? []).toEqual([]);
       const stable = await w.workOrdersSnapshot(f);
-      // Existing inaccessible edge can be retained/removed without exposing its target;
+      // Existing inaccessible edge is retained by default without exposing its target;
       // an explicit newly submitted hidden reference must never authorize addition.
       const addition = await w.workOrderInput(f.fx.montorClient, job, { workOrderId: dependent,
         prerequisites: [{ jobId: hiddenParent, workOrderId: hiddenNew }] });
@@ -104,12 +104,25 @@ describe("16.3 work-order parent scope, privacy and checked SQL boundaries", () 
       expect((await w.workOrdersSnapshot(f)).workOrderDependencies).toEqual(stable.workOrderDependencies);
       expect((await w.workOrderCommand("dependencies", f.fx.montorClient, await w.workOrderInput(f.fx.montorClient, job,
         { workOrderId: dependent, prerequisites: [] }))).ok).toBe(true);
-      expect((await w.workOrdersSnapshot(f)).workOrderDependencies).toEqual([]);
+      expect((await w.workOrdersSnapshot(f)).workOrderDependencies).toEqual(stable.workOrderDependencies);
+      const visible = await w.createWorkOrder(f.fx.adminClient, job, {title: "Readable prerequisite"});
+      expect((await w.workOrderCommand("dependencies", f.fx.montorClient, await w.workOrderInput(f.fx.montorClient, job,
+        {workOrderId: dependent, prerequisites: [{jobId: job, workOrderId: visible}]}))).ok).toBe(true);
+      const edited = await w.workOrdersSnapshot(f);
+      expect(edited.workOrderDependencies).toEqual(expect.arrayContaining(stable.workOrderDependencies));
+      expect(edited.workOrderDependencies).toHaveLength(2);
+      expect((await w.readWorkOrders(f.fx.montorClient, job)).dependencyWarnings).toContainEqual({state: "unknown", dependent: {jobId: job, workOrderId: dependent}});
+      // Becoming readable after the observed form must not turn its omission into deletion.
+      const observed = await w.workOrderInput(f.fx.montorClient, job, {workOrderId: dependent, prerequisites: []});
+      await m.seedMember(f, hiddenParent, f.fx.ownProfile.id);
+      const newlyReadable = await w.workOrdersSnapshot(f);
+      expect(await w.workOrderCommand("dependencies", f.fx.montorClient, observed)).toMatchObject({ok: false, code: "PREVIEW_STALE"});
+      expect(await w.workOrdersSnapshot(f)).toEqual(newlyReadable);
     });
   });
 
   // Activation: composite FKs, forced RLS, SELECT-only grants and hardened checked/private RPC inventory.
-  test.skip("[P0] 16.3-RLS-003 direct DML, composite parent/tenant substitution, anonymous RPC and private helper bypass fail", async () => {
+  test("[P0] 16.3-RLS-003 direct DML, composite parent/tenant substitution, anonymous RPC and private helper bypass fail", async () => {
     const h = await import("../../support/jobs-depth-atdd");
     const w = await import("../../support/work-orders-atdd");
     const t = await import("../../factories/tenants");
@@ -157,7 +170,7 @@ describe("16.3 work-order parent scope, privacy and checked SQL boundaries", () 
       from pg_class c join pg_namespace n on n.oid=c.relnamespace where n.nspname='public' and relname=any($1::text[])`, [tables]);
     expect(rls.map((r) => r.name).sort()).toEqual(tables.sort());
     for (const row of rls) expect(row).toMatchObject({ enabled: true, forced: true, mutation: false });
-    const names = Object.values(w.workOrderBindings).map((b) => b.rpc).sort();
+    const names = [...Object.values(w.workOrderBindings).map((b) => b.rpc), "reconcile_work_order_create", "document_lifecycle_source_graph_eligible", "read_job_work_orders", "story_16_3_work_order_file_owner_readable", "story_16_3_file_work_order_sources_readable", "story_16_3_work_order_storage_readable"].sort();
     const checked = await adminQuery<{ name: string; hardened: boolean; anon: boolean; authenticated: boolean }>(`select p.proname as name,
       p.prosecdef and coalesce(p.proconfig @> array['search_path=""'],false) as hardened,
       has_function_privilege('anon',p.oid,'execute') as anon, has_function_privilege('authenticated',p.oid,'execute') as authenticated
@@ -167,7 +180,8 @@ describe("16.3 work-order parent scope, privacy and checked SQL boundaries", () 
     const internals = await adminQuery<{ invocation: string; allowed: boolean }>(`select format('%I.%I(%s)',n.nspname,p.proname,
       (select string_agg('null::'||format_type(t,null),',' order by ordinal) from unnest(p.proargtypes::oid[]) with ordinality a(t,ordinal))) as invocation,
       has_function_privilege('authenticated',p.oid,'execute') as allowed from pg_proc p join pg_namespace n on n.oid=p.pronamespace
-      where (n.nspname='private' or (n.nspname='public' and p.proname like '%internal')) and p.proname like '%work_order%'`);
+      where ((n.nspname='private' or (n.nspname='public' and p.proname like '%internal')) and p.proname like '%work_order%')
+       or (n.nspname='public' and p.proname in ('story_16_3_file_link_source_eligible','story_16_3_lock_file_actor','story_16_3_assert_work_order_file_owner','story_16_3_assert_file_work_order_sources'))`);
     expect(internals.length).toBeGreaterThan(0);
     for (const row of internals) {
       expect(row.allowed).toBe(false);
@@ -179,3 +193,7 @@ describe("16.3 work-order parent scope, privacy and checked SQL boundaries", () 
     }
   });
 });
+
+
+
+

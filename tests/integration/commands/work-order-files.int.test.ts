@@ -8,8 +8,8 @@ import { createWorkOrder, readWorkOrders, workOrderCommand, workOrderInput } fro
 import { withBookingFault } from "../../support/bookings-atdd";
 import { isLocalStackReachable, isLocalStorageReachable } from "../../support/test-env";
 
-/** Story 16.3 AC05/06 RED, new work_order ownership only. Activate after forward
- * owner/parent SQL, manifest and source/context adapters exist; keep old shared
+/** Story 16.3 AC05/06 activated, new work_order ownership only. Forward
+ * owner/parent SQL, manifest and source/context adapters are implemented; keep old shared
  * upload/sign/selected-link/lifecycle tests intact. No hooks or runtime on import.
  * Uses actual existing command exports and normal anon-key authenticated clients;
  * privileged SQL is fixture arrangement/readback only. No new bucket/purpose/key.
@@ -58,10 +58,10 @@ async function filesSnapshot(f: JobsDepthFixture) {
   return { files: files.map(row => row.row), links: links.map(row => row.row), objects, audits };
 }
 
-test.skip("[P0] 16.3-FILE-INT-001 both parent kinds use real shared upload/link/sign and selected source/context without protected payloads", async () => fixture(async f => {
+test.each(["memberOrder", "assigneeProject"] as const)("[P0] 16.3-FILE-INT-001 parent %s uses real shared upload/link/sign and selected source/context without protected payloads", async (kind) => fixture(async f => {
   const { readDocuments } = await import("@/server/read-models/documents");
   const { readDocumentContext } = await import("@/server/read-models/document-context");
-  for (const parent of [f.jobs.memberOrder, f.jobs.assigneeProject]) {
+  { const parent = f.jobs[kind];
     const workOrderId = await createWorkOrder(f.fx.adminClient, parent.id, { title: "Board evidence source" });
     const siblingId = await createWorkOrder(f.fx.adminClient, parent.id, { title: "Second board source" });
     const target = await upload(f.fx.adminClient, parent.id, workOrderId);
@@ -104,7 +104,7 @@ test.skip("[P0] 16.3-FILE-INT-001 both parent kinds use real shared upload/link/
   }
 }));
 
-test.skip("[P0] 16.3-FILE-INT-002 foreign/type/link substitutions, lead-only and assignee-only actors, and archived parent deny actual shared consumers", async () => fixture(async f => {
+test("[P0] 16.3-FILE-INT-002 foreign/type/link substitutions, lead-only and assignee-only actors, and archived parent deny actual shared consumers", async () => fixture(async f => {
   const { readDocuments } = await import("@/server/read-models/documents");
   const { readDocumentContext } = await import("@/server/read-models/document-context");
   const jobId = f.jobs.memberOrder.id;
@@ -169,7 +169,7 @@ test.skip("[P0] 16.3-FILE-INT-002 foreign/type/link substitutions, lead-only and
   expect(await filesSnapshot(f)).toEqual(before);
 }));
 
-test.skip("[P0] 16.3-FILE-INT-003 selected work-order archive/restore preserve shared identities and roll back on audit failure/current parent denial", async () => fixture(async f => {
+test("[P0] 16.3-FILE-INT-003 selected work-order archive/restore preserve shared identities and roll back on audit failure/current parent denial", async () => fixture(async f => {
   const jobId = f.jobs.memberOrder.id;
   const workOrderId = await createWorkOrder(f.fx.adminClient, jobId);
   const sibling = await createWorkOrder(f.fx.adminClient, jobId);
@@ -211,4 +211,118 @@ test.skip("[P0] 16.3-FILE-INT-003 selected work-order archive/restore preserve s
   const noOpCorrelation = crypto.randomUUID();
   expect(await fileCommand("restore", f.fx.adminClient, selection(target), noOpCorrelation)).toMatchObject({ ok: true, data: { changed: false, lifecycleState: "linked" } });
   expect(await adminSelectAuditEvents({ correlationId: noOpCorrelation })).toEqual([]);
+}));
+
+
+
+async function storedObject(fileId: string) {
+  const [row] = await adminQuery<{ bucket_id: string; object_path: string }>(
+    "select bucket_id,object_path from public.files where id=$1", [fileId]);
+  if (!row) throw new Error("Stored evidence fixture missing");
+  return row;
+}
+async function expectAuthenticatedBytes(client: TestServerClient, object: { bucket_id: string; object_path: string }, allowed: boolean) {
+  const reply = await client.storage.from(object.bucket_id).download(object.object_path);
+  if (allowed) {
+    expect(reply.error).toBeNull(); expect(reply.data).not.toBeNull();
+    expect(await reply.data!.text()).toBe(new TextDecoder().decode(bytes));
+  } else {
+    expect(reply.error).not.toBeNull(); expect(reply.data).toBeNull();
+  }
+}
+
+// Actual authenticated Storage download is deliberately separate from the signing
+// wrapper: stale known paths must not bypass the current work-order source checks.
+test.each(["sole-work-order", "same-parent-job", "wrong-purpose", "archived-link", "missing-owner", "foreign-owner", "archived-customer"] as const)(
+  "[P0] 16.3-FILE-INT-004 generic sign and known-path Storage deny all invalid sources: %s", async invalid => fixture(async f => {
+    const jobId = f.jobs.memberOrder.id;
+    const workOrderId = await createWorkOrder(f.fx.adminClient, jobId);
+    const target = await upload(f.fx.adminClient, jobId, workOrderId);
+    const object = await storedObject(target.fileId);
+    await expectAuthenticatedBytes(f.fx.adminClient, object, true);
+    if (invalid !== "sole-work-order") {
+      let ownerType = "job", ownerId = f.jobs.unrelated.id, purpose = "job_evidence";
+      if (invalid === "same-parent-job") ownerId = jobId;
+      if (invalid === "wrong-purpose") purpose = "crm_document";
+      if (invalid === "missing-owner") ownerId = crypto.randomUUID();
+      if (invalid === "foreign-owner") ownerId = f.jobs.foreign.id;
+      if (invalid === "archived-customer") {
+        const [parent] = await adminQuery<{ customer_id: string }>("select customer_id from public.jobs where id=$1", [f.jobs.unrelated.id]);
+        ownerType = "customer"; ownerId = parent.customer_id; purpose = "crm_document";
+        await adminQuery("update public.customers set archived_at=now() where id=$1", [ownerId]);
+      }
+      // Privileged fixture corruption proves an invalid alternate cannot authorize
+      // bytes; production link creation remains its existing checked command.
+      await adminQuery(`insert into public.file_links(tenant_id,file_id,owner_type,owner_id,purpose,archived_at)
+        values($1,$2,$3,$4,$5,case when $6 then now() else null end)`,
+        [f.fx.base.tenantA.id, target.fileId, ownerType, ownerId, purpose, invalid === "archived-link"]);
+    }
+    await adminQuery("update public.jobs set archived_at=now() where id=$1", [jobId]);
+    const before = await filesSnapshot(f), correlation = crypto.randomUUID();
+    expect((await fileCommand("sign", f.fx.adminClient, { file_id: target.fileId }, correlation)).ok).toBe(false);
+    await expectAuthenticatedBytes(f.fx.adminClient, object, false);
+    expect(await adminSelectAuditEvents({ correlationId: correlation })).toEqual([]);
+    expect(await filesSnapshot(f)).toEqual(before);
+  }));
+
+test.each(["active", "archived"] as const)(
+  "[P0] 16.3-FILE-INT-005 live alternate preserves selected bytes while hidden invalid work order withholds %s lifecycle hints", async mode => fixture(async f => {
+    const { readDocuments } = await import("@/server/read-models/documents");
+    const jobId = f.jobs.memberOrder.id, otherJobId = f.jobs.unrelated.id;
+    const workOrderId = await createWorkOrder(f.fx.adminClient, jobId);
+    const target = await upload(f.fx.adminClient, jobId, workOrderId);
+    const linked = await fileCommand("link", f.fx.adminClient,
+      { file_id: target.fileId, owner_type: "job", owner_id: otherJobId, purpose: "job_evidence" });
+    expect(linked.ok).toBe(true); if (!linked.ok) throw new Error(linked.code);
+    const alternateLinkId = linked.data.targetId, object = await storedObject(target.fileId);
+    await expectAuthenticatedBytes(f.fx.adminClient, object, true);
+    if (mode === "archived") expect((await fileCommand("archive", f.fx.adminClient, selection(target))).ok).toBe(true);
+    const read = () => readDocuments({ client: f.fx.adminClient, filters: { mode, ownerType: "job", q: "Distribution board" } });
+    const before = await read(); expect(before.ok).toBe(true); if (!before.ok) throw new Error(before.code);
+    expect(before.data.descriptor.data.rows.find(row => row.linkId === alternateLinkId)).toMatchObject({
+      canArchive: mode === "active", canRestore: mode === "archived",
+    });
+    await adminQuery("update public.jobs set archived_at=now() where id=$1", [jobId]);
+    const hidden = await f.fx.adminClient.from("file_links").select("id").eq("id",target.linkId);
+    expect(hidden.error).toBeNull(); expect(hidden.data).toEqual([]);
+    const documents = await read(); expect(documents.ok).toBe(true); if (!documents.ok) throw new Error(documents.code);
+    expect(documents.data.descriptor.data.rows.find(row => row.linkId === alternateLinkId)).toMatchObject({ canArchive: false, canRestore: false });
+    expect(documents.data.descriptor.data.total).toBe(1);
+    expect(JSON.stringify(documents)).not.toContain(workOrderId);
+    if (mode === "active") {
+      expect((await fileCommand("sign", f.fx.adminClient, { file_id: target.fileId })).ok).toBe(true);
+      expect((await fileCommand("selected", f.fx.adminClient, { file_id: target.fileId, link_id: alternateLinkId })).ok).toBe(true);
+      await expectAuthenticatedBytes(f.fx.adminClient, object, true);
+    }
+    const operation = mode === "active" ? "archive" : "restore";
+    expect((await fileCommand(operation, f.fx.adminClient, { file_id: target.fileId, link_id: alternateLinkId })).ok).toBe(false);
+  }));
+
+test("[P0] 16.3-FILE-INT-006 authenticated predicates do not distinguish foreign present from absent source/file/path", async () => fixture(async f => {
+  const ownWorkOrder = await createWorkOrder(f.fx.adminClient, f.jobs.memberOrder.id);
+  const foreignWorkOrder = await createWorkOrder(f.fx.foreignClient, f.jobs.foreign.id);
+  const own = await upload(f.fx.adminClient, f.jobs.memberOrder.id, ownWorkOrder);
+  const foreign = await upload(f.fx.foreignClient, f.jobs.foreign.id, foreignWorkOrder);
+  const foreignObject = await storedObject(foreign.fileId), ownObject = await storedObject(own.fileId);
+  const unknown = crypto.randomUUID(), tenantB = f.fx.base.tenantB.id;
+  const booleanRpc = async (client: TestServerClient, name: string, args: Record<string, unknown>) => {
+    const reply = await client.rpc(name, args); expect(reply.error).toBeNull(); expect(typeof reply.data).toBe("boolean"); return reply.data;
+  };
+  for (const client of [f.fx.adminClient, f.fx.montorClient]) {
+    for (const fileId of [foreign.fileId, unknown]) {
+      expect(await booleanRpc(client, "story_16_3_file_work_order_sources_readable", { p_tenant_id: tenantB, p_file_id: fileId })).toBe(false);
+      expect(await booleanRpc(client, "document_lifecycle_source_graph_eligible", { p_tenant_id: tenantB, p_file_id: fileId, p_link_id: foreign.linkId })).toBe(false);
+    }
+    for (const ownerId of [foreignWorkOrder, unknown]) expect(await booleanRpc(client,
+      "story_16_3_work_order_file_owner_readable", { p_tenant_id: tenantB, p_owner_id: ownerId })).toBe(false);
+    for (const name of [foreignObject.object_path, `${tenantB}/${unknown}/unknown.pdf`]) expect(await booleanRpc(client,
+      "story_16_3_work_order_storage_readable", { p_bucket_id: "tenant-files", p_name: name })).toBe(false);
+  }
+  for (const fileId of [foreign.fileId, unknown]) expect(await booleanRpc(f.fx.adminClient,
+    "story_16_3_file_work_order_sources_readable", { p_tenant_id: f.fx.base.tenantA.id, p_file_id: fileId })).toBe(false);
+  for (const name of [ownObject.object_path, `${f.fx.base.tenantA.id}/${unknown}/unknown.pdf`]) expect(await booleanRpc(f.fx.montorClient,
+    "story_16_3_work_order_storage_readable", { p_bucket_id: "tenant-files", p_name: name })).toBe(false);
+  expect(await booleanRpc(f.fx.adminClient, "story_16_3_file_work_order_sources_readable", { p_tenant_id: f.fx.base.tenantA.id, p_file_id: own.fileId })).toBe(true);
+  expect(await booleanRpc(f.fx.adminClient, "story_16_3_work_order_storage_readable", { p_bucket_id: "tenant-files", p_name: ownObject.object_path })).toBe(true);
+  expect(await booleanRpc(f.fx.montorClient, "story_16_3_work_order_storage_readable", { p_bucket_id: "tenant-files", p_name: ownObject.object_path })).toBe(false);
 }));

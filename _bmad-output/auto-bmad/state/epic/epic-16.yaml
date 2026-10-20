@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-16-jobs
 status: in-progress
-updated_at: "2026-10-20T09:23:55Z"
+updated_at: "2026-10-20T10:26:43Z"
 started_at: "2026-10-15T08:50:46Z"
 completed_at: null
 active_seconds: 23336
@@ -68,7 +68,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [0586972a, d6a310be, f610bcbd, 11bf2721, bce1436b, 5d5186e1cfb3e045db9ef101e1c6cf6b50133040, faeffcf6513d5d1703ae9d5a6271b01533899d4e]
+commits: [0586972a, d6a310be, f610bcbd, 11bf2721, bce1436b, 5d5186e1cfb3e045db9ef101e1c6cf6b50133040, faeffcf6513d5d1703ae9d5a6271b01533899d4e, f3cf100709b92637270304e78a4356082b89e9a6, 1e8632db1ad051d117c38d2e24ed5d62fc2c8a57]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -108,6 +108,8 @@ overrides:
   design_evidence: "2026-10-15 direct human standing decision: no legacy URL reference/use/evidence; use existing design system/accessibility and maintainable headless defaults for missing UX rules. Zero legacy observations; domain/state/validation/actions/semantic models separated from replaceable usable UI/flow."
   story16_2_owner_decision: "2026-10-19: verified direct human answer in recovery task 01a153e5-e143-7d61-b8c7-77b61e334730, turn 01a1557e-e736-71f1-a3fb-a5041dfa80db. Approved zero-or-one Arbetsledare per job; admins/Projektledare appoint/replace; lead manages ordinary crew and planned start/end dates on own job. No leadership delegation, full-card/lifecycle/CRM or independent protected permission expansion."
   story16_3_owner_decision: "2026-10-20 direct human answers verified in Coordinator task 01a1160d-b5b1-7623-a8e8-54ef3dc537ed, turn 01a15885-1599-7d52-80e9-e95058a10198: Admin/Projektledare plus current designated Arbetsledare of the parent job create/edit/assign/change work-order status; eligible parent-job members as assignees. Created->In progress->Done; Created/In progress->Cancelled; only Admin/PL reopen Done->In progress or Cancelled->Created. Ordinary members/assignees gain no additional mutation right. Work orders receive their OWN planned start/end dates, supporting meaningful same-parent work-order dependencies; do not adopt old parent-date proxy or same-parent rejection. Existing money, file and parent-job lifecycle checks remain separate."
+  preview_readback_2026_10_20: "Read-only Vercel API confirmed Enhancior/kopplas prj_QYRxEeUBlCStlPL0YZd72y8245rg previewDeploymentsDisabled=true and commandForIgnoringBuildStep=exit 0. No settings changed. gitProviderOptions.createDeployments=enabled; production/main must be checked separately before any merge; none authorized."
+  story16_3_reviewed_checkpoint: "Reviewed59-file checkpoint; inventory686cf60cf3a87b6c1c7f160799dc3f9f85859d176f1f692ff9bb52e0b7ddb8b5; actual6layerRound1+targetedHighPASS/reuse089A561B3618439F06724976D7C3E9377406A100EDEBB8AA2A33C75AD94B2605. Required DB/RLS/recovery/browser runtime pending; development/done/delivery unclaimed."
 constraints:
   - "Use only owned E16 resources; E15 scheduling/time/diagnostic resources remain excluded."
   - "Each later story requires its approved plan, manifest compliance and precise path claims."

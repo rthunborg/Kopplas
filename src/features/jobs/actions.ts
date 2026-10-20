@@ -236,3 +236,37 @@ export async function refetchJobMembersAction(jobId: string): Promise<MemberActi
   try { return {ok: true, projection: await readJobMembers(undefined, jobId)}; }
   catch { return {ok: false, code: "SERVER_ERROR", message: "Uppgifterna kunde inte hämtas. Försök igen."}; }
 }
+
+import { createWorkOrder, updateWorkOrder, setWorkOrderAssignees, setWorkOrderStatus,
+  setWorkOrderDependencies, setJobWorkOrderDependencies } from "@/server/commands/jobs/work-orders";
+import { readJobWorkOrders, type JobWorkOrdersProjection } from "@/server/read-models/job-work-orders";
+
+type WorkOrderActionResult = {ok: true; projection: JobWorkOrdersProjection; workOrderId?: string}
+  | {ok: false; code: string; message: string};
+/** Fixed action bindings; the checked command and SQL resolve current authority. */
+async function workOrderAction(command: typeof createWorkOrder | typeof updateWorkOrder | typeof setWorkOrderAssignees
+  | typeof setWorkOrderStatus | typeof setWorkOrderDependencies | typeof setJobWorkOrderDependencies,
+  input: Record<string, unknown>): Promise<WorkOrderActionResult> {
+  try {
+    const client = await createSupabaseServerClient();
+    const result = await runCommand(command as import("@/server/commands/envelope").Command<unknown, {jobId: string; workOrderId?: string}>, {
+      client: client as unknown as CommandDbClient, input,
+      correlationId: typeof input.commandId === "string" ? input.commandId : undefined,
+    });
+    if (!result.ok) return {ok: false, code: result.code, message: result.code === "PREVIEW_STALE"
+      ? "Jobbet har ändrats. Hämta aktuella uppgifter och kontrollera ändringen innan du försöker igen."
+      : result.message || COMMAND_MESSAGES[result.code]};
+    revalidatePath("/jobs"); revalidatePath(`/jobs/${result.data.jobId}`);
+    return {ok: true, projection: await readJobWorkOrders(client, result.data.jobId), workOrderId: result.data.workOrderId};
+  } catch { return {ok: false, code: "SERVER_ERROR", message: "Ändringen är inte bekräftad sparad. Dina uppgifter finns kvar."}; }
+}
+export async function createWorkOrderAction(input: Record<string, unknown>): Promise<WorkOrderActionResult> { return workOrderAction(createWorkOrder, input); }
+export async function updateWorkOrderAction(input: Record<string, unknown>): Promise<WorkOrderActionResult> { return workOrderAction(updateWorkOrder, input); }
+export async function setWorkOrderAssigneesAction(input: Record<string, unknown>): Promise<WorkOrderActionResult> { return workOrderAction(setWorkOrderAssignees, input); }
+export async function setWorkOrderStatusAction(input: Record<string, unknown>): Promise<WorkOrderActionResult> { return workOrderAction(setWorkOrderStatus, input); }
+export async function setWorkOrderDependenciesAction(input: Record<string, unknown>): Promise<WorkOrderActionResult> { return workOrderAction(setWorkOrderDependencies, input); }
+export async function setJobWorkOrderDependenciesAction(input: Record<string, unknown>): Promise<WorkOrderActionResult> { return workOrderAction(setJobWorkOrderDependencies, input); }
+export async function refetchJobWorkOrdersAction(jobId: string): Promise<WorkOrderActionResult> {
+  try { return {ok: true, projection: await readJobWorkOrders(undefined, jobId)}; }
+  catch { return {ok: false, code: "SERVER_ERROR", message: "Arbetsorder kunde inte hämtas. Försök igen."}; }
+}

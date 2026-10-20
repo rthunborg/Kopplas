@@ -29,6 +29,7 @@ const CUSTOMER = uid(4);
 const FACILITY = uid(5);
 const QUOTE = uid(6);
 const VERSION = uid(7);
+const JOB = uid(9);
 const CLIENT = { authority: "request-anon-rls" };
 const ARCHIVED = "2030-01-01T00:00:00.000Z";
 const SOURCES = {
@@ -39,6 +40,7 @@ const SOURCES = {
   quote_version: { module: "quotes", table: "quote_versions", capability: "Quotes.View", purpose: "quote_attachment_snapshot" },
   quote_acceptance: { module: "quotes", table: "quote_acceptances", capability: "Quotes.View", purpose: "acceptance_evidence" },
   job: { module: "jobs", table: "jobs", capability: "Jobs.ViewAll", purpose: "job_evidence" },
+  work_order: { module: "jobs", table: "work_orders", capability: "Jobs.ViewAll", purpose: "job_evidence" },
 } as const;
 type Owner = keyof typeof SOURCES;
 async function api(): Promise<SourceApi> {
@@ -63,13 +65,14 @@ function fixtureRows(owner: Owner): Map<string, Row> {
     id: OWNER, tenant_id: TENANT, archived_at: null,
     display_name: "Synthetic customer", name: "Synthetic " + owner,
     title: "Synthetic " + owner, status: "draft",
-    customer_id: CUSTOMER, facility_id: FACILITY,
+    customer_id: CUSTOMER, facility_id: FACILITY, job_id: JOB,
     quote_id: QUOTE, quote_version_id: VERSION, version_no: 1,
   };
   return new Map([
     [SOURCES[owner].table + ":" + OWNER, row],
     ["customers:" + CUSTOMER, { id: CUSTOMER, tenant_id: TENANT, archived_at: null, display_name: "Parent safe label" }],
     ["facilities:" + FACILITY, { id: FACILITY, tenant_id: TENANT, archived_at: null, customer_id: CUSTOMER, name: "Parent facility" }],
+    ["jobs:" + JOB, { id: JOB, tenant_id: TENANT, archived_at: null, title: "Parent job" }],
     ["quotes:" + QUOTE, { id: QUOTE, tenant_id: TENANT, archived_at: null, quote_number: "SYN-1" }],
     ["quote_versions:" + VERSION, { id: VERSION, tenant_id: TENANT, archived_at: null, quote_id: QUOTE, version_no: 1 }],
     ["quote_version_attachments:" + OWNER, { tenant_id: TENANT, quote_version_id: OWNER, file_id: FILE }],
@@ -136,6 +139,7 @@ for (const owner of Object.keys(SOURCES) as Owner[]) {
   }
 }
 for (const [owner, parentTable, parentId] of [
+  ["work_order", "jobs", JOB],
   ["facility", "customers", CUSTOMER], ["contact", "customers", CUSTOMER],
   ["contact", "facilities", FACILITY], ["quote_version", "quotes", QUOTE],
   ["quote_acceptance", "quote_versions", VERSION], ["quote_acceptance", "quotes", QUOTE],
@@ -214,6 +218,7 @@ test("[P0] 20-P0-01 transient source lookup fault is retryable SERVER_ERROR with
 
 
 for (const [owner, parentTable, parentId] of [
+  ["work_order", "jobs", JOB],
   ["facility", "customers", CUSTOMER], ["contact", "customers", CUSTOMER], ["contact", "facilities", FACILITY],
   ["quote_version", "quotes", QUOTE], ["quote_acceptance", "quote_versions", VERSION], ["quote_acceptance", "quotes", QUOTE],
 ] as const) {
@@ -259,4 +264,30 @@ test("[P0] snapshot requires exact immutable file/version association", async ()
   const rows = fixtureRows("quote_version");
   rows.set("quote_version_attachments:" + OWNER, { tenant_id: TENANT, quote_version_id: OWNER, file_id: uid(99) });
   denied(await (await api()).readDocumentSource(candidate("quote_version", "quote_attachment_snapshot"), deps(rows)));
+});
+
+for (const fault of ["foreign-child", "foreign-parent", "wrong-parent", "wrong-child", "missing-parent-id"]) {
+  test("[16.3][AC05] work-order file source rejects incoherent current ancestry: " + fault, async () => {
+    const rows = fixtureRows("work_order");
+    if (fault === "foreign-child") rows.get("work_orders:" + OWNER)!.tenant_id = uid(99);
+    if (fault === "foreign-parent") rows.get("jobs:" + JOB)!.tenant_id = uid(99);
+    if (fault === "wrong-parent") rows.get("jobs:" + JOB)!.id = uid(99);
+    if (fault === "wrong-child") rows.get("work_orders:" + OWNER)!.id = uid(99);
+    if (fault === "missing-parent-id") delete rows.get("work_orders:" + OWNER)!.job_id;
+    denied(await (await api()).readDocumentSource(candidate("work_order", "job_evidence"), deps(rows)));
+  });
+}
+for (const roles of [["arbetsledare"], ["montor"], ["saljare"], []]) {
+  test("[16.3][AC05] work-order visibility never substitutes for independent Files/Documents: " + JSON.stringify(roles), async () => {
+    denied(await (await api()).readDocumentSource(candidate("work_order", "job_evidence"), deps(fixtureRows("work_order"), roles)));
+  });
+}
+test("[16.3][AC05] work-order parent lookup fault remains retryable and leaks no ancestry", async () => {
+  const options = deps(fixtureRows("work_order"));
+  denied(await (await api()).readDocumentSource(candidate("work_order", "job_evidence"), {
+    ...options, loadRow: async (...args) => {
+      if (args[0] === "jobs") throw new Error("private parent fault");
+      return options.loadRow(...args);
+    },
+  }), "SERVER_ERROR");
 });

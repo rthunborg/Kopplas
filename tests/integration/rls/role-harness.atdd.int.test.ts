@@ -150,8 +150,12 @@ async function seedEveryTenantTable(tenantId: string, actorId: string): Promise<
   const [jobWindow] = await adminQuery<{id:string}>("insert into public.job_access_windows(tenant_id,job_id,starts_at,ends_at) values($1,$2,'2026-10-12T06:00:00Z','2026-10-12T07:00:00Z') returning id", [tenantId,job]);
   const [{id: prerequisite}] = await adminQuery<{id:string}>("insert into public.jobs(tenant_id,customer_id,title) values($1,$2,'Prerequisite') returning id", [tenantId,customer]);
   const [jobDependency] = await adminQuery<{id:string}>("insert into public.job_dependencies(tenant_id,job_id,prerequisite_job_id) values($1,$2,$3) returning id", [tenantId,job,prerequisite]);
+  const [{id: workOrder}] = await adminQuery<{id:string}>("insert into public.work_orders(tenant_id,job_id,title) values($1,$2,'Harness work order') returning id",[tenantId,job]);
+  const [{id: workOrderAssignee}] = await adminQuery<{id:string}>("insert into public.work_order_assignees(tenant_id,job_id,work_order_id,person_profile_id) values($1,$2,$3,$4) returning id",[tenantId,job,workOrder,personProfile]);
+  const [{id: workOrderDependency}] = await adminQuery<{id:string}>("insert into public.work_order_dependencies(tenant_id,dependent_job_id,dependent_work_order_id,prerequisite_job_id) values($1,$2,$3,$4) returning id",[tenantId,job,workOrder,prerequisite]);
   return {
     ...bookingRows,
+    work_orders: workOrder, work_order_assignees: workOrderAssignee, work_order_dependencies: workOrderDependency,
     tenants: tenantId, tenant_memberships: membership, membership_roles: membershipRole,
     membership_admin_operations: membershipOperation, audit_events: auditEvent, job_runs: jobRun,
     notifications: notification, notification_preferences: notificationPreference,
@@ -283,3 +287,4 @@ test("[P0] 16.2 existing role fixture lead exception reaches only its job and ch
     await adminQuery("delete from public.job_members where tenant_id=$1 and job_id=$2 and person_profile_id=$3", [fixture.base.tenantA.id, ownTableIds.jobs, profile.id]);
   }
 });
+

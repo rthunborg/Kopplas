@@ -100,6 +100,12 @@ export const COMMAND_CAPABILITIES: Readonly<Record<string, CommandCapability>> =
   "job.member.remove": { module: "jobs", capability: "Jobs.ManageCrew" },
   "job.lead.set": { module: "jobs", capability: "Jobs.SetLead" },
   "job.plan_dates.update": { module: "jobs", capability: "Jobs.UpdatePlannedDates" },
+  "work_order.create": { module: "jobs", capability: "Jobs.WorkOrders.Edit" },
+  "work_order.update": { module: "jobs", capability: "Jobs.WorkOrders.Edit" },
+  "work_order.assignees.set": { module: "jobs", capability: "Jobs.WorkOrders.Edit" },
+  "work_order.status.set": { module: "jobs", capability: "Jobs.WorkOrders.Edit" },
+  "work_order.dependencies.set": { module: "jobs", capability: "Jobs.WorkOrders.Edit" },
+  "job.work_order_dependencies.set": { module: "jobs", capability: "Jobs.Edit" },
   "document.archive": { module: "files", capability: "Files.Edit" },
   "document.restore": { module: "files", capability: "Files.Edit" },
   "document.signedAccess.create": { module: "documents", capability: "Documents.View" },
@@ -341,3 +347,4 @@ async function verifyOwnership<I, R>(
   }
   return { ok: true };
 }
+

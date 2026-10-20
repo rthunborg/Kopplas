@@ -48,6 +48,7 @@ const OWNER_CATEGORY_LABELS: Readonly<Record<string, string>> = {
   quote_version: "Offert",
   quote_acceptance: "Acceptans",
   job: "Jobb",
+  work_order: "Arbetsorder",
 };
 
 /** The seven Phase A owner categories, in display order — the ONLY grouping/filter options (R-816). */
@@ -59,6 +60,7 @@ export const OWNER_CATEGORY_ORDER: readonly string[] = [
   "quote_version",
   "quote_acceptance",
   "job",
+  "work_order",
 ];
 
 /**

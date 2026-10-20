@@ -46,6 +46,7 @@ export function JobDetailView({
   detail,
   filesPanel,
   bookingPanel,
+  workOrdersPanel,
   cardOptions,
   members,
   membersError,
@@ -54,6 +55,7 @@ export function JobDetailView({
   /** The Story 8.2 entity file panel (job_evidence upload + list), rendered when provided. */
   readonly filesPanel?: ReactNode;
   readonly bookingPanel?: ReactNode;
+  readonly workOrdersPanel?: ReactNode;
   readonly cardOptions?: JobCardOptions;
   readonly members?: JobMembersProjection;
   readonly membersError?: string;
@@ -109,6 +111,7 @@ export function JobDetailView({
       {membersError && <section role="alert" data-testid="job-members-read-failed" className="rounded-lg border border-red-300 bg-red-50 p-4 text-sm text-red-800">
         <p>{membersError}</p><form action={`/jobs/${detail.id}`} method="get"><button type="submit" className="mt-3 min-h-11 underline">Hämta medlemmar igen</button></form>
       </section>}
+      {workOrdersPanel}
       {bookingPanel}
       {!protectedMoney && <p role="note" data-testid="job-economy-entitlement" className="text-sm text-zinc-600">Ekonomiska uppgifter är inte tillgängliga</p>}
       {detail.card && <section data-testid="job-operational-card" className="rounded-lg border border-zinc-200 bg-white p-4 text-sm">
@@ -338,3 +341,4 @@ export function JobDetailView({
     </section>
   );
 }
+

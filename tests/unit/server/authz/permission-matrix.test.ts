@@ -64,7 +64,8 @@ test("14.2 booking read/write capabilities preserve Montor own-read permission a
 
 test("[P0] 16.2 dedicated manager capabilities confer no tenant-wide lead grant", () => {
   for (const role of ["tenant_admin", "projektledare", "montor", "saljare", "ekonomi"]) {
-    for (const capability of ["Jobs.ManageCrew", "Jobs.SetLead", "Jobs.UpdatePlannedDates"])
+    for (const capability of ["Jobs.ManageCrew", "Jobs.SetLead", "Jobs.UpdatePlannedDates", "Jobs.WorkOrders.Edit"])
       assert.equal(resolveCapability({roles: [role], module: "jobs", capability}).granted, ["tenant_admin", "projektledare"].includes(role));
   }
 });
+

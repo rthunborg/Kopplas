@@ -8,14 +8,13 @@ import { describe, expect, test } from "vitest";
  */
 describe("16.3 work-order checked commands and transaction integrity", () => {
   // Activation: create/update/assignees SQL, scoped read baseline and atomic audit.
-  test.skip("[P0] 16.3-INT-001 both parent kinds preserve identity, own fields and plural eligible assignees for managers/current leads", async () => {
+  test.each(["memberOrder", "assigneeProject"] as const)("[P0] 16.3-INT-001 parent %s preserves identity, own fields and plural eligible assignees for managers/current leads", async (kind) => {
     const h = await import("../../support/jobs-depth-atdd");
     const m = await import("../../support/job-members-atdd");
     const w = await import("../../support/work-orders-atdd");
-    const t = await import("../../factories/tenants");
     const { adminQuery } = await import("../../factories/admin-sql");
     await h.withJobsDepthFixture(async (f) => {
-      for (const parent of [f.jobs.memberOrder, f.jobs.assigneeProject]) {
+      { const parent = f.jobs[kind];
         await m.seedMember(f, parent.id, f.fx.ownProfile.id, true);
         await m.seedMember(f, parent.id, f.fx.coworkerProfile.id);
         const baseline = await w.workOrdersSnapshot(f);
@@ -49,10 +48,21 @@ describe("16.3 work-order checked commands and transaction integrity", () => {
         const after = await w.workOrdersSnapshot(f);
         for (const key of ["jobs", "bookings", "assignees", "conflicts", "dependencies", "tenantMemberships", "tenantRoles"] as const) expect(after[key]).toEqual(baseline[key]);
       }
+
+    });
+  });
+
+
+  test.each(["tenant_admin", "projektledare"] as const)("[P0] 16.3-INT-001 independent %s authority does not require an optional profile", async (role) => {
+    const h = await import("../../support/jobs-depth-atdd");
+    const w = await import("../../support/work-orders-atdd");
+    const t = await import("../../factories/tenants");
+    const { adminQuery } = await import("../../factories/admin-sql");
+    await h.withJobsDepthFixture(async (f) => {
       // Optional resource profile is not a prerequisite for independent manager authority.
       const user = f.fx.base.orphanUser;
       await t.adminInsertMembership({ tenant_id: f.fx.base.tenantA.id, user_id: user.id, role: "tenant_admin", status: "active" });
-      for (const role of ["tenant_admin", "projektledare"] as const) {
+      {
         await adminQuery("update public.tenant_memberships set role=$1 where tenant_id=$2 and user_id=$3", [role, f.fx.base.tenantA.id, user.id]);
         const client = await t.makeAuthedServerClient(user);
         expect(await adminQuery("select p.id from public.person_profiles p join public.tenant_memberships m on m.id=p.membership_id where m.user_id=$1", [user.id])).toEqual([]);
@@ -66,7 +76,7 @@ describe("16.3 work-order checked commands and transaction integrity", () => {
   });
 
   // Activation: separate status graph in SQL; create/update closed payloads, no parent lifecycle side effects.
-  test.skip("[P0] 16.3-INT-002 exact lifecycle, manager-only reopen, terminal field edits and no status smuggling", async () => {
+  test.each([{path: ["in_progress", "done"]}, {path: ["cancelled"]}, {path: ["in_progress", "cancelled"]}] as const)("[P0] 16.3-INT-002 lifecycle $path enforces manager-only reopen and terminal field edits", async ({path}) => {
     const h = await import("../../support/jobs-depth-atdd");
     const m = await import("../../support/job-members-atdd");
     const w = await import("../../support/work-orders-atdd");
@@ -74,7 +84,7 @@ describe("16.3 work-order checked commands and transaction integrity", () => {
       const job = f.jobs.memberOrder.id;
       await m.seedMember(f, job, f.fx.ownProfile.id, true);
       const baseline = await w.workOrdersSnapshot(f);
-      for (const path of [["in_progress", "done"], ["cancelled"], ["in_progress", "cancelled"]] as const) {
+      {
         const id = await w.createWorkOrder(f.fx.montorClient, job);
         for (const status of path) expect((await w.workOrderCommand("status", f.fx.montorClient,
           await w.workOrderInput(f.fx.montorClient, job, { workOrderId: id, status }))).ok).toBe(true);
@@ -94,6 +104,16 @@ describe("16.3 work-order checked commands and transaction integrity", () => {
           { workOrderId: id, status: reopen }))).ok).toBe(true);
         expect(await w.workOrdersSnapshot(f)).toEqual(noOp); // unchanged state retry has no new outcome/audit
       }
+      expect((await w.workOrdersSnapshot(f)).jobs).toEqual(baseline.jobs);
+      expect((await w.workOrdersSnapshot(f)).bookings).toEqual(baseline.bookings);
+    });
+  });
+
+  test("[P0] 16.3-INT-002 create/update cannot smuggle status or skip lifecycle edges", async () => {
+    const h = await import("../../support/jobs-depth-atdd");
+    const w = await import("../../support/work-orders-atdd");
+    await h.withJobsDepthFixture(async (f) => {
+      const job = f.jobs.memberOrder.id;
       const id = await w.createWorkOrder(f.fx.adminClient, job);
       const beforeInvalid = await w.workOrdersSnapshot(f);
       for (const status of ["done", "completed", "draft"] as const) {
@@ -107,13 +127,12 @@ describe("16.3 work-order checked commands and transaction integrity", () => {
         expect((await w.checkedWorkOrderCall(operation, f.fx.adminClient, f.fx.base.tenantA.id, f.fx.base.adminA.id, input)).error).not.toBeNull();
       }
       expect(await w.workOrdersSnapshot(f)).toEqual(beforeInvalid);
-      expect((await w.workOrdersSnapshot(f)).jobs).toEqual(baseline.jobs);
-      expect((await w.workOrdersSnapshot(f)).bookings).toEqual(baseline.bookings);
+
     });
   });
 
   // Activation: real typed-edge storage/read projection and lossless old/new dependency writes.
-  test.skip("[P0] 16.3-INT-003 all typed endpoint dates, same-parent sequencing and old/new edge retention", async () => {
+  test("[P0] 16.3-INT-003 all typed endpoint dates, same-parent sequencing and old/new edge retention", async () => {
     const h = await import("../../support/jobs-depth-atdd");
     const m = await import("../../support/job-members-atdd");
     const w = await import("../../support/work-orders-atdd");
@@ -135,7 +154,13 @@ describe("16.3 work-order checked commands and transaction integrity", () => {
         expect((await w.workOrderCommand(form.operation, f.fx.adminClient, await w.workOrderInput(f.fx.adminClient, job, {
           ...( "workOrderId" in form ? { workOrderId: form.workOrderId } : {}), prerequisites: [...form.prerequisites] }))).ok).toBe(true);
         const read = await w.readWorkOrders(f.fx.adminClient, job);
-        expect(read.dependencyWarnings.some((r) => r.state === form.expected)).toBe(true);
+        const actualDependent = {jobId: job, workOrderId: "workOrderId" in form ? form.workOrderId : null};
+        for (const prerequisite of form.prerequisites) expect(read.dependencyWarnings.find(r =>
+          r.dependent?.jobId === actualDependent.jobId && r.dependent.workOrderId === actualDependent.workOrderId
+          && r.prerequisite?.jobId === prerequisite.jobId && r.prerequisite.workOrderId === prerequisite.workOrderId))
+          .toMatchObject({state: form.expected, dependent: actualDependent, prerequisite,
+            dependentStartDate: actualDependent.workOrderId ? "2026-10-22" : "2026-10-20",
+            prerequisiteEndDate: prerequisite.workOrderId ? "2026-10-23" : "2026-10-21"});
         expect((await w.workOrdersSnapshot(f)).dependencies).toEqual(before.dependencies);
       }
       const savedNew = (await w.workOrdersSnapshot(f)).workOrderDependencies;
@@ -180,7 +205,7 @@ describe("16.3 work-order checked commands and transaction integrity", () => {
   });
 
   // Activation: durable CAS/canonical request identity and SQL current-authority replay.
-  test.skip("[P0] 16.3-INT-004 competing saves and lost replies cannot overwrite or replay changed identity/current authority", async () => {
+  test("[P0] 16.3-INT-004 competing saves and lost replies cannot overwrite or replay changed identity/current authority", async () => {
     const h = await import("../../support/jobs-depth-atdd");
     const m = await import("../../support/job-members-atdd");
     const w = await import("../../support/work-orders-atdd");
@@ -219,7 +244,7 @@ describe("16.3 work-order checked commands and transaction integrity", () => {
   });
 
   // Activation: SQL canonical calendar bounds/order and current plural-assignee validation.
-  test.skip("[P0] 16.3-INT-005 invalid dates/targets and identity substitution leave the entire write/audit unchanged", async () => {
+  test("[P0] 16.3-INT-005 invalid dates/targets and identity substitution leave the entire write/audit unchanged", async () => {
     const h = await import("../../support/jobs-depth-atdd");
     const m = await import("../../support/job-members-atdd");
     const w = await import("../../support/work-orders-atdd");
@@ -263,7 +288,7 @@ describe("16.3 work-order checked commands and transaction integrity", () => {
     "target-member-removed", "target-profile-archived", "parent-archived"] as const;
   // Activation: reuse the EXISTING observed tenant advisory barrier. Each case
   // owns one fixture/budget and snapshots the revoker's uncommitted intended state.
-  test.skip.each(changes)("[P0] 16.3-INT-006 checked SQL rechecks locked current facts: %s", async (change) => {
+  test.each(changes)("[P0] 16.3-INT-006 checked SQL rechecks locked current facts: %s", async (change) => {
     const h = await import("../../support/jobs-depth-atdd");
     const m = await import("../../support/job-members-atdd");
     const j = await import("../../support/job-booking-facts-atdd");
@@ -307,7 +332,7 @@ describe("16.3 work-order checked commands and transaction integrity", () => {
   });
 
   // Activation: preinstalled correlation-scoped audit fault infrastructure and actual RPC observation.
-  test.skip("[P0] 16.3-INT-007 audit failure rolls assignments/dependencies/child/outcome back before an exact retry", async () => {
+  test("[P0] 16.3-INT-007 audit failure rolls assignments/dependencies/child/outcome back before an exact retry", async () => {
     const h = await import("../../support/jobs-depth-atdd");
     const m = await import("../../support/job-members-atdd");
     const j = await import("../../support/job-booking-facts-atdd");
@@ -338,4 +363,98 @@ describe("16.3 work-order checked commands and transaction integrity", () => {
       }
     });
   });
+  test.each([["2026-10-23", "delay"], ["2026-10-20", "clear"], [null, "unknown"]] as const)("[P0] 16.3-INT-003 parent job endpoint compares its own dates: %s => %s", async (end, state) => {
+    const h = await import("../../support/jobs-depth-atdd"); const m = await import("../../support/job-members-atdd"); const w = await import("../../support/work-orders-atdd");
+    await h.withJobsDepthFixture(async f => {
+      const job = f.jobs.memberOrder.id;
+      expect((await m.memberCommand("dates", f.fx.adminClient, await m.memberInput(f.fx.adminClient, job, {planned_start_date: "2026-10-20", planned_end_date: "2026-10-21"}))).ok).toBe(true);
+      const prerequisite = await w.createWorkOrder(f.fx.adminClient, job, {planned_end_date: end});
+      const decoy = await w.createWorkOrder(f.fx.adminClient, job, {planned_start_date: "2026-10-01"});
+      expect((await w.workOrderCommand("dependencies", f.fx.adminClient, await w.workOrderInput(f.fx.adminClient, job, {workOrderId: decoy, prerequisites: [{jobId: job, workOrderId: prerequisite}]}))).ok).toBe(true);
+      expect((await w.workOrderCommand("jobDependencies", f.fx.adminClient, await w.workOrderInput(f.fx.adminClient, job, {prerequisites: [{jobId: job, workOrderId: prerequisite}]}))).ok).toBe(true);
+      const read = await w.readWorkOrders(f.fx.adminClient, job);
+      expect(read.dependencyWarnings.find(r => r.dependent?.jobId === job && r.dependent.workOrderId === null && r.prerequisite?.workOrderId === prerequisite))
+        .toMatchObject({state, dependent: {jobId: job, workOrderId: null}, prerequisite: {jobId: job, workOrderId: prerequisite}, dependentStartDate: "2026-10-20", prerequisiteEndDate: end});
+    });
+  });
+
+  test("[P0] 16.3-INT-008 a coherent read token never authorizes overwriting an unseen concurrent edit", async () => {
+    const h = await import("../../support/jobs-depth-atdd"); const w = await import("../../support/work-orders-atdd");
+    const {afterTenantGateWait} = await import("../../support/job-booking-facts-atdd"); const {adminSession} = await import("../../factories/admin-sql");
+    await h.withJobsDepthFixture(async f => {
+      const job = f.jobs.memberOrder.id, tenant = f.fx.base.tenantA.id, actor = f.fx.base.adminA.id;
+      const id = await w.createWorkOrder(f.fx.adminClient, job, {title: "Observed before concurrent save"});
+      const initial = await w.readWorkOrders(f.fx.adminClient, job);
+      const edit = await w.workOrderInput(f.fx.adminClient, job, {workOrderId: id, title: "Concurrent durable value"});
+      const {commandId, expectedState, jobId: ignored, workOrderId, ...payload} = edit; void ignored;
+      const read = await afterTenantGateWait(tenant, () => adminSession(async ({query}) => {
+        await query("begin");
+        try {
+          await query("select set_config('request.jwt.claim.sub',$1,true)", [actor]); await query("set local role authenticated");
+          const [result] = await query<{data: import("../../support/work-orders-atdd").WorkOrderProjection}>(
+            "select public.read_job_work_orders($1) data from (select pg_advisory_xact_lock(hashtextextended($2::text,0))) barrier",[job,tenant]);
+          return result.data;
+        } finally {await query("rollback");}
+      }), async query => {
+        await query("select set_config('request.jwt.claim.sub',$1,true)",[actor]); await query("set local role authenticated");
+        await query("select public.update_work_order_with_audit($1,$2,$3,$4,$5,$6,$7,$8)", [tenant,actor,commandId,commandId,job,workOrderId,expectedState,payload]);
+        await query("reset role");
+      });
+      expect(read.rows.find(r => r.id === id)?.title).toBe("Observed before concurrent save");
+      expect(read.expectedState).toBe(initial.expectedState);
+      const durable = await w.workOrdersSnapshot(f);
+      expect(await w.workOrderCommand("update", f.fx.adminClient, {...edit, commandId: crypto.randomUUID(), expectedState: read.expectedState, title: "Must not overwrite unseen value"})).toMatchObject({ok: false, code: "PREVIEW_STALE"});
+      expect(await w.workOrdersSnapshot(f)).toEqual(durable);
+    });
+  });
+
+  test("[P0] 16.3-INT-009 lost create outcome reconciles original identity after an intervening edit without duplicate or audit", async () => {
+    const h = await import("../../support/jobs-depth-atdd"); const m = await import("../../support/job-members-atdd"); const w = await import("../../support/work-orders-atdd"); const {adminQuery} = await import("../../factories/admin-sql");
+    await h.withJobsDepthFixture(async f => {
+      const job = f.jobs.memberOrder.id; await m.seedMember(f,job,f.fx.ownProfile.id,true);
+      const input = await w.workOrderInput(f.fx.montorClient,job,{title: "Original uncertain create"}), correlation = crypto.randomUUID();
+      const original = await w.workOrderCommand("create",f.fx.montorClient,input,correlation);
+      expect(original.ok).toBe(true); if (!original.ok || !original.data.workOrderId) throw new Error("missing real create outcome");
+      expect((await w.workOrderCommand("update",f.fx.adminClient,await w.workOrderInput(f.fx.adminClient,job,{workOrderId: original.data.workOrderId,title: "Newer durable value"}))).ok).toBe(true);
+      const durable = await w.workOrdersSnapshot(f);
+      expect((await w.checkedWorkOrderCall("create",f.fx.montorClient,f.fx.base.tenantA.id,f.fx.users.montor.id,input,correlation)).error?.code).toBe("BK409");
+      const observed = w.observeWorkOrderClient(f.fx.montorClient);
+      expect(await w.workOrderCommand("create",observed.client,input,correlation)).toEqual(original);
+      expect(observed.calls.map(c => c.name)).toContain("reconcile_work_order_create");
+      expect(await w.workOrdersSnapshot(f)).toEqual(durable);
+      expect(durable.workOrders.filter(r => r.job_id === job)).toHaveLength(1);
+      expect(w.workOrderAudit(durable,correlation)).toHaveLength(1);
+      expect(await w.workOrderCommand("create",f.fx.montorClient,{...input,title: "Changed identity"},correlation)).toMatchObject({ok:false,code:"PREVIEW_STALE"});
+      await adminQuery("update public.job_members set designation='member' where job_id=$1 and person_profile_id=$2",[job,f.fx.ownProfile.id]);
+      const revoked = await w.workOrdersSnapshot(f);
+      expect((await w.workOrderCommand("create",f.fx.montorClient,input,correlation)).ok).toBe(false);
+      expect(await w.workOrdersSnapshot(f)).toEqual(revoked);
+    });
+  });
+
+  test("[P0] 16.3-INT-010 a definitively stale first create proves no outcome before fresh explicit consent", async () => {
+    const h = await import("../../support/jobs-depth-atdd"), w = await import("../../support/work-orders-atdd");
+    await h.withJobsDepthFixture(async f => {
+      const job = f.jobs.memberOrder.id;
+      const original = await w.workOrderInput(f.fx.adminClient,job,{title:"Retained never-committed draft"}), correlation=crypto.randomUUID();
+      const other = await w.createWorkOrder(f.fx.adminClient,job,{title:"Concurrent child before first submission"});
+      const durable = await w.workOrdersSnapshot(f);
+      expect(await w.workOrderCommand("create",f.fx.adminClient,original,correlation)).toMatchObject({ok:false,code:"COMMAND_CONFLICT"});
+      expect(await w.workOrdersSnapshot(f)).toEqual(durable);
+      const {commandId,jobId,expectedState,...payload}=original;
+      const absent=await f.fx.adminClient.rpc("reconcile_work_order_create",{p_tenant_id:f.fx.base.tenantA.id,p_actor_user_id:f.fx.base.adminA.id,
+        p_command_id:commandId,p_correlation_id:correlation,p_job_id:jobId,p_work_order_id:null,p_expected_state:expectedState,p_payload:payload});
+      expect(absent.error?.code).toBe("BK404");
+      const consent=await w.workOrderInput(f.fx.adminClient,job,{title:original.title});
+      expect(consent.commandId).not.toBe(commandId); expect(consent.expectedState).not.toBe(expectedState);
+      const committed=await w.workOrderCommand("create",f.fx.adminClient,consent,consent.commandId);
+      expect(committed.ok).toBe(true); if (!committed.ok || !committed.data.workOrderId) throw new Error("missing consented child");
+      const after=await w.workOrdersSnapshot(f);
+      expect(after.workOrders.filter(r=>r.job_id===job).map(r=>r.id).sort()).toEqual([other,committed.data.workOrderId].sort());
+      expect(after.workOrders.filter(r=>r.title===original.title)).toHaveLength(1);
+      expect(w.workOrderAudit(after,correlation)).toHaveLength(0);
+      expect(w.workOrderAudit(after,consent.commandId)).toHaveLength(1);
+    });
+  });
+
 });

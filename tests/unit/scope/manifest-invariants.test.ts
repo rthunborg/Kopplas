@@ -46,7 +46,7 @@ const PINNED_OWNER_TYPES = [
   "calculation",
   "quote_version",
   "quote_acceptance",
-  "job",
+  "job", "work_order",
 ];
 const PINNED_DENY_TOKENS = ["fortnox", "supplier", "asset", "rental", "hr", "dou", "upphandling"];
 const sortedUnique = (xs: string[]) => [...new Set(xs)].sort();
@@ -127,7 +127,7 @@ test("10.1-UNIT-INV-06: isForbiddenDeferredCategory is case-insensitive over the
 });
 
 test("10.1-UNIT-INV-07: isForbiddenDeferredCategory rejects active Phase-A categories and unknown tokens", () => {
-  for (const allowed of ["customer", "job", "calculation", "quote_version", "", "assetregistry"]) {
+  for (const allowed of ["customer", "job", "work_order", "calculation", "quote_version", "", "assetregistry"]) {
     assert.equal(
       isForbiddenDeferredCategory(allowed),
       false,
@@ -174,3 +174,4 @@ test("[P0] 12.1-STATIC-001 provisioning activates only as a platform module and 
     );
   }
 });
+

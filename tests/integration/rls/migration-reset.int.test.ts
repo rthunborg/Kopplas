@@ -348,12 +348,15 @@ describe("Migration reset green — tenant_foundation objects present (AC1 / R-0
       "facilities.UPDATE",
       "file_links.INSERT",
       "file_links.SELECT",
+      "file_links.SELECT",
       "file_links.UPDATE",
       "files.INSERT",
+      "files.SELECT",
       "files.SELECT",
       "files.UPDATE",
       "job_access_windows.SELECT",
       "job_dependencies.SELECT",
+      "work_orders.SELECT", "work_order_assignees.SELECT", "work_order_dependencies.SELECT",
       "job_events.INSERT",
       "job_events.SELECT",
       "job_events.UPDATE",
@@ -414,6 +417,9 @@ describe("Migration reset green — tenant_foundation objects present (AC1 / R-0
       "tenant_provisioning_requests.ALL",
       "tenants.ALL",
       "tenants.SELECT",
+      "work_order_assignees.SELECT",
+      "work_order_dependencies.SELECT",
+      "work_orders.SELECT",
       "work_roles.INSERT",
       "work_roles.SELECT",
       "work_roles.UPDATE",
@@ -480,8 +486,6 @@ describe("Migration reset green — tenant_foundation objects present (AC1 / R-0
       "calculations",
       "calculation_sections",
       "calculation_rows",
-      "files",
-      "file_links",
       "tenant_counters",
       "quotes",
       "quote_versions",
@@ -500,8 +504,10 @@ describe("Migration reset green — tenant_foundation objects present (AC1 / R-0
         "UPDATE",
       ]);
     }
+    // New restrictive SELECT policies bind work-order sources to their current parent.
+    for (const t of ["files", "file_links"]) expect((cmdsByTable.get(t) ?? []).sort()).toEqual(["INSERT", "SELECT", "SELECT", "UPDATE"]);
     // Resource rows are read through RLS; audited commands are their only mutation surface.
-    for (const t of ["person_profiles", "person_work_hours", "tenant_calendar_days", "bookings", "booking_assignees", "booking_conflicts", "job_members", "job_required_work_roles", "job_access_windows", "job_dependencies"]) {
+    for (const t of ["person_profiles", "person_work_hours", "tenant_calendar_days", "bookings", "booking_assignees", "booking_conflicts", "job_members", "job_required_work_roles", "job_access_windows", "job_dependencies", "work_orders", "work_order_assignees", "work_order_dependencies"]) {
       expect((cmdsByTable.get(t) ?? []).sort()).toEqual(["SELECT"]);
     }
 
@@ -697,3 +703,5 @@ it("[P0] 16.2 migration inventory retains SELECT-only members and exact checked/
 afterAll(async () => {
   await closeAdminPool();
 });
+
+
