@@ -460,3 +460,21 @@ existing AC, recorded so it is not re-triaged a third time.
   summary: Release-validation only: Manual keyboard/phone/desktop walkthroughs and presentation/usability polish beyond the essential connected flow
   evidence: Classification: release validation only; not a functional/security acceptance gap. Scope: Manual keyboard/phone/desktop walkthroughs and presentation/usability polish beyond the essential connected flow Owner: Kopplas release-validation coordinator; root owns deferred-ledger integration Status: deferred Evidence: Manual release walkthroughs and polish were not executed in this author run; no functional, authorization, tenant-isolation, transaction or Storage requirement is deferred. Next action: Before release readiness, perform the manual responsive/keyboard walkthrough and polish review, attach evidence and resolve or explicitly disposition release issues in the root-owned ledger. Mirrors the delivery record for supported root-owned Phase 7 harvest; required development checks are not deferred.
   location: _bmad-output/auto-bmad/delivery/16-3-arbetsorder.json#deferred_release_validation[2]
+
+## Deferred from: build-auto review of 16-4-projekt-upgrade-and-job-card-semantics (2026-10-20)
+
+- source_spec: `spec-16-4-projekt-upgrade-and-job-card-semantics-2.md`
+  summary: Release-only exhaustive browser matrix beyond the seven essential Story16.4 journeys: additional role, viewport and interaction combinations for upgrade/full-card/booking consumers.
+  evidence: Status: deferred. Owner: Epic16 release validation owner (root). Required exact-head essential smoke passed all seven new and 21 existing journeys; exhaustive release_validation dispatch was false and this breadth was not executed. No functional/security acceptance is deferred. Next action: At the Epic16 release checkpoint, run the owned optional release-validation browser matrix and record its exact-head results.
+  location: _bmad-output/auto-bmad/delivery/16-4-projekt-upgrade-and-job-card-semantics.json#/deferred_release_validation/0
+  severity: low
+- source_spec: `spec-16-4-projekt-upgrade-and-job-card-semantics-2.md`
+  summary: Release-only screenshot comparison and visual review of full-card, upgrade confirmation and booking consumer presentation across release viewports.
+  evidence: Status: deferred. Owner: Epic16 release validation owner (root). Functional production browser smoke passed; exhaustive screenshots/visual comparison were not executed. Existing design-system presentation is retained. Next action: Capture the release-state screenshots, compare the approved design-system layouts and record visual findings and fixes in release validation.
+  location: _bmad-output/auto-bmad/delivery/16-4-projekt-upgrade-and-job-card-semantics.json#/deferred_release_validation/1
+  severity: low
+- source_spec: `spec-16-4-projekt-upgrade-and-job-card-semantics-2.md`
+  summary: Release-only manual walkthrough and presentation polish for the completed card/upgrade/booking flows.
+  evidence: Status: deferred. Owner: Epic16 release validation owner (root). Automated required persistence, authority, retry and conservation journeys passed; manual release walkthrough/polish was not executed. Consequential functional/security defects remain development requirements. Next action: Perform the Epic16 release walkthrough, resolve recorded presentation-polish findings, and attach the manual evidence before release readiness.
+  location: _bmad-output/auto-bmad/delivery/16-4-projekt-upgrade-and-job-card-semantics.json#/deferred_release_validation/2
+  severity: low

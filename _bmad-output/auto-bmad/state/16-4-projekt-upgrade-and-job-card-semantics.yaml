@@ -8,10 +8,10 @@ story_source: sprint
 spec_folder: null
 story_id: null
 branch: codex/epic-16-jobs
-status: in-progress
-updated_at: "2026-10-20T15:40:27Z"
+status: done
+updated_at: "2026-10-20T15:41:02Z"
 started_at: "2026-10-20T11:20:42Z"
-completed_at: null
+completed_at: "2026-10-20T15:41:02Z"
 active_seconds: 516
 timing_anchor: 1792498130
 is_first_in_epic: false
@@ -39,7 +39,7 @@ tea_selected: [atdd, automate]
 tea_rationale: One-way transactional upgrade with event/audit writes and DB-enforced type constraints
 epic_story_count: 5
 stories_after_in_epic: 1
-completed_phases: [0, 1, 3, 4, 5, 6]
+completed_phases: [0, 1, 3, 4, 5, 6, 7]
 spec_path: "C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/_bmad-output/implementation-artifacts/spec-16-4-projekt-upgrade-and-job-card-semantics-2.md"
 spec_approved: true
 build:
@@ -50,7 +50,7 @@ build:
   deferred_count: 3
   warnings: [oversized, multiple-goals]
 followup_passes: 0
-hitl_halt: null
+hitl_halt: "auto-continued (epic — no halt)"
 review_unverified: false
 story_trace: null
 legacy_review_resume: false
@@ -59,7 +59,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [2d002970fcb112db8d480068443a0cce2577bd5b, 2920b920c0ff19122051f7ef987bc222331fb94a, ebd03a4e4c5226a2b3926bcdcbd2c2a29d18e776, dd7e54d0, 6260c5a2, 643274eb, 4b7d14c8, 0e382e96, 9d4584f7, 686c0035]
+commits: [2d002970fcb112db8d480068443a0cce2577bd5b, 2920b920c0ff19122051f7ef987bc222331fb94a, ebd03a4e4c5226a2b3926bcdcbd2c2a29d18e776, dd7e54d0, 6260c5a2, 643274eb, 4b7d14c8, 0e382e96, 9d4584f7, 686c0035, a42f3c6a]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -83,7 +83,10 @@ merge_method: null
 merge_commit: null
 branch_deleted: false
 open_questions: []
-deferred_work: []
+deferred_work:
+  - "Release-only exhaustive browser matrix beyond the seven essential Story16.4 journeys: additional role, viewport and interaction combinations for upgrade/full-card/booking consumers. Owner/evidence/next action: Status: deferred. Owner: Epic16 release validation owner (root). Required exact-head essential smoke passed all seven new and 21 existing journeys; exhaustive release_validation dispatch was false and this breadth was not executed. No functional/security acceptance is deferred. Next action: At the Epic16 release checkpoint, run the owned optional release-validation browser matrix and record its exact-head results. Record: _bmad-output/auto-bmad/delivery/16-4-projekt-upgrade-and-job-card-semantics.json#/deferred_release_validation/0"
+  - "Release-only screenshot comparison and visual review of full-card, upgrade confirmation and booking consumer presentation across release viewports. Owner/evidence/next action: Status: deferred. Owner: Epic16 release validation owner (root). Functional production browser smoke passed; exhaustive screenshots/visual comparison were not executed. Existing design-system presentation is retained. Next action: Capture the release-state screenshots, compare the approved design-system layouts and record visual findings and fixes in release validation. Record: _bmad-output/auto-bmad/delivery/16-4-projekt-upgrade-and-job-card-semantics.json#/deferred_release_validation/1"
+  - "Release-only manual walkthrough and presentation polish for the completed card/upgrade/booking flows. Owner/evidence/next action: Status: deferred. Owner: Epic16 release validation owner (root). Automated required persistence, authority, retry and conservation journeys passed; manual release walkthrough/polish was not executed. Consequential functional/security defects remain development requirements. Next action: Perform the Epic16 release walkthrough, resolve recorded presentation-polish findings, and attach the manual evidence before release readiness. Record: _bmad-output/auto-bmad/delivery/16-4-projekt-upgrade-and-job-card-semantics.json#/deferred_release_validation/2"
 blockers: []
 overrides:
   preflight_sync: Independent High narrow two-path generated sync approved and verified
@@ -106,6 +109,7 @@ overrides:
   story16_4_final_runtime: "Exact9d4584f7d86721f07e88a94cf2b15e940a2b7266 CI39445650692 TERMINAL SUCCESS.2727unitpass0skip+43process; DB1873total1872pass0fail1soleordinaryrecoverypending,separatephysicalrecovery1/1pass0skip. Story16.4consumers27/27,upgrade7/7pass. Browser28/28firstattemptretry0/no flaky/skip/unexpected(all7new+21prior). Pilot5warmup25measuredreadp95=13.464025999999649ms syntheticbulkpermissionp95=5.2704610000000685ms. NativeDB400A3BAA1D95BD58F41AA99C0D2879A222C48DDF1A9C662029D744C8A75A69C5/browser9B93411E65D32E0DD6F4FA91D45E43A691A4DA2D5ECDDB6A3D46AF928387B321/recovery1F23070E0727053A67F92AEFEC0CD105A2BB8D5C8BDE4A5D64D7C1CD598E2DDE. Finalsource independentlyreviewed; deliverygate/provenance/done stillpending; releasevalidationfalse,release_readyfalse."
   story16_4_delivery_gate: "Actual root delivery_gate.py native0/oktrue/development_complete true/errors[]/approval_grantedfalse before done authorization. Record SHA1F00841349A76EDAEB3F09223D4E524D472139F1EF3F994E8BCCF4DB2AC50ECA; independent High provenance PASS receipt EC6D92F15DDB747B28D60772247A601A1FC7A400B41AA73BE2F2C87C9F14789B. Root explicitly authorized spec-only done after both; final49 inventory A7F04E6859933B1B8F45D307C5B9153DB6942C9334F37664878601AFDF0DFF2B verified0mismatches. Developmentcompleteonly;3ownedrelease-onlydefers/release_readyfalse."
   story16_4_phase6: "Formal testarch-automate complete: two context-free Sol6.1High workers;7AC mapped0consequential gaps0newtests0reruns; actualhash/applicability/nativeparsing only. Reused exact9d4584f7 CI39445650692 native2727unit/43process/34focusedINT/full1872+1separate recovery/28browserretry0. Inspected24focused pure regressions; unchanged dependencies andfivefailedrun history preserved. SummarySHA72D1A6EEBD09EA230366966E0CB1B500EFDFD3F227FC7409A52CC824630829BE;3ownedrelease-onlydefers."
+  story16_4_phase7: "Configured followup recommended with false recommendation: no redundant broad pass. Latest review zero consequential findings, independent sensitive source/provenance passes retained. Trace advisory dormant on5storyepic<6;3supportedrelease-onlydefers harvested. No release-ready claim."
 constraints:
   - "Exclusive checkout C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas; root owns all Git/index/commits/push/CI/state/sprint/ledger/report actions."
   - "Formal planning only until approved ready-for-dev plan; no product/migration/dependency writes during planning."
