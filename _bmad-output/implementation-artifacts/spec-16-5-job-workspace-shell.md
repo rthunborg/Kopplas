@@ -2,11 +2,11 @@
 title: 'Job Workspace Shell'
 type: 'feature'
 created: '2026-10-20'
-status: 'ready-for-dev'
+status: 'in-review'
 story_id: '16.5'
 story_key: '16-5-job-workspace-shell'
 epic: 16
-baseline_revision: 'bbfa9265cd9732ddd8355f256a4fd90a6111c0b5'
+baseline_revision: 'f96256a066db7e38d482e4538f2a0ba2472cf4b8'
 review_loop_iteration: 0
 followup_review_recommended: false
 context:
@@ -86,6 +86,8 @@ Binding requirements: `epics-phase-b.md:1597–1599` Story 16.5; `architecture-p
 
 ## Review Triage Log
 
+**Round 1 of 3**
+
 ## Design Notes
 
 Owner-authorized maintainable defaults under current AGENTS: keep existing global navigation; use the design system for desktop tab navigation and mobile priority tabs plus Mer with accessible names, selected state and focus handling. Maintain stable authorized panel islands keyed by job/tab, or reuse explicit dirty/pending leave guards where mounting cannot be preserved; do not silently discard existing form state. No generic navigation/state framework or offline persistence is required.
@@ -112,3 +114,59 @@ Status: ready-for-dev
 Blocking condition: none
 Ready-for-development gate: workflow and written specification re-read; actionable dependency-ordered paths, three surface-level Given/When/Then criteria, complete I/O boundaries and no unresolved intent gap.
 Planning only. Three refined ACs preserve Story16.5/TR12. No implementation, migration reservation, resource launch or release claim.
+
+## Suggested Review Order
+
+Author: Story16.5 implementation delegate (Sol6.1 High).
+Refreshed against the final uncommitted Story16.5 working tree on baseline `f96256a066db7e38d482e4538f2a0ba2472cf4b8`. The frozen intent block remains SHA256 `84e6bca5a0696386eba53f7ee5d670c1ebfed42446154614f30ad365f8071bc8`.
+
+### One stable job entry and persistent authorized content
+
+The existing detail route now composes the workspace after the checked root read. Existing full-card, source, member and upgrade consumers keep their existing action authority; files retain the shared owner model.
+
+- `src/app/(app)/jobs/[jobId]/page.tsx:23` — `readJobWorkspace`: admits the root before subordinate page consumers.
+- `src/app/(app)/jobs/[jobId]/page.tsx:48` — `JobWorkspaceShell`: supplies safe header and authorized panel islands.
+- `src/app/(app)/jobs/[jobId]/page.tsx:55` — `EntityFilePanel`: preserves shared job file ownership.
+- `tests/e2e/jobs/job-workspace.e2e.spec.ts:76` — `16.5-E01`: AC01/AC02 real consumers, source and confirmed persistence.
+
+### Header privacy and independent consumer authority
+
+The composer derives the closed tab set from the active manifest and current matrix after real job admission, then retains checked per-consumer readers. Header labels use current visible members or the separately entitled existing manager card picker; crew-management eligiblePeople never supplies a header label. A nonmember PL remains assigned with name unavailable. Dedicated event DTOs contain only ID, type and timestamp.
+
+- `src/server/read-models/job-workspace.ts:24` — `projectJobWorkspaceHeader`: distinguishes assignment, unavailable read and authorized names.
+- `src/features/jobs/job-workspace-domain.ts:8` — `availableJobWorkspaceTabs`: filters the five current consumers without relational grant inflation.
+- `src/server/read-models/job-workspace.ts:64` — `events: []`: excludes the old reference-bearing detail events from workspace DTOs.
+- `src/server/read-models/job-events.ts:14` — `.eq("job_id", jobId)`: scopes explicit safe event columns through normal-client RLS.
+
+### Read-only Schema and retained connected actions
+
+The allocated optional normal-client parameter in the existing E14 booking readers enables actual JWT integration tests without copying query, entitlement or picker logic; omitting it still creates the existing cookie client. Schema reuses that host and its real visible intervals, and options exist only for managers. Error and true-empty rendering remain distinct; commands, booking facts and proofs are unchanged.
+
+- `src/features/resources/bookings-read.ts:91` — `readBookingHost`: preserves tenant/auth/query authority with an optional normal client.
+- `src/features/resources/bookings-read.ts:116` — `readBookingEditorOptions`: retains the independent manager gate and cookie default.
+- `src/components/jobs/JobWorkspaceSchedule.tsx:11` — `BookingEntry`: hosts the real preconnected editor and read-only subset.
+- `tests/integration/features/jobs/job-workspace.int.test.ts:62` — `16.5-INT-03`: AC02 compares actual worker JWT host and manager options.
+
+### URL, keyboard and phone navigation preserve drafts
+
+The shell uses the current URL for selection and native same-document history for tab changes. Authorized panels stay mounted under hidden panels, retaining unsent and pending form state. Existing work-order query updates add the explicit tab while preserving their own selection and dirty guards. Priority tabs plus Mer, manual keyboard activation and a compact persistent header are owner-authorized design defaults under the spec's Design Notes.
+
+- `src/components/jobs/JobWorkspaceShell.tsx:24` — `window.history.pushState`: preserves job, child and unrelated query state.
+- `src/components/jobs/JobWorkspaceShell.tsx:26` — `function keyboard`: implements arrows and Home/End without silently activating another panel.
+- `src/components/jobs/JobWorkspaceShell.tsx:68` — `hidden={selected !== tab.id}`: keeps authorized drafts mounted.
+- `tests/e2e/jobs/job-workspace.e2e.spec.ts:235` — `16.5-E03`: AC03 deep links, back/refresh, Mer, draft retention and honest same-input retry.
+
+### Evidence and limits at handoff
+
+Ten activated pure cases cover matrix/activation, bounded URLs, safe labels, event structural omission and empty-versus-error. Four integration and three RLS bodies use actual production readers and fresh existing fixtures; three essential browser bodies retain actual server persistence and transport-failure assertions. E02 deliberately uses an ordinary member with another visible member as lead: existing authorized leads already receive crew-picker labels, so asserting their absence from every lead SSR payload would contradict the unchanged16.2 crew workflow. Its nonmember-PL/header/privacy assertions remain; current relational lead and revocation coverage remains in RLS03 and existing16.2 journeys.
+
+- `tests/unit/server/read-models/job-workspace.test.ts:26` — `16.5-UNIT-HEADER-02`: AC01 assigned-name fallback differs from unassigned/read failure.
+- `tests/unit/server/read-models/job-events.test.ts:9` — `16.5-UNIT-EVENTS-01`: AC02 structurally omits raw event fields in production.
+- `tests/integration/rls/job-workspace.rls.test.ts:53` — `16.5-RLS-03`: AC02 current lead loses workspace and stale writes after revocation.
+- `tests/e2e/jobs/job-workspace.e2e.spec.ts:163` — `16.5-E02`: AC01/AC02 worker subsets, safe PL fallback and protected serialized-payload absence.
+
+Evidence in this working tree (2026-10-20): absolute Node `C:/nvm4w/nodejs/node.exe`; explicit `tsc --noEmit --incremental false` native0; full eslint native0 (0 errors,14 pre-existing warnings), final changed-path eslint native0 (0 diagnostics); production `next build` native0,12/12 static pages; focused Node pure suite10 executed/10pass/0fail/0skip; full Node unit suite2737total/2736pass/0fail/1skip. That skip requires Linux xattrs and belongs to the separately executed CI recovery lane, not local coverage. Final source and built-bundle containment pass. Job-only Playwright `--list` native0,24cases in6files (new3 and existing21), collection only. The full8file smoke collection attempts native1 before collection because the existing auth spec requires absent `tests/e2e/.auth/fixture.json`; no local fixture, environment or service was fabricated. `test:smoke` retains its existing seven paths and appends the workspace file before its reporter. Four existing job files receive only necessary moved-tab navigation; job-members remains unchanged and every prior assertion is retained.
+
+Actual bounded logs: `C:/Users/Rasmus/AppData/Local/Temp/story-16-5-unit.log`, `C:/Users/Rasmus/AppData/Local/Temp/story-16-5-lint.log`, `C:/Users/Rasmus/AppData/Local/Temp/story-16-5-build.log`, `C:/Users/Rasmus/AppData/Local/Temp/story-16-5-collection.log`. The initial extraction/compiler defects were corrected; an initial unit/build overlap exposed an unreadable transient build artifact, and the successful unit run occurred after build completion. No review acceptance or runtime evidence is implied by static success.
+
+Limits: integration4/RLS3/browser3 are activated but unexecuted locally; required full DB/RLS, empty-DB, recovery-storage integrity, money/current-authority, pilot and actual complete31browser-smoke evidence remain root-owned CI work. The pure event query client is injected deterministic data, not live RLS evidence. The unchanged default cookie path requires the actual essential browser run. Configured independent High review remains pending; external review is withheld pending the exact payload's direct human authorization. No resources, services, browser, SQL, dependency, secret, provider, deployment or Git mutation was performed. Broad device/role/browser matrices, screenshots and visual/manual review remain deferred release validation owned by root/release owner, next action: execute the qualified release lane after development evidence. Story remains in-progress; no development-complete or release-ready claim is made.

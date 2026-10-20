@@ -9,11 +9,11 @@ spec_folder: null
 story_id: null
 branch: codex/epic-16-jobs
 status: in-progress
-updated_at: "2026-10-20T16:12:40Z"
+updated_at: "2026-10-20T16:38:40Z"
 started_at: "2026-10-15T08:50:46Z"
 completed_at: null
-active_seconds: 25666
-timing_anchor: 1792512760
+active_seconds: 26679
+timing_anchor: null
 is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
@@ -79,7 +79,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [0586972a, d6a310be, f610bcbd, 11bf2721, bce1436b, 5d5186e1cfb3e045db9ef101e1c6cf6b50133040, faeffcf6513d5d1703ae9d5a6271b01533899d4e, f3cf100709b92637270304e78a4356082b89e9a6, 1e8632db1ad051d117c38d2e24ed5d62fc2c8a57, 103ee03540e222dff1e54995726037819539b9dd, c44e5179bfcbc210de250eb92a48734561cc0fac, 9b54ad249a1ac4fb6f73c425c89b9b749855a939, 46b1b82983f415fdd2ed214138cbd437154469aa, 1152d5bda869cab97f8b64f0b2a56f72cb9ab0bd, 2d002970fcb112db8d480068443a0cce2577bd5b, 2920b920c0ff19122051f7ef987bc222331fb94a, dd7e54d0, 6260c5a2, 643274eb, 4b7d14c8, 0e382e96, 9d4584f7]
+commits: [0586972a, d6a310be, f610bcbd, 11bf2721, bce1436b, 5d5186e1cfb3e045db9ef101e1c6cf6b50133040, faeffcf6513d5d1703ae9d5a6271b01533899d4e, f3cf100709b92637270304e78a4356082b89e9a6, 1e8632db1ad051d117c38d2e24ed5d62fc2c8a57, 103ee03540e222dff1e54995726037819539b9dd, c44e5179bfcbc210de250eb92a48734561cc0fac, 9b54ad249a1ac4fb6f73c425c89b9b749855a939, 46b1b82983f415fdd2ed214138cbd437154469aa, 1152d5bda869cab97f8b64f0b2a56f72cb9ab0bd, 2d002970fcb112db8d480068443a0cce2577bd5b, 2920b920c0ff19122051f7ef987bc222331fb94a, dd7e54d0, 6260c5a2, 643274eb, 4b7d14c8, 0e382e96, 9d4584f7, f96256a0]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -115,7 +115,8 @@ deferred_work:
   - "[16-4-projekt-upgrade-and-job-card-semantics] Release-only exhaustive browser matrix beyond the seven essential Story16.4 journeys: additional role, viewport and interaction combinations for upgrade/full-card/booking consumers. Owner/evidence/next action: Status: deferred. Owner: Epic16 release validation owner (root). Required exact-head essential smoke passed all seven new and 21 existing journeys; exhaustive release_validation dispatch was false and this breadth was not executed. No functional/security acceptance is deferred. Next action: At the Epic16 release checkpoint, run the owned optional release-validation browser matrix and record its exact-head results. Record: _bmad-output/auto-bmad/delivery/16-4-projekt-upgrade-and-job-card-semantics.json#/deferred_release_validation/0"
   - "[16-4-projekt-upgrade-and-job-card-semantics] Release-only screenshot comparison and visual review of full-card, upgrade confirmation and booking consumer presentation across release viewports. Owner/evidence/next action: Status: deferred. Owner: Epic16 release validation owner (root). Functional production browser smoke passed; exhaustive screenshots/visual comparison were not executed. Existing design-system presentation is retained. Next action: Capture the release-state screenshots, compare the approved design-system layouts and record visual findings and fixes in release validation. Record: _bmad-output/auto-bmad/delivery/16-4-projekt-upgrade-and-job-card-semantics.json#/deferred_release_validation/1"
   - "[16-4-projekt-upgrade-and-job-card-semantics] Release-only manual walkthrough and presentation polish for the completed card/upgrade/booking flows. Owner/evidence/next action: Status: deferred. Owner: Epic16 release validation owner (root). Automated required persistence, authority, retry and conservation journeys passed; manual release walkthrough/polish was not executed. Consequential functional/security defects remain development requirements. Next action: Perform the Epic16 release walkthrough, resolve recorded presentation-polish findings, and attach the manual evidence before release readiness. Record: _bmad-output/auto-bmad/delivery/16-4-projekt-upgrade-and-job-card-semantics.json#/deferred_release_validation/2"
-blockers: []
+blockers:
+  - "External review authorization pending for frozen Story16.5 diff (24 files, 88303 bytes, SHA256 1704C73B45D065888CF96B3CA01055B1A7F6BFFBEDA94AB6B0BEE104DDA03133). No upload attempted."
 overrides:
   preflight_sync: Independent High narrow two-path generated sync approved and verified
   unattended: Authorized by initiating delegation
@@ -141,6 +142,8 @@ overrides:
   story16_4_diagnostic_runtime: "Exact4b7d14c8a26dd7cf2c49a68d53c949d7089e4575 CI39440305909:verify2723pass0skip+43process;DB1873total1872pass0fail1soleordinaryrecoverypending,separate1/1pass. Actualpilot5warmup25measuredreadp95=14.811200999999528ms syntheticbulkpermissionp95=3.1435139999998682ms. Browser27firstpass1UpgradeE01failedbothattempts0flaky0skip, meaningful realUI feedback proves invalidinput/retaineddata, notcommit. NativeDBSHA858AA24711A825E84CE8124F80F03B7A3F064E03216F43A2B48C8A96D5641AE2;browser72CDF6B5B9CA2AD0074BAA5C3079BE65216889A660D1C3E6BF915757A8AED031;recovery7F5297F26E625E6367861A9B030F4637C04113D86B9C1BFB53C17EAD8228580C. NoDBintendedFormDataassemblyproductionvalidator probe passes but does notproveactualbrowserpayload. Existingnativebrowserlog inspected before any stage-safe newdiagnostic; no productionfixcause proven. In-review, no developmentcompleteclaim."
   story16_4_access_window_diagnosis: "Exact0e382e96be497f562f46bbbc36956eec65efac8d CI39443082042:2723unitpass0skip+43process,DB1873total1872pass0fail1soleordinaryrecoverypending,separate1/1pass. Pilot5warmup25measuredreadp95=13.832416000000194ms syntheticbulkpermissionp95=5.901257000000442ms. Browser27firstpass1UpgradeE01failedbothattempts0flaky0skip; actualemittedinput invalidFields accessWindows only. NativeDBSHA9C7A9414E781B5F541798E4A07D2829E27F72D8770B0DE9D671EC277E84B2D3B;browserDC93151CCE8346C923E95A9113B8F88B17250BC86E2A8E9B31F26893F27B5084;recovery93CCE8D8B6868F392A47E0CAB4E8C487C94894A4E17E277AE709B517A7511499. Provenproductioncause: DBoffset/microsecondwindoworiginal reused unchanged by form whileclosedvalidator requirescanonicalZ. Source-extractedactualassembler reproducedRED; boundedpureparse/format helper+formserialization+meaningful4regressions authorized,strictvalidator/SQL/auth unchanged. Focused25pass0skip/TSC/lintpass; independentHighreview/build/newheadruntimepending."
   story16_4_final_runtime: "Exact9d4584f7d86721f07e88a94cf2b15e940a2b7266 CI39445650692 TERMINAL SUCCESS.2727unitpass0skip+43process; DB1873total1872pass0fail1soleordinaryrecoverypending,separatephysicalrecovery1/1pass0skip. Story16.4consumers27/27,upgrade7/7pass. Browser28/28firstattemptretry0/no flaky/skip/unexpected(all7new+21prior). Pilot5warmup25measuredreadp95=13.464025999999649ms syntheticbulkpermissionp95=5.2704610000000685ms. NativeDB400A3BAA1D95BD58F41AA99C0D2879A222C48DDF1A9C662029D744C8A75A69C5/browser9B93411E65D32E0DD6F4FA91D45E43A691A4DA2D5ECDDB6A3D46AF928387B321/recovery1F23070E0727053A67F92AEFEC0CD105A2BB8D5C8BDE4A5D64D7C1CD598E2DDE. Finalsource independentlyreviewed; deliverygate/provenance/done stillpending; releasevalidationfalse,release_readyfalse."
+  story16_5_external_review_pending: "Direct human request pending for required read-only Codex CLI Sol6.1High review of frozen24file/88303byte private diff SHA1704C73B45D065888CF96B3CA01055B1A7F6BFFBEDA94AB6B0BEE104DDA03133. Inventory9756DA932037C52CBF7F05EA1A348943E433E5550367810367A1CF49A13019DB rootverified24/6new/0mismatch; intent84e6bca5a0696386eba53f7ee5d670c1ebfed42446154614f30ad365f8071bc8 retained. Prior16.4grant not reused. External NOT launched/uploaded; five internal High layers may continue, source frozen; no aggregatePASS or runtimeclaim."
+  story16_5_review_hold: "Five internal context-free High layers completed; security No findings. Raw receipts SHA8F7D98AA955602B7BE5FE92073297ED14BAD545F23DE5919C068055D91337410. All24 source hashes unchanged. External not launched; aggregate triage/fixes not performed. Read-only causal plan retained; later bounded traceability E2E navigation path allocation required. No runtime or complete claim."
 constraints:
   - "Use only owned E16 resources; E15 scheduling/time/diagnostic resources remain excluded."
   - "Each later story requires its approved plan, manifest compliance and precise path claims."

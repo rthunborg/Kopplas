@@ -41,7 +41,7 @@ async function ready(locator: Locator) {
     Object.keys(element).some(key => key.startsWith("__react"))), { timeout: 10_000 }).toBe(true);
 }
 async function openJobBooking(page: Page, jobId: string) {
-  await page.goto(`/jobs/${jobId}`);
+  await page.goto(`/jobs/${jobId}?tab=schedule`);
   const entry = page.getByTestId("booking-entry-job");
   await ready(entry);
   await entry.click();
@@ -190,7 +190,7 @@ test.describe("Story16.4 essential real booking consumers — RED", () => {
       if (!s.currentBookingId) throw new Error("Real current booking required");
       await page.setViewportSize({ width: 360, height: 640 });
       await signIn(page, f.credentials.manager);
-      await page.goto(`/jobs/${s.jobId}`);
+      await page.goto(`/jobs/${s.jobId}?tab=schedule`);
       const summary = page.getByTestId(`booking-summary-${s.currentBookingId}`);
       await ready(summary);
       await summary.getByTestId("booking-edit").click();

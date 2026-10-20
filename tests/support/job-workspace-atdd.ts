@@ -1,4 +1,4 @@
-/** 16.5 RED bindings only. Reconcile these replaceable export/DTO spellings at activation.
+/** 16.5 activated thin bindings to actual normal-client workspace/event readers.
  * No policy, redaction, service client, environment or database work lives in this adapter.
  * Playwright-utils flag=true/package absent; existing Node/Vitest runners apply.
  */

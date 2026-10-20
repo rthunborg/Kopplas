@@ -190,6 +190,7 @@ test.describe("Story16.4 same-row Projekt upgrade — RED", () => {
         { jobId, startsAt: "2026-10-20T06:00:00Z", endsAt: "2026-10-20T07:00:00Z" }))).ok).toBe(true);
       await signIn(page, f.credentials.manager);
       await editFullCard(page, f, jobId, "Order card before upgrade", customerId, facilityId, contactId);
+      await page.getByRole("tab", {name: "Filer", exact: true}).click();
       const files = page.getByRole("region", { name: "Filer", exact: true });
       const filename = `upgrade-${jobId}.txt`;
       await files.getByLabel("Välj en fil att ladda upp", { exact: true }).setInputFiles({
@@ -231,10 +232,12 @@ test.describe("Story16.4 same-row Projekt upgrade — RED", () => {
       expect(upgraded.leadPersonProfileId).toBe(cardBefore.leadPersonProfileId);
       expect(upgraded.workOrders).toEqual(cardBefore.workOrders);
       expect(upgraded.dependencies).toEqual(cardBefore.dependencies);
+      await page.getByRole("tab", {name: "Filer", exact: true}).click();
       await expect(files.getByRole("listitem").filter({ hasText: filename })).toHaveCount(1);
       // Both kinds have usable fields and existing WO/lead semantics, with no project-only invention.
       await editFullCard(page, f, jobId, "Projekt card after upgrade", customerId, facilityId, contactId);
       await expect(page.getByTestId(`job-member-${f.fx.ownProfile.id}`)).toBeVisible();
+      await page.getByRole("tab", {name: "Arbetsorder", exact: true}).click();
       await expect(page.getByTestId(`work-order-${wo}`)).toContainText("Retained order child");
     } finally { await f.dispose(); }
   });

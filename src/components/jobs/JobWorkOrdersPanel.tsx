@@ -27,6 +27,7 @@ export function JobWorkOrdersPanel({jobId, initial, initialWorkOrderId, filesPan
     currentSelection.current = next;
     setSelected(next);
     const query = new URLSearchParams(search.toString());
+    query.set("tab", "work-orders");
     if (id) query.set("workOrder", id); else query.delete("workOrder");
     router.replace(`/jobs/${jobId}${query.size ? `?${query}` : ""}`, {scroll: false});
   }
@@ -40,6 +41,7 @@ export function JobWorkOrdersPanel({jobId, initial, initialWorkOrderId, filesPan
     currentSelection.current = completion.selection;
     setSelected(completion.selection);
     const query = new URLSearchParams(search.toString());
+    query.set("tab", "work-orders");
     query.set("workOrder", createdId);
     router.replace(`/jobs/${jobId}?${query}`, {scroll: false});
   }

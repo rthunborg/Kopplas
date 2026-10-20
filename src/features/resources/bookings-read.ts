@@ -88,10 +88,10 @@ function summary(row: Row, openConflictCount: number): BookingSummary {
 }
 
 /** Host access never grants booking entitlement; Montör data remains own-joined under RLS. */
-export async function readBookingHost(scope: { readonly jobId?: string; readonly customerId?: string; readonly bookingId?: string } = {}): Promise<BookingHostReadResult> {
+export async function readBookingHost(scope: { readonly jobId?: string; readonly customerId?: string; readonly bookingId?: string } = {}, injectedClient?: Client): Promise<BookingHostReadResult> {
   try {
     if (Object.values(scope).some((id) => typeof id !== "string" || !UUID.test(id))) return emptyHost(ERROR);
-    const client = await createSupabaseServerClient();
+    const client = injectedClient ?? await createSupabaseServerClient();
     const context = await resolveTenantContext({ client });
     if (!context.ok) return emptyHost(ERROR);
     const roles = context.data.roles ?? [context.data.role];
@@ -113,9 +113,9 @@ export async function readBookingEditorDefault(bookingId: string): Promise<Booki
 }
 
 /** Manager-only, current-tenant options omit price, CRM identifiers and contact details. */
-export async function readBookingEditorOptions(): Promise<BookingEditorOptions> {
+export async function readBookingEditorOptions(injectedClient?: Client): Promise<BookingEditorOptions> {
   try {
-    const client = await createSupabaseServerClient(); const context = await resolveTenantContext({ client });
+    const client = injectedClient ?? await createSupabaseServerClient(); const context = await resolveTenantContext({ client });
     if (!context.ok) return emptyOptions(ERROR);
     if (!resolveCapability({ roles: context.data.roles ?? [context.data.role], module: "resources", capability: "Bookings.Manage" }).granted) return emptyOptions();
     const tenantId = context.data.tenantId;

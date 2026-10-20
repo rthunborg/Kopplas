@@ -22,7 +22,7 @@ type Domain = {
   jobWorkspaceHref(input: { jobId: string; tab: Tab; query: URLSearchParams }): string;
 };
 
-test.skip("[P0] 16.5-D01 real matrix and manifest yield five manager tabs and current member/lead subsets without implicit grants", async () => {
+test("[P0] 16.5-D01 real matrix and manifest yield five manager tabs and current member/lead subsets without implicit grants", async () => {
   const path = "@/features/jobs/job-workspace-domain";
   const domain = await import(path) as Domain;
   const cases = [
@@ -48,7 +48,7 @@ test.skip("[P0] 16.5-D01 real matrix and manifest yield five manager tabs and cu
   assert.equal(resolveCapability({ roles: ["saljare"], module: "files", capability: "Files.View" }).granted, false);
 });
 
-test.skip("[P0] 16.5-D02 Schema consumes active E14 resources independently of pending scheduling; inactive owners remove their consumers", async () => {
+test("[P0] 16.5-D02 Schema consumes active E14 resources independently of pending scheduling; inactive owners remove their consumers", async () => {
   const path = "@/features/jobs/job-workspace-domain";
   const domain = await import(path) as Domain;
   assert.equal(SCOPE_MANIFEST.modules.find(module => module.id === "resources")?.status, "active");
@@ -69,7 +69,7 @@ test.skip("[P0] 16.5-D02 Schema consumes active E14 resources independently of p
   assert.deepEqual(new Set(closed.map(tab => tab.id)), new Set(["overview", "work-orders", "schedule", "files", "events"]));
 });
 
-test.skip("[P1] 16.5-D03 bounded query selection rejects unknown/unavailable tabs and preserves old workOrder-only links", async () => {
+test("[P1] 16.5-D03 bounded query selection rejects unknown/unavailable tabs and preserves old workOrder-only links", async () => {
   const path = "@/features/jobs/job-workspace-domain";
   const domain = await import(path) as Domain;
   const availableTabs: Tab[] = ["overview", "work-orders", "schedule", "events"];
@@ -83,7 +83,7 @@ test.skip("[P1] 16.5-D03 bounded query selection rejects unknown/unavailable tab
   assert.equal(domain.selectJobWorkspaceTab({ availableTabs, tab: "unknown", workOrder: "child-id" }), "overview");
 });
 
-test.skip("[P1] 16.5-D04 tab URLs preserve the stable job, child selection and unrelated return query without mutating the input", async () => {
+test("[P1] 16.5-D04 tab URLs preserve the stable job, child selection and unrelated return query without mutating the input", async () => {
   const path = "@/features/jobs/job-workspace-domain";
   const domain = await import(path) as Domain;
   const jobId = "11111111-1111-4111-8111-111111111111";

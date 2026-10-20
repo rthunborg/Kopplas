@@ -86,7 +86,7 @@ test.describe("Story 16.3 essential work-order journeys", () => {
       const people = [f.fx.ownProfile.id, f.fx.coworkerProfile.id];
       for (const person of people) await seedMember(f, jobId, person);
       await signIn(page, f.credentials.manager); // PL independently holds Files.View/Create.
-      await page.goto(`/jobs/${jobId}`);
+      await page.goto(`/jobs/${jobId}?tab=work-orders`);
       const panel = page.getByTestId("job-work-orders-panel");
       await ready(panel);
       await panel.getByRole("button", { name: "Ny arbetsorder", exact: true }).click();
@@ -320,7 +320,7 @@ test.describe("Story 16.3 essential work-order journeys", () => {
       try {
         const jobId = f.jobs.assigneeProject.id;
         await signIn(page, f.credentials.manager);
-        await page.goto(`/jobs/${jobId}`);
+        await page.goto(`/jobs/${jobId}?tab=work-orders`);
         const panel = page.getByTestId("job-work-orders-panel");
         await ready(panel);
         await panel.getByRole("button", {name: "Ny arbetsorder", exact: true}).click();
@@ -379,7 +379,7 @@ test.describe("Story 16.3 essential work-order journeys", () => {
     const f=await createJobsDepthFixture();
     try {
       const jobId=f.jobs.assigneeProject.id;
-      await signIn(page,f.credentials.manager); await page.goto(`/jobs/${jobId}`);
+      await signIn(page,f.credentials.manager); await page.goto(`/jobs/${jobId}?tab=work-orders`);
       const panel=page.getByTestId("job-work-orders-panel"); await ready(panel);
       await panel.getByRole("button",{name:"Ny arbetsorder",exact:true}).click();
       const detail=page.getByTestId("work-order-pane"),title=detail.getByLabel("Rubrik",{exact:true});

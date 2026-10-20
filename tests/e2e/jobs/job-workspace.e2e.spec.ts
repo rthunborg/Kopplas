@@ -1,4 +1,4 @@
-/** Story 16.5 essential RED workspace journeys; all skips persist until activation.
+/** Story 16.5 essential connected workspace journeys; production bindings activated.
  * Spec SHA256 C84BE8587D0F84F4BFCCC4B8BB1635B534E687D372FA9086D3CC87350299EE8F.
  * Proposed/REPLACEABLE: English tab query IDs; tab/tabpanel composition; Mer exposing
  * overflow tabs; job-workspace-header/type/site/contact/responsible-pl/lead IDs,
@@ -72,8 +72,8 @@ function cardAction(request: Request, jobId: string, title: string): Record<stri
 }
 
 // playwright-utils deviation: resourcePage is the project's existing guard-owned browser attachment.
-test.describe("Story 16.5 essential job workspace — persistent RED", () => {
-  test.skip("[P0] 16.5-E01 manager desktop keeps real header/overview and all five consumers, shared job file and server-confirmed edit across reload", async ({ resourcePage: page }) => {
+test.describe("Story 16.5 essential job workspace", () => {
+  test("[P0] 16.5-E01 manager desktop keeps real header/overview and all five consumers, shared job file and server-confirmed edit across reload", async ({ resourcePage: page }) => {
     await withWorkspaceFixture(async f => {
       const { saveCard, upgradeInput, upgradeJob, jobSemanticsSnapshot } = await import("../../support/job-semantics-atdd");
       const { createWorkOrder } = await import("../../support/work-orders-atdd");
@@ -160,14 +160,16 @@ test.describe("Story 16.5 essential job workspace — persistent RED", () => {
     });
   });
 
-  test.skip("[P0] 16.5-E02 phone current member/lead reads own booking subset, denied files fall back, and private PL/money/event payloads stay absent", async ({ resourcePage: page }) => {
+  test("[P0] 16.5-E02 phone current member reads own booking subset, denied files fall back, and private PL/money/event payloads stay absent", async ({ resourcePage: page }) => {
     await withWorkspaceFixture(async f => {
       const { saveCard } = await import("../../support/job-semantics-atdd");
       const { seedMember, readMembers } = await import("../../support/job-members-atdd");
       const { bookingCommand, bookingInput } = await import("../../support/bookings-atdd");
       const jobId = f.jobs.both.id, title = `Private worker workspace ${jobId}`;
       await saveCard(f, jobId, { title, responsible_project_manager_id: f.fx.coworkerProfile.id });
-      await seedMember(f, jobId, f.fx.ownProfile.id, true);
+      await seedMember(f, jobId, f.fx.ownProfile.id);
+      // Existing leads may receive crew-picker labels. Use an ordinary member for the no-picker privacy boundary.
+      await seedMember(f, jobId, f.fx.adminProfile.id, true);
       const nonOwnDescription = `Other person's booking ${jobId}`;
       const nonOwn = await bookingCommand("create", f.fx.adminClient, bookingInput([f.fx.coworkerProfile.id], {
         jobId, description: nonOwnDescription, startsAt: "2026-10-23T06:00:00Z", endsAt: "2026-10-23T07:00:00Z",
@@ -189,7 +191,7 @@ test.describe("Story 16.5 essential job workspace — persistent RED", () => {
       await expect(pl).toContainText(/tilldelad|utsedd/i);
       await expect(pl).not.toContainText(/ingen tilldelad/i);
       await expect(pl).not.toContainText(f.fx.coworkerProfile.id);
-      await expect(page.getByTestId("job-lead")).toContainText((await readMembers(f.fx.montorClient, jobId)).members.find(row => row.personProfileId === f.fx.ownProfile.id)!.label);
+      await expect(page.getByTestId("job-lead")).toContainText((await readMembers(f.fx.montorClient, jobId)).members.find(row => row.personProfileId === f.fx.adminProfile.id)!.label);
       for (const id of ["job-card-form", "job-edit-open", "job-upgrade-open"]) await expect(page.getByTestId(id)).toHaveCount(0);
       await expect(page.getByRole("combobox", { name: "Ansvarig arbetsledare", exact: true })).toHaveCount(0);
       await expect(page.getByRole("button", { name: "Spara arbetsledare", exact: true })).toHaveCount(0);
@@ -230,7 +232,7 @@ test.describe("Story 16.5 essential job workspace — persistent RED", () => {
     });
   });
 
-  test.skip("[P1] 16.5-E03 keyboard/Mer, back/refresh and old document return keep selection and drafts; exact real save failure offers honest retry",
+  test("[P1] 16.5-E03 keyboard/Mer, back/refresh and old document return keep selection and drafts; exact real save failure offers honest retry",
     { annotation: [{ type: "skipNetworkMonitoring", description: "One exactly identified card action is aborted before persistence, then retried against the real server" }] },
     async ({ resourcePage: page }) => {
       await withWorkspaceFixture(async f => {

@@ -290,7 +290,7 @@ test.describe("Story 16.1 essential Jobs depth journeys", () => {
       }));
       expect(setup.ok).toBe(true);
       await signIn(page, f.credentials.manager);
-      await page.goto(`/jobs/${f.jobs.editable.id}`);
+      await page.goto(`/jobs/${f.jobs.editable.id}?tab=schedule`);
       await hydrated(page.getByTestId("booking-entry-job"));
       await page.getByTestId("booking-entry-job").click();
       const sheet = page.getByRole("dialog");

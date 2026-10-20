@@ -9,11 +9,11 @@ spec_folder: null
 story_id: null
 branch: codex/epic-16-jobs
 status: in-progress
-updated_at: "2026-10-20T16:12:40Z"
+updated_at: "2026-10-20T16:38:40Z"
 started_at: "2026-10-20T15:42:25Z"
 completed_at: null
-active_seconds: 1814
-timing_anchor: 1792512760
+active_seconds: 2827
+timing_anchor: null
 is_first_in_epic: false
 is_last_in_epic: true
 git_mode: remote
@@ -40,8 +40,8 @@ completed_phases: [0, 1, 3, 4]
 spec_path: "C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/_bmad-output/implementation-artifacts/spec-16-5-job-workspace-shell.md"
 spec_approved: true
 build:
-  status: ready-for-dev
-  blocking_condition: null
+  status: blocked
+  blocking_condition: "External review authorization pending for frozen Story16.5 diff (24 files, 88303 bytes, SHA256 1704C73B45D065888CF96B3CA01055B1A7F6BFFBEDA94AB6B0BEE104DDA03133). No upload attempted."
   followup_review_recommended: false
   review_loop_iteration: 0
   deferred_count: 0
@@ -56,7 +56,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [bbfa9265, f830a4ca]
+commits: [bbfa9265, f830a4ca, f96256a0]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -81,11 +81,14 @@ merge_commit: null
 branch_deleted: false
 open_questions: []
 deferred_work: []
-blockers: []
+blockers:
+  - "External review authorization pending for frozen Story16.5 diff (24 files, 88303 bytes, SHA256 1704C73B45D065888CF96B3CA01055B1A7F6BFFBEDA94AB6B0BEE104DDA03133). No upload attempted."
 overrides:
   epic_run: "Sequential Epic16 continuation; final Story16.5. One final epic PR; no merge/deployment/provider/secrets changes. Standing independently reviewed checkpoint pushes/owned CI authorized. Root owns Git/state/ledger/report; generic delegates own all story work."
   story16_5_approved_plan: "Authoritative parser ready-for-dev/no blocker;3AC/TR12;specSHA C84BE8587D0F84F4BFCCC4B8BB1635B534E687D372FA9086D3CC87350299EE8F;frozenintent84e6bca5a0696386eba53f7ee5d670c1ebfed42446154614f30ad365f8071bc8. High requirements/consumer exploration;five authorized tabs/directURL+reader negatives/structural money omission/safeevents/responsiblePL privacy fallback. No migration/RPC/grant/AppShell change, no new email entitlement or historical rejection bypass. Oversized advisory only. Planning-only no product writes."
   story16_5_atdd: "ATDD20persistent skipped scaffolds:10pure4INT3RLS3essentialbrowser,15P0/5P1,all3AC/TR12 mapped. Two context-free Sol6.1High authors plus independentHigh scaffoldreviewPASS. Meaningful actualproduction safeeventDTO RED native1/1fail0pass0skip on channel/reference exposed; exactskipbytesrestored. Sevenfile syntax0/TSC0/Node10skip/Playwright3listed/no runtime. Eightfilehashes rootverified; checklistSHAEA6A9B77B9944992A7B80803F8F2BF1BD86F105C6BCEE4A1D8D5498096B8D66A. Futuremodule/DTO/query/selectorbindings explicit; implementation must rebind actual dedicatedeventreader withouttestredaction and appendtestsmoke. No source/spec/package/lock edits."
+  story16_5_external_review_pending: "Direct human request pending for required read-only Codex CLI Sol6.1High review of frozen24file/88303byte private diff SHA1704C73B45D065888CF96B3CA01055B1A7F6BFFBEDA94AB6B0BEE104DDA03133. Inventory9756DA932037C52CBF7F05EA1A348943E433E5550367810367A1CF49A13019DB rootverified24/6new/0mismatch; intent84e6bca5a0696386eba53f7ee5d670c1ebfed42446154614f30ad365f8071bc8 retained. Prior16.4grant not reused. External NOT launched/uploaded; five internal High layers may continue, source frozen; no aggregatePASS or runtimeclaim."
+  story16_5_review_hold: "Five internal context-free High layers completed; security No findings. Raw receipts SHA8F7D98AA955602B7BE5FE92073297ED14BAD545F23DE5919C068055D91337410. All24 source hashes unchanged. External not launched; aggregate triage/fixes not performed. Read-only causal plan retained; later bounded traceability E2E navigation path allocation required. No runtime or complete claim."
 constraints:
   - "Exclusive checkout C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas; no foreign dirty-source copying."
   - "Planning only until approved ready-for-dev spec; no product/schema/dependency changes during planning."

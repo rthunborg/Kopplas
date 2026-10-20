@@ -5,7 +5,7 @@ import { describe, expect, test } from "vitest";
  * canned authorized data or test-side redaction. Existing fixtures are reused lazily.
  */
 describe("16.5 current-job workspace composition", () => {
-  test.skip("[P0] 16.5-INT-01 real Order/Projekt identity and enriched header survive checked composition", async () => {
+  test("[P0] 16.5-INT-01 real Order/Projekt identity and enriched header survive checked composition", async () => {
     const h = await import("../../../support/job-workspace-atdd");
     const depth = await import("../../../support/jobs-depth-atdd");
     await h.withWorkspaceFixture(async (f) => {
@@ -24,7 +24,7 @@ describe("16.5 current-job workspace composition", () => {
     });
   });
 
-  test.skip("[P0] 16.5-INT-02 worker forbidden Filer URL falls back without file/picker/directory reads or protected serialization", async () => {
+  test("[P0] 16.5-INT-02 worker forbidden Filer URL falls back without file/picker/directory reads or protected serialization", async () => {
     const h = await import("../../../support/job-workspace-atdd");
     const { protectedPaths } = await import("../../../support/jobs-depth-atdd");
     await h.withWorkspaceFixture(async (f) => {
@@ -59,7 +59,7 @@ describe("16.5 current-job workspace composition", () => {
     });
   });
 
-  test.skip("[P0] 16.5-INT-03 active resources Schema serves actual own-joined bookings without manager options", async () => {
+  test("[P0] 16.5-INT-03 active resources Schema serves actual own-joined bookings without manager options", async () => {
     const h = await import("../../../support/job-workspace-atdd");
     const booking = await import("../../../support/bookings-atdd");
     const { adminQuery } = await import("../../../factories/admin-sql");
@@ -70,7 +70,13 @@ describe("16.5 current-job workspace composition", () => {
       const expected = await f.fx.montorClient.from("bookings").select("id").eq("job_id", f.jobs.both.id);
       expect(expected.error).toBeNull();
       expect(expected.data?.length).toBeGreaterThan(0);
+      const {readBookingHost, readBookingEditorOptions} = await import("@/features/resources/bookings-read");
+      const directWorkerHost = await readBookingHost({jobId: f.jobs.both.id}, f.fx.montorClient);
+      expect(directWorkerHost.canView).toBe(true);
+      expect(directWorkerHost.canManage).toBe(false);
+      expect((await readBookingEditorOptions(f.fx.montorClient)).people).toEqual([]);
       const worker = await h.readWorkspace(f.fx.montorClient, f.jobs.both.id, { tab: "schedule" });
+      expect(worker.workspace?.schedule).toEqual(directWorkerHost);
       expect(worker.error).toBeNull();
       expect(worker.workspace?.selectedTab).toBe("schedule");
       expect(worker.workspace?.schedule?.error).toBeNull();
@@ -87,7 +93,7 @@ describe("16.5 current-job workspace composition", () => {
     });
   });
 
-  test.skip("[P1] 16.5-INT-04 root read failure stays retryable and invokes no subordinate consumer", async () => {
+  test("[P1] 16.5-INT-04 root read failure stays retryable and invokes no subordinate consumer", async () => {
     const h = await import("../../../support/job-workspace-atdd");
     await h.withWorkspaceFixture(async (f) => {
       const unexpected: string[] = [];

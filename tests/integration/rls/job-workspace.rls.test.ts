@@ -4,7 +4,7 @@ import { describe, expect, test } from "vitest";
  * prove direct workspace/event/child scope; no new policy/table/ACL inventory.
  */
 describe("16.5 workspace current-authority and direct reader boundaries", () => {
-  test.skip("[P0] 16.5-RLS-01 direct foreign/unrelated/anonymous root and event reads reveal no job data", async () => {
+  test("[P0] 16.5-RLS-01 direct foreign/unrelated/anonymous root and event reads reveal no job data", async () => {
     const h = await import("../../support/job-workspace-atdd");
     const t = await import("../../factories/tenants");
     await h.withWorkspaceFixture(async (f) => {
@@ -29,7 +29,7 @@ describe("16.5 workspace current-authority and direct reader boundaries", () => 
     });
   });
 
-  test.skip("[P0] 16.5-RLS-02 foreign or other-parent workOrder URL never crosses the admitted job", async () => {
+  test("[P0] 16.5-RLS-02 foreign or other-parent workOrder URL never crosses the admitted job", async () => {
     const h = await import("../../support/job-workspace-atdd");
     const wo = await import("../../support/work-orders-atdd");
     await h.withWorkspaceFixture(async (f) => {
@@ -50,7 +50,7 @@ describe("16.5 workspace current-authority and direct reader boundaries", () => 
     });
   });
 
-  test.skip("[P0] 16.5-RLS-03 current relational lead gains only job scope and revoked membership cannot retain a workspace or stale write", async () => {
+  test("[P0] 16.5-RLS-03 current relational lead gains only job scope and revoked membership cannot retain a workspace or stale write", async () => {
     const h = await import("../../support/job-workspace-atdd");
     const m = await import("../../support/job-members-atdd");
     const t = await import("../../factories/tenants");
