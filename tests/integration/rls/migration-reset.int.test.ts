@@ -676,9 +676,9 @@ it("[P0] 14.4 migration inventory has exact authenticated editor entries and pri
 
 it("[P0] 16.2 migration inventory retains SELECT-only members and exact checked/private ACLs", async (testCtx) => {
   if (skipUnlessStack(testCtx, stackUp)) return;
-  const checked = ["assign_job_member_with_audit", "remove_job_member_with_audit", "set_job_lead_with_audit", "update_job_plan_dates_with_audit",
+  const checked = ["upgrade_job_to_projekt_with_audit", "assign_job_member_with_audit", "remove_job_member_with_audit", "set_job_lead_with_audit", "update_job_plan_dates_with_audit",
     "read_job_members", "job_is_current_lead", "read_job_lead_admission"];
-  const helpers = ["job_member_state_internal", "job_member_expected_internal", "job_member_mutate_internal"];
+  const helpers = ["job_type_one_way_internal", "job_member_state_internal", "job_member_expected_internal", "job_member_mutate_internal"];
   const functions = await adminQuery<{name: string; definer: boolean; proconfig: string[] | null; anon: boolean; authenticated: boolean; service: boolean}>(`
     select p.proname as name,p.prosecdef as definer,p.proconfig,
       has_function_privilege('anon',p.oid,'execute') as anon,

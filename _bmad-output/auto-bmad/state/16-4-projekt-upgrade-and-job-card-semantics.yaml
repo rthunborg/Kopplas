@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-16-jobs
 status: in-progress
-updated_at: "2026-10-20T12:08:50Z"
+updated_at: "2026-10-20T13:42:32Z"
 started_at: "2026-10-20T11:20:42Z"
 completed_at: null
 active_seconds: 516
@@ -95,6 +95,8 @@ overrides:
   story16_3_owner_decision: "2026-10-20 direct human answers verified in Coordinator task 01a1160d-b5b1-7623-a8e8-54ef3dc537ed, turn 01a15885-1599-7d52-80e9-e95058a10198: Admin/Projektledare plus current designated Arbetsledare of the parent job create/edit/assign/change work-order status; eligible parent-job members as assignees. Created->In progress->Done; Created/In progress->Cancelled; only Admin/PL reopen Done->In progress or Cancelled->Created. Ordinary members/assignees gain no additional mutation right. Work orders receive their OWN planned start/end dates, supporting meaningful same-parent work-order dependencies; do not adopt old parent-date proxy or same-parent rejection. Existing money, file and parent-job lifecycle checks remain separate."
   story16_4_plan_block: "FormalplanHALTblocked(intent gap) after2contextfreeSol6.1Highexplorations;7AC/TR08-10/TR13-16 preserved. No product/test/migration/resource writes. Threeownerquestionssubmittedasynchronously2026-10-20, unanswered; proposeddefaults are not approval."
   story16_4_owner_decision: "2026-10-20 direct human confirmation in this chat: Confirm all those decisions as defaults. Approved Story16.4 bindings: no unnamed new project-only fields; existing job-card fields valid for both Order and Projekt; payment-plan fields/children remain Story17.2. D is elapsed on-site minutes, N crew size, T planned travel minutes per person; demand=N*(D+T). Use advisory whole-job demand versus remaining planning-window capacity, without adding demand again to actual booking occupancy or charging whole-job demand per split/repeated booking. No new hard save block. These three material choices are resolved; retain existing upgrade/full-card manager authority and other scope/gates."
+  story16_4_external_review_authorization: "Direct human 2026-10-20: Authorize this external review. Scope: required read-only configured Codex CLI gpt-6.1-sol High review; frozen private Story 16.4 source/test/spec diff, 44 files, 161676 bytes, SHA256 2BC99E5BA50155E93683945C0686120484BE735FA0546E5FA34C0E04455D7E9E. Prior automatic approval refusal preserved; no model stage ran before this grant."
+  story16_4_reviewed_checkpoint: "All six Round1 layers actual, external native0 receipt SHA0E19578A24CB188A2DC251F6AC2062CA0DF335C85D556D8456207C195B75CC30 after explicit human grant; targeted Sol6.1 High blind/security PASS and lower-bound PASS. Final45-path/9new inventory SHA7A11DCB2DF8A1292386413FAA3B33D01F44C626569FD147A14630CF64CA0BC27 independently verified0mismatches. Full local unit2722pass0fail1existing platformskip; TSC/lint/build/containment/lock pass, lowerfix RED1 then7pass0skip.34 integration and7browser collected only, runtime pending. Source/spec in-review; no development-complete claim."
 constraints:
   - "Exclusive checkout C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas; root owns all Git/index/commits/push/CI/state/sprint/ledger/report actions."
   - "Formal planning only until approved ready-for-dev plan; no product/migration/dependency writes during planning."

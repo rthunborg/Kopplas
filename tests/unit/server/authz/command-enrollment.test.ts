@@ -88,3 +88,7 @@ test("[P0] 16.3 explicit work-order commands retain manager-only parent dependen
  assert.deepEqual(COMMAND_CAPABILITIES["job.work_order_dependencies.set"], {module: "jobs", capability: "Jobs.Edit"});
  assert.equal(COMMAND_CAPABILITIES["work_order.reopen"], undefined);
 });
+
+test("[P0] 16.4 upgrade retains independent manager-only Jobs.Edit admission",()=>{
+ assert.deepEqual(COMMAND_CAPABILITIES["job.upgrade_to_projekt"],{module:"jobs",capability:"Jobs.Edit"});
+});

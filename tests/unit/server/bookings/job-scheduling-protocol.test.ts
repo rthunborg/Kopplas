@@ -48,7 +48,7 @@ function obsoleteSnapshot() {
 
 // RED_ACTIVATION_16_4_OBSOLETE_SNAPSHOT: parent may temporarily activate only this body.
 // Provider: actual src/server/bookings/conflict-facts.ts::parseDetectionSnapshot.
-test.skip("[P0][16.4-U11] correctly signed and hashed obsolete v3/v1 snapshot is rejected at semantic admission", () => {
+test("[P0][16.4-U11] correctly signed and hashed obsolete v3/v1 snapshot is rejected at semantic admission", () => {
   const row = obsoleteSnapshot();
   const outputText = "[]";
   const syntheticSecret = "synthetic-story16-4-key-never-production";
@@ -61,4 +61,22 @@ test.skip("[P0][16.4-U11] correctly signed and hashed obsolete v3/v1 snapshot is
     "positive control: refusal must be semantic, not an invalid signature/hash fixture");
   assert.throws(() => parseDetectionSnapshot(row), /booking snapshot invalid|obsolete|version/i,
     "16.4 v4/v2 must refuse the previously valid v3/v1 fact envelope");
+});
+
+
+test("[P0][16.4-F04] authenticated obsolete receipt refreshes only after request binding; malformed/tampered/foreign receipts remain denied",async()=>{
+ const d=await import("@/server/bookings/editor-preview");
+ const old={...obsoleteSnapshot(),groups:[]};
+ const current={...old,engineVersion:"booking-conflicts-v4",configVersion:"stockholm-capacity-v2"};
+ const secret="synthetic-story16-4-receipt-only";
+ const receipt=d.sealEditorReceipt(old,secret),opened=d.openEditorReceipt(receipt,secret);
+ assert.equal(opened.engineVersion,"booking-conflicts-v3");
+ const now=Date.parse("2026-10-12T06:00:30Z");
+ assert.throws(()=>d.assertEditorReceiptCurrent(opened,current,now),{code:"PREVIEW_STALE"});
+ assert.throws(()=>d.assertEditorReceiptCurrent({...opened,actorId:"foreign"},current,now),{code:"TENANT_ACCESS_DENIED"});
+ assert.throws(()=>d.assertEditorReceiptCurrent({...opened,expiresAt:"invalid"},current,now),{code:"TENANT_ACCESS_DENIED"});
+ assert.throws(()=>d.assertEditorReceiptCurrent({...opened,issuedAt:"2026-10-12T06:00:40Z"},current,now),{code:"TENANT_ACCESS_DENIED"});
+ assert.throws(()=>d.assertEditorReceiptCurrent(opened,current,Date.parse("2026-10-12T06:02:00Z")),{code:"PREVIEW_STALE"});
+ const bytes=Buffer.from(receipt,"base64url");bytes[bytes.length-1]!^=1;
+ assert.throws(()=>d.openEditorReceipt(bytes.toString("base64url"),secret),{code:"TENANT_ACCESS_DENIED"});
 });

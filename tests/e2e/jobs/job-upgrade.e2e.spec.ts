@@ -127,7 +127,7 @@ async function editFullCard(page: Page, f: JobsDepthFixture, jobId: string, titl
 }
 
 test.describe("Story16.4 same-row Projekt upgrade — RED", () => {
-  test.skip("[P0] 16.4-Upgrade-E01 manager uses full card on both kinds; same-ID upgrade preserves accepted source and every child", async ({ resourcePage: page }) => {
+  test("[P0] 16.4-Upgrade-E01 manager uses full card on both kinds; same-ID upgrade preserves accepted source and every child", async ({ resourcePage: page }) => {
     const f = await createJobsDepthFixture();
     try {
       const jobId = f.jobs.acceptedAssigned.id;
@@ -198,7 +198,7 @@ test.describe("Story16.4 same-row Projekt upgrade — RED", () => {
     } finally { await f.dispose(); }
   });
 
-  test.skip("[P0] 16.4-Upgrade-E02 current lead gains no manager grant; phone response-loss retry keeps state and commits once",
+  test("[P0] 16.4-Upgrade-E02 current lead gains no manager grant; phone response-loss retry keeps state and commits once",
     { annotation: [{ type: "skipNetworkMonitoring", description: "Lose one exact real upgrade response after durable commit" }] },
     async ({ resourcePage: page }) => {
       const f = await createJobsDepthFixture();
@@ -257,5 +257,39 @@ test.describe("Story16.4 same-row Projekt upgrade — RED", () => {
         await f.dispose();
       }
     });
+
+  test("[P0] 16.4-Upgrade-E03 definitive refusal dismisses; failed/duplicate refetch retains confirmation and cannot overwrite a newer save",async({resourcePage:page})=>{
+    const f=await createJobsDepthFixture();let intercept:((route:Route)=>Promise<void>)|undefined;let release=()=>{};
+    try {
+      const job=f.jobs.editable.id,membership=f.fx.coworkerProfile.membershipId;
+      await signIn(page,f.credentials.manager);let pane=await dialog(page,job);await confirmTruth(pane);
+      const [prior]=await adminQuery<{role:string}>("select role from public.tenant_memberships where id=$1",[membership]);
+      const roles=await adminQuery<{role:string}>("select role from public.membership_roles where membership_id=$1",[membership]);
+      await adminQuery("delete from public.membership_roles where membership_id=$1",[membership]);
+      await adminQuery("update public.tenant_memberships set role='saljare' where id=$1",[membership]);
+      const before=await jobSemanticsSnapshot(f);
+      await pane.getByTestId("job-upgrade-confirm").click();await expect(pane.getByTestId("job-upgrade-error")).toBeVisible();
+      await page.getByRole("button",{name:"Stäng dialogruta",exact:true}).filter({visible:true}).last().click();
+      await expect(pane).toHaveCount(0);expect(await jobSemanticsSnapshot(f)).toEqual(before);
+      await adminQuery("update public.tenant_memberships set role=$2 where id=$1",[membership,prior.role]);
+      for(const role of roles)await adminQuery("insert into public.membership_roles(tenant_id,membership_id,role) values($1,$2,$3)",[f.fx.base.tenantA.id,membership,role.role]);
+      pane=await dialog(page,job);await confirmTruth(pane);
+      await saveCard(f,job,{title:"Intervening card change"});
+      await pane.getByTestId("job-upgrade-confirm").click();await expect(pane.getByTestId("job-upgrade-refetch")).toBeEnabled();
+      const isRefetch=(request:Request)=>{if(request.method()!=="POST" || !request.headers()["next-action"] || new URL(request.url()).pathname!==`/jobs/${job}`)return false;try{const args=JSON.parse(request.postData()??"null");return Array.isArray(args)&&args.length===1&&args[0]===job;}catch{return false;}};
+      let calls=0;intercept=async route=>{if(!isRefetch(route.request())){await route.continue();return;}calls++;await route.abort("failed");};
+      await page.route("**/*",intercept);await pane.getByTestId("job-upgrade-refetch").click();
+      await expect(pane.getByTestId("job-upgrade-error")).toContainText("kunde inte hämtas");await expect(pane.getByTestId("job-upgrade-consent")).toBeChecked();
+      await expect(pane.getByTestId("job-upgrade-refetch")).toBeEnabled();await page.unroute("**/*",intercept);
+      let reached!:()=>void;const captured=new Promise<void>(resolve=>{reached=resolve;}),released=new Promise<void>(resolve=>{release=resolve;});
+      intercept=async route=>{if(!isRefetch(route.request())){await route.continue();return;}calls++;const actual=await route.fetch();reached();await released;await route.fulfill({response:actual});};
+      await page.route("**/*",intercept);
+      await pane.getByTestId("job-upgrade-refetch").evaluate(element=>{(element as HTMLButtonElement).click();(element as HTMLButtonElement).click();});
+      await captured;await expect(pane.getByTestId("job-upgrade-refetch")).toBeDisabled();await expect(pane.getByTestId("job-upgrade-retry")).toHaveCount(0);await expect(pane.getByTestId("job-upgrade-confirm")).toBeDisabled();
+      release();await expect(pane.getByTestId("job-upgrade-consent")).not.toBeChecked();expect(calls).toBe(2);
+      await confirmTruth(pane);await pane.getByTestId("job-upgrade-confirm").click();await expect(page.getByTestId("job-upgrade-save-status")).toBeVisible();
+      expect((await readJobSemantics(f.fx.plannerClient,job)).type).toBe("projekt");
+    } finally {release();if(intercept)await page.unroute("**/*",intercept);await f.dispose();}
+  });
 });
 

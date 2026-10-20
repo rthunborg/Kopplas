@@ -95,6 +95,7 @@ export const COMMAND_CAPABILITIES: Readonly<Record<string, CommandCapability>> =
   "job.create": { module: "jobs", capability: "Jobs.Create" },
   "job.update": { module: "jobs", capability: "Jobs.Edit" },
   "job.card.create": { module: "jobs", capability: "Jobs.Create" },
+  "job.upgrade_to_projekt": { module: "jobs", capability: "Jobs.Edit" },
   "job.card.update": { module: "jobs", capability: "Jobs.Edit" },
   "job.member.assign": { module: "jobs", capability: "Jobs.ManageCrew" },
   "job.member.remove": { module: "jobs", capability: "Jobs.ManageCrew" },

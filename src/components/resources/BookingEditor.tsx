@@ -1,6 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { deriveJobBookingInterval, jobSchedulingContext, type JobSchedulingHint } from "@/features/jobs/job-scheduling-consumers";
+import type { BookingSemanticsDisplay } from "@/server/bookings/job-semantics";
+import { parseUtcInstant } from "@/features/scheduling/time-zone";
 import { Dialog } from "@/components/crm/Dialog";
 import type { BookingFacts } from "@/features/resources/booking-types";
 import type { BookingEditorOptions } from "@/features/resources/booking-action-state";
@@ -41,6 +44,7 @@ export function BookingEditor({open, onClose, draft, options: initialOptions, bo
   const [selected, setSelected] = useState<readonly string[]>([]);
   const [preview, setPreview] = useState<BookingPreviewDisplay>(initialPreview ?? {requestId: "initial", status: "pending", warnings: [], availabilityLabel: "Okänd"});
   const [retry, setRetry] = useState(0);
+  const [semantics,setSemantics]=useState<BookingSemanticsDisplay|null>(null);
   const [availability, setAvailability] = useState<readonly {personId: string; available: boolean}[]>([]);
   // Existing assignments remain visible/editable even if the person is no longer
   // offered for new bookings. SQL decides whether a fresh assignment is valid.
@@ -68,9 +72,20 @@ export function BookingEditor({open, onClose, draft, options: initialOptions, bo
     if (pending || attempted.current) return;
     sequence.current += 1; receipt.current = null; setReviewed(false); setSelected([]); setReason("");
     setPreview(value => advanceBookingPreview({currentRequestId: value.requestId,preview: value,reviewed}, {kind: "candidateChanged",requestId: String(sequence.current)}).preview);
-    setAvailability([]);
+    setAvailability([]); setSemantics(null);
     setFacts(value => ({...value,...patch})); setDirty(true); setError(null);
     identity.current = null;
+  }
+  function defaultInterval(jobId: string | null, localStart=start, currentOptions=options, userStart=false, checkedHint?:JobSchedulingHint|null) {
+    if(bookingId || endChanged || prefill?.endsAt || unresolved || attempted.current || facts.allDay) return {};
+    try {
+      // Untouched fold starts retain the exact original instant. Only actual input edits reparse wall time.
+      const effective=prepareBookingTimes({original:facts,startChanged:startChanged || userStart,endChanged:false,allDay:false,startsAtLocal:localStart,endsAtLocal:end});
+      const hint=checkedHint === undefined ? currentOptions.jobs.find(job=>job.id === jobId)?.schedulingHint ?? null:checkedHint;
+      const interval=deriveJobBookingInterval({mode:"create",interval:{startsAt:effective.startsAt,endsAt:null,provenance:"derived",startProvenance:startChanged || userStart ? "user":prefill?.startsAt ? "explicit":"derived"},job:hint});
+      setStart(bookingLocalInput(interval.startsAt));setEnd(bookingLocalInput(interval.endsAt!));
+      return {startsAt:interval.startsAt,endsAt:interval.endsAt!};
+    } catch {return {};}
   }
   function candidate() {
     proposedCreateId.current ??= crypto.randomUUID();
@@ -93,6 +108,18 @@ export function BookingEditor({open, onClose, draft, options: initialOptions, bo
         if (result.status === "error") { deliverPreview(current, {requestId: String(current),status: "error", warnings: [], availabilityLabel: "Okänd", errorMessage: result.message}); return; }
         receipt.current = result.preview.receipt;
         setAvailability(result.preview.availability);
+        if(result.preview.semantics) {
+          setSemantics(result.preview.semantics);
+          const hint=result.preview.semantics.hint;
+          setOptions(value=>({...value,jobs:value.jobs.map(job=>job.id === facts.jobId ? {...job,schedulingHint:hint ?? undefined}:job)}));
+          if(!bookingId && !endChanged && !prefill?.endsAt && !attempted.current && !facts.allDay) {
+            const effective=candidate();
+            const derived=deriveJobBookingInterval({mode:"create",interval:{startsAt:effective.startsAt,endsAt:null,provenance:"derived",startProvenance:startChanged ? "user":prefill?.startsAt ? "explicit":"derived"},job:hint});
+            if(parseUtcInstant(derived.startsAt) !== parseUtcInstant(effective.startsAt) || parseUtcInstant(derived.endsAt!) !== parseUtcInstant(effective.endsAt)) {
+              setStart(bookingLocalInput(derived.startsAt));setEnd(bookingLocalInput(derived.endsAt!));change({startsAt:derived.startsAt,endsAt:derived.endsAt!});return;
+            }
+          }
+        }
         deliverPreview(current, {requestId: String(current),status: "ready", warnings: result.preview.warnings, availabilityLabel: result.preview.availability.some(person => !person.available) ? "Upptagen" : "Tillgänglig"});
       } catch { if (sequence.current === current) deliverPreview(current, {requestId: String(current),status: "error",warnings: [],availabilityLabel: "Okänd",errorMessage: "Konfliktkontrollen kunde inte slutföras."}); }
     }, 250);
@@ -131,12 +158,13 @@ export function BookingEditor({open, onClose, draft, options: initialOptions, bo
   }
   async function retryOptions() {
     if (pending || unresolved || optionsLoading) return;
+    const currentSequence=sequence.current;
     setOptionsLoading(true);
     try {
       const fresh = await reloadBookingEditorOptionsAction();
       if (fresh.error || !fresh.canManage) setOptions(value => ({...value,error: fresh.error ?? "Bokningsvalen kunde inte läsas. Försök igen."}));
       else {
-        setOptions(fresh); receipt.current = null; setReviewed(false); setSelected([]); setReason("");
+        const durationPatch=sequence.current === currentSequence ? defaultInterval(facts.jobId,start,fresh):{}; setOptions(fresh); setFacts(value=>({...value,...durationPatch})); receipt.current = null; setReviewed(false); setSelected([]); setReason("");
         setPreview({requestId: "options",status: "pending",warnings: [],availabilityLabel: "Okänd"}); setRetry(n=>n+1);
       }
     } catch {setOptions(value => ({...value,error: "Bokningsvalen kunde inte läsas. Försök igen."}));}
@@ -145,22 +173,29 @@ export function BookingEditor({open, onClose, draft, options: initialOptions, bo
   function connection(name: "jobId" | "customerId" | "facilityId" | "contactId", value: string) {
     if (name === "jobId") {
       const job = options.jobs.find(item => item.id === value);
-      change(job ? {jobId: job.id,customerId: job.customerId,facilityId: job.facilityId,contactId: job.contactId} : {jobId: null});
+      change(job ? {jobId: job.id,customerId: job.customerId,facilityId: job.facilityId,contactId: job.contactId,...defaultInterval(job.id)} : {jobId: null,...defaultInterval(null)});
     } else if (name === "customerId") {
-      change({customerId: value || null,jobId: null,facilityId: null,contactId: null});
+      change({customerId: value || null,jobId: null,facilityId: null,contactId: null,...defaultInterval(null)});
     } else if (name === "facilityId") {
       const facility = options.facilities.find(item => item.id === value);
       const contact = options.contacts.find(item => item.id === facts.contactId);
       const customerId = facility?.customerId ?? facts.customerId;
       const compatibleContact = contact && contact.customerId === customerId && (!contact.facilityId || contact.facilityId === (value || null));
-      change({facilityId: value || null,contactId: compatibleContact ? contact.id : null,jobId: null,...(facility ? {customerId: facility.customerId} : {})});
+      change({facilityId: value || null,contactId: compatibleContact ? contact.id : null,jobId: null,...defaultInterval(null),...(facility ? {customerId: facility.customerId} : {})});
     } else {
       const contact = options.contacts.find(item => item.id === value);
       const currentCustomer = facts.customerId ?? options.facilities.find(item => item.id === facts.facilityId)?.customerId;
-      change({contactId: value || null,jobId: null,...(contact ? {customerId: contact.customerId,
+      change({contactId: value || null,jobId: null,...defaultInterval(null),...(contact ? {customerId: contact.customerId,
         facilityId: contact.facilityId ?? (contact.customerId === currentCustomer ? facts.facilityId : null)} : {})});
     }
   }
+  const selectedHint=semantics?.jobId === facts.jobId ? semantics.hint : options.jobs.find(job=>job.id === facts.jobId)?.schedulingHint ?? null;
+  const presence=selectedHint?.customerPresenceRequired ?? null;
+  const date=start.slice(0,10);
+  const planningContext=/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(date) ? jobSchedulingContext({selectedJobId:facts.jobId ?? "",jobs:selectedHint ? [selectedHint]:[],suggestedDate:date}):null;
+  const desiredMiss=planningContext?.warnings.some(w=>w.code === "desired_date_missed");
+  const latestBreach=planningContext?.warnings.some(w=>w.code === "latest_date_breached");
+  const advisory=semantics?.jobId === facts.jobId ? semantics.advisory:null;
   const optional = (name: "jobId" | "customerId" | "facilityId" | "contactId", label: string, entries: readonly {id: string; label: string}[]) => <label className="space-y-1"><span className="text-sm font-medium">{label}</span><select name={name} data-testid={`booking-${name.replace("Id", "")}`} value={facts[name] ?? ""} className={fieldClass} onChange={e => connection(name, e.target.value)}><option value="">Ingen koppling</option>{facts[name] && !entries.some(item => item.id === facts[name]) && <option value={facts[name]!} disabled>Nuvarande koppling (ej tillgänglig för nya val) · {facts[name]}</option>}{entries.map(item => <option key={item.id} value={item.id}>{item.label}</option>)}</select></label>;
   return <Dialog open={open} onClose={requestClose} title={bookingId ? "Redigera bokning" : "Ny bokning"} busy={pending} variant="sheet" initialFocusRef={initialField}>
     <form onSubmit={save} data-testid="booking-editor" className="space-y-5" aria-busy={pending}>
@@ -176,8 +211,19 @@ export function BookingEditor({open, onClose, draft, options: initialOptions, bo
       <label className="block space-y-1"><span>Arbetsroll</span><select name="workRoleId" data-testid="booking-work-role" className={fieldClass} value={facts.workRoleId ?? ""} onChange={e => change({workRoleId: e.target.value || null})}><option value="">Ingen arbetsroll</option>{facts.workRoleId && !options.workRoles.some(role => role.id === facts.workRoleId) && <option value={facts.workRoleId} disabled>Nuvarande arbetsroll (ej tillgänglig för nya val) · {facts.workRoleId}</option>}{options.workRoles.map(r => <option key={r.id} value={r.id}>{r.label}</option>)}</select></label>
       <label className="flex min-h-11 items-center gap-3"><input name="allDay" data-testid="booking-all-day" type="checkbox" checked={facts.allDay} onChange={e => {if (!e.target.checked) {setStart(value => value.length === 10 ? `${value}T00:00` : value); setEnd(value => value.length === 10 ? `${value}T00:00` : value);} setStartChanged(true); setEndChanged(true); change({allDay: e.target.checked});}} />Heldag</label>
       <p className="text-xs text-zinc-600">Tid i Stockholm. För heldag är slutdatum den första dagen efter bokningen.</p>
-      <div className="grid gap-3 sm:grid-cols-2"><label className="space-y-1"><span>Start</span><input name="startsAt" data-testid="booking-start" type={facts.allDay ? "date" : "datetime-local"} className={fieldClass} value={facts.allDay ? start.slice(0,10) : start} onChange={e => {setStart(e.target.value); setStartChanged(true); change({});}} required /></label><label className="space-y-1"><span>Slut</span><input name="endsAt" data-testid="booking-end" type={facts.allDay ? "date" : "datetime-local"} className={fieldClass} value={facts.allDay ? end.slice(0,10) : end} onChange={e => {setEnd(e.target.value); setEndChanged(true); change({});}} required /></label></div>
+      <div className="grid gap-3 sm:grid-cols-2"><label className="space-y-1"><span>Start</span><input name="startsAt" data-testid="booking-start" type={facts.allDay ? "date" : "datetime-local"} className={fieldClass} value={facts.allDay ? start.slice(0,10) : start} onChange={e => {setStart(e.target.value); setStartChanged(true); change(defaultInterval(facts.jobId,e.target.value,options,true));}} required /></label><label className="space-y-1"><span>Slut</span><input name="endsAt" data-testid="booking-end" type={facts.allDay ? "date" : "datetime-local"} className={fieldClass} value={facts.allDay ? end.slice(0,10) : end} onChange={e => {setEnd(e.target.value); setEndChanged(true); change({});}} required /></label></div>
       <div className="grid gap-3 sm:grid-cols-2">{optional("jobId","Jobb",options.jobs)}{optional("customerId","Kund",options.customers)}{optional("facilityId","Anläggning",options.facilities.filter(f => !facts.customerId || f.customerId === facts.customerId))}{optional("contactId","Kontakt",options.contacts.filter(c => (!facts.customerId || c.customerId === facts.customerId) && (!facts.facilityId || !c.facilityId || c.facilityId === facts.facilityId)))}</div>
+      <div className="space-y-2 text-sm" aria-live="polite">
+        <p data-testid="booking-job-presence" data-state={presence === null ? "unknown":presence ? "required":"not-required"}>Kundens närvaro: {presence === null ? "Okänd":presence ? "Krävs":"Krävs inte"}</p>
+        {selectedHint?.earliestDate && <p data-testid="booking-job-earliest-hint">Tidigast föreslaget datum: {selectedHint.earliestDate}</p>}
+        {desiredMiss && <p data-testid="booking-job-desired-warning">Önskat datum {selectedHint?.desiredDate} har passerats för den valda starten.</p>}
+        {latestBreach && <p data-testid="booking-job-latest-breach">Senaste datum {selectedHint?.latestDate} överskrids.</p>}
+        <p>Efterfrågan jämförs med återstående kapacitet i jobbets planeringsperiod. Uppgifterna är rådgivande.</p>
+        {advisory?.state === "known" ? <dl className="grid grid-cols-1 gap-1 sm:grid-cols-2">{([
+          ["total","Total efterfrågan",advisory.totalDemand],["allocated","Redan planerat för jobbet",advisory.allocatedCurrentJob],
+          ["residual","Återstående efterfrågan",advisory.remainingDemand],["capacity","Återstående kapacitet",advisory.remainingCapacity],
+          ["shortfall","Kapacitetsunderskott",advisory.shortfall]] as const).map(([id,label,value])=><div key={id}><dt>{label}</dt><dd data-testid={`booking-demand-${id}`} data-person-minutes={value}>{value} personminuter</dd></div>)}</dl> : <p data-testid="booking-demand-unknown">Kapacitetsprognos: Okänd</p>}
+      </div>
       <label className="block space-y-1"><span>Beskrivning</span><textarea name="description" data-testid="booking-description" className={fieldClass} value={facts.description} onChange={e => change({description: e.target.value})} /></label>
       <label className="block space-y-1"><span>Status</span><select name="status" data-testid="booking-status" className={fieldClass} value={facts.status} onChange={e => change({status: e.target.value as BookingFacts["status"]})}><option value="planned">Planerad</option><option value="cancelled">Avbruten</option></select></label>
       </fieldset>

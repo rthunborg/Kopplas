@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { deriveJobBookingInterval } from "@/features/jobs/job-scheduling-consumers";
 import { useRouter } from "next/navigation";
 import type { BookingFacts } from "@/features/resources/booking-types";
 import type { BookingEditorOptions, BookingSummary } from "@/features/resources/booking-action-state";
@@ -16,7 +17,10 @@ export type BookingEntryProps = {
 };
 function newDraft(props: BookingEntryProps): BookingFacts {
   const start = new Date(); start.setMinutes(0,0,0); const end = new Date(start.getTime()+3600000);
-  return {startsAt: props.prefill?.startsAt ?? start.toISOString(), endsAt: props.prefill?.endsAt ?? end.toISOString(), allDay: false,
+  const hint=props.options.jobs.find(job=>job.id === props.jobId)?.schedulingHint ?? null;
+  const startsAt=props.prefill?.startsAt ?? start.toISOString();
+  const interval=deriveJobBookingInterval({mode:"create",interval:{startsAt,endsAt:props.prefill?.endsAt ?? end.toISOString(),provenance:props.prefill?.endsAt ? "explicit":"derived",startProvenance:props.prefill?.startsAt ? "explicit":"derived"},job:hint});
+  return {startsAt:interval.startsAt, endsAt:interval.endsAt!, allDay: false,
     workRoleId: null, jobId: props.jobId ?? null, customerId: props.customerId ?? null, facilityId: props.facilityId ?? null, contactId: props.contactId ?? null,
     description: "", status: "planned", assigneeIds: props.prefill?.personId ? [props.prefill.personId] : [], seriesId: null, occurrenceIndex: null,isException: false};
 }

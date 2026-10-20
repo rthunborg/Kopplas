@@ -58,7 +58,7 @@ export async function previewBookingAction(input: unknown): Promise<BookingPrevi
     });
     const people = await readBookingPeople(client, context.data.tenantId, context.data.userId);
     // Explicit DTO projection excludes any future internal proof/fact fields.
-    return { status: "success", preview: { receipt: preview.receipt, bookingId: preview.bookingId,
+    return { status: "success", preview: { receipt: preview.receipt, bookingId: preview.bookingId, semantics:preview.semantics,
       warnings: preview.warnings.map((warning) => ({ logicalId: warning.logicalId, ruleLabel: warning.ruleLabel,
         personId: warning.personId, personLabel: bookingPersonLabel(warning.personId, people.find(person => person.id === warning.personId)?.label),
         bookingIds: warning.bookingIds, bookingLabels: warning.bookingIds.map((id) => id === preview.bookingId ? "Den här bokningen" : `Bokning ${id}`),

@@ -270,3 +270,12 @@ export async function refetchJobWorkOrdersAction(jobId: string): Promise<WorkOrd
   try { return {ok: true, projection: await readJobWorkOrders(undefined, jobId)}; }
   catch { return {ok: false, code: "SERVER_ERROR", message: "Arbetsorder kunde inte hämtas. Försök igen."}; }
 }
+
+/** One-way upgrade uses the same independent Jobs.Edit command admission as full-card writes. */
+export async function upgradeJobToProjektAction(input: unknown) {
+  const {upgradeJobToProjekt}=await import("@/server/commands/jobs/upgrade-job-to-projekt");
+  const client=await createSupabaseServerClient();
+  const result=await runCommand(upgradeJobToProjekt,{client:client as unknown as CommandDbClient,input});
+  if(result.ok) {revalidatePath("/jobs");revalidatePath(`/jobs/${result.data.jobId}`);}
+  return result;
+}

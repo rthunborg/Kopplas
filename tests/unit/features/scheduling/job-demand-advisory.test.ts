@@ -3,6 +3,7 @@
  * preparation remains the oracle. All fixtures are canonical synthetic facts.
  */
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import { test } from "node:test";
 import { prepareDailyCapacity } from "@/features/scheduling/capacity";
 import { DEFAULT_SCHEDULING_RULES, type SchedulingBooking, type SchedulingFacts } from "@/features/scheduling/types";
@@ -32,7 +33,7 @@ function facts(candidate: SchedulingBooking, existingBookings: readonly Scheduli
 }
 
 // Provider: future src/features/scheduling/job-demand-advisory.ts, lazy until activation.
-test.skip("[P0][16.4-U07] four approved D120 N2 T30 person-minute goldens charge demand once and occupancy once", async () => {
+test("[P0][16.4-U07] four approved D120 N2 T30 person-minute goldens charge demand once and occupancy once", async () => {
   const modulePath = new URL("../../../../src/features/scheduling/job-demand-advisory.ts", import.meta.url).href;
   const { evaluateJobDemandAdvisory } = await import(modulePath) as DemandContract;
   const oneHour = booking(CANDIDATE, "2026-10-12T06:00:00Z", "2026-10-12T07:00:00Z");
@@ -45,7 +46,9 @@ test.skip("[P0][16.4-U07] four approved D120 N2 T30 person-minute goldens charge
     { name: "allocation above demand", input: facts(booking(CANDIDATE, "2026-10-12T06:00:00Z", "2026-10-12T09:00:00Z")),
       allocated: 360, residual: 0, capacity: 120, shortfall: 0, perPersonOccupied: BigInt(10800000000) },
   ];
+  const golden=JSON.parse(await readFile(new URL("../../../fixtures/golden/scheduling/capacity.json",import.meta.url),"utf8")) as {jobDemand:{name:string;total:number;allocated:number;residual:number;capacity:number;shortfall:number}[]};
   for (const row of cases) {
+    assert.deepEqual(golden.jobDemand.find(value=>value.name === row.name),{name:row.name,total:300,allocated:row.allocated,residual:row.residual,capacity:row.capacity,shortfall:row.shortfall});
     const before = structuredClone(row.input);
     const advice = evaluateJobDemandAdvisory({ job: job(), eligiblePersonIds: [P1, P2], facts: row.input });
     assert.deepEqual(advice, { kind: "known", totalDemandMinutes: 300, allocatedCurrentJobMinutes: row.allocated,
@@ -57,7 +60,7 @@ test.skip("[P0][16.4-U07] four approved D120 N2 T30 person-minute goldens charge
   }
 });
 
-test.skip("[P0][16.4-U08] missing real inputs stay unknown while explicit T0 is known and crew does not invent people", async () => {
+test("[P0][16.4-U08] missing real inputs stay unknown while explicit T0 is known and crew does not invent people", async () => {
   const modulePath = new URL("../../../../src/features/scheduling/job-demand-advisory.ts", import.meta.url).href;
   const { evaluateJobDemandAdvisory } = await import(modulePath) as DemandContract;
   const actual = facts(emptyCandidate());
@@ -74,7 +77,7 @@ test.skip("[P0][16.4-U08] missing real inputs stay unknown while explicit T0 is 
       remainingCapacityMinutes: 240, shortfallMinutes: 0 });
 });
 
-test.skip("[P0][16.4-U09] canonical candidate replaces prior identity once and split/repeated bookings credit actual minutes only", async () => {
+test("[P0][16.4-U09] canonical candidate replaces prior identity once and split/repeated bookings credit actual minutes only", async () => {
   const modulePath = new URL("../../../../src/features/scheduling/job-demand-advisory.ts", import.meta.url).href;
   const { evaluateJobDemandAdvisory } = await import(modulePath) as DemandContract;
   const whole = booking(CANDIDATE, "2026-10-12T06:00:00Z", "2026-10-12T07:00:00Z");
@@ -93,7 +96,7 @@ test.skip("[P0][16.4-U09] canonical candidate replaces prior identity once and s
       remainingDemandMinutes: 60, remainingCapacityMinutes: 240, shortfallMinutes: 0 });
 });
 
-test.skip("[P0][16.4-U10] identical eligible pool and inclusive planned Stockholm day clip DST occupancy and preserve negative capacity", async () => {
+test("[P0][16.4-U10] identical eligible pool and inclusive planned Stockholm day clip DST occupancy and preserve negative capacity", async () => {
   const modulePath = new URL("../../../../src/features/scheduling/job-demand-advisory.ts", import.meta.url).href;
   const { evaluateJobDemandAdvisory } = await import(modulePath) as DemandContract;
   const selected = booking(CANDIDATE, "2026-10-24T21:00:00Z", "2026-10-25T01:00:00Z", { assigneeIds: [P1] });
@@ -103,11 +106,47 @@ test.skip("[P0][16.4-U10] identical eligible pool and inclusive planned Stockhol
     booking("outside-pool", "2026-10-24T22:00:00Z", "2026-10-25T23:00:00Z", { assigneeIds: [P2] }),
     booking("after-window", "2026-10-25T23:00:00Z", "2026-10-26T00:00:00Z", { assigneeIds: [P1] }),
   ]), people: [P1, P2].map((id) => ({ id, employmentPercentage: 100,
-    shifts: [{ weekday: 7, start: "00:00", end: "04:00", breaks: [] }], exceptions: [] })) };
+    shifts: [{ weekday: 7, start: "00:00", end: "04:00", breaks: [] }], exceptions: [] })),
+    // Sundays are closed under the production holiday policy. This real explicit
+    // overtime authorizes the 300-minute fold shift without bypassing that rule.
+    rules: { ...DEFAULT_SCHEDULING_RULES, authorizedOvertime: [{ personId: P1,
+      startsAt: "2026-10-24T22:00:00Z", endsAt: "2026-10-25T03:00:00Z" }] } };
   const advice = evaluateJobDemandAdvisory({ job: job({ plannedStartDate: "2026-10-25", plannedEndDate: "2026-10-25",
     earliestDate: "2026-10-01", desiredDate: "2026-10-12", latestDate: "2026-10-31" }), eligiblePersonIds: [P1], facts: input });
   assert.deepEqual(advice, { kind: "known", totalDemandMinutes: 300, allocatedCurrentJobMinutes: 180,
     remainingDemandMinutes: 120, remainingCapacityMinutes: -60, shortfallMinutes: 180 });
   assert.equal(prepareDailyCapacity(input, input.people[0]!, "2026-10-25")(BigInt(21600000000)).terms.availableMinutes,
     advice.remainingCapacityMinutes, "00–04 fall-back shift has 300 real minutes; 360 actual minutes leave -60");
+});
+
+test("multi-day clipping uses the planned window and exact fractional occupancy/capacity", async () => {
+  const { evaluateJobDemandAdvisory } = await import("../../../../src/features/scheduling/job-demand-advisory");
+  const input: SchedulingFacts = { ...facts(booking(CANDIDATE, "2026-10-11T21:59:59.999999Z", "2026-10-13T22:00:00.000001Z",
+    { assigneeIds: [P1, P1] }), [booking("fraction", "2026-10-12T06:00:00Z", "2026-10-12T06:00:00.000001Z",
+      { jobId: OTHER_JOB, assigneeIds: [P1] })]),
+    people: [{ id: P1, employmentPercentage: 100,
+      shifts: [1, 2].map((weekday) => ({ weekday, start: "08:00", end: "12:00", breaks: [] })), exceptions: [] }],
+    calendarDays: [{ date: "2026-10-12", variant: "reduced_capacity", reductionPercent: 25 }] };
+  const advice = evaluateJobDemandAdvisory({ job: job({ plannedStartDate: "2026-10-12", plannedEndDate: "2026-10-13",
+    earliestDate: "2026-10-01", desiredDate: "2026-10-30" }), eligiblePersonIds: [P1, P1], facts: input });
+  assert.equal(advice.kind, "known");
+  if (advice.kind !== "known") return;
+  assert.equal(advice.allocatedCurrentJobMinutes, 2880, "two full Stockholm days, one person counted once");
+  assert.equal(advice.remainingDemandMinutes, 0);
+  assert.equal(advice.remainingCapacityMinutes, -2460 - 1 / 60000000);
+  assert.equal(advice.shortfallMinutes, 2460 + 1 / 60000000);
+});
+
+test("duplicate existing ownership contradictions fail instead of selecting arbitrary allocation credit", async () => {
+  const { evaluateJobDemandAdvisory } = await import("../../../../src/features/scheduling/job-demand-advisory");
+  const own = booking("duplicate", "2026-10-12T06:00:00Z", "2026-10-12T07:00:00Z");
+  assert.throws(() => evaluateJobDemandAdvisory({ job: job(), eligiblePersonIds: [P1, P2],
+    facts: facts(emptyCandidate(), [own, { ...own, jobId: OTHER_JOB }]) }), /Contradictory scheduling booking/);
+});
+
+test("[P0][16.4-F03] valid lower/upper instant boundaries and centuries-long planning windows leave advisory unknown without throwing or iterating the window",async()=>{
+ const {evaluateJobDemandAdvisory}=await import("@/features/scheduling/job-demand-advisory");
+ for(const window of [{plannedStartDate:"0001-01-01",plannedEndDate:"0001-01-01"},{plannedStartDate:"9999-12-31",plannedEndDate:"9999-12-31"},{plannedStartDate:"0001-01-01",plannedEndDate:"9998-12-31"}]) {
+  assert.deepEqual(evaluateJobDemandAdvisory({job:job(window),eligiblePersonIds:[P1,P2],facts:facts(emptyCandidate())}),{kind:"unknown"});
+ }
 });

@@ -3,7 +3,7 @@ import { describe, expect, test } from "vitest";
  * exercised on collection. Future DTO/export names live only in the thin adapter.
  * Existing independently checked booking permissions and E14 review remain. */
 describe("16.4 card and actual booking semantics", () => {
-  for (const type of ["order","projekt"] as const) test.skip(`[P0] 16.4-INT-C01 complete ${type} card retains fields, responsible lead and actual WO edges`, async () => {
+  for (const type of ["order","projekt"] as const) test(`[P0] 16.4-INT-C01 complete ${type} card retains fields, responsible lead and actual WO edges`, async () => {
     const h = await import("../../support/jobs-depth-atdd"); const s = await import("../../support/job-semantics-atdd");
     const m = await import("../../support/job-members-atdd"); const w = await import("../../support/work-orders-atdd");
     await h.withJobsDepthFixture(async f => {
@@ -32,7 +32,7 @@ describe("16.4 card and actual booking semantics", () => {
     });
   });
 
-  test.skip("[P0] 16.4-INT-C02 actual editor consumes D only for new untouched default; explicit/edit intervals survive preview/save/read", async () => {
+  test("[P0] 16.4-INT-C02 actual editor consumes D only for new untouched default; explicit/edit intervals survive preview/save/read", async () => {
     const h = await import("../../support/jobs-depth-atdd"); const s = await import("../../support/job-semantics-atdd");
     const {bookingCommand} = await import("../../support/bookings-atdd");
     await h.withJobsDepthFixture(async f => {
@@ -62,7 +62,7 @@ describe("16.4 card and actual booking semantics", () => {
     {allocated:120,gross:360,all:240,residual:180,capacity:120,shortfall:60},
     {allocated:360,gross:480,all:360,residual:0,capacity:120,shortfall:0},
   ];
-  for (const g of golden) test.skip(`[P0] 16.4-INT-C03 actual read/preview demand ${g.allocated}/${g.gross}/${g.all}`, async () => {
+  for (const g of golden) test(`[P0] 16.4-INT-C03 actual read/preview demand ${g.allocated}/${g.gross}/${g.all}`, async () => {
     const h = await import("../../support/jobs-depth-atdd"); const s = await import("../../support/job-semantics-atdd");
     await h.withJobsDepthFixture(async f => {
       const arranged = await s.demandScenario(f,g.gross,g.allocated,g.all), before = await s.jobSemanticsSnapshot(f);
@@ -73,7 +73,7 @@ describe("16.4 card and actual booking semantics", () => {
     });
   });
 
-  test.skip("[P0] 16.4-INT-C04 actual post-edit candidate credited once, same explicit pool/window and split actual occupancy only", async () => {
+  test("[P0] 16.4-INT-C04 actual post-edit candidate credited once, same explicit pool/window and split actual occupancy only", async () => {
     const h = await import("../../support/jobs-depth-atdd"); const s = await import("../../support/job-semantics-atdd");
     const { bookingCommand,bookingInput } = await import("../../support/bookings-atdd");
     await h.withJobsDepthFixture(async f => {
@@ -94,7 +94,7 @@ describe("16.4 card and actual booking semantics", () => {
     });
   });
 
-  test.skip("[P0] 16.4-INT-C05 missing real input stays unknown, zero travel known; advisory shortfall adds no save/override/conflict rule", async () => {
+  test("[P0] 16.4-INT-C05 missing real input stays unknown, zero travel known; advisory shortfall adds no save/override/conflict rule", async () => {
     const h = await import("../../support/jobs-depth-atdd"); const s = await import("../../support/job-semantics-atdd");
     const { bookingCommand } = await import("../../support/bookings-atdd");
     await h.withJobsDepthFixture(async f => {
@@ -115,7 +115,7 @@ describe("16.4 card and actual booking semantics", () => {
     });
   });
 
-  test.skip("[P0] 16.4-INT-C06 checked selected-job dates and true/false/unknown presence never bleed across mixed jobs", async () => {
+  test("[P0] 16.4-INT-C06 checked selected-job dates and true/false/unknown presence never bleed across mixed jobs", async () => {
     const h = await import("../../support/jobs-depth-atdd"); const s = await import("../../support/job-semantics-atdd");
     const {bookingCommand} = await import("../../support/bookings-atdd");
     await h.withJobsDepthFixture(async f => {
@@ -134,7 +134,7 @@ describe("16.4 card and actual booking semantics", () => {
     });
   });
 
-  for (const target of ["booking","card"] as const) test.skip(`[P0] 16.4-INT-C07 correctly signed obsolete v3 ${target} proof/receipt rejected by real finalizer`, async () => {
+  for (const target of ["booking","card"] as const) test(`[P0] 16.4-INT-C07 correctly signed obsolete v3 ${target} proof/receipt rejected by real finalizer`, async () => {
     const h = await import("../../support/jobs-depth-atdd"); const s = await import("../../support/job-semantics-atdd");
     const { bookingCommand,bookingInput } = await import("../../support/bookings-atdd");
     await h.withJobsDepthFixture(async f => {
@@ -150,7 +150,7 @@ describe("16.4 card and actual booking semantics", () => {
   });
 
   for (const field of ["estimated_duration_minutes","crew_size","planned_travel_minutes","planned_start_date","planned_end_date","earliest_date","desired_date","latest_date","customer_presence_required"] as const)
-    test.skip(`[P0] 16.4-INT-C08 reviewed preview refuses changed current fact while SQL waits: ${field}`, async () => {
+    test(`[P0] 16.4-INT-C08 reviewed preview refuses changed current fact while SQL waits: ${field}`, async () => {
       const h = await import("../../support/jobs-depth-atdd"); const s = await import("../../support/job-semantics-atdd");
       const j = await import("../../support/job-booking-facts-atdd");
       const {bookingInput,bookingCommand} = await import("../../support/bookings-atdd");
@@ -172,7 +172,7 @@ describe("16.4 card and actual booking semantics", () => {
       });
     });
 
-  test.skip("[P0] 16.4-INT-C09 old replay-only finalizer cannot perform a fresh write", async () => {
+  test("[P0] 16.4-INT-C09 old replay-only finalizer cannot perform a fresh write", async () => {
     const h = await import("../../support/jobs-depth-atdd"); const s = await import("../../support/job-semantics-atdd");
     const {actualEditorBindings} = await import("../../support/booking-editor-production");
     await h.withJobsDepthFixture(async f => {
@@ -182,7 +182,7 @@ describe("16.4 card and actual booking semantics", () => {
       expect(await s.jobSemanticsSnapshot(f)).toEqual(before);
     });
   });
-  test.skip("[P0] 16.4-INT-C10 mixed booking facts bind each actual job and selected-pool canonical post-edit occupancy", async () => {
+  test("[P0] 16.4-INT-C10 mixed booking facts bind each actual job and selected-pool canonical post-edit occupancy", async () => {
     const h = await import("../../support/jobs-depth-atdd"); const s = await import("../../support/job-semantics-atdd");
     const { bookingInput,bookingCommand } = await import("../../support/bookings-atdd");
     await h.withJobsDepthFixture(async f => {
@@ -207,7 +207,7 @@ describe("16.4 card and actual booking semantics", () => {
     });
   });
 
-  test.skip("[P0] 16.4-INT-C11 card finalizer refuses an evaluated other-job fact change with no derived writes", async () => {
+  test("[P0] 16.4-INT-C11 card finalizer refuses an evaluated other-job fact change with no derived writes", async () => {
     const h = await import("../../support/jobs-depth-atdd"); const s = await import("../../support/job-semantics-atdd");
     const j = await import("../../support/job-booking-facts-atdd");
     const { adminQuery } = await import("../../factories/admin-sql");
@@ -222,7 +222,7 @@ describe("16.4 card and actual booking semantics", () => {
       expect(observed.result).toMatchObject({ok:false,code:"PREVIEW_STALE"});
       expect(await s.jobSemanticsSnapshot(f)).toEqual(external);
     });
-  });  test.skip("[P0] 16.4-INT-C12 semantic entry/preview cannot grant foreign-parent or lead-only booking authority", async () => {
+  });  test("[P0] 16.4-INT-C12 semantic entry/preview cannot grant foreign-parent or lead-only booking authority", async () => {
     const h = await import("../../support/jobs-depth-atdd"); const s = await import("../../support/job-semantics-atdd");
     const m = await import("../../support/job-members-atdd");
     const {bookingInput,bookingCommand} = await import("../../support/bookings-atdd");
@@ -251,7 +251,40 @@ describe("16.4 card and actual booking semantics", () => {
         expect(await s.jobSemanticsSnapshot(f)).toEqual(before);
       }
     });
-  });});
+  });
+  test("[P0] 16.4-INT-F01 valid terminal/centuries planning dates cannot block real booking preview or save",async()=>{
+    const h=await import("../../support/jobs-depth-atdd"),s=await import("../../support/job-semantics-atdd");
+    const {bookingCommand}=await import("../../support/bookings-atdd");
+    await h.withJobsDepthFixture(async f=>{
+      for(const window of [{planned_start_date:"9999-12-31",planned_end_date:"9999-12-31"},{planned_start_date:"0001-01-01",planned_end_date:"9998-12-31"}]) {
+        await s.saveCard(f,f.jobs.editable.id,window);
+        const preview=await s.readBookingSemantics(f.fx.adminClient,{jobId:f.jobs.editable.id,startsAt:"2026-10-20T06:00:00Z",endsAt:"2026-10-20T07:00:00Z",intervalSource:"explicit",assigneeIds:[f.fx.ownProfile.id]});
+        expect(preview.advisory).toEqual({state:"unknown",totalDemand:null,allocatedCurrentJob:null,remainingDemand:null,remainingCapacity:null,shortfall:null});
+        expect((await bookingCommand("create",f.fx.adminClient,{...preview.input,status:"cancelled"})).ok).toBe(true);
+      }
+    });
+  });
+  test("[P0] 16.4-INT-F02 authentic obsolete receipt refetches; tampered/foreign receipts stay denied without writes",async()=>{
+    const h=await import("../../support/jobs-depth-atdd"),s=await import("../../support/job-semantics-atdd");
+    const {bookingCommand,bookingInput}=await import("../../support/bookings-atdd");
+    const {reviewedFixtureInput}=await import("../../support/booking-editor-production");
+    const {openEditorReceipt,sealEditorReceipt}=await import("@/server/bookings/editor-preview");
+    const {LOCAL_TEST_BOOKING_CONFLICT_SECRET:secret}=await import("../../support/test-env");
+    await h.withJobsDepthFixture(async f=>{
+      await s.saveCard(f,f.jobs.editable.id);
+      const input=await reviewedFixtureInput(f.fx.adminClient,"create",bookingInput([f.fx.ownProfile.id],{jobId:f.jobs.editable.id,startsAt:"2026-10-20T06:00:00Z",endsAt:"2026-10-20T07:00:00Z"}));
+      if(!input.editorReview)throw new Error("real review required");
+      const current=openEditorReceipt(input.editorReview.receipt,secret),before=await s.jobSemanticsSnapshot(f);
+      const obsolete={...current,engineVersion:"booking-conflicts-v3",configVersion:"stockholm-capacity-v1"};
+      const old=sealEditorReceipt(obsolete,secret);
+      expect(await bookingCommand("create",f.fx.adminClient,{...input,editorReview:{...input.editorReview,receipt:old}})).toMatchObject({ok:false,code:"PREVIEW_STALE"});
+      const foreign=sealEditorReceipt({...obsolete,actorId:f.fx.base.adminB.id},secret);
+      const bytes=Buffer.from(old,"base64url");bytes[bytes.length-1]!^=1;
+      for(const receipt of [foreign,bytes.toString("base64url")]) expect(await bookingCommand("create",f.fx.adminClient,{...input,editorReview:{...input.editorReview,receipt}})).toMatchObject({ok:false,code:"TENANT_ACCESS_DENIED"});
+      expect(await s.jobSemanticsSnapshot(f)).toEqual(before);
+    });
+  });
+});
 
 
 

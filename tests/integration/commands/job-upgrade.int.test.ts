@@ -2,7 +2,7 @@ import { describe, expect, test } from "vitest";
 /** 16.4 RED. All bodies skipped; activation requires real checked implementation,
  * reconciled adapter bindings and isolated SUPABASE_TEST_REQUIRED=1 evidence. */
 describe("16.4 same-row one-way Projekt upgrade", () => {
-  test.skip("[P0] 16.4-INT-U01 manager upgrades accepted job with every child/file/provenance intact", async () => {
+  test("[P0] 16.4-INT-U01 manager upgrades accepted job with every child/file/provenance intact", async () => {
     const h = await import("../../support/jobs-depth-atdd");
     const s = await import("../../support/job-semantics-atdd");
     const w = await import("../../support/work-orders-atdd");
@@ -37,11 +37,16 @@ describe("16.4 same-row one-way Projekt upgrade", () => {
     });
   });
 
-  test.skip("[P0] 16.4-INT-U02 concurrent response-loss retries have one outcome and changed request identity is refused", async () => {
+  test("[P0] 16.4-INT-U02 concurrent response-loss retries have one outcome and changed request identity is refused", async () => {
     const h = await import("../../support/jobs-depth-atdd"); const s = await import("../../support/job-semantics-atdd");
     await h.withJobsDepthFixture(async f => {
       const job = f.jobs.editable.id, correlation = crypto.randomUUID(), input = await s.upgradeInput(f.fx.adminClient,job);
       const before = await s.jobSemanticsSnapshot(f);
+      const mismatchedState=input.expectedState === "0".repeat(64) ? "1".repeat(64):"0".repeat(64);
+      const freshStale={...input,commandId:crypto.randomUUID(),expectedState:mismatchedState};
+      expect(await s.upgradeJob(f.fx.adminClient,freshStale,correlation)).toMatchObject({ok:false,code:"PREVIEW_STALE"});
+      expect((await s.checkedUpgrade(f.fx.adminClient,f.fx.base.tenantA.id,f.fx.base.adminA.id,freshStale,correlation)).error?.code).toBe("BK409");
+      expect(await s.jobSemanticsSnapshot(f)).toEqual(before);
       const replies = await Promise.all([s.upgradeJob(f.fx.adminClient,input,correlation),s.upgradeJob(f.fx.adminClient,input,correlation)]);
       expect(replies[0]).toMatchObject({ok:true,data:{jobId:job,type:"projekt"}}); expect(replies[1]).toEqual(replies[0]);
       const committed = await s.jobSemanticsSnapshot(f);
@@ -53,13 +58,17 @@ describe("16.4 same-row one-way Projekt upgrade", () => {
         expect(await s.upgradeJob(f.fx.adminClient,changed,correlation)).toMatchObject({ok:false});
         expect(await s.jobSemanticsSnapshot(f)).toEqual(committed);
       }
+      const changedReplay={...input,expectedState:mismatchedState};
+      expect(await s.upgradeJob(f.fx.adminClient,changedReplay,correlation)).toMatchObject({ok:false,code:"PREVIEW_STALE"});
+      expect((await s.checkedUpgrade(f.fx.adminClient,f.fx.base.tenantA.id,f.fx.base.adminA.id,changedReplay,correlation)).error?.code).toBe("BK409");
+      expect(await s.jobSemanticsSnapshot(f)).toEqual(committed);
       // A fresh already-Projekt request is a truthful idempotent outcome, no second event/audit.
       expect(await s.upgradeJob(f.fx.adminClient,await s.upgradeInput(f.fx.adminClient,job))).toMatchObject({ok:true,data:{jobId:job,type:"projekt"}});
       expect(await s.jobSemanticsSnapshot(f)).toEqual(committed);
     });
   });
 
-  test.skip("[P0] 16.4-INT-U03 audit fault rolls type/event/outcome back; exact retry commits once", async () => {
+  test("[P0] 16.4-INT-U03 audit fault rolls type/event/outcome back; exact retry commits once", async () => {
     const h = await import("../../support/jobs-depth-atdd"); const s = await import("../../support/job-semantics-atdd");
     const j = await import("../../support/job-booking-facts-atdd");
     await h.withJobsDepthFixture(async f => {
@@ -74,7 +83,7 @@ describe("16.4 same-row one-way Projekt upgrade", () => {
     });
   });
 
-  test.skip("[P0] 16.4-INT-U04 manager role union works without profile; lead/ordinary/foreign/inactive JWTs cannot upgrade or replay", async () => {
+  test("[P0] 16.4-INT-U04 manager role union works without profile; lead/ordinary/foreign/inactive JWTs cannot upgrade or replay", async () => {
     const h = await import("../../support/jobs-depth-atdd"); const s = await import("../../support/job-semantics-atdd");
     const m = await import("../../support/job-members-atdd"); const t = await import("../../factories/tenants");
     const { adminQuery } = await import("../../factories/admin-sql");
@@ -104,7 +113,7 @@ describe("16.4 same-row one-way Projekt upgrade", () => {
     });
   });
 
-  for (const change of ["role-revoked","parent-archived"] as const) test.skip(`[P0] 16.4-INT-U05 current authority and target after observed lock wait: ${change}`, async () => {
+  for (const change of ["role-revoked","parent-archived"] as const) test(`[P0] 16.4-INT-U05 current authority and target after observed lock wait: ${change}`, async () => {
     const h = await import("../../support/jobs-depth-atdd"); const s = await import("../../support/job-semantics-atdd");
     const j = await import("../../support/job-booking-facts-atdd");
     await h.withJobsDepthFixture(async f => {
@@ -121,7 +130,7 @@ describe("16.4 same-row one-way Projekt upgrade", () => {
     });
   });
 
-  test.skip("[P0] 16.4-INT-U06 every reverse writer is rejected below wrappers with exact downgrade result; old creation stays order-only", async () => {
+  test("[P0] 16.4-INT-U06 every reverse writer is rejected below wrappers with exact downgrade result; old creation stays order-only", async () => {
     const h = await import("../../support/jobs-depth-atdd"); const s = await import("../../support/job-semantics-atdd");
     const { adminSession } = await import("../../factories/admin-sql");
     const { runCommand } = await import("@/server/commands/envelope"); const { createJob } = await import("@/server/commands/jobs");

@@ -24,6 +24,7 @@ import { JOB_STATUS_LABELS, type JobDetail } from "@/features/jobs/types";
 import { JobCardForm, type JobCardOptions } from "./JobCardForm";
 import { JobMembersPanel } from "./JobMembersPanel";
 import type { JobMembersProjection } from "@/server/read-models/job-members";
+import { JobUpgradeDialog } from "./JobUpgradeDialog";
 import { JobEditDialog } from "./JobEditDialog";
 import { JobEvidenceLink } from "./JobEvidenceLink";
 
@@ -36,6 +37,7 @@ function formatDate(iso: string | null): string {
 
 /** The event-type → Swedish label (the append-friendly job lifecycle events). */
 const EVENT_LABELS: Record<string, string> = {
+  upgraded_to_projekt: "Uppgraderad till projekt",
   created: "Skapad",
   in_progress: "Pågår",
   done: "Klar",
@@ -107,6 +109,7 @@ export function JobDetailView({
         </dl>
       </header>
 
+      {canEdit && detail.type && members && <JobUpgradeDialog jobId={detail.id} type={detail.type} expectedState={members.expectedState} />}
       {members && <JobMembersPanel jobId={detail.id} initial={members} />}
       {membersError && <section role="alert" data-testid="job-members-read-failed" className="rounded-lg border border-red-300 bg-red-50 p-4 text-sm text-red-800">
         <p>{membersError}</p><form action={`/jobs/${detail.id}`} method="get"><button type="submit" className="mt-3 min-h-11 underline">Hämta medlemmar igen</button></form>

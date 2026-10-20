@@ -1,4 +1,7 @@
-/** Story 16.4 RED adapters. Every runtime import is lazy; no DB work at collection.
+import { readJobSemantics as actualJobSemantics } from "@/server/read-models/job-semantics";
+import { readBookingSemantics as actualBookingSemantics } from "@/server/bookings/job-semantics";
+import { upgradeJobToProjekt } from "@/server/commands/jobs/upgrade-job-to-projekt";
+/** Story 16.4 adapters. Static production bindings; no DB work at collection.
  * Only signature/DTO translation belongs here. Future names below are replaceable
  * binding assumptions, never permission/policy requirements or fake success paths.
  * Existing 16.1/2/3 fixtures, real normal-JWT commands, checked SQL and signer stay
@@ -25,18 +28,14 @@ export type BookingSemantics = { jobId: string | null; input: BookingInput;
   engineVersion: string; configVersion: string };
 /** Proposed future server reader for the actual safe card DTO. No local read model. */
 export async function readJobSemantics(client: TestServerClient, jobId: string): Promise<JobSemantics> {
-  const path = "@/server/read-models/job-semantics";
-  const actual = await import(path) as { readJobSemantics(c: TestServerClient, id: string): Promise<JobSemantics> };
-  return actual.readJobSemantics(client, jobId);
+  return actualJobSemantics(client,jobId) as Promise<JobSemantics>;
 }
 export async function upgradeInput(client: TestServerClient, jobId: string, patch: Partial<UpgradeInput> = {}): Promise<UpgradeInput> {
   return { commandId: crypto.randomUUID(), jobId, expectedState: (await readJobSemantics(client, jobId)).expectedState, ...patch };
 }
 export async function upgradeJob(client: TestServerClient, input: UpgradeInput | Record<string, unknown>, correlationId = crypto.randomUUID()): Promise<UpgradeResult> {
   const { runCommand } = await import("@/server/commands/envelope");
-  const path = "@/server/commands/jobs/upgrade-job-to-projekt";
-  const actual = await import(path) as { upgradeJobToProjekt: Parameters<typeof runCommand>[0] };
-  return runCommand(actual.upgradeJobToProjekt, { client: client as never, input, correlationId }) as Promise<UpgradeResult>;
+  return runCommand(upgradeJobToProjekt, { client: client as never, input, correlationId }) as Promise<UpgradeResult>;
 }
 /** Exact RPC spelling is prospective; normal JWT and SQL authority cannot be bypassed. */
 export function checkedUpgrade(client: TestServerClient, tenantId: string, actorId: string, input: UpgradeInput, correlationId = crypto.randomUUID()) {
@@ -47,9 +46,8 @@ export function checkedUpgrade(client: TestServerClient, tenantId: string, actor
  * composition + checked preview, never an independent test-only calculation. */
 export async function readBookingSemantics(client: TestServerClient, input: Partial<BookingInput> & { jobId: string | null;
   startsAt: string; intervalSource?: BookingSemantics["intervalSource"] }): Promise<BookingSemantics> {
-  const path = "@/server/bookings/job-semantics";
-  const actual = await import(path) as { readBookingSemantics(c: TestServerClient, i: typeof input): Promise<BookingSemantics> };
-  return actual.readBookingSemantics(client, input);
+  const result=await actualBookingSemantics(client,input);
+  return {...result,input:{...result.input,assigneeIds:[...result.input.assigneeIds]}};
 }
 export async function jobSemanticsSnapshot(f: JobsDepthFixture) {
   const { workOrdersSnapshot } = await import("./work-orders-atdd");

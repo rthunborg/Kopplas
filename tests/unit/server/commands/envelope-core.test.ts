@@ -241,7 +241,7 @@ test("[P0] 16.2 scoped crew/dates admission follows validation and current scope
       assert.deepEqual(calls, allowed ? ["validate", "scope", "ownership", "execute"] : ["validate", "scope"]);
     }
   }
-  for (const [command, capability] of [["job.work_order_dependencies.set", "Jobs.Edit"], ["work_order.status.set", "Jobs.Edit"], ["work_order.unknown", "Jobs.WorkOrders.Edit"], ["job.lead.set", "Jobs.SetLead"], ["job.update", "Jobs.Edit"], ["job.card.update", "Jobs.Edit"], ["job.unknown", "Jobs.ManageCrew"], ["job.member.assign", "Jobs.Edit"]]) {
+  for (const [command, capability] of [["job.upgrade_to_projekt", "Jobs.Edit"], ["job.work_order_dependencies.set", "Jobs.Edit"], ["work_order.status.set", "Jobs.Edit"], ["work_order.unknown", "Jobs.WorkOrders.Edit"], ["job.lead.set", "Jobs.SetLead"], ["job.update", "Jobs.Edit"], ["job.card.update", "Jobs.Edit"], ["job.unknown", "Jobs.ManageCrew"], ["job.member.assign", "Jobs.Edit"]]) {
     let reached = false;
     const result = await runCommandCore({tenantContextResult: {ok: true, data: {...ACTIVE_CTX, roles: ["montor"]}},
       capability: {module: "jobs", capability}, command, eventType: command, auditable: false, rawInput: {},

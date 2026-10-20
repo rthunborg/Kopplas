@@ -21,3 +21,5 @@ export { assignJobMember, removeJobMember, setJobLead } from "./job-members";
 export { updateJobPlanDates } from "./job-plan-dates";
 
 export { createWorkOrder, updateWorkOrder, setWorkOrderAssignees, setWorkOrderStatus, setWorkOrderDependencies, setJobWorkOrderDependencies } from './work-orders';
+
+export { upgradeJobToProjekt } from "./upgrade-job-to-projekt";

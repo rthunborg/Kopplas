@@ -129,3 +129,22 @@ test("[P0][16.1-U09] old engine and content insertion deletion or job rebinding 
       "changed canonical content must not retain the original digest");
   }
 });
+
+
+test("[P0][16.4] all nine scheduling facts bind canonical snapshots and per-job overlays",async()=>{
+ const {parseDetectionSnapshot}=await import("@/server/bookings/conflict-facts");
+ const own={jobId:JOB_A,requiredWorkRoleIds:[],accessWindows:null,estimatedDurationMinutes:120,crewSize:2,
+  plannedTravelMinutes:0,plannedStartDate:"2026-10-12",plannedEndDate:"2026-10-13",earliestDate:"2026-10-11",
+  desiredDate:"2026-10-12",latestDate:"2026-10-14",customerPresenceRequired:false};
+ const row=await snapshot([own]);
+ const parsed=parseDetectionSnapshot(row);assert.equal(parsed.kind,"snapshot");
+ if(parsed.kind !== "snapshot")throw new Error("snapshot required");
+ assert.deepEqual(parsed.facts.jobInputs,[own]);
+ for(const [key,value] of Object.entries({estimatedDurationMinutes:180,crewSize:3,plannedTravelMinutes:30,
+  plannedStartDate:"2026-10-11",plannedEndDate:"2026-10-14",earliestDate:"2026-10-10",desiredDate:"2026-10-13",
+  latestDate:"2026-10-15",customerPresenceRequired:true})) {
+   const changed=JSON.stringify(facts([{...own,[key]:value}]));
+   assert.notEqual(digest(changed),row.factDigest,key);
+   assert.throws(()=>parseDetectionSnapshot({...row,canonicalFacts:changed}),/booking snapshot invalid/,key);
+ }
+});

@@ -12,7 +12,7 @@ export type JobFacts = { jobId: string; requiredWorkRoleIds: string[] | null;
   accessWindows: { startsAt: string; endsAt: string }[] | null };
 export function jobFacts(snapshot: { canonicalFacts: string }): JobFacts[] {
   const facts = JSON.parse(snapshot.canonicalFacts) as { jobInputs: JobFacts[] };
-  return facts.jobInputs;
+  return facts.jobInputs.map(({jobId,requiredWorkRoleIds,accessWindows})=>({jobId,requiredWorkRoleIds,accessWindows}));
 }
 export async function mixedJobScenario(f: JobsDepthFixture) {
   const h = await import("./jobs-depth-atdd");

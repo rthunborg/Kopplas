@@ -26,7 +26,7 @@ const hint = (patch: Partial<Hint> = {}): Hint => ({ jobId: JOB_A, durationMinut
 const start = "2026-10-20T08:00:00Z";
 
 // Provider: future src/features/jobs/job-scheduling-consumers.ts. D alone is elapsed time.
-test.skip("[P0][16.4-U03] new derived default uses selected D at effective start and unknown uses honest 60 minutes", async () => {
+test("[P0][16.4-U03] new derived default uses selected D at effective start and unknown uses honest 60 minutes", async () => {
   const modulePath = new URL("../../../../src/features/jobs/job-scheduling-consumers.ts", import.meta.url).href;
   const domain = await import(modulePath) as ConsumerContract;
   const interval: Interval = { startsAt: start, endsAt: null, provenance: "derived", sourceJobId: null };
@@ -39,7 +39,7 @@ test.skip("[P0][16.4-U03] new derived default uses selected D at effective start
     startsAt: "2026-10-20T11:15:00Z" }, job: hint() }).endsAt, "2026-10-20T13:15:00Z");
 });
 
-test.skip("[P0][16.4-U04] explicit/edit/user intervals survive job changes while untouched derived interval rederives", async () => {
+test("[P0][16.4-U04] explicit/edit/user intervals survive job changes while untouched derived interval rederives", async () => {
   const modulePath = new URL("../../../../src/features/jobs/job-scheduling-consumers.ts", import.meta.url).href;
   const domain = await import(modulePath) as ConsumerContract;
   const nextJob = hint({ jobId: JOB_B, durationMinutes: 45 });
@@ -54,7 +54,7 @@ test.skip("[P0][16.4-U04] explicit/edit/user intervals survive job changes while
   assert.deepEqual(domain.deriveJobBookingInterval({ mode: "edit", interval: derived, job: nextJob }), derived);
 });
 
-test.skip("[P0][16.4-U05] earliest bounds suggestions and desired/latest/presence remain distinct per selected job", async () => {
+test("[P0][16.4-U05] earliest bounds suggestions and desired/latest/presence remain distinct per selected job", async () => {
   const modulePath = new URL("../../../../src/features/jobs/job-scheduling-consumers.ts", import.meta.url).href;
   const domain = await import(modulePath) as ConsumerContract;
   const jobs = [hint(), hint({ jobId: JOB_B, customerPresenceRequired: false,
@@ -76,7 +76,7 @@ test.skip("[P0][16.4-U05] earliest bounds suggestions and desired/latest/presenc
     .customerPresenceRequired, null, "missing selected job cannot borrow another job's false");
 });
 
-test.skip("[P0][16.4-U06] stale hint response retains dirty newer draft and immutable uncertain submission", async () => {
+test("[P0][16.4-U06] stale hint response retains dirty newer draft and immutable uncertain submission", async () => {
   const modulePath = new URL("../../../../src/features/jobs/job-scheduling-consumers.ts", import.meta.url).href;
   const domain = await import(modulePath) as ConsumerContract;
   const state: Draft = { revision: 2, input: { jobId: JOB_B, description: "newer unsent text" },
@@ -90,4 +90,50 @@ test.skip("[P0][16.4-U06] stale hint response retains dirty newer draft and immu
   assert.deepEqual(refreshed.submission, before.submission);
   assert.equal(refreshed.revision, 2);
   assert.deepEqual(state, before, "refresh does not mutate the held draft");
+});
+
+test("current hint refresh updates only the matching untouched unsent interval", async () => {
+  const domain = await import("../../../../src/features/jobs/job-scheduling-consumers");
+  const interval: Interval = { startsAt: start, endsAt: "2026-10-20T10:00:00Z", provenance: "derived", sourceJobId: JOB_A };
+  const state: Draft = { interval, revision: 3, input: { jobId: JOB_A, startsAt: start,
+    endsAt: interval.endsAt, description: "retained" }, submission: null };
+  const refreshed = domain.refreshJobSchedulingDraft(state, { job: hint({ durationMinutes: 45 }), responseRevision: 3 });
+  assert.equal(refreshed.interval.endsAt, "2026-10-20T08:45:00Z");
+  assert.equal(refreshed.input.endsAt, refreshed.interval.endsAt);
+  assert.equal(refreshed.input.description, "retained");
+  assert.equal(state.interval.endsAt, "2026-10-20T10:00:00Z");
+  assert.equal(domain.refreshJobSchedulingDraft(state, { job: hint({ jobId: JOB_B }), responseRevision: 3 }), state);
+  assert.equal(domain.refreshJobSchedulingDraft(state, { job: hint(), responseRevision: 4 }), state);
+  const submitting = { ...state, submission: { revision: 3, input: state.input, commandId: "held" } };
+  assert.equal(domain.refreshJobSchedulingDraft(submitting, { job: hint({ durationMinutes: 45 }), responseRevision: 3 }), submitting);
+});
+
+test("unavailable selected job keeps date and honest fallback; defaults preserve fractional instants", async () => {
+  const domain = await import("../../../../src/features/jobs/job-scheduling-consumers");
+  assert.deepEqual(domain.jobSchedulingContext({ selectedJobId: JOB_A, jobs: [], suggestedDate: "2026-10-20" }),
+    { suggestedDate: "2026-10-20", customerPresenceRequired: null, warnings: [], canSave: true });
+  assert.deepEqual(domain.deriveJobBookingInterval({ mode: "create", job: null,
+    interval: { startsAt: "2026-10-20T08:00:00.123456Z", endsAt: null, provenance: "derived" } }),
+    { startsAt: "2026-10-20T08:00:00.123456Z", endsAt: "2026-10-20T09:00:00.123456Z", provenance: "derived", sourceJobId: null });
+  assert.throws(() => domain.deriveJobBookingInterval({ mode: "create", job: hint({ durationMinutes: 0 }),
+    interval: { startsAt: start, endsAt: null, provenance: "derived" } }), /Invalid booking duration/);
+  assert.throws(() => domain.jobSchedulingContext({ selectedJobId: JOB_A, jobs: [], suggestedDate: "2026-02-30" }));
+});
+
+test("[P0][16.4-F02] actual default composition clamps only derived starts and preserves canonical DST fold instants",async()=>{
+ const d=await import("@/features/jobs/job-scheduling-consumers");
+ const derived={startsAt:"2026-10-19T06:00:00Z",endsAt:null,provenance:"derived" as const,startProvenance:"derived" as const};
+ const bounded=d.deriveJobBookingInterval({mode:"create",interval:derived,job:hint()});
+ assert.equal(bounded.startsAt,"2026-10-20T06:00:00.000000Z");
+ assert.equal(Date.parse(bounded.endsAt!)-Date.parse(bounded.startsAt),120*60000);
+ const explicit=d.deriveJobBookingInterval({mode:"create",interval:{...derived,startProvenance:"explicit"},job:hint()});
+ assert.equal(explicit.startsAt,derived.startsAt);
+ const fold={startsAt:"2026-10-25T01:30:00Z",endsAt:null,provenance:"derived" as const,startProvenance:"derived" as const};
+ const actual=d.deriveJobBookingInterval({mode:"create",interval:fold,job:hint({durationMinutes:60,earliestDate:null})});
+ assert.equal(actual.startsAt,fold.startsAt);assert.equal(actual.endsAt,"2026-10-25T02:30:00Z");
+ const fallback=d.deriveJobBookingInterval({mode:"create",interval:fold,job:null});
+ assert.equal(fallback.endsAt,"2026-10-25T02:30:00Z");
+ assert.notEqual(Date.parse("2026-10-25T00:30:00Z"),Date.parse(fold.startsAt));
+ const edited=d.deriveJobBookingInterval({mode:"create",interval:{...fold,endsAt:"2026-10-25T02:15:00Z",provenance:"user"},job:hint()});
+ assert.equal(edited.endsAt,"2026-10-25T02:15:00Z");
 });

@@ -4,7 +4,7 @@ import { conflictClaims, previewBookingConflicts, snapshotBookingConflicts,
   type BookingRpcArgs, type BookingRpcClient, type DetectionSnapshot } from "./conflict-facts";
 import { CommandError } from "@/server/commands/command-errors";
 import { deriveBookingConflicts } from "./conflict-facts";
-import { editorClaims, openEditorReceipt, signEditorClaims, type EditorClaims } from "./editor-preview";
+import { assertEditorReceiptCurrent, editorClaims, openEditorReceipt, signEditorClaims, type EditorClaims } from "./editor-preview";
 import { EMPTY_BOOKING_DECISION, type BookingDecision, type BookingEditorReview } from "@/features/resources/booking-editor-input";
 import { proposedBookingIdentity } from "./create-identity";
 
@@ -35,10 +35,7 @@ export async function saveWithConflicts(client: BookingRpcClient, args: BookingR
     if (snapshot.keyId !== key.keyId) throw new Error("booking proof configuration changed");
     const derived = deriveBookingConflicts(snapshot);
     const reviewed = review ? openEditorReceipt(review.receipt, key.secret) : editorClaims(snapshot, derived.groups);
-    if (reviewed.tenantId !== args.p_tenant_id || reviewed.actorId !== args.p_actor_id || reviewed.operation !== snapshot.operation ||
-      reviewed.commandId !== args.p_command_id || reviewed.bookingId !== snapshot.bookingId)
-      throw new CommandError("TENANT_ACCESS_DENIED");
-    if (review && (reviewed.candidateDigest !== snapshot.candidateDigest || reviewed.factDigest !== snapshot.factDigest || Date.parse(reviewed.expiresAt) <= Date.now())) throw new CommandError("PREVIEW_STALE");
+    if(review) assertEditorReceiptCurrent(reviewed,snapshot);
     const currentIds = derived.groups.map((group) => group.logicalId);
     if (currentIds.length > 0 && !review) throw new CommandError("BOOKING_CONFLICT_UNACKNOWLEDGED");
     if (currentIds.length > 0 && (!decision.acknowledged || !decision.reason)) throw new CommandError("BOOKING_CONFLICT_UNACKNOWLEDGED");

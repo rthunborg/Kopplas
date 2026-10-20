@@ -49,14 +49,14 @@ async function openJobBooking(page: Page, jobId: string) {
   await expect(form.getByTestId("booking-job")).toHaveValue(jobId);
   return form;
 }
-function action(request: Request, jobId: string, description: string, operation: "preview" | "save"): BookingInput | null {
+function action(request: Request, jobId: string, description: string, operation: "preview" | "save", selectedJobId=jobId): BookingInput | null {
   if (request.method() !== "POST" || !request.headers()["next-action"]
     || new URL(request.url()).pathname !== `/jobs/${jobId}`) return null;
   try {
     const args: unknown = JSON.parse(request.postData() ?? "null");
     if (!Array.isArray(args) || args.length !== 1 || !args[0] || typeof args[0] !== "object") return null;
     const candidate = args[0] as Record<string, unknown>;
-    return candidate.jobId === jobId && candidate.description === description && Array.isArray(candidate.assigneeIds)
+    return candidate.jobId === selectedJobId && candidate.description === description && Array.isArray(candidate.assigneeIds)
       && typeof candidate.commandId === "string"
       && (operation === "save" ? "editorReview" in candidate : !("editorReview" in candidate))
       ? candidate as BookingInput : null;
@@ -102,7 +102,7 @@ async function save(page: Page, form: Locator, jobId: string, description: strin
 }
 
 test.describe("Story16.4 essential real booking consumers — RED", () => {
-  test.skip("[P0] 16.4-Consumer-E01 actual job entry defaults D120 elapsed; job changes refresh only untouched defaults, and explicit/edit intervals plus distinct hints persist", async ({ resourcePage: page }) => {
+  test("[P0] 16.4-Consumer-E01 actual job entry defaults D120 elapsed; job changes refresh only untouched defaults, and explicit/edit intervals plus distinct hints persist", async ({ resourcePage: page }) => {
     const f = await createJobsDepthFixture();
     try {
       await page.setViewportSize({ width: 360, height: 640 });
@@ -114,6 +114,7 @@ test.describe("Story16.4 essential real booking consumers — RED", () => {
         planned_travel_minutes: 30, customer_presence_required: true });
       await saveCard(f, other, { ...common, estimated_duration_minutes: 90, customer_presence_required: false });
       await saveCard(f, unknown, { ...common, estimated_duration_minutes: null, customer_presence_required: null });
+      await page.clock.setFixedTime(new Date("2026-10-18T06:00:00Z"));
       await schedule(f, [f.fx.ownProfile.id]);
       await signIn(page, f.credentials.manager);
       const form = await openJobBooking(page, known); // actual BookingEntry host, no isolated widget
@@ -121,7 +122,7 @@ test.describe("Story16.4 essential real booking consumers — RED", () => {
       await presence(form, "required");
       const initialStart = await form.getByTestId("booking-start").inputValue();
       await expect(form.getByTestId("booking-job-earliest-hint")).toContainText("2026-10-19");
-      expect(initialStart.slice(0, 10) >= "2026-10-19").toBe(true);
+      expect(initialStart).toBe("2026-10-19T08:00");
       await form.getByTestId("booking-job").selectOption(other);
       await expect.poll(() => elapsed(form)).toBe(90);
       await expect(form.getByTestId("booking-start")).toHaveValue(initialStart);
@@ -171,7 +172,7 @@ test.describe("Story16.4 essential real booking consumers — RED", () => {
     } finally { await f.dispose(); }
   });
 
-  test.skip("[P0] 16.4-Consumer-E02 actual capacity advice counts candidate once; preview/save/reload stays advisory and stale responses retain the newer draft", async ({ resourcePage: page }) => {
+  test("[P0] 16.4-Consumer-E02 actual capacity advice counts candidate once; preview/save/reload stays advisory and stale responses retain the newer draft", async ({ resourcePage: page }) => {
     const f = await createJobsDepthFixture();
     let hold: ((route: Route) => Promise<void>) | undefined;
     let release = () => {};
@@ -267,6 +268,65 @@ test.describe("Story16.4 essential real booking consumers — RED", () => {
       if (hold) await page.unroute("**/*", hold);
       await f.dispose();
     }
+  });
+
+  test("[P0] 16.4-Consumer-E03 actual new defaults follow earliest and CRM clears; delayed options preserve newer job/interval edits",async({resourcePage:page})=>{
+    const f=await createJobsDepthFixture();let hold:((route:Route)=>Promise<void>)|undefined;let release=()=>{};
+    try {
+      const known=f.jobs.editable.id,other=f.jobs.memberOrder.id;
+      await saveCard(f,known,{estimated_duration_minutes:120,earliest_date:"2026-10-20",accessWindows:null,requiredWorkRoleIds:[]});
+      await saveCard(f,other,{estimated_duration_minutes:90,earliest_date:"2026-10-22",accessWindows:null,requiredWorkRoleIds:[]});
+      await page.clock.setFixedTime(new Date("2026-10-18T06:00:00Z"));
+      await signIn(page,f.credentials.manager);const form=await openJobBooking(page,known);
+      await expect(form.getByTestId("booking-start")).toHaveValue("2026-10-20T08:00");await expect.poll(()=>elapsed(form)).toBe(120);
+      await form.getByTestId("booking-job").selectOption(other);
+      await expect(form.getByTestId("booking-start")).toHaveValue("2026-10-22T08:00");await expect.poll(()=>elapsed(form)).toBe(90);
+      await saveCard(f,other,{estimated_duration_minutes:90,earliest_date:"2026-10-23",accessWindows:null,requiredWorkRoleIds:[]});
+      await form.getByTestId("booking-description").fill("Refresh current earliest");
+      await expect(form.getByTestId("booking-start")).toHaveValue("2026-10-23T08:00");await expect.poll(()=>elapsed(form)).toBe(90);
+      for(const field of ["customer","facility","contact"]) {
+        const control=form.getByTestId(`booking-${field}`);await control.selectOption(await control.inputValue());
+        await expect(form.getByTestId("booking-job")).toHaveValue("");await expect.poll(()=>elapsed(form)).toBe(60);
+        await form.getByTestId("booking-job").selectOption(other);await expect.poll(()=>elapsed(form)).toBe(90);
+      }
+      let reached!:()=>void;const captured=new Promise<void>(resolve=>{reached=resolve;}),released=new Promise<void>(resolve=>{release=resolve;});let used=false;
+      hold=async route=>{
+        const request=route.request();let args:unknown;try{args=JSON.parse(request.postData() ?? "null");}catch{}
+        if(used || request.method() !== "POST" || !request.headers()["next-action"] || new URL(request.url()).pathname !== `/jobs/${known}` || !Array.isArray(args) || args.length !== 0){await route.continue();return;}
+        used=true;const actual=await route.fetch();expect(actual.ok()).toBe(true);reached();await released;await route.fulfill({response:actual});
+      };
+      await page.route("**/*",hold);await form.getByTestId("booking-options-retry").click();await captured;
+      await form.getByTestId("booking-start").fill("2026-10-24T10:00");await form.getByTestId("booking-end").fill("2026-10-24T10:45");
+      await form.getByTestId("booking-job").selectOption(known);await form.getByTestId("booking-description").fill("new interval retained after options");
+      release();await expect(form.getByTestId("booking-options-retry")).toBeEnabled();
+      await expect(form.getByTestId("booking-job")).toHaveValue(known);await expect(form.getByTestId("booking-start")).toHaveValue("2026-10-24T10:00");await expect(form.getByTestId("booking-end")).toHaveValue("2026-10-24T10:45");
+      await expect(form.getByTestId("booking-save-status")).toHaveCount(0);
+    } finally {release();if(hold)await page.unroute("**/*",hold);await f.dispose();}
+  });
+  test("[P0] 16.4-Consumer-E04 untouched fold start and same-wall-time changed end retain canonical UTC defaults",async({resourcePage:page})=>{
+    const f=await createJobsDepthFixture();
+    try {
+      const known=f.jobs.editable.id,other=f.jobs.memberOrder.id;
+      await saveCard(f,known,{estimated_duration_minutes:60,earliest_date:null,desired_date:null,latest_date:null,accessWindows:null,requiredWorkRoleIds:[]});
+      await saveCard(f,other,{estimated_duration_minutes:60,earliest_date:null,desired_date:null,latest_date:null,accessWindows:null,requiredWorkRoleIds:[]});
+      await page.clock.setFixedTime(new Date("2026-10-25T01:30:00Z"));await signIn(page,f.credentials.manager);
+      let form=await openJobBooking(page,known);await expect.poll(()=>elapsed(form)).toBe(60);
+      const identity="second fold start retained";await form.getByTestId("booking-description").fill(identity);
+      const changed=page.waitForRequest(request=>{const input=action(request,known,identity,"preview",other);return input?.jobId===other && input.startsAt==="2026-10-25T01:00:00.000Z" && input.endsAt==="2026-10-25T02:00:00Z";});
+      await form.getByTestId("booking-job").selectOption(other);await changed;
+      await expect(form.getByTestId("booking-start")).toHaveValue("2026-10-25T02:00");await expect(form.getByTestId("booking-end")).toHaveValue("2026-10-25T03:00");
+      await saveCard(f,known,{estimated_duration_minutes:30,earliest_date:null,desired_date:null,latest_date:null,accessWindows:null,requiredWorkRoleIds:[]});
+      await form.getByTestId("booking-close").click();await form.getByTestId("booking-discard").click();
+      await page.clock.setFixedTime(new Date("2026-10-25T00:00:00Z"));form=await openJobBooking(page,known);
+      await expect(form.getByTestId("booking-end")).toHaveValue("2026-10-25T02:30");
+      await saveCard(f,known,{estimated_duration_minutes:90,earliest_date:null,desired_date:null,latest_date:null,accessWindows:null,requiredWorkRoleIds:[]});
+      const description="same wall end different instant";
+      const fresh=page.waitForRequest(request=>{const input=action(request,known,description,"preview");return !!input && Date.parse(input.endsAt)===Date.parse("2026-10-25T01:30:00Z");});
+      await form.getByTestId("booking-description").fill(description);await fresh;
+      await expect(form.getByTestId("booking-end")).toHaveValue("2026-10-25T02:30");
+      const edited=page.waitForRequest(request=>{const input=action(request,known,description,"preview");return !!input && Date.parse(input.startsAt)===Date.parse("2026-10-25T00:30:00Z") && Date.parse(input.endsAt)===Date.parse("2026-10-25T02:00:00Z");});
+      await form.getByTestId("booking-start").fill("2026-10-25T02:30");await edited;
+    } finally {await f.dispose();}
   });
 });
 

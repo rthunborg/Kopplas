@@ -21,7 +21,12 @@ export function parseJobCardSnapshot(data: unknown): JobCardSnapshot | {kind: "r
 export function deriveJobCardConflicts(snapshot: JobCardSnapshot): DerivedConflict[] {
   const facts = snapshot.facts.detection;
   const own = {jobId: snapshot.bookingId, requiredWorkRoleIds: snapshot.candidate.requiredWorkRoleIds,
-    accessWindows: snapshot.candidate.accessWindows};
+    accessWindows: snapshot.candidate.accessWindows,
+    estimatedDurationMinutes: snapshot.candidate.estimated_duration_minutes, crewSize: snapshot.candidate.crew_size,
+    plannedTravelMinutes: snapshot.candidate.planned_travel_minutes, plannedStartDate: snapshot.candidate.planned_start_date,
+    plannedEndDate: snapshot.candidate.planned_end_date, earliestDate: snapshot.candidate.earliest_date,
+    desiredDate: snapshot.candidate.desired_date, latestDate: snapshot.candidate.latest_date,
+    customerPresenceRequired: snapshot.candidate.customer_presence_required};
   const overlaid: FactBundle = {...facts, jobInputs: [...facts.jobInputs.filter((j) => j.jobId !== own.jobId), own]};
   const first = facts.bookings[0];
   if (!first) return [];

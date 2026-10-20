@@ -2,7 +2,8 @@
 title: 'Story 16.4 — Projekt Upgrade and Job-Card Semantics'
 type: 'feature'
 created: '2026-10-20'
-status: 'ready-for-dev'
+status: 'in-review'
+baseline_revision: '77d11b6f18570e075dd858096194e497d99f95b1'
 review_loop_iteration: 0
 followup_review_recommended: false
 context:
@@ -90,6 +91,90 @@ Current entry HEAD is `ebd03a4e4c5226a2b3926bcdcbd2c2a29d18e776`. Read-only Git 
 
 ## Review Triage Log
 
+### 2026-10-20 — Review pass
+- intent_gap: 0
+- bad_spec: 0
+- patch: 14: (high 8, medium 6, low 0)
+- defer: 0
+- reject: 1: (high 0, medium 0, low 1)
+- addressed_findings:
+  - `[medium]` `[patch]` P01 — Definitive upgrade rejection allows dismissal while unresolved outcomes retain identity.
+  - `[medium]` `[patch]` P02 — Refetch failures are caught without losing confirmation.
+  - `[high]` `[patch]` P03 — Operation/generation and revision guards reject concurrent or obsolete refetch results.
+  - `[high]` `[patch]` P04 — Selected-job defaults bound untouched create starts by earliest.
+  - `[high]` `[patch]` P05 — Checked preview refresh applies current earliest to untouched starts.
+  - `[high]` `[patch]` P06 — CRM clears and null hints restore derived fallback without changing edited ends.
+  - `[high]` `[patch]` P07 — Default-end refresh compares canonical UTC instants.
+  - `[high]` `[patch]` P08 — Large optional advisory calculations are bounded with honest unknown output.
+  - `[high]` `[patch]` P09 — Valid terminal upper dates cannot throw through essential preview.
+  - `[medium]` `[patch]` P10 — Authentic obsolete receipts require refetch after current identity/timing binding.
+  - `[medium]` `[patch]` P11 — Valid 64-hex stale-state tests reach normal command and direct JWT SQL guards.
+  - `[medium]` `[patch]` P12 — Actual NEW-draft delayed options case preserves newer edits.
+  - `[medium]` `[patch]` P13 — Frozen browser time proves a future earliest clamp.
+  - `[high]` `[patch]` P14 — Untouched DST-fold starts retain original canonical instants.
+
+Historical original six-layer pass; twenty raw concrete findings yielded fourteen causal patches after six overlap deduplications. Duplicates are not rejects. The one low reject is the historical planning-HALT interpretation as a current execution gap, superseded by the explicit pinned Phase 5 implementation grant.
+
+### 2026-10-20 — Review pass
+- intent_gap: 0
+- bad_spec: 0
+- patch: 1: (high 1, medium 0, low 0)
+- defer: 0
+- reject: 0
+- addressed_findings:
+  - `[high]` `[patch]` P15 — Both supported instant-window edges now guard optional advice; valid 0001-01-01 one-day regression observed RED then GREEN.
+
+Same-blind targeted residual follow-up; this is not another broad six-layer pass.
+
+### 2026-10-20 — Review pass
+- intent_gap: 0
+- bad_spec: 0
+- patch: 0
+- defer: 0
+- reject: 0
+- addressed_findings:
+  - none
+
+Latest same-blind lower-bound recheck qualified PASS with zero new findings; same-security qualification applies to unchanged security/proof/card/migration dependencies. Latest recommendation is false; historical patch necessity remains recorded above.
+
+### Round 1 causal batch — 2026-10-20
+
+Root reported five internal review layers completed (security: no findings). Configured external CLI review was initially refused before launch by automatic approval because private code required direct human authorization for the external model. Root obtained that authorization for the exact frozen candidate; foreground external review then completed native 0. Receipt: `C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-16-4-review-c2eea236-b5c7-4e65-b9d4-bb296d96e162/cross-model.diff.review`, SHA256 `0E19578A24CB188A2DC251F6AC2062CA0DF335C85D556D8456207C195B75CC30`. Root confirmed all 44 candidate hashes unchanged before this authorized patch batch. Twenty raw findings were deduplicated into fourteen causal patches; the historical frozen planning phrase was not accepted as a new execution gap because the current pinned Phase 5 dispatch authorizes implementation.
+
+| Patch | Author disposition and implementation |
+| --- | --- |
+| 1 | Definitive upgrade refusals permit dismissal; unresolved saves retain exact retry identity, including later authorization denial. |
+| 2 | Stale-refetch transport/action failures are caught and retain confirmation/error state. |
+| 3 | Save/refetch share a synchronous operation latch, generation checks and revision-aware transitions; obsolete responses cannot reset persisted/newer state. |
+| 4 | Actual selected-job defaults bound only an untouched derived create start by earliest. |
+| 5 | Current checked preview hints apply a changed earliest to that same still-derived start. |
+| 6 | Every CRM-clearing branch and a null refreshed hint restore the honest 60-minute derived fallback; edited ends remain intact. |
+| 7 | Preview rederivation compares exact UTC instants, including fold ends with identical displayed wall times. |
+| 8 | Optional demand calculation uses a deterministic 4,096 day/person work budget; beyond it the result is wholly unknown, without partial numbers or a card/save restriction. Whole-window actual overlaps equal summed contiguous day overlaps, so exact occupancy is aggregated once and subtracted from the existing affine daily capacity result. |
+| 9 | The original patch made a valid terminal 9999-12-31 planning end report unavailable advice before the existing four-digit instant boundary; the targeted follow-up below covers both edges; essential preview/save continue. Public date validation and shared time-zone code remain unchanged. |
+| 10 | Authentic receipt parsing is separate from semantic retirement. Current actor/tenant/action/request/target, candidate/facts and valid timing bind first; obsolete versions then require refetch. Tampered, malformed, future-issued or foreign claims remain denied. |
+| 11 | Valid-shaped mismatched 64-hex state is asserted through normal command and direct normal-JWT RPC, before transition and on committed-identity replay, with unchanged business/event/audit snapshots. Existing SQL guards required no source change. |
+| 12 | New actual browser case holds a real options response for a NEW draft while newer job/interval edits occur, then checks those values survive. |
+| 13 | Browser Date is fixed before a future earliest date; actual bounded start and elapsed duration are asserted. |
+| 14 | Untouched ambiguous Stockholm starts retain their original canonical instant; only actual user start edits reparse wall time. Actual browser controls cover both this case and same-wall-time changed ends. |
+
+
+## Review Findings
+
+**Round 1 of 3**
+
+Configured six-layer independent review; all sensitive layers use context-free gpt-6.1-sol High. Runtime acceptance remains pending exact-checkpoint CI. No review verdict is claimed at dispatch.
+
+The preceding dispatch text is the restored historical Round 1 route. Actual completion now comprises that original six-layer review plus the same independent High targeted fix/security and final lower-bound rechecks, bound by unchanged dependencies; all six layers were not reexecuted on the latest fix. Latest targeted recheck has zero new findings, and the source checkpoint is qualified for root's checkpoint/CI lane. Required runtime CI remains pending.
+
+Review receipt folder: `C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-16-4-review-c2eea236-b5c7-4e65-b9d4-bb296d96e162/`.
+
+- `targeted-security-review.txt` — SHA256 `9277E60393C5AEE46EA8B4F97F9C506FED2CAFDB28B1A85B5D6CCF83E6DED9A4`; actual collaboration text saved verbatim, qualified at 7FAE with unchanged security suffix retained.
+- `targeted-blind-review.txt` — SHA256 `97681232CAC20C7E925C7E641FF8D0DD923F84E63DD00B22E77E63AE381D89F7`; finding text saved with normalized formatting, not a raw export.
+- `targeted-lower-bound-review.txt` — SHA256 `90BD586F10D8F9F31811C006EF35354980207F2C321E87F8F13E307578A0A3C5`; actual same-blind qualified PASS text, bound to CB7CD4BC's three changed hashes and 42 unchanged dependencies.
+- `external-review-completed.json` — SHA256 `373D670E1A3A10CE5EF39D57B0EDDDC48A0660C41A76E28BCD3941516231CA7C`; `external-review-human-authorization.json` — SHA256 `7424F01002E35DF5794BB0C18A4382DC0861DF1E41E8AA611C3A93BBE6CEE418`.
+- `external-review-refusal.json` preserves the prelaunch automatic refusal; `review-provenance-pending.json` preserves the original internal collaboration summaries/pointers as a historical file, not the final status or native exports. The external CLI text receipt and its full hash remain in the Round 1 history above.
+
 ## Design Notes
 
 Current approved defaults remain: low/normal/high/urgent priority (normal default), canonical nullable dates, positive integer duration/crew, nonnegative travel, structured facility-derived location or override, real work roles, absolute access windows and member-derived lead. Presentation may use the existing design system with proportional headless domain/state/validation/actions separation; no new material planning arithmetic is hidden as a UX default.
@@ -139,8 +224,102 @@ No checks below have been executed for16.4. Prior16.3 CI39410923156 is continuit
 
 ## Auto Run Result
 
-Status: ready-for-dev
+Status: in-review
+
+Current result: implementation and the fourteen Round 1 causal patches plus the single targeted lower-bound follow-up are present as a source checkpoint. The original six configured review layers completed on their frozen candidate; same independent High blind/security targeted reviews then qualified the causal fix union. Same-blind lower-bound recheck qualified PASS on inventory `cb7cd4bce3214cf82cb1aaeb7aeb6241690b17cb98cbbefb5314e425a4fc69eb` (three changed hashes / 42 unchanged dependencies). Same-security qualified PASS on `7fae43bf598945c573d8a775296014d1a7802407889dcdb17ece782cea8f80e2`; its security/proof/card/migration suffix remains unchanged. This is a provenance union, not a claim that all six layers reran on the latest fix.
+
+Actual local checks: full typecheck/lint/build native 0; full units 2,722 passed / 0 failed / 1 existing platform skip, bound to the Round 1 candidate. The final lower-bound follow-up has 7/7 focused units, affected lint and full typecheck native 0. The single author SRO has 20 verified stops. Collection-only counts remain 34 integration / 7 essential browser cases. Required exact-head full database/RLS, direct Storage recovery and production browser acceptance remain pending root CI; no development-complete, done, delivery-pass or release-ready claim is made.
+
+### Historical planning-only result — preserved
+
+The following records the earlier planning invocation and its HALT; it does not describe the current explicitly authorized Phase 5 implementation checkpoint.
 
 Planning only. Fresh renderer executed exactly once from installed own-worktree skill, snapshot96e8da50b6e5096e00c4. Root index refresh native0 confirmed clean HEADebd03a4e4c5226a2b3926bcdcbd2c2a29d18e776. Both completed context-free High explorations were reused after metadata-only source comparison; same High consumer synchronously verified the approved matched-pool/window/occupancy algorithm. Valid cached context and16.3 continuity retained. Original blocked artifact unchanged. Seven ACs/TR08–10/TR13–16 retain actual consumer/proof/verification/shared handoff, with all three former choices explicitly approved. No implementation, runtime, test execution, SQL/migration, Git/state/ledger write or completed review trail is claimed.
 
 Ready-for-development self-review passed: actionable exact paths, dependency order, seven surface-anchored Given/When/Then ACs, concrete approved arithmetic/allocation, coherent shared facts/proof boundary and no unresolved material choice. HALT after planning. Blocking condition: none. On Complete preserves this planning result without fabricating implementation evidence or a final author trail. Next phase is root-pinned Phase4 ATDD; implementation is not performed in this invocation.
+
+## Implementation Evidence — 2026-10-20
+
+Implementation author: Sol 6.1 High; one bounded context-free Sol 6.1 High child authored the two pure scheduling modules and their unit tests. The main author owns the coordinated checked SQL/proof/finalizer boundary and all command/UI integration. Working-tree baseline remains `77d11b6f18570e075dd858096194e497d99f95b1`; no implementation commit, push, deployment, or status transition was performed by these authors. The planning-only Auto Run Result above is historical. Current status is in-review; targeted source/fix reviews are qualified and exact-head required runtime CI remains pending.
+
+Recorded choices: use the existing Jobs.Edit manager capability for the dedicated upgrade, the existing tenant advisory gate and current membership/role/job locks, and the existing audit primitive for a single atomic transition. The same-row UPDATE touches type and updated_at only; no child is recreated. Replay binds actor, target, command and expected state; correlation remains audit provenance rather than a retry identity. All existing card fields continue on both kinds, without a project-only placeholder. The database guard rejects every projekt-to-order writer with JT409 / JOB_TYPE_DOWNGRADE_FORBIDDEN.
+
+The owner-approved D/N/T and matched-pool/window algorithm is implemented using prepareDailyCapacity's existing exact hundredths. Demand is separate advice; desired/latest/presence do not enter booking_conflicts or override review. Job estimates default only untouched create intervals; explicit prefill, edits and unresolved submissions keep their interval. Options refresh uses the candidate sequence before applying a default. Safe SQL-selected hints feed actual BookingEntry/BookingEditor controls; preview advice derives from the same frozen checked snapshot used for the sealed receipt. Two necessary production composition seams were reported before editing and confirmed within scope: src/server/read-models/job-semantics.ts composes existing checked operational/member/work-order readers; src/server/bookings/job-semantics.ts composes checked booking authority/references/preview and the shared pure consumers. Static production imports repair the new native Playwright alias boundary without initializing a provider at collection.
+
+Actual local evidence (absolute Node C:/nvm4w/nodejs/node.exe, own worktree, login false): typecheck --noEmit --incremental false passed; full ESLint passed with 0 errors / 14 existing warnings; full unit runner passed 2,718 / failed 0 / skipped 1 of 2,719 tests. The skip is the existing Linux-xattrs recovery-loader proof; it is not execution evidence. The 15 Story16.4 pure cases comprise the original 11 activated ATDD cases plus four focused cases; the additional canonical-facts unit assertion also passes. Production Next build passed after the readonly helper DTO translation fix. Lockfile and source/built service-role containment checks passed. Native no-webServer/no-browser injected-client binding probe passed 1/1 after two unsuccessful lazy-import attempts and a simpler static-binding repair; this proves binding/denial behavior only.
+
+Collection only: Vitest lists all 32 new integration cases and native Playwright lists the four new essential browser journeys; all original 47 skipped ATDD bodies are activated. No local database/RLS/recovery or real browser journey was executed. Required exact-candidate root CI must execute the full SUPABASE_TEST_REQUIRED=1 integration/RLS lane, direct Storage recovery and production browser smoke. Earlier E16.3 CI is continuity only. The existing smoke union is preserved with both new paths before its trailing reporter; dependencies and lockfiles are unchanged. Existing conflicts/regressions/DST golden suites remain intact and execute; the capacity golden pack now additionally pins the four approved job-demand cases. The Sunday DST fixture explicitly authorizes overtime, retaining the existing Sunday closure rule and all expected arithmetic.
+
+Acceptance mapping: AC01–02/TR10 → 16.4-U01/U02, manager-only envelope/enrollment checks and 16.4-INT-U01–U06, plus Upgrade-E01/E02. AC03/TR08–09 → INT-C01's two kinds and Upgrade-E01 full-card/member/work-order/file preservation. AC04/TR13 → U03–U06, INT-C02 and Consumer-E01. AC05/TR14 → U07–U10 and four extra pure cases, capacity.json jobDemand, INT-C03–C05/C10 and Consumer-E02. AC06/TR15 and AC07/TR16 → pure selected-job/date/presence cases, the nine-field canonical-facts unit, INT-C06–C08/C10–C12 and Consumer-E01/E02. Integration/browser mappings name activated assertions, not passing runtime evidence. Physical wait/revocation/audit-fault proofs and actual persistence remain CI obligations.
+
+Development completion is not claimed. Root owns exact-head required CI, configured independent reviews and later author/provenance reconciliation. Release-only exhaustive browser matrices, screenshots, visual/manual walkthroughs and polish remain deferred with owner root/Epic16 release validation; next action is recording their concrete release evidence in the final delivery artifact/ledger, without deferring any essential functional failure. No delivery JSON or done metadata is asserted before root authorization.
+
+## Round 1 Causal Patch Evidence
+
+All fourteen items above are implemented as one authorized causal batch. Four added focused regression checks were observed failing against the frozen source: lifecycle/default/receipt checks 0/3 and terminal-calendar check 0/1. After the patches, the four focused files pass 19/19 with zero skips. The two calendar examples return unknown immediately; no centuries loop was exercised in the failing run because the first terminal-date assertion stopped that test. No SQL source, shared time-zone implementation, dependencies, environment or resource configuration changed.
+
+Final Round 1 local commands use absolute Node C:/nvm4w/nodejs/node.exe in the owned worktree: typecheck --noEmit --incremental false native 0; full ESLint native 0, 0 errors / 14 existing warnings; full node unit runner native 0, 2,722 passed / 0 failed / 1 existing Linux-xattrs platform skip out of 2,723 tests; Next production build native 0. Logs are `C:/Users/Rasmus/AppData/Local/Temp/kopplas-164-round1-{lint,unit,build}.log`; targeted red/green logs use `kopplas-164-round1-red.log`, `kopplas-164-round1-calendar-red.log` and `kopplas-164-round1-green.log`. Source/bundle containment, lockfile and author reference checks are rechecked before refreeze.
+
+Collection only: 34 integration cases (original 32 plus real receipt-retirement and valid terminal/long-window preview/save cases) and 7 essential browser cases (original 4 plus upgrade failure/refetch recovery, NEW-draft late-options/earliest/CRM fallback, and canonical DST control cases). Original 47 ATDD cases remain activated. New unit cases F01–F04 cover dismissal/unknown outcome and revision guards, earliest/start provenance and fold instants, computation availability, and authenticated receipt retirement versus denied tampering/identity. INT-U02 now exercises existing checked SQL with valid-shaped state mismatches; it is not claimed executed locally. Consumer-E01 now fixes browser time before a future earliest date. Consumer-E03 and E04 exercise actual production components rather than counting the pure refresh helper as UI evidence; Upgrade-E03 exercises real action responses and a dropped read response.
+
+Runtime acceptance remains unexecuted locally: required exact-head root CI must supply SUPABASE_TEST_REQUIRED=1 full integration/RLS, direct Storage recovery and production browser journeys. Current local results do not replace them. The completed broad Round 1 review produced the causal batch; same independent High targeted fix reviews and the final lower-bound recheck are now qualified through the recorded provenance union. All prior evidence, the automatic refusal and subsequent direct human external-review grant remain historical provenance; no review outcome is silently rewritten as pass.
+
+## Targeted Lower-Bound Follow-up
+
+Root reported the same independent High security review qualified PASS on the frozen `7fae43bf598945c573d8a775296014d1a7802407889dcdb17ece782cea8f80e2` inventory, including unchanged proof/card/migration dependencies. The same blind targeted recheck identified one residual: valid one-day planned window 0001-01-01 crossed Stockholm midnight into unsupported UTC year 0000. This was a reachable optional-advice exception, not an invalid public date or a new planning decision.
+
+The author extended F03 with that lower one-day case and observed RED native 1 / one failure. Both window-edge conversions now run inside a contained availability guard after existing date/fact validation and the work-budget check. Unsupported conversion at either edge yields wholly unknown advice; normal exact pool/window/occupancy arithmetic remains unchanged. No shared time-zone, SQL, public validator, card or save restriction changed.
+
+Actual focused checks: demand-advisory file 7 passed / 0 failed / 0 skipped, native 0; affected two-file ESLint native 0; full TypeScript --noEmit --incremental false native 0. Logs: `C:/Users/Rasmus/AppData/Local/Temp/kopplas-164-lower-bound-red.log`, `kopplas-164-lower-bound-green.log`, `kopplas-164-lower-bound-lint.log`, `kopplas-164-lower-bound-typecheck.log` in the same folder. Prior full-unit/build/static results above remain accurately bound to the prior candidate and were not rerun for this narrow follow-up, as root instructed. The same-blind lower-bound recheck has now qualified PASS on the frozen CB7CD4BC inventory; required exact-head runtime CI remains pending and status stays in-review.
+
+## Suggested Review Order
+
+Author: Story16.4 implementation/fix author (Sol 6.1 High), preserving the bounded pure-module child's recorded arithmetic rationale.
+Refreshed after the targeted lower-bound follow-up against the uncommitted candidate rooted at `77d11b6f18570e075dd858096194e497d99f95b1`.
+
+### Follow confirmation and recovery in the actual upgrade dialog
+
+The independent manager entry and truthful one-way consequences remain. Definitive refusals allow closing; unresolved outcomes retain the same request. Synchronous operation/generation guards and revision-aware transitions prevent stale read responses from resetting another operation.
+
+- `src/components/jobs/JobDetailView.tsx:112` — `<JobUpgradeDialog`: connects manager detail to confirmation.
+- `src/components/jobs/JobUpgradeDialog.tsx:20` — `async function refetch`: catches read failure and guards concurrent operations.
+- `src/features/jobs/job-upgrade-domain.ts:35` — `export function canDismissJobUpgradeDraft`: distinguishes definitive refusal from uncertain outcome.
+- `tests/e2e/jobs/job-upgrade.e2e.spec.ts:261` — `16.4-Upgrade-E03`: checks actual rejection and refetch recovery.
+
+### Retain the same-row transactional and replay boundary
+
+The SQL transition/audit and reverse-type invariant are unchanged by this fix batch. Valid-shaped stale-state tests now reach those existing checked guards directly rather than stopping at TypeScript shape validation.
+
+- `src/server/commands/envelope.ts:98` — `"job.upgrade_to_projekt"`: retains independent Jobs.Edit admission.
+- `supabase/migrations/20261020210000_e16_16_4_job_upgrade_and_scheduling.sql:314` — `create function public.upgrade_job_to_projekt_with_audit`: serializes current authority and atomic same-row persistence.
+- `tests/integration/commands/job-upgrade.int.test.ts:46` — `const freshStale=`: reaches checked SQL with a valid stale hash.
+- `tests/integration/commands/job-upgrade.int.test.ts:71` — `16.4-INT-U03`: asserts audit-fault rollback and exact retry.
+
+### Bind current facts before retiring an authentic receipt
+
+All nine semantic fields and the per-job card overlay remain bound by v4/v2 snapshots and current SQL recomputation. GCM authentication and current request/timing bindings precede stale-version classification; invalid signatures and foreign identities still receive denial, while genuine obsolete receipts reach the editor's refetch path.
+
+- `supabase/migrations/20261020210000_e16_16_4_job_upgrade_and_scheduling.sql:26` — `'estimatedDurationMinutes'`: includes checked per-job semantic facts.
+- `src/server/commands/jobs/card-facts.ts:23` — `const own =`: overlays only its proposed job.
+- `src/server/bookings/editor-preview.ts:44` — `export function assertEditorReceiptCurrent`: checks identity and timing before semantic retirement.
+- `tests/unit/server/bookings/job-scheduling-protocol.test.ts:67` — `16.4-F04`: separates authenticated stale receipts from denial.
+
+### Preserve start and end provenance through actual editor changes
+
+Only untouched create defaults follow earliest or selected-job duration; CRM removal gets the honest fallback. Original canonical fold starts survive, and default refresh compares UTC instants even when wall-time text matches. The actual late-options branch retains its sequence guard, now covered by a NEW-draft browser case.
+
+- `src/features/jobs/job-scheduling-consumers.ts:48` — `input.interval.startProvenance === "derived"`: bounds only an untouched derived start.
+- `src/components/resources/BookingEditor.tsx:79` — `function defaultInterval`: retains canonical untouched starts and updates derived intervals.
+- `tests/e2e/jobs/job-scheduling-consumers.e2e.spec.ts:273` — `16.4-Consumer-E03`: checks current earliest, CRM fallback and late options.
+- `tests/e2e/jobs/job-scheduling-consumers.e2e.spec.ts:306` — `16.4-Consumer-E04`: checks canonical instants through actual DST controls.
+
+### Keep optional demand calculation exact and bounded
+
+The approved formula and matched pool/window remain unchanged. Whole-window actual overlap aggregation is algebraically identical to summed day clipping; the existing daily capacity debit is affine. Complete calculations remain exact; an unavailable optional calculation returns no numbers and cannot add an essential preview/save block.
+
+- `src/features/scheduling/job-demand-advisory.ts:25` — `MAX_CAPACITY_DAY_PEOPLE`: bounds optional computational work without changing valid fields.
+- `src/features/scheduling/job-demand-advisory.ts:73` — `capacityHundredths-=occupied*HUNDRED`: debits exact actual occupancy once.
+- `tests/unit/features/scheduling/job-demand-advisory.test.ts:147` — `16.4-F03`: covers both instant boundaries and centuries-window availability.
+- `tests/integration/commands/job-scheduling-consumers.int.test.ts:255` — `16.4-INT-F01`: asserts real preview and save remain usable.
+
+Evidence and limits: the Implementation Evidence and Round 1 Causal Patch Evidence sections preserve actual commands/counts and the AC01–07 mapping. F01 plus Upgrade-E03 target patches 1–3; F02 plus Consumer-E01/E03/E04 target patches 4–7/12–14; F03/INT-F01 target patches 8–9; F04/INT-F02 target patch 10; valid-hash INT-U02 targets patch 11. Original upgrade preservation/concurrency/revocation/audit and mixed-job/current-fact proof assertions remain intact. New browser/integration cases are collected, not locally executed. Same independent High targeted source/fix reviews are qualified through the recorded unchanged-dependency union. Required exact-head root CI and direct recovery remain pending; no development-complete or release-ready assertion is made.
