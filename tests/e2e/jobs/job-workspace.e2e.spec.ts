@@ -78,6 +78,13 @@ async function installCardHistoryDiagnostics(page: Page, jobId: string) {
     // Observe before the application guard, without cancelling or modifying the event.
     add.call(window, "popstate", event => emit("pop-observed", location.href, (event as PopStateEvent).state), true);
     add.call(window, "beforeunload", () => emit("beforeunload-observed"));
+    const navigation = (window as Window & {navigation?: EventTarget}).navigation;
+    navigation?.addEventListener("navigate", event => {
+      const movement = event as Event & {navigationType?: string; destination?: {url: string; sameDocument: boolean}};
+      if (movement.navigationType !== "traverse") return;
+      const scope = movement.destination?.sameDocument ? "samedocument" : "crossdocument";
+      emit(`traverse-${scope}-${event.cancelable ? "cancellable" : "noncancellable"}`, movement.destination?.url);
+    });
     const stages = new Set(["after-dirty-fill", "before-cancelled-reload", "before-back"]);
     add.call(window, "workspace-history-stage", event => {
       const stage = (event as CustomEvent<string>).detail;
@@ -201,6 +208,8 @@ test.describe("Story 16.5 essential job workspace", () => {
         await expect(editor.getByTestId("booking-job")).toHaveValue(jobId);
         await page.getByRole("dialog").getByRole("button", {name: "Stäng", exact: true}).click();
         await expect(editor).toHaveCount(0);
+        // BookingEditor close owns an asynchronous Back; observe its public marker handoff before navigating.
+        await expect.poll(() => page.evaluate(() => Object.prototype.hasOwnProperty.call(history.state ?? {}, "bookingEditor"))).toBe(false);
         await selectTab(page, "Översikt");
         await page.getByTestId("job-workspace-content").evaluate(element => {element.scrollTop = element.scrollHeight;});
         await expect(header).toBeInViewport();
@@ -227,6 +236,8 @@ test.describe("Story 16.5 essential job workspace", () => {
         await expect(editor.getByTestId("booking-job")).toHaveValue(jobId);
         await page.getByRole("dialog").getByRole("button", {name: "Stäng", exact: true}).click();
         await expect(editor).toHaveCount(0);
+        // BookingEditor close owns an asynchronous Back; observe its public marker handoff before navigating.
+        await expect.poll(() => page.evaluate(() => Object.prototype.hasOwnProperty.call(history.state ?? {}, "bookingEditor"))).toBe(false);
         await selectTab(page, "Översikt");
         await page.setViewportSize({width: 1280, height: 900});
       });

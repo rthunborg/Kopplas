@@ -52,7 +52,22 @@ export function JobCardForm({ jobId, initial = {}, options }: {
         event.preventDefault(); event.stopImmediatePropagation();
       }
     };
+    // Same-document traversals can be cancelled before Next restores/unmounts this island.
+    // Legacy popstate remains best-effort; cross-document navigation uses beforeunload.
+    const navigation = (window as Window & {navigation?: EventTarget}).navigation;
+    let permittedTraverse: string | null = null;
+    const clearTraverse = () => {permittedTraverse = null;};
+    const traverse = (event: Event) => {
+      const movement = event as Event & {navigationType?: string; destination?: {url: string; sameDocument: boolean}};
+      if (!leaveRequired.current || event.defaultPrevented || !event.cancelable
+        || movement.navigationType !== "traverse" || !movement.destination?.sameDocument) return;
+      const destination = new URL(movement.destination.url, window.location.href);
+      if (destination.origin !== window.location.origin || destination.pathname === window.location.pathname) return;
+      if (window.confirm("Det finns osparade eller pågående ändringar i jobbkortet. Vill du lämna utkastet?")) permittedTraverse = destination.href;
+      else event.preventDefault();
+    };
     const back = (event: PopStateEvent) => {
+      if (permittedTraverse === window.location.href) {clearTraverse(); return;}
       const previous = currentLocation.current;
       if (!leaveRequired.current || !previous || new URL(previous.href).pathname === window.location.pathname) return;
       if (!window.confirm("Det finns osparade eller pågående ändringar i jobbkortet. Vill du lämna utkastet?")) {
@@ -61,10 +76,12 @@ export function JobCardForm({ jobId, initial = {}, options }: {
         window.history.pushState(previous.state, "", previous.href);
       }
     };
+    navigation?.addEventListener("navigate", traverse);
+    navigation?.addEventListener("navigateerror", clearTraverse);
     window.addEventListener("popstate", back, true);
     window.addEventListener("beforeunload", unload);
     document.addEventListener("click", leave, true);
-    return () => {window.removeEventListener("popstate", back, true); window.removeEventListener("beforeunload", unload); document.removeEventListener("click", leave, true);};
+    return () => {navigation?.removeEventListener("navigate", traverse); navigation?.removeEventListener("navigateerror", clearTraverse); window.removeEventListener("popstate", back, true); window.removeEventListener("beforeunload", unload); document.removeEventListener("click", leave, true);};
   }, [leaveArmed]);
   const attempt = useRef<Record<string, unknown> | null>(null);
   const [pending, setPending] = useState(false);
