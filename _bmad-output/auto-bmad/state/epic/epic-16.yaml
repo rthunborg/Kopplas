@@ -8,25 +8,25 @@ story_source: sprint
 spec_folder: null
 story_id: null
 branch: codex/epic-16-jobs
-status: in-progress
-updated_at: "2026-10-20T22:42:57Z"
+status: done
+updated_at: "2026-10-20T22:58:03Z"
 started_at: "2026-10-15T08:50:46Z"
-completed_at: null
-active_seconds: 47018
+completed_at: "2026-10-20T22:58:03Z"
+active_seconds: 47278
 timing_anchor: null
 is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: retrospective
-selected_role: retrospective-delegate
-selected_profile: default
+selected_phase: security_layer
+selected_role: security-reviewer
+selected_profile: critical
 selected_model: gpt-6.1-sol
 selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Evidence-based epic acceptance and remaining security/NFR/transactional risk dispositions require High; development record and independent provenance qualified before batch flip."
+escalation_reason: "Targeted assessment of newly observed publication-CI workspace retry versus proven identical-source first-pass run; distinguish reachable integrity regression from test synchronization before finalization."
 routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Job authorization, assigned-worker money omission and acceptance transactional contract planning\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"readiness\",\"profile\":\"critical\",\"role\":\"specification-author\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Independent High contract recommendation: scope-safe membership foundation, job authorization, structural financial omission and authoritative booking revalidation\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"planning\",\"profile\":\"critical\",\"role\":\"specification-author\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -65,12 +65,13 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Refresh final epic development evidence and sensitive applicability after independently reviewed dependency patch and exact-head full CI success.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Independent final epic delivery-record truth/provenance review covers sensitive source applicability and exact-head evidence before any done flip.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Evidence-based epic acceptance and remaining security/NFR/transactional risk dispositions require High; development record and independent provenance qualified before batch flip.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"retrospective\",\"profile\":\"default\",\"role\":\"retrospective-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Targeted assessment of newly observed publication-CI workspace retry versus proven identical-source first-pass run; distinguish reachable integrity regression from test synchronization before finalization.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: null
 tea_selected: []
 tea_rationale: null
 epic_story_count: 5
 stories_after_in_epic: null
-completed_phases: [0, 1, 2, 5, 81, 82]
+completed_phases: [0, 1, 2, 5, 9, 81, 82]
 spec_path: null
 spec_approved: false
 build:
@@ -90,7 +91,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [0586972a, d6a310be, f610bcbd, 11bf2721, bce1436b, 5d5186e1cfb3e045db9ef101e1c6cf6b50133040, faeffcf6513d5d1703ae9d5a6271b01533899d4e, f3cf100709b92637270304e78a4356082b89e9a6, 1e8632db1ad051d117c38d2e24ed5d62fc2c8a57, 103ee03540e222dff1e54995726037819539b9dd, c44e5179bfcbc210de250eb92a48734561cc0fac, 9b54ad249a1ac4fb6f73c425c89b9b749855a939, 46b1b82983f415fdd2ed214138cbd437154469aa, 1152d5bda869cab97f8b64f0b2a56f72cb9ab0bd, 2d002970fcb112db8d480068443a0cce2577bd5b, 2920b920c0ff19122051f7ef987bc222331fb94a, dd7e54d0, 6260c5a2, 643274eb, 4b7d14c8, 0e382e96, 9d4584f7, f96256a0, 4562b3fe, ad9c3b79, b26cf196, e34997cb, 1d35e347, b0cd4c32, 1bf3444e, 54ac91ec, 0112e829, f4607047, 7b220c5e, 656f5532, 0549e4f0]
+commits: [0586972a, d6a310be, f610bcbd, 11bf2721, bce1436b, 5d5186e1cfb3e045db9ef101e1c6cf6b50133040, faeffcf6513d5d1703ae9d5a6271b01533899d4e, f3cf100709b92637270304e78a4356082b89e9a6, 1e8632db1ad051d117c38d2e24ed5d62fc2c8a57, 103ee03540e222dff1e54995726037819539b9dd, c44e5179bfcbc210de250eb92a48734561cc0fac, 9b54ad249a1ac4fb6f73c425c89b9b749855a939, 46b1b82983f415fdd2ed214138cbd437154469aa, 1152d5bda869cab97f8b64f0b2a56f72cb9ab0bd, 2d002970fcb112db8d480068443a0cce2577bd5b, 2920b920c0ff19122051f7ef987bc222331fb94a, dd7e54d0, 6260c5a2, 643274eb, 4b7d14c8, 0e382e96, 9d4584f7, f96256a0, 4562b3fe, ad9c3b79, b26cf196, e34997cb, 1d35e347, b0cd4c32, 1bf3444e, 54ac91ec, 0112e829, f4607047, 7b220c5e, 656f5532, 0549e4f0, 8b280df2]
 phase8_steps:
   trace_gate: done
   nfr: done
@@ -106,8 +107,8 @@ retro:
   verdict: accepted-with-open-items
   open_action_items: 7
 bmad_status_flipped_at: 82
-pr_url: null
-ci_run_url: "https://github.com/rthunborg/Kopplas/actions/runs/39506156300"
+pr_url: "https://github.com/rthunborg/Kopplas/pull/105"
+ci_run_url: "https://github.com/rthunborg/Kopplas/actions/runs/39510148825"
 ci_status: passed
 pr_merged: false
 merge_method: null
@@ -185,6 +186,9 @@ overrides:
   dependency_patch_ci_result: "{\"unit_pass\": 2740, \"browser_retry_pass\": 0, \"browser_first_pass\": 33, \"ordinary_recovery_skip\": 1, \"status\": \"passed\", \"audit_high\": 0, \"database_fail\": 0, \"direct_recovery_pass\": 1, \"browser_fail\": 0, \"database_pass\": 1879, \"audit_moderate\": 2, \"installed_vite\": \"8.1.6\", \"unit_skip\": 0, \"revision\": \"656f55321f3586549897d50538f431e75f1d7bb6\", \"run_id\": 39506156300, \"release_validation\": false, \"browser_skip\": 0, \"process_pass\": 43, \"direct_recovery_skip\": 0}"
   epic_delivery_provenance: "{\"record_sha256\": \"01EFA3C45DBECF9157954A2C7127655ACBAE488CBAF2C7D00377C84A10D9B456\", \"root_delivery_gate\": \"native 0; ok true; errors empty; approval false\", \"reviewer\": \"independent context-free gpt-6.1-sol High\", \"status\": \"qualified PASS\", \"receipt\": \"C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-vite-repair-2026-10-20T22-06-26-688Z/epic-delivery-provenance-review.md\", \"referenced_files\": 56, \"sha256\": \"353539ECFB2A4E5F6C7201EE6879C5B019B2666E8637564E7F1E1E25A87296DB\", \"binding_mismatches\": 0}"
   retrospective_completion: "{\"actions_added\": 7, \"closing_evidence_findings\": 0, \"closing_evidence_lenses\": 3, \"date\": \"2026-10-21\", \"headless\": true, \"skill_native_exit\": 0, \"scope\": \"development accepted with open items; release readiness false\", \"retro_sha256\": \"4B7D08689A41A8639FA674FA05B686DDA759AE185DB25AADA73B8659371486B6\"}"
+  final_publication_ci: "{\"release_validation\": false, \"status\": \"passed; browser32first+1qualifiedretry\", \"checkpoint_id\": \"cff021d5-8ad2-4f83-80dd-4474933f64e3\", \"revision\": \"8b280df2d4de28bbd953160411de3049ec83098a\", \"run_id\": 39510148825, \"agent_fix_label\": \"verified present\", \"receipt\": \"C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-final-ci-8b280df2-21604532-f5bb-46a9-8fa1-a02127f9b0aa.json\"}"
+  publication_ci_native_result: "{\"unit_skip\": 0, \"browser_first_pass\": 32, \"release_validation\": false, \"retry_case\": \"16.5-E01 Översikt selected attribute false first attempt; retry passed; targeted review pending\", \"unit_pass\": 2740, \"ordinary_recovery_skip\": 1, \"run_id\": 39510148825, \"native_integration_sha256\": \"4B84FA9F32FBA320792B64FC5300DD46F1708261DBB322FCF6CCA903EBCC09C1\", \"browser_retry_pass\": 1, \"direct_recovery_pass\": 1, \"browser_unexpected\": 0, \"database_fail\": 0, \"revision\": \"8b280df2d4de28bbd953160411de3049ec83098a\", \"status\": \"passed\", \"native_browser_sha256\": \"3C0AC1A89493A68A0C3CF9CD5FF1A35BE9F836FEDE03ED73C25A5A493EF067C0\", \"native_recovery_sha256\": \"0A9627D9245080CB7D04321A286174C7E1C2A9960F0025DA793285E74640B3A1\", \"browser_skip\": 0, \"process_pass\": 43, \"database_pass\": 1879}"
+  publication_retry_qualification: "{\"status\": \"qualified completion with caveat\", \"classification\": \"unresolved functional observation; not a release-only waiver\", \"owner\": \"QA/build workflow owner\", \"reviewer\": \"independent context-free gpt-6.1-sol High\", \"review\": \"C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-vite-repair-2026-10-20T22-06-26-688Z/publication-e01-retry-review.md\", \"review_sha256\": \"EEE8D319694D0DBE6F806184A12993A20F0C4A1E675B89750CB666F86192C817\", \"addendum_sha256\": \"5456E21B116CE961B52B3D0F44F704AA9E20B78A79E8BF9FE019271001BDCF1C\", \"source_applicability\": \"functional inputs identical to656f5532, where all33 passed first attempt\", \"finding\": \"First E01 failed modal-background Overview selection assertion after confirmed Overview/dialog preconditions; retry passed. No concrete modal/history bypass established. Actual click target, resulting URL/tab and first-attempt history transitions unavailable; timing-only cause unproven.\", \"next_action\": \"Capture click target, URL/tab/history diagnostics before asserting cause; correct any demonstrated modal navigation escape.\", \"addendum\": \"C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-vite-repair-2026-10-20T22-06-26-688Z/publication-e01-retry-addendum.md\"}"
 constraints:
   - "Use only owned E16 resources; E15 scheduling/time/diagnostic resources remain excluded."
   - "Each later story requires its approved plan, manifest compliance and precise path claims."

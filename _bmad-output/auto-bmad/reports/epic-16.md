@@ -298,3 +298,44 @@ Archived only proven ledger item111;185 entries retained, including27 incomplete
 1. Review the final epic PR. Release validation and any future merge/deployment require their existing separate approvals.
 
 **Next:** Human review: /bmad-checkpoint-preview codex/epic-16-jobs. Project context: run /bmad-project-context refresh (recommended after an epic).
+
+## Report — 2026-10-20T22:58:03Z (development complete; PR105 open)
+
+**Epic:** `16` — 5 stories.
+**Branch:** `codex/epic-16-jobs` (HEAD `8b280df`).
+**Pipeline status:** Done: all five stories development-complete, one ready PR open; release_ready=false. No merge or deployment performed.
+**Continues:** Final publication follows the exact-head checkpoint and preserved historical report sections.
+
+**Summary:** Jobs depth, scoped membership/Arbetsledare operations, work orders/files/dependencies, Projekt/card/scheduling semantics and five-tab workspace; Vite8.1.6 security patch independently reviewed.
+
+**Timing:** started 2026-10-15T08:50:46Z; completed in progress — elapsed 134h 07m (≈13h 07m AI-run, ≈120h 59m human/idle wait); resumed 8×.
+
+**Stories:**
+1. 16-1-jobs-depth-activation-container-evolution-and-my-jobs: build done; follow-up passes 0; release deferrals 2; independent review qualified; trace FULL; sprint done.
+2. 16-2-job-members-and-per-job-roles-arbetsledare: build done; follow-up passes 0; release deferrals 3; independent review qualified; trace FULL; sprint done.
+3. 16-3-arbetsorder: build done; follow-up passes 0; release deferrals 3; independent review qualified; trace FULL; sprint done.
+4. 16-4-projekt-upgrade-and-job-card-semantics: build done; follow-up passes 0; release deferrals 3; independent review qualified; trace FULL; sprint done.
+5. 16-5-job-workspace-shell: build done; follow-up passes 0; release deferrals 3; independent review qualified; trace FULL; sprint done.
+
+**Skipped:** (none)
+
+**Epic gate:** PASS36/36ACs; executable delivery contract native0 and independent High provenance0mismatches/56references. Five-story pre-retro done flip completed atE8b.
+
+**TEA:** TracePASS. NFRCONCERNS/MEDIUM and test-quality0/F RequestChanges remain ADVISORY. Functional head656f5532 CI39506156300 passed2740unit+43process/1879DB+separate1recovery/all33browserFIRST. Publication head8b280df2 CI39510148825 passed same unit/process/DB/recovery counts; browser33completed=32FIRST+1RETRY,0unexpected/skip. Retried16.5-E01 failed modal-background Overview-selection assertion. Independent High qualified completion with caveat: no concrete modal/history bypass established; actual click target/resultingURL/history unavailable, timing-only cause unproven. This is an unresolved functional observation, not a release-only waiver. Capture diagnostics and correct any demonstrated escape.
+
+**Retrospective:** accepted-with-open-items,2026-10-21;7ownedactions in sprint status; full document _bmad-output/implementation-artifacts/epic-16-retro-2026-10-21.md.
+
+**Overrides:** One PR/no merge/no deployment; owner-authorized defaults and separate Story16.4/16.5 external private-review approvals retained; no legacy browsing; completion-policy reconciliation; no fourth broad review; release_validation=false.
+
+**Open questions:**
+1. Unresolved E01 first-attempt click/URL/tab/history evidence: QA/build workflow owner to capture diagnostics before assigning cause. No established consequential blocker.
+
+**Deferred work:**
+1. 14owned release-only checks remain deferred with owners/evidence/nextactions.
+2. 7retrospective actions retain NFRmeasurement gaps, moderate advisory triage, bounded test-quality and ledger maintenance, diagnostics and navigation lifecycle follow-up.
+Only proven111 archived;185entries retained including27incomplete resolved hints.
+
+**⚠️ Needs human:**
+1. Human review of PR105; release validation and future merge/deployment retain separate approval gates.
+
+**Next:** Human review: /bmad-checkpoint-preview https://github.com/rthunborg/Kopplas/pull/105. Project context: run /bmad-project-context refresh (recommended after an epic).

@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-16-jobs
 status: done
-updated_at: "2026-10-20T15:41:02Z"
+updated_at: "2026-10-20T22:58:03Z"
 started_at: "2026-10-20T11:20:42Z"
 completed_at: "2026-10-20T15:41:02Z"
 active_seconds: 516
@@ -75,7 +75,7 @@ retro:
   verdict: null
   open_action_items: 0
 bmad_status_flipped_at: null
-pr_url: null
+pr_url: "https://github.com/rthunborg/Kopplas/pull/105"
 ci_run_url: "https://github.com/rthunborg/Kopplas/actions/runs/39445650692"
 ci_status: passed
 pr_merged: false
