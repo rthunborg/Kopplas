@@ -365,4 +365,101 @@ test.describe("15.5 Kalenderprenumeration essential production-host", () => {
       expectIsolated(before, snapshot); // Admin management remains self-only
     });
   });
+
+  for (const competingAction of ["rotate", "revoke"] as const) {
+    test(`[P0] 15.5-E2E-010-${competingAction} [AC2 AC6] automatic refresh removes a superseded issuance and success announcement after concurrent ${competingAction}`, async ({ resourcePage: page }) => {
+      await withCalendarBrowserFixture(page, "own-and-foreign", async f => {
+        await f.signIn("montor");
+        await followPersonalSubscriptionByKeyboard(page, "day");
+        const before = await f.snapshot(), held = await f.armFault("hold-committed-response");
+        const pending: Promise<unknown>[] = [];
+        let competingPage: Page | undefined;
+        try {
+          const original = f.observeLifecycle("create"); pending.push(original); void original.catch(() => undefined);
+          await calendarUI(page).create.click();
+          const first = await held.committed, originalLink = await held.issuedLink;
+          expect(first.own.revision - before.own.revision).toBe(1);
+          expect(first.own.audit.length - before.own.audit.length).toBe(1);
+          await expect(calendarUI(page).link).toHaveCount(0);
+          await expect(calendarUI(page).notice).toHaveText("Arbetar…");
+          expectPublicFeed(await f.fetchAnonymous(originalLink), 200);
+
+          // Same real session, separate settings instance; the original page's
+          // response remains held until this independently audited command commits.
+          competingPage = await page.context().newPage();
+          await competingPage.goto("/settings/calendar");
+          const control = calendarUI(competingPage)[competingAction];
+          await tabTo(competingPage, control);
+          await competingPage.keyboard.press("Enter");
+          const competing = f.observeLifecycle(competingAction, competingPage); pending.push(competing); void competing.catch(() => undefined);
+          await competingPage.getByRole("dialog").getByRole("button", { name: competingAction === "rotate" ? calendarNames.confirmRotate : calendarNames.confirmRevoke, exact: true }).click();
+          const newer = await competing;
+          expect(newer.committed).toBe(true);
+          expect(newer.snapshot.own.revision - first.own.revision).toBe(1);
+          expect(newer.snapshot.own.audit.length - first.own.audit.length).toBe(1);
+          expect(newer.snapshot.own.audit.at(-1)).toEqual({ action: competingAction, actorMatchesSubject: true });
+          expect(newer.snapshot.own.activeCount).toBe(competingAction === "rotate" ? 1 : 0);
+          const currentLink = competingAction === "rotate" ? await f.captureIssuedLink(competingPage) : null;
+          if (currentLink) expect(currentLink.hashMatchesPhysicalGeneration).toBe(true);
+
+          await held.release(); // release before joining the original pending action
+          await original;
+          // This is mutate()'s automatic refresh; no explicit refresh/reload is
+          // allowed here, since either would hide a missing refresh/state/message wire.
+          await expect(calendarUI(page).notice).toHaveText("Statusen har ändrats. Välj en ny ändring utifrån aktuell status.");
+          await expect(calendarUI(page).notice).not.toContainText("Länken är skapad. Kopiera den nu");
+          await expect(calendarUI(page).link).toHaveCount(0);
+          await expect(calendarUI(page).copy).toHaveCount(0);
+          const after = await f.snapshot();
+          expect(after.own.revision).toBe(newer.snapshot.own.revision);
+          expect(after.own.audit).toEqual(newer.snapshot.own.audit);
+          expectIsolated(before, after);
+          expectPublicFeed(await f.fetchAnonymous(originalLink), 404);
+          if (currentLink) {
+            const feed = await f.fetchAnonymous(currentLink.handle);
+            expectPublicFeed(feed, 200);
+            expect(feed.events).toEqual(f.expectedOwnEvents);
+          }
+        } finally {
+          await held.release();
+          await Promise.allSettled(pending);
+          try { await held.dispose(); } finally { await competingPage?.close(); }
+        }
+      });
+    });
+  }
+
+  test("[P0] 15.5-E2E-011 [AC2 AC6] automatic refresh retains the current issuance, copy control and success announcement", async ({ resourcePage: page }) => {
+    await withCalendarBrowserFixture(page, "own-and-foreign", async f => {
+      await f.signIn("montor");
+      await followPersonalSubscriptionByKeyboard(page, "day");
+      const before = await f.snapshot(), held = await f.armFault("hold-committed-response");
+      const original = f.observeLifecycle("create"); void original.catch(() => undefined);
+      try {
+        await calendarUI(page).create.click();
+        const committed = await held.committed;
+        expect(committed.own.revision - before.own.revision).toBe(1);
+        await expect(calendarUI(page).link).toHaveCount(0);
+        await held.release();
+        await original;
+        // A visible success announcement means the automatic refresh completed
+        // and busy ended. Only then verify that reconciliation retained this URL.
+        await expect(calendarUI(page).notice).toHaveText("Länken är skapad. Kopiera den nu; den visas bara den här gången.");
+        await expect(calendarUI(page).copy).toBeVisible();
+        const issued = await f.captureIssuedLink();
+        expect(issued.canonical43Characters).toBe(true);
+        expect(issued.hashMatchesPhysicalGeneration).toBe(true);
+        expect(issued.absentFromBrowserStorage).toBe(true);
+        expect(await f.snapshot()).toEqual(committed);
+        expectIsolated(before, committed);
+        const feed = await f.fetchAnonymous(issued.handle);
+        expectPublicFeed(feed, 200);
+        expect(feed.events).toEqual(f.expectedOwnEvents);
+      } finally {
+        await held.release();
+        await Promise.allSettled([original]);
+        await held.dispose();
+      }
+    });
+  });
 });

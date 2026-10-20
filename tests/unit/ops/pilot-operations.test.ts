@@ -254,7 +254,11 @@ test('recovery Compose sources leave per-drill values in ignored static private 
   assert.match(migrationGuard, /if not exists\(select 1 from pg_roles where rolname='calendar_feed_owner'\) then/i);
   for (const attribute of ['rolcanlogin', 'rolinherit', 'rolsuper', 'rolcreatedb', 'rolcreaterole', 'rolreplication', 'rolbypassrls']) assert.match(migrationGuard, new RegExp(`feed_owner\\.${attribute}`));
   assert.match(migrationGuard, /rolname='postgres'/);
-  assert.match(migrationGuard, /grant calendar_feed_owner to postgres with admin false/);
+  assert.match(migrationGuard, /grant calendar_feed_owner to postgres with set true/);
+  assert.match(migrationGuard, /grant calendar_feed_owner to postgres with inherit false/);
+  assert.match(migrationGuard, /pg_has_role\(current_user,feed_owner\.oid,'SET'\)/);
+  assert.match(migrationGuard, /m\.member=feed_owner\.oid/);
+  assert.doesNotMatch(migrationGuard, /m\.admin_option|with admin false/);
   assert.doesNotMatch(migrationGuard, /alter role|to supabase_admin/i);
   for (const restoreEntryPoint of [rehearsalWorkflow, runbook]) {
     assert.match(restoreEntryPoint, /-U supabase_admin -d postgres/);

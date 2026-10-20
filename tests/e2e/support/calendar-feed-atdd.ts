@@ -123,6 +123,9 @@ export type ArmedFault = {
   reached: Promise<void>;
   /** SQL commit readback, not a fulfilled/stubbed response. */
   committed: Promise<PhysicalSnapshot>;
+  /** Only hold-committed-response exposes the real response's issued link,
+   * privately hash-checked against that attempt before returning an opaque handle. */
+  issuedLink: Promise<IssuedLinkHandle>;
   release: () => Promise<void>;
   dispose: () => Promise<void>;
 };
@@ -141,12 +144,12 @@ export type CalendarBrowserFixture = {
    * bind actual Next action input, never guess an /api endpoint or RPC payload.
    * Transport 2xx alone is insufficient: join exact subject/attempt SQL commit.
    */
-  observeLifecycle: (action: LifecycleAction) => Promise<LifecycleObservation>;
+  observeLifecycle: (action: LifecycleAction, sourcePage?: Page) => Promise<LifecycleObservation>;
   /** Read the one-time accessible input without exposing its value in assertions.
    * Format/hash/no-storage checks return booleans only. Capture errors discard
    * cause/request/response/DOM bodies and use a fixed redacted message.
    */
-  captureIssuedLink: () => Promise<{
+  captureIssuedLink: (sourcePage?: Page) => Promise<{
     handle: IssuedLinkHandle; canonical43Characters: boolean;
     hashMatchesPhysicalGeneration: boolean; absentFromBrowserStorage: boolean;
   }>;
@@ -167,9 +170,11 @@ export type CalendarBrowserFixture = {
   /** Transport-only fault, registered BEFORE actions. Never synthesize success.
    * Hold-before-send proves pending; fail-before-send proves zero writes; lost
    * response forwards real request and confirms SQL commit before aborting bytes.
+   * Hold-committed-response returns those same real response bytes only after
+   * release, allowing a second settings page to commit a competing revision.
    * Restore all routes/listeners and release owned gates in finally, bounded.
    */
-  armFault: (kind: "hold-before-send" | "fail-before-send" | "lose-committed-response") => Promise<ArmedFault>;
+  armFault: (kind: "hold-before-send" | "fail-before-send" | "lose-committed-response" | "hold-committed-response") => Promise<ArmedFault>;
   /** Test-normalized sanitized current-self attempt metadata; no new RPC shape. */
   attemptReceipt: () => Promise<{
     submittedAttempts: number; distinctAttempts: number; recoveredRawLink: boolean;
@@ -329,20 +334,20 @@ export async function withCalendarBrowserFixture(
           expectedOwnEvents: [], expectedAbuse: { limitedRequests: 3, spikes: 1 },
           async signIn(identity) { subject = subjects[identity]; fixture.expectedOwnEvents = [...(expectedByProfile.get(subject.profile) ?? [])].sort((a, b) => a.uid.localeCompare(b.uid)); await browserSignIn(page, subject.user); },
           snapshot,
-          async observeLifecycle(action) {
-            const response = page.waitForResponse(response => actionInput(response.request())?.action === action);
-            const request = await page.waitForRequest(request => actionInput(request)?.action === action);
+          async observeLifecycle(action, sourcePage = page) {
+            const response = sourcePage.waitForResponse(response => actionInput(response.request())?.action === action);
+            const request = await sourcePage.waitForRequest(request => actionInput(request)?.action === action);
             const input = actionInput(request)!;
             await response;
             return { committed: true, snapshot: await committedAttempt(input) };
           },
-          async captureIssuedLink() {
-            const input = calendarUI(page).link; await input.waitFor({ state: "visible" });
+          async captureIssuedLink(sourcePage = page) {
+            const input = calendarUI(sourcePage).link; await input.waitFor({ state: "visible" });
             const url = await input.inputValue(), token = /^\/calendar\/feed\/([A-Za-z0-9_-]{43})$/.exec(new URL(url).pathname)?.[1];
             const handle = Object.freeze({}) as IssuedLinkHandle; secretLinks.set(handle, url); rawLinks.push(url); confirmedLink = url;
-            const canonical = new URL(url).origin === new URL(page.url()).origin && !!token && Buffer.from(token, "base64url").length === 32 && Buffer.from(token, "base64url").toString("base64url") === token;
+            const canonical = new URL(url).origin === new URL(sourcePage.url()).origin && !!token && Buffer.from(token, "base64url").length === 32 && Buffer.from(token, "base64url").toString("base64url") === token;
             const current = (await readTokens()).find(row => row.membership_id === subject.membership && row.revoked_at === null);
-            const browserStorage = await page.evaluate(() => JSON.stringify([Object.entries(localStorage), Object.entries(sessionStorage), document.cookie]));
+            const browserStorage = await sourcePage.evaluate(() => JSON.stringify([Object.entries(localStorage), Object.entries(sessionStorage), document.cookie]));
             return { handle, canonical43Characters: canonical, hashMatchesPhysicalGeneration: !!token && current?.token_hash === hash(token),
               absentFromBrowserStorage: !browserStorage.includes(url) && !!token && !browserStorage.includes(token) };
           },
@@ -372,7 +377,7 @@ export async function withCalendarBrowserFixture(
           },
           async denyClipboard() { await page.context().clearPermissions(); await page.evaluate(() => Object.defineProperty(navigator, "clipboard", { configurable: true, value: { writeText: async () => { throw new DOMException("Clipboard permission denied", "NotAllowedError"); } } })); },
           async armFault(kind) {
-            const reached = deferred<void>(), committed = deferred<PhysicalSnapshot>(), release = deferred<void>(), settled = deferred<void>();
+            const reached = deferred<void>(), committed = deferred<PhysicalSnapshot>(), issuedLink = deferred<IssuedLinkHandle>(), release = deferred<void>(), settled = deferred<void>();
             let consumed = false;
             const handler = async (route: Route) => {
               const input = actionInput(route.request()); if (!input || consumed) { await route.fallback(); return; } consumed = true;
@@ -382,12 +387,26 @@ export async function withCalendarBrowserFixture(
                   await route.continue();
                 } else if (kind === "fail-before-send") { await route.abort("failed"); reached.resolve(); }
                 else { const response = await route.fetch({ timeout: 15_000 }); if (!response.ok()) throw new Error("Calendar response failed");
-                  const state = await committedAttempt(input); await route.abort("failed"); committed.resolve(state); reached.resolve(); }
-              } catch { const error = new Error("Calendar transport fault verification failed (details redacted)"); reached.reject(error); committed.reject(error); await route.abort("failed").catch(() => undefined); }
+                  const state = await committedAttempt(input);
+                  if (kind === "hold-committed-response") {
+                    // Inspect only the actual Next action bytes, never construct a
+                    // success response. Match the returned path to this exact SQL
+                    // attempt's capability before keeping it behind an opaque handle.
+                    const paths = [...new Set((await response.text()).match(/\/calendar\/feed\/[A-Za-z0-9_-]{43}(?![A-Za-z0-9_-])/g) ?? [])];
+                    const row = (await readTokens()).find(row => row.membership_id === subject.membership && row.attempt_id === input.attemptId);
+                    if (paths.length !== 1 || row?.token_hash !== hash(paths[0].split("/").at(-1)!)) throw new Error("Calendar held issuance mismatch");
+                    const url = new URL(paths[0], page.url()).href, handle = Object.freeze({}) as IssuedLinkHandle;
+                    secretLinks.set(handle, url); rawLinks.push(url); issuedLink.resolve(handle);
+                    committed.resolve(state); reached.resolve();
+                    await Promise.race([release.promise, new Promise<never>((_, reject) => { const timer = setTimeout(() => reject(new Error("Calendar committed response hold timeout")), 20_000); timer.unref(); })]);
+                    await route.fulfill({ response }); // unchanged real response, after explicit barrier release
+                  } else { await route.abort("failed"); committed.resolve(state); reached.resolve(); }
+                }
+              } catch { const error = new Error("Calendar transport fault verification failed (details redacted)"); reached.reject(error); committed.reject(error); issuedLink.reject(error); await route.abort("failed").catch(() => undefined); }
               finally { settled.resolve(); }
             };
             await page.route("**/settings/calendar", handler);
-            const fault: ArmedFault = { reached: reached.promise, committed: committed.promise, release: async () => { release.resolve(); }, dispose: async () => {
+            const fault: ArmedFault = { reached: reached.promise, committed: committed.promise, issuedLink: issuedLink.promise, release: async () => { release.resolve(); }, dispose: async () => {
               release.resolve();
               if (consumed) await Promise.race([settled.promise, new Promise<never>((_, reject) => { const timer = setTimeout(() => reject(new Error("Calendar transport settlement timeout")), 20_000); timer.unref(); })]);
               await page.unroute("**/settings/calendar", handler); activeFaults.delete(fault);

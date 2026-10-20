@@ -10,15 +10,23 @@ begin
     or feed_owner.rolcreaterole or feed_owner.rolreplication or feed_owner.rolbypassrls then
   raise exception 'calendar_feed_owner is not hardened';
  end if;
- -- Fail closed for retained grants; do not repair privileged or runtime roles.
+ -- Only the trusted source executor may be a member. PostgreSQL17 gives a
+ -- non-superuser creator ADMIN TRUE, SET FALSE, INHERIT FALSE; ADMIN is not
+ -- SET authority. The isolated recovery SupAdmin NOADMIN guard is separate.
  if exists(select 1 from pg_auth_members m where m.member=feed_owner.oid
-   or (m.roleid=feed_owner.oid and (m.member<>(select oid from pg_roles where rolname='postgres') or m.admin_option))) then
+   or (m.roleid=feed_owner.oid and m.member<>(select oid from pg_roles where rolname='postgres'))) then
   raise exception 'calendar_feed_owner has unexpected membership';
  end if;
  if not exists(select 1 from pg_roles where rolname='postgres') then
   raise exception 'calendar feed ownership principal absent';
  end if;
- grant calendar_feed_owner to postgres with admin false;
+ -- Preserve native creator ADMIN authority; qualify ownership transfer via SET
+ -- without inherited privileges or any new runtime/JWT membership.
+ grant calendar_feed_owner to postgres with set true;
+ grant calendar_feed_owner to postgres with inherit false;
+ if not pg_has_role(current_user,feed_owner.oid,'SET') then
+  raise exception 'calendar feed source executor cannot transfer ownership';
+ end if;
 end
 $$;
 grant usage,create on schema public to calendar_feed_owner;

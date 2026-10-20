@@ -3,7 +3,7 @@ title: '15.5 — Personal Calendar Feed (ADR-B004 Surface #1)'
 type: 'feature'
 created: '2026-10-20'
 status: 'in-review'
-review_loop_iteration: 1
+review_loop_iteration: 2
 followup_review_recommended: true
 baseline_revision: '3a1c3bc9fbf22b13c926179288a8b6eefe440c12'
 approved_kernel: '0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977'
@@ -145,6 +145,30 @@ the optional exhaustive branch is explicitly unallocated and unchanged. Before
 allocation and execute the native exhaustive branch with every active case.
 This is not development evidence and is never a passed release check.
 
+**Round 2 of 3**
+
+Targeted follow-up at `672099e9dc6569f4ac1cb9a967037e0d91df689c`: verify the eleven accepted Round 1 fixes and their regressions only. Reuse unchanged independent Round 1 assessments with original provenance; no new broad scope or spec audit. All sensitive reviewers remain context-free gpt-6.1-sol High. Native exact-head runtime qualification remains pending.
+
+Round 2 completed all six layers with **two unique patch findings**. Accepted
+triage is `code-review-round-2/triage.json`, SHA256
+`16d7c37aa94cdab2fbc3ca40cee536ad342e48579160f4346539d5a01a133867`.
+R2-01 is corrected under Root's SAME High clarification: source `postgres`
+creator ADMIN membership is permitted, independently of SET authority. The source
+guard keeps all seven negative owner attributes and rejects owner-outbound or
+unexpected grantee memberships; it explicitly grants SET TRUE/INHERIT FALSE and
+checks the actual executor's SET capability before ownership transfer. The
+recovery SQL remains byte-unchanged, SupAdmin-only and strictly NOADMIN. No native
+role or schema/function proof fixture is allocated in this fix batch; any such
+future test effect requires Root's separate exact admission and PG17 evidence.
+
+R2-02 is authored and integrated in the existing two E2E files: the real issuance
+response is held after exact SQL attempt/hash/audit readback, a second real settings
+page commits rotate/revoke, then unchanged real response bytes are released.
+Rendered URL/copy removal and supersession announcement are asserted without
+manual refresh; the current-revision control retains them. All original 11 cases
+and privacy controls remain, plus three race/control cases. Both accepted patches
+are source-complete; native role, SQL/HTTP and actual browser evidence is pending.
+
 ## Design Notes
 
 Current-contracts-and-design.md records the owner-authorized defaults: dedicated projection instead of manager-wide reader, Node 32-byte issuance with feed-only attestation, CAS/attempt reconciliation without plaintext escrow, independent 60/120-per-15-minute windows, conservative unknown-IP bucket, same-page sanitized Admin queue, complete live materialized feed with no invented horizon and safe work-role/Bokning title rather than arbitrary booking description. These are proportional supporting implementations of explicit ADR requirements, not new product features or verified legacy observations. All consumer/provider interoperability beyond essential RFC/HTTP correctness is deferred release validation. Stream only after complete authority/query success so a broken query cannot emit a partial valid calendar.
@@ -164,6 +188,17 @@ so DTSTAMP and LAST-MODIFIED both describe the current component revision under
 [RFC5545 sections 3.8.7.2/3](https://www.rfc-editor.org/rfc/rfc5545.html#section-3.8.7.2).
 These narrow source corrections do not rewrite the approved kernel or historical
 companion and do not claim provider interoperability.
+
+Round 2 technical correction: PostgreSQL17's restricted CREATEROLE creator
+receives ADMIN TRUE with SET FALSE/INHERIT FALSE. ADMIN allows membership management;
+SET authorizes ownership transfer. Preserve that native source-creator authority,
+then grant only SET explicitly and disable inherited owner privileges for the
+trusted source executor; test its SET ability instead of inferring it from ADMIN.
+This source policy does not apply to isolated recovery's strict NOADMIN principal.
+See [PostgreSQL17 role attributes](https://www.postgresql.org/docs/17/role-attributes.html),
+[GRANT membership options](https://www.postgresql.org/docs/17/sql-grant.html), and
+[pg_has_role SET](https://www.postgresql.org/docs/17/functions-info.html).
+No hosted catalog observation or restricted-executor native execution is claimed.
 
 Keep the current-self role union, transactional lifecycle/audit/CAS, cookie-free
 public boundary, complete minimal live snapshot, hard global cardinality lock,
@@ -279,11 +314,32 @@ were changed. Keep status in-review, follow-up recommended, no delivery JSON or
 development-complete/release-ready claim. The optional exhaustive release branch
 remains release-blocking deferred as recorded above.
 
+## Round 2 fix verification — 2026-10-20
+
+Browser contributor released exactly `tests/e2e/calendar-feed.e2e.spec.ts` and
+`tests/e2e/support/calendar-feed-atdd.ts` after adding three active rendered
+race/control cases, for **14 browser cases**. Child-reported typecheck, focused
+ESLint, native diff check and Playwright `--list` discovery (14 cases/one file)
+passed; these unchanged source checks are reused with that provenance. Discovery
+is not browser execution. No new runtime/build/unit result is claimed for this
+browser/helper change. The source-role correction additionally passed the focused
+existing named static case:
+`node --experimental-strip-types --import ./tests/support/register.mjs --test --test-name-pattern="recovery Compose sources" tests/unit/ops/pilot-operations.test.ts`
+**1 passed, 0 failed, 0 skipped**; focused ESLint on that changed assertion file
+passed. This proves the source contract assertion, not PG17 execution. Recovery
+SQL is unchanged. No application runtime source changed after the Round 1 build,
+so its recorded production-build evidence is reused rather than rerun. Original
+83 prepared expanded cases remain; additions now comprise eight Node regressions
+and three browser race/control cases, yielding 30 feed Node, 50 native Vitest and
+14 browser cases overall. The frozen intent is unchanged. No resource launch,
+native test-role effect or development-complete claim is made by this fix handoff.
+
 ## Suggested Review Order
 
 Author: Story 15.5 implementation/fix author (gpt-6.1-sol High), incorporating
 explicitly delegated browser and bootstrap contributors. Refreshed after all
-Round 1 fixes and relevant checks; stops below resolve to final source literals.
+Round 2 source/browser fixes and relevant recorded checks. Stops below resolve
+to final source literals before the fix commit.
 
 ### Own settings and honest lifecycle results
 
@@ -293,8 +349,8 @@ explicit uncertainty handling, while later authoritative status removes stale UR
 
 - `src/components/app-shell/AppShell.tsx:279` — `navigation.some`: gates the profile link on scheduling access.
 - `src/components/calendar-feed/CalendarSubscription.tsx:34` — `const current = await refresh();`: clears superseded post-commit output and success.
-- `tests/unit/features/calendar-feed/action-state.test.ts:41` — `R1-07`: AC1/2 concurrent revoke/rotation state regression passed.
-- `tests/e2e/calendar-feed.e2e.spec.ts:155` — `15.5-E2E-003`: AC1/6 allowed and denied profile journey; execution pending.
+- `tests/e2e/calendar-feed.e2e.spec.ts:370` — `15.5-E2E-010-`: AC2/6 actual supersession clears rendered controls and notice; execution pending.
+- `tests/e2e/calendar-feed.e2e.spec.ts:432` — `15.5-E2E-011`: AC2/6 current-revision control retains issuance; execution pending.
 
 ### Signed current-self authority and atomic writes
 
@@ -303,7 +359,7 @@ and role union under the scheduling tenant lock. Dedicated proofs bind privilege
 inputs, and CAS/history/audit commit together without plaintext recovery.
 
 - `src/server/commands/calendar-feed/manage-calendar-feed.ts:10` — `calendarFeedCommand`: exposes plaintext only after confirmed fresh SQL success.
-- `supabase/migrations/20261020220000_personal_calendar_feed.sql:154` — `create function public.manage_calendar_feed`: checks signed authority, revision, replay and audit.
+- `supabase/migrations/20261020220000_personal_calendar_feed.sql:162` — `create function public.manage_calendar_feed`: checks signed authority, revision, replay and audit.
 - `tests/support/calendar-feed-atdd.ts:270` — `const allowed = ["membershipId"`: checks raw JWT status keys before mapper reconstruction.
 - `tests/integration/rls/calendar-feed.rls.test.ts:129` — `15.5-RLS008`: AC1/4/9 raw status/hash and direct-DML assertions; execution pending.
 
@@ -314,7 +370,7 @@ is complete and minimal; stable IDs, every projected-source revision and explici
 fractional rounding produce a subscription snapshot without scheduling METHOD.
 
 - `middleware.ts:40` — `request.nextUrl.pathname`: bypasses only the exact feed token segment.
-- `supabase/migrations/20261020220000_personal_calendar_feed.sql:228` — `'updatedAt',greatest`: covers mutable booking, role, job, customer and facility revisions.
+- `supabase/migrations/20261020220000_personal_calendar_feed.sql:236` — `'updatedAt',greatest`: covers mutable booking, role, job, customer and facility revisions.
 - `src/features/calendar-feed/icalendar.ts:40` — `export function encodeCalendarFeed`: serializes complete snapshots before streaming.
 - `tests/unit/features/calendar-feed/icalendar.test.ts:76` — `R1-05 positive`: AC3/8 independent positive fractional and boundary vectors passed.
 
@@ -322,11 +378,12 @@ fractional rounding produce a subscription snapshot without scheduling METHOD.
 
 Independent budgets keep admitted counters through projection cancellation without
 advancing last-use. Serial fixtures restore only their captured unknown-IP row;
-recovery and migration guards validate retained roles instead of repairing them.
+source creator ADMIN is distinct from SET authority, while unchanged recovery
+keeps SupAdmin-only NOADMIN. Retained unsafe roles fail closed.
 
-- `supabase/migrations/20261020220000_personal_calendar_feed.sql:239` — `exception when sqlstate '57014'`: keeps projection failure inside the counter transaction.
+- `supabase/migrations/20261020220000_personal_calendar_feed.sql:247` — `exception when sqlstate '57014'`: keeps projection failure inside the counter transaction.
 - `tests/integration/calendar-feed/public-feed.int.test.ts:364` — `15.5-API018`: AC5/8 durable token/IP and last-use assertions; execution pending.
-- `ops/recovery/bootstrap-roles.sql:62` — `if not exists(select 1 from pg_roles where rolname='calendar_feed_owner')`: creates only the absent isolated restore owner.
+- `supabase/migrations/20261020220000_personal_calendar_feed.sql:27` — `pg_has_role(current_user,feed_owner.oid,'SET')`: qualifies source ownership authority independently of creator ADMIN.
 - `tests/unit/ops/pilot-operations.test.ts:220` — `recovery Compose sources`: guards seven attributes, exact grants and preserved recovery settings.
 
 ### Isolated CI custody and honest evidence limits
@@ -344,10 +401,9 @@ Evidence: Round 1 fix verification above records 63 executed Node cases with zer
 failures/skips, focused static checks, production build and guard results. These
 are current working-tree checks before the fix commit. Bootstrap dependencies are
 synthetic; operations recovery assertions are static, not restore evidence.
-All 50 native Vitest and 11 browser bodies remain pending locally; API001 covers
+All 50 native Vitest and 14 browser bodies remain pending locally; API001 covers
 live label revisions, API018 cancellation/counters, RLS008 raw status privacy,
 and E2E-001 the essential actual production lifecycle. Existing ACL/RLS010,
-serial cleanup and full regressions also require exact-head CI. Round 1 completed,
-but targeted High follow-up, live lifecycle/recovery and final truth qualification
+serial cleanup and full regressions also require exact-head CI. Round 2 completed; targeted High follow-up, restricted-executor PG17 proof, live lifecycle/recovery and final truth qualification
 are outstanding. No provider/device/visual/performance or release-ready claim;
 the unallocated exhaustive branch remains explicitly release-blocking deferred.
