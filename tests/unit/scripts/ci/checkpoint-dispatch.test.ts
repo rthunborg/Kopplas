@@ -4,6 +4,7 @@ import { test } from "node:test";
 import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
+import { projectCalendarFeedCiCommands } from "../../../support/calendar-feed-ci-contract";
 import { checkpoint, checkpointTitle, parseArgs, validateRequest } from "../../../../scripts/ci/checkpoint-dispatch.mjs";
 
 const sha = "a".repeat(40);
@@ -150,7 +151,7 @@ test("argument validation excludes arbitrary cancellation IDs, malformed refs an
 });
 
 test("workflow binds admission and preserves consequential gates with broad UI diagnostics optional", () => {
-  const workflow = readFileSync(new URL("../../../../.github/workflows/ci.yml", import.meta.url), "utf8").replaceAll("\r\n", "\n");
+  const workflow = projectCalendarFeedCiCommands(readFileSync(new URL("../../../../.github/workflows/ci.yml", import.meta.url), "utf8"));
   const ordinaryJobs = ["checkpoint-admission", "verify", "db", "recovery-storage-loader", "e2e", "dashboard-e2e"];
   const separateDiagnostics = ["native-stream-probe", "fixed-chromium-paired-probe", "fixed-chromium-application-verification"];
   const jobsStart = workflow.indexOf("\njobs:\n");

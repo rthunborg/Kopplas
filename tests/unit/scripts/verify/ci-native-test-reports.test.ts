@@ -2,9 +2,10 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { test } from "node:test";
+import { projectCalendarFeedCiCommands } from "../../../support/calendar-feed-ci-contract";
 
 const read = (path: string): string => readFileSync(join(process.cwd(), path), "utf8").replaceAll("\r\n", "\n");
-const ci = read(".github/workflows/ci.yml");
+const ci = projectCalendarFeedCiCommands(read(".github/workflows/ci.yml"));
 
 test("both Vitest CI invocations retain console and annotation reporters while emitting distinct native JSON", () => {
   const reporters = "--reporter=default --reporter=github-actions --reporter=json";

@@ -1,5 +1,8 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
+import { createHash } from "node:crypto";
+import { readFileSync } from "node:fs";
+import { projectCalendarFeedCiCommands } from "../../../support/calendar-feed-ci-contract";
 import { INTEGRATION_ARGS, BROWSER_ARGS, FEED_FUNCTIONS, validateAdmission, validateStackIdentity, createTelemetryObserver, hasSensitiveOutput, createOwnedGroupStopper, ownsListenerRecord, waitForOwnedHttp, runCalendarFeedRuntime } from "../../../../scripts/ci/with-calendar-feed-runtime.mjs";
 
 const env = {
@@ -11,6 +14,44 @@ const keyId = "f8c9b152-1e88-471a-82fa-d45a80394e40";
 const keyUuid = "905a0de8-b110-4f89-9096-010db4c6ef12";
 const status = { API_URL: "http://127.0.0.1:54321", DB_URL: "postgresql://postgres:postgres@127.0.0.1:54322/postgres", ANON_KEY: "test-anon", SERVICE_ROLE_KEY: "test-service" };
 const migrations = [{ version: "20261020220000", name: "personal_calendar_feed" }];
+
+test("CI command projection rejects entry and argv drift and cannot erase unrelated workflow or wrapper changes", () => {
+  const workflow = readFileSync(new URL("../../../../.github/workflows/ci.yml", import.meta.url), "utf8").replaceAll("\r\n", "\n");
+  const wrapper = readFileSync(new URL("../../../../scripts/ci/with-calendar-feed-runtime.mjs", import.meta.url), "utf8").replaceAll("\r\n", "\n");
+  const projected = projectCalendarFeedCiCommands(workflow, wrapper);
+  assert.ok(projected.includes("pnpm run test:int --reporter=default --reporter=github-actions --reporter=json --outputFile=test-results/full-integration.json"));
+  assert.ok(projected.includes("run: pnpm run test:smoke"));
+  for (const [before, after] of [
+    ["node scripts/ci/with-calendar-feed-runtime.mjs db", "pnpm run test:int"],
+    ["node scripts/ci/with-calendar-feed-runtime.mjs db", "node scripts/ci/with-calendar-feed-runtime.mjs browser"],
+    ["node scripts/ci/with-calendar-feed-runtime.mjs browser", "pnpm run test:smoke"],
+    ["node scripts/ci/with-calendar-feed-runtime.mjs browser", "node scripts/ci/with-calendar-feed-runtime.mjs browser --grep feed"],
+    ["      - name: Essential authentication smoke (production app and local Auth)", "      - name: Changed smoke gate"],
+  ]) {
+    assert.ok(workflow.includes(before));
+    assert.throws(() => projectCalendarFeedCiCommands(workflow.replace(before, after), wrapper), /exact workflow entry/);
+  }
+  assert.throws(() => projectCalendarFeedCiCommands(`${workflow}\nnode scripts/ci/with-calendar-feed-runtime.mjs db\n`, wrapper), /unexpected wrapper entry/);
+  for (const [before, after] of [
+    ['"run", "test:int"', '"run", "test:int:pilot"'],
+    ['"--reporter=default", ', ""], ['"--reporter=github-actions", ', ""], ['"--reporter=json", ', ""],
+    ['"--outputFile=test-results/full-integration.json"', '"--outputFile=test-results/foreign.json"'],
+    ['"run", "test:smoke"', '"run", "test:e2e"'],
+    ["export const BROWSER_ARGS", "const BROWSER_ARGS"],
+  ]) {
+    assert.ok(wrapper.includes(before));
+    assert.throws(() => projectCalendarFeedCiCommands(workflow, wrapper.replace(before, after)), /declaration|argv/);
+  }
+  assert.throws(() => projectCalendarFeedCiCommands(workflow, `${wrapper}\n// unrelated source drift\n`), /reviewed wrapper source/);
+  const inverseHash = (text: string) => createHash("sha256").update(text
+    .replace(/      # FIXED-APPLICATION-INPUT-BEGIN\n[\s\S]*?      # FIXED-APPLICATION-INPUT-END\n/, "")
+    .replace(/\n  # FIXED-APPLICATION-JOB-BEGIN\n[\s\S]*?  # FIXED-APPLICATION-JOB-END\n$/, "")).digest("hex");
+  const originalHash = "48adc320f459b648212ee87950facc76cdda306bb0a14e72f2786c67c2c689e0";
+  assert.equal(inverseHash(projected), originalHash);
+  const unrelated = projectCalendarFeedCiCommands(`# unrelated workflow drift\n${workflow}`, wrapper);
+  assert.ok(unrelated.startsWith("# unrelated workflow drift\n"));
+  assert.notEqual(inverseHash(unrelated), originalHash);
+});
 type Query = { sql: string; params?: unknown[] };
 function harness(options: {
   query?: (call: Query) => { rows: Record<string, unknown>[] } | undefined;
@@ -146,7 +187,9 @@ test("current full ledger and feed function ownership are checked before mutatio
 test("DB mode fixes full argv, builds with the child's public config and settles every owned group before exact-key deletion", async () => {
   const result = await runFixture("db");
   assert.equal(result.exitCode, 0); assert.equal(result.receipt.keyDeleted, true); assert.equal(result.receipt.dbClosed, true);
-  assert.deepEqual(result.launches.map(launch => launch.args), [["node_modules/next/dist/bin/next", "build"], ["node_modules/next/dist/bin/next", "start", "--hostname", "127.0.0.1", "--port", "3195"], [...INTEGRATION_ARGS]]);
+  const required = ["run", "test:int", "--reporter=default", "--reporter=github-actions", "--reporter=json", "--outputFile=test-results/full-integration.json"];
+  assert.deepEqual([...INTEGRATION_ARGS], required);
+  assert.deepEqual(result.launches.map(launch => launch.args), [["node_modules/next/dist/bin/next", "build"], ["node_modules/next/dist/bin/next", "start", "--hostname", "127.0.0.1", "--port", "3195"], required]);
   assert.equal(result.launches[2].command, "pnpm");
   assert.ok(result.launches.every(launch => launch.childEnv.SUPABASE_TEST_REQUIRED === "1" && launch.childEnv.CALENDAR_FEED_TEST_BASE_URL === "http://127.0.0.1:3195"));
   assert.ok(result.launches.every(launch => launch.childEnv.NEXT_PUBLIC_SUPABASE_URL === status.API_URL && launch.childEnv.NEXT_PUBLIC_SUPABASE_ANON_KEY === status.ANON_KEY));
@@ -196,7 +239,8 @@ test("a reused leader before initial or escalation signal grants no foreign sign
 test("browser mode runs only existing smoke and awaits its server group before key deletion", async () => {
   const result = await runFixture("browser");
   assert.equal(result.exitCode, 0); assert.equal(result.launches.length, 1);
-  assert.deepEqual(result.launches[0].args, [...BROWSER_ARGS]);
+  assert.deepEqual([...BROWSER_ARGS], ["run", "test:smoke"]);
+  assert.deepEqual(result.launches[0].args, ["run", "test:smoke"]);
   assert.equal(result.launches[0].childEnv.CALENDAR_FEED_TEST_BASE_URL, "http://127.0.0.1:3100");
   assert.ok(result.events.indexOf("commit") < result.events.indexOf("launch:0"));
   assert.ok(result.events.lastIndexOf("settled:0") < result.events.indexOf("delete"));

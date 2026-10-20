@@ -424,12 +424,70 @@ restricted PG17 execution, required full native lanes, public-schema source/reco
 qualification and final truth assessment remain pending Root's exact-head lane.
 Status remains in-review; no delivery/development-complete/release-ready claim.
 
+## Checkpoint CI repair verification — 2026-10-20
+
+The first checkpoint at `9487c0d9dc6f622b472780587e20e834abf98595`
+(source equal to reviewed `611c86295540161d31169110bf2139cf1d85d708`)
+failed run `39451957379`, attempt 1: **3094 unit tests, 3086 passed, eight
+failed, zero skipped**. That failed native result and the original source-freeze
+capsule remain immutable history. Root reports all 30 feed Node and 22 separate
+bootstrap cases reached and passed there; the other 65 feature native bodies
+were not executed, and no API execution artifact exists.
+
+Seven failures came from shared tests assuming that delegated integration/smoke
+commands remained literal workflow commands. The eighth exposed the command
+enrollment scanner's intentional literal-declaration contract. The source now
+declares each of create/rotate/revoke literally and shares their unchanged
+execution configuration; request authority, proof and plaintext handling remain
+inside execution. No enrollment checker was weakened.
+
+Root/Coordinator admitted exactly the new `tests/support/calendar-feed-ci-contract.ts`
+and five named shared test consumers after E16/Documents ownership confirmation
+(`accepted-ci-contract-repair-allocation.json`, SHA256
+`f0c35067c1691c7df20e5ebc25ca5fec89e718f2d98a01d6d62bf2902c153cf7`).
+The test-only helper reads, never evaluates/imports, the reviewed LF-normalized
+wrapper source pinned to `cca0ccc6c0221f70a63f05a9fda715e8551de3fb58c3c99559772fbe137af0a6`.
+It validates both actual literal argv arrays and inverts only the two complete
+admitted workflow entries, including line boundaries. All other workflow bytes
+survive. This choice lets existing checks follow real delegated commands while
+preserving their job/authority/optional/required-red/native-success/upload and
+seeded honesty fences. The original fixed-Chromium inverse hash
+`48adc320f459b648212ee87950facc76cdda306bb0a14e72f2786c67c2c689e0` is unchanged.
+Unrelated wrapper drift fails the pin; unrelated workflow drift survives and
+fails that original inverse. The wrapper's existing injected tests independently
+assert exact actually launched argv against literals, not its own constants.
+No workflow, runtime wrapper, key/provider or resource effect changed.
+
+Actual bounded working-tree verification before the repair commit:
+`node --experimental-strip-types --import ./tests/support/register.mjs --test --test-reporter=dot tests/unit/docs/acceptance-gate-report-validators.test.ts tests/unit/scripts/ci/checkpoint-dispatch.test.ts tests/unit/scripts/verify/ci-native-test-reports.test.ts tests/unit/scripts/verify/epic-11-pilot-ci-gate.test.ts tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts tests/unit/server/authz/command-enrollment.test.ts tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts`
+passed **302/302, zero failures/skips**. The new projection regression case brings
+the separate bootstrap suite to **23**; feature inventory stays **95 = 30 Node +
+51 Vitest + 14 browser**, preserving all original 83 prepared expanded cases.
+During this repair an initial negative caught prefix matching of appended argv;
+complete line boundaries fixed it before the final full focused pass. Initial
+`.ts` imports failed typecheck and were corrected to the repository's registered
+extensionless convention. Full `pnpm exec tsc --noEmit --incremental false` then
+passed. Focused eight-file ESLint exited zero with two unused-helper
+warnings in the fixed-Chromium test; those unrelated functions were preserved.
+Fresh `pnpm run build` passed after the application declaration correction
+(compile 3.5s, TypeScript 6.0s, static 12/12). Subsequent changes are test/spec-only,
+so that build is reused for the unchanged application dependency set.
+
+Root-owned dirty state and allocation/route metadata are excluded from author
+source commits. This is not a globally clean-tree or successful-checkpoint claim.
+The distinct High latest-fix review at source611 passed; it does not review this
+new CI repair. A distinct High latest-delta review and a successor source binding
+must precede Root's next exact-head checkpoint. Native DB/RLS/component/HTTP,
+browser, recovery and installed-collection evidence remains unexecuted. No local
+runtime/qualification command or resource was launched. Three broad rounds are
+complete; no fourth broad review, delivery JSON, done or release-ready claim.
+
 ## Suggested Review Order
 
 Author: Story 15.5 implementation/fix author (gpt-6.1-sol High), incorporating
 explicitly delegated browser and bootstrap contributors. Refreshed after all
-Round 3 latest-fix inheritance assertions and recorded static checks. Stops below resolve
-to final source literals before the fix commit.
+Round 3 latest-fix inheritance assertions and the bounded checkpoint CI repair.
+Stops below resolve to final source literals before the repair commit.
 
 ### Own settings and honest lifecycle results
 
@@ -448,7 +506,8 @@ Ordinary JWT commands derive self authority; SQL rechecks current exact membersh
 and role union under the scheduling tenant lock. Dedicated proofs bind privileged
 inputs, and CAS/history/audit commit together without plaintext recovery.
 
-- `src/server/commands/calendar-feed/manage-calendar-feed.ts:10` — `calendarFeedCommand`: exposes plaintext only after confirmed fresh SQL success.
+- `src/server/commands/calendar-feed/manage-calendar-feed.ts:10` — `calendarFeedConfig`: exposes plaintext only after confirmed fresh SQL success.
+- `src/server/commands/calendar-feed/manage-calendar-feed.ts:32` — `command: "calendar_feed.create"`: literal create/rotate/revoke declarations retain independent enrollment discovery.
 - `supabase/migrations/20261020220000_personal_calendar_feed.sql:162` — `create function public.manage_calendar_feed`: checks signed authority, revision, replay and audit.
 - `tests/support/calendar-feed-atdd.ts:270` — `const allowed = ["membershipId"`: checks raw JWT status keys before mapper reconstruction.
 - `tests/integration/rls/calendar-feed.rls.test.ts:129` — `15.5-RLS008`: AC1/4/9 raw status/hash and direct-DML assertions; execution pending.
@@ -487,16 +546,20 @@ privacy detection measures raw output in memory before sanitized records persist
 - `tests/integration/commands/calendar-feed.int.test.ts:461` — `// FULL rollback comes first`: preserves rollback/reset and same/fresh catalog absence proof.
 - `scripts/ci/with-calendar-feed-runtime.mjs:166` — `export function createOwnedGroupStopper`: memoizes settlement and verifies identity before signaling.
 - `scripts/ci/with-calendar-feed-runtime.mjs:88` — `export function createTelemetryObserver`: detects leaks before dropping non-allowlisted output.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:264` — `nonzero/null-signal nested browser loss`: requires retained key custody for abnormal completion.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:308` — `nonzero/null-signal nested browser loss`: requires retained key custody for abnormal completion.
+- `tests/support/calendar-feed-ci-contract.ts:43` — `projectCalendarFeedCiCommands`: validates pinned real wrapper argv and only the two exact workflow inverses.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:18` — `CI command projection rejects`: missing/wrong entry/argv and unrelated-source/workflow negatives preserve the original inverse fence.
 
-Evidence: Round 1 fix verification above records 63 executed Node cases with zero
-failures/skips, focused static checks, production build and guard results. These
-are current working-tree checks before the fix commit. Bootstrap dependencies are
-synthetic; operations recovery assertions are static, not restore evidence.
+Evidence: the checkpoint repair records 302 executed focused Node cases with zero
+failures/skips, final typecheck/focused lint and the fresh application build.
+The previous checkpoint failed eight unit tests; it remains failed historical
+evidence, despite its 30 feed Node/22 bootstrap passes. Current separate bootstrap
+inventory is 23. Its dependencies are synthetic; recovery assertions are static,
+not restore evidence. Earlier passing checks retain their recorded dependencies.
 All 51 native Vitest and 14 browser bodies remain pending locally; API001 covers
 live label revisions, API018 cancellation/counters, RLS008 raw status privacy,
 and E2E-001 the essential actual production lifecycle. Existing ACL/RLS010,
-serial cleanup and full regressions also require exact-head CI. All three rounds completed; latest-fix-only High regression review, restricted-executor
+serial cleanup and full regressions also require exact-head CI. All three rounds completed; CI-repair latest-delta High regression review, restricted-executor
 PG17 execution, live lifecycle/recovery and final truth qualification
 are outstanding. No provider/device/visual/performance or release-ready claim;
 the unallocated exhaustive branch remains explicitly release-blocking deferred.

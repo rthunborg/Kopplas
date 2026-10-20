@@ -3,13 +3,13 @@ import { validateCalendarFeedIntent } from "@/features/calendar-feed/validation"
 import { feedKeyFromEnv, FEED_SCHEMA, MANAGE_DOMAIN, issueCalendarFeedToken, signFeedProof } from "@/server/calendar-feed/attestation";
 import { readCalendarFeedStatus } from "@/server/read-models/calendar-feed";
 import type { createSupabaseServerClient } from "@/server/db/supabase-server-client";
-import { defineCommand, runCommand, type CommandDbClient } from "../envelope";
+import { defineCommand, runCommand, type CommandDbClient, type CommandConfig } from "../envelope";
 import { executeCalendarFeed } from "./calendar-feed-db";
 
-/** Plaintext exists only in this invocation and its confirmed fresh response. */
-export function calendarFeedCommand(action: CalendarFeedAction) {
-  return defineCommand<CalendarFeedIntent, CalendarFeedResult>({
-    command: `calendar_feed.${action}`, auditable: false, eventType: `calendar_feed_${action}`, targetType: "calendar_feed",
+/** Plaintext exists only in execute and its confirmed fresh response. */
+function calendarFeedConfig(action: CalendarFeedAction): Omit<CommandConfig<CalendarFeedIntent, CalendarFeedResult>, "command"> {
+  return {
+    auditable: false, eventType: `calendar_feed_${action}`, targetType: "calendar_feed",
     validateInput: raw => { const result = validateCalendarFeedIntent(raw); return result.ok && result.data.action !== action ? { ok: false, code: "VALIDATION_FAILED" } : result; },
     execute: async ctx => {
       const key = feedKeyFromEnv();
@@ -25,8 +25,15 @@ export function calendarFeedCommand(action: CalendarFeedAction) {
         p_correlation_id: ctx.correlationId, p_claims: claims, p_signature: signFeedProof(claims, key.secret) });
       return { ...result, issuedPath: result.outcome === "committed" && issued ? `/calendar/feed/${issued.raw}` : null };
     },
-  });
+  };
 }
+// Each mutation has one literal declaration for independent enrollment discovery.
+const commands = {
+  create: defineCommand<CalendarFeedIntent, CalendarFeedResult>({ command: "calendar_feed.create", ...calendarFeedConfig("create") }),
+  rotate: defineCommand<CalendarFeedIntent, CalendarFeedResult>({ command: "calendar_feed.rotate", ...calendarFeedConfig("rotate") }),
+  revoke: defineCommand<CalendarFeedIntent, CalendarFeedResult>({ command: "calendar_feed.revoke", ...calendarFeedConfig("revoke") }),
+};
+export function calendarFeedCommand(action: CalendarFeedAction) { return commands[action]; }
 export async function manageCalendarFeed(client: CommandDbClient, input: unknown, correlationId?: string): Promise<CalendarFeedResult> {
   const validated = validateCalendarFeedIntent(input);
   if (!validated.ok) return { outcome: "denied", revision: null, issuedPath: null };

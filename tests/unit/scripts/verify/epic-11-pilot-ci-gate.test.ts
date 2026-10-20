@@ -2,8 +2,9 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { test } from "node:test";
+import { projectCalendarFeedCiCommands } from "../../../support/calendar-feed-ci-contract";
 
-const ci = readFileSync(join(process.cwd(), ".github", "workflows", "ci.yml"), "utf8").replaceAll("\r\n", "\n");
+const ci = projectCalendarFeedCiCommands(readFileSync(join(process.cwd(), ".github", "workflows", "ci.yml"), "utf8"));
 
 test("DB integrity and pilot probe remain required without an extra test execution stopwatch", () => {
   assert.match(ci, /run: \|\s+pnpm run test:int --reporter=default --reporter=github-actions --reporter=json --outputFile=test-results\/full-integration\.json\s+pnpm run test:pilot-performance/);

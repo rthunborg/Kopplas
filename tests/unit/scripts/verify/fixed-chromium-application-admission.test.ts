@@ -5,6 +5,7 @@ import { EventEmitter } from "node:events";
 import vm from "node:vm";
 import ts from "typescript";
 import { test } from "node:test";
+import { projectCalendarFeedCiCommands } from "../../../support/calendar-feed-ci-contract";
 import { bounded, checkApplicationArguments, checkPinnedCandidate, inspectReport, runApplication, runCompatibility,
   runOwnedChild, sealEnvironment, validateProvenance, createHostedOwner, SOURCES, VISUALS } from "../../../diagnostics/fixed-chromium-application-runner.mjs";
 import { FIXED, validateReceipt } from "../../../diagnostics/no-store-stream-probe.mjs";
@@ -170,12 +171,12 @@ test("actual export-only inverse recovers full independently reviewed probe", ()
   assert.equal(sha(inverse.replaceAll("\r\n", "\n")), "e4ff29811169cff384d9d75ad992730e5726a34f8659287763be24ddef7bfd67");
 });
 test("actual workflow inverse preserves every original job/input/gate/authority byte", () => {
-  const after = source(".github/workflows/ci.yml");
+  const after = projectCalendarFeedCiCommands(source(".github/workflows/ci.yml"));
   const inverse = after.replace(/      # FIXED-APPLICATION-INPUT-BEGIN\n[\s\S]*?      # FIXED-APPLICATION-INPUT-END\n/, "")
     .replace(/\n  # FIXED-APPLICATION-JOB-BEGIN\n[\s\S]*?  # FIXED-APPLICATION-JOB-END\n$/, "");
   assert.equal(sha(inverse.replaceAll("\r\n", "\n")), "48adc320f459b648212ee87950facc76cdda306bb0a14e72f2786c67c2c689e0");
 });
-const ci = source(".github/workflows/ci.yml"), optional = ci.slice(ci.indexOf("  # FIXED-APPLICATION-JOB-BEGIN"));
+const ci = projectCalendarFeedCiCommands(source(".github/workflows/ci.yml")), optional = ci.slice(ci.indexOf("  # FIXED-APPLICATION-JOB-BEGIN"));
 const expression = optional.match(/    if: \$\{\{ ([^\n]+) \}\}/)?.[1];
 function eligible(event: string, verify: string, general: string, opt: boolean, cancelled = false) {
   assert.ok(expression);
