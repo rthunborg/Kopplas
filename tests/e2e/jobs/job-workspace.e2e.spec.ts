@@ -449,7 +449,7 @@ test.describe("Story 16.5 essential job workspace", () => {
         await test.step("Only the card draft blocks refresh, browser Back and SPA exit; same-job tabs retain it", async () => {
           await cardHistoryStage(page, "before-cancelled-reload");
           const prompt = page.waitForEvent("dialog");
-          const reload = page.reload().catch(error => error);
+          const reload = page.evaluate(() => window.location.reload());
           const unload = await prompt;
           expect(unload.type()).toBe("beforeunload");
           await unload.dismiss();
@@ -458,7 +458,7 @@ test.describe("Story 16.5 essential job workspace", () => {
           await page.setViewportSize({width: 1280, height: 900});
           await cardHistoryStage(page, "before-back");
           const backPrompt = page.waitForEvent("dialog");
-          const away = page.goBack().catch(error => error);
+          const away = page.evaluate(() => window.history.back());
           const back = await backPrompt;
           expect(back.type()).toBe("confirm");
           expect(back.message()).toContain("jobbkortet");
