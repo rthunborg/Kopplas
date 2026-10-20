@@ -10,8 +10,11 @@ import { validateWorkHoursInput } from "@/features/resources/work-hours";
 import { validateCapacityInputs } from "@/features/resources/capacity-inputs";
 import type { SchedulingReadInput, SchedulingReadResult, SchedulingBookingSummary } from "@/features/scheduling/view-types";
 import { defaultSchedulingInput } from "@/features/scheduling/view-preferences";
+import type {ResolverGroup} from "@/features/scheduling/conflict-resolver-types";
 
 type Client = Awaited<ReturnType<typeof createSupabaseServerClient>>;
+/** Internal server dependency seam; no action/page/input can select it. */
+type ConflictScanPort=(client:Client,tenantId:string,actorId:string)=>Promise<{groups:readonly ResolverGroup[]}>;
 type Row = Record<string, unknown>;
 type Query = ReturnType<ReturnType<Client["from"]>["select"]>;
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
@@ -61,7 +64,7 @@ export async function readBookingReassignmentFlags(client: Pick<Client, "rpc">, 
 }
 
 /** Cookie-bound production default; injected authenticated client is solely a test seam. */
-export async function readScheduling(input: SchedulingReadInput, options: { readonly client?: Client; readonly initial?: boolean } = {}): Promise<SchedulingReadResult> {
+export async function readScheduling(input: SchedulingReadInput, options: { readonly client?: Client; readonly initial?: boolean; readonly conflictScan?:ConflictScanPort } = {}): Promise<SchedulingReadResult> {
   let actorId = "", tenantId = "";
   let authority = {canView:false,canManage:false};
   try {
@@ -109,7 +112,7 @@ export async function readScheduling(input: SchedulingReadInput, options: { read
     }
     let counts = openBookingConflictCounts([...new Map(conflicts.map(r => [uuid(r.id),r])).values()] as never, ids);
     if(canManage){
-      const scan=await (await import("./booking-conflicts")).scanBookingConflicts(client,tenantId,actorId);
+      const scan=await (options.conflictScan??(await import("./booking-conflicts")).scanBookingConflicts)(client,tenantId,actorId);
       const groups=scan.groups.filter(g=>g.status==="open"&&g.bookingIds.some(id=>ids.includes(id)));
       counts={count:groups.length,byBooking:new Map(ids.map(id=>[id,groups.filter(g=>g.bookingIds.includes(id)).length]))};
     }

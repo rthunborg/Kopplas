@@ -187,7 +187,7 @@ begin
      or plan->'series'->'template' is distinct from p_input->'following'->'template'
      then raise exception 'booking proof denied' using errcode='42501'; end if;
    elsif target_series<>source.id or plan->'series'->>'pivot' is not null or
-    (plan->'series'->'rule'-array['startTime','endTime','endDayOffset','allDay']) is distinct from (source.rule-array['startTime','endTime','endDayOffset','allDay'])
+    ((plan->'series'->'rule')-array['startTime','endTime','endDayOffset','allDay']) is distinct from (source.rule-array['startTime','endTime','endDayOffset','allDay'])
     then raise exception 'booking proof denied' using errcode='42501'; end if;
    if source.predecessor_id is not null and not exists(select 1 from public.booking_series predecessor
     where predecessor.tenant_id=p_tenant_id and predecessor.id=source.predecessor_id and predecessor.ends_before is not null

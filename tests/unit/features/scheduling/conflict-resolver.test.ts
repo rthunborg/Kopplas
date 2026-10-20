@@ -8,6 +8,7 @@ import {deriveSeriesConflicts} from "@/server/bookings/series-conflicts";
 import {DEFAULT_SCHEDULING_RULES} from "@/features/scheduling/types";
 import type {BookingFacts} from "@/features/resources/booking-types";
 import type {ResolutionRequest} from "@/features/scheduling/conflict-resolver-types";
+import {validateBookingSeries,seriesCommandPayload} from "@/server/commands/bookings/series-validation";
 const group:ResolverGroup={logicalId:"whole",keys:["base","association"],personId:"person",bookingIds:["a","b","c"],rule:"over_capacity",startsAt:"2026-10-24T22:00:00Z",endsAt:"2026-10-25T23:00:00Z",status:"open"};
 test("AC1/2 scope and Stockholm grouping preserve complete aggregate peers and full DST interval",()=>{
   const bookings=[{id:"a",payload:{jobId:"job",startsAt:"2026-10-25T06:00:00Z",endsAt:"2026-10-25T07:00:00Z"}},{id:"b",payload:{jobId:"other",startsAt:"2026-10-25T07:00:00Z",endsAt:"2026-10-25T08:00:00Z"}}] as ResolverBooking[];
@@ -50,6 +51,14 @@ test("R1-08 real resolver validation canonicalizes SQL field order and following
  const normalized=validateConflictResolution(raw);assert.equal(normalized.ok,true);if(!normalized.ok)throw new Error();
  const again=validateConflictResolution(normalized.data);assert.deepEqual(again,normalized);assert.equal(JSON.stringify(again),JSON.stringify(normalized));
  assert.equal(validateConflictResolution({...raw,wholeSeries:true}).ok,false);assert.equal(validateConflictResolution({...raw,following:{...following,pivotOccurrenceId:crypto.randomUUID()}}).ok,false);
+});
+test("CI series fixture preview uses the exact production-normalized candidate before receipt issuance",()=>{
+ const fixture=seriesFixture(),template={...fixture.payload,assigneeIds:[crypto.randomUUID()],startsAt:"2026-10-12T06:00:00Z",endsAt:"2026-10-12T07:00:00Z"};
+ const raw={commandId:crypto.randomUUID(),seriesId:crypto.randomUUID(),sourceSeriesId:null,expectedVersion:null,pivotOccurrenceId:null,rule:{...fixture.rule,startTime:"08:00:00",endTime:"09:00:00"},template};
+ const checked=validateBookingSeries(raw);assert.equal(checked.ok,true);if(!checked.ok)throw new Error();
+ assert.equal(checked.data.template.startsAt,"2026-10-12T06:00:00.000000Z");assert.equal(checked.data.template.endsAt,"2026-10-12T07:00:00.000000Z");
+ assert.notEqual(JSON.stringify(seriesCommandPayload(raw)),JSON.stringify(seriesCommandPayload(checked.data)),"raw preview candidate would differ from command validation");
+ const repeated=validateBookingSeries(checked.data);assert.equal(repeated.ok,true);if(!repeated.ok)throw new Error();assert.equal(JSON.stringify(seriesCommandPayload(repeated.data)),JSON.stringify(seriesCommandPayload(checked.data)));
 });
 test("AC5/8 acceptance rejects whitespace, blanket series, unrelated selection and unknown input fields",()=>{
   const input={commandId:crypto.randomUUID(),bookingId:crypto.randomUUID(),action:"accept",targetLogicalIds:["whole"],wholeSeries:false,payload:null};

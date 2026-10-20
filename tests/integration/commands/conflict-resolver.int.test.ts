@@ -12,7 +12,8 @@ import {scanBookingConflicts} from "@/server/read-models/booking-conflicts";
 import type {ResolutionInput,ResolutionRequest} from "@/features/scheduling/conflict-resolver-types";
 import {adminQuery,adminSession} from "../../factories/admin-sql";
 import {bookingCommand,bookingInput,bookingSnapshot,withBookingFixture,withBookingFault,seedBookingParents,type BookingFixture} from "../../support/bookings-atdd";
-import {realSeriesInput,reviewRealSeries} from "../../support/booking-series-atdd";
+import {realSeriesInput,reviewRealSeries as reviewProductionSeries} from "../../support/booking-series-atdd";
+import {validateBookingSeries,type BookingSeriesInput} from "@/server/commands/bookings/series-validation";
 import {createBookingSeries} from "@/server/commands/bookings/create-booking-series";
 import {updateBookingSeries} from "@/server/commands/bookings/update-booking-series";
 import {invokeJobCard} from "../../support/jobs-depth-atdd";
@@ -21,6 +22,13 @@ import {skipUnlessStack} from "../../support/stack-gate";
 import {waitForBlocked} from "../../support/booking-conflicts-atdd";
 import {resolutionRequest,validateConflictResolution} from "@/server/commands/bookings/conflict-resolution-validation";
 let up=false;beforeAll(async()=>{up=await isLocalStackReachable();});
+async function reviewRealSeries(fx:BookingFixture,input:BookingSeriesInput,options?:Parameters<typeof reviewProductionSeries>[2]){
+ const normalized=validateBookingSeries(input,Boolean(input.sourceSeriesId));if(!normalized.ok)throw new Error(`Series fixture validation: ${normalized.code}`);
+ return reviewProductionSeries(fx,normalized.data,options);
+}
+function expectOk<T extends {ok:boolean;code?:string}>(result:T,stage:string):T {
+ expect(result.ok,JSON.stringify({stage,code:result.ok?"OK":result.code&&/^[A-Z_]+$/.test(result.code)?result.code:"UNKNOWN"})).toBe(true);return result;
+}
 async function fixture(run:(fx:BookingFixture)=>Promise<void>){await withBookingFixture(async fx=>{try{await run(fx);}finally{
   await adminSession(async({query})=>{await query("begin");try{await query("set local session_replication_role=replica");await query("delete from public.booking_conflict_resolutions where tenant_id=any($1::uuid[])",[fx.tenantIds]);await query("commit");}catch(e){await query("rollback");throw e;}});
 }});}
@@ -39,14 +47,18 @@ async function prepare(fx:BookingFixture,bookingId:string,action:ResolutionInput
   const preview=await previewConflictResolution(fx.adminClient,args(fx,input.commandId),input);
   return {input:{...input,review:{receipt:preview.receipt,decision:{acknowledged:preview.warnings.length>0,reason:preview.warnings.length?"Reviewed current complete warnings":"",reviewedLogicalIds:preview.warnings.map(g=>g.logicalId),selectedLogicalIds:action==="accept"?input.targetLogicalIds:[]}}},preview,target};
 }
-async function command(fx:BookingFixture,input:ResolutionInput,correlationId=crypto.randomUUID()) {return runCommand(resolveBookingConflict,{client:fx.adminClient as never,input,correlationId});}
+async function command(fx:BookingFixture,input:ResolutionInput,correlationId=crypto.randomUUID()) {
+ const sqlStates:{rpc:string;code:string}[]=[];
+ const client=new Proxy(fx.adminClient,{get(target,key){if(key==="rpc")return async(name:string,args:Record<string,unknown>)=>{const reply=await target.rpc(name,args);if(reply.error&&["booking_conflict_resolver_snapshot","finalize_booking_conflict_resolution"].includes(name))sqlStates.push({rpc:name,code:/^[A-Z0-9]{5}$/.test(reply.error.code)?reply.error.code:"UNKNOWN"});return reply;};const value=Reflect.get(target,key,target);return typeof value==="function"?value.bind(target):value;}});
+ const result=await runCommand(resolveBookingConflict,{client:client as never,input,correlationId});if(!result.ok)console.info("15.3-safe-command",JSON.stringify({action:input.action,wholeSeries:input.wholeSeries,following:Boolean(input.following),code:result.code,sqlStates}));return result;
+}
 describe("15.3 actual checked resolver transactions",()=>{
  test("15.3-INT-017 common assignment and both all-day conversions persist literal microseconds and original nominal bounds",async ctx=>{if(skipUnlessStack(ctx,up))return;await fixture(async fx=>{
   await seed(fx);const base=realSeriesInput(fx,{rule:{...realSeriesInput(fx).rule,count:2,startTime:"08:00:00.123456",endTime:"08:00:00.223456"},template:{...realSeriesInput(fx).template,startsAt:"2026-10-12T06:00:00.123456Z",endsAt:"2026-10-12T06:00:00.223456Z"}});
   expect(await runCommand(createBookingSeries,{client:fx.adminClient as never,input:(await reviewRealSeries(fx,base)).input})).toMatchObject({ok:true});
   const ids=await adminQuery<{id:string}>("select id from public.bookings where series_id=$1 order by nominal_date",[base.seriesId]),assignees=[fx.ownProfile.id,fx.coworkerProfile.id].sort();
   const literal=async()=>adminQuery("select id,to_char(nominal_date,'YYYY-MM-DD') date,to_char(starts_at at time zone 'UTC','YYYY-MM-DD\"T\"HH24:MI:SS.US\"Z\"') start,to_char(ends_at at time zone 'UTC','YYYY-MM-DD\"T\"HH24:MI:SS.US\"Z\"') end,all_day from public.bookings where series_id=$1 order by nominal_date",[base.seriesId]);
-  const assignment=await prepare(fx,ids[0].id,"reassign",{wholeSeries:true,payload:{...base.template,assigneeIds:assignees}});expect(await command(fx,assignment.input)).toMatchObject({ok:true});
+  const assignment=await prepare(fx,ids[0].id,"reassign",{wholeSeries:true,payload:{...base.template,assigneeIds:assignees}});expect(expectOk(await command(fx,assignment.input),"INT017-common-assignment")).toMatchObject({ok:true});
   const timed=[12,13].map((d,i)=>({id:ids[i].id,date:`2026-10-${d}`,start:`2026-10-${d}T06:00:00.123456Z`,end:`2026-10-${d}T06:00:00.223456Z`,all_day:false}));expect(await literal()).toEqual(timed);
   const day=await prepare(fx,ids[0].id,"adjust",{wholeSeries:true,payload:{...base.template,assigneeIds:assignees,allDay:true,startsAt:"2026-10-11T22:00:00.000000Z",endsAt:"2026-10-12T22:00:00.000000Z"}});expect(await command(fx,day.input)).toMatchObject({ok:true});
   expect(await literal()).toEqual([{id:ids[0].id,date:"2026-10-12",start:"2026-10-11T22:00:00.000000Z",end:"2026-10-12T22:00:00.000000Z",all_day:true},{id:ids[1].id,date:"2026-10-13",start:"2026-10-12T22:00:00.000000Z",end:"2026-10-13T22:00:00.000000Z",all_day:true}]);
@@ -130,7 +142,7 @@ describe("15.3 actual checked resolver transactions",()=>{
  });
  test("15.3-INT-002 accept-only is selective, immutable, replayable and never diverges an occurrence",async ctx=>{if(skipUnlessStack(ctx,up))return;await fixture(async fx=>{
   await seed(fx);const series=realSeriesInput(fx,{template:{...realSeriesInput(fx).template,startsAt:"2026-10-12T06:00:00Z",endsAt:"2026-10-12T07:00:00Z"},rule:{...realSeriesInput(fx).rule,startTime:"08:00:00",endTime:"09:00:00"}});
-  expect(await runCommand(createBookingSeries,{client:fx.adminClient as never,input:(await reviewRealSeries(fx,series)).input})).toMatchObject({ok:true});
+  expect(expectOk(await runCommand(createBookingSeries,{client:fx.adminClient as never,input:(await reviewRealSeries(fx,series)).input}),"INT002-create-series")).toMatchObject({ok:true});
   const [{id}]=await adminQuery<{id:string}>("select id from public.bookings where series_id=$1 order by nominal_date",[series.seriesId]);const ready=await prepare(fx,id),before=await state(fx),result=await command(fx,ready.input);expect(result).toMatchObject({ok:true,data:{outcome:"accepted"}});
   const after=await state(fx);expect(after.bookings).toEqual(before.bookings);expect(after.assignees).toEqual(before.assignees);expect(after.series).toEqual(before.series);
   expect(after.ledger).toHaveLength(1);expect(after.audit).toHaveLength(before.audit.length+1);expect(after.notifications).toHaveLength(1);
@@ -201,9 +213,9 @@ describe("15.3 actual checked resolver transactions",()=>{
     if(writer==="series"){const base=realSeriesInput(fx),input=realSeriesInput(fx,{rule:{...base.rule,startDate:"2026-11-02",count:1},template:{...base.template,startsAt:"2026-11-02T06:00:00Z",endsAt:"2026-11-02T07:00:00Z",assigneeIds:[fx.adminProfile.id]}});return runCommand(createBookingSeries,{client:fx.adminClient as never,input:(await reviewRealSeries(fx,input)).input});}
     const p=await seedBookingParents(fx.base.tenantA.id);return invokeJobCard(fx.adminClient,"create",{commandId:crypto.randomUUID(),type:"order",title:"Actual job-card refresh",customer_id:p.customerId,facility_id:p.facilityId,contact_id:p.contactId,priority:"normal",estimated_duration_minutes:null,planned_travel_minutes:null,crew_size:null,earliest_date:null,desired_date:null,latest_date:null,customer_presence_required:false,requiredWorkRoleIds:null,accessWindows:null,dependencyJobIds:[]});
    };
-   expect(await refresh()).toMatchObject({ok:true});expect((await state(fx)).conflicts.filter(c=>keys.includes(String(c.natural_key)))).toEqual(terminalRows);
+   expect(expectOk(await refresh(),`INT005-${writer}-retain`)).toMatchObject({ok:true});expect((await state(fx)).conflicts.filter(c=>keys.includes(String(c.natural_key)))).toEqual(terminalRows);
    await adminQuery("update public.bookings set starts_at='2026-10-12T06:00:00Z',ends_at='2026-10-12T07:00:00Z' where id=$1",[ids[0]]);
-   expect(await refresh()).toMatchObject({ok:true});const reopened=await state(fx),returning=reopened.conflicts.filter(c=>keys.includes(String(c.natural_key)));expect(returning).toHaveLength(keys.length);
+   expect(expectOk(await refresh(),`INT005-${writer}-reopen`)).toMatchObject({ok:true});const reopened=await state(fx),returning=reopened.conflicts.filter(c=>keys.includes(String(c.natural_key)));expect(returning).toHaveLength(keys.length);
    expect(returning.every(r=>r.status==="open"&&r.resolved_at===null&&r.resolved_by_membership_id===null&&r.resolution_outcome===null)).toBe(true);expect(reopened.ledger).toEqual(terminal.ledger);
    expect(await command(fx,ready.input)).toMatchObject({ok:true});expect(await state(fx)).toEqual(reopened);
   });
@@ -234,7 +246,7 @@ describe("15.3 actual checked resolver transactions",()=>{
   const protectedBefore=await adminQuery("select * from public.bookings where id=any($1::uuid[]) order by id",[[rows[1].id,rows[2].id]]);
   const ready=await prepare(fx,rows[0].id,"move",{wholeSeries:true,payload:{...base.template,startsAt:"2026-10-12T09:00:00.000000Z",endsAt:"2026-10-12T10:00:00.000000Z"}});
   expect(ready.preview.affectedBookingIds).toHaveLength(12);expect(ready.preview.untouchedBookingIds).toEqual(expect.arrayContaining([rows[1].id,rows[2].id]));expect(ready.preview.warnings.some(g=>g.bookingIds.some(id=>rows.slice(10).some(r=>r.id===id)))).toBe(true);
-  expect(await command(fx,ready.input)).toMatchObject({ok:true});expect(await adminQuery("select * from public.bookings where id=any($1::uuid[]) order by id",[[rows[1].id,rows[2].id]])).toEqual(protectedBefore);
+  expect(expectOk(await command(fx,ready.input),"INT007-common-segment")).toMatchObject({ok:true});expect(await adminQuery("select * from public.bookings where id=any($1::uuid[]) order by id",[[rows[1].id,rows[2].id]])).toEqual(protectedBefore);
   expect(await adminQuery("select id,nominal_date,status from public.bookings where series_id=$1 order by nominal_date",[base.seriesId])).toEqual(rows.map((r,i)=>({...r,status:i===2?"cancelled":r.status})));
   const ordinary=await adminQuery<{id:string;date:string;start:string;end:string;assignees:string[]}>("select b.id,to_char(b.nominal_date,'YYYY-MM-DD') date,to_char(b.starts_at at time zone 'UTC','YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') start,to_char(b.ends_at at time zone 'UTC','YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') end,array(select person_profile_id::text from public.booking_assignees a where a.booking_id=b.id order by person_profile_id) assignees from public.bookings b where b.series_id=$1 and not b.is_exception and b.status<>'cancelled' order by b.nominal_date",[base.seriesId]);
   expect(ordinary).toEqual([12,15,16,17,18,19,20,21,22,23].map((day,i)=>({id:rows[i===0?0:i+2].id,date:`2026-10-${day}`,start:`2026-10-${day}T09:00:00Z`,end:`2026-10-${day}T10:00:00Z`,assignees:[fx.ownProfile.id]})));

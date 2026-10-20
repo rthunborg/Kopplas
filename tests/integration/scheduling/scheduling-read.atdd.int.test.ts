@@ -2,6 +2,7 @@ import { createHash, randomUUID } from "node:crypto";
 import { beforeAll, describe, expect, test } from "vitest";
 import { readScheduling, readBookingReassignmentFlags } from "@/server/read-models/scheduling";
 import { EMPTY_SCHEDULING_FILTERS } from "@/features/scheduling/view-model";
+import type {ResolverGroup} from "@/features/scheduling/conflict-resolver-types";
 import type { SchedulingReadInput } from "@/features/scheduling/view-types";
 import { seedReadFixtures, withBookingFixture, bookingSnapshot } from "../../support/bookings-atdd";
 import { adminQuery } from "../../factories/admin-sql";
@@ -10,9 +11,8 @@ import { isLocalStackReachable } from "../../support/test-env";
 import { skipUnlessStack } from "../../support/stack-gate";
 const input = (view: SchedulingReadInput["view"] = "schema"): SchedulingReadInput => ({view,mode:"week",date:"2026-10-12",filters:EMPTY_SCHEDULING_FILTERS});
 let stackUp=false;
-beforeAll(async()=>{stackUp=await isLocalStackReachable();});
-
 describe("15.1 actual authenticated scheduling read/RLS",()=>{
+  beforeAll(async()=>{stackUp=await isLocalStackReachable();});
   test("manager reads complete same-tenant bookings and own agenda derives self without peer membership disclosure",async ctx=>{
     if(skipUnlessStack(ctx,stackUp))return;
     await withBookingFixture(async fx=>{
@@ -88,6 +88,7 @@ function transport(count=1001,own=false){
     person_work_hours:[{id:randomUUID(),tenant_id:tenantId,person_profile_id:null,entry_kind:"weekly_shift",weekday:1,starts_at:"07:00",ends_at:"16:00",local_date:null,exception_kind:null}],
     tenant_calendar_days:[],work_roles:[],jobs:[],customers:[],facilities:[],contacts:[],
   };
+  let scanFails=false;const scanCalls:{client:unknown;tenantId:string;actorId:string}[]=[];
   let failTable:string|undefined,failOffset=-1,failColumn:string|undefined,failBatch=-1,malform:(value:Row[])=>unknown=value=>value;
   const client={auth:{getClaims:async()=>({data:{claims:{sub:actorId}},error:null})},
     from(table:string){
@@ -114,28 +115,53 @@ function transport(count=1001,own=false){
     },
     rpc:async(name:string,args:Record<string,unknown>)=>{if(name==="booking_editor_people")return{data:[{id:personId,default_work_role_id:null,label:"Transport person"}],error:null};expect(name).toBe("booking_reassignment_flags");const batch=args.p_booking_ids as string[];batches.push(batch);return{data:batches.length===failBatch?null:malform(batch.map((bookingId,index)=>({bookingId,needsReassignment:index%2===0}))),error:batches.length===failBatch?{code:"XX000",message:"PRIVATE_TRANSPORT_ERROR"}:null};},
   };
-  return{client:client as never,ids,personId,tenantId,tableRows,trace,batches,failPage:(table:string,offset:number,column?:string)=>{failTable=table;failOffset=offset;failColumn=column;},failRpc:(batch:number)=>{failBatch=batch;},malformed:(f:typeof malform)=>{malform=f;}};
+  // Fixture association projection ONLY: preserves the pre-existing paging/count
+  // contract with opaque identities. This is neither detector nor auth evidence.
+  const conflictScan=async(actualClient:unknown,derivedTenant:string,derivedActor:string)=>{
+    scanCalls.push({client:actualClient,tenantId:derivedTenant,actorId:derivedActor});if(scanFails)throw new Error("PRIVATE_SCAN_ERROR");
+    const rows=tableRows.booking_conflicts.filter(r=>r.tenant_id===derivedTenant),groups=new Map<string,ResolverGroup>();
+    for(const r of rows){if(r.status!=="open")continue;let key=String(r.natural_key),participants=[r.booking_id,r.related_booking_id].filter((v):v is string=>typeof v==="string");
+      if(r.conflict_type==="over_capacity"){
+        const peers=rows.filter(p=>p.status!=="resolved"&&p.conflict_type===r.conflict_type&&p.affected_person_profile_id===r.affected_person_profile_id&&p.starts_at===r.starts_at&&p.ends_at===r.ends_at);
+        const all=[...new Set(peers.flatMap(p=>[p.booking_id,p.related_booking_id]).filter((v):v is string=>typeof v==="string"))].sort();
+        const identity=JSON.stringify([r.conflict_type,all,[r.affected_person_profile_id],r.starts_at,r.ends_at]),hash=(parts:unknown[])=>createHash("sha256").update(JSON.stringify(parts)).digest("hex");
+        const base="v1:"+hash([identity,r.affected_person_profile_id]),association="v2:"+hash([identity,r.affected_person_profile_id,r.booking_id]);
+        if(key===base||key===association){key=base;participants=all;}
+      }
+      const previous=groups.get(key);groups.set(key,{logicalId:key,keys:[...(previous?.keys??[]),String(r.natural_key)],personId:String(r.affected_person_profile_id),bookingIds:[...new Set([...(previous?.bookingIds??[]),...participants])],rule:String(r.conflict_type),startsAt:String(r.starts_at),endsAt:String(r.ends_at),status:"open"});
+    }
+    return{groups:[...groups.values()]};
+  };
+  return{client:client as never,ids,personId,tenantId,actorId,tableRows,trace,batches,conflictScan,scanCalls,failScan:()=>{scanFails=true;},failPage:(table:string,offset:number,column?:string)=>{failTable=table;failOffset=offset;failColumn=column;},failRpc:(batch:number)=>{failBatch=batch;},malformed:(f:typeof malform)=>{malform=f;}};
 }
 const CONFLICT_COLUMNS="id,booking_id,related_booking_id,affected_person_profile_id,conflict_type,starts_at,ends_at,natural_key,status";
 function conflict(h:ReturnType<typeof transport>,bookingId:string,relatedBookingId:string|null,key:string,patch:Row={}):Row{return{id:randomUUID(),tenant_id:h.tenantId,booking_id:bookingId,related_booking_id:relatedBookingId,affected_person_profile_id:h.personId,conflict_type:"double_booking",starts_at:"2026-10-10T06:00:00.000000Z",ends_at:"2026-10-10T07:00:00.000000Z",natural_key:key,status:"open",...patch};}
 
 describe("15.1 production scheduling transport completeness (mock transport, no RLS credit)",()=>{
+  test("internal projected scan sees only resolved client/tenant/actor and failed scan discards data",async()=>{
+    const h=transport(2),forged={...input(),tenantId:randomUUID(),actorId:randomUUID(),conflictScan:()=>{throw new Error("Input cannot select dependency");}};
+    const result=await readScheduling(forged,{client:h.client,conflictScan:h.conflictScan});expect(result.data.error).toBeNull();expect(h.scanCalls).toEqual([{client:h.client,tenantId:h.tenantId,actorId:h.actorId}]);
+    const broken=transport(2);broken.failScan();const failed=await readScheduling(input(),{client:broken.client,conflictScan:broken.conflictScan});
+    expect(failed.data.error).toBe("Planeringen kunde inte läsas. Försök igen.");expect(failed.data.bookings).toEqual([]);expect(failed.data.canView).toBe(false);for(const field of ["roster","capacity","openConflictCount"])expect(failed.data).not.toHaveProperty(field);expect(JSON.stringify(failed)).not.toContain("PRIVATE_SCAN_ERROR");
+  });
   test("retryable IO confirms only current read authority; denied and initial own reads never retain planner authority",async()=>{
     const manager=transport(1);manager.failPage("bookings",0);
-    const failed=await readScheduling(input(),{client:manager.client});
+    const failed=await readScheduling(input(),{client:manager.client,conflictScan:manager.conflictScan});
     expect(failed.data.canView).toBe(false);expect(failed.data.bookings).toEqual([]);
     expect(failed.data.errorKind).toBe("retryable");expect(failed.data.confirmedAuthority).toEqual({canView:true,canManage:true});
     expect(failed.data).not.toHaveProperty("roster");expect(failed.data).not.toHaveProperty("capacity");
     const own=transport(1,true);own.failPage("bookings",0);
-    const ownFailure=await readScheduling(input("personal"),{client:own.client});
+    const ownFailure=await readScheduling(input("personal"),{client:own.client,conflictScan:own.conflictScan});
     expect(ownFailure.data.confirmedAuthority).toEqual({canView:true,canManage:false});
-    const denied=await readScheduling(input(),{client:own.client});
+    const denied=await readScheduling(input(),{client:own.client,conflictScan:own.conflictScan});
     expect(denied.data.errorKind).toBe("denied");expect(denied.data).not.toHaveProperty("confirmedAuthority");
-    const initial=transport(2,true);const initialRead=await readScheduling(input(),{client:initial.client,initial:true});
+    expect(own.scanCalls).toEqual([]);expect(own.batches).toEqual([]);
+    const initial=transport(2,true);const initialRead=await readScheduling(input(),{client:initial.client,initial:true,conflictScan:initial.conflictScan});
     expect(initialRead.data.error).toBeNull();expect(initialRead.data.canManage).toBe(false);expect(initialRead.data.bookings).toHaveLength(2);expect(initial.batches).toEqual([]);
+    expect(initial.scanCalls).toEqual([]);for(const field of ["roster","capacity","openConflictCount"])expect(initialRead.data).not.toHaveProperty(field);
   });
   for(const count of [501,1001])test(`${count} bookings publish only after complete 500-row pages and max50 ordered flag batches`,async()=>{
-    const h=transport(count),result=await readScheduling(input(),{client:h.client});
+    const h=transport(count),result=await readScheduling(input(),{client:h.client,conflictScan:h.conflictScan});
     expect(result.data.error).toBeNull();expect(result.data.bookings.map(b=>b.id).sort()).toEqual(h.ids);
     expect(h.batches.flat()).toEqual(h.ids);expect(h.batches.every(batch=>batch.length<=50)).toBe(true);
     expect(h.trace.filter(t=>t.table==="bookings").map(t=>[t.from,t.to])).toEqual(count===501?[[0,499],[500,999]]:[[0,499],[500,999],[1000,1499]]);
@@ -150,7 +176,7 @@ describe("15.1 production scheduling transport completeness (mock transport, no 
     h.tableRows.booking_conflicts=[conflict(h,first,null,"primary"),conflict(h,outside,last,"related"),conflict(h,first,last,"symmetric"),conflict(h,last,first,"symmetric"),
       conflict(h,first,last,capacityKey(first),{conflict_type:"over_capacity"}),conflict(h,last,first,capacityKey(last),{conflict_type:"over_capacity"}),
       conflict(h,outside,first,"retained accepted participant",{conflict_type:"over_capacity",status:"accepted"})];
-    const result=await readScheduling(input(),{client:h.client});
+    const result=await readScheduling(input(),{client:h.client,conflictScan:h.conflictScan});
     expect(result.data.error).toBeNull();expect(result.data.openConflictCount).toBe(4);
     expect(result.data.bookings.find(booking=>booking.id===first)?.openConflictCount).toBe(3);expect(result.data.bookings.find(booking=>booking.id===last)?.openConflictCount).toBe(3);
     const reads=h.trace.filter(trace=>trace.table==="booking_conflicts");expect(reads).toHaveLength(4);
@@ -160,20 +186,20 @@ describe("15.1 production scheduling transport completeness (mock transport, no 
   test("both conflict arms collect more than500 rows including final contributions before logical counting",async()=>{
     const h=transport(2),outside=randomUUID();
     h.tableRows.booking_conflicts=[...Array.from({length:501},(_,index)=>conflict(h,h.ids[0]!,null,"primary-"+index)),...Array.from({length:501},(_,index)=>conflict(h,outside,h.ids[1]!,"related-"+index)),conflict(h,h.ids[0]!,h.ids[1]!,"shared-cross-arm")];
-    const result=await readScheduling(input(),{client:h.client});expect(result.data.error).toBeNull();expect(result.data.openConflictCount).toBe(1003);
+    const result=await readScheduling(input(),{client:h.client,conflictScan:h.conflictScan});expect(result.data.error).toBeNull();expect(result.data.openConflictCount).toBe(1003);
     expect(result.data.bookings.map(booking=>booking.openConflictCount)).toEqual([502,502]);
     expect(h.trace.filter(trace=>trace.table==="booking_conflicts").map(read=>[read.idFilters[0]?.column,read.from,read.to])).toEqual([["booking_id",0,499],["booking_id",500,999],["related_booking_id",0,499],["related_booking_id",500,999]]);
   });
   for(const arm of ["booking_id","related_booking_id"])test("failed final conflict page in "+arm+" arm discards the whole read",async()=>{
     const h=transport(2),outside=randomUUID();h.tableRows.booking_conflicts=[...Array.from({length:501},(_,index)=>conflict(h,h.ids[0]!,null,"primary-"+index)),...Array.from({length:501},(_,index)=>conflict(h,outside,h.ids[1]!,"related-"+index))];
-    h.failPage("booking_conflicts",500,arm);const result=await readScheduling(input(),{client:h.client});
+    h.failPage("booking_conflicts",500,arm);const result=await readScheduling(input(),{client:h.client,conflictScan:h.conflictScan});
     expect(result.data.canView).toBe(false);expect(result.data.bookings).toEqual([]);expect(result.data.error).toBe("Planeringen kunde inte läsas. Försök igen.");expect(result.data).not.toHaveProperty("openConflictCount");expect(result.data).not.toHaveProperty("capacity");expect(JSON.stringify(result)).not.toContain("PRIVATE_TRANSPORT_ERROR");
     expect(h.trace.filter(trace=>trace.table==="booking_conflicts"&&trace.idFilters[0]?.column===arm).map(read=>read.from)).toEqual([0,500]);
   });
   for(const table of ["person_profiles","person_work_hours","tenant_calendar_days","booking_conflicts"])test(`later ${table} page failure discards all data/counts`,async()=>{
     const h=transport(1),existing=h.tableRows[table];
     h.tableRows[table]=Array.from({length:501},()=>table==="person_profiles"?{...existing[0],id:randomUUID()}:table==="person_work_hours"?{...existing[0],id:randomUUID()}:table==="booking_conflicts"?{id:randomUUID(),tenant_id:h.tableRows.bookings[0].tenant_id,booking_id:h.ids[0]}:{id:randomUUID(),tenant_id:h.tableRows.bookings[0].tenant_id,local_date:`2026-10-12`,variant:"closed",reduction_percent:null});
-    h.failPage(table,500);const result=await readScheduling(input(),{client:h.client});
+    h.failPage(table,500);const result=await readScheduling(input(),{client:h.client,conflictScan:h.conflictScan});
     expect(result.data.error).toBe("Planeringen kunde inte läsas. Försök igen.");expect(result.data.bookings).toEqual([]);expect(result.data).not.toHaveProperty("openConflictCount");
   });
   test("501 ancillary roster/hour/calendar/conflict rows retain final-page facts and numeric demand",async()=>{
@@ -184,13 +210,13 @@ describe("15.1 production scheduling transport completeness (mock transport, no 
     h.tableRows.person_work_hours=profiles.map(p=>({id:randomUUID(),tenant_id:tenantId,person_profile_id:p.id,entry_kind:"weekly_shift",weekday:1,starts_at:"07:00",ends_at:"16:00",local_date:null,exception_kind:null}));
     h.tableRows.tenant_calendar_days=Array.from({length:501},(_,i)=>({id:randomUUID(),tenant_id:tenantId,local_date:new Date(Date.UTC(2027,0,1)+i*86400000).toISOString().slice(0,10),variant:"closed",reduction_percent:null}));
     h.tableRows.booking_conflicts=Array.from({length:501},()=>({id:randomUUID(),tenant_id:tenantId,booking_id:h.ids[0],related_booking_id:null,affected_person_profile_id:h.personId,conflict_type:"outside_work_hours",starts_at:"2026-10-12T06:00:00Z",ends_at:"2026-10-12T07:00:00Z",natural_key:randomUUID(),status:"open"}));
-    const result=await readScheduling(input(),{client:h.client});expect(result.data.error).toBeNull();
+    const result=await readScheduling(input(),{client:h.client,conflictScan:h.conflictScan});expect(result.data.error).toBeNull();
     expect(result.data.roster).toHaveLength(501);expect(result.data.capacity).toHaveLength(3507);expect(result.data.openConflictCount).toBe(501);
     expect(result.data.capacity?.find(c=>c.personId===h.personId&&c.date==="2026-10-12")).toMatchObject({budget:540,demand:60,balance:480});
     for(const table of ["person_profiles","person_work_hours","tenant_calendar_days","booking_conflicts"])expect(h.trace.filter(t=>t.table===table).some(t=>t.from===500&&t.to===999)).toBe(true);
   });
   test("failed final booking page and final lifecycle batch produce no partial or false-empty success",async()=>{
-    for(const kind of ["page","rpc"]){const h=transport();if(kind==="page")h.failPage("bookings",1000);else h.failRpc(21);const result=await readScheduling(input(),{client:h.client});expect(result.data.canView).toBe(false);expect(result.data.error).toBe("Planeringen kunde inte läsas. Försök igen.");expect(result.data.bookings).toEqual([]);expect(JSON.stringify(result)).not.toContain("PRIVATE_TRANSPORT_ERROR");}
+    for(const kind of ["page","rpc"]){const h=transport();if(kind==="page")h.failPage("bookings",1000);else h.failRpc(21);const result=await readScheduling(input(),{client:h.client,conflictScan:h.conflictScan});expect(result.data.canView).toBe(false);expect(result.data.error).toBe("Planeringen kunde inte läsas. Försök igen.");expect(result.data.bookings).toEqual([]);for(const field of ["roster","capacity","openConflictCount"])expect(result.data).not.toHaveProperty(field);expect(JSON.stringify(result)).not.toContain("PRIVATE_TRANSPORT_ERROR");}
   });
   for(const [label,alter] of [
     ["missing",(r:Row[])=>r.slice(1)],["extra",(r:Row[])=>[...r,r[0]]],["duplicate",(r:Row[])=>r.map(()=>r[0])],
@@ -200,5 +226,5 @@ describe("15.1 production scheduling transport completeness (mock transport, no 
   ] as const)test(`malformed flags ${label} reject exact shape/completeness`,async()=>{
     const h=transport(2);h.malformed(alter);await expect(readBookingReassignmentFlags(h.client,randomUUID(),h.ids)).rejects.toThrow();
   });
-  test("own transport calls neither planner tables nor any RPC",async()=>{const h=transport(2,true);const result=await readScheduling(input("personal"),{client:h.client});expect(result.data.error).toBeNull();expect(h.batches).toEqual([]);expect(h.trace.some(t=>["person_profiles","person_work_hours","tenant_calendar_days","work_roles","jobs","customers"].includes(t.table))).toBe(false);});
+  test("own transport calls neither planner tables nor any RPC",async()=>{const h=transport(2,true);const result=await readScheduling(input("personal"),{client:h.client,conflictScan:h.conflictScan});expect(result.data.error).toBeNull();expect(h.batches).toEqual([]);expect(h.scanCalls).toEqual([]);expect(h.trace.some(t=>["person_profiles","person_work_hours","tenant_calendar_days","work_roles","jobs","customers"].includes(t.table))).toBe(false);});
 });
