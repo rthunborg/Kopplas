@@ -1,0 +1,81 @@
+{
+  "kind": "PROPOSED_NOT_IMPLEMENTED_OR_EXECUTED",
+  "schema_version": 1,
+  "fixed_stages": [
+    "booking-fixture-before-callback",
+    "canonical-fixture-cleanup",
+    "additional-users",
+    "bind-membership",
+    "bind-profile",
+    "bind-client",
+    "owned-row-cleanup",
+    "additional-auth-cleanup",
+    "cleanup-absence-check",
+    "serial-window-setup",
+    "serial-window-restore",
+    "scenario",
+    "unknown"
+  ],
+  "allowed_own_data_SQLSTATE_categories": {
+    "23502": "not-null",
+    "23503": "foreign-key",
+    "23505": "unique-conflict",
+    "23514": "check-constraint",
+    "40001": "serialization",
+    "42501": "insufficient-privilege",
+    "42703": "undefined-column",
+    "42883": "undefined-function",
+    "57014": "query-cancelled",
+    "42P01": "undefined-table",
+    "22P02": "invalid-text",
+    "25P02": "transaction-aborted",
+    "40P01": "deadlock",
+    "08006": "connection-failure"
+  },
+  "safe_leaf_fields": {
+    "stage": "Fixed allowlist only; fallback unknown",
+    "category": "Category derived from allowlisted own-data code, else unknown; cycle/truncated fixed failure markers",
+    "sqlState": "Allowlisted code or null"
+  },
+  "aggregate_bounds": {
+    "max_depth": 4,
+    "max_nodes": 16,
+    "cycles": "Visited identity set; emit fixed cycle failure leaf",
+    "missing_or_accessor_errors": "Unknown failure leaf; do not invoke getters",
+    "limit_reached": "Fixed truncated failure leaf; never drop root failure or claim complete causal coverage"
+  },
+  "operations": "Only catches around existing setup/cleanup operations. Invoke each original operation once. Preserve safe errors via local identity registry and primary+cleanup order ONLY for failures actually reaching owned catches; return values unchanged. No active observer or new query.",
+  "upstream_limit": "Canonical message-only replacement, swallowed/best-effort warnings and rollback/DISCARD/finally replacement cannot be reconstructed or claimed retained. Exact source-flow evidence and negative proofs in fixture-error-dataflow.json; missing code remains UNKNOWN, never parsed from message/cause.",
+  "forbidden_reads_or_output": [
+    "message",
+    "detail",
+    "hint",
+    "query",
+    "params",
+    "stack from native error",
+    "cause",
+    "then",
+    "client/RPC",
+    "tokens",
+    "hashes",
+    "proofs",
+    "keys",
+    "credentials",
+    "URLs",
+    "IP",
+    "rows",
+    "catalog definitions",
+    "status payload"
+  ],
+  "public_child_limit": "Does not observe production Next child RPC errors. Public HTTP failures and collapsed management errors remain unknown unless later actual evidence independently justifies another targeted route.",
+  "observer_withdrawn": "All four-RPC thenable observer ideas withdrawn. No pre-await extra .then, no duplicate request, no client/result clone or modification, no response interception.",
+  "negative_proof_plan": [
+    "Known own-data42501 survives as fixed stage/category/code while canary message/detail/query/params/cause/URL/token/proof/key never appears.",
+    "Inherited, unknown and accessor code/errors/then/cause properties do not execute getters and become fixed unknown failure.",
+    "Bounded cyclic/nested aggregates retain primary and cleanup safe diagnostics in order; overflow has explicit truncated failure marker, never false success.",
+    "Injected setup/cleanup operation is invoked exactly once; successful return object identity preserved; thrown/rejected error becomes only safe diagnostic.",
+    "Diagnostic path never accesses a client/RPC/then member or launches extra SQL; poison getters/sentinel counters remain zero.",
+    "Existing feature cases, SQL assertions, negative fences and required native counts remain intact; no mocks/skips count as acceptance."
+  ],
+  "execution_status": "All new diagnostic proofs planned only. No unit/test/runtime execution in this preparation phase."
+}

@@ -1,0 +1,71 @@
+{
+  "kind": "ORIGINAL_COMPLETED_DESIGN_REVIEW_ATTESTATION",
+  "reviewer": "/root/build15_5_high/native_feature_proposal_review",
+  "model": "gpt-6.1-sol",
+  "reasoning_effort": "high",
+  "context_free_dispatch": true,
+  "distinct_from_proposal_author": true,
+  "verdict": "PASS",
+  "scope": "Bounded diagnostic, error-state fallback UI and one shared policy-case proposal only",
+  "design_proof_only": true,
+  "implementation_approval": false,
+  "code_or_runtime_pass": false,
+  "native_acceptance_evidence": false,
+  "broad_story_review_round": false,
+  "original_report": "original-review.md",
+  "original_report_preserved_verbatim": true,
+  "proposal_directory": "_bmad-output/auto-bmad/preparation/story-15-5/native-feature-failure-repair-proposal",
+  "proposal_binding": {
+    "path": "proposal.md",
+    "bytes": 10972,
+    "sha256": "bc9456fd765d5c57c4a2a4445667aecc29d17199a1c88b8451ba4106c93954e7"
+  },
+  "manifest_binding": {
+    "path": "manifest.json",
+    "bytes": 17810,
+    "sha256": "013d7bd47a8134d45e253fb0ce8d1b63be797fbb5e517ad854b0446c4d26540f",
+    "self_size_and_hash_independently_verified_in_original_review": true,
+    "listed_artifact_count": 11,
+    "all_11_sizes_and_hashes_independently_verified_in_original_review": true
+  },
+  "source_identity": {
+    "worktree": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas",
+    "branch": "codex/epic-15-scheduling-time-calendar",
+    "source": "e3f1c2e1c5db81947a48233da617ff8535fd24aa",
+    "checkpoint": "cba60486b5e695b9796ef39d4492bc7f569d517b",
+    "current_five_proposed_source_paths": [
+      "tests/support/calendar-feed-atdd.ts",
+      "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "src/components/calendar-feed/CalendarSubscription.tsx",
+      "tests/integration/rls/acceptance-tables-migration-reset.int.test.ts"
+    ],
+    "original_independent_current_file_check": "Confirmed requested branch and no unstaged differences in these five proposed source paths; proposal manifest records their raw and Git bindings. This attestation does not enlarge that check into an independent re-verification of every current raw source hash.",
+    "source_writes_by_reviewer": 0
+  },
+  "policy_case_meaning": "Nine authenticated policies across quote_acceptances, jobs and job_events (three on each table), plus exactly one calendar_feed_owner_jobs SELECT policy for calendar_feed_owner on jobs. The jobs subset therefore has three authenticated policies plus the one feed-owner SELECT; the whole case expects ten policies.",
+  "limits": [
+    "Original native first failing leaf and SQLSTATE remain UNKNOWN; no actual native recoverability or cause is established by this design review.",
+    "Message-only replacements, swallowed canonical warnings and rollback/DISCARD/finally replacement cannot be reconstructed by the proposed owned-catch diagnostics.",
+    "No production Next-child RPC visibility is claimed; all four-RPC thenable-observer proposals remain withdrawn.",
+    "No mocks, pure diagnostic proofs, SSR checks or proposal review are credited as native acceptance.",
+    "The seven failed native packets remain failure history; browser attachment content remains unavailable and browser abnormal-exit custody unverified.",
+    "Shared-case ownership remains ungranted; Root/Coordinator actual ownership admission and recorded implementation routing remain required before source writes.",
+    "Later implementation requires targeted independent review and exact-head native verification; the completed three broad review rounds are not reopened."
+  ],
+  "original_review_effects": {
+    "read_only": true,
+    "files_changed": 0,
+    "tests_executed": 0,
+    "services_launched": 0,
+    "browser_database_vault_docker_probes": 0,
+    "commits_pushes_or_ci_dispatches": 0
+  },
+  "persistence_effects": {
+    "authorized_new_files_only": ["original-review.md", "original-review-attestation.json"],
+    "frozen_proposal_modified": false,
+    "new_review_or_verification_rerun": false,
+    "source_edits": 0,
+    "runtime_or_authority_effects": 0
+  }
+}

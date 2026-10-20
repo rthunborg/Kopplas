@@ -1,0 +1,119 @@
+{
+  "target": "tests/integration/rls/acceptance-tables-migration-reset.int.test.ts",
+  "case_only": true,
+  "original_case_line": 212,
+  "proposed_query_count_unchanged": true,
+  "existing_skipUnlessStack_guard_unchanged_not_acceptance_credit": true,
+  "no_source_change_applied": true,
+  "outside_case_bytes_unchanged_by_inversion": true,
+  "exact_expected_rows": [
+    {
+      "table": "quote_acceptances",
+      "policyname": "quote_acceptances_insert_own",
+      "cmd": "INSERT",
+      "roles": [
+        "authenticated"
+      ]
+    },
+    {
+      "table": "quote_acceptances",
+      "policyname": "quote_acceptances_select_own",
+      "cmd": "SELECT",
+      "roles": [
+        "authenticated"
+      ]
+    },
+    {
+      "table": "quote_acceptances",
+      "policyname": "quote_acceptances_update_own",
+      "cmd": "UPDATE",
+      "roles": [
+        "authenticated"
+      ]
+    },
+    {
+      "table": "jobs",
+      "policyname": "jobs_insert_own",
+      "cmd": "INSERT",
+      "roles": [
+        "authenticated"
+      ]
+    },
+    {
+      "table": "jobs",
+      "policyname": "jobs_select_own",
+      "cmd": "SELECT",
+      "roles": [
+        "authenticated"
+      ]
+    },
+    {
+      "table": "jobs",
+      "policyname": "jobs_update_own",
+      "cmd": "UPDATE",
+      "roles": [
+        "authenticated"
+      ]
+    },
+    {
+      "table": "jobs",
+      "policyname": "calendar_feed_owner_jobs",
+      "cmd": "SELECT",
+      "roles": [
+        "calendar_feed_owner"
+      ]
+    },
+    {
+      "table": "job_events",
+      "policyname": "job_events_insert_own",
+      "cmd": "INSERT",
+      "roles": [
+        "authenticated"
+      ]
+    },
+    {
+      "table": "job_events",
+      "policyname": "job_events_select_own",
+      "cmd": "SELECT",
+      "roles": [
+        "authenticated"
+      ]
+    },
+    {
+      "table": "job_events",
+      "policyname": "job_events_update_own",
+      "cmd": "UPDATE",
+      "roles": [
+        "authenticated"
+      ]
+    }
+  ],
+  "shared_path_protection": {
+    "prior_freeze": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-native-settlement-browser.json",
+      "bytes": 459426,
+      "sha256": "7c4a768acd75f470b9f101f5a8af96b37f19efcf058b293ef9dcf79065e57d7d"
+    },
+    "frozen_source_path_count": 67,
+    "frozen_protected_consumer_count": 37,
+    "shared_path_in_protected37": false,
+    "shared_path_in_source67": false,
+    "protected_matches": [],
+    "narrow_protection_exception_needed": false,
+    "future_source_path_count_if_exact_shared_case_admitted": 68,
+    "note": "No historical protection metadata is rewritten. This is not an ownership grant; Root/Coordinator current shared claims and exact case admission remain required."
+  },
+  "forbidden": [
+    "DELETE",
+    "ALL",
+    "extra policies",
+    "additional or substituted policy roles",
+    "filtering away other role policies"
+  ],
+  "evidence": {
+    "original_policy_definitions": "supabase/migrations/20260709120000_acceptance_to_job_model.sql:315-352",
+    "approved_feed_policy": "supabase/migrations/20261020220000_personal_calendar_feed.sql:88",
+    "actual_failure": "tests/integration/rls/acceptance-tables-migration-reset.int.test.ts:221:20"
+  },
+  "scope_limit": "This one SELECT-only catalog case is proposed, not allocated. No table/function/policy/role/DDL/privilege change; no claim about unseen native returned rows or which RLS010 predicate failed."
+}

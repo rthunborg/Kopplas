@@ -1,0 +1,152 @@
+{
+  "kind": "original-independent-completed-latest-five-path-code-review-attestation",
+  "schema_version": 1,
+  "outcome": "PASS",
+  "finding_count": 0,
+  "reviewer": {
+    "agent": "/root/build15_5_high/native_feature_five_delta_review",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "high",
+    "distinct_from_author": true,
+    "context_free_dispatch": true,
+    "parent_route_recorded_before_dispatch": "review-native-feature-five-path-latest-delta",
+    "role": "independent-context-free-fixture-diagnostics-policy-ui-reviewer"
+  },
+  "review_scope": {
+    "worktree": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas",
+    "branch": "codex/epic-15-scheduling-time-calendar",
+    "source_head": "e74cae6cbb8ce21a5f65e74d21f3c60fbfb09314",
+    "baseline": "cba60486b5e695b9796ef39d4492bc7f569d517b",
+    "latest_delta_only": true,
+    "completed_broad_rounds": 3,
+    "broad_round_cap": 3,
+    "fourth_broad_review": false,
+    "whole_story_or_runtime_pass": false,
+    "exact_paths": [
+      "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "src/components/calendar-feed/CalendarSubscription.tsx",
+      "tests/integration/rls/acceptance-tables-migration-reset.int.test.ts",
+      "tests/support/calendar-feed-atdd.ts",
+      "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts"
+    ]
+  },
+  "independently_verified_frozen_artifacts": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-feature-five-path-repair-review/latest-delta-input.diff",
+      "bytes": 222987,
+      "sha256": "ae2b25fb8bfd02fc949d06671ed721641dfeb183015f2ea01bb624494dfabbdd"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-feature-five-path-repair-review/input-binding.json",
+      "bytes": 21249,
+      "sha256": "57912be289b1fe7b66cf29d5bdd9fe35ad5f7ca616af73e13c5276fef4b2027c"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-feature-five-path-repair-review/local-checks.json",
+      "bytes": 4696,
+      "sha256": "13788f6839de48f69507095581d18ad265d953fe06170a10ddc9b0aea604f35f"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-e74cae6c-source-path-admission.json",
+      "bytes": 35009,
+      "sha256": "f8c60e742dd6e12c2ec32bbae5ae8f8196a36a44b0b4fb4f00e45202910d8549"
+    }
+  ],
+  "integrity_inspection": {
+    "frozen_packet_size_and_sha256_match": true,
+    "actual_committed_diff_matches_packet_and_binding": true,
+    "five_actual_raw_sizes_and_sha256_match": true,
+    "five_actual_git_clean_oids_match": true,
+    "five_head_blobs_and_baseline_blobs_match": true,
+    "complete_caller_contexts_excerpts_and_references_match_actual_committed_sources": true,
+    "shared_proposal_before_matches_baseline_blob": true,
+    "shared_proposal_after_matches_head_blob": true,
+    "shared_proposed_hunk_matches_actual_exact_delta": true,
+    "source_bindings_independently_checked": 68,
+    "source_bindings_all_actual_raw_and_git_clean_and_head_blob_matches": true,
+    "actual_raw_git_blob_differences": 41,
+    "exact_source_paths_clean": true,
+    "no_post_commit_spec_drift": true,
+    "global_tree_clean_claim": false,
+    "note": "Root metadata/preparation changes were observed and excluded from the reviewed source delta. The 28 packet/context/reference/proposal comparisons and 68 source-binding comparisons were read-only integrity inspection, not test or runtime execution."
+  },
+  "exact_shared_allocation": {
+    "grant_path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-native-feature-policy-case-allocation.json",
+    "grant_bytes": 3023,
+    "grant_sha256": "783151c5ec5320617e922ed87716ef192a18782f2945792cbed06fe8e6ea605d",
+    "baseline_blob": "a6144347879411f9972a062673d16e6fb6b6897a",
+    "proposed_hunk_bytes": 2768,
+    "proposed_hunk_sha256": "73bf1f98f9fba6a3b2aa8a9b85c77b8a543ae0ef6233894ecba1113a24267ad9",
+    "exact_case_only": true,
+    "expected_total_rows": 10,
+    "expected_authenticated_rows": 9,
+    "expected_jobs_rows": 4,
+    "canonical_owner_policy": {
+      "policyname": "calendar_feed_owner_jobs",
+      "table": "jobs",
+      "cmd": "SELECT",
+      "roles": [
+        "calendar_feed_owner"
+      ]
+    },
+    "whole_row_equality_and_extra_row_rejection_retained": true,
+    "original_three_queries_and_stack_gate_retained": true,
+    "production_policy_or_privilege_change": false,
+    "ownership_confirmation_is_coordinator_record": true,
+    "reviewer_contacted_foreign_owner_or_modified_foreign_checkout": false
+  },
+  "completed_assessment": {
+    "actual_caller_wiring_and_downstream_erasure_reviewed": true,
+    "diagnostic_operation_once_and_success_value_identity_reviewed": true,
+    "fixed_stage_own_data_sqlstate_allowlist_and_aggregate_bounds_reviewed": true,
+    "no_added_rpc_observer_query_client_result_pool_principal_or_privilege_effect_found": true,
+    "upstream_erased_swallowed_masked_failures_remain_unknown": true,
+    "ui_fallback_preserves_message_precedence_uncertainty_reconciliation_and_retry_eligibility": true,
+    "existing_four_ssr_assertions_unchanged": true,
+    "spec_evidence_limits_preserved": true,
+    "prior_design_pass_not_used_as_code_or_runtime_substitute": true
+  },
+  "evidence_limits": {
+    "author_reported_node_passes": 58,
+    "author_reported_node_failures": 0,
+    "author_reported_node_skips": 0,
+    "author_reported_node_cancellations": 0,
+    "author_reported_node_scope": "51 retained plus seven new actual pure source-seam/catalog-assertion contracts with injected inputs; not full-module/native-caller, DB/auth/RLS/browser or native failure-cause proof.",
+    "author_reported_ssr_passes": 4,
+    "author_reported_ssr_scope": "Existing four SSR cases in isolated in-memory Vitest configuration with config:false and globalSetup:[]; no DB, browser, DOM interaction, focus or persistence proof.",
+    "documented_local_dependency_limits_retained": "Type-only annotation rename canonical-transform executable equality and later outer callback-phase-marker movement remain documented limits; no new whole-build or native credit.",
+    "reviewer_reran_tests": false,
+    "current_source_native_acceptance": "UNEXECUTED_PENDING_ROOT_EXACT_HEAD_CI",
+    "prior_native_failed_histories": 7,
+    "qualified_seventh_native_checkpoint": "cba60486b5e695b9796ef39d4492bc7f569d517b",
+    "qualified_seventh_native_run": "39483572143",
+    "db_failure_causes": "First structured leaf causes remain UNKNOWN; no RPC/permission/proof/schema cause inferred and no pure-test recovery claim.",
+    "browser_attachment_content_privacy": "UNAVAILABLE; metadata references without bodies are neither privacy PASS nor evidence of a leak.",
+    "failed_source_rls010_api019": "No downstream predicate credit borrowed from INT015 or separate recovery.",
+    "unchanged_protected37": "Historical protection set retained; newly allocated shared case was outside prior source67 and protected37.",
+    "development_complete": false,
+    "release_ready": false
+  },
+  "activity": {
+    "completed_review_read_only": true,
+    "source_or_spec_or_frozen_input_edits": false,
+    "tests_executed": false,
+    "runtime_or_managed_resources_launched": false,
+    "browser_database_vault_docker_probes": false,
+    "legacy_urls_or_browsing_used": false,
+    "commits_or_pushes": false,
+    "persistence_only_followup": true,
+    "new_review_or_rerun_for_persistence": false,
+    "only_new_output_files": [
+      "original-review.md",
+      "original-review-attestation.json"
+    ]
+  },
+  "original_report": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-feature-five-path-repair-review/original-review.md",
+    "saved_verbatim": true,
+    "encoding": "UTF-8 without BOM; LF; final newline",
+    "bytes": 2020,
+    "sha256": "bc0ef92c720ade577624d61aab1f02169e68ff2a5e4d23e5c3a9890e293f8df0"
+  }
+}

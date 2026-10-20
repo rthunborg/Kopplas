@@ -1,0 +1,374 @@
+{
+  "kind": "PREPARATION_ONLY_NOT_IMPLEMENTATION_ADMISSION",
+  "checkpoint": "cba60486b5e695b9796ef39d4492bc7f569d517b",
+  "source": "e3f1c2e1c5db81947a48233da617ff8535fd24aa",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "source_paths": [
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "absolute_path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/support/calendar-feed-atdd.ts",
+      "proposal_only": true,
+      "write_admitted": false,
+      "raw_worktree": {
+        "bytes": 60911,
+        "sha256": "0a395da2d97dd56e9acf3250ef7786cca660cad4a74c74ff40a1ce5cadad1531",
+        "crlf_count": 652,
+        "bare_lf_count": 0
+      },
+      "actual_git_clean_oid": "67e5000a12d4e0034fd1e4cadeb4465da8eeba05",
+      "current_checkpoint_blob": {
+        "revision": "cba60486b5e695b9796ef39d4492bc7f569d517b",
+        "oid": "67e5000a12d4e0034fd1e4cadeb4465da8eeba05",
+        "bytes": 60259,
+        "sha256": "731394587891c671230f3bffc13e5f51c3f69c6d3548e4ebabd78db5899c7cdd"
+      },
+      "original_source_blob": {
+        "revision": "e3f1c2e1c5db81947a48233da617ff8535fd24aa",
+        "oid": "67e5000a12d4e0034fd1e4cadeb4465da8eeba05"
+      },
+      "canonical_base_blob": {
+        "revision": "3a1c3bc9fbf22b13c926179288a8b6eefe440c12",
+        "oid": "bfbe21f6d8bb79cbcb981c41c04fd9d5f996af34",
+        "bytes": 14344,
+        "sha256": "c38f3fac0d2601427d3709bfcab2934a001724cc1802ad5f714ba9f35969f36c"
+      },
+      "raw_equals_head_blob": false,
+      "ownership": "EXISTING_STORY_PATH_IMPLEMENTATION_STILL_HELD_PENDING_REVIEW_AND_ROOT_ROUTE"
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "absolute_path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "proposal_only": true,
+      "write_admitted": false,
+      "raw_worktree": {
+        "bytes": 70623,
+        "sha256": "1771a68a4501d62854f55ea541b13f16b9be30d56d16468d2ed2b16e6b733f31",
+        "crlf_count": 0,
+        "bare_lf_count": 963
+      },
+      "actual_git_clean_oid": "345ac5c39023094e858edceabe208e63fc61485c",
+      "current_checkpoint_blob": {
+        "revision": "cba60486b5e695b9796ef39d4492bc7f569d517b",
+        "oid": "345ac5c39023094e858edceabe208e63fc61485c",
+        "bytes": 70623,
+        "sha256": "1771a68a4501d62854f55ea541b13f16b9be30d56d16468d2ed2b16e6b733f31"
+      },
+      "original_source_blob": {
+        "revision": "e3f1c2e1c5db81947a48233da617ff8535fd24aa",
+        "oid": "345ac5c39023094e858edceabe208e63fc61485c"
+      },
+      "canonical_base_blob": null,
+      "raw_equals_head_blob": true,
+      "ownership": "EXISTING_STORY_PATH_IMPLEMENTATION_STILL_HELD_PENDING_REVIEW_AND_ROOT_ROUTE"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "absolute_path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "proposal_only": true,
+      "write_admitted": false,
+      "raw_worktree": {
+        "bytes": 90189,
+        "sha256": "58ab3a69cf626e0a9f7eee65fde944d46011dfdcf73610ee360d0a76452a6b69",
+        "crlf_count": 0,
+        "bare_lf_count": 919
+      },
+      "actual_git_clean_oid": "28bc4ee8ab91016857e21715100b1b8505785d9a",
+      "current_checkpoint_blob": {
+        "revision": "cba60486b5e695b9796ef39d4492bc7f569d517b",
+        "oid": "28bc4ee8ab91016857e21715100b1b8505785d9a",
+        "bytes": 90189,
+        "sha256": "58ab3a69cf626e0a9f7eee65fde944d46011dfdcf73610ee360d0a76452a6b69"
+      },
+      "original_source_blob": {
+        "revision": "e3f1c2e1c5db81947a48233da617ff8535fd24aa",
+        "oid": "28bc4ee8ab91016857e21715100b1b8505785d9a"
+      },
+      "canonical_base_blob": {
+        "revision": "3a1c3bc9fbf22b13c926179288a8b6eefe440c12",
+        "oid": "6fbfcc24d12a85bcfe13b6368e7aacb2e4672148",
+        "bytes": 29176,
+        "sha256": "ce07c0361f3ab47005f326efb199443c777ae6c5c89a62650a20b9af68ee7144"
+      },
+      "raw_equals_head_blob": true,
+      "ownership": "EXISTING_STORY_PATH_IMPLEMENTATION_STILL_HELD_PENDING_REVIEW_AND_ROOT_ROUTE"
+    },
+    {
+      "path": "src/components/calendar-feed/CalendarSubscription.tsx",
+      "absolute_path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/src/components/calendar-feed/CalendarSubscription.tsx",
+      "proposal_only": true,
+      "write_admitted": false,
+      "raw_worktree": {
+        "bytes": 8570,
+        "sha256": "dce9642b0ddb48f880a92c287658eac4935aca29e6693a28cb1ea2a8e6aec5f0",
+        "crlf_count": 0,
+        "bare_lf_count": 80
+      },
+      "actual_git_clean_oid": "456bacd7ef234912829d6e9684f13f1deeb6e76c",
+      "current_checkpoint_blob": {
+        "revision": "cba60486b5e695b9796ef39d4492bc7f569d517b",
+        "oid": "456bacd7ef234912829d6e9684f13f1deeb6e76c",
+        "bytes": 8570,
+        "sha256": "dce9642b0ddb48f880a92c287658eac4935aca29e6693a28cb1ea2a8e6aec5f0"
+      },
+      "original_source_blob": {
+        "revision": "e3f1c2e1c5db81947a48233da617ff8535fd24aa",
+        "oid": "456bacd7ef234912829d6e9684f13f1deeb6e76c"
+      },
+      "canonical_base_blob": null,
+      "raw_equals_head_blob": true,
+      "ownership": "EXISTING_STORY_PATH_IMPLEMENTATION_STILL_HELD_PENDING_REVIEW_AND_ROOT_ROUTE"
+    },
+    {
+      "path": "tests/integration/rls/acceptance-tables-migration-reset.int.test.ts",
+      "absolute_path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/integration/rls/acceptance-tables-migration-reset.int.test.ts",
+      "proposal_only": true,
+      "write_admitted": false,
+      "raw_worktree": {
+        "bytes": 14305,
+        "sha256": "76edbe9fe59bab232c75eab4075bb99234a083733451cf33a10f0b8f7415038b",
+        "crlf_count": 258,
+        "bare_lf_count": 0
+      },
+      "actual_git_clean_oid": "a6144347879411f9972a062673d16e6fb6b6897a",
+      "current_checkpoint_blob": {
+        "revision": "cba60486b5e695b9796ef39d4492bc7f569d517b",
+        "oid": "a6144347879411f9972a062673d16e6fb6b6897a",
+        "bytes": 14047,
+        "sha256": "5e188bdddacdcc5ce7f89bb72df0b1cad06fc0e5dfde345078c8b86bbdea0576"
+      },
+      "original_source_blob": {
+        "revision": "e3f1c2e1c5db81947a48233da617ff8535fd24aa",
+        "oid": "a6144347879411f9972a062673d16e6fb6b6897a"
+      },
+      "canonical_base_blob": {
+        "revision": "3a1c3bc9fbf22b13c926179288a8b6eefe440c12",
+        "oid": "a6144347879411f9972a062673d16e6fb6b6897a",
+        "bytes": 14047,
+        "sha256": "5e188bdddacdcc5ce7f89bb72df0b1cad06fc0e5dfde345078c8b86bbdea0576"
+      },
+      "raw_equals_head_blob": false,
+      "ownership": "SHARED_PATH_NOT_GRANTED_REQUIRES_ROOT_COORDINATOR_CURRENT_CLAIMS_AND_EXACT_CASE_ALLOCATION"
+    }
+  ],
+  "files": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-feature-failure-repair-proposal/proposal.md",
+      "bytes": 10972,
+      "sha256": "bc9456fd765d5c57c4a2a4445667aecc29d17199a1c88b8451ba4106c93954e7"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-feature-failure-repair-proposal/author-route.json",
+      "bytes": 2607,
+      "sha256": "cf158483b2a568a7ccb61a361d12bdb83836373e493042e1e60110647be5ea4a"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-feature-failure-repair-proposal/root-route-excerpt.txt",
+      "bytes": 693,
+      "sha256": "e6ce088744673093b80dfe8a46ea8cbfff0ac62155f9b2c666e03cba2aacbbe7"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-feature-failure-repair-proposal/source-path-bindings.json",
+      "bytes": 7614,
+      "sha256": "f484e58889ce810f29e5d75219a8cde798f22cdb8b03a42315967c5c7c65b9c0"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-feature-failure-repair-proposal/fixture-error-dataflow.json",
+      "bytes": 8261,
+      "sha256": "a85211c546cb0bda5b00e5d502a9da666854b0000d4c3e0bc8d4ea1748ec742e"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-feature-failure-repair-proposal/diagnostic-contract.json",
+      "bytes": 3889,
+      "sha256": "66edb6359b47f0ae9fc5d565825e9ee92be5c9cfd4ca69adea94f98b2f7d5de0"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-feature-failure-repair-proposal/shared-policy-case-contract.json",
+      "bytes": 3418,
+      "sha256": "e3ea3c8666bc6d76a157d54c33e859ae7d8342826b8775e65ac7e9586d9ff0cb"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-feature-failure-repair-proposal/shared-policy-before.txt",
+      "bytes": 14047,
+      "sha256": "5e188bdddacdcc5ce7f89bb72df0b1cad06fc0e5dfde345078c8b86bbdea0576"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-feature-failure-repair-proposal/shared-policy-proposed.txt",
+      "bytes": 14581,
+      "sha256": "f3b5d81c863157396fa6496e55675fa6ba4128508ea43f2782645b6c9c218e67"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-feature-failure-repair-proposal/shared-policy-proposed.diff",
+      "bytes": 2768,
+      "sha256": "73bf1f98f9fba6a3b2aa8a9b85c77b8a543ae0ef6233894ecba1113a24267ad9"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-feature-failure-repair-proposal/prepare.mjs",
+      "bytes": 34748,
+      "sha256": "c3e7012d25388a196a70b5796018de6b9c074cd3edb49a630e9bb174de5fe231"
+    }
+  ],
+  "native_packet": {
+    "directory": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-cba60486-ci-independent",
+    "manifest": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-cba60486-ci-independent/manifest.json",
+      "bytes": 4243,
+      "sha256": "42ed31ffadc46e325498c059bae906d41e0d4a092685c4475f1e20b3525a30a5"
+    },
+    "listed_count": 25,
+    "listed_files_integrity_verified": [
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-cba60486-ci-independent/approved-kernel-binding.json",
+        "bytes": 346,
+        "sha256": "c002ea3c1f8200debc91ca60e996aa875bea15c22de1b9167ed750c13ee8ed8e"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-cba60486-ci-independent/artifact-native-full-integration-extraction.json",
+        "bytes": 935273,
+        "sha256": "2407ce98b3f45dbc6ff805159ac6bd9928fe1072cce5004e8c953894c5895c1c"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-cba60486-ci-independent/artifact-native-general-browser-extraction.json",
+        "bytes": 82742,
+        "sha256": "e4e6b6ab13913de7d4962b668b1876a1b6922f088e6b0c1b55346a3dc8fafaae"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-cba60486-ci-independent/artifact-native-isolated-storage-recovery-extraction.json",
+        "bytes": 2219,
+        "sha256": "6d67c492980b428fdab98eebc3c65a4519c1ac42273afb0483a19997857951b5"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-cba60486-ci-independent/collect-native-artifacts.py",
+        "bytes": 14386,
+        "sha256": "2fd06f6780b4eb333e15e376e2039df3ba0a0d3a3874569fd6b080066f1979d0"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-cba60486-ci-independent/collect-runtime.mjs",
+        "bytes": 5245,
+        "sha256": "4997f2822e2626257ba41f5f89ecbac7d16436bb77771227e000fc113f961117"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-cba60486-ci-independent/collect-verify.mjs",
+        "bytes": 2739,
+        "sha256": "53a823ddd879124b5b8c43ddcddc77dd095a1c79c27842d5a50dd843b341486a"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-cba60486-ci-independent/current-input-bindings.json",
+        "bytes": 313142,
+        "sha256": "185b6eee44c44031f34a878f57386a2fa96b5275efeda4082c8695402a2af916"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-cba60486-ci-independent/dependency-bindings.json",
+        "bytes": 229187,
+        "sha256": "5cf8edb08d7d2a24ef5e7c176219c9d9f9f1dfa9acd01e42c98ca81d87c8db4f"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-cba60486-ci-independent/extract-native-db-failure-reach.py",
+        "bytes": 2884,
+        "sha256": "5593bb54d2faac7b5b95c335fe1d11585ad8c96104cb90acf43cd7a6bb6174de"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-cba60486-ci-independent/finalize-packet.mjs",
+        "bytes": 26692,
+        "sha256": "6d774c02f4e21bc6072357925826781d2f952bea15749e0cde72e81cc924fe98"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-cba60486-ci-independent/gate-source-dependency-bindings.json",
+        "bytes": 2993,
+        "sha256": "7fd59e286609f04391eb7b9e583bbb1027d489a7d7b012a5964b48efdc6a8912"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-cba60486-ci-independent/native-artifact-receipts.json",
+        "bytes": 2866,
+        "sha256": "3d83dd6fbe84b824a7e2c0e8252d85706d8243c8315feee006d4ce691cfed06a"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-cba60486-ci-independent/native-assertion-reach.json",
+        "bytes": 6656,
+        "sha256": "6ff5e34618c449380384aba4c762dc6f93db24f6fa641962b60c8453c2b3efa2"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-cba60486-ci-independent/native-browser-attachment-custody.json",
+        "bytes": 4470,
+        "sha256": "91fdc1bbdbef9da3e907a8c53d33af2c1a77435ef7e87be346319c2c0ad3b709"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-cba60486-ci-independent/native-db-failure-reach.json",
+        "bytes": 42145,
+        "sha256": "c65f8c6a659b64efe7ea510896b1bd93d0fec93d0a9b21feabf6586c0924a37f"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-cba60486-ci-independent/native-qualification.json",
+        "bytes": 30245,
+        "sha256": "bfbf3ce70d9c290b7dcb8f7c9984de7a7026171a8143f1e697ff8dbab41665ed"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-cba60486-ci-independent/native-qualification.md",
+        "bytes": 4432,
+        "sha256": "d0ae6cb086397501c47f29e071bf74fc448cd500dec1f8533ff0fa83caf27e2a"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-cba60486-ci-independent/native-run-jobs-artifacts.json",
+        "bytes": 24241,
+        "sha256": "6b131e66618d46eaf02d0e75f430fe32ca7106242308a3fb6ff5cbb9cb54138b"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-cba60486-ci-independent/native-runtime-log-extracts.json",
+        "bytes": 6839,
+        "sha256": "ed0804077dec57b80c6d7780c47626fe6fcdb0256b47bd124f42979d7c429e30"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-cba60486-ci-independent/native-test-reach.json",
+        "bytes": 34230,
+        "sha256": "7c69c3c8c48f26de9d7030a08eed278df0f2ceefd477a91dd2e5dea744dec5d7"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-cba60486-ci-independent/native-verify-evidence.json",
+        "bytes": 18172,
+        "sha256": "6a7224f00b99d71d1239db97d866ed6d1e44ec2af41c7f1c2ba899a8e2a0f0cf"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-cba60486-ci-independent/prepare-bindings.mjs",
+        "bytes": 6893,
+        "sha256": "c91bba00c2391bc1216f13277076c5d9b3cbb50cd5924cf60f08aaeff930edbd"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-cba60486-ci-independent/qualification-in-progress.json",
+        "bytes": 899,
+        "sha256": "08c2be053120820c6696eb3d3c252c9780a51eab9e944bddde037df5c22c05f5"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-cba60486-ci-independent/source-path-bindings.json",
+        "bytes": 49499,
+        "sha256": "f388d759fb2667a2c18f556e40b26afb789e87914ca66fb6eee32f290e87758f"
+      }
+    ],
+    "root_mechanical_admission": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-failed-cba60486-packet-admission.json",
+      "bytes": 1197,
+      "sha256": "3a55df67038cc3580ebec6222c2e9e624d2d57dcbd428f9177862459e24bd5f3"
+    }
+  },
+  "shared_path_protection": {
+    "prior_freeze": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-native-settlement-browser.json",
+      "bytes": 459426,
+      "sha256": "7c4a768acd75f470b9f101f5a8af96b37f19efcf058b293ef9dcf79065e57d7d"
+    },
+    "frozen_source_path_count": 67,
+    "frozen_protected_consumer_count": 37,
+    "shared_path_in_protected37": false,
+    "shared_path_in_source67": false,
+    "protected_matches": [],
+    "narrow_protection_exception_needed": false,
+    "future_source_path_count_if_exact_shared_case_admitted": 68,
+    "note": "No historical protection metadata is rewritten. This is not an ownership grant; Root/Coordinator current shared claims and exact case admission remain required."
+  },
+  "writes_confined_to": "_bmad-output/auto-bmad/preparation/story-15-5/native-feature-failure-repair-proposal",
+  "actual_source_writes": 0,
+  "tests_executed": 0,
+  "runtime_or_authority_effects": 0,
+  "RPC_observer": "WITHDRAWN",
+  "shared_case_ownership": "UNGRANTED",
+  "status": "AWAITING_DISTINCT_HIGH_DESIGN_PROOF_REVIEW_AND_ROOT_COORDINATOR_OWNERSHIP_ADMISSION"
+}

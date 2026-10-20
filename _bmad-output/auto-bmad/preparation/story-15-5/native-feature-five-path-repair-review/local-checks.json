@@ -1,0 +1,74 @@
+{
+  "kind": "actual-author-bounded-feature-failure-repair-checks",
+  "before": "cba60486b5e695b9796ef39d4492bc7f569d517b",
+  "source": "e74cae6cbb8ce21a5f65e74d21f3c60fbfb09314",
+  "scope": "Exact five-path admitted implementation; source/Spec frozen after commit; no whole-source/runtime PASS.",
+  "commands": [
+    {
+      "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "passed": 58,
+      "failed": 0,
+      "skipped": 0,
+      "cancelled": 0,
+      "receipt_start": "b45f9f",
+      "receipt_completion": "32534c",
+      "limit": "51 retained +7 new actual source-seam/catalog-assertion tests with injected data. No DB/auth/RLS/browser/process signal/native setup. Module-type and experimental-strip warnings emitted."
+    },
+    {
+      "command": "Node stdin startVitest('test',[SSRfile],{config:false,run:true,watch:false,include:[SSRfile],globalSetup:[],reporters:['default']},{resolve:{tsconfigPaths:true}}); await ctx.close();",
+      "file": "tests/integration/components/calendar-feed.test.ts",
+      "passed": 4,
+      "failed": 0,
+      "skipped": 0,
+      "receipt": "b0e706",
+      "limit": "Actual four existing SSR cases only; no installed shared globalSetup or DB/Next/browser launch. No DOM interaction/focus/persistence proof."
+    },
+    {
+      "command": "pnpm exec tsc --noEmit --incremental false",
+      "exit_code": 0,
+      "receipt_start": "50de4e",
+      "receipt_completion": "14ee0f"
+    },
+    {
+      "command": "pnpm exec eslint tests/support/calendar-feed-atdd.ts tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts src/components/calendar-feed/CalendarSubscription.tsx tests/integration/rls/acceptance-tables-migration-reset.int.test.ts",
+      "exit_code": 0,
+      "errors": 0,
+      "warnings": 0,
+      "receipt": "df882e"
+    },
+    {
+      "command": "node scripts/verify/check-review-order.mjs <authorSpec>",
+      "exit_code": 0,
+      "sections": 1,
+      "literal_stops": 49,
+      "observed_errors": [],
+      "receipt": "270b01"
+    },
+    {
+      "command": "git diff --check -- <exact5> / git diff --cached --check + exact index set",
+      "exit_code": 0,
+      "cached_receipt": "11a2ed",
+      "source_commit_receipt": "6629c0",
+      "staged_paths": [
+        "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+        "src/components/calendar-feed/CalendarSubscription.tsx",
+        "tests/integration/rls/acceptance-tables-migration-reset.int.test.ts",
+        "tests/support/calendar-feed-atdd.ts",
+        "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts"
+      ]
+    }
+  ],
+  "dependency_limits": {
+    "typecheck_intermediate": "First typecheck exit1 TS2502 in new unit-only function-type parameter name. Rename in an erased type annotation fixed it; no executable difference, proof below. No failed runtime check hidden.",
+    "node_run_final_source_difference": "After actual58 run, only type-annotation parameter rename (erased; transform-mode canonical executable equality verified) and one owned callback-phase assignment moved before bookkeeping outside the extracted pure diagnostic region. Pure diagnostic source, shared case and SSR component tested bytes unchanged. Caller wiring still needs source/native review.",
+    "unit_type_only_executable_equal": true,
+    "proof_transform": "Installed Node stripTypeScriptTypes mode=transform; default strip preserves different type-width spaces, canonical transform output byte-equal.",
+    "current_unit_canonical_javascript_sha256": "f36778f05f59a786f5be8c3c0e409b4956df4539c54bafa45582b8e2b0638037",
+    "reconstructed_pre_type_rename_canonical_javascript_sha256": "f36778f05f59a786f5be8c3c0e409b4956df4539c54bafa45582b8e2b0638037",
+    "reconstruction_is_not_observed_run_hash": true,
+    "current_actual_pure_region_sha256": "c467d0f46f04062f29c3a396089aea9decbee3495b415b5fa1c7d801b116b5e1",
+    "prior279_consumers": "Not rerun: wrapper, pin and workflow unchanged. Prior326 at33b (47+279), current58 separate; no invented337 or aggregate native pass.",
+    "production_build": "Application copy changed; earlier builds historical only, no new production build credit. Root clean native build required."
+  },
+  "limits": "Seventh actual feature95=37P58F0unexecuted, all attempted; body/assertion completion not implied. INT015 and DB child/key cleanup actualPASS atcba separate from current pending. Browser14F28attempts/custody and attachment bodies unavailable remain failures/limits. No local DB/Docker/Supabase/browser/managed runtime/qualification, new authority, push/CI/fourth broad/DONE/delivery."
+}

@@ -1,0 +1,45 @@
+{
+  "kind": "author-preparation-only-route",
+  "prepared_at": "2026-10-20T19:58:55.863Z",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "route": "plan-native-feature-failure-repair-proposal/build-author-bounded-failure-repair-proposal",
+  "checkpoint": "cba60486b5e695b9796ef39d4492bc7f569d517b",
+  "source": "e3f1c2e1c5db81947a48233da617ff8535fd24aa",
+  "authority": "Root route relayed by parent before preparation. New files only in this isolated proposal folder. All source/Spec/old prep/capsules held; no implementation, fourth broad review, runtime or authority effects.",
+  "root_route_excerpt": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-feature-failure-repair-proposal/root-route-excerpt.txt",
+    "bytes": 693,
+    "sha256": "e6ce088744673093b80dfe8a46ea8cbfff0ac62155f9b2c666e03cba2aacbbe7"
+  },
+  "mutable_root_raw_observation_unverified_uncredited": {
+    "path": "_bmad-output/auto-bmad/state/15-5-personal-calendar-feed-adr-b004-surface-1.yaml",
+    "bytes_observed": 70297,
+    "sha256_observed": "a5b98a587d23f39e2e85bc1019851159d3844b76f33d8121e9195d8af6385c19"
+  },
+  "source_paths": [
+    "tests/support/calendar-feed-atdd.ts",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+    "src/components/calendar-feed/CalendarSubscription.tsx",
+    "tests/integration/rls/acceptance-tables-migration-reset.int.test.ts"
+  ],
+  "root_failed_packet_admission": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-failed-cba60486-packet-admission.json",
+    "bytes": 1197,
+    "sha256": "3a55df67038cc3580ebec6222c2e9e624d2d57dcbd428f9177862459e24bd5f3"
+  },
+  "source_freeze": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-native-settlement-browser.json",
+    "bytes": 459426,
+    "sha256": "7c4a768acd75f470b9f101f5a8af96b37f19efcf058b293ef9dcf79065e57d7d"
+  },
+  "input": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-poll-query-settlement-review/latest-fix-input.diff",
+    "bytes": 122270,
+    "sha256": "7485ac3451d408e1dd02c178c5042bebe584816d2fb25e9db32b402641c40a6e"
+  },
+  "native_fact_limits": "Seventh run39483572143 is qualifiedFAIL, not unqualified history.51storyDB cases attempted7P44F;14browser cases failed28attempts; feature95=37P58F0unexecuted.45thDBfailure is nonstory policy case. No leaf code/stage or specificRLS010predicate cause available from redacted aggregates. No guessing permission/proof/schema.",
+  "no_source_edits": true,
+  "no_runtime_or_tests": true
+}

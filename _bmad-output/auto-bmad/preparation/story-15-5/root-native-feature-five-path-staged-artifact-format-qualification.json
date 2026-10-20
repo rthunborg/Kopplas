@@ -1,0 +1,84 @@
+{
+  "kind": "ROOT_FROZEN_REVIEW_ARTIFACT_STAGED_FORMAT_QUALIFICATION",
+  "source_head": "e74cae6cbb8ce21a5f65e74d21f3c60fbfb09314",
+  "capsule_sha256": "496ecf7db6c475f26d4afbace6af8912d640c04e2043cf6840099920e95e9f78",
+  "observation_bytes": 1705,
+  "observation_sha256": "51a30a725116b85b808ef168a49e7138a5a2726717296d7f02ec0bad903d4ae5",
+  "unrestricted_native_diff_check": {
+    "exit_code": 2,
+    "result": "FAILED_PRESERVED",
+    "scope": "all29originally_staged_paths"
+  },
+  "qualification": "Only exact single-byte 0x20 empty unified-diff context lines in two immutable raw review/proposal artifacts; no product/source format failure waived. Frozen bytes and actual index identities match.",
+  "frozen_files": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-feature-failure-repair-proposal/shared-policy-proposed.diff",
+      "bytes": 2768,
+      "sha256": "73bf1f98f9fba6a3b2aa8a9b85c77b8a543ae0ef6233894ecba1113a24267ad9",
+      "raw_equals_actual_index": true,
+      "exact_single_0x20_empty_unified_context_lines": [
+        13,
+        38
+      ],
+      "count": 2
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-feature-five-path-repair-review/latest-delta-input.diff",
+      "bytes": 222987,
+      "sha256": "ae2b25fb8bfd02fc949d06671ed721641dfeb183015f2ea01bb624494dfabbdd",
+      "raw_equals_actual_index": true,
+      "exact_single_0x20_empty_unified_context_lines": [
+        17,
+        32,
+        110,
+        119,
+        121,
+        127,
+        136,
+        138,
+        142,
+        151,
+        153,
+        157,
+        162,
+        164,
+        169,
+        181,
+        183,
+        194,
+        211,
+        218,
+        305,
+        318,
+        343,
+        381,
+        504,
+        572,
+        603,
+        640
+      ],
+      "count": 28
+    }
+  ],
+  "total_qualified_context_lines": 30,
+  "every_other_original_staged_path": {
+    "count": 27,
+    "native_exit": 0,
+    "result": "PASS"
+  },
+  "independent_high_ack": {
+    "actor": "/root/build15_5_high",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "actual_count": 30,
+    "partition": "2 proposal context lines13,38 plus28 code-review input context lines",
+    "scope": "Exact two artifacts and valid empty unified context b-space only; preserve unrestricted EXIT2 FAILED; final receipt also checked with all other paths before commit."
+  },
+  "final_check_requirement": "After staging this receipt, require all28 other staged paths including this receipt native diff-check exit0 and requalify exact same30 frozen context lines before normal commit.",
+  "changes_to_input_source_capsule_config_hooks_checkers": false,
+  "bypass_flags_used": false,
+  "review_round_added": false,
+  "runtime_credit": false,
+  "development_complete": false,
+  "release_ready": false
+}

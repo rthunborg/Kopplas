@@ -1,0 +1,102 @@
+{
+  "kind": "READONLY_SOURCE_PATH_REACH_NOT_NATIVE_LEAF_PROOF",
+  "checkpoint": "cba60486b5e695b9796ef39d4492bc7f569d517b",
+  "source_bindings": [
+    {
+      "path": "tests/factories/admin-sql.ts",
+      "revision": "cba60486b5e695b9796ef39d4492bc7f569d517b",
+      "blob_oid": "f7d2c10c669252912bc045659ed7886dceae3ae0",
+      "bytes": 3593,
+      "sha256": "02e592a1cb08892aea3513cb439840c2b0495cd90a2cf5eee916ba5061539ed2",
+      "actual_worktree_clean_oid": "f7d2c10c669252912bc045659ed7886dceae3ae0"
+    },
+    {
+      "path": "tests/factories/tenants/core.ts",
+      "revision": "cba60486b5e695b9796ef39d4492bc7f569d517b",
+      "blob_oid": "f72a04caab1acbc2d3d43f1a75c2cc6048125bc0",
+      "bytes": 20816,
+      "sha256": "dfe7ca6cae90cecb6faa56d00616310f627d4b995de9ad875522e64c6204224d",
+      "actual_worktree_clean_oid": "f72a04caab1acbc2d3d43f1a75c2cc6048125bc0"
+    },
+    {
+      "path": "tests/support/bookings-atdd.ts",
+      "revision": "cba60486b5e695b9796ef39d4492bc7f569d517b",
+      "blob_oid": "a1217258358c416364fd2843b04efe0b4f1d29c2",
+      "bytes": 21725,
+      "sha256": "44753b239d6618bb1ade96f05b18723ab086c68499a0b42fa6ccaa3f045beb52",
+      "actual_worktree_clean_oid": "a1217258358c416364fd2843b04efe0b4f1d29c2"
+    },
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "revision": "cba60486b5e695b9796ef39d4492bc7f569d517b",
+      "blob_oid": "67e5000a12d4e0034fd1e4cadeb4465da8eeba05",
+      "bytes": 60259,
+      "sha256": "731394587891c671230f3bffc13e5f51c3f69c6d3548e4ebabd78db5899c7cdd",
+      "actual_worktree_clean_oid": "67e5000a12d4e0034fd1e4cadeb4465da8eeba05"
+    }
+  ],
+  "actual_observation": "First API001/INT001/RLS001 native output contains AggregateError at owned helper214/219, no structured leaf code or stage. No exact upstream branch is established.",
+  "first_catch_chain": [
+    {
+      "location": "tests/support/calendar-feed-atdd.ts:190-206",
+      "flow": "feedKeyFromEnv then withBookingFixture; owned callback catches scenario/setup failure201 and owned-row cleanup203 separately, retains both in AggregateError204; outer catch206 stores primary without transforming it."
+    },
+    {
+      "location": "tests/support/bookings-atdd.ts:187-211",
+      "flow": "createRoleAwarePhaseAFixture188 executes before canonical try; seedBookingFixture189 runs before the owned calendar callback. Four profile SQL reads/inserts195-198 reject unchanged; four makeAuthedServerClient205-208 may already erase code. Canonical finally190 runs cleanupRoleAwarePhaseAFixture; if it throws it replaces the earlier rejection. Owned catch206 is downstream of all these boundaries."
+    },
+    {
+      "location": "tests/factories/tenants/core.ts:223-248,273-320",
+      "flow": "Canonical createTwoTenantFixture creates tenants/auth users, then memberships; createRoleAwarePhaseAFixture calls it and seedRoleAwarePhaseAUsers. Membership path preserves code; tenant/auth creation does not. Role-union direct SQL297-307 is unwrapped. No owning helper can infer which internal pre-callback stage rejected."
+    },
+    {
+      "location": "tests/support/calendar-feed-atdd.ts:207-219",
+      "flow": "Additional-auth cleanup uses allSettled207 but maps rejected results to fixed Error215. Absence-check catch212 discards its error. Primary reaches redactFailure214, whose recursive implementation219 replaces every non-aggregate leaf with fixed Error and removes any surviving code."
+    }
+  ],
+  "code_still_available_conditionally": [
+    {
+      "location": "tests/factories/admin-sql.ts:37-42",
+      "flow": "adminQuery awaits pool.query without catch; the original rejected error object reaches its caller unchanged. This proves no code erasure here, not that the actual seventh failure had code."
+    },
+    {
+      "location": "tests/factories/tenants/core.ts:163-173",
+      "flow": "adminInsertMembership explicitly copies truthy error.code onto wrapped.code as an own data assignment, then throws it. If this branch produced an allowlisted SQLSTATE, owned catch206 could preserve it before redactor214/219."
+    },
+    {
+      "location": "tests/factories/tenants/core.ts:297-307; tests/support/bookings-atdd.ts:194-204; tests/support/calendar-feed-atdd.ts:235-247",
+      "flow": "Direct SQL rejections are not transformed at these seed/binding calls and can propagate through the owned failure201/primary206 containers. Aggregate nesting preserves member references until owned redaction, subject to downstream finally replacement."
+    },
+    {
+      "location": "tests/support/calendar-feed-atdd.ts:449-460; tests/factories/admin-sql.ts:59-91",
+      "flow": "Owned cleanup raw SQL can reach catch203. Rollback458 may replace the original query error; adminSession DISCARD ALL86-89 may replace the earlier run/rollback error. Only the final rejection reaching owned catch203 can be preserved."
+    }
+  ],
+  "irrecoverable_before_owned_final_redactor": [
+    {
+      "location": "tests/factories/tenants/core.ts:123-153,338-353,367-374",
+      "flow": "createAuthUser/createTenant/makeAuthedServerClient/deleteAuthUser build new Error from message only, no code/cause copied. Fixed stage plus UNKNOWN code is the only safe result downstream; do not parse message, traverse cause or infer a permission failure."
+    },
+    {
+      "location": "tests/factories/tenants/core.ts:391-467",
+      "flow": "Canonical cleanup catches normal SQL failures and warns rather than rejecting; auth delete returned error is not checked here. Those upstream swallowed outcomes cannot be reconstructed or claimed retained. Do not instrument shared canonical code or claim full cleanup-fault observability."
+    },
+    {
+      "location": "tests/factories/admin-sql.ts:78-91; tests/support/bookings-atdd.ts:190",
+      "flow": "A throwing DISCARD/release/finally can replace prior error. Preserve only the error actually reaching the owned catch; do not claim original primary recovery."
+    },
+    {
+      "location": "tests/support/calendar-feed-atdd.ts:212,215,489-510",
+      "flow": "Owned absence/auth cleanup catches currently erase error; serial window496 also calls redactor early and restore509 drops error. Proposed same-file catch adaptation must preserve safe code BEFORE these erasures, but cannot restore upstream lost code."
+    }
+  ],
+  "proposed_stage_reach": "Track a fixed booking-fixture-before-callback marker before withBookingFixture; switch to fixed additional-users/bind-membership/bind-profile/bind-client/scenario/owned-row-cleanup markers only at actual owned calls. Record owned callback completion before returning/throwing so an outer canonical-finally replacement can be labelled canonical-fixture-cleanup without asserting its internal operation. Pre-callback factory failures stay coarse; do not label them a specific SQL/auth call. A safe error identity registry preserves finer owned stages across outer aggregation, not upstream lost primary errors.",
+  "material_narrowing": "Next actual failure can distinguish pre-owned-callback canonical setup (possibly UNKNOWN code), exact owned binding SQL stage and surviving allowlisted code, owned cleanup stage, or scenario. UNKNOWN pre-callback identifies a precise unobservable shared boundary and cannot justify an RPC/privilege repair; any future canonical observability change would require separate exact shared-path admission. This is not a promise to identify all44 causes or a reason for a blind diagnostic-only CI repeat.",
+  "negative_proof_plan": [
+    "Use an Error with own data code matching the canonical wrapped.code assignment: safe code/stage survives owned aggregation.",
+    "Use a message-only canonical Error containing a fake SQLSTATE/secret canary: code remains null/UNKNOWN; never recover by parsing message or cause.",
+    "Use raw adminQuery-shaped rejection plus rollback/DISCARD replacement: only the final error reaching the owned catch is credited; no reconstructed primary.",
+    "Model swallowed canonical warning without throwing: owned diagnostic must not invent a recovered leaf or successful canonical cleanup proof.",
+    "Assert finer owned safe stages survive outer aggregation, while pre-callback failure remains coarse booking-fixture-before-callback; code absent remains UNKNOWN."
+  ]
+}
