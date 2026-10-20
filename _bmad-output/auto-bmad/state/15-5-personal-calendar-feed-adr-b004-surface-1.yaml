@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-20T16:46:02Z"
+updated_at: "2026-10-20T17:17:49Z"
 started_at: "2026-10-20T12:18:56Z"
 completed_at: null
 active_seconds: 3572
@@ -18,15 +18,15 @@ is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: build-native-qualification
-selected_role: independent-native-evidence-qualifier
+selected_phase: build-native-diagnostic-qualification
+selected_role: native-ci-evidence-qualifier
 selected_profile: sensitive
 selected_model: gpt-6.1-sol
 selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Same distinct High qualifier verifies new exact-head native compilation, real source/recovery effective privileges and all runtime gates after latest-delta reviewed a76 SQL repair; not fourth broad code review."
+escalation_reason: "Actual public-token/key custody, authorization/RLS, transactional uncertainty and native integrity evidence require explicit High. Latest source independently targeted-reviewed; broad cap3 retained."
 routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"High preparation for hashed public-feed tokens, rotation/revocation and tenant/member disclosure boundaries; plan-only before distinctvalidation and ownershipallocation\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct High independent specification validation of actual public-feed token/proof/IP/limiter authorization design and exact ownership/test-key boundaries before anybuild\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"cross_model_layer\",\"profile\":\"diverse_review\",\"role\":\"independent-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -42,6 +42,8 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Reuse distinct High qualifier for new exact-head CI evidence after independently reviewed bounded repair2674; verify native security/role/recovery/privacy assertions and provenance, not a fourth code review.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build-native-qualification\",\"profile\":\"sensitive\",\"role\":\"independent-native-evidence-qualifier\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Actual new checkpoint c575 native verify passes3095 units but all3 required runtime jobs fail stack/schema-source setup. Same High author diagnoses sanitized native cause and actual principal/schema boundary; scope/ownership coordination before expanded shared effects, no fourth broad review.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build-native-setup-repair\",\"profile\":\"sensitive\",\"role\":\"build-author-native-setup-diagnosis\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Same distinct High qualifier verifies new exact-head native compilation, real source/recovery effective privileges and all runtime gates after latest-delta reviewed a76 SQL repair; not fourth broad code review.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build-native-qualification\",\"profile\":\"sensitive\",\"role\":\"independent-native-evidence-qualifier\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Exact1cea clears compilation and recovery but sanitized wrapper failures before children expose insufficient safe diagnosis. SameHigh author records narrow allowlisted stage/SQLSTATE only in already-owned3paths; preserve privacy/failclosed/custody/argv/sourcehash fences, targeted High review, no broad review or speculative functional change.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build-native-diagnostic-repair\",\"profile\":\"sensitive\",\"role\":\"build-author-safe-wrapper-diagnostics\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Actual public-token/key custody, authorization/RLS, transactional uncertainty and native integrity evidence require explicit High. Latest source independently targeted-reviewed; broad cap3 retained.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build-native-diagnostic-qualification\",\"profile\":\"sensitive\",\"role\":\"native-ci-evidence-qualifier\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: "Hashed public tokens, rotation/revocation, externalfeed andcross-tenant abuseprotection requireHigh-riskATDD+automate; lastthreeno traceadvisory"
@@ -67,7 +69,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [159557e114f18123e73282c39c90830917de9948, c42b45abbca262ff79e26da479a3032d9015aeee, b940df85acfb2de36c0dcd5000a0039758f2b820, 3a1c3bc9fbf22b13c926179288a8b6eefe440c12, ae020f63a88089966b9323c55a36b6554f7e3900, 672099e9dc6569f4ac1cb9a967037e0d91df689c, aa5733116f20015cc3d14e1441d0eab232ecc9fd, 360fe850c18552f23a2bf74d8eda865431f0af38, 611c86295540161d31169110bf2139cf1d85d708, 9487c0d9, 2674b3f7, c5758058, a76fc492]
+commits: [159557e114f18123e73282c39c90830917de9948, c42b45abbca262ff79e26da479a3032d9015aeee, b940df85acfb2de36c0dcd5000a0039758f2b820, 3a1c3bc9fbf22b13c926179288a8b6eefe440c12, ae020f63a88089966b9323c55a36b6554f7e3900, 672099e9dc6569f4ac1cb9a967037e0d91df689c, aa5733116f20015cc3d14e1441d0eab232ecc9fd, 360fe850c18552f23a2bf74d8eda865431f0af38, 611c86295540161d31169110bf2139cf1d85d708, 9487c0d9, 2674b3f7, c5758058, a76fc492, 1cea5c4c, 3383a1eb]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -378,7 +380,7 @@ p5_native_sql_repair_checkpoint:
   native_compile_and_remaining65cases: "UNEXECUTED; previous2674/c575 actual verify3095P preserved separately from all3 compile failures"
   development_complete: false
   release_ready: false
-  next: "Root checkpoint/push then one new exact-head CI; native SQL compilation/65 runtime cases pending; both failed runs retained"
+  next: "Owned safe stage/allowlisted SQLSTATE diagnostic repair on wrapper/unit/existing sourcehashpin, no raw errors or functional speculation. Targeted High review + immutable successor before new exact-head CI."
   third_capsule_sha256: 3a4391820a34d7b9feca705d329e19eb2d7a5060f29edcfe53d5a7294c7a4c65
   parent_check_sha256: f1251836cd1ed9af2a96f742477f2637ef985fece80a9f0a5f0abf736cb33c55
   root_capsule_admission: PASS-source-checkpoint-only
@@ -392,3 +394,49 @@ p5_native_sql_repair_checkpoint:
   raw_review_input_format_qualification_sha256: 90ba1bb21dd26af26c36cc21ab38dc6e8b162dc083d3743ed9503b1ac1d275ca
   unrestricted_staged_diff_check: "FAILED-native2 retained; only7 required0x20 unified-diffcontext lines in exact sixth frozen input"
   all_other_staged_diff_check: "PASS-native0, all7 raw/index lines and frozenSHA/bytes proven; High parent exact bounded assessment accepted; no bypass"
+  checkpoint_head: 1cea5c4caa4996566ca95f5b872c6623da22f807
+  ci_run_id: 39460389509
+  ci_attempt: 1
+  ci_conclusion: failure
+  ci_actual_verify: "PASS3095unit/0fail/0skip/0cancel;30feature units+23separatewrapper simulations;43Pythoncontracts;productionbuild/bundle passed"
+  ci_actual_migration_compile: "All3 native start and reset steps passed; prior SQLSTATE42601 blocker cleared"
+  ci_actual_recovery_storage: "PASS1native physicalStorage case0failed/pending/todo; same-restored-target canonicalowner effectivepublicCREATE=f before bytes/row/upsert-denial assertions"
+  ci_actual_recovery_artifact: "12282847049 native-isolated-storage-recovery; archive676B SHA872acd94a7285fa29b739cc0e1fe76c2db8eaefe0453f323d80ef89d76ddcf1e; nativeJSON1154B SHA f032a87ba5153f7d4a123fe55761f26d0a0f90f7f815b24491c1a1bd30c9cc1c"
+  ci_db_browser: "FAIL-runtime-failed sanitized wrapper before child launch/readiness; no fullintegration/generalbrowser JSON; no65runtimebody credit"
+  source_effective_CREATE_assertion: "RLS010 UNEXECUTED; recovery target alone qualified"
+  failed_native_packet_manifest_sha256: c961673416fa0f1aa9ec527d63096906daa7cd375be8d51fff44597e71303fc8
+  failed_native_qualification_sha256: 287ce9370903e9ea2553abab60f5eb8cf87a5de05c375716b3a7bbfd1326d840
+  failed_native_packet_root_admission_sha256: ccd45391630775f7e7759b2ea159b0703b224b5ff7c188ed836867b1150ec43e
+p5_native_diagnostic_checkpoint:
+  source_head: 3383a1eb4607ddea035e79fb8433dc89a5137530
+  source_delta_paths: 4
+  cumulative_source_paths: 67
+  source_author_commits: 8
+  local_wrapper_simulations_passed: 26
+  local_wrapper_simulations_failed: 0
+  local_wrapper_simulations_skipped: 0
+  feature_cases_unchanged: 95
+  local_typecheck: PASS-authoractual
+  local_lint: PASS-authoractual
+  suggested_review_stops: 29
+  review: "PASS-distinct-context-free-Sol6.1High-latestdiagnosticdelta-only; threebroadroundcap retained"
+  review_provenance: "Frozen uncommitted4-path working delta; final3code/test raw+actualGitnormalized bytes exactly match; declared Spec-only post-review verdict paragraph separately bound, not false wholefinalSpec-byte reviewcredit"
+  review_input_bytes: 43259
+  review_input_sha256: 6066a8c53d71c299f4f5aaa4da16ba680d440c087c5681e6713d842340479f4d
+  spec_post_review_metadata_sha256: 6e156b1048f046e3d11e719a73f8f852d931725de2596209343751ee8664c420
+  root_review_commit_provenance_sha256: 823e4670bcd8ddc2befc980754c8700a11a22cbb524fdfc4c4e3c30e693d723d
+  root_current_source_admission_sha256: adb6a4a3efb2fd12681edc0ef8f769ebd4594a472761c5b6b1cc6be6f4f5e171
+  fourth_capsule: PASS-mechanical-admission-only
+  native_setup_cause: "UNKNOWN; diagnostic-only change, no functional setupfix"
+  last_native1cea: "FAILED DB/e2e wrapper beforechildren; verify3095 and realcompile/recoveryPASS preserved separately"
+  remaining65feature_runtime_cases: UNEXECUTED
+  development_complete: false
+  release_ready: false
+  next: "Reviewed diagnostic checkpoint push; one exact-head native CI; identify sanitized setup stage/category without crediting pending bodies."
+  capsule_sha256: 0665da8a44b228583e2dfbd81be3266d6d7cfcd465b6558b7295c1ebfaeb7ee5
+  parent_check_sha256: 1c19b24a7742c4c6c7f90a3db7a743bfb6cd67ea838b46d175862b36b4d9a6cd
+  root_fourth_admission_sha256: 53d4bccd7f5b8379a771d21051adc08d215d0d012e8a013852817fefce2838c3
+  artifact_reference_occurrences: 136
+  unique_artifact_paths: 133
+  failed_checkpoint_source_equalities: 193
+  historical_mutable_snapshot_raw: "UNVERIFIED_UNCREDITED; baseline blobs only verified"

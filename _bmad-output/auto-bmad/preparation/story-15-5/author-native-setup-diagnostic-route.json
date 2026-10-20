@@ -1,0 +1,26 @@
+{
+  "kind": "author-bounded-native-setup-diagnostic-route",
+  "source_before": "1cea5c4caa4996566ca95f5b872c6623da22f807",
+  "reviewed_application_source": "a76fc492a5273da776ba807559b2eb81d41bfe10",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "reason": "Secret-bearing native setup failure classification, transaction uncertainty and exact owned-key custody need bounded safe diagnostics without changing behavior before the cause is observed.",
+  "evidence_before_edit": {
+    "run": 39460389509,
+    "db_and_e2e": "Stack startup/reset passed; wrapper ready=false, childExitCodes=[], failures=[runtime-failed], keyDeleted=false, dbClosed=true, custody=null; native JSON absent.",
+    "recovery": "Mandatory native job passed its existing physical Storage case and actual restored target effective public CREATE=false.",
+    "limits": "All65 feature runtime bodies remain unexecuted. custody=null does not establish key absence or known rollback. Actual setup cause is not inferred."
+  },
+  "owned_paths": [
+    "scripts/ci/with-calendar-feed-runtime.mjs",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+    "tests/support/calendar-feed-ci-contract.ts",
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"
+  ],
+  "allowed_delta": "Fixed allowlisted setup stage and narrowly allowlisted SQLSTATE/category only, plus meaningful injected failure/redaction/cleanup tests and the actual LF wrapper pin.",
+  "forbidden_output": "No native message/detail/hint/query/params/stack/cause, URL/IP/token/proof/key/status payload.",
+  "preservation": "Fail closed; fixed argv, privileges, lifecycle, cleanup and custody policy remain. Preserve original workflow inverse hash and all drift negatives. No speculative functional setup fix or new runtime/workflow/resource effects.",
+  "execution": "Bounded Node/type/lint/source checks only; no local managed runtime, DB, Docker/Supabase or browser qualification.",
+  "commit_gate": "Report stable diff/checks for distinct High latest-delta-only review before any source commit. Three completed broad rounds remain capped. Root metadata excluded; no push.",
+  "written_before_source_edits": true
+}

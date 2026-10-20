@@ -1813,3 +1813,37 @@ No archive ran this resume.
 1. None. Coordinator exact shared recovery-test allocation accepted after E16/Documents ownership reconciliation. No foreign checkout edits.
 
 **Next:** Push reviewed checkpoint and dispatch one new exact-head CI. Independently qualify native compilation and all required runtime/privacy/privilege gates before delivery/done.
+
+## Report — 2026-10-20T17:17:49Z (continuing — reviewed native setup diagnostic checkpoint)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `3383a1e`).
+**Pipeline status:** Story 15.5 P5 active; four of six stories landed. Current source 3383a1eb has targeted independent High review; native validation pending.
+**Continues:** One exact-head diagnostic CI after checkpoint push, then qualify actual results before any delivery claim.
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 268h 20m (≈54h 27m AI-run, ≈213h 52m human/idle wait); resumed 50×.
+
+**Stories:**
+1. 15.1–15.4 internally landed; 15.5 in review; 15.6 backlog.
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** 95 feature declarations retained; wrapper26 separate simulations passed locally. No native current-head acceptance yet.
+
+**Retrospective:** (none)
+
+**Overrides:** No main merge or deployment; retain branch/worktree; final draft predicate review_unverified remains true. No legacy evidence.
+
+**Open questions:**
+1. Native setup cause remains unknown. Previous run 39460389509 passed verify3095, all three migrations and storage recovery1, but DB/e2e wrapper failed before child launch; 65 feature bodies unexecuted.
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:**
+1. None for this bounded authorized checkpoint.
+
+**Next:** Native exact-head diagnostic qualification; no fourth broad review.

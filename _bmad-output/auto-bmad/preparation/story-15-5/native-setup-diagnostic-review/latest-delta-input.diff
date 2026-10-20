@@ -1,0 +1,677 @@
+POST-CAP LATEST NATIVE SETUP DIAGNOSTIC DELTA ONLY; not a fourth broad review.
+Base HEAD 1cea5c4caa4996566ca95f5b872c6623da22f807; four uncommitted source/spec paths only.
+Native run39460389509: verify3095/3095/Python43/build/bundle passed; all three starts/resets passed; real isolated recovery case and effective CREATE=false passed.
+DB/browser failed with runtime-failed before child readiness; no exact stage or key absence inferred; all65 feature runtime bodies remain unexecuted.
+Review fixed-stage/finite SQLSTATE diagnostics and error redaction, diagnostic key uncertainty after COMMIT, existing cleanup/custody preservation, actual wrapper LF pin, unchanged original workflow inverse/drift fences, focused tests and author trail.
+No speculative functional fix, argv/authority/privilege/workflow/resource change or runtime execution. Feature95 unchanged; separate wrapper26/26 PASS, full typecheck and focused lint0errors0warnings, SRO29.
+Unchanged prior reviews remain historical; review only this delta and consequential regressions. No source commit before distinct High review.
+
+FOUR-PATH WORKING DELTA AGAINST EXACT HEAD:
+diff --git a/_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md b/_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md
+index 92ea0e5b..c94c0e7b 100644
+--- a/_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md
++++ b/_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md
+@@ -539,12 +539,67 @@ their revisions and dependency limits; they were not rerun for SQL/native-test-o
+ changes and do not compile this migration. Native and cached Git diff checks and
+ the single review trail's actual path/line/literal anchors are checked before commit.
+ 
++## Native setup diagnostic repair — 2026-10-20
++
++Third checkpoint `1cea5c4caa4996566ca95f5b872c6623da22f807`, run
++`39460389509` attempt 1, remains **failed**. Native verify passed 3095 Node
++tests with zero failures/skips/cancellations, Python 43, build and bundle guard.
++All three stack starts/resets now passed, clearing the SQL compilation blocker
++and giving reached real migration engine operations their own bounded credit.
++The existing isolated recovery case also passed: actual restored-target effective
++CREATE=false, physical Storage bytes/info, unchanged protected rows and overwrite
++denials. That one case is separate from feature95. The immutable third packet's
++manifest SHA256 is `c961673416fa0f1aa9ec527d63096906daa7cd375be8d51fff44597e71303fc8`.
++
++DB and browser then emitted only `runtime-failed`, ready=false, empty child exit
++codes, keyDeleted=false, dbClosed=true and custody=null. No exact setup stage,
++connection/key outcome, child readiness or feature execution can be inferred from
++those receipts. The 51 feed Vitest and 14 browser bodies, source RLS010, public
++HTTP/telemetry and INT015 remain unexecuted. There is no functional setup fix based
++on a guessed cause. All three prior capsules and failed packets remain immutable.
++
++Root authorized a diagnostic-only change to the existing wrapper/unit file and
++test-contract pin. The author recorded explicit Sol High routing before edits in
++`author-native-setup-diagnostic-route.json`. Receipts now include a closed fixed
++stage and category plus only nine allowlisted SQLSTATE values (others become
++unclassified/null). Native code is read only through its own data descriptor;
++no native message, detail, hint, query, parameters, stack, cause, status payload
++or secret-bearing data is serialized. Primary and cleanup diagnostics stay
++separate. Fixed commands, admission, privileges and cleanup/custody branches
++are unchanged.
++
++The diagnostic `keyOutcome` is derived from actual control-flow confirmations,
++never custody=null: not-attempted, rollback-confirmed before any COMMIT attempt,
++deleted-confirmed through existing exact UUID/name deletion plus absence read,
++or unverified. The COMMIT-attempt flag is irrevocable; later successful ROLLBACK
++cannot alone prove absence after a lost COMMIT response. This records uncertainty
++without repairing or broadening the existing cleanup policy.
++
++The wrapper's actual LF-normalized SHA256 is now
++`3b680b435875ab7023f12db379d4f90fcd2705c6b4a778fad2a68de4ac709ac2`;
++the test-only contract pin matches it. The original workflow inverse hash and all
++entry/argv/reporters/native-JSON/unrelated-drift negatives remain unchanged.
++Actual bounded checks on this working source: the existing wrapper Node file
++passed **26/26, zero failures/skips**, including three new diagnostic/uncertainty
++cases. Full typecheck and focused three-file ESLint passed with zero lint errors
++or warnings. These injected tests exercise real wrapper failure and cleanup
++branches; they do not diagnose the native setup cause or prove live key custody.
++No unrelated passing test/build lane was rerun, and no native runtime/resource
++or qualification command was started locally. Feature inventory remains **95**,
++original 83 retained; the separate bootstrap suite is now **26**.
++
++The single author review trail is refreshed to the diagnostic working tree.
++Distinct High latest-delta review must precede the proposed source commit and
++new exact-head diagnostic CI; this is not a fourth broad review. Root metadata
++and the author route stay outside source commits. Status remains in-review,
++without delivery, done, successful CI or release-ready claims.
++
+ ## Suggested Review Order
+ 
+ Author: Story 15.5 implementation/fix author (gpt-6.1-sol High), incorporating
+ explicitly delegated browser and bootstrap contributors. Refreshed after all
+-Round 3 latest-fix assertions, checkpoint CI repair, native SQL syntax correction
+-and the effective public-schema privilege assertions.
++Round 3 latest-fix assertions, the subsequent checkpoint repairs and bounded
++native setup diagnostics.
+ Stops below resolve to final source literals before the repair commit.
+ 
+ ### Own settings and honest lifecycle results
+@@ -606,25 +661,30 @@ Settlement is memoized; abnormal browser teardown retains exact job custody, whi
+ privacy detection measures raw output in memory before sanitized records persist.
+ 
+ - `tests/integration/commands/calendar-feed.int.test.ts:461` — `// FULL rollback comes first`: preserves rollback/reset and same/fresh catalog absence proof.
+-- `scripts/ci/with-calendar-feed-runtime.mjs:166` — `export function createOwnedGroupStopper`: memoizes settlement and verifies identity before signaling.
+-- `scripts/ci/with-calendar-feed-runtime.mjs:88` — `export function createTelemetryObserver`: detects leaks before dropping non-allowlisted output.
+-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:308` — `nonzero/null-signal nested browser loss`: requires retained key custody for abnormal completion.
++- `scripts/ci/with-calendar-feed-runtime.mjs:183` — `export function createOwnedGroupStopper`: memoizes settlement and verifies identity before signaling.
++- `scripts/ci/with-calendar-feed-runtime.mjs:105` — `export function createTelemetryObserver`: detects leaks before dropping non-allowlisted output.
++- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:376` — `nonzero/null-signal nested browser loss`: requires retained key custody for abnormal completion.
+ - `tests/support/calendar-feed-ci-contract.ts:43` — `projectCalendarFeedCiCommands`: validates pinned real wrapper argv and only the two exact workflow inverses.
+ - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:18` — `CI command projection rejects`: missing/wrong entry/argv and unrelated-source/workflow negatives preserve the original inverse fence.
++- `scripts/ci/with-calendar-feed-runtime.mjs:31` — `function safeDiagnostic`: emits only fixed stages/categories and allowlisted SQLSTATE without native payloads.
++- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:143` — `COMMIT uncertainty is not cleared`: rollback alone cannot establish key absence after attempted COMMIT.
+ 
+ Evidence: the checkpoint repair records 302 executed focused Node cases with zero
+ failures/skips, typecheck/focused lint and the application build. The later c575
+ checkpoint passed 3095 Node units/Python/build but all three native setup paths
+ failed migration compilation; it remains failed. The earlier checkpoint failed
+ eight units and also remains failed, despite 30 feed Node/22 bootstrap passes.
+-The new SQL correction and catalog assertions have no native execution evidence.
+-Current separate bootstrap
+-inventory is 23. Its dependencies are synthetic; recovery assertions are static,
+-not restore evidence. Earlier passing checks retain their recorded dependencies.
++The later 1cea checkpoint cleared native migration compilation and passed the one
++actual isolated recovery case, but failed DB/browser wrapper setup before all
++65 feature bodies. The diagnostic working tree passed 26 injected wrapper cases,
++typecheck and focused lint; it has no new native setup or feature evidence.
++Current separate bootstrap inventory is 26. Its dependencies are synthetic;
++operations-unit recovery assertions are static. The real recovery case has its
++separate bounded native receipt. Earlier checks retain recorded dependencies.
+ All 51 native Vitest and 14 browser bodies remain pending locally; API001 covers
+ live label revisions, API018 cancellation/counters, RLS008 raw status privacy,
+ and E2E-001 the essential actual production lifecycle. Existing ACL/RLS010,
+-serial cleanup and full regressions also require exact-head CI. All three rounds completed; native-SQL/schema-assertion latest-delta High review, restricted-executor
+-PG17 execution, live lifecycle/recovery and final truth qualification
++serial cleanup and full regressions also require exact-head CI. All three rounds completed; diagnostic latest-delta High review, restricted-executor
++PG17 execution, live feature lifecycle and final exact-head qualification
+ are outstanding. No provider/device/visual/performance or release-ready claim;
+ the unallocated exhaustive branch remains explicitly release-blocking deferred.
+diff --git a/scripts/ci/with-calendar-feed-runtime.mjs b/scripts/ci/with-calendar-feed-runtime.mjs
+index 1b286b87..eaa93b28 100644
+--- a/scripts/ci/with-calendar-feed-runtime.mjs
++++ b/scripts/ci/with-calendar-feed-runtime.mjs
+@@ -20,6 +20,23 @@ const ROOT = resolve(fileURLToPath(new URL("../..", import.meta.url)));
+ const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/;
+ class RuntimeFailure extends Error {}
+ const fail = (code) => { throw new RuntimeFailure(code); };
++const DIAGNOSTIC_STAGES = new Set(["admission", "qualification", "port-check", "database-client", "database-connect", "migration-ledger", "feed-functions",
++  "key-id", "entropy", "telemetry", "transaction-begin", "key-collision", "key-create", "transaction-commit", "runtime",
++  "child-cleanup", "transaction-rollback", "key-cleanup", "database-close"]);
++const SQLSTATE_CATEGORIES = new Map([
++  ["42501", "insufficient-privilege"], ["42P01", "undefined-table"], ["42883", "undefined-function"],
++  ["42703", "undefined-column"], ["3F000", "invalid-schema"], ["23505", "unique-conflict"],
++  ["57014", "query-canceled"], ["25P02", "transaction-aborted"], ["08006", "connection-failure"],
++]);
++function safeDiagnostic(stage, error) {
++  // Inspect only an own data descriptor, never native text, getters or causes.
++  let code;
++  try { code = Object.getOwnPropertyDescriptor(error, "code")?.value; } catch { /* Unclassified, with no native details. */ }
++  const known = typeof code === "string" && SQLSTATE_CATEGORIES.has(code);
++  return { stage: DIAGNOSTIC_STAGES.has(stage) ? stage : "runtime",
++    category: known ? SQLSTATE_CATEGORIES.get(code) ?? "unclassified" : error instanceof RuntimeFailure ? "guard-refusal" : "unclassified",
++    sqlState: known ? code : null };
++}
+ const delay = (ms) => new Promise(resolveDelay => setTimeout(resolveDelay, ms));
+ 
+ /** Pure prerequisite validation: CI flags alone do not qualify a machine. */
+@@ -285,9 +302,12 @@ export async function runCalendarFeedRuntime({ mode, env = process.env, platform
+   const receipt = { event: "calendar_feed.ci_lifecycle", mode: ["db", "browser"].includes(mode) ? mode : "refused", ready: false,
+     childExitCodes: /** @type {(number|null)[]} */ ([]), keyDeleted: false, dbClosed: false,
+     failures: /** @type {string[]} */ ([]),
++    diagnostics: /** @type {{stage:string, category:string, sqlState:string|null}[]} */ ([]),
++    keyOutcome: /** @type {"not-attempted" | "rollback-confirmed" | "deleted-confirmed" | "unverified"} */ ("not-attempted"),
+     custody: /** @type {null | {owner:string, job:string|undefined, vaultUuid:string|null, ownedName:string|null, expiry:string, nextAction:string, resumeCondition:string}} */ (null) };
+   const children = new Set();
+   let db, keyUuid, ownedName, transactionOpen = false, createUncertain = false, browserTeardownUnverified = false;
++  let stage = "admission", createAttempted = false, commitAttempted = false, rollbackConfirmed = false;
+   const abort = new AbortController();
+   const deps = { ...defaultDependencies(env, cwd), ...injected };
+   let unregister = () => undefined;
+@@ -312,35 +332,50 @@ export async function runCalendarFeedRuntime({ mode, env = process.env, platform
+   try {
+     validateAdmission(mode, env, platform);
+     unregister = deps.registerSignal(() => abort.abort()); // Before any resource mutation.
++    stage = "qualification";
+     const { status, migrations } = await deps.qualify(); checkSignal();
++    stage = "port-check";
+     await deps.portFree(mode === "db" ? 3195 : 3100); checkSignal();
++    stage = "database-client";
+     db = deps.connect(status);
+     // Consume asynchronous connection errors without logging driver internals.
+     db.on?.("error", () => abort.abort());
++    stage = "database-connect";
+     await db.connect(); checkSignal();
++    stage = "migration-ledger";
+     const ledger = await db.query("select version,name from supabase_migrations.schema_migrations order by version");
+     if (JSON.stringify(ledger.rows.map(row => ({ version: String(row.version), name: row.name }))) !== JSON.stringify(migrations)) fail("migration-ledger-refused");
++    stage = "feed-functions";
+     const functions = await db.query("select p.oid::regprocedure::text as identity, pg_get_userbyid(p.proowner) as owner, p.prosecdef as definer from pg_proc p where p.oid=any(array[" + FEED_FUNCTIONS.map((_, i) => `to_regprocedure($${i + 1})`).join(",") + "])", FEED_FUNCTIONS);
+     if (functions.rows.length !== FEED_FUNCTIONS.length || functions.rows.some(row => row.owner !== "calendar_feed_owner" || row.definer !== true)) fail("feed-functions-refused");
+     checkSignal();
++    stage = "key-id";
+     const keySuffix = deps.uuid();
+     if (!UUID.test(keySuffix)) fail("key-id-refused");
+     const keyId = `ci_${keySuffix}`;
+     ownedName = `calendar_feed_attestation_${keyId}`;
++    stage = "entropy";
+     const secret = Buffer.from(deps.entropy(32)).toString("base64url");
+     if (!/^[A-Za-z0-9_-]{43}$/.test(secret)) fail("entropy-refused");
++    stage = "telemetry";
+     const telemetry = await deps.createTelemetry();
+     const observe = createTelemetryObserver({ keyId, secret, persist: telemetry.persist });
++    stage = "transaction-begin";
+     await db.query("begin"); transactionOpen = true;
++    stage = "key-collision";
+     const collision = await db.query("select id from vault.secrets where name=$1", [ownedName]);
+     if (collision.rows.length) fail("key-collision-refused");
+     checkSignal();
+-    createUncertain = true;
++    stage = "key-create";
++    createUncertain = true; createAttempted = true;
+     const created = await db.query("select vault.create_secret($1,$2,$3) as id", [secret, ownedName, "Disposable calendar feed CI verification"]);
+     keyUuid = created.rows[0]?.id;
+     if (!UUID.test(keyUuid ?? "")) { keyUuid = undefined; fail("key-create-unverified"); }
+     checkSignal();
++    stage = "transaction-commit";
++    commitAttempted = true; // Irrevocable: a lost COMMIT response cannot be disproved by ROLLBACK.
+     await db.query("commit"); transactionOpen = false; createUncertain = false;
++    stage = "runtime";
+     const childEnv = { ...env, SUPABASE_TEST_REQUIRED: "1", SUPABASE_TEST_URL: status.API_URL, SUPABASE_TEST_ANON_KEY: status.ANON_KEY,
+       SUPABASE_TEST_SERVICE_ROLE_KEY: status.SERVICE_ROLE_KEY, SUPABASE_TEST_DB_URL: status.DB_URL,
+       NEXT_PUBLIC_SUPABASE_URL: status.API_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY: status.ANON_KEY,
+@@ -360,18 +395,19 @@ export async function runCalendarFeedRuntime({ mode, env = process.env, platform
+     // Only our fixed codes are emitted; never preserve native driver/request/assertion details.
+     const code = error instanceof RuntimeFailure ? error.message : "runtime-failed";
+     receipt.failures.push(code);
++    receipt.diagnostics.push(safeDiagnostic(stage, error));
+   } finally {
+     for (const handle of [...children].reverse()) {
+       try {
+         const stopped = await handle.stop();
+         if (mode === "browser" && (stopped?.forced || stopped?.signal)) browserTeardownUnverified = true;
+         children.delete(handle);
+-      } catch { receipt.failures.push("owned-child-cleanup-failed"); }
++      } catch (error) { receipt.failures.push("owned-child-cleanup-failed"); receipt.diagnostics.push(safeDiagnostic("child-cleanup", error)); }
+     }
+     if (browserTeardownUnverified && !receipt.failures.includes("browser-server-teardown-unverified")) receipt.failures.push("browser-server-teardown-unverified");
+     if (transactionOpen) {
+-      try { await db.query("rollback"); transactionOpen = false; createUncertain = false; }
+-      catch { receipt.failures.push("transaction-rollback-unverified"); }
++      try { await db.query("rollback"); transactionOpen = false; createUncertain = false; rollbackConfirmed = true; }
++      catch (error) { receipt.failures.push("transaction-rollback-unverified"); receipt.diagnostics.push(safeDiagnostic("transaction-rollback", error)); }
+     }
+     // Never delete a key while a captured child or transaction remains unverified.
+     if (keyUuid && !transactionOpen && !browserTeardownUnverified && !receipt.failures.includes("owned-child-cleanup-failed")) {
+@@ -380,9 +416,9 @@ export async function runCalendarFeedRuntime({ mode, env = process.env, platform
+         const remaining = await db.query("select id,name from vault.secrets where id=$1::uuid", [keyUuid]);
+         if (remaining.rows.length || result.rows.some(row => row.id !== keyUuid)) fail("key-delete-unverified");
+         receipt.keyDeleted = true;
+-      } catch { receipt.failures.push("owned-key-cleanup-failed"); }
++      } catch (error) { receipt.failures.push("owned-key-cleanup-failed"); receipt.diagnostics.push(safeDiagnostic("key-cleanup", error)); }
+     } else if (createUncertain) receipt.failures.push("key-create-outcome-unverified");
+-    if (db) { try { await bounded(db.end(), 5_000, "db-close-unverified"); receipt.dbClosed = true; } catch { receipt.failures.push("db-close-unverified"); } }
++    if (db) { try { await bounded(db.end(), 5_000, "db-close-unverified"); receipt.dbClosed = true; } catch (error) { receipt.failures.push("db-close-unverified"); receipt.diagnostics.push(safeDiagnostic("database-close", error)); } }
+     unregister();
+     if (receipt.failures.length && (createUncertain || (keyUuid && !receipt.keyDeleted) || receipt.failures.some(code => code.includes("cleanup") || code.includes("unverified")))) {
+       receipt.custody = { owner: "Isolated CI job operator", job: env.CALENDAR_FEED_CI_DISPOSABLE_STACK,
+@@ -390,6 +426,8 @@ export async function runCalendarFeedRuntime({ mode, env = process.env, platform
+         nextAction: "Inspect captured CI child/key ownership in the disposable job; do not retry creation or delete by name.",
+         resumeCondition: "Owned children settled and the captured UUID/name key is confirmed absent, or the entire disposable job has ended." };
+     }
++    receipt.keyOutcome = receipt.keyDeleted ? "deleted-confirmed" : !createAttempted ? "not-attempted"
++      : rollbackConfirmed && !commitAttempted ? "rollback-confirmed" : "unverified";
+   }
+   return { exitCode: receipt.failures.length ? 1 : 0, receipt };
+ }
+diff --git a/tests/support/calendar-feed-ci-contract.ts b/tests/support/calendar-feed-ci-contract.ts
+index f53a5e73..a599491b 100644
+--- a/tests/support/calendar-feed-ci-contract.ts
++++ b/tests/support/calendar-feed-ci-contract.ts
+@@ -3,7 +3,7 @@ import { createHash } from "node:crypto";
+ import { readFileSync } from "node:fs";
+ 
+ const wrapperPath = new URL("../../scripts/ci/with-calendar-feed-runtime.mjs", import.meta.url);
+-const wrapperSha256 = "cca0ccc6c0221f70a63f05a9fda715e8551de3fb58c3c99559772fbe137af0a6";
++const wrapperSha256 = "3b680b435875ab7023f12db379d4f90fcd2705c6b4a778fad2a68de4ac709ac2";
+ const integrationArgs = ["run", "test:int", "--reporter=default", "--reporter=github-actions", "--reporter=json", "--outputFile=test-results/full-integration.json"];
+ const browserArgs = ["run", "test:smoke"];
+ const stackBinding = "          CALENDAR_FEED_CI_DISPOSABLE_STACK: ${{ github.run_id }}:${{ github.run_attempt }}:${{ github.job }}";
+diff --git a/tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts b/tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts
+index b18dafb0..7a52936a 100644
+--- a/tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts
++++ b/tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts
+@@ -57,6 +57,7 @@ function harness(options: {
+   query?: (call: Query) => { rows: Record<string, unknown>[] } | undefined;
+   failChild?: number; failStops?: boolean; occupied?: boolean; readinessFailure?: boolean; signalAtCreate?: boolean; closeFailure?: boolean;
+   forcedStop?: boolean;
++  connectFailure?: unknown;
+ } = {}) {
+   const events: string[] = [];
+   const queries: Query[] = [];
+@@ -68,7 +69,7 @@ function harness(options: {
+     async portFree() { events.push("port-checked"); if (options.occupied) throw new Error("fixture occupied"); },
+     connect() {
+       return {
+-        async connect() { events.push("connected"); },
++        async connect() { events.push("connected"); if (options.connectFailure !== undefined) throw options.connectFailure; },
+         async query(sql: string, params?: unknown[]) {
+           events.push(sql.startsWith("select vault.create_secret") ? "create" : sql.startsWith("delete") ? "delete" : sql);
+           const call = { sql, params }; queries.push(call);
+@@ -101,6 +102,69 @@ async function runFixture(mode: string, h = harness()) {
+   return { ...h, ...result };
+ }
+ 
++test("setup failures report the reached fixed stage and allowlisted SQLSTATE without native details", async () => {
++  const privateText = "PRIVATE native query params detail hint stack cause URL token proof key 2001:db8::1";
++  const error = Object.assign(new Error(privateText), { code: "42501", detail: privateText, hint: privateText,
++    query: privateText, params: [privateText], cause: new Error(privateText) });
++  for (const [stage, query] of [
++    ["database-connect", null], ["migration-ledger", "select version,name"], ["feed-functions", "select p.oid"],
++    ["transaction-begin", "begin"], ["key-collision", "select id from vault.secrets where name=$1"],
++  ] as const) {
++    const h = harness({ connectFailure: query === null ? error : undefined,
++      query(call) { if (query !== null && call.sql.startsWith(query)) throw error; return undefined; } });
++    const result = await runFixture("db", h);
++    assert.equal(result.exitCode, 1); assert.deepEqual(result.receipt.failures, ["runtime-failed"]);
++    assert.deepEqual(result.receipt.diagnostics, [{ stage, category: "insufficient-privilege", sqlState: "42501" }]);
++    assert.equal(result.receipt.keyOutcome, "not-attempted"); assert.equal(result.receipt.dbClosed, true);
++    assert.equal(result.launches.length, 0); assert.equal(result.queries.some(call => call.sql.includes("vault.create_secret")), false);
++    assert.equal(JSON.stringify(result.receipt).includes(privateText), false);
++    if (stage === "key-collision") assert.ok(result.events.includes("rollback"));
++  }
++});
++
++test("setup diagnostics ignore unknown inherited or accessor SQLSTATE and never traverse error payloads", async () => {
++  const privateText = "PRIVATE payload must not enter diagnostics";
++  const unknown = Object.assign(new Error(privateText), { code: privateText });
++  const inherited = Object.create({ code: "42501" });
++  const accessor = new Error(privateText);
++  let getterReads = 0;
++  for (const field of ["code", "detail", "hint", "query", "params", "cause", "toJSON"])
++    Object.defineProperty(accessor, field, { get() { getterReads++; throw new Error(privateText); } });
++  for (const error of [unknown, inherited, accessor]) {
++    const result = await runFixture("db", harness({ connectFailure: error }));
++    assert.equal(result.exitCode, 1);
++    assert.deepEqual(result.receipt.diagnostics, [{ stage: "database-connect", category: "unclassified", sqlState: null }]);
++    assert.equal(result.receipt.keyOutcome, "not-attempted"); assert.equal(result.receipt.dbClosed, true);
++    assert.equal(JSON.stringify(result.receipt).includes(privateText), false);
++  }
++  assert.equal(getterReads, 0);
++});
++
++test("COMMIT uncertainty is not cleared by ROLLBACK and only exact UUID cleanup can confirm absence", async () => {
++  for (const deleteFails of [true, false]) {
++    const result = await runFixture("db", harness({ query(call) {
++      if (call.sql === "commit") throw Object.assign(new Error("PRIVATE lost commit response"), { code: "08006" });
++      if (deleteFails && call.sql.startsWith("delete")) throw Object.assign(new Error("PRIVATE cleanup"), { code: "42501" });
++      return undefined;
++    } }));
++    assert.equal(result.exitCode, 1); assert.equal(result.launches.length, 0); assert.equal(result.receipt.dbClosed, true);
++    assert.ok(result.events.includes("rollback"));
++    assert.equal(result.receipt.keyOutcome, deleteFails ? "unverified" : "deleted-confirmed");
++    assert.equal(result.receipt.keyDeleted, !deleteFails);
++    assert.deepEqual(result.receipt.diagnostics[0], { stage: "transaction-commit", category: "connection-failure", sqlState: "08006" });
++    if (deleteFails) {
++      assert.deepEqual(result.receipt.diagnostics[1], { stage: "key-cleanup", category: "insufficient-privilege", sqlState: "42501" });
++      assert.equal(result.receipt.custody?.vaultUuid, keyUuid);
++    } else {
++      assert.equal(result.receipt.custody, null);
++      assert.deepEqual(result.queries.find(call => call.sql.startsWith("delete"))?.params,
++        [keyUuid, `calendar_feed_attestation_ci_${keyId}`]);
++      assert.ok(result.queries.some(call => call.sql === "select id,name from vault.secrets where id=$1::uuid"));
++    }
++    assert.equal(JSON.stringify(result.receipt).includes("PRIVATE"), false);
++  }
++});
++
+ test("CI admission rejects arbitrary modes, local actors, hosted URLs and mismatched job identities", () => {
+   validateAdmission("db", env, "linux");
+   const refused = [
+@@ -268,6 +332,8 @@ test("uncertain create is not retried and confirmed rollback avoids name-only cl
+   assert.equal(result.queries.filter(call => call.sql.includes("vault.create_secret")).length, 1);
+   assert.ok(result.queries.some(call => call.sql === "rollback"));
+   assert.ok(!result.queries.some(call => call.sql.startsWith("delete")));
++  assert.equal(result.receipt.keyOutcome, "rollback-confirmed");
++  assert.deepEqual(result.receipt.diagnostics, [{ stage: "key-create", category: "unclassified", sqlState: null }]);
+   assert.ok(!JSON.stringify(result.receipt).includes("private SQL"));
+ });
+ 
+@@ -293,6 +359,8 @@ test("all child and DB cleanup failures survive primary failure; unverified chil
+   assert.ok(result.receipt.failures.includes("owned-child-cleanup-failed")); assert.ok(result.receipt.failures.includes("db-close-unverified"));
+   assert.equal(result.receipt.keyDeleted, false); assert.ok(result.receipt.custody);
+   assert.ok(!result.queries.some(call => call.sql.startsWith("delete")));
++  assert.equal(result.receipt.keyOutcome, "unverified");
++  assert.deepEqual(result.receipt.diagnostics.map(item => item.stage), ["runtime", "child-cleanup", "database-close"]);
+ });
+ 
+ test("forced browser runner cleanup cannot claim the detached Playwright server settled or delete its key", async () => {
+@@ -324,6 +392,11 @@ test("uncertain create plus rollback failure retains both failures and named cus
+   assert.equal(result.exitCode, 1);
+   assert.deepEqual(result.receipt.failures, ["runtime-failed", "transaction-rollback-unverified", "key-create-outcome-unverified"]);
+   assert.ok(result.receipt.custody); assert.equal(result.receipt.dbClosed, true);
++  assert.equal(result.receipt.keyOutcome, "unverified");
++  assert.deepEqual(result.receipt.diagnostics, [
++    { stage: "key-create", category: "unclassified", sqlState: null },
++    { stage: "transaction-rollback", category: "unclassified", sqlState: null },
++  ]);
+ });
+ 
+ test("telemetry persists actual allowlisted markers and measured leak flags, never raw lines", async () => {
+
+BOUND READ-ONLY AUTHORIZATION/SANITIZED NATIVE CONTEXT: _bmad-output/auto-bmad/preparation/story-15-5/author-native-setup-diagnostic-route.json
+{
+  "kind": "author-bounded-native-setup-diagnostic-route",
+  "source_before": "1cea5c4caa4996566ca95f5b872c6623da22f807",
+  "reviewed_application_source": "a76fc492a5273da776ba807559b2eb81d41bfe10",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "reason": "Secret-bearing native setup failure classification, transaction uncertainty and exact owned-key custody need bounded safe diagnostics without changing behavior before the cause is observed.",
+  "evidence_before_edit": {
+    "run": 39460389509,
+    "db_and_e2e": "Stack startup/reset passed; wrapper ready=false, childExitCodes=[], failures=[runtime-failed], keyDeleted=false, dbClosed=true, custody=null; native JSON absent.",
+    "recovery": "Mandatory native job passed its existing physical Storage case and actual restored target effective public CREATE=false.",
+    "limits": "All65 feature runtime bodies remain unexecuted. custody=null does not establish key absence or known rollback. Actual setup cause is not inferred."
+  },
+  "owned_paths": [
+    "scripts/ci/with-calendar-feed-runtime.mjs",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+    "tests/support/calendar-feed-ci-contract.ts",
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"
+  ],
+  "allowed_delta": "Fixed allowlisted setup stage and narrowly allowlisted SQLSTATE/category only, plus meaningful injected failure/redaction/cleanup tests and the actual LF wrapper pin.",
+  "forbidden_output": "No native message/detail/hint/query/params/stack/cause, URL/IP/token/proof/key/status payload.",
+  "preservation": "Fail closed; fixed argv, privileges, lifecycle, cleanup and custody policy remain. Preserve original workflow inverse hash and all drift negatives. No speculative functional setup fix or new runtime/workflow/resource effects.",
+  "execution": "Bounded Node/type/lint/source checks only; no local managed runtime, DB, Docker/Supabase or browser qualification.",
+  "commit_gate": "Report stable diff/checks for distinct High latest-delta-only review before any source commit. Three completed broad rounds remain capped. Root metadata excluded; no push.",
+  "written_before_source_edits": true
+}
+
+BOUND READ-ONLY AUTHORIZATION/SANITIZED NATIVE CONTEXT: .env.epic15.mail-runtime/story-15-5-preparation/checkpoint-1cea5c4c-ci-independent/native-qualification.md
+# Story 15.5 third checkpoint native qualification
+
+Status: **FAILED_NATIVE_RUNTIME_WRAPPER_PENDING_DIAGNOSIS**. Development complete: false. Release ready: false.
+
+Source `a76fc492a5273da776ba807559b2eb81d41bfe10`; checkpoint `1cea5c4caa4996566ca95f5b872c6623da22f807`; run 39460389509 attempt 1; checkpoint ce4deb44-f5da-4121-9388-f3f438d373c3; release_validation=false. Same independent High qualifier; evidence qualification only.
+
+Admission, verify and recovery Storage passed. Native verify executed **3,095 tests: all passed, zero failures, skips or cancellations**. The unit lane includes all 30 feature units, 23 separate wrapper simulations and three installed partition contracts. The job separately passed 43 Python process tests, the production build and bundle containment. All three source starts and resets passed, clearing the SQL compilation blocker.
+
+The actual isolated recovery case passed with zero failures or pending cases. It reached the same restored target's effective calendar_feed_owner public CREATE=false read, then physical Storage API byte/info checks, unchanged protected rows, and generic plus quote-PDF overwrite denial. The archive's 676-byte SHA matches GitHub's digest; its original native JSON is 1,154 bytes with recorded SHA. This existing recovery case is separate from feature95.
+
+DB and browser wrappers failed with identical fixed-code receipts: runtime-failed, ready=false, empty childExitCodes, keyDeleted=false, dbClosed=true, custody=null. The native receipt does not identify an underlying cause or exact stage. No successful connection, key creation/absence, child readiness or test-body execution is inferred. Their native report producers produced no files. There is one recovery artifact overall.
+
+All 51 feed Vitest and 14 browser bodies remain unexecuted. Actual DB serial execution, restricted PG17 fixture proof, source RLS010 effective CREATE=false/catalog assertions, public HTTP/telemetry privacy and prior browser smoke remain unqualified. Successful real source migration engine operations and recovery assertions receive their own bounded credit. Unknown runner skip counts are null; historical52 skips and RLS14 subset receive no new credit.
+
+All 67 source raw/clean/blob bindings and 1,289 current code/tool Git bindings matched source/checkpoint at the recorded snapshot. Historical507 dependency rows are explicitly505 matching plus two changed, without whole-scope predecessor PASS reuse. Root's seven author commits,112 artifact references(110 unique),146 historical/protected bindings and69 historical preparation checks are attributed reuse.
+
+Root owns bounded diagnosis, any admitted repair, targeted independent review and a newly bound CI operation. No tracked write, source fix, delivery record, status flip, rerun, local managed launch, hosted secret/provider/merge/deployment action or fourth broad review occurred. Both old failed packets remain unchanged.
+
+Original native data was inspected in memory; hashes and sanitized extracts retain provenance. manifest.json lists every packet file except itself, whose digest is returned to Root.
+
+BOUND READ-ONLY AUTHORIZATION/SANITIZED NATIVE CONTEXT: .env.epic15.mail-runtime/story-15-5-preparation/checkpoint-1cea5c4c-ci-independent/native-runtime-log-extracts.json
+{
+  "run_id": 39460389509,
+  "attempt": 1,
+  "head": "1cea5c4caa4996566ca95f5b872c6623da22f807",
+  "jobs": [
+    {
+      "job": "recovery-storage-loader",
+      "id": 118759221642,
+      "conclusion": "success",
+      "raw_log_bytes": 291475,
+      "raw_log_sha256": "4a6163e5083438cd5df72db4d6536faf3d25fcf958a600a1c3efd9899f1df65c",
+      "storage": "Raw log inspected in memory only; fixed fields and sanitized excerpts persisted",
+      "lifecycle": [],
+      "diagnostic": [
+        {
+          "line": 4636,
+          "text": " Test Files  1 passed (1)"
+        },
+        {
+          "line": 4637,
+          "text": "      Tests  1 passed (1)"
+        },
+        {
+          "line": 4641,
+          "text": "JSON report written to /home/runner/work/Kopplas/Kopplas/test-results/isolated-storage-recovery.json"
+        }
+      ]
+    },
+    {
+      "job": "db",
+      "id": 118759221649,
+      "conclusion": "failure",
+      "raw_log_bytes": 89566,
+      "raw_log_sha256": "db914bd9673c325b34d130bf482f1280e0095daa0215143ff89718360018cab2",
+      "storage": "Raw log inspected in memory only; fixed fields and sanitized excerpts persisted",
+      "lifecycle": [
+        {
+          "event": "calendar_feed.ci_lifecycle",
+          "mode": "db",
+          "ready": false,
+          "childExitCodes": [],
+          "keyDeleted": false,
+          "dbClosed": true,
+          "failures": [
+            "runtime-failed"
+          ],
+          "custody": null
+        }
+      ],
+      "diagnostic": [
+        {
+          "line": 1136,
+          "text": "[Lifecycle receipt extracted separately]"
+        },
+        {
+          "line": 1137,
+          "text": "##[error]Process completed with exit code 1."
+        },
+        {
+          "line": 1153,
+          "text": "##[error]No files were found with the provided path: test-results/full-integration.json. No artifacts will be uploaded."
+        }
+      ]
+    },
+    {
+      "job": "e2e",
+      "id": 118759221892,
+      "conclusion": "failure",
+      "raw_log_bytes": 121051,
+      "raw_log_sha256": "c23947baf43dbd487d9a03d63c6080e551a7a9166451199aca515c72c095d25b",
+      "storage": "Raw log inspected in memory only; fixed fields and sanitized excerpts persisted",
+      "lifecycle": [
+        {
+          "event": "calendar_feed.ci_lifecycle",
+          "mode": "browser",
+          "ready": false,
+          "childExitCodes": [],
+          "keyDeleted": false,
+          "dbClosed": true,
+          "failures": [
+            "runtime-failed"
+          ],
+          "custody": null
+        }
+      ],
+      "diagnostic": [
+        {
+          "line": 1435,
+          "text": "[Lifecycle receipt extracted separately]"
+        },
+        {
+          "line": 1436,
+          "text": "##[error]Process completed with exit code 1."
+        },
+        {
+          "line": 1454,
+          "text": "##[error]No files were found with the provided path: test-results/general-browser.json. No artifacts will be uploaded."
+        },
+        {
+          "line": 1472,
+          "text": "No files were found with the provided path: playwright-report/. No artifacts will be uploaded."
+        }
+      ]
+    }
+  ]
+}
+
+BOUND READ-ONLY AUTHORIZATION/SANITIZED NATIVE CONTEXT: .env.epic15.mail-runtime/story-15-5-preparation/checkpoint-1cea5c4c-ci-independent/manifest.json
+{
+  "kind": "complete-independent-packet-file-manifest",
+  "self_excluded": true,
+  "count": 17,
+  "files": [
+    {
+      "path": "artifact-native-isolated-storage-recovery-extraction.json",
+      "bytes": 1788,
+      "sha256": "15ae68de0516c27f04b775f7def717c0a15af43af3afdfd9dff5b902b22d766d"
+    },
+    {
+      "path": "collect-native-artifacts.py",
+      "bytes": 6295,
+      "sha256": "21834f90a2daceaac22f5ff3ce7d002793e788f943d1f9bd3f5f162e51b1c688"
+    },
+    {
+      "path": "collect-runtime.mjs",
+      "bytes": 3408,
+      "sha256": "5442a2047f39b028d533626465cc10b10a8605b2900de6a9d02dd359e6e4e635"
+    },
+    {
+      "path": "collect-verify.mjs",
+      "bytes": 2656,
+      "sha256": "3efa907d653ef806005416fdafb926da056dd35634609947af2bf1ada305c05b"
+    },
+    {
+      "path": "current-input-bindings.json",
+      "bytes": 310978,
+      "sha256": "74980df8ee7b8d7b2281865aa7d3e4a864eb16ba8bced3495c6c6630e32c55c0"
+    },
+    {
+      "path": "dependency-bindings.json",
+      "bytes": 228724,
+      "sha256": "c48a885f807fc5da647f5678f05f80ad628b117d7e31fe12a52a33c6c6318fcc"
+    },
+    {
+      "path": "finalize-packet.mjs",
+      "bytes": 14352,
+      "sha256": "b3903c9d282192d05abf4ce1796bbc117eb90fa2835b699f1b5fc6f27b6d3cbc"
+    },
+    {
+      "path": "native-artifact-receipts.json",
+      "bytes": 1098,
+      "sha256": "a44bb983f89218fe8cfc212f5d3caf34a5b87e94ad7b814107a11d379f8693db"
+    },
+    {
+      "path": "native-assertion-reach.json",
+      "bytes": 5152,
+      "sha256": "02ae7d792dc869b79321ff651004a38495981915896116c9ee7c0233960cf544"
+    },
+    {
+      "path": "native-qualification.json",
+      "bytes": 15170,
+      "sha256": "287ce9370903e9ea2553abab60f5eb8cf87a5de05c375716b3a7bbfd1326d840"
+    },
+    {
+      "path": "native-qualification.md",
+      "bytes": 3120,
+      "sha256": "1c48697e0dd5c3d37125bee861c27d7ea0e1b68b00ff7eac1b5b6502b57b6e7a"
+    },
+    {
+      "path": "native-run-jobs-artifacts.json",
+      "bytes": 23619,
+      "sha256": "1ddeee9041cb3c4c2838f047a4dea93e0a8fe5d301a5ef2fd39585f108072166"
+    },
+    {
+      "path": "native-runtime-log-extracts.json",
+      "bytes": 3159,
+      "sha256": "fc05608c243cc5beb6b6917af6a31a21168ab8b6f3b3a9d451b496bbfaccab38"
+    },
+    {
+      "path": "native-verify-evidence.json",
+      "bytes": 13492,
+      "sha256": "d6a20cde0696c2c0c9cb85818fbf2f6853f74decea9bd8aa0c4a23a1edfff13c"
+    },
+    {
+      "path": "prepare-bindings.mjs",
+      "bytes": 3728,
+      "sha256": "eeedfe2f2f000967baea8ff5f6f3d1226aae9cb53144967ce2da038357c1e9d9"
+    },
+    {
+      "path": "qualify-assertion-reach.mjs",
+      "bytes": 4675,
+      "sha256": "471720394e522defe25d53f671c5992d4595e10d37d13f8bf7bcc3b208eefdf4"
+    },
+    {
+      "path": "source-path-bindings.json",
+      "bytes": 48451,
+      "sha256": "3ffaad9a7619ab6dbce6770cc6e1eb31f4caa0ef62f52137efd65eb39031853e"
+    }
+  ]
+}
+
+BOUND READ-ONLY AUTHORIZATION/SANITIZED NATIVE CONTEXT: .env.epic15.mail-runtime/story-15-5-preparation/root-failed-1cea-packet-admission.json
+{
+  "status": "PASS-failed-native-packet-integrity-only",
+  "run_id": 39460389509,
+  "attempt": 1,
+  "checkpoint_head": "1cea5c4caa4996566ca95f5b872c6623da22f807",
+  "source_head": "a76fc492a5273da776ba807559b2eb81d41bfe10",
+  "native_conclusion": "failure",
+  "verified_listed_files": 17,
+  "manifest_sha256": "c961673416fa0f1aa9ec527d63096906daa7cd375be8d51fff44597e71303fc8",
+  "qualification_sha256": "287ce9370903e9ea2553abab60f5eb8cf87a5de05c375716b3a7bbfd1326d840",
+  "actual_verify": "PASS3095/0fail/0skip;30feature+23wrapper;43Python/build/bundle",
+  "actual_compile": "All3starts/resets passed",
+  "actual_recovery": "1physicalStorage case0failed; same restored target effectiveCREATE=f; nativearchive matched",
+  "db_browser": "Generic runtime-failed wrapper before child launch/readiness, no deeper cause established;65feature bodies unexecuted",
+  "source_bindings": 67,
+  "current_code_input_bindings": 1289,
+  "development_complete": false,
+  "release_ready": false
+}
+
+ROOT-OWNED DIAGNOSTIC AUTHORIZATION ROUTE: _bmad-output/auto-bmad/state/15-5-personal-calendar-feed-adr-b004-surface-1.yaml lines21-29; snapshot only
+selected_phase: build-native-diagnostic-repair
+selected_role: build-author-safe-wrapper-diagnostics
+selected_profile: sensitive
+selected_model: gpt-6.1-sol
+selected_effort: high
+selected_host: codex
+selected_tier: subagents
+selected_route: subagent
+escalation_reason: "Exact1cea clears compilation and recovery but sanitized wrapper failures before children expose insufficient safe diagnosis. SameHigh author records narrow allowlisted stage/SQLSTATE only in already-owned3paths; preserve privacy/failclosed/custody/argv/sourcehash fences, targeted High review, no broad review or speculative functional change."

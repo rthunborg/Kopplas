@@ -1,0 +1,18 @@
+{
+  "kind": "explicit-post-review-spec-only-verdict-metadata",
+  "reviewed_spec_raw_bytes": 72426,
+  "reviewed_spec_raw_sha256": "954147c94b473792fef3b010362d68e10db55c7344f28af89ae21f2aad49f43b",
+  "final_spec_raw_bytes": 73114,
+  "final_spec_raw_sha256": "b76044182b0e3dccb005a971d26eecf85d15ed630f2d4c05e0964668fe3913f7",
+  "reviewed_input_sha256": "6066a8c53d71c299f4f5aaa4da16ba680d440c087c5681e6713d842340479f4d",
+  "review_semantics": "Original PASS reviewed four uncommitted working paths. Three code/test paths must match exactly. Only this verdict paragraph changed spec after review; no final-spec-byte review claim.",
+  "added_text": "Post-review verdict metadata: the distinct context-free Sol High latest-delta\nreview passed the four uncommitted working-file versions bound by the frozen\n43,259-byte input SHA256 `6066a8c53d71c299f4f5aaa4da16ba680d440c087c5681e6713d842340479f4d`.\nThis was a working-tree review against HEAD1cea, not a review of a later\ncommit. The three final code/test files retain the reviewed raw/Git-clean\nbindings. This added paragraph is a separate post-review spec metadata delta;\nno exact-byte review claim covers the amended spec. The intent kernel and\n29-stop review section are unchanged. Native setup cause and 65 feature bodies\nremain unverified pending the next exact-head diagnostic CI.\n\n",
+  "unified_diff": "--- reviewed-working-spec\n+++ post-review-verdict-metadata-spec\n@@ -594,6 +594,16 @@\n and the author route stay outside source commits. Status remains in-review,\n without delivery, done, successful CI or release-ready claims.\n \n+Post-review verdict metadata: the distinct context-free Sol High latest-delta\n+review passed the four uncommitted working-file versions bound by the frozen\n+43,259-byte input SHA256 `6066a8c53d71c299f4f5aaa4da16ba680d440c087c5681e6713d842340479f4d`.\n+This was a working-tree review against HEAD1cea, not a review of a later\n+commit. The three final code/test files retain the reviewed raw/Git-clean\n+bindings. This added paragraph is a separate post-review spec metadata delta;\n+no exact-byte review claim covers the amended spec. The intent kernel and\n+29-stop review section are unchanged. Native setup cause and 65 feature bodies\n+remain unverified pending the next exact-head diagnostic CI.\n+\n ## Suggested Review Order\n \n Author: Story 15.5 implementation/fix author (gpt-6.1-sol High), incorporating\n",
+  "unified_diff_utf8_bytes": 1035,
+  "unified_diff_sha256": "78a7d7967a1f1a53a7cdc3fa1a99b433aa220b1124bd3bcbdcba63cf3804ad72",
+  "intent_kernel_unchanged": true,
+  "kernel_sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+  "suggested_review_order_text_unchanged": true,
+  "suggested_review_order_sha256": "0d11241558812b3fc42934b6d766a47489209a6a186be0260bbea2ec24394fa6",
+  "source_commit": "not yet committed"
+}
