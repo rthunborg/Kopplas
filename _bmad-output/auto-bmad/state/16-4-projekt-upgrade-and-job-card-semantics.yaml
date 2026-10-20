@@ -9,35 +9,36 @@ spec_folder: null
 story_id: null
 branch: codex/epic-16-jobs
 status: in-progress
-updated_at: "2026-10-20T11:51:27Z"
+updated_at: "2026-10-20T12:08:50Z"
 started_at: "2026-10-20T11:20:42Z"
 completed_at: null
 active_seconds: 516
-timing_anchor: 1792497087
+timing_anchor: 1792498130
 is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: tea_per_story
-selected_role: tea-delegate
+selected_phase: build
+selected_role: build-delegate
 selected_profile: standard
 selected_model: gpt-6.1-sol
 selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Sensitive ATDD: one-way upgrade, manager authority, coherent booking/card facts and proof versions, advisory duration/crew/travel allocation without double charging"
+escalation_reason: "Sensitive implementation: manager-only one-way upgrade, tenant isolation, transactional audit, coherent v4/v2 booking/card proof transition and no-double-charge advisory allocation"
 routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Carried actual requirements-only classification route; no implementation/design decision\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_triage\",\"profile\":\"light\",\"role\":\"test-risk-triage\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive planning: one-way transactional job upgrade, audit/event integrity and DB-enforced kind constraints with existing consumer preservation\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Resume sensitive Story16.4 planning after explicit owner approval of field scope, per-person demand arithmetic and advisory allocation; preserve transaction/proof authority\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive ATDD: one-way upgrade, manager authority, coherent booking/card facts and proof versions, advisory duration/crew/travel allocation without double charging\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive implementation: manager-only one-way upgrade, tenant isolation, transactional audit, coherent v4/v2 booking/card proof transition and no-double-charge advisory allocation\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: One-way transactional upgrade with event/audit writes and DB-enforced type constraints
 epic_story_count: 5
 stories_after_in_epic: 1
-completed_phases: [0, 1, 3]
+completed_phases: [0, 1, 3, 4]
 spec_path: "C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/_bmad-output/implementation-artifacts/spec-16-4-projekt-upgrade-and-job-card-semantics-2.md"
 spec_approved: true
 build:
