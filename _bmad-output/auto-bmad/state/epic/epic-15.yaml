@@ -9,11 +9,11 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-20T12:17:00Z"
+updated_at: "2026-10-20T12:18:58Z"
 started_at: "2026-10-09T12:57:49Z"
 completed_at: null
-active_seconds: 192372
-timing_anchor: null
+active_seconds: 192454
+timing_anchor: 1792498738
 is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
@@ -252,8 +252,9 @@ stories_landed:
   - 15-1-the-five-scheduling-views
   - 15-2-recurring-bookings-series-materialized-occurrences-exceptions
   - 15-3-conflict-resolver
+  - 15-4-time-reporting-filing-timesheet-review
 epic_slug: scheduling-time-calendar
-active_story: 15-4-time-reporting-filing-timesheet-review
+active_story: 15-5-personal-calendar-feed-adr-b004-surface-1
 stories_skipped: []
 ownership_reservation:
   branch: codex/epic-15-scheduling-time-calendar
