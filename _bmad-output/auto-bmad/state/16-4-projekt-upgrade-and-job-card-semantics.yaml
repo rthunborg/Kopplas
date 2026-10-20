@@ -9,11 +9,11 @@ spec_folder: null
 story_id: null
 branch: codex/epic-16-jobs
 status: in-progress
-updated_at: "2026-10-20T11:29:19Z"
+updated_at: "2026-10-20T11:44:54Z"
 started_at: "2026-10-20T11:20:42Z"
 completed_at: null
 active_seconds: 516
-timing_anchor: null
+timing_anchor: 1792496694
 is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
@@ -26,10 +26,11 @@ selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Sensitive planning: one-way transactional job upgrade, audit/event integrity and DB-enforced kind constraints with existing consumer preservation"
+escalation_reason: "Resume sensitive Story16.4 planning after explicit owner approval of field scope, per-person demand arithmetic and advisory allocation; preserve transaction/proof authority"
 routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Carried actual requirements-only classification route; no implementation/design decision\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_triage\",\"profile\":\"light\",\"role\":\"test-risk-triage\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive planning: one-way transactional job upgrade, audit/event integrity and DB-enforced kind constraints with existing consumer preservation\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Resume sensitive Story16.4 planning after explicit owner approval of field scope, per-person demand arithmetic and advisory allocation; preserve transaction/proof authority\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: One-way transactional upgrade with event/audit writes and DB-enforced type constraints
@@ -55,7 +56,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: []
+commits: [2d002970fcb112db8d480068443a0cce2577bd5b, 2920b920c0ff19122051f7ef987bc222331fb94a]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -78,13 +79,10 @@ pr_merged: false
 merge_method: null
 merge_commit: null
 branch_deleted: false
-open_questions:
-  - "TR08: approve no unnamed project-only fields; existing job-card fields valid for Order/Projekt, payment-plan fields/children remain17.2; or specify exact extra fields."
-  - "TR14 travel unit: D elapsed on-site minutes,Ncrew,Ttravel; approve Tperperson N*(D+T), or Tcrewaggregate N*D+T."
-  - "TR14 allocation: approve advisory whole-job demand against remaining window capacity, without adding again to actual occupancy or charging full demand per split/repeated booking; no new hard save block; or provide different allocation rule."
+open_questions: []
 deferred_work: []
 blockers:
-  - "Owner must answer the three material TR08/TR14 choices. Evidence: blockedspec1f9d493d... and independentHighrequirements+consumerexplorations; owner: project owner; next: clarifybindings, authorreplanspreservingresolvedsections; resume: approvedready-for-devplan. No wholeE15/ACK blocker."
+  - The three owner choices were approved on2026-10-20. Resume formal replanning and clear the plan-time blocker only after an approved ready-for-dev result.
 overrides:
   preflight_sync: Independent High narrow two-path generated sync approved and verified
   unattended: Authorized by initiating delegation
@@ -95,6 +93,7 @@ overrides:
   story16_2_owner_decision: "2026-10-19: verified direct human answer in recovery task 01a153e5-e143-7d61-b8c7-77b61e334730, turn 01a1557e-e736-71f1-a3fb-a5041dfa80db. Approved zero-or-one Arbetsledare per job; admins/Projektledare appoint/replace; lead manages ordinary crew and planned start/end dates on own job. No leadership delegation, full-card/lifecycle/CRM or independent protected permission expansion."
   story16_3_owner_decision: "2026-10-20 direct human answers verified in Coordinator task 01a1160d-b5b1-7623-a8e8-54ef3dc537ed, turn 01a15885-1599-7d52-80e9-e95058a10198: Admin/Projektledare plus current designated Arbetsledare of the parent job create/edit/assign/change work-order status; eligible parent-job members as assignees. Created->In progress->Done; Created/In progress->Cancelled; only Admin/PL reopen Done->In progress or Cancelled->Created. Ordinary members/assignees gain no additional mutation right. Work orders receive their OWN planned start/end dates, supporting meaningful same-parent work-order dependencies; do not adopt old parent-date proxy or same-parent rejection. Existing money, file and parent-job lifecycle checks remain separate."
   story16_4_plan_block: "FormalplanHALTblocked(intent gap) after2contextfreeSol6.1Highexplorations;7AC/TR08-10/TR13-16 preserved. No product/test/migration/resource writes. Threeownerquestionssubmittedasynchronously2026-10-20, unanswered; proposeddefaults are not approval."
+  story16_4_owner_decision: "2026-10-20 direct human confirmation in this chat: Confirm all those decisions as defaults. Approved Story16.4 bindings: no unnamed new project-only fields; existing job-card fields valid for both Order and Projekt; payment-plan fields/children remain Story17.2. D is elapsed on-site minutes, N crew size, T planned travel minutes per person; demand=N*(D+T). Use advisory whole-job demand versus remaining planning-window capacity, without adding demand again to actual booking occupancy or charging whole-job demand per split/repeated booking. No new hard save block. These three material choices are resolved; retain existing upgrade/full-card manager authority and other scope/gates."
 constraints:
   - "Exclusive checkout C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas; root owns all Git/index/commits/push/CI/state/sprint/ledger/report actions."
   - "Formal planning only until approved ready-for-dev plan; no product/migration/dependency writes during planning."

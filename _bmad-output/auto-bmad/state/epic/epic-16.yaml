@@ -9,11 +9,11 @@ spec_folder: null
 story_id: null
 branch: codex/epic-16-jobs
 status: in-progress
-updated_at: "2026-10-20T11:29:19Z"
+updated_at: "2026-10-20T11:44:54Z"
 started_at: "2026-10-15T08:50:46Z"
 completed_at: null
 active_seconds: 23852
-timing_anchor: null
+timing_anchor: 1792496694
 is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
@@ -26,7 +26,7 @@ selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Sensitive planning: one-way transactional job upgrade, audit/event integrity and DB-enforced kind constraints with existing consumer preservation"
+escalation_reason: "Resume sensitive Story16.4 planning after explicit owner approval of field scope, per-person demand arithmetic and advisory allocation; preserve transaction/proof authority"
 routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Job authorization, assigned-worker money omission and acceptance transactional contract planning\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"readiness\",\"profile\":\"critical\",\"role\":\"specification-author\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Independent High contract recommendation: scope-safe membership foundation, job authorization, structural financial omission and authoritative booking revalidation\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"planning\",\"profile\":\"critical\",\"role\":\"specification-author\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -46,6 +46,7 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive post-development coverage assessment: work-order current authority, RLS, dependency transactions, storage proof and retry integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Non-sensitive requirements-only risk classification for Story16.4; no authorization or data-integrity design decision\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_triage\",\"profile\":\"light\",\"role\":\"test-risk-triage\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive planning: one-way transactional job upgrade, audit/event integrity and DB-enforced kind constraints with existing consumer preservation\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Resume sensitive Story16.4 planning after explicit owner approval of field scope, per-person demand arithmetic and advisory allocation; preserve transaction/proof authority\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: null
 tea_selected: []
 tea_rationale: null
@@ -71,7 +72,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [0586972a, d6a310be, f610bcbd, 11bf2721, bce1436b, 5d5186e1cfb3e045db9ef101e1c6cf6b50133040, faeffcf6513d5d1703ae9d5a6271b01533899d4e, f3cf100709b92637270304e78a4356082b89e9a6, 1e8632db1ad051d117c38d2e24ed5d62fc2c8a57, 103ee03540e222dff1e54995726037819539b9dd, c44e5179bfcbc210de250eb92a48734561cc0fac, 9b54ad249a1ac4fb6f73c425c89b9b749855a939, 46b1b82983f415fdd2ed214138cbd437154469aa]
+commits: [0586972a, d6a310be, f610bcbd, 11bf2721, bce1436b, 5d5186e1cfb3e045db9ef101e1c6cf6b50133040, faeffcf6513d5d1703ae9d5a6271b01533899d4e, f3cf100709b92637270304e78a4356082b89e9a6, 1e8632db1ad051d117c38d2e24ed5d62fc2c8a57, 103ee03540e222dff1e54995726037819539b9dd, c44e5179bfcbc210de250eb92a48734561cc0fac, 9b54ad249a1ac4fb6f73c425c89b9b749855a939, 46b1b82983f415fdd2ed214138cbd437154469aa, 1152d5bda869cab97f8b64f0b2a56f72cb9ab0bd, 2d002970fcb112db8d480068443a0cce2577bd5b, 2920b920c0ff19122051f7ef987bc222331fb94a]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -121,6 +122,7 @@ overrides:
   story16_3_ci_c44e5179: "TerminalSUCCESS39410923156 exactc44e5179bfcbc210de250eb92a48734561cc0fac. Unit2702pass0skip;fullDB1839total1838pass0fail1pending isolatedrecovery separately1pass0skip;42WOint/RLSallpass;21browserfirstattempt0flaky0skip;requiredstatic/build/perfPASS. Delivery/provenance/rootgate stillpending; no developmentcomplete/statusdone authorization."
   story16_3_automate: "ActualPhase6completedbyHighTEA+2contextfreeHighworkers:7ACmapped0consequentialgaps0newtests0reruns;nativec44/CI39410923156 reusedafterhash/applicabilityverification. Summary1DCCDBA308714662A962A7E8FB05374C1075B043065BB247355DC8DB1A3F3433;3release-onlychecksremainowneddeferred."
   story16_3_landed: "ActualPhases0,1,3,4,5,6,7complete;developmentgate+provenancepassed;CI39410923156 exactc44;Phase6all7AC0gaps0newtests0reruns;3ownedrelease-onlyentriesharvested;noPhase7passbecauseconfiguredrecommendedandfollowupfalse. Sprintreviewuntilfinalbatch. Release_readyfalse."
+  story16_4_owner_decision: "2026-10-20 direct human confirmation in this chat: Confirm all those decisions as defaults. Approved Story16.4 bindings: no unnamed new project-only fields; existing job-card fields valid for both Order and Projekt; payment-plan fields/children remain Story17.2. D is elapsed on-site minutes, N crew size, T planned travel minutes per person; demand=N*(D+T). Use advisory whole-job demand versus remaining planning-window capacity, without adding demand again to actual booking occupancy or charging whole-job demand per split/repeated booking. No new hard save block. These three material choices are resolved; retain existing upgrade/full-card manager authority and other scope/gates."
 constraints:
   - "Use only owned E16 resources; E15 scheduling/time/diagnostic resources remain excluded."
   - "Each later story requires its approved plan, manifest compliance and precise path claims."

@@ -109,3 +109,80 @@
 1. Answer the two pending16.3owner questions. Proposed choices are not approved.
 
 **Next:** Answer the pending questions, then resume /auto-bmad epic --epic 16. Human review: /bmad-checkpoint-preview codex/epic-16-jobs.
+
+## Report — 2026-10-20T11:30:12Z (halted — needs-human)
+
+**Epic:** `16` — 5 stories.
+**Branch:** `codex/epic-16-jobs` (HEAD `2920b92`).
+**Pipeline status:** Halted at Story16.4 planning: intent gap; three owner decisions pending.
+**Continues:** 2026-10-19T20:47:29Z (halted — needs-human)
+
+**Summary:** Stories16.1–16.3 landed. This segment completed16.3 and preserved a blocked16.4 plan;16.5 remains unstarted.
+
+**Timing:** started 2026-10-15T08:50:46Z; completed in progress — elapsed 122h 39m (≈6h 37m AI-run, ≈116h 01m human/idle wait); resumed 3×.
+
+**Stories:**
+1. 16.1: previously landed; development evidence retained.
+2. 16.2: previously landed; development evidence retained.
+3. 16.3: development complete; requiredCI39410923156 passed, independentHighreview/provenance passed, Phase6 mapped7AC/0gaps;3ownedrelease-onlydeferrals.
+
+**Skipped:** (none)
+
+**Epic gate:** Pending final story and epic-end gates.
+
+**TEA:** 16.3: actualATDD and automate completed;0newtests/0reruns in automate.16.4: high risk;ATDD+automate selected, planning blocked.
+
+**Retrospective:** Not run; epic incomplete.
+
+**Overrides:** SequentialE16 stories; concurrentE15 authorization retained; one finalepicPR; no merge/deployment/providerchanges; nolegacy evidence.
+
+**Open questions:**
+1. TR08: no new unnamed project-only fields, or specify extra fields?
+2. TR14: travelperperson N*(D+T), or crewaggregate N*D+T?
+3. TR14: advisory whole-job demand without occupancy/split-booking double charging, or another allocation rule?
+
+**Deferred work:**
+1. Three16.3release-only items harvested: exhaustivebrowsermatrix, visualchecks, manualwalkthrough/polish. Owners/status/evidence/nextactions retained; release_ready=false.
+
+**⚠️ Needs human:**
+1. Answer the three pending16.4scope/formula/allocationquestions. Owner: projectowner. Evidence: blockedplan1f9d493d…; no implementation authorized for unresolved policy.
+
+**Next:** After owner answers, delegate16.4replanning; resume /auto-bmad epic --epic16. Project context refresh recommended after epic.
+
+## Report — 2026-10-20T11:30:46Z (halted — needs-human)
+
+**Epic:** `16` — 5 stories.
+**Branch:** `codex/epic-16-jobs` (HEAD `2920b92`).
+**Pipeline status:** Story 16.4 planning blocked: intent gap; three owner decisions pending.
+**Continues:** 2026-10-20T11:30:12Z (halted — needs-human); wording and resume-command clarification, outcomes unchanged.
+
+**Summary:** Three of five stories landed. Story 16.3 completed this segment; Story 16.4 has a preserved blocked plan; Story 16.5 is unstarted.
+
+**Timing:** started 2026-10-15T08:50:46Z; completed in progress — elapsed 122h 40m (≈6h 37m AI-run, ≈116h 02m human/idle wait); resumed 4×.
+
+**Stories:**
+1. 16.1 and 16.2: previously landed; evidence retained.
+2. 16.3: development complete; CI 39410923156, independent High review/provenance and seven-AC coverage assessment passed; three owned release deferrals.
+
+**Skipped:** (none)
+
+**Epic gate:** Pending epic completion.
+
+**TEA:** 16.3: ATDD and automate complete; seven ACs mapped, zero gaps. 16.4: high risk; ATDD and automate selected, not started.
+
+**Retrospective:** Not run.
+
+**Overrides:** One final epic PR; no merge or deployment; sequential E16 stories; no legacy evidence.
+
+**Open questions:**
+1. Project-only fields: approve no unnamed new fields and leave payment plans to 17.2, or specify additional fields.
+2. Travel units: per-person travel N × (D + T), or aggregate crew travel N × D + T.
+3. Allocation: advisory whole-job demand versus remaining capacity, without double charging occupancy or split/repeated bookings; or specify another rule.
+
+**Deferred work:**
+1. Three owned 16.3 release-only items harvested: exhaustive browser matrices, visual checks, manual walkthrough/polish. Release readiness remains false.
+
+**⚠️ Needs human:**
+1. Project owner: answer the three scope/formula/allocation questions. No E15 or acknowledgment blocker.
+
+**Next:** After answers, re-plan Story 16.4 and resume /auto-bmad epic --epic 16. Refresh project context after epic completion.
