@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-20T02:29:54Z"
+updated_at: "2026-10-20T03:00:39Z"
 started_at: "2026-10-20T01:09:10Z"
 completed_at: null
 active_seconds: 1364
@@ -58,7 +58,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [3a0282a70ab9cc539e2d85bd660635820e618731, e02403ace7a0a26c8c0cd01149d88054904fb7b9, 3245042f1f9e08c3ec6c2445c1cb6109e326be33, 9548c5cd33d6696817ed334fc832b2259e592437, 8d06d549432479ad3e2261f8e746d716adcb4dd2, 3aaa522bc8448e38a7ec7ce2fecc2dbcb9b927b4, 39d02efcc3d08515fe45ad4087aeaad255f69ed6, 9b862185f6dd6485c5c8b6d87be943bb9d8c5939, 27667164a2a10a8252b12bc0a692268aaf745765, 4e727322c55a672c5ec0e244569158fe91d4847e]
+commits: [3a0282a70ab9cc539e2d85bd660635820e618731, e02403ace7a0a26c8c0cd01149d88054904fb7b9, 3245042f1f9e08c3ec6c2445c1cb6109e326be33, 9548c5cd33d6696817ed334fc832b2259e592437, 8d06d549432479ad3e2261f8e746d716adcb4dd2, 3aaa522bc8448e38a7ec7ce2fecc2dbcb9b927b4, 39d02efcc3d08515fe45ad4087aeaad255f69ed6, 9b862185f6dd6485c5c8b6d87be943bb9d8c5939, 27667164a2a10a8252b12bc0a692268aaf745765, 4e727322c55a672c5ec0e244569158fe91d4847e, 2b7f6b03c70f4113a326c194264cf09205118d22, a80e615214ade42f25b18906ca8c1ee86fadc187, 58c4cac847fd0de26cd13e57f08643cd9a965cd6, dc68ea6d9f06ecae8235468a742eb1f514ded2c7]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -156,27 +156,60 @@ baseline_CI_3a:
   story15_3_implementation_coverage: false
   release_validation: false
 p5_checkpoint:
-  status: independently-reviewed-runtime-pending
-  author_head: 4e727322c55a672c5ec0e244569158fe91d4847e
-  source_test: 9b862185f6dd6485c5c8b6d87be943bb9d8c5939
-  production_unit_source: 3aaa522bc8448e38a7ec7ce2fecc2dbcb9b927b4
-  source_manifest_sha256: a4cca5a858c1547dbc8a48e3612322cd5d75b99b34785a99192a6ecc001bb5e3
-  source_paths_verified: 54
-  counted_review_rounds: 2
+  status: independently-reviewed-CI-repair-runtime-pending
+  author_head: dc68ea6d9f06ecae8235468a742eb1f514ded2c7
+  source: a80e615214ade42f25b18906ca8c1ee86fadc187
+  source_manifest_sha256: 71734dabc30bcde938b6fdce816d38a2b9bbd1353d6d2fe44c87e364dd2f8699
+  source_paths_verified: 56
+  repair_paths: 7
+  counted_review_rounds: 3
   review_cap: 3
   broad_rounds: 1
-  targeted_rounds: 1
+  targeted_rounds: 2
   separate_exact_assertion_checks: 1
   unresolved_findings: 0
-  review_sha256: 910a036833a498a187c1786dc92ddfce0801523ccfdb70a09107827ada3b5bba
-  exact_check_sha256: ffe5beda8308eb760bbc9037b43e2ed29bde19ab177729b22afb697aa4a57149
-  unit: "3018passed/0failed/1Windows-Linux-xattr-skip;3019total"
-  focused: "15passed/0failed/0skipped;reviewer14passed bounded subset nonadditive"
-  static: "typecheck/changedlint/build/bundlePASS;boundedfulllint0errors17existingwarnings"
+  review_sha256: a9a1309061ffe7cd13e013549e09d37334cec7cd49e6a0cda93ef2129c13a646
+  review_summary_sha256: 641cafc9003c1d6ccc856bce14f2393a98c1f765b6cb6c94983c970b678dfe36
+  unit: 3019P0F1WindowsLinux-xattrS/3020
+  focused: 7P0F0S
+  transport: "36P0F4name-filteredDBS; actual4authenticatedcasesactive/defaultscan/noDBcoveragefromfocusedrun"
+  static: type/lint0errors17existingwarnings/build/bundle/diffcheckPASS
   SRO: oneauthorsection16verifiedreferences0errors
-  runtime_executed: 0
-  verification_route: "CI-primary-standard-release_validation:false"
-  required_runtime: fullDB/RLS/directisolatedStorage/all3resolveressentialbrowserbodies0resolver-skips
+  verification_route: "one new materiallychanged standard exactheadCI release_validation:false"
+  current_runtime_executed: 0
   development_complete: false
   release_ready: false
   resources_started: 0
+  no_fourth_broad_review: true
+p5_failed_CI_2b:
+  head: 2b7f6b03c70f4113a326c194264cf09205118d22
+  run: 39359274325
+  status: independently-qualified-FAIL
+  attempt: 1
+  dispatches: 1
+  units: 3019P0F0S
+  process: 43P0F
+  fullDB: 1851P10F52S/1913
+  RLS_nonadditive: 812P0F14S/826
+  Storage: "1P0F0S;2objects66bytes"
+  browser: "12expected2unexpected0skipped0flaky/errors[]; bothfailedcases failedretry1"
+  failed_resolver_cases: [INT002, INT005, INT007, INT017, E2E001, E2E002]
+  other_failures: 6mockedtransportreadcases
+  unreached: INT002accept/INT005complete3writers/INT007protected+ordinarysiblings/INT017fraction+all-day/E2E001accept/E2E002persistence+following
+  pilot: "NOTEXECUTED aftertest:int exit1"
+  migration108: "startup+firstreset all3DBjobs; no resetrecovery/retry"
+  skips: "37historical15.2commandREDATDD+14historical15.2RLSREDATDD+1StorageDBlane(separaterecoverypassed); nonecoverage"
+  report_sha256: 9a0c639fb41eddc54d43e71076c368c3a9ed9a2501b0bfd00382e890e08e8c26
+  json_sha256: effd6d901f32feb5f57a842e0e459934a071bb401bc8f8b6eb5d67c8ba1701ab
+  manifest_sha256: d2f558ed7015fb16c1d7512bcfea3083baff3037af32fdae3a4b160e8b24bee9
+  root_verified_evidence_files: 100
+  E2E002_original_cause: "UNKNOWN; no uploadedtracebytes/no inventedSQLSTATE"
+  reruns_or_cancellation: 0
+additional_read_fixtures_allocation:
+  receipt: ".env.epic15.mail-runtime/story-15-3-preparation/root-coordinator-read-fixtures-allocation-20261020.json"
+  sha256: d9a808cbb816f77f9062c66d0c82b35e5503f0ac455a8a0d95b4f0c8d2bfe6e7
+  status: SAME-Sol6.1High-FINAL-CONDITIONAL-PASS
+  paths: [tests/integration/features/booking-read-actions.test.ts, tests/integration/scheduling/scheduling-read.atdd.int.test.ts, src/server/read-models/scheduling.ts]
+  conditions: "internalderivedidentityaftercurrentauth/defaultrealscan;noactioninput/failopen;honestprojectedfixtures;actualauthenticateddefaultscan;preserveprivacy/paging/count/batch and requirednegatives"
+  additional_ACK_required: false
+  runtime_evidence: false
