@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-20T03:00:39Z"
+updated_at: "2026-10-20T03:21:05Z"
 started_at: "2026-10-20T01:09:10Z"
 completed_at: null
 active_seconds: 1364
@@ -58,7 +58,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [3a0282a70ab9cc539e2d85bd660635820e618731, e02403ace7a0a26c8c0cd01149d88054904fb7b9, 3245042f1f9e08c3ec6c2445c1cb6109e326be33, 9548c5cd33d6696817ed334fc832b2259e592437, 8d06d549432479ad3e2261f8e746d716adcb4dd2, 3aaa522bc8448e38a7ec7ce2fecc2dbcb9b927b4, 39d02efcc3d08515fe45ad4087aeaad255f69ed6, 9b862185f6dd6485c5c8b6d87be943bb9d8c5939, 27667164a2a10a8252b12bc0a692268aaf745765, 4e727322c55a672c5ec0e244569158fe91d4847e, 2b7f6b03c70f4113a326c194264cf09205118d22, a80e615214ade42f25b18906ca8c1ee86fadc187, 58c4cac847fd0de26cd13e57f08643cd9a965cd6, dc68ea6d9f06ecae8235468a742eb1f514ded2c7]
+commits: [3a0282a70ab9cc539e2d85bd660635820e618731, e02403ace7a0a26c8c0cd01149d88054904fb7b9, 3245042f1f9e08c3ec6c2445c1cb6109e326be33, 9548c5cd33d6696817ed334fc832b2259e592437, 8d06d549432479ad3e2261f8e746d716adcb4dd2, 3aaa522bc8448e38a7ec7ce2fecc2dbcb9b927b4, 39d02efcc3d08515fe45ad4087aeaad255f69ed6, 9b862185f6dd6485c5c8b6d87be943bb9d8c5939, 27667164a2a10a8252b12bc0a692268aaf745765, 4e727322c55a672c5ec0e244569158fe91d4847e, 2b7f6b03c70f4113a326c194264cf09205118d22, a80e615214ade42f25b18906ca8c1ee86fadc187, 58c4cac847fd0de26cd13e57f08643cd9a965cd6, dc68ea6d9f06ecae8235468a742eb1f514ded2c7, 53e91365b1c1db5042173190d7ec1550229b5c35, 6d9836044f643a5ab6df8a1dd430e2801d8a7cdc, 4633f51b19b68ef7686fdca82ae8421ef680145f, 5a04e94cad8cad3ee18f519774af1ef278e7116b]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -156,27 +156,28 @@ baseline_CI_3a:
   story15_3_implementation_coverage: false
   release_validation: false
 p5_checkpoint:
-  status: independently-reviewed-CI-repair-runtime-pending
-  author_head: dc68ea6d9f06ecae8235468a742eb1f514ded2c7
-  source: a80e615214ade42f25b18906ca8c1ee86fadc187
-  source_manifest_sha256: 71734dabc30bcde938b6fdce816d38a2b9bbd1353d6d2fe44c87e364dd2f8699
-  source_paths_verified: 56
-  repair_paths: 7
+  status: reviewed-E03-transport-prerequisite-new-runtime-pending
+  author_head: 5a04e94cad8cad3ee18f519774af1ef278e7116b
+  source: 6d9836044f643a5ab6df8a1dd430e2801d8a7cdc
+  application_source: a80e615214ade42f25b18906ca8c1ee86fadc187
+  source_manifest_sha256: c26765ef82819be5dec369cd5a4de133d9d041012e446b40e4a515c9815be1d1
+  source_paths_verified: 57
+  prior56_source_paths_unchanged: true
+  new_source_delta: one E03testfile+4/-2
   counted_review_rounds: 3
   review_cap: 3
   broad_rounds: 1
   targeted_rounds: 2
-  separate_exact_assertion_checks: 1
+  separate_exact_assertion_checks: 2
   unresolved_findings: 0
-  review_sha256: a9a1309061ffe7cd13e013549e09d37334cec7cd49e6a0cda93ef2129c13a646
-  review_summary_sha256: 641cafc9003c1d6ccc856bce14f2393a98c1f765b6cb6c94983c970b678dfe36
-  unit: 3019P0F1WindowsLinux-xattrS/3020
-  focused: 7P0F0S
-  transport: "36P0F4name-filteredDBS; actual4authenticatedcasesactive/defaultscan/noDBcoveragefromfocusedrun"
-  static: type/lint0errors17existingwarnings/build/bundle/diffcheckPASS
+  latest_narrow_review_sha256: 3e4e5f1f8cabe7de9fa68efa2563e7dcc77aa4ecd8bf3e3c0d43e93e4ae2125a
+  latest_review_summary_sha256: 2b1a701c7c078447c532e9e38ed73b64106cc37a5dd1b609558ffc88362bb0d0
+  new_local_checks: "type/focusedlint/diffcheckPASS;configured4Jobs+3resolvercollection7active0skip0executed/errors[]"
+  reused_application_checks: "a80localbuild/unit/static and53eactual3020unit/1862DB/25resolver/3resolverbrowser for unchanged56 only; newexactCIstillrequired"
   SRO: oneauthorsection16verifiedreferences0errors
-  verification_route: "one new materiallychanged standard exactheadCI release_validation:false"
-  current_runtime_executed: 0
+  bad_spec_rederivations: 0
+  verification_route: "one new reviewed materiallychanged standard exactheadCI release_validation:false"
+  new_E03_runtime_executed: 0
   development_complete: false
   release_ready: false
   resources_started: 0
@@ -211,5 +212,35 @@ additional_read_fixtures_allocation:
   status: SAME-Sol6.1High-FINAL-CONDITIONAL-PASS
   paths: [tests/integration/features/booking-read-actions.test.ts, tests/integration/scheduling/scheduling-read.atdd.int.test.ts, src/server/read-models/scheduling.ts]
   conditions: "internalderivedidentityaftercurrentauth/defaultrealscan;noactioninput/failopen;honestprojectedfixtures;actualauthenticateddefaultscan;preserveprivacy/paging/count/batch and requirednegatives"
+  additional_ACK_required: false
+  runtime_evidence: false
+p5_failed_CI_53:
+  head: 53e91365b1c1db5042173190d7ec1550229b5c35
+  run: 39362047987
+  status: independently-qualified-FAIL-sole-JobsE03
+  attempt: 1
+  dispatches: 1
+  units: 3020P0F0S
+  process: 43P0F
+  fullDB: 1862P0F52S/1914
+  resolver: "17INT+4RLS+2READ+2SSR=25P0F0resolverS; all prior tails reached"
+  real_authenticated_default_SQL_reads: 4P
+  transport: "23projected+13mockhostP; no DB/RLScoverage"
+  Storage: requiredphysicalproofPASS
+  browser: "13P1F/14cases15attempts/0S0flaky/errors[]; all3resolverfirstpass"
+  sole_failure: "JobsE03 bothattempts CDPNetwork.getResponseBody beforePREVIEW_STALE/tail; causeUNKNOWN"
+  pilot: "ACTUALLYRAN narrowAdmin120/24members25reads p95~7.408ms CPU~2.930ms2RLSrequests/read; NOTSchedulingR012"
+  migration108: startup+FIRSTresetall3success/no retry
+  report_sha256: f2d84d499a71eaf48df593b5782482c4d2e5b73db2db5b64a3d14ac2c12baccb
+  json_sha256: ac1258c68b0b732a63c2dec111113420fd27772287400bb8cd9f8065ffa34d2e
+  manifest_sha256: 6071544c73d30743216bb7ac10bbce4bb8d1bfaf2dd49bafc571f1005a3be639
+  root_verified_evidence_files: 100
+  reruns_or_cancellation: 0
+additional_E03_transport_allocation:
+  receipt: ".env.epic15.mail-runtime/story-15-3-preparation/root-coordinator-E03-transport-allocation-20261020.json"
+  sha256: e99ce1ec1366887c38cdecc2e20405a1f9a9ceb895e1d25cab233a64b739a0fb
+  status: SAME-explicit-Sol6.1High-FINAL-CONDITIONAL-PASS
+  path: tests/e2e/jobs/jobs-depth.e2e.spec.ts
+  conditions: "correlatedactualPOST/HTTPoktransportonly+preclickerrorABSENT+exactUNIQUESTALEUI; preservematcher+wholeSQLsnapshot/reset/retry/singlebooking-conflicts-audit-reload; no otherpath/helper/mock/catch/skip/timeout/product/config/bodylogs"
   additional_ACK_required: false
   runtime_evidence: false
