@@ -18,5 +18,5 @@ export type TimeReportReadResult = {readonly ok:true;readonly status:"success";r
 
 export type TimeReportMutationResult = {readonly status:"success";readonly reportId:string}|{readonly status:"error";readonly code:string;readonly message:string;readonly uncertain:boolean};
 
-export type TimeReportDraft = {readonly date:string;readonly hours:string;readonly note:string;readonly bookingId:string|null;readonly jobId:string|null;readonly mode?:"hours"|"interval";readonly startsAtLocal?:string;readonly endsAtLocal?:string;readonly exactPrefillUnavailable?:boolean};
+export type TimeReportDraft = {readonly date:string;readonly hours:string;readonly note:string;readonly bookingId:string|null;readonly jobId:string|null;readonly mode?:"hours"|"interval";readonly startsAtLocal?:string;readonly endsAtLocal?:string;readonly exactPrefillUnavailable?:boolean;readonly dateEdited?:boolean;readonly canonicalHoursMinutes?:number|null};
 

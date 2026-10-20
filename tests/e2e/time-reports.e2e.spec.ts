@@ -73,7 +73,7 @@ test.describe("15.4 essential production-host time reporting", () => {
     });
   });
 
-  test("[P0] 15.4-E2E-002 no-profile standalone at 360×640 keeps unsent input through failure/lost commit and keyboard same-attempt retry", async ({ resourcePage: page }) => {
+  test("[P0] 15.4-E2E-002 no-profile standalone at 360×640 retains its attempt through lost commit, revoked denial and restored retry", async ({ resourcePage: page }) => {
     await withTimeReportBrowserFixture(async (f) => {
       await page.setViewportSize({ width: 360, height: 640 });
       // Register real failure interception BEFORE navigation; never fabricate a 2xx.
@@ -113,13 +113,37 @@ test.describe("15.4 essential production-host time reporting", () => {
         // editing. This is in-memory connected retry, with no automatic resending.
         await expect(form.getByLabel("Timmar", { exact: true })).toBeDisabled();
         await expect(retry).toBeEnabled();
+        // R1-01: a denial after a lost commit cannot prove that the original
+        // write failed. Revoke only this fixture's membership, then restore its
+        // exact previous state before reconciling the same frozen request.
+        const memberships=await adminQuery<{id:string;status:string}>(
+          "select id,status from public.tenant_memberships where tenant_id=$1 and user_id=$2",
+          [f.fx.base.tenantA.id,f.noProfile.id]);
+        expect(memberships).toHaveLength(1);
+        const membership=memberships[0];
+        await adminQuery("update public.tenant_memberships set status='disabled' where id=$1",[membership.id]);
+        try {
+          const deniedResponse=page.waitForResponse((reply)=>isFilingRequest(reply.request(),f.marker));
+          await retry.focus();await page.keyboard.press("Enter");
+          const deniedBody=await(await deniedResponse).text();
+          expect(deniedBody).toContain('"status":"error"');
+          expect(deniedBody).toContain('"uncertain":false');
+          await expect(form.getByText("Osänd",{exact:true})).toBeVisible();
+          await expect(form.getByLabel("Timmar",{exact:true})).toBeDisabled();
+          await expect(form.getByLabel("Anteckning",{exact:true})).toHaveValue(f.marker);
+          await expect(retry).toBeEnabled();
+          expect(fault.attempts).toHaveLength(3);expect(fault.attempts[2]).toEqual(fault.attempts[0]);
+          expect(await f.snapshot()).toEqual(committed);
+        } finally {
+          await adminQuery("update public.tenant_memberships set status=$2 where id=$1",[membership.id,membership.status]);
+        }
         const confirmed = page.waitForResponse((reply) => isFilingRequest(reply.request(), f.marker));
         await retry.focus();
         await page.keyboard.press("Enter");
         expect((await confirmed).ok()).toBe(true);
         await expect(page.getByTestId("time-report-submit-status")).toHaveText("Rapporterad");
-        expect(fault.attempts).toHaveLength(3);
-        expect(fault.attempts[2]).toEqual(fault.attempts[0]);
+        expect(fault.attempts).toHaveLength(4);
+        expect(fault.attempts[3]).toEqual(fault.attempts[0]);
         expect(await f.snapshot()).toEqual(committed); // Exactly one row AND one audit.
         await page.reload();
         const week = await openWeek(page);

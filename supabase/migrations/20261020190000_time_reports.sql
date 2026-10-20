@@ -177,6 +177,35 @@ alter table public.notification_preferences add constraint notification_preferen
 alter table public.notification_preferences add constraint notification_preferences_time_report_channel_check check(category<>'time_report.nudge' or channel='in_app');
 alter table public.email_outbox add constraint email_outbox_time_report_channel_check check(category<>'time_report.nudge');
 
+-- Preference INSERT/UPSERT and key changes can begin without an existing row.
+-- A tuple-trigger may already own a row lock: it MUST NOT wait for the tenant
+-- gate held by a producer that can need that row. A busy gate aborts the whole
+-- write retryably, so the existing preference API shows failure and the user
+-- explicitly retries. Every writer, including service/DEFINER/native SQL, uses
+-- this same gate; there is no identity, JWT, GUC or cached-proof exemption.
+create function public.time_report_preference_gate() returns trigger
+language plpgsql security invoker set search_path='' as $$
+declare old_tenant uuid; new_tenant uuid; target_tenant uuid;
+begin
+ if TG_OP<>'INSERT' and old.category='time_report.nudge' then old_tenant:=old.tenant_id; end if;
+ if TG_OP<>'DELETE' and new.category='time_report.nudge' then new_tenant:=new.tenant_id; end if;
+ if old_tenant is not null or new_tenant is not null then
+  -- Include both sides of a tenant/key change, regardless of the other category.
+  if TG_OP<>'INSERT' then old_tenant:=old.tenant_id; end if;
+  if TG_OP<>'DELETE' then new_tenant:=new.tenant_id; end if;
+  for target_tenant in select distinct t from unnest(array[old_tenant,new_tenant]) t where t is not null order by t loop
+   if not pg_try_advisory_xact_lock(hashtextextended(target_tenant::text,0)) then
+    raise exception 'notification preference busy; retry explicitly' using errcode='55P03';
+   end if;
+  end loop;
+ end if;
+ if TG_OP='DELETE' then return old; end if;
+ return new;
+end $$;
+revoke all on function public.time_report_preference_gate() from public,anon,authenticated,service_role;
+create trigger notification_preferences_time_report_gate before insert or update or delete on public.notification_preferences
+ for each row execute function public.time_report_preference_gate();
+
 create function public.emit_time_report_nudges(p_tenant_id uuid,p_as_of timestamptz,p_cursor text default null,p_correlation_id uuid default gen_random_uuid())
 returns jsonb language plpgsql volatile security definer set search_path='' as $$
 declare cursor_data jsonb; after_user uuid; recipients uuid[]; recipient uuid; day date; today date; inserted uuid; emitted integer:=0; continuation text;
@@ -200,14 +229,17 @@ begin
    and exists(select 1 from public.person_profiles p where p.tenant_id=m.tenant_id and p.membership_id=m.id and p.archived_at is null)
    order by m.user_id limit 26) u;
  -- Lock only this bounded page in membership/role/profile order. Re-check below
- -- after waits; a role or preference revocation may have committed meanwhile.
+ -- after waits; a role revocation may have committed meanwhile. Preference
+ -- writers all use the same tenant gate above, including absent-row UPSERTs.
  perform 1 from public.tenant_memberships m where m.tenant_id=p_tenant_id and m.user_id=any(recipients) order by m.id for share;
  perform 1 from public.membership_roles r join public.tenant_memberships m on m.id=r.membership_id and m.tenant_id=r.tenant_id
   where m.tenant_id=p_tenant_id and m.user_id=any(recipients) order by r.id for share of r;
  perform 1 from public.person_profiles p join public.tenant_memberships m on m.id=p.membership_id and m.tenant_id=p.tenant_id
   where m.tenant_id=p_tenant_id and m.user_id=any(recipients) order by p.id for share of p;
- perform 1 from public.notification_preferences pref where pref.tenant_id=p_tenant_id and pref.user_id=any(recipients)
-  and pref.category='time_report.nudge' order by pref.id for share;
+ -- Do not take preference tuple locks: a row writer must reach its nonblocking
+ -- tenant try-gate without first waiting on this producer. Under the existing
+ -- READ COMMITTED request contract, the volatile function's predicate below
+ -- reads current preferences after acquiring the tenant gate (and any wait).
  if cardinality(recipients)>25 then continuation:=jsonb_build_object('tenant',p_tenant_id,'asOf',p_as_of,'after',recipients[25])::text; end if;
  foreach recipient in array coalesce(recipients[1:25],'{}'::uuid[]) loop
   if not exists(select 1 from public.tenant_memberships m where m.tenant_id=p_tenant_id and m.user_id=recipient and m.status='active'

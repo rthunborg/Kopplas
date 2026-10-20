@@ -4,7 +4,7 @@ type: 'feature'
 created: '2026-10-20'
 status: 'in-review'
 review_loop_iteration: 0
-followup_review_recommended: false
+followup_review_recommended: true
 baseline_revision: '4862704665cb12e4f577ecac59ee173c49c36763'
 context:
   - docs/process/review-order.md
@@ -112,7 +112,15 @@ The ownership handoff lists exact new/shared candidate paths, semantic limits, n
 
 ## Review Triage Log
 
+2026-10-20 Round 1 of 3: nine accepted patch findings (three High, six Medium), zero intent/spec gaps and re-derivation iteration zero. The external wrapper failed with exit 1 (`The system cannot find the file specified.`); its recovered report is triage input only, with actual external model metadata unavailable. Source was not accepted. The original Sol 6.1 High author retains the synchronous fix batch. The existing UI author is re-engaged at Sol 6.1 High for R1-01–05/08/09 in its original feature/controller/component/E2E paths; the implementation author retains decimal arithmetic R1-07, proposed preference-serialization R1-06 and final integration/SRO. High covers uncertain filing integrity and shared SQL serialization. No nested runtime, commit, broad review or kernel change is delegated. The new preference write contract awaits Coordinator reconciliation before any SQL write.
+
+The existing integrity-test author is re-engaged at Sol 6.1 High only for R1-06 deterministic two-session/barrier assertions in the allocated serial nudge suite. It writes no preference trigger or shared contract and starts no runtime; the new contract remains on hold until actual semantic allocation.
+
+Coordinator's final R1-06 allocation authorizes only the unapplied109 affected-row preference contract and allocated serial tests. The earlier membership-scanning statement-trigger proposal was rejected and was never written. The implemented invoker row trigger tries the distinct sorted affected OLD/NEW tenant gates for nudge INSERT/UPSERT/UPDATE/DELETE and category/tenant moves; a busy gate raises `55P03` and aborts the transaction for explicit retry. It never waits after a tuple lock and has no authenticated, service, definer, JWT or native-fixture exemption. The producer retains its tenant gate and current preference predicate but drops preference tuple locks, allowing writers to reach the nonblocking gate. Current preference reads occur after the advisory wait under the existing READ COMMITTED/volatile-RPC contract; no broader isolation guarantee is asserted. Existing API failure/retry behavior, RLS, categories, grants, membership/role/profile locks and atomic notification/audit effects remain. The precise shared semantic delta and bounded UUID/session-scoped test barrier were allocated before their writes.
+
 ## Design Notes
+
+Round 1 arithmetic correction: report-vs-booked delta now subtracts the inputs' decimal numeric representations with integer scaling, then converts the decimal result to the existing numeric DTO. This preserves the received booked provenance, including 60.1 minutes, and displays 75−60.1 as 14.9 minutes without adding binary subtraction digits. It introduces no money arithmetic or report-duration rounding; filed minutes remain integers. Six focused domain assertions passed with zero skips during the fix batch, including independent tenths and micro/exponent boundaries. Final integrated evidence is recorded separately after all fixes settle.
 
 The design companion records the rationale for scoped capability names, immutable filing plus minimal reviewer metadata, booked-minute snapshot, exact retry semantics, same-tenant/assignment enforcement and bounded seven-day in_app nudge defaults. These are maintainable technical choices within approved behavior under owner authority; Root's distinct High validation may identify a bounded correction before freeze. Do not infer a separate canonical SPEC.md: this sprint BuildAuto spec's intent-contract is its kernel; exact candidate hashes are in the preparation validation receipt. No approved kernel binding is claimed before Root freeze.
 
@@ -138,6 +146,24 @@ Deferred release work retains the existing owners: QA/UX owns exhaustive device/
 
 Fixture limit for independent review: `cleanupOwnedTimeReports` uses the repository's test-admin transaction convention, with `SET LOCAL session_replication_role=replica` on one connection and deletion restricted to explicit owned tenant report rows; commit/rollback restores the session setting. It makes no global/catalog/production-trigger change. The two fault suites remain serialized after the parallel group; their stage-aware temporary audit triggers and cleanup assertions still need real CI execution. Beforeunload/Dialog guards preserve pending/uncertain input in the connected UI; custom browser-history interception and durable/offline storage are absent.
 
+### Round 1 fix checkpoint — 2026-10-20
+
+This synchronous original-author batch fixes the nine accepted Round 1 findings against source commit `73169cc0c75d88fbb16dc999ef99cbd9028ff361`; changes remain uncommitted for Root's scoped fix commit and independent focused review. Accounting is one counted review round of three, zero re-derivations, patch9 (High3/Medium6), intent_gap0, bad_spec0, defer0, reject0; follow-up score18 and the High patches retain `followup_review_recommended: true`. The external wrapper remains failed/unqualified; its recovered report is triage input, not a passed review layer.
+
+R1-01 preserves the unresolved exact attempt across a definite denied retry. R1-02 preserves each unchanged UTC endpoint independently, including fold offset/microseconds. R1-03 retains canonical prefilled minutes across modes while edited decimal hours still require exact whole minutes. R1-04 defaults the first standalone start's date until explicit date selection. R1-05 guards review links with the same dirty/pending/unknown state. R1-06 adds the allocated all-writer affected-tenant nonblocking preference contract and both acknowledged-order race assertions. R1-07 uses decimal-safe delta subtraction without altering the booked snapshot. R1-08/09 bind the tested stale-annotation and latest-response behavior to production controllers, with meaningful actual-handler assertions. No intent/kernel change, new path, API/grant, dependency, isolation level or runtime expansion is introduced.
+
+Actual bounded evidence after the UI/domain fix integration:
+
+- `node --experimental-strip-types --import ./tests/support/register.mjs --test tests/unit/features/time-reports/domain.test.ts tests/unit/features/time-reports/validation.test.ts tests/unit/features/time-reports/action-state.test.ts`: 17 passed, zero failed/skipped, executed by the same bounded High UI author.
+- `pnpm exec vitest run tests/integration/components/time-reports.test.ts --project integration-parallel`: 15 passed, zero failed/skipped (eight SSR and seven actual TSX-controller VM cases), executed by that author using the checked-in standard config/globalSetup. The selected component suite has no database test body; config reachability checks are not database coverage. VM replaces hook scheduling, action/read transport and router effects; it proves handler decisions/propflow, not DOM/focus, authorization or persistence.
+- `pnpm run test:unit`: 3,041 total, 3,040 passed, zero failed, one existing Windows/Linux-xattr skip. The exact skipped file-backend restore test remains required in Linux CI. Earlier 3,034-test/12-failure runs and their causal repairs above remain historical evidence.
+- `pnpm typecheck` and final `pnpm exec tsc --noEmit --incremental false` passed. `pnpm exec eslint src tests scripts` passed with zero errors and 17 existing warnings; final focused lint of the nudge and migration-reset test files passed with zero errors/warnings after the integrity handoff. Canonical clean-checkout lint remains CI-owned after the historical interrupted root scan.
+- `pnpm build`, `pnpm run verify:service-role-containment`, `pnpm run verify:bundle-containment` and `pnpm run verify:lockfiles` passed. No dependency/process source changed, so the earlier frozen-install/audit/process outcomes are retained without duplicate execution.
+- Browser discovery lists the three existing essential flows only. Serial discovery with the actual configured `integration-audit-ddl` project lists exactly job-runs, conflict-resolver, report-command and nudge files. An initial inventory call used nonexistent project `integration-serial` and exited1; correcting the project filter passed without source/config changes. Discovery is not test execution.
+- `node scripts/verify/check-review-order.mjs _bmad-output/implementation-artifacts/spec-15-4-time-reporting-filing-timesheet-review.md` passed with one section, 20 verified stops and zero errors after correcting two stops moved by the final test edit. `git diff --check` passed.
+
+The source inventory now has 73 report declarations: pure17/component15/command11/RLS7/read7/nudge13/browser3, with zero explicit skips. The original 50 skipped declarations remain active; this batch adds five pure, eight component and four nudge declarations to the preceding56. Component execution and unit execution do not establish the unexecuted SQL/browser outcomes. Actual REQUIRED integration/RLS, migration/reset/seed/ACL, recovery Storage and production-browser checks remain pending Root's exclusive exact-head CI. The LF kernel digest remains `3c701d71dba37a136ae104fd24c3b223ef46081913301fb43ff92baca3f16ffb`; original preparation files are unchanged. No runtime, commit, delivery pass or done status is claimed.
+
 ### Historical preparation evidence
 
 This planning run executes artifact/process checks only: source AC comparison, seven-point immediate story audit, READY standard, spec reader/discovery, exact raw/kernel hashes and clean tracked-source/cached-context preservation. Zero app/schema/test/scaffold/runtime/CI execution is claimed. Root separately dispatches independent High specification validation.
@@ -150,8 +176,8 @@ Deferred release validation retains exhaustive browser/device/view matrices, scr
 
 ## Auto Run Result
 
-Status: in-progress — implementation prepared for independent High source review and Root-owned exact-head CI.
-Blocking condition: required database/RLS/migration/Storage/browser evidence and independent review have not executed for this implementation. No runtime or ownership expansion is requested; resume through the already allocated review/CI lane.
+Status: in-review — the original author applied all nine Round 1 patches; independent focused fix review and Root-owned exact-head CI remain pending.
+Blocking condition: required database/RLS/migration/Storage/browser evidence has not executed for this implementation, and the fixed source has not been independently accepted. The external wrapper remains failed/unqualified pending Root's bounded qualification. No runtime or ownership expansion is requested; resume through the already allocated review/CI lane.
 
 ### Historical preparation result
 
@@ -164,52 +190,52 @@ Root then obtains Coordinator allocation of exact shared semantic deltas, a uniq
 
 ## Suggested Review Order
 
-Author: Story 15.4 implementation author, gpt-6.1-sol High, with the two explicitly bounded UI/integrity authors' recorded changes reconciled here.
-Refreshed against the final uncommitted implementation working tree based on `4862704665cb12e4f577ecac59ee173c49c36763`, 2026-10-20. This is a source-review checkpoint; required runtime checks and independent review remain pending.
+Author: original Story15.4 implementation author, gpt-6.1-sol High; the same bounded High UI/integrity authors' fixes are reconciled here.
+Refreshed against the Round1 fix working tree based on `73169cc0c75d88fbb16dc999ef99cbd9028ff361`, 2026-10-20. The frozen intent contract is unchanged; in-review status and required runtime limits remain.
 
 ### Own capture and honest retry
 
-The existing Dialog/form conventions supply connected capture from own booking cards and the standalone entry. The form freezes the exact attempt during an unknown outcome; fractional genuine booking intervals retain their reference and require an explicit whole-minute declaration, as recorded in the author boundary correction above.
+Entry now consumes the headless attempt/draft transitions. A denied retry cannot resolve an earlier unknown commit; independent untouched UTC endpoints retain their fold/microsecond identity, canonical booking minutes survive mode switches, and standalone start defaults the date until explicitly changed. AC1/2/6 are asserted through actual controller handlers and exact-input units; browser2 extends the same-attempt persistence scenario.
 
-- `src/components/time-reports/TimeReportEntry.tsx:15` — `TimeReportEntry`: owns frozen request, prefill and explicit retry.
-- `src/components/time-reports/TimeReportForm.tsx:9` — `TimeReportForm`: presents unsent, pending and persisted-only confirmation.
-- `src/features/time-reports/actions.ts:26` — `fileTimeReportAction`: invokes the request-bound command envelope.
-- `tests/unit/features/time-reports/action-state.test.ts:6` — `15.4-UNIT-009`: AC2 retains exact uncertain attempt identity.
+- `src/components/time-reports/TimeReportEntry.tsx:13` — `TimeReportEntry`: freezes unresolved attempts and composes connected capture.
+- `src/features/time-reports/action-state.ts:36` — `timeReportDraftMinutes`: preserves untouched endpoints and exact canonical duration.
+- `tests/integration/components/time-reports.test.ts:133` — `R1-01`: exercises actual filing handlers across loss, denial and confirmation.
+- `tests/e2e/time-reports.e2e.spec.ts:76` — `15.4-E2E-002`: checks persisted same-attempt reconciliation after restored authority.
 
 ### Current authority and one attributable write
 
-SQL authorizes the current role union after tenant serialization and before replay, then checks locked own assignment and same-tenant references. One transaction persists the immutable submitted report or reviewer CAS metadata plus its audit; SQL owns audit, so command adapters declare auditable false.
+SQL checks the current role union under tenant serialization before replay, then locks own assignment and same-tenant job references. Immutable filing and reviewer CAS each persist with their attributable audit in one transaction; AC2/7/8 fault tests inspect physical rollback, while ACL/RLS tests protect direct paths.
 
 - `supabase/migrations/20261020190000_time_reports.sql:48` — `time_report_actor_gate_internal`: checks current authority before replay.
 - `supabase/migrations/20261020190000_time_reports.sql:62` — `file_time_report`: binds actor, attempt, references and booked provenance.
-- `supabase/migrations/20261020190000_time_reports.sql:33` — `time_report_immutable_core`: guards filed identity and duration.
 - `supabase/migrations/20261020190000_time_reports.sql:122` — `annotate_time_report`: checks revision and latest exact retry.
+- `tests/integration/commands/time-reports.int.test.ts:193` — `15.4-INT-009`: proves business stage and atomic audit rollback.
 
-### Complete own weeks and review projections
+### Complete projections and guarded review
 
-The ordinary request client collects every authorized page before publishing totals. Review options remain stable across filters, standalone groups retain absent booked comparison, and numeric booked provenance survives booking changes; AC3/4/9 source assertions cover paging, errors and preserved links.
+The existing complete-page read model retains AC3/4/9 totals, filters and standalone groups. Production review now consumes stale-outcome/navigation guards and workspace response ordering; decimal-scaled subtraction preserves raw booked provenance without binary display digits. Actual TSX cases assert stale no-save, guarded links and out-of-order results; READ002 and READ007 retain SQL-backed projection assertions.
 
-- `src/server/read-models/time-reports.ts:69` — `readTimeReports`: resolves scope and complete projections.
-- `src/server/read-models/time-reports.ts:56` — `readTimeReportActionDescriptor`: supplies minimal own-action metadata to allocated hosts.
-- `tests/integration/read-models/time-reports.int.test.ts:37` — `15.4-READ-002`: asserts complete filtered review and standalone totals.
-- `tests/integration/read-models/time-reports.int.test.ts:139` — `15.4-READ-007`: asserts fractional booking context preserves a persisted week.
+- `src/components/time-reports/TimeReportReview.tsx:11` — `TimeReportReview`: guards notes, frozen attempts and internal links.
+- `src/components/time-reports/TimeReportWorkspace.tsx:14` — `TimeReportWorkspace`: publishes only the current request's response.
+- `src/features/time-reports/domain.ts:28` — `reportedBookedDelta`: subtracts decimal minutes without snapshot rounding.
+- `tests/integration/components/time-reports.test.ts:180` — `R1-09`: asserts latest selection and actual rendered result.
 
-### Bounded current-preference reminders
+### Current preferences under bounded serialization
 
-The existing jobs runner injects its client and exact tenant scope. The service-only RPC checks eligibility, preferences and report absence under the filing tenant lock, emits fixed in-app content plus sanitized system audit atomically, and carries the original seven-date window across bounded pages.
+The existing jobs client supplies exact tenant/as-of/cursor scope. The allocated affected-row trigger makes every preference writer try OLD/NEW tenant gates and abort explicitly with55P03 when busy; removing producer preference tuple locks lets existing-row writers reach that guard. The producer re-reads the current predicate after its tenant wait under existing READ COMMITTED/volatile semantics; no broader isolation contract is claimed. AC5 source tests cover both acknowledged orders, real post-predicate barriers, explicit retry, service writes and tenant moves.
 
-- `supabase/migrations/20261020190000_time_reports.sql:180` — `emit_time_report_nudges`: owns bounded predicates, dedupe and atomic effects.
-- `src/server/notifications/time-report-nudge-producer.ts:6` — `timeReportNudgeAsOf`: retains the original continuation window.
-- `tests/integration/notifications/time-report-nudge-producer.int.test.ts:12` — `15.4-NUDGE-001`: AC5 asserts real SQL DST/midnight/exclusive-end vectors.
-- `tests/integration/notifications/time-report-nudge-producer.int.test.ts:102` — `15.4-NUDGE-004`: asserts scoped continuation beyond 25 recipients.
+- `supabase/migrations/20261020190000_time_reports.sql:186` — `time_report_preference_gate`: tries affected tenant gates without waiting or writer exemptions.
+- `supabase/migrations/20261020190000_time_reports.sql:209` — `emit_time_report_nudges`: retains bounded predicates, dedupe and atomic effects.
+- `tests/integration/notifications/time-report-nudge-producer.int.test.ts:224` — `15.4-NUDGE-010`: observes producer waiting until authenticated opt-out commits.
+- `tests/integration/notifications/time-report-nudge-producer.int.test.ts:268` — `15.4-NUDGE-011`: observes post-predicate producer and exact retryable writer failure.
 
 ### Integrity evidence and operational limits
 
-AC1/2/6/7/8 assertions call actual checked commands/RPCs and inspect physical state; fault tests verify the business stage before rejection. The essential browser source covers booking and standalone capture, lost-response retry and review/annotation through reload. These integration/browser assertions are active source awaiting Root's actual execution; SSR and VM host assertions have narrower synthetic boundaries.
+NUDGE001 retains real SQL spring/fall, midnight and exclusive-end vectors; NUDGE004 retains frozen continuation beyond25 recipients. NUDGE012/013 assert affected-tenant/membership/category/service behavior and exact private trigger ACLs. These and command/RLS/read/browser bodies are active source awaiting Root CI. The temporary barrier releases its control gate before settling all pending sessions and exact catalog teardown; owned report cleanup retains its disclosed transaction-local test-admin bypass.
 
-- `tests/integration/commands/time-reports.int.test.ts:193` — `15.4-INT-009`: asserts report/review and audit rollback together.
-- `tests/integration/rls/time-reports.rls.test.ts:122` — `15.4-RLS-007`: asserts forced RLS and exact column/RPC ACLs.
-- `tests/e2e/time-reports.e2e.spec.ts:76` — `15.4-E2E-002`: asserts durable same-attempt retry at 360×640.
-- `tests/support/time-reports-atdd.ts:165` — `cleanupOwnedTimeReports`: scopes test-admin cleanup to owned fixtures.
+- `tests/integration/notifications/time-report-nudge-producer.int.test.ts:356` — `15.4-NUDGE-012`: asserts affected tenants and current membership without exemptions.
+- `tests/integration/rls/migration-reset.int.test.ts:700` — `privateFunctions`: enrolls the new invoker trigger in the closed ACL set.
+- `tests/integration/read-models/time-reports.int.test.ts:37` — `15.4-READ-002`: asserts complete filtered review and standalone totals.
+- `tests/support/time-reports-atdd.ts:165` — `cleanupOwnedTimeReports`: confines immutable-fixture cleanup to explicitly owned tenants.
 
-Evidence: the Implementation checkpoint above records final full units (3,035 passed/zero failed/one Windows xattr skip), 12 focused report units, seven isolated SSR assertions, source lint/typecheck, production build, containment and parent dependency/process outcomes, including both earlier failed unit runs and their causal fixes. Commands11/RLS7/read7/nudge9/browser3 remain unexecuted here. Clean-checkout canonical lint, REQUIRED integration/RLS, migration replay, physical recovery Storage, essential browsers, independent High review and the passing delivery contract still belong to Root's exact-head lane. Deferred release matrices/manual timing/performance remain explicitly deferred; development completion and release readiness are unclaimed.
+Evidence: the Round1 checkpoint above records focused17/17 pure units, component15/15 (8 SSR and7 actual-controller VM cases), full units3,040 passed/zero failed/one Windows xattr skip, type/source-lint/build/containment checks and source inventory. VM substitutes hook scheduling, action transport and router effects; SSR proves markup. Neither proves DOM/focus, authorization, network or persistence. The original failed-unit history, external-wrapper failure and unexecuted database/browser limits remain recorded. Required migration/RLS/Storage/browser execution, Linux xattr, canonical clean-checkout lint, independent focused fix review and passing delivery remain Root-owned; release matrices/manual timing/performance stay deferred. No done/development-complete/release-ready claim is made.

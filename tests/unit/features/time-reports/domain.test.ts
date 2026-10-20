@@ -50,3 +50,13 @@ test("fractional booked snapshots retain decimal precision while reported whole 
   assert.equal(formatReportMinutes(90.500001), "1 h 30,500001 min");
   assert.equal(formatReportMinutes(0.000000016666666666666667), "1,6666666666666667e-8 min");
 });
+
+test("R1-07 decimal deltas preserve tenths without manufacturing binary display digits",()=>{
+  assert.equal(reportedBookedDelta({minutes:75,bookedMinutesAtFiling:60.1}),14.9);
+  assert.equal(formatReportMinutes(reportedBookedDelta({minutes:75,bookedMinutesAtFiling:60.1})!),"0 h 14,9 min");
+  assert.equal(reportedBookedDelta({minutes:60,bookedMinutesAtFiling:60.1}),-0.1);
+  assert.equal(formatReportMinutes(Math.abs(reportedBookedDelta({minutes:60,bookedMinutesAtFiling:60.1})!)),"0 h 0,1 min");
+  assert.equal(reportedBookedDelta({minutes:1,bookedMinutesAtFiling:1e-7}),0.9999999);
+  assert.equal(reportedBookedDelta({minutes:1,bookedMinutesAtFiling:1.000001}),-0.000001);
+  assert.equal(reportedBookedDelta({minutes:60,bookedMinutesAtFiling:60}),0);
+});

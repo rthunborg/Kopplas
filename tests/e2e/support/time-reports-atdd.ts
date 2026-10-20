@@ -189,9 +189,9 @@ export function filingAttempt(request: Request): FilingAttempt {
 }
 
 /** Real commit → physical row/audit readback → abort response. No fulfilled success.
- * Installed BEFORE navigation. Two explicit retries share the exact attempt:
- * first request fails before server work; second commits but loses its response;
- * third reaches the server normally and reconciles that same committed report.
+ * Installed BEFORE navigation. Every explicit retry shares the exact attempt.
+ * The first request fails before server work; the second commits but loses its
+ * response. Later denied/authorized retries reach the real server unchanged.
  */
 export async function failThenLoseCommittedResponse(
   page: Page, fixture: TimeReportBrowserFixture, marker: string,
@@ -230,7 +230,7 @@ export async function failThenLoseCommittedResponse(
         await route.abort("failed");
         committedResolve(state);
       } else {
-        expect(attempts[2]).toEqual(attempts[0]);
+        expect(attempts[attempts.length - 1]).toEqual(attempts[0]);
         await route.continue();
       }
     } catch (error) {

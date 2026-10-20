@@ -4,7 +4,7 @@ import { formatReportMinutes, personalWeek } from "@/features/time-reports/domai
 import type { TimeReport, TimeReportReadResult } from "@/features/time-reports/types";
 import { timeReportButtonClass } from "./TimeReportForm";
 
-export function TimeReportLinks({report}:{readonly report:Pick<TimeReport,"bookingId"|"jobId"|"jobLabel">}) {return <div className="flex flex-wrap gap-2 text-sm">{report.bookingId&&<Link href="/scheduling" className="inline-flex min-h-11 items-center rounded-md border border-zinc-200 px-3 underline">Bokning</Link>}{report.jobId&&<Link href={`/jobs/${report.jobId}`} className="inline-flex min-h-11 items-center rounded-md border border-zinc-200 px-3 underline">{report.jobLabel??"Jobb"}</Link>}{!report.jobId&&<span className="py-3">Utan jobb</span>}</div>;}
+export function TimeReportLinks({report,onNavigate}:{readonly onNavigate?:(event:React.MouseEvent<HTMLAnchorElement>)=>void;readonly report:Pick<TimeReport,"bookingId"|"jobId"|"jobLabel">}) {return <div className="flex flex-wrap gap-2 text-sm">{report.bookingId&&<Link onClick={onNavigate} onAuxClick={onNavigate} href="/scheduling" className="inline-flex min-h-11 items-center rounded-md border border-zinc-200 px-3 underline">Bokning</Link>}{report.jobId&&<Link onClick={onNavigate} onAuxClick={onNavigate} href={`/jobs/${report.jobId}`} className="inline-flex min-h-11 items-center rounded-md border border-zinc-200 px-3 underline">{report.jobLabel??"Jobb"}</Link>}{!report.jobId&&<span className="py-3">Utan jobb</span>}</div>;}
 
 export function PersonalTimesheet({result,weekStart,onRetry,onReport}:{readonly result:TimeReportReadResult|{ok:false;code:string};readonly weekStart:string;readonly onRetry:()=>void;readonly onReport?:(report:TimeReport)=>void}) {
 

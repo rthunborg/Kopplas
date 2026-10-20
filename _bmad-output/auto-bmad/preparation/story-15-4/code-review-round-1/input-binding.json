@@ -1,0 +1,636 @@
+{
+  "kind": "15.4-independent-code-review-round-input",
+  "round": 1,
+  "completed": false,
+  "baseline": "4862704665cb12e4f577ecac59ee173c49c36763",
+  "source_head": "73169cc0c75d88fbb16dc999ef99cbd9028ff361",
+  "review_input": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\auto-bmad\\preparation\\story-15-4\\code-review-round-1\\review-content.diff",
+  "external_input": "C:\\Users\\Rasmus\\AppData\\Local\\Temp\\auto-bmad-15-4-round1-73169cc0c75d.diff",
+  "review_input_sha256": "2e277b82726fe7f5ab1ae0324731b6d24a13677fb99b8492a99fede5cfa76164",
+  "review_input_bytes": 397750,
+  "full_activated_test_files": [
+    "tests/support/time-reports-atdd.ts",
+    "tests/e2e/support/time-reports-atdd.ts",
+    "tests/e2e/time-reports.e2e.spec.ts",
+    "tests/integration/commands/time-reports.int.test.ts",
+    "tests/integration/rls/time-reports.rls.test.ts",
+    "tests/integration/read-models/time-reports.int.test.ts",
+    "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+    "tests/integration/components/time-reports.test.ts",
+    "tests/unit/features/time-reports/domain.test.ts",
+    "tests/unit/features/time-reports/validation.test.ts",
+    "tests/unit/features/time-reports/action-state.test.ts",
+    "tests/unit/features/scheduling/calendar-components.test.ts",
+    "tests/unit/scripts/verify/integration-test-partitions.test.ts"
+  ],
+  "changed_files": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-4/build-route-20261020.json",
+      "raw_sha256": "e06368168c5d075fe47875da609702b9de8fff708d6af5a8ecc8e927ce3edca3",
+      "git_blob": "d8b9bb5e9306c8404ba60b243f461c03959820c2",
+      "git_bytes_sha256": "900953e1ef540f9e410a94b3cc17c7a20c3dccfc847e935a72694b2a233c7a8b",
+      "bytes": 415
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-4-time-reporting-filing-timesheet-review.md",
+      "raw_sha256": "53a77e96b2202fdedc23bdfb907c9dda19711b0dad8fdc1e2770b3d138269569",
+      "git_blob": "30c43dc0bf80b13573ff6507e36949ee50648336",
+      "git_bytes_sha256": "7f0c9546c54a7af41cc018057bd846640d83f1911172ab13b745b247fa6911cf",
+      "bytes": 37864
+    },
+    {
+      "path": "package.json",
+      "raw_sha256": "ce3edc035ee55dba8df4b8595ff3d220cd9b5bae7fb372af943d9638dfbf955d",
+      "git_blob": "aadc206334a50f87c73bd29f31a8a32a3dd69b0b",
+      "git_bytes_sha256": "6fd925b1713a0cb4943be95db8a6c65d38eaab7489b26bdd63df2578c2fc837c",
+      "bytes": 2316
+    },
+    {
+      "path": "src/app/(app)/customers/[customerId]/page.tsx",
+      "raw_sha256": "86097031a275da39b9c5f9ccdb7e1b9b5ec1d1cf6de5d31800ac39ad6366108d",
+      "git_blob": "a5a66e33a694a114ba2aa25f9db98ac7d8b057c4",
+      "git_bytes_sha256": "31db5c7a0640898cef4edb6af8bae5d784664f1b37cf456f54ce6b67de2e4824",
+      "bytes": 6340
+    },
+    {
+      "path": "src/app/(app)/jobs/[jobId]/page.tsx",
+      "raw_sha256": "10693e19c849ca996b02e99252a0bb57dc88c6bd21848482492e5049d81af755",
+      "git_blob": "f92c9d4129725ebb37b59d48221c5fe42bdc30cc",
+      "git_bytes_sha256": "cd61ae206650fa4e5ad6e4e92b3aa1c69754bfc75bfc9b068eb1e172eb03c84c",
+      "bytes": 4624
+    },
+    {
+      "path": "src/app/(app)/jobs/page.tsx",
+      "raw_sha256": "67c9885e592267a45b121471300a817502a086ea7e2a585e6d0a218bdb74cd91",
+      "git_blob": "a7f873aba004cbd182479a008fcd31babb0879b5",
+      "git_bytes_sha256": "1b2d6a6675798dca040648c3b280236e7b5a4bf30a151a7122b146ac1da9ee35",
+      "bytes": 2216
+    },
+    {
+      "path": "src/app/(app)/time-reports/layout.tsx",
+      "raw_sha256": "87d83b599b5f849801e0160ed44012c7df1922e157466c797ff3dcddad6aab86",
+      "git_blob": "c27f87b384bf9c8b9d4c95458e2c178db5c921c3",
+      "git_bytes_sha256": "a3aafdbde917e8e75d2ac844634a6041823ac4c197e33bc95a93fcec231e7cc3",
+      "bytes": 259
+    },
+    {
+      "path": "src/app/(app)/time-reports/page.tsx",
+      "raw_sha256": "572c45a7633d04433e3c92da8d5b8ffd882bc3dc9753dc35cad214100da7b6d2",
+      "git_blob": "b6eea5edd64279a032a59d7e8e43c613454b42c2",
+      "git_bytes_sha256": "4a888ee1180c480cbbf7aaa6efd0d0c21fc3778d0f33ad0030dee62e3d253119",
+      "bytes": 512
+    },
+    {
+      "path": "src/app/api/jobs/run/route.ts",
+      "raw_sha256": "ca0e3315a52baaa5f186132e7338b4451d0d4e27dee72268ce0c63a0d1cff6f9",
+      "git_blob": "d2f103cff274ab39eb82acf12f6ed8cd6dc59f7c",
+      "git_bytes_sha256": "4255fbf9f0232dc3f26eb1bf55bffd71a601e195f9df1bb2a53f801f242a8be8",
+      "bytes": 7246
+    },
+    {
+      "path": "src/components/app-shell/nav-items.ts",
+      "raw_sha256": "2b6e71eca26e0f5937e69617576255878afaa50ece6411404bf171fc0fde0fa7",
+      "git_blob": "2e238acc690fdabdeb2ca26267e52ff83a1066ce",
+      "git_bytes_sha256": "534de93efbcb5998339d8eb2c0092783d910e6466f6c028a6989f9ea0671b4df",
+      "bytes": 6331
+    },
+    {
+      "path": "src/components/resources/BookingEntry.tsx",
+      "raw_sha256": "927c9031b3bc01a0ac667261c0570bb1f84d7c5aab16edeca13f2af5f19fe9bf",
+      "git_blob": "564cfa95a58d671f2fa68c6da655859ab6814d30",
+      "git_bytes_sha256": "927c9031b3bc01a0ac667261c0570bb1f84d7c5aab16edeca13f2af5f19fe9bf",
+      "bytes": 5203
+    },
+    {
+      "path": "src/components/scheduling/BookingBlock.tsx",
+      "raw_sha256": "587c2a41d1841cd307ac63a7c97d383d9ff39b6e2cfd13f64aa78fd84208dae5",
+      "git_blob": "49c8329543efc9497e8d5326bf23d13e68efa26a",
+      "git_bytes_sha256": "587c2a41d1841cd307ac63a7c97d383d9ff39b6e2cfd13f64aa78fd84208dae5",
+      "bytes": 3676
+    },
+    {
+      "path": "src/components/time-reports/PersonalTimesheet.tsx",
+      "raw_sha256": "e778834988bdd64b077769b89ab09447e60df120b48c15a042b00e748a7d2fdf",
+      "git_blob": "9715ea46cc99e1a0b07a11541a82b72e54ace1be",
+      "git_bytes_sha256": "e778834988bdd64b077769b89ab09447e60df120b48c15a042b00e748a7d2fdf",
+      "bytes": 2928
+    },
+    {
+      "path": "src/components/time-reports/TimeReportEntry.tsx",
+      "raw_sha256": "4a28dba0a0f4caa967bd420ce64ac4385f3986d93abfc3ae0fae2bc29250eb5c",
+      "git_blob": "767424a7a7dee9c6f2d6dd5379c84b65687c9a45",
+      "git_bytes_sha256": "4a28dba0a0f4caa967bd420ce64ac4385f3986d93abfc3ae0fae2bc29250eb5c",
+      "bytes": 5409
+    },
+    {
+      "path": "src/components/time-reports/TimeReportForm.tsx",
+      "raw_sha256": "1112f4ffddaa14a975819d44d23994247ff16862898b1977b82b0fd6cf78a057",
+      "git_blob": "64a47901db899a96c674afe25d53a029033a82a1",
+      "git_bytes_sha256": "1112f4ffddaa14a975819d44d23994247ff16862898b1977b82b0fd6cf78a057",
+      "bytes": 5393
+    },
+    {
+      "path": "src/components/time-reports/TimeReportReview.tsx",
+      "raw_sha256": "4861a5c9df2b4f316bf37efbf3c2668f15950069aeff9e0f8a96a52d588e84d3",
+      "git_blob": "0179483482b64cd1406794673686387494dd9440",
+      "git_bytes_sha256": "4861a5c9df2b4f316bf37efbf3c2668f15950069aeff9e0f8a96a52d588e84d3",
+      "bytes": 5774
+    },
+    {
+      "path": "src/components/time-reports/TimeReportWorkspace.tsx",
+      "raw_sha256": "abeace28aafcb8d427d3a00ae3b334c1a6c6d270cafb3b46dcaa045e9c0fd21f",
+      "git_blob": "b16cb3335dc25977433a06ba16827ad929b95efb",
+      "git_bytes_sha256": "abeace28aafcb8d427d3a00ae3b334c1a6c6d270cafb3b46dcaa045e9c0fd21f",
+      "bytes": 6679
+    },
+    {
+      "path": "src/features/time-reports/action-state.ts",
+      "raw_sha256": "c9a237798bf359093865c7add4862057afe5932356ee59ceb1626cb7acb8c357",
+      "git_blob": "3b7b53c3108e495c4dcc2b04bd9dc5613a4256a6",
+      "git_bytes_sha256": "c9a237798bf359093865c7add4862057afe5932356ee59ceb1626cb7acb8c357",
+      "bytes": 990
+    },
+    {
+      "path": "src/features/time-reports/actions.ts",
+      "raw_sha256": "2a10efe297254e4c6978a091f0eb05e61bce0349529fe10519b47e1baaca3c14",
+      "git_blob": "73145c5bbf93253ba568f6ab96e6afda29f69286",
+      "git_bytes_sha256": "2a10efe297254e4c6978a091f0eb05e61bce0349529fe10519b47e1baaca3c14",
+      "bytes": 1645
+    },
+    {
+      "path": "src/features/time-reports/domain.ts",
+      "raw_sha256": "e5bc30efe2558a8bbffee770e81d9ebcbee99cb6c3573b79e541c8ca2a93a59a",
+      "git_blob": "452df61004e1521b1884fdfadb710578f719b059",
+      "git_bytes_sha256": "e5bc30efe2558a8bbffee770e81d9ebcbee99cb6c3573b79e541c8ca2a93a59a",
+      "bytes": 3344
+    },
+    {
+      "path": "src/features/time-reports/types.ts",
+      "raw_sha256": "15f3aff25665d75cdc0245f06c5cc59300c9e83a532a520a106ac27b4a0454f0",
+      "git_blob": "5ceec363aaf32f8c0f692fce4103044bbf6de38d",
+      "git_bytes_sha256": "15f3aff25665d75cdc0245f06c5cc59300c9e83a532a520a106ac27b4a0454f0",
+      "bytes": 2932
+    },
+    {
+      "path": "src/features/time-reports/validation.ts",
+      "raw_sha256": "84ddbbc582435e60f04532e90e007636d72498cfa8bc3029e0ba86e7b6c3a0a2",
+      "git_blob": "2afbaadbf93c504576464c18ed0d5b23d34f7fab",
+      "git_bytes_sha256": "84ddbbc582435e60f04532e90e007636d72498cfa8bc3029e0ba86e7b6c3a0a2",
+      "bytes": 2770
+    },
+    {
+      "path": "src/scope/manifest.ts",
+      "raw_sha256": "61d54f63c309470038426fa69fa64dd40fd5fb9b402fdc727eeb748f9129527b",
+      "git_blob": "b3e4edaa98abc2bb4474f926b86a03d958703217",
+      "git_bytes_sha256": "eb3f12e50a13096010c2c2712af415d3254750a007def6413fcf1b3434e7684a",
+      "bytes": 18271
+    },
+    {
+      "path": "src/server/authz/permission-matrix.ts",
+      "raw_sha256": "b839190977e94262ac68ca8d57a631449f08b0c50335b3e6e9f0830f55f390fc",
+      "git_blob": "426da1a3e4aa856a4d95d45ad11be7f14cbd1f44",
+      "git_bytes_sha256": "470a2d0932c78a178d192fb94a5693a98c689f2e8e8c50b2be6ac780c7849c04",
+      "bytes": 7914
+    },
+    {
+      "path": "src/server/commands/envelope.ts",
+      "raw_sha256": "ce5fa6b75e5950256e891a2bc39c53cdb81df2c03393c74d0c425767291dd6eb",
+      "git_blob": "c8974d7955d12f188e9214d854365780c2eea747",
+      "git_bytes_sha256": "c5671d4717b91b8c430285b51c60d5c5f0c7bb463c4d010d71a54fd88c054daa",
+      "bytes": 16855
+    },
+    {
+      "path": "src/server/commands/time-reports/annotate-time-report.ts",
+      "raw_sha256": "30d681db0c75a1723070b5ec11e9c65cddd087f03de8bfd7fb9260e19dc3bc21",
+      "git_blob": "3371944dd2f475a1c2cc69ebfadff698062c97e5",
+      "git_bytes_sha256": "30d681db0c75a1723070b5ec11e9c65cddd087f03de8bfd7fb9260e19dc3bc21",
+      "bytes": 756
+    },
+    {
+      "path": "src/server/commands/time-reports/file-time-report.ts",
+      "raw_sha256": "95fde74c84a75d0bb2348c4ac5bf0c0247106af5634dce5ec974bd0cf5386bfc",
+      "git_blob": "08fad8df3d1410da38f8241336269160fcabb3dd",
+      "git_bytes_sha256": "95fde74c84a75d0bb2348c4ac5bf0c0247106af5634dce5ec974bd0cf5386bfc",
+      "bytes": 724
+    },
+    {
+      "path": "src/server/commands/time-reports/time-report-db.ts",
+      "raw_sha256": "a22a8a76a39b1f157ef21f7260ab40b403853bdcc2f7fb70531c3e5a1101e343",
+      "git_blob": "56675bf391b8f7769a099f4a57f20d3e8965f523",
+      "git_bytes_sha256": "a22a8a76a39b1f157ef21f7260ab40b403853bdcc2f7fb70531c3e5a1101e343",
+      "bytes": 1229
+    },
+    {
+      "path": "src/server/jobs/producers.ts",
+      "raw_sha256": "64e09ba04a26a6433869ebd454245f7a98bd077bb41df14ba5e71a376d4292ad",
+      "git_blob": "b6f6110a0001eabf05253fa8405f98d313dc6576",
+      "git_bytes_sha256": "5ffc13b008bddfb847642c34ad9f05dce4d18bc74e175bb77b4e6578e9616885",
+      "bytes": 1802
+    },
+    {
+      "path": "src/server/notifications/registry.ts",
+      "raw_sha256": "8eeae7974ea50ca707121edb07097998339002377ed16648aec770bc3b0e9e84",
+      "git_blob": "025b71ad0944cf6c8ae21a451117a8dee0f3e9f3",
+      "git_bytes_sha256": "21beb16d0a10a7d58338764a4eb861830e5161229fdd30e93d9fa3661c6e4d1a",
+      "bytes": 2014
+    },
+    {
+      "path": "src/server/notifications/time-report-nudge-producer.ts",
+      "raw_sha256": "b5d6c8bd2e7dffff6787b687e704fae93620dbf49426d518211b237d193c0ca3",
+      "git_blob": "e138e600cb9a3cfeec20c03835fbf8e977dba550",
+      "git_bytes_sha256": "b5d6c8bd2e7dffff6787b687e704fae93620dbf49426d518211b237d193c0ca3",
+      "bytes": 1956
+    },
+    {
+      "path": "src/server/read-models/time-reports.ts",
+      "raw_sha256": "5338283663b0268d82dd460d62f88855d6d4cb61200caa8694a26435417bd7ae",
+      "git_blob": "6f19961d9ede4d2e67c7f37cb0e7c790489fc6cc",
+      "git_bytes_sha256": "5338283663b0268d82dd460d62f88855d6d4cb61200caa8694a26435417bd7ae",
+      "bytes": 11789
+    },
+    {
+      "path": "supabase/migrations/20261020190000_time_reports.sql",
+      "raw_sha256": "7175a3e5bf266f93a163ca4e6f240f966b872600e58b852934318695b5e3a8aa",
+      "git_blob": "449c95845ee10382a718ff781bd36140d502a46b",
+      "git_bytes_sha256": "7175a3e5bf266f93a163ca4e6f240f966b872600e58b852934318695b5e3a8aa",
+      "bytes": 22105
+    },
+    {
+      "path": "tests/e2e/jobs/job-list-deferred-surface.e2e.spec.ts",
+      "raw_sha256": "3f8df2b0cc0e21e3c1357700aad5352b708b2027a0c5ffd358b32dbd1d5f5476",
+      "git_blob": "a2b30026f2e1b0facc877b2d7dc005b70389f941",
+      "git_bytes_sha256": "b4244c596977020e77c4de42d3cfe23272530d84a4ffdeefd226ff87885d318c",
+      "bytes": 6752
+    },
+    {
+      "path": "tests/e2e/support/time-reports-atdd.ts",
+      "raw_sha256": "73251328b85b8b3d5911551f34c582c7063bb48fbf844c69d664a39ce8554441",
+      "git_blob": "8b262142dfa56e35726140fc46966e5a378b4a86",
+      "git_bytes_sha256": "9c6f60f932b50364b0bdd8f9849b1dd6b102277275e49ab9f2eda04cb72618a7",
+      "bytes": 15506
+    },
+    {
+      "path": "tests/e2e/time-reports.e2e.spec.ts",
+      "raw_sha256": "aeb3330c19b1a716f05994fe37bcb568575bd3abc0d10fc3bae332f0f101085c",
+      "git_blob": "8afaa9a13b4e6e1cede6c38cf68cd17d9e54a3eb",
+      "git_bytes_sha256": "4e318e2ed29bf484c21353a2139bac5b70df84682f63d9907aaa960eea667490",
+      "bytes": 16104
+    },
+    {
+      "path": "tests/integration/commands/time-reports.int.test.ts",
+      "raw_sha256": "fba465dce98b1d3c2e3d351ffd605954e4569e66024e20b6115df7c35aef8e2f",
+      "git_blob": "6c6f80ad1739db06bf774303b0a0ffb608303be4",
+      "git_bytes_sha256": "1c26253f57108e60191d0dd617abba86bc69a6df605533bf9b44f5e679c9d6ca",
+      "bytes": 18382
+    },
+    {
+      "path": "tests/integration/components/time-reports.test.ts",
+      "raw_sha256": "7b8cb04c21f06e34841bd0a613b0e1f37d067c8f345f813ddb49564617f91ca0",
+      "git_blob": "3ecb556b41a5e692876eb798dfba57e9bfacf53c",
+      "git_bytes_sha256": "7b8cb04c21f06e34841bd0a613b0e1f37d067c8f345f813ddb49564617f91ca0",
+      "bytes": 4666
+    },
+    {
+      "path": "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+      "raw_sha256": "e80ee9135f1b940c36712343e92cf66d6d2a21642cf1d01dd3e78ff6fab0a29e",
+      "git_blob": "8e4238cd93d638b5316f55aa8e23059e184d32cd",
+      "git_bytes_sha256": "582aedd82442def51f25cd9a5eac365166c67c3c259d502266ce50a19c266add",
+      "bytes": 19728
+    },
+    {
+      "path": "tests/integration/read-models/time-reports.int.test.ts",
+      "raw_sha256": "4e4a0c9d9904099ac961112929b0fe103528a183498ebae3467abd4fd8a1603c",
+      "git_blob": "76154a74e76d1a7df8b54e20131119cf89834e38",
+      "git_bytes_sha256": "18993d3d616350536fb642641e75e4ded1399e73cc62e9bd40f07fc2b74b9278",
+      "bytes": 12540
+    },
+    {
+      "path": "tests/integration/rls/cross-tenant-isolation.rls.test.ts",
+      "raw_sha256": "3f3726ce595c0c12ce4870c8cfb448c7af66723a26f1156c03534b2b60526200",
+      "git_blob": "e93b9af07599183e6bee79c48db3b0331f3695f5",
+      "git_bytes_sha256": "c450a27d76d1a67380176b74fa4c83b554587c53f23dbbf9dc84f638fa170085",
+      "bytes": 40611
+    },
+    {
+      "path": "tests/integration/rls/migration-reset.int.test.ts",
+      "raw_sha256": "fe8ccd71713c78371c4cc92bb438b1e3a4fa1f16a020da3d26a55570bead41e3",
+      "git_blob": "4acc83870837e53727c2547c434cc864a6e23940",
+      "git_bytes_sha256": "e22e5ca7f2d0d73b05a3a26db6d863a92e1b2a537146f64fe0121fac6150ddbc",
+      "bytes": 36146
+    },
+    {
+      "path": "tests/integration/rls/role-harness.atdd.int.test.ts",
+      "raw_sha256": "b1a774d8dff753549eef8c3b091444df5a4de265ea860c0f38758076526ba7d6",
+      "git_blob": "07870f7f3b7fd60477436b1e56a01017d9825de1",
+      "git_bytes_sha256": "b2b3b50fce64e2b7c30b746961d56227a546a3c329b79200ca6038dd24d85466",
+      "bytes": 28020
+    },
+    {
+      "path": "tests/integration/rls/tenant-table-inventory.ts",
+      "raw_sha256": "271110c92a6b4215126ef745741da688e58ca2617ddd0d924070ea985f59b3bd",
+      "git_blob": "72215feddb224fa82524952f8a0e948a45e386ef",
+      "git_bytes_sha256": "0c42e418f9184d26a6628ed4a21a8c49f5ea4825c337402d43d2e4b0cee0ace4",
+      "bytes": 102439
+    },
+    {
+      "path": "tests/integration/rls/time-reports.rls.test.ts",
+      "raw_sha256": "5c0978b3017d2a0561caf62de23b7489defbfe16d3ad2abcaf80e2d50b2a6244",
+      "git_blob": "016976e89515a4b46205c362141ed3aee1d12802",
+      "git_bytes_sha256": "3062d8db2b03cca9043b91001a5ab78f8e7c871d0a78af581afc133e8007fc7c",
+      "bytes": 11815
+    },
+    {
+      "path": "tests/support/authz/role-harness.ts",
+      "raw_sha256": "1c5b70ff2ba4d7e3ef44b4bbe31cf36051e363c232abc29af8d809f0dc724828",
+      "git_blob": "0db7d2d75258adc8b8a97a8eb5a0f5fb702a1a63",
+      "git_bytes_sha256": "44ccc58cd362017a15c44cc375149955f340cefa68d3d07e4b198e74da9460d9",
+      "bytes": 15612
+    },
+    {
+      "path": "tests/support/time-reports-atdd.ts",
+      "raw_sha256": "bd945c0364bd8f471d79ad9e9cc3763bb0ae0d851f479373ec9a3d21f27ada5e",
+      "git_blob": "055a9ba58969008fe6b243c07c25d28c07244430",
+      "git_bytes_sha256": "1893465e746b258f2f8a16e23f9da7d20efe611bd07171c043aa9c0ce613e75d",
+      "bytes": 15585
+    },
+    {
+      "path": "tests/unit/features/scheduling/calendar-components.test.ts",
+      "raw_sha256": "d9acc4f2e33e7a410ee0933f1ffe29a3c9f1ed646cf80692f4ae6fe7f3729d75",
+      "git_blob": "29d4d8a141cb399154b199c579067cf8a2a4df80",
+      "git_bytes_sha256": "76b4ec126aaf439e1553b9559569d42b429c644d08b43ad69dd0d7cb6e6b7f6a",
+      "bytes": 19419
+    },
+    {
+      "path": "tests/unit/features/time-reports/action-state.test.ts",
+      "raw_sha256": "cae2683f099b8bd867b6f7c3177123310db9e8df81fa2d8a12abd377dcd6697a",
+      "git_blob": "85d5d3e2d560037c5e582de825d9036d698870ca",
+      "git_bytes_sha256": "cae2683f099b8bd867b6f7c3177123310db9e8df81fa2d8a12abd377dcd6697a",
+      "bytes": 2007
+    },
+    {
+      "path": "tests/unit/features/time-reports/domain.test.ts",
+      "raw_sha256": "06af1e9d3818fae9e969cbd0d010c827e5ee4bc87335faac1f0cbcc087ef237d",
+      "git_blob": "b60148f2015b6d06344b1dc4dc64a717eaf4d0ff",
+      "git_bytes_sha256": "06af1e9d3818fae9e969cbd0d010c827e5ee4bc87335faac1f0cbcc087ef237d",
+      "bytes": 4241
+    },
+    {
+      "path": "tests/unit/features/time-reports/validation.test.ts",
+      "raw_sha256": "b3c1009f66f58e662275f541a281acf0f2fe96822d43602343a46528893d89d0",
+      "git_blob": "8030a921414684c7ef10751fbec0b998f4c7b342",
+      "git_bytes_sha256": "b3c1009f66f58e662275f541a281acf0f2fe96822d43602343a46528893d89d0",
+      "bytes": 1748
+    },
+    {
+      "path": "tests/unit/scope/booking-editor-scope.test.ts",
+      "raw_sha256": "98eb8423ae7ac3dd96490bf19c2d215f9b2166476d550a4e80ef0da1b7ff2909",
+      "git_blob": "277dff7f2bc6dc340eeb0b5d89265ceec5c2f5ef",
+      "git_bytes_sha256": "4d8ef38c2558acbe86488f1db53379b3439c9019ffa52cb8e0954808a9cea219",
+      "bytes": 2068
+    },
+    {
+      "path": "tests/unit/scope/manifest-coherence.test.ts",
+      "raw_sha256": "c1333d3fcca3d67577a01a5247221f72ffd1870640bc0940e4d31e4bf2af9ffb",
+      "git_blob": "b828f0e2a4632d830d6ca80e521c24bc6252d9e3",
+      "git_bytes_sha256": "9c890d5ebf4a28cc2742058029b0fbc32f4d1afd4cc2c768ccc4df3133e0405c",
+      "bytes": 15970
+    },
+    {
+      "path": "tests/unit/scope/manifest-derivations.test.ts",
+      "raw_sha256": "452b0d2c2cc05a2c3da73100949399318ec12022a7c3d7864ee4fadfaedd7337",
+      "git_blob": "86bdd8ff848e93580c550a9975097803107291af",
+      "git_bytes_sha256": "23b0a9b4d28d0187acf53050a0d0b20263446954d5a23c8aab09cafe89df1c83",
+      "bytes": 8976
+    },
+    {
+      "path": "tests/unit/scope/manifest-shape.test.ts",
+      "raw_sha256": "a3d130ffa096146d0df7dd5d0088994be71988aafed92e5fcff4cfc7b35a1e8d",
+      "git_blob": "5482cc603256a4f0cdb14c738295678dee344435",
+      "git_bytes_sha256": "2fa452ce4427eebc497e4394d6b16be9f6def0c65ebc1ec785a48ed062f6bd2c",
+      "bytes": 10624
+    },
+    {
+      "path": "tests/unit/scope/resources-activation.atdd.test.ts",
+      "raw_sha256": "df2b76d1f56a1021a6f75143426ddd3fbf3964d52c4401f116c70849683b6fe4",
+      "git_blob": "d17b01f8ccd9afa24d7b245408ed04e3333425f1",
+      "git_bytes_sha256": "4bcebb08a9ebee4af7479875f35eb9af526c85a4184889894b89138ed6787d20",
+      "bytes": 1641
+    },
+    {
+      "path": "tests/unit/scripts/verify/integration-test-partitions.test.ts",
+      "raw_sha256": "265fd3aeab80a82fd6903e2c556b97df04b0c614620ae594fd4543fe57e8b935",
+      "git_blob": "afc6831d95a68197ddb9d2c9aeca0cd86674224b",
+      "git_bytes_sha256": "d2c61a4d7a8f4e19c2a2a611d3f5e5d4a39ef5f732ed7669bd636e9cba84d7a6",
+      "bytes": 8513
+    },
+    {
+      "path": "tests/unit/server/authz/permission-matrix.test.ts",
+      "raw_sha256": "0200b1d2009b5aa7306b2d6b43d6c5e58774a289cd8ebec745b23c2a81ea795e",
+      "git_blob": "4dd52bba4f754a4fa1eeeaa5f41a21325edd4a0f",
+      "git_bytes_sha256": "878c41f724bd48333226a9b6a48d8c4b6b582e466193121a2bbbf23df9a8000a",
+      "bytes": 4743
+    },
+    {
+      "path": "tests/unit/server/jobs/producer-registry.test.ts",
+      "raw_sha256": "68398c8bc976100dd9f53a75ee6c06db20b94e4e7d718c5a5d8315410ff2207d",
+      "git_blob": "1cb860f5498033a542bf7ee9a79afe770ebbdf1d",
+      "git_bytes_sha256": "75d61cfb237ca25c2eab106966a4a3084000f823cf9d48d5ceb77a99fe195e22",
+      "bytes": 1538
+    },
+    {
+      "path": "tests/unit/server/notifications/registry.test.ts",
+      "raw_sha256": "1fed11555ed6625753ee08af10eb14c0fa9ec17c8d60ed67f3581516ab09ed25",
+      "git_blob": "0accb522fd0186d01b88d1b9353dfbf1e6b0d3dd",
+      "git_bytes_sha256": "62d932fd2e9e07b29d0470b9b3fbdcc0704d74b025bcf2cd730a0f72fbc04851",
+      "bytes": 1861
+    },
+    {
+      "path": "vitest.config.ts",
+      "raw_sha256": "8cd410556ef614c306f54496c595e110ee214f4804d81468e95f350fabd2704c",
+      "git_blob": "8341b76418cb00582d74081befb76152745d1418",
+      "git_bytes_sha256": "6966ddbf1e15a16d371f5df21b521bf0779ff2fe7db8e16e3afe3a9baccb8306",
+      "bytes": 3372
+    }
+  ],
+  "original_preparation": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-4/artifact-manifest.json",
+      "raw_sha256": "e3dde1b45cc3fb9e4d8aeadde4d8f5e607678ab5c4c134c1e90c3ad49f0f958f",
+      "baseline_blob": "34391a18cc2879ea122d0f82e5cee7ea8fd353f0",
+      "current_blob": "34391a18cc2879ea122d0f82e5cee7ea8fd353f0",
+      "unchanged_git_blob": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-4/candidate-intent-contract.txt",
+      "raw_sha256": "3c701d71dba37a136ae104fd24c3b223ef46081913301fb43ff92baca3f16ffb",
+      "baseline_blob": "3e82e3e526ceaf859b5b61ba8c1cafff66d1a0bf",
+      "current_blob": "3e82e3e526ceaf859b5b61ba8c1cafff66d1a0bf",
+      "unchanged_git_blob": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-4/current-contracts-and-design.md",
+      "raw_sha256": "3fee10561a6c63360422e2a459f810fe61f90cdc07d11a9a3c5feeb6a8b542aa",
+      "baseline_blob": "661f1e9fabdb05ae7f2b78f6d31b6b044dbfbeea",
+      "current_blob": "661f1e9fabdb05ae7f2b78f6d31b6b044dbfbeea",
+      "unchanged_git_blob": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-4/implementation-ownership-handoff.md",
+      "raw_sha256": "05e5a0fc52bf60d83298d871aef7d95772e6a4d1006972b336ab198e68613eba",
+      "baseline_blob": "e09696b5d289dda448c27f7cfd8701eca717e786",
+      "current_blob": "e09696b5d289dda448c27f7cfd8701eca717e786",
+      "unchanged_git_blob": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-4/independent-validation/check-candidate.py",
+      "raw_sha256": "b6ee395d7bcf416b94ccfcacd84563c0e8c0f5eb0234128212897c474a048c11",
+      "baseline_blob": "a2aa8dff303f4659d747654e99cc4bfbe4d0b461",
+      "current_blob": "a2aa8dff303f4659d747654e99cc4bfbe4d0b461",
+      "unchanged_git_blob": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-4/independent-validation/machine-checks.json",
+      "raw_sha256": "81f15eb3577c8118af5bf4b40cd5ab4c2484e23bd65db6c973ab2ff00425261c",
+      "baseline_blob": "d4ce4eab4ef2e316a235bf7aa1dcb4f7b24cd620",
+      "current_blob": "d4ce4eab4ef2e316a235bf7aa1dcb4f7b24cd620",
+      "unchanged_git_blob": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-4/independent-validation/report.json",
+      "raw_sha256": "bc2a5e15a4a588a6de0dd974ca40424927767abd1ad5e88ead7e2d33245bfdaa",
+      "baseline_blob": "7a814509ebf1b369edeb0d2722d9bbcb5f1c0325",
+      "current_blob": "7a814509ebf1b369edeb0d2722d9bbcb5f1c0325",
+      "unchanged_git_blob": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-4/independent-validation/report.md",
+      "raw_sha256": "e386834d6fb944f9fc68c75593a4ecc7e2ff198122626b0c611fb863cdf7e95a",
+      "baseline_blob": "35e900b54814d4fab6a8edf22c8dfe3fa8393aab",
+      "current_blob": "35e900b54814d4fab6a8edf22c8dfe3fa8393aab",
+      "unchanged_git_blob": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-4/independent-validation/sha256-manifest.json",
+      "raw_sha256": "c90dbf3fb6b98351085f78573f1a09ea6fb681fdb90eb087aa4a294bf01956a9",
+      "baseline_blob": "e43ac10487e31d6f2a6fed3a4adead36867b724a",
+      "current_blob": "e43ac10487e31d6f2a6fed3a4adead36867b724a",
+      "unchanged_git_blob": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-4/planning-routes.md",
+      "raw_sha256": "b443db94f21eb9755edce4afb68055b058b14d3077ae1e73aa8b3c867352a3a3",
+      "baseline_blob": "fd6172cf17b315fca1e0185281e7e458c9d92e0d",
+      "current_blob": "fd6172cf17b315fca1e0185281e7e458c9d92e0d",
+      "unchanged_git_blob": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-4/source-preservation-after.json",
+      "raw_sha256": "04069ec2a6f684ccc2448068af298485cbb404cb47893fad3e52167664dcde4f",
+      "baseline_blob": "a3e4d873d44d6da337450f3c8a95893209bbd1c4",
+      "current_blob": "a3e4d873d44d6da337450f3c8a95893209bbd1c4",
+      "unchanged_git_blob": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-4/source-preservation-before.json",
+      "raw_sha256": "3706fce576690683a24e49a1bd6f400ef1b543f052ff910a1a139c7102a8291b",
+      "baseline_blob": "4b68be9e77784d844cbf5e47187cb1474a7d70f3",
+      "current_blob": "4b68be9e77784d844cbf5e47187cb1474a7d70f3",
+      "unchanged_git_blob": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-4/spec-discovery.json",
+      "raw_sha256": "41ed6bbdf044eab846f3498fb97139f7119aa63ebfbd40d69f2482f5af0464b5",
+      "baseline_blob": "1661197f716a689c02fb57cb08bf37b88baad6d1",
+      "current_blob": "1661197f716a689c02fb57cb08bf37b88baad6d1",
+      "unchanged_git_blob": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-4/spec-reader.json",
+      "raw_sha256": "853ee3d0de5bdef85359cbd91337d988d61ea8fb674bcc241083af48f691d6de",
+      "baseline_blob": "88a851f1670ab366ec6f09bec612442bbbd3f8f3",
+      "current_blob": "88a851f1670ab366ec6f09bec612442bbbd3f8f3",
+      "unchanged_git_blob": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-4/spec-self-validation.md",
+      "raw_sha256": "80006f535c6ee398ef8c597b410bd0ef1e6335bf688d5eff46e3bfa1b4c22cf7",
+      "baseline_blob": "06a30525d87d37c98d2c0b4ae1e2a7dbba2b5fcc",
+      "current_blob": "06a30525d87d37c98d2c0b4ae1e2a7dbba2b5fcc",
+      "unchanged_git_blob": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-4/story-file-audit.md",
+      "raw_sha256": "f0c5de140b480a9be92f17563463a895f7a1a54813c91bc1b1a1c22e765afa61",
+      "baseline_blob": "140ec093096251ce20d434c62ebf122d3927a862",
+      "current_blob": "140ec093096251ce20d434c62ebf122d3927a862",
+      "unchanged_git_blob": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-4/validate-planning.py",
+      "raw_sha256": "0b36f3bdd4ff67319ff9640dd05ee30da3d66357e08e219ea995f1ddbfa6754e",
+      "baseline_blob": "311054b47936979a2a010420f61955e16fefaccd",
+      "current_blob": "311054b47936979a2a010420f61955e16fefaccd",
+      "unchanged_git_blob": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-4/validation.json",
+      "raw_sha256": "355c205b9ee776ef9877beec174195c1c68e24310bd9c2d9d53789c707fa7322",
+      "baseline_blob": "1af7b85c92b31c80390f26cf19c7e6e5f5dc3eae",
+      "current_blob": "1af7b85c92b31c80390f26cf19c7e6e5f5dc3eae",
+      "unchanged_git_blob": true
+    }
+  ],
+  "protected_migrations": [
+    {
+      "path": "supabase/migrations/20261019180000_recurring_booking_series.sql",
+      "raw_sha256": "24f6982758c9f46c61d3f4fd34ebaaf599a809c8cf6c72e8223544aa73c9f1bd",
+      "baseline_blob": "c3d62afa505cfe753b15fa097a58c40183d84e1f",
+      "current_blob": "c3d62afa505cfe753b15fa097a58c40183d84e1f",
+      "unchanged_git_blob": true
+    },
+    {
+      "path": "supabase/migrations/20261019220000_booking_series_integrity_followup.sql",
+      "raw_sha256": "c55d1de17b3829e97212076d2627f5b22645126894a8deb7af4b80596b45b44d",
+      "baseline_blob": "0ef010db678b1719e3b4dae1d0803962d181a4ff",
+      "current_blob": "0ef010db678b1719e3b4dae1d0803962d181a4ff",
+      "unchanged_git_blob": true
+    },
+    {
+      "path": "supabase/migrations/20261020000000_booking_series_cancelled_role_retention.sql",
+      "raw_sha256": "3e231ef7d1018966c1574b672123b9b7b906314f7edeb47e9791d5ee7af0dcaa",
+      "baseline_blob": "8acccde4f0b3e59c9a114552518176c49ec6a019",
+      "current_blob": "8acccde4f0b3e59c9a114552518176c49ec6a019",
+      "unchanged_git_blob": true
+    },
+    {
+      "path": "supabase/migrations/20261020180000_conflict_resolver.sql",
+      "raw_sha256": "8a61165664b397b43724fe00dc444d6ab64100321fb87c7baa126d93d1b108ae",
+      "baseline_blob": "568c1160b07ae40629f73f2b824c164f2eecf4e0",
+      "current_blob": "568c1160b07ae40629f73f2b824c164f2eecf4e0",
+      "unchanged_git_blob": true
+    }
+  ],
+  "kernel_sha256": "3c701d71dba37a136ae104fd24c3b223ef46081913301fb43ff92baca3f16ffb",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "reason": "authorization/RLS/tenant isolation/transaction integrity mixed diff",
+  "layers": [
+    "blind-hunter",
+    "edge-case-hunter",
+    "verification-gap",
+    "intent-alignment",
+    "auto-bmad-security",
+    "auto-bmad-cross-model"
+  ],
+  "rederivation_iteration": 0,
+  "review_rounds_completed": 0,
+  "pending_runtime": [
+    "clean canonical lint and Linux xattr",
+    "SUPABASE_TEST_REQUIRED=1 full DB/RLS",
+    "current history migration replay/seed/H4/ACL",
+    "direct physical recovery Storage",
+    "three essential report browsers plus unchanged auth/jobs/resolver smoke",
+    "Root independent exact-head native CI qualification",
+    "author delivery/root delivery gate/distinct truth provenance acceptance"
+  ]
+}

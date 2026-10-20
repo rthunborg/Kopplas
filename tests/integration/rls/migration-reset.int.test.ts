@@ -697,14 +697,14 @@ it("[P0] 15.4 migration enrolls exact safe columns, composite links and hardened
   }
   const checked = ["file_time_report(uuid,uuid,uuid,jsonb,uuid)","annotate_time_report(uuid,uuid,uuid,jsonb,uuid)","time_report_own_context(uuid,timestamp with time zone,timestamp with time zone)"];
   const service = "emit_time_report_nudges(uuid,timestamp with time zone,text,uuid)";
-  const privateFunctions = ["time_report_actor_gate_internal(uuid,uuid,boolean)","time_report_immutable_core()"];
+  const privateFunctions = ["time_report_actor_gate_internal(uuid,uuid,boolean)","time_report_immutable_core()","time_report_preference_gate()"];
   const functions = await adminQuery<{signature:string; definer:boolean; config:string[]|null; public_execute:boolean; anon:boolean; authenticated:boolean; service:boolean}>(`
     select p.oid::regprocedure::text signature,p.prosecdef definer,p.proconfig config,
       exists(select 1 from aclexplode(coalesce(p.proacl,acldefault('f',p.proowner))) a where a.grantee=0 and a.privilege_type='EXECUTE') public_execute,
       has_function_privilege('anon',p.oid,'EXECUTE') anon,has_function_privilege('authenticated',p.oid,'EXECUTE') authenticated,
       has_function_privilege('service_role',p.oid,'EXECUTE') service
     from pg_proc p join pg_namespace n on n.oid=p.pronamespace where n.nspname='public' and p.proname in
-      ('file_time_report','annotate_time_report','time_report_own_context','emit_time_report_nudges','time_report_actor_gate_internal','time_report_immutable_core')`);
+      ('file_time_report','annotate_time_report','time_report_own_context','emit_time_report_nudges','time_report_actor_gate_internal','time_report_immutable_core','time_report_preference_gate')`);
   expect(functions.map(fn => fn.signature).sort()).toEqual([...checked,service,...privateFunctions].sort());
   for (const fn of functions) {
     assertSearchPathExactlyEmpty(fn.signature,fn.config);

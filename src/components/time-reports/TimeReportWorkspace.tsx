@@ -3,6 +3,7 @@ import { useRef, useState } from "react";
 import { Dialog } from "@/components/crm/Dialog";
 import { readTimeReportsAction } from "@/features/time-reports/actions";
 import { formatReportMinutes, reportWeekStart, shiftReportDate } from "@/features/time-reports/domain";
+import { currentTimeReportResponse } from "@/features/time-reports/action-state";
 import { isReportDate } from "@/features/time-reports/validation";
 import type { TimeReport, TimeReportQuery, TimeReportReadResult } from "@/features/time-reports/types";
 import { PersonalTimesheet, TimeReportLinks } from "./PersonalTimesheet";
@@ -17,13 +18,13 @@ export function TimeReportWorkspace({initial,initialQuery,readAction=readTimeRep
  const [authority,setAuthority]=useState(initial.ok?initial.data:null);
  const week=query.weekStart??query.week??(initial.ok?initial.data.weekStart:""),review=query.mode==="review";
 
- async function load(next:TimeReportQuery=query){const current=++sequence.current;setQuery(next);setLoading(true);try{const read=await readAction(next);if(sequence.current===current){setResult(read);if(read.ok)setAuthority(read.data);}}catch{if(sequence.current===current)setResult({ok:false,status:"error",code:"READ_FAILED"});}finally{if(sequence.current===current)setLoading(false);}}
+ async function load(next:TimeReportQuery=query){const current=++sequence.current;setQuery(next);setLoading(true);try{const read=await readAction(next);if(currentTimeReportResponse(sequence.current,current)){setResult(read);if(read.ok)setAuthority(read.data);}}catch{if(currentTimeReportResponse(sequence.current,current))setResult({ok:false,status:"error",code:"READ_FAILED"});}finally{if(currentTimeReportResponse(sequence.current,current))setLoading(false);}}
 
  function refresh(){setSelected(null);setReviewDirty(false);setReviewBusy(false);void load();}
 
  return <main className="mx-auto max-w-6xl space-y-6 p-4 sm:p-6"><div className="flex flex-wrap items-center justify-between gap-3"><h1 className="text-2xl font-semibold">Tidrapporter</h1>{authority?.canReportOwn&&<TimeReportEntry jobs={result.ok?result.data.jobs:[]} bookings={result.ok?result.data.bookings:[]} onSaved={()=>void load()}/>}</div>
 
-  <div className="flex flex-wrap items-end gap-3"><label className="space-y-1"><span className="block text-sm">Vecka</span><input type="date" className={timeReportFieldClass} value={week} onChange={event=>{if(isReportDate(event.target.value))void load({...query,week:undefined,weekStart:reportWeekStart(event.target.value)});}}/></label><button type="button" disabled={!week} className={timeReportButtonClass} onClick={()=>void load({...query,week:undefined,weekStart:shiftReportDate(week,-7)})}>Föregående vecka</button><button type="button" disabled={!week} className={timeReportButtonClass} onClick={()=>void load({...query,week:undefined,weekStart:shiftReportDate(week,7)})}>Nästa vecka</button><button type="button" className={timeReportButtonClass} onClick={()=>void load()}>Uppdatera</button></div>
+  <div className="flex flex-wrap items-end gap-3"><label className="space-y-1"><span className="block text-sm">Vecka</span><input type="date" className={timeReportFieldClass} value={week} onChange={event=>{if(isReportDate(event.target.value))return load({...query,week:undefined,weekStart:reportWeekStart(event.target.value)});}}/></label><button type="button" disabled={!week} className={timeReportButtonClass} onClick={()=>void load({...query,week:undefined,weekStart:shiftReportDate(week,-7)})}>Föregående vecka</button><button type="button" disabled={!week} className={timeReportButtonClass} onClick={()=>void load({...query,week:undefined,weekStart:shiftReportDate(week,7)})}>Nästa vecka</button><button type="button" className={timeReportButtonClass} onClick={()=>void load()}>Uppdatera</button></div>
 
   {authority?.canReview&&<nav role="tablist" aria-label="Tidrapportläge" className="flex flex-wrap gap-3"><button type="button" role="tab" aria-selected={!review} className={timeReportButtonClass} onClick={()=>void load({weekStart:week,mode:"own"})}>Min vecka</button><button type="button" role="tab" aria-selected={review} className={timeReportButtonClass} onClick={()=>void load({weekStart:week,mode:"review"})}>Granska</button></nav>}
 
