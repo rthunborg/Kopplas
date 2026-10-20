@@ -1,0 +1,60 @@
+{
+  "kind": "author-pre-edit-route",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "source": "4562cfd0031b32b6921f668cd953384b64116973",
+  "checkpoint": "fae644b5349744a531008e2224ca3a08d596836e",
+  "route": "build-author-owned-lifecycle-redaction-repair",
+  "author_owned": [
+    "scripts/ci/with-calendar-feed-runtime.mjs",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+    "tests/support/calendar-feed-ci-contract.ts",
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"
+  ],
+  "browser_delegate_owned": [
+    "tests/e2e/calendar-feed.e2e.spec.ts",
+    "tests/e2e/support/calendar-feed-atdd.ts"
+  ],
+  "authorization": "Parent relayed Root implementation route build-native-settlement-browser-diagnostic-repair before this write; exact six existing paths; no workflow/application/INT015/privilege change.",
+  "native_evidence": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-fae644b5-ci-independent/native-qualification.json",
+      "bytes": 24230,
+      "sha256": "552a8dd93c0d696df833589b20724fb01049acc4f766fd87a7bdede3aa015409"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-fae644b5-ci-independent/manifest.json",
+      "bytes": 3903,
+      "sha256": "577da8debd76e3a108ccaaf524abdfc414292e45033c38d9f21021d6138bf8ac"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-failed-fae644b5-packet-admission.json",
+      "bytes": 1359,
+      "sha256": "f9c70a96406477d11576638a73a01c43a951a69519b6acd4f3df442e642650b4"
+    }
+  ],
+  "native_truth": {
+    "run": 39474891873,
+    "verify_passed": 3105,
+    "wrapper_simulations_separate": 33,
+    "feature_node_passed": 30,
+    "feature_browser_failed": 14,
+    "browser_failed_attempts": 28,
+    "feature_db_unexecuted": 51,
+    "recovery_separate_passed": 1,
+    "setup_authority_seven": true,
+    "privacy_four": true,
+    "attachment_bodies": null,
+    "privacy": "UNQUALIFIED"
+  },
+  "injected_evidence": "Prior ephemeral actual-stopper/full-wrapper reproduction reaches missing-leader after successful build and unsafe unobserved response ordering; proves reachable paths only, not native cause.",
+  "constraints": [
+    "No managed/runtime/probes or real signals",
+    "No fourth broad review",
+    "Captured valid identity required; no anonymous group signal",
+    "Passive actual absence within existing budgets; latch observed absence; bounded done/output",
+    "Preserve COMMIT uncertainty, primary+all cleanup failures, key custody and browser exit1 fence",
+    "Browser delegate owns two files until final handback; never revert concurrent work",
+    "Exact six source/spec commit before distinct High latest-delta review; no push; Root metadata excluded"
+  ]
+}

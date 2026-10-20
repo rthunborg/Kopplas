@@ -1,0 +1,13 @@
+diff --git a/tests/e2e/support/calendar-feed-atdd.ts b/tests/e2e/support/calendar-feed-atdd.ts
+index 029748f2..2ab44ffc 100644
+--- a/tests/e2e/support/calendar-feed-atdd.ts
++++ b/tests/e2e/support/calendar-feed-atdd.ts
+@@ -279,7 +279,7 @@ export type ArmedFault = {
+ export type CalendarBrowserFixture = {
+   /** Fixture is tenant-isolated, with legacy NULL provisioning_state positive,
+    * own/shared planned rows and peer/foreign poison rows, stable independent UIDs.
+-   * Reuses withBookingFixture/FixtureUser/adminQuery; no host env file or
++   * Composes canonical role/profile/client fixtures locally; no host env file or
+    * globally shared fixture/key is created in this helper.
+    */
+   expectedOwnEvents: SafeEvent[];

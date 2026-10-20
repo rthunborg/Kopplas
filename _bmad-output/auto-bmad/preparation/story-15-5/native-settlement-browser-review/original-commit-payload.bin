@@ -1,0 +1,10 @@
+tree 7998336c681e1ef861430cc94474eb9acffa3eed
+parent fae644b5349744a531008e2224ca3a08d596836e
+author RThunborg <r.alestigthunborg@gmail.com> 1792522955 +0200
+committer RThunborg <r.alestigthunborg@gmail.com> 1792522955 +0200
+
+fix(story-15-5): settle owned children and sanitize browser failures
+
+Observe actual group absence after a captured leader exits without signaling
+anonymous groups. Join browser transport/readback before fixture cleanup and
+retain closed diagnostics, primary failures and unverified secret custody.

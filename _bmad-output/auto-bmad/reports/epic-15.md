@@ -2017,3 +2017,73 @@ No archive ran this resume.
 1. None within explicitly reconciled/admitted conditional scope.
 
 **Next:** Actual native evidence and delivery/truth gates if all required checks pass.
+
+## Report — 2026-10-20T18:50:54Z (continuing — sixth native failure qualified; bounded safety repair admitted)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `fae644b`).
+**Pipeline status:** Story15.5 P5 active. Exact checkpoint run39474891873 attempt1 failed DB child settlement and14executed browser cases. Development complete and release ready remain false.
+**Continues:** Existing explicit High author implements six already owned files for passive process settlement, immediate promise rejection observation and closed failure-stage diagnostics, then independent targeted High committed-delta review and fresh exact-head CI.
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 269h 53m (≈54h 27m AI-run, ≈215h 25m human/idle wait); resumed 56×.
+
+**Stories:**
+1. 15.1–15.4 landed internally;15.5 in review;15.6 backlog.
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** Native Node3105PASS0failed0skip, Python43PASS, recovery1PASS, wrapper33 and prior browser17 separate. Feature95=30NodePASS+14browserFAIL+51DBunexecuted; browser14eachone retry=28failed attempts. Both runtime clients qualified original authority7/privacy4, but both key custody outcomes remain unverified. Root mechanically verified23files+self,67raw/Git-clean sources,134actual source/checkpoint blobs and all9actual job identities.
+
+**Retrospective:** (none)
+
+**Overrides:** Existing accepted ownership/bootstrap/browser allocations retained; exact six existing paths only. No application/matcher/assertion changes, global recorder/attachment removal, privilege/INT015/workflow/provider/secret/resource launch expansion. No foreign checkout changes, main merge or deployment. All six failed native histories retained; three broad review rounds capped; final draft predicate unchanged.
+
+**Open questions:**
+1. Actual seven browser timeout causes remain unknown. Injected lifecycle/rejection reproductions prove reachable source paths, not native cause.
+2. Published browser archive has28error-context metadata references, zero inline bodies and no physical attachments; content checks are NULL unavailable/unqualified. Metadata proves neither leak nor privacy PASS. DB child exit0 does not prove group absence or output settlement.
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:**
+1. None within the existing explicitly admitted six-file safety and diagnostic scope.
+
+**Next:** Complete bounded repair and local meaningful checks; independent exact committed-delta High review; immutable successor freeze and Root checkpoint qualification. No fourth broad review or blind rerun.
+
+## Report — 2026-10-20T19:24:22Z (continuing — reviewed lifecycle and browser diagnostic checkpoint)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `e3f1c2e`).
+**Pipeline status:** Story15.5 P5 active. Six-owned-path safety/closed-diagnostic repair33b plus append-only three-path async-SQL settlement fixe3 independently reviewed with explicit composite provenance; seventh immutable source record mechanically admitted.
+**Continues:** Root checkpoint push and one exact-head CI; independent High native qualification checks actual child/key settlement, full integration/RLS, recovery integrity and essential browser cases.
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 270h 26m (≈54h 27m AI-run, ≈215h 59m human/idle wait); resumed 57×.
+
+**Stories:**
+1. 15.1–15.4 landed internally;15.5 in review;15.6 backlog.
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** Current local bootstrap/pure-source51PASS0fail0skip0cancel, typecheck/lint0warnings/kernel/SRO42PASS. Historical33b326consumerPASS remains separate. Original33b targeted review NOTPASS finding preserved; fresh distinct High exacte3 three-path fix-only PASS resolves it, with findings-free unchanged33b paths explicitly reused. Root67raw/Git-clean/sourceblobs,272refs239unique,394failed-head equalities,146protected+69prep and12baseline-only mutable observations verified. All current-source native acceptance remains unexecuted.
+
+**Retrospective:** (none)
+
+**Overrides:** Exact existing six-file allocation; no matcher/application/assertion, privilege/INT015/workflow/provider/secret/resource expansion, foreign checkout changes, main merge or deployment. All six native failures remain qualified failures. Three broad rounds capped; final draft predicate unchanged. Unpublished pre-review comment amendment originala84 retained on local branch; final review bindings use actual33b and append-onlye3.
+
+**Open questions:**
+1. Actual browser trigger causes remain unproven; new closed diagnostics are for native qualification.
+2. Prior browser artifact attachment contents unavailable; content checks NULL/unqualified, metadata neither leak nor PASS. Prior child/key custody unresolved; no cleanup success inferred.
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:**
+1. None within admitted bounded repair/checkpoint scope.
+
+**Next:** Run unrestricted staged validation and exact frozen-artifact format qualification; commit/push reviewed checkpoint, then one native CI run. Delivery and done gates remain closed until required evidence qualifies.

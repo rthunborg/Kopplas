@@ -1,0 +1,44 @@
+{
+  "kind": "author-final-browser-integration-source-check",
+  "base": "fae644b5349744a531008e2224ca3a08d596836e",
+  "released_raw_bindings": [
+    {
+      "path": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "bytes": 27768,
+      "sha256": "b2851627142916a7aaaef4d1bf9324be00587d7114d474ba728dd781330d0efe"
+    },
+    {
+      "path": "tests/e2e/support/calendar-feed-atdd.ts",
+      "bytes": 54154,
+      "sha256": "7f1ce3e0ab8ec37146c4e9e4db5ef8bf962cf0330962890e4648d1055ec14f8f"
+    }
+  ],
+  "parser": "EXACT_LF_FUNCTION_EQUAL",
+  "test_title_expressions_equal": 11,
+  "expanded_cases_preserved": 14,
+  "spec_expect_expressions_unchanged": 131,
+  "helper_expect_count_preserved": 10,
+  "canonical_seed_profile_and_client_call_arguments_equal": true,
+  "canonical_factory": "Same existing createRoleAwarePhaseAFixture and conditional cleanupRoleAwarePhaseAFixture; four profiles and four ordinary test clients. Source inspection confirms allSettled sibling joins, matched HTTP completion/readback settlement, and retained fixture on unverified refs.",
+  "limits": "AST/parser/seed/caller source checks only, not native browser/SQL acceptance or cleanup absence. Existing canonical cleanup is best-effort and primary+cleanup errors remain. Native14failed/28attempts remain failed;51DBunexecuted; attachment bodies NULL/unavailable.",
+  "comment_only_integration_after_checks": {
+    "final_helper": {
+      "path": "tests/e2e/support/calendar-feed-atdd.ts",
+      "raw_bytes": 54161,
+      "raw_sha256": "dfd5741266b25da48891cb935fd05293b0ed966e362482de9f52858e12a9ef2b",
+      "actual_git_clean_oid": "2ab44ffc9d0b1f6118cc91491cb38bef93ba98b3",
+      "git_clean_normalized_bytes": 53463,
+      "git_clean_normalized_sha256": "0862e650f2e1366b97ef3a29b5a0c03bfdd3daf3268ff9a8863fac4f35b542fd",
+      "head_blob_oid": "2ab44ffc9d0b1f6118cc91491cb38bef93ba98b3",
+      "head_blob_bytes": 53463,
+      "head_blob_sha256": "0862e650f2e1366b97ef3a29b5a0c03bfdd3daf3268ff9a8863fac4f35b542fd",
+      "source_committed": true,
+      "raw_equals_normalized": false,
+      "baseline_blob_oid": "5a46a74d4b5fa3e7dce77da54ce29d9d956dfe6c",
+      "baseline_bytes": 36666,
+      "baseline_sha256": "727f93563c209a2462152d8f6bb062732aa7dbf381f0d3aaa1c9524aee0cc08a"
+    },
+    "normalized_executable_source_equal_after_single_comment_inversion": true,
+    "provenance": "_bmad-output/auto-bmad/preparation/story-15-5/native-settlement-browser-review/original-commit-provenance.json"
+  }
+}

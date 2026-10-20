@@ -1,0 +1,242 @@
+{
+  "kind": "post-cap-exact-committed-owned-settlement-browser-diagnostic-delta-only",
+  "completed_review_rounds": 3,
+  "cap": 3,
+  "fourth_broad_review": false,
+  "before": "fae644b5349744a531008e2224ca3a08d596836e",
+  "source_head": "33b595a8b7c001bd89788fb1c0e8cd9c626e03ec",
+  "source_state": "EXACT_COMMITTED_SIX_PATH_DELTA",
+  "paths": [
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+    "scripts/ci/with-calendar-feed-runtime.mjs",
+    "tests/e2e/calendar-feed.e2e.spec.ts",
+    "tests/e2e/support/calendar-feed-atdd.ts",
+    "tests/support/calendar-feed-ci-contract.ts",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts"
+  ],
+  "bindings": [
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "raw_bytes": 87171,
+      "raw_sha256": "3dd0b84cf8b707aa6664c81ee0500863619aa07c21b46859e5b60a0e7b5d0c92",
+      "actual_git_clean_oid": "e42a3ad9944f6d50b802249e61fefa9136eed9b6",
+      "git_clean_normalized_bytes": 87171,
+      "git_clean_normalized_sha256": "3dd0b84cf8b707aa6664c81ee0500863619aa07c21b46859e5b60a0e7b5d0c92",
+      "head_blob_oid": "e42a3ad9944f6d50b802249e61fefa9136eed9b6",
+      "head_blob_bytes": 87171,
+      "head_blob_sha256": "3dd0b84cf8b707aa6664c81ee0500863619aa07c21b46859e5b60a0e7b5d0c92",
+      "source_committed": true,
+      "raw_equals_normalized": true,
+      "baseline_blob_oid": "2a0b34892f2af542f71e1a7804e6ea4cd48cca3e",
+      "baseline_bytes": 82681,
+      "baseline_sha256": "6af0ec49a252dd762e9badaf12b9446eccf279d8e680c6233f0950d15ee37c68"
+    },
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "raw_bytes": 35025,
+      "raw_sha256": "8f142ebe8a015aacc38ae55b37f36f98c61daa0621b62fb266c3991cedecbe8d",
+      "actual_git_clean_oid": "72d931cba063ced2144e62395c006828bfedabdc",
+      "git_clean_normalized_bytes": 35025,
+      "git_clean_normalized_sha256": "8f142ebe8a015aacc38ae55b37f36f98c61daa0621b62fb266c3991cedecbe8d",
+      "head_blob_oid": "72d931cba063ced2144e62395c006828bfedabdc",
+      "head_blob_bytes": 35025,
+      "head_blob_sha256": "8f142ebe8a015aacc38ae55b37f36f98c61daa0621b62fb266c3991cedecbe8d",
+      "source_committed": true,
+      "raw_equals_normalized": true,
+      "baseline_blob_oid": "dbcd8177485be71da06ce242b254b95a04e9e03e",
+      "baseline_bytes": 33317,
+      "baseline_sha256": "be71fbb20f5f1cdfe0cc210340790b78e0759d0daa778ed3014995dd0bff4de7"
+    },
+    {
+      "path": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "raw_bytes": 27768,
+      "raw_sha256": "b2851627142916a7aaaef4d1bf9324be00587d7114d474ba728dd781330d0efe",
+      "actual_git_clean_oid": "df94faf607602dc8493ec09a3eb329b05cbfb0bc",
+      "git_clean_normalized_bytes": 27768,
+      "git_clean_normalized_sha256": "b2851627142916a7aaaef4d1bf9324be00587d7114d474ba728dd781330d0efe",
+      "head_blob_oid": "df94faf607602dc8493ec09a3eb329b05cbfb0bc",
+      "head_blob_bytes": 27768,
+      "head_blob_sha256": "b2851627142916a7aaaef4d1bf9324be00587d7114d474ba728dd781330d0efe",
+      "source_committed": true,
+      "raw_equals_normalized": true,
+      "baseline_blob_oid": "cfc80717073d823847d514ed2555a8e19e7b1136",
+      "baseline_bytes": 26131,
+      "baseline_sha256": "91badac1a1ace1b1f9e2d57f12db1eb50d36d8a5ef30f5f4aaa0881ba9ef7b23"
+    },
+    {
+      "path": "tests/e2e/support/calendar-feed-atdd.ts",
+      "raw_bytes": 54161,
+      "raw_sha256": "dfd5741266b25da48891cb935fd05293b0ed966e362482de9f52858e12a9ef2b",
+      "actual_git_clean_oid": "2ab44ffc9d0b1f6118cc91491cb38bef93ba98b3",
+      "git_clean_normalized_bytes": 53463,
+      "git_clean_normalized_sha256": "0862e650f2e1366b97ef3a29b5a0c03bfdd3daf3268ff9a8863fac4f35b542fd",
+      "head_blob_oid": "2ab44ffc9d0b1f6118cc91491cb38bef93ba98b3",
+      "head_blob_bytes": 53463,
+      "head_blob_sha256": "0862e650f2e1366b97ef3a29b5a0c03bfdd3daf3268ff9a8863fac4f35b542fd",
+      "source_committed": true,
+      "raw_equals_normalized": false,
+      "baseline_blob_oid": "5a46a74d4b5fa3e7dce77da54ce29d9d956dfe6c",
+      "baseline_bytes": 36666,
+      "baseline_sha256": "727f93563c209a2462152d8f6bb062732aa7dbf381f0d3aaa1c9524aee0cc08a"
+    },
+    {
+      "path": "tests/support/calendar-feed-ci-contract.ts",
+      "raw_bytes": 3777,
+      "raw_sha256": "c7c2b16b130b3ae37ff5130a5916c6418ac36cc23669d2b8c76eade533a37735",
+      "actual_git_clean_oid": "3c6bafb46e6c1545654b70bdc378875ae98b32c6",
+      "git_clean_normalized_bytes": 3777,
+      "git_clean_normalized_sha256": "c7c2b16b130b3ae37ff5130a5916c6418ac36cc23669d2b8c76eade533a37735",
+      "head_blob_oid": "3c6bafb46e6c1545654b70bdc378875ae98b32c6",
+      "head_blob_bytes": 3777,
+      "head_blob_sha256": "c7c2b16b130b3ae37ff5130a5916c6418ac36cc23669d2b8c76eade533a37735",
+      "source_committed": true,
+      "raw_equals_normalized": true,
+      "baseline_blob_oid": "ee8c690c8959a8598f8d8b1924e307a81502d64f",
+      "baseline_bytes": 3777,
+      "baseline_sha256": "36febdaa7141b3eef50083871ea34d2b64001c44b4a9f870fafeb430d8dcea18"
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "raw_bytes": 64620,
+      "raw_sha256": "973b83e21891128b92d2d5e86b9d74455f4d2b96affb650ebe22fb7a3c71044c",
+      "actual_git_clean_oid": "6d4aecf344a56f991cfb85d3084bce3669ca7b46",
+      "git_clean_normalized_bytes": 64620,
+      "git_clean_normalized_sha256": "973b83e21891128b92d2d5e86b9d74455f4d2b96affb650ebe22fb7a3c71044c",
+      "head_blob_oid": "6d4aecf344a56f991cfb85d3084bce3669ca7b46",
+      "head_blob_bytes": 64620,
+      "head_blob_sha256": "973b83e21891128b92d2d5e86b9d74455f4d2b96affb650ebe22fb7a3c71044c",
+      "source_committed": true,
+      "raw_equals_normalized": true,
+      "baseline_blob_oid": "47438cd667d076ad167c37cd35d56adf20dbb9c9",
+      "baseline_bytes": 44519,
+      "baseline_sha256": "ac85a7fb043076946d445ae14cf113328138b483d38bb822ff89ac01192a120b"
+    }
+  ],
+  "input_bytes": 278141,
+  "input_sha256": "4909bbc7ace4e49b3d1968ca2341b29e6a5b6fd1dac9550a116450869d3585df",
+  "diff_bytes": 125541,
+  "diff_sha256": "7dae59507c4f972c208ae15489f291da61662e2226068a200cce7a2c65a477b0",
+  "complete_contexts": [
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "bytes": 35025,
+      "sha256": "8f142ebe8a015aacc38ae55b37f36f98c61daa0621b62fb266c3991cedecbe8d"
+    },
+    {
+      "path": "tests/e2e/support/calendar-feed-atdd.ts",
+      "bytes": 53463,
+      "sha256": "0862e650f2e1366b97ef3a29b5a0c03bfdd3daf3268ff9a8863fac4f35b542fd"
+    },
+    {
+      "path": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "bytes": 27768,
+      "sha256": "b2851627142916a7aaaef4d1bf9324be00587d7114d474ba728dd781330d0efe"
+    }
+  ],
+  "contexts": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-settlement-browser-author-route.json",
+      "raw_bytes": 2797,
+      "raw_sha256": "8a16b5e92332422ac6262175cd8fef0734aa2ce60acab74cab06f254c39fb503",
+      "included_lf_bytes": 2797,
+      "included_lf_sha256": "8a16b5e92332422ac6262175cd8fef0734aa2ce60acab74cab06f254c39fb503"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-settlement-browser-review/local-checks.json",
+      "raw_bytes": 4439,
+      "raw_sha256": "6e2288bdf062ce877b5b1f42d456258b26ecc8d6e08bc6cf972f33c86d385a36",
+      "included_lf_bytes": 4439,
+      "included_lf_sha256": "6e2288bdf062ce877b5b1f42d456258b26ecc8d6e08bc6cf972f33c86d385a36"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-settlement-browser-review/browser-integration-source-check.json",
+      "raw_bytes": 2476,
+      "raw_sha256": "cba5bbf2e0386359ea521f76a9e929724edda23816f19235ab6b7a654c50a696",
+      "included_lf_bytes": 2476,
+      "included_lf_sha256": "cba5bbf2e0386359ea521f76a9e929724edda23816f19235ab6b7a654c50a696"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-settlement-browser-review/original-commit-provenance.json",
+      "raw_bytes": 3163,
+      "raw_sha256": "d8192baec382d83c44badfe9011c4af8a3212f9f6ec961b07ef0e7fee5fae475",
+      "included_lf_bytes": 3163,
+      "included_lf_sha256": "d8192baec382d83c44badfe9011c4af8a3212f9f6ec961b07ef0e7fee5fae475"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-fae644b5-ci-independent/native-qualification.md",
+      "raw_bytes": 3871,
+      "raw_sha256": "b285af1159776a435cd88df78b9f003ce73372d1baed748e6e1624171c8fd2d0",
+      "included_lf_bytes": 3871,
+      "included_lf_sha256": "b285af1159776a435cd88df78b9f003ce73372d1baed748e6e1624171c8fd2d0"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-fae644b5-ci-independent/native-runtime-log-extracts.json",
+      "raw_bytes": 7716,
+      "raw_sha256": "dfa8920d5b05539ab2937347fb91064143092a945545d89def170ddccdb4492d",
+      "included_lf_bytes": 7716,
+      "included_lf_sha256": "dfa8920d5b05539ab2937347fb91064143092a945545d89def170ddccdb4492d"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-fae644b5-ci-independent/native-browser-failure-reach.json",
+      "bytes": 75484,
+      "sha256": "f4472286948509ce1cacdeee637d9a60184e0666899a06f628c69d7fc3fac12c",
+      "included": false,
+      "reason": "Full bounded per-attempt catalog retained externally; safe aggregate native facts included in qualification/runtime summaries."
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-fae644b5-ci-independent/native-browser-attachment-custody.json",
+      "raw_bytes": 2017,
+      "raw_sha256": "f2976f319feb828067d1adf462b980625860f7442f8c3a33c82d8229fb582527",
+      "included_lf_bytes": 1983,
+      "included_lf_sha256": "8b2ce64c7ef1aedb75e132bd8259509cfa769534fa540997f08a13ed314e071f"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-fae644b5-ci-independent/manifest.json",
+      "raw_bytes": 3903,
+      "raw_sha256": "577da8debd76e3a108ccaaf524abdfc414292e45033c38d9f21021d6138bf8ac",
+      "included_lf_bytes": 3903,
+      "included_lf_sha256": "577da8debd76e3a108ccaaf524abdfc414292e45033c38d9f21021d6138bf8ac"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-failed-fae644b5-packet-admission.json",
+      "raw_bytes": 1359,
+      "raw_sha256": "f9c70a96406477d11576638a73a01c43a951a69519b6acd4f3df442e642650b4",
+      "included_lf_bytes": 1359,
+      "included_lf_sha256": "f9c70a96406477d11576638a73a01c43a951a69519b6acd4f3df442e642650b4"
+    }
+  ],
+  "kernel_sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+  "suggested_review_order_body_lf_sha256": "b59ed70681c58f2f748f487d6972a72b565e141084431449146e1d719f740e57",
+  "normalization": "Raw actual bytes separate; actual --path clean OID equals unfiltered LF OID, HEAD OID and actual byte-equal Git blob. No CRLF equivalence assumed.",
+  "root_route": {
+    "path": "_bmad-output/auto-bmad/state/15-5-personal-calendar-feed-adr-b004-surface-1.yaml",
+    "raw_bytes_unverified_uncredited_mutable_snapshot": 56362,
+    "raw_sha256_unverified_uncredited_mutable_snapshot": "a7a565115c2bb7c66dfb8ac44be948323cc79ef617749c9080d6fa188de6d0ad",
+    "included_lines": [
+      21,
+      29
+    ],
+    "included_lf_bytes": 680,
+    "included_lf_sha256": "ddc83b2df2fa60e7de49c5c4bbc492dfd1616a304470667736c205283ea6e2e4",
+    "owner": "Root",
+    "source_commit_excluded": true
+  },
+  "review_route": {
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "context_free": true,
+    "distinct_from_author": true,
+    "scope": "Latest exact six-path delta/consequential regressions only, no fourth broad review."
+  },
+  "provenance": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-settlement-browser-review/original-commit-provenance.json",
+    "bytes": 3163,
+    "sha256": "d8192baec382d83c44badfe9011c4af8a3212f9f6ec961b07ef0e7fee5fae475"
+  },
+  "local_checks": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-settlement-browser-review/local-checks.json",
+    "bytes": 4439,
+    "sha256": "6e2288bdf062ce877b5b1f42d456258b26ecc8d6e08bc6cf972f33c86d385a36"
+  },
+  "native_limits": "Pure source extraction uniquely bounded and TypeScript stripping only; no copied implementation/mocks. Full-helper plumbing and native caller behavior unexecuted locally. App/privilege/workflow/INT015 unchanged, no build rerun. Old native3105/Python43/recovery1 and setup7/privacy4 are bounded failed-head facts. Browser14F/28attempts,DB51unexecuted,body contentNULL/unavailable remain. No fourth broad review, push/runtime/DONE/delivery."
+}

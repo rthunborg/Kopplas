@@ -1,0 +1,116 @@
+{
+  "kind": "original-independent-completed-review-attestation",
+  "report": "original-review.md",
+  "report_preservation": "Original completed final report reproduced exactly; one terminal file newline added. No new review or rerun.",
+  "reviewer": {
+    "task": "/root/build15_5_high/native_settlement_browser_delta_review",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "context_free": true,
+    "distinct_from_implementation_author": true
+  },
+  "original_completion": {
+    "verdict": "FINDING",
+    "finding_count": 1,
+    "findings": [
+      {
+        "priority": "P2",
+        "title": "Join SQL callbacks independently of the polling deadline",
+        "path": "tests/e2e/support/calendar-feed-atdd.ts",
+        "line": 133,
+        "caller": "committedAttempt -> expect.poll -> physicalRows -> readTokens/readAudit",
+        "bypass": "Installed Playwright deadline race can settle outer observation while an actual SQL callback remains pending; registry may authorize fixture SQL/Auth deletion."
+      }
+    ],
+    "other_consequential_findings": 0
+  },
+  "scope": {
+    "before": "fae644b5349744a531008e2224ca3a08d596836e",
+    "reviewed_source": "33b595a8b7c001bd89788fb1c0e8cd9c626e03ec",
+    "paths": 6,
+    "completed_broad_rounds": 3,
+    "fourth_broad_review": false,
+    "review_type": "Latest actual six-path fixes, consequential regressions and unresolved serious findings only"
+  },
+  "immutable_inputs": [
+    {
+      "path": "latest-delta-input.diff",
+      "bytes": 278141,
+      "sha256": "4909bbc7ace4e49b3d1968ca2341b29e6a5b6fd1dac9550a116450869d3585df",
+      "hash_checked": true
+    },
+    {
+      "path": "input-binding.json",
+      "bytes": 12650,
+      "sha256": "2fdc420f263da44a7bb5daf9b1728679d898a5d8b6fb7992f38b54c25e076da4",
+      "hash_checked": true
+    },
+    {
+      "path": "local-checks.json",
+      "bytes": 4439,
+      "sha256": "6e2288bdf062ce877b5b1f42d456258b26ecc8d6e08bc6cf972f33c86d385a36",
+      "hash_checked": true
+    }
+  ],
+  "actual_source_checks": {
+    "head_matches_reviewed_source": true,
+    "committed_six_path_delta_confirmed": true,
+    "all_six_raw_sha256_and_length_bindings_match": true,
+    "all_six_committed_blob_sha256_and_length_bindings_match": true,
+    "all_six_actual_git_clean_oids_equal_bound_head_blob_oids": true,
+    "crlf_distinction_preserved": "calendar-feed-atdd.ts raw bytes 54161 SHA dfd5741266b25da48891cb935fd05293b0ed966e362482de9f52858e12a9ef2b; committed clean bytes 53463 SHA 0862e650f2e1366b97ef3a29b5a0c03bfdd3daf3268ff9a8863fac4f35b542fd",
+    "source_bindings_reference": "input-binding.json bindings; all six entries checked against actual raw files, git show committed blobs and git hash-object --path output",
+    "root_metadata_dirty_excluded": true
+  },
+  "actual_context_checks": {
+    "all_nine_included_context_raw_length_and_sha256_bindings_match": true,
+    "paths": [
+      "_bmad-output/auto-bmad/preparation/story-15-5/native-settlement-browser-author-route.json",
+      "_bmad-output/auto-bmad/preparation/story-15-5/native-settlement-browser-review/local-checks.json",
+      "_bmad-output/auto-bmad/preparation/story-15-5/native-settlement-browser-review/browser-integration-source-check.json",
+      "_bmad-output/auto-bmad/preparation/story-15-5/native-settlement-browser-review/original-commit-provenance.json",
+      ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-fae644b5-ci-independent/native-qualification.md",
+      ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-fae644b5-ci-independent/native-runtime-log-extracts.json",
+      ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-fae644b5-ci-independent/native-browser-attachment-custody.json",
+      ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-fae644b5-ci-independent/manifest.json",
+      ".env.epic15.mail-runtime/story-15-5-preparation/root-failed-fae644b5-packet-admission.json"
+    ],
+    "context_bindings_reference": "input-binding.json contexts; only included entries checked, excluded per-attempt catalog not credited"
+  },
+  "manual_dependency_inspection": {
+    "scope": "Caller/downstream behavior needed for the exact latest-delta judgment",
+    "installed_playwright": "1.61.1",
+    "inspected_poll_deadline_behavior": "expect.js poll matcher awaits actual() inside pollAgainstDeadline; coreBundle.js raceAgainstDeadline uses Promise.race and does not join timed-out callback",
+    "inspected_admin_sql": "adminQuery/adminSession pool caller and session cleanup",
+    "canonical_fixture_seed_equivalence_checked": true
+  },
+  "activity": {
+    "original_review_read_only": true,
+    "tests_executed_by_reviewer": false,
+    "native_ci_rerun": false,
+    "resources_started": false,
+    "runtime_started": false,
+    "database_started_or_used": false,
+    "browser_started_or_used": false,
+    "next_started": false,
+    "source_or_spec_edits": false,
+    "commits": false,
+    "pushes": false,
+    "persistence_only_after_original_completion": true,
+    "persistence_owned_new_files": [
+      "original-review.md",
+      "original-review-attestation.json"
+    ]
+  },
+  "limitations": {
+    "current_head_native_qualification": "pending",
+    "prior_failed_checkpoints": "remain failed",
+    "local_author_checks": "47 bootstrap cases and 326 total consumer cases are reported evidence only; not rerun or native acceptance credit",
+    "pure_browser_seams": "Do not qualify full helper/caller/native browser or SQL acceptance",
+    "native_db_feature_cases": "51 unexecuted on sixth failed checkpoint",
+    "native_browser_feature_cases": "14 failed across 28 attempts on sixth failed checkpoint",
+    "attachment_content_privacy": "null/unavailable; 28 metadata references and no available physical bodies do not establish leak or PASS",
+    "synthetic_missing_leader_reproduction": "Reachable source path, not proven native cause",
+    "delivery_or_done_or_release_approval": false
+  }
+}

@@ -1,0 +1,1728 @@
+LATEST-FINDING-ONLY EXACT COMMITTED THREE-PATH FIX; completed broad rounds3/cap3, no fourth broad.
+Source e3f1c2e1c5db81947a48233da617ff8535fd24aa; baseline 33b595a8b7c001bd89788fb1c0e8cd9c626e03ec.
+Prior33b six-path High assessment found oneP2 actual-SQL-settlement defect and is NOTPASS; retained immutable input/report. Reuse unchanged assessment parts explicitly; this is not a new whole-source pass.
+Review only actual callback/query ownership beyond installed expect.poll deadline, synchronous registration/immediate returned-promise observers, close-before-snapshot/late factory denial, actual20sdrain/custody/noSQLAuthcleanup while pending, primary+allerrors. Preserve15spoll/matchers/physicalattempt/hash/audit assertions/HTTP completion/custody.
+Wrapper/SHA-pin/browserSpec unchanged; no application/principal/privilege/newscope/runtime.51boundedunitsPASS0F0S0cancel,typePASS,lint0err0warn,SRO42/kernelPASS.326historical33b includes47+279; no330/nativecount inference.
+Six native failed histories preserved,14browserfailed/28attempts and51DBunexecuted; no contentprivacy/childkey lifecycle PASS.
+
+EXACT COMMITTED THREE-PATH DELTA:
+diff --git a/_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md b/_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md
+index e42a3ad9..28bc4ee8 100644
+--- a/_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md
++++ b/_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md
+@@ -754,43 +754,80 @@ native packet has 28 metadata references, zero available attachment bodies, and
+ content-check result **null/unavailable**, not privacy PASS or demonstrated leak.
+ The repair retains attachments and the existing negative exit fence. Actual
+ content qualification, clean child/key lifecycle and current-head native DB and
+ browser acceptance remain pending.
+ 
+ The bounded unit suite now has 47 separate cases: prior 33 plus six stopper/full-
+ wrapper regressions and eight browser Promise/diagnostic/cleanup regressions.
+ All 47 passed with zero failures/skips/cancellations; full typecheck and focused
+ five-file lint passed with zero errors/warnings. All 40 literal stops resolve.
+ Pure browser checks execute the exact uniquely bounded helper source region with
+ only installed Node TypeScript stripping, not a copied implementation. Full
+ helper import under the existing bare-Node alias hook fails on a same-name fixture
+ directory; that plumbing remains unexecuted and unchanged. Pure seam execution
+ does not qualify browser wiring, SQL or production behavior. Final check receipts
+ and the refreshed author trail accompany the committed latest-delta review input.
+ Distinct High exact-commit review and new Root-owned CI remain pending; status
+ stays in-review, with no delivery/DONE/release claim and an unchanged intent kernel.
+ 
++### Latest-finding follow-up — actual SQL callback settlement
++
++The distinct High review of committed `33b595a8b7c001bd89788fb1c0e8cd9c626e03ec`
++reported one P2 custody defect; that assessment remains **not passed**. Installed
++Playwright 1.61.1 races each expect.poll callback against its deadline without
++joining an unfinished callback. The outer observation and HTTP body could finish
++while the physical token/audit query promises remained active. Joining only the
++outer observation therefore did not justify SQL/Auth fixture cleanup.
++
++Root admitted only helper, existing unit and author Spec changes under the
++recorded High route `author-native-poll-query-settlement-route.json`. The registry
++now synchronously owns actual callback and query promises independently of the
++poll wrapper. Its non-async tracker immediately observes the exact returned
++promise; the non-async token/audit factories return it without another adopting
++wrapper. Teardown closes registration before capturing and draining work, and
++checks the latch again before invoking queued factories. Late poll callbacks
++cannot launch SQL. Both physical query siblings and the actual poll callback
++remain owned until real completion; the existing 20-second drain timeout retains
++custody rather than crediting absence. The 15-second poll, original matchers,
++physical attempt/hash/audit assertions and primary/all cleanup errors remain.
++No wrapper, SHA pin, browser scenario, application, privilege or runtime changes.
++
++Four new bounded regressions exercise the installed polling deadline with injected
++SQL promises and successful HTTP completion, pending/rejected siblings, queued/
++late launch refusal and abandoned synchronous/native rejections. They execute
++actual pure helper source and the installed polling helper, with no SQL/browser
++or managed resource. Previous 47/47 and 326/326 results remain historical33b
++facts. Current bounded units passed **51/51**, zero failures/skips/cancellations;
++full typecheck and focused two-file lint passed with zero errors/warnings. Final
++42-stop/kernel/Git checks accompany the committed three-path review input.
++The unchanged parts of the prior six-path assessment are reused explicitly;
++new review is latest-finding/consequential-regression only, not a fourth broad
++round or a whole-source PASS. All six failed native histories, fourteen browser
++failures/28 attempts, 51 unexecuted DB cases and unavailable attachment content
++remain unchanged. Fresh exact-head Root CI and distinct High follow-up review
++are pending; status remains in-review without delivery/DONE/release claims.
++
+ ## Suggested Review Order
+ 
+ Author: Story 15.5 implementation/fix author (gpt-6.1-sol High), incorporating
+ explicitly delegated browser and bootstrap contributors. Refreshed after all
+ Round 3 latest-fix assertions, the subsequent checkpoint repairs and bounded
+ native setup diagnostics, same-connection privacy qualification and explicit
+-isolated setup authority transport, bounded child settlement and browser diagnostic repair.
++isolated setup authority transport, bounded child settlement, browser diagnostic repair and actual SQL callback ownership.
+ Stops below resolve to final source literals before the repair commit.
+ 
+ ### Own settings and honest lifecycle results
+ 
+ The two personal entry points reach one settings surface; the profile entry uses
+ server-filtered navigation. Confirmations and component-memory issuance retain
+ explicit uncertainty handling, while later authoritative status removes stale URLs.
+ 
+ - `src/components/app-shell/AppShell.tsx:279` — `navigation.some`: gates the profile link on scheduling access.
+ - `src/components/calendar-feed/CalendarSubscription.tsx:34` — `const current = await refresh();`: clears superseded post-commit output and success.
+ - `tests/e2e/calendar-feed.e2e.spec.ts:380` — `15.5-E2E-010-`: AC2/6 actual supersession clears rendered controls and notice; execution pending.
+ - `tests/e2e/calendar-feed.e2e.spec.ts:447` — `15.5-E2E-011`: AC2/6 current-revision control retains issuance; execution pending.
+ 
+ ### Signed current-self authority and atomic writes
+ 
+ Ordinary JWT commands derive self authority; SQL rechecks current exact membership
+ and role union under the scheduling tenant lock. Dedicated proofs bind privileged
+ inputs, and CAS/history/audit commit together without plaintext recovery.
+@@ -829,51 +866,54 @@ keeps SupAdmin-only NOADMIN. Retained unsafe roles fail closed.
+ - `tests/integration/ops/recovery-storage-immutability.int.test.ts:131` — `has_schema_privilege('calendar_feed_owner','public','CREATE')`: the existing recovery case checks the restored target before Storage requests; separately qualified native case.
+ 
+ ### Isolated CI custody and honest evidence limits
+ 
+ Only captured child identities and one ephemeral Vault UUID belong to the wrapper.
+ The added PG17 case qualifies that disposable stack and owns transaction-local
+ UUID roles/schema/function through dedicated connections, with no pool reuse.
+ Settlement is memoized; abnormal browser teardown retains exact job custody, while
+ privacy detection measures raw output in memory before sanitized records persist.
+ Before any secret, one fixed read-only query requires exact effective privacy on
+ the same connection later used for key creation and deletion. SET ACL facts
+ remain observations. The later admitted setup transport separately requires actual
+ authenticated SupAdmin LOGIN+SUPER for key setup and INT015, preserving its
+ restricted-session oracle. No new privileged child configuration or grant is added.
+ 
+ - `tests/integration/commands/calendar-feed.int.test.ts:475` — `// FULL rollback comes first`: preserves rollback/reset and same/fresh catalog absence proof.
+ - `scripts/ci/with-calendar-feed-runtime.mjs:257` — `export function createOwnedGroupStopper`: memoizes settlement, validates capture, passively observes missing-leader group absence and bounds completion/output.
+ - `scripts/ci/with-calendar-feed-runtime.mjs:179` — `export function createTelemetryObserver`: detects leaks before dropping non-allowlisted output.
+-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:812` — `nonzero/null-signal nested browser loss`: requires retained key custody for abnormal completion.
++- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:893` — `nonzero/null-signal nested browser loss`: requires retained key custody for abnormal completion.
+ - `tests/support/calendar-feed-ci-contract.ts:43` — `projectCalendarFeedCiCommands`: validates pinned real wrapper argv and only the two exact workflow inverses.
+ - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:32` — `CI command projection rejects`: missing/wrong entry/argv and unrelated-source/workflow negatives preserve the original inverse fence.
+ - `scripts/ci/with-calendar-feed-runtime.mjs:32` — `function safeDiagnostic`: emits only fixed stages/categories and allowlisted SQLSTATE without native payloads.
+ - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:313` — `COMMIT uncertainty is not cleared`: rollback alone cannot establish key absence after attempted COMMIT.
+ - `scripts/ci/with-calendar-feed-runtime.mjs:443` — `receipt.privacyPreflight = await readCalendarFeedPrivacyPreflight(db);`: rejects unsafe effective settings before entropy on the existing client.
+ - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:209` — `privacy preflight rejects incomplete`: malformed and unsafe settings cannot reach a secret or child; actual driver/same-client/query-close cases exercise the surrounding boundary.
+ - `scripts/ci/with-calendar-feed-runtime.mjs:99` — `export function createCalendarFeedDatabaseClient`: fixes the same qualified source publication, canonical admin and sole captured credential; no default or alternate route.
+ - `scripts/ci/with-calendar-feed-runtime.mjs:86` — `export async function readCalendarFeedSetupAuthority`: actual authenticated session/current LOGIN+SUPER proof is mandatory before mutation.
+ - `tests/integration/commands/calendar-feed.int.test.ts:497` — `await fresh.connect(); await setupQualified(fresh); await absent(fresh);`: fresh read-only cleanup independently requalifies authority/privacy and proves absence; native execution pending.
+ - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:147` — `setup construction refuses missing`: credential/target refusals cannot reach secrets or children; actual identity negatives and child-config tests complete the bounded boundary evidence.
+ 
+ - `tests/e2e/support/calendar-feed-atdd.ts:83` — `export function createCalendarLifecycleObservations`: AC2/6 observes both transport promises and joins actual readback before teardown; pure regressions are not native acceptance.
+ - `tests/e2e/support/calendar-feed-atdd.ts:25` — `export function calendarBrowserDiagnostic`: preserves closed stage/category/SQLSTATE without native error payloads.
+-- `tests/e2e/support/calendar-feed-atdd.ts:687` — `if (base && cleanupAllowed)`: canonical SQL/Auth cleanup waits for verified settlement; unresolved references retain fixture custody.
++- `tests/e2e/support/calendar-feed-atdd.ts:705` — `if (base && cleanupAllowed)`: canonical SQL/Auth cleanup waits for verified settlement; unresolved references retain fixture custody.
+ - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:489` — `missing leaders with persistent groups`: absence is measured within existing budgets; anonymous groups grant no signaling authority.
+ - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:659` — `actual browser bounded cancellation`: timeout cannot credit in-flight SQL/readback settlement; release and real completion are distinct.
+ 
++- `tests/e2e/support/calendar-feed-atdd.ts:93` — `trackReadback<T>`: registers actual callback/query work independently of Playwright deadlines and closes before drain.
++- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:739` — `installed polling deadline cannot credit`: HTTP completion plus outer timeout cannot credit unresolved physical query siblings or callback completion.
++
+ Evidence: historical check receipts retain their exact revisions and dependency
+ limits. The sixth checkpoint passed 3105 Node units (30 feature and 33 separate
+ wrapper cases), Python43 and recovery1, with actual original-client setup7 and
+ privacy4 preflight credit. It still failed DB child settlement and all14 story
+ browser cases across28 attempts;51 feature DB cases remain unexecuted. The local
+-repair's47 separate bounded Node cases exercise injected lifecycle and actual
++33b repair's47 separate bounded Node cases exercise injected lifecycle and actual
+ pure browser source seams only. Current-head full native DB/HTTP/RLS/INT015,
+ 14 browser acceptances, successful child/key cleanup and attachment-content
+ privacy remain pending. Source RLS010 effective CREATE and restricted-source
+ claims cannot borrow the separate real recovery CREATE=false proof. Installed
+ collection and prior build checks retain their recorded scope; no local managed
+ runtime was launched. All three broad rounds completed; this repair receives only
+ a distinct High latest-delta review. No provider/device/visual/performance or
+ release-ready claim; the unallocated exhaustive branch remains explicitly
+ release-blocking deferred.
+diff --git a/tests/e2e/support/calendar-feed-atdd.ts b/tests/e2e/support/calendar-feed-atdd.ts
+index 2ab44ffc..e0517e8c 100644
+--- a/tests/e2e/support/calendar-feed-atdd.ts
++++ b/tests/e2e/support/calendar-feed-atdd.ts
+@@ -67,42 +67,57 @@ export function calendarEventWaiter<T>(options: {
+     if (done) return; done = true;
+     if (timer) clearTimeout(timer);
+     try { options.unsubscribe(listener); }
+     catch (unsubscribeError) { disposalError = calendarBrowserDiagnostic(options.stage, unsubscribeError); error = error ? calendarFailures([error, disposalError]) : disposalError; }
+     if (error) reject(error); else resolve(value as T);
+   };
+   const listener = (value: T) => {
+     try { if (options.predicate(value)) finish(undefined, value); }
+     catch (error) { finish(calendarBrowserDiagnostic(options.stage, error)); }
+   };
+   try {
+     options.subscribe(listener);
+     if (!done) timer = setTimeout(() => finish(calendarBrowserDiagnostic(options.stage, { name: "TimeoutError" })), options.timeoutMs);
+   } catch (error) { finish(calendarBrowserDiagnostic(options.stage, error)); }
+   return { promise, cancel() { finish(calendarBrowserDiagnostic("action-cancelled", { name: "AbortError" })); if (disposalError) throw disposalError; } };
+ }
+ export function createCalendarLifecycleObservations(options: { settlementTimeoutMs?: number } = {}) {
+   type Pending = { cancel(): void; settled: Promise<void> };
+-  const pending = new Set<Pending>(), failures: Error[] = [];
++  const pending = new Set<Pending>(), actualWork = new Set<Promise<void>>(), failures: Error[] = [];
+   let closing = false, cancellationVerified = true;
+   const cancelWaiter = (waiter?: { cancel(): void }) => {
+     try { waiter?.cancel(); } catch (error) { cancellationVerified = false; failures.push(calendarBrowserDiagnostic("cleanup-lifecycle", error)); }
+   };
+   return {
++    /** Own the actual callback/query, independently of a caller's deadline race.
++     * Non-async deliberately returns the exact immediately observed promise. */
++    trackReadback<T>(run: () => Promise<T>): Promise<T> {
++      const work = Promise.resolve().then(() => {
++        // Registration and invocation are separate microtasks: close must also
++        // stop work registered just before teardown but not yet started.
++        if (closing) throw calendarBrowserDiagnostic("action-cancelled", { name: "AbortError" });
++        return run();
++      }).catch(error => { throw calendarBrowserDiagnostic("action-readback", error); });
++      void work.catch(() => undefined);
++      const settled = work.then(() => undefined, error => { failures.push(calendarBrowserDiagnostic("action-readback", error)); });
++      actualWork.add(settled);
++      void settled.then(() => actualWork.delete(settled));
++      return work;
++    },
+     observe<R, S, T>(input: { request(): CalendarEventWaiter<R>; response(): CalendarEventWaiter<S>; readback(request: R, signal: AbortSignal): Promise<T>; completion?(request: R): Promise<boolean> }): Promise<T> {
+       const controller = new AbortController();
+       let request: CalendarEventWaiter<R> | undefined, response: CalendarEventWaiter<S> | undefined;
+       let stage: CalendarDiagnosticStage = "action-response";
+       // Register both real events synchronously BEFORE returning to the UI trigger.
+       let setupError: unknown, setupFailed = false;
+       try {
+         if (closing) throw calendarBrowserDiagnostic("action-cancelled", { name: "AbortError" });
+         response = input.response(); void response.promise.catch(() => undefined);
+         stage = "action-request"; request = input.request(); void request.promise.catch(() => undefined);
+       } catch (error) {
+         setupError = error; setupFailed = true; cancelWaiter(response); cancelWaiter(request);
+         if (input.completion) cancellationVerified = false;
+       }
+       // A cancelled event waiter is not proof the matched HTTP request ended.
+       // Keep the actual native completion promise owned and joined independently.
+       const completion = request ? request.promise.then(async matched => {
+         try {
+@@ -121,40 +136,43 @@ export function createCalendarLifecycleObservations(options: { settlementTimeout
+           if (setupFailed) throw setupError;
+           const [matched] = await Promise.all([request!.promise, response!.promise]);
+           if (controller.signal.aborted) throw calendarBrowserDiagnostic("action-cancelled", { name: "AbortError" });
+           stage = "action-readback";
+           const result = await input.readback(matched, controller.signal);
+           if (controller.signal.aborted) throw calendarBrowserDiagnostic("action-cancelled", { name: "AbortError" });
+           return result;
+         } catch (error) { throw calendarBrowserDiagnostic(stage, error); }
+         finally { cancelWaiter(request); cancelWaiter(response); }
+       })();
+       // Observe the RETURNED promise too: callers can fail before awaiting it.
+       void observation.catch(() => undefined);
+       const entry: Pending = { settled: Promise.allSettled([observation, completion]).then(results => {
+         for (const result of results) if (result.status === "rejected") failures.push(calendarBrowserDiagnostic(stage, result.reason));
+       }).finally(() => pending.delete(entry)), cancel() { controller.abort(); cancelWaiter(request); cancelWaiter(response); } };
+       pending.add(entry); return observation;
+     },
+     async cancelAndSettle(): Promise<{ errors: Error[]; settled: boolean }> {
++      // Close BEFORE capturing work. Late poll callbacks cannot launch queries,
++      // and an expect.poll timeout never substitutes for actual SQL settlement.
+       closing = true;
+       const active = [...pending]; for (const entry of active) entry.cancel();
++      const work = [...actualWork];
+       let timer: ReturnType<typeof setTimeout> | undefined;
+-      const settled = await Promise.race([Promise.all(active.map(entry => entry.settled)).then(() => true), new Promise<false>(resolve => {
++      const settled = await Promise.race([Promise.all([...active.map(entry => entry.settled), ...work]).then(() => true), new Promise<false>(resolve => {
+         timer = setTimeout(() => resolve(false), options.settlementTimeoutMs ?? 20_000);
+       })]);
+       if (timer) clearTimeout(timer);
+       return { settled: settled && cancellationVerified, errors: [...failures, ...(!settled ? [calendarBrowserDiagnostic("cleanup-lifecycle", { name: "TimeoutError" })] : [])] };
+     },
+   };
+ }
+ 
+ /** Accessible labels bound to the authored production components. Runtime
+  * verification is performed by the required production-host browser lane. */
+ export const calendarNames = {
+   title: "Kalenderprenumeration",
+   create: "Skapa kalenderlänk",
+   rotate: "Rotera länk",
+   revoke: "Återkalla länk",
+   copy: "Kopiera länk",
+   link: "Din kalenderlänk (visas bara nu)",
+   confirmRotate: "Bekräfta rotera",
+@@ -429,69 +447,69 @@ export async function withCalendarBrowserFixture(
+     {
+       const ownTenant = fx.base.tenantA.id, foreignTenant = fx.base.tenantB.id;
+       const ids = fx.tenantIds, bookingIds: string[] = [], customers: string[] = [], facilities: string[] = [], jobs: string[] = [], roles: string[] = [];
+       const extraProfile = randomUUID(), privateNote = `PRIVATE-NOTE-${randomUUID()}`;
+       const peerUser = fx.roleUnionUser;
+       const [peerMember] = await calendarBrowserStep("fixture-memberships", () => adminQuery<{ id: string }>("select id from public.tenant_memberships where tenant_id=$1 and user_id=$2", [ownTenant, peerUser.id]));
+       const [sellerMember] = await calendarBrowserStep("fixture-memberships", () => adminQuery<{ id: string }>("select id from public.tenant_memberships where tenant_id=$1 and user_id=$2", [ownTenant, fx.users.saljare.id]));
+       const subjects = { seller: { user: fx.users.saljare, membership: sellerMember.id, profile: "" }, montor: { user: fx.users.montor, membership: fx.ownProfile.membershipId, profile: fx.ownProfile.id },
+         manager: { user: fx.users.projektledare, membership: fx.coworkerProfile.membershipId, profile: fx.coworkerProfile.id },
+         admin: { user: fx.base.adminA, membership: fx.adminProfile.membershipId, profile: fx.adminProfile.id } };
+       let subject = subjects.montor;
+       const attempts: Attempt[] = [], rawLinks: string[] = [], seedHashes: string[] = [];
+       const activeFaults = new Set<ArmedFault>();
+       const observations = createCalendarLifecycleObservations();
+       cleanupAllowed = false; // only the complete final settlement gate may admit deletion
+       let transportVerified = true;
+       const requestListener = (request: Request) => { const input = actionInput(request); if (input) attempts.push(input); };
+       page.on("request", requestListener);
+-      const readTokens = () => adminQuery<TokenFact>(`select id,tenant_id,membership_id,token_hash,revision,attempt_id,action,
++      const readTokens = () => observations.trackReadback(() => adminQuery<TokenFact>(`select id,tenant_id,membership_id,token_hash,revision,attempt_id,action,
+         revoked_at::text,usage_count::text,last_used_at::text,request_count::text,spike_count::text,last_spike_at::text
+-        from public.calendar_feed_tokens where tenant_id=any($1::uuid[]) order by tenant_id,membership_id,revision`, [ids]);
+-      const readAudit = () => adminQuery<AuditFact>(`select target_id,actor_user_id,command,metadata from public.audit_events
+-        where tenant_id=any($1::uuid[]) and command like 'calendar_feed.%' order by created_at,id`, [ids]);
++        from public.calendar_feed_tokens where tenant_id=any($1::uuid[]) order by tenant_id,membership_id,revision`, [ids]));
++      const readAudit = () => observations.trackReadback(() => adminQuery<AuditFact>(`select target_id,actor_user_id,command,metadata from public.audit_events
++        where tenant_id=any($1::uuid[]) and command like 'calendar_feed.%' order by created_at,id`, [ids]));
+       const checkCancellation = (signal?: AbortSignal) => { if (signal?.aborted) throw calendarBrowserDiagnostic("action-cancelled", { name: "AbortError" }); };
+       const physicalRows = async (signal?: AbortSignal) => {
+         checkCancellation(signal);
+         const rows = await joinedCalendarValues("action-readback", [readTokens(), readAudit()] as const);
+         checkCancellation(signal); return rows;
+       };
+       const snapshot = async (): Promise<PhysicalSnapshot> => {
+         const [tokens, audits] = await physicalRows();
+         const rows = (membership: string, userId: string): SubjectRows => {
+           const own = tokens.filter(row => row.membership_id === membership), active = own.find(row => row.revoked_at === null);
+           return { generationCount: own.filter(row => row.action !== "revoke").length, activeCount: own.filter(row => row.revoked_at === null).length,
+             revokedCount: own.filter(row => row.action !== "revoke" && row.revoked_at !== null).length, revision: own.at(-1)?.revision ?? 0,
+             usageCount: Number(active?.usage_count ?? 0), lastUsedAt: active?.last_used_at ?? null,
+             audit: audits.filter(audit => own.some(row => row.id === audit.target_id)).map(audit => ({ action: audit.command.slice("calendar_feed.".length) as LifecycleAction, actorMatchesSubject: audit.actor_user_id === userId })) };
+         };
+         const serialized = JSON.stringify(audits);
+         const secrets = [...rawLinks, ...rawLinks.map(url => new URL(url).pathname.split("/").at(-1)!), ...tokens.flatMap(row => row.token_hash ? [row.token_hash] : []), ...seedHashes,
+           process.env.CALENDAR_FEED_ATTESTATION_SECRET ?? ""].filter(Boolean);
+         return { own: rows(subject.membership, subject.user.id), peer: rows(peerMember.id, peerUser.id), foreign: rows(fx.foreignProfile.membershipId, fx.base.adminB.id),
+           onlyHashedCapabilitiesStored: tokens.every(row => row.action === "revoke" ? row.token_hash === null : /^[0-9a-f]{64}$/.test(row.token_hash ?? "")),
+           auditContainsCapabilityOrProofOrIpOrKey: secrets.some(value => serialized.includes(value)) || /"(?:token|token_hash|tokenHash|rawUrl|issuedPath|signature|proof|ip|ip_hash|ipHash|secret|key)"\s*:/i.test(serialized) };
+       };
+       const committedAttempt = async (input: Attempt, signal?: AbortSignal): Promise<PhysicalSnapshot> => {
+-        await expect.poll(async () => {
++        await expect.poll(() => observations.trackReadback(async () => {
+           const [tokens, audits] = await physicalRows(signal);
+           const token = tokens.find(row => row.membership_id === subject.membership && row.attempt_id === input.attemptId && row.action === input.action && row.revision === input.revision + 1);
+           return !!token && audits.filter(audit => audit.target_id === token.id && audit.actor_user_id === subject.user.id && audit.metadata.attemptId === input.attemptId && audit.metadata.revision === token.revision).length === 1;
+-        }, { timeout: 15_000, message: "Expected exact calendar lifecycle row and attributable audit commit" }).toBe(true);
++        }), { timeout: 15_000, message: "Expected exact calendar lifecycle row and attributable audit commit" }).toBe(true);
+         checkCancellation(signal); const current = await snapshot(); checkCancellation(signal); return current;
+       };
+       const errors: Error[] = [];
+       let stage: CalendarDiagnosticStage = "seed-tenants";
+       try {
+         await adminQuery("update public.tenants set provisioning_state=null where id=any($1::uuid[])", [ids]);
+         stage = "seed-profiles";
+         await adminQuery("insert into public.person_profiles(id,tenant_id,membership_id) values($1,$2,$3)", [extraProfile, ownTenant, peerMember.id]);
+         if (scenario === "no-profile") await adminQuery("delete from public.person_profiles where id=$1 and tenant_id=$2", [fx.ownProfile.id, ownTenant]);
+         const expectedByProfile = new Map<string, SafeEvent[]>();
+         for (const tenant of ids) {
+           stage = "seed-customer";
+           const customer = await adminInsertCustomer({ tenant_id: tenant, customer_type: "company", display_name: tenant === ownTenant ? "Kalendertest kund" : "FOREIGN-CUSTOMER" }); customers.push(customer);
+           stage = "seed-facility";
+           const facility = await adminInsertFacility({ tenant_id: tenant, customer_id: customer, name: "Kalendertest plats" }); facilities.push(facility);
+           await adminQuery("update public.facilities set address_line1='Testgatan 15',postal_code='75300',city='Uppsala' where id=$1 and tenant_id=$2", [facility, tenant]);
+           stage = "seed-job";
+           const job = await runCommand(createJob, { client: (tenant === ownTenant ? fx.adminClient : fx.foreignClient) as never, input: { customer_id: customer, title: tenant === ownTenant ? "Kalendertest jobb" : "FOREIGN-JOB" }, correlationId: randomUUID() });
+diff --git a/tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts b/tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts
+index 6d4aecf3..345ac5c3 100644
+--- a/tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts
++++ b/tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts
+@@ -721,36 +721,117 @@ test("actual browser matched events cannot credit pending or failed HTTP complet
+ test("actual browser finally cleanup executes every step and retains primary plus all sanitized cleanup errors", async () => {
+   const { calendarBrowserCleanup } = await actualBrowserSeams();
+   const calls: string[] = [];
+   await assert.rejects(calendarBrowserCleanup([
+     { stage: "cleanup-fault-release", async run() { calls.push("release"); throw new Error("PRIVATE gate details"); } },
+     { stage: "cleanup-lifecycle", async run() { calls.push("join"); } },
+     { stage: "cleanup-page", async run() { calls.push("page"); throw Object.assign(new Error("PRIVATE page details"), { code: "42501" }); } },
+   ], { error: new Error("PRIVATE original failure") }), error => {
+     assert.ok(error instanceof AggregateError); assert.equal(error.errors.length, 3);
+     assert.ok(error.errors[0].message.includes("stage=scenario"));
+     assert.ok(error.errors[1].message.includes("stage=cleanup-fault-release"));
+     assert.ok(error.errors[2].message.includes("stage=cleanup-page;category=database;sqlstate=42501"));
+     assert.ok(error.errors.every((nested: Error) => nested.cause === undefined && !nested.stack?.includes("PRIVATE")));
+     return true;
+   });
+   assert.deepEqual(calls, ["release", "join", "page"]);
+ });
+ 
++test("installed polling deadline cannot credit pending actual SQL callbacks despite successful HTTP completion", async () => {
++  const { createCalendarLifecycleObservations } = await actualBrowserSeams();
++  const { iso } = nodeModule.createRequire(import.meta.url)("../../../../node_modules/.pnpm/playwright-core@1.61.1/node_modules/playwright-core/lib/coreBundle.js") as {
++    iso: { monotonicTime(): number; pollAgainstDeadline(callback: () => Promise<{ continuePolling: boolean; result: boolean }>, deadline: number, intervals: number[]): Promise<{ timedOut: boolean }> };
++  };
++  const registry = createCalendarLifecycleObservations({ settlementTimeoutMs: 5 });
++  let releaseTokens!: () => void, releaseAudit!: () => void, finishedQueries = 0, httpComplete = false, callbackCompleted = false;
++  const tokens = new Promise<void>(resolve => { releaseTokens = resolve; }), audit = new Promise<void>(resolve => { releaseAudit = resolve; });
++  const observation = registry.observe({ request: () => ({ promise: Promise.resolve(7), cancel() {} }),
++    response: () => ({ promise: Promise.resolve(true), cancel() {} }), completion: async () => { httpComplete = true; return true; },
++    readback: async (_request, signal) => {
++      const result = await iso.pollAgainstDeadline(() => registry.trackReadback(async () => {
++        await Promise.allSettled([
++          registry.trackReadback(() => tokens.then(() => { finishedQueries++; })),
++          registry.trackReadback(() => audit.then(() => { finishedQueries++; })),
++        ]);
++        callbackCompleted = true;
++        if (signal.aborted) throw Object.assign(new Error("Injected cancellation"), { name: "AbortError" });
++        return { continuePolling: false, result: true };
++      }), iso.monotonicTime() + 100, [1]);
++      if (result.timedOut) throw Object.assign(new Error("Injected polling deadline"), { name: "TimeoutError" });
++      return true;
++    } });
++  await assert.rejects(observation, /category=timeout/);
++  assert.equal(httpComplete, true); assert.equal(finishedQueries, 0);
++  assert.equal((await registry.cancelAndSettle()).settled, false);
++  releaseTokens(); assert.equal((await registry.cancelAndSettle()).settled, false); assert.equal(finishedQueries, 1);
++  releaseAudit(); const actual = await registry.cancelAndSettle();
++  assert.equal(actual.settled, true); assert.equal(finishedQueries, 2);
++  assert.equal(callbackCompleted, true);
++  assert.ok(actual.errors.some(error => error.message.includes("category=timeout")));
++});
++
++test("tracked sibling SQL failures remain owned through outer deadline and preserve every sanitized failure", async () => {
++  const { createCalendarLifecycleObservations } = await actualBrowserSeams();
++  const registry = createCalendarLifecycleObservations({ settlementTimeoutMs: 5 });
++  let rejectTokens!: (error: Error) => void, rejectAudit!: (error: Error) => void, started!: () => void;
++  const tokens = new Promise<void>((_resolve, reject) => { rejectTokens = reject; });
++  const audit = new Promise<void>((_resolve, reject) => { rejectAudit = reject; });
++  const entered = new Promise<void>(resolve => { started = resolve; });
++  const callback = registry.trackReadback(async () => {
++    const siblings = [registry.trackReadback(() => tokens), registry.trackReadback(() => audit)]; started();
++    await Promise.allSettled(siblings); throw new Error("PRIVATE callback failure");
++  });
++  await entered;
++  rejectTokens(Object.assign(new Error("PRIVATE token query"), { code: "42501" }));
++  const first = await registry.cancelAndSettle(); assert.equal(first.settled, false);
++  rejectAudit(Object.assign(new Error("PRIVATE audit query"), { code: "57014" }));
++  await assert.rejects(callback, error => error instanceof Error && !error.message.includes("PRIVATE"));
++  const final = await registry.cancelAndSettle(); assert.equal(final.settled, true);
++  assert.ok(final.errors.some(error => error.message.includes("sqlstate=42501")));
++  assert.ok(final.errors.some(error => error.message.includes("sqlstate=57014")));
++  assert.ok(final.errors.length >= 3);
++  assert.ok(final.errors.every(error => error.cause === undefined && !error.stack?.includes("PRIVATE")));
++});
++
++test("readback ownership closes before drain and refuses queued and late callbacks without launching SQL", async () => {
++  const { createCalendarLifecycleObservations } = await actualBrowserSeams();
++  const registry = createCalendarLifecycleObservations({ settlementTimeoutMs: 5 }); let launches = 0;
++  const queued = registry.trackReadback(async () => { launches++; return true; });
++  const draining = registry.cancelAndSettle(); // closes synchronously before queued factory invocation
++  await assert.rejects(queued, /category=cancelled/);
++  assert.equal((await draining).settled, true); assert.equal(launches, 0);
++  const late = registry.trackReadback(async () => { launches++; return true; });
++  await assert.rejects(late, /category=cancelled/); assert.equal(launches, 0);
++  assert.ok((await registry.cancelAndSettle()).errors.length >= 2);
++});
++
++test("the exact returned readback promise observes abandoned factory and native query rejections immediately", async () => {
++  const { createCalendarLifecycleObservations } = await actualBrowserSeams();
++  const registry = createCalendarLifecycleObservations({ settlementTimeoutMs: 5 });
++  // Intentionally abandon both returned promises until the next turn; node:test
++  // detects any unobserved adopting async wrapper or rejection branch.
++  const sync = registry.trackReadback(() => { throw new Error("PRIVATE sync query"); });
++  const async = registry.trackReadback(() => Promise.reject(Object.assign(new Error("PRIVATE async query"), { code: "42501" })));
++  await new Promise(resolve => setImmediate(resolve));
++  await assert.rejects(sync, error => error instanceof Error && !error.stack?.includes("PRIVATE"));
++  await assert.rejects(async, /sqlstate=42501/);
++  const final = await registry.cancelAndSettle(); assert.equal(final.settled, true); assert.equal(final.errors.length, 2);
++});
++
+ test("browser mode runs only existing smoke and awaits its server group before key deletion", async () => {
+   const result = await runFixture("browser");
+   assert.equal(result.exitCode, 0); assert.equal(result.launches.length, 1);
+   assert.deepEqual([...BROWSER_ARGS], ["run", "test:smoke"]);
+   assert.deepEqual(result.launches[0].args, ["run", "test:smoke"]);
+   assert.equal(result.launches[0].childEnv.CALENDAR_FEED_TEST_BASE_URL, "http://127.0.0.1:3100");
+   assert.ok(result.events.indexOf("commit") < result.events.indexOf("launch:0"));
+   assert.ok(result.events.lastIndexOf("settled:0") < result.events.indexOf("delete"));
+ });
+ 
+ test("readiness and child failures keep primary failure and still clean the exact owned key", async () => {
+   for (const options of [{ readinessFailure: true }, { failChild: 0 }, { failChild: 2 }]) {
+     const result = await runFixture("db", harness(options));
+     assert.equal(result.exitCode, 1); assert.ok(result.receipt.failures.length >= 1);
+     assert.equal(result.receipt.keyDeleted, true); assert.equal(result.receipt.dbClosed, true);
+     assert.ok(result.events.indexOf("delete") > result.events.lastIndexOf(`settled:${result.launches.length - 1}`));
+   }
+ });
+
+COMPLETE CURRENT HELPER CONTEXT, retained caller/cleanup boundaries only, not a broad re-review:
+/** Real production browser adapter. Uses isolated rows and the already provisioned runtime key read-only. No key/global-IP mutation or resource startup. */
+import { expect, type Locator, type Page, type Request, type Response, type Route } from "@playwright/test";
+import { createHash, randomBytes, randomUUID } from "node:crypto";
+import type { BookingFixture } from "../../support/bookings-atdd";
+import { adminQuery, adminSession } from "../../factories/admin-sql";
+import { adminInsertCustomer, adminInsertFacility, makeAuthedServerClient, createRoleAwarePhaseAFixture, cleanupRoleAwarePhaseAFixture, type FixtureUser } from "../../factories/tenants";
+import { signIn as browserSignIn, hydrated } from "./time-reports-atdd";
+import { createJob } from "@/server/commands/jobs";
+import { runCommand } from "@/server/commands/envelope";
+
+export const CALENDAR_FIXTURE_DATE = "2026-10-12";
+
+// Pure diagnostic/observation seams: injected checks need no browser or database.
+export const calendarDiagnosticStages = ["fixture-base", "fixture-memberships", "fixture-clients", "seed-tenants", "seed-profiles", "seed-customer", "seed-facility", "seed-job", "seed-work-role", "seed-bookings", "seed-capability", "scenario", "sign-in", "navigation", "warning", "action-request", "action-response", "action-readback", "action-cancelled", "link-capture", "feed-http", "monitoring", "transport-fault", "cleanup-fault-release", "cleanup-lifecycle", "cleanup-fault-dispose", "cleanup-sql", "cleanup-canonical", "cleanup-page", "custody-retained", "unknown"] as const;
+export const calendarDiagnosticCategories = ["assertion", "timeout", "transport", "database", "cancelled", "unverified", "unknown"] as const;
+export const calendarDiagnosticSqlstates = ["23502", "23503", "23505", "23514", "22P02", "42501", "42P01", "42703", "42883", "40001", "40P01", "53300", "57014", "XX000", "CF409"] as const;
+export type CalendarDiagnosticStage = typeof calendarDiagnosticStages[number];
+export type CalendarDiagnosticCategory = typeof calendarDiagnosticCategories[number];
+const safeCalendarErrors = new WeakSet<Error>();
+function ownData(error: unknown, key: string): unknown {
+  try { return error !== null && (typeof error === "object" || typeof error === "function") ? Object.getOwnPropertyDescriptor(error, key)?.value : undefined; }
+  catch { return undefined; }
+}
+/** Never retain the original message, cause, stack, SQL arguments or properties. */
+export function calendarBrowserDiagnostic(stage: CalendarDiagnosticStage, error: unknown): Error {
+  if (error !== null && typeof error === "object" && safeCalendarErrors.has(error as Error)) return error as Error;
+  const safeStage = (calendarDiagnosticStages as readonly unknown[]).includes(stage) ? stage : "unknown";
+  const code = ownData(error, "code"), name = ownData(error, "name");
+  const sqlstate = (calendarDiagnosticSqlstates as readonly unknown[]).includes(code) ? String(code) : "unavailable";
+  const category: CalendarDiagnosticCategory = sqlstate !== "unavailable" ? "database" : name === "TimeoutError" ? "timeout"
+    : name === "AbortError" ? "cancelled" : name === "CalendarUnverified" ? "unverified" : ownData(error, "matcherResult") !== undefined ? "assertion"
+      : ["ECONNREFUSED", "ECONNRESET", "ETIMEDOUT"].includes(typeof code === "string" ? code : "") ? "transport" : "unknown";
+  const safe = new Error(`Calendar browser failure [stage=${safeStage};category=${category};sqlstate=${sqlstate}]`);
+  safeCalendarErrors.add(safe); return safe;
+}
+function calendarFailures(errors: Error[]): AggregateError {
+  const safe = new AggregateError(errors, "Calendar browser scenario or cleanup failed (closed diagnostics only)");
+  safeCalendarErrors.add(safe); return safe;
+}
+export async function calendarBrowserStep<T>(stage: CalendarDiagnosticStage, run: () => Promise<T>): Promise<T> {
+  try { return await run(); } catch (error) { throw calendarBrowserDiagnostic(stage, error); }
+}
+/** Use from finally with a captured/rethrown primary failure. Execute every
+ * cleanup step, and never replace a primary failure with a later cleanup error. */
+export async function calendarBrowserCleanup(steps: readonly { stage: CalendarDiagnosticStage; run(): Promise<unknown> }[], primary?: { error: unknown }): Promise<void> {
+  const failures: Error[] = [];
+  for (const step of steps) { try { await step.run(); } catch (error) { failures.push(calendarBrowserDiagnostic(step.stage, error)); } }
+  if (failures.length) throw calendarFailures([...(primary ? [calendarBrowserDiagnostic("scenario", primary.error)] : []), ...failures]);
+}
+async function joinedCalendarValues<T extends readonly unknown[]>(stage: CalendarDiagnosticStage, promises: { [K in keyof T]: Promise<T[K]> }): Promise<T> {
+  const results = await Promise.allSettled(promises), errors = results.flatMap(result => result.status === "rejected" ? [calendarBrowserDiagnostic(stage, result.reason)] : []);
+  if (errors.length) throw calendarFailures(errors);
+  return results.map(result => (result as PromiseFulfilledResult<unknown>).value) as unknown as T;
+}
+export type CalendarEventWaiter<T> = { promise: Promise<T>; cancel(): void };
+/** Both event rejection and cancellation are observed immediately. Unsubscribe
+ * is synchronous, including timeout/predicate failure; no native waiter lingers. */
+export function calendarEventWaiter<T>(options: {
+  subscribe(listener: (value: T) => void): void; unsubscribe(listener: (value: T) => void): void;
+  predicate(value: T): boolean; stage: "action-request" | "action-response"; timeoutMs: number;
+}): CalendarEventWaiter<T> {
+  let resolve!: (value: T) => void, reject!: (error: Error) => void, done = false;
+  let timer: ReturnType<typeof setTimeout> | undefined, disposalError: Error | undefined;
+  const promise = new Promise<T>((yes, no) => { resolve = yes; reject = no; });
+  void promise.catch(() => undefined);
+  const finish = (error?: Error, value?: T) => {
+    if (done) return; done = true;
+    if (timer) clearTimeout(timer);
+    try { options.unsubscribe(listener); }
+    catch (unsubscribeError) { disposalError = calendarBrowserDiagnostic(options.stage, unsubscribeError); error = error ? calendarFailures([error, disposalError]) : disposalError; }
+    if (error) reject(error); else resolve(value as T);
+  };
+  const listener = (value: T) => {
+    try { if (options.predicate(value)) finish(undefined, value); }
+    catch (error) { finish(calendarBrowserDiagnostic(options.stage, error)); }
+  };
+  try {
+    options.subscribe(listener);
+    if (!done) timer = setTimeout(() => finish(calendarBrowserDiagnostic(options.stage, { name: "TimeoutError" })), options.timeoutMs);
+  } catch (error) { finish(calendarBrowserDiagnostic(options.stage, error)); }
+  return { promise, cancel() { finish(calendarBrowserDiagnostic("action-cancelled", { name: "AbortError" })); if (disposalError) throw disposalError; } };
+}
+export function createCalendarLifecycleObservations(options: { settlementTimeoutMs?: number } = {}) {
+  type Pending = { cancel(): void; settled: Promise<void> };
+  const pending = new Set<Pending>(), actualWork = new Set<Promise<void>>(), failures: Error[] = [];
+  let closing = false, cancellationVerified = true;
+  const cancelWaiter = (waiter?: { cancel(): void }) => {
+    try { waiter?.cancel(); } catch (error) { cancellationVerified = false; failures.push(calendarBrowserDiagnostic("cleanup-lifecycle", error)); }
+  };
+  return {
+    /** Own the actual callback/query, independently of a caller's deadline race.
+     * Non-async deliberately returns the exact immediately observed promise. */
+    trackReadback<T>(run: () => Promise<T>): Promise<T> {
+      const work = Promise.resolve().then(() => {
+        // Registration and invocation are separate microtasks: close must also
+        // stop work registered just before teardown but not yet started.
+        if (closing) throw calendarBrowserDiagnostic("action-cancelled", { name: "AbortError" });
+        return run();
+      }).catch(error => { throw calendarBrowserDiagnostic("action-readback", error); });
+      void work.catch(() => undefined);
+      const settled = work.then(() => undefined, error => { failures.push(calendarBrowserDiagnostic("action-readback", error)); });
+      actualWork.add(settled);
+      void settled.then(() => actualWork.delete(settled));
+      return work;
+    },
+    observe<R, S, T>(input: { request(): CalendarEventWaiter<R>; response(): CalendarEventWaiter<S>; readback(request: R, signal: AbortSignal): Promise<T>; completion?(request: R): Promise<boolean> }): Promise<T> {
+      const controller = new AbortController();
+      let request: CalendarEventWaiter<R> | undefined, response: CalendarEventWaiter<S> | undefined;
+      let stage: CalendarDiagnosticStage = "action-response";
+      // Register both real events synchronously BEFORE returning to the UI trigger.
+      let setupError: unknown, setupFailed = false;
+      try {
+        if (closing) throw calendarBrowserDiagnostic("action-cancelled", { name: "AbortError" });
+        response = input.response(); void response.promise.catch(() => undefined);
+        stage = "action-request"; request = input.request(); void request.promise.catch(() => undefined);
+      } catch (error) {
+        setupError = error; setupFailed = true; cancelWaiter(response); cancelWaiter(request);
+        if (input.completion) cancellationVerified = false;
+      }
+      // A cancelled event waiter is not proof the matched HTTP request ended.
+      // Keep the actual native completion promise owned and joined independently.
+      const completion = request ? request.promise.then(async matched => {
+        try {
+          if (input.completion && !await input.completion(matched)) throw calendarBrowserDiagnostic("cleanup-lifecycle", { name: "CalendarUnverified" });
+        } catch (error) { cancellationVerified = false; throw calendarBrowserDiagnostic("cleanup-lifecycle", error); }
+      }, () => {
+        if (input.completion) {
+          // A missed/cancelled matcher cannot prove that no UI request started.
+          cancellationVerified = false;
+          throw calendarBrowserDiagnostic("cleanup-lifecycle", { name: "CalendarUnverified" });
+        }
+      }) : Promise.resolve();
+      void completion.catch(() => undefined);
+      const observation = (async () => {
+        try {
+          if (setupFailed) throw setupError;
+          const [matched] = await Promise.all([request!.promise, response!.promise]);
+          if (controller.signal.aborted) throw calendarBrowserDiagnostic("action-cancelled", { name: "AbortError" });
+          stage = "action-readback";
+          const result = await input.readback(matched, controller.signal);
+          if (controller.signal.aborted) throw calendarBrowserDiagnostic("action-cancelled", { name: "AbortError" });
+          return result;
+        } catch (error) { throw calendarBrowserDiagnostic(stage, error); }
+        finally { cancelWaiter(request); cancelWaiter(response); }
+      })();
+      // Observe the RETURNED promise too: callers can fail before awaiting it.
+      void observation.catch(() => undefined);
+      const entry: Pending = { settled: Promise.allSettled([observation, completion]).then(results => {
+        for (const result of results) if (result.status === "rejected") failures.push(calendarBrowserDiagnostic(stage, result.reason));
+      }).finally(() => pending.delete(entry)), cancel() { controller.abort(); cancelWaiter(request); cancelWaiter(response); } };
+      pending.add(entry); return observation;
+    },
+    async cancelAndSettle(): Promise<{ errors: Error[]; settled: boolean }> {
+      // Close BEFORE capturing work. Late poll callbacks cannot launch queries,
+      // and an expect.poll timeout never substitutes for actual SQL settlement.
+      closing = true;
+      const active = [...pending]; for (const entry of active) entry.cancel();
+      const work = [...actualWork];
+      let timer: ReturnType<typeof setTimeout> | undefined;
+      const settled = await Promise.race([Promise.all([...active.map(entry => entry.settled), ...work]).then(() => true), new Promise<false>(resolve => {
+        timer = setTimeout(() => resolve(false), options.settlementTimeoutMs ?? 20_000);
+      })]);
+      if (timer) clearTimeout(timer);
+      return { settled: settled && cancellationVerified, errors: [...failures, ...(!settled ? [calendarBrowserDiagnostic("cleanup-lifecycle", { name: "TimeoutError" })] : [])] };
+    },
+  };
+}
+
+/** Accessible labels bound to the authored production components. Runtime
+ * verification is performed by the required production-host browser lane. */
+export const calendarNames = {
+  title: "Kalenderprenumeration",
+  create: "Skapa kalenderlänk",
+  rotate: "Rotera länk",
+  revoke: "Återkalla länk",
+  copy: "Kopiera länk",
+  link: "Din kalenderlänk (visas bara nu)",
+  confirmRotate: "Bekräfta rotera",
+  confirmRevoke: "Bekräfta återkalla",
+  retry: "Försök igen med samma ändring",
+  reconcile: "Kontrollera resultat",
+  abuse: "Kalenderprenumerationer – begränsningar",
+} as const;
+
+export function calendarUI(page: Page) {
+  return {
+    create: page.getByRole("button", { name: calendarNames.create, exact: true }),
+    rotate: page.getByRole("button", { name: calendarNames.rotate, exact: true }),
+    revoke: page.getByRole("button", { name: calendarNames.revoke, exact: true }),
+    copy: page.getByRole("button", { name: calendarNames.copy, exact: true }),
+    link: page.getByRole("textbox", { name: calendarNames.link, exact: true }),
+    retry: page.getByRole("button", { name: calendarNames.retry, exact: true }),
+    reconcile: page.getByRole("button", { name: calendarNames.reconcile, exact: true }),
+    notice: page.getByRole("region", { name: calendarNames.title, exact: true }).getByRole("status"),
+    abuse: page.getByRole("region", { name: calendarNames.abuse, exact: true }),
+  };
+}
+
+/** Keyboard traversal proves reachability; direct focus() would not prove it. */
+export async function tabTo(page: Page, target: Locator): Promise<void> {
+  return calendarBrowserStep("navigation", async () => {
+  await hydrated(target);
+  if (await target.evaluate((element) => element === document.activeElement)) return;
+  for (let count = 0; count < 80; count++) {
+    await page.keyboard.press("Tab");
+    if (await target.evaluate((element) => element === document.activeElement)) return;
+  }
+  throw new Error("Expected calendar control is not reachable by keyboard");
+  });
+}
+
+/** Actual source anchors: AppShell Huvudmeny/Huvudnavigation + Planering;
+ * SchedulingToolbar Planeringsvy/Min kalender, Datum, Period;
+ * PersonalCalendarView Min kalender/Egen agenda/Egen veckokalender/empty copy.
+ * Hydration is awaited before interaction with the production host.
+ */
+export async function enterActualPersonalCalendar(page: Page, mode: "day" | "week") {
+  return calendarBrowserStep("navigation", async () => {
+  await page.goto("/dashboard");
+  const menu = page.getByRole("button", { name: "Öppna meny", exact: true });
+  if (await menu.isVisible()) { await hydrated(menu); await menu.click(); }
+  const nav = page.getByRole("navigation", { name: "Huvudnavigation", exact: true })
+    .filter({ visible: true });
+  await nav.getByRole("link", { name: "Planering", exact: true }).click();
+  await expect(page).toHaveURL(/\/scheduling$/);
+  const personalTab = page.getByRole("tab", { name: "Min kalender", exact: true });
+  await hydrated(personalTab);
+  await personalTab.click();
+  await page.getByLabel("Datum", { exact: true }).fill(CALENDAR_FIXTURE_DATE);
+  await page.getByLabel("Period", { exact: true }).selectOption(mode);
+  await expect(page.getByText("Läser planering…", { exact: true })).toHaveCount(0);
+  const personal = page.getByRole("region", { name: "Min kalender", exact: true });
+  await expect(personal).toBeVisible();
+  return personal;
+  });
+}
+
+export async function followPersonalSubscriptionByKeyboard(page: Page, mode: "day" | "week") {
+  return calendarBrowserStep("navigation", async () => {
+  const personal = await enterActualPersonalCalendar(page, mode);
+  const subscription = personal.getByRole("link", { name: calendarNames.title, exact: true });
+  await expect(subscription).toHaveCount(1);
+  await expect(subscription).toHaveAttribute("href", "/settings/calendar");
+  await tabTo(page, subscription);
+  await page.keyboard.press("Enter");
+  await expect(page).toHaveURL(/\/settings\/calendar$/);
+  await expect(page.getByRole("heading", { name: calendarNames.title, exact: true })).toBeVisible();
+  });
+}
+
+/** Both bearer access and provider retention warnings are required. */
+export async function expectAccessWarning(page: Page): Promise<void> {
+  return calendarBrowserStep("warning", async () => {
+  await expect(page.getByText(/(?:alla|den) som har länken.*läsa/i)).toBeVisible();
+  await expect(page.getByText(/kalender(?:app|leverantör).*behålla|redan hämtade.*(?:finnas kvar|sparas)/i)).toBeVisible();
+  });
+}
+
+declare const issuedLinkBrand: unique symbol;
+/** Adapter keeps the raw link in a private WeakMap, never an enumerable property.
+ * Do not compare, interpolate, attach, screenshot, trace or print the raw input.
+ */
+export type IssuedLinkHandle = { readonly [issuedLinkBrand]: true };
+export type LifecycleAction = "create" | "rotate" | "revoke";
+export type SafeEvent = { uid: string; start: string; end: string; summary: string; location: string | null };
+export type SubjectRows = {
+  generationCount: number; activeCount: number; revokedCount: number;
+  revision: number; usageCount: number; lastUsedAt: string | null;
+  audit: { action: LifecycleAction; actorMatchesSubject: boolean }[];
+};
+export type PhysicalSnapshot = {
+  own: SubjectRows; peer: SubjectRows; foreign: SubjectRows;
+  onlyHashedCapabilitiesStored: boolean;
+  auditContainsCapabilityOrProofOrIpOrKey: boolean;
+};
+export type LifecycleObservation = {
+  committed: boolean; snapshot: PhysicalSnapshot;
+};
+export type SafeFeedReceipt = {
+  status: number; contentType: string; cacheControl: string;
+  setCookiePresent: boolean; redirectPresent: boolean;
+  events: SafeEvent[]; containsForbiddenFields: boolean;
+  rfc5545Valid: boolean;
+  genericInactive: boolean;
+};
+export type ArmedFault = {
+  reached: Promise<void>;
+  /** SQL commit readback, not a fulfilled/stubbed response. */
+  committed: Promise<PhysicalSnapshot>;
+  /** Only hold-committed-response exposes the real response's issued link,
+   * privately hash-checked against that attempt before returning an opaque handle. */
+  issuedLink: Promise<IssuedLinkHandle>;
+  release: () => Promise<void>;
+  dispose: () => Promise<void>;
+};
+
+export type CalendarBrowserFixture = {
+  /** Fixture is tenant-isolated, with legacy NULL provisioning_state positive,
+   * own/shared planned rows and peer/foreign poison rows, stable independent UIDs.
+   * Composes canonical role/profile/client fixtures locally; no host env file or
+   * globally shared fixture/key is created in this helper.
+   */
+  expectedOwnEvents: SafeEvent[];
+  expectedAbuse: { limitedRequests: number; spikes: number };
+  signIn: (identity: "montor" | "manager" | "admin" | "seller") => Promise<void>;
+  snapshot: () => Promise<PhysicalSnapshot>;
+  /** Register actual action transport listener BEFORE triggering the UI action;
+   * bind actual Next action input, never guess an /api endpoint or RPC payload.
+   * Transport 2xx alone is insufficient: join exact subject/attempt SQL commit.
+   */
+  observeLifecycle: (action: LifecycleAction, sourcePage?: Page) => Promise<LifecycleObservation>;
+  /** Read the one-time accessible input without exposing its value in assertions.
+   * Format/hash/no-storage checks return booleans only. Capture errors discard
+   * cause/request/response/DOM bodies and use a fixed redacted message.
+   */
+  captureIssuedLink: (sourcePage?: Page) => Promise<{
+    handle: IssuedLinkHandle; canonical43Characters: boolean;
+    hashMatchesPhysicalGeneration: boolean; absentFromBrowserStorage: boolean;
+  }>;
+  /** REAL anonymous HTTP GET to /calendar/feed/[token] outside browser trace;
+   * cookie-free independent client, retries=0, no raw error/URL artifacts.
+   * Parse independently of production encoder. Only sanitized receipt escapes.
+   * Every request counts: E2E uses no rate-limit trip/global-key mutation. Parent
+   * schedules it separately from serial API unknown-IP budget/key/fault tests.
+   */
+  fetchAnonymous: (link: IssuedLinkHandle, hostileCookiesAndValidators?: boolean) => Promise<SafeFeedReceipt>;
+  /** Compare last-used UI with exact physical timestamp without locale guesses. */
+  lastUsedMatchesPhysical: () => Promise<boolean>;
+  /** Private raw checks; return no URL/hash/proof/IP/key or browser storage data. */
+  checkIssuedLinkFallback: () => Promise<{
+    readOnly: boolean; selectedWholeLink: boolean; equalsConfirmedIssuedLink: boolean;
+  }>;
+  denyClipboard: () => Promise<void>;
+  /** Transport-only fault, registered BEFORE actions. Never synthesize success.
+   * Hold-before-send proves pending; fail-before-send proves zero writes; lost
+   * response forwards real request and confirms SQL commit before aborting bytes.
+   * Hold-committed-response returns those same real response bytes only after
+   * release, allowing a second settings page to commit a competing revision.
+   * Restore all routes/listeners and release owned gates in finally, bounded.
+   */
+  armFault: (kind: "hold-before-send" | "fail-before-send" | "lose-committed-response" | "hold-committed-response") => Promise<ArmedFault>;
+  /** Test-normalized sanitized current-self attempt metadata; no new RPC shape. */
+  attemptReceipt: () => Promise<{
+    submittedAttempts: number; distinctAttempts: number; recoveredRawLink: boolean;
+  }>;
+  /** Actual management read response scrubbed privately, plus actual UI/SQL
+   * aggregate comparison. SQL setup must seed only owned aggregate rows (no
+   * unknown-IP requests or test-key writes in this browser fixture).
+   */
+  monitoringReceipt: () => Promise<{
+    aggregateReadAllowed: boolean; ownTenantOnly: boolean;
+    limitedRequests: number; spikes: number;
+    containsHashIpUrlProofKeyOrPeerDetails: boolean;
+  }>;
+};
+
+type TokenFact = { id: string; tenant_id: string; membership_id: string; token_hash: string | null;
+  revision: number; attempt_id: string; action: LifecycleAction; revoked_at: string | null;
+  usage_count: string; last_used_at: string | null; request_count: string; spike_count: string; last_spike_at: string | null };
+type AuditFact = { target_id: string; actor_user_id: string; command: string; metadata: Record<string, unknown> };
+type Attempt = { action: LifecycleAction; revision: number; attemptId: string };
+const secretLinks = new WeakMap<IssuedLinkHandle, string>();
+const hash = (value: string) => createHash("sha256").update(value).digest("hex");
+
+function actionInput(request: Request): Attempt | null {
+  if (request.method() !== "POST" || !request.headers()["next-action"] || new URL(request.url()).pathname !== "/settings/calendar") return null;
+  try {
+    const [input] = JSON.parse(request.postData() ?? "null");
+    return input && ["create", "rotate", "revoke"].includes(input.action) && Number.isSafeInteger(input.revision)
+      && /^[0-9a-f-]{36}$/i.test(input.attemptId) ? input as Attempt : null;
+  } catch { return null; }
+}
+function deferred<T>() {
+  let resolve!: (value: T) => void, reject!: (error: Error) => void;
+  const promise = new Promise<T>((yes, no) => { resolve = yes; reject = no; });
+  void promise.catch(() => undefined);
+  return { promise, resolve, reject };
+}
+/** Independent RFC inspection: exact boundaries, CRLF, UTF8 folding, required
+ * singleton properties and allowlist. No production serializer/parser import. */
+function inspectCalendar(body: string): { events: SafeEvent[]; valid: boolean } {
+  const lines = body.split("\r\n");
+  let valid = body.startsWith("BEGIN:VCALENDAR\r\n") && body.endsWith("END:VCALENDAR\r\n")
+    && !body.replaceAll("\r\n", "").match(/[\r\n]/) && lines.every(line => Buffer.byteLength(line) <= 75);
+  const unfolded = body.replace(/\r\n[ \t]/g, "");
+  const matches = [...unfolded.matchAll(/BEGIN:VEVENT\r\n([\s\S]*?)END:VEVENT\r\n/g)];
+  valid &&= matches.length === (unfolded.match(/BEGIN:VEVENT/g) ?? []).length;
+  const events = matches.map(match => {
+    const properties = new Map<string, string[]>();
+    for (const line of match[1].split("\r\n").filter(Boolean)) {
+      const colon = line.indexOf(":");
+      if (colon < 1) { valid = false; continue; }
+      const name = line.slice(0, colon), values = properties.get(name) ?? [];
+      values.push(line.slice(colon + 1)); properties.set(name, values);
+    }
+    const allowed = ["UID", "DTSTAMP", "LAST-MODIFIED", "DTSTART", "DTEND", "DTSTART;VALUE=DATE", "DTEND;VALUE=DATE", "SUMMARY", "LOCATION"];
+    valid &&= [...properties.keys()].every(name => allowed.includes(name)) && [...properties.values()].every(values => values.length === 1);
+    for (const required of ["UID", "DTSTAMP", "LAST-MODIFIED", "SUMMARY"]) valid &&= properties.has(required);
+    const start = properties.get("DTSTART")?.[0] ?? properties.get("DTSTART;VALUE=DATE")?.[0];
+    const end = properties.get("DTEND")?.[0] ?? properties.get("DTEND;VALUE=DATE")?.[0];
+    valid &&= !!start && !!end && /^(?:\d{8}|\d{8}T\d{6}Z)$/.test(start) && /^(?:\d{8}|\d{8}T\d{6}Z)$/.test(end);
+    const decode = (value: string) => value.replace(/\\([nN,;\\])/g, (_, char: string) => /n/i.test(char) ? "\n" : char);
+    return { uid: properties.get("UID")?.[0] ?? "", start: start ?? "", end: end ?? "", summary: decode(properties.get("SUMMARY")?.[0] ?? ""), location: properties.has("LOCATION") ? decode(properties.get("LOCATION")![0]) : null };
+  });
+  valid &&= new Set(events.map(event => event.uid)).size === events.length;
+  return { events: events.sort((a, b) => a.uid.localeCompare(b.uid)), valid };
+}
+
+type CalendarBaseFixture = Awaited<ReturnType<typeof createRoleAwarePhaseAFixture>>;
+const retainedCalendarFixtureCustody = new Set<CalendarBaseFixture>();
+/** Equivalent to bookings-atdd::seedBookingFixture: same canonical role factory,
+ * four profile inserts and four ordinary clients, same inputs/counts/return shape.
+ * Join every seed promise before deciding whether canonical cleanup is safe. */
+async function seedCalendarBookingFixture(roleFixture: CalendarBaseFixture): Promise<BookingFixture> {
+  const { base, users } = roleFixture;
+  const seedProfile = async (tenantId: string, user: FixtureUser) => calendarBrowserStep("seed-profiles", async () => {
+    const [membership] = await adminQuery<{ id: string }>("select id from public.tenant_memberships where tenant_id=$1 and user_id=$2", [tenantId, user.id]);
+    const id = randomUUID();
+    await adminQuery("insert into public.person_profiles(id,tenant_id,membership_id) values($1,$2,$3)", [id, tenantId, membership.id]);
+    return { id, membershipId: membership.id };
+  });
+  const [adminProfile, ownProfile, coworkerProfile, foreignProfile] = await joinedCalendarValues("seed-profiles", [
+    seedProfile(base.tenantA.id, base.adminA), seedProfile(base.tenantA.id, users.montor),
+    seedProfile(base.tenantA.id, users.projektledare), seedProfile(base.tenantB.id, base.adminB),
+  ] as const);
+  const [adminClient, plannerClient, montorClient, foreignClient] = await joinedCalendarValues("fixture-clients", [
+    makeAuthedServerClient(base.adminA), makeAuthedServerClient(users.projektledare),
+    makeAuthedServerClient(users.montor), makeAuthedServerClient(base.adminB),
+  ] as const);
+  return { ...roleFixture, adminProfile, ownProfile, coworkerProfile, foreignProfile, adminClient, plannerClient, montorClient, foreignClient, tenantIds: [base.tenantA.id, base.tenantB.id] };
+}
+
+/** Fresh ordinary auth fixtures and physical SQL observations only. The caller
+ * owns the production host/runtime key; missing infrastructure fails the test.
+ * No global-IP reset, Vault writes, success stubs, retries or secret attachments. */
+export async function withCalendarBrowserFixture(
+  page: Page, scenario: "own-and-foreign" | "no-profile" | "admin-monitoring",
+  run: (fixture: CalendarBrowserFixture) => Promise<void>,
+): Promise<void> {
+  // Even Playwright locator errors can include the one-time input in DOM context.
+  // Preserve failure, but never let those native details reach JSON/HTML reports.
+  let base: CalendarBaseFixture | undefined, cleanupAllowed = true;
+  const finalErrors: Error[] = [];
+  try {
+    base = await calendarBrowserStep("fixture-base", () => createRoleAwarePhaseAFixture());
+    const fx = await seedCalendarBookingFixture(base);
+    {
+      const ownTenant = fx.base.tenantA.id, foreignTenant = fx.base.tenantB.id;
+      const ids = fx.tenantIds, bookingIds: string[] = [], customers: string[] = [], facilities: string[] = [], jobs: string[] = [], roles: string[] = [];
+      const extraProfile = randomUUID(), privateNote = `PRIVATE-NOTE-${randomUUID()}`;
+      const peerUser = fx.roleUnionUser;
+      const [peerMember] = await calendarBrowserStep("fixture-memberships", () => adminQuery<{ id: string }>("select id from public.tenant_memberships where tenant_id=$1 and user_id=$2", [ownTenant, peerUser.id]));
+      const [sellerMember] = await calendarBrowserStep("fixture-memberships", () => adminQuery<{ id: string }>("select id from public.tenant_memberships where tenant_id=$1 and user_id=$2", [ownTenant, fx.users.saljare.id]));
+      const subjects = { seller: { user: fx.users.saljare, membership: sellerMember.id, profile: "" }, montor: { user: fx.users.montor, membership: fx.ownProfile.membershipId, profile: fx.ownProfile.id },
+        manager: { user: fx.users.projektledare, membership: fx.coworkerProfile.membershipId, profile: fx.coworkerProfile.id },
+        admin: { user: fx.base.adminA, membership: fx.adminProfile.membershipId, profile: fx.adminProfile.id } };
+      let subject = subjects.montor;
+      const attempts: Attempt[] = [], rawLinks: string[] = [], seedHashes: string[] = [];
+      const activeFaults = new Set<ArmedFault>();
+      const observations = createCalendarLifecycleObservations();
+      cleanupAllowed = false; // only the complete final settlement gate may admit deletion
+      let transportVerified = true;
+      const requestListener = (request: Request) => { const input = actionInput(request); if (input) attempts.push(input); };
+      page.on("request", requestListener);
+      const readTokens = () => observations.trackReadback(() => adminQuery<TokenFact>(`select id,tenant_id,membership_id,token_hash,revision,attempt_id,action,
+        revoked_at::text,usage_count::text,last_used_at::text,request_count::text,spike_count::text,last_spike_at::text
+        from public.calendar_feed_tokens where tenant_id=any($1::uuid[]) order by tenant_id,membership_id,revision`, [ids]));
+      const readAudit = () => observations.trackReadback(() => adminQuery<AuditFact>(`select target_id,actor_user_id,command,metadata from public.audit_events
+        where tenant_id=any($1::uuid[]) and command like 'calendar_feed.%' order by created_at,id`, [ids]));
+      const checkCancellation = (signal?: AbortSignal) => { if (signal?.aborted) throw calendarBrowserDiagnostic("action-cancelled", { name: "AbortError" }); };
+      const physicalRows = async (signal?: AbortSignal) => {
+        checkCancellation(signal);
+        const rows = await joinedCalendarValues("action-readback", [readTokens(), readAudit()] as const);
+        checkCancellation(signal); return rows;
+      };
+      const snapshot = async (): Promise<PhysicalSnapshot> => {
+        const [tokens, audits] = await physicalRows();
+        const rows = (membership: string, userId: string): SubjectRows => {
+          const own = tokens.filter(row => row.membership_id === membership), active = own.find(row => row.revoked_at === null);
+          return { generationCount: own.filter(row => row.action !== "revoke").length, activeCount: own.filter(row => row.revoked_at === null).length,
+            revokedCount: own.filter(row => row.action !== "revoke" && row.revoked_at !== null).length, revision: own.at(-1)?.revision ?? 0,
+            usageCount: Number(active?.usage_count ?? 0), lastUsedAt: active?.last_used_at ?? null,
+            audit: audits.filter(audit => own.some(row => row.id === audit.target_id)).map(audit => ({ action: audit.command.slice("calendar_feed.".length) as LifecycleAction, actorMatchesSubject: audit.actor_user_id === userId })) };
+        };
+        const serialized = JSON.stringify(audits);
+        const secrets = [...rawLinks, ...rawLinks.map(url => new URL(url).pathname.split("/").at(-1)!), ...tokens.flatMap(row => row.token_hash ? [row.token_hash] : []), ...seedHashes,
+          process.env.CALENDAR_FEED_ATTESTATION_SECRET ?? ""].filter(Boolean);
+        return { own: rows(subject.membership, subject.user.id), peer: rows(peerMember.id, peerUser.id), foreign: rows(fx.foreignProfile.membershipId, fx.base.adminB.id),
+          onlyHashedCapabilitiesStored: tokens.every(row => row.action === "revoke" ? row.token_hash === null : /^[0-9a-f]{64}$/.test(row.token_hash ?? "")),
+          auditContainsCapabilityOrProofOrIpOrKey: secrets.some(value => serialized.includes(value)) || /"(?:token|token_hash|tokenHash|rawUrl|issuedPath|signature|proof|ip|ip_hash|ipHash|secret|key)"\s*:/i.test(serialized) };
+      };
+      const committedAttempt = async (input: Attempt, signal?: AbortSignal): Promise<PhysicalSnapshot> => {
+        await expect.poll(() => observations.trackReadback(async () => {
+          const [tokens, audits] = await physicalRows(signal);
+          const token = tokens.find(row => row.membership_id === subject.membership && row.attempt_id === input.attemptId && row.action === input.action && row.revision === input.revision + 1);
+          return !!token && audits.filter(audit => audit.target_id === token.id && audit.actor_user_id === subject.user.id && audit.metadata.attemptId === input.attemptId && audit.metadata.revision === token.revision).length === 1;
+        }), { timeout: 15_000, message: "Expected exact calendar lifecycle row and attributable audit commit" }).toBe(true);
+        checkCancellation(signal); const current = await snapshot(); checkCancellation(signal); return current;
+      };
+      const errors: Error[] = [];
+      let stage: CalendarDiagnosticStage = "seed-tenants";
+      try {
+        await adminQuery("update public.tenants set provisioning_state=null where id=any($1::uuid[])", [ids]);
+        stage = "seed-profiles";
+        await adminQuery("insert into public.person_profiles(id,tenant_id,membership_id) values($1,$2,$3)", [extraProfile, ownTenant, peerMember.id]);
+        if (scenario === "no-profile") await adminQuery("delete from public.person_profiles where id=$1 and tenant_id=$2", [fx.ownProfile.id, ownTenant]);
+        const expectedByProfile = new Map<string, SafeEvent[]>();
+        for (const tenant of ids) {
+          stage = "seed-customer";
+          const customer = await adminInsertCustomer({ tenant_id: tenant, customer_type: "company", display_name: tenant === ownTenant ? "Kalendertest kund" : "FOREIGN-CUSTOMER" }); customers.push(customer);
+          stage = "seed-facility";
+          const facility = await adminInsertFacility({ tenant_id: tenant, customer_id: customer, name: "Kalendertest plats" }); facilities.push(facility);
+          await adminQuery("update public.facilities set address_line1='Testgatan 15',postal_code='75300',city='Uppsala' where id=$1 and tenant_id=$2", [facility, tenant]);
+          stage = "seed-job";
+          const job = await runCommand(createJob, { client: (tenant === ownTenant ? fx.adminClient : fx.foreignClient) as never, input: { customer_id: customer, title: tenant === ownTenant ? "Kalendertest jobb" : "FOREIGN-JOB" }, correlationId: randomUUID() });
+          if (!job.ok) throw new Error("Calendar job seed refused"); jobs.push(job.data.targetId);
+          stage = "seed-work-role";
+          const [role] = await adminQuery<{ id: string }>("insert into public.work_roles(tenant_id,display_name,cost_rate_ore,sell_rate_ore) values($1,'Installation',20000,40000) returning id", [tenant]); roles.push(role.id);
+          const available = [fx.ownProfile.id, fx.coworkerProfile.id, fx.adminProfile.id].filter(id => scenario !== "no-profile" || id !== fx.ownProfile.id);
+          const assignments = tenant === ownTenant ? [...available.map(id => [id]), available, [extraProfile]] : [[fx.foreignProfile.id]];
+          stage = "seed-bookings";
+          for (const profiles of assignments) {
+            const id = randomUUID(); bookingIds.push(id);
+            await adminQuery(`insert into public.bookings(id,tenant_id,starts_at,ends_at,description,work_role_id,job_id,customer_id,facility_id,create_command_id,create_payload_digest,create_result)
+              values($1,$2,'2026-10-12T06:00:00Z','2026-10-12T08:00:00Z',$3,$4,$5,$6,$7,$8,repeat('a',64),jsonb_build_object('bookingId',$1::uuid::text))`, [id, tenant, privateNote, role.id, job.data.targetId, customer, facility, randomUUID()]);
+            for (const profile of profiles) {
+              await adminQuery("insert into public.booking_assignees(tenant_id,booking_id,person_profile_id) values($1,$2,$3)", [tenant, id, profile]);
+              const expected = expectedByProfile.get(profile) ?? [];
+              expected.push({ uid: `${id}@bookings.kopplas`, start: "20261012T060000Z", end: "20261012T080000Z", summary: "Installation – Kalendertest jobb – Kalendertest kund", location: "Testgatan 15, 75300 Uppsala" }); expectedByProfile.set(profile, expected);
+            }
+          }
+        }
+        // Concrete peer/foreign capabilities and aggregate poison facts. No feed
+        // requests, dedicated key changes or global-IP budget writes are involved.
+        stage = "seed-capability";
+        for (const [tenant, membership, count] of [[ownTenant, peerMember.id, 3], [foreignTenant, fx.foreignProfile.membershipId, 19]] as const) {
+          const digest = hash(randomBytes(32).toString("base64url")); seedHashes.push(digest);
+          await adminQuery(`insert into public.calendar_feed_tokens(tenant_id,membership_id,token_hash,revision,attempt_id,action,expected_revision,request_count,spike_count,last_spike_at)
+            values($1,$2,$3,1,$4,'create',0,$5,$5,clock_timestamp())`, [tenant, membership, digest, randomUUID(), count]);
+        }
+        let confirmedLink: string | null = null;
+        const fixture: CalendarBrowserFixture = {
+          expectedOwnEvents: [], expectedAbuse: { limitedRequests: 3, spikes: 1 },
+          async signIn(identity) { subject = subjects[identity]; fixture.expectedOwnEvents = [...(expectedByProfile.get(subject.profile) ?? [])].sort((a, b) => a.uid.localeCompare(b.uid)); await calendarBrowserStep("sign-in", () => browserSignIn(page, subject.user)); },
+          snapshot,
+          observeLifecycle(action, sourcePage = page) {
+            return observations.observe({
+              // Preserve both original predicates and the 30-second transport
+              // bound. Own listeners add cancellation, not a different matcher.
+              response: () => calendarEventWaiter<Response>({ subscribe: listener => { sourcePage.on("response", listener); }, unsubscribe: listener => { sourcePage.off("response", listener); }, predicate: response => actionInput(response.request())?.action === action, stage: "action-response", timeoutMs: 30_000 }),
+              request: () => calendarEventWaiter<Request>({ subscribe: listener => { sourcePage.on("request", listener); }, unsubscribe: listener => { sourcePage.off("request", listener); }, predicate: request => actionInput(request)?.action === action, stage: "action-request", timeoutMs: 30_000 }),
+              readback: async (request, signal) => ({ committed: true, snapshot: await committedAttempt(actionInput(request)!, signal) }),
+              completion: async request => {
+                const response = await request.response();
+                return response !== null && await response.finished() === null;
+              },
+            });
+          },
+          async captureIssuedLink(sourcePage = page) {
+            return calendarBrowserStep("link-capture", async () => {
+            const input = calendarUI(sourcePage).link; await input.waitFor({ state: "visible" });
+            const url = await input.inputValue(), token = /^\/calendar\/feed\/([A-Za-z0-9_-]{43})$/.exec(new URL(url).pathname)?.[1];
+            const handle = Object.freeze({}) as IssuedLinkHandle; secretLinks.set(handle, url); rawLinks.push(url); confirmedLink = url;
+            const canonical = new URL(url).origin === new URL(sourcePage.url()).origin && !!token && Buffer.from(token, "base64url").length === 32 && Buffer.from(token, "base64url").toString("base64url") === token;
+            const current = (await readTokens()).find(row => row.membership_id === subject.membership && row.revoked_at === null);
+            const browserStorage = await sourcePage.evaluate(() => JSON.stringify([Object.entries(localStorage), Object.entries(sessionStorage), document.cookie]));
+            return { handle, canonical43Characters: canonical, hashMatchesPhysicalGeneration: !!token && current?.token_hash === hash(token),
+              absentFromBrowserStorage: !browserStorage.includes(url) && !!token && !browserStorage.includes(token) };
+            });
+          },
+          async fetchAnonymous(handle, hostileCookiesAndValidators = false) {
+            try {
+              const url = secretLinks.get(handle); if (!url) throw new Error("Unknown handle");
+              const response = await fetch(url, { method: "GET", redirect: "manual", credentials: "omit", signal: AbortSignal.timeout(15_000), headers: {
+                "Cache-Control": "no-cache", ...(hostileCookiesAndValidators ? { Cookie: "sb-junk-auth-token=hostile; tenant=foreign", Authorization: "Bearer invalid-fixture-session", "If-None-Match": "*", "If-Modified-Since": "Wed, 21 Oct 2099 07:28:00 GMT" } : {}) } });
+              const body = await response.text(), parsed = response.status === 200 ? inspectCalendar(body) : { events: [], valid: false };
+              const forbidden = [privateNote, peerUser.id, subject.user.id, ownTenant, foreignTenant, "FOREIGN-CUSTOMER", "FOREIGN-JOB", ...seedHashes,
+                ...rawLinks, ...rawLinks.map(value => new URL(value).pathname.split("/").at(-1)!)];
+              return { status: response.status, contentType: response.headers.get("content-type") ?? "", cacheControl: response.headers.get("cache-control") ?? "",
+                setCookiePresent: response.headers.has("set-cookie"), redirectPresent: response.headers.has("location"), events: parsed.events,
+                containsForbiddenFields: forbidden.some(value => body.includes(value)) || /(?:ATTENDEE|ORGANIZER|DESCRIPTION|EMAIL|cost_rate|sell_rate|token_hash|tenant_id|membership_id)/i.test(body), rfc5545Valid: parsed.valid,
+                genericInactive: response.status === 404 && body === "Kalenderlänken är inte aktiv." };
+            } catch (error) { throw calendarBrowserDiagnostic("feed-http", error); }
+          },
+          async lastUsedMatchesPhysical() {
+            const used = (await snapshot()).own.lastUsedAt;
+            const expected = await page.evaluate(timestamp => timestamp ? new Date(timestamp).toLocaleString("sv-SE") : "Aldrig hämtad", used);
+            return await page.getByRole("region", { name: calendarNames.title, exact: true }).locator("dl").innerText().then(text => text.includes(expected));
+          },
+          async checkIssuedLinkFallback() {
+            return calendarUI(page).link.evaluate((element, expected) => { const input = element as HTMLInputElement; return {
+              readOnly: input.readOnly, selectedWholeLink: input.selectionStart === 0 && input.selectionEnd === input.value.length,
+              equalsConfirmedIssuedLink: expected !== null && input.value === expected }; }, confirmedLink);
+          },
+          async denyClipboard() { await page.context().clearPermissions(); await page.evaluate(() => Object.defineProperty(navigator, "clipboard", { configurable: true, value: { writeText: async () => { throw new DOMException("Clipboard permission denied", "NotAllowedError"); } } })); },
+          async armFault(kind) {
+            const reached = deferred<void>(), committed = deferred<PhysicalSnapshot>(), issuedLink = deferred<IssuedLinkHandle>(), release = deferred<void>(), settled = deferred<void>();
+            let consumed = false;
+            let handlerError: Error | undefined;
+            const handler = async (route: Route) => {
+              const input = actionInput(route.request()); if (!input || consumed) { await route.fallback(); return; } consumed = true;
+              try {
+                if (kind === "hold-before-send") {
+                  reached.resolve(); await Promise.race([release.promise, new Promise<never>((_, reject) => { const timer = setTimeout(() => reject(new Error("Calendar hold timeout")), 20_000); timer.unref(); })]);
+                  await route.continue();
+                } else if (kind === "fail-before-send") { await route.abort("failed"); reached.resolve(); }
+                else { const response = await route.fetch({ timeout: 15_000 }); if (!response.ok()) throw new Error("Calendar response failed");
+                  const state = await committedAttempt(input);
+                  if (kind === "hold-committed-response") {
+                    // Inspect only the actual Next action bytes, never construct a
+                    // success response. Match the returned path to this exact SQL
+                    // attempt's capability before keeping it behind an opaque handle.
+                    const paths = [...new Set((await response.text()).match(/\/calendar\/feed\/[A-Za-z0-9_-]{43}(?![A-Za-z0-9_-])/g) ?? [])];
+                    const row = (await readTokens()).find(row => row.membership_id === subject.membership && row.attempt_id === input.attemptId);
+                    if (paths.length !== 1 || row?.token_hash !== hash(paths[0].split("/").at(-1)!)) throw new Error("Calendar held issuance mismatch");
+                    const url = new URL(paths[0], page.url()).href, handle = Object.freeze({}) as IssuedLinkHandle;
+                    secretLinks.set(handle, url); rawLinks.push(url); issuedLink.resolve(handle);
+                    committed.resolve(state); reached.resolve();
+                    await Promise.race([release.promise, new Promise<never>((_, reject) => { const timer = setTimeout(() => reject(new Error("Calendar committed response hold timeout")), 20_000); timer.unref(); })]);
+                    await route.fulfill({ response }); // unchanged real response, after explicit barrier release
+                  } else { await route.abort("failed"); committed.resolve(state); reached.resolve(); }
+                }
+              } catch (error) {
+                transportVerified = false; // transport failure is not proof server/query work completed
+                handlerError = calendarBrowserDiagnostic("transport-fault", error);
+                reached.reject(handlerError); committed.reject(handlerError); issuedLink.reject(handlerError);
+                try { await route.abort("failed"); } catch (abortError) { handlerError = calendarFailures([handlerError, calendarBrowserDiagnostic("transport-fault", abortError)]); }
+              }
+              finally { settled.resolve(); }
+            };
+            await page.route("**/settings/calendar", handler);
+            const fault: ArmedFault = { reached: reached.promise, committed: committed.promise, issuedLink: issuedLink.promise, release: async () => { release.resolve(); }, dispose: async () => {
+              release.resolve();
+              if (consumed) await Promise.race([settled.promise, new Promise<never>((_, reject) => { const timer = setTimeout(() => reject(new Error("Calendar transport settlement timeout")), 20_000); timer.unref(); })]);
+              await page.unroute("**/settings/calendar", handler); activeFaults.delete(fault);
+              if (handlerError) throw handlerError;
+            } };
+            activeFaults.add(fault); return fault;
+          },
+          async attemptReceipt() { return { submittedAttempts: attempts.length, distinctAttempts: new Set(attempts.map(input => input.attemptId)).size, recoveredRawLink: await calendarUI(page).link.count() > 0 }; },
+          async monitoringReceipt() {
+            return calendarBrowserStep("monitoring", async () => {
+            const client = await makeAuthedServerClient(subject.user), own = await client.rpc("read_calendar_feed_abuse", { p_tenant_id: ownTenant });
+            const foreign = await client.rpc("read_calendar_feed_abuse", { p_tenant_id: foreignTenant });
+            const tokens = (await readTokens()).filter(row => row.tenant_id === ownTenant);
+            const expectedLimited = tokens.reduce((sum, row) => sum + Number(row.spike_count), 0);
+            const data = own.data as Record<string, unknown> | null;
+            const keysValid = !!data && Object.keys(data).sort().join(",") === "lastSpikeAt,limited,requests";
+            const expectedSpike = tokens.map(row => row.last_spike_at).filter((value): value is string => value !== null).sort().at(-1);
+            const dtoValid = keysValid && data!.limited === expectedLimited && data!.requests === tokens.reduce((sum, row) => sum + Number(row.request_count), 0)
+              && (expectedSpike ? typeof data!.lastSpikeAt === "string" && new Date(data!.lastSpikeAt).getTime() === new Date(expectedSpike).getTime() : data!.lastSpikeAt === null);
+            return { aggregateReadAllowed: !own.error && dtoValid, ownTenantOnly: !!foreign.error,
+              limitedRequests: typeof data?.limited === "number" ? data.limited : 0, spikes: data?.lastSpikeAt ? 1 : 0,
+              containsHashIpUrlProofKeyOrPeerDetails: !!data && !keysValid };
+            });
+          },
+        };
+        stage = "scenario";
+        await run(fixture);
+      } catch (error) { errors.push(calendarBrowserDiagnostic(stage, error)); }
+      finally {
+        let releasesVerified = true;
+        try { page.off("request", requestListener); } catch (error) { releasesVerified = false; errors.push(calendarBrowserDiagnostic("cleanup-lifecycle", error)); }
+        // Release EVERY gate before cancelling/joining observations or handlers.
+        for (const fault of activeFaults) { try { await fault.release(); } catch (error) { releasesVerified = false; errors.push(calendarBrowserDiagnostic("cleanup-fault-release", error)); } }
+        try { const settlement = await observations.cancelAndSettle(); errors.push(...settlement.errors); cleanupAllowed = releasesVerified && settlement.settled && transportVerified; }
+        catch (error) { cleanupAllowed = false; errors.push(calendarBrowserDiagnostic("cleanup-lifecycle", error)); }
+        for (const fault of activeFaults) { try { await fault.dispose(); } catch (error) { cleanupAllowed = false; errors.push(calendarBrowserDiagnostic("cleanup-fault-dispose", error)); } }
+        cleanupAllowed &&= transportVerified;
+        if (!cleanupAllowed) errors.push(calendarBrowserDiagnostic("custody-retained", { name: "CalendarUnverified" }));
+        if (cleanupAllowed) try {
+          await adminSession(async ({ query }) => {
+            await query("begin");
+            try {
+              // Only this fixture's immutable audit rows require the established
+              // transaction-local bypass. Restore enforcement before row teardown.
+              await query("set local session_replication_role=replica");
+              await query("delete from public.audit_events where tenant_id=any($1::uuid[])", [ids]);
+              await query("set local session_replication_role=origin");
+              await query("delete from public.calendar_feed_tokens where tenant_id=any($1::uuid[])", [ids]);
+              await query("delete from public.booking_assignees where tenant_id=any($1::uuid[]) and booking_id=any($2::uuid[])", [ids, bookingIds]);
+              await query("delete from public.booking_conflicts where tenant_id=any($1::uuid[]) and (booking_id=any($2::uuid[]) or related_booking_id=any($2::uuid[]))", [ids, bookingIds]);
+              await query("delete from public.bookings where tenant_id=any($1::uuid[]) and id=any($2::uuid[])", [ids, bookingIds]);
+              await query("delete from public.job_events where tenant_id=any($1::uuid[]) and job_id=any($2::uuid[])", [ids, jobs]);
+              await query("delete from public.job_members where tenant_id=any($1::uuid[]) and job_id=any($2::uuid[])", [ids, jobs]);
+              await query("delete from public.jobs where tenant_id=any($1::uuid[]) and id=any($2::uuid[])", [ids, jobs]);
+              await query("delete from public.facilities where tenant_id=any($1::uuid[]) and id=any($2::uuid[])", [ids, facilities]);
+              await query("delete from public.customers where tenant_id=any($1::uuid[]) and id=any($2::uuid[])", [ids, customers]);
+              await query("delete from public.work_roles where tenant_id=any($1::uuid[]) and id=any($2::uuid[])", [ids, roles]);
+              await query("delete from public.person_profiles where tenant_id=any($1::uuid[])", [ids]);
+              await query("commit");
+            } catch (error) {
+              const primary = calendarBrowserDiagnostic("cleanup-sql", error);
+              try { await query("rollback"); } catch (rollbackError) { throw calendarFailures([primary, calendarBrowserDiagnostic("cleanup-sql", rollbackError)]); }
+              throw primary;
+            }
+          });
+        } catch (error) { errors.push(calendarBrowserDiagnostic("cleanup-sql", error)); }
+        if (errors.length) throw calendarFailures(errors);
+      }
+    }
+  } catch (error) {
+    finalErrors.push(calendarBrowserDiagnostic("scenario", error));
+  } finally {
+    if (base && cleanupAllowed) {
+      try { await cleanupRoleAwarePhaseAFixture(base); } catch (error) { finalErrors.push(calendarBrowserDiagnostic("cleanup-canonical", error)); }
+    } else if (base) retainedCalendarFixtureCustody.add(base); // no SQL/Auth deletion while references remain unverified
+    if (finalErrors.length) {
+      // The file-local flag blocks DOM snapshots, not Playwright's separate
+      // message/source error-context attachment. Content remains unqualified
+      // without custody inspection; attachment metadata is neither a leak nor PASS.
+      try { await page.goto("about:blank"); } catch (error) { finalErrors.push(calendarBrowserDiagnostic("cleanup-page", error)); }
+    }
+  }
+  if (finalErrors.length) throw calendarFailures(finalErrors);
+}
+
+BOUND ROUTE/PRIOR NOTPASS FINDING/CHECKS CONTEXT: _bmad-output/auto-bmad/preparation/story-15-5/author-native-poll-query-settlement-route.json
+{
+  "kind": "author-pre-edit-poll-query-settlement-route",
+  "prepared_at": "2026-10-20T19:10:40.357Z",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "source": "33b595a8b7c001bd89788fb1c0e8cd9c626e03ec",
+  "phase": "build-native-async-sql-settlement-fix",
+  "role": "build-author-owned-poll-query-settlement-fix",
+  "paths": [
+    "tests/e2e/support/calendar-feed-atdd.ts",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"
+  ],
+  "authority": "Root route relayed by parent before this handoff: exact3 subset paths; append-only new fix commit; no wrapper/pin/browserSpec edits.",
+  "finding": "Installed expect.poll races callback against deadline without joining; outer observation and HTTP completion can settle while actual SQL callbacks remain active. Track real callback/query promises synchronously, close before drain, preserve bounded custody/no cleanup against live refs.",
+  "installed_source": [
+    {
+      "path": "node_modules/.pnpm/playwright@1.61.1/node_modules/playwright/lib/matchers/expect.js",
+      "bytes": 526213,
+      "sha256": "78fb9c8cb3214b6ff753e8444034f60ad740e5f16225bac879bb7bca3055fb62"
+    },
+    {
+      "path": "node_modules/.pnpm/playwright-core@1.61.1/node_modules/playwright-core/lib/coreBundle.js",
+      "bytes": 3352341,
+      "sha256": "6be5c2ea035554e9b184b1dbc7aa5e7f1fb428dd1b5c202022858dcfae9bee27"
+    }
+  ],
+  "previous_input": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-settlement-browser-review/input-binding.json",
+    "bytes": 12650,
+    "sha256": "2fdc420f263da44a7bb5daf9b1728679d898a5d8b6fb7992f38b54c25e076da4"
+  },
+  "limits": "No native probes/runtime/services/real SQL or signals; no new matcher/physicalassertion/privilege/effect.47/326 historical33b checks preserved, not current acceptance. Three broad rounds cap; latest-finding-only independent High review after commit."
+}
+
+BOUND ROUTE/PRIOR NOTPASS FINDING/CHECKS CONTEXT: _bmad-output/auto-bmad/preparation/story-15-5/native-poll-query-settlement-review/local-checks.json
+{
+  "kind": "actual-poll-query-settlement-author-checks",
+  "before": "33b595a8b7c001bd89788fb1c0e8cd9c626e03ec",
+  "source": "e3f1c2e1c5db81947a48233da617ff8535fd24aa",
+  "state": "Exact committed three-path append-only fix; no post-commit Spec/verdict mutation; Root metadata excluded.",
+  "commands": [
+    {
+      "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test --test-reporter=spec tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "passed": 51,
+      "failed": 0,
+      "skipped": 0,
+      "cancelled": 0,
+      "receipt_start": "81b2a1",
+      "receipt_completion": "12520e",
+      "limit": "47 retained +4 new pure/injected regressions, including actual installed1.61.1 polling helper with injected promises. No real SQL/browser/process signals/resources. Module-type and experimental-strip warnings emitted."
+    },
+    {
+      "command": "pnpm exec tsc --noEmit --incremental false",
+      "exit_code": 0,
+      "receipt_start": "54a242",
+      "receipt_completion": "83851c"
+    },
+    {
+      "command": "pnpm exec eslint tests/e2e/support/calendar-feed-atdd.ts tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "exit_code": 0,
+      "errors": 0,
+      "warnings": 0,
+      "receipt": "f23db9"
+    },
+    {
+      "command": "node scripts/verify/check-review-order.mjs <authorSpec>",
+      "exit_code": 0,
+      "sections": 1,
+      "literal_stops": 42,
+      "observed_errors": []
+    },
+    {
+      "command": "git diff --check -- <exact3> / git diff --cached --check",
+      "exit_code": 0,
+      "receipts": [
+        "fadd4e",
+        "d1abb2"
+      ],
+      "unchanged_wrapper_pin_browserSpec": "0a8131"
+    }
+  ],
+  "intermediate": "Initial51 run50P1F only expected cancellation category after outer entry already removed. Corrected regression to require actual callback completion and original timeout retention; independent actual query drain remained enforced. No implementation relaxation. Final51/type/lint passed.",
+  "historical": {
+    "source": "33b595a8b7c001bd89788fb1c0e8cd9c626e03ec",
+    "targeted_consumer_suite_actual": {
+      "passed": 326,
+      "failed": 0,
+      "skipped": 0,
+      "cancelled": 0,
+      "includes_bootstrap47": true,
+      "other_contracts": 279
+    },
+    "reuse": "279 consumers unchanged; not rerun because wrapper/pin/workflow/enrollment unchanged. Do not infer330 or current native counts."
+  },
+  "feature_inventory": {
+    "total": 95,
+    "node": 30,
+    "vitest": 51,
+    "browser": 14,
+    "bootstrap_separate_current": 51
+  },
+  "kernel_sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+  "suggested_review_order_body_lf_sha256": "75a27fccf72a3ad252f1fc1ff00d7eb8b697ef736130a4de9ecafe434c7a791c",
+  "SRO_normalization": "Body after exact heading LF through EOF; heading excluded, no trim, final newline retained.",
+  "limits": "Only pure helper source uniquely extracted with TypeScript stripping and installed polling helper execute locally. Full-helper alias plumbing/native DB/SQL/browser unexecuted. Six failed native histories preserved: latest14browserF/28attempts,51DBunexecuted,contentNULL/unavailable.33b preflight7+4/recovery1 old-head facts only. No app/privilege/workflow/INT015/key/lifecycle authority change; no native inference, build rerun, fourth broad review, push/runtime/DONE/delivery."
+}
+
+BOUND ROUTE/PRIOR NOTPASS FINDING/CHECKS CONTEXT: _bmad-output/auto-bmad/preparation/story-15-5/native-settlement-browser-review/original-review.md
+**Finding — [P2] Join SQL callbacks independently of the polling deadline.** At [calendar-feed-atdd.ts:133](C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/e2e/support/calendar-feed-atdd.ts:133), settlement joins the outer observation. Its native `committedAttempt` caller uses `expect.poll` at lines 475–479. Installed Playwright 1.61.1 races each asynchronous poll callback against the deadline without joining the callback afterward. A slow `readTokens()` or `readAudit()` can therefore remain active after the observation rejects. With successful HTTP completion, `cancelAndSettle()` can return `settled=true`, admitting SQL deletion at line 653 and canonical SQL/Auth cleanup at line 687 while readback references remain unresolved. Track and join the actual callback/query promises independently; retain custody when they cannot settle within the bound.
+
+Reviewed only the six-path delta `fae644b5 → 33b595a8`. Packet hashes, raw/clean source bindings, and context hashes match. No other consequential findings. Read-only inspection only; native qualification remains pending, and prior failed runs remain failed.
+
+BOUND ROUTE/PRIOR NOTPASS FINDING/CHECKS CONTEXT: _bmad-output/auto-bmad/preparation/story-15-5/native-settlement-browser-review/original-review-attestation.json
+{
+  "kind": "original-independent-completed-review-attestation",
+  "report": "original-review.md",
+  "report_preservation": "Original completed final report reproduced exactly; one terminal file newline added. No new review or rerun.",
+  "reviewer": {
+    "task": "/root/build15_5_high/native_settlement_browser_delta_review",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "context_free": true,
+    "distinct_from_implementation_author": true
+  },
+  "original_completion": {
+    "verdict": "FINDING",
+    "finding_count": 1,
+    "findings": [
+      {
+        "priority": "P2",
+        "title": "Join SQL callbacks independently of the polling deadline",
+        "path": "tests/e2e/support/calendar-feed-atdd.ts",
+        "line": 133,
+        "caller": "committedAttempt -> expect.poll -> physicalRows -> readTokens/readAudit",
+        "bypass": "Installed Playwright deadline race can settle outer observation while an actual SQL callback remains pending; registry may authorize fixture SQL/Auth deletion."
+      }
+    ],
+    "other_consequential_findings": 0
+  },
+  "scope": {
+    "before": "fae644b5349744a531008e2224ca3a08d596836e",
+    "reviewed_source": "33b595a8b7c001bd89788fb1c0e8cd9c626e03ec",
+    "paths": 6,
+    "completed_broad_rounds": 3,
+    "fourth_broad_review": false,
+    "review_type": "Latest actual six-path fixes, consequential regressions and unresolved serious findings only"
+  },
+  "immutable_inputs": [
+    {
+      "path": "latest-delta-input.diff",
+      "bytes": 278141,
+      "sha256": "4909bbc7ace4e49b3d1968ca2341b29e6a5b6fd1dac9550a116450869d3585df",
+      "hash_checked": true
+    },
+    {
+      "path": "input-binding.json",
+      "bytes": 12650,
+      "sha256": "2fdc420f263da44a7bb5daf9b1728679d898a5d8b6fb7992f38b54c25e076da4",
+      "hash_checked": true
+    },
+    {
+      "path": "local-checks.json",
+      "bytes": 4439,
+      "sha256": "6e2288bdf062ce877b5b1f42d456258b26ecc8d6e08bc6cf972f33c86d385a36",
+      "hash_checked": true
+    }
+  ],
+  "actual_source_checks": {
+    "head_matches_reviewed_source": true,
+    "committed_six_path_delta_confirmed": true,
+    "all_six_raw_sha256_and_length_bindings_match": true,
+    "all_six_committed_blob_sha256_and_length_bindings_match": true,
+    "all_six_actual_git_clean_oids_equal_bound_head_blob_oids": true,
+    "crlf_distinction_preserved": "calendar-feed-atdd.ts raw bytes 54161 SHA dfd5741266b25da48891cb935fd05293b0ed966e362482de9f52858e12a9ef2b; committed clean bytes 53463 SHA 0862e650f2e1366b97ef3a29b5a0c03bfdd3daf3268ff9a8863fac4f35b542fd",
+    "source_bindings_reference": "input-binding.json bindings; all six entries checked against actual raw files, git show committed blobs and git hash-object --path output",
+    "root_metadata_dirty_excluded": true
+  },
+  "actual_context_checks": {
+    "all_nine_included_context_raw_length_and_sha256_bindings_match": true,
+    "paths": [
+      "_bmad-output/auto-bmad/preparation/story-15-5/native-settlement-browser-author-route.json",
+      "_bmad-output/auto-bmad/preparation/story-15-5/native-settlement-browser-review/local-checks.json",
+      "_bmad-output/auto-bmad/preparation/story-15-5/native-settlement-browser-review/browser-integration-source-check.json",
+      "_bmad-output/auto-bmad/preparation/story-15-5/native-settlement-browser-review/original-commit-provenance.json",
+      ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-fae644b5-ci-independent/native-qualification.md",
+      ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-fae644b5-ci-independent/native-runtime-log-extracts.json",
+      ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-fae644b5-ci-independent/native-browser-attachment-custody.json",
+      ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-fae644b5-ci-independent/manifest.json",
+      ".env.epic15.mail-runtime/story-15-5-preparation/root-failed-fae644b5-packet-admission.json"
+    ],
+    "context_bindings_reference": "input-binding.json contexts; only included entries checked, excluded per-attempt catalog not credited"
+  },
+  "manual_dependency_inspection": {
+    "scope": "Caller/downstream behavior needed for the exact latest-delta judgment",
+    "installed_playwright": "1.61.1",
+    "inspected_poll_deadline_behavior": "expect.js poll matcher awaits actual() inside pollAgainstDeadline; coreBundle.js raceAgainstDeadline uses Promise.race and does not join timed-out callback",
+    "inspected_admin_sql": "adminQuery/adminSession pool caller and session cleanup",
+    "canonical_fixture_seed_equivalence_checked": true
+  },
+  "activity": {
+    "original_review_read_only": true,
+    "tests_executed_by_reviewer": false,
+    "native_ci_rerun": false,
+    "resources_started": false,
+    "runtime_started": false,
+    "database_started_or_used": false,
+    "browser_started_or_used": false,
+    "next_started": false,
+    "source_or_spec_edits": false,
+    "commits": false,
+    "pushes": false,
+    "persistence_only_after_original_completion": true,
+    "persistence_owned_new_files": [
+      "original-review.md",
+      "original-review-attestation.json"
+    ]
+  },
+  "limitations": {
+    "current_head_native_qualification": "pending",
+    "prior_failed_checkpoints": "remain failed",
+    "local_author_checks": "47 bootstrap cases and 326 total consumer cases are reported evidence only; not rerun or native acceptance credit",
+    "pure_browser_seams": "Do not qualify full helper/caller/native browser or SQL acceptance",
+    "native_db_feature_cases": "51 unexecuted on sixth failed checkpoint",
+    "native_browser_feature_cases": "14 failed across 28 attempts on sixth failed checkpoint",
+    "attachment_content_privacy": "null/unavailable; 28 metadata references and no available physical bodies do not establish leak or PASS",
+    "synthetic_missing_leader_reproduction": "Reachable source path, not proven native cause",
+    "delivery_or_done_or_release_approval": false
+  }
+}
+
+BOUND ROUTE/PRIOR NOTPASS FINDING/CHECKS CONTEXT: _bmad-output/auto-bmad/preparation/story-15-5/native-settlement-browser-review/input-binding.json
+{
+  "kind": "post-cap-exact-committed-owned-settlement-browser-diagnostic-delta-only",
+  "completed_review_rounds": 3,
+  "cap": 3,
+  "fourth_broad_review": false,
+  "before": "fae644b5349744a531008e2224ca3a08d596836e",
+  "source_head": "33b595a8b7c001bd89788fb1c0e8cd9c626e03ec",
+  "source_state": "EXACT_COMMITTED_SIX_PATH_DELTA",
+  "paths": [
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+    "scripts/ci/with-calendar-feed-runtime.mjs",
+    "tests/e2e/calendar-feed.e2e.spec.ts",
+    "tests/e2e/support/calendar-feed-atdd.ts",
+    "tests/support/calendar-feed-ci-contract.ts",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts"
+  ],
+  "bindings": [
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "raw_bytes": 87171,
+      "raw_sha256": "3dd0b84cf8b707aa6664c81ee0500863619aa07c21b46859e5b60a0e7b5d0c92",
+      "actual_git_clean_oid": "e42a3ad9944f6d50b802249e61fefa9136eed9b6",
+      "git_clean_normalized_bytes": 87171,
+      "git_clean_normalized_sha256": "3dd0b84cf8b707aa6664c81ee0500863619aa07c21b46859e5b60a0e7b5d0c92",
+      "head_blob_oid": "e42a3ad9944f6d50b802249e61fefa9136eed9b6",
+      "head_blob_bytes": 87171,
+      "head_blob_sha256": "3dd0b84cf8b707aa6664c81ee0500863619aa07c21b46859e5b60a0e7b5d0c92",
+      "source_committed": true,
+      "raw_equals_normalized": true,
+      "baseline_blob_oid": "2a0b34892f2af542f71e1a7804e6ea4cd48cca3e",
+      "baseline_bytes": 82681,
+      "baseline_sha256": "6af0ec49a252dd762e9badaf12b9446eccf279d8e680c6233f0950d15ee37c68"
+    },
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "raw_bytes": 35025,
+      "raw_sha256": "8f142ebe8a015aacc38ae55b37f36f98c61daa0621b62fb266c3991cedecbe8d",
+      "actual_git_clean_oid": "72d931cba063ced2144e62395c006828bfedabdc",
+      "git_clean_normalized_bytes": 35025,
+      "git_clean_normalized_sha256": "8f142ebe8a015aacc38ae55b37f36f98c61daa0621b62fb266c3991cedecbe8d",
+      "head_blob_oid": "72d931cba063ced2144e62395c006828bfedabdc",
+      "head_blob_bytes": 35025,
+      "head_blob_sha256": "8f142ebe8a015aacc38ae55b37f36f98c61daa0621b62fb266c3991cedecbe8d",
+      "source_committed": true,
+      "raw_equals_normalized": true,
+      "baseline_blob_oid": "dbcd8177485be71da06ce242b254b95a04e9e03e",
+      "baseline_bytes": 33317,
+      "baseline_sha256": "be71fbb20f5f1cdfe0cc210340790b78e0759d0daa778ed3014995dd0bff4de7"
+    },
+    {
+      "path": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "raw_bytes": 27768,
+      "raw_sha256": "b2851627142916a7aaaef4d1bf9324be00587d7114d474ba728dd781330d0efe",
+      "actual_git_clean_oid": "df94faf607602dc8493ec09a3eb329b05cbfb0bc",
+      "git_clean_normalized_bytes": 27768,
+      "git_clean_normalized_sha256": "b2851627142916a7aaaef4d1bf9324be00587d7114d474ba728dd781330d0efe",
+      "head_blob_oid": "df94faf607602dc8493ec09a3eb329b05cbfb0bc",
+      "head_blob_bytes": 27768,
+      "head_blob_sha256": "b2851627142916a7aaaef4d1bf9324be00587d7114d474ba728dd781330d0efe",
+      "source_committed": true,
+      "raw_equals_normalized": true,
+      "baseline_blob_oid": "cfc80717073d823847d514ed2555a8e19e7b1136",
+      "baseline_bytes": 26131,
+      "baseline_sha256": "91badac1a1ace1b1f9e2d57f12db1eb50d36d8a5ef30f5f4aaa0881ba9ef7b23"
+    },
+    {
+      "path": "tests/e2e/support/calendar-feed-atdd.ts",
+      "raw_bytes": 54161,
+      "raw_sha256": "dfd5741266b25da48891cb935fd05293b0ed966e362482de9f52858e12a9ef2b",
+      "actual_git_clean_oid": "2ab44ffc9d0b1f6118cc91491cb38bef93ba98b3",
+      "git_clean_normalized_bytes": 53463,
+      "git_clean_normalized_sha256": "0862e650f2e1366b97ef3a29b5a0c03bfdd3daf3268ff9a8863fac4f35b542fd",
+      "head_blob_oid": "2ab44ffc9d0b1f6118cc91491cb38bef93ba98b3",
+      "head_blob_bytes": 53463,
+      "head_blob_sha256": "0862e650f2e1366b97ef3a29b5a0c03bfdd3daf3268ff9a8863fac4f35b542fd",
+      "source_committed": true,
+      "raw_equals_normalized": false,
+      "baseline_blob_oid": "5a46a74d4b5fa3e7dce77da54ce29d9d956dfe6c",
+      "baseline_bytes": 36666,
+      "baseline_sha256": "727f93563c209a2462152d8f6bb062732aa7dbf381f0d3aaa1c9524aee0cc08a"
+    },
+    {
+      "path": "tests/support/calendar-feed-ci-contract.ts",
+      "raw_bytes": 3777,
+      "raw_sha256": "c7c2b16b130b3ae37ff5130a5916c6418ac36cc23669d2b8c76eade533a37735",
+      "actual_git_clean_oid": "3c6bafb46e6c1545654b70bdc378875ae98b32c6",
+      "git_clean_normalized_bytes": 3777,
+      "git_clean_normalized_sha256": "c7c2b16b130b3ae37ff5130a5916c6418ac36cc23669d2b8c76eade533a37735",
+      "head_blob_oid": "3c6bafb46e6c1545654b70bdc378875ae98b32c6",
+      "head_blob_bytes": 3777,
+      "head_blob_sha256": "c7c2b16b130b3ae37ff5130a5916c6418ac36cc23669d2b8c76eade533a37735",
+      "source_committed": true,
+      "raw_equals_normalized": true,
+      "baseline_blob_oid": "ee8c690c8959a8598f8d8b1924e307a81502d64f",
+      "baseline_bytes": 3777,
+      "baseline_sha256": "36febdaa7141b3eef50083871ea34d2b64001c44b4a9f870fafeb430d8dcea18"
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "raw_bytes": 64620,
+      "raw_sha256": "973b83e21891128b92d2d5e86b9d74455f4d2b96affb650ebe22fb7a3c71044c",
+      "actual_git_clean_oid": "6d4aecf344a56f991cfb85d3084bce3669ca7b46",
+      "git_clean_normalized_bytes": 64620,
+      "git_clean_normalized_sha256": "973b83e21891128b92d2d5e86b9d74455f4d2b96affb650ebe22fb7a3c71044c",
+      "head_blob_oid": "6d4aecf344a56f991cfb85d3084bce3669ca7b46",
+      "head_blob_bytes": 64620,
+      "head_blob_sha256": "973b83e21891128b92d2d5e86b9d74455f4d2b96affb650ebe22fb7a3c71044c",
+      "source_committed": true,
+      "raw_equals_normalized": true,
+      "baseline_blob_oid": "47438cd667d076ad167c37cd35d56adf20dbb9c9",
+      "baseline_bytes": 44519,
+      "baseline_sha256": "ac85a7fb043076946d445ae14cf113328138b483d38bb822ff89ac01192a120b"
+    }
+  ],
+  "input_bytes": 278141,
+  "input_sha256": "4909bbc7ace4e49b3d1968ca2341b29e6a5b6fd1dac9550a116450869d3585df",
+  "diff_bytes": 125541,
+  "diff_sha256": "7dae59507c4f972c208ae15489f291da61662e2226068a200cce7a2c65a477b0",
+  "complete_contexts": [
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "bytes": 35025,
+      "sha256": "8f142ebe8a015aacc38ae55b37f36f98c61daa0621b62fb266c3991cedecbe8d"
+    },
+    {
+      "path": "tests/e2e/support/calendar-feed-atdd.ts",
+      "bytes": 53463,
+      "sha256": "0862e650f2e1366b97ef3a29b5a0c03bfdd3daf3268ff9a8863fac4f35b542fd"
+    },
+    {
+      "path": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "bytes": 27768,
+      "sha256": "b2851627142916a7aaaef4d1bf9324be00587d7114d474ba728dd781330d0efe"
+    }
+  ],
+  "contexts": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-settlement-browser-author-route.json",
+      "raw_bytes": 2797,
+      "raw_sha256": "8a16b5e92332422ac6262175cd8fef0734aa2ce60acab74cab06f254c39fb503",
+      "included_lf_bytes": 2797,
+      "included_lf_sha256": "8a16b5e92332422ac6262175cd8fef0734aa2ce60acab74cab06f254c39fb503"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-settlement-browser-review/local-checks.json",
+      "raw_bytes": 4439,
+      "raw_sha256": "6e2288bdf062ce877b5b1f42d456258b26ecc8d6e08bc6cf972f33c86d385a36",
+      "included_lf_bytes": 4439,
+      "included_lf_sha256": "6e2288bdf062ce877b5b1f42d456258b26ecc8d6e08bc6cf972f33c86d385a36"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-settlement-browser-review/browser-integration-source-check.json",
+      "raw_bytes": 2476,
+      "raw_sha256": "cba5bbf2e0386359ea521f76a9e929724edda23816f19235ab6b7a654c50a696",
+      "included_lf_bytes": 2476,
+      "included_lf_sha256": "cba5bbf2e0386359ea521f76a9e929724edda23816f19235ab6b7a654c50a696"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-settlement-browser-review/original-commit-provenance.json",
+      "raw_bytes": 3163,
+      "raw_sha256": "d8192baec382d83c44badfe9011c4af8a3212f9f6ec961b07ef0e7fee5fae475",
+      "included_lf_bytes": 3163,
+      "included_lf_sha256": "d8192baec382d83c44badfe9011c4af8a3212f9f6ec961b07ef0e7fee5fae475"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-fae644b5-ci-independent/native-qualification.md",
+      "raw_bytes": 3871,
+      "raw_sha256": "b285af1159776a435cd88df78b9f003ce73372d1baed748e6e1624171c8fd2d0",
+      "included_lf_bytes": 3871,
+      "included_lf_sha256": "b285af1159776a435cd88df78b9f003ce73372d1baed748e6e1624171c8fd2d0"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-fae644b5-ci-independent/native-runtime-log-extracts.json",
+      "raw_bytes": 7716,
+      "raw_sha256": "dfa8920d5b05539ab2937347fb91064143092a945545d89def170ddccdb4492d",
+      "included_lf_bytes": 7716,
+      "included_lf_sha256": "dfa8920d5b05539ab2937347fb91064143092a945545d89def170ddccdb4492d"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-fae644b5-ci-independent/native-browser-failure-reach.json",
+      "bytes": 75484,
+      "sha256": "f4472286948509ce1cacdeee637d9a60184e0666899a06f628c69d7fc3fac12c",
+      "included": false,
+      "reason": "Full bounded per-attempt catalog retained externally; safe aggregate native facts included in qualification/runtime summaries."
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-fae644b5-ci-independent/native-browser-attachment-custody.json",
+      "raw_bytes": 2017,
+      "raw_sha256": "f2976f319feb828067d1adf462b980625860f7442f8c3a33c82d8229fb582527",
+      "included_lf_bytes": 1983,
+      "included_lf_sha256": "8b2ce64c7ef1aedb75e132bd8259509cfa769534fa540997f08a13ed314e071f"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-fae644b5-ci-independent/manifest.json",
+      "raw_bytes": 3903,
+      "raw_sha256": "577da8debd76e3a108ccaaf524abdfc414292e45033c38d9f21021d6138bf8ac",
+      "included_lf_bytes": 3903,
+      "included_lf_sha256": "577da8debd76e3a108ccaaf524abdfc414292e45033c38d9f21021d6138bf8ac"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-failed-fae644b5-packet-admission.json",
+      "raw_bytes": 1359,
+      "raw_sha256": "f9c70a96406477d11576638a73a01c43a951a69519b6acd4f3df442e642650b4",
+      "included_lf_bytes": 1359,
+      "included_lf_sha256": "f9c70a96406477d11576638a73a01c43a951a69519b6acd4f3df442e642650b4"
+    }
+  ],
+  "kernel_sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+  "suggested_review_order_body_lf_sha256": "b59ed70681c58f2f748f487d6972a72b565e141084431449146e1d719f740e57",
+  "normalization": "Raw actual bytes separate; actual --path clean OID equals unfiltered LF OID, HEAD OID and actual byte-equal Git blob. No CRLF equivalence assumed.",
+  "root_route": {
+    "path": "_bmad-output/auto-bmad/state/15-5-personal-calendar-feed-adr-b004-surface-1.yaml",
+    "raw_bytes_unverified_uncredited_mutable_snapshot": 56362,
+    "raw_sha256_unverified_uncredited_mutable_snapshot": "a7a565115c2bb7c66dfb8ac44be948323cc79ef617749c9080d6fa188de6d0ad",
+    "included_lines": [
+      21,
+      29
+    ],
+    "included_lf_bytes": 680,
+    "included_lf_sha256": "ddc83b2df2fa60e7de49c5c4bbc492dfd1616a304470667736c205283ea6e2e4",
+    "owner": "Root",
+    "source_commit_excluded": true
+  },
+  "review_route": {
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "context_free": true,
+    "distinct_from_author": true,
+    "scope": "Latest exact six-path delta/consequential regressions only, no fourth broad review."
+  },
+  "provenance": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-settlement-browser-review/original-commit-provenance.json",
+    "bytes": 3163,
+    "sha256": "d8192baec382d83c44badfe9011c4af8a3212f9f6ec961b07ef0e7fee5fae475"
+  },
+  "local_checks": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-settlement-browser-review/local-checks.json",
+    "bytes": 4439,
+    "sha256": "6e2288bdf062ce877b5b1f42d456258b26ecc8d6e08bc6cf972f33c86d385a36"
+  },
+  "native_limits": "Pure source extraction uniquely bounded and TypeScript stripping only; no copied implementation/mocks. Full-helper plumbing and native caller behavior unexecuted locally. App/privilege/workflow/INT015 unchanged, no build rerun. Old native3105/Python43/recovery1 and setup7/privacy4 are bounded failed-head facts. Browser14F/28attempts,DB51unexecuted,body contentNULL/unavailable remain. No fourth broad review, push/runtime/DONE/delivery."
+}
+
+ACTUAL INSTALLED1.61.1 DEADLINE SEMANTICS: node_modules/.pnpm/playwright-core@1.61.1/node_modules/playwright-core/lib/coreBundle.js lines4408-4442
+async function raceAgainstDeadline(cb, deadline) {
+  let timer;
+  return await Promise.race([
+    cb().then((result2) => {
+      return { result: result2, timedOut: false };
+    }),
+    new Promise((resolve) => {
+      if (!deadline)
+        return;
+      timer = setTimeout(() => resolve({ timedOut: true }), deadline - monotonicTime());
+    })
+  ]).finally(() => {
+    clearTimeout(timer);
+  });
+}
+async function pollAgainstDeadline(callback, deadline, pollIntervals = [100, 250, 500, 1e3]) {
+  const lastPollInterval = pollIntervals.pop() ?? 1e3;
+  let lastResult;
+  const wrappedCallback = () => Promise.resolve().then(callback);
+  while (true) {
+    const time = monotonicTime();
+    if (deadline && time >= deadline)
+      break;
+    const received = await raceAgainstDeadline(wrappedCallback, deadline);
+    if (received.timedOut)
+      break;
+    lastResult = received.result.result;
+    if (!received.result.continuePolling)
+      return { result: lastResult, timedOut: false };
+    const interval = pollIntervals.shift() ?? lastPollInterval;
+    if (deadline && deadline <= monotonicTime() + interval)
+      break;
+    await new Promise((x) => setTimeout(x, interval));
+  }
+  return { timedOut: true, result: lastResult };
+
+ACTUAL INSTALLED1.61.1 DEADLINE SEMANTICS: node_modules/.pnpm/playwright@1.61.1/node_modules/playwright/lib/matchers/expect.js lines12949-12974
+  const timeout = poll.timeout ?? info.timeout ?? expectConfig().timeout ?? defaultExpectTimeout;
+  const { deadline, timeoutMessage } = deadlineForMatcher(testInfo, timeout);
+  const result = await pollAgainstDeadline2(async () => {
+    if (testInfo && expectConfig().testInfo !== testInfo)
+      return { continuePolling: false, result: void 0 };
+    const value = await actual();
+    try {
+      await callMatcherAsStep(matcherName, { ...info, poll: void 0, isSoft: false }, value, matcher, args);
+      return { continuePolling: false, result: void 0 };
+    } catch (error) {
+      return { continuePolling: true, result: error };
+    }
+  }, deadline, poll.intervals ?? [100, 250, 500, 1e3]);
+  if (result.timedOut) {
+    const message = result.result ? [
+      result.result.message,
+      "",
+      `Call Log:`,
+      `- ${timeoutMessage}`
+    ].join("\n") : timeoutMessage;
+    return { pass: !!info.isNot, message: () => message };
+  }
+  return { pass: !info.isNot, message: () => "" };
+}
+var expect = createExpect({ userMatchers: {} });
+function mergeExpects(...expects) {
+
+ROOT ROUTE SNAPSHOT; raw mutable metadata unverified/uncredited, own pre-edit route separately bound: _bmad-output/auto-bmad/state/15-5-personal-calendar-feed-adr-b004-surface-1.yaml
+selected_phase: build-native-async-sql-settlement-fix
+selected_role: build-author-owned-poll-query-settlement-fix
+selected_profile: sensitive
+selected_model: gpt-6.1-sol
+selected_effort: high
+selected_host: codex
+selected_tier: subagents
+selected_route: subagent
+escalation_reason: "Confirmed installed1.61.1 polling deadline races actual async SQL callback; explicit High same-owned-helper/unit/Spec fix to synchronous closed-latch registry, immediate rejection observers, actual callback/query sibling drain and late launch denial; transactional cleanup/custody, no fourth broad."

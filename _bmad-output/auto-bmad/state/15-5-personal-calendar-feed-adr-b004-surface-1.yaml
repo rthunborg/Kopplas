@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-20T18:26:23Z"
+updated_at: "2026-10-20T19:26:19Z"
 started_at: "2026-10-20T12:18:56Z"
 completed_at: null
 active_seconds: 3572
@@ -18,15 +18,15 @@ is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: build-native-authority-transport-qualification
-selected_role: native-ci-evidence-qualifier
+selected_phase: review-native-poll-query-latest-fix
+selected_role: independent-context-free-poll-query-settlement-reviewer
 selected_profile: sensitive
 selected_model: gpt-6.1-sol
 selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Actual admitted same-container admin authentication, secret custody/privacy, PG17 restricted-session oracle, RLS and transaction cleanup require explicit High native qualification. Exact five-path committed source independently reviewed; broad cap3 retained."
+escalation_reason: "Fresh distinct context-free High exact3path committed fixe3f1c2e1 vs33b595a8 resolves original consequential outer-poll/inner-SQL callback settlement finding and latestfix regressions. Preserve original sixpath NOTPASS with explicit unchanged-path findings-free reuse; composite evidence, not fourth broad or newly reviewed everyfinalbyte."
 routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"High preparation for hashed public-feed tokens, rotation/revocation and tenant/member disclosure boundaries; plan-only before distinctvalidation and ownershipallocation\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct High independent specification validation of actual public-feed token/proof/IP/limiter authorization design and exact ownership/test-key boundaries before anybuild\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"cross_model_layer\",\"profile\":\"diverse_review\",\"role\":\"independent-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -49,6 +49,13 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Observed non-superuser source principal cannot satisfy logging gate; PG17 fixture original-superuser prerequisite unexecuted. Sensitive authority/secret custody design required, read-only proposal before changes.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build-native-authority-boundary-design\",\"profile\":\"sensitive\",\"role\":\"build-author-isolated-setup-authority-design\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Coordinator explicitly admitted exact existing-SupAdmin credential-use/authenticated isolated setup after independent High design/effect review and current ownership check. Secret custody, permissions, PG17 restricted-session proof and transaction cleanup require explicit High; only five paths.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build-native-authority-transport-repair\",\"profile\":\"sensitive\",\"role\":\"build-author-isolated-supadmin-transport\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Actual admitted same-container admin authentication, secret custody/privacy, PG17 restricted-session oracle, RLS and transaction cleanup require explicit High native qualification. Exact five-path committed source independently reviewed; broad cap3 retained.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build-native-authority-transport-qualification\",\"profile\":\"sensitive\",\"role\":\"native-ci-evidence-qualifier\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Actual admitted authentication/privacy now passed in DB, but owned-child settlement failed after fixed build child exit0 and key custody retained. Process ownership, secret lifetime and cleanup integrity require explicit High read-only diagnosis before any repair.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build-native-child-settlement-diagnosis\",\"profile\":\"sensitive\",\"role\":\"build-author-owned-child-identity-analysis\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Continue existing explicit High readonly diagnosis: actual failed run39474891873 now includes14executed failed browser cases plus feed error-context metadata and teardown uncertainty. Scope exact native consequential failures; no tracked edits, workload launch or fourth broad review. Source-path fake reproduction is not proven native cause.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build-native-child-settlement-diagnosis\",\"profile\":\"sensitive\",\"role\":\"build-author-owned-child-identity-analysis\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Actual run39474891873 failed DB child settlement and14browsercases; High fake-only reproduction proves reachable absence race and unobserved inner rejection/redaction seam, not native cause. Exact six existing owned files only; process identity/secret custody/privacy/transaction cleanup require High. No fourth broad review.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build-native-settlement-browser-diagnostic-repair\",\"profile\":\"sensitive\",\"role\":\"build-author-owned-lifecycle-redaction-repair\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct context-free High targeted review of exact committed six-path repair33b595a8 vsfae644b5: process identity/passive absence/output settlement, HTTP response/body settlement, privacy redaction, fixture equivalent roles and cleanup/custody. Three completed broad rounds retained; latest regression/serious-only review, not fourth broad. Native acceptance still unqualified.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"review-native-settlement-browser-latest-delta\",\"profile\":\"sensitive\",\"role\":\"independent-context-free-lifecycle-redaction-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"One consequential independent High latest-delta finding: installed expect.poll timeout may race async SQL callback; outer-only observation can permit fixture deletion while readTokens/readAudit remain pending. Readonly exact caller/installed-source triage before bounded same-helper/unit repair; transactional integrity/custody sensitive; no fourth broad.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"triage-native-settlement-latest-finding\",\"profile\":\"sensitive\",\"role\":\"build-author-async-sql-settlement-triage\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Confirmed installed1.61.1 polling deadline races actual async SQL callback; explicit High same-owned-helper/unit/Spec fix to synchronous closed-latch registry, immediate rejection observers, actual callback/query sibling drain and late launch denial; transactional cleanup/custody, no fourth broad.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build-native-async-sql-settlement-fix\",\"profile\":\"sensitive\",\"role\":\"build-author-owned-poll-query-settlement-fix\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Fresh distinct context-free High exact3path committed fixe3f1c2e1 vs33b595a8 resolves original consequential outer-poll/inner-SQL callback settlement finding and latestfix regressions. Preserve original sixpath NOTPASS with explicit unchanged-path findings-free reuse; composite evidence, not fourth broad or newly reviewed everyfinalbyte.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"review-native-poll-query-latest-fix\",\"profile\":\"sensitive\",\"role\":\"independent-context-free-poll-query-settlement-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: "Hashed public tokens, rotation/revocation, externalfeed andcross-tenant abuseprotection requireHigh-riskATDD+automate; lastthreeno traceadvisory"
@@ -74,7 +81,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [159557e114f18123e73282c39c90830917de9948, c42b45abbca262ff79e26da479a3032d9015aeee, b940df85acfb2de36c0dcd5000a0039758f2b820, 3a1c3bc9fbf22b13c926179288a8b6eefe440c12, ae020f63a88089966b9323c55a36b6554f7e3900, 672099e9dc6569f4ac1cb9a967037e0d91df689c, aa5733116f20015cc3d14e1441d0eab232ecc9fd, 360fe850c18552f23a2bf74d8eda865431f0af38, 611c86295540161d31169110bf2139cf1d85d708, 9487c0d9, 2674b3f7, c5758058, a76fc492, 1cea5c4c, 3383a1eb, e91b366b, e472741a, c7570096, 4562cfd0]
+commits: [159557e114f18123e73282c39c90830917de9948, c42b45abbca262ff79e26da479a3032d9015aeee, b940df85acfb2de36c0dcd5000a0039758f2b820, 3a1c3bc9fbf22b13c926179288a8b6eefe440c12, ae020f63a88089966b9323c55a36b6554f7e3900, 672099e9dc6569f4ac1cb9a967037e0d91df689c, aa5733116f20015cc3d14e1441d0eab232ecc9fd, 360fe850c18552f23a2bf74d8eda865431f0af38, 611c86295540161d31169110bf2139cf1d85d708, 9487c0d9, 2674b3f7, c5758058, a76fc492, 1cea5c4c, 3383a1eb, e91b366b, e472741a, c7570096, 4562cfd0, fae644b5, 33b595a8, e3f1c2e1]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -501,7 +508,7 @@ p5_native_privacy_preflight_repair:
   remaining65feature_runtime_cases: "UNEXECUTED; no key or child launch"
   failed_packet_qualification_sha256: 8790401b0ae1441e88c32b81d71ecfbe0cdf1c5e1c2631f6dc082552fac5638e
 p5_native_authority_design:
-  status: REVIEWED_ADMITTED_SIXTH_CHECKPOINT_READY_NATIVE_PENDING
+  status: NATIVE_SETUP_PASS_DB_SETTLEMENT_AND_BROWSER14_FAILURE
   proposal_sha256: d3a0e8c4da3bb1cfd2adffd74e576cc9adf6fd0afb5e9a264433d948b20791b4
   proposal_review_sha256: b822dd0bb78ae76540b8283aee068708947cbfe7c7036c77102f42dcfd184a1c
   accepted_allocation_path: "_bmad-output/auto-bmad/preparation/story-15-5/accepted-native-authority-boundary-allocation.json"
@@ -513,7 +520,7 @@ p5_native_authority_design:
   exact_source_paths: 5
   implementation_admitted: true
   source_head: 4562cfd0031b32b6921f668cd953384b64116973
-  native_prerequisites: "UNVERIFIED; no current-source native auth/privacy or65feature bodies credited"
+  native_prerequisites: "Actual current-head DB/browser same-client seven LOGIN/SUPER/session authority flags and four privacy predicates passed; runtime settlement and feature gates failed"
   code_review: "PASS_DISTINCT_CONTEXT_FREE_SOL61_HIGH_EXACT_COMMITTED_FIVE_PATH_DELTA_NO_CONSEQUENTIAL_FINDINGS; design review not substituted"
   development_complete: false
   release_ready: false
@@ -529,12 +536,12 @@ p5_native_authority_design:
   local_focused_lint: PASS0errors0warnings-authoractual
   suggested_review_stops: 35
   approved_kernel: UNCHANGED-authoractual
-  native_authentication_and65feature_bodies: UNEXECUTED_UNQUALIFIED
+  native_authentication_and65feature_bodies: "AUTH_PRIVACY_PASSED_ACTUAL; DB51_UNEXECUTED; BROWSER14_EXECUTED_FAILED"
   code_review_input_bytes: 179712
   code_review_input_sha256: cd9514d6a6552bb57e432acb6f4b4c6075af6f141e9e5691613c81391bf94da6
-  sixth_capsule: PENDING_IMMUTABLE_CAPSULE_AND_PARENT_CHECK
+  sixth_capsule: IMMUTABLE_PARENT_AND_ROOT_MECHANICALLY_VERIFIED
   broad_review_rounds: 3
-  next: "Root checkpoint commit/push/one dispatch; qualify actual fixed source admin authentication, privacy, PG17 oracle and all required tests before delivery."
+  next: "Record explicit High six-owned-file safety/diagnostic repair route; actual seven timeout causes remain unknown, no matcher/application change; independent targeted committed-delta review then exact-head CI"
   sixth_capsule_sha256: 53868286b715fe0dc076db934d75a280b0b5d2c82d3b4aabab6505237504474c
   sixth_parent_check_sha256: 9bcc9d08748128fc6738da6a583fe111e251e294a56bc0ce12365813356bebce
   root_sixth_admission_sha256: d0b29c8c4668c724173213981b5be0a85b8fb39b9150a22df845fba3a7ae6e25
@@ -542,4 +549,79 @@ p5_native_authority_design:
   unique_frozen_artifact_paths: 191
   failed_checkpoint_source_equalities: 327
   historical_mutable_raw_observations: 9
-  native_runtime: PENDING_ONE_NEW_REVIEWED_EXACT_HEAD_CI
+  native_runtime: FAIL_EXACT_HEAD_RUN39474891873_ATTEMPT1
+  checkpoint_head: fae644b5349744a531008e2224ca3a08d596836e
+  checkpoint_id: e54c6eb4-5d7e-46dc-82c9-cfd94f089b8d
+  run_id: 39474891873
+  attempt: 1
+  native_db_setup_authority: PASS_actual7typedLOGIN_SUPER_session_flags_true
+  native_db_same_client_privacy: PASS_actual4matchesRequired_and_canSet_true
+  native_db_first_fixed_build_child: "EXIT0_actual; settlement NOT proven"
+  native_db_failure: [child-identity-unverified, owned-child-cleanup-failed]
+  native_db_ready: false
+  native_db_keyOutcome: unverified
+  native_db_keyDeleted: false
+  native_db_dbClosed: true
+  native_db_custody: "PRESENT; exact owned UUID/name captured but omitted from Root; isolated CI job operator until disposable job destruction; absence NOT claimed"
+  native_db_51feature_bodies: "UNEXECUTED; no fullintegrationJSON"
+  native_browser: "ACTUAL31cases_17separatePASS_14storyFAIL_0skip_0flaky; story14each1retry=28failedattempts"
+  native_verify_node_passed: 3105
+  native_verify_skipped: 0
+  native_verify_python_separate_passed: 43
+  native_recovery_separate_passed: 1
+  native_browser_privacy: "28error-contextmetadatarefs;0inlinebodies/0physicalattachmentsavailable;contentchecksNULL_UNAVAILABLE_UNQUALIFIED;metadata_neitherleaknorPASS"
+  native_browser_settlement: childExit1_browser-server-teardown-unverified_keyOutcomeunverified_custody_retained
+  native_terminal_packet: "{\"status\": \"FAILED_NATIVE_CHILD_SETTLEMENT_AND_BROWSER_CASES\", \"run_id\": 39474891873, \"attempt\": 1, \"checkpoint_head\": \"fae644b5349744a531008e2224ca3a08d596836e\", \"manifest_bytes\": 3903, \"manifest_sha256\": \"577da8debd76e3a108ccaaf524abdfc414292e45033c38d9f21021d6138bf8ac\", \"qualification_bytes\": 24230, \"qualification_sha256\": \"552a8dd93c0d696df833589b20724fb01049acc4f766fd87a7bdede3aa015409\", \"files_plus_manifest\": 24, \"root_admission_sha256\": \"f9c70a96406477d11576638a73a01c43a951a69519b6acd4f3df442e642650b4\", \"actual_source_paths\": 67, \"actual_source_checkpoint_blob_equalities\": 134, \"inventory\": \"95=30NodePASS+14browserFAIL+51DBunexecuted;28failedbrowserattempts,17otherbrowserPASSseparate\", \"privacy\": \"28error-contextmetadatarefs;0inlinebodies/0physicalattachmentsavailable;contentchecksNULL_UNAVAILABLE_UNQUALIFIED;metadata_neitherleaknorPASS\", \"runtime\": \"originalclientauth7/privacy4PASS_bothlanes;DBchild0identityguard;browserchild1teardownunverified;bothkeycustodyunverified\", \"development_complete\": false, \"release_ready\": false}"
+p5_native_settlement_browser_diagnostic_repair:
+  status: SEVENTH_IMMUTABLE_CAPSULE_PARENT_AND_ROOT_ADMITTED_PENDING_NATIVE_CHECKPOINT
+  source_head_before: 4562cfd0031b32b6921f668cd953384b64116973
+  checkpoint_head_before: fae644b5349744a531008e2224ca3a08d596836e
+  failed_native_run: 39474891873
+  attempt: 1
+  exact_owned_paths: [scripts/ci/with-calendar-feed-runtime.mjs, tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts, tests/support/calendar-feed-ci-contract.ts, tests/e2e/support/calendar-feed-atdd.ts, tests/e2e/calendar-feed.e2e.spec.ts, "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"]
+  authorization_basis: "Standing user continuation/checkpoint authorization and existing accepted bootstrap/browser/lifecycle allocations; no new shared-file, runtime, privilege, workflow or external effects"
+  scope: "valid captured identity/current missing may passively prove and latch group absence within existing stage bounds; never signal unverified leader; require bounded done/output. Immediate observers on inner/outer browser transport promises, pending cancellation/settlement and fault-release-before-SQL-cleanup. Closed sanitized stage/category/SQLSTATE diagnostics. SHA pin only and Spec author trail/SRO only."
+  preserved: "invalid/reused/live-group fail closed/custody; all14realbrowsercases/matcher/physicalcommit assertions; browser exit1 teardown fence; original SupAdmin/privacy/INT015; approved kernel; three broad rounds maximum"
+  prohibited: "matcher/parser/application changes, assertion weakening, attachment removal/global recorder changes, workflow/argv/setup/privilege/provider/resource launch or existing-role edits"
+  evidence_limit: "Fake-only repro source-path not actual native cause; seven timeout causes unknown; attachment content NULL unavailable; native95=30P+14F+51unexecuted"
+  review_required: "distinct context-free gpt-6.1-sol High exact latest committed six-path delta, targeted regressions/serious findings only; no fourth broad review"
+  development_complete: false
+  release_ready: false
+  necessary_owned_helper_choice: "AuthorHigh found shared booking wrapper unconditionally cleans SQL/Auth in finally. Compose SAME canonical exported role-aware create/cleanup factory plus identical seed steps inside already owned feed helper; invoke cleanup only after confirmed pending settlement, otherwise explicit owned-ref custody. Preserve equivalent permissions/seeding; no shared-helper edits/new fixture/privilege/resource effect; independent High committed-delta review required."
+  implementation_interim: "Wrapper repair authored: validated capture, passive absence within existing15/5/5 bounds, absence latch, bounded5s child/output settlement and closed processPhase diagnostics. Six injected cases; initial37/39 had two fixture sequencing mistakes, fixtures corrected; final combined checks pending browser handback. No final local/native PASS inferred."
+  local_interim: "{\"focused_node_passed\": 44, \"failed\": 0, \"skipped\": 0, \"cancelled\": 0, \"partition\": \"prior33+6process/fullwrapper+5exactlive-sourcepurebrowserseams\", \"limit\": \"Direct full E2E helper import blocked by existing shared alias resolution; no service reached. Pure region extraction asserts unique boundaries/dependencies and drift, not full module/caller/browser acceptance.\", \"pending\": \"browser author handback, final integrated caller/fixture equivalence/type/lint/kernel/SRO and committed independentHigh review\"}"
+  pre_review_comment_amendment: "{\"original_unpublished_object\": \"a84d2a521cfe055ea39d0f783d12571f6c14bb21\", \"original_committed_at\": \"2026-10-20T21:02:35+02:00\", \"current_source_head\": \"33b595a8b7c001bd89788fb1c0e8cd9c626e03ec\", \"current_committed_at\": \"2026-10-20T21:03:07+02:00\", \"author_reported_delta\": \"stale fixture composition comment only; not Root semantic claim\", \"timing\": \"before immutable review input or freeze; parent authorized amend before Root latest append-only reminder; no remote rewrite\", \"root_retention_branch\": \"codex/epic-15-pre-review-a84d2a52\", \"retention_verified\": true, \"original_credit\": \"historical unreviewed object only, not extra current-ancestry authorcommit or nativequalified source\", \"future_policy\": \"append-only; no further rewrite; review exact final cumulative sixpath delta vsfae\"}"
+  source_head: e3f1c2e1c5db81947a48233da617ff8535fd24aa
+  local_final_focused: "{\"passed\": 326, \"failed\": 0, \"skipped\": 0, \"cancelled\": 0, \"bootstrap_pure_source_separate\": 47, \"existing_consumer_contracts\": 279, \"limit\": \"pure source browser seam not full-helper/module/native execution\"}"
+  independent_review: "COMPOSITE_PASS: original33b exact6path NOTPASS retained with oneconsequentialfinding; findings-free unchanged-path assessment reused explicitly; fresh distinctHigh exacte3_vs33b3path fixPASS resolved originalfinding. Not wholefinal6newreview, not fourthbroad."
+  latest_finding: "Installed Playwright expect.poll deadline races async SQL callbacks; outer-only helper observation can admit fixture deletion while readTokens/readAudit pending. Author High readonly triage/proposal pending; no source edits admitted for this fix yet."
+  root_source_identity_proof_sha256: 77972183f1d6b3e0023a5b819543f1e4fc3bda3e2ae10941d95c218535e32d10
+  latest_finding_repair: "{\"status\": \"INDEPENDENT_HIGH_FIX_ONLY_PASS_ORIGINAL_FINDING_RESOLVED\", \"before_source_head\": \"33b595a8b7c001bd89788fb1c0e8cd9c626e03ec\", \"paths\": [\"tests/e2e/support/calendar-feed-atdd.ts\", \"tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts\", \"_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md\"], \"scope\": \"Synchronous same-registry closed latch owns actual poll callback and readTokens/readAudit promises, immediately observes rejections, closes before drain, rejects late launches and joins real callback/query siblings independently from outer poll/HTTP within existing20s; unresolved retains fixture/no deletion. Preserve15s poll and exact matchers/assertions. Pure deadline-first/HTTPtrue/pending sibling/rejection/late-launch negatives.\", \"authorization_fit\": \"Subset of admitted6 existingownedpaths; no workflow/wrapper/pin/browserSpec/matcher/privilege/runtime/resource or other external effect expansion\", \"original_review_status\": \"NOTPASS_ONE_CONSEQUENTIAL_FINDING\", \"original_review_bytes\": 1142, \"original_review_sha256\": \"7069c11f075b927eb2d52bec7be14e81452c74aaf1c1f4dc7cd26acb4b6bf466\", \"original_attestation_bytes\": 5936, \"original_attestation_sha256\": \"8e61bb7914ca695afdfaf4c6a05efb558a674800ad3045d91b99fe013560186f\", \"review_requirement\": \"AuthorrefreshSpec/SRO before commit; distinct context-free High exact latest3path fix-only committeddelta, compose with explicit unchanged33b paths assessment; no fourth broad/no everyfinalbyte-newreview claim\", \"development_complete\": false, \"release_ready\": false, \"source_head\": \"e3f1c2e1c5db81947a48233da617ff8535fd24aa\", \"local_node_passed\": 51, \"local_failed\": 0, \"local_skipped\": 0, \"local_cancelled\": 0, \"local_partition\": \"47retained+4actualpolling/queryregressions; historical326at33bseparate\", \"local_typecheck\": \"PASS-authoractual\", \"local_lint\": \"PASS0warnings-authoractual\", \"suggested_review_stops\": 42, \"approved_kernel\": \"UNCHANGED-authoractual\", \"review_status\": \"PASS_exact_committed_e3_vs33b3paths_no_consequential_regressions_NO_RUNTIME\", \"original_fix_review_bytes\": 707, \"original_fix_review_sha256\": \"3c2aeec3ca2f2d45a67e210e08c4133c34a7aa581a077bb5e92c61d2313bbd05\", \"original_fix_attestation_bytes\": 6558, \"original_fix_attestation_sha256\": \"b3690aa7dd17dd35b2bcb093b17bdc0ba960196b0c61447454ae1dbd3665caac\"}"
+  local_current_focused_passed: 51
+  local_current_failed: 0
+  local_current_skipped: 0
+  native_current_source: UNEXECUTED_PENDING_NEW_EXACT_HEAD_CI
+  seventh_capsule_bytes: 459426
+  seventh_capsule_sha256: 7c4a768acd75f470b9f101f5a8af96b37f19efcf058b293ef9dcf79065e57d7d
+  seventh_parent_check_bytes: 1861
+  seventh_parent_check_sha256: fae7ac25dd9c5279e0660b0f57d4b068f25c6a66f9124b476460e061a465dd6c
+  root_seventh_admission_sha256: 6e5e05f11351752cb40ee9bf4f6bb9f1bd1be49f46575b303c92e0078f66e9c4
+  source_paths: 67
+  source_author_commits: 12
+  source_latest_delta_paths: 3
+  source_cumulative_delta_paths: 6
+  raw_normalized_differences: 40
+  frozen_artifact_reference_occurrences: 272
+  unique_frozen_artifact_paths: 239
+  failed_checkpoint_source_equalities: 394
+  protected_historical_and_consumer_blobs: 146
+  historical_preparation_blobs: 69
+  historical_mutable_raw_observations: 12_UNVERIFIED_UNCREDITED_BASELINE_BLOBS_ONLY
+  broad_review_rounds: 3
+  feature_inventory: 95
+  local_bootstrap_pure_source_separate: 51
+  source_and_index_clean: true
+  global_clean_not_claimed: true
+  next: "Root stagedformatqualification/bookkeepingcommit/normalpush and one exact-head nativeCI; no fourthbroad/no development or release completion claim"
+  staged_format_qualification_sha256: 47eb5e6beb1324560e5ae0a51866d5f40e25969c87d17dfc5e7910b166a99890
+  staged_format_unrestricted_native: "FAILED_exit2_only59single0x20_frozencontextlines_Highboundedqualification; other29pre_receiptnative0; no bypass"
