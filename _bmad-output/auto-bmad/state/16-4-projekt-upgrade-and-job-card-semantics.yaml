@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-16-jobs
 status: in-progress
-updated_at: "2026-10-20T15:31:49Z"
+updated_at: "2026-10-20T15:40:27Z"
 started_at: "2026-10-20T11:20:42Z"
 completed_at: null
 active_seconds: 516
@@ -39,7 +39,7 @@ tea_selected: [atdd, automate]
 tea_rationale: One-way transactional upgrade with event/audit writes and DB-enforced type constraints
 epic_story_count: 5
 stories_after_in_epic: 1
-completed_phases: [0, 1, 3, 4, 5]
+completed_phases: [0, 1, 3, 4, 5, 6]
 spec_path: "C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/_bmad-output/implementation-artifacts/spec-16-4-projekt-upgrade-and-job-card-semantics-2.md"
 spec_approved: true
 build:
@@ -59,7 +59,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [2d002970fcb112db8d480068443a0cce2577bd5b, 2920b920c0ff19122051f7ef987bc222331fb94a, ebd03a4e4c5226a2b3926bcdcbd2c2a29d18e776, dd7e54d0, 6260c5a2, 643274eb, 4b7d14c8, 0e382e96, 9d4584f7]
+commits: [2d002970fcb112db8d480068443a0cce2577bd5b, 2920b920c0ff19122051f7ef987bc222331fb94a, ebd03a4e4c5226a2b3926bcdcbd2c2a29d18e776, dd7e54d0, 6260c5a2, 643274eb, 4b7d14c8, 0e382e96, 9d4584f7, 686c0035]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -105,6 +105,7 @@ overrides:
   story16_4_access_window_diagnosis: "Exact0e382e96be497f562f46bbbc36956eec65efac8d CI39443082042:2723unitpass0skip+43process,DB1873total1872pass0fail1soleordinaryrecoverypending,separate1/1pass. Pilot5warmup25measuredreadp95=13.832416000000194ms syntheticbulkpermissionp95=5.901257000000442ms. Browser27firstpass1UpgradeE01failedbothattempts0flaky0skip; actualemittedinput invalidFields accessWindows only. NativeDBSHA9C7A9414E781B5F541798E4A07D2829E27F72D8770B0DE9D671EC277E84B2D3B;browserDC93151CCE8346C923E95A9113B8F88B17250BC86E2A8E9B31F26893F27B5084;recovery93CCE8D8B6868F392A47E0CAB4E8C487C94894A4E17E277AE709B517A7511499. Provenproductioncause: DBoffset/microsecondwindoworiginal reused unchanged by form whileclosedvalidator requirescanonicalZ. Source-extractedactualassembler reproducedRED; boundedpureparse/format helper+formserialization+meaningful4regressions authorized,strictvalidator/SQL/auth unchanged. Focused25pass0skip/TSC/lintpass; independentHighreview/build/newheadruntimepending."
   story16_4_final_runtime: "Exact9d4584f7d86721f07e88a94cf2b15e940a2b7266 CI39445650692 TERMINAL SUCCESS.2727unitpass0skip+43process; DB1873total1872pass0fail1soleordinaryrecoverypending,separatephysicalrecovery1/1pass0skip. Story16.4consumers27/27,upgrade7/7pass. Browser28/28firstattemptretry0/no flaky/skip/unexpected(all7new+21prior). Pilot5warmup25measuredreadp95=13.464025999999649ms syntheticbulkpermissionp95=5.2704610000000685ms. NativeDB400A3BAA1D95BD58F41AA99C0D2879A222C48DDF1A9C662029D744C8A75A69C5/browser9B93411E65D32E0DD6F4FA91D45E43A691A4DA2D5ECDDB6A3D46AF928387B321/recovery1F23070E0727053A67F92AEFEC0CD105A2BB8D5C8BDE4A5D64D7C1CD598E2DDE. Finalsource independentlyreviewed; deliverygate/provenance/done stillpending; releasevalidationfalse,release_readyfalse."
   story16_4_delivery_gate: "Actual root delivery_gate.py native0/oktrue/development_complete true/errors[]/approval_grantedfalse before done authorization. Record SHA1F00841349A76EDAEB3F09223D4E524D472139F1EF3F994E8BCCF4DB2AC50ECA; independent High provenance PASS receipt EC6D92F15DDB747B28D60772247A601A1FC7A400B41AA73BE2F2C87C9F14789B. Root explicitly authorized spec-only done after both; final49 inventory A7F04E6859933B1B8F45D307C5B9153DB6942C9334F37664878601AFDF0DFF2B verified0mismatches. Developmentcompleteonly;3ownedrelease-onlydefers/release_readyfalse."
+  story16_4_phase6: "Formal testarch-automate complete: two context-free Sol6.1High workers;7AC mapped0consequential gaps0newtests0reruns; actualhash/applicability/nativeparsing only. Reused exact9d4584f7 CI39445650692 native2727unit/43process/34focusedINT/full1872+1separate recovery/28browserretry0. Inspected24focused pure regressions; unchanged dependencies andfivefailedrun history preserved. SummarySHA72D1A6EEBD09EA230366966E0CB1B500EFDFD3F227FC7409A52CC824630829BE;3ownedrelease-onlydefers."
 constraints:
   - "Exclusive checkout C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas; root owns all Git/index/commits/push/CI/state/sprint/ledger/report actions."
   - "Formal planning only until approved ready-for-dev plan; no product/migration/dependency writes during planning."
