@@ -1,0 +1,141 @@
+{
+  "schema": "original-function-matrix-manual-02-preparation-v1",
+  "policy_version": "2026-10-19",
+  "status": "PREPARATION_ONLY_REQUIRES_TARGETED_REVIEW_AND_REFRESHED_ADMISSION",
+  "normal_acceptance_credit": 0,
+  "target": {
+    "head": "c97f9ac509e642cb7337b8fcd2deaad90540db1c",
+    "source": "187a4c6f0d941cf2d46a62df8a51fc0ed6fd20cf",
+    "checkpoint": "18562d27-e3e4-4e2f-be69-e2a775b8af93",
+    "run_id": 39627344465,
+    "attempt": 1,
+    "mode": "cause-proof"
+  },
+  "payloads": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/original-function-matrix-manual-02/extract.py",
+      "bytes": 22194,
+      "sha256": "9596f077a9b112fee38fadc17d04bd7190fc8bfcd335b5515b7d24b75af9b7df"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/original-function-matrix-manual-02/test_extract.py",
+      "bytes": 21518,
+      "sha256": "4c72e6bb2f9ce2465eb6cad8cb042779fe5aaf31a00a97abf34e588767672a0b"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/original-function-matrix-manual-02/proposal.json",
+      "bytes": 23834,
+      "sha256": "82e5620b152710105d01dbd8f2fa279f3efc89306c7f1ff802f91331ee69d1ae"
+    }
+  ],
+  "predecessor": {
+    "status": "IMMUTABLE_PROVEN_ZERO_ACQUISITION_VALIDATION_STOP",
+    "files": [
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/original-function-matrix-manual-01/extract.py",
+        "bytes": 22147,
+        "sha256": "b2819bf337454a1f1960e9661ac72ff0a9be27801ac80e89f222457d2bba9ff0"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/original-function-matrix-manual-01/test_extract.py",
+        "bytes": 17772,
+        "sha256": "e3d1f0a4b32c3a7b879e62c6a636080a188b6c2138092bc63d8ff5530c3f9970"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/original-function-matrix-manual-01/proposal.json",
+        "bytes": 19751,
+        "sha256": "017a1c5af250d04927b0afe60c46c5e7a8e0b954d5c1caf4c4d4a99882ea88f0"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-matrix-manual-01-activation.json",
+        "bytes": 2097,
+        "sha256": "27b0430f9da28f10e6637018161d794ea74d27cd1a695a0db28152bfced54fcd"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-matrix-manual-01-terminal-facts.json",
+        "bytes": 895,
+        "sha256": "d22e3ef338acb879121ecf264ce11947a31b9069ad782f06e244ca0df64efa41"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-matrix-manual-01-invocation-stop.json",
+        "bytes": 820,
+        "sha256": "08185ce64b5bc0a523993f4ddf9fbe5bb488bf8ee369ac1a7d7122e77a794188"
+      }
+    ],
+    "diagnosis": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-matrix-admission-diagnosis.json",
+      "bytes": 10469,
+      "sha256": "505c3434137596e62004fc1a8e286515130cbba60f73fdc9163ae1b89bfc0bd0"
+    },
+    "readmission": "No automatic retry. Distinct02 successor needs independent targeted review and refreshed allocation/Root admission before any GET.01 is never invoked again."
+  },
+  "diff_rationale": {
+    "scope": "Private validator and identity/path binding only; source and workflow unchanged.",
+    "old_mismatch": "START=failure required both CAUSE and UPLOAD skipped, but actual UPLOAD=failure is permitted by reviewed workflow !cancelled() cause-proof upload.",
+    "new_requirement": "START=failure requires CAUSE=skipped and UPLOAD in [skipped,failure]; all other validation checks remain identical.",
+    "failure_member_scope": "Exactly START only. The successor control spies on actual ZipFile.open and proves cause-proof/upload/stop members are never inflated after startup failure.",
+    "new_logic_controls": 5,
+    "retained_logic_controls": 31,
+    "actual_terminal_source": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-matrix-manual-01-terminal-facts.json",
+      "bytes": 895,
+      "sha256": "d22e3ef338acb879121ecf264ce11947a31b9069ad782f06e244ca0df64efa41"
+    }
+  },
+  "mechanical_diff_proof": {
+    "extractor_exact_predecessor_after_only_operation_path_substitution_and_one_guard_replacement": true,
+    "transport_capture_zip_matrix_lifecycle_logic_unchanged": true,
+    "retained31_test_methods_preserved_under02_binding_substitution": true,
+    "new_focused_test_methods": 5,
+    "proposal_only_updates_bindings_truthful_known_terminal_and_readmission_plan": true
+  },
+  "source_bindings": {
+    "actual18_raw_bindings_reverified": true,
+    "all18_values_unchanged_from01": true,
+    "source71_Git_admission": "Root-owned proof remains bound; not independently recounted as broad review."
+  },
+  "checks": {
+    "test_command": "python -X utf8 -B .env.epic15.mail-runtime/story-15-5-preparation/original-function-matrix-manual-02/test_extract.py",
+    "tests": 36,
+    "passed": 36,
+    "retained": 31,
+    "new": 5,
+    "failed": 0,
+    "errors": 0,
+    "warnings": 0,
+    "seconds": 0.382,
+    "default_cli": {
+      "native_exit": 1,
+      "closed_category": "PRE_REQUEST_OR_PUBLICATION_STOP",
+      "stderr_bytes": 0,
+      "effects": 0
+    },
+    "ast_parse": 2,
+    "actual02_files": 3,
+    "old01_files_unmodified": true,
+    "network_API": 0,
+    "extractor_execute_flag_calls": 0,
+    "local_subprocesses_per_test_suite": 4,
+    "actual_consumed_marker_or_result_created": false
+  },
+  "exact_future_root_paths": {
+    "activation": ".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-matrix-manual-02-activation.json",
+    "terminal-facts": ".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-matrix-manual-02-terminal-facts.json",
+    "consumed": ".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-matrix-manual-02-consumed.json",
+    "result": ".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-matrix-manual-02-result.json"
+  },
+  "root_actions": [
+    "Independent High targeted02 binding/failed-upload correction review/admission preserving01 originals",
+    "Coordinator refreshed GET allocation binds actual02 hashes, source/run and remaining single acquisition budget",
+    "Root exclusively writes actual02 terminal/activation after pure validation; templates and historical01 inputs grant no execution",
+    "Explicit Root once02 invocation; no request by this preparation, no new producer/CI run",
+    "Offline qualification of actual closed result; unacquired bodies/unknown guard predicates never inferred; normal acceptance0"
+  ],
+  "limits": [
+    "Actual02 activation/terminal/consumed/result remain unborn.",
+    "No fresh CI/source push required to repair private admission mismatch.",
+    "No observed hosted matrix or causal claim; all unacquired artifact bodies UNKNOWN.",
+    "Existing source71/Spec/Git/state/report and all01 receipts preserved.",
+    "Focused High correction review only; broad3 cap unchanged."
+  ]
+}

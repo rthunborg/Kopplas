@@ -1,0 +1,32 @@
+{
+  "schema": "root-original-function-matrix-manual-02-review-admission-v1",
+  "verdict": "PASS",
+  "scope": "TARGETED_PRIVATE_EXTRACTOR_SUCCESSOR02_ONLY",
+  "review_artifacts": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-matrix-manual-02-review/original-report.md",
+      "bytes": 4496,
+      "sha256": "17fdd1caed7e351d61f4393fb73916fc1932adc07012ecc166f5347bc432fa63"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-matrix-manual-02-review/original-attestation.json",
+      "bytes": 10147,
+      "sha256": "2f92b519a487a42d2567a9cc246b1544abc6662aba26050895902b1ff3a26893"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-matrix-manual-02-review/result.json",
+      "bytes": 844,
+      "sha256": "dc03c006dd0d22736c59b03a07156c04b47b3481bf9b73e134adb7b5139fce0a"
+    }
+  ],
+  "actual_payload_inputs_verified": 3,
+  "actual_context_source_raw_and_checkpoint_bindings_verified": 18,
+  "actual_reviewable_refs_verified": 6,
+  "actual_run_id": 39627344465,
+  "checkpoint_head": "c97f9ac509e642cb7337b8fcd2deaad90540db1c",
+  "previous01": "PROVEN_PRE_REQUEST_REFUSAL_RETIRED_WITHOUT_RETRY",
+  "api_calls": 0,
+  "execution_authorized": false,
+  "remaining": "Refresh specific GET allocation, Root actual terminal and external-hash activation.",
+  "normal_acceptance_credit": 0
+}

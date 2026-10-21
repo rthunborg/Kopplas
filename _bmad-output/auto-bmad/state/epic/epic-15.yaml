@@ -9,11 +9,11 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-21T12:34:44Z"
+updated_at: "2026-10-21T16:00:00Z"
 started_at: "2026-10-09T12:57:49Z"
 completed_at: null
 active_seconds: 278674
-timing_anchor: null
+timing_anchor: 1792596946
 is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
@@ -26,7 +26,7 @@ selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Distinct High targeted review of new private manual archive extractor privacy/closed schema/capped transport; no network or execution while approval hold remains."
+escalation_reason: "Independent High validation of source-only grantor defect and bounded owner-context reconciliation proposal in unapplied111, preserving ACL guard and applied predecessor; no source/runtime effects."
 routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary epic test planning; sensitive implementation/review scope routed explicitly High\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary story test-risk classification\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_triage\",\"profile\":\"light\",\"role\":\"test-risk-triage\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -249,6 +249,13 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"High preparation of exact bounded RAM-only one-terminal-archive manual extractor/closed matrix and conditional lifecycle evidence; no acquisition or CI authorized.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive narrow static assessment of existing canonical UID call-count SQL literal and positive-match semantics; read-only source/primary documentation only during CI approval hold, no execution or source mutation.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct High targeted review of new private manual archive extractor privacy/closed schema/capped transport; no network or execution while approval hold remains.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive once-only acquisition refused with closed PRE_REQUEST_OR_PUBLICATION_STOP; offline diagnose exact admission failure and custody only. No execution retry or broader review.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct offline verification of proven pre-request refusal and minimal correction admission; actual terminal upload failure must remain truthful. Narrow private extractor delta only, no fourth story review.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive private extractor successor corrects proven upload-step admission conflict; preserves frozen refused01 and once-only GET boundary. No remote execution delegated.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Targeted independent sensitive review of frozen private successor02 admission delta and once-only extraction bounds; reviewed against truthful terminal upload failure, no fourth story review.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct High offline qualification of actual once-acquired closed guard matrix; sensitive migration ACL predicate observations require provenance and causal-limit audit before source assessment.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Bounded offline source-comparable ACL assessment after independently qualified actual false ACL predicates; test one precise immutable-source/engine assumption without runtime effects, guard edits or retry.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Independent High validation of source-only grantor defect and bounded owner-context reconciliation proposal in unapplied111, preserving ACL guard and applied predecessor; no source/runtime effects.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: null
 tea_selected: []
 tea_rationale: null
@@ -258,8 +265,8 @@ completed_phases: [0, 1, 2]
 spec_path: null
 spec_approved: true
 build:
-  status: blocked
-  blocking_condition: "Automatic approval rejected diagnostic CI handoff; direct human approval of hosted disposable migrations/reset-seed/Auth/Vault/owned JWT writes/cleanup is required. No execution grant, POST or archive GET; c97f9ac5 and UUID18562d27 remain unconsumed."
+  status: in-review
+  blocking_condition: null
   followup_review_recommended: false
   review_loop_iteration: 0
   deferred_count: 0
@@ -299,8 +306,7 @@ merge_commit: null
 branch_deleted: false
 open_questions: []
 deferred_work: []
-blockers:
-  - "Diagnostic CI authorization: Automatic approval rejected diagnostic CI handoff; direct human approval of hosted disposable migrations/reset-seed/Auth/Vault/owned JWT writes/cleanup is required. No execution grant, POST or archive GET; c97f9ac5 and UUID18562d27 remain unconsumed."
+blockers: []
 overrides:
   oracle: "Owner2026-10-09 removes observation prerequisite; recommended designs, zero observation/parity claim"
   ownership: "Coordinator 2026-10-19 permits independent 15.2 story-only preparation; E16 shared source/schema/fixture claims remain reserved pending exact overlap coordination."
@@ -4074,7 +4080,7 @@ p5_original_function_default_acl_observation:
   next: "Distinct actual qualification and direct failed-predicate evidence route assessment; no source/SQL/resources/CI effects authorized."
   independent_qualification: "{\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/original-function-default-acl-readonly-qualification.json\", \"bytes\": 12384, \"sha256\": \"1abe739da48cc85b8f31c4415b7cdf7ea90c9f94b5fa8704e4de7150920567c9\"}"
 p5_original_function_direct_evidence:
-  status: NEEDS_HUMAN_AUTOMATIC_CI_APPROVAL_REJECTED
+  status: QUALIFIED_ACL_REFUSAL_BOUNDED_SOURCE_ASSESSMENT
   plan: "{\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/original-function-direct-evidence-proposal/proposal.json\", \"bytes\": 11241, \"sha256\": \"9856e25ba8240a2c0a116dcbd11571a4af568fa9893c79c46522b920e145fb48\"}"
   review_admission: "{\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/root-original-function-direct-evidence-code-review-admission.json\", \"bytes\": 1782, \"sha256\": \"52804759b219a5a0da139ae95209041b49e350e825729f1c4eedc9f98a01f117\"}"
   allocation: "{\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/accepted-original-function-direct-evidence-source-allocation.json\", \"bytes\": 2215, \"sha256\": \"dc052ce7e080d91f88c1429a4a15dedf74eea80bcd449568eb3c716a27bad606\"}"
@@ -4090,8 +4096,18 @@ p5_original_function_direct_evidence:
   focused_passed: 102
   readiness_addendum: "{\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/original-function-direct-evidence-code-review/readiness-addendum.json\", \"bytes\": 11089, \"sha256\": \"482b9816c05e5a8ff02694d998a05ccade4e0a87e2f7b20509cb6401408a1519\"}"
   checkpoint_id: 18562d27-e3e4-4e2f-be69-e2a775b8af93
-  ci_effects_allocated: false
-  archive_effects_allocated: false
+  ci_effects_allocated: true
+  archive_effects_allocated: true
   ci_allocation_hold: "{\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/direct-matrix-ci-allocation-hold.json\", \"bytes\": 1623, \"sha256\": \"c46884723a501088e67237a9f29647a9979fd888e022560443b7407139bf75ac\"}"
   uid_count_static_assessment: "{\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/original-function-uid-count-static-assessment.json\", \"bytes\": 5226, \"sha256\": \"5b98039043951fe772d3d27bfe2ee30e1018d6b587a3ff454e70595e266dc149\", \"conclusion\": \"No literal-count predicate defect; fifteen pure controls, native SQL0, hosted condition UNKNOWN.\"}"
-  manual_extractor: "{\"input_admission\": {\"path\": \".env.epic15.mail-runtime/story-15-5-preparation/root-direct-matrix-manual-input-admission.json\", \"bytes\": 1202, \"sha256\": \"af83a1cd2d8a1df6b050c4393e15f4333a0a900d503ae07a227fcb83d754dc0e\"}, \"review\": {\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/root-original-function-matrix-manual-review-admission.json\", \"bytes\": 1228, \"sha256\": \"af9d30a1bd64dd2ba1495c6fcd6aecefd6d6716de25ba164a844abd5ddea991c\"}, \"actual_run_id\": null, \"api_calls\": 0, \"execution_ready\": false, \"status\": \"DISTINCT_HIGH_PASS_EXECUTION_HELD\"}"
+  manual_extractor: "{\"input_admission\": {\"path\": \".env.epic15.mail-runtime/story-15-5-preparation/root-direct-matrix-manual-input-admission.json\", \"bytes\": 1202, \"sha256\": \"af83a1cd2d8a1df6b050c4393e15f4333a0a900d503ae07a227fcb83d754dc0e\"}, \"review\": {\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/root-original-function-matrix-manual-review-admission.json\", \"bytes\": 1228, \"sha256\": \"af9d30a1bd64dd2ba1495c6fcd6aecefd6d6716de25ba164a844abd5ddea991c\"}, \"actual_run_id\": 39627344465, \"api_calls\": 0, \"execution_ready\": false, \"status\": \"ORIGINAL01_RETIRED_PRE_REQUEST_NO_GET\", \"extractor_invocations\": 1, \"consumed_marker_exists\": false, \"closed_result_exists\": false, \"activation\": {\"path\": \".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-matrix-manual-01-activation.json\", \"bytes\": 2097, \"sha256\": \"27b0430f9da28f10e6637018161d794ea74d27cd1a695a0db28152bfced54fcd\"}, \"terminal\": {\"path\": \".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-matrix-manual-01-terminal-facts.json\", \"bytes\": 895, \"sha256\": \"d22e3ef338acb879121ecf264ce11947a31b9069ad782f06e244ca0df64efa41\"}, \"stop_receipt\": {\"path\": \".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-matrix-manual-01-invocation-stop.json\", \"bytes\": 820, \"sha256\": \"08185ce64b5bc0a523993f4ddf9fbe5bb488bf8ee369ac1a7d7122e77a794188\"}, \"independent_pre_request_review\": [{\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/original-function-matrix-admission-review/original-report.md\", \"bytes\": 6998, \"sha256\": \"aed5d391b42fd6592dc22721556d71648c4c174f85b3176c631e3fa152b8a30a\"}, {\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/original-function-matrix-admission-review/original-attestation.json\", \"bytes\": 6634, \"sha256\": \"612d9a744ff8e2a19c4630141eb211224028e9540b9cf093804d9a23bf21b25a\"}], \"original01_reinvocation\": \"REFUSED\", \"successor02\": {\"status\": \"ACTUAL_OBSERVATION_QUALIFIED_SOURCE_ASSESSMENT_REQUIRED\", \"preparation\": {\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/original-function-matrix-manual-02-preparation.json\", \"bytes\": 7028, \"sha256\": \"4b00eaa95a1a459c0b738d13312e09398247aaacfda59e3fb7464ceaed61dabf\"}, \"root_input_admission\": {\"path\": \".env.epic15.mail-runtime/story-15-5-preparation/root-direct-matrix-manual-02-input-admission.json\", \"bytes\": 1221, \"sha256\": \"2b57bc5ff908b65646d8c1477e13ffc3bf1352e480e907b16cb6e05f00d7cb74\"}, \"api_calls\": 1, \"execution_authorized\": false, \"review\": {\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/root-original-function-matrix-manual-02-review-admission.json\", \"bytes\": 1406, \"sha256\": \"1986a2ca1e083983d80a42549cf8961a1cb4ca1bcd4f21760d9a6b1bf28e8a40\"}, \"allocation\": {\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/accepted-direct-matrix-manual-02-archive-allocation.json\", \"bytes\": 2705, \"sha256\": \"45f194b106f386a68758e880d51396f30fee99d2270a662727ee3901a5976124\"}, \"activation\": {\"path\": \".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-matrix-manual-02-activation.json\", \"bytes\": 2103, \"sha256\": \"69476e4e6b95af794c6600435958fad199897c25fea6a5f77cc6b6483e0b6dc2\"}, \"terminal\": {\"path\": \".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-matrix-manual-02-terminal-facts.json\", \"bytes\": 895, \"sha256\": \"d22e3ef338acb879121ecf264ce11947a31b9069ad782f06e244ca0df64efa41\"}, \"result\": {\"path\": \".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-matrix-manual-02-result.json\", \"bytes\": 2035, \"sha256\": \"df41f286bfe77d59dfe61b915b7c5b564cbf496af74c6faed260b64df0032cae\"}, \"result_admission\": {\"path\": \".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-matrix-manual-02-result-admission.json\", \"bytes\": 711, \"sha256\": \"e7127874aa496cba37ad20ceda223f503a551d2920f4757a5f0128241c56890d\"}, \"consumed_marker\": {\"path\": \".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-matrix-manual-02-consumed.json\", \"bytes\": 326, \"sha256\": \"08ed1b1403f7daa35dfe329b655acf75136b3264d957dc9f576d4e1fda198688\"}, \"qualification\": {\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/original-function-matrix-manual-02-qualification.json\", \"bytes\": 20729, \"sha256\": \"10c768007bdbe4aff43401a2bad0fa2964a8d394a9cbf9b06ec65583f5d4d7c1\"}, \"root_qualification_admission\": {\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/root-original-function-matrix-manual-02-qualification-admission.json\", \"bytes\": 590, \"sha256\": \"b7fd0bcbf6e7b1c641ab677047fcecc30c42831ec8f81dd3a24207ac30225433\"}}}"
+  human_approval: "{\"path\": \".env.epic15.mail-runtime/story-15-5-preparation/root-direct-matrix-human-approval-20261021.json\", \"bytes\": 1174, \"sha256\": \"47bff4eddcb9357fa244aa44fe993c526a3250021e2ee2876c743a8b646ce185\"}"
+  ci_allocation: "{\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/accepted-direct-matrix-diagnostic-ci-allocation.json\", \"bytes\": 1845, \"sha256\": \"0a38307c4428bc5b36d213f209078d33f79f31b8c2c13f3953641449497dba28\"}"
+  archive_allocation: "{\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/accepted-direct-matrix-manual-archive-allocation.json\", \"bytes\": 2048, \"sha256\": \"c87965edba3449a326a0df48fecba556caa7029ddbd057379610e94d94514e34\"}"
+  actual_run_id: 39627344465
+  attempt: 1
+  dispatch_count: 1
+  acquisition_count: 1
+  checkpoint_head: c97f9ac509e642cb7337b8fcd2deaad90540db1c
+  terminal_job_facts: "{\"path\": \".env.epic15.mail-runtime/story-15-5-preparation/root-c97f9ac5-terminal-job-facts.json\", \"bytes\": 8313, \"sha256\": \"0da10d845a11f68c3007920101d79b9686509d1bf4222b3163e174babfc7e076\"}"
+  backend_cause: UNPROVEN

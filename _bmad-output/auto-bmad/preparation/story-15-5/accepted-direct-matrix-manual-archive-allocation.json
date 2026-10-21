@@ -1,0 +1,35 @@
+{
+  "coordinator_thread": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "actual_grant_turn": "01a15f1a-4f9f-7362-9f07-b8baa3b9c38a",
+  "human_message": "01a15f19-b0c7-74c3-bb36-654971a55868",
+  "human_turn": "01a15f19-acd9-7261-80ac-8660a2d5abb3",
+  "human_text": "You are authorized and approved for all of those things",
+  "coordinator_independent_human_verification_tools": [
+    "exec-6fc6b17e-62da-4c21-96f1-042aed138d0b",
+    "exec-5729bbd5-7131-47e2-b81b-47cbf90422ff"
+  ],
+  "checkpoint_head": "c97f9ac509e642cb7337b8fcd2deaad90540db1c",
+  "source_head": "187a4c6f0d941cf2d46a62df8a51fc0ed6fd20cf",
+  "checkpoint_id": "18562d27-e3e4-4e2f-be69-e2a775b8af93",
+  "prior_rejection_preserved": true,
+  "normal_acceptance_credit": 0,
+  "schema": "accepted-direct-matrix-manual-archive-allocation-v1",
+  "status": "CONDITIONAL_ONE_GET_AFTER_TERMINAL_ROOT_ADMISSION",
+  "grant_tool": "exec-dbed23d5-322e-4476-b26f-61345cacd6be",
+  "review_admission_sha256": "af9d30a1bd64dd2ba1495c6fcd6aecefd6d6716de25ba164a844abd5ddea991c",
+  "payloads": {
+    "extract.py": [
+      22147,
+      "b2819bf337454a1f1960e9661ac72ff0a9be27801ac80e89f222457d2bba9ff0"
+    ],
+    "test_extract.py": [
+      17772,
+      "e3d1f0a4b32c3a7b879e62c6a636080a188b6c2138092bc63d8ff5530c3f9970"
+    ],
+    "proposal.json": [
+      19751,
+      "017a1c5af250d04927b0afe60c46c5e7a8e0b954d5c1caf4c4d4a99882ea88f0"
+    ]
+  },
+  "conditions": "Actual terminal positive run/head/attempt1/checkpoint/mode and source71 proof; admission+verify successful, db terminal and other6 skipped. Root exact terminal+activation hashes/exclusive fsynced consumed marker before sole fixed run logs GET. Enforce reviewed stream/ZIP/member/projection caps during read/parse; raw RAM only; exact selected db members; no artifact listing/download, alternate endpoint/consumer/retry, raw persistence/output, SQL/resources/source/main/deploy effects. High offline actual-result qualification required. Missing/NULL/alltrue/malformed/incomplete/uncertain facts UNKNOWN."
+}

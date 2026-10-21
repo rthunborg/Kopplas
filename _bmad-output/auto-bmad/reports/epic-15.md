@@ -4744,3 +4744,141 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Push source-reviewed checkpoint, coordinate exact one diagnostic operation including unexpected-success effects, review/admit manual extractor before GET.
+
+## Report — 2026-10-21T12:37:19Z (halted - diagnostic hosted-effects approval required)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `814cf3b`).
+**Pipeline status:** needs-human; 4/6 stories landed; 15.5 P5 blocked; 15.6 unstarted
+**Continues:** Held for direct human approval of the diagnostic hosted effects.
+
+**Summary:** Failure-only observer and independent High review pushed at c97f9ac5 (source187a4c6f). Focused102 pass, TypeScript/lint pass. Manual extractor31 offline controls and distinct High review pass. No diagnostic POST/GET, merge or deployment occurred. Additional hold/review metadata is committed locally at814cf3b1; published checkpoint remains frozen.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 287h 39m (≈77h 24m AI-run, ≈210h 14m human/idle wait); resumed 142×.
+
+**Stories:**
+1. 15.1-15.4 landed; 15.5 Spec/ARR in-review with kernel5760/counter3 preserved; 15.6 unstarted.
+
+**Skipped:** (none)
+
+**Epic gate:** Not reached. No done or release-ready claim.
+
+**TEA:** Required normal five gates/all95/recovery remain unsatisfied. Local and diagnostic preparations give zero normal acceptance.
+
+**Retrospective:** Epic15 retrospective not run. Epic14 October8 accepted-with-open-items remains authoritative; October7 rejection historical.
+
+**Overrides:** Owner-authorized design defaults; no legacy browsing/evidence. SolHigh sensitive work and independent review retained; no fourth broad review. No deployment.
+
+**Open questions:**
+1. Actual original-function refusal condition remains UNKNOWN.
+
+**Deferred work:**
+1. Existing deferred release validation remains tracked; the required development blocker is not deferred or waived.
+
+**⚠️ Needs human:**
+1. Respond to the existing hosted-effects approval card. Automatic approval rejected the CI handoff because specific hosted migrations/reset-seed/Auth/Vault/owned writes/cleanup effects require direct approval despite prior fix/retry authorization.
+
+**Next:** After verified human approval, obtain the concrete execution grant and recheck the frozen c97f9ac5/UUID18562d27 bindings before one diagnostic dispatch. Separately allocate and activate the reviewed manual extractor only after terminal facts. Resume /auto-bmad epic --epic15; preserve earlier evidence and all remaining gates.
+
+## Report — 2026-10-21T15:38:48Z (ongoing - directly approved diagnostic run)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `814cf3b`).
+**Pipeline status:** in-progress; 15.5 P5 diagnostic evidence running
+**Continues:** Actual terminal matrix qualification, justified repair and remaining normal/story/epic gates
+
+**Summary:** Direct human approval verified by Coordinator resolves the historical automatic-review hold. One diagnostic run39627344465 dispatched at c97f9ac5/source187/UUID18562d27; no redispatch or log acquisition.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 290h 40m (≈77h 24m AI-run, ≈213h 16m human/idle wait); resumed 143×.
+
+**Stories:**
+1. Four of six landed; 15.5 in-review, 15.6 unstarted.
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** All prior independent review/cap3/privacy/once/no-deployment gates retained. Current v2 producer only; oldv1 collector unused.
+
+**Open questions:**
+1. Actual native refusal predicate remains UNKNOWN until terminal evidence is qualified.
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Root sole bounded status poller; bind actual terminal facts, then activate separately allocated extractor once.
+
+## Report — 2026-10-21T15:45:49Z (15.5 diagnostic terminal; manual archive admission correction)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `814cf3b`).
+**Pipeline status:** in-progress; four of six stories landed; 15.5 P5 active; 15.6 unstarted
+**Continues:** Independent offline pre-request proof review and narrow private extractor successor preparation; no redispatch or log-read retry.
+
+**Summary:** Direct owner approval independently verified; one allocated diagnostic run executed at checkpoint c97f9ac509e642cb7337b8fcd2deaad90540db1c, source187a4c6f, UUID18562d27-e3e4-4e2f-be69-e2a775b8af93.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 290h 48m (≈77h 24m AI-run, ≈213h 23m human/idle wait); resumed 144×.
+
+**Stories:**
+1. Run39627344465 attempt1: admission and verify success, db startup failure, cause-proof fixture skipped, upload failure, stop success; other six jobs skipped. Required normal development checks remain unexecuted.
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** Cause-proof diagnostic only; release-validation false; normal acceptance0. Historical automatic approval hold superseded by directly verified owner approval, retained unchanged. No main merge/deployment.
+
+**Open questions:**
+1. Hosted original-function refusal predicate remains UNKNOWN. Manual01 returned PRE_REQUEST_OR_PUBLICATION_STOP before result; no consumed marker. Author offline diagnosis locates truthful upload failure versus validator skipped-only requirement, before marker and sole GET. Distinct High verification pending.
+
+**Deferred work:**
+1. All existing release validation items and inherited review_unverified caveat retained.
+
+**⚠️ Needs human:**
+1. None for current bounded local preparation; direct human approval and separate CI/archive allocations exist.
+
+**Next:** Preserve frozen01 and exact terminal facts; prepare minimal manual02 with focused controls and targeted independent High review, then refresh only allocation bindings before Root exact admission. No fourth broad story review.
+
+## Report — 2026-10-21T15:55:08Z (15.5 actual original-function matrix acquired once)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `814cf3b`).
+**Pipeline status:** in-progress; four of six stories landed; 15.5 P5 active
+**Continues:** Distinct High offline actual-result qualification. Normal development gates remain blocked.
+
+**Summary:** Refreshed binding allocation accepted from completed Coordinator tool exec-6f1057de-598a-4757-b56f-7ca6cb881ccc. Reviewed immutable manual02 captured the same approved terminal run39627344465 once; no new producer or network budget.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 290h 57m (≈77h 24m AI-run, ≈213h 32m human/idle wait); resumed 145×.
+
+**Stories:**
+1. Original01 refused before marker/GET and is retired immutable; distinct High verified zero effects. Successor02 preserves all16other function ASTs;36 offline controls passed including truthful failed-upload admission and startup-only inflation; targeted independent High PASS. Root rechecked71source/18context bindings.
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** No acceptance credit. No integration, browser or recovery execution inferred from diagnostic success.
+
+**Retrospective:** (none)
+
+**Overrides:** Cause proof true; release validation false; one logical archive GET consumed; HTTP request/redirect count UNKNOWN. Raw archive/member bytes remained RAM only. No merge or deployment.
+
+**Open questions:**
+1. Closed2035B result df41f286bfe77d59dfe61b915b7c5b564cbf496af74c6faed260b64df0032cae observes firstfunction ordinal1,11typed booleans/noNULL: anon_denied/service_role_denied/acl_grantees_safe false; other8true. These are observed refusal predicates, not a proven backend drift cause or an invalid guard.
+
+**Deferred work:**
+1. All existing release-validation items retained. Actual current111 successful application remains unproven. Artifact bodies and lifecycle unavailable/UNKNOWN; settled own gh transport is distinct from DB/key cleanup.
+
+**⚠️ Needs human:**
+1. None during current offline qualification. No further remote effects or source relaxation admitted.
+
+**Next:** Qualify actual closed matrix independently; preserve ACL-drift stop unless actual source/primary semantics establish a specific invalid assumption. Do not add another observer or opaque retry.

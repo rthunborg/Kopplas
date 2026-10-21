@@ -1,0 +1,133 @@
+{
+  "schema": "original-function-acl-source-assessment-v1",
+  "outcome": "CONDITIONAL_SOURCE_GRANTOR_DEFECT_PROVEN_GUARD_VALID_HOSTED_ACL_IDENTITY_UNOBSERVED",
+  "head": "814cf3b11c26a29f53c1bdf6b7531fa2cb1a7c4f",
+  "source_commit": "187a4c6f0d941cf2d46a62df8a51fc0ed6fd20cf",
+  "observed": {
+    "run": 39627344465,
+    "attempt": 1,
+    "ordinal": 1,
+    "function": "read_calendar_feed_status",
+    "false_bits": [
+      "anon_denied",
+      "service_role_denied",
+      "acl_grantees_safe"
+    ],
+    "other_eight_bits": true,
+    "nulls": 0,
+    "meaning": "Effective execution and allowed-ACL predicates refused. Exact grantees, grantors, grant options and application sequence were not observed; PUBLIC is not an observed entry."
+  },
+  "evidence": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-matrix-manual-02-result.json",
+      "bytes": 2035,
+      "sha256": "df41f286bfe77d59dfe61b915b7c5b564cbf496af74c6faed260b64df0032cae"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-matrix-manual-02-qualification.json",
+      "bytes": 20729,
+      "sha256": "10c768007bdbe4aff43401a2bad0fa2964a8d394a9cbf9b06ec65583f5d4d7c1"
+    }
+  ],
+  "source_trace": [
+    "Predecessor20261020220000 lines25-26 explicitly supplies SET true/INHERIT false membership to postgres. SET permits ownership transfer but does not automatically confer object owner privileges.",
+    "Functions are created before lines263-269 transfer ownership to calendar_feed_owner. ACL revoke/grants then execute at lines270-272 with no SET ROLE anywhere in the predecessor. now_internal has the same order at196-197.",
+    "Current111 executor and owner guards require actual postgres non-superuser and effective owner USAGE false. ADMIN membership is authority over role membership, not a function EXECUTE grant option.",
+    "PostgreSQL17 aclnewowner substitutes owner identities in grantor/grantee entries; a NULL ACL instead derives defaults under the new owner. Former creator status is not retained owner authority.",
+    "PG17 select_best_grantor searches inherited privilege paths, not merely SET-capable memberships. With ordinary PUBLIC EXECUTE and no independent grant option, postgres has some execution privilege but zero grant options. restrict_and_check_grant warns and applies zero requested privilege bits.",
+    "The local all-true fixture used the original superuser for ownership/ACL operations. PG17 treats superuser ACL operations as owner operations; that fixture therefore did not exercise the predecessor's ordinary non-inheriting grantor sequence."
+  ],
+  "conditional_witness": {
+    "premises": [
+      "Ordinary non-superuser postgres creates the function with standard PUBLIC EXECUTE and owner rights.",
+      "Owner becomes calendar_feed_owner; postgres has SET capability but no inherited owner privileges or independent function grant option.",
+      "No unrelated platform trigger, later grant or superuser context modifies the sequence."
+    ],
+    "deduction": [
+      "Post-transfer REVOKE ALL by postgres cannot remove the owner's PUBLIC grant; it warns/no-ops rather than necessarily failing the migration.",
+      "Subsequent GRANT to authenticated likewise has no grant option. authenticated still executes via PUBLIC, which is distinct from an authenticated-only direct ACL.",
+      "anon and service_role also execute through PUBLIC; PUBLIC is outside the allowed owner/authenticated grantee set. Exactly the observed three false bits result, while metadata/body/count remain unchanged."
+    ],
+    "proof_level": "A concrete deterministic reachable defect in the checked-in ordinary migration sequence under stated standard premises; not merely a guess that SET implies INHERIT. No native execution was performed by this assessment.",
+    "hosted_limit": "The matrix does not establish those premises' exact hosted ACL rows or grantor path. Independent options, default ACLs, platform event triggers or later operations remain unobserved. Prior local prefix102 normalized-default equality is not current-hosted proof.",
+    "guard_disposition": "111's authenticated-only/private ACL invariant is correct. Do not relax any false bit or count broader effective execution as acceptable."
+  },
+  "bounded_source_inventory": {
+    "predecessor_set_role_statements": 0,
+    "repo_migration_event_trigger_or_alter_default_privileges_matches": 0,
+    "limit": "No checked-in event-trigger/default-ACL mechanism explaining a corrective later grant was found in the migration scan. This does not assert absence of platform/bootstrap or hosted triggers/defaults."
+  },
+  "minimal_repair_proposal": {
+    "status": "UNALLOCATED_PROPOSAL_NOT_A_FIX_INSTRUCTION",
+    "historical_boundary": "Do not edit the applied predecessor110. Before assigning any111 change, Root must establish exact adoption/application ownership evidence for111. If any successful application/adoption is discovered, freeze111 and coordinate forward plus fresh-bootstrap compatibility separately; no retimestamp/insertion workaround.",
+    "candidate_paths": [
+      "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",
+      "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "tests/support/calendar-feed-atdd.ts",
+      "tests/integration/rls/calendar-feed.rls.test.ts",
+      "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"
+    ],
+    "candidate_hunk": "If111 is cleared as unapplied, add an explicit atomic legacy-ACL reconciliation phase before the unchanged full original-function guard. First prove exact intended owners/signatures/config/bodies and bounded source-comparable legacy EXECUTE-only ACL shape; reject unexplained grantees/grant options. Use already-qualified SET LOCAL ROLE calendar_feed_owner to perform source-intended revokes/grants as the actual owner, reset to the executor, then enforce the existing full guard. No INHERIT/superuser/new membership or grant-option workaround.",
+    "complete_acl_targets": "Account for all8 transferred-owner functions, not just the first status target: payload, verifier, subject and now_internal owner-only; fetch anon-only; status/manage/abuse authenticated-only. postgres-owned secret helper is separate and already executes its revokes under its owner.",
+    "preservation": "No owner/OID/signature/body/volatility/config/public response/claim/proof change; no Auth/table/schema privileges or role membership broadening. Adapter replacement's metadata conservation must be measured after explicit intended ACL reconciliation, never described as preservation of previously permissive ACLs. Kernel/private-ACL obligations remain unchanged.",
+    "verification_before_mutation": "Distinct High assessment/plan review and Coordinator exact migration/test/helper/Spec scope after application evidence. A narrowly allocated rollback-only UUID two-role/function regression can compare the ordinary non-inheriting creator sequence before/after explicit SET ROLE, with existing role memberships untouched, exact source ACL statements, unchanged OID/owner/body/config, closed predicates and fresh absence. This is a specific source-sequence regression, not another catalog observer or eight-migration replay. No payload or runtime effect is authorized here.",
+    "required_after_implementation": "Actual-source regression controls and existing RLS010 coverage of the complete helper/entrypoint ACL set; TypeScript/affected lint/diff/kernel/SRO; independent targeted committed-delta High review; fresh normal exact-head five gates/all95/recovery. No fourth broad round or automatic CI activation."
+  },
+  "stop_rule": {
+    "owner": "Root with Coordinator and independent High reviewer",
+    "evidence": "Qualified three ACL refusal bits plus source/PG17 grantor proof; exact hosted grant identities unobserved.",
+    "next_action": "Decide whether the conditional source defect warrants the precisely bounded ordinary-grantor regression and repair scope. Do not edit or run anything on this assessment alone.",
+    "resume_condition": "Exact application/adoption clearance, source-comparable preconditions, independent targeted validation and explicit scope/effect allocation; CI approval remains separate."
+  },
+  "primary_sources": [
+    {
+      "url": "https://www.postgresql.org/docs/17/role-membership.html",
+      "support": "SET and automatic inherited privileges are separate."
+    },
+    {
+      "url": "https://www.postgresql.org/docs/17/sql-revoke.html",
+      "support": "Non-owner revocation is limited to grant options; zero grant options can warn without revocation; superuser acts as owner."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/postgres/postgres/REL_17_STABLE/src/backend/utils/adt/acl.c",
+      "support": "aclnewowner; select_best_grantor uses ROLERECURSE_PRIVS; SET capability is distinct."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/postgres/postgres/REL_17_STABLE/src/backend/catalog/aclchk.c",
+      "support": "restrict_and_check_grant restricts requested bits to available grant options; some privilege avoids hard failure."
+    }
+  ],
+  "checks": {
+    "pure_source_assertions": 4,
+    "passed": 4,
+    "sql_executions": 0,
+    "native_credit": 0,
+    "count_correction": "Initial command summary printed5; actual bounded script executed4 assert statements. Corrected metadata count only before handoff; source unchanged."
+  },
+  "effects": {
+    "source_spec_edits": 0,
+    "git_mutations": 0,
+    "native_queries": 0,
+    "resources": 0,
+    "ci": 0,
+    "log_acquisition": 0
+  },
+  "normal_acceptance": 0,
+  "broad_review_rounds": 3,
+  "source_bindings": [
+    {
+      "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+      "bytes": 24435,
+      "sha256": "b57e6a1726cfac545de1cd141e26f56e6bebb4a535d1cd7f706e4a1ad3e05555",
+      "head_blob": "c5d6d53faab649b40dee5c12f7933030224fa4ab",
+      "actual_clean_oid": "c5d6d53faab649b40dee5c12f7933030224fa4ab"
+    },
+    {
+      "path": "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",
+      "bytes": 13136,
+      "sha256": "d0f75428527392aca0d2be34685d83c8d1169479f9c29ad6f5349c5a24afb919",
+      "head_blob": "93b55ab54ec63a775894e92db9d83219add909dd",
+      "actual_clean_oid": "93b55ab54ec63a775894e92db9d83219add909dd"
+    }
+  ]
+}

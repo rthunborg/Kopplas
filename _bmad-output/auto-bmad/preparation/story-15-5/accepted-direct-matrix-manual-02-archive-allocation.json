@@ -1,0 +1,55 @@
+{
+  "schema": "root-accepted-manual02-binding-allocation-v1",
+  "status": "GRANTED_BINDING_REFRESH_SAME_UNCONSUMED_GET",
+  "coordinator_thread": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "actual_turn": "01a15f29-63ed-7fc0-9eff-4a220b790f4b",
+  "completed_grant_tool": "exec-6f1057de-598a-4757-b56f-7ca6cb881ccc",
+  "root_independently_read_completed_tool": true,
+  "original_human_approval": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-direct-matrix-human-approval-20261021.json",
+    "bytes": 1174,
+    "sha256": "47bff4eddcb9357fa244aa44fe993c526a3250021e2ee2876c743a8b646ce185"
+  },
+  "previous_archive_allocation": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-direct-matrix-manual-archive-allocation.json",
+    "bytes": 2048,
+    "sha256": "c87965edba3449a326a0df48fecba556caa7029ddbd057379610e94d94514e34"
+  },
+  "operation": "original-function-matrix-manual-02",
+  "actual_run_id": 39627344465,
+  "attempt": 1,
+  "head": "c97f9ac509e642cb7337b8fcd2deaad90540db1c",
+  "source": "187a4c6f0d941cf2d46a62df8a51fc0ed6fd20cf",
+  "checkpoint": "18562d27-e3e4-4e2f-be69-e2a775b8af93",
+  "cause_proof": true,
+  "release_validation": false,
+  "inputs": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/original-function-matrix-manual-02/extract.py",
+      "bytes": 22194,
+      "sha256": "9596f077a9b112fee38fadc17d04bd7190fc8bfcd335b5515b7d24b75af9b7df"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/original-function-matrix-manual-02/test_extract.py",
+      "bytes": 21518,
+      "sha256": "4c72e6bb2f9ce2465eb6cad8cb042779fe5aaf31a00a97abf34e588767672a0b"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/original-function-matrix-manual-02/proposal.json",
+      "bytes": 23834,
+      "sha256": "82e5620b152710105d01dbd8f2fa279f3efc89306c7f1ff802f91331ee69d1ae"
+    }
+  ],
+  "root_review_admission": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/root-original-function-matrix-manual-02-review-admission.json",
+    "bytes": 1406,
+    "sha256": "1986a2ca1e083983d80a42549cf8961a1cb4ca1bcd4f21760d9a6b1bf28e8a40"
+  },
+  "archive_gets_authorized": 1,
+  "archive_gets_consumed": 0,
+  "only_route": "repos/rthunborg/Kopplas/actions/runs/39627344465/logs",
+  "original01_retired_zero_get_proven": true,
+  "limits": "Original reviewed bounds, startup-only member selection after failed startup, RAM-only archive, no raw output/persistence, exclusive marker before sole fixed GET, uncertainty consumes, no retry or alternate endpoint.",
+  "prohibited": "No producer dispatch, local resources, provider changes, main merge or deployment.",
+  "normal_acceptance_credit": 0
+}
