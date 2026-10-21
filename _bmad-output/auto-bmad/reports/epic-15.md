@@ -5815,3 +5815,35 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Distinctoffline stopaudit + Highlocaloutputbudgetassessment withsynthetics only; no relaunch/newGET/appsourcefix
+
+## Report — 2026-10-21T20:33:47Z (progress — local diagnostic budget defect reproduced)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `16dd0cf`).
+**Pipeline status:** in-progress —15.5 gates unmet; bounded privatecollector repair
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 295h 35m (≈77h 24m AI-run, ≈218h 11m human/idle wait); resumed 174×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:**
+1. Closed diagnostic candidates unavailable(NULL), applicationcauses and keycustodyUNKNOWN. Localfixedassemblerwithsynthetics exceeds32KiB evencompact; compact+finitebounds proposal mustbeimplemented/proven beforefutureeffects. Prioroperationconsumed/no retry.
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** NativeprivateR1actualassembler+preGETenvelopeproof; distinctHigh actualsourceaudit; FRESHcompletedCoordinatorallocation+Rootcapability beforeanyfutureGET. No normalCI/productfix.
