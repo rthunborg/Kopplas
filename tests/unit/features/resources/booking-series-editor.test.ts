@@ -8,6 +8,8 @@ import ts from "typescript";
 import * as inputs from "@/features/resources/booking-editor-input";
 import * as transport from "@/features/resources/booking-transport";
 import * as state from "@/features/resources/booking-series-state";
+import * as jobScheduling from "@/features/jobs/job-scheduling-consumers";
+import * as timeZone from "@/features/scheduling/time-zone";
 
 type Node = {type:unknown;props:Record<string,unknown>};
 function nodes(value:unknown):Node[]{if(Array.isArray(value))return value.flatMap(nodes);if(!value||typeof value!=="object"||!("props" in value))return [];const n=value as Node;return[n,...nodes(n.props.children)];}
@@ -21,7 +23,7 @@ function harness(patch:Record<string,unknown>={}){
   const series={readBookingSeriesAction:async()=>{reads++;return metadataFails?{status:"error",message:"Metadata unavailable"}:{status:"success",series:structuredClone(current)};},
     previewBookingSeriesAction:async(input:Record<string,unknown>)=>{previews.push(input);if(input.expectedVersion!==current.version||input.sourceSeriesId!==current.id)return{status:"error",code:staleCode,message:"stale"};return{status:"success",preview:{receipt:"unit-port-receipt",total:3,occurrences:[],warnings:[{logicalId:"warning",rule:"outside_work_hours",personId:"person",bookingIds:[],startsAt:base.startsAt,endsAt:base.endsAt}]}};},
     saveBookingSeriesAction:async(input:Record<string,unknown>)=>{saves.push(input);return{status:"error",code:"PREVIEW_STALE",message:"stale"};}};
-  const modules:Record<string,unknown>={react:hooks,"@/components/crm/Dialog":{Dialog:"Dialog"},"@/features/resources/booking-actions":{},"@/features/resources/booking-editor-input":inputs,"@/features/resources/booking-transport":transport,"@/features/resources/booking-series-actions":series,"@/features/resources/booking-series-state":state,"./BookingRecurrenceFields":{BookingRecurrenceFields:"Fields"},"./RecurrencePreview":{RecurrencePreview:"Preview"}};
+  const modules:Record<string,unknown>={"@/features/jobs/job-scheduling-consumers":jobScheduling,"@/features/scheduling/time-zone":timeZone,react:hooks,"@/components/crm/Dialog":{Dialog:"Dialog"},"@/features/resources/booking-actions":{},"@/features/resources/booking-editor-input":inputs,"@/features/resources/booking-transport":transport,"@/features/resources/booking-series-actions":series,"@/features/resources/booking-series-state":state,"./BookingRecurrenceFields":{BookingRecurrenceFields:"Fields"},"./RecurrencePreview":{RecurrencePreview:"Preview"}};
   const window={setTimeout:(fn:()=>Promise<void>)=>{timers.set(++timerId,fn);return timerId;},clearTimeout:(id:number)=>timers.delete(id),addEventListener:()=>{},removeEventListener:()=>{}};
   function load(path:string){const m={exports:{}};const output=ts.transpileModule(readFileSync(path,"utf8"),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022,jsx:ts.JsxEmit.ReactJSX}}).outputText;runInNewContext(output,{module:m,exports:m.exports,require:(name:string)=>modules[name]??require(name),window,history:{state:{},pushState:()=>{},back:()=>{}},document:{activeElement:null},crypto,Intl,Buffer});return m.exports as Record<string,unknown>;}
   modules["./BookingConflictPanel"]={...load("src/components/resources/BookingConflictPanel.tsx"),BookingConflictPanel:"Panel"};

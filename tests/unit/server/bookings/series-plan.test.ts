@@ -3,9 +3,10 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { planBookingSeries, previewBookingSeries, serializeBookingSeriesPlan, type SeriesSnapshot } from "@/server/bookings/series-conflicts";
 import { createHash } from "node:crypto";
-import { SERIES_CLAIM_FIELDS } from "@/server/bookings/series-attestation";
+import type { SeriesClaims } from "@/server/bookings/series-attestation";
+import { BOOKING_CONFLICT_ENGINE_VERSION } from "@/server/bookings/conflict-attestation";
 import { validateBookingSeries, seriesCommandPayload } from "@/server/commands/bookings/series-validation";
-import { DEFAULT_SCHEDULING_RULES } from "@/features/scheduling/types";
+import { DEFAULT_SCHEDULING_RULES, SCHEDULING_RULES_VERSION } from "@/features/scheduling/types";
 import type { BookingSeriesInput } from "@/server/commands/bookings/series-validation";
 import { readFileSync } from "node:fs";
 import { createRequire } from "node:module";
@@ -82,6 +83,19 @@ test("Round1 semantic inherited coordinates compare weekday sets and ignore prop
   const plan=planBookingSeries(current,input({rule:reordered}));assert.deepEqual(plan.rows.map(row=>row.id),["row13","row14"]);
 });
 
+/** Synthetic snapshot port, not PostgreSQL jsonb canonicalization or SQL proof.
+ * Bind every finite claim to this call/facts; real production signs/verifies receipts. */
+function fixtureClaims(args:Record<string,unknown>, canonicalFacts:string):SeriesClaims {
+  const input=args.p_input as ReturnType<typeof seriesCommandPayload>,now=Date.now();
+  return {tenantId:args.p_tenant_id as string,actorId:args.p_actor_id as string,
+    operation:input.sourceSeriesId ? "update":"create",commandId:args.p_command_id as string,seriesId:input.seriesId,
+    candidateDigest:createHash("sha256").update(JSON.stringify(input)).digest("hex"),
+    factDigest:createHash("sha256").update(canonicalFacts).digest("hex"),
+    engineVersion:BOOKING_CONFLICT_ENGINE_VERSION,configVersion:SCHEDULING_RULES_VERSION,
+    correlationId:args.p_correlation_id as string,keyId:"review-synthetic",
+    issuedAt:new Date(now).toISOString(),expiresAt:new Date(now+120000).toISOString()};
+}
+
 /** Actual parser/planner/detector/preview; only snapshot RPC is a synthetic port. */
 function admissionCase(peopleCount: number, bookingCount: number) {
   const id=(n:number)=>`00000000-0000-4000-8000-${String(n).padStart(12,"0")}`;
@@ -94,13 +108,13 @@ function admissionCase(peopleCount: number, bookingCount: number) {
   const facts={series:[],occurrences:[],detection:{profiles,memberships:profiles.map(p=>({id:p.membershipId,status:"active"})),hours:[],calendarDays:[],workRoles:[],
     jobInputs:peopleCount>1?[{jobId:id(30000),requiredWorkRoleIds:[],accessWindows:[]}]:[],rules:DEFAULT_SCHEDULING_RULES,bookings}};
   const canonicalFacts=JSON.stringify(facts);
-  const claims={...Object.fromEntries(SERIES_CLAIM_FIELDS.map(field=>[field,"synthetic"])),factDigest:createHash("sha256").update(canonicalFacts).digest("hex"),engineVersion:"booking-conflicts-v3",configVersion:"stockholm-capacity-v1"};
-  const snapshot={kind:"snapshot",claims,canonicalFacts,facts} as unknown as SeriesSnapshot;
   const raw={commandId:id(20000),seriesId:id(20001),sourceSeriesId:null,expectedVersion:null,pivotOccurrenceId:null,rule:{...rule,count:1},
     template:{...payload,assigneeIds:people,jobId:peopleCount>1?id(30000):null}};
   const checked=validateBookingSeries(raw);assert.equal(checked.ok,true,"public input validator admits this candidate");
   if(!checked.ok)throw new Error("Invalid admission fixture");
   const args={p_tenant_id:id(40000),p_actor_id:id(40001),p_command_id:raw.commandId,p_correlation_id:id(40002),p_input:seriesCommandPayload(checked.data)};
+  const claims=fixtureClaims(args,canonicalFacts);
+  const snapshot={kind:"snapshot",claims,canonicalFacts,facts} as unknown as SeriesSnapshot;
   const calls:string[]=[];
   const client={rpc:async(name:string)=>{calls.push(name);return {data:snapshot,error:null};}};
   return {input:checked.data,args,client,calls};
@@ -168,8 +182,7 @@ function publicSeriesCase(dst = false) {
     maybeSingle:async()=>{queries.push({table,filters});return{data:table==="work_roles"&&filters.tenant_id===tenant&&roles.has(filters.id!)?{id:filters.id,is_active:roles.get(filters.id!)}:null,error:null};}};return query;},
     rpc:async(name:string,args:Record<string,unknown>)=>{calls.push(name);
       if(name==="snapshot_booking_series"){
-        const canonicalFacts=JSON.stringify(facts),claims={...Object.fromEntries(SERIES_CLAIM_FIELDS.map(field=>[field,"synthetic"])),
-          factDigest:createHash("sha256").update(canonicalFacts).digest("hex"),engineVersion:"booking-conflicts-v3",configVersion:"stockholm-capacity-v1",expiresAt:"2099-01-01T00:00:00Z"};
+        const canonicalFacts=JSON.stringify(facts),claims=fixtureClaims(args,canonicalFacts);
         return{data:{kind:"snapshot",claims,canonicalFacts},error:null};
       }
       assert.equal(name,"finalize_booking_series");plans.push(JSON.parse(args.p_plan as string));
@@ -291,4 +304,19 @@ test("Round2 small valid preview still returns its complete admitted occurrence"
   const fixture=admissionCase(1,0),preview=await previewBookingSeries(fixture.client,fixture.args,fixture.input);
   assert.equal(preview.total,1);assert.equal(preview.occurrences.length,1);assert.ok(preview.receipt.length>0);
   assert.deepEqual(fixture.calls,["snapshot_booking_series"]);
+}));
+
+
+test("Current synthetic snapshot fixtures bind call facts and fresh claims while obsolete versions and changed facts fail real admission",async()=>syntheticKey(async()=>{
+  const fixture=admissionCase(1,0),snapshot=(await fixture.client.rpc("snapshot_booking_series")).data;
+  assert.equal(snapshot.claims.tenantId,fixture.args.p_tenant_id);assert.equal(snapshot.claims.actorId,fixture.args.p_actor_id);
+  assert.equal(snapshot.claims.commandId,fixture.args.p_command_id);assert.equal(snapshot.claims.correlationId,fixture.args.p_correlation_id);
+  assert.equal(snapshot.claims.seriesId,fixture.input.seriesId);assert.equal(snapshot.claims.operation,"create");
+  assert.equal(snapshot.claims.candidateDigest,createHash("sha256").update(JSON.stringify(fixture.args.p_input)).digest("hex"));
+  assert.equal(snapshot.claims.engineVersion,BOOKING_CONFLICT_ENGINE_VERSION);assert.equal(snapshot.claims.configVersion,SCHEDULING_RULES_VERSION);
+  assert.equal(Date.parse(snapshot.claims.expiresAt)-Date.parse(snapshot.claims.issuedAt),120000);assert.ok(Date.parse(snapshot.claims.expiresAt)>Date.now());
+  for(const patch of [{engineVersion:"booking-conflicts-v3"},{configVersion:"stockholm-capacity-v1"},{factDigest:"0".repeat(64)}]){
+    let calls=0;const client={rpc:async(name:string)=>{calls++;assert.equal(name,"snapshot_booking_series");return {data:{...snapshot,claims:{...snapshot.claims,...patch}},error:null};}};
+    await assert.rejects(()=>previewBookingSeries(client,fixture.args,fixture.input),{code:"SERVER_ERROR"});assert.equal(calls,1);
+  }
 }));

@@ -48,14 +48,15 @@ test("[P0] 16.5-D01 real matrix and manifest yield five manager tabs and current
   assert.equal(resolveCapability({ roles: ["saljare"], module: "files", capability: "Files.View" }).granted, false);
 });
 
-test("[P0] 16.5-D02 Schema consumes active E14 resources independently of pending scheduling; inactive owners remove their consumers", async () => {
+test("[P0] 16.5-D02 Schema consumes active E14 resources with integrated scheduling and independently of pending consumers; inactive owners remove their consumers", async () => {
   const path = "@/features/jobs/job-workspace-domain";
   const domain = await import(path) as Domain;
   assert.equal(SCOPE_MANIFEST.modules.find(module => module.id === "resources")?.status, "active");
-  assert.equal(SCOPE_MANIFEST.modules.find(module => module.id === "scheduling")?.status, "pending");
+  assert.equal(SCOPE_MANIFEST.modules.find(module => module.id === "scheduling")?.status, "active");
   const can = (module: string, capability: string) => resolveCapability({ roles: ["projektledare"], module, capability }).granted;
   for (const [inactive, expected] of [
     [[], ["overview", "work-orders", "schedule", "files", "events"]],
+    [["scheduling"], ["overview", "work-orders", "schedule", "files", "events"]],
     [["resources"], ["overview", "work-orders", "files", "events"]],
     [["files"], ["overview", "work-orders", "schedule", "events"]],
     [["jobs"], []],
