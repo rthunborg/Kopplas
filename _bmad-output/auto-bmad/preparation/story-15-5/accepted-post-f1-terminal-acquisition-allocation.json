@@ -1,0 +1,16 @@
+{
+  "kind": "ROOT_INDEPENDENTLY_OBSERVED_COMPLETED_COORDINATOR_TERMINAL_ALLOCATION",
+  "coordinator_thread": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "turn_id": "01a1600f-bd04-70d3-9e64-d1d7192d2a79",
+  "completed_tool_id": "exec-441c31f4-a379-48a2-a4fa-78e6040d743b",
+  "completed_status": "completed",
+  "observed_turn_status": "completed",
+  "run_id": 39664130401,
+  "attempt": 1,
+  "pushed_head": "ce1943e01b773671e0c2e583ea6b21e56d40e81b",
+  "source_head": "b1b476dee7c936eb4797ce3221bc07b8196a1a4a",
+  "maximum_logical_GETs": 5,
+  "no_retry": true,
+  "allocation_text": "EXPLICITboundedTERMINALevidence allocation GRANTED forACTUALNORMAL39664130401/attempt1/UUID9565c54d-1bbe-4a32-b647-949c02e6c404/pushedce1943e01b773671e0c2e583ea6b21e56d40e81b/sourceb1b476dee7c936eb4797ce3221bc07b8196a1a4a. Rootterminal15819SHAb8c92f76022db4149bcefcc38add55526de0f01cb2936e113a1f6af8329f1f5e+actual9jobtuplesadmissionverifyrecoveryS/DBE2EF/4optionalSKIP acknowledged. UseONLYindependentlyHighauditedexistingoperator31222SHA c71d5f16e5375d8fed1cc2f51a80464721d0b14d0e649e4a918caa035f0d5a8c/Rootauditadmission8cc31b5ae243be2a42dc73b8ca8299f8c3802fe211d4147d3970d4017c70d18f/current73bindings. RootfreshEXCLUSIVEfsyncedcapability/consumedintentbeforeeffect, HighoperatorMAX5logicalGETsONLY: ONEexactrunwholelogsarchive;ONEartifactslistper_page100page1;ATMOSTONEeligibleIDZIP EACH native-full-integration/full-integration.json,native-general-browser/general-browser.json,native-isolated-storage-recovery/isolated-storage-recovery.json. Exactactualrun/head/attempt/source/UUID/NORMALmode/nameIDnonexpiry/digest binding BEFOREdownload. PriorreviewedcapsRETAINED: logs15s32MiBcompressed128MiBdeclared+selectedinflate;list4MiBno pagination;eachZIP15s32MiBcompressed128MiBinflate16MiBJSON. CapsDURINGstream/RAMONLYraw;validatearchivepath/symlink/duplicate/CRC/ratio/selectedmembers/schema/EOF/nativeexit/readersjoined/settlement, no rawpersist/output/untrustedpayload. Closedcounts/stages/allowlistedfacts+digests/provenanceonly; partialmissingbailedskip0coverage/UNKNOWNtruthful/custodynotfalsecleanupPASS. NOperjob/status/runmetadata/pagination/alternate/retry/fallback/refetch; uncertaintyconsumes. Preservehistoricalpacket/operationinputs; currentcounts/causesremainUNKNOWNuntilactualqualifiedevidence. DISTINCTHighOFFLINEprovenanceaudit REQUIREDafterpacketbeforeacceptance/fixcauseclaims. No sourceedit/push/CIredispatch/repo variables/provider/localstack/resource/foreignwrites/E16mainadoption/merge/deploy. Existinghumanstandingread/evidenceauthorityapplies; no newgenericapprovalneededinsideexact5. CapabilityactivationRootONLYimmediatelybeforeexecutionafterfreshbindings.",
+  "normal_acceptance_credit": 0
+}

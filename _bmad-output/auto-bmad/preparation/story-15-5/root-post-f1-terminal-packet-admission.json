@@ -1,0 +1,26 @@
+{
+  "kind": "ROOT_MECHANICAL_TERMINAL_PACKET_ADMISSION_NOT_PROVENANCE_VERDICT",
+  "run_id": 39664130401,
+  "attempt": 1,
+  "pushed_head": "ce1943e01b773671e0c2e583ea6b21e56d40e81b",
+  "manifest": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-ce1943e0-ci-independent/manifest.json",
+    "bytes": 5474,
+    "sha256": "e77658bd7621b51e73e1e83314af86aaa9497ec49d37618832eb6ab2d1ed0bf0"
+  },
+  "qualification": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-ce1943e0-ci-independent/native-qualification.json",
+    "bytes": 42219,
+    "sha256": "8c1a52067b2a6cd7031727a9f46039343c4e1b4d5dcc7df370cb3618640c674b"
+  },
+  "qualification_markdown": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-ce1943e0-ci-independent/native-qualification.md",
+    "bytes": 2108,
+    "sha256": "4f40ed91857c3473cc5e62753ee2787c6fb95ad3a1092d97949ea29a110f3984"
+  },
+  "verified_members": 21,
+  "packet_files_including_self": 22,
+  "normal_acceptance_credit": 0,
+  "independent_audit": "IN_PROGRESS",
+  "root_semantic_review": false
+}

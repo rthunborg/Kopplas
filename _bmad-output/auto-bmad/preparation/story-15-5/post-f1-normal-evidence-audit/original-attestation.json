@@ -1,0 +1,493 @@
+{
+  "schema": "POST_F1_NORMAL_FAILED_RUN_OFFLINE_AUDIT_v1",
+  "reviewed_at_utc": "2026-10-21T20:10:52.386295+00:00",
+  "verdict": "PASS_QUALIFIED_FAILED_RUN",
+  "findings": [],
+  "reviewer": {
+    "agent_path": "/root/review15_5_private_diagnostic_high",
+    "route": "gpt-6.1-sol High",
+    "independence": "Distinct from /root/native15_5_high acquisition operator and BuildHigh/implementation source authors. Prior original packet and F1 source-review roles disclosed."
+  },
+  "scope": "Finite actual packet provenance/truth/count/custody audit only. No fourth broad story review/counter change or new failure fix assessment.",
+  "policy": {
+    "path": "docs/process/development-completion-policy.md",
+    "bytes": 8460,
+    "sha256": "d3617c2bcfb64e0b185c82e8a39f84af40bfc5b0ddda739552d2e099c38d4893"
+  },
+  "target": {
+    "attempt": 1,
+    "cause_proof": false,
+    "checkpoint": "9565c54d-1bbe-4a32-b647-949c02e6c404",
+    "head": "ce1943e01b773671e0c2e583ea6b21e56d40e81b",
+    "mode": "normal",
+    "release_validation": false,
+    "run": 39664130401,
+    "source": "b1b476dee7c936eb4797ce3221bc07b8196a1a4a"
+  },
+  "packet": {
+    "directory": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-ce1943e0-ci-independent",
+    "manifest": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-ce1943e0-ci-independent/manifest.json",
+      "bytes": 5474,
+      "sha256": "e77658bd7621b51e73e1e83314af86aaa9497ec49d37618832eb6ab2d1ed0bf0"
+    },
+    "qualification": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-ce1943e0-ci-independent/native-qualification.json",
+      "bytes": 42219,
+      "sha256": "8c1a52067b2a6cd7031727a9f46039343c4e1b4d5dcc7df370cb3618640c674b"
+    },
+    "qualification_markdown": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-ce1943e0-ci-independent/native-qualification.md",
+      "bytes": 2108,
+      "sha256": "4f40ed91857c3473cc5e62753ee2787c6fb95ad3a1092d97949ea29a110f3984"
+    },
+    "exact_members": 22,
+    "nonself_member_hashes_verified": 21,
+    "manifest_self_excluded": true
+  },
+  "root_mechanical_admission": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/root-post-f1-terminal-packet-admission.json",
+    "bytes": 1117,
+    "sha256": "7b8f8d996be1dfb355e750bac630075477608776cad042416548f39e445bde13"
+  },
+  "authority_input_refs_verified": [
+    {
+      "bytes": 4731,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-normal-terminal-evidence-activation.json",
+      "sha256": "afc3ba388f3aa0e8e297937595eeebae06f2b320716c0258fbcf5337adce058a"
+    },
+    {
+      "bytes": 788,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-normal-run-binding.json",
+      "sha256": "61c6957cac715797e2a850729adf353f727b6ce53b86ea078ee6e88aa0f18dfb"
+    },
+    {
+      "bytes": 15819,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-normal-terminal.json",
+      "sha256": "b8c92f76022db4149bcefcc38add55526de0f01cb2936e113a1f6af8329f1f5e"
+    },
+    {
+      "bytes": 36163,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-checkpoint-readiness/source-bindings.json",
+      "sha256": "d401f988b77b2d4572057ac03eafc4c3ad1968ea80b4f177b462c2144b4199c8"
+    },
+    {
+      "bytes": 2702,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-post-f1-terminal-acquisition-allocation.json",
+      "sha256": "9319d590e183482f632b8f8a5f9fc85f02c56f09050d6796ee11aab91f85f683"
+    },
+    {
+      "bytes": 1352,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-terminal-evidence-preparation/source-binding-proof.json",
+      "sha256": "c377f06a4135980d3ecf878a68439ec509d1c32e287ca35d98d65d1843e40643"
+    },
+    {
+      "bytes": 13713,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/owner-acl-normal-evidence-audit/original-attestation.json",
+      "sha256": "ca77d3173dfff1ee08702a46a37e386a56f575bea73dea714eb0e564c24008cf"
+    },
+    {
+      "bytes": 1507,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/root-owner-acl-normal-evidence-audit-admission.json",
+      "sha256": "81b538512e8e6ad23337437d9eca730f1d357a25e9624aa77ba17cc8beac44eb"
+    },
+    {
+      "bytes": 1217,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-checkpoint-readiness/manifest.json",
+      "sha256": "a540ed7193c2f8dc3019f3e32cb2541b3c83249448c7b088b03b3c7b8a1d5048"
+    },
+    {
+      "bytes": 7230,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-checkpoint-readiness/enrollment.json",
+      "sha256": "e6b3b6c72132039a10bbedd933cef50b80bc16c72f6803464806ca4063fa9f06"
+    },
+    {
+      "bytes": 16971,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/f1-transport-custody-closure-review/original-attestation.json",
+      "sha256": "2c9cbb50ea9ab8b15bfadfcb73a2dd86d3f93b0d6e7550bce70506cf46ac12d8"
+    },
+    {
+      "bytes": 1423,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/root-f1-transport-custody-closure-admission.json",
+      "sha256": "b6b0aaca7dce9ae737b53329212882fff5733b346fb5bc46e897086eabaf16a5"
+    },
+    {
+      "bytes": 12900,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-terminal-operator-source-review/original-attestation.json",
+      "sha256": "4318fdc490d1031d4b54862ff98f5cf3dc3673f84d80e4c8a492875704512ddd"
+    },
+    {
+      "bytes": 1842,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-terminal-operator-source-review/manifest.json",
+      "sha256": "1fbb88ac7b8b6d58faf89322c396fa9f6247eac1de8fdd4d719def65abd07e23"
+    },
+    {
+      "bytes": 1302,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/root-post-f1-terminal-operator-source-audit-admission.json",
+      "sha256": "8cc31b5ae243be2a42dc73b8ca8299f8c3802fe211d4147d3970d4017c70d18f"
+    }
+  ],
+  "source_proof": {
+    "binding": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-checkpoint-readiness/source-bindings.json",
+      "bytes": 36163,
+      "sha256": "d401f988b77b2d4572057ac03eafc4c3ad1968ea80b4f177b462c2144b4199c8"
+    },
+    "raw_checked": 73,
+    "LF_clean_checked": 73,
+    "computed_Git_blob_SHA1_checked": 73,
+    "normalization_differences": 45,
+    "remote_source_pushed_equality": "Bound Root actual Git proof c377f06a4135980d3ecf878a68439ec509d1c32e287ca35d98d65d1843e40643; no new Git/remote observation. Source unchanged from independent F1 closure.",
+    "source_Git_commands_by_reviewer": 0
+  },
+  "operator_proof": {
+    "source": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-terminal-evidence-preparation/normal-evidence-operator.py",
+      "bytes": 31222,
+      "sha256": "c71d5f16e5375d8fed1cc2f51a80464721d0b14d0e649e4a918caa035f0d5a8c"
+    },
+    "original": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-terminal-evidence-preparation/original-operator.py",
+      "bytes": 26061,
+      "sha256": "71468c52fab40bea00219a00fe85b796f117d611612357a2917170f8d8862be6"
+    },
+    "original_independent_provenance": "Own prior audited reconstructed71468c52 source and original packet audit retained; no unrelated transcript access now.",
+    "unchanged_spans_independently_compared": [
+      {
+        "function": "get",
+        "bytes": 3155,
+        "sha256": "0d29e9702e2739af5529fad830015ff36c7d8c8321b0ce82b4cced3a3fca6dc1",
+        "identical": true
+      },
+      {
+        "function": "zip_open",
+        "bytes": 792,
+        "sha256": "5d014c4f532b77e1fdc980800a367d919a2ff57f6e3e338f83e6b32003e61644",
+        "identical": true
+      },
+      {
+        "function": "inflate",
+        "bytes": 498,
+        "sha256": "10f67f0efa134883e180e3017a24335e055eb99ca3301be823409c945f939b77",
+        "identical": true
+      },
+      {
+        "function": "failure_facts",
+        "bytes": 1994,
+        "sha256": "d18025ffb308a0dc4a20a0d6c70da6d5d3425ae61d0f51b8fb2a52079877c632",
+        "identical": true
+      },
+      {
+        "function": "case_id",
+        "bytes": 201,
+        "sha256": "121abc65d4d1172dcf81151c83b5b6f5a2715ff0710bd849098ab9c0f2edb5cb",
+        "identical": true
+      },
+      {
+        "function": "safe_file",
+        "bytes": 183,
+        "sha256": "6dba232f70275c54d5b0c8b6e625df5dec0d404d56a6ea358cc548e98bdd6541",
+        "identical": true
+      },
+      {
+        "function": "lifecycle",
+        "bytes": 3140,
+        "sha256": "8e1bd5e4ccd1b37300bb1c0d931d31dae91e67609b48da4842b77057d5ffd519",
+        "identical": true
+      }
+    ],
+    "preGET_independent_review": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-terminal-operator-source-review/original-attestation.json",
+      "bytes": 12900,
+      "sha256": "4318fdc490d1031d4b54862ff98f5cf3dc3673f84d80e4c8a492875704512ddd"
+    },
+    "current_inspection": "Read actual admission/intent ordering, fixed acquisition graph and updated partial-report projectors; AST parsed source without importing/executing. Unchanged source-safety review reused.",
+    "tool_completion": {
+      "chunk_id": "8163e5",
+      "native_exit": 0,
+      "wall_seconds": 6.834584,
+      "attribution": "Native operator retained context, relayed by Root, also recorded in qualification",
+      "original_raw_tool_output_independently_read": false,
+      "exact_tool_call_UUID": null,
+      "separate_completion_file": null,
+      "limit": "Corroboration attributed to operator, not independently observed raw tool execution. No new transcript/refetch authorized or performed."
+    }
+  },
+  "requests_checked": [
+    {
+      "sequence": 1,
+      "label": "normal-run-archive",
+      "argv": [
+        "gh",
+        "api",
+        "--method",
+        "GET",
+        "repos/rthunborg/Kopplas/actions/runs/39664130401/logs"
+      ],
+      "native_exit": 0,
+      "elapsed_seconds": 2.651,
+      "stdout_bytes": 789916,
+      "stdout_sha256": "aafd0949c3debcb9d1c559609741d72fc9617e2ebfc086e174f4ef03ba82d62d",
+      "stderr_bytes": 0,
+      "settled": true,
+      "physical_EOF_readers_joined_done": true,
+      "capture_complete": true,
+      "handles_closed": true
+    },
+    {
+      "sequence": 2,
+      "label": "normal-artifact-list",
+      "argv": [
+        "gh",
+        "api",
+        "--method",
+        "GET",
+        "repos/rthunborg/Kopplas/actions/runs/39664130401/artifacts?per_page=100"
+      ],
+      "native_exit": 0,
+      "elapsed_seconds": 0.466,
+      "stdout_bytes": 2194,
+      "stdout_sha256": "2e922731d4bb650314b90631a3355b8442d974e557de3a471cffcbdb1221b31b",
+      "stderr_bytes": 0,
+      "settled": true,
+      "physical_EOF_readers_joined_done": true,
+      "capture_complete": true,
+      "handles_closed": true
+    },
+    {
+      "sequence": 3,
+      "label": "native-full-integration",
+      "argv": [
+        "gh",
+        "api",
+        "--method",
+        "GET",
+        "repos/rthunborg/Kopplas/actions/artifacts/12376717919/zip"
+      ],
+      "native_exit": 0,
+      "elapsed_seconds": 1.439,
+      "stdout_bytes": 103147,
+      "stdout_sha256": "cf58b118510d1abd850b671e0e27adc6ef295ba2e7dde07fef78a5967609438a",
+      "stderr_bytes": 0,
+      "settled": true,
+      "physical_EOF_readers_joined_done": true,
+      "capture_complete": true,
+      "handles_closed": true
+    },
+    {
+      "sequence": 4,
+      "label": "native-isolated-storage-recovery",
+      "argv": [
+        "gh",
+        "api",
+        "--method",
+        "GET",
+        "repos/rthunborg/Kopplas/actions/artifacts/12376627016/zip"
+      ],
+      "native_exit": 0,
+      "elapsed_seconds": 1.02,
+      "stdout_bytes": 680,
+      "stdout_sha256": "ffabfab17625e578e18b33ae8d74ad0019805b7b098700c6eba68effd9a1bf21",
+      "stderr_bytes": 0,
+      "settled": true,
+      "physical_EOF_readers_joined_done": true,
+      "capture_complete": true,
+      "handles_closed": true
+    },
+    {
+      "sequence": 5,
+      "label": "native-general-browser",
+      "argv": [
+        "gh",
+        "api",
+        "--method",
+        "GET",
+        "repos/rthunborg/Kopplas/actions/artifacts/12375309772/zip"
+      ],
+      "native_exit": 0,
+      "elapsed_seconds": 0.939,
+      "stdout_bytes": 8316,
+      "stdout_sha256": "38adbf04a30432c4f1022f01d6dc169331c8d3260a324a022610a8859dc7cbba",
+      "stderr_bytes": 0,
+      "settled": true,
+      "physical_EOF_readers_joined_done": true,
+      "capture_complete": true,
+      "handles_closed": true
+    }
+  ],
+  "transport_limits": "Five paired intents/results agree with fixed allowed call graph; actual IDs/digests/sizes/selected member digests match listing and streams. Native0/EOF/join/settlement are structured receipt facts supported by audited operator, with raw completion-lineage limit disclosed. All5 consumed; no retry/remaining acquisition.",
+  "privacy_and_ZIP_limits": "Raw RAM only in audited source; finite selected logs and3expected report members, no optional attachments. Closed failure/count/enum/identity/digest projections. Path/duplicate/symlink/encryption/CRC/ratio/compressed/inflation/member caps precede selected interpretation. Actual artifact expiry values present/non-null; nullable parser branch retained.",
+  "independently_reconciled": {
+    "Node": {
+      "tests": 3222,
+      "passed": 3222,
+      "suites": 103,
+      "failed": 0,
+      "skipped": 0,
+      "cancelled": 0,
+      "todo": 0
+    },
+    "Python_separate_batches": [
+      2,
+      26,
+      10,
+      5
+    ],
+    "story_Node": {
+      "unique_enrolled": 30,
+      "tag_matches": 32,
+      "limit": "R1-06/07 matcher collisions; no additive or exact-title-once proof from tags alone."
+    },
+    "full_DB": {
+      "assertion_records": 1991,
+      "passed": 1929,
+      "failed": 1,
+      "pending": 9,
+      "skipped": 52,
+      "native_numPendingTests": 52,
+      "native_total_suite_containers": 521
+    },
+    "DB_files": {
+      "unique": 165,
+      "parallel_entries": 159,
+      "serial_entries": 6,
+      "serial_with_assertions": 2,
+      "serial_empty": 4,
+      "observed_nonempty_serial_nonoverlap_after_parallel_reports": true,
+      "empty_entry_execution_or_hook_absence": "NOT_PROVEN",
+      "physical_teardown_timestamps": "UNAVAILABLE"
+    },
+    "story_DB": {
+      "expected": 51,
+      "passed": 16,
+      "failed": 0,
+      "unexecuted": 35,
+      "passed_groups": [
+        "COMP-001..004",
+        "RLS001..012"
+      ],
+      "unexecuted_groups": [
+        "API001..020",
+        "INT001..015"
+      ],
+      "API019": "UNEXECUTED_REQUIRED_PRIVACY",
+      "INT015": "UNEXECUTED"
+    },
+    "nonstory_DB_failed": [
+      {
+        "failure": {
+          "fixed_category_counts": {},
+          "invalid_owned_tuple_headers": 0,
+          "owned_leaf_tuple_count": 0,
+          "owned_leaf_tuples": [],
+          "raw_failure_details": "NOT_PERSISTED",
+          "typed_assertion_pairs": [],
+          "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+        },
+        "file": "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+        "id": null,
+        "title_sha256": "f3e6aa7fd5bdd26f5e4df438b539854a10aead5e8bce81cc24cfe57a810cccaf"
+      }
+    ],
+    "browser": {
+      "total_distinct": 31,
+      "expected": 27,
+      "flaky": 1,
+      "unexpected": 3,
+      "skipped": 0,
+      "other_smoke_expected": 17,
+      "story_distinct": 14,
+      "story_expected": 10,
+      "story_flaky": 1,
+      "story_unexpected": 3,
+      "story_attempts": 18,
+      "story_attempt_passed": 11,
+      "story_attempt_failed": 7,
+      "unexpected_ids": [
+        "E2E-001",
+        "E2E-010-revoke",
+        "E2E-007"
+      ],
+      "flaky_id": "E2E-009",
+      "failure_causes": "UNKNOWN",
+      "attachment_metadata": {
+        "path_only": 7,
+        "inline": 0,
+        "body_qualification": null
+      }
+    },
+    "direct_recovery": {
+      "passed": 1,
+      "suite_containers": 2,
+      "separate_from95": true
+    },
+    "mandatory95_baseline": {
+      "Node": 30,
+      "DB": 51,
+      "browser": 14,
+      "partial_acceptance_aggregate": false
+    }
+  },
+  "custody": {
+    "DB": {
+      "keyDeleted": false,
+      "keyOutcome": "unverified",
+      "custody_retained": true,
+      "dbClosed": true,
+      "ready": true,
+      "childExitCodes": [
+        0,
+        1
+      ]
+    },
+    "browser": {
+      "keyDeleted": false,
+      "keyOutcome": "unverified",
+      "custody_retained": true,
+      "dbClosed": true,
+      "ready_field_used_as_gate": false,
+      "childExitCodes": [
+        1
+      ]
+    },
+    "both_setup_authority7_true_privacy4_fixed_match": true,
+    "backend_canonical_restore_rollback_key_absence": "UNKNOWN",
+    "diagnostic_only_launch_fields": "Not proof of no normal child execution.",
+    "no_cleanup_cause_inferred": true
+  },
+  "migration111": {
+    "binding": {
+      "path": "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",
+      "bytes": 32551,
+      "sha256": "73b347ce62d4e936055e6de7f1054e9d1003a7550a738aa433261f7631150567"
+    },
+    "continued_successfully_applied_basis": "Actual selected apply markers and successful source-bound startup/reset/setup gates; unchanged previous source reach reused. Not functional success or SQL-edit authority.",
+    "immutable": true
+  },
+  "executed_vs_reused": {
+    "reviewer_actual": "Only bounded offline hashing, JSON accounting/identity assertions, AST parsing/span equality and source inspection. No application/native/pure-operator test suite run or collector import/execution.",
+    "reused": "Prior independent original transport and current pre-GET source safety reviews, F1 source closure, unchanged enrollment/RLS010/recovery source assertions; explicitly not historical native results promoted to current outcomes.",
+    "nonadditivity": "No retries, source-local controls, Python, suite containers, separate recovery or old12-failure results added to95/current acceptance."
+  },
+  "remaining_unknowns": [
+    "Single nonstory nudge-producer failed assertion/backend cause",
+    "Three browser failure causes and flaky E2E009 cause",
+    "Seven attachment bodies/privacy contents",
+    "35 omitted API/INT cases, including API019 and INT015",
+    "Backend/canonical/key cleanup in both runtime lanes",
+    "Original raw completion tooloutput not independently inspected"
+  ],
+  "next_scope": "Parent may separately route evidence-led simpler-route/source assessment using these bound observations; audit does not select a concrete fix or authorize another acquisition/runtime.",
+  "normal_acceptance": 0,
+  "development_complete": false,
+  "release_ready": false,
+  "effects_by_reviewer": {
+    "network_API_GET": 0,
+    "SQL_runtime_resources_CI": 0,
+    "Git_commands": 0,
+    "source_Spec_TEA_state_oldartifact_changes": 0,
+    "operator_top_level_import_or_execution": 0,
+    "writes": "Only4newownedreviewmetadatafiles"
+  },
+  "activation_authorized": false
+}

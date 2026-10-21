@@ -5719,3 +5719,35 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Observe completed Coordinator exact5GET allocation; Root activation; NativeHigh bounded execution; distinct High provenance audit. Second failed approach requires evidence-led materially simpler route. No blind normal retry.
+
+## Report — 2026-10-21T20:11:22Z (progress — failed normal run independently qualified)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `f61b9be`).
+**Pipeline status:** in-progress —15.5 development gates unmet
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 295h 13m (≈77h 24m AI-run, ≈217h 48m human/idle wait); resumed 171×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:**
+1. StoryDB16passed/35unexecuted; browser10expected/1flaky/3unexpected. One fullDBfailure, causes and retainedkey backend custody UNKNOWN. Tool8163e5/native0 corroboration Native-attributed. No acceptance, no done flip.
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Read-only High assessment of materially simpler exact terminalcase diagnostic route, before source/runtime allocation. No repeated normalCI.
