@@ -1,0 +1,123 @@
+{
+  "schema": "C4_JOB_WIDE_CONTAINMENT_PROPOSAL_v1",
+  "status": "FINITE_CANDIDATE_FOR_DISTINCT_HIGH_CHALLENGE_NOT_IMPLEMENTED",
+  "policy_version": "2026-10-19",
+  "head": "a189b65712f7984024cec5ce39a8471609224a66",
+  "source": "d661023af8aa42890fa5f91cb1b2b2655288c6fa",
+  "normal_acceptance_credit": 0,
+  "scope": "Only the unresolved job-wide custody admission/cleanup boundary; not a fourth broad review.",
+  "actual_findings": [
+    "Current module latch prevents new same-module fixtures and canonical/row/Auth destructive cleanup after uncertainty; the fixture rethrows outside its scenario callback.",
+    "AST-only current caller proof:14 commands plus20 public-feed calls, all awaited, no outer catch before test callback. INT015 is separate UUID proof, not one of these34 calls. Other4 serial files do not import this helper; row-isolated RLS lacks serial controls.",
+    "Vitest4.1.9 isolates files and resets modules. Exact-target catalog preflight does not protect a later different target after latch reset.",
+    "Installed bail1 notifies the coordinator after a failed test; one-worker serial cancellation prevents the next isolated file import. It does not interrupt/settle active SQL or prove restoration.",
+    "Current wrapper run() rejects nonzero/signal; finally stops owned handles. Its key deletion guard excludes browser/diagnostic uncertainty but permits generic failed DB child cleanup after frontend settlement. Existing unit at1219 explicitly expects key deletion for failed DB child. This does not prove backend rollback/canonical settlement."
+  ],
+  "candidate_paths": [
+    {
+      "path": "vitest.config.ts",
+      "hunk": "integration-audit-ddl project only: bail:1; preserve isolate default, fileParallelism:false, groupOrder1, exact six include entries and parallel exclusions. No success-case deletion, retry or ignoreUnhandledErrors change."
+    },
+    {
+      "path": "tests/unit/scripts/verify/integration-test-partitions.test.ts",
+      "hunk": "Resolve/assert serial bail1 and isolated one-worker boundary; retain existing exact165-file partition/order controls. Add bounded installed runner controls for healthy/expected denial, uncaught and caught-inner custody fail, no later file import/hook/fixture; outer-whole-fixture catch is an explicit failing safety contract. Add narrow AST direct-await/no-outer-catch guard for current34 source calls, with inverse caught/void fixture variants. No app or DB execution in controls."
+    },
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "hunk": "Existing DB runtime failure boundary only: after committed key, unsuccessful/uncertain runtime (nonzero/signal/timeout/cancellation/readiness or child settlement failure) conservatively forbids key DELETE/readback, even if frontend process stop succeeds. Reuse existing failures/keyOutcome=unverified/custody. Exact owned child stop and bounded own db.end remain; neither is rollback proof. Successful DB child0 + owned settlement retains existing exact UUID+name cleanup. No new SQL/signal/global/env/file/receipt protocol."
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "hunk": "Replace DB failure-deletes-key expectation with retained custody/no DELETE or key readback; injected nonzero integration child, timeout, cancellation, readiness failure, stop failure controls. Successful child0/expected-negative assertion paths still exact cleanup and custody null. Preserve setup transaction rollback/collision/browser/diagnostic contracts and failure provenance."
+    },
+    {
+      "path": "tests/support/calendar-feed-ci-contract.ts",
+      "hunk": "Update only independently reviewed wrapper raw SHA pin after wrapper change; unchanged literal argv/workflow enrollment."
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "hunk": "Source author records C4 bounded runner/caller/wrapper contract, failure leaves unexecuted, custody limits and final evidence/review order. Kernel/counter3 and applied migrations111 remain unchanged."
+    }
+  ],
+  "helper_scope": "No helper/factory/product/schema mutation proposed by this candidate. Current partial helper restoration/retirement still needs pending cumulative independent review; synthetic probes do not certify it.",
+  "propagation_contract": {
+    "caught_inner": "Fixture final latch check produces failed test despite scenario catching its own error.",
+    "caught_whole_fixture": "Unsafe: test may pass, bail cannot see failure. Current34 calls do not do this; proposed source guard and targeted review preserve that finite contract.",
+    "ordinary_expected_negative": "An asserted expected denial/fault with verified settlement/restoration is a passed test, not custody uncertainty; bail does not fire.",
+    "timeout": "Failed test stops later serial admission; active promise/backend work remains UNKNOWN. Retain key and do not claim rollback from child closure."
+  },
+  "probe_results": {
+    "final_ordered_set": [
+      {
+        "file": "healthy-ordered-result.json",
+        "exit": 0,
+        "passed": 4,
+        "failed": 0,
+        "next_file_import": true,
+        "expected_denial_pass": true
+      },
+      {
+        "file": "uncertain-ordered-result.json",
+        "exit": 1,
+        "passed": 1,
+        "failed": 1,
+        "next_file_import": false
+      },
+      {
+        "file": "caught-inner-ordered-result.json",
+        "exit": 1,
+        "passed": 1,
+        "failed": 1,
+        "next_file_import": false
+      },
+      {
+        "file": "caught-outer-ordered-result.json",
+        "exit": 0,
+        "passed": 3,
+        "failed": 0,
+        "next_file_import": true,
+        "meaning": "deliberate outer-catch counterexample, not safety PASS"
+      }
+    ],
+    "parallel_afterAll_completed_before_first_serial_import": true,
+    "all_processes_bounded_seconds": 25,
+    "app_imports": 0,
+    "network_SQL_resources": 0,
+    "raw_console_persisted": false,
+    "initial_results_nonadditive": "Initial JSON-only healthy lacked observable sentinels. First observed four used synthetic parallel maxWorkers1: installed group0/single-worker special-case scheduled that bucket last. Preserve originals as limited evidence; corrected own synthetic parallelmax2 results above replace ordering claim, not history.",
+    "capability_limit": "Production existing group0/1 is not rewritten. Native final evidence must show actual parallel completion before serial; installed group0/maxWorkers1 fallback is a known ordering condition, not silently certified.",
+    "static_caller_probe": "caller-boundary-check.mjs/result.json;34 direct awaits, zero outer catches, no source module execution"
+  },
+  "effect_inventory": {
+    "now": "Read-only bound source/installed code, pure AST and isolated synthetic Vitest children; writes only this proposal directory. No app imports/setupFiles/globalSetup/.env/network/SQL/managed resources/source changes.",
+    "later_source_only": "Exact6 paths require shared ownership/Coordinator allocation, source author and targeted distinct High closure plus existing pending cumulative review. No effect authority from this proposal.",
+    "future_native": "One separately authorized reviewed exact-head normal CI. Existing fresh hosted stack/application111/fullDB/RLS/browser/recovery effects only; cancellation may leave shared catalog/rows/key under disposable job custody. No manual backend kill/repair; job disposal is not observed canonical restoration."
+  },
+  "coverage_and_reporting": {
+    "success_requirement": "All95 unique story cases=30Node+51Vitest+14essential browser, zero required skip; full DB/RLS with SUPABASE_TEST_REQUIRED=1 and direct recovery1 separate. Existing six serial files once after parallel; no enrollment deletion. Static totals are requirements, not execution proof.",
+    "failed_run": "bail may leave tests/files unexecuted or cancellation partial JSON; neither0pending nor artifact availability proves coverage. Preserve primary failure, partial reached counts/omissions, runtime exit1, wrapper custody UNKNOWN; workflow always upload/stop remains unchanged.",
+    "pilot": "Existing checked-in shell exits nonzero before pilot after wrapper failure; no extra pilot claim.",
+    "historical": "Run39637925040 failures/custody limits remain unresolved; current partial source native0."
+  },
+  "independent_challenge_questions": [
+    "Does installed cancellation reach coordinator before any next isolated serial-file import for actual project settings, while preserving healthy95/6-file enrollment and ordinary expected-negative cases?",
+    "Can any current shared-seam caller catch the entire fixture rejection or otherwise return success? Verify actual downstream final latch and all34 direct awaits; outer-catch sentinel proves why bail alone is insufficient.",
+    "Does proposed DB unsuccessful-runtime gate retain exact key custody without DELETE/readback after nonzero/timeout/cancellation even when handle.stop succeeds, while leaving successful cleanup and setup rollback unchanged?",
+    "Are current partial helper same-session settlement/restoration and conditional canonical fixture cleanup proven in the pending cumulative code review? This plan does not replace that review."
+  ],
+  "limits_and_resume": "No native SQL/backend/canonical restoration proof, no global proof against future caught caller changes, no current development completion. Distinct narrow High challenge -> exact6 source allocation/ownership -> implementation/controls/targeted closure+cumulative pending code review -> separately authorized normal exact-head gates. If caller cannot preserve rejection or actual installed queue boundary differs, STOP named C4 unresolved rather than invent shared custody protocol.",
+  "static_partition_inventory": {
+    "total_files": 165,
+    "parallel": 159,
+    "serial": [
+      "tests/integration/jobs/job-runs.int.test.ts",
+      "tests/integration/commands/conflict-resolver.int.test.ts",
+      "tests/integration/commands/time-reports.int.test.ts",
+      "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+      "tests/integration/commands/calendar-feed.int.test.ts",
+      "tests/integration/calendar-feed/public-feed.int.test.ts"
+    ],
+    "inventory_digest": "ebe17a40a2bb2c6a010c77e48210bf951f70e3083b4e1f84f2ab84f3f22ae7ff",
+    "credit": "static filesystem inventory and source literal partition only; not installed collection or native execution"
+  }
+}

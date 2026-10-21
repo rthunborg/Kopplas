@@ -1,0 +1,24 @@
+{
+  "schema": "SELF_EXCLUDED_SHA256_MANIFEST_v1",
+  "directory": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-custody-containment-review",
+  "members": [
+    {
+      "path": "original-report.md",
+      "bytes": 5857,
+      "sha256": "9095aedb0af40dd39fab0bea1cb18fdc50f284e2ad726881182863742d06db62"
+    },
+    {
+      "path": "original-attestation.json",
+      "bytes": 21734,
+      "sha256": "7064b8e00a0a59c2581f209b5a3a46dc6876dad2b9a2aba310e7bdc474466ab9"
+    },
+    {
+      "path": "result.json",
+      "bytes": 2052,
+      "sha256": "dcebb0207d68faaaadcb890a9abb69a236e2fb9c1f8939adba667a4863bbb9bb"
+    }
+  ],
+  "member_count": 3,
+  "self_excluded": "manifest.json",
+  "normal_acceptance_credit": 0
+}

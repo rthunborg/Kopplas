@@ -1,0 +1,21 @@
+{
+  "initial_healthy": "4P0F; JSON reporter suppressed console observations, so zero sentinel counts are NOT no-admission proof. Added only synthetic observer reporter before four decisive runs.",
+  "initial_configs": {
+    "caught-inner.config.mjs": {
+      "bytes": 756,
+      "sha256": "0dc1b386ed222d2ea93955277c6695bfc2c441d9bf53cab7f2face97c6543237"
+    },
+    "caught-outer.config.mjs": {
+      "bytes": 756,
+      "sha256": "a2ffe5b7d71e405f0f4b433302c4c01ac733a26fef284ef4780f6066c099fbf9"
+    },
+    "healthy.config.mjs": {
+      "bytes": 751,
+      "sha256": "393270627faab0d70c2b07b7c7db9490a9ad4db2f54e78edfeb056df01b13d08"
+    },
+    "uncertain.config.mjs": {
+      "bytes": 753,
+      "sha256": "6925dcfac435d0ef2d2dfc3fef898af895359564aba83d908b876c677a216ba4"
+    }
+  }
+}

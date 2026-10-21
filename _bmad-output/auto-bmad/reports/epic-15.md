@@ -5367,3 +5367,35 @@ No archive ran this resume.
 1. none for authorizednarrowread-onlycontainmentplanning/coordination.
 
 **Next:** High proposefiniteexistingexecution-boundarycapability preservingall95successcases/failed-unexecutedtruth. No runner/source/native effects allocated; cumulativecode review/nativeallocationwaitgapresolution.
+
+## Report — 2026-10-21T18:46:22Z (checkpoint — C4 job-wide plan refinement)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `a189b65`).
+**Pipeline status:** 15.5 P5 active; partial six-source checkpoint d661023a; development completion false.
+**Continues:** Bounded High refinement of C4-JOB-01 followed by independent targeted validation.
+
+**Summary:** 15.1–15.4 landed; 15.5 active; 15.6 unstarted.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 293h 48m (≈77h 24m AI-run, ≈216h 23m human/idle wait); resumed 160×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:**
+1. Proposed caller guard permits finally-return suppression. Enforce direct top-level awaits and fail closed for unsupported worker ordering.
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Exact source-only allocation after independent plan pass; cumulative code review and fresh native gates remain pending.
