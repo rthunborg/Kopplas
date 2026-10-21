@@ -320,3 +320,38 @@ test("F3 actual default plain-scalar syntax refusal precedes durable intent and 
   assert.throws(()=>assertDefaultDispatchWorkflow(document("x: y # comment")),/unavailable/);
   assertDefaultDispatchWorkflow("name: CI\non: # event: mapping\n  workflow_dispatch: # empty: declaration\n    inputs: # empty: mapping\njobs:\n  verify: {}\n");
 });
+
+
+const preselectedId="2c7241ac-d51e-4a6f-8f85-533739b3e472";
+test("preselected and legacy generated checkpoint identity are durable at POST and propagate through payload title and ownership",()=>{
+  for(const supplied of [true,false])for(const mode of ["normal","diagnostic","release"]){withFixture(f=>{
+    const options={...request,state:f.state,...(supplied?{checkpoint_id:preselectedId}:{}),...(mode==="diagnostic"?{cause_proof:"true"}:mode==="release"?{release_validation:"true"}:{})};
+    const api=f.dependencies.api;let atPost:string|undefined;
+    f.dependencies.api=(method,endpoint,body)=>{if(method==="POST"){
+      const durable=f.record();atPost=durable.checkpoint_id;assert.equal(durable.phase,"dispatch-uncertain");assert.match(atPost!,/^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/);
+      if(supplied)assert.equal(atPost,preselectedId);else assert.notEqual(atPost,preselectedId);
+      assert.deepEqual(body,{ref:request.ref,inputs:{expected_sha:sha,checkpoint_id:atPost,release_validation:String(mode==="release"),...(mode==="diagnostic"?{calendar_feed_cause_proof:"true"}:{})}});
+    }return api(method,endpoint,body);};
+    const result=checkpoint("dispatch",options,f.dependencies);assert.equal(result.checkpoint_id,atPost);assert.equal(f.record().checkpoint_id,atPost);
+    const run=f.run();assert.equal(run.display_title,checkpointTitle(atPost!,sha,f.record().verification_mode));f.setRuns([run]);assert.equal(f.status().phase,"queued");assert.equal(f.record().checkpoint_id,atPost);
+    const before=f.calls.length;assert.throws(()=>checkpoint("dispatch",options,f.dependencies),/already exists/);assert.equal(f.calls.length,before);assert.equal(mutations(f).length,1);
+  });}
+});
+test("invalid programmatic checkpoint IDs and status or cancel selection refuse before every API",()=>{
+  const bad:unknown[]=[undefined,null,17,true,{},[],"",preselectedId.toUpperCase(),preselectedId.replace("-4a6f-","-1a6f-"),preselectedId.replace("-8f85-","-7f85-"),preselectedId+" "," "+preselectedId,"not-a-uuid"];
+  for(const command of ["dispatch","status","cancel"]){for(const value of [...bad,...(command==="dispatch"?[]:[preselectedId])])withFixture(f=>{
+    assert.throws(()=>checkpoint(command,{...request,state:f.state,checkpoint_id:value},f.dependencies),/checkpoint-id/);assert.equal(f.calls.length,0);assert.equal(existsSync(f.state),false);assert.equal(existsSync(f.state+".lock"),false);
+  });}
+});
+test("checkpoint-id CLI accepts only one dispatch UUIDv4 and rejects missing duplicate malformed or non-dispatch options",()=>{
+  assert.deepEqual(parseArgs(["dispatch","--state","private.json","--checkpoint-id",preselectedId]),{command:"dispatch",options:{state:"private.json",checkpoint_id:preselectedId}});
+  for(const args of [["dispatch","--checkpoint-id"],["dispatch","--checkpoint-id",""],["dispatch","--checkpoint-id","--state","x"],["dispatch","--checkpoint-id",preselectedId,"--checkpoint-id",preselectedId],["status","--state","x","--checkpoint-id",preselectedId],["cancel","--state","x","--checkpoint-id",preselectedId],...[preselectedId.toUpperCase(),preselectedId.replace("-4a6f-","-5a6f-"),preselectedId.replace("-8f85-","-cf85-"),"bad"].map(id=>["dispatch","--checkpoint-id",id])])assert.throws(()=>parseArgs(args));
+});
+test("preselected nonce is correlation only and uncertain dispatch retains its original identity with zero redispatch",()=>withFixture(f=>{
+  f.failDispatch();const options={...request,state:f.state,cause_proof:"true",checkpoint_id:preselectedId};assert.throws(()=>checkpoint("dispatch",options,f.dependencies),/uncertain/);
+  const durable=f.record();assert.equal(durable.checkpoint_id,preselectedId);assert.equal(durable.phase,"dispatch-uncertain");assert.equal(mutations(f).length,1);
+  assert.equal(f.status().phase,"dispatch-uncertain");assert.equal(f.record().checkpoint_id,preselectedId);const before=f.calls.length;
+  assert.throws(()=>checkpoint("dispatch",options,f.dependencies),/already exists/);assert.equal(f.calls.length,before);assert.equal(mutations(f).length,1);
+  for(const command of ["status","cancel"]){const count=f.calls.length;assert.throws(()=>checkpoint(command,{state:f.state,checkpoint_id:preselectedId},f.dependencies),/dispatch-only/);assert.equal(f.calls.length,count);}
+  f.setRuns([f.run({display_title:checkpointTitle("6d5651ea-6abf-432e-a1a2-a4c76c641f69",sha,"calendar-feed-cause-proof")})]);assert.equal(f.status().phase,"dispatch-uncertain");assert.equal(mutations(f).length,1);
+}));

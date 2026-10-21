@@ -1222,6 +1222,49 @@ three review is pending within the completed three-round cap. All43 DB causes,
 14 browser failures,11 failed native packets, unborn private qualifier and later
 Root availability/admission/execution gates remain unresolved or pending.
 
+## Dispatch-only preselected checkpoint correlation — 2026-10-21
+
+Root's exact-three prerequisite allocation
+`accepted-native-preselected-checkpoint-id-allocation.json` (2858B,
+SHA256 `73c47ee40695bf48d9997d77dea8e8a1f1b5119f02abc56ef529278364e85398`)
+admits an optional dispatcher identity input and its actual caller controls.
+The recorded Sol6.1 High route is
+fix-diagnostic-dispatch-preselected-checkpoint-id-interface. The source baseline
+is checkpoint2524306ca9edd6079c23d205cf01268797288d89 with af5 producer bytes.
+That checkpoint was pushed without a new native attempt: still11 failed native
+histories, not12. All original reviews/capsules remain immutable.
+
+The optional dispatch-only CLI --checkpoint-id and programmatic checkpoint_id
+must be canonical lowercase UUIDv4 using the existing ID grammar. Supplied
+values are read once and validated before every API; nonstrings, wrong version,
+variant/case, malformed values and status/cancel selection refuse. CLI missing
+and duplicate values also refuse. At the existing exclusive/fsynced pre-POST
+state construction a valid supplied ID is selected; omission retains the exact
+legacy randomUUID default. The same durable identity reaches the unchanged
+checkpoint_id input, diagnostic/normal title and ownership checks. No callback,
+transport hook, new payload field, workflow, schema, dependency, API or global
+nonce/replay store is introduced. This is correlation, NOT GitHub idempotency:
+a fresh Root UUID must never be reused after an uncertain invocation. Existing
+record refusal, uncertain intent retention and zero redispatch remain mandatory.
+
+Actual affected dispatcher execution passed35/35 with0fail/skip/cancel on the
+first run, preserving prior31 controls. Six supplied/generated and normal/
+diagnostic/release paths inspect the actual durable record AT the POST boundary;
+refusals assert zero API calls. Whole TypeScript and affected two-file ESLint
+passed0errors/0warnings; kernel5760 and single author SRO are preserved. These
+injected API controls are not a provider dispatch or native test. No new combined
+117/375, broad/full suite, production build or native acceptance is claimed.
+Application/helper/wrapper bytes are unchanged; no needless build was rerun.
+
+The reviewed P252 private helper/test remain immutable and UNEXECUTED. A later
+new pushed producer head needs a NEW exclusive private preparation bound to its
+full SHA and a fresh UUID, with rebound helper/test independent High review and
+all existing pre-POST admission gates. This author neither edits nor executes
+that helper. Fresh distinct High committed latest-three review is pending;
+loop3, in-review/ARR warnings and no-DONE/delivery/release boundaries remain.
+All43 DB causes and14 browser failures remain unresolved. No provider, native
+query, CI, service, push, deployment or main merge occurred in this fix.
+
 ## Suggested Review Order
 
 Author: Story 15.5 implementation/fix author (gpt-6.1-sol High), incorporating
@@ -1453,3 +1496,17 @@ Evidence:31 affected dispatcher controls passed, whole TypeScript and two-file
 ESLint passed. Closed F1/F2 and unchanged344 control bindings are reused with
 historical scope, not rerun or summed into a new execution. Hosted availability,
 private consumer adoption and diagnostic/native acceptance remain pending.
+
+### Bind the reviewed private intent to the dispatcher nonce
+
+A caller may supply correlation identity before dispatch while the same durable
+one-shot intent and refusal rules remain authoritative under uncertainty.
+
+- `scripts/ci/checkpoint-dispatch.mjs:178` — `const suppliedId = "checkpoint_id" in options`: validates supplied dispatch identity before any API.
+- `scripts/ci/checkpoint-dispatch.mjs:207` — `checkpoint_id: suppliedId ? selectedId : randomUUID()`: keeps selection inside the existing exclusive pre-POST state.
+- `tests/unit/scripts/ci/checkpoint-dispatch.test.ts:326` — `preselected and legacy generated checkpoint identity`: actual durable-at-POST value propagates through payload, title and ownership.
+
+Evidence:35 affected dispatcher cases passed0fail/skip/cancel, full TypeScript
+and affected lint passed. Prior31/374 composites retain their separate temporal
+scope. No real provider/private collector/diagnostic/native run is credited;
+new-head private qualification and fresh reviewed Root dispatch remain pending.

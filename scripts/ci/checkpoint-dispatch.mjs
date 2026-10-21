@@ -175,6 +175,10 @@ function discover(api, state) {
 /** @returns {Record<string, unknown>} */
 export function checkpoint(command, options, { api = githubApi, now = () => new Date() } = {}) {
   if (!["dispatch", "status", "cancel"].includes(command)) throw new Error("Use dispatch, status or cancel.");
+  const suppliedId = "checkpoint_id" in options, selectedId = options.checkpoint_id;
+  if (suppliedId && (command !== "dispatch" || typeof selectedId !== "string" || !ID.test(selectedId))) {
+    throw new Error("--checkpoint-id is dispatch-only and requires a canonical lowercase UUIDv4.");
+  }
   if (!options.state) throw new Error("--state is required; use an ignored private local path.");
   const path = resolve(options.state);
   mkdirSync(dirname(path), { recursive: true });
@@ -200,7 +204,7 @@ export function checkpoint(command, options, { api = githubApi, now = () => new 
       const created = now();
       const state = {
         version: 1, repo: options.repo, ref: options.ref, sha: options.sha,
-        actor, workflow_id: workflow.id, checkpoint_id: randomUUID(),
+        actor, workflow_id: workflow.id, checkpoint_id: suppliedId ? selectedId : randomUUID(),
         release_validation: options.release_validation === "true",
         cause_proof: options.cause_proof === "true",
         verification_mode: options.cause_proof === "true" ? "calendar-feed-cause-proof" : options.release_validation === "true" ? "release" : "normal",
@@ -261,12 +265,13 @@ export function checkpoint(command, options, { api = githubApi, now = () => new 
 export function parseArgs(args) {
   const [command, ...rest] = args;
   const options = {};
-  const allowed = command === "dispatch" ? ["repo", "ref", "sha", "state", "release-validation", "cause-proof"] : ["state"];
+  const allowed = command === "dispatch" ? ["repo", "ref", "sha", "state", "release-validation", "cause-proof", "checkpoint-id"] : ["state"];
   for (let index = 0; index < rest.length; index += 2) {
     const key = rest[index]?.slice(2);
-    if (!rest[index]?.startsWith("--") || !allowed.includes(key) || options[key.replaceAll("-", "_")] !== undefined || !rest[index + 1] || rest[index + 1].startsWith("--")) throw new Error("Invalid, duplicate or missing option. Dispatch: --repo --ref --sha --state [--release-validation true|false] [--cause-proof true|false]; status/cancel: --state.");
+    if (!rest[index]?.startsWith("--") || !allowed.includes(key) || options[key.replaceAll("-", "_")] !== undefined || !rest[index + 1] || rest[index + 1].startsWith("--")) throw new Error("Invalid, duplicate or missing option. Dispatch: --repo --ref --sha --state [--release-validation true|false] [--cause-proof true|false] [--checkpoint-id lowercase-UUIDv4]; status/cancel: --state.");
     options[key.replaceAll("-", "_")] = rest[index + 1];
   }
+  if (Object.hasOwn(options, "checkpoint_id") && !ID.test(options.checkpoint_id)) throw new Error("--checkpoint-id requires a canonical lowercase UUIDv4.");
   return { command, options };
 }
 
