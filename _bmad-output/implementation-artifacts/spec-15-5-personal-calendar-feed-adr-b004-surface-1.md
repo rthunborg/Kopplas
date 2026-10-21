@@ -245,9 +245,9 @@ Deferred release validation: exhaustive browser/device/calendar-provider matrice
 ## Auto Run Result
 
 Status: in-review
-Blocking condition: current qualified NORMAL history remains acceptance0: Node3222/Python43 are separate historical positives, story DB16P/35unexecuted (including API019 and INT015), browser10expected/1flaky/3unexpected and custody UNKNOWN. Committed exact-six source5d5ea4e was independently NOTPASS_SOURCE_LABEL_01 for contradictory relation labels; the finite correction below has offline controls only. Independent corrective-delta closure and a separately admitted changed-information NORMAL comparison remain pending. No functional cause, cleanup closure, development completion or release readiness is established.
+Blocking condition: current qualified NORMAL history remains acceptance0: Node3222/Python43 are separate historical positives, story DB16P/35unexecuted (including API019 and INT015), browser10expected/1flaky/3unexpected and custody UNKNOWN. Committed exact-six source5d5ea4e was independently NOTPASS_SOURCE_LABEL_01 for contradictory relation labels; the finite correction below has offline controls only. SOURCE-LABEL-01 is independently closed at sourceb72; the new public Vitest metadata carrier below remains source-only pending targeted review. Native publication and a separately admitted changed-information NORMAL comparison remain pending. No functional cause, cleanup closure, development completion or release readiness is established.
 
-Current result — 2026-10-21: the finite SOURCE-LABEL-01 relation-retention correction below is implemented
+Current result — 2026-10-21: the NUDGE004 public Vitest metadata carrier prerequisite below is implemented
 and offline source-verified. It is not development complete or release ready.
 The following planning paragraphs are retained historical results, not the current
 status, permission, gate outcome or runtime evidence. The historical ARR warning
@@ -1973,6 +1973,78 @@ comparison remain required; Node3222/Python43 are historical separate positives,
 DB16P/35unexecuted (API019/INT015), browser10expected/1flaky/3unexpected and custody
 UNKNOWN remain open. In-review/baseline3a1c3bc9/counter3/kernel5760 are preserved.
 
+## NUDGE004 public Vitest metadata carrier — source-only prerequisite
+
+Root's source-label-normal-comparison-readiness identifies an actual transport
+gap: the unchanged wrapper drops these closed console lines and native Vitest JSON
+does not carry captured console output. Installed Vitest4.1.9's public TaskBase.meta
+comment explicitly promises JSON preservation; public TestContext.task is
+Readonly<Test> with nested custom metadata. Its actual JsonReporter.onTestRunEnd
+serializes t.meta when filterMeta is absent. No wrapper/filter/workflow change or
+new artifact/stream is needed. SOURCE-LABEL-01 is independently source-closed;
+its original NOTPASS and corrective receipt/review remain immutable history.
+
+Only the existing NUDGE004 public callback receives task and injects a synchronous
+sink into the unchanged createNudgeFailureLabels emitter. It creates only its
+reserved meta.calendarSourceLabelsV1 slot, only on a valid failure label. The sink
+accepts canonical primitive ASCII strings for the source-bound NUDGE004 case/site/
+boundary/relation/factoryUNKNOWN/booking boolean/progress enums in exact order.
+It rejects unknown fields/enums, malformed/over512/non-ASCII/nonprimitive inputs
+and impossible source relation combinations. No arbitrary native error/task/
+message/cause/stack/expected/actual/identity/SQL/DOM/URL enters the carrier.
+
+The context owns only newly created frozen arrays, replaced with defensive
+primitive copies after checking the exact prior owned slot descriptor/identity.
+Preexisting or changed foreign slots are refused without overwriting. Plain/null
+metadata prototypes only; reserved accessors/custom prototypes and recording
+failures fail closed without native getter reads/output or error replacement.
+All other metadata stays unchanged. This is NOT a sanitizer for generic Vitest
+metadata: a preexisting foreign payload remains its owner's value and cannot be
+claimed safe merely because this sink refuses it. Tests distinguish this limit
+from hostile producer input exclusion in an otherwise empty owned namespace.
+
+At most16 records of512 ASCII bytes each/8KiB label values are accepted; the
+existing emitter's final overflow UNKNOWN record survives unchanged. A direct
+carrier overcount is refused within16. Arrays cannot be changed by later producer
+input mutation, and no complete/absent/nativePASS interpretation follows from a
+missing/refused/partial field. Healthy/default paths create no reserved key/output.
+Sink refusal, frozen metadata and foreign-slot failure preserve the exact ordinary
+exception/cause/outer cleanup precedence, clients/operations and cleanup order.
+Existing Playwright stderr transport and time-report helper are unchanged.
+
+Actual final focused controls:13P/0F/0skip/0cancel in0.976s. Four new carrier tests
+and nine retained affected source controls execute actual extracted helper and
+actual public NUDGE004 callback with synthetic task.meta. Before/after-callback,
+inner SAME/outer DIFFERENT and TEST_FINAL relation reach the REAL installed
+JsonReporter.onTestRunEnd; only writeReport is overridden to capture JSON in RAM.
+The exact assertionResults.meta field owns byte-equal valid strings. Unknown/
+secret-like producer fields, primitive/prototype/accessor/oversize negatives
+publish no owned field; foreign-slot refusal preserves foreign identity rather
+than claiming generic serialization sanitization. Frozen/copy/descriptor/16-record
+controls, unchanged original errors/cleanup and healthy/key-absent paths pass.
+The caller's original assertion ASTs and exact opt-in remain checked.
+
+This is real installed reporter serialization proof with synthetic pure context,
+not a test runner/collection/globalSetup, application SQL/Auth/HTTP/browser run,
+hosted native publication or original backend cause proof. No writeReport output
+file is created; no other reporter implementation is substituted. Final whole
+TypeScript noEmit/incrementalfalse and affected two TS ESLint exit0/no warnings.
+First selected13P, then the final13P after adding the direct carrier cap control,
+are nonadditive; no initial test/type/lint failures in this prerequisite. Earlier
+146 and SOURCE-LABEL-01 selected8 remain separate historical evidence, not a new
+152-test/full-suite aggregate. No unchanged broad suite/build/native run repeated.
+
+The initial guessed direct @vitest/runner symlink type path was absent; the exact
+installed4.1.9 package path was resolved through Vitest's own module resolution.
+Both installed reporter source and public type declarations are hash-bound in the
+new ignored author receipt. Existing code contexts/111 applied migrations and
+75-row source closure are conserved except the exact three admitted source paths;
+historical report-location74 stays unchanged. Spec kernel5760/baseline3a1c3bc9/
+in-review/counter3 and existing native UNKNOWN/acceptance0 remain. Native carrier
+publication requires later independently qualified exact-head evidence; source
+review and separate one-NORMAL effect admission are still prerequisites, not a
+current run/UUID or automatic retry. Root owns all Git and external effects.
+
 ## Suggested Review Order
 
 Author: Story 15.5 implementation/fix author (gpt-6.1-sol High), incorporating
@@ -1982,7 +2054,7 @@ native setup diagnostics, same-connection privacy qualification and explicit
 isolated setup authority transport, bounded child settlement, browser diagnostic repair,
 actual SQL callback ownership, executed-feature fixture/status/policy repairs and
 bounded safe-leaf transport through the installed reporter, closed owned scenario origins, the minimal Vite security patch, the admitted staged diagnostic-only lane and the discovery-order unit correction.
-Stops below resolve to the finite relation-correction working source handed to Root; no author Git mutation occurs.
+Stops below resolve to the public metadata-carrier working source handed to Root; no author Git mutation occurs.
 
 ### Own settings and honest lifecycle results
 
@@ -2411,7 +2483,7 @@ native evidence. Independent F1 closure has not yet occurred.
 Only NUDGE004/E2E001 opt in; errors/results/cleanup and healthy/default silence
 stay unchanged. Opaque outer failure remains UNKNOWN, even after an inner error.
 
-- `tests/integration/notifications/time-report-nudge-producer.int.test.ts:157` — `const labels=createNudgeFailureLabels()`: opts in only the real27-recipient case.
+- `tests/integration/notifications/time-report-nudge-producer.int.test.ts:192` — `const labels=createNudgeFailureLabels(`: opts in only the real27-recipient case.
 - `tests/support/time-reports-atdd.ts:50` — `export function createNudgeFailureLabels`: bounds fixed output without error/property reads.
 - `tests/support/time-reports-atdd.ts:74` — `export async function withTimeReportFixture`: preserves outer error identity and precedence.
 - `tests/e2e/calendar-feed.e2e.spec.ts:74` — `const labels=createCalendarFailureLabels()`: opts in only the existing lifecycle case.
@@ -2441,3 +2513,18 @@ Evidence: selected8P/0F/0skip/0cancel first run; whole TypeScript/two-file lint
 exit0. No new full148 aggregate, native or independent closure credit. The old
 NOTPASS and original author receipt remain preserved; reviewer checks only this
 relation correction and consequential latest-line regressions, not a fourth pass.
+
+### Carry only owned closed labels through the public JSON metadata path
+
+The NUDGE004 public task-local sink owns its reserved field. Generic/foreign
+metadata is preserved, not sanitized; absent publication remains UNKNOWN.
+
+- `tests/integration/notifications/time-report-nudge-producer.int.test.ts:9` — `export function createNudgeTaskMetaSink`: validates fixed source records before publishing.
+- `tests/integration/notifications/time-report-nudge-producer.int.test.ts:38` — `Object.defineProperty(meta,key`: replaces only the exact owned frozen-array slot.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2481` — `async function actualMetaJsonReport`: invokes real installed onTestRunEnd in memory.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2505` — `VITEST-META actual helper and public NUDGE callback`: proves byte-equal reporter metadata and original failures.
+
+Evidence: final focused13P/0F/0skip/0cancel, whole TypeScript/two-file lint exit0.
+Installed-source/type hashes are in the new author receipt. This carrier proof
+supersedes only the missing offline reporter-path evidence, not native publishing
+or functional/custody gates; independent targeted source review remains pending.

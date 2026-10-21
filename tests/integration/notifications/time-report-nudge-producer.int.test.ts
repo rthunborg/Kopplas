@@ -1,8 +1,43 @@
-import { describe, expect, test } from "vitest";
+import { describe, expect, test, type TestContext } from "vitest";
 import { adminQuery, adminSession } from "../../factories/admin-sql";
 import { adminInsertMembership, makeAnonServerClient } from "../../factories/tenants";
 import { withTimeReportFixture, seedReportBooking, reportInput, fileReport, reportId, produceNudges,
-  jobsClient, createNudgeFailureLabels, reportState, observeRpcCodes, withReportAuditFault, withNudgeRecipients, whileTenantBlocked } from "../../support/time-reports-atdd";
+  jobsClient, createNudgeFailureLabels, nudgeFailureSites, reportState, observeRpcCodes, withReportAuditFault, withNudgeRecipients, whileTenantBlocked } from "../../support/time-reports-atdd";
+
+/** NUDGE004-only public Vitest metadata carrier. No error/task traversal.
+ * This owns only its newly created slot; foreign metadata is never sanitized. */
+export function createNudgeTaskMetaSink(meta:TestContext["task"]["meta"]):(line:string)=>void {
+  const key="calendarSourceLabelsV1";
+  let published:readonly string[]|undefined,refused=false;
+  const valid=(line:unknown):line is string=>{
+    if(typeof line!=="string"||line.length>512||!/^[\x20-\x7e]+$/.test(line))return false;
+    const parts=/^calendar-source-label-v1 case=NUDGE004 site=([a-z-]+) boundary=([A-Z_]+) factory=UNKNOWN final_identity_relation=([A-Z_]+) booking_entered=(true|false) clients=(NOT_STARTED|PENDING|RETURNED|REJECTED) report=(NOT_STARTED|PENDING|RETURNED|REJECTED) cleanup=(NOT_STARTED|PENDING|RETURNED|REJECTED) composition=(NOT_STARTED|PENDING|RETURNED|REJECTED) outer=(NOT_STARTED|PENDING|RETURNED|REJECTED)$/.exec(line);
+    if(!parts||!nudgeFailureSites.some(site=>site===parts[1]))return false;
+    const [,site,boundary,relation,entered,clients,report,cleanup,composition,outer]=parts;
+    if(!["LOCAL","OPAQUE_OUTER_BEFORE_CALLBACK_UNKNOWN","OPAQUE_OUTER_AFTER_CALLBACK_UNKNOWN","OUTER_REJECTION_UNKNOWN","OPAQUE_OUTER_REJECTION_WITH_INNER_FAILURE_UNKNOWN","TEST_FINAL","UNKNOWN"].includes(boundary)||!["SAME_AS_OBSERVED_INNER","DIFFERENT_FROM_OBSERVED_INNER","NO_INNER_OBSERVED","UNKNOWN"].includes(relation))return false;
+    if((boundary==="LOCAL"||boundary==="OUTER_REJECTION_UNKNOWN")&&relation!=="UNKNOWN")return false;
+    if(boundary==="UNKNOWN"&&(site!=="unknown"||relation!=="UNKNOWN"))return false;
+    if(boundary==="OPAQUE_OUTER_REJECTION_WITH_INNER_FAILURE_UNKNOWN"&&!["SAME_AS_OBSERVED_INNER","DIFFERENT_FROM_OBSERVED_INNER"].includes(relation))return false;
+    if(relation!=="UNKNOWN"&&outer!=="REJECTED")return false;
+    if(relation==="NO_INNER_OBSERVED"&&!((entered==="false"&&[clients,report,cleanup,composition].every(state=>state==="NOT_STARTED"))||(entered==="true"&&[clients,report,cleanup,composition].every(state=>state==="RETURNED"))))return false;
+    if(["SAME_AS_OBSERVED_INNER","DIFFERENT_FROM_OBSERVED_INNER"].includes(relation)&&entered!=="true")return false;
+    if(boundary==="OPAQUE_OUTER_BEFORE_CALLBACK_UNKNOWN"&&(relation!=="NO_INNER_OBSERVED"||entered!=="false"||[clients,report,cleanup,composition].some(state=>state!=="NOT_STARTED")))return false;
+    if(boundary==="OPAQUE_OUTER_AFTER_CALLBACK_UNKNOWN"&&(relation!=="NO_INNER_OBSERVED"||entered!=="true"||[clients,report,cleanup,composition].some(state=>state!=="RETURNED")))return false;
+    return true;
+  };
+  return line=>{try{
+    if(refused)return;
+    if(!valid(line)||!meta||typeof meta!=="object"||Array.isArray(meta)){refused=true;return;}
+    const prototype=Object.getPrototypeOf(meta);
+    if(prototype!==null&&prototype!==Object.prototype){refused=true;return;}
+    if(prototype&&Object.getOwnPropertyDescriptor(prototype,key)){refused=true;return;}
+    const slot=Object.getOwnPropertyDescriptor(meta,key);
+    if(published?(!slot||!("value" in slot)||slot.value!==published||slot.enumerable!==true||slot.writable!==false||slot.configurable!==true):!!slot){refused=true;return;}
+    if((published?.length??0)>=16){refused=true;return;}
+    const next=Object.freeze([...(published??[]),line.slice(0)]);
+    Object.defineProperty(meta,key,{value:next,enumerable:true,writable:false,configurable:true});published=next;
+  }catch{refused=true;}};
+}
 
 const asOf = "2026-10-19T22:30:00.000Z"; // Stockholm Tue20: previous completed local dates13..19.
 /** Observe a real service RPC backend blocked on this test's exact owner PID.
@@ -153,8 +188,8 @@ describe("Story 15.4 existing E13 in-app nudge producer acceptance", () => {
     });
   });
 
-  test("[P0] 15.4-NUDGE-004 AC5 AC8 more than25 real recipients continue stable frozen scoped cursor without gaps duplicates or fact return", async () => {
-    const labels=createNudgeFailureLabels();
+  test("[P0] 15.4-NUDGE-004 AC5 AC8 more than25 real recipients continue stable frozen scoped cursor without gaps duplicates or fact return", async ({task}) => {
+    const labels=createNudgeFailureLabels(createNudgeTaskMetaSink(task.meta));
     try { await withTimeReportFixture(async fx => { await withNudgeRecipients(fx, async recipients => {
       labels.at("recipient-count"); expect(recipients).toHaveLength(27);
       labels.at("first-page"); const service = await jobsClient(), first = await produceNudges(service, fx.base.tenantA.id, { asOf });

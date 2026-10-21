@@ -2344,9 +2344,9 @@ test("actual nudge labels are healthy/default silent and sink failures cannot ma
 test("actual enclosing NUDGE004 final catch preserves its final error and emits fixed test boundary",async()=>{
   const f=actualNudgeOuter(),source=readFileSync(new URL("../../../integration/notifications/time-report-nudge-producer.int.test.ts",import.meta.url),"utf8").replaceAll("\r\n","\n");
   const start=source.indexOf('  test("[P0] 15.4-NUDGE-004'),end=source.indexOf('  test("[P0] 15.4-NUDGE-005',start);assert.ok(start>0&&end>start);
-  const strip=(nodeModule as unknown as {stripTypeScriptTypes(source:string):string}).stripTypeScriptTypes;let run!:()=>Promise<void>;
-  new Function("test","createNudgeFailureLabels","withTimeReportFixture",strip(source.slice(start,end)))((_name:string,callback:()=>Promise<void>)=>{run=callback;},()=>f.labels,async()=>{throw f.outer;});
-  assert.equal(await run().catch(error=>error),f.outer);assert.ok(f.lines.some(line=>line.includes("site=test-boundary boundary=TEST_FINAL")));
+  const strip=(nodeModule as unknown as {stripTypeScriptTypes(source:string):string}).stripTypeScriptTypes;let run!:(context:{task:{meta:object}})=>Promise<void>;
+  new Function("test","createNudgeFailureLabels","createNudgeTaskMetaSink","withTimeReportFixture",strip(source.slice(start,end)))((_name:string,callback:()=>Promise<void>)=>{run=callback;},()=>f.labels,actualNudgeMetaSink(),async()=>{throw f.outer;});
+  assert.equal(await run({task:{meta:{}}}).catch(error=>error),f.outer);assert.ok(f.lines.some(line=>line.includes("site=test-boundary boundary=TEST_FINAL")));
 });
 
 function nudgeRecipientControl(fail=false) {
@@ -2432,7 +2432,7 @@ test("actual labelled caller assertions match their frozen baseline and opt-in i
   for(const path of ["tests/integration/notifications/time-report-nudge-producer.int.test.ts","tests/e2e/calendar-feed.e2e.spec.ts"]){
     const before=execFileSync("git",["show","166cad1c21f423b96c815a3f5b34d2fb81bc28bf:"+path],{cwd,encoding:"utf8"}),after=readFileSync(join(cwd,path),"utf8");
     const assertions=(text:string)=>{const ast=ts.createSourceFile(path,text,ts.ScriptTarget.Latest,true),calls:string[]=[];const visit=(node:import("typescript").Node)=>{if(ts.isCallExpression(node)&&((ts.isIdentifier(node.expression)&&node.expression.text==="expect")||(ts.isPropertyAccessExpression(node.expression)&&/^(?:to|rejects|resolves)/.test(node.expression.name.text))))calls.push(node.getText(ast).replace(/\s+/g,""));ts.forEachChild(node,visit);};visit(ast);return calls;};
-    assert.deepEqual(assertions(after),assertions(before));assert.equal((after.match(/const labels=create(?:Nudge|Calendar)FailureLabels\(\)/g)??[]).length,1);
+    assert.deepEqual(assertions(after),assertions(before));assert.equal((after.match(path.includes("nudge")?/const labels=createNudgeFailureLabels\(createNudgeTaskMetaSink\(task\.meta\)\)/g:/const labels=createCalendarFailureLabels\(\)/g)??[]).length,1);
   }
 });
 
@@ -2449,11 +2449,11 @@ test("actual labelled browser observation preserves receiver arguments result an
 test("SOURCE-LABEL-01 actual helper and enclosing NUDGE004 catch preserve same different and genuinely absent final relations",async()=>{
   const source=readFileSync(new URL("../../../integration/notifications/time-report-nudge-producer.int.test.ts",import.meta.url),"utf8").replaceAll("\r\n","\n"),start=source.indexOf('  test("[P0] 15.4-NUDGE-004'),end=source.indexOf('  test("[P0] 15.4-NUDGE-005',start);assert.ok(start>0&&end>start);
   const strip=(nodeModule as unknown as {stripTypeScriptTypes(source:string):string}).stripTypeScriptTypes;
-  for(const mode of ["clients","override","before","after"] as const){const f=actualNudgeOuter(mode);let run!:()=>Promise<void>,ordinaryCalls=0;
-    new Function("test","createNudgeFailureLabels","withTimeReportFixture","withNudgeRecipients",strip(source.slice(start,end)))((_name:string,callback:()=>Promise<void>)=>{run=callback;},()=>f.labels,
+  for(const mode of ["clients","override","before","after"] as const){const f=actualNudgeOuter(mode);let run!:(context:{task:{meta:object}})=>Promise<void>,ordinaryCalls=0;
+    new Function("test","createNudgeFailureLabels","createNudgeTaskMetaSink","withTimeReportFixture","withNudgeRecipients",strip(source.slice(start,end)))((_name:string,callback:()=>Promise<void>)=>{run=callback;},()=>f.labels,actualNudgeMetaSink(),
       (callback:(fx:Record<string,unknown>)=>Promise<void>,labels:unknown)=>f.api.withTimeReportFixture(callback,labels),
       async(fx:Record<string,unknown>,_callback:unknown,labels:unknown)=>{ordinaryCalls++;assert.equal(fx.base,f.fx.base);assert.equal(labels,f.labels);if(mode==="override")throw f.inner;});
-    const final=await run().catch(error=>error);assert.equal(final,mode==="clients"?f.inner:f.outer);
+    const final=await run({task:{meta:{}}}).catch(error=>error);assert.equal(final,mode==="clients"?f.inner:f.outer);
     const expected=mode==="clients"?"SAME_AS_OBSERVED_INNER":mode==="override"?"DIFFERENT_FROM_OBSERVED_INNER":"NO_INNER_OBSERVED";
     const finalLine=f.lines.find(line=>line.includes("boundary=TEST_FINAL"));assert.ok(finalLine);assert.ok(finalLine.includes("final_identity_relation="+expected));
     const outerLines=f.lines.filter(line=>line.includes("boundary=OPAQUE_OUTER_"));assert.ok(outerLines.length);assert.ok(outerLines.at(-1)?.includes("final_identity_relation="+expected));
@@ -2467,7 +2467,72 @@ test("SOURCE-LABEL-01 actual helper and enclosing NUDGE004 catch preserve same d
 test("SOURCE-LABEL-01 local and unestablished test-final snapshots stay unknown while sink failure preserves original final error",async()=>{
   const f=actualNudgeOuter();f.labels.failure();f.labels.failure("TEST_FINAL");assert.ok(f.lines.every(line=>line.includes("final_identity_relation=UNKNOWN")));assert.ok(!f.lines.some(line=>line.includes("NO_INNER_OBSERVED")));
   const source=readFileSync(new URL("../../../integration/notifications/time-report-nudge-producer.int.test.ts",import.meta.url),"utf8"),start=source.indexOf('  test("[P0] 15.4-NUDGE-004'),end=source.indexOf('  test("[P0] 15.4-NUDGE-005',start),strip=(nodeModule as unknown as {stripTypeScriptTypes(source:string):string}).stripTypeScriptTypes;
-  const throwing=actualNudgeOuter("clients",()=>{throw Error("PRIVATE sink");});let run!:()=>Promise<void>;
-  new Function("test","createNudgeFailureLabels","withTimeReportFixture",strip(source.slice(start,end)))((_name:string,callback:()=>Promise<void>)=>{run=callback;},()=>throwing.labels,(callback:(fx:Record<string,unknown>)=>Promise<void>,labels:unknown)=>throwing.api.withTimeReportFixture(callback,labels));
-  assert.equal(await run().catch(error=>error),throwing.inner);assert.equal(throwing.events.filter(event=>event==="outer-cleanup").length,1);
+  const throwing=actualNudgeOuter("clients",()=>{throw Error("PRIVATE sink");});let run!:(context:{task:{meta:object}})=>Promise<void>;
+  new Function("test","createNudgeFailureLabels","createNudgeTaskMetaSink","withTimeReportFixture",strip(source.slice(start,end)))((_name:string,callback:()=>Promise<void>)=>{run=callback;},()=>throwing.labels,actualNudgeMetaSink(),(callback:(fx:Record<string,unknown>)=>Promise<void>,labels:unknown)=>throwing.api.withTimeReportFixture(callback,labels));
+  assert.equal(await run({task:{meta:{}}}).catch(error=>error),throwing.inner);assert.equal(throwing.events.filter(event=>event==="outer-cleanup").length,1);
+});
+
+
+function actualNudgeMetaSink() {
+  const sites=actualFeedRegion("../../../support/time-reports-atdd.ts","export const nudgeFailureSites","export async function withTimeReportFixture","nudgeFailureSites",{});
+  return actualFeedRegion("../../../integration/notifications/time-report-nudge-producer.int.test.ts","export function createNudgeTaskMetaSink","const asOf =","createNudgeTaskMetaSink",{nudgeFailureSites:sites}) as (meta:object)=>(line:unknown)=>void;
+}
+
+async function actualMetaJsonReport(meta:object) {
+  const {JsonReporter}=await import("vitest/node"),reporter=new JsonReporter({}),output:string[]=[];
+  // Actual installed public reporter, real onTestRunEnd. Only the output method
+  // is replaced; no app/runner collection/setup/output file is started.
+  reporter.onInit({config:{},snapshot:{summary:{}},logger:{log(){throw Error("Unexpected output path");},warn(){throw Error("Unexpected running task");}}} as never);
+  Object.assign(reporter,{writeReport:async(value:string)=>{output.push(value);}});
+  const file={type:"suite",name:"closed metadata transport",filepath:"fixed-nudge-control.test.ts",mode:"run",result:{state:"fail"},tasks:[] as unknown[]};
+  file.tasks.push({type:"test",name:"[P0] 15.4-NUDGE-004",suite:file,mode:"run",meta,result:{state:"fail",errors:[]}});
+  await reporter.onTestRunEnd([{task:file}] as never);assert.equal(output.length,1);
+  return JSON.parse(output[0]) as {numFailedTests:number;testResults:{assertionResults:{title:string;meta:Record<string,unknown>}[]}[]};
+}
+
+function actualMetaNudge(mode:Parameters<typeof actualNudgeOuter>[0]="clients") {
+  const f=actualNudgeOuter(mode),meta:Record<string,unknown>={},lines:string[]=[];
+  const source=readFileSync(new URL("../../../integration/notifications/time-report-nudge-producer.int.test.ts",import.meta.url),"utf8"),start=source.indexOf('  test("[P0] 15.4-NUDGE-004'),end=source.indexOf('  test("[P0] 15.4-NUDGE-005',start);assert.ok(start>0&&end>start);
+  const strip=(nodeModule as unknown as {stripTypeScriptTypes(source:string):string}).stripTypeScriptTypes;
+  let run!:(context:{task:{meta:object}})=>Promise<void>,bodyCalls=0;
+  new Function("test","createNudgeFailureLabels","createNudgeTaskMetaSink","withTimeReportFixture","withNudgeRecipients",strip(source.slice(start,end)))((_name:string,callback:typeof run)=>{run=callback;},
+    (injected:(line:string)=>void)=>f.api.createNudgeFailureLabels(line=>{lines.push(line);injected(line);}),actualNudgeMetaSink(),
+    (callback:(fx:Record<string,unknown>)=>Promise<void>,opt:unknown)=>f.api.withTimeReportFixture(callback,opt),
+    async(fx:Record<string,unknown>)=>{bodyCalls++;assert.equal(fx.base,f.fx.base);if(mode==="override")throw f.inner;});
+  return{...f,meta,lines,run:()=>run({task:{meta}}),bodyCalls:()=>bodyCalls};
+}
+
+test("VITEST-META actual helper and public NUDGE callback carry stable final relations through the real installed JsonReporter",async()=>{
+  for(const mode of ["before","after","clients","override"] as const){const f=actualMetaNudge(mode),actual=await f.run().catch(error=>error);assert.equal(actual,mode==="clients"?f.inner:f.outer);
+    const report=await actualMetaJsonReport(f.meta),assertion=report.testResults[0].assertionResults[0];assert.equal(report.numFailedTests,1);assert.equal(assertion.title,"[P0] 15.4-NUDGE-004");assert.ok(Object.hasOwn(assertion.meta,"calendarSourceLabelsV1"));assert.deepEqual(assertion.meta.calendarSourceLabelsV1,f.lines);
+    const relation=mode==="clients"?"SAME_AS_OBSERVED_INNER":mode==="override"?"DIFFERENT_FROM_OBSERVED_INNER":"NO_INNER_OBSERVED";
+    assert.ok(f.lines.at(-1)?.includes("boundary=TEST_FINAL")&&f.lines.at(-1)?.includes("final_identity_relation="+relation));assert.equal(f.bodyCalls(),mode==="clients"||mode==="before"?0:1);
+    if(mode!=="before")assert.equal(f.events.filter(event=>event==="outer-cleanup").length,1);
+  }
+});
+
+test("VITEST-META strict carrier excludes nonprimitive secret unknown field enum schema prototype accessor and oversize inputs from reporter publication",async()=>{
+  const f=actualMetaNudge("before");await f.run().catch(()=>{});const valid=f.lines[0];assert.ok(valid);
+  let getters=0;const hostile=Object.defineProperty({},"toString",{get(){getters++;throw Error("PRIVATE");}});
+  const invalid:unknown[]=[hostile,Object(valid),null,{},valid+" PRIVATE",valid+"\n",valid.replace("case=NUDGE004","case=OTHER"),valid.replace("site=outer-await","site=private"),valid.replace("factory=UNKNOWN","factory=PRIVATE"),valid.replace("NO_INNER_OBSERVED","PRIVATE"),valid.replace("clients=NOT_STARTED","clients=PRIVATE"),valid.replace("booking_entered=false","booking_entered=PRIVATE")," ".repeat(513),valid+" key=PRIVATE",valid.replace("boundary=OPAQUE_OUTER_BEFORE_CALLBACK_UNKNOWN","boundary=LOCAL")];
+  for(const value of invalid){const meta={};const sink=actualNudgeMetaSink()(meta);assert.doesNotThrow(()=>sink(value));assert.deepEqual(meta,{});const report=await actualMetaJsonReport(meta);assert.deepEqual(report.testResults[0].assertionResults[0].meta,{});assert.ok(!JSON.stringify(report).includes("PRIVATE"));}
+  const proto=Object.create({foreign:true}),metaAccessor=Object.defineProperty({},"calendarSourceLabelsV1",{get(){getters++;throw Error("PRIVATE");}}),proxy=new Proxy({}, {getPrototypeOf(){throw Error("PRIVATE");}});
+  for(const meta of [proto,metaAccessor,proxy])assert.doesNotThrow(()=>actualNudgeMetaSink()(meta)(valid));assert.equal(getters,0);
+});
+
+test("VITEST-META reserves its own frozen arrays preserves other metadata and refuses preexisting or replaced foreign slots",async()=>{
+  const f=actualMetaNudge("before");await f.run().catch(()=>{});const valid=f.lines[0],other={kept:true},meta:Record<string,unknown>={other},sink=actualNudgeMetaSink()(meta);sink(valid);const first=meta.calendarSourceLabelsV1;assert.ok(Object.isFrozen(first));sink(valid);assert.notEqual(meta.calendarSourceLabelsV1,first);assert.deepEqual(first,[valid]);assert.deepEqual(meta.calendarSourceLabelsV1,[valid,valid]);assert.equal(meta.other,other);
+  const report=await actualMetaJsonReport(meta);assert.deepEqual(report.testResults[0].assertionResults[0].meta,{other:{kept:true},calendarSourceLabelsV1:[valid,valid]});
+  const foreign={PRIVATE:"not owned"},occupied={calendarSourceLabelsV1:foreign,other};actualNudgeMetaSink()(occupied)(valid);assert.equal(occupied.calendarSourceLabelsV1,foreign);assert.equal(occupied.other,other);
+  Object.defineProperty(meta,"calendarSourceLabelsV1",{value:foreign,configurable:true});sink(valid);assert.equal(meta.calendarSourceLabelsV1,foreign);
+  // Refusal is not a generic sanitizer: preexisting foreign metadata is untouched,
+  // and is deliberately not offered as a safe owned-publication reporter input.
+});
+
+test("VITEST-META healthy default budget and recording failures cannot change original fixture results or cleanup",async()=>{
+  const healthy=actualMetaNudge("healthy");await healthy.run();assert.deepEqual(healthy.meta,{});assert.deepEqual(healthy.lines,[]);
+  const bounded:Record<string,unknown>={},labels=actualNudgeOuter().api.createNudgeFailureLabels(actualNudgeMetaSink()(bounded));for(let i=0;i<40;i++)labels.failure();const values=bounded.calendarSourceLabelsV1 as string[];assert.equal(values.length,16);assert.ok(values.at(-1)?.includes("boundary=UNKNOWN"));assert.ok(values.every(line=>Buffer.byteLength(line)<=512));assert.ok(values.reduce((n,line)=>n+line.length,0)<=8192);assert.deepEqual((await actualMetaJsonReport(bounded)).testResults[0].assertionResults[0].meta.calendarSourceLabelsV1,values);
+  const direct:Record<string,unknown>={},directSink=actualNudgeMetaSink()(direct);for(let i=0;i<20;i++)directSink(values[0]);assert.equal((direct.calendarSourceLabelsV1 as readonly string[]).length,16);
+  const frozen=actualMetaNudge("clients");Object.freeze(frozen.meta);assert.equal(await frozen.run().catch(error=>error),frozen.inner);assert.ok(!Object.hasOwn(frozen.meta,"calendarSourceLabelsV1"));assert.equal(frozen.events.filter(event=>event==="outer-cleanup").length,1);
+  const foreign=actualMetaNudge("override"),slot={notOwned:true};foreign.meta.calendarSourceLabelsV1=slot;assert.equal(await foreign.run().catch(error=>error),foreign.outer);assert.equal(foreign.meta.calendarSourceLabelsV1,slot);assert.ok(foreign.events.indexOf("report-cleanup")<foreign.events.indexOf("outer-cleanup"));
 });
