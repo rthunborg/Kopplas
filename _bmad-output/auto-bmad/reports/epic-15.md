@@ -5332,3 +5332,38 @@ No archive ran this resume.
 1. none within exact6source/offline allocation. Stop for precise additional scope if interfaces insufficient.
 
 **Next:** Clean-tree preparation checkpoint then explicit High six-file author. No actualSQL/connections/CI/GET/resources/provider/push effect allocation; targeted code review and separately qualified native gates required.
+
+## Report — 2026-10-21T18:32:51Z (15.5 partial six-file checkpoint; job-wide C4 refinement required)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `d661023`).
+**Pipeline status:** In progress: localpartialsource d661023a retained; C4job-wide containment UNRESOLVED, source/development completion false, nativeacceptance0.
+**Continues:** High read-only installed Vitest execution-boundary assessment; independent targeted challenge and exact shared-path allocation before any runner edit.
+
+**Summary:** 15.1–15.4 landed;15.5 P5 active;15.6 unstarted. One final draft PR/inherited review_unverified retained.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 293h 35m (≈77h 24m AI-run, ≈216h 10m human/idle wait); resumed 159×.
+
+**Stories:**
+1. 73source identities/actualGitobjects verified:6changed67same. Author124intermediateP; after moduleadmissionguard final2affectedP+122unchangedreused, no freshaggregate. TS/lint5/diff/reader pass; kernel5760/SRO138/counter3/in-review.
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** No source outside exact6, no Git byauthors/runtime. Onlylocalpartialcheckpoint; no push. AllappliedSQLimmutable; no fourthbroadreview.
+
+**Open questions:**
+1. Vitestisolate:true resetshelpercustodyacross6serialfiles. ExacttargetpreflightdoesnotproveanotherlaterDIFFERENTtargetsafe. Need enforced jobboundary. Auditedb459 still12DBfail,2unexpected4flakybrowser/API019privacyfail/historicalcustodyUNVERIFIED.
+
+**Deferred work:**
+1. Existing release-validation ledger unchanged; no requiredfunctional/privacy/custody gate waived.
+
+**⚠️ Needs human:**
+1. none for authorizednarrowread-onlycontainmentplanning/coordination.
+
+**Next:** High proposefiniteexistingexecution-boundarycapability preservingall95successcases/failed-unexecutedtruth. No runner/source/native effects allocated; cumulativecode review/nativeallocationwaitgapresolution.
