@@ -6036,3 +6036,34 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Prepare concrete readiness and separate effects allocation for one labelled NORMAL/full95 comparison. No automatic retry.
+
+## Report — 2026-10-21T21:31:38Z (source-label-transport-prerequisite)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `b72c3af`).
+**Pipeline status:** Story15.5 remains in review. Readiness identified lost NUDGE console labels: Vitest JSON omits them and the wrapper filters them. No comparison dispatched; native acceptance0.
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 296h 33m (≈77h 24m AI-run, ≈219h 09m human/idle wait); resumed 181×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** High author validates supported per-test metadata sink and implements exact3; installed JsonReporter proof plus targeted committed review before any comparison.

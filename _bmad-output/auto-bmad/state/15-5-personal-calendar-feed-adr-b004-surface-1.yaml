@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-21T21:23:40Z"
+updated_at: "2026-10-21T21:31:38Z"
 started_at: "2026-10-20T12:18:56Z"
 completed_at: null
 active_seconds: 86219
@@ -18,15 +18,15 @@ is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: P5-source-label-normal-comparison-readiness
-selected_role: sensitive-normal-comparison-readiness
+selected_phase: P5-source-label-Vitest-metadata-transport
+selected_role: sensitive-bounded-metadata-transport-author
 selected_profile: build
 selected_model: gpt-6.1-sol
 selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Prepare one changed-information NORMAL full95 comparison and truthful bounded label acquisition while preserving public-token/backend custody, remote effect ownership and no-deployment boundary."
+escalation_reason: "Public test task metadata must transport only bounded fixed labels while preserving original failures and privacy; exact3 subset of allocated6, installed-reporter proof required."
 routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"High preparation for hashed public-feed tokens, rotation/revocation and tenant/member disclosure boundaries; plan-only before distinctvalidation and ownershipallocation\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct High independent specification validation of actual public-feed token/proof/IP/limiter authorization design and exact ownership/test-key boundaries before anybuild\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"cross_model_layer\",\"profile\":\"diverse_review\",\"role\":\"independent-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -243,6 +243,7 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Independent source-label finding requires original-boundary truthful relation correction without altering error identity, cleanup or public-token test behavior.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-source-label-01-correction\",\"profile\":\"build\",\"role\":\"sensitive-source-label-correction\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Close SOURCE-LABEL-01 in corrective commit and assess changed-line regressions preserving error identity, cleanup and truthful finite failure relation; no broad review, counter3.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-source-label-01-corrective-commit-review\",\"profile\":\"followup_review\",\"role\":\"independent-sensitive-finding-closure\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Prepare one changed-information NORMAL full95 comparison and truthful bounded label acquisition while preserving public-token/backend custody, remote effect ownership and no-deployment boundary.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-source-label-normal-comparison-readiness\",\"profile\":\"build\",\"role\":\"sensitive-normal-comparison-readiness\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Public test task metadata must transport only bounded fixed labels while preserving original failures and privacy; exact3 subset of allocated6, installed-reporter proof required.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-source-label-Vitest-metadata-transport\",\"profile\":\"build\",\"role\":\"sensitive-bounded-metadata-transport-author\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: "Hashed public tokens, rotation/revocation, externalfeed andcross-tenant abuseprotection requireHigh-riskATDD+automate; lastthreeno traceadvisory"
@@ -1929,3 +1930,10 @@ source_label_corrective_closure:
   development_complete: false
   release_ready: false
   next: Prepare concrete readiness and separate effects allocation for one labelled NORMAL/full95 comparison. No automatic retry.
+source_label_transport_prerequisite:
+  status: TRANSPORT_PREREQUISITE_REQUIRED
+  source: b72c3af782adde452d47bdedfddec0fbefbfeb49
+  source_scope: [tests/integration/notifications/time-report-nudge-producer.int.test.ts, tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts, "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"]
+  native_acceptance: 0
+  effects: 0
+  next: "High author validates supported per-test metadata sink and implements exact3; installed JsonReporter proof plus targeted committed review before any comparison."

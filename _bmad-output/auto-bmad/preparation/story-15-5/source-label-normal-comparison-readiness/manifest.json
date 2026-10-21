@@ -1,0 +1,27 @@
+{
+  "files": [
+    {
+      "bytes": 21374,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-label-normal-comparison-readiness/readiness.json",
+      "sha256": "b19311457a726f047a165bac11d26ee46e3e3f4136013241f3932ed68ba986d3"
+    },
+    {
+      "bytes": 1648,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-label-normal-comparison-readiness/result.json",
+      "sha256": "c7d724e8562bfa227bc37617986526f0435ebb130da9c8898eda64264e4235a9"
+    },
+    {
+      "bytes": 59759,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-label-normal-comparison-readiness/source-bindings.json",
+      "sha256": "5ab7c6701a698491d0dbfd190e510ba202ba9bf67904dba95a8cce279a2bd9f8"
+    }
+  ],
+  "listed_members": 3,
+  "normal_acceptance": 0,
+  "schema": "SELF_EXCLUDED_SHA256_MANIFEST_v1",
+  "self": {
+    "hash_excluded": true,
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-label-normal-comparison-readiness/manifest.json"
+  },
+  "total_members_including_self": 4
+}
