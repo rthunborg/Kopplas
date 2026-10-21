@@ -2,7 +2,7 @@ import { describe, expect, test } from "vitest";
 import { adminQuery, adminSession } from "../../factories/admin-sql";
 import { adminInsertMembership, makeAnonServerClient } from "../../factories/tenants";
 import { withTimeReportFixture, seedReportBooking, reportInput, fileReport, reportId, produceNudges,
-  jobsClient, reportState, observeRpcCodes, withReportAuditFault, withNudgeRecipients, whileTenantBlocked } from "../../support/time-reports-atdd";
+  jobsClient, createNudgeFailureLabels, reportState, observeRpcCodes, withReportAuditFault, withNudgeRecipients, whileTenantBlocked } from "../../support/time-reports-atdd";
 
 const asOf = "2026-10-19T22:30:00.000Z"; // Stockholm Tue20: previous completed local dates13..19.
 /** Observe a real service RPC backend blocked on this test's exact owner PID.
@@ -154,22 +154,23 @@ describe("Story 15.4 existing E13 in-app nudge producer acceptance", () => {
   });
 
   test("[P0] 15.4-NUDGE-004 AC5 AC8 more than25 real recipients continue stable frozen scoped cursor without gaps duplicates or fact return", async () => {
-    await withTimeReportFixture(async fx => { await withNudgeRecipients(fx, async recipients => {
-      expect(recipients).toHaveLength(27);
-      const service = await jobsClient(), first = await produceNudges(service, fx.base.tenantA.id, { asOf });
+    const labels=createNudgeFailureLabels();
+    try { await withTimeReportFixture(async fx => { await withNudgeRecipients(fx, async recipients => {
+      labels.at("recipient-count"); expect(recipients).toHaveLength(27);
+      labels.at("first-page"); const service = await jobsClient(), first = await produceNudges(service, fx.base.tenantA.id, { asOf });
       expect(first.count).toBeLessThanOrEqual(25 * 7); expect(first.cursor).toEqual(expect.any(String));
       let cursor = first.cursor, count = first.count;
       const seen = new Set<string>();
       for (let page = 0; cursor && page < 10; page++) {
-        expect(seen.has(cursor)).toBe(false); seen.add(cursor);
-        const next = await produceNudges(service, fx.base.tenantA.id, { asOf, cursor });
+        labels.at("cursor-repeat"); expect(seen.has(cursor)).toBe(false); seen.add(cursor);
+        labels.at("next-page"); const next = await produceNudges(service, fx.base.tenantA.id, { asOf, cursor });
         expect(next.count).toBeLessThanOrEqual(25 * 7); count += next.count; cursor = next.cursor;
       }
-      expect(cursor).toBeUndefined(); expect(count).toBe(27);
-      const notes = (await reportState(fx.tenantIds)).notifications.filter(n => n.category === "time_report.nudge");
+      labels.at("total-count"); expect(cursor).toBeUndefined(); expect(count).toBe(27);
+      labels.at("physical-recipients"); const notes = (await reportState(fx.tenantIds)).notifications.filter(n => n.category === "time_report.nudge");
       expect(notes.map(n => n.recipient_user_id).sort()).toEqual(recipients.map(r => r.userId).sort());
-      expect(notes.every(n => n.logical_period === "2026-10-19")).toBe(true);
-      const { handleJobsRunRequest } = await import("@/app/api/jobs/run/route");
+      labels.at("physical-day"); expect(notes.every(n => n.logical_period === "2026-10-19")).toBe(true);
+      labels.at("resume-import"); const { handleJobsRunRequest } = await import("@/app/api/jobs/run/route");
       const { ACTIVE_PRODUCERS } = await import("@/server/jobs/producers");
       const producer = ACTIVE_PRODUCERS.find(p => p.id === "scheduling.time-report-nudges")!;
       const resumedCalls: Array<Record<string,unknown>> = [];
@@ -180,21 +181,21 @@ describe("Story 15.4 existing E13 in-app nudge producer acceptance", () => {
         };
         const value=Reflect.get(target,key,target); return typeof value === "function" ? value.bind(target) : value;
       } });
-      const beforeResume = await reportState(fx.tenantIds);
-      const response = await handleJobsRunRequest(new Request("http://localhost/api/jobs/run", {method:"POST"}), {
+      labels.at("resume-state"); const beforeResume = await reportState(fx.tenantIds);
+      labels.at("resume-route"); const response = await handleJobsRunRequest(new Request("http://localhost/api/jobs/run", {method:"POST"}), {
         authorize:()=>true, createClient:()=>observed, producers:[producer], now:()=>new Date("2026-10-22T00:00:00Z"),
         run:async dependencies => { await dependencies.execute(producer,fx.base.tenantA.id,first.cursor); return {outcome:"completed" as const}; },
       });
-      expect(response.status).toBe(200); expect(resumedCalls).toHaveLength(1);
-      expect(resumedCalls[0]).toMatchObject({p_tenant_id:fx.base.tenantA.id,p_cursor:first.cursor});
-      expect(new Date(String(resumedCalls[0].p_as_of)).toISOString()).toBe(new Date(asOf).toISOString());
-      expect(await reportState(fx.tenantIds)).toEqual(beforeResume); // Actual already-emitted page remains idempotent.
-      const beforeBadCursor = await reportState(fx.tenantIds);
-      await expect(produceNudges(service, fx.base.tenantB.id, { asOf, cursor: first.cursor })).rejects.toThrow();
-      await expect(produceNudges(service, fx.base.tenantA.id, { asOf: "2026-10-20T22:30:00Z", cursor: first.cursor })).rejects.toThrow();
-      await expect(produceNudges(service, fx.base.tenantA.id, { asOf, cursor: "malformed-cursor" })).rejects.toThrow();
-      expect(await reportState(fx.tenantIds)).toEqual(beforeBadCursor);
-    }); });
+      labels.at("resume-status"); expect(response.status).toBe(200); expect(resumedCalls).toHaveLength(1);
+      labels.at("resume-call"); expect(resumedCalls[0]).toMatchObject({p_tenant_id:fx.base.tenantA.id,p_cursor:first.cursor});
+      labels.at("resume-asof"); expect(new Date(String(resumedCalls[0].p_as_of)).toISOString()).toBe(new Date(asOf).toISOString());
+      labels.at("resume-effects"); expect(await reportState(fx.tenantIds)).toEqual(beforeResume); // Actual already-emitted page remains idempotent.
+      labels.at("negative-state"); const beforeBadCursor = await reportState(fx.tenantIds);
+      labels.at("foreign-cursor"); await expect(produceNudges(service, fx.base.tenantB.id, { asOf, cursor: first.cursor })).rejects.toThrow();
+      labels.at("changed-asof"); await expect(produceNudges(service, fx.base.tenantA.id, { asOf: "2026-10-20T22:30:00Z", cursor: first.cursor })).rejects.toThrow();
+      labels.at("malformed-cursor"); await expect(produceNudges(service, fx.base.tenantA.id, { asOf, cursor: "malformed-cursor" })).rejects.toThrow();
+      labels.at("negative-effects"); expect(await reportState(fx.tenantIds)).toEqual(beforeBadCursor);
+    },labels); },labels); }catch(error){labels.at("test-boundary");labels.failure("TEST_FINAL");throw error;}
   });
 
   test("[P0] 15.4-NUDGE-005 AC5 duplicate concurrent hourly retries emit zero new notification or audit effects", async () => {

@@ -2301,3 +2301,146 @@ test("closed fetch status validation latches missing malformed accessor proxy an
   for(const result of [{status:0},{status:NaN},{status:"200"},{status:600},{},accessor,proxy]){const f=await actualCalendarOwner();assert.equal(await f.api.calendarFetchPort({rpc:async()=>result}).rpc("fetch_calendar_feed",{}),result);assert.ok(f.api.getCustody());await f.factory.pool()?.end();}
   assert.equal(reads,0);const f=await actualCalendarOwner();let calls=0;await assert.rejects(f.api.calendarFetchPort({rpc:async()=>{calls++;return{};}}).rpc("unrelated",{}));assert.equal(calls,0);assert.ok(f.api.getCustody());await f.factory.pool()?.end();
 });
+
+
+function actualNudgeOuter(mode:"healthy"|"before"|"clients"|"inner"|"both"|"override"|"after"="healthy",sink?:(line:string)=>void) {
+  const events:string[]=[],lines:string[]=[],inner=Object.defineProperty({},"cause",{get(){throw Error("PRIVATE getter");}}),outer={fixed:"outer"},cleanup={fixed:"cleanup"};
+  const user=(id:string)=>({id}),fx={base:{tenantA:{id:"owned"},adminA:user("admin"),adminB:user("foreign"),orphanUser:user("orphan")},users:{projektledare:user("planner"),montor:user("own"),saljare:user("seller"),ekonomi:user("economy")},roleUnionUser:user("mixed"),invitedUser:user("invited"),disabledUser:user("disabled"),tenantIds:["owned"],adminClient:{reused:"admin"},plannerClient:{reused:"planner"},montorClient:{reused:"own"},foreignClient:{reused:"foreign"}};
+  const api=actualFeedRegion("../../../support/time-reports-atdd.ts","function throwFixtureFailures","export async function setRoles","({withTimeReportFixture,createNudgeFailureLabels,throwFixtureFailures})",{
+    withBookingFixture:async(run:(fx:unknown)=>Promise<void>)=>{events.push("booking");if(mode==="before")throw outer;try{await run(fx);}finally{events.push("outer-cleanup");if(mode==="override"||mode==="after")throw outer;}},
+    makeAuthedServerClient:async(value:{id:string})=>{events.push("client:"+value.id);if(mode==="clients"&&value.id==="seller")throw inner;return{user:value};},
+    cleanupOwnedTimeReports:async(value:unknown)=>{assert.equal(value,fx.tenantIds);events.push("report-cleanup");if(mode==="both")throw cleanup;}
+  }) as {throwFixtureFailures:(primary:{error:unknown}|undefined,errors:unknown[],message:string)=>void;withTimeReportFixture:(run:(value:Record<string,unknown>)=>Promise<void>,labels?:unknown)=>Promise<void>;createNudgeFailureLabels:(sink?:(line:string)=>void)=>{at(site:string):void;failure(boundary?:string):void}};
+  const labels=api.createNudgeFailureLabels(sink??(line=>lines.push(line)));
+  const callback=async(value:Record<string,unknown>)=>{events.push("callback");assert.equal(value.base,fx.base);const clients=value.clients as Record<string,unknown>;assert.equal(clients.admin,fx.adminClient);assert.equal(clients.foreign,fx.foreignClient);if(["inner","both","override"].includes(mode))throw inner;};
+  return{api,labels,events,lines,inner,outer,cleanup,callback,fx};
+}
+
+test("actual opted-in outer nudge boundary distinguishes opaque before and after callback without changing final identity",async()=>{
+  for(const mode of ["before","after","override"] as const){const f=actualNudgeOuter(mode);const result=await f.api.withTimeReportFixture(f.callback,f.labels).catch(error=>error);assert.equal(result,f.outer);
+    assert.ok(f.lines.some(line=>line.includes(mode==="before"?"OPAQUE_OUTER_BEFORE_CALLBACK_UNKNOWN":mode==="after"?"OPAQUE_OUTER_AFTER_CALLBACK_UNKNOWN":"DIFFERENT_FROM_OBSERVED_INNER")));
+    if(mode==="before"){assert.deepEqual(f.events,["booking"]);assert.ok(f.lines.every(line=>line.includes("clients=NOT_STARTED")));}
+    else{assert.ok(f.events.indexOf("report-cleanup")<f.events.indexOf("outer-cleanup"));}
+  }
+});
+
+test("actual nudge clients callback and cleanup failures retain original precedence cause and operation order",async()=>{
+  for(const mode of ["clients","inner","both"] as const){const f=actualNudgeOuter(mode);const result=await f.api.withTimeReportFixture(f.callback,f.labels).catch(error=>error);
+    if(mode==="both"){assert.ok(result instanceof AggregateError);assert.equal(result.cause,f.inner);assert.equal(result.errors[0],f.inner);assert.equal(result.errors[1],f.cleanup);}
+    else assert.equal(result,f.inner);
+    assert.equal(f.events.filter(event=>event.startsWith("client:")).length,6);assert.equal(f.events.filter(event=>event==="outer-cleanup").length,1);
+    if(mode==="clients"){assert.ok(!f.events.includes("callback"));assert.ok(!f.events.includes("report-cleanup"));assert.ok(f.lines.some(line=>line.includes("clients=REJECTED")));}
+    else{assert.equal(f.events.filter(event=>event==="callback").length,1);assert.equal(f.events.filter(event=>event==="report-cleanup").length,1);assert.ok(f.lines.some(line=>line.includes("site=report-callback")&&line.includes("report=REJECTED")));}
+  }
+});
+
+test("actual nudge labels are healthy/default silent and sink failures cannot mask original failures or touch hostile properties",async()=>{
+  const healthy=actualNudgeOuter();await healthy.api.withTimeReportFixture(healthy.callback,healthy.labels);assert.deepEqual(healthy.lines,[]);
+  const normal=actualNudgeOuter("inner");assert.equal(await normal.api.withTimeReportFixture(normal.callback).catch(error=>error),normal.inner);assert.deepEqual(normal.lines,[]);
+  const sink=actualNudgeOuter("override",()=>{throw Error("PRIVATE sink");});assert.equal(await sink.api.withTimeReportFixture(sink.callback,sink.labels).catch(error=>error),sink.outer);
+  const bounded=actualNudgeOuter();for(let i=0;i<40;i++)bounded.labels.failure();assert.equal(bounded.lines.length,16);assert.ok(bounded.lines.at(-1)?.includes("UNKNOWN"));assert.ok(bounded.lines.every(line=>Buffer.byteLength(line)<=512&&!line.includes("PRIVATE")));
+});
+
+test("actual enclosing NUDGE004 final catch preserves its final error and emits fixed test boundary",async()=>{
+  const f=actualNudgeOuter(),source=readFileSync(new URL("../../../integration/notifications/time-report-nudge-producer.int.test.ts",import.meta.url),"utf8").replaceAll("\r\n","\n");
+  const start=source.indexOf('  test("[P0] 15.4-NUDGE-004'),end=source.indexOf('  test("[P0] 15.4-NUDGE-005',start);assert.ok(start>0&&end>start);
+  const strip=(nodeModule as unknown as {stripTypeScriptTypes(source:string):string}).stripTypeScriptTypes;let run!:()=>Promise<void>;
+  new Function("test","createNudgeFailureLabels","withTimeReportFixture",strip(source.slice(start,end)))((_name:string,callback:()=>Promise<void>)=>{run=callback;},()=>f.labels,async()=>{throw f.outer;});
+  assert.equal(await run().catch(error=>error),f.outer);assert.ok(f.lines.some(line=>line.includes("site=test-boundary boundary=TEST_FINAL")));
+});
+
+function nudgeRecipientControl(fail=false) {
+  const f=actualNudgeOuter(),events:string[]=[],users=Array.from({length:3},(_,i)=>({id:"user"+i}));let batches=0,bookings=0;
+  const run=actualFeedRegion("../../../support/time-reports-atdd.ts","export async function withNudgeRecipients",undefined,"withNudgeRecipients",{
+    crypto:{randomUUID:()=>"fixed"},seedRoleAwarePhaseAUsers:async(base:unknown)=>{assert.equal(base,f.fx.base);batches++;return{extraUsers:users,users:{projektledare:users[0],montor:users[1]},roleUnionUser:users[2]};},
+    adminQuery:async(sql:string)=>{events.push(sql.startsWith("insert")?"profile":"delete");return[];},seedReportBooking:async(value:unknown)=>{assert.equal(value,f.fx);bookings++;return"booking";},cleanupOwnedTimeReports:async()=>{events.push("reports");if(fail)throw f.cleanup;},deleteAuthUser:async()=>{events.push("auth");},throwFixtureFailures:f.api.throwFixtureFailures
+  }) as (fx:unknown,run:(recipients:unknown[])=>Promise<void>,labels?:unknown)=>Promise<void>;
+  return{f,events,run,counts:()=>({batches,bookings})};
+}
+
+test("actual labelled recipient composition keeps all27 recipients nine seeds and original ordered cleanup",async()=>{
+  const x=nudgeRecipientControl();let calls=0;await x.run(x.f.fx,async recipients=>{calls++;assert.equal(recipients.length,27);x.events.push("callback");},x.f.labels);
+  assert.equal(calls,1);assert.deepEqual(x.counts(),{batches:9,bookings:27});assert.deepEqual(x.f.lines,[]);assert.equal(x.events.filter(x=>x==="profile").length,27);assert.equal(x.events.filter(x=>x==="auth").length,27);assert.ok(x.events.indexOf("callback")<x.events.indexOf("reports"));assert.ok(x.events.indexOf("reports")<x.events.indexOf("delete"));assert.ok(x.events.indexOf("delete")<x.events.indexOf("auth"));
+});
+
+async function labelledBrowserControl(sink?:(line:string)=>void) {
+  const seams=await actualBrowserSeams(),lines:string[]=[],labels=seams.createCalendarFailureLabels(sink??(line=>lines.push(line))),registry=seams.createCalendarLifecycleObservations({settlementTimeoutMs:5,labels}),events=new EventEmitter();
+  const observe=(action:"create"|"rotate"|"revoke",options:{readback?:()=>Promise<unknown>;completion?:()=>Promise<boolean>;noCompletion?:boolean;requestPredicate?:(value:unknown)=>boolean}={})=>{
+    const label=labels.register(action),wait=(field:"request"|"response")=>seams.calendarEventWaiter({subscribe:listener=>{events.on(action+field,listener);},unsubscribe:listener=>{events.off(action+field,listener);},predicate:field==="request"?(options.requestPredicate??(()=>true)):()=>true,stage:field==="request"?"action-request":"action-response",timeoutMs:1000,label:state=>label?.set(field,state)});
+    const result=registry.observe({label,request:()=>wait("request"),response:()=>wait("response"),readback:options.readback??(async()=>({fixed:true})),...(!options.noCompletion?{completion:options.completion??(async()=>true)}:{})});return result;
+  };
+  const match=(action:string)=>{events.emit(action+"request",{});events.emit(action+"response",{});};
+  return{seams,lines,labels,registry,observe,match,events};
+}
+
+test("actual browser records keep successful create distinct from rotate native-pending and revoke not registered",async()=>{
+  const x=await labelledBrowserControl(),first=x.observe("create");x.match("create");await first;
+  let release!:(value:boolean)=>void;const completion=new Promise<boolean>(yes=>{release=yes;}),second=x.observe("rotate",{completion:()=>completion});x.match("rotate");await second;
+  const unsettled=await x.registry.cancelAndSettle();assert.equal(unsettled.settled,false);
+  assert.ok(x.lines.some(line=>line.includes("action=create ordinal=1")&&line.includes("completion=SETTLED_SUCCESS")&&line.includes("observation=SETTLED_SUCCESS")));
+  assert.ok(x.lines.some(line=>line.includes("action=rotate ordinal=2")&&line.includes("completion=PENDING")));
+  assert.ok(x.lines.some(line=>line.includes("action=revoke ordinal=3 registration=NOT_REGISTERED")));
+  release(true);assert.equal((await x.registry.cancelAndSettle()).settled,true);
+});
+
+test("actual waiter labels distinguish matched response from failed or cancelled request and never-started work",async()=>{
+  for(const failed of [false,true]){const x=await labelledBrowserControl(),pending=x.observe("create",{requestPredicate:()=>{if(failed)throw Error("PRIVATE predicate");return true;}});x.events.emit("createresponse",{});if(failed)x.events.emit("createrequest",{});const settled=x.registry.cancelAndSettle();await assert.rejects(pending);assert.equal((await settled).settled,false);
+    assert.ok(x.lines.some(line=>line.includes("action=create")&&line.includes("response=MATCHED")&&line.includes(failed?"request=SETTLED_FAILURE":"request=CANCELLED")&&line.includes("readback=NOT_STARTED")&&line.includes("completion=NOT_STARTED")));
+  }
+});
+
+test("actual browser readback failure native failure and optional completion have independent terminal states",async()=>{
+  const read=await labelledBrowserControl(),bad=read.observe("create",{readback:async()=>{throw Error("PRIVATE SQL");}});read.match("create");await assert.rejects(bad);await read.registry.cancelAndSettle();assert.ok(read.lines.some(line=>line.includes("readback=SETTLED_FAILURE")));
+  const native=await labelledBrowserControl(),good=native.observe("create",{completion:async()=>false});native.match("create");await good;assert.equal((await native.registry.cancelAndSettle()).settled,false);assert.ok(native.lines.some(line=>line.includes("readback=SETTLED_SUCCESS")&&line.includes("completion=SETTLED_FAILURE")&&line.includes("observation=SETTLED_SUCCESS")));
+  const optional=await labelledBrowserControl(),done=optional.observe("create",{noCompletion:true});optional.match("create");await done;assert.equal((await optional.registry.cancelAndSettle()).settled,true);assert.equal(optional.lines.length,0);optional.labels.failure();assert.ok(optional.lines.some(line=>line.includes("completion=NOT_APPLICABLE")));
+});
+
+test("actual concurrent browser records preserve pending readback and post-cancel observation separately",async()=>{
+  const x=await labelledBrowserControl();let release!:(value:unknown)=>void;const held=new Promise(yes=>{release=yes;}),first=x.observe("create",{readback:()=>held}),second=x.observe("rotate");x.match("create");x.match("rotate");await second;
+  assert.equal((await x.registry.cancelAndSettle()).settled,false);assert.ok(x.lines.some(line=>line.includes("action=create")&&line.includes("readback=PENDING")));release({fixed:true});await assert.rejects(first);await x.registry.cancelAndSettle();assert.ok(x.lines.some(line=>line.includes("action=create")&&line.includes("readback=SETTLED_SUCCESS")&&line.includes("observation=CANCELLED")));
+});
+
+test("actual label budgets sink failures and invalid registration never affect lifecycle behavior or expose payload getters",async()=>{
+  const x=await labelledBrowserControl(()=>{throw Error("PRIVATE sink");}),done=x.observe("create");x.match("create");assert.deepEqual(await done,{fixed:true});assert.equal((await x.registry.cancelAndSettle()).settled,true);
+  const bad=await labelledBrowserControl(()=>{throw Error("PRIVATE sink");}),safe=bad.seams.calendarBrowserDiagnostic("action-readback",{}),failed=bad.observe("create",{readback:async()=>{throw safe;}});bad.match("create");assert.equal(await failed.catch(error=>error),safe);await bad.registry.cancelAndSettle();
+  const y=await labelledBrowserControl();y.labels.register("create");y.labels.register("create");for(let i=0;i<20;i++)y.labels.failure();assert.equal(y.lines.length,16);assert.ok(y.lines.every(line=>line.includes("UNKNOWN")&&Buffer.byteLength(line)<=512));assert.ok(Buffer.byteLength(y.lines.join("\n"))<8192);
+});
+
+test("label instrumentation preserves actual promise observer timer operation counts and default silent waiters",async()=>{
+  const require=nodeModule.createRequire(import.meta.url),{execFileSync}=require("node:child_process");
+  const path="tests/e2e/support/calendar-feed-atdd.ts",before=execFileSync("git",["show","166cad1c21f423b96c815a3f5b34d2fb81bc28bf:"+path],{cwd:resolve(new URL("../../../..",import.meta.url).pathname.replace(/^\/([A-Za-z]:)/,"$1")),encoding:"utf8"}),after=readFileSync(new URL("../../../e2e/support/calendar-feed-atdd.ts",import.meta.url),"utf8");
+  for(const pattern of [/\.then\(/g,/\.catch\(/g,/new Promise/g,/setTimeout\(/g,/adminQuery[<(]/g,/\.rpc\(/g])assert.equal((after.match(pattern)??[]).length,(before.match(pattern)??[]).length);
+  const x=await labelledBrowserControl(),done=x.observe("create");x.match("create");await done;await x.registry.cancelAndSettle();assert.deepEqual(x.lines,[]);
+});
+
+test("installed Node test runner receives only fixed bounded source labels from actual source with original failure preserved",async()=>{
+  const {spawnSync}=await import("node:child_process"),source=readFileSync(new URL("../../../support/time-reports-atdd.ts",import.meta.url),"utf8"),start=source.indexOf("export const nudgeFailureSites"),end=source.indexOf("export async function withTimeReportFixture");assert.ok(start>0&&end>start);
+  const strip=(nodeModule as unknown as {stripTypeScriptTypes(source:string):string}).stripTypeScriptTypes;
+  const script="import {test} from 'node:test';\n"+strip(source.slice(start,end))+"\ntest('fixed source boundary',()=>{const original=Error('FIXED_ORIGINAL');try{throw original;}catch(error){createNudgeFailureLabels().failure();if(error!==original)throw Error('IDENTITY_CHANGED');throw error;}});";
+  const result=spawnSync(process.execPath,["--input-type=module"],{input:script,encoding:"utf8",timeout:10000,env:{SystemRoot:process.env.SystemRoot,NODE_ENV:"test"}});
+  assert.equal(result.status,1);assert.match(result.stderr,/calendar-source-label-v1 case=NUDGE004/);assert.match(result.stdout,/FIXED_ORIGINAL/);assert.ok(!result.stderr.includes("PRIVATE"));
+});
+
+
+test("actual recipient cleanup retains the callback and every reached cleanup error in original order",async()=>{
+  const x=nudgeRecipientControl(true);let caught:unknown;try{await x.run(x.f.fx,async()=>{throw x.f.inner;},x.f.labels);}catch(error){caught=error;}
+  assert.ok(caught instanceof AggregateError);assert.equal(caught.cause,x.f.inner);assert.deepEqual(caught.errors,[x.f.inner,x.f.cleanup]);assert.equal(x.events.filter(event=>event==="auth").length,27);assert.equal(x.events.filter(event=>event==="delete").length,3);assert.ok(x.f.lines.some(line=>line.includes("site=recipients-callback")));assert.ok(x.f.lines.some(line=>line.includes("site=cleanup-reports")));
+});
+
+test("actual labelled caller assertions match their frozen baseline and opt-in is restricted to NUDGE004 and E2E001",async()=>{
+  const ts=await import("typescript"),{execFileSync}=await import("node:child_process"),cwd=resolve(new URL("../../../..",import.meta.url).pathname.replace(/^\/([A-Za-z]:)/,"$1"));
+  for(const path of ["tests/integration/notifications/time-report-nudge-producer.int.test.ts","tests/e2e/calendar-feed.e2e.spec.ts"]){
+    const before=execFileSync("git",["show","166cad1c21f423b96c815a3f5b34d2fb81bc28bf:"+path],{cwd,encoding:"utf8"}),after=readFileSync(join(cwd,path),"utf8");
+    const assertions=(text:string)=>{const ast=ts.createSourceFile(path,text,ts.ScriptTarget.Latest,true),calls:string[]=[];const visit=(node:import("typescript").Node)=>{if(ts.isCallExpression(node)&&((ts.isIdentifier(node.expression)&&node.expression.text==="expect")||(ts.isPropertyAccessExpression(node.expression)&&/^(?:to|rejects|resolves)/.test(node.expression.name.text))))calls.push(node.getText(ast).replace(/\s+/g,""));ts.forEachChild(node,visit);};visit(ast);return calls;};
+    assert.deepEqual(assertions(after),assertions(before));assert.equal((after.match(/const labels=create(?:Nudge|Calendar)FailureLabels\(\)/g)??[]).length,1);
+  }
+});
+
+
+test("actual labelled browser observation preserves receiver arguments result and safe failure identity once",async()=>{
+  const seams=await actualBrowserSeams(),labels=seams.createCalendarFailureLabels(()=>{throw Error("PRIVATE sink");}),registry=seams.createCalendarLifecycleObservations({labels,settlementTimeoutMs:5}),events=new EventEmitter(),matched={},result={fixed:true};let readbacks=0,completions=0;
+  const label=labels.register("create"),wait=(field:"request"|"response")=>seams.calendarEventWaiter({subscribe:listener=>{events.on(field,listener);},unsubscribe:listener=>{events.off(field,listener);},predicate:value=>value===matched,stage:field==="request"?"action-request":"action-response",timeoutMs:1000,label:state=>label?.set(field,state)});
+  const input={label,request:()=>wait("request"),response:()=>wait("response"),async readback(request:unknown,signal:AbortSignal){assert.equal(this,input);assert.equal(request,matched);assert.ok(signal instanceof AbortSignal);readbacks++;return result;},async completion(request:unknown){assert.equal(this,input);assert.equal(request,matched);completions++;return true;}};
+  const actual=registry.observe(input);events.emit("request",matched);events.emit("response",matched);assert.equal(await actual,result);assert.equal((await registry.cancelAndSettle()).settled,true);assert.equal(readbacks,1);assert.equal(completions,1);
+  const g=await labelledBrowserControl(),safe=g.seams.calendarBrowserDiagnostic("action-readback",{}),bad=g.observe("create",{readback:async()=>{throw safe;}});g.match("create");assert.equal(await bad.catch(error=>error),safe);await g.registry.cancelAndSettle();
+});

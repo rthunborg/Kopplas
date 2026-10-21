@@ -245,9 +245,9 @@ Deferred release validation: exhaustive browser/device/calendar-provider matrice
 ## Auto Run Result
 
 Status: in-review
-Blocking condition: audited normal run 39637925040 at b459af22 remains FAILED with 12 DB failures (including required API019 privacy), 2 unexpected and 4 flaky browser cases; historical browser key/child custody remains UNVERIFIED. Cumulative source22508ef reviewed NOTPASS for F1 transport uncertainty; the exact-three source correction below has offline controls only. C4 runner/caller and failed-runtime key fences are retained source evidence, not backend restoration. Independent F1 closure and fresh exact-head native development gates remain pending. This is a source handoff, not development completion.
+Blocking condition: current qualified NORMAL history remains acceptance0: Node3222/Python43 are separate historical positives, story DB16P/35unexecuted (including API019 and INT015), browser10expected/1flaky/3unexpected and custody UNKNOWN. The following exact-six label implementation has offline controls only; independent committed-delta High review and a separately admitted changed-information NORMAL comparison remain pending. No functional cause, cleanup closure, development completion or release readiness is established.
 
-Current result — 2026-10-21: the bounded F1 transport-custody correction below is implemented
+Current result — 2026-10-21: the bounded NUDGE004/E2E001 source-label implementation below is implemented
 and offline source-verified. It is not development complete or release ready.
 The following planning paragraphs are retained historical results, not the current
 status, permission, gate outcome or runtime evidence. The historical ARR warning
@@ -1845,6 +1845,88 @@ are conserved; Root owns all Git. No SQL/resource/network/CI/key/provider/push
 effect occurred. Development complete=false, release ready=false, in-review,
 baseline3a1c3bc9 and completed broad-round counter3 remain unchanged.
 
+## NUDGE004 / E2E001 original-boundary labels — exact-six source handoff
+
+Root's accepted-source-label-six-path-allocation.json and independently validated
+boundary-state-refinement admit fixed labels only. The initial plan NOTPASS and
+PASS_PLAN_ONLY_LABEL_01_02_CLOSED remain immutable; plan PASS is not code review
+or native execution. The previous F1 source/controls are retained unchanged.
+This stage does not select a product/SQL cause from the qualified truncated R1.
+
+Only NUDGE004 opts into one bounded context shared by its enclosing test catch,
+withTimeReportFixture and withNudgeRecipients. Fixed source sites identify the
+existing recipient/assertion/cleanup operations; the outer helper tracks callback
+entry, original clients Promise.all, report callback/cleanup/composition and the
+existing withBookingFixture await. A rejection before callback entry or after its
+return stays OPAQUE/UNKNOWN. For an observed inner failure, only reference equality
+with the final rejection is reported; factory=UNKNOWN always. No error, cause,
+message, stack, expected/actual or identity is read by the label code. The exact
+final error is rethrown, including opaque outer cleanup overriding inner failure.
+Original primary/ALL cleanup ordering, same clients/arguments and all27 recipients
+remain. Healthy opted-in and default callers emit nothing. A throwing sink cannot
+replace the test error;16 lines maximum,512 ASCII bytes per line/8KiB per case,
+with overflow/diagnostic failure recorded UNKNOWN, never accepted as cause proof.
+
+Only E2E001 opts into separate create/rotate/revoke records, ordinals1..3.
+Registration, successful request/response matching, readback, optional native
+completion and observation result are independent. MATCHED comes only from the
+existing successful waiter finish; no-op final cancellation cannot overwrite it.
+Never-invoked work remains NOT_STARTED; absent completion is NOT_APPLICABLE.
+Readback success followed by cancellation can coexist with observation CANCELLED;
+native completion failure/pending never inherits earlier create success. Original
+scenario-site snapshots are emitted before later cleanup labels. State notes use
+only existing predicates/finish/cancel/continuations; no extra .then/catch observer,
+query, waiter, timer or async work is added. Native/JS settlement labels are not
+backend rollback/restoration or cleanup authority: actual pending/cancellation/
+transport guards and custody remain unchanged. Existing public/browser assertions
+and timing are unchanged; no DOM/URL/request fields enter these fixed labels.
+
+Actual final affected Node file:146P/0F/0skip/0cancel in12.268s, preserving prior131
+and adding15 controls. Exact source regions are extracted/TypeScript-stripped,
+with injected ordinary dependencies only. They cover pre-booking failure, clients,
+inner/outer cleanup precedence, report cleanup aggregation, final test catch,
+27 recipients/nine seeds/ordered cleanup, sink throw/hostile getter/budget/silence,
+mixed/concurrent browser records, cancelled/failed unmatched request versus matched
+response, never-started work, readback/native failures, optional completion,
+receiver/args/result/safe-error identity and once-call behavior. AST controls compare
+both callers' actual original assertions against baseline166cad and prove one opt-in
+each. Source counts confirm no added Promise observer/timer/RPC/adminQuery.
+
+The unchanged actual strict34 guard plus catch/finally-return/void/wrapper/alias/
+shadow/reassignment inverses execute separately:2P/0F/0skip/0cancel (0.737s).
+NUDGE's outer catch remains outside that finite calendar caller predicate; the
+calendar API/INT source/caller contract is not relaxed. Final whole TypeScript
+--noEmit --incremental false and five changed TS ESLint exit0/no warnings.
+Native diff/reader/kernel/SRO checks bind the final source handoff.
+
+Initial new subset12:11P/1F is retained, not additive: the injected recipient
+fixture omitted tenantA, failing before its real source seed path. Corrected
+subset14P is separate. An intermediate TypeScript run found two unit-only typing
+issues (assertion narrowing to never[] and omitted NODE_ENV in the isolated Node
+child's typed env); both were corrected. Intermediate146P runs predate the final
+original-site emission/sink-negative/finite-boundary wording refinements; only the
+final146 result above binds these current TS bytes. No unchanged broad full suite,
+app build, Vitest application collection/globalSetup, SQL or browser was executed.
+
+The installed Node test-runner stdin control proves fixed labels reach that pure
+child's captured stderr while its intentional fixed error still fails the child.
+The child is bounded/joined and writes no test files. It does NOT prove native
+Vitest/Playwright reporter/log transport, hosted publication or browser geometry;
+those remain explicit targeted reviewer/native comparison stops. The fixed error
+has no secrets, and no raw artifact/error payload is acquired or reconstructed.
+Normal95 (30Node/51DB/14browser), all real27 recipients and original assertions
+remain mandatory. DIAG001 is unchanged and cannot substitute a filtered run.
+A future ONE changed-information comparison requires distinct code PASS plus
+separate Root/Coordinator effect admission; no automatic retry follows labels.
+If still inconclusive, stop at the exact missing fact/owner/resume condition.
+
+Current source census75 derives the old73 source vector plus the previously
+explicit NUDGE test (historical report-location74), and the newly admitted changed
+time-report helper. This source census addition does NOT expand the immutable
+historical report-location allowlist. All110/111/predecessors and other contexts
+remain conserved. Root owns Git. Current causes/custody UNKNOWN, nativeacceptance0,
+in-review/baseline3a1c3bc9/counter3 and the approved5760-byte kernel are preserved.
+
 ## Suggested Review Order
 
 Author: Story 15.5 implementation/fix author (gpt-6.1-sol High), incorporating
@@ -1854,7 +1936,7 @@ native setup diagnostics, same-connection privacy qualification and explicit
 isolated setup authority transport, bounded child settlement, browser diagnostic repair,
 actual SQL callback ownership, executed-feature fixture/status/policy repairs and
 bounded safe-leaf transport through the installed reporter, closed owned scenario origins, the minimal Vite security patch, the admitted staged diagnostic-only lane and the discovery-order unit correction.
-Stops below resolve to the exact-three working source handed to Root; no author Git mutation occurs.
+Stops below resolve to the exact-six label working source handed to Root; no author Git mutation occurs.
 
 ### Own settings and honest lifecycle results
 
@@ -1868,8 +1950,8 @@ retry before uncertain results have been reconciled; all four isolated SSR cases
 - `src/components/calendar-feed/CalendarSubscription.tsx:34` — `const current = await refresh();`: clears superseded post-commit output and success.
 - `src/components/calendar-feed/CalendarSubscription.tsx:69` — `state?.status === "error"`: AC2/6 renders fallback guidance without changing lifecycle controls.
 - `tests/integration/components/calendar-feed.test.ts:36` — `15.5-COMP-003`: AC2/6 existing error/retry SSR assertions passed in isolation.
-- `tests/e2e/calendar-feed.e2e.spec.ts:384` — `15.5-E2E-010-`: AC2/6 supersession cases failed at3e7; changed-head browser evidence pending.
-- `tests/e2e/calendar-feed.e2e.spec.ts:451` — `15.5-E2E-011`: AC2/6 browser control failed at3e7; changed-head evidence pending.
+- `tests/e2e/calendar-feed.e2e.spec.ts:385` — `15.5-E2E-010-`: AC2/6 supersession cases failed at3e7; changed-head browser evidence pending.
+- `tests/e2e/calendar-feed.e2e.spec.ts:452` — `15.5-E2E-011`: AC2/6 browser control failed at3e7; changed-head evidence pending.
 
 ### Signed current-self authority and atomic writes
 
@@ -1938,13 +2020,13 @@ restricted-session oracle. No new privileged child configuration or grant is add
 - `tests/integration/commands/calendar-feed.int.test.ts:508` — `await fresh.connect(); await setupQualified(fresh); await absent(fresh);`: INT015 fresh authority/privacy and exact absence oracle passed at3e7.
 - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:156` — `setup construction refuses missing`: credential/target refusals cannot reach secrets or children; actual identity negatives and child-config tests complete the bounded boundary evidence.
 
-- `tests/e2e/support/calendar-feed-atdd.ts:83` — `export function createCalendarLifecycleObservations`: AC2/6 observes both transport promises and joins actual readback before teardown; pure regressions are not native acceptance.
-- `tests/e2e/support/calendar-feed-atdd.ts:25` — `export function calendarBrowserDiagnostic`: preserves closed stage/category/SQLSTATE without native error payloads.
-- `tests/e2e/support/calendar-feed-atdd.ts:705` — `if (base && cleanupAllowed)`: canonical SQL/Auth cleanup waits for verified settlement; unresolved references retain fixture custody.
+- `tests/e2e/support/calendar-feed-atdd.ts:107` — `export function createCalendarLifecycleObservations`: AC2/6 observes both transport promises and joins actual readback before teardown; pure regressions are not native acceptance.
+- `tests/e2e/support/calendar-feed-atdd.ts:49` — `export function calendarBrowserDiagnostic`: preserves closed stage/category/SQLSTATE without native error payloads.
+- `tests/e2e/support/calendar-feed-atdd.ts:738` — `if (base && cleanupAllowed)`: canonical SQL/Auth cleanup waits for verified settlement; unresolved references retain fixture custody.
 - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:498` — `missing leaders with persistent groups`: absence is measured within existing budgets; anonymous groups grant no signaling authority.
 - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1045` — `actual browser bounded cancellation`: timeout cannot credit in-flight SQL/readback settlement; release and real completion are distinct.
 
-- `tests/e2e/support/calendar-feed-atdd.ts:93` — `trackReadback<T>`: registers actual callback/query work independently of Playwright deadlines and closes before drain.
+- `tests/e2e/support/calendar-feed-atdd.ts:117` — `trackReadback<T>`: registers actual callback/query work independently of Playwright deadlines and closes before drain.
 - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1125` — `installed polling deadline cannot credit`: HTTP completion plus outer timeout cannot credit unresolved physical query siblings or callback completion.
 
 - `tests/support/calendar-feed-atdd.ts:203` — `export function calendarFixtureDiagnostic`: fixed stages/own-data SQLSTATE preserve only reaching errors within bounded aggregates.
@@ -2203,7 +2285,7 @@ uses structure plus visible copy/navigation while populated visibility remains.
 
 - `tests/integration/rls/calendar-feed.rls.test.ts:42` — `const legitimate =`: establishes the positive before negative baseline.
 - `tests/integration/rls/calendar-feed.rls.test.ts:47` — `const otherTenant =`: changes every caller's tenant override.
-- `tests/e2e/calendar-feed.e2e.spec.ts:141` — `if (variant.scenario === "no-profile")`: requires visible empty UI and structural agenda.
+- `tests/e2e/calendar-feed.e2e.spec.ts:142` — `if (variant.scenario === "no-profile")`: requires visible empty UI and structural agenda.
 - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2187` — `actual RLS002 uses a different spoof`: executes actual negative matrix and physical checks.
 
 ### Retire owned sessions and restore only after actual work
@@ -2277,3 +2359,25 @@ custody and every downstream restore/delete guard. These injected installed-code
 controls carry native acceptance0; backend settlement/canonical restoration and
 API019/essential browser/current full gates still require independently qualified
 native evidence. Independent F1 closure has not yet occurred.
+
+### Observe the original fixed failure boundary without selecting a cause
+
+Only NUDGE004/E2E001 opt in; errors/results/cleanup and healthy/default silence
+stay unchanged. Opaque outer failure remains UNKNOWN, even after an inner error.
+
+- `tests/integration/notifications/time-report-nudge-producer.int.test.ts:157` — `const labels=createNudgeFailureLabels()`: opts in only the real27-recipient case.
+- `tests/support/time-reports-atdd.ts:50` — `export function createNudgeFailureLabels`: bounds fixed output without error/property reads.
+- `tests/support/time-reports-atdd.ts:68` — `export async function withTimeReportFixture`: preserves outer error identity and precedence.
+- `tests/e2e/calendar-feed.e2e.spec.ts:74` — `const labels=createCalendarFailureLabels()`: opts in only the existing lifecycle case.
+- `tests/e2e/support/calendar-feed-atdd.ts:19` — `export function createCalendarFailureLabels`: isolates action/ordinal applicability and state.
+- `tests/e2e/support/calendar-feed-atdd.ts:105` — `const wasDone=done`: preserves MATCHED on no-op final cancellation.
+- `tests/e2e/support/calendar-feed-atdd.ts:171` — `note("readback","SETTLED_SUCCESS")`: keeps readback separate from observation cancellation.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2319` — `actual opted-in outer nudge boundary`: exercises opaque rejection and final identity.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2392` — `actual browser readback failure native failure`: exercises independent completion states.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2416` — `installed Node test runner receives only fixed`: proves the bounded offline stderr boundary only.
+
+Evidence: final affected146P and unchanged C4 acceptance/inverses2P are separate
+actual runs, not an aggregate. Whole TypeScript/five-file lint exit0. Review must
+check original failure-site capture, unchanged error/cause/cleanup order, no added
+observers/operations and current native UNKNOWN. This is source diagnostics only;
+no functional correction, CODEPASS, native gate/coverage or execution approval.

@@ -2,7 +2,7 @@
 import type { Page } from "@playwright/test";
 import { test as resourceTest, expect } from "./support/resource-cdp-attachment";
 import {
-  calendarNames, calendarUI, calendarBrowserCleanup, enterActualPersonalCalendar, expectAccessWarning,
+  createCalendarFailureLabels, calendarNames, calendarUI, calendarBrowserCleanup, enterActualPersonalCalendar, expectAccessWarning,
   followPersonalSubscriptionByKeyboard, tabTo, withCalendarBrowserFixture,
   type CalendarBrowserFixture, type PhysicalSnapshot, type SafeFeedReceipt,
 } from "./support/calendar-feed-atdd";
@@ -71,12 +71,13 @@ async function issueFromUI(page: Page, fixture: CalendarBrowserFixture) {
 
 test.describe("15.5 Kalenderprenumeration essential production-host", () => {
   test("[P0] 15.5-E2E-001 [AC1 AC3 AC4 AC6 AC7 AC9] Planering → own issue → anonymous feed → physical last-use → rotate/revoke", async ({ resourcePage: page }) => {
+    const labels=createCalendarFailureLabels();
     await withCalendarBrowserFixture(page, "own-and-foreign", async (f) => {
-      await f.signIn("montor");
-      await followPersonalSubscriptionByKeyboard(page, "day");
-      await expectAccessWarning(page);
+      labels.at("sign-in"); await f.signIn("montor");
+      labels.at("navigation"); await followPersonalSubscriptionByKeyboard(page, "day");
+      labels.at("warning"); await expectAccessWarning(page);
       const before = await f.snapshot();
-      const { issued: first, snapshot: created } = await issueFromUI(page, f);
+      labels.at("create"); const { issued: first, snapshot: created } = await issueFromUI(page, f);
       expect(created.own.activeCount).toBe(1);
       expect(created.own.generationCount - before.own.generationCount).toBe(1);
       expect(created.own.audit.length - before.own.audit.length).toBe(1);
@@ -84,10 +85,10 @@ test.describe("15.5 Kalenderprenumeration essential production-host", () => {
       expect(created.own.lastUsedAt).toBeNull(); // create is not a fetch
       expect(created.own.usageCount).toBe(0);
       expectIsolated(before, created);
-      const fetched = await f.fetchAnonymous(first.handle);
+      labels.at("feed"); const fetched = await f.fetchAnonymous(first.handle);
       expectPublicFeed(fetched, 200);
       expect(fetched.events).toEqual(f.expectedOwnEvents); // own/shared once; peer/foreign poison omitted
-      const used = await f.snapshot();
+      labels.at("last-use"); const used = await f.snapshot();
       expect(used.own.lastUsedAt).not.toBeNull();
       expect(used.own.usageCount).toBe(1);
       expectIsolated(before, used);
@@ -100,7 +101,7 @@ test.describe("15.5 Kalenderprenumeration essential production-host", () => {
       expectPublicFeed(hostile, 200);
       expect(hostile.events).toEqual(f.expectedOwnEvents);
 
-      await calendarUI(page).rotate.click();
+      labels.at("rotation"); await calendarUI(page).rotate.click();
       const rotatedCall = f.observeLifecycle("rotate");
       await page.getByRole("dialog").getByRole("button", { name: calendarNames.confirmRotate, exact: true }).click();
       const rotated = await rotatedCall;
@@ -110,10 +111,10 @@ test.describe("15.5 Kalenderprenumeration essential production-host", () => {
       expect(rotated.snapshot.own.audit.length - used.own.audit.length).toBe(1);
       const second = await f.captureIssuedLink();
       expect(second.hashMatchesPhysicalGeneration).toBe(true);
-      expectPublicFeed(await f.fetchAnonymous(first.handle), 404);
+      labels.at("old-new-feed"); expectPublicFeed(await f.fetchAnonymous(first.handle), 404);
       expectPublicFeed(await f.fetchAnonymous(second.handle), 200);
 
-      await calendarUI(page).revoke.click();
+      labels.at("revoke"); await calendarUI(page).revoke.click();
       const revokedCall = f.observeLifecycle("revoke");
       await page.getByRole("dialog").getByRole("button", { name: calendarNames.confirmRevoke, exact: true }).click();
       const revoked = await revokedCall;
@@ -126,7 +127,7 @@ test.describe("15.5 Kalenderprenumeration essential production-host", () => {
       await page.reload();
       expectPublicFeed(await f.fetchAnonymous(first.handle), 404);
       expectPublicFeed(await f.fetchAnonymous(second.handle), 404);
-    });
+    },labels);
   });
 
   for (const variant of [

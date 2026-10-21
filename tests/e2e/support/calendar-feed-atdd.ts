@@ -11,6 +11,30 @@ import { runCommand } from "@/server/commands/envelope";
 export const CALENDAR_FIXTURE_DATE = "2026-10-12";
 
 // Pure diagnostic/observation seams: injected checks need no browser or database.
+export type CalendarLabelWorkState="NOT_APPLICABLE"|"NOT_STARTED"|"PENDING"|"SETTLED_SUCCESS"|"SETTLED_FAILURE"|"UNKNOWN";
+export type CalendarLabelWaiterState="NOT_STARTED"|"PENDING"|"MATCHED"|"SETTLED_FAILURE"|"CANCELLED"|"UNKNOWN";
+export type CalendarObservationLabel={set(field:"registration"|"request"|"response"|"readback"|"completion"|"observation",state:string):void};
+export const calendarFailureSites=["scenario","sign-in","navigation","warning","create","feed","last-use","rotation","old-new-feed","revoke","observation","settlement","fixture-final","unknown"] as const;
+export type CalendarFailureLabels=ReturnType<typeof createCalendarFailureLabels>;
+export function createCalendarFailureLabels(sink:(line:string)=>void=line=>console.error(line)) {
+  const records=(["create","rotate","revoke"] as const).map((action,index)=>({action,ordinal:index+1,registration:"NOT_REGISTERED",request:"NOT_STARTED",response:"NOT_STARTED",readback:"NOT_STARTED",completion:"NOT_STARTED",observation:"NOT_STARTED"}));
+  let site:typeof calendarFailureSites[number]="scenario",lines=0,unknown=false;
+  const allowed={registration:["NOT_REGISTERED","REGISTERED","REGISTRATION_FAILED","UNKNOWN"],request:["NOT_STARTED","PENDING","MATCHED","SETTLED_FAILURE","CANCELLED","UNKNOWN"],response:["NOT_STARTED","PENDING","MATCHED","SETTLED_FAILURE","CANCELLED","UNKNOWN"],readback:["NOT_APPLICABLE","NOT_STARTED","PENDING","SETTLED_SUCCESS","SETTLED_FAILURE","UNKNOWN"],completion:["NOT_APPLICABLE","NOT_STARTED","PENDING","SETTLED_SUCCESS","SETTLED_FAILURE","UNKNOWN"],observation:["NOT_STARTED","PENDING","SETTLED_SUCCESS","SETTLED_FAILURE","CANCELLED","UNKNOWN"]};
+  return {
+    at(next:typeof calendarFailureSites[number]){try{site=calendarFailureSites.includes(next)?next:"unknown";}catch{unknown=true;}},
+    register(action:"create"|"rotate"|"revoke"):CalendarObservationLabel|undefined {
+      try{const record=records.find(record=>record.action===action);if(!record||record.registration!=="NOT_REGISTERED"){unknown=true;return;}record.registration="REGISTERED";
+        return{set(field,state){try{if(Object.hasOwn(allowed,field)&&allowed[field].includes(state))record[field]=state;else unknown=true;}catch{unknown=true;}}};
+      }catch{unknown=true;}
+    },
+    failure() {try{for(const record of records){if(lines>=16)return;const overflow=lines===15;lines++;
+      const line=unknown||overflow?"calendar-source-label-v1 case=E2E001 site=unknown state=UNKNOWN":`calendar-source-label-v1 case=E2E001 site=${site} action=${record.action} ordinal=${record.ordinal} registration=${record.registration} request=${record.request} response=${record.response} readback=${record.readback} completion=${record.completion} observation=${record.observation}`;
+      if(line.length>512){unknown=true;continue;}try{sink(line);}catch{unknown=true;}
+    }}catch{unknown=true;}}
+  };
+}
+/** Diagnostic bookkeeping cannot affect matching, errors or cleanup authority. */
+function calendarLabel(run:()=>void):void {try{run();}catch{/* no-throw side observation only */}}
 export const calendarDiagnosticStages = ["fixture-base", "fixture-memberships", "fixture-clients", "seed-tenants", "seed-profiles", "seed-customer", "seed-facility", "seed-job", "seed-work-role", "seed-bookings", "seed-capability", "scenario", "sign-in", "navigation", "warning", "action-request", "action-response", "action-readback", "action-cancelled", "link-capture", "feed-http", "monitoring", "transport-fault", "cleanup-fault-release", "cleanup-lifecycle", "cleanup-fault-dispose", "cleanup-sql", "cleanup-canonical", "cleanup-page", "custody-retained", "unknown"] as const;
 export const calendarDiagnosticCategories = ["assertion", "timeout", "transport", "database", "cancelled", "unverified", "unknown"] as const;
 export const calendarDiagnosticSqlstates = ["23502", "23503", "23505", "23514", "22P02", "42501", "42P01", "42703", "42883", "40001", "40P01", "53300", "57014", "XX000", "CF409"] as const;
@@ -57,7 +81,7 @@ export type CalendarEventWaiter<T> = { promise: Promise<T>; cancel(): void };
  * is synchronous, including timeout/predicate failure; no native waiter lingers. */
 export function calendarEventWaiter<T>(options: {
   subscribe(listener: (value: T) => void): void; unsubscribe(listener: (value: T) => void): void;
-  predicate(value: T): boolean; stage: "action-request" | "action-response"; timeoutMs: number;
+  predicate(value: T): boolean; stage: "action-request" | "action-response"; timeoutMs: number; label?(state:CalendarLabelWaiterState):void;
 }): CalendarEventWaiter<T> {
   let resolve!: (value: T) => void, reject!: (error: Error) => void, done = false;
   let timer: ReturnType<typeof setTimeout> | undefined, disposalError: Error | undefined;
@@ -68,7 +92,7 @@ export function calendarEventWaiter<T>(options: {
     if (timer) clearTimeout(timer);
     try { options.unsubscribe(listener); }
     catch (unsubscribeError) { disposalError = calendarBrowserDiagnostic(options.stage, unsubscribeError); error = error ? calendarFailures([error, disposalError]) : disposalError; }
-    if (error) reject(error); else resolve(value as T);
+    if (error) {calendarLabel(()=>options.label?.("SETTLED_FAILURE"));reject(error);} else {calendarLabel(()=>options.label?.("MATCHED"));resolve(value as T);}
   };
   const listener = (value: T) => {
     try { if (options.predicate(value)) finish(undefined, value); }
@@ -78,9 +102,9 @@ export function calendarEventWaiter<T>(options: {
     options.subscribe(listener);
     if (!done) timer = setTimeout(() => finish(calendarBrowserDiagnostic(options.stage, { name: "TimeoutError" })), options.timeoutMs);
   } catch (error) { finish(calendarBrowserDiagnostic(options.stage, error)); }
-  return { promise, cancel() { finish(calendarBrowserDiagnostic("action-cancelled", { name: "AbortError" })); if (disposalError) throw disposalError; } };
+  return { promise, cancel() { const wasDone=done;finish(calendarBrowserDiagnostic("action-cancelled", { name: "AbortError" }));if(!wasDone)calendarLabel(()=>options.label?.("CANCELLED")); if (disposalError) throw disposalError; } };
 }
-export function createCalendarLifecycleObservations(options: { settlementTimeoutMs?: number } = {}) {
+export function createCalendarLifecycleObservations(options: { settlementTimeoutMs?: number; labels?:CalendarFailureLabels } = {}) {
   type Pending = { cancel(): void; settled: Promise<void> };
   const pending = new Set<Pending>(), actualWork = new Set<Promise<void>>(), failures: Error[] = [];
   let closing = false, cancellationVerified = true;
@@ -103,7 +127,9 @@ export function createCalendarLifecycleObservations(options: { settlementTimeout
       void settled.then(() => actualWork.delete(settled));
       return work;
     },
-    observe<R, S, T>(input: { request(): CalendarEventWaiter<R>; response(): CalendarEventWaiter<S>; readback(request: R, signal: AbortSignal): Promise<T>; completion?(request: R): Promise<boolean> }): Promise<T> {
+    observe<R, S, T>(input: { request(): CalendarEventWaiter<R>; response(): CalendarEventWaiter<S>; readback(request: R, signal: AbortSignal): Promise<T>; completion?(request: R): Promise<boolean>; label?:CalendarObservationLabel }): Promise<T> {
+      const note=(field:Parameters<CalendarObservationLabel["set"]>[0],state:string)=>calendarLabel(()=>input.label?.set(field,state));
+      note("observation","PENDING");note("completion",input.completion?"NOT_STARTED":"NOT_APPLICABLE");
       const controller = new AbortController();
       let request: CalendarEventWaiter<R> | undefined, response: CalendarEventWaiter<S> | undefined;
       let stage: CalendarDiagnosticStage = "action-response";
@@ -111,18 +137,20 @@ export function createCalendarLifecycleObservations(options: { settlementTimeout
       let setupError: unknown, setupFailed = false;
       try {
         if (closing) throw calendarBrowserDiagnostic("action-cancelled", { name: "AbortError" });
-        response = input.response(); void response.promise.catch(() => undefined);
-        stage = "action-request"; request = input.request(); void request.promise.catch(() => undefined);
+        note("response","PENDING");response = input.response(); void response.promise.catch(() => undefined);
+        stage = "action-request";note("request","PENDING"); request = input.request(); void request.promise.catch(() => undefined);
       } catch (error) {
-        setupError = error; setupFailed = true; cancelWaiter(response); cancelWaiter(request);
+        setupError = error; setupFailed = true;note("registration","REGISTRATION_FAILED"); cancelWaiter(response); cancelWaiter(request);
         if (input.completion) cancellationVerified = false;
       }
       // A cancelled event waiter is not proof the matched HTTP request ended.
       // Keep the actual native completion promise owned and joined independently.
       const completion = request ? request.promise.then(async matched => {
         try {
+          if(input.completion)note("completion","PENDING");
           if (input.completion && !await input.completion(matched)) throw calendarBrowserDiagnostic("cleanup-lifecycle", { name: "CalendarUnverified" });
-        } catch (error) { cancellationVerified = false; throw calendarBrowserDiagnostic("cleanup-lifecycle", error); }
+          if(input.completion)note("completion","SETTLED_SUCCESS");
+        } catch (error) {note("completion","SETTLED_FAILURE"); cancellationVerified = false; throw calendarBrowserDiagnostic("cleanup-lifecycle", error); }
       }, () => {
         if (input.completion) {
           // A missed/cancelled matcher cannot prove that no UI request started.
@@ -131,16 +159,19 @@ export function createCalendarLifecycleObservations(options: { settlementTimeout
         }
       }) : Promise.resolve();
       void completion.catch(() => undefined);
+      let readbackPending=false;
       const observation = (async () => {
         try {
           if (setupFailed) throw setupError;
           const [matched] = await Promise.all([request!.promise, response!.promise]);
           if (controller.signal.aborted) throw calendarBrowserDiagnostic("action-cancelled", { name: "AbortError" });
           stage = "action-readback";
+          readbackPending=true;note("readback","PENDING");
           const result = await input.readback(matched, controller.signal);
+          readbackPending=false;note("readback","SETTLED_SUCCESS");
           if (controller.signal.aborted) throw calendarBrowserDiagnostic("action-cancelled", { name: "AbortError" });
-          return result;
-        } catch (error) { throw calendarBrowserDiagnostic(stage, error); }
+          note("observation","SETTLED_SUCCESS");return result;
+        } catch (error) {if(readbackPending)note("readback","SETTLED_FAILURE");note("observation",controller.signal.aborted?"CANCELLED":"SETTLED_FAILURE");calendarLabel(()=>{options.labels?.at("observation");options.labels?.failure();});throw calendarBrowserDiagnostic(stage, error); }
         finally { cancelWaiter(request); cancelWaiter(response); }
       })();
       // Observe the RETURNED promise too: callers can fail before awaiting it.
@@ -161,6 +192,7 @@ export function createCalendarLifecycleObservations(options: { settlementTimeout
         timer = setTimeout(() => resolve(false), options.settlementTimeoutMs ?? 20_000);
       })]);
       if (timer) clearTimeout(timer);
+      if(!settled||!cancellationVerified)calendarLabel(()=>{options.labels?.at("settlement");options.labels?.failure();});
       return { settled: settled && cancellationVerified, errors: [...failures, ...(!settled ? [calendarBrowserDiagnostic("cleanup-lifecycle", { name: "TimeoutError" })] : [])] };
     },
   };
@@ -435,7 +467,7 @@ async function seedCalendarBookingFixture(roleFixture: CalendarBaseFixture): Pro
  * No global-IP reset, Vault writes, success stubs, retries or secret attachments. */
 export async function withCalendarBrowserFixture(
   page: Page, scenario: "own-and-foreign" | "no-profile" | "admin-monitoring",
-  run: (fixture: CalendarBrowserFixture) => Promise<void>,
+  run: (fixture: CalendarBrowserFixture) => Promise<void>, labels?:CalendarFailureLabels,
 ): Promise<void> {
   // Even Playwright locator errors can include the one-time input in DOM context.
   // Preserve failure, but never let those native details reach JSON/HTML reports.
@@ -457,7 +489,7 @@ export async function withCalendarBrowserFixture(
       let subject = subjects.montor;
       const attempts: Attempt[] = [], rawLinks: string[] = [], seedHashes: string[] = [];
       const activeFaults = new Set<ArmedFault>();
-      const observations = createCalendarLifecycleObservations();
+      const observations = createCalendarLifecycleObservations({labels});
       cleanupAllowed = false; // only the complete final settlement gate may admit deletion
       let transportVerified = true;
       const requestListener = (request: Request) => { const input = actionInput(request); if (input) attempts.push(input); };
@@ -544,11 +576,12 @@ export async function withCalendarBrowserFixture(
           async signIn(identity) { subject = subjects[identity]; fixture.expectedOwnEvents = [...(expectedByProfile.get(subject.profile) ?? [])].sort((a, b) => a.uid.localeCompare(b.uid)); await calendarBrowserStep("sign-in", () => browserSignIn(page, subject.user)); },
           snapshot,
           observeLifecycle(action, sourcePage = page) {
-            return observations.observe({
+            const label=labels?.register(action);
+            return observations.observe({label,
               // Preserve both original predicates and the 30-second transport
               // bound. Own listeners add cancellation, not a different matcher.
-              response: () => calendarEventWaiter<Response>({ subscribe: listener => { sourcePage.on("response", listener); }, unsubscribe: listener => { sourcePage.off("response", listener); }, predicate: response => actionInput(response.request())?.action === action, stage: "action-response", timeoutMs: 30_000 }),
-              request: () => calendarEventWaiter<Request>({ subscribe: listener => { sourcePage.on("request", listener); }, unsubscribe: listener => { sourcePage.off("request", listener); }, predicate: request => actionInput(request)?.action === action, stage: "action-request", timeoutMs: 30_000 }),
+              response: () => calendarEventWaiter<Response>({ subscribe: listener => { sourcePage.on("response", listener); }, unsubscribe: listener => { sourcePage.off("response", listener); }, predicate: response => actionInput(response.request())?.action === action, stage: "action-response", timeoutMs: 30_000,label:state=>label?.set("response",state) }),
+              request: () => calendarEventWaiter<Request>({ subscribe: listener => { sourcePage.on("request", listener); }, unsubscribe: listener => { sourcePage.off("request", listener); }, predicate: request => actionInput(request)?.action === action, stage: "action-request", timeoutMs: 30_000,label:state=>label?.set("request",state) }),
               readback: async (request, signal) => ({ committed: true, snapshot: await committedAttempt(actionInput(request)!, signal) }),
               completion: async request => {
                 const response = await request.response();
@@ -657,7 +690,7 @@ export async function withCalendarBrowserFixture(
         };
         stage = "scenario";
         await run(fixture);
-      } catch (error) { errors.push(calendarBrowserDiagnostic(stage, error)); }
+      } catch (error) {calendarLabel(()=>labels?.failure()); errors.push(calendarBrowserDiagnostic(stage, error)); }
       finally {
         let releasesVerified = true;
         try { page.off("request", requestListener); } catch (error) { releasesVerified = false; errors.push(calendarBrowserDiagnostic("cleanup-lifecycle", error)); }
@@ -712,5 +745,5 @@ export async function withCalendarBrowserFixture(
       try { await page.goto("about:blank"); } catch (error) { finalErrors.push(calendarBrowserDiagnostic("cleanup-page", error)); }
     }
   }
-  if (finalErrors.length) throw calendarFailures(finalErrors);
+  if (finalErrors.length) {calendarLabel(()=>labels?.failure());throw calendarFailures(finalErrors);}
 }

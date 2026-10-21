@@ -44,18 +44,50 @@ function throwFixtureFailures(primary:{error:unknown}|undefined,cleanupErrors:un
   const errors=primary?[primary.error,...cleanupErrors]:cleanupErrors;
   if(errors.length)throw new AggregateError(errors,message,primary?{cause:primary.error}:undefined);
 }
-export async function withTimeReportFixture(run: (fx: TimeReportFixture) => Promise<void>) {
-  await withBookingFixture(async fx => {
+// Opt-in NUDGE004 labels: fixed source sites only; never inspect an error/value.
+export const nudgeFailureSites = ["test-boundary","outer-await","booking-entry","clients","report-callback","report-cleanup","composition-return","seed-roles","seed-profile","seed-booking","recipients-callback","recipient-count","first-page","cursor-repeat","next-page","total-count","physical-recipients","physical-day","resume-import","resume-state","resume-route","resume-status","resume-call","resume-asof","resume-effects","negative-state","foreign-cursor","changed-asof","malformed-cursor","negative-effects","cleanup-reports","cleanup-assignments","cleanup-bookings","cleanup-profiles","cleanup-auth","unknown"] as const;
+export type NudgeFailureLabels = ReturnType<typeof createNudgeFailureLabels>;
+export function createNudgeFailureLabels(sink:(line:string)=>void=line=>console.error(line)) {
+  let site:typeof nudgeFailureSites[number]="outer-await",lines=0,unknown=false;
+  const progress={booking:"NOT_STARTED",clients:"NOT_STARTED",report:"NOT_STARTED",cleanup:"NOT_STARTED",composition:"NOT_STARTED",outer:"PENDING"};
+  return {
+    progress(field:keyof typeof progress,state:"NOT_STARTED"|"PENDING"|"SUCCESS"|"FAILURE") {try{if(Object.hasOwn(progress,field)&&["NOT_STARTED","PENDING","SUCCESS","FAILURE"].includes(state))progress[field]=state;else unknown=true;}catch{unknown=true;}},
+    at(next:typeof nudgeFailureSites[number]) {try{site=nudgeFailureSites.includes(next)?next:"unknown";}catch{unknown=true;}},
+    failure(boundary:"LOCAL"|"OPAQUE_OUTER_BEFORE_CALLBACK_UNKNOWN"|"OPAQUE_OUTER_AFTER_CALLBACK_UNKNOWN"|"OUTER_REJECTION_UNKNOWN"|"FINAL_MATCHES_INNER"|"FINAL_DIFFERS_INNER"|"TEST_FINAL"="LOCAL") {
+      try {if(lines>=16)return;const overflow=lines===15;lines++;
+        const safe=["LOCAL","OPAQUE_OUTER_BEFORE_CALLBACK_UNKNOWN","OPAQUE_OUTER_AFTER_CALLBACK_UNKNOWN","OUTER_REJECTION_UNKNOWN","FINAL_MATCHES_INNER","FINAL_DIFFERS_INNER","TEST_FINAL"].includes(boundary)?boundary:"OUTER_REJECTION_UNKNOWN";
+        const state=(value:string)=>value==="SUCCESS"?"RETURNED":value==="FAILURE"?"REJECTED":value;
+        const relation=safe==="FINAL_MATCHES_INNER"?"SAME_AS_OBSERVED_INNER":safe==="FINAL_DIFFERS_INNER"?"DIFFERENT_FROM_OBSERVED_INNER":"NO_INNER_OBSERVED";
+        const boundaryState=safe==="FINAL_MATCHES_INNER"||safe==="FINAL_DIFFERS_INNER"?"OPAQUE_OUTER_REJECTION_WITH_INNER_FAILURE_UNKNOWN":safe;
+        const line=`calendar-source-label-v1 case=NUDGE004 site=${unknown||overflow?"unknown":site} boundary=${unknown||overflow?"UNKNOWN":boundaryState} factory=UNKNOWN final_identity_relation=${unknown||overflow?"UNKNOWN":relation} booking_entered=${progress.booking==="SUCCESS"} clients=${state(progress.clients)} report=${state(progress.report)} cleanup=${state(progress.cleanup)} composition=${state(progress.composition)} outer=${state(progress.outer)}`;
+        if(line.length>512){unknown=true;return;}try{sink(line);}catch{unknown=true;}
+      }catch{unknown=true;}
+    }
+  };
+}
+export async function withTimeReportFixture(run: (fx: TimeReportFixture) => Promise<void>, labels?:NudgeFailureLabels) {
+  let entered=false,returned=false,observed:{error:unknown}|undefined;
+  try { await withBookingFixture(async fx => {
+    let clientsStarted=false,clientsFinished=false;
+    entered=true;labels?.progress("booking","SUCCESS");labels?.at("booking-entry");
+    try {
     const users = { admin: fx.base.adminA, planner: fx.users.projektledare, own: fx.users.montor,
       seller: fx.users.saljare, economy: fx.users.ekonomi, mixed: fx.roleUnionUser,
       invited: fx.invitedUser, disabled: fx.disabledUser, orphan: fx.base.orphanUser, foreign: fx.base.adminB };
     const reused: Record<string,TestServerClient> = {admin:fx.adminClient,planner:fx.plannerClient,own:fx.montorClient,foreign:fx.foreignClient};
+    clientsStarted=true;labels?.at("clients");labels?.progress("clients","PENDING");
     const clients = Object.fromEntries(await Promise.all(Object.entries(users).map(async ([key, user]) => [key, reused[key] ?? await makeAuthedServerClient(user)])));
+    clientsFinished=true;labels?.progress("clients","SUCCESS");
     let primary:{error:unknown}|undefined;const cleanupErrors:unknown[]=[];
-    try { await run({ ...fx, clients }); } catch(error) { primary={error}; }
-    try { await cleanupOwnedTimeReports(fx.tenantIds); } catch(error) { cleanupErrors.push(error); }
+    labels?.at("report-callback");labels?.progress("report","PENDING");
+    try { await run({ ...fx, clients });labels?.progress("report","SUCCESS"); } catch(error) { primary={error};labels?.progress("report","FAILURE");labels?.at("report-callback");labels?.failure(); }
+    labels?.at("report-cleanup");labels?.progress("cleanup","PENDING");
+    try { await cleanupOwnedTimeReports(fx.tenantIds);labels?.progress("cleanup","SUCCESS"); } catch(error) { cleanupErrors.push(error);labels?.progress("cleanup","FAILURE");labels?.at("report-cleanup");labels?.failure(); }
+    labels?.at("composition-return");labels?.progress("composition","PENDING");
     throwFixtureFailures(primary,cleanupErrors,"Time-report callback and/or owned report cleanup failed");
-  });
+    returned=true;labels?.progress("composition","SUCCESS");
+    }catch(error){if(clientsStarted&&!clientsFinished)labels?.progress("clients","FAILURE");if(!returned)labels?.progress("composition","FAILURE");if(!observed){observed={error};}labels?.progress(returned?"outer":"composition","FAILURE");labels?.failure();throw error;}
+  });labels?.progress("outer","SUCCESS"); }catch(error){labels?.progress("outer","FAILURE");labels?.failure(!entered?"OPAQUE_OUTER_BEFORE_CALLBACK_UNKNOWN":returned?"OPAQUE_OUTER_AFTER_CALLBACK_UNKNOWN":observed?error===observed.error?"FINAL_MATCHES_INNER":"FINAL_DIFFERS_INNER":"OUTER_REJECTION_UNKNOWN");throw error;}
 }
 export async function setRoles(tenantId: string, userId: string, primary: string, supplemental: string[] = [], status = "active") {
   await adminQuery("update public.tenant_memberships set role=$3,status=$4 where tenant_id=$1 and user_id=$2", [tenantId, userId, primary, status]);
@@ -197,24 +229,24 @@ export async function seedCheckedReport(tenantId: string, actorId: string, input
   });
 }
 
-export async function withNudgeRecipients(fx: TimeReportFixture, run: (recipients: Array<{ userId: string; profileId: string }>) => Promise<void>) {
+export async function withNudgeRecipients(fx: TimeReportFixture, run: (recipients: Array<{ userId: string; profileId: string }>) => Promise<void>, labels?:NudgeFailureLabels) {
   const tenantId=fx.base.tenantA.id,ownedUsers:string[]=[],ownedProfiles:string[]=[],ownedBookings:string[]=[];
   const recipients:Array<{userId:string;profileId:string}>=[];
   let primary:{error:unknown}|undefined;const cleanupErrors:unknown[]=[];
   try {
     for (let batch = 0; batch < 9; batch++) {
-      const extra = await seedRoleAwarePhaseAUsers(fx.base);
+      labels?.at("seed-roles");const extra = await seedRoleAwarePhaseAUsers(fx.base);
       ownedUsers.push(...extra.extraUsers.map(u => u.id));
       for (const user of [extra.users.projektledare, extra.users.montor, extra.roleUnionUser]) {
         const profileId = crypto.randomUUID();
         ownedProfiles.push(profileId);
-        await adminQuery("insert into public.person_profiles(id,tenant_id,membership_id) select $1,$2,id from public.tenant_memberships where tenant_id=$2 and user_id=$3", [profileId, tenantId, user.id]);
-        ownedBookings.push(await seedReportBooking(fx, { profileIds: [profileId], startsAt: "2026-10-19T06:00:00Z", endsAt: "2026-10-19T07:00:00Z" }));
+        labels?.at("seed-profile");await adminQuery("insert into public.person_profiles(id,tenant_id,membership_id) select $1,$2,id from public.tenant_memberships where tenant_id=$2 and user_id=$3", [profileId, tenantId, user.id]);
+        labels?.at("seed-booking");ownedBookings.push(await seedReportBooking(fx, { profileIds: [profileId], startsAt: "2026-10-19T06:00:00Z", endsAt: "2026-10-19T07:00:00Z" }));
         recipients.push({ userId: user.id, profileId });
       }
     }
-    await run(recipients);
-  } catch(error) { primary={error}; }
+    labels?.at("recipients-callback");await run(recipients);
+  } catch(error) { primary={error};labels?.failure(); }
   // The awaited callback must settle all producer/race promises before cleanup.
   // Restrictive assignment -> profile -> membership FKs require this order.
   // Every normal-enforcement delete is limited to this tenant + generated IDs;
@@ -226,10 +258,11 @@ export async function withNudgeRecipients(fx: TimeReportFixture, run: (recipient
     async()=>{if(ownedProfiles.length)await adminQuery(`delete from public.person_profiles p using public.tenant_memberships m
       where p.tenant_id=$1 and p.id=any($2::uuid[]) and m.tenant_id=p.tenant_id and m.id=p.membership_id and m.user_id=any($3::uuid[])`,[tenantId,ownedProfiles,ownedUsers]);},
   ];
-  for(const remove of cleanup) {
-    try { await remove(); } catch(error) { cleanupErrors.push(error); }
+  for(const [index,remove] of cleanup.entries()) {
+    labels?.at((["cleanup-reports","cleanup-assignments","cleanup-bookings","cleanup-profiles"] as const)[index]);
+    try { await remove(); } catch(error) { cleanupErrors.push(error);labels?.failure(); }
   }
-  const removed=await Promise.allSettled(ownedUsers.map(userId=>deleteAuthUser(userId)));
-  for(const result of removed)if(result.status==="rejected")cleanupErrors.push(result.reason);
+  labels?.at("cleanup-auth");const removed=await Promise.allSettled(ownedUsers.map(userId=>deleteAuthUser(userId)));
+  for(const result of removed)if(result.status==="rejected"){cleanupErrors.push(result.reason);labels?.failure();}
   throwFixtureFailures(primary,cleanupErrors,"Nudge recipient callback and/or owned fixture cleanup failed");
 }
