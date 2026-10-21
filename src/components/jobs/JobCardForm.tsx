@@ -166,9 +166,9 @@ function JobCardDraft({ jobId, initial = {}, options, confirmed, onFreshRead, on
   return <form onSubmit={submit} onChangeCapture={requireLeave} onChange={() => { if (saved) setSaved(false); }} data-testid="job-card-form" className="flex w-full min-w-0 max-w-2xl flex-col gap-4">
     {options.error && <p role="alert">Valen kunde inte läsas. Ladda om sidan för att försöka igen.</p>}
     {error && <p role="alert" data-testid="job-card-unsent" className="rounded-md border border-red-300 bg-red-50 p-3 text-sm text-red-800">Inte bekräftat sparat. {error} Dina uppgifter finns kvar.</p>}
-    {conflict && <div role="alert" data-testid="job-card-stale"><p>Jobbet har �ndrats sedan kortet l�stes. Utkastet har inte sparats. L�s aktuella uppgifter och granska dem innan du sparar igen.</p><button type="button" data-testid="job-card-read-current" className={control} onClick={() => {
-      if (window.confirm("L�s aktuellt jobbkort? Ditt osparade utkast ers�tts med de aktuella uppgifterna som du beh�ver granska.")) {onFreshRead(false);router.refresh();}
-    }}>L�s aktuellt jobbkort</button></div>}
+    {conflict && <div role="alert" data-testid="job-card-stale"><p>Jobbet har ändrats sedan kortet lästes. Utkastet har inte sparats. Läs aktuella uppgifter och granska dem innan du sparar igen.</p><button type="button" data-testid="job-card-read-current" className={control} onClick={() => {
+      if (window.confirm("Läs aktuellt jobbkort? Ditt osparade utkast ersätts med de aktuella uppgifterna som du behöver granska.")) {onFreshRead(false);router.refresh();}
+    }}>Läs aktuellt jobbkort</button></div>}
     {unresolved && <button data-testid="job-card-retry" type="button" disabled={pending} onClick={() => attempt.current && void send(attempt.current)} className={control}>Försök spara igen</button>}
     {saved && <p role="status" data-testid="job-card-save-status">Jobbet är sparat.</p>}
     <fieldset disabled={pending || unresolved || conflict || Boolean(options.error)} className="flex min-w-0 flex-col gap-4 disabled:opacity-60">

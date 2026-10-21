@@ -425,7 +425,7 @@ test("[P0] checkpoint stale full-card draft is refused, retained, and only repla
     await expect(current.getByLabel("Uppskattad tid (minuter)",{exact:true})).toHaveValue("180");
     await expect(current.getByTestId(`job-required-role-${f.roleId}`)).not.toBeChecked();
     await expect(current.getByTestId(`job-dependency-${f.jobs.prerequisite.id}`)).not.toBeChecked();
-    await expect(current.getByTestId("job-access-window-row").getByLabel("Från",{exact:true})).toHaveValue("2026-10-12T09:00");
+    await expect(current.getByTestId("job-access-window-row").getByLabel("FrÃ¥n",{exact:true})).toHaveValue("2026-10-12T09:00");
     await current.getByRole("textbox",{name:"Titel",exact:true}).fill(`Reviewed ${f.jobs.editable.id}`);
     await current.getByTestId("job-card-save").click();
     await expect(page.getByTestId("job-card-save-status")).toBeVisible();
