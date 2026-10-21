@@ -1,0 +1,19 @@
+{
+  "kind": "ROOT_MECHANICAL_TARGETED_CORRECTION_REVIEW_ADMISSION",
+  "head": "deba16e915df997af122a3dc2b6e1684d4fe16b3",
+  "attestation": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-c4-job01-correction-review/original-attestation.json",
+    "bytes": 13034,
+    "sha256": "fa0f5f532018eaa77f9d2409af6f7d1899e1b711a368473425c4e271eb108baf"
+  },
+  "manifest": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-c4-job01-correction-review/manifest.json",
+    "bytes": 720,
+    "sha256": "f3fd4ff9f9fae66b401918e806aa94fe32f5c19fdfc0e0fc091072d52d4adf02"
+  },
+  "verified_file_ref_occurrences": 29,
+  "disposition": "C4-JOB-01 closed; C4-CONFIG-01 remains",
+  "source_edit_authorized": false,
+  "native_effects_authorized": false,
+  "normal_acceptance_credit": 0
+}

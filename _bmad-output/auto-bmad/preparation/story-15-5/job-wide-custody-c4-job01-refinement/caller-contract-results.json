@@ -1,0 +1,417 @@
+{
+  "schema": "C4_JOB01_PURE_AST_v1",
+  "positive_controls": 3,
+  "negative_controls": 24,
+  "current": [
+    {
+      "path": "tests/integration/commands/calendar-feed.int.test.ts",
+      "bytes": 36884,
+      "sha256": "55e4105f0c9e110c7fc08ef17d51f3d5cdd3c8ea6996cf215f53621da1e45e08",
+      "calls": [
+        {
+          "line": 30,
+          "id": "15.5-INT001",
+          "valid": true
+        },
+        {
+          "line": 53,
+          "id": "15.5-INT002",
+          "valid": true
+        },
+        {
+          "line": 72,
+          "id": "15.5-INT003",
+          "valid": true
+        },
+        {
+          "line": 86,
+          "id": "15.5-INT004",
+          "valid": true
+        },
+        {
+          "line": 103,
+          "id": "15.5-INT005",
+          "valid": true
+        },
+        {
+          "line": 126,
+          "id": "15.5-INT006",
+          "valid": true
+        },
+        {
+          "line": 141,
+          "id": "15.5-INT007",
+          "valid": true
+        },
+        {
+          "line": 156,
+          "id": "15.5-INT008",
+          "valid": true
+        },
+        {
+          "line": 171,
+          "id": "15.5-INT009",
+          "valid": true
+        },
+        {
+          "line": 192,
+          "id": "15.5-INT010",
+          "valid": true
+        },
+        {
+          "line": 214,
+          "id": "15.5-INT011",
+          "valid": true
+        },
+        {
+          "line": 235,
+          "id": "15.5-INT012",
+          "valid": true
+        },
+        {
+          "line": 256,
+          "id": "15.5-INT013",
+          "valid": true
+        },
+        {
+          "line": 273,
+          "id": "15.5-INT014",
+          "valid": true
+        }
+      ]
+    },
+    {
+      "path": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "bytes": 26921,
+      "sha256": "968a9e0b18f1ad1a9f2e74aae79049d2d01fcc2f5f516954e8627000dd9a8b40",
+      "calls": [
+        {
+          "line": 20,
+          "id": "15.5-API001",
+          "valid": true
+        },
+        {
+          "line": 60,
+          "id": "15.5-API002",
+          "valid": true
+        },
+        {
+          "line": 84,
+          "id": "15.5-API003",
+          "valid": true
+        },
+        {
+          "line": 100,
+          "id": "15.5-API004",
+          "valid": true
+        },
+        {
+          "line": 118,
+          "id": "15.5-API005",
+          "valid": true
+        },
+        {
+          "line": 131,
+          "id": "15.5-API006",
+          "valid": true
+        },
+        {
+          "line": 146,
+          "id": "15.5-API007",
+          "valid": true
+        },
+        {
+          "line": 168,
+          "id": "15.5-API008",
+          "valid": true
+        },
+        {
+          "line": 194,
+          "id": "15.5-API009",
+          "valid": true
+        },
+        {
+          "line": 209,
+          "id": "15.5-API010",
+          "valid": true
+        },
+        {
+          "line": 234,
+          "id": "15.5-API011",
+          "valid": true
+        },
+        {
+          "line": 248,
+          "id": "15.5-API012",
+          "valid": true
+        },
+        {
+          "line": 266,
+          "id": "15.5-API013",
+          "valid": true
+        },
+        {
+          "line": 285,
+          "id": "15.5-API014",
+          "valid": true
+        },
+        {
+          "line": 308,
+          "id": "15.5-API015",
+          "valid": true
+        },
+        {
+          "line": 324,
+          "id": "15.5-API016",
+          "valid": true
+        },
+        {
+          "line": 345,
+          "id": "15.5-API017",
+          "valid": true
+        },
+        {
+          "line": 365,
+          "id": "15.5-API018",
+          "valid": true
+        },
+        {
+          "line": 390,
+          "id": "15.5-API019",
+          "valid": true
+        },
+        {
+          "line": 407,
+          "id": "15.5-API020",
+          "valid": true
+        }
+      ]
+    }
+  ],
+  "controls": [
+    {
+      "source": "tests/integration/commands/calendar-feed.int.test.ts",
+      "mutation": "outer_catch",
+      "rejected": true,
+      "reasons": [
+        "exact-enrollment",
+        "immediate-test-expression"
+      ]
+    },
+    {
+      "source": "tests/integration/commands/calendar-feed.int.test.ts",
+      "mutation": "finally_return",
+      "rejected": true,
+      "reasons": [
+        "exact-enrollment",
+        "immediate-test-expression"
+      ]
+    },
+    {
+      "source": "tests/integration/commands/calendar-feed.int.test.ts",
+      "mutation": "void",
+      "rejected": true,
+      "reasons": [
+        "exact-enrollment",
+        "immediate-test-expression"
+      ]
+    },
+    {
+      "source": "tests/integration/commands/calendar-feed.int.test.ts",
+      "mutation": "not_awaited",
+      "rejected": true,
+      "reasons": [
+        "exact-enrollment",
+        "immediate-test-expression"
+      ]
+    },
+    {
+      "source": "tests/integration/commands/calendar-feed.int.test.ts",
+      "mutation": "wrapper",
+      "rejected": true,
+      "reasons": [
+        "exact-enrollment",
+        "immediate-test-expression"
+      ]
+    },
+    {
+      "source": "tests/integration/commands/calendar-feed.int.test.ts",
+      "mutation": "return",
+      "rejected": true,
+      "reasons": [
+        "exact-enrollment",
+        "immediate-test-expression"
+      ]
+    },
+    {
+      "source": "tests/integration/commands/calendar-feed.int.test.ts",
+      "mutation": "conditional",
+      "rejected": true,
+      "reasons": [
+        "exact-enrollment",
+        "immediate-test-expression"
+      ]
+    },
+    {
+      "source": "tests/integration/commands/calendar-feed.int.test.ts",
+      "mutation": "then_catch",
+      "rejected": true,
+      "reasons": [
+        "exact-enrollment",
+        "immediate-test-expression"
+      ]
+    },
+    {
+      "source": "tests/integration/commands/calendar-feed.int.test.ts",
+      "mutation": "wrong_fixture_import",
+      "rejected": true,
+      "reasons": [
+        "binding-or-use",
+        "direct-import"
+      ]
+    },
+    {
+      "source": "tests/integration/commands/calendar-feed.int.test.ts",
+      "mutation": "fixture_alias",
+      "rejected": true,
+      "reasons": [
+        "binding-or-use",
+        "direct-import"
+      ]
+    },
+    {
+      "source": "tests/integration/commands/calendar-feed.int.test.ts",
+      "mutation": "fixture_reassignment",
+      "rejected": true,
+      "reasons": [
+        "binding-or-use"
+      ]
+    },
+    {
+      "source": "tests/integration/commands/calendar-feed.int.test.ts",
+      "mutation": "test_shadow",
+      "rejected": true,
+      "reasons": [
+        "binding-or-use"
+      ]
+    },
+    {
+      "source": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "mutation": "outer_catch",
+      "rejected": true,
+      "reasons": [
+        "exact-enrollment",
+        "immediate-test-expression"
+      ]
+    },
+    {
+      "source": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "mutation": "finally_return",
+      "rejected": true,
+      "reasons": [
+        "exact-enrollment",
+        "immediate-test-expression"
+      ]
+    },
+    {
+      "source": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "mutation": "void",
+      "rejected": true,
+      "reasons": [
+        "exact-enrollment",
+        "immediate-test-expression"
+      ]
+    },
+    {
+      "source": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "mutation": "not_awaited",
+      "rejected": true,
+      "reasons": [
+        "exact-enrollment",
+        "immediate-test-expression"
+      ]
+    },
+    {
+      "source": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "mutation": "wrapper",
+      "rejected": true,
+      "reasons": [
+        "exact-enrollment",
+        "immediate-test-expression"
+      ]
+    },
+    {
+      "source": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "mutation": "return",
+      "rejected": true,
+      "reasons": [
+        "exact-enrollment",
+        "immediate-test-expression"
+      ]
+    },
+    {
+      "source": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "mutation": "conditional",
+      "rejected": true,
+      "reasons": [
+        "exact-enrollment",
+        "immediate-test-expression"
+      ]
+    },
+    {
+      "source": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "mutation": "then_catch",
+      "rejected": true,
+      "reasons": [
+        "exact-enrollment",
+        "immediate-test-expression"
+      ]
+    },
+    {
+      "source": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "mutation": "wrong_fixture_import",
+      "rejected": true,
+      "reasons": [
+        "binding-or-use",
+        "direct-import"
+      ]
+    },
+    {
+      "source": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "mutation": "fixture_alias",
+      "rejected": true,
+      "reasons": [
+        "binding-or-use",
+        "direct-import"
+      ]
+    },
+    {
+      "source": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "mutation": "fixture_reassignment",
+      "rejected": true,
+      "reasons": [
+        "binding-or-use"
+      ]
+    },
+    {
+      "source": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "mutation": "test_shadow",
+      "rejected": true,
+      "reasons": [
+        "binding-or-use"
+      ]
+    }
+  ],
+  "finally_return_actually_suppresses_rejection": true,
+  "app_modules_executed": 0,
+  "SQL_network_resources": 0,
+  "limits": "Finite current direct binding/statement shape; not a general proof against arbitrary malicious module monkeypatch or modified helper/test runner.",
+  "process": {
+    "native_exit": 0,
+    "elapsed_seconds": 0.415,
+    "stdout_bytes": 9623,
+    "stdout_sha256": "223e1108a87869a74f851b689d204a786f42db7b7cf84fb47e2ecfb7aafb4d3f",
+    "stderr_bytes": 0,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

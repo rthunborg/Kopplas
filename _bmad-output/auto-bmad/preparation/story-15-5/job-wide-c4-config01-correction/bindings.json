@@ -1,0 +1,292 @@
+{
+  "schema": "C4_CONFIG01_BINDINGS_v1",
+  "metadata_head_last_root_reported": "deba16e915df997af122a3dc2b6e1684d4fe16b3",
+  "head_kind": "Root actual Git observation; no new Git operation by this task",
+  "partial_source": "d661023af8aa42890fa5f91cb1b2b2655288c6fa",
+  "frozen_refs": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-custody-c4-job01-refinement/refinement.json",
+      "bytes": 9134,
+      "sha256": "94e0c70758fefe97fee429c2627836b319f2c249513765da37dfbd9948c67c5a"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-custody-c4-job01-refinement/bindings.json",
+      "bytes": 13181,
+      "sha256": "bd60202b486fc34bb8df5e79fb91f79a4f189d05483b4f07e6c65df9a419118b"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-custody-c4-job01-refinement/manifest.json",
+      "bytes": 2197,
+      "sha256": "14778fe1ca466f9008954aa9dcd6fe1e911fc752bae599f80a5adc88fab8329d"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-custody-c4-job01-refinement/guard.config.mjs",
+      "bytes": 1226,
+      "sha256": "f3251da24dc3bcab9ce9e4597e7540a167b73f5759ebb343677be5e36e96fc4c"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-custody-c4-job01-refinement/caller-contract-controls.mjs",
+      "bytes": 5919,
+      "sha256": "43c606bc428cf441f0c7f94e2a84ab42023856358967d973dce1a22ee8ac87d8"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-custody-c4-job01-refinement/caller-contract-results.json",
+      "bytes": 10338,
+      "sha256": "6fe52ba609833d0d5ff112f2701ae645c29582634cdf5817b171292ab9dce444"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-c4-job01-correction-review/original-report.md",
+      "bytes": 4213,
+      "sha256": "63ee05a546981aac5167d25d802e8fb211f1b5ee6aaadeda2db5cc11aab7d9b1"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-c4-job01-correction-review/original-attestation.json",
+      "bytes": 13034,
+      "sha256": "fa0f5f532018eaa77f9d2409af6f7d1899e1b711a368473425c4e271eb108baf"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/root-job-wide-c4-job01-correction-review-admission.json",
+      "bytes": 825,
+      "sha256": "787ced5ef87e20eeb8691bb449ac053b8679f0a792a03842659c4219f68b4bf5"
+    }
+  ],
+  "current_source_raw_unchanged": [
+    {
+      "path": "AGENTS.md",
+      "bytes": 11938,
+      "sha256": "b28eec9c075877d175362dad65b739054e45a3134d748b3c11e601ae36fbb823",
+      "historical_actual_git_blob": "4c3e77375a8ac8c89fdd7d0081e73ec61df04312",
+      "historical_actual_git_head": "a189b65712f7984024cec5ce39a8471609224a66",
+      "raw_still_equal": true
+    },
+    {
+      "path": "docs/process/development-completion-policy.md",
+      "bytes": 8460,
+      "sha256": "d3617c2bcfb64e0b185c82e8a39f84af40bfc5b0ddda739552d2e099c38d4893",
+      "historical_actual_git_blob": "ddb6e0f5da79135f5a9b246d217c8b1f5cb6985d",
+      "historical_actual_git_head": "a189b65712f7984024cec5ce39a8471609224a66",
+      "raw_still_equal": true
+    },
+    {
+      "path": "vitest.config.ts",
+      "bytes": 3602,
+      "sha256": "83e6ae86cdc6c36f44108eb279ff724d426fc362b6b204fc144f5816fc659bb8",
+      "historical_actual_git_blob": "d18bd17d6558e02549b4296f976acb0f9d831e0b",
+      "historical_actual_git_head": "a189b65712f7984024cec5ce39a8471609224a66",
+      "raw_still_equal": true
+    },
+    {
+      "path": "tests/unit/scripts/verify/integration-test-partitions.test.ts",
+      "bytes": 9087,
+      "sha256": "ea88c63c7fda518328fe7a2ab5f2c9d90628995f64f76607e184ef47b405f1f0",
+      "historical_actual_git_blob": "761f0b917e7bca32a046f4af21625a406dc9bbc6",
+      "historical_actual_git_head": "a189b65712f7984024cec5ce39a8471609224a66",
+      "raw_still_equal": true
+    },
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "bytes": 47151,
+      "sha256": "e3eef57fabf0c8a57a81a5b9db95fdcabadf4194f132e84c35408c611cecd943",
+      "historical_actual_git_blob": "d0d186aee7e6a575d52659dcc27d9bd9ff8cbbe8",
+      "historical_actual_git_head": "a189b65712f7984024cec5ce39a8471609224a66",
+      "raw_still_equal": true
+    },
+    {
+      "path": "tests/support/calendar-feed-ci-contract.ts",
+      "bytes": 8024,
+      "sha256": "40aea88849abff55a0faf156c52cf18d6f0232772cc1654c62c4f290b7fefcf5",
+      "historical_actual_git_blob": "2a5fec9b04c3259f608c95db25668836016808e5",
+      "historical_actual_git_head": "a189b65712f7984024cec5ce39a8471609224a66",
+      "raw_still_equal": true
+    },
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "bytes": 131207,
+      "sha256": "effa7aebc64591f1441891ad300cc610a9f7f30142f5fa78317b96ea27401332",
+      "historical_actual_git_blob": "ce8196d51c27251dcfd793c1d3af6259ddb78b4d",
+      "historical_actual_git_head": "a189b65712f7984024cec5ce39a8471609224a66",
+      "raw_still_equal": true
+    },
+    {
+      "path": "tests/factories/admin-sql.ts",
+      "bytes": 12007,
+      "sha256": "3bd41701e12e7b41e8a0a6ebd162075355b04ece8f963947ff4f63db772e4b77",
+      "historical_actual_git_blob": "6cc5dec60f8dd598a562c1c15464110c4094cf38",
+      "historical_actual_git_head": "a189b65712f7984024cec5ce39a8471609224a66",
+      "raw_still_equal": true
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "bytes": 223590,
+      "sha256": "e2b51edd0bb23fdb6be31d93400dc3871d1a5d40c4047d38cb52a63ce96ac59f",
+      "historical_actual_git_blob": "c4a685c73a1285841f74634fbae47281fa97b5ad",
+      "historical_actual_git_head": "a189b65712f7984024cec5ce39a8471609224a66",
+      "raw_still_equal": true
+    },
+    {
+      "path": "tests/integration/jobs/job-runs.int.test.ts",
+      "bytes": 4904,
+      "sha256": "5d387ead588913269702e3f48e8c9618067bd1e9bec8a1224ee737c351a23ac3",
+      "historical_actual_git_blob": "3c374ac23d0ce4e2bceb949224e644696430a1ce",
+      "historical_actual_git_head": "a189b65712f7984024cec5ce39a8471609224a66",
+      "raw_still_equal": true
+    },
+    {
+      "path": "tests/integration/commands/conflict-resolver.int.test.ts",
+      "bytes": 48269,
+      "sha256": "72e942bd65ba8fcbc1904c06035535b5570b097613751e5daf31a47ee52a0104",
+      "historical_actual_git_blob": "e05ded491723a1f72fcfc7a402014fa7993cb673",
+      "historical_actual_git_head": "a189b65712f7984024cec5ce39a8471609224a66",
+      "raw_still_equal": true
+    },
+    {
+      "path": "tests/integration/commands/time-reports.int.test.ts",
+      "bytes": 18382,
+      "sha256": "fba465dce98b1d3c2e3d351ffd605954e4569e66024e20b6115df7c35aef8e2f",
+      "historical_actual_git_blob": "6c6f80ad1739db06bf774303b0a0ffb608303be4",
+      "historical_actual_git_head": "a189b65712f7984024cec5ce39a8471609224a66",
+      "raw_still_equal": true
+    },
+    {
+      "path": "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+      "bytes": 40586,
+      "sha256": "5a8eb88f239a71d4a4f9754d36c8a264c640b533a779d0fa68ec81d0440c95cb",
+      "historical_actual_git_blob": "ec7aa1b4036bc63fc0eb4a438faff4794de011ff",
+      "historical_actual_git_head": "a189b65712f7984024cec5ce39a8471609224a66",
+      "raw_still_equal": true
+    },
+    {
+      "path": "tests/integration/commands/calendar-feed.int.test.ts",
+      "bytes": 36884,
+      "sha256": "55e4105f0c9e110c7fc08ef17d51f3d5cdd3c8ea6996cf215f53621da1e45e08",
+      "historical_actual_git_blob": "35863f8eeb563f21e9c0ff741115f018ee545134",
+      "historical_actual_git_head": "a189b65712f7984024cec5ce39a8471609224a66",
+      "raw_still_equal": true
+    },
+    {
+      "path": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "bytes": 26921,
+      "sha256": "968a9e0b18f1ad1a9f2e74aae79049d2d01fcc2f5f516954e8627000dd9a8b40",
+      "historical_actual_git_blob": "63cb860f1ab2f92a0e875fbfc9eb89fa0b89bd4b",
+      "historical_actual_git_head": "a189b65712f7984024cec5ce39a8471609224a66",
+      "raw_still_equal": true
+    },
+    {
+      "path": "tests/integration/rls/calendar-feed.rls.test.ts",
+      "bytes": 16989,
+      "sha256": "fb636129a2497479f7826b18f08ffd574d200c2512d2624e8d913dfb502cf9fc",
+      "historical_actual_git_blob": "1d8fa33b27b7fa58ca2908c3fc8ed1db8947ee69",
+      "historical_actual_git_head": "a189b65712f7984024cec5ce39a8471609224a66",
+      "raw_still_equal": true
+    },
+    {
+      "path": "tests/support/global-setup.ts",
+      "bytes": 2970,
+      "sha256": "adad74b1ef885d8c0714ef6bb5ab9e61b4973021d2c0e7f2e8df17ef6c5ea788",
+      "historical_actual_git_blob": "8cb06568f42fcdccdb47c4ee3b95698a48907ca3",
+      "historical_actual_git_head": "a189b65712f7984024cec5ce39a8471609224a66",
+      "raw_still_equal": true
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "bytes": 75930,
+      "sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e",
+      "historical_actual_git_blob": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a",
+      "historical_actual_git_head": "a189b65712f7984024cec5ce39a8471609224a66",
+      "raw_still_equal": true
+    },
+    {
+      "path": "package.json",
+      "bytes": 2352,
+      "sha256": "82f78147f699b457c89c912c2e85772b8b688708c93e399c1ef19112d1f28412",
+      "historical_actual_git_blob": "819459b2df6f2c385a8442dda25ef7904576e270",
+      "historical_actual_git_head": "a189b65712f7984024cec5ce39a8471609224a66",
+      "raw_still_equal": true
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "bytes": 162159,
+      "sha256": "84c969ae2b2dfdbb0f88afba7890c58f36b2415bb02e255e1a99bf8aaf60450f",
+      "historical_actual_git_blob": "4d8fefc7c340cb5ad1ca1650563fe6a0ce6db115",
+      "historical_actual_git_head": "a189b65712f7984024cec5ce39a8471609224a66",
+      "raw_still_equal": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/partial-six-source-checkpoint.json",
+      "bytes": 2393,
+      "sha256": "cc23c189ef4c683e217b188c3030138141759cb60008ffc653e54be859ddca65",
+      "historical_actual_git_blob": "811b8753745456ad97fc30c0447551ea28be9b5f",
+      "historical_actual_git_head": "a189b65712f7984024cec5ce39a8471609224a66",
+      "raw_still_equal": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-acl-session-lifecycle-f1-refinement/proposal.json",
+      "bytes": 12163,
+      "sha256": "dc7191d83bb2796a593b5fafd5f0e78345640695ce82f50423b6f263df198add",
+      "historical_actual_git_blob": "d241d5e70a5fb096b1aeafa3a95e02c12c58c000",
+      "historical_actual_git_head": "a189b65712f7984024cec5ce39a8471609224a66",
+      "raw_still_equal": true
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "bytes": 181788,
+      "sha256": "bbc7416fc206a81937d084d429744fffc67a8c6f4997c48f2d4533892b82b7a6",
+      "historical_actual_git_blob": "8c3410db7a3950b56aa9743c666212cec84fd0d3",
+      "historical_actual_git_head": "a189b65712f7984024cec5ce39a8471609224a66",
+      "raw_still_equal": true
+    }
+  ],
+  "installed_unchanged": [
+    {
+      "path": "node_modules/vitest/package.json",
+      "bytes": 5918,
+      "sha256": "e12762a5b629bea6cbb2b0540a8a15c50f3098bb3193d3e319293b58b64c4ed9"
+    },
+    {
+      "path": "node_modules/vitest/dist/chunks/defaults.9aQKnqFk.js",
+      "bytes": 2190,
+      "sha256": "e500ba917d0d320a037b4ad92ae691462b50a939e21b1f98d0073c45d55466ab"
+    },
+    {
+      "path": "node_modules/vitest/dist/chunks/index.DXx9Dtk7.js",
+      "bytes": 7330,
+      "sha256": "984c62280948e3916bfd83d47786b912081f61fbac6d79d5be189cb656a570ac"
+    },
+    {
+      "path": "node_modules/vitest/dist/chunks/cli-api.24X8XwN1.js",
+      "bytes": 495252,
+      "sha256": "02f2ab29d67228334503688a0168fa08ddb42949aa447fbcd7541d06919a4f7d"
+    },
+    {
+      "path": "node_modules/vitest/dist/chunks/base.BE3cXZj3.js",
+      "bytes": 8972,
+      "sha256": "51b3c786fb87ab41d6ecefb8df4a3f0e51d77ca27d3033c710c4158b6f198262"
+    },
+    {
+      "path": "node_modules/.pnpm/@vitest+runner@4.1.9/node_modules/@vitest/runner/package.json",
+      "bytes": 1156,
+      "sha256": "f65bab94ffa60ceff123e4aed2dc88a8f62d522391244d5aff1eef57d802c614"
+    },
+    {
+      "path": "node_modules/typescript/package.json",
+      "bytes": 3620,
+      "sha256": "822ef7ca6452205657b6288b066481ecf508bfbf43455d715cf7d3ec457561e6"
+    },
+    {
+      "path": "node_modules/vitest/dist/config.d.ts",
+      "bytes": 4163,
+      "sha256": "88ba2660f5b024c7afd02ea700bc0c677687e17e34f0a94c3256ddb55e0f1c5d"
+    },
+    {
+      "path": "node_modules/vitest/dist/chunks/plugin.d.DwFIiJ7i.d.ts",
+      "bytes": 1194,
+      "sha256": "e53757f3e6688e8be16b36ccbeedc85637e607353fc67ff7b6665d6005aeaa12"
+    },
+    {
+      "path": "node_modules/vitest/dist/chunks/coverage.DM_a_rWm.js",
+      "bytes": 54974,
+      "sha256": "e509f3cc1bd81ae6426265253fa926cbde02be5cebfe35b1df422017bffdca31"
+    }
+  ],
+  "normal_acceptance_credit": 0
+}

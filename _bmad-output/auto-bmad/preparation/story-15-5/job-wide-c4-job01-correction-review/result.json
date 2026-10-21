@@ -1,0 +1,41 @@
+{
+  "Outcome": "NOTPASS_SUPPORTED_CONFIG_REFINEMENT_REQUIRED — C4-JOB-01 closed; remaining C4-CONFIG-01 skips validation when only serial is selected.",
+  "Files changed": [
+    {
+      "path": "original-report.md",
+      "bytes": 4213,
+      "sha256": "63ee05a546981aac5167d25d802e8fb211f1b5ee6aaadeda2db5cc11aab7d9b1"
+    },
+    {
+      "path": "original-attestation.json",
+      "bytes": 13034,
+      "sha256": "fa0f5f532018eaa77f9d2409af6f7d1899e1b711a368473425c4e271eb108baf"
+    },
+    {
+      "path": "result.json",
+      "identity": "Returned out of band after exclusive write."
+    },
+    {
+      "path": "manifest.json",
+      "identity": "Self-excluded manifest returned out of band."
+    }
+  ],
+  "Status": {
+    "scope": "Distinct Sol6.1 High correction-only review; no broad reopening.",
+    "caller": "Immediate callback/import/enrollment contract closes finally-return bypass.",
+    "config": "Exact hook returned despite supported([serial]) false; two pure assertions/native0, no runner/native effects.",
+    "bindings": "12 members/23 sources/10 installed/7 frozen refs verified.",
+    "normal_acceptance_credit": 0
+  },
+  "Open questions": [
+    "Full predicate must run from every selected project or guaranteed root invocation; add missing-parallel/serial-only inverse."
+  ],
+  "Deferred work": [
+    "Small correction within existing config/partition-unit paths; exact six-path list unchanged. No general replan needed.",
+    "Allocation, actual implementation/committed review and separately authorized native95/DB/RLS/browser/recovery/custody gates."
+  ],
+  "Blockers": [
+    "C4-CONFIG-01 blocks supported-config acceptance. Source/native authority remains held.",
+    "Privacy/browser/custody failures remain open; no collector or CI retry authorized."
+  ]
+}

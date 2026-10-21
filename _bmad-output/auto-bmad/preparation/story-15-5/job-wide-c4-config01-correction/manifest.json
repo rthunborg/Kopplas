@@ -1,0 +1,43 @@
+{
+  "schema": "SELF_EXCLUDED_SHA256_MANIFEST_v1",
+  "member_count": 7,
+  "members": [
+    {
+      "path": "bindings.json",
+      "bytes": 13242,
+      "sha256": "6900f4f61e88ba367aa1e5a35b92b924c462a2de9993fbc11b6cee42c2d3de2a"
+    },
+    {
+      "path": "correction.json",
+      "bytes": 4949,
+      "sha256": "6b7f7f0e725a18a5e46fdf4cd95e80d4b688b95ad15afddcd995ec8ba461f0f9"
+    },
+    {
+      "path": "extra-project.config.mjs",
+      "bytes": 168,
+      "sha256": "f88790de8829a8d6a7ac3c5631b9126b64f02cd297667f2c1dba926cf37567f8"
+    },
+    {
+      "path": "guard.config.mjs",
+      "bytes": 1178,
+      "sha256": "9d259dc5acac944c80544f0c72cc7c375648d8d6bf635ddf3d64435a0a0c0e4f"
+    },
+    {
+      "path": "parallel.test.mjs",
+      "bytes": 191,
+      "sha256": "38b8698a7cfc7caa761d0fbcd59bff57f96634d1c404fae684e5c46aae73889e"
+    },
+    {
+      "path": "probe-results.json",
+      "bytes": 4799,
+      "sha256": "bcaeb077eb2be0bf9d1415f0dde142b69a5b58ced94fbea733855e26263e5343"
+    },
+    {
+      "path": "serial.test.mjs",
+      "bytes": 245,
+      "sha256": "9933ae46ce0bde623ad6cd8f632fc992750de239dbba164b82cc7c4cdc6c5ea7"
+    }
+  ],
+  "self_excluded": "manifest.json",
+  "normal_acceptance_credit": 0
+}

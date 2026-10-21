@@ -1,0 +1,120 @@
+{
+  "schema": "C4_CONFIG01_INSTALLED_PROBE_v1",
+  "runs": [
+    {
+      "name": "supported",
+      "argv": [
+        "node",
+        "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\node_modules\\vitest\\vitest.mjs",
+        "run",
+        "--config",
+        "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\auto-bmad\\preparation\\story-15-5\\job-wide-c4-config01-correction\\guard.config.mjs",
+        "--configLoader",
+        "runner",
+        "--reporter=default",
+        "--reporter=json"
+      ],
+      "config_sha256": "9d259dc5acac944c80544f0c72cc7c375648d8d6bf635ddf3d64435a0a0c0e4f",
+      "native_exit": 0,
+      "elapsed_seconds": 0.774,
+      "stdout_bytes": 2161,
+      "stdout_sha256": "6b1734fe2f0938daaf2e9a5fcb6b43d343786774f22376e2f52d36b1b15660bd",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "fixed_unsupported_stop": false,
+      "serial_module_import_observed": true,
+      "serial_hook_observed": true,
+      "parallel_body_observed": true,
+      "summary": {
+        "numTotalTests": 3,
+        "numPassedTests": 3,
+        "numFailedTests": 0,
+        "numPendingTests": 0
+      }
+    },
+    {
+      "name": "serial-only",
+      "argv": [
+        "node",
+        "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\node_modules\\vitest\\vitest.mjs",
+        "run",
+        "--config",
+        "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\auto-bmad\\preparation\\story-15-5\\job-wide-c4-config01-correction\\guard.config.mjs",
+        "--configLoader",
+        "runner",
+        "--reporter=default",
+        "--reporter=json",
+        "--project=integration-audit-ddl"
+      ],
+      "config_sha256": "9d259dc5acac944c80544f0c72cc7c375648d8d6bf635ddf3d64435a0a0c0e4f",
+      "native_exit": 1,
+      "elapsed_seconds": 0.38,
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 1928,
+      "stderr_sha256": "5672efaee8c3fc3b1ba41de7336cdf90b8e729c4e03b5a44a21a69d8aa01cda6",
+      "fixed_unsupported_stop": true,
+      "serial_module_import_observed": false,
+      "serial_hook_observed": false,
+      "parallel_body_observed": false,
+      "summary": null
+    },
+    {
+      "name": "parallel-only",
+      "argv": [
+        "node",
+        "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\node_modules\\vitest\\vitest.mjs",
+        "run",
+        "--config",
+        "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\auto-bmad\\preparation\\story-15-5\\job-wide-c4-config01-correction\\guard.config.mjs",
+        "--configLoader",
+        "runner",
+        "--reporter=default",
+        "--reporter=json",
+        "--project=integration-parallel"
+      ],
+      "config_sha256": "9d259dc5acac944c80544f0c72cc7c375648d8d6bf635ddf3d64435a0a0c0e4f",
+      "native_exit": 1,
+      "elapsed_seconds": 0.374,
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 1928,
+      "stderr_sha256": "5672efaee8c3fc3b1ba41de7336cdf90b8e729c4e03b5a44a21a69d8aa01cda6",
+      "fixed_unsupported_stop": true,
+      "serial_module_import_observed": false,
+      "serial_hook_observed": false,
+      "parallel_body_observed": false,
+      "summary": null
+    },
+    {
+      "name": "extra-project",
+      "argv": [
+        "node",
+        "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\node_modules\\vitest\\vitest.mjs",
+        "run",
+        "--config",
+        "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\auto-bmad\\preparation\\story-15-5\\job-wide-c4-config01-correction\\extra-project.config.mjs",
+        "--configLoader",
+        "runner",
+        "--reporter=default",
+        "--reporter=json"
+      ],
+      "config_sha256": "f88790de8829a8d6a7ac3c5631b9126b64f02cd297667f2c1dba926cf37567f8",
+      "native_exit": 1,
+      "elapsed_seconds": 0.43,
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 1928,
+      "stderr_sha256": "5672efaee8c3fc3b1ba41de7336cdf90b8e729c4e03b5a44a21a69d8aa01cda6",
+      "fixed_unsupported_stop": true,
+      "serial_module_import_observed": false,
+      "serial_hook_observed": false,
+      "parallel_body_observed": false,
+      "summary": null
+    }
+  ],
+  "raw_persisted": false,
+  "app_env_SQL_network_resources": 0,
+  "each_process_timeout_seconds": 25,
+  "normal_acceptance_credit": 0
+}
