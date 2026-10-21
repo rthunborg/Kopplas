@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-21T19:46:13Z"
+updated_at: "2026-10-21T19:53:56Z"
 started_at: "2026-10-09T12:57:49Z"
 completed_at: null
 active_seconds: 278674
@@ -18,15 +18,15 @@ is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: build
-selected_role: build-delegate
+selected_phase: followup_review
+selected_role: primary-reviewer
 selected_profile: standard
 selected_model: gpt-6.1-sol
 selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Finite preparation of existing bounded terminal evidence operator with fresh actualrun/head/73source and partial-bail schema; no API/GET execution, privacy/custody integrity High. Root sole CI poller."
+escalation_reason: "Independent finite preGET existing-operator actualsource/effect/terminal-schema admission review; privacy/credential/transport custody critical High. Seven legacy spans unchanged, no story broadreview/GET authority."
 routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary epic test planning; sensitive implementation/review scope routed explicitly High\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary story test-risk classification\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_triage\",\"profile\":\"light\",\"role\":\"test-risk-triage\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -277,6 +277,7 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Read-only native readiness current Gitpublication contract qualification from actual singleprojectGET, existing official ignoredstep semantics and bounded ownedsource override inspection; no providerwrite/newAPI/CI authority.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Independent finite exactnormal CI/readiness and future evidence-schema admission review after CODEPASS; source73/partialbail and no-deploy Gitcontract/privilegedCI sensitive boundaries High, no fourth broad code pass.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"followup_review\",\"profile\":\"standard\",\"role\":\"primary-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Finite preparation of existing bounded terminal evidence operator with fresh actualrun/head/73source and partial-bail schema; no API/GET execution, privacy/custody integrity High. Root sole CI poller.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Independent finite preGET existing-operator actualsource/effect/terminal-schema admission review; privacy/credential/transport custody critical High. Seven legacy spans unchanged, no story broadreview/GET authority.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"followup_review\",\"profile\":\"standard\",\"role\":\"primary-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: null
 tea_selected: []
 tea_rationale: null
@@ -4205,3 +4206,20 @@ p5_native_readiness_vercel_readonly_outcome:
   current_owned_config: ExactbranchGitdeploymentdisabled/noignoreCommandoverride/package8workflowsnodeploycalls
   qualification_scope: "Ordinary Gitpush no-build/publication only; possible providerrecord not creationdisabled/manualroutesdisabled."
   no_more_project_API_authorized: true
+p5_post_f1_terminal_evidence_preparation:
+  status: FROZEN_OPERATOR_DISTINCT_HIGH_SOURCE_EFFECT_REVIEW_ACTIVE
+  run_id: 39664130401
+  run_head: ce1943e01b773671e0c2e583ea6b21e56d40e81b
+  source_head: b1b476dee7c936eb4797ce3221bc07b8196a1a4a
+  checkpoint_id: 9565c54d-1bbe-4a32-b647-949c02e6c404
+  required_attempt: 1
+  preparation_admission: "_bmad-output/auto-bmad/preparation/story-15-5/root-post-f1-terminal-operator-preparation-admission.json"
+  operator: "{\"path\": \".env.epic15.mail-runtime/story-15-5-preparation/post-f1-terminal-evidence-preparation/normal-evidence-operator.py\", \"bytes\": 31222, \"sha256\": \"c71d5f16e5375d8fed1cc2f51a80464721d0b14d0e649e4a918caa035f0d5a8c\"}"
+  manifest: "{\"path\": \".env.epic15.mail-runtime/story-15-5-preparation/post-f1-terminal-evidence-preparation/manifest.json\", \"bytes\": 1675, \"sha256\": \"b4e8cf2a438405fa2ec8117a500fd2f1a47aa93487f6e3da2f1666fe39cda044\"}"
+  reviewer: "/root/acquisition15_observability_source_review_high"
+  actual_pure_tests: 10
+  pure_controls: 47
+  actual_API_effects: 0
+  terminal_ownership_tuple: NOT_YET_OBSERVED
+  actual_GETs_authorized: false
+  normal_acceptance_credit: 0

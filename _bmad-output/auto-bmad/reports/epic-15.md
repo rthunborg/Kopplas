@@ -5655,3 +5655,35 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Run39664130401/attempt1/headce1943e01b773671e0c2e583ea6b21e56d40e81b; waitactualterminal, admitoperator then exactartifactscope.
+
+## Report — 2026-10-21T19:53:56Z (checkpoint — terminal operator admission review)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `fbb2f01`).
+**Pipeline status:** 15.5 P5 normalCI running; admission+verify passed, DB/browser/recovery inprogress. Nativeacceptancezero.
+**Continues:** DistinctHigh source/effect review of finiteexistingoperator/current73/partialbail and Rootterminaltuple contract; no GETs.
+
+**Summary:** 15.1–15.4 landed; 15.5 active; 15.6 unstarted.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 294h 56m (≈77h 24m AI-run, ≈217h 31m human/idle wait); resumed 169×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:**
+1. Actualterminal/nativegates and finalownershiptuple pending; acquisitionunallocated.
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** RootsoleCIpoller39664130401/headce194; sourceadmission and actualterminalqualification before exact5GETallocation.

@@ -1,0 +1,32 @@
+{
+  "kind": "ROOT_MECHANICAL_EXISTING_OPERATOR_PREPARATION_ADMISSION_ONLY",
+  "source_head": "b1b476dee7c936eb4797ce3221bc07b8196a1a4a",
+  "actual_run_head": "ce1943e01b773671e0c2e583ea6b21e56d40e81b",
+  "local_metadata_head": "fbb2f01b423b782c699643ffca6cdfec3e27eafc",
+  "run_id": 39664130401,
+  "attempt_required": 1,
+  "checkpoint_id": "9565c54d-1bbe-4a32-b647-949c02e6c404",
+  "preparation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-terminal-evidence-preparation/preparation.json",
+    "bytes": 16402,
+    "sha256": "09ebcb60e2bf572d55220238b63ea9229c63588e4e3225b6627b763d8f8f03e7"
+  },
+  "operator": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-terminal-evidence-preparation/normal-evidence-operator.py",
+    "bytes": 31222,
+    "sha256": "c71d5f16e5375d8fed1cc2f51a80464721d0b14d0e649e4a918caa035f0d5a8c"
+  },
+  "manifest": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-terminal-evidence-preparation/manifest.json",
+    "bytes": 1675,
+    "sha256": "b4e8cf2a438405fa2ec8117a500fd2f1a47aa93487f6e3da2f1666fe39cda044"
+  },
+  "verified_member_count": 8,
+  "verified_ref_occurrences": 31,
+  "verified_HEAD_source_objects": 73,
+  "source_semantics_reviewed_by_root": false,
+  "actual_terminal_tuple": "NOT_YET_OBSERVED",
+  "terminal_GETs_authorized": false,
+  "normal_acceptance_credit": 0,
+  "next": "DistinctHigh source/effect/terminal-schema admission review before actual terminal acquisition allocation."
+}
