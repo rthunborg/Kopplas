@@ -2407,9 +2407,16 @@ test("actual label budgets sink failures and invalid registration never affect l
 });
 
 test("label instrumentation preserves actual promise observer timer operation counts and default silent waiters",async()=>{
-  const require=nodeModule.createRequire(import.meta.url),{execFileSync}=require("node:child_process");
-  const path="tests/e2e/support/calendar-feed-atdd.ts",before=execFileSync("git",["show","166cad1c21f423b96c815a3f5b34d2fb81bc28bf:"+path],{cwd:resolve(new URL("../../../..",import.meta.url).pathname.replace(/^\/([A-Za-z]:)/,"$1")),encoding:"utf8"}),after=readFileSync(new URL("../../../e2e/support/calendar-feed-atdd.ts",import.meta.url),"utf8");
-  for(const pattern of [/\.then\(/g,/\.catch\(/g,/new Promise/g,/setTimeout\(/g,/adminQuery[<(]/g,/\.rpc\(/g])assert.equal((after.match(pattern)??[]).length,(before.match(pattern)??[]).length);
+  // Independently captured from 166cad1c21f423b96c815a3f5b34d2fb81bc28bf:
+  // tests/e2e/support/calendar-feed-atdd.ts blob e0517e8c3e11a4bf9052a920a14e65356a234156.
+  // Runtime Git history is unavailable in shallow CI checkouts and nonportable worktrees.
+  const baseline=[7,8,6,5,14,2],patterns=[/\.then\(/g,/\.catch\(/g,/new Promise/g,/setTimeout\(/g,/adminQuery[<(]/g,/\.rpc\(/g];
+  const counts=(source:string)=>patterns.map(pattern=>(source.match(pattern)??[]).length);
+  const after=readFileSync(new URL("../../../e2e/support/calendar-feed-atdd.ts",import.meta.url),"utf8");
+  assert.deepEqual(counts(after),baseline);
+  for(const extra of [".then(",".catch(","new Promise","setTimeout(","adminQuery<",".rpc("]){
+    assert.throws(()=>assert.deepEqual(counts(after+extra),baseline));
+  }
   const x=await labelledBrowserControl(),done=x.observe("create");x.match("create");await done;await x.registry.cancelAndSettle();assert.deepEqual(x.lines,[]);
 });
 
@@ -2428,11 +2435,21 @@ test("actual recipient cleanup retains the callback and every reached cleanup er
 });
 
 test("actual labelled caller assertions match their frozen baseline and opt-in is restricted to NUDGE004 and E2E001",async()=>{
-  const ts=await import("typescript"),{execFileSync}=await import("node:child_process"),cwd=resolve(new URL("../../../..",import.meta.url).pathname.replace(/^\/([A-Za-z]:)/,"$1"));
-  for(const path of ["tests/integration/notifications/time-report-nudge-producer.int.test.ts","tests/e2e/calendar-feed.e2e.spec.ts"]){
-    const before=execFileSync("git",["show","166cad1c21f423b96c815a3f5b34d2fb81bc28bf:"+path],{cwd,encoding:"utf8"}),after=readFileSync(join(cwd,path),"utf8");
-    const assertions=(text:string)=>{const ast=ts.createSourceFile(path,text,ts.ScriptTarget.Latest,true),calls:string[]=[];const visit=(node:import("typescript").Node)=>{if(ts.isCallExpression(node)&&((ts.isIdentifier(node.expression)&&node.expression.text==="expect")||(ts.isPropertyAccessExpression(node.expression)&&/^(?:to|rejects|resolves)/.test(node.expression.name.text))))calls.push(node.getText(ast).replace(/\s+/g,""));ts.forEachChild(node,visit);};visit(ast);return calls;};
-    assert.deepEqual(assertions(after),assertions(before));assert.equal((after.match(path.includes("nudge")?/const labels=createNudgeFailureLabels\(createNudgeTaskMetaSink\(task\.meta\)\)/g:/const labels=createCalendarFailureLabels\(\)/g)??[]).length,1);
+  const ts=await import("typescript");
+  // Ordered assertion AST text, normalized exactly as the original comparison, captured
+  // independently from 166cad1c21f423b96c815a3f5b34d2fb81bc28bf (not current source).
+  const baselines=[
+    {path:"integration/notifications/time-report-nudge-producer.int.test.ts",blob:"ec7aa1b4036bc63fc0eb4a438faff4794de011ff",count:260,sha256:"6607e4720f23b6653d5d08f4e3157268949eafffb0cc2fe115b0931cfae67e78"},
+    {path:"e2e/calendar-feed.e2e.spec.ts",blob:"2baa9ef0b2a74bf2ef9e573aa0b076987b7cc2cd",count:268,sha256:"25fffb090536cc2e1a4d269f7ab8298f6e096700b6dd7dd0466c7fb37a944a95"},
+  ];
+  for(const baseline of baselines){
+    const after=readFileSync(new URL("../../../"+baseline.path,import.meta.url),"utf8");
+    const assertions=(text:string)=>{const ast=ts.createSourceFile(baseline.path,text,ts.ScriptTarget.Latest,true),calls:string[]=[];const visit=(node:import("typescript").Node)=>{if(ts.isCallExpression(node)&&((ts.isIdentifier(node.expression)&&node.expression.text==="expect")||(ts.isPropertyAccessExpression(node.expression)&&/^(?:to|rejects|resolves)/.test(node.expression.name.text))))calls.push(node.getText(ast).replace(/\s+/g,""));ts.forEachChild(node,visit);};visit(ast);return calls;};
+    const verify=(source:string)=>{const calls=assertions(source);assert.equal(calls.length,baseline.count);assert.equal(createHash("sha256").update(JSON.stringify(calls)).digest("hex"),baseline.sha256);};
+    assert.match(baseline.blob,/^[a-f0-9]{40}$/);verify(after);
+    const changed=after.replace("expect(","expect(false&&");assert.notEqual(changed,after);assert.throws(()=>verify(changed));
+    assert.throws(()=>verify(after+"\nexpect(false).toBe(true);"));
+    assert.equal((after.match(baseline.path.includes("nudge")?/const labels=createNudgeFailureLabels\(createNudgeTaskMetaSink\(task\.meta\)\)/g:/const labels=createCalendarFailureLabels\(\)/g)??[]).length,1);
   }
 });
 

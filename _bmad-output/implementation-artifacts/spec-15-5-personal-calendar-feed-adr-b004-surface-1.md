@@ -245,10 +245,11 @@ Deferred release validation: exhaustive browser/device/calendar-provider matrice
 ## Auto Run Result
 
 Status: in-review
-Blocking condition: current qualified NORMAL history remains acceptance0: Node3222/Python43 are separate historical positives, story DB16P/35unexecuted (including API019 and INT015), browser10expected/1flaky/3unexpected and custody UNKNOWN. Committed exact-six source5d5ea4e was independently NOTPASS_SOURCE_LABEL_01 for contradictory relation labels; the finite correction below has offline controls only. SOURCE-LABEL-01 is independently closed at sourceb72; the new public Vitest metadata carrier below remains source-only pending targeted review. Native publication and a separately admitted changed-information NORMAL comparison remain pending. No functional cause, cleanup closure, development completion or release readiness is established.
+Blocking condition: qualified NORMAL39683227657 attempt1 stopped at unit3243=3241P/2F/0skip across103suites; DB/browser/recovery/Python/build were UNEXECUTED. The two declared candidates have the unit-only source portability correction below, pending independent review and a separately admitted exact-head run. The hosted exceptions were not retained and remain UNKNOWN. Earlier DB/browser/custody failures and acceptance0 remain unresolved; no functional cause, development completion or release readiness is established.
 
-Current result — 2026-10-21: the NUDGE004 public Vitest metadata carrier prerequisite below is implemented
-and offline source-verified. It is not development complete or release ready.
+Current result — 2026-10-22: only the affected pure unit test and this author trail
+changed. The entire affected file passes152/152 on the existing qualified Linux
+Node overlay; no application/native runtime or Git mutation occurred.
 The following planning paragraphs are retained historical results, not the current
 status, permission, gate outcome or runtime evidence. The historical ARR warning
 and three completed broad review rounds remain preserved.
@@ -2045,6 +2046,36 @@ publication requires later independently qualified exact-head evidence; source
 review and separate one-NORMAL effect admission are still prerequisites, not a
 current run/UUID or automatic retry. Root owns all Git and external effects.
 
+## Qualified NORMAL unit portability correction — bounded source handoff
+
+At clean metadataHEAD177559a5/sourcea459 and historical pushed3a385df5, the two
+declared candidates both passed on Windows before edits. Running exactly those
+two on the already-running qualified Linux Node22.23.2 overlay failed before
+assertions: their runtime Git commands could not resolve this Windows worktree's
+Git pointer. This is a controlled local failure, not the unknown hosted exception.
+The current verify checkout also lacks a full-history declaration, so requiring
+historical166cad1c objects at unit runtime is an additional source-supported risk,
+not an observed hosted diagnosis.
+
+Both original invariants remain enforced without Git execution: the operation
+vector7/8/6/5/14/2 and ordered assertion AST fingerprints260/268 were independently
+derived from the actual reviewed166cad1c Git objects, not current-to-current
+comparisons. The exact historical blobs and whole-body hashes are in the new
+ignored author receipt. Assertion extraction/whitespace normalization and operation
+patterns are unchanged. Added-operation controls for all six patterns plus altered
+existing/extra assertion controls must fail the same verification. Existing default
+silence and exact NUDGE004/E2E001 opt-in checks remain. No production, helper,
+metadata-carrier, authorization, clock, custody, cleanup, timeout, workflow or fetch
+policy changed; no skip, fallback or history fetch was introduced.
+
+Actual temporal evidence: pre-edit Windows2P/0F and Linux0P/2F; corrected selected
+Windows2P/0F; then the ENTIRE affected file on qualified Linux152P/0F/0skip/0cancel
+in18.223s. These runs are separate/nonadditive, not a new full3243 or native PASS.
+Whole TypeScript noEmit/incrementalfalse and affected unit ESLint exit0. Kernel,
+reader and review stops are checked on the final source. Root owns Git and future
+independent targeted review/exact-head execution. Development complete=false,
+acceptance0, in-review/loop3 and all prior failure/review/receipt records remain.
+
 ## Suggested Review Order
 
 Author: Story 15.5 implementation/fix author (gpt-6.1-sol High), incorporating
@@ -2054,7 +2085,7 @@ native setup diagnostics, same-connection privacy qualification and explicit
 isolated setup authority transport, bounded child settlement, browser diagnostic repair,
 actual SQL callback ownership, executed-feature fixture/status/policy repairs and
 bounded safe-leaf transport through the installed reporter, closed owned scenario origins, the minimal Vite security patch, the admitted staged diagnostic-only lane and the discovery-order unit correction.
-Stops below resolve to the public metadata-carrier working source handed to Root; no author Git mutation occurs.
+Stops below resolve to the unit portability-correction working source handed to Root; no author Git mutation occurs.
 
 ### Own settings and honest lifecycle results
 
@@ -2492,7 +2523,7 @@ stay unchanged. Opaque outer failure remains UNKNOWN, even after an inner error.
 - `tests/e2e/support/calendar-feed-atdd.ts:171` — `note("readback","SETTLED_SUCCESS")`: keeps readback separate from observation cancellation.
 - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2319` — `actual opted-in outer nudge boundary`: exercises opaque rejection and final identity.
 - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2392` — `actual browser readback failure native failure`: exercises independent completion states.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2416` — `installed Node test runner receives only fixed`: proves the bounded offline stderr boundary only.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2423` — `installed Node test runner receives only fixed`: proves the bounded offline stderr boundary only.
 
 Evidence: final affected146P and unchanged C4 acceptance/inverses2P are separate
 actual runs, not an aggregate. Whole TypeScript/five-file lint exit0. Review must
@@ -2507,7 +2538,7 @@ outer helper's established same/different/absence relation. Factory cause is UNK
 
 - `tests/support/time-reports-atdd.ts:52` — `let finalRelation:`: starts with no evaluated relation.
 - `tests/support/time-reports-atdd.ts:66` — `const relation=`: separates LOCAL unknown from final relation retention.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2449` — `SOURCE-LABEL-01 actual helper and enclosing NUDGE004`: exercises the actual composed final boundary.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2466` — `SOURCE-LABEL-01 actual helper and enclosing NUDGE004`: exercises the actual composed final boundary.
 
 Evidence: selected8P/0F/0skip/0cancel first run; whole TypeScript/two-file lint
 exit0. No new full148 aggregate, native or independent closure credit. The old
@@ -2521,10 +2552,24 @@ metadata is preserved, not sanitized; absent publication remains UNKNOWN.
 
 - `tests/integration/notifications/time-report-nudge-producer.int.test.ts:9` — `export function createNudgeTaskMetaSink`: validates fixed source records before publishing.
 - `tests/integration/notifications/time-report-nudge-producer.int.test.ts:38` — `Object.defineProperty(meta,key`: replaces only the exact owned frozen-array slot.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2481` — `async function actualMetaJsonReport`: invokes real installed onTestRunEnd in memory.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2505` — `VITEST-META actual helper and public NUDGE callback`: proves byte-equal reporter metadata and original failures.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2498` — `async function actualMetaJsonReport`: invokes real installed onTestRunEnd in memory.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2522` — `VITEST-META actual helper and public NUDGE callback`: proves byte-equal reporter metadata and original failures.
 
 Evidence: final focused13P/0F/0skip/0cancel, whole TypeScript/two-file lint exit0.
 Installed-source/type hashes are in the new author receipt. This carrier proof
 supersedes only the missing offline reporter-path evidence, not native publishing
 or functional/custody gates; independent targeted source review remains pending.
+
+### Preserve source invariants without requiring historical Git at test runtime
+
+Fixed baselines come from reviewed166cad objects; current code must match their
+operation counts and ordered assertion fingerprints, including biting inverses.
+
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2409` — `label instrumentation preserves actual promise`: checks six counts and added-operation negatives.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2437` — `actual labelled caller assertions match`: checks ordered original assertions and changed-source negatives.
+
+Evidence: full affected Linux152P/0F/0skip/0cancel, whole TypeScript and affected
+lint exit0. Pre-edit Windows2P vs controlled Linux2F are distinct; opaque hosted
+exceptions remain UNKNOWN. This fixes the demonstrated runtime-history dependency,
+not an application cause or hosted gate. Reviewer checks independent constants
+against166cad Git objects and preserved comparison semantics; no fourth broad pass.
