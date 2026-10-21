@@ -1,0 +1,312 @@
+{
+  "schema": "SOURCE_LABEL_TARGETED_COMMITTED_DELTA_HIGH_REVIEW_v1",
+  "reviewer": {
+    "task": "/root/review15_5_preselected_id_high",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "independent_from_implementation_author": true,
+    "same_existing_reviewer": true,
+    "fresh_context_free": false
+  },
+  "outcome": "NOTPASS_SOURCE_LABEL_01",
+  "reviewed_commit": "5d5ea4e65cdeb793c759d865e25eb516f7ba2f3f",
+  "base_commit": "166cad1c21f423b96c815a3f5b34d2fb81bc28bf",
+  "scope": "Exact new six-path source-label delta, necessary unchanged dependencies and unresolved serious plan invariants only.",
+  "source_inputs": [
+    {
+      "path": "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+      "bytes": 40796,
+      "sha256": "da4d50af47cab3f9c9565ad71b0c9a669ea96665f0f39ab49b6dc3e285bff70d",
+      "reviewed_commit_blob": "f0be1b001e343518ba92d0b2d5c7b9fed0c578de",
+      "base_blob": "ec7aa1b4036bc63fc0eb4a438faff4794de011ff"
+    },
+    {
+      "path": "tests/support/time-reports-atdd.ts",
+      "bytes": 22167,
+      "sha256": "2f409ddb88368b8d90b064080bbf90a5733cf21ee82d47feae8a730031fe07c6",
+      "reviewed_commit_blob": "f2c165485050e0825d187fba830ce3f77c72150e",
+      "base_blob": "7cb3857d9e14627acd5a9bd2f87ecc2c71f84569"
+    },
+    {
+      "path": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "bytes": 28255,
+      "sha256": "1caf0188ab38aa9195fce4df54664ba24c3c8cd5a9819cb26570db6d6a99c1ff",
+      "reviewed_commit_blob": "4865721f7930e08f3be2b01af683e923ae8d85fb",
+      "base_blob": "2baa9ef0b2a74bf2ef9e573aa0b076987b7cc2cd"
+    },
+    {
+      "path": "tests/e2e/support/calendar-feed-atdd.ts",
+      "bytes": 59370,
+      "sha256": "43887ef4cf1d5cf5fded7098db18e4d4637532659d8154fc5084359473b7fc7b",
+      "reviewed_commit_blob": "920b6d31f68254f340067f85d6a7155ee8bdf600",
+      "base_blob": "e0517e8c3e11a4bf9052a920a14e65356a234156"
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "bytes": 251193,
+      "sha256": "a1447d14c4eea7193d1b2a0ad7264673a340c77a8039f2662415419fc366bbac",
+      "reviewed_commit_blob": "5c4ebf00b070889b4021f42e7f60affce3ae5135",
+      "base_blob": "8a773ffa57b1e5e1649a83bdfcdb917b6431449c"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "bytes": 200961,
+      "sha256": "966455d5b301756304ba516b2c34cd35c8fe02a064818ca3114e2133b9774646",
+      "reviewed_commit_blob": "aff075ae959056b79901c64ded7bff5dcc130181",
+      "base_blob": "12df0ae9303a1e519408428063443708b2d39560"
+    }
+  ],
+  "author_receipt": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/source-label-author-result.json",
+    "bytes": 68249,
+    "sha256": "e9df41e6038ba5b0fe27e23c771f1873be086f234970ee2dbee2c9cbcbdda4d0"
+  },
+  "Root_mechanical_admission": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-source-label-precommit-admission.json",
+    "bytes": 1237,
+    "sha256": "3869fd1d8311c0ac1db4768e56f3386775dd6bcf43cef0b7f2925023b6c525d7"
+  },
+  "plan_history_refs": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-source-label-diagnostic-plan-review/report.md",
+      "bytes": 5115,
+      "sha256": "1e40afb06d0f75531e4ba47eae362d3103ea3de0ce76379633de24c364766c5d"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-source-label-diagnostic-plan-review/attestation.json",
+      "bytes": 15559,
+      "sha256": "cee2fa01560b7d2deab96bd392876f7cc638de5a65380f251ceb346f519dd059"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-source-label-diagnostic-plan-review/result.json",
+      "bytes": 1760,
+      "sha256": "1fb6be277b651249f8d3fc335b1f4f458ecfd1b73bc3eaf2fca980447133a87f"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-source-label-diagnostic-plan-review/manifest.json",
+      "bytes": 880,
+      "sha256": "586402c36c695cfaab2fd7e4f1867c4b6796f64188ef4f44cb1d61ad132aaa45"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-source-label-diagnostic-plan-review/boundary-state-revalidation/report.md",
+      "bytes": 3558,
+      "sha256": "ada006b9c2c3836654765b75e4f0081451337e0f940ca77c22f02e8e50baa66d"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-source-label-diagnostic-plan-review/boundary-state-revalidation/attestation.json",
+      "bytes": 10694,
+      "sha256": "2b75ab0715c284cfb1605d2c80d1636600bc6109df454e5e5b356b48b7441cb8"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-source-label-diagnostic-plan-review/boundary-state-revalidation/result.json",
+      "bytes": 1304,
+      "sha256": "d26789720922b2bc3458f393e4438e36ea677796783ac9531f333a8c139f4f65"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-source-label-diagnostic-plan-review/boundary-state-revalidation/manifest.json",
+      "bytes": 967,
+      "sha256": "66a5214dae6c6896e08a4f495fe1075eb5d83f724e204c3ac8209a7b003c4453"
+    }
+  ],
+  "governance": [
+    {
+      "path": "AGENTS.md",
+      "bytes": 11938,
+      "sha256": "b28eec9c075877d175362dad65b739054e45a3134d748b3c11e601ae36fbb823"
+    },
+    {
+      "path": "docs/process/development-completion-policy.md",
+      "bytes": 8460,
+      "sha256": "d3617c2bcfb64e0b185c82e8a39f84af40bfc5b0ddda739552d2e099c38d4893"
+    },
+    {
+      "path": "docs/process/agent-model-routing.md",
+      "bytes": 7957,
+      "sha256": "116a1d54038568120f4c55be607cb9da9a8850ac3091c410c9bed3caee3ee891"
+    },
+    {
+      "path": "docs/process/review-order.md",
+      "bytes": 14757,
+      "sha256": "fbfe43e4f16fe93755cd465ab00291e2511971a60a97337eaf88c2a0fc58e115"
+    }
+  ],
+  "findings": [
+    {
+      "id": "SOURCE-LABEL-01",
+      "priority": "P2",
+      "target": "tests/support/time-reports-atdd.ts:60; tests/integration/notifications/time-report-nudge-producer.int.test.ts:198",
+      "caller": "Actual NUDGE004 test final catch after withTimeReportFixture observes a clients/callback/cleanup rejection during a future NORMAL comparison.",
+      "invariant": "Closed diagnostic enum values must state observed facts; lack of a relation evaluation is UNKNOWN, not evidence that no inner failure was observed.",
+      "defect": "failure() maps every boundary except FINAL_MATCHES_INNER / FINAL_DIFFERS_INNER to NO_INNER_OBSERVED. TEST_FINAL and LOCAL have no such absence knowledge. A reached inner failure therefore emits SAME_AS_OBSERVED_INNER from the outer helper followed by TEST_FINAL/NO_INNER_OBSERVED for the same final error.",
+      "consequence": "The proposed changed-information run publishes contradictory negative evidence about whether an inner failure was observed. This undermines the finite boundary/cause-discrimination contract; no downstream reporter validator reconciles or rejects these fixed source strings. Original application/error behavior remains preserved.",
+      "reproduction": "Execute the actual extracted helper and actual NUDGE004 enclosing catch with a synthetic ordinary clients-construction rejection and no DB/network. The exact thrown object is preserved; emitted outer relation SAME_AS_OBSERVED_INNER is followed by TEST_FINAL relation NO_INNER_OBSERVED with clients=REJECTED.",
+      "required_fix": "Retain the actually established final relation for the test-final snapshot, or use UNKNOWN/NOT_APPLICABLE at boundaries that did not evaluate that relation. Emit NO_INNER_OBSERVED only when absence was actually established. Preserve all original error/cause/order/sink/privacy/operation contracts. Add actual helper+actual final-catch controls for matching/differing observed inner, genuinely no observed inner, and intermediate LOCAL snapshots so no contradictory absence claim is published."
+    }
+  ],
+  "actual_control": {
+    "kind": "bounded offline source-region control",
+    "tool_output_chunk": "156c45",
+    "native_exit_code": 0,
+    "Node": "22.23.2",
+    "actual_sources": [
+      "tests/support/time-reports-atdd.ts::throwFixtureFailures through withTimeReportFixture",
+      "tests/integration/notifications/time-report-nudge-producer.int.test.ts::NUDGE004 actual enclosing callback"
+    ],
+    "dependencies": "Injected withBookingFixture/ordinary client/cleanup stubs only; no app imports/connections/process descendants.",
+    "result": {
+      "original_error_identity_preserved": true,
+      "observed_inner_relation": "SAME_AS_OBSERVED_INNER",
+      "last_TEST_FINAL_relation": "NO_INNER_OBSERVED",
+      "contradictory_relation_confirmed": true
+    },
+    "initial_attempt": {
+      "tool_output_chunk": "6cb47d",
+      "exit_code": 1,
+      "reason": "Reviewer Function harness retained export declarations after TypeScript stripping; syntax stop before subject closure ran. Corrected harness strips export; first attempt supplies no source/test credit."
+    }
+  },
+  "verification": {
+    "Git_readonly": "stat/diff and exact six-path base/reviewed ls-tree; no Git mutations.",
+    "raw_source_commit_base_bindings": 6,
+    "diff": {
+      "paths": 6,
+      "insertions": 391,
+      "deletions": 76
+    },
+    "kernel": {
+      "bytes": 5760,
+      "sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+      "unchanged": true
+    },
+    "SRO": {
+      "headings": 1,
+      "stops": 163,
+      "unresolved_stops": 0,
+      "sha256": "46c647f421affff061df8d4598c6d0d992b84b22b56f8b35a18a3eb298d2f528"
+    },
+    "story": {
+      "status": "in-review",
+      "ARR_status": "in-review",
+      "baseline_revision": "3a1c3bc9fbf22b13c926179288a8b6eefe440c12",
+      "review_loop_iteration": 3,
+      "parse_warnings": [],
+      "historical_frontmatter_warnings": [
+        "oversized"
+      ]
+    },
+    "new_full_unit_or_native_suites_run": false,
+    "source_regions_read": [
+      "Four changed fixture/caller files",
+      "143 added unit-control lines",
+      "Changed Spec ARR/SRO/evidence",
+      "Necessary unchanged worker/guard/transport context reused by provenance."
+    ],
+    "reader_limits": "Initial combined diff output truncated, relevant helper/unit/Spec diffs reread separately."
+  },
+  "author_evidence_attribution": {
+    "final_affected_offline_tests": {
+      "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "exit_code": 0,
+      "tests": 146,
+      "pass": 146,
+      "fail": 0,
+      "skipped": 0,
+      "cancelled": 0,
+      "duration_ms": 12267.5514,
+      "output_bytes": 42009,
+      "output_sha256": "634c2f268f2420bfcdc304c6051c0a8e8a374fe50ce21022c1f0ae2e6e77950a",
+      "native_acceptance": 0,
+      "source_bindings": [
+        {
+          "path": "tests/e2e/calendar-feed.e2e.spec.ts",
+          "sha256": "1caf0188ab38aa9195fce4df54664ba24c3c8cd5a9819cb26570db6d6a99c1ff"
+        },
+        {
+          "path": "tests/e2e/support/calendar-feed-atdd.ts",
+          "sha256": "43887ef4cf1d5cf5fded7098db18e4d4637532659d8154fc5084359473b7fc7b"
+        },
+        {
+          "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+          "sha256": "a1447d14c4eea7193d1b2a0ad7264673a340c77a8039f2662415419fc366bbac"
+        },
+        {
+          "path": "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+          "sha256": "da4d50af47cab3f9c9565ad71b0c9a669ea96665f0f39ab49b6dc3e285bff70d"
+        },
+        {
+          "path": "tests/support/time-reports-atdd.ts",
+          "sha256": "2f409ddb88368b8d90b064080bbf90a5733cf21ee82d47feae8a730031fe07c6"
+        }
+      ]
+    },
+    "C4_guard_separate": {
+      "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test --test-name-pattern='C4 current34|C4 actual caller guard' tests/unit/scripts/verify/integration-test-partitions.test.ts",
+      "exit_code": 0,
+      "tests": 2,
+      "pass": 2,
+      "fail": 0,
+      "skipped": 0,
+      "cancelled": 0,
+      "duration_ms": 737.1806,
+      "meaning": "UNCHANGED actual finite guard accepts all34 real calendar callbacks; suppression inverses reject; NUDGE outer await outside predicate; separate run not added to146"
+    },
+    "initial_history_nonadditive": {
+      "initial_new_subset": {
+        "tests": 12,
+        "pass": 11,
+        "fail": 1,
+        "skipped": 0,
+        "cancelled": 0,
+        "reason": "Injected recipient fixture omitted base.tenantA; corrected harness before actual seed path executes"
+      },
+      "corrected_subset": {
+        "tests": 14,
+        "pass": 14,
+        "fail": 0,
+        "skipped": 0,
+        "cancelled": 0
+      },
+      "initial_unit_typing_errors": [
+        "assert.deepEqual empty array narrows subsequent callback element to never; use explicit length assertion",
+        "isolated Node child typed ProcessEnv requires explicit NODE_ENV; added fixed test value, no env file read"
+      ],
+      "earlier_passes": "Earlier146P before late source-site emission and sink-negative/fixed boundary serialization are temporal intermediates, not current-source proof or added counts. Final146 above alone binds final source.",
+      "read_only_missing_path": "Global bmad-build-auto skill path absent; read actual project C:/DEV/Kopplas/.agents/skills/bmad-build-auto/SKILL.md. Existing parent-rendered continuation used; no new broad invocation."
+    },
+    "TS_lint_reader_source_checks": "Receipt-attributed native0; not rerun by reviewer.",
+    "Node_stderr_limitation": "Does not establish actual Vitest/Playwright/hosted label publication.",
+    "native_acceptance": 0
+  },
+  "preservation_assessment": {
+    "ordinary_assertions_27_recipients_and_existing_authority": true,
+    "browser_independent_states_and_actual_cleanup_predicates": true,
+    "no_new_Promise_observer_query_timer_client_principal_protocol": true,
+    "closed_bounded_no_raw_payload_sink": true,
+    "applied_SQL110_111_immutable": true,
+    "NORMAL_full95_DIAG001_unchanged": true,
+    "no_application_SQL_cause_or_fix_supported": true
+  },
+  "remaining_conditions": [
+    "Narrow author correction and actual source counterexample controls for SOURCE-LABEL-01.",
+    "Targeted independent corrective-commit review, no new broad pass.",
+    "Only after source PASS, separately allocated one changed-information NORMAL comparison with exact ownership/source/head/UUID/once/custody bindings.",
+    "All required fullDB-RLS/full95/essential browser/privacy/recovery and actual custody evidence remain blocking."
+  ],
+  "effects": {
+    "source_Spec_state_edits": 0,
+    "foreign_or_old_artifact_writes": 0,
+    "network_SQL_CI_resources_provider": 0,
+    "Git_mutations": 0,
+    "review_metadata_only": true
+  },
+  "broad_reviews_completed": 3,
+  "new_broad_review": false,
+  "normal_acceptance": 0,
+  "development_complete": false,
+  "release_ready": false,
+  "report": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-label-committed-delta-high-review/report.md",
+    "bytes": 5005,
+    "sha256": "905f3d2ac181f0597ac7afacd76d28657e48d2822d8fe2264128671fbdf5d557"
+  }
+}

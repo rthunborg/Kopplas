@@ -5943,3 +5943,65 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** ObservecompletedCoordinator6pathsourceallocation ->Highboundedimplementation+offlinecontrols/SRO ->Rootexactcommit ->distincttargetedHighcommitted-deltareview ->separateeffectreadiness.
+
+## Report — 2026-10-21T21:15:05Z (source-label-committed-high-review)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `5d5ea4e`).
+**Pipeline status:** Story15.5 remains in review. Exact-six diagnostic source committed; targeted independent High review active. Required native gates remain unmet; acceptance0.
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 296h 17m (≈77h 24m AI-run, ≈218h 52m human/idle wait); resumed 178×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Independent review of committed delta; only after source PASS prepare separately coordinated one NORMAL comparison. No push, CI, merge or deployment in this step.
+
+## Report — 2026-10-21T21:18:23Z (source-label-01-targeted-notpass)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `5d5ea4e`).
+**Pipeline status:** Story15.5 in review. Targeted High review found a contradictory final nudge diagnostic relation. No native acceptance or completion claim.
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 296h 20m (≈77h 24m AI-run, ≈218h 56m human/idle wait); resumed 179×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** High author correction in existing six-file scope, then targeted corrective-commit review; no remote effects.
