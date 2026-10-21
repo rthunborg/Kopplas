@@ -378,3 +378,37 @@ No additional ledger changes or archives in this checkpoint.
 1. Checkpoint decision:Approve,Rework,orDiscuss. Approval here is not merge/deployment authorization.
 
 **Next:** Review current-fix author stops in _bmad-output/auto-bmad/delivery/epic-16-checkpoint-2026-10-21.json and PR105; choose Approve/Rework/Discuss.
+
+## Report — 2026-10-21T11:08:03Z (PR105 external-review follow-up verified)
+
+**Epic:** `16` — 5 stories.
+**Branch:** `codex/epic-16-jobs` (HEAD `64fc65d`).
+**Pipeline status:** Original Epic 16 pipeline remains done; bounded two-finding correction verified.
+**Continues:** Return the verified head to the same fresh external-review chat for targeted follow-up only.
+
+**Summary:** Resolved-tenant binding now covers Jobs/My Jobs/detail/semantic reads, and source quote identity follows existing quote permissions. The new browser fixture import was repaired without weakening assertions.
+
+**Timing:** started 2026-10-15T08:50:46Z; completed 2026-10-20T22:58:03Z — elapsed 134h 07m (≈13h 07m AI-run, ≈120h 59m human/idle wait); resumed 10×.
+
+**Stories:**
+1. All five original stories remain done. No original story, spec, Suggested Review Order, TEA, retrospective, sprint or historical delivery record was rewritten.
+
+**Skipped:** (none)
+
+**Epic gate:** Source head 64fc65db52f0b97ccb845dc81684414d783bf86c; exact-head CI39587110666 SUCCESS: 2758 unit +43 process checks/build, 1894 DB passes/0 failures/1 ordinary recovery skip plus separate recovery1 pass, 36 browser first-attempt passes/0 retry or skip. All14 targeted DB and6 targeted browser cases executed.
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** Independent Sol6.1 High source review and import-only follow-up passed. Final record AD44186A8670CD24D4C968A231EEEEE88A5E871DEAE37AB2250D6BA4B80D3C46 passed executable gate and independent provenance report8442EC352D29335105F29A0AEF3277A2FD13816FF2C8C61F922164DBA5665C75. Earlier failedCI39585443213 retained as fixture failure before product assertions.
+
+**Open questions:** (none)
+
+**Deferred work:**
+1. All14 owned release checks remain deferred; release_ready=false. Historical16.3-E01 and16.5-E01 uncertainties remain distinct and unresolved. No merge, deployment or monitoring resumption.
+
+**⚠️ Needs human:**
+1. No repeat approval requested for this authorized bounded checkpoint; external targeted follow-up remains required.
+
+**Next:** Coordinator returns actual final head to existing External review: Kopplas PR105 chat01a15da7-23f1-7f72-a94b-eee3a0505e9c.
