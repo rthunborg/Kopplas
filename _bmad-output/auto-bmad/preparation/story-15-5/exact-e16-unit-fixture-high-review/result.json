@@ -1,0 +1,39 @@
+{
+  "schema": "EXACT_E16_THREE_UNIT_FIXTURE_HIGH_REVIEW_RESULT_v1",
+  "Outcome": "PASS_TARGETED_THREE_FIXTURE_RECONCILIATION",
+  "Files changed": [
+    "_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-unit-fixture-high-review/original-report.md",
+    "_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-unit-fixture-high-review/original-attestation.json",
+    "_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-unit-fixture-high-review/result.json",
+    "_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-unit-fixture-high-review/manifest.json"
+  ],
+  "Status": {
+    "commit": "7864550818ce130fbd5d1fd1bb530f0f4c2b19f4",
+    "parent": "bbf84feb7d90a214296d269d5625cdb5bf569790",
+    "tree": "b47f8f8e11a367e7b7df0a4c61f9d641e8282909",
+    "consequential_findings": 0,
+    "exact_changed_tests": 3,
+    "independent_final_focused": "52 pass /0 fail /0 skip /0 cancel",
+    "editor_original_test_call_bodies_unchanged": 6,
+    "series_original_test_call_bodies_unchanged": 19,
+    "workspace_unchanged_test_bodies": 5,
+    "workspace_D02_delta": "state/title correction and one pending-scheduling vector only",
+    "one_new_actual_snapshot_negative_control": true,
+    "erasedJS_sha256": "ce0069645d10c568f09f4c7da6647762e1b2dccb60e15d9eb4bc1cd61ee00679",
+    "author_full314_reused_nonadditive": "3390 tests/3389 pass/0 fail/1 Linux-xattr skip; type-erasure timing limit preserved",
+    "protected_src_SQL116_Spec_unchanged": true,
+    "normal_acceptance": 0,
+    "hosted_cause": "UNKNOWN",
+    "custody": "UNKNOWN",
+    "review_counter": 3,
+    "hosted_or_provider_effects": 0,
+    "execution_authority": false
+  },
+  "Open questions": [
+    "Hosted failed-case identities/cause and backend custody remain UNKNOWN."
+  ],
+  "Deferred work": [
+    "Remaining native gates and Linux-only xattr coverage remain outside this targeted fixture review."
+  ],
+  "Blockers": []
+}
