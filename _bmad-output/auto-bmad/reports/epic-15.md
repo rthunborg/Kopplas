@@ -4678,3 +4678,36 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** High is preparing a decision-grade proposal for direct failing catalog evidence; no further native/source/CI effects are allocated.
+
+## Report — 2026-10-21T12:05:05Z (ongoing - direct failure evidence source preparation)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `d2d3455`).
+**Pipeline status:** in-progress; 15.5 P5 source-only observer allocated
+**Continues:** Failure-only matrix implementation, targeted review and separately admitted diagnostic evidence; then required normal gates
+
+**Summary:** Distinct High plan review accepted the bounded actual-refusal matrix. Coordinator allocated only migration failure-message construction, focused wrapper unit controls and own Spec evidence. The original IF and all guard/DDL behavior remain required unchanged.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 287h 07m (≈54h 27m AI-run, ≈232h 40m human/idle wait); resumed 140×.
+
+**Stories:**
+1. Four of six landed; 15.5 remains in review with kernel5760/counter3. Source131 unchanged at this checkpoint; no new diagnostic run authorized.
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** Current v2 producer consumers and unexpected-success effects are inventoried. Oldv1 collector is excluded. A separate High addendum and exact execution allocation remain required. No fourth broad review, merge or deployment.
+
+**Open questions:**
+1. Actual failing catalog condition remains UNKNOWN; no production fix justified.
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Commit this preparation to satisfy the clean-tree gate, then High author exact3 hunks and meaningful focused checks. Separate committed-delta High review before push.

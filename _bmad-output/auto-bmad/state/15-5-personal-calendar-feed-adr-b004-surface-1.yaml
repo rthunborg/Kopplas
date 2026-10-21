@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-21T11:58:24Z"
+updated_at: "2026-10-21T12:05:11Z"
 started_at: "2026-10-20T12:18:56Z"
 completed_at: null
 active_seconds: 3572
@@ -26,7 +26,7 @@ selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "High sensitive read-only next-route assessment after catalog fixture/direct-default facts did not reproduce hosted predicate; source frozen and no opaque normal retry."
+escalation_reason: "Sensitive exact three-hunk failure-only actual-catalog observer implementation; existing guard/DDL preserved, no fourth broad review and no native/CI effects."
 routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"High preparation for hashed public-feed tokens, rotation/revocation and tenant/member disclosure boundaries; plan-only before distinctvalidation and ownershipallocation\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct High independent specification validation of actual public-feed token/proof/IP/limiter authorization design and exact ownership/test-key boundaries before anybuild\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"cross_model_layer\",\"profile\":\"diverse_review\",\"role\":\"independent-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -170,6 +170,9 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct native High qualification of settled original-function catalog probe; all11 predicates true but public default ACL comparability false. No source/CI correction authority.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct targeted High review of one new read-only default ACL SELECT and Root transport; source frozen, no broad review restart.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"High sensitive read-only next-route assessment after catalog fixture/direct-default facts did not reproduce hosted predicate; source frozen and no opaque normal retry.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct High sufficiency/privacy review of new failure-only actual-catalog matrix proposal and existing diagnostic lane conditional effects; no source execution authorized.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"High read-only current diagnostic-lane readiness and unexpected-success authority/custody binding assessment, independent of plan reviewer; no execution/source effects.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive exact three-hunk failure-only actual-catalog observer implementation; existing guard/DDL preserved, no fourth broad review and no native/CI effects.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: "Hashed public tokens, rotation/revocation, externalfeed andcross-tenant abuseprotection requireHigh-riskATDD+automate; lastthreeno traceadvisory"
@@ -1511,3 +1514,15 @@ p5_original_function_default_acl_observation:
   route_assessor: "/root/build15_5_high"
   next: "Distinct actual qualification and direct failed-predicate evidence route assessment; no source/SQL/resources/CI effects authorized."
   independent_qualification: "{\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/original-function-default-acl-readonly-qualification.json\", \"bytes\": 12384, \"sha256\": \"1abe739da48cc85b8f31c4415b7cdf7ea90c9f94b5fa8704e4de7150920567c9\"}"
+p5_original_function_direct_evidence:
+  status: SOURCE_ONLY_ALLOCATION_READY_FOR_HIGH_IMPLEMENTATION
+  plan: "{\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/original-function-direct-evidence-proposal/proposal.json\", \"bytes\": 11241, \"sha256\": \"9856e25ba8240a2c0a116dcbd11571a4af568fa9893c79c46522b920e145fb48\"}"
+  review_admission: "{\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/root-original-function-direct-evidence-plan-review-admission.json\", \"bytes\": 1547, \"sha256\": \"6ebf6437a519ea2aa5b9b05620aefa241425675491b3f5043873d91e5890398a\"}"
+  allocation: "{\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/accepted-original-function-direct-evidence-source-allocation.json\", \"bytes\": 2215, \"sha256\": \"dc052ce7e080d91f88c1429a4a15dedf74eea80bcd449568eb3c716a27bad606\"}"
+  author: "/root/build15_5_high"
+  readiness_assessor: "/root/native15_5_high"
+  source_head: 131a8ce9c05b780f3cbe9969a0c36ea3b6540d74
+  pushed_metadata_head: d2d3455d7103d9b7b6aca00d30ec564bc5a5da5e
+  normal_acceptance_credit: 0
+  readiness: "{\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/original-function-direct-evidence-readiness.json\", \"bytes\": 19598, \"sha256\": \"ef40c382b3e28e51f2f5ada7160e38cca885296085b195d88b015e39905585fc\", \"actual_source_bindings_verified\": 16}"
+  execution_ready: false

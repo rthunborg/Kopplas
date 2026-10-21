@@ -1,0 +1,183 @@
+{
+  "kind": "independent-targeted-original-function-direct-evidence-plan-review",
+  "verdict": "PASS_PLAN_ONLY",
+  "consequential_findings": [],
+  "reviewer": {
+    "agent": "/root/review15_5_preselected_id_high",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "distinct_from_author": true,
+    "reused_agent": true,
+    "fresh_context_free": false,
+    "broad_story_review": false
+  },
+  "input": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-direct-evidence-proposal/proposal.json",
+    "bytes": 11241,
+    "sha256": "9856e25ba8240a2c0a116dcbd11571a4af568fa9893c79c46522b920e145fb48"
+  },
+  "actual_head": "d2d3455d7103d9b7b6aca00d30ec564bc5a5da5e",
+  "proposal_source_head_historical": "ff3ceef8fc7c76acbbc1cc7919017053c112914c",
+  "source_commit": "131a8ce9c05b780f3cbe9969a0c36ea3b6540d74",
+  "five_source_bindings": [
+    {
+      "path": "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",
+      "bytes": 11947,
+      "sha256": "f788d507414dc32ecc45b37dcfa44a45ce01cc36da0417063f4e9da1549a3b91",
+      "head_blob": "2b767ae71fda30f5aec0d79537d74bdbe878d757"
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "bytes": 153160,
+      "sha256": "95396c27bd511c5df8cf7ffb5acebac520a1247fea92bae7c0a5962f547f4285",
+      "head_blob": "cba57251555d860ab8ba24bd578eed7715e7b7aa"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "bytes": 154891,
+      "sha256": "d214e9582d628be4f5250a207bb2e80233c9c83d0efcdd80448ae423021ebcf1",
+      "head_blob": "5c806d57bf009bad013826b07aaecdb49c178b0b"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "bytes": 75930,
+      "sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e",
+      "head_blob": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a"
+    },
+    {
+      "path": "tests/support/calendar-feed-ci-contract.ts",
+      "bytes": 8024,
+      "sha256": "40aea88849abff55a0faf156c52cf18d6f0232772cc1654c62c4f290b7fefcf5",
+      "head_blob": "2a5fec9b04c3259f608c95db25668836016808e5"
+    }
+  ],
+  "necessary_conditional_context": [
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "bytes": 47151,
+      "sha256": "e3eef57fabf0c8a57a81a5b9db95fdcabadf4194f132e84c35408c611cecd943",
+      "head_blob": "d0d186aee7e6a575d52659dcc27d9bd9ff8cbbe8"
+    },
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "bytes": 89043,
+      "sha256": "3f923eef322cc7f732013bd201090ce9619317250587709471688c69049d6fef",
+      "head_blob": "a78e3f6a336f84fc3d44d042516808748622feb8"
+    },
+    {
+      "path": "tests/integration/commands/calendar-feed.int.test.ts",
+      "bytes": 36884,
+      "sha256": "55e4105f0c9e110c7fc08ef17d51f3d5cdd3c8ea6996cf215f53621da1e45e08",
+      "head_blob": "35863f8eeb563f21e9c0ff741115f018ee545134"
+    }
+  ],
+  "prior_readonly_qualification": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-default-acl-readonly-qualification.json",
+    "bytes": 12384,
+    "sha256": "1abe739da48cc85b8f31c4415b7cdf7ea90c9f94b5fa8704e4de7150920567c9"
+  },
+  "sufficiency": {
+    "materially_new_information": true,
+    "target": "Actual first original-function refusal ordinal and11 stored-catalog invariant booleans/NULL",
+    "original_IF_and_target_order_must_remain_byte_identical": true,
+    "observer_only_after_refusal": true,
+    "default_sqlstate": "P0001",
+    "no_guard_weakening": true,
+    "local_fixture_or_default_rows_not_hosted_cause": true,
+    "no_current_fix_justified": true
+  },
+  "privacy": {
+    "allowed": [
+      "fixed prefix/schema",
+      "integer ordinal1..3",
+      "eleven fixed boolean-or-NULL keys"
+    ],
+    "excluded": [
+      "prosrc/definitions",
+      "config values",
+      "ACL rows/identities/OIDs",
+      "claims/query parameters",
+      "detail/hint/context/stack",
+      "arbitrary messages"
+    ],
+    "acquisition": "Separately allocated one terminal-bound manual archive GET; RAM-only ZIP/fixed db member/time/size/redaction caps; strict matrix plus digest/closed facts retained. Actual implementation/extractor not reviewed or executed yet.",
+    "unexpected_expression_error": "No qualified matrix; STOP UNKNOWN"
+  },
+  "mapping_review": {
+    "checks": [
+      "owner_matches",
+      "security_definer",
+      "volatile",
+      "plpgsql",
+      "exact_proconfig",
+      "authenticated_execute",
+      "anon_denied",
+      "service_role_denied",
+      "acl_grantees_safe",
+      "body_exact",
+      "call_count_exact"
+    ],
+    "count": 11,
+    "maps_to_actual_guard": true,
+    "null_semantics": "Retain SQL NULL; no coercion; UNKNOWN requires stop.",
+    "tests_are_future_requirements_not_executed_evidence": true
+  },
+  "unexpected_success_branch": {
+    "reachable": true,
+    "current_schema": "status-origin-v2",
+    "owner_fact": "owner_actor_execute",
+    "old_v1_collector_can_qualify": false,
+    "observed_source_effect_inventory": [
+      "existing startup and migration reset with bounded retry/recovery",
+      "setup/privacy/ledger qualification",
+      "fresh Vault secret creation+COMMIT",
+      "single15.5-DIAG001 child",
+      "canonical role-aware fixtures two tenants/ten Auth users",
+      "ordinary JWT manage command",
+      "conditional privileged setup qualification and catalog/state reads",
+      "controlled claims and restricted session authorization",
+      "conditional status/manage original-current-function baseline",
+      "savepoint/rollback/reset/fresh state checks",
+      "conditional canonical fixture/key cleanup and retained custody",
+      "validated diagnostic artifacts if actual producer succeeds"
+    ],
+    "plan_gate": "Explicitly include conditional effects and rebind current reviewed consumer OR refuse dispatch; exact Coordinator disposition required before effects.",
+    "execution_readiness": "NOT_READY",
+    "five_source_bindings_are_full_runtime_manifest": false,
+    "required_before_dispatch": [
+      "Exact current head and v2 producer/wrapper/fixture/consumer bindings and independent qualification",
+      "Explicit current reset/Vault/fixture/claims/conditional baseline/cleanup/custody effect allocation",
+      "Reviewed and rebound current status-origin-v2 consumer; private old v1 collector cannot qualify current v2.",
+      "Actual observer implementation/source controls and exact committed-delta High review",
+      "Exact hosted admission/checkpoint/once activation and separately allocated bounded archive acquisition"
+    ],
+    "unmodified_baseline_meaning": "Current reviewed actor-adapted v2 functions; not predecessor or oldv1 source"
+  },
+  "static_checks": {
+    "input_bytes_sha_match": true,
+    "five_raw_and_HEAD_blob_bindings_match": true,
+    "exact_candidate_paths": 3,
+    "matrix_exact_topkeys": [
+      "schema",
+      "ordinal",
+      "checks"
+    ],
+    "checks_unique": 11,
+    "explicit_OR_refuse_dispatch_gate": true,
+    "coordinator_unexpected_branch_disposition_gate": true,
+    "actual_current_v2_source_confirmed": true,
+    "native_tests_or_execution": 0
+  },
+  "authority_limits": {
+    "plan_acceptance_only": true,
+    "source_implementation_allocated_by_review": false,
+    "dispatch_or_acquisition_authorized_by_review": false,
+    "runtime_execution_ready": false,
+    "normal_acceptance_credit": 0,
+    "source_fix_authority": false,
+    "new_sql_api_ci_resource_git_source_spec_provider_effects": 0,
+    "fourth_broad_review": false,
+    "prior_evidence_mutations": 0,
+    "writes": "Only the three new owned plan-review outputs"
+  }
+}
