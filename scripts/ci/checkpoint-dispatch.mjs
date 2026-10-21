@@ -20,8 +20,56 @@ function verificationMode(state) {
 }
 const modeReceipt = state => ({ verification_mode: verificationMode(state), evidence_class: verificationMode(state) === "calendar-feed-cause-proof" ? "diagnostic-only" : "normal-gates-pending", acceptance_credit: 0 });
 
-/** A workflow ID being active does not prove it understands a new input. */
+/** Deliberately narrow block-mapping recognizer, not a permissive YAML parser.
+ * Unsupported declarations stop before POST. Default presence does not require
+ * candidate-only diagnostic inputs; it still requires a real root event. */
+export function assertDefaultDispatchWorkflow(source) {
+  const refuse = () => { throw new Error("Default workflow_dispatch declaration unavailable; no dispatch sent."); };
+  if (typeof source !== "string" || source.length > 512_000 || /[\t\0]/.test(source)) refuse();
+  const lines = source.replaceAll("\r\n", "\n").split("\n");
+  const roots = new Map();
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    if (!line.trim() || line.trimStart().startsWith("#") || line.startsWith(" ")) continue;
+    const key = /^([A-Za-z_][\w-]*):(?:\s|$)/.exec(line);
+    if (!key || roots.has(key[1])) refuse();
+    roots.set(key[1], i);
+  }
+  const start = roots.get("on");
+  if (start === undefined || !/^on:\s*(?:#.*)?$/.test(lines[start])) refuse();
+  const end = [...roots.values()].find(i => i > start) ?? lines.length;
+  const levels = [{ indent: 0, keys: new Set(), canNest: true, sequence: false }];
+  let found = false;
+  for (const line of lines.slice(start + 1, end)) {
+    if (!line.trim() || line.trimStart().startsWith("#")) continue;
+    const indent = line.length - line.trimStart().length;
+    if (indent < 2 || indent % 2 !== 0) refuse();
+    while (levels.length > 1 && levels.at(-1).indent >= indent) levels.pop();
+    const parent = levels.at(-1);
+    if (indent !== parent.indent + 2 || !parent.canNest) refuse();
+    const text = line.trimStart();
+    if (text.startsWith("- ")) {
+      // Only simple branch-name sequences; aliases/flow/mapping/scalar syntax is refused.
+      if (indent <= 2 || parent.keys.size || !/^- [A-Za-z0-9_./-][A-Za-z0-9_./*-]*\s*$/.test(text)) refuse();
+      parent.sequence = true; continue;
+    }
+    const match = /^([A-Za-z_][\w-]*):(?:\s+(.*))?$/.exec(text);
+    if (!match || parent.sequence || parent.keys.has(match[1])) refuse();
+    parent.keys.add(match[1]);
+    const value = (match[2] ?? "").trim();
+    if (/^[|>&*!{"']/.test(value) || /[\r\n]/.test(value)
+      || (/[\[\]{}]/.test(value) && !/^\[(?:[A-Za-z0-9_./-]+(?:,\s*[A-Za-z0-9_./-]+)*)?\]$/.test(value))) refuse();
+    // A root event must be a mapping; null dispatch is represented by an empty value.
+    if (indent === 2 && value && !value.startsWith("#")) refuse();
+    if (match[1] === "workflow_dispatch") { if (indent !== 2) refuse(); found = true; }
+    levels.push({ indent, keys: new Set(), canNest: value === "" || value.startsWith("#"), sequence: false });
+  }
+  if (!found) refuse();
+}
+
+/** A workflow ID being active does not prove candidate diagnostic capability. */
 export function assertCauseProofWorkflow(source) {
+  assertDefaultDispatchWorkflow(source);
   if (typeof source !== "string" || source.length > 512_000) throw new Error("Diagnostic workflow availability unverified.");
   const text = source.replaceAll("\r\n", "\n");
   if (!text.includes("      calendar_feed_cause_proof:\n        description: One diagnostic call and unmodified rollback-only baseline; zero acceptance\n        type: boolean\n        required: false\n        default: false\n")
@@ -34,14 +82,16 @@ function diagnosticAvailability(api, options) {
     if (value?.encoding !== "base64" || typeof value.content !== "string" || value.content.length > 700_000 || !/^[a-f0-9]{40}$/.test(value.sha ?? "")) throw new Error("Diagnostic workflow source unavailable; no dispatch sent.");
     const bytes = Buffer.from(value.content, "base64");
     if (createHash("sha1").update(`blob ${bytes.length}\0`).update(bytes).digest("hex") !== value.sha) throw new Error("Diagnostic workflow object mismatch; no dispatch sent.");
-    const text = bytes.toString("utf8"); assertCauseProofWorkflow(text);
+    const text = bytes.toString("utf8");
     return { text, oid: value.sha };
   };
   const candidate = read(options.sha);
+  assertCauseProofWorkflow(candidate.text);
   if (candidate.text.replaceAll("\r\n", "\n") !== readFileSync(resolve(WORKFLOW_PATH), "utf8").replaceAll("\r\n", "\n")) throw new Error("Diagnostic candidate workflow differs from reviewed checkout; no dispatch sent.");
   const repository = api("GET", `repos/${options.repo}`);
   validateRequest({ ...options, ref: repository?.default_branch });
   const primary = read(repository.default_branch);
+  assertDefaultDispatchWorkflow(primary.text);
   return { candidate_workflow_oid: candidate.oid, default_workflow_oid: primary.oid };
 }
 

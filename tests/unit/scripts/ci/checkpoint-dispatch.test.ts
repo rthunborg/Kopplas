@@ -5,7 +5,7 @@ import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "no
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { projectCalendarFeedCiCommands } from "../../../support/calendar-feed-ci-contract";
-import { checkpoint, checkpointTitle, parseArgs, validateRequest, assertCauseProofWorkflow } from "../../../../scripts/ci/checkpoint-dispatch.mjs";
+import { checkpoint, checkpointTitle, parseArgs, validateRequest, assertCauseProofWorkflow, assertDefaultDispatchWorkflow } from "../../../../scripts/ci/checkpoint-dispatch.mjs";
 import { createHash } from "node:crypto";
 
 const sha = "a".repeat(40);
@@ -274,3 +274,33 @@ test("legacy mode-less records remain normal and corrupt diagnostic selections f
   const corrupt=f.record();corrupt.cause_proof=true;corrupt.verification_mode="normal";writeFileSync(f.state,JSON.stringify(corrupt));
   assert.throws(f.status,/verification mode/);assert.equal(mutations(f).length,1);
 }));
+
+
+test("default dispatch presence is structural and accepts registered default without candidate-only inputs",()=>withFixture(f=>{
+  const source="name: CI\non:\n  workflow_dispatch:\n  push:\n    branches: [main]\njobs:\n  verify: {}\n";
+  assertDefaultDispatchWorkflow(source);f.defaultWorkflow(source);
+  checkpoint("dispatch",{...request,state:f.state,cause_proof:"true"},f.dependencies);assert.equal(mutations(f).length,1);
+  assert.deepEqual(f.calls.map(call=>call.method+" "+call.endpoint),["GET user","GET repos/owner/repo/collaborators/owner/permission","GET repos/owner/repo/branches/codex%2Fcheckpoint","GET repos/owner/repo/actions/workflows/ci.yml","GET repos/owner/repo/contents/.github/workflows/ci.yml?ref="+sha,"GET repos/owner/repo","GET repos/owner/repo/contents/.github/workflows/ci.yml?ref=main","POST repos/owner/repo/actions/workflows/42/dispatches"]);
+  assert.equal(f.record().verification_mode,"calendar-feed-cause-proof");assert.equal(f.record().release_validation,false);assert.ok(f.record().workflow_availability.default_workflow_oid);assert.equal(f.record().phase,"dispatched");
+}));
+test("default recognizer refuses comments strings block scalars nested duplicate ambiguous and malformed event declarations",()=>{
+  const bad=[
+    "# on:\n#   workflow_dispatch:\nname: CI", "name: workflow_dispatch\non: push", "on: [workflow_dispatch]", "on: workflow_dispatch", '"on":\n  workflow_dispatch:',
+    "description: |\n  on:\n    workflow_dispatch:", "on: |\n  workflow_dispatch:", "on: >\n  workflow_dispatch:", "on:\n  push:\n    workflow_dispatch:",
+    "on:\n  workflow_dispatch: false", "on:\n  workflow_dispatch: {}", "on:\n  workflow_dispatch: &dispatch", "on:\n  workflow_dispatch: *dispatch",
+    "on:\n  workflow_dispatch:\n  workflow_dispatch:", "on:\n  workflow_dispatch:\non:\n  push:", "on:\n   workflow_dispatch:", "on:\n\tworkflow_dispatch:",
+    "on:\n  workflow_dispatch:\n    inputs: |\n      dummy: true", "on:\n  workflow_dispatch:\n    inputs:\n      x:\n        default: true\n        default: false",
+    "on:\n  workflow_dispatch:\n    inputs: [bad", "on:\n  workflow_dispatch:\n    inputs: 'unclosed", "on:\n  workflow_dispatch:\n    inputs:\n      x: *alias",
+    "on:\n  workflow_dispatch:\n  push:\n    branches: [*alias]", "on:\n  workflow_dispatch:\n  push:\n    branches:\n      - *alias",
+    "on:\n  workflow_dispatch:\n    inputs:\n       bad: true", "on:\n  workflow_dispatch:\n    inputs: false\n      extra: true"
+  ];
+  for(const source of bad){assert.throws(()=>assertDefaultDispatchWorkflow(source),/unavailable/);withFixture(f=>{f.defaultWorkflow(source);assert.throws(()=>checkpoint("dispatch",{...request,state:f.state,cause_proof:"true"},f.dependencies));assert.equal(mutations(f).length,0);assert.equal(existsSync(f.state),false);});}
+  assertDefaultDispatchWorkflow("# leading comment\nname: CI\non: # manual dispatch\n  workflow_dispatch: # empty declaration\n  pull_request:\n    branches:\n      - main\n      - codex/story\njobs:\n  x: {}\n");
+});
+test("candidate diagnostic capability cannot be replaced by default presence and object/ref checks still precede POST",()=>{
+  const current=readFileSync(".github/workflows/ci.yml","utf8");
+  for(const source of [current.replace("calendar_feed_cause_proof:","other_input:"),current.replace("checkpoint:cause-proof:{0}:{1}","checkpoint:other:{0}:{1}"),current.replace('test "$RELEASE_VALIDATION" = false','test "$RELEASE_VALIDATION" = true'),current.replace("node scripts/ci/with-calendar-feed-runtime.mjs cause-proof","pnpm run test:int")]){
+    assert.throws(()=>assertCauseProofWorkflow(source));withFixture(f=>{const old=f.dependencies.api;f.dependencies.api=(method,endpoint,body)=>{const reply=old(method,endpoint,body);if(endpoint.includes("/contents/")&&!endpoint.endsWith("ref=main")){const bytes=Buffer.from(source);return{encoding:"base64",content:bytes.toString("base64"),sha:createHash("sha1").update(`blob ${bytes.length}\0`).update(bytes).digest("hex")};}return reply;};assert.throws(()=>checkpoint("dispatch",{...request,state:f.state,cause_proof:"true"},f.dependencies));assert.equal(mutations(f).length,0);});
+  }
+  for(const change of ["blob","disabled","path"]){withFixture(f=>{const old=f.dependencies.api;f.dependencies.api=(method,endpoint,body)=>{const reply=old(method,endpoint,body);if(change==="blob"&&endpoint.endsWith("ref=main"))return{...(reply as object),sha:"b".repeat(40)};if(endpoint.endsWith("/workflows/ci.yml"))return{...(reply as object),...(change==="disabled"?{state:"disabled_manually"}:change==="path"?{path:"other.yml"}:{})};return reply;};assert.throws(()=>checkpoint("dispatch",{...request,state:f.state,cause_proof:"true"},f.dependencies));assert.equal(mutations(f).length,0);});}
+});

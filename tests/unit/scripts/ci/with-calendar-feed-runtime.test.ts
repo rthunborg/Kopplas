@@ -9,7 +9,7 @@ import { join, resolve } from "node:path";
 import { tmpdir } from "node:os";
 import { pathToFileURL } from "node:url";
 import { projectCalendarFeedCiCommands } from "../../../support/calendar-feed-ci-contract";
-import { INTEGRATION_ARGS, BROWSER_ARGS, CAUSE_PROOF_ARGS, FEED_FUNCTIONS, validateAdmission, validateStackIdentity, validateCauseProofObservation, finishCauseProof, createCalendarFeedDatabaseClient, createTelemetryObserver, hasSensitiveOutput, createOwnedGroupStopper, ownsListenerRecord, waitForOwnedHttp, runCalendarFeedRuntime } from "../../../../scripts/ci/with-calendar-feed-runtime.mjs";
+import { INTEGRATION_ARGS, BROWSER_ARGS, CAUSE_PROOF_ARGS, FEED_FUNCTIONS, validateAdmission, validateStackIdentity, validateCauseProofObservation, finishCauseProof, createCalendarFeedDatabaseClient, createTelemetryObserver, hasSensitiveOutput, createOwnedGroupStopper, ownsListenerRecord, waitForOwnedHttp, runCalendarFeedRuntime, launchOwned } from "../../../../scripts/ci/with-calendar-feed-runtime.mjs";
 import { captureCalendarFeedTrace, recordCalendarFeedTrace, recordCalendarFeedContext, recordCalendarFeedMembership, executeCalendarFeed } from "../../../../src/server/commands/calendar-feed/calendar-feed-db";
 import { CommandError } from "../../../../src/server/commands/command-errors";
 import { validateCalendarFeedIntent } from "../../../../src/features/calendar-feed/validation";
@@ -115,7 +115,7 @@ function harness(options: {
       const isServer = args.includes("start");
       let finish: (result: { code: number; signal: null }) => void = () => undefined;
       const done = isServer ? new Promise<{ code: number; signal: null }>(resolve => { finish = resolve; }) : Promise.resolve({ code: options.failChild === index ? 17 : 0, signal: null });
-      return { done, async stop() { events.push(`settled:${index}`); finish({ code: 0, signal: null }); if (options.failStops) throw new Error("fixture custody"); return { forced: options.forcedStop ?? false, signal: null }; } };
+      return { done, launchState: () => "started", async stop() { events.push(`settled:${index}`); finish({ code: 0, signal: null }); if (options.failStops) throw new Error("fixture custody"); return { forced: options.forcedStop ?? false, signal: null }; } };
     },
     async ready() { events.push("ready"); if (options.readinessFailure) throw new Error("fixture readiness"); },
   };
@@ -1407,7 +1407,7 @@ test("actual installed failed native report and closed observation upload distin
     await mkdir(reports,{recursive:true}); const report=await actualInstalledFailureTransport();
     const native=await report(new Error("Fixed diagnostic failure; values redacted"));
     await writeFile(join(reports,"native.json"),JSON.stringify(native));await writeFile(join(reports,"observation.json"),JSON.stringify(observation()));
-    const receipt={childExitCodes:[1],keyDeleted:false,dbClosed:true,custody:{ownedName:"PRIVATE custody",vaultUuid:"PRIVATE UUID"},failures:["child-failed"]};
+    const receipt={launchAttempted:true,childLaunchState:"started",childExitCodes:[1],keyDeleted:false,dbClosed:true,custody:{ownedName:"PRIVATE custody",vaultUuid:"PRIVATE UUID"},failures:["child-failed"]};
     assert.equal(await finishCauseProof(folder,diagnosticEnv,receipt,async()=>{}, {keyId:"private-key",secret:"private-secret"}),true);
     assert.equal((JSON.parse(await readFile(join(reports,"upload/native.json"),"utf8")) as {numFailedTests:number}).numFailedTests,1);
     const metadata=await readFile(join(reports,"upload/receipt.json"),"utf8");assert.ok(!metadata.includes("PRIVATE"));assert.equal(JSON.parse(metadata).evidenceClass,"diagnostic-only");assert.equal(JSON.parse(metadata).custodyRetained,true);
@@ -1417,7 +1417,7 @@ test("diagnostic missing or sensitive native reports fail capture and never ente
   const folder=await mkdtemp(join(tmpdir(),"calendar-report-negative-")), reports=join(folder,"test-results/calendar-feed-cause-proof");
   try{
     await mkdir(reports,{recursive:true});await writeFile(join(reports,"observation.json"),JSON.stringify(observation()));
-    const receipt={childExitCodes:[0],keyDeleted:true,dbClosed:true,custody:null,failures:[]};
+    const receipt={launchAttempted:true,childLaunchState:"started",childExitCodes:[0],keyDeleted:true,dbClosed:true,custody:null,failures:[]};
     assert.equal(await finishCauseProof(folder,diagnosticEnv,receipt,async()=>{}, {keyId:"key",secret:"PRIVATE sensitive"}),false);
     await writeFile(join(reports,"native.json"),JSON.stringify({numTotalTests:1,numPendingTests:0,numFailedTests:0,numPassedTests:1,private:"PRIVATE sensitive"}));
     assert.equal(await finishCauseProof(folder,diagnosticEnv,receipt,async()=>{}, {keyId:"key",secret:"PRIVATE sensitive"}),false);
@@ -1462,4 +1462,90 @@ test("actual source registration guards isolate the one diagnostic declaration a
   for(const mode of [undefined,"0","other"]){assert.equal(evaluate(0,mode),false);assert.equal(evaluate(1,mode),true);}
   const names=(node:import("typescript").Node)=>{const ids:string[]=[];function walk(child:import("typescript").Node){if(ts.isCallExpression(child)&&child.expression.getText(ast)==="test"&&ts.isStringLiteral(child.arguments[0]))ids.push(child.arguments[0].text);ts.forEachChild(child,walk);}walk(node);return ids;};
   assert.deepEqual(names(guards[0].thenStatement),["15.5-DIAG001"]);assert.equal(names(guards[1].thenStatement).length,15);assert.ok(names(guards[1].thenStatement).every(name=>name.includes("15.5-INT")));
+});
+
+
+// Execute the actual diagnostic caller; no copied cleanup model or native I/O.
+async function actualCauseCleanup(options: { row?: unknown; rejectAbsence?: boolean; rowsFail?: boolean; canonicalFail?: boolean; pending?: boolean; badIds?: boolean } = {}) {
+  const ids=Array.from({length:12},(_,i)=>`10000000-0000-4000-8000-${String(i+1).padStart(12,"0")}`);
+  const user=(id:string)=>({id});
+  const fixture={base:{tenantA:{id:ids[0]},tenantB:{id:ids[1]},adminA:user(ids[2]),adminB:user(ids[3]),orphanUser:user(ids[4])},extraUsers:ids.slice(5).map(user),users:{montor:user(ids[5])}};
+  if(options.badIds)fixture.extraUsers[0]=fixture.base.adminA;
+  const calls:{sql:string;params:unknown}[]=[],order:string[]=[];
+  const capture=async (_expected:unknown,run:()=>Promise<unknown>)=>{await run();if(options.pending)throw Error("PRIVATE command rejected");return{ok:true,value:{outcome:"denied"},events:[]};};
+  const dependencies={
+    process:{env:{CALENDAR_FEED_CAUSE_PROOF_MODE:"1"}},createRoleAwarePhaseAFixture:async()=>fixture,
+    adminQuery:async(sql:string,params:unknown)=>{if(sql.includes("tenant_memberships"))return[{id:ids[6]}];calls.push({sql,params});order.push("absence");if(options.rejectAbsence)throw Error("PRIVATE SQL");return options.row===undefined?[{visibilityQualified:true,tenantsAbsent:true,authUsersAbsent:true}]:options.row;},
+    makeAuthedServerClient:async()=>({}),lifecycle:()=>({attemptId:ids[7],correlationId:ids[8]}),captureCalendarFeedTrace:capture,
+    manageCalendarFeed:async()=>({outcome:"denied"}),calendarCauseProofSelection:()=>"not-selected",
+    cleanupCalendarOwnedRows:async()=>{order.push("rows");if(options.rowsFail)throw Error("PRIVATE rows");},
+    cleanupRoleAwarePhaseAFixture:async()=>{order.push("canonical");if(options.canonicalFail)throw Error("PRIVATE canonical");}
+  };
+  const source=readFileSync(new URL("../../../support/calendar-feed-atdd.ts",import.meta.url),"utf8");
+  const start="export async function runCalendarFeedCauseProof";assert.equal(source.split(start).length,2);
+  const strip=(nodeModule as unknown as {stripTypeScriptTypes(source:string):string}).stripTypeScriptTypes;
+  // Exact current caller in an ES module retains import.meta syntax; no imports
+  // execute in this not-selected-baseline path and no runtime body is rewritten.
+  const moduleSource="export default function(dependencies){const {"+Object.keys(dependencies).join(",")+"}=dependencies;"+strip(source.slice(source.indexOf(start))).replace(/^export /gm,"")+";return runCalendarFeedCauseProof;}";
+  const bound=await import("data:text/javascript;base64,"+Buffer.from(moduleSource).toString("base64"));
+  const run=bound.default(dependencies);
+  const report=await run();assert.ok(!JSON.stringify(report).includes("PRIVATE"));
+  return{report,calls,order,ids};
+}
+test("actual diagnostic caller requires same-statement current-role visibility and exact known Auth plus tenant absence",async()=>{
+  const result=await actualCauseCleanup();assert.equal(result.report.cleanupVerified,true);assert.deepEqual(result.order,["rows","canonical","absence"]);assert.equal(result.calls.length,1);
+  const {sql,params}=result.calls[0];assert.match(sql,/select r[.]rolsuper or r[.]rolbypassrls from pg_catalog[.]pg_roles r where r[.]rolname=current_user/);
+  assert.match(sql,/not exists\(select 1 from public[.]tenants where id=any\(\$1::uuid\[\]\)\)/);assert.match(sql,/not exists\(select 1 from auth[.]users where id=any\(\$2::uuid\[\]\)\)/);
+  assert.deepEqual(params,[result.ids.slice(0,2),result.ids.slice(2)]);
+  for(const [superuser,bypass]of [[false,false],[true,false],[false,true],[true,true]])for(const tenantsAbsent of [false,true])for(const authUsersAbsent of [false,true]){
+    const row={visibilityQualified:superuser||bypass,tenantsAbsent,authUsersAbsent};const item=await actualCauseCleanup({row:[row]});
+    assert.equal(item.report.cleanupVerified,(superuser||bypass)&&tenantsAbsent&&authUsersAbsent);if(!item.report.cleanupVerified){assert.equal(item.report.outcome,"CLEANUP_UNVERIFIED");assert.deepEqual(item.report.failures,["fixture-absence"]);assert.throws(()=>validateCauseProofObservation(item.report),/settlement-unverified/);}
+  }
+});
+test("actual cleanup rejects malformed and hidden-row observations without invoking data accessors or retaining swallowed errors",async()=>{
+  let gets=0;const fields={visibilityQualified:true,tenantsAbsent:true,authUsersAbsent:true};
+  const getter=Object.defineProperty({...fields},"visibilityQualified",{get(){gets++;throw Error("PRIVATE getter");}});
+  const inherited=Object.create(fields),symbol={...fields,[Symbol("PRIVATE")]:true};
+  const nonArray=Object.defineProperty({0:fields},"length",{get(){gets++;throw Error("PRIVATE length");}});
+  for(const row of [nonArray,[],[fields,fields],[{...fields,visibilityQualified:null}],[{...fields,visibilityQualified:1}],[{...fields,authUsersAbsent:"true"}],[{tenantsAbsent:true,authUsersAbsent:true}],[{...fields,extra:true}],[getter],[inherited],[symbol],[null],new Proxy([],{getOwnPropertyDescriptor(){throw Error("PRIVATE proxy");}})]){
+    const result=await actualCauseCleanup({row});assert.equal(result.report.cleanupVerified,false);assert.deepEqual(result.report.failures,["fixture-absence"]);
+  }
+  assert.equal(gets,0);const rejected=await actualCauseCleanup({rejectAbsence:true});assert.equal(rejected.report.cleanupVerified,false);
+  // A resolved canonical Auth-delete error can leave a user while tenants vanished.
+  const residual=await actualCauseCleanup({row:[{...fields,authUsersAbsent:false}]});assert.equal(residual.report.cleanupVerified,false);assert.deepEqual(residual.order,["rows","canonical","absence"]);
+});
+test("actual cleanup retains primary and all reachable cleanup failures and never deletes against unsettled or invalid owned references",async()=>{
+  const failed=await actualCauseCleanup({rowsFail:true,canonicalFail:true,rejectAbsence:true});assert.deepEqual(failed.report.failures,["fixture-rows","fixture-canonical","fixture-absence"]);assert.equal(failed.report.outcome,"CLEANUP_UNVERIFIED");
+  const pending=await actualCauseCleanup({pending:true});assert.deepEqual(pending.order,[]);assert.deepEqual(pending.report.failures,["fixture-or-ordinary","fixture-custody-retained"]);assert.equal(pending.report.ordinarySettled,false);
+  const invalid=await actualCauseCleanup({badIds:true});assert.deepEqual(invalid.order,[]);assert.deepEqual(invalid.report.failures,["fixture-absence"]);
+});
+
+test("actual spawn adapter records event facts monotonically without exit-code inference or real processes",async()=>{
+  for(const initialPid of [undefined,123]){
+    const child=Object.assign(new EventEmitter(),{pid:initialPid,stdout:null,stderr:null});
+    const handle=launchOwned("fixed",[],{},"fixed",async()=>{},(()=>child) as never,(async()=>null) as never);
+    assert.equal(handle.launchState(),"attempted-unverified");child.emit("error",Error("PRIVATE spawn"));assert.equal(handle.launchState(),initialPid===undefined?"not-created-confirmed":"attempted-unverified");
+    child.pid=123;child.emit("spawn");assert.equal(handle.launchState(),"started");child.emit("error",Error("PRIVATE later"));assert.equal(handle.launchState(),"started");child.emit("close",null,null);await handle.done;assert.equal(handle.launchState(),"started");
+  }
+});
+test("started diagnostic wait timeout has no exit code but remains capture-failed with retained custody",async(t)=>{
+  t.mock.timers.enable({apis:["setTimeout"]});const h=harness();let entered!:()=>void;const launched=new Promise<void>(resolve=>{entered=resolve;});
+  let finish!:(value:{code:number;signal:null})=>void;
+  const pending=runCalendarFeedRuntime({mode:"cause-proof",env:diagnosticEnv,platform:"linux"},{...h.deps,prepareDiagnostic:async()=>{},launch:()=>{entered();return{launchState:()=>"started",done:new Promise(resolve=>{finish=resolve;}),stop:async()=>{finish({code:0,signal:null});return{forced:true,signal:null};}};},finishDiagnostic:async(receipt:{childLaunchState:string;launchAttempted:boolean;childExitCodes:unknown[]})=>{assert.equal(receipt.childLaunchState,"started");assert.equal(receipt.launchAttempted,true);assert.equal(receipt.childExitCodes.length,0);return false;}});
+  await launched;t.mock.timers.tick(240001);const result=await pending;assert.equal(result.exitCode,1);assert.equal(result.receipt.keyDeleted,false);assert.ok(result.receipt.custody);assert.ok(result.receipt.failures.includes("diagnostic-capture-failed"));
+});
+test("diagnostic launch exceptions and late actual evidence retain uncertainty independently of eventual exit and cleanup",async()=>{
+  for(const kind of ["throw","missing","late","refused"]){const h=harness();let state=kind==="refused"?"not-created-confirmed":"attempted-unverified";
+    const result=await runCalendarFeedRuntime({mode:"cause-proof",env:diagnosticEnv,platform:"linux"},{...h.deps,prepareDiagnostic:async()=>{},readDiagnostic:async()=>{throw Error("PRIVATE missing");},launch:()=>{if(kind==="throw")throw Error("PRIVATE uncertain start");return{launchState:()=>state,done:Promise.resolve({code:1,signal:null}),stop:async()=>{if(kind==="late")state="started";return{forced:false,signal:null};}};},finishDiagnostic:async()=>false});
+    assert.equal(result.receipt.launchAttempted,true);assert.equal(result.receipt.childLaunchState,kind==="late"?"started":kind==="refused"?"not-created-confirmed":"attempted-unverified");assert.equal(result.receipt.keyDeleted,false);assert.ok(result.receipt.custody);assert.ok(!JSON.stringify(result.receipt).includes("PRIVATE"));
+  }
+});
+test("actual missing-report publication distinguishes proven no-start from started or uncertain launch with receipt and manifest parity",async()=>{
+  const folder=await mkdtemp(join(tmpdir(),"calendar-launch-report-"));try{
+    for(const state of ["not-attempted","not-created-confirmed","attempted-unverified","started"]){const receipt={launchAttempted:state!=="not-attempted",childLaunchState:state,childExitCodes:[],keyDeleted:false,dbClosed:true,custody:{ownedName:"PRIVATE"},failures:[]};const expected=state==="started"||state==="attempted-unverified";
+      assert.equal(await finishCauseProof(folder,diagnosticEnv,receipt,async()=>{},{keyId:"key",secret:"secret"}),!expected);
+      const upload=join(folder,"test-results/calendar-feed-cause-proof/upload"),a=JSON.parse(await readFile(join(upload,"receipt.json"),"utf8")),b=JSON.parse(await readFile(join(upload,"manifest.json"),"utf8"));
+      assert.equal(a.captureFailed,expected);assert.equal(a.childLaunchState,state);assert.equal(a.childStarted,state==="started"?true:state==="attempted-unverified"?null:false);assert.equal(a.launchAttempted,receipt.launchAttempted);for(const key of ["captureFailed","childLaunchState","childStarted","launchAttempted"])assert.deepEqual(a[key],b[key]);assert.ok(!JSON.stringify(a).includes("PRIVATE"));
+    }
+  }finally{assert.ok(resolve(folder).startsWith(resolve(tmpdir())+"\\")||resolve(folder).startsWith(resolve(tmpdir())+"/"));await rm(folder,{recursive:true,force:true});}
 });

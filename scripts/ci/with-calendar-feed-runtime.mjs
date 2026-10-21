@@ -66,11 +66,12 @@ export async function finishCauseProof(cwd, env, receipt, observe, privacy) {
       // Only validated copies are uploaded. A refused original is never deleted,
       // printed, or accidentally swept into the diagnostic artifact directory.
       await writeFile(join(upload, name), bytes, { mode: 0o600 });
-    } catch { entries.push({ name, available: false }); if (receipt.childExitCodes.length) captureFailed = true; }
+    } catch { entries.push({ name, available: false }); if (!["not-attempted", "not-created-confirmed"].includes(receipt.childLaunchState)) captureFailed = true; }
   }
   const safe = { kind: "calendar_feed.diagnostic_receipt", mode: "cause-proof", evidenceClass: "diagnostic-only", acceptanceCredit: 0,
     sourceSha: env.GITHUB_SHA, checkpointId: env.CALENDAR_FEED_CAUSE_PROOF_CHECKPOINT, runId: env.GITHUB_RUN_ID,
-    attempt: 1, job: env.GITHUB_JOB, childStarted: receipt.childExitCodes.length > 0,
+    attempt: 1, job: env.GITHUB_JOB, launchAttempted: receipt.launchAttempted, childLaunchState: receipt.childLaunchState,
+    childStarted: receipt.childLaunchState === "started" ? true : ["not-attempted", "not-created-confirmed"].includes(receipt.childLaunchState) ? false : null,
     reports: entries.map(({ name, available }) => ({ name, available })),
     cleanupVerified: receipt.keyDeleted && receipt.dbClosed && receipt.custody === null,
     custodyRetained: receipt.custody !== null, failures: [...receipt.failures], captureFailed };
@@ -380,9 +381,13 @@ export function createOwnedGroupStopper({ pid, done, capturedIdentity, readIdent
   };
 }
 
-function launchOwned(command, args, env, cwd, observe) {
-  const child = spawn(command, args, { cwd, env, detached: true, shell: false, stdio: ["ignore", "pipe", "pipe"] });
-  const capturedIdentity = processIdentity(child.pid);
+export function launchOwned(command, args, env, cwd, observe, spawnProcess = spawn, readIdentity = processIdentity) {
+  const child = spawnProcess(command, args, { cwd, env, detached: true, shell: false, stdio: ["ignore", "pipe", "pipe"] });
+  let launchState = "attempted-unverified";
+  // Actual adapter events, not completion/exit codes, establish launch facts.
+  child.once("spawn", () => { launchState = "started"; });
+  child.on("error", () => { if (launchState !== "started" && child.pid === undefined) launchState = "not-created-confirmed"; });
+  const capturedIdentity = readIdentity(child.pid);
   capturedIdentity.catch(() => undefined); // The settlement path preserves failure.
   // Register listeners immediately; neither spawn errors nor output escape to raw logs.
   let output = Promise.resolve();
@@ -413,6 +418,7 @@ function launchOwned(command, args, env, cwd, observe) {
     }, settleOutput: () => output });
   return {
     done,
+    launchState: () => launchState,
     async ownsListener(port) {
       if (!child.pid) return false;
       try {
@@ -476,6 +482,7 @@ export async function qualifyCalendarFeedCauseProof(env = process.env) {
  */
 export async function runCalendarFeedRuntime({ mode, env = process.env, platform = process.platform, cwd = ROOT } = {}, injected = {}) {
   const receipt = { event: "calendar_feed.ci_lifecycle", mode: ["db", "browser", "cause-proof"].includes(mode) ? mode : "refused", ready: false,
+    launchAttempted: false, childLaunchState: "not-attempted",
     childExitCodes: /** @type {(number|null)[]} */ ([]), keyDeleted: false, dbClosed: false,
     failures: /** @type {string[]} */ ([]),
     diagnostics: /** @type {{stage:string, category:string, sqlState:string|null}[]} */ ([]),
@@ -491,12 +498,29 @@ export async function runCalendarFeedRuntime({ mode, env = process.env, platform
   const deps = { ...defaultDependencies(env, cwd), ...injected };
   let unregister = () => undefined;
   const checkSignal = () => { if (abort.signal.aborted) fail("interrupted"); };
-  const launch = (command, args, childEnv, observer) => { checkSignal(); const handle = deps.launch(command, [...args], childEnv, observer); children.add(handle); return handle; };
+  let diagnosticHandle;
+  const refreshLaunch = () => {
+    if (mode !== "cause-proof" || !diagnosticHandle) return;
+    let state; try { state = diagnosticHandle.launchState?.(); } catch { /* Remains uncertain. */ }
+    if (state === "started") receipt.childLaunchState = "started";
+    else if (state === "not-created-confirmed" && receipt.childLaunchState !== "started") receipt.childLaunchState = state;
+  };
+  const launch = (command, args, childEnv, observer) => {
+    checkSignal();
+    if (mode === "cause-proof") { receipt.launchAttempted = true; receipt.childLaunchState = "attempted-unverified"; }
+    let handle;
+    try { handle = deps.launch(command, [...args], childEnv, observer); }
+    catch (error) { if (mode === "cause-proof") diagnosticUnverified = true; throw error; }
+    children.add(handle);
+    if (mode === "cause-proof") { diagnosticHandle = handle; refreshLaunch(); }
+    return handle;
+  };
   const run = async (command, args, childEnv, observer, timeout) => {
     const handle = launch(command, args, childEnv, observer);
     let result;
     try { result = await bounded(handle.done, timeout, "child-timeout", abort.signal); }
     catch (error) { if (mode === "browser") browserTeardownUnverified = true; if (mode === "cause-proof") diagnosticUnverified = true; throw error; }
+    finally { refreshLaunch(); }
     receipt.childExitCodes.push(result.code);
     if (result.code !== 0 || result.signal) {
       // pnpm can map a killed nested Playwright runner to nonzero/null signal.
@@ -614,6 +638,7 @@ export async function runCalendarFeedRuntime({ mode, env = process.env, platform
     } else if (createUncertain) receipt.failures.push("key-create-outcome-unverified");
     if (db) { try { await bounded(db.end(), 5_000, "db-close-unverified"); receipt.dbClosed = true; } catch (error) { receipt.failures.push("db-close-unverified"); receipt.diagnostics.push(safeDiagnostic("database-close", error)); } }
     unregister();
+    refreshLaunch(); // Late actual spawn evidence survives wait/cleanup failures.
     if (receipt.failures.length && (createUncertain || (keyUuid && !receipt.keyDeleted) || receipt.failures.some(code => code.includes("cleanup") || code.includes("unverified")))) {
       receipt.custody = { owner: "Isolated CI job operator", job: env.CALENDAR_FEED_CI_DISPOSABLE_STACK,
         vaultUuid: keyUuid ?? null, ownedName: ownedName ?? null, expiry: "Destruction of this disposable GitHub-hosted job",

@@ -873,10 +873,27 @@ export async function runCalendarFeedCauseProof() {
   // No raced timeout counts as command or query completion. If unverified, keep
   // canonical fixture custody rather than deleting rows/Auth against live refs.
   if(fixture && report.ordinarySettled && report.queriesSettled && report.cleanupVerified) {
+    const tenantIds = [fixture.base.tenantA.id, fixture.base.tenantB.id];
+    const authIds = [fixture.base.adminA.id, fixture.base.adminB.id, fixture.base.orphanUser.id, ...fixture.extraUsers.map(user => user.id)];
+    const uuid = /^[a-f0-9]{8}-[a-f0-9]{4}-[1-8][a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/i;
+    if (tenantIds.length !== 2 || authIds.length !== 10 || new Set(tenantIds).size !== 2 || new Set(authIds).size !== 10
+      || ![...tenantIds, ...authIds].every(id => typeof id === "string" && uuid.test(id))) {
+      fail("fixture-absence"); report.outcome = "CLEANUP_UNVERIFIED"; return report;
+    }
     try { await cleanupCalendarOwnedRows([fixture.base.tenantA.id,fixture.base.tenantB.id]); } catch { fail("fixture-rows"); }
     try { await cleanupRoleAwarePhaseAFixture(fixture); } catch { fail("fixture-canonical"); }
     try {
-      if((await adminQuery("select 1 from public.tenants where id=any($1::uuid[]) limit 1",[[fixture.base.tenantA.id,fixture.base.tenantB.id]])).length) fail("fixture-absence");
+      // Same executing role and statement: hidden RLS rows cannot prove absence.
+      // BYPASSRLS does not grant Auth SELECT; a denied query remains unverified.
+      const rows = await adminQuery(`select
+        (select r.rolsuper or r.rolbypassrls from pg_catalog.pg_roles r where r.rolname=current_user) as "visibilityQualified",
+        not exists(select 1 from public.tenants where id=any($1::uuid[])) as "tenantsAbsent",
+        not exists(select 1 from auth.users where id=any($2::uuid[])) as "authUsersAbsent"`, [tenantIds, authIds]);
+      const element = Array.isArray(rows) ? Object.getOwnPropertyDescriptor(rows, "0") : undefined;
+      const fields = element && "value" in element ? Object.getOwnPropertyDescriptors(element.value) : {};
+      const names = ["visibilityQualified", "tenantsAbsent", "authUsersAbsent"];
+      if (!Array.isArray(rows) || rows.length !== 1 || Reflect.ownKeys(fields).length !== 3
+        || !names.every(name => Object.hasOwn(fields, name) && "value" in fields[name] && fields[name].value === true)) fail("fixture-absence");
     } catch { fail("fixture-absence"); }
   } else if(fixture) fail("fixture-custody-retained");
   if(!report.cleanupVerified || !report.ordinarySettled || !report.queriesSettled) report.outcome="CLEANUP_UNVERIFIED";

@@ -1119,6 +1119,74 @@ native collection, DB/RLS/component/HTTP/browser execution or diagnostic baselin
 was run. The source's normal95 acceptance cases and INT015 are unchanged;
 DIAG001 is declared ONLY in explicit diagnostic mode and is not normal coverage.
 
+## Exact-seven corrective diagnostic contract — 2026-10-21
+
+The cb8 committed-delta High review is preserved as NOTPASS with two P2 findings;
+its original packet remains immutable. Root's new exact-seven allocation
+`accepted-native-denial-cause-proof-corrective-allocation.json` (4261B,
+SHA256 `956b92aaaeda0d028a4c53e2b48c00b8f86916bae2523f069f28ce2363451079`)
+admits the reviewed corrective proposal and visibility addendum. The earlier
+F1 plan-sufficiency PASS without same-connection visibility is NOT ADOPTED.
+This author executes the recorded sensitive Sol6.1 High corrective route; fresh
+distinct committed latest-fix review remains pending, within the three-round cap.
+
+F1 replaces the diagnostic caller's existing ONE final tenant-only absence SELECT
+with same-statement executing current_user pg_roles SUPERUSER OR BYPASSRLS,
+exact two owned tenant absences and exact ten known returned Auth user absences.
+Exactly one row/three own data booleans must all be true. Missing, false, malformed,
+getter/proxy or rejected observations retain fixed fixture-absence failure,
+CLEANUP_UNVERIFIED and existing custody. The exact parameterized Auth/catalog
+reads are newly admitted; no extra query roundtrip, HTTP request, connection,
+principal or grant is introduced. BYPASSRLS does not supply a missing SELECT
+privilege. The unchanged pool/DSN is not inferred to be SupAdmin or independently
+qualified bootstrap setup. This proves only physical absence of known returned
+IDs at the observation, not historical Auth responses or partial setup closure.
+Canonical shared factory/admin SQL and all normal cases remain unchanged.
+
+F2 records attempt before the actual launch boundary and actual adapter spawn /
+pre-spawn refusal evidence independently of bounded done/exit codes. Started,
+uncertain and positively not-created remain distinct, with childStarted true,
+null or false respectively; later real spawn evidence cannot be erased by wait
+or cleanup failure. Missing reports after started OR uncertain launch are
+CAPTURE_FAILED. A no-start claim requires positive proof. Persistent safe error
+listeners retain late adapter failures without native text escaping. Existing
+captured identity/group stop, done/output drain, COMMIT and key-custody guards
+remain; uncertain launch exceptions conservatively retain custody.
+
+The separately admitted availability contract now requires fresh active/default
+workflow path, blob identity and a strict structurally recognized root
+workflow_dispatch declaration, while FULL diagnostic input/title/admission/argv
+capability and reviewed-checkout identity stay required on the candidate. The
+bounded recognizer refuses unsupported, nested, duplicate, quoted/comment-only,
+block-scalar, alias and malformed event forms; it is not a general YAML parser.
+The provider GET sequence and sole nonce/mode-bound POST are unchanged. Hosted
+availability remains UNKNOWN until Root's later fresh checks, with no fallback,
+default update, retry, acceptance or waiver. The unborn private qualifier must
+consume the explicit new launch schema; producer source cannot adopt it itself.
+
+Actual initial two-file execution:116 total,112PASS/4FAIL/0skip/0cancel.
+Three controls initially bound an import.meta caller through Function syntax;
+they now compile the exact current caller in an ES module. The fourth repeated
+actual adapter-error control exposed once-only listener consumption, corrected
+with a persistent safe listener. The corrected two-file run passed116/116.
+Initial focused lint had one prefer-const error in new test plumbing, corrected.
+After the final malformed-result control, actual seven-file execution passed
+374/374 with0fail/skip/cancel:86 separate runtime/source/driver/FS controls,
+30 dispatcher controls and258 existing consumer/enrollment controls. After that
+run, the recognizer additionally refused flow/sequence aliases; the affected
+dispatcher file alone reran30PASS/0FAIL/0skip/0cancel, with the other344 tested
+bindings unchanged. No new combined execution is inferred. All earlier
+79 and retained67 controls remain. Whole TypeScript and six-file focused ESLint
+passed (0errors/0warnings). These injected actual-source seams and adapter events
+prove caller/SQL shape, boolean and launch/capture/recognizer contracts; they do
+not execute SQL/Auth, real child processes or hosted dispatch. Normal95 and
+INT015 are unchanged. No app runtime bytes changed, so no new production build
+was run; the earlier build retains its historical dependency scope. No native
+collection, fixture, RPC/query, service, browser, provider or CI action occurred.
+Kernel5760 bytes is unchanged; status stays in-review, ARR warnings and all11
+failed native histories remain. All43 DB/14 browser causes remain unresolved.
+No development-complete, release, delivery or diagnostic acceptance is claimed.
+
 ## Suggested Review Order
 
 Author: Story 15.5 implementation/fix author (gpt-6.1-sol High), incorporating
@@ -1198,17 +1266,17 @@ authenticated SupAdmin LOGIN+SUPER for key setup and INT015, preserving its
 restricted-session oracle. No new privileged child configuration or grant is added.
 
 - `tests/integration/commands/calendar-feed.int.test.ts:486` — `// FULL rollback comes first`: preserves rollback/reset and same/fresh catalog absence proof.
-- `scripts/ci/with-calendar-feed-runtime.mjs:327` — `export function createOwnedGroupStopper`: memoizes settlement, validates capture, passively observes missing-leader group absence and bounds completion/output.
-- `scripts/ci/with-calendar-feed-runtime.mjs:248` — `export function createTelemetryObserver`: detects leaks before dropping non-allowlisted output.
+- `scripts/ci/with-calendar-feed-runtime.mjs:328` — `export function createOwnedGroupStopper`: memoizes settlement, validates capture, passively observes missing-leader group absence and bounds completion/output.
+- `scripts/ci/with-calendar-feed-runtime.mjs:249` — `export function createTelemetryObserver`: detects leaks before dropping non-allowlisted output.
 - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1282` — `nonzero/null-signal nested browser loss`: requires retained key custody for abnormal completion.
 - `tests/support/calendar-feed-ci-contract.ts:83` — `projectCalendarFeedCiCommands`: validates pinned real wrapper argv and the two wrapper inverses and finite exact diagnostic fragments.
 - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:39` — `CI command projection rejects`: missing/wrong entry/argv and unrelated-source/workflow negatives preserve the original inverse fence.
-- `scripts/ci/with-calendar-feed-runtime.mjs:99` — `function safeDiagnostic`: emits only fixed stages/categories and allowlisted SQLSTATE without native payloads.
+- `scripts/ci/with-calendar-feed-runtime.mjs:100` — `function safeDiagnostic`: emits only fixed stages/categories and allowlisted SQLSTATE without native payloads.
 - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:320` — `COMMIT uncertainty is not cleared`: rollback alone cannot establish key absence after attempted COMMIT.
-- `scripts/ci/with-calendar-feed-runtime.mjs:529` — `receipt.privacyPreflight = await readCalendarFeedPrivacyPreflight(db);`: rejects unsafe effective settings before entropy on the existing client.
+- `scripts/ci/with-calendar-feed-runtime.mjs:553` — `receipt.privacyPreflight = await readCalendarFeedPrivacyPreflight(db);`: rejects unsafe effective settings before entropy on the existing client.
 - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:216` — `privacy preflight rejects incomplete`: malformed and unsafe settings cannot reach a secret or child; actual driver/same-client/query-close cases exercise the surrounding boundary.
-- `scripts/ci/with-calendar-feed-runtime.mjs:166` — `export function createCalendarFeedDatabaseClient`: fixes the same qualified source publication, canonical admin and sole captured credential; no default or alternate route.
-- `scripts/ci/with-calendar-feed-runtime.mjs:153` — `export async function readCalendarFeedSetupAuthority`: actual authenticated session/current LOGIN+SUPER proof is mandatory before mutation.
+- `scripts/ci/with-calendar-feed-runtime.mjs:167` — `export function createCalendarFeedDatabaseClient`: fixes the same qualified source publication, canonical admin and sole captured credential; no default or alternate route.
+- `scripts/ci/with-calendar-feed-runtime.mjs:154` — `export async function readCalendarFeedSetupAuthority`: actual authenticated session/current LOGIN+SUPER proof is mandatory before mutation.
 - `tests/integration/commands/calendar-feed.int.test.ts:508` — `await fresh.connect(); await setupQualified(fresh); await absent(fresh);`: INT015 fresh authority/privacy and exact absence oracle passed at3e7.
 - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:154` — `setup construction refuses missing`: credential/target refusals cannot reach secrets or children; actual identity negatives and child-config tests complete the bounded boundary evidence.
 
@@ -1298,7 +1366,7 @@ and the43DB/14browser gaps remain failed/unresolved; no whole-native reuse.
 - `tests/support/calendar-feed-atdd.ts:750` — `export async function calendarCauseProofIdle`: a pg timeout is not actual protocol settlement.
 - `tests/support/calendar-feed-atdd.ts:762` — `export async function runCalendarFeedCauseProof`: one ordinary command, qualified restricted original baseline, rollback/fresh verification and conditional custody cleanup.
 - `tests/integration/commands/calendar-feed.int.test.ts:21` — `test("15.5-DIAG001"`: explicit-mode-only diagnostic inventory; normal95/INT015 are not replaced.
-- `scripts/ci/checkpoint-dispatch.mjs:31` — `function diagnosticAvailability`: candidate/default availability refusal before the sole POST.
+- `scripts/ci/checkpoint-dispatch.mjs:79` — `function diagnosticAvailability`: candidate/default availability refusal before the sole POST.
 - `scripts/ci/checkpoint-dispatch.mjs:15` — `function verificationMode`: persisted diagnostic/legacy mode cannot downgrade to normal acceptance.
 - `scripts/ci/with-calendar-feed-runtime.mjs:14` — `export const CAUSE_PROOF_ARGS`: fixed single-case serial argv/reporters/output without a Next/browser child.
 - `scripts/ci/with-calendar-feed-runtime.mjs:50` — `export async function finishCauseProof`: validated distinct report upload on test failure as well as success, with private custody redaction.
@@ -1314,3 +1382,26 @@ Evidence: final79 changed-file Node controls and prior361 seven-file run have th
 separate temporal limits recorded above. No diagnostic native run or SQL cause
 proof has occurred. Hosted availability and private qualifier adoption are hard
 pre-POST requirements; distinct committed-delta High review remains pending.
+
+### Correct cleanup and launch evidence before dispatch
+
+The corrective allocation adds same-statement visibility so hidden rows cannot
+qualify absence, and separates actual launch evidence from exit completion.
+Default registration/event presence and candidate capability have distinct gates.
+
+- `tests/support/calendar-feed-atdd.ts:889` — `(select r.rolsuper or r.rolbypassrls`: qualifies visibility on the executing query role.
+- `tests/support/calendar-feed-atdd.ts:895` — `if (!Array.isArray(rows)`: rejects malformed or false absence observations without getters.
+- `scripts/ci/with-calendar-feed-runtime.mjs:388` — `child.once("spawn",`: actual adapter events establish launch independently of done.
+- `scripts/ci/with-calendar-feed-runtime.mjs:502` — `const refreshLaunch`: retains late actual launch facts through cleanup.
+- `scripts/ci/with-calendar-feed-runtime.mjs:69` — `if (!["not-attempted", "not-created-confirmed"].includes(receipt.childLaunchState))`: uncertain or started missing reports fail capture.
+- `scripts/ci/checkpoint-dispatch.mjs:26` — `export function assertDefaultDispatchWorkflow`: rejects ambiguous structure before the sole POST.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1495` — `actual diagnostic caller requires same-statement`: actual caller visibility/absence, exact parameter and custody controls.
+- `tests/unit/scripts/ci/checkpoint-dispatch.test.ts:286` — `default recognizer refuses comments`: malformed event definitions cannot satisfy default presence.
+
+Evidence: actual374 seven-file Node PASS includes86 runtime and30 dispatcher
+controls. Final alias-only changes then passed the affected30 dispatcher cases;
+other344 bindings are reused, not a second combined run. Whole TypeScript and
+focused ESLint passed. Actual source seams,
+synthetic SQL rows, simulated spawn events and temp-FS reports are not native
+SQL/Auth/child/hosted acceptance. The new schema's future private consumer,
+hosted availability, fresh committed High and Root execution remain pending.
