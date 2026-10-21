@@ -5623,3 +5623,35 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** FixedUUID9565c54d-1bbe-4a32-b647-949c02e6c404; derive exactpushedhead only after thismetadatafreeze. No deployment or main adoption.
+
+## Report — 2026-10-21T19:46:13Z (checkpoint — normal CI running)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `ce1943e`).
+**Pipeline status:** 15.5 P5 active; exactcheckpoint pushed and normalCI dispatched once; checkpointadmission passed/verify inprogress. Acceptancezero.
+**Continues:** Rootsoleownedrunpoller; Highprepares existingterminaloperator finitefreshidentity/current73/partialbail schema withoutGETs.
+
+**Summary:** 15.1–15.4 landed; 15.5 active; 15.6 unstarted.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 294h 48m (≈77h 24m AI-run, ≈217h 23m human/idle wait); resumed 168×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:**
+1. Required95/fullDBRLS/recovery/privacy/browser/custody actualresults pending; terminalacquisition unallocated.
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Run39664130401/attempt1/headce1943e01b773671e0c2e583ea6b21e56d40e81b; waitactualterminal, admitoperator then exactartifactscope.
