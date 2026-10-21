@@ -22,7 +22,20 @@
  */
 import { defineConfig } from "vitest/config";
 
+/** Reject only the reviewed unsupported resolved partition, before setup/import.
+ * maxWorkers here is the actual project setting, not CPU/CLI-effective budget. */
+export function supportedCalendarIntegrationProjects(projects: readonly {name:string;config:{isolate?:boolean;fileParallelism?:boolean;sequence:{groupOrder?:number};maxWorkers?:unknown;bail?:number}}[]): boolean {
+  const parallel=projects.find(project=>project.name==="integration-parallel"),serial=projects.find(project=>project.name==="integration-audit-ddl");
+  return !!(projects.length===2&&parallel&&serial&&parallel.config.isolate===true&&parallel.config.fileParallelism===true
+    &&parallel.config.sequence.groupOrder===0&&parallel.config.maxWorkers!==1&&serial.config.isolate===true
+    &&serial.config.fileParallelism===false&&serial.config.maxWorkers===1&&serial.config.sequence.groupOrder===1&&serial.config.bail===1);
+}
+
 export default defineConfig({
+  plugins:[{name:"c4-supported-partition",configureVitest({vitest}){
+    // Every selected project evaluates the complete set, including serial-only.
+    if(!supportedCalendarIntegrationProjects(vitest.projects))throw new Error("C4_UNSUPPORTED_PROJECT_CONFIG");
+  }}],
   resolve: {
     // Vite 8 native tsconfig `paths` resolution (`@/* -> ./src/*`).
     tsconfigPaths: true,
@@ -52,6 +65,7 @@ export default defineConfig({
           name: "integration-audit-ddl",
           include: ["tests/integration/jobs/job-runs.int.test.ts", "tests/integration/commands/conflict-resolver.int.test.ts", "tests/integration/commands/time-reports.int.test.ts", "tests/integration/notifications/time-report-nudge-producer.int.test.ts", "tests/integration/commands/calendar-feed.int.test.ts", "tests/integration/calendar-feed/public-feed.int.test.ts"],
           fileParallelism: false,
+          bail: 1,
           sequence: { groupOrder: 1 },
         },
       },

@@ -40,6 +40,8 @@ test("CI command projection rejects entry and argv drift and cannot erase unrela
   const workflow = readFileSync(new URL("../../../../.github/workflows/ci.yml", import.meta.url), "utf8").replaceAll("\r\n", "\n");
   const wrapper = readFileSync(new URL("../../../../scripts/ci/with-calendar-feed-runtime.mjs", import.meta.url), "utf8").replaceAll("\r\n", "\n");
   const projected = projectCalendarFeedCiCommands(workflow, wrapper);
+  assert.equal(projectCalendarFeedCiCommands(workflow,wrapper.replaceAll("\n","\r\n")),projected);
+  assert.equal(projectCalendarFeedCiCommands(workflow),projected); // actual raw checkout and LF CI bytes agree
   assert.ok(projected.includes("pnpm run test:int --reporter=default --reporter=github-actions --reporter=json --outputFile=test-results/full-integration.json"));
   assert.ok(projected.includes("run: pnpm run test:smoke"));
   for (const [before, after] of [
@@ -1216,12 +1218,14 @@ test("browser mode runs only existing smoke and awaits its server group before k
   assert.ok(result.events.lastIndexOf("settled:0") < result.events.indexOf("delete"));
 });
 
-test("readiness and child failures keep primary failure and still clean the exact owned key", async () => {
+test("failed DB readiness build and integration retain the exact key despite frontend settlement", async () => {
   for (const options of [{ readinessFailure: true }, { failChild: 0 }, { failChild: 2 }]) {
     const result = await runFixture("db", harness(options));
     assert.equal(result.exitCode, 1); assert.ok(result.receipt.failures.length >= 1);
-    assert.equal(result.receipt.keyDeleted, true); assert.equal(result.receipt.dbClosed, true);
-    assert.ok(result.events.indexOf("delete") > result.events.lastIndexOf(`settled:${result.launches.length - 1}`));
+    assert.equal(result.receipt.keyDeleted, false); assert.equal(result.receipt.dbClosed, true);
+    assert.equal(result.receipt.keyOutcome,"unverified");assert.ok(result.receipt.custody);
+    assert.ok(!result.queries.some(call=>call.sql.startsWith("delete")||call.sql.startsWith("select id,name from vault.secrets")));
+    assert.ok(result.events.includes(`settled:${result.launches.length - 1}`));
   }
 });
 
@@ -2211,5 +2215,19 @@ test("actual E2E002 empty agenda keeps structure visible copy keyboard href and 
     const run=new Function("variant","expect","personal","page","calendarNames","tabTo","calendarUI",strip(`async function actual(){${source.slice(start,end)}}`)+"return actual;")({scenario,host:"agenda"},expect,personal,page,{title:"Kalenderprenumeration"},async()=>{checks.push("keyboard-focus");},()=>({create:locator("create")}));await run();
     assert.ok(checks.includes("link:visible"));assert.ok(checks.includes("link:count:1"));assert.ok(checks.includes("href"));assert.ok(checks.includes("keyboard-focus"));assert.ok(checks.includes("key:Enter"));assert.ok(checks.includes("heading:count:1"));assert.ok(checks.includes("create:count:1"));
     if(scenario==="no-profile"){assert.ok(checks.includes("personal:visible"));assert.ok(checks.includes("agenda:attached"));assert.ok(checks.includes("empty:visible"));assert.ok(!checks.includes("agenda:visible"));}else{assert.ok(checks.includes("agenda:visible"));assert.ok(!checks.includes("agenda:attached"));}
+  }
+});
+
+
+test("failed DB signal cancellation launch timeout and forced or unknown stop cannot delete or read back the key",async()=>{
+  for(const failure of ["signal","cancel","post-run-cancel","launch","timeout","stop","forced","unknown-stop"]){const h=harness();
+    const launch=h.deps.launch;h.deps.launch=(command,args,childEnv)=>{if(failure==="launch")throw Error("PRIVATE launch");const handle=launch(command,args,childEnv);
+      if(!args.includes("start"))return{...handle,done:failure==="signal"?Promise.resolve({code:null as unknown as number,signal:"SIGTERM" as unknown as null}):failure==="timeout"?actualFeedRegion("../../../../scripts/ci/with-calendar-feed-runtime.mjs","async function bounded(","async function processIdentity(","bounded",{RuntimeFailure:Error})(new Promise(()=>{}),1,"child-timeout"):handle.done};
+      return{...handle,async stop(){const result=await handle.stop();if(failure==="post-run-cancel")h.signal();if(failure==="stop")throw Error("PRIVATE stop");return failure==="forced"?{forced:true,signal:null}:failure==="unknown-stop"?undefined as unknown as typeof result:result;}};};
+    const ready=h.deps.ready;h.deps.ready=async()=>{if(failure==="cancel")h.signal();await ready();};
+    // Run the actual bounded deadline with a finite1ms injected child dependency.
+    // This is offline promise behavior, not a real process timeout or backend proof.
+    const result=await runFixture("db",h);assert.equal(result.exitCode,1);assert.equal(result.receipt.keyDeleted,false);assert.equal(result.receipt.keyOutcome,"unverified");assert.ok(result.receipt.custody);assert.equal(result.receipt.dbClosed,true);
+    assert.ok(!result.queries.some(call=>call.sql.startsWith("delete")||call.sql.startsWith("select id,name from vault.secrets")));assert.ok(!JSON.stringify(result.receipt).includes("PRIVATE"));
   }
 });

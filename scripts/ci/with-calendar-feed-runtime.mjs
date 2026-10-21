@@ -545,6 +545,7 @@ export async function runCalendarFeedRuntime({ mode, env = process.env, platform
       fail("child-failed");
     }
     const stopped = await handle.stop();
+    if (mode === "db" && (stopped?.forced !== false || stopped?.signal !== null)) fail("owned-child-cleanup-failed");
     if (mode === "browser" && (stopped?.forced || stopped?.signal)) { browserTeardownUnverified = true; fail("browser-server-teardown-unverified"); }
     children.delete(handle); // Proven settlement cannot be signalled again later.
   };
@@ -632,6 +633,7 @@ export async function runCalendarFeedRuntime({ mode, env = process.env, platform
     for (const handle of [...children].reverse()) {
       try {
         const stopped = await handle.stop();
+        if (mode === "db" && (stopped?.forced !== false || stopped?.signal !== null)) fail("owned-child-cleanup-failed");
         if (mode === "browser" && (stopped?.forced || stopped?.signal)) browserTeardownUnverified = true;
         children.delete(handle);
       } catch (error) { receipt.failures.push("owned-child-cleanup-failed"); receipt.diagnostics.push(safeDiagnostic("child-cleanup", error)); }
@@ -642,8 +644,14 @@ export async function runCalendarFeedRuntime({ mode, env = process.env, platform
       try { await db.query("rollback"); transactionOpen = false; createUncertain = false; rollbackConfirmed = true; }
       catch (error) { receipt.failures.push("transaction-rollback-unverified"); receipt.diagnostics.push(safeDiagnostic("transaction-rollback", error)); }
     }
+    // A failed/uncertain DB runtime may retain backend shared-state work even
+    // after frontend child settlement. Keep the existing exact key under job
+    // custody; stop/end is not rollback or canonical-restoration proof.
+    if (mode === "db" && stage === "runtime" && abort.signal.aborted && !receipt.failures.includes("interrupted")) receipt.failures.push("interrupted");
+    const dbRuntimeUnverified = mode === "db" && stage === "runtime"
+      && (receipt.failures.length > 0 || abort.signal.aborted);
     // Never delete a key while a captured child or transaction remains unverified.
-    if (keyUuid && !transactionOpen && !browserTeardownUnverified && !diagnosticUnverified && !receipt.failures.includes("owned-child-cleanup-failed")) {
+    if (keyUuid && !transactionOpen && !dbRuntimeUnverified && !browserTeardownUnverified && !diagnosticUnverified && !receipt.failures.includes("owned-child-cleanup-failed")) {
       try {
         const result = await db.query("delete from vault.secrets where id=$1::uuid and name=$2 returning id", [keyUuid, ownedName]);
         const remaining = await db.query("select id,name from vault.secrets where id=$1::uuid", [keyUuid]);
