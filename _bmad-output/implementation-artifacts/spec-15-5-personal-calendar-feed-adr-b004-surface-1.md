@@ -244,8 +244,14 @@ Deferred release validation: exhaustive browser/device/calendar-provider matrice
 
 ## Auto Run Result
 
-Status: ready-for-dev
-Blocking condition: none for planning.
+Status: in-review
+Blocking condition: fresh exact-head native development gates and targeted independent review remain pending; prior43DB/14browser functional failures are unresolved.
+
+Current result — 2026-10-21: the bounded actor-adapter repair below is implemented
+and locally source-verified. It is not development complete or release ready.
+The following planning paragraphs are retained historical results, not the current
+status, permission, gate outcome or runtime evidence. The historical ARR warning
+and three completed broad review rounds remain preserved.
 
 HALT after planning. Author READY/self-audit passed with 10 tasks and 9 Given/When/Then ACs. Candidate intent kernel awaits approval; exact raw/kernel digests and reader/discovery/preservation receipts are in preparation validation.json. Planning-only candidate; independent Root High validation/kernel freeze and Coordinator exact implementation/migration/test-resource admission remain pending. No source/schema/test/dependency/env/runtime/state/sprint/Git/remote mutation occurred. Resources 0. Completion hook preserves this planning result and creates no completed implementation review trail or delivery claim.
 
@@ -1337,6 +1343,83 @@ or resource launch occurred. Root commits after mechanical conservation and obta
 a distinct targeted committed-delta review before any justified fresh CI attempt.
 In-review, loop3, kernel5760 and the historical ARR warning remain.
 
+## Preparsed canonical actor adapter — 2026-10-21
+
+Root's final actual-path allocation accepted-invoker-adapter-repair-final-path-allocation.json
+records Coordinator completed turn01a15e00-ebe0-7aa3-89e8-bbabbe0cef59 / grant
+exec-b79f271e-67cf-4508-919f-f42aa7f650b2. The sole CLI2.115.0 generation produced
+empty20261021102723_calendar_feed_preparsed_actor_identity.sql; this author filled
+that exact path without generation/rename. It follows E16reserved20261021102151.
+Source union becomes71paths; actual local SQL census111. Old migrations and
+protected109SQL/37consumers remain unchanged; no old capsule or private P2 edit.
+
+The new migration is one atomic DO statement. It qualifies actual ordinary
+postgres identity, existing SETtrue/INHERITfalse authority, the owner's seven
+hardened attributes and exact original function sources/call counts/properties/
+private entrypoint ACLs. It creates a postgres-owned SQL STABLE SECURITY INVOKER
+adapter with empty search_path and SQL-standard RETURN auth.uid(), revokes PUBLIC
+and JWT/runtime execution, and permits only feed-owner execution plus inherent
+postgres ownership. It does not grant Auth namespace access, change auth.uid ACLs,
+copy a claims expression, add SECURITY DEFINER or change role memberships/attributes.
+
+Under a narrow transient public CREATE grant it SET LOCAL ROLE calendar_feed_owner
+and replaces only status/manage/abuse through their actual pg_get_functiondef
+with exactly3/2/3 auth.uid() substitutions. RESET restores the executor; CREATE is
+revoked and effective absence (including PUBLIC/inheritance) asserted. The same
+OIDs, owners, signatures, all other pg_proc metadata/ACL/config/volatility and exact
+remaining source are checked. Helper prosqlbody, canonical auth.uid pg_depend,
+private effective EXECUTE and postgres invoker ownership are asserted. Any error
+fails the whole statement; no superuser/schema-owner fallback or partial success.
+
+This choice follows the independently qualified invoker mechanism probe
+(invoker-adapter-probe-qualification.json10184B/SHA256
+f45092e068564833b91f5e42cc0feba1a991cbe74f4c69ab2e13d1cf89d82bb4):
+actual restricted direct canonical lookup denied42501 while the first preparsed
+invoker returned canonical identity/NULL, with revoked adapter EXECUTE denied and
+same/fresh cleanup qualified. This is local engine feasibility ONLY, not the
+production migration, current feature, hosted/historical cause or full95PASS.
+[PostgreSQL17 CREATE FUNCTION](https://www.postgresql.org/docs/17/sql-createfunction.html)
+explains definition-time SQL-body parsing/dependency binding and preserved owner/
+permissions on replacement; [SET ROLE](https://www.postgresql.org/docs/17/sql-set-role.html)
+requires SET authority and changes command privilege checks. Supabase and Postgres
+security skill guidance was read/applied. The changelog.md fetch could not be
+rendered by the web reader; no changed Supabase SDK/CLI behavior is assumed.
+
+The current wire is strict status-origin-v2, eighteen exact booleans replacing
+owner_auth_usage with owner_actor_execute; canonical owner_uid_execute remains
+necessary. The other seventeen exclude only TABLE_ACL_ONLY owner_tokens_select.
+v1/mixed schemas fail closed. The qualification remains one SELECT; management
+observations/call counts, routine classes, outcomes, settlement/rollback/RESET/
+fresh checks/cleanup/custody and caps stay unchanged. The baseline catalog guard
+now derives the same eight substitutions from immutable original SQL and refuses
+unrelated source/owner/config drift. P2v1 helpers/necessity conclusions remain
+historical, never current v2 qualification. Future v2 private consumer requires
+Root rebinding/review/admission; no native activation is authorized.
+
+Existing RLS010 now includes the exact actor helper and asserts postgres owner,
+invoker/preparsed SQL STABLE/empty path/canonical uid dependency/private execution.
+All original owner/publicCREATE/JWT/table/Vault negatives remain. No test/case,
+INT015, timeout or skip was weakened; normal95 declarations are unchanged.
+
+Actual checks: focused affected Node97P0F0skip0cancel first-run; after the final
+migration pre-ACL guard, another affected97P0F0skip0cancel. These are separate
+runs, not194. Whole TypeScript and focused five-file ESLint exit0/no warnings.
+One final pure-Node run through the existing Node22.23.2 Linux native overlay
+passed3183tests/103suites,3183P0F0skip0cancel in37.965s; output was RAM-only,
+965928B/SHA256 c892ec25e4e5d01ad23021b2006bcd4728a23d35bca2680a9ed445a9ac58ad38.
+Ubuntu24.04 was already Running; NODE_PATH/TMPDIR were per-child, quoted glob one
+literal argv, no install or managed workload. The focused97 are included there,
+not additive. No initial test/type/lint failure occurred in this batch.
+
+Actual live-source controls execute v2 SELECT construction, strict old/mixed
+schema refusal, adapted-vs-drift expected sources and the actual ACL query/RLS010
+callback with injected facts; they cross-validate all three embedded original
+bodies/eight substitutions against unchanged historical SQL. They do NOT compile
+or execute PostgreSQL, prove migration atomicity/production permission behavior,
+full DB/RLS/HTTP/browser acceptance or a new private v2 consumer. These require
+fresh exact-head native gates and distinct targeted High review. No app build for
+unchanged app bytes; in-review/kernel5760/broad-loop3/ARR warning preserved.
+
 ## Suggested Review Order
 
 Author: Story 15.5 implementation/fix author (gpt-6.1-sol High), incorporating
@@ -1476,7 +1559,7 @@ safe source frames identify other assertion lines without inspecting native erro
 
 - `tests/support/calendar-feed-atdd.ts:190` — `export function calendarFixtureOrigin`: registers only newly created fixed safe errors.
 - `tests/support/calendar-feed-atdd.ts:195` — `export function calendarFixtureAssertionAt`: calls the existing assertion once and returns its result.
-- `tests/support/calendar-feed-atdd.ts:734` — `const outcome = result.outcome`: classifies the same consumed outcome without observing an RPC.
+- `tests/support/calendar-feed-atdd.ts:740` — `const outcome = result.outcome`: classifies the same consumed outcome without observing an RPC.
 - `tests/integration/rls/calendar-feed.rls.test.ts:23` — `calendarFixtureAssertionAt(allowedSites[subject]`: distinguishes four allowed contracts without changing the loop.
 - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:798` — `actual first INT001 and API001 callbacks stop`: proves preceding/no-later operations with injected fixtures, not native acceptance.
 - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:830` — `actual first callbacks retain precise safe assertion frames`: proves controlled frames and unrecoverable upstream UNKNOWN limits.
@@ -1512,9 +1595,9 @@ and the43DB/14browser gaps remain failed/unresolved; no whole-native reuse.
 - `src/server/commands/calendar-feed/calendar-feed-db.ts:25` — `export async function captureCalendarFeedTrace`: closed per-invocation events, result/error identity and late-context closure.
 - `src/server/commands/calendar-feed/manage-calendar-feed.ts:48` — `const code = result.code`: observes the already-consumed stable envelope result without changing its outcome.
 - `src/server/read-models/calendar-feed.ts:10` — `if (error?.code === "42501")`: locates status erasure before its existing typed denial.
-- `tests/support/calendar-feed-atdd.ts:744` — `export function calendarCauseProofSelection`: selects at most one warranted original-function baseline.
-- `tests/support/calendar-feed-atdd.ts:750` — `export async function calendarCauseProofIdle`: a pg timeout is not actual protocol settlement.
-- `tests/support/calendar-feed-atdd.ts:797` — `export async function runCalendarFeedCauseProof`: one ordinary command, qualified restricted original baseline, rollback/fresh verification and conditional custody cleanup.
+- `tests/support/calendar-feed-atdd.ts:750` — `export function calendarCauseProofSelection`: selects at most one warranted original-function baseline.
+- `tests/support/calendar-feed-atdd.ts:756` — `export async function calendarCauseProofIdle`: a pg timeout is not actual protocol settlement.
+- `tests/support/calendar-feed-atdd.ts:816` — `export async function runCalendarFeedCauseProof`: one ordinary command, qualified restricted original baseline, rollback/fresh verification and conditional custody cleanup.
 - `tests/integration/commands/calendar-feed.int.test.ts:21` — `test("15.5-DIAG001"`: explicit-mode-only diagnostic inventory; normal95/INT015 are not replaced.
 - `scripts/ci/checkpoint-dispatch.mjs:83` — `function diagnosticAvailability`: candidate/default availability refusal before the sole POST.
 - `scripts/ci/checkpoint-dispatch.mjs:15` — `function verificationMode`: persisted diagnostic/legacy mode cannot downgrade to normal acceptance.
@@ -1539,8 +1622,8 @@ The corrective allocation adds same-statement visibility so hidden rows cannot
 qualify absence, and separates actual launch evidence from exit completion.
 Default registration/event presence and candidate capability have distinct gates.
 
-- `tests/support/calendar-feed-atdd.ts:915` — `(select r.rolsuper or r.rolbypassrls`: qualifies visibility on the executing query role.
-- `tests/support/calendar-feed-atdd.ts:921` — `if (!Array.isArray(rows)`: rejects malformed or false absence observations without getters.
+- `tests/support/calendar-feed-atdd.ts:932` — `(select r.rolsuper or r.rolbypassrls`: qualifies visibility on the executing query role.
+- `tests/support/calendar-feed-atdd.ts:938` — `if (!Array.isArray(rows)`: rejects malformed or false absence observations without getters.
 - `scripts/ci/with-calendar-feed-runtime.mjs:403` — `child.once("spawn",`: actual adapter events establish launch independently of done.
 - `scripts/ci/with-calendar-feed-runtime.mjs:517` — `const refreshLaunch`: retains late actual launch facts through cleanup.
 - `scripts/ci/with-calendar-feed-runtime.mjs:84` — `if (!["not-attempted", "not-created-confirmed"].includes(receipt.childLaunchState))`: uncertain or started missing reports fail capture.
@@ -1588,9 +1671,9 @@ new-head private qualification and fresh reviewed Root dispatch remain pending.
 The status-only SELECT and catch keep the original operation and parameters.
 Strict facts carry evidence to the future qualifier; table ACL alone is insufficient.
 
-- `tests/support/calendar-feed-atdd.ts:759` — `export function calendarStatusErrorOrigin`: maps only three own-data routine literals.
-- `tests/support/calendar-feed-atdd.ts:766` — `export async function calendarCauseProofRestricted`: adds eighteen facts inside the original status SELECT.
-- `tests/support/calendar-feed-atdd.ts:870` — `Object.assign(report, await calendarCauseProofBaseline`: joins the original call before existing protocol cleanup.
+- `tests/support/calendar-feed-atdd.ts:765` — `export function calendarStatusErrorOrigin`: maps only three own-data routine literals.
+- `tests/support/calendar-feed-atdd.ts:772` — `export async function calendarCauseProofRestricted`: adds eighteen facts inside the original status SELECT.
+- `tests/support/calendar-feed-atdd.ts:887` — `Object.assign(report, await calendarCauseProofBaseline`: joins the original call before existing protocol cleanup.
 - `scripts/ci/with-calendar-feed-runtime.mjs:48` — `if (value.statusDiscriminator === null`: enforces the strict current eleven-field contract.
 - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1555` — `status discriminator classifies actual installed pg-protocol frames`: uses real parser frames with injected source helpers.
 - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1594` — `status strict wire schema preserves false TABLE_ACL_ONLY`: retains table-only false without a cause claim.
@@ -1609,3 +1692,23 @@ Historical failed heads and ARR warning remain; future qualifier controls unexec
 Evidence: focused Windows3P and Linux3P; final Linux full3179P/0F/0skip across103
 suites; whole TypeScript and affected lint exit0. Local unit proofs preserve
 execution integrity without claiming the unknown hosted stop or DB/browser cause.
+
+### Resolve canonical identity without widening runtime authority
+
+The preparsed invoker binds auth.uid at definition time while preserving runtime
+EXECUTE and caller identity. One atomic owner-scoped replacement preserves guards.
+
+- `supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql:69` — `if session_user <> 'postgres'`: qualifies the ordinary migration executor before DDL.
+- `supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql:111` — `language sql stable security invoker`: binds canonical identity without a privileged runtime helper.
+- `supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql:116` — `execute 'set local role calendar_feed_owner'`: uses actual ownership plus transient schema CREATE.
+- `supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql:133` — `and to_jsonb(p)-'prosrc'=metadata[i]`: asserts OIDs and unchanged function metadata after eight substitutions.
+- `tests/support/calendar-feed-atdd.ts:784` — `export function calendarCauseProofExpectedBody`: derives only the fixed adapted source from historical SQL.
+- `scripts/ci/with-calendar-feed-runtime.mjs:56` — `if (schema !== "status-origin-v2"`: refuses old or mixed observation contracts.
+- `tests/integration/rls/calendar-feed.rls.test.ts:187` — `sqlStable: true, preparsed: true`: extends existing RLS010 canonical dependency and private ACL assertions.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1674` — `actual ACL source and existing RLS010 reject actor`: exercises actual callback negatives using injected catalog facts.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1684` — `new atomic migration cross-validates exact original bodies`: cross-validates immutable sources and substitution boundaries.
+
+Evidence: final97 affected controls and3183 full pure-Node tests passed separately
+(not additive), whole TypeScript/focused ESLint passed. Native migration, RLS010,
+current v2 private consumer and full95 remain pending. The qualified probe proves
+only the preparsed invoker mechanism; it supplies no borrowed production PASS.

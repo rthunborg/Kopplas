@@ -179,9 +179,12 @@ describe("15.5 exact self authority, raw SQL boundary and least privilege", () =
         expect(fn.anonExecute).toBe(fn.purpose === "fetch");
         expect(fn.authenticatedExecute).toBe(fn.purpose !== "fetch");
       }
-      expect(facts.helpers.map(helper => helper.purpose).sort()).toEqual(["canonical", "filtered-secret", "verifier"]);
+      expect(facts.helpers.map(helper => helper.purpose).sort()).toEqual(["actor", "canonical", "filtered-secret", "verifier"]);
       for (const helper of facts.helpers) expect(helper).toMatchObject({ jwtExecute: false, publicExecute: false,
         otherRoleInheritedExecute: false });
+      expect(facts.helpers.find(helper => helper.purpose === "actor"))
+        .toMatchObject({ owner: "postgres", securityDefiner: false, emptySearchPath: true,
+          sqlStable: true, preparsed: true, canonicalUidDependency: true, feedOwnerExecute: true });
       expect(facts.helpers.find(helper => helper.purpose === "filtered-secret"))
         .toMatchObject({ feedOwnerExecute: true, exactConfiguredKeyFilter: true });
     });

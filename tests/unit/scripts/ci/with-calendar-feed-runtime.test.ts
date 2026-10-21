@@ -1353,7 +1353,7 @@ test("known proof values and actual keys flag leaks while exact infrastructure a
 
 
 const diagnosticEnv={...env,GITHUB_SHA:"a".repeat(40),GITHUB_EVENT_NAME:"workflow_dispatch",CALENDAR_FEED_CAUSE_PROOF_CHECKPOINT:keyId};
-const observation=()=>({kind:"calendar_feed.cause_proof",mode:"cause-proof",outcome:"AMBIGUOUS_SQL42501",events:["execute-enter","context-match","status-rpc42501"],baseline:"status",sqlState:"42501",cleanupVerified:true,ordinarySettled:true,queriesSettled:true,failures:[],statusDiscriminator:{schema:"status-origin-v1",origin:"UNKNOWN",permissions:Object.fromEntries(["caller_public_usage", "caller_status_execute", "owner_public_usage", "owner_auth_usage", "owner_uid_execute", "owner_subject_execute", "owner_lock_execute", "owner_hash_execute", "owner_tenant_id_select", "owner_member_id_select", "owner_member_tenant_select", "owner_member_user_select", "owner_member_status_select", "owner_member_role_select", "owner_union_tenant_select", "owner_union_member_select", "owner_union_role_select", "owner_tokens_select"].map(name=>[name,true]))}});
+const observation=()=>({kind:"calendar_feed.cause_proof",mode:"cause-proof",outcome:"AMBIGUOUS_SQL42501",events:["execute-enter","context-match","status-rpc42501"],baseline:"status",sqlState:"42501",cleanupVerified:true,ordinarySettled:true,queriesSettled:true,failures:[],statusDiscriminator:{schema:"status-origin-v2",origin:"UNKNOWN",permissions:Object.fromEntries(["caller_public_usage", "caller_status_execute", "owner_public_usage", "owner_actor_execute", "owner_uid_execute", "owner_subject_execute", "owner_lock_execute", "owner_hash_execute", "owner_tenant_id_select", "owner_member_id_select", "owner_member_tenant_select", "owner_member_user_select", "owner_member_status_select", "owner_member_role_select", "owner_union_tenant_select", "owner_union_member_select", "owner_union_role_select", "owner_tokens_select"].map(name=>[name,true]))}});
 const traceExpected={tenantId:"owned-tenant",userId:"owned-user",membershipId:"owned-member",attemptId:"owned-attempt",action:"create",revision:0};
 test("actual per-invocation trace preserves once-call value and error identity and isolates concurrent and nested scopes",async()=>{
   const value={},failure={private:"PRIVATE"};let calls=0;
@@ -1597,13 +1597,13 @@ test("status strict wire schema preserves false TABLE_ACL_ONLY without a necessa
   // table SELECT=false. Column coverage is deliberately NOT measured here.
   for(const candidate of [null,...names.filter(name=>name!=="owner_tokens_select")])for(const tableBit of [true,false]){
     const permissions={...all,owner_tokens_select:tableBit,...(candidate?{[candidate]:false}:{})};
-    const wire={...observation(),statusDiscriminator:{schema:"status-origin-v1",origin:"ACL_ENGINE",permissions}};
+    const wire={...observation(),statusDiscriminator:{schema:"status-origin-v2",origin:"ACL_ENGINE",permissions}};
     const validated=validateCauseProofObservation(wire);assert.deepEqual(JSON.parse(JSON.stringify(validated)),wire);assert.equal(Object.keys(validated).length,11);assert.ok(!Object.hasOwn(validated,"candidate"));assert.ok(!Object.hasOwn(validated,"decision"));
   }
 });
 test("status validator refuses legacy missing field, nested schema pollution, crossfields and accessors",async()=>{
   const seams=await actualFixtureOrigins(),permissions=Object.fromEntries(seams.calendarStatusPermissionNames.map((name:string)=>[name,true]));
-  const fact={schema:"status-origin-v1",origin:"ACL_ENGINE",permissions},valid={...observation(),statusDiscriminator:fact};
+  const fact={schema:"status-origin-v2",origin:"ACL_ENGINE",permissions},valid={...observation(),statusDiscriminator:fact};
   const legacy={...observation()} as Record<string,unknown>;delete legacy.statusDiscriminator;
   let gets=0;const getter=Object.defineProperty({...permissions},"owner_tokens_select",{get(){gets++;throw Error("PRIVATE");}});
   for(const bad of [legacy,{...valid,baseline:"manage"},{...valid,sqlState:null},{...valid,statusDiscriminator:{...fact,schema:"old"}},{...valid,statusDiscriminator:{...fact,origin:"exec_stmt_raise"}},{...valid,statusDiscriminator:{...fact,extra:"PRIVATE"}},{...valid,statusDiscriminator:{...fact,permissions:{...permissions,extra:true}}},{...valid,statusDiscriminator:{...fact,permissions:getter}},{...valid,statusDiscriminator:new Proxy({},{ownKeys(){throw Error("PRIVATE");}})},{...valid,[Symbol("PRIVATE")]:true}])assert.throws(()=>validateCauseProofObservation(bad),/diagnostic-observation-refused/);
@@ -1629,4 +1629,70 @@ test("new strict observation fits existing caps and producer retains the exact m
       assert.equal(await finishCauseProof(folder,diagnosticEnv,receipt,async()=>{},{keyId:"private-key",secret:"private-secret"}),bytes===1000000);
     }
   } finally {assert.ok(resolve(folder).startsWith(resolve(tmpdir())+"\\")||resolve(folder).startsWith(resolve(tmpdir())+"/"));await rm(folder,{recursive:true,force:true});}
+});
+
+// V2 changes neither canonical auth.uid ACLs nor normal case inventory. These
+// are live-source/injected controls, never native migration/RLS execution.
+test("v2 actual restricted SQL measures private actor EXECUTE and refuses v1 or mixed fact schemas",async()=>{
+  const seams=await actualFixtureOrigins(),permissions=Object.fromEntries(seams.calendarStatusPermissionNames.map((name:string)=>[name,true]));let calls=0;
+  const actual=await seams.calendarCauseProofRestricted({query:async(sql:string,params:unknown[])=>{
+    calls++;assert.deepEqual(params,["owned-user"]);
+    assert.match(sql,/pg_catalog[.]has_function_privilege\('calendar_feed_owner','public[.]calendar_feed_actor_internal\(\)','EXECUTE'\) as owner_actor_execute/);
+    assert.match(sql,/pg_catalog[.]has_function_privilege\('calendar_feed_owner','auth[.]uid\(\)','EXECUTE'\) as owner_uid_execute/);
+    assert.ok(!sql.includes("owner_auth_usage"));return{rows:[{qualified:true,...permissions}]};
+  }},"status","owned-user");assert.equal(calls,1);assert.deepEqual(actual,permissions);
+  const wire={...observation(),statusDiscriminator:{schema:"status-origin-v2",origin:"UNKNOWN",permissions}};
+  assert.equal(validateCauseProofObservation(wire).statusDiscriminator.schema,"status-origin-v2");
+  for(const discriminator of [{...wire.statusDiscriminator,schema:"status-origin-v1"},{...wire.statusDiscriminator,permissions:{...permissions,owner_auth_usage:true}},{...wire.statusDiscriminator,schema:"status-origin-v1",permissions:{...permissions,owner_auth_usage:true}}])assert.throws(()=>validateCauseProofObservation({...wire,statusDiscriminator:discriminator}),/diagnostic-observation-refused/);
+});
+test("actual baseline catalog expectation accepts only the fixed actor substitutions and retains unrelated source and owner guards",async()=>{
+  const seams=await actualFixtureOrigins(),migration=readFileSync(new URL("../../../../supabase/migrations/20261020220000_personal_calendar_feed.sql",import.meta.url),"utf8").replaceAll("\r\n","\n");
+  for(const [name,calls] of [["read_calendar_feed_status",3],["manage_calendar_feed",2],["read_calendar_feed_abuse",3]] as const){
+    const start=migration.indexOf("create function public."+name+"("),a=migration.indexOf("as $$",start)+5,b=migration.indexOf("$$;",a),original=migration.slice(a,b);
+    const expected=seams.calendarCauseProofExpectedBody(migration,name);assert.equal(expected,original.replaceAll("auth.uid()","public.calendar_feed_actor_internal()"));assert.equal(expected.split("public.calendar_feed_actor_internal()").length-1,calls);
+    const row={proname:name,owner:"calendar_feed_owner",prosecdef:true,proconfig:['search_path=""'],prosrc:expected};assert.equal(seams.calendarCauseProofSourceMatches(row,migration),true);
+    for(const change of [{prosrc:original},{prosrc:expected.replace("begin","begin perform 1;")},{owner:"postgres"},{prosecdef:false},{proconfig:[]}])assert.equal(seams.calendarCauseProofSourceMatches({...row,...change},migration),false);
+    assert.throws(()=>seams.calendarCauseProofExpectedBody(migration.replace(original,original.replace("auth.uid()","null")),name),/call count refused/);
+  }
+  assert.throws(()=>seams.calendarCauseProofExpectedBody(migration,"fetch_calendar_feed"),/source refused/);
+});
+async function actualActorAclFacts() {
+  const helperNames=["calendar_feed_attestation_payload","calendar_feed_verify_attestation_internal","calendar_feed_secret_internal","calendar_feed_actor_internal"],queries:{sql:string;params:unknown}[]=[];
+  const owner={name:"calendar_feed_owner",login:false,inherit:false,superuser:false,bypassRls:false,publicSchemaCreate:false,assumableByJwtRoles:false,unrelatedTableRead:false,generalVaultRead:false};
+  const acl=actualFeedRegion("../../../support/calendar-feed-atdd.ts","async function calendarAcl()","/** Both allocated files are serial.","calendarAcl",{adminQuery:async(sql:string,params:unknown)=>{
+    queries.push({sql,params});
+    if(sql.includes('c.relname name,c.relrowsecurity'))return[];
+    if(sql.includes('rolname name,rolcanlogin'))return[{...owner}];
+    if(sql.includes('select c.relname "table"'))return[];
+    if(sql.includes('r.rolname owner,p.prosecdef'))return["fetch_calendar_feed","manage_calendar_feed","read_calendar_feed_status","read_calendar_feed_abuse"].map(name=>({name,owner:owner.name,securityDefiner:true,emptySearchPath:true,publicExecute:false,anonExecute:name==="fetch_calendar_feed",authenticatedExecute:name!=="fetch_calendar_feed"}));
+    if(sql.includes('p.prosqlbody is not null')){assert.deepEqual(params,[helperNames]);assert.match(sql,/d[.]refobjid='auth[.]uid\(\)'::regprocedure::oid/);assert.match(sql,/d[.]classid='pg_catalog[.]pg_proc'::regclass/);assert.match(sql,/p[.]provolatile='s'/);return helperNames.map(name=>({name,owner:name==="calendar_feed_actor_internal"?"postgres":owner.name,securityDefiner:false,emptySearchPath:true,sqlStable:name==="calendar_feed_actor_internal",preparsed:name==="calendar_feed_actor_internal",canonicalUidDependency:name==="calendar_feed_actor_internal",jwtExecute:false,publicExecute:false,feedOwnerExecute:true,otherRoleInheritedExecute:false,source:name==="calendar_feed_secret_internal"?"name='calendar_feed_attestation_' || p_key_id":""}));}
+    if(sql.includes('information_schema.columns'))return[];
+    throw Error("Unexpected injected ACL query");
+  }});
+  const facts=await acl();assert.equal(queries.length,6);return facts;
+}
+test("actual ACL source and existing RLS010 reject actor metadata dependency and private execution drift",async()=>{
+  const source=readFileSync(new URL("../../../integration/rls/calendar-feed.rls.test.ts",import.meta.url),"utf8"),start=source.indexOf('  test("[P0] 15.5-RLS010'),end=source.indexOf('  test("[P0] 15.5-RLS011',start);assert.ok(start>=0&&end>start);
+  const strip=(nodeModule as unknown as {stripTypeScriptTypes(source:string):string}).stripTypeScriptTypes;
+  const run=async(change:(facts:Awaited<ReturnType<typeof actualActorAclFacts>>)=>void)=>{const facts=await actualActorAclFacts();change(facts);let body!:()=>Promise<void>;
+    new Function("test","withCalendarFeedFixture","expect",strip(source.slice(start,end)))((_name:string,fn:()=>Promise<void>)=>{body=fn;},async(_kind:string,fn:(fx:unknown)=>Promise<void>)=>fn({acl:async()=>facts}),(value:unknown)=>({toBe(expected:unknown){assert.equal(value,expected);},toEqual(expected:unknown){assert.deepEqual(value,expected);},toMatchObject(expected:Record<string,unknown>){for(const[key,part]of Object.entries(expected))assert.deepEqual((value as Record<string,unknown>)[key],part);}}));await body();
+  };
+  await run(()=>{});
+  for(const change of [{owner:"calendar_feed_owner"},{securityDefiner:true},{emptySearchPath:false},{sqlStable:false},{preparsed:false},{canonicalUidDependency:false},{feedOwnerExecute:false},{jwtExecute:true},{publicExecute:true},{otherRoleInheritedExecute:true}])await assert.rejects(run(facts=>Object.assign(facts.helpers.find((x:{purpose:string})=>x.purpose==="actor"),change)));
+  await assert.rejects(run(facts=>{facts.helpers=facts.helpers.filter((x:{purpose:string})=>x.purpose!=="actor");}));
+});
+test("new atomic migration cross-validates exact original bodies and eight substitutions without widening historical SQL",()=>{
+  const original=readFileSync(new URL("../../../../supabase/migrations/20261020220000_personal_calendar_feed.sql",import.meta.url),"utf8").replaceAll("\r\n","\n"),migration=readFileSync(new URL("../../../../supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",import.meta.url),"utf8");
+  const names=["read_calendar_feed_status","manage_calendar_feed","read_calendar_feed_abuse"],counts=[3,2,3];let total=0;
+  for(let i=0;i<names.length;i++){
+    const at=original.indexOf("create function public."+names[i]+"("),a=original.indexOf("as $$",at)+5,b=original.indexOf("$$;",a),body=original.slice(a,b),tag="$original_"+i+"$";
+    assert.equal(migration.split(tag).length,3);assert.equal(migration.split(tag)[1],body);assert.equal(body.split("auth.uid()").length-1,counts[i]);total+=counts[i];
+  }
+  assert.equal(total,8);assert.equal(migration.match(/^do \$migration\$/gm)?.length,1);assert.ok(migration.trimEnd().endsWith("$migration$;"));
+  assert.match(migration,/execute replace\(definitions\[i\],'auth.uid\(\)','public.calendar_feed_actor_internal\(\)'\)/);
+  assert.match(migration,/to_jsonb\(p\)-'prosrc'=metadata\[i\]/);assert.match(migration,/prosrc=replace\(expected_sources\[i\]/);
+  assert.match(migration,/language sql stable security invoker set search_path='' return auth.uid\(\)/);
+  assert.ok(migration.indexOf("set local role calendar_feed_owner")<migration.indexOf("execute replace(definitions"));assert.ok(migration.indexOf("reset role")>migration.indexOf("execute replace(definitions"));
+  assert.match(migration,/revoke create on schema public from calendar_feed_owner/);assert.match(migration,/has_schema_privilege\(owner_role.oid,'public','CREATE'\)/);
+  assert.ok(!/grant usage on schema auth|alter role|create role|alter function|security definer set search_path='' return/.test(migration));
 });

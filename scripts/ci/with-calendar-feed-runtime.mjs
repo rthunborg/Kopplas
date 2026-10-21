@@ -51,9 +51,9 @@ export function validateCauseProofObservation(value) {
       const fields = Object.getOwnPropertyDescriptors(value.statusDiscriminator);
       if (Reflect.ownKeys(fields).length !== 3 || !["schema","origin","permissions"].every(key => Object.hasOwn(fields,key) && "value" in fields[key])) fail("diagnostic-observation-refused");
       const { schema, origin, permissions } = Object.fromEntries(Object.entries(fields).map(([key,descriptor]) => [key,descriptor.value]));
-      const names = ["caller_public_usage", "caller_status_execute", "owner_public_usage", "owner_auth_usage", "owner_uid_execute", "owner_subject_execute", "owner_lock_execute", "owner_hash_execute", "owner_tenant_id_select", "owner_member_id_select", "owner_member_tenant_select", "owner_member_user_select", "owner_member_status_select", "owner_member_role_select", "owner_union_tenant_select", "owner_union_member_select", "owner_union_role_select", "owner_tokens_select"];
+      const names = ["caller_public_usage", "caller_status_execute", "owner_public_usage", "owner_actor_execute", "owner_uid_execute", "owner_subject_execute", "owner_lock_execute", "owner_hash_execute", "owner_tenant_id_select", "owner_member_id_select", "owner_member_tenant_select", "owner_member_user_select", "owner_member_status_select", "owner_member_role_select", "owner_union_tenant_select", "owner_union_member_select", "owner_union_role_select", "owner_tokens_select"];
       const facts = Object.getOwnPropertyDescriptors(permissions);
-      if (schema !== "status-origin-v1" || !["UNKNOWN","PLPGSQL_RAISE","ACL_ENGINE"].includes(origin) || Reflect.ownKeys(facts).length !== names.length
+      if (schema !== "status-origin-v2" || !["UNKNOWN","PLPGSQL_RAISE","ACL_ENGINE"].includes(origin) || Reflect.ownKeys(facts).length !== names.length
         || !names.every(key => Object.hasOwn(facts,key) && "value" in facts[key] && typeof facts[key].value === "boolean")
         || value.baseline !== "status" || ["PRE_SQL_STOP","ORDINARY_SUCCESS","CAPTURE_UNAVAILABLE"].includes(value.outcome) || origin !== "UNKNOWN" && value.sqlState !== "42501") fail("diagnostic-observation-refused");
       value.statusDiscriminator = { schema, origin, permissions: Object.fromEntries(names.map(key => [key,facts[key].value])) };

@@ -109,7 +109,7 @@ export type AclFacts = {
   owner: { name: string; login: boolean; inherit: boolean; superuser: boolean; bypassRls: boolean; publicSchemaCreate: boolean;
     assumableByJwtRoles: boolean; unrelatedTableRead: boolean; generalVaultRead: boolean;
     effectiveReadOutsideAllowedColumns: boolean; filteredHelperOnly: boolean };
-  helpers: Array<{ purpose: "canonical" | "verifier" | "filtered-secret"; jwtExecute: boolean; publicExecute: boolean; feedOwnerExecute: boolean;
+  helpers: Array<{ purpose: "canonical" | "verifier" | "filtered-secret" | "actor"; owner: string; securityDefiner: boolean; emptySearchPath: boolean; sqlStable: boolean; preparsed: boolean; canonicalUidDependency: boolean; jwtExecute: boolean; publicExecute: boolean; feedOwnerExecute: boolean;
     otherRoleInheritedExecute: boolean; exactConfiguredKeyFilter: boolean }>;
   ipColumns: string[];
 };
@@ -563,8 +563,14 @@ async function calendarAcl(): Promise<AclFacts> {
   owner.filteredHelperOnly=!owner.generalVaultRead;
   const definitions:Record<string,AclFacts["functions"][number]["purpose"]>={fetch_calendar_feed:"fetch",manage_calendar_feed:"manage",read_calendar_feed_status:"status",read_calendar_feed_abuse:"abuse"};
   const functions=await adminQuery<{name:string;owner:string;securityDefiner:boolean;emptySearchPath:boolean;anonExecute:boolean;authenticatedExecute:boolean;publicExecute:boolean}>(`select p.proname name,r.rolname owner,p.prosecdef "securityDefiner",coalesce('search_path=""'=any(p.proconfig),false) "emptySearchPath",has_function_privilege('anon',p.oid,'EXECUTE') "anonExecute",has_function_privilege('authenticated',p.oid,'EXECUTE') "authenticatedExecute",exists(select 1 from aclexplode(coalesce(p.proacl,acldefault('f',p.proowner))) a where grantee=0 and privilege_type='EXECUTE') "publicExecute" from pg_proc p join pg_roles r on r.oid=p.proowner where p.pronamespace='public'::regnamespace and p.proname=any($1::text[])`,[Object.keys(definitions)]);
-  const helperNames:Record<string,AclFacts["helpers"][number]["purpose"]>={calendar_feed_attestation_payload:"canonical",calendar_feed_verify_attestation_internal:"verifier",calendar_feed_secret_internal:"filtered-secret"};
-  const helpers=await adminQuery<{name:string;jwtExecute:boolean;publicExecute:boolean;feedOwnerExecute:boolean;otherRoleInheritedExecute:boolean;source:string}>(`select p.proname name,(has_function_privilege('anon',p.oid,'EXECUTE') or has_function_privilege('authenticated',p.oid,'EXECUTE')) "jwtExecute",exists(select 1 from aclexplode(coalesce(p.proacl,acldefault('f',p.proowner))) a where grantee=0 and privilege_type='EXECUTE') "publicExecute",has_function_privilege('calendar_feed_owner',p.oid,'EXECUTE') "feedOwnerExecute",has_function_privilege('service_role',p.oid,'EXECUTE') "otherRoleInheritedExecute",p.prosrc source from pg_proc p where p.pronamespace='public'::regnamespace and p.proname=any($1::text[])`,[Object.keys(helperNames)]);
+  const helperNames:Record<string,AclFacts["helpers"][number]["purpose"]>={calendar_feed_attestation_payload:"canonical",calendar_feed_verify_attestation_internal:"verifier",calendar_feed_secret_internal:"filtered-secret",calendar_feed_actor_internal:"actor"};
+  const helpers=await adminQuery<AclFacts["helpers"][number] & {name:string;source:string}>(`select p.proname name,pg_catalog.pg_get_userbyid(p.proowner) owner,p.prosecdef "securityDefiner",
+   coalesce('search_path=""'=any(p.proconfig),false) "emptySearchPath",
+   (p.prolang=(select oid from pg_catalog.pg_language where lanname='sql') and p.provolatile='s') "sqlStable",
+   (p.prosqlbody is not null) preparsed,
+   exists(select 1 from pg_catalog.pg_depend d where d.classid='pg_catalog.pg_proc'::regclass and d.objid=p.oid
+    and d.refclassid='pg_catalog.pg_proc'::regclass and d.refobjid='auth.uid()'::regprocedure::oid and d.deptype='n') "canonicalUidDependency",
+   (has_function_privilege('anon',p.oid,'EXECUTE') or has_function_privilege('authenticated',p.oid,'EXECUTE')) "jwtExecute",exists(select 1 from aclexplode(coalesce(p.proacl,acldefault('f',p.proowner))) a where grantee=0 and privilege_type='EXECUTE') "publicExecute",has_function_privilege('calendar_feed_owner',p.oid,'EXECUTE') "feedOwnerExecute",has_function_privilege('service_role',p.oid,'EXECUTE') "otherRoleInheritedExecute",p.prosrc source from pg_proc p where p.pronamespace='public'::regnamespace and p.proname=any($1::text[])`,[Object.keys(helperNames)]);
   return {tables,owner,functions:functions.map(fn=>({...fn,purpose:definitions[fn.name]})),helpers:helpers.map(helper=>({...helper,purpose:helperNames[helper.name],exactConfiguredKeyFilter:helper.name!=="calendar_feed_secret_internal"||helper.source.includes("name='calendar_feed_attestation_' || p_key_id")})),ipColumns:(await adminQuery<{column_name:string}>("select column_name from information_schema.columns where table_schema='public' and table_name='calendar_feed_ip_windows'")).map(row=>row.column_name)};
 }
 
@@ -754,8 +760,8 @@ export async function calendarCauseProofIdle(client: { readyForQuery?: boolean }
   while (client.readyForQuery !== true && now() < deadline) await sleep(20);
   return client.readyForQuery === true;
 }
-export const calendarStatusPermissionNames = ["caller_public_usage", "caller_status_execute", "owner_public_usage", "owner_auth_usage", "owner_uid_execute", "owner_subject_execute", "owner_lock_execute", "owner_hash_execute", "owner_tenant_id_select", "owner_member_id_select", "owner_member_tenant_select", "owner_member_user_select", "owner_member_status_select", "owner_member_role_select", "owner_union_tenant_select", "owner_union_member_select", "owner_union_role_select", "owner_tokens_select"] as const;
-export type CalendarStatusDiscriminator = { schema: "status-origin-v1"; origin: "PLPGSQL_RAISE" | "ACL_ENGINE" | "UNKNOWN"; permissions: Record<typeof calendarStatusPermissionNames[number], boolean> };
+export const calendarStatusPermissionNames = ["caller_public_usage", "caller_status_execute", "owner_public_usage", "owner_actor_execute", "owner_uid_execute", "owner_subject_execute", "owner_lock_execute", "owner_hash_execute", "owner_tenant_id_select", "owner_member_id_select", "owner_member_tenant_select", "owner_member_user_select", "owner_member_status_select", "owner_member_role_select", "owner_union_tenant_select", "owner_union_member_select", "owner_union_role_select", "owner_tokens_select"] as const;
+export type CalendarStatusDiscriminator = { schema: "status-origin-v2"; origin: "PLPGSQL_RAISE" | "ACL_ENGINE" | "UNKNOWN"; permissions: Record<typeof calendarStatusPermissionNames[number], boolean> };
 export function calendarStatusErrorOrigin(error: unknown): CalendarStatusDiscriminator["origin"] {
   try {
     const code = Object.getOwnPropertyDescriptor(error, "code"), routine = Object.getOwnPropertyDescriptor(error, "routine");
@@ -765,7 +771,7 @@ export function calendarStatusErrorOrigin(error: unknown): CalendarStatusDiscrim
 }
 export async function calendarCauseProofRestricted(connection: { query(sql: string, params: unknown[]): Promise<{ rows: unknown }> }, baseline: string, userId: string) {
   const original = "select session_user=current_user and current_user='authenticated' and not a.rolsuper and not a.rolbypassrls and not b.rolsuper and not b.rolbypassrls and auth.uid()=$1::uuid and current_setting('request.jwt.claims')::jsonb->>'role'='authenticated' and current_setting('log_statement')='none' and current_setting('log_min_error_statement')='panic' and current_setting('log_parameter_max_length')='0' and current_setting('log_parameter_max_length_on_error')='0' as qualified from pg_roles a join pg_roles b on b.rolname=current_user where a.rolname=session_user";
-  const facts = baseline === "status" ? `, pg_catalog.has_schema_privilege(current_user,'public','USAGE') as caller_public_usage, pg_catalog.has_function_privilege(current_user,'public.read_calendar_feed_status(uuid,uuid)','EXECUTE') as caller_status_execute, pg_catalog.has_schema_privilege('calendar_feed_owner','public','USAGE') as owner_public_usage, pg_catalog.has_schema_privilege('calendar_feed_owner','auth','USAGE') as owner_auth_usage, pg_catalog.has_function_privilege('calendar_feed_owner','auth.uid()','EXECUTE') as owner_uid_execute, pg_catalog.has_function_privilege('calendar_feed_owner','public.calendar_feed_subject_internal(uuid,uuid,uuid,boolean)','EXECUTE') as owner_subject_execute, pg_catalog.has_function_privilege('calendar_feed_owner','pg_catalog.pg_advisory_xact_lock(bigint)','EXECUTE') as owner_lock_execute, pg_catalog.has_function_privilege('calendar_feed_owner','pg_catalog.hashtextextended(text,bigint)','EXECUTE') as owner_hash_execute, pg_catalog.has_column_privilege('calendar_feed_owner','public.tenants','id','SELECT') as owner_tenant_id_select, pg_catalog.has_column_privilege('calendar_feed_owner','public.tenant_memberships','id','SELECT') as owner_member_id_select, pg_catalog.has_column_privilege('calendar_feed_owner','public.tenant_memberships','tenant_id','SELECT') as owner_member_tenant_select, pg_catalog.has_column_privilege('calendar_feed_owner','public.tenant_memberships','user_id','SELECT') as owner_member_user_select, pg_catalog.has_column_privilege('calendar_feed_owner','public.tenant_memberships','status','SELECT') as owner_member_status_select, pg_catalog.has_column_privilege('calendar_feed_owner','public.tenant_memberships','role','SELECT') as owner_member_role_select, pg_catalog.has_column_privilege('calendar_feed_owner','public.membership_roles','tenant_id','SELECT') as owner_union_tenant_select, pg_catalog.has_column_privilege('calendar_feed_owner','public.membership_roles','membership_id','SELECT') as owner_union_member_select, pg_catalog.has_column_privilege('calendar_feed_owner','public.membership_roles','role','SELECT') as owner_union_role_select, pg_catalog.has_table_privilege('calendar_feed_owner','public.calendar_feed_tokens','SELECT') as owner_tokens_select` : "";
+  const facts = baseline === "status" ? `, pg_catalog.has_schema_privilege(current_user,'public','USAGE') as caller_public_usage, pg_catalog.has_function_privilege(current_user,'public.read_calendar_feed_status(uuid,uuid)','EXECUTE') as caller_status_execute, pg_catalog.has_schema_privilege('calendar_feed_owner','public','USAGE') as owner_public_usage, pg_catalog.has_function_privilege('calendar_feed_owner','public.calendar_feed_actor_internal()','EXECUTE') as owner_actor_execute, pg_catalog.has_function_privilege('calendar_feed_owner','auth.uid()','EXECUTE') as owner_uid_execute, pg_catalog.has_function_privilege('calendar_feed_owner','public.calendar_feed_subject_internal(uuid,uuid,uuid,boolean)','EXECUTE') as owner_subject_execute, pg_catalog.has_function_privilege('calendar_feed_owner','pg_catalog.pg_advisory_xact_lock(bigint)','EXECUTE') as owner_lock_execute, pg_catalog.has_function_privilege('calendar_feed_owner','pg_catalog.hashtextextended(text,bigint)','EXECUTE') as owner_hash_execute, pg_catalog.has_column_privilege('calendar_feed_owner','public.tenants','id','SELECT') as owner_tenant_id_select, pg_catalog.has_column_privilege('calendar_feed_owner','public.tenant_memberships','id','SELECT') as owner_member_id_select, pg_catalog.has_column_privilege('calendar_feed_owner','public.tenant_memberships','tenant_id','SELECT') as owner_member_tenant_select, pg_catalog.has_column_privilege('calendar_feed_owner','public.tenant_memberships','user_id','SELECT') as owner_member_user_select, pg_catalog.has_column_privilege('calendar_feed_owner','public.tenant_memberships','status','SELECT') as owner_member_status_select, pg_catalog.has_column_privilege('calendar_feed_owner','public.tenant_memberships','role','SELECT') as owner_member_role_select, pg_catalog.has_column_privilege('calendar_feed_owner','public.membership_roles','tenant_id','SELECT') as owner_union_tenant_select, pg_catalog.has_column_privilege('calendar_feed_owner','public.membership_roles','membership_id','SELECT') as owner_union_member_select, pg_catalog.has_column_privilege('calendar_feed_owner','public.membership_roles','role','SELECT') as owner_union_role_select, pg_catalog.has_table_privilege('calendar_feed_owner','public.calendar_feed_tokens','SELECT') as owner_tokens_select` : "";
   const result = await connection.query(original.replace(" as qualified from", " as qualified" + facts + " from"), [userId]);
   const rows = result.rows;
   const length = Object.getOwnPropertyDescriptor(rows, "length"), element = Object.getOwnPropertyDescriptor(rows, "0");
@@ -774,6 +780,19 @@ export async function calendarCauseProofRestricted(connection: { query(sql: stri
   if (Reflect.ownKeys(fields).length !== names.length || !names.every(name => Object.hasOwn(fields,name) && "value" in fields[name] && typeof fields[name].value === "boolean") || fields.qualified.value !== true) throw Error("Restricted identity refused");
   if (baseline !== "status") return null;
   return Object.fromEntries(calendarStatusPermissionNames.map(name => [name,fields[name].value])) as CalendarStatusDiscriminator["permissions"];
+}
+export function calendarCauseProofExpectedBody(migration: string, name: string) {
+  const calls: Record<string, number> = { read_calendar_feed_status: 3, manage_calendar_feed: 2, read_calendar_feed_abuse: 3 };
+  if (!Object.hasOwn(calls,name)) throw Error("Original function source refused");
+  const start = migration.indexOf("create function public."+name+"("), body = migration.indexOf("as $$",start), end = migration.indexOf("$$;",body+5);
+  if (start < 0 || body < start || end < body) throw Error("Original function source refused");
+  const original = migration.slice(body+5,end);
+  if (original.split("auth.uid()").length-1 !== calls[name]) throw Error("Original actor call count refused");
+  return original.replaceAll("auth.uid()","public.calendar_feed_actor_internal()");
+}
+export function calendarCauseProofSourceMatches(row: { proname: string; owner: string; prosecdef: boolean; proconfig?: string[]; prosrc: string }, migration: string) {
+  return row.owner === "calendar_feed_owner" && row.prosecdef === true && row.proconfig?.includes('search_path=""') === true
+    && row.prosrc.trim() === calendarCauseProofExpectedBody(migration,row.proname).trim();
 }
 export async function calendarCauseProofBaseline(connection: { query(sql: string, params: unknown[] | undefined): Promise<unknown> }, baseline: string, values: unknown[], permissions: CalendarStatusDiscriminator["permissions"] | null) {
   let sqlState: string | null = null, outcome = "NONREPRODUCED", origin: CalendarStatusDiscriminator["origin"] = "UNKNOWN";
@@ -787,7 +806,7 @@ export async function calendarCauseProofBaseline(connection: { query(sql: string
     outcome = code === "42501" ? "AMBIGUOUS_SQL42501" : code === "CF409" ? "NONREPRODUCED" : "UNKNOWN_ENGINE_ERROR";
     if (baseline === "status") origin = calendarStatusErrorOrigin(error);
   }
-  return { outcome, sqlState, statusDiscriminator: baseline === "status" && permissions ? { schema: "status-origin-v1" as const, origin, permissions } : null };
+  return { outcome, sqlState, statusDiscriminator: baseline === "status" && permissions ? { schema: "status-origin-v2" as const, origin, permissions } : null };
 }
 // End cause-proof decision seam.
 
@@ -839,9 +858,7 @@ export async function runCalendarFeedCauseProof() {
         const result = await connection.query("select p.oid::text, p.proname, p.prosrc, pg_get_userbyid(p.proowner) owner, p.prosecdef, p.proconfig, p.proacl::text from pg_proc p where p.oid=to_regprocedure($1)",[identity]);
         if (result.rows.length !== 1) throw Error("Function identity refused");
         const row = result.rows[0], migration = (await readFile(new URL("../../supabase/migrations/20261020220000_personal_calendar_feed.sql",import.meta.url),"utf8")).replaceAll("\r\n","\n");
-        const start = migration.indexOf("create function public."+row.proname+"("), body = migration.indexOf("as $$",start), end = migration.indexOf("$$;",body+5);
-        if (start < 0 || body < start || end < body || row.owner !== "calendar_feed_owner" || row.prosecdef !== true
-          || !row.proconfig?.includes('search_path=""') || row.prosrc.trim() !== migration.slice(body+5,end).trim()) throw Error("Original function source refused");
+        if (!calendarCauseProofSourceMatches(row,migration)) throw Error("Original function source refused");
         return JSON.stringify(result.rows);
       };
       const state = async (connection: Connection) => JSON.stringify((await connection.query(
