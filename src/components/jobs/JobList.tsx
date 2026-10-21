@@ -124,7 +124,7 @@ export function JobList({
       if (statusFilter && r.status !== statusFilter) return false;
       // The sentinel matches STANDALONE jobs (no source quote); a quote id matches its jobs.
       if (sourceQuoteFilter === NO_SOURCE_QUOTE) {
-        if (r.quoteId !== null) return false;
+        if (r.quoteVersionId !== null) return false;
       } else if (sourceQuoteFilter && r.quoteId !== sourceQuoteFilter) {
         return false;
       }
@@ -333,7 +333,9 @@ export function JobList({
                     {row.customerDisplayName ?? "—"} ·{" "}
                     {row.quoteNumber
                       ? `Offert #${row.quoteNumber}`
-                      : "Utan offertnummer"}{" "}
+                      : row.quoteVersionId !== null
+                        ? "Källoffert inte tillgänglig"
+                        : "Utan offertnummer"}{" "}
                     · Planerat: {formatDate(row.plannedStartDate)}
                   </span>
                 </div>

@@ -139,6 +139,17 @@ test.describe("Story 16.1 essential Jobs depth journeys", () => {
       for (const job of expected) {
         expect(hrefs.filter((href) => href === `/jobs/${job.id}`)).toHaveLength(1);
       }
+      // An accepted source withheld by quote ACL is not a standalone job.
+      const acceptedRow=rows.filter({has:page.locator(`a[href="/jobs/${f.jobs.acceptedAssigned.id}"]`)});
+      await expect(acceptedRow).toContainText("Källoffert inte tillgänglig");
+      const sourceFilter=page.getByTestId("job-filter-source-quote");
+      await hydrated(sourceFilter);
+      await expect(sourceFilter.locator("option")).toHaveCount(2); // all + genuine standalone; no quote identity grant
+      await sourceFilter.selectOption({label:"Utan källoffert"});
+      await expect(rows).toHaveCount(3);
+      await expect(acceptedRow).toHaveCount(0);
+      await sourceFilter.selectOption("");
+      await expect(rows).toHaveCount(expected.length);
       for (const job of [f.jobs.unrelated, f.jobs.foreign]) {
         await expect(rows.getByRole("link", { name: new RegExp(job.title) })).toHaveCount(0);
         const denied = await page.goto(`/jobs/${job.id}`);
@@ -435,5 +446,39 @@ test("[P0] checkpoint stale full-card draft is refused, retained, and only repla
     // Replacement uses new child IDs, so compare exact persisted window instants.
     expect(saved.windows.filter(row=>row.job_id===f.jobs.editable.id).map(row=>[row.starts_at,row.ends_at]))
       .toEqual(committed.windows.filter(row=>row.job_id===f.jobs.editable.id).map(row=>[row.starts_at,row.ends_at]));
+  } finally {await f.dispose();}
+});
+
+test("[P0] external follow-up selected tenant scopes Mine/all/deep links and entitled source filters agree",async({resourcePage:page})=>{
+  const f=await createJobsDepthFixture();
+  try {
+    const {adminQuery}=await import("../../factories/admin-sql");
+    const {adminInsertMembership}=await import("../../factories/tenants");
+    const tenantA=f.fx.base.tenantA.id,tenantB=f.fx.base.tenantB.id,user=f.fx.users.projektledare;
+    await adminQuery("insert into public.job_members(tenant_id,job_id,person_profile_id) values($1,$2,$3)",[tenantA,f.jobs.acceptedAssigned.id,f.fx.coworkerProfile.id]);
+    await adminInsertMembership({tenant_id:tenantB,user_id:user.id,role:"tenant_admin",status:"active"});
+    const [{id:membership}]=await adminQuery<{id:string}>("select id from public.tenant_memberships where tenant_id=$1 and user_id=$2",[tenantB,user.id]);
+    const [{id:profile}]=await adminQuery<{id:string}>("insert into public.person_profiles(tenant_id,membership_id) values($1,$2) returning id",[tenantB,membership]);
+    await adminQuery("insert into public.job_members(tenant_id,job_id,person_profile_id) values($1,$2,$3)",[tenantB,f.jobs.foreign.id,profile]);
+    await adminQuery("update public.tenant_memberships set created_at=case when tenant_id=$1 then '2026-01-01'::timestamptz else '2026-02-01'::timestamptz end where user_id=$2",[tenantA,user.id]);
+    const [source]=await adminQuery<{quote_id:string;quote_number:number}>("select v.quote_id,v.quote_number from public.jobs j join public.quote_versions v on v.id=j.quote_version_id and v.tenant_id=j.tenant_id where j.id=$1",[f.jobs.acceptedAssigned.id]);
+    await signIn(page,f.credentials.manager);
+    for(const url of ["/jobs?view=mine","/jobs"]) {
+      await page.goto(url);
+      const rows=page.getByTestId("job-list-row");
+      const row=rows.filter({has:page.locator(`a[href="/jobs/${f.jobs.acceptedAssigned.id}"]`)});
+      await expect(row).toContainText(`Offert #${source.quote_number}`);
+      await expect(rows.getByRole("link",{name:new RegExp(f.jobs.foreign.title)})).toHaveCount(0);
+      const filter=page.getByTestId("job-filter-source-quote");await hydrated(filter);
+      await expect(filter.locator(`option[value="${source.quote_id}"]`)).toHaveText(`Offert #${source.quote_number}`);
+      await filter.selectOption(source.quote_id);
+      await expect(rows).toHaveCount(1);await expect(row).toBeVisible();
+      await filter.selectOption({label:"Utan källoffert"});await expect(row).toHaveCount(0);
+    }
+    const denied=await page.goto(`/jobs/${f.jobs.foreign.id}`);
+    expect(denied?.status()).toBe(404);
+    await expect(page.getByTestId("job-detail")).toHaveCount(0);
+    await expect(page.getByText(f.jobs.foreign.title,{exact:true})).toHaveCount(0);
+    expect(await denied!.text()).not.toContain("Foreign workshop");
   } finally {await f.dispose();}
 });

@@ -1,3 +1,4 @@
+import { resolveTenantContext } from "@/server/auth/resolve-tenant-context";
 /** Story 16.1 actual command/RLS fixture helpers. Static bindings are runner-transformed; database work starts only inside invoked helpers.
  * Existing contracts: tenants factories, envelope createJob/acceptQuoteAndCreateJob,
  * E14 bookingCommand, adminQuery and normal anon-key JWT clients.
@@ -230,7 +231,9 @@ export async function seedWorkOrderReadRows(tenantId: string, jobId: string) {
 /** Explicit read at the intended load boundary, never at command invocation or retry. */
 export async function loadCardInput(f: JobsDepthFixture, patch: Partial<JobCardInput> = {}, client = f.fx.adminClient): Promise<JobCardInput> {
   const input=cardInput(f,patch);
-  const {data,error}=await client.rpc("read_job_cards",{p_personal:false,p_job_id:input.id});
+  const context=await resolveTenantContext({client:client as never});
+  if(!context.ok) throw new Error("Real loaded job-card tenant unavailable");
+  const {data,error}=await client.rpc("read_job_cards",{p_tenant_id:context.data.tenantId,p_personal:false,p_job_id:input.id});
   const card=Array.isArray(data)?data[0]?.card:undefined;
   if (error || typeof card?.cardRevision !== "string" || !/^[0-9a-f]{64}$/.test(card.cardRevision))
     throw new Error("Real loaded job-card revision unavailable");

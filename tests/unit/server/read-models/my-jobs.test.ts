@@ -2,18 +2,24 @@ import {test} from "node:test";
 import assert from "node:assert/strict";
 import {readMyJobs, readJobCardOptions} from "@/server/read-models/my-jobs";
 test("16.1-U02 personal projection strips unexpected storage and protected keys", async () => {
-  const result = await readMyJobs({rpc: async (name,args) => {
-    assert.equal(name,"read_job_cards"); assert.equal(args?.p_personal,true);
+  const {client}=optionsClient();
+  client.rpc=async (name,args) => {
+    assert.equal(name,"read_job_cards"); assert.equal(args?.p_personal,true); assert.equal(args?.p_tenant_id,"tenant-a");
     return {error:null,data:[{id:"job",title:"Workshop",status:"created",type:"order",updatedAt:"now",
       acceptedPriceOre:12345,card_outcomes:{private:true},customerDisplayName:"Customer"}]};
-  }});
+  };
+  const result=await readMyJobs(client);
   assert.equal(result.error,null); assert.equal(result.rows[0]?.title,"Workshop");
   assert.equal(Object.hasOwn(result.rows[0]!,"acceptedPriceOre"),false);
   assert.equal(Object.hasOwn(result.rows[0]!,"card_outcomes"),false);
 });
 test("16.1-U02 failed read stays distinct from a confirmed empty personal list", async () => {
-  const unavailable = await readMyJobs({rpc:async () => ({data:null,error:new Error("transport")})});
-  const empty = await readMyJobs({rpc:async () => ({data:[],error:null})});
+  const unavailableClient=optionsClient().client;
+  unavailableClient.rpc=async()=>({data:null,error:new Error("transport")});
+  const emptyClient=optionsClient().client;
+  emptyClient.rpc=async()=>({data:[],error:null});
+  const unavailable = await readMyJobs(unavailableClient);
+  const empty = await readMyJobs(emptyClient);
   assert.ok(unavailable.error); assert.deepEqual(unavailable.rows,[]);
   assert.equal(empty.error,null); assert.deepEqual(empty.rows,[]);
 });
@@ -29,7 +35,7 @@ function optionsClient(authenticated = true) {
           {id:"membership-b",tenant_id:"tenant-b",role:"tenant_admin",status:"active"}]})};
       return builder;
     },
-    rpc:async(name:string,args?:Record<string,unknown>)=> {
+    rpc:async(name:string,args?:Record<string,unknown>):Promise<{error:unknown;data:unknown}>=> {
       calls.push({name,args});
       return {error:null,data:{customers:[],facilities:[],contacts:[],projectManagers:[],workRoles:[],jobs:[]}};
     },
@@ -45,4 +51,10 @@ test("checkpoint options deny unauthenticated callers before any RPC", async () 
   const {client,calls}=optionsClient(false);
   const result=await readJobCardOptions(client);
   assert.ok(result.error);assert.deepEqual(result.customers,[]);assert.deepEqual(calls,[]);
+});
+
+test("external follow-up personal read denies missing request authority before RPC",async()=>{
+  const {client,calls}=optionsClient(false);
+  const result=await readMyJobs(client);
+  assert.ok(result.error);assert.deepEqual(result.rows,[]);assert.deepEqual(calls,[]);
 });

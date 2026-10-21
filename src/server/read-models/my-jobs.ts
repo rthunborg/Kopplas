@@ -16,7 +16,10 @@ async function clientOrDefault(client?: JobCardRpcClient): Promise<JobCardRpcCli
 }
 export async function readMyJobs(client?: JobCardRpcClient): Promise<JobListReadResult> {
   try {
-    const {data, error} = await (await clientOrDefault(client)).rpc("read_job_cards", {p_personal: true, p_job_id: null});
+    const requestClient = await clientOrDefault(client);
+    const context = await resolveTenantContext({client:requestClient as NonNullable<Parameters<typeof resolveTenantContext>[0]>["client"]});
+    if (!context.ok) throw new Error("job read denied");
+    const {data, error} = await requestClient.rpc("read_job_cards", {p_tenant_id:context.data.tenantId, p_personal: true, p_job_id: null});
     if (error || !Array.isArray(data)) throw new Error("job read failed");
     // Construct the public list contract explicitly; no raw persistence/outcome keys cross it.
     const rows = data.map((r: Record<string, unknown>) => ({ id: String(r.id), type: r.type, title: r.title,

@@ -35,7 +35,7 @@ export async function readBookingSemantics(client: BookingRpcClient, input: Part
   const commandId=input.commandId ?? randomUUID();
   let hint:JobSchedulingHint|null=null;
   if(input.jobId) {
-    const result=await client.rpc("read_job_cards",{p_personal:false,p_job_id:input.jobId});
+    const result=await client.rpc("read_job_cards",{p_tenant_id:context.data.tenantId,p_personal:false,p_job_id:input.jobId});
     if(result.error || !Array.isArray(result.data) || !result.data[0]?.card) throw new Error("job unavailable");
     const c=result.data[0].card;
     hint={jobId:input.jobId,durationMinutes:c.estimated_duration_minutes,crewSize:c.crew_size,travelMinutes:c.planned_travel_minutes,earliestDate:c.earliest_date,desiredDate:c.desired_date,latestDate:c.latest_date,customerPresenceRequired:c.customer_presence_required};

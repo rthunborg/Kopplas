@@ -1,10 +1,13 @@
+import { resolveTenantContext } from "@/server/auth/resolve-tenant-context";
 import type { JobCardRpcClient } from "./my-jobs";
 import type { JobCardData } from "@/features/jobs/job-card-domain";
 import { readJobMembers } from "./job-members";
 import { readJobWorkOrders } from "./job-work-orders";
 /** Safe operational composition. Each checked reader independently enforces current access. */
 export async function readJobSemantics(client: JobCardRpcClient, jobId: string) {
-  const {data,error}=await client.rpc("read_job_cards",{p_personal:false,p_job_id:jobId});
+  const context=await resolveTenantContext({client:client as never});
+  if(!context.ok) throw new Error("job unavailable");
+  const {data,error}=await client.rpc("read_job_cards",{p_tenant_id:context.data.tenantId,p_personal:false,p_job_id:jobId});
   if(error || !Array.isArray(data) || data.length !== 1) throw new Error("job unavailable");
   const row=data[0] as {id:string;type:"order"|"projekt";card:JobCardData;entitlement:{canEdit:boolean}};
   const [members,orders]=await Promise.all([readJobMembers(client,jobId),readJobWorkOrders(client,jobId)]);
