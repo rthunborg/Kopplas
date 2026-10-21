@@ -5262,3 +5262,73 @@ No archive ran this resume.
 1. none inside exact source/offline allocation. Stop for concrete extra allocation if existing interfaces cannot satisfy C1-C7.
 
 **Next:** Commit preparation metadata/clean-tree checkpoint, then explicit High source author. NativeSQL/connections/CI/GET/resources/push effects remain separately unallocated.
+
+## Report — 2026-10-21T17:46:01Z (15.5 C4 interface stop before edits; one-factory refinement active)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `1e2e05c`).
+**Pipeline status:** In progress: exact five-file author stopped before edits because existing query-only factory interface cannot satisfy C4. High read-only lifecycle refinement active; development remains blocked.
+**Continues:** Prepare minimal opt-in lifecycle hunk in shared tests/factories/admin-sql.ts, targeted independent High C4 review, then exact six-path source allocation.
+
+**Summary:** 15.1–15.4 landed;15.5 P5 active;15.6 unstarted. One final draft PR, inherited review_unverified and no-deployment boundary retained.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 292h 48m (≈77h 24m AI-run, ≈215h 23m human/idle wait); resumed 157×.
+
+**Stories:**
+1. HEAD1e2e05c8 source unchanged. No source/Spec/Git/runtime actions by implementation author. C1–C7 plan retained; current five-path write allocation held.
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** Actual E16 reply confirms no current/prospective shared-factory claim; retained Documents/CI completed claims stand. Clearance is ownership only, not design/source/runtime authority. All applied migrations immutable; no fourth broad review.
+
+**Open questions:**
+1. Opt-in same-pool lifecycle must truthfully bound actual query/protocol settlement and owned-client retirement, retaining UNKNOWN custody if unproved. API019/privacy, E2E001/flakies and historical browser custody remain open.
+
+**Deferred work:**
+1. Existing release-validation ledger unchanged; no failed development gate deferred or waived.
+
+**⚠️ Needs human:**
+1. none for current read-only refinement and ownership coordination.
+
+**Next:** Freeze compact refinement and receive distinct targeted High review before any additional source allocation. No SQL/connections/CI/GET/resources/push/merge/deploy effects.
+
+## Report — 2026-10-21T18:01:01Z (15.5 refined six-file source repair allocated after C4/F1 closure)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `1e2e05c`).
+**Pipeline status:** In progress: exact6 source/offline repair allocated; all required native development gates remain unpassed.
+**Continues:** High author implements original5 harness corrections plus opt-in always-retired same-pool factory lifecycle under C1-C7 and exact F1 ownership gate; distinct committed-delta High review follows.
+
+**Summary:** 15.1–15.4 landed;15.5 P5 active;15.6 unstarted. One final draft PR/inherited review_unverified retained.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 293h 03m (≈77h 24m AI-run, ≈215h 38m human/idle wait); resumed 158×.
+
+**Stories:**
+1. Initial5implementation stopped before edits at C4 interface gap. Independent C4 review found owned-pool error escape; precise F1 plan now independently closed with19 pure controls (author29 separate, no additive/native coverage). Historical NOTPASS preserved.
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** Actualcompleted Coordinator grant turn01a15f9e-821a-7661-b7f8-7d691f2fb995/tool exec-0dcb74e3-474f-43f2-bf0f-fe900ca7847e independently read. Exact6source/offline+RootcommitONLY. ActualE16factoryclearance/retainedDocsCIclaims; allappliedSQLimmutable. No4thbroadreview/merge/deploy.
+
+**Open questions:**
+1. Native actual session/drain/closure/rollback/canonical restoration remain unproved. API019privacy, E2E001/flakies and historical browser custody remain blocking/UNKNOWN; source correction cannot claim95pass.
+
+**Deferred work:**
+1. Release-validation ledger unchanged; no functional/privacy failure waived or deferred.
+
+**⚠️ Needs human:**
+1. none within exact6source/offline allocation. Stop for precise additional scope if interfaces insufficient.
+
+**Next:** Clean-tree preparation checkpoint then explicit High six-file author. No actualSQL/connections/CI/GET/resources/provider/push effect allocation; targeted code review and separately qualified native gates required.

@@ -1,0 +1,222 @@
+{
+  "schema": "story-15-5-targeted-C4-F1-closure-review-v1",
+  "verdict": "PASS_PLAN_ONLY_F1_CLOSED",
+  "reviewer": {
+    "identity": "/root/review15_5_preselected_id_high",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "independent_from": [
+      "/root/build15_5_high",
+      "BuildHigh/source author",
+      "Root"
+    ],
+    "reused_existing_reviewer": true,
+    "fresh_context_claim": false,
+    "nested_work": []
+  },
+  "scope": {
+    "head": "1e2e05c802933326868b7353fc4de4a56b343bfa",
+    "kind": "Exact F1 dispatch delta and consequences only",
+    "prior_C1_C7_H1_H3": "Reused unchanged; not a new broad or complete C4 pass",
+    "broad_review_cap_retained": 3,
+    "policy_version": "2026-10-19",
+    "implementation_count": 0
+  },
+  "frozen_inputs_and_governance": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-acl-session-lifecycle-f1-refinement/proposal.json",
+      "bytes": 12163,
+      "sha256": "dc7191d83bb2796a593b5fafd5f0e78345640695ce82f50423b6f263df198add"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-acl-session-lifecycle-f1-refinement/input-binding.json",
+      "bytes": 4607,
+      "sha256": "781eac306f01b766befd89499c024cf53fef28087029fa458a8d110b1e277a47"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-acl-session-lifecycle-f1-refinement/manifest.json",
+      "bytes": 639,
+      "sha256": "89bdb5af06c5daeae06608974b6685293578835d501fde3e83bcc5902b23021b"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/root-post-acl-session-lifecycle-f1-refinement-admission.json",
+      "bytes": 1153,
+      "sha256": "9f1975da1e27de5b9f70708872bcde8dc089fd2daf7b607f5e322059dbfb030a"
+    },
+    {
+      "path": "AGENTS.md",
+      "bytes": 11938,
+      "sha256": "b28eec9c075877d175362dad65b739054e45a3134d748b3c11e601ae36fbb823"
+    },
+    {
+      "path": "docs/process/development-completion-policy.md",
+      "bytes": 8460,
+      "sha256": "d3617c2bcfb64e0b185c82e8a39f84af40bfc5b0ddda739552d2e099c38d4893"
+    }
+  ],
+  "candidate_source_bindings": [
+    {
+      "path": "tests/factories/admin-sql.ts",
+      "bytes": 3694,
+      "sha256": "c21253e431e02b45ccf72da756f4cf58fdf1b5f476b0797a465189e39fcad4dd",
+      "clean_git_oid": "f7d2c10c669252912bc045659ed7886dceae3ae0",
+      "actual_head_git_oid": "f7d2c10c669252912bc045659ed7886dceae3ae0"
+    },
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "bytes": 110189,
+      "sha256": "44d63a54d314d08bb728e6dffa11683e2e86ea1c2b6d8e9f8a7aaba625daafde",
+      "clean_git_oid": "8e6ea22df4bb49de7b1a93b6127ddd549bd8d28a",
+      "actual_head_git_oid": "8e6ea22df4bb49de7b1a93b6127ddd549bd8d28a"
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "bytes": 189039,
+      "sha256": "8b7d8078b42e9f85ca46dcf310ed3b69669ef5c9b6449c91d4ff8ac526517580",
+      "clean_git_oid": "d4eab9b65caa73233bb8b3ecb632d157adf96530",
+      "actual_head_git_oid": "d4eab9b65caa73233bb8b3ecb632d157adf96530"
+    },
+    {
+      "path": "tests/integration/rls/calendar-feed.rls.test.ts",
+      "bytes": 16017,
+      "sha256": "e1fa13ac662ace0d5239c0e5ddd0eb428e196e40bd43b84e0d3e1904be624950",
+      "clean_git_oid": "643eda6f18612322aa73b39f5c784d256de4c77e",
+      "actual_head_git_oid": "643eda6f18612322aa73b39f5c784d256de4c77e"
+    },
+    {
+      "path": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "bytes": 27768,
+      "sha256": "b2851627142916a7aaaef4d1bf9324be00587d7114d474ba728dd781330d0efe",
+      "clean_git_oid": "df94faf607602dc8493ec09a3eb329b05cbfb0bc",
+      "actual_head_git_oid": "df94faf607602dc8493ec09a3eb329b05cbfb0bc"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "bytes": 170000,
+      "sha256": "8c4b57c2703117c4626512840a02cf9a7f7fe7ec4ea4b38627e83eb9b7264f5d",
+      "clean_git_oid": "d6bbdf298314db597de50ec7999a994c7196e1e0",
+      "actual_head_git_oid": "d6bbdf298314db597de50ec7999a994c7196e1e0"
+    }
+  ],
+  "prior_immutable_refs_verified": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-acl-session-lifecycle-refinement/proposal.json",
+      "bytes": 17991,
+      "sha256": "99c216566c6ef6460687101ee4cb66cb3694fafd607f76bd85fc9a20efd38a8a"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-acl-session-lifecycle-refinement/input-binding.json",
+      "bytes": 6121,
+      "sha256": "2e80faff24d979f95832df307202c60076ce26d8231671231b88594fa9ce1955"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-acl-session-lifecycle-refinement/manifest.json",
+      "bytes": 650,
+      "sha256": "a3a54f042bcecea1fc0fd09786be621907ac2c1b2f0c0e90651db1cd9cac0cf9"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-acl-session-lifecycle-refinement-review/original-report.md",
+      "bytes": 5166,
+      "sha256": "218d095266c898492582bd03840d8c9ed69fb74f1567ea343e289b83af6cbe5b"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-acl-session-lifecycle-refinement-review/original-attestation.json",
+      "bytes": 13511,
+      "sha256": "fc95a9677ed4d69d093384c7c854af7e520a80d2aaafd93d10085b157dd48f62"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-acl-session-lifecycle-refinement-review/result.json",
+      "bytes": 2084,
+      "sha256": "a392b6c9095276a01be6c2073d7a90ead929a2083e74a5b80ff419b19fa07655"
+    }
+  ],
+  "direct_installed_refs_verified": [
+    {
+      "path": "node_modules/.pnpm/pg-pool@3.14.0_pg@8.22.0/node_modules/pg-pool/index.js",
+      "bytes": 14460,
+      "sha256": "6f304776edaabde2954cbf8c4366fa6d9512bfba0e408e78cc56b3c46c69d058"
+    },
+    {
+      "path": "node_modules/.pnpm/pg-pool@3.14.0_pg@8.22.0/node_modules/pg-pool/package.json",
+      "bytes": 1083,
+      "sha256": "0a9924def9e06f791b09a44eaefb227f323a39199887f6ce17b44cb5a9193134"
+    },
+    {
+      "path": "node_modules/.pnpm/pg@8.22.0/node_modules/pg/lib/client.js",
+      "bytes": 22776,
+      "sha256": "86cda0e1fda47e03d27dde65f10c7b9d597f7411f77ed853c8d27d5f150978a2"
+    },
+    {
+      "path": "node_modules/.pnpm/pg@8.22.0/node_modules/pg/lib/connection.js",
+      "bytes": 5861,
+      "sha256": "5c17c585f307518f8369d6162d138c58eef1309128ad2fae2d6b315c8000234e"
+    }
+  ],
+  "remaining_dependency_reuse": "Reused by exact prior input-binding.json hash; no broad history duplication",
+  "binding_observation": {
+    "six_source_raw_bytes_SHA_and_HEAD_objects_verified": true,
+    "explicit_CRLF_to_LF_comparison": true,
+    "prior_ref_count": 6,
+    "direct_dependency_ref_count": 4,
+    "current_head_matches": true
+  },
+  "F1_closure": {
+    "original_gap": "Client-only observers did not contain the installed pool idleListener re-emission of native errors during retirement.",
+    "new_explicit_semantics": "Exact private pool/error/WeakSet-owned client gate records fixed active flags and suppresses original owned error/errorMonitor dispatch; all unmatched calls use original emitter/receiver/arguments.",
+    "identity_and_lifetime": "Register exact acquired client before work, per-client active WeakMap plus lifetime WeakSet/minimal sink; active deletion does not remove late-error containment. No error.client inspection or global strong client registry.",
+    "foreign_and_default_preservation": "Foreign/unknown/missing clients and borrowed receivers are delegated; same original unhandled throw/listener data/return and other events. No blanket listener or default caller migration.",
+    "retirement": "One public release(true), synchronous invocation failure closed; driver internal end/remove counts may exceed one. Missing end/joins/canonical proof stays UNKNOWN.",
+    "finding_status": "F1 CLOSED at plan level. Original NOTPASS/control evidence unchanged; no actual factory/native proof inferred.",
+    "consequential_remaining_findings": []
+  },
+  "independent_pure_control": {
+    "source": "Exact frozen precise_gate_pseudocode gate/sink lines evaluated in memory; actual installed Pool and fake EventEmitter Clients. No copied proposed factory implementation.",
+    "final_checks": 19,
+    "passed": 19,
+    "failed": 0,
+    "native_exit": 0,
+    "covered": [
+      "async exact-owned client error after release",
+      "owned pool handlers/errorMonitor suppressed",
+      "two concurrent owners separate flags",
+      "one public release / two driver internal end calls",
+      "removed/no idle reuse",
+      "late owned pool/client error after active-state removal",
+      "missing-end late events contained without closure claim",
+      "foreign original error object throw",
+      "foreign handler args and return",
+      "other events and absent-event return",
+      "borrowed receiver semantics",
+      "synchronous retirement throw fixed and later owned errors contained",
+      "same gate identity"
+    ],
+    "actual_connections": 0,
+    "SQL": 0,
+    "network": 0,
+    "raw_native_error_persistence": false,
+    "limits": "Does not test full20s/5s factory lifecycle, late acquisition, query/body/callback settlement or PostgreSQL rollback/canonical restoration.",
+    "initial_reader_control": "Initial harness native0 had no completion projection; classified incomplete with zero credit. Adjusted only synthetic end harness; final19 is nonadditive.",
+    "author_controls": "Final29 and initial27 remain bound author plan evidence, separate from reviewer19; not implementation/native credit."
+  },
+  "remaining_requirements": [
+    "Exact six-path allocation before any implementation; default caller and pool configuration behavior unchanged.",
+    "Actual new API controls for dispatch integrity/weak lifetime, async late and foreign errors, retirement throw,20s/5s bounds, acquisition/callback/query-port closure, promise plus native drain and final I.",
+    "Prior C1 meaningful foreign negative, C2 authority/full target preflight, C3 committed publication before ordinary callers/full restoration, C4 custody, C5 six serial members, C6 empty-state semantics and C7 behavioral coverage remain mandatory.",
+    "Distinct targeted High committed-delta review; separate native actual authority/protocol/end/rollback/reset/publication/canonical restoration and required full normal95/DB/RLS/recovery evidence.",
+    "No closure/rollback inference from frontend removal/end; retain UNKNOWN and block shared seam work on uncertainty."
+  ],
+  "effects": {
+    "writes": "Only these three new review artifacts",
+    "source_Spec_rootstate_Git_mutation": 0,
+    "connections_SQL_network_API_CI_resources": 0,
+    "all_applied_migrations": "Immutable",
+    "normal_acceptance_credit": 0,
+    "current_API019_browser_flaky_custody": "Still open",
+    "authority": "No execution, diagnostic acquisition/collector, retry, source implementation or deployment grant."
+  },
+  "report": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-acl-session-lifecycle-f1-review/original-report.md",
+    "bytes": 4918,
+    "sha256": "ce9addb2e75809a1e808fd3548ffb81196c1a5e3bfbe00b00965596fc66030b1"
+  }
+}

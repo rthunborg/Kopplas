@@ -1,0 +1,30 @@
+{
+  "schema": "ROOT_MECHANICAL_C4_REFINEMENT_ADMISSION_v1",
+  "at": "2026-10-21T17:47:03.275464+00:00",
+  "status": "IDENTITIES_PASS_PENDING_DISTINCT_HIGH_C4_CHALLENGE",
+  "head": "1e2e05c802933326868b7353fc4de4a56b343bfa",
+  "artifacts": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-acl-session-lifecycle-refinement/proposal.json",
+      "bytes": 17991,
+      "sha256": "99c216566c6ef6460687101ee4cb66cb3694fafd607f76bd85fc9a20efd38a8a"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-acl-session-lifecycle-refinement/input-binding.json",
+      "bytes": 6121,
+      "sha256": "2e80faff24d979f95832df307202c60076ce26d8231671231b88594fa9ce1955"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-acl-session-lifecycle-refinement/manifest.json",
+      "bytes": 650,
+      "sha256": "a3a54f042bcecea1fc0fd09786be621907ac2c1b2f0c0e90651db1cd9cac0cf9"
+    }
+  ],
+  "source_candidates_checked": 6,
+  "prior_refs_checked": 6,
+  "dependency_refs_checked": 8,
+  "source_edit_authorized": false,
+  "native_effects_authorized": false,
+  "normal_acceptance_credit": 0,
+  "all_applied_migrations_immutable": true
+}

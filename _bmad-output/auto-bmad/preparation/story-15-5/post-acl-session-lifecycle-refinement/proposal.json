@@ -1,0 +1,184 @@
+{
+  "kind": "post-acl-session-lifecycle-refinement",
+  "scope": "C4 interface gap and necessary C2/C3 interactions only; no fourth broad review",
+  "Outcome": "PLAN_REFINED_ONLY; one additional factory path proposed, original five source allocation remains suspended",
+  "Files changed": [
+    "New proposal, bindings and manifest in this directory only; no implementation or Spec writes"
+  ],
+  "Status": {
+    "head": "1e2e05c802933326868b7353fc4de4a56b343bfa",
+    "source_implementation_count": 0,
+    "new_runtime_effects": 0,
+    "native_acceptance_credit": 0,
+    "candidate_total_source_paths": 6,
+    "unchanged_prior_conditions": "C1-C7 High PLAN_ONLY PASS retained by exact immutable references; this file does not turn that plan or current code into a runtime PASS",
+    "minimal_decision": "Always retire the opt-in session; do not design a reusable owner-session certification API."
+  },
+  "new_factory_hunk": {
+    "path": "tests/factories/admin-sql.ts",
+    "placement": "Append one named opt-in export plus its local fixed lifecycle types/constants; preserve existing getPool, adminQuery, adminExec, adminSession and closeAdminPool behavior. No package/DSN/pool configuration changes.",
+    "api": "adminRetiredSession<T>(run: (exec: { query<R extends QueryResultRow>(sql: string, params?: readonly unknown[]): Promise<R[]> }) => Promise<T>): Promise<T>",
+    "surface_limits": "Same existing getPool().connect() client and configured principal. Query-only frozen callback port; no client/pool/socket access, owner name, arbitrary cleanup SQL hook, retry or release control exposed. Only E15 serial helper opts in; no generic owner mode. No operation-options API is necessary.",
+    "always_retire": "Exactly one client.release(true), on every opted-in outcome. Attach the exact client end/error and drain listeners before callback work. Installed pg-pool removes the checked-out client from its pool before invoking end; never invoke release() without destruction, DISCARD ALL or idle reuse on this branch. Observe end separately within the fixed bound; invocation of release(true) alone is not closure evidence.",
+    "default_compatibility": "Existing adminSession and all existing callers keep their current code/control flow and signatures. The known unverified-DISCARD/release hazard is NOT claimed fixed globally. No already-existing default caller is silently migrated. Only the new E15 owner operations use adminRetiredSession. A later default-wide hardening would require explicit separate scope; it is unnecessary to close the new consumer containment gap."
+  },
+  "finite_lifecycle": [
+    {
+      "step": 1,
+      "state": "ACQUIRE",
+      "action": "Use existing pool connect (existing connectionTimeoutMillis 5000); before invoking callback, bind the exact returned client, immediate fixed error/end listeners, drain sequence and transaction-status capability. Require installed getTransactionStatus function and known idle I initial protocol status; unsupported capability or error => no callback/retire/closed failure. Do not inspect or retain connectionParameters credentials."
+    },
+    {
+      "step": 2,
+      "state": "OPEN",
+      "action": "Start one fixed 20000ms callback/operation wall deadline after acquire. The callback is SQL-only atomic setup/read/restore, never the ordinary HTTP/RPC callback. Gate before query invocation: admission open, not invalidated/ended and no overlapping query. Only one query may be outstanding; concurrency rejects before driver work. Record and immediately observe the actual client.query promise independently of its returned row projection."
+    },
+    {
+      "step": 3,
+      "state": "QUERY_DRAIN",
+      "action": "Install observation before invoking actual query. Each query completion requires both actual promise settlement and post-invocation drain/idle-ready protocol evidence; a rejected promise alone is insufficient. In a transaction, allow native I/T/E status for continued cleanup, but never invent rollback. Deliver original query failure only after its protocol drain; no raw error values are logged/persisted. Use the remaining wall deadline, not a new unbounded budget. No driver query_timeout or Promise.race result is accepted as backend completion."
+    },
+    {
+      "step": 4,
+      "state": "CALLBACK_DONE",
+      "action": "Close admission synchronously when callback resolves/rejects or deadline/error fires. A normal successful result requires callback settled, no pending actual queries, post-query drain and getTransactionStatus()==I. A callback returning with pending work/open or failed transaction is misuse/unverified failure, not a later successful drain promotion. The helper must already have performed rollback/reset/identity and required catalog/ACL checks on this same client."
+    },
+    {
+      "step": 5,
+      "state": "RETIRE",
+      "action": "On every path, close admission before exactly-once release(true); observe the exact client end signal and bounded allSettled of all recorded query promises plus callback. Use one fixed 5000ms retirement/join deadline, no repeated release/end/query/retry. Clear all owned timers/listeners on success; on incomplete join retain the exact still-observed promises and closed custody facts until isolated job disposal. Late callback query attempts reject before any driver call. No new SQL can escape through the revoked query port."
+    },
+    {
+      "step": 6,
+      "state": "RETURN_OR_UNKNOWN",
+      "action": "Return callback value only if the successful pre-retirement conditions AND actual client end + all joins are established. Otherwise throw closed lifecycle failure preserving callback primary and cleanup uncertainty without raw text. If end or callback/query join is absent, report UNKNOWN custody; never claim server rollback or backend completion from a socket-close event. No future shared seam operation may proceed on that job after unverified state."
+    }
+  ],
+  "bounds": {
+    "pool_acquire_ms_existing": 5000,
+    "operation_after_acquire_ms": 20000,
+    "retirement_and_join_ms": 5000,
+    "concurrent_queries_per_client": 1,
+    "queries_after_close": 0,
+    "automatic_retry_count": 0,
+    "normal_reuse_count": 0,
+    "raw_error_output": 0,
+    "server_limits": "The E15 helper sets transaction-local statement_timeout=5s, lock_timeout=1s, idle_in_transaction_session_timeout=5s as part of each bounded operation before catalog mutation. These do not substitute for actual joins. No pool defaults, driver query_timeout, backend termination or extra cancellation connection are introduced."
+  },
+  "driver_evidence": [
+    {
+      "file": "pg/lib/client.js",
+      "range": "368-390,421-436",
+      "meaning": "_handleErrorMessage calls handleError before ReadyForQuery. _handleReadyForQuery updates native transaction status, readyForQuery, completes active query and pulses queue. Thus a rejected query promise is not protocol settlement."
+    },
+    {
+      "file": "pg/lib/client.js",
+      "range": "604-625,660-688,730-764",
+      "meaning": "An empty drained queue emits drain; getTransactionStatus returns the most recent ReadyForQuery status. Read timeout calls the callback early; do not equate timeout or stale transaction status alone with query completion. Client end force-disconnects active/nonqueryable clients and awaits connection end."
+    },
+    {
+      "file": "pg-pool/index.js",
+      "range": "172-189,369-397",
+      "meaning": "release is exactly-once. A truthy destroy argument causes _remove; _remove removes the exact client from idle/client lists before end callback and never pushes it to idle reuse."
+    },
+    {
+      "file": "pg/lib/connection.js",
+      "range": "62-64,209-219",
+      "meaning": "Socket close emits connection end; graceful end writes Terminate then closes the stream. Frontend closure is containment evidence, not independent historical/backend transaction outcome proof."
+    }
+  ],
+  "helper_interactions": {
+    "path": "tests/support/calendar-feed-atdd.ts",
+    "scope": "Only existing serial clock replacement/restoration, private clock reads, subject-before-authority barrier and projection fault replacement/restoration use the opt-in. Existing fixture principal and ordinary restricted JWT/HTTP/RPC clients remain unchanged. No row-isolated owner operation.",
+    "atomic_operation": "Each call has its own qualified same-client transaction. Before object mutation qualify actual session_user=current_user=postgres, existing owner SET authority, required schema grant authority, exact target OID/canonical-or-exact-owned-fault state/full shape/ACL. Publish bound replacement with only needed transient CREATE/SET LOCAL owner; reset to original executor, revoke/verify effective CREATE absence and stable metadata/ACL before COMMIT. The factory additionally requires final protocol I and retires the client.",
+    "ordinary_callback": "The successful publication operation must have returned (COMMIT/drain/client closure) before executing independent ordinary HTTP/RPC work; no DDL transaction is held around it. Factory callback captures no ordinary client. The helper retains all actual affected HTTP/body/request/query promises and releases gates before joining them.",
+    "restoration": "After success, assertion or SQL failure, wait for all affected actual ordinary work, then restore captured canonical definition plus full original OID/owner/ACL/non-body metadata in a separate qualified atomic adminRetiredSession. No restoration call races pending ordinary work. On known operation error cleanup rollback/reset/identity runs within the same admitted client before callback termination, with independent cleanup admission inside the remaining bound.",
+    "uncertainty": "Any uncertain COMMIT/rollback/reset/metadata/restore/admission timeout makes a module-local serial seam custody latch permanently invalid for that job. Reject subsequent shared seam mutation/private-clock assumptions before SQL; do not repeat COMMIT or restore on another connection to guess outcome. Destroyed local connection is not a verified restoration. Keep exact function OID/captured canonical state and finite phase/outcome custody internally; serialize only closed failure facts. Job operator owns disposal/resume, no automatic retry.",
+    "scope_invariant": "This lifecycle refinement does not weaken any C1/C2/C3/C5/C6/C7 obligation or add new callback/runtime authority. Restoring a changed committed definition still requires subsequent allocated native proof."
+  },
+  "failure_table": [
+    [
+      "missing protocol capability/invalid initial status",
+      "no callback; retire client; fixed prerequisite failure"
+    ],
+    [
+      "authority/unsafe target/ACL preflight refused",
+      "no catalog mutation; helper rollback/reset/identity if begun; retire"
+    ],
+    [
+      "query rejected before ReadyForQuery",
+      "observe rejection; wait bounded actual drain before further cleanup SQL; missing drain => retire+UNKNOWN"
+    ],
+    [
+      "callback assertion after known publication",
+      "ordinary callback remains outside factory; join ordinary work; separate exact restoration; retain primary failure"
+    ],
+    [
+      "COMMIT rejection even if later native idle",
+      "publication remains uncertain; no replay/clean baseline claim; latch custody, retire"
+    ],
+    [
+      "rollback/reset/identity/restore failure",
+      "never ordinary release; retire; custody latch blocks later seam work"
+    ],
+    [
+      "deadline while query/callback pending",
+      "close admission, retire once, bounded actual joins; remaining promises tracked/custody; no false settlement"
+    ],
+    [
+      "retirement invocation succeeds but end absent",
+      "UNKNOWN closure; no clean release or native/backend completion claim"
+    ],
+    [
+      "success and all cleanup/native idle proofs present",
+      "observe client end and all joins; return only then; destroyed client cannot be reborrowed"
+    ]
+  ],
+  "meaningful_control_plan": [
+    "Execute actual new factory function from full source with explicit fake installed-compatible Pool/Client event ports; no copied lifecycle implementation or real DB. Assert exact same acquired client, one release(true), no release()/DISCARD/new pool/principal; every branch denies reuse.",
+    "Success: real query-promise port completion plus post-call drain/native status, same-session helper rollback/reset/identity/catalog proofs and client end are all required before return. Query rows/ordinary callback values preserve identity.",
+    "Early backend error and client-side query-timeout simulation: rejection before ReadyForQuery does not launch next cleanup query or return. Later drain permits known cleanup; absent drain causes bounded retirement/UNKNOWN.",
+    "Missing authority/unsafe OID/body/ACL and grant authority refuse before mutation; no unexpected SQL invocation. Private clock read executes only as exact owner with no EXEC grant.",
+    "Thrown assertion, SQL failure, COMMIT rejection, rollback/reset/identity/restore rejection and callback returning with pending query each preserve primary+cleanup outcomes, close late admission, retire once and prevent later shared seam assumptions.",
+    "Pending callback/query, missing/late client end, late attempted query after close and duplicate release hazards: all actual promises observed, timers disposed, no false settlement/reuse. UNKNOWN custody remains when bounded joins cannot establish completion.",
+    "Publication COMMIT and actual operation completion precede the independent ordinary request; callback never runs inside owner transaction. Finally releases gates and joins request/body/query work before canonical restoration; strict canonical OID/full metadata/ACL/effective public CREATE absence asserted.",
+    "Existing adminSession/adminQuery/adminExec callers retain signatures/branches and receive no opt-in behavior by default; preserve pool configuration and local-stack guard. Run affected existing unit controls plus added meaningful cases, whole TS/affected lint/diff/Spec reader only after allocation. C1/C6 existing five-path controls remain unchanged."
+  ],
+  "checks_executed_now": [
+    {
+      "kind": "installed pg8.22.0 + pg-pool3.14.0 offline actual prototype primitive controls",
+      "assertions": 7,
+      "passed": 7,
+      "failed": 0,
+      "native_exit": 0,
+      "connections": 0,
+      "queries": 0,
+      "meaning": "Actual installed release(true)/remove-before-end, early error vs ReadyForQuery and drain behavior exercised with synthetic clients. Not the proposed implementation or backend SQL/cleanup proof."
+    }
+  ],
+  "reader_history": [
+    "Initial direct require.resolve(pg-pool) from repository root was unavailable because pg-pool is transitive; resolved it using createRequire at actual pg entry. Read-only reader correction; no dependency/install/source change or product test failure."
+  ],
+  "effect_inventory": {
+    "now": "Only this metadata directory, immutable source reads, local installed-driver source reads and seven pure primitive assertions. No connection/query/API/resource/Git/source/Spec effect.",
+    "future_source": "Exactly six files: original five plus opt-in factory hunk. New export only; no default caller migration, pool/DSN/principal/role/membership/Auth/production/wrapper/config/dependency/migration changes.",
+    "future_runtime_if_separately_allocated": "Each E15 atomic owner setup/read/restore acquires through the existing configured pool and deliberately closes/removes that one client afterward, so connection churn increases within the same bounded pool. Existing test-only transient public CREATE/SET LOCAL owner/replace/reset/revoke and ordinary callback operations remain as prior plan; new lifecycle event reads/retirement act only on the exact checked-out local connection. No SQL termination/backend kill/new pool/connection outside that pool.",
+    "native_required": "Real ordinary configured postgres identity/SET/schema authority; actual PG17 ReadyForQuery/drain after error; publication visibility and no held DDL callback lock; restoration of exact function metadata/ACL and absence of effective public CREATE; transaction uncertainty/client retirement; all existing full normal95/privacy/browser/recovery/pilot gates remain future unexecuted requirements."
+  },
+  "Open questions": [
+    "Independent targeted High challenge must validate this always-retire contract and fixed deadline/late-work custody handling before six-path ownership is requested.",
+    "If installed driver capabilities change, refuse opt-in until requalified; no reflective/private-field fallback is proposed.",
+    "Native backend settlement and clean shared function restoration cannot be proven by these synthetic controls; actual future runtime grant/evidence remains mandatory."
+  ],
+  "Deferred work": [
+    "Root targeted independent refinement challenge and Coordinator exact six-path source allocation; prior five-path implementation is still suspended.",
+    "After allocation only: implement original H1/H2/H3 plus this lifecycle hunk, meaningful actual-source controls/Spec evidence, Root commit, independent sensitive latest-delta review.",
+    "Separate explicitly admitted native qualification and normal exact-head gates; API019, E2E001/flakies and browser custody remain unresolved."
+  ],
+  "Blockers": {
+    "plan": "No additional source interface beyond this one factory path is identified; proposed always-retire lifecycle closes the reuse gap without a private client workaround.",
+    "implementation": "Not authorized by this refinement. Need targeted High sufficiency PASS and exact shared factory ownership/source allocation.",
+    "stop": "If implementation cannot bind actual query/drain/client-end events or guarantee late-admission closure within this contract, stop with exact missing capability; do not add backend termination, new client/pool or indefinite waits.",
+    "normal_acceptance": 0
+  }
+}
