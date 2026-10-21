@@ -105,11 +105,11 @@ export type AclFacts = {
   tables: Array<{ name: string; rlsEnabled: boolean; anonSelect: boolean; authenticatedDml: boolean;
     anonDml: boolean; publicInheritedDml: boolean; authenticatedSensitiveColumns: boolean }>;
   functions: Array<{ purpose: "fetch" | "manage" | "status" | "abuse"; owner: string; securityDefiner: boolean; emptySearchPath: boolean;
-    anonExecute: boolean; authenticatedExecute: boolean; publicExecute: boolean }>;
+    volatility: string; rawAclExact: boolean; ownerExecute: boolean; serviceRoleExecute: boolean; anonExecute: boolean; authenticatedExecute: boolean; publicExecute: boolean }>;
   owner: { name: string; login: boolean; inherit: boolean; superuser: boolean; bypassRls: boolean; publicSchemaCreate: boolean;
     assumableByJwtRoles: boolean; unrelatedTableRead: boolean; generalVaultRead: boolean;
     effectiveReadOutsideAllowedColumns: boolean; filteredHelperOnly: boolean };
-  helpers: Array<{ purpose: "canonical" | "verifier" | "filtered-secret" | "actor"; owner: string; securityDefiner: boolean; emptySearchPath: boolean; sqlStable: boolean; preparsed: boolean; canonicalUidDependency: boolean; jwtExecute: boolean; publicExecute: boolean; feedOwnerExecute: boolean;
+  helpers: Array<{ purpose: "canonical" | "verifier" | "filtered-secret" | "actor" | "subject" | "clock"; volatility: string; rawAclExact: boolean; ownerExecute: boolean; serviceRoleExecute: boolean; owner: string; securityDefiner: boolean; emptySearchPath: boolean; sqlStable: boolean; preparsed: boolean; canonicalUidDependency: boolean; jwtExecute: boolean; publicExecute: boolean; feedOwnerExecute: boolean;
     otherRoleInheritedExecute: boolean; exactConfiguredKeyFilter: boolean }>;
   ipColumns: string[];
 };
@@ -562,9 +562,17 @@ async function calendarAcl(): Promise<AclFacts> {
   owner.effectiveReadOutsideAllowedColumns=effective.some(row=>!allowed[row.table]?.some(column=>column==='*'||column===row.column));
   owner.filteredHelperOnly=!owner.generalVaultRead;
   const definitions:Record<string,AclFacts["functions"][number]["purpose"]>={fetch_calendar_feed:"fetch",manage_calendar_feed:"manage",read_calendar_feed_status:"status",read_calendar_feed_abuse:"abuse"};
-  const functions=await adminQuery<{name:string;owner:string;securityDefiner:boolean;emptySearchPath:boolean;anonExecute:boolean;authenticatedExecute:boolean;publicExecute:boolean}>(`select p.proname name,r.rolname owner,p.prosecdef "securityDefiner",coalesce('search_path=""'=any(p.proconfig),false) "emptySearchPath",has_function_privilege('anon',p.oid,'EXECUTE') "anonExecute",has_function_privilege('authenticated',p.oid,'EXECUTE') "authenticatedExecute",exists(select 1 from aclexplode(coalesce(p.proacl,acldefault('f',p.proowner))) a where grantee=0 and privilege_type='EXECUTE') "publicExecute" from pg_proc p join pg_roles r on r.oid=p.proowner where p.pronamespace='public'::regnamespace and p.proname=any($1::text[])`,[Object.keys(definitions)]);
-  const helperNames:Record<string,AclFacts["helpers"][number]["purpose"]>={calendar_feed_attestation_payload:"canonical",calendar_feed_verify_attestation_internal:"verifier",calendar_feed_secret_internal:"filtered-secret",calendar_feed_actor_internal:"actor"};
-  const helpers=await adminQuery<AclFacts["helpers"][number] & {name:string;source:string}>(`select p.proname name,pg_catalog.pg_get_userbyid(p.proowner) owner,p.prosecdef "securityDefiner",
+  const functions=await adminQuery<Omit<AclFacts["functions"][number],"purpose"> & {name:string}>(`select p.proname name,r.rolname owner,p.prosecdef "securityDefiner",(select count(*)=count(distinct a.grantee) and count(*)=case when p.proname=any(array['calendar_feed_attestation_payload','calendar_feed_verify_attestation_internal','calendar_feed_subject_internal','calendar_feed_now_internal']) then 1 else 2 end
+     and count(*) filter(where a.grantee=p.proowner)=1 and coalesce(bool_and(a.grantor=p.proowner and a.privilege_type='EXECUTE' and not a.is_grantable and
+      (a.grantee=p.proowner or a.grantee=case when p.proname='fetch_calendar_feed' then 'anon'::regrole::oid when p.proname=any(array['calendar_feed_secret_internal','calendar_feed_actor_internal']) then 'calendar_feed_owner'::regrole::oid else 'authenticated'::regrole::oid end)),false)
+     from aclexplode(coalesce(p.proacl,acldefault('f',p.proowner))) a) "rawAclExact",
+    has_function_privilege(p.proowner,p.oid,'EXECUTE') "ownerExecute",has_function_privilege('service_role',p.oid,'EXECUTE') "serviceRoleExecute",p.provolatile::text volatility,coalesce('search_path=""'=any(p.proconfig),false) "emptySearchPath",has_function_privilege('anon',p.oid,'EXECUTE') "anonExecute",has_function_privilege('authenticated',p.oid,'EXECUTE') "authenticatedExecute",exists(select 1 from aclexplode(coalesce(p.proacl,acldefault('f',p.proowner))) a where grantee=0 and privilege_type='EXECUTE') "publicExecute" from pg_proc p join pg_roles r on r.oid=p.proowner where p.pronamespace='public'::regnamespace and p.proname=any($1::text[])`,[Object.keys(definitions)]);
+  const helperNames:Record<string,AclFacts["helpers"][number]["purpose"]>={calendar_feed_attestation_payload:"canonical",calendar_feed_verify_attestation_internal:"verifier",calendar_feed_secret_internal:"filtered-secret",calendar_feed_actor_internal:"actor",calendar_feed_subject_internal:"subject",calendar_feed_now_internal:"clock"};
+  const helpers=await adminQuery<AclFacts["helpers"][number] & {name:string;source:string}>(`select p.proname name,pg_catalog.pg_get_userbyid(p.proowner) owner,p.prosecdef "securityDefiner",(select count(*)=count(distinct a.grantee) and count(*)=case when p.proname=any(array['calendar_feed_attestation_payload','calendar_feed_verify_attestation_internal','calendar_feed_subject_internal','calendar_feed_now_internal']) then 1 else 2 end
+     and count(*) filter(where a.grantee=p.proowner)=1 and coalesce(bool_and(a.grantor=p.proowner and a.privilege_type='EXECUTE' and not a.is_grantable and
+      (a.grantee=p.proowner or a.grantee=case when p.proname='fetch_calendar_feed' then 'anon'::regrole::oid when p.proname=any(array['calendar_feed_secret_internal','calendar_feed_actor_internal']) then 'calendar_feed_owner'::regrole::oid else 'authenticated'::regrole::oid end)),false)
+     from aclexplode(coalesce(p.proacl,acldefault('f',p.proowner))) a) "rawAclExact",
+    has_function_privilege(p.proowner,p.oid,'EXECUTE') "ownerExecute",has_function_privilege('service_role',p.oid,'EXECUTE') "serviceRoleExecute",p.provolatile::text volatility,
    coalesce('search_path=""'=any(p.proconfig),false) "emptySearchPath",
    (p.prolang=(select oid from pg_catalog.pg_language where lanname='sql') and p.provolatile='s') "sqlStable",
    (p.prosqlbody is not null) preparsed,
@@ -941,4 +949,197 @@ export async function runCalendarFeedCauseProof() {
   } else if(fixture) fail("fixture-custody-retained");
   if(!report.cleanupVerified || !report.ordinarySettled || !report.queriesSettled) report.outcome="CLEANUP_UNVERIFIED";
   return report;
+}
+
+/** Future native RLS010 regression: UUID-only, rollback-only catalog objects.
+ * No production function/role/ACL is changed, even while other suites run.
+ * Source controls are not native evidence; only the admitted isolated CI may call.
+ */
+const calendarOwnerAclCustody = new Map<string,{migrator:string;owner:string;schema:string;fn:string}>();
+export async function calendarOwnerAclRegression(): Promise<void> {
+  const runtime = await import("../../scripts/ci/with-calendar-feed-runtime.mjs");
+  const { execFile } = await import("node:child_process");
+  const { promisify } = await import("node:util");
+  const { realpath, stat, readdir } = await import("node:fs/promises");
+  const { fileURLToPath } = await import("node:url");
+  const { join } = await import("node:path");
+  const { assertLocalStack, LOCAL_SUPABASE_DB_URL } = await import("./test-env");
+  const root = fileURLToPath(new URL("../../", import.meta.url));
+  const suffix = randomUUID().replaceAll("-", "");
+  const migrator = `cf_acl_m_${suffix}`, owner = `cf_acl_o_${suffix}`, schema = `cf_acl_s_${suffix}`, fn = `cf_acl_f_${suffix}`;
+  const failures: Error[] = [], pending = new Set<Promise<unknown>>();
+  let stack: Parameters<typeof runtime.createCalendarFeedDatabaseClient>[0] | undefined;
+  let main: ReturnType<typeof runtime.createCalendarFeedDatabaseClient> | undefined;
+  let connected = false, transportFailed = false, cleaning = false, settled = false;
+  let mainAbsent = false, freshAbsent = false, mainClosed = false, freshClosed = false;
+  const deadline = Date.now() + 80_000;
+  const fail = (stage: string) => failures.push(new Error(`Calendar owner ACL proof ${stage}; values redacted`));
+  const requireFact = (fact: boolean) => { if (!fact) throw new Error("Calendar owner ACL proof prerequisite refused"); };
+  async function qualify(connection: ReturnType<typeof runtime.createCalendarFeedDatabaseClient>) {
+    await runtime.readCalendarFeedSetupAuthority(connection);
+    const controls = await runtime.readCalendarFeedPrivacyPreflight(connection);
+    requireFact(controls.controls.length === 4 && controls.controls.every(control => control.matchesRequired));
+    const { rows } = await connection.query("select current_setting('server_version_num') version");
+    requireFact(rows.length === 1 && /^17[0-9]{4}$/.test(rows[0].version));
+  }
+  // Return the actual pg promise; no unobserved async adopting wrapper. A client
+  // query timeout is not ReadyForQuery: protocol idle is separately required.
+  function sql(text: string, values: unknown[] = []) {
+    if (!main || (!cleaning && Date.now() > deadline)) throw new Error("Calendar owner ACL query admission closed");
+    const query = main.query(text, values); pending.add(query);
+    void query.then(() => { pending.delete(query); }, () => { pending.delete(query); });
+    return query;
+  }
+  async function absence(connection: ReturnType<typeof runtime.createCalendarFeedDatabaseClient>) {
+    const { rows } = await connection.query("select not exists(select 1 from pg_roles where rolname=any($1::text[])) roles,not exists(select 1 from pg_namespace where nspname=$2) schema,not exists(select 1 from pg_proc where proname=$3) function", [[migrator,owner],schema,fn]);
+    requireFact(rows.length === 1 && rows[0].roles === true && rows[0].schema === true && rows[0].function === true);
+  }
+  try {
+    assertLocalStack(); runtime.validateAdmission("db", process.env, process.platform);
+    requireFact(process.env.SUPABASE_TEST_REQUIRED === "1" && await realpath(root) === await realpath(process.env.GITHUB_WORKSPACE ?? ""));
+    const git = await stat(join(root,".git")); requireFact(git.isDirectory());
+    const capture = promisify(execFile);
+    // The only two metadata commands; captured credentials/errors stay in RAM.
+    const containers = JSON.parse((await capture("docker",["inspect","supabase_db_kopplas","supabase_kong_kopplas"],{cwd:root,shell:false,timeout:15_000,maxBuffer:2_000_000})).stdout);
+    const status = JSON.parse((await capture("supabase",["status","--output","json"],{cwd:root,shell:false,timeout:15_000,maxBuffer:2_000_000})).stdout);
+    stack = {db:containers[0],gateway:containers[1],checkoutTime:git.birthtimeMs,now:Date.now(),status};
+    runtime.validateStackIdentity(stack); requireFact(status.DB_URL === LOCAL_SUPABASE_DB_URL);
+    const source = await readFile(join(root,"supabase/migrations/20261020220000_personal_calendar_feed.sql"),"utf8");
+    const adapter = await readFile(join(root,"supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql"),"utf8");
+    const prepared = calendarOwnerAclSource(source,adapter,owner,migrator,schema,fn);
+    main = runtime.createCalendarFeedDatabaseClient(stack,"proof"); main.on("error",() => {transportFailed = true;});
+    await main.connect(); connected = true; await qualify(main); await absence(main);
+    const migrations = (await readdir(join(root,"supabase/migrations"))).filter(name => /^\d{14}_.+\.sql$/.test(name)).sort().map(name => ({version:name.slice(0,14),name:name.slice(15,-4)}));
+    const ledger = (await sql("select version,name from supabase_migrations.schema_migrations order by version")).rows;
+    requireFact(JSON.stringify(ledger.map(row => ({version:String(row.version),name:row.name}))) === JSON.stringify(migrations));
+    const functions = (await sql("select pg_get_userbyid(p.proowner) owner,p.prosecdef definer from pg_proc p where p.oid=any(array["+runtime.FEED_FUNCTIONS.map((_:string,i:number)=>`to_regprocedure($${i+1})`).join(",")+"])",[...runtime.FEED_FUNCTIONS])).rows;
+    requireFact(functions.length === runtime.FEED_FUNCTIONS.length && functions.every(row => row.owner === "calendar_feed_owner" && row.definer === true));
+    calendarOwnerAclCustody.set(suffix,{migrator,owner,schema,fn});
+    await calendarOwnerAclExercise(sql,{migrator,owner,schema,fn,prepared});
+  } catch { fail("primary failed"); }
+  cleaning = true; // close primary admission before actual query/protocol drain
+  const outcomes = await Promise.allSettled([...pending]);
+  for (const result of outcomes) if (result.status === "rejected") fail("pending query failed");
+  if (connected && main) {
+    try { settled = await calendarCauseProofIdle(main as unknown as {readyForQuery?:boolean}); } catch { fail("protocol settlement failed"); }
+    if (!settled) fail("unverified protocol settlement; UUID custody retained");
+    if (settled) {
+      let rolledBack = false;
+      try { await sql("rollback"); rolledBack = true; } catch { fail("full rollback failed; UUID custody retained"); }
+      if (rolledBack) {
+        let restored = false;
+        try { await sql("reset session authorization; reset role"); await qualify(main); restored = true; } catch { fail("original identity reset unverified"); }
+        if (restored) try { await absence(main); mainAbsent = true; } catch { fail("same-connection absence unverified"); }
+      }
+    }
+  }
+  if (main) try { await main.end(); mainClosed = true; } catch { fail("main connection close failed"); }
+  if (transportFailed) fail("main transport failed");
+  if (connected && stack) {
+    let fresh: ReturnType<typeof runtime.createCalendarFeedDatabaseClient> | undefined, freshTransport = false;
+    try {
+      fresh = runtime.createCalendarFeedDatabaseClient(stack,"absence"); fresh.on("error",() => {freshTransport = true;});
+      await fresh.connect(); await qualify(fresh); await absence(fresh); freshAbsent = true;
+    } catch { fail("fresh qualified absence unverified; UUID custody retained"); }
+    if (fresh) {
+      try { if (!(await calendarCauseProofIdle(fresh as unknown as {readyForQuery?:boolean}))) {freshAbsent = false; fail("fresh protocol settlement unverified");} } catch {freshAbsent = false; fail("fresh protocol settlement failed"); }
+      try { await fresh.end(); freshClosed = true; } catch { fail("fresh connection close failed"); }
+    }
+    if (freshTransport) { freshAbsent = false; fail("fresh transport failed"); }
+  }
+  if (settled && mainAbsent && freshAbsent && mainClosed && freshClosed && !transportFailed) calendarOwnerAclCustody.delete(suffix);
+  if (failures.length) throw new AggregateError(failures,calendarOwnerAclCustody.has(suffix) ? "Calendar owner ACL proof and ALL cleanup failures retained; UUID custody requires job disposal" : "Calendar owner ACL proof and ALL cleanup failures retained; owned catalog absence verified");
+}
+
+/** Name-only bootstrap adaptation and fixed-target ACL fragment extraction.
+ * Offline controls execute this exact construction; PostgreSQL remains separate.
+ */
+export function calendarOwnerAclSource(source: string, adapter: string, owner: string, migrator: string, schema: string, fn: string) {
+  if (![owner,migrator,schema,fn].every(name => /^cf_acl_[mosf]_[0-9a-f]{32}$/.test(name)) || new Set([owner,migrator,schema,fn]).size !== 4) throw new Error("Owner ACL UUID identifiers refused");
+  const leading = /^-- Story[^\n]*\r?\n(do \$\$[\s\S]*?\r?\n\$\$;)/.exec(source)?.[1];
+  if (!leading || source.split(leading).length !== 2) throw new Error("Owner ACL source bootstrap refused");
+  const bootstrap = leading.replace(/\bcalendar_feed_owner\b/g,owner).replace(/\bpostgres\b/g,migrator);
+  if (bootstrap.replaceAll(owner,"calendar_feed_owner").replaceAll(migrator,"postgres") !== leading) throw new Error("Owner ACL bootstrap inversion refused");
+  const identity = `${schema}.${fn}(uuid,uuid)`;
+  const commands = source.split(/\r?\n/);
+  const revoke = commands.filter(line => line.startsWith("revoke all on function ") && line.includes("public.read_calendar_feed_status(uuid,uuid)"));
+  const grant = commands.filter(line => line.startsWith("grant execute on function ") && line.includes("public.read_calendar_feed_status(uuid,uuid)"));
+  if (revoke.length !== 1 || grant.length !== 1) throw new Error("Owner ACL predecessor commands refused");
+  const sourceRevoke = "revoke all on function public.calendar_feed_attestation_payload(jsonb),public.calendar_feed_verify_attestation_internal(jsonb,text,text),public.calendar_feed_subject_internal(uuid,uuid,uuid,boolean),public.read_calendar_feed_status(uuid,uuid),public.manage_calendar_feed(uuid,uuid,uuid,text,integer,uuid,text,uuid,jsonb,text),public.fetch_calendar_feed(text,text,jsonb,text),public.read_calendar_feed_abuse(uuid) from public,anon,authenticated,service_role;";
+  const sourceGrant = "grant execute on function public.read_calendar_feed_status(uuid,uuid),public.manage_calendar_feed(uuid,uuid,uuid,text,integer,uuid,text,uuid,jsonb,text),public.read_calendar_feed_abuse(uuid) to authenticated;";
+  if (revoke[0] !== sourceRevoke || grant[0] !== sourceGrant) throw new Error("Owner ACL exact predecessor target set refused");
+  const replaceTargets = (line: string, prefix: string, suffix: string) => {
+    if (!line.startsWith(prefix) || !line.endsWith(suffix)) throw new Error("Owner ACL command shape refused");
+    const targets = line.slice(prefix.length,-suffix.length);
+    const adapted = prefix+identity+suffix;
+    if (adapted.replace(identity,targets) !== line) throw new Error("Owner ACL target inversion refused");
+    return adapted;
+  };
+  const start = " -- Begin exact owner ACL reconciliation fragment.\n", end = " -- End exact owner ACL reconciliation fragment.";
+  const normalized = adapter.replaceAll("\r\n","\n");
+  if (normalized.split(start).length !== 2 || normalized.split(end).length !== 2) throw new Error("Owner ACL reconciliation fragment refused");
+  const fragment = normalized.split(start)[1].split(end)[0];
+  if (!fragment.startsWith(" for i in 1..cardinality(canonical_oids) loop\n") || !fragment.endsWith(" end loop;\n")) throw new Error("Owner ACL reconciliation loop refused");
+  return {bootstrap,identity,
+    create:`create function ${schema}.${fn}(p_tenant_id uuid,p_attempt_id uuid default null) returns jsonb language plpgsql security definer set search_path='' as $$ begin return '{}'::jsonb; end $$`,
+    revoke:replaceTargets(revoke[0],"revoke all on function "," from public,anon,authenticated,service_role;"),
+    grant:replaceTargets(grant[0],"grant execute on function "," to authenticated;"),
+    reconcile:`do $owned$ declare canonical_oids oid[]:=array['${identity}'::regprocedure::oid]; desired_roles text[]:=array['authenticated']; i integer; begin\n${fragment}end $owned$;`};
+}
+
+/** Actual restricted operation sequence, injected only for offline source controls.
+ * The live RLS helper calls it after admission/stack/identity/privacy qualification.
+ */
+export async function calendarOwnerAclExercise(sql: (text: string, values?: unknown[]) => Promise<{rows: Record<string, unknown>[]}>, input: {migrator:string;owner:string;schema:string;fn:string;prepared:ReturnType<typeof calendarOwnerAclSource>}) {
+  const {migrator,owner,schema,prepared} = input;
+  const requireFact = (fact: boolean) => { if (!fact) throw new Error("Calendar owner ACL proof prerequisite refused"); };
+  async function ordinary() {
+    const { rows } = await sql("select session_user::text session,current_user::text current,r.rolcanlogin,r.rolinherit,r.rolsuper,r.rolcreatedb,r.rolcreaterole,r.rolreplication,r.rolbypassrls,current_setting('createrole_self_grant') self_grant from pg_roles r where r.rolname=current_user");
+    const row = rows[0];
+    requireFact(rows.length === 1 && row.session === migrator && row.current === migrator && row.rolcanlogin === false && row.rolinherit === false && row.rolsuper === false && row.rolcreatedb === false && row.rolcreaterole === true && row.rolreplication === false && row.rolbypassrls === false && row.self_grant === "");
+  }
+  async function ownedIdentity() {
+    const { rows } = await sql("select session_user::text session,current_user::text current,r.rolcanlogin,r.rolinherit,r.rolsuper,r.rolcreatedb,r.rolcreaterole,r.rolreplication,r.rolbypassrls from pg_roles r where r.rolname=current_user");
+    const row = rows[0];
+    requireFact(rows.length === 1 && row.session === migrator && row.current === owner && [row.rolcanlogin,row.rolinherit,row.rolsuper,row.rolcreatedb,row.rolcreaterole,row.rolreplication,row.rolbypassrls].every(value => value === false));
+  }
+    await sql("begin"); await sql("set local statement_timeout='5s'; set local lock_timeout='2s'; set local idle_in_transaction_session_timeout='30s'");
+    // Snapshot only production targets/authority, not mutable rows or other
+    // suites' unrelated UUID catalogs. This proof never locks shared functions.
+    const protectedSql = "select jsonb_build_object('functions',(select jsonb_agg(to_jsonb(p) order by p.oid) from pg_proc p where p.pronamespace='public'::regnamespace and p.proname=any($1::text[])),'roles',(select jsonb_agg(to_jsonb(r) order by r.oid) from pg_roles r where rolname=any(array['postgres','calendar_feed_owner'])),'memberships',(select jsonb_agg(to_jsonb(m) order by m.roleid,m.member,m.grantor) from pg_auth_members m where roleid='calendar_feed_owner'::regrole or member='calendar_feed_owner'::regrole),'schema',(select to_jsonb(n) from pg_namespace n where oid='public'::regnamespace)) snapshot";
+    const targets = ["calendar_feed_attestation_payload","calendar_feed_verify_attestation_internal","calendar_feed_subject_internal","calendar_feed_now_internal","fetch_calendar_feed","read_calendar_feed_status","manage_calendar_feed","read_calendar_feed_abuse"];
+    const before = (await sql(protectedSql,[targets])).rows;
+    await sql(`create role ${migrator} nologin noinherit nosuperuser nocreatedb createrole noreplication nobypassrls`);
+    await sql(`create schema ${schema} authorization ${migrator}`);
+    await sql(`set local session authorization ${migrator}`);
+    await ordinary(); await sql(prepared.bootstrap);
+    const authority = (await sql("select pg_has_role(current_user,$1,'SET') can_set,pg_has_role(current_user,$1,'USAGE') can_use,exists(select 1 from pg_auth_members where roleid=$1::regrole and member=current_user::regrole and inherit_option) inherited",[owner])).rows;
+    requireFact(authority.length === 1 && authority[0].can_set === true && authority[0].can_use === false && authority[0].inherited === false);
+    await ordinary(); await sql(`grant usage,create on schema ${schema} to ${owner}`);
+    await ordinary(); await sql(prepared.create);
+    await ordinary(); await sql(`alter function ${prepared.identity} owner to ${owner}`);
+    const facts = async () => (await sql("select p.oid::text oid,to_jsonb(p)-'proacl' metadata,p.proacl::text acl,has_function_privilege('anon',p.oid,'EXECUTE') anon,has_function_privilege('authenticated',p.oid,'EXECUTE') authenticated,has_function_privilege('service_role',p.oid,'EXECUTE') service,has_function_privilege(current_user,p.oid,'EXECUTE WITH GRANT OPTION') independent_grant,(select count(*)=2 and count(distinct a.grantee)=2 and bool_and(a.grantor=p.proowner and a.privilege_type='EXECUTE' and not a.is_grantable and a.grantee in (p.proowner,'authenticated'::regrole)) from aclexplode(coalesce(p.proacl,acldefault('f',p.proowner))) a) intended from pg_proc p where oid=$1::regprocedure",[prepared.identity])).rows[0];
+    const initial = await facts(); requireFact(initial.independent_grant === false);
+    await ordinary(); await sql(prepared.revoke); await ordinary(); await sql(prepared.grant);
+    const unsafe = await facts();
+    requireFact(initial.oid === unsafe.oid && JSON.stringify(initial.metadata) === JSON.stringify(unsafe.metadata) && unsafe.anon === true && unsafe.service === true && unsafe.intended === false);
+    await sql("savepoint owner_acl_failure");
+    let expectedFailure = false;
+    try {
+      await ordinary(); await sql(`set local role ${owner}`); await ownedIdentity(); await sql(prepared.reconcile);
+      await sql("do $$ begin raise exception 'calendar owned ACL forced rollback'; end $$");
+    } catch (error) {
+      // Only this explicitly forced fixed error is expected; other errors retain
+      // failure after mandatory savepoint recovery, without raw error output.
+      const code = Object.getOwnPropertyDescriptor(error as object,"code");
+      const message = Object.getOwnPropertyDescriptor(error as object,"message");
+      expectedFailure = !!code && "value" in code && code.value === "P0001" && !!message && "value" in message && message.value === "calendar owned ACL forced rollback";
+    }
+    await sql("rollback to savepoint owner_acl_failure"); await sql("release savepoint owner_acl_failure"); await ordinary();
+    requireFact(expectedFailure && JSON.stringify(await facts()) === JSON.stringify(unsafe));
+    await ordinary(); await sql(`set local role ${owner}`); await ownedIdentity(); await sql(prepared.reconcile);
+    await sql("reset role"); await ordinary();
+    const fixed = await facts();
+    requireFact(fixed.intended === true && fixed.anon === false && fixed.authenticated === true && fixed.service === false && fixed.oid === unsafe.oid && JSON.stringify(fixed.metadata) === JSON.stringify(unsafe.metadata));
+    requireFact(JSON.stringify((await sql(protectedSql,[targets])).rows) === JSON.stringify(before));
 }

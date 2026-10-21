@@ -1657,15 +1657,15 @@ test("actual baseline catalog expectation accepts only the fixed actor substitut
   assert.throws(()=>seams.calendarCauseProofExpectedBody(migration,"fetch_calendar_feed"),/source refused/);
 });
 async function actualActorAclFacts() {
-  const helperNames=["calendar_feed_attestation_payload","calendar_feed_verify_attestation_internal","calendar_feed_secret_internal","calendar_feed_actor_internal"],queries:{sql:string;params:unknown}[]=[];
+  const helperNames=["calendar_feed_attestation_payload","calendar_feed_verify_attestation_internal","calendar_feed_secret_internal","calendar_feed_actor_internal","calendar_feed_subject_internal","calendar_feed_now_internal"],queries:{sql:string;params:unknown}[]=[];
   const owner={name:"calendar_feed_owner",login:false,inherit:false,superuser:false,bypassRls:false,publicSchemaCreate:false,assumableByJwtRoles:false,unrelatedTableRead:false,generalVaultRead:false};
   const acl=actualFeedRegion("../../../support/calendar-feed-atdd.ts","async function calendarAcl()","/** Both allocated files are serial.","calendarAcl",{adminQuery:async(sql:string,params:unknown)=>{
     queries.push({sql,params});
     if(sql.includes('c.relname name,c.relrowsecurity'))return[];
     if(sql.includes('rolname name,rolcanlogin'))return[{...owner}];
     if(sql.includes('select c.relname "table"'))return[];
-    if(sql.includes('r.rolname owner,p.prosecdef'))return["fetch_calendar_feed","manage_calendar_feed","read_calendar_feed_status","read_calendar_feed_abuse"].map(name=>({name,owner:owner.name,securityDefiner:true,emptySearchPath:true,publicExecute:false,anonExecute:name==="fetch_calendar_feed",authenticatedExecute:name!=="fetch_calendar_feed"}));
-    if(sql.includes('p.prosqlbody is not null')){assert.deepEqual(params,[helperNames]);assert.match(sql,/d[.]refobjid='auth[.]uid\(\)'::regprocedure::oid/);assert.match(sql,/d[.]classid='pg_catalog[.]pg_proc'::regclass/);assert.match(sql,/p[.]provolatile='s'/);return helperNames.map(name=>({name,owner:name==="calendar_feed_actor_internal"?"postgres":owner.name,securityDefiner:false,emptySearchPath:true,sqlStable:name==="calendar_feed_actor_internal",preparsed:name==="calendar_feed_actor_internal",canonicalUidDependency:name==="calendar_feed_actor_internal",jwtExecute:false,publicExecute:false,feedOwnerExecute:true,otherRoleInheritedExecute:false,source:name==="calendar_feed_secret_internal"?"name='calendar_feed_attestation_' || p_key_id":""}));}
+    if(sql.includes('r.rolname owner,p.prosecdef'))return["fetch_calendar_feed","manage_calendar_feed","read_calendar_feed_status","read_calendar_feed_abuse"].map(name=>({name,owner:owner.name,securityDefiner:true,emptySearchPath:true,publicExecute:false,volatility:"v",rawAclExact:true,ownerExecute:true,serviceRoleExecute:false,anonExecute:name==="fetch_calendar_feed",authenticatedExecute:name!=="fetch_calendar_feed"}));
+    if(sql.includes('p.prosqlbody is not null')){assert.deepEqual(params,[helperNames]);assert.match(sql,/d[.]refobjid='auth[.]uid\(\)'::regprocedure::oid/);assert.match(sql,/d[.]classid='pg_catalog[.]pg_proc'::regclass/);assert.match(sql,/p[.]provolatile='s'/);return helperNames.map(name=>({name,owner:["calendar_feed_actor_internal","calendar_feed_secret_internal"].includes(name)?"postgres":owner.name,volatility:name==="calendar_feed_attestation_payload"?"i":["calendar_feed_actor_internal","calendar_feed_secret_internal","calendar_feed_subject_internal"].includes(name)?"s":"v",rawAclExact:true,ownerExecute:true,serviceRoleExecute:false,securityDefiner:name==="calendar_feed_secret_internal",emptySearchPath:true,sqlStable:["calendar_feed_actor_internal","calendar_feed_secret_internal","calendar_feed_subject_internal"].includes(name),preparsed:name==="calendar_feed_actor_internal",canonicalUidDependency:name==="calendar_feed_actor_internal",jwtExecute:false,publicExecute:false,feedOwnerExecute:true,otherRoleInheritedExecute:false,source:name==="calendar_feed_secret_internal"?"name='calendar_feed_attestation_' || p_key_id":""}));}
     if(sql.includes('information_schema.columns'))return[];
     throw Error("Unexpected injected ACL query");
   }});
@@ -1675,7 +1675,7 @@ test("actual ACL source and existing RLS010 reject actor metadata dependency and
   const source=readFileSync(new URL("../../../integration/rls/calendar-feed.rls.test.ts",import.meta.url),"utf8"),start=source.indexOf('  test("[P0] 15.5-RLS010'),end=source.indexOf('  test("[P0] 15.5-RLS011',start);assert.ok(start>=0&&end>start);
   const strip=(nodeModule as unknown as {stripTypeScriptTypes(source:string):string}).stripTypeScriptTypes;
   const run=async(change:(facts:Awaited<ReturnType<typeof actualActorAclFacts>>)=>void)=>{const facts=await actualActorAclFacts();change(facts);let body!:()=>Promise<void>;
-    new Function("test","withCalendarFeedFixture","expect",strip(source.slice(start,end)))((_name:string,fn:()=>Promise<void>)=>{body=fn;},async(_kind:string,fn:(fx:unknown)=>Promise<void>)=>fn({acl:async()=>facts}),(value:unknown)=>({toBe(expected:unknown){assert.equal(value,expected);},toEqual(expected:unknown){assert.deepEqual(value,expected);},toMatchObject(expected:Record<string,unknown>){for(const[key,part]of Object.entries(expected))assert.deepEqual((value as Record<string,unknown>)[key],part);}}));await body();
+    new Function("test","withCalendarFeedFixture","expect","calendarOwnerAclRegression",strip(source.slice(start,end)))((_name:string,fn:()=>Promise<void>)=>{body=fn;},async(_kind:string,fn:(fx:unknown)=>Promise<void>)=>fn({acl:async()=>facts}),(value:unknown)=>({toBe(expected:unknown){assert.equal(value,expected);},toEqual(expected:unknown){assert.deepEqual(value,expected);},toMatchObject(expected:Record<string,unknown>){for(const[key,part]of Object.entries(expected))assert.deepEqual((value as Record<string,unknown>)[key],part);}}),async()=>{});await body();
   };
   await run(()=>{});
   for(const change of [{owner:"calendar_feed_owner"},{securityDefiner:true},{emptySearchPath:false},{sqlStable:false},{preparsed:false},{canonicalUidDependency:false},{feedOwnerExecute:false},{jwtExecute:true},{publicExecute:true},{otherRoleInheritedExecute:true}])await assert.rejects(run(facts=>Object.assign(facts.helpers.find((x:{purpose:string})=>x.purpose==="actor"),change)));
@@ -1692,7 +1692,7 @@ test("new atomic migration cross-validates exact original bodies and eight subst
   assert.match(migration,/execute replace\(definitions\[i\],'auth.uid\(\)','public.calendar_feed_actor_internal\(\)'\)/);
   assert.match(migration,/to_jsonb\(p\)-'prosrc'=metadata\[i\]/);assert.match(migration,/prosrc=replace\(expected_sources\[i\]/);
   assert.match(migration,/language sql stable security invoker set search_path='' return auth.uid\(\)/);
-  assert.ok(migration.indexOf("set local role calendar_feed_owner")<migration.indexOf("execute replace(definitions"));assert.ok(migration.indexOf("reset role")>migration.indexOf("execute replace(definitions"));
+  assert.ok(migration.indexOf("set local role calendar_feed_owner")<migration.indexOf("execute replace(definitions"));assert.ok(migration.indexOf("reset role",migration.indexOf("execute replace(definitions"))>migration.indexOf("execute replace(definitions"));
   assert.match(migration,/revoke create on schema public from calendar_feed_owner/);assert.match(migration,/has_schema_privilege\(owner_role.oid,'public','CREATE'\)/);
   assert.ok(!/grant usage on schema auth|alter role|create role|alter function|security definer set search_path='' return/.test(migration));
 });
@@ -1826,8 +1826,190 @@ test("actual original guard preserves SQL NULL UNKNOWN prior-guard reach and clo
   const onlyUnknown=originalGuardFixture();onlyUnknown.values['item.prosecdef']=null;assert.equal(seam.run([onlyUnknown]),null); // unchanged IF(NULL) does not refuse.
 });
 test("failure-message inverse restores exact original migration guard targets prior checks and following DDL with default P0001",()=>{
-  const seam=actualOriginalGuardMatrix(),restored=seam.source.replace(seam.statement,"   raise exception 'calendar actor original function refused';");
+  const seam=actualOriginalGuardMatrix(),restored=stripOwnerAclAddition(seam.source).replace(seam.statement,"   raise exception 'calendar actor original function refused';");
   assert.equal(createHash('sha256').update(restored).digest('hex'),'f788d507414dc32ecc45b37dcfa44a45ce01cc36da0417063f4e9da1549a3b91');
   assert.ok(seam.statement.startsWith("   raise exception 'calendar actor original function refused %', pg_catalog.jsonb_build_object("));assert.ok(!/using|errcode|detail|hint|context/i.test(seam.statement));
   assert.equal(seam.source.split('calendar-original-function-guard-v1').length,2);assert.ok(seam.source.indexOf(seam.statement)<seam.source.indexOf('execute $adapter$create function'));
+});
+
+function stripOwnerAclAddition(source: string) {
+  const declarations=" -- All eight immutable predecessor definitions are checked before any mutation.\n";
+  const preflight=" -- Begin all-eight source-comparable preflight (read-only).\n";
+  const tail=" -- The complete original three-function guard/matrix and adapter path follow unchanged.\n";
+  assert.equal(source.split(declarations).length,2);assert.equal(source.split(preflight).length,2);assert.equal(source.split(tail).length,2);
+  const a=source.indexOf(declarations),b=source.indexOf("begin\n if session_user",a);assert.ok(b>a);
+  source=source.slice(0,a)+source.slice(b);
+  const c=source.indexOf(preflight),d=source.indexOf(tail,c)+tail.length;
+  return source.slice(0,c)+source.slice(d);
+}
+
+// Finite evaluator of the actual new source guards. It resolves only the closed
+// catalog expressions below; unrecognized grammar fails. No PostgreSQL is run.
+function ownerAclPredicate(sql: string, values: Record<string,unknown>): boolean|null {
+  const tokens=sql.match(/'(?:''|[^'])*'|<>|>=|[=()<>]|[A-Za-z_][A-Za-z_0-9.]*|[0-9]+/g)!;
+  assert.equal(tokens.join(""),sql.replace(/\s(?=(?:[^']*'[^']*')*[^']*$)/g,""));let at=0;
+  const take=(word:string)=>tokens[at]===word?(at++,true):false;
+  const need=(word:string)=>assert.equal(tokens[at++],word);
+  const primary=():unknown=>{if(take("(")){const value=or();need(")");return value;}const token=tokens[at++];if(token.startsWith("'"))return token.slice(1,-1).replaceAll("''", "'");if(/^\d+$/.test(token))return Number(token);if(token==="true")return true;if(token==="false")return false;if(token==="null")return null;assert.ok(Object.hasOwn(values,token),"Unknown actual ACL guard field: "+token);return values[token];};
+  const eq=(a:unknown,b:unknown)=>a===null||b===null?null:JSON.stringify(a)===JSON.stringify(b);
+  const cmp=():unknown=>{const a=primary();if(take("is")){const not=take("not");if(take("null"))return not?a!==null:a===null;if(take("true"))return a===true;need("distinct");need("from");const b=primary(),equal=a===null&&b===null?true:a===null||b===null?false:eq(a,b);return not?equal:!equal;}const op=tokens[at];if(["=","<>",">=","<",">"].includes(op)){at++;const b=primary();if(op==="=")return eq(a,b);if(op==="<>"){const same=eq(a,b);return same===null?null:!same;}return a===null||b===null?null:op===">="?(a as number)>=(b as number):op==="<"?(a as number)<(b as number):(a as number)>(b as number);}return a;};
+  const not=():unknown=>take("not")?((v:unknown)=>v===null?null:!v)(not()):cmp();
+  const and=():unknown=>{let a=not();while(take("and")){const b=not();a=a===false||b===false?false:a===null||b===null?null:true;}return a;};
+  const or=():unknown=>{let a=and();while(take("or")){const b=and();a=a===true||b===true?true:a===null||b===null?null:false;}return a;};
+  const result=or();assert.equal(at,tokens.length);assert.ok(result===true||result===false||result===null);return result as boolean|null;
+}
+function actualAllEightAcl() {
+  const source=readFileSync(new URL("../../../../supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",import.meta.url),"utf8").replaceAll("\r\n","\n");
+  const shapes=JSON.parse(source.split("$source_shapes$")[1]) as Array<Record<string,unknown>>;
+  const bodies=Array.from({length:8},(_,i)=>source.split(i<5?"$canonical_"+i+"$":"$original_"+(i-5)+"$")[1]);
+  const start=source.indexOf("  if item.proowner is distinct from owner_role.oid"),end=source.indexOf(" then\n   raise exception 'SOURCE_ACL_NOT_COMPARABLE';",start);
+  let shapeGuard=source.slice(start+5,end);
+  const argtypes="(select coalesce(string_agg((v::regtype)::oid::text,' ' order by n),'') from jsonb_array_elements_text(shape->'types') with ordinality t(v,n))";
+  const names="(case when shape->'names'='null'::jsonb then item.proargnames is not null else to_jsonb(item.proargnames) is distinct from shape->'names' end)";
+  assert.ok(shapeGuard.includes(argtypes)&&shapeGuard.includes(names));
+  shapeGuard=shapeGuard.replace(argtypes,"expectedTypes").replace(names,"badNames").replace("jsonb_array_length(shape->'types')","expectedCount")
+    .replace("pg_catalog.pg_get_expr(item.proargdefaults,0)","item.defaultExpr").replaceAll("'public'::regnamespace","publicNamespace")
+    .replaceAll("array['search_path=\"\"']::text[]","expectedConfig").replace(/shape->>'([a-z_]+)'/g,(_,key)=>"expected."+key)
+    .replaceAll("source_bodies[i]","expectedBody").replace(/::(?:regtype|integer|boolean|text)/g,"");
+  const rowStart=source.indexOf("coalesce(bool_and((a.grantor=owner_role.oid"),rowEnd=source.indexOf(") is true),false)",rowStart);
+  const rowGuard=source.slice(rowStart+"coalesce(bool_and((".length,rowEnd);
+  const aclStart=source.indexOf("  if not acl_safe"),aclEnd=source.indexOf(" then\n   raise exception",aclStart);
+  const aclGuard=source.slice(aclStart+5,aclEnd).replace("array[0::oid,owner_role.oid]","defaultGrantees");
+  function fixture(i:number){const shape=shapes[i];return {"owner_role.oid":100,publicNamespace:77,"item.proowner":100,"item.proname":shape.name,"item.pronamespace":77,"item.prokind":"f","item.proretset":false,"item.provariadic":0,"item.proallargtypes":null,"item.proargmodes":null,"item.pronargs":(shape.types as string[]).length,"item.proargtypes":(shape.types as string[]).join(" "),expectedTypes:(shape.types as string[]).join(" "),badNames:false,expectedCount:(shape.types as string[]).length,"item.prorettype":shape.returns,"item.pronargdefaults":shape.defaults,"item.defaultExpr":shape.default_expr,"item.lanname":shape.language,"item.prosecdef":shape.definer,"item.provolatile":shape.volatility,"item.proconfig":['search_path=""'],expectedConfig:['search_path=""'],"item.proisstrict":false,"item.proleakproof":false,"item.proparallel":"u","item.prosupport":0,"item.procost":100,"item.prorows":0,"item.protrftypes":null,"item.prosqlbody":null,"item.prosrc":bodies[i],expectedBody:bodies[i],...Object.fromEntries(Object.entries(shape).map(([key,value])=>['expected.'+key,value]))} as Record<string,unknown>;}
+  type Acl={grantor:number|null;grantee:number|null;privilege_type:string|null;is_grantable:boolean|null};
+  const entry=(grantee:number):Acl=>({grantor:100,grantee,privilege_type:"EXECUTE",is_grantable:false});
+  function raw(i:number,rows:Acl[]){const desired=shapes[i].external==="anon"?101:shapes[i].external==="authenticated"?102:null;
+    const safe=rows.length>0&&rows.every(row=>ownerAclPredicate(rowGuard,{"owner_role.oid":100,...Object.fromEntries(Object.entries(row).map(([k,v])=>['a.'+k,v]))})===true);
+    return ownerAclPredicate(aclGuard,{acl_safe:safe,acl_count:rows.length,distinct_grantees:new Set(rows.map(row=>row.grantee)).size,owner_entries:rows.filter(row=>row.grantee===100).length,grantees:rows.map(row=>row.grantee).sort((a,b)=>(a??-1)-(b??-1)),defaultGrantees:[0,100],intended_grantees:desired===null?[100]:[100,desired]});}
+  return {source,shapes,bodies,fixture,shape:(row:Record<string,unknown>)=>ownerAclPredicate(shapeGuard,row),raw,entry};
+}
+
+test("all-eight actual preflight cross-validates immutable bodies exact shapes and completes before any owner mutation",()=>{
+  const seam=actualAllEightAcl(),predecessor=readFileSync(new URL("../../../../supabase/migrations/20261020220000_personal_calendar_feed.sql",import.meta.url),"utf8").replaceAll("\r\n","\n");assert.equal(seam.shapes.length,8);
+  for(let i=0;i<8;i++){
+    const shape=seam.shapes[i],at=predecessor.indexOf("create function "+String(shape.identity).split("(")[0]+"("),start=predecessor.indexOf("as $$",at)+5,end=predecessor.indexOf("$$;",start);assert.ok(at>=0&&start>at&&end>start);assert.equal(seam.bodies[i],predecessor.slice(start,end));
+    const good=seam.fixture(i);assert.equal(seam.shape(good),false);
+    const bad:Record<string,unknown>={"item.proowner":999,"item.proname":"drift","item.pronamespace":999,"item.prokind":"p","item.proretset":true,"item.provariadic":1,"item.proallargtypes":[],"item.proargmodes":[],"item.pronargs":99,"item.proargtypes":"wrong",badNames:true,"item.prorettype":"text","item.pronargdefaults":99,"item.defaultExpr":"wrong","item.lanname":"wrong","item.prosecdef":!shape.definer,"item.provolatile":"wrong","item.proconfig":[],"item.proisstrict":true,"item.proleakproof":true,"item.proparallel":"s","item.prosupport":99,"item.procost":1,"item.prorows":99,"item.protrftypes":[],"item.prosqlbody":"other","item.prosrc":seam.bodies[i]+" drift"};
+    for(const [key,value]of Object.entries(bad))assert.equal(seam.shape({...good,[key]:value}),true,`${i}:${key}`);
+  }
+  const firstMutation=seam.source.indexOf(" execute 'set local role");assert.ok(firstMutation>seam.source.indexOf("-- End all-eight source-comparable preflight"));assert.ok(seam.source.indexOf("array_position(canonical_oids,null)")<firstMutation);assert.ok(seam.source.indexOf("not p.oid=any(canonical_oids)")<firstMutation);assert.ok(seam.source.indexOf("call_counts[i-5]")<firstMutation);
+  // Exact old source recovered, including ALL original3 guard/matrix and suffix.
+  const original=stripOwnerAclAddition(seam.source);assert.equal(createHash("sha256").update(original).digest("hex"),"d0f75428527392aca0d2be34685d83c8d1169479f9c29ad6f5349c5a24afb919");
+});
+
+test("each actual raw ACL guard accepts only owner-granted D or its own I and rejects every unsafe tuple before SET",()=>{
+  const seam=actualAllEightAcl();
+  for(let i=0;i<8;i++){
+    const intended=[seam.entry(100),...(i===4?[seam.entry(101)]:i>=5?[seam.entry(102)]:[])],defaults=[seam.entry(0),seam.entry(100)];
+    assert.equal(seam.raw(i,defaults),false);assert.equal(seam.raw(i,intended),false);
+    const drift=[...intended,seam.entry(999)],duplicate=[...intended,seam.entry(100)];
+    for(const unsafe of [[],intended.filter(row=>row.grantee!==100),drift,duplicate,[...defaults,seam.entry(i===4?101:102)],...['grantor','privilege_type','is_grantable'].flatMap(key=>intended.map((_,n)=>intended.map((row,m)=>m===n?{...row,[key]:key==='grantor'?666:key==='privilege_type'?'UPDATE':true}:row))),...intended.map((_,n)=>intended.map((row,m)=>m===n?{...row,grantor:null}:row))])assert.equal(seam.raw(i,unsafe),true,`target${i}`);
+    for(const extra of [101,102,103])if(!intended.some(row=>row.grantee===extra))assert.equal(seam.raw(i,[...intended,seam.entry(extra)]),true);
+  }
+});
+
+test("complete RLS010 actual assertions reject raw ACL owner service subject and clock drift and run UUID proof first",async()=>{
+  const source=readFileSync(new URL("../../../integration/rls/calendar-feed.rls.test.ts",import.meta.url),"utf8"),start=source.indexOf('  test("[P0] 15.5-RLS010'),end=source.indexOf('  test("[P0] 15.5-RLS011',start),body=source.slice(start,end);
+  assert.ok(body.indexOf("await calendarOwnerAclRegression()")<body.indexOf("await withCalendarFeedFixture"));assert.match(body, /180_000/);
+  const strip=(nodeModule as unknown as {stripTypeScriptTypes(source:string):string}).stripTypeScriptTypes;
+  const run=async(change:(facts:Awaited<ReturnType<typeof actualActorAclFacts>>)=>void)=>{const facts=await actualActorAclFacts();change(facts);let callback!:()=>Promise<void>;const order:string[]=[];
+    new Function("test","withCalendarFeedFixture","expect","calendarOwnerAclRegression",strip(body))((_name:string,fn:()=>Promise<void>)=>{callback=fn;},async(_kind:string,fn:(fx:unknown)=>Promise<void>)=>{order.push("fixture");return fn({acl:async()=>facts});},(value:unknown)=>({toBe(expected:unknown){assert.equal(value,expected);},toEqual(expected:unknown){assert.deepEqual(value,expected);},toMatchObject(expected:Record<string,unknown>){for(const[key,part]of Object.entries(expected))assert.deepEqual((value as Record<string,unknown>)[key],part);}}),async()=>{order.push("UUID");});await callback();assert.deepEqual(order,["UUID","fixture"]);
+  };
+  await run(()=>{});
+  for(const purpose of ['fetch','manage','status','abuse'])for(const drift of [{rawAclExact:false},{ownerExecute:false},{serviceRoleExecute:true},{volatility:'s'},{securityDefiner:false}])await assert.rejects(run(facts=>Object.assign(facts.functions.find((x:{purpose:string})=>x.purpose===purpose),drift)));
+  for(const purpose of ['canonical','verifier','subject','clock']){
+    for(const drift of [{rawAclExact:false},{ownerExecute:false},{serviceRoleExecute:true},{owner:'postgres'},{volatility:'wrong'},{securityDefiner:true}])await assert.rejects(run(facts=>Object.assign(facts.helpers.find((x:{purpose:string})=>x.purpose===purpose),drift)));
+    await assert.rejects(run(facts=>{facts.helpers=facts.helpers.filter((x:{purpose:string})=>x.purpose!==purpose);}));
+  }
+});
+
+async function actualOwnerAclSeams(){return (await actualFixtureOrigins()) as unknown as {calendarOwnerAclSource:(source:string,adapter:string,owner:string,migrator:string,schema:string,fn:string)=>{bootstrap:string;identity:string;create:string;revoke:string;grant:string;reconcile:string};calendarOwnerAclExercise:(sql:(text:string,values?:unknown[])=>Promise<{rows:Record<string,unknown>[]}>,input:Record<string,unknown>)=>Promise<void>};}
+function ownerAclSources(){const root=new URL("../../../../supabase/migrations/",import.meta.url);return{source:readFileSync(new URL("20261020220000_personal_calendar_feed.sql",root),"utf8"),adapter:readFileSync(new URL("20261021102723_calendar_feed_preparsed_actor_identity.sql",root),"utf8"),owner:"cf_acl_o_"+"1".repeat(32),migrator:"cf_acl_m_"+"1".repeat(32),schema:"cf_acl_s_"+"1".repeat(32),fn:"cf_acl_f_"+"1".repeat(32)};}
+
+test("actual native regression construction uses reversible bootstrap exact predecessor commands and actual owner fragment only",async()=>{
+  const {calendarOwnerAclSource:prepare}=await actualOwnerAclSeams(),s=ownerAclSources(),p=prepare(s.source,s.adapter,s.owner,s.migrator,s.schema,s.fn);
+  assert.ok(p.bootstrap.includes(`create role ${s.owner}`));assert.ok(p.create.includes(`${s.schema}.${s.fn}(p_tenant_id uuid,p_attempt_id uuid default null)`));
+  assert.equal(p.revoke,`revoke all on function ${p.identity} from public,anon,authenticated,service_role;`);assert.equal(p.grant,`grant execute on function ${p.identity} to authenticated;`);
+  const fragment=s.adapter.split(" -- Begin exact owner ACL reconciliation fragment.\n")[1].split(" -- End exact owner ACL reconciliation fragment.")[0];assert.ok(p.reconcile.includes(fragment));
+  for(const drift of [s.source.replace('do $$','do $other$'),s.source.replace('revoke all on function public.calendar_feed_attestation_payload(jsonb),','revoke all on function public.unrelated(jsonb),'),s.source.replace(s.source.split(/\r?\n/).find(line=>line.startsWith('revoke all on function ')&&line.includes('public.read_calendar_feed_status(uuid,uuid)'))!, 'revoke all on function public.read_calendar_feed_status(uuid,uuid) from public;'),s.source+'\n'+s.source.split(/\r?\n/).find(line=>line.startsWith('grant execute on function public.read_calendar_feed_status'))])assert.throws(()=>prepare(drift,s.adapter,s.owner,s.migrator,s.schema,s.fn));
+  for(const drift of [s.adapter.replace(" -- Begin exact owner ACL reconciliation fragment."," -- other"),s.adapter.replace("1..cardinality(canonical_oids)","1..8")])assert.throws(()=>prepare(s.source,drift,s.owner,s.migrator,s.schema,s.fn));
+  assert.throws(()=>prepare(s.source,s.adapter,'calendar_feed_owner',s.migrator,s.schema,s.fn));
+});
+
+async function runOwnerAclExercise(fault: string|null=null){
+  const seams=await actualOwnerAclSeams(),s=ownerAclSources(),prepared=seams.calendarOwnerAclSource(s.source,s.adapter,s.owner,s.migrator,s.schema,s.fn),calls:string[]=[];let current=s.migrator,fixed=false,ownerCalls=0;
+  const sql=async(text:string)=>{calls.push(text);
+    if(text.includes("current_setting('createrole_self_grant')"))return{rows:[{session:s.migrator,current:current,rolcanlogin:false,rolinherit:false,rolsuper:fault==='super',rolcreatedb:false,rolcreaterole:true,rolreplication:false,rolbypassrls:false,self_grant:""}]};
+    if(text.startsWith('select session_user'))return{rows:[{session:s.migrator,current,rolcanlogin:false,rolinherit:false,rolsuper:false,rolcreatedb:false,rolcreaterole:false,rolreplication:false,rolbypassrls:false}]};
+    if(text.startsWith('select pg_has_role'))return{rows:[{can_set:true,can_use:fault==='inherit',inherited:false}]};
+    if(text.includes('snapshot'))return{rows:[{snapshot:'unchanged'}]};
+    if(text.startsWith('select p.oid::text'))return{rows:[{oid:'1234',metadata:fixed&&fault==='metadata'?{changed:true}:{same:true},acl:fixed?'intended':'default',anon:!fixed,authenticated:true,service:!fixed,intended:fixed,independent_grant:false}]};
+    if(text.startsWith('set local role ')){current=s.owner;ownerCalls++;}
+    if(text===prepared.reconcile){assert.equal(current,s.owner);fixed=true;if(fault==='reconcile')throw Error('PRIVATE_SQL_NATIVE');}
+    if(text.startsWith('do $$ begin raise'))throw Object.assign(new Error('calendar owned ACL forced rollback'),{code:'P0001'});
+    if(text==='rollback to savepoint owner_acl_failure'){fixed=false;current=s.migrator;}
+    if(text==='reset role'){if(fault==='reset')throw Error('PRIVATE_RESET_NATIVE');current=s.migrator;}
+    return{rows:[]};
+  };
+  try {await seams.calendarOwnerAclExercise(sql,{...s,prepared});return{calls,ownerCalls};}catch(error){return{calls,ownerCalls,error};}
+}
+
+test("actual UUID-only operation sequence proves rollback negative before success while preserving ordinary and owner boundaries",async()=>{
+  const result=await runOwnerAclExercise();assert.equal(result.error,undefined);assert.equal(result.ownerCalls,2);
+  const calls=result.calls;assert.ok(calls.indexOf('rollback to savepoint owner_acl_failure')<calls.lastIndexOf('reset role'));
+  assert.equal(calls.filter(line=>line.startsWith('do $owned$')).length,2);assert.equal(calls.filter(line=>line.startsWith('alter function ')).length,1);
+  assert.ok(!calls.some(line=>/create.*public[.]|alter role|drop |select cf_acl_s_/.test(line)));
+  for(const fault of ['super','inherit','reconcile','reset','metadata']){const result=await runOwnerAclExercise(fault);assert.ok(result.error,fault);if(fault==='super')assert.ok(!result.calls.some(line=>line.includes('do $$\ndeclare feed_owner')));if(fault==='reconcile')assert.ok(result.calls.includes('rollback to savepoint owner_acl_failure'));}
+});
+
+test("native regression source bounds parallel catalog effects and retains real protocol rollback fresh-absence cleanup ordering",()=>{
+  const source=readFileSync(new URL('../../../support/calendar-feed-atdd.ts',import.meta.url),'utf8'),body=source.slice(source.indexOf('export async function calendarOwnerAclRegression()'),source.indexOf('/** Name-only bootstrap adaptation'));
+  assert.equal(body.match(/await capture\(/g)?.length,2);assert.match(body,/runtime.validateAdmission\("db"/);assert.match(body,/runtime.validateStackIdentity\(stack\)/);assert.match(body,/status.DB_URL === LOCAL_SUPABASE_DB_URL/);assert.match(body,/runtime.createCalendarFeedDatabaseClient\(stack,"proof"\)/);assert.match(body,/runtime.createCalendarFeedDatabaseClient\(stack,"absence"\)/);
+  assert.ok(body.indexOf('await qualify(main)')<body.indexOf('await calendarOwnerAclExercise'));assert.ok(body.indexOf('Promise.allSettled([...pending])')<body.indexOf('await calendarCauseProofIdle'));assert.ok(body.indexOf('await calendarCauseProofIdle')<body.indexOf('await sql("rollback")'));assert.ok(body.indexOf('await sql("rollback")')<body.indexOf('reset session authorization; reset role'));
+  assert.ok(body.indexOf('await main.end()')<body.indexOf('await fresh.connect()'));assert.ok(body.includes('await qualify(fresh); await absence(fresh)'));assert.ok(!/drop role|drop schema|rollback.*catch.*return|calendar_feed_secret_internal/.test(body));
+});
+
+// Execute the EXACT live helper cleanup region with injected clients/promises.
+// No imports, process, PG, connection, timer or resource is created by controls.
+function actualOwnerAclCleanup(state: Record<string,unknown>) {
+  const source=readFileSync(new URL('../../../support/calendar-feed-atdd.ts',import.meta.url),'utf8');
+  const a=source.indexOf('  cleaning = true; // close primary admission'),b=source.indexOf('\n}\n\n/** Name-only bootstrap adaptation',a);assert.ok(a>=0&&b>a);
+  const strip=(nodeModule as unknown as {stripTypeScriptTypes(source:string):string}).stripTypeScriptTypes;
+  return new Function('state',`return (async()=>{const {pending,main,stack,runtime,failures,qualify,absence,sql,calendarCauseProofIdle,calendarOwnerAclCustody,suffix}=state;
+    let connected=true,cleaning=false,transportFailed=state.transportFailed??false,settled=false,mainAbsent=false,freshAbsent=false,mainClosed=false,freshClosed=false;
+    const fail=stage=>failures.push(new Error('Calendar owner ACL proof '+stage+'; values redacted'));
+    ${strip(source.slice(a,b))}
+  })();`)(state) as Promise<void>;
+}
+function ownerAclCleanupState(faults: string[] = [], primary = false) {
+  const events:string[]=[],suffix='owned',custody=new Map([[suffix,{owned:true}]]),failures=primary?[new Error('Fixed primary failure')]:[];
+  let freshError:(()=>void)|undefined;
+  const connection=(kind:string)=>({on(_event:string,fn:()=>void){freshError=fn;},async connect(){events.push(kind+':connect');if(faults.includes('fresh-connect'))throw Error('PRIVATE_CONNECT');if(faults.includes('fresh-transport'))freshError?.();},async end(){events.push(kind+':end');if(faults.includes(kind+'-end'))throw Error('PRIVATE_CLOSE');}});
+  const main=connection('main'),fresh=connection('fresh');
+  return {events,failures,custody,main,pending:new Set<Promise<unknown>>(),suffix,calendarOwnerAclCustody:custody,stack:{},transportFailed:faults.includes('main-transport'),runtime:{createCalendarFeedDatabaseClient(_stack:unknown,purpose:string){assert.equal(purpose,'absence');events.push('fresh:create');return fresh;}},
+    async sql(text:string){events.push(text);if(faults.includes(text==='rollback'?'rollback':'reset'))throw Error('PRIVATE_SQL');return {rows:[]};},
+    async qualify(client:unknown){const kind=client===main?'main':'fresh';events.push(kind+':qualify');if(faults.includes(kind+'-qualify'))throw Error('PRIVATE_QUALIFY');},
+    async absence(client:unknown){const kind=client===main?'main':'fresh';events.push(kind+':absence');if(faults.includes(kind+'-absence'))throw Error('PRIVATE_ABSENCE');},
+    async calendarCauseProofIdle(client:unknown){const kind=client===main?'main':'fresh';events.push(kind+':idle');return !faults.includes(kind+'-idle');}};
+}
+
+test("actual native cleanup joins pending work before rollback and never credits timeout or failed identity as owned absence",async()=>{
+  const state=ownerAclCleanupState();let release!:()=>void;const pending=new Promise<void>(resolve=>{release=resolve;});state.pending.add(pending);
+  const run=actualOwnerAclCleanup(state);await new Promise(resolve=>setImmediate(resolve));assert.deepEqual(state.events,[]);assert.equal(state.custody.size,1);release();await run;
+  assert.deepEqual(state.events,['main:idle','rollback','reset session authorization; reset role','main:qualify','main:absence','main:end','fresh:create','fresh:connect','fresh:qualify','fresh:absence','fresh:idle','fresh:end']);assert.equal(state.custody.size,0);
+  for(const fault of ['main-idle','rollback','reset','main-qualify','main-absence','fresh-qualify','fresh-absence','fresh-idle','main-end','fresh-end','main-transport','fresh-transport']){
+    const state=ownerAclCleanupState([fault]);await assert.rejects(actualOwnerAclCleanup(state));assert.equal(state.custody.size,1,fault);
+    if(fault==='main-idle')assert.ok(!state.events.includes('rollback'));if(['rollback','reset','main-qualify'].includes(fault))assert.ok(!state.events.includes('main:absence'));
+    assert.ok(state.events.includes('main:end'));assert.ok(state.events.includes('fresh:end'));
+  }
+});
+
+test("actual native cleanup preserves the primary and ALL independent cleanup failures without raw native causes",async()=>{
+  const state=ownerAclCleanupState(['rollback','main-end','fresh-qualify','fresh-end'],true);
+  const pending=Promise.reject(Error('PRIVATE_PENDING_SQL'));void pending.catch(()=>{});state.pending.add(pending);
+  let report:AggregateError|undefined;try{await actualOwnerAclCleanup(state);}catch(error){report=error as AggregateError;}
+  assert.ok(report);assert.equal(report.errors.length,6);assert.equal(report.errors[0],state.failures[0]);assert.equal(state.custody.size,1);
+  const text=report.errors.map(error=>error.message).join(' ');assert.ok(!text.includes('PRIVATE_'));assert.ok(!report.errors.some(error=>Object.hasOwn(error,'cause')));
+  assert.deepEqual(state.events,['main:idle','rollback','main:end','fresh:create','fresh:connect','fresh:qualify','fresh:idle','fresh:end']);
+  const cleanPrimary=ownerAclCleanupState([],true);await assert.rejects(actualOwnerAclCleanup(cleanPrimary));assert.equal(cleanPrimary.custody.size,0);assert.equal(cleanPrimary.failures.length,1);
 });

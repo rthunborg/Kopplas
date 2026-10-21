@@ -1,14 +1,15 @@
 import { randomUUID } from "node:crypto";
 import { describe, test } from "vitest";
 import { expectCalendar as expect } from "../../support/calendar-feed-atdd";
-import { withCalendarFeedFixture, lifecycle, issuedUrl, bookingSeed, calendarEvents, calendarFixtureAssertionAt } from "../../support/calendar-feed-atdd";
+import { withCalendarFeedFixture, lifecycle, issuedUrl, bookingSeed, calendarEvents, calendarFixtureAssertionAt, calendarOwnerAclRegression } from "../../support/calendar-feed-atdd";
 
 // Provider endpoint: TODO — checked management/status/fetch/abuse RPCs await real
 // P5 identifiers/signatures; normalized receipt purposes below are not SQL names.
 // Source scrutinized: frozen 15.5 AC1–9, permission-matrix.ts Bookings.View union,
 // time-reports.rls.test.ts ordinary-JWT/direct-SQL conventions and inherited ACL
 // checks in approved-public-acl-repair.int.test.ts. No provider response invented.
-// PARALLEL ROW-ISOLATED ONLY: no serial controls, key mutation, fault DDL,
+// PARALLEL: row-isolated cases plus RLS010 rollback-only UUID catalog proof.
+// That proof mutates no shared function/ACL/role; no serial controls, key mutation, fault DDL,
 // unknown-IP HTTP requests or resets. P5 consumes allocated key read-only; direct
 // proof probes use fixture-owned IP hashes and row-owned subjects exclusively.
 
@@ -166,6 +167,7 @@ describe("15.5 exact self authority, raw SQL boundary and least privilege", () =
   });
 
   test("[P0] 15.5-RLS010 AC4 AC9 dedicated owner and filtered Vault helper retain strict effective inherited ACLs", async () => {
+    await calendarOwnerAclRegression(); // actual private UUID proof, before row fixture setup
     await withCalendarFeedFixture("row-isolated", async fx => {
       const facts = await fx.acl();
       expect(facts.owner).toMatchObject({ login: false, inherit: false, superuser: false, bypassRls: false, publicSchemaCreate: false,
@@ -173,22 +175,33 @@ describe("15.5 exact self authority, raw SQL boundary and least privilege", () =
         effectiveReadOutsideAllowedColumns: false, filteredHelperOnly: true });
       expect(facts.functions.map(fn => fn.purpose).sort()).toEqual(["abuse", "fetch", "manage", "status"]);
       for (const fn of facts.functions) {
+        expect(fn.securityDefiner).toBe(true);
+        expect(fn.volatility).toBe("v");
+        expect(fn.rawAclExact).toBe(true);
+        expect(fn.ownerExecute).toBe(true);
+        expect(fn.serviceRoleExecute).toBe(false);
         expect(fn.emptySearchPath).toBe(true);
         expect(fn.publicExecute).toBe(false);
         expect(fn.owner).toBe(facts.owner.name);
         expect(fn.anonExecute).toBe(fn.purpose === "fetch");
         expect(fn.authenticatedExecute).toBe(fn.purpose !== "fetch");
       }
-      expect(facts.helpers.map(helper => helper.purpose).sort()).toEqual(["actor", "canonical", "filtered-secret", "verifier"]);
+      expect(facts.helpers.map(helper => helper.purpose).sort()).toEqual(["actor", "canonical", "clock", "filtered-secret", "subject", "verifier"]);
       for (const helper of facts.helpers) expect(helper).toMatchObject({ jwtExecute: false, publicExecute: false,
-        otherRoleInheritedExecute: false });
+        otherRoleInheritedExecute: false, serviceRoleExecute: false, rawAclExact: true, ownerExecute: true, emptySearchPath: true });
+      for (const helper of facts.helpers.filter(helper => ["canonical", "verifier", "subject", "clock"].includes(helper.purpose))) {
+        expect(helper.owner).toBe(facts.owner.name);
+        expect(helper.securityDefiner).toBe(false);
+        expect(helper.feedOwnerExecute).toBe(true);
+        expect(helper.volatility).toBe(helper.purpose === "canonical" ? "i" : helper.purpose === "subject" ? "s" : "v");
+      }
       expect(facts.helpers.find(helper => helper.purpose === "actor"))
         .toMatchObject({ owner: "postgres", securityDefiner: false, emptySearchPath: true,
           sqlStable: true, preparsed: true, canonicalUidDependency: true, feedOwnerExecute: true });
       expect(facts.helpers.find(helper => helper.purpose === "filtered-secret"))
-        .toMatchObject({ feedOwnerExecute: true, exactConfiguredKeyFilter: true });
+        .toMatchObject({ owner: "postgres", securityDefiner: true, sqlStable: true, volatility: "s", feedOwnerExecute: true, exactConfiguredKeyFilter: true });
     });
-  });
+  }, 180_000);
 
   test("[P0] 15.5-RLS011 AC4 AC5 AC6 Admin monitoring is sanitized tenant-only and ordinary roles cannot read it", async () => {
     await withCalendarFeedFixture("row-isolated", async fx => {
