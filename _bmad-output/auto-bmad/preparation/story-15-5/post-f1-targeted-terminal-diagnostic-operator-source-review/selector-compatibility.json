@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "old73_exactly_preserved": true,
+  "sole_added_path": "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+  "added_raw_bytes": 40586,
+  "added_lines": 497,
+  "nudge_actual_fullName_sha256": "f3e6aa7fd5bdd26f5e4df438b539854a10aead5e8bce81cc24cfe57a810cccaf",
+  "nudge_actual_declaration_line": 156,
+  "four_browser_selectors_source_compatible": true,
+  "source_candidate_is_not_failure_cause": true,
+  "API_GETs": 0
+}
