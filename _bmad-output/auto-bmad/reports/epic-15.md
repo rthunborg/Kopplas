@@ -4540,3 +4540,39 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Commit owned bookkeeping, push the reviewed source without code changes, bind final SHA and one owned receipt, then execute one normal CI dispatch. No repository admission-variable change is needed.
+
+## Report — 2026-10-21T11:13:07Z (continuing - startup guard correction admitted)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `93473f1`).
+**Pipeline status:** In progress:15.5 P5; four of six stories landed.
+**Continues:** Normal checkpoint93473f12/run39587739462 failed during all three database startup steps; no runtime test stage executed.
+
+**Summary:** Admission and verify passed. Qualified native unit3183/103 suites and separate Python43 passed;30 story Node cases observed. All65 database/browser story cases and separate recovery1 remained unexecuted. Artifact reports were absent. A separate High manual diagnosis observed owner/SET authority P0001 at the new migration first statement in all3 jobs; earlier automated cause-UNKNOWN projections remain immutable.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 286h 15m (≈54h 27m AI-run, ≈231h 48m human/idle wait); resumed 136×.
+
+**Stories:**
+1. 15.1-15.4 landed; inherited review_unverified remains true.
+2. 15.5 remains in-review, unchanged approved kernel/baseline and broad iteration3.
+3. 15.6 remains unstarted.
+
+**Skipped:** (none)
+
+**Epic gate:** Failed normal runtime gates remain blocking. High source analysis identifies reachable false rejection of legitimate PG17 non-SET creator membership beside an effective SET grant; actual hosted membership rows were not observed.
+
+**TEA:** Required full database/RLS, recovery and essential browser evidence remains pending. No diagnostic, skipped step or local unit substitutes for those gates.
+
+**Retrospective:** Epic14 October8 accepted-with-open-items authoritative; Epic15 retrospective pending.
+
+**Overrides:** Existing owner-authorized fixes/normal CI retries; no deployment/main merge; retain branch; no fourth broad review.
+
+**Open questions:**
+1. Other actors beyond the verified owned/default/E16/Documents inventory remain unknown; discovery of successful migration application requires a forward migration.
+
+**Deferred work:**
+1. Existing release-validation ledger remains deferred with owners and next actions.
+
+**⚠️ Needs human:** (none)
+
+**Next:** After the metadata clean-tree gate, High author repairs exactly the three admitted paths; meaningful positive/negative controls, distinct targeted High review and fresh normal exact-head five gates/all95 follow.
