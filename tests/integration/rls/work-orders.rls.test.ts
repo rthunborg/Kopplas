@@ -35,7 +35,7 @@ describe("16.3 work-order parent scope, privacy and checked SQL boundaries", () 
         const unrelatedChildren = await client.from("work_orders").select("id").eq("job_id", f.jobs.unrelated.id);
         if ((unrelatedParent.data ?? []).length === 0) expect(unrelatedChildren.data ?? []).toEqual([]);
         // Designation-only authority cannot grant parent full-card writes.
-        if (!manager) expect((await h.invokeJobCard(client, "update", h.cardInput(f, { id: job }))).ok).toBe(false);
+        if (!manager) expect((await h.invokeJobCard(client, "update", await h.loadCardInput(f, { id: job }))).ok).toBe(false);
       }
       await adminQuery("update public.job_members set designation='member' where tenant_id=$1 and job_id=$2", [f.fx.base.tenantA.id, job]);
       expect(await w.readWorkOrders(f.fx.montorClient, job)).toMatchObject({ canEditWorkOrders: false, canReopenWorkOrders: false });

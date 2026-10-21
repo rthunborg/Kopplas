@@ -242,7 +242,7 @@ export function JobDetailView({
           plannedEndDate={detail.plannedEndDate}
         />
       </div>}
-      {canEdit && cardOptions && <section className="rounded-lg border border-zinc-200 bg-white p-4"><JobCardForm jobId={detail.id} options={cardOptions} initial={{ ...detail.card, type: detail.type ?? "order", title: detail.title, customer_id: detail.customerId, planned_start_date: detail.plannedStartDate, planned_end_date: detail.plannedEndDate }} /></section>}
+      {canEdit && cardOptions && <section className="rounded-lg border border-zinc-200 bg-white p-4"><JobCardForm key={detail.id} jobId={detail.id} options={cardOptions} initial={{ ...detail.card, type: detail.type ?? "order", title: detail.title, customer_id: detail.customerId, planned_start_date: detail.plannedStartDate, planned_end_date: detail.plannedEndDate }} /></section>}
 
     </section>
   );

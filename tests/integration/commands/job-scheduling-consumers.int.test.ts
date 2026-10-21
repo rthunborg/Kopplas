@@ -161,7 +161,7 @@ describe("16.4 card and actual booking semantics", () => {
     await h.withJobsDepthFixture(async f => {
       await s.saveCard(f,f.jobs.editable.id); const before = await s.jobSemanticsSnapshot(f);
       const observed = s.observeSemanticsClient(f.fx.adminClient,s.obsoleteProof);
-      const result = target === "card" ? await h.invokeJobCard(observed.client,"update",h.cardInput(f)) :
+      const result = target === "card" ? await h.invokeJobCard(observed.client,"update",await h.loadCardInput(f)) :
         await bookingCommand("create",observed.client,bookingInput([f.fx.ownProfile.id],{jobId:f.jobs.editable.id}));
       expect(result).toMatchObject({ok:false});
       const finalizers = observed.calls.filter(c => c.name === (target === "card" ? "finalize_job_card" : "finalize_booking_editor"));
@@ -233,7 +233,7 @@ describe("16.4 card and actual booking semantics", () => {
     const j = await import("../../support/job-booking-facts-atdd");
     const { adminQuery } = await import("../../factories/admin-sql");
     await h.withJobsDepthFixture(async f => {
-      const a = await s.demandScenario(f,480,120,120); const input = h.cardInput(f,{id:f.jobs.memberOrder.id});
+      const a = await s.demandScenario(f,480,120,120); const input = await h.loadCardInput(f,{id:f.jobs.memberOrder.id});
       let external: Awaited<ReturnType<typeof s.jobSemanticsSnapshot>> | undefined;
       const observed = await j.observeJobCard(f.fx.adminClient,input,crypto.randomUUID(),async args => {
         await adminQuery("update public.jobs set planned_travel_minutes=0 where id=$1",[a.jobId]);

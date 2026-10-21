@@ -24,7 +24,7 @@
 import { test, expect } from "../support/resource-cdp-attachment";
 import type { Locator, Page, Request, Response } from "@playwright/test";
 import {
-  cardInput, createJobsDepthFixture, invokeJobCard, type JobsDepthFixture,
+  loadCardInput, createJobsDepthFixture, invokeJobCard, type JobsDepthFixture,
 } from "../../support/jobs-depth-atdd";
 
 type Credentials = { readonly email: string; readonly password: string };
@@ -289,7 +289,7 @@ test.describe("Story 16.1 essential Jobs depth journeys", () => {
   test("[P0] 16.1-E03 actual job-bound booking preview/save consumes requirements and windows; changed job facts invalidate review before durable save", async ({ resourcePage: page }) => {
     const f = await createJobsDepthFixture();
     try {
-      const setup = await invokeJobCard(f.fx.adminClient, "update", cardInput(f, {
+      const setup = await invokeJobCard(f.fx.adminClient, "update", await loadCardInput(f, {
         accessWindows: [{ startsAt: "2026-10-12T06:00:00Z", endsAt: "2026-10-12T07:30:00Z" }],
       }));
       expect(setup.ok).toBe(true);
@@ -314,7 +314,7 @@ test.describe("Story 16.1 essential Jobs depth journeys", () => {
       await sheet.getByTestId("booking-review-current-warnings").check();
       await sheet.getByTestId("booking-override-reason").fill("Reviewed original job requirements and access interval");
       // Real normal-JWT checked card command changes facts while this browser retains its receipt.
-      const changed = await invokeJobCard(f.fx.adminClient, "update", cardInput(f, {
+      const changed = await invokeJobCard(f.fx.adminClient, "update", await loadCardInput(f, {
         accessWindows: [{ startsAt: "2026-10-12T06:00:00Z", endsAt: "2026-10-12T07:00:00Z" }],
       }));
       expect(changed.ok).toBe(true);
@@ -363,7 +363,7 @@ test.describe("Story 16.1 essential Jobs depth journeys", () => {
   test("[P1] 16.1-E04 dependency dates display unknown, a linked violated-order warning, then clear only after a durable date correction", async ({ resourcePage: page }) => {
     const f = await createJobsDepthFixture();
     try {
-      expect((await invokeJobCard(f.fx.adminClient, "update", cardInput(f))).ok).toBe(true);
+      expect((await invokeJobCard(f.fx.adminClient, "update", await loadCardInput(f))).ok).toBe(true);
       await signIn(page, f.credentials.manager);
       await page.goto(`/jobs/${f.jobs.editable.id}`);
       await expect(page.getByTestId("job-dependency-unknown")).toContainText(/okÃ¤nd|saknas/i);
@@ -394,4 +394,46 @@ test.describe("Story 16.1 essential Jobs depth journeys", () => {
       expect(durable.dependencies.filter((row) => row.job_id === f.jobs.editable.id)).toHaveLength(1);
     } finally { await f.dispose(); }
   });
+});
+
+test("[P0] checkpoint stale full-card draft is refused, retained, and only replaced after explicit fresh-read consent",async({resourcePage:page})=>{
+  const f=await createJobsDepthFixture();
+  try {
+    expect((await invokeJobCard(f.fx.adminClient,"update",await loadCardInput(f))).ok).toBe(true);
+    await signIn(page,f.credentials.manager);
+    const form=await openCard(page,f.jobs.editable.id);
+    const staleTitle=`Stale draft ${f.jobs.editable.id}`;
+    await form.getByRole("textbox",{name:"Titel",exact:true}).fill(staleTitle);
+    const first=await loadCardInput(f,{estimated_duration_minutes:180,requiredWorkRoleIds:[],dependencyJobIds:[],
+      accessWindows:[{startsAt:"2026-10-12T07:00:00Z",endsAt:"2026-10-12T12:00:00Z"}]});
+    expect((await invokeJobCard(f.fx.adminClient,"update",first)).ok).toBe(true);
+    const committed=await f.snapshot();
+    await form.getByTestId("job-card-save").click();
+    await expect(form.getByTestId("job-card-stale")).toBeVisible();
+    await expect(form.getByRole("textbox",{name:"Titel",exact:true})).toHaveValue(staleTitle);
+    await expect(form.getByTestId("job-card-save-status")).toHaveCount(0);
+    expect(await f.snapshot()).toEqual(committed);
+    page.once("dialog",dialog=>dialog.dismiss());
+    await form.getByTestId("job-card-read-current").click();
+    await expect(form.getByRole("textbox",{name:"Titel",exact:true})).toHaveValue(staleTitle);
+    page.once("dialog",dialog=>dialog.accept());
+    await form.getByTestId("job-card-read-current").click();
+    await expect(page.getByTestId("job-card-stale")).toHaveCount(0);
+    const current=page.getByTestId("job-card-form");
+    await expect(current.getByRole("textbox",{name:"Titel",exact:true})).toHaveValue(first.title);
+    await current.getByTestId("job-card-planning-toggle").click();
+    await expect(current.getByLabel("Uppskattad tid (minuter)",{exact:true})).toHaveValue("180");
+    await expect(current.getByTestId(`job-required-role-${f.roleId}`)).not.toBeChecked();
+    await expect(current.getByTestId(`job-dependency-${f.jobs.prerequisite.id}`)).not.toBeChecked();
+    await expect(current.getByTestId("job-access-window-row").getByLabel("Från",{exact:true})).toHaveValue("2026-10-12T09:00");
+    await current.getByRole("textbox",{name:"Titel",exact:true}).fill(`Reviewed ${f.jobs.editable.id}`);
+    await current.getByTestId("job-card-save").click();
+    await expect(page.getByTestId("job-card-save-status")).toBeVisible();
+    const saved=await f.snapshot();
+    expect(saved.jobs.find(row=>row.id===f.jobs.editable.id)).toMatchObject({estimated_duration_minutes:180,title:`Reviewed ${f.jobs.editable.id}`});
+    expect(saved.roles).toEqual(committed.roles);expect(saved.dependencies).toEqual(committed.dependencies);
+    // Replacement uses new child IDs, so compare exact persisted window instants.
+    expect(saved.windows.filter(row=>row.job_id===f.jobs.editable.id).map(row=>[row.starts_at,row.ends_at]))
+      .toEqual(committed.windows.filter(row=>row.job_id===f.jobs.editable.id).map(row=>[row.starts_at,row.ends_at]));
+  } finally {await f.dispose();}
 });

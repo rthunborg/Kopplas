@@ -88,7 +88,7 @@ describe("16.2 job crew, responsible lead and dates command integrity", () => {
         () => m.memberCommand("remove", f.fx.montorClient, { ...ordinary, commandId: crypto.randomUUID(), personProfileId: f.fx.ownProfile.id }),
         () => runCommand(updateJob, { client: f.fx.montorClient as never, correlationId: crypto.randomUUID(), input: { id: job, title: "Lead must not edit identity", status: "completed" } }),
         () => runCommand(createJob, { client: f.fx.montorClient as never, correlationId: crypto.randomUUID(), input: { customer_id: f.identity.customerId, title: "Unauthorized create" } }),
-        () => h.invokeJobCard(f.fx.montorClient, "update", h.cardInput(f, { id: job })),
+        async () => h.invokeJobCard(f.fx.montorClient, "update", await h.loadCardInput(f, { id: job })),
       ];
       for (const attack of attacks) {
         expect(await attack()).toMatchObject({ ok: false });
@@ -114,7 +114,7 @@ describe("16.2 job crew, responsible lead and dates command integrity", () => {
       const job = f.jobs.editable.id;
       const before = await m.memberSnapshot(f);
       let afterDates: Awaited<ReturnType<typeof m.memberSnapshot>> | undefined;
-      const oldCard = await j.observeJobCard(f.fx.adminClient, h.cardInput(f), crypto.randomUUID(), async (args) => {
+      const oldCard = await j.observeJobCard(f.fx.adminClient, await h.loadCardInput(f), crypto.randomUUID(), async (args) => {
         const dateInput = await m.memberInput(f.fx.adminClient, job, { planned_start_date: "2026-10-20", planned_end_date: "2026-10-22" });
         expect((await m.memberCommand("dates", f.fx.adminClient, dateInput)).ok).toBe(true);
         afterDates = await m.memberSnapshot(f);

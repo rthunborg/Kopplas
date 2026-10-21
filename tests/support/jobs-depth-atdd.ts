@@ -21,7 +21,7 @@ import { establishCurrentQuotePdf } from "./quote-pdf";
 
 export const jobDepthTables = ["jobs", "job_members", "job_required_work_roles", "job_access_windows", "job_dependencies"] as const;
 export type JobCardInput = {
-  commandId: string; id?: string; type: "order" | "projekt"; title: string;
+  commandId: string; id?: string; expectedRevision?: string; type: "order" | "projekt"; title: string;
   customer_id: string; facility_id: string; contact_id: string;
   priority: "low" | "normal" | "high" | "urgent";
   estimated_duration_minutes: number | null; planned_travel_minutes: number | null;
@@ -225,4 +225,14 @@ export async function seedWorkOrderReadRows(tenantId: string, jobId: string) {
   const [{id: prerequisite}] = await adminQuery<{id:string}>("insert into public.work_orders(tenant_id,job_id,title) values($1,$2,'H4 prerequisite') returning id",[tenantId,jobId]);
   await adminQuery("insert into public.work_order_assignees(tenant_id,job_id,work_order_id,person_profile_id) values($1,$2,$3,$4)",[tenantId,jobId,order,person]);
   await adminQuery("insert into public.work_order_dependencies(tenant_id,dependent_job_id,dependent_work_order_id,prerequisite_job_id,prerequisite_work_order_id) values($1,$2,$3,$2,$4)",[tenantId,jobId,order,prerequisite]);
+}
+
+/** Explicit read at the intended load boundary, never at command invocation or retry. */
+export async function loadCardInput(f: JobsDepthFixture, patch: Partial<JobCardInput> = {}, client = f.fx.adminClient): Promise<JobCardInput> {
+  const input=cardInput(f,patch);
+  const {data,error}=await client.rpc("read_job_cards",{p_personal:false,p_job_id:input.id});
+  const card=Array.isArray(data)?data[0]?.card:undefined;
+  if (error || typeof card?.cardRevision !== "string" || !/^[0-9a-f]{64}$/.test(card.cardRevision))
+    throw new Error("Real loaded job-card revision unavailable");
+  return {...input,expectedRevision:card.cardRevision};
 }

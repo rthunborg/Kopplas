@@ -41,14 +41,14 @@ const loadedWindow = {
   originalStartsAt: "2026-10-20T06:00:00.123456+00:00", originalEndsAt: "2026-10-20T14:00:00.654321+00:00",
 };
 function acceptedWindow(window: ReturnType<typeof prepareJobCardAccessWindow>) {
-  const result = validateJobCardInput({...input,id:customer,accessWindows:[window]},"update");
+  const result = validateJobCardInput({...input,id:customer,expectedRevision:"a".repeat(64),accessWindows:[window]},"update");
   assert.equal(result.valid,true,"actual form serializer output must satisfy the closed command validator");
   if (!result.valid) throw new Error("Expected saveable access window");
   assert.deepEqual(result.value.accessWindows,[window]);
 }
 test("16.4-F05 loaded database-offset access windows remain saveable with every microsecond intact", () => {
   const before = structuredClone(loadedWindow);
-  assert.equal(validateJobCardInput({...input,id:customer,accessWindows:[{
+  assert.equal(validateJobCardInput({...input,id:customer,expectedRevision:"a".repeat(64),accessWindows:[{
     startsAt:loadedWindow.originalStartsAt,endsAt:loadedWindow.originalEndsAt}]},"update").valid,false,
     "the public command contract remains canonical Z only");
   const actual = prepareJobCardAccessWindow(loadedWindow);
@@ -76,4 +76,18 @@ test("16.4-F05 each edited access-window boundary converts independently and ret
   const endEdited = prepareJobCardAccessWindow({...foldWindow,endsAt:"2026-10-25T04:00"});
   assert.deepEqual(endEdited,{startsAt:"2026-10-25T01:30:00.123456Z",endsAt:"2026-10-25T03:00:00.000000Z"});
   acceptedWindow(endEdited);
+});
+
+const loadedRevision = "a".repeat(64);
+test("checkpoint stale-card boundary requires a loaded revision for updates and forbids it for creates", () => {
+  const update = {...input,id:customer};
+  assert.equal(validateJobCardInput(update,"update").valid,false);
+  for (const expectedRevision of [null,"","latest","A".repeat(64),42])
+    assert.equal(validateJobCardInput({...update,expectedRevision},"update").valid,false);
+  const loaded = validateJobCardInput({...update,expectedRevision:loadedRevision},"update");
+  assert.equal(loaded.valid,true);
+  if (!loaded.valid) throw new Error("Loaded update refused");
+  assert.equal(loaded.value.expectedRevision,loadedRevision);
+  assert.equal(validateJobCardInput({...input,expectedRevision:loadedRevision},"create").valid,false);
+  assert.equal(validateJobCardInput(input,"create").valid,true);
 });

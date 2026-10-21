@@ -23,14 +23,31 @@ export interface JobCardOptions {
 export type JobCardInitial = Readonly<Record<string, unknown>>;
 const control = "min-h-11 rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600";
 
-/** Presentation retains one immutable attempt until a transport failure is resolved. */
-export function JobCardForm({ jobId, initial = {}, options }: {
-  jobId?: string; initial?: JobCardInitial; options: JobCardOptions;
+/** A refreshed server read replaces a draft only after a confirmed save or explicit consent. */
+export function JobCardForm({jobId, initial = {}, options}: {jobId?:string;initial?:JobCardInitial;options:JobCardOptions}) {
+  const [loaded,setLoaded] = useState(initial);
+  const [generation,setGeneration] = useState(0);
+  const [confirmed,setConfirmed] = useState(false);
+  const refreshFrom = useRef<JobCardInitial | null>(null);
+  useEffect(() => {
+    if (refreshFrom.current && initial !== refreshFrom.current) {
+      refreshFrom.current = null;
+      setLoaded(initial);setGeneration(value => value + 1);
+    }
+  },[initial]);
+  return <JobCardDraft key={`${jobId ?? "new"}:${generation}`} jobId={jobId} initial={loaded} options={options} confirmed={confirmed}
+    onFreshRead={(saved) => {setConfirmed(saved);refreshFrom.current = initial;}}
+    onDraftChange={() => {setConfirmed(false);refreshFrom.current = null;}} />;
+}
+
+/** Presentation retains one immutable loaded revision and attempt until explicitly resolved. */
+function JobCardDraft({ jobId, initial = {}, options, confirmed, onFreshRead, onDraftChange }: {
+  jobId?: string; initial?: JobCardInitial; options: JobCardOptions; confirmed:boolean;onFreshRead:(saved:boolean)=>void;onDraftChange:()=>void;
 }) {
   const router = useRouter();
   const leaveRequired = useRef(false);
   const [leaveArmed, setLeaveArmed] = useState(false);
-  function requireLeave() {leaveRequired.current = true; setLeaveArmed(true);}
+  function requireLeave() {onDraftChange();leaveRequired.current = true; setLeaveArmed(true);}
   const search = useSearchParams();
   const currentLocation = useRef<{href: string; state: unknown} | null>(null);
   useEffect(() => {currentLocation.current = {href: window.location.href, state: window.history.state};}, [search]);
@@ -87,7 +104,9 @@ export function JobCardForm({ jobId, initial = {}, options }: {
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [unresolved, setUnresolved] = useState(false);
-  const [saved, setSaved] = useState(false);
+  const [saved, setSaved] = useState(confirmed);
+  const [conflict,setConflict] = useState(false);
+  const loadedRevision = useRef(initial.cardRevision);
   const [customer, setCustomer] = useState(String(initial.customer_id ?? ""));
   const [facility, setFacility] = useState(String(initial.facility_id ?? ""));
   const [rolesKnown, setRolesKnown] = useState(initial.requiredWorkRoleIds != null);
@@ -105,9 +124,10 @@ export function JobCardForm({ jobId, initial = {}, options }: {
       if (result.ok) {
         leaveRequired.current = false; setLeaveArmed(false);
         setSaved(true); setUnresolved(false); attempt.current = null;
-        router.push(`/jobs/${result.jobId}`); router.refresh();
+        onFreshRead(true);router.push(`/jobs/${result.jobId}`); router.refresh();
       } else {
         setError(result.message);
+        setConflict(result.code === "PREVIEW_STALE");
         const uncertain = result.code === "SERVER_ERROR" || unresolved;
         setUnresolved(uncertain);
         if (!uncertain) attempt.current = null;
@@ -117,13 +137,13 @@ export function JobCardForm({ jobId, initial = {}, options }: {
   }
   function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (pending || saved || unresolved) return;
+    if (pending || saved || unresolved || conflict) return;
     const form = new FormData(event.currentTarget);
     const text = (key: string) => String(form.get(key) ?? "").trim() || null;
     const number = (key: string) => text(key) === null ? null : Number(text(key));
     try {
       const input: Record<string, unknown> = {
-        commandId: crypto.randomUUID(), ...(jobId ? { id: jobId, type: initial.type === "projekt" ? "projekt" : "order" } : { candidateId: crypto.randomUUID(), type: "order" }),
+        commandId: crypto.randomUUID(), ...(jobId ? { id: jobId, expectedRevision:loadedRevision.current, type: initial.type === "projekt" ? "projekt" : "order" } : { candidateId: crypto.randomUUID(), type: "order" }),
         title: text("title"), customer_id: customer, facility_id: facility, contact_id: text("contact_id"),
         priority: text("priority"), estimated_duration_minutes: number("estimated_duration_minutes"),
         planned_travel_minutes: number("planned_travel_minutes"), crew_size: number("crew_size"),
@@ -146,9 +166,12 @@ export function JobCardForm({ jobId, initial = {}, options }: {
   return <form onSubmit={submit} onChangeCapture={requireLeave} onChange={() => { if (saved) setSaved(false); }} data-testid="job-card-form" className="flex w-full min-w-0 max-w-2xl flex-col gap-4">
     {options.error && <p role="alert">Valen kunde inte l√§sas. Ladda om sidan f√∂r att f√∂rs√∂ka igen.</p>}
     {error && <p role="alert" data-testid="job-card-unsent" className="rounded-md border border-red-300 bg-red-50 p-3 text-sm text-red-800">Inte bekr√§ftat sparat. {error} Dina uppgifter finns kvar.</p>}
+    {conflict && <div role="alert" data-testid="job-card-stale"><p>Jobbet har ‰ndrats sedan kortet l‰stes. Utkastet har inte sparats. L‰s aktuella uppgifter och granska dem innan du sparar igen.</p><button type="button" data-testid="job-card-read-current" className={control} onClick={() => {
+      if (window.confirm("L‰s aktuellt jobbkort? Ditt osparade utkast ers‰tts med de aktuella uppgifterna som du behˆver granska.")) {onFreshRead(false);router.refresh();}
+    }}>L‰s aktuellt jobbkort</button></div>}
     {unresolved && <button data-testid="job-card-retry" type="button" disabled={pending} onClick={() => attempt.current && void send(attempt.current)} className={control}>F√∂rs√∂k spara igen</button>}
     {saved && <p role="status" data-testid="job-card-save-status">Jobbet √§r sparat.</p>}
-    <fieldset disabled={pending || unresolved || Boolean(options.error)} className="flex min-w-0 flex-col gap-4 disabled:opacity-60">
+    <fieldset disabled={pending || unresolved || conflict || Boolean(options.error)} className="flex min-w-0 flex-col gap-4 disabled:opacity-60">
       <legend className="mb-3 text-lg font-semibold">{jobId ? "Jobbkort" : "Nytt jobb"}</legend>
       <TextField name="title" label="Titel" defaultValue={value("title")} required />
       <label className="flex flex-col gap-1 text-sm">Kund<select required disabled={Boolean(jobId)} name="customer_id" className={control} value={customer} onChange={(e) => {setCustomer(e.target.value); setFacility("");}}>{choices(options.customers).map((c) => <option key={c.value} value={c.value}>{c.label}</option>)}</select></label>

@@ -141,7 +141,7 @@ describe("16.4 same-row one-way Projekt upgrade", () => {
       await expect(adminSession(async ({query}) => { await query("begin"); try { await query("update public.jobs set type='order' where id=$1",[job]); } finally { await query("rollback"); } })).rejects.toMatchObject({message:expect.stringContaining("JOB_TYPE_DOWNGRADE_FORBIDDEN")});
       const raw = await f.fx.adminClient.from("jobs").update({type:"order"}).eq("id",job);
       expect(raw.error).not.toBeNull();
-      expect(await h.invokeJobCard(f.fx.adminClient,"update",h.cardInput(f,{id:job,type:"order"}))).toMatchObject({ok:false,code:"JOB_TYPE_DOWNGRADE_FORBIDDEN"});
+      expect(await h.invokeJobCard(f.fx.adminClient,"update",await h.loadCardInput(f,{id:job,type:"order"}))).toMatchObject({ok:false,code:"JOB_TYPE_DOWNGRADE_FORBIDDEN"});
       const checked = await f.fx.adminClient.rpc("update_job_with_audit",{ p_tenant_id:f.fx.base.tenantA.id,p_actor_user_id:f.fx.base.adminA.id,p_correlation_id:crypto.randomUUID(),p_job_id:job,p_patch:{type:"order"},p_occurred_at:new Date().toISOString() });
       expect(checked.error).not.toBeNull();
       expect(await s.jobSemanticsSnapshot(f)).toEqual(before);

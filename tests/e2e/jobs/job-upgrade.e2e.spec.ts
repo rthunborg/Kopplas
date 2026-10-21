@@ -124,7 +124,7 @@ async function editFullCard(page: Page, f: JobsDepthFixture, jobId: string, titl
     "Validate only the exact intended job/title card action").toBe(true);
   // Pure reference values describe the existing test contract, never a request
   // replacement. Single-field probes cannot mutate or authorize the actual save.
-  const reference = { commandId: "00000000-0000-4000-8000-000000000001", id: jobId, type: "order", title,
+  const reference = { expectedRevision:"a".repeat(64), commandId: "00000000-0000-4000-8000-000000000001", id: jobId, type: "order", title,
     customer_id: customerId, facility_id: facilityId, contact_id: contactId, priority: "high",
     estimated_duration_minutes: 120, planned_travel_minutes: 30, crew_size: 2,
     earliest_date: "2026-10-19", desired_date: "2026-10-20", latest_date: "2026-10-21",

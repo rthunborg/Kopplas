@@ -138,7 +138,7 @@ describe("16.3 work-order checked commands and transaction integrity", () => {
     const w = await import("../../support/work-orders-atdd");
     await h.withJobsDepthFixture(async (f) => {
       const job = f.jobs.editable.id, other = f.jobs.prerequisite.id;
-      expect((await h.invokeJobCard(f.fx.adminClient, "update", h.cardInput(f))).ok).toBe(true);
+      expect((await h.invokeJobCard(f.fx.adminClient, "update", await h.loadCardInput(f))).ok).toBe(true);
       for (const jobId of [job, other]) expect((await m.memberCommand("dates", f.fx.adminClient,
         await m.memberInput(f.fx.adminClient, jobId, { planned_start_date: "2026-10-20", planned_end_date: "2026-10-21" }))).ok).toBe(true);
       const dependent = await w.createWorkOrder(f.fx.adminClient, job, { planned_start_date: "2026-10-22" });
@@ -165,7 +165,7 @@ describe("16.3 work-order checked commands and transaction integrity", () => {
       }
       const savedNew = (await w.workOrdersSnapshot(f)).workOrderDependencies;
       expect(savedNew).toHaveLength(3); // job→WO plus same-parent/cross-parent WO→WO
-      expect((await h.invokeJobCard(f.fx.adminClient, "update", h.cardInput(f, { dependencyJobIds: [] }))).ok).toBe(true);
+      expect((await h.invokeJobCard(f.fx.adminClient, "update", await h.loadCardInput(f, { dependencyJobIds: [] }))).ok).toBe(true);
       expect((await w.workOrdersSnapshot(f)).workOrderDependencies).toEqual(savedNew);
       const afterOldCard = await w.workOrdersSnapshot(f);
       // Equal/earlier actual child end clears; null remains unknown despite known parent dates.

@@ -27,7 +27,7 @@ describe("16.1 enriched card atomic command", () => {
     const h = await import("../../support/jobs-depth-atdd");
     await h.withJobsDepthFixture(async (f) => {
       const before = await f.snapshot();
-      const input = h.cardInput(f);
+      const input = await h.loadCardInput(f);
       const correlation = crypto.randomUUID();
       const result = await h.invokeJobCard(f.fx.plannerClient, "update", input, correlation);
       expect(result).toEqual({ ok: true, data: { jobId: f.jobs.editable.id } });
@@ -43,7 +43,7 @@ describe("16.1 enriched card atomic command", () => {
       expect(after.audit.filter((r) => r.correlation_id === correlation)).toHaveLength(1);
       expect(after.bookings.map((r) => r.id)).toEqual(before.bookings.map((r) => r.id));
       expect(after.jobs.find((r) => r.id === f.jobs.acceptedAssigned.id)).toEqual(before.jobs.find((r) => r.id === f.jobs.acceptedAssigned.id));
-      const replacement = h.cardInput(f, { requiredWorkRoleIds: [], accessWindows: [], dependencyJobIds: [] });
+      const replacement = await h.loadCardInput(f, { requiredWorkRoleIds: [], accessWindows: [], dependencyJobIds: [] });
       expect((await h.invokeJobCard(f.fx.adminClient, "update", replacement)).ok).toBe(true);
       const reloaded = await f.snapshot();
       for (const rows of [reloaded.roles, reloaded.windows, reloaded.dependencies])
@@ -65,7 +65,7 @@ describe("16.1 enriched card atomic command", () => {
       ];
       for (const patch of invalid) {
         const before = await f.snapshot();
-        const result = await h.invokeJobCard(f.fx.adminClient, "update", { ...h.cardInput(f), ...patch });
+        const result = await h.invokeJobCard(f.fx.adminClient, "update", { ...await h.loadCardInput(f), ...patch });
         expect(result.ok).toBe(false);
         if (!result.ok) expect(["VALIDATION_FAILED", "TENANT_ACCESS_DENIED"]).toContain(result.code);
         expect(await f.snapshot()).toEqual(before);
@@ -95,5 +95,54 @@ describe("16.1 enriched card atomic command", () => {
       await expect(adminQuery("update public.jobs set quote_acceptance_id=null,quote_version_id=null where id=$1", [accepted.id])).rejects.toBeDefined();
       expect((await f.snapshot()).bookings.map((r) => [r.id, r.job_id])).toEqual(before.bookings.map((r) => [r.id, r.job_id]));
     });
+  });
+});
+
+// Each case has its own bounded fixture lifecycle; stale attempts must add no writes.
+for (const change of ["scalars","roles-only","windows-only","dependencies-only"] as const) test(`[P0] checkpoint two loaded editors reject stale ${change} without state or audit loss`,async()=>{
+  const h=await import("../../support/jobs-depth-atdd");
+  const {adminQuery}=await import("../../factories/admin-sql");
+  await h.withJobsDepthFixture(async f=>{
+    expect((await h.invokeJobCard(f.fx.adminClient,"update",await h.loadCardInput(f))).ok).toBe(true);
+    const first=await h.loadCardInput(f);
+    const stale={...await h.loadCardInput(f),title:"Second editor old full payload"};
+    if(change==="scalars") {
+      expect((await h.invokeJobCard(f.fx.adminClient,"update",{...first,estimated_duration_minutes:180})).ok).toBe(true);
+    } else {
+      // Change each exact child set independently without touching job scalars/updated_at.
+      const before=await f.snapshot();
+      if(change==="roles-only") await adminQuery("delete from public.job_required_work_roles where tenant_id=$1 and job_id=$2",[f.fx.base.tenantA.id,first.id]);
+      if(change==="windows-only") await adminQuery("delete from public.job_access_windows where tenant_id=$1 and job_id=$2",[f.fx.base.tenantA.id,first.id]);
+      if(change==="dependencies-only") await adminQuery("delete from public.job_dependencies where tenant_id=$1 and job_id=$2",[f.fx.base.tenantA.id,first.id]);
+      expect((await f.snapshot()).jobs).toEqual(before.jobs);
+    }
+    const committed=await f.snapshot();
+    expect(await h.invokeJobCard(f.fx.plannerClient,"update",stale)).toMatchObject({ok:false,code:"PREVIEW_STALE"});
+    expect(await f.snapshot()).toEqual(committed);
+  });
+});
+test("[P0] checkpoint original successful card command replays after later edits but revision tampering cannot reapply",async()=>{
+  const h=await import("../../support/jobs-depth-atdd");
+  await h.withJobsDepthFixture(async f=>{
+    const input=await h.loadCardInput(f);const correlation=crypto.randomUUID();
+    const saved=await h.invokeJobCard(f.fx.adminClient,"update",input,correlation);
+    expect(saved.ok).toBe(true);
+    const later=await h.loadCardInput(f,{title:"Later editor committed"});
+    expect((await h.invokeJobCard(f.fx.plannerClient,"update",later)).ok).toBe(true);
+    const after=await f.snapshot();
+    expect(await h.invokeJobCard(f.fx.adminClient,"update",input,correlation)).toEqual(saved);
+    expect(await f.snapshot()).toEqual(after);
+    expect(await h.invokeJobCard(f.fx.adminClient,"update",{...input,expectedRevision:later.expectedRevision},correlation))
+      .toMatchObject({ok:false,code:"PREVIEW_STALE"});
+    expect(await f.snapshot()).toEqual(after);
+    const {expectedRevision:omitted,...missing}=await h.loadCardInput(f);void omitted;
+    expect(await h.invokeJobCard(f.fx.adminClient,"update",missing)).toMatchObject({ok:false,code:"VALIDATION_FAILED"});
+    expect(await f.snapshot()).toEqual(after);
+    const {commandId,id,...payload}=missing;
+    const direct=await f.fx.adminClient.rpc("snapshot_job_card",{p_tenant_id:f.fx.base.tenantA.id,p_actor_id:f.fx.base.adminA.id,
+      p_correlation_id:crypto.randomUUID(),p_command_id:commandId,p_job_id:id,p_candidate_id:id,p_payload:payload,
+      p_key_id:process.env.BOOKING_CONFLICT_ATTESTATION_KEY_ID});
+    expect(direct.error?.code).toBe("BK409");expect(direct.data).toBeNull();
+    expect(await f.snapshot()).toEqual(after);
   });
 });

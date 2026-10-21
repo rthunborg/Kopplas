@@ -59,7 +59,7 @@ export async function jobSemanticsSnapshot(f: JobsDepthFixture) {
 export async function saveCard(f: JobsDepthFixture, jobId: string, patch: Partial<JobCardInput> = {}) {
   const h = await import("./jobs-depth-atdd");
   const current = (await f.snapshot()).jobs.find(r => r.id === jobId);
-  const input = { ...h.cardInput(f, { id: jobId, type: current?.type === "projekt" ? "projekt" : "order" }),
+  const input = { ...await h.loadCardInput(f, { id: jobId, type: current?.type === "projekt" ? "projekt" : "order" }),
     planned_start_date: "2026-10-12", planned_end_date: "2026-10-12", responsible_project_manager_id: null,
     // Recorded [] means closed access, so ordinary no-hard-conflict scenarios
     // use a real broad synthetic window; explicit caller [] still stays restrictive.

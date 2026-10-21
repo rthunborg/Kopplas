@@ -50,7 +50,7 @@ export interface JobCardData {
   readonly accessWindows: readonly { readonly startsAt: string; readonly endsAt: string }[] | null;
   readonly dependencyJobIds: readonly string[];
 }
-export type JobCardInput = JobCardData & { readonly commandId: string; readonly candidateId?: string; readonly id?: string };
+export type JobCardInput = JobCardData & { readonly commandId: string; readonly candidateId?: string; readonly id?: string; readonly expectedRevision?: string };
 
 /** Preserve loaded instants exactly; only edited wall-time boundaries are reparsed. */
 export function prepareJobCardAccessWindow(window: {
@@ -67,7 +67,7 @@ export function prepareJobCardAccessWindow(window: {
 const uuid = (v: unknown): v is string => typeof v === "string" && /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i.test(v);
 const cardKeys = ["type", "title", "customer_id", "facility_id", "contact_id", "priority", "estimated_duration_minutes",
   "planned_travel_minutes", "crew_size", "earliest_date", "desired_date", "latest_date", "planned_start_date", "planned_end_date",
-  "customer_presence_required", "responsible_project_manager_id", "locationOverride", "requiredWorkRoleIds", "accessWindows", "dependencyJobIds", "commandId", "candidateId", "id"];
+  "customer_presence_required", "responsible_project_manager_id", "locationOverride", "requiredWorkRoleIds", "accessWindows", "dependencyJobIds", "commandId", "candidateId", "id", "expectedRevision"];
 /** Full enriched workflow only. The original create/update validators retain their signatures. */
 export function validateJobCardInput(raw: unknown, operation: "create" | "update"):
   { readonly valid: true; readonly value: JobCardInput } | { readonly valid: false } {
@@ -76,6 +76,7 @@ export function validateJobCardInput(raw: unknown, operation: "create" | "update
   const r = raw as Record<string, unknown>;
   if (Reflect.ownKeys(r).some((key) => typeof key !== "string" || !cardKeys.includes(key)) || !uuid(r.commandId)
     || (r.candidateId !== undefined && !uuid(r.candidateId)) || (operation === "update" ? !uuid(r.id) : r.id !== undefined)
+    || (operation === "update" ? typeof r.expectedRevision !== "string" || !/^[0-9a-f]{64}$/.test(r.expectedRevision) : Object.hasOwn(r,"expectedRevision"))
     || !uuid(r.customer_id) || !uuid(r.facility_id) || !uuid(r.contact_id)
     || (r.type !== undefined && r.type !== "order" && r.type !== "projekt") || (operation === "create" && r.type === "projekt")) return fail;
   const scalar = validateJobCard({ ...(r.priority !== undefined ? { priority: r.priority } : {}),
@@ -118,7 +119,7 @@ export function validateJobCardInput(raw: unknown, operation: "create" | "update
       city: l.city.trim(), countryCode: l.countryCode };
   }
   return { valid: true, value: {
-    commandId: r.commandId, ...(uuid(r.candidateId) ? { candidateId: r.candidateId } : {}), ...(uuid(r.id) ? { id: r.id } : {}),
+    commandId: r.commandId, ...(operation === "update" ? {expectedRevision:r.expectedRevision as string} : {}), ...(uuid(r.candidateId) ? { candidateId: r.candidateId } : {}), ...(uuid(r.id) ? { id: r.id } : {}),
     type: r.type === "projekt" ? "projekt" : "order", title: typeof r.title === "string" ? r.title.trim() || null : null,
     customer_id: r.customer_id, facility_id: r.facility_id, contact_id: r.contact_id, priority: scalar.value.priority,
     estimated_duration_minutes: scalar.value.durationMinutes ?? null, planned_travel_minutes: scalar.value.travelMinutes ?? null,

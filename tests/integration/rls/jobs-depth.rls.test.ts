@@ -31,7 +31,7 @@ describe("16.1 job-depth direct boundaries", () => {
       const all = await union.from("jobs").select("id");
       expect(all.data?.map((r) => r.id)).toContain(f.jobs.unrelated.id);
       // A child exists on an unrelated job, so empty result discriminates parent RLS.
-      const saved = await h.invokeJobCard(f.fx.adminClient, "update", h.cardInput(f, { id: f.jobs.unrelated.id }));
+      const saved = await h.invokeJobCard(f.fx.adminClient, "update", await h.loadCardInput(f, { id: f.jobs.unrelated.id }));
       expect(saved.ok).toBe(true);
       for (const table of h.jobDepthTables.slice(1)) {
         const hidden = await f.fx.montorClient.from(table).select("*").eq("job_id", f.jobs.unrelated.id);
@@ -65,7 +65,7 @@ describe("16.1 job-depth direct boundaries", () => {
       // RPC ARG NAMES are proposed E16 bindings; bypasses envelope and TS validation.
       const denied = await f.fx.montorClient.rpc("snapshot_job_card", { p_tenant_id: f.fx.base.tenantA.id,
         p_actor_id: f.fx.base.adminA.id, p_command_id: crypto.randomUUID(), p_correlation_id: crypto.randomUUID(),
-        p_job_id: f.jobs.memberOrder.id, p_candidate_id: f.jobs.memberOrder.id, p_key_id: "test_v1", p_payload: h.cardInput(f) });
+        p_job_id: f.jobs.memberOrder.id, p_candidate_id: f.jobs.memberOrder.id, p_key_id: "test_v1", p_payload: await h.loadCardInput(f) });
       expect(denied.error?.code).toBe("42501");
       expect(await f.snapshot()).toEqual(before);
     });
@@ -125,5 +125,27 @@ test("[P0] 16.2 lead read predicate preserves installer member/assignee union an
     expect((await h.readMyJobs(f.fx.montorClient)).rows.map((r) => r.id).sort()).toEqual([
       f.jobs.memberOrder.id, f.jobs.assigneeProject.id, f.jobs.both.id, f.jobs.acceptedAssigned.id,
     ].sort());
+  });
+});
+
+test("[P0] checkpoint tenant-scoped options require current manager authority; noarg and private revision cannot bypass",async()=>{
+  const h=await import("../../support/jobs-depth-atdd");
+  const t=await import("../../factories/tenants");
+  await h.withJobsDepthFixture(async f=>{
+    const tenant=f.fx.base.tenantA.id;
+    const entitled=await f.fx.plannerClient.rpc("read_job_card_options",{p_tenant_id:tenant});
+    expect(entitled.error).toBeNull();expect(entitled.data?.customers.length).toBeGreaterThan(0);
+    const union=await t.makeAuthedServerClient(f.fx.roleUnionUser);
+    expect((await union.rpc("read_job_card_options",{p_tenant_id:tenant})).error).toBeNull();
+    const anon=await t.makeAnonServerClient();
+    for(const client of [f.fx.montorClient,f.fx.foreignClient,anon]) {
+      expect((await client.rpc("read_job_card_options",{p_tenant_id:tenant})).error?.code).toBe("42501");
+      expect((await client.rpc("read_job_card_options")).error?.code).toBe("42501");
+    }
+    expect((await f.fx.plannerClient.rpc("read_job_card_options",{p_tenant_id:f.fx.base.tenantB.id})).error?.code).toBe("42501");
+    expect((await f.fx.adminClient.rpc("job_card_revision_internal",{p_tenant_id:tenant,p_job_id:f.jobs.editable.id})).error?.code).toBe("42501");
+    const {adminQuery}=await import("../../factories/admin-sql");
+    await adminQuery("update public.tenant_memberships set status='disabled' where tenant_id=$1 and user_id=$2",[tenant,f.fx.users.projektledare.id]);
+    expect((await f.fx.plannerClient.rpc("read_job_card_options",{p_tenant_id:tenant})).error?.code).toBe("42501");
   });
 });

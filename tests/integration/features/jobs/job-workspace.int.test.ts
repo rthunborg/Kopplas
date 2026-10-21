@@ -9,7 +9,7 @@ describe("16.5 current-job workspace composition", () => {
     const h = await import("../../../support/job-workspace-atdd");
     const depth = await import("../../../support/jobs-depth-atdd");
     await h.withWorkspaceFixture(async (f) => {
-      expect((await depth.invokeJobCard(f.fx.adminClient, "update", depth.cardInput(f))).ok).toBe(true);
+      expect((await depth.invokeJobCard(f.fx.adminClient, "update", await depth.loadCardInput(f))).ok).toBe(true);
       const order = await h.readWorkspace(f.fx.adminClient, f.jobs.editable.id);
       expect(order.error).toBeNull();
       expect(order.workspace?.header).toMatchObject({ id: f.jobs.editable.id, type: "order", title: "Workshop rewiring",

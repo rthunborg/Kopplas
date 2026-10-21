@@ -1,3 +1,4 @@
+import {resolveTenantContext} from "@/server/auth/resolve-tenant-context";
 import type { JobListReadResult, JobListRow } from "@/features/jobs/types";
 export type JobCardOptions = {
   readonly customers: readonly { id: string; label: string }[];
@@ -27,7 +28,10 @@ export async function readMyJobs(client?: JobCardRpcClient): Promise<JobListRead
 }
 export async function readJobCardOptions(client?: JobCardRpcClient): Promise<JobCardOptions> {
   try {
-    const {data, error} = await (await clientOrDefault(client)).rpc("read_job_card_options");
+    const requestClient = await clientOrDefault(client);
+    const context = await resolveTenantContext({client:requestClient as NonNullable<Parameters<typeof resolveTenantContext>[0]>["client"]});
+    if (!context.ok) throw new Error("job options denied");
+    const {data, error} = await requestClient.rpc("read_job_card_options", {p_tenant_id:context.data.tenantId});
     if (error || !data || typeof data !== "object") throw new Error("job options failed");
     return {...data as Omit<JobCardOptions, "error">, error: null};
   } catch { return {customers: [], facilities: [], contacts: [], projectManagers: [], workRoles: [], jobs: [], error: failed}; }

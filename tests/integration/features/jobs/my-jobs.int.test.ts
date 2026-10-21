@@ -56,3 +56,28 @@ describe("16.1 My Jobs actual membership UNION booking assignment", () => {
     });
   });
 });
+
+test("[P0] checkpoint dual-manager JWT options contain only the resolved tenant in every array and PL label",async()=>{
+  const h=await import("../../../support/jobs-depth-atdd");
+  const t=await import("../../../factories/tenants");
+  const {seedBookingParents}=await import("../../../support/bookings-atdd");
+  const {adminQuery}=await import("../../../factories/admin-sql");
+  const {readJobCardOptions}=await import("@/server/read-models/my-jobs");
+  await h.withJobsDepthFixture(async f=>{
+    const foreign=await seedBookingParents(f.fx.base.tenantB.id);
+    await adminQuery("update public.tenant_memberships set role='projektledare' where tenant_id=$1 and user_id=$2",[f.fx.base.tenantB.id,f.fx.base.adminB.id]);
+    const baseline=await readJobCardOptions(f.fx.adminClient);
+    expect(baseline.error).toBeNull();
+    const arrays=["customers","facilities","contacts","projectManagers","workRoles","jobs"] as const;
+    for(const key of arrays) expect(baseline[key].length).toBeGreaterThan(0);
+    await t.adminInsertMembership({tenant_id:f.fx.base.tenantB.id,user_id:f.fx.base.adminA.id,role:"tenant_admin",status:"active"});
+    await adminQuery("update public.tenant_memberships set created_at=case when tenant_id=$1 then '2026-01-01'::timestamptz else '2026-02-01'::timestamptz end where user_id=$2",[f.fx.base.tenantA.id,f.fx.base.adminA.id]);
+    // Reuse the already-issued normal JWT, now independently authorized in A+B.
+    const selected=await readJobCardOptions(f.fx.adminClient);
+    expect(selected).toEqual(baseline);
+    const foreignIds=[foreign.customerId,foreign.facilityId,foreign.contactId,f.fx.foreignProfile.id,foreign.workRoleId,f.jobs.foreign.id];
+    for(const [index,key] of arrays.entries()) expect(selected[key].map(item=>item.id)).not.toContain(foreignIds[index]);
+    expect(JSON.stringify(selected)).not.toContain(f.fx.base.adminB.email);
+    expect((await f.fx.adminClient.rpc("read_job_card_options")).error?.code).toBe("42501");
+  });
+});
