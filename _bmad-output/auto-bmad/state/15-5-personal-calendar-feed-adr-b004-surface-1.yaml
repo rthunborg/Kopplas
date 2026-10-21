@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-21T09:11:34Z"
+updated_at: "2026-10-21T09:55:08Z"
 started_at: "2026-10-20T12:18:56Z"
 completed_at: null
 active_seconds: 3572
@@ -18,15 +18,15 @@ is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: P5
-selected_role: independent committed discovery-order fix reviewer
+selected_phase: P5_source_assessment
+selected_role: least-privilege supported grant-application repair planner
 selected_profile: sensitive
 selected_model: gpt-6.1-sol
 selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Target exact2committeddelta after actualLinux3179P; preserveintegrationpartition/serialsettings and approvedSpec kernel, no fourthbroadreview."
+escalation_reason: "Actuallocalpostgres lacks authGRANTOPTION/SETowner; qualify maintainable ordinary-migration supported repair without privilege broadening before bounded comparison/source allocation."
 routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"High preparation for hashed public-feed tokens, rotation/revocation and tenant/member disclosure boundaries; plan-only before distinctvalidation and ownershipallocation\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct High independent specification validation of actual public-feed token/proof/IP/limiter authorization design and exact ownership/test-key boundaries before anybuild\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"cross_model_layer\",\"profile\":\"diverse_review\",\"role\":\"independent-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -146,6 +146,13 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Preserve required integrationpartition/serialsettings integrity while correcting actualLinuxdiscoveryorder assertion under exactallocatedhunks.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5\",\"profile\":\"sensitive\",\"role\":\"exact two-path integration discovery-order test repair author\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"ProducerfailedbeforeDB; determine minimalfreshUUID/head/privateoperationrebinding with unchangedreviewedcollector semantics, no effect or duplicatedunchangedreview.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5_private_rebinding\",\"profile\":\"sensitive\",\"role\":\"read-only fresh diagnostic binding feasibility\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Target exact2committeddelta after actualLinux3179P; preserveintegrationpartition/serialsettings and approvedSpec kernel, no fourthbroadreview.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5\",\"profile\":\"sensitive\",\"role\":\"independent committed discovery-order fix reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"ActualsourcefixreviewPASS/push1a643 nowknown; rebindfreshoperation/head/defaultpaths only, unchangedreviewedprotocol reused.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5_private_rebinding\",\"profile\":\"sensitive\",\"role\":\"fresh status-origin02 identity/path binding author\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"TargetednewOP/head/source/receipt/GOV/defaultbindings only; actualfunctionASTunchanged and originalprotocolreview reused, nofourthbroad.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5_private_rebinding\",\"profile\":\"sensitive\",\"role\":\"independent fresh P2 identity/default-path binding reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Frozenactualrun/result/terminalsettled; qualifycapturedstrict11/18/17 data offline/publishexact3 only; no API or causalfixinference.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5_native_offline\",\"profile\":\"sensitive\",\"role\":\"offline P2 status-origin evidence qualifier\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"ActualqualifiedexternalACL_ENGINE/solefalseowner_auth_usage narrowspermissioncandidate; read-onlyHighcallpath/leastprivilegerepairproof beforeanysourcehunk/migrationrequest.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5_source_assessment\",\"profile\":\"sensitive\",\"role\":\"status-owner auth-schema controlled candidate source assessor\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Auth schema grant authority and effective access qualification require sensitive High; readonly query planning only pending resource allocation.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5_source_assessment\",\"profile\":\"strong\",\"role\":\"dev\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Qualify actual auth-schema grantor/application using minimal readonly owned-local catalog proof; no unchanged broad review or opaque CI retry.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5_source_assessment\",\"profile\":\"sensitive\",\"role\":\"status-owner auth-schema controlled candidate source assessor\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Actuallocalpostgres lacks authGRANTOPTION/SETowner; qualify maintainable ordinary-migration supported repair without privilege broadening before bounded comparison/source allocation.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5_source_assessment\",\"profile\":\"sensitive\",\"role\":\"least-privilege supported grant-application repair planner\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: "Hashed public tokens, rotation/revocation, externalfeed andcross-tenant abuseprotection requireHigh-riskATDD+automate; lastthreeno traceadvisory"
@@ -171,7 +178,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [159557e114f18123e73282c39c90830917de9948, c42b45abbca262ff79e26da479a3032d9015aeee, b940df85acfb2de36c0dcd5000a0039758f2b820, 3a1c3bc9fbf22b13c926179288a8b6eefe440c12, ae020f63a88089966b9323c55a36b6554f7e3900, 672099e9dc6569f4ac1cb9a967037e0d91df689c, aa5733116f20015cc3d14e1441d0eab232ecc9fd, 360fe850c18552f23a2bf74d8eda865431f0af38, 611c86295540161d31169110bf2139cf1d85d708, 9487c0d9, 2674b3f7, c5758058, a76fc492, 1cea5c4c, 3383a1eb, e91b366b, e472741a, c7570096, 4562cfd0, fae644b5, 33b595a8, e3f1c2e1, cba60486, e74cae6c, 3e7b6131a00e6c7b4d25c49373d8ba1c1eefe42f, 906f80f301d8034f8efe510018137195f3e4c4eb, 6dad688ec6a51143bfee902618bb88647a81c940, 380c3e720d5caaa1dc2181d70737b9320337f451, be2c1a535dff0e58b1579fe3db5890c7819916ab, 55db468eef3106ca1b02dc846ba12967a28dc238, 56324120f8e08de995e8cc7432ab27f2d0c98635, cb8d696d19c53e63be05ecb1ae273449af60efaf, 52007b760ff10f056ac75c5ed5b7dcdf49f99036, af5af69fd5018795a963a28c1ad367147b4a9bc3, 2524306ca9edd6079c23d205cf01268797288d89, f304ea548faa05f037cd3aa44c65888d96d543df, 33cfa8dfa1323708edf80034c0a98b0620790b6a, 7cdee0c52b6de5d416208971d6eaec6b86caa034, 93f4bf6543f6a9dc519a28f3d6f7824e8f6feedf, 8efb90e5038874c672df120651041176a70b1f2f, f0b1e5735872ba2effcd7c1480756326125f6752, bc9c30856f6272f9a099e52691d4ec4a7582732f]
+commits: [159557e114f18123e73282c39c90830917de9948, c42b45abbca262ff79e26da479a3032d9015aeee, b940df85acfb2de36c0dcd5000a0039758f2b820, 3a1c3bc9fbf22b13c926179288a8b6eefe440c12, ae020f63a88089966b9323c55a36b6554f7e3900, 672099e9dc6569f4ac1cb9a967037e0d91df689c, aa5733116f20015cc3d14e1441d0eab232ecc9fd, 360fe850c18552f23a2bf74d8eda865431f0af38, 611c86295540161d31169110bf2139cf1d85d708, 9487c0d9, 2674b3f7, c5758058, a76fc492, 1cea5c4c, 3383a1eb, e91b366b, e472741a, c7570096, 4562cfd0, fae644b5, 33b595a8, e3f1c2e1, cba60486, e74cae6c, 3e7b6131a00e6c7b4d25c49373d8ba1c1eefe42f, 906f80f301d8034f8efe510018137195f3e4c4eb, 6dad688ec6a51143bfee902618bb88647a81c940, 380c3e720d5caaa1dc2181d70737b9320337f451, be2c1a535dff0e58b1579fe3db5890c7819916ab, 55db468eef3106ca1b02dc846ba12967a28dc238, 56324120f8e08de995e8cc7432ab27f2d0c98635, cb8d696d19c53e63be05ecb1ae273449af60efaf, 52007b760ff10f056ac75c5ed5b7dcdf49f99036, af5af69fd5018795a963a28c1ad367147b4a9bc3, 2524306ca9edd6079c23d205cf01268797288d89, f304ea548faa05f037cd3aa44c65888d96d543df, 33cfa8dfa1323708edf80034c0a98b0620790b6a, 7cdee0c52b6de5d416208971d6eaec6b86caa034, 93f4bf6543f6a9dc519a28f3d6f7824e8f6feedf, 8efb90e5038874c672df120651041176a70b1f2f, f0b1e5735872ba2effcd7c1480756326125f6752, bc9c30856f6272f9a099e52691d4ec4a7582732f, 1a643e24968a06cdeaba23ffc2506471b659c62a]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -1295,3 +1302,72 @@ p5_native_denial_cause_proof:
   private_linux_node_runtime_allocation: "{\"kind\": \"PRIVATE_LINUX_NODE_TOOLING_ALLOCATION\", \"source_thread\": \"01a1160d-b5b1-7623-a8e8-54ef3dc537ed\", \"completed_turn\": \"01a15da9-bea1-7081-b329-f61e2f128949\", \"grant_tool\": \"exec-d64999f0-8b3c-4b42-bf15-c6e0ecc32900\", \"final_message\": \"msg_0954b60b44796db1016ad87d78a5e08191a877ba8de13c83ab\", \"owned_directory\": \".env.epic15.mail-runtime\\\\story-15-5-preparation\\\\linux-node-v22.23.2\", \"model\": \"gpt-6.1-sol\", \"effort\": \"low\", \"actor\": \"/root/linux_unit_runtime_low\", \"fixed_official_urls\": [\"https://nodejs.org/dist/v22.23.2/SHASUMS256.txt\", \"https://nodejs.org/dist/v22.23.2/node-v22.23.2-linux-x64.tar.xz\"], \"before_execute\": \"ActualarchiveSHA mustmatchofficialmanifest; validateentries/containment/nooverwrite\", \"execution\": \"AlreadyRUNNINGUbuntu24.04 only, boundedforegroundpureunit, existingcheckout/deps, uniqueLinuxTMPDIR, no globalsetup/deps/background/DB/browser/Docker\", \"qualification\": \"Runtime/dependencycomparabilityUNPROVENuntilactualchecks; no hostedfailureinference\", \"no_known_test_collision\": true, \"normal_acceptance_credit\": 0}"
   discovery_order_unit_fix_allocation: "{\"kind\": \"EXACT_TWO_PATH_DISCOVERY_ORDER_UNIT_FIX_ALLOCATION\", \"coordinator_thread\": \"01a1160d-b5b1-7623-a8e8-54ef3dc537ed\", \"completed_turn\": \"01a15db1-890c-73a0-8d4a-0b1d2cc3dfc5\", \"grant_tool\": \"exec-ce2a8056-e45e-42d5-b75a-2f3a1e70832d\", \"final_message\": \"msg_0954b60b44796db1016ad87f748b9c8191bc4e42d8611696da\", \"baseline_head\": \"f0b1e5735872ba2effcd7c1480756326125f6752\", \"unit_path\": \"tests/unit/scripts/verify/integration-test-partitions.test.ts\", \"unit_raw_bytes\": 8628, \"unit_raw_sha256\": \"0556b02982fcf2b66d4ecf3f2c06828ea83f13a4a310555e9a6cd7c96c4c555e\", \"unit_HEAD_blob\": \"b109fe505ab12e755289170802cbda503025a0a5\", \"hunks\": \"OnlyorderedserialdeepEqual -> existingassertExactPartition(serialCollected,[...ddlFiles].sort()); existingnegativecase shuffle/reverseacceptance/missingduplicaterejection\", \"spec_path\": \"_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md\", \"spec_scope\": \"rationale/SRO/evidenceONLY; approvedkernelunchanged\", \"preserve\": \"EXACT6uniqueDDLmembership/parallel exclusion/group0to1/fileParallelismfalse/teardown/settings/allotherassertions\", \"exclusions\": \"NoVitestconfig/executionsemantics/app/schema/migration/dependency/foreigncheckout/provider/default/mainmerge/deploy/monitorresume\", \"required\": \"Highauthor; focusedWindowsLinux/fullLinux; distincttargetedcommitteddeltaHighreview beforeRootcheckpointpush; freshdiagnosticretryunderactualnewheadUUIDonceintentbindings only\", \"actual_local_evidence\": {\"tests\": 3179, \"passed\": 3178, \"failed\": 1, \"skipped\": 0, \"suites\": 103, \"provenance_sha256\": \"867272b829bd7575b039ce274cfca4da9781b72fc869562724f91a920c9b0d28\"}, \"hosted_cause\": \"UNKNOWN\", \"DB43_browser14_gaps\": \"UNRESOLVED\", \"normal_acceptance_credit\": 0}"
   discovery_order_unit_fix_admitted: "{\"source_commit\": \"bc9c30856f6272f9a099e52691d4ec4a7582732f\", \"source_delta\": {\"bytes\": 9056, \"sha256\": \"4eeff5a41cc991857a51ca3fa8fc315b34498f67bc3976097bea7d47e0af0b9a\"}, \"review_manifest\": {\"bytes\": 800, \"sha256\": \"7d891243f37882825b75e87a02095cf2c3aff2dd15dbf3c9db2704cf69d761bf\"}, \"actual_checks\": {\"focused_Windows\": {\"passed\": 3, \"failed\": 0, \"skipped\": 0}, \"focused_Linux\": {\"passed\": 3, \"failed\": 0, \"skipped\": 0}, \"full_Linux\": {\"tests\": 3179, \"suites\": 103, \"passed\": 3179, \"failed\": 0, \"skipped\": 0, \"cancelled\": 0, \"native_exit\": 0, \"stdout_sha256\": \"95a8bdeb4247f0440999d5f5a8bc59b7f58fa696b7d41f1df57408314acecb1e\"}, \"TypeScript_native_exit\": 0, \"affected_ESLint_native_exit\": 0, \"source_diff_check_native_exit\": 0}, \"independent_checks\": {\"focused_passed\": 3, \"native_exit\": 0}, \"normal_acceptance_credit\": 0}"
+  status_origin_02_actual_target: "{\"path\": \".env.epic15.mail-runtime\\\\story-15-5-preparation\\\\root-status-origin-02-actual-target.json\", \"bytes\": 1630, \"sha256\": \"d42e3f263076841862c07ef01614941e0ae0aac8712f00fd14d0acaf8dee5630\", \"source\": \"bc9c30856f6272f9a099e52691d4ec4a7582732f\", \"checkpoint\": \"1a643e24968a06cdeaba23ffc2506471b659c62a\", \"producer_uuid\": \"3eefa8d5-1faf-4ac9-bff5-9dc2d0d45437\", \"collection_uuid\": \"498ff285-2261-4d92-a0ea-1283ae3f45bc\", \"run_id\": null, \"POSTs\": 0}"
+  status_origin_02_private_binding: "{\"protected_head\": \"1a643e24968a06cdeaba23ffc2506471b659c62a\", \"source\": \"bc9c30856f6272f9a099e52691d4ec4a7582732f\", \"producer_uuid\": \"3eefa8d5-1faf-4ac9-bff5-9dc2d0d45437\", \"collection_uuid\": \"498ff285-2261-4d92-a0ea-1283ae3f45bc\", \"helper\": {\"bytes\": 42467, \"sha256\": \"208305296e69e09a5df646db0fdb586af7046185d0f44a866e897acb23013f71\"}, \"tests\": {\"bytes\": 43761, \"sha256\": \"976a9d72c8e9c6f55bb660f5aa948dfb6b84cb9a8a9488c64218a8f1bc177dfc\"}, \"driver\": {\"bytes\": 12428, \"sha256\": \"611dab209ff8e01f504e6db4ec5a953819ecf82248902924e50fe66ffc9bc944\"}, \"author_binding\": {\"bytes\": 39597, \"sha256\": \"9a28f671e826df067ffae339daf2101b650a9173490f9c82b8a693dc85810c34\"}, \"author_controls\": {\"methods_passed\": 12, \"positive\": 9, \"negative\": 52, \"subprocesses\": 0, \"API\": 0}, \"Root_mechanical_admission\": {\"identities\": 6, \"direct_refs\": 15, \"unique_refs\": 15, \"producer_raw_source_pushed_equal\": 11}, \"review_actor\": \"/root/review15_5_private_diagnostic_high\", \"review\": \"TARGETED_PENDING\", \"expected_terminal_result_final3_unborn\": true, \"POSTs\": 0, \"artifact_GETs\": 0, \"normal_acceptance_credit\": 0}"
+  status_origin_02_private_review: "{\"Outcome\": \"PASS — targeted fresh P2 binding/default-path review only.\", \"manifest\": {\"bytes\": 1482, \"sha256\": \"0bdc7d497956ffdf8dae5b88563f63657f7a5d7300cff4c476cecc3321dd915a\"}, \"Root_adoption\": {\"bytes\": 2197, \"sha256\": \"9addf60a67376468617d6664f79a5f674e2a400acf901f56d119c7b66815d0d3\"}, \"report_sha256\": \"b7070052a7743352f0b4ffa92c42118e8f23f136e958b59f867c0fbc66ca9ce0\", \"producer_POSTs\": 0, \"normal_acceptance_credit\": 0}"
+  status_origin_02_dispatch: "{\"head_sha\": \"1a643e24968a06cdeaba23ffc2506471b659c62a\", \"source_sha\": \"bc9c30856f6272f9a099e52691d4ec4a7582732f\", \"producer_checkpoint_id\": \"3eefa8d5-1faf-4ac9-bff5-9dc2d0d45437\", \"collection_operation_id\": \"498ff285-2261-4d92-a0ea-1283ae3f45bc\", \"metadata_proof\": {\"bytes\": 1773, \"sha256\": \"c806ff102017b9cf46b31c8fc02eff1db5fba9c62c00c8d0427f8188c5e51ed4\"}, \"expected_admission\": {\"bytes\": 6583, \"sha256\": \"385ac2ac3adf33ff5e925d0a509463f66b19320a95922428bbeddf0e17341714\"}, \"prepost_intent\": {\"bytes\": 2229, \"sha256\": \"7502e514121aea49f7a9a4678ccd13086bf10d4fbd7c5a8077e34d0996c5369d\"}, \"producer_activation_sha256\": \"45f5a7c0184c77326259d051a2e49ba3714e99d1d12fd8df0ac2a889fafb7858\", \"dispatch_native_exit\": 0, \"dispatch_state_path\": \".env.epic15.mail-runtime\\\\story-15-5-preparation\\\\root-status-origin-02-dispatch-state.json\", \"POSTs\": 1, \"run_id\": 39576580776, \"collection_activated\": false, \"normal_acceptance_credit\": 0, \"run_status\": \"in_progress\", \"run_url\": \"https://github.com/rthunborg/Kopplas/actions/runs/39576580776\"}"
+  status_origin_02_collection_settled: "{\"kind\": \"ROOT_P2_FROZEN_COLLECTION_SETTLEMENT_AND_SEPARATE_OFFLINE_PUBLICATION_GRANT\", \"at_utc\": \"2026-10-21T09:31:58.991447+00:00\", \"operation_id\": \"498ff285-2261-4d92-a0ea-1283ae3f45bc\", \"run_id\": 39576580776, \"result\": {\"bytes\": 9281, \"sha256\": \"c9d0ae8fbf5a46d1c4cd12ed05936d34d74b07417b354f7bf00bcb31aa126417\"}, \"terminal_final\": {\"bytes\": 3435, \"sha256\": \"9fb8fb54d6f3639b679a575397683233de77af155c1195c61feccb770414402e\"}, \"initial_terminal_reconstruction_matches_preexisting_recorded_hash\": {\"bytes\": 3295, \"sha256\": \"32442f0d730f51a38fa34b8e8252745b24fc9d156f4c31750ec251e57a434d2b\"}, \"exact_five_only_terminal_fields_changed\": true, \"custody\": \"OWN_HELPER_GH_HANDLES_AND_OUTPUT_SETTLED\", \"child_exit\": 0, \"logical_attempts\": 2, \"transport_complete_settled\": true, \"reader_eof_joined_no_error\": true, \"owned_final3\": [\"diagnostic-evidence.json\", \"diagnostic-qualification.json\", \"manifest.json\"], \"offline_only\": true, \"no_API_retry_or_source_cause_fix_authority\": true, \"normal_acceptance_credit\": 0}"
+  status_origin_02_packet_admission: "{\"kind\": \"ROOT_P2_OFFLINE_PACKET_EXACT7_HASH_CUSTODY_ADMISSION\", \"head_sha\": \"1a643e24968a06cdeaba23ffc2506471b659c62a\", \"source_sha\": \"bc9c30856f6272f9a099e52691d4ec4a7582732f\", \"run_id\": 39576580776, \"operation_id\": \"498ff285-2261-4d92-a0ea-1283ae3f45bc\", \"manifest\": {\"bytes\": 1894, \"sha256\": \"9141e2f373692584328eebd0886f50eb9a04c2c02fd525b14a5a33264f160139\"}, \"Root_result\": {\"bytes\": 9281, \"sha256\": \"c9d0ae8fbf5a46d1c4cd12ed05936d34d74b07417b354f7bf00bcb31aa126417\"}, \"exact_members\": 7, \"hash_bound_members\": 6, \"custody\": \"OWN_HELPER_GH_HANDLES_AND_OUTPUT_SETTLED\", \"child_exit\": 0, \"logical_attempts\": 2, \"author_qualified_result_as_data\": \"CONTROLLED_NECESSARY_PRIVILEGE_CANDIDATE: solefalseowner_auth_usage; externalACL_ENGINE; backendUNPROVEN\", \"author_diagnostic_counts\": {\"executed\": 1, \"passed\": 1, \"failed\": 0, \"skipped\": 0}, \"normal_acceptance_credit\": 0, \"functional_fix_not_yet_justified\": true, \"normal_DB43_browser14_gaps_unresolved\": true, \"Root_reader_stop\": \"Boolean self_excluded assumption stoppedbeforewrites; actual literalmanifest.json+exactexclusionverified, originalsunchanged\"}"
+p5_owned_local_grantor_probe:
+  retained_resource_id: 409cab22-2eab-4289-aff1-5dc2f0f477f2
+  compose_path: ".env.epic15.compose.yaml"
+  compose_bytes: 4942
+  compose_sha256: be8c416c4e43fd7956ccb88561ff1849d651db045c22225dd48203272cb01f8f
+  guard_list_state: stopped
+  guard_list_evidence: verified-absent
+  guard_list_owned: true
+  API: 61521
+  DB: 61522
+  retained_config_receipt: "{\"bytes\": 2875, \"sha256\": \"6a9cb0ecc9aa97f9415a7d635406a37679aa5461fb33873d7d7425d3aacf0fa8\"}"
+  image_qualification_receipt: "{\"bytes\": 2318, \"sha256\": \"f528664f3caeb915204abadac8723055571d9e1c527046ab93bf35d5b9b94c08\", \"all_tag_ids_equal_retained\": true}"
+  coordinator_scope: STAGE1_READONLY_CONDITIONAL_E16_PORT_CONFLICT_REPLY_PENDING
+  launches: 1
+  queries: 0
+  schema: HISTORICAL15.2_EXPECTED106_NOT_CURRENT15.5_COMPARABLE
+  source_writes_authorized: false
+  allocation: "{\"completed_turn\": \"01a15ddb-8a12-7052-8571-02297a842b02\", \"grant_tool\": \"exec-478247b5-d755-4caf-a1c3-61c0cbaed856\", \"final_message\": \"msg_0954b60b44796db1016ad88a39014c8191b1087627326da152\", \"scope\": \"Stage1 exactownsameconfigguardreuse+boundedreadonlycatalog/ledger/currentversion; no schemawrite/reproduction/reset\", \"E16\": \"actualterminalnoactive/plannedmutablelocalresources/noports61521/61522claim\"}"
+  host_listener_count_before: 0
+  requestId: 8a721bfb-860d-44e4-92c6-d5c5a6c8fd2c
+  actual_lifecycle_resource_id: 130c8555-a4db-4ec0-bc93-f5bbf8b5277f
+  actual_start_state: active
+  actual_start_verified: true
+  query_authorship: "Highbuild15_5_high; Rootverbatimmaterializationonly"
+  actual_guard_project: rg-b03bb4a5a5c01b6c748bde6d72d8bcbfc9b2d1bf
+  allocated_retained_guard_project: rg-58cfec93f88e10f9d630d48562c8055def32a80c
+  actual_identity_match: false
+  stop_request: accepted_stop_requested_verifiedfalse
+  stop_resource_id: 130c8555-a4db-4ec0-bc93-f5bbf8b5277f
+  next: "Reconcile original input identity or exact new allocation; no repeat/start/query untilqualified."
+p5_status_origin_02_source_assessment:
+  status: READONLY_COMPLETE_NO_PATCH
+  missing_effective_dependency: owner_auth_usage
+  original_grant_exists: true
+  later_source_acl_loss_demonstrated: false
+  historical_grantor: UNPROVEN
+  next: "One fixed readonly catalog query in exact guarded retained local resource; current source comparability not yet qualified."
+  normal_acceptance_credit: 0
+p5_owned_local_grantor_b03_observation:
+  allocation_path: "_bmad-output/auto-bmad/preparation/story-15-5/accepted-local-grantor-b03-readonly-allocation.json"
+  allocation_bytes: 1536
+  allocation_sha256: e80f6531756caae97377185359332cecc02f100c7fb61e777bf0f1408f4c50d7
+  requestId: 7f6d4515-3027-47fc-b79c-919758802c8b
+  resourceId: 8ec1a7d5-dc56-44b0-8e0b-e192bcfb680b
+  project: rg-b03bb4a5a5c01b6c748bde6d72d8bcbfc9b2d1bf
+  guard_state_before_query: active/registered-start-verified/ownedtrue/composeOutcomeVerifiedtrue
+  current_container_identity: "b841e76229b56fe9959b358a2df0c937d1b34d23a58800a57452a14674ea950c/running/db/ownedworkdir/guardmanaged/exactproject/imagef371/127.0.0.1:61522"
+  query_bytes: 2139
+  query_sha256: 1c1e6d475bb24becf4f58bc52682c4fb0d2b9613bb5e5e8e186e8c2d24d1e298
+  query_authorship: "High; RootverbatimconfirmedHigh"
+  query_attempts: 1
+  native_exit: 0
+  elapsed_seconds: 0.196
+  child_settled: true
+  closed_fields: 17
+  result_path: ".env.epic15.mail-runtime/story-15-5-preparation/root-local-grantor-query-result-01.json"
+  result_bytes: 1193
+  result_sha256: ca2760a0aa6cb3599ae0758140274dc10637292e2261e9a65bb424f17481949b
+  High_semantic_qualification: "{\"status\": \"VALID17FIELDS_LOCAL_PLATFORM_AUTHORITY_ONLY\", \"native_version\": \"PostgreSQL17.6\", \"probe_login_and_role\": \"postgres\", \"auth_owner\": \"supabase_admin\", \"postgres_auth_usage\": true, \"postgres_auth_grant_option\": false, \"probe_can_set_auth_owner\": false, \"ledger_count\": 102, \"ledger_max_version\": \"20261013201515\", \"feed_role_status_tokens_present\": false, \"feed_owner_auth_usage\": null, \"current15_5_comparable\": false, \"hosted_or_historical_cause\": \"UNPROVEN\", \"author_source_conclusion\": \"IdenticalGRANTunderobservedpostgrescannotestablisheffectiveaccess; nolatersourceACLlossdemonstrated; qualifysupportedleastprivilegeapplicationpathbeforepatch.\"}"
+  stop_request: accepted_stop_requested_verifiedfalse
+  no_shutdown_poll: true
+  schema_writes: 0
+  normal_acceptance_credit: 0

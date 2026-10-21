@@ -1,0 +1,22 @@
+{
+  "kind": "UPDATED_STAGE1_B03_EXACT_READONLY_ALLOCATION",
+  "coordinator_thread": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "completed_turn": "01a15dde-a7d3-7f40-a46e-f7d228b8211c",
+  "grant_tool": "exec-bbb194d4-c2dd-497c-9fac-098091ba017d",
+  "final_message": "msg_0954b60b44796db1016ad88b04a42c81918f82366c05d34380",
+  "actual_guard_project": "rg-b03bb4a5a5c01b6c748bde6d72d8bcbfc9b2d1bf",
+  "config_path": ".env.epic15.compose.yaml",
+  "config_bytes": 4942,
+  "config_sha256": "be8c416c4e43fd7956ccb88561ff1849d651db045c22225dd48203272cb01f8f",
+  "API": 61521,
+  "DB": 61522,
+  "expected_db_container": "b841e76229b56fe9959b358a2df0c937d1b34d23a58800a57452a14674ea950c",
+  "allocation": "OWNactor onefreshlogicalguardnormalreuse; exactverifiedreadiness/project/container beforefixedHigh17fieldreadonlySELECTonce; Stopownusagepreservedata",
+  "excluded": "NoSQLwrites/grants/roles/schema/migration/reset/reproduction/datadeletion/foreigncontainerquery/provider/mainmerge/deploy/monitorresume",
+  "historical_comparability": "UNKNOWN_UNQUERIED; no106/hosted/current15.5claim",
+  "prior_identity_mismatch": "Firstsamefileguardstartactualb03differentfromallocated58cf; Stopaccepted/noqueries. Newconcreteallocationauthorizesactualb03; no file/cwd/configescape.",
+  "requestId": "7f6d4515-3027-47fc-b79c-919758802c8b",
+  "actual_lifecycle_resource_id": "8ec1a7d5-dc56-44b0-8e0b-e192bcfb680b",
+  "query_sha256": "1c1e6d475bb24becf4f58bc52682c4fb0d2b9613bb5e5e8e186e8c2d24d1e298",
+  "normal_acceptance_credit": 0
+}

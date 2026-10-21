@@ -1,0 +1,38 @@
+{
+  "retained_resource_id": "409cab22-2eab-4289-aff1-5dc2f0f477f2",
+  "compose_path": ".env.epic15.compose.yaml",
+  "compose_bytes": 4942,
+  "compose_sha256": "be8c416c4e43fd7956ccb88561ff1849d651db045c22225dd48203272cb01f8f",
+  "guard_list_state": "stopped",
+  "guard_list_evidence": "verified-absent",
+  "guard_list_owned": true,
+  "API": 61521,
+  "DB": 61522,
+  "retained_config_receipt": {
+    "bytes": 2875,
+    "sha256": "6a9cb0ecc9aa97f9415a7d635406a37679aa5461fb33873d7d7425d3aacf0fa8"
+  },
+  "image_qualification_receipt": {
+    "bytes": 2318,
+    "sha256": "f528664f3caeb915204abadac8723055571d9e1c527046ab93bf35d5b9b94c08",
+    "all_tag_ids_equal_retained": true
+  },
+  "coordinator_scope": "STAGE1_READONLY_CONDITIONAL_E16_PORT_CONFLICT_REPLY_PENDING",
+  "launches": 1,
+  "queries": 0,
+  "schema": "HISTORICAL15.2_EXPECTED106_NOT_CURRENT15.5_COMPARABLE",
+  "source_writes_authorized": false,
+  "allocation": {
+    "completed_turn": "01a15ddb-8a12-7052-8571-02297a842b02",
+    "grant_tool": "exec-478247b5-d755-4caf-a1c3-61c0cbaed856",
+    "final_message": "msg_0954b60b44796db1016ad88a39014c8191b1087627326da152",
+    "scope": "Stage1 exactownsameconfigguardreuse+boundedreadonlycatalog/ledger/currentversion; no schemawrite/reproduction/reset",
+    "E16": "actualterminalnoactive/plannedmutablelocalresources/noports61521/61522claim"
+  },
+  "host_listener_count_before": 0,
+  "requestId": "8a721bfb-860d-44e4-92c6-d5c5a6c8fd2c",
+  "actual_lifecycle_resource_id": "130c8555-a4db-4ec0-bc93-f5bbf8b5277f",
+  "actual_start_state": "starting",
+  "actual_start_verified": false,
+  "query_authorship": "Highbuild15_5_high; Rootverbatimmaterializationonly"
+}

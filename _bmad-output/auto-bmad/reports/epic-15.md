@@ -4333,3 +4333,104 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Push reviewed source/checkpoint; fresh diagnostic identities and current binding before retry.43DB14browser remain unresolved.
+
+## Report — 2026-10-21T09:24:18Z (15.5 reviewed Linux unit repair pushed; fresh diagnostic dispatched)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `1a643e2`).
+**Pipeline status:** in progress
+**Continues:** 15.5 P5
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-20T12:18:56Z; completed in progress — elapsed 21h 05m (≈59m AI-run, ≈20h 05m human/idle wait); resumed 130×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Qualify actual terminal run/jobs then separately activate bounded one-shot collection. No redispatch/normal acceptance credit.
+
+## Report — 2026-10-21T09:47:49Z (continuing - P2 qualified; local grantor observation preparation)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `unknown`).
+**Pipeline status:** In progress:15.5 P5;4/6landed;15.6notstarted;review_unverified remains true.
+**Continues:** Whole Epic15 authorized. P2 diagnostic-only1P0F0skip/normalcredit0; no patch or fresh normal run yet.
+
+**Summary:** P2 exact7 packet admitted at protected1a643e24968a06cdeaba23ffc2506471b659c62a. Sole false necessary bit owner_auth_usage; underlying historical/backend cause remains UNPROVEN. High source review finds original migration already declares auth USAGE; no later source ACL loss demonstrated.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 284h 50m (≈54h 27m AI-run, ≈230h 22m human/idle wait); resumed 131×.
+
+**Stories:**
+1. 15.5: readonly source/grantor qualification;43DB14browser failures remain unresolved.
+2. 15.6: backlog; fresh specification and distinct validation required after15.5lands.
+
+**Skipped:** (none)
+
+**Epic gate:** Not eligible: required normal exact-head development evidence remains unresolved.
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** Owner-authorized evidence-supported fix/CI retry retained; no mainmerge/deploy; three broad review rounds exhausted, targeted new deltas only. Oct15 owner defaults replace legacy oracle. Oct19 development/release policy retained.
+
+**Open questions:**
+1. Which actual role can apply the auth-schema grant in the qualified test platform? Local catalog observation will not reconstruct historical migration identity.
+
+**Deferred work:**
+1. Exhaustive release validation remains deferred with existing ownership; no claim that skipped or unrelated checks passed.
+
+**⚠️ Needs human:** (none)
+
+**Next:** Await concrete E16 port conflict clearance, then validate guarded reuse of exact retained own Compose409cab resource/API61521DB61522 with unchanged private compose SHAbe8c416c4e43fd7956ccb88561ff1849d651db045c22225dd48203272cb01f8f. Stage1 readonly catalog/current-version/historical-ledger observation only; comparable-schema reproduction separately bounded after facts.
+
+## Report — 2026-10-21T09:55:08Z (continuing - local grant authority gap qualified)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `unknown`).
+**Pipeline status:** In progress:15.5P5;4/6landed;15.6notstarted;requirednormalgatesunresolved.
+**Continues:** Wholeepiccontinues; source repair path planning from actual local facts.
+
+**Summary:** OneHigh-authoredreadonlycatalogSELECT completed/settled after updated concrete b03resource allocation and exactguardreadiness/container/image/port qualification. Native0/17typedfields, actualPG17.6/current-sessionpostgres/authownersupabase_admin; postgreshasUSAGEbutnoGRANTOPTIONandcannotSETowner. Historicalledger102/max20261013201515, feedobjectsabsent; no current15.5/hosted/historicalcause claim. ResourceStopaccepted/data preserved.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 284h 57m (≈54h 27m AI-run, ≈230h 30m human/idle wait); resumed 132×.
+
+**Stories:**
+1. 15.5: supportedleastprivilegegrant/applicationrepairplanning. ExistingmigrationalreadydeclaresintendedGRANT; duplicatingunderobservedroleineffective.43DB14browserfailuresremainunresolved.
+2. 15.6: remainsbackloguntil15.5lands;freshSpec/distinctvalidationbeforebuild.
+
+**Skipped:** (none)
+
+**Epic gate:** Pending exact-head normal applicabledevelopmentchecks/95qualifiedcases and independent review.
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** Ownerfix/retryauthorizationretained; no mainmerge/deploy; no fourthbroadreview. Oct15ownerdefaults/Oct19development-releasepolicy apply.
+
+**Open questions:**
+1. Which supported qualified application seam establishes intended authUSAGE without broadening postgres/membership/RLS? Highreadonlysourceproposal pending.
+
+**Deferred work:**
+1. Releasevalidation gaps remain deferred with existing owner/evidence/nextaction.
+
+**⚠️ Needs human:** (none)
+
+**Next:** Highqualify smallest maintainable repair and boundedlocalcomparison effects; obtain exactsharedsource/migration/mutable-resource allocation before edits/replay. No furtherquery/launch/schemaeffects currently granted.
