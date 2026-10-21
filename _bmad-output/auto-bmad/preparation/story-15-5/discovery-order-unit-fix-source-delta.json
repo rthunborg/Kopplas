@@ -1,0 +1,195 @@
+{
+  "kind": "ROOT_COMPACT_MECHANICAL_TWO_FILE_DELTA_CONSERVATION_NOT_NEW_CAPSULE14_FREEZE",
+  "historical_capsule14": {
+    "bytes": 132497,
+    "sha256": "8a72fe86d44ec0c5602ade15560d302926f8c00279a66a0c6a06012450c85a5e",
+    "producer_source": "8efb90e5038874c672df120651041176a70b1f2f"
+  },
+  "source_commit": "bc9c30856f6272f9a099e52691d4ec4a7582732f",
+  "source_parent_previous_pushed_checkpoint": "f0b1e5735872ba2effcd7c1480756326125f6752",
+  "source_path_count": 70,
+  "unchanged_historical_source_rows": 68,
+  "exact_changed_source_count": 2,
+  "delta": [
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "raw": {
+        "bytes": 142632,
+        "sha256": "36db88f8f121c050f4349ea1dc5ce57854574bee22f85295dce6eaef49dbc85a"
+      },
+      "current_source_oid": "53d0d2765a81b05aee331f420929f582785d5517",
+      "historical_source_oid": "3b25d23140b17d55ba201480580e5da9a7b4a27b",
+      "clean_equals_source": true
+    },
+    {
+      "path": "tests/unit/scripts/verify/integration-test-partitions.test.ts",
+      "raw": {
+        "bytes": 9087,
+        "sha256": "ea88c63c7fda518328fe7a2ab5f2c9d90628995f64f76607e184ef47b405f1f0"
+      },
+      "current_source_oid": "761f0b917e7bca32a046f4af21625a406dc9bbc6",
+      "historical_source_oid": "b109fe505ab12e755289170802cbda503025a0a5",
+      "clean_equals_source": true
+    }
+  ],
+  "actual_70row_vector_sha256": "21cbd7d4444b36966a49323d82b93886e5559394b898c555f4b5e502f46b100a",
+  "producer_input_count": 11,
+  "producer_inputs": [
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "raw_bytes": 47148,
+      "raw_sha256": "a8b2b53a333f1b4f68244416c4a98cc553a7317de3f2a496102a5501a345dbda",
+      "producer_source_oid": "c273329c132650f2c536c958a68ee7a3e76e58b4",
+      "reviewed_clean_oid": "c273329c132650f2c536c958a68ee7a3e76e58b4",
+      "current_source_oid": "c273329c132650f2c536c958a68ee7a3e76e58b4",
+      "previous_pushed_checkpoint_oid": "c273329c132650f2c536c958a68ee7a3e76e58b4",
+      "actual_clean_oid": "c273329c132650f2c536c958a68ee7a3e76e58b4"
+    },
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "raw_bytes": 87490,
+      "raw_sha256": "3bae86d90783ca43ce2a9393670e198f302f26233c7f64e5540f160b2ba6e831",
+      "producer_source_oid": "ff86cacfa2fbe3985c53261e0ed3ade5f1702e21",
+      "reviewed_clean_oid": "ff86cacfa2fbe3985c53261e0ed3ade5f1702e21",
+      "current_source_oid": "ff86cacfa2fbe3985c53261e0ed3ade5f1702e21",
+      "previous_pushed_checkpoint_oid": "ff86cacfa2fbe3985c53261e0ed3ade5f1702e21",
+      "actual_clean_oid": "ff86cacfa2fbe3985c53261e0ed3ade5f1702e21"
+    },
+    {
+      "path": "tests/integration/commands/calendar-feed.int.test.ts",
+      "raw_bytes": 36884,
+      "raw_sha256": "55e4105f0c9e110c7fc08ef17d51f3d5cdd3c8ea6996cf215f53621da1e45e08",
+      "producer_source_oid": "35863f8eeb563f21e9c0ff741115f018ee545134",
+      "reviewed_clean_oid": "35863f8eeb563f21e9c0ff741115f018ee545134",
+      "current_source_oid": "35863f8eeb563f21e9c0ff741115f018ee545134",
+      "previous_pushed_checkpoint_oid": "35863f8eeb563f21e9c0ff741115f018ee545134",
+      "actual_clean_oid": "35863f8eeb563f21e9c0ff741115f018ee545134"
+    },
+    {
+      "path": "scripts/ci/checkpoint-dispatch.mjs",
+      "raw_bytes": 19782,
+      "raw_sha256": "894586ccf94f6724e32026faeb910f515c6e1f9d6b28475f46e37b8d830fb86a",
+      "producer_source_oid": "157eb1fc5a50591d8ad1bcc308b3f7ff29338528",
+      "reviewed_clean_oid": "157eb1fc5a50591d8ad1bcc308b3f7ff29338528",
+      "current_source_oid": "157eb1fc5a50591d8ad1bcc308b3f7ff29338528",
+      "previous_pushed_checkpoint_oid": "157eb1fc5a50591d8ad1bcc308b3f7ff29338528",
+      "actual_clean_oid": "157eb1fc5a50591d8ad1bcc308b3f7ff29338528"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "raw_bytes": 75930,
+      "raw_sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e",
+      "producer_source_oid": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a",
+      "reviewed_clean_oid": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a",
+      "current_source_oid": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a",
+      "previous_pushed_checkpoint_oid": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a",
+      "actual_clean_oid": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a"
+    },
+    {
+      "path": "src/server/commands/calendar-feed/calendar-feed-db.ts",
+      "raw_bytes": 4729,
+      "raw_sha256": "e2c726b7fc90e31407838d672e6683ea02adb94b9951a02da937022ab964af6b",
+      "producer_source_oid": "c21b8c5e897d2b81be994312ba0074475e98c6fa",
+      "reviewed_clean_oid": "c21b8c5e897d2b81be994312ba0074475e98c6fa",
+      "current_source_oid": "c21b8c5e897d2b81be994312ba0074475e98c6fa",
+      "previous_pushed_checkpoint_oid": "c21b8c5e897d2b81be994312ba0074475e98c6fa",
+      "actual_clean_oid": "c21b8c5e897d2b81be994312ba0074475e98c6fa"
+    },
+    {
+      "path": "src/server/commands/calendar-feed/manage-calendar-feed.ts",
+      "raw_bytes": 4856,
+      "raw_sha256": "066f55528f5cb316118d5511eb2ea2a1bdafd1cbfefa98ddbc4d76eda1509b81",
+      "producer_source_oid": "b21159803ea8e875b83df953a3ffdbb53dccf0be",
+      "reviewed_clean_oid": "b21159803ea8e875b83df953a3ffdbb53dccf0be",
+      "current_source_oid": "b21159803ea8e875b83df953a3ffdbb53dccf0be",
+      "previous_pushed_checkpoint_oid": "b21159803ea8e875b83df953a3ffdbb53dccf0be",
+      "actual_clean_oid": "b21159803ea8e875b83df953a3ffdbb53dccf0be"
+    },
+    {
+      "path": "src/server/read-models/calendar-feed.ts",
+      "raw_bytes": 3472,
+      "raw_sha256": "7d0afd55c137a19ebe5479d0bdc0becfc08606e711c3c05de0d70ae132e45a35",
+      "producer_source_oid": "4cccd98e3cb6c335e4eb8de289bf6e06ffd7830d",
+      "reviewed_clean_oid": "4cccd98e3cb6c335e4eb8de289bf6e06ffd7830d",
+      "current_source_oid": "4cccd98e3cb6c335e4eb8de289bf6e06ffd7830d",
+      "previous_pushed_checkpoint_oid": "4cccd98e3cb6c335e4eb8de289bf6e06ffd7830d",
+      "actual_clean_oid": "4cccd98e3cb6c335e4eb8de289bf6e06ffd7830d"
+    },
+    {
+      "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+      "raw_bytes": 24435,
+      "raw_sha256": "b57e6a1726cfac545de1cd141e26f56e6bebb4a535d1cd7f706e4a1ad3e05555",
+      "producer_source_oid": "c5d6d53faab649b40dee5c12f7933030224fa4ab",
+      "reviewed_clean_oid": "c5d6d53faab649b40dee5c12f7933030224fa4ab",
+      "current_source_oid": "c5d6d53faab649b40dee5c12f7933030224fa4ab",
+      "previous_pushed_checkpoint_oid": "c5d6d53faab649b40dee5c12f7933030224fa4ab",
+      "actual_clean_oid": "c5d6d53faab649b40dee5c12f7933030224fa4ab"
+    },
+    {
+      "path": "package.json",
+      "raw_bytes": 2352,
+      "raw_sha256": "82f78147f699b457c89c912c2e85772b8b688708c93e399c1ef19112d1f28412",
+      "producer_source_oid": "819459b2df6f2c385a8442dda25ef7904576e270",
+      "reviewed_clean_oid": "819459b2df6f2c385a8442dda25ef7904576e270",
+      "current_source_oid": "819459b2df6f2c385a8442dda25ef7904576e270",
+      "previous_pushed_checkpoint_oid": "819459b2df6f2c385a8442dda25ef7904576e270",
+      "actual_clean_oid": "819459b2df6f2c385a8442dda25ef7904576e270"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "raw_bytes": 162159,
+      "raw_sha256": "84c969ae2b2dfdbb0f88afba7890c58f36b2415bb02e255e1a99bf8aaf60450f",
+      "producer_source_oid": "4d8fefc7c340cb5ad1ca1650563fe6a0ce6db115",
+      "reviewed_clean_oid": "4d8fefc7c340cb5ad1ca1650563fe6a0ce6db115",
+      "current_source_oid": "4d8fefc7c340cb5ad1ca1650563fe6a0ce6db115",
+      "previous_pushed_checkpoint_oid": "4d8fefc7c340cb5ad1ca1650563fe6a0ce6db115",
+      "actual_clean_oid": "4d8fefc7c340cb5ad1ca1650563fe6a0ce6db115"
+    }
+  ],
+  "producer_schema_sha256": "814a790e877f9df269bb35368281e219836a9da14413a26c024c15dfa1e8d937",
+  "source_worktree_and_index_clean": true,
+  "new_checkpoint_not_yet_pushed": true,
+  "independent_new_delta_review": {
+    "status": "passed",
+    "manifest": {
+      "bytes": 800,
+      "sha256": "7d891243f37882825b75e87a02095cf2c3aff2dd15dbf3c9db2704cf69d761bf"
+    },
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/discovery-order-unit-fix-review/manifest.json"
+  },
+  "normal_acceptance_credit": 0,
+  "mechanical_snapshot_before_review": {
+    "bytes": 7923,
+    "sha256": "e934cc693c990c0ab33940954bc7877d86b17521fe2a1f35eab27c7d7db4cb55"
+  },
+  "author_checks": {
+    "focused_Windows": {
+      "passed": 3,
+      "failed": 0,
+      "skipped": 0
+    },
+    "focused_Linux": {
+      "passed": 3,
+      "failed": 0,
+      "skipped": 0
+    },
+    "full_Linux": {
+      "tests": 3179,
+      "suites": 103,
+      "passed": 3179,
+      "failed": 0,
+      "skipped": 0,
+      "cancelled": 0,
+      "native_exit": 0,
+      "stdout_sha256": "95a8bdeb4247f0440999d5f5a8bc59b7f58fa696b7d41f1df57408314acecb1e"
+    },
+    "TypeScript_native_exit": 0,
+    "affected_ESLint_native_exit": 0,
+    "source_diff_check_native_exit": 0
+  },
+  "independent_checks": {
+    "focused_passed": 3,
+    "native_exit": 0
+  },
+  "limits": "Localrepairnotprovenhostedcause;43DB14browserUNRESOLVED; diagnosticnormal0"
+}

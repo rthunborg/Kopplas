@@ -1,0 +1,24 @@
+{
+  "kind": "ROOT_TARGETED_F1_CLOSURE_ADMISSION",
+  "files": [
+    {
+      "file": "original-report.md",
+      "bytes": 4808,
+      "sha256": "97602b36ee04908dc917e3d1aa503f48713ff413a19f5cdae37149b2b12bd676"
+    },
+    {
+      "file": "original-attestation.json",
+      "bytes": 6894,
+      "sha256": "49703295ec1ec7d97337b1a98c66a1caec2e84fbb079fb6ac02ad505be83065a"
+    },
+    {
+      "file": "result.json",
+      "bytes": 834,
+      "sha256": "ceaa6117069eb5c78d4681b5a07386555bfcb82e589bc00e9dbe8c8dddd40b5a"
+    }
+  ],
+  "corrected_code_sha256": "fde47b848880a7cf1b5d8dd55fec23daef070104b6369ee194fa849edab313aa",
+  "initial_NOTPASS_manifest_sha256": "53797411e09e668661ed4f5038871bb7a74cd6f7e8648a35ca677be69199f404",
+  "qualification": "Composite initial acquisition/privacy reuse plus targeted F1closure; originals never rewritten",
+  "normal_acceptance_credit": 0
+}

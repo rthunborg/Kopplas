@@ -1,0 +1,18 @@
+{
+  "Outcome": "NOTPASS — F1 P2 new-driver result path points to the existing immutable historical recovery result.",
+  "Files changed": [
+    "original-report.md",
+    "original-attestation.json",
+    "result.json"
+  ],
+  "Status": "Frozen43-method offline suite passed (91 positive/253 negative;20 bounded children). Separate memory-only control reproduced stale exclusive-reservation target before child/API; no actual writes. Bound code/source/dependencies and retained F1/F2 proofs verified.",
+  "Open questions": [
+    "F1: bind driver RESULT to helper RESULT_PATH for the exact new allocated result, and add pathname-aware production-constant/once-storage controls."
+  ],
+  "Deferred work": [
+    "Root byte custody; narrow correction and targeted independent closure. Actual prePOST metadata/intent/producer activation, terminal admission/collection activation and later offline final-three publication grant remain held.43 DB/14 browser failures unresolved."
+  ],
+  "Blockers": [
+    "F1 blocks composite PASS and activation. Historical result immutable; new result/facts/final3 unborn. Backend UNPROVEN; normal/native credit0."
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "Outcome": "PASS",
+  "Files changed": [
+    "_bmad-output/auto-bmad/preparation/story-15-5/failed-verify-tap-corrective-review/original-report.md",
+    "_bmad-output/auto-bmad/preparation/story-15-5/failed-verify-tap-corrective-review/original-attestation.json",
+    "_bmad-output/auto-bmad/preparation/story-15-5/failed-verify-tap-corrective-review/result.json"
+  ],
+  "Status": "F1 CLOSED for exact8505B corrected extractor; always UNKNOWN/tap_complete=false, unqualified location candidates only. Independent12/12 pass; original NOTPASS evidence unchanged; main/API0/result unborn.",
+  "Open questions": [],
+  "Deferred work": [
+    "Root retains existing conditional one-shot allocation and operational gates; candidates alone establish no complete inventory, causal proof, fix or CI-retry authority."
+  ],
+  "Blockers": []
+}

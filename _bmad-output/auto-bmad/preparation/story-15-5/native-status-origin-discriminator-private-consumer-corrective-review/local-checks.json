@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "phase": "CORRECTIVE_AUTHOR_FROZEN_PENDING_TARGETED_HIGH_PATH_CLOSURE",
+  "created_at_utc": "2026-10-21T08:18:26.149333+00:00",
+  "code": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/status-origin-discriminator-01/collect-diagnostic-evidence.py",
+      "bytes": 42478,
+      "sha256": "60f776c01e1ba5ac464d46ed756e5b98c1887ecb43913c609e548fd44ba614aa"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/status-origin-discriminator-01/test_collect_diagnostic_evidence.py",
+      "bytes": 42346,
+      "sha256": "fef011ff0c877aae492c6b3cb3fcb97b8688b6403df06a063d55e27bf2e97702"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-status-origin-discriminator-01-driver.py",
+      "bytes": 12428,
+      "sha256": "9d929412349ef58c28f0a75870325ef6267fba4da86df5590dd029b5fadd3666"
+    }
+  ],
+  "historical_original": "Original43P and independentNOTPASS remain immutable/nonadditive. New path-aware controls reveal the old default-path defect.",
+  "current_suite": {
+    "methods": 45,
+    "failures": 0,
+    "errors": 0,
+    "positive_checks": 93,
+    "negative_checks": 253,
+    "owned_python_children": 20,
+    "API": 0,
+    "normal_acceptance_credit": 0
+  },
+  "old541_baseline": {
+    "methods": 2,
+    "expected_failures": 2,
+    "errors": 0,
+    "child_spawns": 0,
+    "actual_writes": 0,
+    "API": 0,
+    "source": "Hash-verified original full byte custody decoded/compiled in memory. No RESULT override.",
+    "controls": [
+      "test_44_actual_production_paths_match_allocation_and_helper",
+      "test_45_actual_default_result_once_storage_before_inputs_or_child"
+    ],
+    "metadata_reader_stop": "Initial assumed files key instead of actual code caused KeyError before baseline invocation. Reader-only correction; no code/runtime/Root effects."
+  },
+  "current_controls": [
+    "Default production RESULT equals actual helper RESULT_PATH/new allocated result and differs from immutable historical result. All production path constants match allocation.",
+    "Pathname-aware memory-only once-storage retains actual RESULT: reservation uses new path; an existing new reservation refuses before input read/child; historical sentinel unchanged.",
+    "Retained driver-main controls now assert sync destination, so namespace/path mismatch can no longer be hidden by discarding its path argument."
+  ],
+  "helper_byte_identical": true,
+  "driver_delta_exactly_single_literal": true,
+  "syntax": {
+    "files": 3,
+    "passed": true
+  },
+  "current_producer_raw_bindings": 11,
+  "historical_result_unchanged": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-artifact-recovery-01-result.json",
+    "bytes": 8036,
+    "sha256": "ecd676f7aef1728f5fe5c7c61e2646779e9bb874a50e20d29959141d38477645"
+  },
+  "new_result_unborn": true,
+  "Root_inputs_unborn": true,
+  "final3_unborn": true,
+  "new_help_processes": 0,
+  "operational_activations": 0,
+  "API_requests": 0,
+  "CI_dispatches": 0,
+  "native_cases": 0,
+  "normal_acceptance_credit": 0
+}

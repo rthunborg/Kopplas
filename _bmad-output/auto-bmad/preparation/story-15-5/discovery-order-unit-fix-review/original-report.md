@@ -1,0 +1,19 @@
+# Independent High committed discovery-order review
+
+Verdict: **PASS**. Concrete findings:0. Reviewed only the two-file delta `f0b1e5735872ba2effcd7c1480756326125f6752` to `bc9c30856f6272f9a099e52691d4ec4a7582732f` (44 insertions/2 deletions), not a fourth broad Story15.5 review. Existing independent reviewer, distinct from implementation author; no fresh-context claim.
+
+The live serial-discovery assertion now calls the existing assertExactPartition helper. That helper still rejects duplicate paths before comparing sorted exact membership. The same six DDL files are required; extra/missing files cannot pass. Added reverse/shuffle controls exercise permitted discovery permutations, and missing/duplicate controls exercise the unchanged guard. Parallel exclusion, all-files coverage, project count, group0-before-group1, fileParallelism=false, global setup and other execution settings remain asserted.
+
+The installed scheduling test is unchanged and actually passed: parallel teardown must finish before DDL starts, and deliberately reversed nonzero groups must expose interference. Sorting discovery membership does not change execution configuration or weaken this execution proof. vitest.config.ts is byte-identical to the parent revision. No application/schema/migration/producer/dependency/config change is in the commit.
+
+Independent verification: ran `node --experimental-strip-types --import ./tests/support/register.mjs --test tests/unit/scripts/verify/integration-test-partitions.test.ts` on this committed Windows worktree. Result3PASS/0FAIL/0skip/0cancel/0todo, native0, duration2190.8266ms. This includes real installed Vitest collection and its bounded synthetic scheduling probe; no DB/global integration setup was executed. The existing test creates and cleans its owned OS-temp fixtures. No new managed resource was requested.
+
+The author/Root report separately records focused Windows3P, Linux3P and qualified Linux full3179P across103 suites,0F/skip/cancel/todo,35756.921857ms; full output digest95a8bdeb4247f0440999d5f5a8bc59b7f58fa696b7d41f1df57408314acecb1e. Those are attributed execution evidence, not independently rerun or added to this review's3 tests. The5290B pre-fix overlay-provenance hash867272b829bd7575b039ce274cfca4da9781b72fc869562724f91a920c9b0d28 was verified as context; it is not post-fix full-suite proof. No full3179 rerun, Linux launch, API, CI retry or real-log acquisition occurred here.
+
+Both current raw files, clean Git identities and current/base blob bytes match the assigned revision. Parent is exactly f0b1; only these two committed paths differ. The allocation's historical unit raw8628B is the CRLF equivalent of its8487B base Git blob, with the recorded hash; this is not source drift. Owned source worktree/index match the commit and committed diffcheck returned0. No global clean claim.
+
+The author Spec explains discovery versus execution, preserves failed/skip history and labels the hosted cause UNKNOWN. Its pre-Root-commit handoff wording remains historical; bc9c3085 is the now-reviewed local commit. Its single author SRO has101 valid stops, checker native0/errors0. All three new stops are current. Approved tagged intent-contract is unchanged5760B/SHA2560b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977; status remains in-review/iteration3 with old ARR mismatch retained. No DONE or release claim follows.
+
+Hosted failure cause remains UNKNOWN;43DB/14browser failures remain unresolved and native/normal acceptance credit stays0. Root retains existing justified-retry/checkpoint authorization and its mechanical/exact-head gates. This code review neither acquires logs nor starts a retry.
+
+Reviewer-authored writes are only this new original report, original-attestation.json and six-key result.json. No source/Spec, Git/index, canonical state, private runtime, CI/provider or deployment changes were made.

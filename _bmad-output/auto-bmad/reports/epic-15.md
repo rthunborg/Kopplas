@@ -4240,3 +4240,96 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Commit/push boundedmetadata checkpoint with reviewed8efsource; then actualnewtarget privateconsumerimplementation/review beforeanydiagnosticdispatch/GET.
+
+## Report — 2026-10-21T08:27:06Z (15.5 status-origin producer dispatched; diagnostic-only)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `f0b1e57`).
+**Pipeline status:** in progress
+**Continues:** 15.5 P5
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-20T12:18:56Z; completed in progress — elapsed 20h 08m (≈59m AI-run, ≈19h 08m human/idle wait); resumed 127×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Unique exact-run terminal proof, then separately activated bounded collection. No redispatch and no normal acceptance credit.
+
+## Report — 2026-10-21T08:29:24Z (15.5 diagnostic failed before DB; collection held)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `f0b1e57`).
+**Pipeline status:** in progress
+**Continues:** 15.5 P5 targeted unit-failure triage
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-20T12:18:56Z; completed in progress — elapsed 20h 10m (≈59m AI-run, ≈19h 10m human/idle wait); resumed 128×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** High read-only local full unit reproduction; identify minimal new-delta correction with ownership before edits.
+
+## Report — 2026-10-21T09:11:34Z (15.5 platform unit blocker repaired and independently reviewed)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `bc9c308`).
+**Pipeline status:** in progress
+**Continues:** 15.5 P5
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-20T12:18:56Z; completed in progress — elapsed 20h 52m (≈59m AI-run, ≈19h 53m human/idle wait); resumed 129×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Push reviewed source/checkpoint; fresh diagnostic identities and current binding before retry.43DB14browser remain unresolved.
