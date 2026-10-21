@@ -5495,3 +5495,35 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** High helper/unit/Spec fix then distinct targeted F1 closure and latest-fix regression review; no fourth broad pass.
+
+## Report — 2026-10-21T19:24:36Z (checkpoint — F1 source committed)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `b1b476d`).
+**Pipeline status:** 15.5 P5 active; exact three-path transport-custody correction committed; independent targeted closure active.
+**Continues:** Review F1 closure and latest-fix regressions only; reuse unchanged cumulative review.
+
+**Summary:** 15.1–15.4 landed; 15.5 active; 15.6 unstarted.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 294h 26m (≈77h 24m AI-run, ≈217h 02m human/idle wait); resumed 164×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:**
+1. Current source has no native acceptance. Required privacy/browser/custody and fullDBRLS/recovery gates remain unresolved.
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Targeted code pass before native readiness/effects allocation; no fourth broad review.
