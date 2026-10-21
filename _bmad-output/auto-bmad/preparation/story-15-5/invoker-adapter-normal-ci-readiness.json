@@ -1,0 +1,350 @@
+{
+  "schema_version": 1,
+  "kind": "STORY15_5_INVOKER_ADAPTER_NORMAL_CI_READINESS",
+  "status": "SOURCE_READY_PENDING_ROOT_FINAL_PUSHED_HEAD_AND_NATIVE_EXECUTION",
+  "policy_version": "2026-10-19",
+  "role": "independent normal native evidence readiness qualifier",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "source_commit": "571f5014efc5edad9649b947c26d391a804afe66",
+  "source_base": "bedd0979d8f80eb52f92c81eb5a364f54157c3fe",
+  "future_checkpoint_sha": null,
+  "future_checkpoint_uuid": null,
+  "future_run_id": null,
+  "attempt": 1,
+  "mode": "normal",
+  "release_validation": false,
+  "current_native_migration_execution": 0,
+  "normal_acceptance_credit": 0,
+  "source_admission": {
+    "receipts": [
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-adapter-571f5014-current-source-vector.json",
+        "bytes": 29949,
+        "sha256": "d1734d009c5ef02cda6d84a18008ba7b68919457869aed2925d4d91e19c16fd1"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-adapter-571f5014-source-admission.json",
+        "bytes": 4994,
+        "sha256": "a68228ffaa79c95afbb3247d49ebd3f33ca659c616ed3cb369414e12605702b8"
+      },
+      {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/root-invoker-adapter-repair-review-admission.json",
+        "bytes": 1231,
+        "sha256": "1a7a5cf332e6af2ebcab3763c0e23c007ebee40c2bdd71daebbbcb1e9534889f"
+      },
+      {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-adapter-normal-ci-ownership-clearance.json",
+        "bytes": 1168,
+        "sha256": "7dee5293937914ef7af6782b03197b4d3c51a9cf5448f84b6a6450a57f02759a"
+      }
+    ],
+    "mechanical_checks_actually_run": [
+      "All71 current raw byte counts/SHA match vector; all71 source-commit Git tree OIDs match current_source_oid and recorded clean OID.",
+      "All111 migration files present; exact7 changed/64 unchanged as admitted vector.",
+      "Targeted High review original3 raw byte counts/SHA match admission; no new broad review.",
+      "Checked workflow mode conditions, literal wrapper argv, smoke enrollment, and optional-variable references from source."
+    ],
+    "source_input_bindings": [
+      {
+        "path": "AGENTS.md",
+        "bytes": 11938,
+        "sha256": "b28eec9c075877d175362dad65b739054e45a3134d748b3c11e601ae36fbb823"
+      },
+      {
+        "path": "docs/process/development-completion-policy.md",
+        "bytes": 8460,
+        "sha256": "d3617c2bcfb64e0b185c82e8a39f84af40bfc5b0ddda739552d2e099c38d4893"
+      },
+      {
+        "path": "docs/quality/ci.md",
+        "bytes": 17553,
+        "sha256": "58f860e05eaf8fd790fb3efd676880c25ae7020641e5e7e5248c77a6381e91dc"
+      },
+      {
+        "path": "scripts/ci/checkpoint-dispatch.mjs",
+        "bytes": 19782,
+        "sha256": "894586ccf94f6724e32026faeb910f515c6e1f9d6b28475f46e37b8d830fb86a",
+        "source_commit_blob_oid": "157eb1fc5a50591d8ad1bcc308b3f7ff29338528",
+        "source_raw_verified_against_vector": true
+      },
+      {
+        "path": ".github/workflows/ci.yml",
+        "bytes": 75930,
+        "sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e",
+        "source_commit_blob_oid": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a",
+        "source_raw_verified_against_vector": true
+      },
+      {
+        "path": "package.json",
+        "bytes": 2352,
+        "sha256": "82f78147f699b457c89c912c2e85772b8b688708c93e399c1ef19112d1f28412",
+        "source_commit_blob_oid": "819459b2df6f2c385a8442dda25ef7904576e270",
+        "source_raw_verified_against_vector": true
+      },
+      {
+        "path": ".nvmrc",
+        "bytes": 4,
+        "sha256": "12d3a4efa6646b3ece4782f70033b9785bf0d167b553c43e22579b031cea5c4d"
+      },
+      {
+        "path": "pnpm-lock.yaml",
+        "bytes": 162159,
+        "sha256": "84c969ae2b2dfdbb0f88afba7890c58f36b2415bb02e255e1a99bf8aaf60450f",
+        "source_commit_blob_oid": "4d8fefc7c340cb5ad1ca1650563fe6a0ce6db115",
+        "source_raw_verified_against_vector": true
+      },
+      {
+        "path": "vitest.config.ts",
+        "bytes": 3602,
+        "sha256": "83e6ae86cdc6c36f44108eb279ff724d426fc362b6b204fc144f5816fc659bb8",
+        "source_commit_blob_oid": "d18bd17d6558e02549b4296f976acb0f9d831e0b",
+        "source_raw_verified_against_vector": true
+      },
+      {
+        "path": "playwright.config.ts",
+        "bytes": 4872,
+        "sha256": "5cf81238d605297d3cc5a74f2dcde9e07f24880357bd49d27e071059a6d70706"
+      },
+      {
+        "path": "tests/support/calendar-feed-ci-contract.ts",
+        "bytes": 8024,
+        "sha256": "40aea88849abff55a0faf156c52cf18d6f0232772cc1654c62c4f290b7fefcf5",
+        "source_commit_blob_oid": "2a5fec9b04c3259f608c95db25668836016808e5",
+        "source_raw_verified_against_vector": true
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "bytes": 47151,
+        "sha256": "e3eef57fabf0c8a57a81a5b9db95fdcabadf4194f132e84c35408c611cecd943",
+        "source_commit_blob_oid": "d0d186aee7e6a575d52659dcc27d9bd9ff8cbbe8",
+        "source_raw_verified_against_vector": true
+      },
+      {
+        "path": "tests/unit/scripts/verify/integration-test-partitions.test.ts",
+        "bytes": 9087,
+        "sha256": "ea88c63c7fda518328fe7a2ab5f2c9d90628995f64f76607e184ef47b405f1f0",
+        "source_commit_blob_oid": "761f0b917e7bca32a046f4af21625a406dc9bbc6",
+        "source_raw_verified_against_vector": true
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "bytes": 89043,
+        "sha256": "3f923eef322cc7f732013bd201090ce9619317250587709471688c69049d6fef",
+        "source_commit_blob_oid": "a78e3f6a336f84fc3d44d042516808748622feb8",
+        "source_raw_verified_against_vector": true
+      },
+      {
+        "path": "tests/integration/rls/calendar-feed.rls.test.ts",
+        "bytes": 14957,
+        "sha256": "52716fa7a627b96d6b9397b775b4603ce85860fe4f5c101a0523cc95cab21838",
+        "source_commit_blob_oid": "14e2cb42fb816d88e2b67f9223dfa573d30bb663",
+        "source_raw_verified_against_vector": true
+      },
+      {
+        "path": "tests/integration/ops/recovery-storage-immutability.int.test.ts",
+        "bytes": 7563,
+        "sha256": "40186690034643019fb770250bc545627444abd29f73699b184b7f7714941279",
+        "source_commit_blob_oid": "19341337ad414cecab5c0d813a0bfe4b7f9d412e",
+        "source_raw_verified_against_vector": true
+      },
+      {
+        "path": "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",
+        "bytes": 11965,
+        "sha256": "ef59b5d0cad587a01842e00de84ffc409f8f51c232b9e059a841e5d19575483d",
+        "source_commit_blob_oid": "5af613dc46fd79a86298161cc044d106d20fcbb8",
+        "source_raw_verified_against_vector": true
+      }
+    ],
+    "limitations": [
+      "The mechanical source receipt was captured before semantic review and retains its historical PENDING label; later separate review admission is PASS.",
+      "No current hosted branch/workflow/actor/variable metadata queried. Final pushed checkpoint still belongs to Root.",
+      "Older checkout AGENTS legacy-oracle text is superseded by current owner no-legacy instruction; no legacy evidence used."
+    ]
+  },
+  "normal_invocation": {
+    "working_directory": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas",
+    "argv": [
+      "node",
+      "scripts/ci/checkpoint-dispatch.mjs",
+      "dispatch",
+      "--repo",
+      "rthunborg/Kopplas",
+      "--ref",
+      "codex/epic-15-scheduling-time-calendar",
+      "--sha",
+      "<ROOT_FINAL_PUSHED_FULL_SHA>",
+      "--checkpoint-id",
+      "<ROOT_FRESH_CANONICAL_UUIDV4>",
+      "--release-validation",
+      "false",
+      "--cause-proof",
+      "false",
+      "--state",
+      ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-<HEAD8>-normal-dispatch.json"
+    ],
+    "placeholder_rule": "Replace full SHA/UUID/HEAD8 only after Root final commit/push and source equality proof; this array is DATA, not an executed command. State path must be new, ignored, exclusively owned and absent.",
+    "receipt": "Dispatcher exclusively writes and fsyncs actual intent before sole POST. UUID correlates and is not idempotency. Preserve uncertain outcomes; same state status, never redispatch.",
+    "status_argv": [
+      "node",
+      "scripts/ci/checkpoint-dispatch.mjs",
+      "status",
+      "--state",
+      ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-<HEAD8>-normal-dispatch.json"
+    ],
+    "status_owner": "Root only; no delegate polling.",
+    "dispatcher_requests_before_POST": [
+      "GET user",
+      "GET repos/rthunborg/Kopplas/collaborators/<authenticated-actor>/permission",
+      "GET repos/rthunborg/Kopplas/branches/<encoded exact ref>",
+      "GET repos/rthunborg/Kopplas/actions/workflows/ci.yml"
+    ],
+    "sole_dispatch_POST": "repos/rthunborg/Kopplas/actions/workflows/<actual workflow ID>/dispatches",
+    "POST_body": "ref plus expected_sha,checkpoint_id,release_validation=false; cause-proof=false causes diagnostic input omission. Other optional diagnostic inputs use checked-in false defaults.",
+    "request_bounds": "Checked-in argument-array gh API;15s timeout and4MiB output cap per request; errors omit bodies/env. Status discovery max5 pages*100 then owned exact run GET. No custom private JIT/collector protocol required."
+  },
+  "preconditions": {
+    "Root_actions_before_sole_dispatch": [
+      "Record route/standing owned operation and retain independent targeted PASS. Fold only owned bookkeeping; push one exact reviewed checkpoint with all71 source raw/blobs unchanged.",
+      "Bind final pushed SHA, source vector/review identities, fresh UUID, normal mode, releasefalse and exclusive receipt path. Hold ref stable through dispatch/admission.",
+      "Use pinned Node and authenticated gh with write/maintain/admin repository permission and Actions dispatch access. Default branch must expose reviewed workflow_dispatch; candidate must contain checked-in normal lane. Dispatcher checks active workflow ID/path and exact remote branch SHA; normal mode does not fetch/parse default workflow source. No hosted availability facts invented here.",
+      "Execute dispatcher once. If uncertain/missing/duplicate/rerun/changed actor/head, preserve state and reconcile only the exact owned operation; do not create replacement receipts blindly."
+    ],
+    "repository_variable_mutation_required": false,
+    "repository_variable_names_required_for_normal": [],
+    "optional_only_variables": [
+      "FIXED_CHROMIUM_HOSTED_ADMISSION",
+      "FIXED_CHROMIUM_HOSTED_ADMISSION_SHA"
+    ],
+    "optional_variable_explanation": "These are referenced only inside fixed-chromium-application-verification, whose explicit input defaults false and is not set by this normal dispatcher. No read/set/restore is needed for this normal run; no current value observed.",
+    "shared_clearance": "Coordinator clearance says no shared mutable CI/admission conflict with independent E16run39585443213. Do not cancel/adopt it or resume paused monitoring. No variable mutation allocated.",
+    "no_extra_effects": "No new helper/capsule/private broker/default-branch merge/provider secret/local resource/deployment changes necessary."
+  },
+  "required_jobs": [
+    {
+      "name": "checkpoint-admission",
+      "pass_evidence": "Actual attempt1 dispatch event exactSHA/checkpoint/ref and normal title; admission success."
+    },
+    {
+      "name": "verify",
+      "pass_evidence": "Fresh frozen install/lock guard/high audit/source containment/type/lint/full Node/focused Python/build/built-bundle containment steps actual success; observe actual Node and Python counts, no local/historical PASS reuse."
+    },
+    {
+      "name": "db",
+      "pass_evidence": "Fresh hosted local Supabase start/reset applies all111 including new adapter migration; wrapper db invokes full Vitest default+github-actions+JSON, then pilot performance. SUPABASE_TEST_REQUIRED=1, no cause-proof selection."
+    },
+    {
+      "name": "recovery-storage-loader",
+      "pass_evidence": "Separate actual schema source/reset/restore/bootstrap+physical Storage1case passed; protected rows/bytes/overwrite denials and effective owner public CREATE=false before API bytes; cleanup step truthful."
+    },
+    {
+      "name": "e2e",
+      "pass_evidence": "Fresh local stack/reset and installed Chromium; wrapper browser invokes test:smoke with production build/server and actual14 feed cases plus existing smoke. SUPABASE_TEST_REQUIRED=1; retries counted as attempts, not extra cases."
+    }
+  ],
+  "uncredited_optional_jobs": [
+    "dashboard-e2e",
+    "native-stream-probe",
+    "fixed-chromium-paired-probe",
+    "fixed-chromium-application-verification"
+  ],
+  "story_enrollment_not_execution": {
+    "expected_feature_cases": 95,
+    "node": {
+      "cases": 30,
+      "files": {
+        "tests/unit/features/calendar-feed/icalendar.test.ts": 13,
+        "tests/unit/features/calendar-feed/action-state.test.ts": 4,
+        "tests/unit/features/calendar-feed/validation.test.ts": 3,
+        "tests/unit/server/calendar-feed/attestation.test.ts": 4,
+        "tests/unit/server/calendar-feed/trusted-ip.test.ts": 3,
+        "tests/unit/server/calendar-feed/public-shell.test.ts": 3
+      },
+      "meaning": "Includes expanded DST/microsecond vectors and R1 regressions. Separate wrapper/bootstrap unit controls are not feature credit; observe native full-unit counts/titles."
+    },
+    "Vitest": {
+      "cases": 51,
+      "files": {
+        "tests/integration/commands/calendar-feed.int.test.ts": 15,
+        "tests/integration/calendar-feed/public-feed.int.test.ts": 20,
+        "tests/integration/rls/calendar-feed.rls.test.ts": 12,
+        "tests/integration/components/calendar-feed.test.ts": 4
+      },
+      "diagnostic_excluded": "DIAG001 only registers when CALENDAR_FEED_CAUSE_PROOF_MODE=1; normal wrapper does not set it. No diagnostic pass contributes."
+    },
+    "browser": {
+      "cases": 14,
+      "file": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "expansion": "001,002A/B/C,003..009,010rotate/revoke,011",
+      "other_smoke": "Existing nonstory smoke remains separate; observe installed/native count rather than borrowing old17."
+    },
+    "recovery_direct_cases_separate": 1,
+    "acceptance": "All95 actual executed/passed,0skip. No static collection or simulation is execution. FullDB/RLS totals/skips must be observed; subset RLS/nonadditive historical skips/direct recovery not added as new story coverage."
+  },
+  "partition_and_principal_evidence": {
+    "installed_partition": "Current static165 integration files =159parallel+6serial; installed Vitest unit contract resolves exact once membership/groupOrder and bounded ordering control. Native reports must match current partition, show serial nonoverlap and after parallel completion. Record actual serial order, not inferred discovery order or invented teardown timestamps.",
+    "serial_files": [
+      "tests/integration/jobs/job-runs.int.test.ts",
+      "tests/integration/commands/conflict-resolver.int.test.ts",
+      "tests/integration/commands/time-reports.int.test.ts",
+      "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+      "tests/integration/commands/calendar-feed.int.test.ts",
+      "tests/integration/calendar-feed/public-feed.int.test.ts"
+    ],
+    "INT015": "Qualify reached nativePG17 restricted creator/session identity, original/reset/fresh/replay/guard/SET-owner transfer and same/fresh UUID absence. Fixture proof is not whole real source/recovery principal proof.",
+    "RLS010": "Actual individual current assertions: owner NOLOGIN/NOINHERIT/NOSUPER/NOBYPASS and effective public CREATE=false, exact public/role function ACLs; four helpers including new actor owned postgres/security invoker/empty search path/SQL stable/preparsed/canonical UID dependency/feed-owner-only execute. Case start alone cannot credit later predicates.",
+    "real_source_recovery": "Migration/reset/restore engine success plus enforced assertions/catalog guards qualify actual grant-transfer-revoke lifecycle; no inference from UUID fixture alone. Recovery effective public CREATE=false assertion precedes Storage readbacks."
+  },
+  "runtime_privacy_settlement_evidence": {
+    "approved_setup_reference": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-native-authority-boundary-allocation.json",
+      "bytes": 5160,
+      "sha256": "91097d8da439a9a88d99453e52416dcfa4799ccf3a3b5d834d86acd44a22df13"
+    },
+    "boundary": "Existing hosted wrapper qualifies same fresh job-owned Docker stack, checkout/ports/local endpoints/ledger; uses sole captured same-container password memory-only at canonical SupAdmin TCP. Original session/current7 authority booleans and four effective privacy controls checked before key creation. No new grants/SET-role/elevation/fallback/JIT/shared variables are needed.",
+    "normal_db_browser_receipts": "Extract fixed calendar_feed.ci_lifecycle fields from actual completed job logs: setupAuthority7, privacy4, readiness (DB HTTP body), child exit/identity/group absence+done+output settlement, browser request/body/poll SQL settlement, exact owned key UUID/name deletion or honest rollback/custody, dbClosed. No raw IDs/keys/passwords/URLs/errors persisted. Browser ready field differs from DB; evaluate its actual server path instead of requiring invented ready=true.",
+    "API019": "Require reached privacy/log/audit/public-error assertions with actual response/detector markers. Flags alone do not prove privacy.",
+    "browser_reports": "Story trace/video/screenshots disabled and no-copy-prompt configured; attachment metadata alone proves neither leak nor privacy. Inspect only actual available relevant safe content in memory; unavailable content=NULL/UNQUALIFIED.",
+    "uncertainty": "Failed cleanup/COMMIT/process/request settlement retains truthful custody; do not convert missing artifact/receipt into no-child or key-absence proof."
+  },
+  "evidence_after_later_terminal_grant": {
+    "owner": "Root sole status/job poller; independent High qualifier fetches only authorized completed native evidence. No requests in this task.",
+    "required_artifacts": [
+      {
+        "name": "native-full-integration",
+        "file": "test-results/full-integration.json"
+      },
+      {
+        "name": "native-isolated-storage-recovery",
+        "file": "test-results/isolated-storage-recovery.json"
+      },
+      {
+        "name": "native-general-browser",
+        "file": "test-results/general-browser.json"
+      }
+    ],
+    "optional_content": "playwright-report artifact if present; no requirement to publish raw capability-bearing attachments. Cause-proof artifact not expected in normal mode.",
+    "binding": "Record actual full pushed head,source/review vector,checkpointUUID,run/attempt,actor/workflow/title/mode,all9terminal job tuples, artifacts metadata/digests/bytes and sanitized reached assertion/count receipts. Native logs/report bodies in memory only until privacy-qualified; no arbitrary errors/SQL args/credentials/URLs persisted. Existing checked-in lane plus bounded read-only extraction suffices; no new diagnostic collector.",
+    "failure": "Preserve reached/unexecuted counts and sanitized first fixed failure stage; stop for evidence-supported diagnosis, no opaque rerun or acceptance carryforward.",
+    "v2_compatibility": "New schema status-origin-v2/owner_actor_execute replaces v1 owner_auth_usage. All old P2v1/private consumers remain immutable historical and are not current validators. Normal path uses neither old private collector nor extra diagnostic run."
+  },
+  "remaining_gaps": [
+    "Final Root bookkeeping checkpoint/push and exact71 equality proof not yet bound in this readiness record.",
+    "Actual remote preflight/one dispatch/native five jobs and95+separate recovery1 remain pending; new migration native execution0.",
+    "Existing43DB/14browser failures remain unresolved until actual normal evidence; local97/Linux3183 reports are historical local evidence, not fresh native credit.",
+    "Later independent delivery-truth qualification and Oct19 delivery gate required before any done/development-complete claim; inheritedreview_unverified remains true."
+  ],
+  "readiness_blockers": [],
+  "development_complete": false,
+  "release_ready": false,
+  "effects_this_task": {
+    "source_writes": 0,
+    "only_metadata_output": "_bmad-output/auto-bmad/preparation/story-15-5/invoker-adapter-normal-ci-readiness.json",
+    "network_API": 0,
+    "dispatch": 0,
+    "native_tests": 0,
+    "DB_browser_resources": 0,
+    "Git_mutations": 0,
+    "new_reviews": 0
+  }
+}

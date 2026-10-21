@@ -1,0 +1,41 @@
+{
+  "kind": "ACTUAL_MIGRATION_PATH_FINAL_CLEARANCE",
+  "coordinator_thread": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "completed_turn": "01a15e00-ebe0-7aa3-89e8-bbabbe0cef59",
+  "grant_tool": "exec-b79f271e-67cf-4508-919f-f42aa7f650b2",
+  "final_message": "msg_0954b60b44796db1016ad893cdd7648191af4859867c0c857c",
+  "path": "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",
+  "generated_bytes": 0,
+  "generated_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "e16_latest": "20261021102151_e16_job_read_tenant_and_source_quote_scope.sql",
+  "collision_clearance": "CONFIRMED_ACTUAL_E16_INVENTORY",
+  "scope": "Existing conditional seven-path allocation; same foreground High workflow released to content",
+  "boundary": "No additional paths, repeated generation, empty commit/push, local SQL/resources, provider, merge or deployment",
+  "normal_acceptance_credit": 0,
+  "exact_paths": [
+    "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",
+    "tests/support/calendar-feed-atdd.ts",
+    "scripts/ci/with-calendar-feed-runtime.mjs",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+    "tests/support/calendar-feed-ci-contract.ts",
+    "tests/integration/rls/calendar-feed.rls.test.ts",
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"
+  ],
+  "prior_conditional_grant": {
+    "completed_turn": "01a15dfc-3fc6-7da1-a34a-d1a55f62768a",
+    "tool": "exec-d51241fd-a16b-488b-93f0-5c61290c8250"
+  },
+  "effects": [
+    "One postgres-owned SQL STABLE SECURITY INVOKER helper with empty search_path and SQL-standard RETURN auth.uid()",
+    "Private helper execution limited to calendar_feed_owner; postgres inherent ownership retained",
+    "Replace exactly eight call sites in three existing functions; preserve OIDs, owners, signatures, volatility, config, ACLs and authorization proofs",
+    "Single atomic operation with bounded temporary public CREATE for calendar_feed_owner using pre-existing SET authority; revoke and assert effective absence",
+    "Current diagnostic v2 replaces owner_auth_usage with owner_actor_execute; preserve other controls and historical v1 evidence",
+    "Unchanged approved specification kernel; author rationale, evidence, suggested review order and truthful in-review result only"
+  ],
+  "required_next": [
+    "Distinct targeted High committed-delta review; no fourth broad review",
+    "Normal exact-head five required gates and all 95 qualified cases",
+    "Delegate-authored delivery record plus Root executable validation and fresh independent truth audit before completion"
+  ]
+}

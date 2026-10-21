@@ -4469,3 +4469,74 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Coordinate exactsource and CLI-generatedmigration claims, including transientpublicCREATE/ownerreplacement/revocation lifecycle and currentdiagnostic necessity/schema/sourcecensus updates; then clear bookkeeping and delegate the bounded repair.
+
+## Report — 2026-10-21T10:33:23Z (continuing — adapter repair path cleared)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `bedd097`).
+**Pipeline status:** In progress: 15.5 P5; four of six stories landed.
+**Continues:** Qualified PG17 invoker feasibility and clean-head High repair dispatch; no completion credit from diagnostic evidence.
+
+**Summary:** Coordinator independently checked the actual Epic16 migration inventory and cleared 20261021102723_calendar_feed_preparsed_actor_identity.sql. The same foreground High author workflow is implementing the exact seven-path repair. The initially generated empty file was neither committed nor pushed.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 285h 35m (≈54h 27m AI-run, ≈231h 08m human/idle wait); resumed 134×.
+
+**Stories:**
+1. 15.1–15.4 landed; inherited review_unverified remains true.
+2. 15.5 remains in review/build verification; all normal five gates and 95 cases remain required.
+3. 15.6 remains unstarted until 15.5 lands.
+
+**Skipped:** (none)
+
+**Epic gate:** Pending; no fourth broad review. Distinct targeted High committed-delta review and executable delivery plus fresh truth audit remain required.
+
+**TEA:** No new TEA or acceptance claim. Historical diagnostic v1 and earlier failed normal CI remain unchanged.
+
+**Retrospective:** Epic14 October8 accepted-with-open-items remains authoritative; October7 rejection is historical. Epic15 retrospective remains pending.
+
+**Overrides:** Owner defaults replace legacy oracle browsing; no deployment or main merge; retain branches/worktree; one final draft epic PR while inherited review caveat remains.
+
+**Open questions:** (none)
+
+**Deferred work:**
+1. Release validation remains recorded as deferred, never passed or waived.
+
+**⚠️ Needs human:** (none)
+
+**Next:** Complete the bounded source repair and focused checks, then independently review the committed delta and run normal exact-head verification.
+
+## Report — 2026-10-21T10:51:14Z (continuing - reviewed adapter repair checkpoint)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `571f501`).
+**Pipeline status:** In progress: 15.5 P5; four of six stories landed.
+**Continues:** Atomic identity adapter repair committed and independently reviewed; normal native verification remains pending.
+
+**Summary:** Source571f5014 contains exactly the seven admitted files. Focused97 tests and separate full Linux3183 tests/103 suites passed with no failures/skips/cancellations; TypeScript and affected lint passed. Distinct High committed-delta review passed with no consequential findings, eight reviewer controls passed and110 SRO references resolved.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 285h 53m (≈54h 27m AI-run, ≈231h 26m human/idle wait); resumed 135×.
+
+**Stories:**
+1. 15.1-15.4 landed; inherited review_unverified remains true.
+2. 15.5 specification and Auto Run Result remain in-review; unchanged approved kernel and broad review iteration3 retained.
+3. 15.6 remains unstarted until15.5 lands.
+
+**Skipped:** (none)
+
+**Epic gate:** Native repair execution and normal five-job/95-case qualification remain required; no diagnostic or local unit result substitutes for them.
+
+**TEA:** No fourth broad review. Existing normal lane selects30 Node+51 database+14 browser story cases and separate recovery1; actual counts remain unobserved.
+
+**Retrospective:** Epic14 October8 accepted-with-open-items authoritative; October7 historical. Epic15 retrospective pending.
+
+**Overrides:** No legacy browsing; no deployment/main merge; retain branch/worktree; one final draft epic PR while inherited review caveat remains.
+
+**Open questions:**
+1. Default registration is active; selected-ref normal schema is reviewed. Actual dispatch/server admission has not yet occurred.
+
+**Deferred work:**
+1. Release validation remains explicitly deferred with prior ownership/evidence; historical v1 diagnostics and failed normal CI remain unchanged.
+
+**⚠️ Needs human:** (none)
+
+**Next:** Commit owned bookkeeping, push the reviewed source without code changes, bind final SHA and one owned receipt, then execute one normal CI dispatch. No repository admission-variable change is needed.
