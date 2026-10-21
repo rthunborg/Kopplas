@@ -4645,3 +4645,36 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Prepare a bounded read-only default ACL comparison, obtain distinct High review and exact effect allocation before any new resource/query. No guessed guard fix or opaque CI retry.
+
+## Report — 2026-10-21T11:58:24Z (ongoing - direct default ACL observation)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `ff3ceef`).
+**Pipeline status:** in-progress; 15.5 P5 evidence route assessment
+**Continues:** 15.5 actual failed-condition proof, then 15.6 and epic gates
+
+**Summary:** The one-shot read-only query and distinct High qualification established that local global/public normalized default grants are equal. No unexpected grantee or grantability fact was observed. This does not reproduce the hosted startup failure.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 287h 00m (≈54h 27m AI-run, ≈232h 33m human/idle wait); resumed 139×.
+
+**Stories:**
+1. Four of six landed; 15.5 source131a8ce9 unchanged, normal acceptance0. 15.6 unstarted.
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** Independent High sensitive work/review and three broad round cap retained. No source guard weakened, no normal retry, no main merge/deployment.
+
+**Open questions:**
+1. Actual predecessor execution and the hosted original-function predicate remain UNKNOWN.
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** High is preparing a decision-grade proposal for direct failing catalog evidence; no further native/source/CI effects are allocated.

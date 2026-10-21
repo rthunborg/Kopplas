@@ -1,0 +1,27 @@
+{
+  "Outcome": "PASS — no consequential findings in the exact read-only default-ACL payload and single-client transport.",
+  "Files changed": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-default-acl-readonly-review/original-report.md",
+      "bytes": 4530,
+      "sha256": "8a4cf7e91f7abda7c91aa9b1ee78778d0d5ff5e0807c18d7740d9d3bfd808880"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-default-acl-readonly-review/original-attestation.json",
+      "bytes": 7084,
+      "sha256": "16cd76f3eb67ef9b4bea2be34ece2a204970015e41e2c556a13662ae176ffa52"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-default-acl-readonly-review/result.json",
+      "identity": "Final bytes/SHA reported out of band."
+    }
+  ],
+  "Status": "Independent targeted Sol6.1 High review complete; 86 pure parser controls passed; no runtime or SQL execution.",
+  "Open questions": [
+    "Actual native ACL facts and live readiness are unobserved; direct entries do not prove inherited effective access or hosted cause."
+  ],
+  "Deferred work": [
+    "Actual evidence qualification if separately allocated/executed. Unknown/nonreproducing results grant no source fix or opaque normal retry."
+  ],
+  "Blockers": []
+}

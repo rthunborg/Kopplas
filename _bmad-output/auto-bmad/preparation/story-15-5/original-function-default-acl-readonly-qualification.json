@@ -1,0 +1,258 @@
+{
+  "Outcome": "PASS — actual one-shot read-only ACL observation qualified. Local residual/default-ACL candidate is unsubstantiated; hosted failed predicate remains UNKNOWN.",
+  "Files changed": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-default-acl-readonly-qualification.json",
+      "identity": "Exclusive new qualification; final bytes/SHA reported out of band."
+    }
+  ],
+  "Status": {
+    "kind": "INDEPENDENT_OFFLINE_ACTUAL_READONLY_DEFAULT_ACL_QUALIFICATION",
+    "reviewer": {
+      "agent": "/root/review15_5_preselected_id_high",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "independent_of_execution_actor": true,
+      "reused_distinct_reviewer": true,
+      "broad_story_review": false
+    },
+    "observed_row": {
+      "global": {
+        "public_execute": true,
+        "non_execute_count": 0,
+        "anon_direct_execute": false,
+        "non_creator_grantor_count": 0,
+        "other_execute_grantee_count": 0,
+        "service_role_direct_execute": false,
+        "authenticated_direct_execute": false,
+        "other_grantable_execute_count": 0,
+        "authenticated_direct_grantable": false
+      },
+      "ledger_count": 102,
+      "public_combined": {
+        "public_execute": true,
+        "non_execute_count": 0,
+        "anon_direct_execute": false,
+        "non_creator_grantor_count": 0,
+        "other_execute_grantee_count": 0,
+        "service_role_direct_execute": false,
+        "authenticated_direct_execute": false,
+        "other_grantable_execute_count": 0,
+        "authenticated_direct_grantable": false
+      },
+      "jwt_roles_present": true,
+      "server_version_num": 170006,
+      "hosted_cause_proven": false,
+      "read_only_qualified": true,
+      "ledger_prefix_matches": true,
+      "observation_available": true,
+      "global_default_row_present": false,
+      "public_default_row_present": true,
+      "ordinary_postgres_qualified": true,
+      "ordinary_source_sequence_executed": false,
+      "public_combined_entries_equal_global": true
+    },
+    "interpretation": [
+      "Exact PG170006/102-prefix ordinary postgres/read-only/JWT-role admission and observation availability are all true.",
+      "Global default row absent; public-specific row present; SQL reports equal full normalized global/public entry sets. Presence alone was not an entry difference.",
+      "Both scopes report PUBLIC EXECUTE true; named-role direct flags false; all four residual counts zero. Direct false does not mean effective denial through PUBLIC or inherited roles.",
+      "These direct default facts do not substantiate an unexpected residual/default-grant candidate. PUBLIC is explicitly named by source revokes, but this read-only observation does not execute or prove those revokes or ownership transfer.",
+      "The actual predecessor/source sequence was not executed; hosted cause remains false/UNKNOWN. No production guard weakening, source repair, normal CI retry or native95 acceptance follows."
+    ],
+    "actual_transport": {
+      "result_qualified": true,
+      "native_exit": 0,
+      "timed_out": false,
+      "overflow": false,
+      "child_settled": true,
+      "writer_readers_settled": "Included in reviewed child_settled computation",
+      "transport_complete": true,
+      "write_errors": [],
+      "closed_shape": true,
+      "observation_qualified": true,
+      "connection_settlement": "PSQL_EXIT_REPORTED",
+      "stdout": {
+        "bytes": 1029,
+        "sha256": "d3decfbda0d1a66597119f6c7b46ef1c98549a040d962783a05ab3c8caaae6a1",
+        "eof": true,
+        "reader_error": null
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "eof": true,
+        "reader_error": null
+      },
+      "stdout_closed_row_reconstruction": {
+        "matched_exact_bytes": 1029,
+        "sha256": "d3decfbda0d1a66597119f6c7b46ef1c98549a040d962783a05ab3c8caaae6a1"
+      },
+      "stream_caps": {
+        "stdout": 8192,
+        "stderr": 65536
+      },
+      "physical_eof_both": true,
+      "reader_errors": false,
+      "raw_streams_persisted_or_emitted_by_reviewer": false
+    },
+    "provenance_checks": {
+      "exact_reviewed_three_inputs_unchanged": true,
+      "actual_source_bindings_unchanged": true,
+      "prior_originals_unchanged": true,
+      "activation_to_readiness_digest_match": true,
+      "consumed_to_activation_digest_match": true,
+      "result_to_consumed_digest_match": true,
+      "scheduled_probe_connections": 1,
+      "scheduled_fresh_cleanup_connections": 0,
+      "replay_forbidden": true,
+      "coordinator_completed_turn": "01a15e4e-52d2-7650-b018-13dc5bfd19b4",
+      "grant_tool": "exec-f8c38219-831f-4757-aa78-d1545c2dd487",
+      "allocation_exact_input_tuple_matches_review": true,
+      "root_review_admission_originals_match": true,
+      "readiness_request_matches_intent": true,
+      "resource_id_matches_activation_consumption_start_readiness_stop": true,
+      "project_container_match_intent_activation_consumed": true,
+      "live_container_image_port_checks": "Enforced by unchanged reviewed runner before consumed marker; successful result supports those passed gates. No new inspect/query by reviewer."
+    },
+    "resource_custody": {
+      "resourceId": "a46f230d-63bc-4433-8c36-89b5cd166ef8",
+      "requestId": "95957c16-966a-4785-b4a6-6f74d059da90",
+      "readiness_state": "active",
+      "owned": true,
+      "lastEvidence": "registered-start-verified",
+      "compose_phase": "active",
+      "outcomeVerified": true,
+      "start_acknowledgment": "starting/verified=false was admission only; later active/outcomeVerified readiness is used.",
+      "startOutcome_unknown_limit": "Unknown backend-invocation summary is not interpreted as fresh-start proof; exact active registered readiness/ownership is the validated-use evidence.",
+      "project": "rg-b03bb4a5a5c01b6c748bde6d72d8bcbfc9b2d1bf",
+      "container": "b841e76229b56fe9959b358a2df0c937d1b34d23a58800a57452a14674ea950c",
+      "custody": "READ_ONLY_CONNECTION_SETTLED",
+      "stop_ok": true,
+      "stop_state": "stop_requested",
+      "stop_verified": false,
+      "shutdown_confirmed": false,
+      "shutdown_polling_performed": false,
+      "meaning": "Stop accepted for this exact owned usage; no confirmed-shutdown claim or completion failure inferred."
+    },
+    "reviewed_inputs": [
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/original-function-default-acl-readonly-01/probe.sql",
+        "bytes": 5409,
+        "sha256": "58060efbeb6284316cbd225ea8107d0ada08fde1a272b38afb5be1b2fea3a79b"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/original-function-default-acl-readonly-01/proposal.json",
+        "bytes": 6450,
+        "sha256": "4f5c2971f618a9773df66386f561512ad5831475f59d27256620fee29ce743fa"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-default-acl-readonly-01-runner.py",
+        "bytes": 10192,
+        "sha256": "9d6bf741bc2ceaa7b063326a2d61d11e19c5c839a35622c0409a63570745a739"
+      }
+    ],
+    "actual_source_bindings": [
+      {
+        "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+        "bytes": 24435,
+        "sha256": "b57e6a1726cfac545de1cd141e26f56e6bebb4a535d1cd7f706e4a1ad3e05555",
+        "head_blob": "c5d6d53faab649b40dee5c12f7933030224fa4ab"
+      },
+      {
+        "path": "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",
+        "bytes": 11947,
+        "sha256": "f788d507414dc32ecc45b37dcfa44a45ce01cc36da0417063f4e9da1549a3b91",
+        "head_blob": "2b767ae71fda30f5aec0d79537d74bdbe878d757"
+      }
+    ],
+    "provenance_receipts": [
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-default-acl-readonly-01-input-admission.json",
+        "bytes": 1668,
+        "sha256": "d71088ce2352886c58db2ad6d682dbcdaea5866ac5b7b0a04e53d21b86026563"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-default-acl-readonly-01-compose-intent.json",
+        "bytes": 832,
+        "sha256": "fea01835ce4005b900ba6bb8a732e24bf573f856be163322d35a1ee10b375ba5"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-default-acl-readonly-01-compose-start.json",
+        "bytes": 378,
+        "sha256": "5aee9edf140c49ce2a60447f93ca129a15322a90e5ac7cf06870318fe103f292"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-default-acl-readonly-01-compose-readiness.json",
+        "bytes": 1517,
+        "sha256": "48a4fe5a10337a2c9ef4762e4bd4d073bee9c031155cdbe3e70c2dbeda330a16"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-default-acl-readonly-01-activation.json",
+        "bytes": 1099,
+        "sha256": "66178e03b47df79eeda1b336358875d8a4b30924f6966e80389673be4adbb36b"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-default-acl-readonly-01-consumed.json",
+        "bytes": 408,
+        "sha256": "1d8c379aef235f9603abecd7cb103eaca8cb8adc2c964f6332ac11d93030de8d"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-default-acl-readonly-01-result.json",
+        "bytes": 2305,
+        "sha256": "bc00a5d7449790aea56028c97b75a4abf82184b54671f6d7aff3f4d5787e15bf"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-default-acl-readonly-01-compose-stop.json",
+        "bytes": 324,
+        "sha256": "d0f2d928f83405621629df60efa9f06cf06690d82a80e181814c72d6a9321da5"
+      }
+    ],
+    "allocation_review_provenance": [
+      {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-original-function-default-acl-readonly-allocation.json",
+        "bytes": 2077,
+        "sha256": "295488b2a9470c6992937def9e600ddb6ace53fb570e4767cd086ee43cd7abe8"
+      },
+      {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/root-original-function-default-acl-readonly-review-admission.json",
+        "bytes": 1155,
+        "sha256": "b6cbb6a139c63b4f30986d895148f57cb03eb5f00d46e93a7b0cef688349174b"
+      },
+      {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-default-acl-readonly-review/original-report.md",
+        "bytes": 4530,
+        "sha256": "8a4cf7e91f7abda7c91aa9b1ee78778d0d5ff5e0807c18d7740d9d3bfd808880"
+      },
+      {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-default-acl-readonly-review/original-attestation.json",
+        "bytes": 7084,
+        "sha256": "16cd76f3eb67ef9b4bea2be34ece2a204970015e41e2c556a13662ae176ffa52"
+      },
+      {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-default-acl-readonly-review/result.json",
+        "bytes": 1319,
+        "sha256": "ebba156337baeda96313726e89289309ec342f4c9f1f0cd919369dbf6aa8026c"
+      }
+    ],
+    "qualification_method": "Offline typed-shape/value, stream-bound/EOF/settlement, digest-chain/once/allocation/resource receipt verification. No runtime acquisition was repeated.",
+    "limits": {
+      "source_or_historical_comparability": "UNQUALIFIED",
+      "ordinary_source_sequence_executed": false,
+      "hosted_cause_proven": false,
+      "local_candidate": "UNSUBSTANTIATED",
+      "hosted_failed_predicate": "UNKNOWN",
+      "source_fix_authority": false,
+      "normal_ci_retry_authority": false,
+      "normal_acceptance_credit": 0,
+      "new_sql_docker_resources_api_ci_provider_git_effects": 0,
+      "writes": "Only this new qualification JSON; all prior originals and inputs preserved."
+    }
+  },
+  "Open questions": [
+    "Actual predecessor catalog identity, the failed hosted guard predicate and ordinary source ownership/ACL execution remain UNKNOWN. Direct entries do not prove inherited effective function access."
+  ],
+  "Deferred work": [
+    "No new evidence route or authority is proposed by this qualification. Any separately assessed next route must preserve UNKNOWN and existing source/CI/resource boundaries. Normal acceptance remains zero."
+  ],
+  "Blockers": []
+}
