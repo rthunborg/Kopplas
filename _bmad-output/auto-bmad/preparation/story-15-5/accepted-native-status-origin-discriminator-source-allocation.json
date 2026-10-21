@@ -1,0 +1,77 @@
+{
+  "kind": "ROOT_ACCEPTED_COORDINATOR_STATUS_ORIGIN_SOURCE_ALLOCATION",
+  "coordinator_thread": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "coordinator_title": "Coordinator",
+  "actual_turn": "01a15d5a-2b38-7fe1-bf6c-970aa0b28846",
+  "actual_turn_status": "completed",
+  "grant_tool_id": "exec-5b2da0b8-57b0-4437-a65e-d4450c242745",
+  "final_message_id": "msg_0954b60b44796db1016ad86946b5c0819198879c52eec2ec07",
+  "owned_worktree": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas",
+  "plan_pass_manifest_sha256": "9f980c5f0c16f4efa073631e68312dee6750a68b371849d8d52c87abbb6dab0c",
+  "author_source_hunks": {
+    "tests/support/calendar-feed-atdd.ts": "existingcauseproofqualificationSELECT/catch/closedobservation only",
+    "scripts/ci/with-calendar-feed-runtime.mjs": "strict diagnostic schema/validator only",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts": "focused positive/negative controls only",
+    "tests/support/calendar-feed-ci-contract.ts": "helper SHA pin only",
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md": "author rationale/SRO/evidence; approvedkernel preserved"
+  },
+  "allowed_semantics": [
+    "18 fixed catalog booleans in existingSELECT; noextraquery/connection",
+    "owner_tokens_select TABLE_ACL_ONLY excludedfrom17necessarycandidates; lonefalseUNKNOWN",
+    "routine3closedclasses only observed EXTERNALerrororigin, not underlyingcause especially caughtinnererror",
+    "strictownproperty finiteenum no rawroutine/errors/details/context/SQL/params/stack"
+  ],
+  "implementation_review_directory": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-implementation-review",
+  "implementation_review_roles": {
+    "author": [
+      "review-input.md",
+      "input-binding.json",
+      "local-checks.json"
+    ],
+    "distinct_reviewer": [
+      "original-report.md",
+      "original-attestation.json",
+      "result.json"
+    ],
+    "root": [
+      "manifest.json"
+    ]
+  },
+  "author_future_freeze": "_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-native-status-origin-discriminator.json",
+  "private_reserved_only": {
+    "directory": ".env.epic15.mail-runtime/story-15-5-preparation/status-origin-discriminator-01",
+    "native": [
+      "collect-diagnostic-evidence.py",
+      "test_collect_diagnostic_evidence.py",
+      "diagnostic-evidence.json",
+      "diagnostic-qualification.json",
+      "manifest.json"
+    ],
+    "root": [
+      "expected-admission.json",
+      "terminal-facts.json"
+    ],
+    "root_outside": [
+      "root-status-origin-discriminator-01-driver.py",
+      "root-status-origin-discriminator-01-result.json"
+    ]
+  },
+  "private_gate": "actual newsource/checkpointbindings then distinctHighreview beforeAPI/CI; final3publication separategrant",
+  "future_dispatch_collection": "NOT ACTIVATED; all codePASS/freeze/push/freshUUID/Rootintent/separateactivation gates retained; one producer dispatch and one listing plus atmostoneZIP only if separately admitted",
+  "unknown_stop": "Ambiguous/nonrepro/incomparable/cleanupunknown=>namedUNKNOWN/noopaquenormalretry",
+  "ungranted": [
+    "appbehavior",
+    "migrations",
+    "dependencies",
+    "env",
+    "SQL grants RLS repair",
+    "provider",
+    "main merge",
+    "deploy",
+    "resources",
+    "monitor resume"
+  ],
+  "normal_acceptance_credit": 0,
+  "E16": "active booking3hunks and Jobsfixes do not overlap these5/privateE15paths",
+  "no_foreign_checkout_writes": true
+}

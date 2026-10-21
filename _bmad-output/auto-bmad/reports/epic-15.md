@@ -4147,3 +4147,34 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Coordinator exact5source/privateconsumer allocation requested; beforeimplementation Root checkpoints completedpreparationmetadata, then Highauthor narrowdelta/focusedcontrols and independentHightargetedcode review. No effect granted by planPASS.
+
+## Report — 2026-10-21T07:27:32Z (status-origin-exact-source-allocation-before-build)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `7cdee0c`).
+**Pipeline status:** 15.5 P5 active; correctedplanPASS and exact5source/offlineallocation admitted before implementation.
+**Continues:** Completed preparation checkpoint7cdee0c5 preserves prior reviews and settled diagnostic recovery;56metadata files, staged diffcheck passed. Coordinator actualcompletedturn01a15d5a-2b38-7fe1-bf6c-970aa0b28846 grants exacthelper/wrapper/unit/SHApin/Spec hunks and distinctHighimplementationreview only. Futureprivate7+outside2 reserved, not active; no apppermission/migration/SQL/RLS changes. Routine tag describes observed EXTERNALerrororigin only, especially not caughtinnercause.
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-20T12:18:56Z; completed in progress — elapsed 19h 08m (≈59m AI-run, ≈18h 09m human/idle wait); resumed 124×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Highauthor implements narrow validateddelta and focusedcontrols in ownedcheckout, preserving kernel/sourceguards. IndependentHightargetedreview then freshsourcefreeze/checkpoint/privatebinding; no nativeAPI/CI activation yet.
