@@ -1312,6 +1312,31 @@ No app build rerun for unchanged app bytes, no new normal acceptance (95 intact)
 Fresh committed latest-delta High review/private adoption/Root execution pending;
 in-review/kernel5760/broad-loop3/ARR warning preserved.
 
+## Discovery-order unit correction — 2026-10-21
+
+The qualified Linux Node22.23.2 full unit suite reproduced one local failure:
+3178P/1F/0skip across3179 cases/103 suites. Installed Vitest discovery returned
+the same six serial DDL files in a different order. The assertion now uses the
+existing exact-partition check, preserving unique membership, parallel exclusion,
+group0-before-group1, serial fileParallelism=false and all execution settings.
+Reversed/shuffled discovery is accepted; missing/duplicate serial files still fail.
+The installed scheduler probe still requires parallel teardown before serial work
+and deliberately detects reversed-group interference. No Vitest config or runtime
+behavior changed. This local reproduction does not establish the hosted failure
+cause or fix the43DB/14browser failures.
+
+Actual focused Windows and Linux runs each passed3/3,0F/skip/cancel. The final
+qualified Linux full unit suite passed3179/3179 across103 suites,0F/skip/cancel/todo,
+in35756.921857ms, using the existing private Node/native-binding overlay and a fresh
+per-child TMPDIR. Prior Linux3178P/1F and Windows3178P/1skip remain historical runs;
+these counts are not added together. Whole TypeScript and affected ESLint exited0.
+The initial edit reader stopped on newline matching; the initial Spec reader then
+included a newline outside the approved kernel. Both stopped before writes and
+were corrected in the reader only. No app build rerun, source commit, native/API/CI
+or resource launch occurred. Root commits after mechanical conservation and obtains
+a distinct targeted committed-delta review before any justified fresh CI attempt.
+In-review, loop3, kernel5760 and the historical ARR warning remain.
+
 ## Suggested Review Order
 
 Author: Story 15.5 implementation/fix author (gpt-6.1-sol High), incorporating
@@ -1320,7 +1345,7 @@ Round 3 latest-fix assertions, the subsequent checkpoint repairs and bounded
 native setup diagnostics, same-connection privacy qualification and explicit
 isolated setup authority transport, bounded child settlement, browser diagnostic repair,
 actual SQL callback ownership, executed-feature fixture/status/policy repairs and
-bounded safe-leaf transport through the installed reporter, closed owned scenario origins and the minimal Vite security patch and the admitted staged diagnostic-only lane.
+bounded safe-leaf transport through the installed reporter, closed owned scenario origins, the minimal Vite security patch, the admitted staged diagnostic-only lane and the discovery-order unit correction.
 Stops below resolve to final source literals before the repair commit.
 
 ### Own settings and honest lifecycle results
@@ -1574,3 +1599,13 @@ Evidence:93 affected Node controls passed0F/skip/cancel; whole TypeScript and
 focused lint passed. Synthetic query/finite-frame/source seams do not execute
 PostgreSQL or prove cause, private17-candidate interpretation or native acceptance.
 Historical failed heads and ARR warning remain; future qualifier controls unexecuted.
+
+### Separate discovery membership from execution ordering
+
+- `tests/unit/scripts/verify/integration-test-partitions.test.ts:50` — `assertExactPartition(specs.filter`: exact six-file serial membership accepts platform-dependent enumeration while group/settings guards remain enforced.
+- `tests/unit/scripts/verify/integration-test-partitions.test.ts:70` — `const serialExpected = [...ddlFiles].sort();`: reversed/shuffled acceptance and missing/duplicate rejection exercise the same live partition guard.
+- `tests/unit/scripts/verify/integration-test-partitions.test.ts:82` — `test("installed Vitest finishes parallel teardown`: actual installed scheduling proves teardown completion and reversed-group interference.
+
+Evidence: focused Windows3P and Linux3P; final Linux full3179P/0F/0skip across103
+suites; whole TypeScript and affected lint exit0. Local unit proofs preserve
+execution integrity without claiming the unknown hosted stop or DB/browser cause.

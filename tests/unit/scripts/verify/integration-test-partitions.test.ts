@@ -46,7 +46,8 @@ test("installed Vitest collects every integration file once and preserves requir
     assert.equal((parallel.config as typeof parallel.config & { fileParallelism: boolean }).fileParallelism, true);
     assert.equal((ddl.config as typeof ddl.config & { fileParallelism: boolean }).fileParallelism, false);
     assertOrdered(parallel.config.sequence.groupOrder, ddl.config.sequence.groupOrder);
-    assert.deepEqual(specs.filter((spec) => spec.project === ddl).map((spec) => slash(relative(root, spec.moduleId))), ddlFiles);
+    // Discovery order varies by platform; execution order is checked below.
+    assertExactPartition(specs.filter((spec) => spec.project === ddl).map((spec) => slash(relative(root, spec.moduleId))), [...ddlFiles].sort());
     assert.ok(specs.filter((spec) => spec.project === parallel).every((spec) => !ddlFiles.includes(slash(relative(root, spec.moduleId)))));
     const setup = runner.config.globalSetup;
     assert.ok((Array.isArray(setup) ? setup : [setup]).some((path) => slash(path).endsWith("tests/support/global-setup.ts")));
@@ -65,6 +66,12 @@ test("installed Vitest collects every integration file once and preserves requir
 test("coverage and ordering checks reject duplicate, missing, overlapping, or reversed batches", () => {
   const expected = ["tests/integration/example.int.test.ts", ddlFile].sort();
   assertExactPartition(expected, expected);
+  // Exact serial membership tolerates discovery permutations, never lost/extra files.
+  const serialExpected = [...ddlFiles].sort();
+  assertExactPartition([...ddlFiles].reverse(), serialExpected);
+  assertExactPartition([ddlFiles[0], ddlFiles[4], ...ddlFiles.slice(1, 4), ddlFiles[5]], serialExpected);
+  assert.throws(() => assertExactPartition(ddlFiles.slice(1), serialExpected), /exactly once/);
+  assert.throws(() => assertExactPartition([...ddlFiles, ddlFiles[0]], serialExpected), /both projects/);
   assertOrdered(0, 1);
   assert.throws(() => assertExactPartition([...expected, ddlFile], expected), /both projects/);
   assert.throws(() => assertExactPartition([ddlFile], expected), /exactly once/);
