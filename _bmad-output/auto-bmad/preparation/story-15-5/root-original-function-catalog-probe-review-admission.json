@@ -1,0 +1,28 @@
+{
+  "schema": "root-original-function-catalog-probe-review-admission-v1",
+  "reviewer": "/root/review15_5_preselected_id_high",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "scope": "Distinct targeted new native proof/transport review, no fourth broad story review",
+  "verdict": "PASS",
+  "originals": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-catalog-probe-review/original-report.md",
+      "bytes": 4998,
+      "sha256": "a996351bccd2bd527e4f9026c67fac019ab4b0f162cf544e086761c764832bda"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-catalog-probe-review/original-attestation.json",
+      "bytes": 8329,
+      "sha256": "10fcf2bc04c0586a512f5b06cb207e63155d9c2923b0f898d8a2b7363a5b714e"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-catalog-probe-review/result.json",
+      "bytes": 1296,
+      "sha256": "f95c187d0995f5395bc5fc85dd2b86ce72194163e391db5b08d27eddb1924c57"
+    }
+  ],
+  "actual_inputs_verified": 4,
+  "no_native_execution_claim": true,
+  "normal_acceptance_credit": 0
+}

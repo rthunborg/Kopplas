@@ -4612,3 +4612,36 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Commit owned review/bookkeeping, push reviewed source unchanged, bind fresh normal operation and dispatch once; qualify actual results before delivery.
+
+## Report — 2026-10-21T11:47:14Z (ongoing - original-function catalog proof)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `92ea25d`).
+**Pipeline status:** in-progress; story 15.5 P5 remains active
+**Continues:** 15.5 evidence acquisition, then 15.6 and epic completion gates
+
+**Summary:** Four of six stories landed. The second normal checkpoint failed startup before runtime tests. A separately reviewed one-shot rollback-only catalog fixture settled with all eleven predicates true and fresh absence/prefix proof, but public-schema comparability remains unqualified.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 286h 49m (≈54h 27m AI-run, ≈232h 22m human/idle wait); resumed 138×.
+
+**Stories:**
+1. 15.5 source 131a8ce9, pushed head 92ea25de; run39591492500 failed before runtime tests. Normal acceptance remains zero. 15.6 unstarted.
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** No legacy browsing/evidence. Independent High sensitive review retained; three broad rounds exhausted, no fourth broad pass. No main merge or deployment.
+
+**Open questions:**
+1. Actual failed original-function predicate remains UNKNOWN. Local public default ACL entry exists; its effective grant difference has not been observed.
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Prepare a bounded read-only default ACL comparison, obtain distinct High review and exact effect allocation before any new resource/query. No guessed guard fix or opaque CI retry.
