@@ -95,6 +95,23 @@ export const TENANT_ROOT_TABLE = "tenants" as const;
  * Ordering by domain (foundation, CRM, settings, pricing, calc, files, quotes, acceptance/job) —
  * union member order is irrelevant; the runtime `TENANT_TABLES` order follows the manifest.
  */
+export type JobDepthTableName = "job_members" | "job_required_work_roles" | "job_access_windows" | "job_dependencies" | "work_orders" | "work_order_assignees" | "work_order_dependencies";
+function isJobDepthTable(table: TenantTableName): table is JobDepthTableName {
+  return ["job_members", "job_required_work_roles", "job_access_windows", "job_dependencies", "work_orders", "work_order_assignees", "work_order_dependencies"].includes(table);
+}
+function jobChildRow(table: JobDepthTableName, tenantId: string, jobId: string): Record<string, unknown> {
+  const base = { id: crypto.randomUUID(), tenant_id: tenantId, job_id: jobId };
+  switch (table) {
+    case "work_orders": return {...base, title: "Work order spoof"};
+    case "work_order_assignees": return {...base, work_order_id: crypto.randomUUID(), person_profile_id: crypto.randomUUID()};
+    case "work_order_dependencies": return {id: base.id, tenant_id: tenantId, dependent_job_id: jobId, dependent_work_order_id: crypto.randomUUID(), prerequisite_job_id: crypto.randomUUID()};
+    case "job_members": return {...base, person_profile_id: crypto.randomUUID()};
+    case "job_required_work_roles": return {...base, work_role_id: crypto.randomUUID()};
+    case "job_access_windows": return {...base, starts_at: "2026-10-12T06:00:00Z", ends_at: "2026-10-12T07:00:00Z"};
+    case "job_dependencies": return {...base, prerequisite_job_id: crypto.randomUUID()};
+  }
+}
+
 export type TenantTableName =
   // foundation
   | "tenants"
@@ -147,6 +164,7 @@ export type TenantTableName =
   | "quote_acceptances"
   | "jobs"
   | "job_events"
+  | JobDepthTableName
   // Story 10.2 Förlorad/Avböjd reason table (INSERT-ONLY: no UPDATE grant/policy → cross-tenant
   // AND own-tenant UPDATE are denied at the privilege layer, 42501; no money/öre column).
   | "quote_lost_reasons"
@@ -320,6 +338,7 @@ export type MutationDenialKind = "privilege" | "rls-invisible";
  * branch of the cross-tenant suite.
  */
 export function updateDenialKind(table: TenantTableName): MutationDenialKind {
+  if (isJobDepthTable(table)) return "privilege";
   switch (table) {
     case "tenants":
     case "membership_admin_operations":
@@ -453,6 +472,7 @@ export function spoofedRowFor(
   ctx: InventoryContext,
 ): Record<string, unknown> {
   const { fixture } = ctx;
+  if (isJobDepthTable(table)) return jobChildRow(table, ctx.fixture.tenantB.id, requireCrmId(ctx.tenantBJobId, "tenantBJobId", table));
   switch (table) {
     case "tenants":
       // A NEW tenant root with a FRESH id (review fix 2026-06-26). Reusing Tenant B's
@@ -925,6 +945,7 @@ export function tenantBFilter(
   table: TenantTableName,
   ctx: InventoryContext,
 ): { column: string; value: string } {
+  if (isJobDepthTable(table)) return {column: table === "work_order_dependencies" ? "dependent_job_id" : "job_id", value: requireCrmId(ctx.tenantBJobId, "tenantBJobId", table)};
   switch (table) {
     case "tenants":
       return { column: "id", value: ctx.fixture.tenantB.id };
@@ -1171,6 +1192,7 @@ export function tenantBFilter(
 export function hijackMutationFor(
   table: TenantTableName,
 ): Record<string, unknown> {
+  if (isJobDepthTable(table)) return {[table === "work_order_dependencies" ? "dependent_job_id" : "job_id"]: crypto.randomUUID()};
   switch (table) {
     case "tenants":
       return { name: "hijacked-by-tenant-a" };
@@ -1286,6 +1308,7 @@ export function hijackMutationFor(
  * Settings tables added in Story 3.3; CRM tables in Story 3.1.
  */
 export function rlsInvisibleLabelColumn(table: TenantTableName): string {
+  if (isJobDepthTable(table)) return table === "work_order_dependencies" ? "dependent_job_id" : "job_id";
   switch (table) {
     case "customers":
       return "display_name";
@@ -1409,6 +1432,7 @@ export function anonRowFor(
   ctx: InventoryContext,
 ): Record<string, unknown> {
   const { fixture } = ctx;
+  if (isJobDepthTable(table)) return jobChildRow(table, ctx.fixture.tenantA.id, crypto.randomUUID());
   switch (table) {
     case "tenants":
       return { id: crypto.randomUUID(), name: "anon-spoof" };
@@ -1718,6 +1742,7 @@ export function anonFilterFor(
   table: TenantTableName,
   ctx: InventoryContext,
 ): { column: string; value: string } {
+  if (isJobDepthTable(table)) return {column: "tenant_id", value: ctx.fixture.tenantA.id};
   switch (table) {
     case "tenants":
       return { column: "id", value: ctx.fixture.tenantA.id };
@@ -1780,6 +1805,7 @@ export function anonFilterFor(
 export function anonMutationFor(
   table: TenantTableName,
 ): Record<string, unknown> {
+  if (isJobDepthTable(table)) return {[table === "work_order_dependencies" ? "dependent_job_id" : "job_id"]: crypto.randomUUID()};
   switch (table) {
     case "tenants":
       return { name: "anon-hijack" };
@@ -2070,3 +2096,4 @@ export function unenrolledTablesMessage(unenrolled: readonly string[]): string {
     `through to a membership-shaped default). Then re-run the harness.`
   );
 }
+

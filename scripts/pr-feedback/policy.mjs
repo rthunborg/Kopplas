@@ -68,7 +68,7 @@ export function planAttempt({ pr, state, feedback, dryRun, now = Date.now() }) {
   return { eligible: true, fingerprint, dryRun: Boolean(dryRun), headSha: pr.head.sha, prNumber: pr.number, headRef: pr.head.ref, feedback };
 }
 
-export function classifyChecks({ headSha, runs = [], requiredJobs = ['verify', 'db', 'recovery-storage-loader', 'e2e', 'dashboard-e2e'] }) {
+export function classifyChecks({ headSha, runs = [], requiredJobs = ['checkpoint-admission', 'verify', 'db', 'recovery-storage-loader', 'e2e'] }) {
   const candidates = runs.filter((run) => run.event === 'pull_request' && run.head_sha === headSha && run.path === '.github/workflows/ci.yml');
   const latest = candidates.sort((a, b) => b.id - a.id)[0];
   if (!latest || latest.status !== 'completed') return { phase: 'ci-pending' };

@@ -11,7 +11,7 @@ export type BookingEditorOptions = {
   readonly canManage: boolean;
   readonly people: readonly BookingPersonOption[];
   readonly workRoles: readonly BookingOption[];
-  readonly jobs: readonly (BookingOption & { readonly customerId: string; readonly facilityId: string | null; readonly contactId: string | null })[];
+  readonly jobs: readonly (BookingOption & { readonly customerId: string; readonly facilityId: string | null; readonly contactId: string | null; readonly schedulingHint?: import("@/features/jobs/job-scheduling-consumers").JobSchedulingHint })[];
   readonly customers: readonly BookingOption[];
   readonly facilities: readonly (BookingOption & { readonly customerId: string })[];
   readonly contacts: readonly (BookingOption & { readonly customerId: string; readonly facilityId: string | null })[];
@@ -36,6 +36,7 @@ export type BookingEditorWarning = {
   readonly endsAt: string;
 };
 export type BookingEditorPreview = {
+  readonly semantics?: import("@/server/bookings/job-semantics").BookingSemanticsDisplay;
   readonly receipt: string;
   readonly bookingId: string;
   readonly warnings: readonly BookingEditorWarning[];

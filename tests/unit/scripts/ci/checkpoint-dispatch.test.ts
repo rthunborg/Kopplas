@@ -67,7 +67,7 @@ test("dispatch persists unique intent before its only POST and sends immutable i
   const state = f.record();
   assert.equal(state.phase, "dispatched");
   assert.equal(state.actor, "owner");
-  assert.deepEqual(mutations(f)[0].body, { ref: request.ref, inputs: { expected_sha: sha, checkpoint_id: state.checkpoint_id } });
+  assert.deepEqual(mutations(f)[0].body, { ref: request.ref, inputs: { expected_sha: sha, checkpoint_id: state.checkpoint_id, release_validation: "false" } });
   assert.throws(f.dispatch, /already exists/);
   assert.equal(mutations(f).length, 1);
 }));
@@ -149,7 +149,7 @@ test("argument validation excludes arbitrary cancellation IDs, malformed refs an
   assert.throws(() => validateRequest({ ...request, sha: "aaaa" }));
 });
 
-test("workflow binds admission and preserves all required gate commands and budgets", () => {
+test("workflow binds admission and preserves consequential gates with broad UI diagnostics optional", () => {
   const workflow = readFileSync(new URL("../../../../.github/workflows/ci.yml", import.meta.url), "utf8");
   assert.match(workflow, /workflow_dispatch:/);
   assert.match(workflow, /run-name:.*checkpoint:\{0\}:\{1\}/);
@@ -159,7 +159,12 @@ test("workflow binds admission and preserves all required gate commands and budg
   assert.match(workflow, /group: ci-.*inputs.checkpoint_id \|\| github.ref/);
   assert.doesNotMatch(workflow, /vars\.|secrets\./);
   for (const job of ["db", "recovery-storage-loader", "e2e", "dashboard-e2e"]) assert.match(workflow, new RegExp(`  ${job}:[\\s\\S]*?needs: \\[verify\\]`));
-  for (const command of ["pnpm audit --audit-level=high", "pnpm run verify:service-role-containment", "pnpm typecheck", "pnpm lint", "--max-seconds 180", "pnpm build", "pnpm run verify:bundle-containment", "--max-seconds 420", "pnpm run test:e2e", "--config tests/e2e/dashboard/playwright.ci.config.ts"]) assert.ok(workflow.includes(command), command);
+  for (const command of ["pnpm audit --audit-level=high", "pnpm run verify:service-role-containment", "pnpm typecheck", "pnpm lint", "pnpm build", "pnpm run verify:bundle-containment", "pnpm run test:smoke", "pnpm run test:e2e --reporter=list,json", "--config tests/e2e/dashboard/playwright.ci.config.ts"]) assert.ok(workflow.includes(command), command);
+  assert.match(workflow, /release_validation:\s+description:[^\n]+\s+type: boolean\s+required: false\s+default: false/);
+  assert.match(workflow, /dashboard-e2e:\s+if: \$\{\{ github.event_name == 'workflow_dispatch' && inputs.release_validation \}\}/);
+  const recovery = workflow.split("  recovery-storage-loader:")[1].split("  e2e:")[0];
+  assert.doesNotMatch(recovery, /inputs\.release_validation/);
+  assert.doesNotMatch(workflow, /--max-seconds/);
   assert.equal((workflow.match(/persist-credentials: false/g) ?? []).length, 5);
   // Preserve the pre-existing PR source-head policy; dispatch uses github.sha.
   assert.equal((workflow.match(/ref: \$\{\{ github.event.pull_request.head.sha \|\| github.sha \}\}/g) ?? []).length, 5);
@@ -198,3 +203,17 @@ test("native workflow admission executes exact source binding and preserves PR/p
     assert.equal(result.status === 0, passes, label);
   }
 });
+
+test("release validation is explicit and persisted in the only dispatch", () => withFixture((f) => {
+  const result = checkpoint("dispatch", { ...request, state: f.state, release_validation: "true" }, f.dependencies);
+  assert.equal(result.release_validation, true);
+  assert.equal(f.record().release_validation, true);
+  assert.equal((mutations(f)[0].body as {inputs: {release_validation: string}}).inputs.release_validation, "true");
+}));
+
+test("validation selection cannot introduce arbitrary workflow inputs", () => withFixture((f) => {
+  assert.throws(() => checkpoint("dispatch", { ...request, state: f.state, release_validation: "anything" }, f.dependencies), /true or false/);
+  assert.equal(mutations(f).length, 0);
+  assert.deepEqual(parseArgs(["dispatch", "--release-validation", "true"]).options, { release_validation: "true" });
+  assert.throws(() => parseArgs(["dispatch", "--release-validation", "true", "--release-validation", "false"]));
+}));

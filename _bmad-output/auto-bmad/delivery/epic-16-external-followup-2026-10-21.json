@@ -1,0 +1,982 @@
+{
+  "policy_version": "2026-10-19",
+  "contract_reconciliation": "Bounded PR105 external follow-up ONLY for4334810149 (trusted resolved-tenant job reads) and4334810158 (independently entitled immutable source-quote identity/filter semantics), plus causally necessary E2E factory-import repair; no new story/epic restart. Approved36AC/TR01-16 and consequential authorization/tenant/money/facts/proof/transaction/usable-flow requirements remain binding. Current reviewed functional revision64fc65db52f0b97ccb845dc81684414d783bf86c passed terminal CI39587110666 with required actual native evidence below. No functional waiver. Policy2026-10-19 retains exactly14 original owned release-only validations as DEFERRED, not executed/passed/waived; release_ready=false. Original stories/specs/SRO/TEA/retro/sprint/pipeline/records remain frozen and historical. Current author stops are follow-up rationale, not backfilled original SROs. This new record still requires root executable gate and separate independent High record-truth review before any follow-up development-completion claim.",
+  "evidence_revision": "64fc65db52f0b97ccb845dc81684414d783bf86c",
+  "development_checks": [
+    {
+      "name": "Focused server-free reader unit and pure mapping regressions",
+      "status": "passed",
+      "evidence": "Actual unit5/5 and pure injected-production-mapping17/17, zero fail/skip. Author raw logs/native0 receipts retained; this is not DB/RLS/browser coverage.",
+      "receipts": [
+        {
+          "command": [
+            "C:/nvm4w/nodejs/node.exe",
+            "node_modules/vitest/vitest.mjs",
+            "run",
+            "tests/integration/features/jobs/job-read-mapping.int.test.ts",
+            "--reporter=json"
+          ],
+          "native_exit": 0,
+          "log": "C:\\Users\\Rasmus\\AppData\\Local\\Temp\\kopplas-e16-external-followup-author-mstzhfsk\\mapping.log",
+          "log_sha256": "13a4b740e6f3bf5c01b82ee25ea1c91158abf773fc3b9b37ea64edefef58ddb8"
+        },
+        {
+          "command": [
+            "C:/nvm4w/nodejs/node.exe",
+            "--experimental-strip-types",
+            "--import",
+            "./tests/support/register.mjs",
+            "--test",
+            "tests/unit/server/read-models/my-jobs.test.ts"
+          ],
+          "native_exit": 0,
+          "log": "C:\\Users\\Rasmus\\AppData\\Local\\Temp\\kopplas-e16-external-followup-author-mstzhfsk\\unit.log",
+          "log_sha256": "f42dded1006f8085d6097883a02f8ecc47910a84b1afc03825d2ee8b6c69cdc4"
+        }
+      ],
+      "applicability": "Current12 raw bindings match reviewed candidate and committed head; no source changes since these checks."
+    },
+    {
+      "name": "Targeted static checks and production build",
+      "status": "passed",
+      "evidence": "Actual TSC, targeted ESLint and production build native0; 12/12 candidate files strict UTF-8. No runtime launched.",
+      "receipts": [
+        {
+          "command": [
+            "C:/nvm4w/nodejs/node.exe",
+            "node_modules/next/dist/bin/next",
+            "build"
+          ],
+          "native_exit": 0,
+          "log": "C:\\Users\\Rasmus\\AppData\\Local\\Temp\\kopplas-e16-external-followup-author-mstzhfsk\\build.log",
+          "log_sha256": "3dacf4f371c362e9506fb66720f7d42035dd3c051341ad1cd561bb43c5bc3980"
+        },
+        {
+          "command": [
+            "C:/nvm4w/nodejs/node.exe",
+            "node_modules/eslint/bin/eslint.js",
+            "src/server/read-models/my-jobs.ts",
+            "src/features/jobs/read.ts",
+            "src/server/read-models/job-semantics.ts",
+            "src/server/bookings/job-semantics.ts",
+            "src/components/jobs/JobList.tsx",
+            "tests/unit/server/read-models/my-jobs.test.ts",
+            "tests/integration/features/jobs/my-jobs.int.test.ts",
+            "tests/integration/features/jobs/job-read-mapping.int.test.ts",
+            "tests/integration/rls/jobs-depth.rls.test.ts",
+            "tests/e2e/jobs/jobs-depth.e2e.spec.ts",
+            "tests/support/jobs-depth-atdd.ts"
+          ],
+          "native_exit": 0,
+          "log": "C:\\Users\\Rasmus\\AppData\\Local\\Temp\\kopplas-e16-external-followup-author-mstzhfsk\\lint.log",
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "command": [
+            "C:/nvm4w/nodejs/node.exe",
+            "node_modules/typescript/bin/tsc",
+            "--noEmit"
+          ],
+          "native_exit": 0,
+          "log": "C:\\Users\\Rasmus\\AppData\\Local\\Temp\\kopplas-e16-external-followup-author-mstzhfsk\\typecheck.log",
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "name": "Required exact-head CI static/unit/process/build/dependency/containment gates",
+      "status": "passed",
+      "evidence": "Actual required verify job at current64fc65db passed2758unit0fail/skip+43process and production build; root reported required job PASS and supplied native log. No new local execution.",
+      "native_receipt": {
+        "path": "C:\\Users\\Rasmus\\AppData\\Local\\Temp\\kopplas-e16-ci39587110666-verify.log",
+        "sha256": "1e5729273e541b58e0be1cf56b75cdda1bc8adea66d592b535391dab70f4db6f"
+      },
+      "evidence_revision": "64fc65db52f0b97ccb845dc81684414d783bf86c"
+    },
+    {
+      "name": "Full required migrations/database/RLS and named follow-up regressions",
+      "status": "passed",
+      "evidence": "Actual exact-head full required lane with SUPABASE_TEST_REQUIRED=1:1895total1894pass0fail1soleordinaryphysicalrecoveryskip. All14named Jobs/MyJobs integration/RLS cases actually executed and passed (8RLS+6MyJobs, including5new); no selected skip or count-only inference. Native aggregate numPendingTests=1 corresponds to assertion status skipped for ordinary physical recovery, not passing coverage; separate required current isolated proof executed1/1pass0skip.",
+      "native_receipt": {
+        "path": "C:\\Users\\Rasmus\\AppData\\Local\\Temp\\kopplas-e16-ci39587110666-integration-native\\full-integration.json",
+        "sha256": "6ce7a789026ccd44a9fb934b29bb0f7ca67896a7b4e457af74655301e7e4753d"
+      },
+      "evidence_revision": "64fc65db52f0b97ccb845dc81684414d783bf86c"
+    },
+    {
+      "name": "Direct isolated Storage recovery integrity",
+      "status": "passed",
+      "evidence": "Actual current native1test1pass0fail0pending, separately required Storage recovery integrity; not production DR/RTO/RPO proof.",
+      "native_receipt": {
+        "path": "C:\\Users\\Rasmus\\AppData\\Local\\Temp\\kopplas-e16-ci39587110666-recovery-native\\isolated-storage-recovery.json",
+        "sha256": "eec7db48831daa7dc16b26d112b25f26b62f787c01661fca3533c1d55fc5ca66"
+      },
+      "evidence_revision": "64fc65db52f0b97ccb845dc81684414d783bf86c"
+    },
+    {
+      "name": "Essential production browser acceptance",
+      "status": "passed",
+      "evidence": "Actual current native36/36 passed FIRST ATTEMPT,0retry/unexpected/flaky/skip; all six targeted jobs-depth cases executed and passed including new selected-tenant/source-filter journey. Does not clear either historical uncertainty.",
+      "native_receipt": {
+        "path": "C:\\Users\\Rasmus\\AppData\\Local\\Temp\\kopplas-e16-ci39587110666-browser-native\\general-browser.json",
+        "sha256": "aa6bb85a8d0ffbf362a905b459416addb69baeeed211ebc61fb8bb4c0926484b"
+      },
+      "named_executed_cases": [
+        {
+          "file": "jobs/jobs-depth.e2e.spec.ts",
+          "case": "[P0] checkpoint stale full-card draft is refused, retained, and only replaced after explicit fresh-read consent",
+          "status": "expected",
+          "attempts": [
+            {
+              "status": "passed",
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "file": "jobs/jobs-depth.e2e.spec.ts",
+          "case": "[P0] external follow-up selected tenant scopes Mine/all/deep links and entitled source filters agree",
+          "status": "expected",
+          "attempts": [
+            {
+              "status": "passed",
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "file": "jobs/jobs-depth.e2e.spec.ts",
+          "case": "[P0] 16.1-E01 My Jobs is the actual duplicate-free member/assignee union; direct denial and money-safe assigned detail agree",
+          "status": "expected",
+          "attempts": [
+            {
+              "status": "passed",
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "file": "jobs/jobs-depth.e2e.spec.ts",
+          "case": "[P1] 16.1-E02 phone progressive identity, scheduling and child save retains unsent input after failure; explicit retry persists across reload",
+          "status": "expected",
+          "attempts": [
+            {
+              "status": "passed",
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "file": "jobs/jobs-depth.e2e.spec.ts",
+          "case": "[P0] 16.1-E03 actual job-bound booking preview/save consumes requirements and windows; changed job facts invalidate review before durable save",
+          "status": "expected",
+          "attempts": [
+            {
+              "status": "passed",
+              "retry": 0
+            }
+          ]
+        },
+        {
+          "file": "jobs/jobs-depth.e2e.spec.ts",
+          "case": "[P1] 16.1-E04 dependency dates display unknown, a linked violated-order warning, then clear only after a durable date correction",
+          "status": "expected",
+          "attempts": [
+            {
+              "status": "passed",
+              "retry": 0
+            }
+          ]
+        }
+      ],
+      "evidence_revision": "64fc65db52f0b97ccb845dc81684414d783bf86c"
+    },
+    {
+      "name": "Required scoped RBAC pilot performance",
+      "status": "passed",
+      "evidence": "Current DB log actual5warmup25measured scoped RBAC pilot:readp95=19.046465999999782ms under250ms; synthetic bulk effective-permissionsp95=5.367707000000337ms under25ms. NOT Jobs-capacity/production throughput/NFR proof or a substituted auth baseline.",
+      "native_receipt": {
+        "path": "C:\\Users\\Rasmus\\AppData\\Local\\Temp\\kopplas-e16-ci39587110666-db.log",
+        "sha256": "5f807223aa2fe1beeef5ac03b6fb8a0132c30598fbbec7680fe7e5fb3e1a4e25"
+      },
+      "evidence_revision": "64fc65db52f0b97ccb845dc81684414d783bf86c"
+    }
+  ],
+  "independent_review": {
+    "status": "passed",
+    "verdict": "qualifiedCheckpointPASS",
+    "scope": "Actual source review union: qualifiedCheckpointPASS original12 candidate plus qualified targeted static-import repair. Separate truth/provenance review of THIS new JSON remains pending.",
+    "evidence": "Actual distinct current source checkpoint review plus targeted test-import repair review; runtime/fullDB and future record-truth review remain separately qualified.",
+    "route": "gpt-6.1-sol High, /root/e16_readiness; independent of implementation author and nested SQL author.",
+    "receipts": [
+      {
+        "path": "C:\\Users\\Rasmus\\AppData\\Local\\Temp\\kopplas-e16-external-followup-author-mstzhfsk\\independent-external-followup-review.md",
+        "sha256": "0966e856ef64dbf5c0f38d945224222c1292884ee431ed3490c1b134dbb3cce3",
+        "scope": "original12 source checkpoint at6f0; all11 other bindings unchanged"
+      },
+      {
+        "path": "C:\\Users\\Rasmus\\AppData\\Local\\Temp\\kopplas-e16-external-followup-author-mstzhfsk\\independent-browser-import-repair-review.md",
+        "sha256": "1f745ac6bd8238815964393802a7484a3782fcc4f8f20fb8616447da7038fa48",
+        "scope": "one changed E2E import binding; qualifiedCheckpointPASS; no oracle change"
+      }
+    ]
+  },
+  "deferred_release_validation": [
+    {
+      "item": "Exhaustive role/device/browser matrices beyond the four essential Jobs journeys",
+      "owner": "E16 UI/release-validation owner",
+      "status": "deferred",
+      "evidence": "Exact d605295a46634e2c20013638e01c5e2a37ad0779 required Chromium smoke11/11 including4Jobs passed. Broader matrices and optional dashboard/release_validation lanes did not execute; their skips confer no coverage. Current policy classifies that breadth as release validation, preserving the actual functional requirements.",
+      "next_action": "At release stabilization, the E16 UI/release-validation owner runs the deliberate release_validation=true lane and the tracked full role/device/browser matrix on the qualified final epic candidate, retaining actual results before any release-ready claim.",
+      "source_story_record": "_bmad-output/auto-bmad/delivery/16-1-jobs-depth-activation-container-evolution-and-my-jobs.json"
+    },
+    {
+      "item": "Screenshot comparison, visual inspection, representative manual walkthrough and polish",
+      "owner": "E16 UI/release-validation owner",
+      "status": "deferred",
+      "evidence": "No E16 screenshot-comparison or manual/visual pass is claimed. Existing historical evidence stays historical. Current owner policy defers this work; essential connected360x640 failure/retry/persistence behavior has actual browser coverage above.",
+      "next_action": "Before release readiness, the E16 UI/release-validation owner records screenshot comparisons and representative viewport/manual design/accessibility walkthroughs, resolves consequential defects and retains their evidence separately from the development smoke.",
+      "source_story_record": "_bmad-output/auto-bmad/delivery/16-1-jobs-depth-activation-container-evolution-and-my-jobs.json"
+    },
+    {
+      "item": "Exhaustive browser, role and viewport matrices beyond the essential E01-E05 and existing smoke journeys",
+      "owner": "Kopplas release-validation coordinator; root owns deferred-ledger integration",
+      "status": "deferred",
+      "evidence": "CI 39317194836 executed the 16 essential browser tests, including all five E01-E05 first attempt/retry 0. It did not execute the exhaustive release matrix; optional dashboard/release validation was skipped with release_validation=false and is not coverage.",
+      "next_action": "Before release readiness, the coordinator enumerates and executes the remaining role/viewport/job-kind combinations on a qualified protected runtime, records results and resolves consequential failures in the root-owned release ledger.",
+      "source_story_record": "_bmad-output/auto-bmad/delivery/16-2-job-members-and-per-job-roles-arbetsledare.json"
+    },
+    {
+      "item": "Screenshot comparisons and visual inspection of the job-members, designation and dates surfaces",
+      "owner": "Kopplas release-validation coordinator; root owns deferred-ledger integration",
+      "status": "deferred",
+      "evidence": "No exhaustive screenshot-comparison or visual-inspection evidence is claimed. Production build and essential functional browser passes are development evidence, not visual-release evidence.",
+      "next_action": "Before release readiness, capture and inspect the approved responsive states for both job kinds, record comparison evidence and disposition in the release ledger, and obtain any separately required runtime/deployment authorization.",
+      "source_story_record": "_bmad-output/auto-bmad/delivery/16-2-job-members-and-per-job-roles-arbetsledare.json"
+    },
+    {
+      "item": "Manual walkthroughs and presentation/usability polish beyond the verified essential connected flow",
+      "owner": "Kopplas release-validation coordinator; root owns deferred-ledger integration",
+      "status": "deferred",
+      "evidence": "Manual release walkthroughs and polish were not executed in this author run. The actual automated persistence/retry/authorization journeys passed; no functional, security, transaction or storage obligation is deferred here.",
+      "next_action": "Before release readiness, perform the recorded manual keyboard/phone/desktop walkthrough and polish review, attach evidence and resolve or explicitly disposition release issues in the root-owned ledger.",
+      "source_story_record": "_bmad-output/auto-bmad/delivery/16-2-job-members-and-per-job-roles-arbetsledare.json"
+    },
+    {
+      "item": "Exhaustive browser, role, viewport and job-kind matrices beyond the essential work-order E01-E05 and existing smoke",
+      "owner": "Kopplas release-validation coordinator; root owns deferred-ledger integration",
+      "status": "deferred",
+      "evidence": "CI39410923156 passed21essential journeys first attempt; exhaustive release matrices were not executed. Optional dashboard skipped with release_validation=false is not coverage.",
+      "next_action": "Before release readiness, enumerate and execute the remaining qualified role/viewport/job-kind matrix, record evidence and resolve consequential failures in the root-owned release ledger.",
+      "source_story_record": "_bmad-output/auto-bmad/delivery/16-3-arbetsorder.json"
+    },
+    {
+      "item": "Screenshot comparisons and visual inspection of work-order cards, pane, dependencies and shared Files states",
+      "owner": "Kopplas release-validation coordinator; root owns deferred-ledger integration",
+      "status": "deferred",
+      "evidence": "No exhaustive screenshot-comparison or visual-inspection evidence is claimed. Production build and functional browser passes are development evidence.",
+      "next_action": "Before release readiness, capture and inspect approved responsive states for both job kinds and record comparison evidence/disposition under separately qualified runtime and deployment authorization.",
+      "source_story_record": "_bmad-output/auto-bmad/delivery/16-3-arbetsorder.json"
+    },
+    {
+      "item": "Manual keyboard/phone/desktop walkthroughs and presentation/usability polish beyond the essential connected flow",
+      "owner": "Kopplas release-validation coordinator; root owns deferred-ledger integration",
+      "status": "deferred",
+      "evidence": "Manual release walkthroughs and polish were not executed in this author run; no functional, authorization, tenant-isolation, transaction or Storage requirement is deferred.",
+      "next_action": "Before release readiness, perform the manual responsive/keyboard walkthrough and polish review, attach evidence and resolve or explicitly disposition release issues in the root-owned ledger.",
+      "source_story_record": "_bmad-output/auto-bmad/delivery/16-3-arbetsorder.json"
+    },
+    {
+      "item": "Release-only exhaustive browser matrix beyond the seven essential Story16.4 journeys: additional role, viewport and interaction combinations for upgrade/full-card/booking consumers.",
+      "owner": "Epic16 release validation owner (root)",
+      "status": "deferred",
+      "evidence": "Required exact-head essential smoke passed all seven new and 21 existing journeys; exhaustive release_validation dispatch was false and this breadth was not executed. No functional/security acceptance is deferred.",
+      "next_action": "At the Epic16 release checkpoint, run the owned optional release-validation browser matrix and record its exact-head results.",
+      "source_story_record": "_bmad-output/auto-bmad/delivery/16-4-projekt-upgrade-and-job-card-semantics.json"
+    },
+    {
+      "item": "Release-only screenshot comparison and visual review of full-card, upgrade confirmation and booking consumer presentation across release viewports.",
+      "owner": "Epic16 release validation owner (root)",
+      "status": "deferred",
+      "evidence": "Functional production browser smoke passed; exhaustive screenshots/visual comparison were not executed. Existing design-system presentation is retained.",
+      "next_action": "Capture the release-state screenshots, compare the approved design-system layouts and record visual findings and fixes in release validation.",
+      "source_story_record": "_bmad-output/auto-bmad/delivery/16-4-projekt-upgrade-and-job-card-semantics.json"
+    },
+    {
+      "item": "Release-only manual walkthrough and presentation polish for the completed card/upgrade/booking flows.",
+      "owner": "Epic16 release validation owner (root)",
+      "status": "deferred",
+      "evidence": "Automated required persistence, authority, retry and conservation journeys passed; manual release walkthrough/polish was not executed. Consequential functional/security defects remain development requirements.",
+      "next_action": "Perform the Epic16 release walkthrough, resolve recorded presentation-polish findings, and attach the manual evidence before release readiness.",
+      "source_story_record": "_bmad-output/auto-bmad/delivery/16-4-projekt-upgrade-and-job-card-semantics.json"
+    },
+    {
+      "item": "Release-only exhaustive role,viewport and browser matrix beyond the five essential workspace journeys and retained smoke, including remaining traceability/navigation permutations.",
+      "owner": "Epic16 release validation owner (root)",
+      "status": "deferred",
+      "evidence": "All five workspace journeys passed first attempt; complete required smoke passed33 cases with two honestly qualified retained retries. Optional release_validation=false; exhaustive breadth was not executed. No functional/security failure is deferred.",
+      "next_action": "Run the owned optional Epic16 release-validation matrix on the qualified release head and attach exact results.",
+      "source_story_record": "_bmad-output/auto-bmad/delivery/16-5-job-workspace-shell.json"
+    },
+    {
+      "item": "Release-only screenshot comparison and visual review of workspace header,tabs,panels and dialogs across release viewports.",
+      "owner": "Epic16 release validation owner (root)",
+      "status": "deferred",
+      "evidence": "Essential production interaction and persistence checks executed; exhaustive screenshots and visual comparison were not executed.",
+      "next_action": "Capture release-state screenshots,compare the existing design-system layouts and record visual findings before release readiness.",
+      "source_story_record": "_bmad-output/auto-bmad/delivery/16-5-job-workspace-shell.json"
+    },
+    {
+      "item": "Release-only manual connected-field walkthrough and presentation polish of workspace,child/file navigation and explicit retry flows.",
+      "owner": "Epic16 release validation owner (root)",
+      "status": "deferred",
+      "evidence": "Automated essential retention,refusal,retry and persistence acceptance executed; manual release walkthrough/polish was not executed. Consequential behavior remains a development requirement.",
+      "next_action": "Perform the Epic16 release walkthrough,resolve presentation-polish findings and attach manual evidence before release readiness.",
+      "source_story_record": "_bmad-output/auto-bmad/delivery/16-5-job-workspace-shell.json"
+    }
+  ],
+  "release_ready": false,
+  "current_ci": {
+    "run_id": "39587110666",
+    "head_sha": "64fc65db52f0b97ccb845dc81684414d783bf86c",
+    "url": "https://github.com/rthunborg/Kopplas/actions/runs/39587110666",
+    "status": "completed",
+    "conclusion": "success",
+    "release_validation": false,
+    "native_receipts": {
+      "verify": {
+        "path": "C:\\Users\\Rasmus\\AppData\\Local\\Temp\\kopplas-e16-ci39587110666-verify.log",
+        "sha256": "1e5729273e541b58e0be1cf56b75cdda1bc8adea66d592b535391dab70f4db6f"
+      },
+      "browser": {
+        "path": "C:\\Users\\Rasmus\\AppData\\Local\\Temp\\kopplas-e16-ci39587110666-browser-native\\general-browser.json",
+        "sha256": "aa6bb85a8d0ffbf362a905b459416addb69baeeed211ebc61fb8bb4c0926484b"
+      },
+      "recovery": {
+        "path": "C:\\Users\\Rasmus\\AppData\\Local\\Temp\\kopplas-e16-ci39587110666-recovery-native\\isolated-storage-recovery.json",
+        "sha256": "eec7db48831daa7dc16b26d112b25f26b62f787c01661fca3533c1d55fc5ca66"
+      },
+      "browser_log": {
+        "path": "C:\\Users\\Rasmus\\AppData\\Local\\Temp\\kopplas-e16-ci39587110666-browser.log",
+        "sha256": "0350bb18a5229d26739fe240159aafb210d0854b2ff9f18fc3b840e87ceb442c"
+      },
+      "full_database": {
+        "path": "C:\\Users\\Rasmus\\AppData\\Local\\Temp\\kopplas-e16-ci39587110666-integration-native\\full-integration.json",
+        "sha256": "6ce7a789026ccd44a9fb934b29bb0f7ca67896a7b4e457af74655301e7e4753d"
+      },
+      "db_log": {
+        "path": "C:\\Users\\Rasmus\\AppData\\Local\\Temp\\kopplas-e16-ci39587110666-db.log",
+        "sha256": "5f807223aa2fe1beeef5ac03b6fb8a0132c30598fbbec7680fe7e5fb3e1a4e25"
+      }
+    },
+    "terminal_evidence_supplied": true,
+    "job_status": {
+      "verify": "passed",
+      "full_database": "passed",
+      "recovery": "passed",
+      "browser": "passed",
+      "dashboard_optional": "skipped;not coverage"
+    },
+    "browser_counts": {
+      "startTime": "2026-10-21T10:52:47.990Z",
+      "duration": 194208.35400000002,
+      "expected": 36,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "targeted_browser_passes": 6,
+    "terminal_provenance": "Root supplied actual terminal CI helper native0 for exact64fc65db52f0b97ccb845dc81684414d783bf86c/run39587110666 before allocating this record. Native reports/logs independently parsed and hash-bound here; no new provider query by author.",
+    "database_counts": {
+      "total": 1895,
+      "passed": 1894,
+      "failed": 0,
+      "pending_aggregate": 1,
+      "ordinary_skipped_assertions": 1
+    },
+    "ordinary_skipped_case": {
+      "file": "/home/runner/work/Kopplas/Kopplas/tests/integration/ops/recovery-storage-immutability.int.test.ts",
+      "case": "isolated recovery Storage physical-loader proof serves loader-materialized bytes without mutating logical rows and rejects generic plus quote-PDF overwrite attempts",
+      "status": "skipped"
+    },
+    "isolated_recovery_counts": {
+      "total": 1,
+      "passed": 1,
+      "failed": 0,
+      "pending": 0
+    },
+    "scoped_rbac_pilot": {
+      "warmup_iterations": 5,
+      "measured_iterations": 25,
+      "read_p95_ms": 19.046465999999782,
+      "read_threshold_ms": 250,
+      "synthetic_bulk_permissions_p95_ms": 5.367707000000337,
+      "bulk_threshold_ms": 25,
+      "qualification": "Scoped RBAC pilot, not Jobs capacity or production NFR"
+    }
+  },
+  "current_fix_author_review_order": [
+    {
+      "path": "src/server/read-models/my-jobs.ts",
+      "line": 17,
+      "symbol": "export async function readMyJobs",
+      "rationale": "Bind trusted normal-client request tenant before personal RPC; fail closed on unavailable authority."
+    },
+    {
+      "path": "supabase/migrations/20261021102151_e16_job_read_tenant_and_source_quote_scope.sql",
+      "line": 8,
+      "symbol": "create function public.read_job_cards",
+      "rationale": "Tenant admission plus row-scope and old-overload revocation preserve independent job and quote ACLs."
+    },
+    {
+      "path": "src/features/jobs/read.ts",
+      "line": 231,
+      "symbol": "quoteVersionId: row.quoteVersionId, quoteId: row.quoteId",
+      "rationale": "Preserve independently entitled source identity in safe operational detail without broad quote or money selection."
+    },
+    {
+      "path": "src/components/jobs/JobList.tsx",
+      "line": 127,
+      "symbol": "if (r.quoteVersionId !== null)",
+      "rationale": "Immutable version distinguishes withheld accepted source from genuine standalone; neutral Swedish label follows existing design conventions."
+    }
+  ],
+  "current_source_bindings": [
+    {
+      "path": "src/server/read-models/my-jobs.ts",
+      "absolute_path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-16-jobs\\Kopplas\\src\\server\\read-models\\my-jobs.ts",
+      "current_raw_sha256": "c104fd9638163f079c2e58ee5e9ef595e7d47d8f5ff7098d44ea472d99a0567b",
+      "reviewed_6f0_raw_sha256": "c104fd9638163f079c2e58ee5e9ef595e7d47d8f5ff7098d44ea472d99a0567b",
+      "changed": false
+    },
+    {
+      "path": "src/features/jobs/read.ts",
+      "absolute_path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-16-jobs\\Kopplas\\src\\features\\jobs\\read.ts",
+      "current_raw_sha256": "5be3e38c93607ec128990c01887a9e9dee9b2504e699413dcdd903e725eca470",
+      "reviewed_6f0_raw_sha256": "5be3e38c93607ec128990c01887a9e9dee9b2504e699413dcdd903e725eca470",
+      "changed": false
+    },
+    {
+      "path": "src/server/read-models/job-semantics.ts",
+      "absolute_path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-16-jobs\\Kopplas\\src\\server\\read-models\\job-semantics.ts",
+      "current_raw_sha256": "92219783c44716a8a47dbe7f3c13e1029b50d158f32d68a70b5ad69fddb82560",
+      "reviewed_6f0_raw_sha256": "92219783c44716a8a47dbe7f3c13e1029b50d158f32d68a70b5ad69fddb82560",
+      "changed": false
+    },
+    {
+      "path": "src/server/bookings/job-semantics.ts",
+      "absolute_path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-16-jobs\\Kopplas\\src\\server\\bookings\\job-semantics.ts",
+      "current_raw_sha256": "9b2a596abb911fadfa6773a02f7962980f18f5b55a29222b537a683809991957",
+      "reviewed_6f0_raw_sha256": "9b2a596abb911fadfa6773a02f7962980f18f5b55a29222b537a683809991957",
+      "changed": false
+    },
+    {
+      "path": "src/components/jobs/JobList.tsx",
+      "absolute_path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-16-jobs\\Kopplas\\src\\components\\jobs\\JobList.tsx",
+      "current_raw_sha256": "1fbd98f6d153c3d3c98e4265b8dc83f20a6dda74ebb660e28cfd2fd9ac9e23e1",
+      "reviewed_6f0_raw_sha256": "1fbd98f6d153c3d3c98e4265b8dc83f20a6dda74ebb660e28cfd2fd9ac9e23e1",
+      "changed": false
+    },
+    {
+      "path": "tests/unit/server/read-models/my-jobs.test.ts",
+      "absolute_path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-16-jobs\\Kopplas\\tests\\unit\\server\\read-models\\my-jobs.test.ts",
+      "current_raw_sha256": "43b15fc8e148df536732fa33194a3ecc2b209680e18a3f110ee558962d36ad5b",
+      "reviewed_6f0_raw_sha256": "43b15fc8e148df536732fa33194a3ecc2b209680e18a3f110ee558962d36ad5b",
+      "changed": false
+    },
+    {
+      "path": "tests/integration/features/jobs/my-jobs.int.test.ts",
+      "absolute_path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-16-jobs\\Kopplas\\tests\\integration\\features\\jobs\\my-jobs.int.test.ts",
+      "current_raw_sha256": "e765a7e10f4134d9c30fd62b8e6654607b84fde6d5905cc33a34e1801a31b620",
+      "reviewed_6f0_raw_sha256": "e765a7e10f4134d9c30fd62b8e6654607b84fde6d5905cc33a34e1801a31b620",
+      "changed": false
+    },
+    {
+      "path": "tests/integration/features/jobs/job-read-mapping.int.test.ts",
+      "absolute_path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-16-jobs\\Kopplas\\tests\\integration\\features\\jobs\\job-read-mapping.int.test.ts",
+      "current_raw_sha256": "eabc9b13f32cb75441cd7bd32d45b05728438f6a6ce7f2367789056f9e55ef82",
+      "reviewed_6f0_raw_sha256": "eabc9b13f32cb75441cd7bd32d45b05728438f6a6ce7f2367789056f9e55ef82",
+      "changed": false
+    },
+    {
+      "path": "tests/integration/rls/jobs-depth.rls.test.ts",
+      "absolute_path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-16-jobs\\Kopplas\\tests\\integration\\rls\\jobs-depth.rls.test.ts",
+      "current_raw_sha256": "e96fa76b3e227b15663e4fb06d8d2c0313e2bb585be652a7d7f07631fff20cb1",
+      "reviewed_6f0_raw_sha256": "e96fa76b3e227b15663e4fb06d8d2c0313e2bb585be652a7d7f07631fff20cb1",
+      "changed": false
+    },
+    {
+      "path": "tests/e2e/jobs/jobs-depth.e2e.spec.ts",
+      "absolute_path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-16-jobs\\Kopplas\\tests\\e2e\\jobs\\jobs-depth.e2e.spec.ts",
+      "current_raw_sha256": "5bf328f1bccf85032bd6744df0470c3f7fa9a8eabdb2ddb980323ac98c78ecd8",
+      "reviewed_6f0_raw_sha256": "79655ce5e5f07a05fb4ab6deae419c13304d2f349d12a077bb10d38437097962",
+      "changed": true
+    },
+    {
+      "path": "tests/support/jobs-depth-atdd.ts",
+      "absolute_path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-16-jobs\\Kopplas\\tests\\support\\jobs-depth-atdd.ts",
+      "current_raw_sha256": "9b2368fa5a334472ac0f2ed68c180f719cf2f7426c38406278f25b43902fa321",
+      "reviewed_6f0_raw_sha256": "9b2368fa5a334472ac0f2ed68c180f719cf2f7426c38406278f25b43902fa321",
+      "changed": false
+    },
+    {
+      "path": "supabase/migrations/20261021102151_e16_job_read_tenant_and_source_quote_scope.sql",
+      "absolute_path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-16-jobs\\Kopplas\\supabase\\migrations\\20261021102151_e16_job_read_tenant_and_source_quote_scope.sql",
+      "current_raw_sha256": "74780d7c655dea00b4b15f1703285c4e99de907e1f98cfa1022e448dc682806b",
+      "reviewed_6f0_raw_sha256": "74780d7c655dea00b4b15f1703285c4e99de907e1f98cfa1022e448dc682806b",
+      "changed": false
+    }
+  ],
+  "followup_findings": [
+    {
+      "id": "4334810149",
+      "implementation": "Four checked RPC callers and the all-list/legacy-detail path bind resolveTenantContext on the normal client. Forward RPC requires active requested-tenant membership AND existing per-job authorization, with j.tenant_id constraint; legacy overload client grants revoked. Explicit independently authorized B RPC remains valid, app wrappers under selected A refuse B detail."
+    },
+    {
+      "id": "4334810158",
+      "implementation": "Source quote identity/number come only from same-tenant immutable source version and existing Admin/PL/Sales-role-union quote entitlement. Safe operational DTO carries those narrow checked fields. quoteVersionId classifies accepted-withheld vs standalone for existing source filter; neutral label Källoffert inte tillgänglig is an owner-authorized maintainable default, not legacy evidence."
+    }
+  ],
+  "source_and_check_provenance": {
+    "author_record": {
+      "path": "C:\\Users\\Rasmus\\AppData\\Local\\Temp\\kopplas-e16-external-followup-author-mstzhfsk\\author-record.json",
+      "sha256": "c06b4ac6ee8465cfac94aa8f51c4253f984f2b6da0d0adb41bfbf8c7021f377a"
+    },
+    "candidate_bindings": {
+      "path": "C:\\Users\\Rasmus\\AppData\\Local\\Temp\\kopplas-e16-external-followup-author-mstzhfsk\\candidate-bindings.json",
+      "sha256": "bb0910621e8367ce2943d317af0a96dd47848be29991f4245ba7d6886bb749dc"
+    },
+    "tracked_diff": {
+      "path": "C:\\Users\\Rasmus\\AppData\\Local\\Temp\\kopplas-e16-external-followup-author-mstzhfsk\\tracked-candidate.diff",
+      "sha256": "0fa8ecab46309f3a979a3eee1d9538ebab16602a428fc325f2b7feae86e4381e"
+    },
+    "review": {
+      "path": "C:\\Users\\Rasmus\\AppData\\Local\\Temp\\kopplas-e16-external-followup-author-mstzhfsk\\independent-external-followup-review.md",
+      "sha256": "0966e856ef64dbf5c0f38d945224222c1292884ee431ed3490c1b134dbb3cce3"
+    },
+    "route": "gpt-6.1-sol High primary with awaited generic context-free Sol6.1High SQL/test author; independent reviewer distinct",
+    "head_binding_check": "Current12 raw bindings match committed64fc candidate:11 original reviewed bindings unchanged, one E2E binding changed only by independently reviewed static import repair. No source/SQL change after6f0.",
+    "import_repair_supplement": {
+      "path": "C:\\Users\\Rasmus\\AppData\\Local\\Temp\\kopplas-e16-external-followup-author-mstzhfsk\\browser-import-repair-supplement.json",
+      "sha256": "0faf5caaf45dbe531b122024469ba1194fbc9b42dccd136474a30cbf1919991c"
+    },
+    "workflow": "Actual bmad-build renderer exactly once for bounded original repair invocation; explicit owner scope overrides prohibit new story/spec/SRO/state/Git writes or broad fourth review. Implementation/nested SQL author Sol6.1High; distinct source/import-repair reviewers Sol6.1High."
+  },
+  "historical_context": {
+    "frozen_original_epic_record": {
+      "path": "_bmad-output/auto-bmad/delivery/epic-16.json",
+      "sha256": "01EFA3C45DBECF9157954A2C7127655ACBAE488CBAF2C7D00377C84A10D9B456",
+      "recorded_evidence_revision": "656f55321f3586549897d50538f431e75f1d7bb6",
+      "historical_branch_source": "e6eeaf9bad34436cd4230105c94dab083b4f7f90",
+      "applicability": "Frozen historic record/source proof is not relabeled current across these28changed repair bindings; current source/runtime qualifications are supplied separately here."
+    },
+    "historical_story_records": [
+      {
+        "path": "_bmad-output/auto-bmad/delivery/16-1-jobs-depth-activation-container-evolution-and-my-jobs.json",
+        "sha256": "c5d859b34d1b83efcaea55765c6ff5c1af038bf7acfaea54902851f6318f39ef",
+        "historical_evidence_revision": "d605295a46634e2c20013638e01c5e2a37ad0779",
+        "source_review": {
+          "status": "passed",
+          "evidence": "Owner-policy provenance union, reused only where source/dependencies remain unchanged: original independent Sol High whole-source review and same High narrow source/SQL/fixture fix passes; six configured Sol High layers on 23263e2aeb866904b6a6c5a1eae3f18fb93d507f -> 07db8b6ca32e07e9c4f7e521a9d2e5e9704dbe37, receipt C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-formal-review-f192da90-de3b-4ddb-9ac2-fdb5c2c6a819/six-layer-review-receipt.json raw SHA256 87cd2024233ee1084786e763d9b9a95c8733630726eef14442fc5f08276b51d7, recorded 2026-10-19T15:44:27.902041+00:00, all triage counts0; six layers on 07db8b6ca32e07e9c4f7e521a9d2e5e9704dbe37 -> 8185b07e2d56a93a4143d4a54e0182360e56ef13, receipt C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-formal-env-review-0a0643ce-d137-4ab6-b6fb-890963258211/six-layer-review-receipt.json raw SHA256 d6c97487cbbe929d2d90b345414671ae5bad0ef941ca6aae624ed9f5a6dee9fc, recorded 2026-10-19T16:20:11.901551+00:00, intent_gap0/bad_spec0/patch0/defer0/reject1(low optional persistent-harness suggestion), score0/followupfalse. Both external Codex review stages exited0 and wrote actual No findings receipts (SHA2562557f6e38ead83874f9694ea4332f459014b6921de5a7e153be890185da08ef5); each original CMD TYPE wrapper exited1 during display, recovered without model rerun or false overall-native0 claim. Root recorded SAME High reviewer PASS of latest 8185b07e2d56a93a4143d4a54e0182360e56ef13 -> d605295a46634e2c20013638e01c5e2a37ad0779 two-file E01/E02 repair, bound inventory429d5645381525c67df1cd5b333aad637c4171164780e4ff46c3c02ee639bab3 (51files/9new), all107assertions and byte-identical E03/E04 tail fb4497f7a3f8276222b913f22d042b651bb27f7e9fc926eca84a71290eb39683. Six configured layers were NOT rerun on that latest E2E delta. Final record provenance itself awaits same High review after root delivery-gate validation; this source-review PASS does not claim that later record review already occurred."
+        },
+        "disposition": "Historical story record preserved byte-identical; current applicability is supplemented below, not retroactively rewritten."
+      },
+      {
+        "path": "_bmad-output/auto-bmad/delivery/16-2-job-members-and-per-job-roles-arbetsledare.json",
+        "sha256": "4a0ebbc106c1df14fa2380a75e88d2d23027ca3a18910a258321d021954cd548",
+        "historical_evidence_revision": "65e9111fa4303f87924e84e5e96d220f777f3cfc",
+        "source_review": {
+          "status": "passed",
+          "evidence": "Independent source-review union: C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-16-2-review-afc41771-8a4c-4cb0-8a39-6349e08cfca9/review-provenance.json records the six actually executed configured layers (five independent context-free Sol 6.1 High agents plus configured external Codex High, native exit 0); original agent reports remain in collaboration history and private agent files are explicit summaries, external receipt is native output. Five-fix qualified PASS: C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-16-2-review-afc41771-8a4c-4cb0-8a39-6349e08cfca9/focused-pass.receipt.txt SHA256 52859c2a3be4e8cc44f6c08bb4f4e665f217c58d26c966fc1f27555a3e6f42b2. Bounded timeout-harness qualified PASS by the same independent High reviewer s162_blind: C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-16-2-review-afc41771-8a4c-4cb0-8a39-6349e08cfca9/timeout-fix-pass.receipt.txt SHA256 18b7ee2c4ddf8c326b02cf4009a91024aab81339ab1a24cfd18ff15474179df2. Current reviewed candidate inventory C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-16-2-review-afc41771-8a4c-4cb0-8a39-6349e08cfca9/inventory-timeout-fixed.json raw SHA256 57e138b9cbad60d624121192fdddd06c64f1af056445791853ee52d82753db0f. Initial consequential findings were repaired and focused checks found no remaining consequential defects. These receipts cover the source union tested at 65e9111fa4303f87924e84e5e96d220f777f3cfc; this post-green spec/delivery metadata still awaits root gate and independent provenance reconciliation before explicit closure."
+        },
+        "disposition": "Historical story record preserved byte-identical; current applicability is supplemented below, not retroactively rewritten."
+      },
+      {
+        "path": "_bmad-output/auto-bmad/delivery/16-3-arbetsorder.json",
+        "sha256": "b7475881ce50f863deefe5620ff398cccf3412b693454e6263a203111232ff13",
+        "historical_evidence_revision": "c44e5179bfcbc210de250eb92a48734561cc0fac",
+        "source_review": {
+          "status": "passed",
+          "evidence": "Actual configured six-layer source review completed: five independent context-free Sol6.1 High reviews plus configured external Codex High native0; private primary trail C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-16-3-review-0b64b48d-a755-4b30-8203-5d7a78c8600f/review-provenance.json, external cross-model.diff.review SHA2563194c93b376581cbd1bbe12da374edc320176f6af2f55a93e889bea677873ee6. Original10patchH5M5/3Lowreject were addressed/preserved; same blind High qualified PASS covers the2targeted regressions, with securityP5/P6/P7/P9 reuse bound to unchanged dependencies. Both same High blind/security reviewers then qualified PASS on the10-path causal batch frozen by inventory850e296d72f9a895450460fee096fc0398af0cf4789df8db6fc2b34552d1a088; author-only review metadata inventorya4ef68d81b83bcb6b42949eceb0bb6894386fe32f16f861a02dfa35846721ea0 was root-CAS verified into c44e5179bfcbc210de250eb92a48734561cc0fac. These actual reviews report no unresolved consequential defect; reviewers did not execute runtime. This post-green delivery/spec metadata still needs root delivery_gate and independent provenance reconciliation."
+        },
+        "disposition": "Historical story record preserved byte-identical; current applicability is supplemented below, not retroactively rewritten."
+      },
+      {
+        "path": "_bmad-output/auto-bmad/delivery/16-4-projekt-upgrade-and-job-card-semantics.json",
+        "sha256": "1f00841349a76edaeb3f09223d4e524d472139f1ef3f994e8bccf4db2ac50eca",
+        "historical_evidence_revision": "9d4584f7d86721f07e88a94cf2b15e940a2b7266",
+        "source_review": {
+          "status": "passed",
+          "evidence": "Original configured six-layer independent Round1 review completed, with sensitive routes context-free gpt-6.1-sol High. External review initially refused before launch, then completed native0 only after direct human authorization; original refusal/grant/receipts and fourteen-patch plus lower-bound history remain in the spec. Subsequent same-High targeted reviews bind unchanged dependencies rather than claiming six-layer reexecution on the final fix. Latest causal production-window PASS binds ACDA7A inventory four hashes/45 unchanged dependencies: C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-16-4-review-c2eea236-b5c7-4e65-b9d4-bb296d96e162/targeted-ci5-window-review.txt SHA256 BFFBBA38043A68A71E905313C369040625896FA3F4046EA2FD968AD3C3A25048. Final source inventory b90b8656f447032cb366fe430f6aa848c60fd71f77b1b4e8685e45819df2967a binds49 files/9new; final spec-only reconciliation retained all48 source/test/migration bindings. Exact evidence head 9d4584f7d86721f07e88a94cf2b15e940a2b7266 executed all required CI jobs successfully. Independent provenance review of this newly authored delivery record remains a separate root gate."
+        },
+        "disposition": "Historical story record preserved byte-identical; current applicability is supplemented below, not retroactively rewritten."
+      },
+      {
+        "path": "_bmad-output/auto-bmad/delivery/16-5-job-workspace-shell.json",
+        "sha256": "e8e40059fad0642403f56c9bb654678106879e7bfdde721c0ff78d6dd24b14e9",
+        "historical_evidence_revision": "54ac91ec2c912afe3b6772fcb8daa11fb282d36a",
+        "source_review": {
+          "status": "passed",
+          "evidence": "Original actual configured six-layer Round1 review retained with five internal receipts manifest8f7d98aa955602b7be5fe92073297ed14bad545f23de5919c068055d91337410 and direct human grant for exact88303byte diff1704c73b45d065888cf96b3ca01055b1a7f6bffbeda94ab6b0bee104dda03133. Initial external read-denial preserved; byte-identical readable-path recovery completed native0 with duplicate findings. Eleven patches/three rejections and failed targeted-review history preserved. Later same independent High focused fixes reused unchanged dependencies,not six-layer reexecution or a new broad pass. Latest observer qualifiedPASS receipt C:\\Users\\Rasmus\\AppData\\Local\\Temp\\kopplas-e16-16-5-review-dgnle5ul/refused-action-targeted-review.md SHA04f96a6d20b7d07f9c518eab8b406d7623cf46d98ac2fa84f85143613f931ad2 binds exactdelta aaccd1d03146b8b85866f5213079cd1abe18439b9247cbf48de66dba5d8dfef5 and26candidatefiles; precommit guard receipt138f712dc9a109602f0831da761bc21a7c89bbabb641c8755d074753a18a15d7 retained. Actual final native retry qualification C:\\Users\\Rasmus\\AppData\\Local\\Temp\\kopplas-e16-16-5-review-dgnle5ul\\seventh-retry-independent-qualification.md SHAf7731a4ceb1f4d01b01594dacb1059ee26ba0377df2523e8ed01377eb6f1425d accepts executed33case gate with precise uncertainty and no identified consequential production defect. New delivery-record provenance remains separately required."
+        },
+        "disposition": "Historical story record preserved byte-identical; current applicability is supplemented below, not retroactively rewritten."
+      }
+    ],
+    "prior_browser_uncertainty_verbatim": [
+      {
+        "evidence_revision": "54ac91ec2c912afe3b6772fcb8daa11fb282d36a",
+        "evidence": "33 cases passed:31 first-attempt,2 retry passes,0 unexpected/skipped; all5 workspace cases passed first attempt. Retained16.1-E03 first failed CDP response-body retrieval; precise cause unknown, retry executed full stale/conservation/persistence/reload checks. Retained16.3-E01 first observed audit0 after HTTP200 before confirmed-save; first action outcome/timing unresolved,pure observer cause not proven; no identified SQL mutation/audit bypass,retry executed complete journey. Independent High qualification C:\\Users\\Rasmus\\AppData\\Local\\Temp\\kopplas-e16-16-5-review-dgnle5ul\\seventh-retry-independent-qualification.md SHA256 f7731a4ceb1f4d01b01594dacb1059ee26ba0377df2523e8ed01377eb6f1425d; no zero-retry requirement or waiver. C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39490485088-browser-native/general-browser.json SHA256 c08263b31221e0bb82649df83bf7e7b98b85dd2a6ff6aaaf5f5844790094e1f0"
+      }
+    ],
+    "story16_5_failed_ci_runs_unchanged": [
+      "39467187678",
+      "39471401065",
+      "39474099331",
+      "39480592913",
+      "39484281458",
+      "39487625801"
+    ],
+    "uncertainty_disposition": "Two distinct retained observations remain unresolved. At54ac91ec2c912afe3b6772fcb8daa11fb282d36a / CI39490485088 /16.3-E01, the first attempt observed audit delta0 afterHTTP200 BEFORE checking the action result/confirmed-save status; actual first action outcome/timing remains UNKNOWN. HTTP200 is not persistence evidence, and pure observer/timing causation is not proven. Separately, the8b280df2d4de28bbd953160411de3049ec83098a / CI39510148825 /16.5-E01 publication observation is recorded below. Current35first-attempt passes clear neither historical uncertainty; other historical retries/failures remain unchanged. Neither observation is a release-only waiver; capture diagnostics and correct any demonstrated functional escape.",
+    "pre_repair_checkpoint_ci": {
+      "run": "39511831130",
+      "head": "e6eeaf9bad34436cd4230105c94dab083b4f7f90",
+      "status": "Historical green preceding these3regressions; cannot prove their fixes"
+    },
+    "prior_publication_browser_uncertainty": {
+      "evidence_revision": "8b280df2d4de28bbd953160411de3049ec83098a",
+      "ci_run": "39510148825",
+      "case": "16.5-E01",
+      "browser_results": {
+        "completed": 33,
+        "first_attempt_passed": 32,
+        "retry_passed": 1
+      },
+      "first_attempt_observation": "Failed modal-background Overview-selection assertion after confirmed Overview/dialog preconditions.",
+      "established_bypass": "No concrete modal/history bypass established.",
+      "unknowns": [
+        "Actual first-attempt click target",
+        "Resulting first-attempt URL",
+        "Resulting first-attempt selected tab",
+        "First-attempt history state/outcome"
+      ],
+      "cause_qualification": "Timing-only cause UNPROVEN; no invented pure observer/timing explanation.",
+      "functional_disposition": "Retained unresolved functional observation, NOT a release-only waiver. Capture focused diagnostics and correct any demonstrated modal/history escape.",
+      "current_run_applicability": "CurrentCI39563248426 atae6ac81d6a063a46207ef97927a9c1f55d5c2057 passed all35firstattempt; this does NOT clear this prior publication observation or the distinct54ac/39490485088/16.3-E01 action-outcome uncertainty.",
+      "qualification_receipts": [
+        {
+          "path": "C:\\Users\\Rasmus\\AppData\\Local\\Temp\\kopplas-e16-vite-repair-2026-10-20T22-06-26-688Z\\publication-e01-retry-review.md",
+          "sha256": "EEE8D319694D0DBE6F806184A12993A20F0C4A1E675B89750CB666F86192C817"
+        },
+        {
+          "path": "C:\\Users\\Rasmus\\AppData\\Local\\Temp\\kopplas-e16-vite-repair-2026-10-20T22-06-26-688Z\\publication-e01-retry-addendum.md",
+          "sha256": "5456E21B116CE961B52B3D0F44F704AA9E20B78A79E8BF9FE019271001BDCF1C"
+        }
+      ]
+    }
+  },
+  "failed_checkpoint_history": [
+    {
+      "run": "39557051210",
+      "head": "b18f606105ecc8ebcf92f69c3475d78fa98f69a2",
+      "status": "FAIL invalid UTF8 production build; DB/browser/recovery skipped notcoverage",
+      "verify_counts": {
+        "unit_passed": 2743,
+        "unit_failed": 0,
+        "unit_skipped": 0,
+        "process_passed": 43
+      },
+      "runtime_status": {
+        "database": "skipped;notcoverage",
+        "browser": "skipped;notcoverage",
+        "isolated_recovery": "skipped;notcoverage"
+      }
+    },
+    {
+      "run": "39558121201",
+      "head": "afe249f03ec394964451f1e0127d6c21d4bf4fcf",
+      "status": "FAIL despite verify/build and isolated recovery pass; DB1887total1882pass4fail1ordinaryrecoverypending; browser34total31firstpass2unexpected1flakyretry; fixed source remount defect and exact metadata/probe/admission assertions; not relabeled green",
+      "verify_counts": {
+        "unit_passed": 2743,
+        "unit_failed": 0,
+        "unit_skipped": 0,
+        "process_passed": 43
+      },
+      "runtime_counts": {
+        "database": {
+          "total": 1887,
+          "passed": 1882,
+          "failed": 4,
+          "ordinary_physical_recovery_pending": 1
+        },
+        "browser": {
+          "total": 34,
+          "first_attempt_passed": 31,
+          "unexpected_both_attempts_failed": 2,
+          "flaky_retry_passed": 1
+        },
+        "isolated_recovery": "passed"
+      }
+    }
+  ],
+  "advisory_history": {
+    "status": "DATED HISTORICAL ADVISORY ONLY; no fresh TEA/NFR/test-quality evaluation",
+    "frozen_evaluation_revision": "54ac91ec2c912afe3b6772fcb8daa11fb282d36a",
+    "nfr": {
+      "status": "CONCERNS",
+      "risk": "MEDIUM",
+      "counts": {
+        "PASS": 17,
+        "CONCERNS": 14,
+        "FAIL": 0
+      },
+      "identified_consequential_defects": 0,
+      "limitations": [
+        "Jobs latency/volume and production throughput/resource targets UNKNOWN",
+        "Availability/error-rate/MTTR, deployed monitoring/failover targets/evidence UNKNOWN",
+        "Branch/line coverage,duplication percentage/trend UNKNOWN",
+        "Broader deployed security/secret management and all-endpoint assurance unmeasured",
+        "Two moderate dependency advisories retained;maintenance/freshness details unmeasured",
+        "Two qualified browser first-attempt uncertainties retained;no first-pass-clean/pure-observer-cause claim",
+        "RTO/RPO/backup/regional recovery UNKNOWN;Storage recovery is scoped integrity proof",
+        "Old story1-4 receipts historical;current global CI qualifies changed consumer seams",
+        "14release-only checks DEFERRED;no release/deployment/certification claim"
+      ],
+      "disposition": "Advisory workflow execution and triage completed;NOT an NFR PASS or functional waiver. Numeric Jobs/production/ops/DR targets remain unknown rather than invented requirements."
+    },
+    "test_quality": {
+      "score": 0,
+      "grade": "F",
+      "recommendation": "Request Changes",
+      "deduplicated_findings": {
+        "total": 76,
+        "CRITICAL": 0,
+        "HIGH": 4,
+        "MEDIUM": 70,
+        "LOW": 2
+      },
+      "accounting": "110 files:109 reviewed (96 tests,13 support),1 explicitly accounted JSON fixture;five mirror pairs",
+      "breakdown": "Three conditional-oracle weaknesses and one support-size High;51grouping,12readiness,9other maintainability observations",
+      "development_impact": {
+        "established_missing_required_invariants": 0,
+        "identified_production_defects": 0,
+        "identified_guard_bypasses": 0,
+        "waivers": 0,
+        "statement": "Computed advisory rubric Request Changes remains unchanged. Grouping, size and static readiness findings are not functional failures. Three H3 oracle weaknesses have existing independent unconditional coverage; focused crosscheck accepted by root. No new test repair cycle or scope widening is requested."
+      },
+      "limitations": [
+        "Published L2 priority-marker criterion has no assigned owner in the four worker step row lists. Its measured baseline is reported only; no fabricated PASS, finding or deduction.",
+        "The ledger globally penalizes51grouping observations and a support-size metric; score is not a measured probability of defects or a new development gate.",
+        "Four workers assess only their assigned predicates; absence of additional style findings is not proof of every possible refactor."
+      ],
+      "L2_priority_marker": "NOT_EVALUATED due installed worker ownership limitation;no fabricated pass/deduction",
+      "disposition": "Computed0/F Request Changes retained prominently. Existing independent unconditional unit/INT/RLS/current-browser anchors and SQL guards cover required invariants;no demonstrated missing development invariant/guard bypass/product defect. Optional maintenance suggestions are not repaired or falsely waived here."
+    },
+    "disposition": "NFR CONCERNS/MEDIUM and test-quality0/F Request Changes are retained, not labeled passed or used as functional waivers. Frozen artifacts and original retrospective/ledger/state records are untouched.",
+    "date_qualification": "Historical assessments retained from frozen epic/story records at the e6ee historical branch source and54ac evaluation revision; not reassessed on2026-10-21. The2026-10-21 checkpoint execution does not relabel dated advisory statuses or prior unknowns."
+  },
+  "prior_qualified_checkpoint": {
+    "path": "_bmad-output\\auto-bmad\\delivery\\epic-16-checkpoint-2026-10-21.json",
+    "sha256": "531eef5ff75b2067d605a32a78027047569c8155335296a9a24d333274c3e358",
+    "evidence_revision": "ae6ac81d6a063a46207ef97927a9c1f55d5c2057",
+    "ci_run": "39563248426",
+    "status": "Historical qualified2757unit/1887DB+isolated1/35first-browser baseline. Does not establish these newly added tenant/source regressions."
+  },
+  "historical_applicability_qualification": "Historical54ac/CI39490485088/16.3-E01 auditdelta0 afterHTTP200 BEFORE checking action result/confirmed-save retains UNKNOWN actual first action outcome/timing; HTTP200 is not persistence proof. Distinct8b280df2/CI39510148825/16.5-E01 publication33completed32first+1retry retains modal-backgroundOverviewselection assertion failure after confirmed preconditions; exact first click/URL/tab/history unknown, no concrete bypass established and timing-only cause UNPROVEN. Neither is a release-only waiver. Current36first passes clear neither. Older checkpoint failures, prior story/epic evidence, NFRCONCERNS/MEDIUM and testquality0/FRequestChanges advisory remain dated, not relabelled current or used as functional waivers.",
+  "record_provenance": {
+    "author_route": "gpt-6.1-sol High",
+    "status": "Pending root executable gate and separate independent High truth/provenance review of this exact new record",
+    "independent_record_truth_review": {
+      "status": "pending",
+      "evidence": null
+    },
+    "root_executable_gate": {
+      "status": "not_run_by_author",
+      "evidence": null
+    },
+    "completion_claim": false,
+    "next_action": "Root executes delivery_gate.py on this exact JSON and obtains distinct independent truth/provenance review before current follow-up completion or ready handoff. No prospective gate/reviewer PASS authored."
+  },
+  "authorization_limits": "No merge/deploy/provider/resource/monitoring/foreign source adoption authorization. No old record/spec/SRO/TEA/retro/pipeline edits; root owns Git/CI/state/public-record allocation.",
+  "prior_external_followup_ci_history": [
+    {
+      "run": "39585443213",
+      "head": "6f0b96f70d25a3a41edc1f40c3de97ffd9d4e653",
+      "conclusion": "failure",
+      "verify": "2758unit+43process/build passed",
+      "db": "1895total1894passed0failed1ordinaryphysicalrecoverypending; named14Jobs/RLS allactuallypassed",
+      "isolated_recovery": "1pass0skip root-reported; prior receipt to be bound at finalization",
+      "browser": {
+        "expected": 35,
+        "unexpected": 1,
+        "flaky": 0,
+        "skipped": 0,
+        "failed_case": "New selected-tenant Mine/all/source-filter/deep-link case; both attempts TypeError adminInsertMembership is not a function during fixture setup before product assertions",
+        "native_path": "C:\\Users\\Rasmus\\AppData\\Local\\Temp\\kopplas-e16-ci39585443213-browser-native\\general-browser.json",
+        "native_sha256": "073542887d761ec637f80eb758ccd46f6f3a5dbd9b83828affb2fbd73d07bdea"
+      },
+      "causal_repair": "Changed ONLY E2E factory import dynamic destructuring to established static named import; no weakened assertion/helper/source/SQL edits. Targeted independent repair review retained. New current36first passes do not erase this failed history."
+    }
+  ],
+  "named_executed_regressions": {
+    "full_database_native": {
+      "path": "C:\\Users\\Rasmus\\AppData\\Local\\Temp\\kopplas-e16-ci39587110666-integration-native\\full-integration.json",
+      "sha256": "6ce7a789026ccd44a9fb934b29bb0f7ca67896a7b4e457af74655301e7e4753d"
+    },
+    "database_cases": [
+      {
+        "file": "/home/runner/work/Kopplas/Kopplas/tests/integration/rls/jobs-depth.rls.test.ts",
+        "case": "16.1 job-depth direct boundaries [P0] 16.1-RLS-001 real roles, UNION rows, inactive actors and own-job child scope agree",
+        "status": "passed"
+      },
+      {
+        "file": "/home/runner/work/Kopplas/Kopplas/tests/integration/rls/jobs-depth.rls.test.ts",
+        "case": "16.1 job-depth direct boundaries [P0] 16.1-RLS-002 direct mutation/elevation, foreign child FKs and spoofed checked actor leave no state",
+        "status": "passed"
+      },
+      {
+        "file": "/home/runner/work/Kopplas/Kopplas/tests/integration/rls/jobs-depth.rls.test.ts",
+        "case": "16.1 job-depth direct boundaries [P0] 16.1-RLS-002 checked entrypoints are hardened and all private job-card primitives refuse authenticated execution",
+        "status": "passed"
+      },
+      {
+        "file": "/home/runner/work/Kopplas/Kopplas/tests/integration/rls/jobs-depth.rls.test.ts",
+        "case": "[P0] 16.2 lead read predicate preserves installer member/assignee union and scopes inherited child policies",
+        "status": "passed"
+      },
+      {
+        "file": "/home/runner/work/Kopplas/Kopplas/tests/integration/rls/jobs-depth.rls.test.ts",
+        "case": "[P0] checkpoint tenant-scoped options require current manager authority; noarg and private revision cannot bypass",
+        "status": "passed"
+      },
+      {
+        "file": "/home/runner/work/Kopplas/Kopplas/tests/integration/rls/jobs-depth.rls.test.ts",
+        "case": "[P0] checkpoint job reads deny legacy overload, null tenant, anonymous, foreign and inactive JWTs",
+        "status": "passed"
+      },
+      {
+        "file": "/home/runner/work/Kopplas/Kopplas/tests/integration/rls/jobs-depth.rls.test.ts",
+        "case": "[P0] checkpoint explicit job-read RPC has sole authenticated grant and old overload has no client grant",
+        "status": "passed"
+      },
+      {
+        "file": "/home/runner/work/Kopplas/Kopplas/tests/integration/rls/jobs-depth.rls.test.ts",
+        "case": "[P0] checkpoint assigned installer and finance-only job lead retain job access without gaining source quote identity",
+        "status": "passed"
+      },
+      {
+        "file": "/home/runner/work/Kopplas/Kopplas/tests/integration/features/jobs/my-jobs.int.test.ts",
+        "case": "16.1 My Jobs actual membership UNION booking assignment [P0] 16.1-INT-006 personal list contains complete duplicate-free order/project union",
+        "status": "passed"
+      },
+      {
+        "file": "/home/runner/work/Kopplas/Kopplas/tests/integration/features/jobs/my-jobs.int.test.ts",
+        "case": "16.1 My Jobs actual membership UNION booking assignment [P0] 16.1-INT-006 assigned accepted-source detail exposes labels but no protected values anywhere",
+        "status": "passed"
+      },
+      {
+        "file": "/home/runner/work/Kopplas/Kopplas/tests/integration/features/jobs/my-jobs.int.test.ts",
+        "case": "16.1 My Jobs actual membership UNION booking assignment [P0] 16.1-INT-006 archive, unassignment and revoked tenant membership remove current read access",
+        "status": "passed"
+      },
+      {
+        "file": "/home/runner/work/Kopplas/Kopplas/tests/integration/features/jobs/my-jobs.int.test.ts",
+        "case": "[P0] checkpoint dual-manager JWT options contain only the resolved tenant in every array and PL label",
+        "status": "passed"
+      },
+      {
+        "file": "/home/runner/work/Kopplas/Kopplas/tests/integration/features/jobs/my-jobs.int.test.ts",
+        "case": "[P0] checkpoint dual-tenant JWT job readers retain oldest active tenant across Mine, all and crafted detail",
+        "status": "passed"
+      },
+      {
+        "file": "/home/runner/work/Kopplas/Kopplas/tests/integration/features/jobs/my-jobs.int.test.ts",
+        "case": "[P0] checkpoint source quote identity and filters agree for independently entitled managers, sales lead and sales-role union",
+        "status": "passed"
+      }
+    ],
+    "database_selected_passed": 14,
+    "database_selected_failed_or_skipped": 0,
+    "browser_native": {
+      "path": "C:\\Users\\Rasmus\\AppData\\Local\\Temp\\kopplas-e16-ci39587110666-browser-native\\general-browser.json",
+      "sha256": "aa6bb85a8d0ffbf362a905b459416addb69baeeed211ebc61fb8bb4c0926484b"
+    },
+    "browser_cases": [
+      {
+        "file": "jobs/jobs-depth.e2e.spec.ts",
+        "case": "[P0] checkpoint stale full-card draft is refused, retained, and only replaced after explicit fresh-read consent",
+        "status": "expected",
+        "attempts": [
+          {
+            "status": "passed",
+            "retry": 0
+          }
+        ]
+      },
+      {
+        "file": "jobs/jobs-depth.e2e.spec.ts",
+        "case": "[P0] external follow-up selected tenant scopes Mine/all/deep links and entitled source filters agree",
+        "status": "expected",
+        "attempts": [
+          {
+            "status": "passed",
+            "retry": 0
+          }
+        ]
+      },
+      {
+        "file": "jobs/jobs-depth.e2e.spec.ts",
+        "case": "[P0] 16.1-E01 My Jobs is the actual duplicate-free member/assignee union; direct denial and money-safe assigned detail agree",
+        "status": "expected",
+        "attempts": [
+          {
+            "status": "passed",
+            "retry": 0
+          }
+        ]
+      },
+      {
+        "file": "jobs/jobs-depth.e2e.spec.ts",
+        "case": "[P1] 16.1-E02 phone progressive identity, scheduling and child save retains unsent input after failure; explicit retry persists across reload",
+        "status": "expected",
+        "attempts": [
+          {
+            "status": "passed",
+            "retry": 0
+          }
+        ]
+      },
+      {
+        "file": "jobs/jobs-depth.e2e.spec.ts",
+        "case": "[P0] 16.1-E03 actual job-bound booking preview/save consumes requirements and windows; changed job facts invalidate review before durable save",
+        "status": "expected",
+        "attempts": [
+          {
+            "status": "passed",
+            "retry": 0
+          }
+        ]
+      },
+      {
+        "file": "jobs/jobs-depth.e2e.spec.ts",
+        "case": "[P1] 16.1-E04 dependency dates display unknown, a linked violated-order warning, then clear only after a durable date correction",
+        "status": "expected",
+        "attempts": [
+          {
+            "status": "passed",
+            "retry": 0
+          }
+        ]
+      }
+    ],
+    "browser_selected_first_attempt_passed": 6,
+    "qualification": "Named native outcomes inspected, not inferred from declaration/collection or aggregate counts. Browser six include strengthened source-withheld E01, new dual-tenant/source-filter journey and retained mounted/stale/proof/dependency journeys."
+  },
+  "current_source_binding_applicability": {
+    "baseline": "38390918438955eb9725e88b2c38756649433b38",
+    "first_reviewed_commit": "6f0b96f70d25a3a41edc1f40c3de97ffd9d4e653",
+    "current_reviewed_revision": "64fc65db52f0b97ccb845dc81684414d783bf86c",
+    "bindings": 12,
+    "current_mismatches": 0,
+    "current_scope": "Five production TS/TSX, six tests/helpers, one CLI-generated forward SQL. Original11 bindings unchanged after6f0; only E2E import binding changed to reviewed5BF328F1BCCF85032BD6744DF0470C3F7FA9A8EABDB2DDB980323AC98C78ECD8. No source/SQL/dependency/config changes after6f0; current exact-head CI covers the candidate."
+  }
+}

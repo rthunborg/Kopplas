@@ -21,6 +21,7 @@
  */
 import { useActionState, useEffect, useMemo, useState, type ReactNode } from "react";
 import Link from "next/link";
+import { JobCardForm, type JobCardOptions } from "./JobCardForm";
 import { useRouter } from "next/navigation";
 import { FormErrorSummary, SelectField, TextField } from "@/components/crm/FormField";
 import { createJobAction } from "@/features/jobs/actions";
@@ -52,6 +53,9 @@ export function JobList({
   customerOptions,
   optionsLoadError = false,
   bookingPanel,
+  cardOptions,
+  canCreate = true,
+  personal = false,
 }: {
   readonly rows: readonly JobListRow[];
   readonly loadError: string | null;
@@ -62,6 +66,9 @@ export function JobList({
    * add-a-customer hint (submit stays disabled). */
   readonly optionsLoadError?: boolean;
   readonly bookingPanel?: ReactNode;
+  readonly cardOptions?: JobCardOptions;
+  readonly canCreate?: boolean;
+  readonly personal?: boolean;
 }) {
   const router = useRouter();
   const [customerFilter, setCustomerFilter] = useState("");
@@ -69,6 +76,7 @@ export function JobList({
   const [plannedDateFilter, setPlannedDateFilter] = useState("");
   const [sourceQuoteFilter, setSourceQuoteFilter] = useState("");
   const [showCreate, setShowCreate] = useState(false);
+  const [createMode, setCreateMode] = useState<"card" | "simple">("simple");
   const [state, formAction, pending] = useActionState(
     createJobAction,
     JOB_ACTION_INITIAL,
@@ -116,7 +124,7 @@ export function JobList({
       if (statusFilter && r.status !== statusFilter) return false;
       // The sentinel matches STANDALONE jobs (no source quote); a quote id matches its jobs.
       if (sourceQuoteFilter === NO_SOURCE_QUOTE) {
-        if (r.quoteId !== null) return false;
+        if (r.quoteVersionId !== null) return false;
       } else if (sourceQuoteFilter && r.quoteId !== sourceQuoteFilter) {
         return false;
       }
@@ -132,13 +140,13 @@ export function JobList({
     <section
       data-testid="job-list"
       aria-labelledby="jobs-heading"
-      className="flex flex-col gap-6 p-6"
+      className="flex min-w-0 flex-col gap-6 p-4 sm:p-6"
     >
-      <div className="flex items-center justify-between gap-4">
+      <div className="flex flex-wrap items-center justify-between gap-4">
         <h1 id="jobs-heading" className="text-2xl font-semibold text-zinc-900">
-          Jobb/Order
+          {personal ? "Mina jobb" : "Jobb/Order"}
         </h1>
-        <button
+        {canCreate && <button
           type="button"
           data-testid="new-job-button"
           onClick={() => setShowCreate((s) => !s)}
@@ -146,7 +154,7 @@ export function JobList({
           className="rounded-md bg-blue-700 px-4 py-2 text-sm font-medium text-white hover:bg-blue-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
         >
           Skapa nytt jobb
-        </button>
+        </button>}
       </div>
 
       {bookingPanel}
@@ -161,7 +169,13 @@ export function JobList({
         </p>
       )}
 
-      {showCreate && (
+      {canCreate && showCreate && <div className="flex min-w-0 flex-col gap-4">
+        {cardOptions && <div role="group" aria-label="Välj jobbformulär" className="flex flex-wrap gap-2">
+          <button type="button" aria-pressed={createMode === "card"} onClick={() => setCreateMode("card")} className="min-h-11 rounded-md border border-zinc-300 px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">Visa planeringskort</button>
+          <button type="button" aria-pressed={createMode === "simple"} onClick={() => setCreateMode("simple")} className="min-h-11 rounded-md border border-zinc-300 px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">Skapa enkelt jobb</button>
+        </div>}
+        {cardOptions && createMode === "card" && <JobCardForm options={cardOptions} />}
+        {createMode === "simple" && <div>
         <form
           action={formAction}
           data-testid="new-job-form"
@@ -228,7 +242,8 @@ export function JobList({
             </button>
           </div>
         </form>
-      )}
+        </div>}
+      </div>}
 
       {/* Filter / search controls (AC2). Status labels are TEXT (a11y). */}
       <div className="flex flex-wrap gap-4">
@@ -299,8 +314,7 @@ export function JobList({
 
       {filtered.length === 0 ? (
         <p data-testid="job-list-empty" className="text-sm text-zinc-600">
-          Inga jobb matchar. Skapa ett jobb med “Skapa nytt jobb” — ett jobb skapas
-          också när en offert accepteras.
+          {canCreate ? "Inga jobb matchar. Skapa ett jobb med “Skapa nytt jobb” — ett jobb skapas också när en offert accepteras." : "Inga jobb matchar ditt urval."}
         </p>
       ) : (
         <ul className="flex flex-col gap-2">
@@ -308,17 +322,20 @@ export function JobList({
             <li key={row.id} data-testid="job-list-row">
               <Link
                 href={`/jobs/${row.id}`}
-                className="flex items-center justify-between gap-4 rounded-md border border-zinc-200 px-4 py-3 hover:bg-zinc-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+                data-testid="job-row"
+                className="flex min-w-0 flex-wrap items-center justify-between gap-4 rounded-md border border-zinc-200 px-4 py-3 hover:bg-zinc-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
               >
-                <div className="flex flex-col">
-                  <span className="text-sm font-medium text-zinc-900">
+                <div className="flex min-w-0 flex-col">
+                  <span className="break-words text-sm font-medium text-zinc-900">
                     {row.title ?? row.customerDisplayName ?? "Jobb"}
                   </span>
                   <span className="text-xs text-zinc-600">
                     {row.customerDisplayName ?? "—"} ·{" "}
                     {row.quoteNumber
                       ? `Offert #${row.quoteNumber}`
-                      : "Utan offertnummer"}{" "}
+                      : row.quoteVersionId !== null
+                        ? "Källoffert inte tillgänglig"
+                        : "Utan offertnummer"}{" "}
                     · Planerat: {formatDate(row.plannedStartDate)}
                   </span>
                 </div>

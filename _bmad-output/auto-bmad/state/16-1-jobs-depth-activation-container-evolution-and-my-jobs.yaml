@@ -1,0 +1,93 @@
+# auto-bmad per-story state — written by scripts/state_update.py (full stable schema;
+# see references/state-and-resume.md). Prose belongs in reports/{key}.md, not here.
+story_key: 16-1-jobs-depth-activation-container-evolution-and-my-jobs
+epic_num: 16
+story_num: 1
+story_suffix: ""
+story_source: sprint
+spec_folder: null
+story_id: null
+branch: codex/epic-16-jobs
+status: done
+updated_at: "2026-10-20T22:58:03Z"
+started_at: "2026-10-15T09:23:25Z"
+completed_at: "2026-10-20T22:58:03Z"
+active_seconds: 13284
+timing_anchor: null
+is_first_in_epic: true
+is_last_in_epic: false
+git_mode: remote
+base_branch: main
+selected_phase: tea_per_story
+selected_role: tea-delegate
+selected_profile: standard
+selected_model: gpt-6.1-sol
+selected_effort: high
+selected_host: codex
+selected_tier: subagents
+selected_route: subagent
+escalation_reason: "Post-build coverage of authorization, tenant isolation, proof validation and transactional integrity"
+routing_ledger:
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Post-build coverage of authorization, tenant isolation, proof validation and transactional integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+tea_risk: high
+tea_selected: [atdd, automate]
+tea_rationale: Explicit schema/CHECK constraints and membership/assignment-scoped MyJobs with per-role negatives
+epic_story_count: 5
+stories_after_in_epic: 4
+completed_phases: [0, 1, 3, 4, 5, 6, 7]
+spec_path: "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-16-jobs\\Kopplas\\_bmad-output\\implementation-artifacts\\spec-16-1-jobs-depth-activation-container-evolution-and-my-jobs.md"
+spec_approved: true
+build:
+  status: done
+  blocking_condition: null
+  followup_review_recommended: false
+  review_loop_iteration: 0
+  deferred_count: 2
+  warnings: [oversized]
+followup_passes: 0
+hitl_halt: "auto-continued (epic — no halt)"
+review_unverified: false
+story_trace: null
+legacy_review_resume: false
+legacy_review_iteration: null
+legacy_review_loop_done: false
+legacy_external_review_iterations: null
+legacy_convergence_unverified: false
+legacy_artifact_path: null
+commits: [589e5ca7, 5ffb6d8e, 2d14d7ac, 97e62221, 04cf0edf, aeb44006, c21faa3b, d33415c7, 1f8c1620, c47b2685, "92428157", 30f8b863, dea276c7, 41463a22, d56281f5, 23263e2a, 07db8b6c, 8185b07e, d605295a, "66026671", b14c319d, 26dac3ab]
+phase8_steps:
+  trace_gate: null
+  nfr: null
+  test_review: null
+  reconcile: null
+  archive: null
+  retro: null
+gate_decision: null
+gate_iterations: 0
+deferred_work_archived: 0
+retro:
+  doc: null
+  verdict: null
+  open_action_items: 0
+bmad_status_flipped_at: null
+pr_url: "https://github.com/rthunborg/Kopplas/pull/105"
+ci_run_url: "https://github.com/rthunborg/Kopplas/actions/runs/39286112780"
+ci_status: passed
+pr_merged: false
+merge_method: null
+merge_commit: null
+branch_deleted: false
+open_questions: []
+deferred_work:
+  - "Exhaustive role/device/browser matrices beyond the four essential Jobs journeys. Owner/evidence/next action: Owner: E16 UI/release-validation owner. Status: deferred under the 2026-10-19 completion policy.\nExact d605295a46634e2c20013638e01c5e2a37ad0779 required Chromium smoke passed 11/11, including all four Jobs journeys on first attempts.\nBroader matrices and optional release_validation=false skips confer no coverage.\nNext action: at release stabilization, run release_validation=true and the tracked role/device/browser matrix on the qualified final epic candidate; retain results before release readiness. Record: _bmad-output/auto-bmad/delivery/16-1-jobs-depth-activation-container-evolution-and-my-jobs.json"
+  - "Screenshot comparison, visual inspection, representative manual walkthrough and polish. Owner/evidence/next action: Owner: E16 UI/release-validation owner. Status: deferred under the 2026-10-19 completion policy.\nNo screenshot-comparison, visual or manual pass is claimed; essential connected 360x640 failure/retry/persistence has actual same-head browser evidence.\nNext action: before release readiness, retain screenshot comparisons and representative viewport/manual design/accessibility walkthroughs, and resolve consequential defects. Record: _bmad-output/auto-bmad/delivery/16-1-jobs-depth-activation-container-evolution-and-my-jobs.json"
+blockers: []
+overrides:
+  ownership: "Approved named E16 scope and four shared allocations; preserve E15 assertions"
+  merge: "No merge/deploy; one final epic PR"
+  design_evidence: "Owner-authorized design-system/accessibility/headless defaults; no legacy browsing"
+  dependency_deferral: "Owner resume: defer exact genuinely dependent slices with owner/evidence/unblock/test action; continue available approved work; never mark deferred acceptance passed"
+constraints: []

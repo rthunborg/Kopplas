@@ -57,6 +57,8 @@ export interface FilePreviewRowProps {
   readonly parentCustomerId?: string;
   readonly parentQuoteId?: string;
   readonly parentVersionId?: string;
+  /** Work orders render on their parent job route. Used only for cache revalidation. */
+  readonly parentJobId?: string;
   /**
    * The panel upload input's id — the unlocked-file "replace" link scrolls to it. When absent
    * (a read-only commitment panel with no upload form), the replace link is not rendered.
@@ -74,6 +76,7 @@ export function FilePreviewRow({
   parentCustomerId,
   parentQuoteId,
   parentVersionId,
+  parentJobId,
   uploadInputId,
 }: FilePreviewRowProps) {
   const [state, formAction, pending] = useActionState<SignedAccessState, FormData>(
@@ -204,6 +207,7 @@ export function FilePreviewRow({
           parentCustomerId={parentCustomerId}
           parentQuoteId={parentQuoteId}
           parentVersionId={parentVersionId}
+          parentJobId={parentJobId}
         />
         <button
           type="submit"

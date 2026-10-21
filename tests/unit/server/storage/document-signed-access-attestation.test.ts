@@ -183,3 +183,43 @@ test("challenge accepts only bounded DB parsing skew without extending actual UR
   assert.throws(() => api.parseDocumentSignedAccessAuditChallenge([challenge()], { ...expectedChallenge(), nowMs: NOW - 60_001 }));
   assert.throws(() => api.parseDocumentSignedAccessAuditChallenge([challenge({ attestation_expires_at: "2030-01-02T03:09:05.679Z" })], expectedChallenge()));
 });
+
+
+function workOrderPayload(overrides: Partial<Payload> = {}): Payload {
+  return payload({ ownerType: "work_order", linkPurpose: "job_evidence", ...overrides });
+}
+function workOrderChallenge(overrides: Record<string, unknown> = {}) {
+  return challenge({ owner_type: "work_order", purpose: "job_evidence", ...overrides });
+}
+test("[16.3][AC05] work-order evidence challenge and proof use the existing exact selected-link bytes and key", async () => {
+  const api = await proofApi(), p = workOrderPayload();
+  const parsed = api.parseDocumentSignedAccessAuditChallenge([workOrderChallenge()], { ...p, nowMs: NOW });
+  assert.equal(parsed.ownerType, "work_order"); assert.equal(parsed.linkPurpose, "job_evidence");
+  assert.deepEqual(Buffer.from(api.canonicalDocumentSignedAccessAttestationBytes(p)), expectedBytes(p));
+  const expected = createHmac("sha256", api.deriveDocumentSignedAccessAttestationKey(ROOT)).update(expectedBytes(p)).digest("hex");
+  assert.equal(api.signDocumentSignedAccessAttestation(p, ROOT), expected);
+  assert.equal(api.verifyDocumentSignedAccessAttestation(p, ROOT, expected), true);
+});
+for (const [field, value] of [["tenantId", uid(81)], ["ownerId", uid(82)], ["linkId", uid(83)],
+  ["fileId", uid(84)], ["ownerType", "job"], ["objectPath", uid(1) + "/" + uid(4) + "/different.pdf"]] as const) {
+  test("[16.3][AC05] work-order proof cannot be reused for another bound " + field, async () => {
+    const api = await proofApi(), p = workOrderPayload();
+    const signature = api.signDocumentSignedAccessAttestation(p, ROOT);
+    assert.equal(api.verifyDocumentSignedAccessAttestation({ ...p, [field]: value }, ROOT, signature), false);
+  });
+}
+for (const purpose of ["crm_document", "calculation_attachment", "quote_attachment_snapshot", "quote_pdf", "acceptance_evidence"]) {
+  test("[16.3][AC05] work-order attestation rejects wrong purpose " + purpose, async () => {
+    const api = await proofApi(), p = workOrderPayload({ linkPurpose: purpose });
+    assert.throws(() => api.parseDocumentSignedAccessAuditChallenge([workOrderChallenge({ purpose })], { ...p, nowMs: NOW }));
+    assert.throws(() => api.signDocumentSignedAccessAttestation(p, ROOT));
+    assert.equal(api.verifyDocumentSignedAccessAttestation(p, ROOT, "a".repeat(64)), false);
+  });
+}
+for (const foreign of [{ owner_id: uid(85) }, { link_id: uid(86) }, { file_id: uid(87) },
+  { object_path: uid(88) + "/" + uid(4) + "/evidence.pdf" }]) {
+  test("[16.3][AC05] work-order challenge rejects foreign selected identity " + Object.keys(foreign)[0], async () => {
+    const api = await proofApi();
+    assert.throws(() => api.parseDocumentSignedAccessAuditChallenge([workOrderChallenge(foreign)], { ...workOrderPayload(), nowMs: NOW }));
+  });
+}

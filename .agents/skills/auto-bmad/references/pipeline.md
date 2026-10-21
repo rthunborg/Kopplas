@@ -1,3 +1,7 @@
+# Project policy overlay — owner decision 2026-10-19
+
+Read `docs/process/development-completion-policy.md` before delegating verification or interpreting trace gates. It governs development versus deferred release evidence and supersedes older exhaustive completion gates. Before ANY done flip (including pre-retro) or finalization, obtain the delegate-authored delivery JSON and run `python {skill-root}/scripts/delivery_gate.py <record>`; nonzero blocks the claim/flip/finalization with a named actionable blocker. Never fabricate release readiness. One final epic PR; split publication requires owner approval.
+
 # Per-story pipeline
 
 Assigned parallel workers: only worker --assignment uses the bounded adapter in parallel-epic.md W. It replaces target picking/branching, excludes aggregate writes and Phase 8/9, and preserves required implementation/testing/review. Ordinary per-story runs still follow this file in full.

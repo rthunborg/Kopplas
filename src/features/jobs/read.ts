@@ -4,7 +4,7 @@
  * functions invoked from server components, mirroring `src/features/quotes/read.ts` VERBATIM.
  *
  * EVERY read runs on the per-request, cookie-bound RLS client (anon key — NEVER a service-role
- * key). RLS scopes every row to the caller's tenant with NO tenant id passed (architecture §6);
+ * key). The trusted request tenant scopes reads in addition to current membership RLS;
  * a cross-tenant/nonexistent id simply returns zero rows → a GENERIC not-found (the page NEVER
  * reveals whether the row exists in another tenant). NO direct write, NO service-role client.
  *
@@ -25,7 +25,9 @@
  * personnummer (the frozen version snapshot + the live customer join both surface display fields
  * only; no pnr is ever selected here).
  */
+import { resolveTenantContext } from "@/server/auth/resolve-tenant-context";
 import { createSupabaseServerClient } from "@/server/db/supabase-server-client";
+import { evaluateJobDependency } from "./dependency-warnings";
 import type {
   JobDetail,
   JobDetailReadResult,
@@ -54,30 +56,15 @@ export { JOB_STATUSES } from "./types";
 
 /** The minimal RLS-client read surface the job read layer drives (structurally satisfied by the
  * real `@supabase/ssr` server client AND the test anon-key client). */
+type JobReadQuery = {
+  eq(column: string, value: string): JobReadQuery;
+  is(column: string, value: null): JobReadQuery;
+  limit(n: number): PromiseLike<{ data: unknown[] | null; error: unknown }>;
+  order(column: string, opts: { ascending: boolean }): PromiseLike<{ data: unknown[] | null; error: unknown }>;
+};
 export type JobReadClient = {
-  from(table: string): {
-    select(columns: string): {
-      eq(
-        column: string,
-        value: string,
-      ): {
-        limit(n: number): Promise<{ data: unknown[] | null; error: unknown }>;
-        order(
-          column: string,
-          opts: { ascending: boolean },
-        ): Promise<{ data: unknown[] | null; error: unknown }>;
-      };
-      is(
-        column: string,
-        value: null,
-      ): {
-        order(
-          column: string,
-          opts: { ascending: boolean },
-        ): Promise<{ data: unknown[] | null; error: unknown }>;
-      };
-    };
-  };
+  rpc?: (name: string, args?: Record<string, unknown>) => PromiseLike<{data: unknown; error: unknown}>;
+  from(table: string): { select(columns: string): JobReadQuery };
 };
 
 const GENERIC_READ_ERROR =
@@ -107,7 +94,7 @@ function str(v: unknown): string | null {
 
 /**
  * Read the ACTIVE job list (`archived_at is null`), ordered by `updated_at` desc. RLS scopes to the
- * caller's tenant (NO tenant id passed). Projects the thin index columns + the joined CURRENT
+ * trusted resolved tenant as well as membership RLS. Projects the thin index columns + the joined CURRENT
  * customer display name (own-tenant `customers` embed) + the source quote number (via the version
  * embed). Optional filters are applied in-memory over the tenant-scoped rows (the index is thin —
  * the tenant's job count is small in Phase A). On a query error returns a GENERIC message.
@@ -120,11 +107,14 @@ export async function readJobList(
     const client =
       injectedClient ??
       ((await createSupabaseServerClient()) as unknown as JobReadClient);
+    const context = await resolveTenantContext({client:client as never});
+    if (!context.ok) return {rows: [], error: GENERIC_READ_ERROR};
     const { data, error } = await client
       .from("jobs")
       .select(
-        "id, title, status, planned_start_date, planned_end_date, customer_id, updated_at, quote_version_id, customers(display_name), quote_versions(quote_number, quote_id)",
+        "id, type, title, status, planned_start_date, planned_end_date, customer_id, updated_at, quote_version_id, customers(display_name), quote_versions(quote_number, quote_id)",
       )
+      .eq("tenant_id", context.data.tenantId)
       .is("archived_at", null)
       .order("updated_at", { ascending: false });
     if (error) return { rows: [], error: GENERIC_READ_ERROR };
@@ -142,6 +132,7 @@ export async function readJobList(
               | null);
         return {
           id: String(r.id),
+          type: r.type === "projekt" ? "projekt" : "order",
           title: str(r.title),
           status: (str(r.status) as JobStatus) ?? "created",
           plannedStartDate: str(r.planned_start_date),
@@ -216,10 +207,39 @@ export async function readJobDetail(
   client: JobReadClient,
   jobId: string,
 ): Promise<JobDetail | null> {
+  const context = await resolveTenantContext({client:client as never});
+  if (!context.ok) {
+    if (context.code === "SERVER_ERROR") throw new Error("readJobDetail: context unavailable");
+    return null;
+  }
+  let operational: Partial<JobDetail> = {};
+  if (client.rpc) {
+    const {data, error} = await client.rpc("read_job_cards", {p_tenant_id: context.data.tenantId, p_personal: false, p_job_id: jobId});
+    if (error || !Array.isArray(data)) throw new Error("readJobDetail: operational read failed");
+    if (!data.length) return null;
+    const row = data[0] as JobDetail & {dependencies: {id: string; plannedEndDate: string | null}[]};
+    operational = { type: row.type, card: row.card, entitlement: row.entitlement,
+      entitlements: {withheld: row.entitlement?.protectedMoney ? [] : ["protectedMoney"]},
+      facilityName: row.facilityName, contactName: row.contactName, location: row.location,
+      dependencyWarnings: (row.card?.dependencyJobIds ?? []).map((id) => evaluateJobDependency({prerequisiteJobId: id,
+        dependentJobId: row.id, prerequisitePlannedEnd: row.dependencies.find((d) => d.id === id)?.plannedEndDate ?? null,
+        dependentPlannedStart: row.plannedStartDate})) };
+    if (!row.entitlement?.protectedMoney || !row.entitlement.canEdit) {
+      // Build an operational DTO without ever selecting acceptance values or broad CRM/files.
+      return {id: row.id, title: row.title, status: row.status, plannedStartDate: row.plannedStartDate,
+        plannedEndDate: row.plannedEndDate, customerId: row.customerId, currentCustomerName: row.currentCustomerName,
+        quoteAcceptanceId: row.quoteAcceptanceId, quoteVersionId: row.quoteVersionId, quoteId: row.quoteId, quoteNumber: row.quoteNumber,
+        commitmentCustomerName: null, commitmentFacilityName: null, commitmentContactName: null,
+        channel: null, acceptedAt: null, adjustmentReason: null, evidenceFileId: null, evidenceReference: null,
+        notes: null, files: [], events: [], ...operational,
+        ...(row.entitlement?.protectedMoney ? {acceptedPriceOre: oreNumber(row.acceptedPriceOre), sourceSentTotalOre: oreNumber(row.sourceSentTotalOre)} : {})};
+    }
+  }
   // The `jobs` row (own-tenant RLS; the current-customer display via the embedded relationship).
   const { data: jobRows, error: jobErr } = await client
     .from("jobs")
     .select(JOB_COLUMNS)
+    .eq("tenant_id", context.data.tenantId)
     .eq("id", jobId)
     .limit(1);
   if (jobErr) throw new Error("readJobDetail: job read failed");
@@ -310,6 +330,7 @@ export async function readJobDetail(
   }));
 
   return {
+    ...operational,
     id: String(jobRaw.id),
     title: str(jobRaw.title),
     status: (str(jobRaw.status) as JobStatus) ?? "created",

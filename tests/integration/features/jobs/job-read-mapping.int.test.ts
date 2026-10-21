@@ -42,24 +42,22 @@ import {
 
 type Canned = { data: unknown[] | null; error: unknown };
 
-function makeFakeClient(byTable: Record<string, Canned>): JobReadClient {
-  const resolve = (table: string): Promise<Canned> =>
-    Promise.resolve(byTable[table] ?? { data: [], error: null });
-
+function makeFakeClient(byTable: Record<string, Canned>, filters: {table:string;column:string;value:unknown}[] = []): JobReadClient {
   return {
+    auth: {getClaims:async()=>({data:{claims:{sub:"mapping-actor"}},error:null})},
     from(table: string) {
-      const terminal = {
-        limit: () => resolve(table),
-        order: () => resolve(table),
+      const reply = () => Promise.resolve(table === "tenant_memberships"
+        ? {data:[{id:"membership-a",tenant_id:"tenant-a",role:"tenant_admin",status:"active"}],error:null}
+        : table === "membership_roles" ? {data:[],error:null} : byTable[table] ?? {data:[],error:null});
+      const builder = {
+        select:()=>builder,
+        eq:(column:string,value:unknown)=>{filters.push({table,column,value});return builder;},
+        is:()=>builder,
+        limit:reply,
+        order:()=>builder,
+        then:(resolve:(value:Canned)=>unknown)=>reply().then(resolve),
       };
-      return {
-        select() {
-          return {
-            eq: () => terminal,
-            is: () => ({ order: () => resolve(table) }),
-          };
-        },
-      };
+      return builder;
     },
   } as unknown as JobReadClient;
 }
@@ -325,5 +323,32 @@ describe("7.3 read-mapping: readJobDetail projection (pure, injected client)", (
     await expect(
       readJobDetail(detailClient({ job_events: { data: null, error: { code: "57014" } } }), "job-1"),
     ).rejects.toThrow();
+  });
+});
+
+describe("external follow-up trusted tenant read boundary (pure production bindings)",()=>{
+  it("scopes the all-list and legacy detail job query to the trusted membership tenant",async()=>{
+    const filters:{table:string;column:string;value:unknown}[]=[];
+    const client=makeFakeClient({jobs:{data:[],error:null}},filters);
+    expect((await readJobList(undefined,client)).error).toBeNull();
+    expect(await readJobDetail(client,"other-job")).toBeNull();
+    expect(filters.filter(f=>f.table === "jobs" && f.column === "tenant_id"))
+      .toEqual([{table:"jobs",column:"tenant_id",value:"tenant-a"},{table:"jobs",column:"tenant_id",value:"tenant-a"}]);
+  });
+  it("binds operational detail to the request tenant and retains independently entitled quote identity without money",async()=>{
+    const client=makeFakeClient({});
+    const calls:unknown[]=[];
+    client.rpc=async(name,args)=>{
+      calls.push({name,args});
+      return {error:null,data:[{id:"job",type:"order",title:"Accepted",status:"created",plannedStartDate:null,
+        plannedEndDate:null,customerId:"customer",currentCustomerName:"Customer",quoteAcceptanceId:"acceptance",
+        quoteVersionId:"version",quoteId:"source",quoteNumber:42,entitlement:{protectedMoney:false,canEdit:false},
+        card:{dependencyJobIds:[]},dependencies:[]}]};
+    };
+    const detail=await readJobDetail(client,"job");
+    expect(calls).toEqual([{name:"read_job_cards",args:{p_tenant_id:"tenant-a",p_personal:false,p_job_id:"job"}}]);
+    expect(detail).toMatchObject({quoteId:"source",quoteVersionId:"version",quoteNumber:42});
+    expect(Object.hasOwn(detail!,"acceptedPriceOre")).toBe(false);
+    expect(Object.hasOwn(detail!,"sourceSentTotalOre")).toBe(false);
   });
 });

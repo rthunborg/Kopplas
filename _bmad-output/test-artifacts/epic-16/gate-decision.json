@@ -1,0 +1,24 @@
+{
+  "schema_version": "0.1.0",
+  "evaluated_at": "2026-10-20T21:02:15.521Z",
+  "repo": "Kopplas",
+  "target": {
+    "type": "epic",
+    "id": "16",
+    "label": "Epic16 Jobs Core"
+  },
+  "collection_status": "COLLECTED",
+  "gate_basis": "priority_thresholds",
+  "gate_status": "PASS",
+  "rationale": "Epic16 development coverage gate: P0 29/29 (100%), P1 7/7 (100%; target90%), overall 36/36 (100%; minimum80%). Formal high-confidence source-backed criteria, no uncovered requirement or live-only coverage. Current applicable nativeCI evidence includes two explicitly qualified full browser retry passes; this is not first-pass-clean, a waiver, release readiness or deployment/merge approval.",
+  "p0_status": "MET",
+  "p1_status": "MET",
+  "overall_status": "MET",
+  "critical_open": 0,
+  "links": {
+    "trace_report_path": "C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/_bmad-output/test-artifacts/epic-16/traceability-matrix.md",
+    "trace_report_url": "",
+    "artifact_url": "",
+    "journey_evidence_url": ""
+  }
+}

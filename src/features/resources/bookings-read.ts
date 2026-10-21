@@ -88,10 +88,10 @@ function summary(row: Row, openConflictCount: number): BookingSummary {
 }
 
 /** Host access never grants booking entitlement; Montör data remains own-joined under RLS. */
-export async function readBookingHost(scope: { readonly jobId?: string; readonly customerId?: string; readonly bookingId?: string } = {}): Promise<BookingHostReadResult> {
+export async function readBookingHost(scope: { readonly jobId?: string; readonly customerId?: string; readonly bookingId?: string } = {}, injectedClient?: Client): Promise<BookingHostReadResult> {
   try {
     if (Object.values(scope).some((id) => typeof id !== "string" || !UUID.test(id))) return emptyHost(ERROR);
-    const client = await createSupabaseServerClient();
+    const client = injectedClient ?? await createSupabaseServerClient();
     const context = await resolveTenantContext({ client });
     if (!context.ok) return emptyHost(ERROR);
     const roles = context.data.roles ?? [context.data.role];
@@ -113,16 +113,16 @@ export async function readBookingEditorDefault(bookingId: string): Promise<Booki
 }
 
 /** Manager-only, current-tenant options omit price, CRM identifiers and contact details. */
-export async function readBookingEditorOptions(): Promise<BookingEditorOptions> {
+export async function readBookingEditorOptions(injectedClient?: Client): Promise<BookingEditorOptions> {
   try {
-    const client = await createSupabaseServerClient(); const context = await resolveTenantContext({ client });
+    const client = injectedClient ?? await createSupabaseServerClient(); const context = await resolveTenantContext({ client });
     if (!context.ok) return emptyOptions(ERROR);
     if (!resolveCapability({ roles: context.data.roles ?? [context.data.role], module: "resources", capability: "Bookings.Manage" }).granted) return emptyOptions();
     const tenantId = context.data.tenantId;
     const [profiles, workRoles, jobs, customers, facilities, contacts] = await Promise.all([
       readBookingPeople(client, tenantId, context.data.userId),
       readRows(client, "work_roles", "id,display_name", tenantId, [{ column: "is_active", value: "true" }]),
-      readRows(client, "jobs", "id,title,customer_id,facility_id,contact_id", tenantId, [{ column: "archived_at", value: null }]),
+      readRows(client, "jobs", "id,title,customer_id,facility_id,contact_id,estimated_duration_minutes,crew_size,planned_travel_minutes,earliest_date,desired_date,latest_date,customer_presence_required", tenantId, [{ column: "archived_at", value: null }]),
       readRows(client, "customers", "id,display_name", tenantId, [{ column: "archived_at", value: null }]),
       readRows(client, "facilities", "id,name,customer_id", tenantId, [{ column: "archived_at", value: null }]),
       readRows(client, "contacts", "id,name,customer_id,facility_id", tenantId, [{ column: "archived_at", value: null }]),
@@ -132,7 +132,7 @@ export async function readBookingEditorOptions(): Promise<BookingEditorOptions> 
     return { canManage: true,
       people: sort(profiles.map((row) => { const roleId = nullable(row.default_work_role_id); return { id: String(row.id), label: bookingPersonLabel(String(row.id), row.label), defaultWorkRoleId: roleId, workRoleIds: roleId && roleIds.has(roleId) ? [roleId] : [] }; })),
       workRoles: sort(workRoles.map((row) => ({ id: String(row.id), label: String(row.display_name) }))),
-      jobs: sort(jobs.map((row) => ({ id: String(row.id), label: nullable(row.title) || `Arbetsorder · ${customers.find(customer => customer.id === row.customer_id)?.display_name ?? "Kund"} · ${row.id}`, customerId: String(row.customer_id), facilityId: nullable(row.facility_id), contactId: nullable(row.contact_id) }))),
+      jobs: sort(jobs.map((row) => ({ id: String(row.id), label: nullable(row.title) || `Arbetsorder · ${customers.find(customer => customer.id === row.customer_id)?.display_name ?? "Kund"} · ${row.id}`, customerId: String(row.customer_id), facilityId: nullable(row.facility_id), contactId: nullable(row.contact_id), schedulingHint:{jobId:String(row.id),durationMinutes:row.estimated_duration_minutes == null ? null:Number(row.estimated_duration_minutes),crewSize:row.crew_size == null ? null:Number(row.crew_size),travelMinutes:row.planned_travel_minutes == null ? null:Number(row.planned_travel_minutes),earliestDate:nullable(row.earliest_date),desiredDate:nullable(row.desired_date),latestDate:nullable(row.latest_date),customerPresenceRequired:typeof row.customer_presence_required === "boolean" ? row.customer_presence_required:null} }))),
       customers: sort(customers.map((row) => ({ id: String(row.id), label: String(row.display_name) }))),
       facilities: sort(facilities.map((row) => ({ id: String(row.id), label: String(row.name), customerId: String(row.customer_id) }))),
       contacts: sort(contacts.map((row) => ({ id: String(row.id), label: String(row.name), customerId: String(row.customer_id), facilityId: nullable(row.facility_id) }))), error: null };

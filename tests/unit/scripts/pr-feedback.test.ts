@@ -148,7 +148,7 @@ test("changed-file policy rejects safety, secrets, migrations and sensitive busi
 });
 
 test("missing, pending, skipped, failed and cancelled CI are never passed", () => {
-  const jobs = ["verify", "db", "recovery-storage-loader", "e2e", "dashboard-e2e"].map((name) => ({ name, status: "completed", conclusion: "success" }));
+  const jobs = ["checkpoint-admission", "verify", "db", "recovery-storage-loader", "e2e"].map((name) => ({ name, status: "completed", conclusion: "success" }));
   const run = { id: 7, path: ".github/workflows/ci.yml", event: "pull_request", head_sha: headSha, status: "completed", conclusion: "success", jobs };
   assert.equal(classifyChecks({ headSha, runs: [run], requiredJobs: jobs.map(({ name }) => name) }).phase, "ci-passed");
   assert.equal(classifyChecks({ headSha, runs: [] }).phase, "ci-pending");
@@ -160,6 +160,17 @@ test("missing, pending, skipped, failed and cancelled CI are never passed", () =
     assert.equal(classifyChecks({ headSha, runs: [{ ...run, jobs: jobs.map((job, i) => i ? job : { ...job, conclusion }) }] }).phase, "ci-failed");
   }
   assert.equal(classifyChecks({ headSha, runs: [{ ...run, jobs: [] }] }).phase, "ci-failed");
+});
+
+test("optional dashboard skip passes only when every consequential development job succeeds at the exact head", () => {
+  const jobs = ["checkpoint-admission", "verify", "db", "recovery-storage-loader", "e2e"].map(name => ({name, status: "completed", conclusion: "success"}));
+  const run = {id: 7, path: ".github/workflows/ci.yml", event: "pull_request", head_sha: headSha, status: "completed", conclusion: "success", jobs: [...jobs, {name: "dashboard-e2e", status: "completed", conclusion: "skipped"}]};
+  assert.equal(classifyChecks({headSha, runs: [run]}).phase, "ci-passed");
+  for (const required of jobs) {
+    assert.equal(classifyChecks({headSha, runs: [{...run, jobs: run.jobs.filter(job => job.name !== required.name)}]}).phase, "ci-failed", required.name);
+    assert.equal(classifyChecks({headSha, runs: [{...run, jobs: run.jobs.map(job => job.name === required.name ? {...job, conclusion: "skipped"} : job)}]}).phase, "ci-failed", required.name);
+  }
+  assert.equal(classifyChecks({headSha: "b".repeat(40), runs: [run]}).phase, "ci-pending");
 });
 
 test("pushed fixes block further attempts until fresh CI notification completes", () => {

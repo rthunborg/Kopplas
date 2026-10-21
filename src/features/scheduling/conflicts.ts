@@ -69,6 +69,11 @@ export function detectAllBookingConflicts(input: SchedulingFacts): SchedulingCon
 function detectPreparedConflicts(input: SchedulingFacts, context: ConflictContext): SchedulingConflict[] {
   if (input.candidate.status === "cancelled") return [];
   const candidate = input.candidate; const range = context.range(candidate);
+  const own = input.jobInputSets?.find((job) => job.jobId === candidate.jobId);
+  const jobInputs = input.jobInputSets === undefined ? input.jobInputs : own ? {
+    ...(own.requiredWorkRoleIds === null ? {} : { requiredWorkRoleIds: own.requiredWorkRoleIds }),
+    ...(own.accessWindows === null ? {} : { accessWindows: own.accessWindows }),
+  } : null;
   const existing = context.bookings; const people = sortedIds(candidate.assigneeIds);
   const output = new Map<string, SchedulingConflict>();
   function emit(type: ConflictType, bookings: readonly string[], persons: readonly string[], window: InstantRange): void {
@@ -98,11 +103,11 @@ function detectPreparedConflicts(input: SchedulingFacts, context: ConflictContex
       }
     }
     for (const outside of subtractRanges([range], allowed)) emit("outside_work_hours", [candidate.id], [id], outside);
-    const required = input.jobInputs?.requiredWorkRoleIds;
+    const required = jobInputs?.requiredWorkRoleIds;
     if (required?.some((role) => !person.workRoleIds?.includes(role))) emit("competence_missing", [candidate.id], [id], range);
   }
-  if (input.jobInputs?.accessWindows !== undefined) {
-    for (const outside of subtractRanges([range], input.jobInputs.accessWindows.map(bookingRange))) emit("outside_access_window", [candidate.id], people, outside);
+  if (jobInputs?.accessWindows !== undefined) {
+    for (const outside of subtractRanges([range], jobInputs.accessWindows.map(bookingRange))) emit("outside_access_window", [candidate.id], people, outside);
   }
   return [...output.values()].sort((a, b) => a.naturalKey < b.naturalKey ? -1 : a.naturalKey > b.naturalKey ? 1 : 0);
 }

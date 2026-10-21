@@ -106,7 +106,7 @@ test("server projection preserves complete aggregate keys and candidate-third gr
     bookings: input.existingBookings, profiles: [{ id: PERSON, membershipId: "member", defaultWorkRoleId: null, employmentPercentage: 100, archivedAt: null }],
     memberships: [{ id: "member", userId: "user", status: "active", role: "montor", roles: [] }], workRoles: [],
     hours: [{ id: "hours", personProfileId: PERSON, entryKind: "weekly_shift", weekday: 1, localDate: null, exceptionKind: null, startsAt: "10:00", endsAt: "11:00" }],
-    calendarDays: [], jobInputs: null, rules: input.rules,
+    calendarDays: [], jobInputs: [], rules: input.rules,
   } } as unknown as DetectionSnapshot;
   const derived = deriveBookingConflicts(freeze(snapshot));
   const expectedRows = new Map(); const expectedGroups = [];

@@ -11,7 +11,8 @@ The workflow lives at [`.github/workflows/ci.yml`](../../.github/workflows/ci.ym
 
 - **Workflow is authoritative.** Active gates include static checks, unit/golden
   tests, migration reset, integration/RLS, isolated recovery Storage and browser
-  partitions. The historical activation map below records their origins; use
+  auth smoke. Broad browser/dashboard diagnostics are opt-in release validation.
+  The historical activation map below records their origins; use
   the checked-in workflow for current commands, ordering and budgets.
 - **No hosted secrets or shared test services.** Jobs use isolated local test
   stacks and synthetic test credentials; there is no deploy step. Hosted secrets,
@@ -48,6 +49,61 @@ The `db` job (separate, with the local Supabase stack):
 | --- | --- | --- | --- |
 | 6 | Migration reset | `supabase db reset` | Empty DB → apply migrations → seed; fails on a bad migration (architecture §19 stage 6). |
 | 8 | Integration + RLS negatives + H4 inventory gate | `pnpm run test:int` | DB-backed integration + cross-tenant/anonymous RLS-negative suites (Vitest) against the LOCAL stack only, **including the H4 RLS table-inventory gate** that fails CI when a tenant-owned table is not enrolled in the parameterized suite (architecture §18). `SUPABASE_TEST_REQUIRED=1` makes a missing stack a hard failure. |
+
+### Development progression and release validation (owner decision 2026-10-19)
+
+Ordinary PRs, main pushes and checkpoints require `checkpoint-admission`,
+`verify`, `db`, `recovery-storage-loader` and `e2e`. The `e2e` job runs the small
+`test:smoke` selection: production app login, tenant context, no-membership denial,
+logout, and real local Auth invitation/recovery mail callback completion. Native
+JSON remains available in `native-general-browser`; inspect the command and test
+names to distinguish smoke from exhaustive coverage.
+
+Security, RLS, authorization, money and transaction integrity are not deferred:
+unit/golden tests, the complete integration suite, H4 inventory and source/built
+bundle containment remain required. The synthetic recovery Storage proof also
+remains required because it checks protected-row and byte integrity directly.
+Relevant new consequential defects still require focused regression evidence.
+
+Exhaustive UI journeys, dashboard proxy/fixture diagnostics and visual comparison
+are deferred from ordinary progression. A deliberate checkpoint dispatch with
+`release_validation=true` runs the full browser suite instead of smoke and adds
+`dashboard-e2e`. Its skipped state on ordinary runs is intentional. This option
+validates only; it does not authorize preview deployment, merge, production
+activation, or the E15 privileged application diagnostic lane.
+
+Jobs retain generous infrastructure timeouts (30 minutes for `verify`, 45 for
+stack/browser jobs), without the previous 180/420-second test stopwatches. CI
+browser invocations override the duration-budget reporter with console and native
+JSON reporters. A timeout is a failed execution to investigate, not expired owner
+authorization or a requirement to repeat independent review.
+
+### Reproduce from a clean checkout
+
+Use the pinned Node/pnpm versions, Python, and a fresh checkout of the exact
+candidate commit. These commands need no untracked executable, private helper,
+repository admission variable or hosted credential:
+
+```powershell
+pnpm install --frozen-lockfile
+pnpm run verify:development
+pnpm audit --audit-level=high
+```
+
+`verify:development` fails at the first unsuccessful check: lockfile and source
+containment, typecheck, lint, unit/golden tests, focused BMAD contracts, production
+build, then built-bundle containment. It resolves its checkout from its own file,
+so it never verifies a different working directory by accident. Frozen install
+and the network-backed audit are explicit steps. Preserve the fresh checkout and
+its exact revision with the result; a working-tree run alone is not clean-checkout
+evidence.
+
+This command does not claim integration or browser coverage. Hosted CI runs those
+against disposable local services. For local stack verification follow
+[local-setup.md](../process/local-setup.md) and resource ownership rules, then run
+`SUPABASE_TEST_REQUIRED=1` integration tests, recovery integrity proof and
+`pnpm run test:smoke`; inspect executed/failed/skipped counts. Missing services
+and skipped tests never satisfy the consequential gates.
 
 ### Test runners (TEA framework decision, Story 2.2)
 
@@ -141,7 +197,13 @@ node scripts/ci/checkpoint-dispatch.mjs status --state tmp/private/checkpoints/C
 node scripts/ci/checkpoint-dispatch.mjs cancel --state tmp/private/checkpoints/CHECKPOINT.json
 ```
 
-The ignored state record belongs to one operation and must survive interruptions.
+For optional exhaustive validation add `--release-validation true` to the
+`dispatch` command; omission selects ordinary development progression. The
+choice is persisted in the receipt and sent as the standard boolean workflow
+input. Do not change a receipt to upgrade an in-flight run.
+
+The ignored state record is a generated ownership receipt, not a private
+executable or prerequisite configuration. It belongs to one operation and must survive interruptions.
 It contains repository/ref/SHA, authenticated actor, workflow ID, a random
 checkpoint UUID, timestamps and the discovered native run ID; never add tokens
 or secret values. The helper exclusively creates and flushes this intent record
@@ -156,8 +218,9 @@ manually removing only that operation's lock; preserve its state record.
 Each operation is bounded: each API call has a 15-second timeout, discovery scans
 at most five pages of 100 runs, and each status command takes one snapshot rather
 than starting an unattended polling loop. Queued/running requests exceeding the
-record's one-hour observation deadline return exit code 2 and require action;
-use owned cancellation or investigate. A missing run stays uncertain and must be
+record's one-hour observation threshold report `deadline_exceeded` as
+informational status, without failing the CLI or expiring authorization. Continue
+observing the same owned run, or investigate/cancel that run if needed. A missing run stays uncertain and must be
 reconciled manually, even after that deadline. Cancellation verifies repository,
 workflow ID/path, dispatch event, branch, SHA, checkpoint, actor, triggering actor
 and attempt before the POST. A cancellation request (including an uncertain
@@ -173,9 +236,11 @@ Dispatch reruns fail admission: create a deliberately reviewed new checkpoint
 only after establishing the previous outcome. Run completion with `success` is
 required evidence; the helper exits 1 for completed failures, and skipped,
 cancelled or failing gates are not an acceptance waiver. Inspect native job and
-artifact evidence for the exact recorded head. Existing job timeouts, test
-budgets, migration checks, integration/RLS, recovery Storage, general browser,
-dashboard browser and cleanup steps remain in force.
+artifact evidence for the exact recorded head and selected validation mode.
+Required admission/static/integrity/auth-smoke jobs must execute successfully;
+optional `dashboard-e2e` is expected to skip in development mode. Release mode
+also requires exhaustive browser and dashboard success. Migration and cleanup
+checks remain in force.
 
 The helper transports GitHub API calls through argument arrays and JSON stdin,
 never a shell. Errors omit API response bodies and authentication environment.

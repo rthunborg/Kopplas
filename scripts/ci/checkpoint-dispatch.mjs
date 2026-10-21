@@ -95,6 +95,7 @@ export function checkpoint(command, options, { api = githubApi, now = () => new 
     if (command === "dispatch") {
       if (existsSync(path)) throw new Error("Checkpoint record already exists. Use status; never retry dispatch from this record.");
       validateRequest(options);
+      if (options.release_validation !== undefined && !["true", "false"].includes(options.release_validation)) throw new Error("--release-validation must be true or false.");
       const actor = api("GET", "user").login;
       if (!ACTOR.test(actor ?? "")) throw new Error("Cannot establish authenticated actor.");
       const permission = api("GET", `repos/${options.repo}/collaborators/${encodeURIComponent(actor)}/permission`).permission;
@@ -107,6 +108,7 @@ export function checkpoint(command, options, { api = githubApi, now = () => new 
       const state = {
         version: 1, repo: options.repo, ref: options.ref, sha: options.sha,
         actor, workflow_id: workflow.id, checkpoint_id: randomUUID(),
+        release_validation: options.release_validation === "true",
         created_at: created.toISOString(), deadline_at: new Date(created.getTime() + 60 * 60 * 1000).toISOString(),
         phase: "dispatch-uncertain", run_id: null,
       };
@@ -116,14 +118,14 @@ export function checkpoint(command, options, { api = githubApi, now = () => new 
       try { writeFileSync(fd, `${JSON.stringify(state, null, 2)}\n`); fsyncSync(fd); } finally { closeSync(fd); }
       try {
         api("POST", `repos/${state.repo}/actions/workflows/${state.workflow_id}/dispatches`, {
-          ref: state.ref, inputs: { expected_sha: state.sha, checkpoint_id: state.checkpoint_id },
+          ref: state.ref, inputs: { expected_sha: state.sha, checkpoint_id: state.checkpoint_id, release_validation: String(state.release_validation) },
         });
       } catch {
         throw new Error("Dispatch outcome uncertain. Ownership record retained; use status, never repeat dispatch.");
       }
       state.phase = "dispatched";
       save(path, state);
-      return { phase: state.phase, checkpoint_id: state.checkpoint_id, sha: state.sha, next: "Use status with this same --state record." };
+      return { phase: state.phase, checkpoint_id: state.checkpoint_id, sha: state.sha, release_validation: state.release_validation, next: "Use status with this same --state record." };
     }
     const state = JSON.parse(readFileSync(path, "utf8"));
     validateState(state);
@@ -150,6 +152,7 @@ export function checkpoint(command, options, { api = githubApi, now = () => new 
       return { phase: "cancel-requested", run_id: run.id, sha: state.sha };
     }
     return { phase: state.phase, conclusion: state.conclusion, run_id: run.id, sha: state.sha,
+      release_validation: state.release_validation ?? false,
       deadline_exceeded: run.status !== "completed" && now().getTime() > Date.parse(state.deadline_at),
       url: `https://github.com/${state.repo}/actions/runs/${run.id}` };
   } finally {
@@ -161,11 +164,11 @@ export function checkpoint(command, options, { api = githubApi, now = () => new 
 export function parseArgs(args) {
   const [command, ...rest] = args;
   const options = {};
-  const allowed = command === "dispatch" ? ["repo", "ref", "sha", "state"] : ["state"];
+  const allowed = command === "dispatch" ? ["repo", "ref", "sha", "state", "release-validation"] : ["state"];
   for (let index = 0; index < rest.length; index += 2) {
     const key = rest[index]?.slice(2);
-    if (!rest[index]?.startsWith("--") || !allowed.includes(key) || options[key] !== undefined || !rest[index + 1] || rest[index + 1].startsWith("--")) throw new Error("Invalid, duplicate or missing option. Dispatch: --repo --ref --sha --state; status/cancel: --state.");
-    options[key] = rest[index + 1];
+    if (!rest[index]?.startsWith("--") || !allowed.includes(key) || options[key.replaceAll("-", "_")] !== undefined || !rest[index + 1] || rest[index + 1].startsWith("--")) throw new Error("Invalid, duplicate or missing option. Dispatch: --repo --ref --sha --state [--release-validation true|false]; status/cancel: --state.");
+    options[key.replaceAll("-", "_")] = rest[index + 1];
   }
   return { command, options };
 }
@@ -176,7 +179,8 @@ if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.ur
     const result = checkpoint(command, options);
     process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
     if (result.phase === "completed" && result.conclusion !== "success") process.exitCode = 1;
-    else if (result.deadline_exceeded) process.exitCode = 2;
+    // A queue observation threshold is informational. It does not expire
+    // authorization, request a replacement dispatch, or invalidate later success.
   } catch (error) {
     process.stderr.write(`${error instanceof Error ? error.message : "Checkpoint operation failed."}\n`);
     process.exitCode = 1;

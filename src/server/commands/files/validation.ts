@@ -38,6 +38,7 @@ export const OWNER_TYPES = [
   "quote_version",
   "quote_acceptance",
   "job",
+  "work_order",
 ] as const;
 export type OwnerType = (typeof OWNER_TYPES)[number];
 
@@ -60,6 +61,7 @@ export const ACTIVE_OWNER_TYPES = [
   "calculation",
   "quote_acceptance",
   "job",
+  "work_order",
 ] as const;
 export type ActiveOwnerType = (typeof ACTIVE_OWNER_TYPES)[number];
 
@@ -175,6 +177,7 @@ export const OWNER_TYPE_PURPOSE: Readonly<Record<ActiveOwnerType, FilePurpose>> 
   calculation: "calculation_attachment",
   quote_acceptance: "acceptance_evidence",
   job: "job_evidence",
+  work_order: "job_evidence",
 };
 
 /** The max display-name length (bounds the presentational segment; sanitized server-side). */

@@ -80,7 +80,7 @@ export function JobEditDialog({
       {open && (
         <div
           role="dialog"
-          aria-modal="true"
+          aria-modal="false"
           aria-labelledby="job-edit-heading"
           data-testid="job-edit-dialog"
           onKeyDown={(e) => {

@@ -200,4 +200,11 @@
       "holiday": false
     }
   ]
+,
+  "jobDemand": [
+    {"name":"unallocated","total":300,"allocated":0,"residual":300,"capacity":480,"shortfall":0},
+    {"name":"120 allocated","total":300,"allocated":120,"residual":180,"capacity":360,"shortfall":0},
+    {"name":"other job also consumes capacity","total":300,"allocated":120,"residual":180,"capacity":120,"shortfall":60},
+    {"name":"allocation above demand","total":300,"allocated":360,"residual":0,"capacity":120,"shortfall":0}
+  ]
 }

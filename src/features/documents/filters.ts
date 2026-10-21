@@ -6,6 +6,7 @@ export const DOCUMENT_FILTER_SOURCES = {
   customer: { module: "crm", purposes: ["crm_document"] }, facility: { module: "crm", purposes: ["crm_document"] }, contact: { module: "crm", purposes: ["crm_document"] },
   calculation: { module: "calculations", purposes: ["calculation_attachment"] }, quote_version: { module: "quotes", purposes: ["quote_attachment_snapshot", "quote_pdf"] },
   quote_acceptance: { module: "quotes", purposes: ["acceptance_evidence"] }, job: { module: "jobs", purposes: ["job_evidence"] },
+  work_order: { module: "jobs", purposes: ["job_evidence"] },
 } as const;
 export interface DocumentFilters { readonly q?: string; readonly module?: string; readonly ownerType?: string; readonly ownerId?: string; readonly purpose?: string; readonly from?: string; readonly to?: string; readonly mode: "active" | "archived"; readonly cursor?: string; }
 const keys = ["q", "module", "ownerType", "ownerId", "purpose", "from", "to", "mode", "cursor"] as const;

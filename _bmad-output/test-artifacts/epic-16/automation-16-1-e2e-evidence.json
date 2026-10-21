@@ -1,0 +1,359 @@
+{
+  "success": true,
+  "subagent": "e2e-tests",
+  "tests": [],
+  "fixture_needs": [],
+  "knowledge_fragments_used": [
+    "playwright-utils-mandate",
+    "library-integration-mandate",
+    "fixture-architecture",
+    "network-first",
+    "test-quality",
+    "overview",
+    "api-request",
+    "network-recorder",
+    "auth-session",
+    "intercept-network-call",
+    "recurse",
+    "log",
+    "file-utils",
+    "burn-in",
+    "network-error-monitor",
+    "fixtures-composition",
+    "playwright-cli",
+    "selector-resilience"
+  ],
+  "test_count": 0,
+  "summary": "No new E2E tests are required. The four existing essential Jobs journeys adequately cover the refined Story 16.1 browser development contract, with two P0 and two P1 cases. Reuse unchanged-source native CI evidence: all four Jobs cases and seven authentication cases passed first attempt, with zero skipped, unexpected or flaky cases. tests:[] avoids duplicate coverage merely to fabricate work. This bounded assessment does not claim full AC matrices from browser evidence or release readiness.",
+  "scope": {
+    "story": "16.1",
+    "checkout_revision": "660266714a26fcae22e21a8441bf4f935da94f04",
+    "evidence_revision": "d605295a46634e2c20013638e01c5e2a37ad0779",
+    "source_unchanged_provenance": "Parent/root verifies relevant source, tests and dependencies remain unchanged against the independently reviewed evidence revision. This worker read only the approved plan/spec/ATDD/policy/knowledge, named E2E test, scoped fixtures, Playwright configuration, smoke script and CI selection; it did not reopen broad source review.",
+    "route": "Awaited subagent, gpt-6.1-sol High for actual authorization, protected money omission and stale-proof/transactional behavior; no nested delegate.",
+    "development_policy": "2026-10-19: essential usable-flow smoke belongs to development; exhaustive browser/device/role, screenshot, visual and manual validation remain explicitly deferred release work.",
+    "exclusions": [
+      "16.2 membership mutation/elevation",
+      "16.3 work-order consumers",
+      "16.4 scalar scheduling consumers/TR13-TR16",
+      "16.5 shell acceptance",
+      "E15 scheduling/time/calendar/E2E additions",
+      "legacy application URLs or observations"
+    ],
+    "predecessor": "No actual E15 predecessor is identified for the available membership/booking-assignment foundation. None is invented.",
+    "historical_atdd": "The ATDD checklist records historical RED/skipped scaffolds, not current passing coverage. Current four active declarations and native CI results establish browser evidence."
+  },
+  "coverage_reused": [
+    {
+      "id": "16.1-E01",
+      "priority": "P0",
+      "acs": [
+        "16.1-AC02",
+        "16.1-AC03"
+      ],
+      "file": "tests/e2e/jobs/jobs-depth.e2e.spec.ts",
+      "test_anchor": 122,
+      "assertions": [
+        {
+          "lines": [
+            125,
+            134
+          ],
+          "behavior": "360x640 assigned Montor signs in and reaches actual My Jobs through mobile menu; /jobs and Mina jobb heading are asserted."
+        },
+        {
+          "lines": [
+            135,
+            141
+          ],
+          "behavior": "Exact row count plus each expected href once proves complete duplicate-free member/booking-assignee union, including a project and accepted job."
+        },
+        {
+          "lines": [
+            142,
+            149
+          ],
+          "behavior": "Unrelated and foreign jobs absent from list; crafted direct URLs return 404 and expose neither detail nor job title."
+        },
+        {
+          "lines": [
+            150,
+            163
+          ],
+          "behavior": "Accepted assigned operational detail loads with customer/status; protected-price/source-total and edit controls absent; raw SSR/RSC response contains none of accepted/source/cost/sell money property names; explicit economy entitlement descriptor is present."
+        }
+      ],
+      "discrimination": "A hidden money element, null/zero masking, broader list, duplicate relationship result or direct-read bypass cannot satisfy these assertions. Full seeded-role/current-role/RPC/table matrices remain lower-layer evidence, not an E01 claim.",
+      "native_result": {
+        "status": "passed",
+        "retry": 0,
+        "duration_ms": 2825
+      }
+    },
+    {
+      "id": "16.1-E02",
+      "priority": "P1",
+      "acs": [
+        "16.1-AC04",
+        "16.1-AC05"
+      ],
+      "file": "tests/e2e/jobs/jobs-depth.e2e.spec.ts",
+      "test_anchor": 167,
+      "assertions": [
+        {
+          "lines": [
+            172,
+            201
+          ],
+          "behavior": "360x640 real progressive edit fills identity/scalars/children; one identified actual Next Server Action is aborted; visible alert/unsent values remain and saved status is absent; whole durable snapshot equals before."
+        },
+        {
+          "lines": [
+            202,
+            225
+          ],
+          "behavior": "Explicit retry is in viewport and enabled; actual successful request body equals failed request body including identity; persisted scalar values and exact child counts plus one audit are checked."
+        },
+        {
+          "lines": [
+            226,
+            265
+          ],
+          "behavior": "Same mounted form remains editable after route refresh; button-only window removal/re-add and next scalar edit re-enable save; a second real save uses a different commandId and preserves complete relationship content with one further audit."
+        },
+        {
+          "lines": [
+            266,
+            281
+          ],
+          "behavior": "Reload proves title/contact/scheduling/role/dependency/window readback; complete durable snapshot is unchanged by read."
+        }
+      ],
+      "discrimination": "Does not stub success, remount before the successive-save check, or infer durability solely from a toast. Full invalid-parent/smuggling/atomicity matrices are lower-layer coverage.",
+      "native_result": {
+        "status": "passed",
+        "retry": 0,
+        "duration_ms": 3382
+      }
+    },
+    {
+      "id": "16.1-E03",
+      "priority": "P0",
+      "acs": [
+        "16.1-AC06",
+        "16.1-AC07"
+      ],
+      "file": "tests/e2e/jobs/jobs-depth.e2e.spec.ts",
+      "test_anchor": 285,
+      "assertions": [
+        {
+          "lines": [
+            288,
+            309
+          ],
+          "behavior": "Checked normal-JWT card setup supplies real requirements/windows; actual job-bound booking entry selects the job; real preview after assignee selection shows competence and access warnings."
+        },
+        {
+          "lines": [
+            310,
+            327
+          ],
+          "behavior": "Checked job-facts mutation occurs after current warning review; actual save returns PREVIEW_STALE, triggers fresh preview, shows failure/no saved status and clears prior review/reason; complete business/children/conflict/outcome/audit snapshot remains equal."
+        },
+        {
+          "lines": [
+            328,
+            348
+          ],
+          "behavior": "Renewed review and explicit retry perform real durable save; exactly one booking with correct own job/time, one assignee, both persisted conflict kinds and one audit are asserted."
+        },
+        {
+          "lines": [
+            349,
+            354
+          ],
+          "behavior": "Reload exposes durable booking summary and editor value; complete snapshot remains equal."
+        }
+      ],
+      "discrimination": "Exercises real current-fact stale refusal and durable warning persistence through the UI. Mixed disjoint jobs/unbound facts, absent-vs-empty semantics, all insert/delete/rebind/version/wrong-domain proof negatives and post-lock authorization remain pure/DB-layer responsibilities; this journey does not falsely cover those full matrices.",
+      "native_result": {
+        "status": "passed",
+        "retry": 0,
+        "duration_ms": 3661
+      }
+    },
+    {
+      "id": "16.1-E04",
+      "priority": "P1",
+      "acs": [
+        "16.1-AC08"
+      ],
+      "file": "tests/e2e/jobs/jobs-depth.e2e.spec.ts",
+      "test_anchor": 358,
+      "assertions": [
+        {
+          "lines": [
+            361,
+            365
+          ],
+          "behavior": "Actual linked dependency with missing dates shows unknown and no violation warning."
+        },
+        {
+          "lines": [
+            366,
+            378
+          ],
+          "behavior": "Real dependent-start and prerequisite-end saves followed by reload show violated-order warning with exact prerequisite-job link, and unknown disappears."
+        },
+        {
+          "lines": [
+            379,
+            389
+          ],
+          "behavior": "Real durable date correction followed by reload clears both warning and unknown; DB snapshot proves corrected predecessor/dependent dates and retained relationship."
+        }
+      ],
+      "discrimination": "Covers unknown, violation and correction; does not invent optimizer/graph/work-order behavior.",
+      "native_result": {
+        "status": "passed",
+        "retry": 0,
+        "duration_ms": 4275
+      }
+    }
+  ],
+  "reused_test_count": 4,
+  "reused_priority_coverage": {
+    "P0": 2,
+    "P1": 2,
+    "P2": 0,
+    "P3": 0
+  },
+  "required_gaps": [],
+  "required_gap_scope": "No missing consequential essential E2E development behavior was found within the approved four-journey plan. Full AC01/09/10/11 and exhaustive AC02/03/04/06/07 matrices are intentionally assessed in the API/DB/pure worker and parent evidence, not passed by this E2E report.",
+  "fixtures_reused": [
+    {
+      "file": "tests/e2e/support/resource-cdp-attachment.ts",
+      "anchors": [
+        35,
+        39,
+        57
+      ],
+      "purpose": "Existing resourcePage fixture delegates to normal page or isolated context on an explicitly supplied guard-owned CDP endpoint; fixture teardown closes its owned page/context, not root browser."
+    },
+    {
+      "file": "tests/support/jobs-depth-atdd.ts",
+      "anchors": [
+        43,
+        59,
+        100,
+        114,
+        115,
+        116,
+        117,
+        132,
+        136,
+        141,
+        147,
+        148,
+        150,
+        179
+      ],
+      "purpose": "Lazy scoped synthetic two-tenant fixture; normal authenticated clients for actual commands; real original standalone/accepted jobs and booking assignments; complete ordered snapshot for durable/rollback assertions; scoped fixture disposal. No new fixture or migration is needed."
+    }
+  ],
+  "ci_selection": {
+    "package_anchor": "package.json:26",
+    "smoke_script": "playwright test tests/e2e/auth/login-and-tenant-context.e2e.spec.ts tests/e2e/auth/auth-mail-callback.e2e.spec.ts tests/e2e/jobs/jobs-depth.e2e.spec.ts --reporter=list,json",
+    "ordinary_lane_anchors": [
+      ".github/workflows/ci.yml:492",
+      ".github/workflows/ci.yml:493",
+      ".github/workflows/ci.yml:495",
+      ".github/workflows/ci.yml:496"
+    ],
+    "release_lane_anchors": [
+      ".github/workflows/ci.yml:30",
+      ".github/workflows/ci.yml:498",
+      ".github/workflows/ci.yml:499",
+      ".github/workflows/ci.yml:502",
+      ".github/workflows/ci.yml:529"
+    ],
+    "native_artifact_anchors": [
+      ".github/workflows/ci.yml:504",
+      ".github/workflows/ci.yml:509"
+    ],
+    "playwright": "Existing configuration discovers **/*.e2e.spec.ts under tests/e2e, Chromium, serial worker, production build/start server, first-retry trace. No grep or skip excludes the Jobs smoke file. Optional exhaustive release_validation dispatch is not passing evidence when unexecuted."
+  },
+  "execution_evidence_reused": {
+    "run_id": "39286112780",
+    "revision": "d605295a46634e2c20013638e01c5e2a37ad0779",
+    "report": "C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39286112780-browser-native/general-browser.json",
+    "sha256": "a72d7d4b7a6bd7ebfb961bfb59cba858b08735cc221b21e02f973ad371ad427a",
+    "verification": "Worker parsed native stats and actual per-case result statuses/retries and computed matching raw SHA256; parent/root owns exact-head/source-dependency provenance and complete CI status.",
+    "stats": {
+      "expected": 11,
+      "unexpected": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "duration_ms": 44549.942
+    },
+    "jobs": {
+      "passed": 4,
+      "first_attempt_passes": 4,
+      "retries": 0,
+      "skipped": 0
+    },
+    "authentication": {
+      "passed": 7,
+      "first_attempt_passes": 7,
+      "retries": 0,
+      "skipped": 0
+    },
+    "new_execution": "None: no test, browser, service, API, hosted action or burn-in was run by this worker."
+  },
+  "knowledge_applicability": {
+    "playwright-utils-mandate": "Loaded first. Flag=true but @seontechnologies/playwright-utils absent from project package.json; two-gate mandate is inactive. Do not import missing utilities, install packages or migrate fixtures in this bounded coverage run.",
+    "library-integration-mandate": "Both flag and installed dependency are required. Recommend the framework workflow only if future owner-authorized library adoption is desired; no per-file deduction or fabricated deviation for the inactive package gate.",
+    "fixture-architecture": "Existing lazy helper functions and fixture shell, explicit scoped cleanup and reusable data setup fit the proportional composition principle. No new fixture is needed.",
+    "network-first": "Actual action observations and the one-shot failure route are registered before the triggering save/assignee change. Deterministic responses and visible state replace hard sleeps.",
+    "test-quality": "Four focused named journeys use priority tags, isolated scoped data, finally cleanup, explicit consequential assertions and deterministic waits; native case durations are 2.825–4.275s with no retry, skip or flaky outcome. No tautological new test is created.",
+    "overview": "Functional core/fixture shell and utility capability inventory understood. Absent package prevents adoption imports; preserve current runner and resourcePage entrypoint.",
+    "api-request": "Typed HTTP/schema/retry helper would serve API setup if installed; current real checked-command setup uses existing normal-JWT fixture path. No invented HTTP endpoint/schema or API tests emitted.",
+    "network-recorder": "HAR/offline playback is not requested and would not replace required real authorization, stale-proof or persistence evidence; no recording or HAR wiring.",
+    "auth-session": "Future adoption needs project auth provider plus createAuthFixtures/token and cookie wiring. Package/provider absent; current unique fixture credentials and inspected semantic login helper remain valid under inactive mandate.",
+    "intercept-network-call": "Understand spy/stub promise-before-trigger mechanism. Existing Next action request predicates and abort seam bind actual transport; absent package means no migration. No permanent success stub.",
+    "recurse": "Use for meaningful eventual conditions when installed, not an arbitrary replacement for normal visible-state assertions. Current action/network/hydration conditions are deterministic; no new polling or sleep.",
+    "log": "Report-integrated milestone logging is available with future installation; no dependency addition or logging-only churn is justified here. No credentials or raw report bodies reproduced.",
+    "file-utils": "No requested journey downloads CSV/XLSX/PDF/ZIP; file download utility is inapplicable.",
+    "burn-in": "No repeated runs or changed-file selection are necessary: unchanged exact-head native evidence is reusable. No burn-in or new CI configuration.",
+    "network-error-monitor": "Future merged utility fixture requires intentional-error scoping. Current E02 already carries narrowly described abort annotation; E01 deliberately asserts generic direct-denial 404. No new monitor migration under absent package gate.",
+    "fixtures-composition": "If installed later, a single project test-dir merged entrypoint should compose needed capabilities. Do not create a second generic fixture root during this workflow; resourcePage remains current entrypoint.",
+    "playwright-cli": "Useful for selectors/trace diagnosis only when a qualified owned runtime exists. Browser exploration prohibited for this run after missing guard context; no CLI/MCP browser/session started. Current source-derived selectors have actual CI runtime evidence.",
+    "selector-resilience": "Current journeys use scoped getByTestId, role/name and labels, with explicit route/response predicates. No CSS-layout or screenshot assertions added."
+  },
+  "playwright_utils_deviations": [],
+  "playwright_utils_gate_note": "No active-mandate deviations: package gate is absent. Existing file documents the current package/auth/action-transport rationale at lines 18-20, 41, 76, 178 and 303.",
+  "pact": {
+    "applicable": false,
+    "package_installed": false,
+    "broker_reachable": false,
+    "note": "Parent resolved broker capability false and no independently deployed contract boundary exists. No repeat probe or broker data invented."
+  },
+  "deferred_release_validation": [
+    {
+      "item": "Exhaustive role/device/browser matrix beyond four essential journeys",
+      "owner": "E16 UI/release-validation owner",
+      "status": "deferred",
+      "evidence": "Current four Jobs essential Chromium cases passed; broader matrices are unexecuted and earn no coverage.",
+      "next_action": "At release stabilization, run release_validation=true and tracked role/device/browser cases on the qualified final epic candidate; retain native results and resolve consequential failures."
+    },
+    {
+      "item": "Screenshot comparison, visual inspection, representative manual walkthrough and polish",
+      "owner": "E16 UI/release-validation owner",
+      "status": "deferred",
+      "evidence": "No screenshot/visual/manual pass claimed. Essential connected 360x640 failure/retry/persistence has actual same-head browser evidence.",
+      "next_action": "Before release readiness, retain screenshot comparisons and representative viewport/manual design/accessibility walkthrough results, and resolve consequential defects."
+    }
+  ],
+  "release_ready": false,
+  "worker_actions": "Only approved read operations and this scratch JSON write. No repo edits, Git mutation, new runtime/test/browser/API/hosted action or nested delegation."
+}

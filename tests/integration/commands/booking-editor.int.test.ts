@@ -98,7 +98,7 @@ describe("Story 14.4 current candidate preview and private authority", () => {
       expect(claims.domain.trim().length).toBeGreaterThan(0);
       expect(claims).toMatchObject({ tenantId: fx.base.tenantA.id, actorId: fx.base.adminA.id,
         operation: "create", bookingId: s.input.proposedCreateId,
-        groups: s.expectedGroups, engineVersion: "booking-conflicts-v2", configVersion: "stockholm-capacity-v1" });
+        groups: s.expectedGroups, engineVersion: "booking-conflicts-v4", configVersion: "stockholm-capacity-v2" });
       const [expectedDigest] = await h.adminQuery<{ digest: string }>("select public.booking_detection_digest_internal('create',null,$1::jsonb) as digest", [s.canonicalCandidate]);
       expect(claims.candidateDigest).toBe(expectedDigest.digest);
       expect(claims.factDigest).toMatch(/^[0-9a-f]{64}$/);

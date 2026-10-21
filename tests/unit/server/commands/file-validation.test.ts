@@ -25,6 +25,9 @@ import {
   MAX_SIGNED_URL_TTL_SECONDS,
 } from "@/server/storage/signed-access";
 
+import { ownerRecordVisible } from "@/server/commands/files/file-db";
+import type { CommandDbClient } from "@/server/commands/envelope";
+
 const UUID_A = "11111111-1111-1111-1111-111111111111";
 const UUID_B = "22222222-2222-2222-2222-222222222222";
 
@@ -163,4 +166,54 @@ test("[Decision] isPermanentStorageDenial: 4xx (403/404/NoSuchKey) permanent; 5x
   assert.equal(isPermanentStorageDenial({ status: 408 }), false);
   assert.equal(isPermanentStorageDenial({ status: 425 }), false);
   assert.equal(isPermanentStorageDenial({ statusCode: "429" }), false);
+});
+
+
+/** Actual helper consumed by both upload/link commands BEFORE their Storage write. */
+function workOrderPreflight(options: { child?: Record<string, unknown> | null; parent?: Record<string, unknown> | null; fault?: "work_orders" | "jobs" } = {}) {
+  const child = options.child === undefined ? { id: UUID_A, tenant_id: UUID_A, job_id: UUID_B, archived_at: null } : options.child;
+  const parent = options.parent === undefined ? { id: UUID_B, tenant_id: UUID_A, archived_at: null } : options.parent;
+  const reads: { table: string; columns: string; id: string }[] = [];
+  const client = { from: (table: string) => ({ select: (columns: string) => ({ eq: (column: string, id: string) => ({ limit: async (limit: number) => {
+    assert.equal(column, "id"); assert.equal(limit, 1); reads.push({ table, columns, id });
+    if (options.fault === table) return { data: null, error: { code: "57014", message: "PRIVATE SQL parent detail" } };
+    const row = table === "work_orders" ? child : parent;
+    return { data: row ? [row] : [], error: null };
+  } }) }) }) };
+  return { db: client as unknown as CommandDbClient, reads };
+}
+test("[16.3][AC05] shared work-order preflight admits only the current coherent child and parent", async () => {
+  const f = workOrderPreflight();
+  assert.equal(await ownerRecordVisible(f.db, "work_orders", UUID_A), true);
+  assert.deepEqual(f.reads.map(row => [row.table, row.id]), [["work_orders", UUID_A], ["jobs", UUID_B]]);
+});
+for (const fault of ["archived-child", "archived-parent", "missing-parent", "missing-job-id", "foreign-parent", "wrong-parent-id", "wrong-child-id", "missing-child"] as const) {
+  test("[16.3][AC05] shared work-order preflight denies before bytes: " + fault, async () => {
+    const child: Record<string, unknown> = { id: UUID_A, tenant_id: UUID_A, job_id: UUID_B, archived_at: null };
+    const parent: Record<string, unknown> = { id: UUID_B, tenant_id: UUID_A, archived_at: null };
+    if (fault === "archived-child") child.archived_at = "2030-01-01T00:00:00Z";
+    if (fault === "archived-parent") parent.archived_at = "2030-01-01T00:00:00Z";
+    if (fault === "missing-job-id") delete child.job_id;
+    if (fault === "foreign-parent") parent.tenant_id = UUID_B;
+    if (fault === "wrong-parent-id") parent.id = UUID_A;
+    if (fault === "wrong-child-id") child.id = UUID_B;
+    const f = workOrderPreflight({ child: fault === "missing-child" ? null : child, parent: fault === "missing-parent" ? null : parent });
+    assert.equal(await ownerRecordVisible(f.db, "work_orders", UUID_A), false);
+    if (["archived-child", "missing-child", "missing-job-id", "wrong-child-id"].includes(fault)) assert.equal(f.reads.length, 1);
+  });
+}
+for (const fault of ["work_orders", "jobs"] as const) {
+  test("[16.3][AC05] shared work-order preflight keeps " + fault + " faults retryable without private diagnostics", async () => {
+    const f = workOrderPreflight({ fault });
+    await assert.rejects(ownerRecordVisible(f.db, "work_orders", UUID_A), error => {
+      assert.ok(error instanceof Error); assert.match(error.message, /57014/);
+      assert.doesNotMatch(error.message, /PRIVATE|SQL parent/); return true;
+    });
+  });
+}
+test("[16.3][AC05] existing owner preflight preserves its single request-RLS visibility check", async () => {
+  for (const table of ["customers", "facilities", "contacts", "calculations", "quote_acceptances", "jobs"]) {
+    const f = workOrderPreflight(); assert.equal(await ownerRecordVisible(f.db, table, UUID_A), true);
+    assert.deepEqual(f.reads, [{ table, columns: "id", id: UUID_A }]);
+  }
 });

@@ -76,6 +76,7 @@ function readParentIds(form: FormData): {
   parentCustomerId: string | null;
   parentQuoteId: string | null;
   parentVersionId: string | null;
+  parentJobId: string | null;
 } {
   const str = (name: string): string | null => {
     const raw = form.get(name);
@@ -87,6 +88,7 @@ function readParentIds(form: FormData): {
     parentCustomerId: str("revalidate_customer_id"),
     parentQuoteId: str("revalidate_quote_id"),
     parentVersionId: str("revalidate_version_id"),
+    parentJobId: str("revalidate_job_id"),
   };
 }
 
