@@ -1,0 +1,36 @@
+{
+  "schema": "root-migration111-successful-application-freeze-v1",
+  "status": "FROZEN_FORWARD_MIGRATION_ONLY",
+  "migration": "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",
+  "bytes": 32551,
+  "sha256": "73b347ce62d4e936055e6de7f1054e9d1003a7550a738aa433261f7631150567",
+  "Git_blob": "da1270c7238db113f0cd2485581a635a66981a65",
+  "source_head": "589652335657df7153d7578b1a421b020fa2ce8c",
+  "checkpoint_head": "b459af22d490eadc90113fd713a73b65aff89471",
+  "actual_run_id": 39637925040,
+  "attempt": 1,
+  "evidence": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-b459af22-progress-03.json",
+    "bytes": 3990,
+    "sha256": "4dec3e9df55dac877f3b6e47c877a6c895769fe9f3de9ec76af779bcf6c1aa71"
+  },
+  "proven_live_metadata": {
+    "db": {
+      "id": 119354835550,
+      "startup": "success",
+      "reset": "success"
+    },
+    "e2e": {
+      "id": 119354835538,
+      "startup": "success",
+      "reset": "success"
+    },
+    "recovery": {
+      "id": 119354835669,
+      "job": "success"
+    }
+  },
+  "qualification_limit": "Controlled fresh hosted startup/reset source success establishes successful application and freezes111. Full native/95/INT015/ordinary-regression/browser/recovery artifact evidence remains unqualified; whole run not yet terminal.",
+  "normal_acceptance_credit": 0,
+  "future_rule": "Never edit111 again; migration corrections require new forward migration and coordinated scope. Earlier predecessor immutable remains unchanged."
+}

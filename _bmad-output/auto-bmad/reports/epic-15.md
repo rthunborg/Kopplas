@@ -5054,3 +5054,176 @@ No archive ran this resume.
 1. None during current existing-scope checkpoint/runtime allocation; no new generic owner confirmation requested.
 
 **Next:** Use fresh checkpoint UUID b34acf03-1116-4411-9ce4-7dbe04d48745 for exact normal cause-proof=false/release-validation=false operation only after grant. Preserve source72closure through metadata/push.
+
+## Report — 2026-10-21T16:48:03Z (15.5 owner ACL normal run dispatched once)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `b459af2`).
+**Pipeline status:** in-progress; 15.5 P5 active; four of six landed
+**Continues:** Root sole bounded polling; no redispatch.
+
+**Summary:** Verified completed Coordinator allocation exec-74939112-6403-4a97-8482-eb1eb2ce64ea; reviewedcheckpoint b459af22 pushedonce andactualremoteverified. SevenfixedGETpreflight plussolePOST succeeded native0. Actualrun39637925040,attempt1,source58965233,UUIDb34acf03-1116-4411-9ce4-7dbe04d48745.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 291h 50m (≈77h 24m AI-run, ≈214h 25m human/idle wait); resumed 151×.
+
+**Stories:**
+1. NORMAL causeproof=false/releasevalidation=false. Required admission/verify/db/recovery-storage-loader/e2e; other4skip.95distinctcases plus recovery1 required. All71source+Playwrightclosure rechecked beforedispatch.
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** No localruntime,provider,production,demo,mainmergeor deploy. Any successful111application freezes111,evenotherfailure. Requiredordinary010roleproofcurrently0executed/credit0.
+
+**Open questions:**
+1. Current111startup/reset/nativechecks and actual fullDB/RLS/browser/recovery results pending. No acceptance fromdispatch.
+
+**Deferred work:**
+1. Existing releaseitems remain explicitlydeferred.
+
+**⚠️ Needs human:**
+1. None for admittedexactonceoperation.
+
+**Next:** Afteractualterminalfacts, use separatelyallocatedboundedarchive+list+atmost3fixedreport acquisitions withHighoperator anddistinctprovenanceaudit. Uncertaintyconsumes; no retry/alternate/perjoblogs.
+
+## Report — 2026-10-21T17:04:03Z (15.5 migration111 freeze; browser job failure awaiting terminal evidence)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `b459af2`).
+**Pipeline status:** in-progress; 15.5 P5 active; normal acceptance0
+**Continues:** Root sole polling until whole normal run terminal, then conditional admitted evidence acquisition.
+
+**Summary:** Actualrun39637925040 atb459: DB+E2E startup/reset success; recoveryjob success. Current11132551B SHA73b347ce62d4e936055e6de7f1054e9d1003a7550a738aa433261f7631150567 nowFROZEN, all latermigrationfixesforward-only.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 292h 06m (≈77h 24m AI-run, ≈214h 41m human/idle wait); resumed 152×.
+
+**Stories:**
+1. E2E119354835538 terminalFAILURE, nativebrowserreportuploadSUCCESS, stopSUCCESS. DB119354835550 fullintegrationstillinprogress. Admission+verify/recoveryjobS; fouroptionalsskip. Actualcasecounts/causestillUNQUALIFIED.
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** Failedessentialfunctionalchecks cannotbe recategorizedasdeferredvisualvalidation. No retry,sourcefixor newobserver basedonpartialmetadata. Migration111immutable evenif othergates fail.
+
+**Open questions:**
+1. Browserfailure andfullDB/nativeordinarygrantor/INT015 results pendingboundedreportqualification. Whole-runterminalnotyetobserved; acquisitionbudgets remain0.
+
+**Deferred work:**
+1. Existing releaseitems retained; requirednative95+recoveryevidencestillmissing.
+
+**⚠️ Needs human:** (none)
+
+**Next:** Collectexactterminal9jobfacts, bindactualrun/head/UUID/mode/source and72closure, activateboundedHighoperator onlyonceunder separateallocation; preserveprivacy/custody/unknowns.
+
+## Report — 2026-10-21T17:09:50Z (15.5 terminal normal failure; High evidence qualification active)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `b459af2`).
+**Pipeline status:** in-progress; 15.5 P5 active; normal95 gate notpassed
+**Continues:** Allocated Highoperator boundedinline acquisition, then distinctHighofflineprovenanceaudit; no redispatch.
+
+**Summary:** Run39637925040 attempt1 atb459 concludedFAILURE. Exact9jobfacts14485/39c5dac9884784d9246e7ebbe9cf27e709ca373962f5a050aaeeb486bafa10d5: admission+verify+recoveryS, dbintegrationF, e2eessentialauthsmokeF, other4skip.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 292h 12m (≈77h 24m AI-run, ≈214h 47m human/idle wait); resumed 153×.
+
+**Stories:**
+1. 111start/resetS and FROZEN; ownrolecleanup/nativeordinary/currentfull95counts stillunqualified untilreports. Browser+fullintegrationnativeuploadfacts captured; failures remainfunctional gates.
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** Rootterminaladmission3833/e36dff4cebb0c9d30e0178939123671aa3e0df84ca055d4aaddbb3ff918a69f5 fresh72closure andseparateallocation bound. Highoperator onlyonearchive/onefixedlist/atmost3eligibleZIPreads undercaps/RAM-only privacy/exclusiveintent/no retry. No collector/source edits/newobserver/SQLresource/prodprovider/merge/deploy.
+
+**Open questions:**
+1. Actualcasefailures/SQLSTATEorHTTPclassification/native010+INT015reach andcleanupcustody pending, no rootcauseinference.
+
+**Deferred work:**
+1. Releaseitems retained; requirednativefailures cannotdefer.
+
+**⚠️ Needs human:** (none)
+
+**Next:** Admitexclusiveclosedpacket+requestcounts, distinctHighauditprovenance/limits, then routeonlysupportedconcretediagnosis/repair.
+
+## Report — 2026-10-21T17:20:10Z (15.5 failed normal packet admitted; distinct High audit active)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `b459af2`).
+**Pipeline status:** In progress: 15.5 normal run39637925040 failed; development not complete, release_ready false. Migration111 successfully applied and immutable.
+**Continues:** Distinct High offline provenance audit, then bounded failure assessment; whole epic continues after actual required gates pass.
+
+**Summary:** Four stories landed;15.5 P5 active;15.6 unstarted. Preserve inherited review_unverified caveat and one final draft PR.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 292h 22m (≈77h 24m AI-run, ≈214h 57m human/idle wait); resumed 154×.
+
+**Stories:**
+1. 15.5 at b459af22/source58965233: operator reports77 clean passes+4 flaky cases+14 failures across95 enrolled cases, acceptance0. FullDB1975P12F52pending; storyDB39P12F0skip; browserstory8expected4flaky2unexpected0skip. Node3196P and Python43 separate; recovery1P. Counts await distinct audit.
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** Owner authorizations retained; no legacy browsing/evidence. No merge/deploy; retained branch. Three broad review rounds exhausted; targeted latest changes/provenance only.
+
+**Open questions:**
+1. Remaining DB/browser causes UNKNOWN; API019 privacy failure and browser key cleanup UNVERIFIED/custody retained are unresolved required-development issues.
+
+**Deferred work:**
+1. Existing deferred release-validation ledger remains unchanged; no failed functional requirement deferred or waived.
+
+**⚠️ Needs human:**
+1. none for current offline audit and authorized bounded continuation.
+
+**Next:** Distinct High audit frozen24-member packet. No additional GETs, redispatch, source repair or runtime effects in this phase.
+
+## Report — 2026-10-21T17:27:57Z (15.5 failed normal independently qualified; source assessment active)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `b459af2`).
+**Pipeline status:** In progress: normal39637925040 failed required development gates; provenance audit passed, development_complete false, release_ready false, acceptance0.
+**Continues:** High source-only failure localization/minimal repair proposal; no code changes or new runtime effects allocated.
+
+**Summary:** 15.1–15.4 landed;15.5 P5 active;15.6 unstarted. One final draft PR and inherited review_unverified retained.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 292h 30m (≈77h 24m AI-run, ≈215h 05m human/idle wait); resumed 155×.
+
+**Stories:**
+1. Audited actual95 distinct cases:77 clean passes,4 browser flaky cases,14 failures. StoryDB39P12F0skip; browser8expected4flaky2unexpected0skip; fullDB1975P12F52pending, Node3196P/Python43 and direct recovery1P separately. RLS010 new ordinary-grantor regression and INT015 pass.
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** No legacy evidence/browsing; independent targeted High review only after3 exhausted broad rounds; no merge/deploy. Successfully applied migration111 frozen; any needed DB correction forward-only.
+
+**Open questions:**
+1. Source causes for API003–008/API010/API018/API019/INT009/INT014/RLS002; browser E2E001/002C and four flaky cases. Only API010/018 safe42501 class observed. Browser key cleanup UNVERIFIED/custody retained; attachment bodies unavailable.
+
+**Deferred work:**
+1. Release-validation ledger preserved. Failed API019 privacy and essential functionality remain development blockers, never deferred or waived.
+
+**⚠️ Needs human:**
+1. none for bounded source-only assessment; existing human authorization retained.
+
+**Next:** Receive compact source-localization proposal, then independently challenge actual sensitive delta and coordinate shared ownership before edits. Five evidence GETs consumed/settled; no refetch or blind redispatch.

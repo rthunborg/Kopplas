@@ -1,0 +1,107 @@
+{
+  "status": "GRANTED",
+  "authority": {
+    "coordinator_thread": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+    "actual_completed_turn": "01a15f58-46f1-7060-a4ed-94050bee0e4f",
+    "actual_completed_grant_tool": "exec-74939112-6403-4a97-8482-eb1eb2ce64ea",
+    "root_independently_read_completed_tool": true,
+    "actual_human_approval_turn": "01a15f19-acd9-7261-80ac-8660a2d5abb3",
+    "actual_human_approval_message": "01a15f19-b0c7-74c3-bb36-654971a55868",
+    "standing_hosted_CI_and_exact_effects_approval": true
+  },
+  "checkpoint_head": "b459af22d490eadc90113fd713a73b65aff89471",
+  "source_head": "589652335657df7153d7578b1a421b020fa2ce8c",
+  "checkpoint_id": "b34acf03-1116-4411-9ce4-7dbe04d48745",
+  "ref": "codex/epic-15-scheduling-time-calendar",
+  "attempt": 1,
+  "mode": "normal",
+  "cause_proof": false,
+  "release_validation": false,
+  "code_review_admission": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/root-owner-acl-source-code-review-admission.json",
+    "bytes": 1491,
+    "sha256": "c7a153de5dbcf5f6a0f73cd72b5782eeb4f78b2e2c7e195a5cbf81de2ccd2d3b"
+  },
+  "readiness": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/owner-acl-normal-readiness.json",
+    "bytes": 34051,
+    "sha256": "f5a61e8d45e704e821357a479594ff496b9a3b6e5ab1d388039ae687be0bdaaa"
+  },
+  "root_readiness_admission": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/root-owner-acl-normal-readiness-admission.json",
+    "bytes": 1255,
+    "sha256": "9112e5018d948441e42f3a1e1af1c030a678c68ce2e45a7380c6038fbae62000"
+  },
+  "source_closure_rechecked": 72,
+  "normal_acceptance_credit": 0,
+  "prohibited": "No local runtime, demo/production/shared variables/persistent secrets/provider/default branch/main merge/deployment, foreign writes, retries, alternate endpoints or unallocated collector edits.",
+  "schema": "root-accepted-owner-acl-normal-CI-allocation-v1",
+  "root_sole_poller": true,
+  "dispatches_authorized": 1,
+  "actual_dispatches": 0,
+  "preflight_GETs": 7,
+  "exclusive_fsynced_intent_before_sole_POST": true,
+  "runtime_effects": {
+    "once": "ONE exact reviewed fresh normal checkpoint run, five required jobs and optional4 skipped/uncredited, causeproofFALSE/releaseFALSE. Root solely dispatches/polls; no blind retry. Source-only grant does not authorize these effects.",
+    "required_jobs": [
+      "checkpoint-admission",
+      "verify",
+      "db",
+      "recovery-storage-loader",
+      "e2e"
+    ],
+    "optional_skips": [
+      "dashboard-e2e",
+      "native-stream-probe",
+      "fixed-chromium-paired-probe",
+      "fixed-chromium-application-verification"
+    ],
+    "existing_hosted_scope": "Owned GitHub-hosted source stacks start/reset and current111 migrations; isolated recovery DB/Storage schema restore/loader/physical bytes+logical-row+overwrite-denial proof; actual full integration/RLS/pilot and essential browser production app; generated job-local credentials/loopback Auth/mail/DB/HTTP; wrapper dedicated Vault key and exact child/server/HTTP/poll/key cleanup or custody. No demo/provider/prod/local-resource target.",
+    "current111_actual_catalog_delta": "After all8 canonical function body/shape/owner/raw-source-ACL preflight, use existing authorized SET calendar_feed_owner context to atomically REVOKE all from PUBLIC/anon/authenticated/service_role on fixed8 OIDs. Regrant anon on fetch, authenticated on status/manage/abuse, no JWT grant on first4 internal targets. Reset original postgres and enforce stable metadata/roles/memberships/public schema. Original3 guards and later actor adapter remain. No new role attributes/memberships/default ACL changes in this migration phase.",
+    "ordinary_grantor_RLS010_additional_effects": {
+      "placement": "Runs once at beginning of existing RLS010, before its owned row fixture.",
+      "metadata_commands": "Exactly Docker inspect of owned source db+gateway and Supabase status JSON; each15s/2MB, captured credentials/errors RAM only. No lifecycle launch/reset by this helper.",
+      "admission": "SUPABASE_TEST_REQUIRED=1; disposable db mode/source identities, exact GITHUB_WORKSPACE realpath and local DB endpoint, exact111 ledger and feed-owner/definer function catalog; main and fresh clients independently check original/current authority7 and privacy4 plus nativePG17.",
+      "clients": "One existing runtime factory proof SQL client for transaction, then one fresh existing factory absence client after main end. No generic new pool or privileged child env.",
+      "private_objects": {
+        "roles": 2,
+        "schemas": 1,
+        "functions": 1,
+        "patterns": [
+          "cf_acl_m_<32hex>",
+          "cf_acl_o_<32hex>",
+          "cf_acl_s_<32hex>",
+          "cf_acl_f_<32hex>"
+        ],
+        "lifetime": "Uncommitted one transaction; no persistent object/fixture and no DROP cleanup."
+      },
+      "closed_actor_types": {
+        "setup": "Existing qualified supabase_admin original/current LOGIN+SUPER proof session, separate from actual migration executor postgres LOGIN/non-SUPER. No guessed/default/fallback privilege transport.",
+        "UUID_migrator": "NOLOGIN,NOINHERIT,NOSUPER,NOCREATEDB,CREATEROLE,NOREPLICATION,NOBYPASSRLS; SET LOCAL SESSION AUTHORIZATION; createrole_self_grant empty.",
+        "UUID_owner": "NOLOGIN,NOINHERIT,NOSUPER,NOCREATEDB,NOCREATEROLE,NOREPLICATION,NOBYPASSRLS; exact predecessor bootstrap grants new-role SET without inheritance; SET LOCAL ROLE limited to own UUID owner."
+      },
+      "bounded_SQL_effects": [
+        "BEGIN; SET LOCAL statement_timeout5s/lock_timeout2s/idle_transaction_timeout30s; snapshot only protected canonical production targets/roles/membership/public schema, excluding unrelated UUID catalog rows.",
+        "Create UUID migrator role and private schema; name-only adapted exact bootstrap creates UUID owner and explicit SET/noinherit membership. Restrict session authority to UUID migrator.",
+        "Grant usage/create only on UUID schema to UUID owner; create one private(uuid,uuid)->jsonb PLpgSQL definer empty-search-path function and transfer ownership.",
+        "Apply exact predecessor REVOKE/GRANT adapted only to private function; observe no independent grant option and unsafe raw ACL under ordinary grantor.",
+        "SAVEPOINT, SET LOCAL ROLE UUID owner, exact bound reconciliation loop, deliberately fixed P0001, rollback/release savepoint; qualify ordinary identity and exact prior unsafe catalog state.",
+        "SET LOCAL ROLE UUID owner, reconcile private function again, RESET ROLE; exact owner/authenticated intended ACL, anon/service denied, original OID/metadata unchanged; protected shared catalog fingerprint unchanged."
+      ],
+      "primary_bound": "80s closes new SQL admission; actual pending pg promises and protocol ReadyForQuery/idle tracked separately from query timeout.",
+      "cleanup": "Close primary admission; Promise.allSettled pending queries and protocol idle before full ROLLBACK. Only after confirmed rollback reset session/role, requalify original authority/privacy and same-client role/schema/function absence. Close main, then fresh separately qualified client checks UUID absence/protocol idle and closes. Any uncertainty/transport/close failure retains UUID custody in RAM and fails for owned job disposal; no missing report means clean absence.",
+      "not_effects": "No Auth/token/tenant fixture inside this subproof; no shared function/role ACL/attributes/membership/default ACL changes, no runner ordering change. Function EXECUTE grants are only on private UUID function, even to existing authenticated role."
+    },
+    "ordinary_fixtures_afterwards": "Existing RLS010 row fixture and other cases use owned tenants/Auth users/memberships/bookings/token/audit fixtures and reviewed fault/time/catalog seams. Existing exact-owned Vault key/child settlement cleanup remains mandatory. New UUID subproof does not replace INT015/source/recovery authority or lifecycle evidence.",
+    "hosted_variables_secrets": "Unchanged normal workflow/dispatcher requires no new repo admission-variable mutation. Only existing reviewed job-generated/captured credentials; no provider/prod secrets. Current hosted availability and other-session ownership still need Root/Coordinator admission, not API assumptions here.",
+    "freeze_custody": "Success applying111 freezes its bytes; exact managed hosted cleanup remains actual-step/receipt qualified, not guaranteed physical shutdown from Stop success."
+  },
+  "migration111_success": "FREEZE111 and forward-only even if other checks fail.",
+  "required_cases": {
+    "node": 30,
+    "vitest": 51,
+    "essential_browser": 14,
+    "total": 95,
+    "direct_recovery_separate": 1
+  }
+}

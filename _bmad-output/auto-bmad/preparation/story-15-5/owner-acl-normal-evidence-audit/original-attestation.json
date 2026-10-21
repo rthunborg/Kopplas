@@ -1,0 +1,296 @@
+{
+  "schema": "OWNER_ACL_NORMAL_EVIDENCE_INDEPENDENT_AUDIT_v1",
+  "reviewed_at_utc": "2026-10-21T17:26:41.416981+00:00",
+  "reviewer": {
+    "agent_path": "/root/review15_5_private_diagnostic_high",
+    "model_route": "gpt-6.1-sol High",
+    "independent_from": [
+      "/root/native15_5_high (acquisition operator)",
+      "BuildHigh source author",
+      "Root mechanical admission"
+    ],
+    "role": "distinct offline packet provenance auditor"
+  },
+  "verdict": "PASS_PROVENANCE_QUALIFIED_FAILED_NORMAL_GATES",
+  "development_complete": false,
+  "release_ready": false,
+  "normal_acceptance_credit": 0,
+  "target": {
+    "run_id": 39637925040,
+    "attempt": 1,
+    "checkpoint": "b34acf03-1116-4411-9ce4-7dbe04d48745",
+    "head": "b459af22d490eadc90113fd713a73b65aff89471",
+    "source": "589652335657df7153d7578b1a421b020fa2ce8c",
+    "mode": "normal"
+  },
+  "cause_proof": false,
+  "release_validation": false,
+  "scope": "Actual packet provenance, reached proof, counting, privacy/custody limits and suitability for source-only failure localization. Not fourth broad story review, source-fix approval, or activation.",
+  "policy_inputs": [
+    {
+      "path": "AGENTS.md",
+      "bytes": 11938,
+      "sha256": "b28eec9c075877d175362dad65b739054e45a3134d748b3c11e601ae36fbb823"
+    },
+    {
+      "path": "docs/process/development-completion-policy.md",
+      "bytes": 8460,
+      "sha256": "d3617c2bcfb64e0b185c82e8a39f84af40bfc5b0ddda739552d2e099c38d4893"
+    }
+  ],
+  "policy_override": "Latest owner instructions prohibit legacy evidence and retain independent sensitive High review, three-broad-round cap, development-completion policy and no effects. No legacy URL was used.",
+  "packet": {
+    "directory": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-b459af22-ci-independent",
+    "manifest": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-b459af22-ci-independent/manifest.json",
+      "bytes": 4947,
+      "sha256": "a964912b04fff6fc7f93a29f63ef84fa2aa5788e357e9f57a24a07eb95f46a81"
+    },
+    "members": 24,
+    "hashed_nonself_members": 23,
+    "all_member_hashes_verified": true,
+    "binding_basis": "Exact member vector and each member bytes/SHA256 in the bound manifest; manifest self-exclusion is explicit."
+  },
+  "source_vector": {
+    "binding": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-b459af22-ci-independent/current-source-bindings.json",
+      "bytes": 18299,
+      "sha256": "e32be72e8c9e793815e289242929fe6848ebd838cd3f05b39aa168d8d8ae71d5"
+    },
+    "raw_files": 72,
+    "all_raw_bytes_sha256_verified": true,
+    "git_object_basis": "Root recorded actual source/head Git-object equality; reviewer did not repeat Git or remote verification."
+  },
+  "input_refs": [
+    {
+      "bytes": 3833,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-owner-acl-normal-evidence-activation.json",
+      "sha256": "e36dff4cebb0c9d30e0178939123671aa3e0df84ca055d4aaddbb3ff918a69f5"
+    },
+    {
+      "bytes": 14485,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-b459af22-terminal-job-facts.json",
+      "sha256": "39c5dac9884784d9246e7ebbe9cf27e709ca373962f5a050aaeeb486bafa10d5"
+    },
+    {
+      "bytes": 32886,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-owner-acl-source-precommit-admission.json",
+      "sha256": "58e9a000aaa5107b90216be3ae838cf41ac7c18195ce87a488c53126f5075158"
+    },
+    {
+      "bytes": 7430,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-owner-acl-normal-evidence-allocation.json",
+      "sha256": "2c722b12bcec3a1f0ad1d57948c252b55156035aadd7e86eab074907cd0bbee5"
+    },
+    {
+      "bytes": 4872,
+      "path": "playwright.config.ts",
+      "sha256": "5cf81238d605297d3cc5a74f2dcde9e07f24880357bd49d27e071059a6d70706"
+    },
+    {
+      "bytes": 1491,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/root-owner-acl-source-code-review-admission.json",
+      "sha256": "c7a153de5dbcf5f6a0f73cd72b5782eeb4f78b2e2c7e195a5cbf81de2ccd2d3b"
+    },
+    {
+      "bytes": 34051,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/owner-acl-normal-readiness.json",
+      "sha256": "f5a61e8d45e704e821357a479594ff496b9a3b6e5ab1d388039ae687be0bdaaa"
+    },
+    {
+      "bytes": 1255,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/root-owner-acl-normal-readiness-admission.json",
+      "sha256": "9112e5018d948441e42f3a1e1af1c030a678c68ce2e45a7380c6038fbae62000"
+    }
+  ],
+  "root_mechanical_admission": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-owner-acl-normal-evidence-packet-admission.json",
+    "bytes": 1407,
+    "sha256": "dac706a20aa95ea4069d8f477e122072f997da13c7bf0c591cadd9b05bf571fc"
+  },
+  "executed_operator_provenance": {
+    "transcript_path": "C:/Users/Rasmus/.codex/sessions/2026/10/20/rollout-2026-10-20T17-50-24-01a15a01-b43d-7493-8ca6-53e894103232.jsonl",
+    "session_id": "01a15a01-b43d-7493-8ca6-53e894103232",
+    "session_meta_agent_path": "/root/native15_5_high",
+    "session_meta_parent": "01a120bb-ec6d-7611-9dde-ca64bc8e280f",
+    "authorized_access": "Session metadata; command-chain payload.input records 7051/7066/7121/7132, completed output 7135 and completed outputs for the first two calls only. No unrelated/provider body records accessed.",
+    "input_records": [
+      {
+        "line": 7051,
+        "call_id": "call_a547fff809d64f10a8a31369aba76eea",
+        "input_sha256": "e8b8f3f9e3ab85de7fc87062497bb9722ec90d3948543a29d6928e87d51430d1"
+      },
+      {
+        "line": 7066,
+        "call_id": "call_ba72d2bec1954a3ba9fae31b5e748627",
+        "input_sha256": "7aa759fa6e1c67ec2b00c356dc86cb263a2387d887f2cbce31e364ad90ff2cd0"
+      },
+      {
+        "line": 7121,
+        "call_id": "call_aa1ea2db7408496a91a3114207f9c42f",
+        "input_sha256": "59d40a0ee81371750c3877d5eba98793a83c8721ac8dc62c784b005053fcd061"
+      },
+      {
+        "line": 7132,
+        "call_id": "call_e7972f95035e4d8887b50e18664ef73e",
+        "input_sha256": "bb885dfac2c6e07e3cfc3f652923bf8ae4ab773d8c3bb2bfa398153ad5c84253"
+      }
+    ],
+    "reconstruction": "RAM-only extraction of recorded String.raw source, exact JavaScript first-string replacement metacharacter semantics, recorded first-287-line slice and line-228 repair; UTF-8 SHA256 and AST-only parse. No tool-bearing JavaScript or collector body executed; source not persisted.",
+    "source_utf8_bytes": 26061,
+    "source_characters": 26057,
+    "source_sha256": "71468c52fab40bea00219a00fe85b796f117d611612357a2917170f8d8862be6",
+    "completed_execution": {
+      "line": 7135,
+      "chunk_id": "1937be",
+      "native_exit": 0,
+      "wall_seconds": 7.7482407,
+      "closed_GET_receipts": 5
+    },
+    "OS206": "Completed output of call_ba72d2bec1954a3ba9fae31b5e748627 proves CreateProcess OS206 refusal before Python process creation; initial source-storage output was pure preparation.",
+    "compile_stop_limit": "Separate compile SyntaxError is operator-reported and deterministic pre-body history, not independently verified by the authorized completed-output subset. No further history was chased; it is nonadditive."
+  },
+  "acquisition_checked": {
+    "GETs": 5,
+    "remaining_GET_budget": 0,
+    "fixed_sequence": [
+      "owned run logs archive",
+      "owned run artifacts list",
+      "exact admitted full-integration artifact ZIP",
+      "exact admitted browser artifact ZIP",
+      "exact admitted isolated-recovery artifact ZIP"
+    ],
+    "artifact_ids": [
+      12365492189,
+      12363428136,
+      12363167505
+    ],
+    "all_native_exit_zero": true,
+    "all_physical_EOF_reader_done_joined_handles_closed": true,
+    "all_deadlines_and_caps_satisfied": true,
+    "all_stderr_zero_bytes": true,
+    "intent_order_basis": "Audited executed operator writes exclusive fsynced operation intent before first GET and per-request intent before each Popen; retained paired receipts match the completed invocation.",
+    "archive_and_listing_receipts": "Bound request-01/02 intent/result and closed projections in manifest.",
+    "selected_artifact_zip_sizes_digests_match_listing_and_streams": true,
+    "ZIP_safety": "Audited before interpretation: compressed/entry/declared and actual inflation/member/ratio caps, safe normalized paths, duplicate/symlink/encryption refusal, stored/deflate only, CRC/size checks and selected members only.",
+    "nullable_expiry": "Actual selected values non-null; parser permits null and separately enforces available non-null eligibility.",
+    "privacy": "Only permitted closed counts, enums, booleans, source/case identifiers and digests persisted; raw API/archive/log/report/error/SQL/secret bodies not persisted by the audited operator.",
+    "settlement_limit": "Acquisition reader/child settlement does not establish hosted wrapper browser cleanup."
+  },
+  "independent_offline_checks": [
+    "Exact packet membership and 23 nonself byte/hash rows; 72 current raw source rows; eight input-reference byte/hash rows.",
+    "Successful executed-source reconstruction/hash/AST-only parse and actual closed five-request result lineage; OS206 completed refusal.",
+    "Paired request identities, fixed endpoints, stream caps/deadlines, physical EOF/join/settlement and artifact listing/ZIP stream/member digests.",
+    "Full DB and browser projection counts, distinct current story IDs, attempts versus cases, all 165 current integration file membership and six serial report intervals.",
+    "Unfiltered Node enrollment/30 unique story labels versus 32 overinclusive matches; Python separate batches.",
+    "RLS010 awaited ordinary grantor subproof; INT015 native restrictive-engine cleanup and direct recovery source proof gates; wrapper cleanup semantics.",
+    "Migration111 raw identity and actual successful apply markers/source ledger guards."
+  ],
+  "native_results_reviewed_not_rerun": {
+    "Node": {
+      "passed": 3196,
+      "suites": 103,
+      "failed": 0,
+      "skipped": 0,
+      "cancelled": 0,
+      "todo": 0
+    },
+    "Python_separate": 43,
+    "full_DB": {
+      "total": 2039,
+      "passed": 1975,
+      "failed": 12,
+      "pending_skipped": 52
+    },
+    "story_DB": {
+      "total": 51,
+      "passed": 39,
+      "failed": 12,
+      "skipped": 0,
+      "failed_ids": [
+        "API003",
+        "API004",
+        "API005",
+        "API006",
+        "API007",
+        "API008",
+        "API010",
+        "API018",
+        "API019",
+        "INT009",
+        "INT014",
+        "RLS002"
+      ]
+    },
+    "browser_distinct": {
+      "total": 31,
+      "expected": 25,
+      "flaky": 4,
+      "unexpected": 2,
+      "skipped": 0
+    },
+    "story_browser": {
+      "total": 14,
+      "expected": 8,
+      "flaky": 4,
+      "unexpected": 2,
+      "failed_ids": [
+        "E2E-001",
+        "E2E-002C"
+      ],
+      "flaky_ids": [
+        "E2E-005",
+        "E2E-006",
+        "E2E-010-rotate",
+        "E2E-010-revoke"
+      ]
+    },
+    "feature_accounting": {
+      "distinct": 95,
+      "Node": 30,
+      "DB": 51,
+      "browser": 14,
+      "clean_pass": 77,
+      "flaky": 4,
+      "final_failed": 14
+    },
+    "direct_recovery_separate_cases": 1,
+    "nonadditivity": "No additions from retries, suite containers, global subset counts, Python, scheduler/ordinary-grantor subproofs, source-author local controls or separate recovery."
+  },
+  "qualification_limits": [
+    "API010/API018 scenario insufficient-privilege 42501 is a class, not backend/authorization-check/historical cause proof; other failure causes UNKNOWN.",
+    "API019 privacy gate failed; its exact predicate and browser attachment body privacy are not established. Eight path-only attachment bodies unavailable.",
+    "Browser key cleanup unverified/custody retained although dbClosed; DB exact-key-deleted-confirmed/custody released is supported by reached source gates and receipt.",
+    "Report intervals establish serial nonoverlap after parallel report completion; no raw parallel teardown timestamps retained.",
+    "Node matcher has 32 lines/30 unique enrolled IDs; it alone does not prove exact-once case execution. Current unfiltered runner/source enrollment is the additional basis.",
+    "Skipped global DB cases are not coverage; separate direct recovery does not retroactively execute a skipped full-suite instance.",
+    "Exact audit vulnerability counts, unavailable failure details, browser cleanup reason and attachment contents remain UNKNOWN."
+  ],
+  "migration111": {
+    "path": "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",
+    "bytes": 32551,
+    "sha256": "73b347ce62d4e936055e6de7f1054e9d1003a7550a738aa433261f7631150567",
+    "status": "SUCCESSFULLY_APPLIED_FROZEN",
+    "correction_rule": "Any actual necessary SQL correction requires a future forward-only migration; never edit111 or predecessors."
+  },
+  "source_only_localization": {
+    "sufficient_evidence": true,
+    "scope": "Bound current failed IDs/status classes, API019 privacy predicate and wrapper cleanup paths; preserve unknown causes. Separately routed read-only assessment only, not an inferred fix or runtime permission."
+  },
+  "remaining_blockers": [
+    "12 ordinary DB failures including failed API019 privacy gate",
+    "Two essential browser failures and four flaky cases",
+    "Browser key cleanup unverified and custody retained"
+  ],
+  "effects_by_reviewer": {
+    "network": 0,
+    "GETs": 0,
+    "collector_executions": 0,
+    "runtime_or_SQL_or_resources": 0,
+    "CI": 0,
+    "Git_operations": 0,
+    "source_or_Spec_or_state_changes": 0,
+    "writes": "Only the three new owned review metadata files"
+  },
+  "activation_authorized": false
+}
