@@ -5591,3 +5591,35 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Normal checkpoint UUID9565c54d-1bbe-4a32-b647-949c02e6c404; final pushedhead/runID remain unassigned. No deployment.
+
+## Report — 2026-10-21T19:42:15Z (checkpoint — normal push and CI allocated)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `ab9b8e6`).
+**Pipeline status:** 15.5 P5 active; source and normalexecution independently reviewed; one exact normal push/CI operation allocated. Native acceptance zero.
+**Continues:** Final clean73/config/branch/remoteownership admission, one Rootpush and registered normaldispatch; Rootsolepoller.
+
+**Summary:** 15.1–15.4 landed; 15.5 active; 15.6 unstarted.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 294h 44m (≈77h 24m AI-run, ≈217h 19m human/idle wait); resumed 167×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:**
+1. All95/fullDBRLS/recovery/privacy/browser/custody actualoutcomes pending; terminal evidenceGETs not allocated.
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** FixedUUID9565c54d-1bbe-4a32-b647-949c02e6c404; derive exactpushedhead only after thismetadatafreeze. No deployment or main adoption.
