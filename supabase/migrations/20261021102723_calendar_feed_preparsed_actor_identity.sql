@@ -77,7 +77,7 @@ begin
   or not pg_catalog.pg_has_role(current_user,owner_role.oid,'SET')
   or pg_catalog.pg_has_role(current_user,owner_role.oid,'USAGE')
   or not exists(select 1 from pg_catalog.pg_auth_members where roleid=owner_role.oid and member=executor_oid and set_option and not inherit_option)
-  or exists(select 1 from pg_catalog.pg_auth_members where member=owner_role.oid or roleid=owner_role.oid and (member<>executor_oid or inherit_option or not set_option))
+  or exists(select 1 from pg_catalog.pg_auth_members where member=owner_role.oid or roleid=owner_role.oid and (member<>executor_oid or inherit_option))
   or pg_catalog.has_schema_privilege(owner_role.oid,'public','CREATE') then
   raise exception 'calendar actor owner or SET authority refused';
  end if;

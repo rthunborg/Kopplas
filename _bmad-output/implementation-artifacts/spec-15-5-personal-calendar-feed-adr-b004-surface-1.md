@@ -1420,6 +1420,47 @@ full DB/RLS/HTTP/browser acceptance or a new private v2 consumer. These require
 fresh exact-head native gates and distinct targeted High review. No app build for
 unchanged app bytes; in-review/kernel5760/broad-loop3/ARR warning preserved.
 
+## Owner SET bad-row guard correction — 2026-10-21
+
+Root accepted-owner-set-guard-repair-allocation.json2460B/SHA256
+5397d8ef4735847bc24f02c51468b9514e8556c5ce0de64e9f465120b6134738
+admits only the existing migration bad-row term, focused unit regressions and
+this author trail. Coordinator completed turn01a15e28-ab3a-7f72-a08b-83e1deae410a /
+grant exec-4512aade-5b61-4c42-ab89-ef82fffc2e3f. The failed checkpoint
+93473f1208f5b883b560903faf10348c205d2211/run39587739462 and diagnosis remain
+immutable. Three startup jobs observed the owner/SET guard P0001 before adapter
+changes. Exact hosted membership rows and which OR term fired were not observed;
+the parallel-grant explanation is source-backed inference, not native cause proof.
+
+The old bad-row EXISTS rejected every owner-to-executor row lacking SET, even
+when another existing direct grant provides SET. A valid PG17 creator ADMINtrue /
+SETfalse / INHERITfalse row can coexist with a separate SETtrue grant. This patch
+removes only `or not set_option` from that bad-row predicate. The separate direct
+SETtrue/INHERITfalse existence check and effective SET check remain. ADMIN grants
+no new exception or SET authority. Foreign inbound, outbound and inherited rows,
+all seven hardened role attributes, effective USAGE denial and effective public
+CREATE absence still fail closed. All function sources/eight adapter calls/OIDs/
+owners/private EXECUTE/ACL/config/atomicity/v2/pin and other files are unchanged.
+No new migration, privilege grant, membership, query, runtime or provider effect.
+
+Actual new tests extract the current whole owner guard and its two membership
+predicates, translate only a closed Boolean/equality grammar, and execute those
+actual source expressions against injected non-null catalog rows/facts. The
+parallel-grant positive case is rejected by the counterfactual old expression;
+row-order/ADMIN variations and direct/effective SET, inherited/foreign/outbound,
+publicCREATE and seven-attribute negative fixtures preserve the boundaries.
+These controls do not execute SQL, pg_has_role or observe hosted catalog rows.
+
+Actual affected pure-Node99P0F0skip0cancel first-run; whole TypeScript exit0;
+affected unit-file ESLint exit0/no warnings. No initial failure in this batch.
+The prior full Linux3183PASS and prior focused97 runs remain historical, not
+rerun or combined with99. No app build for unchanged application bytes. Current
+Spec/ARR stay in-review; the frontmatter historical warnings:[oversized] is
+separate from canonical reader parse_warnings. Required fresh native exact-head
+five gates/all95/separate recovery and distinct targeted High review remain
+pending. Baseline3a1c3bc9, review-loop3, approved5760-byte kernel and all historical
+ARR warnings/results are preserved; no fourth broad review or completion claim.
+
 ## Suggested Review Order
 
 Author: Story 15.5 implementation/fix author (gpt-6.1-sol High), incorporating
@@ -1712,3 +1753,18 @@ Evidence: final97 affected controls and3183 full pure-Node tests passed separate
 (not additive), whole TypeScript/focused ESLint passed. Native migration, RLS010,
 current v2 private consumer and full95 remain pending. The qualified probe proves
 only the preparsed invoker mechanism; it supplies no borrowed production PASS.
+
+### Require SET authority without rejecting a parallel creator grant
+
+One removed bad-row term separates effective/direct SET from independent creator
+ADMIN metadata. All unsafe membership and owner hardening checks remain required.
+
+- `supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql:79` — `and member=executor_oid and set_option and not inherit_option`: retains the existing direct non-inherited SET requirement.
+- `supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql:80` — `member<>executor_oid or inherit_option))`: rejects foreign/inherited rows without requiring SET on every grant.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1731` — `actual owner guard admits parallel native creator ADMIN`: executes the source positive and biting old-predicate counterexample.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1739` — `actual owner guard retains foreign outbound inherited`: executes preserved membership, SET and seven-attribute refusals.
+
+Evidence:99 affected pure-Node cases passed0F/skip/cancel; whole TypeScript and
+affected lint passed. These are extracted Boolean/source fixtures, not PostgreSQL
+execution or hosted membership/causal proof. Prior Linux3183 is historical only;
+current native gates/all95/recovery and independent latest-fix review are pending.

@@ -1696,3 +1696,53 @@ test("new atomic migration cross-validates exact original bodies and eight subst
   assert.match(migration,/revoke create on schema public from calendar_feed_owner/);assert.match(migration,/has_schema_privilege\(owner_role.oid,'public','CREATE'\)/);
   assert.ok(!/grant usage on schema auth|alter role|create role|alter function|security definer set search_path='' return/.test(migration));
 });
+
+// Execute the actual catalog guard's finite Boolean predicates with injected
+// non-null catalog rows. This is not PostgreSQL/migration or hosted-row evidence.
+type OwnerGrantRow = { roleid: number; member: number; set_option: boolean; inherit_option: boolean; admin_option: boolean; grantor: number };
+function actualOwnerSetGuard(legacyCounterexample = false) {
+  const source=readFileSync(new URL("../../../../supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",import.meta.url),"utf8").replaceAll("\r\n","\n");
+  const start=source.indexOf(" if owner_role.rolcanlogin"),end=source.indexOf(" then\n  raise exception 'calendar actor owner or SET authority refused';",start);assert.ok(start>=0&&end>start);
+  let guard=source.slice(start+4,end);
+  const direct=guard.split("\n").find(line=>line.includes("not exists(select 1 from pg_catalog.pg_auth_members"))!.trim().slice(7);
+  const bad=guard.split("\n").find(line=>line.includes("or exists(select 1 from pg_catalog.pg_auth_members"))!.trim().slice(3);
+  const predicate=(sql:string)=>sql.slice(sql.indexOf(" where ")+7,-1);
+  const compile=(sql:string,names:Record<string,string>)=>{
+    const tokens=sql.match(/<>|=|[()]|[A-Za-z_][A-Za-z_0-9.]*/g)!;assert.equal(tokens.join(""),sql.replace(/\s/g,""));
+    const js=tokens.map(token=>({and:"&&",or:"||",not:"!","=":"===","<>":"!==","(":"(",")":")"}[token]??names[token]??(()=>{throw Error("Unrecognized actual guard token");})())).join(" ");
+    return new Function("row","facts","return ("+js+");") as (row:OwnerGrantRow|undefined,facts:Record<string,unknown>)=>boolean;
+  };
+  const rowNames={roleid:"row.roleid",member:"row.member",set_option:"row.set_option",inherit_option:"row.inherit_option","owner_role.oid":"facts.ownerId",executor_oid:"facts.executorId"};
+  const directMatch=compile(predicate(direct),rowNames);
+  const badSql=predicate(bad),unsafeMatch=compile(legacyCounterexample?badSql.replace("member<>executor_oid or inherit_option)","member<>executor_oid or inherit_option or not set_option)"):badSql,rowNames);
+  guard=guard.replace(direct,"directGrant").replace(bad,"unsafeGrant")
+    .replace("pg_catalog.pg_has_role(current_user,owner_role.oid,'SET')","effectiveSet")
+    .replace("pg_catalog.pg_has_role(current_user,owner_role.oid,'USAGE')","effectiveUsage")
+    .replace("pg_catalog.has_schema_privilege(owner_role.oid,'public','CREATE')","publicCreate");
+  const attrs=["rolcanlogin","rolinherit","rolsuper","rolcreatedb","rolcreaterole","rolreplication","rolbypassrls"];
+  const guardMatch=compile(guard,Object.fromEntries([...attrs.map(name=>["owner_role."+name,"facts."+name]),...["directGrant","unsafeGrant","effectiveSet","effectiveUsage","publicCreate"].map(name=>[name,"facts."+name])]));
+  return (rows:OwnerGrantRow[],overrides:Record<string,boolean>={})=>{
+    const facts={ownerId:1,executorId:2,...Object.fromEntries(attrs.map(name=>[name,false])),effectiveSet:true,effectiveUsage:false,publicCreate:false,...overrides};
+    return guardMatch(undefined,{...facts,directGrant:rows.some(row=>directMatch(row,facts)),unsafeGrant:rows.some(row=>unsafeMatch(row,facts))});
+  };
+}
+const creatorOwnerGrant:OwnerGrantRow={roleid:1,member:2,set_option:false,inherit_option:false,admin_option:true,grantor:3};
+const explicitOwnerSetGrant:OwnerGrantRow={roleid:1,member:2,set_option:true,inherit_option:false,admin_option:false,grantor:4};
+test("actual owner guard admits parallel native creator ADMIN and explicit SET rows without treating ADMIN as SET",()=>{
+  const refuses=actualOwnerSetGuard();
+  for(const rows of [[creatorOwnerGrant,explicitOwnerSetGrant],[explicitOwnerSetGrant,creatorOwnerGrant],[explicitOwnerSetGrant]])assert.equal(refuses(rows),false);
+  // Counterfactual old predicate must bite this real-source regression fixture.
+  assert.equal(actualOwnerSetGuard(true)([creatorOwnerGrant,explicitOwnerSetGrant]),true);
+  assert.equal(refuses([creatorOwnerGrant]),true);assert.equal(refuses([]),true);
+  for(const admin_option of [false,true])assert.equal(refuses([{...creatorOwnerGrant,admin_option},explicitOwnerSetGrant]),false);
+});
+test("actual owner guard retains foreign outbound inherited direct effective SET and all seven hardening refusals",()=>{
+  const refuses=actualOwnerSetGuard(),safe=[creatorOwnerGrant,explicitOwnerSetGrant];
+  for(const admin_option of [false,true])for(const set_option of [false,true]){
+    for(const unsafe of [{...explicitOwnerSetGrant,member:9,admin_option,set_option},{...explicitOwnerSetGrant,roleid:9,member:1,admin_option,set_option},{...explicitOwnerSetGrant,inherit_option:true,admin_option,set_option}])assert.equal(refuses([...safe,unsafe]),true);
+  }
+  assert.equal(refuses(safe,{effectiveSet:false}),true);assert.equal(refuses(safe,{effectiveUsage:true}),true);assert.equal(refuses(safe,{publicCreate:true}),true);
+  for(const attr of ["rolcanlogin","rolinherit","rolsuper","rolcreatedb","rolcreaterole","rolreplication","rolbypassrls"])assert.equal(refuses(safe,{[attr]:true}),true);
+  // An indirect effective SET claim cannot substitute for the required direct row.
+  assert.equal(refuses([creatorOwnerGrant],{effectiveSet:true}),true);
+});
