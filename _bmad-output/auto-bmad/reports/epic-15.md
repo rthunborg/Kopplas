@@ -6346,3 +6346,34 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Materially simpler ONE local full canonical pure Node suite for actual failing-case identification; no new collector family or hosted retry. Preserve95obligations and all existinggates; no deployment.
+
+## Report — 2026-10-21T23:25:14Z (in progress — local full unit run identifies three test gaps)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `e2dd7b9`).
+**Pipeline status:** 15.5 P5 active. One localfull314fileNode run3389=3353P35F1Linux-onlyskip identified3testfiles; hostedIDsremainunknown, failurecountmatchingisnotidentityproof. No sourceedits; nativeacceptance0.
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 298h 27m (≈77h 24m AI-run, ≈221h 02m human/idle wait); resumed 191×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Coordinateexact3test-onlyownership; explicitHigh verifiesauthorityandrepairsfixtures/loaderswithoutweakeningproductionguards; fullpureunitvalidationandtargetedindependentreviewbeforeanyhostedretry. No deployment.
