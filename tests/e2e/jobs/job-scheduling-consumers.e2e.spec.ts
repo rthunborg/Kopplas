@@ -340,5 +340,59 @@ test.describe("Story16.4 essential real booking consumers — RED", () => {
       await form.getByTestId("booking-start").fill("2026-10-25T02:30");await edited;
     } finally {await f.dispose();}
   });
+  test("[P0] 16.4-Consumer-E05 changing only actual end updates distinct date advice without rewriting or blocking the interval",async({resourcePage:page})=>{
+    const f=await createJobsDepthFixture();
+    try {
+      const job=f.jobs.editable.id;
+      await schedule(f,[f.fx.ownProfile.id]);
+      await saveCard(f,job,{estimated_duration_minutes:60,planned_start_date:"2026-10-20",planned_end_date:"2026-10-22",
+        earliest_date:"2026-10-20",desired_date:"2026-10-20",latest_date:"2026-10-21",accessWindows:null,requiredWorkRoleIds:[]});
+      await page.clock.setFixedTime(new Date("2026-10-20T13:00:00Z"));
+      await signIn(page,f.credentials.manager);const form=await openJobBooking(page,job);
+      await form.getByTestId(`booking-assignee-option-${f.fx.ownProfile.id}`).check();
+      await form.getByTestId("booking-start").fill("2026-10-20T15:00");
+      await form.getByTestId("booking-end").fill("2026-10-20T16:00");
+      await expect(form.getByTestId("booking-job-desired-warning")).toHaveCount(0);
+      await expect(form.getByTestId("booking-job-latest-breach")).toHaveCount(0);
+      await form.getByTestId("booking-end").fill("2026-10-21T09:00");
+      await expect(form.getByTestId("booking-job-desired-warning")).toContainText("2026-10-20");
+      await expect(form.getByTestId("booking-job-latest-breach")).toHaveCount(0);
+      await form.getByTestId("booking-end").fill("2026-10-22T09:00");
+      await expect(form.getByTestId("booking-job-latest-breach")).toContainText("2026-10-21");
+      // Exact local midnight excludes the following day, including timed bookings.
+      await form.getByTestId("booking-end").fill("2026-10-21T00:00");
+      await expect(form.getByTestId("booking-job-desired-warning")).toHaveCount(0);
+      await expect(form.getByTestId("booking-job-latest-breach")).toHaveCount(0);
+      await form.getByTestId("booking-end").fill("2026-10-22T09:00");
+      await expect(form.getByTestId("booking-job-desired-warning")).toBeVisible();
+      await expect(form.getByTestId("booking-job-latest-breach")).toBeVisible();
+      await expect(form.getByTestId("booking-start")).toHaveValue("2026-10-20T15:00");
+      const description=`16.4 end-only advice ${job}`;
+      const preview=page.waitForResponse(reply=>action(reply.request(),job,description,"preview")!==null);
+      await form.getByTestId("booking-description").fill(description);expect((await preview).ok()).toBe(true);
+      // This planned overnight interval has real outside-work-hours conflicts.
+      // Review those existing groups; date advice adds no separate review control.
+      await expect(form.getByTestId("booking-review-current-warnings")).toBeVisible();
+      await form.getByTestId("booking-review-current-warnings").check();
+      await form.getByTestId("booking-override-reason").fill("Reviewed actual overnight working-hour conflicts");
+      const before=await jobSemanticsSnapshot(f);
+      const sent=await save(page,form,job,description);
+      expect(parseUtcInstant(sent.startsAt)).toBe(parseUtcInstant("2026-10-20T13:00:00Z"));
+      expect(parseUtcInstant(sent.endsAt)).toBe(parseUtcInstant("2026-10-22T07:00:00Z"));
+      const after=await jobSemanticsSnapshot(f);
+      const rows=after.bookings.filter(row=>!before.bookings.some(old=>old.id===row.id));
+      expect(rows).toHaveLength(1);
+      expect(parseUtcInstant(String(rows[0].starts_at))).toBe(parseUtcInstant(sent.startsAt));
+      expect(parseUtcInstant(String(rows[0].ends_at))).toBe(parseUtcInstant(sent.endsAt));
+      await page.reload();
+      await page.getByTestId(`booking-summary-${rows[0].id}`).getByTestId("booking-edit").click();
+      const reopened=page.getByTestId("booking-editor");
+      await expect(reopened.getByTestId("booking-start")).toHaveValue("2026-10-20T15:00");
+      await expect(reopened.getByTestId("booking-end")).toHaveValue("2026-10-22T09:00");
+      await expect(reopened.getByTestId("booking-job-desired-warning")).toBeVisible();
+      await expect(reopened.getByTestId("booking-job-latest-breach")).toBeVisible();
+    } finally {await f.dispose();}
+  });
+
 });
 

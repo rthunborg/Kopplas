@@ -19,9 +19,8 @@ export function bookingSemantics(snapshot: DetectionSnapshot) {
     return p?.archivedAt === null && m?.status === "active";
   });
   const demand=job ? evaluateJobDemandAdvisory({job:{jobId:job.jobId,durationMinutes:job.estimatedDurationMinutes ?? null,crewSize:job.crewSize ?? null,travelMinutes:job.plannedTravelMinutes ?? null,plannedStartDate:job.plannedStartDate ?? null,plannedEndDate:job.plannedEndDate ?? null},eligiblePersonIds:eligible,facts:schedulingFactsForSnapshot(snapshot)}) : {kind:"unknown" as const};
-  const date=new Intl.DateTimeFormat("sv-SE",{timeZone:"Europe/Stockholm"}).format(new Date(snapshot.candidate.startsAt));
   const hint=job ? jobSchedulingHint(job):null;
-  const context=jobSchedulingContext({selectedJobId:snapshot.candidate.jobId ?? "",jobs:hint ? [hint]:[],suggestedDate:date});
+  const context=jobSchedulingContext({selectedJobId:snapshot.candidate.jobId ?? "",jobs:hint ? [hint]:[],startsAt:snapshot.candidate.startsAt,endsAt:snapshot.candidate.endsAt});
   return {jobId:snapshot.candidate.jobId,hint,
     advisory:demand.kind === "unknown" ? {state:"unknown" as const,totalDemand:null,allocatedCurrentJob:null,remainingDemand:null,remainingCapacity:null,shortfall:null}
       : {state:"known" as const,totalDemand:demand.totalDemandMinutes,allocatedCurrentJob:demand.allocatedCurrentJobMinutes,remainingDemand:demand.remainingDemandMinutes,remainingCapacity:demand.remainingCapacityMinutes,shortfall:demand.shortfallMinutes},

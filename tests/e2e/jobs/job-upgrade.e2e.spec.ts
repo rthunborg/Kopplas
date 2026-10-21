@@ -228,7 +228,11 @@ test.describe("Story16.4 same-row Projekt upgrade — RED", () => {
       ]);
       expect(after.audit.filter(row => !before.audit.some(old => old.id === row.id))).toHaveLength(1);
       const upgraded = await readJobSemantics(f.fx.plannerClient, jobId);
-      expect(upgraded.card).toEqual({ ...cardBefore.card, type: "projekt" });
+      const {cardRevision:previousRevision,...previousFields}=cardBefore.card as typeof cardBefore.card & {cardRevision:string};
+      const {cardRevision:upgradedRevision,...upgradedFields}=upgraded.card as typeof upgraded.card & {cardRevision:string};
+      expect(previousRevision).toMatch(/^[0-9a-f]{64}$/);expect(upgradedRevision).toMatch(/^[0-9a-f]{64}$/);
+      expect(upgradedRevision).not.toBe(previousRevision);
+      expect(upgradedFields).toEqual({ ...previousFields, type: "projekt" });
       expect(upgraded.leadPersonProfileId).toBe(cardBefore.leadPersonProfileId);
       expect(upgraded.workOrders).toEqual(cardBefore.workOrders);
       expect(upgraded.dependencies).toEqual(cardBefore.dependencies);

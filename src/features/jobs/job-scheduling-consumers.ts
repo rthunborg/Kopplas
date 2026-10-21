@@ -58,22 +58,31 @@ export function deriveJobBookingInterval(input: {
   return { ...input.interval, startsAt, endsAt, sourceJobId: input.job?.jobId ?? null };
 }
 
-/** Earliest bounds suggestions; desired/latest advice never blocks a save. */
+/** Earliest bounds the start suggestion; desired/latest advise on the actual end.
+ * Calendar occupancy is half open (datesForRange): an exclusive local-midnight
+ * end belongs to the previous occupied day, for timed and all-day bookings alike.
+ * Project the last occupied microsecond only; never rewrite either boundary.
+ */
 export function jobSchedulingContext(input: {
   readonly selectedJobId: string;
   readonly jobs: readonly JobSchedulingHint[];
-  readonly suggestedDate: string;
+  readonly startsAt: string;
+  readonly endsAt: string;
 }): JobSchedulingContext {
-  validateLocalDate(input.suggestedDate);
+  const start = parseUtcInstant(input.startsAt);
+  const end = parseUtcInstant(input.endsAt);
+  if (end <= start) throw new Error("Invalid booking interval");
+  const startDate = localDateForInstant(start);
+  const endDate = localDateForInstant(end - BigInt(1));
   const job = input.jobs.find((entry) => entry.jobId === input.selectedJobId);
   for (const date of [job?.earliestDate, job?.desiredDate, job?.latestDate]) {
     if (date != null) validateLocalDate(date);
   }
-  const suggestedDate = job?.earliestDate && input.suggestedDate < job.earliestDate
-    ? job.earliestDate : input.suggestedDate;
+  const suggestedDate = job?.earliestDate && startDate < job.earliestDate
+    ? job.earliestDate : startDate;
   const warnings: JobSchedulingWarning[] = [];
-  if (job?.desiredDate && suggestedDate > job.desiredDate) warnings.push({ code: "desired_date_missed", advisory: true });
-  if (job?.latestDate && suggestedDate > job.latestDate) warnings.push({ code: "latest_date_breached", advisory: true });
+  if (job?.desiredDate && endDate > job.desiredDate) warnings.push({ code: "desired_date_missed", advisory: true });
+  if (job?.latestDate && endDate > job.latestDate) warnings.push({ code: "latest_date_breached", advisory: true });
   return { suggestedDate, customerPresenceRequired: job?.customerPresenceRequired ?? null, warnings, canSave: true };
 }
 

@@ -191,8 +191,13 @@ export function BookingEditor({open, onClose, draft, options: initialOptions, bo
   }
   const selectedHint=semantics?.jobId === facts.jobId ? semantics.hint : options.jobs.find(job=>job.id === facts.jobId)?.schedulingHint ?? null;
   const presence=selectedHint?.customerPresenceRequired ?? null;
-  const date=start.slice(0,10);
-  const planningContext=/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(date) ? jobSchedulingContext({selectedJobId:facts.jobId ?? "",jobs:selectedHint ? [selectedHint]:[],suggestedDate:date}):null;
+  const planningContext = (() => {
+    try {
+      // Same candidate boundaries as preview/save, including untouched DST folds.
+      const interval = prepareBookingTimes({original:facts,startChanged,endChanged,allDay:facts.allDay,startsAtLocal:start,endsAtLocal:end});
+      return jobSchedulingContext({selectedJobId:facts.jobId ?? "",jobs:selectedHint ? [selectedHint]:[],...interval});
+    } catch { return null; } // Incomplete/invalid time inputs have no date advice yet.
+  })();
   const desiredMiss=planningContext?.warnings.some(w=>w.code === "desired_date_missed");
   const latestBreach=planningContext?.warnings.some(w=>w.code === "latest_date_breached");
   const advisory=semantics?.jobId === facts.jobId ? semantics.advisory:null;
@@ -216,7 +221,7 @@ export function BookingEditor({open, onClose, draft, options: initialOptions, bo
       <div className="space-y-2 text-sm" aria-live="polite">
         <p data-testid="booking-job-presence" data-state={presence === null ? "unknown":presence ? "required":"not-required"}>Kundens närvaro: {presence === null ? "Okänd":presence ? "Krävs":"Krävs inte"}</p>
         {selectedHint?.earliestDate && <p data-testid="booking-job-earliest-hint">Tidigast föreslaget datum: {selectedHint.earliestDate}</p>}
-        {desiredMiss && <p data-testid="booking-job-desired-warning">Önskat datum {selectedHint?.desiredDate} har passerats för den valda starten.</p>}
+        {desiredMiss && <p data-testid="booking-job-desired-warning">Önskat datum {selectedHint?.desiredDate} har passerats för den valda sluttiden.</p>}
         {latestBreach && <p data-testid="booking-job-latest-breach">Senaste datum {selectedHint?.latestDate} överskrids.</p>}
         <p>Efterfrågan jämförs med återstående kapacitet i jobbets planeringsperiod. Uppgifterna är rådgivande.</p>
         {advisory?.state === "known" ? <dl className="grid grid-cols-1 gap-1 sm:grid-cols-2">{([

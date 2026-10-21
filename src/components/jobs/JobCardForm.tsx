@@ -1,10 +1,12 @@
 "use client";
 
-import { useEffect, useRef, useState, type FormEvent } from "react";
+import { useEffect, useLayoutEffect, useRef, useState, type FormEvent } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { TextField, SelectField } from "@/components/crm/FormField";
 import { saveJobCardAction } from "@/features/jobs/actions";
-import { prepareJobCardAccessWindow } from "@/features/jobs/job-card-domain";
+import { prepareJobCardAccessWindow, validateJobCardInput } from "@/features/jobs/job-card-domain";
+
+import {formatUtcInstant,parseUtcInstant} from "@/features/scheduling/time-zone";
 
 function utcToStockholmLocal(value: string): string {
   const parts = Object.fromEntries(new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/Stockholm", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", hourCycle: "h23" }).formatToParts(new Date(value)).map((p) => [p.type, p.value]));
@@ -23,7 +25,7 @@ export interface JobCardOptions {
 export type JobCardInitial = Readonly<Record<string, unknown>>;
 const control = "min-h-11 rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600";
 
-/** A refreshed server read replaces a draft only after a confirmed save or explicit consent. */
+/** Explicit consent may replace a draft; successful saves preserve the mounted form. */
 export function JobCardForm({jobId, initial = {}, options}: {jobId?:string;initial?:JobCardInitial;options:JobCardOptions}) {
   const [loaded,setLoaded] = useState(initial);
   const [generation,setGeneration] = useState(0);
@@ -35,19 +37,20 @@ export function JobCardForm({jobId, initial = {}, options}: {jobId?:string;initi
       setLoaded(initial);setGeneration(value => value + 1);
     }
   },[initial]);
-  return <JobCardDraft key={`${jobId ?? "new"}:${generation}`} jobId={jobId} initial={loaded} options={options} confirmed={confirmed}
-    onFreshRead={(saved) => {setConfirmed(saved);refreshFrom.current = initial;}}
+  return <JobCardDraft key={`${jobId ?? "new"}:${generation}`} jobId={jobId} initial={loaded} freshInitial={initial} options={options} confirmed={confirmed}
+    onFreshRead={(saved) => {setConfirmed(saved);refreshFrom.current = saved ? null : initial;}}
     onDraftChange={() => {setConfirmed(false);refreshFrom.current = null;}} />;
 }
 
 /** Presentation retains one immutable loaded revision and attempt until explicitly resolved. */
-function JobCardDraft({ jobId, initial = {}, options, confirmed, onFreshRead, onDraftChange }: {
-  jobId?: string; initial?: JobCardInitial; options: JobCardOptions; confirmed:boolean;onFreshRead:(saved:boolean)=>void;onDraftChange:()=>void;
+function JobCardDraft({ jobId, initial = {}, freshInitial, options, confirmed, onFreshRead, onDraftChange }: {
+  jobId?: string; initial?: JobCardInitial; freshInitial:JobCardInitial; options: JobCardOptions; confirmed:boolean;onFreshRead:(saved:boolean)=>void;onDraftChange:()=>void;
 }) {
   const router = useRouter();
   const leaveRequired = useRef(false);
+  const lastConfirmed = useRef<{input:Record<string,unknown>;read:JobCardInitial} | null>(null);
   const [leaveArmed, setLeaveArmed] = useState(false);
-  function requireLeave() {onDraftChange();leaveRequired.current = true; setLeaveArmed(true);}
+  function requireLeave() {lastConfirmed.current = null;onDraftChange();leaveRequired.current = true; setLeaveArmed(true);}
   const search = useSearchParams();
   const currentLocation = useRef<{href: string; state: unknown} | null>(null);
   useEffect(() => {currentLocation.current = {href: window.location.href, state: window.history.state};}, [search]);
@@ -116,6 +119,31 @@ function JobCardDraft({ jobId, initial = {}, options, confirmed, onFreshRead, on
   const [windows, setWindows] = useState<{ startsAt: string; endsAt: string; originalStartsAt?: string; originalEndsAt?: string; originalStartLocal?: string; originalEndLocal?: string }[]>(() => (initial.accessWindows as { startsAt: string; endsAt: string }[] | undefined | null)?.map((w) => ({ startsAt: utcToStockholmLocal(w.startsAt), endsAt: utcToStockholmLocal(w.endsAt), originalStartsAt: w.startsAt, originalEndsAt: w.endsAt, originalStartLocal: utcToStockholmLocal(w.startsAt), originalEndLocal: utcToStockholmLocal(w.endsAt) })) ?? []);
   const value = (name: string) => String(initial[name] ?? "");
   const choices = (items: readonly {id: string; label: string}[]) => [{ value: "", label: "Välj…" }, ...items.map((item) => ({ value: item.id, label: item.label }))];
+  // A successful save keeps the very same form/expanded details mounted. Only a
+  // fresh, clean read equal to this exact confirmed payload may advance its CAS
+  // baseline; unrelated refreshes, edited drafts and concurrent changes cannot.
+  useLayoutEffect(() => {
+    const committed=lastConfirmed.current;
+    if (!committed || !jobId || committed.input.id !== jobId || committed.read === freshInitial
+      || !saved || pending || unresolved || conflict || leaveRequired.current) return;
+    try {
+      const {cardRevision,accessWindows,...fields}=freshInitial;
+      const windows=Array.isArray(accessWindows) ? accessWindows.map(window => ({
+        startsAt:formatUtcInstant(parseUtcInstant(window.startsAt)),endsAt:formatUtcInstant(parseUtcInstant(window.endsAt)),
+      })) : accessWindows;
+      const previous=validateJobCardInput(committed.input,"update");
+      const current=validateJobCardInput({...fields,accessWindows:windows,id:jobId,commandId:committed.input.commandId,
+        expectedRevision:cardRevision},"update");
+      if (!previous.valid || !current.valid) return;
+      const {expectedRevision:oldRevision,...previousCard}=previous.value;
+      const {expectedRevision:nextRevision,...currentCard}=current.value;
+      void oldRevision;
+      if (JSON.stringify(previousCard) !== JSON.stringify(currentCard)) return;
+      loadedRevision.current=nextRevision;
+      lastConfirmed.current=null;
+    } catch { /* Keep the original baseline: a later stale save requires explicit consented reread. */ }
+  },[freshInitial,jobId,saved,pending,unresolved,conflict]);
+
   async function send(input: Record<string, unknown>) {
     requireLeave();
     setPending(true); setError(null);
@@ -124,6 +152,7 @@ function JobCardDraft({ jobId, initial = {}, options, confirmed, onFreshRead, on
       if (result.ok) {
         leaveRequired.current = false; setLeaveArmed(false);
         setSaved(true); setUnresolved(false); attempt.current = null;
+        lastConfirmed.current={input,read:freshInitial};
         onFreshRead(true);router.push(`/jobs/${result.jobId}`); router.refresh();
       } else {
         setError(result.message);

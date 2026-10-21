@@ -138,7 +138,12 @@ test("[P0] checkpoint original successful card command replays after later edits
     const {expectedRevision:omitted,...missing}=await h.loadCardInput(f);void omitted;
     expect(await h.invokeJobCard(f.fx.adminClient,"update",missing)).toMatchObject({ok:false,code:"VALIDATION_FAILED"});
     expect(await f.snapshot()).toEqual(after);
-    const {commandId,id,...payload}=missing;
+    // Normalize every existing closed SQL field first; remove ONLY the revision
+    // so this bypasses TS and reaches the actual SQL missing-revision guard.
+    const {validateJobCardInput}=await import("@/features/jobs/job-card-domain");
+    const normalized=validateJobCardInput(await h.loadCardInput(f),"update");
+    if(!normalized.valid) throw new Error("Expected fully normalized loaded card");
+    const {expectedRevision:loadedRevision,commandId,id,...payload}=normalized.value;void loadedRevision;
     const direct=await f.fx.adminClient.rpc("snapshot_job_card",{p_tenant_id:f.fx.base.tenantA.id,p_actor_id:f.fx.base.adminA.id,
       p_correlation_id:crypto.randomUUID(),p_command_id:commandId,p_job_id:id,p_candidate_id:id,p_payload:payload,
       p_key_id:process.env.BOOKING_CONFLICT_ATTESTATION_KEY_ID});

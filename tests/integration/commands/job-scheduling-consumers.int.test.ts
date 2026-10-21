@@ -21,7 +21,9 @@ describe("16.4 card and actual booking semantics", () => {
         accessWindows:[{startsAt:"2026-10-20T06:00:00Z",endsAt:"2026-10-20T14:00:00Z"}],dependencyJobIds:[f.jobs.prerequisite.id],
         locationOverride:{street:"Testgatan 12",postalCode:"11122",city:"Teststad",countryCode:"SE"}});
       const read = await s.readJobSemantics(f.fx.adminClient,job);
-      const {commandId:_command,id:_id,accessWindows,...fields} = input; void _command; void _id;
+      const {commandId:_command,id:_id,expectedRevision,accessWindows,...fields} = input; void _command; void _id;
+      expect(expectedRevision).toMatch(/^[0-9a-f]{64}$/);
+      expect(read.card).toHaveProperty("cardRevision",expect.stringMatching(/^[0-9a-f]{64}$/));
       expect(read.card).toMatchObject(fields); expect(read.leadPersonProfileId).toBe(f.fx.ownProfile.id);
       expect(read.card.accessWindows).toHaveLength(accessWindows!.length);
       for (const [index, window] of accessWindows!.entries()) {
@@ -152,6 +154,41 @@ describe("16.4 card and actual booking semantics", () => {
       expect(a.input.endsAt).toBe("2026-10-23T07:00:00.000Z"); expect((await bookingCommand("create",f.fx.adminClient,a.input)).ok).toBe(true);
       const beforeDesired = await s.readBookingSemantics(f.fx.adminClient,{...request,startsAt:"2026-10-22T06:00:00Z",endsAt:"2026-10-22T07:00:00Z"});
       expect(beforeDesired).toMatchObject({desiredMiss:true,latestBreach:false,presenceRequired:true});
+    });
+  });
+
+  test("[P0] 16.4-INT-F03 actual checked preview uses occupied end day and preserves explicit boundaries", async () => {
+    const h = await import("../../support/jobs-depth-atdd"); const s = await import("../../support/job-semantics-atdd");
+    await h.withJobsDepthFixture(async f => {
+      const job = f.jobs.editable.id;
+      await s.saveCard(f,job,{earliest_date:"2026-10-20",desired_date:"2026-10-20",latest_date:"2026-10-21",
+        requiredWorkRoleIds:[],accessWindows:null,customer_presence_required:true});
+      const request = {jobId:job,startsAt:"2026-10-20T20:00:00Z",assigneeIds:[f.fx.ownProfile.id],intervalSource:"explicit" as const};
+      for (const row of [
+        {endsAt:"2026-10-21T00:15:00Z",desiredMiss:true,latestBreach:false}, // allowed start, overnight desired miss
+        {endsAt:"2026-10-22T07:00:00Z",desiredMiss:true,latestBreach:true}, // same start, multi-day latest breach
+        {endsAt:"2026-10-20T22:00:00Z",desiredMiss:false,latestBreach:false}, // Stockholm midnight is exclusive
+      ]) {
+        const result = await s.readBookingSemantics(f.fx.adminClient,{...request,endsAt:row.endsAt});
+        expect(result).toMatchObject({earliestSuggestionDate:"2026-10-20",desiredMiss:row.desiredMiss,latestBreach:row.latestBreach,presenceRequired:true});
+        expect(parseUtcInstant(result.input.startsAt)).toBe(parseUtcInstant(request.startsAt));
+        expect(parseUtcInstant(result.input.endsAt)).toBe(parseUtcInstant(row.endsAt));
+      }
+      const allDay = await s.readBookingSemantics(f.fx.adminClient,{...request,allDay:true,
+        startsAt:"2026-10-19T22:00:00Z",endsAt:"2026-10-20T22:00:00Z"});
+      expect(allDay).toMatchObject({desiredMiss:false,latestBreach:false});
+      expect(allDay.input.allDay).toBe(true);
+      expect(parseUtcInstant(allDay.input.endsAt)).toBe(parseUtcInstant("2026-10-20T22:00:00Z"));
+      for (const row of [
+        {date:"2026-03-29",startsAt:"2026-03-28T23:00:00Z",endsAt:"2026-03-29T22:00:00Z"},
+        {date:"2026-10-25",startsAt:"2026-10-24T22:00:00Z",endsAt:"2026-10-25T23:00:00Z"},
+      ]) {
+        await s.saveCard(f,job,{earliest_date:null,desired_date:row.date,latest_date:row.date,requiredWorkRoleIds:[],accessWindows:null});
+        const result = await s.readBookingSemantics(f.fx.adminClient,{...request,allDay:true,startsAt:row.startsAt,endsAt:row.endsAt});
+        expect(result).toMatchObject({desiredMiss:false,latestBreach:false});
+        expect(parseUtcInstant(result.input.startsAt)).toBe(parseUtcInstant(row.startsAt));
+        expect(parseUtcInstant(result.input.endsAt)).toBe(parseUtcInstant(row.endsAt));
+      }
     });
   });
 

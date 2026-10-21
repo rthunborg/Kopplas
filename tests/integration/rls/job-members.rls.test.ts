@@ -36,8 +36,9 @@ describe("16.2 relational job-lead RLS and checked boundaries", () => {
         // A scoped picker must not depend on giving a lead the broad CRM/directory projection.
         if (["montor", "saljare"].includes(role)) {
           const general = await client.rpc("read_job_card_options");
-          expect(general.error).toBeNull();
-          expect(general.data).toMatchObject({ customers: [], facilities: [], contacts: [], projectManagers: [] });
+          expect(general.error?.code).toBe("42501");expect(general.data).toBeNull();
+          const scoped=await client.rpc("read_job_card_options",{p_tenant_id:f.fx.base.tenantA.id});
+          expect(scoped.error?.code).toBe("42501");expect(scoped.data).toBeNull();
         }
       }
       const unionProfile = await m.profileFor(f, f.fx.roleUnionUser);
