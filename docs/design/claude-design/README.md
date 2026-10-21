@@ -75,8 +75,10 @@ approved, narrowly scoped tooling change to exclude only immutable handoff refer
 trees from application linting; assess typecheck enrollment too. Do not edit the
 originals, disable rules for application code, or exclude adapted implementation.
 No tooling configuration was changed in the original investigation. The subsequent
-publication change adds only `docs/design/claude-design/v*/handoff/**` to root
-ESLint ignores, keeping the originals unchanged and adapted `src` code linted.
+publication change adds `docs/design/claude-design/v*/handoff/**` to root ESLint
+ignores, keeping the originals unchanged and adapted `src` code linted. The owner
+also authorized the narrow Vite 8.1.0 → 8.1.6 security update after the inherited
+high-severity audit failure blocked publication; no E16 product changes are included.
 
 See [the transition assessment](transition-assessment-2026-10-21.md) for repository
 status, screen mapping, BMAD sequencing, proposed work and unresolved decisions.

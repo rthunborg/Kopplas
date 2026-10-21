@@ -18,7 +18,10 @@ records to `main` for Sally's fresh checkout. That publication also adds a narro
 ESLint exclusion for immutable `docs/design/claude-design/v*/handoff/**` reference
 trees. The original investigation and its branch/CI observations below remain a
 dated snapshot, not current completion evidence or instructions to resume work.
-No original handoff bytes or application/backend behavior are changed.
+No original handoff bytes or application/backend behavior are changed. After
+the inherited Vite audit failure blocked publication, the owner explicitly
+authorized the narrow Vite 8.1.0 → 8.1.6 security update and associated lockfile;
+no E16 product implementation is included in this publication.
 
 ## Recommendation and transition point
 
