@@ -860,20 +860,15 @@ test("actual first callbacks retain precise safe assertion frames and unknown up
   }
 });
 
-test("live owned HTTP catch emits fixed origin and preserves the existing fetch arguments without examining its rejection", async () => {
-  const seams = await actualFixtureOrigins();
-  const source = readFileSync(new URL("../../../support/calendar-feed-atdd.ts", import.meta.url), "utf8");
-  const start = "    http: (url,options={}) =>", end = "    trustedFetch:";
-  assert.equal(source.split(start).length, 2); assert.equal(source.split(end).length, 2);
-  const httpSource = source.slice(source.indexOf(start), source.indexOf(end));
-  const strip = (nodeModule as unknown as { stripTypeScriptTypes(source: string): string }).stripTypeScriptTypes;
-  let calls = 0, reads = 0; const headers = {}, hostile = Object.defineProperty({}, "message", { get() { reads++; throw Error("PRIVATE"); } });
-  const make = (fetch: (...args: unknown[]) => Promise<unknown>, response: (value: unknown) => unknown) => new Function("track", "testOrigin", "fetch", "response", "calendarFixtureOrigin", `return ${strip(`({${httpSource}}).http`)};`)(
-    (value: unknown) => value, () => "https://example.invalid", fetch, response, seams.calendarFixtureOrigin);
-  const http = make(async (target, options) => { calls++; assert.ok(target instanceof URL); assert.equal(target.searchParams.get("from"), "1900"); assert.deepEqual(options, { headers, redirect: "manual", cache: "no-store" }); throw hostile; }, value => value);
-  await assert.rejects(http("https://example.invalid/calendar/feed/opaque", { headers, query: { from: "1900" } }), /scenario-http-transport/);
-  assert.equal(calls, 1); assert.equal(reads, 0);
-  const result = {}; assert.equal(await make(async () => result, value => value)("https://example.invalid/calendar/feed/opaque"), result);
+test("live owned HTTP catch retains fixed transport custody and unchanged fetch arguments without examining its rejection", async () => {
+  const f=await actualCalendarOwner();
+  const http=actualHttpPort(f.api.calendarOrdinaryResponse,async(target,options)=>{
+    calls++;assert.ok(target instanceof URL);assert.equal(target.searchParams.get("from"),"1900");assert.deepEqual(options,{headers,redirect:"manual",cache:"no-store"});throw hostile;
+  });
+  let calls=0,reads=0;const headers={},hostile=Object.defineProperty({},"message",{get(){reads++;throw Error("PRIVATE");}});
+  await assert.rejects(http("https://example.invalid/calendar/feed/opaque",{headers,query:{from:"1900"}}),/scenario-http-transport/);
+  assert.equal(calls,1);assert.equal(reads,0);assert.ok(f.api.getCustody());
+  await f.factory.pool()?.end();
 });
 
 test("installed failure transport reproduces lost nested diagnostics without treating reporter absence as unknown in process", async () => {
@@ -2112,7 +2107,8 @@ async function actualCalendarOwner(options:{faults?:string[];purpose?:"clock"|"s
   };
   const factory=await actualRetiredFactory({queryHandler:driver});
   const {AsyncLocalStorage}=await import("node:async_hooks");
-  const api=actualFeedRegion("../../../support/calendar-feed-atdd.ts","// Owner-scoped serial operations.","async function calendarFault", "({calendarSerialControls,calendarOwnerAtomic,calendarOwnerFacts,calendarOwnerDefinition,calendarPublish,calendarRestore,calendarReadClock,calendarWorkScope,calendarSettle,calendarOwnedStates,getCustody:()=>calendarSharedCustody})",{AsyncLocalStorage,adminRetiredSession:factory.api.adminRetiredSession,AdminRetiredSessionError:factory.api.AdminRetiredSessionError,calendarCanonicalSourceUrl:new URL("../../../../supabase/migrations/20261020220000_personal_calendar_feed.sql",import.meta.url),readFile:async()=>fixed,redactFailure:()=>Error("fixed redacted"),hashFeedToken:()=>"fixed",tokenFromUrl:()=>"fixed",adminQuery:async()=>[],iso:(value:unknown)=>value,hashFeedIp:()=>"fixed"}) as {calendarSerialControls:(fx:{pendingRequests:Set<Promise<unknown>>;workClosed:boolean})=>Promise<{withDatabaseTime:<T>(iso:string,run:()=>Promise<T>)=>Promise<T>}>;calendarOwnerAtomic:(purpose:string,body:string,operation:Record<string,unknown>)=>Promise<{row:typeof canonical;now:unknown}>;calendarOwnerFacts:(rows:unknown,purpose:string,body:string)=>unknown;calendarPublish:(purpose:string,body:(body:string)=>string,subjectFault?:boolean)=>Promise<void>;calendarRestore:(purpose:string)=>Promise<void>;calendarReadClock:()=>Promise<unknown>;calendarWorkScope:<T>(fx:{pendingRequests:Set<Promise<unknown>>},run:()=>Promise<T>)=>Promise<T>;calendarSettle:(fx:{pendingRequests:Set<Promise<unknown>>},timeout?:number)=>Promise<void>;calendarOwnedStates:Map<string,unknown>;getCustody:()=>unknown};
+  const origins=await actualFixtureOrigins();
+  const api=actualFeedRegion("../../../support/calendar-feed-atdd.ts","// Owner-scoped serial operations.","async function calendarFault", "({calendarOrdinaryResponse,calendarFetchPort,calendarSerialControls,calendarOwnerAtomic,calendarOwnerFacts,calendarOwnerDefinition,calendarPublish,calendarRestore,calendarReadClock,calendarWorkScope,calendarSettle,calendarOwnedStates,getCustody:()=>calendarSharedCustody})",{AsyncLocalStorage,calendarFixtureOrigin:origins.calendarFixtureOrigin,adminRetiredSession:factory.api.adminRetiredSession,AdminRetiredSessionError:factory.api.AdminRetiredSessionError,calendarCanonicalSourceUrl:new URL("../../../../supabase/migrations/20261020220000_personal_calendar_feed.sql",import.meta.url),readFile:async()=>fixed,redactFailure:()=>Error("fixed redacted"),hashFeedToken:()=>"fixed",tokenFromUrl:()=>"fixed",adminQuery:async()=>[],iso:(value:unknown)=>value,hashFeedIp:()=>"fixed"}) as {calendarOrdinaryResponse:(request:()=>Promise<Response>)=>Promise<{status:number;headers:Record<string,string>;body:string}>;calendarFetchPort:(anon:{rpc:(name:string,args:Record<string,unknown>)=>PromiseLike<unknown>})=>{rpc:(name:string,args:Record<string,unknown>)=>Promise<unknown>};calendarSerialControls:(fx:{pendingRequests:Set<Promise<unknown>>;workClosed:boolean})=>Promise<{withDatabaseTime:<T>(iso:string,run:()=>Promise<T>)=>Promise<T>}>;calendarOwnerAtomic:(purpose:string,body:string,operation:Record<string,unknown>)=>Promise<{row:typeof canonical;now:unknown}>;calendarOwnerFacts:(rows:unknown,purpose:string,body:string)=>unknown;calendarPublish:(purpose:string,body:(body:string)=>string,subjectFault?:boolean)=>Promise<void>;calendarRestore:(purpose:string)=>Promise<void>;calendarReadClock:()=>Promise<unknown>;calendarWorkScope:<T>(fx:{pendingRequests:Set<Promise<unknown>>},run:()=>Promise<T>)=>Promise<T>;calendarSettle:(fx:{pendingRequests:Set<Promise<unknown>>},timeout?:number)=>Promise<void>;calendarOwnedStates:Map<string,unknown>;getCustody:()=>unknown};
   return{api,factory,calls,canonical,body,row:()=>row};
 }
 
@@ -2230,4 +2226,78 @@ test("failed DB signal cancellation launch timeout and forced or unknown stop ca
     const result=await runFixture("db",h);assert.equal(result.exitCode,1);assert.equal(result.receipt.keyDeleted,false);assert.equal(result.receipt.keyOutcome,"unverified");assert.ok(result.receipt.custody);assert.equal(result.receipt.dbClosed,true);
     assert.ok(!result.queries.some(call=>call.sql.startsWith("delete")||call.sql.startsWith("select id,name from vault.secrets")));assert.ok(!JSON.stringify(result.receipt).includes("PRIVATE"));
   }
+});
+
+
+function actualHttpPort(response:(request:()=>Promise<Response>)=>Promise<unknown>,fetch:(...args:unknown[])=>Promise<unknown>,pending=new Set<Promise<unknown>>()) {
+  const source=readFileSync(new URL("../../../support/calendar-feed-atdd.ts",import.meta.url),"utf8").replaceAll("\r\n","\n");
+  const start="    http: (url,options={}) =>",end="    trustedFetch:";
+  assert.equal(source.split(start).length,2);assert.equal(source.split(end).length,2);
+  const trackStart="  function track<T>(request: Promise<T>): Promise<T> {",trackEnd="  const fixture: BoundFixture =";
+  assert.equal(source.split(trackStart).length,2);assert.equal(source.split(trackEnd).length,2);
+  const strip=(nodeModule as unknown as {stripTypeScriptTypes(source:string):string}).stripTypeScriptTypes;
+  return new Function("pendingRequests","testOrigin","fetch","calendarOrdinaryResponse",strip(source.slice(source.indexOf(trackStart),source.indexOf(trackEnd)))+"\nreturn "+strip(`({${source.slice(source.indexOf(start),source.indexOf(end))}}).http`))(
+    pending,()=>"https://example.invalid",fetch,response) as (url:string,options?:unknown)=>Promise<unknown>;
+}
+
+// The actual public function is evaluated with fixed in-memory dependencies;
+// this proves its status erasure and the existing dependency wiring, not HTTP/SQL.
+function actualPublicFeed() {
+  return actualFeedRegion("../../../../src/server/calendar-feed/public-feed.ts","export async function publicCalendarFeed",undefined,"publicCalendarFeed",{
+    feedKeyFromEnv:()=>({keyId:"fixed",secret:"fixed"}),resolveTrustedFeedIp:()=>null,feedPlatformIpTrustEnabled:()=>false,
+    isCalendarFeedToken:()=>true,hashFeedToken:()=>"fixed",hashFeedIp:()=>"fixed",FEED_SCHEMA:"fixed",FETCH_DOMAIN:"fixed",randomUUID:()=>"fixed",signFeedProof:()=>"fixed",
+    createSupabasePublicClient:()=>{throw Error("Unexpected client creation");},reply:(status:number,body:string)=>new Response(body,{status}),eventsFromResult:()=>[],encodeCalendarFeed:()=>"fixed"
+  }) as (raw:string,headers:Headers,dependencies:unknown)=>Promise<Response>;
+}
+
+test("actual clock scope retains caught HTTP rejection after tracked promise removal and refuses restoration and later shared seams",async()=>{
+  const f=await actualCalendarOwner(),pending=new Set<Promise<unknown>>(),fx={pendingRequests:pending,workClosed:false};
+  const http=actualHttpPort(f.api.calendarOrdinaryResponse,async()=>{throw Error("PRIVATE transport");},pending),serial=await f.api.calendarSerialControls(fx);
+  let caught=false;await assert.rejects(serial.withDatabaseTime("2026-10-20T12:00:00Z",async()=>{await http("https://example.invalid/feed").catch(()=>{caught=true;});assert.equal(pending.size,0);return "caught";}));
+  assert.equal(caught,true);assert.ok(f.api.getCustody());assert.equal(f.api.calendarOwnedStates.size,1);assert.equal(f.calls.filter(x=>x==="replace").length,1);
+  const before=f.calls.length;await assert.rejects(f.api.calendarRestore("clock"));await assert.rejects(f.api.calendarPublish("clock",()=>"later"));assert.equal(f.calls.length,before);await f.factory.pool()?.end();
+});
+
+test("actual body abort or non-server status retains custody but completed HTTP 503 restores the clock",async()=>{
+  for(const kind of ["body","status","completed"]){const f=await actualCalendarOwner(),pending=new Set<Promise<unknown>>(),fx={pendingRequests:pending,workClosed:false};
+    const response=kind==="body"?{status:200,headers:new Headers(),text:async()=>{throw Error("PRIVATE abort");}}:kind==="status"?{status:0}:new Response("completed",{status:503});
+    const http=actualHttpPort(f.api.calendarOrdinaryResponse,async()=>response,pending),serial=await f.api.calendarSerialControls(fx);
+    const run=serial.withDatabaseTime("2026-10-20T12:00:00Z",async()=>http("https://example.invalid/feed").catch(()=>"caught"));
+    if(kind==="completed"){assert.deepEqual(await run,{status:503,headers:{"content-type":"text/plain;charset=UTF-8"},body:"completed"});assert.equal(f.api.getCustody(),null);assert.deepEqual(f.row(),f.canonical);assert.equal(f.calls.filter(x=>x==="replace").length,2);}
+    else{await assert.rejects(run);assert.ok(f.api.getCustody());assert.equal(f.calls.filter(x=>x==="replace").length,1);}await f.factory.pool()?.end();
+  }
+});
+
+test("closed fetch port invokes the same receiver and arguments once and preserves result and rejection identity",async()=>{
+  const f=await actualCalendarOwner(),args={fixed:true},value={data:null,error:{fixed:true},status:403};let calls=0;
+  const anon={rpc(name:string,input:Record<string,unknown>){assert.equal(this,anon);assert.equal(name,"fetch_calendar_feed");assert.equal(input,args);calls++;return Promise.resolve(value);}};
+  assert.equal(await f.api.calendarFetchPort(anon).rpc("fetch_calendar_feed",args),value);assert.equal(calls,1);assert.equal(f.api.getCustody(),null);
+  const rejection={},g=await actualCalendarOwner(),rejecting={rpc(){return Promise.reject(rejection);}};
+  assert.equal(await g.api.calendarFetchPort(rejecting).rpc("fetch_calendar_feed",args).catch(error=>error),rejection);assert.ok(g.api.getCustody());await f.factory.pool()?.end();await g.factory.pool()?.end();
+});
+
+test("installed Postgrest status zero is latched before actual public 503 erasure and blocks clock restoration",async()=>{
+  const require=nodeModule.createRequire(import.meta.url),supabaseRequire=nodeModule.createRequire(require.resolve("@supabase/supabase-js"));
+  const {PostgrestClient}=supabaseRequire("@supabase/postgrest-js");let requests=0;
+  const anon=new PostgrestClient("https://example.invalid/rest/v1",{fetch:async()=>{requests++;throw Error("PRIVATE transport");}});
+  const f=await actualCalendarOwner(),serial=await f.api.calendarSerialControls({pendingRequests:new Set(),workClosed:false}),publicFeed=actualPublicFeed();
+  await assert.rejects(serial.withDatabaseTime("2026-10-20T12:00:00Z",async()=>{const source=readFileSync(new URL("../../../support/calendar-feed-atdd.ts",import.meta.url),"utf8").replaceAll("\r\n","\n"),start="    trustedFetch:",end="    physical:";
+    assert.equal(source.split(start).length,2);assert.equal(source.split(end).length,2);
+    const strip=(nodeModule as unknown as {stripTypeScriptTypes(source:string):string}).stripTypeScriptTypes;
+    const trusted=new Function("track","calendarOrdinaryResponse","publicCalendarFeed","calendarFetchPort","anon","return "+strip(`({${source.slice(source.indexOf(start),source.indexOf(end))}}).trustedFetch`))((value:unknown)=>value,f.api.calendarOrdinaryResponse,publicFeed,f.api.calendarFetchPort,anon);
+    const response=await trusted("https://example.invalid/calendar/feed/opaque",null);assert.equal(response.status,503);return response;}));
+  assert.equal(requests,1);assert.ok(f.api.getCustody());assert.equal(f.calls.filter(x=>x==="replace").length,1);await f.factory.pool()?.end();
+});
+
+test("completed RPC denial and server errors remain healthy despite actual public 503 mapping",async()=>{
+  for(const status of [400,403,500,503]){const f=await actualCalendarOwner(),serial=await f.api.calendarSerialControls({pendingRequests:new Set(),workClosed:false}),value={status,data:null,error:{fixed:true}};let calls=0;
+    const response=await serial.withDatabaseTime("2026-10-20T12:00:00Z",()=>actualPublicFeed()("opaque",new Headers(),{client:f.api.calendarFetchPort({rpc:async()=>{calls++;return value;}}),trustedIp:null}));
+    assert.equal(calls,1);assert.equal(response.status,503);assert.equal(f.api.getCustody(),null);assert.deepEqual(f.row(),f.canonical);await f.factory.pool()?.end();
+  }
+});
+
+test("closed fetch status validation latches missing malformed accessor proxy and status-zero results without reading payload getters",async()=>{
+  let reads=0;const accessor=Object.defineProperty({data:null,error:null},"status",{get(){reads++;throw Error("PRIVATE");}}),proxy=new Proxy({}, {getOwnPropertyDescriptor(){throw Error("PRIVATE");},get(_target,key){if(key==="then")return undefined;reads++;throw Error("PRIVATE");}});
+  for(const result of [{status:0},{status:NaN},{status:"200"},{status:600},{},accessor,proxy]){const f=await actualCalendarOwner();assert.equal(await f.api.calendarFetchPort({rpc:async()=>result}).rpc("fetch_calendar_feed",{}),result);assert.ok(f.api.getCustody());await f.factory.pool()?.end();}
+  assert.equal(reads,0);const f=await actualCalendarOwner();let calls=0;await assert.rejects(f.api.calendarFetchPort({rpc:async()=>{calls++;return{};}}).rpc("unrelated",{}));assert.equal(calls,0);assert.ok(f.api.getCustody());await f.factory.pool()?.end();
 });

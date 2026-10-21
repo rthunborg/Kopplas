@@ -342,7 +342,6 @@ async function bindCalendarFixture(base: BookingFixture, extra: Awaited<ReturnTy
   const randomPart = randomUUID().replaceAll("-", "").slice(0, 16).match(/.{4}/g)!.join(":");
   const isolatedTrustedIp = `2001:db8:${randomPart}`;
   const readRows = async (table: string) => (await adminQuery<{ row: Record<string, unknown> }>(`select to_jsonb(t) row from public.${table} t where tenant_id=any($1::uuid[]) order by tenant_id,id`, [base.tenantIds])).map(row => row.row);
-  const response = async (result: Response): Promise<FeedResponse> => ({ status: result.status, headers: Object.fromEntries(result.headers.entries()), body: await result.text() });
   const pendingRequests = new Set<Promise<unknown>>();
   function track<T>(request: Promise<T>): Promise<T> {
     pendingRequests.add(request);
@@ -476,9 +475,9 @@ async function bindCalendarFixture(base: BookingFixture, extra: Awaited<ReturnTy
     http: (url,options={}) => track((async () => {
       const target=new URL(url);if(target.origin!==testOrigin())throw new Error("Non-owned calendar HTTP target rejected");
       for(const [name,value] of Object.entries(options.query??{}))target.searchParams.set(name,value);
-      try{return await response(await fetch(target,{headers:options.headers,redirect:"manual",cache:"no-store"}));}catch{throw calendarFixtureOrigin("scenario-http-transport");}
+      return await calendarOrdinaryResponse(()=>fetch(target,{headers:options.headers,redirect:"manual",cache:"no-store"}));
     })()),
-    trustedFetch: (url,ip) => track((async () => response(await publicCalendarFeed(new URL(url).pathname.split("/").at(-1)!,new Headers(),{client:anon,trustedIp:ip})))()),
+    trustedFetch: (url,ip) => track(calendarOrdinaryResponse(()=>publicCalendarFeed(new URL(url).pathname.split("/").at(-1)!,new Headers(),{client:calendarFetchPort(anon),trustedIp:ip}))),
     physical: async () => {
       const raw=await readRows("calendar_feed_tokens"),audits=(await readRows("audit_events")).filter(row=>String(row.command).startsWith("calendar_feed."));
       audits.sort((a,b)=>Date.parse(String(a.created_at))-Date.parse(String(b.created_at)));
@@ -628,12 +627,41 @@ async function withOwnedUnknownWindow<T>(fx: BoundFixture, run: () => Promise<T>
 const calendarCanonicalSourceUrl=new URL("../../supabase/migrations/20261020220000_personal_calendar_feed.sql",import.meta.url);
 
 // Owner-scoped serial operations. No production privilege or pool-mode change.
+/** Ordinary transport loss never establishes backend completion, even when its
+ * JS promise rejects/removes itself or the scenario catches that rejection. */
+function calendarRetainTransportCustody():void {
+  const purpose=calendarOwnedStates.keys().next().value??"fetch";
+  calendarSharedCustody??={purpose,row:calendarOwnedStates.get(purpose)?.canonical,phase:"ordinary-transport-unverified"};
+}
+async function calendarOrdinaryResponse(request:()=>Promise<Response>):Promise<FeedResponse> {
+  try {
+    const result=await request(),status=result.status;
+    if(!Number.isInteger(status)||status<100||status>599)throw calendarOwnerRefused();
+    return{status,headers:Object.fromEntries(result.headers.entries()),body:await result.text()};
+  }catch{calendarRetainTransportCustody();throw calendarFixtureOrigin("scenario-http-transport");}
+}
+/** Closed existing dependency port, not a client/thenable observer. Same anon,
+ * receiver/arguments, one RPC/await, identical fulfillment/rejection objects. */
+function calendarFetchPort(anon:Pick<TestServerClient,"rpc">) {
+  return {rpc:async(name:string,args:Record<string,unknown>)=>{
+    if(name!=="fetch_calendar_feed"){calendarRetainTransportCustody();throw calendarOwnerRefused();}
+    try {
+      const result=await anon.rpc(name,args);
+      try {
+        const status=result&&typeof result==="object"?Object.getOwnPropertyDescriptor(result,"status"):undefined;
+        if(!status||!("value" in status)||typeof status.value!=="number"||!Number.isInteger(status.value)||status.value<100||status.value>599)calendarRetainTransportCustody();
+      }catch{calendarRetainTransportCustody();}
+      return result;
+    }catch(error){calendarRetainTransportCustody();throw error;}
+  }};
+}
 const calendarWorkContext=new AsyncLocalStorage<{open:boolean}[]>();
 export async function calendarSettle(fx:Pick<BoundFixture,"pendingRequests">,timeoutMs=20_000):Promise<void> {
   let timer:ReturnType<typeof setTimeout>|undefined;
   const drain=(async()=>{while(fx.pendingRequests.size)await Promise.allSettled([...fx.pendingRequests]);})();void drain.catch(()=>{});
   let settled=false;try{settled=await Promise.race([drain.then(()=>true),new Promise<false>(resolve=>{timer=setTimeout(()=>resolve(false),timeoutMs);})]);}finally{if(timer)clearTimeout(timer);}
-  if(!settled){calendarSharedCustody={purpose:"clock",phase:"ordinary-work-unsettled"};throw calendarOwnerRefused();}
+  if(!settled)calendarSharedCustody??={purpose:"clock",phase:"ordinary-work-unsettled"};
+  if(!settled||calendarSharedCustody)throw calendarOwnerRefused();
 }
 export async function calendarWorkScope<T>(fx:Pick<BoundFixture,"pendingRequests">,run:()=>Promise<T>):Promise<T> {
   const scope={open:true},ancestors=calendarWorkContext.getStore()??[];let result:T|undefined;const errors:Error[]=[];
