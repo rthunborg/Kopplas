@@ -4711,3 +4711,36 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Commit this preparation to satisfy the clean-tree gate, then High author exact3 hunks and meaningful focused checks. Separate committed-delta High review before push.
+
+## Report — 2026-10-21T12:19:15Z (ongoing - reviewed direct matrix checkpoint)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `187a4c6`).
+**Pipeline status:** in-progress; 15.5 source observer independently reviewed
+**Continues:** One separately coordinated diagnostic run, admitted bounded log acquisition and actual qualification; normal five gates/all95/recovery still mandatory
+
+**Summary:** Exact3 author commit187a4c6f passed targeted High review with unchanged IF/targets/DDL/P0001 and kernel. Final focused102 pass, TS/lint/diff0, SRO118; initial test-control and TS annotation failures corrected and retained nonadditively.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 287h 21m (≈54h 27m AI-run, ≈232h 54m human/idle wait); resumed 141×.
+
+**Stories:**
+1. Four of six landed. 15.5 remains in review/counter3; normal acceptance0. 15.6 unstarted.
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** Current in-job v2 consumer condition explicitly fulfilled for limited manual archive route; oldv1 collector unused. Unacquired artifact facts remain UNKNOWN. Separate CI/archive effects and exact admission remain required.
+
+**Open questions:**
+1. Actual native refused predicate and cause remain UNKNOWN. No production fix or acceptance claim follows from the observer.
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Push source-reviewed checkpoint, coordinate exact one diagnostic operation including unexpected-success effects, review/admit manual extractor before GET.

@@ -1,0 +1,36 @@
+{
+  "schema": "root-original-function-direct-evidence-code-review-admission-v1",
+  "reviewer": "/root/review15_5_preselected_id_high",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "source_head": "187a4c6f0d941cf2d46a62df8a51fc0ed6fd20cf",
+  "verdict": "PASS_TARGETED_COMMITTED_DELTA",
+  "originals": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-direct-evidence-code-review/original-report.md",
+      "bytes": 5098,
+      "sha256": "90d903ce991336a0d31ed6aa50f2ac0d2103d525ad0822571083df181a66936e"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-direct-evidence-code-review/original-attestation.json",
+      "bytes": 7735,
+      "sha256": "21d78d43a90dc0b4ac87769ba8176b54755feca8b05f42cf21ed95f18f722fed"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-direct-evidence-code-review/result.json",
+      "bytes": 1844,
+      "sha256": "236fcdbd93fa71e34e77a60b65255900d6ea4322b1bda8f5ea54ff4566342041"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-direct-evidence-code-review/readiness-addendum.json",
+      "bytes": 11089,
+      "sha256": "482b9816c05e5a8ff02694d998a05ccade4e0a87e2f7b20509cb6401408a1519"
+    }
+  ],
+  "actual_source_inputs_verified": 3,
+  "actual_context_bindings_verified": 16,
+  "consumer_condition": "Explicitly fulfilled at source/plan scope by unchanged current in-process v2 consumers; no privatev1 or artifact-body claim.",
+  "execution_ready": false,
+  "remaining": "CI/one-archive effect allocation, exact fresh checkpoint/admission/activation and reviewable admitted manual extractor before acquisition.",
+  "normal_acceptance_credit": 0
+}

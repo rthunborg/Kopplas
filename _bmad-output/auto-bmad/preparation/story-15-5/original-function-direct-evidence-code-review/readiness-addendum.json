@@ -1,0 +1,209 @@
+{
+  "kind": "EXPLICIT_PRIOR_PLAN_CONSUMER_CONDITION_RECONCILIATION",
+  "conclusion": "FULFILLED_AT_CURRENT_SOURCE_AND_PLAN_SCOPE_FOR_ONE_TERMINAL_MANUAL_ARCHIVE_ROUTE; NOT_EXECUTION_READY",
+  "reviewer": {
+    "agent": "/root/review15_5_preselected_id_high",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "distinct_reused_reviewer": true
+  },
+  "prior_plan_review": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-direct-evidence-plan-review/original-report.md",
+      "bytes": 5520,
+      "sha256": "00f0be2b5123e3c254d4c719aa9719ce02e627077fb5c7368a437d3333aceb27"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-direct-evidence-plan-review/original-attestation.json",
+      "bytes": 7629,
+      "sha256": "acd292edd210fe2fc727532a1436a9bbbdc547b2fd626ed48bcf4f6d486f98d9"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-direct-evidence-plan-review/result.json",
+      "bytes": 1613,
+      "sha256": "c68152e49132abfdc698c3234810fdee98b597327a2a752592710fae50a61b7a"
+    }
+  ],
+  "readiness_input": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-direct-evidence-readiness.json",
+    "bytes": 19598,
+    "sha256": "ef40c382b3e28e51f2f5ada7160e38cca885296085b195d88b015e39905585fc"
+  },
+  "rebound_source_head": "187a4c6f0d941cf2d46a62df8a51fc0ed6fd20cf",
+  "reconciliation": [
+    "The original condition required binding current v2 producer/consumer and explicit unexpected-success effects before dispatch. It is fulfilled here at source/plan level, not waived.",
+    "The actual current consumers are DIAG001/runCalendarFeedCauseProof and wrapper validateCauseProofObservation through deps.readDiagnostic, plus finishCauseProof. Their bound sources remain unchanged. Current status-origin-v2/owner_actor_execute validation is used; the private oldv1 collector remains immutable and unused.",
+    "Producer fixture cleanup occurs internally under its settlement/absence checks. After the child returns, wrapper readDiagnostic validates v2 observation and ordinary/query/cleanup settlement before owned Vault-key cleanup eligibility. finishCauseProof later revalidates observation/native report/privacy before copying approved bodies to upload. The distinct timing is not collapsed into one cleanup guarantee.",
+    "The preferred route acquires only one terminal archive: startup matrix, and conditional closed db cause-proof/lifecycle/upload/stop context if reached. No artifact list/download, private collector execution or new external artifact-body consumer is proposed.",
+    "Not acquiring artifact bodies is an explicit evidence limit, not evidence of their truth or absence. Unacquired outcome/body facts remain NULL/UNKNOWN/UNAVAILABLE_UNQUALIFIED. Missing lifecycle cannot prove no child or successful cleanup.",
+    "Current producer in-process v2 validation suffices for this limited route; full artifact-body qualification would require separately reviewed v2 acquisition/consumer scope. No oldv1-to-v2 qualification or source change is authorized.",
+    "Actual run/head/attempt/mode/member, privacy/custody/transport, native matrices and conditional producer facts still require post-execution qualification; no source-level review claims actual success."
+  ],
+  "current_context_bindings": [
+    {
+      "path": "scripts/ci/checkpoint-dispatch.mjs",
+      "bytes": 19782,
+      "sha256": "894586ccf94f6724e32026faeb910f515c6e1f9d6b28475f46e37b8d830fb86a",
+      "head_blob": "157eb1fc5a50591d8ad1bcc308b3f7ff29338528",
+      "normalization": "CRLF to LF",
+      "readiness_binding_unchanged": true
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "bytes": 75930,
+      "sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e",
+      "head_blob": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a",
+      "normalization": "identity",
+      "readiness_binding_unchanged": true
+    },
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "bytes": 47151,
+      "sha256": "e3eef57fabf0c8a57a81a5b9db95fdcabadf4194f132e84c35408c611cecd943",
+      "head_blob": "d0d186aee7e6a575d52659dcc27d9bd9ff8cbbe8",
+      "normalization": "identity",
+      "readiness_binding_unchanged": true
+    },
+    {
+      "path": "tests/support/calendar-feed-ci-contract.ts",
+      "bytes": 8024,
+      "sha256": "40aea88849abff55a0faf156c52cf18d6f0232772cc1654c62c4f290b7fefcf5",
+      "head_blob": "2a5fec9b04c3259f608c95db25668836016808e5",
+      "normalization": "identity",
+      "readiness_binding_unchanged": true
+    },
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "bytes": 89043,
+      "sha256": "3f923eef322cc7f732013bd201090ce9619317250587709471688c69049d6fef",
+      "head_blob": "a78e3f6a336f84fc3d44d042516808748622feb8",
+      "normalization": "identity",
+      "readiness_binding_unchanged": true
+    },
+    {
+      "path": "tests/integration/commands/calendar-feed.int.test.ts",
+      "bytes": 36884,
+      "sha256": "55e4105f0c9e110c7fc08ef17d51f3d5cdd3c8ea6996cf215f53621da1e45e08",
+      "head_blob": "35863f8eeb563f21e9c0ff741115f018ee545134",
+      "normalization": "identity",
+      "readiness_binding_unchanged": true
+    },
+    {
+      "path": "tests/factories/admin-sql.ts",
+      "bytes": 3694,
+      "sha256": "c21253e431e02b45ccf72da756f4cf58fdf1b5f476b0797a465189e39fcad4dd",
+      "head_blob": "f7d2c10c669252912bc045659ed7886dceae3ae0",
+      "normalization": "CRLF to LF",
+      "readiness_binding_unchanged": true
+    },
+    {
+      "path": "tests/factories/tenants.ts",
+      "bytes": 455,
+      "sha256": "069f8805525f055f8ef262789354062cebc60a7914e39171ff22642f84606e12",
+      "head_blob": "6655ccb2dcbb09580c45eacffd482ce6b58a0637",
+      "normalization": "CRLF to LF",
+      "readiness_binding_unchanged": true
+    },
+    {
+      "path": "tests/factories/tenants/core.ts",
+      "bytes": 21309,
+      "sha256": "e877c463e15173bc6b5a8ed0018de919289217c5e9b4379a6eb5aa8fc9457265",
+      "head_blob": "f72a04caab1acbc2d3d43f1a75c2cc6048125bc0",
+      "normalization": "CRLF to LF",
+      "readiness_binding_unchanged": true
+    },
+    {
+      "path": "tests/support/global-setup.ts",
+      "bytes": 2970,
+      "sha256": "adad74b1ef885d8c0714ef6bb5ab9e61b4973021d2c0e7f2e8df17ef6c5ea788",
+      "head_blob": "8cb06568f42fcdccdb47c4ee3b95698a48907ca3",
+      "normalization": "CRLF to LF",
+      "readiness_binding_unchanged": true
+    },
+    {
+      "path": "tests/support/test-env.ts",
+      "bytes": 12287,
+      "sha256": "4ad1f1e80782da40f653bdf5a69a1b5ea0e41db08ed334c460f95a49875130df",
+      "head_blob": "f30ddbeae604e9a383712edcea04fd2d8f4302cc",
+      "normalization": "CRLF to LF",
+      "readiness_binding_unchanged": true
+    },
+    {
+      "path": "vitest.config.ts",
+      "bytes": 3602,
+      "sha256": "83e6ae86cdc6c36f44108eb279ff724d426fc362b6b204fc144f5816fc659bb8",
+      "head_blob": "d18bd17d6558e02549b4296f976acb0f9d831e0b",
+      "normalization": "CRLF to LF",
+      "readiness_binding_unchanged": true
+    },
+    {
+      "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+      "bytes": 24435,
+      "sha256": "b57e6a1726cfac545de1cd141e26f56e6bebb4a535d1cd7f706e4a1ad3e05555",
+      "head_blob": "c5d6d53faab649b40dee5c12f7933030224fa4ab",
+      "normalization": "identity",
+      "readiness_binding_unchanged": true
+    },
+    {
+      "path": "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",
+      "bytes": 13136,
+      "sha256": "d0f75428527392aca0d2be34685d83c8d1169479f9c29ad6f5349c5a24afb919",
+      "head_blob": "93b55ab54ec63a775894e92db9d83219add909dd",
+      "normalization": "identity",
+      "readiness_binding_unchanged": false,
+      "prior_binding": {
+        "bytes": 11947,
+        "sha256": "f788d507414dc32ecc45b37dcfa44a45ce01cc36da0417063f4e9da1549a3b91",
+        "blob": "2b767ae71fda30f5aec0d79537d74bdbe878d757"
+      }
+    },
+    {
+      "path": "package.json",
+      "bytes": 2352,
+      "sha256": "82f78147f699b457c89c912c2e85772b8b688708c93e399c1ef19112d1f28412",
+      "head_blob": "819459b2df6f2c385a8442dda25ef7904576e270",
+      "normalization": "CRLF to LF",
+      "readiness_binding_unchanged": true
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "bytes": 162159,
+      "sha256": "84c969ae2b2dfdbb0f88afba7890c58f36b2415bb02e255e1a99bf8aaf60450f",
+      "head_blob": "4d8fefc7c340cb5ad1ca1650563fe6a0ce6db115",
+      "normalization": "identity",
+      "readiness_binding_unchanged": true
+    }
+  ],
+  "binding_summary": {
+    "total": 16,
+    "unchanged_from_frozen_readiness": 15,
+    "updated_by_exact_reviewed_delta": 1,
+    "additional_changed_source_inputs_bound_in_code_attestation": [
+      "unit controls",
+      "Spec"
+    ],
+    "normalization": "Eight unchanged raw CRLF files map to identical LF Git contents; raw hashes remain readiness-exact."
+  },
+  "explicit_unexpected_success_effects": [
+    "Hosted disposable startup/migrations and existing bounded reset/recovery/seed/Auth checks",
+    "Setup authority/privacy/ledger qualification; owned random Vault secret creation and COMMIT; memory-only key/password values and private telemetry",
+    "One DIAG001 owned child; two-tenant/ten-Auth-user role-aware fixture through existing AuthAdmin/test-admin helpers",
+    "Awaited ordinary JWT manage call may commit owned fixture token/audit; baseline selected only by matched trace",
+    "Conditional canonical catalog/state reads; repeatable-read/savepoint; controlled claims/restricted SESSION AUTHORIZATION; one current unmodified status/manage SQL call; rollback/reset/same/fresh checks",
+    "Scoped owned-tenant cleanup using transaction-local session_replication_role=replica; canonical/Auth cleanup and visible tenant/Auth absence oracle",
+    "Identity-bound child/output/protocol settlement and conditional captured Vault UUID/name deletion; retained explicit custody on uncertainty",
+    "Current v2 privacy/shape/report validation and artifact upload as producer effect only; always owned hosted stack stop; no local managed resource launch"
+  ],
+  "remaining_hard_gates": [
+    "Separate explicit CI/one-archive effect allocation covering all expected and unexpected-success effects and exact ownership",
+    "Exact future pushed SHA/candidate/default capability/admission availability and fresh UUID/nonce/exclusive fsynced pre-POST binding",
+    "Once activation by sole Root actor; no POST/GET retry on uncertainty; terminal exact-run and selected-member bindings before bounded GET",
+    "Actual manual extractor/transport/closed-schema/privacy scope must be reviewable and admitted before acquisition; old privatev1 collector is not a fallback",
+    "All missing/malformed/NULL/alltrue/refusal-different/nonreproducing/uncertain facts remain UNKNOWN; no source fix or opaque normal CI retry authority"
+  ],
+  "execution_effects_allocated": false,
+  "actual_native_execution": 0,
+  "normal_acceptance_credit": 0,
+  "source_fix_authority": false,
+  "prior_originals_modified": false
+}
