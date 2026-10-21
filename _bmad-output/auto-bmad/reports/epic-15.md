@@ -5527,3 +5527,35 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Targeted code pass before native readiness/effects allocation; no fourth broad review.
+
+## Report — 2026-10-21T19:27:29Z (checkpoint — F1 source review passed)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `b1b476d`).
+**Pipeline status:** 15.5 P5 active; independent targeted source review PASS_CODE_ONLY_F1_CLOSED. Native acceptance remains zero.
+**Continues:** High read-only exact-source normal-checkpoint readiness and finite future-effect inventory.
+
+**Summary:** 15.1–15.4 landed; 15.5 active; 15.6 unstarted.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 294h 29m (≈77h 24m AI-run, ≈217h 05m human/idle wait); resumed 165×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:**
+1. Required95/fullDBRLS/recovery and API019 privacy/browser/custody qualification remain pending.
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Qualify exact future normal CI effects and ownership before push/dispatch; no deployment.
