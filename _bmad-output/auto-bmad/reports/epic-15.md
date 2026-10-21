@@ -5751,3 +5751,35 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Read-only High assessment of materially simpler exact terminalcase diagnostic route, before source/runtime allocation. No repeated normalCI.
+
+## Report — 2026-10-21T20:17:45Z (progress — materially simpler terminal diagnostic plan validated)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `9e9b6b6`).
+**Pipeline status:** in-progress —15.5 failed native gates; targeted diagnosis preparation
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 295h 19m (≈77h 24m AI-run, ≈217h 55m human/idle wait); resumed 172×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:**
+1. NUDGE004 assertion and browser001/007/010-revoke failures/009flaky causes UNKNOWN. Original locationallowlist planNOTPASS preserved; exact74pathrefinement plan-onlyPASS. No newGET/nativeacceptance/sourcefix.
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Pureoperatorpreparation ->distinctHigh sourceadmission ->Coordinatoractual2GETallocation ->Rootexclusiveactivation ->executeonce ->distincttruth/provenanceaudit ->evidence-supportedfixclaims

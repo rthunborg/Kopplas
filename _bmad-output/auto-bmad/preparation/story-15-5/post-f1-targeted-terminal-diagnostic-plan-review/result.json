@@ -1,0 +1,31 @@
+{
+  "Outcome": "NOTPASS_PLAN_REQUIRES_FINITE_LOCATION_ALLOWLIST",
+  "Files changed": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-plan-review/original-report.md",
+      "bytes": 4242,
+      "sha256": "3c55a9b5e23f4b05025571f29c15acb99c6a18501aefc9bdf46d08af995a5584"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-plan-review/original-attestation.json",
+      "bytes": 15816,
+      "sha256": "c203260af3148172480486b84239c59d90e832cab12563f01dd8ea533812a464"
+    }
+  ],
+  "Status": "One finite plan finding frozen: current73 excludes the intended NUDGE004 location target; no source/effect execution.",
+  "Open questions": [
+    "Which exact already-bound nudge paths will be authorized for candidate disclosure? Target test alone is sufficient if others remain rejected.",
+    "Actual failing assertion/backend cause and both failed-runtime cleanup custody remain UNKNOWN."
+  ],
+  "Deferred work": [
+    "After finite plan correction: separately allocated new operator preparation and independent executable review, then actual Coordinator allocation/Root activation before two fixed GETs.",
+    "No automatic normal retry/source fix; full DB/RLS, required95, privacy, custody and separate recovery gates remain unmet."
+  ],
+  "Blockers": [
+    {
+      "id": "PLAN-LOCATION-01",
+      "owner": "plan author / Root allocation",
+      "resume_condition": "Explicit finite target location allowlist with exact bindings/bounds and positive/negative controls independently validated."
+    }
+  ]
+}

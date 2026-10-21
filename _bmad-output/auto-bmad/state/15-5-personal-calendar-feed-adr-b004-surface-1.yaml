@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-21T20:11:22Z"
+updated_at: "2026-10-21T20:17:45Z"
 started_at: "2026-10-20T12:18:56Z"
 completed_at: null
 active_seconds: 86219
@@ -18,15 +18,15 @@ is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: post-f1-normal-failure-simpler-route-assessment
-selected_role: sensitive-implementation-planner
+selected_phase: post-f1-targeted-terminal-diagnostic-operator-preparation
+selected_role: native-verification-delegate
 selected_profile: sensitive
 selected_model: gpt-6.1-sol
 selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Two unsuccessful normal native attempts; policy requires evidence-led materially simpler recovery instead of retry. Assess exact qualified currentfailed/unexecuted paths with source only, no effects or speculative fixes. Database/clock/credential custody High."
+escalation_reason: "Plan-onlyLocation01closed; prepare pure minimum2pinnedexistingZIP diagnosis operator with finite74sourcepaths/closedprivacyprojection. No executionauthority; credential/ZIP/transportcritical High."
 routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"High preparation for hashed public-feed tokens, rotation/revocation and tenant/member disclosure boundaries; plan-only before distinctvalidation and ownershipallocation\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct High independent specification validation of actual public-feed token/proof/IP/limiter authorization design and exact ownership/test-key boundaries before anybuild\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"cross_model_layer\",\"profile\":\"diverse_review\",\"role\":\"independent-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -222,6 +222,10 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Actual completed Coordinator5GET allocation and independent operator source audit admitted; fresh73files/219Gitobjects and real terminal ownership verified immediately before Root exclusive capability. Bounded secret-bearing transport/ZIP custody High; no story broad review.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"terminal-evidence-acquisition\",\"profile\":\"sensitive\",\"role\":\"native-verification-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct offline actual terminal packet provenance/count/custody audit after5boundedGETs; sensitive credential/transport and database integrity. No broadstoryreview/fourthround and no new network.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"post-f1-normal-evidence-provenance-audit\",\"profile\":\"sensitive\",\"role\":\"independent-provenance-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Two unsuccessful normal native attempts; policy requires evidence-led materially simpler recovery instead of retry. Assess exact qualified currentfailed/unexecuted paths with source only, no effects or speculative fixes. Database/clock/credential custody High.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"post-f1-normal-failure-simpler-route-assessment\",\"profile\":\"sensitive\",\"role\":\"sensitive-implementation-planner\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Independent finite review of minimum two existingreport retrieval diagnostic plan after twofailednormal attempts; privacy/transport/credential and exact failure location integrity. No broadstoryreview/network/source implementation.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"post-f1-targeted-terminal-diagnostic-plan-review\",\"profile\":\"sensitive\",\"role\":\"independent-diagnostic-plan-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Finite independentplanfinding: NUDGE004 targetfile outsidecurrent73; authorize only explicitlybound intendedextra locationpath(s) with raw/Git/linebounds. Planmetadata only, noeffects/sourcefix.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"post-f1-targeted-terminal-diagnostic-plan-location-refinement\",\"profile\":\"sensitive\",\"role\":\"sensitive-implementation-planner\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Same independentHigh finite revalidation of PLAN-LOCATION-01:74exactpaths/current73+onlytargettest linebounds/inverses; reuse unchangedplan review. No broadreview/effects.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"post-f1-targeted-terminal-diagnostic-plan-location-revalidation\",\"profile\":\"sensitive\",\"role\":\"independent-diagnostic-plan-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Plan-onlyLocation01closed; prepare pure minimum2pinnedexistingZIP diagnosis operator with finite74sourcepaths/closedprivacyprojection. No executionauthority; credential/ZIP/transportcritical High.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"post-f1-targeted-terminal-diagnostic-operator-preparation\",\"profile\":\"sensitive\",\"role\":\"native-verification-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: "Hashed public tokens, rotation/revocation, externalfeed andcross-tenant abuseprotection requireHigh-riskATDD+automate; lastthreeno traceadvisory"
@@ -1725,3 +1729,21 @@ p5_post_f1_terminal_audit:
   normal_acceptance_credit: 0
   development_complete: false
   next: "Read-only High assessment of materially simpler exact terminalcase diagnostic route, before source/runtime allocation. No repeated normalCI."
+p5_targeted_terminal_diagnostic_plan:
+  status: NOTPASS_PLAN_REQUIRES_FINITE_LOCATION_ALLOWLIST
+  finding: PLAN-LOCATION-01
+  review_directory: "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-plan-review"
+  original_report_sha256: 3c55a9b5e23f4b05025571f29c15acb99c6a18501aefc9bdf46d08af995a5584
+  actual_requests: 0
+  author_refinement: "Current73 plus only exact intended alreadybound nudge subset, raw/Git/source+pushed+current/linebounds, inversecontrols; originalassessmentandreviewimmutable"
+  normal_acceptance_credit: 0
+p5_targeted_terminal_diagnostic_plan_refinement:
+  status: PASS_PLAN_ONLY_LOCATION_01_CLOSED_OPERATOR_PREPARATION_ACTIVE
+  original_NOTPASS_preserved: true
+  plan_review: "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-plan-review/location-refinement-review"
+  exact_operation: "MAX2existingpinnedreportZIPGETs; no log/list/status/metadata/normalCIretry"
+  location_scope: "current73+onlyboundNUDGE004targettest=74; other3nudgecontextpathsexcluded"
+  operator_preparation_only: true
+  new_requests_executed: 0
+  normal_acceptance_credit: 0
+  next: "Pureoperatorpreparation ->distinctHigh sourceadmission ->Coordinatoractual2GETallocation ->Rootexclusiveactivation ->executeonce ->distincttruth/provenanceaudit ->evidence-supportedfixclaims"
