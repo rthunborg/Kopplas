@@ -6191,3 +6191,34 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Minimal current-source/readiness refresh using unchanged reviewed collector algorithms and exact new source bindings; prepare concrete one-checkpoint scope, no automatic retry or execution.
+
+## Report — 2026-10-21T22:36:31Z (in progress — portability fix reviewed; E16 composition input next)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `53273c2`).
+**Pipeline status:** 15.5 P5 active. Source4cd5e944 portability correction independently reviewed; local Linux152P remains separate from native acceptance0. Latest normal run39683227657 failed3241P2F with downstream runtime lanes unexecuted.
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 297h 38m (≈77h 24m AI-run, ≈220h 14m human/idle wait); resumed 186×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Coordinate exact completed E16 commit intake, High compatibility plan and bounded integration before another full normal checkpoint; no deployment.

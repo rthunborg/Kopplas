@@ -1,0 +1,29 @@
+{
+  "Blockers": [
+    "Final integrated readiness is held for the named E16 composition/input gate; current-source-only proof remains conditional and must be labelled preintegration if deliberately chosen."
+  ],
+  "Deferred work": [
+    "Root coordinate bounded exact E16 input/integration and High conflict qualification before final integrated comparison.",
+    "Separate fresh provider/push/NORMAL effects allocation and exact composed-source gates.",
+    "Postterminal data-only consumer rebind/targeted audit and fresh once acquisition allocation."
+  ],
+  "Files changed": [
+    {
+      "bytes": 60231,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/qualified-unit-portability-checkpoint-readiness/source-bindings.json",
+      "sha256": "f21a53b14283b1dfcf639c46eb17fb2ccebc83eead85428aefc421523caff54d"
+    },
+    {
+      "bytes": 15178,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/qualified-unit-portability-checkpoint-readiness/readiness.json",
+      "sha256": "a828b5632212b405560797fe1a99f4396526782a0f158da979fee8b107e73182"
+    }
+  ],
+  "Open questions": [
+    "Original hosted exceptions and functional NUDGE/browser/native application behavior remainUNKNOWN.",
+    "Exact incoming E16 shared-path/migration fit is UNQUALIFIED because99104 commit is not available locally."
+  ],
+  "Outcome": "CURRENT_SOURCE_PORTABILITY_READY_HOLD_FOR_E16_COMPOSITION_GATE",
+  "Status": "75raw/clean/native OIDs and225 actual source/metadata/pushed blobs verified; exact2 changed73unchanged/44normalizations; SQL111/context10 conserved.152P is local source evidence only; current native acceptance0.",
+  "normal_acceptance": 0
+}

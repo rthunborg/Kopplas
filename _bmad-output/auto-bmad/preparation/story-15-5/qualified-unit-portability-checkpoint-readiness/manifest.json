@@ -1,0 +1,22 @@
+{
+  "members": [
+    {
+      "bytes": 15178,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/qualified-unit-portability-checkpoint-readiness/readiness.json",
+      "sha256": "a828b5632212b405560797fe1a99f4396526782a0f158da979fee8b107e73182"
+    },
+    {
+      "bytes": 1656,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/qualified-unit-portability-checkpoint-readiness/result.json",
+      "sha256": "afd2bb64643eadde6faaf99c1de74ddcf9c0e0f8986abaa51cca44f605c3e7c8"
+    },
+    {
+      "bytes": 60231,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/qualified-unit-portability-checkpoint-readiness/source-bindings.json",
+      "sha256": "f21a53b14283b1dfcf639c46eb17fb2ccebc83eead85428aefc421523caff54d"
+    }
+  ],
+  "normal_acceptance": 0,
+  "schema": "QUALIFIED_UNIT_PORTABILITY_READINESS_MANIFEST_v1",
+  "self_excluded": "manifest.json"
+}
