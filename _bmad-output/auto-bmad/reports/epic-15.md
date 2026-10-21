@@ -4434,3 +4434,38 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Highqualify smallest maintainable repair and boundedlocalcomparison effects; obtain exactsharedsource/migration/mutable-resource allocation before edits/replay. No furtherquery/launch/schemaeffects currently granted.
+
+## Report — 2026-10-21T10:20:11Z (continuing - native invoker proof independently qualified)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `unknown`).
+**Pipeline status:** In progress:15.5P5;4/6landed;15.6notstarted.
+**Continues:** Native feasibility qualified; final source scope and approved-kernel reconciliation are being prepared before edits.
+
+**Summary:** The exact reviewed rollback-only local probe and fresh cleanup each ran once with native0/fullEOF/settled clients. IndependentHigh qualified restricted canonical identity, absent identity, helperEXECdenial, invoker/storedcanonicaldependency, existingcatalogpreservation and rollback/freshUUIDfixtureabsence at unchangedprefix102. Root result2266B/SHA8067abe471966bb0a6191f49369a7386d65bf9387caf750ed36ab60842da8058; qualification10184B/SHAf45092e068564833b91f5e42cc0feba1a991cbe74f4c69ab2e13d1cf89d82bb4. Only ownedguardusage00292597 was stopped; no shutdown claim/poll.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 285h 22m (≈54h 27m AI-run, ≈230h 55m human/idle wait); resumed 133×.
+
+**Stories:**
+1. 15.5: prepare additivepreparsedINVOKERidentityadapter scope, preserving8callsitebinding/3functionowners/guards and all tenant/JWT/table/Vault obligations. No application source or migration changed yet.
+2. 15.6: backlog; freshSpec and distinctvalidation after15.5lands.
+
+**Skipped:** (none)
+
+**Epic gate:** Normal exact-head fivegates/all95 and actualfix independentreview remain required; historic43DB/14browser failures unresolved. Engineproof adds0 normalcoverage.
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** Threebroadreviewcap retained; newpayload-onlyHighreview15mockcontrolsPASS; no fourthbroadappreview. Ownerfix/retryauthorization retained; no mainmerge/deploy.
+
+**Open questions:**
+1. Final source hunk/migration reservation and whether approved kernel remains unchanged; High planner must resolve before implementation.
+
+**Deferred work:**
+1. Exhaustive release validation remains deferred with existing owner/evidence/nextaction; no productionauthority or release-ready claim.
+
+**⚠️ Needs human:** (none)
+
+**Next:** Coordinate exactsource and CLI-generatedmigration claims, including transientpublicCREATE/ownerreplacement/revocation lifecycle and currentdiagnostic necessity/schema/sourcecensus updates; then clear bookkeeping and delegate the bounded repair.

@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-21T09:55:08Z"
+updated_at: "2026-10-21T10:25:30Z"
 started_at: "2026-10-20T12:18:56Z"
 completed_at: null
 active_seconds: 3572
@@ -18,15 +18,15 @@ is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: P5_source_assessment
-selected_role: least-privilege supported grant-application repair planner
+selected_phase: P5
+selected_role: bounded adapter repair author with staged migration reservation gate
 selected_profile: sensitive
 selected_model: gpt-6.1-sol
 selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Actuallocalpostgres lacks authGRANTOPTION/SETowner; qualify maintainable ordinary-migration supported repair without privilege broadening before bounded comparison/source allocation."
+escalation_reason: "Nativequalifiedcanonicalidentityadapter and transientownerCREATE/SET/replacement/revoke lifecycle are sensitive; generationfirstonly untilactualpathandcompleteeffectadmission. Preservethree-roundcap."
 routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"High preparation for hashed public-feed tokens, rotation/revocation and tenant/member disclosure boundaries; plan-only before distinctvalidation and ownershipallocation\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct High independent specification validation of actual public-feed token/proof/IP/limiter authorization design and exact ownership/test-key boundaries before anybuild\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"cross_model_layer\",\"profile\":\"diverse_review\",\"role\":\"independent-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -153,6 +153,11 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Auth schema grant authority and effective access qualification require sensitive High; readonly query planning only pending resource allocation.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5_source_assessment\",\"profile\":\"strong\",\"role\":\"dev\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Qualify actual auth-schema grantor/application using minimal readonly owned-local catalog proof; no unchanged broad review or opaque CI retry.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5_source_assessment\",\"profile\":\"sensitive\",\"role\":\"status-owner auth-schema controlled candidate source assessor\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Actuallocalpostgres lacks authGRANTOPTION/SETowner; qualify maintainable ordinary-migration supported repair without privilege broadening before bounded comparison/source allocation.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5_source_assessment\",\"profile\":\"sensitive\",\"role\":\"least-privilege supported grant-application repair planner\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Prove canonicalidentityACLbehavior without role/schema privilege broadening; newtransaction-onlysensitivepayload must be authoredHigh and independently reviewed before any effect.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5_invoker_probe\",\"profile\":\"sensitive\",\"role\":\"bounded rollback-only SQL invoker native-proof author\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"ActualnewprivateSQLpayloadtouchestransaction-onlyrole/schema/functions; independentlyvalidateidentityrestriction/ACLproof/rollback/custodybeforeeffects; nofourthbroadstoryreview.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5_invoker_probe\",\"profile\":\"sensitive\",\"role\":\"independent targeted native invoker-proof payload reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Exact once probe and fresh cleanup returned native0/fulltypedflags; independentHighqualifiesactualexecution/rollbackevidence before leastprivilege sourceimplementationallocation.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5_invoker_probe\",\"profile\":\"sensitive\",\"role\":\"independent offline qualification of actual native proof\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"IndependentPG17nativeinvokerproofPASS now supports concrete narrowlyallocated additiveidentityadapter repair; inspect exactSpec/harness/classifier/kernelbindings before sourcewrites.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5_source_assessment\",\"profile\":\"sensitive\",\"role\":\"native-qualified least-privilege adapter final source-scope planner\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Nativequalifiedcanonicalidentityadapter and transientownerCREATE/SET/replacement/revoke lifecycle are sensitive; generationfirstonly untilactualpathandcompleteeffectadmission. Preservethree-roundcap.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5\",\"profile\":\"sensitive\",\"role\":\"bounded adapter repair author with staged migration reservation gate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: "Hashed public tokens, rotation/revocation, externalfeed andcross-tenant abuseprotection requireHigh-riskATDD+automate; lastthreeno traceadvisory"
@@ -1360,7 +1365,7 @@ p5_owned_local_grantor_b03_observation:
   query_authorship: "High; RootverbatimconfirmedHigh"
   query_attempts: 1
   native_exit: 0
-  elapsed_seconds: 0.196
+  elapsed_seconds: "0.196"
   child_settled: true
   closed_fields: 17
   result_path: ".env.epic15.mail-runtime/story-15-5-preparation/root-local-grantor-query-result-01.json"
@@ -1371,3 +1376,62 @@ p5_owned_local_grantor_b03_observation:
   no_shutdown_poll: true
   schema_writes: 0
   normal_acceptance_credit: 0
+p5_invoker_adapter_probe:
+  kind: NEW_FEASIBILITY_NOT_SOURCE_IMPLEMENTATION
+  author: "/root/build15_5_high"
+  reviewer: "/root/review15_5_preselected_id_high"
+  payload_directory: ".env.epic15.mail-runtime/story-15-5-preparation/invoker-adapter-probe-01"
+  files: "{\"probe.sql\": {\"bytes\": 12741, \"sha256\": \"e61418559ffbc37c92dc8bfe626f9bf56aff8d819ad2d99809541fd942ffb79e\"}, \"verify-cleanup.sql\": {\"bytes\": 1104, \"sha256\": \"749d84ff15f2ae68a1d96d9842268065554bcfb736478420a406c4721bba7caa\"}, \"proposal.json\": {\"bytes\": 7181, \"sha256\": \"8b828dffef4827144f8615b3faa16836feebe8f514298377fe986e0515bc1d73\"}}"
+  root_transport: "{\"path\": \".env.epic15.mail-runtime/story-15-5-preparation/root-invoker-adapter-probe-01-runner.py\", \"bytes\": 9204, \"sha256\": \"90f0cb9215a2609e807b2c2515494960c3be8998421cd6b2b61b2dd4ef7ce76a\", \"original_pre_review_draft\": {\"bytes\": 9055, \"sha256\": \"bb8dc7839f2b11cd7277dca3de05cabf07261fdd02cb86609ea705b7cbf67693\", \"executed\": false, \"correction\": \"Do not treat killedDockerclient settlement asSQLconnectionsettlement; freshonlyfulltransportpsqlexit0or3; otherpathsUNPROVEN/custody.\"}}"
+  fixture_uuid: 543ede32-df6d-402d-b9a3-c97b6ecc9b77
+  new_objects: oneUUIDschema/oneNOLOGINrestrictedUUIDrole/oneINVOKERcanonicalauth.uidadapter/newobjectACLsonly
+  transactions: oneDDLtransactionunconditionalrollback/reset+onefreshreadonlycleanupafterreportedconnectionend
+  source_replay_required: false
+  effect_allocation: GRANTED_EXACT_ONCE
+  activation_exists: true
+  probe_connections: 1
+  cleanup_connections: 1
+  review_status: FINAL_PASS_PAYLOAD_TRANSPORT_ONLY
+  normal_acceptance_credit: 0
+  review_manifest: "{\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/invoker-adapter-probe-review/manifest.json\", \"bytes\": 2099, \"sha256\": \"313ba5426fdd95fae6719f689f1b7c86122adf4d5e8268a47be37b04a7fea576\"}"
+  allocation_path: "_bmad-output/auto-bmad/preparation/story-15-5/accepted-invoker-probe-once-allocation.json"
+  requestId: c8dbe3c7-15b5-44ff-9bae-af57cd48efd2
+  resourceId: 00292597-909e-4714-b733-fe0b8f72fa7a
+  launches: 1
+  native_connections: 2
+  guard_state: active_verified_before_probe
+  guard_verified: false
+  result: "{\"path\": \".env.epic15.mail-runtime/story-15-5-preparation/root-invoker-adapter-probe-01-result.json\", \"bytes\": 2266, \"sha256\": \"8067abe471966bb0a6191f49369a7386d65bf9387caf750ed36ab60842da8058\"}"
+  capture_admission: "{\"path\": \".env.epic15.mail-runtime/story-15-5-preparation/root-invoker-adapter-probe-01-capture-admission.json\", \"bytes\": 3280, \"sha256\": \"c799791a8ad5bc459060d168fafa903b22a4b3e1b3dd5a020b4e843c233a1ebc\"}"
+  mechanical_qualified: true
+  High_qualification: "{\"Outcome\": \"PASS_LOCAL_PG17_ENGINE_FEASIBILITY_ONLY\", \"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/invoker-adapter-probe-qualification.json\", \"bytes\": 10184, \"sha256\": \"f45092e068564833b91f5e42cc0feba1a991cbe74f4c69ab2e13d1cf89d82bb4\", \"actual_semantics\": \"Restricted canonical and absent identity; newhelperEXECdenial; invoker/prosqlbody/dependency; existingcatalogpreserved; rollback/freshfixtureabsence/prefix102 qualified.\", \"current15_5_or_hosted_historical_cause\": \"UNPROVEN\", \"normal_acceptance_credit\": 0}"
+  stop_request: accepted_stop_requested_verifiedfalse
+E16_selected_tenant_read_call_coordination:
+  file: src/server/bookings/job-semantics.ts
+  hunk: existing read_job_cards RPC trusted resolvedtenant binding only
+  response: "No current15.5 or acquiredprospective15.6writeclaim; E16ownsitscheckout/hunk; preserveactualENDadvice/scheduling/feedcontracts.15.6notstarted/futureanalysisnotclaimedcomplete; coordinatebeforelateroverlap."
+  protected_local_head: ec129064400f559aae8c08edb091fbb0772248e0
+  pushed_head: 1a643e24968a06cdeaba23ffc2506471b659c62a
+  resource_or_deploy_authority: false
+p5_adapter_migration_generation_reservation:
+  kind: MIGRATION_CHRONOLOGY_GENERATION_ONLY_RESERVATION
+  coordinator_thread: 01a1160d-b5b1-7623-a8e8-54ef3dc537ed
+  grant_tool: exec-f83919ac-a515-4c3c-a568-3c08166386ab
+  semantic_name: calendar_feed_preparsed_actor_identity
+  exact_filename: UNBORN_CLI_GENERATED
+  minimum_exclusive_timestamp: "20261021102151"
+  other_owner: E16
+  other_reserved_file: 20261021102151_e16_job_read_tenant_and_source_quote_scope.sql
+  other_protected_head: 38390918438955eb9725e88b2c38756649433b38
+  allowed: "DiscoverexistingCLIhelp/version; exactlyONEsupabasemigrationnewemptyfile; reportactualpath/timestamp/hashbeforecontent; waitforsourceeffectadmission."
+  excluded: "NoSQLcontent/DB/CI/role/schemaeffects/sourceimplementation, no manualrename/inventedtimestamp/repeatedgeneration."
+  execution_model: "Oneinflightbuildpreparationfromcleantree; pauseforRootactualpathclearance; noemptymigrationcommit/push."
+  normal_acceptance_credit: 0
+p5_adapter_approved_kernel_reconciliation:
+  assessment: "Implementationonly; canonicalidentity/current-selfauthorization/publicresponsesunchanged"
+  kernel_bytes: 5760
+  kernel_sha256: 0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977
+  author: build15_5_high
+  independent_initial_validation: REUSED_UNCHANGED_KERNEL
+  no_new_broad_review: true
+  counter_preserved: 3

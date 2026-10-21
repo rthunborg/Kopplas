@@ -1,0 +1,53 @@
+{
+  "kind": "ROOT_MECHANICAL_REVIEW_ADMISSION",
+  "files": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/invoker-adapter-probe-01/probe.sql",
+      "bytes": 12741,
+      "sha256": "e61418559ffbc37c92dc8bfe626f9bf56aff8d819ad2d99809541fd942ffb79e",
+      "kind": "HighSQL"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/invoker-adapter-probe-01/verify-cleanup.sql",
+      "bytes": 1104,
+      "sha256": "749d84ff15f2ae68a1d96d9842268065554bcfb736478420a406c4721bba7caa",
+      "kind": "HighSQL"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/invoker-adapter-probe-01/proposal.json",
+      "bytes": 7181,
+      "sha256": "8b828dffef4827144f8615b3faa16836feebe8f514298377fe986e0515bc1d73",
+      "kind": "Highproposal"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-invoker-adapter-probe-01-runner.py",
+      "bytes": 9204,
+      "sha256": "90f0cb9215a2609e807b2c2515494960c3be8998421cd6b2b61b2dd4ef7ce76a",
+      "kind": "Roottransport"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/invoker-adapter-probe-review/original-report.md",
+      "bytes": 5330,
+      "sha256": "1756792af12612805d082898674e7f4c6249a3c9f8fa813d6a77aa7d92c144ea",
+      "kind": "review"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/invoker-adapter-probe-review/original-attestation.json",
+      "bytes": 6529,
+      "sha256": "eeb59490acd0491ed184be0fe5898c6a32cebd8f1ae56d16027a1ee321ab7141",
+      "kind": "review"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/invoker-adapter-probe-review/result.json",
+      "bytes": 800,
+      "sha256": "731bc1508a67c6667e5ee2e20734307f3504190111d7e7acaf8c4abc38d29472",
+      "kind": "review"
+    }
+  ],
+  "manifest_self_excluded": "manifest.json",
+  "Outcome": "PASS_PAYLOAD_TRANSPORT_ONLY",
+  "methods_passed": 15,
+  "native_effects": 0,
+  "effect_allocation": "PENDING_CONDITIONAL_COORDINATOR",
+  "normal_acceptance_credit": 0
+}

@@ -1,0 +1,15 @@
+{
+  "kind": "MIGRATION_CHRONOLOGY_GENERATION_ONLY_RESERVATION",
+  "coordinator_thread": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "grant_tool": "exec-f83919ac-a515-4c3c-a568-3c08166386ab",
+  "semantic_name": "calendar_feed_preparsed_actor_identity",
+  "exact_filename": "UNBORN_CLI_GENERATED",
+  "minimum_exclusive_timestamp": "20261021102151",
+  "other_owner": "E16",
+  "other_reserved_file": "20261021102151_e16_job_read_tenant_and_source_quote_scope.sql",
+  "other_protected_head": "38390918438955eb9725e88b2c38756649433b38",
+  "allowed": "DiscoverexistingCLIhelp/version; exactlyONEsupabasemigrationnewemptyfile; reportactualpath/timestamp/hashbeforecontent; waitforsourceeffectadmission.",
+  "excluded": "NoSQLcontent/DB/CI/role/schemaeffects/sourceimplementation, no manualrename/inventedtimestamp/repeatedgeneration.",
+  "execution_model": "Oneinflightbuildpreparationfromcleantree; pauseforRootactualpathclearance; noemptymigrationcommit/push.",
+  "normal_acceptance_credit": 0
+}

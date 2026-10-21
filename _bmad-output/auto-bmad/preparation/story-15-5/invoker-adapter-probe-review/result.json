@@ -1,0 +1,14 @@
+{
+  "Outcome": "PASS",
+  "Files changed": [
+    "_bmad-output/auto-bmad/preparation/story-15-5/invoker-adapter-probe-review/original-report.md",
+    "_bmad-output/auto-bmad/preparation/story-15-5/invoker-adapter-probe-review/original-attestation.json",
+    "_bmad-output/auto-bmad/preparation/story-15-5/invoker-adapter-probe-review/result.json"
+  ],
+  "Status": "Zero findings in exact SQL3 and final9204B/90f0 transport;15 mocked controls passed. SQL/Docker/main executions0; effects UNALLOCATED.",
+  "Open questions": [],
+  "Deferred work": [
+    "Root/Coordinator exact effect allocation and guard target, followed by independently qualified primary/fresh-cleanup proof before source-fix allocation. Feasibility unproven; normal acceptance0 and43DB/14browser unresolved."
+  ],
+  "Blockers": []
+}
