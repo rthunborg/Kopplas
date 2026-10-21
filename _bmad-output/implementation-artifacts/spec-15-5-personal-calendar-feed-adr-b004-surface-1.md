@@ -1187,6 +1187,41 @@ Kernel5760 bytes is unchanged; status stays in-review, ARR warnings and all11
 failed native histories remain. All43 DB/14 browser causes remain unresolved.
 No development-complete, release, delivery or diagnostic acceptance is claimed.
 
+## F3 default plain-scalar refusal — 2026-10-21
+
+The independent latest-seven review at52007b76 closed F1 and F2 but is preserved
+as NOTPASS for one new P2 recognizer defect. A default event descendant such as
+`inputs: x: y` passed the prior bounded subset even though colon followed by
+separation is not valid plain YAML scalar content. Active registration/blob
+identity and full candidate checks do not validate that default scalar. The
+required pre-POST refusal therefore needed correction; no hosted execution,
+acceptance or key-cleanup bypass is inferred. The exact report/attestation and
+all prior input bytes remain immutable.
+
+Under Root's recorded sensitive Sol6.1 High F3 route and existing exact-seven
+allocation, only dispatcher, its existing unit file and this author trail change.
+The same narrow structural recognizer now treats separated # as comment syntax,
+then refuses colon-whitespace/end and adjacent unsupported plain-scalar mapping,
+sequence/reserved leading indicators. It still accepts supported colon-without-
+separation content and comments, and keeps existing quote/block/alias/duplicate/
+nesting/sequence checks. No parser dependency, broader YAML capability, provider
+GET/POST, durable intent, ref/SHA/capability, retry or default-branch change is
+introduced. Malformed defaults stop before BOTH state creation and the sole POST.
+F1 helper, F2 wrapper, CI pin and all their closed-review evidence are unchanged.
+
+Actual affected dispatcher run passed31/31 with0fail/skip/cancel on its first
+execution, including the actual reviewed recognizer and real checkpoint caller
+against malformed defaults. Original30 controls remain. Whole TypeScript and
+affected two-file ESLint passed0errors/0warnings. These pure/injected provider
+controls are not hosted availability or native cause proof. Earlier374-before-
+late plus30-after/344-unchanged remains historical composite evidence, not a new
+combined suite at this fix. No additional broad unit/build/native run is claimed.
+Single author SRO and5760-byte approved kernel are preserved; status stays
+in-review and current ARR warnings remain. Fresh distinct High committed latest-
+three review is pending within the completed three-round cap. All43 DB causes,
+14 browser failures,11 failed native packets, unborn private qualifier and later
+Root availability/admission/execution gates remain unresolved or pending.
+
 ## Suggested Review Order
 
 Author: Story 15.5 implementation/fix author (gpt-6.1-sol High), incorporating
@@ -1366,7 +1401,7 @@ and the43DB/14browser gaps remain failed/unresolved; no whole-native reuse.
 - `tests/support/calendar-feed-atdd.ts:750` — `export async function calendarCauseProofIdle`: a pg timeout is not actual protocol settlement.
 - `tests/support/calendar-feed-atdd.ts:762` — `export async function runCalendarFeedCauseProof`: one ordinary command, qualified restricted original baseline, rollback/fresh verification and conditional custody cleanup.
 - `tests/integration/commands/calendar-feed.int.test.ts:21` — `test("15.5-DIAG001"`: explicit-mode-only diagnostic inventory; normal95/INT015 are not replaced.
-- `scripts/ci/checkpoint-dispatch.mjs:79` — `function diagnosticAvailability`: candidate/default availability refusal before the sole POST.
+- `scripts/ci/checkpoint-dispatch.mjs:83` — `function diagnosticAvailability`: candidate/default availability refusal before the sole POST.
 - `scripts/ci/checkpoint-dispatch.mjs:15` — `function verificationMode`: persisted diagnostic/legacy mode cannot downgrade to normal acceptance.
 - `scripts/ci/with-calendar-feed-runtime.mjs:14` — `export const CAUSE_PROOF_ARGS`: fixed single-case serial argv/reporters/output without a Next/browser child.
 - `scripts/ci/with-calendar-feed-runtime.mjs:50` — `export async function finishCauseProof`: validated distinct report upload on test failure as well as success, with private custody redaction.
@@ -1405,3 +1440,16 @@ focused ESLint passed. Actual source seams,
 synthetic SQL rows, simulated spawn events and temp-FS reports are not native
 SQL/Auth/child/hosted acceptance. The new schema's future private consumer,
 hosted availability, fresh committed High and Root execution remain pending.
+
+### Refuse malformed default scalars before consuming the intent
+
+The bounded default-event subset rejects colon-separation mapping syntax rather
+than claiming default syntax validity from registration or a different candidate.
+
+- `scripts/ci/checkpoint-dispatch.mjs:64` — `|| /:\s|:$/.test(value)`: malformed plain values cannot reach durable intent or POST.
+- `tests/unit/scripts/ci/checkpoint-dispatch.test.ts:309` — `F3 actual default plain-scalar syntax refusal`: actual recognizer/caller negatives prove no state and no POST.
+
+Evidence:31 affected dispatcher controls passed, whole TypeScript and two-file
+ESLint passed. Closed F1/F2 and unchanged344 control bindings are reused with
+historical scope, not rerun or summed into a new execution. Hosted availability,
+private consumer adoption and diagnostic/native acceptance remain pending.

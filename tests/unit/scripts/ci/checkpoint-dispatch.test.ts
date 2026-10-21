@@ -304,3 +304,19 @@ test("candidate diagnostic capability cannot be replaced by default presence and
   }
   for(const change of ["blob","disabled","path"]){withFixture(f=>{const old=f.dependencies.api;f.dependencies.api=(method,endpoint,body)=>{const reply=old(method,endpoint,body);if(change==="blob"&&endpoint.endsWith("ref=main"))return{...(reply as object),sha:"b".repeat(40)};if(endpoint.endsWith("/workflows/ci.yml"))return{...(reply as object),...(change==="disabled"?{state:"disabled_manually"}:change==="path"?{path:"other.yml"}:{})};return reply;};assert.throws(()=>checkpoint("dispatch",{...request,state:f.state,cause_proof:"true"},f.dependencies));assert.equal(mutations(f).length,0);});}
 });
+
+
+test("F3 actual default plain-scalar syntax refusal precedes durable intent and the sole POST",()=>{
+  const actualCandidate=readFileSync(".github/workflows/ci.yml","utf8");
+  assertDefaultDispatchWorkflow(actualCandidate);assertCauseProofWorkflow(actualCandidate);
+  const document=(value:string)=>"name: CI\non:\n  workflow_dispatch:\n    inputs: "+value+"\njobs:\n  verify: {}\n";
+  for(const value of ["x: y","x:","x:  y","? mapping","- sequence",": mapping","@reserved","%TAG","\u0060reserved",",flow"]){
+    const source=document(value);assert.throws(()=>assertDefaultDispatchWorkflow(source),/unavailable/);
+    withFixture(f=>{f.defaultWorkflow(source);assert.throws(()=>checkpoint("dispatch",{...request,state:f.state,cause_proof:"true"},f.dependencies),/unavailable/);assert.equal(existsSync(f.state),false);assert.equal(mutations(f).length,0);assert.equal(f.calls.at(-1)?.endpoint,"repos/owner/repo/contents/.github/workflows/ci.yml?ref=main");});
+  }
+  // Colons not followed by separation are valid plain content; comment syntax
+  // never supplies an event or makes invalid scalar content valid.
+  for(const value of ["https://example.invalid","description:value","# comment: not scalar data"]){assertDefaultDispatchWorkflow(document(value));}
+  assert.throws(()=>assertDefaultDispatchWorkflow(document("x: y # comment")),/unavailable/);
+  assertDefaultDispatchWorkflow("name: CI\non: # event: mapping\n  workflow_dispatch: # empty: declaration\n    inputs: # empty: mapping\njobs:\n  verify: {}\n");
+});

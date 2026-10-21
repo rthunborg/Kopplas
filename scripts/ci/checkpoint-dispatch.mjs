@@ -56,8 +56,12 @@ export function assertDefaultDispatchWorkflow(source) {
     const match = /^([A-Za-z_][\w-]*):(?:\s+(.*))?$/.exec(text);
     if (!match || parent.sequence || parent.keys.has(match[1])) refuse();
     parent.keys.add(match[1]);
-    const value = (match[2] ?? "").trim();
+    // Within this unquoted subset, a separated # starts a YAML comment.
+    // A colon before whitespace/end is mapping syntax, never a plain value.
+    const rawValue = (match[2] ?? "").trim();
+    const value = rawValue.startsWith("#") ? "" : rawValue.replace(/\s+#.*$/, "").trim();
     if (/^[|>&*!{"']/.test(value) || /[\r\n]/.test(value)
+      || /:\s|:$/.test(value) || /^[?:-](?:\s|$)|^[,@`%]/.test(value)
       || (/[\[\]{}]/.test(value) && !/^\[(?:[A-Za-z0-9_./-]+(?:,\s*[A-Za-z0-9_./-]+)*)?\]$/.test(value))) refuse();
     // A root event must be a mapping; null dispatch is represented by an empty value.
     if (indent === 2 && value && !value.startsWith("#")) refuse();
