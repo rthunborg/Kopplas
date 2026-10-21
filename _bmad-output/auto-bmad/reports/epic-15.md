@@ -5847,3 +5847,35 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** NativeprivateR1actualassembler+preGETenvelopeproof; distinctHigh actualsourceaudit; FRESHcompletedCoordinatorallocation+Rootcapability beforeanyfutureGET. No normalCI/productfix.
+
+## Report — 2026-10-21T20:43:35Z (progress — R1 collector bounds independently admitted)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `73d3418`).
+**Pipeline status:** in-progress —15.5 required native gates unresolved
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 295h 45m (≈77h 24m AI-run, ≈218h 21m human/idle wait); resumed 175×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:**
+1. R1independent26tests/169controls and30983Benvelopepassedsourceadmission; freshreadallocationstillpending. OriginalOUTPUT_CAPoperationconsumed, currentcandidatefactsNULL, applicationcauses/custodyUNKNOWN. No productsourcechange/normalretry/acceptance.
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** ObservefreshR1Coordinatorallocation, Rootimmediate74/222+terminalproof/exclusiveR1activation; executeonce; distinctHighofflinetruthaudit beforecandidateuse.

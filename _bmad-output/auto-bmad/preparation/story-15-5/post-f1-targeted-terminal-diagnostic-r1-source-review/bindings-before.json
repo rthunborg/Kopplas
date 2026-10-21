@@ -1,0 +1,57 @@
+{
+  "status": "PASS_BINDINGS",
+  "phase": "before",
+  "prepared": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-targeted-terminal-diagnostic-preparation/r1/manifest.json",
+      "bytes": 1367,
+      "sha256": "6e2697886267ca13db8c3755ac1cb7c9f4e04728401e7a9b823c4e03da0aad9c"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-targeted-terminal-diagnostic-preparation/r1/targeted-diagnostic-r1-operator.py",
+      "bytes": 29866,
+      "sha256": "c06fc230aa63feecc1fa076596e4e819e9ed32c96c9c8b81c08310f034377732"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-targeted-terminal-diagnostic-preparation/r1/test_targeted_diagnostic_r1.py",
+      "bytes": 23398,
+      "sha256": "d36598e9cc285f851b3e38181a02cab984e5948050c2d07a803f790c7df4530b"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-targeted-terminal-diagnostic-preparation/r1/compact-proof.json",
+      "bytes": 11028,
+      "sha256": "035392efac01097760c0bc1bcd7dd9edcf46f4d7e6e1c6bb82d92b56e456b2b2"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-targeted-terminal-diagnostic-preparation/r1/preparation.json",
+      "bytes": 8342,
+      "sha256": "a8e135e86fb6d6a71af2ae5b4a4c20b74a2c5c21e20ce91b5d1a47b18323a29a"
+    }
+  ],
+  "original_six_and_consumed_nine_and_normal_22_preserved": true,
+  "prior_source_review_preserved": true,
+  "current_source_rows": 74,
+  "raw_clean_computed_blob_checks": 222,
+  "ten_helper_spans": 10,
+  "old_input_refs": 14,
+  "changed_functions": [
+    "error_facts",
+    "browser_projection",
+    "validate_activation",
+    "acquire",
+    "main"
+  ],
+  "added_functions": [
+    "assemble_result",
+    "budget_admission",
+    "diagnostic_bytes",
+    "publish_diagnostic",
+    "wire_counts",
+    "worst_case_result"
+  ],
+  "retry_config_bound": true,
+  "fresh_Root_222_Git_object_check_required": true,
+  "r1_activation_and_output_absent": true,
+  "API_GETs": 0,
+  "native_acquisition": 0
+}

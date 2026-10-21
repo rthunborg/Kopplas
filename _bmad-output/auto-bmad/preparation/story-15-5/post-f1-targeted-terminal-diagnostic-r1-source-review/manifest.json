@@ -1,0 +1,70 @@
+{
+  "API_GETs": 0,
+  "execution_authorized": false,
+  "files": [
+    {
+      "bytes": 2110,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-r1-source-review/bindings-after.json",
+      "sha256": "539d8b61c67643ced1a2fea5117126685c67f6a21c71811c3dfc98332dc6993b"
+    },
+    {
+      "bytes": 2111,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-r1-source-review/bindings-before.json",
+      "sha256": "22de598082f2d218d8a79c09f46686f9bcc885676b339b83a3e69955006ec767"
+    },
+    {
+      "bytes": 1569,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-r1-source-review/independent-envelope.json",
+      "sha256": "2b1067c81d2e24d95a342358d26761432f31344a57912be27764184b61e317a2"
+    },
+    {
+      "bytes": 11126,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-r1-source-review/original-attestation.json",
+      "sha256": "38646c1f19ebccc51323d58ec52dafdcff0d6659ef4bd980f0671d90c3580501"
+    },
+    {
+      "bytes": 5714,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-r1-source-review/original-report.md",
+      "sha256": "7317b7245de3b69520fc6f055cbfdf3b191168c69b647d63415b4ba61ec61520"
+    },
+    {
+      "bytes": 5,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-r1-source-review/pure-tests.exit",
+      "sha256": "60a33e6cf5151f2d52eddae9685cfa270426aa89d8dbc7dfb854606f1d1a40fe"
+    },
+    {
+      "bytes": 125,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-r1-source-review/pure-tests.stderr.txt",
+      "sha256": "d14f61b35fa69ba7d763f1395959cb9a29dd0a31af5b66ab8aeb9b0ab193946b"
+    },
+    {
+      "bytes": 122,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-r1-source-review/pure-tests.stdout.txt",
+      "sha256": "239dd82d292fa237887b24bf19915e36745486492e8685a6855b8b9aa46ebbe8"
+    },
+    {
+      "bytes": 2665,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-r1-source-review/result.json",
+      "sha256": "3e62a68fd4c4b8ead0ccde66f5623589bf430a27e0d99456803a1402272fda7d"
+    },
+    {
+      "bytes": 5032,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-r1-source-review/run-pure-review.py",
+      "sha256": "15f64ba56cb0d8fe79e867d3529d0dcfae1f39b04ab446a5da68c6af4419a3ff"
+    },
+    {
+      "bytes": 3750,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-r1-source-review/verify-bindings.py",
+      "sha256": "df3e61b36b55afd6ace91729db4c4fd5cb8a809ccd1250b2c15ad210f7bbd982"
+    }
+  ],
+  "listed_members": 11,
+  "normal_acceptance": 0,
+  "operator_sha256": "c06fc230aa63feecc1fa076596e4e819e9ed32c96c9c8b81c08310f034377732",
+  "schema": "SELF_EXCLUDED_SHA256_MANIFEST_v1",
+  "self": {
+    "hash_excluded": true,
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-r1-source-review/manifest.json"
+  },
+  "total_members_including_self": 12
+}
