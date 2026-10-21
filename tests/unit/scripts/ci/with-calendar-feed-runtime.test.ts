@@ -1972,7 +1972,7 @@ test("native regression source bounds parallel catalog effects and retains real 
 // Execute the EXACT live helper cleanup region with injected clients/promises.
 // No imports, process, PG, connection, timer or resource is created by controls.
 function actualOwnerAclCleanup(state: Record<string,unknown>) {
-  const source=readFileSync(new URL('../../../support/calendar-feed-atdd.ts',import.meta.url),'utf8');
+  const source=readFileSync(new URL('../../../support/calendar-feed-atdd.ts',import.meta.url),'utf8').replaceAll("\r\n","\n");
   const a=source.indexOf('  cleaning = true; // close primary admission'),b=source.indexOf('\n}\n\n/** Name-only bootstrap adaptation',a);assert.ok(a>=0&&b>a);
   const strip=(nodeModule as unknown as {stripTypeScriptTypes(source:string):string}).stripTypeScriptTypes;
   return new Function('state',`return (async()=>{const {pending,main,stack,runtime,failures,qualify,absence,sql,calendarCauseProofIdle,calendarOwnerAclCustody,suffix}=state;
@@ -2012,4 +2012,204 @@ test("actual native cleanup preserves the primary and ALL independent cleanup fa
   const text=report.errors.map(error=>error.message).join(' ');assert.ok(!text.includes('PRIVATE_'));assert.ok(!report.errors.some(error=>Object.hasOwn(error,'cause')));
   assert.deepEqual(state.events,['main:idle','rollback','main:end','fresh:create','fresh:connect','fresh:qualify','fresh:idle','fresh:end']);
   const cleanPrimary=ownerAclCleanupState([],true);await assert.rejects(actualOwnerAclCleanup(cleanPrimary));assert.equal(cleanPrimary.custody.size,0);assert.equal(cleanPrimary.failures.length,1);
+});
+
+// Actual full factory module body, installed Pool, fake EventEmitter clients.
+// Only ES module wrapping/types are removed; no lifecycle implementation is copied.
+async function actualRetiredFactory(config: {mode?:string;manualClock?:boolean;queryHandler?:(sql:string,params:readonly unknown[])=>unknown[]}={}) {
+  const {createRequire}=await import("node:module"),require=createRequire(import.meta.url),pgRequire=createRequire(require.resolve("pg")),InstalledPool=pgRequire("pg-pool");
+  const timers=new Map<object,{fn:()=>void;ms:number}>(),clients:FakeClient[]=[];let acquiredPool:InstanceType<typeof InstalledPool>;
+  class FakeClient extends EventEmitter {
+    _queryable=true;_ending=false;status="I";release!:(destroy?:boolean)=>void;releases:unknown[]=[];ends=0;queryCalls:string[]=[];finishConnect?:()=>void;finishQuery?:()=>void;
+    constructor(){super();clients.push(this);}
+    connect(callback:(error?:Error)=>void){this.finishConnect=()=>callback();if(config.mode!=="late-connect")queueMicrotask(this.finishConnect);}
+    getTransactionStatus(){return config.mode==="missing-status"?undefined:this.status;}
+    query(sql:string,params:readonly unknown[]=[]){this.queryCalls.push(sql);let done!:(value:{rows:unknown[]})=>void,fail!:(error:Error)=>void;const result=new Promise<{rows:unknown[]}>((resolve,reject)=>{done=resolve;fail=reject;});
+      const complete=()=>{try{const rows=config.queryHandler?config.queryHandler(sql,params):[{sql}];this.status=sql==="begin"?"T":sql==="commit"||sql==="rollback"||sql==="discard all"?"I":this.status; if(sql==="bad")throw Error("PRIVATE_QUERY");done({rows});}catch(error){this.status="E";fail(error as Error);}queueMicrotask(()=>this.emit("drain"));};
+      this.finishQuery=complete;if(config.mode!=="pending-query")queueMicrotask(complete);return result;
+    }
+    end(callback?:()=>void){this.ends++;this._ending=true;if(config.mode==="retire-throw")throw Error("PRIVATE_RETIRE");if(config.mode==="missing-end")return;
+      queueMicrotask(()=>{if(config.mode==="async-error")this.emit("error",Error("PRIVATE_ASYNC"));this.emit("end");callback?.();});
+    }
+  }
+  const WrappedPool=function(options:Record<string,unknown>){acquiredPool=new InstalledPool({...options,Client:FakeClient});acquiredPool.on("acquire",(client:FakeClient)=>{
+    // Installed Pool assigns the public release property immediately after this
+    // event, including the late-acquisition retirement inside its callback.
+    let release=client.release;Object.defineProperty(client,"release",{configurable:true,get:()=>release,set:(next:typeof release)=>{release=function(destroy){client.releases.push(destroy);return next(destroy);};}});
+  });return acquiredPool;};
+  const set=(fn:()=>void,ms:number)=>{if(!config.manualClock)return setTimeout(fn,ms);const token={};timers.set(token,{fn,ms});return token;};
+  const clear=(token:ReturnType<typeof setTimeout>|object)=>{if(!config.manualClock)clearTimeout(token as ReturnType<typeof setTimeout>);else timers.delete(token);};
+  const source=readFileSync(new URL("../../../factories/admin-sql.ts",import.meta.url),"utf8");
+  const strip=(nodeModule as unknown as {stripTypeScriptTypes(source:string):string}).stripTypeScriptTypes;
+  const body=strip(source.slice(source.indexOf("let pool: Pool | null"))).replace(/^export /gm,"");
+  const api=new Function("Pool","assertLocalStack","LOCAL_SUPABASE_DB_URL","setTimeout","clearTimeout",body+"\nreturn {adminRetiredSession,adminSession,adminQuery,getPool,AdminRetiredSessionError};")(WrappedPool,()=>{},"fixed-local-test-only",set,clear) as {adminRetiredSession<T>(run:(port:{query(sql:string):Promise<unknown[]>})=>Promise<T>):Promise<T>;adminSession<T>(run:(port:{query(sql:string):Promise<unknown[]>})=>Promise<T>):Promise<T>;getPool:()=>InstanceType<typeof InstalledPool>;AdminRetiredSessionError:new(verified:boolean,facts:string[])=>Error};
+  return {api,clients,timers,pool:()=>acquiredPool,tick:async(ms:number)=>{for(const [token,timer]of [...timers])if(timer.ms===ms){timers.delete(token);timer.fn();}await new Promise(resolve=>setImmediate(resolve));},flush:()=>new Promise(resolve=>setImmediate(resolve))};
+}
+
+test("actual retired factory requires native drain and final idle then destroys the exact installed-Pool client once",async()=>{
+  const f=await actualRetiredFactory(),value={identity:true};const result=await f.api.adminRetiredSession(async port=>{const rows=await port.query("select fixed");assert.deepEqual(rows,[{sql:"select fixed"}]);return value;});assert.equal(result,value);
+  assert.equal(f.clients.length,1);assert.deepEqual(f.clients[0].releases,[true]);assert.equal(f.pool().idleCount,0);assert.equal(f.pool().totalCount,0);assert.ok(!f.clients[0].queryCalls.includes("discard all"));
+  const original=Error("FOREIGN");assert.throws(()=>f.pool().emit("error",original,new EventEmitter()),error=>error===original);assert.equal(f.pool().emit("error",Error("OWNED_LATE"),f.clients[0]),true);assert.doesNotThrow(()=>f.clients[0].emit("error",Error("OWNED_CLIENT_LATE")));
+  await f.pool().end();
+});
+
+test("actual owned error gate preserves foreign listeners monitors receivers and concurrent registrations",async()=>{
+  const f=await actualRetiredFactory({mode:"async-error"}),pool=f.api.getPool();let foreign=0,monitored=0;const {errorMonitor}=await import("node:events");pool.on("error",()=>{foreign++;});pool.on(errorMonitor,()=>{monitored++;});
+  const first=f.api.adminRetiredSession(async()=>1),second=f.api.adminRetiredSession(async()=>2);
+  void first.catch(()=>{});void second.catch(()=>{});await f.flush();
+  await assert.rejects(first);await assert.rejects(second);assert.equal(foreign,0);assert.equal(monitored,0);assert.equal(f.clients.length,2);for(const client of f.clients)assert.deepEqual(client.releases,[true]);
+  const error=Error("FOREIGN");assert.equal(pool.emit("error",error,new EventEmitter()),true);assert.equal(foreign,1);assert.equal(monitored,1);
+  const other=new EventEmitter();assert.throws(()=>pool.emit.call(other,"error",error),value=>value===error);let seen:unknown;other.on("error",value=>{seen=value;});assert.equal(pool.emit.call(other,"error",error),true);assert.equal(seen,error);assert.equal(pool.emit("unused-event"),false);
+  await pool.end();
+});
+
+test("actual retired factory refuses overlap and early return and closes late query admission before bounded retirement",async()=>{
+  const f=await actualRetiredFactory({mode:"pending-query",manualClock:true});let port!:{query(sql:string):Promise<unknown[]>};let pending:Promise<unknown[]>|undefined;
+  const run=f.api.adminRetiredSession(async p=>{port=p;pending=p.query("select pending");void pending.catch(()=>{});await assert.rejects(p.query("overlap"));return 1;});void run.catch(()=>{});await f.flush();
+  assert.deepEqual(f.clients[0].queryCalls,["select pending"]);assert.deepEqual(f.clients[0].releases,[true]);await assert.rejects(port.query("late"));assert.deepEqual(f.clients[0].queryCalls,["select pending"]);
+  await f.tick(5_000);await assert.rejects(run);f.clients[0].finishQuery?.();await f.flush();assert.equal(f.pool().idleCount,0);await f.pool().end();
+});
+
+test("actual retired factory rejects absent end retirement throws missing status and deadline without certifying backend cleanup",async()=>{
+  for(const mode of ["missing-end","retire-throw","missing-status"]){const f=await actualRetiredFactory({mode,manualClock:true});let called=false;const run=f.api.adminRetiredSession(async()=>{called=true;return 1;});void run.catch(()=>{});await f.flush();await f.tick(5_000);await assert.rejects(run);assert.equal(called,mode!=="missing-status");assert.deepEqual(f.clients[0].releases,[true]);assert.equal(f.pool().idleCount,0);await f.pool().end();}
+  const f=await actualRetiredFactory({manualClock:true});let release!:()=>void;const hold=new Promise<void>(resolve=>{release=resolve;});const run=f.api.adminRetiredSession(async()=>{await hold;return 1;});void run.catch(()=>{});await f.flush();await f.tick(20_000);await f.tick(5_000);await assert.rejects(run);release();await f.flush();assert.deepEqual(f.clients[0].releases,[true]);await f.pool().end();
+});
+
+test("actual retired acquisition registers and destroys late clients without invoking callback or changing default session behavior",async()=>{
+  const f=await actualRetiredFactory({mode:"late-connect",manualClock:true});let called=false;const run=f.api.adminRetiredSession(async()=>{called=true;});void run.catch(()=>{});await f.flush();await f.tick(5_000);await assert.rejects(run);f.clients[0].finishConnect?.();await f.flush();assert.equal(called,false);assert.deepEqual(f.clients[0].releases,[true]);assert.doesNotThrow(()=>f.pool().emit("error",Error("LATE"),f.clients[0]));await f.pool().end();
+  const normal=await actualRetiredFactory();assert.equal(await normal.api.adminSession(async()=>7),7);assert.deepEqual(normal.clients[0].queryCalls,["discard all"]);assert.deepEqual(normal.clients[0].releases,[undefined]);await normal.pool().end();
+});
+
+
+async function actualCalendarOwner(options:{faults?:string[];purpose?:"clock"|"subject"|"fetch";unsafe?:Record<string,unknown>}={}) {
+  const purpose=options.purpose??"clock",fixed=readFileSync(new URL("../../../../supabase/migrations/20261020220000_personal_calendar_feed.sql",import.meta.url),"utf8").replaceAll("\r\n","\n");
+  const names={clock:"calendar_feed_now_internal",subject:"calendar_feed_subject_internal",fetch:"fetch_calendar_feed"},name=names[purpose];
+  const at=fixed.indexOf("create function public."+name+"("),start=fixed.indexOf("as $$",at)+5,end=fixed.indexOf("$$;",start),body=fixed.slice(start,end);
+  const metadata={oid:"90001",proname:name,proowner:90002,pronamespace:2200,prolang:purpose==="fetch"?13563:14,prokind:"f",proretset:false,provariadic:0,proallargtypes:null,proargmodes:null,pronargs:purpose==="clock"?0:4,proargtypes:purpose==="clock"?"":purpose==="subject"?"2950 2950 2950 16":"25 25 3802 25",proargnames:purpose==="clock"?null:purpose==="subject"?["p_tenant","p_membership","p_actor","p_admin"]:["p_token_hash","p_ip_hash","p_claims","p_signature"],prorettype:purpose==="clock"?1184:purpose==="subject"?16:3802,pronargdefaults:purpose==="subject"?2:0,prosecdef:purpose==="fetch",provolatile:purpose==="subject"?"s":"v",proconfig:['search_path=""'],proisstrict:false,proleakproof:false,proparallel:"u",prosupport:0,procost:100,prorows:0,protrftypes:null,prosqlbody:null,prosrc:body,proacl:["owner=X/owner",...(purpose==="fetch"?["anon=X/owner"]:[])]};
+  const definition=(text:string,language:string,vol:string)=>`CREATE OR REPLACE FUNCTION public.${name}()\n RETURNS fixed\n LANGUAGE ${language}\n ${vol==="s"?"STABLE":"VOLATILE"}\n SET search_path TO ''\nAS $function$${text}$function$\n`;
+  const canonical={oid:"90001",metadata,definition:definition(body,purpose==="fetch"?"plpgsql":"sql",metadata.provolatile),body,language:purpose==="fetch"?"plpgsql":"sql",default_expr:purpose==="subject"?"NULL::uuid, false":null,identityQualified:true,ownerQualified:true,setQualified:true,notInherited:true,schemaQualified:true,noCreate:true,aclQualified:true};
+  let row=structuredClone(canonical),before=structuredClone(row),current="postgres",create=false,hadFailure=false;
+  const calls:string[]=[],faults=[...(options.faults??[])];
+  const driver=(sql:string,params:readonly unknown[])=>{
+    const phase=sql.startsWith("select p.oid::text oid")?"catalog":sql.startsWith("CREATE OR REPLACE")?"replace":sql;
+    calls.push(phase);const fault=phase==="catalog"&&hadFailure&&faults.includes("catalog-after-error")?"catalog-after-error":phase;if(faults.includes(fault)){faults.splice(faults.indexOf(fault),1);hadFailure=true;throw Error("PRIVATE_FAILURE");}
+    if(sql==="begin")before=structuredClone(row);
+    if(sql==="rollback"){row=structuredClone(before);create=false;current="postgres";}
+    if(phase==="catalog"){assert.match(sql,/prosupport\x27,p\.prosupport::oid::bigint/);assert.equal(current,"postgres");assert.equal(create,false);assert.equal(params[0],`public.${name}(${purpose==="clock"?"":purpose==="subject"?"uuid,uuid,uuid,boolean":"text,text,jsonb,text"})`);return [{...structuredClone(row),...options.unsafe}];}
+    if(sql==="grant create on schema public to calendar_feed_owner"){assert.equal(current,"postgres");create=true;}
+    if(sql==="set local role calendar_feed_owner")current="calendar_feed_owner";
+    if(sql.startsWith("select session_user="))return[{qualified:current==="calendar_feed_owner"}];
+    if(phase==="replace"){assert.equal(current,"calendar_feed_owner");assert.equal(create,true);const pieces=sql.split("$function$");assert.equal(pieces.length,3);row.body=pieces[1];row.metadata.prosrc=pieces[1];row.language=sql.includes(" LANGUAGE plpgsql\n")?"plpgsql":"sql";row.metadata.prolang=row.language==="plpgsql"?13563:14;row.metadata.provolatile=sql.includes(" STABLE\n")?"s":"v";row.definition=sql;}
+    if(sql==="reset role")current="postgres";
+    if(sql==="revoke create on schema public from calendar_feed_owner"){assert.equal(current,"postgres");create=false;}
+    if(sql==="select public.calendar_feed_now_internal() now"){assert.equal(current,"calendar_feed_owner");assert.equal(create,false);return[{now:"2026-10-20T12:05:00Z"}];}
+    if(sql==="commit"){assert.equal(current,"postgres");assert.equal(create,false);}
+    return[];
+  };
+  const factory=await actualRetiredFactory({queryHandler:driver});
+  const {AsyncLocalStorage}=await import("node:async_hooks");
+  const api=actualFeedRegion("../../../support/calendar-feed-atdd.ts","// Owner-scoped serial operations.","async function calendarFault", "({calendarSerialControls,calendarOwnerAtomic,calendarOwnerFacts,calendarOwnerDefinition,calendarPublish,calendarRestore,calendarReadClock,calendarWorkScope,calendarSettle,calendarOwnedStates,getCustody:()=>calendarSharedCustody})",{AsyncLocalStorage,adminRetiredSession:factory.api.adminRetiredSession,AdminRetiredSessionError:factory.api.AdminRetiredSessionError,calendarCanonicalSourceUrl:new URL("../../../../supabase/migrations/20261020220000_personal_calendar_feed.sql",import.meta.url),readFile:async()=>fixed,redactFailure:()=>Error("fixed redacted"),hashFeedToken:()=>"fixed",tokenFromUrl:()=>"fixed",adminQuery:async()=>[],iso:(value:unknown)=>value,hashFeedIp:()=>"fixed"}) as {calendarSerialControls:(fx:{pendingRequests:Set<Promise<unknown>>;workClosed:boolean})=>Promise<{withDatabaseTime:<T>(iso:string,run:()=>Promise<T>)=>Promise<T>}>;calendarOwnerAtomic:(purpose:string,body:string,operation:Record<string,unknown>)=>Promise<{row:typeof canonical;now:unknown}>;calendarOwnerFacts:(rows:unknown,purpose:string,body:string)=>unknown;calendarPublish:(purpose:string,body:(body:string)=>string,subjectFault?:boolean)=>Promise<void>;calendarRestore:(purpose:string)=>Promise<void>;calendarReadClock:()=>Promise<unknown>;calendarWorkScope:<T>(fx:{pendingRequests:Set<Promise<unknown>>},run:()=>Promise<T>)=>Promise<T>;calendarSettle:(fx:{pendingRequests:Set<Promise<unknown>>},timeout?:number)=>Promise<void>;calendarOwnedStates:Map<string,unknown>;getCustody:()=>unknown};
+  return{api,factory,calls,canonical,body,row:()=>row};
+}
+
+test("actual owner operation commits private read or qualified replacement before ordinary callback and restores full original metadata",async()=>{
+  for(const purpose of ["clock","subject","fetch"] as const){const f=await actualCalendarOwner({purpose});
+    const value={ordinary:true};await f.api.calendarPublish(purpose,()=>" owned test body ",purpose==="subject");
+    const publish=f.calls.lastIndexOf("commit");assert.ok(publish>f.calls.indexOf("replace"));assert.equal(f.factory.clients.length,2);for(const c of f.factory.clients)assert.deepEqual(c.releases,[true]);
+    const returned=await f.api.calendarWorkScope({pendingRequests:new Set()},async()=>{assert.equal(f.row().body," owned test body ");assert.equal(f.factory.pool().totalCount,0);return value;});assert.equal(returned,value);
+    await f.api.calendarRestore(purpose);assert.deepEqual(f.row(),f.canonical);assert.equal(f.api.getCustody(),null);assert.equal(f.api.calendarOwnedStates.size,0);assert.ok(!f.calls.some(call=>/grant execute|alter.*owner|create role/i.test(call)));await f.factory.pool()?.end();
+  }
+  const f=await actualCalendarOwner();assert.equal(await f.api.calendarReadClock(),"2026-10-20T12:05:00Z");assert.ok(!f.calls.includes("grant create on schema public to calendar_feed_owner"));assert.ok(f.calls.includes("set local role calendar_feed_owner"));await f.factory.pool()?.end();
+});
+
+test("actual owner preflight refuses identity SET inheritance schema ACL shape OID and getters before any owner mutation",async()=>{
+  for(const unsafe of [{identityQualified:false},{ownerQualified:false},{setQualified:false},{notInherited:false},{schemaQualified:false},{aclQualified:false},{noCreate:false},{oid:17},{metadata:{prosrc:"PRIVATE"}},{body:"drift"}]){
+    const f=await actualCalendarOwner({unsafe});await assert.rejects(f.api.calendarPublish("clock",()=>"changed"));assert.ok(!f.calls.includes("grant create on schema public to calendar_feed_owner"));assert.ok(!f.calls.includes("set local role calendar_feed_owner"));assert.ok(!f.calls.includes("replace"));await f.factory.pool()?.end();
+  }
+  const f=await actualCalendarOwner();let reads=0;const hostile={...f.canonical};Object.defineProperty(hostile,"body",{get(){reads++;throw Error("PRIVATE");}});assert.throws(()=>f.api.calendarOwnerFacts([hostile],"clock",f.body));assert.equal(reads,0);
+  const nested={...f.canonical,metadata:{...f.canonical.metadata,proacl:["fixed"]}};Object.defineProperty(nested.metadata.proacl,"0",{get(){reads++;throw Error("PRIVATE");}});assert.throws(()=>f.api.calendarOwnerFacts([nested],"clock",f.body));assert.equal(reads,0);await f.factory.pool()?.end();
+  const proxy=new Proxy({}, {ownKeys(){throw Error("PRIVATE_PROXY");},get(){reads++;throw Error("PRIVATE_GET");}}),g=await actualCalendarOwner({unsafe:{metadata:proxy}});let error:unknown;try{await g.api.calendarPublish("clock",()=>"changed");}catch(failure){error=failure;}assert.ok(error);assert.ok(!String(error).includes("PRIVATE"));assert.equal(reads,0);assert.ok(!g.calls.includes("replace"));await g.factory.pool()?.end();
+});
+
+test("actual owner SQL commit rollback reset and restoration failures retain fixed primary plus ALL cleanup facts and custody",async()=>{
+  for(const faults of [["replace"],["replace","rollback"],["replace","reset role"],["commit"],["replace","rollback","reset role","catalog-after-error"]]){
+    const f=await actualCalendarOwner();const captured=await f.api.calendarOwnerAtomic("clock",f.body,{kind:"capture"});f.calls.length=0;
+    // Faults are injected in the actual installed-Pool query adapter, not return labels.
+    const g=await actualCalendarOwner({faults});let failure:unknown;try{await g.api.calendarOwnerAtomic("clock",g.body,{kind:"replace",body:"changed",expected:captured.row});}catch(error){failure=error;}
+    assert.ok(failure instanceof AggregateError);if(faults.includes("catalog-after-error"))assert.ok(failure.errors.length>=4);assert.ok(!String(failure).includes("PRIVATE"));assert.ok(g.calls.includes("rollback"));assert.ok(g.calls.includes("reset role"));
+    if(faults.includes("commit")||faults.includes("rollback")||faults.includes("reset role"))assert.ok(g.api.getCustody());
+    else {assert.equal(g.api.getCustody(),null);assert.deepEqual(g.row(),g.canonical);}
+    await f.factory.pool()?.end();await g.factory.pool()?.end();
+  }
+  const f=await actualCalendarOwner();await f.api.calendarPublish("clock",()=>"changed");f.row().metadata.proacl=["unexpected"];await assert.rejects(f.api.calendarRestore("clock"));assert.ok(f.api.getCustody());await assert.rejects(f.api.calendarPublish("clock",()=>"later"));await f.factory.pool()?.end();
+});
+
+test("actual ordinary-work drain does not confuse callback rejection or timeout with underlying settlement",async()=>{
+  const f=await actualCalendarOwner();let release!:()=>void;const pending=new Promise<void>(resolve=>{release=resolve;}),set=new Set<Promise<unknown>>([pending]);let returned=false;
+  const scope=f.api.calendarWorkScope({pendingRequests:set},async()=>{throw Error("PRIVATE_CALLBACK");});void scope.catch(()=>{});void scope.finally(()=>{returned=true;}).catch(()=>{});await f.factory.flush();assert.equal(returned,false);
+  set.delete(pending);release();await assert.rejects(scope);assert.equal(f.api.getCustody(),null);
+  const never=new Set<Promise<unknown>>([new Promise(()=>{})]);await assert.rejects(f.api.calendarSettle({pendingRequests:never},1));assert.ok(f.api.getCustody());await assert.rejects(f.api.calendarPublish("clock",()=>"changed"));assert.equal(f.calls.length,0);await f.factory.pool()?.end();
+});
+
+
+async function actualCanonicalComposition(fault?:"seed"|"cleanup"|"custody"|"prior-seam") {
+  const source=readFileSync(new URL("../../../support/calendar-feed-atdd.ts",import.meta.url),"utf8").replaceAll("\r\n","\n"),start="/** Same exported canonical setup/cleanup",end="function redactFailure";
+  assert.equal(source.split(start).length,2);assert.equal(source.split(end).length,2);
+  const region=source.slice(source.indexOf(start),source.indexOf(end)).replace(/^export /gm,"");const strip=(nodeModule as unknown as {stripTypeScriptTypes(source:string):string}).stripTypeScriptTypes;
+  const events:string[]=[],inputs:unknown[][]=[];let counter=0;const user=(id:string)=>({id});
+  const role={base:{tenantA:{id:"A"},tenantB:{id:"B"},adminA:user("adminA"),adminB:user("adminB"),orphanUser:user("orphan")},users:{montor:user("own"),projektledare:user("planner")},extraUsers:[user("canonical-extra")]};
+  const fx={pendingRequests:new Set<Promise<unknown>>(),finalizers:new Set<()=>Promise<void>>(),workClosed:false};
+  const api=new Function("createRoleAwarePhaseAFixture","cleanupRoleAwarePhaseAFixture","makeAuthedServerClient","adminQuery","randomUUID","calendarFixtureStep","calendarFixtureDiagnostic","redactFailure","feedKeyFromEnv","seedRoleAwarePhaseAUsers","bindCalendarFixture","calendarWorkScope","calendarSettle","calendarOwnerRefused","cleanupCalendarOwnedRows","deleteAuthUser","calendarOwnedStates",strip(`let calendarSharedCustody=null;${region}`)+"\nreturn {withCalendarFeedFixture,calendarSeedBookingFixture,custody:()=>calendarFixtureCustody,retain:()=>{calendarSharedCustody={purpose:'clock',phase:'test-owned-uncertainty'};}};")(
+    async()=>{events.push("canonical:create");return role;},async(value:unknown)=>{assert.equal(value,role);events.push("canonical:cleanup");if(fault==="cleanup")throw Error("PRIVATE_CANONICAL");},
+    async(value:unknown)=>{events.push("client");inputs.push([value]);return{user:value};},
+    async(sql:string,params:unknown[])=>{if(sql.startsWith("select id from public.tenant_memberships")){inputs.push(params);return[{id:"membership-"+params[1]}];}if(sql.startsWith("insert into public.person_profiles")){events.push("profile");inputs.push(params);if(fault==="seed"&&params[2]==="membership-own")throw Error("PRIVATE_SEED");return[];}events.push("absence");return[];},()=>"UUID-"+(++counter),
+    async(_stage:string,run:()=>Promise<unknown>)=>run(),(_stage:string,error:unknown)=>error instanceof Error?error:Error("safe"),()=>Error("safe"),()=>{},
+    async(value:unknown)=>{assert.equal(value,role.base);events.push("additional");return{extraUsers:[user("additional")]};},async(base:unknown)=>{assert.ok(base);return fx;},async(_fx:unknown,run:()=>Promise<unknown>)=>run(),async()=>{events.push("settle");},()=>Error("safe custody"),async(tenants:unknown)=>{assert.deepEqual(tenants,["A","B"]);events.push("row:cleanup");},async(id:string)=>{assert.equal(id,"additional");events.push("auth:cleanup");},new Map(fault==="prior-seam"?[["clock",{held:true}]]:[])
+  ) as {withCalendarFeedFixture:(lane:string,run:(fx:unknown)=>Promise<void>)=>Promise<void>;calendarSeedBookingFixture:(base:typeof role)=>Promise<Record<string,unknown>>;retain:()=>void;custody:()=>Set<unknown>};
+  return{api,events,inputs,role,fx};
+}
+
+test("actual canonical fixture composition preserves the same four profile/client seeds and cleanup identities",async()=>{
+  const f=await actualCanonicalComposition();const seeded=await f.api.calendarSeedBookingFixture(f.role);assert.deepEqual(seeded.tenantIds,["A","B"]);assert.equal(f.events.filter(x=>x==="profile").length,4);assert.equal(f.events.filter(x=>x==="client").length,4);
+  assert.deepEqual(f.inputs.filter(input=>input.length===2),[["A","adminA"],["A","own"],["A","planner"],["B","adminB"]]);assert.deepEqual(f.inputs.filter(input=>input.length===1).map(input=>(input[0] as {id:string}).id),["adminA","planner","own","adminB"]);
+  assert.equal(seeded.base,f.role.base);assert.equal((seeded.montorClient as {user:unknown}).user,f.role.users.montor);
+  f.events.length=0;const primary=Error("safe primary");await assert.rejects(f.api.withCalendarFeedFixture("row-isolated",async()=>{f.events.push("callback");throw primary;}));assert.ok(f.fx.workClosed);assert.ok(f.events.indexOf("settle")<f.events.indexOf("row:cleanup"));assert.ok(f.events.indexOf("row:cleanup")<f.events.indexOf("canonical:cleanup"));assert.ok(f.events.includes("auth:cleanup"));
+  const baseline=readFileSync(new URL("../../../support/bookings-atdd.ts",import.meta.url),"utf8");assert.match(baseline,/await createRoleAwarePhaseAFixture\(\)/);assert.match(baseline,/await cleanupRoleAwarePhaseAFixture\(roleFixture\)/);assert.match(baseline,/seedProfile\(base.tenantB.id, base.adminB\)/);
+});
+
+test("actual composition cleans after seed failure but retains canonical/Auth/rows when owner custody is uncertain",async()=>{
+  const seed=await actualCanonicalComposition("seed");await assert.rejects(seed.api.withCalendarFeedFixture("row-isolated",async()=>{throw Error("must not run");}));assert.equal(seed.events.filter(x=>x==="profile").length,4);assert.ok(seed.events.includes("canonical:cleanup"));assert.ok(!seed.events.includes("client"));
+  const prior=await actualCanonicalComposition("prior-seam");await assert.rejects(prior.api.withCalendarFeedFixture("row-isolated",async()=>{throw Error("must not run");}));assert.deepEqual(prior.events,[]);
+  const held=await actualCanonicalComposition();await assert.rejects(held.api.withCalendarFeedFixture("row-isolated",async()=>{held.api.retain();}));assert.equal(held.api.custody().size,1);assert.ok(!held.events.some(event=>["row:cleanup","canonical:cleanup","auth:cleanup","absence"].includes(event)));
+  const both=await actualCanonicalComposition("cleanup");let error:unknown;try{await both.api.withCalendarFeedFixture("row-isolated",async()=>{throw Error("safe primary");});}catch(failure){error=failure;}assert.ok(error instanceof AggregateError);assert.ok(both.events.includes("auth:cleanup"));assert.ok(both.events.includes("absence"));
+});
+
+test("actual RLS002 uses a different spoof for every negative caller and checks each exact physical no-mutation result",async()=>{
+  const source=readFileSync(new URL("../../../integration/rls/calendar-feed.rls.test.ts",import.meta.url),"utf8").replaceAll("\r\n","\n"),start=source.indexOf('  test("[P0] 15.5-RLS002'),end=source.indexOf("\n  });",start);assert.ok(start>0&&end>start);
+  const strip=(nodeModule as unknown as {stripTypeScriptTypes(source:string):string}).stripTypeScriptTypes;
+  const subject=(tenantId:string,name:string)=>({tenantId,userId:"user-"+name,membershipId:"member-"+name,profileId:"profile-"+name}),subjects={own:subject("A","own"),admin:subject("A","admin"),planner:subject("A","planner"),peer:subject("A","peer"),foreign:subject("B","foreign"),platformOnly:subject("A","platform")};
+  let callback!:()=>Promise<void>,legitimate=0,negatives=0,physical=0;const state={owned:true};
+  const fx={subjects,rawManage:async(name:keyof typeof subjects,_intent:unknown,overrides?:Record<string,unknown>)=>{if(!overrides){assert.equal(name,"foreign");assert.equal(physical,0);legitimate++;return{denied:false,rows:[{legitimate:true}]};}assert.ok(Object.entries(overrides).some(([key,value])=>key!=="profileId"&&value!==(subjects[name] as Record<string,unknown>)[key]));negatives++;return{denied:true,rows:[]};},physical:async()=>{physical++;return state;}};
+  const expect=(value:unknown)=>({toBe:(expected:unknown)=>assert.equal(value,expected),toEqual:(expected:unknown)=>assert.deepEqual(value,expected)});
+  new Function("test","withCalendarFeedFixture","expect","lifecycle","randomUUID",strip(source.slice(start,end+"\n  });".length)))((_name:string,run:()=>Promise<void>)=>{callback=run;},async(_lane:string,run:(fx:unknown)=>Promise<void>)=>run(fx),expect,()=>({}),()=>"different-tenant");await callback();assert.equal(legitimate,1);assert.equal(negatives,21);assert.equal(physical,22);
+});
+
+
+test("actual withDatabaseTime awaits committed retired publication then joins callback work before canonical restore on success and assertion failure",async()=>{
+  for(const fail of [false,true]){const f=await actualCalendarOwner(),pendingRequests=new Set<Promise<unknown>>(),fx={pendingRequests,workClosed:false},serial=await f.api.calendarSerialControls(fx);let release!:()=>void;const actual=new Promise<void>(resolve=>{release=resolve;});let callback=false;
+    const run=serial.withDatabaseTime("2026-10-20T12:05:00Z",async()=>{callback=true;assert.equal(f.calls.at(-1),"commit");assert.equal(f.factory.pool().totalCount,0);pendingRequests.add(actual);void actual.then(()=>pendingRequests.delete(actual));if(fail)throw Error("PRIVATE_ASSERTION");return fx;});void run.catch(()=>{});
+    await f.factory.flush();assert.equal(callback,true);assert.ok(f.row().body.includes("2026-10-20T12:05:00Z"));assert.equal(f.calls.filter(call=>call==="replace").length,1);
+    release();if(fail)await assert.rejects(run);else assert.equal(await run,fx);assert.deepEqual(f.row(),f.canonical);assert.equal(f.api.getCustody(),null);await f.factory.pool()?.end();
+  }
+});
+
+test("actual E2E002 empty agenda keeps structure visible copy keyboard href and one settings surface without weakening populated agenda",async()=>{
+  const source=readFileSync(new URL("../../../e2e/calendar-feed.e2e.spec.ts",import.meta.url),"utf8").replaceAll("\r\n","\n"),start=source.indexOf('        if (variant.scenario === "no-profile")'),end=source.indexOf(" // single lifecycle surface",start);assert.ok(start>0&&end>start);
+  const strip=(nodeModule as unknown as {stripTypeScriptTypes(source:string):string}).stripTypeScriptTypes;
+  for(const scenario of ["no-profile","own-and-foreign"]){const checks:string[]=[],locator=(name:string)=>({name}),personal={name:"personal",getByLabel:()=>locator("agenda"),getByText:(text:string,opts:unknown)=>{assert.equal(text,"Inga egna bokningar i perioden.");assert.deepEqual(opts,{exact:true});return locator("empty");},getByRole:()=>locator("link")},page={name:"page",keyboard:{press:async(key:string)=>{checks.push("key:"+key);}},getByRole:()=>locator("heading")};
+    const expect=(value:{name:string})=>({toBeVisible:async()=>{checks.push(value.name+":visible");},toBeAttached:async()=>{checks.push(value.name+":attached");},toHaveCount:async(count:number)=>{checks.push(value.name+":count:"+count);},toHaveAttribute:async(name:string,value:string)=>{assert.equal(name,"href");assert.equal(value,"/settings/calendar");checks.push("href");},toHaveURL:async(pattern:RegExp)=>{assert.ok(pattern.test("/settings/calendar"));checks.push("url");}});
+    const run=new Function("variant","expect","personal","page","calendarNames","tabTo","calendarUI",strip(`async function actual(){${source.slice(start,end)}}`)+"return actual;")({scenario,host:"agenda"},expect,personal,page,{title:"Kalenderprenumeration"},async()=>{checks.push("keyboard-focus");},()=>({create:locator("create")}));await run();
+    assert.ok(checks.includes("link:visible"));assert.ok(checks.includes("link:count:1"));assert.ok(checks.includes("href"));assert.ok(checks.includes("keyboard-focus"));assert.ok(checks.includes("key:Enter"));assert.ok(checks.includes("heading:count:1"));assert.ok(checks.includes("create:count:1"));
+    if(scenario==="no-profile"){assert.ok(checks.includes("personal:visible"));assert.ok(checks.includes("agenda:attached"));assert.ok(checks.includes("empty:visible"));assert.ok(!checks.includes("agenda:visible"));}else{assert.ok(checks.includes("agenda:visible"));assert.ok(!checks.includes("agenda:attached"));}
+  }
 });

@@ -4,11 +4,12 @@
  * separately owned isolated CI runtime. Required missing infrastructure fails.
  */
 import { randomUUID } from "node:crypto";
+import { AsyncLocalStorage } from "node:async_hooks";
 import { readFile } from "node:fs/promises";
 import { expect as vitestExpect } from "vitest";
-import { adminQuery, adminSession } from "../factories/admin-sql";
+import { adminQuery, adminSession, adminRetiredSession, AdminRetiredSessionError } from "../factories/admin-sql";
 import { seedRoleAwarePhaseAUsers, makeAuthedServerClient, makeAnonServerClient, deleteAuthUser, createRoleAwarePhaseAFixture, cleanupRoleAwarePhaseAFixture, type FixtureUser, type TestServerClient } from "../factories/tenants";
-import { withBookingFixture, bookingCommand, bookingInput, type BookingFixture } from "./bookings-atdd";
+import { bookingCommand, bookingInput, type BookingFixture } from "./bookings-atdd";
 import { realSeriesInput, reviewRealSeries } from "./booking-series-atdd";
 import { createBookingSeries } from "@/server/commands/bookings/create-booking-series";
 import { updateBookingSeries } from "@/server/commands/bookings/update-booking-series";
@@ -258,53 +259,61 @@ export async function calendarFixtureStep<T>(stage: CalendarFixtureDiagnosticSta
  * The two allocated serial files alone receive these controls. All assertions
  * and transport failures discard sensitive values and retain cleanup outcomes.
  */
-export async function withCalendarFeedFixture<L extends Lane>(
-  lane: L, run: (fixture: FixtureByLane<L>) => Promise<void>,
-): Promise<void> {
-  let additionalUsers: readonly FixtureUser[] = [];
-  let primary: unknown; const ownedTenants: string[] = [], ownedUsers: string[] = [];
-  // Shared setup can already have replaced code with message-only Error. Do not
-  // guess its internal auth/SQL substage or reconstruct swallowed cleanup errors.
-  let phase: CalendarFixtureDiagnosticStage = "booking-fixture-before-callback";
+/** Same exported canonical setup/cleanup and seed inputs as bookings-atdd.
+ * allSettled joins siblings before cleanup; no alternate authority/client factory. */
+async function calendarSeedBookingFixture(roleFixture: Awaited<ReturnType<typeof createRoleAwarePhaseAFixture>>): Promise<BookingFixture> {
+  const {base,users}=roleFixture;
+  const profile=async(tenantId:string,user:FixtureUser)=>{const [membership]=await adminQuery<{id:string}>("select id from public.tenant_memberships where tenant_id=$1 and user_id=$2",[tenantId,user.id]);const id=randomUUID();await adminQuery("insert into public.person_profiles(id,tenant_id,membership_id) values($1,$2,$3)",[id,tenantId,membership.id]);return{id,membershipId:membership.id};};
+  const [adminProfile,ownProfile,coworkerProfile,foreignProfile]=await calendarJoined([profile(base.tenantA.id,base.adminA),profile(base.tenantA.id,users.montor),profile(base.tenantA.id,users.projektledare),profile(base.tenantB.id,base.adminB)] as const);
+  const [adminClient,plannerClient,montorClient,foreignClient]=await calendarJoined([makeAuthedServerClient(base.adminA),makeAuthedServerClient(users.projektledare),makeAuthedServerClient(users.montor),makeAuthedServerClient(base.adminB)] as const);
+  return {...roleFixture,adminProfile,ownProfile,coworkerProfile,foreignProfile,adminClient,plannerClient,montorClient,foreignClient,tenantIds:[base.tenantA.id,base.tenantB.id]};
+}
+async function calendarJoined<T extends readonly unknown[]>(promises:T):Promise<{[K in keyof T]:Awaited<T[K]>}> {
+  const results=await Promise.allSettled(promises),errors=results.filter(result=>result.status==="rejected").map(result=>redactFailure(result.reason));
+  if(errors.length)throw new AggregateError(errors,"Calendar sibling work failed after actual settlement");return results.map(result=>(result as PromiseFulfilledResult<unknown>).value) as {[K in keyof T]:Awaited<T[K]>};
+}
+const calendarFixtureCustody=new Set<Awaited<ReturnType<typeof createRoleAwarePhaseAFixture>>>();
+export async function withCalendarFeedFixture<L extends Lane>(lane:L,run:(fixture:FixtureByLane<L>)=>Promise<void>):Promise<void> {
+  let canonical:Awaited<ReturnType<typeof createRoleAwarePhaseAFixture>>|undefined,fixture:BoundFixture|undefined;
+  let additionalUsers:readonly FixtureUser[]=[],phase:CalendarFixtureDiagnosticStage="booking-fixture-before-callback";
+  const errors:Error[]=[];let base:BookingFixture|undefined;
   try {
-    feedKeyFromEnv(); // no fallback, fixture fails if the owned CI key is absent
-    await withBookingFixture(async base => {
-      phase = "additional-users";
-      ownedTenants.push(...base.tenantIds);ownedUsers.push(base.base.adminA.id,base.base.adminB.id,base.base.orphanUser.id,...base.extraUsers.map(user=>user.id));
-      let failure: unknown;
-      try {
-        const extra = await calendarFixtureStep(phase, () => seedRoleAwarePhaseAUsers(base.base)); additionalUsers = extra.extraUsers;
-        phase = "bind-membership";
-        const fixture = await bindCalendarFixture(base, extra);
-        const serial = lane === "row-isolated" ? {} : { serial: await calendarSerialControls(fixture) };
-        phase = "scenario";
-        const scenario = () => calendarFixtureStep("scenario", () => run(Object.assign(fixture, serial) as FixtureByLane<L>));
-        if (lane === "row-isolated") await scenario();
-        else await withOwnedUnknownWindow(fixture, scenario);
-      } catch (error) { failure = calendarFixtureDiagnostic(phase, error); }
-      let cleanupFailure: unknown;
-      try { await cleanupCalendarOwnedRows(base.tenantIds); } catch (error) { cleanupFailure = calendarFixtureDiagnostic("owned-row-cleanup", error); }
-      phase = "canonical-fixture-cleanup";
-      if (failure || cleanupFailure) throw new AggregateError([...(failure ? [failure] : []), ...(cleanupFailure ? [cleanupFailure] : [])], "Calendar scenario/owned row cleanup failed");
-    });
-  } catch (error) { primary = calendarFixtureDiagnostic(phase, error); }
-  const cleanup = await Promise.allSettled(additionalUsers.map(user => calendarFixtureStep("additional-auth-cleanup", () => deleteAuthUser(user.id))));
-  const remainingErrors: Error[]=[];
-  try {
-    if(ownedTenants.length && (await adminQuery("select 1 from public.tenants where id=any($1::uuid[]) limit 1",[ownedTenants])).length)remainingErrors.push(calendarFixtureDiagnostic("cleanup-absence-check", new Error()));
-    if(ownedUsers.length && (await adminQuery("select 1 from auth.users where id=any($1::uuid[]) limit 1",[[...ownedUsers,...additionalUsers.map(user=>user.id)]])).length)remainingErrors.push(calendarFixtureDiagnostic("cleanup-absence-check", new Error()));
-  }catch(error){remainingErrors.push(calendarFixtureDiagnostic("cleanup-absence-check", error));}
-  if (primary || remainingErrors.length || cleanup.some(result => result.status === "rejected")) throw calendarFixtureDiagnostic("scenario", new AggregateError([
-    ...(primary ? [redactFailure(primary)] : []), ...remainingErrors,
-    ...cleanup.filter(result => result.status === "rejected").map(result => calendarFixtureDiagnostic("additional-auth-cleanup", result.reason)),
-  ], "Calendar fixture failed; primary and cleanup outcomes retained without sensitive values"));
+    if(calendarOwnedStates.size&&!calendarSharedCustody)calendarSharedCustody={purpose:[...calendarOwnedStates.keys()][0],phase:"prior-fixture-owner-state-unverified"};
+    if(calendarSharedCustody)throw calendarOwnerRefused();feedKeyFromEnv();
+    canonical=await createRoleAwarePhaseAFixture();base=await calendarSeedBookingFixture(canonical);
+    phase="additional-users";const extra=await calendarFixtureStep(phase,()=>seedRoleAwarePhaseAUsers(base!.base));additionalUsers=extra.extraUsers;
+    phase="bind-membership";fixture=await bindCalendarFixture(base,extra);
+    const serial=lane==="row-isolated"?{}:{serial:await calendarSerialControls(fixture)};phase="scenario";
+    const scenario=()=>calendarFixtureStep("scenario",()=>run(Object.assign(fixture!,serial) as FixtureByLane<L>));
+    await calendarWorkScope(fixture,()=>lane==="row-isolated"?scenario():withOwnedUnknownWindow(fixture!,scenario));
+  }catch(error){errors.push(calendarFixtureDiagnostic(phase,error));}
+  // Close first; actual pending work, owner restoration, and same-session proof
+  // precede EVERY destructive row/Auth/canonical cleanup, including failure.
+  if(fixture){fixture.workClosed=true;
+    for(const finalize of fixture.finalizers)try{await finalize();}catch(error){errors.push(redactFailure(error));}
+    try{await calendarSettle(fixture);}catch(error){errors.push(redactFailure(error));}
+  }
+  if(calendarOwnedStates.size&&!calendarSharedCustody)calendarSharedCustody={purpose:[...calendarOwnedStates.keys()][0],phase:"unrestored-owner-state"};
+  if(calendarSharedCustody){if(canonical)calendarFixtureCustody.add(canonical);errors.push(calendarOwnerRefused());}
+  else {
+    if(base)try{await cleanupCalendarOwnedRows(base.tenantIds);}catch(error){errors.push(calendarFixtureDiagnostic("owned-row-cleanup",error));}
+    if(canonical)try{await cleanupRoleAwarePhaseAFixture(canonical);}catch(error){errors.push(calendarFixtureDiagnostic("canonical-fixture-cleanup",error));}
+    const cleanup=await Promise.allSettled(additionalUsers.map(user=>calendarFixtureStep("additional-auth-cleanup",()=>deleteAuthUser(user.id))));
+    for(const result of cleanup)if(result.status==="rejected")errors.push(redactFailure(result.reason));
+    if(canonical)try {
+      const tenants=[canonical.base.tenantA.id,canonical.base.tenantB.id],users=[canonical.base.adminA.id,canonical.base.adminB.id,canonical.base.orphanUser.id,...canonical.extraUsers.map(user=>user.id),...additionalUsers.map(user=>user.id)];
+      if((await adminQuery("select 1 from public.tenants where id=any($1::uuid[]) limit 1",[tenants])).length)errors.push(calendarFixtureDiagnostic("cleanup-absence-check",new Error()));
+      if((await adminQuery("select 1 from auth.users where id=any($1::uuid[]) limit 1",[users])).length)errors.push(calendarFixtureDiagnostic("cleanup-absence-check",new Error()));
+    }catch(error){errors.push(calendarFixtureDiagnostic("cleanup-absence-check",error));}
+  }
+  if(errors.length)throw calendarFixtureDiagnostic("scenario",new AggregateError(errors,"Calendar fixture primary and ALL reached cleanup failures retained"));
 }
 function redactFailure(error: unknown): Error {
   return calendarFixtureDiagnostic("scenario", error);
 }
 
 type BoundFixture = CalendarFixture & { base: BookingFixture; clients: Record<SubjectName, TestServerClient>;
-  tenantIds: string[]; keyId: string; secret: string; pendingRequests: Set<Promise<unknown>>; currentRawFetch: Record<string, unknown> | null };
+  tenantIds: string[]; keyId: string; secret: string; pendingRequests: Set<Promise<unknown>>; finalizers:Set<()=>Promise<void>>; workClosed:boolean; currentRawFetch: Record<string, unknown> | null };
 const iso = (value: unknown) => value === null ? null : new Date(String(value)).toISOString();
 function normalizedRpc(result: { data: unknown; error: unknown }): RpcObservation {
   return { denied: !!result.error, rows: result.error ? [] : [result.data], sanitizedResult: result.error ? { denied: true } : { admitted: true } };
@@ -341,7 +350,7 @@ async function bindCalendarFixture(base: BookingFixture, extra: Awaited<ReturnTy
     return request;
   }
   const fixture: BoundFixture = {
-    base, clients, subjects, pendingRequests, tenantIds: base.tenantIds, keyId:key.keyId,secret:key.secret,currentRawFetch:null,isolatedTrustedIp,
+    base, clients, subjects, pendingRequests, finalizers:new Set(), workClosed:false, tenantIds: base.tenantIds, keyId:key.keyId,secret:key.secret,currentRawFetch:null,isolatedTrustedIp,
     manage: async (subject,intent) => {
       const result = await manageCalendarFeed(clients[subject] as never,{action:intent.action,revision:intent.expectedRevision,attemptId:intent.attemptId},intent.correlationId);
       if (result.issuedPath) trackedRaw.push(result.issuedPath.split("/").at(-1)!);
@@ -513,6 +522,15 @@ async function bindCalendarFixture(base: BookingFixture, extra: Awaited<ReturnTy
       return (await fixture.physical()).schedulingIntegrity;
     },
   };
+  // Explicit fixture operations only: already-created native Promises, no RPC
+  // builder/.then observer and no extra ordinary calls or changed result values.
+  const operations=["manage","status","rawManage","rawFetch","seedBookings","seedSeries","changeSeries","setBooking","editProjectedSource","setAssignments","setAuthority","setProvisioningState","replaceMembership","http","trustedFetch","physical","readAbuse","directTable","acl","telemetry","sensitiveTestValues","seedSchedulingRegressionState"] as const;
+  for(const name of operations){const original=fixture[name] as (...args:unknown[])=>Promise<unknown>;
+    (fixture as unknown as Record<string,unknown>)[name]=(...args:unknown[])=>{
+      if(fixture.workClosed||calendarWorkContext.getStore()?.some(scope=>!scope.open)||calendarSharedCustody){const refused=Promise.reject(calendarOwnerRefused());void refused.catch(()=>{});return refused;}
+      const actual=Reflect.apply(original,fixture,args);pendingRequests.add(actual);void actual.then(()=>pendingRequests.delete(actual),()=>pendingRequests.delete(actual));return actual;
+    };
+  }
   return fixture;
 }
 function testOrigin(): string {
@@ -590,12 +608,10 @@ async function withOwnedUnknownWindow<T>(fx: BoundFixture, run: () => Promise<T>
   let result:T|undefined;const errors:Error[]=[];
   try {
     await calendarFixtureStep("serial-window-setup", () => adminQuery("delete from public.calendar_feed_ip_windows where ip_hash=$1",[ipHash]));
-    result=await run();
+    result=await calendarWorkScope(fx,run);
   }catch(error){errors.push(redactFailure(error));}
-  while(fx.pendingRequests.size) {
-    const requests=await Promise.allSettled([...fx.pendingRequests]);
-    for(const request of requests)if(request.status==="rejected")errors.push(calendarFixtureDiagnostic("scenario", request.reason));
-  }
+  try{await calendarSettle(fx);}catch(error){errors.push(redactFailure(error));}
+  if(calendarSharedCustody)throw new AggregateError([...errors,calendarOwnerRefused()],"Unknown-IP custody retained; no destructive restore");
   try {
     await adminSession(async({query})=>{
       await query("begin");try {
@@ -609,9 +625,139 @@ async function withOwnedUnknownWindow<T>(fx: BoundFixture, run: () => Promise<T>
   return result as T;
 }
 
+const calendarCanonicalSourceUrl=new URL("../../supabase/migrations/20261020220000_personal_calendar_feed.sql",import.meta.url);
+
+// Owner-scoped serial operations. No production privilege or pool-mode change.
+const calendarWorkContext=new AsyncLocalStorage<{open:boolean}[]>();
+export async function calendarSettle(fx:Pick<BoundFixture,"pendingRequests">,timeoutMs=20_000):Promise<void> {
+  let timer:ReturnType<typeof setTimeout>|undefined;
+  const drain=(async()=>{while(fx.pendingRequests.size)await Promise.allSettled([...fx.pendingRequests]);})();void drain.catch(()=>{});
+  let settled=false;try{settled=await Promise.race([drain.then(()=>true),new Promise<false>(resolve=>{timer=setTimeout(()=>resolve(false),timeoutMs);})]);}finally{if(timer)clearTimeout(timer);}
+  if(!settled){calendarSharedCustody={purpose:"clock",phase:"ordinary-work-unsettled"};throw calendarOwnerRefused();}
+}
+export async function calendarWorkScope<T>(fx:Pick<BoundFixture,"pendingRequests">,run:()=>Promise<T>):Promise<T> {
+  const scope={open:true},ancestors=calendarWorkContext.getStore()??[];let result:T|undefined;const errors:Error[]=[];
+  try{result=await calendarWorkContext.run([...ancestors,scope],run);}catch(error){errors.push(redactFailure(error));}
+  finally{scope.open=false;try{await calendarSettle(fx);}catch(error){errors.push(redactFailure(error));}}
+  if(errors.length)throw new AggregateError(errors,"Calendar ordinary callback and ALL settlement failures retained");return result as T;
+}
+export type CalendarOwnerPurpose = "clock" | "subject" | "fetch";
+type CalendarOwnerRow = {oid:string;metadata:Record<string,unknown>;definition:string;body:string;language:string;default_expr:string|null;identityQualified:boolean;ownerQualified:boolean;setQualified:boolean;notInherited:boolean;schemaQualified:boolean;noCreate:boolean;aclQualified:boolean};
+const calendarOwnerTargets={clock:"public.calendar_feed_now_internal()",subject:"public.calendar_feed_subject_internal(uuid,uuid,uuid,boolean)",fetch:"public.fetch_calendar_feed(text,text,jsonb,text)"} as const;
+let calendarSharedCustody: {purpose:CalendarOwnerPurpose;row?:CalendarOwnerRow;phase:string}|null=null;
+const calendarOwnedStates=new Map<CalendarOwnerPurpose,{canonical:CalendarOwnerRow;current:CalendarOwnerRow}>();
+const calendarOwnerRefused=()=>new Error("Calendar serial owner prerequisite or cleanup unverified; values redacted");
+function calendarOwnerMetadata(row:CalendarOwnerRow,bodyOnly=false){const result={...row.metadata};delete result.prosrc;if(bodyOnly){delete result.prolang;delete result.provolatile;}return JSON.stringify(result);}
+function calendarOwnerData(value:unknown,depth=0):unknown {
+  if(value===null||typeof value==="string"||typeof value==="boolean"||typeof value==="number"&&Number.isFinite(value))return value;
+  if(!value||typeof value!=="object"||depth>4)throw calendarOwnerRefused();
+  const descriptors=Object.getOwnPropertyDescriptors(value),keys=Reflect.ownKeys(descriptors);
+  if(keys.some(key=>typeof key!=="string"||!("value" in descriptors[key])))throw calendarOwnerRefused();
+  if(Array.isArray(value)){const length=descriptors.length.value;if(typeof length!=="number"||length>256||keys.length!==length+1)throw calendarOwnerRefused();return Array.from({length},(_,i)=>{if(!Object.hasOwn(descriptors,String(i)))throw calendarOwnerRefused();return calendarOwnerData(descriptors[String(i)].value,depth+1);});}
+  return Object.fromEntries(keys.map(key=>[key,calendarOwnerData(descriptors[key as string].value,depth+1)]));
+}
+function calendarOwnerFacts(rows:unknown,purpose:CalendarOwnerPurpose,expectedBody:string,expected?:CalendarOwnerRow,subjectFault=false):CalendarOwnerRow {
+  if(!Array.isArray(rows)||rows.length!==1)throw calendarOwnerRefused();
+  const entry=Object.getOwnPropertyDescriptor(rows,"0");if(!entry||!("value" in entry)||!entry.value||typeof entry.value!=="object")throw calendarOwnerRefused();
+  const fields=Object.getOwnPropertyDescriptors(entry.value),names=["oid","metadata","definition","body","language","default_expr","identityQualified","ownerQualified","setQualified","notInherited","schemaQualified","noCreate","aclQualified"];
+  if(Reflect.ownKeys(fields).length!==names.length||!names.every(name=>Object.hasOwn(fields,name)&&"value" in fields[name]))throw calendarOwnerRefused();
+  const row=Object.fromEntries(names.map(name=>[name,fields[name].value])) as CalendarOwnerRow;
+  if(!["identityQualified","ownerQualified","setQualified","notInherited","noCreate","aclQualified"].every(name=>(row as unknown as Record<string,unknown>)[name]===true)||typeof row.schemaQualified!=="boolean"||typeof row.oid!=="string"||!/^\d+$/.test(row.oid)||typeof row.definition!=="string"||row.body!==expectedBody||!row.metadata||typeof row.metadata!=="object"||Array.isArray(row.metadata))throw calendarOwnerRefused();
+  row.metadata=calendarOwnerData(row.metadata) as Record<string,unknown>;
+  const m=Object.getOwnPropertyDescriptors(row.metadata);
+  if(Reflect.ownKeys(m).some(name=>typeof name!=="string"||!("value" in m[name])))throw calendarOwnerRefused();
+  const value=(name:string)=>{if(!Object.hasOwn(m,name))throw calendarOwnerRefused();return m[name].value;};
+  const namesExpected=purpose==="clock"?null:purpose==="subject"?["p_tenant","p_membership","p_actor","p_admin"]:["p_token_hash","p_ip_hash","p_claims","p_signature"];
+  const fixed:Record<string,unknown>={proname:purpose==="clock"?"calendar_feed_now_internal":purpose==="subject"?"calendar_feed_subject_internal":"fetch_calendar_feed",prokind:"f",proretset:false,provariadic:0,proallargtypes:null,proargmodes:null,pronargs:purpose==="clock"?0:4,proargtypes:purpose==="clock"?"":purpose==="subject"?"2950 2950 2950 16":"25 25 3802 25",proargnames:namesExpected,prorettype:purpose==="clock"?1184:purpose==="subject"?16:3802,pronargdefaults:purpose==="subject"?2:0,prosecdef:purpose==="fetch",provolatile:purpose==="subject"&&!subjectFault?"s":"v",proconfig:['search_path=""'],proisstrict:false,proleakproof:false,proparallel:"u",prosupport:0,procost:100,prorows:0,protrftypes:null,prosqlbody:null};
+  for(const [name,want]of Object.entries(fixed))if(JSON.stringify(value(name))!==JSON.stringify(want))throw calendarOwnerRefused();
+  if(row.default_expr!==(purpose==="subject"?"NULL::uuid, false":null)||row.language!==(purpose==="fetch"||subjectFault?"plpgsql":"sql"))throw calendarOwnerRefused();
+  if(expected&&(row.oid!==expected.oid||calendarOwnerMetadata(row,purpose==="subject"&&(subjectFault||expected.language==="plpgsql"))!==calendarOwnerMetadata(expected,purpose==="subject"&&(subjectFault||expected.language==="plpgsql"))))throw calendarOwnerRefused();
+  return row;
+}
+const calendarOwnerCatalogSql=`select p.oid::text oid,(to_jsonb(p)||jsonb_build_object('provariadic',p.provariadic::bigint,'prorettype',p.prorettype::bigint,'prosupport',p.prosupport::oid::bigint)) metadata,pg_get_functiondef(p.oid) definition,p.prosrc body,l.lanname language,pg_get_expr(p.proargdefaults,0) default_expr,
+ (session_user='postgres' and current_user='postgres' and e.rolcanlogin and not e.rolsuper) "identityQualified",
+ (p.proowner=o.oid and p.pronamespace='public'::regnamespace and not(o.rolcanlogin or o.rolinherit or o.rolsuper or o.rolcreatedb or o.rolcreaterole or o.rolreplication or o.rolbypassrls)) "ownerQualified",
+ (pg_has_role(current_user,o.oid,'SET') and exists(select 1 from pg_auth_members where roleid=o.oid and member=e.oid and set_option and not inherit_option)) "setQualified",
+ (not pg_has_role(current_user,o.oid,'USAGE') and not exists(select 1 from pg_auth_members where member=o.oid or roleid=o.oid and (member<>e.oid or inherit_option))) "notInherited",
+ (pg_has_role(current_user,n.nspowner,'USAGE') or has_schema_privilege(current_user,n.oid,'CREATE WITH GRANT OPTION')) "schemaQualified",
+ not has_schema_privilege(o.oid,n.oid,'CREATE') "noCreate",
+ ((select count(*)=case when $2='fetch' then 2 else 1 end and count(*)=count(distinct a.grantee) and count(*) filter(where a.grantee=o.oid)=1 and coalesce(bool_and(a.grantor=o.oid and a.privilege_type='EXECUTE' and not a.is_grantable and (a.grantee=o.oid or $2='fetch' and a.grantee='anon'::regrole)),false) from aclexplode(coalesce(p.proacl,acldefault('f',p.proowner))) a)
+  and has_function_privilege(o.oid,p.oid,'EXECUTE') and has_function_privilege('anon',p.oid,'EXECUTE')=($2='fetch') and not has_function_privilege('authenticated',p.oid,'EXECUTE') and not has_function_privilege('service_role',p.oid,'EXECUTE')) "aclQualified"
+ from pg_proc p join pg_language l on l.oid=p.prolang join pg_roles o on o.rolname='calendar_feed_owner' join pg_roles e on e.rolname=current_user join pg_namespace n on n.oid='public'::regnamespace where p.oid=to_regprocedure($1)
+ and (select count(*) from pg_proc x where x.pronamespace=n.oid and x.proname=p.proname)=1`;
+export async function calendarOwnerAtomic(purpose:CalendarOwnerPurpose,canonicalBody:string,operation:{kind:"capture"}|{kind:"replace";body:string;expected:CalendarOwnerRow;subjectFault?:boolean}|{kind:"read";expected?:CalendarOwnerRow},retired=adminRetiredSession) {
+  if(calendarSharedCustody)throw calendarOwnerRefused();
+  let captured:CalendarOwnerRow|undefined,phase="preflight",commitAttempted=false,rollbackVerified=false;const failures:Error[]=[];
+  try{return await retired(async({query})=>{
+    try {
+      await query("begin");await query("set local statement_timeout='5s'; set local lock_timeout='1s'; set local idle_in_transaction_session_timeout='5s'");
+      const expected=operation.kind==="capture"?undefined:operation.expected;
+      const expectedFault=purpose==="subject"&&expected?.language==="plpgsql";
+      captured=calendarOwnerFacts(await query(calendarOwnerCatalogSql,[calendarOwnerTargets[purpose],purpose]),purpose,expected?.body??canonicalBody,expected,expectedFault);
+      let row=captured,now:unknown;
+      if(operation.kind!=="capture"){
+        if(operation.kind==="replace"&&!row.schemaQualified)throw calendarOwnerRefused();
+        if(operation.kind==="replace")await query("grant create on schema public to calendar_feed_owner");
+        await query("set local role calendar_feed_owner");
+        const switched=await query("select session_user='postgres' and current_user='calendar_feed_owner' as qualified");
+        if(switched.length!==1||switched[0].qualified!==true)throw calendarOwnerRefused();
+        phase="owner-operation";
+        if(operation.kind==="read"){
+          if(purpose!=="clock")throw calendarOwnerRefused();const clocks=await query("select public.calendar_feed_now_internal() now");if(clocks.length!==1)throw calendarOwnerRefused();now=clocks[0].now;
+        } else {
+          const definition=calendarOwnerDefinition(captured,operation.body,!!operation.subjectFault);
+          await query(definition);
+        }
+        await query("reset role");
+        if(operation.kind==="replace")await query("revoke create on schema public from calendar_feed_owner");
+        row=calendarOwnerFacts(await query(calendarOwnerCatalogSql,[calendarOwnerTargets[purpose],purpose]),purpose,operation.kind==="replace"?operation.body:captured.body,captured,operation.kind==="replace"?!!operation.subjectFault:expectedFault);
+      }
+      phase="commit";commitAttempted=true;await query("commit");return {row,now};
+    } catch {
+      const cleanup:Error[]=[];
+      try{await query("rollback");}catch{cleanup.push(calendarOwnerRefused());}
+      try{await query("reset role");}catch{cleanup.push(calendarOwnerRefused());}
+      try{const expected=operation.kind==="capture"?undefined:operation.expected;calendarOwnerFacts(await query(calendarOwnerCatalogSql,[calendarOwnerTargets[purpose],purpose]),purpose,captured?.body??expected?.body??canonicalBody,captured??expected,purpose==="subject"&&(captured??expected)?.language==="plpgsql");}catch{cleanup.push(calendarOwnerRefused());}
+      rollbackVerified=cleanup.length===0;
+      failures.push(calendarOwnerRefused(),...cleanup);throw new AggregateError(failures,"Calendar owner operation and ALL cleanup failures retained");
+    }
+  });}catch(error){
+    if(commitAttempted||!rollbackVerified||!(error instanceof AdminRetiredSessionError)||!error.retirementVerified)calendarSharedCustody={purpose,row:captured,phase};
+    throw new AggregateError([...failures,calendarOwnerRefused()],"Calendar owner operation and ALL transaction/retirement failures retained");
+  }
+}
+export function calendarOwnerDefinition(row:CalendarOwnerRow,body:string,subjectFault=false) {
+  if(typeof body!=="string"||!body||row.definition.split(row.body).length!==2)throw calendarOwnerRefused();
+  let header=row.definition.slice(0,row.definition.indexOf(row.body));const tail=row.definition.slice(row.definition.indexOf(row.body)+row.body.length);
+  if(subjectFault){if(!/^ LANGUAGE sql$/m.test(header)||!/^ STABLE$/m.test(header))throw calendarOwnerRefused();header=header.replace(/^ LANGUAGE sql$/m," LANGUAGE plpgsql").replace(/^ STABLE$/m," VOLATILE");}
+  else if(row.language==="plpgsql"&&row.metadata.proname==="calendar_feed_subject_internal"){
+    if(!/^ LANGUAGE plpgsql$/m.test(header)||!/^ VOLATILE$/m.test(header))throw calendarOwnerRefused();header=header.replace(/^ LANGUAGE plpgsql$/m," LANGUAGE sql").replace(/^ VOLATILE$/m," STABLE");
+  }
+  return header+body+tail;
+}
+async function calendarCanonicalBody(purpose:CalendarOwnerPurpose) {
+  const source=(await readFile(calendarCanonicalSourceUrl,"utf8")).replaceAll("\r\n","\n");
+  const name=calendarOwnerTargets[purpose].split("(")[0],at=source.indexOf("create function "+name+"("),start=source.indexOf("as $$",at)+5,end=source.indexOf("$$;",start);
+  if(at<0||start<at||end<start)throw calendarOwnerRefused();return source.slice(start,end);
+}
+async function calendarPublish(purpose:CalendarOwnerPurpose,body:(canonical:string)=>string,subjectFault=false) {
+  if(calendarSharedCustody||calendarOwnedStates.has(purpose))throw calendarOwnerRefused();
+  const canonicalBody=await calendarCanonicalBody(purpose),canonical=(await calendarOwnerAtomic(purpose,canonicalBody,{kind:"capture"})).row;
+  const current=(await calendarOwnerAtomic(purpose,canonicalBody,{kind:"replace",body:body(canonicalBody),expected:canonical,subjectFault})).row;
+  const state={canonical,current};calendarOwnedStates.set(purpose,state);return state;
+}
+async function calendarRestore(purpose:CalendarOwnerPurpose) {
+  if(calendarSharedCustody)throw calendarOwnerRefused();const state=calendarOwnedStates.get(purpose);if(!state)throw calendarOwnerRefused();
+  try {const restored=(await calendarOwnerAtomic(purpose,state.canonical.body,{kind:"replace",body:state.canonical.body,expected:state.current})).row;
+    if(restored.oid!==state.canonical.oid||JSON.stringify(restored.metadata)!==JSON.stringify(state.canonical.metadata)||restored.definition!==state.canonical.definition)throw calendarOwnerRefused();calendarOwnedStates.delete(purpose);
+  }catch{calendarSharedCustody={purpose,row:state.canonical,phase:"restore"};throw calendarOwnerRefused();}
+}
+async function calendarReadClock(){const state=calendarOwnedStates.get("clock"),body=state?.canonical.body??await calendarCanonicalBody("clock");return(await calendarOwnerAtomic("clock",body,{kind:"read",expected:state?.current})).now;}
+// End owner-scoped serial operations.
+
 async function calendarSerialControls(fx: BoundFixture): Promise<SerialControls> {
   const keyHash=(url:string)=>hashFeedToken(tokenFromUrl(url));
-  return {
+  const controls:SerialControls={
     withKeyState: async (state,run) => {
       const name=`calendar_feed_attestation_${fx.keyId}`;
       const [row]=await adminQuery<{id:string}>("select id from vault.secrets where name=$1",[name]);if(!row)throw new Error("Owned test key absent");
@@ -627,36 +773,42 @@ async function calendarSerialControls(fx: BoundFixture): Promise<SerialControls>
     },
     withDatabaseTime: async (value,run) => {
       if(!/^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\dZ$/.test(value))throw new Error("Invalid test clock");
-      const [before]=await adminQuery<{definition:string}>("select pg_get_functiondef('public.calendar_feed_now_internal()'::regprocedure) definition");
-      let primary:unknown,result:unknown;const errors:Error[]=[];
-      try {await adminQuery(`create or replace function public.calendar_feed_now_internal() returns timestamptz language sql volatile security invoker set search_path='' as $$ select '${value}'::timestamptz $$`);result=await run();}
-      catch(error){primary=error;errors.push(new Error("Clock fixture/assertion failed"));}
-      try {await adminQuery(before.definition);}catch{errors.push(new Error("Owned database clock restore failed"));}
-      if(primary||errors.length)throw new AggregateError(errors,"Clock fixture failure; primary and cleanup retained");return result as never;
+      let result:unknown;const errors:Error[]=[];
+      try{await calendarPublish("clock",()=>` select '${value}'::timestamptz `);result=await calendarWorkScope(fx,run);}catch(error){errors.push(redactFailure(error));}
+      if(calendarOwnedStates.has("clock")&&!calendarSharedCustody)try{await calendarRestore("clock");}catch(error){errors.push(redactFailure(error));}
+      if(errors.length)throw new AggregateError(errors,"Clock primary and ALL cleanup failures retained");return result as never;
     },
     counters: async (url,ip) => {
       const [token]=await adminQuery<{request_count:string;window_start:string;spike_count:string}>("select request_count,window_start,spike_count from public.calendar_feed_tokens where token_hash=$1",[keyHash(url)]);
       const [axis]=await adminQuery<{request_count:string;ip_hash:string}>("select request_count,ip_hash from public.calendar_feed_ip_windows where ip_hash=$1",[hashFeedIp(ip,fx.secret)]);
-      const [clock]=await adminQuery<{now:string}>("select public.calendar_feed_now_internal() now");
+      const clock={now:await calendarReadClock()};
       return {token:Number(token?.request_count??0),ip:Number(axis?.request_count??0),windowStart:iso(token?.window_start)!,databaseNow:iso(clock.now)!,spikeCount:Number(token?.spike_count??0),storedIpIsKeyedHash:!!axis&&/^[0-9a-f]{64}$/.test(axis.ip_hash)&&axis.ip_hash!==ip};
     },
-    withFault: async (scope,run) => calendarFault(scope,run),
+    withFault: async (scope,run) => calendarFault(scope,run,fx),
     loseCommittedResponse: async (subject,intent) => {const result=await fx.manage(subject,intent);if(result.outcome!=="committed")throw new Error("No committed response to lose");},
-    barrier: scope => calendarBarrier(scope),
+    barrier: scope => calendarBarrier(scope,fx),
     resetOwnedUnknownIpWindow: async () => {await adminQuery("delete from public.calendar_feed_ip_windows where ip_hash=$1",[hashFeedIp(null,fx.secret)]);},
     boundedInfrastructureCounts: async () => {
-      const [row]=await adminQuery<{live:string;expired:string}>("select count(*) filter(where window_start>=to_timestamp(floor(extract(epoch from public.calendar_feed_now_internal())/900)*900)) live,count(*) filter(where window_start<to_timestamp(floor(extract(epoch from public.calendar_feed_now_internal())/900)*900)) expired from public.calendar_feed_ip_windows");
+      const now=await calendarReadClock();
+      const [row]=await adminQuery<{live:string;expired:string}>("select count(*) filter(where window_start>=to_timestamp(floor(extract(epoch from $1::timestamptz)/900)*900)) live,count(*) filter(where window_start<to_timestamp(floor(extract(epoch from $1::timestamptz)/900)*900)) expired from public.calendar_feed_ip_windows",[now]);
       return {liveWindows:Number(row.live),expiredWindows:Number(row.expired),documentedBound:4096};
     },
   };
+  for(const name of ["counters","boundedInfrastructureCounts","resetOwnedUnknownIpWindow","loseCommittedResponse"] as const){const original=controls[name] as (...args:unknown[])=>Promise<unknown>;
+    (controls as unknown as Record<string,unknown>)[name]=(...args:unknown[])=>{
+      if(fx.workClosed||calendarSharedCustody||calendarWorkContext.getStore()?.some(scope=>!scope.open)){const refused=Promise.reject(calendarOwnerRefused());void refused.catch(()=>{});return refused;}
+      const actual=Reflect.apply(original,controls,args);fx.pendingRequests.add(actual);void actual.then(()=>fx.pendingRequests.delete(actual),()=>fx.pendingRequests.delete(actual));return actual;
+    };
+  }
+  return controls;
 }
 
-async function calendarFault<T>(scope: Parameters<SerialControls["withFault"]>[0],run:()=>Promise<T>): Promise<{result:T;stageObserved:boolean;sqlstate:string;ownedObjectsRemaining:number}> {
+async function calendarFault<T>(scope: Parameters<SerialControls["withFault"]>[0],run:()=>Promise<T>,fx:BoundFixture): Promise<{result:T;stageObserved:boolean;sqlstate:string;ownedObjectsRemaining:number}> {
   const suffix=randomUUID().replaceAll("-",""),fn=`cf_fault_${suffix}`,seq=`cf_seen_${suffix}`,trigger=`cf_trigger_${suffix}`;
   const projection=scope.stage==="projection-after-first-page"||scope.stage==="projection-query-canceled";
   const sqlstate=scope.stage==="projection-query-canceled"?"57014":"PT555";
   const table=scope.stage.endsWith("audit")?"audit_events":"calendar_feed_tokens";
-  let definition:string|undefined,result:T|undefined,observed=false;const failures:Error[]=[];
+  let installed=false,result:T|undefined,observed=false;const failures:Error[]=[];
   try {
     await adminSession(async({query})=>{
       await query("begin");try{
@@ -667,46 +819,51 @@ async function calendarFault<T>(scope: Parameters<SerialControls["withFault"]>[0
       }catch(error){await query("rollback");throw error;}
     });
     if(projection) {
-      const [row]=await adminQuery<{definition:string}>("select pg_get_functiondef('public.fetch_calendar_feed(text,text,jsonb,text)'::regprocedure) definition");definition=row.definition;
-      const needle="coalesce(nullif(w.display_name,''),'Bokning')";if(!definition.includes(needle))throw new Error("Projection fault anchor missing");
-      await adminQuery(definition.replace(needle,`case when b.tenant_id='${scope.tenantId}'::uuid then public.${fn}() else ${needle} end`));
+      await calendarPublish("fetch",body=>{const needle="coalesce(nullif(w.display_name,''),'Bokning')";if(body.split(needle).length!==2)throw calendarOwnerRefused();return body.replace(needle,`case when b.tenant_id='${scope.tenantId}'::uuid then public.${fn}() else ${needle} end`);});installed=true;
     } else await adminQuery(`create trigger ${trigger} before ${table==="audit_events"?"insert":"update"} on public.${table} for each row execute function public.${fn}()`);
-    result=await run();const [seen]=await adminQuery<{is_called:boolean}>(`select is_called from public.${seq}`);observed=seen.is_called;
-  } catch {failures.push(new Error("Owned fault or assertion failed; values redacted"));}
-  for(const action of [async()=>{if(definition)await adminQuery(definition);else await adminQuery(`drop trigger if exists ${trigger} on public.${table}`);},async()=>{await adminQuery(`drop function if exists public.${fn}()`);},async()=>{await adminQuery(`drop sequence if exists public.${seq}`);},async()=>{const rows=await adminQuery("select 1 from pg_proc where proname=$1 union all select 1 from pg_class where relname=$2 union all select 1 from pg_trigger where tgname=$3",[fn,seq,trigger]);if(rows.length)throw new Error("Owned catalog objects remain");}])try{await action();}catch{failures.push(new Error("Owned fault cleanup failed; object values redacted"));}
+    result=await calendarWorkScope(fx,run);const [seen]=await adminQuery<{is_called:boolean}>(`select is_called from public.${seq}`);observed=seen.is_called;
+  } catch(error) {failures.push(redactFailure(error));}
+  try{await calendarSettle(fx);}catch(error){failures.push(redactFailure(error));}
+  if(calendarSharedCustody)throw new AggregateError([...failures,calendarOwnerRefused()],"Fault custody retained; shared definition/owned refs untouched");
+  for(const action of [async()=>{if(installed)await calendarRestore("fetch");else if(!projection)await adminQuery(`drop trigger if exists ${trigger} on public.${table}`);},async()=>{await adminQuery(`drop function if exists public.${fn}()`);},async()=>{await adminQuery(`drop sequence if exists public.${seq}`);},async()=>{const rows=await adminQuery("select 1 from pg_proc where proname=$1 union all select 1 from pg_class where relname=$2 union all select 1 from pg_trigger where tgname=$3",[fn,seq,trigger]);if(rows.length)throw new Error("Owned catalog objects remain");}])try{if(calendarSharedCustody)throw calendarOwnerRefused();await action();}catch{failures.push(new Error("Owned fault cleanup failed; object values redacted"));}
   if(failures.length)throw new AggregateError(failures,"Fault primary and cleanup outcomes retained");
   return {result:result as T,stageObserved:observed,sqlstate:observed?sqlstate:"",ownedObjectsRemaining:0};
 }
 
-async function calendarBarrier(scope: Parameters<SerialControls["barrier"]>[0]): ReturnType<SerialControls["barrier"]> {
+async function calendarBarrier(scope: Parameters<SerialControls["barrier"]>[0],fx:BoundFixture): ReturnType<SerialControls["barrier"]> {
   const suffix=randomUUID().replaceAll("-",""),fn=`cf_barrier_${suffix}`,trigger=`cf_barrier_t_${suffix}`,lock=Number.parseInt(suffix.slice(0,7),16);
   let releaseGate!:()=>void,entered!:()=>void;const gate=new Promise<void>(resolve=>{releaseGate=resolve;}),ready=new Promise<void>(resolve=>{entered=resolve;});
   const holder=adminSession(async({query})=>{await query("set statement_timeout='10s'");await query("select pg_advisory_lock(27155,$1)",[lock]);entered();try{await gate;}finally{await query("select pg_advisory_unlock(27155,$1)",[lock]);}});
   await Promise.race([ready,holder.then(()=>{throw new Error("Barrier holder exited before readiness");})]);
-  let definition:string|undefined;const authority=scope.stage.endsWith("before-authority");
+  let installed=false;const authority=scope.stage.endsWith("before-authority");
   const table=scope.stage==="fetch-authority-admitted"?"calendar_feed_tokens":"audit_events";
   try {if(authority) {
-    const [row]=await adminQuery<{definition:string;source:string}>("select pg_get_functiondef(oid) definition,prosrc source from pg_proc where oid='public.calendar_feed_subject_internal(uuid,uuid,uuid,boolean)'::regprocedure");definition=row.definition;
-    const expression=row.source.trim().replace(/^select\s+/i,"");
-    await adminQuery(`create or replace function public.calendar_feed_subject_internal(p_tenant uuid,p_membership uuid,p_actor uuid default null,p_admin boolean default false) returns boolean language plpgsql volatile security invoker set search_path='' as $$ begin if p_tenant='${scope.tenantId}'::uuid and p_membership='${scope.membershipId}'::uuid then perform pg_advisory_xact_lock(27155,${lock}); end if; return (${expression}); end $$`);
+    await calendarPublish("subject",body=>{const expression=body.trim().replace(/^select\s+/i,"");return ` begin if p_tenant='${scope.tenantId}'::uuid and p_membership='${scope.membershipId}'::uuid then perform pg_advisory_xact_lock(27155,${lock}); end if; return (${expression}); end `;},true);installed=true;
   } else {
     const condition=table==="audit_events"?`new.tenant_id='${scope.tenantId}'::uuid and new.metadata->>'attemptId'='${scope.attemptId}'`:`new.tenant_id='${scope.tenantId}'::uuid and new.membership_id='${scope.membershipId}'::uuid`;
     await adminQuery(`create function public.${fn}() returns trigger language plpgsql security definer set search_path='' as $$ begin if ${condition} then perform pg_advisory_xact_lock(27155,${lock}); end if; return new; end $$; revoke all on function public.${fn}() from public,anon,authenticated,service_role;`);
     await adminQuery(`create trigger ${trigger} before ${table==="audit_events"?"insert":"update"} on public.${table} for each row execute function public.${fn}()`);
-  }} catch {
-    releaseGate();const failures=[new Error("Owned barrier setup failed")];try{await holder;}catch{failures.push(new Error("Owned holder release failed"));}
-    try {if(definition)await adminQuery(definition);else {await adminQuery(`drop trigger if exists ${trigger} on public.${table}`);await adminQuery(`drop function if exists public.${fn}()`);}}catch{failures.push(new Error("Owned barrier setup cleanup failed"));}
+  }} catch(error) {
+    releaseGate();const failures=[redactFailure(error)];try{await holder;}catch{failures.push(new Error("Owned holder release failed"));}
+    try {if(calendarSharedCustody)throw calendarOwnerRefused();await calendarSettle(fx);if(installed)await calendarRestore("subject");else if(!authority){await adminQuery(`drop trigger if exists ${trigger} on public.${table}`);await adminQuery(`drop function if exists public.${fn}()`);}}catch{failures.push(new Error("Owned barrier setup cleanup failed"));}
     throw new AggregateError(failures,"Barrier setup and cleanup outcomes retained");
   }
-  let released=false;
+  let released=false,releasePromise:Promise<void>|undefined,cleanupPromise:Promise<void>|undefined;
+  const release=()=>{if(!releasePromise){released=true;releaseGate();releasePromise=holder;}return releasePromise;};
+  const cleanup=()=>{if(!cleanupPromise){cleanupPromise=(async()=>{
+    const errors:Error[]=[];try{await release();}catch(error){errors.push(redactFailure(error));calendarSharedCustody={purpose:"subject",phase:"barrier-holder-unverified"};}
+    try{await calendarSettle(fx);}catch(error){errors.push(redactFailure(error));}
+    if(!calendarSharedCustody)try{
+      if(installed)await calendarRestore("subject");else {await adminQuery(`drop trigger if exists ${trigger} on public.${table}`);await adminQuery(`drop function if exists public.${fn}()`);}
+      const rows=await adminQuery("select 1 from pg_proc where proname=$1 union all select 1 from pg_trigger where tgname=$2",[fn,trigger]);if(rows.length)throw calendarOwnerRefused();
+    }catch(error){errors.push(redactFailure(error));calendarSharedCustody={purpose:"subject",phase:"barrier-restore-unverified"};}
+    if(calendarSharedCustody)errors.push(calendarOwnerRefused());else fx.finalizers.delete(cleanup);
+    if(errors.length)throw new AggregateError(errors,"Barrier primary and ALL reached cleanup failures retained");
+  })();void cleanupPromise.catch(()=>{});}return cleanupPromise;};
+  fx.finalizers.add(cleanup);
   return {
-    waitUntilEntered:async(timeoutMs)=>{const deadline=Date.now()+timeoutMs;while(Date.now()<deadline){const rows=await adminQuery("select 1 from pg_locks where locktype='advisory' and classid=27155 and objid=$1 and not granted",[lock]);if(rows.length)return;await new Promise(resolve=>setTimeout(resolve,20));}throw new Error("Owned calendar barrier was not reached");},
-    release:async()=>{if(!released){released=true;releaseGate();await holder;}},
-    assertOwnedObjectsAbsent:async()=>{
-      if(!released){released=true;releaseGate();await holder;}
-      if(definition)await adminQuery(definition);else {await adminQuery(`drop trigger if exists ${trigger} on public.${table}`);await adminQuery(`drop function if exists public.${fn}()`);}
-      const rows=await adminQuery("select 1 from pg_proc where proname=$1 union all select 1 from pg_trigger where tgname=$2",[fn,trigger]);if(rows.length)throw new Error("Owned calendar barrier cleanup failed");
-    },
+    waitUntilEntered:async(timeoutMs)=>{if(released)throw calendarOwnerRefused();const deadline=Date.now()+timeoutMs;while(Date.now()<deadline){const rows=await adminQuery("select 1 from pg_locks where locktype='advisory' and classid=27155 and objid=$1 and not granted",[lock]);if(rows.length)return;await new Promise(resolve=>setTimeout(resolve,20));}throw new Error("Owned calendar barrier was not reached");},
+    release,assertOwnedObjectsAbsent:cleanup,
   };
 }
 
@@ -865,7 +1022,7 @@ export async function runCalendarFeedCauseProof() {
       const catalog = async (connection: Connection) => {
         const result = await connection.query("select p.oid::text, p.proname, p.prosrc, pg_get_userbyid(p.proowner) owner, p.prosecdef, p.proconfig, p.proacl::text from pg_proc p where p.oid=to_regprocedure($1)",[identity]);
         if (result.rows.length !== 1) throw Error("Function identity refused");
-        const row = result.rows[0], migration = (await readFile(new URL("../../supabase/migrations/20261020220000_personal_calendar_feed.sql",import.meta.url),"utf8")).replaceAll("\r\n","\n");
+        const row = result.rows[0], migration = (await readFile(calendarCanonicalSourceUrl,"utf8")).replaceAll("\r\n","\n");
         if (!calendarCauseProofSourceMatches(row,migration)) throw Error("Original function source refused");
         return JSON.stringify(result.rows);
       };

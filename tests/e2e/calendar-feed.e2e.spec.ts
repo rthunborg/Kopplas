@@ -138,12 +138,16 @@ test.describe("15.5 Kalenderprenumeration essential production-host", () => {
       await withCalendarBrowserFixture(page, variant.scenario, async (f) => {
         await f.signIn("montor");
         const personal = await enterActualPersonalCalendar(page, variant.mode);
-        await expect(personal.getByLabel(variant.host, { exact: true })).toBeVisible();
         if (variant.scenario === "no-profile") {
+          await expect(personal).toBeVisible();
+          await expect(personal.getByLabel(variant.host, { exact: true })).toBeAttached();
           await expect(personal.getByText("Inga egna bokningar i perioden.", { exact: true })).toBeVisible();
+        } else {
+          await expect(personal.getByLabel(variant.host, { exact: true })).toBeVisible();
         }
         const link = personal.getByRole("link", { name: calendarNames.title, exact: true });
         await expect(link).toHaveCount(1);
+        await expect(link).toBeVisible();
         await expect(link).toHaveAttribute("href", "/settings/calendar");
         await tabTo(page, link);
         await page.keyboard.press("Enter");

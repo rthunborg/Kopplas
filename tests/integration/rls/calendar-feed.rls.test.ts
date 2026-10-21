@@ -38,14 +38,23 @@ describe("15.5 exact self authority, raw SQL boundary and least privilege", () =
 
   test("[P0] 15.5-RLS002 AC1 AC4 AC9 admin manager peer foreign and platform cannot act on behalf of a subject", async () => {
     await withCalendarFeedFixture("row-isolated", async fx => {
+      // Legitimate foreign self-management is outside the negative baseline.
+      const legitimate = await fx.rawManage("foreign", lifecycle("create", 0));
+      expect(legitimate.denied).toBe(false);
       const before = await fx.physical();
       for (const caller of ["admin", "planner", "peer", "foreign", "platformOnly"] as const) {
+        const subject = fx.subjects[caller];
+        const otherTenant = subject.tenantId === fx.subjects.own.tenantId ? fx.subjects.foreign.tenantId : fx.subjects.own.tenantId;
         for (const override of [fx.subjects.own, { membershipId: fx.subjects.own.membershipId },
-          { userId: fx.subjects.own.userId }, { tenantId: fx.subjects.foreign.tenantId }]) {
-          expect((await fx.rawManage(caller, lifecycle("create", 0), override)).denied).toBe(true);
+          { userId: fx.subjects.own.userId }, { tenantId: otherTenant }]) {
+          expect(Object.entries(override).some(([key,value]) => key !== "profileId" && value !== subject[key as keyof typeof subject])).toBe(true);
+          const result = await fx.rawManage(caller, lifecycle("create", 0), override);
+          expect(result.denied).toBe(true); expect(result.rows).toEqual([]);
+          expect(await fx.physical()).toEqual(before);
         }
       }
-      expect((await fx.rawManage("own", lifecycle("create", 0), { tenantId: randomUUID() })).denied).toBe(true);
+      const unrelatedTenant = await fx.rawManage("own", lifecycle("create", 0), { tenantId: randomUUID() });
+      expect(unrelatedTenant.denied).toBe(true); expect(unrelatedTenant.rows).toEqual([]);
       expect(await fx.physical()).toEqual(before);
     });
   });
