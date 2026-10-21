@@ -1,0 +1,363 @@
+{
+  "schema_version": 1,
+  "kind": "independent-sensitive-remaining-F1-buffered-followup-review",
+  "verdict": "PASS",
+  "scope": "LATEST_REMAINING_F1_FIX_ONLY",
+  "F1": "CLOSED",
+  "F2": "CLOSED_REUSED_UNCHANGED_HELPER",
+  "findings": [],
+  "reviewed_at_utc": "2026-10-21T06:59:00.726939+00:00",
+  "reviewer": {
+    "actor": "/root/review15_5_private_diagnostic_high",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "independent_of_author_and_root": true,
+    "same_reviewer_as_prior_remaining_F1": true
+  },
+  "route": {
+    "phase": "P5_artifact_recovery_F1_buffered_targeted_review",
+    "recorded_before_dispatch": true
+  },
+  "worktree": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas",
+  "operation_id": "6395eae9-7110-49a9-9c16-12a55c06c0bf",
+  "target": {
+    "repo": "rthunborg/Kopplas",
+    "ref": "codex/epic-15-scheduling-time-calendar",
+    "head_sha": "33cfa8dfa1323708edf80034c0a98b0620790b6a",
+    "producer_source_sha": "f304ea548faa05f037cd3aa44c65888d96d543df",
+    "producer_checkpoint_id": "44738655-b7e9-4bb7-8b8c-77f7c2a32bcf",
+    "run_id": 39551805476,
+    "attempt": 1,
+    "producer_verification_mode": "calendar-feed-cause-proof"
+  },
+  "current_code": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/artifact-recovery-33cfa8df-01/collect-recovery-evidence.py",
+      "bytes": 33788,
+      "sha256": "8e25c6d5af1de1056abb6acbc9bbc781aa84227a9233ecf31032e4d21a1fb6f7"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/artifact-recovery-33cfa8df-01/test_collect_recovery_evidence.py",
+      "bytes": 29787,
+      "sha256": "3b1824fbad1d86d3231c085bf4dc56bdf4ba26d50179dada15fd05f103add613"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-artifact-recovery-01-driver.py",
+      "bytes": 12417,
+      "sha256": "10bea96d7f29eee685fcb761dcd80098d3b3ccd6af60667908c33a552a539beb"
+    }
+  ],
+  "previous_code_custody": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-recovery-corrective-code-byte-custody.json",
+    "bytes": 96948,
+    "sha256": "0138fd71be9e1b0b2318f05cfe8131db4774a81bd5d2ff18f900d222058b0ec4",
+    "decoded_originals_verified_in_memory": [
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/artifact-recovery-33cfa8df-01/collect-recovery-evidence.py",
+        "bytes": 33788,
+        "sha256": "8e25c6d5af1de1056abb6acbc9bbc781aa84227a9233ecf31032e4d21a1fb6f7",
+        "encoding": "base64"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/artifact-recovery-33cfa8df-01/test_collect_recovery_evidence.py",
+        "bytes": 25975,
+        "sha256": "b8d19bafd48ed14f51588b5ec5ecc2b1d91c3640e3dee14f8e74b9a6a5db7df0",
+        "encoding": "base64"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-artifact-recovery-01-driver.py",
+        "bytes": 12150,
+        "sha256": "3296d05e6086af0bf104076bad5e31ac66c9015d62b949a754a257f279139b37",
+        "encoding": "base64"
+      }
+    ]
+  },
+  "preserved_author_inputs": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-f1-followup-review/review-input.md",
+      "bytes": 4048,
+      "sha256": "a64f4af54e7ca997d60d198aff04cbe9804755ceecd3581e6e2c8d5c6345bff2"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-f1-followup-review/input-binding.json",
+      "bytes": 45227,
+      "sha256": "c0f0961c58c14b314fe3412c362defd7830cce23933ab4b380a1529ab908aefb"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-f1-followup-review/local-checks.json",
+      "bytes": 2926,
+      "sha256": "01dc6815b2f74c3f78fd46af5e1f2fe31a9d9764a396d7b0f64ac197ac61e9fd"
+    }
+  ],
+  "verified_immutable_references": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-recovery-f1-followup-metadata-assignment.json",
+      "bytes": 1091,
+      "sha256": "87d1cae0ee749159bc7565f84e01a5a424edc58cf518bb9edd79051667e1d701",
+      "verified": true
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-recovery-corrective-code-byte-custody.json",
+      "bytes": 96948,
+      "sha256": "0138fd71be9e1b0b2318f05cfe8131db4774a81bd5d2ff18f900d222058b0ec4",
+      "verified": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-corrective-review/review-input.md",
+      "bytes": 4823,
+      "sha256": "34153caeb299c67d9ec826fb6da4fe8e4d047b8a46e357038bdef5c5ddc056a4",
+      "verified": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-corrective-review/input-binding.json",
+      "bytes": 43306,
+      "sha256": "d48a54ccdd8c0b94762eb15f4a80c71924f81c33272b380b859c55e2173034f8",
+      "verified": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-corrective-review/local-checks.json",
+      "bytes": 4896,
+      "sha256": "e5960f5a787c9107f755684a4dd031c627948febe0bcb083bf4f78b336a1f5d6",
+      "verified": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-corrective-review/original-report.md",
+      "bytes": 8104,
+      "sha256": "7323045a1e15cda7626839b97ed4feb4321dd77e579de6e95e9076c86b05a098",
+      "verified": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-corrective-review/original-attestation.json",
+      "bytes": 15812,
+      "sha256": "d79af4fdd60565105821cab2873080eb91e303b1ec8eed955764ebc6a593a3f6",
+      "verified": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-corrective-review/result.json",
+      "bytes": 1149,
+      "sha256": "bd775a77d8898771cc5e4942e826e9239341b28a73fdcb802d8da4da8a52beb6",
+      "verified": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-corrective-review/manifest.json",
+      "bytes": 1580,
+      "sha256": "8224c7c2ab8d9efd06529fb05517c0d5a1c1ea903c5bb1f4de28204f0ae6736b",
+      "verified": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-native-artifact-recovery-33cfa8df-01-corrective-review-allocation.json",
+      "bytes": 2163,
+      "sha256": "0199f9a96ccb5b01979705d1e3fae94ac4619d7e4433fe41d4c1e35d18d43c95",
+      "verified": true
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-recovery-original-code-byte-custody.json",
+      "bytes": 82682,
+      "sha256": "c7fdffac0076361cbd6bbbbbaa74ec0f2f7ce3ec487c3490f3fce2201d4f76c6",
+      "verified": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-implementation-review/review-input.md",
+      "bytes": 4948,
+      "sha256": "dc1c45994bcbacc20141b8941cf33395e7891d20293c146633ded7b92dd6ef33",
+      "verified": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-implementation-review/input-binding.json",
+      "bytes": 35641,
+      "sha256": "01449d748bb95e16e3578e487ea0ce75a6153c3274ba748d831f05807a9c500d",
+      "verified": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-implementation-review/local-checks.json",
+      "bytes": 3489,
+      "sha256": "fa9c5c4fdf05ef8ed4f7743752a562f25fa813da8ea57238788ce86ed5c14f79",
+      "verified": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-implementation-review/original-report.md",
+      "bytes": 9753,
+      "sha256": "bcaa7d08f4217897fa99b3edbc9c77539bac5cca10c00ecf59d86264bbe043a5",
+      "verified": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-implementation-review/original-attestation.json",
+      "bytes": 16099,
+      "sha256": "4afbacfc86a5990333d97bd481f257d39354659ef76a2c79a33faa46ce3dfcb4",
+      "verified": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-implementation-review/result.json",
+      "bytes": 1222,
+      "sha256": "df16b72c31e3ab67179dd492cd6885de6e4b09503a54fb2147ebe1e49f8e4f0d",
+      "verified": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-implementation-review/manifest.json",
+      "bytes": 1604,
+      "sha256": "55b315f7da6cfd2876d2dffb3050c443dd34dff8a3a1cc02bab4ab2c83bd8cc8",
+      "verified": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-native-artifact-recovery-33cfa8df-01-allocation.json",
+      "bytes": 3727,
+      "sha256": "b4bd1f15c6e87c4771d89c48e7137c15420e4a041cd767b24b00921b82d2b364",
+      "verified": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-proposal-revision-1/plan.json",
+      "bytes": 25199,
+      "sha256": "6fdde434e7e4853e70e9bebd6a64d1f960f33e35cf7d7025d07ea6cc5019be2e",
+      "verified": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-proposal-revision-1/manifest.json",
+      "bytes": 6907,
+      "sha256": "5c04c4457240909ec0c239f9af0c58d12332e3d7adbb2b76b113e9faf520cba0",
+      "verified": true
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-33cfa8df-cause-proof-ci-independent/collect-diagnostic-evidence.py",
+      "bytes": 45053,
+      "sha256": "c9aeb0e2cc6933557e4909516cbde63d66b95063f0a08a6932bdf8c1fe31215f",
+      "verified": true
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-33cfa8df-cause-proof-ci-independent/test_collect_diagnostic_evidence.py",
+      "bytes": 36380,
+      "sha256": "50a3a304522f65924cc105746104801ce03f0f3aca20a24c090ff58f9ca31732",
+      "verified": true
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-33cfa8df-cause-proof-ci-independent/expected-admission.json",
+      "bytes": 6705,
+      "sha256": "a5d0ca28fd7bce83aa2f3105f6122610091fab52bf7d935aaf040483b9f3cbc1",
+      "verified": true
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-33cfa8df-cause-proof-ci-independent/terminal-facts.json",
+      "bytes": 3135,
+      "sha256": "aa00fd0c2158d02f2a42bc989624b611c36be44b0059627f5d9ac42d750d1754",
+      "verified": true
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-prepost-diagnostic-intent.json",
+      "bytes": 2729,
+      "sha256": "40f043cbd0a34a771999327671fa4a7cb76de4fa3c91a3389b913d3fc3402b22",
+      "verified": true
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-terminal-metadata-proof.json",
+      "bytes": 2721,
+      "sha256": "d13590179752a3b4d84bfe0c283afebd677bd4ab6760e6c5a8ee71ad9c891c9d",
+      "verified": true
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-collector-operation-stop.json",
+      "bytes": 1096,
+      "sha256": "89585f71abc74d6656157e95453e0b297d29d44861e65e4a67d003d3e286780e",
+      "verified": true
+    }
+  ],
+  "identity_counts": {
+    "current_code": 3,
+    "immutable_references": 28,
+    "explicit_code_reference_rows": 31,
+    "author_metadata": 3,
+    "all_match": true
+  },
+  "actual_latest_diff": {
+    "driver_added_lines": 10,
+    "driver_removed_lines": 2,
+    "changed_driver_nodes": [
+      "Lines",
+      "main"
+    ],
+    "helper_byte_identical": true,
+    "test_changes": "Current binding reference, ordered-buffer control, buffered adapter control and effect-trapping harness",
+    "payload_equals_actual_driver": true
+  },
+  "F1_closure_basis": [
+    "Unconditional check_reader on line entry and before returning complete buffered records",
+    "Known error checked while waiting as well",
+    "Immediate terminal-write callback check before opening facts",
+    "Immediate continuation callback check before stdin write/flush/close",
+    "Deterministic actual driver-main ordered failure admits no later stage/candidate and attempts no terminal/ack write",
+    "Physical EOF/capture/unknown-custody semantics unchanged",
+    "Healthy queued-after-exit behavior preserved"
+  ],
+  "executed_current_suite": {
+    "methods": 34,
+    "failures": 0,
+    "errors": 0,
+    "positive_checks": 37,
+    "negative_checks": 107,
+    "bounded_owned_Python_children": 20,
+    "acquisition_API_requests": 0,
+    "native_credit": 0,
+    "counts_nonadditive": true
+  },
+  "independent_previous_driver_negative_baseline": {
+    "old_driver_sha256": "3296d05e6086af0bf104076bad5e31ac66c9015d62b949a754a257f279139b37",
+    "exact_same_method": "test_33_F1_ordered_buffer_cannot_admit_after_known_error",
+    "methods": 1,
+    "expected_assertion_failures": 1,
+    "errors": 0,
+    "bounded_synthetic_children": 1,
+    "code_executed": "Hash-verified custody bytes in memory only",
+    "Root_writes": 0,
+    "actual_helper_API_or_native": false,
+    "not_current_code_failure_or_added_to_suite_counts": true
+  },
+  "current_ordered_control_result": {
+    "first_stage_accepted": true,
+    "reader_error_known_before_remaining_buffered_records": true,
+    "remaining_settled_stage_candidate_rejected": true,
+    "terminal_write_attempts": 0,
+    "ack_write_attempts": 0,
+    "candidate_admitted": false,
+    "custody": "UNKNOWN",
+    "outcome": "STOP_NO_RETRY"
+  },
+  "coverage_reuse": {
+    "F2_helper_bytes_unchanged": true,
+    "producer_binding_vector_equal_previous": true,
+    "current_raw_producer_checks_in_suite": 11,
+    "prior_source_checkpoint_Git_proof": "Reused unchanged; no new Git commands in this targeted turn",
+    "prior_composite_NOTPASS_not_rewritten": true,
+    "prior_corrective_NOTPASS_not_rewritten": true,
+    "no_new_broad_protocol_story_review": true
+  },
+  "Root_facts_result_when_checked": {
+    "expected_recovery_admission_unborn": true,
+    "terminal_recovery_facts_unborn": true,
+    "outside_result_unborn": true
+  },
+  "limits": {
+    "writes_only_three_assigned_new_reviewer_files": true,
+    "author_metadata_immutable": true,
+    "Root_seventh_manifest_not_written": true,
+    "source_helper_test_driver_Spec_Root_facts_result_old_record_writes": false,
+    "operational_activation_API_network_CI_DB_SQL_resources_provider_deployment": false,
+    "help_or_operational_startup_repeated": false,
+    "raw_payload_persistence": false,
+    "bytecode_cache_files": false,
+    "execution_publication_authority_granted": false,
+    "fourth_broad_story_review": false
+  },
+  "remaining_gates": [
+    "Actual Root posthoc expected/terminal facts and once-only execution activation still required",
+    "Later High offline exact-three publication requires separate closed-handoff grant",
+    "Consumed P33 cannot be retried; old listing and historical cause remain UNKNOWN",
+    "43 DB and14 browser cause gaps unresolved; no normal95/full2039/browser/recovery/pilot credit"
+  ],
+  "original_report": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-f1-followup-review/original-report.md",
+    "bytes": 6803,
+    "sha256": "c2699ba65bf410e9167685b5bcee823a654ff2b62b516f86449ff8c3efff3a9b"
+  },
+  "normal_acceptance_credit": 0,
+  "native_credit": 0,
+  "development_complete": false,
+  "release_ready": false
+}

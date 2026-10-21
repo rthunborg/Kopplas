@@ -1,0 +1,429 @@
+{
+  "schema_version": 1,
+  "kind": "NATIVE_ARTIFACT_RECOVERY_ACQUISITION_PROPOSAL",
+  "status": "REVISION_1_PLAN_ONLY_PENDING_FRESH_REVIEW",
+  "route": "P5_artifact_recovery_plan_revision1",
+  "author_profile": "independent gpt-6.1-sol High",
+  "worktree": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas",
+  "target": {
+    "repo": "rthunborg/Kopplas",
+    "ref": "codex/epic-15-scheduling-time-calendar",
+    "head_sha": "33cfa8dfa1323708edf80034c0a98b0620790b6a",
+    "producer_source_sha": "f304ea548faa05f037cd3aa44c65888d96d543df",
+    "producer_checkpoint_id": "44738655-b7e9-4bb7-8b8c-77f7c2a32bcf",
+    "run_id": 39551805476,
+    "attempt": 1,
+    "producer_verification_mode": "calendar-feed-cause-proof",
+    "producer_evidence_class": "diagnostic-only"
+  },
+  "established_limits": {
+    "old_operation": "CONSUMED_IMMUTABLE_NOT_RETRYABLE",
+    "old_listing_GETs": "UNKNOWN_0_OR_1",
+    "old_ZIP": "NOT_REACHED",
+    "old_inner_cause": "UNKNOWN_NOT_RECOVERABLE_FROM_DISCARDED_OUTPUT",
+    "current_terminal_source": "Existing Root two-GET proof; no additional run/jobs GET required.",
+    "normal_acceptance_credit": 0,
+    "development_complete": false,
+    "release_ready": false,
+    "unresolved_normal_cases": "43 DB / 14 browser; no recovery claim resolves them"
+  },
+  "proposed_operational_scope": {
+    "new_directory": ".env.epic15.mail-runtime/story-15-5-preparation/artifact-recovery-33cfa8df-01",
+    "exact_seven": [
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/artifact-recovery-33cfa8df-01/collect-recovery-evidence.py",
+        "writer": "Allocated High code author"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/artifact-recovery-33cfa8df-01/test_collect_recovery_evidence.py",
+        "writer": "Allocated High code author"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/artifact-recovery-33cfa8df-01/expected-recovery-admission.json",
+        "writer": "Root only"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/artifact-recovery-33cfa8df-01/terminal-recovery-facts.json",
+        "writer": "Root only; PENDING to final exact-five-field admission"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/artifact-recovery-33cfa8df-01/diagnostic-evidence.json",
+        "writer": "High offline after Root freezes closed operation result"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/artifact-recovery-33cfa8df-01/diagnostic-qualification.json",
+        "writer": "High offline"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/artifact-recovery-33cfa8df-01/manifest.json",
+        "writer": "High offline; self-excluded hash membership"
+      }
+    ],
+    "Root_outside_two": [
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-artifact-recovery-01-driver.py",
+        "writer": "Root operational code owner; independently reviewed with helper/test"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-artifact-recovery-01-result.json",
+        "writer": "Root driver only; exclusive reservation before child/effect, durable closed updates, frozen at terminal"
+      }
+    ],
+    "extra_files_or_caches": false,
+    "protected": "Old P33/P252, start marker, expected/terminal/stop receipt, source/Spec, normal collectors and eleven failed packets are never changed.",
+    "directory_creation": "Root exclusive creation only after allocation; existing directory or output reservation refuses restart."
+  },
+  "additional_effects": {
+    "requires_new_allocation": true,
+    "old_authority_not_reused": true,
+    "local_capability_process": {
+      "argv": [
+        "gh",
+        "api",
+        "--help"
+      ],
+      "maximum": 1,
+      "timeout_seconds": 5,
+      "stdout_cap_bytes": 65536,
+      "output": "Memory only; fixed flag-supported boolean and byte/digest proof. No endpoint, credential/config command or fallback. Same one help observation must also establish method/header flag support; no extra help process."
+    },
+    "network": [
+      {
+        "method": "GET",
+        "endpoint": "repos/rthunborg/Kopplas/actions/runs/39551805476/artifacts?per_page=100&page=1",
+        "maximum": 1,
+        "cap_bytes": 262144,
+        "request_headers": {
+          "Accept": "application/vnd.github+json",
+          "X-GitHub-Api-Version": "2026-03-10"
+        }
+      },
+      {
+        "method": "GET",
+        "endpoint": "repos/rthunborg/Kopplas/actions/artifacts/<positive-exact-Root-admitted-ID>/zip",
+        "maximum": 1,
+        "conditional": "Only compatible sole artifact, same-invocation Root confirmation and unchanged frozen inputs.",
+        "cap_bytes": 4500000,
+        "request_headers": {
+          "Accept": "application/vnd.github+json",
+          "X-GitHub-Api-Version": "2026-03-10"
+        }
+      }
+    ],
+    "transport": "Fixed gh argv, shell false, stderr discarded; 30s wait, at most5s kill wait and5s reader join per invocation. No retry or alternative endpoint. Logical invocations, not measured HTTP-hop counts.",
+    "forbidden": [
+      "POST",
+      "CI dispatch/rerun/cancel",
+      "run/jobs/log GET",
+      "pagination",
+      "SQL/RPC/DB/browser/provider/resources",
+      "new functional source/CI work",
+      "raw API/ZIP/native JSON persistence"
+    ],
+    "retained_caps": {
+      "listing_bytes": 262144,
+      "archive_bytes": 4500000,
+      "native_bytes": 1000000,
+      "observation_bytes": 65536,
+      "receipt_bytes": 65536,
+      "manifest_bytes": 65536,
+      "uncompressed_bytes": 1196608,
+      "entries": 4,
+      "json_depth": 16,
+      "json_nodes": 4096,
+      "continuation_bytes": 4096
+    },
+    "api_header_authority": "Proposed explicit header effect requires Coordinator allocation and implementation review. This does not establish the old negotiated version or response. No unversioned/default-version fallback."
+  },
+  "admission_and_provenance": {
+    "operation_id": "Fresh Root-assigned canonical UUIDv4 AFTER allocation; distinct from producer checkpoint UUID; not yet assigned.",
+    "timing": "POSTHOC_AFTER_PRODUCER_TERMINAL_BEFORE_RECOVERY_GET",
+    "expected": "Bind target, original terminal proof, historical old intent/expected/stop, new operation ID, exact new helper/test/driver hashes, review/allocation references, caps and one-shot budget. No claim historical pre-POST intent bound new recovery code.",
+    "terminal": "Root projects existing actual terminal proof and nine unique completed rows; selected checkpoint-admission/verify/db, other six suppressed/skipped. New operation ID and expected-recovery rawSHA are fixed. No new run/jobs reads.",
+    "old_references": "Historical old intent/expected retain original timing and hashes; old P33 PENDING facts never relabelled final.",
+    "mutable_terminal_fields": [
+      "artifact_admission_state",
+      "artifact_id",
+      "artifact_listing_sha256",
+      "artifact_listing_bytes",
+      "artifact_candidate_sha256"
+    ],
+    "states": [
+      "PENDING",
+      "CONFIRMED_PRESENT",
+      "CONFIRMED_EMPTY"
+    ],
+    "pending": "Other four admission values null; permits sole listing, never ZIP.",
+    "candidate": "Closed target + operation/expected/pending digests, listing bytes/SHA and artifact null OR exact {id,name,archive_bytes,archive_sha256}; canonical candidate SHA. Name native-calendar-feed-cause-proof; integer ID excludes bool and >0; bytes1..4500000; SHA256 lowerhex64.",
+    "confirmation": "Same invocation only. Root binds retained candidate/listing; positive exact ID for present or null only genuinely empty. All non-five fields and expected/code inputs unchanged. One <=4096B closed JSON continuation line, explicit flush+CLOSE stdin/EOF within60s. Raw final terminal SHA checked on exactly one reread before ZIP.",
+    "result_binding": "Separate new recovery admission/final-terminal hashes from original producer input hashes. Preserve candidate/pending provenance explicitly; never claim pending bytes final or historical session/input equivalence."
+  },
+  "implementation_constraints": {
+    "pure_reuse": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-33cfa8df-cause-proof-ci-independent/collect-diagnostic-evidence.py",
+      "bytes": 45053,
+      "sha256": "c9aeb0e2cc6933557e4909516cbde63d66b95063f0a08a6932bdf8c1fe31215f",
+      "allowed": "Read-only import of EXACT listed compatible pure functions, with existing hash/source binding; old module main/network/globals remain untouched.",
+      "allowed_functions": [
+        "parse_json",
+        "obj",
+        "integer",
+        "digest",
+        "enum_list",
+        "sha",
+        "canonical",
+        "unpack_archive",
+        "receipt_and_manifest",
+        "native_report",
+        "observation"
+      ],
+      "disallowed_functions": [
+        "listing_candidate",
+        "listing_artifact",
+        "qualified_evidence",
+        "candidate_proof",
+        "expected_template",
+        "validate_expected",
+        "validate_terminal",
+        "main",
+        "collect",
+        "bounded_gh_get"
+      ]
+    },
+    "wire_schema": "Original producer receipt/manifest/native/observation grammar remains hash-bound. New recovery admission/failure envelope is distinct, typed and reviewed. No schema adoption by inference.",
+    "listing_schema": {
+      "top": {
+        "required": [
+          "total_count",
+          "artifacts"
+        ],
+        "allowed": [
+          "total_count",
+          "artifacts"
+        ],
+        "types": {
+          "total_count": "integer excluding bool, >=0",
+          "artifacts": "array"
+        },
+        "scope": "total_count == len(artifacts) <=1; no pagination or ignored extras"
+      },
+      "artifact": {
+        "required": [
+          "id",
+          "node_id",
+          "name",
+          "size_in_bytes",
+          "url",
+          "archive_download_url",
+          "expired",
+          "created_at",
+          "expires_at",
+          "updated_at"
+        ],
+        "optional": [
+          "digest",
+          "workflow_run"
+        ],
+        "types": {
+          "id": "integer nonnull excluding bool",
+          "node_id": "string nonnull",
+          "name": "string nonnull",
+          "size_in_bytes": "integer nonnull excluding bool",
+          "url": "string nonnull",
+          "archive_download_url": "string nonnull",
+          "expired": "boolean nonnull",
+          "created_at": "null OR RFC3339 date-time string",
+          "expires_at": "null OR RFC3339 date-time string",
+          "updated_at": "null OR RFC3339 date-time string",
+          "digest": "absent OR null OR string",
+          "workflow_run": "absent OR null OR object"
+        },
+        "unknown_fields": "STOP; fixed masks/counts only"
+      },
+      "workflow_run": {
+        "required_by_API": [],
+        "allowed": [
+          "id",
+          "repository_id",
+          "head_repository_id",
+          "head_branch",
+          "head_sha"
+        ],
+        "when_present_types": {
+          "id": "integer nonnull excluding bool",
+          "repository_id": "integer nonnull excluding bool",
+          "head_repository_id": "integer nonnull excluding bool",
+          "head_branch": "string nonnull",
+          "head_sha": "string nonnull"
+        },
+        "unknown_fields": "STOP"
+      },
+      "eligibility_separate_from_shape": {
+        "required": "Exactly one artifact with positive bounded ID, known name, size1..4500000, expired=false, nonnull sha256:lowerhex64 digest and nonnull workflow_run with id/head_branch/head_sha matching owned target. Optional repository IDs if present must remain positive bounded integers. URLs must equal the fixed API paths derived from validated ID; never followed from payload. Node ID stays opaque and within existing200-character bound, never authority.",
+        "valid_nullable_missing_provenance": "Missing/null digest or workflow_run or missing required identity children is API-shape-valid but INELIGIBLE: fixed IDENTITY_REFUSED/ARTIFACT_PROVENANCE_UNAVAILABLE, no candidate/ZIP; do not coerce or infer them.",
+        "empty": "Genuine total_count0/artifacts[] may proceed only to Root CONFIRMED_EMPTY, never ZIP."
+      }
+    },
+    "failure_shape_proof": "Only fixed required/optional field-presence masks, missing/unknown-field counts and fixed type/digest-valid booleans. No unknown key names, values or arbitrary payload.",
+    "stages": [
+      "STARTUP",
+      "INPUT_ADMISSION",
+      "LOCAL_CLI_CAPABILITY",
+      "LISTING_TRANSPORT",
+      "LISTING_SCHEMA",
+      "ROOT_ADMISSION",
+      "ARCHIVE_TRANSPORT",
+      "ARCHIVE_REPORT_VALIDATION",
+      "CLOSED_EVIDENCE",
+      "OFFLINE_PUBLICATION"
+    ],
+    "categories": [
+      "INPUT_REFUSED",
+      "CLI_UNQUALIFIED",
+      "TRANSPORT_FAILED",
+      "TIMEOUT",
+      "CAP_EXCEEDED",
+      "SCHEMA_REFUSED",
+      "IDENTITY_REFUSED",
+      "ADMISSION_REFUSED",
+      "REPORT_REFUSED",
+      "CHILD_PROTOCOL_REFUSED",
+      "CUSTODY_UNKNOWN",
+      "UNEXPECTED_EXCEPTION"
+    ],
+    "failure_envelope": "Durably retain fixed stage/category; allowlisted inner refusal code or UNKNOWN; child spawn/settlement booleans, nullable exit, byte/digest counters, EOF/overflow flags, actual input/code hashes and logical invocation attempted/settled counters. Attempt is not proof HTTP happened. No error/message/stack/cause/statusbody/token/URL/SQLparams.",
+    "Root_driver": "Reserve outside result exclusively before launching. Recognize closed helper refusal BEFORE candidate parsing. Drain queued bytes through EOF even when child has exited; never equate poll()!=None or temporarily empty queue with no output. Bound queue/stdout/lines. Preserve every failure in same result; no new retry marker. Existing reservation forbids restart.",
+    "bounds_and_custody": "Automatic Root continuation without agent turn. Parent overall deadline180s; only own child killed/waited on failure, pipes closed, reader joined. If settlement cannot be proven, explicit CUSTODY_UNKNOWN; no cleanup-by-name/port. Root result can remain nonterminal under crash; never erase it.",
+    "metadata_contract": {
+      "authority": {
+        "documentation_url": "https://docs.github.com/en/rest/actions/artifacts?apiVersion=2026-03-10#list-workflow-run-artifacts",
+        "version_policy_url": "https://docs.github.com/en/rest/about-the-rest-api/api-versions",
+        "official_versioned_openapi_url": "https://raw.githubusercontent.com/github/rest-api-description/main/descriptions/api.github.com/api.github.com.2026-03-10.json",
+        "retrieval_date_utc": "2026-10-21",
+        "raw_bytes": 13389403,
+        "raw_sha256": "dc477f0866b67a12f1f9f6adadf721a23ad87e2289980c46c5e6fa4dbc7c4492",
+        "description_info_version": "1.1.4 (description package version, NOT requested REST version)",
+        "relevant_schema_pointer": "#/paths/~1repos~1{owner}~1{repo}~1actions~1runs~1{run_id}~1artifacts/get/responses/200/content/application~1json/schema",
+        "artifact_schema_pointer": "#/components/schemas/artifact",
+        "small_excerpt": {
+          "expires_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "raw_document_persisted": false
+      },
+      "requested_api_version": "2026-03-10",
+      "headers": {
+        "Accept": "application/vnd.github+json",
+        "X-GitHub-Api-Version": "2026-03-10"
+      },
+      "version_limit": "Explicit requested version is recorded; old response negotiation remains UNKNOWN. GitHub permits additive fields even in supported versions, so any new field still stops under this finite local contract.",
+      "timestamp_authorities": [
+        "https://spec.openapis.org/oas/v3.0.3.html#data-types",
+        "https://www.rfc-editor.org/rfc/rfc3339#section-5.6"
+      ],
+      "timestamp_rule": "Each created_at/expires_at/updated_at is REQUIRED and may be null. Otherwise it must be a complete RFC3339 date-time: actual calendar date, time, seconds/fraction, UTC Z/z or numeric offset, including RFC-defined leap-second handling. Reject malformed dates, impossible offsets, local/space-only forms or nonstrings; no broad ISO-parser fallback. Existing JSON/string/byte bounds remain.",
+      "timestamp_proof_limit": "Null timestamps are valid metadata, never zero/default timestamps or expiry proof. No freshness inference from timestamps; eligibility retains expired=false plus exact run/head/UUID/digest and archive integrity."
+    },
+    "metadata_aggregation": "New reviewed parser validates the ORIGINAL versioned raw listing. New aggregate consumes its typed immutable artifact tuple plus original listing byte/SHA binding and compatible pure archive/report/observation results. Never strip expires_at, rewrite or reserialize raw listing to placate an old parser; never call old qualified_evidence which re-enters that parser. Preserve the original mandatory one-case/report/observation/cleanup consistency checks and privacy refusals."
+  },
+  "prerequisites_and_controls": [
+    "Independent High plan challenge and Coordinator exact ownership/effects allocation before any implementation or request.",
+    "Implement only allocated code, source/schema equality and distinct High composite helper/test/driver review before network.",
+    "Offline startup/import/frozen-input, exact local argv and local help capability checks before new GET; failure consumes no network permission and stops.",
+    "Pure controls: valid sole-list->exactZIP; empty->noZIP; null/bool/wrong ID or changed facts->noZIP; unknown field/oversize/schema/privacy refusal; closed COMPATIBILITY_STOP recognition; early EOF; delayed queued bytes after process exit; malformed output; timeout/overflow; actual own pipe-child termination.",
+    "Meaningful controls are acquisition-only; no functional suites or native acceptance counts invented.",
+    "Root freezes new posthoc expected admission and reserves once-only operation result before effect. No automatic retry after uncertainty.",
+    "R1 planned controls: full documented-shaped sole owned artifact including expires_at; nullable timestamp positives; RFC3339 UTC/fraction/offset/calendar cases; malformed expiry/type/nullability/missing-required/unknown-field negatives; optional or null digest/workflow_run shape-valid but ineligible/noZIP; nested missing/wrong identity; explicit API header argv; original listing bytes/hash retained through metadata-aware aggregation with no old-parser re-entry."
+  ],
+  "offline_publication": {
+    "handoff": "Root outside result contains only validated closed emitted producer evidence plus new operation/admission/process provenance and closed-output byte/digests. Never raw API/archive/native reports.",
+    "schema": "New recovery envelope explicitly labels producer_evidence separately from posthoc recovery_operation; current new-helper/code and final new-terminal hashes included. Original source/producer UUID remain unchanged.",
+    "High_outputs": "After separate Root offline-publication activation, write exact final3 from frozen closed handoff and inputs, with zero additional GET. Evidence bytes are new serialization, not falsely original native bytes.",
+    "manifest": "List all exact7 new-directory members, hash six non-self files, self membership explicitly self-excluded; bind external Root driver/result/review/input identities. Return actual manifest bytes/SHA externally for Root admission.",
+    "semantics": "Selected producer-case counts and observations only if actually validated. Unknown/absent content stays null/unqualified. Diagnostic success/exit0 never satisfies normal95/fullDB/RLS/pilot/browser/recovery or resolves backend first cause."
+  },
+  "proposed_review_and_proof_outputs": {
+    "plan_challenge": {
+      "directory": "_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-plan-revision-1-challenge",
+      "files": [
+        "original-report.md",
+        "original-attestation.json",
+        "result.json",
+        "manifest.json"
+      ],
+      "ownership_limit": "Proposed fresh output directory only; Root must assign it. Existing REVISE originals remain immutable."
+    },
+    "accepted_allocation_receipt": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-native-artifact-recovery-33cfa8df-01-allocation.json",
+    "implementation_review": {
+      "directory": "_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-implementation-review",
+      "files": [
+        "review-input.md",
+        "input-binding.json",
+        "original-report.md",
+        "original-attestation.json",
+        "result.json",
+        "local-checks.json",
+        "manifest.json"
+      ]
+    },
+    "ownership": "Independent High owns original review outputs; Root owns accepted Coordinator receipt; no author rewrites originals. All are proposed additional governance scope, not created now."
+  },
+  "current_work": {
+    "created": "Only revision-1 plan.md/plan.json/manifest.json",
+    "tests_executed": "Documentation schema extraction and local metadata identity/plan-consistency checks only; implementation controls remain PLANNED",
+    "documentation_reads_performed": true,
+    "owned_run_artifact_requests": 0,
+    "code_implemented": false,
+    "native_credit": 0,
+    "normal_acceptance_credit": 0,
+    "foreign_writes_this_revision": 0
+  },
+  "proposal_provenance": {
+    "path_error": "This actor used relative AddFile paths; global patch cwd was C:/DEV/Kopplas, so two proposal drafts were written outside the assigned worktree. This is an actual deviation, not zero foreign writes.",
+    "own_creation_evidence": "Own AddFile call produced these exact proposal contents; the wrong directory contained exactly these two names. Source/target raw hashes were checked equal before removing either source file. No foreign preexistence snapshot was taken; no claim is made about an independently verified prior directory state.",
+    "correction": [
+      {
+        "name": "plan.json",
+        "wrong_path": "C:/DEV/Kopplas/_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-proposal/plan.json",
+        "owned_target": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-proposal/plan.json",
+        "before_copy_bytes": 14024,
+        "before_copy_sha256": "16c9a9e8a946eaf7e758def5d526f676e9c2adddc2de36145d03cdf4b998a310",
+        "after_copy_bytes": 14024,
+        "after_copy_sha256": "16c9a9e8a946eaf7e758def5d526f676e9c2adddc2de36145d03cdf4b998a310",
+        "source_copy_removed_after_hash_equality": true
+      },
+      {
+        "name": "plan.md",
+        "wrong_path": "C:/DEV/Kopplas/_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-proposal/plan.md",
+        "owned_target": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-proposal/plan.md",
+        "before_copy_bytes": 5503,
+        "before_copy_sha256": "4cf68306aeeafcc69bf25dbedce907d86fa2e65ccb91535b00b4cce6ea3feec8",
+        "after_copy_bytes": 5503,
+        "after_copy_sha256": "4cf68306aeeafcc69bf25dbedce907d86fa2e65ccb91535b00b4cce6ea3feec8",
+        "source_copy_removed_after_hash_equality": true
+      }
+    ],
+    "cleanup": "Only these two exact draft files were copied and removed; then their observed-empty proposal directory was removed nonrecursively, before Root subsequently prohibited directory cleanup. No other directory cleanup occurred.",
+    "after_correction": "Only authorized proposal files are changed. Future patch paths absolute; exec commands explicitly select owned worktree. Root notified; no further foreign writes.",
+    "applies_to": "Retained historical deviation from original proposal preparation; this revision uses absolute owned-worktree paths only."
+  },
+  "revision": {
+    "number": 1,
+    "finding": "R1 P2 documented expires_at rejected by old listing grammar",
+    "original_proposal": "native-artifact-recovery-33cfa8df-01-proposal",
+    "original_REVISE": "native-artifact-recovery-33cfa8df-01-plan-challenge",
+    "rationale": "Use a version-bound typed API metadata parser including required nullable expiry; do not feed accepted original bytes into incompatible old listing/aggregate readers. No historical failure cause is inferred.",
+    "retrieval_date_utc": "2026-10-21",
+    "clock_observation_utc": "2026-10-21 06:13:40 UTC",
+    "change_scope": [
+      "Explicit requested API-version/Accept headers for proposed new operation only",
+      "Complete metadata presence/type/nullability/date-time contract and separate eligibility",
+      "Exclude incompatible old listing and aggregate functions from pure reuse",
+      "Add metadata compatibility controls; preserve all existing scope/budgets/caps/identity/exact-ID/privacy/protocol/custody/zero-credit constraints",
+      "Fresh review metadata names and honest revision provenance"
+    ]
+  }
+}

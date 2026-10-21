@@ -1,0 +1,41 @@
+{
+  "kind": "ACCEPTED_ROUTINE_CORRECTIVE_GOVERNANCE_ALLOCATION",
+  "Coordinator_thread": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "actual_completed_turn": "01a15d30-c81b-7d71-9d9a-8ac557ccada2",
+  "actual_completed_grant_tool_call": "exec-4641acf3-320b-443b-b661-c85d7205ef20",
+  "actual_final_item": "msg_0954b60b44796db1016ad85e7ed444819185531fec0a714bc4",
+  "recovery_operation_id": "6395eae9-7110-49a9-9c16-12a55c06c0bf",
+  "original_allocation_sha256": "b4bd1f15c6e87c4771d89c48e7137c15420e4a041cd767b24b00921b82d2b364",
+  "new_governance_directory": "_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-corrective-review",
+  "exact_seven": {
+    "High_author": [
+      "review-input.md",
+      "input-binding.json",
+      "local-checks.json"
+    ],
+    "distinct_High_reviewer": [
+      "original-report.md",
+      "original-attestation.json",
+      "result.json"
+    ],
+    "Root": [
+      "manifest.json"
+    ]
+  },
+  "existing_Root_identity_custody_state_report_projection_ownership_retained": true,
+  "runtime_code_fix_scope": "existing allocatedhelper/test/Rootdriverhunks only F1/F2; exact9runtimefiles/identity/caps/version unchanged",
+  "original_code_custody_sha256": "c7fdffac0076361cbd6bbbbbaa74ec0f2f7ce3ec487c3490f3fce2201d4f76c6",
+  "original_review_manifest_sha256": "55b315f7da6cfd2876d2dffb3050c443dd34dff8a3a1cc02bab4ab2c83bd8cc8",
+  "Root_driver_replacement": "oldhashmatch+preservedsnapshot+verifiedHighauthorpayload; no authorRootfilewrite",
+  "review_gate": "distinct targetedlatestfixHighreview must close F1/F2 withactualadapternegativecontrols BEFOREANYactivation",
+  "not_fourth_broad_story_review": true,
+  "further_plan_owner_ACK_required_within_bounds": false,
+  "new_network_budget_or_authority": false,
+  "recovery_operation_unexecuted": true,
+  "Root_facts_result_unborn": true,
+  "acquisition_currently_authorized": false,
+  "offline_publication_currently_authorized": false,
+  "original_author3_review3_manifest_snapshot_oldP33": "immutable",
+  "forbidden": "appsource/Spec/SQL/DB/CI/resources/provider/secret/mainmerge/deploy/foreignwrites/monitorresume",
+  "normal_acceptance_credit": 0
+}

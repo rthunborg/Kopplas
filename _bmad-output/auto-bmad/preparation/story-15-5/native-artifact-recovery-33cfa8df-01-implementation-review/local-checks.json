@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "phase": "AUTHOR_FROZEN_PENDING_DISTINCT_COMPOSITE_REVIEW",
+  "local_cli_capability": {
+    "status": "PASSED",
+    "proof": {
+      "gh_binary_sha256": "a1701e3c806a805981554ace7df04812772c6449bdcfd1a77675013d97786401",
+      "gh_binary_bytes": 42166072,
+      "help_stdout_sha256": "c6136b139e05d1b4e9271a1edf08473b6f57df6ff01dc6da64b7079f53852e82",
+      "help_stdout_bytes": 7770,
+      "method": true,
+      "header": true,
+      "escape": true
+    },
+    "actual_help_process_max": 1,
+    "network_requests": 0
+  },
+  "normal_acceptance_credit": 0,
+  "created_at_utc": "2026-10-21T06:32:29.620282+00:00",
+  "code": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/artifact-recovery-33cfa8df-01/collect-recovery-evidence.py",
+      "bytes": 31137,
+      "sha256": "6e730bd7d56684ba5c5586ab77871c570ad85af3f9ea785743ff444b5bbf8b9c"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/artifact-recovery-33cfa8df-01/test_collect_recovery_evidence.py",
+      "bytes": 19563,
+      "sha256": "70713595f5f1cdc138a75809b6c55370d77393f016aac7b76ad4cdbec45ce61e"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-artifact-recovery-01-driver.py",
+      "bytes": 10483,
+      "sha256": "0c49397576042a9881cbfa001d36b5d1c5dbe7c139fdddb34e1bc880076fb2c6"
+    }
+  ],
+  "run_history": [
+    {
+      "methods": 22,
+      "passed_methods": 21,
+      "failures": 1,
+      "errors": 0,
+      "positive_checks": 20,
+      "negative_checks": 99,
+      "owned_python_children": 7,
+      "limitation": "Synthetic Windows print CRLF expectation; reader correctly delivered queued bytes."
+    },
+    {
+      "methods": 22,
+      "failures": 0,
+      "errors": 0,
+      "positive_checks": 21,
+      "negative_checks": 99,
+      "owned_python_children": 7
+    },
+    {
+      "methods": 25,
+      "failures": 0,
+      "errors": 0,
+      "positive_checks": 23,
+      "negative_checks": 102,
+      "owned_python_children": 8
+    },
+    {
+      "methods": 26,
+      "failures": 1,
+      "errors": 0,
+      "positive_checks": 26,
+      "negative_checks": 102,
+      "owned_python_children": 12,
+      "limitation": "Oversize synthetic stdout was initially embedded in Windows argv, causing spawn refusal; replaced with short generator. No production code change."
+    },
+    {
+      "methods": 26,
+      "failures": 0,
+      "errors": 0,
+      "positive_checks": 27,
+      "negative_checks": 102,
+      "owned_python_children": 12,
+      "status": "LATEST_SUITE_PASS"
+    }
+  ],
+  "counts_nonadditive": true,
+  "actual_cli_startup": [
+    {
+      "argument": "--template",
+      "status": "EXPECTED_TEMPLATE_ONLY",
+      "stdout_bytes": 5699,
+      "stdout_sha256": "56f3b9bc95dc22c1fd088424b394206e82e64c0db77bf30cf8d1b2d9f8e4d323",
+      "transport": {
+        "spawned": true,
+        "settled": true,
+        "exit_code": 0,
+        "stdout_eof": true,
+        "stdout_bytes": 5699
+      }
+    },
+    {
+      "argument": "--refuse-unallocated-flag",
+      "status": "EXPECTED_EXIT1_REFUSAL",
+      "transport": {
+        "spawned": true,
+        "settled": true,
+        "exit_code": 1,
+        "stdout_eof": true,
+        "stdout_bytes": 254
+      }
+    }
+  ],
+  "syntax": {
+    "files": 3,
+    "passed": true
+  },
+  "actual_current_producer_raw_bindings": 11,
+  "root_facts_unborn": true,
+  "root_result_unborn": true,
+  "network_requests": 0,
+  "CI_dispatches": 0,
+  "native_cases_executed": 0
+}

@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-21T05:36:23Z"
+updated_at: "2026-10-21T06:56:14Z"
 started_at: "2026-10-09T12:57:49Z"
 completed_at: null
 active_seconds: 196027
@@ -18,15 +18,15 @@ is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: qualify-preselected-checkpoint-id-staged-artifact-format
-selected_role: sensitive-actual-staged-preselected-id-review-artifact-format-qualifier
+selected_phase: prepare-native-cause-proof-sole-dispatch-operations
+selected_role: sensitive-owned-diagnostic-checkpoint-dispatch-precondition-planner
 selected_profile: sensitive
 selected_model: gpt-6.1-sol
 selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Actualstagedmetadata nativecheck+raw/index/position observation thenHighACKforimmutable sourcequote/diff warnings beforeRootcheckpointcommitPUSH; no rewriting/checkerhooksbypass/source/nativeeffects."
+escalation_reason: "Actual5readonlyRootmetadataqualified; inspectactualreviewedCLIargs andremainingownedCIadmissionvariable/prePOSTconditions+exactmutations beforeRootfreezesintent/expected andsolePOST. READONLYplanningonly/no additionalGET/write/POST/resources/sourceeffects."
 routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary epic test planning; sensitive implementation/review scope routed explicitly High\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary story test-risk classification\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_triage\",\"profile\":\"light\",\"role\":\"test-risk-triage\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -234,6 +234,9 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Freshdistinctcontext-freeHigh reviewsactualf304-vs252exact3identity-interface delta againstnewallocation/planconstraints andconsequentialadjacentregressions; no fourthbroad/no sourcechanges/nativeeffects.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"review-actual-preselected-checkpoint-id-interface-delta\",\"profile\":\"sensitive\",\"role\":\"fresh-independent-sensitive-diagnostic-dispatch-identity-latest-three-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Actualf304exact3distinctHighPASS+actualnew3allocation needmetadata-onlycurrent70/32ancestry/protectedproof/sourcefreeze beforeRootcheckpointPUSH; preserve12priorcapsules vs11failednativehistories and oldP252reviewedUNEXECUTED. No source/Spec/privateconsumer/nativeeffects.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"freeze-preselected-checkpoint-id-diagnostic-producer\",\"profile\":\"sensitive\",\"role\":\"sensitive-reviewed-diagnostic-producer-identity-prerequisite-provenance-freezer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Actualstagedmetadata nativecheck+raw/index/position observation thenHighACKforimmutable sourcequote/diff warnings beforeRootcheckpointcommitPUSH; no rewriting/checkerhooksbypass/source/nativeeffects.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"qualify-preselected-checkpoint-id-staged-artifact-format\",\"profile\":\"sensitive\",\"role\":\"sensitive-actual-staged-preselected-id-review-artifact-format-qualifier\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Newactual33cfa8dfpushedcheckpoint/freshUUID afterreviewedf304source+freeze needsnewexclusiveprivate7 underallocation; reuseimmutableP252reviewedprotocolONLYwithactualnew11producer/schema/helper/testbindings, targetedindependentreview beforeanynetwork/use. No oldPoverwrite/newnativeeffects.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"rebind-native-cause-proof-private-consumer-current-checkpoint\",\"profile\":\"sensitive\",\"role\":\"sensitive-reviewed-private-diagnostic-protocol-binding-author\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"SameindependentHigh targetedactualP252vsP33 identityassignment/11producer sourcecompatibility bindingdelta; protocolfunctionAST/testbytes unchanged reusequalifiedold31controlsplusfreshcurrentpureevidence; no broadunchangedrereview/no network/use beforePASS.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"review-native-cause-proof-private-consumer-current-checkpoint-bindings\",\"profile\":\"sensitive\",\"role\":\"independent-sensitive-reviewed-private-protocol-binding-and-source-compatibility-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Actual5readonlyRootmetadataqualified; inspectactualreviewedCLIargs andremainingownedCIadmissionvariable/prePOSTconditions+exactmutations beforeRootfreezesintent/expected andsolePOST. READONLYplanningonly/no additionalGET/write/POST/resources/sourceeffects.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"prepare-native-cause-proof-sole-dispatch-operations\",\"profile\":\"sensitive\",\"role\":\"sensitive-owned-diagnostic-checkpoint-dispatch-precondition-planner\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: null
 tea_selected: []
 tea_rationale: null
@@ -3774,7 +3777,7 @@ p5_native_dependency_audit_repair:
   superseded_by: p5_native_denial_cause_proof
   terminal_packet_admission_sha256: 34785381fc18743aeeb67f23517683c48e790509b0c0b15e3fc683bd927f2a0a
 p5_native_denial_cause_proof:
-  status: F304_SOURCEFREEZE_ACTUAL9_FORMAT_HIGH_QUALIFIED_PENDING_CHECKPOINT_PUSH
+  status: P33_ACTUAL_FIVE_GET_METADATA_QUALIFIED_SOLE_DISPATCH_PRECONDITION_HIGH_PLAN
   base_head: 56324120f8e08de995e8cc7432ab27f2d0c98635
   source_head: 55db468eef3106ca1b02dc846ba12967a28dc238
   run_id: 39507120872
@@ -3945,3 +3948,52 @@ p5_native_denial_cause_proof:
   preselected_checkpoint_id_sourcefreeze: "{\"capsule_path\": \"_bmad-output\\\\auto-bmad\\\\preparation\\\\story-15-5\\\\source-freeze-native-preselected-checkpoint-id.json\", \"capsule_bytes\": 884427, \"capsule_sha256\": \"9009a6a62233fe6b68f7b8ae415870a9b81e8a664a4eecea0f3f5c9e90049232\", \"full_refs\": 670, \"unique_paths\": 557, \"Root_receipt\": \".env.epic15.mail-runtime/story-15-5-preparation/root-preselected-id-capsule-admission.json\", \"Root_receipt_bytes\": 220141, \"Root_receipt_sha256\": \"258e1a95b06b2f4c612487284c2b0b6e65f95c292686cb1e6a0055695d937b39\", \"parent_check\": \"FIRST_EXECUTION_PASS_NATIVE0_8.626S\", \"parent_receipt_sha256\": \"2df375d97676f1ab2a562ca19618331445c090d60480fd82e49144bddaaf7bd7\", \"producer_lint\": \"native0_errors0_warnings0\", \"parent_verifier_lint\": \"native0_errors0_warnings0\", \"source70\": 70, \"normalization_differences\": 41, \"ancestry\": 32, \"author_commits\": 20, \"Root_commits\": 12, \"source_equalities\": 734, \"prior_capsules\": 12, \"failed_native_histories\": 11, \"snapshots\": 30, \"uncredited_historical_raw\": 12, \"baseline_only\": 18, \"native_execution_admitted\": false}"
   preselected_checkpoint_staged_format: "{\"path\": \"_bmad-output\\\\auto-bmad\\\\preparation\\\\story-15-5\\\\root-native-preselected-checkpoint-id-staged-artifact-format-qualification.json\", \"bytes\": 5224, \"sha256\": \"d0b81a3c3ea5c84889f7ffe50ab96de0bd7cb7a996cd2b9af49c4b2e34b70695\"}"
   preselected_checkpoint_unrestricted_cached_check_exit: 2
+  preselected_checkpoint_pushed_head: 33cfa8dfa1323708edf80034c0a98b0620790b6a
+  new_private_activation: "{\"path\": \".env.epic15.mail-runtime\\\\story-15-5-preparation\\\\root-33cfa8df-diagnostic-private-activation.json\", \"bytes\": 2140, \"sha256\": \"11ebcbd27ea1813bfc0757cb14d884bdc5c9c4b4c048a3ef65214605add5a94a\"}"
+  new_private_checkpoint_id: 44738655-b7e9-4bb7-8b8c-77f7c2a32bcf
+  new_private_directory: ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-33cfa8df-cause-proof-ci-independent"
+  P33_private_binding_review_input: "{\"path\": \".env.epic15.mail-runtime\\\\story-15-5-preparation\\\\root-33cfa8df-private-helper-binding-review-input.json\", \"bytes\": 1472, \"sha256\": \"5ce3e5a9a87f58ce9b3d8c23f4ef083a11e6924524c9ba01b380bc550236b695\"}"
+  P33_private_binding_review_directory: "_bmad-output\\auto-bmad\\preparation\\story-15-5\\native-denial-cause-proof-private-consumer-rebound-33cfa8df-review"
+  P33_private_binding_review_admission: "{\"path\": \".env.epic15.mail-runtime\\\\story-15-5-preparation\\\\root-33cfa8df-private-helper-binding-review-admission.json\", \"bytes\": 932, \"sha256\": \"3f12c44d8eaed41fea16aa29f211b69251f1ca69a3700e472a9ad0d1e50ab13c\"}"
+  P33_root_metadata_request_plan: "{\"path\": \".env.epic15.mail-runtime\\\\story-15-5-preparation\\\\root-33cfa8df-admission-metadata-request-plan.json\", \"bytes\": 1890, \"sha256\": \"7ccc78b4cff0813b2126d101b022b78d2db12ebc24939d269615a08cc0c41205\"}"
+  P33_actual_metadata_proof: "{\"path\": \".env.epic15.mail-runtime\\\\story-15-5-preparation\\\\root-33cfa8df-admission-metadata-proof.json\", \"bytes\": 1773, \"sha256\": \"758ba26c7345c966bf3a68d7daa89abaf433657145a49dc85eb8f8a419f5995a\", \"journal_path\": \".env.epic15.mail-runtime\\\\story-15-5-preparation\\\\root-33cfa8df-admission-metadata-request-journal.json\", \"journal_bytes\": 3368, \"journal_sha256\": \"22c8a297f736eec5cdfdaa21d8c55feb31a1b2ba7d795b7b3c09a87f9db3b684\"}"
+  P33_metadata_qualified_at_utc: "2026-10-21T05:43:21.266Z"
+  P33_prepost_expected: "{\"path\": \".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-33cfa8df-cause-proof-ci-independent/expected-admission.json\", \"bytes\": 6705, \"sha256\": \"a5d0ca28fd7bce83aa2f3105f6122610091fab52bf7d935aaf040483b9f3cbc1\"}"
+  P33_whole_diagnostic_adoption: "{\"path\": \".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-whole-diagnostic-admission-adoption.json\", \"bytes\": 2231, \"sha256\": \"82a01728dca65b9504b4b66302ff5aeb7441ab1221f98ea2968178e7540c221e\"}"
+  P33_dispatch_authorized_once: true
+  P33_dispatch_executed: true
+  P33_collection_authorized: false
+  P33_normal_acceptance_credit: 0
+  P33_dispatch_command_native_exit: 0
+  P33_status_initial: "dispatch-uncertain: no unique matching run visible; no redispatch"
+  P33_dispatch_state_sha256: dd78a940df8b6f70a8592fc5356afe390c760ca2d2ee16ee1fdf4f19aa59b8f6
+  P33_actual_run_id: 39551805476
+  P33_status: in_progress
+  P33_initial_visibility_uncertainty_resolved_without_redispatch: true
+  P33_driver_review: "{\"path\": \".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-artifact-driver-review-admission.json\", \"bytes\": 1463, \"sha256\": \"2d268ca1b6a6c36d51d10781afd9f199dcf581d8b614f2d73a36efefd1a9dbbc\"}"
+  P33_driver_verdict: PASS_D1_CLOSED_2_SYNTHETIC_CONTROLS_NOT_NATIVE
+  P33_actual_terminal: completed_success_DIAGNOSTIC_ONLY
+  P33_terminal_pending: "{\"path\": \".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-33cfa8df-cause-proof-ci-independent/terminal-facts.json\", \"bytes\": 3135, \"sha256\": \"aa00fd0c2158d02f2a42bc989624b611c36be44b0059627f5d9ac42d750d1754\"}"
+  P33_separate_collection_grant: "{\"path\": \".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-terminal-collection-grant.json\", \"bytes\": 1040, \"sha256\": \"0fe60047a8520ff3a79ebf94a88ef400077dea64f73f4e17f7b10a2e9b9fd470\"}"
+  P33_collector_executed: true
+  P33_collector_operation_stop: "{\"path\": \".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-collector-operation-stop.json\", \"bytes\": 1096, \"sha256\": \"89585f71abc74d6656157e95453e0b297d29d44861e65e4a67d003d3e286780e\"}"
+  P33_collector_outcome: ROOT_PROTOCOL_STOP_INNER_CAUSE_UNKNOWN_NO_RETRY
+  P33_recovery_plan_identity: "{\"path\": \".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-recovery-plan-identity-admission.json\", \"bytes\": 510, \"sha256\": \"59f4b93534eeb5dd06d5f92cbbaee9be00d3c91fa5d5c2c676369da527ace18a\"}"
+  P33_recovery_plan_status: R1_CLOSED_PASS_PLANONLY_PENDING_COORDINATOR_ALLOCATION
+  P33_recovery_plan_challenge_admission_sha256: 1625dc33da1329572c3018d722677c5ac0cd08fa3340eed5a1d43443599c37c2
+  P33_recovery_revision1_directory: "_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-proposal-revision-1"
+  P33_recovery_revision1_manifest_sha256: 5c04c4457240909ec0c239f9af0c58d12332e3d7adbb2b76b113e9faf520cba0
+  P33_recovery_revision1_validation: "{\"path\": \".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-recovery-r1-validation-admission.json\", \"bytes\": 1293, \"sha256\": \"701cc75dc1f45512a98729f7a6c8b4f39dd45cdcf4d1c1e703f5083ebd851949\"}"
+  P33_recovery_implementation_authorized: true
+  P33_recovery_acquisition_authorized: false
+  P33_recovery_allocation: "{\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/accepted-native-artifact-recovery-33cfa8df-01-allocation.json\", \"bytes\": 3727, \"sha256\": \"b4bd1f15c6e87c4771d89c48e7137c15420e4a041cd767b24b00921b82d2b364\"}"
+  P33_recovery_operation_id: 6395eae9-7110-49a9-9c16-12a55c06c0bf
+  P33_recovery_offline_publication_authorized: false
+  P33_recovery_composite_input_admission: "{\"path\": \".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-recovery-implementation-input-admission.json\", \"bytes\": 1383, \"sha256\": \"123f9be3261abbb56843daa92e316e4e76e3650fd4d4cfba046dee81aeea4b31\"}"
+  P33_recovery_code_status: F1_NARROWFIX_FROZEN_AUTHOR34PASS_PENDING_TARGETED_REVIEW
+  P33_recovery_code_review_original: "{\"path\": \".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-recovery-original-code-review-admission.json\", \"bytes\": 1886, \"sha256\": \"6e670ee0fcf2f29921dc8670250bc2a436b0527ef114ea49c518701c54eb2ce5\"}"
+  P33_recovery_corrective_allocation: "{\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/accepted-native-artifact-recovery-33cfa8df-01-corrective-review-allocation.json\", \"bytes\": 2163, \"sha256\": \"0199f9a96ccb5b01979705d1e3fae94ac4619d7e4433fe41d4c1e35d18d43c95\"}"
+  P33_recovery_corrective_input_admission: "{\"path\": \".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-recovery-corrective-input-admission.json\", \"bytes\": 648, \"sha256\": \"0c022a1e62bf9ffe2cff8402b10f77edc76deb2869694c89e7c84de90db2a5b6\"}"
+  P33_recovery_corrective_review: "{\"path\": \".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-recovery-corrective-review-admission.json\", \"bytes\": 1710, \"sha256\": \"e2ffca7e5a8bf0563ef7f7d8f8c4b10ee25aba2182f62d86727b8869a4951ead\"}"
+  P33_recovery_f1_followup_metadata_assignment: "{\"path\": \".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-recovery-f1-followup-metadata-assignment.json\", \"bytes\": 1091, \"sha256\": \"87d1cae0ee749159bc7565f84e01a5a424edc58cf518bb9edd79051667e1d701\"}"
+  P33_recovery_f1_followup_input_admission: "{\"path\": \".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-recovery-f1-followup-input-admission.json\", \"bytes\": 772, \"sha256\": \"ba03de5205f795f1213045d86a74bf961429e28cd827a2d1aa6b949f46d45a23\"}"

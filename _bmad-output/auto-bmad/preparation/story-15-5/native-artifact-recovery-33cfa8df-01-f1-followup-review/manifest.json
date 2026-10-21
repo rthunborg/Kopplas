@@ -1,0 +1,48 @@
+{
+  "kind": "ROOT_F1_FOLLOWUP_REVIEW_SELF_EXCLUDED_MANIFEST",
+  "verdict": "PASS_LATEST_F1_CLOSED_F2_UNCHANGED",
+  "members": [
+    "input-binding.json",
+    "local-checks.json",
+    "original-attestation.json",
+    "original-report.md",
+    "result.json",
+    "review-input.md",
+    "manifest.json"
+  ],
+  "files": [
+    {
+      "path": "input-binding.json",
+      "bytes": 45227,
+      "sha256": "c0f0961c58c14b314fe3412c362defd7830cce23933ab4b380a1529ab908aefb"
+    },
+    {
+      "path": "local-checks.json",
+      "bytes": 2926,
+      "sha256": "01dc6815b2f74c3f78fd46af5e1f2fe31a9d9764a396d7b0f64ac197ac61e9fd"
+    },
+    {
+      "path": "original-attestation.json",
+      "bytes": 15753,
+      "sha256": "df890bd39afef9a0886e290ab7c2f8992852bab90ccd8d47520017bd5c2d5d06"
+    },
+    {
+      "path": "original-report.md",
+      "bytes": 6803,
+      "sha256": "c2699ba65bf410e9167685b5bcee823a654ff2b62b516f86449ff8c3efff3a9b"
+    },
+    {
+      "path": "result.json",
+      "bytes": 1022,
+      "sha256": "fed5eb7e5d5b82c2fdfcf150209dd6a03079def0db7f42dbd6b9e3e93abd209e"
+    },
+    {
+      "path": "review-input.md",
+      "bytes": 4048,
+      "sha256": "a64f4af54e7ca997d60d198aff04cbe9804755ceecd3581e6e2c8d5c6345bff2"
+    }
+  ],
+  "self_excluded": "manifest.json",
+  "API": 0,
+  "normal_acceptance_credit": 0
+}

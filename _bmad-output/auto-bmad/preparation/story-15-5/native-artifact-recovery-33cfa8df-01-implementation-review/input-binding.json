@@ -1,0 +1,501 @@
+{
+  "schema_version": 1,
+  "phase": "AUTHOR_FROZEN_PENDING_DISTINCT_COMPOSITE_REVIEW",
+  "normal_acceptance_credit": 0,
+  "root_driver_payload": {
+    "encoding": "base64",
+    "bytes": 10483,
+    "sha256": "0c49397576042a9881cbfa001d36b5d1c5dbe7c139fdddb34e1bc880076fb2c6",
+    "data": "IiIiUm9vdC1vbmx5IG9uY2UgYnJpZGdlOyBhbGwgc3Rkb3V0L3N0ZGVyciBwYXlsb2FkcyByZW1haW4gbWVtb3J5LW9ubHkuIiIiCmltcG9ydCBoYXNobGliLGltcG9ydGxpYi51dGlsLGpzb24sb3MscGF0aGxpYixxdWV1ZSxzdWJwcm9jZXNzLHN5cyx0aHJlYWRpbmcsdGltZQpST09UPXBhdGhsaWIuUGF0aChfX2ZpbGVfXykucmVzb2x2ZSgpLnBhcmVudHNbMl0KUFJJVkFURT1ST09ULycuZW52LmVwaWMxNS5tYWlsLXJ1bnRpbWUvc3RvcnktMTUtNS1wcmVwYXJhdGlvbicKUD1QUklWQVRFLydhcnRpZmFjdC1yZWNvdmVyeS0zM2NmYThkZi0wMScKUkVTVUxUPVBSSVZBVEUvJ3Jvb3QtMzNjZmE4ZGYtYXJ0aWZhY3QtcmVjb3ZlcnktMDEtcmVzdWx0Lmpzb24nCk9QPSc2Mzk1ZWFlOS03MTEwLTQ5YTktOWMxNi0xMmE1NWMwNmMwYmYnCk1BWF9PVVRQVVQ9MjAwMDAwMAoKY2xhc3MgRHJpdmVyU3RvcChFeGNlcHRpb24pOgogICAgZGVmIF9faW5pdF9fKHNlbGYsY2F0ZWdvcnk9J0NISUxEX1BST1RPQ09MX1JFRlVTRUQnKTpzZWxmLmNhdGVnb3J5PWNhdGVnb3J5CgpkZWYgbmVlZCh2LGNhdGVnb3J5PSdDSElMRF9QUk9UT0NPTF9SRUZVU0VEJyk6CiAgICBpZiBub3QgdjpyYWlzZSBEcml2ZXJTdG9wKGNhdGVnb3J5KQpkZWYgc2hhKGIpOnJldHVybiBoYXNobGliLnNoYTI1NihiKS5oZXhkaWdlc3QoKQpkZWYgY2Fub25pY2FsKHYpOnJldHVybiBqc29uLmR1bXBzKHYsc29ydF9rZXlzPVRydWUsc2VwYXJhdG9ycz0oJywnLCc6JykpLmVuY29kZSgpCmRlZiByZWFkKHBhdGgpOgogICAgd2l0aCBwYXRoLm9wZW4oJ3JiJykgYXMgZjpiPWYucmVhZCg2NTUzNykKICAgIG5lZWQobGVuKGIpPD02NTUzNiwnQ0FQX0VYQ0VFREVEJyk7cmV0dXJuIGIKZGVmIHN5bmMocGF0aCx2YWx1ZSxleGNsdXNpdmU9RmFsc2UpOgogICAgYj0oanNvbi5kdW1wcyh2YWx1ZSxzb3J0X2tleXM9VHJ1ZSxpbmRlbnQ9MikrJ1xuJykuZW5jb2RlKCkKICAgIHdpdGggcGF0aC5vcGVuKCd4YicgaWYgZXhjbHVzaXZlIGVsc2UgJ3diJykgYXMgZjpmLndyaXRlKGIpO2YuZmx1c2goKTtvcy5mc3luYyhmLmZpbGVubygpKQogICAgcmV0dXJuIGIKCmNsYXNzIExpbmVzOgogICAgIiIiQ29uc3VtZSBxdWV1ZWQgZGF0YSB1bnRpbCBFT0YgZXZlbiBpZiBwcm9jZXNzIGV4aXQgd2FzIGFscmVhZHkgc2Vlbi4iIiIKICAgIGRlZiBfX2luaXRfXyhzZWxmLHBpcGUpOgogICAgICAgIHNlbGYuZXZlbnRzPXF1ZXVlLlF1ZXVlKG1heHNpemU9MjU2KTtzZWxmLmJ1ZmZlcj1ieXRlYXJyYXkoKTtzZWxmLmJ5dGVzPTA7c2VsZi5lb2Y9RmFsc2U7c2VsZi5iYWQ9dGhyZWFkaW5nLkV2ZW50KCkKICAgICAgICBkZWYgcmVhZGVyKCk6CiAgICAgICAgICAgIHRyeToKICAgICAgICAgICAgICAgIHdoaWxlIFRydWU6CiAgICAgICAgICAgICAgICAgICAgYj1waXBlLnJlYWQxKDgxOTIpCiAgICAgICAgICAgICAgICAgICAgaWYgbm90IGI6YnJlYWsKICAgICAgICAgICAgICAgICAgICBzZWxmLmJ5dGVzKz1sZW4oYikKICAgICAgICAgICAgICAgICAgICBpZiBzZWxmLmJ5dGVzPk1BWF9PVVRQVVQ6c2VsZi5iYWQuc2V0KCk7YnJlYWsKICAgICAgICAgICAgICAgICAgICBzZWxmLmV2ZW50cy5wdXQoYix0aW1lb3V0PTEpCiAgICAgICAgICAgIGV4Y2VwdCBFeGNlcHRpb246c2VsZi5iYWQuc2V0KCkKICAgICAgICAgICAgZmluYWxseToKICAgICAgICAgICAgICAgIHRyeTpzZWxmLmV2ZW50cy5wdXQoTm9uZSx0aW1lb3V0PTEpCiAgICAgICAgICAgICAgICBleGNlcHQgcXVldWUuRnVsbDpzZWxmLmJhZC5zZXQoKQogICAgICAgIHNlbGYudGhyZWFkPXRocmVhZGluZy5UaHJlYWQodGFyZ2V0PXJlYWRlcixkYWVtb249VHJ1ZSk7c2VsZi50aHJlYWQuc3RhcnQoKQogICAgZGVmIGxpbmUoc2VsZixkZWFkbGluZSk6CiAgICAgICAgd2hpbGUgYidcbicgbm90IGluIHNlbGYuYnVmZmVyOgogICAgICAgICAgICBuZWVkKHRpbWUubW9ub3RvbmljKCk8ZGVhZGxpbmUsJ1RJTUVPVVQnKTtuZWVkKG5vdCBzZWxmLmJhZC5pc19zZXQoKSwnQ0FQX0VYQ0VFREVEJykKICAgICAgICAgICAgaWYgc2VsZi5lb2Y6CiAgICAgICAgICAgICAgICBuZWVkKG5vdCBzZWxmLmJ1ZmZlcik7cmV0dXJuIE5vbmUKICAgICAgICAgICAgdHJ5OmI9c2VsZi5ldmVudHMuZ2V0KHRpbWVvdXQ9bWluKC4xLG1heCguMDAxLGRlYWRsaW5lLXRpbWUubW9ub3RvbmljKCkpKSkKICAgICAgICAgICAgZXhjZXB0IHF1ZXVlLkVtcHR5OmNvbnRpbnVlCiAgICAgICAgICAgIGlmIGIgaXMgTm9uZTpzZWxmLmVvZj1UcnVlCiAgICAgICAgICAgIGVsc2U6c2VsZi5idWZmZXIuZXh0ZW5kKGIpO25lZWQobGVuKHNlbGYuYnVmZmVyKTw9MTMxMDcyLCdDQVBfRVhDRUVERUQnKQogICAgICAgIGxpbmUsXyxyZXN0PXNlbGYuYnVmZmVyLnBhcnRpdGlvbihiJ1xuJyk7c2VsZi5idWZmZXI9Ynl0ZWFycmF5KHJlc3QpCiAgICAgICAgbmVlZChsZW4obGluZSk8PTY1NTM2LCdDQVBfRVhDRUVERUQnKTtyZXR1cm4gYnl0ZXMobGluZSkKICAgIGRlZiBkaXNjYXJkKHNlbGYsZGVhZGxpbmUpOgogICAgICAgIHdoaWxlIG5vdCBzZWxmLmVvZiBhbmQgdGltZS5tb25vdG9uaWMoKTxkZWFkbGluZToKICAgICAgICAgICAgdHJ5OmI9c2VsZi5ldmVudHMuZ2V0KHRpbWVvdXQ9LjA1KQogICAgICAgICAgICBleGNlcHQgcXVldWUuRW1wdHk6Y29udGludWUKICAgICAgICAgICAgaWYgYiBpcyBOb25lOnNlbGYuZW9mPVRydWUKICAgICAgICBzZWxmLnRocmVhZC5qb2luKHRpbWVvdXQ9MSkKCmRlZiBhZG1pc3Npb24obSxyLGUscCxlYixwYik6CiAgICBtLnZhbGlkYXRlX3JlY29yZChyKTtjPXJbJ2NhbmRpZGF0ZSddCiAgICBuZWVkKGNbJ2V4cGVjdGVkX3JlY292ZXJ5X3NoYTI1NiddPT1zaGEoZWIpIGFuZCBjWydwZW5kaW5nX3Rlcm1pbmFsX3NoYTI1NiddPT1zaGEocGIpKQogICAgZmluYWw9ZGljdChwKTthPWNbJ2FydGlmYWN0J10KICAgIGZpbmFsLnVwZGF0ZShhcnRpZmFjdF9hZG1pc3Npb25fc3RhdGU9J0NPTkZJUk1FRF9FTVBUWScgaWYgYSBpcyBOb25lIGVsc2UgJ0NPTkZJUk1FRF9QUkVTRU5UJyxhcnRpZmFjdF9pZD1Ob25lIGlmIGEgaXMgTm9uZSBlbHNlIGFbJ2lkJ10sYXJ0aWZhY3RfbGlzdGluZ19zaGEyNTY9Y1snbGlzdGluZ19zaGEyNTYnXSxhcnRpZmFjdF9saXN0aW5nX2J5dGVzPWNbJ2xpc3RpbmdfYnl0ZXMnXSxhcnRpZmFjdF9jYW5kaWRhdGVfc2hhMjU2PXJbJ2NhbmRpZGF0ZV9zaGEyNTYnXSkKICAgIG0udmFsaWRhdGVfdGVybWluYWwoZmluYWwsZSxlYikKICAgIHJhdz0oanNvbi5kdW1wcyhmaW5hbCxzb3J0X2tleXM9VHJ1ZSxpbmRlbnQ9MikrJ1xuJykuZW5jb2RlKCkKICAgIGFjaz1jYW5vbmljYWwoeydzY2hlbWFfdmVyc2lvbic6MSwna2luZCc6J2NhbGVuZGFyX2ZlZWQuYXJ0aWZhY3RfcmVjb3ZlcnlfY29udGludWUnLCdvcGVyYXRpb25faWQnOk9QLCdjYW5kaWRhdGVfc2hhMjU2JzpyWydjYW5kaWRhdGVfc2hhMjU2J10sJ2ZpbmFsX3Rlcm1pbmFsX3NoYTI1Nic6c2hhKHJhdyl9KStiJ1xuJwogICAgbmVlZChsZW4oYWNrKTw9NDA5NikKICAgIHJldHVybiBmaW5hbCxyYXcsYWNrCgpkZWYgYWNjZXB0KG0sdixzdGF0ZSxlLHAsZWIscGIsd3JpdGVfZmluYWwsc2VuZCxmcm96ZW4sc2F2ZSk6CiAgICBtLnZhbGlkYXRlX3JlY29yZCh2KTtraW5kPXZbJ2tpbmQnXQogICAgaWYga2luZD09J2NhbGVuZGFyX2ZlZWQuYXJ0aWZhY3RfcmVjb3Zlcnlfc3RhZ2UnOgogICAgICAgIG49dlsnbG9naWNhbF9hdHRlbXB0cyddO25lZWQobj49c3RhdGVbJ2xvZ2ljYWxfYXR0ZW1wdHMnXSBhbmQgbjw9c3RhdGVbJ2xvZ2ljYWxfYXR0ZW1wdHMnXSsxKQogICAgICAgIG5lZWQobj09MSBvciBzdGF0ZVsnY2FuZGlkYXRlJ10gaXMgbm90IE5vbmUgYW5kIHN0YXRlWydjYW5kaWRhdGUnXVsnYXJ0aWZhY3QnXSBpcyBub3QgTm9uZSkKICAgICAgICBzdGF0ZS51cGRhdGUocGhhc2U9J1JVTk5JTkcnLHN0YWdlPXZbJ3N0YWdlJ10sbG9naWNhbF9hdHRlbXB0cz1uLHRyYW5zcG9ydD12Wyd0cmFuc3BvcnQnXSk7c2F2ZSgpO3JldHVybiBOb25lCiAgICBpZiBraW5kPT0nY2FsZW5kYXJfZmVlZC5hcnRpZmFjdF9yZWNvdmVyeV9mYWlsdXJlJzoKICAgICAgICBzdGF0ZS51cGRhdGUoc3RhZ2U9dlsnc3RhZ2UnXSxjYXRlZ29yeT12WydjYXRlZ29yeSddLGhlbHBlcl9mYWlsdXJlPXYpO3NhdmUoKTtyYWlzZSBEcml2ZXJTdG9wKHZbJ2NhdGVnb3J5J10pCiAgICBpZiBraW5kPT0nY2FsZW5kYXJfZmVlZC5hcnRpZmFjdF9yZWNvdmVyeV9hZG1pc3Npb25fcmVxdWVzdCc6CiAgICAgICAgbmVlZChzdGF0ZVsnY2FuZGlkYXRlJ10gaXMgTm9uZSBhbmQgc3RhdGVbJ2xvZ2ljYWxfYXR0ZW1wdHMnXT09MSBhbmQgc3RhdGVbJ3RyYW5zcG9ydCddIGlzIG5vdCBOb25lIGFuZCBzdGF0ZVsndHJhbnNwb3J0J11bJ3NldHRsZWQnXSBpcyBUcnVlKQogICAgICAgIGZyb3plbigpO2ZpbmFsLHJhdyxhY2s9YWRtaXNzaW9uKG0sdixlLHAsZWIscGIpCiAgICAgICAgd3JpdGVfZmluYWwocmF3KTtzZW5kKGFjaykKICAgICAgICBzdGF0ZS51cGRhdGUoc3RhZ2U9J1JPT1RfQURNSVNTSU9OJyxjYW5kaWRhdGU9dlsnY2FuZGlkYXRlJ10sY2FuZGlkYXRlX3NoYTI1Nj12WydjYW5kaWRhdGVfc2hhMjU2J10sZmluYWxfdGVybWluYWxfc2hhMjU2PXNoYShyYXcpLGZpbmFsX3Rlcm1pbmFsX2J5dGVzPWxlbihyYXcpKTtzYXZlKCk7cmV0dXJuIE5vbmUKICAgIG5lZWQoa2luZD09J2NhbGVuZGFyX2ZlZWQuYXJ0aWZhY3RfcmVjb3ZlcnlfZXZpZGVuY2UnIGFuZCBzdGF0ZVsnY2FuZGlkYXRlJ10gaXMgbm90IE5vbmUpCiAgICBuZWVkKHZbJ2NhbmRpZGF0ZSddPT1zdGF0ZVsnY2FuZGlkYXRlJ10gYW5kIHZbJ2NhbmRpZGF0ZV9zaGEyNTYnXT09c3RhdGVbJ2NhbmRpZGF0ZV9zaGEyNTYnXSBhbmQgdlsnZXhwZWN0ZWRfcmVjb3Zlcnlfc2hhMjU2J109PXNoYShlYikgYW5kIHZbJ2ZpbmFsX3Rlcm1pbmFsX3NoYTI1NiddPT1zdGF0ZVsnZmluYWxfdGVybWluYWxfc2hhMjU2J10gYW5kIHZbJ2ZpbmFsX3Rlcm1pbmFsX2J5dGVzJ109PXN0YXRlWydmaW5hbF90ZXJtaW5hbF9ieXRlcyddKQogICAgbmVlZChzdGF0ZVsnbG9naWNhbF9hdHRlbXB0cyddPT0oMSBpZiB2WydhcnRpZmFjdCddIGlzIE5vbmUgZWxzZSAyKSBhbmQgc3RhdGVbJ3RyYW5zcG9ydCddWydzZXR0bGVkJ10gaXMgVHJ1ZSkKICAgIHN0YXRlWydjbG9zZWRfZXZpZGVuY2UnXT12O3JldHVybiB2CgpkZWYgbWFpbigpOgogICAgbmVlZChzeXMuYXJndlsxOl09PVsnLS1leGVjdXRlLW9uY2UtYWZ0ZXItbmV3LXRlcm1pbmFsLWdyYW50J10sJ0lOUFVUX1JFRlVTRUQnKQogICAgc3RhdGU9eydzY2hlbWFfdmVyc2lvbic6MSwna2luZCc6J1JPT1RfQVJUSUZBQ1RfUkVDT1ZFUllfT1BFUkFUSU9OX1JFU1VMVCcsJ29wZXJhdGlvbl9pZCc6T1AsJ3J1bl9pZCc6Mzk1NTE4MDU0NzYsJ3BoYXNlJzonU1RBUlRfUkVTRVJWRUQnLCdub3JtYWxfYWNjZXB0YW5jZV9jcmVkaXQnOjAsJ2xvZ2ljYWxfYXR0ZW1wdHMnOjAsJ3RyYW5zcG9ydCc6Tm9uZSwnY2FuZGlkYXRlJzpOb25lLCdzdGFnZSc6J1NUQVJUVVAnLCdjYXRlZ29yeSc6Tm9uZSwnY2hpbGRfc3RhcnRlZCc6RmFsc2UsJ2NoaWxkX2V4aXQnOk5vbmUsJ3JlYWRlcl9lb2YnOkZhbHNlLCdyZWFkZXJfam9pbmVkJzpGYWxzZSwnY3VzdG9keSc6J1VOS05PV04nLCdjbG9zZWRfZXZpZGVuY2UnOk5vbmV9CiAgICBzeW5jKFJFU1VMVCxzdGF0ZSxUcnVlKQogICAgY2hpbGQ9Tm9uZTtsaW5lcz1Ob25lO2ZhaWx1cmU9Tm9uZTtzdGFydGVkPXRpbWUubW9ub3RvbmljKCkKICAgIGRlZiBzYXZlKCk6c3luYyhSRVNVTFQsc3RhdGUpCiAgICB0cnk6CiAgICAgICAgZWI9cmVhZChQLydleHBlY3RlZC1yZWNvdmVyeS1hZG1pc3Npb24uanNvbicpO3BiPXJlYWQoUC8ndGVybWluYWwtcmVjb3ZlcnktZmFjdHMuanNvbicpCiAgICAgICAgaW5pdGlhbD1qc29uLmxvYWRzKGViKTtyPWluaXRpYWxbJ3JldmlldyddCiAgICAgICAgbmVlZChzaGEocmVhZChQLydjb2xsZWN0LXJlY292ZXJ5LWV2aWRlbmNlLnB5JykpPT1yWydjb2xsZWN0b3Jfc2hhMjU2J10gYW5kIHNoYShyZWFkKFAvJ3Rlc3RfY29sbGVjdF9yZWNvdmVyeV9ldmlkZW5jZS5weScpKT09clsndGVzdHNfc2hhMjU2J10gYW5kIHNoYShyZWFkKHBhdGhsaWIuUGF0aChfX2ZpbGVfXykpKT09clsnZHJpdmVyX3NoYTI1NiddLCdJTlBVVF9SRUZVU0VEJykKICAgICAgICBzcGVjPWltcG9ydGxpYi51dGlsLnNwZWNfZnJvbV9maWxlX2xvY2F0aW9uKCdyZXZpZXdlZF9hcnRpZmFjdF9yZWNvdmVyeScsUC8nY29sbGVjdC1yZWNvdmVyeS1ldmlkZW5jZS5weScpCiAgICAgICAgbT1pbXBvcnRsaWIudXRpbC5tb2R1bGVfZnJvbV9zcGVjKHNwZWMpO3NwZWMubG9hZGVyLmV4ZWNfbW9kdWxlKG0pCiAgICAgICAgZT1tLnZhbGlkYXRlX2V4cGVjdGVkKG0ucGFyc2UoZWIsNjU1MzYpKTtwPW0udmFsaWRhdGVfdGVybWluYWwobS5wYXJzZShwYiw2NTUzNiksZSxlYikKICAgICAgICBuZWVkKHBbJ2FydGlmYWN0X2FkbWlzc2lvbl9zdGF0ZSddPT0nUEVORElORycsJ0lOUFVUX1JFRlVTRUQnKQogICAgICAgIHN0YXRlLnVwZGF0ZShleHBlY3RlZF9yZWNvdmVyeV9zaGEyNTY9c2hhKGViKSxpbml0aWFsX3Rlcm1pbmFsX3NoYTI1Nj1zaGEocGIpLGNvZGVfaGFzaGVzPXtrOnJba10gZm9yIGsgaW4gWydjb2xsZWN0b3Jfc2hhMjU2JywndGVzdHNfc2hhMjU2JywnZHJpdmVyX3NoYTI1NiddfSk7c2F2ZSgpCiAgICAgICAgZGVmIGZyb3plbigpOgogICAgICAgICAgICBuZWVkKHJlYWQoUC8nZXhwZWN0ZWQtcmVjb3ZlcnktYWRtaXNzaW9uLmpzb24nKT09ZWIgYW5kIHJlYWQoUC8ndGVybWluYWwtcmVjb3ZlcnktZmFjdHMuanNvbicpPT1wYiwnSU5QVVRfUkVGVVNFRCcpCiAgICAgICAgICAgIG0udmFsaWRhdGVfZXhwZWN0ZWQoZSkKICAgICAgICBkZWYgd3JpdGVfZmluYWwocmF3KToKICAgICAgICAgICAgd2l0aCAoUC8ndGVybWluYWwtcmVjb3ZlcnktZmFjdHMuanNvbicpLm9wZW4oJ3diJykgYXMgZjpmLndyaXRlKHJhdyk7Zi5mbHVzaCgpO29zLmZzeW5jKGYuZmlsZW5vKCkpCiAgICAgICAgICAgIG5lZWQocmVhZChQLyd0ZXJtaW5hbC1yZWNvdmVyeS1mYWN0cy5qc29uJyk9PXJhdywnSU5QVVRfUkVGVVNFRCcpCiAgICAgICAgY2hpbGQ9c3VicHJvY2Vzcy5Qb3Blbihbc3lzLmV4ZWN1dGFibGUsJy1CJyxzdHIoUC8nY29sbGVjdC1yZWNvdmVyeS1ldmlkZW5jZS5weScpLCctLWV4ZWN1dGUtYWZ0ZXItbmV3LXRlcm1pbmFsLWdyYW50J10sY3dkPVJPT1Qsc3RkaW49c3VicHJvY2Vzcy5QSVBFLHN0ZG91dD1zdWJwcm9jZXNzLlBJUEUsc3RkZXJyPXN1YnByb2Nlc3MuREVWTlVMTCxzaGVsbD1GYWxzZSkKICAgICAgICBzdGF0ZVsnY2hpbGRfc3RhcnRlZCddPVRydWU7c2F2ZSgpO2xpbmVzPUxpbmVzKGNoaWxkLnN0ZG91dCkKICAgICAgICBkZWYgc2VuZChyYXcpOgogICAgICAgICAgICBjaGlsZC5zdGRpbi53cml0ZShyYXcpO2NoaWxkLnN0ZGluLmZsdXNoKCk7Y2hpbGQuc3RkaW4uY2xvc2UoKQogICAgICAgIHdoaWxlIFRydWU6CiAgICAgICAgICAgIHJhdz1saW5lcy5saW5lKHN0YXJ0ZWQrMTgwKQogICAgICAgICAgICBpZiByYXcgaXMgTm9uZTpicmVhawogICAgICAgICAgICBuZWVkKHN0YXRlWydjbG9zZWRfZXZpZGVuY2UnXSBpcyBOb25lKQogICAgICAgICAgICB2PW0ucGFyc2UocmF3LDY1NTM2KQogICAgICAgICAgICByZXN1bHQ9YWNjZXB0KG0sdixzdGF0ZSxlLHAsZWIscGIsd3JpdGVfZmluYWwsc2VuZCxmcm96ZW4sc2F2ZSkKICAgICAgICAgICAgaWYgcmVzdWx0IGlzIG5vdCBOb25lOgogICAgICAgICAgICAgICAgc3RhdGVbJ2Nsb3NlZF9lbWl0dGVkX2V2aWRlbmNlX3NoYTI1NiddPXNoYShyYXcrYidcbicpO3N0YXRlWydjbG9zZWRfZW1pdHRlZF9ldmlkZW5jZV9ieXRlcyddPWxlbihyYXcpKzEKICAgICAgICBjaGlsZC53YWl0KHRpbWVvdXQ9bWF4KC4wMSxzdGFydGVkKzE4MC10aW1lLm1vbm90b25pYygpKSkKICAgICAgICBuZWVkKHN0YXRlWydjbG9zZWRfZXZpZGVuY2UnXSBpcyBub3QgTm9uZSBhbmQgY2hpbGQucmV0dXJuY29kZT09MCkKICAgICAgICBzdGF0ZS51cGRhdGUocGhhc2U9J0ZJTkFMJyxvdXRjb21lPSdBQ1FVSVJFRF9PUl9VTkFWQUlMQUJMRV9XSVRIX0xJTUlUUycscGFja2V0X3B1YmxpY2F0aW9uPSdQRU5ESU5HX0hJR0hfT0ZGTElORV9TRVBBUkFURV9HUkFOVCcpCiAgICBleGNlcHQgRXhjZXB0aW9uIGFzIGV4YzoKICAgICAgICBpZiBpc2luc3RhbmNlKGV4YyxEcml2ZXJTdG9wKTpmYWlsdXJlPWV4Yy5jYXRlZ29yeQogICAgICAgIGVsaWYgJ20nIGluIGxvY2FscygpIGFuZCBpc2luc3RhbmNlKGV4YyxtLlN0b3ApOmZhaWx1cmU9ZXhjLmNhdGVnb3J5CiAgICAgICAgZWxzZTpmYWlsdXJlPSdVTkVYUEVDVEVEX0VYQ0VQVElPTicKICAgICAgICBzdGF0ZS51cGRhdGUocGhhc2U9J0ZJTkFMJyxvdXRjb21lPSdTVE9QX05PX1JFVFJZJyxjYXRlZ29yeT1mYWlsdXJlKQogICAgZmluYWxseToKICAgICAgICBpZiBjaGlsZCBpcyBub3QgTm9uZToKICAgICAgICAgICAgaWYgY2hpbGQuc3RkaW4gYW5kIG5vdCBjaGlsZC5zdGRpbi5jbG9zZWQ6CiAgICAgICAgICAgICAgICB0cnk6Y2hpbGQuc3RkaW4uY2xvc2UoKQogICAgICAgICAgICAgICAgZXhjZXB0IE9TRXJyb3I6cGFzcwogICAgICAgICAgICBpZiBjaGlsZC5wb2xsKCkgaXMgTm9uZToKICAgICAgICAgICAgICAgICMgTGV0IGhlbHBlciBzZXR0bGUgaXRzIHRyYWNrZWQgZ2ggaGFuZGxlIGJlZm9yZSBjb25zaWRlcmluZyBraWxsLgogICAgICAgICAgICAgICAgdHJ5OmNoaWxkLndhaXQodGltZW91dD00NSkKICAgICAgICAgICAgICAgIGV4Y2VwdCBzdWJwcm9jZXNzLlRpbWVvdXRFeHBpcmVkOgogICAgICAgICAgICAgICAgICAgIGNoaWxkLmtpbGwoKQogICAgICAgICAgICAgICAgICAgIHRyeTpjaGlsZC53YWl0KHRpbWVvdXQ9NSkKICAgICAgICAgICAgICAgICAgICBleGNlcHQgc3VicHJvY2Vzcy5UaW1lb3V0RXhwaXJlZDpwYXNzCiAgICAgICAgICAgICAgICAgICAgc3RhdGVbJ2NhdGVnb3J5J109J0NVU1RPRFlfVU5LTk9XTicKICAgICAgICAgICAgaWYgbGluZXMgaXMgbm90IE5vbmU6CiAgICAgICAgICAgICAgICBsaW5lcy5kaXNjYXJkKHRpbWUubW9ub3RvbmljKCkrNSkKICAgICAgICAgICAgICAgIHN0YXRlLnVwZGF0ZShyZWFkZXJfZW9mPWxpbmVzLmVvZixyZWFkZXJfam9pbmVkPW5vdCBsaW5lcy50aHJlYWQuaXNfYWxpdmUoKSxzdGRvdXRfYnl0ZXM9bGluZXMuYnl0ZXMpCiAgICAgICAgICAgIHN0YXRlWydjaGlsZF9leGl0J109Y2hpbGQucG9sbCgpCiAgICAgICAgICAgIGlmIGNoaWxkLnBvbGwoKSBpcyBub3QgTm9uZSBhbmQgc3RhdGVbJ3JlYWRlcl9lb2YnXSBhbmQgc3RhdGVbJ3JlYWRlcl9qb2luZWQnXSBhbmQgKHN0YXRlWydsb2dpY2FsX2F0dGVtcHRzJ109PTAgb3Igc3RhdGVbJ3RyYW5zcG9ydCddIGlzIG5vdCBOb25lIGFuZCBzdGF0ZVsndHJhbnNwb3J0J11bJ3NldHRsZWQnXSBpcyBUcnVlKToKICAgICAgICAgICAgICAgIHN0YXRlWydjdXN0b2R5J109J09XTl9IRUxQRVJfR0hfSEFORExFU19BTkRfT1VUUFVUX1NFVFRMRUQnCiAgICAgICAgICAgIGVsc2U6c3RhdGUudXBkYXRlKGNhdGVnb3J5PSdDVVNUT0RZX1VOS05PV04nLG91dGNvbWU9J1NUT1BfTk9fUkVUUlknKQogICAgICAgICAgICBmb3Igc3RyZWFtIGluIFtjaGlsZC5zdGRpbixjaGlsZC5zdGRvdXRdOgogICAgICAgICAgICAgICAgaWYgc3RyZWFtIGlzIG5vdCBOb25lIGFuZCBub3Qgc3RyZWFtLmNsb3NlZDoKICAgICAgICAgICAgICAgICAgICB0cnk6c3RyZWFtLmNsb3NlKCkKICAgICAgICAgICAgICAgICAgICBleGNlcHQgT1NFcnJvcjpwYXNzCiAgICAgICAgc3RhdGVbJ2VsYXBzZWRfc2Vjb25kcyddPXJvdW5kKHRpbWUubW9ub3RvbmljKCktc3RhcnRlZCwzKTtzYXZlKCkKICAgIHByaW50KGpzb24uZHVtcHMoeydvcGVyYXRpb25faWQnOk9QLCdwaGFzZSc6c3RhdGVbJ3BoYXNlJ10sJ291dGNvbWUnOnN0YXRlLmdldCgnb3V0Y29tZScpLCdjYXRlZ29yeSc6c3RhdGVbJ2NhdGVnb3J5J10sJ25vcm1hbF9hY2NlcHRhbmNlX2NyZWRpdCc6MH0sc29ydF9rZXlzPVRydWUpKQogICAgcmV0dXJuIDAgaWYgZmFpbHVyZSBpcyBOb25lIGFuZCBzdGF0ZVsnY3VzdG9keSddIT0nVU5LTk9XTicgYW5kIHN0YXRlWydjYXRlZ29yeSddIT0nQ1VTVE9EWV9VTktOT1dOJyBlbHNlIDEKCmlmIF9fbmFtZV9fPT0nX19tYWluX18nOgogICAgdHJ5OnN5cy5leGl0KG1haW4oKSkKICAgIGV4Y2VwdCBFeGNlcHRpb246CiAgICAgICAgcHJpbnQoanNvbi5kdW1wcyh7J29wZXJhdGlvbl9pZCc6T1AsJ291dGNvbWUnOidTVE9QX05PX1JFVFJZJywnY2F0ZWdvcnknOidJTlBVVF9SRUZVU0VEJywnbm9ybWFsX2FjY2VwdGFuY2VfY3JlZGl0JzowfSkpO3N5cy5leGl0KDEpCg=="
+  },
+  "root_driver_target": ".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-artifact-recovery-01-driver.py",
+  "operation_id": "6395eae9-7110-49a9-9c16-12a55c06c0bf",
+  "created_at_utc": "2026-10-21T06:32:29.617703+00:00",
+  "target": {
+    "repo": "rthunborg/Kopplas",
+    "ref": "codex/epic-15-scheduling-time-calendar",
+    "head_sha": "33cfa8dfa1323708edf80034c0a98b0620790b6a",
+    "producer_source_sha": "f304ea548faa05f037cd3aa44c65888d96d543df",
+    "producer_checkpoint_id": "44738655-b7e9-4bb7-8b8c-77f7c2a32bcf",
+    "run_id": 39551805476,
+    "attempt": 1,
+    "producer_verification_mode": "calendar-feed-cause-proof"
+  },
+  "code": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/artifact-recovery-33cfa8df-01/collect-recovery-evidence.py",
+      "bytes": 31137,
+      "sha256": "6e730bd7d56684ba5c5586ab77871c570ad85af3f9ea785743ff444b5bbf8b9c"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/artifact-recovery-33cfa8df-01/test_collect_recovery_evidence.py",
+      "bytes": 19563,
+      "sha256": "70713595f5f1cdc138a75809b6c55370d77393f016aac7b76ad4cdbec45ce61e"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-artifact-recovery-01-driver.py",
+      "bytes": 10483,
+      "sha256": "0c49397576042a9881cbfa001d36b5d1c5dbe7c139fdddb34e1bc880076fb2c6"
+    }
+  ],
+  "immutable_inputs": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-native-artifact-recovery-33cfa8df-01-allocation.json",
+      "bytes": 3727,
+      "sha256": "b4bd1f15c6e87c4771d89c48e7137c15420e4a041cd767b24b00921b82d2b364"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-proposal-revision-1/plan.json",
+      "bytes": 25199,
+      "sha256": "6fdde434e7e4853e70e9bebd6a64d1f960f33e35cf7d7025d07ea6cc5019be2e"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-proposal-revision-1/manifest.json",
+      "bytes": 6907,
+      "sha256": "5c04c4457240909ec0c239f9af0c58d12332e3d7adbb2b76b113e9faf520cba0"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-33cfa8df-cause-proof-ci-independent/collect-diagnostic-evidence.py",
+      "bytes": 45053,
+      "sha256": "c9aeb0e2cc6933557e4909516cbde63d66b95063f0a08a6932bdf8c1fe31215f"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-33cfa8df-cause-proof-ci-independent/test_collect_diagnostic_evidence.py",
+      "bytes": 36380,
+      "sha256": "50a3a304522f65924cc105746104801ce03f0f3aca20a24c090ff58f9ca31732"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-33cfa8df-cause-proof-ci-independent/expected-admission.json",
+      "bytes": 6705,
+      "sha256": "a5d0ca28fd7bce83aa2f3105f6122610091fab52bf7d935aaf040483b9f3cbc1"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-33cfa8df-cause-proof-ci-independent/terminal-facts.json",
+      "bytes": 3135,
+      "sha256": "aa00fd0c2158d02f2a42bc989624b611c36be44b0059627f5d9ac42d750d1754"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-prepost-diagnostic-intent.json",
+      "bytes": 2729,
+      "sha256": "40f043cbd0a34a771999327671fa4a7cb76de4fa3c91a3389b913d3fc3402b22"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-terminal-metadata-proof.json",
+      "bytes": 2721,
+      "sha256": "d13590179752a3b4d84bfe0c283afebd677bd4ab6760e6c5a8ee71ad9c891c9d"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-collector-operation-stop.json",
+      "bytes": 1096,
+      "sha256": "89585f71abc74d6656157e95453e0b297d29d44861e65e4a67d003d3e286780e"
+    }
+  ],
+  "producer_bindings": [
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "raw_bytes": 45083,
+      "raw_sha256": "ef6ca99e711d4d44f709261afd865e055514a08fbbc0f533e6fb811612ccee91",
+      "git_clean_oid": "ecbcaa951a4656ad5fe99b59bf2a0a8cb3c1599d",
+      "checkpoint_oid": "ecbcaa951a4656ad5fe99b59bf2a0a8cb3c1599d",
+      "producer_source_oid": "ecbcaa951a4656ad5fe99b59bf2a0a8cb3c1599d"
+    },
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "raw_bytes": 82859,
+      "raw_sha256": "1db49932052511104c0df77f79729950de582134bd0eff098d65436ab0c936ec",
+      "git_clean_oid": "7eb081cc2a8f8ed9848319cdb0693d04fbec97b2",
+      "checkpoint_oid": "7eb081cc2a8f8ed9848319cdb0693d04fbec97b2",
+      "producer_source_oid": "7eb081cc2a8f8ed9848319cdb0693d04fbec97b2"
+    },
+    {
+      "path": "tests/integration/commands/calendar-feed.int.test.ts",
+      "raw_bytes": 36884,
+      "raw_sha256": "55e4105f0c9e110c7fc08ef17d51f3d5cdd3c8ea6996cf215f53621da1e45e08",
+      "git_clean_oid": "35863f8eeb563f21e9c0ff741115f018ee545134",
+      "checkpoint_oid": "35863f8eeb563f21e9c0ff741115f018ee545134",
+      "producer_source_oid": "35863f8eeb563f21e9c0ff741115f018ee545134"
+    },
+    {
+      "path": "scripts/ci/checkpoint-dispatch.mjs",
+      "raw_bytes": 19782,
+      "raw_sha256": "894586ccf94f6724e32026faeb910f515c6e1f9d6b28475f46e37b8d830fb86a",
+      "git_clean_oid": "157eb1fc5a50591d8ad1bcc308b3f7ff29338528",
+      "checkpoint_oid": "157eb1fc5a50591d8ad1bcc308b3f7ff29338528",
+      "producer_source_oid": "157eb1fc5a50591d8ad1bcc308b3f7ff29338528"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "raw_bytes": 75930,
+      "raw_sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e",
+      "git_clean_oid": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a",
+      "checkpoint_oid": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a",
+      "producer_source_oid": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a"
+    },
+    {
+      "path": "src/server/commands/calendar-feed/calendar-feed-db.ts",
+      "raw_bytes": 4729,
+      "raw_sha256": "e2c726b7fc90e31407838d672e6683ea02adb94b9951a02da937022ab964af6b",
+      "git_clean_oid": "c21b8c5e897d2b81be994312ba0074475e98c6fa",
+      "checkpoint_oid": "c21b8c5e897d2b81be994312ba0074475e98c6fa",
+      "producer_source_oid": "c21b8c5e897d2b81be994312ba0074475e98c6fa"
+    },
+    {
+      "path": "src/server/commands/calendar-feed/manage-calendar-feed.ts",
+      "raw_bytes": 4856,
+      "raw_sha256": "066f55528f5cb316118d5511eb2ea2a1bdafd1cbfefa98ddbc4d76eda1509b81",
+      "git_clean_oid": "b21159803ea8e875b83df953a3ffdbb53dccf0be",
+      "checkpoint_oid": "b21159803ea8e875b83df953a3ffdbb53dccf0be",
+      "producer_source_oid": "b21159803ea8e875b83df953a3ffdbb53dccf0be"
+    },
+    {
+      "path": "src/server/read-models/calendar-feed.ts",
+      "raw_bytes": 3472,
+      "raw_sha256": "7d0afd55c137a19ebe5479d0bdc0becfc08606e711c3c05de0d70ae132e45a35",
+      "git_clean_oid": "4cccd98e3cb6c335e4eb8de289bf6e06ffd7830d",
+      "checkpoint_oid": "4cccd98e3cb6c335e4eb8de289bf6e06ffd7830d",
+      "producer_source_oid": "4cccd98e3cb6c335e4eb8de289bf6e06ffd7830d"
+    },
+    {
+      "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+      "raw_bytes": 24435,
+      "raw_sha256": "b57e6a1726cfac545de1cd141e26f56e6bebb4a535d1cd7f706e4a1ad3e05555",
+      "git_clean_oid": "c5d6d53faab649b40dee5c12f7933030224fa4ab",
+      "checkpoint_oid": "c5d6d53faab649b40dee5c12f7933030224fa4ab",
+      "producer_source_oid": "c5d6d53faab649b40dee5c12f7933030224fa4ab"
+    },
+    {
+      "path": "package.json",
+      "raw_bytes": 2352,
+      "raw_sha256": "82f78147f699b457c89c912c2e85772b8b688708c93e399c1ef19112d1f28412",
+      "git_clean_oid": "819459b2df6f2c385a8442dda25ef7904576e270",
+      "checkpoint_oid": "819459b2df6f2c385a8442dda25ef7904576e270",
+      "producer_source_oid": "819459b2df6f2c385a8442dda25ef7904576e270"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "raw_bytes": 162159,
+      "raw_sha256": "84c969ae2b2dfdbb0f88afba7890c58f36b2415bb02e255e1a99bf8aaf60450f",
+      "git_clean_oid": "4d8fefc7c340cb5ad1ca1650563fe6a0ce6db115",
+      "checkpoint_oid": "4d8fefc7c340cb5ad1ca1650563fe6a0ce6db115",
+      "producer_source_oid": "4d8fefc7c340cb5ad1ca1650563fe6a0ce6db115"
+    }
+  ],
+  "producer_binding_meaning": "Current raw bytes rechecked; Git clean/source/checkpoint OIDs are exact unchanged historical bindings from frozen P33. No new Git command was executed.",
+  "producer_schema_sha256": "ec7db967a066906eaead83ea84fa1daacec3c6fe38c46cce7ff5cb8ca942b30b",
+  "pure_runtime_reuse": {
+    "module_sha256": "c9aeb0e2cc6933557e4909516cbde63d66b95063f0a08a6932bdf8c1fe31215f",
+    "functions": [
+      "parse_json",
+      "unpack_archive",
+      "receipt_and_manifest",
+      "native_report",
+      "observation",
+      "schema_id"
+    ],
+    "constants": [
+      "BINDINGS"
+    ],
+    "forbidden_entrypoints": [
+      "main",
+      "collect",
+      "listing_candidate",
+      "listing_artifact",
+      "qualified_evidence",
+      "bounded_gh_get"
+    ]
+  },
+  "template_data": {
+    "meaning": "Non-authorizing DATA only; Root expected and terminal remain unborn. Root must use final reviewed hashes/status, explicit once authorization, and final expected raw SHA. New operation posthoc; historical intent never claims prePOST binding of new code.",
+    "expected_recovery_admission": {
+      "schema_version": 1,
+      "kind": "calendar_feed.artifact_recovery_admission",
+      "operation_id": "6395eae9-7110-49a9-9c16-12a55c06c0bf",
+      "admission_timing": "POSTHOC_AFTER_PRODUCER_TERMINAL_BEFORE_RECOVERY_GET",
+      "target": {
+        "repo": "rthunborg/Kopplas",
+        "ref": "codex/epic-15-scheduling-time-calendar",
+        "head_sha": "33cfa8dfa1323708edf80034c0a98b0620790b6a",
+        "producer_source_sha": "f304ea548faa05f037cd3aa44c65888d96d543df",
+        "producer_checkpoint_id": "44738655-b7e9-4bb7-8b8c-77f7c2a32bcf",
+        "run_id": 39551805476,
+        "attempt": 1,
+        "producer_verification_mode": "calendar-feed-cause-proof"
+      },
+      "historical": {
+        "expected": {
+          "bytes": 6705,
+          "sha256": "a5d0ca28fd7bce83aa2f3105f6122610091fab52bf7d935aaf040483b9f3cbc1"
+        },
+        "pending": {
+          "bytes": 3135,
+          "sha256": "aa00fd0c2158d02f2a42bc989624b611c36be44b0059627f5d9ac42d750d1754"
+        },
+        "intent": {
+          "bytes": 2729,
+          "sha256": "40f043cbd0a34a771999327671fa4a7cb76de4fa3c91a3389b913d3fc3402b22"
+        },
+        "terminal_proof": {
+          "bytes": 2721,
+          "sha256": "d13590179752a3b4d84bfe0c283afebd677bd4ab6760e6c5a8ee71ad9c891c9d"
+        },
+        "stop": {
+          "bytes": 1096,
+          "sha256": "89585f71abc74d6656157e95453e0b297d29d44861e65e4a67d003d3e286780e"
+        }
+      },
+      "pure_reader_sha256": "c9aeb0e2cc6933557e4909516cbde63d66b95063f0a08a6932bdf8c1fe31215f",
+      "producer_bindings": [
+        {
+          "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+          "raw_bytes": 45083,
+          "raw_sha256": "ef6ca99e711d4d44f709261afd865e055514a08fbbc0f533e6fb811612ccee91",
+          "git_clean_oid": "ecbcaa951a4656ad5fe99b59bf2a0a8cb3c1599d",
+          "checkpoint_oid": "ecbcaa951a4656ad5fe99b59bf2a0a8cb3c1599d",
+          "producer_source_oid": "ecbcaa951a4656ad5fe99b59bf2a0a8cb3c1599d"
+        },
+        {
+          "path": "tests/support/calendar-feed-atdd.ts",
+          "raw_bytes": 82859,
+          "raw_sha256": "1db49932052511104c0df77f79729950de582134bd0eff098d65436ab0c936ec",
+          "git_clean_oid": "7eb081cc2a8f8ed9848319cdb0693d04fbec97b2",
+          "checkpoint_oid": "7eb081cc2a8f8ed9848319cdb0693d04fbec97b2",
+          "producer_source_oid": "7eb081cc2a8f8ed9848319cdb0693d04fbec97b2"
+        },
+        {
+          "path": "tests/integration/commands/calendar-feed.int.test.ts",
+          "raw_bytes": 36884,
+          "raw_sha256": "55e4105f0c9e110c7fc08ef17d51f3d5cdd3c8ea6996cf215f53621da1e45e08",
+          "git_clean_oid": "35863f8eeb563f21e9c0ff741115f018ee545134",
+          "checkpoint_oid": "35863f8eeb563f21e9c0ff741115f018ee545134",
+          "producer_source_oid": "35863f8eeb563f21e9c0ff741115f018ee545134"
+        },
+        {
+          "path": "scripts/ci/checkpoint-dispatch.mjs",
+          "raw_bytes": 19782,
+          "raw_sha256": "894586ccf94f6724e32026faeb910f515c6e1f9d6b28475f46e37b8d830fb86a",
+          "git_clean_oid": "157eb1fc5a50591d8ad1bcc308b3f7ff29338528",
+          "checkpoint_oid": "157eb1fc5a50591d8ad1bcc308b3f7ff29338528",
+          "producer_source_oid": "157eb1fc5a50591d8ad1bcc308b3f7ff29338528"
+        },
+        {
+          "path": ".github/workflows/ci.yml",
+          "raw_bytes": 75930,
+          "raw_sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e",
+          "git_clean_oid": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a",
+          "checkpoint_oid": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a",
+          "producer_source_oid": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a"
+        },
+        {
+          "path": "src/server/commands/calendar-feed/calendar-feed-db.ts",
+          "raw_bytes": 4729,
+          "raw_sha256": "e2c726b7fc90e31407838d672e6683ea02adb94b9951a02da937022ab964af6b",
+          "git_clean_oid": "c21b8c5e897d2b81be994312ba0074475e98c6fa",
+          "checkpoint_oid": "c21b8c5e897d2b81be994312ba0074475e98c6fa",
+          "producer_source_oid": "c21b8c5e897d2b81be994312ba0074475e98c6fa"
+        },
+        {
+          "path": "src/server/commands/calendar-feed/manage-calendar-feed.ts",
+          "raw_bytes": 4856,
+          "raw_sha256": "066f55528f5cb316118d5511eb2ea2a1bdafd1cbfefa98ddbc4d76eda1509b81",
+          "git_clean_oid": "b21159803ea8e875b83df953a3ffdbb53dccf0be",
+          "checkpoint_oid": "b21159803ea8e875b83df953a3ffdbb53dccf0be",
+          "producer_source_oid": "b21159803ea8e875b83df953a3ffdbb53dccf0be"
+        },
+        {
+          "path": "src/server/read-models/calendar-feed.ts",
+          "raw_bytes": 3472,
+          "raw_sha256": "7d0afd55c137a19ebe5479d0bdc0becfc08606e711c3c05de0d70ae132e45a35",
+          "git_clean_oid": "4cccd98e3cb6c335e4eb8de289bf6e06ffd7830d",
+          "checkpoint_oid": "4cccd98e3cb6c335e4eb8de289bf6e06ffd7830d",
+          "producer_source_oid": "4cccd98e3cb6c335e4eb8de289bf6e06ffd7830d"
+        },
+        {
+          "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+          "raw_bytes": 24435,
+          "raw_sha256": "b57e6a1726cfac545de1cd141e26f56e6bebb4a535d1cd7f706e4a1ad3e05555",
+          "git_clean_oid": "c5d6d53faab649b40dee5c12f7933030224fa4ab",
+          "checkpoint_oid": "c5d6d53faab649b40dee5c12f7933030224fa4ab",
+          "producer_source_oid": "c5d6d53faab649b40dee5c12f7933030224fa4ab"
+        },
+        {
+          "path": "package.json",
+          "raw_bytes": 2352,
+          "raw_sha256": "82f78147f699b457c89c912c2e85772b8b688708c93e399c1ef19112d1f28412",
+          "git_clean_oid": "819459b2df6f2c385a8442dda25ef7904576e270",
+          "checkpoint_oid": "819459b2df6f2c385a8442dda25ef7904576e270",
+          "producer_source_oid": "819459b2df6f2c385a8442dda25ef7904576e270"
+        },
+        {
+          "path": "pnpm-lock.yaml",
+          "raw_bytes": 162159,
+          "raw_sha256": "84c969ae2b2dfdbb0f88afba7890c58f36b2415bb02e255e1a99bf8aaf60450f",
+          "git_clean_oid": "4d8fefc7c340cb5ad1ca1650563fe6a0ce6db115",
+          "checkpoint_oid": "4d8fefc7c340cb5ad1ca1650563fe6a0ce6db115",
+          "producer_source_oid": "4d8fefc7c340cb5ad1ca1650563fe6a0ce6db115"
+        }
+      ],
+      "producer_schema_sha256": "ec7db967a066906eaead83ea84fa1daacec3c6fe38c46cce7ff5cb8ca942b30b",
+      "api_version": "2026-03-10",
+      "caps": {
+        "listing": 262144,
+        "archive": 4500000,
+        "facts": 65536,
+        "message": 65536,
+        "continuation": 4096,
+        "help": 65536
+      },
+      "listing_max": 1,
+      "archive_max": 1,
+      "review": {
+        "status": null,
+        "report_sha256": null,
+        "collector_sha256": "6e730bd7d56684ba5c5586ab77871c570ad85af3f9ea785743ff444b5bbf8b9c",
+        "tests_sha256": "70713595f5f1cdc138a75809b6c55370d77393f016aac7b76ad4cdbec45ce61e",
+        "driver_sha256": "0c49397576042a9881cbfa001d36b5d1c5dbe7c139fdddb34e1bc880076fb2c6"
+      },
+      "local_capability": {
+        "gh_binary_sha256": "a1701e3c806a805981554ace7df04812772c6449bdcfd1a77675013d97786401",
+        "gh_binary_bytes": 42166072,
+        "help_stdout_sha256": "c6136b139e05d1b4e9271a1edf08473b6f57df6ff01dc6da64b7079f53852e82",
+        "help_stdout_bytes": 7770,
+        "method": true,
+        "header": true,
+        "escape": true
+      },
+      "authorized_once": null,
+      "normal_acceptance_credit": 0
+    },
+    "terminal_recovery_facts": {
+      "schema_version": 1,
+      "kind": "calendar_feed.artifact_recovery_terminal",
+      "operation_id": "6395eae9-7110-49a9-9c16-12a55c06c0bf",
+      "expected_recovery_sha256": null,
+      "target": {
+        "repo": "rthunborg/Kopplas",
+        "ref": "codex/epic-15-scheduling-time-calendar",
+        "head_sha": "33cfa8dfa1323708edf80034c0a98b0620790b6a",
+        "producer_source_sha": "f304ea548faa05f037cd3aa44c65888d96d543df",
+        "producer_checkpoint_id": "44738655-b7e9-4bb7-8b8c-77f7c2a32bcf",
+        "run_id": 39551805476,
+        "attempt": 1,
+        "producer_verification_mode": "calendar-feed-cause-proof"
+      },
+      "jobs": [
+        {
+          "name": "checkpoint-admission",
+          "id": 119062486555,
+          "run_id": 39551805476,
+          "head_sha": "33cfa8dfa1323708edf80034c0a98b0620790b6a",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "verify",
+          "id": 119062519766,
+          "run_id": 39551805476,
+          "head_sha": "33cfa8dfa1323708edf80034c0a98b0620790b6a",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "db",
+          "id": 119063393149,
+          "run_id": 39551805476,
+          "head_sha": "33cfa8dfa1323708edf80034c0a98b0620790b6a",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "e2e",
+          "id": 119063394553,
+          "run_id": 39551805476,
+          "head_sha": "33cfa8dfa1323708edf80034c0a98b0620790b6a",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "fixed-chromium-paired-probe",
+          "id": 119063394794,
+          "run_id": 39551805476,
+          "head_sha": "33cfa8dfa1323708edf80034c0a98b0620790b6a",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "dashboard-e2e",
+          "id": 119063395086,
+          "run_id": 39551805476,
+          "head_sha": "33cfa8dfa1323708edf80034c0a98b0620790b6a",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "native-stream-probe",
+          "id": 119063395187,
+          "run_id": 39551805476,
+          "head_sha": "33cfa8dfa1323708edf80034c0a98b0620790b6a",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "fixed-chromium-application-verification",
+          "id": 119063395232,
+          "run_id": 39551805476,
+          "head_sha": "33cfa8dfa1323708edf80034c0a98b0620790b6a",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "recovery-storage-loader",
+          "id": 119063395335,
+          "run_id": 39551805476,
+          "head_sha": "33cfa8dfa1323708edf80034c0a98b0620790b6a",
+          "status": "completed",
+          "conclusion": "skipped"
+        }
+      ],
+      "producer_status": "completed",
+      "producer_conclusion": "success",
+      "collection_authorized": null,
+      "artifact_admission_state": "PENDING",
+      "artifact_id": null,
+      "artifact_listing_sha256": null,
+      "artifact_listing_bytes": null,
+      "artifact_candidate_sha256": null
+    },
+    "mutable_terminal_fields": [
+      "artifact_admission_state",
+      "artifact_candidate_sha256",
+      "artifact_id",
+      "artifact_listing_bytes",
+      "artifact_listing_sha256"
+    ]
+  },
+  "future_usage": {
+    "Root_driver_argv": [
+      "python",
+      "-B",
+      ".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-artifact-recovery-01-driver.py",
+      "--execute-once-after-new-terminal-grant"
+    ],
+    "helper_child_argv": [
+      "python",
+      "-B",
+      ".env.epic15.mail-runtime/story-15-5-preparation/artifact-recovery-33cfa8df-01/collect-recovery-evidence.py",
+      "--execute-after-new-terminal-grant"
+    ],
+    "current_permission": "NO_NETWORK_NO_OPERATIONAL_ACTIVATION",
+    "listing_max": 1,
+    "conditional_exact_ID_ZIP_max": 1,
+    "continuation_seconds": 60,
+    "raw_payload_persistence": false
+  },
+  "limits": [
+    "11 old native failed packets and consumed P33 unchanged.",
+    "Old listing count UNKNOWN_0_OR_1; ZIP not reached; old RuntimeError cause UNKNOWN.",
+    "Only closed producer report projection; 42501 ambiguity/nonreproduction does not prove backend cause.",
+    "Diagnostic positive count cannot satisfy normal 95/full2039/browser/recovery/pilot gates.",
+    "Process custody covers tracked handles/output; no unproven descendant-group absence claim.",
+    "No final-three publication before separate grant."
+  ]
+}

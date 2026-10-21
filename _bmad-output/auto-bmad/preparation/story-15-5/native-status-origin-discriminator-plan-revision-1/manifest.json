@@ -1,0 +1,48 @@
+{
+  "kind": "ROOT_STATUS_ORIGIN_PLAN_REVISION1_SELF_EXCLUDED_MANIFEST",
+  "verdict": "PASS_PLAN_ONLY_F1_CLOSED",
+  "members": [
+    "input-binding.json",
+    "local-checks.json",
+    "original-attestation.json",
+    "original-report.md",
+    "plan.md",
+    "result.json",
+    "manifest.json"
+  ],
+  "files": [
+    {
+      "path": "input-binding.json",
+      "bytes": 10024,
+      "sha256": "63633bc5d3b9c3749d9f13674cc0f5f14104f1c27fe1ef893f66eae781483421"
+    },
+    {
+      "path": "local-checks.json",
+      "bytes": 1592,
+      "sha256": "6d63b3cb7c7b0ceccef816d419c34f6fc82533c50dfe4eac55e71b0805adf9f0"
+    },
+    {
+      "path": "original-attestation.json",
+      "bytes": 13823,
+      "sha256": "fa0df161c4bde8d971da67f83e442dfa26daeed89503dcc973da4a197f9bd0e3"
+    },
+    {
+      "path": "original-report.md",
+      "bytes": 5718,
+      "sha256": "e3739f9cea0556ee8bfeb42a90d31781bccfd2dbd50be2679e9ecd05251fb408"
+    },
+    {
+      "path": "plan.md",
+      "bytes": 6409,
+      "sha256": "b375f14d29c899a0288d15b8bf5386bde5d27a3e00e4a0c9d8c97d03010e4350"
+    },
+    {
+      "path": "result.json",
+      "bytes": 900,
+      "sha256": "246ebbb5cbd0cd3a4268ceab63405a295bb440117c2702a3f7cddec7144daeac"
+    }
+  ],
+  "self_excluded": "manifest.json",
+  "source_or_effect_granted": false,
+  "normal_acceptance_credit": 0
+}
