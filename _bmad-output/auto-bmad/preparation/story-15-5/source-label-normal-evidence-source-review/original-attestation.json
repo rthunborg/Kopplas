@@ -1,0 +1,197 @@
+{
+  "author_history": "Initial local builder NameError (missing re import) and readonly Git-builder keyed NameError remain failed/partial history, not a passed initial verification. Current bound Root preaudit separately verifies75 native-clean rows and150 actual source/metadata objects; reviewer independently rehashed current75 raw/LF/computed blobs. Author prior26/final27 controls are nonadditive, not added to reviewer27.",
+  "before_after_identical": true,
+  "binding_verification": {
+    "API_GETs": 0,
+    "Root150_actual_source_metadata_objects_reused": {
+      "bytes": 813,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/root-source-label-normal-operator-preaudit-admission.json",
+      "sha256": "a20ee1d11c58a2e61475a0c3f7f2791fb9f651ecee047919f46ebbcd3cde6d0e"
+    },
+    "activation_absent": true,
+    "future_head_run_UUID_unset": true,
+    "helpers": 16,
+    "historical": [
+      {
+        "listed_members_verified": 8,
+        "manifest": {
+          "bytes": 1675,
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-terminal-evidence-preparation/manifest.json",
+          "sha256": "b4e8cf2a438405fa2ec8117a500fd2f1a47aa93487f6e3da2f1666fe39cda044"
+        }
+      },
+      {
+        "listed_members_verified": 5,
+        "manifest": {
+          "bytes": 1590,
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-targeted-terminal-diagnostic-preparation/manifest.json",
+          "sha256": "fe8c36df94f39e4e48905390bec4791b148d4c14659bd971fbb0ec1e1e279b98"
+        }
+      },
+      {
+        "listed_members_verified": 4,
+        "manifest": {
+          "bytes": 1367,
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-targeted-terminal-diagnostic-preparation/r1/manifest.json",
+          "sha256": "6e2697886267ca13db8c3755ac1cb7c9f4e04728401e7a9b823c4e03da0aad9c"
+        }
+      },
+      {
+        "listed_members_verified": 21,
+        "manifest": {
+          "bytes": 5474,
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-ce1943e0-ci-independent/manifest.json",
+          "sha256": "e77658bd7621b51e73e1e83314af86aaa9497ec49d37618832eb6ab2d1ed0bf0"
+        }
+      },
+      {
+        "listed_members_verified": 8,
+        "manifest": {
+          "bytes": 2254,
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-ce1943e0-targeted-diagnostic/manifest.json",
+          "sha256": "b502e54a26d4d599ca308c4915420ad0f9dee9decbd29456fda36ea8e3831c0a"
+        }
+      },
+      {
+        "listed_members_verified": 8,
+        "manifest": {
+          "bytes": 2298,
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-ce1943e0-targeted-diagnostic-r1/manifest.json",
+          "sha256": "c42a24acbe014a59e23bfcff362c2bfd6663e56af3b2778d4aeda1da78c78f78"
+        }
+      }
+    ],
+    "input_refs": 12,
+    "native_framework_or_acquisition": 0,
+    "prepared": [
+      {
+        "bytes": 39053,
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/source-label-normal-evidence-preparation/bindings.json",
+        "sha256": "f4cd90f90646d60d47b9cc6169dfd1024d66fa3e70d4070beaf9d94a1952ac56"
+      },
+      {
+        "bytes": 1349,
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/source-label-normal-evidence-preparation/manifest.json",
+        "sha256": "c8d4f71ea9def529aa8e18aebd03e87a9828fd59993db4a560a4508be6647ddc"
+      },
+      {
+        "bytes": 42166,
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/source-label-normal-evidence-preparation/normal-evidence-operator.py",
+        "sha256": "fcbdec106b6906e98f55256e4655a88e2c48c14b3428c62e1af01706133732ac"
+      },
+      {
+        "bytes": 9482,
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/source-label-normal-evidence-preparation/preparation.json",
+        "sha256": "632834d0f8ccb038046c7a17d2d737a6aacb0361eedb47208c20a8a6e438fb46"
+      },
+      {
+        "bytes": 1863,
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/source-label-normal-evidence-preparation/result.json",
+        "sha256": "041980d36ea3fc83b43b209109a76ef28858790cb82903873dd89705dba0e0bb"
+      },
+      {
+        "bytes": 16397,
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/source-label-normal-evidence-preparation/test_operator.py",
+        "sha256": "ea4c3e592e88c04e86fc090b2b7d45e2f036bcb77b3bc141808a32f74f57164a"
+      }
+    ],
+    "raw_clean_computed_blob_checks": 225,
+    "source": "a4595068d0f1cda01106f9dcdb1af64b1f935e42",
+    "source_paths": 75,
+    "status": "PASS_BINDINGS",
+    "tracked_transport": [
+      {
+        "bytes": 592,
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-label-normal-comparison-readiness/transport-qualified/manifest.json",
+        "sha256": "0c3b7e4875e7b23a492f4da486410076e605eaeb0517ecf8606e80e3965d9423"
+      },
+      {
+        "bytes": 3257,
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-label-normal-comparison-readiness/transport-qualified/readiness.json",
+        "sha256": "881f654116f7f82549f6981f037b0b6c3a67350e0d23d54923dbf91df3cf840c"
+      },
+      {
+        "bytes": 783,
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-label-normal-comparison-readiness/transport-qualified/result.json",
+        "sha256": "5de6092d7d84b977ca0e024d3fd5604e62d9b54ec8b02d4399b677b1adcc077c"
+      }
+    ]
+  },
+  "boundary_conditions": [
+    "This is independent actual private operator source/effect/privacy admission only. It does not authorize a checkpoint push, dispatch, run/job poll, acquisition, native framework/DB/browser execution, acceptance, completion, merge or deployment. Story broad-review counter remains3.",
+    "Root/Coordinator must separately qualify the actual pushed reviewed head/source75, provider no-deploy and workflow registration/selected ref, then obtain completed fresh allocation for one materially changed full NORMAL comparison. The two old failed normal runs and all consumed grants remain historical; this is not automatic retry authority.",
+    "Future actual run/head/fresh canonical UUID remain unset until Root records real once-dispatch ownership. NORMAL/cause_proof=false/release_validation=false and the full95 cases (30Node+51Vitest+14essentialBrowser), plus separate recovery and required fullDB/RLS, remain unchanged. No DIAG001/test filtering.",
+    "Root is the trusted semantic capability producer and sole run/job poller. Before acquisition it must independently validate the completed fresh acquisition grant, this final exact source admission, frozen operator/bindings, freshly bound75 raw/clean/source+pushed/current objects and the actual owned completed run/attempt1/head/titleUUID/actors/repo/workflow/event/ref/nine jobs/steps. Historical150 source/metadata object proof is not a future pushed-head qualification.",
+    "Only after those checks may Root exclusively/fsync-create source-label-normal-terminal-evidence-activation.json, with exact source/operator identities, strict typed fields, actual positive run ID<=9007199254740991, reviewed40hex head distinct from source substitution, fresh lowercase UUIDv4, attempt integer1, normal flags false, integer maximum5, no_retry=true, acceptance integer0, exact jobs map and nonempty PASS independent source-review refs. A hash-bound reference alone does not establish a fresh allocation; Root must check its actual semantics. Template/null/old grants have no authority.",
+    "The new checkpoint-<actualheadfirst8>-source-label-normal-ci-independent output must be absent. Exclusive output creation and fsynced operation intent precede children; every request intent is fsynced before spawn. Failure or uncertainty consumes the operation, with no retry, alternate, raw fallback or recovery under an old grant.",
+    "Future acquisition is limited to one exact owned run-log archive, one owned artifact listing without pagination, and at most the three exact named eligible report ZIPs from that listing (full integration/general browser/isolated recovery). No new endpoints/discovery/per-job/status/body/attachment reads. Same15-second requests,32MiB archive/ZIP,4MiB listing,64KiB stderr,16MiB selected JSON,128MiB per-archive inflate/ratio/CRC/name/symlink rules remain.",
+    "Labels come only from one exact NUDGE004 file/fullName reserved meta.calendarSourceLabelsV1 slot (<=16 records) and one exact E2E001 source case's per-attempt stderr (<=2 distinct retry0/1 attempts,<=16 records each). Accept only closed ASCII512-byte records and source enum/crossfield relationships; ignore foreign metadata/unrelated stderr. Refused/missing/skipped/partial/explicit unknown stays UNKNOWN; observed typed empty slot is not proof of genuine semantic absence.",
+    "Preserve the48-record/32768-byte label-only cap, production preflight before reservation/GET and identical compact ASCII+LF checked/published bytes. Fixed records cannot prove slot completeness, error identity/cause, runtime settlement, cleanup/backend/key custody or native success. Labels remain separate from normal framework counts and nonadditive attempt accounting.",
+    "Any future acquired evidence requires separate independent offline provenance/privacy/truth qualification before acceptance or cause assessment. Existing failed/partial gates, unexecuted cases and unknown custody are not cleared by this source admission."
+  ],
+  "concrete_findings": [],
+  "deferred_work": [
+    "Separate actual effect allocations and Root immediate source/ownership/terminal qualification, exclusive activation and once-only bounded acquisition.",
+    "Separate independent qualification of actual native evidence; no native acceptance or development/release completion now."
+  ],
+  "effects": {
+    "API_GETs": 0,
+    "Git_commands_mutations": 0,
+    "acceptance": 0,
+    "app_Spec_config_state_provider_resource_changes": 0,
+    "development_complete": false,
+    "execution_authorized": false,
+    "native_acquisition": 0,
+    "native_framework": 0,
+    "release_ready": false
+  },
+  "effort": "high",
+  "model": "gpt-6.1-sol",
+  "open_questions": [
+    "Hosted Vitest metadata publication and future label availability remain UNKNOWN; installed JsonReporter13 controls are reused source-only proof.",
+    "Application assertions/causes, essential browser failures/flake, required DB/RLS/recovery execution and unexecuted coverage remain unresolved.",
+    "Backend/key custody remains UNKNOWN; observed label states cannot prove settlement or slot completeness."
+  ],
+  "outcome": "PASS_SOURCE_ONLY_NORMAL_LABEL_OPERATOR_WITH_FRESH_EFFECTS_CONDITIONS",
+  "pure_controls": {
+    "API_GETs": 0,
+    "errors": 0,
+    "failed": 0,
+    "independent_scalar_domain_checks": {
+      "availability": true,
+      "framework": true
+    },
+    "live_effect_sentinel_calls": [],
+    "memory_publications": 2,
+    "native_exit": 0,
+    "native_framework_or_acquisition": 0,
+    "passed": 27,
+    "producer_site_enums_match": true,
+    "production_label_budget": {
+      "cap_bytes": 32768,
+      "global_records": 48,
+      "margin_bytes": 7137,
+      "production_assembler_bytes": 25631,
+      "record_bytes": 512,
+      "same_admitted_published_bytes": true
+    },
+    "safety": "Actual supplied27 tests, with only tempfile/Path publication surfaces and fsync redirected to RAM. No author fixture/source writes, no subprocess/network. Actual source main/serializer/assembler/parser and synthetic5-request path executed.",
+    "same_actual_source": true,
+    "skipped": 0,
+    "status": "PASS_PURE_SOURCE_CONTROLS",
+    "stdout_stderr_synthetic_only": "...........................\n----------------------------------------------------------------------\nRan 27 tests in 0.098s\n\nOK\n",
+    "tests": 27,
+    "three_temp_contexts_memory_only": 3
+  },
+  "report": {
+    "bytes": 5200,
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-label-normal-evidence-source-review/original-report.md",
+    "sha256": "1d659049573c6ddd1c7a584aa5b4d933982f805abf1c7d309291d5b80aa8e74d"
+  },
+  "reviewer_harness_sha256": null,
+  "reviewer_nonadditive_history": {
+    "API_GETs": 0,
+    "initial": "27-test suite passed under RAM-only file sink and effect sentinel; subsequent reviewer-only producer-enum extractor failed because it assumed no whitespace around '='. No source/preparation changed. Corrected extractor accepts the actual pinned formatting; final run is nonadditive.",
+    "initial_wrapper_native_exit": 1
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "commands_and_exact_future_formats_in": {
+    "bytes": 9482,
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/source-label-normal-evidence-preparation/preparation.json",
+    "sha256": "632834d0f8ccb038046c7a17d2d737a6aacb0361eedb47208c20a8a6e438fb46"
+  },
+  "development_complete": false,
+  "effect_split": {
+    "actual": "owned metadata/private operator preparation and pure stdlib controls only; network0/Gitmutation0/resources0",
+    "future_SOURCE_audit": "Independent High review exact operator/tests/bindings and bounded protocol changes before use",
+    "future_operational": "Root exact head push+once NORMAL dispatch and separately granted terminal archive/list/<=3 eligible report ZIPs; exact activation template remains nonauthorizing/null run/head/UUID"
+  },
+  "existing_failed_runs_preserved": true,
+  "fixed_labels": {
+    "E2E001": "one exact essential case per attempt stderr fixed prefix; max2 attempts retry0/1; nonadditive",
+    "NUDGE004": "one exact prerequisite case reserved calendarSourceLabelsV1 only; not additive to95"
+  },
+  "metadata_head_not_future_run": "501cd4e2e172967c6b0bb28bb58c69ac7fc05907",
+  "native_label_publication": "UNKNOWN",
+  "normal_acceptance": 0,
+  "normal_required_cases": {
+    "Node": 30,
+    "Vitest": 51,
+    "direct_recovery_separate": 1,
+    "essential_browser": 14,
+    "native_executed_by_this_preparation": 0,
+    "unique_story": 95
+  },
+  "old_readiness_gate_reconciled": "Exact3 NUDGE public task.meta prerequisite implemented/reviewed; Playwright existing stderr carrier source-bound. No wrapper/pin/workflow change.",
+  "policy_version": "2026-10-19",
+  "private_packet": {
+    "bytes": 1349,
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/source-label-normal-evidence-preparation/manifest.json",
+    "sha256": "c8d4f71ea9def529aa8e18aebd03e87a9828fd59993db4a560a4508be6647ddc"
+  },
+  "private_preparation": {
+    "bytes": 9482,
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/source-label-normal-evidence-preparation/preparation.json",
+    "sha256": "632834d0f8ccb038046c7a17d2d737a6aacb0361eedb47208c20a8a6e438fb46"
+  },
+  "release_ready": false,
+  "review_evidence": [
+    {
+      "bytes": 938,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-label-vitest-meta-high-review/manifest.json",
+      "sha256": "b77fff582720f271d72ed07707b844f4f0c43dec72a162b5ed658e3faac9a51d"
+    },
+    {
+      "bytes": 1399,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/root-source-label-vitest-meta-closure-admission.json",
+      "sha256": "60fc0ebd26c2ce094a57b554fd3d9bf7d2c496608fffdafb259928749b016594"
+    }
+  ],
+  "schema": "SOURCE_LABEL_TRANSPORT_QUALIFIED_READINESS_v1",
+  "source": "a4595068d0f1cda01106f9dcdb1af64b1f935e42",
+  "source_bindings": {
+    "bytes": 39053,
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/source-label-normal-evidence-preparation/bindings.json",
+    "sha256": "f4cd90f90646d60d47b9cc6169dfd1024d66fa3e70d4070beaf9d94a1952ac56"
+  },
+  "source_current_count": 75,
+  "source_transport_gate": "CLOSED_SOURCE_ONLY: distinct High13 installed JsonReporter RAM controls; native not credited",
+  "status": "OFFLINE_OPERATOR_PREPARED_PENDING_INDEPENDENT_HIGH_AUDIT_AND_SEPARATE_EFFECTS"
+}

@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-21T21:44:13Z"
+updated_at: "2026-10-21T21:55:48Z"
 started_at: "2026-10-20T12:18:56Z"
 completed_at: null
 active_seconds: 86219
@@ -18,15 +18,15 @@ is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: P5-source-label-normal-evidence-preparation
-selected_role: sensitive-bounded-evidence-operator-author
-selected_profile: build
+selected_phase: P5-source-label-normal-operator-source-audit
+selected_role: independent-sensitive-acquisition-source-auditor
+selected_profile: followup_review
 selected_model: gpt-6.1-sol
 selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Prepare bounded untrusted artifact parsing for reviewed NUDGE metadata and browser fixed labels while preserving source binding, custody, privacy, aggregate budgets and no remote effects."
+escalation_reason: "Independent audit of bounded untrusted hosted-report projection, global production budget, activation identity, process/ZIP completion and preserved privacy without any effects."
 routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"High preparation for hashed public-feed tokens, rotation/revocation and tenant/member disclosure boundaries; plan-only before distinctvalidation and ownershipallocation\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct High independent specification validation of actual public-feed token/proof/IP/limiter authorization design and exact ownership/test-key boundaries before anybuild\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"cross_model_layer\",\"profile\":\"diverse_review\",\"role\":\"independent-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -246,6 +246,7 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Public test task metadata must transport only bounded fixed labels while preserving original failures and privacy; exact3 subset of allocated6, installed-reporter proof required.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-source-label-Vitest-metadata-transport\",\"profile\":\"build\",\"role\":\"sensitive-bounded-metadata-transport-author\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Target new three-file public-task metadata transport, bounded privacy and error/cleanup preservation plus installed JSON reporter proof; no broad pass, counter3.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-source-label-Vitest-meta-committed-review\",\"profile\":\"followup_review\",\"role\":\"independent-sensitive-metadata-transport-review\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Prepare bounded untrusted artifact parsing for reviewed NUDGE metadata and browser fixed labels while preserving source binding, custody, privacy, aggregate budgets and no remote effects.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-source-label-normal-evidence-preparation\",\"profile\":\"build\",\"role\":\"sensitive-bounded-evidence-operator-author\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Independent audit of bounded untrusted hosted-report projection, global production budget, activation identity, process/ZIP completion and preserved privacy without any effects.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-source-label-normal-operator-source-audit\",\"profile\":\"followup_review\",\"role\":\"independent-sensitive-acquisition-source-auditor\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: "Hashed public tokens, rotation/revocation, externalfeed andcross-tenant abuseprotection requireHigh-riskATDD+automate; lastthreeno traceadvisory"
@@ -1946,3 +1947,12 @@ source_label_vitest_meta_review:
   native_acceptance: 0
   hosted_publication: UNPROVEN
   next: "Prepare bounded label-aware acquisition operator and independent High source audit, then refreshed readiness and actual one-NORMAL effect allocation."
+source_label_normal_evidence_source_audit:
+  status: PASS_SOURCE_ONLY_NORMAL_LABEL_OPERATOR_WITH_FRESH_EFFECTS_CONDITIONS
+  source: a4595068d0f1cda01106f9dcdb1af64b1f935e42
+  review_directory: "_bmad-output/auto-bmad/preparation/story-15-5/source-label-normal-evidence-source-review"
+  operator_sha256: fcbdec106b6906e98f55256e4655a88e2c48c14b3428c62e1af01706133732ac
+  offline_controls: 27
+  native_acceptance: 0
+  effects: 0
+  next: "Coordinate actual fresh provider/checkpoint NORMAL effects; Root fresh exact-head source proof. After typed terminal ownership, separately allocated five-request acquisition and exclusive activation; no automatic retry."

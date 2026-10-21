@@ -1,0 +1,23 @@
+{
+  "execution_authorized": false,
+  "members": [
+    {
+      "bytes": 5200,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-label-normal-evidence-source-review/original-report.md",
+      "sha256": "1d659049573c6ddd1c7a584aa5b4d933982f805abf1c7d309291d5b80aa8e74d"
+    },
+    {
+      "bytes": 12512,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-label-normal-evidence-source-review/original-attestation.json",
+      "sha256": "f10030e4fd129913cdf51f7f0dc08802a53d5d69cebbccc89a3e34445c3791ee"
+    },
+    {
+      "bytes": 2465,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-label-normal-evidence-source-review/result.json",
+      "sha256": "20f6cb6d491ddd47d9238185cd7b546a25ecaae783eb45f4cb0015d6155991f5"
+    }
+  ],
+  "normal_acceptance": 0,
+  "schema": "SELF_EXCLUDED_SOURCE_REVIEW_MANIFEST_v1",
+  "self_excluded": "manifest.json"
+}

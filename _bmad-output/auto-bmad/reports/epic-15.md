@@ -6098,3 +6098,34 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Prepare bounded label-aware acquisition operator and independent High source audit, then refreshed readiness and actual one-NORMAL effect allocation.
+
+## Report — 2026-10-21T21:55:48Z (source-label-normal-operator-source-pass)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `a459506`).
+**Pipeline status:** Story15.5 in review. Independent High source audit passed the bounded label-aware normal collector:27 pure controls and actual25631-byte envelope. Hosted publication, causes, custody and required native gates remain unproven; acceptance0.
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 296h 57m (≈77h 24m AI-run, ≈219h 33m human/idle wait); resumed 183×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Coordinate actual fresh provider/checkpoint NORMAL effects; Root fresh exact-head source proof. After typed terminal ownership, separately allocated five-request acquisition and exclusive activation; no automatic retry.
