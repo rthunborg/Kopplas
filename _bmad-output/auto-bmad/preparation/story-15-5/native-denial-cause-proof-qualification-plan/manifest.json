@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "kind": "INDEPENDENT_DIAGNOSTIC_QUALIFICATION_PLAN_IDENTITY",
+  "source": "55db468eef3106ca1b02dc846ba12967a28dc238",
+  "checkpoint": "56324120f8e08de995e8cc7432ab27f2d0c98635",
+  "route": {
+    "phase": "plan-native-cause-proof-qualification",
+    "role": "independent-native-diagnostic-provenance-qualifier",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "recorded_before_activation_by_root": true
+  },
+  "self_excluded": true,
+  "member_count": 2,
+  "files": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-qualification-plan/plan.md",
+      "bytes": 14424,
+      "sha256": "6fc4d2865a193aa05d67defdb3a3300cefad82d613e0b2e2da5bf2fcda4b67c0"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-qualification-plan/result.json",
+      "bytes": 3566,
+      "sha256": "6eb5ecc2e4aa055067a01725d7a2882f856bdfd3c2c14d65bc2eb49ce63ffea6"
+    }
+  ],
+  "inputs": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-proposal-revision-1/proposal.md",
+      "bytes": 16665,
+      "sha256": "6d41cda99f51403ab49fed4e6bc31976427efca7358beb80f164d4cf7064e90d"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-proposal-revision-1/contract-and-bindings.json",
+      "bytes": 32880,
+      "sha256": "7cdbae09f37bdb04c9c9965aca3c0b8bdab6ed6cdaa148b35a64e2c41b2ad0cf"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-proposal-revision-1/manifest.json",
+      "bytes": 1763,
+      "sha256": "f3b31ce6d0a4b1f8d4322de89c0491709d939dc840ecfd9333d9106f7346b334"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-revision-1-challenge/original-report.md",
+      "bytes": 17105,
+      "sha256": "c4866354960d7aa789556e755c2ff1970c2053de62c02a9ab16004e1701f0b2b"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-revision-1-challenge/original-attestation.json",
+      "bytes": 76083,
+      "sha256": "58e75b3cdaa1628549cf43a9568d7e2b0ef02e54d010a0474af954491cc1dc96"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-revision-1-challenge/result.json",
+      "bytes": 1831,
+      "sha256": "e9515cbf0da465180096ce1fa6cb5a8a33b8aa2d2b10d74402835ffa03ad59dd"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-native-denial-cause-proof-allocation.json",
+      "bytes": 5006,
+      "sha256": "99bcc94753e87bb3efcf7fec730c88da4059ca450a4548286f47dbf20fdc63d3"
+    }
+  ],
+  "read_only_verification": {
+    "proposal_manifest_members": 4,
+    "immutable_references": 10,
+    "context_bindings": 25,
+    "author_checkpoint_blob_checks": 50,
+    "binding_result_canonical_sha256": "ea897f747ea1924192564fce1251b77b3d2ceef3c719df9c4fc8678319d21d0a",
+    "binding_result_digest_method": "UTF8 json.dumps rows in contract order,sort_keys=True,separators=(comma,colon); row fields path/raw_sha256/clean_oid/author_oid/checkpoint_oid/index_oid/blob_sha256/qualified. Index equalled checkpoint when checked.",
+    "frozen_source_paths": 69,
+    "snapshot_is_atomic": false,
+    "later_global_clean_claim": false
+  },
+  "implementation_allocation": {
+    "grant_turn": "01a15b99-da9f-7ef2-9b61-5ef849c8f16e",
+    "native_receipt": "exec-d50c1b38-16fa-4aec-9e9a-c3ed05997ee1",
+    "effect": "Exact14 proposed implementation hunks granted; this plan confers no native execution."
+  },
+  "native_credit": 0,
+  "normal_acceptance_credit": 0,
+  "source_or_native_effects_executed": false,
+  "scope": "Only plan.md/result.json/manifest.json in this NEW directory. No old artifacts/source/Spec/Git/state/native/provider/secret changes or fetches."
+}

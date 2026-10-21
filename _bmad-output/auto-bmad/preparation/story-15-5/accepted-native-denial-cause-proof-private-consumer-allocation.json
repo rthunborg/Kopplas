@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "kind": "ROOT_ACCEPTED_EXACT_PRIVATE_DIAGNOSTIC_CONSUMER_ALLOCATION",
+  "accepted_at_utc": "2026-10-20T23:23:51.624537+00:00",
+  "coordinator_thread": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "actual_grant_turn": "01a15b9f-d58e-72c0-a5cc-a9f9915b4a66",
+  "actual_native_completed_handoff": "exec-a8f3b9ec-34c2-47be-adfb-80e38b39212e",
+  "future_exclusive_directory": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-<actual-admitted-pushed-full-head-first8>-cause-proof-ci-independent/",
+  "refuse_existing_directory": true,
+  "bind_full_sha_and_checkpoint_uuid": true,
+  "root_only_files": [
+    "expected-admission.json",
+    "terminal-facts.json"
+  ],
+  "High_qualifier_only_files": [
+    "collect-diagnostic-evidence.py",
+    "test_collect_diagnostic_evidence.py",
+    "diagnostic-evidence.json",
+    "diagnostic-qualification.json",
+    "manifest.json"
+  ],
+  "creation_prerequisites": [
+    "Actual producer committed",
+    "Distinct High committed-delta review PASS",
+    "Root source freeze and checkpoint push"
+  ],
+  "helper_conditions": [
+    "Actual committed producer schema bound, no guessed consumer compatibility",
+    "Distinct High helper/test code review before network/use; pure injected tests allowed before review",
+    "No frozen normal collector or eleven failed packet changes; zero tracked source outside14 effects",
+    "Enforce caps before interpreting; reject pagination overflow/unexpected artifact/traversal/symlink/oversize/dynamic payload",
+    "No raw API/archive/report persistence; closed enums/booleans/counters/nonsecret IDs/digests only",
+    "Meaningful wrongmode/SHA/UUID/run/attempt/schema/field/enum/artifact/selected-count/missing-report-after-start/observation/manifest/privacy negative controls",
+    "Missing or unfamiliar producer field is compatibility STOP; preserve NOT_CREATED/nullable uncertainty, diagnostic always zero acceptance"
+  ],
+  "conditional_network_collection": {
+    "requires": "Explicit Root terminal authorization for actual admitted owned run AFTER helper review and all prior native admission gates",
+    "fixed_metadata_endpoint": "repos/rthunborg/Kopplas/actions/runs/<owned-admitted-run-id>/artifacts?per_page=100&page=1",
+    "fixed_archive_endpoint": "repos/rthunborg/Kopplas/actions/artifacts/<exact-admitted-artifact-id>/zip",
+    "transport": "gh, raw bodies and archive MEMORY ONLY",
+    "forbidden": [
+      "Qualifier run/job polling",
+      "Job log fetching",
+      "Supplied URLs",
+      "Additional discovery",
+      "Unknown schema inference"
+    ]
+  },
+  "Root_sole_run_job_poller": true,
+  "Root_expected_admission_fields": [
+    "persisted diagnostic mode",
+    "release false",
+    "workflow availability before POST",
+    "reviewed producer schema/caps",
+    "fixed title/request",
+    "repo/workflow/ref",
+    "full head SHA",
+    "checkpoint UUID",
+    "actors",
+    "attempt1"
+  ],
+  "terminal_facts_bind_actual_run": true,
+  "native_credit": 0,
+  "normal_acceptance_credit": 0,
+  "allocation_launches_nothing": true,
+  "prior_exact14_and_native_admission_gates_still_pending": true,
+  "no_secrets_provider_deployment_main_merge_foreign_writes_monitor_resume_resource_authority": true
+}

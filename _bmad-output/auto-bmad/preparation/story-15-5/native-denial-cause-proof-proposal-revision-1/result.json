@@ -1,0 +1,26 @@
+{
+  "Outcome": "Revised staged design prepared for fresh independent High challenge; F1/F2 scoped and F3 corrected to UNKNOWN/staged stop.",
+  "Files changed": [
+    "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-proposal-revision-1/prepare-revision.mjs",
+    "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-proposal-revision-1/proposal.md",
+    "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-proposal-revision-1/contract-and-bindings.json",
+    "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-proposal-revision-1/result.json",
+    "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-proposal-revision-1/manifest.json"
+  ],
+  "Status": "PROPOSAL_ONLY_UNALLOCATED; source/Spec/index/old evidence unchanged; nativecredit0.",
+  "Open questions": [
+    "Actual hosted diagnostic workflow/input availability must qualify before sole POST; no default-branch mutation authorized.",
+    "Current shared dispatch/CI/checker ownership and exact session-only baseline allocation require Root/Coordinator.",
+    "Restricted direct-SQL baseline is not the original JWT/PostgREST session/input/clock/snapshot."
+  ],
+  "Deferred work": [
+    "Any function transformation/SQL engine-stage observation",
+    "RLS010/unmapped scenario/direct-RLS wide observation",
+    "Cause-driven product fix and mandatory normal full CI",
+    "All43DB and14browser failures/privacy content qualification"
+  ],
+  "Blockers": [
+    "Fresh independent High revision challenge PASS, current exact allocation and committed-delta High PASS required before future execution.",
+    "Ambiguous/nonreproduced baseline must stop for named next proof, never opaque full-CI retry."
+  ]
+}

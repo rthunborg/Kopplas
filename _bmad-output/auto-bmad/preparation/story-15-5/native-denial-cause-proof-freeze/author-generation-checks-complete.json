@@ -1,0 +1,59 @@
+{
+  "kind": "AUTHOR_METADATA_GENERATION_CHECKS_NOT_INDEPENDENT_REVIEW",
+  "source": "af5af69fd5018795a963a28c1ad367147b4a9bc3",
+  "source_paths": 70,
+  "differences": 41,
+  "author_commits": 19,
+  "root_commits": 11,
+  "ancestry": 30,
+  "equalities": 734,
+  "snapshots": {
+    "total": 27,
+    "raw_uncredited": 12,
+    "baseline_only": 15
+  },
+  "inherited_evidence_reused_by_immutable_hash": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-native-dependency-audit-repair.json",
+    "bytes": 720807,
+    "sha256": "fdf228c001e59f666cf362c5ee847513a90b101fb2c0188f5d8932a0d27912cd"
+  },
+  "initial_reader_stops": [
+    {
+      "exit_code": 1,
+      "label": "Review identity/verdict",
+      "cause": "Original cb8 attestation stores reviewed source as head; later attestations use source.",
+      "correction": "Read source ?? head and retain exact source/verdict comparison; no source/review artifact changed."
+    },
+    {
+      "exit_code": 1,
+      "label": "ENOENT isolated-storage-recovery.json",
+      "cause": "Native archive-member descriptor was mistaken for a loose packet artifact.",
+      "correction": "First attempted exact manifest-member rebase did not apply; no fallback path invented."
+    },
+    {
+      "exit_code": 1,
+      "label": "Repeated ENOENT isolated-storage-recovery.json",
+      "correction": "Represent exact qualified archive member with member_* fields plus manifest-bound extraction and native qualification refs; no loose-file claim."
+    }
+  ],
+  "interrupted_pre_capsule_author_checks": [
+    {
+      "artifact": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-freeze/author-generation-checks.json",
+        "bytes": 1039,
+        "sha256": "c18debba094baa7d1ecb33dc07ce98781339a35fb87bd8eb3a687544b6509729"
+      },
+      "producer_outcome": "FAILED_BEFORE_CAPSULE_NOT_INDEPENDENT_PASS"
+    },
+    {
+      "artifact": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-freeze/author-generation-checks-final.json",
+        "bytes": 1758,
+        "sha256": "2f01939fe81815081920fcfb8f09a55234328073a9a5dfc058349a9515714f6c"
+      },
+      "producer_outcome": "FAILED_BEFORE_CAPSULE_NOT_INDEPENDENT_PASS"
+    }
+  ],
+  "parent_independent_verifier": "PENDING_PARENT_OWNED",
+  "no_tests_or_runtime": true
+}

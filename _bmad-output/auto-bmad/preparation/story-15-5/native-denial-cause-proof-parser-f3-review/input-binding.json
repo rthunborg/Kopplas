@@ -1,0 +1,660 @@
+{
+  "schema_version": 1,
+  "kind": "EXACT_COMMITTED_F3_LATEST3_REVIEW_BINDING",
+  "source": "af5af69fd5018795a963a28c1ad367147b4a9bc3",
+  "base": "52007b760ff10f056ac75c5ed5b7dcdf49f99036",
+  "route": {
+    "phase": "review-native-cause-proof-parser-f3-latest3",
+    "role": "independent-sensitive-latest3-default-parser-regression-reviewer",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "recorded_by_root_before_dispatch": true,
+    "dispatch_owner": "Parent; author does not dispatch",
+    "source": "af5af69fd5018795a963a28c1ad367147b4a9bc3",
+    "base": "52007b760ff10f056ac75c5ed5b7dcdf49f99036",
+    "scope": "Only latest F3 three-path correction and consequential regressions; not fourth broad review",
+    "completed_broad_rounds": 3,
+    "current_verdict": "PENDING",
+    "original520_verdict": "NOTPASS, F1/F2 CLOSED, F3 OPEN; immutable historical report",
+    "review_composite": "Reused unchanged four-path F1/F2 closure plus pending current three-path F3 correction; not new whole-seven PASS",
+    "source_spec_index_frozen": true,
+    "root_metadata_identity_only": {
+      "current70": 70,
+      "current_normalization": 41,
+      "delta_normalization": 2,
+      "unchanged67": 67,
+      "author_commits": 19,
+      "root_commits": 11,
+      "ancestry": 30,
+      "raw_root_state_not_resampled": true,
+      "root_dirty_excluded": true
+    },
+    "invariants": [
+      "Strict structural subset only; no new parser dependency or broader syntax contract",
+      "Malformed scalar must fail before durable state and sole POST",
+      "Actual current candidate and supported default/comment/colon content preserved",
+      "Same fixed GET/solePOST/ref/SHA/candidate/default/nonce/mode gates",
+      "F1/F2 helper/wrapper/CIpin/runtime controls unchanged",
+      "All43 DB and14 browser causes unresolved; DIAG001 unexecuted; hosted availability UNKNOWN; private consumer UNBORN"
+    ],
+    "native_credit": 0
+  },
+  "bindings": [
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "raw": {
+        "bytes": 131245,
+        "sha256": "d6c5ea5c0248e86f2d69a20210dcacdff76d5f7476ad6fdbafba0f11794a02da"
+      },
+      "actual_git_clean_oid": "046d41efbe28e31d8fdf4a1f9f03fa27b400b7f5",
+      "committed": {
+        "oid": "046d41efbe28e31d8fdf4a1f9f03fa27b400b7f5",
+        "bytes": 131245,
+        "sha256": "d6c5ea5c0248e86f2d69a20210dcacdff76d5f7476ad6fdbafba0f11794a02da"
+      },
+      "baseline": {
+        "oid": "bf3cb98a08c72b8fd5347f004978c75961a9acf8",
+        "bytes": 128003,
+        "sha256": "44ddc4c80e4943d3cbe79d77939e7b53b5e18269b288641776e427aaabba1461"
+      },
+      "raw_equals_committed_blob": true
+    },
+    {
+      "path": "scripts/ci/checkpoint-dispatch.mjs",
+      "raw": {
+        "bytes": 19247,
+        "sha256": "4df524954f2f1f290d2670a365a26643eeb17245be6036219cdd380b68dc5e86"
+      },
+      "actual_git_clean_oid": "6325d7fae7366655e8d0fc14f26222d6e4f1f92d",
+      "committed": {
+        "oid": "6325d7fae7366655e8d0fc14f26222d6e4f1f92d",
+        "bytes": 18962,
+        "sha256": "2d5c32540eddb578dd24118445c3b708c26bfaede1f631632c46af8e9be73ec1"
+      },
+      "baseline": {
+        "oid": "b5430f80e04fe136fe3b6dece75da35e7941e5ba",
+        "bytes": 18649,
+        "sha256": "a777335c5456aeaeefc013051982452690a082affe2495168abd019b02ea7a01"
+      },
+      "raw_equals_committed_blob": false
+    },
+    {
+      "path": "tests/unit/scripts/ci/checkpoint-dispatch.test.ts",
+      "raw": {
+        "bytes": 25445,
+        "sha256": "e5a2af0fb8a06e7f6957c84ae00ea6bb0712780ce4008219527ee0c83854679e"
+      },
+      "actual_git_clean_oid": "fb0f9d9b427c513b0cd890087a8c7aa23b1213bd",
+      "committed": {
+        "oid": "fb0f9d9b427c513b0cd890087a8c7aa23b1213bd",
+        "bytes": 25201,
+        "sha256": "7785f56fa8e7a0ec6ee6e2366ac6ebb2969e93f87ce14e5c79c60a51a4e92865"
+      },
+      "baseline": {
+        "oid": "2c1c16a38ab7d5639cbf5affe719aeb8e395e1f4",
+        "bytes": 23680,
+        "sha256": "db517aac87b61b8f7bfb9c52eb56278f1520c41a178e6c12c457d544c80cb4ab"
+      },
+      "raw_equals_committed_blob": false
+    }
+  ],
+  "reused_F1_F2": [
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "source_oid": "7eb081cc2a8f8ed9848319cdb0693d04fbec97b2",
+      "baseline_oid": "7eb081cc2a8f8ed9848319cdb0693d04fbec97b2",
+      "unchanged": true,
+      "review_scope": "F1/F2 closure reused, no new whole-current-seven review claim"
+    },
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "source_oid": "ecbcaa951a4656ad5fe99b59bf2a0a8cb3c1599d",
+      "baseline_oid": "ecbcaa951a4656ad5fe99b59bf2a0a8cb3c1599d",
+      "unchanged": true,
+      "review_scope": "F1/F2 closure reused, no new whole-current-seven review claim"
+    },
+    {
+      "path": "tests/support/calendar-feed-ci-contract.ts",
+      "source_oid": "0d2e0e0743dbc0d42d13e58de6a10b541589c925",
+      "baseline_oid": "0d2e0e0743dbc0d42d13e58de6a10b541589c925",
+      "unchanged": true,
+      "review_scope": "F1/F2 closure reused, no new whole-current-seven review claim"
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "source_oid": "911ed4e0d01053011d3850d9250593b05265cc66",
+      "baseline_oid": "911ed4e0d01053011d3850d9250593b05265cc66",
+      "unchanged": true,
+      "review_scope": "F1/F2 closure reused, no new whole-current-seven review claim"
+    }
+  ],
+  "references": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-review/review-input.md",
+      "bytes": 143357,
+      "sha256": "08d47625a44b1e4546fdaf411098cbcaadc9dd8676fb96be6e88550794e36d4a"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-review/input-binding.json",
+      "bytes": 33636,
+      "sha256": "375634ad2bd8e0025ab16641eab6b77bd97a70c78c2fb3756b233300e55dbae8"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-review/original-report.md",
+      "bytes": 8610,
+      "sha256": "5b480c25b39069f3fff270ce90977e272dee7a3b0f9d7b12c8bb3926f4ecdcbf"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-review/original-attestation.json",
+      "bytes": 27077,
+      "sha256": "1a537514b5a9b2750cd95f0c12d4ac1f68266311d95c63dc004a43c739dd998f"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-review/result.json",
+      "bytes": 1549,
+      "sha256": "1fcecf86670d8eb265d173f5d8f968ffcfe4bd60bb13002f6e03b078c59e9778"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-native-denial-cause-proof-corrective-allocation.json",
+      "bytes": 4261,
+      "sha256": "956b92aaaeda0d028a4c53e2b48c00b8f86916bae2523f069f28ce2363451079"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-52007b76-original-review-admission.json",
+      "bytes": 1010,
+      "sha256": "8ef05c7aa146df5abce18f15aa3917e5ea65c1eeb3c230d3bcb79e05c405a325"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-af5af69f-source-path-admission.json",
+      "bytes": 38719,
+      "sha256": "4f6e76c81f594a697e75cf2bd3c54700b8a2bbc508410693e005aa846efa8277"
+    }
+  ],
+  "input_files": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-parser-f3-review/latest.diff",
+      "bytes": 9507,
+      "sha256": "84373f05c0f7353b8551d8ab47abd2f3d24ef255d05a5b71e5b9148c3c5cdd65"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-parser-f3-review/review-input.md",
+      "bytes": 41806,
+      "sha256": "d525e848f1ebd95676f656a1bc8ff420fa9c3214923fdef8455fcc3c36a62bb7"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-parser-f3-review/local-checks.json",
+      "bytes": 1627,
+      "sha256": "88294c800290a0b4e76a1e1f779765161d5874d0688841d70041f13a216c9b70"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-parser-f3-review/route-context.json",
+      "bytes": 1663,
+      "sha256": "70092f883bebd80fe3ff8e8274771ae9b0c9102855858e3ecf2946e9ddf33816"
+    }
+  ],
+  "author_order": {
+    "section_count": 1,
+    "stop_count": 89,
+    "verified_stops": [
+      {
+        "path": "src/components/app-shell/AppShell.tsx",
+        "line": 279,
+        "anchor": "navigation.some"
+      },
+      {
+        "path": "src/components/calendar-feed/CalendarSubscription.tsx",
+        "line": 34,
+        "anchor": "const current = await refresh();"
+      },
+      {
+        "path": "src/components/calendar-feed/CalendarSubscription.tsx",
+        "line": 69,
+        "anchor": "state?.status === \"error\""
+      },
+      {
+        "path": "tests/integration/components/calendar-feed.test.ts",
+        "line": 36,
+        "anchor": "15.5-COMP-003"
+      },
+      {
+        "path": "tests/e2e/calendar-feed.e2e.spec.ts",
+        "line": 380,
+        "anchor": "15.5-E2E-010-"
+      },
+      {
+        "path": "tests/e2e/calendar-feed.e2e.spec.ts",
+        "line": 447,
+        "anchor": "15.5-E2E-011"
+      },
+      {
+        "path": "src/server/commands/calendar-feed/manage-calendar-feed.ts",
+        "line": 10,
+        "anchor": "function calendarFeedConfig"
+      },
+      {
+        "path": "src/server/commands/calendar-feed/manage-calendar-feed.ts",
+        "line": 38,
+        "anchor": "command: \"calendar_feed.create\""
+      },
+      {
+        "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+        "line": 162,
+        "anchor": "create function public.manage_calendar_feed"
+      },
+      {
+        "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+        "line": 122,
+        "anchor": "is distinct from (case"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 354,
+        "anchor": "const allowed = [\"membershipId\""
+      },
+      {
+        "path": "tests/integration/rls/calendar-feed.rls.test.ts",
+        "line": 129,
+        "anchor": "15.5-RLS008"
+      },
+      {
+        "path": "middleware.ts",
+        "line": 40,
+        "anchor": "request.nextUrl.pathname"
+      },
+      {
+        "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+        "line": 236,
+        "anchor": "'updatedAt',greatest"
+      },
+      {
+        "path": "src/features/calendar-feed/icalendar.ts",
+        "line": 40,
+        "anchor": "export function encodeCalendarFeed"
+      },
+      {
+        "path": "tests/unit/features/calendar-feed/icalendar.test.ts",
+        "line": 76,
+        "anchor": "R1-05 positive"
+      },
+      {
+        "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+        "line": 247,
+        "anchor": "exception when sqlstate '57014'"
+      },
+      {
+        "path": "tests/integration/calendar-feed/public-feed.int.test.ts",
+        "line": 364,
+        "anchor": "15.5-API018"
+      },
+      {
+        "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+        "line": 27,
+        "anchor": "pg_has_role(current_user,feed_owner.oid,'SET')"
+      },
+      {
+        "path": "tests/integration/commands/calendar-feed.int.test.ts",
+        "line": 445,
+        "anchor": "memberships.every(row => row.inherit_option === false)"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 556,
+        "anchor": "has_schema_privilege(oid,'public','CREATE')"
+      },
+      {
+        "path": "tests/integration/rls/calendar-feed.rls.test.ts",
+        "line": 171,
+        "anchor": "publicSchemaCreate: false"
+      },
+      {
+        "path": "tests/integration/ops/recovery-storage-immutability.int.test.ts",
+        "line": 131,
+        "anchor": "has_schema_privilege('calendar_feed_owner','public','CREATE')"
+      },
+      {
+        "path": "tests/integration/commands/calendar-feed.int.test.ts",
+        "line": 486,
+        "anchor": "// FULL rollback comes first"
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "line": 328,
+        "anchor": "export function createOwnedGroupStopper"
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "line": 249,
+        "anchor": "export function createTelemetryObserver"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 1282,
+        "anchor": "nonzero/null-signal nested browser loss"
+      },
+      {
+        "path": "tests/support/calendar-feed-ci-contract.ts",
+        "line": 83,
+        "anchor": "projectCalendarFeedCiCommands"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 39,
+        "anchor": "CI command projection rejects"
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "line": 100,
+        "anchor": "function safeDiagnostic"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 320,
+        "anchor": "COMMIT uncertainty is not cleared"
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "line": 553,
+        "anchor": "receipt.privacyPreflight = await readCalendarFeedPrivacyPreflight(db);"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 216,
+        "anchor": "privacy preflight rejects incomplete"
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "line": 167,
+        "anchor": "export function createCalendarFeedDatabaseClient"
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "line": 154,
+        "anchor": "export async function readCalendarFeedSetupAuthority"
+      },
+      {
+        "path": "tests/integration/commands/calendar-feed.int.test.ts",
+        "line": 508,
+        "anchor": "await fresh.connect(); await setupQualified(fresh); await absent(fresh);"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 154,
+        "anchor": "setup construction refuses missing"
+      },
+      {
+        "path": "tests/e2e/support/calendar-feed-atdd.ts",
+        "line": 83,
+        "anchor": "export function createCalendarLifecycleObservations"
+      },
+      {
+        "path": "tests/e2e/support/calendar-feed-atdd.ts",
+        "line": 25,
+        "anchor": "export function calendarBrowserDiagnostic"
+      },
+      {
+        "path": "tests/e2e/support/calendar-feed-atdd.ts",
+        "line": 705,
+        "anchor": "if (base && cleanupAllowed)"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 496,
+        "anchor": "missing leaders with persistent groups"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 1048,
+        "anchor": "actual browser bounded cancellation"
+      },
+      {
+        "path": "tests/e2e/support/calendar-feed-atdd.ts",
+        "line": 93,
+        "anchor": "trackReadback<T>"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 1128,
+        "anchor": "installed polling deadline cannot credit"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 202,
+        "anchor": "export function calendarFixtureDiagnostic"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 272,
+        "anchor": "phase = \"additional-users\""
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 601,
+        "anchor": "actual fixture diagnostics preserve only"
+      },
+      {
+        "path": "tests/integration/rls/acceptance-tables-migration-reset.int.test.ts",
+        "line": 212,
+        "anchor": "approved role-specific policies"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 930,
+        "anchor": "the actual allocated policy case rejects"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 234,
+        "anchor": "calendarFixtureSafeFailures.get(child)?.children"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 877,
+        "anchor": "installed failure transport reproduces lost"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 889,
+        "anchor": "actual repaired fixture diagnostics reach"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 190,
+        "anchor": "export function calendarFixtureOrigin"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 195,
+        "anchor": "export function calendarFixtureAssertionAt"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 734,
+        "anchor": "const outcome = result.outcome"
+      },
+      {
+        "path": "tests/integration/rls/calendar-feed.rls.test.ts",
+        "line": 23,
+        "anchor": "calendarFixtureAssertionAt(allowedSites[subject]"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 798,
+        "anchor": "actual first INT001 and API001 callbacks stop"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 830,
+        "anchor": "actual first callbacks retain precise safe assertion frames"
+      },
+      {
+        "path": "package.json",
+        "line": 50,
+        "anchor": "\"vite\": \"8.1.6\""
+      },
+      {
+        "path": "pnpm-lock.yaml",
+        "line": 2297,
+        "anchor": "vite@8.1.6:"
+      },
+      {
+        "path": "pnpm-lock.yaml",
+        "line": 2059,
+        "anchor": "rolldown@1.1.5:"
+      },
+      {
+        "path": "src/server/commands/calendar-feed/calendar-feed-db.ts",
+        "line": 25,
+        "anchor": "export async function captureCalendarFeedTrace"
+      },
+      {
+        "path": "src/server/commands/calendar-feed/manage-calendar-feed.ts",
+        "line": 48,
+        "anchor": "const code = result.code"
+      },
+      {
+        "path": "src/server/read-models/calendar-feed.ts",
+        "line": 10,
+        "anchor": "if (error?.code === \"42501\")"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 744,
+        "anchor": "export function calendarCauseProofSelection"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 750,
+        "anchor": "export async function calendarCauseProofIdle"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 762,
+        "anchor": "export async function runCalendarFeedCauseProof"
+      },
+      {
+        "path": "tests/integration/commands/calendar-feed.int.test.ts",
+        "line": 21,
+        "anchor": "test(\"15.5-DIAG001\""
+      },
+      {
+        "path": "scripts/ci/checkpoint-dispatch.mjs",
+        "line": 83,
+        "anchor": "function diagnosticAvailability"
+      },
+      {
+        "path": "scripts/ci/checkpoint-dispatch.mjs",
+        "line": 15,
+        "anchor": "function verificationMode"
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "line": 14,
+        "anchor": "export const CAUSE_PROOF_ARGS"
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "line": 50,
+        "anchor": "export async function finishCauseProof"
+      },
+      {
+        "path": ".github/workflows/ci.yml",
+        "line": 262,
+        "anchor": "- name: Calendar feed cause proof (diagnostic only; no pilot or acceptance)"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 1358,
+        "anchor": "actual per-invocation trace preserves once-call value"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 1379,
+        "anchor": "actual baseline decision chooses one observed boundary"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 1404,
+        "anchor": "actual installed failed native report and closed observation"
+      },
+      {
+        "path": "tests/unit/scripts/ci/checkpoint-dispatch.test.ts",
+        "line": 245,
+        "anchor": "diagnostic selection is durable before the only POST"
+      },
+      {
+        "path": "tests/unit/scripts/verify/ci-native-test-reports.test.ts",
+        "line": 41,
+        "anchor": "cause-proof capture is distinct mode-bound"
+      },
+      {
+        "path": "tests/unit/scripts/verify/epic-11-pilot-ci-gate.test.ts",
+        "line": 53,
+        "anchor": "diagnostic dispatch excludes pilot"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 889,
+        "anchor": "(select r.rolsuper or r.rolbypassrls"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 895,
+        "anchor": "if (!Array.isArray(rows)"
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "line": 388,
+        "anchor": "child.once(\"spawn\","
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "line": 502,
+        "anchor": "const refreshLaunch"
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "line": 69,
+        "anchor": "if (![\"not-attempted\", \"not-created-confirmed\"].includes(receipt.childLaunchState))"
+      },
+      {
+        "path": "scripts/ci/checkpoint-dispatch.mjs",
+        "line": 26,
+        "anchor": "export function assertDefaultDispatchWorkflow"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 1495,
+        "anchor": "actual diagnostic caller requires same-statement"
+      },
+      {
+        "path": "tests/unit/scripts/ci/checkpoint-dispatch.test.ts",
+        "line": 286,
+        "anchor": "default recognizer refuses comments"
+      },
+      {
+        "path": "scripts/ci/checkpoint-dispatch.mjs",
+        "line": 64,
+        "anchor": "|| /:\\s|:$/.test(value)"
+      },
+      {
+        "path": "tests/unit/scripts/ci/checkpoint-dispatch.test.ts",
+        "line": 309,
+        "anchor": "F3 actual default plain-scalar syntax refusal"
+      }
+    ],
+    "kernel_bytes": 5760,
+    "kernel_sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+    "status": "in-review"
+  },
+  "preparation": {
+    "metadata_only": true,
+    "producer_script_saved": false,
+    "producer_lint": "NOT_APPLICABLE:no saved producer",
+    "context_encoding": "Actual committed Git UTF8/LF, raw bytes separately bound; native diff untrimmed",
+    "raw_single_0x20_diff_context_lines": 2,
+    "raw_single_0x20_input_context_lines": 2,
+    "no_tests_or_semantic_execution": true
+  },
+  "verdict": "PENDING",
+  "native_credit": 0
+}

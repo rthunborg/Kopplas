@@ -2659,3 +2659,747 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Native sensitive High route recorded before activation. Stage/check raw frozen review evidence, checkpoint commit/push and one releasefalse CI dispatch; Root sole poller, independent High evidence qualification.
+
+## Report — 2026-10-20T22:19:17Z (15.5 eleventh reviewed dependency checkpoint pushed; fresh native CI active)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `5632412`).
+**Pipeline status:** Normal checkpoint commit/push completed25metadata paths. One accepted exact-head run39507120872 attempt1/checkpoint9c57a71a-bd74-4341-9ca3-b3c239bedee6, releasefalse/in_progress. Independent nativeHigh activated under prerecordedroute; Rootsolepoller. Allfreshquality/runtimeacceptance pending, dependencybytes invalidate installed-runtime reuse.
+**Continues:** (none — first run)
+
+**Summary:** Postcommitall69raw/native/HEADsourcebindings/capsuleunchanged/treeclean verified, proof322B SHA0dab43bbca151b77173b4cb748fd3a77889c2cfdf6742c6a5a924fe1749f3066. LaterRootmetadata bookkeeping is separate, no blanket laterglobalcleanclaim.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 273h 21m (≈54h 27m AI-run, ≈218h 54m human/idle wait); resumed 76×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** Unrestricted stagednativecheck exit2 retained only99rawdiffcontextlines; allother24paths inclHighqualifiedreceipt native0. Receipt3069B SHA809f2106907f09c02396f0c2930e9073e7cf82f525f6d4cc13be044b9c0c3ca1, no normalization/config/hook/checker bypass. Cap3/no fourthbroad/mainmerge/deployment; epicreview_unverified true.
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Qualify actualnativeaudit/canonical lint/type/Node/Python/build and all5requiredjobs/source/reach/serial/recovery/privacy/custody. Preserve allfailure/skip/unexecuted limits. Fullimmutablepacket+Rootadmission before sourcewrites or completion.
+
+## Report — 2026-10-20T22:32:25Z (15.5 fresh verify and recovery qualified; DB/browser running)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `5632412`).
+**Pipeline status:** Current exact-head admission/verify/recovery jobs SUCCESS. Fresh Node3139/3139PASS103suites0failure/skip/cancel/todo;30feature+67separatecontrols+3partitiontitlesoncePASS; Python2+26+10+5=43separatePASS. Nativeallverify steps passedinclcanonical lint/audit/type/build/bundle; audit2Moderate0High0Critical. Native frozeninstall directlyobserved Vite8.1.6/Vitest4.1.9.
+**Continues:** (none — first run)
+
+**Summary:** Independent High interim recoveryactual1PASS0failure0skip, same-restored-target effectiveownerpublicCREATEfalse before physicalStoragebytes/protectedrows/generic+quotePDFoverwritedenials, guards/cleanupPASS. Separate fromfeature95; nativeJSON1154B SHA069459ed684c5f317eeb967ef63975a1091bba2c3135523b89dc0e6cca2bfc39 artifact12304122737. Finalimmutablepacket+Rootallfilesadmission stillpending.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 273h 34m (≈54h 27m AI-run, ≈219h 07m human/idle wait); resumed 77×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** No currentDB/browserPASSor casecount inferred. Localcanonicallint historicalINCOMPLETE remainsunchanged; freshCIcanonicalPASS separatelyqualifies. Oldfailuresretained/noinstalledruntime reuse, nofourthbroad/mainmerge/deployment.
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** DB118919768371 ande2e118919768171 remainin_progress asof22:32UTC. Rootsolepoller grants boundedfetch onlyterminaljobs. Allsource/prepfrozen throughfullterminalpacket andRootadmission.
+
+## Report — 2026-10-20T22:42:10Z (15.5 eleventh runtime failure packet admitted; named-gap cause-proof route)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `5632412`).
+**Pipeline status:** FullrunFAILURE DB/browser; actualfeature95=38PASS57FAIL0skip95attempted. DB2039=1944P43F52skip/story51=8P43F0skip/nonstory0F;browser17otherP14storyF28failedattempts0skip/flaky. Node3139/Python43/recovery1 freshpositive separately; audit/canonicalCIlint fixed. All165filesonce,6serialorderednonoverlapafter159parallel.
+**Continues:** (none — first run)
+
+**Summary:** Root independently admitted37packetfiles+self/allhashes/exactheadattempt/all9jobs/source69raw/native/source+checkpoint138actualblobs. Admission1304B SHA34785381fc18743aeeb67f23517683c48e790509b0c0b15e3fc683bd927f2a0a; manifest6469/4db7cdae…, qualification39649/9fab0c5d…, MD4305/373bd898….44validclosedleaves=34issued-denied5assertion4scenario1RLS001-own, allunknown/nullSQLSTATE. Publiccontract/sites localized; underlyingcause UNPROVEN. API019/RLS010downstreamindividualpredicates remainunqualified. Browserteardown/keycustodyunverified;28attachmentrefs0availablebodies/contentNULLunqualified.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 273h 44m (≈54h 27m AI-run, ≈219h 17m human/idle wait); resumed 78×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** All11failedhistories/capsules preserved, current69source/Spec/oldprep/inputs frozen. No permission/proof/authority/assertion weakening, arbitrary rawerror/secret parsing, generic RPCthenableobserver, newoperations/resources/providerchanges, fourth broadreview/mainmerge/deployment. P5active/review_unverified retained.
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Recorded sensitive Sol6.1High security-permission-native-cause-proof-planner route BEFORE dispatch. Read-only source/dataflow/primaryevidence mapping and NEWowned proposal metadata only, then fresh distinctHigh proposal sufficiency challenge before any sourcewrite allocation. Prove firstactualcause or propose minimally sufficient safe observation at actual erasureboundary; no opaque retry.
+
+## Report — 2026-10-20T23:01:11Z (continues — frozen cause-proof proposal independently challenged next)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `5632412`).
+**Pipeline status:** 15.5 P5 active; frozen read-only proposal mechanically admitted: four files plus self manifest, 23 context bindings and all 69 source bindings against both author/checkpoint actual Git blobs; index and source clean. No source implementation or diagnostic execution allocated.
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 274h 03m (≈54h 27m AI-run, ≈219h 36m human/idle wait); resumed 79×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Fresh distinct context-free Sol6.1 High challenger evaluates causal sufficiency, transactional rollback/privacy, diagnostic-mode CI admission and full-gate preservation before shared ownership allocation. No fourth broad code review; all 11 failed native packets preserved.
+
+## Report — 2026-10-20T23:05:43Z (continues — independent cause-proof challenge requires revision)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `5632412`).
+**Pipeline status:** Fresh distinct High challenge REVISE with F1 diagnostic dispatch scope, F2 diagnostic artifact/full-coverage contract and F3 uncaught SQL engine-phase export gaps. Original challenge three artifacts and proposal originals mechanically preserved; no implementation/native credit.
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 274h 07m (≈54h 27m AI-run, ≈219h 40m human/idle wait); resumed 80×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** High read-only proposal revision: simpler representative ordinary-call trace and unmodified rollback-only SQL baseline before conditional instrumentation; explicit dispatch/upload/provenance and shared ownership scope. Fresh targeted challenge of changed proposal before allocation.
+
+## Report — 2026-10-20T23:11:21Z (continues — narrowed proposal revision frozen for targeted High recheck)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `5632412`).
+**Pipeline status:** Revision1 frozen: four files plus self manifest, 25 raw/native/50 actual author/checkpoint Git blob bindings, ten immutable references and unchanged source69/index mechanically admitted. Fourteen existing candidate paths, dispatcher prospective union70, zero protected37/historical109 overlap; all unallocated. Coordinator independently reconciled actual E16 terminal no-current/prospective-claim evidence.
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 274h 13m (≈54h 27m AI-run, ≈219h 46m human/idle wait); resumed 81×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Distinct High targeted proposal recheck of F1/F2/F3 resolutions, original ordinary-call plus conditional unmodified restricted SQL baseline, diagnostic dispatch/artifact provenance and full-mode gates. Exact allocation only after sufficient revised proposal; no native effects now.
+
+## Report — 2026-10-20T23:16:02Z (continues — revised cause-proof design independently passes with limits)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `5632412`).
+**Pipeline status:** Fresh distinct High targeted revised-design PASS WITH LIMITS/no consequential findings. F1/F2 design gaps addressed, F3 unsupported SQL phase claims removed in favor of UNKNOWN stops. Three new challenge artifact identities and unchanged revision/context/source/index mechanically admitted; diagnostic has zero acceptance credit.
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 274h 18m (≈54h 27m AI-run, ≈219h 51m human/idle wait); resumed 82×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Obtain concrete exact14/source-union70 and bounded session/CI effect allocation from Coordinator; then High implementation plus fresh independent High actual committed-delta review, qualifier adoption and hosted availability proof before any one diagnostic dispatch.
+
+## Report — 2026-10-20T23:18:08Z (continues — bounded diagnostic implementation allocated)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `5632412`).
+**Pipeline status:** Actual completed Coordinator grant admits only frozen revision1 exact14 proposed hunks and conditional later diagnostic effects. Root accepted ownership receipt; Sol6.1 High implementation routed. Existing acceptance/INT015/protected109/37 and ordinary required gates preserved. Native execution has not begun and diagnostic carries zero acceptance credit.
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 274h 20m (≈54h 27m AI-run, ≈219h 53m human/idle wait); resumed 83×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** High author implements and commits only allocated proposed hunks; fresh distinct High actual changed-line review and meaningful controls. Separate High qualifier adopts diagnostic-only contract; Root freeze/push and hosted availability proof required before sole diagnostic POST.
+
+## Report — 2026-10-20T23:23:51Z (continues — independent diagnostic qualification plan adopted)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `5632412`).
+**Pipeline status:** Root adopted the distinct High whole-run diagnostic-only qualification plan and admitted its two members/self manifest/seven immutable input hashes. Coordinator separately allocated exactly seven future private consumer/packet files, with creation only after reviewed producer commit and Root freeze/push. All normal collectors and eleven failed packets remain immutable.
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 274h 26m (≈54h 27m AI-run, ≈219h 58m human/idle wait); resumed 84×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Allocated High source author completes exact14 and fresh committed-delta High review. After Root checkpoint push, create exclusive private diagnostic consumer directory, run pure negative controls and fresh independent High helper/test review before use; hosted input availability before sole POST. No native execution yet.
+
+## Report — 2026-10-20T23:37:34Z (continues — diagnostic producer committed for independent High delta review)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `cb8d696`).
+**Pipeline status:** Producer cb8d696d commits exact14 allocated paths. Root source70 raw/native/actual HEAD blobs admitted, 42 total normalization differences and five within delta; 56 unchanged old paths, empty index/source clean and native committed diff check PASS. Final79 changed-file controls PASS separately from historical361; no inferred aggregate/native acceptance. All43DB/14browser failures remain unresolved.
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 274h 39m (≈54h 27m AI-run, ≈220h 12m human/idle wait); resumed 85×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Fresh distinct context-free High actual committed14 changed-line review with producer/consumer schema, command and SQL settlement/privacy/identity/cleanup, dispatch availability/provenance and full-mode preservation. Then source freeze/Root checkpoint push; private consumer created only afterward.
+
+## Report — 2026-10-20T23:37:45Z (continues — source-normalization count correction)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `cb8d696`).
+**Pipeline status:** Correction to the immediately preceding Root prose: computed current source70 raw/Git normalization differences are 41, not the historical42 accidentally copied into that sentence. Native verified receipt39635B SHA2de3f6130cf5bd78e0110f0618d74f2557cd51c9cdb0d09467cd36b67ae7fa88 and both canonical states already contain actual41. Delta14 differences5, unchanged56 and source/index/diff PASS remain correct. No artifact/source bytes changed by this prose correction.
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 274h 39m (≈54h 27m AI-run, ≈220h 12m human/idle wait); resumed 86×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Continue fresh committed14 High review under recorded route; use computed41 current normalization count.
+
+## Report — 2026-10-20T23:48:48Z (continues — independent committed review finds two bounded defects)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `cb8d696`).
+**Pipeline status:** Fresh actual14 High review NOTPASS with two P2 findings: diagnosticcaller false ownedAuthcleanup verification and wrapper launched-timeout child-start/capture misclassification. Existing custody stillblockskeydeletion in second finding. Original three review artifacts/input/source70/index preserved and mechanically admitted. Separately strict default diagnostic contract creates source-level feasibility STOP; hosted availability remains unverified.
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 274h 50m (≈54h 27m AI-run, ≈220h 23m human/idle wait); resumed 87×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** High read-only corrective/amendment proposal: exactcaller cleanup proof/failures and monotonic actual/uncertain launch state, plus primaryGitHub-evidence dispatchercontract reconciliation preservingactualdefaultpresence/candidatecapability/admission. DistinctHighvalidation and exactamendedallocation before guard edits; no source/native/push now.
+
+## Report — 2026-10-20T23:53:55Z (continues — bounded corrective proposal frozen for distinct High validation)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `cb8d696`).
+**Pipeline status:** Read-only corrective proposal frozen: three files+self manifest, seven candidate paths within original14, three readonlycontexts/ten actualcurrentGitblobs/fiveimmutable refs and historical localdefaultblob mechanically verified. Source70/index unchanged. New exactownedAuthabsence read and defaultpresence/candidatecapability amendment remain unallocated.
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 274h 56m (≈54h 27m AI-run, ≈220h 28m human/idle wait); resumed 88×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** DistinctHigh validates F1/F2 corrections/meaningful regressions and primaryGitHub-backed availability contract distinction. Then Coordinator exactamendedscope/effectgrant before source edits; no extra principal/grant/query/HTTP/connection assumed, no hostedabsence/mainupdate/fallback claim.
+
+## Report — 2026-10-20T23:59:31Z (continues — High clarification corrects cleanup-plan visibility gap)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `cb8d696`).
+**Pipeline status:** Same independent High validator explicitly corrected earlier F1 plan sufficiency: existingadminQuery role visibility is unqualified, and tenant FORCE RLS can hide rows. Original plan PASS artifacts preserved but not adopted for F1. Source cb8 remains NOTPASS/frozen; no source/native effects.
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 275h 01m (≈54h 27m AI-run, ≈220h 34m human/idle wait); resumed 89×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** High author prepares minimal new readonly visibility addendum: sameexistingstatement executingcurrent_user pg_roles SuperORBypass strictflag plus exact10Auth/2tenantabsence; any unqualified/malformed/denied result retainsCLEANUP_UNVERIFIED/custody. Newcatalogobservation needs distinct targetedHighvalidation and exact amendedCoordinatorallocation. F2/availability plans unchanged.
+
+## Report — 2026-10-21T00:01:29Z (continues — minimal visibility addendum frozen for targeted High validation)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `cb8d696`).
+**Pipeline status:** Minimal F1 visibility addendum frozen: two members+self manifest, six immutable references and all seven actualraw/native/currentGitblob bindings mechanically admitted; source70/index unchanged. SameexistingSELECT requires exactthree strictbooleans rolevisibility/ownedtenantabsence/ownedAuthabsence, alltrue, otherwise cleanupunverified/custody. NewAuth+pg_roles observation remains unallocated.
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 275h 03m (≈54h 27m AI-run, ≈220h 36m human/idle wait); resumed 90×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** IndependentHigh targeted addendum validation of executingcurrent_user SuperORBypass/FORCERLS truth, actualsource meaningful controls and failclosed/claimlimits. Reuse unchanged F2/availability evidence, then exact amendedCoordinatorgrant before any sourcefix.
+
+## Report — 2026-10-21T00:04:12Z (continues — targeted visibility amendment independently validates)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `cb8d696`).
+**Pipeline status:** IndependentHigh targeted visibility addendum PASS_WITH_LIMITS_PLAN_ONLY, originalthreeartifactidentities/addendumreferences/source70/index admitted. EarlierunqualifiedF1sufficiency explicitlynotadopted; currentcb8actualcodeNOTPASS remains. PrimaryPG17 roleSuperORBypass/FORCERLS semantics supports exactsame-statement visibility+ownedabsence conjunction; SELECTdenialfails.
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 275h 06m (≈54h 27m AI-run, ≈220h 39m human/idle wait); resumed 91×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** RequestCoordinator exactsevenpath/Auth+pg_rolesobservation/finitechildfacts/defaultpresence-candidatecapabilityamendedallocation, then Highauthorfixroute. Actualsource controls and distinctHigh latestfixreview remainrequired; no native/push/sourcefix yet.
+
+## Report — 2026-10-21T00:05:59Z (continues — exact seven-file corrective amendment allocated)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `cb8d696`).
+**Pipeline status:** Actual completed Coordinator grant admits exactseven corrective hunks/new sameexistingstatement Auth+currentrolecatalog observations, finite launchfacts and qualifieddefaultpresence/fullcandidatecapability distinction. Rootacceptedreceipt andHighfixroute recorded. OriginalunqualifiedF1PLANPASSnotadopted/cb8actualcodeNOTPASS preserved; no newquery/native effects executed.
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 275h 08m (≈54h 27m AI-run, ≈220h 41m human/idle wait); resumed 92×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** High author implements exactseven and meaningful actualsource regressions, records honest validation and append-only commit. Then Rootsourceidentity admission and fresh DISTINCTHigh latestfixreview before freeze/push. No fourthbroad, privateconsumerbirth or diagnostic execution now.
+
+## Report — 2026-10-21T00:13:44Z (continues — exact seven-file correction committed for independent review)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `52007b7`).
+**Pipeline status:** Corrective52007b76 commits exactsevenadmittedpaths. Rootall70raw/native/actualHEADblobs admitted, 41 total normalizationdifferences/threewithinfix, 63unchangedpaths,29ancestry=18author+11Root, source/indexclean/nativecommitteddiffcheckPASS. Actual374beforelateparserchange thenaffected30PASS+344unchangedbindings composite, NOTnew374; finalTS/focusedlintpassed. Appbytesunchanged/buildnotrerun; native0.
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 275h 15m (≈54h 27m AI-run, ≈220h 48m human/idle wait); resumed 93×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Fresh distinct context-free High latestseven changed-line review closes originalF1/F2 onlyif actualsourceenforced and checksnewavailabilityrecognizer/normalguards regressions. Reuse unchangedoriginal14context/evidence, no fourthbroad. Then sourcefreeze/Rootpush; privatecollector remains unborn.
+
+## Report — 2026-10-21T00:20:30Z (continues — latest review closes two findings and identifies bounded parser regression)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `52007b7`).
+**Pipeline status:** Freshlatest7Highreview NOTPASS: originalF1/F2explicitlyCLOSED; newF3P2actualmalformeddefaultplain-scalarYAML canpassrecognizer andcrossoneshotprePOSTrefusalfence. Thisisnotacceptance/keycleanupbypass/hostedstateclaim. Frozenoriginalthreeartifacts/inputs18refs/source70/index admitted; cb8NOTPASS preservedasoriginal/compositeclosure.
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 275h 22m (≈54h 27m AI-run, ≈220h 55m human/idle wait); resumed 94×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Highauthornarrowdispatcher+unit+Specfix underexistingexact7malformedformallocation, meaningfulactualsource/pretend-POSTnegativecontrols/staticchecks andappend-onlycommit; freshtargetedHighlatestfixregressionreviewafterRootsourceidentity. No fourthbroad/newscope/contract/native/push.
+
+## Report — 2026-10-21T00:23:25Z (continues — narrow parser correction committed for independent regression review)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `af5af69`).
+**Pipeline status:** Parserfixaf5af69f commits exactthreeadmittedsubsetpaths. Rootall70raw/native/actualHEADblobs admitted, 41 totalnormalization/twowithinfix,67unchangedpaths/30ancestry=19author11Root, source/indexclean/nativecommitteddiffcheckPASS. Actual31dispatchercases/type/affectedlint PASS; F1/F2closedhelperwrapperpinunitbytesunchanged. No newfullsuite/build/native evidence.
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 275h 25m (≈54h 27m AI-run, ≈220h 58m human/idle wait); resumed 95×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** FreshdistinctcontextfreeHigh targetedlatest3 review of actualF3preintent/POSTmalformedrefusal andadjacentregressions. Reuseunchanged520F1/F2closure/currentcontextsbyhash; no fourthbroad. Then sourcefreeze/Rootpush onlyifactualcodePASS.
+
+## Report — 2026-10-21T00:28:59Z (continues — diagnostic producer independently reviewed for source freeze)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `af5af69`).
+**Pipeline status:** Freshlatest3HighPASSexplicitF3CLOSED; no consequentialreachablechanged-parserregression. Originalthreehashes/input8refs/source70/index admitted. Compositeclosure retains cb8NOTPASS->520F1F2CLOSED/F3NOTPASS->af5F3PASS; no fourthbroad/whole7newreviewclaim. Producerreviewcomplete only; all43DBcauses14browserfailures unresolved/diagnosticunexecuted/zeroacceptance.
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 275h 31m (≈54h 27m AI-run, ≈221h 04m human/idle wait); resumed 96×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** High metadata-only sourcefreeze current70/41normalization/19author+11Root30ancestry, all11immutablefailedhistories andallcurrentreview/proposal/allocation/qualifierplanrefs. Rootstrictadmission/actualstageformatqualification/normalcheckpointpush, thenprivateconsumerbirth/review/freshhostedavailability before solePOST.
+
+## Report — 2026-10-21T04:43:21Z (diagnostic producer sourcefreeze identities admitted)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `af5af69`).
+**Pipeline status:** 15.5 P5 in progress; sourcefreeze metadata only, no native or acceptance execution.
+**Continues:** Root mechanically admitted new852019B capsule23b1751b:631full refs530unique,2015actualGitblobs,70source41normalizationdifferences,19author11Root30ancestry,734historical equalities,146protected69preparation,27snapshots12historicalrawuncredited15baselineonly. Original11failed histories and cb8NOTPASS/520F1F2closedF3NOTPASS/af5F3PASS retained.
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 279h 45m (≈54h 27m AI-run, ≈225h 18m human/idle wait); resumed 97×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Await parent independent metadata verifier/lint; actual staged88context qualification and High ACK before normal checkpoint commit/push. Native/private consumer remain unexecuted.
+
+## Report — 2026-10-21T04:44:27Z (sourcefreeze parent check passed staged-format High routed)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `af5af69`).
+**Pipeline status:** 15.5 P5 in progress; producer sourcefreeze qualified, no native execution.
+**Continues:** Parent independent metadata verifier first execution native0/8.405s agrees with631refs530unique/70source41norm/734historicalequalities/27snapshots. Six new producer/verifier/check/lint metadata identities match reported bytes/SHA; focused lint0errors0warnings. Three author pre-emission reader stops retained. Root state update first stopped on nested JSON-string sourcefreeze before writes; decoded nested map and corrected reader, no capsule/source change.
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 279h 46m (≈54h 27m AI-run, ≈225h 19m human/idle wait); resumed 98×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Root stage exact new preparation/bookkeeping, run unrestricted cached check and observe actual88context-only findings plus other-path native0; High ACK actual observation before normal checkpoint commit/push.
+
+## Report — 2026-10-21T04:47:22Z (actual237 staged artifact format qualified by High)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `af5af69`).
+**Pipeline status:** 15.5 P5 sourcefreeze checkpoint; unrestricted cached check EXIT2 retained, no native or normal acceptance credit.
+**Continues:** Actual staged72metadata paths: nativecheck237warnings ONLYsix frozenreviewinputs;88single-space native-diffcontexts plus149numberedemptysourcequotations(original134/corrective10/F3five). Everyrawbyte equalsactualindex. Highboundedclassification proves all149againstboundhistoricalGit or exactinstalledpgsource incl5EOFemptyrows; no unrelatedformatdefect. Other66paths native0. InitialRoot88-vs237readerstop and twoHighreaderstops retained; no source/artifact/config/hook rewrite.
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 279h 49m (≈54h 27m AI-run, ≈225h 22m human/idle wait); resumed 99×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Recheck exact237unchanged and allother67 inclRootreceipt native0, then normal checkpoint commit/push; private diagnostic consumer stillunborn.

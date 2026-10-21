@@ -1,0 +1,215 @@
+{
+  "schema": "story-15-5.corrective-proposal.v1",
+  "source": "cb8d696d19c53e63be05ecb1ae273449af60efaf",
+  "status": "PROPOSED_NOT_ALLOCATED",
+  "route": {
+    "phase": "triage-native-denial-cause-proof-committed-findings",
+    "role": "sensitive-native-cause-proof-corrective-contract-planner",
+    "model": "gpt-6.1-sol",
+    "effort": "high"
+  },
+  "candidate_source_paths": [
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "raw_bytes": 81332,
+      "raw_sha256": "cec60f3bda555b95442e1c92e844a50821510d9abfe6fc905e3e3520c59c44e1",
+      "actual_git_clean_oid": "976d1f944958e9fb41eebbcf96c549b36eb38d75",
+      "head_blob_oid": "976d1f944958e9fb41eebbcf96c549b36eb38d75",
+      "head_blob_bytes": 80579,
+      "head_blob_sha256": "fe3e2f3bba6829ec26be7e930f42006d8d9d198e6cefdc8172826d66ea54cb94",
+      "raw_equals_git_blob": false
+    },
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "raw_bytes": 43506,
+      "raw_sha256": "44798a4e836ad7e99e0c38f6aaf9ddce4bde4605e39722e432d0884f1fa85560",
+      "actual_git_clean_oid": "111f7fcc2856f544388c713d1b481d75e3bb0c23",
+      "head_blob_oid": "111f7fcc2856f544388c713d1b481d75e3bb0c23",
+      "head_blob_bytes": 43506,
+      "head_blob_sha256": "44798a4e836ad7e99e0c38f6aaf9ddce4bde4605e39722e432d0884f1fa85560",
+      "raw_equals_git_blob": true
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "raw_bytes": 117230,
+      "raw_sha256": "1a598eacd5baea92156ff4f843c8e034238b5ed887f9d827dd62233dde91066b",
+      "actual_git_clean_oid": "d8d614476df3508acde978048588f672664e8ba2",
+      "head_blob_oid": "d8d614476df3508acde978048588f672664e8ba2",
+      "head_blob_bytes": 117230,
+      "head_blob_sha256": "1a598eacd5baea92156ff4f843c8e034238b5ed887f9d827dd62233dde91066b",
+      "raw_equals_git_blob": true
+    },
+    {
+      "path": "tests/support/calendar-feed-ci-contract.ts",
+      "raw_bytes": 8024,
+      "raw_sha256": "7c41d9afb3e8482bc5e2e43ebe87b648c9f7298f316c22d27a8c32c4c58f813b",
+      "actual_git_clean_oid": "ebadcee5eccce25a53f92f314f48a8be6499d84c",
+      "head_blob_oid": "ebadcee5eccce25a53f92f314f48a8be6499d84c",
+      "head_blob_bytes": 8024,
+      "head_blob_sha256": "7c41d9afb3e8482bc5e2e43ebe87b648c9f7298f316c22d27a8c32c4c58f813b",
+      "raw_equals_git_blob": true
+    },
+    {
+      "path": "scripts/ci/checkpoint-dispatch.mjs",
+      "raw_bytes": 16105,
+      "raw_sha256": "a735cefcfc73f6d69dc07a20e811ac7b599221ee1dae34b067ad93fe95bd66de",
+      "actual_git_clean_oid": "57fd4d45f15c8635f934b0696b5771c9165e3f21",
+      "head_blob_oid": "57fd4d45f15c8635f934b0696b5771c9165e3f21",
+      "head_blob_bytes": 15874,
+      "head_blob_sha256": "38bf5d39ed827733faed00b5411b10522034305a33b94e9f446f250941978aba",
+      "raw_equals_git_blob": false
+    },
+    {
+      "path": "tests/unit/scripts/ci/checkpoint-dispatch.test.ts",
+      "raw_bytes": 19133,
+      "raw_sha256": "5108db252d36384412f8712b37efff4933dea8690964a946a79a30a9976d9491",
+      "actual_git_clean_oid": "8d0f2694b5956b8f03ca9c6a0b5e1f4d04e38bc9",
+      "head_blob_oid": "8d0f2694b5956b8f03ca9c6a0b5e1f4d04e38bc9",
+      "head_blob_bytes": 18891,
+      "head_blob_sha256": "ab59f4d8fd8a240f256aec3a260e5f0ebfa17a146f4c185cbf395732af89a01a",
+      "raw_equals_git_blob": false
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "raw_bytes": 121125,
+      "raw_sha256": "ce7b6b4daf1787a28a7d76b93e9ed5475f57f299415bfb8b7e714fb0606de0c1",
+      "actual_git_clean_oid": "da9f3c0d44721140429dfa2061a6e5ed5d293b97",
+      "head_blob_oid": "da9f3c0d44721140429dfa2061a6e5ed5d293b97",
+      "head_blob_bytes": 121125,
+      "head_blob_sha256": "ce7b6b4daf1787a28a7d76b93e9ed5475f57f299415bfb8b7e714fb0606de0c1",
+      "raw_equals_git_blob": true
+    }
+  ],
+  "read_only_context_paths": [
+    {
+      "path": "tests/factories/tenants/core.ts",
+      "raw_bytes": 21309,
+      "raw_sha256": "e877c463e15173bc6b5a8ed0018de919289217c5e9b4379a6eb5aa8fc9457265",
+      "actual_git_clean_oid": "f72a04caab1acbc2d3d43f1a75c2cc6048125bc0",
+      "head_blob_oid": "f72a04caab1acbc2d3d43f1a75c2cc6048125bc0",
+      "head_blob_bytes": 20816,
+      "head_blob_sha256": "dfe7ca6cae90cecb6faa56d00616310f627d4b995de9ad875522e64c6204224d",
+      "raw_equals_git_blob": false
+    },
+    {
+      "path": "tests/factories/admin-sql.ts",
+      "raw_bytes": 3694,
+      "raw_sha256": "c21253e431e02b45ccf72da756f4cf58fdf1b5f476b0797a465189e39fcad4dd",
+      "actual_git_clean_oid": "f7d2c10c669252912bc045659ed7886dceae3ae0",
+      "head_blob_oid": "f7d2c10c669252912bc045659ed7886dceae3ae0",
+      "head_blob_bytes": 3593,
+      "head_blob_sha256": "02e592a1cb08892aea3513cb439840c2b0495cd90a2cf5eee916ba5061539ed2",
+      "raw_equals_git_blob": false
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "raw_bytes": 75930,
+      "raw_sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e",
+      "actual_git_clean_oid": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a",
+      "head_blob_oid": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a",
+      "head_blob_bytes": 75930,
+      "head_blob_sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e",
+      "raw_equals_git_blob": true
+    }
+  ],
+  "source_or_effect_allocation": false,
+  "new_source_paths": 0,
+  "protected_edits_proposed": 0,
+  "effects": {
+    "F1": {
+      "new_auth_schema_read": true,
+      "requires_explicit_allocation": true,
+      "sql_round_trips_before": 1,
+      "sql_round_trips_after": 1,
+      "existing_auth_deletes_per_complete_fixture": 10,
+      "additional_auth_http": 0,
+      "owned_auth_uuid_count": 10,
+      "owned_tenant_uuid_count": 2,
+      "new_connection": 0,
+      "principal_or_grant_change": false,
+      "admin_query_identity": "UNCHANGED_TEST_DSN_NOT_OBSERVED_SUPADMIN"
+    },
+    "F2": {
+      "new_runtime_effects": 0,
+      "monotonic_launch_facts_only": true,
+      "cleanup_guard_weakening": false,
+      "finite_launch_states": [
+        "not-attempted",
+        "attempted-unverified",
+        "started",
+        "not-created-confirmed"
+      ],
+      "uncertain_child_started": null
+    },
+    "availability": {
+      "separate_contract_amendment": true,
+      "requires_fresh_high_and_coordinator": true,
+      "default_presence_registration_event_required": true,
+      "default_diagnostic_input_required": false,
+      "full_candidate_capability_required": true,
+      "new_provider_calls": 0,
+      "only_existing_post_after_all_gates": true,
+      "hosted_state": "UNVERIFIED",
+      "fallback": false
+    }
+  },
+  "references": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-review/original-report.md",
+      "bytes": 10116,
+      "sha256": "9206dc8a152ab3d51dfd1134479a8806fdcd11c4e263b61bdc0727e633a797a8"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-review/original-attestation.json",
+      "bytes": 21979,
+      "sha256": "7c41cef482032d7590b6834448ed47ed1116fac8b49c5707455e5ef3fef96882"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-review/input-binding.json",
+      "bytes": 25398,
+      "sha256": "1a9aba65ad16f19a019e4963ce0bb76107b4dbe7888a82a40b0d8e96ee1eb83d"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-proposal-revision-1/manifest.json",
+      "bytes": 1763,
+      "sha256": "f3b31ce6d0a4b1f8d4322de89c0491709d939dc840ecfd9333d9106f7346b334"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-native-denial-cause-proof-allocation.json",
+      "bytes": 5006,
+      "sha256": "99bcc94753e87bb3efcf7fec730c88da4059ca450a4548286f47dbf20fdc63d3"
+    }
+  ],
+  "historical_local_default": {
+    "commit": "e5e0308d8ef270fdf8b91f68c4a7675c0ee1392c",
+    "path": ".github/workflows/ci.yml",
+    "oid": "b20614822aa5201587f0779e0bbcca9b5d9cbbc9",
+    "bytes": 31731,
+    "sha256": "150211c35affc4cbaa3204b4fa036d97844eb044b93267892196d7cf3956dd39",
+    "fresh_hosted_claim": false,
+    "fetch_executed": false
+  },
+  "primary_sources": [
+    {
+      "url": "https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#workflow_dispatch",
+      "read_lines": "1162-1180",
+      "claim": "default workflow presence, selected branch/tag, supplied inputs"
+    },
+    {
+      "url": "https://docs.github.com/en/rest/actions/workflows#create-a-workflow-dispatch-event",
+      "read_lines": "190-216",
+      "claim": "workflow identifier, selected ref and inputs"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/cli/cli/trunk/pkg/cmd/workflow/run/run.go",
+      "read_lines": "256-307,339",
+      "revision": "moving trunk read2026-10-21; not pinned release",
+      "claim": "selected-ref prompt content and same ref/inputs POST"
+    }
+  ],
+  "native_credit": 0,
+  "semantic_tests_executed": 0,
+  "source_writes": 0,
+  "producer_script_saved": false,
+  "targeted_producer_lint": "NOT_APPLICABLE:no new producer script"
+}

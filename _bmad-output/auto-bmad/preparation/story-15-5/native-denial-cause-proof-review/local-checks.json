@@ -1,0 +1,501 @@
+{
+  "kind": "AUTHOR_ACTUAL_LOCAL_CHECKS_NOT_NATIVE",
+  "source": "cb8d696d19c53e63be05ecb1ae273449af60efaf",
+  "base": "56324120f8e08de995e8cc7432ab27f2d0c98635",
+  "checks_were_working_tree_before_commit": true,
+  "sequence": [
+    {
+      "check": "initial wholeTypeScript",
+      "command": "pnpm exec tsc --noEmit --incremental false",
+      "exit": 1,
+      "errors": 4,
+      "reason": "Dispatcher result union inference after mode fields; explicit return-record annotation corrected it."
+    },
+    {
+      "check": "initial seven-file Node",
+      "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts tests/unit/scripts/ci/checkpoint-dispatch.test.ts tests/unit/scripts/verify/ci-native-test-reports.test.ts tests/unit/scripts/verify/epic-11-pilot-ci-gate.test.ts tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts tests/unit/docs/acceptance-gate-report-validators.test.ts tests/unit/server/authz/command-enrollment.test.ts",
+      "exit": 1,
+      "total": 359,
+      "passed": 358,
+      "failed": 1,
+      "skipped": 0,
+      "cancelled": 0,
+      "reason": "Existing admitted actual-Bash harness lacked the3new false env defaults under set-u; corrected only checkpoint-dispatch.test.ts."
+    },
+    {
+      "check": "seven-file Node after correction",
+      "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts tests/unit/scripts/ci/checkpoint-dispatch.test.ts tests/unit/scripts/verify/ci-native-test-reports.test.ts tests/unit/scripts/verify/epic-11-pilot-ci-gate.test.ts tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts tests/unit/docs/acceptance-gate-report-validators.test.ts tests/unit/server/authz/command-enrollment.test.ts",
+      "exit": 0,
+      "total": 361,
+      "passed": 361,
+      "failed": 0,
+      "skipped": 0,
+      "cancelled": 0,
+      "temporal_limit": "Precedes final status/envelope and source-registration controls. Other6consumer files unchanged afterward."
+    },
+    {
+      "check": "changed-file final Node",
+      "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "exit": 0,
+      "total": 79,
+      "passed": 79,
+      "failed": 0,
+      "skipped": 0,
+      "cancelled": 0,
+      "retained_prior_controls": 67,
+      "native_credit": 0
+    },
+    {
+      "check": "final wholeTypeScript",
+      "command": "pnpm exec tsc --noEmit --incremental false",
+      "exit": 0
+    },
+    {
+      "check": "focused12 source ESLint",
+      "command": "pnpm exec eslint <12 allocated JS/TS files> --max-warnings 0",
+      "exit": 0,
+      "errors": 0,
+      "warnings": 0,
+      "later_affected3_lint": "helper/command-case/unit controls repeated after final changes, exit0/0warnings"
+    },
+    {
+      "check": "production build",
+      "command": "pnpm run build",
+      "exit": 0,
+      "scope": "Working-tree Next16.3.8 production build, no server. The3production modules did not change afterward; later diagnostic test/helper/Spec changes do not claim a new build run. No independently captured pre-build whole-source raw snapshot is invented."
+    },
+    {
+      "check": "incorrect bundle command",
+      "command": "pnpm run verify:no-service-role-client-bundle",
+      "exit": 1,
+      "reason": "No such script; no verification executed under that name."
+    },
+    {
+      "check": "actual built bundle gate",
+      "command": "pnpm run verify:bundle-containment",
+      "exit": 0
+    },
+    {
+      "check": "native working and staged Git diffcheck",
+      "commands": [
+        "git diff --check",
+        "git diff --cached --check"
+      ],
+      "exit": 0,
+      "exact14_index_checked": true
+    }
+  ],
+  "no_inferred_combined_run": true,
+  "full_current_seven_file_364_run_executed": false,
+  "evidence_limits": [
+    "Node controls use actual source regions/injected dependencies/installed reporter/driver construction and owned temporaryFS, not PG/JWT/HTTP/browser native acceptance.",
+    "No native test collection/globalSetup/baseline/services/CI executed.",
+    "No new audit or canonical whole lint scan; unchanged Vite/dependency graph and native11 audit/lint positives keep historical scope.",
+    "Current diagnostic availability/private qualifier adoption and baseline native semantics remain unverified.",
+    "No newly born private consumer is referenced or credited."
+  ],
+  "author_order": {
+    "section_count": 1,
+    "stop_count": 79,
+    "verified_stops": [
+      {
+        "path": "src/components/app-shell/AppShell.tsx",
+        "line": 279,
+        "literal_anchor": "navigation.some"
+      },
+      {
+        "path": "src/components/calendar-feed/CalendarSubscription.tsx",
+        "line": 34,
+        "literal_anchor": "const current = await refresh();"
+      },
+      {
+        "path": "src/components/calendar-feed/CalendarSubscription.tsx",
+        "line": 69,
+        "literal_anchor": "state?.status === \"error\""
+      },
+      {
+        "path": "tests/integration/components/calendar-feed.test.ts",
+        "line": 36,
+        "literal_anchor": "15.5-COMP-003"
+      },
+      {
+        "path": "tests/e2e/calendar-feed.e2e.spec.ts",
+        "line": 380,
+        "literal_anchor": "15.5-E2E-010-"
+      },
+      {
+        "path": "tests/e2e/calendar-feed.e2e.spec.ts",
+        "line": 447,
+        "literal_anchor": "15.5-E2E-011"
+      },
+      {
+        "path": "src/server/commands/calendar-feed/manage-calendar-feed.ts",
+        "line": 10,
+        "literal_anchor": "function calendarFeedConfig"
+      },
+      {
+        "path": "src/server/commands/calendar-feed/manage-calendar-feed.ts",
+        "line": 38,
+        "literal_anchor": "command: \"calendar_feed.create\""
+      },
+      {
+        "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+        "line": 162,
+        "literal_anchor": "create function public.manage_calendar_feed"
+      },
+      {
+        "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+        "line": 122,
+        "literal_anchor": "is distinct from (case"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 354,
+        "literal_anchor": "const allowed = [\"membershipId\""
+      },
+      {
+        "path": "tests/integration/rls/calendar-feed.rls.test.ts",
+        "line": 129,
+        "literal_anchor": "15.5-RLS008"
+      },
+      {
+        "path": "middleware.ts",
+        "line": 40,
+        "literal_anchor": "request.nextUrl.pathname"
+      },
+      {
+        "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+        "line": 236,
+        "literal_anchor": "'updatedAt',greatest"
+      },
+      {
+        "path": "src/features/calendar-feed/icalendar.ts",
+        "line": 40,
+        "literal_anchor": "export function encodeCalendarFeed"
+      },
+      {
+        "path": "tests/unit/features/calendar-feed/icalendar.test.ts",
+        "line": 76,
+        "literal_anchor": "R1-05 positive"
+      },
+      {
+        "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+        "line": 247,
+        "literal_anchor": "exception when sqlstate '57014'"
+      },
+      {
+        "path": "tests/integration/calendar-feed/public-feed.int.test.ts",
+        "line": 364,
+        "literal_anchor": "15.5-API018"
+      },
+      {
+        "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+        "line": 27,
+        "literal_anchor": "pg_has_role(current_user,feed_owner.oid,'SET')"
+      },
+      {
+        "path": "tests/integration/commands/calendar-feed.int.test.ts",
+        "line": 445,
+        "literal_anchor": "memberships.every(row => row.inherit_option === false)"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 556,
+        "literal_anchor": "has_schema_privilege(oid,'public','CREATE')"
+      },
+      {
+        "path": "tests/integration/rls/calendar-feed.rls.test.ts",
+        "line": 171,
+        "literal_anchor": "publicSchemaCreate: false"
+      },
+      {
+        "path": "tests/integration/ops/recovery-storage-immutability.int.test.ts",
+        "line": 131,
+        "literal_anchor": "has_schema_privilege('calendar_feed_owner','public','CREATE')"
+      },
+      {
+        "path": "tests/integration/commands/calendar-feed.int.test.ts",
+        "line": 486,
+        "literal_anchor": "// FULL rollback comes first"
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "line": 327,
+        "literal_anchor": "export function createOwnedGroupStopper"
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "line": 248,
+        "literal_anchor": "export function createTelemetryObserver"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 1282,
+        "literal_anchor": "nonzero/null-signal nested browser loss"
+      },
+      {
+        "path": "tests/support/calendar-feed-ci-contract.ts",
+        "line": 83,
+        "literal_anchor": "projectCalendarFeedCiCommands"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 39,
+        "literal_anchor": "CI command projection rejects"
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "line": 99,
+        "literal_anchor": "function safeDiagnostic"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 320,
+        "literal_anchor": "COMMIT uncertainty is not cleared"
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "line": 529,
+        "literal_anchor": "receipt.privacyPreflight = await readCalendarFeedPrivacyPreflight(db);"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 216,
+        "literal_anchor": "privacy preflight rejects incomplete"
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "line": 166,
+        "literal_anchor": "export function createCalendarFeedDatabaseClient"
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "line": 153,
+        "literal_anchor": "export async function readCalendarFeedSetupAuthority"
+      },
+      {
+        "path": "tests/integration/commands/calendar-feed.int.test.ts",
+        "line": 508,
+        "literal_anchor": "await fresh.connect(); await setupQualified(fresh); await absent(fresh);"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 154,
+        "literal_anchor": "setup construction refuses missing"
+      },
+      {
+        "path": "tests/e2e/support/calendar-feed-atdd.ts",
+        "line": 83,
+        "literal_anchor": "export function createCalendarLifecycleObservations"
+      },
+      {
+        "path": "tests/e2e/support/calendar-feed-atdd.ts",
+        "line": 25,
+        "literal_anchor": "export function calendarBrowserDiagnostic"
+      },
+      {
+        "path": "tests/e2e/support/calendar-feed-atdd.ts",
+        "line": 705,
+        "literal_anchor": "if (base && cleanupAllowed)"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 496,
+        "literal_anchor": "missing leaders with persistent groups"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 1048,
+        "literal_anchor": "actual browser bounded cancellation"
+      },
+      {
+        "path": "tests/e2e/support/calendar-feed-atdd.ts",
+        "line": 93,
+        "literal_anchor": "trackReadback<T>"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 1128,
+        "literal_anchor": "installed polling deadline cannot credit"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 202,
+        "literal_anchor": "export function calendarFixtureDiagnostic"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 272,
+        "literal_anchor": "phase = \"additional-users\""
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 601,
+        "literal_anchor": "actual fixture diagnostics preserve only"
+      },
+      {
+        "path": "tests/integration/rls/acceptance-tables-migration-reset.int.test.ts",
+        "line": 212,
+        "literal_anchor": "approved role-specific policies"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 930,
+        "literal_anchor": "the actual allocated policy case rejects"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 234,
+        "literal_anchor": "calendarFixtureSafeFailures.get(child)?.children"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 877,
+        "literal_anchor": "installed failure transport reproduces lost"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 889,
+        "literal_anchor": "actual repaired fixture diagnostics reach"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 190,
+        "literal_anchor": "export function calendarFixtureOrigin"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 195,
+        "literal_anchor": "export function calendarFixtureAssertionAt"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 734,
+        "literal_anchor": "const outcome = result.outcome"
+      },
+      {
+        "path": "tests/integration/rls/calendar-feed.rls.test.ts",
+        "line": 23,
+        "literal_anchor": "calendarFixtureAssertionAt(allowedSites[subject]"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 798,
+        "literal_anchor": "actual first INT001 and API001 callbacks stop"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 830,
+        "literal_anchor": "actual first callbacks retain precise safe assertion frames"
+      },
+      {
+        "path": "package.json",
+        "line": 50,
+        "literal_anchor": "\"vite\": \"8.1.6\""
+      },
+      {
+        "path": "pnpm-lock.yaml",
+        "line": 2297,
+        "literal_anchor": "vite@8.1.6:"
+      },
+      {
+        "path": "pnpm-lock.yaml",
+        "line": 2059,
+        "literal_anchor": "rolldown@1.1.5:"
+      },
+      {
+        "path": "src/server/commands/calendar-feed/calendar-feed-db.ts",
+        "line": 25,
+        "literal_anchor": "export async function captureCalendarFeedTrace"
+      },
+      {
+        "path": "src/server/commands/calendar-feed/manage-calendar-feed.ts",
+        "line": 48,
+        "literal_anchor": "const code = result.code"
+      },
+      {
+        "path": "src/server/read-models/calendar-feed.ts",
+        "line": 10,
+        "literal_anchor": "if (error?.code === \"42501\")"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 744,
+        "literal_anchor": "export function calendarCauseProofSelection"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 750,
+        "literal_anchor": "export async function calendarCauseProofIdle"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 762,
+        "literal_anchor": "export async function runCalendarFeedCauseProof"
+      },
+      {
+        "path": "tests/integration/commands/calendar-feed.int.test.ts",
+        "line": 21,
+        "literal_anchor": "test(\"15.5-DIAG001\""
+      },
+      {
+        "path": "scripts/ci/checkpoint-dispatch.mjs",
+        "line": 31,
+        "literal_anchor": "function diagnosticAvailability"
+      },
+      {
+        "path": "scripts/ci/checkpoint-dispatch.mjs",
+        "line": 15,
+        "literal_anchor": "function verificationMode"
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "line": 14,
+        "literal_anchor": "export const CAUSE_PROOF_ARGS"
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "line": 50,
+        "literal_anchor": "export async function finishCauseProof"
+      },
+      {
+        "path": ".github/workflows/ci.yml",
+        "line": 262,
+        "literal_anchor": "- name: Calendar feed cause proof (diagnostic only; no pilot or acceptance)"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 1358,
+        "literal_anchor": "actual per-invocation trace preserves once-call value"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 1379,
+        "literal_anchor": "actual baseline decision chooses one observed boundary"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 1404,
+        "literal_anchor": "actual installed failed native report and closed observation"
+      },
+      {
+        "path": "tests/unit/scripts/ci/checkpoint-dispatch.test.ts",
+        "line": 245,
+        "literal_anchor": "diagnostic selection is durable before the only POST"
+      },
+      {
+        "path": "tests/unit/scripts/verify/ci-native-test-reports.test.ts",
+        "line": 41,
+        "literal_anchor": "cause-proof capture is distinct mode-bound"
+      },
+      {
+        "path": "tests/unit/scripts/verify/epic-11-pilot-ci-gate.test.ts",
+        "line": 53,
+        "literal_anchor": "diagnostic dispatch excludes pilot"
+      }
+    ],
+    "kernel_bytes": 5760,
+    "kernel_sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+    "status": "in-review"
+  }
+}

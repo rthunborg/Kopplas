@@ -1,0 +1,17 @@
+{
+  "kind": "TARGETED_NEW_PARENT_METADATA_VERIFIER_LINT",
+  "command": "pnpm exec eslint _bmad-output/auto-bmad/preparation/story-15-5/verify-source-freeze-native-denial-cause-proof-parent.mjs --max-warnings 0",
+  "native_exit": 0,
+  "errors": 0,
+  "warnings": 0,
+  "attempts": 1,
+  "verifier": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/verify-source-freeze-native-denial-cause-proof-parent.mjs",
+    "bytes": 16069,
+    "sha256": "b24cdbb4d872dd8c9eb702d5b33daf72ed04a74bc57ccb307b0343cb433d5c10"
+  },
+  "scope": "New parent metadata verifier only; frozen author producer lint is separately bound in the unchanged capsule.",
+  "source_or_spec_changed": false,
+  "semantic_or_native_tests_rerun": false,
+  "native_acceptance_credit": 0
+}

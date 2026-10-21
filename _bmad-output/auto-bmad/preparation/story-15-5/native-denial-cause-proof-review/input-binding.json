@@ -1,0 +1,633 @@
+{
+  "schema_version": 1,
+  "kind": "EXACT_COMMITTED_REVIEW_INPUT_BINDING",
+  "source": "cb8d696d19c53e63be05ecb1ae273449af60efaf",
+  "base": "56324120f8e08de995e8cc7432ab27f2d0c98635",
+  "route": {
+    "schema_version": 1,
+    "phase": "review-native-denial-cause-proof-committed-delta",
+    "role": "independent-sensitive-committed-native-cause-proof-delta-reviewer",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "recorded_by_root_before_dispatch": true,
+    "dispatch_owner": "Parent; author does not dispatch reviewer",
+    "source": "cb8d696d19c53e63be05ecb1ae273449af60efaf",
+    "base": "56324120f8e08de995e8cc7432ab27f2d0c98635",
+    "scope": "Latest committed14 changed paths and consequential regressions; not a fourth broad story review",
+    "completed_broad_rounds": 3,
+    "requested_independence": "Fresh context-free reviewer; no author/reviewer role reuse",
+    "source_and_spec_frozen": true,
+    "verdict": "PENDING",
+    "no_source_or_spec_verdict_write_after_review": true,
+    "native_credit": 0
+  },
+  "bindings": [
+    {
+      "path": "src/server/commands/calendar-feed/calendar-feed-db.ts",
+      "raw": {
+        "bytes": 4729,
+        "sha256": "e2c726b7fc90e31407838d672e6683ea02adb94b9951a02da937022ab964af6b"
+      },
+      "actual_git_clean_oid": "c21b8c5e897d2b81be994312ba0074475e98c6fa",
+      "committed": {
+        "oid": "c21b8c5e897d2b81be994312ba0074475e98c6fa",
+        "bytes": 4729,
+        "sha256": "e2c726b7fc90e31407838d672e6683ea02adb94b9951a02da937022ab964af6b"
+      },
+      "baseline": {
+        "oid": "b9ad7ddcb31e9b51a2c7836589bf4df7da6cb2c7",
+        "bytes": 1054,
+        "sha256": "1223d202b250b69ea9ed7de3aa8f3621324b6ff9e1c01bcd06cd80b96d680d43"
+      },
+      "baseline_equal": false,
+      "raw_equals_committed_blob": true
+    },
+    {
+      "path": "src/server/commands/calendar-feed/manage-calendar-feed.ts",
+      "raw": {
+        "bytes": 4856,
+        "sha256": "066f55528f5cb316118d5511eb2ea2a1bdafd1cbfefa98ddbc4d76eda1509b81"
+      },
+      "actual_git_clean_oid": "b21159803ea8e875b83df953a3ffdbb53dccf0be",
+      "committed": {
+        "oid": "b21159803ea8e875b83df953a3ffdbb53dccf0be",
+        "bytes": 4856,
+        "sha256": "066f55528f5cb316118d5511eb2ea2a1bdafd1cbfefa98ddbc4d76eda1509b81"
+      },
+      "baseline": {
+        "oid": "e83ca8ab80cf69ddfd5e3c3800dd1132cefb363f",
+        "bytes": 3964,
+        "sha256": "dd14101ae51c5f90da6a10b7547ae431adfff515eabb3ec499cb548f3cb1a77b"
+      },
+      "baseline_equal": false,
+      "raw_equals_committed_blob": true
+    },
+    {
+      "path": "src/server/read-models/calendar-feed.ts",
+      "raw": {
+        "bytes": 3472,
+        "sha256": "7d0afd55c137a19ebe5479d0bdc0becfc08606e711c3c05de0d70ae132e45a35"
+      },
+      "actual_git_clean_oid": "4cccd98e3cb6c335e4eb8de289bf6e06ffd7830d",
+      "committed": {
+        "oid": "4cccd98e3cb6c335e4eb8de289bf6e06ffd7830d",
+        "bytes": 3472,
+        "sha256": "7d0afd55c137a19ebe5479d0bdc0becfc08606e711c3c05de0d70ae132e45a35"
+      },
+      "baseline": {
+        "oid": "131fe1ae486e2a9fd4517125ba4c8e889ce27ac1",
+        "bytes": 3111,
+        "sha256": "487198b2ebaebf6d80f86b00e40e8e36ed1d1cb73f12b9df296913e8de45671e"
+      },
+      "baseline_equal": false,
+      "raw_equals_committed_blob": true
+    },
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "raw": {
+        "bytes": 81332,
+        "sha256": "cec60f3bda555b95442e1c92e844a50821510d9abfe6fc905e3e3520c59c44e1"
+      },
+      "actual_git_clean_oid": "976d1f944958e9fb41eebbcf96c549b36eb38d75",
+      "committed": {
+        "oid": "976d1f944958e9fb41eebbcf96c549b36eb38d75",
+        "bytes": 80579,
+        "sha256": "fe3e2f3bba6829ec26be7e930f42006d8d9d198e6cefdc8172826d66ea54cb94"
+      },
+      "baseline": {
+        "oid": "fce69a9da924b0127517b56a645e8cde2cd6fe75",
+        "bytes": 67735,
+        "sha256": "1536a68c58e0b5bd7cb8e8c818779181d1ed0f3d869542dc03ed9bd88e0c2478"
+      },
+      "baseline_equal": false,
+      "raw_equals_committed_blob": false
+    },
+    {
+      "path": "tests/integration/commands/calendar-feed.int.test.ts",
+      "raw": {
+        "bytes": 36884,
+        "sha256": "55e4105f0c9e110c7fc08ef17d51f3d5cdd3c8ea6996cf215f53621da1e45e08"
+      },
+      "actual_git_clean_oid": "35863f8eeb563f21e9c0ff741115f018ee545134",
+      "committed": {
+        "oid": "35863f8eeb563f21e9c0ff741115f018ee545134",
+        "bytes": 36884,
+        "sha256": "55e4105f0c9e110c7fc08ef17d51f3d5cdd3c8ea6996cf215f53621da1e45e08"
+      },
+      "baseline": {
+        "oid": "178491d5b34b37dcf6fab346250e653418ca9428",
+        "bytes": 36136,
+        "sha256": "da67a1bdfbe9eae9e0199e1ee1cddd6dd00863e263af7cf6a1aaa6dc3f092891"
+      },
+      "baseline_equal": false,
+      "raw_equals_committed_blob": true
+    },
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "raw": {
+        "bytes": 43506,
+        "sha256": "44798a4e836ad7e99e0c38f6aaf9ddce4bde4605e39722e432d0884f1fa85560"
+      },
+      "actual_git_clean_oid": "111f7fcc2856f544388c713d1b481d75e3bb0c23",
+      "committed": {
+        "oid": "111f7fcc2856f544388c713d1b481d75e3bb0c23",
+        "bytes": 43506,
+        "sha256": "44798a4e836ad7e99e0c38f6aaf9ddce4bde4605e39722e432d0884f1fa85560"
+      },
+      "baseline": {
+        "oid": "72d931cba063ced2144e62395c006828bfedabdc",
+        "bytes": 35025,
+        "sha256": "8f142ebe8a015aacc38ae55b37f36f98c61daa0621b62fb266c3991cedecbe8d"
+      },
+      "baseline_equal": false,
+      "raw_equals_committed_blob": true
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "raw": {
+        "bytes": 117230,
+        "sha256": "1a598eacd5baea92156ff4f843c8e034238b5ed887f9d827dd62233dde91066b"
+      },
+      "actual_git_clean_oid": "d8d614476df3508acde978048588f672664e8ba2",
+      "committed": {
+        "oid": "d8d614476df3508acde978048588f672664e8ba2",
+        "bytes": 117230,
+        "sha256": "1a598eacd5baea92156ff4f843c8e034238b5ed887f9d827dd62233dde91066b"
+      },
+      "baseline": {
+        "oid": "7d08c0a31c6ddd3e27212dfd63aa6cadc546f88d",
+        "bytes": 101722,
+        "sha256": "412ee7364fd4b301102eb70e4a68fade800014d634039b1622baa99725784c19"
+      },
+      "baseline_equal": false,
+      "raw_equals_committed_blob": true
+    },
+    {
+      "path": "tests/support/calendar-feed-ci-contract.ts",
+      "raw": {
+        "bytes": 8024,
+        "sha256": "7c41d9afb3e8482bc5e2e43ebe87b648c9f7298f316c22d27a8c32c4c58f813b"
+      },
+      "actual_git_clean_oid": "ebadcee5eccce25a53f92f314f48a8be6499d84c",
+      "committed": {
+        "oid": "ebadcee5eccce25a53f92f314f48a8be6499d84c",
+        "bytes": 8024,
+        "sha256": "7c41d9afb3e8482bc5e2e43ebe87b648c9f7298f316c22d27a8c32c4c58f813b"
+      },
+      "baseline": {
+        "oid": "3c6bafb46e6c1545654b70bdc378875ae98b32c6",
+        "bytes": 3777,
+        "sha256": "c7c2b16b130b3ae37ff5130a5916c6418ac36cc23669d2b8c76eade533a37735"
+      },
+      "baseline_equal": false,
+      "raw_equals_committed_blob": true
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "raw": {
+        "bytes": 75930,
+        "sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e"
+      },
+      "actual_git_clean_oid": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a",
+      "committed": {
+        "oid": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a",
+        "bytes": 75930,
+        "sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e"
+      },
+      "baseline": {
+        "oid": "bf3e201438bd06912e2fc908f001049c23ca356f",
+        "bytes": 73870,
+        "sha256": "0a7c1b210e87b020e882787869cae7b9fa314068f7d561e52dd14443495d57c7"
+      },
+      "baseline_equal": false,
+      "raw_equals_committed_blob": true
+    },
+    {
+      "path": "scripts/ci/checkpoint-dispatch.mjs",
+      "raw": {
+        "bytes": 16105,
+        "sha256": "a735cefcfc73f6d69dc07a20e811ac7b599221ee1dae34b067ad93fe95bd66de"
+      },
+      "actual_git_clean_oid": "57fd4d45f15c8635f934b0696b5771c9165e3f21",
+      "committed": {
+        "oid": "57fd4d45f15c8635f934b0696b5771c9165e3f21",
+        "bytes": 15874,
+        "sha256": "38bf5d39ed827733faed00b5411b10522034305a33b94e9f446f250941978aba"
+      },
+      "baseline": {
+        "oid": "79a42c948ae367986fb4a85039b657b1ba726785",
+        "bytes": 11696,
+        "sha256": "e649321cb8cefee7878dc5bb0074d5e7d853d0a88de2bada96e6fcbf9d65d7e4"
+      },
+      "baseline_equal": false,
+      "raw_equals_committed_blob": false
+    },
+    {
+      "path": "tests/unit/scripts/ci/checkpoint-dispatch.test.ts",
+      "raw": {
+        "bytes": 19133,
+        "sha256": "5108db252d36384412f8712b37efff4933dea8690964a946a79a30a9976d9491"
+      },
+      "actual_git_clean_oid": "8d0f2694b5956b8f03ca9c6a0b5e1f4d04e38bc9",
+      "committed": {
+        "oid": "8d0f2694b5956b8f03ca9c6a0b5e1f4d04e38bc9",
+        "bytes": 18891,
+        "sha256": "ab59f4d8fd8a240f256aec3a260e5f0ebfa17a146f4c185cbf395732af89a01a"
+      },
+      "baseline": {
+        "oid": "21c88025a20ade6152d5636c565330e1041e14eb",
+        "bytes": 14720,
+        "sha256": "7c5b063be512505b4ff3ddfe89125a94df40a14e78f4abcd5fd6bb85fac15aef"
+      },
+      "baseline_equal": false,
+      "raw_equals_committed_blob": false
+    },
+    {
+      "path": "tests/unit/scripts/verify/ci-native-test-reports.test.ts",
+      "raw": {
+        "bytes": 3984,
+        "sha256": "3e1b31e0f8c47eb7d83e6c07cab2af3d0efa09d436f908af691fd5c24691332b"
+      },
+      "actual_git_clean_oid": "09ff9ca598d6ae03cf4ad690d9d23befb3277802",
+      "committed": {
+        "oid": "09ff9ca598d6ae03cf4ad690d9d23befb3277802",
+        "bytes": 3946,
+        "sha256": "a3e666701c2b1eb6b0b8f81e7fdbf6411b5c0f1093bd2afbf02d5b8a162938d6"
+      },
+      "baseline": {
+        "oid": "f580168cf767a0999e2e6b56de99355e2339486c",
+        "bytes": 2645,
+        "sha256": "b6a4461ea492083f76c084e99d44459685a68a3df9f3a2ca3d76db7bfa815cbe"
+      },
+      "baseline_equal": false,
+      "raw_equals_committed_blob": false
+    },
+    {
+      "path": "tests/unit/scripts/verify/epic-11-pilot-ci-gate.test.ts",
+      "raw": {
+        "bytes": 3424,
+        "sha256": "b27e0d9c28d5b6602f0c6684b2d0f43c4feb29ddd0e1535a08ba3b0876cb29a1"
+      },
+      "actual_git_clean_oid": "d7b56bf80d06cbc060af219410f232342c53297c",
+      "committed": {
+        "oid": "d7b56bf80d06cbc060af219410f232342c53297c",
+        "bytes": 3374,
+        "sha256": "53c722f11869cdf4492722e996ddda57c64206a837f45320adb40fc7b5e1ffc1"
+      },
+      "baseline": {
+        "oid": "02ddcdc52a403f127a921913b5ca5ef1ed7fa453",
+        "bytes": 2456,
+        "sha256": "2cc2c1c75bb308f7bbcaf7a1457b8bb530fa543425308df72ff355c2b4778082"
+      },
+      "baseline_equal": false,
+      "raw_equals_committed_blob": false
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "raw": {
+        "bytes": 121125,
+        "sha256": "ce7b6b4daf1787a28a7d76b93e9ed5475f57f299415bfb8b7e714fb0606de0c1"
+      },
+      "actual_git_clean_oid": "da9f3c0d44721140429dfa2061a6e5ed5d293b97",
+      "committed": {
+        "oid": "da9f3c0d44721140429dfa2061a6e5ed5d293b97",
+        "bytes": 121125,
+        "sha256": "ce7b6b4daf1787a28a7d76b93e9ed5475f57f299415bfb8b7e714fb0606de0c1"
+      },
+      "baseline": {
+        "oid": "6a50199f01f20296a42b68ae8da69942b1a981e7",
+        "bytes": 112048,
+        "sha256": "0ea107912c53c54f3755cc162d08bd9ee084e4c7b52363fa5e13c8bdb7024264"
+      },
+      "baseline_equal": false,
+      "raw_equals_committed_blob": true
+    }
+  ],
+  "context_bindings": [
+    {
+      "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+      "raw": {
+        "bytes": 24435,
+        "sha256": "b57e6a1726cfac545de1cd141e26f56e6bebb4a535d1cd7f706e4a1ad3e05555"
+      },
+      "actual_git_clean_oid": "c5d6d53faab649b40dee5c12f7933030224fa4ab",
+      "committed": {
+        "oid": "c5d6d53faab649b40dee5c12f7933030224fa4ab",
+        "bytes": 24435,
+        "sha256": "b57e6a1726cfac545de1cd141e26f56e6bebb4a535d1cd7f706e4a1ad3e05555"
+      },
+      "baseline": {
+        "oid": "c5d6d53faab649b40dee5c12f7933030224fa4ab",
+        "bytes": 24435,
+        "sha256": "b57e6a1726cfac545de1cd141e26f56e6bebb4a535d1cd7f706e4a1ad3e05555"
+      },
+      "baseline_equal": true,
+      "raw_equals_committed_blob": true
+    },
+    {
+      "path": "src/server/commands/envelope.ts",
+      "raw": {
+        "bytes": 17101,
+        "sha256": "b9f88aa193e3fe1a5ced9e741382131a28b0dbff4db0c79f515d932d5927d38a"
+      },
+      "actual_git_clean_oid": "6e1381aeb9babc09ab1b25ab3cd06e42d15c7102",
+      "committed": {
+        "oid": "6e1381aeb9babc09ab1b25ab3cd06e42d15c7102",
+        "bytes": 16764,
+        "sha256": "bebaa7827e701ee9cb1e8b77deeade619ad198f379fb1216494141bbc337cf02"
+      },
+      "baseline": {
+        "oid": "6e1381aeb9babc09ab1b25ab3cd06e42d15c7102",
+        "bytes": 16764,
+        "sha256": "bebaa7827e701ee9cb1e8b77deeade619ad198f379fb1216494141bbc337cf02"
+      },
+      "baseline_equal": true,
+      "raw_equals_committed_blob": false
+    },
+    {
+      "path": "src/server/commands/envelope-core.ts",
+      "raw": {
+        "bytes": 12421,
+        "sha256": "f1412208ad090c8a69d92694bd1ed340ffaa987614ee076ad8fe96ed54fa999d"
+      },
+      "actual_git_clean_oid": "22905f9d6deda34a493f2f472d77593f82a0317e",
+      "committed": {
+        "oid": "22905f9d6deda34a493f2f472d77593f82a0317e",
+        "bytes": 12130,
+        "sha256": "9c9189279b831a2f32842df723111dc874cf892304c7b55020f2829ea98b3210"
+      },
+      "baseline": {
+        "oid": "22905f9d6deda34a493f2f472d77593f82a0317e",
+        "bytes": 12130,
+        "sha256": "9c9189279b831a2f32842df723111dc874cf892304c7b55020f2829ea98b3210"
+      },
+      "baseline_equal": true,
+      "raw_equals_committed_blob": false
+    },
+    {
+      "path": "src/server/auth/resolve-tenant-context.ts",
+      "raw": {
+        "bytes": 13297,
+        "sha256": "1d46e1504583d08d0a0d805dc7e3df7ac3f502fc2ab89e976d5a86c439280cf2"
+      },
+      "actual_git_clean_oid": "4a244fb0f70a302d52c5b7d5de2b130ea3875565",
+      "committed": {
+        "oid": "4a244fb0f70a302d52c5b7d5de2b130ea3875565",
+        "bytes": 13027,
+        "sha256": "767a3ee06e8c309e3069f7a36d61c0c12cbaacd39f849c0c8f5008443c1e9e12"
+      },
+      "baseline": {
+        "oid": "4a244fb0f70a302d52c5b7d5de2b130ea3875565",
+        "bytes": 13027,
+        "sha256": "767a3ee06e8c309e3069f7a36d61c0c12cbaacd39f849c0c8f5008443c1e9e12"
+      },
+      "baseline_equal": true,
+      "raw_equals_committed_blob": false
+    },
+    {
+      "path": "src/server/auth/resolve-tenant-context-core.ts",
+      "raw": {
+        "bytes": 6009,
+        "sha256": "014279223fffb62e5bace20c9920a4fe8e89186768e7354cb075f26b99d37153"
+      },
+      "actual_git_clean_oid": "8d309fc2cfb8311261dce9c80eb9288b11906ede",
+      "committed": {
+        "oid": "8d309fc2cfb8311261dce9c80eb9288b11906ede",
+        "bytes": 5874,
+        "sha256": "91786d75aa5159e848d50c2badb1428569fbc18666d55c2beee774735a9f26f1"
+      },
+      "baseline": {
+        "oid": "8d309fc2cfb8311261dce9c80eb9288b11906ede",
+        "bytes": 5874,
+        "sha256": "91786d75aa5159e848d50c2badb1428569fbc18666d55c2beee774735a9f26f1"
+      },
+      "baseline_equal": true,
+      "raw_equals_committed_blob": false
+    },
+    {
+      "path": "src/server/authz/permission-matrix.ts",
+      "raw": {
+        "bytes": 7914,
+        "sha256": "b839190977e94262ac68ca8d57a631449f08b0c50335b3e6e9f0830f55f390fc"
+      },
+      "actual_git_clean_oid": "426da1a3e4aa856a4d95d45ad11be7f14cbd1f44",
+      "committed": {
+        "oid": "426da1a3e4aa856a4d95d45ad11be7f14cbd1f44",
+        "bytes": 7767,
+        "sha256": "470a2d0932c78a178d192fb94a5693a98c689f2e8e8c50b2be6ac780c7849c04"
+      },
+      "baseline": {
+        "oid": "426da1a3e4aa856a4d95d45ad11be7f14cbd1f44",
+        "bytes": 7767,
+        "sha256": "470a2d0932c78a178d192fb94a5693a98c689f2e8e8c50b2be6ac780c7849c04"
+      },
+      "baseline_equal": true,
+      "raw_equals_committed_blob": false
+    },
+    {
+      "path": "src/server/calendar-feed/attestation.ts",
+      "raw": {
+        "bytes": 3543,
+        "sha256": "002dd9a2222457f6e9928bed24b2b5a5426571720119033a72a2ba3b8632c2a5"
+      },
+      "actual_git_clean_oid": "7fd549fbec4b52f1c1751d742616d265d95cb5b8",
+      "committed": {
+        "oid": "7fd549fbec4b52f1c1751d742616d265d95cb5b8",
+        "bytes": 3543,
+        "sha256": "002dd9a2222457f6e9928bed24b2b5a5426571720119033a72a2ba3b8632c2a5"
+      },
+      "baseline": {
+        "oid": "7fd549fbec4b52f1c1751d742616d265d95cb5b8",
+        "bytes": 3543,
+        "sha256": "002dd9a2222457f6e9928bed24b2b5a5426571720119033a72a2ba3b8632c2a5"
+      },
+      "baseline_equal": true,
+      "raw_equals_committed_blob": true
+    },
+    {
+      "path": "tests/support/bookings-atdd.ts",
+      "raw": {
+        "bytes": 22030,
+        "sha256": "7e5d3c0d615e25358bffa670ba8ca1cbe8d73cb025b13f913266c2249a86f681"
+      },
+      "actual_git_clean_oid": "a1217258358c416364fd2843b04efe0b4f1d29c2",
+      "committed": {
+        "oid": "a1217258358c416364fd2843b04efe0b4f1d29c2",
+        "bytes": 21725,
+        "sha256": "44753b239d6618bb1ade96f05b18723ab086c68499a0b42fa6ccaa3f045beb52"
+      },
+      "baseline": {
+        "oid": "a1217258358c416364fd2843b04efe0b4f1d29c2",
+        "bytes": 21725,
+        "sha256": "44753b239d6618bb1ade96f05b18723ab086c68499a0b42fa6ccaa3f045beb52"
+      },
+      "baseline_equal": true,
+      "raw_equals_committed_blob": false
+    }
+  ],
+  "installed_context": {
+    "path": "node_modules/pg/lib/client.js",
+    "resolved_path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\node_modules\\.pnpm\\pg@8.22.0\\node_modules\\pg\\lib\\client.js",
+    "bytes": 22776,
+    "sha256": "86cda0e1fda47e03d27dde65f10c7b9d597f7411f77ed853c8d27d5f150978a2",
+    "manifest_path": "node_modules/pg/package.json",
+    "manifest_bytes": 1668,
+    "manifest_sha256": "bab5faf4410151a463078fffa326d10979150bfc330f0a29bd08948378ed3421",
+    "version": "8.22.0",
+    "scope": "Current installed source READONLY context; no connect/query/driver operation executed by preparation."
+  },
+  "input_files": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-review/review-input.md",
+      "bytes": 573067,
+      "sha256": "b0bbbc6364f450be9376fe3a6474c5451ff355cd3620158a7d747dc57f89e129"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-review/latest.diff",
+      "bytes": 130414,
+      "sha256": "ee863b3048266665ae603fddfd61243d21c19f6e283a8d272216b069c4a8876f"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-review/local-checks.json",
+      "bytes": 18121,
+      "sha256": "fc05a18697e1f4548ca873b5506e772f8987831ec677287cd33f18b05db0e9d3"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-review/route-context.json",
+      "bytes": 10043,
+      "sha256": "3339b4bcccca9805bc3726918fa6f2eea13ec313a843c5e125f337b7e2c0ff22"
+    }
+  ],
+  "preparation_producer": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-review/prepare-input.mjs",
+    "bytes": 19361,
+    "sha256": "5d164cfc43e6403dcd69575779678dfa384286bdfb555f659a7578d219817c72"
+  },
+  "producer_lint": {
+    "command": "pnpm exec eslint _bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-review/prepare-input.mjs --max-warnings 0",
+    "exit": 0,
+    "errors": 0,
+    "warnings": 0
+  },
+  "context_encoding": "Committed actual Git blob UTF8/LF source, numbered ranges where stated; native Git diff untrimmed. Raw worktree bytes are separately bound and are not assumed equal.",
+  "raw_input_single_0x20_lines": 33,
+  "normal_command_body_unchanged": true,
+  "references": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-native-denial-cause-proof-allocation.json",
+      "bytes": 5006,
+      "sha256": "99bcc94753e87bb3efcf7fec730c88da4059ca450a4548286f47dbf20fdc63d3",
+      "metadata_only_not_runtime_credit": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-native-denial-cause-proof-private-consumer-allocation.json",
+      "bytes": 3289,
+      "sha256": "3b6cb5ddbdc847ca9dfbd2e7ceb2b2e2418227b661b9d14447016a1aea530c00",
+      "metadata_only_not_runtime_credit": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-proposal-revision-1/manifest.json",
+      "bytes": 1763,
+      "sha256": "f3b31ce6d0a4b1f8d4322de89c0491709d939dc840ecfd9333d9106f7346b334",
+      "metadata_only_not_runtime_credit": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-proposal-revision-1/proposal.md",
+      "bytes": 16665,
+      "sha256": "6d41cda99f51403ab49fed4e6bc31976427efca7358beb80f164d4cf7064e90d",
+      "metadata_only_not_runtime_credit": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-proposal-revision-1/contract-and-bindings.json",
+      "bytes": 32880,
+      "sha256": "7cdbae09f37bdb04c9c9965aca3c0b8bdab6ed6cdaa148b35a64e2c41b2ad0cf",
+      "metadata_only_not_runtime_credit": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-proposal-revision-1/result.json",
+      "bytes": 1767,
+      "sha256": "68c676bfb444fe96440d53f293710b6bb213dd9cebd937d9e9592cd3e6608ca0",
+      "metadata_only_not_runtime_credit": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-challenge/original-report.md",
+      "bytes": 17497,
+      "sha256": "114a3a37698b0885da6072127bba96b05bbe2b1d48bbb0d046ac8c0702ed1115",
+      "metadata_only_not_runtime_credit": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-challenge/original-attestation.json",
+      "bytes": 6251,
+      "sha256": "f8ee4a5f839d86c7cb4306b33fefc495814e6998ea13b5a5a4e6547e62feed3a",
+      "metadata_only_not_runtime_credit": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-challenge/result.json",
+      "bytes": 2164,
+      "sha256": "57f9551466be649d20fdc0af776505c518a9dbbb4834349d3a448ad5ef42ba33",
+      "metadata_only_not_runtime_credit": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-revision-1-challenge/original-report.md",
+      "bytes": 17105,
+      "sha256": "c4866354960d7aa789556e755c2ff1970c2053de62c02a9ab16004e1701f0b2b",
+      "metadata_only_not_runtime_credit": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-revision-1-challenge/original-attestation.json",
+      "bytes": 76083,
+      "sha256": "58e75b3cdaa1628549cf43a9568d7e2b0ef02e54d010a0474af954491cc1dc96",
+      "metadata_only_not_runtime_credit": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-revision-1-challenge/result.json",
+      "bytes": 1831,
+      "sha256": "e9515cbf0da465180096ce1fa6cb5a8a33b8aa2d2b10d74402835ffa03ad59dd",
+      "metadata_only_not_runtime_credit": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-qualification-plan/manifest.json",
+      "bytes": 3941,
+      "sha256": "5c64a63ff2af9ac173cd1a4cfec4e62f29f3e3968cd4f476314a17b5b638da69",
+      "metadata_only_not_runtime_credit": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-qualification-plan/plan.md",
+      "bytes": 14424,
+      "sha256": "6fc4d2865a193aa05d67defdb3a3300cefad82d613e0b2e2da5bf2fcda4b67c0",
+      "metadata_only_not_runtime_credit": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-qualification-plan/result.json",
+      "bytes": 3566,
+      "sha256": "6eb5ecc2e4aa055067a01725d7a2882f856bdfd3c2c14d65bc2eb49ce63ffea6",
+      "metadata_only_not_runtime_credit": true
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-cb8d696d-source-path-admission.json",
+      "bytes": 39635,
+      "sha256": "2de3f6130cf5bd78e0110f0618d74f2557cd51c9cdb0d09467cd36b67ae7fa88",
+      "metadata_only_not_runtime_credit": true
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-failed-56324120-packet-admission.json",
+      "bytes": 1304,
+      "sha256": "34785381fc18743aeeb67f23517683c48e790509b0c0b15e3fc683bd927f2a0a",
+      "metadata_only_not_runtime_credit": true
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-56324120-ci-independent/native-qualification.json",
+      "bytes": 39649,
+      "sha256": "9fab0c5db825a7f2d2d49384a9f420c0ae246fb43a3d1476f4d760708c8883da",
+      "metadata_only_not_runtime_credit": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-native-dependency-audit-repair.json",
+      "bytes": 720807,
+      "sha256": "fdf228c001e59f666cf362c5ee847513a90b101fb2c0188f5d8932a0d27912cd",
+      "metadata_only_not_runtime_credit": true
+    }
+  ],
+  "verdict": "PENDING",
+  "native_credit": 0
+}

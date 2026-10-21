@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "kind": "ROOT_ACCEPTED_EXACT7_CORRECTIVE_CONTRACT_ALLOCATION",
+  "accepted_at_utc": "2026-10-21T00:05:59.070071+00:00",
+  "coordinator_thread": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "actual_grant_turn": "01a15bc6-01d9-7753-982b-4a57f1333e7e",
+  "actual_native_completed_handoff": "exec-12184fa0-5628-4e74-97c9-96c42ff7bb41",
+  "source_base": "cb8d696d19c53e63be05ecb1ae273449af60efaf",
+  "exact_proposed_hunk_paths": [
+    "tests/support/calendar-feed-atdd.ts",
+    "scripts/ci/with-calendar-feed-runtime.mjs",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+    "tests/support/calendar-feed-ci-contract.ts",
+    "scripts/ci/checkpoint-dispatch.mjs",
+    "tests/unit/scripts/ci/checkpoint-dispatch.test.ts",
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"
+  ],
+  "within_original14_only": true,
+  "CIcontract_helper_SHA_pin_only": true,
+  "corrective_proposal_sha256": "7898802e407adeaf2979ca7c5cbe3852c973a8a69d8f64b3d5a106bbf37c62af",
+  "visibility_addendum_sha256": "5bd602ddf2c569260a33a47630dce7f4bfe83eaca86b61a6771a89b0dc85b385",
+  "visibility_binding_sha256": "43bfb1f49432f7bf3adf6b5b286fccb20344c07e9ea85e24164769af63260189",
+  "current_targeted_High_validation_result_sha256": "bd855e3c0ccc58fd73ed7fa1c53d43ef92560691c29f658e19224b1d768e72e6",
+  "original_unqualified_F1_PLAN_PASS_not_adopted": true,
+  "original_cb8_actual_code_NOTPASS_unresolved_until_reviewed_fixes": true,
+  "new_observations_explicitly_admitted": {
+    "same_existing_ONE_SELECT": true,
+    "exact_owned_Auth_UUIDs": 10,
+    "exact_owned_tenant_UUIDs": 2,
+    "new_Auth_read": true,
+    "new_pg_catalog_pg_roles_executing_current_user_read": true,
+    "visibility_predicate": "rolsuper OR rolbypassrls on actual executing current_user in same statement",
+    "exact_ONE_row_THREE_own_named_booleans": [
+      "visibilityQualified",
+      "tenantsAbsent",
+      "authUsersAbsent"
+    ],
+    "all_strict_true_required": true,
+    "otherwise": "CLEANUP_UNVERIFIED and retained custody",
+    "query_denial_fails_no_SELECT_privilege_grant": true,
+    "extra_SQL_roundtrips": 0,
+    "extra_HTTP_calls": 0,
+    "extra_connections": 0,
+    "new_principal_role_grant": false,
+    "no_assumed_SupAdmin_bootstrap_fresh_partialsetup_historical_delete_claim": true
+  },
+  "launch_fact_schema_admitted": {
+    "finite": "Monotonic actual spawn attempt/start true-false-null/proven-not-created facts independent exit completion",
+    "capture_failure": "Started OR uncertain plus missing reports/observation => CAPTURE_FAILED",
+    "NOT_CREATED": "Positive proof only",
+    "custody_guards_unchanged": true
+  },
+  "availability_contract_amendment_admitted": {
+    "default": "Fresh qualified ACTIVE default workflow presence and strict structurally bounded workflow_dispatch declaration",
+    "candidate": "Full reviewed candidate capability, ref/SHA/input/mode/admission nonce",
+    "recognizer": "Reject comments/strings/blockscalar/nested/duplicate/ambiguous/malformed event forms as structural proof",
+    "fixed_GET_and_sole_POST_sequence_unchanged": true,
+    "no_default_update_fallback_repeated_POST_owner_waiver": true,
+    "hosted_availability_still_unverified_before_later_admission": true
+  },
+  "implementation_conditions": [
+    "Sol6.1 High author append-only source commit, exact7 proposed hunks only",
+    "Meaningful actual spawn adapter/SQL shape and parameter/strict boolean visibility/recognizer negative controls",
+    "Fresh DISTINCT High actual committed latest-fix review PASS BEFORE Root freeze/push",
+    "No fourth broad review; original two code findings remain until explicitly closed",
+    "Protected109 and37 consumers, Spec5760kernel and all normal required gates retained",
+    "Prior exact14 and future private7 allocations/conditional native admission gates unchanged; missing schema remains COMPATIBILITY_STOP"
+  ],
+  "no_native_query_CI_resource_launch_by_allocation": true,
+  "no_provider_secret_deploy_mainmerge_foreign_write_monitor_resume": true,
+  "all43_DB14_browser_causes_unresolved": true,
+  "native_credit": 0,
+  "development_complete": false,
+  "release_ready": false
+}

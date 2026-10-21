@@ -1,0 +1,102 @@
+{
+  "source": "52007b760ff10f056ac75c5ed5b7dcdf49f99036",
+  "base": "cb8d696d19c53e63be05ecb1ae273449af60efaf",
+  "actual_executions": [
+    {
+      "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts tests/unit/scripts/ci/checkpoint-dispatch.test.ts",
+      "phase": "initial",
+      "total": 116,
+      "pass": 112,
+      "fail": 4,
+      "skip": 0,
+      "cancel": 0,
+      "exit": 1,
+      "causes": [
+        "Three new actual-caller controls attempted Function compilation of import.meta syntax; corrected to exact-source ES module binding",
+        "Repeated adapter error exposed once-only consumption; fixed persistent safe error observer"
+      ]
+    },
+    {
+      "phase": "corrected two-file run",
+      "total": 116,
+      "pass": 116,
+      "fail": 0,
+      "skip": 0,
+      "cancel": 0,
+      "exit": 0
+    },
+    {
+      "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts tests/unit/scripts/ci/checkpoint-dispatch.test.ts tests/unit/scripts/verify/ci-native-test-reports.test.ts tests/unit/scripts/verify/epic-11-pilot-ci-gate.test.ts tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts tests/unit/docs/acceptance-gate-report-validators.test.ts tests/unit/server/authz/command-enrollment.test.ts",
+      "phase": "after final non-array absence control, BEFORE late alias hardening",
+      "total": 374,
+      "pass": 374,
+      "fail": 0,
+      "skip": 0,
+      "cancel": 0,
+      "exit": 0,
+      "subsets": {
+        "runtime_source_driver_FS": 86,
+        "dispatcher": 30,
+        "existing_consumers_enrollment": 258
+      },
+      "pre_late_source_buffer_snapshot_captured": false
+    },
+    {
+      "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test tests/unit/scripts/ci/checkpoint-dispatch.test.ts",
+      "phase": "AFTER late flow/sequence alias hardening",
+      "total": 30,
+      "pass": 30,
+      "fail": 0,
+      "skip": 0,
+      "cancel": 0,
+      "exit": 0
+    }
+  ],
+  "composite": {
+    "final_new_combined_374_run_executed": false,
+    "latest_current_dispatcher": 30,
+    "prior_other344_unchanged_bindings_reused": true,
+    "no_inferred_aggregate": true
+  },
+  "static": [
+    {
+      "command": "pnpm exec tsc --noEmit --incremental false",
+      "phase": "final after late changes",
+      "exit": 0
+    },
+    {
+      "command": "pnpm exec eslint scripts/ci/checkpoint-dispatch.mjs scripts/ci/with-calendar-feed-runtime.mjs tests/support/calendar-feed-atdd.ts tests/support/calendar-feed-ci-contract.ts tests/unit/scripts/ci/checkpoint-dispatch.test.ts tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts --max-warnings 0",
+      "phase": "six-file pass before late dispatcher-only hardening",
+      "exit": 0,
+      "errors": 0,
+      "warnings": 0,
+      "initial_errors": 1,
+      "initial_error": "prefer-const in new test plumbing; corrected"
+    },
+    {
+      "command": "pnpm exec eslint scripts/ci/checkpoint-dispatch.mjs tests/unit/scripts/ci/checkpoint-dispatch.test.ts --max-warnings 0",
+      "phase": "affected final dispatcher files AFTER late change",
+      "exit": 0,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "command": "node scripts/verify/check-review-order.mjs _bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "exit": 0,
+      "stops": 87,
+      "errors": []
+    },
+    {
+      "command": "git diff --check / git diff --cached --check / exact staged inventory",
+      "exit": 0,
+      "paths": 7,
+      "post_commit_source_and_index_clean": true
+    }
+  ],
+  "no_build_rerun": true,
+  "reason": "No application runtime module changed; previous build remains historical dependency evidence, not a new result.",
+  "no_native_SQL_Auth_RPC_child_browser_hosted_execution": true,
+  "retained_prior_runtime_controls": 79,
+  "native_credit": 0,
+  "source_seam_limits": "Exact current function bodies compiled with TypeScript stripping; actual ES-module caller bound to injected dependencies; actual spawn adapter receives EventEmitter child/read-identity seam; no real process/query. SQL shape/parameters and strict results are checked, not native role behavior."
+}
