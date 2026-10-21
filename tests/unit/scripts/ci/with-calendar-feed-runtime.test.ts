@@ -2444,3 +2444,30 @@ test("actual labelled browser observation preserves receiver arguments result an
   const actual=registry.observe(input);events.emit("request",matched);events.emit("response",matched);assert.equal(await actual,result);assert.equal((await registry.cancelAndSettle()).settled,true);assert.equal(readbacks,1);assert.equal(completions,1);
   const g=await labelledBrowserControl(),safe=g.seams.calendarBrowserDiagnostic("action-readback",{}),bad=g.observe("create",{readback:async()=>{throw safe;}});g.match("create");assert.equal(await bad.catch(error=>error),safe);await g.registry.cancelAndSettle();
 });
+
+
+test("SOURCE-LABEL-01 actual helper and enclosing NUDGE004 catch preserve same different and genuinely absent final relations",async()=>{
+  const source=readFileSync(new URL("../../../integration/notifications/time-report-nudge-producer.int.test.ts",import.meta.url),"utf8").replaceAll("\r\n","\n"),start=source.indexOf('  test("[P0] 15.4-NUDGE-004'),end=source.indexOf('  test("[P0] 15.4-NUDGE-005',start);assert.ok(start>0&&end>start);
+  const strip=(nodeModule as unknown as {stripTypeScriptTypes(source:string):string}).stripTypeScriptTypes;
+  for(const mode of ["clients","override","before","after"] as const){const f=actualNudgeOuter(mode);let run!:()=>Promise<void>,ordinaryCalls=0;
+    new Function("test","createNudgeFailureLabels","withTimeReportFixture","withNudgeRecipients",strip(source.slice(start,end)))((_name:string,callback:()=>Promise<void>)=>{run=callback;},()=>f.labels,
+      (callback:(fx:Record<string,unknown>)=>Promise<void>,labels:unknown)=>f.api.withTimeReportFixture(callback,labels),
+      async(fx:Record<string,unknown>,_callback:unknown,labels:unknown)=>{ordinaryCalls++;assert.equal(fx.base,f.fx.base);assert.equal(labels,f.labels);if(mode==="override")throw f.inner;});
+    const final=await run().catch(error=>error);assert.equal(final,mode==="clients"?f.inner:f.outer);
+    const expected=mode==="clients"?"SAME_AS_OBSERVED_INNER":mode==="override"?"DIFFERENT_FROM_OBSERVED_INNER":"NO_INNER_OBSERVED";
+    const finalLine=f.lines.find(line=>line.includes("boundary=TEST_FINAL"));assert.ok(finalLine);assert.ok(finalLine.includes("final_identity_relation="+expected));
+    const outerLines=f.lines.filter(line=>line.includes("boundary=OPAQUE_OUTER_"));assert.ok(outerLines.length);assert.ok(outerLines.at(-1)?.includes("final_identity_relation="+expected));
+    for(const line of f.lines.filter(line=>line.includes("boundary=LOCAL")))assert.ok(line.includes("final_identity_relation=UNKNOWN"));
+    if(mode==="clients"||mode==="before"){assert.equal(ordinaryCalls,0);assert.ok(!f.events.includes("report-cleanup"));}
+    else{assert.equal(ordinaryCalls,1);assert.equal(f.events.filter(event=>event==="report-cleanup").length,1);assert.ok(f.events.indexOf("report-cleanup")<f.events.indexOf("outer-cleanup"));}
+    assert.ok(f.lines.every(line=>Buffer.byteLength(line)<=512&&!line.includes("PRIVATE")));
+  }
+});
+
+test("SOURCE-LABEL-01 local and unestablished test-final snapshots stay unknown while sink failure preserves original final error",async()=>{
+  const f=actualNudgeOuter();f.labels.failure();f.labels.failure("TEST_FINAL");assert.ok(f.lines.every(line=>line.includes("final_identity_relation=UNKNOWN")));assert.ok(!f.lines.some(line=>line.includes("NO_INNER_OBSERVED")));
+  const source=readFileSync(new URL("../../../integration/notifications/time-report-nudge-producer.int.test.ts",import.meta.url),"utf8"),start=source.indexOf('  test("[P0] 15.4-NUDGE-004'),end=source.indexOf('  test("[P0] 15.4-NUDGE-005',start),strip=(nodeModule as unknown as {stripTypeScriptTypes(source:string):string}).stripTypeScriptTypes;
+  const throwing=actualNudgeOuter("clients",()=>{throw Error("PRIVATE sink");});let run!:()=>Promise<void>;
+  new Function("test","createNudgeFailureLabels","withTimeReportFixture",strip(source.slice(start,end)))((_name:string,callback:()=>Promise<void>)=>{run=callback;},()=>throwing.labels,(callback:(fx:Record<string,unknown>)=>Promise<void>,labels:unknown)=>throwing.api.withTimeReportFixture(callback,labels));
+  assert.equal(await run().catch(error=>error),throwing.inner);assert.equal(throwing.events.filter(event=>event==="outer-cleanup").length,1);
+});

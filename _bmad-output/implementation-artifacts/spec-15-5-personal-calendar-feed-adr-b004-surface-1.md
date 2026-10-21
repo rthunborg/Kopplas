@@ -245,9 +245,9 @@ Deferred release validation: exhaustive browser/device/calendar-provider matrice
 ## Auto Run Result
 
 Status: in-review
-Blocking condition: current qualified NORMAL history remains acceptance0: Node3222/Python43 are separate historical positives, story DB16P/35unexecuted (including API019 and INT015), browser10expected/1flaky/3unexpected and custody UNKNOWN. The following exact-six label implementation has offline controls only; independent committed-delta High review and a separately admitted changed-information NORMAL comparison remain pending. No functional cause, cleanup closure, development completion or release readiness is established.
+Blocking condition: current qualified NORMAL history remains acceptance0: Node3222/Python43 are separate historical positives, story DB16P/35unexecuted (including API019 and INT015), browser10expected/1flaky/3unexpected and custody UNKNOWN. Committed exact-six source5d5ea4e was independently NOTPASS_SOURCE_LABEL_01 for contradictory relation labels; the finite correction below has offline controls only. Independent corrective-delta closure and a separately admitted changed-information NORMAL comparison remain pending. No functional cause, cleanup closure, development completion or release readiness is established.
 
-Current result — 2026-10-21: the bounded NUDGE004/E2E001 source-label implementation below is implemented
+Current result — 2026-10-21: the finite SOURCE-LABEL-01 relation-retention correction below is implemented
 and offline source-verified. It is not development complete or release ready.
 The following planning paragraphs are retained historical results, not the current
 status, permission, gate outcome or runtime evidence. The historical ARR warning
@@ -1927,6 +1927,52 @@ historical report-location allowlist. All110/111/predecessors and other contexts
 remain conserved. Root owns Git. Current causes/custody UNKNOWN, nativeacceptance0,
 in-review/baseline3a1c3bc9/counter3 and the approved5760-byte kernel are preserved.
 
+## SOURCE-LABEL-01 — retain evaluated relation through the final test catch
+
+Independent source-label-committed-delta-high-review at committed5d5ea4e is
+NOTPASS_SOURCE_LABEL_01 (report SHA256
+905f3d2ac181f0597ac7afacd76d28657e48d2822d8fe2264128671fbdf5d557).
+Its counterexample and the old68249-byte/e9df41e6 author receipt remain immutable.
+The original bounded labels did preserve ordinary errors, but falsely emitted
+NO_INNER_OBSERVED from LOCAL/TEST_FINAL without evaluating absence. This section
+records only the admitted diagnostic-integrity correction; no application cause
+or SQL/functional fix follows and the independent finding is not self-closed.
+
+The same context now starts finalRelation=UNKNOWN. Only the outer helper's
+existing matched/different reference comparison or established before/after
+callback absence updates that relation. TEST_FINAL reuses the evaluated fact;
+LOCAL and other unevaluated snapshots emit UNKNOWN without changing it.
+NO_INNER_OBSERVED is reserved for the helper's actual no-observed-inner outer
+branches. Existing factory=UNKNOWN, error object/cause/precedence, cleanup,
+clients/operations, sink bounds and overflow remain unchanged. The actual NUDGE
+catch and both browser sources require no edits; the context carries the fact
+through that same existing final catch. No error properties are inspected.
+
+Actual focused command uses the existing Node runtime-unit file with pattern
+actual opted-in outer nudge|actual nudge clients|actual nudge labels|actual enclosing
+NUDGE|actual labelled recipient|actual recipient cleanup|SOURCE-LABEL-01:
+8P/0F/0skip/0cancel in0.271s, first run/no initial failures. The two new controls
+compose the actual helper AND actual NUDGE004 enclosing test catch for SAME
+clients rejection, DIFFERENT outer-cleanup override, genuine absence before
+callback and after callback return, intermediate LOCAL/unestablished TEST_FINAL
+UNKNOWN, unchanged final identity and cleanup ordering, and sink failure.
+Six retained directly affected controls execute in that same selected run.
+Whole TypeScript noEmit/incrementalfalse and two changed TS ESLint exit0/no
+warnings. Final native diff, canonical reader, kernel and single SRO bind the
+handoff. No unchanged full suite/build or native SQL/browser is rerun; prior146P
+and separate C4 guard2P are historical unchanged-scope evidence, not a current
+148-test aggregate. Prior initial11P1F/type-error history remains nonadditive.
+
+Source-only working changes are time-report helper, existing runtime unit and
+this author Spec, within the original six-path claim. Root owns all Git. Current
+75 source rows are resampled; historical report-location74 is not expanded.
+All111 SQL/predecessors and other contexts remain immutable. No external effects,
+current codePASS/native acceptance or development/release completion is claimed.
+Same independent High corrective review and separately allocated exact-head NORMAL
+comparison remain required; Node3222/Python43 are historical separate positives,
+DB16P/35unexecuted (API019/INT015), browser10expected/1flaky/3unexpected and custody
+UNKNOWN remain open. In-review/baseline3a1c3bc9/counter3/kernel5760 are preserved.
+
 ## Suggested Review Order
 
 Author: Story 15.5 implementation/fix author (gpt-6.1-sol High), incorporating
@@ -1936,7 +1982,7 @@ native setup diagnostics, same-connection privacy qualification and explicit
 isolated setup authority transport, bounded child settlement, browser diagnostic repair,
 actual SQL callback ownership, executed-feature fixture/status/policy repairs and
 bounded safe-leaf transport through the installed reporter, closed owned scenario origins, the minimal Vite security patch, the admitted staged diagnostic-only lane and the discovery-order unit correction.
-Stops below resolve to the exact-six label working source handed to Root; no author Git mutation occurs.
+Stops below resolve to the finite relation-correction working source handed to Root; no author Git mutation occurs.
 
 ### Own settings and honest lifecycle results
 
@@ -2367,7 +2413,7 @@ stay unchanged. Opaque outer failure remains UNKNOWN, even after an inner error.
 
 - `tests/integration/notifications/time-report-nudge-producer.int.test.ts:157` — `const labels=createNudgeFailureLabels()`: opts in only the real27-recipient case.
 - `tests/support/time-reports-atdd.ts:50` — `export function createNudgeFailureLabels`: bounds fixed output without error/property reads.
-- `tests/support/time-reports-atdd.ts:68` — `export async function withTimeReportFixture`: preserves outer error identity and precedence.
+- `tests/support/time-reports-atdd.ts:74` — `export async function withTimeReportFixture`: preserves outer error identity and precedence.
 - `tests/e2e/calendar-feed.e2e.spec.ts:74` — `const labels=createCalendarFailureLabels()`: opts in only the existing lifecycle case.
 - `tests/e2e/support/calendar-feed-atdd.ts:19` — `export function createCalendarFailureLabels`: isolates action/ordinal applicability and state.
 - `tests/e2e/support/calendar-feed-atdd.ts:105` — `const wasDone=done`: preserves MATCHED on no-op final cancellation.
@@ -2381,3 +2427,17 @@ actual runs, not an aggregate. Whole TypeScript/five-file lint exit0. Review mus
 check original failure-site capture, unchanged error/cause/cleanup order, no added
 observers/operations and current native UNKNOWN. This is source diagnostics only;
 no functional correction, CODEPASS, native gate/coverage or execution approval.
+
+### Preserve evaluated final relations instead of inventing absence
+
+LOCAL remains unevaluated; the actual NUDGE004 TEST_FINAL snapshot retains the
+outer helper's established same/different/absence relation. Factory cause is UNKNOWN.
+
+- `tests/support/time-reports-atdd.ts:52` — `let finalRelation:`: starts with no evaluated relation.
+- `tests/support/time-reports-atdd.ts:66` — `const relation=`: separates LOCAL unknown from final relation retention.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2449` — `SOURCE-LABEL-01 actual helper and enclosing NUDGE004`: exercises the actual composed final boundary.
+
+Evidence: selected8P/0F/0skip/0cancel first run; whole TypeScript/two-file lint
+exit0. No new full148 aggregate, native or independent closure credit. The old
+NOTPASS and original author receipt remain preserved; reviewer checks only this
+relation correction and consequential latest-line regressions, not a fourth pass.

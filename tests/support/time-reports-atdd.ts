@@ -49,6 +49,7 @@ export const nudgeFailureSites = ["test-boundary","outer-await","booking-entry",
 export type NudgeFailureLabels = ReturnType<typeof createNudgeFailureLabels>;
 export function createNudgeFailureLabels(sink:(line:string)=>void=line=>console.error(line)) {
   let site:typeof nudgeFailureSites[number]="outer-await",lines=0,unknown=false;
+  let finalRelation:"SAME_AS_OBSERVED_INNER"|"DIFFERENT_FROM_OBSERVED_INNER"|"NO_INNER_OBSERVED"|"UNKNOWN"="UNKNOWN";
   const progress={booking:"NOT_STARTED",clients:"NOT_STARTED",report:"NOT_STARTED",cleanup:"NOT_STARTED",composition:"NOT_STARTED",outer:"PENDING"};
   return {
     progress(field:keyof typeof progress,state:"NOT_STARTED"|"PENDING"|"SUCCESS"|"FAILURE") {try{if(Object.hasOwn(progress,field)&&["NOT_STARTED","PENDING","SUCCESS","FAILURE"].includes(state))progress[field]=state;else unknown=true;}catch{unknown=true;}},
@@ -57,7 +58,12 @@ export function createNudgeFailureLabels(sink:(line:string)=>void=line=>console.
       try {if(lines>=16)return;const overflow=lines===15;lines++;
         const safe=["LOCAL","OPAQUE_OUTER_BEFORE_CALLBACK_UNKNOWN","OPAQUE_OUTER_AFTER_CALLBACK_UNKNOWN","OUTER_REJECTION_UNKNOWN","FINAL_MATCHES_INNER","FINAL_DIFFERS_INNER","TEST_FINAL"].includes(boundary)?boundary:"OUTER_REJECTION_UNKNOWN";
         const state=(value:string)=>value==="SUCCESS"?"RETURNED":value==="FAILURE"?"REJECTED":value;
-        const relation=safe==="FINAL_MATCHES_INNER"?"SAME_AS_OBSERVED_INNER":safe==="FINAL_DIFFERS_INNER"?"DIFFERENT_FROM_OBSERVED_INNER":"NO_INNER_OBSERVED";
+        if(safe==="FINAL_MATCHES_INNER")finalRelation="SAME_AS_OBSERVED_INNER";
+        else if(safe==="FINAL_DIFFERS_INNER")finalRelation="DIFFERENT_FROM_OBSERVED_INNER";
+        else if(safe==="OPAQUE_OUTER_BEFORE_CALLBACK_UNKNOWN"||safe==="OPAQUE_OUTER_AFTER_CALLBACK_UNKNOWN")finalRelation="NO_INNER_OBSERVED";
+        // Only the outer await establishes a final relation. LOCAL is not an
+        // absence evaluation; TEST_FINAL preserves the established observation.
+        const relation=["TEST_FINAL","FINAL_MATCHES_INNER","FINAL_DIFFERS_INNER","OPAQUE_OUTER_BEFORE_CALLBACK_UNKNOWN","OPAQUE_OUTER_AFTER_CALLBACK_UNKNOWN"].includes(safe)?finalRelation:"UNKNOWN";
         const boundaryState=safe==="FINAL_MATCHES_INNER"||safe==="FINAL_DIFFERS_INNER"?"OPAQUE_OUTER_REJECTION_WITH_INNER_FAILURE_UNKNOWN":safe;
         const line=`calendar-source-label-v1 case=NUDGE004 site=${unknown||overflow?"unknown":site} boundary=${unknown||overflow?"UNKNOWN":boundaryState} factory=UNKNOWN final_identity_relation=${unknown||overflow?"UNKNOWN":relation} booking_entered=${progress.booking==="SUCCESS"} clients=${state(progress.clients)} report=${state(progress.report)} cleanup=${state(progress.cleanup)} composition=${state(progress.composition)} outer=${state(progress.outer)}`;
         if(line.length>512){unknown=true;return;}try{sink(line);}catch{unknown=true;}
