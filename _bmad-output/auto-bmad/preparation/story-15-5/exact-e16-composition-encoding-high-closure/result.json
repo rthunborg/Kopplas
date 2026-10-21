@@ -1,0 +1,36 @@
+{
+  "schema": "EXACT_E16_COMPOSITION_ENCODING_HIGH_CLOSURE_RESULT_v1",
+  "Outcome": "PASS_TARGETED_ENCODING_CLOSURE_SOURCE_ONLY",
+  "Files changed": [
+    "_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-composition-encoding-high-closure/original-report.md",
+    "_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-composition-encoding-high-closure/original-attestation.json",
+    "_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-composition-encoding-high-closure/result.json",
+    "_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-composition-encoding-high-closure/manifest.json"
+  ],
+  "Status": {
+    "commit": "1de4722bcaa2d14163c6b56ce4a2b6b9ef3fc84c",
+    "parent": "bc767a4f5cd4f22dc45075f19e09bb85ff609d5d",
+    "tree": "329b31ef0ec2eb0c49100b44aba4252ae27c4be4",
+    "finding_closed": "E16-COMPOSE-ENCODING-01",
+    "new_consequential_findings": 0,
+    "six_complete_body_inverses": 6,
+    "parent_backed_nonASCII_mappings": 32,
+    "other_author_paths_unchanged": 10,
+    "SQL_unchanged": 116,
+    "Spec_wrapper_portability_unit_unchanged": 3,
+    "original_NOTPASS_artifacts_preserved": 4,
+    "independent_completed_proof_exit": 0,
+    "author_final_manifest_tests_reused": "14 pass / 0 fail / 0 skip / 0 cancel",
+    "native_actions": 0,
+    "native_acceptance": 0,
+    "counter_unchanged": 3,
+    "execution_authority": false
+  },
+  "Open questions": [
+    "Native gates and custody remain UNKNOWN/unexecuted here."
+  ],
+  "Deferred work": [
+    "Full native verification remains outside this source-only closure."
+  ],
+  "Blockers": []
+}

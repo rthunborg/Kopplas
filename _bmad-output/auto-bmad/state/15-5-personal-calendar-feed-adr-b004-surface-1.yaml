@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-21T22:55:17Z"
+updated_at: "2026-10-21T23:02:44Z"
 started_at: "2026-10-20T12:18:56Z"
 completed_at: null
 active_seconds: 86219
@@ -18,15 +18,15 @@ is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: P5-E16-composition-encoding-correction
-selected_role: sensitive-critical-composition-correction-author
+selected_phase: P5-E16-integrated-minimal-readiness
+selected_role: sensitive-composed-source-and-checkpoint-readiness
 selected_profile: build
 selected_model: gpt-6.1-sol
 selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Correct independently observed P1 user-output and essential browser-selector UTF8 regression in six authorized merge-resolution paths, preserving the reviewed authorization/integrity composition."
+escalation_reason: "Bind newly composed scheduling/currenttenant job semantics and116migration reset to existing normal/C4/source provenance contracts; source-only High closure is not native acceptance."
 routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"High preparation for hashed public-feed tokens, rotation/revocation and tenant/member disclosure boundaries; plan-only before distinctvalidation and ownershipallocation\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct High independent specification validation of actual public-feed token/proof/IP/limiter authorization design and exact ownership/test-key boundaries before anybuild\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"cross_model_layer\",\"profile\":\"diverse_review\",\"role\":\"independent-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -252,6 +252,7 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Refresh exact source identity after independently reviewed portability correction, preserve public-token/label acquisition/privacy/normal95 effects boundaries and qualify one evidence-led checkpoint without retrying old intent.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-unit-portability-current-readiness-refresh\",\"profile\":\"build\",\"role\":\"sensitive-current-source-and-checkpoint-readiness\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Critical source composition includes shared bookings, tenant read authorization and applied migration ordering; explicit High required.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-E16-exact-integration-planning\",\"profile\":\"build\",\"role\":\"sensitive-integration-and-migration-compatibility-planner\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Correct independently observed P1 user-output and essential browser-selector UTF8 regression in six authorized merge-resolution paths, preserving the reviewed authorization/integrity composition.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-E16-composition-encoding-correction\",\"profile\":\"build\",\"role\":\"sensitive-critical-composition-correction-author\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Bind newly composed scheduling/currenttenant job semantics and116migration reset to existing normal/C4/source provenance contracts; source-only High closure is not native acceptance.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-E16-integrated-minimal-readiness\",\"profile\":\"build\",\"role\":\"sensitive-composed-source-and-checkpoint-readiness\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: "Hashed public tokens, rotation/revocation, externalfeed andcross-tenant abuseprotection requireHigh-riskATDD+automate; lastthreeno traceadvisory"
@@ -2012,7 +2013,8 @@ exact_e16_composition:
   root_mechanics: ".env.epic15.mail-runtime/story-15-5-preparation/exact-e16-root-precommit-mechanics.json"
   migration116_native_clean: "PASS;111existing+5exactincoming"
   checks: "Author TypeScript/lint/lock0; separateNode81P/173Pnonadditive; authored16diffcheck0, wholecached2 on33outside16formatpaths"
-  source_admitted: false
+  source_admitted: true
   normal_acceptance: 0
   development_complete: false
   next: "Narrow six-file encoding correction preserving semantic resolutions, then targeted independent regression closure and fresh native readiness."
+  encoding_closure: "{\"reviewed_source_commit\": \"1de4722bcaa2d14163c6b56ce4a2b6b9ef3fc84c\", \"semantic_merge_commit\": \"aa1a16adf2980355f0228badf889c95a4f230248\", \"reviewer\": \"independent gpt-6.1-sol High /root/acquisition15_observability_source_review_high\", \"outcome\": \"PASS_TARGETED_ENCODING_CLOSURE_SOURCE_ONLY\", \"finding\": \"E16-COMPOSE-ENCODING-01 CLOSED\", \"original_NOTPASS_preserved\": true, \"closure_manifest\": \"_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-composition-encoding-high-closure/manifest.json\", \"closure_manifest_sha256\": \"cc1f43a4267a11120f14ab6567a2704bb1a583730fd36168af81a06af045580a\", \"root_mechanical_membership\": \"PASS_EXACT4_HASHES\", \"reviewer_actual_proof\": \"6completebodyinverses/32parentbackedmappings/loginselector;other10+116SQL+Specwrapperportability+originalreviewpreserved\", \"author_checks_reused\": \"14focusedmanifestP;TypeScript/lint/diff0; earlier81/173separate/nonadditive\", \"source_only_admitted\": true, \"native_acceptance\": 0, \"development_complete\": false, \"custody\": \"UNKNOWN\", \"next\": \"Minimal integrated current-source readiness using unchanged reviewed collection algorithms; fresh separately coordinated checkpoint after readiness.\"}"

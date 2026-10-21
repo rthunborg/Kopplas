@@ -6253,3 +6253,34 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Narrow six-file encoding correction preserving semantic resolutions, then targeted independent regression closure and fresh native readiness. No push or deployment.
+
+## Report — 2026-10-21T23:02:44Z (in progress — E16 integration source review closed)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `1de4722`).
+**Pipeline status:** 15.5 P5 active. ExactE16 ancestry integrated; encodingfix1de4722 independentlyPASS targetedsourceonly, originalNOTPASS preserved.116migrationidentities conserved; nativeacceptance0/custodyUNKNOWN.
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 298h 04m (≈77h 24m AI-run, ≈220h 40m human/idle wait); resumed 188×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Minimal integrated current-source readiness using unchanged reviewed collection algorithms; fresh separately coordinated checkpoint after readiness. No deployment.
