@@ -5431,3 +5431,35 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Implement six allocated paths without native effects; preserve 95 success requirements and exact Spec kernel.
+
+## Report — 2026-10-21T19:08:02Z (checkpoint — C4 source committed)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `22508ef`).
+**Pipeline status:** 15.5 P5 active; six-path C4 repair committed locally; independent cumulative source review active.
+**Continues:** Distinct High review of latest ten cumulative changed paths from f0000e7c. Three broad rounds remain exhausted.
+
+**Summary:** 15.1–15.4 landed; 15.5 active; 15.6 unstarted.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 294h 10m (≈77h 24m AI-run, ≈216h 45m human/idle wait); resumed 162×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:**
+1. Native95/fullDBRLS/recovery and prior API019 privacy/browser/custody failures remain unresolved.
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Complete targeted source review before native readiness/effects allocation or checkpoint push.
