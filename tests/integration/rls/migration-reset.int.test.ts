@@ -350,8 +350,10 @@ describe("Migration reset green — tenant_foundation objects present (AC1 / R-0
       "facilities.UPDATE",
       "file_links.INSERT",
       "file_links.SELECT",
+      "file_links.SELECT",
       "file_links.UPDATE",
       "files.INSERT",
+      "files.SELECT",
       "files.SELECT",
       "files.UPDATE",
       "job_access_windows.SELECT",
@@ -417,6 +419,9 @@ describe("Migration reset green — tenant_foundation objects present (AC1 / R-0
       "tenants.ALL",
       "tenants.SELECT",
       "time_reports.SELECT",
+      "work_order_assignees.SELECT",
+      "work_order_dependencies.SELECT",
+      "work_orders.SELECT",
       "work_roles.INSERT",
       "work_roles.SELECT",
       "work_roles.UPDATE",
@@ -486,8 +491,6 @@ describe("Migration reset green — tenant_foundation objects present (AC1 / R-0
       "calculations",
       "calculation_sections",
       "calculation_rows",
-      "files",
-      "file_links",
       "tenant_counters",
       "quotes",
       "quote_versions",
@@ -506,8 +509,10 @@ describe("Migration reset green — tenant_foundation objects present (AC1 / R-0
         "UPDATE",
       ]);
     }
+    // New restrictive SELECT policies bind work-order sources to their current parent.
+    for (const t of ["files", "file_links"]) expect((cmdsByTable.get(t) ?? []).sort()).toEqual(["INSERT", "SELECT", "SELECT", "UPDATE"]);
     // Resource rows are read through RLS; audited commands are their only mutation surface.
-    for (const t of ["person_profiles", "person_work_hours", "tenant_calendar_days", "bookings", "booking_assignees", "booking_conflicts", "job_members", "job_required_work_roles", "job_access_windows", "job_dependencies", "time_reports"]) {
+    for (const t of ["person_profiles", "person_work_hours", "tenant_calendar_days", "bookings", "booking_assignees", "booking_conflicts", "job_members", "job_required_work_roles", "job_access_windows", "job_dependencies", "time_reports", "work_orders", "work_order_assignees", "work_order_dependencies"]) {
       expect((cmdsByTable.get(t) ?? []).sort()).toEqual(["SELECT"]);
     }
 
@@ -673,6 +678,30 @@ it("[P0] 14.4 migration inventory has exact authenticated editor entries and pri
     expect(fn.authenticated_execute).toBe(checked.includes(fn.signature));
     expect(fn.definer).toBe(checked.includes(fn.signature));
   }
+});
+
+it("[P0] 16.2 migration inventory retains SELECT-only members and exact checked/private ACLs", async (testCtx) => {
+  if (skipUnlessStack(testCtx, stackUp)) return;
+  const checked = ["upgrade_job_to_projekt_with_audit", "assign_job_member_with_audit", "remove_job_member_with_audit", "set_job_lead_with_audit", "update_job_plan_dates_with_audit",
+    "read_job_members", "job_is_current_lead", "read_job_lead_admission"];
+  const helpers = ["job_type_one_way_internal", "job_member_state_internal", "job_member_expected_internal", "job_member_mutate_internal"];
+  const functions = await adminQuery<{name: string; definer: boolean; proconfig: string[] | null; anon: boolean; authenticated: boolean; service: boolean}>(`
+    select p.proname as name,p.prosecdef as definer,p.proconfig,
+      has_function_privilege('anon',p.oid,'execute') as anon,
+      has_function_privilege('authenticated',p.oid,'execute') as authenticated,
+      has_function_privilege('service_role',p.oid,'execute') as service
+    from pg_proc p join pg_namespace n on n.oid=p.pronamespace where n.nspname='public' and p.proname=any($1::text[])`, [[...checked,...helpers]]);
+  expect(functions.map((f) => f.name).sort()).toEqual([...checked,...helpers].sort());
+  for (const fn of functions) {
+    assertSearchPathExactlyEmpty(fn.name, fn.proconfig);
+    expect(fn.anon).toBe(false); expect(fn.service).toBe(false);
+    expect(fn.authenticated).toBe(checked.includes(fn.name));
+    expect(fn.definer).toBe(checked.includes(fn.name));
+  }
+  const indexes = await adminQuery<{name: string; is_unique: boolean}>(`select c.relname as name,i.indisunique as is_unique
+    from pg_index i join pg_class c on c.oid=i.indexrelid where c.relname in ('job_members_one_current_lead','job_member_command_identity')`);
+  expect(indexes.map((i) => i.name).sort()).toEqual(["job_member_command_identity", "job_members_one_current_lead"]);
+  expect(indexes.every((i) => i.is_unique)).toBe(true);
 });
 
 // Close this file's admin pool once all migration-reset assertions are done.

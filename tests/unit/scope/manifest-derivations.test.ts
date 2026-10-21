@@ -1,15 +1,15 @@
 /**
  * Story 10.1 AC3 (the four authored guardrail copies now DERIVE from the manifest, proven byte-equal
- * to today's Phase-A values — zero drift).
+ * to today's Phase-A values â€” zero drift).
  *
- * ── GREEN (Story 10.1 shipped) ─────────────────────────────────────────────────────────────────
+ * â”€â”€ GREEN (Story 10.1 shipped) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
  * The manifest (`@/scope/manifest`), its selector helpers (`@/scope/manifest-schema`), and the nav
  * registry (`@/scope/nav-registry`) are landed and the four consumers derive from the manifest; the
  * suite imports the REAL modules, is unskipped, and runs green.
  *
  * NON-CIRCULAR PROOF (Dev Notes "circular-derivation trap"): each derivation is proven equal to an
- * INDEPENDENT ground truth — a PINNED Phase-A literal here, plus the still-authored `navItems` /
- * `FORBIDDEN_DEFERRED_CATEGORIES` live imports — never against another manifest-derived value.
+ * INDEPENDENT ground truth â€” a PINNED Phase-A literal here, plus the still-authored `navItems` /
+ * `FORBIDDEN_DEFERRED_CATEGORIES` live imports â€” never against another manifest-derived value.
  *
  * Intended selector contract (dev-story implements on `@/scope/manifest-schema`):
  *   navRoutesFromManifest(m)        -> active modules' navItems routes
@@ -17,7 +17,7 @@
  *   deferredFileTokensFromManifest(m) -> union of pending modules' file-index deferred tokens
  * And `@/scope/nav-registry` exports `EXPECTED_NAV_ROUTES` (the manifest-derived active nav routes).
  *
- * [Source: story 10.1 AC3, Tasks 4/5/6; architecture-phase-b.md §5.3 (the four derivations);
+ * [Source: story 10.1 AC3, Tasks 4/5/6; architecture-phase-b.md Â§5.3 (the four derivations);
  *  Dev Notes (circular-derivation trap, deny-list derivation nuance).]
  */
 import { test } from "node:test";
@@ -37,7 +37,6 @@ const PINNED_NAV_ROUTES = [
   "/settings",
   "/admin/users",
   "/scheduling",
-  "/time-reports",
   "/time-reports",
 ];
 const PINNED_TENANT_TABLES = [
@@ -65,9 +64,9 @@ const PINNED_TENANT_TABLES = [
   "quote_events",
   "quote_review_authorizations",
   "quote_acceptances",
-  // Story 10.2 — the Förlorad/Avböjd reason table joins the active quotes module (activation seam).
+  // Story 10.2 â€” the FÃ¶rlorad/AvbÃ¶jd reason table joins the active quotes module (activation seam).
   "quote_lost_reasons",
-  // Story 10.3 — the follow-up workflow table joins the same active quotes module (activation seam).
+  // Story 10.3 â€” the follow-up workflow table joins the same active quotes module (activation seam).
   "quote_follow_ups",
   "jobs",
   "job_events",
@@ -75,9 +74,10 @@ const PINNED_TENANT_TABLES = [
   "job_required_work_roles",
   "job_access_windows",
   "job_dependencies",
+  "work_orders", "work_order_assignees", "work_order_dependencies",
   "person_profiles",
   "person_work_hours",
-  "tenant_calendar_days", "bookings", "booking_assignees", "booking_conflicts", "booking_series", "booking_conflict_resolutions", "time_reports", "time_reports", "calendar_feed_tokens",
+  "tenant_calendar_days", "bookings", "booking_assignees", "booking_conflicts", "booking_series", "booking_conflict_resolutions", "time_reports", "calendar_feed_tokens",
   "job_runs",
   "notifications",
   "notification_preferences",
@@ -110,7 +110,7 @@ async function loadSchema() {
   };
 }
 
-// ── Derivation 1: the deferred deny-list (Task 4) ─────────────────────────────────────────────
+// â”€â”€ Derivation 1: the deferred deny-list (Task 4) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 test("10.1-UNIT-DERIVE-01 (AC3): FORBIDDEN_DEFERRED_CATEGORIES derives from `pending` modules == the pinned 7 tokens", async () => {
   const { SCOPE_MANIFEST } = await loadManifest();
   const { deferredFileTokensFromManifest } = await loadSchema();
@@ -134,7 +134,7 @@ test("10.1-UNIT-DERIVE-02 (AC3): the LIVE deny-list export equals the manifest d
   );
 });
 
-// ── Derivation 2: the nav guardrail expected set (Task 5) ─────────────────────────────────────
+// â”€â”€ Derivation 2: the nav guardrail expected set (Task 5) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 test("10.1-UNIT-DERIVE-03 (AC3): the nav registry derives the expected route set from the manifest == the pinned 7 routes", async () => {
   const registry = (await import("@/scope/nav-registry")) as { EXPECTED_NAV_ROUTES: readonly string[] };
   assert.deepEqual(
@@ -157,26 +157,26 @@ test("10.1-UNIT-DERIVE-04 (AC3): the manifest-derived nav routes equal the AUTHO
   );
 });
 
-// ── Derivation 3: the H4 tenant-table inventory expectation (Task 6) ──────────────────────────
-test("14.2-UNIT-DERIVE-05: TENANT_TABLES derives as the union of active modules' tenantTables == the pinned 55", async () => {
+// â”€â”€ Derivation 3: the H4 tenant-table inventory expectation (Task 6) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+test("14.2-UNIT-DERIVE-05: TENANT_TABLES derives as the union of active modules' tenantTables == the pinned 58", async () => {
   // Baseline was 24; Story 10.2's quote_lost_reasons enrolment grew the active union to 25, and Story
   // 10.3's quote_follow_ups enrolment grows it to 26; Story 10.8's review authority makes 27;
-  // Story 11.1 adds membership_roles and membership_admin_operations (→ 29), and Story 12.1
-  // adds two provisioning tables (→ 34). Story 13.3 adds the three outbox tables (→ 37).
+  // Story 11.1 adds membership_roles and membership_admin_operations (â†’ 29), and Story 12.1
+  // adds two provisioning tables (â†’ 34). Story 13.3 adds the three outbox tables (â†’ 37).
   const { SCOPE_MANIFEST } = await loadManifest();
   const { tenantTablesFromManifest } = await loadSchema();
   const derived = tenantTablesFromManifest(SCOPE_MANIFEST);
-  assert.equal(derived.length, 55, "the derived tenant-table union must total exactly 55");
+  assert.equal(derived.length, 58, "the derived tenant-table union must total exactly 58");
   assert.deepEqual(
     sortedUnique(derived),
     sortedUnique(PINNED_TENANT_TABLES),
-    "the manifest-derived tenant tables must equal exactly the 55 authored H4-enrolled tables (no drift)",
+    "the manifest-derived tenant tables must equal exactly the 58 authored H4-enrolled tables (no drift)",
   );
 });
 
-// ── Fail-loud retained (AC3 final clause / architecture §16, AC-PH-4) ─────────────────────────
+// â”€â”€ Fail-loud retained (AC3 final clause / architecture Â§16, AC-PH-4) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 test("10.1-UNIT-DERIVE-06 (AC3 fail-loud): a surface NOT listed in the manifest is not silently admitted by the derivation", async () => {
-  // The derivations are the CLOSED union of manifest-listed surfaces — an unlisted table/route can
+  // The derivations are the CLOSED union of manifest-listed surfaces â€” an unlisted table/route can
   // never appear in the derived set. Prove the derived sets are pure functions of the manifest:
   // an arbitrary non-manifest token is absent from every derived union.
   const { SCOPE_MANIFEST } = await loadManifest();

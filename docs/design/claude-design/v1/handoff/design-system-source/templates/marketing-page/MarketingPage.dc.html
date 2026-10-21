@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Kopplas marketing page" description="Sticky glass header, display hero, scrim image band and hairline footer." -->
+<helmet><script src="./ds-base.js"></script><style>html,body{margin:0}a{border-bottom:0;color:var(--text-link);text-decoration:none}a:hover{opacity:.72}</style></helmet>
+<div style="font-family:var(--font-core);color:var(--text-primary);background:var(--bg-page)">
+<header style="position:sticky;top:0;z-index:30;height:64px;display:flex;align-items:center;gap:32px;padding:0 32px;background:var(--bg-glass);backdrop-filter:saturate(160%) blur(20px);border-bottom:1px solid var(--border-default)">
+<span style="display:inline-flex;align-items:center;gap:8px"><span style="width:8px;height:8px;background:var(--signal-400)"></span><span style="font-size:17px;font-weight:500;letter-spacing:-.03em">Kopplas</span></span>
+<nav style="display:flex;gap:24px;margin-left:16px;font-size:13px"><a href="#kedjan" style="color:var(--text-secondary)">Kedjan</a><a href="#priser" style="color:var(--text-secondary)">Priser</a><a href="#kunder" style="color:var(--text-secondary)">Kunder</a></nav>
+<span style="margin-left:auto;display:flex;align-items:center;gap:12px"><a href="#logga-in" style="font-size:13px;color:var(--text-secondary)">Logga in</a><x-import component-from-global-scope="KopplaDesignSystem_4b46f2.Button" variant="signal" hint-size="120px,34px">Boka demo</x-import></span>
+</header>
+<section style="padding:128px 32px 72px;max-width:1240px;margin:0 auto">
+<div style="font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--text-tertiary)">Verksamhetssystem för elektriker</div>
+<h1 style="font-size:clamp(52px,7.4vw,104px);font-weight:500;letter-spacing:-.03em;line-height:1.05;margin:20px 0 0;max-width:900px;text-wrap:pretty">Hela kedjan.<br>Ett system.</h1>
+<p style="font-size:17px;line-height:1.6;color:var(--text-secondary);max-width:660px;margin:24px 0 0">Från första platsbesöket till sista fakturan. Prospektering, projektering, genomförande, dokumentation och fakturering — samma uppgifter, en gång inmatade.</p>
+<div style="display:flex;gap:12px;margin-top:32px"><x-import component-from-global-scope="KopplaDesignSystem_4b46f2.Button" variant="primary" size="lg" hint-size="140px,44px">Boka demo</x-import><x-import component-from-global-scope="KopplaDesignSystem_4b46f2.Button" size="lg" iconAfter="arrow-right" hint-size="140px,44px">Se kedjan</x-import></div>
+<div style="margin-top:96px;height:420px;border-radius:12px;background:linear-gradient(to top,rgb(13 13 15 / .55),rgb(13 13 15 / 0) 60%),var(--n-200);display:flex;align-items:flex-end;padding:32px">
+<div><div style="font-size:24px;font-weight:500;letter-spacing:-.018em;color:var(--n-000)">Elpro Syd AB, 34 montörer</div><div style="font-family:var(--font-mono);font-size:12px;color:var(--n-150);margin-top:6px">[ bildplats: ställverk i arbetsljus ]</div></div>
+</div>
+</section>
+<section id="kedjan" style="padding:96px 32px;max-width:1240px;margin:0 auto;border-top:1px solid var(--border-default)">
+<h2 style="font-size:38px;font-weight:500;letter-spacing:-.03em;max-width:700px">Fem faser. Ingen dubbelregistrering.</h2>
+<div style="margin-top:40px"><x-import component-from-global-scope="KopplaDesignSystem_4b46f2.PhaseChain" current="{{ two }}" hint-size="100%,60px"></x-import></div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:56px">
+<div style="border:1px solid var(--surface-card-border);border-radius:8px;padding:24px"><h4 style="font-size:17px;font-weight:500;margin:0">Tillgångar och underhåll</h4><p style="font-size:13px;color:var(--text-secondary);line-height:1.45;margin:8px 0 0">Fordon, instrument och verktyg med kalibreringsdatum och planerat underhåll.</p></div>
+<div style="border:1px solid var(--surface-card-border);border-radius:8px;padding:24px"><h4 style="font-size:17px;font-weight:500;margin:0">Byggd för fältet</h4><p style="font-size:13px;color:var(--text-secondary);line-height:1.45;margin:8px 0 0">44 px träffytor, offlinetålig tidrapport och kamera för avvikelser.</p></div>
+<div style="border:1px solid var(--surface-card-border);border-radius:8px;padding:24px"><h4 style="font-size:17px;font-weight:500;margin:0">Kopplat till din ekonomi</h4><p style="font-size:13px;color:var(--text-secondary);line-height:1.45;margin:8px 0 0">Export till Fortnox och Visma. Ingen manuell överföring av underlag.</p></div>
+</div>
+</section>
+<section id="priser" data-theme="inverse" style="background:var(--bg-page);padding:96px 32px">
+<div style="max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr;gap:56px;align-items:center">
+<div><h2 style="font-size:38px;font-weight:500;letter-spacing:-.03em;color:var(--text-primary);margin:0">Se det på ditt eget projekt.</h2><p style="font-size:15px;color:var(--text-secondary);margin:20px 0 0;max-width:480px;line-height:1.6">30 minuter, en av dina egna entreprenader. Vi visar kedjan från platsbesök till faktura.</p></div>
+<div style="display:grid;gap:12px"><x-import component-from-global-scope="KopplaDesignSystem_4b46f2.Input" size="lg" placeholder="Namn och företag" hint-size="100%,44px"></x-import><x-import component-from-global-scope="KopplaDesignSystem_4b46f2.Input" size="lg" placeholder="E-post" icon="mail" hint-size="100%,44px"></x-import><x-import component-from-global-scope="KopplaDesignSystem_4b46f2.Button" variant="primary" size="lg" fullWidth="{{ yes }}" hint-size="100%,44px">Boka demo</x-import></div>
+</div>
+</section>
+<footer style="padding:40px 32px;border-top:1px solid var(--border-default)"><div style="max-width:1240px;margin:0 auto;display:flex;justify-content:space-between;font-size:11px;color:var(--text-tertiary)"><span>© 2026 Kopplas AB</span><span>Malmö · Stockholm</span></div></footer>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return { two: 2, yes: true };
+  }
+}
+
+</script>
+</body>
+</html>

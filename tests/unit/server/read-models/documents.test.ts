@@ -328,3 +328,41 @@ test("[P0] a cursor cannot be reused under different existing filter values", as
   assert.ok(first.nextCursor);
   unavailable(await read(deps(rows, { cursor: first.nextCursor, filter: { search: "pdf" } })), "SERVER_ERROR");
 });
+
+for (const mode of ["active", "archived"] as const) {
+  for (const checked of [true, false, "fault"] as const) {
+    test(`[16.3][P7] ${mode} lifecycle hints require the checked complete graph: ${checked}`, async () => {
+      const { readDocuments } = await import("@/server/read-models/documents");
+      const visible = candidate();
+      const link = { ...visible, file: { ...visible.file,
+        lifecycle_state: mode === "archived" ? "archived" : "linked",
+        archived_at: mode === "archived" ? CREATED : null, archive_previous_state: "linked" } };
+      let graphChecks = 0, byteChecks = 0;
+      const client = { storage: { from: () => ({ info: async () => {
+        byteChecks++; return { data: { id: "object" }, error: null };
+      } }) } };
+      const result = await readDocuments({ client, filters: { mode, q: "Synthetic" },
+        resolveContext: async () => context(), readCandidates: async () => ({ rows: [link], exhausted: true }),
+        readSource: async () => ({ ok: true, data: { module: "crm", ownerType: "customer", ownerId: link.owner_id, ownerLabel: "Synthetic safe owner" } }),
+        readLifecycleGraph: async options => {
+          graphChecks++; assert.deepEqual(options, { client, tenantId: TENANT, fileId: FILE, linkId: link.id });
+          if (checked === "fault") throw new Error("HIDDEN OWNER LABEL private graph fault");
+          return checked;
+        },
+      });
+      assert.equal(graphChecks, 1);
+      if (checked === "fault") {
+        assert.deepEqual(result, { ok: false, code: "SERVER_ERROR", message: "Dokumenten kunde inte läsas in. Försök igen." });
+      } else {
+        assert.equal(result.ok, true); if (!result.ok) assert.fail("Authorized lifecycle hint read failed");
+        const row = result.data.descriptor.data.rows[0]; assert.ok(row);
+        assert.equal(row.canArchive, checked && mode === "active");
+        assert.equal(row.canRestore, checked && mode === "archived");
+        assert.equal(result.data.descriptor.data.total, 1);
+        assert.deepEqual(result.data.descriptor.data.facets.ownerType, [{ value: "customer", count: 1 }]);
+      }
+      assert.equal(byteChecks, checked === true ? 1 : 0);
+      assert.doesNotMatch(JSON.stringify(result), /HIDDEN OWNER|private graph|private-object|bucket_id|765432109/);
+    });
+  }
+}

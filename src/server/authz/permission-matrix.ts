@@ -84,6 +84,11 @@ export const PERMISSION_MATRIX = {
     "Jobs.Edit": { roles: ["tenant_admin", "projektledare"] },
     "Jobs.Delete": { roles: ["tenant_admin"] },
     "Jobs.AssignUsers": { roles: [] },
+    // Manager branches only. Current per-job authority is checked separately, never a tenant grant.
+    "Jobs.ManageCrew": { roles: ["tenant_admin", "projektledare"] },
+    "Jobs.WorkOrders.Edit": { roles: ["tenant_admin", "projektledare"] },
+    "Jobs.SetLead": { roles: ["tenant_admin", "projektledare"] },
+    "Jobs.UpdatePlannedDates": { roles: ["tenant_admin", "projektledare"] },
     "Jobs.ApproveCompletion": { roles: ["tenant_admin", "projektledare"] },
   },
   documents: { "Documents.View": { roles: ["tenant_admin", "projektledare"] } },
@@ -145,3 +150,4 @@ export function permissionMatrixModuleIds(matrix: unknown = PERMISSION_MATRIX): 
     .filter(([, capabilities]) => capabilities && typeof capabilities === "object" && Object.keys(capabilities).length > 0)
     .map(([moduleId]) => moduleId);
 }
+

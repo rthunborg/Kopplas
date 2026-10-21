@@ -8,7 +8,7 @@ import { normalizeRoles, type TenantRole } from "./roles";
  * presentational navigation data. The browser receives only the already filtered
  * labels/icons/routes; it never receives roles or the permission matrix.
  */
-export function resolvePhaseANavigation(roles: readonly unknown[] | undefined): NavItem[] {
+export function resolvePhaseANavigation(roles: readonly unknown[] | undefined, hasCurrentJobLead = false): NavItem[] {
   const roleSet = normalizeRoles(roles);
   const capabilityByRoute = new Map(
     SCOPE_MANIFEST.modules
@@ -20,6 +20,8 @@ export function resolvePhaseANavigation(roles: readonly unknown[] | undefined): 
 
   return navItems.filter((item) => {
     const requirement = capabilityByRoute.get(item.href);
+    // Trusted server relationship fact; never applied to another route or landing choice.
+    if (item.href === "/jobs" && requirement?.module === "jobs" && hasCurrentJobLead) return true;
     return Boolean(
       requirement?.capability &&
         resolveCapability({ roles: roleSet, module: requirement.module, capability: requirement.capability }).granted,
@@ -36,6 +38,7 @@ export function resolveLandingRoute(roles: readonly unknown[] | undefined): stri
 export function canAccessPhaseARoute(
   roles: readonly TenantRole[] | undefined,
   route: string,
+  hasCurrentJobLead = false,
 ): boolean {
-  return resolvePhaseANavigation(roles).some((item) => route === item.href || route.startsWith(`${item.href}/`));
+  return resolvePhaseANavigation(roles, hasCurrentJobLead).some((item) => route === item.href || route.startsWith(`${item.href}/`));
 }

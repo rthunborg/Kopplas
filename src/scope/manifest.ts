@@ -163,11 +163,11 @@ export const SCOPE_MANIFEST: ScopeManifest = {
       epic: "E7",
       activatedAt: PHASE_A.E7,
       navItems: [{ route: "/jobs", group: "primary", requiredCapability: "Jobs.ViewAssigned" }],
-      tenantTables: ["jobs", "job_events", "job_members", "job_required_work_roles", "job_access_windows", "job_dependencies"],
+      tenantTables: ["jobs", "job_events", "job_members", "job_required_work_roles", "job_access_windows", "job_dependencies", "work_orders", "work_order_assignees", "work_order_dependencies"],
       widgets: [],
       notificationCategories: [],
       publicSurfaces: [],
-      fileOwnerTypes: ["job"],
+      fileOwnerTypes: ["job", "work_order"],
     },
     {
       id: "files",
@@ -472,3 +472,4 @@ export const SCOPE_MANIFEST: ScopeManifest = {
     },
   ],
 } satisfies ScopeManifest;
+

@@ -1,0 +1,75 @@
+{
+  "policy_version": "2026-10-19",
+  "contract_reconciliation": "Approved Story16.4 intent remains byte-identical (inner intent SHA256 3ee9f04021095204062f67340165c43b15980b005aee1ad26b5b98914f3c42e3). Current explicit Phase5 authorization supersedes the historical planning-only halt as an execution boundary; the historical text is preserved. Required functional, authority, transaction, proof, RLS, recovery and essential usable-flow gates executed successfully at the exact evidence revision. Under docs/process/development-completion-policy.md, only exhaustive browser breadth, screenshots/visual review and manual presentation polish are owned release-only deferrals, not waived or passed. All five failed CI attempts and their causal fixes/diagnostics remain historical evidence. This record stays in-review pending the root actual delivery_gate, independent High delivery-provenance review and explicit root done authorization; source-review evidence below does not self-prove this new record. https://github.com/rthunborg/Kopplas/actions/runs/39445650692",
+  "evidence_revision": "9d4584f7d86721f07e88a94cf2b15e940a2b7266",
+  "development_checks": [
+    {
+      "name": "Static type and lint checks",
+      "status": "passed",
+      "evidence": "Exact-head pnpm typecheck and lint passed; C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39445650692-verify.log SHA256 80BF353A7573A8F530F1ABBB91079B859B656D7B6BE21232E4EF7B68E94D01FB"
+    },
+    {
+      "name": "Unit, golden and process checks",
+      "status": "passed",
+      "evidence": "Exact-head 2727 unit tests passed, 0 skipped, 100 suites; 43 process tests passed (2+26+10+5); C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39445650692-verify.log SHA256 80BF353A7573A8F530F1ABBB91079B859B656D7B6BE21232E4EF7B68E94D01FB"
+    },
+    {
+      "name": "Production application build",
+      "status": "passed",
+      "evidence": "Exact-head Next production build passed; C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39445650692-verify.log SHA256 80BF353A7573A8F530F1ABBB91079B859B656D7B6BE21232E4EF7B68E94D01FB"
+    },
+    {
+      "name": "Dependency, lockfile and source/bundle containment",
+      "status": "passed",
+      "evidence": "Exact-head dependency audit, lockfile verification and source/built-bundle service-role containment passed; C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39445650692-verify.log SHA256 80BF353A7573A8F530F1ABBB91079B859B656D7B6BE21232E4EF7B68E94D01FB"
+    },
+    {
+      "name": "Forward migrations and full required database/RLS integration",
+      "status": "passed",
+      "evidence": "Required isolated migration/reset/seed and SUPABASE_TEST_REQUIRED=1 lane passed: 1873 total, 1872 passed, 0 failed, 1 sole ordinary physical-recovery skip supplemented by the separately executed direct recovery check; Story16.4 consumers27/27 and upgrade7/7 passed. C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39445650692-integration-native/full-integration.json SHA256 400A3BAA1D95BD58F41AA99C0D2879A222C48DDF1A9C662029D744C8A75A69C5 (artifact12276212989)"
+    },
+    {
+      "name": "Direct isolated Storage recovery integrity",
+      "status": "passed",
+      "evidence": "Separate required physical recovery proof passed1/1, 0 skipped; C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39445650692-recovery-native/isolated-storage-recovery.json SHA256 1F23070E0727053A67F92AEFEC0CD105A2BB8D5C8BDE4A5D64D7C1CD598E2DDE (artifact12276571819)"
+    },
+    {
+      "name": "Essential production browser acceptance",
+      "status": "passed",
+      "evidence": "28/28 passed first attempt/retry0, 0 unexpected/flaky/skipped: all7 Story16.4 and all21 prior smoke journeys; full-card save and upgrade confirmed/persisted/conserved. C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39445650692-browser-native/general-browser.json SHA256 9B93411E65D32E0DD6F4FA91D45E43A691A4DA2D5ECDDB6A3D46AF928387B321 (artifact12275982390)"
+    },
+    {
+      "name": "Required pilot performance",
+      "status": "passed",
+      "evidence": "5 warmups/25 measured iterations passed; readp95=13.464025999999649ms, bulk-permissionsp95=5.2704610000000685ms. Auth30.4/80.1 baseline is separate/non-gating. C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39445650692-db.log SHA256 73ABCAF4DCCF498C95E122FF18FE5489A3CA12E3AC074CB1BAEE5CF76853DF8A"
+    }
+  ],
+  "independent_review": {
+    "status": "passed",
+    "evidence": "Original configured six-layer independent Round1 review completed, with sensitive routes context-free gpt-6.1-sol High. External review initially refused before launch, then completed native0 only after direct human authorization; original refusal/grant/receipts and fourteen-patch plus lower-bound history remain in the spec. Subsequent same-High targeted reviews bind unchanged dependencies rather than claiming six-layer reexecution on the final fix. Latest causal production-window PASS binds ACDA7A inventory four hashes/45 unchanged dependencies: C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-16-4-review-c2eea236-b5c7-4e65-b9d4-bb296d96e162/targeted-ci5-window-review.txt SHA256 BFFBBA38043A68A71E905313C369040625896FA3F4046EA2FD968AD3C3A25048. Final source inventory b90b8656f447032cb366fe430f6aa848c60fd71f77b1b4e8685e45819df2967a binds49 files/9new; final spec-only reconciliation retained all48 source/test/migration bindings. Exact evidence head 9d4584f7d86721f07e88a94cf2b15e940a2b7266 executed all required CI jobs successfully. Independent provenance review of this newly authored delivery record remains a separate root gate."
+  },
+  "deferred_release_validation": [
+    {
+      "item": "Release-only exhaustive browser matrix beyond the seven essential Story16.4 journeys: additional role, viewport and interaction combinations for upgrade/full-card/booking consumers.",
+      "owner": "Epic16 release validation owner (root)",
+      "status": "deferred",
+      "evidence": "Required exact-head essential smoke passed all seven new and 21 existing journeys; exhaustive release_validation dispatch was false and this breadth was not executed. No functional/security acceptance is deferred.",
+      "next_action": "At the Epic16 release checkpoint, run the owned optional release-validation browser matrix and record its exact-head results."
+    },
+    {
+      "item": "Release-only screenshot comparison and visual review of full-card, upgrade confirmation and booking consumer presentation across release viewports.",
+      "owner": "Epic16 release validation owner (root)",
+      "status": "deferred",
+      "evidence": "Functional production browser smoke passed; exhaustive screenshots/visual comparison were not executed. Existing design-system presentation is retained.",
+      "next_action": "Capture the release-state screenshots, compare the approved design-system layouts and record visual findings and fixes in release validation."
+    },
+    {
+      "item": "Release-only manual walkthrough and presentation polish for the completed card/upgrade/booking flows.",
+      "owner": "Epic16 release validation owner (root)",
+      "status": "deferred",
+      "evidence": "Automated required persistence, authority, retry and conservation journeys passed; manual release walkthrough/polish was not executed. Consequential functional/security defects remain development requirements.",
+      "next_action": "Perform the Epic16 release walkthrough, resolve recorded presentation-polish findings, and attach the manual evidence before release readiness."
+    }
+  ],
+  "release_ready": false
+}

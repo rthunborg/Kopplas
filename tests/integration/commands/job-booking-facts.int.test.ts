@@ -10,7 +10,7 @@ describe("16.1 authoritative per-booking job facts and atomic card refresh", () 
     await h.withJobsDepthFixture(async (f) => {
       for (const attack of ["booking-domain", "actor", "old-engine", "signature"] as const) {
         const before = await f.snapshot();
-        const attempt = await j.observeJobCard(f.fx.adminClient, h.cardInput(f), crypto.randomUUID(), async (args) => {
+        const attempt = await j.observeJobCard(f.fx.adminClient, await h.loadCardInput(f), crypto.randomUUID(), async (args) => {
           const claims = {...args.p_claims as import("@/server/bookings/conflict-attestation").ConflictClaims};
           const changed = {...claims, ...(attack === "actor" ? {actorId:f.fx.base.adminB.id} : {}),
             ...(attack === "old-engine" ? {engineVersion:"booking-conflicts-v2"} : {})};
@@ -30,15 +30,15 @@ describe("16.1 authoritative per-booking job facts and atomic card refresh", () 
     const h = await import("../../support/jobs-depth-atdd");
     const j = await import("../../support/job-booking-facts-atdd");
     await h.withJobsDepthFixture(async (f) => {
-      expect((await h.invokeJobCard(f.fx.adminClient,"update",h.cardInput(f))).ok).toBe(true);
+      expect((await h.invokeJobCard(f.fx.adminClient,"update",await h.loadCardInput(f))).ok).toBe(true);
       let afterExternalChange: Awaited<ReturnType<typeof f.snapshot>> | undefined;
-      const attempt = await j.observeJobCard(f.fx.plannerClient,h.cardInput(f),crypto.randomUUID(),async(args) => {
+      const attempt = await j.observeJobCard(f.fx.plannerClient,await h.loadCardInput(f),crypto.randomUUID(),async(args) => {
         const reply = await j.afterTenantGateWait(f.fx.base.tenantA.id,
           async () => await f.fx.plannerClient.rpc("finalize_job_card",args),async(query) => {
             await query("insert into public.job_access_windows(tenant_id,job_id,starts_at,ends_at) values($1,$2,'2026-10-13T06:00:00Z','2026-10-13T07:00:00Z')",
               [f.fx.base.tenantA.id,f.jobs.editable.id]);
           });
-        expect(reply.data).toEqual({kind:"stale"}); expect(reply.error).toBeNull();
+        expect(reply.data).toBeNull(); expect(reply.error).toMatchObject({code:"BK409"});
         afterExternalChange = await f.snapshot();
         return args;
       });
@@ -94,7 +94,7 @@ describe("16.1 authoritative per-booking job facts and atomic card refresh", () 
         [{startsAt:"2026-10-12T06:00:00Z",endsAt:"2026-10-12T14:00:00Z"},{startsAt:"2026-10-16T06:00:00Z",endsAt:"2026-10-16T07:00:00Z"}],
         [],
       ]) {
-        const saved=await h.invokeJobCard(f.fx.adminClient,"update",h.cardInput(f,{accessWindows:windows,dependencyJobIds:[]}));
+        const saved=await h.invokeJobCard(f.fx.adminClient,"update",await h.loadCardInput(f,{accessWindows:windows,dependencyJobIds:[]}));
         expect(saved.ok).toBe(true);
         const current=await b.snapshot(f.fx.adminClient,"create",candidate,crypto.randomUUID());
         expect(current.factDigest).not.toBe(digests.at(-1));digests.push(current.factDigest);
@@ -139,7 +139,7 @@ describe("16.1 authoritative per-booking job facts and atomic card refresh", () 
     await h.withJobsDepthFixture(async(f)=>{
       const s=await j.mixedJobScenario(f);
       const before=await f.snapshot();
-      const input=h.cardInput(f,{requiredWorkRoleIds:[],accessWindows:[],dependencyJobIds:[]});
+      const input=await h.loadCardInput(f,{requiredWorkRoleIds:[],accessWindows:[],dependencyJobIds:[]});
       const correlation=crypto.randomUUID();
       const fault=await j.withExistingAuditFault(correlation,()=>j.observeJobCard(f.fx.adminClient,input,correlation));
       expect(fault.snapshots.length).toBeGreaterThan(0);
@@ -171,7 +171,7 @@ describe("16.1 authoritative per-booking job facts and atomic card refresh", () 
       await j.mixedJobScenario(f);
       const baseline=await f.snapshot();
       const correlation=crypto.randomUUID();
-      const result=await j.observeJobCard(f.fx.plannerClient,h.cardInput(f),correlation,async(args)=>{
+      const result=await j.observeJobCard(f.fx.plannerClient,await h.loadCardInput(f),correlation,async(args)=>{
         // This is the second session: normal JWT finalization with a genuinely
         // issued proof. Release only after pg_blocking_pids proves the wait.
         const reply=await j.afterTenantGateWait(f.fx.base.tenantA.id,

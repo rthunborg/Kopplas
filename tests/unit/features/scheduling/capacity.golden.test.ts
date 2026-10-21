@@ -83,6 +83,6 @@ test("[P1] 14.3-UNIT-013 overtime is explicitly injected data and never default 
   assert.equal(calculate(input, PERSON, "2026-10-12").availableMinutes, 540);
   input.rules.authorizedOvertime.push({ personId: PERSON, startsAt: "2026-10-12T13:30:00Z", endsAt: "2026-10-12T15:00:00Z" });
   assert.equal(calculate(input, PERSON, "2026-10-12").availableMinutes, 540);
-  assert.deepEqual(DEFAULT_SCHEDULING_RULES, { version: "stockholm-capacity-v1", timeZone: "Europe/Stockholm", planningBufferMinutes: 0, acknowledgmentThresholdMinutes: 60, authorizedOvertime: [] });
+  assert.deepEqual(DEFAULT_SCHEDULING_RULES, { version: "stockholm-capacity-v2", timeZone: "Europe/Stockholm", planningBufferMinutes: 0, acknowledgmentThresholdMinutes: 60, authorizedOvertime: [] });
   assert.ok(Object.isFrozen(DEFAULT_SCHEDULING_RULES)); assert.ok(Object.isFrozen(DEFAULT_SCHEDULING_RULES.authorizedOvertime));
 });

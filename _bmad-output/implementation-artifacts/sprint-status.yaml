@@ -60,7 +60,7 @@
 # use the current Epic 10 statuses and approved corrective-story entries below.
 
 generated: 2026-06-12
-last_updated: 10-20-2026 15:30  # ADR-B009 connected-field course correction verified; governance Story 10.7 done, no PWA/offline functionality delivered.
+last_updated: 10-21-2026 00:41  # ADR-B009 connected-field course correction verified; governance Story 10.7 done, no PWA/offline functionality delivered.
 project: Kopplas
 project_key: NOKEY
 tracking_system: file-system
@@ -266,13 +266,13 @@ development_status:
   # ======= E16-E18 GATE CLOSED =======
   # ADR-B006 is recorded. E16-E18 remain Phase B and may be finalized/built as
   # connected workflows under ADR-B009, with no PWA/offline or Story 10.7 dependency.
-  epic-16: in-progress
-  16-1-jobs-depth-activation-container-evolution-and-my-jobs: review
-  16-2-job-members-and-per-job-roles-arbetsledare: backlog
-  16-3-arbetsorder: backlog
-  16-4-projekt-upgrade-and-job-card-semantics: backlog
-  16-5-job-workspace-shell: backlog
-  epic-16-retrospective: optional
+  epic-16: done
+  16-1-jobs-depth-activation-container-evolution-and-my-jobs: done
+  16-2-job-members-and-per-job-roles-arbetsledare: done
+  16-3-arbetsorder: done
+  16-4-projekt-upgrade-and-job-card-semantics: done
+  16-5-job-workspace-shell: done
+  epic-16-retrospective: done
 
   # E17 proceeds under recorded ADR-B006; connected material reporting follows ADR-B009.
   epic-17: backlog
@@ -616,3 +616,62 @@ action_items:
     owner: "scheduling/Epic15 coordinator and product owner"
     status: open
     ref: "_bmad-output/implementation-artifacts/epic-20-retro-2026-10-13.md"
+  - id: "epic-16-retro-release"
+    epic: 16
+    action: "Execute and retain all14 owned Epic16 release-only role/browser/viewport,visual/screenshot
+      and manual walkthrough checks on a qualified release head;keep release_ready=false
+      until actual evidence and separate approvals."
+    owner: "Epic16 release-validation coordinator"
+    status: open
+    ref: "_bmad-output/implementation-artifacts/epic-16-retro-2026-10-21.md"
+  - id: "epic-16-retro-nfr-targets"
+    epic: 16
+    action: "Define owner-approved representative Jobs latency/volume/capacity and
+      operations monitoring,security and DR targets;measure them separately from the
+      scoped RBAC pilot before broader readiness claims."
+    owner: "Product/Architect and operations owner"
+    status: open
+    ref: "_bmad-output/implementation-artifacts/epic-16-retro-2026-10-21.md"
+  - id: "epic-16-retro-moderate-dependencies"
+    epic: 16
+    action: "Triage the2 remaining moderate Vitest/mocker dependency advisories with
+      applicability and bounded remediation evidence;preserve Vite8.1.6 repair provenance
+      and exact-head CI qualification."
+    owner: "Dependency/security maintenance owner"
+    status: open
+    ref: "_bmad-output/implementation-artifacts/epic-16-retro-2026-10-21.md"
+  - id: "epic-16-retro-quality-oracles"
+    epic: 16
+    action: "When next maintained,strengthen the3 identified conditional test oracles
+      using existing unconditional coverage anchors and extract the narrowly scoped
+      nested observer/support hotspots without weakening assertions or launching a
+      fourth broad source review."
+    owner: "QA/test maintenance owner"
+    status: open
+    ref: "_bmad-output/implementation-artifacts/epic-16-retro-2026-10-21.md"
+  - id: "epic-16-retro-ledger-hints"
+    epic: 16
+    action: "Replace trust in heuristic resolved wording with evidence-based ledger
+      revalidation;retain27 historical incomplete hints including ID5 both-null tenant-label
+      fallback until their entire obligations are proven closed."
+    owner: "Deferred-work governance owner"
+    status: open
+    ref: "_bmad-output/implementation-artifacts/epic-16-retro-2026-10-21.md"
+  - id: "epic-16-retro-native-fixture-preflight"
+    epic: 16
+    action: "Before future browser checkpoint batches,exercise owned fixture imports
+      and stage-safe real-action outcome diagnostics through the actual Playwright
+      boundary;preserve native exit codes and causal RED/GREEN evidence instead of
+      serial speculative CI fixes."
+    owner: "QA/build workflow owner"
+    status: open
+    ref: "_bmad-output/implementation-artifacts/epic-16-retro-2026-10-21.md"
+  - id: "epic-16-retro-navigation-seams"
+    epic: 16
+    action: "Preserve explicit current-query,accepted-navigation and late-create intent
+      contracts;when navigation requirements next expand,consider a focused lifecycle
+      controller extraction with current real-history/draft/file-owner race regressions
+      retained."
+    owner: "Jobs/frontend maintenance owner"
+    status: open
+    ref: "_bmad-output/implementation-artifacts/epic-16-retro-2026-10-21.md"

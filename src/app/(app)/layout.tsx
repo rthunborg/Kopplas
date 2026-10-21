@@ -24,7 +24,8 @@ import { AppShell } from "@/components/app-shell/AppShell";
 import { NoTenantAccess } from "@/components/app-shell/NoTenantAccess";
 import { resolveTenantContext } from "@/server/auth/resolve-tenant-context";
 import { TENANT_CONTEXT_MESSAGES } from "@/server/auth/tenant-context";
-import { resolvePhaseANavigation } from "@/server/authz/phase-a-surface";
+import { readJobLeadAdmission } from "@/server/read-models/job-members";
+import { canAccessPhaseARoute, resolvePhaseANavigation } from "@/server/authz/phase-a-surface";
 
 /** Generic, user-safe fallback for an unexpected throw (no internal detail leaked). */
 const GENERIC_NO_ACCESS_MESSAGE = TENANT_CONTEXT_MESSAGES.TENANT_MEMBERSHIP_REQUIRED;
@@ -65,6 +66,7 @@ export default async function AppGroupLayout({
     return <NoTenantAccess message={result.message} />;
   }
 
+  const jobAdmission = await readJobLeadAdmission(result.data.tenantId);
   // AC1: success → mount the shell with the server-resolved context (presentational).
   return (
     <AppShell
@@ -72,8 +74,11 @@ export default async function AppGroupLayout({
         tenantName: result.data.tenantName,
         userEmail: result.data.userEmail,
       }}
-      navigation={resolvePhaseANavigation(result.data.roles)}
+      navigation={resolvePhaseANavigation(result.data.roles, jobAdmission.ok && jobAdmission.admitted)}
     >
+      {!jobAdmission.ok && !canAccessPhaseARoute(result.data.roles, "/jobs") && <div role="alert" className="px-4 py-3 text-sm text-red-800">
+        Jobbbehörigheten kunde inte kontrolleras. <form action="/jobs" method="get" className="inline"><button type="submit" className="min-h-11 underline">Försök läsa jobb igen</button></form>
+      </div>}
       {children}
     </AppShell>
   );

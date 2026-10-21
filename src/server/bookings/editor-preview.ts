@@ -1,9 +1,12 @@
 // SERVER-ONLY. The encrypted browser receipt and SQL review attestation use distinct domains.
 import { createCipheriv, createDecipheriv, createHash, createHmac, randomBytes } from "node:crypto";
-import { bookingConflictKeyFromEnv, canonicalConflictProofBytes } from "./conflict-attestation";
+import { bookingConflictKeyFromEnv, canonicalConflictProofBytes, CONFLICT_CLAIM_FIELDS, type ConflictClaims } from "./conflict-attestation";
 import { snapshotBookingConflicts, deriveBookingConflicts, conflictClaims, type BookingRpcArgs, type BookingRpcClient,
   type LogicalConflictGroup, type DetectionSnapshot } from "./conflict-facts";
 import { CommandError } from "@/server/commands/command-errors";
+import { bookingSemantics } from "./job-semantics";
+import { BOOKING_CONFLICT_ENGINE_VERSION } from "./conflict-attestation";
+import { SCHEDULING_RULES_VERSION } from "@/features/scheduling/types";
 import { bookingActionFitsTransport } from "@/features/resources/booking-transport";
 
 export const BOOKING_EDITOR_DOMAIN = "elpro.booking-editor.review.v1";
@@ -33,9 +36,19 @@ export function openEditorReceipt(receipt: string, secret: string): EditorClaims
     const cipher = createDecipheriv("aes-256-gcm", receiptKey(secret), bytes.subarray(0, 12));
     cipher.setAuthTag(bytes.subarray(12, 28)); cipher.setAAD(Buffer.from(BOOKING_EDITOR_DOMAIN));
     const claims = JSON.parse(Buffer.concat([cipher.update(bytes.subarray(28)), cipher.final()]).toString("utf8")) as EditorClaims;
-    if (!claims || typeof claims !== "object" || !Array.isArray(claims.groups)) throw new Error();
+    if (!claims || typeof claims !== "object" || !Array.isArray(claims.groups) || CONFLICT_CLAIM_FIELDS.some(field=>typeof claims[field] !== "string") || !["create","update"].includes(claims.operation)) throw new Error();
     return claims;
   } catch { throw new CommandError("TENANT_ACCESS_DENIED"); }
+}
+/** Semantic retirement is stale only after authenticated claims bind this current request. */
+export function assertEditorReceiptCurrent(reviewed: EditorClaims, snapshot: ConflictClaims, now=Date.now()): void {
+  if(["tenantId","actorId","operation","commandId","bookingId"].some(field=>reviewed[field as keyof ConflictClaims] !== snapshot[field as keyof ConflictClaims])
+    || !Number.isFinite(Date.parse(reviewed.issuedAt)) || !Number.isFinite(Date.parse(reviewed.expiresAt))) throw new CommandError("TENANT_ACCESS_DENIED");
+  const issued=Date.parse(reviewed.issuedAt),expires=Date.parse(reviewed.expiresAt);
+  if(issued > now || expires <= issued || expires > issued+120000) throw new CommandError("TENANT_ACCESS_DENIED");
+  if(reviewed.candidateDigest !== snapshot.candidateDigest || reviewed.factDigest !== snapshot.factDigest || Date.parse(reviewed.expiresAt) <= now)
+    throw new CommandError("PREVIEW_STALE");
+  if(reviewed.engineVersion !== snapshot.engineVersion || reviewed.configVersion !== snapshot.configVersion) throw new CommandError("PREVIEW_STALE");
 }
 export function editorClaims(snapshot: DetectionSnapshot, groups: readonly LogicalConflictGroup[]): EditorClaims {
   return { ...conflictClaims(snapshot), groups };
@@ -53,7 +66,7 @@ export async function previewBookingEditor(client: BookingRpcClient, args: Booki
     ...(args.p_booking_id ? {bookingId: args.p_booking_id} : {proposedBookingId: snapshot.bookingId}),
     editorReview: {receipt, decision: {acknowledged: true, reviewedLogicalIds: ids, selectedLogicalIds: ids, reason: "\u0001".repeat(2000)}}}))
     throw new CommandError("VALIDATION_FAILED");
-  return { receipt, bookingId: snapshot.bookingId,
+  return { receipt, bookingId: snapshot.bookingId, semantics:bookingSemantics(snapshot),engineVersion:BOOKING_CONFLICT_ENGINE_VERSION,configVersion:SCHEDULING_RULES_VERSION,
     warnings: groups.map(({ logicalId, personId, bookingIds, rule, startsAt, endsAt }) => ({ logicalId, personId, bookingIds,
       ruleLabel: labels[rule] ?? "Varning", startsAt, endsAt })),
     availability: snapshot.candidate.assigneeIds.map((personId) => ({ personId, available: !groups.some((g) => g.personId === personId) })) };

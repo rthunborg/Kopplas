@@ -8,10 +8,10 @@ story_source: sprint
 spec_folder: null
 story_id: null
 branch: codex/epic-16-jobs
-status: in-progress
-updated_at: "2026-10-19T17:07:14Z"
+status: done
+updated_at: "2026-10-20T22:58:03Z"
 started_at: "2026-10-15T09:23:25Z"
-completed_at: null
+completed_at: "2026-10-20T22:58:03Z"
 active_seconds: 13284
 timing_anchor: null
 is_first_in_epic: true
@@ -57,7 +57,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [589e5ca7, 5ffb6d8e, 2d14d7ac, 97e62221, 04cf0edf, aeb44006, c21faa3b, d33415c7, 1f8c1620, c47b2685, "92428157", 30f8b863, dea276c7, 41463a22, d56281f5, 23263e2a, 07db8b6c, 8185b07e, d605295a, "66026671", b14c319d]
+commits: [589e5ca7, 5ffb6d8e, 2d14d7ac, 97e62221, 04cf0edf, aeb44006, c21faa3b, d33415c7, 1f8c1620, c47b2685, "92428157", 30f8b863, dea276c7, 41463a22, d56281f5, 23263e2a, 07db8b6c, 8185b07e, d605295a, "66026671", b14c319d, 26dac3ab]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -73,7 +73,7 @@ retro:
   verdict: null
   open_action_items: 0
 bmad_status_flipped_at: null
-pr_url: null
+pr_url: "https://github.com/rthunborg/Kopplas/pull/105"
 ci_run_url: "https://github.com/rthunborg/Kopplas/actions/runs/39286112780"
 ci_status: passed
 pr_merged: false

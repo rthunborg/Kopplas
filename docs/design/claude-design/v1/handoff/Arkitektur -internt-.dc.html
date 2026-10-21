@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<script src="./ds-base.js"></script>
+<style>
+/* En radie för alla kontroller — knappar, fält, väljare */
+html:root{--radius-control:8px!important;--radius-chip:8px!important}
+html,body{margin:0;background:var(--bg-page)}
+a{color:var(--text-primary);text-decoration:none;border-bottom:1px solid var(--border-strong)}
+a:hover{border-bottom-color:var(--text-primary)}
+</style>
+</helmet>
+<div style="font-family:var(--font-core);color:var(--text-primary);background:var(--bg-page);padding:40px 40px 96px;display:grid;gap:24px">
+<div style="display:grid;gap:8px">
+<div style="font-size:11px;letter-spacing:var(--track-caps);text-transform:uppercase;color:var(--text-tertiary)">Internt underlag — visas inte för kund</div>
+<div style="font-size:30px;font-weight:500;letter-spacing:var(--track-display);font-variation-settings:'opsz' 32">Arkitektur och flöde</div>
+</div>
+<div style="max-width:1400px;display:grid;gap:24px">
+<p style="margin:0;max-width:660px;font-size:15px;line-height:1.6;color:var(--text-secondary)">Två parallella kedjor. Processen är tiden — den driver arbetet framåt. Kund → anläggning → förfrågan → projekt är ägandet — där data faktiskt bor. Processen skriver in i ägandekedjan, ägandekedjan lånar ur bolagets register, och dashboarden läser allt utan att äga något.</p>
+
+<div style="position:relative;width:1520px;height:1000px;border:1px solid var(--border-default);border-radius:8px;background:var(--surface-card);overflow:hidden">
+<svg viewBox="0 0 1520 1000" width="1520" height="1000" style="position:absolute;inset:0;z-index:0" aria-hidden="true">
+<defs>
+<marker id="ah" viewBox="0 0 8 8" refX="6" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L7 4 L0 8 z" fill="#8a8a90"></path></marker>
+<marker id="ahs" viewBox="0 0 8 8" refX="6" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L7 4 L0 8 z" fill="#0d0d0f"></path></marker>
+</defs>
+<g fill="none" stroke="#c9c9cd" stroke-width="1" stroke-dasharray="3 4" marker-end="url(#ah)">
+<path d="M638 110 C600 110 580 100 552 100"></path>
+<path d="M1058 150 C900 152 700 138 552 124"></path>
+<path d="M419 178 L419 160"></path>
+<path d="M149 178 L149 160"></path>
+<path d="M851 436 C851 320 700 210 552 152"></path>
+<path d="M1217 436 C1217 380 1000 330 700 316 C420 302 200 292 152 274"></path>
+<path d="M154 402 C154 420 120 424 119 434"></path>
+<path d="M302 494 C302 508 380 512 410 518"></path>
+<path d="M668 494 C668 508 740 512 764 518"></path>
+<path d="M1034 436 C1034 412 1150 406 1282 402"></path>
+<path d="M1400 494 C1400 636 800 656 606 706"></path>
+<path d="M1060 756 C1060 786 1050 796 1042 802"></path>
+</g>
+<g fill="none" stroke="#0d0d0f" stroke-width="1.25" marker-end="url(#ahs)">
+<path d="M330 158 C340 260 316 360 302 434"></path>
+<path d="M119 494 C119 600 150 660 176 686"></path>
+<path d="M485 494 C485 630 640 664 716 686"></path>
+<path d="M450 622 C450 656 480 668 496 686"></path>
+<path d="M1000 688 C960 600 943 540 943 440 C943 330 900 240 898 210"></path>
+<path d="M1010 688 C966 600 941 540 941 440 C941 320 1250 250 1252 210"></path>
+<path d="M851 494 C880 570 908 630 908 700 C908 772 962 792 1000 804"></path>
+<path d="M1340 808 C1340 620 1100 550 1038 496"></path>
+</g>
+<g font-family="Inter, sans-serif" font-size="11" fill="#5c5c63">
+<text x="700" y="240">Aktiva jobb</text>
+<text x="800" y="306">Fakturerat</text>
+<text x="346" y="300">Påminnelser / uppföljning</text>
+<text x="128" y="644">Skapar kund</text>
+<text x="600" y="646">Blir projekt direkt</text>
+<text x="180" y="672">Dokument hör till anläggningen</text>
+<text x="960" y="372">Reserverar personal och materiel</text>
+<text x="700" y="790">Underlag till fältet</text>
+<text x="1112" y="722">Tid, material, dokumentation</text>
+</g>
+<g font-family="Inter, sans-serif" font-size="11" fill="#8a8a90">
+<text x="1180" y="620">Nytt behov, samma anläggning</text>
+</g>
+</svg>
+
+<div style="position:absolute;z-index:1;font-size:11px;letter-spacing:var(--track-caps);text-transform:uppercase;color:var(--text-tertiary);left:24px;top:24px">Nav</div>
+<div style="position:absolute;z-index:1;font-size:11px;letter-spacing:var(--track-caps);text-transform:uppercase;color:var(--text-tertiary);left:640px;top:24px">Register — bolaget</div>
+<div style="position:absolute;z-index:1;font-size:11px;letter-spacing:var(--track-caps);text-transform:uppercase;color:var(--text-tertiary);left:24px;top:412px">Process — tiden</div>
+<div style="position:absolute;z-index:1;font-size:11px;letter-spacing:var(--track-caps);text-transform:uppercase;color:var(--text-tertiary);left:24px;top:662px">Data — ägandet</div>
+<div style="position:absolute;z-index:1;font-size:11px;letter-spacing:var(--track-caps);text-transform:uppercase;color:var(--text-tertiary);left:880px;top:782px">Fält</div>
+
+<div style="position:absolute;left:24px;top:56px;width:520px;height:100px;box-sizing:border-box;z-index:1;border-radius:8px;background:var(--signal-400);padding:16px 20px;display:flex;align-items:center;justify-content:space-between">
+<div style="font-size:24px;font-weight:500;letter-spacing:var(--track-heading);color:#0d0d0f">Dashboard</div>
+<div style="text-align:right;font-size:13px;line-height:1.5;color:rgba(13,13,15,.72)">Läser allt övrigt.<br>Skriver ingenting själv.</div>
+</div>
+
+<div style="position:absolute;box-sizing:border-box;border:1px solid var(--border-default);border-radius:8px;background:var(--bg-sunken);padding:12px 14px;z-index:1;left:24px;top:180px;width:250px;height:90px">
+<div style="font-size:13px;font-weight:500">Statistik</div>
+<div style="margin-top:8px;display:grid;gap:5px;font-size:12px;line-height:1.45;color:var(--text-secondary)"><div>Hur går det — bolag och projekt</div></div>
+</div>
+
+<div style="position:absolute;box-sizing:border-box;border:1px solid var(--border-default);border-radius:8px;background:var(--bg-sunken);padding:12px 14px;z-index:1;left:294px;top:180px;width:250px;height:90px">
+<div style="font-size:13px;font-weight:500">Integrationer</div>
+<div style="margin-top:8px;display:grid;gap:5px;font-size:12px;line-height:1.45;color:var(--text-secondary)"><div>Mail som CRM · Microsoft, Google</div><div>Ekonomi · Fortnox eller Visma</div></div>
+</div>
+
+<div style="position:absolute;box-sizing:border-box;border:1px solid var(--border-strong);border-radius:8px;background:var(--surface-card);padding:14px 16px;z-index:1;left:640px;top:56px;width:380px;height:150px">
+<div style="font-size:14px;font-weight:500">Anställda</div>
+<div style="margin-top:8px;display:grid;gap:5px;font-size:12px;line-height:1.45;color:var(--text-secondary)">
+<div>Personuppgifter</div>
+<div>Utbildningar &amp; behörigheter — med giltighetsdatum</div>
+<div>Inhållen för inhyrd personal, knuten till projekt</div>
+<div style="color:var(--text-tertiary)">Årligen återkommande: lönesamtal</div>
+</div>
+</div>
+
+<div style="position:absolute;box-sizing:border-box;border:1px solid var(--border-strong);border-radius:8px;background:var(--surface-card);padding:14px 16px;z-index:1;left:1060px;top:56px;width:380px;height:150px">
+<div style="font-size:14px;font-weight:500">Bolagstillgångar</div>
+<div style="margin-top:8px;display:grid;gap:5px;font-size:12px;line-height:1.45;color:var(--text-secondary)">
+<div>Verktyg &amp; instrument — med besiktning</div>
+<div>Bilar</div>
+<div>Projektrelaterat: utlånat, ska tillbaka</div>
+<div style="color:var(--text-tertiary)">Påminnelser går till dashboarden</div>
+</div>
+</div>
+
+<div style="position:absolute;box-sizing:border-box;border:1px solid var(--border-default);border-radius:8px;background:var(--bg-sunken);padding:12px 14px;z-index:1;left:24px;top:310px;width:260px;height:90px">
+<div style="font-size:13px;font-weight:500">Inkommande krav</div>
+<div style="margin-top:8px;display:grid;gap:5px;font-size:12px;line-height:1.45;color:var(--text-secondary)"><div>Läser mail, analyserar kravet, skapar kund om den saknas</div></div>
+</div>
+
+<div style="position:absolute;box-sizing:border-box;border:1px solid var(--border-default);border-radius:8px;background:var(--bg-sunken);padding:12px 14px;z-index:1;left:1140px;top:310px;width:300px;height:90px">
+<div style="font-size:13px;font-weight:500">Paketering</div>
+<div style="margin-top:8px;display:grid;gap:5px;font-size:12px;line-height:1.45;color:var(--text-secondary)"><div>Kravsatt dokumentation till kundens ansvariga. Godkänt paket öppnar fakturering.</div></div>
+</div>
+
+<div style="position:absolute;left:36px;top:440px;width:1448px;height:52px;z-index:1;display:grid;grid-template-columns:repeat(8,1fr);gap:16px">
+<div style="border:1px solid var(--border-strong);border-radius:8px;background:var(--bg-sunken);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;text-align:center;padding:0 6px">Prospektering</div>
+<div style="border:1px solid var(--border-strong);border-radius:8px;background:var(--bg-sunken);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;text-align:center;padding:0 6px">Kalkyl</div>
+<div style="border:1px solid var(--border-strong);border-radius:8px;background:var(--bg-sunken);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;text-align:center;padding:0 6px">Offerering</div>
+<div style="border:1px solid var(--border-strong);border-radius:8px;background:var(--bg-sunken);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;text-align:center;padding:0 6px">Planering / resurs</div>
+<div style="border:1px solid var(--n-950);border-radius:8px;background:var(--surface-card);display:flex;align-items:center;justify-content:center;gap:6px;font-size:13px;font-weight:500;text-align:center;padding:0 6px"><span style="width:6px;height:6px;border-radius:999px;background:var(--signal-400)"></span>Genomförande</div>
+<div style="border:1px solid var(--border-strong);border-radius:8px;background:var(--bg-sunken);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;text-align:center;padding:0 6px">Dokumentering</div>
+<div style="border:1px solid var(--border-strong);border-radius:8px;background:var(--bg-sunken);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;text-align:center;padding:0 6px">Fakturering</div>
+<div style="border:1px dashed var(--border-strong);border-radius:8px;background:var(--bg-page);display:flex;align-items:center;justify-content:center;font-size:13px;text-align:center;padding:0 6px;color:var(--text-secondary)">Merförsäljning</div>
+</div>
+
+<div style="position:absolute;box-sizing:border-box;border:1px solid var(--border-default);border-radius:8px;background:var(--bg-sunken);padding:12px 14px;z-index:1;left:300px;top:520px;width:300px;height:100px">
+<div style="font-size:13px;font-weight:500">Dropzone</div>
+<div style="margin-top:8px;display:grid;gap:5px;font-size:12px;line-height:1.45;color:var(--text-secondary)"><div>Ritningar, riskbedömningar, protokoll</div><div>Läggs under anläggning — adress och namn</div></div>
+</div>
+
+<div style="position:absolute;box-sizing:border-box;border:1px solid var(--border-default);border-radius:8px;background:var(--bg-sunken);padding:12px 14px;z-index:1;left:660px;top:520px;width:220px;height:90px">
+<div style="font-size:13px;font-weight:500">Tidplan</div>
+<div style="margin-top:8px;display:grid;gap:5px;font-size:12px;line-height:1.45;color:var(--text-secondary)"><div>Vem, var, när. Bemannas ur Anställda.</div></div>
+</div>
+
+<div style="position:absolute;left:100px;top:690px;width:220px;height:64px;box-sizing:border-box;z-index:1;border:1px solid var(--n-950);border-radius:8px;background:var(--surface-card);display:flex;align-items:center;padding:0 16px;font-size:15px;font-weight:500">Kund</div>
+<div style="position:absolute;z-index:1;font-size:13px;color:var(--text-tertiary);left:328px;top:712px">→</div>
+<div style="position:absolute;left:380px;top:690px;width:220px;height:64px;box-sizing:border-box;z-index:1;border:1px solid var(--n-950);border-radius:8px;background:var(--surface-card);display:flex;align-items:center;padding:0 16px;font-size:15px;font-weight:500">Anläggning</div>
+<div style="position:absolute;z-index:1;font-size:13px;color:var(--text-tertiary);left:608px;top:712px">→</div>
+<div style="position:absolute;left:660px;top:690px;width:220px;height:64px;box-sizing:border-box;z-index:1;border:1px dashed var(--n-950);border-radius:8px;background:var(--bg-sunken);display:flex;align-items:center;padding:0 16px;font-size:15px;font-weight:500">Förfrågan</div>
+<div style="position:absolute;z-index:1;font-size:13px;color:var(--text-tertiary);left:888px;top:712px">→</div>
+<div style="position:absolute;left:940px;top:690px;width:220px;height:64px;box-sizing:border-box;z-index:1;border:1px solid var(--n-950);border-radius:8px;background:var(--surface-card);display:flex;align-items:center;padding:0 16px;font-size:15px;font-weight:500">Projekt</div>
+<div style="position:absolute;left:836px;top:660px;z-index:1;font-size:11px;color:var(--text-secondary)">Skapa projekt</div>
+
+<div style="position:absolute;box-sizing:border-box;border:1px solid var(--border-default);border-radius:8px;background:var(--bg-sunken);padding:12px 14px;z-index:1;left:100px;top:810px;width:300px;height:110px">
+<div style="font-size:13px;font-weight:500">Kundkort</div>
+<div style="margin-top:8px;display:grid;gap:5px;font-size:12px;line-height:1.45;color:var(--text-secondary)"><div>Kunduppgifter, faktureringsuppgifter</div><div>Historik över anläggningar och projekt</div></div>
+</div>
+
+<div style="position:absolute;left:880px;top:810px;width:280px;height:160px;box-sizing:border-box;z-index:1;border:1px solid var(--n-950);border-radius:8px;background:var(--surface-card);padding:12px 14px">
+<div style="font-size:13px;font-weight:500">Innan — för utföraren</div>
+<div style="margin-top:8px;display:grid;gap:5px;font-size:12px;line-height:1.45;color:var(--text-secondary)"><div>Kontaktuppgifter, tidbokning, adress</div><div>Jobbets omfattning: vad och hur länge</div><div>Materialbehov</div></div>
+</div>
+
+<div style="position:absolute;left:1200px;top:810px;width:280px;height:160px;box-sizing:border-box;z-index:1;border:1px solid var(--n-950);border-radius:8px;background:var(--surface-card);padding:12px 14px">
+<div style="font-size:13px;font-weight:500">Efter — för utföraren</div>
+<div style="margin-top:8px;display:grid;gap:5px;font-size:12px;line-height:1.45;color:var(--text-secondary)"><div>Tidsåtgång</div><div>Dokumentation</div><div>Använt material</div><div style="color:var(--text-tertiary)">Enda källan till tid och material</div></div>
+</div>
+</div>
+
+<div style="display:flex;flex-wrap:wrap;gap:24px;align-items:center;font-size:12px;color:var(--text-secondary)">
+<div style="display:flex;align-items:center;gap:8px"><svg width="34" height="8" aria-hidden="true"><path d="M0 4 H30" stroke="#0d0d0f" stroke-width="1.25" fill="none"></path></svg>Skapar eller kräver — hårt beroende</div>
+<div style="display:flex;align-items:center;gap:8px"><svg width="34" height="8" aria-hidden="true"><path d="M0 4 H30" stroke="#c9c9cd" stroke-width="1" stroke-dasharray="3 4" fill="none"></path></svg>Läser eller rapporterar — informationsflöde</div>
+<div style="display:flex;align-items:center;gap:8px"><span style="width:6px;height:6px;border-radius:999px;background:var(--signal-400)"></span>Aktiv fas</div>
+</div>
+
+<div style="display:grid;gap:12px;max-width:1520px">
+<div style="font-size:11px;letter-spacing:var(--track-caps);text-transform:uppercase;color:var(--text-tertiary)">Beroenden, i ord</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px 32px;max-width:1240px;font-size:14px;line-height:1.5;color:var(--text-secondary)">
+<div>Prospektering skapar kunden och förfrågan. Förfrågan blir projekt direkt — kalkyl och offert tar tid och ska bokföras på projektet.</div>
+<div>Dokument laddas upp på anläggningen, inte på projektet. De överlever projektet och nästa elektriker hittar dem.</div>
+<div>Projektet reserverar inhyrd personal ur Anställda och materiel ur Bolagstillgångar. Registren äger posten, projektet lånar den.</div>
+<div>Tidplanen ägs av projektet men bemannas ur Anställda. Dubbelbokning är ett registerproblem, inte ett projektproblem.</div>
+<div>Fältvyn Efter är enda källan till tid och material. Dokumentering och fakturering läser den — ingen skriver in samma sak igen.</div>
+<div>Kopplas äger fakturaunderlaget, ekonomisystemet äger fakturan. Kundregistret synkas åt båda håll och betalstatus kommer tillbaka.</div>
+<div>Fakturering föder statistiken, statistiken föder dashboarden. Merförsäljning går tillbaka till anläggningen, inte till kunden.</div>
+</div>
+</div>
+
+<sc-if value="{{ showAnnotations }}" hint-placeholder-val="{{ true }}">
+<div style="display:grid;gap:12px;max-width:1240px">
+<div style="font-size:11px;letter-spacing:var(--track-caps);text-transform:uppercase;color:var(--text-tertiary)">Kvar att bestämma</div>
+<div style="display:flex;flex-wrap:wrap;gap:12px">
+<div style="flex:1 1 300px;border:1px solid var(--border-default);border-radius:8px;background:var(--bg-sunken);padding:14px 16px;font-size:13px;line-height:1.5;color:var(--text-secondary)">Ska mailet skickas till en egen Kopplas-inkorg per projekt, eller ska systemet läsa befintlig mail?</div>
+<div style="flex:1 1 300px;border:1px solid var(--border-default);border-radius:8px;background:var(--bg-sunken);padding:14px 16px;font-size:13px;line-height:1.5;color:var(--text-secondary)">Ett gemensamt app-gränssnitt för fältet, eller separata vyer för innan och efter?</div>
+<div style="flex:1 1 300px;border:1px solid var(--border-default);border-radius:8px;background:var(--bg-sunken);padding:14px 16px;font-size:13px;line-height:1.5;color:var(--text-secondary)">Vem äger tidrapporten — projektet eller den anställda? Avgör var attesten hör hemma.</div>
+</div>
+</div>
+</sc-if>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"showAnnotations":{"editor":"boolean","default":true,"tsType":"boolean"}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { showAnnotations: this.props.showAnnotations !== false };
+  }
+}
+</script>
+</body>
+</html>

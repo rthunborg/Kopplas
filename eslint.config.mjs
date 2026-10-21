@@ -17,6 +17,8 @@ const eslintConfig = defineConfig([
     "tmp/**",
     // Immutable BMAD render cache contains generated Markdown/JSON, not source.
     "_bmad/render/**",
+    // Immutable supplied design exports are reference evidence, not app source.
+    "docs/design/claude-design/v*/handoff/**",
   ]),
 ]);
 

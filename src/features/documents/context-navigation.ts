@@ -33,6 +33,6 @@ export function documentContextIdentity(ref: DocumentContextRef | null, filterId
   return JSON.stringify([ref?.module ?? "", ref?.ownerType ?? "", ref?.ownerId.toLowerCase() ?? "", filterIdentity]);
 }
 /** Optional presentation hint only; no authority and no CRM-parent substitution. */
-export function documentsContextUploadOwner(ref: DocumentContextRef): { ownerType: "customer" | "calculation" | "job"; ownerId: string } | null {
-  return isDocumentContextRef(ref) && (ref.ownerType === "customer" || ref.ownerType === "calculation" || ref.ownerType === "job") ? { ownerType: ref.ownerType, ownerId: ref.ownerId } : null;
+export function documentsContextUploadOwner(ref: DocumentContextRef): { ownerType: "customer" | "calculation" | "job" | "work_order"; ownerId: string } | null {
+  return isDocumentContextRef(ref) && (ref.ownerType === "customer" || ref.ownerType === "calculation" || ref.ownerType === "job" || ref.ownerType === "work_order") ? { ownerType: ref.ownerType, ownerId: ref.ownerId } : null;
 }

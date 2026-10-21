@@ -1,0 +1,47 @@
+:root{
+--font-core:"Inter","Inter var",system-ui,-apple-system,"Segoe UI",sans-serif;
+--font-display:var(--font-core);
+--font-mono:ui-monospace,"SF Mono","Menlo","Consolas",monospace;
+
+/* type scale — 1.0 base 15px, ratio ~1.2 tightening at display sizes */
+--size-3xs:11px;
+--size-2xs:12px;
+--size-xs:13px;
+--size-sm:14px;
+--size-md:15px;
+--size-lg:17px;
+--size-xl:20px;
+--size-2xl:24px;
+--size-3xl:30px;
+--size-4xl:38px;
+--size-5xl:52px;
+--size-6xl:72px;
+--size-7xl:104px;
+
+--lh-tight:1.05; /* @kind other */
+--lh-snug:1.2; /* @kind other */
+--lh-normal:1.45; /* @kind other */
+--lh-relaxed:1.6; /* @kind other */
+
+--weight-regular:400;
+--weight-medium:500;
+--weight-semibold:600;
+
+--track-display:-0.03em;
+--track-heading:-0.018em;
+--track-body:-0.005em;
+--track-label:0.01em;
+--track-caps:0.09em;
+
+/* semantic type roles */
+--text-display-size:var(--size-6xl);
+--text-display-lh:var(--lh-tight); /* @kind other */
+--text-title-size:var(--size-3xl);
+--text-heading-size:var(--size-xl);
+--text-body-size:var(--size-md);
+--text-body-lh:var(--lh-normal); /* @kind other */
+--text-label-size:var(--size-xs);
+--text-caption-size:var(--size-2xs);
+--text-mono-size:var(--size-xs);
+--optical-tight:"opsz" 32; /* @kind font */
+}

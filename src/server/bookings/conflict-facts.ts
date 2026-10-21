@@ -82,32 +82,9 @@ export function deriveBookingConflicts(snapshot: DetectionSnapshot): { output: D
   // failure, not malformed schedule data. SQL also enforces every FK at commit.
   if (snapshot.candidate.assigneeIds.some((id) => !facts.profiles.some((profile) => profile.id === id)))
     throw new CommandError("TENANT_ACCESS_DENIED");
-  const people = facts.profiles.map((profile) => {
-    const hours = facts.hours.filter((row) => row.personProfileId === profile.id);
-    const member = facts.memberships.find((row) => row.id === profile.membershipId);
-    if (!member) throw new Error("booking membership facts invalid");
-    if (hours.some((row) => row.entryKind !== "exception" &&
-      (row.weekday === null || row.startsAt === null || row.endsAt === null))) throw new Error("booking weekly facts invalid");
-    // Inactive history keeps its actual schedules. New assignment validation is SQL-owned.
-    return { id: profile.id, employmentPercentage: profile.employmentPercentage ?? 100,
-      shifts: buildScheduleReadShifts(hours.map((row) => ({ entry_kind: row.entryKind, weekday: row.weekday,
-        starts_at: row.startsAt, ends_at: row.endsAt }))),
-      exceptions: hours.filter((row) => row.entryKind === "exception").map((row) => {
-        if (!row.localDate || !row.exceptionKind) throw new Error("booking exception facts invalid");
-        return { kind: row.exceptionKind, date: row.localDate, ...(row.startsAt !== null && row.endsAt !== null ? { start: row.startsAt, end: row.endsAt } : {}) };
-      }),
-      workRoleIds: profile.defaultWorkRoleId && facts.workRoles.some((row) => row.id === profile.defaultWorkRoleId && row.isActive) ? [profile.defaultWorkRoleId] : [],
-    };
-  });
-  const proposed: SchedulingBooking = { id: snapshot.bookingId, startsAt: snapshot.candidate.startsAt,
-    endsAt: snapshot.candidate.endsAt, allDay: snapshot.candidate.allDay, status: snapshot.candidate.status,
-    assigneeIds: snapshot.candidate.assigneeIds, jobId: snapshot.candidate.jobId };
-  const bookings = [...facts.bookings.filter((row) => row.id !== proposed.id), proposed];
-  const common = { people, calendarDays: facts.calendarDays.map((row) => ({ date: row.date, variant: row.variant,
-    ...(row.reductionPercent !== null ? { reductionPercent: row.reductionPercent } : {}) })), jobInputs: null, jobInputSets: facts.jobInputs, rules: facts.rules };
+  const input = schedulingFactsForSnapshot(snapshot);
   const unique = new Map<string, DerivedConflict>();
   const groups = new Map<string, LogicalConflictGroup>();
-  const input: SchedulingFacts = { ...common, candidate: proposed, existingBookings: bookings.filter((row) => row.id !== proposed.id) };
   for (const conflict of detectAllBookingConflicts(input)) {
     for (const personId of conflict.affectedPersonIds) {
       // The engine's collision identity encodes every participant. Hashing keeps
@@ -136,4 +113,33 @@ export function deriveBookingConflicts(snapshot: DetectionSnapshot): { output: D
   }
   return { output: [...unique.values()].sort((left, right) => left.natural_key < right.natural_key ? -1 : left.natural_key > right.natural_key ? 1 : 0),
     groups: [...groups.values()].sort((left, right) => left.logicalId < right.logicalId ? -1 : left.logicalId > right.logicalId ? 1 : 0) };
+}
+
+/** One conversion for both hard conflicts and advisory consumers. */
+export function schedulingFactsForSnapshot(snapshot: DetectionSnapshot): SchedulingFacts {
+  const facts = snapshot.facts;
+  const people = facts.profiles.map((profile) => {
+    const hours = facts.hours.filter((row) => row.personProfileId === profile.id);
+    const member = facts.memberships.find((row) => row.id === profile.membershipId);
+    if (!member) throw new Error("booking membership facts invalid");
+    if (hours.some((row) => row.entryKind !== "exception" &&
+      (row.weekday === null || row.startsAt === null || row.endsAt === null))) throw new Error("booking weekly facts invalid");
+    // Inactive history keeps its actual schedules. New assignment validation is SQL-owned.
+    return { id: profile.id, employmentPercentage: profile.employmentPercentage ?? 100,
+      shifts: buildScheduleReadShifts(hours.map((row) => ({ entry_kind: row.entryKind, weekday: row.weekday,
+        starts_at: row.startsAt, ends_at: row.endsAt }))),
+      exceptions: hours.filter((row) => row.entryKind === "exception").map((row) => {
+        if (!row.localDate || !row.exceptionKind) throw new Error("booking exception facts invalid");
+        return { kind: row.exceptionKind, date: row.localDate, ...(row.startsAt !== null && row.endsAt !== null ? { start: row.startsAt, end: row.endsAt } : {}) };
+      }),
+      workRoleIds: profile.defaultWorkRoleId && facts.workRoles.some((row) => row.id === profile.defaultWorkRoleId && row.isActive) ? [profile.defaultWorkRoleId] : [],
+    };
+  });
+  const proposed: SchedulingBooking = { id: snapshot.bookingId, startsAt: snapshot.candidate.startsAt,
+    endsAt: snapshot.candidate.endsAt, allDay: snapshot.candidate.allDay, status: snapshot.candidate.status,
+    assigneeIds: snapshot.candidate.assigneeIds, jobId: snapshot.candidate.jobId };
+  const bookings = [...facts.bookings.filter((row) => row.id !== proposed.id), proposed];
+  const common = { people, calendarDays: facts.calendarDays.map((row) => ({ date: row.date, variant: row.variant,
+    ...(row.reductionPercent !== null ? { reductionPercent: row.reductionPercent } : {}) })), jobInputs: null, jobInputSets: facts.jobInputs, rules: facts.rules };
+  return {...common,candidate:proposed,existingBookings:bookings.filter(row=>row.id !== proposed.id)};
 }

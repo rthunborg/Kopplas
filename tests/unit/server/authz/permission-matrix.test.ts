@@ -81,3 +81,9 @@ test("15.4 ReportOwn and Review preserve the exact reporting/reviewer role union
   assert.equal(resolveCapability({roles:["saljare","montor"],module:"scheduling",capability:"TimeReports.Review"}).granted,false);
   assert.equal(resolveCapability({roles:["ekonomi","projektledare"],module:"scheduling",capability:"TimeReports.Review"}).granted,true);
 });
+test("[P0] 16.2 dedicated manager capabilities confer no tenant-wide lead grant", () => {
+  for (const role of ["tenant_admin", "projektledare", "montor", "saljare", "ekonomi"]) {
+    for (const capability of ["Jobs.ManageCrew", "Jobs.SetLead", "Jobs.UpdatePlannedDates", "Jobs.WorkOrders.Edit"])
+      assert.equal(resolveCapability({roles: [role], module: "jobs", capability}).granted, ["tenant_admin", "projektledare"].includes(role));
+  }
+});

@@ -71,3 +71,24 @@ test("[P0] source enrollment verification rejects duplicate declarations, stale 
   assert.throws(() => validateProductionCommandEnrollment(explicit, { "fixture.drift": { module: "crm", capability: "Customers.Edit" } }), /command capability enrollment drift/);
   assert.throws(() => validateProductionCommandEnrollment([], { "fixture.stale": { module: "crm", capability: "Customers.Create" } }), /has no production declaration/);
 });
+
+
+test("[P0] 16.2 four dedicated command enrollments keep full-card capabilities unchanged", () => {
+  assert.deepEqual(COMMAND_CAPABILITIES["job.member.assign"], {module: "jobs", capability: "Jobs.ManageCrew"});
+  assert.deepEqual(COMMAND_CAPABILITIES["job.member.remove"], {module: "jobs", capability: "Jobs.ManageCrew"});
+  assert.deepEqual(COMMAND_CAPABILITIES["job.lead.set"], {module: "jobs", capability: "Jobs.SetLead"});
+  assert.deepEqual(COMMAND_CAPABILITIES["job.plan_dates.update"], {module: "jobs", capability: "Jobs.UpdatePlannedDates"});
+  assert.deepEqual(COMMAND_CAPABILITIES["job.card.update"], {module: "jobs", capability: "Jobs.Edit"});
+  assert.equal(COMMAND_CAPABILITIES["job.member.unknown"], undefined);
+});
+
+test("[P0] 16.3 explicit work-order commands retain manager-only parent dependencies and narrow lead admission", () => {
+ for (const command of ["work_order.create", "work_order.update", "work_order.assignees.set", "work_order.status.set", "work_order.dependencies.set"])
+  assert.deepEqual(COMMAND_CAPABILITIES[command], {module: "jobs", capability: "Jobs.WorkOrders.Edit"});
+ assert.deepEqual(COMMAND_CAPABILITIES["job.work_order_dependencies.set"], {module: "jobs", capability: "Jobs.Edit"});
+ assert.equal(COMMAND_CAPABILITIES["work_order.reopen"], undefined);
+});
+
+test("[P0] 16.4 upgrade retains independent manager-only Jobs.Edit admission",()=>{
+ assert.deepEqual(COMMAND_CAPABILITIES["job.upgrade_to_projekt"],{module:"jobs",capability:"Jobs.Edit"});
+});

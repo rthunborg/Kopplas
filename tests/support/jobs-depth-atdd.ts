@@ -1,3 +1,4 @@
+import { resolveTenantContext } from "@/server/auth/resolve-tenant-context";
 /** Story 16.1 actual command/RLS fixture helpers. Static bindings are runner-transformed; database work starts only inside invoked helpers.
  * Existing contracts: tenants factories, envelope createJob/acceptQuoteAndCreateJob,
  * E14 bookingCommand, adminQuery and normal anon-key JWT clients.
@@ -21,7 +22,7 @@ import { establishCurrentQuotePdf } from "./quote-pdf";
 
 export const jobDepthTables = ["jobs", "job_members", "job_required_work_roles", "job_access_windows", "job_dependencies"] as const;
 export type JobCardInput = {
-  commandId: string; id?: string; type: "order" | "projekt"; title: string;
+  commandId: string; id?: string; expectedRevision?: string; type: "order" | "projekt"; title: string;
   customer_id: string; facility_id: string; contact_id: string;
   priority: "low" | "normal" | "high" | "urgent";
   estimated_duration_minutes: number | null; planned_travel_minutes: number | null;
@@ -216,4 +217,25 @@ export async function seedJobDepthChildren(tenantId: string, actorId: string, jo
     const [{count}] = await adminQuery<{count:number}>(`select count(*)::int count from public.${table} where tenant_id=$1 and job_id=$2`,[tenantId,jobId]);
     if (count !== 1) throw new Error(`H4 ${table} fixture must contain one real child`);
   }
+}
+
+/** Real H4 work-order rows; lazy and confined to the existing depth fixture. */
+export async function seedWorkOrderReadRows(tenantId: string, jobId: string) {
+  const [{id: person}] = await adminQuery<{id:string}>("select person_profile_id id from public.job_members where tenant_id=$1 and job_id=$2 order by id limit 1",[tenantId,jobId]);
+  const [{id: order}] = await adminQuery<{id:string}>("insert into public.work_orders(tenant_id,job_id,title) values($1,$2,'H4 work order') returning id",[tenantId,jobId]);
+  const [{id: prerequisite}] = await adminQuery<{id:string}>("insert into public.work_orders(tenant_id,job_id,title) values($1,$2,'H4 prerequisite') returning id",[tenantId,jobId]);
+  await adminQuery("insert into public.work_order_assignees(tenant_id,job_id,work_order_id,person_profile_id) values($1,$2,$3,$4)",[tenantId,jobId,order,person]);
+  await adminQuery("insert into public.work_order_dependencies(tenant_id,dependent_job_id,dependent_work_order_id,prerequisite_job_id,prerequisite_work_order_id) values($1,$2,$3,$2,$4)",[tenantId,jobId,order,prerequisite]);
+}
+
+/** Explicit read at the intended load boundary, never at command invocation or retry. */
+export async function loadCardInput(f: JobsDepthFixture, patch: Partial<JobCardInput> = {}, client = f.fx.adminClient): Promise<JobCardInput> {
+  const input=cardInput(f,patch);
+  const context=await resolveTenantContext({client:client as never});
+  if(!context.ok) throw new Error("Real loaded job-card tenant unavailable");
+  const {data,error}=await client.rpc("read_job_cards",{p_tenant_id:context.data.tenantId,p_personal:false,p_job_id:input.id});
+  const card=Array.isArray(data)?data[0]?.card:undefined;
+  if (error || typeof card?.cardRevision !== "string" || !/^[0-9a-f]{64}$/.test(card.cardRevision))
+    throw new Error("Real loaded job-card revision unavailable");
+  return {...input,expectedRevision:card.cardRevision};
 }

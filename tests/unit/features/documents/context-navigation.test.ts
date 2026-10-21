@@ -119,3 +119,10 @@ test("[P0][AC5] validated picker preselection is exact and never substitutes CRM
       ? { ownerType, ownerId: OWNER } : null);
   }
 });
+
+test("[16.3][AC05] work-order context keeps the exact child as shared upload selection", async () => {
+  const { documentsContextUploadOwner, buildDocumentsContextHref } = await import("@/features/documents/context-navigation");
+  const ref = { module: "jobs" as const, ownerType: "work_order" as const, ownerId: OWNER };
+  assert.deepEqual(documentsContextUploadOwner(ref), { ownerType: "work_order", ownerId: OWNER });
+  assert.equal(buildDocumentsContextHref(ref), `/files?module=jobs&ownerType=work_order&ownerId=${OWNER}`);
+});

@@ -87,6 +87,7 @@ export function resolveRevalidateRoute(args: {
   readonly parentCustomerId: string | null;
   readonly parentQuoteId: string | null;
   readonly parentVersionId: string | null;
+  readonly parentJobId?: string | null;
 }): string | null {
   const { ownerType, ownerId, parentCustomerId, parentQuoteId, parentVersionId } = args;
   switch (ownerType) {
@@ -96,6 +97,8 @@ export function resolveRevalidateRoute(args: {
       return ownerId ? ownerRoute({ kind: "calculation", calculationId: ownerId }) : null;
     case "job":
       return ownerId ? ownerRoute({ kind: "job", jobId: ownerId }) : null;
+    case "work_order":
+      return args.parentJobId ? ownerRoute({ kind: "job", jobId: args.parentJobId }) : null;
     case "facility":
     case "contact":
       // Rendered inside the parent customer hub → revalidate the CUSTOMER route.

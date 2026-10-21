@@ -1,0 +1,110 @@
+# auto-bmad per-story state — written by scripts/state_update.py (full stable schema;
+# see references/state-and-resume.md). Prose belongs in reports/{key}.md, not here.
+story_key: 16-3-arbetsorder
+epic_num: 16
+story_num: 3
+story_suffix: ""
+story_source: sprint
+spec_folder: null
+story_id: null
+branch: codex/epic-16-jobs
+status: done
+updated_at: "2026-10-20T22:58:03Z"
+started_at: "2026-10-19T20:41:57Z"
+completed_at: "2026-10-20T22:58:03Z"
+active_seconds: 1199
+timing_anchor: null
+is_first_in_epic: false
+is_last_in_epic: false
+git_mode: remote
+base_branch: main
+selected_phase: tea_per_story
+selected_role: tea-delegate
+selected_profile: standard
+selected_model: gpt-6.1-sol
+selected_effort: high
+selected_host: codex
+selected_tier: subagents
+selected_route: subagent
+escalation_reason: "Sensitive post-development coverage assessment: work-order current authority, RLS, dependency transactions, storage proof and retry integrity"
+routing_ledger:
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive planning: work-order same-tenant containment, creation/edit authorization, RLS and transaction integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive ATDD: work-order ownership, per-job lead authority, manager-only reopen, dependency cycles, date and file-link integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive implementation: current per-job work-order authority, manager-only reopen, tenant isolation, dependency CAS, file-link authority and atomic audit\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive post-development coverage assessment: work-order current authority, RLS, dependency transactions, storage proof and retry integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+tea_risk: high
+tea_selected: [atdd, automate]
+tea_rationale: "work_orders schema, composite same-tenant FK, checked creation/edit commands and explicit RLS/role gating"
+epic_story_count: 5
+stories_after_in_epic: 2
+completed_phases: [0, 1, 3, 4, 5, 6, 7]
+spec_path: "C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas/_bmad-output/implementation-artifacts/spec-16-3-arbetsorder-2.md"
+spec_approved: true
+build:
+  status: done
+  blocking_condition: null
+  followup_review_recommended: false
+  review_loop_iteration: 0
+  deferred_count: 3
+  warnings: [oversized]
+followup_passes: 0
+hitl_halt: "auto-continued (epic — no halt)"
+review_unverified: false
+story_trace: null
+legacy_review_resume: false
+legacy_review_iteration: null
+legacy_review_loop_done: false
+legacy_external_review_iterations: null
+legacy_convergence_unverified: false
+legacy_artifact_path: null
+commits: [e1bd6b0cc9d757933fcd3d61b677d4a1fd9f0037, 90f53dc852a7a0044ef20f163699c96ad6f9a541, 8031726df492022ac32aaae207ab5e7bd35d5a3b, f3cf100709b92637270304e78a4356082b89e9a6, 1e8632db1ad051d117c38d2e24ed5d62fc2c8a57, 103ee03540e222dff1e54995726037819539b9dd, c44e5179bfcbc210de250eb92a48734561cc0fac, 9b54ad249a1ac4fb6f73c425c89b9b749855a939, 46b1b82983f415fdd2ed214138cbd437154469aa]
+phase8_steps:
+  trace_gate: null
+  nfr: null
+  test_review: null
+  reconcile: null
+  archive: null
+  retro: null
+gate_decision: null
+gate_iterations: 0
+deferred_work_archived: 0
+retro:
+  doc: null
+  verdict: null
+  open_action_items: 0
+bmad_status_flipped_at: null
+pr_url: "https://github.com/rthunborg/Kopplas/pull/105"
+ci_run_url: "https://github.com/rthunborg/Kopplas/actions/runs/39410923156"
+ci_status: passed
+pr_merged: false
+merge_method: null
+merge_commit: null
+branch_deleted: false
+open_questions: []
+deferred_work:
+  - "Release-validation only: Exhaustive browser, role, viewport and job-kind matrices beyond the essential work-order E01-E05 and existing smoke\nClassification: release validation only; not a functional/security acceptance gap.\nScope: Exhaustive browser, role, viewport and job-kind matrices beyond the essential work-order E01-E05 and existing smoke\nOwner: Kopplas release-validation coordinator; root owns deferred-ledger integration\nStatus: deferred\nEvidence: CI39410923156 passed21essential journeys first attempt; exhaustive release matrices were not executed. Optional dashboard skipped with release_validation=false is not coverage.\nNext action: Before release readiness, enumerate and execute the remaining qualified role/viewport/job-kind matrix, record evidence and resolve consequential failures in the root-owned release ledger.\nMirrors the delivery record for supported root-owned Phase 7 harvest; required development checks are not deferred. Record: _bmad-output/auto-bmad/delivery/16-3-arbetsorder.json#deferred_release_validation[0]"
+  - "Release-validation only: Screenshot comparisons and visual inspection of work-order cards, pane, dependencies and shared Files states\nClassification: release validation only; not a functional/security acceptance gap.\nScope: Screenshot comparisons and visual inspection of work-order cards, pane, dependencies and shared Files states\nOwner: Kopplas release-validation coordinator; root owns deferred-ledger integration\nStatus: deferred\nEvidence: No exhaustive screenshot-comparison or visual-inspection evidence is claimed. Production build and functional browser passes are development evidence.\nNext action: Before release readiness, capture and inspect approved responsive states for both job kinds and record comparison evidence/disposition under separately qualified runtime and deployment authorization.\nMirrors the delivery record for supported root-owned Phase 7 harvest; required development checks are not deferred. Record: _bmad-output/auto-bmad/delivery/16-3-arbetsorder.json#deferred_release_validation[1]"
+  - "Release-validation only: Manual keyboard/phone/desktop walkthroughs and presentation/usability polish beyond the essential connected flow\nClassification: release validation only; not a functional/security acceptance gap.\nScope: Manual keyboard/phone/desktop walkthroughs and presentation/usability polish beyond the essential connected flow\nOwner: Kopplas release-validation coordinator; root owns deferred-ledger integration\nStatus: deferred\nEvidence: Manual release walkthroughs and polish were not executed in this author run; no functional, authorization, tenant-isolation, transaction or Storage requirement is deferred.\nNext action: Before release readiness, perform the manual responsive/keyboard walkthrough and polish review, attach evidence and resolve or explicitly disposition release issues in the root-owned ledger.\nMirrors the delivery record for supported root-owned Phase 7 harvest; required development checks are not deferred. Record: _bmad-output/auto-bmad/delivery/16-3-arbetsorder.json#deferred_release_validation[2]"
+blockers: []
+overrides:
+  preflight_sync: Independent High narrow two-path generated sync approved and verified
+  unattended: Authorized by initiating delegation
+  ownership: "Owner-authorized E16 development with the recorded shared allocations and precise story claims; preserve E15 work."
+  concurrent_epics: "Human-authorized E16 concurrently with E15; E16 stories sequential"
+  merge: "No merge or deployment; publish one final Epic 16 PR."
+  design_evidence: "2026-10-15 direct human standing decision: no legacy URL reference/use/evidence; use existing design system/accessibility and maintainable headless defaults for missing UX rules. Zero legacy observations; domain/state/validation/actions/semantic models separated from replaceable usable UI/flow."
+  story16_2_owner_decision: "2026-10-19: verified direct human answer in recovery task 01a153e5-e143-7d61-b8c7-77b61e334730, turn 01a1557e-e736-71f1-a3fb-a5041dfa80db. Approved zero-or-one Arbetsledare per job; admins/Projektledare appoint/replace; lead manages ordinary crew and planned start/end dates on own job. No leadership delegation, full-card/lifecycle/CRM or independent protected permission expansion."
+  story16_3_owner_decision: "2026-10-20 direct human answers verified in Coordinator task 01a1160d-b5b1-7623-a8e8-54ef3dc537ed, turn 01a15885-1599-7d52-80e9-e95058a10198: Admin/Projektledare plus current designated Arbetsledare of the parent job create/edit/assign/change work-order status; eligible parent-job members as assignees. Created->In progress->Done; Created/In progress->Cancelled; only Admin/PL reopen Done->In progress or Cancelled->Created. Ordinary members/assignees gain no additional mutation right. Work orders receive their OWN planned start/end dates, supporting meaningful same-parent work-order dependencies; do not adopt old parent-date proxy or same-parent rejection. Existing money, file and parent-job lifecycle checks remain separate."
+  story16_3_reviewed_checkpoint: "Reviewed59-file checkpoint; inventory686cf60cf3a87b6c1c7f160799dc3f9f85859d176f1f692ff9bb52e0b7ddb8b5; actual6layerRound1+targetedHighPASS/reuse089A561B3618439F06724976D7C3E9377406A100EDEBB8AA2A33C75AD94B2605. Required DB/RLS/recovery/browser runtime pending; development/done/delivery unclaimed."
+  story16_3_ci_103ee035: "Historical CI39408025018 exact103ee03540e222dff1e54995726037819539b9dd terminalfailure: fullDB1839total1828pass10fail1pending; directrecovery1pass0skip; browser20firstpass1retry1pass0skip; static/unit2674pass0skip. Ten actual runtime failures in causalHigh triage; E01sync separately reviewed. Native full1A61E449413DD5FB1025F4998376A8CFDA80DDE4ECDAF8D088FF07058E3AFB09; DBlogC0C17ED09A7BEAA670412FA620357D2A68A823BF3EBBEA32D80D8D2D96E04730. Not development complete."
+  story16_3_causal_checkpoint: "Actual CI39408025018 tenfailurecauses repaired;62file inventoryA4EF68D81B83BCB6B42949ECEB0BB6894386FE32F16F861A02DFA35846721EA0; sameHighblind+securityqualifiedPASS AB0D18DCCA1402C64EEE72888423C08AE7DCF29004278D79160517AD30474FEB. Attestationpair+currentparentpreflight productfixes; SQL/zerowritesnapshot unchanged; E01exactURLwait no timeout/retryincrease. Required corrected-head runtime pending; no development/done claim."
+  story16_3_ci_c44e5179: "TerminalSUCCESS39410923156 exactc44e5179bfcbc210de250eb92a48734561cc0fac. Unit2702pass0skip;fullDB1839total1838pass0fail1pending isolatedrecovery separately1pass0skip;42WOint/RLSallpass;21browserfirstattempt0flaky0skip;requiredstatic/build/perfPASS. Delivery/provenance/rootgate stillpending; no developmentcomplete/statusdone authorization."
+  story16_3_development_gate: "Before done: root delivery_gate actualnative0 oktrue/errors[]/approvalfalse onB7475881; sameindependentHighprovenancePASS033C19E03D6966A1FF3C3955BE447249E92917695FF978804C7E9AA6B654A6E1; explicitrootdoneauthorization thenauthorHALTdone. RequiredCI39410923156 exactc44green. release_readyfalse;3ownedrelease-onlydefers."
+  story16_3_automate: "ActualPhase6completedbyHighTEA+2contextfreeHighworkers:7ACmapped0consequentialgaps0newtests0reruns;nativec44/CI39410923156 reusedafterhash/applicabilityverification. Summary1DCCDBA308714662A962A7E8FB05374C1075B043065BB247355DC8DB1A3F3433;3release-onlychecksremainowneddeferred."
+constraints:
+  - "Exclusive source checkout is C:/Users/Rasmus/.codex/worktrees/epic-16-jobs/Kopplas; root owns all Git/index/CI/state/sprint/ledger/report actions."
+  - "Plan only until approved ready-for-dev outcome; no product/migration writes during planning."
+  - "Preserve completed 16.1 and 16.2 source/migration history; 16.2 approved lead grant covers ordinary crew and planned dates only, not implicit new work-order authority. Resolve the approved 16.3 contract from governing requirements."
+  - "No whole-Epic-15 or messaging gate; identify only exact actual dependencies. E15 reserved migration 20261019180000; E16 existing membership migration 20261019191746."
+  - "No legacy application URLs or browsing; use current design system and owner-approved requirements."
+  - "No merge, deployment, secret/provider change or resource launch. Required integrity gates remain; broad visual/manual release work stays tracked separately."

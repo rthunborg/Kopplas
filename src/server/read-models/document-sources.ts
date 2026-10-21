@@ -33,6 +33,7 @@ export const DOCUMENT_SOURCE_REGISTRY = {
   quote_version: { module: "quotes", capability: "Quotes.View", table: "quote_versions", purposes: ["quote_attachment_snapshot", "quote_pdf"], columns: "id,tenant_id,archived_at,quote_id,version_number,quote_number_display,pdf_file_id,pdf_status" },
   quote_acceptance: { module: "quotes", capability: "Quotes.View", table: "quote_acceptances", purposes: ["acceptance_evidence"], columns: "id,tenant_id,archived_at,quote_id,quote_version_id" },
   job: { module: "jobs", capability: "Jobs.ViewAll", table: "jobs", purposes: ["job_evidence"], columns: "id,tenant_id,archived_at,title" },
+  work_order: { module: "jobs", capability: "Jobs.ViewAll", table: "work_orders", purposes: ["job_evidence"], columns: "id,tenant_id,job_id,archived_at,title" },
 } as const;
 type Owner = keyof typeof DOCUMENT_SOURCE_REGISTRY;
 
@@ -100,6 +101,11 @@ export async function readDocumentSource(link: DocumentCandidate, deps: Document
     if (owner === "calculation") {
       if (source.status === "archived") return denied();
       ownerLabel = label(source.title, "Kalkyl");
+    }
+    if (owner === "work_order") {
+      const parent = await get("jobs", source.job_id);
+      if (source.id !== link.owner_id || !live(parent, deps.tenantId) || parent.id !== source.job_id) return denied();
+      ownerLabel = label(source.title, "Arbetsorder");
     }
     if (owner === "job") ownerLabel = label(source.title, `Jobb (${link.owner_id.slice(0, 8)})`);
     if (owner === "quote_version" || owner === "quote_acceptance") {

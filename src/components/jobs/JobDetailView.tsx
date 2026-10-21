@@ -17,12 +17,14 @@
  * states. NO create/delete affordance (a job is only created by the 7.2 transaction). NO duplicate
  * job / second create affordance / error state on the idempotency deep-link (AC5).
  */
-import type { ReactNode } from "react";
 import Link from "next/link";
 import { oreToKronorString } from "@/features/calculations/money-input";
-import { JOB_STATUS_LABELS, type JobDetail } from "@/features/jobs/types";
+import { type JobDetail } from "@/features/jobs/types";
 import { JobCardForm, type JobCardOptions } from "./JobCardForm";
+import { JobMembersPanel } from "./JobMembersPanel";
+import type { JobMembersProjection } from "@/server/read-models/job-members";
 import { JobEditDialog } from "./JobEditDialog";
+import {JobWorkspaceRetry} from "./JobWorkspaceShell";
 import { JobEvidenceLink } from "./JobEvidenceLink";
 
 function formatDate(iso: string | null): string {
@@ -32,25 +34,16 @@ function formatDate(iso: string | null): string {
   return new Date(t).toLocaleDateString("sv-SE");
 }
 
-/** The event-type → Swedish label (the append-friendly job lifecycle events). */
-const EVENT_LABELS: Record<string, string> = {
-  created: "Skapad",
-  in_progress: "Pågår",
-  done: "Klar",
-  cancelled: "Avbruten",
-};
-
 export function JobDetailView({
   detail,
-  filesPanel,
-  bookingPanel,
   cardOptions,
+  members,
+  membersError,
 }: {
   readonly detail: JobDetail;
-  /** The Story 8.2 entity file panel (job_evidence upload + list), rendered when provided. */
-  readonly filesPanel?: ReactNode;
-  readonly bookingPanel?: ReactNode;
   readonly cardOptions?: JobCardOptions;
+  readonly members?: JobMembersProjection;
+  readonly membersError?: string;
 }) {
   const canEdit = detail.entitlement?.canEdit ?? true;
   const protectedMoney = detail.entitlement?.protectedMoney ?? true;
@@ -67,39 +60,12 @@ export function JobDetailView({
     <section
       data-testid="job-detail"
       aria-labelledby="job-detail-heading"
-      className="flex min-w-0 flex-col gap-6 p-4 sm:p-6"
+      className="flex min-w-0 flex-col gap-6"
     >
-      {/* ── HEADER ─────────────────────────────────────────────────────────────── */}
-      <header className="flex flex-col gap-2 rounded-lg border border-zinc-200 bg-white p-4">
-        <div className="flex items-center justify-between gap-4">
-          <h1 id="job-detail-heading" className="text-2xl font-semibold text-zinc-900">
-            {detail.title ?? detail.currentCustomerName ?? "Jobb"}
-          </h1>
-          {/* Status as TEXT (a11y — never color alone). */}
-          <span
-            data-testid="job-status"
-            className="rounded-md border border-zinc-300 bg-zinc-50 px-2 py-1 text-sm font-medium text-zinc-800"
-          >
-            {JOB_STATUS_LABELS[detail.status]}
-          </span>
-        </div>
-        <dl className="grid grid-cols-1 gap-x-6 gap-y-1 text-sm sm:grid-cols-2">
-          <div className="flex gap-2">
-            <dt className="text-zinc-600">Kund:</dt>
-            <dd data-testid="job-customer" className="font-medium text-zinc-900">
-              {detail.currentCustomerName ?? "—"}
-            </dd>
-          </div>
-          <div className="flex gap-2">
-            <dt className="text-zinc-600">Planerat:</dt>
-            <dd data-testid="job-planned-dates" className="text-zinc-900">
-              {formatDate(detail.plannedStartDate)} – {formatDate(detail.plannedEndDate)}
-            </dd>
-          </div>
-        </dl>
-      </header>
-
-      {bookingPanel}
+      {members && <JobMembersPanel jobId={detail.id} initial={members} />}
+      {membersError && <section role="alert" data-testid="job-members-read-failed" className="rounded-lg border border-red-300 bg-red-50 p-4 text-sm text-red-800">
+        <p>{membersError}</p><JobWorkspaceRetry>Hämta medlemmar igen</JobWorkspaceRetry>
+      </section>}
       {!protectedMoney && <p role="note" data-testid="job-economy-entitlement" className="text-sm text-zinc-600">Ekonomiska uppgifter är inte tillgängliga</p>}
       {detail.card && <section data-testid="job-operational-card" className="rounded-lg border border-zinc-200 bg-white p-4 text-sm">
         <h2 className="mb-3 font-semibold">Jobbkort</h2>
@@ -265,28 +231,6 @@ export function JobDetailView({
       </div>
       ))}
 
-      {/* ── LINKED FILES (owner_type='job') ────────────────────────────────────── */}
-      <section
-        data-testid="job-files"
-        className="rounded-lg border border-zinc-200 bg-white p-4 text-sm"
-      >
-        <h2 className="mb-2 text-sm font-semibold text-zinc-900">Filer</h2>
-        {detail.files.length === 0 ? (
-          <p className="text-zinc-600">Inga kopplade filer.</p>
-        ) : (
-          <ul className="flex flex-col gap-1">
-            {detail.files.map((f) => (
-              <li key={f.id} data-testid="job-file" className="text-zinc-800">
-                {f.displayName ?? "Fil"}
-              </li>
-            ))}
-          </ul>
-        )}
-      </section>
-
-      {/* ── FILE UPLOAD PANEL (Story 8.2 — job_evidence upload + own-tenant list) ── */}
-      {filesPanel ? <div>{filesPanel}</div> : null}
-
       {/* ── ALLOWED-EDIT AFFORDANCE (AC4) — title / status / planned dates ONLY ── */}
       {canEdit && <div className="rounded-lg border border-zinc-200 bg-white p-4">
         <h2 className="mb-2 text-sm font-semibold text-zinc-900">Redigera</h2>
@@ -298,33 +242,9 @@ export function JobDetailView({
           plannedEndDate={detail.plannedEndDate}
         />
       </div>}
-      {canEdit && cardOptions && <section className="rounded-lg border border-zinc-200 bg-white p-4"><JobCardForm jobId={detail.id} options={cardOptions} initial={{ ...detail.card, type: detail.type ?? "order", title: detail.title, customer_id: detail.customerId, planned_start_date: detail.plannedStartDate, planned_end_date: detail.plannedEndDate }} /></section>}
+      {canEdit && cardOptions && <section className="rounded-lg border border-zinc-200 bg-white p-4"><JobCardForm key={detail.id} jobId={detail.id} options={cardOptions} initial={{ ...detail.card, type: detail.type ?? "order", title: detail.title, customer_id: detail.customerId, planned_start_date: detail.plannedStartDate, planned_end_date: detail.plannedEndDate }} /></section>}
 
-      {/* ── EVENT HISTORY (READ only) ──────────────────────────────────────────── */}
-      <section
-        data-testid="job-event-history"
-        className="rounded-lg border border-zinc-200 bg-white p-4 text-sm"
-      >
-        <h2 className="mb-2 text-sm font-semibold text-zinc-900">Händelser</h2>
-        {detail.events.length === 0 ? (
-          <p className="text-zinc-600">Inga händelser.</p>
-        ) : (
-          <ul className="flex flex-col gap-1">
-            {detail.events.map((e) => (
-              <li
-                key={e.id}
-                data-testid="job-event"
-                className="flex items-center justify-between gap-3 text-zinc-800"
-              >
-                <span>{EVENT_LABELS[e.eventType] ?? e.eventType}</span>
-                <span className="text-xs text-zinc-500">
-                  {formatDate(e.occurredAt)}
-                </span>
-              </li>
-            ))}
-          </ul>
-        )}
-      </section>
     </section>
   );
 }
+

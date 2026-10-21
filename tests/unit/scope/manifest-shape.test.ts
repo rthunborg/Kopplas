@@ -1,22 +1,22 @@
 /**
  * Story 10.1 AC2 (typed scope manifest) + Task 1.3 uniqueness invariant.
  *
- * ── GREEN (Story 10.1 shipped) ─────────────────────────────────────────────────────────────────
+ * â”€â”€ GREEN (Story 10.1 shipped) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
  * `src/scope/manifest.ts` (the `SCOPE_MANIFEST` constant, `satisfies ScopeManifest`-guarded) and
  * `src/scope/manifest-schema.ts` (the `ScopeManifest`/`ScopeModule` types + pure selectors
  * `activeModules` / `pendingModules` / `navRoutesFromManifest(m)` / `tenantTablesFromManifest(m)` /
  * `fileOwnerTypesFromManifest(m)`) are landed; the suite imports the REAL modules, is unskipped, and
- * runs green. The assertions are the CONTRACT — do not weaken them.
+ * runs green. The assertions are the CONTRACT â€” do not weaken them.
  *
  * These assertions encode AC2's concrete numbers (7 nav / 31 tenant tables / 7 file owner types in
  * the current active set, every Phase B module `pending`) + the per-module field
- * shape + the cross-module uniqueness invariant (Task 1.3 — the `READINESS_CODES` uniqueness gap
+ * shape + the cross-module uniqueness invariant (Task 1.3 â€” the `READINESS_CODES` uniqueness gap
  * the manifest must NOT repeat). Grounded against PINNED Phase-A literals (non-circular per Dev
  * Notes), never against another manifest-derived value.
  *
- * [Source: story 10.1 AC2, Task 1.1/1.3, Task 2; architecture-phase-b.md §5.2; Persistent Facts
+ * [Source: story 10.1 AC2, Task 1.1/1.3, Task 2; architecture-phase-b.md Â§5.2; Persistent Facts
  *  (7/24/7 baseline, plus the governed Epic 10 enrollments); Constraints
- *  (READINESS_CODES uniqueness gap → add uniqueness assertion).]
+ *  (READINESS_CODES uniqueness gap â†’ add uniqueness assertion).]
  */
 import { test } from "node:test";
 import assert from "node:assert/strict";
@@ -33,7 +33,6 @@ const PINNED_NAV_ROUTES = [
   "/admin/users",
   "/scheduling",
   "/time-reports",
-  "/time-reports",
 ];
 const PINNED_OWNER_TYPES = [
   "customer",
@@ -43,6 +42,7 @@ const PINNED_OWNER_TYPES = [
   "quote_version",
   "quote_acceptance",
   "job",
+  "work_order",
 ];
 const PINNED_TENANT_TABLES = [
   "tenants",
@@ -68,11 +68,11 @@ const PINNED_TENANT_TABLES = [
   "quote_version_attachments",
   "quote_events",
   "quote_acceptances",
-  // Story 10.2 enrols the Förlorad/Avböjd reason table into the ACTIVE quotes module (epic-10
-  // activation seam) — the Phase-A baseline active set grows 24 → 25 in the same PR as its migration.
+  // Story 10.2 enrols the FÃ¶rlorad/AvbÃ¶jd reason table into the ACTIVE quotes module (epic-10
+  // activation seam) â€” the Phase-A baseline active set grows 24 â†’ 25 in the same PR as its migration.
   "quote_lost_reasons",
   // Story 10.3 enrols the follow-up workflow table into the same ACTIVE quotes module (epic-10
-  // activation seam) — the active set grows 25 → 26 in the same PR as its migration.
+  // activation seam) â€” the active set grows 25 â†’ 26 in the same PR as its migration.
   "quote_follow_ups",
   // Story 10.8 enrols one-time quote review authority into that same already-active module.
   "quote_review_authorizations",
@@ -82,9 +82,10 @@ const PINNED_TENANT_TABLES = [
   "job_required_work_roles",
   "job_access_windows",
   "job_dependencies",
+  "work_orders", "work_order_assignees", "work_order_dependencies",
   "person_profiles",
   "person_work_hours",
-  "tenant_calendar_days", "bookings", "booking_assignees", "booking_conflicts", "booking_series", "booking_conflict_resolutions", "time_reports", "time_reports", "calendar_feed_tokens",
+  "tenant_calendar_days", "bookings", "booking_assignees", "booking_conflicts", "booking_series", "booking_conflict_resolutions", "time_reports", "calendar_feed_tokens",
   "job_runs",
   "notifications",
   "notification_preferences",
@@ -130,7 +131,7 @@ async function loadManifest(): Promise<{ modules: AnyModule[] }> {
 
 const sortedUnique = (xs: string[]) => [...new Set(xs)].sort();
 
-test("10.1-UNIT-SHAPE-01 (AC2): SCOPE_MANIFEST exists and every module carries the §5.2 field shape", async () => {
+test("10.1-UNIT-SHAPE-01 (AC2): SCOPE_MANIFEST exists and every module carries the Â§5.2 field shape", async () => {
   const manifest = await loadManifest();
   assert.ok(Array.isArray(manifest.modules) && manifest.modules.length > 0);
   for (const m of manifest.modules) {
@@ -166,17 +167,17 @@ test("10.1-UNIT-SHAPE-03 (AC2): the `active` set reproduces exactly the 7 Phase-
   assert.deepEqual(sortedUnique(routes), sortedUnique(PINNED_NAV_ROUTES));
 });
 
-test("14.2-UNIT-SHAPE-04: the `active` set reproduces exactly the 55 tenant tables (pinned, non-circular)", async () => {
-  // Baseline was 24 (Phase A); Story 10.2 enrolled quote_lost_reasons (→ 25) and Story 10.3 enrols
-  // quote_follow_ups (→ 26); Story 10.8 adds quote_review_authorizations (→ 27), and Story 11.1
-  // enrolls membership_roles plus membership_admin_operations (→ 29). Story 12.1 adds two
-  // tenant-keyed provisioning tables (→ 34), each with its migration. Story 13.3 adds
-  // the outbox, delivery-event, and suppression tables (→ 37).
+test("14.2-UNIT-SHAPE-04: the `active` set reproduces exactly the 58 tenant tables (pinned, non-circular)", async () => {
+  // Baseline was 24 (Phase A); Story 10.2 enrolled quote_lost_reasons (â†’ 25) and Story 10.3 enrols
+  // quote_follow_ups (â†’ 26); Story 10.8 adds quote_review_authorizations (â†’ 27), and Story 11.1
+  // enrolls membership_roles plus membership_admin_operations (â†’ 29). Story 12.1 adds two
+  // tenant-keyed provisioning tables (â†’ 34), each with its migration. Story 13.3 adds
+  // the outbox, delivery-event, and suppression tables (â†’ 37).
   const manifest = await loadManifest();
   const tables = manifest.modules
     .filter((m) => m.status === "active")
     .flatMap((m) => m.tenantTables);
-  assert.equal(tables.length, 55, "the active tenant-table union must total exactly 55 (no dup, no gap)");
+  assert.equal(tables.length, 58, "the active tenant-table union must total exactly 58 (no dup, no gap)");
   assert.deepEqual(sortedUnique(tables), sortedUnique(PINNED_TENANT_TABLES));
 });
 

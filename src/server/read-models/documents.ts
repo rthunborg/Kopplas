@@ -31,6 +31,8 @@ export interface DocumentsDeps {
   readonly client?: object; readonly cursor?: string | null; readonly filter?: FileIndexFilter; readonly filters?: Partial<DocumentFilters>;
   readonly resolveContext?: (options?: { client?: object }) => Promise<{ ok: true; data: { userId: string; tenantId: string; roles: readonly string[]; status?: string } } | { ok: false; code: string; message: string }>;
   readonly readCandidates?: (options: { client: object; tenantId: string; after: Anchor | null; limit: number }) => Promise<{ rows: DocumentCandidate[]; exhausted: boolean }>;
+  /** Checked boolean sees links hidden by RLS without returning any hidden source metadata. */
+  readonly readLifecycleGraph?: (options: { client: object; tenantId: string; fileId: string; linkId: string }) => Promise<boolean>;
   readonly readSource?: (link: DocumentCandidate, options: { client: object; tenantId: string; roles: readonly string[] }) => Promise<DocumentSourceResult>;
 }
 const PAGE_SIZE = 50, CANDIDATE_BATCH_SIZE = 250;
@@ -54,7 +56,7 @@ function decodeCursor(raw: string, tenant: string, user: string, key: Buffer, bi
   return { id: value.id, createdAt: value.createdAt };
 }
 async function readCandidates(options: { client: object; tenantId: string; after: Anchor | null; limit: number }): Promise<{ rows: DocumentCandidate[]; exhausted: boolean }> {
-  // Include every persisted link: hidden/archived/unknown contexts must deny file-level hints.
+  // Traverse visible links for display; the checked complete-graph predicate also sees RLS-hidden links.
   let query = (options.client as Client).from("file_links").select("id,tenant_id,file_id,owner_type,owner_id,purpose,created_at,archived_at,is_locked,locked_at,file:files!inner(id,tenant_id,display_name,mime_type,size_bytes,lifecycle_state,archived_at,artifact_kind,archive_previous_state,bucket_id,object_path)")
     .eq("tenant_id", options.tenantId).order("created_at", { ascending: false }).order("id", { ascending: false }).limit(options.limit);
   if (options.after) query = query.or(`created_at.lt.${options.after.createdAt},and(created_at.eq.${options.after.createdAt},id.lt.${options.after.id})`);
@@ -145,7 +147,7 @@ export async function readDocuments(deps: DocumentsDeps = {}): Promise<Documents
         purpose: link.purpose, displayName: file.display_name ?? "Bifogad fil", mimeType: file.mime_type ?? null, sizeBytes: file.size_bytes ?? null, createdAt: link.created_at!, lifecycleState: file.lifecycle_state, locked: link.is_locked === true || file.lifecycle_state === "locked",
         ...(deps.filters ? { archived, canArchive: false, canRestore: false } : {}) });
     }
-    // File-wide eligibility above intentionally sees every persisted context before narrowing.
+    // Visible graph checks are only preliminary; page hints also require the checked complete graph.
     const contextual = contextRef ? projected.filter(row => row.module === contextRef.module && row.ownerType === contextRef.ownerType && row.ownerId === contextRef.ownerId) : projected;
     const matched = filterDocumentRows(contextual, filters);
     let start = 0;
@@ -161,7 +163,16 @@ export async function readDocuments(deps: DocumentsDeps = {}): Promise<Documents
     // Metadata projection, facets and cursor authority precede page-bound byte hints.
     for (let index = 0; index < rows.length; index++) {
       const candidate = eligibility.get(rows[index].linkId)!;
-      if (!deps.filters || deps.readSource || (!candidate.archive && !candidate.restore)) continue;
+      if (!deps.filters || (deps.readSource && !deps.readLifecycleGraph) || (!candidate.archive && !candidate.restore)) continue;
+      const graphOptions = { client, tenantId, fileId: candidate.link.file_id, linkId: candidate.link.id };
+      const completeGraphEligible = deps.readLifecycleGraph ? await deps.readLifecycleGraph(graphOptions) : await (async () => {
+        const { data, error } = await (client as Client).rpc("document_lifecycle_source_graph_eligible", {
+          p_tenant_id: tenantId, p_file_id: candidate.link.file_id, p_link_id: candidate.link.id,
+        });
+        if (error || typeof data !== "boolean") throw new Error("Document lifecycle eligibility unavailable");
+        return data;
+      })();
+      if (!completeGraphEligible) continue;
       const bytes = await objectExists(candidate.link);
       rows[index] = { ...rows[index], canArchive: candidate.archive && bytes, canRestore: candidate.restore && bytes };
     }

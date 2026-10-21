@@ -12,7 +12,7 @@ export type JobFacts = { jobId: string; requiredWorkRoleIds: string[] | null;
   accessWindows: { startsAt: string; endsAt: string }[] | null };
 export function jobFacts(snapshot: { canonicalFacts: string }): JobFacts[] {
   const facts = JSON.parse(snapshot.canonicalFacts) as { jobInputs: JobFacts[] };
-  return facts.jobInputs;
+  return facts.jobInputs.map(({jobId,requiredWorkRoleIds,accessWindows})=>({jobId,requiredWorkRoleIds,accessWindows}));
 }
 export async function mixedJobScenario(f: JobsDepthFixture) {
   const h = await import("./jobs-depth-atdd");
@@ -29,9 +29,9 @@ export async function mixedJobScenario(f: JobsDepthFixture) {
   // Competence is genuinely absent; no new E31 capability is invented.
   await adminQuery("update public.person_profiles set default_work_role_id=null where id=$1", [f.fx.ownProfile.id]);
   for (const input of [
-    h.cardInput(f, { id: f.jobs.editable.id, dependencyJobIds: [], requiredWorkRoleIds: [f.roleId],
+    await h.loadCardInput(f, { id: f.jobs.editable.id, dependencyJobIds: [], requiredWorkRoleIds: [f.roleId],
       accessWindows: [{ startsAt:"2026-10-14T06:00:00Z",endsAt:"2026-10-14T14:00:00Z" }] }),
-    h.cardInput(f, { id: f.jobs.memberOrder.id, dependencyJobIds: [], requiredWorkRoleIds: [], accessWindows: [] }),
+    await h.loadCardInput(f, { id: f.jobs.memberOrder.id, dependencyJobIds: [], requiredWorkRoleIds: [], accessWindows: [] }),
   ]) {
     const result = await h.invokeJobCard(f.fx.adminClient,"update",input);
     if (!result.ok) throw new Error(`Real E16 card fixture failed: ${result.code}`);

@@ -103,7 +103,9 @@ test.describe("job/order detail — traceability + allowed-edit + idempotency de
     await expect(page.getByTestId("job-customer")).toBeVisible();
     await expect(page.getByTestId("job-status")).toBeVisible();
     await expect(page.getByTestId("job-planned-dates")).toBeVisible();
-    await expect(page.getByTestId("job-files")).toBeVisible();
+    await page.getByRole("tab", {name: "Filer", exact: true}).click();
+    await expect(page.getByRole("tabpanel", {name: "Filer", exact: true}).getByRole("region", {name: "Filer", exact: true})).toBeVisible();
+    await page.getByRole("tab", {name: "Händelser", exact: true}).click();
     await expect(page.getByTestId("job-event-history")).toBeVisible();
   });
 

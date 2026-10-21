@@ -445,7 +445,7 @@ beforeAll(async () => {
   );
   await seedBookingReadRows(fixture.tenantB.id, profileId);
   await adminQuery("insert into public.booking_series(id,tenant_id,rule,defaults) values(gen_random_uuid(),$1,'{}','{}')", [fixture.tenantB.id]);
-  const {seedJobDepthChildren} = await import("../../support/jobs-depth-atdd");
+  const {seedJobDepthChildren, seedWorkOrderReadRows} = await import("../../support/jobs-depth-atdd");
   await seedJobDepthChildren(fixture.tenantB.id, fixture.adminB.id, tenantBJobId, tenantBWorkRoleId);
   const [{id:ownCustomer}] = await adminQuery<{id:string}>("insert into public.customers(tenant_id,customer_type,display_name) values($1,'company','H4 own job customer') returning id",[fixture.tenantA.id]);
   const [{id:ownJob}] = await adminQuery<{id:string}>("insert into public.jobs(tenant_id,customer_id,title) values($1,$2,'H4 own job') returning id",[fixture.tenantA.id,ownCustomer]);
@@ -453,6 +453,8 @@ beforeAll(async () => {
   await seedJobDepthChildren(fixture.tenantA.id, fixture.adminA.id, ownJob, ownRole);
   const report = await seedCheckedReport(fixture.tenantB.id, fixture.adminB.id);
   expect(await adminQuery("select id from public.time_reports where id=$1 and tenant_id=$2", [report,fixture.tenantB.id])).toEqual([{id:report}]);
+  await seedWorkOrderReadRows(fixture.tenantB.id, tenantBJobId);
+  await seedWorkOrderReadRows(fixture.tenantA.id, ownJob);
   ctx = {
     fixture,
     tenantBAuditId,
@@ -500,7 +502,7 @@ describe("Cross-tenant RLS isolation — data-driven over the shared inventory (
   const seededMutationTargets = new Set<TenantTableName>([
     "tenants", "tenant_memberships", "company_settings", "quote_terms", "work_roles", "articles",
     "calculations", "calculation_sections", "calculation_rows", "jobs", "job_events", "files", "file_links",
-    "time_reports", "membership_admin_operations", "person_profiles", "person_work_hours", "tenant_calendar_days",
+    "time_reports", "membership_admin_operations", "person_profiles", "person_work_hours", "tenant_calendar_days", "work_orders", "work_order_assignees", "work_order_dependencies",
   ]);
   // Story 11.2 moves audited Phase A mutations behind checked transactional
   // wrappers and revokes their direct authenticated DML grants. Keep that

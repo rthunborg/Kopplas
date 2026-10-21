@@ -1,3 +1,4 @@
+import { isJobScopedCommand } from "@/server/authz/job-command-scope";
 import { BOOKING_PUBLIC_COLUMNS } from "@/features/resources/booking-types";
 import { COMMAND_CAPABILITIES, defineCommand, runCommand, type CommandDbClient } from "@/server/commands/envelope";
 import { PERMISSION_MATRIX } from "@/server/authz/permission-matrix";
@@ -24,6 +25,7 @@ export const TABLE_PROJECTION_CAPABILITIES: Readonly<Record<string, string>> = {
   tenant_counters: "Quotes.Create", quotes: "Quotes.View", quote_versions: "Quotes.View", quote_version_lines: "Quotes.View", quote_version_attachments: "Quotes.View", quote_events: "Quotes.View", quote_review_authorizations: "Quotes.Approve", quote_acceptances: "Economy.ViewContributionMargin", quote_lost_reasons: "Quotes.View", quote_follow_ups: "Quotes.View",
   jobs: "Jobs.ViewAssigned", job_events: "Jobs.ViewAssigned",
   job_members: "Jobs.ViewAssigned", job_required_work_roles: "Jobs.ViewAssigned", job_access_windows: "Jobs.ViewAssigned", job_dependencies: "Jobs.ViewAssigned",
+  work_orders: "Jobs.ViewAssigned", work_order_assignees: "Jobs.ViewAssigned", work_order_dependencies: "Jobs.ViewAssigned",
   bookings: "Bookings.View", booking_assignees: "Bookings.View", booking_conflicts: "Bookings.View",
   calendar_feed_tokens: "Bookings.View",
   time_reports: "TimeReports.ReportOwn",
@@ -246,6 +248,7 @@ export const TABLE_RLS_PROJECTION_ADAPTERS: Readonly<Record<TenantTableName, Tab
   job_required_work_roles: idProjection("job_required_work_roles"),
   job_access_windows: idProjection("job_access_windows"),
   job_dependencies: idProjection("job_dependencies"),
+  work_orders: idProjection("work_orders"), work_order_assignees: idProjection("work_order_assignees"), work_order_dependencies: idProjection("work_order_dependencies"),
   bookings: { projection: BOOKING_PUBLIC_COLUMNS, read: (client: RlsReadClient,id: string) => client.from("bookings").select(BOOKING_PUBLIC_COLUMNS).eq("id",id) },
   booking_assignees: idProjection("booking_assignees"),
   booking_conflicts: idProjection("booking_conflicts"),
@@ -267,3 +270,10 @@ export function tableRlsProjectionAdapter(table: string): TableRlsProjectionAdap
   if (!adapter) throw new Error(`table RLS projection adapter missing for ${table}`);
   return adapter;
 }
+
+/** These commands additionally require a current per-job relationship. Matrix probes
+ * deliberately supply none and never exercise a production business body. */
+export function isScopedJobHarnessCommand(command: string): boolean {
+  return isJobScopedCommand(command, COMMAND_CAPABILITIES[command]);
+}
+

@@ -16,7 +16,7 @@ export type SchedulingRules = {
   readonly planningBufferMinutes: number; readonly acknowledgmentThresholdMinutes: number;
   readonly authorizedOvertime: readonly { readonly personId: string; readonly startsAt: string; readonly endsAt: string }[];
 };
-export const SCHEDULING_RULES_VERSION = "stockholm-capacity-v1";
+export const SCHEDULING_RULES_VERSION = "stockholm-capacity-v2";
 export const DEFAULT_SCHEDULING_RULES: SchedulingRules = Object.freeze({
   version: SCHEDULING_RULES_VERSION, timeZone: "Europe/Stockholm", planningBufferMinutes: 0,
   acknowledgmentThresholdMinutes: 60, authorizedOvertime: Object.freeze([]),
@@ -32,6 +32,10 @@ export type SchedulingFacts = {
   readonly rules: SchedulingRules;
 };
 export type JobSchedulingInputs = { readonly jobId: string;
+  readonly estimatedDurationMinutes?: number | null; readonly crewSize?: number | null; readonly plannedTravelMinutes?: number | null;
+  readonly plannedStartDate?: string | null; readonly plannedEndDate?: string | null;
+  readonly earliestDate?: string | null; readonly desiredDate?: string | null; readonly latestDate?: string | null;
+  readonly customerPresenceRequired?: boolean | null;
   readonly requiredWorkRoleIds: readonly string[] | null;
   readonly accessWindows: readonly { readonly startsAt: string; readonly endsAt: string }[] | null };
 export type ConflictType = "double_booking" | "over_capacity" | "outside_work_hours" | "outside_access_window" | "competence_missing";

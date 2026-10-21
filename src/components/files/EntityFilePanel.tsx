@@ -81,6 +81,8 @@ export interface EntityFilePanelProps {
   readonly parentCustomerId?: string;
   readonly parentQuoteId?: string;
   readonly parentVersionId?: string;
+  /** Work orders render on their parent job route. Used only for cache revalidation. */
+  readonly parentJobId?: string;
   /**
    * A data-testid NAMESPACE suffix. When multiple panels render on the SAME page (e.g. the
    * customer's own panel PLUS a panel per facility/contact), the SECONDARY panels pass a
@@ -173,6 +175,7 @@ export function EntityFilePanel(props: EntityFilePanelProps) {
           parentCustomerId={props.parentCustomerId}
           parentQuoteId={props.parentQuoteId}
           parentVersionId={props.parentVersionId}
+          parentJobId={props.parentJobId}
         />
         <label className="font-medium text-zinc-700" htmlFor={inputId}>
           Välj en fil att ladda upp
@@ -260,6 +263,7 @@ export function EntityFilePanel(props: EntityFilePanelProps) {
                   parentCustomerId={props.parentCustomerId}
                   parentQuoteId={props.parentQuoteId}
                   parentVersionId={props.parentVersionId}
+                  parentJobId={props.parentJobId}
                   uploadInputId={inputId}
                 />
               ))
