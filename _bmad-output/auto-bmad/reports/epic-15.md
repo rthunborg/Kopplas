@@ -6067,3 +6067,34 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** High author validates supported per-test metadata sink and implements exact3; installed JsonReporter proof plus targeted committed review before any comparison.
+
+## Report — 2026-10-21T21:44:13Z (source-label-vitest-meta-code-pass)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `a459506`).
+**Pipeline status:** Story15.5 remains in review. Distinct High review passed the per-test metadata transport change after13 focused controls through the installed JSON reporter. Hosted publication and required native gates remain unproven; acceptance0.
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 296h 46m (≈77h 24m AI-run, ≈219h 21m human/idle wait); resumed 182×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Prepare bounded label-aware acquisition operator and independent High source audit, then refreshed readiness and actual one-NORMAL effect allocation.

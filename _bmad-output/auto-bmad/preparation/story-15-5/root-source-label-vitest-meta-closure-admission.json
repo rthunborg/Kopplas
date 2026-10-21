@@ -1,0 +1,32 @@
+{
+  "schema": "ROOT_VITEST_META_SOURCE_PRECOMMIT_ADMISSION_v1",
+  "status": "PASS_CODE_ONLY_VITEST_META_TRANSPORT",
+  "baseline_head": "29f60d1b849397cbc7e869b099793b9bd11cc5b8",
+  "receipt": ".env.epic15.mail-runtime/story-15-5-preparation/source-label-vitest-meta-author-result.json",
+  "receipt_bytes": 73023,
+  "receipt_sha256": "79bf14fe77599a3f627c9ed08ed71d2bb619b2a322f47cc962da7d79645325a3",
+  "changed_paths": [
+    "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"
+  ],
+  "source_rows": 75,
+  "changed": 3,
+  "unchanged": 72,
+  "native_clean_checks": 75,
+  "actual_historical_Git_objects": 300,
+  "frozen_refs": 13,
+  "installed_primary_sources": 4,
+  "parser_native_exit": 0,
+  "parser_status": "in-review",
+  "review_loop_iteration": 3,
+  "parser_warnings": [],
+  "native_acceptance": 0,
+  "external_effects": 0,
+  "source_commit": "a4595068d0f1cda01106f9dcdb1af64b1f935e42",
+  "independent_review": "_bmad-output/auto-bmad/preparation/story-15-5/source-label-vitest-meta-high-review",
+  "review_manifest_sha256": "b77fff582720f271d72ed07707b844f4f0c43dec72a162b5ed658e3faac9a51d",
+  "reviewer_focused_tests": 13,
+  "hosted_publication": "UNPROVEN",
+  "effects": 0
+}

@@ -1,0 +1,32 @@
+{
+  "schema": "VITEST_META_SOURCE_REVIEW_SELF_EXCLUDED_MANIFEST_v1",
+  "verdict": "PASS_CODE_ONLY_VITEST_META_TRANSPORT",
+  "base": "29f60d1b849397cbc7e869b099793b9bd11cc5b8",
+  "reviewed_source_commit": "a4595068d0f1cda01106f9dcdb1af64b1f935e42",
+  "members": [
+    "original-report.md",
+    "original-attestation.json",
+    "result.json",
+    "manifest.json"
+  ],
+  "files": [
+    {
+      "path": "original-report.md",
+      "bytes": 4032,
+      "sha256": "b2533f3461f1132ab7eac8076f740ba1cc86d07b46c3677cd533c1767b46edcf"
+    },
+    {
+      "path": "original-attestation.json",
+      "bytes": 16077,
+      "sha256": "0396a5668a8f9314ce11d87f6926a46adfcccb995395ae06acb8bba6305fa9a1"
+    },
+    {
+      "path": "result.json",
+      "bytes": 920,
+      "sha256": "2e3869c767300032983d874c662b03abfcb5a57839566026cf4fba5bd79d7118"
+    }
+  ],
+  "self_excluded": "manifest.json",
+  "native_acceptance": 0,
+  "execution_authorized": false
+}
