@@ -1,0 +1,99 @@
+<!-- @dsCard group="App" viewport="1440x900" name="Kopplas app" subtitle="Översikt, anbud, projekt, tid, tillgångar, fakturering" -->
+<!DOCTYPE html><html lang="sv"><head><meta charset="utf-8"><title>Kopplas — verksamhetssystem</title>
+<link rel="stylesheet" href="../../styles.css">
+<style>html,body{height:100%;margin:0}#root{height:100vh}</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script src="data.js"></script>
+</head><body><div id="root"></div>
+<script type="text/babel" src="AppShell.jsx"></script>
+<script type="text/babel" src="Oversikt.jsx"></script>
+<script type="text/babel" src="ProjektDetalj.jsx"></script>
+<script type="text/babel" src="Anbud.jsx"></script>
+<script type="text/babel" src="Tillgangar.jsx"></script>
+<script type="text/babel" src="Fakturering.jsx"></script>
+<script type="text/babel" src="Installningar.jsx"></script>
+<script type="text/babel">
+const { Button, IconButton, Input } = window.KopplaDesignSystem_4b46f2;
+
+const TITLES = {
+  oversikt: ['Översikt', 'Elpro Syd AB · mars 2026'],
+  anbud: ['Anbud', '4 pågående'],
+  projekt: ['Projekt', '5 aktiva'],
+  tid: ['Tid & attest', '2 väntar på attest'],
+  tillgangar: ['Tillgångar & underhåll', '5 registrerade'],
+  fakturor: ['Fakturering', 'mars 2026'],
+  installningar: ['Inställningar', 'Elpro Syd AB'],
+};
+
+function App() {
+  const [view, setView] = React.useState('oversikt');
+  const [projectId, setProjectId] = React.useState(null);
+  const [toast, setToast] = React.useState(null);
+  const [draft, setDraft] = React.useState(0);
+  const say = (m) => { setToast(m); window.clearTimeout(window.__kt); window.__kt = window.setTimeout(() => setToast(null), 3200); };
+
+  const go = (v) => { setProjectId(null); setView(v); };
+  const openProject = (id) => { setProjectId(id); setView('projekt'); };
+
+  const isDetail = view === 'projekt' && projectId;
+  const p = isDetail ? window.KopplasData.projekt.find((x) => x.id === projectId) : null;
+  const [title, subtitle] = isDetail ? [p.namn, p.id] : TITLES[view];
+
+  const actions = (
+    <>
+      <Input size="sm" icon="search" placeholder="Sök" style={{ width: 200 }} />
+      <IconButton icon="bell" label="Notiser" />
+      <Button size="sm" variant="primary" icon="plus" onClick={() => go('anbud')}>Nytt</Button>
+    </>
+  );
+
+  let body = null;
+  if (isDetail) body = <ProjektDetalj projectId={projectId} onBack={() => go('projekt')} onInvoice={() => { setView('fakturor'); setDraft((n) => n + 1); }} />;
+  else if (view === 'oversikt') body = <Oversikt onOpenProject={openProject} onGoto={go} />;
+  else if (view === 'anbud') body = <Anbud onCreated={say} />;
+  else if (view === 'projekt') body = <Projektlista onOpen={openProject} />;
+  else if (view === 'tid') body = <TidAttest onAttested={say} />;
+  else if (view === 'tillgangar') body = <Tillgangar />;
+  else if (view === 'fakturor') body = <Fakturering onSent={say} openDraft={draft} />;
+  else body = <Installningar />;
+
+  return (
+    <AppShell view={isDetail ? 'projekt' : view} onNavigate={go} title={title} subtitle={subtitle}
+      actions={actions} toast={toast} onToastClose={() => setToast(null)}>
+      {body}
+    </AppShell>
+  );
+}
+
+function Projektlista({ onOpen }) {
+  const { Card, Table, StatusDot, Toolbar, SegmentedControl, Tag, ProgressBar } = window.KopplaDesignSystem_4b46f2;
+  const d = window.KopplasData;
+  const [f, setF] = React.useState('Aktiva');
+  const rows = f === 'Alla' ? d.projekt : d.projekt.filter((r) => (f === 'Aktiva' ? r.status !== 'done' : r.status === 'done'));
+  return (
+    <div style={{ display: 'grid', gap: 'var(--space-8)', maxWidth: 1240 }}>
+      <Toolbar right={<Button variant="primary" icon="plus" onClick={() => {}}>Nytt projekt</Button>}>
+        <SegmentedControl size="sm" options={['Aktiva', 'Avslutade', 'Alla']} value={f} onChange={setF} />
+        <Tag icon="user" onRemove={() => {}}>Maria S.</Tag>
+      </Toolbar>
+      <Card padding="0">
+        <Table onRowClick={(r) => onOpen(r.id)} columns={[
+          { key: 'namn', header: 'Projekt', render: (r) => (
+            <span><span style={{ display: 'block' }}>{r.namn}</span><span style={{ display: 'block', fontFamily: 'var(--font-mono)', fontSize: 'var(--size-3xs)', color: 'var(--text-tertiary)' }}>{r.id} · {r.kund}</span></span>
+          ) },
+          { key: 'status', header: 'Status', render: (r) => <StatusDot status={r.status} label={r.st} /> },
+          { key: 'pl', header: 'Projektledare', width: 130 },
+          { key: 'pct', header: 'Nedlagt', width: 170, render: (r) => <ProgressBar value={r.pct} valueLabel={r.timmar} tone={r.pct > 100 ? 'risk' : 'ink'} /> },
+          { key: 'slut', header: 'Slutdatum', align: 'right' },
+          { key: 'belopp', header: 'Kontrakt', align: 'right' },
+        ]} rows={rows} />
+      </Card>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script></body></html>

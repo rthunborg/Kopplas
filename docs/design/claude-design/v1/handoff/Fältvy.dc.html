@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script src="./ds-base.js"></script>
+<style>
+html:root{--radius-control:999px!important;--radius-chip:999px!important;--signal-400:#f5c518;--bg-selected:var(--n-200);--text-secondary:var(--n-700);--text-tertiary:var(--n-600);--border-subtle:var(--n-150);--border-default:var(--n-200);--border-strong:var(--n-400)}
+html,body{margin:0;background:var(--n-100);-webkit-text-size-adjust:100%}
+a{color:var(--text-primary);text-decoration:none}
+a:hover{color:var(--text-primary)}
+input:focus,select:focus,textarea:focus{box-shadow:inset 0 0 0 1px var(--n-950)}
+[data-falt-sida] button[style*="border: 1px solid var(--border-strong)"]:hover{background:var(--bg-hover)!important}
+input,select,textarea,button{font:inherit}
+@media (max-width:500px){
+[data-falt-yta]{padding:0!important;align-items:stretch!important}
+[data-om-starter="ios-frame"]{width:100vw!important;height:100dvh!important;border-radius:0!important;box-shadow:none!important}
+[data-om-starter="ios-frame"] > div:nth-child(1),[data-om-starter="ios-frame"] > div:nth-child(2){display:none!important}
+[data-falt-sida]{padding-top:calc(env(safe-area-inset-top) + 16px)!important}
+}
+</style>
+</helmet>
+<div data-falt-yta="1" style="min-height:100vh;background:var(--n-100);display:flex;justify-content:center;align-items:center;padding:32px 16px;box-sizing:border-box">
+<x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" hint-size="402px,874px">
+<div data-falt-sida="1" style="font-family:var(--font-core);color:var(--text-primary);background:var(--bg-page);min-height:100%;padding:56px 20px 44px;display:grid;gap:16px;align-content:start;box-sizing:border-box">
+
+<sc-if value="{{ vyLogin }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;align-items:center;gap:8px"><img src="uploads/Asset 1-26a9b475.svg" alt="" style="width:23px;height:23px;display:block"><span style="font-size:17px;font-weight:500;letter-spacing:0.02em">KOPPLAS</span></div>
+<div style="display:grid;gap:6px;padding-top:8px"><div style="font-size:22px;font-weight:500;letter-spacing:-0.02em">Vem är du?</div><div style="font-size:14px;color:var(--text-secondary);text-wrap:pretty">Du ser jobben där du är ansvarig eller allokerad i Genomförande.</div></div>
+<div style="background:var(--n-050);border-radius:8px;padding:0 16px;display:grid">
+<sc-for list="{{ personer }}" as="p" hint-placeholder-count="5">
+<button type="button" onClick="{{ p.valj }}" style="display:flex;align-items:center;justify-content:space-between;min-height:52px;padding:0;border:0;border-bottom:1px solid var(--border-subtle);background:transparent;font-size:15px;color:var(--text-primary);cursor:pointer;text-align:left"><span>{{ p.namn }}</span><span style="font-size:17px;color:var(--text-tertiary)">→</span></button>
+</sc-for>
+</div>
+</sc-if>
+
+<sc-if value="{{ vyHem }}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+<div style="display:flex;align-items:center;gap:8px"><img src="uploads/Asset 1-26a9b475.svg" alt="" style="width:23px;height:23px;display:block"><span style="font-size:17px;font-weight:500;letter-spacing:0.02em">KOPPLAS</span></div>
+<button type="button" onClick="{{ loggaUt }}" style="min-height:44px;padding:0;border:0;background:transparent;font-size:13px;color:var(--text-tertiary);cursor:pointer">{{ som }}</button>
+</div>
+
+<sc-if value="{{ harNasta }}" hint-placeholder-val="{{ true }}">
+<div style="border:1px solid var(--n-950);border-radius:8px;padding:16px;display:grid;gap:14px">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+<div style="font-size:15px;font-weight:500;color:var(--text-primary)">{{ nasta.etikett }}</div>
+<div style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-secondary)"><span style="{{ nasta.dot }}"></span>{{ nasta.nar }}</div>
+</div>
+<button type="button" onClick="{{ nasta.oppna }}" style="display:grid;gap:4px;text-align:left;border:0;padding:0;background:transparent;cursor:pointer;color:var(--text-primary)">
+<div style="font-size:26px;font-weight:500;letter-spacing:-0.02em;font-variant-numeric:tabular-nums">{{ nasta.tid }}</div>
+<div style="font-size:17px;font-weight:500">{{ nasta.namn }}</div>
+<div style="font-size:14px;color:var(--text-secondary)">{{ nasta.plats }}</div>
+</button>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+<a href="{{ nasta.karta }}" target="_blank" style="{{ nasta.kartaStil }}">Navigera</a>
+<a href="{{ nasta.tel }}" style="{{ nasta.telStil }}">{{ nasta.ringText }}</a>
+</div>
+</div>
+</sc-if>
+
+<div style="background:var(--n-050);border-radius:8px;padding:16px;display:grid;gap:12px">
+<div style="font-size:15px;font-weight:500;color:var(--text-primary)">{{ idagRubrik }}</div>
+<div style="display:grid;gap:0">
+<sc-for list="{{ dagen }}" as="d" hint-placeholder-count="2">
+<button type="button" onClick="{{ d.oppna }}" style="display:grid;grid-template-columns:64px 1fr;gap:12px;padding:10px 0;border:0;border-bottom:1px solid var(--border-subtle);background:transparent;text-align:left;cursor:pointer;color:var(--text-primary)"><div style="{{ d.narStil }}">{{ d.nar }}</div><div style="display:grid;gap:2px"><div style="{{ d.namnStil }}">{{ d.plats }}</div><div style="font-size:12px;letter-spacing:var(--track-caps);text-transform:uppercase;color:var(--text-tertiary)">{{ d.vad }}</div></div></button>
+</sc-for>
+<sc-if value="{{ dagenTom }}" hint-placeholder-val="{{ false }}"><div style="padding:10px 0;font-size:14px;color:var(--text-secondary)">Inget bokat i planeringen.</div></sc-if>
+</div>
+</div>
+
+<div style="background:var(--n-050);border-radius:8px;padding:16px;display:grid;gap:12px">
+<div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px"><div style="font-size:15px;font-weight:500;color:var(--text-primary)">Mina jobb</div><div style="font-size:12px;letter-spacing:var(--track-caps);text-transform:uppercase;color:var(--text-tertiary)">{{ antalJobb }}</div></div>
+<div style="display:grid;gap:0">
+<sc-for list="{{ minaJobb }}" as="j" hint-placeholder-count="3">
+<button type="button" onClick="{{ j.oppna }}" style="display:grid;grid-template-columns:1fr auto;gap:12px;align-items:baseline;padding:12px 0;border:0;border-bottom:1px solid var(--border-subtle);background:transparent;text-align:left;cursor:pointer;color:var(--text-primary)"><div style="display:grid;gap:3px"><div style="{{ j.namnStil }}">{{ j.namn }}</div><div style="font-size:12px;letter-spacing:var(--track-caps);text-transform:uppercase;color:var(--text-tertiary)">{{ j.meta }}</div></div><span style="{{ j.dot }}"></span></button>
+</sc-for>
+<sc-if value="{{ ingaJobb }}" hint-placeholder-val="{{ false }}"><div style="padding:12px 0;font-size:14px;color:var(--text-secondary);text-wrap:pretty">Inga jobb tilldelade. Arbetsledaren lägger till dig under Genomförande → Resurser.</div></sc-if>
+</div>
+</div>
+
+<div style="display:grid;gap:8px">
+<button type="button" onClick="{{ tillForfragan }}" style="height:48px;border:1px solid var(--border-strong);border-radius:999px;background:#ffffff;display:flex;align-items:center;justify-content:center;gap:8px;font-size:15px;font-weight:500;cursor:pointer;color:var(--text-primary)"><span style="font-size:18px;line-height:1">+</span>Lägg till förfrågan</button>
+
+</div>
+</sc-if>
+
+<sc-if value="{{ vyJobb }}" hint-placeholder-val="{{ false }}">
+<button type="button" onClick="{{ tillHem }}" style="display:flex;align-items:center;gap:10px;min-height:44px;padding:0;border:0;background:transparent;font-size:14px;color:var(--text-secondary);cursor:pointer;justify-self:start"><span style="font-size:17px">←</span><span>Mina jobb</span></button>
+<div style="display:grid;gap:6px">
+<div style="font-size:22px;font-weight:500;letter-spacing:-0.02em">{{ jobb.namn }}</div>
+<div style="font-size:14px;color:var(--text-secondary)">{{ jobb.plats }}</div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+<a href="{{ jobb.karta }}" target="_blank" style="{{ jobb.kartaStil }}">Navigera</a>
+<a href="{{ jobb.tel }}" style="{{ jobb.telStil }}">{{ jobb.ringText }}</a>
+</div>
+
+<div style="background:var(--n-050);border-radius:8px;padding:16px;display:grid;gap:12px">
+<div style="font-size:15px;font-weight:500;color:var(--text-primary)">Innan du börjar</div>
+<div style="display:grid;gap:0">
+<sc-for list="{{ jobb.fakta }}" as="f" hint-placeholder-count="3">
+<div style="display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--border-subtle)"><div style="font-size:14px">{{ f.k }}</div><div style="font-size:14px;color:var(--text-secondary);text-align:right;font-variant-numeric:tabular-nums">{{ f.v }}</div></div>
+</sc-for>
+</div>
+</div>
+
+<div style="background:var(--n-050);border-radius:8px;padding:16px;display:grid;gap:12px">
+<div style="font-size:15px;font-weight:500;color:var(--text-primary)">Omfattning</div>
+<sc-for list="{{ jobb.paket }}" as="p" hint-placeholder-count="1">
+<div style="display:grid;gap:4px;padding-bottom:10px;border-bottom:1px solid var(--border-subtle)"><div style="display:flex;justify-content:space-between;gap:12px;align-items:baseline"><div style="font-size:14px;font-weight:500">{{ p.namn }}</div><div style="font-size:13px;color:var(--text-secondary);font-variant-numeric:tabular-nums;white-space:nowrap">{{ p.tid }}</div></div><div style="font-size:14px;line-height:1.5;text-wrap:pretty">{{ p.beskrivning }}</div></div>
+</sc-for>
+</div>
+
+<sc-if value="{{ jobb.harMaterial }}" hint-placeholder-val="{{ false }}">
+<div style="background:var(--n-050);border-radius:8px;padding:16px;display:grid;gap:12px">
+<div style="font-size:15px;font-weight:500;color:var(--text-primary)">Material på plats</div>
+<div style="display:grid;gap:0">
+<sc-for list="{{ jobb.material }}" as="m" hint-placeholder-count="2">
+<div style="display:grid;grid-template-columns:1fr auto;gap:12px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--border-subtle)"><div style="font-size:14px">{{ m.namn }}</div><div style="font-size:14px;color:var(--text-secondary);font-variant-numeric:tabular-nums">{{ m.antal }}</div></div>
+</sc-for>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ jobb.harRapp }}" hint-placeholder-val="{{ false }}">
+<div style="background:var(--n-050);border-radius:8px;padding:16px;display:grid;gap:12px">
+<div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px"><div style="font-size:15px;font-weight:500;color:var(--text-primary)">Min tid</div><div style="font-size:12px;color:var(--text-secondary);font-variant-numeric:tabular-nums">{{ jobb.rappSum }}</div></div>
+<div style="display:grid;gap:0">
+<sc-for list="{{ jobb.rapp }}" as="t" hint-placeholder-count="2">
+<div style="display:grid;grid-template-columns:1fr auto;gap:4px 12px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--border-subtle)"><div style="font-size:14px">{{ t.datum }} · {{ t.paket }}</div><div style="font-size:14px;font-weight:500;font-variant-numeric:tabular-nums">{{ t.tim }}</div><div style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-secondary)"><span style="{{ t.dot }}"></span>{{ t.status }}</div><sc-if value="{{ t.kanTaBort }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ t.taBort }}" style="min-height:32px;padding:0 12px;border:0;border-radius:999px;background:#ffffff;font-size:13px;cursor:pointer;color:var(--text-primary)">Ta bort</button></sc-if></div>
+</sc-for>
+</div>
+</div>
+</sc-if>
+
+<button type="button" onClick="{{ tillForfragan }}" style="height:48px;border:1px solid var(--border-strong);border-radius:999px;background:#ffffff;display:flex;align-items:center;justify-content:center;gap:8px;font-size:15px;font-weight:500;cursor:pointer;color:var(--text-primary)"><span style="font-size:18px;line-height:1">+</span>Lägg till förfrågan på anläggningen</button>
+<button type="button" onClick="{{ tillAvsluta }}" style="height:48px;border:0;border-radius:999px;background:var(--n-950);color:#fff;display:flex;align-items:center;justify-content:center;gap:8px;font-size:15px;font-weight:500;cursor:pointer">{{ jobb.startText }}</button>
+</sc-if>
+
+<sc-if value="{{ vyAvsluta }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+<button type="button" onClick="{{ tillJobb }}" style="display:flex;align-items:center;gap:10px;min-height:44px;padding:0;border:0;background:transparent;font-size:14px;color:var(--text-secondary);cursor:pointer"><span style="font-size:17px">←</span><span>Jobbet</span></button>
+<div style="display:flex;align-items:center;gap:6px;font-size:13px"><span style="width:6px;height:6px;border-radius:999px;background:var(--signal-400)"></span><span style="font-variant-numeric:tabular-nums">{{ av.idagText }}</span></div>
+</div>
+<div style="display:grid;gap:6px">
+<div style="font-size:22px;font-weight:500;letter-spacing:-0.02em">Avsluta jobb</div>
+<div style="font-size:14px;color:var(--text-secondary)">{{ av.underrubrik }}</div>
+</div>
+
+<sc-if value="{{ av.flerPaket }}" hint-placeholder-val="{{ false }}">
+<div style="background:var(--n-050);border-radius:8px;padding:16px;display:grid;gap:12px">
+<div style="font-size:15px;font-weight:500;color:var(--text-primary)">Arbetspaket</div>
+<div style="display:flex;gap:8px;flex-wrap:wrap"><sc-for list="{{ av.paketVal }}" as="p" hint-placeholder-count="2"><button type="button" onClick="{{ p.valj }}" style="{{ p.stil }}">{{ p.namn }}</button></sc-for></div>
+</div>
+</sc-if>
+
+<div style="background:var(--n-050);border-radius:8px;padding:16px;display:grid;gap:12px">
+<div style="font-size:15px;font-weight:500;color:var(--text-primary)">Rapportering av tid</div>
+<div style="display:flex;align-items:center;gap:12px">
+<div style="flex:1;height:48px;background:#ffffff;border-radius:8px;display:flex;align-items:center;padding:0 14px;font-size:17px;font-variant-numeric:tabular-nums">{{ av.timText }}</div>
+<button type="button" onClick="{{ av.minus }}" aria-label="Minska" style="width:48px;height:48px;border:1px solid var(--border-strong);background:#ffffff;border-radius:999px;display:flex;align-items:center;justify-content:center;font-size:20px;cursor:pointer;color:var(--text-primary)">−</button>
+<button type="button" onClick="{{ av.plus }}" aria-label="Öka" style="width:48px;height:48px;border:1px solid var(--border-strong);background:#ffffff;border-radius:999px;display:flex;align-items:center;justify-content:center;font-size:20px;cursor:pointer;color:var(--text-primary)">+</button>
+</div>
+<sc-if value="{{ av.harDelmoment }}" hint-placeholder-val="{{ true }}">
+<select value="{{ av.rad }}" onChange="{{ av.setRad }}" aria-label="Delmoment" style="height:48px;padding:0 12px;border:0;border-radius:8px;background:#ffffff;font-size:15px;color:var(--text-primary);width:100%;outline:none"><sc-for list="{{ av.delmoment }}" as="d" hint-placeholder-count="2"><option value="{{ d.id }}">{{ d.text }}</option></sc-for></select>
+</sc-if>
+<input type="date" value="{{ av.datum }}" onChange="{{ av.setDatum }}" aria-label="Datum" style="height:48px;padding:0 14px;border:0;border-radius:8px;background:#ffffff;font-size:15px;color:var(--text-primary);width:100%;box-sizing:border-box;outline:none">
+</div>
+
+<div style="background:var(--n-050);border-radius:8px;padding:16px;display:grid;gap:12px">
+<div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px"><div style="font-size:15px;font-weight:500;color:var(--text-primary)">Material</div><div style="font-size:12px;color:var(--text-secondary)">Det du använt idag</div></div>
+<div style="display:grid;gap:0">
+<sc-for list="{{ av.material }}" as="m" hint-placeholder-count="2">
+<div style="display:grid;grid-template-columns:1fr auto auto auto;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--border-subtle)"><div style="display:grid;gap:1px;min-width:0"><div style="font-size:14px">{{ m.namn }}</div><div style="font-size:12px;color:var(--text-secondary)">{{ m.kalla }}</div></div><button type="button" onClick="{{ m.minus }}" aria-label="Färre" style="width:44px;height:44px;border:1px solid var(--border-strong);background:#ffffff;border-radius:999px;font-size:18px;cursor:pointer;color:var(--text-primary)">−</button><div style="min-width:52px;text-align:center;font-size:14px;font-variant-numeric:tabular-nums">{{ m.antal }}</div><button type="button" onClick="{{ m.plus }}" aria-label="Fler" style="width:44px;height:44px;border:1px solid var(--border-strong);background:#ffffff;border-radius:999px;font-size:18px;cursor:pointer;color:var(--text-primary)">+</button></div>
+</sc-for>
+<sc-if value="{{ av.ingetMaterial }}" hint-placeholder-val="{{ false }}"><div style="padding:6px 0 10px;font-size:14px;color:var(--text-secondary)">Inget material i arbetspaketet. Lägg till det du använt.</div></sc-if>
+</div>
+<div style="display:grid;grid-template-columns:minmax(0,1fr) 72px auto;gap:8px;align-items:center">
+<input value="{{ av.nyArtNamn }}" onChange="{{ av.setNyArtNamn }}" placeholder="Artikel eller E-nummer" aria-label="Artikel" style="height:44px;padding:0 14px;border:0;border-radius:8px;background:#ffffff;font-size:15px;color:var(--text-primary);width:100%;min-width:0;box-sizing:border-box;outline:none">
+<input value="{{ av.nyArtAntal }}" onChange="{{ av.setNyArtAntal }}" inputMode="decimal" placeholder="Antal" aria-label="Antal" style="height:44px;padding:0 10px;border:0;border-radius:8px;background:#ffffff;font-size:15px;color:var(--text-primary);width:100%;min-width:0;box-sizing:border-box;outline:none;text-align:right;font-variant-numeric:tabular-nums">
+<button type="button" onClick="{{ av.laggArtikel }}" style="height:44px;padding:0 16px;border:1px solid var(--border-strong);border-radius:999px;background:#ffffff;font-size:14px;font-weight:500;cursor:pointer;color:var(--text-primary);white-space:nowrap">Lägg till</button>
+</div>
+</div>
+
+<div style="background:var(--n-050);border-radius:8px;padding:16px;display:grid;gap:12px">
+<div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px"><div style="font-size:15px;font-weight:500;color:var(--text-primary)">Byggdagbok</div><div style="font-size:12px;color:var(--text-secondary)">Hamnar i jobbets byggdagbok</div></div>
+<textarea value="{{ av.text }}" onChange="{{ av.setText }}" rows="3" placeholder="Vad gjordes, vad hände på arbetsplatsen" style="padding:12px 14px;border:0;border-radius:8px;background:#ffffff;font-size:15px;color:var(--text-primary);width:100%;box-sizing:border-box;resize:vertical;outline:none"></textarea>
+<input value="{{ av.vader }}" onChange="{{ av.setVader }}" placeholder="Väder och vilka som var på plats" aria-label="Väder och bemanning" style="height:44px;padding:0 14px;border:0;border-radius:8px;background:#ffffff;font-size:15px;color:var(--text-primary);width:100%;box-sizing:border-box;outline:none">
+</div>
+
+<sc-if value="{{ av.harKontroll }}" hint-placeholder-val="{{ false }}">
+<div style="background:var(--n-050);border-radius:8px;padding:16px;display:grid;gap:12px">
+<div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px"><div style="font-size:15px;font-weight:500;color:var(--text-primary)">Egenkontroll</div><div style="font-size:12px;color:var(--text-secondary);font-variant-numeric:tabular-nums">{{ av.kontrollText }}</div></div>
+<div style="display:grid;gap:0">
+<sc-for list="{{ av.kontroller }}" as="k" hint-placeholder-count="2">
+<label style="display:flex;align-items:center;gap:14px;min-height:48px;border-bottom:1px solid var(--border-subtle);cursor:pointer"><input type="checkbox" checked="{{ k.klar }}" onChange="{{ k.vaxla }}" style="width:22px;height:22px;accent-color:var(--n-950);flex:0 0 auto"><span style="font-size:14px;text-wrap:pretty">{{ k.text }}</span></label>
+</sc-for>
+</div>
+</div>
+</sc-if>
+
+<div style="background:var(--n-050);border-radius:8px;padding:16px;display:grid;gap:12px">
+<div style="font-size:15px;font-weight:500;color:var(--text-primary)">Avvikelse</div>
+<textarea value="{{ av.avvikelse }}" onChange="{{ av.setAvvikelse }}" rows="3" placeholder="Inget att rapportera" style="min-height:72px;padding:12px 14px;border:0;border-radius:8px;background:#ffffff;font-size:14px;color:var(--text-primary);width:100%;box-sizing:border-box;resize:vertical;outline:none"></textarea>
+<sc-if value="{{ av.harAvvikelse }}" hint-placeholder-val="{{ false }}"><div style="display:flex;gap:8px"><sc-for list="{{ av.allvarVal }}" as="a" hint-placeholder-count="3"><button type="button" onClick="{{ a.valj }}" style="{{ a.stil }}">{{ a.namn }}</button></sc-for></div></sc-if>
+</div>
+
+<sc-if value="{{ av.harFel }}" hint-placeholder-val="{{ false }}"><div style="font-size:14px;color:var(--text-risk);text-align:center">{{ av.fel }}</div></sc-if>
+<button type="button" onClick="{{ av.skicka }}" style="height:48px;border:0;border-radius:999px;background:var(--n-950);color:#fff;display:flex;align-items:center;justify-content:center;gap:8px;font-size:15px;font-weight:500;cursor:pointer">Skicka in</button>
+
+</sc-if>
+
+<sc-if value="{{ vyKvitto }}" hint-placeholder-val="{{ false }}">
+<div style="display:grid;gap:6px;padding-top:24px">
+<div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-secondary)"><span style="width:6px;height:6px;border-radius:999px;background:var(--ok-500)"></span>Inskickat</div>
+<div style="font-size:22px;font-weight:500;letter-spacing:-0.02em">{{ kvitto.rubrik }}</div>
+<div style="font-size:14px;color:var(--text-secondary)">{{ kvitto.underrubrik }}</div>
+</div>
+<div style="background:var(--n-050);border-radius:8px;padding:16px;display:grid;gap:0">
+<sc-for list="{{ kvitto.rader }}" as="r" hint-placeholder-count="2"><div style="display:grid;grid-template-columns:1fr auto;gap:12px;padding:12px 0;border-bottom:1px solid var(--border-subtle)"><div style="font-size:14px">{{ r.k }}</div><div style="font-size:14px;color:var(--text-secondary);text-align:right">{{ r.v }}</div></div></sc-for>
+</div>
+<button type="button" onClick="{{ tillHem }}" style="height:48px;border:0;border-radius:999px;background:var(--n-950);color:#fff;font-size:15px;font-weight:500;cursor:pointer">Till Mina jobb</button>
+</sc-if>
+
+<sc-if value="{{ vyForfragan }}" hint-placeholder-val="{{ false }}">
+<button type="button" onClick="{{ ffTillbaka }}" style="display:flex;align-items:center;gap:10px;min-height:44px;padding:0;border:0;background:transparent;font-size:14px;color:var(--text-secondary);cursor:pointer;justify-self:start"><span style="font-size:17px">←</span><span>Tillbaka</span></button>
+<div style="display:grid;gap:6px"><div style="font-size:22px;font-weight:500;letter-spacing:-0.02em">Ny förfrågan</div><div style="font-size:14px;color:var(--text-secondary)">Hamnar i inkorgen på kontoret.</div></div>
+<div style="background:var(--n-050);border-radius:8px;padding:16px;display:grid;gap:12px">
+<input value="{{ ff.amne }}" onChange="{{ ff.setAmne }}" placeholder="Vad gäller det" aria-label="Ämne" style="height:48px;padding:0 14px;border:0;border-radius:8px;background:#ffffff;font-size:15px;color:var(--text-primary);width:100%;box-sizing:border-box;outline:none">
+<input value="{{ ff.kund }}" onChange="{{ ff.setKund }}" placeholder="Kund" aria-label="Kund" style="height:48px;padding:0 14px;border:0;border-radius:8px;background:#ffffff;font-size:15px;color:var(--text-primary);width:100%;box-sizing:border-box;outline:none">
+<input value="{{ ff.anlaggning }}" onChange="{{ ff.setAnlaggning }}" placeholder="Anläggning" aria-label="Anläggning" style="height:48px;padding:0 14px;border:0;border-radius:8px;background:#ffffff;font-size:15px;color:var(--text-primary);width:100%;box-sizing:border-box;outline:none">
+<input value="{{ ff.kontakt }}" onChange="{{ ff.setKontakt }}" placeholder="Kontaktperson och telefon" aria-label="Kontakt" style="height:48px;padding:0 14px;border:0;border-radius:8px;background:#ffffff;font-size:15px;color:var(--text-primary);width:100%;box-sizing:border-box;outline:none">
+<textarea value="{{ ff.beskrivning }}" onChange="{{ ff.setBeskrivning }}" rows="4" placeholder="Vad nämnde kunden?" style="padding:12px 14px;border:0;border-radius:8px;background:#ffffff;font-size:15px;color:var(--text-primary);width:100%;box-sizing:border-box;resize:vertical;outline:none"></textarea>
+</div>
+<sc-if value="{{ ff.harFel }}" hint-placeholder-val="{{ false }}"><div style="font-size:14px;color:var(--text-risk);text-align:center">{{ ff.fel }}</div></sc-if>
+<button type="button" onClick="{{ ff.skicka }}" style="height:48px;border:0;border-radius:999px;background:var(--n-950);color:#fff;font-size:15px;font-weight:500;cursor:pointer">Skicka till kontoret</button>
+</sc-if>
+
+<sc-if value="{{ ingenData }}" hint-placeholder-val="{{ false }}">
+<div style="display:grid;gap:6px;padding-top:24px;text-align:center"><div style="font-size:17px;font-weight:500">Ingen data än</div><div style="font-size:14px;color:var(--text-secondary);text-wrap:pretty">Öppna Verksamhetssystemet en gång så att jobben finns här.</div></div>
+</sc-if>
+
+</div>
+</x-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { som: null, vy: 'hem', jobbId: null, paketId: null, blob: null, av: null, ff: null, ffFran: 'hem', kvitto: null, fel: '' };
+  KEY = 'kopplas-data-v2';
+  PERSONER = ['Johan Ek', 'Mikael Sund', 'Ida Persson', 'Tobias Ek', 'Sara Lind'];
+  las() { try { return JSON.parse(localStorage.getItem(this.KEY) || 'null'); } catch (e) { return null; } }
+  // Varje skrivning läser senaste versionen, ändrar och skriver tillbaka — systemet i andra flikar tar emot den direkt.
+  skriv(fn) {
+    const b = this.las() || { v: 2, jobbStore: {} };
+    b.jobbStore = b.jobbStore || {};
+    fn(b);
+    try { localStorage.setItem(this.KEY, JSON.stringify(b)); } catch (e) { this.setState({ fel: 'Kunde inte spara. Försök igen.' }); return false; }
+    this.setState({ blob: b });
+    return true;
+  }
+  componentDidMount() {
+    let som = null, vy = null;
+    try { som = sessionStorage.getItem('kopplas-falt-som'); vy = JSON.parse(sessionStorage.getItem('kopplas-falt-vy') || 'null'); } catch (e) {}
+    this.setState(Object.assign({ blob: this.las(), som: som }, vy || {}));
+    this._lyssna = (e) => { if (e.key === this.KEY) this.setState({ blob: this.las() }); };
+    window.addEventListener('storage', this._lyssna);
+  }
+  componentWillUnmount() { window.removeEventListener('storage', this._lyssna); }
+  componentDidUpdate() {
+    try { sessionStorage.setItem('kopplas-falt-vy', JSON.stringify({ vy: this.state.vy === 'kvitto' ? 'hem' : this.state.vy, jobbId: this.state.jobbId, paketId: this.state.paketId })); } catch (e) {}
+  }
+  renderVals() {
+    const s = this.state, b = s.blob, som = s.som;
+    const idag = new Date().toISOString().slice(0, 10);
+    const MAN = ['jan', 'feb', 'mars', 'april', 'maj', 'juni', 'juli', 'aug', 'sep', 'okt', 'nov', 'dec'];
+    const VD = ['söndag', 'måndag', 'tisdag', 'onsdag', 'torsdag', 'fredag', 'lördag'];
+    const dat = (iso) => { const d = new Date(String(iso) + 'T12:00:00'); return isNaN(d) ? '—' : d.getDate() + ' ' + MAN[d.getMonth()]; };
+    const num = (v) => parseFloat(String(v || '').replace(/\s/g, '').replace(',', '.')) || 0;
+    const dec = (n) => (Math.round(n * 10) / 10).toString().replace('.', ',');
+    const hmin = (n) => { const h = Math.floor(n), m = Math.round((n - h) * 60); return h + ' h' + (m ? ' ' + m + ' min' : ''); };
+    const forn = (n) => String(n || '').split(' ')[0];
+    const verklig = (v) => { const t = String(v == null ? '' : v).trim(); return t && !/^(ej satt|—|-|ingen anläggning angiven)$/i.test(t) ? t : ''; };
+    const slutDag = (start, dagar) => { const d = new Date(start + 'T12:00:00'); let n = 1; while (n < dagar) { d.setDate(d.getDate() + 1); const w = d.getDay(); if (w && w < 6) n++; } return d.toISOString().slice(0, 10); };
+    const dot = (c, top) => ({ width: 6, height: 6, borderRadius: 999, flex: '0 0 auto', background: c, position: top ? 'relative' : 'static', top: top ? 8 : 0 });
+    // Samma knappar som i systemet: primär = bläckfylld pille, sekundär = vit med hårfin kant, avstängd = grå.
+    const knapp = (morkt, aktiv) => ({ height: 48, boxSizing: 'border-box', borderRadius: 999, border: aktiv && !morkt ? '1px solid var(--border-strong)' : '1px solid transparent', background: !aktiv ? 'var(--bg-inset)' : morkt ? 'var(--n-950)' : '#ffffff', color: aktiv && morkt ? '#ffffff' : aktiv ? 'var(--text-primary)' : 'var(--text-disabled)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 15, fontWeight: 500, textDecoration: 'none', pointerEvents: aktiv ? 'auto' : 'none' });
+    const chip = (on) => ({ minHeight: 44, padding: '0 16px', border: on ? '1px solid var(--n-950)' : '1px solid var(--border-strong)', borderRadius: 999, cursor: 'pointer', fontSize: 14, fontWeight: on ? 500 : 400, background: on ? 'var(--n-950)' : '#ffffff', color: on ? '#ffffff' : 'var(--text-primary)' });
+    const go = (patch) => this.setState(Object.assign({ fel: '' }, patch));
+    const kontaktAv = (j) => { const k = verklig(j.kontakt); const m = k.match(/(\+?\d[\d\s-]{6,})/); return { namn: forn(k.split(' · ')[0]), tel: m ? 'tel:' + m[1].replace(/[\s-]/g, '') : '' }; };
+    const kartaAv = (j) => { const a = [verklig(j.adress), verklig(j.anlaggning)].filter(Boolean).join(', '); return a ? 'https://maps.google.com/?q=' + encodeURIComponent(a) : ''; };
+    const platsAv = (j) => [verklig(j.anlaggning), verklig(j.adress) || verklig(j.kund)].filter(Boolean).join(' · ') || 'Plats ej angiven';
+
+    const tom = { som: som || '', loggaUt: () => { try { sessionStorage.removeItem('kopplas-falt-som'); } catch (e) {} go({ som: null, vy: 'hem' }); },
+      vyLogin: false, vyHem: false, vyJobb: false, vyAvsluta: false, vyKvitto: false, vyForfragan: false, ingenData: false,
+      tillHem: () => go({ vy: 'hem', jobbId: null, av: null, kvitto: null }) };
+
+    if (!som) return Object.assign(tom, { vyLogin: true, personer: this.PERSONER.map((n) => ({ namn: n, valj: () => { try { sessionStorage.setItem('kopplas-falt-som', n); } catch (e) {} go({ som: n, vy: 'hem' }); } })) });
+    if (!b || !b.jobbIndex) return Object.assign(tom, { ingenData: true });
+
+    // Förfrågan från fältet: samma form som kontorets förfrågningar.
+    const ff = Object.assign({ amne: '', kund: '', anlaggning: '', kontakt: '', beskrivning: '' }, s.ff || {});
+    const ffSet = (k) => (e) => { const v = e.target.value; this.setState((st) => ({ ff: Object.assign({}, ff, st.ff, { [k]: v }), fel: '' })); };
+    const tillForfragan = (j) => () => go({ vy: 'forfragan', ffFran: s.vy, ff: j ? { kund: verklig(j.kund), anlaggning: verklig(j.anlaggning) } : null });
+    if (s.vy === 'forfragan') return Object.assign(tom, { vyForfragan: true, ffTillbaka: () => go({ vy: s.ffFran || 'hem' }),
+      ff: { amne: ff.amne, kund: ff.kund, anlaggning: ff.anlaggning, kontakt: ff.kontakt, beskrivning: ff.beskrivning,
+        setAmne: ffSet('amne'), setKund: ffSet('kund'), setAnlaggning: ffSet('anlaggning'), setKontakt: ffSet('kontakt'), setBeskrivning: ffSet('beskrivning'),
+        harFel: !!s.fel, fel: s.fel,
+        skicka: () => {
+          if (!String(ff.amne).trim() && !String(ff.beskrivning).trim()) { this.setState({ fel: 'Skriv vad det gäller.' }); return; }
+          let nr = '';
+          const ok = this.skriv((bb) => { const lista = bb.forfragningar || []; nr = 'FRF-2026-0' + (94 + lista.length);
+            bb.forfragningar = [{ nr: nr, amne: String(ff.amne).trim() || 'Förfrågan från fältet', kund: ff.kund, orgnr: '', adress: '', postnr: '', ort: '', anlaggning: ff.anlaggning, budget: '', anlAdress: '', anlPostnr: '', anlOrt: '', kontakt: ff.kontakt, telefon: '', kalla: 'Besök på plats', datum: dat(idag), epost: '', start: '', slut: '', bilagor: [], beskrivning: (ff.beskrivning || '') + '\n\nFrån fältet · ' + som, status: 'planned', statusText: 'Ny', oppnad: false }].concat(lista); });
+          if (ok) go({ vy: 'kvitto', ff: null, kvitto: { rubrik: 'Förfrågan skickad', underrubrik: nr + ' · i inkorgen på kontoret', rader: [{ k: 'Ämne', v: String(ff.amne).trim() || 'Förfrågan från fältet' }, { k: 'Kund', v: ff.kund || 'Ej angiven' }, { k: 'Anläggning', v: ff.anlaggning || 'Ej angiven' }] } });
+        } } });
+    if (s.vy === 'kvitto' && s.kvitto) return Object.assign(tom, { vyKvitto: true, kvitto: s.kvitto });
+
+    const stangda = b.stangda || {}, oppnade = b.oppnade || {};
+    const slut = (b.kfSkapade || []).filter((x) => /^Slut/.test(x.typ || '') && x.status !== 'Makulerad').map((x) => x.prjNr);
+    const stangd = (nr) => (stangda[nr] || slut.indexOf(nr) >= 0) && !oppnade[nr];
+    const minaPaket = (st) => (((st || {}).proj || {}).paket || []).filter((p) => p.ansvarig === som || (p.resurser || []).some((r) => r.person === som));
+    const jobbLista = b.jobbIndex.filter((j) => !stangd(j.nr)).map((j) => {
+      const st = b.jobbStore[j.id]; const mp = minaPaket(st);
+      const rad = (b.plan || []).filter((r) => r.grupp === 'projekt' && (r.id === j.id || r.nr === j.nr))[0];
+      const bok = ((rad || {}).bokningar || []).filter((x) => x.person === forn(som) && x.start).map((x) => Object.assign({}, x, { slut: slutDag(x.start, x.dagar || 1) })).filter((x) => x.slut >= idag).sort((x, y) => x.start < y.start ? -1 : 1);
+      const nu = bok.filter((x) => x.start <= idag)[0];
+      return { j: j, st: st || {}, mp: mp, bok: bok, nu: nu, nasta: bok[0] };
+    }).filter((x) => x.mp.length).sort((x, y) => ((x.nasta || {}).start || '9') < ((y.nasta || {}).start || '9') ? -1 : 1);
+
+    if (s.vy === 'hem' || !s.jobbId) {
+      const n = jobbLista.filter((x) => x.nasta)[0] || jobbLista[0];
+      const dagen = [];
+      jobbLista.forEach((x) => x.bok.forEach((bk) => dagen.push({ x: x, bk: bk })));
+      dagen.sort((p, q) => p.bk.start < q.bk.start ? -1 : 1);
+      const nk = n ? kontaktAv(n.j) : {}, nkarta = n ? kartaAv(n.j) : '';
+      const d0 = new Date();
+      return Object.assign(tom, { vyHem: true,
+        harNasta: !!n,
+        nasta: n ? { etikett: n.nu ? 'Idag' : 'Nästa jobb', nar: n.nu ? 'pågår' : n.nasta ? dat(n.nasta.start) : 'ej bokat', dot: dot(n.nu ? 'var(--signal-400)' : 'var(--n-400)'),
+          tid: n.nasta ? (n.nasta.start === n.nasta.slut ? dat(n.nasta.start) : dat(n.nasta.start) + '–' + dat(n.nasta.slut)) + ' · ' + (n.nasta.tim || 8) + ' h' : 'Ej bokat',
+          namn: n.j.namn, plats: platsAv(n.j), oppna: () => go({ vy: 'jobb', jobbId: n.j.id }),
+          karta: nkarta || '#', kartaStil: knapp(true, !!nkarta), tel: nk.tel || '#', telStil: knapp(false, !!nk.tel), ringText: nk.tel ? 'Ring ' + nk.namn : 'Ingen kontakt' } : {},
+        idagRubrik: 'Idag · ' + VD[d0.getDay()] + ' ' + dat(idag),
+        dagen: dagen.slice(0, 4).map((e) => { const pagar = e.bk.start <= idag;
+          return { nar: pagar ? (e.bk.tim || 8) + ' h' : dat(e.bk.start), plats: verklig(e.x.j.anlaggning) || e.x.j.namn, vad: (e.bk.label || e.x.j.namn) + (pagar ? '' : ' · ' + (e.bk.tim || 8) + ' h'),
+            narStil: { fontSize: 13, color: pagar ? 'var(--text-secondary)' : 'var(--text-tertiary)', fontVariantNumeric: 'tabular-nums' },
+            namnStil: { fontSize: 14, fontWeight: pagar ? 500 : 400, color: pagar ? 'var(--text-primary)' : 'var(--text-secondary)' },
+            oppna: () => go({ vy: 'jobb', jobbId: e.x.j.id }) }; }),
+        dagenTom: dagen.length === 0,
+        antalJobb: jobbLista.length + ' tilldelade',
+        minaJobb: jobbLista.map((x) => ({ namn: x.j.namn, meta: [verklig(x.j.kund), x.nu ? 'pågår' : x.nasta ? 'från ' + dat(x.nasta.start) : 'ej bokat'].filter(Boolean).join(' · '),
+          namnStil: { fontSize: 14, fontWeight: x.nu ? 500 : 400 }, dot: dot(x.nu ? 'var(--signal-400)' : 'var(--n-300)', true), oppna: () => go({ vy: 'jobb', jobbId: x.j.id }) })),
+        ingaJobb: jobbLista.length === 0,
+        tillForfragan: tillForfragan(null) });
+    }
+
+    const x = jobbLista.filter((y) => y.j.id === s.jobbId)[0];
+    if (!x) return Object.assign(tom, { vyHem: true, harNasta: false, nasta: {}, dagen: [], dagenTom: true, minaJobb: [], ingaJobb: true, antalJobb: '0 tilldelade', idagRubrik: 'Idag', tillForfragan: tillForfragan(null) });
+    const j = x.j, st = x.st, alla = (st.proj || {}).paket || [], tid = st.tid || [];
+    const kk = kontaktAv(j), karta = kartaAv(j);
+    const minT = tid.filter((t) => t.person === som && alla.some((p) => p.id === t.paket)).sort((a, c) => a.datum < c.datum ? 1 : -1);
+    const pNamn = (id) => { const i = alla.findIndex((p) => p.id === id); return i < 0 ? 'Arbetspaket' : 'AP ' + (i + 1) + ' ' + alla[i].namn; };
+
+    if (s.vy === 'jobb') {
+      const mat = [];
+      x.mp.forEach((p) => (p.rader || []).filter((r) => r.typ === 'Material').forEach((r) => mat.push({ namn: r.text || 'Material', antal: [r.antal, r.enhet].filter(Boolean).join(' ') })));
+      const fakta = [];
+      if (x.nasta) fakta.push({ k: 'Bokad', v: dat(x.nasta.start) + (x.nasta.slut !== x.nasta.start ? '–' + dat(x.nasta.slut) : '') + ' · ' + (x.nasta.tim || 8) + ' h/dag' });
+      if (verklig(j.kontakt)) fakta.push({ k: 'Kontakt', v: verklig(j.kontakt) });
+      const adr = [verklig(j.adress), verklig(j.anlaggning)].filter(Boolean).join(', ');
+      if (adr) fakta.push({ k: 'Adress', v: adr });
+      fakta.push({ k: 'Ansvarig', v: Array.from(new Set(x.mp.map((p) => p.ansvarig).filter(Boolean))).join(', ') || '—' });
+      const startat = x.mp.some((p) => tid.some((t) => t.paket === p.id));
+      return Object.assign(tom, { vyJobb: true,
+        jobb: { namn: j.namn, plats: platsAv(j), karta: karta || '#', kartaStil: knapp(false, !!karta), tel: kk.tel || '#', telStil: knapp(false, !!kk.tel), ringText: kk.tel ? 'Ring ' + kk.namn : 'Ingen kontakt',
+          fakta: fakta,
+          paket: x.mp.map((p) => { const rapp = tid.filter((t) => t.paket === p.id).reduce((a, t) => a + num(t.timmar), 0); return { namn: pNamn(p.id), tid: dec(rapp) + ' av ' + dec(num(p.timmar)) + ' h', beskrivning: p.beskrivning || 'Ingen beskrivning i projekteringen.' }; }),
+          harMaterial: mat.length > 0, material: mat,
+          harRapp: minT.length > 0, rappSum: dec(minT.reduce((a, t) => a + num(t.timmar), 0)) + ' h',
+          rapp: minT.slice(0, 6).map((t) => ({ datum: dat(t.datum), paket: pNamn(t.paket), tim: hmin(num(t.timmar)), status: t.attesterad ? 'Attesterad' : 'Väntar attest', dot: dot(t.attesterad ? 'var(--ok-500)' : 'var(--warn-500)'),
+            kanTaBort: !t.attesterad, taBort: () => this.skriv((bb) => { const sj = bb.jobbStore[j.id] || {}; sj.tid = (sj.tid || []).filter((y) => y.id !== t.id); }) })),
+          startText: startat ? 'Avsluta jobb' : 'Starta jobbet' },
+        tillForfragan: tillForfragan(j),
+        tillAvsluta: () => {
+          if (!startat) this.skriv((bb) => { const sj = bb.jobbStore[j.id] || {}; ((sj.proj || {}).paket || []).forEach((p) => { if (x.mp.some((q) => q.id === p.id) && (!p.status || p.status === 'Ej startat')) p.status = 'Pågår'; }); });
+          go({ vy: 'avsluta', av: null, paketId: (x.mp[0] || {}).id });
+        } });
+    }
+
+    // Avsluta dagen: en inskickning = en tidrad + ev. materialanteckning och avvikelse i dagboken + egenkontrollen.
+    const p = x.mp.filter((q) => q.id === s.paketId)[0] || x.mp[0];
+    const del = (p.rader || []).filter((r) => r.typ !== 'Material');
+    const matR = (p.rader || []).filter((r) => r.typ === 'Material');
+    const av = Object.assign({ tim: 8, rad: (del[0] || {}).id || '', datum: idag, text: '', vader: '', mat: {}, extra: [], nyArtNamn: '', nyArtAntal: '1', avvikelse: '', allvar: 'Medel' }, s.av || {});
+    const setAv = (patch) => this.setState((st2) => ({ av: Object.assign({}, av, st2.av, patch), fel: '' }));
+    const idagMin = tid.filter((t) => t.person === som && t.datum === idag).reduce((a, t) => a + num(t.timmar), 0);
+    const kontroller = p.kontroller || [];
+    return Object.assign(tom, { vyAvsluta: true, tillJobb: () => go({ vy: 'jobb' }),
+      av: { idagText: idagMin ? hmin(idagMin) + ' idag' : 'Inget rapporterat idag', underrubrik: (verklig(j.anlaggning) || j.namn) + ' · ' + dat(av.datum),
+        flerPaket: x.mp.length > 1, paketVal: x.mp.map((q) => ({ namn: pNamn(q.id), stil: chip(q.id === p.id), valj: () => go({ paketId: q.id, av: Object.assign({}, av, { rad: '', mat: {} }) }) })),
+        timText: hmin(av.tim), minus: () => setAv({ tim: Math.max(0.5, av.tim - 0.5) }), plus: () => setAv({ tim: Math.min(24, av.tim + 0.5) }),
+        harDelmoment: del.length > 0, delmoment: del.map((r) => ({ id: r.id, text: r.text || 'Namnlöst delmoment' })), rad: av.rad || (del[0] || {}).id || '',
+        setRad: (e) => setAv({ rad: e.target.value }), datum: av.datum, setDatum: (e) => setAv({ datum: e.target.value }), text: av.text, setText: (e) => setAv({ text: e.target.value }),
+        material: matR.map((r) => { const n = av.mat[r.id] || 0; return { namn: r.text || 'Material', kalla: 'Ur arbetspaketet' + (r.antal ? ' · ' + r.antal + ' ' + (r.enhet || 'st') + ' planerat' : ''), antal: n + ' ' + (r.enhet || 'st'),
+          minus: () => setAv({ mat: Object.assign({}, av.mat, { [r.id]: Math.max(0, n - 1) }) }), plus: () => setAv({ mat: Object.assign({}, av.mat, { [r.id]: n + 1 }) }) }; })
+          .concat(av.extra.map((x, xi) => ({ namn: x.namn, kalla: 'Tillagt på plats', antal: dec(x.antal) + ' st',
+            minus: () => setAv({ extra: x.antal <= 1 ? av.extra.filter((y, yi) => yi !== xi) : av.extra.map((y, yi) => yi === xi ? Object.assign({}, y, { antal: y.antal - 1 }) : y) }),
+            plus: () => setAv({ extra: av.extra.map((y, yi) => yi === xi ? Object.assign({}, y, { antal: y.antal + 1 }) : y) }) }))),
+        ingetMaterial: matR.length === 0 && av.extra.length === 0,
+        nyArtNamn: av.nyArtNamn, nyArtAntal: av.nyArtAntal,
+        setNyArtNamn: (e) => setAv({ nyArtNamn: e.target.value }), setNyArtAntal: (e) => setAv({ nyArtAntal: e.target.value }),
+        laggArtikel: () => { const namn = String(av.nyArtNamn).trim(); const n = num(av.nyArtAntal); if (!namn || !n) { this.setState({ fel: 'Skriv artikel och antal.' }); return; } setAv({ extra: av.extra.concat([{ namn: namn, antal: n }]), nyArtNamn: '', nyArtAntal: '1' }); },
+        vader: av.vader, setVader: (e) => setAv({ vader: e.target.value }),
+        harKontroll: kontroller.length > 0, kontrollText: kontroller.filter((k) => k.klar).length + ' av ' + kontroller.length,
+        kontroller: kontroller.map((k) => ({ text: k.text || 'Kontrollpunkt', klar: !!k.klar, vaxla: (e) => { const v = e.target.checked; this.skriv((bb) => { const q = (((bb.jobbStore[j.id] || {}).proj || {}).paket || []).filter((y) => y.id === p.id)[0]; if (q) (q.kontroller || []).forEach((y) => { if (y.id === k.id) y.klar = v; }); }); } })),
+        avvikelse: av.avvikelse, setAvvikelse: (e) => setAv({ avvikelse: e.target.value }), harAvvikelse: !!String(av.avvikelse).trim(),
+        allvarVal: ['Låg', 'Medel', 'Hög'].map((a) => ({ namn: a, stil: Object.assign(chip(av.allvar === a), { flex: 1 }), valj: () => setAv({ allvar: a }) })),
+        harFel: !!s.fel, fel: s.fel,
+        skicka: () => {
+          if (!av.datum) { this.setState({ fel: 'Välj datum.' }); return; }
+          const matRader = matR.filter((r) => av.mat[r.id]).map((r) => ({ rad: r.id, namn: r.text || 'Material', antal: av.mat[r.id], enhet: r.enhet || 'st' }))
+            .concat(av.extra.map((x) => ({ rad: null, namn: x.namn, antal: x.antal, enhet: 'st' })));
+          const anvant = matRader.map((m) => dec(m.antal) + ' ' + m.enhet + ' ' + m.namn);
+          const dagText = String(av.text).trim();
+          const avv = String(av.avvikelse).trim();
+          const stamp = Date.now().toString(36);
+          const ok = this.skriv((bb) => {
+            const sj = bb.jobbStore[j.id] = bb.jobbStore[j.id] || {};
+            sj.tid = (sj.tid || []).concat([{ id: 'f' + stamp, paket: p.id, rad: av.rad || (del[0] || {}).id || '', person: som, datum: av.datum, timmar: dec(av.tim), text: String(av.text).trim(), attesterad: false, kalla: 'Fältvy' }]);
+            sj.proj = sj.proj || { paket: [], dagbok: [] };
+            const nya = [];
+            if (anvant.length || String(av.text).trim()) nya.push({ id: 'fa' + stamp, datum: av.datum, typ: 'Anteckning', text: [String(av.text).trim(), anvant.length ? 'Använt material: ' + anvant.join(', ') : ''].filter(Boolean).join('. '), av: som, paket: p.id, plats: j.anlaggning || '', status: 'Ny', kalla: 'Fältvy' });
+            if (avv) nya.push({ id: 'fv' + stamp, datum: av.datum, typ: 'Avvikelse', text: avv, av: som, paket: p.id, plats: j.anlaggning || '', allvar: av.allvar, status: 'Ny', kalla: 'Fältvy' });
+            sj.proj.dagbok = nya.concat(sj.proj.dagbok || []);
+            // Byggdagboken under Dokumentering: en post per inskickning.
+            if (dagText || av.vader || anvant.length) {
+              sj.dok = sj.dok || {};
+              sj.dok.dagbok = [{ id: 'fd' + stamp, titel: dat(av.datum) + ' · ' + (p.namn || 'arbete'), status: 'Klar', datum: av.datum, ansvarig: som, extra: String(av.vader).trim(), text: [dagText, anvant.length ? 'Material: ' + anvant.join(', ') + '.' : '', hmin(av.tim) + ' rapporterat.'].filter(Boolean).join(' '), kalla: 'Fältvy' }].concat(sj.dok.dagbok || []);
+            }
+            // Använt material sparas strukturerat på jobbet så att det kan bli orderrader.
+            if (matRader.length) sj.faltMaterial = (sj.faltMaterial || []).concat(matRader.map((m, i) => Object.assign({ id: 'fm' + stamp + i, paket: p.id, datum: av.datum, person: som }, m)));
+          });
+          if (ok) go({ vy: 'kvitto', av: null, kvitto: { rubrik: hmin(av.tim) + ' rapporterat', underrubrik: j.namn + ' · ' + dat(av.datum),
+            rader: [{ k: 'Arbetspaket', v: pNamn(p.id) }, { k: 'Status', v: 'Väntar attest' }].concat(anvant.length ? [{ k: 'Material', v: anvant.join(', ') }] : []).concat(dagText || av.vader || anvant.length ? [{ k: 'Byggdagbok', v: 'Ny post ' + dat(av.datum) }] : []).concat(avv ? [{ k: 'Avvikelse', v: av.allvar + ' · i dagboken' }] : []) } });
+        } } });
+  }
+}
+</script>
+</body>
+</html>
