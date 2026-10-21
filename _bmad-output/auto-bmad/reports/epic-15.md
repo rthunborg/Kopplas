@@ -5463,3 +5463,35 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Complete targeted source review before native readiness/effects allocation or checkpoint push.
+
+## Report — 2026-10-21T19:14:06Z (checkpoint — F1 corrective allocation)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `3bf572a`).
+**Pipeline status:** 15.5 P5 active; independent cumulative source review NOTPASS with one consequential P2 transport-settlement defect.
+**Continues:** Exact three-path High correction allocated; preserve actual completed error responses and healthy cleanup.
+
+**Summary:** 15.1–15.4 landed; 15.5 active; 15.6 unstarted.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 294h 16m (≈77h 24m AI-run, ≈216h 51m human/idle wait); resumed 163×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:**
+1. F1 must prevent restore/delete while backend completion UNKNOWN. Native privacy/browser/custody qualification remains pending.
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** High helper/unit/Spec fix then distinct targeted F1 closure and latest-fix regression review; no fourth broad pass.

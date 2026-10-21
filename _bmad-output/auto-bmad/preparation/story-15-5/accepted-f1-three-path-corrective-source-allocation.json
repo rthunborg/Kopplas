@@ -1,0 +1,22 @@
+{
+  "kind": "ACCEPTED_F1_EXACT3_CORRECTIVE_SOURCE_OFFLINE_ALLOCATION",
+  "coordinator_thread": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "actual_turn": "01a15fe1-123c-7af1-a98e-f8b90077c560",
+  "observed_turn_status": "inProgress",
+  "actual_completed_tool": "exec-fb96fd10-715b-4d12-a022-af9dc82ff175",
+  "tool_name": "codex_app.send_message_to_thread",
+  "tool_status": "completed",
+  "paths": [
+    "tests/support/calendar-feed-atdd.ts",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"
+  ],
+  "source_base": "22508ef2773bb872d6c880328390812dbc358559",
+  "metadata_head": "3bf572a293386e7634df1b81f0fb62be494afc5c",
+  "finding": "F1 P2 ordinary HTTP transport loss/RPCstatus0 may leave backend UNKNOWN before restore/delete; rejected/removedpromise not settlement proof.",
+  "allowed": "Minimal helper custody latch before restore/delete/laterseams; meaningful actual-code negative+positive controls; Spec kernel/review3/SRO/ARRtruth. Preserve completed server responses/expecteddenials/healthycleanup/95success requirements. Bounded offline/static/pure controls and Root exact localcommit.",
+  "excluded": "No new protocol/client/principal/query/config/runner/migration/factory scope; no SQL/connections/CI/push/GET/resources/browser/keymutation/provider/deployment. Stop precisegap if exact3 insufficient.",
+  "independent_review": "Distinct targeted F1 closure and latest-fix regressions; no fourth broad pass.",
+  "ownership": "Existing no-overlap retained; E16 independent merge operation has no E15 claims. No repeated owner ACK or paused session resume.",
+  "normal_acceptance_credit": 0
+}

@@ -1,0 +1,29 @@
+{
+  "kind": "ROOT_MECHANICAL_CUMULATIVE_REVIEW_ADMISSION",
+  "source_head": "22508ef2773bb872d6c880328390812dbc358559",
+  "base": "f0000e7c107f10371543148280e555971e753342",
+  "current_metadata_head": "3bf572a293386e7634df1b81f0fb62be494afc5c",
+  "verdict": "NOTPASS",
+  "finding": "F1 P2 transport failure may restore/delete while backend completion UNKNOWN",
+  "attestation": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/cumulative-custody-source-review/original-attestation.json",
+    "bytes": 20373,
+    "sha256": "eb17e11d4866a6561bf33527c08b13482cdb458bae3360b55d4b9b9db1aa6b76"
+  },
+  "report": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/cumulative-custody-source-review/original-report.md",
+    "bytes": 7022,
+    "sha256": "05ad62bfda05c24fad022fe37c1b4facf7ad5a62f72804d3921fd5760c8c9d34"
+  },
+  "manifest": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/cumulative-custody-source-review/manifest.json",
+    "bytes": 919,
+    "sha256": "e99c142c84f76c1f69f7f7a175ebde897e8d54758f2f1743b2ed9be8a19f6f00"
+  },
+  "verified_frozen_ref_occurrences": 29,
+  "verified_source_HEAD_objects": 73,
+  "normal_acceptance_credit": 0,
+  "source_edit_authorized": false,
+  "native_effects_authorized": false,
+  "next": "Exact3helper/unit/Spec corrective source allocation; High author then targeted independent F1 closure, no fourth broad review."
+}
