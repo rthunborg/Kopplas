@@ -1,0 +1,35 @@
+<!-- @dsCard group="Components" viewport="700x300" name="Core" subtitle="Button, IconButton, Badge, Tag, StatusDot, Card, Metric, Divider" -->
+<!DOCTYPE html><html lang="sv"><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css"><style>html,body{margin:0}body{padding:20px;font-family:var(--font-core)}.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}.col{display:grid;gap:12px}.lab{font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:8px}</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script></head><body><div id="root"></div>
+<script type="text/babel">
+const { Button, IconButton, Badge, Tag, StatusDot, Card, Metric, Divider, Toolbar } = window.KopplaDesignSystem_4b46f2;
+function Demo(){return (<div className="col" style={{gap:18}}>
+<div><div className="lab">Button</div><div className="row">
+<Button variant="primary" icon="plus">Nytt projekt</Button>
+<Button>Avbryt</Button>
+<Button variant="ghost" icon="filter">Filter</Button>
+<Button variant="signal">Boka demo</Button>
+<Button variant="danger">Ta bort</Button>
+<Button disabled>Attestera</Button>
+</div></div>
+<div className="row" style={{gap:24}}>
+<div><div className="lab">Sizes</div><div className="row"><Button size="sm">Liten</Button><Button size="md">Mellan</Button><Button size="lg">Fält</Button></div></div>
+<div><div className="lab">IconButton</div><div className="row"><IconButton icon="search" label="Sök"/><IconButton icon="ellipsis" label="Mer"/><IconButton icon="download" label="Ladda ner" variant="outline"/><IconButton icon="check" label="Klar" active/></div></div>
+</div>
+<div className="row" style={{gap:26}}>
+<div><div className="lab">Status</div><div className="row" style={{gap:16}}><StatusDot status="active" label="Pågår"/><StatusDot status="waiting" label="Väntar"/><StatusDot status="done" label="Klart"/><StatusDot status="deviation" label="Avvikelse"/></div></div>
+<div><div className="lab">Badge / Tag</div><div className="row"><Badge tone="ink">ÄTA</Badge><Badge tone="warn">Väntar attest</Badge><Badge tone="signal">Ny</Badge><Tag icon="user">Anders L.</Tag><Tag onRemove={()=>{}}>Pågår</Tag></div></div>
+</div>
+<div className="row" style={{alignItems:'stretch',gap:12}}>
+<Card title="Fakturering" action={<Button size="sm" variant="ghost">Visa alla</Button>} style={{flex:1}}>
+  <Toolbar right={<Badge>3 utkast</Badge>}><Metric label="Fakturerat i mars" value="284 500 kr" delta="↑ 4 %" deltaTone="up"/></Toolbar>
+  <Divider style={{margin:'14px 0'}}/>
+  <Metric size="sm" label="Ej fakturerat" value="61 200 kr"/>
+</Card>
+</div>
+</div>);}
+ReactDOM.createRoot(document.getElementById('root')).render(<Demo />);
+</script></body></html>

@@ -1,0 +1,34 @@
+<!-- @dsCard group="Components" viewport="700x340" name="Forms" subtitle="Field, Input, Textarea, Select, Checkbox, Radio, Switch, SegmentedControl" -->
+<!DOCTYPE html><html lang="sv"><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css"><style>html,body{margin:0}body{padding:20px;font-family:var(--font-core)}.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}.col{display:grid;gap:12px}.lab{font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:8px}</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script></head><body><div id="root"></div>
+<script type="text/babel">
+const { Field, Input, Textarea, Select, Checkbox, Radio, Switch, SegmentedControl } = window.KopplaDesignSystem_4b46f2;
+function Demo(){
+const [seg,setSeg]=React.useState('Månad');
+const [on,setOn]=React.useState(true);
+const [chk,setChk]=React.useState(true);
+return (<div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:22}}>
+<div className="col">
+<Field label="Projektnamn" hint="Visas på fakturaunderlaget" required><Input placeholder="Ex. Ombyggnad Kv. Vasa 4" /></Field>
+<Field label="Sök"><Input icon="search" placeholder="Sök projekt, kund, faktura"/></Field>
+<Field label="Belopp"><Input defaultValue="284 500" suffix="kr"/></Field>
+<Field label="Prismodell"><Select options={['Fast pris','Löpande räkning','ROT']} placeholder="Välj prismodell"/></Field>
+<Field label="Timmar" error="Fyll i ett tal mellan 0 och 24"><Input invalid defaultValue="26" suffix="h"/></Field>
+</div>
+<div className="col">
+<div><div className="lab">SegmentedControl</div><SegmentedControl options={['Vecka','Månad','År']} value={seg} onChange={setSeg}/></div>
+<div><div className="lab">Val</div><div className="col" style={{gap:8}}>
+<Checkbox label="Egenkontroll utförd" checked={chk} onChange={()=>setChk(!chk)}/>
+<Checkbox label="Delvis signerad" indeterminate/>
+<Checkbox label="Låst" disabled/>
+<Radio name="p" label="Löpande räkning" description="Faktureras per rapporterad timme" checked/>
+<Switch checked={on} onChange={()=>setOn(!on)} label="Skicka påminnelse automatiskt"/>
+</div></div>
+<Field label="Anteckning"><Textarea rows={3} placeholder="Vad hittade du på plats?"/></Field>
+</div>
+</div>);}
+ReactDOM.createRoot(document.getElementById('root')).render(<Demo />);
+</script></body></html>
