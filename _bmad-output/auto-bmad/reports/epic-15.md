@@ -5879,3 +5879,35 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** ObservefreshR1Coordinatorallocation, Rootimmediate74/222+terminalproof/exclusiveR1activation; executeonce; distinctHighofflinetruthaudit beforecandidateuse.
+
+## Report — 2026-10-21T20:52:40Z (progress — partial R1 candidates independently qualified)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `7390f19`).
+**Pipeline status:** in-progress —15.5 nativecausalgap; development gatesunmet
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 295h 54m (≈77h 24m AI-run, ≈218h 30m human/idle wait); resumed 176×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:**
+1. Qualified16errors/54locationoccurrences(13distinct)/5tuples+1separatedeclaration arepartialcandidatesNOTcauses. Sourceassessmentfindsnojustifiedappfixyet. Originalthrows/omittedfacts/keybackendcustodyUNKNOWN; normal95/fullDB/browsergatesretainfailed35unexecuted/acceptance0.
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Highsource-onlyassessmentfinishesminimumsource-label/report-driverdiagnosticplan. No justifiedappfix, no unchangedartifactreads/normalCIretry.

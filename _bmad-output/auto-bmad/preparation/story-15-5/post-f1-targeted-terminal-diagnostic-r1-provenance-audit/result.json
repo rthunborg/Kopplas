@@ -1,0 +1,20 @@
+{
+  "Outcome": "PASS_QUALIFIED_PARTIAL_DIAGNOSTIC — published bounded R1 facts; native1/STOP_UNKNOWN/REDACTED_UPSTREAM retained.",
+  "Files changed": [
+    "original-report.md",
+    "original-attestation.json",
+    "result.json",
+    "manifest.json"
+  ],
+  "Status": "Offline audit complete.16retained nodes/54location occurrences/5tuples+1separate declaration verified; no causal or nativePASS claim.",
+  "Open questions": [
+    "Original throw/first error/backend causes and omitted later attempts remain UNKNOWN.",
+    "Both backend/runtime-key custody and35unexecuted normal cases remain unqualified; tool lineage attributed."
+  ],
+  "Deferred work": [
+    "Parent separately routes source-only assessment using retained candidates and limits; no new extractor/acquisition proposed."
+  ],
+  "Blockers": [
+    "Truncated diagnostic is not complete error coverage or cause proof. Existing failed normal/privacy/browser/fullDBRLS gates remain; acceptance0."
+  ]
+}
