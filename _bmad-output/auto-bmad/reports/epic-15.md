@@ -6160,3 +6160,34 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** High author localizes and reproduces only qualified two unit declaration candidates; fix only if evidence supports a bounded change within allocated six paths. Preserve assertions/guards and independent review.
+
+## Report — 2026-10-21T22:31:20Z (qualified-unit-portability-code-only-pass)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `4cd5e94`).
+**Pipeline status:** Story15.5 in review. Independent High review passed4cd5e944: reviewed baseline fingerprints and ten mutation inverses preserved; reviewer2P, author entire Linux file152P separately. Hosted exceptions and required native gates remain unverified; prior run39683227657 stays failed and acceptance0.
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 297h 33m (≈77h 24m AI-run, ≈220h 08m human/idle wait); resumed 185×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Minimal current-source/readiness refresh using unchanged reviewed collector algorithms and exact new source bindings; prepare concrete one-checkpoint scope, no automatic retry or execution.
