@@ -1265,6 +1265,53 @@ loop3, in-review/ARR warnings and no-DONE/delivery/release boundaries remain.
 All43 DB causes and14 browser failures remain unresolved. No provider, native
 query, CI, service, push, deployment or main merge occurred in this fix.
 
+## Status-origin discriminator implementation — 2026-10-21
+
+Accepted allocation accepted-native-status-origin-discriminator-source-allocation.json
+(3505B/SHA256 e64d0f906325c904921caec9aec3c0c324244a1a07ed1871f40e5f3825f18b3d)
+applies the frozen plan and revision1 without a functional permission fix. The
+existing restricted status qualification SELECT adds eighteen fixed catalog facts;
+management keeps its original SQL. Exact own-data booleans/one-row shape and true
+identity qualification precede the same at-most-one original baseline call.
+False facts remain evidence and do not suppress the call. No extra query,
+connection, grant, RLS, function, principal or operation change.
+
+The own-data ErrorResponse routine maps only to PLPGSQL_RAISE, ACL_ENGINE or
+UNKNOWN: external reporting origin, never underlying cause or an exact guard,
+especially after an inner error is caught/re-raised. No raw routine/error text,
+stack, query or parameters enter the observation. The strict eleven-field current
+wire adds statusDiscriminator:null or exact status-origin-v1 facts for a qualified
+completed status baseline. Existing outcomes/settlement/rollback/RESET/fresh
+checks/cleanup/custody and producer1000000-byte/private65536-byte caps are preserved.
+
+Revision1 treats owner_tokens_select as TABLE_ACL_ONLY: false may coexist with
+sufficient column access and is excluded from the other seventeen necessary
+candidates. Root explicitly kept decisions/candidate fields and unused test-only
+interpretation seams out of this producer. The future separately allocated private
+qualifier must implement candidate counting/named UNKNOWN stops and actual consumer
+controls; these remain UNEXECUTED. All-true seventeen plus false table bit is
+accepted only as closed observation, never promoted to a cause. RLS/implicit
+dependencies remain unmeasured. The original JWT and restricted baseline differ
+in session/time/snapshot; all43DB/14browser causes remain unresolved.
+
+Actual affected Node file93P/0F/0skip/0cancel, whole TypeScript exit0 and focused
+four-file ESLint exit0/no warnings on this working source. Initial92-case run
+91P/1F compared the existing null-prototype validator return to a plain object;
+corrected to wire-value equality. Intermediate92-case runs passed separately,
+not added to93. Source inspection corrected a draft SELECT-list comma before
+final controls. Exploratory package-version lookup hit package exports restrictions;
+actual pg resolution supplied the installed parser. Spec reader initially failed
+on default Windows encoding; explicit UTF-8 repaired the reader before writing.
+
+Current source-extraction/data-URL helpers use injected connections and actual
+installed pg-protocol1.15.0 finite ErrorResponse frames. They prove local SQL
+construction, once-call/parameter identity, strict/getter/proxy/false-bit/schema
+controls and the exact existing producer-size boundary. PostgreSQL syntax/runtime,
+inner cause, private interpretation and native acceptance receive ZERO credit.
+No app build rerun for unchanged app bytes, no new normal acceptance (95 intact).
+Fresh committed latest-delta High review/private adoption/Root execution pending;
+in-review/kernel5760/broad-loop3/ARR warning preserved.
+
 ## Suggested Review Order
 
 Author: Story 15.5 implementation/fix author (gpt-6.1-sol High), incorporating
@@ -1344,17 +1391,17 @@ authenticated SupAdmin LOGIN+SUPER for key setup and INT015, preserving its
 restricted-session oracle. No new privileged child configuration or grant is added.
 
 - `tests/integration/commands/calendar-feed.int.test.ts:486` — `// FULL rollback comes first`: preserves rollback/reset and same/fresh catalog absence proof.
-- `scripts/ci/with-calendar-feed-runtime.mjs:328` — `export function createOwnedGroupStopper`: memoizes settlement, validates capture, passively observes missing-leader group absence and bounds completion/output.
-- `scripts/ci/with-calendar-feed-runtime.mjs:249` — `export function createTelemetryObserver`: detects leaks before dropping non-allowlisted output.
+- `scripts/ci/with-calendar-feed-runtime.mjs:343` — `export function createOwnedGroupStopper`: memoizes settlement, validates capture, passively observes missing-leader group absence and bounds completion/output.
+- `scripts/ci/with-calendar-feed-runtime.mjs:264` — `export function createTelemetryObserver`: detects leaks before dropping non-allowlisted output.
 - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1282` — `nonzero/null-signal nested browser loss`: requires retained key custody for abnormal completion.
 - `tests/support/calendar-feed-ci-contract.ts:83` — `projectCalendarFeedCiCommands`: validates pinned real wrapper argv and the two wrapper inverses and finite exact diagnostic fragments.
 - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:39` — `CI command projection rejects`: missing/wrong entry/argv and unrelated-source/workflow negatives preserve the original inverse fence.
-- `scripts/ci/with-calendar-feed-runtime.mjs:100` — `function safeDiagnostic`: emits only fixed stages/categories and allowlisted SQLSTATE without native payloads.
+- `scripts/ci/with-calendar-feed-runtime.mjs:115` — `function safeDiagnostic`: emits only fixed stages/categories and allowlisted SQLSTATE without native payloads.
 - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:320` — `COMMIT uncertainty is not cleared`: rollback alone cannot establish key absence after attempted COMMIT.
-- `scripts/ci/with-calendar-feed-runtime.mjs:553` — `receipt.privacyPreflight = await readCalendarFeedPrivacyPreflight(db);`: rejects unsafe effective settings before entropy on the existing client.
+- `scripts/ci/with-calendar-feed-runtime.mjs:568` — `receipt.privacyPreflight = await readCalendarFeedPrivacyPreflight(db);`: rejects unsafe effective settings before entropy on the existing client.
 - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:216` — `privacy preflight rejects incomplete`: malformed and unsafe settings cannot reach a secret or child; actual driver/same-client/query-close cases exercise the surrounding boundary.
-- `scripts/ci/with-calendar-feed-runtime.mjs:167` — `export function createCalendarFeedDatabaseClient`: fixes the same qualified source publication, canonical admin and sole captured credential; no default or alternate route.
-- `scripts/ci/with-calendar-feed-runtime.mjs:154` — `export async function readCalendarFeedSetupAuthority`: actual authenticated session/current LOGIN+SUPER proof is mandatory before mutation.
+- `scripts/ci/with-calendar-feed-runtime.mjs:182` — `export function createCalendarFeedDatabaseClient`: fixes the same qualified source publication, canonical admin and sole captured credential; no default or alternate route.
+- `scripts/ci/with-calendar-feed-runtime.mjs:169` — `export async function readCalendarFeedSetupAuthority`: actual authenticated session/current LOGIN+SUPER proof is mandatory before mutation.
 - `tests/integration/commands/calendar-feed.int.test.ts:508` — `await fresh.connect(); await setupQualified(fresh); await absent(fresh);`: INT015 fresh authority/privacy and exact absence oracle passed at3e7.
 - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:154` — `setup construction refuses missing`: credential/target refusals cannot reach secrets or children; actual identity negatives and child-config tests complete the bounded boundary evidence.
 
@@ -1442,12 +1489,12 @@ and the43DB/14browser gaps remain failed/unresolved; no whole-native reuse.
 - `src/server/read-models/calendar-feed.ts:10` — `if (error?.code === "42501")`: locates status erasure before its existing typed denial.
 - `tests/support/calendar-feed-atdd.ts:744` — `export function calendarCauseProofSelection`: selects at most one warranted original-function baseline.
 - `tests/support/calendar-feed-atdd.ts:750` — `export async function calendarCauseProofIdle`: a pg timeout is not actual protocol settlement.
-- `tests/support/calendar-feed-atdd.ts:762` — `export async function runCalendarFeedCauseProof`: one ordinary command, qualified restricted original baseline, rollback/fresh verification and conditional custody cleanup.
+- `tests/support/calendar-feed-atdd.ts:797` — `export async function runCalendarFeedCauseProof`: one ordinary command, qualified restricted original baseline, rollback/fresh verification and conditional custody cleanup.
 - `tests/integration/commands/calendar-feed.int.test.ts:21` — `test("15.5-DIAG001"`: explicit-mode-only diagnostic inventory; normal95/INT015 are not replaced.
 - `scripts/ci/checkpoint-dispatch.mjs:83` — `function diagnosticAvailability`: candidate/default availability refusal before the sole POST.
 - `scripts/ci/checkpoint-dispatch.mjs:15` — `function verificationMode`: persisted diagnostic/legacy mode cannot downgrade to normal acceptance.
 - `scripts/ci/with-calendar-feed-runtime.mjs:14` — `export const CAUSE_PROOF_ARGS`: fixed single-case serial argv/reporters/output without a Next/browser child.
-- `scripts/ci/with-calendar-feed-runtime.mjs:50` — `export async function finishCauseProof`: validated distinct report upload on test failure as well as success, with private custody redaction.
+- `scripts/ci/with-calendar-feed-runtime.mjs:65` — `export async function finishCauseProof`: validated distinct report upload on test failure as well as success, with private custody redaction.
 - `.github/workflows/ci.yml:262` — `- name: Calendar feed cause proof (diagnostic only; no pilot or acceptance)`: separate mode-bound step; ordinary full+pilot remains intact.
 - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1358` — `actual per-invocation trace preserves once-call value`: actual scoped trace concurrency/nesting and identity controls.
 - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1379` — `actual baseline decision chooses one observed boundary`: conditional selection and protocol-settlement negatives.
@@ -1467,11 +1514,11 @@ The corrective allocation adds same-statement visibility so hidden rows cannot
 qualify absence, and separates actual launch evidence from exit completion.
 Default registration/event presence and candidate capability have distinct gates.
 
-- `tests/support/calendar-feed-atdd.ts:889` — `(select r.rolsuper or r.rolbypassrls`: qualifies visibility on the executing query role.
-- `tests/support/calendar-feed-atdd.ts:895` — `if (!Array.isArray(rows)`: rejects malformed or false absence observations without getters.
-- `scripts/ci/with-calendar-feed-runtime.mjs:388` — `child.once("spawn",`: actual adapter events establish launch independently of done.
-- `scripts/ci/with-calendar-feed-runtime.mjs:502` — `const refreshLaunch`: retains late actual launch facts through cleanup.
-- `scripts/ci/with-calendar-feed-runtime.mjs:69` — `if (!["not-attempted", "not-created-confirmed"].includes(receipt.childLaunchState))`: uncertain or started missing reports fail capture.
+- `tests/support/calendar-feed-atdd.ts:915` — `(select r.rolsuper or r.rolbypassrls`: qualifies visibility on the executing query role.
+- `tests/support/calendar-feed-atdd.ts:921` — `if (!Array.isArray(rows)`: rejects malformed or false absence observations without getters.
+- `scripts/ci/with-calendar-feed-runtime.mjs:403` — `child.once("spawn",`: actual adapter events establish launch independently of done.
+- `scripts/ci/with-calendar-feed-runtime.mjs:517` — `const refreshLaunch`: retains late actual launch facts through cleanup.
+- `scripts/ci/with-calendar-feed-runtime.mjs:84` — `if (!["not-attempted", "not-created-confirmed"].includes(receipt.childLaunchState))`: uncertain or started missing reports fail capture.
 - `scripts/ci/checkpoint-dispatch.mjs:26` — `export function assertDefaultDispatchWorkflow`: rejects ambiguous structure before the sole POST.
 - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1495` — `actual diagnostic caller requires same-statement`: actual caller visibility/absence, exact parameter and custody controls.
 - `tests/unit/scripts/ci/checkpoint-dispatch.test.ts:286` — `default recognizer refuses comments`: malformed event definitions cannot satisfy default presence.
@@ -1510,3 +1557,20 @@ Evidence:35 affected dispatcher cases passed0fail/skip/cancel, full TypeScript
 and affected lint passed. Prior31/374 composites retain their separate temporal
 scope. No real provider/private collector/diagnostic/native run is credited;
 new-head private qualification and fresh reviewed Root dispatch remain pending.
+
+### Observe external status origin without inferring an inner cause
+
+The status-only SELECT and catch keep the original operation and parameters.
+Strict facts carry evidence to the future qualifier; table ACL alone is insufficient.
+
+- `tests/support/calendar-feed-atdd.ts:759` — `export function calendarStatusErrorOrigin`: maps only three own-data routine literals.
+- `tests/support/calendar-feed-atdd.ts:766` — `export async function calendarCauseProofRestricted`: adds eighteen facts inside the original status SELECT.
+- `tests/support/calendar-feed-atdd.ts:870` — `Object.assign(report, await calendarCauseProofBaseline`: joins the original call before existing protocol cleanup.
+- `scripts/ci/with-calendar-feed-runtime.mjs:48` — `if (value.statusDiscriminator === null`: enforces the strict current eleven-field contract.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1555` — `status discriminator classifies actual installed pg-protocol frames`: uses real parser frames with injected source helpers.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1594` — `status strict wire schema preserves false TABLE_ACL_ONLY`: retains table-only false without a cause claim.
+
+Evidence:93 affected Node controls passed0F/skip/cancel; whole TypeScript and
+focused lint passed. Synthetic query/finite-frame/source seams do not execute
+PostgreSQL or prove cause, private17-candidate interpretation or native acceptance.
+Historical failed heads and ARR warning remain; future qualifier controls unexecuted.

@@ -20,6 +20,7 @@ const TRACE_EVENTS = new Set(["input-invalid", "execute-enter", "key-ready", "st
 export function validateCauseProofObservation(value) {
   try {
     const descriptors = Object.getOwnPropertyDescriptors(value);
+    if (Reflect.ownKeys(descriptors).some(key => typeof key !== "string")) fail("diagnostic-observation-refused");
     const clean = Object.create(null);
     for (const [key, descriptor] of Object.entries(descriptors)) {
       if (!("value" in descriptor)) fail("diagnostic-observation-refused");
@@ -37,13 +38,27 @@ export function validateCauseProofObservation(value) {
     }
     value = clean;
   } catch { fail("diagnostic-observation-refused"); }
-  const keys = ["kind", "mode", "outcome", "events", "baseline", "sqlState", "cleanupVerified", "ordinarySettled", "queriesSettled", "failures"];
+  const keys = ["kind", "mode", "outcome", "events", "baseline", "sqlState", "cleanupVerified", "ordinarySettled", "queriesSettled", "failures", "statusDiscriminator"];
   if (!value || typeof value !== "object" || Object.keys(value).length !== keys.length || !keys.every(key => Object.hasOwn(value, key))
     || value.kind !== "calendar_feed.cause_proof" || value.mode !== "cause-proof" || !CAUSE_PROOF_OUTCOMES.includes(value.outcome)
     || !Array.isArray(value.events) || value.events.length > 16 || !value.events.every(event => typeof event === "string" && TRACE_EVENTS.has(event))
     || !["not-selected", "status", "manage"].includes(value.baseline) || !(value.sqlState === null || SQLSTATE_CATEGORIES.has(value.sqlState) || value.sqlState === "CF409")
     || !Array.isArray(value.failures) || value.failures.length > 32 || !value.failures.every(code => ["protocol-unsettled", "baseline-qualification-or-call", "baseline-rollback", "baseline-reset", "baseline-state", "baseline-close", "fresh-state", "fresh-qualification-or-state", "fresh-protocol", "fresh-close", "fixture-or-ordinary", "fixture-rows", "fixture-canonical", "fixture-absence", "fixture-custody-retained"].includes(code))
     || !["cleanupVerified", "ordinarySettled", "queriesSettled"].every(key => typeof value[key] === "boolean")) fail("diagnostic-observation-refused");
+  if (value.statusDiscriminator === null && value.baseline === "status" && (value.sqlState !== null || ["AMBIGUOUS_SQL42501","NONREPRODUCED","UNKNOWN_ENGINE_ERROR"].includes(value.outcome))) fail("diagnostic-observation-refused");
+  if (value.statusDiscriminator !== null) {
+    try {
+      const fields = Object.getOwnPropertyDescriptors(value.statusDiscriminator);
+      if (Reflect.ownKeys(fields).length !== 3 || !["schema","origin","permissions"].every(key => Object.hasOwn(fields,key) && "value" in fields[key])) fail("diagnostic-observation-refused");
+      const { schema, origin, permissions } = Object.fromEntries(Object.entries(fields).map(([key,descriptor]) => [key,descriptor.value]));
+      const names = ["caller_public_usage", "caller_status_execute", "owner_public_usage", "owner_auth_usage", "owner_uid_execute", "owner_subject_execute", "owner_lock_execute", "owner_hash_execute", "owner_tenant_id_select", "owner_member_id_select", "owner_member_tenant_select", "owner_member_user_select", "owner_member_status_select", "owner_member_role_select", "owner_union_tenant_select", "owner_union_member_select", "owner_union_role_select", "owner_tokens_select"];
+      const facts = Object.getOwnPropertyDescriptors(permissions);
+      if (schema !== "status-origin-v1" || !["UNKNOWN","PLPGSQL_RAISE","ACL_ENGINE"].includes(origin) || Reflect.ownKeys(facts).length !== names.length
+        || !names.every(key => Object.hasOwn(facts,key) && "value" in facts[key] && typeof facts[key].value === "boolean")
+        || value.baseline !== "status" || ["PRE_SQL_STOP","ORDINARY_SUCCESS","CAPTURE_UNAVAILABLE"].includes(value.outcome) || origin !== "UNKNOWN" && value.sqlState !== "42501") fail("diagnostic-observation-refused");
+      value.statusDiscriminator = { schema, origin, permissions: Object.fromEntries(names.map(key => [key,facts[key].value])) };
+    } catch { fail("diagnostic-observation-refused"); }
+  }
   if (!value.cleanupVerified || !value.ordinarySettled || !value.queriesSettled || value.outcome === "CLEANUP_UNVERIFIED") fail("diagnostic-settlement-unverified");
   return value;
 }

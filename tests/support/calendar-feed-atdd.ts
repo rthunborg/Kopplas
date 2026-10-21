@@ -754,6 +754,41 @@ export async function calendarCauseProofIdle(client: { readyForQuery?: boolean }
   while (client.readyForQuery !== true && now() < deadline) await sleep(20);
   return client.readyForQuery === true;
 }
+export const calendarStatusPermissionNames = ["caller_public_usage", "caller_status_execute", "owner_public_usage", "owner_auth_usage", "owner_uid_execute", "owner_subject_execute", "owner_lock_execute", "owner_hash_execute", "owner_tenant_id_select", "owner_member_id_select", "owner_member_tenant_select", "owner_member_user_select", "owner_member_status_select", "owner_member_role_select", "owner_union_tenant_select", "owner_union_member_select", "owner_union_role_select", "owner_tokens_select"] as const;
+export type CalendarStatusDiscriminator = { schema: "status-origin-v1"; origin: "PLPGSQL_RAISE" | "ACL_ENGINE" | "UNKNOWN"; permissions: Record<typeof calendarStatusPermissionNames[number], boolean> };
+export function calendarStatusErrorOrigin(error: unknown): CalendarStatusDiscriminator["origin"] {
+  try {
+    const code = Object.getOwnPropertyDescriptor(error, "code"), routine = Object.getOwnPropertyDescriptor(error, "routine");
+    if (!code || !("value" in code) || code.value !== "42501" || !routine || !("value" in routine)) return "UNKNOWN";
+    return routine.value === "exec_stmt_raise" ? "PLPGSQL_RAISE" : routine.value === "aclcheck_error" || routine.value === "aclcheck_error_col" ? "ACL_ENGINE" : "UNKNOWN";
+  } catch { return "UNKNOWN"; }
+}
+export async function calendarCauseProofRestricted(connection: { query(sql: string, params: unknown[]): Promise<{ rows: unknown }> }, baseline: string, userId: string) {
+  const original = "select session_user=current_user and current_user='authenticated' and not a.rolsuper and not a.rolbypassrls and not b.rolsuper and not b.rolbypassrls and auth.uid()=$1::uuid and current_setting('request.jwt.claims')::jsonb->>'role'='authenticated' and current_setting('log_statement')='none' and current_setting('log_min_error_statement')='panic' and current_setting('log_parameter_max_length')='0' and current_setting('log_parameter_max_length_on_error')='0' as qualified from pg_roles a join pg_roles b on b.rolname=current_user where a.rolname=session_user";
+  const facts = baseline === "status" ? `, pg_catalog.has_schema_privilege(current_user,'public','USAGE') as caller_public_usage, pg_catalog.has_function_privilege(current_user,'public.read_calendar_feed_status(uuid,uuid)','EXECUTE') as caller_status_execute, pg_catalog.has_schema_privilege('calendar_feed_owner','public','USAGE') as owner_public_usage, pg_catalog.has_schema_privilege('calendar_feed_owner','auth','USAGE') as owner_auth_usage, pg_catalog.has_function_privilege('calendar_feed_owner','auth.uid()','EXECUTE') as owner_uid_execute, pg_catalog.has_function_privilege('calendar_feed_owner','public.calendar_feed_subject_internal(uuid,uuid,uuid,boolean)','EXECUTE') as owner_subject_execute, pg_catalog.has_function_privilege('calendar_feed_owner','pg_catalog.pg_advisory_xact_lock(bigint)','EXECUTE') as owner_lock_execute, pg_catalog.has_function_privilege('calendar_feed_owner','pg_catalog.hashtextextended(text,bigint)','EXECUTE') as owner_hash_execute, pg_catalog.has_column_privilege('calendar_feed_owner','public.tenants','id','SELECT') as owner_tenant_id_select, pg_catalog.has_column_privilege('calendar_feed_owner','public.tenant_memberships','id','SELECT') as owner_member_id_select, pg_catalog.has_column_privilege('calendar_feed_owner','public.tenant_memberships','tenant_id','SELECT') as owner_member_tenant_select, pg_catalog.has_column_privilege('calendar_feed_owner','public.tenant_memberships','user_id','SELECT') as owner_member_user_select, pg_catalog.has_column_privilege('calendar_feed_owner','public.tenant_memberships','status','SELECT') as owner_member_status_select, pg_catalog.has_column_privilege('calendar_feed_owner','public.tenant_memberships','role','SELECT') as owner_member_role_select, pg_catalog.has_column_privilege('calendar_feed_owner','public.membership_roles','tenant_id','SELECT') as owner_union_tenant_select, pg_catalog.has_column_privilege('calendar_feed_owner','public.membership_roles','membership_id','SELECT') as owner_union_member_select, pg_catalog.has_column_privilege('calendar_feed_owner','public.membership_roles','role','SELECT') as owner_union_role_select, pg_catalog.has_table_privilege('calendar_feed_owner','public.calendar_feed_tokens','SELECT') as owner_tokens_select` : "";
+  const result = await connection.query(original.replace(" as qualified from", " as qualified" + facts + " from"), [userId]);
+  const rows = result.rows;
+  const length = Object.getOwnPropertyDescriptor(rows, "length"), element = Object.getOwnPropertyDescriptor(rows, "0");
+  if (!Array.isArray(rows) || !length || !("value" in length) || length.value !== 1 || !element || !("value" in element)) throw Error("Restricted identity refused");
+  const fields = Object.getOwnPropertyDescriptors(element.value), names = baseline === "status" ? ["qualified", ...calendarStatusPermissionNames] : ["qualified"];
+  if (Reflect.ownKeys(fields).length !== names.length || !names.every(name => Object.hasOwn(fields,name) && "value" in fields[name] && typeof fields[name].value === "boolean") || fields.qualified.value !== true) throw Error("Restricted identity refused");
+  if (baseline !== "status") return null;
+  return Object.fromEntries(calendarStatusPermissionNames.map(name => [name,fields[name].value])) as CalendarStatusDiscriminator["permissions"];
+}
+export async function calendarCauseProofBaseline(connection: { query(sql: string, params: unknown[] | undefined): Promise<unknown> }, baseline: string, values: unknown[], permissions: CalendarStatusDiscriminator["permissions"] | null) {
+  let sqlState: string | null = null, outcome = "NONREPRODUCED", origin: CalendarStatusDiscriminator["origin"] = "UNKNOWN";
+  try {
+    if (baseline === "status") await connection.query("select public.read_calendar_feed_status($1::uuid,$2::uuid)",values);
+    else await connection.query("select public.manage_calendar_feed($1::uuid,$2::uuid,$3::uuid,$4::text,$5::integer,$6::uuid,$7::text,$8::uuid,$9::jsonb,$10::text)",values);
+  } catch (error) {
+    let code: unknown; try { code = Object.getOwnPropertyDescriptor(error,"code")?.value; } catch { /* UNKNOWN */ }
+    const allowed = ["42501","CF409","57014","08006","25P02","42P01","42883","42703","3F000","23505"];
+    sqlState = typeof code === "string" && allowed.includes(code) ? code : null;
+    outcome = code === "42501" ? "AMBIGUOUS_SQL42501" : code === "CF409" ? "NONREPRODUCED" : "UNKNOWN_ENGINE_ERROR";
+    if (baseline === "status") origin = calendarStatusErrorOrigin(error);
+  }
+  return { outcome, sqlState, statusDiscriminator: baseline === "status" && permissions ? { schema: "status-origin-v1" as const, origin, permissions } : null };
+}
 // End cause-proof decision seam.
 
 /** Explicit-mode-only fixture composition. Canonical cleanup is conditional on
@@ -762,7 +797,7 @@ export async function calendarCauseProofIdle(client: { readyForQuery?: boolean }
 export async function runCalendarFeedCauseProof() {
   const report = { kind: "calendar_feed.cause_proof", mode: "cause-proof", outcome: "CAPTURE_UNAVAILABLE",
     events: [] as CalendarFeedTraceEvent[], baseline: "not-selected", sqlState: null as string | null,
-    cleanupVerified: true, ordinarySettled: true, queriesSettled: true, failures: [] as string[] };
+    cleanupVerified: true, ordinarySettled: true, queriesSettled: true, failures: [] as string[], statusDiscriminator: null as CalendarStatusDiscriminator | null };
   let fixture: Awaited<ReturnType<typeof createRoleAwarePhaseAFixture>> | undefined;
   const fail = (stage: string) => { report.failures.push(stage); report.cleanupVerified = false; };
   try {
@@ -829,20 +864,11 @@ export async function runCalendarFeedCauseProof() {
           const proof={schema:FEED_SCHEMA,domain:MANAGE_DOMAIN,operation:"create",tenantId,actorId:userId,membershipId:member.id,revision:"0",attemptId,newHash:issued.hash,correlationId,keyId:key.keyId,issuedAt:at.toISOString(),expiresAt:new Date(at.getTime()+60000).toISOString()};
           managementValues=[tenantId,userId,member.id,"create",0,attemptId,issued.hash,correlationId,proof,signFeedProof(proof,key.secret)];
         }
-        const restricted = await db.query("select session_user=current_user and current_user='authenticated' and not a.rolsuper and not a.rolbypassrls and not b.rolsuper and not b.rolbypassrls and auth.uid()=$1::uuid and current_setting('request.jwt.claims')::jsonb->>'role'='authenticated' and current_setting('log_statement')='none' and current_setting('log_min_error_statement')='panic' and current_setting('log_parameter_max_length')='0' and current_setting('log_parameter_max_length_on_error')='0' as qualified from pg_roles a join pg_roles b on b.rolname=current_user where a.rolname=session_user",[userId]);
-        if (restricted.rows.length!==1 || restricted.rows[0].qualified!==true || Date.now()-at.getTime()>5000) throw Error("Restricted identity or clock refused");
-        // This is a NEW controlled direct-SQL call, never the old JWT session,
-        // snapshot, proof bytes or first engine cause. At most ONE invocation.
-        try {
-          if(report.baseline==="status") await db.query("select public.read_calendar_feed_status($1::uuid,$2::uuid)",[tenantId,intent.attemptId]);
-          else await db.query("select public.manage_calendar_feed($1::uuid,$2::uuid,$3::uuid,$4::text,$5::integer,$6::uuid,$7::text,$8::uuid,$9::jsonb,$10::text)",managementValues);
-          report.outcome="NONREPRODUCED";
-        } catch(error) {
-          let code:unknown; try { code=Object.getOwnPropertyDescriptor(error,"code")?.value; } catch { /* UNKNOWN */ }
-          const allowed=["42501","CF409","57014","08006","25P02","42P01","42883","42703","3F000","23505"];
-          report.sqlState=typeof code==="string"&&allowed.includes(code)?code:null;
-          report.outcome=code==="42501"?"AMBIGUOUS_SQL42501":code==="CF409"?"NONREPRODUCED":"UNKNOWN_ENGINE_ERROR";
-        }
+        const permissions = await calendarCauseProofRestricted(db,report.baseline,userId);
+        if (Date.now()-at.getTime()>5000) throw Error("Restricted identity or clock refused");
+        // A NEW controlled original call, never historical JWT first-cause proof.
+        Object.assign(report, await calendarCauseProofBaseline(db,report.baseline,
+          report.baseline === "status" ? [tenantId,intent.attemptId] : managementValues!,permissions));
         if (!await ready(db)) throw Error("Query protocol unverified");
         await db.query("rollback to savepoint controlled_baseline");
         if(Date.now()-at.getTime()>10000) report.outcome="INCOMPARABLE";

@@ -1353,7 +1353,7 @@ test("known proof values and actual keys flag leaks while exact infrastructure a
 
 
 const diagnosticEnv={...env,GITHUB_SHA:"a".repeat(40),GITHUB_EVENT_NAME:"workflow_dispatch",CALENDAR_FEED_CAUSE_PROOF_CHECKPOINT:keyId};
-const observation=()=>({kind:"calendar_feed.cause_proof",mode:"cause-proof",outcome:"AMBIGUOUS_SQL42501",events:["execute-enter","context-match","status-rpc42501"],baseline:"status",sqlState:"42501",cleanupVerified:true,ordinarySettled:true,queriesSettled:true,failures:[]});
+const observation=()=>({kind:"calendar_feed.cause_proof",mode:"cause-proof",outcome:"AMBIGUOUS_SQL42501",events:["execute-enter","context-match","status-rpc42501"],baseline:"status",sqlState:"42501",cleanupVerified:true,ordinarySettled:true,queriesSettled:true,failures:[],statusDiscriminator:{schema:"status-origin-v1",origin:"UNKNOWN",permissions:Object.fromEntries(["caller_public_usage", "caller_status_execute", "owner_public_usage", "owner_auth_usage", "owner_uid_execute", "owner_subject_execute", "owner_lock_execute", "owner_hash_execute", "owner_tenant_id_select", "owner_member_id_select", "owner_member_tenant_select", "owner_member_user_select", "owner_member_status_select", "owner_member_role_select", "owner_union_tenant_select", "owner_union_member_select", "owner_union_role_select", "owner_tokens_select"].map(name=>[name,true]))}});
 const traceExpected={tenantId:"owned-tenant",userId:"owned-user",membershipId:"owned-member",attemptId:"owned-attempt",action:"create",revision:0};
 test("actual per-invocation trace preserves once-call value and error identity and isolates concurrent and nested scopes",async()=>{
   const value={},failure={private:"PRIVATE"};let calls=0;
@@ -1548,4 +1548,85 @@ test("actual missing-report publication distinguishes proven no-start from start
       assert.equal(a.captureFailed,expected);assert.equal(a.childLaunchState,state);assert.equal(a.childStarted,state==="started"?true:state==="attempted-unverified"?null:false);assert.equal(a.launchAttempted,receipt.launchAttempted);for(const key of ["captureFailed","childLaunchState","childStarted","launchAttempted"])assert.deepEqual(a[key],b[key]);assert.ok(!JSON.stringify(a).includes("PRIVATE"));
     }
   }finally{assert.ok(resolve(folder).startsWith(resolve(tmpdir())+"\\")||resolve(folder).startsWith(resolve(tmpdir())+"/"));await rm(folder,{recursive:true,force:true});}
+});
+
+// Current source extraction executes the actual restricted SELECT/baseline helpers.
+// Injected connections and finite ErrorResponse frames are not native SQL evidence.
+test("status discriminator classifies actual installed pg-protocol frames by own finite source routine only",async()=>{
+  const seams=await actualFixtureOrigins();
+  const require=nodeModule.createRequire(import.meta.url), pgRequire=nodeModule.createRequire(require.resolve("pg"));
+  const {parse}=pgRequire("pg-protocol");
+  for(const [routine,expected] of [["exec_stmt_raise","PLPGSQL_RAISE"],["aclcheck_error","ACL_ENGINE"],["aclcheck_error_col","ACL_ENGINE"],["PRIVATE routine","UNKNOWN"]]){
+    const payload=Buffer.from("SERROR\0C42501\0MPRIVATE message\0R"+routine+"\0\0"),frame=Buffer.alloc(payload.length+5);frame[0]=69;frame.writeInt32BE(payload.length+4,1);payload.copy(frame,5);
+    const stream=new EventEmitter();let error:unknown;const done=parse(stream,(value:unknown)=>{error=value;});stream.emit("data",frame);stream.emit("end");await done;
+    assert.equal(seams.calendarStatusErrorOrigin(error),expected);
+    assert.equal(seams.calendarStatusErrorOrigin({...error as object,code:"23505"}),"UNKNOWN");
+  }
+  let gets=0;
+  const hostile=Object.defineProperty({code:"42501"},"routine",{get(){gets++;throw Error("PRIVATE");}});
+  for(const value of [null,undefined,{},Object.create({code:"42501",routine:"exec_stmt_raise"}),hostile,{code:42501,routine:"exec_stmt_raise"},{code:"42501",routine:{}},new Proxy({},{getOwnPropertyDescriptor(){throw Error("PRIVATE");}})])assert.equal(seams.calendarStatusErrorOrigin(value),"UNKNOWN");
+  assert.equal(gets,0);
+});
+test("actual status qualification adds exactly eighteen fixed inquiries to one original parameterized SELECT",async()=>{
+  const seams=await actualFixtureOrigins(),names=seams.calendarStatusPermissionNames as string[];
+  assert.equal(names.length,18);assert.equal(new Set(names).size,18);
+  const all=Object.fromEntries(names.map(name=>[name,true]));
+  for(const falseName of [null,...names]){
+    const permissions={...all,...(falseName?{[falseName]:false}:{})},calls:{sql:string;params:unknown[]}[]=[];
+    const result=await seams.calendarCauseProofRestricted({query:async(sql:string,params:unknown[])=>{calls.push({sql,params});return{rows:[{qualified:true,...permissions}]};}},"status","owned-user");
+    assert.deepEqual(result,permissions);assert.equal(calls.length,1);assert.deepEqual(calls[0].params,["owned-user"]);
+    assert.equal((calls[0].sql.match(/pg_catalog[.]has_/g)||[]).length,18);assert.match(calls[0].sql,/ as qualified, pg_catalog[.]has_schema_privilege/);
+    assert.match(calls[0].sql,/pg_catalog[.]has_table_privilege\('calendar_feed_owner','public.calendar_feed_tokens','SELECT'\) as owner_tokens_select/);
+    for(const name of names)assert.equal((calls[0].sql.match(new RegExp(" as "+name+"(?:,| from)","g"))||[]).length,1);
+    let baselineCalls=0;const values=["owned-tenant","owned-attempt"];
+    const baseline=await seams.calendarCauseProofBaseline({query:async(sql:string,params:unknown[])=>{baselineCalls++;assert.equal(params,values);assert.equal(sql,"select public.read_calendar_feed_status($1::uuid,$2::uuid)");throw{code:"42501",routine:"aclcheck_error",message:"PRIVATE"};}},"status",values,result);
+    assert.equal(baselineCalls,1);assert.deepEqual(baseline.statusDiscriminator.permissions,permissions);assert.equal(baseline.statusDiscriminator.origin,"ACL_ENGINE");assert.ok(!JSON.stringify(baseline).includes("PRIVATE"));
+  }
+});
+test("actual qualification rejects malformed rows and data accessors before any baseline while management remains original",async()=>{
+  const seams=await actualFixtureOrigins(),all=Object.fromEntries(seams.calendarStatusPermissionNames.map((name:string)=>[name,true]));let gets=0;
+  const row={qualified:true,...all},getter=Object.defineProperty({...row},"owner_tokens_select",{get(){gets++;throw Error("PRIVATE");}});
+  for(const rows of [[],[row,row],[{...row,qualified:false}],[{...row,owner_tokens_select:null}],[{...row,extra:true}],[{qualified:true}],[getter],[Object.create(row)],new Proxy([],{getOwnPropertyDescriptor(){throw Error("PRIVATE");}})])await assert.rejects(seams.calendarCauseProofRestricted({query:async()=>({rows})},"status","user"));
+  await assert.rejects(seams.calendarCauseProofRestricted({query:async()=>{throw Error("PRIVATE");}},"status","user"));assert.equal(gets,0);
+  let calls=0;assert.equal(await seams.calendarCauseProofRestricted({query:async(sql:string,params:unknown[])=>{calls++;assert.ok(!sql.includes("has_"));assert.deepEqual(params,["user"]);return{rows:[{qualified:true}]};}},"manage","user"),null);assert.equal(calls,1);
+  const values=Array.from({length:10},(_,i)=>i);const managed=await seams.calendarCauseProofBaseline({query:async(sql:string,params:unknown[])=>{assert.equal(params,values);assert.match(sql,/manage_calendar_feed/);throw{code:"42501",routine:"exec_stmt_raise"};}},"manage",values,null);assert.equal(managed.statusDiscriminator,null);assert.equal(managed.outcome,"AMBIGUOUS_SQL42501");
+});
+test("status strict wire schema preserves false TABLE_ACL_ONLY without a necessary privilege or cause claim",async()=>{
+  const seams=await actualFixtureOrigins(),names=seams.calendarStatusPermissionNames as string[],all=Object.fromEntries(names.map(name=>[name,true]));
+  // Source-supported counterexample: sufficient column SELECT can coexist with
+  // table SELECT=false. Column coverage is deliberately NOT measured here.
+  for(const candidate of [null,...names.filter(name=>name!=="owner_tokens_select")])for(const tableBit of [true,false]){
+    const permissions={...all,owner_tokens_select:tableBit,...(candidate?{[candidate]:false}:{})};
+    const wire={...observation(),statusDiscriminator:{schema:"status-origin-v1",origin:"ACL_ENGINE",permissions}};
+    const validated=validateCauseProofObservation(wire);assert.deepEqual(JSON.parse(JSON.stringify(validated)),wire);assert.equal(Object.keys(validated).length,11);assert.ok(!Object.hasOwn(validated,"candidate"));assert.ok(!Object.hasOwn(validated,"decision"));
+  }
+});
+test("status validator refuses legacy missing field, nested schema pollution, crossfields and accessors",async()=>{
+  const seams=await actualFixtureOrigins(),permissions=Object.fromEntries(seams.calendarStatusPermissionNames.map((name:string)=>[name,true]));
+  const fact={schema:"status-origin-v1",origin:"ACL_ENGINE",permissions},valid={...observation(),statusDiscriminator:fact};
+  const legacy={...observation()} as Record<string,unknown>;delete legacy.statusDiscriminator;
+  let gets=0;const getter=Object.defineProperty({...permissions},"owner_tokens_select",{get(){gets++;throw Error("PRIVATE");}});
+  for(const bad of [legacy,{...valid,baseline:"manage"},{...valid,sqlState:null},{...valid,statusDiscriminator:{...fact,schema:"old"}},{...valid,statusDiscriminator:{...fact,origin:"exec_stmt_raise"}},{...valid,statusDiscriminator:{...fact,extra:"PRIVATE"}},{...valid,statusDiscriminator:{...fact,permissions:{...permissions,extra:true}}},{...valid,statusDiscriminator:{...fact,permissions:getter}},{...valid,statusDiscriminator:new Proxy({},{ownKeys(){throw Error("PRIVATE");}})},{...valid,[Symbol("PRIVATE")]:true}])assert.throws(()=>validateCauseProofObservation(bad),/diagnostic-observation-refused/);
+  assert.equal(gets,0);assert.equal(validateCauseProofObservation({...observation(),baseline:"manage",statusDiscriminator:null}).statusDiscriminator,null);
+  assert.throws(()=>validateCauseProofObservation({...observation(),statusDiscriminator:null}),/diagnostic-observation-refused/);
+  assert.equal(validateCauseProofObservation({...observation(),outcome:"INCOMPARABLE",sqlState:null,statusDiscriminator:null}).statusDiscriminator,null);
+  assert.equal(validateCauseProofObservation({...valid,sqlState:null,statusDiscriminator:{...fact,origin:"UNKNOWN"}}).statusDiscriminator.origin,"UNKNOWN");
+});
+test("actual baseline preserves success and finite SQLSTATE outcomes without promoting routine labels",async()=>{
+  const seams=await actualFixtureOrigins(),permissions=Object.fromEntries(seams.calendarStatusPermissionNames.map((name:string)=>[name,true]));
+  for(const code of [null,"CF409","57014","PRIVATE"]){let calls=0;const result=await seams.calendarCauseProofBaseline({query:async()=>{calls++;if(code)throw{code,routine:"exec_stmt_raise",detail:"PRIVATE"};}},"status",["tenant","attempt"],permissions);assert.equal(calls,1);assert.equal(result.statusDiscriminator.origin,"UNKNOWN");assert.equal(result.sqlState,code&&["CF409","57014"].includes(code)?code:null);assert.equal(result.outcome,code===null||code==="CF409"?"NONREPRODUCED":"UNKNOWN_ENGINE_ERROR");}
+});
+
+test("new strict observation fits existing caps and producer retains the exact million-byte report boundary",async()=>{
+  assert.ok(Buffer.byteLength(JSON.stringify(observation()))<8192);
+  const folder=await mkdtemp(join(tmpdir(),"calendar-status-cap-")),reports=join(folder,"test-results/calendar-feed-cause-proof");
+  const receipt={launchAttempted:true,childLaunchState:"started",childExitCodes:[0],keyDeleted:true,dbClosed:true,custody:null,failures:[]};
+  try {
+    await mkdir(reports,{recursive:true});await writeFile(join(reports,"observation.json"),JSON.stringify(observation()));
+    const native=JSON.stringify({numTotalTests:1,numPendingTests:0,numFailedTests:1,numPassedTests:0});
+    for(const bytes of [1000000,1000001]){
+      await writeFile(join(reports,"native.json"),native+" ".repeat(bytes-Buffer.byteLength(native)));
+      assert.equal(await finishCauseProof(folder,diagnosticEnv,receipt,async()=>{},{keyId:"private-key",secret:"private-secret"}),bytes===1000000);
+    }
+  } finally {assert.ok(resolve(folder).startsWith(resolve(tmpdir())+"\\")||resolve(folder).startsWith(resolve(tmpdir())+"/"));await rm(folder,{recursive:true,force:true});}
 });
