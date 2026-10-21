@@ -1,0 +1,14 @@
+{
+  "kind": "ROOT_INDEPENDENTLY_OBSERVED_COMPLETED_COORDINATOR_SIX_PATH_SOURCE_ONLY_ALLOCATION",
+  "coordinator_thread": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "turn_id": "01a16041-de2a-74f0-afb6-46d56417e421",
+  "completed_tool_id": "exec-89e22131-40c2-45e5-b35f-43a657418239",
+  "completed_status": "completed",
+  "observed_turn_status": "completed",
+  "source_head": "b1b476dee7c936eb4797ce3221bc07b8196a1a4a",
+  "pushed_head": "ce1943e01b773671e0c2e583ea6b21e56d40e81b",
+  "allocation_text": "EXPLICITexact6SOURCE-ONLYlabel allocation GRANTED underactualdistinctHighPASS_PLAN_ONLY_LABEL_01_02_CLOSED reportada006b9c2c3836654765b75e4f0081451337e0f940ca77c22f02e8e50baa66d/att2b75ab0715c284cfb1605d2c80d1636600bc6109df454e5e5b356b48b7441cb8/refinement00359b5c5951cbbfcd41429edb8711f5e5f17023597675ad7388b2dfef600ac3. ONLY tests/integration/notifications/time-report-nudge-producer.int.test.ts;tests/support/time-reports-atdd.ts;tests/e2e/calendar-feed.e2e.spec.ts;tests/e2e/support/calendar-feed-atdd.ts;existingwrapperunit;own15.5SpecSROARRtrail. ActualE16MERGED99104/devworkcomplete/NOactiveclaims orresources;Docs/priorCIcompletedclaims retained, no knownoverlap ontheseE15nudge/feedtestpaths. No neednewownerqueries/privatecheckouttouchabsentnewclaim. Basecodeb1/pushedce194/local3527metadata/rawbindingsasrecorded; doNOTadoptmain99104midoperation. ExactONLYoriginalboundaryfixedfailurelabels OPT-INNUDGE004/E2E001: enclosingnudgetest/time-reportawait/client/callback/cleanupmilestones withopaqueinternalsUNKNOWN; browserindependentcreate/rotate/revokeordinal applicability/native/readback/waiterMATCHED/pending-success-failure state. PreserveIDENTICALoriginalerroridentity/cause/precedence/guards/timeouts/operationcounts/order/cleanup; no extraPromiseobserver/newclient/principal/query/protocol/route/catchthatchangessettlement. No rawpayload/error/stack/DOM/URLpersistence/output, no unboundedlabels. Actualclockguard/sourceacceptance/offlineidentity/state/cleanupinversecontrols mandatory+Highauthor/DISTINCTcommitteddeltaHighreview(no4thbroad). ExistingNORMALdriver/full95unchanged/DIAG001notrepurposed/nofilteredcoverageclaim; sourceonlyfuturelabelcomparisonroutemayproceedAFTERsourcePASS+SEPARATEpush/CIeffectallocation, notautomaticretry. Speckernel5760SHA0b3255.../inreview/counter3truth; allSQL110111andearlierIMMUTABLE. R1partialfactsnotcauses/35unexecuted/custodyUNKNOWN/0acceptance retained. Rootexactcommit/offlinechecksONLY; NOpush/CI/GET/resources/SQL/keymutation/provider/mainmerge/deploy/foreignwrites/newEpic17. No additionalgenericACKwithin6bounds.",
+  "source_only": true,
+  "runtime_effects": false,
+  "normal_acceptance_credit": 0
+}

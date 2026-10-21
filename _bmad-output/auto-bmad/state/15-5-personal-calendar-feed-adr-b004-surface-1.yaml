@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-21T20:58:38Z"
+updated_at: "2026-10-21T20:59:15Z"
 started_at: "2026-10-20T12:18:56Z"
 completed_at: null
 active_seconds: 86219
@@ -18,15 +18,15 @@ is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: post-f1-source-label-diagnostic-boundary-state-revalidation
-selected_role: independent-sensitive-diagnostic-plan-reviewer
+selected_phase: source-label-six-path-implementation
+selected_role: build-delegate
 selected_profile: sensitive
 selected_model: gpt-6.1-sol
 selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "SameHigh finiteLABELPLAN01/02revalidation: opted-inoutertest/time-reportboundary andperobservation/actionstates; unchanged6paths andnormaldriver/gates. Reuseoriginalreview; no broad/fourthreview/source/effects."
+escalation_reason: "CompletedactualCoordinator6pathsourceallocation+distinctplanLABEL01/02PASS. Criticaloriginalerroridentity/clockcleanup/asyncstateprivacy High; sourceonly/offlinecontrols; no nativeeffects or fourthbroadreview."
 routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"High preparation for hashed public-feed tokens, rotation/revocation and tenant/member disclosure boundaries; plan-only before distinctvalidation and ownershipallocation\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct High independent specification validation of actual public-feed token/proof/IP/limiter authorization design and exact ownership/test-key boundaries before anybuild\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"cross_model_layer\",\"profile\":\"diverse_review\",\"role\":\"independent-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -238,6 +238,7 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"NoappfixsupportedbyqualifiedR1; challengeminimumsixpathoriginal-boundarylabel/lifecycle diagnosticplan underboundedrecovery/twofailednormalpolicy. Criticalerroridentity/privacy/clock/custody semantics High; no sourcebuild/effects/fourthbroad.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"post-f1-source-label-diagnostic-plan-review\",\"profile\":\"sensitive\",\"role\":\"independent-sensitive-diagnostic-plan-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"IndependentfiniteLABEL-PLAN01/02gaps: nudgeoutersetup/cleanupenvelope andbrowserper-observationsettlementsemantics. Planmetadataonly withinoriginalsixpaths; preserveerroridentity/C4guards/operations/privacy/noeffects.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"post-f1-source-label-diagnostic-plan-refinement\",\"profile\":\"sensitive\",\"role\":\"sensitive-implementation-planner\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"SameHigh finiteLABELPLAN01/02revalidation: opted-inoutertest/time-reportboundary andperobservation/actionstates; unchanged6paths andnormaldriver/gates. Reuseoriginalreview; no broad/fourthreview/source/effects.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"post-f1-source-label-diagnostic-boundary-state-revalidation\",\"profile\":\"sensitive\",\"role\":\"independent-sensitive-diagnostic-plan-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"CompletedactualCoordinator6pathsourceallocation+distinctplanLABEL01/02PASS. Criticaloriginalerroridentity/clockcleanup/asyncstateprivacy High; sourceonly/offlinecontrols; no nativeeffects or fourthbroadreview.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"source-label-six-path-implementation\",\"profile\":\"sensitive\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: "Hashed public tokens, rotation/revocation, externalfeed andcross-tenant abuseprotection requireHigh-riskATDD+automate; lastthreeno traceadvisory"
@@ -1890,3 +1891,10 @@ p5_source_label_diagnostic_plan_revalidation:
   normal_acceptance_credit: 0
   native_comparison: "OnlyONEfuturelabelledNORMAL/full95comparison conditionallyadmittedafteractualsourcePASS+separateeffectsgrant; noautomaticfurtherretry"
   next: "ObservecompletedCoordinator6pathsourceallocation ->Highboundedimplementation+offlinecontrols/SRO ->Rootexactcommit ->distincttargetedHighcommitted-deltareview ->separateeffectreadiness."
+p5_source_label_source_allocation:
+  status: COMPLETED_COORDINATOR_SIX_PATH_SOURCE_ONLY_GRANT
+  allocation: "_bmad-output/auto-bmad/preparation/story-15-5/accepted-source-label-six-path-allocation.json"
+  actual_tool: exec-89e22131-40c2-45e5-b35f-43a657418239
+  source_only: true
+  native_effects: false
+  normal_acceptance_credit: 0
