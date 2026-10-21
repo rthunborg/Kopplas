@@ -339,3 +339,42 @@ Only proven111 archived;185entries retained including27incomplete resolved hints
 1. Human review of PR105; release validation and future merge/deployment retain separate approval gates.
 
 **Next:** Human review: /bmad-checkpoint-preview https://github.com/rthunborg/Kopplas/pull/105. Project context: run /bmad-project-context refresh (recommended after an epic).
+
+## Report — 2026-10-21T08:07:26Z (checkpoint corrections verified; owner decision pending)
+
+**Epic:** `16` — 5 stories.
+**Branch:** `codex/epic-16-jobs` (HEAD `ae6ac81`).
+**Pipeline status:** Scoped checkpoint follow-up verified; original five-story pipeline DONE is retained. PR105 stays draft for the human checkpoint decision. Release ready remains false.
+**Continues:** Follow-up to the existing Epic16 PR, not a new story/epic or pipeline restart. Original pipeline statuses, timing and historical artifacts are unchanged.
+
+**Summary:** Corrected all three confirmed review findings: stale loaded full-card overwrites, resolved-tenant option mixing and start-based end-deadline advice. Preserved the mounted editor and all substantive field/child/authorization assertions while repairing proven fixture contracts and encoding.
+
+**Timing:** started 2026-10-15T08:50:46Z; completed 2026-10-20T22:58:03Z — elapsed 134h 07m (≈13h 07m AI-run, ≈120h 59m human/idle wait); resumed 9×.
+
+**Stories:**
+1. 16.1/16.4: loaded revision protects scalar and exact child sets while preserving proof, atomicity and exact replay.
+2. 16.1/16.5: normal-client request context scopes all six options arrays; old noarg capability removed.
+3. 16.4: actual end drives desired/latest warnings in server and editor; earliest START, half-open Stockholm conventions, capacity and advisory save semantics preserved.
+4. 16.5: successful save preserves the mounted editing island; edited/stale/pending/mismatched reads cannot silently advance the baseline.
+
+**Skipped:** (none)
+
+**Epic gate:** New checkpoint delivery_gate native0, oktrue/errors[]/approvalfalse. Independent High record provenance qualifiedPASS for record531EEF5FF75B2067D605A32A78027047569C8155335296A9A24D333274C3E358;28source bindings and referenced native/qualification evidence match. Historical36/36trace is retained as dated evidence; no fresh broad TEA pass claimed.
+
+**TEA:** Exact sourceae6ac81d CI39563248426 terminalSUCCESS:2757unit0fail/skip+43process/build,1887DBpass0fail+1ordinaryrecoveryskip,separate1/1recovery,35browserALLFIRST0retry/skip/unexpected. Named11integration and4relevantbrowserjourneys verified executed. HistoricalNFRCONCERNS/MEDIUM and test-quality0/F RequestChanges remainADVISORY. Priorfailed checkpoint39557051210 and39558121201 retained; both olderE01uncertainties remain distinct and unresolved historically.
+
+**Retrospective:** Original2026-10-21 accepted-with-open-items and seven owned actions retained; no rewrite or new retrospective.
+
+**Overrides:** Shared3warningfiles explicitly cleared by Coordinator afteractualE15owner claim check; no foreign source/resource adoption. Separate direct-human authorization covered the specific Coordinator summary/request. No merge/deployment/provider/default-branch/monitoring changes. No fourth broad review; latest-fix and record-only independent High checks reused unchanged evidence.
+
+**Open questions:** (none)
+
+**Deferred work:**
+1. All14 owned release-only checks copied unchanged and remain DEFERRED;release_ready=false.
+2. Seven original retrospective actions and both distinct historical E01 diagnostic observations remain visible; current first-attempt passes do not establish their prior causes.
+No additional ledger changes or archives in this checkpoint.
+
+**⚠️ Needs human:**
+1. Checkpoint decision:Approve,Rework,orDiscuss. Approval here is not merge/deployment authorization.
+
+**Next:** Review current-fix author stops in _bmad-output/auto-bmad/delivery/epic-16-checkpoint-2026-10-21.json and PR105; choose Approve/Rework/Discuss.
