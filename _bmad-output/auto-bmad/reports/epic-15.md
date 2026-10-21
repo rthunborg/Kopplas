@@ -4178,3 +4178,65 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Highauthor implements narrow validateddelta and focusedcontrols in ownedcheckout, preserving kernel/sourceguards. IndependentHightargetedreview then freshsourcefreeze/checkpoint/privatebinding; no nativeAPI/CI activation yet.
+
+## Report — 2026-10-21T07:55:38Z (status-origin-source-reviewed-and-frozen-before-private-binding)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `8efb90e`).
+**Pipeline status:** 15.5 P5 active; newdiagnostic source8efb90e5 Highlatest5PASS and schema14sourcefreeze admitted; normalgates remainopen.
+**Continues:** Author93offline tests and reusedindependentreviewer120memorycontrols passed, separate/nonadditive; TS/lint/diffchecks passed; SRO98/kernel5760preserved. Latest5reviewmanifest1672B SHAd064f7ce22b6475087b0e726ca439b01922cc8b4c3b840a28e3c76d6dfa2ff7b; revieweractuallyreused, notfreshcontext-free. Onecompactcapsule132497B SHA8a72fe86d44ec0c5602ade15560d302926f8c00279a66a0c6a06012450c85a5e inherits13priorcapsules byhash. Rootactualnativeexit0/7.732s verified70source/40norm/65unchanged,67refs43unique,36ancestry21author15Root,388blobdependencies+1exacthistoricalabsence,146protectedOIDs and33snapshots12uncreditedraw21baseline-only. Parentfirststrict1 retained then corrected0; readers corrected withoutsource/artifactchanges.
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-20T12:18:56Z; completed in progress — elapsed 19h 36m (≈59m AI-run, ≈18h 37m human/idle wait); resumed 125×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** 11failednormalhistories remain;1successfuldiagnosticproducer normalcredit0; newstatusoriginrun0. TABLE_ACL_ONLY neverproves effectivecolumncoverage; EXTERNALroutineclass doesnotprove underlying/caughtinnercause.
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Checkpoint/push metadata with reviewed8efsource after qualifying actualstagedformat results. Then privateconsumerbinding/strict11schema/actual17-bitqualifiercontrols and independentHighreview atactualnewcheckpoint; prePOSTproducerintent remainsdistinctfromposthocterminalcollectionfacts. No producerAPI/CI activationyet.
+
+## Report — 2026-10-21T07:57:32Z (status-origin-bounded-checkpoint-format-qualified)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `8efb90e`).
+**Pipeline status:** 15.5 P5 active; reviewedsource/freeze checkpoint ready; normal/nativegates remainopen.
+**Continues:** Actual full10metadata stagedcheck native2 retained; exactly9warnings in immutable review-input lines46,95,99,120,139,259,302,314,315, eachsingle0x20 nativeblankcontext within exactonce43708B/f2525b95 diff. IndependentHighread-onlyqualification PASS; defaultchecks reproduce2, other9metadatafiles andsource delta native0. Noformatbypass/no originalrewrite.
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-20T12:18:56Z; completed in progress — elapsed 19h 38m (≈59m AI-run, ≈18h 39m human/idle wait); resumed 126×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Commit/push boundedmetadata checkpoint with reviewed8efsource; then actualnewtarget privateconsumerimplementation/review beforeanydiagnosticdispatch/GET.

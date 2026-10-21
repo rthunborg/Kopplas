@@ -1,0 +1,213 @@
+{
+  "kind": "AUTHOR_EXACT_COMMITTED_LATEST_FIVE_REVIEW_BINDING",
+  "source": "8efb90e5038874c672df120651041176a70b1f2f",
+  "base": "93f4bf6543f6a9dc519a28f3d6f7824e8f6feedf",
+  "worktree": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas",
+  "review_scope": "latest consequential delta only; broad-round cap3 unchanged",
+  "author_artifacts_only": [
+    "review-input.md",
+    "input-binding.json",
+    "local-checks.json"
+  ],
+  "source_bindings": [
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "raw_bytes": 87490,
+      "raw_sha256": "3bae86d90783ca43ce2a9393670e198f302f26233c7f64e5540f160b2ba6e831",
+      "actual_git_clean_blob_oid": "ff86cacfa2fbe3985c53261e0ed3ade5f1702e21",
+      "head_blob_oid": "ff86cacfa2fbe3985c53261e0ed3ade5f1702e21",
+      "head_blob_bytes": 87490,
+      "head_blob_sha256": "3bae86d90783ca43ce2a9393670e198f302f26233c7f64e5540f160b2ba6e831",
+      "base_blob_oid": "7eb081cc2a8f8ed9848319cdb0693d04fbec97b2",
+      "base_blob_bytes": 82088,
+      "base_blob_sha256": "5b043237d761afdca1b5f549aecd14ee6eb7b263cb4f3f1376f009def78a4fe3",
+      "base_matches_f304_story_source": true
+    },
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "raw_bytes": 47148,
+      "raw_sha256": "a8b2b53a333f1b4f68244416c4a98cc553a7317de3f2a496102a5501a345dbda",
+      "actual_git_clean_blob_oid": "c273329c132650f2c536c958a68ee7a3e76e58b4",
+      "head_blob_oid": "c273329c132650f2c536c958a68ee7a3e76e58b4",
+      "head_blob_bytes": 47148,
+      "head_blob_sha256": "a8b2b53a333f1b4f68244416c4a98cc553a7317de3f2a496102a5501a345dbda",
+      "base_blob_oid": "ecbcaa951a4656ad5fe99b59bf2a0a8cb3c1599d",
+      "base_blob_bytes": 45083,
+      "base_blob_sha256": "ef6ca99e711d4d44f709261afd865e055514a08fbbc0f533e6fb811612ccee91",
+      "base_matches_f304_story_source": true
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "raw_bytes": 138869,
+      "raw_sha256": "4162cf707d7ae3c64d5007b16a143684abff5d309afadd82cd84293d1e0d1155",
+      "actual_git_clean_blob_oid": "0dca2a72bbc24c6aadaa97f0cd1d18e17a3f6127",
+      "head_blob_oid": "0dca2a72bbc24c6aadaa97f0cd1d18e17a3f6127",
+      "head_blob_bytes": 138869,
+      "head_blob_sha256": "4162cf707d7ae3c64d5007b16a143684abff5d309afadd82cd84293d1e0d1155",
+      "base_blob_oid": "911ed4e0d01053011d3850d9250593b05265cc66",
+      "base_blob_bytes": 128425,
+      "base_blob_sha256": "c3289fe335b83bd546b8d41ad13533019edea57b1cea7b2149d881265515aad2",
+      "base_matches_f304_story_source": true
+    },
+    {
+      "path": "tests/support/calendar-feed-ci-contract.ts",
+      "raw_bytes": 8024,
+      "raw_sha256": "2297a50851ecb4de0d54a2b56a76d9e87044b52808b776a44f44cb602962ca6a",
+      "actual_git_clean_blob_oid": "fa50588f5bcec2ebf794cbbe8496c1fd0534a80f",
+      "head_blob_oid": "fa50588f5bcec2ebf794cbbe8496c1fd0534a80f",
+      "head_blob_bytes": 8024,
+      "head_blob_sha256": "2297a50851ecb4de0d54a2b56a76d9e87044b52808b776a44f44cb602962ca6a",
+      "base_blob_oid": "0d2e0e0743dbc0d42d13e58de6a10b541589c925",
+      "base_blob_bytes": 8024,
+      "base_blob_sha256": "1500cdb0fca5076840fe9107da927e8604d5887a8a1bedde5a3faf251b08b7c1",
+      "base_matches_f304_story_source": true
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "raw_bytes": 139916,
+      "raw_sha256": "d3c25f266c2490d7c287d886b384dbd015f9a040a032c5a2a737ccb41f5f92e9",
+      "actual_git_clean_blob_oid": "3b25d23140b17d55ba201480580e5da9a7b4a27b",
+      "head_blob_oid": "3b25d23140b17d55ba201480580e5da9a7b4a27b",
+      "head_blob_bytes": 139916,
+      "head_blob_sha256": "d3c25f266c2490d7c287d886b384dbd015f9a040a032c5a2a737ccb41f5f92e9",
+      "base_blob_oid": "c12885d9464e569b726c163431f64549bc4ed0d0",
+      "base_blob_bytes": 135154,
+      "base_blob_sha256": "2eed8c734be77e5ac8203df1f7e0b2a382c32ca795d443d8facce77be3f1ad41",
+      "base_matches_f304_story_source": true
+    }
+  ],
+  "native_diff": {
+    "bytes": 43708,
+    "sha256": "f2525b95a09da6163434f8ad33361fc1db354d146bf6077e5a38497d63d3d8f7",
+    "embedded_in": "review-input.md",
+    "single_0x20_context_lines": 9
+  },
+  "frozen_dependencies": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-plan/plan.md",
+      "bytes": 12982,
+      "sha256": "8529b93439ae1d52675cd483326ff9383f36126753f8ec67a7a1161f2ca1308d"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-plan/input-binding.json",
+      "bytes": 9016,
+      "sha256": "4c1a9ed35d8027b516bcf6e699f02ca03d7655d4e96a8d8151604bc44747d81b"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-plan/local-checks.json",
+      "bytes": 1885,
+      "sha256": "dc094a25ff8bb0f7de42e58417bd199af164473bc7049673826de35594b1be98"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-plan/original-report.md",
+      "bytes": 7500,
+      "sha256": "6aecbb5c7425f96e54d8372189a50821f6d3393b40f0d1c481a5d3a455487a1d"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-plan/original-attestation.json",
+      "bytes": 13345,
+      "sha256": "56ce1b993c91b00d6a68bd9b611bb558c767092f5a7d736d2e9cd7a6575392f8"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-plan/result.json",
+      "bytes": 974,
+      "sha256": "0540f9ed1e3cd862f613d963e58081cb4fd9f48ca275337a778636dcb4b8f025"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-plan/manifest.json",
+      "bytes": 1305,
+      "sha256": "e01f8d71ef12eee60d2ba93b6a89bacc4b675fb506cba1adcd490cc456c11a79"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-plan-revision-1/plan.md",
+      "bytes": 6409,
+      "sha256": "b375f14d29c899a0288d15b8bf5386bde5d27a3e00e4a0c9d8c97d03010e4350"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-plan-revision-1/input-binding.json",
+      "bytes": 10024,
+      "sha256": "63633bc5d3b9c3749d9f13674cc0f5f14104f1c27fe1ef893f66eae781483421"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-plan-revision-1/local-checks.json",
+      "bytes": 1592,
+      "sha256": "6d63b3cb7c7b0ceccef816d419c34f6fc82533c50dfe4eac55e71b0805adf9f0"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-plan-revision-1/original-report.md",
+      "bytes": 5718,
+      "sha256": "e3739f9cea0556ee8bfeb42a90d31781bccfd2dbd50be2679e9ecd05251fb408"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-plan-revision-1/original-attestation.json",
+      "bytes": 13823,
+      "sha256": "fa0df161c4bde8d971da67f83e442dfa26daeed89503dcc973da4a197f9bd0e3"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-plan-revision-1/result.json",
+      "bytes": 900,
+      "sha256": "246ebbb5cbd0cd3a4268ceab63405a295bb440117c2702a3f7cddec7144daeac"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-plan-revision-1/manifest.json",
+      "bytes": 1328,
+      "sha256": "9f980c5f0c16f4efa073631e68312dee6750a68b371849d8d52c87abbb6dab0c"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-native-status-origin-discriminator-source-allocation.json",
+      "bytes": 3505,
+      "sha256": "e64d0f906325c904921caec9aec3c0c324244a1a07ed1871f40e5f3825f18b3d"
+    }
+  ],
+  "installed_runtime_context": [
+    {
+      "path": "node_modules/.pnpm/pg-protocol@1.15.0/node_modules/pg-protocol/dist/parser.js",
+      "bytes": 13445,
+      "sha256": "7abb711bf087571db432102e1d2fe8321c3176b1191d1f026b97fee86b89b545"
+    },
+    {
+      "path": "node_modules/.pnpm/pg-protocol@1.15.0/node_modules/pg-protocol/dist/index.js",
+      "bytes": 775,
+      "sha256": "e7a99ac02633393d8c3ef16cd6385b8246100d28c838b02420844068429a46c9"
+    },
+    {
+      "path": "node_modules/.pnpm/pg@8.22.0/node_modules/pg/lib/client.js",
+      "bytes": 22776,
+      "sha256": "86cda0e1fda47e03d27dde65f10c7b9d597f7411f77ed853c8d27d5f150978a2"
+    }
+  ],
+  "review_input": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-implementation-review/review-input.md",
+    "bytes": 83063,
+    "sha256": "9851914b0c79d12a10ef255ac2d199896fc33e3b5f0965afb942141e0f3577f9"
+  },
+  "local_checks": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-implementation-review/local-checks.json",
+    "bytes": 4296,
+    "sha256": "796c2c6d897f02b972d56a18724e6ab00067317abe592ffe1b29e3bdc049b1d1"
+  },
+  "schema": "exact11; statusDiscriminator null or status-origin-v1/origin/exact18boolean permissions; no fallback",
+  "preserved_limits": {
+    "producer_report_cap": 1000000,
+    "future_private_observation_cap": 65536,
+    "native_credit": 0,
+    "candidate_interpretation": "future separately allocated qualifier; UNEXECUTED"
+  },
+  "review_route": {
+    "implementation": "Root accepted existing sensitive Sol6.1High bounded author route before activation",
+    "review": "Parent/Root will dispatch fresh distinct context-free High latest-five reviewer after mechanical packet check; author does not dispatch",
+    "root_metadata": "Root-owned mutable state/receipt/report excluded from source commit; no current raw==HEAD assertion for those paths"
+  },
+  "source_index_empty": true,
+  "source_worktree_matches_commit": true,
+  "kernel": {
+    "bytes": 5760,
+    "sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977"
+  },
+  "sro_stops": 98,
+  "reference_count_scope": "All nested physical path/bytes/sha256 artifact dictionaries after fields exist; this binding has no circular self-hash.",
+  "artifact_references": {
+    "occurrences": 20,
+    "unique_paths": 20
+  }
+}
