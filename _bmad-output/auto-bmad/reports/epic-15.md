@@ -4576,3 +4576,39 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** After the metadata clean-tree gate, High author repairs exactly the three admitted paths; meaningful positive/negative controls, distinct targeted High review and fresh normal exact-head five gates/all95 follow.
+
+## Report — 2026-10-21T11:21:47Z (continuing - owner SET correction independently reviewed)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `131a8ce`).
+**Pipeline status:** In progress:15.5 P5; four of six stories landed.
+**Continues:** Source131a8ce9 corrects only the admitted three paths from clean12576d29; native rerun pending.
+
+**Summary:** Focused99 tests passed without failures/skips/cancellations. TypeScript, affected lint and114 SRO references passed. Distinct High latest-delta review passed with no consequential findings and3 reviewer controls. Direct/effective SET and remaining isolation guards preserved; approved kernel/baseline/broad iteration3 retained.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 286h 23m (≈54h 27m AI-run, ≈231h 56m human/idle wait); resumed 137×.
+
+**Stories:**
+1. 15.1-15.4 landed; inherited review_unverified remains true.
+2. 15.5 remains in-review; latest correction needs native validation.
+3. 15.6 remains unstarted.
+
+**Skipped:** (none)
+
+**Epic gate:** Fresh normal exact-head five gates/all95 and separate recovery remain blocking; prior failed startup is not acceptance.
+
+**TEA:** Earlier native verify3183 belongs to the failed checkpoint; latest correction has focused99 coverage.
+
+**Retrospective:** Epic14 October8 accepted-with-open-items authoritative; Epic15 retrospective pending.
+
+**Overrides:** No fourth broad review. Normal retry authorized after targeted review; no shared admission-variable mutation, local resources, deployment/main merge or monitoring resume.
+
+**Open questions:**
+1. Exact failed-backend membership rows/triggering OR term remain unobserved; observed P0001 guard and source-backed reachable defect remain distinguished.
+
+**Deferred work:**
+1. Existing release validation remains deferred, never passed or waived.
+
+**⚠️ Needs human:** (none)
+
+**Next:** Commit owned review/bookkeeping, push reviewed source unchanged, bind fresh normal operation and dispatch once; qualify actual results before delivery.
