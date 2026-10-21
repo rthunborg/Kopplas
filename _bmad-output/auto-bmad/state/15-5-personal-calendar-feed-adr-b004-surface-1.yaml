@@ -9,11 +9,11 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-21T12:19:15Z"
+updated_at: "2026-10-21T12:34:44Z"
 started_at: "2026-10-20T12:18:56Z"
 completed_at: null
-active_seconds: 3572
-timing_anchor: 1792503437
+active_seconds: 86219
+timing_anchor: null
 is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
@@ -26,7 +26,7 @@ selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "High preparation of exact bounded RAM-only one-terminal-archive manual extractor/closed matrix and conditional lifecycle evidence; no acquisition or CI authorized."
+escalation_reason: "Distinct High targeted review of new private manual archive extractor privacy/closed schema/capped transport; no network or execution while approval hold remains."
 routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"High preparation for hashed public-feed tokens, rotation/revocation and tenant/member disclosure boundaries; plan-only before distinctvalidation and ownershipallocation\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct High independent specification validation of actual public-feed token/proof/IP/limiter authorization design and exact ownership/test-key boundaries before anybuild\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"cross_model_layer\",\"profile\":\"diverse_review\",\"role\":\"independent-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -175,6 +175,8 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive exact three-hunk failure-only actual-catalog observer implementation; existing guard/DDL preserved, no fourth broad review and no native/CI effects.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct targeted High review of exact committed three-hunk failure matrix delta plus current-v2 consumer/unexpected-success readiness reconciliation; no fourth broad pass.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"High preparation of exact bounded RAM-only one-terminal-archive manual extractor/closed matrix and conditional lifecycle evidence; no acquisition or CI authorized.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive narrow static assessment of existing canonical UID call-count SQL literal and positive-match semantics; read-only source/primary documentation only during CI approval hold, no execution or source mutation.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct High targeted review of new private manual archive extractor privacy/closed schema/capped transport; no network or execution while approval hold remains.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: "Hashed public tokens, rotation/revocation, externalfeed andcross-tenant abuseprotection requireHigh-riskATDD+automate; lastthreeno traceadvisory"
@@ -184,8 +186,8 @@ completed_phases: [0, 1, 2, 3, 4]
 spec_path: "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\implementation-artifacts\\spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"
 spec_approved: true
 build:
-  status: in-review
-  blocking_condition: null
+  status: blocked
+  blocking_condition: "Automatic approval rejected diagnostic CI handoff; direct human approval of hosted disposable migrations/reset-seed/Auth/Vault/owned JWT writes/cleanup is required. No execution grant, POST or archive GET; c97f9ac5 and UUID18562d27 remain unconsumed."
   followup_review_recommended: false
   review_loop_iteration: 3
   deferred_count: 0
@@ -225,7 +227,8 @@ merge_commit: null
 branch_deleted: false
 open_questions: []
 deferred_work: []
-blockers: []
+blockers:
+  - "Diagnostic CI authorization: Automatic approval rejected diagnostic CI handoff; direct human approval of hosted disposable migrations/reset-seed/Auth/Vault/owned JWT writes/cleanup is required. No execution grant, POST or archive GET; c97f9ac5 and UUID18562d27 remain unconsumed."
 overrides:
   oracle: "Owner2026-10-15 prohibits legacyURLs/browsing; useapprovedrequirements/existingdesignsystem/accessibility andrecordowner-authorizeddefaults, notlegacyobservations."
   ownership: "Own15.5spec/ownedepic15context/preparationonly initially; exactsharedsource/schema/test/resource handoff withCoordinator before overlappingimplementation; no foreigncheckoutwrites or pausedsessionresume"
@@ -1517,7 +1520,7 @@ p5_original_function_default_acl_observation:
   next: "Distinct actual qualification and direct failed-predicate evidence route assessment; no source/SQL/resources/CI effects authorized."
   independent_qualification: "{\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/original-function-default-acl-readonly-qualification.json\", \"bytes\": 12384, \"sha256\": \"1abe739da48cc85b8f31c4415b7cdf7ea90c9f94b5fa8704e4de7150920567c9\"}"
 p5_original_function_direct_evidence:
-  status: TARGETED_HIGH_PASS_CHECKPOINT_PREPARATION
+  status: NEEDS_HUMAN_AUTOMATIC_CI_APPROVAL_REJECTED
   plan: "{\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/original-function-direct-evidence-proposal/proposal.json\", \"bytes\": 11241, \"sha256\": \"9856e25ba8240a2c0a116dcbd11571a4af568fa9893c79c46522b920e145fb48\"}"
   review_admission: "{\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/root-original-function-direct-evidence-code-review-admission.json\", \"bytes\": 1782, \"sha256\": \"52804759b219a5a0da139ae95209041b49e350e825729f1c4eedc9f98a01f117\"}"
   allocation: "{\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/accepted-original-function-direct-evidence-source-allocation.json\", \"bytes\": 2215, \"sha256\": \"dc052ce7e080d91f88c1429a4a15dedf74eea80bcd449568eb3c716a27bad606\"}"
@@ -1535,3 +1538,6 @@ p5_original_function_direct_evidence:
   checkpoint_id: 18562d27-e3e4-4e2f-be69-e2a775b8af93
   ci_effects_allocated: false
   archive_effects_allocated: false
+  ci_allocation_hold: "{\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/direct-matrix-ci-allocation-hold.json\", \"bytes\": 1623, \"sha256\": \"c46884723a501088e67237a9f29647a9979fd888e022560443b7407139bf75ac\"}"
+  uid_count_static_assessment: "{\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/original-function-uid-count-static-assessment.json\", \"bytes\": 5226, \"sha256\": \"5b98039043951fe772d3d27bfe2ee30e1018d6b587a3ff454e70595e266dc149\", \"conclusion\": \"No literal-count predicate defect; fifteen pure controls, native SQL0, hosted condition UNKNOWN.\"}"
+  manual_extractor: "{\"input_admission\": {\"path\": \".env.epic15.mail-runtime/story-15-5-preparation/root-direct-matrix-manual-input-admission.json\", \"bytes\": 1202, \"sha256\": \"af83a1cd2d8a1df6b050c4393e15f4333a0a900d503ae07a227fcb83d754dc0e\"}, \"review\": {\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/root-original-function-matrix-manual-review-admission.json\", \"bytes\": 1228, \"sha256\": \"af9d30a1bd64dd2ba1495c6fcd6aecefd6d6716de25ba164a844abd5ddea991c\"}, \"actual_run_id\": null, \"api_calls\": 0, \"execution_ready\": false, \"status\": \"DISTINCT_HIGH_PASS_EXECUTION_HELD\"}"
