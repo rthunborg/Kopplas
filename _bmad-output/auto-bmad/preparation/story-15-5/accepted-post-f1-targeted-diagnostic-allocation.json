@@ -1,0 +1,16 @@
+{
+  "kind": "ROOT_INDEPENDENTLY_OBSERVED_COMPLETED_COORDINATOR_TWO_REPORT_DIAGNOSTIC_ALLOCATION",
+  "coordinator_thread": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "turn_id": "01a16025-e43c-7e42-8e0a-cbaa6dabeacc",
+  "completed_tool_id": "exec-f2a6702a-be43-4018-928b-05ee3901e3c3",
+  "completed_status": "completed",
+  "observed_turn_status": "completed",
+  "run_id": 39664130401,
+  "attempt": 1,
+  "pushed_head": "ce1943e01b773671e0c2e583ea6b21e56d40e81b",
+  "source_head": "b1b476dee7c936eb4797ce3221bc07b8196a1a4a",
+  "maximum_logical_GETs": 2,
+  "no_retry": true,
+  "allocation_text": "EXPLICITNEWone-shotTARGETEDterminaldiagnostic allocation GRANTED understandingreadonlyevidenceauthority+actualdistinctHighPREGETsourcePASS97b0f5e1d6a6ae15e8208bbbfc2d921a4a1d5348962c1983fe15c8a45a64e750/attc5b03cd4e5838a0734b8781ea14d4c267410a7f6547fc5107045d5a5881b3890/Rootadmission76b1a1787bd0789d27f898e1eb72f95ff9e08d0562d558f857644ac9301025eb. ThisisNEWfinitepurpose/locationdiagnosticallocation, NOTretry/reuseoriginalconsumed5GETgrant. Exactauditedoperator24060SHA560b3accc66323a853b36a57d09fc12c1cc4dbc97059b705c15b79da59b4c559/manifestfe8c36df94f39e4e48905390bec4791b148d4c14659bd971fbb0ec1e1e279b98 ONLY. RootfreshEXCLUSIVEfsyncedcapability/consumedintentbeforeeffects afterlocal74pinnedsource+222Git+ALREADYfrozenactualterminalbindings. BindNORMAL39664130401/attempt1/UUID9565c54d-1bbe-4a32-b647-949c02e6c404/headce1943e01b773671e0c2e583ea6b21e56d40e81b/sourceb1b476de. EXACTTWOdirectZIPGETs ONLY /repos/rthunborg/Kopplas/actions/artifacts/12376717919/zip native-full-integration/full-integration.json/digestcf58b118510d1abd850b671e0e27adc6ef295ba2e7dde07fef78a5967609438a AND /repos/rthunborg/Kopplas/actions/artifacts/12375309772/zip native-general-browser/general-browser.json/digest38adbf04a30432c4f1022f01d6dc169331c8d3260a324a022610a8859dc7cbba. Reusepreviousqualifiedlist/runhead/name/nonexpiryfactsperreviewedfreshness; actualineligible/expired/changedSTOP, no metadataGET/fallback. No list/log/status/run/job/pagination/alternate/retry/CI. Each15s32MiBcompressed128MiBinflate16MiBJSON/capsDURINGstream; rawRAMONLY/validateCRC/path/rawfilename/symlink/duplicate/ratio/schema/EOF/nativeexit/readersjoined/settlement. PersistONLYclosedlocation/errorenum/type/countcandidates EXACTNUDGE004/browser001007010revoke/009flakyattempts;74pinnedsourceallowlistcurrent73+boundednudgetestlines1..497, unknown/locationNOTcause/no arbitrarymessage/stack/DOM/URL/payload. Uncertaintyconsumes/UNKNOWNtruthfulobservedcounts+custody/noopaqueexceptions. DISTINCTHighOFFLINEprojectiontruthauditBEFOREcause/fixclaims, currentNode3222P/fullDB1929P1F9pending52skip/story16P35UNEXECUTED/browser10expected1flaky3unexpected/recovery1P areFAILEDgates/0acceptance, doNOTrelabelunexecutedPASS. No sourceedit/push/CI/variables/provider/localstack/resources/foreigncheckout/E16adoption/mainmerge/deploy. Proceedoncewithinexact2/no repeatedgenericapproval/unchangedpacket.",
+  "normal_acceptance_credit": 0
+}

@@ -1,0 +1,20 @@
+{
+  "Outcome": "PASS_QUALIFIED_STOP — two GETs succeeded; operator stopped1 at OUTPUT_CAP before diagnostic publication.",
+  "Files changed": [
+    "original-report.md",
+    "original-attestation.json",
+    "result.json",
+    "manifest.json"
+  ],
+  "Status": "Finite offline stop audit complete; operation consumed/no retry. Normal acceptance0; development/release false.",
+  "Open questions": [
+    "Discarded diagnostic size/error/location facts remain NULL/UNAVAILABLE, not zero.",
+    "Native toolcompletion is attributed, not independently read raw lineage; backend/key custody remains UNKNOWN."
+  ],
+  "Deferred work": [
+    "Parent separately routes local output-budget assessment. Any correction or new acquisition requires an explicit bounded decision."
+  ],
+  "Blockers": [
+    "No diagnostic published; no application cause/sourcefix/cleanup proof. Existing failed normal gates and35missing cases remain unresolved."
+  ]
+}

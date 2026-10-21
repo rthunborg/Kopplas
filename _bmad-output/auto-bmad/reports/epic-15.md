@@ -5783,3 +5783,35 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Pureoperatorpreparation ->distinctHigh sourceadmission ->Coordinatoractual2GETallocation ->Rootexclusiveactivation ->executeonce ->distincttruth/provenanceaudit ->evidence-supportedfixclaims
+
+## Report — 2026-10-21T20:30:31Z (progress — targeted diagnostic consumed at output cap)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `5488b0d`).
+**Pipeline status:** in-progress —15.5 development gates unmet; no sourcefix yet
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 295h 32m (≈77h 24m AI-run, ≈218h 08m human/idle wait); resumed 173×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:**
+1. BothtargetedartifactGETsnative0/EOF/joined/settled, thenlocaloperatornative1OUTPUT_CAP preventeddiagnosticpublication. CandidatecountsNULL/unavailable not0. Required DB/browser/35unexecuted/custody unchanged; acceptance0.
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Distinctoffline stopaudit + Highlocaloutputbudgetassessment withsynthetics only; no relaunch/newGET/appsourcefix
