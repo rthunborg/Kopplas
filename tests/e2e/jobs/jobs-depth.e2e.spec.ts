@@ -1,5 +1,5 @@
 /**
- * Story 16.1 essential browser contracts E01â€“E04, executable against the production UI.
+ * Story 16.1 essential browser contracts E01–E04, executable against the production UI.
  * Evidence: current JobList/JobDetailView/JobEditDialog, BookingEntry/BookingEditor,
  * booking-actions.ts, shared JobsDepthFixture and the resumed approved 16.1 spec.
  * No browser/service/test is started by importing this file. Every fixture is lazy.
@@ -46,9 +46,9 @@ async function signIn(page: Page, credentials: Credentials): Promise<void> {
   const submit = page.getByRole("button", { name: "Logga in", exact: true });
   await hydrated(submit);
   await page.getByLabel("E-post", { exact: true }).fill(credentials.email);
-  await page.getByLabel("LÃ¶senord", { exact: true }).fill(credentials.password);
+  await page.getByLabel("Lösenord", { exact: true }).fill(credentials.password);
   await submit.click();
-  // Do not require MontÃ¶r to land on a dashboard it may not be entitled to read.
+  // Do not require Montör to land on a dashboard it may not be entitled to read.
   await expect(page).not.toHaveURL(/\/login(?:\?|$)/);
 }
 
@@ -85,7 +85,7 @@ async function saveCard(page: Page, form: Locator, jobId: string, title?: string
 
 async function fillProgressiveCard(form: Locator, f: JobsDepthFixture, title: string): Promise<void> {
   await form.getByRole("textbox", { name: "Titel", exact: true }).fill(title);
-  await form.getByRole("combobox", { name: "AnlÃ¤ggning", exact: true }).selectOption(f.identity.facilityId);
+  await form.getByRole("combobox", { name: "Anläggning", exact: true }).selectOption(f.identity.facilityId);
   await form.getByRole("combobox", { name: "Kontakt", exact: true }).selectOption(f.identity.contactId);
   await form.getByTestId("job-card-planning-toggle").click();
   await form.getByLabel("Planerad start", { exact: true }).fill("2026-10-12");
@@ -95,15 +95,15 @@ async function fillProgressiveCard(form: Locator, f: JobsDepthFixture, title: st
   await form.getByLabel("Planerad restid (minuter)", { exact: true }).fill("30");
   await form.getByLabel("Antal personer", { exact: true }).fill("2");
   await form.getByLabel("Tidigast", { exact: true }).fill("2026-10-12");
-  await form.getByLabel("Ã–nskat datum", { exact: true }).fill("2026-10-13");
+  await form.getByLabel("Önskat datum", { exact: true }).fill("2026-10-13");
   await form.getByLabel("Senast", { exact: true }).fill("2026-10-14");
-  await form.getByLabel("Kraven Ã¤r kÃ¤nda", {exact:true}).check();
+  await form.getByLabel("Kraven är kända", {exact:true}).check();
   await form.getByTestId(`job-required-role-${f.roleId}`).check();
-  await form.getByLabel("TilltrÃ¤destiderna Ã¤r kÃ¤nda", {exact:true}).check();
-  await form.getByRole("button", { name: "LÃ¤gg till tidsintervall", exact: true }).click();
+  await form.getByLabel("Tillträdestiderna är kända", {exact:true}).check();
+  await form.getByRole("button", { name: "Lägg till tidsintervall", exact: true }).click();
   const window = form.getByTestId("job-access-window-row");
   await expect(window).toHaveCount(1);
-  await window.getByLabel("FrÃ¥n", { exact: true }).fill("2026-10-12T08:00");
+  await window.getByLabel("Från", { exact: true }).fill("2026-10-12T08:00");
   await window.getByLabel("Till", { exact: true }).fill("2026-10-12T16:00");
   await form.getByTestId(`job-dependency-${f.jobs.prerequisite.id}`).check();
 }
@@ -126,7 +126,7 @@ test.describe("Story 16.1 essential Jobs depth journeys", () => {
     try {
       await page.setViewportSize({ width: 360, height: 640 });
       await signIn(page, f.credentials.assignedWorker);
-      const menuButton = page.getByRole("button", { name: "Ã–ppna meny", exact: true });
+      const menuButton = page.getByRole("button", { name: "Öppna meny", exact: true });
       await hydrated(menuButton);
       await menuButton.click();
       await page.getByRole("dialog", { name: "Huvudmeny", exact: true })
@@ -143,11 +143,11 @@ test.describe("Story 16.1 essential Jobs depth journeys", () => {
       }
       // An accepted source withheld by quote ACL is not a standalone job.
       const acceptedRow=rows.filter({has:page.locator(`a[href="/jobs/${f.jobs.acceptedAssigned.id}"]`)});
-      await expect(acceptedRow).toContainText("KÃ¤lloffert inte tillgÃ¤nglig");
+      await expect(acceptedRow).toContainText("Källoffert inte tillgänglig");
       const sourceFilter=page.getByTestId("job-filter-source-quote");
       await hydrated(sourceFilter);
       await expect(sourceFilter.locator("option")).toHaveCount(2); // all + genuine standalone; no quote identity grant
-      await sourceFilter.selectOption({label:"Utan kÃ¤lloffert"});
+      await sourceFilter.selectOption({label:"Utan källoffert"});
       await expect(rows).toHaveCount(3);
       await expect(acceptedRow).toHaveCount(0);
       await sourceFilter.selectOption("");
@@ -177,7 +177,7 @@ test.describe("Story 16.1 essential Jobs depth journeys", () => {
       expect(payload).not.toMatch(/acceptedPriceOre|sourceSentTotalOre|accepted_price_ore|source_sent_total_ore/);
       expect(payload).not.toMatch(/costRateOre|sellRateOre|cost_rate_ore|sell_rate_ore/);
       // Proposed explicit entitlement descriptor; absence of numbers alone is insufficient.
-      await expect(page.getByTestId("job-economy-entitlement")).toHaveText(/saknar behÃ¶righet|inte tillgÃ¤nglig/i);
+      await expect(page.getByTestId("job-economy-entitlement")).toHaveText(/saknar behörighet|inte tillgänglig/i);
     } finally { await f.dispose(); }
   });
 
@@ -211,7 +211,7 @@ test.describe("Story 16.1 essential Jobs depth journeys", () => {
         await expect(form.getByTestId("job-card-unsent")).toBeVisible();
         await expect(page.getByTestId("job-card-save-status")).toHaveCount(0);
         await expect(form.getByRole("textbox", { name: "Titel", exact: true })).toHaveValue(title);
-        await expect(form.getByRole("combobox", { name: "AnlÃ¤ggning", exact: true })).toHaveValue(f.identity.facilityId);
+        await expect(form.getByRole("combobox", { name: "Anläggning", exact: true })).toHaveValue(f.identity.facilityId);
         await expect(form.getByLabel("Uppskattad tid (minuter)", { exact: true })).toHaveValue("120");
         await expect(form.getByTestId(`job-required-role-${f.roleId}`)).toBeChecked();
         await expect(form.getByTestId("job-access-window-row").getByLabel("Till", { exact: true })).toHaveValue("2026-10-12T16:00");
@@ -226,7 +226,7 @@ test.describe("Story 16.1 essential Jobs depth journeys", () => {
         const firstSave = await saved;
         expect(firstSave.ok()).toBe(true);
         expect(JSON.parse(firstSave.request().postData() ?? "null")).toEqual(JSON.parse(failedRequest.postData() ?? "null"));
-        await expect(page.getByTestId("job-card-save-status")).toHaveText("Jobbet Ã¤r sparat.");
+        await expect(page.getByTestId("job-card-save-status")).toHaveText("Jobbet är sparat.");
         await expect(page.getByRole("heading", { name: title, exact: true })).toBeVisible();
         const after = await f.snapshot();
         expect(after.jobs.find((row) => row.id === f.jobs.editable.id)).toMatchObject({
@@ -245,10 +245,10 @@ test.describe("Story 16.1 essential Jobs depth journeys", () => {
         await form.getByRole("button", { name: "Ta bort tidsintervall 1", exact: true }).click();
         await expect(form.getByTestId("job-access-window-row")).toHaveCount(0);
         await expect(form.getByTestId("job-card-save")).toBeEnabled();
-        await form.getByRole("button", { name: "LÃ¤gg till tidsintervall", exact: true }).click();
+        await form.getByRole("button", { name: "Lägg till tidsintervall", exact: true }).click();
         const replacementWindow = form.getByTestId("job-access-window-row");
         await expect(replacementWindow).toHaveCount(1);
-        await replacementWindow.getByLabel("FrÃ¥n", { exact: true }).fill("2026-10-12T08:00");
+        await replacementWindow.getByLabel("Från", { exact: true }).fill("2026-10-12T08:00");
         await replacementWindow.getByLabel("Till", { exact: true }).fill("2026-10-12T16:00");
         const secondTitle = `${title} second edit`;
         await form.getByRole("textbox", { name: "Titel", exact: true }).fill(secondTitle);
@@ -262,7 +262,7 @@ test.describe("Story 16.1 essential Jobs depth journeys", () => {
         const firstInput = JSON.parse(firstSave.request().postData() ?? "null")[0] as { commandId: string };
         const secondInput = JSON.parse(secondSave.request().postData() ?? "null")[0] as { commandId: string };
         expect(secondInput.commandId).not.toBe(firstInput.commandId);
-        await expect(form.getByTestId("job-card-save-status")).toHaveText("Jobbet Ã¤r sparat.");
+        await expect(form.getByTestId("job-card-save-status")).toHaveText("Jobbet är sparat.");
         await expect(page.getByRole("heading", { name: secondTitle, exact: true })).toBeVisible();
         const afterSecond = await f.snapshot();
         expect(afterSecond.jobs.find((row) => row.id === f.jobs.editable.id)).toMatchObject({
@@ -290,11 +290,11 @@ test.describe("Story 16.1 essential Jobs depth journeys", () => {
         await expect(reloaded.getByLabel("Antal personer", { exact: true })).toHaveValue("2");
         await expect(reloaded.getByLabel("Prioritet", { exact: true })).toHaveValue("high");
         await expect(reloaded.getByLabel("Tidigast", { exact: true })).toHaveValue("2026-10-12");
-        await expect(reloaded.getByLabel("Ã–nskat datum", { exact: true })).toHaveValue("2026-10-13");
+        await expect(reloaded.getByLabel("Önskat datum", { exact: true })).toHaveValue("2026-10-13");
         await expect(reloaded.getByLabel("Senast", { exact: true })).toHaveValue("2026-10-14");
         await expect(reloaded.getByTestId(`job-required-role-${f.roleId}`)).toBeChecked();
         await expect(reloaded.getByTestId(`job-dependency-${f.jobs.prerequisite.id}`)).toBeChecked();
-        await expect(reloaded.getByTestId("job-access-window-row").getByLabel("FrÃ¥n", { exact: true })).toHaveValue("2026-10-12T08:00");
+        await expect(reloaded.getByTestId("job-access-window-row").getByLabel("Från", { exact: true })).toHaveValue("2026-10-12T08:00");
         expect(await f.snapshot()).toEqual(afterSecond);
       } finally { await f.dispose(); }
     });
@@ -323,7 +323,7 @@ test.describe("Story 16.1 essential Jobs depth journeys", () => {
       expect((await preview).ok()).toBe(true);
       const panel = sheet.getByTestId("booking-conflict-panel");
       await expect(panel).toContainText("Kompetens saknas");
-      await expect(panel).toContainText("UtanfÃ¶r tilltrÃ¤destid");
+      await expect(panel).toContainText("Utanför tillträdestid");
       await sheet.getByTestId("booking-review-current-warnings").check();
       await sheet.getByTestId("booking-override-reason").fill("Reviewed original job requirements and access interval");
       // Real normal-JWT checked card command changes facts while this browser retains its receipt.
@@ -346,7 +346,7 @@ test.describe("Story 16.1 essential Jobs depth journeys", () => {
       await expect(sheet.getByTestId("booking-review-current-warnings")).not.toBeChecked();
       await expect(sheet.getByTestId("booking-override-reason")).toHaveValue("");
       expect(await f.snapshot()).toEqual(beforeStaleSave); // includes outcome/conflicts/audit, not only bookings
-      await expect(panel).toContainText("UtanfÃ¶r tilltrÃ¤destid");
+      await expect(panel).toContainText("Utanför tillträdestid");
       await sheet.getByTestId("booking-review-current-warnings").check();
       await sheet.getByTestId("booking-override-reason").fill("Reviewed current narrower access interval");
       const save = page.waitForResponse((reply) => bookingAction(reply, "save", description));
@@ -382,7 +382,7 @@ test.describe("Story 16.1 essential Jobs depth journeys", () => {
       expect((await invokeJobCard(f.fx.adminClient, "update", await loadCardInput(f))).ok).toBe(true);
       await signIn(page, f.credentials.manager);
       await page.goto(`/jobs/${f.jobs.editable.id}`);
-      await expect(page.getByTestId("job-dependency-unknown")).toContainText(/okÃ¤nd|saknas/i);
+      await expect(page.getByTestId("job-dependency-unknown")).toContainText(/okänd|saknas/i);
       await expect(page.getByTestId("job-dependency-warning")).toHaveCount(0);
       let form = await openEdit(page, f.jobs.editable.id);
       await form.getByLabel("Planerat startdatum", { exact: true }).fill("2026-10-12");
@@ -393,8 +393,8 @@ test.describe("Story 16.1 essential Jobs depth journeys", () => {
       await page.goto(`/jobs/${f.jobs.editable.id}`);
       await page.reload();
       const warning = page.getByTestId("job-dependency-warning");
-      await expect(warning).toContainText(/fÃ¶re|beroende|slut/i);
-      await expect(warning.getByRole("link", { name: "Ã–ppna fÃ¶regÃ¥ende jobb", exact: true }))
+      await expect(warning).toContainText(/före|beroende|slut/i);
+      await expect(warning.getByRole("link", { name: "Öppna föregående jobb", exact: true }))
         .toHaveAttribute("href", `/jobs/${f.jobs.prerequisite.id}`);
       await expect(page.getByTestId("job-dependency-unknown")).toHaveCount(0);
       form = await openEdit(page, f.jobs.prerequisite.id);
@@ -441,7 +441,7 @@ test("[P0] checkpoint stale full-card draft is refused, retained, and only repla
     await expect(current.getByLabel("Uppskattad tid (minuter)",{exact:true})).toHaveValue("180");
     await expect(current.getByTestId(`job-required-role-${f.roleId}`)).not.toBeChecked();
     await expect(current.getByTestId(`job-dependency-${f.jobs.prerequisite.id}`)).not.toBeChecked();
-    await expect(current.getByTestId("job-access-window-row").getByLabel("FrÃ¥n",{exact:true})).toHaveValue("2026-10-12T09:00");
+    await expect(current.getByTestId("job-access-window-row").getByLabel("Från",{exact:true})).toHaveValue("2026-10-12T09:00");
     await current.getByRole("textbox",{name:"Titel",exact:true}).fill(`Reviewed ${f.jobs.editable.id}`);
     await current.getByTestId("job-card-save").click();
     await expect(page.getByTestId("job-card-save-status")).toBeVisible();
@@ -477,7 +477,7 @@ test("[P0] external follow-up selected tenant scopes Mine/all/deep links and ent
       await expect(filter.locator(`option[value="${source.quote_id}"]`)).toHaveText(`Offert #${source.quote_number}`);
       await filter.selectOption(source.quote_id);
       await expect(rows).toHaveCount(1);await expect(row).toBeVisible();
-      await filter.selectOption({label:"Utan kÃ¤lloffert"});await expect(row).toHaveCount(0);
+      await filter.selectOption({label:"Utan källoffert"});await expect(row).toHaveCount(0);
     }
     const denied=await page.goto(`/jobs/${f.jobs.foreign.id}`);
     expect(denied?.status()).toBe(404);

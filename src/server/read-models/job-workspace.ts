@@ -45,7 +45,7 @@ export type JobWorkspace = {
 };
 export type JobWorkspaceReadResult = {readonly workspace: JobWorkspace | null; readonly error: string | null};
 type Client = Awaited<ReturnType<typeof createSupabaseServerClient>>;
-const FAILED = "Jobbet kunde inte hÃ¤mtas. FÃ¶rsÃ¶k igen.";
+const FAILED = "Jobbet kunde inte hämtas. Försök igen.";
 /** Root admission first; every subordinate reader retains its own current JWT/RLS authority. */
 export async function readJobWorkspace(injectedClient: Client | undefined, jobId: string, query: {tab?: string; workOrder?: string} = {}): Promise<JobWorkspaceReadResult> {
   try {
