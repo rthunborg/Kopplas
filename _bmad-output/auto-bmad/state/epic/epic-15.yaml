@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-21T16:00:00Z"
+updated_at: "2026-10-21T16:15:03Z"
 started_at: "2026-10-09T12:57:49Z"
 completed_at: null
 active_seconds: 278674
@@ -26,7 +26,7 @@ selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Independent High validation of source-only grantor defect and bounded owner-context reconciliation proposal in unapplied111, preserving ACL guard and applied predecessor; no source/runtime effects."
+escalation_reason: "Sensitive exactfive source implementation of independently validated owner-context ACL reconciliation in conditionally cleared unapplied111. No runtime effects; full strict guards retained."
 routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary epic test planning; sensitive implementation/review scope routed explicitly High\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary story test-risk classification\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_triage\",\"profile\":\"light\",\"role\":\"test-risk-triage\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -256,6 +256,9 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct High offline qualification of actual once-acquired closed guard matrix; sensitive migration ACL predicate observations require provenance and causal-limit audit before source assessment.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Bounded offline source-comparable ACL assessment after independently qualified actual false ACL predicates; test one precise immutable-source/engine assumption without runtime effects, guard edits or retry.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Independent High validation of source-only grantor defect and bounded owner-context reconciliation proposal in unapplied111, preserving ACL guard and applied predecessor; no source/runtime effects.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Author refinement of independently validated conditional grantor repair: exact canonical ACL/grantor/grant-option allowlist, all8 preflight order and ordinary native regression placement before source allocation.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Targeted independent validation of mandatory owner-ACL repair refinements: exact finite source-comparable ACL sets, all8 preflight ordering and ordinary native regression effect scope before allocation.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive exactfive source implementation of independently validated owner-context ACL reconciliation in conditionally cleared unapplied111. No runtime effects; full strict guards retained.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: null
 tea_selected: []
 tea_rationale: null
@@ -4080,7 +4083,7 @@ p5_original_function_default_acl_observation:
   next: "Distinct actual qualification and direct failed-predicate evidence route assessment; no source/SQL/resources/CI effects authorized."
   independent_qualification: "{\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/original-function-default-acl-readonly-qualification.json\", \"bytes\": 12384, \"sha256\": \"1abe739da48cc85b8f31c4415b7cdf7ea90c9f94b5fa8704e4de7150920567c9\"}"
 p5_original_function_direct_evidence:
-  status: QUALIFIED_ACL_REFUSAL_BOUNDED_SOURCE_ASSESSMENT
+  status: OWNER_ACL_RECONCILIATION_EXACT_SOURCE_ALLOCATED
   plan: "{\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/original-function-direct-evidence-proposal/proposal.json\", \"bytes\": 11241, \"sha256\": \"9856e25ba8240a2c0a116dcbd11571a4af568fa9893c79c46522b920e145fb48\"}"
   review_admission: "{\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/root-original-function-direct-evidence-code-review-admission.json\", \"bytes\": 1782, \"sha256\": \"52804759b219a5a0da139ae95209041b49e350e825729f1c4eedc9f98a01f117\"}"
   allocation: "{\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/accepted-original-function-direct-evidence-source-allocation.json\", \"bytes\": 2215, \"sha256\": \"dc052ce7e080d91f88c1429a4a15dedf74eea80bcd449568eb3c716a27bad606\"}"
@@ -4111,3 +4114,9 @@ p5_original_function_direct_evidence:
   checkpoint_head: c97f9ac509e642cb7337b8fcd2deaad90540db1c
   terminal_job_facts: "{\"path\": \".env.epic15.mail-runtime/story-15-5-preparation/root-c97f9ac5-terminal-job-facts.json\", \"bytes\": 8313, \"sha256\": \"0da10d845a11f68c3007920101d79b9686509d1bf4222b3163e174babfc7e076\"}"
   backend_cause: UNPROVEN
+  acl_source_assessment: "{\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/original-function-acl-source-assessment.json\", \"bytes\": 10552, \"sha256\": \"b9cf4545a2b229eca82fcc4a454306b403ca48606741e31d682cf00a7d73e863\"}"
+  known_adoption_check: "{\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/original-function-acl-known-adoption-check.json\", \"bytes\": 1571, \"sha256\": \"c994f4f7b47dd97ff41f53d951e41ed23b24bcd1449098969f44e03d82e6f728\"}"
+  source_edit_authorized: true
+  runtime_effects_authorized: false
+  acl_source_review_admission: "{\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/root-original-function-acl-source-assessment-review-admission.json\", \"bytes\": 1359, \"sha256\": \"f01fb9c236e70091a8da9a742738b64f391ee3cb711e82ec588accf00309085c\"}"
+  owner_acl_reconciliation: "{\"proposal\": {\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/original-function-owner-acl-reconciliation-proposal.json\", \"bytes\": 26010, \"sha256\": \"ec7e512c7689ca17ef48ae661f01ef36b6069980233bdfc2672a8c79e0de5b79\"}, \"proposal_admission\": {\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/root-original-function-owner-acl-reconciliation-proposal-admission.json\", \"bytes\": 948, \"sha256\": \"515805954b062e7d38a7660c21b8b2f88da4c019fd8ef89f4d6f2ef8448fa3d8\"}, \"validation\": {\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/original-function-owner-acl-reconciliation-validation.json\", \"bytes\": 11082, \"sha256\": \"bc5dedbbd6c1509ac7355c3e4312d779a4129e27082641ce4a2ba2759d1ec3bd\"}, \"validation_admission\": {\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/root-original-function-owner-acl-reconciliation-validation-admission.json\", \"bytes\": 1066, \"sha256\": \"e97a5c28741453a02ff1b8e61bf6c731d82637d581af76496330b5ef5f6da9e9\"}, \"source_edit_authorized\": true, \"runtime_effects_authorized\": false, \"normal_acceptance_credit\": 0, \"allocation\": {\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/accepted-original-function-owner-acl-source-allocation.json\", \"bytes\": 2899, \"sha256\": \"f577b996e02755eb51d7536dbe903552a67b67efbdb18551ba2e08782305fb9a\"}}"

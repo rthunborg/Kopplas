@@ -1,0 +1,21 @@
+{
+  "schema": "root-owner-acl-reconciliation-proposal-admission-v1",
+  "proposal": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-owner-acl-reconciliation-proposal.json",
+    "bytes": 26010,
+    "sha256": "ec7e512c7689ca17ef48ae661f01ef36b6069980233bdfc2672a8c79e0de5b79"
+  },
+  "actual_source_raw_head_and_clean_bindings_verified": 6,
+  "actual_prior_review_refs_verified": 4,
+  "exact_candidate_paths": [
+    "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+    "tests/support/calendar-feed-atdd.ts",
+    "tests/integration/rls/calendar-feed.rls.test.ts",
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"
+  ],
+  "source_edit_authorized": false,
+  "runtime_effects_authorized": false,
+  "independent_refinement_validation": "PENDING",
+  "normal_acceptance_credit": 0
+}

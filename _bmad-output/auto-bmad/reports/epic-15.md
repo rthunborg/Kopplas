@@ -4882,3 +4882,105 @@ No archive ran this resume.
 1. None during current offline qualification. No further remote effects or source relaxation admitted.
 
 **Next:** Qualify actual closed matrix independently; preserve ACL-drift stop unless actual source/primary semantics establish a specific invalid assumption. Do not add another observer or opaque retry.
+
+## Report — 2026-10-21T16:03:55Z (15.5 source-comparable ACL prerequisite assessment)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `8d7b5c1`).
+**Pipeline status:** in-progress; 15.5 P5 active; four of six landed
+**Continues:** Independent High source-assessment and repair-plan validation; no source or runtime mutation assigned.
+
+**Summary:** Actual closed matrix independently qualified,38rawrefs/18checkpointGit rechecked. Source High assessment establishes a conditional reachable grantor defect, not exact hosted ACL cause.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 291h 06m (≈77h 24m AI-run, ≈213h 41m human/idle wait); resumed 146×.
+
+**Stories:**
+1. Ownership transfer precedes intended ACL statements while the migration actor has SET authority without inherited owner privileges; ordinary PUBLIC execution without independent grant option can leave those statements ineffective under PostgreSQL17. Guard remains valid.
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** Earlier predecessor migration immutable. Candidate reconciliation only in cleared-unapplied111, subject to reviewed exact scope and allocation. No guard relaxation or normal retry.
+
+**Open questions:**
+1. Exact hosted grant identities/cause remain unobserved. Independent validation must qualify canonical target proof before privilege changes, all8transferred-owner functions, ordinary-grantor regression and transactional safety.
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:**
+1. None for authorized offline validation. Source/runtime allocations remain separate and ungranted.
+
+**Next:** Validate exact plan, coordinate refreshed migration/file ownership and application evidence, then assign only a concrete safe repair if admitted.
+
+## Report — 2026-10-21T16:14:34Z (15.5 owner-context ACL repair plan validated)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `8d7b5c1`).
+**Pipeline status:** in-progress; 15.5 P5 active; four of six stories landed
+**Continues:** Await exact source allocation and known111 application clearance before implementation.
+
+**Summary:** Conditional source grantor defect independently valid; refined26010B proposal ec7e512c7689ca17ef48ae661f01ef36b6069980233bdfc2672a8c79e0de5b79 independently PASS_PLAN_ONLY11082B/bc5dedbbd6c1509ac7355c3e4312d779a4129e27082641ce4a2ba2759d1ec3bd.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 291h 16m (≈77h 24m AI-run, ≈213h 52m human/idle wait); resumed 147×.
+
+**Stories:**
+1. All8canonical function definitions/shape/owner and finite legacy ACL/grantor/non-grantability sets must pass before mutation. Unknown entries fail SOURCE_ACL_NOT_COMPARABLE. Existing SET authority enables exact owner-context ACL reconciliation, actor restoration, stablemetadata/fulloriginal3guard assertions.
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** Exactly five candidate paths; earlier predecessor immutable; any successful111application freezes source and requires forward coordination. No guard relaxation. Three broad review rounds remain exhausted; future change review targeted only.
+
+**Open questions:**
+1. Known-owner clearance and source allocation pending; global adoption and exact hosted grant identities/cause remain UNKNOWN. No effect authority follows from plan validation.
+
+**Deferred work:**
+1. Ordinary-grantor native regression, current111 application, fullDB/RLS/normal95/recovery and source independent review remain required; normalcredit0.
+
+**⚠️ Needs human:**
+1. None for currently requested bounded allocation within owner-approved work.
+
+**Next:** Record actual Coordinator allocation, checkpoint Rootmetadata, assign exactfivepaths to High author for implementation/offlinechecks only. Runtime allocation follows source independentreview.
+
+## Report — 2026-10-21T16:15:03Z (15.5 exact five-path owner ACL source allocation)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `8d7b5c1`).
+**Pipeline status:** in-progress; 15.5 P5 active
+**Continues:** High source author implementation after Root metadata checkpoint; source-only scope.
+
+**Summary:** Completed Coordinator grant exec-0160bbf2-7f93-4004-8351-7f3184b2be49 independently read; five paths allocated under refined independently validated proposal.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 291h 17m (≈77h 24m AI-run, ≈213h 52m human/idle wait); resumed 148×.
+
+**Stories:**
+1. Conditional known111edit clearance accepted; global othersUNKNOWN. Any actual successful111application freezes source; predecessor immutable. All8 source-comparability checks precede permission mutation; exact owner-context reconciliation preserves fullguards.
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** No localSQL/native/resource/CI/API/rolegrant/runtimeeffects. Ordinary-grantor regression authored only until separate reviewed allocation.
+
+**Open questions:**
+1. Hosted grant identities/cause remain unobserved. Source fix does not itself establish normal acceptance.
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Implement exact5paths, focusedofflinechecks and author SRO/kernel honesty; Root commit then distinct targetedHigh source review before any native run.
