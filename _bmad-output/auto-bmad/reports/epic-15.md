@@ -6284,3 +6284,34 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Minimal integrated current-source readiness using unchanged reviewed collection algorithms; fresh separately coordinated checkpoint after readiness. No deployment.
+
+## Report — 2026-10-21T23:06:23Z (in progress — integrated source ready for coordinated normal checkpoint)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `af3186f`).
+**Pipeline status:** 15.5 P5 active. Source1de4722 includes exactE16integration and independent encodingclosure;75bindings/116immutableSQL/11smokeunion qualified. Nativeacceptance0; priorfailedrun and custodyUNKNOWN retained.
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 298h 08m (≈77h 24m AI-run, ≈220h 44m human/idle wait); resumed 189×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Coordinate one exact reviewed checkpoint: freshproviderqualification, oneFFpush and oneNORMALdispatcher; no variablemutation/artifactreads/deployment. Freshterminalbindings and evidence remain later gates.
