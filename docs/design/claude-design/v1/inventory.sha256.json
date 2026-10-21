@@ -1,0 +1,1112 @@
+[
+  {
+    "path": "handoff/_ds/koppla-design-system-4b46f26a-fdce-415f-b082-d547dd01ae37/_adherence.oxlintrc.json",
+    "bytes": 24620,
+    "sha256": "6dc0926750e02977152fc62999966414a1037d75af9453a76fbba35ec7c0b3c8"
+  },
+  {
+    "path": "handoff/_ds/koppla-design-system-4b46f26a-fdce-415f-b082-d547dd01ae37/_ds_bundle.js",
+    "bytes": 143643,
+    "sha256": "961d7bc7a76d4a5b8194e795289b9500dbec2bab949c8476f062b1d7ea2b70bf"
+  },
+  {
+    "path": "handoff/_ds/koppla-design-system-4b46f26a-fdce-415f-b082-d547dd01ae37/_ds_manifest.json",
+    "bytes": 27631,
+    "sha256": "a72a8b7b5cc0fd6a3c17330566a815b50bbeafe61c5d2aaee2ddd71fbcce3bbd"
+  },
+  {
+    "path": "handoff/_ds/koppla-design-system-4b46f26a-fdce-415f-b082-d547dd01ae37/assets/fonts/Inter-Italic-Variable.ttf",
+    "bytes": 904532,
+    "sha256": "6136f73372fedc37b80fd1a8ec3e21734073ff17376f3672718f186779672e7a"
+  },
+  {
+    "path": "handoff/_ds/koppla-design-system-4b46f26a-fdce-415f-b082-d547dd01ae37/assets/fonts/Inter-Variable.ttf",
+    "bytes": 874708,
+    "sha256": "0be2399ea925f1f83ff974764761da9860ec50742ed29a5d4c1ffd0c5c7ac3a8"
+  },
+  {
+    "path": "handoff/_ds/koppla-design-system-4b46f26a-fdce-415f-b082-d547dd01ae37/readme.md",
+    "bytes": 16107,
+    "sha256": "0f984154b2145e12b1d3ef9ff4f8c4ec1ccbe885aaa96b332bb659d3f05c2119"
+  },
+  {
+    "path": "handoff/_ds/koppla-design-system-4b46f26a-fdce-415f-b082-d547dd01ae37/styles.css",
+    "bytes": 277,
+    "sha256": "5e28a2780e322dd88e3739816917d6879e56ec6d3fd4f57d6852600c27c556d3"
+  },
+  {
+    "path": "handoff/_ds/koppla-design-system-4b46f26a-fdce-415f-b082-d547dd01ae37/tokens/base.css",
+    "bytes": 1049,
+    "sha256": "b11d64dc9d339ebdf19a302a4b67a6b33b493d45e0ec391003bf87aacbcc7e0f"
+  },
+  {
+    "path": "handoff/_ds/koppla-design-system-4b46f26a-fdce-415f-b082-d547dd01ae37/tokens/colors.css",
+    "bytes": 3024,
+    "sha256": "f91d13a8e1e04734dd91a1a933e6ad00491ed3c5bcdc5d5021ab7712f12b5da7"
+  },
+  {
+    "path": "handoff/_ds/koppla-design-system-4b46f26a-fdce-415f-b082-d547dd01ae37/tokens/elevation.css",
+    "bytes": 481,
+    "sha256": "8b0794a14ad2ef20cf11c29d834c9ef9d833231bb906e944fd92c4405b48b4d4"
+  },
+  {
+    "path": "handoff/_ds/koppla-design-system-4b46f26a-fdce-415f-b082-d547dd01ae37/tokens/fonts.css",
+    "bytes": 371,
+    "sha256": "ca62f2a6a6451774c6b5aa969bca11d6f7b63e6148c0ca0bdbb0a6c399d96391"
+  },
+  {
+    "path": "handoff/_ds/koppla-design-system-4b46f26a-fdce-415f-b082-d547dd01ae37/tokens/motion.css",
+    "bytes": 813,
+    "sha256": "342df561f9f934f12b3e71687afaedd184913ae5ef932e3f4c98e6c62297b2ad"
+  },
+  {
+    "path": "handoff/_ds/koppla-design-system-4b46f26a-fdce-415f-b082-d547dd01ae37/tokens/radius.css",
+    "bytes": 233,
+    "sha256": "5f2e9a755db99bfa777d725aa36e437efe6455a00aa413d4e2d2efea0786125f"
+  },
+  {
+    "path": "handoff/_ds/koppla-design-system-4b46f26a-fdce-415f-b082-d547dd01ae37/tokens/spacing.css",
+    "bytes": 461,
+    "sha256": "0f37da04f8a3ba6ddd19a1de41d153e162b9f526920ce27c275590873614b64e"
+  },
+  {
+    "path": "handoff/_ds/koppla-design-system-4b46f26a-fdce-415f-b082-d547dd01ae37/tokens/typography.css",
+    "bytes": 1225,
+    "sha256": "9ce86298e8d346522a7ba1d67da3ff5ba856d689946bbacb6d63dff05513b577"
+  },
+  {
+    "path": "handoff/Arkitektur -internt-.dc.html",
+    "bytes": 18510,
+    "sha256": "4cae668c531f695be220fd49e79d4e399d6794987dc48be7bd72ddbbe4f60ccb"
+  },
+  {
+    "path": "handoff/design-system-source/_adherence.oxlintrc.json",
+    "bytes": 24620,
+    "sha256": "6dc0926750e02977152fc62999966414a1037d75af9453a76fbba35ec7c0b3c8"
+  },
+  {
+    "path": "handoff/design-system-source/_ds_bundle.js",
+    "bytes": 143643,
+    "sha256": "961d7bc7a76d4a5b8194e795289b9500dbec2bab949c8476f062b1d7ea2b70bf"
+  },
+  {
+    "path": "handoff/design-system-source/_ds_manifest.json",
+    "bytes": 27631,
+    "sha256": "a72a8b7b5cc0fd6a3c17330566a815b50bbeafe61c5d2aaee2ddd71fbcce3bbd"
+  },
+  {
+    "path": "handoff/design-system-source/assets/fonts/Inter-Italic-Variable.ttf",
+    "bytes": 904532,
+    "sha256": "6136f73372fedc37b80fd1a8ec3e21734073ff17376f3672718f186779672e7a"
+  },
+  {
+    "path": "handoff/design-system-source/assets/fonts/Inter-Variable.ttf",
+    "bytes": 874708,
+    "sha256": "0be2399ea925f1f83ff974764761da9860ec50742ed29a5d4c1ffd0c5c7ac3a8"
+  },
+  {
+    "path": "handoff/design-system-source/assets/README.md",
+    "bytes": 859,
+    "sha256": "a4d5f30b385e9e34a3afb749f6c6ff8b337c2fc6c78b8365feb5291214998e1a"
+  },
+  {
+    "path": "handoff/design-system-source/components/core/Badge.d.ts",
+    "bytes": 278,
+    "sha256": "62cfd08e01a8d00824af91783e68b9d6303308e10adbbf2c2cac0f35807d9837"
+  },
+  {
+    "path": "handoff/design-system-source/components/core/Badge.jsx",
+    "bytes": 996,
+    "sha256": "0c87b780646fd66bec092863c7e284a4f7eb8d6bcca0938b7a8c68918d974359"
+  },
+  {
+    "path": "handoff/design-system-source/components/core/Badge.prompt.md",
+    "bytes": 232,
+    "sha256": "26ea562a1952647bd7da1f13b4dac0ee23cdb7c0ea58b92bf5b76d64a5d3bc07"
+  },
+  {
+    "path": "handoff/design-system-source/components/core/Button.d.ts",
+    "bytes": 785,
+    "sha256": "a7a70423f3b1620305f03b3cd8955736ce54dc1b3e6b05d55d0be518dfb0afc5"
+  },
+  {
+    "path": "handoff/design-system-source/components/core/Button.jsx",
+    "bytes": 2691,
+    "sha256": "b8d7a5dd78248131cbd0614a6e2dda4584f7071a4217a44638160f08d33bf6df"
+  },
+  {
+    "path": "handoff/design-system-source/components/core/Button.prompt.md",
+    "bytes": 555,
+    "sha256": "2efab744a3f563441adacc65e9eb9791f9727fd399948c78a131dd24dfff63b9"
+  },
+  {
+    "path": "handoff/design-system-source/components/core/Card.d.ts",
+    "bytes": 653,
+    "sha256": "4fbccd46002d01a7733e08ca1d707e30a34d992dfece0c167981e954fbd59179"
+  },
+  {
+    "path": "handoff/design-system-source/components/core/Card.jsx",
+    "bytes": 1172,
+    "sha256": "176216c0e6da97624344eeb374ce093f82763fedb0ad303a524af5896cdea62d"
+  },
+  {
+    "path": "handoff/design-system-source/components/core/Card.prompt.md",
+    "bytes": 277,
+    "sha256": "983e7dd64273be0712c43992ab0205959b3454336b84d8ac11d6185b48c5e0f2"
+  },
+  {
+    "path": "handoff/design-system-source/components/core/core.card.html",
+    "bytes": 3291,
+    "sha256": "1049332cc4c7108604fde4b6d74d659d1b66a7d5459d1adf12d95cdabb727ffb"
+  },
+  {
+    "path": "handoff/design-system-source/components/core/Divider.d.ts",
+    "bytes": 294,
+    "sha256": "97a6074146df26390373b65b0147946cbfd6c3187c7aadaa6c509385ed596e08"
+  },
+  {
+    "path": "handoff/design-system-source/components/core/Divider.jsx",
+    "bytes": 706,
+    "sha256": "59f86a27360dd400d2976133b6cc2c6789594d64f6e210b5d5a02ea7d1c692d5"
+  },
+  {
+    "path": "handoff/design-system-source/components/core/Divider.prompt.md",
+    "bytes": 221,
+    "sha256": "76b034437fea7adaf9382aed3906528ed45b36aa4d7bfe7fa187637b406d697d"
+  },
+  {
+    "path": "handoff/design-system-source/components/core/Icon.d.ts",
+    "bytes": 656,
+    "sha256": "35e3a1d168af06a64fee0e12e674772d477bf75b467b23cc933bd7e389f233b9"
+  },
+  {
+    "path": "handoff/design-system-source/components/core/Icon.jsx",
+    "bytes": 10275,
+    "sha256": "2ab47c105d9f3aa6d88766893bb5430aa057f3f2c8817365d5b4c26dc2850ab8"
+  },
+  {
+    "path": "handoff/design-system-source/components/core/Icon.prompt.md",
+    "bytes": 672,
+    "sha256": "2a6e09c7cfcfa9b270abe32a4d6877e2fc6c7a552259205602ba80307242d817"
+  },
+  {
+    "path": "handoff/design-system-source/components/core/IconButton.d.ts",
+    "bytes": 398,
+    "sha256": "7d4c6c043c4388479358d3a885672a2a5c44575b6d23496ac504431f6a2e10cc"
+  },
+  {
+    "path": "handoff/design-system-source/components/core/IconButton.jsx",
+    "bytes": 1200,
+    "sha256": "a68666233e1667dcbea93b9ef1f4d21882ad5f73d5437a03e37c0cdb77ad8068"
+  },
+  {
+    "path": "handoff/design-system-source/components/core/IconButton.prompt.md",
+    "bytes": 344,
+    "sha256": "35ad7c3d8542ed54daff87335491e2b7d9c42993f8db7edac71400f765ec026b"
+  },
+  {
+    "path": "handoff/design-system-source/components/core/Metric.d.ts",
+    "bytes": 534,
+    "sha256": "ef6ab8272a99ba04216c36dccb74ec94dda44a3c0d1cfafe992175f948f216cf"
+  },
+  {
+    "path": "handoff/design-system-source/components/core/Metric.jsx",
+    "bytes": 1105,
+    "sha256": "136bdfed86dfcb99afe467d89679c7cad9ab076605a9682e5b3659174934808e"
+  },
+  {
+    "path": "handoff/design-system-source/components/core/Metric.prompt.md",
+    "bytes": 299,
+    "sha256": "8346b38aade59e5cd2a44afecbb63a03d277f983d13025b6af0ff80db96a61ce"
+  },
+  {
+    "path": "handoff/design-system-source/components/core/StatusDot.d.ts",
+    "bytes": 498,
+    "sha256": "3e3afaecbbe0ecba20ea0eb626ff03ab77a91124d5a4720867662f8b7353214a"
+  },
+  {
+    "path": "handoff/design-system-source/components/core/StatusDot.jsx",
+    "bytes": 659,
+    "sha256": "c11ce841f6dc87d825e3cd30621e186950b6042f96233843198552a25cc9c8ea"
+  },
+  {
+    "path": "handoff/design-system-source/components/core/StatusDot.prompt.md",
+    "bytes": 330,
+    "sha256": "18c63b12475f08b1f1eac063a6f00895015a7d2f6a61f1931a3116d1e292a118"
+  },
+  {
+    "path": "handoff/design-system-source/components/core/Tag.d.ts",
+    "bytes": 293,
+    "sha256": "6240ff8e5146259a5760fd063f34ff75bb765708c5fa3f81257327d4814e189b"
+  },
+  {
+    "path": "handoff/design-system-source/components/core/Tag.jsx",
+    "bytes": 887,
+    "sha256": "83be55a6017bf1abe7e2ba70819075e59ca96390adf157397a3de5104fc2fa49"
+  },
+  {
+    "path": "handoff/design-system-source/components/core/Tag.prompt.md",
+    "bytes": 171,
+    "sha256": "095db639308c93129361a56ea390355d4f36d3627e8149f6f68e306ea715ae14"
+  },
+  {
+    "path": "handoff/design-system-source/components/core/Toolbar.d.ts",
+    "bytes": 288,
+    "sha256": "d7254d593a8c10abf39a57c24c732cd2b82c45128704ec7bfaf5f0b3602ffd16"
+  },
+  {
+    "path": "handoff/design-system-source/components/core/Toolbar.jsx",
+    "bytes": 479,
+    "sha256": "edfc62fcc631cb89f13fa2906d8d9afba0d3d10dd946d25f550a5376dd59d03b"
+  },
+  {
+    "path": "handoff/design-system-source/components/core/Toolbar.prompt.md",
+    "bytes": 255,
+    "sha256": "8ec5324317cf22de09481a579a950fb9b945fcf2596208d1e85eb02677158336"
+  },
+  {
+    "path": "handoff/design-system-source/components/data/data.card.html",
+    "bytes": 2896,
+    "sha256": "311aea33ee5ec87604063f8350486a2a6d798ecd7696cfe51bf557c69a848436"
+  },
+  {
+    "path": "handoff/design-system-source/components/data/EmptyState.d.ts",
+    "bytes": 403,
+    "sha256": "25c1b7b02a209378fea47b23a406cbef5eee376ab5a9000154e0bdad9db5fca1"
+  },
+  {
+    "path": "handoff/design-system-source/components/data/EmptyState.jsx",
+    "bytes": 831,
+    "sha256": "878143793d8e70733de41b9851c9a5c84afd5ea774b6e29b5ccca2be6dc99757"
+  },
+  {
+    "path": "handoff/design-system-source/components/data/EmptyState.prompt.md",
+    "bytes": 250,
+    "sha256": "67f65bf90f1a7609eea3fc63f36ce63f9b11031cde34c43ca5151eca370fb8cc"
+  },
+  {
+    "path": "handoff/design-system-source/components/data/PhaseChain.d.ts",
+    "bytes": 677,
+    "sha256": "d5a5ad78e1381755e20dc4811268df4953830a5222183ad4f6d92f7c43d1b9a7"
+  },
+  {
+    "path": "handoff/design-system-source/components/data/PhaseChain.jsx",
+    "bytes": 2278,
+    "sha256": "616f03e80afc83dcaa156335816a172602546c18ef8615cdbc035f169bc37df1"
+  },
+  {
+    "path": "handoff/design-system-source/components/data/PhaseChain.prompt.md",
+    "bytes": 502,
+    "sha256": "3e232308a0774e60d213b1acd8eff01cc3f236cbb345faf6f551c593f35e9571"
+  },
+  {
+    "path": "handoff/design-system-source/components/data/ProgressBar.d.ts",
+    "bytes": 419,
+    "sha256": "8ec07334ca4c4a3e746bb733fcf783ab45e80d0ec317d5f3597b2c671bcb120f"
+  },
+  {
+    "path": "handoff/design-system-source/components/data/ProgressBar.jsx",
+    "bytes": 1064,
+    "sha256": "111e939d6d5ae903a3ab9512683de9f34a587638abf61f6a46dfb2aadfedf818"
+  },
+  {
+    "path": "handoff/design-system-source/components/data/ProgressBar.prompt.md",
+    "bytes": 223,
+    "sha256": "57b59debf43e1a50fdaf9d815851042c18be10663c8d389b3923899cadc25361"
+  },
+  {
+    "path": "handoff/design-system-source/components/data/Table.d.ts",
+    "bytes": 723,
+    "sha256": "690d31d56bbf40ccca5c63910f3f40aada1fbef133eb4530f3eea9d4df05b02f"
+  },
+  {
+    "path": "handoff/design-system-source/components/data/Table.jsx",
+    "bytes": 2225,
+    "sha256": "68a17f126fecbf98c9d591ba04ff8b2263432d88f8db2dff8f94c9350cd65008"
+  },
+  {
+    "path": "handoff/design-system-source/components/data/Table.prompt.md",
+    "bytes": 523,
+    "sha256": "7a1764b9d10d2703a69e7d9744103be0b9c3238d7deb4f8d017c91a23398bbef"
+  },
+  {
+    "path": "handoff/design-system-source/components/data/Timeline.d.ts",
+    "bytes": 345,
+    "sha256": "5c81f1918107c6656744e1e9f84d2f115750f8ef32cbf7013f855fac404bb1de"
+  },
+  {
+    "path": "handoff/design-system-source/components/data/Timeline.jsx",
+    "bytes": 1337,
+    "sha256": "cf008ce8d867b7e258b1486010117c4c6e82728b85b7dc17072a6239f1489103"
+  },
+  {
+    "path": "handoff/design-system-source/components/data/Timeline.prompt.md",
+    "bytes": 327,
+    "sha256": "c064ed613257f3b270c54a61b05a930755776fb0e88aa6ab46dcb32d22293b29"
+  },
+  {
+    "path": "handoff/design-system-source/components/feedback/Banner.d.ts",
+    "bytes": 397,
+    "sha256": "34a20ad94a3fa099cb150fcd89795d910c71fe7a82ffb7b18c07bce9a9a35923"
+  },
+  {
+    "path": "handoff/design-system-source/components/feedback/Banner.jsx",
+    "bytes": 1762,
+    "sha256": "3f03b6e4a03716c339c2a1cd8d5dac3c95421f9293f0fe278155a209eaea66fe"
+  },
+  {
+    "path": "handoff/design-system-source/components/feedback/Banner.prompt.md",
+    "bytes": 246,
+    "sha256": "38a08f1dd129bb9a5aecb4bc2fe53b4e28c523d3a3a5a4caea2315bba23a1885"
+  },
+  {
+    "path": "handoff/design-system-source/components/feedback/feedback.card.html",
+    "bytes": 2436,
+    "sha256": "764a87f80d86da9f361baba787796eca1bd22222d7e9624018767a209b38f0ed"
+  },
+  {
+    "path": "handoff/design-system-source/components/feedback/Modal.d.ts",
+    "bytes": 445,
+    "sha256": "976f7e2aa8900fbcaae9fca9552c20b38836628e0d75cbb7a338bf61c50f439d"
+  },
+  {
+    "path": "handoff/design-system-source/components/feedback/Modal.jsx",
+    "bytes": 1995,
+    "sha256": "1b4272a2437566c7f5afcd4af756756726bad277ef7e37fd37212f7c5916da83"
+  },
+  {
+    "path": "handoff/design-system-source/components/feedback/Modal.prompt.md",
+    "bytes": 379,
+    "sha256": "d4b517c69da82f5d6968462c199a19e2d89413a538274b249f0c148cd712c9c9"
+  },
+  {
+    "path": "handoff/design-system-source/components/feedback/Toast.d.ts",
+    "bytes": 367,
+    "sha256": "3f1c09cbd27b0ab968ff518b8ca3fd04d63a3c9200d818f1039f471000be4ed8"
+  },
+  {
+    "path": "handoff/design-system-source/components/feedback/Toast.jsx",
+    "bytes": 1140,
+    "sha256": "feb4d2bf9d802477d0747c0f5e3ed3cb81231229e0cba59e80d45a0880323887"
+  },
+  {
+    "path": "handoff/design-system-source/components/feedback/Toast.prompt.md",
+    "bytes": 232,
+    "sha256": "d250b1a957c6219f35b6d14dde65d103dc320e70782db2b0c28054c06b651570"
+  },
+  {
+    "path": "handoff/design-system-source/components/feedback/Tooltip.d.ts",
+    "bytes": 304,
+    "sha256": "070105a348fa8a1c3637728716d056b60f0818ba72d9eeeb0dc0bdbe2a672973"
+  },
+  {
+    "path": "handoff/design-system-source/components/feedback/Tooltip.jsx",
+    "bytes": 1012,
+    "sha256": "8c76af309e6249207a045efe7b2dabaf98a41d87019b9f55b84bb7e4cf95ade5"
+  },
+  {
+    "path": "handoff/design-system-source/components/feedback/Tooltip.prompt.md",
+    "bytes": 251,
+    "sha256": "61decfabc1c19510387c0e0b78f961a1fbaa3f71c5f325a2bba74a7270c40062"
+  },
+  {
+    "path": "handoff/design-system-source/components/forms/Checkbox.d.ts",
+    "bytes": 279,
+    "sha256": "211eef37cba32b04ccad019101b8f6b999a650a659b36fb3104b31586f2e4e1d"
+  },
+  {
+    "path": "handoff/design-system-source/components/forms/Checkbox.jsx",
+    "bytes": 1273,
+    "sha256": "c5c3ef65044299e6366ec444880f98e0513df6f98bcc242b6fdd6e70e4a88ad7"
+  },
+  {
+    "path": "handoff/design-system-source/components/forms/Checkbox.prompt.md",
+    "bytes": 266,
+    "sha256": "13cf71ec5d597b57831dda96346d69c613a9f1384c9d2dad1ed73c63bbda19a4"
+  },
+  {
+    "path": "handoff/design-system-source/components/forms/Field.d.ts",
+    "bytes": 526,
+    "sha256": "456b08ec72115e8502a6567fad0c57089dcd51e4cccafc7ebd74661a3010099f"
+  },
+  {
+    "path": "handoff/design-system-source/components/forms/Field.jsx",
+    "bytes": 837,
+    "sha256": "23c1f1d6427546e8c834ec96ce3b540a30822c66d06b7d930fa1ac21614556ac"
+  },
+  {
+    "path": "handoff/design-system-source/components/forms/Field.prompt.md",
+    "bytes": 313,
+    "sha256": "05818ee1a700d3faec1d02959330c5e85486f91ebf6c35c58aa782d9c6f029a3"
+  },
+  {
+    "path": "handoff/design-system-source/components/forms/forms.card.html",
+    "bytes": 2928,
+    "sha256": "c9409a710f7fffd37f8b6108fe44f6a060a2cf2709aecab872f099aaa08b9253"
+  },
+  {
+    "path": "handoff/design-system-source/components/forms/Input.d.ts",
+    "bytes": 410,
+    "sha256": "594e71327f908334afab7cdf0d286bb96d1177533d1f49277a00d6ff38490073"
+  },
+  {
+    "path": "handoff/design-system-source/components/forms/Input.jsx",
+    "bytes": 1542,
+    "sha256": "c5345bc41851d6fd17539af79418ef80745bd513b31137a53803a6d148656238"
+  },
+  {
+    "path": "handoff/design-system-source/components/forms/Input.prompt.md",
+    "bytes": 338,
+    "sha256": "eafb3386454b96105968343126500fb3a82ff789ca104bbcd9c568d13983bfda"
+  },
+  {
+    "path": "handoff/design-system-source/components/forms/Radio.d.ts",
+    "bytes": 324,
+    "sha256": "5b50e3d157d61d6ba390bc6d09deee34595bf1711f80a5dea4581f2ea2fde69d"
+  },
+  {
+    "path": "handoff/design-system-source/components/forms/Radio.jsx",
+    "bytes": 1307,
+    "sha256": "296b47091fd01e7b1ebccd8e7381fa4ace93f0660f5c0a155779d9a0708e2cff"
+  },
+  {
+    "path": "handoff/design-system-source/components/forms/Radio.prompt.md",
+    "bytes": 255,
+    "sha256": "fb10235153d92132d85aba915c720a9744a24d6d89bc8bf7e6b48206f301a3ca"
+  },
+  {
+    "path": "handoff/design-system-source/components/forms/SegmentedControl.d.ts",
+    "bytes": 462,
+    "sha256": "8dc47e452e3aa0d69ee72234a48312e5b903ab15b1881209001bd8cdac3e718d"
+  },
+  {
+    "path": "handoff/design-system-source/components/forms/SegmentedControl.jsx",
+    "bytes": 1395,
+    "sha256": "bf5c3e179dd64643524fb130520c97177ce6d04ebec4f8c6c96983690c3b2253"
+  },
+  {
+    "path": "handoff/design-system-source/components/forms/SegmentedControl.prompt.md",
+    "bytes": 192,
+    "sha256": "a1c8f8e0b45e6a1975ab73bde15f5bd98b2a319e86e384b379afc11843b5de8d"
+  },
+  {
+    "path": "handoff/design-system-source/components/forms/Select.d.ts",
+    "bytes": 457,
+    "sha256": "fe6e6d6a9accb57ead095db96e1ad2ffd8b2eaaf83df6fd32ddd9c5590e0e865"
+  },
+  {
+    "path": "handoff/design-system-source/components/forms/Select.jsx",
+    "bytes": 1852,
+    "sha256": "96d8e5ba57dc88f9d6b4b01988fcee046217f9b7081cb408c58ef210e09b0142"
+  },
+  {
+    "path": "handoff/design-system-source/components/forms/Select.prompt.md",
+    "bytes": 183,
+    "sha256": "953925117dc0dfc4289a3d4cfc7fc05c64976ae314f5bb6ba76b0475df88759c"
+  },
+  {
+    "path": "handoff/design-system-source/components/forms/Switch.d.ts",
+    "bytes": 246,
+    "sha256": "36b9891e994f52aad78c4af3477b124e54de0e7c64283e34bdac695f39abf9d6"
+  },
+  {
+    "path": "handoff/design-system-source/components/forms/Switch.jsx",
+    "bytes": 1188,
+    "sha256": "863d4a680e071c5e5f156be8ee917beb72a3cb6720cc80bae26692e69cda1d41"
+  },
+  {
+    "path": "handoff/design-system-source/components/forms/Switch.prompt.md",
+    "bytes": 247,
+    "sha256": "d05f75cd1fb7ec2c79b7eb0424fa8cb91e797648817c9593ec6ed651df21ca97"
+  },
+  {
+    "path": "handoff/design-system-source/components/forms/Textarea.d.ts",
+    "bytes": 234,
+    "sha256": "b73aee36771edf7c301d56211e650fd375b8ed0e677be923c0b59d2e0ff51a95"
+  },
+  {
+    "path": "handoff/design-system-source/components/forms/Textarea.jsx",
+    "bytes": 866,
+    "sha256": "c56677dbf330048cce5080da68455769ddd438f4356285100d18ac3bb60107ed"
+  },
+  {
+    "path": "handoff/design-system-source/components/forms/Textarea.prompt.md",
+    "bytes": 157,
+    "sha256": "39097c914fdea46948652623e1edf01dab31e7d42720fc1409a6b1ad358aefef"
+  },
+  {
+    "path": "handoff/design-system-source/components/navigation/Breadcrumbs.d.ts",
+    "bytes": 288,
+    "sha256": "66d40644da2accc469d8add5cb1734ca17859fe814afe39138e1c6ce1a38e584"
+  },
+  {
+    "path": "handoff/design-system-source/components/navigation/Breadcrumbs.jsx",
+    "bytes": 879,
+    "sha256": "efaee1357c19d6466ab27e430d8177cdccfac2ee02a56fd936b09f3cbc24b74d"
+  },
+  {
+    "path": "handoff/design-system-source/components/navigation/Breadcrumbs.prompt.md",
+    "bytes": 182,
+    "sha256": "2073a7b52f3a1ae2a05545b4a67910c663e37f1c3684f9cf243076c30dd2200a"
+  },
+  {
+    "path": "handoff/design-system-source/components/navigation/navigation.card.html",
+    "bytes": 2817,
+    "sha256": "850564df70dfe62421a62165d2339d6b78c62aec9e23f69e9b3241bfc7db546d"
+  },
+  {
+    "path": "handoff/design-system-source/components/navigation/SidebarNav.d.ts",
+    "bytes": 725,
+    "sha256": "c8a95d8243827e6decdbbf8bcce1f140460ae1accbcb450f0fba6ad53287310d"
+  },
+  {
+    "path": "handoff/design-system-source/components/navigation/SidebarNav.jsx",
+    "bytes": 2877,
+    "sha256": "7f9055ffd455912d2743b2b1a1c9ae43f18955e74be0ab48e62ae766b26751c7"
+  },
+  {
+    "path": "handoff/design-system-source/components/navigation/SidebarNav.prompt.md",
+    "bytes": 489,
+    "sha256": "f7c5e655147d79d04b3d477106c7116305cd650dfb3a05ed7cb54238d59faa2c"
+  },
+  {
+    "path": "handoff/design-system-source/components/navigation/Tabs.d.ts",
+    "bytes": 342,
+    "sha256": "524fe8cf8f11764ca7f85698efc001d2c71cbc5c4ff0c6b5a7204d89a3719997"
+  },
+  {
+    "path": "handoff/design-system-source/components/navigation/Tabs.jsx",
+    "bytes": 1437,
+    "sha256": "7b27384f626da7d90f8bb5d17b323e25ac78b902add36170c7efbd2ac6766d17"
+  },
+  {
+    "path": "handoff/design-system-source/components/navigation/Tabs.prompt.md",
+    "bytes": 372,
+    "sha256": "a3cb11844eb5795f08875547fc36793180a394e763258fbfba56e082865b35a9"
+  },
+  {
+    "path": "handoff/design-system-source/components/navigation/TopBar.d.ts",
+    "bytes": 474,
+    "sha256": "655626319167870a73caed0faadeee384dfb6b6005d6e278f561457f7c1f769d"
+  },
+  {
+    "path": "handoff/design-system-source/components/navigation/TopBar.jsx",
+    "bytes": 1238,
+    "sha256": "c492e23f37f7aaa7578ae19f877a0a58cc254b09061b47490bd8aaa543f9d052"
+  },
+  {
+    "path": "handoff/design-system-source/components/navigation/TopBar.prompt.md",
+    "bytes": 333,
+    "sha256": "2b19d7d4481ebdab00be1690fa36146f9baefc02ad48c7199f905bc18a79c80e"
+  },
+  {
+    "path": "handoff/design-system-source/guidelines/brand-imagery.card.html",
+    "bytes": 1501,
+    "sha256": "9f870c3b578de43a475152f756f995ee1ca21601bebeb0931872b9620c0d5d2f"
+  },
+  {
+    "path": "handoff/design-system-source/guidelines/brand-status.card.html",
+    "bytes": 1707,
+    "sha256": "f86a1ae3f3401669a57c64acf5914abdf56853c70d88e28b19c64e9e61959d7c"
+  },
+  {
+    "path": "handoff/design-system-source/guidelines/brand-voice.card.html",
+    "bytes": 1331,
+    "sha256": "4922165ea7f1b99bc9b2b63203c8e0b128f59e36e228d57ded9d659e01ecb78a"
+  },
+  {
+    "path": "handoff/design-system-source/guidelines/brand-wordmark.card.html",
+    "bytes": 1163,
+    "sha256": "e836b0822eb157a86c5ae7ddb5334ce3af7aa7e957aedc14cc745a6a15ba4501"
+  },
+  {
+    "path": "handoff/design-system-source/guidelines/colors-borders.card.html",
+    "bytes": 1315,
+    "sha256": "255d74076b1a2122b94338c64d00a82f6055bc57aaac49764c8dd9ce5e58e65e"
+  },
+  {
+    "path": "handoff/design-system-source/guidelines/colors-ink-ground.card.html",
+    "bytes": 1194,
+    "sha256": "78e9cf4f8a592b6c0841a8d4c7e886b79f28d92bf360df56038a8bc8e9f4491a"
+  },
+  {
+    "path": "handoff/design-system-source/guidelines/colors-inverse.card.html",
+    "bytes": 1219,
+    "sha256": "9f16b188bd97b22987fcece3f2e63d28660b4d04ddfecbc471d5169dba920a2c"
+  },
+  {
+    "path": "handoff/design-system-source/guidelines/colors-neutrals.card.html",
+    "bytes": 3143,
+    "sha256": "6b18d7bf7053074c1768320d73d93f875f2568fc8594ea2808aa17c48370e415"
+  },
+  {
+    "path": "handoff/design-system-source/guidelines/colors-semantic.card.html",
+    "bytes": 2704,
+    "sha256": "1d5b20f9579b22c43900b5f909bac5a872b307a99725b3585b56613d30a0e191"
+  },
+  {
+    "path": "handoff/design-system-source/guidelines/colors-signal.card.html",
+    "bytes": 1665,
+    "sha256": "c70215db925ee80314dc415b0e37c93ae6b8cf7d1b7e659ddb33ff4b5219fd84"
+  },
+  {
+    "path": "handoff/design-system-source/guidelines/elevation.card.html",
+    "bytes": 1520,
+    "sha256": "bb0fae0fef955e1d124041fd94eef33805d8e444d295df88c835db860de776e1"
+  },
+  {
+    "path": "handoff/design-system-source/guidelines/motion.card.html",
+    "bytes": 1524,
+    "sha256": "9dcc606b3463c967cb075a377bb08d6c5fe4a4d7c362b9dcb0a2bd1105f09c94"
+  },
+  {
+    "path": "handoff/design-system-source/guidelines/radius.card.html",
+    "bytes": 1583,
+    "sha256": "9c82c534c1e7672a058de1e161c6896a2bbb0f1ef5da7875f2bd7905909eb453"
+  },
+  {
+    "path": "handoff/design-system-source/guidelines/spacing-controls.card.html",
+    "bytes": 1358,
+    "sha256": "0eb40b52a2e3363b7dffb164b932ea48564335031d310982c4abd1f8809215b0"
+  },
+  {
+    "path": "handoff/design-system-source/guidelines/spacing-layout.card.html",
+    "bytes": 1189,
+    "sha256": "b024b649e0c7726b8423f594f7a5bc08d4cf562f944618d8a813dc72d4454efc"
+  },
+  {
+    "path": "handoff/design-system-source/guidelines/spacing-ramp.card.html",
+    "bytes": 2719,
+    "sha256": "212e3ca32dacb53481429118db83a2801478592c236bc9863981f91d80fc76fe"
+  },
+  {
+    "path": "handoff/design-system-source/guidelines/type-body.card.html",
+    "bytes": 950,
+    "sha256": "6c34c645c4aeac9d6b346fdb98757c778e329183100bdcbce0753fb539510620"
+  },
+  {
+    "path": "handoff/design-system-source/guidelines/type-display.card.html",
+    "bytes": 738,
+    "sha256": "3b99d94cd38769dae20c7ef344ee91a21ccac79c152b4fb682db3b4fbba95a38"
+  },
+  {
+    "path": "handoff/design-system-source/guidelines/type-headings.card.html",
+    "bytes": 927,
+    "sha256": "99417a744d07858fa71de42380c364a7ea4f5312741360c3079a59754a9f88ac"
+  },
+  {
+    "path": "handoff/design-system-source/guidelines/type-labels.card.html",
+    "bytes": 1023,
+    "sha256": "e51354b640256455852c33b318d7135b60d71673f5e6c4a688018fc82f9f2198"
+  },
+  {
+    "path": "handoff/design-system-source/guidelines/type-numerals.card.html",
+    "bytes": 1040,
+    "sha256": "67bc72e447ea1842667d17d175bec591aed0f29f1401ca0913fcdf970bad570b"
+  },
+  {
+    "path": "handoff/design-system-source/guidelines/type-scale.card.html",
+    "bytes": 2662,
+    "sha256": "747f32d11489f47ae5ed4f14690a85c9b94d20ed15532a200456b41f65c73542"
+  },
+  {
+    "path": "handoff/design-system-source/guidelines/type-weights.card.html",
+    "bytes": 1209,
+    "sha256": "d1f561b72ce509ea0bc7a8380834f1724e09b546e4ade50abf74ea564fedb255"
+  },
+  {
+    "path": "handoff/design-system-source/readme.md",
+    "bytes": 16107,
+    "sha256": "0f984154b2145e12b1d3ef9ff4f8c4ec1ccbe885aaa96b332bb659d3f05c2119"
+  },
+  {
+    "path": "handoff/design-system-source/SKILL.md",
+    "bytes": 873,
+    "sha256": "269f0b16f63c722f7b759916febd17c647588868746cf5b35570236564d30075"
+  },
+  {
+    "path": "handoff/design-system-source/styles.css",
+    "bytes": 277,
+    "sha256": "5e28a2780e322dd88e3739816917d6879e56ec6d3fd4f57d6852600c27c556d3"
+  },
+  {
+    "path": "handoff/design-system-source/templates/app-screen/.thumbnail",
+    "bytes": 8930,
+    "sha256": "a468ea8954c067ea7025a98187a22d0ef5516917f4cde82c38a477035b533021"
+  },
+  {
+    "path": "handoff/design-system-source/templates/app-screen/AppScreen.dc.html",
+    "bytes": 4477,
+    "sha256": "ce14231f8943a8265022119564a1a69fc24b02c90b3531c465a37dccf68f0ac5"
+  },
+  {
+    "path": "handoff/design-system-source/templates/app-screen/ds-base.js",
+    "bytes": 972,
+    "sha256": "01b77248f9d14f9fd3e455cf7a015ede9c5b726cedaee00c6cae632cb5d8855e"
+  },
+  {
+    "path": "handoff/design-system-source/templates/app-screen/support.js",
+    "bytes": 69150,
+    "sha256": "8fe7df74405f3c55f49b7249c74ea1397e65d07dea2b1bd3b4a489bec2e28cbe"
+  },
+  {
+    "path": "handoff/design-system-source/templates/marketing-page/.thumbnail",
+    "bytes": 9192,
+    "sha256": "cf434801471f61da431b39ff90e69b22f3d896e04d11403fe639e60ebbfb2940"
+  },
+  {
+    "path": "handoff/design-system-source/templates/marketing-page/ds-base.js",
+    "bytes": 972,
+    "sha256": "01b77248f9d14f9fd3e455cf7a015ede9c5b726cedaee00c6cae632cb5d8855e"
+  },
+  {
+    "path": "handoff/design-system-source/templates/marketing-page/MarketingPage.dc.html",
+    "bytes": 6171,
+    "sha256": "80c2faea5310bd8b5a0464c464f6098cc22227f81a7ce1030aa22917155db347"
+  },
+  {
+    "path": "handoff/design-system-source/templates/marketing-page/support.js",
+    "bytes": 69150,
+    "sha256": "8fe7df74405f3c55f49b7249c74ea1397e65d07dea2b1bd3b4a489bec2e28cbe"
+  },
+  {
+    "path": "handoff/design-system-source/thumbnail.html",
+    "bytes": 823,
+    "sha256": "33ea8e71e9ea0d479803a886cfc8ccb1d6780f26f658835d3a715f05b56d16f1"
+  },
+  {
+    "path": "handoff/design-system-source/tokens/base.css",
+    "bytes": 1049,
+    "sha256": "b11d64dc9d339ebdf19a302a4b67a6b33b493d45e0ec391003bf87aacbcc7e0f"
+  },
+  {
+    "path": "handoff/design-system-source/tokens/colors.css",
+    "bytes": 3024,
+    "sha256": "f91d13a8e1e04734dd91a1a933e6ad00491ed3c5bcdc5d5021ab7712f12b5da7"
+  },
+  {
+    "path": "handoff/design-system-source/tokens/elevation.css",
+    "bytes": 481,
+    "sha256": "8b0794a14ad2ef20cf11c29d834c9ef9d833231bb906e944fd92c4405b48b4d4"
+  },
+  {
+    "path": "handoff/design-system-source/tokens/fonts.css",
+    "bytes": 371,
+    "sha256": "ca62f2a6a6451774c6b5aa969bca11d6f7b63e6148c0ca0bdbb0a6c399d96391"
+  },
+  {
+    "path": "handoff/design-system-source/tokens/motion.css",
+    "bytes": 813,
+    "sha256": "342df561f9f934f12b3e71687afaedd184913ae5ef932e3f4c98e6c62297b2ad"
+  },
+  {
+    "path": "handoff/design-system-source/tokens/radius.css",
+    "bytes": 233,
+    "sha256": "5f2e9a755db99bfa777d725aa36e437efe6455a00aa413d4e2d2efea0786125f"
+  },
+  {
+    "path": "handoff/design-system-source/tokens/spacing.css",
+    "bytes": 461,
+    "sha256": "0f37da04f8a3ba6ddd19a1de41d153e162b9f526920ce27c275590873614b64e"
+  },
+  {
+    "path": "handoff/design-system-source/tokens/typography.css",
+    "bytes": 1225,
+    "sha256": "9ce86298e8d346522a7ba1d67da3ff5ba856d689946bbacb6d63dff05513b577"
+  },
+  {
+    "path": "handoff/design-system-source/ui_kits/app/Anbud.jsx",
+    "bytes": 3663,
+    "sha256": "f506b6d50e9989ccb8dd157efd9c727f4a5c3259d9437d8b1c84feffb116baeb"
+  },
+  {
+    "path": "handoff/design-system-source/ui_kits/app/AppShell.jsx",
+    "bytes": 2570,
+    "sha256": "96e16ab38010d42453cdc2fc73c9687e74a7bded4585515f3a792a57e6292bc9"
+  },
+  {
+    "path": "handoff/design-system-source/ui_kits/app/data.js",
+    "bytes": 3998,
+    "sha256": "85127087a86458cdfe38d370861b095e8581423d766917f0f2de5d4ac87a22f1"
+  },
+  {
+    "path": "handoff/design-system-source/ui_kits/app/Fakturering.jsx",
+    "bytes": 5257,
+    "sha256": "b07b0f8a9be6bffc53561f5ff678610092ae48f37f285f7e5ca3801dfe672290"
+  },
+  {
+    "path": "handoff/design-system-source/ui_kits/app/index.html",
+    "bytes": 5475,
+    "sha256": "4093a537d79e6b8b76347b74a1d850d9c350c8fd33eeb40e62a21b2db7f02f09"
+  },
+  {
+    "path": "handoff/design-system-source/ui_kits/app/Installningar.jsx",
+    "bytes": 2468,
+    "sha256": "e71a6a77a0e5234380d9808759fcd3e54283738ce2a9a41a16676eeb8ce9b599"
+  },
+  {
+    "path": "handoff/design-system-source/ui_kits/app/Oversikt.jsx",
+    "bytes": 4206,
+    "sha256": "a1a6b73bb91ad50e36f62d2ca359f34efbc4c9bf77aee96173aade0457406611"
+  },
+  {
+    "path": "handoff/design-system-source/ui_kits/app/ProjektDetalj.jsx",
+    "bytes": 8186,
+    "sha256": "78cef7d23d24c982416f00abdeac51df2b236370e9809052f9e9de624941d091"
+  },
+  {
+    "path": "handoff/design-system-source/ui_kits/app/README.md",
+    "bytes": 1396,
+    "sha256": "bb9d497f8c5fdfdd67e82f32c9fc02d468fc2df73439ab0aac94c8e1b684e691"
+  },
+  {
+    "path": "handoff/design-system-source/ui_kits/app/Tillgangar.jsx",
+    "bytes": 3105,
+    "sha256": "e59c85103ad053ee9bda30c952ebb54b9dea23bb8434cd41f300d5ea9a5209cc"
+  },
+  {
+    "path": "handoff/design-system-source/ui_kits/site/Chain.jsx",
+    "bytes": 3932,
+    "sha256": "59b90871b5f94d8dd17abbf5f98c18c7e7a3c4e07908f2d00be10f283975b8c9"
+  },
+  {
+    "path": "handoff/design-system-source/ui_kits/site/Footer.jsx",
+    "bytes": 3498,
+    "sha256": "551696857f875f0a272b34c84f856fca04b82898f16655fdb425e7def7a17aed"
+  },
+  {
+    "path": "handoff/design-system-source/ui_kits/site/Hero.jsx",
+    "bytes": 2715,
+    "sha256": "238c6246f1f7300771991c5db2484378032f7982e28ab9ea1f2a605948854483"
+  },
+  {
+    "path": "handoff/design-system-source/ui_kits/site/index.html",
+    "bytes": 1918,
+    "sha256": "983cf233cd6984cc203e10e69e302764b3a7787319c8aa8c8a53b999c02febb0"
+  },
+  {
+    "path": "handoff/design-system-source/ui_kits/site/Pricing.jsx",
+    "bytes": 3951,
+    "sha256": "0bdef99094feefa2600309c17dab6e51d7842bba03c02de9627d0ec2313b2ec9"
+  },
+  {
+    "path": "handoff/design-system-source/ui_kits/site/README.md",
+    "bytes": 774,
+    "sha256": "cb95fe46cd28e967a4093e1bc67669ccf8915505c461ba6b82a76d411f029db3"
+  },
+  {
+    "path": "handoff/design-system-source/ui_kits/site/SiteHeader.jsx",
+    "bytes": 1760,
+    "sha256": "0025c2c7eb2acffa921ac865f91212d13b043ed7eb00d95ae90990a1966eb83e"
+  },
+  {
+    "path": "handoff/ds-base.js",
+    "bytes": 960,
+    "sha256": "d0c97e1a4fdafcc9ced3fa008aa09048aefc9d7c58b15316aa1422c89caea0ce"
+  },
+  {
+    "path": "handoff/Fältvy.dc.html",
+    "bytes": 46568,
+    "sha256": "bcf7b1db89eeb1ab50c5fd643fe3fc4f362324241175cf98565471dd5b8b0e50"
+  },
+  {
+    "path": "handoff/HANDOFF.md",
+    "bytes": 1751,
+    "sha256": "0bbd60941e6ea4ebba90ae4c54b79b69e7bfb8c3749f5d3f1dc7fdc3a957fa98"
+  },
+  {
+    "path": "handoff/ios-frame.jsx",
+    "bytes": 16507,
+    "sha256": "24642b887be3d26ab5d1ff445ad98c363cffd33746c539a117da570ac7b6eb54"
+  },
+  {
+    "path": "handoff/Kopplat-verksamhetssystem.html",
+    "bytes": 4022687,
+    "sha256": "7ea94a93054ee61060646bd26fce0b3329065705ef9dcb3f3d396d2c44ea2d39"
+  },
+  {
+    "path": "handoff/PROJEKTREGLER -CLAUDE.md-.md",
+    "bytes": 3768,
+    "sha256": "ea4fe4c217480f059f6f77c1e461b174a073b18a19157c26b448037be68b98dd"
+  },
+  {
+    "path": "handoff/support.js",
+    "bytes": 69150,
+    "sha256": "8fe7df74405f3c55f49b7249c74ea1397e65d07dea2b1bd3b4a489bec2e28cbe"
+  },
+  {
+    "path": "handoff/uploads/Asset 1-26a9b475.svg",
+    "bytes": 8869,
+    "sha256": "b361a320641d0ddc56d3bd896f53a519834b3b8724148e277298e5007851b2f5"
+  },
+  {
+    "path": "handoff/uploads/Asset 1.svg",
+    "bytes": 524,
+    "sha256": "5bbbe12a90723f86d5070f06086688fe86df6b2ff7b51878c841d29a44f52c29"
+  },
+  {
+    "path": "handoff/uploads/Asset 2.svg",
+    "bytes": 520,
+    "sha256": "568e42c02296eae537643e13d02f0122809a5ef5f955c8ddbdcc5c7878db90fc"
+  },
+  {
+    "path": "handoff/uploads/Asset 3-d3bd686a.svg",
+    "bytes": 721,
+    "sha256": "241caf635ddf643d7ee6382ef992eb2311e4bed55b36c3af0d38af099a0fce6a"
+  },
+  {
+    "path": "handoff/uploads/Asset 3.svg",
+    "bytes": 720,
+    "sha256": "6235373c29782a690060dde97ea5f967459235c936e9ab326595d94725277623"
+  },
+  {
+    "path": "handoff/uploads/Asset 4.svg",
+    "bytes": 749,
+    "sha256": "b85b733a2848e4feedbeb3ea707561a898ac6d7a2d1adc7255fcb1e4e7110cf1"
+  },
+  {
+    "path": "handoff/uploads/Asset 5.svg",
+    "bytes": 736,
+    "sha256": "f639a42d30810f66ecd200729231f714f4f1014a3f3dc190f37316c9f36ddb38"
+  },
+  {
+    "path": "handoff/uploads/Asset 6-d660ea18.svg",
+    "bytes": 8535,
+    "sha256": "d6a421da07c3da85018560a5f89cb1e8c6fa339f0862ad218c7af078c106b494"
+  },
+  {
+    "path": "handoff/uploads/Asset 6.svg",
+    "bytes": 8535,
+    "sha256": "ba7f21b8531aff5adb9f158971be903266c0c59a352a2a4fbb1ea46948e94a6b"
+  },
+  {
+    "path": "handoff/uploads/Asset 7-570c9dc8.svg",
+    "bytes": 8558,
+    "sha256": "02d14190039d7bf96c5c411c5ad230ee90b2031ae92afb750724ea8f58441c20"
+  },
+  {
+    "path": "handoff/uploads/Asset 7.svg",
+    "bytes": 8404,
+    "sha256": "ff72f074342b957b198a6b9e94269474878817eb069917fe2cd693800e27bb47"
+  },
+  {
+    "path": "handoff/uploads/Asset 8.svg",
+    "bytes": 8567,
+    "sha256": "06e6f3293542a7fb2ab9387871aadbc08dca357917ab0b39b132bb2ab82809c1"
+  },
+  {
+    "path": "handoff/uploads/Asset5.svg",
+    "bytes": 736,
+    "sha256": "f639a42d30810f66ecd200729231f714f4f1014a3f3dc190f37316c9f36ddb38"
+  },
+  {
+    "path": "handoff/uploads/bg.jpg",
+    "bytes": 932466,
+    "sha256": "9250e7c87354d3309fcb31c735d34edeee6adf4b09b1c105f2255017cd943134"
+  },
+  {
+    "path": "handoff/uploads/draw-46ce8ca2-634c-4654-8d75-451ee3b92062.png",
+    "bytes": 49507,
+    "sha256": "721a9a95f1961a931a98141fd6eefc19389c56c78c3d8d7fcf4d454549499730"
+  },
+  {
+    "path": "handoff/uploads/draw-631e608c-9113-439e-b26e-7ff444c5352e.png",
+    "bytes": 60093,
+    "sha256": "d7f26a0f63489e4d6b5f13f3a869bfbea6080e47ff7ac1ea68507cf9aedb70df"
+  },
+  {
+    "path": "handoff/uploads/draw-706c9c30-756b-4ab2-8e90-b9109b3abf01.png",
+    "bytes": 55377,
+    "sha256": "1cc6f5a23ab9407c09464c6f97c97e454a5c3eeb11b7befabf8a1be0e97b46f9"
+  },
+  {
+    "path": "handoff/uploads/draw-857b00c6-88d4-403e-ba51-4208e28511b6.png",
+    "bytes": 63171,
+    "sha256": "c94f880b7039e722f7bd891ad405483403c651b9878bc49a944c417593700205"
+  },
+  {
+    "path": "handoff/uploads/draw-f41b4efb-07df-4cbc-92f7-eb1d91ba93aa.png",
+    "bytes": 58628,
+    "sha256": "adb42841750b370960bfe6ea6873c56318a3bbd37ffa03f7c5e7edaf79b71a8d"
+  },
+  {
+    "path": "handoff/uploads/era-logo.png",
+    "bytes": 13749,
+    "sha256": "8c12729a182b4b0c89d7ded0f9e132a7fb4b87effbafa8af506ac9629bb04134"
+  },
+  {
+    "path": "handoff/uploads/kalk grund.pdf",
+    "bytes": 324540,
+    "sha256": "54dc84c32db3bfa01cd90a20fa06d15fe4d90a01d136544c5c60acfdd5b71265"
+  },
+  {
+    "path": "handoff/uploads/KOPPLAS _ ELPRO principle sketch.jpg",
+    "bytes": 316902,
+    "sha256": "183847451b88dd962fbb4f6814c008ec146cce2dd4589bfdbc5e19ff75b23779"
+  },
+  {
+    "path": "handoff/uploads/kopplo logo.png",
+    "bytes": 58073,
+    "sha256": "52be5f015ab205a4d090a9e1c39316401d0b53eca1f30e0bd56164ca5e6d9087"
+  },
+  {
+    "path": "handoff/uploads/kopplo-logo-signal.png",
+    "bytes": 146121,
+    "sha256": "0fd7e29055e4b152e0f381ac11e500e631a3342d8fa4d276ad14587a1a19516f"
+  },
+  {
+    "path": "handoff/uploads/Logo-2e08f579.svg",
+    "bytes": 632,
+    "sha256": "081b15bc68b4b3b14e6fca7da3b49bdf4ea6798f9b6b3c3fef1ae9e0b929e097"
+  },
+  {
+    "path": "handoff/uploads/Logo.svg",
+    "bytes": 644,
+    "sha256": "2eea46dc7e4b61c7d7b6850db54464f3a1f3f53cf787b84fb4eb96c5047d58e1"
+  },
+  {
+    "path": "handoff/uploads/pasted-1787670286752-0.png",
+    "bytes": 51033,
+    "sha256": "fe52c2490b94a0341aec98edb67ba8984b5751d76818f7134846b4a78c7b1abe"
+  },
+  {
+    "path": "handoff/uploads/pasted-1787670309776-0.png",
+    "bytes": 198737,
+    "sha256": "8400e0440a7175fcde3f467a83d3b0b45190141b205f1d220ea3a07f13bb0573"
+  },
+  {
+    "path": "handoff/uploads/pasted-1787672280130-0.png",
+    "bytes": 198737,
+    "sha256": "8400e0440a7175fcde3f467a83d3b0b45190141b205f1d220ea3a07f13bb0573"
+  },
+  {
+    "path": "handoff/uploads/pasted-1789454108680-0.png",
+    "bytes": 308442,
+    "sha256": "53d9853f443c9d12f2cfee04344abda984d08f5e7be7d374fc650ccf7e3dfe95"
+  },
+  {
+    "path": "handoff/uploads/pasted-1789462077112-0.png",
+    "bytes": 19120,
+    "sha256": "d3e327c89b2f36211ed629001b42dfefe6c3dbc4413491d505e0fe31d95869fa"
+  },
+  {
+    "path": "handoff/uploads/pasted-1789468473128-0.png",
+    "bytes": 148440,
+    "sha256": "dcd85598135e971849cc24c515170ce2aa93d0834088ef652666ae8002128e1b"
+  },
+  {
+    "path": "handoff/uploads/pasted-1791886834423-0.png",
+    "bytes": 24318,
+    "sha256": "fbabb857c0a6c35a8c315cb3c471fc895492ac77bd48dcf074fc8a65c78ac543"
+  },
+  {
+    "path": "handoff/uploads/Screenshot 2026-09-15 143542.png",
+    "bytes": 1505165,
+    "sha256": "03aa06038a5d507de97ac1939b2a9fe8fbc4b94ea9a7fc5e15fd368b24f768bc"
+  },
+  {
+    "path": "handoff/Verksamhetssystem.dc.html",
+    "bytes": 995054,
+    "sha256": "553cbc083b1a31f4110e0a5f8446fae0ed8dc8f190cdf728c2a7494c17e715a1"
+  }
+]
