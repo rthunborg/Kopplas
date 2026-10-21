@@ -1461,6 +1461,70 @@ five gates/all95/separate recovery and distinct targeted High review remain
 pending. Baseline3a1c3bc9, review-loop3, approved5760-byte kernel and all historical
 ARR warnings/results are preserved; no fourth broad review or completion claim.
 
+## Original-function refusal matrix — current admitted repair
+
+Root accepted-original-function-direct-evidence-source-allocation.json2215B/SHA256
+dc052ce7e080d91f88c1429a4a15dedf74eea80bcd449568eb3c716a27bad606 admits
+exactly the existing original-function IF failure-message construction, focused
+unit controls and this author trail. The frozen proposal11241B/SHA256
+9856e25ba8240a2c0a116dcbd11571a4af568fa9893c79c46522b920e145fb48 and
+its High PASS are PLAN ONLY; actual committed-source review remains pending.
+Coordinator completed turn01a15e58-38e9-7a73-8d36-355b227f92cd / grant
+exec-0ee731e8-304e-4300-a149-1f96351566a3 covers these bounds, not execution.
+
+Actual native startup reported the original-function guard refusal; the failed
+predicate/ordinal and cause remain unknown. All eleven local fixture predicates
+were true and normalized public/global default entries equal. Neither observation
+proves the hosted catalog, original application sequence or a production fix.
+Replaying eight unrelated migrations was not selected. This change observes the
+already failing invocation itself after refusal, with no functional correction.
+
+The original IF, SELECT, exact target order, earlier guards and later DDL remain
+byte-identical. Only its RAISE construction changes. If that unchanged IF refuses,
+the message retains its fixed prefix and default P0001 and appends a closed JSON
+calendar-original-function-guard-v1 object with ordinal1..3 and eleven fixed named
+boolean-or-NULL checks. Positive complements of the existing predicates report
+owner/security mode/volatility/language/exact config/effective caller execution/
+unsafe ACL absence/exact body/call-count equality. No NULL coercion, raw source,
+config, ACL/grantee/role/OID/claim/query/error payload or arbitrary message enters
+that matrix. The compiler constructs fixed keys; no generic observer or new API.
+
+The explicit observation effect is additional evaluation of those same bounded
+catalog predicates only after the original refusal; earlier short-circuiting may
+have skipped some. There is no added SQL statement, roundtrip or connection.
+An unexpected expression error yields no qualified matrix and requires UNKNOWN
+stop; it does not justify a guessed fix or repeat normal run. One false bit names
+an observed invariant, not its drift/transformation/grantor cause. NULL, all-true
+despite refusal, malformed/missing data, mixed source/run or uncertain transport
+requires the frozen proposal's named stop. Future once execution/acquisition and
+unexpected-success conditional effects remain separately Root-owned/unactivated.
+No old collector was adopted or relabelled and no native effects occurred here.
+
+Actual controls retain the previous99 and add3 affected cases: initial102 ran
+101P/1F/0skip/0cancel because the privacy test treated the required exact_proconfig
+key's substring as raw proconfig leakage. It now rejects the raw property name
+specifically while checking exact keys/types and raw-value exclusion. Initial
+whole TypeScript found one test-only index-signature annotation error; corrected
+to an explicit Record type. An intermediate102 passed before that type-only fix;
+final current102P0F0skip0cancel, whole TypeScript exit0, affected ESLint exit0/no
+warnings. These runs are separate, never additive. A proposal filename lookup
+first attempted .md; the actual frozen .json was then read/hash-verified; no
+proposal/source write or execution resulted from that read failure.
+
+The new test-only finite source evaluator extracts the actual IF and JSON
+expressions, preserves SQL Boolean/NULL semantics for its bounded grammar, and
+injects catalog/function results. It exercises all eleven false-bit/ordinal
+mappings, all-true/no-emission, first refusal, UNKNOWN preservation, closed output
+and source placement. Whole-migration inverse hashing restores exact prior bytes
+when only the new RAISE is removed, covering original guard/targets/prior guards/
+DDL and default error behavior. These are source/fixture controls, not PostgreSQL
+parsing/execution, actual catalog-function results, native short-circuit/error
+behavior or evidence of a specific original cause. The prior full Linux3183 and
+native packets remain historical; no full unchanged suite/app build rerun.
+Fresh independent targeted source review and separately admitted native evidence
+remain necessary. Baseline3a1c3bc9/kernel5760/in-review/loop3/ARR warning preserved;
+no fourth broad review, normal95 acceptance, new privilege or completion claim.
+
 ## Suggested Review Order
 
 Author: Story 15.5 implementation/fix author (gpt-6.1-sol High), incorporating
@@ -1740,9 +1804,9 @@ The preparsed invoker binds auth.uid at definition time while preserving runtime
 EXECUTE and caller identity. One atomic owner-scoped replacement preserves guards.
 
 - `supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql:69` — `if session_user <> 'postgres'`: qualifies the ordinary migration executor before DDL.
-- `supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql:111` — `language sql stable security invoker`: binds canonical identity without a privileged runtime helper.
-- `supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql:116` — `execute 'set local role calendar_feed_owner'`: uses actual ownership plus transient schema CREATE.
-- `supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql:133` — `and to_jsonb(p)-'prosrc'=metadata[i]`: asserts OIDs and unchanged function metadata after eight substitutions.
+- `supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql:125` — `language sql stable security invoker`: binds canonical identity without a privileged runtime helper.
+- `supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql:130` — `execute 'set local role calendar_feed_owner'`: uses actual ownership plus transient schema CREATE.
+- `supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql:147` — `and to_jsonb(p)-'prosrc'=metadata[i]`: asserts OIDs and unchanged function metadata after eight substitutions.
 - `tests/support/calendar-feed-atdd.ts:784` — `export function calendarCauseProofExpectedBody`: derives only the fixed adapted source from historical SQL.
 - `scripts/ci/with-calendar-feed-runtime.mjs:56` — `if (schema !== "status-origin-v2"`: refuses old or mixed observation contracts.
 - `tests/integration/rls/calendar-feed.rls.test.ts:187` — `sqlStable: true, preparsed: true`: extends existing RLS010 canonical dependency and private ACL assertions.
@@ -1768,3 +1832,18 @@ Evidence:99 affected pure-Node cases passed0F/skip/cancel; whole TypeScript and
 affected lint passed. These are extracted Boolean/source fixtures, not PostgreSQL
 execution or hosted membership/causal proof. Prior Linux3183 is historical only;
 current native gates/all95/recovery and independent latest-fix review are pending.
+
+### Name refused original invariants without exposing catalog payloads
+
+The unchanged IF gates a fixed failure-only matrix. Native false bits may localize
+a missing invariant; NULL or drift without established cause still requires a stop.
+
+- `supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql:103` — `raise exception 'calendar actor original function refused %'`: emits only the closed matrix after the original refusal.
+- `supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql:104` — `'schema','calendar-original-function-guard-v1'`: binds fixed schema and ordinal to eleven nullable booleans.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1811` — `actual unchanged original guard emits the named eleven-bit`: exercises exact false-bit and first-ordinal mapping from source.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1828` — `failure-message inverse restores exact original migration`: proves only message construction changed and P0001 remains default.
+
+Evidence: final102 affected controls passed0F/skip/cancel; whole TypeScript and
+affected lint passed after recorded initial test/type failures. The finite source
+seam/inverse hash is not SQL or native catalog/cause proof. Plan High PASS is not
+current-source review; all execution/acquisition/native and normal gates remain.

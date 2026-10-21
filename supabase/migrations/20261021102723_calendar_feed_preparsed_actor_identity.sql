@@ -100,7 +100,21 @@ begin
      or a.grantee<>owner_role.oid and a.is_grantable)
    or item.prosrc is distinct from expected_sources[i]
    or (length(item.prosrc)-length(replace(item.prosrc,'auth.uid()','')))/length('auth.uid()')<>call_counts[i] then
-   raise exception 'calendar actor original function refused';
+   raise exception 'calendar actor original function refused %', pg_catalog.jsonb_build_object(
+    'schema','calendar-original-function-guard-v1','ordinal',i,'checks',pg_catalog.jsonb_build_object(
+     'owner_matches',item.proowner=owner_role.oid,
+     'security_definer',item.prosecdef,
+     'volatile',item.provolatile='v',
+     'plpgsql',item.lanname='plpgsql',
+     'exact_proconfig',item.proconfig is not distinct from array['search_path=""']::text[],
+     'authenticated_execute',pg_catalog.has_function_privilege('authenticated',item.oid,'EXECUTE'),
+     'anon_denied',not pg_catalog.has_function_privilege('anon',item.oid,'EXECUTE'),
+     'service_role_denied',not pg_catalog.has_function_privilege('service_role',item.oid,'EXECUTE'),
+     'acl_grantees_safe',not exists(select 1 from pg_catalog.aclexplode(coalesce(item.proacl,pg_catalog.acldefault('f',item.proowner))) a
+    where a.grantee not in (owner_role.oid,(select oid from pg_catalog.pg_roles where rolname='authenticated'))
+     or a.grantee<>owner_role.oid and a.is_grantable),
+     'body_exact',item.prosrc is not distinct from expected_sources[i],
+     'call_count_exact',(length(item.prosrc)-length(replace(item.prosrc,'auth.uid()','')))/length('auth.uid()')=call_counts[i]));
   end if;
   definitions := array_append(definitions,pg_catalog.pg_get_functiondef(item.oid));
   metadata := array_append(metadata,(select to_jsonb(p)-'prosrc' from pg_catalog.pg_proc p where p.oid=item.oid));

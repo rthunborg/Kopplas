@@ -1746,3 +1746,88 @@ test("actual owner guard retains foreign outbound inherited direct effective SET
   // An indirect effective SET claim cannot substitute for the required direct row.
   assert.equal(refuses([creatorOwnerGrant],{effectiveSet:true}),true);
 });
+
+// Bounded evaluator for the actual eleven-predicate SQL source grammar only.
+// Injected non-native catalog/function results exercise three-valued logic;
+// this neither executes SQL nor establishes hosted rows or predicate causes.
+type OriginalGuardFixture = { ordinal:number; values:Record<string,unknown>; privileges:Record<string,boolean|null>; acl:Record<string,unknown>[] };
+function originalGuardFixture(ordinal=1):OriginalGuardFixture {
+  const body="auth.uid() ".repeat([3,2,3][ordinal-1]);
+  return{ordinal,values:{"item.proowner":1,"owner_role.oid":1,"item.prosecdef":true,"item.provolatile":"v","item.lanname":"plpgsql","item.proconfig":['search_path=""'],"item.oid":97979,"item.prosrc":body,"expected_sources[i]":body,"call_counts[i]":[3,2,3][ordinal-1],expectedConfig:['search_path=""'],authenticatedOid:2},privileges:{authenticated:true,anon:false,service_role:false},acl:[{"a.grantee":1,"a.is_grantable":false},{"a.grantee":2,"a.is_grantable":false}]};
+}
+function actualOriginalGuardMatrix() {
+  const source=readFileSync(new URL("../../../../supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",import.meta.url),"utf8").replaceAll("\r\n","\n");
+  const at=source.indexOf("  if item.proowner<>owner_role.oid"),raise=source.indexOf("   raise exception 'calendar actor original function refused ",at),end=source.indexOf(";\n  end if;",raise)+1;assert.ok(at>=0&&raise>at&&end>raise);
+  const guard=source.slice(at+5,raise).replace(/ then\n$/,""),statement=source.slice(raise,end),expression=statement.slice(statement.indexOf("pg_catalog.jsonb_build_object"),-1);
+  const acl=guard.slice(guard.indexOf("exists(select 1 from pg_catalog.aclexplode"),guard.indexOf("\n   or item.prosrc"));assert.ok(acl.endsWith(")"));assert.ok(expression.includes(acl));
+  const where=acl.slice(acl.indexOf("where ")+6,-1).replace("(select oid from pg_catalog.pg_roles where rolname='authenticated')","authenticatedOid");
+  type Scalar=unknown;
+  const isNull=(value:Scalar)=>value===null;
+  const equal=(a:Scalar,b:Scalar):boolean|null=>isNull(a)||isNull(b)?null:JSON.stringify(a)===JSON.stringify(b);
+  const negate=(value:Scalar):boolean|null=>value===null?null:!value;
+  const and=(a:Scalar,b:Scalar):boolean|null=>a===false||b===false?false:a===null||b===null?null:true;
+  const or=(a:Scalar,b:Scalar):boolean|null=>a===true||b===true?true:a===null||b===null?null:false;
+  let matrixEvaluations=0;
+  function evaluate(input:string,fixture:OriginalGuardFixture,extra:Record<string,unknown>={}):unknown {
+    const sql=input.replaceAll(acl,"unsafeAcl").replaceAll("array['search_path=\"\"']::text[]","expectedConfig");
+    const tokens=sql.match(/'(?:''|[^'])*'|<>|[=(),/\-]|[A-Za-z_][A-Za-z_0-9.]*(?:\[i\])?|[0-9]+/g)!;assert.equal(tokens.join(""),sql.replace(/\s(?=(?:[^']*'[^']*')*[^']*$)/g,""));let index=0;
+    const take=(token:string)=>{if(tokens[index]===token){index++;return true;}return false;};
+    const need=(token:string)=>{assert.equal(tokens[index++],token);};
+    const primary=():unknown=>{
+      if(take("(")){const value=disjunction();need(")");return value;}
+      const token=tokens[index++];assert.ok(token);
+      if(token.startsWith("'"))return token.slice(1,-1).replaceAll("''","'");
+      if(/^[0-9]+$/.test(token))return Number(token);
+      if(take("(")){
+        const args:unknown[]=[];if(!take(")")){do{args.push(disjunction());}while(take(","));need(")");}
+        if(token==="length")return args[0]===null?null:Array.from(args[0] as string).length;
+        if(token==="replace")return args.some(isNull)?null:(args[0] as string).split(args[1] as string).join(args[2] as string);
+        if(token==="pg_catalog.has_function_privilege"){assert.equal(args[1],fixture.values['item.oid']);assert.equal(args[2],"EXECUTE");assert.ok(Object.hasOwn(fixture.privileges,args[0] as string));return fixture.privileges[args[0] as string];}
+        if(token==="pg_catalog.jsonb_build_object"){matrixEvaluations++;assert.equal(args.length%2,0);return Object.fromEntries(Array.from({length:args.length/2},(_,i)=>{assert.equal(typeof args[i*2],"string");return[args[i*2] as string,args[i*2+1]];}));}
+        throw Error("Unexpected actual SQL function");
+      }
+      const values:Record<string,unknown>={...fixture.values,...extra,i:fixture.ordinal};assert.ok(Object.hasOwn(values,token),"Unexpected actual SQL field");return values[token];
+    };
+    const arithmetic=():unknown=>{let value=primary();while(tokens[index]==="-"||tokens[index]==="/"){const op=tokens[index++],right=primary();value=value===null||right===null?null:op==="-"?(value as number)-(right as number):Math.trunc((value as number)/(right as number));}return value;};
+    const comparison=():unknown=>{
+      const left=arithmetic();
+      if(take("is")){const not=take("not");need("distinct");need("from");const right=arithmetic(),same=left===null&&right===null?true:left===null||right===null?false:equal(left,right);return not?same:negate(same);}
+      if(tokens[index]==="="||tokens[index]==="<>"){const op=tokens[index++],right=arithmetic(),same=equal(left,right);return op==="="?same:negate(same);}
+      const notIn=tokens[index]==="not"&&tokens[index+1]==="in";if(notIn)index++;
+      if(take("in")){need("(");const values:unknown[]=[];do{values.push(disjunction());}while(take(","));need(")");const results=values.map(value=>equal(left,value)),found=results.includes(true)?true:results.includes(null)?null:false;return notIn?negate(found):found;}
+      assert.equal(notIn,false);return left;
+    };
+    const negation=():unknown=>take("not")?negate(negation()):comparison();
+    const conjunction=():unknown=>{let value=negation();while(take("and"))value=and(value,negation());return value;};
+    const disjunction=():unknown=>{let value=conjunction();while(take("or"))value=or(value,conjunction());return value;};
+    const value=disjunction();assert.equal(index,tokens.length);return value;
+  }
+  return{source,statement,guard,evaluations:()=>matrixEvaluations,run(fixtures:OriginalGuardFixture[],priorRefused=false){
+    if(priorRefused)return null;
+    for(const fixture of fixtures){const unsafeAcl=fixture.acl.some(row=>evaluate(where,fixture,row)===true);if(evaluate(guard,fixture,{unsafeAcl})===true)return evaluate(expression,fixture,{unsafeAcl}) as {schema:string;ordinal:number;checks:Record<string,boolean|null>};}
+    return null;
+  }};
+}
+test("actual unchanged original guard emits the named eleven-bit matrix only for its first refusal",()=>{
+  const seam=actualOriginalGuardMatrix();assert.equal(seam.run([originalGuardFixture(1),originalGuardFixture(2),originalGuardFixture(3)]),null);assert.equal(seam.evaluations(),0);
+  const changes:Record<string,(fx:OriginalGuardFixture)=>void>={owner_matches:fx=>{fx.values['item.proowner']=8;},security_definer:fx=>{fx.values['item.prosecdef']=false;},volatile:fx=>{fx.values['item.provolatile']='s';},plpgsql:fx=>{fx.values['item.lanname']='sql';},exact_proconfig:fx=>{fx.values['item.proconfig']=[];},authenticated_execute:fx=>{fx.privileges.authenticated=false;},anon_denied:fx=>{fx.privileges.anon=true;},service_role_denied:fx=>{fx.privileges.service_role=true;},acl_grantees_safe:fx=>{fx.acl.push({'a.grantee':8,'a.is_grantable':false});},body_exact:fx=>{fx.values['item.prosrc']+=' changed';},call_count_exact:fx=>{fx.values['expected_sources[i]']=fx.values['item.prosrc']='auth.uid()';}};
+  for(const [key,change]of Object.entries(changes))for(const ordinal of [1,2,3]){
+    const fixtures=Array.from({length:3},(_,i)=>originalGuardFixture(i+1));change(fixtures[ordinal-1]);const report=seam.run(fixtures)!;assert.equal(report.schema,"calendar-original-function-guard-v1");assert.equal(report.ordinal,ordinal);assert.deepEqual(Object.keys(report).sort(),['checks','ordinal','schema']);assert.deepEqual(Object.keys(report.checks).sort(),Object.keys(changes).sort());assert.equal(report.checks[key],false);assert.equal(Object.values(report.checks).filter(value=>value===false).length,1);
+  }
+  const first=originalGuardFixture(1),last=originalGuardFixture(3);first.values['item.prosecdef']=last.values['item.prosecdef']=false;assert.equal(seam.run([first,originalGuardFixture(2),last])!.ordinal,1);
+});
+test("actual original guard preserves SQL NULL UNKNOWN prior-guard reach and closed privacy without raw catalog values",()=>{
+  const seam=actualOriginalGuardMatrix();const fixture=originalGuardFixture();fixture.values['item.proowner']=8;fixture.values['item.prosecdef']=null;fixture.privileges.anon=null;
+  fixture.values['item.proconfig']=['PRIVATE_CONFIG'];fixture.values['item.prosrc']=null;fixture.acl.push({'a.grantee':234567,'a.is_grantable':true});
+  const before=seam.evaluations();assert.equal(seam.run([fixture],true),null);assert.equal(seam.evaluations(),before);
+  const report=seam.run([fixture])!;assert.equal(report.checks.security_definer,null);assert.equal(report.checks.anon_denied,null);assert.equal(report.checks.call_count_exact,null);assert.equal(report.checks.body_exact,false);assert.equal(report.checks.exact_proconfig,false);
+  for(const value of Object.values(report.checks))assert.ok(value===true||value===false||value===null);
+  const serialized=JSON.stringify(report);for(const excluded of ['PRIVATE_CONFIG','234567','97979','prosrc','\"proconfig\":','proacl','grantor','auth.uid','calendar_feed_owner','authenticated"'])assert.ok(!serialized.includes(excluded));
+  const onlyUnknown=originalGuardFixture();onlyUnknown.values['item.prosecdef']=null;assert.equal(seam.run([onlyUnknown]),null); // unchanged IF(NULL) does not refuse.
+});
+test("failure-message inverse restores exact original migration guard targets prior checks and following DDL with default P0001",()=>{
+  const seam=actualOriginalGuardMatrix(),restored=seam.source.replace(seam.statement,"   raise exception 'calendar actor original function refused';");
+  assert.equal(createHash('sha256').update(restored).digest('hex'),'f788d507414dc32ecc45b37dcfa44a45ce01cc36da0417063f4e9da1549a3b91');
+  assert.ok(seam.statement.startsWith("   raise exception 'calendar actor original function refused %', pg_catalog.jsonb_build_object("));assert.ok(!/using|errcode|detail|hint|context/i.test(seam.statement));
+  assert.equal(seam.source.split('calendar-original-function-guard-v1').length,2);assert.ok(seam.source.indexOf(seam.statement)<seam.source.indexOf('execute $adapter$create function'));
+});
