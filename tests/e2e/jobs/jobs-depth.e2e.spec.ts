@@ -23,6 +23,7 @@
  */
 import { test, expect } from "../support/resource-cdp-attachment";
 import type { Locator, Page, Request, Response } from "@playwright/test";
+import { adminInsertMembership } from "../../factories/tenants";
 import {
   loadCardInput, createJobsDepthFixture, invokeJobCard, type JobsDepthFixture,
 } from "../../support/jobs-depth-atdd";
@@ -453,7 +454,6 @@ test("[P0] external follow-up selected tenant scopes Mine/all/deep links and ent
   const f=await createJobsDepthFixture();
   try {
     const {adminQuery}=await import("../../factories/admin-sql");
-    const {adminInsertMembership}=await import("../../factories/tenants");
     const tenantA=f.fx.base.tenantA.id,tenantB=f.fx.base.tenantB.id,user=f.fx.users.projektledare;
     await adminQuery("insert into public.job_members(tenant_id,job_id,person_profile_id) values($1,$2,$3)",[tenantA,f.jobs.acceptedAssigned.id,f.fx.coworkerProfile.id]);
     await adminInsertMembership({tenant_id:tenantB,user_id:user.id,role:"tenant_admin",status:"active"});
