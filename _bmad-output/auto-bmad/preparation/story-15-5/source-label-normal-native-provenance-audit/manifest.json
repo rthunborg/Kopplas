@@ -1,0 +1,22 @@
+{
+  "schema": "INDEPENDENT_REVIEW_MANIFEST_v1",
+  "members": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-label-normal-native-provenance-audit/original-report.md",
+      "bytes": 5484,
+      "sha256": "492c9d0554aa0fb3d02268311acdbd4294ffbb03ed61a7c96f067c0694803d3d"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-label-normal-native-provenance-audit/original-attestation.json",
+      "bytes": 45916,
+      "sha256": "4be3775a8d6ba4c0c5d034772b571959d5225408b4bee0db3b2fe135cd03c290"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-label-normal-native-provenance-audit/result.json",
+      "bytes": 822,
+      "sha256": "a3247ce42b9810c307a6983393db686d5bd0a65f299b6189bf192b76f6d01b2f"
+    }
+  ],
+  "self_excluded": "manifest.json",
+  "normal_acceptance": 0
+}

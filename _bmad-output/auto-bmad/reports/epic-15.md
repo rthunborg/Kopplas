@@ -6129,3 +6129,34 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Coordinate actual fresh provider/checkpoint NORMAL effects; Root fresh exact-head source proof. After typed terminal ownership, separately allocated five-request acquisition and exclusive activation; no automatic retry.
+
+## Report — 2026-10-21T22:21:01Z (source-label-normal-actual-verify-failure-qualified)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `3a385df`).
+**Pipeline status:** Story15.5 in review. Run39683227657 at3a385df5 failed Node verification:3241P/2F of3243,103suites. Independent High audit qualified exactly2reads/artifacts0; two source-bound declaration candidates, causesUNKNOWN. DB51/browser14/recovery1/Python/build unexecuted; acceptance0.
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 297h 23m (≈77h 24m AI-run, ≈219h 58m human/idle wait); resumed 184×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** High author localizes and reproduces only qualified two unit declaration candidates; fix only if evidence supports a bounded change within allocated six paths. Preserve assertions/guards and independent review.

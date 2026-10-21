@@ -1,0 +1,13 @@
+{
+  "Outcome": "PASS_QUALIFIED_FAILED_RUN",
+  "Files changed": [
+    "original-report.md",
+    "original-attestation.json",
+    "result.json",
+    "manifest.json"
+  ],
+  "Status": "Current run39683227657 failed verify:3241P+2F/3243; downstream jobs skipped. Bounded projections qualified with attributed tool-lineage limits. Acceptance0.",
+  "Open questions": "Underlying unit causes and runtime source labels/cleanup/custody remain UNKNOWN; raw child completion was not independently read.",
+  "Deferred work": "Separately authorized source-only localization of the two declaration candidates; required fresh native gates remain unproven. No retry/activation granted.",
+  "Blockers": "Current verify failure; DB51/browser14/recovery1 and fullDB/RLS unexecuted; API019/privacy and historical custody remain unresolved."
+}
