@@ -1,0 +1,24 @@
+{
+  "commit": "aa1a16adf2980355f0228badf889c95a4f230248",
+  "members": [
+    {
+      "bytes": 5782,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-composition-high-review/original-report.md",
+      "sha256": "f431e5fe2f3597d30611777b7cb0286fbcb00ee219d4bccd1d7388bacea6ae95"
+    },
+    {
+      "bytes": 24281,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-composition-high-review/original-attestation.json",
+      "sha256": "239f27449f64d022ef917501ab024985f3fe24dcd7449c924ee15499723ad209"
+    },
+    {
+      "bytes": 2189,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-composition-high-review/result.json",
+      "sha256": "88b81c605e0a6d8c813e62cc0eab4b1876df6c28910eed4d2fa36bc5f3a49829"
+    }
+  ],
+  "native_acceptance": 0,
+  "original_verdict": "NOTPASS_TARGETED_COMPOSITION_ENCODING_REGRESSION",
+  "schema": "ORIGINAL_TARGETED_COMPOSITION_REVIEW_SELF_EXCLUDED_v1",
+  "self_excluded": "manifest.json"
+}

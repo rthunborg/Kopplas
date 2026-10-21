@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-21T22:36:31Z"
+updated_at: "2026-10-21T22:55:17Z"
 started_at: "2026-10-20T12:18:56Z"
 completed_at: null
 active_seconds: 86219
@@ -18,15 +18,15 @@ is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: P5-E16-exact-integration-planning
-selected_role: sensitive-integration-and-migration-compatibility-planner
+selected_phase: P5-E16-composition-encoding-correction
+selected_role: sensitive-critical-composition-correction-author
 selected_profile: build
 selected_model: gpt-6.1-sol
 selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Critical source composition includes shared bookings, tenant read authorization and applied migration ordering; explicit High required."
+escalation_reason: "Correct independently observed P1 user-output and essential browser-selector UTF8 regression in six authorized merge-resolution paths, preserving the reviewed authorization/integrity composition."
 routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"High preparation for hashed public-feed tokens, rotation/revocation and tenant/member disclosure boundaries; plan-only before distinctvalidation and ownershipallocation\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct High independent specification validation of actual public-feed token/proof/IP/limiter authorization design and exact ownership/test-key boundaries before anybuild\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"cross_model_layer\",\"profile\":\"diverse_review\",\"role\":\"independent-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -251,6 +251,7 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Target actual unit portability correction: verify reviewed166cad pinned fingerprints independently preserve assertion/operation oracles, changed-source inverses and error/custody guards without runtime Git history.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-unit-portability-corrective-commit-review\",\"profile\":\"followup_review\",\"role\":\"independent-sensitive-baseline-fingerprint-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Refresh exact source identity after independently reviewed portability correction, preserve public-token/label acquisition/privacy/normal95 effects boundaries and qualify one evidence-led checkpoint without retrying old intent.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-unit-portability-current-readiness-refresh\",\"profile\":\"build\",\"role\":\"sensitive-current-source-and-checkpoint-readiness\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Critical source composition includes shared bookings, tenant read authorization and applied migration ordering; explicit High required.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-E16-exact-integration-planning\",\"profile\":\"build\",\"role\":\"sensitive-integration-and-migration-compatibility-planner\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Correct independently observed P1 user-output and essential browser-selector UTF8 regression in six authorized merge-resolution paths, preserving the reviewed authorization/integrity composition.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-E16-composition-encoding-correction\",\"profile\":\"build\",\"role\":\"sensitive-critical-composition-correction-author\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: "Hashed public tokens, rotation/revocation, externalfeed andcross-tenant abuseprotection requireHigh-riskATDD+automate; lastthreeno traceadvisory"
@@ -1997,3 +1998,21 @@ qualified_unit_portability_readiness:
   normal_acceptance: 0
   development_complete: false
   next: Coordinate exact99104d0ffa0360cf7d4ce4de174789c4a4605224 object intake and read-only High integration plan before composed-source native validation. No new effects authorized by this admission.
+exact_e16_composition:
+  local_merge_commit: aa1a16adf2980355f0228badf889c95a4f230248
+  parents: [8b77f94c191ea31bb2b216215f834619c793100b, 99104d0ffa0360cf7d4ce4de174789c4a4605224]
+  tree: e0737d547e62c4cac8ae5780ffc4ba1be7ef00c6
+  High_author: "/root/build15_5_high/implementation_author"
+  independent_High_reviewer: "/root/acquisition15_observability_source_review_high"
+  original_targeted_verdict: NOTPASS_TARGETED_COMPOSITION_ENCODING_REGRESSION
+  original_manifest: "_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-composition-high-review/manifest.json"
+  original_manifest_sha256: 31abc73b57b6ad20c76936a922fe2feb9b079257b92c26dc03d009fcbea03be2
+  finding: "P1 E16-COMPOSE-ENCODING-01: introduced UTF8 text/essential login-selector corruption; bothparents clean"
+  corrective_author_scope6: [src/components/resources/BookingEditor.tsx, tests/e2e/jobs/jobs-depth.e2e.spec.ts, tests/unit/scope/manifest-derivations.test.ts, tests/unit/scope/manifest-shape.test.ts, src/components/jobs/JobWorkspaceSchedule.tsx, src/server/read-models/job-workspace.ts]
+  root_mechanics: ".env.epic15.mail-runtime/story-15-5-preparation/exact-e16-root-precommit-mechanics.json"
+  migration116_native_clean: "PASS;111existing+5exactincoming"
+  checks: "Author TypeScript/lint/lock0; separateNode81P/173Pnonadditive; authored16diffcheck0, wholecached2 on33outside16formatpaths"
+  source_admitted: false
+  normal_acceptance: 0
+  development_complete: false
+  next: "Narrow six-file encoding correction preserving semantic resolutions, then targeted independent regression closure and fresh native readiness."

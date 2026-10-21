@@ -1,0 +1,709 @@
+{
+  "blockers": [
+    "E16-COMPOSE-ENCODING-01 blocks source admission for merge aa1a16adf2980355f0228badf889c95a4f230248."
+  ],
+  "deferred_work": [
+    "The isolated encoding correction and its targeted regression follow-up remain outstanding. Existing native quality gates remain separately unexecuted; no push/run/deployment authority is granted."
+  ],
+  "evidence_attribution": {
+    "author_reused": "Separate81P and173P actual pure runs,0fail/skip/cancel;173 includes wrapper152. WholeTS/affected lint/lock0. Not added or rerun as reviewer coverage. Initial reader failures and combined SSR/reader command exit1 retained, not promoted to whole-script PASS.",
+    "diff_limits": "Root scoped16 diffcheck0; whole cached diffcheck2 in33 inherited/clean-auto-merged paths outside16. No whole-pass claim or unowned normalization.",
+    "provenance": "Actual completed integration/companion allocations are bound by author refs. Actual f.fx.montorClient remains the sole companion principal; earlier relay actorA was clerical, not source change. Full416 ancestry/reference exports remain admitted process data, not authority/legacy evidence; no main/E17 adoption.",
+    "reviewer_executed": "Read-only Git object/parent/tree and UTF8/hash proofs,16-parent census,116 SQL identities+five canonical bodies,11 smoke union, exact singlecall companion, kernel preservation and selector/source mismatch checks. No runtime, browser, build or services."
+  },
+  "exact_binding": {
+    "API_GETs": 0,
+    "Git_mutations": 0,
+    "Root_scoped_diff_check": 0,
+    "Root_whole_diff_check": 2,
+    "Root_whole_warnings_outside16": 33,
+    "SQL_preserved": {
+      "exact_incoming": 5,
+      "ours": 111,
+      "total": 116
+    },
+    "actual_smoke_login_selector_mismatch_proved": true,
+    "author16": [
+      {
+        "blob": "c9a10117ed149a876f529edd1d2c730359dbdd98",
+        "path": "package.json",
+        "raw_sha256": "5143efaefd4d68f995ceefac22838ed135c89f20c36c63104db80bfad7f657c3"
+      },
+      {
+        "blob": "7d77340b1b796f7d795c3296d2bc5a400fbd405c",
+        "path": "src/app/(app)/jobs/[jobId]/page.tsx",
+        "raw_sha256": "2d59ebd046699b6b8db10bc7c0f43d800db22993636a6f8b44c96a45826b00c9"
+      },
+      {
+        "blob": "1d625bd8e8b73d2a46f3bf743194f58f37dbc007",
+        "path": "src/components/resources/BookingEditor.tsx",
+        "raw_sha256": "6b84f6ec46181883f0629216a03ba45ddaf0d44c989b2f5ec0f207beb56f538a"
+      },
+      {
+        "blob": "c250ce2f73e5eac6d0e56cf6c0e5dd71efc99b79",
+        "path": "src/components/resources/BookingEntry.tsx",
+        "raw_sha256": "0deeb6bf9200ddb633ffb2a615e6b3a04882fa0e59b3dee485805d7c72f86187"
+      },
+      {
+        "blob": "b52adfadac17e706167de55118f85292c94fd396",
+        "path": "src/features/resources/bookings-read.ts",
+        "raw_sha256": "f2db7c956fbe6931c6808a63e21fa369883aedea4bf50431154c5e9b8f1494b2"
+      },
+      {
+        "blob": "ee4d76b329fc26146a8aa20037b6ba056f5be3c7",
+        "path": "tests/e2e/jobs/jobs-depth.e2e.spec.ts",
+        "raw_sha256": "61d06058ec3a4019862e5026f7e0427dbaaaf31cf0a8be2665ca033ec6e1673e"
+      },
+      {
+        "blob": "231dea63eb2d60cbd0d8b77070cc62c8b0971057",
+        "path": "tests/integration/rls/cross-tenant-isolation.rls.test.ts",
+        "raw_sha256": "7f3a319552e34ccb65d8c9132f54d2e1c7b5343e4c2dd846f30af5a23d629ef2"
+      },
+      {
+        "blob": "5c6a563a1e1be59f4cece8dec2ab207a8d6a46e4",
+        "path": "tests/integration/rls/migration-reset.int.test.ts",
+        "raw_sha256": "1d16e021f75de5f5005514520956153004faa9558bc0bf168b408d201b3fd993"
+      },
+      {
+        "blob": "7e4d03387b9ec5809ec0a50e8e382c2e1f53c930",
+        "path": "tests/integration/rls/role-harness.atdd.int.test.ts",
+        "raw_sha256": "1f76e604e8db8938110ec8ae80ec4911f1bef2aa5c59984f120691ad88c17820"
+      },
+      {
+        "blob": "d242773f4b126b66f64acad65036b9c87190aee4",
+        "path": "tests/integration/rls/tenant-table-inventory.ts",
+        "raw_sha256": "42812b873a6048e385ad570e73f045ccd3ff682cdb751f30f1ebab8fdc6c2317"
+      },
+      {
+        "blob": "5331796fbeabe4806fb301fa6ed10f346728a782",
+        "path": "tests/unit/scope/manifest-derivations.test.ts",
+        "raw_sha256": "5df0b412cf8aa6bc20aa34dd67a498184225fab73cc7cb182a2965ae73d632d0"
+      },
+      {
+        "blob": "6babe274d7303c34f36cf2dfd557caf7d0ae364f",
+        "path": "tests/unit/scope/manifest-shape.test.ts",
+        "raw_sha256": "10124f2b1f78b48e7e434ee47409897fb2619380aca09fa42f950d9a3898da04"
+      },
+      {
+        "blob": "f61535632933b2a831f6c4ee6b971f560b580cd5",
+        "path": "tests/unit/server/authz/permission-matrix.test.ts",
+        "raw_sha256": "dd2b263556a77f784521cdca8f565e3ea72c7c5e4d38ca24ba033226f0be772a"
+      },
+      {
+        "blob": "0d0e2b23475ac43e4b27e083bdadce5331f80b40",
+        "path": "src/components/jobs/JobWorkspaceSchedule.tsx",
+        "raw_sha256": "d5e7aade03d68bb799b08c46ef7c554fa3478d891b5d4275a09204ae18f94876"
+      },
+      {
+        "blob": "d6cd5e520837fbb9148790db6b15753d4b66588e",
+        "path": "src/server/read-models/job-workspace.ts",
+        "raw_sha256": "7f2213d51184d6a8ed8b0d3812bc959f510da673354198978e504ab0c79fc155"
+      },
+      {
+        "blob": "d49747bb553260e943f87d3740eef253151bcbd8",
+        "path": "tests/integration/features/jobs/job-workspace.int.test.ts",
+        "raw_sha256": "e34e0dc06958fc51438799fa86f84e2e7e95e7b43e70fafd7b55c7767956b9be"
+      }
+    ],
+    "author_checks": [
+      {
+        "cancel": 0,
+        "duration_ms": 397.1323,
+        "exit": 0,
+        "fail": 0,
+        "files": [
+          "manifest-derivations",
+          "manifest-shape",
+          "permission-matrix",
+          "job-scheduling-consumers",
+          "job-demand-advisory",
+          "job-scheduling-protocol",
+          "booking-editor-input",
+          "booking-series-state"
+        ],
+        "name": "eight-file affected pure Node",
+        "pass": 81,
+        "skip": 0,
+        "tests": 81
+      },
+      {
+        "cancel": 0,
+        "duration_ms": 17765.9489,
+        "exit": 0,
+        "fail": 0,
+        "files": [
+          "with-calendar-feed-runtime",
+          "job-workspace read-model",
+          "job-work-orders read-model",
+          "job-facts",
+          "capacity.golden",
+          "integration-test-partitions"
+        ],
+        "name": "six-file affected pure Node",
+        "output_bytes": 53180,
+        "output_sha256": "f90ffe0cedae1b68376d62b9374cbc7870696a22eb7b71087b69bbe968bc5ffb",
+        "pass": 173,
+        "skip": 0,
+        "tests": 173
+      },
+      {
+        "command": "node node_modules/typescript/bin/tsc --noEmit --incremental false",
+        "exit": 0,
+        "name": "whole TypeScript"
+      },
+      {
+        "exit": 0,
+        "name": "affected14TS lint plus companion lint",
+        "warnings": 0
+      },
+      {
+        "command": "node scripts/verify/check-lockfiles.mjs",
+        "exit": 0,
+        "name": "lockguard"
+      },
+      {
+        "command": "git diff --check",
+        "exit": 0,
+        "name": "final native diff"
+      },
+      {
+        "limits": "Actual transpiled BookingEntry/JobWorkspaceSchedule with installed ReactDOMServer and stubbed dependencies. Assigned nonmanager/no-options report; three eligibility negatives; manager controls; schedule descriptor+timeline all passed before later auxiliary title-reader failure. Combined command exit1, NOT whole-script PASS or browser/native proof.",
+        "name": "actual component pure SSR controls"
+      },
+      {
+        "current_counts": [
+          6,
+          1,
+          15,
+          6,
+          6,
+          8,
+          9
+        ],
+        "exit": 0,
+        "limit": "Not full Unicode title-equality evidence.",
+        "name": "simpler finite ASCII case IDs/declaration counts",
+        "parent_counts": [
+          [
+            4,
+            6
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            14,
+            14
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            8,
+            8
+          ],
+          [
+            8,
+            7
+          ]
+        ],
+        "paths": 7
+      }
+    ],
+    "commit": "aa1a16adf2980355f0228badf889c95a4f230248",
+    "companion_same_montor_client_single_call": true,
+    "encoding_census": [
+      {
+        "composed": {
+          "affected_lines": [],
+          "marker_occurrences": 0
+        },
+        "incoming": {
+          "affected_lines": [],
+          "marker_occurrences": 0
+        },
+        "ours": {
+          "affected_lines": [],
+          "marker_occurrences": 0
+        },
+        "path": "package.json"
+      },
+      {
+        "composed": {
+          "affected_lines": [],
+          "marker_occurrences": 0
+        },
+        "incoming": {
+          "affected_lines": [],
+          "marker_occurrences": 0
+        },
+        "ours": {
+          "affected_lines": [],
+          "marker_occurrences": 0
+        },
+        "path": "src/app/(app)/jobs/[jobId]/page.tsx"
+      },
+      {
+        "composed": {
+          "affected_lines": [
+            60,
+            67,
+            78,
+            114,
+            133,
+            150,
+            154,
+            155,
+            161,
+            176,
+            177,
+            195,
+            199,
+            200,
+            209,
+            211,
+            223,
+            226,
+            228,
+            262,
+            263,
+            264,
+            266,
+            275,
+            282,
+            284,
+            287,
+            288,
+            290,
+            292,
+            294,
+            295,
+            298,
+            299,
+            300,
+            301,
+            302,
+            304,
+            305,
+            306,
+            312,
+            316,
+            317
+          ],
+          "marker_occurrences": 120
+        },
+        "incoming": {
+          "affected_lines": [],
+          "marker_occurrences": 0
+        },
+        "ours": {
+          "affected_lines": [],
+          "marker_occurrences": 0
+        },
+        "path": "src/components/resources/BookingEditor.tsx"
+      },
+      {
+        "composed": {
+          "affected_lines": [],
+          "marker_occurrences": 0
+        },
+        "incoming": {
+          "affected_lines": [],
+          "marker_occurrences": 0
+        },
+        "ours": {
+          "affected_lines": [],
+          "marker_occurrences": 0
+        },
+        "path": "src/components/resources/BookingEntry.tsx"
+      },
+      {
+        "composed": {
+          "affected_lines": [],
+          "marker_occurrences": 0
+        },
+        "incoming": {
+          "affected_lines": [],
+          "marker_occurrences": 0
+        },
+        "ours": {
+          "affected_lines": [],
+          "marker_occurrences": 0
+        },
+        "path": "src/features/resources/bookings-read.ts"
+      },
+      {
+        "composed": {
+          "affected_lines": [
+            2,
+            49,
+            51,
+            88,
+            98,
+            100,
+            102,
+            103,
+            106,
+            129,
+            146,
+            150,
+            180,
+            214,
+            229,
+            248,
+            251,
+            265,
+            293,
+            297,
+            326,
+            349,
+            385,
+            396,
+            397,
+            444,
+            480
+          ],
+          "marker_occurrences": 36
+        },
+        "incoming": {
+          "affected_lines": [],
+          "marker_occurrences": 0
+        },
+        "ours": {
+          "affected_lines": [],
+          "marker_occurrences": 0
+        },
+        "path": "tests/e2e/jobs/jobs-depth.e2e.spec.ts"
+      },
+      {
+        "composed": {
+          "affected_lines": [],
+          "marker_occurrences": 0
+        },
+        "incoming": {
+          "affected_lines": [],
+          "marker_occurrences": 0
+        },
+        "ours": {
+          "affected_lines": [],
+          "marker_occurrences": 0
+        },
+        "path": "tests/integration/rls/cross-tenant-isolation.rls.test.ts"
+      },
+      {
+        "composed": {
+          "affected_lines": [],
+          "marker_occurrences": 0
+        },
+        "incoming": {
+          "affected_lines": [],
+          "marker_occurrences": 0
+        },
+        "ours": {
+          "affected_lines": [],
+          "marker_occurrences": 0
+        },
+        "path": "tests/integration/rls/migration-reset.int.test.ts"
+      },
+      {
+        "composed": {
+          "affected_lines": [],
+          "marker_occurrences": 0
+        },
+        "incoming": {
+          "affected_lines": [],
+          "marker_occurrences": 0
+        },
+        "ours": {
+          "affected_lines": [],
+          "marker_occurrences": 0
+        },
+        "path": "tests/integration/rls/role-harness.atdd.int.test.ts"
+      },
+      {
+        "composed": {
+          "affected_lines": [],
+          "marker_occurrences": 0
+        },
+        "incoming": {
+          "affected_lines": [],
+          "marker_occurrences": 0
+        },
+        "ours": {
+          "affected_lines": [],
+          "marker_occurrences": 0
+        },
+        "path": "tests/integration/rls/tenant-table-inventory.ts"
+      },
+      {
+        "composed": {
+          "affected_lines": [
+            3,
+            5,
+            11,
+            12,
+            20,
+            67,
+            69,
+            113,
+            137,
+            160,
+            164,
+            165,
+            177,
+            179
+          ],
+          "marker_occurrences": 221
+        },
+        "incoming": {
+          "affected_lines": [],
+          "marker_occurrences": 0
+        },
+        "ours": {
+          "affected_lines": [],
+          "marker_occurrences": 0
+        },
+        "path": "tests/unit/scope/manifest-derivations.test.ts"
+      },
+      {
+        "composed": {
+          "affected_lines": [
+            4,
+            9,
+            13,
+            17,
+            19,
+            71,
+            72,
+            75,
+            134,
+            171,
+            172,
+            173,
+            174,
+            175
+          ],
+          "marker_occurrences": 84
+        },
+        "incoming": {
+          "affected_lines": [],
+          "marker_occurrences": 0
+        },
+        "ours": {
+          "affected_lines": [],
+          "marker_occurrences": 0
+        },
+        "path": "tests/unit/scope/manifest-shape.test.ts"
+      },
+      {
+        "composed": {
+          "affected_lines": [],
+          "marker_occurrences": 0
+        },
+        "incoming": {
+          "affected_lines": [],
+          "marker_occurrences": 0
+        },
+        "ours": {
+          "affected_lines": [],
+          "marker_occurrences": 0
+        },
+        "path": "tests/unit/server/authz/permission-matrix.test.ts"
+      },
+      {
+        "composed": {
+          "affected_lines": [
+            16
+          ],
+          "marker_occurrences": 3
+        },
+        "incoming": {
+          "affected_lines": [],
+          "marker_occurrences": 0
+        },
+        "ours": null,
+        "path": "src/components/jobs/JobWorkspaceSchedule.tsx"
+      },
+      {
+        "composed": {
+          "affected_lines": [
+            48
+          ],
+          "marker_occurrences": 3
+        },
+        "incoming": {
+          "affected_lines": [],
+          "marker_occurrences": 0
+        },
+        "ours": null,
+        "path": "src/server/read-models/job-workspace.ts"
+      },
+      {
+        "composed": {
+          "affected_lines": [],
+          "marker_occurrences": 0
+        },
+        "incoming": {
+          "affected_lines": [],
+          "marker_occurrences": 0
+        },
+        "ours": null,
+        "path": "tests/integration/features/jobs/job-workspace.int.test.ts"
+      }
+    ],
+    "encoding_census_method": "Exact U+00C3/U+00C2/U+00E2 marker counts and one-based lines from actual UTF8 Git bodies, compared to both parents; sentinel count, not count of all semantic defects. Parent-null means newly introduced path.",
+    "input_refs": [
+      {
+        "bytes": 26693,
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/exact-e16-integration-plan/plan.json",
+        "sha256": "3b3f4a23c15cfc90f5cbf687edc45da6da71f6798e8f08a7152477c6f4bb0d07"
+      },
+      {
+        "bytes": 118814,
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/exact-e16-integration-plan/bindings.json",
+        "sha256": "ebf9df378e92cd046333f9df763c8f81d3b0829564ddd31fb1ef0d9f7229220a"
+      },
+      {
+        "bytes": 804,
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/exact-e16-integration-plan/manifest.json",
+        "sha256": "7f889b609af718579146a01a63385ff0a17ffbdf986689cd75a81b5304df32e8"
+      },
+      {
+        "bytes": 22467,
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/exact-e16-composition-author/receipt.json",
+        "sha256": "1a9d677257f3e8ce87d200060b042d61f8e64cd3653c8e2a5bd7d05fed39d1ad"
+      },
+      {
+        "bytes": 1721,
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/exact-e16-composition-author/guide.md",
+        "sha256": "a664d5d3cd2fff78e7c97e0f34d9aaf9f8a89e9d29db802c3534fe4eabbee609"
+      },
+      {
+        "bytes": 1833,
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/exact-e16-composition-author/result.json",
+        "sha256": "54dc7a8f239efd1504db4a0d6ba655cf09a78f2c0b0fcb82023958d2e822c696"
+      },
+      {
+        "bytes": 810,
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/exact-e16-composition-author/manifest.json",
+        "sha256": "f559f73538242f0c934799598957412dec8bd9bcba1a4fb8859d705fa6fb7d1e"
+      },
+      {
+        "bytes": 9740,
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/exact-e16-root-precommit-mechanics.json",
+        "sha256": "2fa85d0502d59b7877f6a6e4ed83a059fc2dcb00e8e931c2db27132e49a8c931"
+      },
+      {
+        "bytes": 1190,
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/exact-e16-root-sprint-resolution.json",
+        "sha256": "fe93ab302d1992d84f9286aafc544a2be60386480444aaae9b07c4d68190871c"
+      }
+    ],
+    "kernel": {
+      "bytes": 5760,
+      "sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977"
+    },
+    "native_application": 0,
+    "parents": [
+      "8b77f94c191ea31bb2b216215f834619c793100b",
+      "99104d0ffa0360cf7d4ce4de174789c4a4605224"
+    ],
+    "portability_unit_and_Spec_exact_ours": true,
+    "smoke_union": [
+      "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+      "tests/e2e/auth/auth-mail-callback.e2e.spec.ts",
+      "tests/e2e/jobs/jobs-depth.e2e.spec.ts",
+      "tests/e2e/conflict-resolver.e2e.spec.ts",
+      "tests/e2e/time-reports.e2e.spec.ts",
+      "tests/e2e/calendar-feed.e2e.spec.ts",
+      "tests/e2e/jobs/job-members.e2e.spec.ts",
+      "tests/e2e/jobs/work-orders.e2e.spec.ts",
+      "tests/e2e/jobs/job-upgrade.e2e.spec.ts",
+      "tests/e2e/jobs/job-scheduling-consumers.e2e.spec.ts",
+      "tests/e2e/jobs/job-workspace.e2e.spec.ts"
+    ],
+    "status": "PASS_BINDINGS_WITH_CONFIRMED_ENCODING_REGRESSION",
+    "tree": "e0737d547e62c4cac8ae5780ffc4ba1be7ef00c6"
+  },
+  "findings": [
+    {
+      "id": "E16-COMPOSE-ENCODING-01",
+      "location": {
+        "line": 49,
+        "path": "tests/e2e/jobs/jobs-depth.e2e.spec.ts"
+      },
+      "priority": "P1",
+      "proof": "Actual UTF8 Git bodies, compared against both parents, plus exact current selector/login source comparison. Six of the16 author paths contain newly introduced encoding sentinels; every corresponding available parent has0.",
+      "reachable_defect": "The browser sign-in now selects L\u00c3\u00b6senord, while the actual unchanged login labels L\u00f6senord; Playwright's exact locator cannot find the password field. The same composition corrupts visible Swedish actions, warnings and retry/error text, and the timeline separator. Both parents retain correct text, so this is introduced by resolution, not a terminal-display artifact or formatting preference.",
+      "related_locations": [
+        {
+          "line": 85,
+          "path": "src/app/(auth)/login/page.tsx"
+        },
+        {
+          "line": 60,
+          "path": "src/components/resources/BookingEditor.tsx"
+        },
+        {
+          "line": 317,
+          "path": "src/components/resources/BookingEditor.tsx"
+        },
+        {
+          "line": 16,
+          "path": "src/components/jobs/JobWorkspaceSchedule.tsx"
+        },
+        {
+          "line": 48,
+          "path": "src/server/read-models/job-workspace.ts"
+        }
+      ],
+      "safe_correction_boundary": "Restore only the damaged Unicode text/literal/comment bytes in the six affected authored paths, using actual parent UTF8 text as provenance, while retaining composed semantic hunks, all test assertions/cases, exact principal/call bridge,111+5 SQL, kernel/counter, and other imported bytes. No blanket normalization of unowned/inherited paths or cleanup of the33 outside16 formatting-warning paths.",
+      "status": "OPEN",
+      "title": "Restore the UTF-8 literals corrupted by conflict resolution",
+      "trigger": "Run the composed essential jobs-depth browser smoke or render BookingEditor/job schedule/workspace failures."
+    }
+  ],
+  "inspected_scopes": [
+    "Thirteen conflict resolutions, two schedule/options bridge files and exact one integration test-call companion against both actual parents.",
+    "BookingEditor recurrence/one-following/retained fold clocks/resolver adapters/review receipts/unknown attempts alongside incoming default interval/hint semantics. Default duration remains restricted to untouched non-series create.",
+    "Workspace root admission precedes files/document/work-order/report consumers; ordinary per-reader tenant/JWT checks retained. Own-report eligibility remains independent of manager/options and existing BookingEntry guards; visible timeline retained except damaged separator.",
+    "RLS/table/policy/ACL and role union diffs retain E15 series/conflict/time-report/feed plus E16 work-order/member/dependency oracles; dependent_job_id mappings retained. No second concrete source defect found in this bounded review.",
+    "Named clean auto-merge seams: manifest, booking action-state, capacity, permission matrix, envelope/job-command-scope and role harness. Tenant-bound read_job_cards calls in read/my-jobs/new semantics readers checked with revoked legacy EXECUTE and active membership/per-row/quote visibility boundary from unchanged incoming SQL.",
+    "C4 source boundary: existing six serial files remain in actual config; new E16 audit fault users call the preinstalled correlation-only test_support.forced_audit_failures insertion/deletion helper rather than creating/replacing shared triggers. No new concrete C4 partition/DDL gap identified here; full DB/reset/parallel/serial native evidence remains unexecuted and required.",
+    "Full116 migration OIDs preserve current111+exact incoming5; incoming5 canonical bodies independently hash matched. Smoke union11 exact once; portability unit and Spec/kernel remain exact ours."
+  ],
+  "no_new_effects": {
+    "Git_mutations": 0,
+    "development_complete": false,
+    "native_acceptance": 0,
+    "network_GETs_provider_CI": 0,
+    "release_ready": false,
+    "services_resources_browser_build": 0,
+    "source_Spec_state_SQL_writes": 0
+  },
+  "open_questions": [
+    "Full DB/RLS/reset/recovery/build and essential browser union remain unexecuted here.",
+    "Earlier E15 functional/custody failures and unknown hosted exceptions remain unresolved; source review cannot clear them."
+  ],
+  "outcome": "NOTPASS_TARGETED_COMPOSITION_ENCODING_REGRESSION",
+  "report": {
+    "bytes": 5782,
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-composition-high-review/original-report.md",
+    "sha256": "f431e5fe2f3597d30611777b7cb0286fbcb00ee219d4bccd1d7388bacea6ae95"
+  },
+  "reviewer": {
+    "broad_story_review": false,
+    "composition_author": false,
+    "effort": "high",
+    "independent": true,
+    "model": "gpt-6.1-sol",
+    "review_round_increment": 0
+  },
+  "schema": "EXACT_E16_COMPOSITION_TARGETED_HIGH_REVIEW_v1"
+}

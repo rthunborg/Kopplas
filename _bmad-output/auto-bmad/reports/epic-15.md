@@ -6222,3 +6222,34 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Coordinate exact completed E16 commit intake, High compatibility plan and bounded integration before another full normal checkpoint; no deployment.
+
+## Report — 2026-10-21T22:55:17Z (in progress — exact E16 integrated locally; encoding correction required)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `aa1a16a`).
+**Pipeline status:** 15.5 P5 active. Local exactE16 mergeaa1a16ad preserves116migrationidentities; targeted independentHigh review found P1 encoding/essential login-selector regression in six authoredfiles. Source admission held; nativeacceptance0.
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 297h 57m (≈77h 24m AI-run, ≈220h 32m human/idle wait); resumed 187×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Narrow six-file encoding correction preserving semantic resolutions, then targeted independent regression closure and fresh native readiness. No push or deployment.
