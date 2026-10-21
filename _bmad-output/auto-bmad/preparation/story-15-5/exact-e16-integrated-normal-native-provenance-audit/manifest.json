@@ -1,0 +1,25 @@
+{
+  "schema": "EXACT_E16_FAILED_NORMAL_NATIVE_PROVENANCE_AUDIT_MANIFEST_v1",
+  "self_excluded": true,
+  "files": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-integrated-normal-native-provenance-audit/original-report.md",
+      "bytes": 4266,
+      "sha256": "4cbff991e91ad9ee097b13f0d45ace5cae741c7f4f9d2f989a172d2a9b3cce41"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-integrated-normal-native-provenance-audit/original-attestation.json",
+      "bytes": 17440,
+      "sha256": "6991d5783b9fdf199b13f753d471293f6e0bcb0f33f81683d550c43b6c51d39e"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-integrated-normal-native-provenance-audit/result.json",
+      "bytes": 2203,
+      "sha256": "88b8ac802972e5bf0f965f0f57ff1ca696a926a5535319d1049d79f4431a104b"
+    }
+  ],
+  "frozen": true,
+  "packet_manifest_sha256": "1f7f9101aebaae40a8e2f7674572b3408e999e1f868e232f18709d8adaebeece",
+  "normal_acceptance": 0,
+  "execution_authority": false
+}

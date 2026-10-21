@@ -6315,3 +6315,34 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Coordinate one exact reviewed checkpoint: freshproviderqualification, oneFFpush and oneNORMALdispatcher; no variablemutation/artifactreads/deployment. Freshterminalbindings and evidence remain later gates.
+
+## Report — 2026-10-21T23:22:29Z (in progress — failed integrated unit evidence qualified)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `9813433`).
+**Pipeline status:** 15.5 P5 active. ActualNORMAL39691553004/head98134335: Node3389=3354P35F/103suites/0skip; unitgatefailed and downstreamruntime/Python/buildunexecuted. IndependentHighqualified14packet/2GET/0ZIP; failureIDs/causeUNKNOWN, acceptance0.
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 298h 24m (≈77h 24m AI-run, ≈221h 00m human/idle wait); resumed 190×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Materially simpler ONE local full canonical pure Node suite for actual failing-case identification; no new collector family or hosted retry. Preserve95obligations and all existinggates; no deployment.

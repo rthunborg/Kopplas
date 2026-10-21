@@ -1,0 +1,48 @@
+{
+  "outcome": "PASS_QUALIFIED_FAILED_NORMAL_EVIDENCE",
+  "source": "1de4722bcaa2d14163c6b56ce4a2b6b9ef3fc84c",
+  "pushed_head": "98134335cd52e396fe4878bc5e49921f70c0f6b6",
+  "run_id": 39691553004,
+  "attempt": 1,
+  "checkpoint_id": "35dd743c-c66c-4989-b9c4-3e20be8efc60",
+  "normal_flags": {
+    "cause_proof": false,
+    "release_validation": false
+  },
+  "independent_auditor": "gpt-6.1-sol High /root/acquisition15_observability_source_review_high",
+  "audit_manifest": "_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-integrated-normal-native-provenance-audit/manifest.json",
+  "audit_manifest_sha256": "adb4acc142bae1ad9a3715a1b3a3d4cd6c122e4c40699b2322f000840cc2a1cb",
+  "root_mechanical4membership": "PASS",
+  "packet_manifest_sha256": "1f7f9101aebaae40a8e2f7674572b3408e999e1f868e232f18709d8adaebeece",
+  "actual_GETs": 2,
+  "actual_ZIPs": 0,
+  "artifact_total": 0,
+  "unused3_slots_closed": true,
+  "native_child_tool_attribution": "Native reported chunk22aaa8 outer/native0/wall2.3798036/no session/waits; not directly observed by Root/auditor",
+  "Node": {
+    "tests": 3389,
+    "passed": 3354,
+    "failed": 35,
+    "suites": 103,
+    "skipped": 0,
+    "cancelled": 0,
+    "todo": 0
+  },
+  "story_positive_markers": {
+    "distinct": 30,
+    "lines": 32,
+    "nonadditive": true,
+    "normal_acceptance": 0
+  },
+  "failure_identities": {
+    "bound_candidates": 0,
+    "unqualified_framework_markers": 35,
+    "underlying_count": null,
+    "cause": "UNKNOWN"
+  },
+  "downstream": "51DB+14browser+recovery1/Python/buildUNEXECUTED;zero newruntimecoverage",
+  "custody": "UNKNOWN",
+  "normal_acceptance": 0,
+  "development_complete": false,
+  "next": "Materially simpler ONE local full canonical pure Node suite for actual failing-case identification; no new collector family or hosted retry."
+}
