@@ -5227,3 +5227,38 @@ No archive ran this resume.
 1. none for bounded source-only assessment; existing human authorization retained.
 
 **Next:** Receive compact source-localization proposal, then independently challenge actual sensitive delta and coordinate shared ownership before edits. Five evidence GETs consumed/settled; no refetch or blind redispatch.
+
+## Report — 2026-10-21T17:39:48Z (15.5 five-file harness repair allocated after independent plan review)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `bc5e9b9`).
+**Pipeline status:** In progress: exact five-file source/offline repair authorized; actual normal39637925040 remains failed, acceptance0.
+**Continues:** High author implements only independently reviewed source-supported harness corrections under C1-C7; distinct committed-delta High review follows.
+
+**Summary:** 15.1–15.4 landed;15.5 P5 active;15.6 unstarted. Inherited review_unverified retained; one final draft PR.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 292h 41m (≈77h 24m AI-run, ≈215h 17m human/idle wait); resumed 156×.
+
+**Stories:**
+1. H1 meaningful foreign-identity denial oracle, H2 qualified bounded owner-context serial fault seams, H3 empty-agenda assertion. Five files only; no productionapp/migration/wrapper/factory/runner/collector change.
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** Coordinator actualcompleted grant turn01a15f8a-8e3e-7833-87ed-ece826584b09/tool exec-5fa9a32f-40af-4f3e-9332-d1471215d8dd independently read. No known E16/Documents overlap; no paused sessions resumed. All appliedSQL111andearlier immutable; no fourth broadreview, merge or deploy.
+
+**Open questions:**
+1. API019 privacy, E2E001/flaky branches and browser custody remain failed/UNKNOWN. Source repair cannot claim native proof or full95pass.
+
+**Deferred work:**
+1. Existing deferred release-validation ledger unchanged; required functional/privacy failures remain blockers.
+
+**⚠️ Needs human:**
+1. none inside exact source/offline allocation. Stop for concrete extra allocation if existing interfaces cannot satisfy C1-C7.
+
+**Next:** Commit preparation metadata/clean-tree checkpoint, then explicit High source author. NativeSQL/connections/CI/GET/resources/push effects remain separately unallocated.
