@@ -5687,3 +5687,35 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** RootsoleCIpoller39664130401/headce194; sourceadmission and actualterminalqualification before exact5GETallocation.
+
+## Report — 2026-10-21T20:03:47Z (progress — actual normal CI failed; bounded evidence pending)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `179493c`).
+**Pipeline status:** in-progress — 15.5 normal checkpoint failed; evidence acquisition pending
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 295h 05m (≈77h 24m AI-run, ≈217h 41m human/idle wait); resumed 170×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:**
+1. Current DB/browser case counts and causes UNKNOWN. Development gates blocked. Source operator audit passed; native acceptance0.
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Observe completed Coordinator exact5GET allocation; Root activation; NativeHigh bounded execution; distinct High provenance audit. Second failed approach requires evidence-led materially simpler route. No blind normal retry.
