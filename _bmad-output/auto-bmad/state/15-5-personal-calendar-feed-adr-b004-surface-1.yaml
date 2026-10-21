@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-21T20:52:39Z"
+updated_at: "2026-10-21T20:58:38Z"
 started_at: "2026-10-20T12:18:56Z"
 completed_at: null
 active_seconds: 86219
@@ -18,15 +18,15 @@ is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: post-f1-qualified-r1-source-failure-assessment
-selected_role: sensitive-implementation-planner
+selected_phase: post-f1-source-label-diagnostic-boundary-state-revalidation
+selected_role: independent-sensitive-diagnostic-plan-reviewer
 selected_profile: sensitive
 selected_model: gpt-6.1-sol
 selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "IndependentlyqualifiedretainedR1candidatefacts permitfinite source-only assessment of currentNUDGE004/essentialbrowserfailurepaths; sensitiveclock/authorization/transactioncustody. No actualruntimecausesassumed/newGET/sourcefixuntilexactclaims."
+escalation_reason: "SameHigh finiteLABELPLAN01/02revalidation: opted-inoutertest/time-reportboundary andperobservation/actionstates; unchanged6paths andnormaldriver/gates. Reuseoriginalreview; no broad/fourthreview/source/effects."
 routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"High preparation for hashed public-feed tokens, rotation/revocation and tenant/member disclosure boundaries; plan-only before distinctvalidation and ownershipallocation\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct High independent specification validation of actual public-feed token/proof/IP/limiter authorization design and exact ownership/test-key boundaries before anybuild\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"cross_model_layer\",\"profile\":\"diverse_review\",\"role\":\"independent-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -235,6 +235,9 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"ActualcompletedCoordinatorFRESH_R1exact2GETallocation+distinctR1sourcePASS; immediateRoot74/222/terminalproof andexclusivefsyncedR1capability. Boundedprivacy/credentialtransportHigh; oldoperationconsumednotreused.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"post-f1-targeted-terminal-diagnostic-r1-execution\",\"profile\":\"sensitive\",\"role\":\"native-verification-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"DistinctofflineactualR1boundedprojection/omissions/source-location/provenanceaudit beforecausalorfixclaims. Publishedpartial16errors54locationoccurrences5tuples; laterattemptsomittedUNKNOWN; no neweffects/fourthstorybroadreview.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"post-f1-targeted-terminal-diagnostic-r1-provenance-audit\",\"profile\":\"sensitive\",\"role\":\"independent-provenance-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"IndependentlyqualifiedretainedR1candidatefacts permitfinite source-only assessment of currentNUDGE004/essentialbrowserfailurepaths; sensitiveclock/authorization/transactioncustody. No actualruntimecausesassumed/newGET/sourcefixuntilexactclaims.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"post-f1-qualified-r1-source-failure-assessment\",\"profile\":\"sensitive\",\"role\":\"sensitive-implementation-planner\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"NoappfixsupportedbyqualifiedR1; challengeminimumsixpathoriginal-boundarylabel/lifecycle diagnosticplan underboundedrecovery/twofailednormalpolicy. Criticalerroridentity/privacy/clock/custody semantics High; no sourcebuild/effects/fourthbroad.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"post-f1-source-label-diagnostic-plan-review\",\"profile\":\"sensitive\",\"role\":\"independent-sensitive-diagnostic-plan-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"IndependentfiniteLABEL-PLAN01/02gaps: nudgeoutersetup/cleanupenvelope andbrowserper-observationsettlementsemantics. Planmetadataonly withinoriginalsixpaths; preserveerroridentity/C4guards/operations/privacy/noeffects.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"post-f1-source-label-diagnostic-plan-refinement\",\"profile\":\"sensitive\",\"role\":\"sensitive-implementation-planner\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"SameHigh finiteLABELPLAN01/02revalidation: opted-inoutertest/time-reportboundary andperobservation/actionstates; unchanged6paths andnormaldriver/gates. Reuseoriginalreview; no broad/fourthreview/source/effects.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"post-f1-source-label-diagnostic-boundary-state-revalidation\",\"profile\":\"sensitive\",\"role\":\"independent-sensitive-diagnostic-plan-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: "Hashed public tokens, rotation/revocation, externalfeed andcross-tenant abuseprotection requireHigh-riskATDD+automate; lastthreeno traceadvisory"
@@ -1854,3 +1857,36 @@ p5_targeted_terminal_diagnostic_r1_audit:
   normal_acceptance_credit: 0
   causal_gap: "NUDGE157nestedfixtureentrynotsetup/callback/cleanupassertion; browser001fixturefinalization/009partial; later007010revokeUNKNOWN_NOT_ABSENCE"
   next: "Highsource-onlyassessmentfinishesminimumsource-label/report-driverdiagnosticplan. No justifiedappfix, no unchangedartifactreads/normalCIretry."
+p5_source_label_diagnostic_plan:
+  status: SOURCE_ONLY_ASSESSMENT_COMPLETE_NO_JUSTIFIED_APP_FIX_PLAN_REVIEW_ACTIVE
+  assessment: "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-qualified-r1-source-failure-assessment"
+  no_source_or_SQL_fix_supported: true
+  fixed_label_proposal: "OnlyNUDGE004andE2E001 originalfailureboundaries/lifecycleobservables; identicalerroridentity/cause/guards/timeouts/operations"
+  normal_driver_and_95_gates: "UNCHANGED; proposedcomparisonmustindependentlysatisfyboundedrecoverypolicy, notclaimedfilteredcapability"
+  prospective_source_paths: 6
+  source_ownership_allocated: false
+  runtime_effects_authorized: false
+  normal_acceptance_credit: 0
+  next: "IndependentHighplanchallenge ->exactsharedsourceownershipcoordination ->boundedimplementation/purecontrols ->independentactualdelta review ->separatelyqualifiednativecomparison onlyifadmitted."
+p5_source_label_diagnostic_plan_review:
+  status: NOTPASS_PLAN_REQUIRES_BOUNDARY_AND_STATE_REFINEMENT
+  findings: [LABEL-PLAN-01, LABEL-PLAN-02]
+  review_dir: "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-source-label-diagnostic-plan-review"
+  original_assessment_and_review: IMMUTABLE
+  author_refinement: "Onlynewboundary-state-refinementmetadata; opted-innudgeenclosingboundary/phasemarkers andbrowserper-observationapplicability/settlementstates"
+  source_paths_prospective: 6
+  source_ownership_allocated: false
+  effects: 0
+  normal_acceptance_credit: 0
+  next: "Authorfiniteplanrefinement ->sameHigh targetedrevalidation ->exactsourceownershipcoordinationbeforebuild."
+p5_source_label_diagnostic_plan_revalidation:
+  status: PASS_PLAN_ONLY_LABEL_01_02_CLOSED
+  exact_six_paths: [tests/integration/notifications/time-report-nudge-producer.int.test.ts, tests/support/time-reports-atdd.ts, tests/e2e/calendar-feed.e2e.spec.ts, tests/e2e/support/calendar-feed-atdd.ts, tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts, "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"]
+  independent_revalidation: "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-source-label-diagnostic-plan-review/boundary-state-revalidation"
+  original_NOTPASS_preserved: true
+  ownership: REQUESTED_NOT_OBSERVED
+  actual_source_controls: UNEXECUTED
+  new_effect_authority: false
+  normal_acceptance_credit: 0
+  native_comparison: "OnlyONEfuturelabelledNORMAL/full95comparison conditionallyadmittedafteractualsourcePASS+separateeffectsgrant; noautomaticfurtherretry"
+  next: "ObservecompletedCoordinator6pathsourceallocation ->Highboundedimplementation+offlinecontrols/SRO ->Rootexactcommit ->distincttargetedHighcommitted-deltareview ->separateeffectreadiness."

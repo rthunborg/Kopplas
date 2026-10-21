@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-21T20:52:39Z"
+updated_at: "2026-10-21T20:58:38Z"
 started_at: "2026-10-09T12:57:49Z"
 completed_at: null
 active_seconds: 278674
@@ -4379,3 +4379,36 @@ p5_targeted_terminal_diagnostic_r1_audit:
   normal_acceptance_credit: 0
   causal_gap: "NUDGE157nestedfixtureentrynotsetup/callback/cleanupassertion; browser001fixturefinalization/009partial; later007010revokeUNKNOWN_NOT_ABSENCE"
   next: "Highsource-onlyassessmentfinishesminimumsource-label/report-driverdiagnosticplan. No justifiedappfix, no unchangedartifactreads/normalCIretry."
+p5_source_label_diagnostic_plan:
+  status: SOURCE_ONLY_ASSESSMENT_COMPLETE_NO_JUSTIFIED_APP_FIX_PLAN_REVIEW_ACTIVE
+  assessment: "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-qualified-r1-source-failure-assessment"
+  no_source_or_SQL_fix_supported: true
+  fixed_label_proposal: "OnlyNUDGE004andE2E001 originalfailureboundaries/lifecycleobservables; identicalerroridentity/cause/guards/timeouts/operations"
+  normal_driver_and_95_gates: "UNCHANGED; proposedcomparisonmustindependentlysatisfyboundedrecoverypolicy, notclaimedfilteredcapability"
+  prospective_source_paths: 6
+  source_ownership_allocated: false
+  runtime_effects_authorized: false
+  normal_acceptance_credit: 0
+  next: "IndependentHighplanchallenge ->exactsharedsourceownershipcoordination ->boundedimplementation/purecontrols ->independentactualdelta review ->separatelyqualifiednativecomparison onlyifadmitted."
+p5_source_label_diagnostic_plan_review:
+  status: NOTPASS_PLAN_REQUIRES_BOUNDARY_AND_STATE_REFINEMENT
+  findings: [LABEL-PLAN-01, LABEL-PLAN-02]
+  review_dir: "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-source-label-diagnostic-plan-review"
+  original_assessment_and_review: IMMUTABLE
+  author_refinement: "Onlynewboundary-state-refinementmetadata; opted-innudgeenclosingboundary/phasemarkers andbrowserper-observationapplicability/settlementstates"
+  source_paths_prospective: 6
+  source_ownership_allocated: false
+  effects: 0
+  normal_acceptance_credit: 0
+  next: "Authorfiniteplanrefinement ->sameHigh targetedrevalidation ->exactsourceownershipcoordinationbeforebuild."
+p5_source_label_diagnostic_plan_revalidation:
+  status: PASS_PLAN_ONLY_LABEL_01_02_CLOSED
+  exact_six_paths: [tests/integration/notifications/time-report-nudge-producer.int.test.ts, tests/support/time-reports-atdd.ts, tests/e2e/calendar-feed.e2e.spec.ts, tests/e2e/support/calendar-feed-atdd.ts, tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts, "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"]
+  independent_revalidation: "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-source-label-diagnostic-plan-review/boundary-state-revalidation"
+  original_NOTPASS_preserved: true
+  ownership: REQUESTED_NOT_OBSERVED
+  actual_source_controls: UNEXECUTED
+  new_effect_authority: false
+  normal_acceptance_credit: 0
+  native_comparison: "OnlyONEfuturelabelledNORMAL/full95comparison conditionallyadmittedafteractualsourcePASS+separateeffectsgrant; noautomaticfurtherretry"
+  next: "ObservecompletedCoordinator6pathsourceallocation ->Highboundedimplementation+offlinecontrols/SRO ->Rootexactcommit ->distincttargetedHighcommitted-deltareview ->separateeffectreadiness."

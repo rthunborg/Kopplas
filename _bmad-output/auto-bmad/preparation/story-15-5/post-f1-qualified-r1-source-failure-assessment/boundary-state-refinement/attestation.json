@@ -1,0 +1,235 @@
+{
+  "schema": "POST_F1_SOURCE_LABEL_BOUNDARY_STATE_REFINEMENT_v1",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "role": "finite-plan-refinement-author",
+  "metadata_HEAD": "3527b17ba8b44b76472410f8fea6fda6c14d04b6",
+  "immutable_refs": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-qualified-r1-source-failure-assessment/report.md",
+      "bytes": 7367,
+      "sha256": "dd90121796cf99f361eb79f67e29277851f05b81dd6e5cee7347a8dcd736fc7d"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-qualified-r1-source-failure-assessment/attestation.json",
+      "bytes": 13546,
+      "sha256": "8111bd6a24fb287149bfb661f7ce1b44d796f403b273c9f4865798e2d008c5ba"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-qualified-r1-source-failure-assessment/manifest.json",
+      "bytes": 646,
+      "sha256": "515eb63aa317beaed214df1cdc7b15764d926ba2e183b5e1ce105a6c3b5db1b5"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-source-label-diagnostic-plan-review/report.md",
+      "bytes": 5115,
+      "sha256": "1e40afb06d0f75531e4ba47eae362d3103ea3de0ce76379633de24c364766c5d"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-source-label-diagnostic-plan-review/attestation.json",
+      "bytes": 15559,
+      "sha256": "cee2fa01560b7d2deab96bd392876f7cc638de5a65380f251ceb346f519dd059"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-source-label-diagnostic-plan-review/result.json",
+      "bytes": 1760,
+      "sha256": "1fb6be277b651249f8d3fc335b1f4f458ecfd1b73bc3eaf2fca980447133a87f"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-source-label-diagnostic-plan-review/manifest.json",
+      "bytes": 880,
+      "sha256": "586402c36c695cfaab2fd7e4f1867c4b6796f64188ef4f44cb1d61ad132aaa45"
+    }
+  ],
+  "inherited_contract": {
+    "ref": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-qualified-r1-source-failure-assessment/attestation.json",
+      "bytes": 13546,
+      "sha256": "8111bd6a24fb287149bfb661f7ce1b44d796f403b273c9f4865798e2d008c5ba"
+    },
+    "json_pointer": "/proposed_next_step",
+    "unchanged": "six source paths, selected2cases, privacy/budgets, no extra operations/errorbehavior, normaldriver/full95 and future allocation/review/effect boundaries",
+    "superseded_only": [
+      "enclosing_nudge_boundary",
+      "browser_case_level_boolean_semantics"
+    ]
+  },
+  "exact_six_prospective_paths": [
+    "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+    "tests/support/time-reports-atdd.ts",
+    "tests/e2e/calendar-feed.e2e.spec.ts",
+    "tests/e2e/support/calendar-feed-atdd.ts",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"
+  ],
+  "source_bindings": [
+    {
+      "path": "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+      "bytes": 40586,
+      "sha256": "5a8eb88f239a71d4a4f9754d36c8a264c640b533a779d0fa68ec81d0440c95cb",
+      "source_blob": "ec7aa1b4036bc63fc0eb4a438faff4794de011ff",
+      "pushed_blob": "ec7aa1b4036bc63fc0eb4a438faff4794de011ff",
+      "local_HEAD_blob": "ec7aa1b4036bc63fc0eb4a438faff4794de011ff",
+      "native_clean_oid": "ec7aa1b4036bc63fc0eb4a438faff4794de011ff"
+    },
+    {
+      "path": "tests/support/time-reports-atdd.ts",
+      "bytes": 17518,
+      "sha256": "fae7ad38abb947dfe148d6ab1b8f37ec9ebc50d80350929ebfb285fa31ee065d",
+      "source_blob": "7cb3857d9e14627acd5a9bd2f87ecc2c71f84569",
+      "pushed_blob": "7cb3857d9e14627acd5a9bd2f87ecc2c71f84569",
+      "local_HEAD_blob": "7cb3857d9e14627acd5a9bd2f87ecc2c71f84569",
+      "native_clean_oid": "7cb3857d9e14627acd5a9bd2f87ecc2c71f84569"
+    },
+    {
+      "path": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "bytes": 27968,
+      "sha256": "aab71cb6e1f3bcbeaf1e0dcfeb3e4fcab3cbda667d9575c6080aa98f50006096",
+      "source_blob": "2baa9ef0b2a74bf2ef9e573aa0b076987b7cc2cd",
+      "pushed_blob": "2baa9ef0b2a74bf2ef9e573aa0b076987b7cc2cd",
+      "local_HEAD_blob": "2baa9ef0b2a74bf2ef9e573aa0b076987b7cc2cd",
+      "native_clean_oid": "2baa9ef0b2a74bf2ef9e573aa0b076987b7cc2cd"
+    },
+    {
+      "path": "tests/e2e/support/calendar-feed-atdd.ts",
+      "bytes": 55454,
+      "sha256": "4fc068948f1244c72f949a672514605a7fc33d70c1e55b8ff1ec17e7bebca41f",
+      "source_blob": "e0517e8c3e11a4bf9052a920a14e65356a234156",
+      "pushed_blob": "e0517e8c3e11a4bf9052a920a14e65356a234156",
+      "local_HEAD_blob": "e0517e8c3e11a4bf9052a920a14e65356a234156",
+      "native_clean_oid": "e0517e8c3e11a4bf9052a920a14e65356a234156"
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "bytes": 231674,
+      "sha256": "3db48e3e5f3f5da61b863e1cc16da97aac6e8be354250cc9043743a93ecc471b",
+      "source_blob": "8a773ffa57b1e5e1649a83bdfcdb917b6431449c",
+      "pushed_blob": "8a773ffa57b1e5e1649a83bdfcdb917b6431449c",
+      "local_HEAD_blob": "8a773ffa57b1e5e1649a83bdfcdb917b6431449c",
+      "native_clean_oid": "8a773ffa57b1e5e1649a83bdfcdb917b6431449c"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "bytes": 193028,
+      "sha256": "68aa8a537fb771a0cd028f560124bc660dd8247522d7c5591dd54b27e77e0a0e",
+      "source_blob": "12df0ae9303a1e519408428063443708b2d39560",
+      "pushed_blob": "12df0ae9303a1e519408428063443708b2d39560",
+      "local_HEAD_blob": "12df0ae9303a1e519408428063443708b2d39560",
+      "native_clean_oid": "12df0ae9303a1e519408428063443708b2d39560"
+    }
+  ],
+  "guard_binding": {
+    "path": "tests/unit/scripts/verify/integration-test-partitions.test.ts",
+    "bytes": 22537,
+    "sha256": "b8ed2cc0aa91ac6a30ea370a5321f8d69e9b592f1a5d36c37a54c8b4e2012a17"
+  },
+  "LABEL_PLAN_01": {
+    "opt_in_case": "15.4-NUDGE-004",
+    "boundaries": [
+      "TEST_FINAL_REJECTION",
+      "WITH_TIME_REPORT_OUTER_AWAIT",
+      "BOOKING_CALLBACK_ENTRY",
+      "CLIENTS",
+      "REPORT_CALLBACK",
+      "REPORT_CLEANUP",
+      "CALLBACK_COMPOSITION_RETURN",
+      "OUTER_AWAIT_RETURN_OR_REJECTION"
+    ],
+    "opaque_outputs": [
+      "OPAQUE_OUTER_BEFORE_CALLBACK_UNKNOWN",
+      "OPAQUE_OUTER_AFTER_CALLBACK_UNKNOWN",
+      "OPAQUE_OUTER_REJECTION_WITH_INNER_FAILURE_UNKNOWN"
+    ],
+    "local_phase_state": [
+      "NOT_STARTED",
+      "PENDING",
+      "RETURNED",
+      "REJECTED",
+      "UNKNOWN"
+    ],
+    "final_identity_relation": [
+      "NO_INNER_OBSERVED",
+      "SAME_AS_OBSERVED_INNER",
+      "DIFFERENT_FROM_OBSERVED_INNER",
+      "UNKNOWN"
+    ],
+    "identity_rule": "Rethrow exact final error object untouched; preserve original cause/precedence. Reference comparison only; never read/publish error/cause properties. Factory internals opaque/unmodified.",
+    "sink_rule": "No-throw bounded fixed-label sink; output failure never replaces/suppresses final error. Healthy/default output0.",
+    "AST_rule": "Unchanged actual strict34 calendarCallerContract only binds withCalendarFeedFixture in exact API/INT. Nudge withTimeReportFixture catch is outside predicate. Require actual guard/enrollment+all inverse controls on future instrumented source; no guard/config changes allowed."
+  },
+  "LABEL_PLAN_02": {
+    "opt_in_case": "15.5-E2E-001",
+    "identity": "per existing observation registration, fixed action create/rotate/revoke and localordinal1..3; no request/attempt/user IDs",
+    "max_records": 3,
+    "overflow": "diagnostic_truncated/UNKNOWN, no effect on real operations",
+    "registration": [
+      "NOT_REGISTERED",
+      "REGISTERED",
+      "REGISTRATION_FAILED"
+    ],
+    "request_response": [
+      "NOT_STARTED",
+      "PENDING",
+      "MATCHED",
+      "SETTLED_FAILURE",
+      "CANCELLED",
+      "UNKNOWN"
+    ],
+    "readback_native_completion": [
+      "NOT_APPLICABLE",
+      "NOT_STARTED",
+      "PENDING",
+      "SETTLED_SUCCESS",
+      "SETTLED_FAILURE",
+      "UNKNOWN"
+    ],
+    "observation": [
+      "PENDING",
+      "SETTLED_SUCCESS",
+      "SETTLED_FAILURE",
+      "CANCELLED",
+      "UNKNOWN"
+    ],
+    "applicability": "Explicit field per component; optional native completion absent=>NOT_APPLICABLE; never invoked=>NOT_STARTED. Matched only from actual predicate/finish success; waiter rejection/cancellation not matched.",
+    "transition_rule": "Bookkeeping only in EXISTING registration/predicate/finish/cancel/readback/completion/settlement continuations. No added Promise observers/.then/query/wait/timer; terminal matching not overwritten by no-op cancellation. Errors/results/cleanup/cancellation predicates unchanged.",
+    "interpretation": "No cross-observation union. createSUCCESS cannot hide rotatePENDING/revokeNOT_REGISTERED. Native/JS settlement is not backend rollback/restoration/cleanup authority."
+  },
+  "mandatory_future_actual_source_controls": [
+    "pre-booking-callback rejection; all fieldsnotstarted; identical final error/cause",
+    "clients Promise.all rejection; same operation identities/count and cleanup precedence",
+    "inner recipient/callback failure then outer cleanup override; final object unchanged",
+    "callback return then outer rejection=>opaqueunknown",
+    "source label sink throws=>original final error preserved",
+    "actual unchanged strict34 guard on instrumented sources/exactenrollment/all suppression inverses",
+    "createSUCCESS rotatePENDING revokeNOT_REGISTERED mixed records",
+    "responseMATCHED requestFAILURE orCANCELLED neverpretendmatch",
+    "failed readback; nativefailure afterreadbacksuccess; abortedbeforeinvocation NOT_STARTED",
+    "optional completionNOT_APPLICABLE; neverstartedwork NOT_STARTED",
+    "multiple observations differingstates and completion order",
+    "recordcap/sinkfailure UNKNOWN; healthy/default silence",
+    "same receiver args result error cause once ordering; no extra queries/observers/timers",
+    "actual installed runner/log output gets only fixed bounded labels"
+  ],
+  "actual_checks_now": {
+    "metadata_only": true,
+    "six_raw_source_pushed_HEAD_native_clean_bindings_equal": 6,
+    "guard_applicability_read_from_actual_source": true,
+    "future_instrumented_source_controls_executed": false,
+    "native_or_API_execution": 0
+  },
+  "next_prerequisite": "Targeted independent revalidation of these exact two deltas; precise shared source ownership before implementation; local actual-source controls and distinct committed-delta review/new Root native admission before any labelled comparison.",
+  "normal_acceptance": 0,
+  "development_complete": false,
+  "release_ready": false,
+  "known_causes": "UNKNOWN; no product/SQL fix selected",
+  "broad_rounds": 3,
+  "new_broad": false,
+  "no_effects": {
+    "source_Spec_edits": 0,
+    "Git": 0,
+    "SQL": 0,
+    "API_GETs": 0,
+    "CI": 0,
+    "resources": 0
+  }
+}

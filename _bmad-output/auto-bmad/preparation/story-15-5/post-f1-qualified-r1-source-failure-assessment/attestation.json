@@ -1,0 +1,290 @@
+{
+  "schema": "POST_F1_QUALIFIED_R1_SOURCE_FAILURE_ASSESSMENT_v1",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "role": "finite-sensitive-source-failure-assessor",
+  "metadata_HEAD": "3527b17ba8b44b76472410f8fea6fda6c14d04b6",
+  "source": "b1b476dee7c936eb4797ce3221bc07b8196a1a4a",
+  "pushed": "ce1943e01b773671e0c2e583ea6b21e56d40e81b",
+  "normal_acceptance": 0,
+  "outcome": "NO_CONCRETE_APPLICATION_FIX_SUPPORTED; FINITE_SOURCE_BOUND_DIAGNOSTIC_PROPOSAL_ONLY",
+  "refs": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-ce1943e0-targeted-diagnostic-r1/manifest.json",
+      "bytes": 2298,
+      "sha256": "c42a24acbe014a59e23bfcff362c2bfd6663e56af3b2778d4aeda1da78c78f78"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-ce1943e0-targeted-diagnostic-r1/targeted-diagnostic.json",
+      "bytes": 16204,
+      "sha256": "3563e20690f73e44d06ed018428868482216e7a5ef6cb74bf629e43fab8b8d27"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-r1-provenance-audit/original-report.md",
+      "bytes": 5194,
+      "sha256": "51a50a5d20dfdc658ea6fe418f753c9bbf67cf7f45e0bbdba13533517d4b9b08"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-r1-provenance-audit/original-attestation.json",
+      "bytes": 20049,
+      "sha256": "1f887839000a51bba03fa23abc14d768141c5abaffb3f20b8e4dd901508e39f6"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-r1-provenance-audit/manifest.json",
+      "bytes": 852,
+      "sha256": "859574b70ca87f2c7cc6b039c8d05c9f1b950c6f007f7a030fc4dce6ff7e153e"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-ce1943e0-ci-independent/native-qualification.json",
+      "bytes": 42219,
+      "sha256": "8c1a52067b2a6cd7031727a9f46039343c4e1b4d5dcc7df370cb3618640c674b"
+    },
+    {
+      "path": "docs/process/development-completion-policy.md",
+      "bytes": 8460,
+      "sha256": "d3617c2bcfb64e0b185c82e8a39f84af40bfc5b0ddda739552d2e099c38d4893"
+    }
+  ],
+  "source_bindings": [
+    {
+      "path": "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+      "bytes": 40586,
+      "sha256": "5a8eb88f239a71d4a4f9754d36c8a264c640b533a779d0fa68ec81d0440c95cb",
+      "source_blob": "ec7aa1b4036bc63fc0eb4a438faff4794de011ff",
+      "pushed_blob": "ec7aa1b4036bc63fc0eb4a438faff4794de011ff",
+      "local_HEAD_blob": "ec7aa1b4036bc63fc0eb4a438faff4794de011ff",
+      "current_clean_oid": "ec7aa1b4036bc63fc0eb4a438faff4794de011ff"
+    },
+    {
+      "path": "tests/support/time-reports-atdd.ts",
+      "bytes": 17518,
+      "sha256": "fae7ad38abb947dfe148d6ab1b8f37ec9ebc50d80350929ebfb285fa31ee065d",
+      "source_blob": "7cb3857d9e14627acd5a9bd2f87ecc2c71f84569",
+      "pushed_blob": "7cb3857d9e14627acd5a9bd2f87ecc2c71f84569",
+      "local_HEAD_blob": "7cb3857d9e14627acd5a9bd2f87ecc2c71f84569",
+      "current_clean_oid": "7cb3857d9e14627acd5a9bd2f87ecc2c71f84569"
+    },
+    {
+      "path": "tests/support/bookings-atdd.ts",
+      "bytes": 22030,
+      "sha256": "7e5d3c0d615e25358bffa670ba8ca1cbe8d73cb025b13f913266c2249a86f681",
+      "source_blob": "a1217258358c416364fd2843b04efe0b4f1d29c2",
+      "pushed_blob": "a1217258358c416364fd2843b04efe0b4f1d29c2",
+      "local_HEAD_blob": "a1217258358c416364fd2843b04efe0b4f1d29c2",
+      "current_clean_oid": "a1217258358c416364fd2843b04efe0b4f1d29c2"
+    },
+    {
+      "path": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "bytes": 27968,
+      "sha256": "aab71cb6e1f3bcbeaf1e0dcfeb3e4fcab3cbda667d9575c6080aa98f50006096",
+      "source_blob": "2baa9ef0b2a74bf2ef9e573aa0b076987b7cc2cd",
+      "pushed_blob": "2baa9ef0b2a74bf2ef9e573aa0b076987b7cc2cd",
+      "local_HEAD_blob": "2baa9ef0b2a74bf2ef9e573aa0b076987b7cc2cd",
+      "current_clean_oid": "2baa9ef0b2a74bf2ef9e573aa0b076987b7cc2cd"
+    },
+    {
+      "path": "tests/e2e/support/calendar-feed-atdd.ts",
+      "bytes": 55454,
+      "sha256": "4fc068948f1244c72f949a672514605a7fc33d70c1e55b8ff1ec17e7bebca41f",
+      "source_blob": "e0517e8c3e11a4bf9052a920a14e65356a234156",
+      "pushed_blob": "e0517e8c3e11a4bf9052a920a14e65356a234156",
+      "local_HEAD_blob": "e0517e8c3e11a4bf9052a920a14e65356a234156",
+      "current_clean_oid": "e0517e8c3e11a4bf9052a920a14e65356a234156"
+    },
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "bytes": 48616,
+      "sha256": "f7cba16a1a51958d13fc652c83daae8d9ab9455683e17b1175648cb59c958d00",
+      "source_blob": "42fbb2f8a928493ea8d2a6bb8e374db82cf0128d",
+      "pushed_blob": "42fbb2f8a928493ea8d2a6bb8e374db82cf0128d",
+      "local_HEAD_blob": "42fbb2f8a928493ea8d2a6bb8e374db82cf0128d",
+      "current_clean_oid": "42fbb2f8a928493ea8d2a6bb8e374db82cf0128d"
+    },
+    {
+      "path": "vitest.config.ts",
+      "bytes": 4805,
+      "sha256": "fd79caf7adefc0470cb0ff5b6a1a5a4b5209cbb240804d9386f5287b30419c30",
+      "source_blob": "1c75b680f80f5f1f61eaba8fccac9a0c9d257770",
+      "pushed_blob": "1c75b680f80f5f1f61eaba8fccac9a0c9d257770",
+      "local_HEAD_blob": "1c75b680f80f5f1f61eaba8fccac9a0c9d257770",
+      "current_clean_oid": "1c75b680f80f5f1f61eaba8fccac9a0c9d257770"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "bytes": 75930,
+      "sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e",
+      "source_blob": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a",
+      "pushed_blob": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a",
+      "local_HEAD_blob": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a",
+      "current_clean_oid": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-4-time-reporting-filing-timesheet-review.md",
+      "bytes": 81765,
+      "sha256": "2b112ecee170676c8468d246dbbe695f4d07f040c76b3f1c3c2710fc43400c0c",
+      "source_blob": "6e0ebd00d0d3c6d40c2b8af29378d84a62008292",
+      "pushed_blob": "6e0ebd00d0d3c6d40c2b8af29378d84a62008292",
+      "local_HEAD_blob": "6e0ebd00d0d3c6d40c2b8af29378d84a62008292",
+      "current_clean_oid": "6e0ebd00d0d3c6d40c2b8af29378d84a62008292"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "bytes": 193028,
+      "sha256": "68aa8a537fb771a0cd028f560124bc660dd8247522d7c5591dd54b27e77e0a0e",
+      "source_blob": "12df0ae9303a1e519408428063443708b2d39560",
+      "pushed_blob": "12df0ae9303a1e519408428063443708b2d39560",
+      "local_HEAD_blob": "12df0ae9303a1e519408428063443708b2d39560",
+      "current_clean_oid": "12df0ae9303a1e519408428063443708b2d39560"
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "bytes": 231674,
+      "sha256": "3db48e3e5f3f5da61b863e1cc16da97aac6e8be354250cc9043743a93ecc471b",
+      "source_blob": "8a773ffa57b1e5e1649a83bdfcdb917b6431449c",
+      "pushed_blob": "8a773ffa57b1e5e1649a83bdfcdb917b6431449c",
+      "local_HEAD_blob": "8a773ffa57b1e5e1649a83bdfcdb917b6431449c",
+      "current_clean_oid": "8a773ffa57b1e5e1649a83bdfcdb917b6431449c"
+    }
+  ],
+  "installed_readonly_bindings": [
+    {
+      "path": "node_modules/.pnpm/playwright@1.61.1/node_modules/playwright/lib/worker/workerProcessEntry.js",
+      "bytes": 75892,
+      "sha256": "e8b654850c073df3996816eb09edf845490d9a6e75785477a9ddb69d586cca54"
+    },
+    {
+      "path": "node_modules/.pnpm/playwright@1.61.1/node_modules/playwright/lib/util.js",
+      "bytes": 15165,
+      "sha256": "6d5e08165ec78f576d4724c0e4693d07cf1e8e2662156daa706e380550d272a5"
+    }
+  ],
+  "actual_checks": {
+    "R1_locations": 54,
+    "distinct_kind_path_line_column": 13,
+    "closed_tuple_occurrences": 5,
+    "actual_assertion_or_backend_cause_inferred": false,
+    "source_current_pushed_localclean_equality": 11,
+    "worker_downstream_guard": "_failWithError recursively visits error.errors; rules out unsupported blanket aggregate-child-loss allegation",
+    "new_tests_or_runtime": 0
+  },
+  "findings": {
+    "NUDGE004": "Outer fixture entry157, setup/callback/cleanup ambiguous. No exact failed assertion/code.",
+    "browser001_009": "Closed cleanup timeout/custody labels and aggregate/finalization frames only; common outstanding-work hypothesis unproved.",
+    "browser007_010revoke": "UNKNOWN_NOT_ABSENCE after shared retention cap.",
+    "supported_source_defect": "None established for product/SQL/authorization/cleanup policy.",
+    "required_invariants": "Preserve27-recipient pagination/dedupe and replay/foreign tests; all downstream auth/resultshape/cleanup/identity/clock guards."
+  },
+  "proposed_next_step": {
+    "type": "SOURCE_DIAGNOSTIC_PLAN_NOT_IMPLEMENTATION_OR_NATIVE_GRANT",
+    "selected_label_cases": [
+      "15.4-NUDGE-004",
+      "15.5-E2E-001"
+    ],
+    "source_paths": [
+      "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+      "tests/support/time-reports-atdd.ts",
+      "tests/e2e/calendar-feed.e2e.spec.ts",
+      "tests/e2e/support/calendar-feed-atdd.ts",
+      "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"
+    ],
+    "nudge_sites": [
+      "SEED_ROLE_BATCH",
+      "SEED_PROFILE",
+      "SEED_BOOKING",
+      "RECIPIENT_COUNT",
+      "FIRST_PAGE",
+      "CURSOR_REPEAT",
+      "CURSOR_PAGE",
+      "CURSOR_TOTAL",
+      "PHYSICAL_RECIPIENTS",
+      "NOTIFICATION_DAY",
+      "RESUME_ROUTE",
+      "RESUME_CALL",
+      "RESUME_ASOF",
+      "RESUME_NO_EFFECTS",
+      "FOREIGN_CURSOR_REJECTION",
+      "CHANGED_ASOF_REJECTION",
+      "MALFORMED_CURSOR_REJECTION",
+      "FINAL_NO_EFFECTS",
+      "CLEANUP_REPORTS",
+      "CLEANUP_ASSIGNMENTS",
+      "CLEANUP_BOOKINGS",
+      "CLEANUP_PROFILES",
+      "CLEANUP_AUTH"
+    ],
+    "browser_sites": [
+      "NAVIGATION",
+      "WARNING",
+      "ISSUE",
+      "INITIAL_FEED",
+      "LAST_USE",
+      "ROTATE",
+      "OLD_FEED",
+      "NEW_FEED",
+      "REVOKE",
+      "CLEANUP_LIFECYCLE"
+    ],
+    "owned_browser_state": [
+      "request_matched",
+      "response_matched",
+      "readback_started",
+      "readback_settled",
+      "native_completion_started",
+      "native_completion_settled"
+    ],
+    "label_caps": {
+      "case_count": 2,
+      "max_failure_labels_per_case": 16,
+      "line_bytes_max": 512,
+      "total_bytes_per_case_max": 8192,
+      "batch_ordinal": [
+        1,
+        9
+      ],
+      "recipient_ordinal": [
+        1,
+        3
+      ]
+    },
+    "privacy": "Fixed enums/local bounded fixture ordinal/owned promise-state bool only; no raw error/message/stack/cause/expectedactual/values/SQL/URL/proof/token/identity/DOM publication. No arbitrary object property parsing/getters.",
+    "error_behavior": "Catch at exact existing source operation only; emit fixed side label then throw IDENTICAL error; preserve cause/results/receiver/args/once call and cleanup ordering. Do not replace existing safe diagnostic behavior.",
+    "operation_effects": "Existing stdout/stderr diagnostic lines only on opted-in failure; no extra query/client/principal/poll/observer or timeout/guard/cleanup change.",
+    "driver": "Existing NORMAL workflow/setup/admission only after separately authorized reviewed source change; full INTEGRATION_ARGS unchanged/all95 required. No casefiltered hosted capability currently admitted; DIAG001/causeproof not repurposed.",
+    "not_yet_proved": "Actual label-to-framework-output transport, native branch, immutable SQL/app fix; pure actual-source controls and distinct targeted review required first."
+  },
+  "future_control_plan": [
+    "actual operation failure at every finite branch produces correct label and identical original rejection",
+    "healthy path no labels/no extra work; result receiver args once identity unchanged",
+    "primary/cleanup failures ordered; pending native completion/readback retains custody",
+    "hostile getters/error/expectedvalues never read or emitted",
+    "installed runner report/log transport receives fixed labels, no raw extra output",
+    "unrelated/default browser cases unchanged"
+  ],
+  "review_stops": [
+    "explicit exact six source claims from Coordinator",
+    "source-only diagnostic benefit distinguishes real competing branches rather than coarse family",
+    "no original error/cause/operation/guard/timeout/cleanup alteration",
+    "labels privacy/bounds/primarycleanup ordering and actual code controls",
+    "existing normal driver not masquerading as causeproof/filter; full gates preserved",
+    "no current backend cause/fix claim or appliedSQL edit"
+  ],
+  "new_effects_now": {
+    "source_Spec_edits": 0,
+    "SQL_connections": 0,
+    "API_GETs": 0,
+    "CI": 0,
+    "Git_mutations": 0,
+    "resources": 0
+  },
+  "blocker": {
+    "owner": "High source author/validator; Coordinator exact shared allocation; Root eventual native/evidence authority",
+    "evidence": "Qualified R1 contains outer callback/cleanup candidates without decisive source branch; no remaining artifact retrieval planned.",
+    "next_action": "Targeted plan challenge of finite original-source labels, then exact allocation and offline controls.",
+    "resume_condition": "Reviewed bounded producer code+exact allocation before implementation; committed-delta review/new Root activation before native comparison."
+  },
+  "development_complete": false,
+  "release_ready": false,
+  "broad_rounds_completed": 3,
+  "new_broad_review": false
+}
