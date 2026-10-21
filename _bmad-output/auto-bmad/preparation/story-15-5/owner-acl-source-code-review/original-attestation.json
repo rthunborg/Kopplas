@@ -1,0 +1,327 @@
+{
+  "schema": "story-15-5-targeted-owner-acl-code-review-attestation-v1",
+  "verdict": "PASS",
+  "consequential_findings": [],
+  "reviewer": {
+    "identity": "/root/review15_5_preselected_id_high",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "independent_from": [
+      "/root/build15_5_high",
+      "Root"
+    ],
+    "reused_existing_reviewer": true,
+    "fresh_context_claim": false,
+    "nested_work": []
+  },
+  "scope": {
+    "base": "00cf6d4331944b38c09b2b3a9c446128b1862fde",
+    "head": "589652335657df7153d7578b1a421b020fa2ce8c",
+    "exact_changed_paths": [
+      "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",
+      "tests/integration/rls/calendar-feed.rls.test.ts",
+      "tests/support/calendar-feed-atdd.ts",
+      "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts"
+    ],
+    "type": "Independent committed latest-delta/regression review only",
+    "broad_rounds_remain": 3,
+    "counter_changed": false,
+    "policy_version": "2026-10-19",
+    "source_only_authority": true,
+    "runtime_allocated": false
+  },
+  "reviewed_inputs": [
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "bytes": 170000,
+      "sha256": "8c4b57c2703117c4626512840a02cf9a7f7fe7ec4ea4b38627e83eb9b7264f5d",
+      "head_blob": "d6bbdf298314db597de50ec7999a994c7196e1e0",
+      "base_blob": "26327a36a8f89cf503036239def64b0585465136",
+      "base_bytes": 160774,
+      "base_sha256": "32eb365d1b6b523ef07e3fc950ae824d4cc94e226558947e6d32342f2f27b77f",
+      "raw_equals_head": true,
+      "base_equals_head": false,
+      "raw_LF_equals_head_LF": true
+    },
+    {
+      "path": "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",
+      "bytes": 32551,
+      "sha256": "73b347ce62d4e936055e6de7f1054e9d1003a7550a738aa433261f7631150567",
+      "head_blob": "da1270c7238db113f0cd2485581a635a66981a65",
+      "base_blob": "93b55ab54ec63a775894e92db9d83219add909dd",
+      "base_bytes": 13136,
+      "base_sha256": "d0f75428527392aca0d2be34685d83c8d1169479f9c29ad6f5349c5a24afb919",
+      "raw_equals_head": true,
+      "base_equals_head": false,
+      "raw_LF_equals_head_LF": true
+    },
+    {
+      "path": "tests/integration/rls/calendar-feed.rls.test.ts",
+      "bytes": 16017,
+      "sha256": "e1fa13ac662ace0d5239c0e5ddd0eb428e196e40bd43b84e0d3e1904be624950",
+      "head_blob": "643eda6f18612322aa73b39f5c784d256de4c77e",
+      "base_blob": "14e2cb42fb816d88e2b67f9223dfa573d30bb663",
+      "base_bytes": 14957,
+      "base_sha256": "52716fa7a627b96d6b9397b775b4603ce85860fe4f5c101a0523cc95cab21838",
+      "raw_equals_head": true,
+      "base_equals_head": false,
+      "raw_LF_equals_head_LF": true
+    },
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "bytes": 110189,
+      "sha256": "44d63a54d314d08bb728e6dffa11683e2e86ea1c2b6d8e9f8a7aaba625daafde",
+      "head_blob": "8e6ea22df4bb49de7b1a93b6127ddd549bd8d28a",
+      "base_blob": "a78e3f6a336f84fc3d44d042516808748622feb8",
+      "base_bytes": 89043,
+      "base_sha256": "3f923eef322cc7f732013bd201090ce9619317250587709471688c69049d6fef",
+      "raw_equals_head": true,
+      "base_equals_head": false,
+      "raw_LF_equals_head_LF": true
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "bytes": 189039,
+      "sha256": "8b7d8078b42e9f85ca46dcf310ed3b69669ef5c9b6449c91d4ff8ac526517580",
+      "head_blob": "d4eab9b65caa73233bb8b3ecb632d157adf96530",
+      "base_blob": "02442fd8034b573d376397e1eee105c7b3d96849",
+      "base_bytes": 163537,
+      "base_sha256": "4f502cd88dd23269113e84aef733462f68156733f9a38297c020d3a0609a58d7",
+      "raw_equals_head": true,
+      "base_equals_head": false,
+      "raw_LF_equals_head_LF": true
+    }
+  ],
+  "necessary_unchanged_bindings": [
+    {
+      "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+      "bytes": 24435,
+      "sha256": "b57e6a1726cfac545de1cd141e26f56e6bebb4a535d1cd7f706e4a1ad3e05555",
+      "head_blob": "c5d6d53faab649b40dee5c12f7933030224fa4ab",
+      "base_blob": "c5d6d53faab649b40dee5c12f7933030224fa4ab",
+      "base_bytes": 24435,
+      "base_sha256": "b57e6a1726cfac545de1cd141e26f56e6bebb4a535d1cd7f706e4a1ad3e05555",
+      "raw_equals_head": true,
+      "base_equals_head": true,
+      "raw_LF_equals_head_LF": true
+    },
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "bytes": 47151,
+      "sha256": "e3eef57fabf0c8a57a81a5b9db95fdcabadf4194f132e84c35408c611cecd943",
+      "head_blob": "d0d186aee7e6a575d52659dcc27d9bd9ff8cbbe8",
+      "base_blob": "d0d186aee7e6a575d52659dcc27d9bd9ff8cbbe8",
+      "base_bytes": 47151,
+      "base_sha256": "e3eef57fabf0c8a57a81a5b9db95fdcabadf4194f132e84c35408c611cecd943",
+      "raw_equals_head": true,
+      "base_equals_head": true,
+      "raw_LF_equals_head_LF": true
+    },
+    {
+      "path": "tests/support/test-env.ts",
+      "bytes": 12287,
+      "sha256": "4ad1f1e80782da40f653bdf5a69a1b5ea0e41db08ed334c460f95a49875130df",
+      "head_blob": "f30ddbeae604e9a383712edcea04fd2d8f4302cc",
+      "base_blob": "f30ddbeae604e9a383712edcea04fd2d8f4302cc",
+      "base_bytes": 12006,
+      "base_sha256": "03d3b8abaf7e7546321b4fa9ed444174fbe8abb27915c26991c6b577a6d515a0",
+      "raw_equals_head": false,
+      "base_equals_head": true,
+      "raw_LF_equals_head_LF": true
+    },
+    {
+      "path": "tests/support/register.mjs",
+      "bytes": 439,
+      "sha256": "aa9000d42cedd89b8006375cee7fb046275a57c4550e11b84e651dd830166eb6",
+      "head_blob": "123e21a96c158c496092879067782da3d4ef034e",
+      "base_blob": "123e21a96c158c496092879067782da3d4ef034e",
+      "base_bytes": 430,
+      "base_sha256": "041a3ac0d897405daec58a6b81d816c5a63b0ceeca77989c321c5165f273f3fd",
+      "raw_equals_head": false,
+      "base_equals_head": true,
+      "raw_LF_equals_head_LF": true
+    },
+    {
+      "path": "docs/process/development-completion-policy.md",
+      "bytes": 8460,
+      "sha256": "d3617c2bcfb64e0b185c82e8a39f84af40bfc5b0ddda739552d2e099c38d4893",
+      "head_blob": "ddb6e0f5da79135f5a9b246d217c8b1f5cb6985d",
+      "base_blob": "ddb6e0f5da79135f5a9b246d217c8b1f5cb6985d",
+      "base_bytes": 8415,
+      "base_sha256": "5269e27e528c1afa2bf0aab26a43be6b3ee47d2c0c5fa8d1fda570000b8e49b6",
+      "raw_equals_head": false,
+      "base_equals_head": true,
+      "raw_LF_equals_head_LF": true
+    },
+    {
+      "path": "docs/process/agent-model-routing.md",
+      "bytes": 7957,
+      "sha256": "116a1d54038568120f4c55be607cb9da9a8850ac3091c410c9bed3caee3ee891",
+      "head_blob": "2551d631c3200c3c38ef9602f7e7cd23f89780c9",
+      "base_blob": "2551d631c3200c3c38ef9602f7e7cd23f89780c9",
+      "base_bytes": 7832,
+      "base_sha256": "101ae06b519db098a31cf0c1d1dbaba929e7764381d1931465db3fdb4a8cfb3f",
+      "raw_equals_head": false,
+      "base_equals_head": true,
+      "raw_LF_equals_head_LF": true
+    },
+    {
+      "path": "docs/process/review-order.md",
+      "bytes": 14757,
+      "sha256": "fbfe43e4f16fe93755cd465ab00291e2511971a60a97337eaf88c2a0fc58e115",
+      "head_blob": "2dc70e4f4164e5bf78fe502cf6b519d24f549223",
+      "base_blob": "2dc70e4f4164e5bf78fe502cf6b519d24f549223",
+      "base_bytes": 14542,
+      "base_sha256": "039c108d1a72f57139319596880a9c1ed94564a5e7564a4947c3380185e2dbc5",
+      "raw_equals_head": false,
+      "base_equals_head": true,
+      "raw_LF_equals_head_LF": true
+    },
+    {
+      "path": "AGENTS.md",
+      "bytes": 11938,
+      "sha256": "b28eec9c075877d175362dad65b739054e45a3134d748b3c11e601ae36fbb823",
+      "head_blob": "4c3e77375a8ac8c89fdd7d0081e73ec61df04312",
+      "base_blob": "4c3e77375a8ac8c89fdd7d0081e73ec61df04312",
+      "base_bytes": 11817,
+      "base_sha256": "f042dd4e1325aab37b599dc14ab95696183b31a1d4674b9879930f145f03ddc2",
+      "raw_equals_head": false,
+      "base_equals_head": true,
+      "raw_LF_equals_head_LF": true
+    }
+  ],
+  "authority_and_evidence_refs": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-original-function-owner-acl-source-allocation.json",
+      "bytes": 2899,
+      "sha256": "f577b996e02755eb51d7536dbe903552a67b67efbdb18551ba2e08782305fb9a"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-owner-acl-reconciliation-proposal.json",
+      "bytes": 26010,
+      "sha256": "ec7e512c7689ca17ef48ae661f01ef36b6069980233bdfc2672a8c79e0de5b79"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-owner-acl-reconciliation-validation.json",
+      "bytes": 11082,
+      "sha256": "bc5dedbbd6c1509ac7355c3e4312d779a4129e27082641ce4a2ba2759d1ec3bd"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/owner-acl-source-author-result.json",
+      "bytes": 7673,
+      "sha256": "ba56f838f998efd80837970f40bb6286dbf9f49459b4aeae9ff0d86c1983d59e"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-owner-acl-source-precommit-admission.json",
+      "bytes": 32886,
+      "sha256": "58e9a000aaa5107b90216be3ae838cf41ac7c18195ce87a488c53126f5075158"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-owner-acl-source-postcommit-binding.json",
+      "bytes": 885,
+      "sha256": "33f85c01fdf19ed86cedbe23d95f43b091d8281ca1e66abfbfa94f578d4c7c5f"
+    }
+  ],
+  "observations": [
+    {
+      "concern": "All8 source and finite ACL admission",
+      "anchors": [
+        "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql:189",
+        "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql:206",
+        "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql:227"
+      ],
+      "result": "Read-only complete source/shape/default/body/owner/config and D-or-I owner-granted/no-options admission precedes any mutation. Empty/unknown ACL and incomplete identities abort."
+    },
+    {
+      "concern": "Owner authority, atomic repair and preservation",
+      "anchors": [
+        "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql:242",
+        "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql:250",
+        "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql:258",
+        "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql:279"
+      ],
+      "result": "Existing SET authority only; exact8 target ACL commands; reset/executor/authority conservation; exact intended raw/effective ACLs and non-ACL metadata preserved. Failure aborts atomically. Full original3 guard and later adapter path are byte-inverse conserved."
+    },
+    {
+      "concern": "RLS facts preserve all8 and special helpers",
+      "anchors": [
+        "tests/support/calendar-feed-atdd.ts:565",
+        "tests/support/calendar-feed-atdd.ts:572",
+        "tests/integration/rls/calendar-feed.rls.test.ts:170"
+      ],
+      "result": "Full entrypoint/helper sets, raw exactness, effective denial and owner execution checked. Subject/clock included; actor dependency and filtered-secret contracts retained."
+    },
+    {
+      "concern": "Ordinary-grantor witness and role transitions",
+      "anchors": [
+        "tests/support/calendar-feed-atdd.ts:959",
+        "tests/support/calendar-feed-atdd.ts:1056",
+        "tests/support/calendar-feed-atdd.ts:1093"
+      ],
+      "result": "Actual caller qualifies only owned hosted local stack/main+fresh setup authority/privacy/current complete ledger. UUID-only, uncommitted CREATEROLE migrator/owner/schema/inert function; ordinary identity/SET-no-USAGE and grant-option absence; fixed source commands and actual owner fragment; forced rollback branch before success. No shared-function or existing-role effects. No historical causal claim."
+    },
+    {
+      "concern": "Settlement, rollback and custody",
+      "anchors": [
+        "tests/support/calendar-feed-atdd.ts:1019",
+        "tests/support/calendar-feed-atdd.ts:1034",
+        "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2007"
+      ],
+      "result": "Pending promise drain and actual protocol readiness separated; full rollback before reset and same absence; main close before fresh read-only qualification/absence; independent close/transport failures retained. Exact UUID custody deleted only after all cleanup predicates pass."
+    }
+  ],
+  "actual_controls": {
+    "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+    "native_exit": 0,
+    "tests": 110,
+    "pass": 110,
+    "fail": 0,
+    "skip": 0,
+    "cancel": 0,
+    "todo": 0,
+    "reported_duration_ms": 11586.1032,
+    "scope": "Offline focused controls; source expressions/callbacks/operation and cleanup injection. No PostgreSQL/native runtime. Separate/nonadditive from author110."
+  },
+  "conservation": {
+    "all_five_raw_equal_committed_head": true,
+    "exact_changed_paths": 5,
+    "predecessor110_unchanged": true,
+    "additive_phase_inverse": {
+      "bytes": 13136,
+      "sha256": "d0f75428527392aca0d2be34685d83c8d1169479f9c29ad6f5349c5a24afb919",
+      "equals_base_bytes": true
+    },
+    "original_guard_matrix_adapter_suffix": "Unchanged by exact additive-block inverse",
+    "kernel": {
+      "bytes": 5760,
+      "sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977"
+    },
+    "single_SRO_sections": 1,
+    "actual_stops_verified": 126,
+    "status": "in-review",
+    "review_loop_iteration": 3,
+    "baseline_revision": "3a1c3bc9fbf22b13c926179288a8b6eefe440c12"
+  },
+  "provenance_limits": [
+    "Author receipt is honestly precommit working/prospective evidence; reviewed final Git objects independently match its exact five raw hashes and prospective OIDs. Root source admissions are mechanical identity evidence, not native verification.",
+    "Necessary unchanged CRLF contexts are bound raw and verified by explicit LF equality with unchanged base/head blobs; they are not all falsely asserted raw-byte-equal to Git.",
+    "Initial instruction print stopped on Windows cp1252 console encoding before the remaining checks. UTF-8 stdout reader correction completed them; no source change. No new author defect inferred from the reader stop.",
+    "All110 Node controls passed once in this reviewer run. Author initial100/102 and104/108 failures and subsequent outcomes remain temporal/nonadditive; TS/lint/type evidence is author-reported and bound, not independently rerun.",
+    "Source comparability intentionally fails closed on unforeseen actual catalog/default ACLs. No hosted identities/grantors/sequence or invalidity of strict original guard inferred.",
+    "No native current111/ordinary-grantor proof, INT015/full DB/RLS/normal95/recovery executed here. Historical native suites are not reused as current repair acceptance. Normal acceptance0."
+  ],
+  "allowed_writes": [
+    "original-report.md",
+    "original-attestation.json",
+    "result.json"
+  ],
+  "prohibited_effects_performed": 0,
+  "source_spec_state_Git_mutations": 0,
+  "SQL_DB_API_CI_resources": 0,
+  "original_report": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/owner-acl-source-code-review/original-report.md",
+    "bytes": 4632,
+    "sha256": "e4b08c44661538c625c8352674f5c30a9f4f097b4081c99f440dd41307c2f69c"
+  }
+}

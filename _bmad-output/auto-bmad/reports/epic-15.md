@@ -4984,3 +4984,73 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Implement exact5paths, focusedofflinechecks and author SRO/kernel honesty; Root commit then distinct targetedHigh source review before any native run.
+
+## Report — 2026-10-21T16:36:23Z (15.5 committed five-file owner ACL repair)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `5896523`).
+**Pipeline status:** in-progress; 15.5 P5 active; four of six stories landed
+**Continues:** Distinct targetedHigh committed-source review and current-source normal enrollment/effect readiness.
+
+**Summary:** Root committed exact5 source files at589652335657df7153d7578b1a421b020fa2ce8c vs00cf6d43;71sourcebindings verified,5changed66same,111unique migrations. Predecessor immutable.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 291h 38m (≈77h 24m AI-run, ≈214h 14m human/idle wait); resumed 149×.
+
+**Stories:**
+1. Final110affectedNode tests passed0F/skip/cancel; wholeTypeScript/lint/diffcheck/reader passed; Spec/ARRin-review,baseline3a1c3bc9,counter3,kernel5760SHA0b3255..unchanged, oneSRO126stops. Initial102/108unitfailures and2TSerrors retainednonadditive in authorreceipt.
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** Sourceonly. UUIDordinary-grantor regression authored but not executed; no sharedfunction/roleACL mutation or ordering change. Fulloriginal3guard/matrix/adaptersuffix andpredecessor conservation inverse controls pass. No fourthbroadstoryreview.
+
+**Open questions:**
+1. Native compatibility/historicalhostedcause remainunproved. Offlinepasses notdevelopmentcomplete or normalacceptance.
+
+**Deferred work:**
+1. Current111successfulapplication, ordinarygrantor native regression, fullDB/RLS/essentialbrowser/recovery andexactheadnormalrequired. Releaseitems retaineddeferred.
+
+**⚠️ Needs human:**
+1. None for currentofflineindependentreview/readiness. Runtimeallocation still separate.
+
+**Next:** AdmitactualcommitteddeltaHighreview andreadiness; requestconcreteboundednormalCI/evidenceallocation for exactpushedcheckpoint only afterPASS.
+
+## Report — 2026-10-21T16:41:39Z (15.5 owner ACL source PASS; normal checkpoint prepared)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `5896523`).
+**Pipeline status:** in-progress; 15.5 P5 active; four of six landed
+**Continues:** Exact checkpoint publication and separately allocated one normal CI/evidence operation.
+
+**Summary:** Independent targeted High source review PASS with no consequential findings; fresh110NodeP0F/skip/cancel, exact5inputs/eightunchangedcontexts/sixauthorityrefs verified.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 291h 43m (≈77h 24m AI-run, ≈214h 19m human/idle wait); resumed 150×.
+
+**Stories:**
+1. Current normal enrollment source-bound95=30Node+51Vitest+14essentialbrowser; directrecovery1 separate. New ordinary-grantor proof awaited inside existing RLS010. Readiness34051/f5a61e8d45e704e821357a479594ff496b9a3b6e5ab1d388039ae687be0bdaaa; Root28context/71source+supplementaryPlaywright bindings verified.
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** Three broad rounds remain exhausted; code review targeted. Source PASS does not authorize SQL/runtime. Current111successfulapplication remainsunproven; success freezes111.
+
+**Open questions:**
+1. Native compatibility and original hosted grant identities/cause remain unproven. All normal/native checks0executed.
+
+**Deferred work:**
+1. FullDB/RLS/95/ordinary-role/recovery/current111 required; releaseitems retaineddeferred.
+
+**⚠️ Needs human:**
+1. None during current existing-scope checkpoint/runtime allocation; no new generic owner confirmation requested.
+
+**Next:** Use fresh checkpoint UUID b34acf03-1116-4411-9ce4-7dbe04d48745 for exact normal cause-proof=false/release-validation=false operation only after grant. Preserve source72closure through metadata/push.
