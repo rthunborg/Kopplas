@@ -1,0 +1,45 @@
+{
+  "source": "f304ea548faa05f037cd3aa44c65888d96d543df",
+  "base": "2524306ca9edd6079c23d205cf01268797288d89",
+  "actual_dispatcher_execution": {
+    "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test tests/unit/scripts/ci/checkpoint-dispatch.test.ts",
+    "total": 35,
+    "pass": 35,
+    "fail": 0,
+    "skip": 0,
+    "cancel": 0,
+    "exit": 0,
+    "first_run": true,
+    "initial_failures": 0,
+    "retains_prior31": true,
+    "proof": "Actual checkpoint dispatcher with existing injected API seam inspects durable record at POST across supplied/generated normal/diagnostic/release selection; all invalid/status/cancel refusals before API. No real provider POST."
+  },
+  "whole_typecheck": {
+    "command": "pnpm exec tsc --noEmit --incremental false",
+    "exit": 0
+  },
+  "affected_lint": {
+    "command": "pnpm exec eslint scripts/ci/checkpoint-dispatch.mjs tests/unit/scripts/ci/checkpoint-dispatch.test.ts --max-warnings 0",
+    "exit": 0,
+    "errors": 0,
+    "warnings": 0
+  },
+  "native_git_checks": {
+    "working_diffcheck": 0,
+    "staged_diffcheck": 0,
+    "exact_staged_paths": 3,
+    "post_commit_source_and_index_clean": true
+  },
+  "no_app_build_rerun": true,
+  "no_full_or_combined117_375_or374_execution_claim": true,
+  "no_native_or_private_helper_execution": true,
+  "no_preparation_semantic_test_rerun": true,
+  "native_credit": 0,
+  "author_trail": {
+    "SRO": 92,
+    "kernel_bytes": 5760,
+    "kernel_sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+    "status": "in-review",
+    "ARR_historical_warning_preserved": true
+  }
+}

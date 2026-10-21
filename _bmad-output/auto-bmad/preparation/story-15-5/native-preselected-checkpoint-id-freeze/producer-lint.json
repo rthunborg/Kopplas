@@ -1,0 +1,16 @@
+{
+  "kind": "TARGETED_NEW_AUTHOR_FREEZE_PRODUCER_LINT",
+  "command": "pnpm exec eslint _bmad-output/auto-bmad/preparation/story-15-5/native-preselected-checkpoint-id-freeze/prepare-freeze.mjs --max-warnings 0",
+  "exit_code": 0,
+  "errors": 0,
+  "warnings": 0,
+  "attempts": 1,
+  "producers": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-preselected-checkpoint-id-freeze/prepare-freeze.mjs",
+      "bytes": 26441,
+      "sha256": "efd0a3f3560faee7c06fede09fc82069edb343875951e3005e078a8a5a39b78b"
+    }
+  ],
+  "scope": "New metadata producer only; independent parent verifier is separately parent-owned."
+}
