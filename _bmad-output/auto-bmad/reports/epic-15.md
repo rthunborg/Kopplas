@@ -5559,3 +5559,35 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Qualify exact future normal CI effects and ownership before push/dispatch; no deployment.
+
+## Report — 2026-10-21T19:37:52Z (checkpoint — normal readiness qualified)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `75ee454`).
+**Pipeline status:** 15.5 P5 active; normal readiness qualified after source CODEPASS; execution admission review active. Native acceptance zero.
+**Continues:** Independent finite NORMAL execution admission, then Coordinator actualallocation and exact clean checkpoint push.
+
+**Summary:** 15.1–15.4 landed; 15.5 active; 15.6 unstarted.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 294h 40m (≈77h 24m AI-run, ≈217h 15m human/idle wait); resumed 166×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:**
+1. Fresh95/fullDBRLS/recovery/privacy/browser/custody still unproven; terminal acquisition separately gated.
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Normal checkpoint UUID9565c54d-1bbe-4a32-b647-949c02e6c404; final pushedhead/runID remain unassigned. No deployment.

@@ -1,0 +1,37 @@
+{
+  "schema": "SELF_EXCLUDED_SHA256_MANIFEST_v1",
+  "directory": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-checkpoint-readiness",
+  "member_count": 5,
+  "members": [
+    {
+      "path": "bindings.json",
+      "bytes": 10171,
+      "sha256": "6b12690bb46de73f1754d69372699f41d5b7fc29b30860f121f60634f6d69e4b"
+    },
+    {
+      "path": "enrollment.json",
+      "bytes": 7230,
+      "sha256": "e6b3b6c72132039a10bbedd933cef50b80bc16c72f6803464806ca4063fa9f06"
+    },
+    {
+      "path": "readiness.json",
+      "bytes": 23746,
+      "sha256": "ef65f04c0e232fa198d1dcdf4231057d55f2fac51314bbd452cc3d448867243c"
+    },
+    {
+      "path": "readiness.md",
+      "bytes": 2576,
+      "sha256": "c837f3ed4e885586c7f85f0b1bc58f6dfa6246f52032366cb6b027dcdbc65644"
+    },
+    {
+      "path": "source-bindings.json",
+      "bytes": 36163,
+      "sha256": "d401f988b77b2d4572057ac03eafc4c3ad1968ea80b4f177b462c2144b4199c8"
+    }
+  ],
+  "self_excluded": "manifest.json",
+  "source": "b1b476dee7c936eb4797ce3221bc07b8196a1a4a",
+  "metadata_HEAD": "75ee454577842a952dbf11ee13819493d8072933",
+  "status": "READY_FOR_EXACT_NORMAL_ALLOCATION",
+  "normal_acceptance_credit": 0
+}

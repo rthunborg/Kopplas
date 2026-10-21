@@ -1,0 +1,27 @@
+{
+  "kind": "ROOT_MECHANICAL_POST_F1_NORMAL_READINESS_ADMISSION",
+  "source_head": "b1b476dee7c936eb4797ce3221bc07b8196a1a4a",
+  "metadata_head": "75ee454577842a952dbf11ee13819493d8072933",
+  "readiness": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-checkpoint-readiness/readiness.json",
+    "bytes": 23746,
+    "sha256": "ef65f04c0e232fa198d1dcdf4231057d55f2fac51314bbd452cc3d448867243c"
+  },
+  "bindings": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-checkpoint-readiness/bindings.json",
+    "bytes": 10171,
+    "sha256": "6b12690bb46de73f1754d69372699f41d5b7fc29b30860f121f60634f6d69e4b"
+  },
+  "manifest": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-checkpoint-readiness/manifest.json",
+    "bytes": 1217,
+    "sha256": "a540ed7193c2f8dc3019f3e32cb2541b3c83249448c7b088b03b3c7b8a1d5048"
+  },
+  "verified_source_rows": 73,
+  "raw_clean_differences": 45,
+  "verified_file_ref_occurrences": 36,
+  "status": "READY_FOR_EXACT_NORMAL_ALLOCATION",
+  "normal_acceptance_credit": 0,
+  "native_effects_authorized": false,
+  "next": "Independent bounded normalexecution/evidence-admission qualification; Coordinator exactfutureeffects allocation before Rootpush/dispatch."
+}
