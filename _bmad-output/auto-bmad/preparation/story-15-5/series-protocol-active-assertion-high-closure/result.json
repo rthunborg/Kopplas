@@ -1,0 +1,38 @@
+{
+  "schema": "SERIES_PROTOCOL_01_TARGETED_HIGH_CLOSURE_RESULT_v1",
+  "Outcome": "PASS_TARGETED_SERIES_PROTOCOL_01_CLOSURE_SOURCE_ONLY",
+  "Files changed": [
+    "_bmad-output/auto-bmad/preparation/story-15-5/series-protocol-active-assertion-high-closure/original-report.md",
+    "_bmad-output/auto-bmad/preparation/story-15-5/series-protocol-active-assertion-high-closure/original-attestation.json",
+    "_bmad-output/auto-bmad/preparation/story-15-5/series-protocol-active-assertion-high-closure/result.json",
+    "_bmad-output/auto-bmad/preparation/story-15-5/series-protocol-active-assertion-high-closure/manifest.json"
+  ],
+  "Status": {
+    "commit": "490f910fedfc1ec4ebbc5f0b8ecf980698fb1678",
+    "parent": "08b2b41c604f58962af6aa33779c3d6e15d6f8a6",
+    "closed_finding": "SERIES-PROTOCOL-01",
+    "consequential_findings": 0,
+    "active_line": 802,
+    "producer_consumer_expected_protocol": [
+      "booking-conflicts-v4",
+      "stockholm-capacity-v2"
+    ],
+    "complete_old_integration_body_inverse": true,
+    "other_assertions_negatives_skips_operations": "byte-conserved",
+    "migration_unit": "unchanged bound hashes",
+    "historical117SQL": "Root verified unchanged; prior source evidence reused",
+    "prior42": "reused, not rerun",
+    "original_NOTPASS4": "preserved",
+    "SQLruntime": 0,
+    "normal_acceptance": 0,
+    "review_counter": 3,
+    "execution_authority": false
+  },
+  "Open questions": [
+    "Hosted first throw/browser cause/custody UNKNOWN; PostgreSQL apply/metadataACLrollback unexecuted."
+  ],
+  "Deferred work": [
+    "Required native DB/SQL/RLS/browser/recovery gates remain outside source closure."
+  ],
+  "Blockers": []
+}

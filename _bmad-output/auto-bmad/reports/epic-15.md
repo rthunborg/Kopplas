@@ -6501,3 +6501,34 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Existing High author fixes activepositiveprotocolassertion and SpecSROonly withinexistingallocation; allfacts/digestguards and migration/unit bodiespreserved. Rootcommit thenSAMEdistinctHighfinding/regressionclosure, no broadreview.
+
+## Report — 2026-10-22T00:39:18Z (checkpoint — series protocol source correction independently closed)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `490f910`).
+**Pipeline status:** in progress; SERIES-PROTOCOL-01 targeted closure PASS at490f910f. Native SQL application and current full functional gates remain pending.
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 299h 41m (≈77h 24m AI-run, ≈222h 16m human/idle wait); resumed 196×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Boundedalreadyallocatedbrowser-v2observabilitysource+privateparserrevision, actualsourcecontrols andtargetedHighreview; thenshortestonefunctionalNORMALcheckpointproposal.
