@@ -2412,7 +2412,17 @@ test("label instrumentation preserves actual promise observer timer operation co
   // tests/e2e/support/calendar-feed-atdd.ts blob e0517e8c3e11a4bf9052a920a14e65356a234156.
   // Runtime Git history is unavailable in shallow CI checkouts and nonportable worktrees.
   const baseline=[7,8,6,5,14,2],patterns=[/\.then\(/g,/\.catch\(/g,/new Promise/g,/setTimeout\(/g,/adminQuery[<(]/g,/\.rpc\(/g];
-  const counts=(source:string)=>patterns.map(pattern=>(source.match(pattern)??[]).length);
+  const ordinaryObservers=(source:string)=>{
+    let projected=source.replaceAll("\r\n","\n");
+    for(const name of["completion","observation"]){
+      const entry=`      if(deadline)void ${name}.then(()=>deadline.settled(deadlineOwner,"${name}","OBSERVED_FULFILLED"),()=>deadline.settled(deadlineOwner,"${name}","OBSERVED_REJECTED"));\n      else void ${name}.catch(() => undefined);`;
+      // Invert only the exact admitted conditional substitution; never erase an
+      // extra/changed observer. Runtime identity/count control covers both paths.
+      assert.equal(projected.split(entry).length-1,1);projected=projected.replace(entry,`      void ${name}.catch(() => undefined);`);
+    }
+    return projected;
+  };
+  const counts=(source:string)=>patterns.map(pattern=>(ordinaryObservers(source).match(pattern)??[]).length);
   const after=readFileSync(new URL("../../../e2e/support/calendar-feed-atdd.ts",import.meta.url),"utf8");
   assert.deepEqual(counts(after),baseline);
   for(const extra of [".then(",".catch(","new Promise","setTimeout(","adminQuery<",".rpc("]){
@@ -2557,11 +2567,11 @@ test("VITEST-META healthy default budget and recording failures cannot change or
 });
 
 
-function actualBrowserCompletion(label:{set(field:string,state:string):void},terminal?:unknown,page:unknown={isClosed:()=>false},action="create",originalRotate:{bind(request:unknown):void}={bind(){throw Error("create must not bind rotate");}}){
+function actualBrowserCompletion(label:{set(field:string,state:string):void},terminal?:unknown,page:unknown={isClosed:()=>false},action="create",originalRotate:{bind(request:unknown):void}={bind(){throw Error("create must not bind rotate");}},observations:{markCompletionAwait(action:string,site:string):void}={markCompletionAwait(){}}){
   const source=readFileSync(new URL("../../../e2e/support/calendar-feed-atdd.ts",import.meta.url),"utf8"),start=source.indexOf("completion: async request => {"),end=source.indexOf("\n              },",start);assert.ok(start>0&&end>start);
   const expression=source.slice(start+"completion: ".length,end)+"\n}";
   const strip=(nodeModule as unknown as {stripTypeScriptTypes(source:string):string}).stripTypeScriptTypes;
-  return new Function("calendarLabel","label","calendarRequestTerminalAtDrain","sourcePage","action","originalRotate","return ("+strip(expression)+");")((run:()=>void)=>{try{run();}catch{/* same no-throw seam */}},label,terminal,page,action,originalRotate) as (request:{response():Promise<{finished():Promise<unknown>}|null>})=>Promise<boolean>;
+  return new Function("calendarLabel","label","calendarRequestTerminalAtDrain","sourcePage","action","originalRotate","observations","return ("+strip(expression)+");")((run:()=>void)=>{try{run();}catch{/* same no-throw seam */}},label,terminal,page,action,originalRotate,observations) as (request:{response():Promise<{finished():Promise<unknown>}|null>})=>Promise<boolean>;
 }
 
 test("browser v3 actual completion boundaries distinguish both pending awaits failures null and done with unchanged receiver and calls",async()=>{
@@ -2751,7 +2761,7 @@ test("original request sample preserves existing drain disposal and annotation p
   assert.ok(drain>=0&&sample>drain&&dispose>sample);assert.equal(source.split("originalRotate.sample();").length,2);
   assert.ok(source.includes('if(action==="rotate")originalRotate.bind(request);'));
   assert.ok(source.includes('annotations.push({type:"calendar-original-rotate-post-drain",description:code})'));
-  const start=source.indexOf("export function createCalendarOriginalRotateCapture"),end=source.indexOf("export type CalendarObservationLabel",start),body=source.slice(start,end);
+  const start=source.indexOf("export function createCalendarOriginalRotateCapture"),end=source.indexOf("/** Temporary deadline bookkeeping",start),body=source.slice(start,end);assert.ok(end>start);
   assert.ok(!/\bawait\b|setTimeout|setInterval|console\.|JSON\.stringify/.test(body));
   assert.ok(body.includes('field.value==="net::ERR_ABORTED"'));assert.ok(body.includes("finally{owned=undefined;}"));
 });
@@ -2762,4 +2772,69 @@ test("actual rotate completion binds only its existing matched Request before th
   const request={failure(){failureReads++;return{errorText:"net::ERR_ABORTED"};},async response(){responseReads++;return{async finished(){finishedReads++;return null;}};}};
   assert.equal(await actualBrowserCompletion(label,seams.calendarRequestTerminalAtDrain,{isClosed:()=>false},"rotate",capture)(request),true);
   assert.equal(failureReads,0);assert.equal(responseReads,1);assert.equal(finishedReads,1);capture.sample();assert.equal(failureReads,1);assert.deepEqual(codes,["net::ERR_ABORTED"]);
+});
+
+// Temporary original001 deadline: observed bookkeeping only, no Promise/backend introspection.
+test("original deadline snapshot is immutable fixed-three-row bounded no-throw and marks missing linkage UNKNOWN",async()=>{
+  const {createCalendarDeadlineCapture}=await actualBrowserSeams(),lines:string[]=[],capture=createCalendarDeadlineCapture(line=>lines.push(line));
+  const row=capture.register("rotate",true);capture.matched(row);capture.completionAwait("rotate","RESPONSE_FINISHED");capture.settled(row,"observation","OBSERVED_FULFILLED");capture.snapshot(1,1);
+  const first=lines[0],record=JSON.parse(first);assert.equal(record.owners.length,3);assert.equal(record.owners[1].completion,"PENDING");assert.equal(record.owners[1].completionAwait,"RESPONSE_FINISHED");assert.equal(record.trackedReadbacks,1);assert.equal(record.activeEntries,1);
+  capture.settled(row,"completion","OBSERVED_FULFILLED");capture.snapshot(0,0);assert.equal(lines.length,1);assert.equal(lines[0],first);assert.ok(first.length<=1536&&/^[\x20-\x7e]+$/.test(first));
+  const unknown:string[]=[],ambiguous=createCalendarDeadlineCapture(line=>unknown.push(line));ambiguous.register("rotate",true);ambiguous.register("rotate",true);ambiguous.register("PRIVATE",true);ambiguous.snapshot(10000,-1);const u=JSON.parse(unknown[0]);assert.equal(u.linkageUnknown,true);assert.equal(u.countOverflow,true);assert.equal(u.trackedReadbacks,null);assert.equal(u.activeEntries,null);assert.equal(u.owners[1].completion,"UNKNOWN");assert.ok(!unknown[0].includes("PRIVATE"));
+  assert.doesNotThrow(()=>createCalendarDeadlineCapture(()=>{throw Error("PRIVATE sink");}).snapshot(0,0));
+});
+
+test("original deadline actual completion marks its existing await and captures before timeout resolution",async()=>{
+  const seams=await actualBrowserSeams();
+  for(const site of["REQUEST_RESPONSE","RESPONSE_FINISHED"] as const){
+    const lines:string[]=[],order:string[]=[],registry=seams.createCalendarLifecycleObservations({settlementTimeoutMs:5,deadlineSink:line=>{order.push("snapshot");lines.push(line);}}),labels=seams.createCalendarFailureLabels(()=>{}),label=labels.register("rotate")!;
+    let release!:(value:unknown)=>void,responseCalls=0,finishedCalls=0;const gate=new Promise(resolve=>{release=resolve;});const response={async finished(){finishedCalls++;return site==="RESPONSE_FINISHED"?gate:null;}};
+    const request={async response(){responseCalls++;return site==="REQUEST_RESPONSE"?gate:response;},failure:()=>null,timing:()=>({responseEnd:-1})};
+    const completion=actualBrowserCompletion(label,seams.calendarRequestTerminalAtDrain,{isClosed:()=>false},"rotate",{bind(){}},registry);
+    const observation=registry.observe({owner:"rotate",request:()=>({promise:Promise.resolve(request),cancel(){}}),response:()=>({promise:Promise.resolve(true),cancel(){}}),readback:async()=>true,completion:completion as never});
+    assert.equal(await observation,true);const settled=await registry.cancelAndSettle();order.push("returned");assert.equal(settled.settled,false);assert.deepEqual(order,["snapshot","returned"]);
+    const record=JSON.parse(lines[0]),row=record.owners[1];assert.equal(row.observation,"OBSERVED_FULFILLED");assert.equal(row.completion,"PENDING");assert.equal(row.completionAwait,site);assert.equal(row.requestMatcherFulfilledObserved,true);assert.equal(record.activeEntries,1);assert.equal(record.trackedReadbacks,0);
+    release(site==="REQUEST_RESPONSE"?response:null);assert.equal((await registry.cancelAndSettle()).settled,true);assert.equal(lines.length,1);assert.equal(JSON.parse(lines[0]).owners[1].completion,"PENDING");assert.equal(responseCalls,1);assert.equal(finishedCalls,1);
+  }
+});
+
+test("original deadline reads actual tracked-work and entry Sets without crediting cancelled readback settlement",async()=>{
+  const seams=await actualBrowserSeams(),lines:string[]=[],registry=seams.createCalendarLifecycleObservations({settlementTimeoutMs:5,deadlineSink:line=>lines.push(line)});
+  let release!:(value:object)=>void,entered!:()=>void;const value={same:true},gate=new Promise<object>(resolve=>{release=resolve;}),tracked=registry.trackReadback(()=>gate),began=new Promise<void>(resolve=>{entered=resolve;});
+  const observation=registry.observe({owner:"rotate",request:()=>({promise:Promise.resolve(1),cancel(){}}),response:()=>({promise:Promise.resolve(true),cancel(){}}),readback:()=>{entered();return tracked;}});
+  await began;const stop=await registry.cancelAndSettle();assert.equal(stop.settled,false);const record=JSON.parse(lines[0]);assert.equal(record.trackedReadbacks,1);assert.equal(record.activeEntries,1);assert.equal(record.owners[1].observation,"PENDING");assert.equal(record.owners[1].observationAwait,"READBACK");
+  release(value);assert.equal(await tracked,value);const error=await observation.catch(error=>error);assert.equal(await observation.catch(error=>error),error);assert.equal((await registry.cancelAndSettle()).settled,true);assert.equal(lines.length,1);
+});
+
+test("original deadline substitutes one discarded observer per original Promise with unchanged identities and rejection handling",async()=>{
+  const seams=await actualBrowserSeams();type Hook={receiver:Promise<unknown>;yes:unknown;no:unknown;derived:Promise<unknown>};
+  for(const reject of[false,true]){
+    const captures:{completion:number;observation:number;marked:number}[]=[];
+    for(const enabled of[false,true]){
+      const hooks:Hook[]=[],native=Promise.prototype.then;
+      Promise.prototype.then=function(this:Promise<unknown>,yes,no){const derived=native.call(this,yes,no);hooks.push({receiver:this,yes,no,derived});return derived;} as typeof Promise.prototype.then;
+      const request=Promise.resolve(7),response=Promise.resolve(true),result={same:true},original=Error("PRIVATE");let observation!:Promise<object>,completion!:Promise<unknown>;
+      try{
+        const registry=seams.createCalendarLifecycleObservations({deadlineSink:enabled?()=>{}:undefined});
+        observation=registry.observe({owner:"rotate",request:()=>({promise:request,cancel(){}}),response:()=>({promise:response,cancel(){}}),readback:async()=>result,completion:async()=>{if(reject)throw original;return true;}});
+        completion=hooks.find(h=>h.receiver===request&&typeof h.yes==="function"&&typeof h.no==="function")!.derived;
+        const observed=hooks.filter(h=>h.receiver===observation),completed=hooks.filter(h=>h.receiver===completion);
+        assert.equal(observed.length,2);assert.equal(completed.length,2);assert.equal(typeof observed[0].no,"function");assert.equal(typeof completed[0].no,"function");
+        assert.equal(typeof observed[0].yes,enabled?"function":"undefined");assert.equal(typeof completed[0].yes,enabled?"function":"undefined");
+        assert.ok(!hooks.some(h=>h.receiver===observed[0].derived||h.receiver===completed[0].derived));captures.push({completion:completed.length,observation:observed.length,marked:Number(enabled)});
+        assert.equal(await observation,result);
+        if(reject){const error=await completion.catch(error=>error);assert.equal(await completion.catch(error=>error),error);assert.ok(error instanceof Error);}
+        else assert.equal(await completion,undefined);
+        const stopped=await registry.cancelAndSettle();assert.equal(stopped.settled,!reject);
+      }finally{Promise.prototype.then=native;}
+    }
+    assert.deepEqual(captures.map(({completion,observation})=>({completion,observation})),[{completion:2,observation:2},{completion:2,observation:2}]);
+  }
+});
+
+test("original deadline source keeps existing timer await topology and exact allSettled ownership",async()=>{
+  const ts=await import("typescript"),source=readFileSync(new URL("../../../e2e/support/calendar-feed-atdd.ts",import.meta.url),"utf8"),ast=ts.createSourceFile("calendar-feed-atdd.ts",source,ts.ScriptTarget.Latest,true),fn=ast.statements.find(node=>ts.isFunctionDeclaration(node)&&node.name?.text==="createCalendarLifecycleObservations")!;
+  let awaits=0,timers=0;const visit=(node:import("typescript").Node)=>{if(ts.isAwaitExpression(node))awaits++;if(ts.isCallExpression(node)&&node.expression.getText(ast)==="setTimeout")timers++;ts.forEachChild(node,visit);};visit(fn);assert.equal(awaits,4);assert.equal(timers,1);
+  const text=fn.getText(ast);assert.ok(text.includes("Promise.allSettled([observation, completion])"));assert.ok(text.includes("pending.add(entry); return observation;"));assert.ok(text.includes("return work;"));
+  assert.ok(text.includes("deadline?.snapshot(actualWork.size,pending.size);resolve(false)"));assert.ok(text.includes("options.settlementTimeoutMs ?? 20_000"));
 });

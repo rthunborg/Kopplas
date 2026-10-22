@@ -51,6 +51,30 @@ export function createCalendarOriginalRotateCapture(enabled:boolean,sink:(code:s
     }
   };
 }
+/** Temporary deadline bookkeeping. PENDING means no settlement handler has
+ * OBSERVED settlement; it is not Promise introspection or backend proof. */
+export function createCalendarDeadlineCapture(sink:(line:string)=>void) {
+  const rows=(["create","rotate","revoke"] as const).map(owner=>({owner,registered:false,ambiguous:false,observation:"NOT_REGISTERED",completion:"NOT_REGISTERED",observationAwait:"NOT_REGISTERED",completionAwait:"NOT_REGISTERED",requestMatcherFulfilledObserved:false}));
+  type Row=typeof rows[number];let linkageUnknown=false,captured=false;
+  const safe=(run:()=>void)=>{try{run();}catch{linkageUnknown=true;}};
+  return {
+    register(owner:unknown,hasCompletion:boolean):Row|undefined {
+      let result:Row|undefined;safe(()=>{const row=rows.find(row=>row.owner===owner);if(!row){linkageUnknown=true;return;}result=row;if(row.registered){row.ambiguous=true;linkageUnknown=true;return;}row.registered=true;row.observation="PENDING";row.completion=hasCompletion?"PENDING":"NOT_APPLICABLE";row.observationAwait="EVENT_MATCHERS";row.completionAwait=hasCompletion?"REQUEST_MATCHER":"NONE";});return result;
+    },
+    matched(row:Row|undefined){safe(()=>{if(row&&!row.ambiguous){row.requestMatcherFulfilledObserved=true;if(row.completion!=="NOT_APPLICABLE")row.completionAwait="CALLBACK";}});},
+    observationAwait(row:Row|undefined,site:"READBACK"|"NONE"){safe(()=>{if(row&&!row.ambiguous)row.observationAwait=site;});},
+    completionAwait(owner:unknown,site:"REQUEST_RESPONSE"|"RESPONSE_FINISHED"|"NONE"){safe(()=>{const row=rows.find(row=>row.owner===owner);if(!row||!row.registered||row.ambiguous){linkageUnknown=true;return;}row.completionAwait=site;});},
+    settled(row:Row|undefined,component:"observation"|"completion",state:"OBSERVED_FULFILLED"|"OBSERVED_REJECTED"){safe(()=>{if(row&&!row.ambiguous){row[component]=state;row[component==="observation"?"observationAwait":"completionAwait"]="NONE";}});},
+    snapshot(trackedReadbacks:number,activeEntries:number){
+      if(captured)return;captured=true;
+      try {
+        const valid=(n:number)=>Number.isSafeInteger(n)&&n>=0&&n<=9999;
+        const record=Object.freeze({schema:"calendar-original-drain-deadline-v1",state:"CAPTURED",linkageUnknown,countOverflow:!valid(trackedReadbacks)||!valid(activeEntries),trackedReadbacks:valid(trackedReadbacks)?trackedReadbacks:null,activeEntries:valid(activeEntries)?activeEntries:null,owners:Object.freeze(rows.map(row=>Object.freeze({owner:row.owner,registered:row.registered,observation:row.ambiguous?"UNKNOWN":row.observation,completion:row.ambiguous?"UNKNOWN":row.completion,observationAwait:row.ambiguous?"UNKNOWN":row.observationAwait,completionAwait:row.ambiguous?"UNKNOWN":row.completionAwait,requestMatcherFulfilledObserved:row.requestMatcherFulfilledObserved})))});
+        const line=JSON.stringify(record);sink(line.length<=1536&&/^[\x20-\x7e]+$/.test(line)?line:'{"schema":"calendar-original-drain-deadline-v1","state":"UNKNOWN"}');
+      }catch{/* Capture/sink failure cannot replace the existing timeout result. */}
+    }
+  };
+}
 export type CalendarObservationLabel={bindTerminal?(probe:()=>CalendarTerminalAtDrain):void;set(field:"registration"|"request"|"response"|"readback"|"completion"|"completionPhase"|"observation",state:string):void};
 export const calendarFailureSites=["scenario","sign-in","navigation","warning","create","feed","last-use","rotation","old-new-feed","revoke","observation","settlement","fixture-final","unknown"] as const;
 export type CalendarFailureCase="E2E001"|"E2E007"|"E2E010-revoke";
@@ -167,10 +191,11 @@ export function calendarEventWaiter<T>(options: {
   } catch (error) { finish(calendarBrowserDiagnostic(options.stage, error)); }
   return { promise, cancel() { const wasDone=done;finish(calendarBrowserDiagnostic("action-cancelled", { name: "AbortError" }));if(!wasDone)calendarLabel(()=>options.label?.("CANCELLED")); if (disposalError) throw disposalError; } };
 }
-export function createCalendarLifecycleObservations(options: { settlementTimeoutMs?: number; labels?:CalendarFailureLabels } = {}) {
+export function createCalendarLifecycleObservations(options: { settlementTimeoutMs?: number; labels?:CalendarFailureLabels; deadlineSink?:(line:string)=>void } = {}) {
   type Pending = { cancel(): void; settled: Promise<void> };
   const pending = new Set<Pending>(), actualWork = new Set<Promise<void>>(), failures: Error[] = [];
   let closing = false, cancellationVerified = true;
+  const deadline=options.deadlineSink?createCalendarDeadlineCapture(options.deadlineSink):undefined;
   const cancelWaiter = (waiter?: { cancel(): void }) => {
     try { waiter?.cancel(); } catch (error) { cancellationVerified = false; failures.push(calendarBrowserDiagnostic("cleanup-lifecycle", error)); }
   };
@@ -190,10 +215,12 @@ export function createCalendarLifecycleObservations(options: { settlementTimeout
       void settled.then(() => actualWork.delete(settled));
       return work;
     },
-    observe<R, S, T>(input: { request(): CalendarEventWaiter<R>; response(): CalendarEventWaiter<S>; readback(request: R, signal: AbortSignal): Promise<T>; completion?(request: R): Promise<boolean>; label?:CalendarObservationLabel }): Promise<T> {
+    markCompletionAwait(owner:"create"|"rotate"|"revoke",site:"REQUEST_RESPONSE"|"RESPONSE_FINISHED"|"NONE"){deadline?.completionAwait(owner,site);},
+    observe<R, S, T>(input: { owner?:"create"|"rotate"|"revoke"; request(): CalendarEventWaiter<R>; response(): CalendarEventWaiter<S>; readback(request: R, signal: AbortSignal): Promise<T>; completion?(request: R): Promise<boolean>; label?:CalendarObservationLabel }): Promise<T> {
       const note=(field:Parameters<CalendarObservationLabel["set"]>[0],state:string)=>calendarLabel(()=>input.label?.set(field,state));
       note("observation","PENDING");note("completion",input.completion?"NOT_STARTED":"NOT_APPLICABLE");
       const controller = new AbortController();
+      const deadlineOwner=deadline?.register(input.owner,Boolean(input.completion));
       let request: CalendarEventWaiter<R> | undefined, response: CalendarEventWaiter<S> | undefined;
       let stage: CalendarDiagnosticStage = "action-response";
       // Register both real events synchronously BEFORE returning to the UI trigger.
@@ -209,6 +236,7 @@ export function createCalendarLifecycleObservations(options: { settlementTimeout
       // A cancelled event waiter is not proof the matched HTTP request ended.
       // Keep the actual native completion promise owned and joined independently.
       const completion = request ? request.promise.then(async matched => {
+        deadline?.matched(deadlineOwner);
         try {
           if(input.completion)note("completion","PENDING");
           if (input.completion && !await input.completion(matched)) throw calendarBrowserDiagnostic("cleanup-lifecycle", { name: "CalendarUnverified" });
@@ -221,7 +249,9 @@ export function createCalendarLifecycleObservations(options: { settlementTimeout
           throw calendarBrowserDiagnostic("cleanup-lifecycle", { name: "CalendarUnverified" });
         }
       }) : Promise.resolve();
-      void completion.catch(() => undefined);
+      // Exactly replace the discarded rejection observer; no parallel chain.
+      if(deadline)void completion.then(()=>deadline.settled(deadlineOwner,"completion","OBSERVED_FULFILLED"),()=>deadline.settled(deadlineOwner,"completion","OBSERVED_REJECTED"));
+      else void completion.catch(() => undefined);
       let readbackPending=false;
       const observation = (async () => {
         try {
@@ -229,16 +259,17 @@ export function createCalendarLifecycleObservations(options: { settlementTimeout
           const [matched] = await Promise.all([request!.promise, response!.promise]);
           if (controller.signal.aborted) throw calendarBrowserDiagnostic("action-cancelled", { name: "AbortError" });
           stage = "action-readback";
-          readbackPending=true;note("readback","PENDING");
+          readbackPending=true;note("readback","PENDING");deadline?.observationAwait(deadlineOwner,"READBACK");
           const result = await input.readback(matched, controller.signal);
-          readbackPending=false;note("readback","SETTLED_SUCCESS");
+          readbackPending=false;note("readback","SETTLED_SUCCESS");deadline?.observationAwait(deadlineOwner,"NONE");
           if (controller.signal.aborted) throw calendarBrowserDiagnostic("action-cancelled", { name: "AbortError" });
           note("observation","SETTLED_SUCCESS");return result;
         } catch (error) {if(readbackPending)note("readback","SETTLED_FAILURE");note("observation",controller.signal.aborted?"CANCELLED":"SETTLED_FAILURE");calendarLabel(()=>{options.labels?.at("observation");options.labels?.failure();});throw calendarBrowserDiagnostic(stage, error); }
         finally { cancelWaiter(request); cancelWaiter(response); }
       })();
       // Observe the RETURNED promise too: callers can fail before awaiting it.
-      void observation.catch(() => undefined);
+      if(deadline)void observation.then(()=>deadline.settled(deadlineOwner,"observation","OBSERVED_FULFILLED"),()=>deadline.settled(deadlineOwner,"observation","OBSERVED_REJECTED"));
+      else void observation.catch(() => undefined);
       const entry: Pending = { settled: Promise.allSettled([observation, completion]).then(results => {
         for (const result of results) if (result.status === "rejected") failures.push(calendarBrowserDiagnostic(stage, result.reason));
       }).finally(() => pending.delete(entry)), cancel() { controller.abort(); cancelWaiter(request); cancelWaiter(response); } };
@@ -252,7 +283,7 @@ export function createCalendarLifecycleObservations(options: { settlementTimeout
       const work = [...actualWork];
       let timer: ReturnType<typeof setTimeout> | undefined;
       const settled = await Promise.race([Promise.all([...active.map(entry => entry.settled), ...work]).then(() => true), new Promise<false>(resolve => {
-        timer = setTimeout(() => resolve(false), options.settlementTimeoutMs ?? 20_000);
+        timer = setTimeout(() => {deadline?.snapshot(actualWork.size,pending.size);resolve(false);}, options.settlementTimeoutMs ?? 20_000);
       })]);
       if (timer) clearTimeout(timer);
       if(!settled||!cancellationVerified)calendarLabel(()=>{options.labels?.at("settlement");options.labels?.failure();});
@@ -553,7 +584,7 @@ export async function withCalendarBrowserFixture(
       let subject = subjects.montor;
       const attempts: Attempt[] = [], rawLinks: string[] = [], seedHashes: string[] = [];
       const activeFaults = new Set<ArmedFault>();
-      const observations = createCalendarLifecycleObservations({labels});
+      const observations = createCalendarLifecycleObservations({labels,deadlineSink:process.env.CALENDAR_FEED_ORIGINAL_E2E001==="1"?line=>{playwrightTest.info().annotations.push({type:"calendar-original-drain-deadline",description:line});}:undefined});
       cleanupAllowed = false; // only the complete final settlement gate may admit deletion
       let transportVerified = true;
       const requestListener = (request: Request) => { const input = actionInput(request); if (input) attempts.push(input); };
@@ -641,7 +672,7 @@ export async function withCalendarBrowserFixture(
           snapshot,
           observeLifecycle(action, sourcePage = page) {
             const label=labels?.register(action);
-            return observations.observe({label,
+            return observations.observe({label,owner:action,
               // Preserve both original predicates and the 30-second transport
               // bound. Own listeners add cancellation, not a different matcher.
               response: () => calendarEventWaiter<Response>({ subscribe: listener => { sourcePage.on("response", listener); }, unsubscribe: listener => { sourcePage.off("response", listener); }, predicate: response => actionInput(response.request())?.action === action, stage: "action-response", timeoutMs: 30_000,label:state=>label?.set("response",state) }),
@@ -651,10 +682,13 @@ export async function withCalendarBrowserFixture(
               if(action==="rotate")originalRotate.bind(request);
                 calendarLabel(()=>label?.bindTerminal?.(()=>calendarRequestTerminalAtDrain(sourcePage,request)));
                 calendarLabel(()=>label?.set("completionPhase","RESPONSE"));
+                observations.markCompletionAwait(action,"REQUEST_RESPONSE");
                 const response = await request.response();
                 if(response!==null){
                   calendarLabel(()=>label?.set("completionPhase","FINISHED"));
+                  observations.markCompletionAwait(action,"RESPONSE_FINISHED");
                   const complete=await response.finished()===null;
+                  observations.markCompletionAwait(action,"NONE");
                   if(complete)calendarLabel(()=>label?.set("completionPhase","DONE"));
                   return complete;
                 }
