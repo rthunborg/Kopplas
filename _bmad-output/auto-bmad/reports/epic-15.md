@@ -7059,3 +7059,34 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Narrow cause qualification at existing INT009/owner-publication boundary before any source correction; no blindNORMAL retry or genericdiagnosticframework. Separate finite one-artifact-safe-fact read only if justified/admitted; original firstthrow may be irrecoverable. P5delivery/P6automate/P7helper/15.6freshSpec/E8 stillrequired.
+
+## Report — 2026-10-22T12:55:15Z (working)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `6414d94`).
+**Pipeline status:** P5 remains open. One pinned report read independently qualifies generated barrier-setup catch before INT009 role-loss action; original native refusing guard/cause and DB custody remain unknown. Required95 remains68P/1F/26unexecuted; all14feedbrowsercases firstattemptpassed. No fourth broad review, no Stage2source/run, deployment or merge.
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 311h 57m (≈77h 24m AI-run, ≈234h 32m human/idle wait); resumed 214×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Narrow explicitHigh read-only assessment of subject canonical publication/owner preflight/setup cleanup. No cause-backed patch or Stage2 source/runtime allocation yet. Preserve P5open, P6automate/P7helper,15.6freshSpec+validation,E8/finalPR.
