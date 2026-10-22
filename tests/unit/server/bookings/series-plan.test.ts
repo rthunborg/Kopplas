@@ -320,3 +320,70 @@ test("Current synthetic snapshot fixtures bind call facts and fresh claims while
     await assert.rejects(()=>previewBookingSeries(client,fixture.args,fixture.input),{code:"SERVER_ERROR"});assert.equal(calls,1);
   }
 }));
+
+
+/** Source inverse/real TS admission proof only; this does not execute PostgreSQL. */
+function forwardSeriesProtocolSources() {
+  const read=(path:string)=>readFileSync(path,"utf8").replaceAll("\r\n","\n");
+  const original=read("supabase/migrations/20261019180000_recurring_booking_series.sql"),follow=read("supabase/migrations/20261019220000_booking_series_integrity_followup.sql"),resolver=read("supabase/migrations/20261020180000_conflict_resolver.sql");
+  const body=(source:string,name:string)=>{const match=source.match(new RegExp("create(?: or replace)? function public[.]"+name+"\\(.*?as \\$\\$([\\s\\S]*?)\\$\\$;","is"));assert.ok(match);return match[1]!;};
+  const pattern=resolver.match(/pattern:='([^']+)';/)?.[1];assert.ok(pattern);
+  const finalBefore=body(follow,"finalize_booking_series"),refresh=new RegExp(pattern,"gs");assert.equal([...finalBefore.matchAll(refresh)].length,1);
+  const effective=[body(original,"snapshot_booking_series"),finalBefore.replace(refresh,"perform public.booking_conflict_refresh_internal(p_tenant_id,output);")];
+  const sql=read("supabase/migrations/20261022002335_booking_series_current_conflict_protocol.sql");
+  const expected=[sql.match(/\$snapshot_source\$([\s\S]*?)\$snapshot_source\$/)?.[1],sql.match(/\$finalizer_source\$([\s\S]*?)\$finalizer_source\$/)?.[1]];
+  assert.deepEqual(expected,effective,"forward preflight must bind exact effective sources, including common resolver refresh");
+  const replacements=sql.match(/definitions\[target_index\] := replace\(replace\(definition,\s*'([^']+)','([^']+)'\),\s*'([^']+)','([^']+)'\)/);assert.ok(replacements);
+  const pairs=[[replacements[1]!,replacements[2]!],[replacements[3]!,replacements[4]!]];
+  assert.deepEqual(pairs,[["booking-conflicts-v3","booking-conflicts-v4"],["stockholm-capacity-v1","stockholm-capacity-v2"]]);
+  const next=effective.map(source=>pairs.reduce((text,[before,after])=>text.replaceAll(before!,after!),source));
+  for(let n=0;n<effective.length;n++){
+    for(const [before] of pairs)assert.equal(effective[n]!.split(before!).length-1,1);
+    assert.equal(pairs.reduce((text,[before,after])=>text.replaceAll(after!,before!),next[n]!),effective[n],"only protocol literals may differ");
+  }
+  assert.equal(next[1]!.split("perform public.booking_conflict_refresh_internal(p_tenant_id,output);").length-1,1);
+  assert.notEqual(expected[1],finalBefore,"old pre-resolver finalizer is not an admissible predecessor");
+  assert.match(sql,/select p\.prosrc,to_jsonb\(p\)-'prosrc'/);assert.match(sql,/metadata_after is distinct from metadata_before\[target_index\]/);
+  assert.match(sql,/to_regprocedure\(signatures\[target_index\]\)::oid is distinct from target_oids\[target_index\]/);
+  assert.deepEqual([...sql.matchAll(/'public\.([a-z_]+)\(uuid/g)].map(m=>m[1]),["snapshot_booking_series","finalize_booking_series"]);
+  assert.ok(resolver.includes("'booking-conflicts-v3'")&&resolver.includes("'stockholm-capacity-v1'"),"resolver compatible pair is separate and unchanged");
+  assert.ok(sql.includes("reference_source := replace(expected_sources[target_index],E'\\r\\n',E'\\n');"));
+  assert.ok(sql.includes("position(E'\\r' in reference_source)>0"));
+  assert.ok(sql.includes("source_before is distinct from reference_source\n        and source_before is distinct from replace(reference_source,E'\\n',E'\\r\\n')"));
+  assert.ok(sql.includes("actual_sources[target_index] := source_before;"));
+  assert.ok(sql.includes("source_after is distinct from replace(replace(actual_sources[target_index],"));
+  assert.ok(!sql.includes("source_before := replace"),"actual catalog source is never normalized");
+  return {effective,next};
+}
+test("Forward series migration preserves effective resolver-refresh bodies and complete non-source metadata",()=>{forwardSeriesProtocolSources();});
+test("Actual forward SQL producer protocol satisfies real TS snapshot guard while historical protocol still fails",async()=>syntheticKey(async()=>{
+  const {effective,next}=forwardSeriesProtocolSources(),fixture=admissionCase(1,0),base=(await fixture.client.rpc("snapshot_booking_series")).data;
+  const protocol=(source:string)=>{const match=source.match(/'engineVersion','([^']+)','configVersion','([^']+)'/);assert.ok(match);return {engineVersion:match[1]!,configVersion:match[2]!};};
+  for(const [source,accepted] of [[effective[0]!,false],[next[0]!,true]] as const){
+    let calls=0;const client={rpc:async(name:string)=>{calls++;assert.equal(name,"snapshot_booking_series");return {data:{...base,claims:{...base.claims,...protocol(source)}},error:null};}};
+    if(accepted){const preview=await previewBookingSeries(client,fixture.args,fixture.input);assert.equal(preview.total,1);assert.ok(preview.receipt.length>0);}
+    else await assert.rejects(()=>previewBookingSeries(client,fixture.args,fixture.input),{code:"SERVER_ERROR"});
+    assert.equal(calls,1);
+  }
+}));
+
+
+test("Forward predecessor line-ending admission preserves actual LF or CRLF bytes and rejects mixed, bare-CR and changed bodies",()=>{
+  const {effective}=forwardSeriesProtocolSources();
+  // Evaluate the exact finite equality/replace branch bound above; no PostgreSQL execution.
+  for(const original of effective){
+    for(const reference of [original,original.replaceAll("\n","\r\n")]){
+      const canonical=reference.replaceAll("\r\n","\n");
+      const admits=(actual:string)=>!canonical.includes("\r")&&(actual===canonical||actual===canonical.replaceAll("\n","\r\n"));
+      for(const actual of [original,original.replaceAll("\n","\r\n")]){
+        assert.equal(admits(actual),true);
+        const changed=actual.replaceAll("booking-conflicts-v3","booking-conflicts-v4").replaceAll("stockholm-capacity-v1","stockholm-capacity-v2");
+        assert.equal(changed.replaceAll("booking-conflicts-v4","booking-conflicts-v3").replaceAll("stockholm-capacity-v2","stockholm-capacity-v1"),actual);
+        assert.equal(changed.includes("\r\n"),actual.includes("\r\n"));
+      }
+      assert.equal(admits(original.replace("\n","\r\n")),false,"mixed body is not a complete CRLF variant");
+      assert.equal(admits(original.replace("\n","\r")),false,"bare CR is not admitted");
+      assert.equal(admits(original.replace("begin","begin -- unrelated drift")),false);
+    }
+  }
+});

@@ -613,7 +613,9 @@ import { realSeriesInput, reviewRealSeries, realSeriesSnapshot } from "../../sup
 import { updateBookingSeries } from "@/server/commands/bookings/update-booking-series";
 import { bookingCommand } from "../../support/bookings-atdd";
 import { seriesProofBytes, signSeries, openSeriesReceipt, sealSeriesReceipt, SERIES_ATTESTATION_DOMAIN, SERIES_REVIEW_DOMAIN } from "@/server/bookings/series-attestation";
-import { bookingConflictKeyFromEnv } from "@/server/bookings/conflict-attestation";
+import { BOOKING_CONFLICT_ENGINE_VERSION, bookingConflictKeyFromEnv } from "@/server/bookings/conflict-attestation";
+import { SCHEDULING_RULES_VERSION } from "@/features/scheduling/types";
+import { createHash } from "node:crypto";
 import { previewBookingEditor, openEditorReceipt } from "@/server/bookings/editor-preview";
 import { createJobCard } from "@/server/commands/jobs/save-job-card";
 import { seedBookingParents } from "../../support/bookings-atdd";
@@ -986,6 +988,14 @@ describe("15.2 real checked series command", () => {
       const args={p_tenant_id:fx.base.tenantA.id,p_actor_id:fx.base.adminA.id,p_correlation_id:correlationId,p_command_id:input.commandId,p_input:seriesCommandPayload(input)};
       const snapshot=await snapshotBookingSeries(fx.adminClient as unknown as BookingRpcClient,args);
       if(snapshot.kind!=="snapshot")throw new Error("Expected fresh production snapshot");
+      // Actual checked SQL claims must match the current producer/verifier protocol;
+      // existing signed mutation, rollback and cross-binding negatives remain below.
+      expect(snapshot.claims.engineVersion).toBe(BOOKING_CONFLICT_ENGINE_VERSION);
+      expect(snapshot.claims.configVersion).toBe(SCHEDULING_RULES_VERSION);
+      expect(snapshot.claims).toMatchObject({tenantId:args.p_tenant_id,actorId:args.p_actor_id,
+        commandId:args.p_command_id,correlationId:args.p_correlation_id,seriesId:input.seriesId,operation:"create"});
+      expect(snapshot.claims.factDigest).toBe(createHash("sha256").update(snapshot.canonicalFacts).digest("hex"));
+      expect(Date.parse(snapshot.claims.expiresAt)-Date.parse(snapshot.claims.issuedAt)).toBe(120000);
       const plan=planBookingSeries(snapshot,input);const key=bookingConflictKeyFromEnv();
       const body=JSON.stringify(plan);
       const [{bytes}]=await adminQuery<{bytes:Buffer}>("select public.booking_series_proof_bytes_internal($1,$2,$3) bytes",[SERIES_ATTESTATION_DOMAIN,snapshot.claims,body]);

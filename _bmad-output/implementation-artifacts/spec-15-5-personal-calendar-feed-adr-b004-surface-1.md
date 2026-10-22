@@ -245,11 +245,12 @@ Deferred release validation: exhaustive browser/device/calendar-provider matrice
 ## Auto Run Result
 
 Status: in-review
-Blocking condition: qualified NORMAL39683227657 attempt1 stopped at unit3243=3241P/2F/0skip across103suites; DB/browser/recovery/Python/build were UNEXECUTED. The two declared candidates have the unit-only source portability correction below, pending independent review and a separately admitted exact-head run. The hosted exceptions were not retained and remain UNKNOWN. Earlier DB/browser/custody failures and acceptance0 remain unresolved; no functional cause, development completion or release readiness is established.
+Blocking condition: the new series protocol forward migration below is source-only and unexecuted. Current SQL series snapshot/finalizer still use v3/v1 while the integrated TS boundary requires v4/v2; the source mismatch is demonstrated, not an observed hosted first-error cause. Local unit-fixture correction had3390 tests/3389P/0F/1Linux-xattrskip; that separate historical pure run is not native acceptance. Browser primary failures/completion phases/custody remain UNKNOWN. Root-managed independent review and required exact-head native gates remain pending; development complete=false, acceptance0.
 
-Current result — 2026-10-22: only the affected pure unit test and this author trail
-changed. The entire affected file passes152/152 on the existing qualified Linux
-Node overlay; no application/native runtime or Git mutation occurred.
+Current result — 2026-10-22: exact4 forward-correction source handoff only. One
+CLI-generated migration changes only the series protocol pair after exact effective
+body qualification;41 affected pure units pass. No SQL application, extra query,
+principal/ACL expansion, browser change or Git mutation occurred.
 The following planning paragraphs are retained historical results, not the current
 status, permission, gate outcome or runtime evidence. The historical ARR warning
 and three completed broad review rounds remain preserved.
@@ -2076,6 +2077,67 @@ reader and review stops are checked on the final source. Root owns Git and futur
 independent targeted review/exact-head execution. Development complete=false,
 acceptance0, in-review/loop3 and all prior failure/review/receipt records remain.
 
+## Series current-conflict protocol forward correction — source only
+
+Root independently admitted the forward correction and actual generated filename.
+Installed Supabase CLI2.115.0 version/help/new-help preceded exactly one
+`migration new booking_series_current_conflict_protocol`. It produced empty
+20261022002335_booking_series_current_conflict_protocol.sql (SHAe3b0c442...);
+Root's completed clerical substitution retires reserved000847, with no rename,
+duplicate generation or historical edit. The117th file is new; all116 predecessors
+remain immutable. The skill's live-query/network recommendations do not expand
+this explicit source-only/no-network/no-SQL allocation.
+
+Effective source is derived in chronological order, not copied from an old
+finalizer: snapshot comes from20261019180000, finalizer from20261019220000, then
+20261020180000's exact one-match refresh replacement composes
+`booking_conflict_refresh_internal(p_tenant_id,output)`. Effective prosrc hashes:
+snapshot2032B/de57810a4ef7fd45ef5d4c7b4b8f8aee322b145d8dae8c6e6fe35e62331ad974;
+finalizer14472B/87cd4e1062df816bc060069404d25e71f3e7744188a2387fe89936b339a218bc.
+No later historical source reference changes those two targets.
+
+The single atomic DO qualifies both exact prosrc bodies before DDL. Embedded
+references are canonicalized to LF only; actual catalog bodies must equal that
+reference or its complete CRLF counterpart. Mixed/bare-CR/unrelated bodies refuse.
+Actual prosrc is never normalized: its original bytes are saved, only the two
+version literals are substituted, and postflight requires that exact raw-style
+result. Finite LF/CRLF/inverse/changed-body controls are source evidence only. It derives
+CREATE OR REPLACE from actual catalog definitions and substitutes exactly one
+enginev3→v4 and configv1→v2 per target. It then checks exact resulting body and
+all non-prosrc pg_proc attributes/OIDs, including owner/ACL/security/volatility/
+defaults/search_path. Unknown body or changed metadata refuses atomically. No
+DROP, grants, role/membership or Auth changes are added. The effective common
+refresh, accepted/resolved/reopened conflict behavior, locks, replay/idempotency,
+proof domains, signatures and freshness guards stay intact. The resolver's own
+separate compatiblev3/v1 protocol is unchanged.
+
+The new pure tests reconstruct effective predecessors from actual historical
+source plus the actual resolver regexp. They require the new migration's bound
+bodies, inverse only its two literal substitutions and retain shared refresh;
+protocols derived from the actual forward SQL producer pass the real TS preview
+boundary while historical SQL versions fail. Existing digest/claims/freshness/
+role/foreign/protected/DST/cap/review negatives remain. The existing REAL004 DB
+case gains assertions over actual returned SQL protocol, call bindings, fact hash
+and2minute lifetime, with no additional RPC/query or new case/skip. It is UNEXECUTED.
+
+Actual local evidence: first39P/2F was the new source-reader missing dotAll on
+multiline function headers; corrected reader only. Intermediate41P preceded the bounded newline
+correction; final affected42P/0F/0skip/0cancel, whole TypeScript and two-file ESLint exit0; native diff/reader/SRO checked.
+No full suite/app build or PostgreSQL syntax/migration execution was performed.
+Inverse/source/metadata assertion controls are not native metadata preservation
+proof. Independent targeted High review and Root's future exact-head qualification
+remain required; no fourth broad pass or acceptance/completion claim.
+
+Parent READONLY browser conclusion remains separate: qualified closed tuples show
+cleanup-lifecycle timeout and retained/unverified custody, not a primary cause.
+Readback success does not prove native HTTP completion. Existing completion waits
+request.response() then response.finished(); labels do not distinguish these two
+awaits. No browser change/GET/retry is authorized here. A future separate proposal
+could add finite completionPhase/scenario-state labels at existing awaits while
+preserving all operations/guards/caps, plus separately allocated private parser
+v2 compatibility; legacy labels would leave new facts UNKNOWN. This is proposal
+only, not implemented or a justification to retry NORMAL blindly.
+
 ## Suggested Review Order
 
 Author: Story 15.5 implementation/fix author (gpt-6.1-sol High), incorporating
@@ -2085,7 +2147,7 @@ native setup diagnostics, same-connection privacy qualification and explicit
 isolated setup authority transport, bounded child settlement, browser diagnostic repair,
 actual SQL callback ownership, executed-feature fixture/status/policy repairs and
 bounded safe-leaf transport through the installed reporter, closed owned scenario origins, the minimal Vite security patch, the admitted staged diagnostic-only lane and the discovery-order unit correction.
-Stops below resolve to the unit portability-correction working source handed to Root; no author Git mutation occurs.
+Stops below resolve to the current forward-protocol working source handed to Root; no author Git mutation occurs.
 
 ### Own settings and honest lifecycle results
 
@@ -2573,3 +2635,21 @@ lint exit0. Pre-edit Windows2P vs controlled Linux2F are distinct; opaque hosted
 exceptions remain UNKNOWN. This fixes the demonstrated runtime-history dependency,
 not an application cause or hosted gate. Reviewer checks independent constants
 against166cad Git objects and preserved comparison semantics; no fourth broad pass.
+
+### Align only the series protocol while preserving the effective resolver composition
+
+A new forward migration binds exact effective bodies and metadata, preserving
+shared refresh and the resolver's separate compatibility protocol.
+
+- `supabase/migrations/20261022002335_booking_series_current_conflict_protocol.sql:5` — `do $series_protocol$`: holds both replacements in one atomic statement.
+- `supabase/migrations/20261022002335_booking_series_current_conflict_protocol.sql:11` — `expected_sources`: binds effective source before DDL.
+- `tests/unit/server/bookings/series-plan.test.ts:326` — `function forwardSeriesProtocolSources`: derives the historical resolver composition and inverse.
+- `tests/unit/server/bookings/series-plan.test.ts:359` — `Actual forward SQL producer protocol`: invokes the real TS admission boundary with SQL-derived protocol.
+- `tests/unit/server/bookings/series-plan.test.ts:371` — `Forward predecessor line-ending admission`: preserves actual raw LF/CRLF and rejects mixed/bare-CR/drift.
+- `tests/integration/commands/booking-series.int.test.ts:993` — `expect(snapshot.claims.engineVersion)`: asserts future actual checked SQL claims without extra RPCs.
+
+Evidence: final affected42P after newline controls; prior41P and initial39P/2F
+reader failure retained nonadditively; wholeTS/lint0.
+Source inverse is not PostgreSQL execution; native body/metadata/ACL/rollback proof
+is pending. Review exact forward body composition and target-only substitutions.
+Browser phase/custody diagnosis remains UNKNOWN/separately allocated, not a fix.
