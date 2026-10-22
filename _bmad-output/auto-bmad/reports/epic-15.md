@@ -6408,3 +6408,34 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Use minimalexistingreadiness+reviewed3testaddendum foronefreshcoordinatedexactNORMALcheckpoint; no newcollector/protocol/preparationfamily, no deployment.
+
+## Report — 2026-10-22T00:04:39Z (checkpoint — fixture-reconciled NORMAL evidence qualified)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `72651ad`).
+**Pipeline status:** in progress; current NORMAL39694409020 failed DB and browser gates. Node3390P0F0skip and recovery1P qualified; no development-complete claim.
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 299h 06m (≈77h 24m AI-run, ≈221h 42m human/idle wait); resumed 193×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** High read-only match existing28file/titlehashes and safe facts to local source; concrete bounded correction only after ownership coordination and independent review
