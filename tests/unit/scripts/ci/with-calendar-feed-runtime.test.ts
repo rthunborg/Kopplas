@@ -9,7 +9,7 @@ import { join, resolve } from "node:path";
 import { tmpdir } from "node:os";
 import { pathToFileURL } from "node:url";
 import { projectCalendarFeedCiCommands } from "../../../support/calendar-feed-ci-contract";
-import { INTEGRATION_ARGS, BROWSER_ARGS, CAUSE_PROOF_ARGS, FEED_FUNCTIONS, validateAdmission, validateStackIdentity, validateCauseProofObservation, finishCauseProof, createCalendarFeedDatabaseClient, createTelemetryObserver, hasSensitiveOutput, createOwnedGroupStopper, ownsListenerRecord, waitForOwnedHttp, runCalendarFeedRuntime, launchOwned } from "../../../../scripts/ci/with-calendar-feed-runtime.mjs";
+import { INTEGRATION_ARGS, BROWSER_ARGS, CAUSE_PROOF_ARGS, ORIGINAL_INT009_ARGS, FEED_FUNCTIONS, validateAdmission, validateStackIdentity, validateCauseProofObservation, finishCauseProof, createCalendarFeedDatabaseClient, createTelemetryObserver, hasSensitiveOutput, createOwnedGroupStopper, ownsListenerRecord, waitForOwnedHttp, runCalendarFeedRuntime, launchOwned } from "../../../../scripts/ci/with-calendar-feed-runtime.mjs";
 import { captureCalendarFeedTrace, recordCalendarFeedTrace, recordCalendarFeedContext, recordCalendarFeedMembership, executeCalendarFeed } from "../../../../src/server/commands/calendar-feed/calendar-feed-db";
 import { CommandError } from "../../../../src/server/commands/command-errors";
 import { validateCalendarFeedIntent } from "../../../../src/features/calendar-feed/validation";
@@ -1681,7 +1681,7 @@ test("actual ACL source and existing RLS010 reject actor metadata dependency and
   await assert.rejects(run(facts=>{facts.helpers=facts.helpers.filter((x:{purpose:string})=>x.purpose!=="actor");}));
 });
 test("new atomic migration cross-validates exact original bodies and eight substitutions without widening historical SQL",()=>{
-  const original=readFileSync(new URL("../../../../supabase/migrations/20261020220000_personal_calendar_feed.sql",import.meta.url),"utf8").replaceAll("\r\n","\n"),migration=readFileSync(new URL("../../../../supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",import.meta.url),"utf8");
+  const original=readFileSync(new URL("../../../../supabase/migrations/20261020220000_personal_calendar_feed.sql",import.meta.url),"utf8").replaceAll("\r\n","\n"),migration=readFileSync(new URL("../../../../supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",import.meta.url),"utf8").replaceAll("\r\n","\n");
   const names=["read_calendar_feed_status","manage_calendar_feed","read_calendar_feed_abuse"],counts=[3,2,3];let total=0;
   for(let i=0;i<names.length;i++){
     const at=original.indexOf("create function public."+names[i]+"("),a=original.indexOf("as $$",at)+5,b=original.indexOf("$$;",a),body=original.slice(a,b),tag="$original_"+i+"$";
@@ -1923,7 +1923,7 @@ test("complete RLS010 actual assertions reject raw ACL owner service subject and
 });
 
 async function actualOwnerAclSeams(){return (await actualFixtureOrigins()) as unknown as {calendarOwnerAclSource:(source:string,adapter:string,owner:string,migrator:string,schema:string,fn:string)=>{bootstrap:string;identity:string;create:string;revoke:string;grant:string;reconcile:string};calendarOwnerAclExercise:(sql:(text:string,values?:unknown[])=>Promise<{rows:Record<string,unknown>[]}>,input:Record<string,unknown>)=>Promise<void>};}
-function ownerAclSources(){const root=new URL("../../../../supabase/migrations/",import.meta.url);return{source:readFileSync(new URL("20261020220000_personal_calendar_feed.sql",root),"utf8"),adapter:readFileSync(new URL("20261021102723_calendar_feed_preparsed_actor_identity.sql",root),"utf8"),owner:"cf_acl_o_"+"1".repeat(32),migrator:"cf_acl_m_"+"1".repeat(32),schema:"cf_acl_s_"+"1".repeat(32),fn:"cf_acl_f_"+"1".repeat(32)};}
+function ownerAclSources(){const root=new URL("../../../../supabase/migrations/",import.meta.url);return{source:readFileSync(new URL("20261020220000_personal_calendar_feed.sql",root),"utf8"),adapter:readFileSync(new URL("20261021102723_calendar_feed_preparsed_actor_identity.sql",root),"utf8").replaceAll("\r\n","\n"),owner:"cf_acl_o_"+"1".repeat(32),migrator:"cf_acl_m_"+"1".repeat(32),schema:"cf_acl_s_"+"1".repeat(32),fn:"cf_acl_f_"+"1".repeat(32)};}
 
 test("actual native regression construction uses reversible bootstrap exact predecessor commands and actual owner fragment only",async()=>{
   const {calendarOwnerAclSource:prepare}=await actualOwnerAclSeams(),s=ownerAclSources(),p=prepare(s.source,s.adapter,s.owner,s.migrator,s.schema,s.fn);
@@ -2887,4 +2887,92 @@ test("INT009 actual entire subject barrier setup closes capture before later res
   const fx={pendingRequests:new Set<Promise<unknown>>(),finalizers:new Set<()=>Promise<void>>()};
   const owned=await f.run(()=>barrier({stage:"management-before-authority",tenantId:"fixed",membershipId:"fixed"},fx)) as {release():Promise<void>;assertOwnedObjectsAbsent():Promise<void>};
   f.capture.phase("REPLACE","DEFINITION");f.capture.fail("STATE");f.capture.cleanup("SETUP_CLEANUP",Error("PRIVATE later cleanup"));assert.equal(f.publish(),undefined);await owned.release();await owned.assertOwnedObjectsAbsent();assert.deepEqual(f.meta,{});await f.factory.pool()?.end();
+});
+
+
+// Temporary fixed original-INT009 capability; injected seams never launch services.
+const originalInt009Env = {
+  ...env, GITHUB_REPOSITORY: "rthunborg/Kopplas", GITHUB_ACTOR: "rthunborg", GITHUB_TRIGGERING_ACTOR: "rthunborg",
+  GITHUB_REF_TYPE: "branch", GITHUB_REF: "refs/heads/codex/epic-15-int009-debug", GITHUB_EVENT_NAME: "workflow_dispatch",
+  GITHUB_SHA: "a".repeat(40), CALENDAR_FEED_ORIGINAL_INT009_MODE: "1",
+  CALENDAR_FEED_ORIGINAL_INT009_EXPECTED_SHA: "a".repeat(40), CALENDAR_FEED_ORIGINAL_INT009_CHECKPOINT: keyId,
+  CALENDAR_FEED_ORIGINAL_INT009_TITLE: "checkpoint:original-int009:" + keyId + ":" + "a".repeat(40),
+  CALENDAR_FEED_ORIGINAL_INT009_CAUSE_PROOF: "false", CALENDAR_FEED_ORIGINAL_INT009_RELEASE_VALIDATION: "false",
+  CALENDAR_FEED_ORIGINAL_INT009_OTHER_DIAGNOSTICS: "false",
+};
+test("original INT009 fixed argv preserves D1 and one source declaration without changing old modes", () => {
+  assert.deepEqual(ORIGINAL_INT009_ARGS, ["exec", "vitest", "run", "tests/integration/commands/calendar-feed.int.test.ts",
+    "--maxWorkers=1", "--testNamePattern=(?:^| )\\[P0\\] 15[.]5-INT009 AC2 AC4 AC9 current role loss committed before authority blocks queued management$",
+    "--reporter=default", "--reporter=github-actions", "--reporter=json", "--outputFile=test-results/calendar-feed-original-int009/native.json"]);
+  assert.ok(!ORIGINAL_INT009_ARGS.includes("--no-file-parallelism")); assert.ok(CAUSE_PROOF_ARGS.includes("--no-file-parallelism"));
+  assert.deepEqual(INTEGRATION_ARGS, ["run", "test:int", "--reporter=default", "--reporter=github-actions", "--reporter=json", "--outputFile=test-results/full-integration.json"]);
+  assert.deepEqual(BROWSER_ARGS, ["run", "test:smoke"]);
+  const leaf = "[P0] 15.5-INT009 AC2 AC4 AC9 current role loss committed before authority blocks queued management";
+  const source = readFileSync(new URL("../../../integration/commands/calendar-feed.int.test.ts", import.meta.url), "utf8");
+  assert.equal(source.split('test("' + leaf + '"').length - 1, 1);
+  const pattern = new RegExp(ORIGINAL_INT009_ARGS.find(arg => arg.startsWith("--testNamePattern="))!.slice("--testNamePattern=".length));
+  assert.ok(pattern.test("15.5 authenticated lifecycle, atomic audit and commit-order " + leaf));
+  for (const invalid of [leaf + " extra", leaf.replace("INT009", "INT010"), "console: " + leaf + " PRIVATE"]) assert.ok(!pattern.test(invalid));
+});
+test("original INT009 strict admission refuses foreign or mixed identity before mutation", async () => {
+  assert.doesNotThrow(() => validateAdmission("original-int009", originalInt009Env, "linux"));
+  const inverses: Record<string, string>[] = [
+    { CALENDAR_FEED_ORIGINAL_INT009_MODE: "true" }, { GITHUB_REPOSITORY: "foreign/repo" }, { GITHUB_JOB: "browser" },
+    { GITHUB_ACTOR: "foreign" }, { GITHUB_TRIGGERING_ACTOR: "foreign" }, { GITHUB_REF_TYPE: "tag" }, { GITHUB_REF: "refs/heads/main" },
+    { GITHUB_EVENT_NAME: "push" }, { GITHUB_RUN_ATTEMPT: "2", CALENDAR_FEED_CI_DISPOSABLE_STACK: "123:2:db" },
+    { GITHUB_SHA: "b".repeat(40) }, { CALENDAR_FEED_ORIGINAL_INT009_EXPECTED_SHA: "b".repeat(40) },
+    { CALENDAR_FEED_ORIGINAL_INT009_CHECKPOINT: "not-a-uuid" }, { CALENDAR_FEED_ORIGINAL_INT009_TITLE: "checkpoint:foreign" },
+    { CALENDAR_FEED_ORIGINAL_INT009_CAUSE_PROOF: "true" }, { CALENDAR_FEED_ORIGINAL_INT009_RELEASE_VALIDATION: "true" },
+    { CALENDAR_FEED_ORIGINAL_INT009_OTHER_DIAGNOSTICS: "true" }, { CALENDAR_FEED_CAUSE_PROOF_MODE: "1" },
+    { SUPABASE_TEST_URL: "https://foreign.invalid" }, { VERCEL: "1" }, { RUNNER_ENVIRONMENT: "self-hosted" },
+  ];
+  for (const inverse of inverses) {
+    const h = harness(), result = await runCalendarFeedRuntime({ mode: "original-int009", env: { ...originalInt009Env, ...inverse }, platform: "linux" }, h.deps);
+    assert.equal(result.exitCode, 1); assert.deepEqual(h.events, []); assert.equal(h.queries.length, 0); assert.equal(h.launches.length, 0);
+    assert.equal(result.receipt.keyOutcome, "not-attempted");
+  }
+  for (const mode of ["db", "browser", "cause-proof"]) assert.throws(() => validateAdmission(mode, originalInt009Env, "linux"));
+});
+test("original INT009 uses production DB setup readiness and exact safe cleanup", async () => {
+  const h = harness(), result = await runCalendarFeedRuntime({ mode: "original-int009", env: originalInt009Env, platform: "linux" }, h.deps);
+  assert.equal(result.exitCode, 0); assert.equal(result.receipt.mode, "original-int009"); assert.equal(h.launches.length, 3);
+  assert.equal(h.launches[0].args.at(-1), "build"); assert.ok(h.launches[1].args.includes("3195")); assert.deepEqual(h.launches[2].args, ORIGINAL_INT009_ARGS);
+  assert.equal(h.launches[2].childEnv.CALENDAR_FEED_TEST_BASE_URL, "http://127.0.0.1:3195"); assert.equal(h.launches[2].childEnv.SUPABASE_TEST_REQUIRED, "1");
+  assert.equal(h.launches[2].childEnv.CALENDAR_FEED_CAUSE_PROOF_MODE, undefined);
+  assert.ok(h.events.indexOf("ready") < h.events.indexOf("launch:2")); assert.ok(h.events.indexOf("settled:2") < h.events.indexOf("delete"));
+  assert.equal(result.receipt.launchAttempted, true); assert.equal(result.receipt.childLaunchState, "started");
+  assert.equal(result.receipt.keyDeleted, true); assert.equal(result.receipt.dbClosed, true); assert.equal(result.receipt.custody, null);
+});
+test("original INT009 failed build readiness runner or owned stop retains the key under job custody", async () => {
+  for (const options of [{ failChild: 0 }, { failChild: 2 }, { readinessFailure: true }, { forcedStop: true }, { failStops: true }]) {
+    const h = harness(options), result = await runCalendarFeedRuntime({ mode: "original-int009", env: originalInt009Env, platform: "linux" }, h.deps);
+    assert.equal(result.exitCode, 1); assert.equal(result.receipt.keyDeleted, false); assert.equal(result.receipt.keyOutcome, "unverified");
+    assert.equal(result.receipt.custody?.vaultUuid, keyUuid); assert.ok(!h.events.includes("delete")); assert.equal(result.receipt.dbClosed, true);
+    assert.ok(!JSON.stringify(result.receipt).includes("PRIVATE"));
+  }
+});
+test("original INT009 abort closes the owned child before DB close but keeps unverified backend custody", async () => {
+  const h = harness(); let finish: (value: { code: number; signal: null }) => void = () => undefined;
+  const result = await runCalendarFeedRuntime({ mode: "original-int009", env: originalInt009Env, platform: "linux" }, {
+    ...h.deps, launch: () => {
+      queueMicrotask(() => h.signal());
+      return { launchState: () => "started", done: new Promise(resolve => { finish = resolve; }),
+        stop: async () => { h.events.push("owned-child-closed"); finish({ code: 0, signal: null }); return { forced: false, signal: null }; } };
+    },
+  });
+  assert.equal(result.exitCode, 1); assert.equal(result.receipt.keyDeleted, false); assert.ok(result.receipt.custody);
+  assert.ok(h.events.indexOf("owned-child-closed") < h.events.indexOf("db-closed")); assert.ok(!h.events.includes("delete"));
+});
+test("original INT009 exact inverse recovers the whole workflow and rejects fragment removal duplication or drift", () => {
+  const workflow = readFileSync(new URL("../../../../.github/workflows/ci.yml", import.meta.url), "utf8").replaceAll("\r\n", "\n");
+  const contract = readFileSync(new URL("../../../support/calendar-feed-ci-contract.ts", import.meta.url), "utf8").replaceAll("\r\n", "\n");
+  const table = JSON.parse(contract.match(/const originalInt009Inverse: readonly \[string, string\]\[\] = (\[[\s\S]*?\n\]);/)![1]) as [string, string][];
+  let baseline = workflow;
+  for (const [entry, replacement] of table) {
+    assert.equal(baseline.split(entry).length - 1, 1); baseline = baseline.replace(entry, replacement);
+    assert.throws(() => projectCalendarFeedCiCommands(workflow.replace(entry, "")));
+    assert.throws(() => projectCalendarFeedCiCommands(workflow.replace(entry, entry + entry)));
+  }
+  assert.equal(createHash("sha256").update(baseline).digest("hex"), "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e");
+  assert.throws(() => projectCalendarFeedCiCommands(workflow.replace("native-calendar-feed-original-int009\n", "native-full-integration\n")));
 });

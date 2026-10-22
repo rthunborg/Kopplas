@@ -1,5 +1,5 @@
 name: CI
-run-name: ${{ github.event_name == 'workflow_dispatch' && (inputs.calendar_feed_cause_proof && format('checkpoint:cause-proof:{0}:{1}', inputs.checkpoint_id, inputs.expected_sha) || format('checkpoint:{0}:{1}', inputs.checkpoint_id, inputs.expected_sha)) || format('CI {0}', github.ref_name) }}
+run-name: ${{ github.event_name == 'workflow_dispatch' && (inputs.calendar_feed_original_int009 && format('checkpoint:original-int009:{0}:{1}', inputs.checkpoint_id, inputs.expected_sha) || inputs.calendar_feed_cause_proof && format('checkpoint:cause-proof:{0}:{1}', inputs.checkpoint_id, inputs.expected_sha) || format('checkpoint:{0}:{1}', inputs.checkpoint_id, inputs.expected_sha)) || format('CI {0}', github.ref_name) }}
 
 # Phase A verification gates (architecture §19).
 # `verify` job — stages 1-5 + 10: install, lockfile guard, service-role containment
@@ -19,6 +19,11 @@ run-name: ${{ github.event_name == 'workflow_dispatch' && (inputs.calendar_feed_
 on:
   workflow_dispatch:
     inputs:
+      calendar_feed_original_int009:
+        description: One fixed INT009 diagnostic; zero normal acceptance
+        type: boolean
+        required: false
+        default: false
       calendar_feed_cause_proof:
         description: One diagnostic call and unmodified rollback-only baseline; zero acceptance
         type: boolean
@@ -86,12 +91,23 @@ jobs:
         env:
           EXPECTED_SHA: ${{ inputs.expected_sha }}
           CHECKPOINT_ID: ${{ inputs.checkpoint_id }}
+          ORIGINAL_INT009: ${{ inputs.calendar_feed_original_int009 || false }}
           CAUSE_PROOF: ${{ inputs.calendar_feed_cause_proof || false }}
           RELEASE_VALIDATION: ${{ inputs.release_validation || false }}
           OTHER_DIAGNOSTICS: ${{ inputs.native_stream_probe || inputs.fixed_chromium_paired_probe || inputs.fixed_chromium_application_verification || false }}
         shell: bash
         run: |
           set -euo pipefail
+          if [ "$ORIGINAL_INT009" = true ]; then
+            test "$GITHUB_EVENT_NAME" = workflow_dispatch
+            test "$CAUSE_PROOF" = false
+            test "$RELEASE_VALIDATION" = false
+            test "$OTHER_DIAGNOSTICS" = false
+            test "$GITHUB_REPOSITORY" = rthunborg/Kopplas
+            test "$GITHUB_ACTOR" = rthunborg
+            test "$GITHUB_TRIGGERING_ACTOR" = rthunborg
+            test "$GITHUB_REF" = refs/heads/codex/epic-15-int009-debug
+          fi
           if [ "$CAUSE_PROOF" = true ]; then
             test "$GITHUB_EVENT_NAME" = workflow_dispatch
             test "$RELEASE_VALIDATION" = false
@@ -276,8 +292,21 @@ jobs:
           if-no-files-found: error
 
       # Stage 8: DB-backed integration + cross-tenant RLS-negative suites.
+      - name: Original INT009 (fixed diagnostic only; zero acceptance)
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.calendar_feed_original_int009 }}
+        env:
+          CALENDAR_FEED_CI_DISPOSABLE_STACK: ${{ github.run_id }}:${{ github.run_attempt }}:${{ github.job }}
+          CALENDAR_FEED_ORIGINAL_INT009_MODE: "1"
+          CALENDAR_FEED_ORIGINAL_INT009_EXPECTED_SHA: ${{ inputs.expected_sha }}
+          CALENDAR_FEED_ORIGINAL_INT009_CHECKPOINT: ${{ inputs.checkpoint_id }}
+          CALENDAR_FEED_ORIGINAL_INT009_TITLE: ${{ format('checkpoint:original-int009:{0}:{1}', inputs.checkpoint_id, inputs.expected_sha) }}
+          CALENDAR_FEED_ORIGINAL_INT009_CAUSE_PROOF: ${{ inputs.calendar_feed_cause_proof || false }}
+          CALENDAR_FEED_ORIGINAL_INT009_RELEASE_VALIDATION: ${{ inputs.release_validation || false }}
+          CALENDAR_FEED_ORIGINAL_INT009_OTHER_DIAGNOSTICS: ${{ inputs.native_stream_probe || inputs.fixed_chromium_paired_probe || inputs.fixed_chromium_application_verification || false }}
+        run: node scripts/ci/with-calendar-feed-runtime.mjs original-int009
+
       - name: Integration, RLS, and Epic 11 pilot performance gates (local stack)
-        if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.calendar_feed_cause_proof) }}
+        if: ${{ !(github.event_name == 'workflow_dispatch' && (inputs.calendar_feed_cause_proof || inputs.calendar_feed_original_int009)) }}
         env:
           # This opt-in alone is insufficient: the wrapper also proves this
           # hosted job's fresh Docker identities, publications and current ledger.
@@ -287,11 +316,20 @@ jobs:
           pnpm run test:pilot-performance
 
       - name: Upload native full integration JSON
-        if: ${{ !cancelled() && !(github.event_name == 'workflow_dispatch' && inputs.calendar_feed_cause_proof) }}
+        if: ${{ !cancelled() && !(github.event_name == 'workflow_dispatch' && (inputs.calendar_feed_cause_proof || inputs.calendar_feed_original_int009)) }}
         uses: actions/upload-artifact@v4
         with:
           name: native-full-integration
           path: test-results/full-integration.json
+          retention-days: 7
+          if-no-files-found: error
+
+      - name: Upload native original INT009 JSON
+        if: ${{ !cancelled() && github.event_name == 'workflow_dispatch' && inputs.calendar_feed_original_int009 }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: native-calendar-feed-original-int009
+          path: test-results/calendar-feed-original-int009/native.json
           retention-days: 7
           if-no-files-found: error
 
@@ -304,7 +342,7 @@ jobs:
   # the local CI stack, restores it into a separate recovery volume, then proves
   # absent bytes can be materialized without changing protected logical rows.
   recovery-storage-loader:
-    if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.calendar_feed_cause_proof) }}
+    if: ${{ !(github.event_name == 'workflow_dispatch' && (inputs.calendar_feed_cause_proof || inputs.calendar_feed_original_int009)) }}
     runs-on: ubuntu-latest
     timeout-minutes: 45
     needs: [verify]
@@ -469,7 +507,7 @@ jobs:
           rm -rf recovery/source recovery/synthetic-storage
           rm -f ops/recovery/.env ops/recovery/.private.db-bootstrap.compose.yaml ops/recovery/.private.runtime.compose.yaml
   e2e:
-    if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.calendar_feed_cause_proof) }}
+    if: ${{ !(github.event_name == 'workflow_dispatch' && (inputs.calendar_feed_cause_proof || inputs.calendar_feed_original_int009)) }}
     runs-on: ubuntu-latest
     timeout-minutes: 45
     # Same gate as `db`: only spin up the stack + browser after the fast `verify` job

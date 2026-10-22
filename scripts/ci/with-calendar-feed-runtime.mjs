@@ -12,6 +12,7 @@ import pg from "pg";
 export const INTEGRATION_ARGS = Object.freeze(["run", "test:int", "--reporter=default", "--reporter=github-actions", "--reporter=json", "--outputFile=test-results/full-integration.json"]);
 export const BROWSER_ARGS = Object.freeze(["run", "test:smoke"]);
 export const CAUSE_PROOF_ARGS = Object.freeze(["exec", "vitest", "run", "tests/integration/commands/calendar-feed.int.test.ts", "--maxWorkers=1", "--no-file-parallelism", "--testNamePattern=^15[.]5-DIAG001$", "--reporter=default", "--reporter=github-actions", "--reporter=json", "--outputFile=test-results/calendar-feed-cause-proof/native.json"]);
+export const ORIGINAL_INT009_ARGS = Object.freeze(["exec","vitest","run","tests/integration/commands/calendar-feed.int.test.ts","--maxWorkers=1","--testNamePattern=(?:^| )\\[P0\\] 15[.]5-INT009 AC2 AC4 AC9 current role loss committed before authority blocks queued management$","--reporter=default","--reporter=github-actions","--reporter=json","--outputFile=test-results/calendar-feed-original-int009/native.json"]);
 export const CAUSE_PROOF_OUTCOMES = Object.freeze(["PRE_SQL_STOP", "AMBIGUOUS_SQL42501", "NONREPRODUCED", "UNKNOWN_ENGINE_ERROR", "INCOMPARABLE", "CLEANUP_UNVERIFIED", "ORDINARY_SUCCESS", "CAPTURE_UNAVAILABLE"]);
 const CAUSE_DIRECTORY = "test-results/calendar-feed-cause-proof";
 const TRACE_EVENTS = new Set(["input-invalid", "execute-enter", "key-ready", "status-enter", "status-rpc42501", "status-rpc-error", "status-schema-invalid", "status-valid", "proof-enter", "manage-enter", "manage-rpc42501", "manage-rpcCF409", "manage-rpc-error", "manage-schema-invalid", "manage-valid", "envelope-success", "envelope-UNAUTHENTICATED", "envelope-TENANT_MEMBERSHIP_REQUIRED", "envelope-PERMISSION_DENIED", "envelope-VALIDATION_FAILED", "envelope-TENANT_ACCESS_DENIED", "envelope-COMMAND_CONFLICT", "envelope-SERVER_ERROR", "envelope-other", "context-match", "context-mismatch", "membership-match", "membership-mismatch", "truncated"]);
@@ -198,7 +199,7 @@ export function createCalendarFeedDatabaseClient(stack, purpose = "runtime") {
 
 /** Pure prerequisite validation: CI flags alone do not qualify a machine. */
 export function validateAdmission(mode, env, platform) {
-  if (!["db", "browser", "cause-proof"].includes(mode)) fail("mode-refused");
+  if (!["db", "browser", "cause-proof", "original-int009"].includes(mode)) fail("mode-refused");
   if (platform !== "linux" || env.CI !== "true" || env.GITHUB_ACTIONS !== "true" || env.RUNNER_ENVIRONMENT !== "github-hosted"
     || !/^\d+$/.test(env.GITHUB_RUN_ID ?? "") || !/^\d+$/.test(env.GITHUB_RUN_ATTEMPT ?? "")
     || !/^[a-zA-Z0-9_-]+$/.test(env.GITHUB_JOB ?? "")
@@ -211,6 +212,18 @@ export function validateAdmission(mode, env, platform) {
   if (env.E2E_PORT && env.E2E_PORT !== "3100") fail("port-refused");
   if (mode === "cause-proof" && (env.GITHUB_RUN_ATTEMPT !== "1" || !/^[a-f0-9]{40}$/.test(env.GITHUB_SHA ?? "")
     || !UUID.test(env.CALENDAR_FEED_CAUSE_PROOF_CHECKPOINT ?? "") || env.GITHUB_EVENT_NAME !== "workflow_dispatch")) fail("diagnostic-admission-refused");
+
+  if (mode !== "original-int009" && env.CALENDAR_FEED_ORIGINAL_INT009_MODE) fail("original-int009-admission-refused");
+  if (mode === "original-int009" && (env.CALENDAR_FEED_ORIGINAL_INT009_MODE !== "1"
+    || env.GITHUB_REPOSITORY !== "rthunborg/Kopplas" || env.GITHUB_JOB !== "db"
+    || env.GITHUB_ACTOR !== "rthunborg" || env.GITHUB_TRIGGERING_ACTOR !== "rthunborg"
+    || env.GITHUB_REF_TYPE !== "branch" || env.GITHUB_REF !== "refs/heads/codex/epic-15-int009-debug"
+    || env.GITHUB_EVENT_NAME !== "workflow_dispatch" || env.GITHUB_RUN_ATTEMPT !== "1"
+    || !/^[a-f0-9]{40}$/.test(env.GITHUB_SHA ?? "") || env.CALENDAR_FEED_ORIGINAL_INT009_EXPECTED_SHA !== env.GITHUB_SHA
+    || !UUID.test(env.CALENDAR_FEED_ORIGINAL_INT009_CHECKPOINT ?? "")
+    || env.CALENDAR_FEED_ORIGINAL_INT009_TITLE !== "checkpoint:original-int009:" + env.CALENDAR_FEED_ORIGINAL_INT009_CHECKPOINT + ":" + env.GITHUB_SHA
+    || env.CALENDAR_FEED_ORIGINAL_INT009_CAUSE_PROOF !== "false" || env.CALENDAR_FEED_ORIGINAL_INT009_RELEASE_VALIDATION !== "false"
+    || env.CALENDAR_FEED_ORIGINAL_INT009_OTHER_DIAGNOSTICS !== "false" || env.CALENDAR_FEED_CAUSE_PROOF_MODE)) fail("original-int009-admission-refused");
 }
 
 /** Match the actual Docker publication and job-created project identity, not just loopback. */
@@ -496,7 +509,7 @@ export async function qualifyCalendarFeedCauseProof(env = process.env) {
  * @param {object} injected
  */
 export async function runCalendarFeedRuntime({ mode, env = process.env, platform = process.platform, cwd = ROOT } = {}, injected = {}) {
-  const receipt = { event: "calendar_feed.ci_lifecycle", mode: ["db", "browser", "cause-proof"].includes(mode) ? mode : "refused", ready: false,
+  const receipt = { event: "calendar_feed.ci_lifecycle", mode: ["db", "browser", "cause-proof", "original-int009"].includes(mode) ? mode : "refused", ready: false,
     launchAttempted: false, childLaunchState: "not-attempted",
     childExitCodes: /** @type {(number|null)[]} */ ([]), keyDeleted: false, dbClosed: false,
     failures: /** @type {string[]} */ ([]),
@@ -515,19 +528,19 @@ export async function runCalendarFeedRuntime({ mode, env = process.env, platform
   const checkSignal = () => { if (abort.signal.aborted) fail("interrupted"); };
   let diagnosticHandle;
   const refreshLaunch = () => {
-    if (mode !== "cause-proof" || !diagnosticHandle) return;
+    if (!["cause-proof", "original-int009"].includes(mode) || !diagnosticHandle) return;
     let state; try { state = diagnosticHandle.launchState?.(); } catch { /* Remains uncertain. */ }
     if (state === "started") receipt.childLaunchState = "started";
     else if (state === "not-created-confirmed" && receipt.childLaunchState !== "started") receipt.childLaunchState = state;
   };
   const launch = (command, args, childEnv, observer) => {
     checkSignal();
-    if (mode === "cause-proof") { receipt.launchAttempted = true; receipt.childLaunchState = "attempted-unverified"; }
+    if (mode === "cause-proof" || mode === "original-int009") { receipt.launchAttempted = true; receipt.childLaunchState = "attempted-unverified"; }
     let handle;
     try { handle = deps.launch(command, [...args], childEnv, observer); }
     catch (error) { if (mode === "cause-proof") diagnosticUnverified = true; throw error; }
     children.add(handle);
-    if (mode === "cause-proof") { diagnosticHandle = handle; refreshLaunch(); }
+    if (mode === "cause-proof" || mode === "original-int009") { diagnosticHandle = handle; refreshLaunch(); }
     return handle;
   };
   const run = async (command, args, childEnv, observer, timeout) => {
@@ -545,7 +558,7 @@ export async function runCalendarFeedRuntime({ mode, env = process.env, platform
       fail("child-failed");
     }
     const stopped = await handle.stop();
-    if (mode === "db" && (stopped?.forced !== false || stopped?.signal !== null)) fail("owned-child-cleanup-failed");
+    if ((mode === "db" || mode === "original-int009") && (stopped?.forced !== false || stopped?.signal !== null)) fail("owned-child-cleanup-failed");
     if (mode === "browser" && (stopped?.forced || stopped?.signal)) { browserTeardownUnverified = true; fail("browser-server-teardown-unverified"); }
     children.delete(handle); // Proven settlement cannot be signalled again later.
   };
@@ -555,7 +568,7 @@ export async function runCalendarFeedRuntime({ mode, env = process.env, platform
     stage = "qualification";
     const { status, migrations, stack } = await deps.qualify(); checkSignal();
     stage = "port-check";
-    if (mode !== "cause-proof") await deps.portFree(mode === "db" ? 3195 : 3100); checkSignal();
+    if (mode !== "cause-proof") await deps.portFree((mode === "db" || mode === "original-int009") ? 3195 : 3100); checkSignal();
     if (mode === "cause-proof") { await deps.prepareDiagnostic(); diagnosticPrepared = true; }
     stage = "database-client";
     db = deps.connect(stack);
@@ -608,18 +621,18 @@ export async function runCalendarFeedRuntime({ mode, env = process.env, platform
     const childEnv = { ...env, SUPABASE_TEST_REQUIRED: "1", SUPABASE_TEST_URL: status.API_URL, SUPABASE_TEST_ANON_KEY: status.ANON_KEY,
       SUPABASE_TEST_SERVICE_ROLE_KEY: status.SERVICE_ROLE_KEY, SUPABASE_TEST_DB_URL: status.DB_URL,
       NEXT_PUBLIC_SUPABASE_URL: status.API_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY: status.ANON_KEY,
-      NEXT_PUBLIC_APP_URL: `http://127.0.0.1:${mode === "db" ? 3195 : 3100}`, E2E_PORT: "3100",
+      NEXT_PUBLIC_APP_URL: `http://127.0.0.1:${(mode === "db" || mode === "original-int009") ? 3195 : 3100}`, E2E_PORT: "3100",
       CALENDAR_FEED_ATTESTATION_KEY_ID: keyId, CALENDAR_FEED_ATTESTATION_SECRET: secret,
-      CALENDAR_FEED_TEST_LOG_FILE: telemetry.path, CALENDAR_FEED_TEST_BASE_URL: `http://127.0.0.1:${mode === "db" ? 3195 : 3100}` };
+      CALENDAR_FEED_TEST_LOG_FILE: telemetry.path, CALENDAR_FEED_TEST_BASE_URL: `http://127.0.0.1:${(mode === "db" || mode === "original-int009") ? 3195 : 3100}` };
     if (mode === "cause-proof") {
       childEnv.CALENDAR_FEED_CAUSE_PROOF_MODE = "1";
       await run("pnpm", CAUSE_PROOF_ARGS, childEnv, observe, 240_000);
       try { await deps.readDiagnostic(); } catch { diagnosticUnverified = true; fail("diagnostic-settlement-unverified"); }
-    } else if (mode === "db") {
+    } else if ((mode === "db" || mode === "original-int009")) {
       await run(process.execPath, ["node_modules/next/dist/bin/next", "build"], childEnv, observe, 240_000);
       const server = launch(process.execPath, ["node_modules/next/dist/bin/next", "start", "--hostname", "127.0.0.1", "--port", "3195"], childEnv, observe);
       await deps.ready(childEnv.CALENDAR_FEED_TEST_BASE_URL, server, abort.signal); receipt.ready = true;
-      await run("pnpm", INTEGRATION_ARGS, childEnv, observe, 1_800_000);
+      await run("pnpm", mode === "original-int009" ? ORIGINAL_INT009_ARGS : INTEGRATION_ARGS, childEnv, observe, 1_800_000);
     } else {
       await run("pnpm", BROWSER_ARGS, childEnv, observe, 1_800_000);
     }
@@ -633,7 +646,7 @@ export async function runCalendarFeedRuntime({ mode, env = process.env, platform
     for (const handle of [...children].reverse()) {
       try {
         const stopped = await handle.stop();
-        if (mode === "db" && (stopped?.forced !== false || stopped?.signal !== null)) fail("owned-child-cleanup-failed");
+        if ((mode === "db" || mode === "original-int009") && (stopped?.forced !== false || stopped?.signal !== null)) fail("owned-child-cleanup-failed");
         if (mode === "browser" && (stopped?.forced || stopped?.signal)) browserTeardownUnverified = true;
         children.delete(handle);
       } catch (error) { receipt.failures.push("owned-child-cleanup-failed"); receipt.diagnostics.push(safeDiagnostic("child-cleanup", error)); }
@@ -647,8 +660,8 @@ export async function runCalendarFeedRuntime({ mode, env = process.env, platform
     // A failed/uncertain DB runtime may retain backend shared-state work even
     // after frontend child settlement. Keep the existing exact key under job
     // custody; stop/end is not rollback or canonical-restoration proof.
-    if (mode === "db" && stage === "runtime" && abort.signal.aborted && !receipt.failures.includes("interrupted")) receipt.failures.push("interrupted");
-    const dbRuntimeUnverified = mode === "db" && stage === "runtime"
+    if ((mode === "db" || mode === "original-int009") && stage === "runtime" && abort.signal.aborted && !receipt.failures.includes("interrupted")) receipt.failures.push("interrupted");
+    const dbRuntimeUnverified = (mode === "db" || mode === "original-int009") && stage === "runtime"
       && (receipt.failures.length > 0 || abort.signal.aborted);
     // Never delete a key while a captured child or transaction remains unverified.
     if (keyUuid && !transactionOpen && !dbRuntimeUnverified && !browserTeardownUnverified && !diagnosticUnverified && !receipt.failures.includes("owned-child-cleanup-failed")) {

@@ -46,8 +46,13 @@ test("cause-proof capture is distinct mode-bound and uploads closed results on f
   assert.match(diagnostic,/path: test-results\/calendar-feed-cause-proof\/upload\//);
   assert.match(diagnostic,/if-no-files-found: error/);
   const normal=raw.slice(raw.indexOf("      - name: Upload native full integration JSON"),raw.indexOf("      - name: Stop local Supabase stack"));
-  assert.match(normal,/!cancelled\(\) && !\(github.event_name == 'workflow_dispatch' && inputs.calendar_feed_cause_proof\)/);
+  assert.match(normal,/!cancelled\(\) && !\(github.event_name == 'workflow_dispatch' && \(inputs.calendar_feed_cause_proof \|\| inputs.calendar_feed_original_int009\)\)/);
   assert.match(normal,/name: native-full-integration\n/);assert.match(normal,/path: test-results\/full-integration.json/);
+  const fixed=raw.slice(raw.indexOf("      - name: Upload native original INT009 JSON"),raw.indexOf("      - name: Stop local Supabase stack"));
+  assert.match(fixed,/!cancelled\(\) && github.event_name == 'workflow_dispatch' && inputs.calendar_feed_original_int009/);
+  assert.match(fixed,/name: native-calendar-feed-original-int009\n/); assert.match(fixed,/path: test-results\/calendar-feed-original-int009\/native.json/);
+  assert.match(fixed,/if-no-files-found: error/);
+  assert.throws(()=>projectCalendarFeedCiCommands(raw.replace("native-calendar-feed-original-int009\n","native-full-integration\n")));
   assert.throws(()=>projectCalendarFeedCiCommands(raw.replace("native-calendar-feed-cause-proof\n","native-full-integration\n")));
   assert.throws(()=>projectCalendarFeedCiCommands(raw.replace("cause-proof/upload/","cause-proof/")));
 });

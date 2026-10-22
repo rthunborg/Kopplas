@@ -3,7 +3,7 @@ import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 
 const wrapperPath = new URL("../../scripts/ci/with-calendar-feed-runtime.mjs", import.meta.url);
-const wrapperSha256 = "c1a71aca72edf79553f75b14401dca81a1feec97edf3ddfb05cdaa8fade69bc9";
+const wrapperSha256 = "ae8aa986c3d49161ed3bccbcbb3d746a4c1fd8abd259f0e4c16c6c864e944cc0";
 const integrationArgs = ["run", "test:int", "--reporter=default", "--reporter=github-actions", "--reporter=json", "--outputFile=test-results/full-integration.json"];
 const browserArgs = ["run", "test:smoke"];
 const stackBinding = "          CALENDAR_FEED_CI_DISPOSABLE_STACK: ${{ github.run_id }}:${{ github.run_attempt }}:${{ github.job }}";
@@ -25,6 +25,50 @@ const browserEntry = [
   stackBinding,
   "        run: node scripts/ci/with-calendar-feed-runtime.mjs browser",
 ].join("\n") + "\n";
+
+// Exact fixed-case additions revert to the reviewed cause-proof baseline.
+const originalInt009Inverse: readonly [string, string][] = [
+  [
+    "(inputs.calendar_feed_original_int009 && format('checkpoint:original-int009:{0}:{1}', inputs.checkpoint_id, inputs.expected_sha) || inputs.calendar_feed_cause_proof && format(",
+    "(inputs.calendar_feed_cause_proof && format("
+  ],
+  [
+    "    inputs:\n      calendar_feed_original_int009:\n        description: One fixed INT009 diagnostic; zero normal acceptance\n        type: boolean\n        required: false\n        default: false\n      calendar_feed_cause_proof:",
+    "    inputs:\n      calendar_feed_cause_proof:"
+  ],
+  [
+    "          ORIGINAL_INT009: ${{ inputs.calendar_feed_original_int009 || false }}\n          CAUSE_PROOF: ${{ inputs.calendar_feed_cause_proof || false }}",
+    "          CAUSE_PROOF: ${{ inputs.calendar_feed_cause_proof || false }}"
+  ],
+  [
+    "          if [ \"$ORIGINAL_INT009\" = true ]; then\n            test \"$GITHUB_EVENT_NAME\" = workflow_dispatch\n            test \"$CAUSE_PROOF\" = false\n            test \"$RELEASE_VALIDATION\" = false\n            test \"$OTHER_DIAGNOSTICS\" = false\n            test \"$GITHUB_REPOSITORY\" = rthunborg/Kopplas\n            test \"$GITHUB_ACTOR\" = rthunborg\n            test \"$GITHUB_TRIGGERING_ACTOR\" = rthunborg\n            test \"$GITHUB_REF\" = refs/heads/codex/epic-15-int009-debug\n          fi\n          if [ \"$CAUSE_PROOF\" = true ]; then",
+    "          if [ \"$CAUSE_PROOF\" = true ]; then"
+  ],
+  [
+    "  recovery-storage-loader:\n    if: ${{ !(github.event_name == 'workflow_dispatch' && (inputs.calendar_feed_cause_proof || inputs.calendar_feed_original_int009)) }}",
+    "  recovery-storage-loader:\n    if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.calendar_feed_cause_proof) }}"
+  ],
+  [
+    "  e2e:\n    if: ${{ !(github.event_name == 'workflow_dispatch' && (inputs.calendar_feed_cause_proof || inputs.calendar_feed_original_int009)) }}",
+    "  e2e:\n    if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.calendar_feed_cause_proof) }}"
+  ],
+  [
+    "      - name: Integration, RLS, and Epic 11 pilot performance gates (local stack)\n        if: ${{ !(github.event_name == 'workflow_dispatch' && (inputs.calendar_feed_cause_proof || inputs.calendar_feed_original_int009)) }}",
+    "      - name: Integration, RLS, and Epic 11 pilot performance gates (local stack)\n        if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.calendar_feed_cause_proof) }}"
+  ],
+  [
+    "      - name: Upload native full integration JSON\n        if: ${{ !cancelled() && !(github.event_name == 'workflow_dispatch' && (inputs.calendar_feed_cause_proof || inputs.calendar_feed_original_int009)) }}",
+    "      - name: Upload native full integration JSON\n        if: ${{ !cancelled() && !(github.event_name == 'workflow_dispatch' && inputs.calendar_feed_cause_proof) }}"
+  ],
+  [
+    "      # Stage 8: DB-backed integration + cross-tenant RLS-negative suites.\n      - name: Original INT009 (fixed diagnostic only; zero acceptance)\n        if: ${{ github.event_name == 'workflow_dispatch' && inputs.calendar_feed_original_int009 }}\n        env:\n          CALENDAR_FEED_CI_DISPOSABLE_STACK: ${{ github.run_id }}:${{ github.run_attempt }}:${{ github.job }}\n          CALENDAR_FEED_ORIGINAL_INT009_MODE: \"1\"\n          CALENDAR_FEED_ORIGINAL_INT009_EXPECTED_SHA: ${{ inputs.expected_sha }}\n          CALENDAR_FEED_ORIGINAL_INT009_CHECKPOINT: ${{ inputs.checkpoint_id }}\n          CALENDAR_FEED_ORIGINAL_INT009_TITLE: ${{ format('checkpoint:original-int009:{0}:{1}', inputs.checkpoint_id, inputs.expected_sha) }}\n          CALENDAR_FEED_ORIGINAL_INT009_CAUSE_PROOF: ${{ inputs.calendar_feed_cause_proof || false }}\n          CALENDAR_FEED_ORIGINAL_INT009_RELEASE_VALIDATION: ${{ inputs.release_validation || false }}\n          CALENDAR_FEED_ORIGINAL_INT009_OTHER_DIAGNOSTICS: ${{ inputs.native_stream_probe || inputs.fixed_chromium_paired_probe || inputs.fixed_chromium_application_verification || false }}\n        run: node scripts/ci/with-calendar-feed-runtime.mjs original-int009\n\n",
+    "      # Stage 8: DB-backed integration + cross-tenant RLS-negative suites.\n"
+  ],
+  [
+    "          name: native-full-integration\n          path: test-results/full-integration.json\n          retention-days: 7\n          if-no-files-found: error\n\n      - name: Upload native original INT009 JSON\n        if: ${{ !cancelled() && github.event_name == 'workflow_dispatch' && inputs.calendar_feed_original_int009 }}\n        uses: actions/upload-artifact@v4\n        with:\n          name: native-calendar-feed-original-int009\n          path: test-results/calendar-feed-original-int009/native.json\n          retention-days: 7\n          if-no-files-found: error\n\n      - name: Stop local Supabase stack\n",
+    "          name: native-full-integration\n          path: test-results/full-integration.json\n          retention-days: 7\n          if-no-files-found: error\n\n      - name: Stop local Supabase stack\n"
+  ]
+];
 
 // Exact newly reviewed diagnostic fragments only. Every unrelated byte survives.
 const causeProofInverse: readonly [string, string][] = [
@@ -87,6 +131,11 @@ export function projectCalendarFeedCiCommands(workflow: string, wrapperSource = 
   assert.equal(createHash("sha256").update(source).digest("hex"), wrapperSha256, "calendar feed CI reviewed wrapper source");
   literalArgs(source, "CAUSE_PROOF_ARGS", ["exec","vitest","run","tests/integration/commands/calendar-feed.int.test.ts","--maxWorkers=1","--no-file-parallelism","--testNamePattern=^15[.]5-DIAG001$","--reporter=default","--reporter=github-actions","--reporter=json","--outputFile=test-results/calendar-feed-cause-proof/native.json"]);
   let projected = workflow.replaceAll("\r\n", "\n");
+  literalArgs(source, "ORIGINAL_INT009_ARGS", ["exec","vitest","run","tests/integration/commands/calendar-feed.int.test.ts","--maxWorkers=1","--testNamePattern=(?:^| )\\[P0\\] 15[.]5-INT009 AC2 AC4 AC9 current role loss committed before authority blocks queued management$","--reporter=default","--reporter=github-actions","--reporter=json","--outputFile=test-results/calendar-feed-original-int009/native.json"]);
+  for (const [entry, replacement] of originalInt009Inverse) {
+    assert.equal(projected.split(entry).length - 1, 1, "calendar feed exact original INT009 workflow fragment");
+    projected = projected.replace(entry, replacement);
+  }
   for (const [entry, replacement] of causeProofInverse) {
     assert.equal(projected.split(entry).length - 1, 1, "calendar feed exact diagnostic workflow fragment");
     projected = projected.replace(entry, replacement);
