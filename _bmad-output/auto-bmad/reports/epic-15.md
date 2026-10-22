@@ -7028,3 +7028,34 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Independent bounded NORMAL preparation/data validation, concrete finite completed Coordinator allocation, fresh provider qualification, RootFFcheckpointpush and NORMALdispatch; no furthergenericdiagnosticrun. Required full95/35 missingDBcases/custody remain; no runtime acceptance.15.6/E8 still required.
+
+## Report — 2026-10-22T12:16:57Z (working)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `a857417`).
+**Pipeline status:** 15.5 P5 open; actual fenced NORMAL failed:68/95passed,INT009failed,26zero-coverage;14browsercases passedretry0/recovery1separate
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 311h 19m (≈77h 24m AI-run, ≈233h 54m human/idle wait); resumed 213×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Narrow cause qualification at existing INT009/owner-publication boundary before any source correction; no blindNORMAL retry or genericdiagnosticframework. Separate finite one-artifact-safe-fact read only if justified/admitted; original firstthrow may be irrecoverable. P5delivery/P6automate/P7helper/15.6freshSpec/E8 stillrequired.
