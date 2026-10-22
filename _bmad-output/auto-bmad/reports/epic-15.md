@@ -6625,3 +6625,34 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Read-only source-bound assessment of two DB failure hashes and browser completion boundary. Qualified Node3398P/recovery1P;DB2058P2F/story16P35unexecuted;browser9expected4flaky1unexpected007. Custody/backendsettlementUNKNOWN; all5GETslots and Rootpoller closed, counter3 unchanged. No deployment or automatic retry.
+
+## Report — 2026-10-22T01:49:02Z (15.5 forward118 source correction independently passed)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `d65b666`).
+**Pipeline status:** P5 open; source-only PASS, actual PostgreSQL/browser gates pending
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 300h 51m (≈77h 24m AI-run, ≈223h 26m human/idle wait); resumed 200×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Shortest concrete required verification/browser-lifetime fact proposal. SourceHighPASS verifies effectiveE16single807Brefresh seam, strict9fields, all117history; author45 and independent3 controls separately attributed. RuntimeSQL/application/metadata/ACL/rollback and35mandatoryDBcases remain unproven; currentCI failed, custodyUNKNOWN, counter3. No deployment or opaque retry.

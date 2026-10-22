@@ -1,0 +1,24 @@
+{
+  "schema": "self-excluded-sha256-manifest/v1",
+  "self_excluded": true,
+  "verdict": "PASS_TARGETED_JOB_CARD_SHARED_REFRESH_SOURCE_ONLY",
+  "commit": "d65b6666c5883a7445b3732b6ae5938c08f4a91f",
+  "parent": "9384d4f360943f33896094ff503a66ca17929716",
+  "members": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-card-shared-conflict-refresh-high-review/original-report.md",
+      "bytes": 4131,
+      "sha256": "8652ce0e38430aa2e24ef7a12dbada83161c12b8e7c5da017f1ce4040c20b17b"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-card-shared-conflict-refresh-high-review/original-attestation.json",
+      "bytes": 6989,
+      "sha256": "dbc7a861a1fdf1c4be0908a90cb9e4953a5f7c3d1709acc9ed6bc8cbb902ddae"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-card-shared-conflict-refresh-high-review/result.json",
+      "bytes": 1251,
+      "sha256": "e56f3d4bf456123a3d2ddebb661ffa5011c7ae54b2f218e4817817ad97f90133"
+    }
+  ]
+}
