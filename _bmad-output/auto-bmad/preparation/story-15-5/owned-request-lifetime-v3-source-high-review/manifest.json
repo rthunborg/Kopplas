@@ -1,0 +1,24 @@
+{
+  "schema": "self-excluded-sha256-manifest/v1",
+  "self_excluded": true,
+  "verdict": "PASS_TARGETED_OWNED_REQUEST_V3_PRODUCER_SOURCE_ONLY",
+  "commit": "7238c589bf562b4a578f6ddc1a991fac3e489988",
+  "parent": "599dafaa4537a26803a7a5b3c087f34bed5b51ba",
+  "members": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/owned-request-lifetime-v3-source-high-review/original-report.md",
+      "bytes": 3942,
+      "sha256": "24d6f7fc637a8956389057e4611cdea31911a6b838c739de8ce6a1918e9e5936"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/owned-request-lifetime-v3-source-high-review/original-attestation.json",
+      "bytes": 7882,
+      "sha256": "9dd3811b41c750b1c55f553a9396b49ab90ae1ec24ca4507ce96bf75374aed1d"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/owned-request-lifetime-v3-source-high-review/result.json",
+      "bytes": 1162,
+      "sha256": "e220124867fd9a428179ab2f5b56b866152318b9193edc304f0cad00cabca068"
+    }
+  ]
+}

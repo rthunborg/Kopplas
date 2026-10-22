@@ -6656,3 +6656,34 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Shortest concrete required verification/browser-lifetime fact proposal. SourceHighPASS verifies effectiveE16single807Brefresh seam, strict9fields, all117history; author45 and independent3 controls separately attributed. RuntimeSQL/application/metadata/ACL/rollback and35mandatoryDBcases remain unproven; currentCI failed, custodyUNKNOWN, counter3. No deployment or opaque retry.
+
+## Report — 2026-10-22T02:05:56Z (15.5 finalbounded v3 producer independently passed)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `7238c58`).
+**Pipeline status:** P5 open; producer source-only PASS, parser/actualbudget/native gates pending
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 301h 08m (≈77h 24m AI-run, ≈223h 43m human/idle wait); resumed 201×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Native exact2defprivateconsumer with actual28producerbyteidentity and NEW real32768assembler proof, then distinctHighaudit and ONEconcretefunctionalcheckpointproposal. Author161 and independent8 controls separately attributed;118SQL/2series/selectors preserved, counter3. ActualSDKfacts/backendsettlement/custodyUNKNOWN; no deployment/opaque retry.

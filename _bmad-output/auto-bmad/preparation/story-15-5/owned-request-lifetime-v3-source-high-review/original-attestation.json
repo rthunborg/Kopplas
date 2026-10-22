@@ -1,0 +1,221 @@
+{
+  "schema": "owned-request-v3-producer-targeted-source-review/v1",
+  "verdict": "PASS_TARGETED_OWNED_REQUEST_V3_PRODUCER_SOURCE_ONLY",
+  "reviewer": {
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "independent_of_author": true
+  },
+  "scope": {
+    "source": "7238c589bf562b4a578f6ddc1a991fac3e489988",
+    "parent": "599dafaa4537a26803a7a5b3c087f34bed5b51ba",
+    "commit_mechanics": "Root-provided; no reviewer Git command",
+    "paths": 3,
+    "broad_review": false,
+    "counter": 3
+  },
+  "source_bindings": [
+    {
+      "path": "tests/e2e/support/calendar-feed-atdd.ts",
+      "bytes": 64967,
+      "sha256": "ab6365672c89f129a8cc3e712a2456faa5d4dcfbb9f2999e0dd77d92440d4c91",
+      "clean_bytes": 64165,
+      "clean_sha256": "3dcd074ef6db34506789cc706309a5e18399df083148559369ce4867f42ece49"
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "bytes": 284120,
+      "sha256": "cf90fb508f2fbbfc09a1e2efa333d72c4eab855757322e002bf65050fc4e235d",
+      "clean_bytes": 281436,
+      "clean_sha256": "1bd30be5c7b66a169a35c4392eb61bd67dff9ba23903285faad6865552e20097"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "bytes": 238404,
+      "sha256": "671e2bd027540a6f83f30cd99807d3b370d908c50e1522717dd822ccf39d5401",
+      "clean_bytes": 235548,
+      "clean_sha256": "5f4b5bcb578a64eefea85d1b26db6ccf7b06776de31d6fc56f27e6c928696cba"
+    }
+  ],
+  "frozen_handoff": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/owned-request-lifetime-v3-source-correction/manifest.json",
+      "bytes": 929,
+      "sha256": "8a6ff3bdbe9e680279dddac555f71e9be76318639000dfb41809777381f1d1c7"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/owned-request-lifetime-v3-source-correction/receipt.json",
+      "bytes": 6486,
+      "sha256": "2e9736b608223c013c45d8429b8992554280b1ef0baa384a4dc8366017201125"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/owned-request-lifetime-v3-source-correction/bindings.json",
+      "bytes": 45804,
+      "sha256": "45907bc160f07d3c25c07c925ac28b7508dd75f272da8ac8ac28ba47c7b0e258"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/owned-request-lifetime-v3-source-correction/result.json",
+      "bytes": 1636,
+      "sha256": "fee8f9d2f972fd9203857bc9e30b93eb48e87fa56dd5a8b1a642c76e914336b1"
+    }
+  ],
+  "allocation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-owned-request-lifetime-v3-source-allocation.json",
+    "bytes": 3200,
+    "sha256": "81483dc48f0dd0cc9cbbbcdd888d3a2407ae5120776d437fb0e0dcda5a4c3179",
+    "tool": "exec-41c584ac-a859-4d6e-8885-7d79514b22ab",
+    "turn": "01a16150-3fef-7623-bc1f-ba7327063847",
+    "exact_grant_read": true
+  },
+  "root_precommit": {
+    "bytes": 3139,
+    "sha256": "076dfaad0773e41e50e9aa5fb291f177795de7b537c00940b53f42b233332696",
+    "hash_verified": true
+  },
+  "source_assessment": {
+    "same_matched_request": true,
+    "binder_calls": 1,
+    "sampler_calls": 1,
+    "synchronous_nothrow": true,
+    "sampling_after_existing_drain_return_or_catch": true,
+    "before_fault_dispose_blank_context_close": true,
+    "PRE_CLEANUP": "NOT_SAMPLED immutable copied string",
+    "FINAL": "once-sampled primitive; late rebind/resample ignored",
+    "failure_priority": "page strict closed -> absent request -> nonnull nonarray failure presence -> own finite timing; malformed/throw UNKNOWN",
+    "errorText_read": false,
+    "new_async_dependency": false,
+    "existing_operation_vector": [
+      7,
+      8,
+      6,
+      5,
+      14,
+      2
+    ],
+    "caller_assertion_fingerprints_preserved": true
+  },
+  "installed_primary_source": {
+    "path": "node_modules/.pnpm/playwright-core@1.61.1/node_modules/playwright-core/lib/coreBundle.js",
+    "bytes": 3352341,
+    "sha256": "6be5c2ea035554e9b184b1dbc7aa5e7f1fb428dd1b5c202022858dcfae9bee27",
+    "read_lines": [
+      "58115-58124",
+      "60211-60213",
+      "60689-60706"
+    ],
+    "effects": 0
+  },
+  "independent_focused": {
+    "chunk": "ea75d2",
+    "exit": 0,
+    "wall_seconds": 0.831553,
+    "proof": {
+      "verdict": "TARGETED_V3_PRODUCER_SOURCE_CONTROLS_PASS",
+      "argv": [
+        "node",
+        "--experimental-strip-types",
+        "--import",
+        "./tests/support/register.mjs",
+        "--test",
+        "--test-name-pattern=browser v3 public terminal facts|browser v3 timing accepts|browser v3 actual matched request|browser v3 unavailable omitted|browser v3 actual completion boundaries|browser v3 closed producer rows|label instrumentation preserves|actual labelled caller assertions",
+        "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts"
+      ],
+      "exit": 0,
+      "summary": {
+        "tests": 8,
+        "suites": 0,
+        "pass": 8,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "stdout_bytes": 3191,
+      "stdout_sha256": "68849b940e3b4600a266232c7bc0d819dbc1789f30814542e3eaef0662ec9e8d",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "conserved_migrations": 118,
+      "conserved_series_files": 2,
+      "E2E_selector_file_unchanged": true,
+      "same_matched_Request_binding": 1,
+      "post_drain_sampler_calls": 1,
+      "sampling_after_caught_drain_before_disposal_blank": true,
+      "SQL_browser_runtime": 0,
+      "GETs": 0,
+      "Git_commands": 0,
+      "resources": 0,
+      "normal_acceptance": 0
+    },
+    "mocked_boundaries": "Actual extracted pure source/completion; injected public SDK values. No real page/request/DB.",
+    "placement_check": "Actual source ordering/control-flow inspection, not a live fixture lifecycle."
+  },
+  "protocol": {
+    "prefix": "calendar-source-label-v3",
+    "new_normal_field": "terminalAtDrain",
+    "closed_enum": [
+      "NOT_SAMPLED",
+      "FAILED_OPEN",
+      "END_WITHOUT_FAILURE_OPEN",
+      "NO_END_NO_FAILURE_OPEN",
+      "TARGET_CLOSED",
+      "UNAVAILABLE",
+      "UNKNOWN"
+    ],
+    "action_profiles": [
+      3,
+      2,
+      2
+    ],
+    "browser_rows": 28,
+    "nudge_rows": 16,
+    "combined_rows": 44,
+    "global_cap": 48,
+    "per_test_cap": 16,
+    "ASCII_line_cap": 512,
+    "existing_envelope_cap": 32768,
+    "new_v3_consumer_or_budget_qualified": false,
+    "old_v2_budget_inherited": false,
+    "successful_functional_gates_require_failure_labels": false
+  },
+  "conservation": {
+    "SQL118": true,
+    "series_files2": true,
+    "clean_object_identity_method": "Computed from bytes and compared with bound Root baseline; no live Git read",
+    "E2E_selector_file": true,
+    "kernel5760": "Root/author bound unchanged0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977"
+  },
+  "author_reuse": {
+    "affected161": {
+      "pass": 161,
+      "fail": 0,
+      "skip": 0,
+      "cancel": 0
+    },
+    "retained157": true,
+    "new4": true,
+    "wholeTS_exit": 0,
+    "affected2TS_lint_exit": 0,
+    "reader_SRO195_exit": 0,
+    "rerun_full161": false,
+    "nonadditive": true
+  },
+  "findings": [],
+  "limits": {
+    "OPEN": "SDK page flag only",
+    "recorded_end_null_failure": "Not RequestFinished identity, backend settlement or linkage-defect proof",
+    "empty_failure_text_and_event_order": "Explicit ambiguity retained",
+    "old_v1_v2_terminal_facts": "UNKNOWN",
+    "native_v3_publication": "UNEXECUTED",
+    "matching_v3_parser_and_new_actual_assembler": "Separate source gate",
+    "native_functional_custody": "Prior FAIL/35missing/UNKNOWN",
+    "normal_acceptance": 0,
+    "effect_authority": false
+  },
+  "effects": {
+    "Git": 0,
+    "GET_API_network": 0,
+    "SQL_browser_CI_provider_resources": 0,
+    "source_Spec_state_writes": 0
+  },
+  "policy": "development-completion-policy2026-10-19"
+}
