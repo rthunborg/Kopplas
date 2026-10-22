@@ -6439,3 +6439,34 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** High read-only match existing28file/titlehashes and safe facts to local source; concrete bounded correction only after ownership coordination and independent review
+
+## Report — 2026-10-22T00:22:30Z (checkpoint — bounded browser diagnostic qualified)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `263fe6b`).
+**Pipeline status:** in progress; actual single-browser evidence audit passed with failed gates retained. Calendar failed attempts show cleanup timeout and unverified custody; original cause remains unknown.
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 299h 24m (≈77h 24m AI-run, ≈222h 00m human/idle wait); resumed 194×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Existing High author implements exact4path forward series repair preserving EFFECTIVE predecessor and independently diagnoses browser lifecycle using qualified facts only; no additional GET/CI/provider/resource grant.

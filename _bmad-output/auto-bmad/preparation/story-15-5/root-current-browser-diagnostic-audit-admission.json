@@ -1,0 +1,42 @@
+{
+  "schema": "ROOT_CURRENT_BROWSER_DIAGNOSTIC_AUDIT_ADMISSION_v1",
+  "outcome": "PASS_QUALIFIED_BROWSER_DIAGNOSTIC_EVIDENCE",
+  "run": 39694409020,
+  "pushed_head": "72651ada5392ff5b194fd674e07b300cef60e64b",
+  "source": "7864550818ce130fbd5d1fd1bb530f0f4c2b19f4",
+  "Root_review4_and_packet8_7hashes": "PASS",
+  "review_manifest": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/current-browser-diagnostic-native-audit/manifest.json",
+    "bytes": 1002,
+    "sha256": "000b9879fb884294da04ab3d19e736ea0d4c93e41cd242e7554cd25598b8e4f4"
+  },
+  "startup_failure": "004f05preimport0GET; preserved3131/SHA3a05ae8a71b7190ddd351ffc6ae4a8775358ef04a0a29e4f4fa1b2c36b2aa37e",
+  "amended_launch": "explicit completedCoordinator exec-7131987b-59b7-40d5-b1f9-36c0c0f466a6 after independent isolated defaultrefusalqualification",
+  "actual_execution": "Native-reported265239/native0/1.2008643s/no session/waits; Root/auditor not direct child observers",
+  "GET_consumed_closed": 1,
+  "projection": {
+    "cases": 4,
+    "attempts": 8,
+    "tuples": 10,
+    "reported_omissions": 0
+  },
+  "calendar_failed_attempts": "001+010revoke retry0/1 and007retry0: cleanup-lifecycle timeout NULL +custody-retained unverified NULL",
+  "calendar007_retry1": "passed/no matchedtuple",
+  "other_unexpected": {
+    "path_candidate": "tests/e2e/conflict-resolver.e2e.spec.ts",
+    "full_report_title_sha256": "555be84538dd0146ec007445bb33b13f9854789f03104a924cd32a5fc99ece94",
+    "both_retries": "failed/UNKNOWN_NO_MATCH"
+  },
+  "unknowns": [
+    "original cause",
+    "order",
+    "settlement",
+    "canonical backend custody"
+  ],
+  "SQLreservation": "supabase/migrations/20261022000847_booking_series_current_conflict_protocol.sql SOURCEONLY; effective finalizer includes later dynamic booking_conflict_refresh_internal replacement",
+  "all_historical_SQL": "116immutable",
+  "normal_acceptance": 0,
+  "development_complete": false,
+  "review_counter": 3,
+  "next": "Existing High author implements exact4path forward series repair preserving EFFECTIVE predecessor and independently diagnoses browser lifecycle using qualified facts only; no additional GET/CI/provider/resource grant."
+}
