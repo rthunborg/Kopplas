@@ -43,7 +43,7 @@ const attachedTest = base.extend<ResourcePageFixture>({
   resourcePage: async ({}, provide, testInfo) => {
     const browser = await chromium.connectOverCDP(cdpEndpoint!);
     const baseURL = testInfo.project.use.baseURL;
-    const context = await browser.newContext(baseURL ? { baseURL } : {});
+    const context = await browser.newContext({ ...(baseURL ? { baseURL } : {}), serviceWorkers:"block" });
     const page = await context.newPage();
     try {
       await provide(page);

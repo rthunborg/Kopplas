@@ -28,7 +28,7 @@ const test = resourceTest.extend<Record<never, never>, { calendarArtifactPrivacy
 
 // One-time capability must never enter trace/HAR/video/screenshots/reporter data.
 // The driver also sanitizes raw HTTP/DOM errors; no cause/body/URL attachment.
-test.use({ trace: "off", screenshot: "off", video: "off" });
+test.use({ trace: "off", screenshot: "off", video: "off", serviceWorkers:"block" });
 
 function expectPrivateStorage(snapshot: PhysicalSnapshot) {
   expect(snapshot.onlyHashedCapabilitiesStored).toBe(true);
@@ -313,7 +313,7 @@ test.describe("15.5 Kalenderprenumeration essential production-host", () => {
       // are real under both CDP and the configured native Playwright runner.
       const browser = resourcePage.context().browser();
       if (!browser) throw new Error("Calendar phone test requires the owned browser");
-      const context = await browser.newContext({ baseURL: testInfo.project.use.baseURL, viewport: { width: 360, height: 640 }, hasTouch: true });
+      const context = await browser.newContext({ baseURL: testInfo.project.use.baseURL, viewport: { width: 360, height: 640 }, hasTouch: true, serviceWorkers:"block" });
       const page = await context.newPage();
       let phonePrimary: { error: unknown } | undefined;
       try { await withCalendarBrowserFixture(page, "no-profile", async (f) => {

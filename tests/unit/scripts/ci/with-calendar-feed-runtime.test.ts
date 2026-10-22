@@ -2414,9 +2414,14 @@ test("label instrumentation preserves actual promise observer timer operation co
   const baseline=[7,8,6,5,14,2],patterns=[/\.then\(/g,/\.catch\(/g,/new Promise/g,/setTimeout\(/g,/adminQuery[<(]/g,/\.rpc\(/g];
   const counts=(source:string)=>patterns.map(pattern=>(source.match(pattern)??[]).length);
   const after=readFileSync(new URL("../../../e2e/support/calendar-feed-atdd.ts",import.meta.url),"utf8");
-  assert.deepEqual(counts(after),baseline);
+  const ownedContinuation="void promise.then(()=>work.delete(promise),()=>{invalid=true;work.delete(promise);});";
+  assert.equal(after.split(ownedContinuation).length-1,1);
+  // Exact admitted protocol ownership delta only; all six historical operation
+  // dimensions remain guarded after removing that one immediately owned observer.
+  const priorOperations=after.replace(ownedContinuation,"");
+  assert.deepEqual(counts(priorOperations),baseline);
   for(const extra of [".then(",".catch(","new Promise","setTimeout(","adminQuery<",".rpc("]){
-    assert.throws(()=>assert.deepEqual(counts(after+extra),baseline));
+    assert.throws(()=>assert.deepEqual(counts(priorOperations+extra),baseline));
   }
   const x=await labelledBrowserControl(),done=x.observe("create");x.match("create");await done;await x.registry.cancelAndSettle();assert.deepEqual(x.lines,[]);
 });
@@ -2557,28 +2562,28 @@ test("VITEST-META healthy default budget and recording failures cannot change or
 });
 
 
-function actualBrowserCompletion(label:{set(field:string,state:string):void},terminal?:unknown,page:unknown={isClosed:()=>false}){
-  const source=readFileSync(new URL("../../../e2e/support/calendar-feed-atdd.ts",import.meta.url),"utf8"),start=source.indexOf("completion: async request => {"),end=source.indexOf("\n              },",start);assert.ok(start>0&&end>start);
-  const expression=source.slice(start+"completion: ".length,end)+"\n}";
+function actualBrowserReadback(label:{set(field:string,state:string):void},options:{matched:object;result:unknown;frontend?:string;failure?:unknown;terminal?:unknown;page?:unknown;onRead?:(request:object,signal:unknown)=>void}){
+  const source=readFileSync(new URL("../../../e2e/support/calendar-feed-atdd.ts",import.meta.url),"utf8"),start=source.indexOf("readback: async (request, signal) => {"),end=source.indexOf("\n              },",start);assert.ok(start>0&&end>start);
+  const expression=source.slice(start+"readback: ".length,end)+"\n}";
   const strip=(nodeModule as unknown as {stripTypeScriptTypes(source:string):string}).stripTypeScriptTypes;
-  return new Function("calendarLabel","label","calendarRequestTerminalAtDrain","sourcePage","return ("+strip(expression)+");")((run:()=>void)=>{try{run();}catch{/* same no-throw seam */}},label,terminal,page) as (request:{response():Promise<{finished():Promise<unknown>}|null>})=>Promise<boolean>;
+  return new Function("calendarLabel","label","labelsByRequest","management","calendarRequestTerminalAtDrain","sourcePage","actionInput","committedAttempt","return ("+strip(expression)+");")(
+    (run:()=>void)=>{try{run();}catch{/* same no-throw seam */}},label,new Map(),{frontendState:()=>options.frontend??"UNKNOWN"},options.terminal,options.page??{isClosed:()=>false},
+    (request:object)=>{assert.equal(request,options.matched);return{action:"create",attemptId:"fixed",revision:0};},
+    async(_input:unknown,signal:unknown,request:object)=>{options.onRead?.(request,signal);if(options.failure)throw options.failure;return options.result;}
+  ) as (request:object,signal?:AbortSignal)=>Promise<{committed:true;snapshot:unknown}>;
 }
 
-test("browser v3 actual completion boundaries distinguish both pending awaits failures null and done with unchanged receiver and calls",async()=>{
+test("browser committed readback preserves actual caller arguments errors and frontend facts without constructing finished promises",async()=>{
   const seams=await actualBrowserSeams();
-  for(const mode of ["response-pending","response-failure","finished-pending","finished-failure","null","done","finished-error"] as const){
-    const lines:string[]=[],labels=seams.createCalendarFailureLabels(line=>lines.push(line)),label=labels.register("create")!;let calls=0,ends=0,releaseResponse!:(value:{finished():Promise<unknown>})=>void,releaseFinished!:(value:null)=>void;
-    const failure=Error("PRIVATE native failure"),native:{finished():Promise<unknown>}={async finished(){assert.equal(this,native);ends++;if(mode==="finished-failure")throw failure;if(mode==="finished-pending")return new Promise<null>(yes=>{releaseFinished=yes;});return mode==="finished-error"?"PRIVATE failure":null;}},request={async response(){assert.equal(this,request);calls++;if(mode==="response-failure")throw failure;if(mode==="response-pending")return new Promise<typeof native>(yes=>{releaseResponse=yes;});return mode==="null"?null:native;}};
-    const actual=actualBrowserCompletion(label),work=actual(request);void work.catch(()=>{});
-    await Promise.resolve();await Promise.resolve();labels.capture("PRE_CLEANUP");assert.equal(lines.length,0);
-    if(mode==="response-pending")releaseResponse(native);if(mode==="finished-pending")releaseFinished(null);
-    const result=await work.catch(error=>error);if(mode.endsWith("failure"))assert.equal(result,failure);else assert.equal(result,mode!=="null"&&mode!=="finished-error");
-    labels.capture("FINAL");labels.failure();labels.publish();assert.equal(calls,1);assert.equal(ends,mode==="null"||mode==="response-failure"?0:1);
-    const pre=lines.find(line=>line.includes("snapshot=PRE_CLEANUP"))!,final=lines.find(line=>line.includes("snapshot=FINAL"))!;
-    assert.ok(pre.includes("completionPhase="+(mode.startsWith("response")||mode==="null"?"RESPONSE":mode==="done"?"DONE":"FINISHED")));
-    assert.ok(final.includes("completionPhase="+(mode==="response-failure"||mode==="null"?"RESPONSE":mode==="finished-failure"||mode==="finished-error"?"FINISHED":"DONE")));
-    assert.ok(lines.every(line=>!line.includes("PRIVATE")&&Buffer.byteLength(line)<=512));
+  for(const state of ["SUCCESS","TERMINAL_FAILURE","UNKNOWN"]){
+    const lines:string[]=[],labels=seams.createCalendarFailureLabels(line=>lines.push(line)),label=labels.register("create")!,request={},snapshot={},signal=new AbortController().signal;let calls=0;
+    const run=actualBrowserReadback(label,{matched:request,result:snapshot,frontend:state,onRead(actual,actualSignal){assert.equal(actual,request);assert.equal(actualSignal,signal);calls++;}});
+    const result=await run(request,signal);assert.equal(result.committed,true);assert.equal(result.snapshot,snapshot);assert.equal(calls,1);labels.capture("PRE_CLEANUP");labels.capture("FINAL");labels.failure();labels.publish();
+    assert.ok(lines.every(line=>line.includes("completion="+(state==="SUCCESS"?"SETTLED_SUCCESS":state==="TERMINAL_FAILURE"?"SETTLED_FAILURE":"UNKNOWN"))));
   }
+  const request={},original=Object.assign(Error("PRIVATE"),{cause:{}}),label=seams.createCalendarFailureLabels(()=>{}).register("create")!;
+  await assert.rejects(actualBrowserReadback(label,{matched:request,result:{},failure:original})(request),error=>error===original);
+  const source=readFileSync(new URL("../../../e2e/support/calendar-feed-atdd.ts",import.meta.url),"utf8");assert.ok(!source.includes("response.finished()"));assert.ok(!source.includes("completion: async request =>"));
 });
 
 test("browser v3 immutable pre-cleanup and final snapshots preserve mixed action and scenario states without early output",async()=>{
@@ -2657,10 +2662,10 @@ test("browser v3 actual matched request is sampled once after drain and remains 
   const seams=await actualBrowserSeams(),lines:string[]=[],labels=seams.createCalendarFailureLabels(line=>lines.push(line));
   const label=labels.register("create")!;let closed=false,failureCalls=0,timingCalls=0,responseCalls=0,finishedCalls=0;
   const request={failure(){assert.equal(this,request);failureCalls++;return null;},timing(){assert.equal(this,request);timingCalls++;return {responseEnd:7};},async response(){assert.equal(this,request);responseCalls++;return {async finished(){finishedCalls++;return null;}};}};
-  const completion=actualBrowserCompletion(label,seams.calendarRequestTerminalAtDrain,{isClosed:()=>closed});
-  assert.equal(await completion(request),true);assert.equal(failureCalls,0);
+  const readback=actualBrowserReadback(label,{matched:request,result:{},terminal:seams.calendarRequestTerminalAtDrain,page:{isClosed:()=>closed}});
+  assert.equal((await readback(request)).committed,true);assert.equal(failureCalls,0);
   labels.capture("PRE_CLEANUP");labels.sampleAtDrain();closed=true;labels.sampleAtDrain();labels.capture("FINAL");labels.failure();labels.publish();
-  assert.equal(failureCalls,1);assert.equal(timingCalls,1);assert.equal(responseCalls,1);assert.equal(finishedCalls,1);
+  assert.equal(failureCalls,1);assert.equal(timingCalls,1);assert.equal(responseCalls,0);assert.equal(finishedCalls,0);
   assert.ok(lines[0]!.endsWith("terminalAtDrain=NOT_SAMPLED"));assert.ok(lines[1]!.endsWith("terminalAtDrain=END_WITHOUT_FAILURE_OPEN"));
   label.bindTerminal?.(()=>{throw Error("late PRIVATE");});labels.sampleAtDrain();assert.equal(failureCalls,1);
 });
@@ -2679,6 +2684,102 @@ test("browser v3 unavailable omitted malformed and throwing samples preserve ori
     assert.ok(lines[1]!.endsWith("terminalAtDrain="+expected));assert.equal(lines.length,2);assert.ok(lines.every(line=>/^[\x20-\x7e]{1,512}$/.test(line)&&!line.includes("PRIVATE")));
   }
   const source=readFileSync(new URL("../../../e2e/support/calendar-feed-atdd.ts",import.meta.url),"utf8");
-  const drain=source.indexOf("const settlement = await observations.cancelAndSettle()"),caught=source.indexOf('catch (error) { cleanupAllowed = false;',drain),sample=source.indexOf('calendarLabel(()=>labels?.sampleAtDrain());',caught),dispose=source.indexOf('await fault.dispose()',sample);
+  const drain=source.indexOf("const settlement = await observations.cancelAndSettle(protocolWork)"),caught=source.indexOf('catch (error) { cleanupAllowed = false;',drain),sample=source.indexOf('calendarLabel(()=>labels?.sampleAtDrain());',caught),dispose=source.indexOf('await fault.dispose()',sample);
   assert.ok(drain>0&&caught>drain&&sample>caught&&dispose>sample);assert.equal(source.split('labels?.sampleAtDrain()').length-1,1);
+});
+
+
+async function managedAdmissionControl(){
+  const seams=await actualBrowserSeams(),ledger=seams.createCalendarManageAdmission<object>(),request={};
+  const identity={tenantId:"00000000-0000-4000-8000-000000000001",membershipId:"00000000-0000-4000-8000-000000000002",actorId:"00000000-0000-4000-8000-000000000003",action:"create" as const,attemptId:"00000000-0000-4000-8000-000000000004",expectedRevision:0,nextRevision:1};
+  const token={id:"00000000-0000-4000-8000-000000000005",tenant_id:identity.tenantId,membership_id:identity.membershipId,attempt_id:identity.attemptId,action:identity.action,revision:1,expected_revision:0};
+  const audit={target_id:token.id,actor_user_id:identity.actorId,command:"calendar_feed.create",metadata:{attemptId:identity.attemptId,revision:1}};
+  ledger.activate();return {seams,ledger,request,identity,token,audit};
+}
+
+test("managed admission freezes exact Request identity and requires exact token plus unique attributable audit",async()=>{
+  const x=await managedAdmissionControl();assert.equal(x.ledger.admit(x.request,x.identity),true);assert.equal(x.ledger.begin(x.request),true);
+  x.identity.actorId="00000000-0000-4000-8000-000000000099";assert.notEqual(x.ledger.identity(x.request)!.actorId,x.identity.actorId);assert.ok(Object.isFrozen(x.ledger.identity(x.request)));
+  assert.equal(x.ledger.certify(x.request,[x.token],[x.audit]),true);x.ledger.close();assert.equal(x.ledger.ready(),true);
+  for(const patch of [{tenant_id:"wrong"},{membership_id:"wrong"},{attempt_id:"wrong"},{action:"rotate"},{revision:2},{expected_revision:1}]){const c=await managedAdmissionControl();c.ledger.admit(c.request,c.identity);c.ledger.begin(c.request);assert.equal(c.ledger.certify(c.request,[{...c.token,...patch}],[c.audit]),false);c.ledger.close();assert.equal(c.ledger.ready(),false);}
+  for(const patch of [{target_id:"wrong"},{actor_user_id:"wrong"},{command:"calendar_feed.rotate"},{metadata:{attemptId:"wrong",revision:1}},{metadata:{attemptId:"00000000-0000-4000-8000-000000000004",revision:2}}]){const c=await managedAdmissionControl();c.ledger.admit(c.request,c.identity);c.ledger.begin(c.request);assert.equal(c.ledger.certify(c.request,[c.token],[{...c.audit,...patch}]),false);}
+  const c=await managedAdmissionControl();c.ledger.admit(c.request,c.identity);c.ledger.begin(c.request);assert.equal(c.ledger.certify(c.request,[c.token],[c.audit,c.audit]),false);assert.equal(c.ledger.certify({},[c.token],[c.audit]),false);
+});
+
+test("managed admission never launders stale duplicate or replay proof and preserves pre-send-only retry",async()=>{
+  const x=await managedAdmissionControl();x.ledger.admit(x.request,x.identity);x.ledger.begin(x.request);assert.equal(x.ledger.certify(x.request,[x.token],[x.audit]),true);
+  const duplicate={};assert.equal(x.ledger.admit(duplicate,x.identity),false);assert.equal(x.ledger.certify(duplicate,[x.token],[x.audit]),false);x.ledger.close();assert.equal(x.ledger.ready(),false);
+  const c=await managedAdmissionControl();assert.equal(c.ledger.admit(c.request,c.identity),true);c.ledger.notAdmitted(c.request);const retry={};assert.equal(c.ledger.admit(retry,c.identity),true);assert.equal(c.ledger.begin(retry),true);assert.equal(c.ledger.certify(retry,[c.token],[c.audit]),true);c.ledger.close();assert.equal(c.ledger.ready(),true);
+  const unsafe=await managedAdmissionControl();unsafe.ledger.admit(unsafe.request,unsafe.identity);unsafe.ledger.begin(unsafe.request);unsafe.ledger.notAdmitted(unsafe.request);assert.equal(unsafe.ledger.admit({},unsafe.identity),false);
+});
+
+test("managed admission separates observed frontend terminal failure from backend commit and owns the same protocol promise",async()=>{
+  const x=await managedAdmissionControl();x.ledger.admit(x.request,x.identity);x.ledger.begin(x.request);x.ledger.frontend(x.request,"TERMINAL_FAILURE");x.ledger.frontend(x.request,"SUCCESS");assert.equal(x.ledger.frontendState(x.request),"TERMINAL_FAILURE");
+  let release!:()=>void;const protocol=new Promise<void>(resolve=>{release=resolve;});assert.equal(x.ledger.own(protocol),protocol);assert.equal(x.ledger.certify(x.request,[x.token],[x.audit]),true);const work=x.ledger.close();assert.deepEqual(work,[protocol]);assert.equal(x.ledger.ready(),false);release();await protocol;assert.equal(x.ledger.ready(),true);assert.equal(x.ledger.frontendState(x.request),"TERMINAL_FAILURE");
+  const y=await managedAdmissionControl();y.ledger.admit(y.request,y.identity);y.ledger.begin(y.request);y.ledger.frontend(y.request,"TERMINAL_FAILURE");y.ledger.close();assert.equal(y.ledger.ready(),false);
+  const registry=x.seams.createCalendarLifecycleObservations({settlementTimeoutMs:2});let done!:()=>void;const held=new Promise<void>(resolve=>{done=resolve;});assert.equal((await registry.cancelAndSettle([held])).settled,false);done();await held;
+});
+
+test("managed admission rejects getter proxy malformed and uninstalled or reopened authority",async()=>{
+  for(const hostile of [Object.defineProperty({},"tenantId",{enumerable:true,get(){throw Error("PRIVATE");}}),new Proxy({},{ownKeys(){throw Error("PRIVATE");}}),{}]){const x=await managedAdmissionControl();assert.equal(x.ledger.admit(x.request,hostile as never),false);x.ledger.close();assert.equal(x.ledger.ready(),false);}
+  const x=await managedAdmissionControl();x.ledger.close();x.ledger.activate();assert.equal(x.ledger.admit(x.request,x.identity),false);assert.equal(x.ledger.begin(x.request),false);
+  const y=await managedAdmissionControl();y.ledger.admit(y.request,y.identity);y.ledger.begin(y.request);const hostile=Object.defineProperty({...y.token},"revision",{get(){throw Error("PRIVATE");}});assert.equal(y.ledger.certify(y.request,[hostile],[y.audit]),false);
+});
+
+async function actualManageRoutingControl(){
+  const seams=await actualBrowserSeams(),source=readFileSync(new URL("../../../e2e/support/calendar-feed-atdd.ts",import.meta.url),"utf8");
+  const start=source.indexOf("const management=createCalendarManageAdmission<Request>()"),end=source.indexOf("management.activate();",start)+"management.activate();".length;assert.ok(start>0&&end>start);
+  const actionStart=source.indexOf("function actionInput(request:"),actionEnd=source.indexOf("\nfunction deferred",actionStart);assert.ok(actionEnd>actionStart);
+  const strip=(nodeModule as unknown as {stripTypeScriptTypes(source:string):string}).stripTypeScriptTypes;
+  const parser=new Function(strip(source.slice(actionStart,actionEnd))+";return actionInput;")();
+  const events=new Map<string,(request:object)=>void>();let gate!:(route:unknown)=>Promise<unknown>;
+  const context={on(event:string,fn:(request:object)=>void){events.set(event,fn);},async route(predicate:(url:URL)=>boolean,handler:(route:unknown)=>Promise<unknown>){assert.equal(predicate(new URL("http://localhost/settings/calendar?x=1")),true);gate=handler;}};
+  const subject={membership:"00000000-0000-4000-8000-000000000002",user:{id:"00000000-0000-4000-8000-000000000003"}},ownTenant="00000000-0000-4000-8000-000000000001";
+  const execute=new Function("createCalendarManageAdmission","page","subject","ownTenant","calendarLabel","calendarBrowserDiagnostic","actionInput","return "+strip("(async()=>{let transportVerified=true;"+source.slice(start,end)+"return {management,reserve,forward,labelsByRequest};})()"));
+  const actual=await execute(seams.createCalendarManageAdmission,{context:()=>context},subject,ownTenant,(run:()=>void)=>{try{run();}catch{/* actual no-throw wrapper */}},seams.calendarBrowserDiagnostic,parser) as {management:ReturnType<typeof seams.createCalendarManageAdmission<object>>;reserve(request:object,input:unknown):boolean;forward(request:object,route:unknown,send:()=>Promise<unknown>):Promise<unknown>};
+  const request=(input:unknown)=>({method:()=>"POST",headers:()=>({"next-action":"fixed"}),url:()=>"http://localhost/settings/calendar",postData:()=>JSON.stringify(input)});
+  return{...actual,gate,events,request,subject,ownTenant};
+}
+
+test("actual context route fences late manage dispatch irreversibly and keeps malformed requests out of backend",async()=>{
+  const x=await actualManageRoutingControl(),input={action:"create",revision:0,attemptId:"00000000-0000-4000-8000-000000000004"},request=x.request([input]);let forwards=0,aborts=0;
+  await x.gate({request:()=>request,async continue(){forwards++;},async abort(){aborts++;},async fallback(){throw Error("unexpected fallback");}});assert.equal(forwards,1);assert.equal(aborts,0);
+  x.management.close();const late=x.request([input]);await x.gate({request:()=>late,async continue(){forwards++;},async abort(){aborts++;}});assert.equal(forwards,1);assert.equal(aborts,1);assert.equal(x.management.identity(late),undefined);assert.equal(x.management.ready(),false);
+  for(const body of [[{...input,extra:"PRIVATE"}],["$reference"],{bad:true}]){const y=await actualManageRoutingControl();let sent=0;await y.gate({request:()=>y.request(body),async continue(){sent++;},async fallback(){sent++;},async abort(){}});y.management.close();assert.equal(sent,0);assert.equal(y.management.ready(),false);}
+  const y=await actualManageRoutingControl();let read=0;await y.gate({request:()=>y.request(["$undefined"]),async fallback(){read++;},async abort(){throw Error("unexpected abort");}});assert.equal(read,1);
+});
+
+test("actual shared fault dispatch rechecks fence after a hold and cannot forward reserved work through cleanup",async()=>{
+  const x=await actualManageRoutingControl(),input={action:"create",revision:0,attemptId:"00000000-0000-4000-8000-000000000004"},request=x.request([input]);assert.equal(x.reserve(request,input),true);x.management.close();let abort=0,send=0;
+  await assert.rejects(x.forward(request,{async abort(){abort++;}},async()=>{send++;}),/Calendar browser failure/);assert.equal(abort,1);assert.equal(send,0);assert.equal(x.management.ready(),true);
+  const source=readFileSync(new URL("../../../e2e/support/calendar-feed-atdd.ts",import.meta.url),"utf8"),fault=source.slice(source.indexOf("async armFault(kind)"),source.indexOf("async attemptReceipt()"));assert.ok(fault.includes('await forward(request,route,()=>route.continue())'));assert.ok(fault.includes('await forward(request,route,()=>route.fetch({ timeout: 15_000 }))'));assert.ok(fault.includes('await route.abort("failed");management.notAdmitted(request)'));assert.ok(!fault.includes('await route.continue();'));
+});
+
+
+test("actual calendar and attached context constructors block service workers without changing existing options",()=>{
+  const spec=readFileSync(new URL("../../../e2e/calendar-feed.e2e.spec.ts",import.meta.url),"utf8"),attached=readFileSync(new URL("../../../e2e/support/resource-cdp-attachment.ts",import.meta.url),"utf8");
+  const extract=(source:string,start:string,end:string)=>{const a=source.indexOf(start),b=source.indexOf(end,a);assert.ok(a>=0&&b>a);return source.slice(a+start.length,b);};
+  const stock=extract(spec,"test.use(",");"),phone=extract(spec,"browser.newContext(",");"),cdp=extract(attached,"browser.newContext(",");");
+  const evaluate=(text:string)=>new Function("testInfo","baseURL","return ("+text+");")({project:{use:{baseURL:"http://localhost"}}},"http://localhost");
+  assert.deepEqual(evaluate(stock),{trace:"off",screenshot:"off",video:"off",serviceWorkers:"block"});
+  assert.deepEqual(evaluate(phone),{baseURL:"http://localhost",viewport:{width:360,height:640},hasTouch:true,serviceWorkers:"block"});
+  assert.deepEqual(evaluate(cdp),{baseURL:"http://localhost",serviceWorkers:"block"});
+  for(const options of [stock,phone,cdp])for(const bad of [options.replace('serviceWorkers:"block"','serviceWorkers:"allow"'),options.replace(', serviceWorkers:"block"','')])assert.notEqual(evaluate(bad).serviceWorkers,"block");
+});
+
+test("actual owned fault callback joins held dispatch and preserves failure disposal",async()=>{
+  const x=await actualManageRoutingControl(),source=readFileSync(new URL("../../../e2e/support/calendar-feed-atdd.ts",import.meta.url),"utf8"),start=source.indexOf("async armFault(kind)"),end=source.indexOf("async attemptReceipt()",start);
+  const strip=(nodeModule as unknown as {stripTypeScriptTypes(source:string):string}).stripTypeScriptTypes;
+  const dStart=source.indexOf("function deferred<T>()"),dEnd=source.indexOf("\n",source.indexOf("return {",dStart));
+  // Compile the exact complete declared helper and actual armFault method.
+  const deferredEnd=source.indexOf("\n}",dStart)+2;assert.ok(dEnd>dStart&&deferredEnd>dStart);
+  const deferred=new Function(strip(source.slice(dStart,deferredEnd))+";return deferred;")();
+  let handler!:(route:unknown)=>Promise<unknown>;const activeFaults=new Set<unknown>();
+  const seams=await actualBrowserSeams();
+  const factory=new Function("management","reserve","forward","actionInput","page","deferred","activeFaults","calendarBrowserDiagnostic","calendarFailures","committedAttempt",strip("let transportVerified=true;const fixture={"+source.slice(start,end)+"};")+"return {arm:fixture.armFault,verified:()=>transportVerified};");
+  const parserStart=source.indexOf("function actionInput(request:"),parserEnd=source.indexOf("\nfunction deferred",parserStart),parser=new Function(strip(source.slice(parserStart,parserEnd))+";return actionInput;")();
+  const control=factory(x.management,x.reserve,x.forward,parser,{async route(_path:string,h:typeof handler){handler=h;},async unroute(){}},deferred,activeFaults,seams.calendarBrowserDiagnostic,(errors:Error[])=>new AggregateError(errors),async()=>{throw Error("must not read backend for pre-send");});
+  const fault=await control.arm("hold-before-send"),input={action:"create",revision:0,attemptId:"00000000-0000-4000-8000-000000000004"},request=x.request([input]);let sends=0,aborts=0;
+  const work=handler({request:()=>request,async continue(){sends++;},async abort(){aborts++;}});await fault.reached;
+  const owned=x.management.close();assert.equal(owned.length,1);await fault.release();await work;await assert.rejects(fault.dispose(),/Calendar browser failure/);assert.equal(sends,0);assert.equal(aborts,2);assert.equal(x.management.ready(),true);assert.equal(control.verified(),false);
 });

@@ -245,12 +245,11 @@ Deferred release validation: exhaustive browser/device/calendar-provider matrice
 ## Auto Run Result
 
 Status: in-review
-Blocking condition: qualified NORMAL39710514719 retained2068DBpass/1fail/52skip and16storypass/35mandatorymissing, with browser001unexpected/009flaky and retained-key custody unresolved. Independent original-exception qualification identifies INT011 line290 strict jobInputs assertion; ScopeA adds only nine source-proven NULL fields to its three expected objects. No received actual values or sole hosted-difference claim. Required independent targeted source review and native functional gates remain pending; ScopeB browser debugging is separate and held to its own allocation. Development complete=false, acceptance0; no source fix authorizes a retry.
+Blocking condition: qualified NORMAL39710514719 retained2068DBpass/1fail/52skip and16storypass/35mandatorymissing, with browser001unexpected/009flaky and retained-key custody unresolved. ScopeA strict jobInputs NULL reconciliation and this exact-five-path per-Request fence/COMMIT correction remain source evidence only. Required independent targeted changed-code review and separately admitted native functional gates remain pending. Failed frontend transfer is not backend rollback; a specific COMMIT certificate is not global-key deletion authority. Development complete=false, acceptance0; no source fix authorizes a retry.
 
-Current result — 2026-10-22: exact4 forward-correction source handoff only. One
-CLI-generated migration changes only the series protocol pair after exact effective
-body qualification;41 affected pure units pass. No SQL application, extra query,
-principal/ACL expansion, browser change or Git mutation occurred.
+Current result — 2026-10-22: exact-five-path source handoff with169 affected pure
+controls passed and18 separate unchanged consumers passed. Whole TypeScript and
+four-file lint exit0. No SQL/browser execution, resources, API/CI or Git mutation.
 The following planning paragraphs are retained historical results, not the current
 status, permission, gate outcome or runtime evidence. The historical ARR warning
 and three completed broad review rounds remain preserved.
@@ -2318,6 +2317,45 @@ is separately owned; no browser/helper/wrapper change or runtime was taken here.
 Required35 cases remain unexecuted until actual admission/success, never credited
 by a local assertion edit. Kernel/baseline/loop3/in-review and acceptance0 remain.
 
+### Fenced per-Request management ownership — source correction, native pending
+
+The isolated failure showed that a failed Request can leave the SDK response-finished
+promise pending. This correction does not call that promise. Context-native finished
+and failed events report frontend SUCCESS / TERMINAL_FAILURE separately from the
+existing exact physical token plus unique audit COMMIT predicate. A COMMIT certificate
+covers only its frozen Request tenant, subject, actor, action, attempt and expected
+revision; missing rows, another request, a duplicate/replay, transport rejection or
+frontend closure never proves backend rollback. Original scenario failures remain
+failures. Readback does not become native-finished success.
+
+The same context-wide route owns every admitted management Request, including
+competing pages. Its fence closes irreversibly before drain and stays installed
+through destructive cleanup until the test-owned context ends. A higher-priority
+fault must reserve through that ledger and recheck the fence immediately before
+its existing continue/fetch. An explicitly aborted pre-send request is NOT_ADMITTED;
+only that case permits the existing same-attempt retry. Extra, malformed, duplicated,
+uncertified and unknown work retains custody. The configured stock context, existing
+phone context and existing attached CDP context block service workers; the global
+Playwright config is unchanged. This is routing applicability, not settlement proof.
+
+The one new immediately observed protocol-promise continuation returns the identical
+promise, joins actual handler work in the existing bounded drain, and latches rejection.
+The historical six-dimension operation guard removes exactly that single source-bound
+continuation before comparing the reviewed baseline. Query/RPC/timer/new-Promise
+counts remain guarded. Existing actual SQL readback, fault/body/disposal, all-errors,
+canonical cleanup and exact-row/key authority remain required. A certified management
+transaction does not authorize global key deletion or settle a different invocation.
+
+Executed affected file:169P/0F/0skip/0cancel,12.409s. Initial167/164P/3F is
+nonadditive history: two source extraction top-level-return errors and the guard's
+expected detection of the admitted single continuation. Corrected focused3 and2
+controls passed before the final file run. Whole TypeScript and four changed TS
+lint exit0; unchanged resource-CDP/lifecycle consumers separately18P. Actual-source
+extraction strips TypeScript only and injects pure boundary values; it does not execute
+Playwright routing, database transactions or server actions. Native browser/DB/C4,
+full95 mandatory cases, retained custody and independent changed-code review remain
+pending. No resources, SQL, CI, API, Git mutation or app change occurred here.
+
 ## Suggested Review Order
 
 Author: Story 15.5 implementation/fix author (gpt-6.1-sol High), incorporating
@@ -2411,13 +2449,13 @@ restricted-session oracle. No new privileged child configuration or grant is add
 - `tests/integration/commands/calendar-feed.int.test.ts:508` — `await fresh.connect(); await setupQualified(fresh); await absent(fresh);`: INT015 fresh authority/privacy and exact absence oracle passed at3e7.
 - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:156` — `setup construction refuses missing`: credential/target refusals cannot reach secrets or children; actual identity negatives and child-config tests complete the bounded boundary evidence.
 
-- `tests/e2e/support/calendar-feed-atdd.ts:147` — `export function createCalendarLifecycleObservations`: AC2/6 observes both transport promises and joins actual readback before teardown; pure regressions are not native acceptance.
-- `tests/e2e/support/calendar-feed-atdd.ts:89` — `export function calendarBrowserDiagnostic`: preserves closed stage/category/SQLSTATE without native error payloads.
-- `tests/e2e/support/calendar-feed-atdd.ts:791` — `if (base && cleanupAllowed)`: canonical SQL/Auth cleanup waits for verified settlement; unresolved references retain fixture custody.
+- `tests/e2e/support/calendar-feed-atdd.ts:189` — `export function createCalendarLifecycleObservations`: AC2/6 observes both transport promises and joins actual readback before teardown; pure regressions are not native acceptance.
+- `tests/e2e/support/calendar-feed-atdd.ts:131` — `export function calendarBrowserDiagnostic`: preserves closed stage/category/SQLSTATE without native error payloads.
+- `tests/e2e/support/calendar-feed-atdd.ts:857` — `if (base && cleanupAllowed)`: canonical SQL/Auth cleanup waits for verified settlement; unresolved references retain fixture custody.
 - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:498` — `missing leaders with persistent groups`: absence is measured within existing budgets; anonymous groups grant no signaling authority.
 - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1045` — `actual browser bounded cancellation`: timeout cannot credit in-flight SQL/readback settlement; release and real completion are distinct.
 
-- `tests/e2e/support/calendar-feed-atdd.ts:157` — `trackReadback<T>`: registers actual callback/query work independently of Playwright deadlines and closes before drain.
+- `tests/e2e/support/calendar-feed-atdd.ts:199` — `trackReadback<T>`: registers actual callback/query work independently of Playwright deadlines and closes before drain.
 - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1125` — `installed polling deadline cannot credit`: HTTP completion plus outer timeout cannot credit unresolved physical query siblings or callback completion.
 
 - `tests/support/calendar-feed-atdd.ts:203` — `export function calendarFixtureDiagnostic`: fixed stages/own-data SQLSTATE preserve only reaching errors within bounded aggregates.
@@ -2761,11 +2799,11 @@ stay unchanged. Opaque outer failure remains UNKNOWN, even after an inner error.
 - `tests/support/time-reports-atdd.ts:74` — `export async function withTimeReportFixture`: preserves outer error identity and precedence.
 - `tests/e2e/calendar-feed.e2e.spec.ts:74` — `const labels=createCalendarFailureLabels(undefined,"E2E001")`: opts in only the existing lifecycle case.
 - `tests/e2e/support/calendar-feed-atdd.ts:36` — `export function createCalendarFailureLabels`: isolates action/ordinal applicability and state.
-- `tests/e2e/support/calendar-feed-atdd.ts:145` — `const wasDone=done`: preserves MATCHED on no-op final cancellation.
-- `tests/e2e/support/calendar-feed-atdd.ts:211` — `note("readback","SETTLED_SUCCESS")`: keeps readback separate from observation cancellation.
+- `tests/e2e/support/calendar-feed-atdd.ts:187` — `const wasDone=done`: preserves MATCHED on no-op final cancellation.
+- `tests/e2e/support/calendar-feed-atdd.ts:253` — `note("readback","SETTLED_SUCCESS")`: keeps readback separate from observation cancellation.
 - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2319` — `actual opted-in outer nudge boundary`: exercises opaque rejection and final identity.
 - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2393` — `actual browser readback failure native failure`: exercises independent completion states.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2424` — `installed Node test runner receives only fixed`: proves the bounded offline stderr boundary only.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2429` — `installed Node test runner receives only fixed`: proves the bounded offline stderr boundary only.
 
 Evidence: final affected146P and unchanged C4 acceptance/inverses2P are separate
 actual runs, not an aggregate. Whole TypeScript/five-file lint exit0. Review must
@@ -2780,7 +2818,7 @@ outer helper's established same/different/absence relation. Factory cause is UNK
 
 - `tests/support/time-reports-atdd.ts:52` — `let finalRelation:`: starts with no evaluated relation.
 - `tests/support/time-reports-atdd.ts:66` — `const relation=`: separates LOCAL unknown from final relation retention.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2468` — `SOURCE-LABEL-01 actual helper and enclosing NUDGE004`: exercises the actual composed final boundary.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2473` — `SOURCE-LABEL-01 actual helper and enclosing NUDGE004`: exercises the actual composed final boundary.
 
 Evidence: selected8P/0F/0skip/0cancel first run; whole TypeScript/two-file lint
 exit0. No new full148 aggregate, native or independent closure credit. The old
@@ -2794,8 +2832,8 @@ metadata is preserved, not sanitized; absent publication remains UNKNOWN.
 
 - `tests/integration/notifications/time-report-nudge-producer.int.test.ts:9` — `export function createNudgeTaskMetaSink`: validates fixed source records before publishing.
 - `tests/integration/notifications/time-report-nudge-producer.int.test.ts:38` — `Object.defineProperty(meta,key`: replaces only the exact owned frozen-array slot.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2500` — `async function actualMetaJsonReport`: invokes real installed onTestRunEnd in memory.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2524` — `VITEST-META actual helper and public NUDGE callback`: proves byte-equal reporter metadata and original failures.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2505` — `async function actualMetaJsonReport`: invokes real installed onTestRunEnd in memory.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2529` — `VITEST-META actual helper and public NUDGE callback`: proves byte-equal reporter metadata and original failures.
 
 Evidence: final focused13P/0F/0skip/0cancel, whole TypeScript/two-file lint exit0.
 Installed-source/type hashes are in the new author receipt. This carrier proof
@@ -2808,7 +2846,7 @@ Fixed baselines come from reviewed166cad objects; current code must match their
 operation counts and ordered assertion fingerprints, including biting inverses.
 
 - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2410` — `label instrumentation preserves actual promise`: checks six counts and added-operation negatives.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2438` — `actual labelled caller assertions match`: checks ordered original assertions and changed-source negatives.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2443` — `actual labelled caller assertions match`: checks ordered original assertions and changed-source negatives.
 
 Evidence: full affected Linux152P/0F/0skip/0cancel, whole TypeScript and affected
 lint exit0. Pre-edit Windows2P vs controlled Linux2F are distinct; opaque hosted
@@ -2839,10 +2877,10 @@ Browser phase/custody diagnosis remains UNKNOWN/separately allocated, not a fix.
 ### Observe only existing browser completion phases and final failure boundaries
 
 - `tests/e2e/support/calendar-feed-atdd.ts:36` — `export function createCalendarFailureLabels`: bounds immutable registered-action snapshots and failure-only publication.
-- `tests/e2e/support/calendar-feed-atdd.ts:628` — `label?.set("completionPhase","RESPONSE")`: marks the first existing native completion await without adding work.
+- `tests/e2e/support/calendar-feed-atdd.ts:579` — `context.on("requestfinished"`: records frontend success without constructing a finished promise.
 - `tests/e2e/calendar-feed.e2e.spec.ts:389` — `const labels=competingAction===`: opts in revoke only, leaving rotate silent.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2615` — `browser v3 actual enclosing selected case catches`: executes actual enclosing catches and final error/cleanup precedence.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2593` — `browser v3 closed producer rows match`: checks actual producer rows and exact28+16 bound.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2620` — `browser v3 actual enclosing selected case catches`: executes actual enclosing catches and final error/cleanup precedence.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2598` — `browser v3 closed producer rows match`: checks actual producer rows and exact28+16 bound.
 
 Evidence: final157 affected offline controls, wholeTS and three-file lint0; initial
 156/type failure and later fixture syntax-load failure retained nonadditively.
@@ -2868,10 +2906,10 @@ native first throw and browser completion/custody remain UNKNOWN.
 
 - `tests/e2e/support/calendar-feed-atdd.ts:18` — `export function calendarRequestTerminalAtDrain`: classifies public SDK facts with page/failure priority and no error payload reads.
 - `tests/e2e/support/calendar-feed-atdd.ts:53` — `sampleAtDrain()`: latches and copies one finite result per existing action; later closure cannot rewrite it.
-- `tests/e2e/support/calendar-feed-atdd.ts:627` — `label?.bindTerminal`: binds the same matched Request before the original completion awaits.
-- `tests/e2e/support/calendar-feed-atdd.ts:752` — `labels?.sampleAtDrain()`: samples after return/throw of the existing drain and before fault disposal.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2656` — `browser v3 actual matched request`: checks actual-source once calls, receiver identity and immutable final facts.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2668` — `browser v3 unavailable omitted malformed`: checks omission, throwing diagnostics, unchanged final error/cause and source boundary ordering.
+- `tests/e2e/support/calendar-feed-atdd.ts:699` — `label.bindTerminal?.`: binds the same matched Request before certified readback.
+- `tests/e2e/support/calendar-feed-atdd.ts:818` — `labels?.sampleAtDrain()`: samples after return/throw of the existing drain and before fault disposal.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2661` — `browser v3 actual matched request`: checks actual-source once calls, receiver identity and immutable final facts.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2673` — `browser v3 unavailable omitted malformed`: checks omission, throwing diagnostics, unchanged final error/cause and source boundary ordering.
 
 Evidence: affected161 first-run passes; TS/lint0; no browser/SQL execution or native
 credit. Strict v3 consumer/publication and new real assembler proof remain separately
@@ -2889,3 +2927,25 @@ Evidence: actual-source AST/mapping/NULL-provenance and exact full-file inverse
 pass. Root-qualified original assertion is the cause boundary; actual hosted
 values were not acquired by this author. Independent targeted review and full
 native gates remain required, with browser/custody separate and unresolved.
+
+
+### Fence management dispatch before fixture cleanup and certify each owner
+
+Frontend events preserve their own outcome. Cleanup additionally requires exact
+per-Request backend COMMIT, closed dispatch admission and all real readback/fault
+work joined; uncertified or malformed work retains custody.
+
+- `tests/e2e/support/calendar-feed-atdd.ts:80` — `export function createCalendarManageAdmission`: freezes identity and prevents certificate reuse across requests.
+- `tests/e2e/support/calendar-feed-atdd.ts:588` — `const gate=(route:Route)`: fences all context pages through cleanup.
+- `tests/e2e/support/calendar-feed-atdd.ts:633` — `const committedAttempt = async`: binds the existing exact physical predicate to its Request.
+- `tests/e2e/support/calendar-feed-atdd.ts:810` — `const protocolWork=management.close()`: closes admission before existing drain and disposal.
+- `tests/e2e/calendar-feed.e2e.spec.ts:31` — `test.use({ trace:`: blocks worker interception on stock calendar contexts.
+- `tests/e2e/support/resource-cdp-attachment.ts:46` — `serviceWorkers:"block"`: applies the same option to the existing attached context.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2700` — `managed admission freezes exact Request`: exercises exact certificate identity and unique audit inverses.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2770` — `actual owned fault callback joins`: executes held callback and failclosed disposal on the live source region.
+
+Evidence: final affected169P; separate unchanged consumers18P; wholeTS/four-file
+lint0. Initial167/164P/3F and focused corrections remain chronological, not summed.
+No native execution or independent CODEPASS is claimed. Review the routing fence,
+service-worker applicability, certificate provenance and existing cleanup gates
+against the actual SDK/server/SQL contract before any separately admitted native run.

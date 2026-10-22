@@ -75,6 +75,48 @@ export function createCalendarFailureLabels(sink:(line:string)=>void=line=>conso
 }
 /** Diagnostic bookkeeping cannot affect matching, errors or cleanup authority. */
 function calendarLabel(run:()=>void):void {try{run();}catch{/* no-throw side observation only */}}
+export type CalendarManageIdentity=Readonly<{tenantId:string;membershipId:string;actorId:string;action:"create"|"rotate"|"revoke";attemptId:string;expectedRevision:number;nextRevision:number}>;
+/** Fixture-private authority: exact Request entries, immutable identity and trusted SQL rows only. */
+export function createCalendarManageAdmission<R extends object>() {
+  type Entry={identity:CalendarManageIdentity;state:"RESERVED"|"DISPATCHED"|"NOT_ADMITTED";committed:boolean;frontend:"SUCCESS"|"TERMINAL_FAILURE"|"UNKNOWN"};
+  const entries=new Map<R,Entry>(),work=new Set<Promise<unknown>>();
+  let installed=false,closed=false,invalid=false;
+  const same=(a:CalendarManageIdentity,b:CalendarManageIdentity)=>Object.keys(a).every(key=>ownData(a,key)===ownData(b,key));
+  const freeze=(value:CalendarManageIdentity):CalendarManageIdentity|undefined=>{try{
+    const keys=["tenantId","membershipId","actorId","action","attemptId","expectedRevision","nextRevision"] as const;
+    if(!value||Object.keys(value).length!==keys.length)return;
+    const copy=Object.fromEntries(keys.map(key=>[key,ownData(value,key)])) as unknown as CalendarManageIdentity;
+    if(![copy.tenantId,copy.membershipId,copy.actorId,copy.attemptId].every(v=>typeof v==="string"&&/^[0-9a-f-]{36}$/i.test(v))||!["create","rotate","revoke"].includes(copy.action)||!Number.isSafeInteger(copy.expectedRevision)||copy.expectedRevision<0||!Number.isSafeInteger(copy.nextRevision)||copy.nextRevision!==copy.expectedRevision+1)return;
+    return Object.freeze(copy);
+  }catch{return;}};
+  const matches=(request:R,tokens:readonly unknown[],audits:readonly unknown[])=>{try{
+    const entry=entries.get(request);if(!entry||entry.state!=="DISPATCHED")return false;const id=entry.identity;
+    const rows=tokens.filter(row=>ownData(row,"tenant_id")===id.tenantId&&ownData(row,"membership_id")===id.membershipId&&ownData(row,"attempt_id")===id.attemptId&&ownData(row,"action")===id.action&&ownData(row,"revision")===id.nextRevision&&ownData(row,"expected_revision")===id.expectedRevision);
+    if(rows.length!==1)return false;const target=ownData(rows[0],"id");if(typeof target!=="string")return false;
+    return audits.filter(row=>{const meta=ownData(row,"metadata");return ownData(row,"target_id")===target&&ownData(row,"actor_user_id")===id.actorId&&ownData(row,"command")==="calendar_feed."+id.action&&ownData(meta,"attemptId")===id.attemptId&&ownData(meta,"revision")===id.nextRevision;}).length===1;
+  }catch{return false;}};
+  return {
+    activate(){if(!closed)installed=true;},
+    isClosed(){return closed;},
+    refuse(){invalid=true;},
+    admit(request:R,identity:CalendarManageIdentity){
+      if(!installed||closed)return false;const fixed=freeze(identity);if(!fixed){invalid=true;return false;}
+      const existing=entries.get(request);if(existing){if(!same(existing.identity,fixed)){invalid=true;return false;}return existing.state==="RESERVED";}
+      if(entries.size>=32||[...entries.values()].some(e=>e.identity.attemptId===fixed.attemptId&&e.state!=="NOT_ADMITTED")){invalid=true;return false;}
+      entries.set(request,{identity:fixed,state:"RESERVED",committed:false,frontend:"UNKNOWN"});return true;
+    },
+    identity(request:R){return entries.get(request)?.identity;},
+    begin(request:R){const entry=entries.get(request);if(!installed||closed||!entry||entry.state!=="RESERVED")return false;entry.state="DISPATCHED";return true;},
+    notAdmitted(request:R){const entry=entries.get(request);if(entry?.state==="RESERVED")entry.state="NOT_ADMITTED";},
+    matches,
+    certify(request:R,tokens:readonly unknown[],audits:readonly unknown[]){const entry=entries.get(request);if(!entry||!matches(request,tokens,audits))return false;entry.committed=true;return true;},
+    frontend(request:R,state:"SUCCESS"|"TERMINAL_FAILURE"){const entry=entries.get(request);if(entry&&entry.frontend!=="TERMINAL_FAILURE")entry.frontend=state;},
+    frontendState(request:R){return entries.get(request)?.frontend??"UNKNOWN";},
+    own<T>(promise:Promise<T>):Promise<T>{work.add(promise);void promise.then(()=>work.delete(promise),()=>{invalid=true;work.delete(promise);});return promise;},
+    close(){closed=true;return [...work];},
+    ready(){return installed&&closed&&!invalid&&work.size===0&&[...entries.values()].every(e=>e.state==="NOT_ADMITTED"||(e.state==="DISPATCHED"&&e.committed));}
+  };
+}
 export const calendarDiagnosticStages = ["fixture-base", "fixture-memberships", "fixture-clients", "seed-tenants", "seed-profiles", "seed-customer", "seed-facility", "seed-job", "seed-work-role", "seed-bookings", "seed-capability", "scenario", "sign-in", "navigation", "warning", "action-request", "action-response", "action-readback", "action-cancelled", "link-capture", "feed-http", "monitoring", "transport-fault", "cleanup-fault-release", "cleanup-lifecycle", "cleanup-fault-dispose", "cleanup-sql", "cleanup-canonical", "cleanup-page", "custody-retained", "unknown"] as const;
 export const calendarDiagnosticCategories = ["assertion", "timeout", "transport", "database", "cancelled", "unverified", "unknown"] as const;
 export const calendarDiagnosticSqlstates = ["23502", "23503", "23505", "23514", "22P02", "42501", "42P01", "42703", "42883", "40001", "40P01", "53300", "57014", "XX000", "CF409"] as const;
@@ -221,14 +263,14 @@ export function createCalendarLifecycleObservations(options: { settlementTimeout
       }).finally(() => pending.delete(entry)), cancel() { controller.abort(); cancelWaiter(request); cancelWaiter(response); } };
       pending.add(entry); return observation;
     },
-    async cancelAndSettle(): Promise<{ errors: Error[]; settled: boolean }> {
+    async cancelAndSettle(protocolWork:readonly Promise<unknown>[]=[]): Promise<{ errors: Error[]; settled: boolean }> {
       // Close BEFORE capturing work. Late poll callbacks cannot launch queries,
       // and an expect.poll timeout never substitutes for actual SQL settlement.
       closing = true;
       const active = [...pending]; for (const entry of active) entry.cancel();
       const work = [...actualWork];
       let timer: ReturnType<typeof setTimeout> | undefined;
-      const settled = await Promise.race([Promise.all([...active.map(entry => entry.settled), ...work]).then(() => true), new Promise<false>(resolve => {
+      const settled = await Promise.race([Promise.all([...active.map(entry => entry.settled), ...work, ...protocolWork]).then(() => true), new Promise<false>(resolve => {
         timer = setTimeout(() => resolve(false), options.settlementTimeoutMs ?? 20_000);
       })]);
       if (timer) clearTimeout(timer);
@@ -427,7 +469,7 @@ export type CalendarBrowserFixture = {
 };
 
 type TokenFact = { id: string; tenant_id: string; membership_id: string; token_hash: string | null;
-  revision: number; attempt_id: string; action: LifecycleAction; revoked_at: string | null;
+  revision: number; expected_revision:number; attempt_id: string; action: LifecycleAction; revoked_at: string | null;
   usage_count: string; last_used_at: string | null; request_count: string; spike_count: string; last_spike_at: string | null };
 type AuditFact = { target_id: string; actor_user_id: string; command: string; metadata: Record<string, unknown> };
 type Attempt = { action: LifecycleAction; revision: number; attemptId: string };
@@ -529,12 +571,39 @@ export async function withCalendarBrowserFixture(
       let subject = subjects.montor;
       const attempts: Attempt[] = [], rawLinks: string[] = [], seedHashes: string[] = [];
       const activeFaults = new Set<ArmedFault>();
-      const observations = createCalendarLifecycleObservations({labels});
-      cleanupAllowed = false; // only the complete final settlement gate may admit deletion
       let transportVerified = true;
+      const observations = createCalendarLifecycleObservations({labels});
+      const management=createCalendarManageAdmission<Request>(),labelsByRequest=new Map<Request,CalendarObservationLabel>();
+      const context=page.context();
+      const terminal=(request:Request,state:"SUCCESS"|"TERMINAL_FAILURE")=>{management.frontend(request,state);calendarLabel(()=>{const label=labelsByRequest.get(request),actual=management.frontendState(request);label?.set("completion",actual==="SUCCESS"?"SETTLED_SUCCESS":"SETTLED_FAILURE");label?.set("completionPhase",actual==="SUCCESS"?"DONE":"UNKNOWN");});};
+      context.on("requestfinished",request=>terminal(request,"SUCCESS"));
+      context.on("requestfailed",request=>terminal(request,"TERMINAL_FAILURE"));
+      const reserve=(request:Request,input:Attempt)=>management.admit(request,{tenantId:ownTenant,membershipId:subject.membership,actorId:subject.user.id,action:input.action,attemptId:input.attemptId,expectedRevision:input.revision,nextRevision:input.revision+1});
+      const forward=async<T>(request:Request,route:Route,send:()=>Promise<T>):Promise<T>=>{
+        if(!management.begin(request)){management.notAdmitted(request);await route.abort("failed");throw calendarBrowserDiagnostic("cleanup-lifecycle",{name:"CalendarUnverified"});}
+        return await send();
+      };
+      // Context-wide, including competing pages. This closed route deliberately
+      // remains until the test-owned context ends; no later dispatch can reopen it.
+      const gate=(route:Route)=>management.own((async()=>{
+        const request=route.request();
+        if(request.method()!=="POST"){await route.fallback();return;}
+        if(management.isClosed()){await route.abort("failed");return;}
+        try{
+          const raw:unknown=JSON.parse(request.postData()??"null"),first=Array.isArray(raw)?raw[0]:undefined;
+          const readOnly=Array.isArray(raw)&&(raw.length===0||(raw.length===1&&(first===null||first==="$undefined"||(typeof first==="string"&&/^[0-9a-f-]{36}$/i.test(first)))));
+          if(readOnly){await route.fallback();return;} // these values cannot pass the actual manage intent validator
+          const input=actionInput(request);
+          if(!request.headers()["next-action"]||!Array.isArray(raw)||raw.length!==1||!input||first===null||typeof first!=="object"||Object.keys(first).sort().join(",")!=="action,attemptId,revision"||!reserve(request,input)){management.refuse();await route.abort("failed");return;}
+          await forward(request,route,()=>route.continue());
+        }catch(error){transportVerified=false;management.refuse();try{await route.abort("failed");}catch{/* no fallback or backend dispatch after refusal */}throw calendarBrowserDiagnostic("cleanup-lifecycle",error);}
+      })());
+      await context.route(url=>url.pathname==="/settings/calendar",gate);
+      management.activate();
+      cleanupAllowed = false; // only the complete final settlement gate may admit deletion
       const requestListener = (request: Request) => { const input = actionInput(request); if (input) attempts.push(input); };
       page.on("request", requestListener);
-      const readTokens = () => observations.trackReadback(() => adminQuery<TokenFact>(`select id,tenant_id,membership_id,token_hash,revision,attempt_id,action,
+      const readTokens = () => observations.trackReadback(() => adminQuery<TokenFact>(`select id,tenant_id,membership_id,token_hash,revision,expected_revision,attempt_id,action,
         revoked_at::text,usage_count::text,last_used_at::text,request_count::text,spike_count::text,last_spike_at::text
         from public.calendar_feed_tokens where tenant_id=any($1::uuid[]) order by tenant_id,membership_id,revision`, [ids]));
       const readAudit = () => observations.trackReadback(() => adminQuery<AuditFact>(`select target_id,actor_user_id,command,metadata from public.audit_events
@@ -561,13 +630,17 @@ export async function withCalendarBrowserFixture(
           onlyHashedCapabilitiesStored: tokens.every(row => row.action === "revoke" ? row.token_hash === null : /^[0-9a-f]{64}$/.test(row.token_hash ?? "")),
           auditContainsCapabilityOrProofOrIpOrKey: secrets.some(value => serialized.includes(value)) || /"(?:token|token_hash|tokenHash|rawUrl|issuedPath|signature|proof|ip|ip_hash|ipHash|secret|key)"\s*:/i.test(serialized) };
       };
-      const committedAttempt = async (input: Attempt, signal?: AbortSignal): Promise<PhysicalSnapshot> => {
+      const committedAttempt = async (input: Attempt, signal: AbortSignal|undefined, request:Request): Promise<PhysicalSnapshot> => {
+        const identity=management.identity(request);
+        if(!identity||identity.action!==input.action||identity.attemptId!==input.attemptId||identity.expectedRevision!==input.revision)throw calendarBrowserDiagnostic("cleanup-lifecycle",{name:"CalendarUnverified"});
+        let proof:readonly[TokenFact[],AuditFact[]]|undefined;
         await expect.poll(() => observations.trackReadback(async () => {
           const [tokens, audits] = await physicalRows(signal);
-          const token = tokens.find(row => row.membership_id === subject.membership && row.attempt_id === input.attemptId && row.action === input.action && row.revision === input.revision + 1);
-          return !!token && audits.filter(audit => audit.target_id === token.id && audit.actor_user_id === subject.user.id && audit.metadata.attemptId === input.attemptId && audit.metadata.revision === token.revision).length === 1;
+          if(!management.matches(request,tokens,audits))return false;
+          proof=[tokens,audits];return true;
         }), { timeout: 15_000, message: "Expected exact calendar lifecycle row and attributable audit commit" }).toBe(true);
-        checkCancellation(signal); const current = await snapshot(); checkCancellation(signal); return current;
+        checkCancellation(signal); const current = await snapshot(); checkCancellation(signal);
+        if(!proof||!management.certify(request,proof[0],proof[1]))throw calendarBrowserDiagnostic("cleanup-lifecycle",{name:"CalendarUnverified"});return current;
       };
       const errors: Error[] = [];
       let stage: CalendarDiagnosticStage = "seed-tenants";
@@ -622,18 +695,9 @@ export async function withCalendarBrowserFixture(
               // bound. Own listeners add cancellation, not a different matcher.
               response: () => calendarEventWaiter<Response>({ subscribe: listener => { sourcePage.on("response", listener); }, unsubscribe: listener => { sourcePage.off("response", listener); }, predicate: response => actionInput(response.request())?.action === action, stage: "action-response", timeoutMs: 30_000,label:state=>label?.set("response",state) }),
               request: () => calendarEventWaiter<Request>({ subscribe: listener => { sourcePage.on("request", listener); }, unsubscribe: listener => { sourcePage.off("request", listener); }, predicate: request => actionInput(request)?.action === action, stage: "action-request", timeoutMs: 30_000,label:state=>label?.set("request",state) }),
-              readback: async (request, signal) => ({ committed: true, snapshot: await committedAttempt(actionInput(request)!, signal) }),
-              completion: async request => {
-                calendarLabel(()=>label?.bindTerminal?.(()=>calendarRequestTerminalAtDrain(sourcePage,request)));
-                calendarLabel(()=>label?.set("completionPhase","RESPONSE"));
-                const response = await request.response();
-                if(response!==null){
-                  calendarLabel(()=>label?.set("completionPhase","FINISHED"));
-                  const complete=await response.finished()===null;
-                  if(complete)calendarLabel(()=>label?.set("completionPhase","DONE"));
-                  return complete;
-                }
-                return false;
+              readback: async (request, signal) => {
+                if(label){labelsByRequest.set(request,label);calendarLabel(()=>{label.bindTerminal?.(()=>calendarRequestTerminalAtDrain(sourcePage,request));const state=management.frontendState(request);label.set("completion",state==="SUCCESS"?"SETTLED_SUCCESS":state==="TERMINAL_FAILURE"?"SETTLED_FAILURE":"UNKNOWN");});}
+                return {committed:true,snapshot:await committedAttempt(actionInput(request)!,signal,request)};
               },
             });
           },
@@ -678,15 +742,16 @@ export async function withCalendarBrowserFixture(
             const reached = deferred<void>(), committed = deferred<PhysicalSnapshot>(), issuedLink = deferred<IssuedLinkHandle>(), release = deferred<void>(), settled = deferred<void>();
             let consumed = false;
             let handlerError: Error | undefined;
-            const handler = async (route: Route) => {
-              const input = actionInput(route.request()); if (!input || consumed) { await route.fallback(); return; } consumed = true;
+            const handler = (route: Route) => management.own((async () => {
+              const request=route.request(),input = actionInput(request); if (!input || consumed) { await route.fallback(); return; } consumed = true;
               try {
+                if(!reserve(request,input)){await route.abort("failed");management.refuse();throw calendarBrowserDiagnostic("cleanup-lifecycle",{name:"CalendarUnverified"});}
                 if (kind === "hold-before-send") {
                   reached.resolve(); await Promise.race([release.promise, new Promise<never>((_, reject) => { const timer = setTimeout(() => reject(new Error("Calendar hold timeout")), 20_000); timer.unref(); })]);
-                  await route.continue();
-                } else if (kind === "fail-before-send") { await route.abort("failed"); reached.resolve(); }
-                else { const response = await route.fetch({ timeout: 15_000 }); if (!response.ok()) throw new Error("Calendar response failed");
-                  const state = await committedAttempt(input);
+                  await forward(request,route,()=>route.continue());
+                } else if (kind === "fail-before-send") { await route.abort("failed");management.notAdmitted(request); reached.resolve(); }
+                else { const response = await forward(request,route,()=>route.fetch({ timeout: 15_000 })); if (!response.ok()) throw new Error("Calendar response failed");
+                  const state = await committedAttempt(input,undefined,request);
                   if (kind === "hold-committed-response") {
                     // Inspect only the actual Next action bytes, never construct a
                     // success response. Match the returned path to this exact SQL
@@ -708,7 +773,7 @@ export async function withCalendarBrowserFixture(
                 try { await route.abort("failed"); } catch (abortError) { handlerError = calendarFailures([handlerError, calendarBrowserDiagnostic("transport-fault", abortError)]); }
               }
               finally { settled.resolve(); }
-            };
+            })());
             await page.route("**/settings/calendar", handler);
             const fault: ArmedFault = { reached: reached.promise, committed: committed.promise, issuedLink: issuedLink.promise, release: async () => { release.resolve(); }, dispose: async () => {
               release.resolve();
@@ -742,16 +807,17 @@ export async function withCalendarBrowserFixture(
         calendarLabel(()=>labels?.scenario("SETTLED_SUCCESS"));
       } catch (error) {calendarLabel(()=>{if(stage==="scenario")labels?.scenario("SETTLED_FAILURE");labels?.failure();}); errors.push(calendarBrowserDiagnostic(stage, error)); }
       finally {
+        const protocolWork=management.close();
         calendarLabel(()=>labels?.capture("PRE_CLEANUP"));preCleanupCaptured=true;
         let releasesVerified = true;
         try { page.off("request", requestListener); } catch (error) { releasesVerified = false; errors.push(calendarBrowserDiagnostic("cleanup-lifecycle", error)); }
         // Release EVERY gate before cancelling/joining observations or handlers.
         for (const fault of activeFaults) { try { await fault.release(); } catch (error) { releasesVerified = false; errors.push(calendarBrowserDiagnostic("cleanup-fault-release", error)); } }
-        try { const settlement = await observations.cancelAndSettle(); errors.push(...settlement.errors); cleanupAllowed = releasesVerified && settlement.settled && transportVerified; }
+        try { const settlement = await observations.cancelAndSettle(protocolWork); errors.push(...settlement.errors); cleanupAllowed = releasesVerified && settlement.settled && transportVerified && management.ready(); }
         catch (error) { cleanupAllowed = false; errors.push(calendarBrowserDiagnostic("cleanup-lifecycle", error)); }
         calendarLabel(()=>labels?.sampleAtDrain());
         for (const fault of activeFaults) { try { await fault.dispose(); } catch (error) { cleanupAllowed = false; errors.push(calendarBrowserDiagnostic("cleanup-fault-dispose", error)); } }
-        cleanupAllowed &&= transportVerified;
+        cleanupAllowed &&= transportVerified && management.ready();
         if (!cleanupAllowed) errors.push(calendarBrowserDiagnostic("custody-retained", { name: "CalendarUnverified" }));
         if (cleanupAllowed) try {
           await adminSession(async ({ query }) => {
