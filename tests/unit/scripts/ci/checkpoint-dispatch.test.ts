@@ -201,10 +201,19 @@ test("native workflow admission executes exact source binding and preserves PR/p
   assert.ok(block, "extract the checked-in admission block, not a duplicate implementation");
   const script = block[1].split(/\r?\n/).map((line) => line.slice(10)).join("\n");
   const base = { GITHUB_EVENT_NAME: "workflow_dispatch", EXPECTED_SHA: sha, GITHUB_SHA: sha,
-    CAUSE_PROOF: "false", RELEASE_VALIDATION: "false", OTHER_DIAGNOSTICS: "false",
+    ORIGINAL_INT009: "0", CAUSE_PROOF: "false", RELEASE_VALIDATION: "false", OTHER_DIAGNOSTICS: "false",
     CHECKPOINT_ID: "12345678-1234-4123-8123-123456789abc", GITHUB_RUN_ATTEMPT: "1", GITHUB_REF_TYPE: "branch" };
   const cases: [string, Record<string, string>, boolean][] = [
     ["valid dispatch", {}, true],
+    ["valid original INT009", { ORIGINAL_INT009: "true", GITHUB_REPOSITORY: "rthunborg/Kopplas", GITHUB_ACTOR: "rthunborg", GITHUB_TRIGGERING_ACTOR: "rthunborg", GITHUB_REF: "refs/heads/codex/epic-15-int009-debug" }, true],
+    ["original INT009 wrong repository", { ORIGINAL_INT009: "true", GITHUB_REPOSITORY: "other/Kopplas", GITHUB_ACTOR: "rthunborg", GITHUB_TRIGGERING_ACTOR: "rthunborg", GITHUB_REF: "refs/heads/codex/epic-15-int009-debug" }, false],
+    ["original INT009 wrong actor", { ORIGINAL_INT009: "true", GITHUB_REPOSITORY: "rthunborg/Kopplas", GITHUB_ACTOR: "other", GITHUB_TRIGGERING_ACTOR: "rthunborg", GITHUB_REF: "refs/heads/codex/epic-15-int009-debug" }, false],
+    ["original INT009 wrong triggering actor", { ORIGINAL_INT009: "true", GITHUB_REPOSITORY: "rthunborg/Kopplas", GITHUB_ACTOR: "rthunborg", GITHUB_TRIGGERING_ACTOR: "other", GITHUB_REF: "refs/heads/codex/epic-15-int009-debug" }, false],
+    ["original INT009 wrong ref", { ORIGINAL_INT009: "true", GITHUB_REPOSITORY: "rthunborg/Kopplas", GITHUB_ACTOR: "rthunborg", GITHUB_TRIGGERING_ACTOR: "rthunborg", GITHUB_REF: "refs/heads/main" }, false],
+    ["original INT009 cause proof conflict", { ORIGINAL_INT009: "true", GITHUB_REPOSITORY: "rthunborg/Kopplas", GITHUB_ACTOR: "rthunborg", GITHUB_TRIGGERING_ACTOR: "rthunborg", GITHUB_REF: "refs/heads/codex/epic-15-int009-debug", CAUSE_PROOF: "true" }, false],
+    ["original INT009 release conflict", { ORIGINAL_INT009: "true", GITHUB_REPOSITORY: "rthunborg/Kopplas", GITHUB_ACTOR: "rthunborg", GITHUB_TRIGGERING_ACTOR: "rthunborg", GITHUB_REF: "refs/heads/codex/epic-15-int009-debug", RELEASE_VALIDATION: "true" }, false],
+    ["original INT009 other probe conflict", { ORIGINAL_INT009: "true", GITHUB_REPOSITORY: "rthunborg/Kopplas", GITHUB_ACTOR: "rthunborg", GITHUB_TRIGGERING_ACTOR: "rthunborg", GITHUB_REF: "refs/heads/codex/epic-15-int009-debug", OTHER_DIAGNOSTICS: "true" }, false],
+    ["original INT009 PR refused", { ORIGINAL_INT009: "true", GITHUB_REPOSITORY: "rthunborg/Kopplas", GITHUB_ACTOR: "rthunborg", GITHUB_TRIGGERING_ACTOR: "rthunborg", GITHUB_REF: "refs/heads/codex/epic-15-int009-debug", GITHUB_EVENT_NAME: "pull_request" }, false],
     ["valid diagnostic", { CAUSE_PROOF: "true" }, true],
     ["diagnostic release conflict", { CAUSE_PROOF: "true", RELEASE_VALIDATION: "true" }, false],
     ["diagnostic other probe conflict", { CAUSE_PROOF: "true", OTHER_DIAGNOSTICS: "true" }, false],
@@ -261,7 +270,12 @@ test("diagnostic availability or mode conflicts refuse before POST and cannot fa
   assert.deepEqual(parseArgs(["dispatch","--cause-proof","true"]).options,{cause_proof:"true"});
   assert.throws(()=>parseArgs(["dispatch","--cause-proof","true","--cause-proof","false"]));
   assert.throws(()=>parseArgs(["status","--cause-proof","true"]));
-  assert.throws(()=>assertCauseProofWorkflow(readFileSync(".github/workflows/ci.yml","utf8").replace("default: false","default: true")));
+  const availabilityWorkflow = readFileSync(".github/workflows/ci.yml", "utf8");
+  const causeProofInputs = [...availabilityWorkflow.matchAll(/^      calendar_feed_cause_proof:\r?\n(?:        [^\r\n]*\r?\n)+/gm)];
+  assert.equal(causeProofInputs.length, 1, "mutate exactly the named cause-proof input");
+  const causeProofInput = causeProofInputs[0][0];
+  assert.equal((causeProofInput.match(/default: false/g) ?? []).length, 1);
+  assert.throws(() => assertCauseProofWorkflow(availabilityWorkflow.replace(causeProofInput, causeProofInput.replace("default: false", "default: true"))));
 });
 test("diagnostic uncertain dispatch and wrong-mode title never select or resend normal work",()=>withFixture(f=>{
   f.failDispatch(); assert.throws(()=>checkpoint("dispatch",{...request,state:f.state,cause_proof:"true"},f.dependencies),/uncertain/);
@@ -299,7 +313,8 @@ test("default recognizer refuses comments strings block scalars nested duplicate
 });
 test("candidate diagnostic capability cannot be replaced by default presence and object/ref checks still precede POST",()=>{
   const current=readFileSync(".github/workflows/ci.yml","utf8");
-  for(const source of [current.replace("calendar_feed_cause_proof:","other_input:"),current.replace("checkpoint:cause-proof:{0}:{1}","checkpoint:other:{0}:{1}"),current.replace('test "$RELEASE_VALIDATION" = false','test "$RELEASE_VALIDATION" = true'),current.replace("node scripts/ci/with-calendar-feed-runtime.mjs cause-proof","pnpm run test:int")]){
+  assert.equal((current.match(/test "\$RELEASE_VALIDATION" = false/g) ?? []).length, 2, "both fixed release guards are present before the global-absence inverse");
+  for(const source of [current.replace("calendar_feed_cause_proof:","other_input:"),current.replace("checkpoint:cause-proof:{0}:{1}","checkpoint:other:{0}:{1}"),current.replaceAll('test "$RELEASE_VALIDATION" = false','test "$RELEASE_VALIDATION" = true'),current.replace("node scripts/ci/with-calendar-feed-runtime.mjs cause-proof","pnpm run test:int")]){
     assert.throws(()=>assertCauseProofWorkflow(source));withFixture(f=>{const old=f.dependencies.api;f.dependencies.api=(method,endpoint,body)=>{const reply=old(method,endpoint,body);if(endpoint.includes("/contents/")&&!endpoint.endsWith("ref=main")){const bytes=Buffer.from(source);return{encoding:"base64",content:bytes.toString("base64"),sha:createHash("sha1").update(`blob ${bytes.length}\0`).update(bytes).digest("hex")};}return reply;};assert.throws(()=>checkpoint("dispatch",{...request,state:f.state,cause_proof:"true"},f.dependencies));assert.equal(mutations(f).length,0);});
   }
   for(const change of ["blob","disabled","path"]){withFixture(f=>{const old=f.dependencies.api;f.dependencies.api=(method,endpoint,body)=>{const reply=old(method,endpoint,body);if(change==="blob"&&endpoint.endsWith("ref=main"))return{...(reply as object),sha:"b".repeat(40)};if(endpoint.endsWith("/workflows/ci.yml"))return{...(reply as object),...(change==="disabled"?{state:"disabled_manually"}:change==="path"?{path:"other.yml"}:{})};return reply;};assert.throws(()=>checkpoint("dispatch",{...request,state:f.state,cause_proof:"true"},f.dependencies));assert.equal(mutations(f).length,0);});}
