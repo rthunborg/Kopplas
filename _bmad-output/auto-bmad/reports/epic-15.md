@@ -6935,3 +6935,34 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Qualify a fresh provider containment read and publish the two reviewed checkpoint branches under a finite effects allocation, then dispatch exactly one existing original-E2E001 diagnostic at687b1af9 with fresh UUID. No full NORMAL, fix or custody waiver follows from source PASS. Qualify actual deadline facts independently before the next correction.
+
+## Report — 2026-10-22T10:47:17Z (checkpoint — completion mismatch localized; scoped commit contract conditionally validated)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `09df64e`).
+**Pipeline status:** P5 remains open. Independent High qualification localized all three manage completion records at Response.finished and identified the SDK completion-oracle mismatch. A separate source assessment and independent plan validation confirm the exact token/audit transaction COMMIT certificate, subject to mandatory effective dispatch fencing, per-Request accounting and preserved failure/unknown custody. Only a bounded helper/unit/Spec source correction is allocated; no implementation, backend cleanup, key deletion or functional acceptance is claimed. Both diagnostic artifact reads are closed; all 35 missing mandatory DB cases remain required.
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 309h 49m (≈77h 24m AI-run, ≈232h 24m human/idle wait); resumed 210×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Implement the bounded MAIN three-file completion/certificate correction only under the completed conditional source allocation and all PLAN-A1..A5 requirements. Demonstrate an effective managed-dispatch admission fence and per-Request ledger, exact same-operation COMMIT certificate, distinct frontend failure/unknown and preserved other-work/custody gates. Then independently review the committed actual fix before separately admitted functional verification. No further generic diagnostic run is needed.

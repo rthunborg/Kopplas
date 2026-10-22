@@ -1,0 +1,212 @@
+{
+  "schema": "kopplas.resumed-deadline-E2E001-backend-contract-assessment.v1",
+  "outcome": "CAUSE_BACKED_FRONTEND_ORACLE_MISMATCH;EXACT_COMMITTED_TRANSACTION_CERTIFICATE_CAN_BE_SEPARATED_FROM_WIRE_FINISH",
+  "authority": "READONLY source assessment only; no implementation/code approval or runtime authority",
+  "current_main_HEAD": "09df64ee72892fc543f4bdaf75ebfa69790891fe",
+  "diagnostic_head": "687b1af9e4dfbe0560ee63fc46e31f42b5c5aae1",
+  "retained_packet": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-deadline-E2E001-terminal-acquisition/manifest.json",
+      "bytes": 2605,
+      "sha256": "ea30bb5fcc93f7c34eac8ad88ab5e84fdcff8aba982cd706eaac8b8e5183cb1d"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-deadline-E2E001-terminal-acquisition/diagnostic-projection.json",
+      "bytes": 3571,
+      "sha256": "efc518da1ad34159e169528b00237688984153626ef61805e692b2aa21626db2"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-deadline-E2E001-terminal-acquisition/execution-receipt.json",
+      "bytes": 5498,
+      "sha256": "e90a526dbea14bf6f6c0975e5f3af2fb2c2f81a7a4c08addc9da07f412925a09"
+    }
+  ],
+  "SDK_assessment_reused": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/resumed-original-E2E001-completion-contract-assessment.json",
+    "bytes": 10787,
+    "sha256": "4aec55ee89a23e3f11300bc10c70b5da73cf732218250b8924528944c15c5012"
+  },
+  "source_bindings": [
+    {
+      "path": "tests/e2e/support/calendar-feed-atdd.ts",
+      "bytes": 64967,
+      "sha256": "ab6365672c89f129a8cc3e712a2456faa5d4dcfbb9f2999e0dd77d92440d4c91",
+      "canonical_LF_sha256": "3dcd074ef6db34506789cc706309a5e18399df083148559369ce4867f42ece49",
+      "HEAD_blob": "229ca291847f6df0656a55dc64557ae0f6d546d9"
+    },
+    {
+      "path": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "bytes": 28770,
+      "sha256": "1dbc33c3f74ebd873d91316235eef14743d161c4cee358ad945409eb6b1b8cbb",
+      "canonical_LF_sha256": "1dbc33c3f74ebd873d91316235eef14743d161c4cee358ad945409eb6b1b8cbb",
+      "HEAD_blob": "a45830d01fb4aee221f7df6a327138a1b0a6539a"
+    },
+    {
+      "path": "src/features/calendar-feed/actions.ts",
+      "bytes": 801,
+      "sha256": "07693f8404a5db358b2656600eae263b86e53cf27711e3a57d641a992a118fbd",
+      "canonical_LF_sha256": "07693f8404a5db358b2656600eae263b86e53cf27711e3a57d641a992a118fbd",
+      "HEAD_blob": "210f2903ed6fbf8ab6d9d408864284c3ef9498b5"
+    },
+    {
+      "path": "src/server/commands/calendar-feed/manage-calendar-feed.ts",
+      "bytes": 4856,
+      "sha256": "066f55528f5cb316118d5511eb2ea2a1bdafd1cbfefa98ddbc4d76eda1509b81",
+      "canonical_LF_sha256": "066f55528f5cb316118d5511eb2ea2a1bdafd1cbfefa98ddbc4d76eda1509b81",
+      "HEAD_blob": "b21159803ea8e875b83df953a3ffdbb53dccf0be"
+    },
+    {
+      "path": "src/server/commands/calendar-feed/calendar-feed-db.ts",
+      "bytes": 4729,
+      "sha256": "e2c726b7fc90e31407838d672e6683ea02adb94b9951a02da937022ab964af6b",
+      "canonical_LF_sha256": "e2c726b7fc90e31407838d672e6683ea02adb94b9951a02da937022ab964af6b",
+      "HEAD_blob": "c21b8c5e897d2b81be994312ba0074475e98c6fa"
+    },
+    {
+      "path": "src/server/commands/envelope-core.ts",
+      "bytes": 13105,
+      "sha256": "69d822bb141ec4c7573dfbe32210bc8378d6ee6a4b9d17313c48abd3e126c159",
+      "canonical_LF_sha256": "012e4a95fd15d632dbc9fbe1c305b43eba9355bc6f7454f96fca44fd243aa9cb",
+      "HEAD_blob": "9b98471f135af00d0af5c099e6b6ed4ddbc59e92"
+    },
+    {
+      "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+      "bytes": 24435,
+      "sha256": "b57e6a1726cfac545de1cd141e26f56e6bebb4a535d1cd7f706e4a1ad3e05555",
+      "canonical_LF_sha256": "b57e6a1726cfac545de1cd141e26f56e6bebb4a535d1cd7f706e4a1ad3e05555",
+      "HEAD_blob": "c5d6d53faab649b40dee5c12f7933030224fa4ab"
+    },
+    {
+      "path": "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",
+      "bytes": 32551,
+      "sha256": "73b347ce62d4e936055e6de7f1054e9d1003a7550a738aa433261f7631150567",
+      "canonical_LF_sha256": "73b347ce62d4e936055e6de7f1054e9d1003a7550a738aa433261f7631150567",
+      "HEAD_blob": "da1270c7238db113f0cd2485581a635a66981a65"
+    }
+  ],
+  "actual_projection_limits": {
+    "run": 39762193452,
+    "status": "failed",
+    "owners": [
+      "create",
+      "rotate",
+      "revoke"
+    ],
+    "each": "request matched; observation fulfilled; native completion not observed settled at RESPONSE_FINISHED deadline",
+    "active_entries": 3,
+    "tracked_readbacks": 0,
+    "linkage_unknown": false,
+    "overflow": false,
+    "rotate_code": "net::ERR_ABORTED",
+    "interpretation": "Bookkeeping, not Promise internal state or backend settlement. Independent actual qualification was still active at assignment; source assessment does not claim its final approval.",
+    "primary_errors": "Four class/frame projections unavailable; no original failure or initiator invented",
+    "wrapper_key_backend": "UNKNOWN"
+  },
+  "enforced_backend_chain": [
+    {
+      "path": "src/features/calendar-feed/actions.ts",
+      "lines": "7-9",
+      "fact": "Cookie-bound ordinary server client invokes manageCalendarFeed once and awaits it. Catch maps unavailable; this mapping alone is not proof a timed-out RPC stopped."
+    },
+    {
+      "path": "src/server/commands/calendar-feed/manage-calendar-feed.ts",
+      "lines": "10-36;43-52",
+      "fact": "validate/envelope auth-context precede read-status, proof and one manage RPC. auditable:false. After successful manage RPC, only pure issuedPath/result construction remains: no further fixture DB write, queue or detached task in this execute path. Reconciliation of an already committed same attempt returns without another write."
+    },
+    {
+      "path": "src/server/commands/calendar-feed/calendar-feed-db.ts",
+      "lines": "41-54",
+      "fact": "Exactly one awaited manage_calendar_feed RPC; typed committed/replayed revision accepted after response validation. A local transport rejection/error does not establish rollback."
+    },
+    {
+      "path": "src/server/commands/envelope-core.ts",
+      "lines": "255-304",
+      "fact": "Core awaits execute; the later audit branch is skipped for this auditable:false command. It then returns ok. Thus no envelope audit write follows the manage transaction."
+    },
+    {
+      "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+      "lines": "162-193;36-51",
+      "fact": "Checked ordinary JWT actor/proof and active subject; tenant transaction advisory lock; exact prior-attempt conflict/replay guard; expected revision and action guards. Same transaction revokes prior generation, inserts unique next-revision/attempt row and attributable audit, then RETURN. No autonomous/background follow-up. Unique tenant/membership/revision and tenant/membership/attempt prevent a second successful same-attempt write."
+    },
+    {
+      "path": "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",
+      "lines": "326-349",
+      "fact": "Forward migration replaces only exact auth.uid calls with invoker adapter while preserving original manage function body otherwise, signatures/metadata/ACL. It does not add a post-commit write."
+    },
+    {
+      "path": "tests/e2e/support/calendar-feed-atdd.ts",
+      "lines": "537-570",
+      "fact": "Existing independent readback requires subject membership + exact attemptId + action + expected revision+1 token and exactly one audit for that token, subject actor, attempt and revision. Both rows must be visible from independent sessions; PostgreSQL visibility therefore proves that writer transaction committed. Queries are actually tracked/joined. Two reads need not be the same snapshot to establish this particular new committed attempt; immutable identity/uniqueness/atomic audit are essential."
+    },
+    {
+      "path": "src/components/calendar-feed/CalendarSubscription.tsx",
+      "lines": "20-40;43-54",
+      "fact": "Existing caller invokes one mutation, then refreshes settings read-only; retry is explicit and uses the same attempt. This source fact is not an admission fence for arbitrary extra/unobserved requests."
+    }
+  ],
+  "terminal_contract": {
+    "COMMITTED": "Exact same-operation token+audit commit certificate plus unchanged source chain proves this particular manage transaction finished its fixture writes. It is distinct from native HTTP finished success. Source-proven absence of later fixture writes is required, not merely a generic successful readback.",
+    "TERMINAL_FAILURE": "An actual authoritative backend rejection/rollback result with its full operation settled may be terminal failure; RequestFailed/ERR_ABORTED, a local unavailable mapping, missing rows or JavaScript rejection are not such proof. Current transport-uncertain/uncommitted attempts remain UNKNOWN, not assumed rolled back.",
+    "UNKNOWN": "No exact attributable commit certificate, mismatched action/request/attempt/revision, unobserved extra request, pending readback/fault/body work, cancellation without server outcome, or uncertain cleanup => retain custody and propagate failure.",
+    "scope_limit": "A commit certificate for one manage call does not settle another call, anonymous fetch counters, fault-route handlers, auth/setup, late operations, global key consumers or other fixtures. Replay guards are not permission to leave an unowned delayed replay active while deleting its history."
+  },
+  "consequential_source_assessment": {
+    "finding": "The current harness treats successful Response.finished as backend settlement authority even though SDK RequestFailed can leave that client promise pending after the exact write has committed. The observed all-three completion wait gap/readbacks0 is consistent with this wrong oracle and the same-rotate failure is now linked; abort initiator remains unproved and is not needed to separate the contracts.",
+    "correction_justified_in_principle": true,
+    "not_a_fix_approval": "Implementation must prove exact per-owner committed transaction certificates and all other required work/late admission gates; it cannot globally replace native completion with any readback or classify abort as successful finish."
+  },
+  "smallest_proposed_correction": {
+    "paths": [
+      "tests/e2e/support/calendar-feed-atdd.ts",
+      "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"
+    ],
+    "production_SQL_changes_required": false,
+    "backend_oracle": "Reuse the existing exact committedAttempt tuple+audit result and same matched Request input; explicitly bind the per-owner terminal-commit certificate to tenant/subject/attempt/action/revision and reject gaps/extra requests. No extra RPC/query is inherently needed for this committed path.",
+    "frontend_oracle": "Stop constructing/using Response.finished as the mandatory manage-transaction settlement oracle. Keep frontend response/failed/unknown outcomes separate, never call an aborted response a native finished success. Do not create then abandon a pending finished promise; any actually started owned continuation must still be contained/joined according to its effects.",
+    "all_owned_guards_stay": [
+      "close future readback/operation admission before drain",
+      "all observations and actual SQL/readbacks joined; no poll-deadline substitution",
+      "every owned request/attempt accounted for; extra/unmatched/late/uncertain remains UNKNOWN",
+      "all gates released and actual fault handlers/disposals and HTTP/body work settled",
+      "transport uncertainty unrelated to the certified mutation remains fail-closed",
+      "full original scenario assertions and original functional/SQL/cleanup errors preserve identity/cause/precedence",
+      "canonical SQL/Auth deletion only after all required backend/other-work proof; preserve exact row scope and cleanup error aggregation"
+    ],
+    "negative_case": "A terminal frontend failure without backend commit/rejection certificate must still fail and retain custody. Known request failure may terminate frontend bookkeeping but cannot certify backend rollback.",
+    "Spec_note": "State the new managed-write terminal commit certificate and its source dependencies, distinguish wire-finish/failure/unknown, preserve noncommitted/other-work custody, record affected controls + native-unexecuted limits and required independent High review. No assertion relaxation, enum-diagnostic family, full retry or acceptance claim.",
+    "risk": "This is narrowly about the checked manage transaction; anonymous fetch/fault paths and unsupported callers cannot inherit the proof. Any required new admission capability outside these paths must stop for exact allocation."
+  },
+  "key_and_cleanup_contract": {
+    "existing_fixture": "helper745-755 joins/release/disposal gates;791-801 conditionally deletes or retains base; failed/unknown remains custody.",
+    "global_key": "Fixture commit certificates do not authorize Vault/key deletion. Existing wrapper still requires its separately owned server/test processes, output/EOF, DB/session and exact cleanup proofs; failed diagnostic Stop-stack/end-job alone is insufficient. No wrapper/source allocation proposed here.",
+    "remaining_runtime": "Exact backend/cleanup/key state from failed39762193452 is not retrospectively qualified by this static contract."
+  },
+  "actual_read_only_commands": [
+    "Python exact retained manifest/receipt/projection read and SHA qualification; initial projection.json filename absent, corrected only to exact execution-receipt diagnostic-projection.json reference",
+    "bounded rg/UTF8 source reads of helper actionInput/readback/ownership, server action/command/envelope and original manage SQL/forward adapter",
+    "read-only Git HEAD/blob identity plus SHA binding; no tests/imported app/operator/query/GET/runtime"
+  ],
+  "canonical6": {
+    "Outcome": "Cause-backed narrow oracle correction proposed; no implementation or retrospective backend/key settlement claim.",
+    "Files changed": [
+      "This assessment JSON only."
+    ],
+    "Status": "Source chains and packet bound; tests0/runtime0/SQL0/API0/Git mutations0; assessment not code review.",
+    "Open questions": [
+      "Implementation must explicitly account for all owned requests and late admission before cleanup; unsupported/uncertified failures remain UNKNOWN.",
+      "Exact retained key deletion/backend cleanup remains unqualified."
+    ],
+    "Deferred work": [
+      "Root exact helper/unit/Spec allocation and independent targeted High review, meaningful success/failure/unknown custody controls, then separately admitted required native gates."
+    ],
+    "Blockers": [
+      "No code approval yet; no waiver of uncommitted backend uncertainty or global-key custody;35 mandatory cases remain uncredited."
+    ]
+  },
+  "normal_acceptance": 0,
+  "development_complete": false,
+  "release_ready": false,
+  "broad_review_counter": 3,
+  "only_write": "_bmad-output/auto-bmad/preparation/story-15-5/resumed-deadline-E2E001-backend-contract-assessment.json"
+}
