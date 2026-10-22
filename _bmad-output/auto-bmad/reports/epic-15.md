@@ -7462,3 +7462,34 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** ExclusiveRootGET-onlyactivation/newnamespace init thenobserveaccepteddispatch withinoriginalremainingbudgets; no provider/push/POST. Actualnewterminal onlythen separateboundedartifactacquisition. Full95/P5delivery/P6automate/P7helper/15.6/E8 remain.
+
+## Report — 2026-10-22T15:40:06Z (working)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `724b105`).
+**Pipeline status:** Story15.5 P5 OPEN; actualcorrectedcase39804170137 terminalverifyP/DBF andRootSTOPPED; boundedconsumerpreparationonly
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 314h 42m (≈77h 24m AI-run, ≈237h 17m human/idle wait); resumed 227×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Prepareactualschema-bound fixedINT009 native reader fromcurrentproducer; independentHighsourcevalidation, completedfinite1listing+1uniqueZIPgrant, thenactualacquisition+independentnativeevidencequalification. No rawlogs/fallback/refetch. Cause-backedpatchonlyafterqualifiedfacts.
