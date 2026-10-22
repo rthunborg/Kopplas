@@ -7555,3 +7555,34 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Completed exact3 sourceallocation: Highread-onlyserialization assessment, minimalrepair only if mechanicallyproven; distinct targetedHighreview before any checkpoint.
+
+## Report — 2026-10-22T16:19:36Z (working)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `0ed3710`).
+**Pipeline status:** 15.5 P5 OPEN. Canonicalcatalog fix0ed37109 independently PASS_INT009_CANONICAL_CATALOG_SOURCE_ONLY/findings[]. Exact3 inverses/unchanged strictguard verified; author18focusedP/TS/lint/diff/reader0, SRO216/kernel5760/counter3 preserved. No nativecredit.
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 315h 21m (≈77h 24m AI-run, ≈237h 57m human/idle wait); resumed 230×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Prepare inert minimal fresh NORMAL operationaldelta and review; full95still68P1F26zero/custodyUNKNOWN. No deployment.

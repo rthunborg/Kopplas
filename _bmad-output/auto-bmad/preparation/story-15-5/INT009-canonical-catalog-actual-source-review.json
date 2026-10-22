@@ -1,0 +1,351 @@
+{
+  "schema": "INDEPENDENT_INT009_CANONICAL_CATALOG_ACTUAL_SOURCE_REVIEW_V1",
+  "outcome": "PASS_INT009_CANONICAL_CATALOG_SOURCE_ONLY",
+  "status": "PASS",
+  "independent": true,
+  "findings": [],
+  "reviewer": {
+    "role": "Independent targeted latest-fix source/transaction/privacy reviewer; distinct from implementation author",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "recorded_route": "8493b8",
+    "policy_version": "2026-10-19",
+    "review_scope": "Exact three committed paths and bounded PostgreSQL representation contract. Not a fourth broad story round."
+  },
+  "source": {
+    "worktree": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas",
+    "commit": "0ed3710929ea09afae49ef7b8d3266975331e827",
+    "parent": "993645621d3d79ff61ad615e8b0f038d71c4eeea",
+    "exact_bindings": [
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "bytes": 139473,
+        "sha256": "e155639d17a0b5a6528ee0385ba044c5bd5cad436aabd9c9f418076035ae74c8",
+        "lf_bytes": 138084,
+        "lf_sha256": "4d31d7b408d0ad65d4c2f0f478fe5582e632be22983b73eceaabb96521ba819f",
+        "prospective_clean_oid": "e4b057ae2d5c3add5653c77b93f28e006c470a37",
+        "base_blob": "b2217ebb023207097b688c4c78c037643b239cbf",
+        "base_lf_sha256": "c8ca8e4e7bec96bb7cb602c3eaba0de09f43db338b1f4d2d07d97edfd6547202"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "bytes": 317395,
+        "sha256": "84edc9711ebf6e61d23b8cbcf1050a24475c5243fe316f16177a5c7d9ca754c0",
+        "lf_bytes": 314474,
+        "lf_sha256": "41f8af777904b8e1309a273f930187b94898ef8ee7eb9ddb96936b4be2ead3e6",
+        "prospective_clean_oid": "5c9c267c08de115649dbb7589b1005212a3d6a43",
+        "base_blob": "d9306e4681f00728a52d3002a07537cf65181449",
+        "base_lf_sha256": "f53a3b48f08afca40bef68ae015c8ef9eb436c957594051c7bcb303851795cd2"
+      },
+      {
+        "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+        "bytes": 255365,
+        "sha256": "e8501488121a75a9c4ab2461f28b649f3390d0de150c536330e870d1e891e178",
+        "lf_bytes": 252287,
+        "lf_sha256": "90b0d5f4ba44c46a4de8228b4fae210cffaa4ad58a3d5858d5213b99438051f2",
+        "prospective_clean_oid": "f12ec516d3745cbfc79195a8dad20bcd75a75a91",
+        "base_blob": "58736c8bcde2288ee74dc18c1eb90c3e6b2ae5ed",
+        "base_lf_sha256": "c65732db79630d7793d3c6fdc0333c54fc267f2b83b305f083b57d7b839c8898"
+      }
+    ],
+    "Git_provenance": "Root4629be exact3 committed identity proof; reviewer current raw/LF/computed clean blobs independently match. No reviewer Git commands."
+  },
+  "evidence_refs": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-root-commit-proof.json",
+      "bytes": 1351,
+      "sha256": "4d962f44fb84909d3b74f7e7aa6830dafe897c7e06ef5828b055049fdbbd20f8"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-author-result.json",
+      "bytes": 9794,
+      "sha256": "2fc8743501bff8dd530d2f4d1693aa31d9c8144b118de0c6e7adae43863ff5e3"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-source-analysis.json",
+      "bytes": 6775,
+      "sha256": "c91c0d5508c11fe479d952300589e27737e6db520d802d71313abe244603edcf"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-exact3-committed.diff",
+      "bytes": 14004,
+      "sha256": "8fa25825cdec747536de464a0e41cf535c2363d717d189365df774074a83cb7d"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-INT009-canonical-catalog-three-path-source-allocation.json",
+      "bytes": 2412,
+      "sha256": "88845618b679e4d224cf46619310b66e3ccda2e503cd8d39b5afd402e10146b4"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/root-INT009-canonical-catalog-three-path-source-admission.json",
+      "bytes": 2454,
+      "sha256": "300222e882731186f7d1ea6ed1a056a00564d636646ee1cf7cde9b499644d992"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/retry-INT009-terminal-actual-native-qualification.json",
+      "bytes": 28111,
+      "sha256": "82e73b0c9ebf293aa40c59646ace2a3949bd2819e641ef379ea1c7709e194279"
+    }
+  ],
+  "qualification_reused": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/retry-INT009-terminal-actual-native-qualification.json",
+    "bytes": 28111,
+    "sha256": "82e73b0c9ebf293aa40c59646ace2a3949bd2819e641ef379ea1c7709e194279",
+    "fact": "Actual39804170137 source3bb fixed diagnostic0P1F once; PRIMARY CAPTURE/PRE_CATALOG/FIELD:proargtypes. Actual received value/type, native firstthrow/body reach/backend/key custody remain UNKNOWN. No native packet re-extraction or additional read performed."
+  },
+  "primary_engine_contract_assessment": {
+    "evidence": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-source-analysis.json",
+      "bytes": 6775,
+      "sha256": "c91c0d5508c11fe479d952300589e27737e6db520d802d71313abe244603edcf"
+    },
+    "provenance": "Reused completed parent/author official PostgreSQL17 primary-source reading recorded before edits. Reviewer checked the bounded recorded chain against the actual helper/query/guard. No fresh network read, cached full upstream source hash, immutable upstream commit or local PG runtime is claimed. REL_17_STABLE URLs identify branch provenance as read.",
+    "chain": [
+      {
+        "url": "https://raw.githubusercontent.com/postgres/postgres/REL_17_STABLE/src/include/catalog/pg_proc.h",
+        "lines": [
+          88,
+          89
+        ],
+        "fact": "proargtypes is oidvector"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/postgres/postgres/REL_17_STABLE/src/include/catalog/pg_type.dat",
+        "lines": [
+          101,
+          106
+        ],
+        "fact": "oidvector type30 has oid element and array_subscript_handler"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/postgres/postgres/REL_17_STABLE/src/include/catalog/pg_type.h",
+        "lines": [
+          304,
+          307
+        ],
+        "fact": "IsTrueArrayType predicate"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/postgres/postgres/REL_17_STABLE/src/backend/utils/cache/lsyscache.c",
+        "lines": [
+          2708,
+          2734
+        ],
+        "fact": "get_element_type recognizes true array element"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/postgres/postgres/REL_17_STABLE/src/backend/utils/adt/jsonfuncs.c",
+        "lines": [
+          5611,
+          5705
+        ],
+        "fact": "json_categorize_type chooses JSONTYPE_ARRAY when get_element_type valid; OID elements absent from numeric cases5627-5635"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/postgres/postgres/REL_17_STABLE/src/backend/utils/adt/jsonb.c",
+        "lines": [
+          892,
+          947
+        ],
+        "fact": "composite toJSONB categorizes each field; ARRAY recursively serialized635-636/846-882; OID fallback764-769 emits element strings"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/postgres/postgres/REL_17_STABLE/src/backend/utils/adt/oid.c",
+        "lines": [
+          168,
+          193
+        ],
+        "fact": "oidvectorout emits ordered unsigned OIDs separated by one space"
+      },
+      {
+        "url": "https://www.postgresql.org/docs/17/functions-json.html",
+        "fact": "to_jsonb recursively converts arrays and composites"
+      }
+    ],
+    "conclusion": "Recorded pg_proc.proargtypes is oidvector; its true-array element categorization drives recursive JSONB array serialization, with OID scalar output as strings. The existing exact guard expects one space-separated text string, so its JSON.stringify comparison cannot equal the raw array representation. Native oidvector text output preserves ordered unsigned OIDs separated by one space. This establishes a representation-contract mismatch independently of the omitted received native value.",
+    "actual_fix_semantics": "The only query addition is an explicit text value for proargtypes inside the existing right-hand jsonb_build_object. PostgreSQL JSONB object concatenation supplies that explicit key over the raw composite key; jsonb_build_object keeps the text cast as a JSON string. The same existing SELECT/roundtrip remains. No input or actual engine metadata is replaced with an expected literal; the text still derives from p.proargtypes."
+  },
+  "independent_checks": {
+    "method": "Bounded local UTF8 Python -I -X utf8 -B reads, hashes, source slicing and inverse application; no evaluated/imported project source, SQL, test suites, API, services, resources or Git.",
+    "tools": [
+      "392519",
+      "6569ba",
+      "e6a19c",
+      "a0cad1"
+    ],
+    "complete_committed_inverses": [
+      {
+        "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+        "hunks": 3,
+        "recovered_LF_bytes": 248158,
+        "recovered_LF_sha256": "c65732db79630d7793d3c6fdc0333c54fc267f2b83b305f083b57d7b839c8898",
+        "recovered_base_blob": "58736c8bcde2288ee74dc18c1eb90c3e6b2ae5ed"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "hunks": 1,
+        "recovered_LF_bytes": 138050,
+        "recovered_LF_sha256": "c8ca8e4e7bec96bb7cb602c3eaba0de09f43db338b1f4d2d07d97edfd6547202",
+        "recovered_base_blob": "b2217ebb023207097b688c4c78c037643b239cbf"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "hunks": 1,
+        "recovered_LF_bytes": 310937,
+        "recovered_LF_sha256": "f53a3b48f08afca40bef68ae015c8ef9eb436c957594051c7bcb303851795cd2",
+        "recovered_base_blob": "d9306e4681f00728a52d3002a07537cf65181449"
+      }
+    ],
+    "entire_helper_inverse": {
+      "single_exact_addition": ",'proargtypes',p.proargtypes::text",
+      "occurrences": 1,
+      "removed_addition_recovers_complete_old_raw_sha256": "c3b599846d0c604192f7cb52e7e2851ec63bc9228145a94b581f50b755f0b454",
+      "removed_addition_recovers_complete_old_LF_sha256": "c8ca8e4e7bec96bb7cb602c3eaba0de09f43db338b1f4d2d07d97edfd6547202",
+      "PASS": true
+    },
+    "preedit_query_inverse_sha256": "67687b5b6b0bd34031df3374d1b04f2222a0a34fe2cb9314fae6169d2c430a60",
+    "strict_calendarOwnerFacts_unchanged_sha256": "3cd5094c031027b20f5c61cb0ddceba589ac05fd6fe61872eae3defa7df87085",
+    "kernel": {
+      "bytes": 5760,
+      "sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+      "matches_recovered_preimage": true
+    },
+    "single_SRO": true,
+    "status_in_review": true,
+    "counter3_preserved": true,
+    "frontmatter_oversized_warning": "retained; not confused with author parser parse_warnings[]",
+    "reviewer_test_or_SQL_runs": 0,
+    "reviewer_network_API_resource_effects": 0,
+    "reviewer_Git_commands_mutations": 0,
+    "reviewer_input_edits": 0
+  },
+  "assessments": [
+    {
+      "topic": "Minimal canonicalization and strict signature",
+      "status": "PASS",
+      "locations": [
+        "tests/support/calendar-feed-atdd.ts:749",
+        "tests/support/calendar-feed-atdd.ts:750",
+        "tests/support/calendar-feed-atdd.ts:755"
+      ],
+      "evidence": "Adds exactly one native proargtypes::text projection; unchanged signature comparator requires clock empty string, subject2950 2950 2950 16, fetch25 25 3802 25. Exact four types/order remain authoritative for subject. Missing fields, alternate arrays, malformed/extra/reordered/whitespace-drift values still refuse. No string-or-array fallback or comparator widening."
+    },
+    {
+      "topic": "Authority/metadata/atomic/custody conservation",
+      "status": "PASS",
+      "evidence": "Removing only the addition recovers the entire previous helper byte-for-byte, including the complete strict row/metadata/identity/OID/body/owner/ACL/default/language/schema/SET/inheritance gates and fixed subject identity. Same catalog query is used by capture, pre/post replacement, cleanup requalification and restoration, so their metadata encoding remains consistent. No new query or changed order/role/transaction/commit/rollback/reset/retirement/error-precedence/first-primary capture/custody behavior. No production function, SQL migration or oracle change."
+    },
+    {
+      "topic": "Meaningful two new actual-source controls",
+      "status": "PASS_WITH_EXPLICIT_SYNTHETIC_LIMIT",
+      "locations": [
+        "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2893",
+        "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2904",
+        "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2909"
+      ],
+      "evidence": "First control extracts the actual query and exact complete strict facts source, pins their pre-edit hashes, and requires exactly one addition. Removed/altered cast, authority, CREATE privilege and identity changes must fail the inverse. Second uses the existing actualCalendarOwner VM source seam and actual calendarOwnerFacts for clock/subject/fetch: synthetic raw arrays reject, canonical text accepts, missing/null/extra/reordered/alternate arguments and body/OID/ACL/owner/SET/inheritance/default drift reject. It conserves all old tests by complete file inverse. The vector.join synthetic fixture is not claimed as executed SQL cast or PostgreSQL syntax/engine verification; engine semantics comes from the distinct primary-source chain and actual query pin."
+    },
+    {
+      "topic": "Spec/SRO and evidence truth",
+      "status": "PASS",
+      "evidence": "Only ARR/current evidence, bounded repair rationale and three new review stops change in the Spec. Approved5760 kernel/approved SHA, in-review status, counter3, one Suggested Review Order and historical oversized warning are preserved. Source-proven representation mismatch is distinguished from actual native value/cause; prior browser/179-control/full95 history is not relabelled as current coverage. Author216-stop reader and parse_warnings[] results are attributed, not a new reviewer execution."
+    }
+  ],
+  "author_checks_reused_nonadditively": {
+    "attribution": "Frozen author receipt; reviewer inspected actual test bodies and hashes but did not independently observe author children or rerun unaffected suites.",
+    "checks": [
+      {
+        "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test --test-name-pattern=\"canonical catalog|actual owner|INT009\" tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "exit": 0,
+        "tests": 18,
+        "pass": 18,
+        "fail": 0,
+        "skip": 0,
+        "cancel": 0,
+        "todo": 0,
+        "duration_ms": 1024.6094,
+        "scope": "Current focused source controls; includes 2 new canonical catalog tests. Synthetic catalog shapes and fake Pool only; no PostgreSQL execution or SQL syntax qualification."
+      },
+      {
+        "command": "node node_modules/typescript/bin/tsc --noEmit --incremental false",
+        "exit": 0
+      },
+      {
+        "command": "node node_modules/eslint/bin/eslint.js tests/support/calendar-feed-atdd.ts tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "exit": 0
+      },
+      {
+        "command": "node scripts/verify/check-review-order.mjs _bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+        "exit": 0,
+        "verified_stops": 216,
+        "errors": []
+      },
+      {
+        "command": "python .agents/skills/auto-bmad/scripts/story_plan.py --spec _bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+        "exit": 0,
+        "parse_warnings": [],
+        "status": "in-review",
+        "arr_status": "in-review",
+        "loop": 3
+      },
+      {
+        "command": "git diff --check",
+        "exit": 0
+      }
+    ],
+    "temporal_limits": "18 focused tests executed once before evidence-only Spec/SRO refresh; no subsequent helper/unit edits. Prior full-file 179 controls and native history remain separate inherited evidence, not a newly executed 181-test suite or aggregate.",
+    "accounting": "One focused18P0F0skip0cancel run includes the two new tests plus existing relevant owner/INT009 controls. Prior179 full-file and separate C4 controls remain historical; no newly executed181/full-file/full-suite/native SQL assertion. WholeTS, two-file lint, diff, reader/SRO are author-attributed0.",
+    "initial_failures": []
+  },
+  "scope_and_conservation": {
+    "conditional_exact3_allocation": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-INT009-canonical-catalog-three-path-source-allocation.json",
+      "bytes": 2412,
+      "sha256": "88845618b679e4d224cf46619310b66e3ccda2e503cd8d39b5afd402e10146b4"
+    },
+    "preedit_condition": "Frozen6775-byte analysis records mechanical representation-contract mismatch before editing; Root preedit/commit chronology and source-only admission reused. It does not reconstruct the missing native value.",
+    "Root_admission": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/root-INT009-canonical-catalog-three-path-source-admission.json",
+      "bytes": 2454,
+      "sha256": "300222e882731186f7d1ea6ed1a056a00564d636646ee1cf7cde9b499644d992"
+    },
+    "SQL118": {
+      "count": 118,
+      "basis": "Root exact3 nonSQL committed diff plus unchanged prior118 source/Git proof; no reviewer full rescan",
+      "author_vector_sha256": "05a47d994bdd1ba8be6b6d0eee36a907761ca6cab14219febc6692f0a8316705"
+    },
+    "debug_3bb": "Frozen/unmodified; temporary diagnostic capability not transplanted into MAIN.",
+    "unchanged": "Application, productionSQL, wrapper, consumer, workflow, selectors, config and dependencies remain outside this commit."
+  },
+  "skill_used": {
+    "path": "C:/Users/Rasmus/.agents/skills/supabase-postgres-best-practices/SKILL.md",
+    "application": "Read local PostgreSQL query-review guidance; no schema/performance/connection changes justified by this single metadata cast. No remote tools invoked."
+  },
+  "remaining_limits": [
+    "Source-only repair PASS is not native SQL compilation/query/result qualification or proof that a future run is green.",
+    "Actual native received proargtypes type/value and original firstthrow remain UNKNOWN; the source-proven mismatch does not retrospectively explain every prior failure.",
+    "Actual body reach, role-loss production oracle, transaction/function restoration, rollback, key deletion and backend custody remain UNKNOWN.",
+    "Any further source/effect/native execution requires the separately completed allocation and exact reviewed identity/proofs; this review grants no push/dispatch/GET/runtime/cleanup authority."
+  ],
+  "continuity": {
+    "required95": {
+      "passed": 68,
+      "failed_INT009": 1,
+      "zero_coverage_or_unknown": 26
+    },
+    "P5": "OPEN",
+    "review_counter": 3,
+    "fourth_broad_review": false,
+    "normal_acceptance_added": 0,
+    "development_complete": false,
+    "release_ready": false
+  },
+  "open_questions": [
+    "Native execution and functional/custody gates remain unqualified after this source repair."
+  ],
+  "deferred_work": "Separately allocated native verification with exact reviewed bindings and actual independent evidence qualification. No automatic retry or new diagnostic family.",
+  "blockers": {
+    "source_review": [],
+    "functional": "Current full95 remains failed/incomplete. Source-only PASS adds0 acceptance and does not close P5."
+  }
+}
