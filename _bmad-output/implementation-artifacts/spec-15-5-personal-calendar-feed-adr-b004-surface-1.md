@@ -245,7 +245,7 @@ Deferred release validation: exhaustive browser/device/calendar-provider matrice
 ## Auto Run Result
 
 Status: in-review
-Blocking condition: the reviewed118th job-card shared-refresh source correction remains unexecuted. Qualified NORMAL39703778989 retained2058DBpass/2fail/9pending/52skip;35mandatory story DB cases includingAPI019/INT015 are unexecuted. Browser007unexpected/fourflaky and response.finished/backend custody remain UNKNOWN. The allocated v3 terminalAtDrain source observation has161 offline controls/wholeTS/focusedlint passing, with no functional-fix/native claim. Its strict private consumer, actual assembler budget and independent targeted source review remain pending. No automatic retry; ambiguous observations stop automatic repair. Required qualified native gates remain pending; development complete=false, acceptance0.
+Blocking condition: qualified NORMAL39710514719 retained2068DBpass/1fail/52skip and16storypass/35mandatorymissing, with browser001unexpected/009flaky and retained-key custody unresolved. Independent original-exception qualification identifies INT011 line290 strict jobInputs assertion; ScopeA adds only nine source-proven NULL fields to its three expected objects. No received actual values or sole hosted-difference claim. Required independent targeted source review and native functional gates remain pending; ScopeB browser debugging is separate and held to its own allocation. Development complete=false, acceptance0; no source fix authorizes a retry.
 
 Current result — 2026-10-22: exact4 forward-correction source handoff only. One
 CLI-generated migration changes only the series protocol pair after exact effective
@@ -2295,6 +2295,29 @@ this bounded discriminator is not a functional correction or native acceptance.
 Successful functional gates do not require manufactured failure labels. Kernel,
 baseline, loop3, Spec/ARR in-review and development-complete=false remain.
 
+### ScopeA: reconcile the original INT011 strict complete job-input assertion
+
+Root's independently qualified original assertion identifies conflict-resolver
+INT011 line290:39 (qualification11078/SHA31ad736454f4dbe3fa0881dec554c4155d91aa34bd751f0073296549d019c126).
+This author received no actual hosted values and makes no sole-difference claim.
+The exact granted test-only correction adds estimatedDurationMinutes, crewSize,
+plannedTravelMinutes, plannedStartDate, plannedEndDate, earliestDate, desiredDate,
+latestDate and customerPresenceRequired as null in each of the three strict
+expected objects. The current SQL producer independently emits these fields;
+nullable column definitions and the fixture's explicit omitted-column INSERT
+establish the expected nulls. No current value was used to generate expectations.
+
+The actual TS AST retains strict toEqual with three complete12-field objects.
+Removing exactly those27 null properties restores the entire original test file,
+including its original SHA72e942bd65ba8fcbc1904c06035535b5570b097613751e5daf31a47ee52a0104.
+All sorting, independent null/empty cases, competence/access-window checks,
+PREVIEW_STALE/no-mutation assertions, auth and protocols remain byte-identical.
+Bounded source/inverse/nullable-provenance checks pass; this is not SQL execution
+or a new test suite. All118 applied SQL remain immutable. Browser/root-key debug
+is separately owned; no browser/helper/wrapper change or runtime was taken here.
+Required35 cases remain unexecuted until actual admission/success, never credited
+by a local assertion edit. Kernel/baseline/loop3/in-review and acceptance0 remain.
+
 ## Suggested Review Order
 
 Author: Story 15.5 implementation/fix author (gpt-6.1-sol High), incorporating
@@ -2854,3 +2877,15 @@ Evidence: affected161 first-run passes; TS/lint0; no browser/SQL execution or na
 credit. Strict v3 consumer/publication and new real assembler proof remain separately
 owned and unexecuted. Empty-failure/event-order ambiguity prevents treating a
 recorded end as native finished/backend settlement or justification for a fix.
+
+
+### Reconcile INT011 against authoritative nullable job fields without weakening equality
+
+- `tests/integration/commands/conflict-resolver.int.test.ts:290` — `expect(s.facts.detection.jobInputs).toEqual`: retains complete strict12-field expected objects and independent null/empty semantics.
+- `supabase/migrations/20261020210000_e16_16_4_job_upgrade_and_scheduling.sql:26` — `'jobInputs',coalesce`: read-only authoritative field mapping; no SQL change.
+- `supabase/migrations/20261019133151_e16_16_1_job_depth.sql:5` — `add column estimated_duration_minutes`: read-only nullable provenance, combined with the existing planned-date declarations and omitted fixture columns.
+
+Evidence: actual-source AST/mapping/NULL-provenance and exact full-file inverse
+pass. Root-qualified original assertion is the cause boundary; actual hosted
+values were not acquired by this author. Independent targeted review and full
+native gates remain required, with browser/custody separate and unresolved.
