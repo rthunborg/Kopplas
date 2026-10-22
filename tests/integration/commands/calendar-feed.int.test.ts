@@ -1,7 +1,7 @@
 import { createHash } from "node:crypto";
 import { describe, test } from "vitest";
 import { writeFile } from "node:fs/promises";
-import { runCalendarFeedCauseProof } from "../../support/calendar-feed-atdd";
+import { createCalendarInt009Capture, runCalendarFeedCauseProof } from "../../support/calendar-feed-atdd";
 import { expectCalendar as expect } from "../../support/calendar-feed-atdd";
 import { withCalendarFeedFixture, lifecycle, issuedUrl, tokenFromUrl, bookingSeed,
   type ManagementObservation, type FeedResponse } from "../../support/calendar-feed-atdd";
@@ -167,7 +167,8 @@ if (process.env.CALENDAR_FEED_CAUSE_PROOF_MODE !== "1") describe("15.5 authentic
     });
   });
 
-  test("[P0] 15.5-INT009 AC2 AC4 AC9 current role loss committed before authority blocks queued management", async () => {
+  test("[P0] 15.5-INT009 AC2 AC4 AC9 current role loss committed before authority blocks queued management", async ({task}) => {
+    const capture=createCalendarInt009Capture(()=>task.meta);
     await withCalendarFeedFixture("serial-commands", async fx => {
       const intent = lifecycle("create", 0), subject = fx.subjects.own;
       const barrier = await fx.serial.barrier({ ...subject, attemptId: intent.attemptId, stage: "management-before-authority" });
@@ -185,7 +186,7 @@ if (process.env.CALENDAR_FEED_CAUSE_PROOF_MODE !== "1") describe("15.5 authentic
         await Promise.allSettled(pending);
         await barrier.assertOwnedObjectsAbsent();
       }
-    });
+    },capture);
   });
 
   test("[P0] 15.5-INT010 AC2 AC9 admitted fetch may finish before revoke while later fetch is denied", async () => {

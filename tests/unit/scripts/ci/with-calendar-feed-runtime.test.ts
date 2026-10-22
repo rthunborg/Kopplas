@@ -2080,7 +2080,7 @@ test("actual retired acquisition registers and destroys late clients without inv
 });
 
 
-async function actualCalendarOwner(options:{faults?:string[];purpose?:"clock"|"subject"|"fetch";unsafe?:Record<string,unknown>}={}) {
+async function actualCalendarOwner(options:{faults?:string[];purpose?:"clock"|"subject"|"fetch";unsafe?:Record<string,unknown>;failure?:unknown}={}) {
   const purpose=options.purpose??"clock",fixed=readFileSync(new URL("../../../../supabase/migrations/20261020220000_personal_calendar_feed.sql",import.meta.url),"utf8").replaceAll("\r\n","\n");
   const names={clock:"calendar_feed_now_internal",subject:"calendar_feed_subject_internal",fetch:"fetch_calendar_feed"},name=names[purpose];
   const at=fixed.indexOf("create function public."+name+"("),start=fixed.indexOf("as $$",at)+5,end=fixed.indexOf("$$;",start),body=fixed.slice(start,end);
@@ -2091,7 +2091,7 @@ async function actualCalendarOwner(options:{faults?:string[];purpose?:"clock"|"s
   const calls:string[]=[],faults=[...(options.faults??[])];
   const driver=(sql:string,params:readonly unknown[])=>{
     const phase=sql.startsWith("select p.oid::text oid")?"catalog":sql.startsWith("CREATE OR REPLACE")?"replace":sql;
-    calls.push(phase);const fault=phase==="catalog"&&hadFailure&&faults.includes("catalog-after-error")?"catalog-after-error":phase;if(faults.includes(fault)){faults.splice(faults.indexOf(fault),1);hadFailure=true;throw Error("PRIVATE_FAILURE");}
+    calls.push(phase);const fault=phase==="catalog"&&hadFailure&&faults.includes("catalog-after-error")?"catalog-after-error":phase;if(faults.includes(fault)){faults.splice(faults.indexOf(fault),1);hadFailure=true;throw options.failure??Error("PRIVATE_FAILURE");}
     if(sql==="begin")before=structuredClone(row);
     if(sql==="rollback"){row=structuredClone(before);create=false;current="postgres";}
     if(phase==="catalog"){assert.match(sql,/prosupport\x27,p\.prosupport::oid::bigint/);assert.equal(current,"postgres");assert.equal(create,false);assert.equal(params[0],`public.${name}(${purpose==="clock"?"":purpose==="subject"?"uuid,uuid,uuid,boolean":"text,text,jsonb,text"})`);return [{...structuredClone(row),...options.unsafe}];}
@@ -2108,7 +2108,7 @@ async function actualCalendarOwner(options:{faults?:string[];purpose?:"clock"|"s
   const factory=await actualRetiredFactory({queryHandler:driver});
   const {AsyncLocalStorage}=await import("node:async_hooks");
   const origins=await actualFixtureOrigins();
-  const api=actualFeedRegion("../../../support/calendar-feed-atdd.ts","// Owner-scoped serial operations.","async function calendarFault", "({calendarOrdinaryResponse,calendarFetchPort,calendarSerialControls,calendarOwnerAtomic,calendarOwnerFacts,calendarOwnerDefinition,calendarPublish,calendarRestore,calendarReadClock,calendarWorkScope,calendarSettle,calendarOwnedStates,getCustody:()=>calendarSharedCustody})",{AsyncLocalStorage,calendarFixtureOrigin:origins.calendarFixtureOrigin,adminRetiredSession:factory.api.adminRetiredSession,AdminRetiredSessionError:factory.api.AdminRetiredSessionError,calendarCanonicalSourceUrl:new URL("../../../../supabase/migrations/20261020220000_personal_calendar_feed.sql",import.meta.url),readFile:async()=>fixed,redactFailure:()=>Error("fixed redacted"),hashFeedToken:()=>"fixed",tokenFromUrl:()=>"fixed",adminQuery:async()=>[],iso:(value:unknown)=>value,hashFeedIp:()=>"fixed"}) as {calendarOrdinaryResponse:(request:()=>Promise<Response>)=>Promise<{status:number;headers:Record<string,string>;body:string}>;calendarFetchPort:(anon:{rpc:(name:string,args:Record<string,unknown>)=>PromiseLike<unknown>})=>{rpc:(name:string,args:Record<string,unknown>)=>Promise<unknown>};calendarSerialControls:(fx:{pendingRequests:Set<Promise<unknown>>;workClosed:boolean})=>Promise<{withDatabaseTime:<T>(iso:string,run:()=>Promise<T>)=>Promise<T>}>;calendarOwnerAtomic:(purpose:string,body:string,operation:Record<string,unknown>)=>Promise<{row:typeof canonical;now:unknown}>;calendarOwnerFacts:(rows:unknown,purpose:string,body:string)=>unknown;calendarPublish:(purpose:string,body:(body:string)=>string,subjectFault?:boolean)=>Promise<void>;calendarRestore:(purpose:string)=>Promise<void>;calendarReadClock:()=>Promise<unknown>;calendarWorkScope:<T>(fx:{pendingRequests:Set<Promise<unknown>>},run:()=>Promise<T>)=>Promise<T>;calendarSettle:(fx:{pendingRequests:Set<Promise<unknown>>},timeout?:number)=>Promise<void>;calendarOwnedStates:Map<string,unknown>;getCustody:()=>unknown};
+  const api=actualFeedRegion("../../../support/calendar-feed-atdd.ts","// Owner-scoped serial operations.","async function calendarFault", "({calendarOrdinaryResponse,calendarFetchPort,calendarSerialControls,calendarOwnerAtomic,calendarOwnerFacts,calendarOwnerDefinition,calendarPublish,calendarRestore,calendarReadClock,calendarWorkScope,calendarSettle,calendarInt009Subject,calendarOwnedStates,getCustody:()=>calendarSharedCustody})",{AsyncLocalStorage,calendarFixtureOrigin:origins.calendarFixtureOrigin,adminRetiredSession:factory.api.adminRetiredSession,AdminRetiredSessionError:factory.api.AdminRetiredSessionError,calendarCanonicalSourceUrl:new URL("../../../../supabase/migrations/20261020220000_personal_calendar_feed.sql",import.meta.url),readFile:async()=>fixed,redactFailure:()=>Error("fixed redacted"),hashFeedToken:()=>"fixed",tokenFromUrl:()=>"fixed",adminQuery:async()=>[],iso:(value:unknown)=>value,hashFeedIp:()=>"fixed"}) as {calendarOrdinaryResponse:(request:()=>Promise<Response>)=>Promise<{status:number;headers:Record<string,string>;body:string}>;calendarFetchPort:(anon:{rpc:(name:string,args:Record<string,unknown>)=>PromiseLike<unknown>})=>{rpc:(name:string,args:Record<string,unknown>)=>Promise<unknown>};calendarSerialControls:(fx:{pendingRequests:Set<Promise<unknown>>;workClosed:boolean})=>Promise<{withDatabaseTime:<T>(iso:string,run:()=>Promise<T>)=>Promise<T>}>;calendarOwnerAtomic:(purpose:string,body:string,operation:Record<string,unknown>)=>Promise<{row:typeof canonical;now:unknown}>;calendarOwnerFacts:(rows:unknown,purpose:string,body:string)=>unknown;calendarPublish:(purpose:string,body:(body:string)=>string,subjectFault?:boolean)=>Promise<void>;calendarRestore:(purpose:string)=>Promise<void>;calendarReadClock:()=>Promise<unknown>;calendarWorkScope:<T>(fx:{pendingRequests:Set<Promise<unknown>>},run:()=>Promise<T>,capture?:ReturnType<typeof origins.createCalendarInt009Capture>)=>Promise<T>;calendarSettle:(fx:{pendingRequests:Set<Promise<unknown>>},timeout?:number)=>Promise<void>;calendarInt009Subject:(purpose:string)=>ReturnType<typeof origins.createCalendarInt009Capture>|undefined;calendarOwnedStates:Map<string,unknown>;getCustody:()=>unknown};
   return{api,factory,calls,canonical,body,row:()=>row};
 }
 
@@ -2165,7 +2165,7 @@ async function actualCanonicalComposition(fault?:"seed"|"cleanup"|"custody"|"pri
     async(sql:string,params:unknown[])=>{if(sql.startsWith("select id from public.tenant_memberships")){inputs.push(params);return[{id:"membership-"+params[1]}];}if(sql.startsWith("insert into public.person_profiles")){events.push("profile");inputs.push(params);if(fault==="seed"&&params[2]==="membership-own")throw Error("PRIVATE_SEED");return[];}events.push("absence");return[];},()=>"UUID-"+(++counter),
     async(_stage:string,run:()=>Promise<unknown>)=>run(),(_stage:string,error:unknown)=>error instanceof Error?error:Error("safe"),()=>Error("safe"),()=>{},
     async(value:unknown)=>{assert.equal(value,role.base);events.push("additional");return{extraUsers:[user("additional")]};},async(base:unknown)=>{assert.ok(base);return fx;},async(_fx:unknown,run:()=>Promise<unknown>)=>run(),async()=>{events.push("settle");},()=>Error("safe custody"),async(tenants:unknown)=>{assert.deepEqual(tenants,["A","B"]);events.push("row:cleanup");},async(id:string)=>{assert.equal(id,"additional");events.push("auth:cleanup");},new Map(fault==="prior-seam"?[["clock",{held:true}]]:[])
-  ) as {withCalendarFeedFixture:(lane:string,run:(fx:unknown)=>Promise<void>)=>Promise<void>;calendarSeedBookingFixture:(base:typeof role)=>Promise<Record<string,unknown>>;retain:()=>void;custody:()=>Set<unknown>};
+  ) as {withCalendarFeedFixture:(lane:string,run:(fx:unknown)=>Promise<void>,capture?:{publish():void;close():void})=>Promise<void>;calendarSeedBookingFixture:(base:typeof role)=>Promise<Record<string,unknown>>;retain:()=>void;custody:()=>Set<unknown>};
   return{api,events,inputs,role,fx};
 }
 
@@ -2782,4 +2782,109 @@ test("actual owned fault callback joins held dispatch and preserves failure disp
   const fault=await control.arm("hold-before-send"),input={action:"create",revision:0,attemptId:"00000000-0000-4000-8000-000000000004"},request=x.request([input]);let sends=0,aborts=0;
   const work=handler({request:()=>request,async continue(){sends++;},async abort(){aborts++;}});await fault.reached;
   const owned=x.management.close();assert.equal(owned.length,1);await fault.release();await work;await assert.rejects(fault.dispose(),/Calendar browser failure/);assert.equal(sends,0);assert.equal(aborts,2);assert.equal(x.management.ready(),true);assert.equal(control.verified(),false);
+});
+
+
+async function int009Control(options:Parameters<typeof actualCalendarOwner>[0]={}) {
+  const origins=await actualFixtureOrigins(),capture=origins.createCalendarInt009Capture(),f=await actualCalendarOwner({purpose:"subject",...options}),meta:Record<string,unknown>={};
+  const run=(callback:()=>Promise<unknown>)=>f.api.calendarWorkScope({pendingRequests:new Set()},callback,capture);
+  return {...f,origins,capture,meta,run,publish(){capture.publish(meta);return meta.calendarInt009SetupV1 as readonly {kind:string;publication:string;operation:string;guard:string;nativeClass:string;sqlstate:string}[]|undefined;}};
+}
+
+test("INT009 actual subject owner captures first rejected operation own native code before erasure and preserves query fingerprint",async()=>{
+  const original=Object.freeze(Object.assign(Error("PRIVATE_SQL_TOKEN"),{name:"error",code:"42601",cause:{PRIVATE:true}}));
+  const plain=await actualCalendarOwner({purpose:"subject",faults:["replace"],failure:original});await plain.api.calendarPublish("subject",()=>" owned test body ",true).catch(()=>{});
+  const f=await int009Control({faults:["replace"],failure:original});await f.run(()=>f.api.calendarPublish("subject",()=>" owned test body ",true)).catch(()=>{});const records=f.publish()!;
+  assert.deepEqual(records[0],{kind:"PRIMARY",publication:"REPLACE",operation:"REPLACE_DDL",guard:"UNKNOWN",nativeClass:"error",sqlstate:"42601"});assert.deepEqual(f.calls,plain.calls);assert.equal(records.filter(r=>r.kind==="PRIMARY").length,1);assert.ok(!JSON.stringify(f.meta).includes("PRIVATE"));assert.equal(original.cause.PRIVATE,true);
+  const report=await actualMetaJsonReport(f.meta),serialized=report.testResults[0].assertionResults[0].meta;assert.deepEqual(serialized.calendarInt009SetupV1,records);assert.ok(Buffer.byteLength(JSON.stringify(serialized,null,10),"ascii")<=4096);await f.factory.pool()?.end();await plain.factory.pool()?.end();
+});
+
+test("INT009 actual preflight selects existing combined or hardcoded field guard before any owner mutation",async()=>{
+  for(const [unsafe,guard]of [[{identityQualified:false},"ROW_QUALIFICATION"],[{metadata:{prosrc:"PRIVATE"}},"MISSING_METADATA"],[{schemaQualified:false},"SCHEMA_AUTHORITY"]] as const){
+    const f=await int009Control({unsafe});await f.run(()=>f.api.calendarPublish("subject",()=>"changed",true)).catch(()=>{});const rows=f.publish()!;assert.equal(rows[0].publication,unsafe.schemaQualified===false?"REPLACE":"CAPTURE");assert.equal(rows[0].guard,guard);assert.ok(!f.calls.includes("replace"));assert.ok(!f.calls.includes("grant create on schema public to calendar_feed_owner"));await f.factory.pool()?.end();
+  }
+  const f=await int009Control();f.capture.phase("CAPTURE","PRE_CATALOG");await f.run(async()=>{assert.throws(()=>f.api.calendarOwnerFacts([{...f.canonical,metadata:{...f.canonical.metadata,provolatile:"v"}}],"subject",f.body));});assert.equal(f.publish()![0].guard,"FIELD:provolatile");await f.factory.pool()?.end();
+});
+
+test("INT009 actual owner callback unreached and verified callback failure never invent BEGIN or failed retirement",async()=>{
+  for(const entered of [false,true]){
+    const f=await int009Control(),native=Object.freeze(Object.assign(Error("PRIVATE"),{code:"42501"}));let calls=0;
+    const retired=async(run:(sql:{query:(text:string)=>Promise<unknown[]>})=>Promise<unknown>)=>{
+      if(entered)try{await run({query:async()=>{calls++;throw native;}});}catch{/* existing replacement boundary */}
+      throw new f.factory.api.AdminRetiredSessionError(true,["callback-failed"]);
+    };
+    const atomic=f.api.calendarOwnerAtomic as unknown as (purpose:string,body:string,operation:object,retired:unknown)=>Promise<unknown>;
+    f.capture.phase("CAPTURE");await f.run(()=>atomic("subject",f.body,{kind:"capture"},retired)).catch(()=>{});const rows=f.publish()!;
+    assert.equal(rows[0].operation,entered?"BEGIN":"UNREACHED");assert.equal(rows[0].sqlstate,entered?"42501":"UNKNOWN");assert.equal(rows[0].nativeClass,"UNKNOWN");assert.equal(calls,entered?4:0);assert.ok(rows.every(row=>!row.operation.includes("RETIREMENT")));await f.factory.pool()?.end();
+  }
+});
+
+test("INT009 native proxy rejection avoids traps and inherited accessor frozen metadata and late sink cannot affect errors",async()=>{
+  const {createCalendarInt009Capture:make}=await actualFixtureOrigins();let traps=0;
+  const proxy=new Proxy({}, {getOwnPropertyDescriptor(){traps++;throw Error("PRIVATE");},getPrototypeOf(){traps++;throw Error("PRIVATE");},ownKeys(){traps++;throw Error("PRIVATE");},defineProperty(){traps++;throw Error("PRIVATE");}});
+  const getter=Object.defineProperty({},"code",{get(){traps++;throw Error("PRIVATE");}});
+  for(const error of [proxy,getter,Object.create({name:"error",code:"42501"}),Object.freeze({name:"PRIVATE",code:"PRIVATE"})]){
+    const capture=make(),meta:Record<string,unknown>={};capture.phase("CAPTURE","PRE_CATALOG");assert.doesNotThrow(()=>capture.fail("UNKNOWN",error));capture.publish(meta);const rows=meta.calendarInt009SetupV1 as {nativeClass:string;sqlstate:string}[];assert.equal(rows[0].nativeClass,"UNKNOWN");assert.equal(rows[0].sqlstate,"UNKNOWN");
+  }
+  for(const meta of [proxy,Object.freeze({}),Object.defineProperty({},"calendarInt009SetupV1",{get(){traps++;throw Error("PRIVATE");}})]){const c=make();c.fail();assert.doesNotThrow(()=>c.publish(meta));}
+  const foreign={PRIVATE:true},meta={calendarInt009SetupV1:foreign};const c=make();c.fail();c.publish(meta);assert.equal(meta.calendarInt009SetupV1,foreign);assert.equal(traps,0);
+  const closed=make(),silent={};closed.close();closed.fail();closed.publish(silent);assert.deepEqual(silent,{});
+});
+
+test("INT009 immutable primary cleanup overflow and reporter byte cap remain local and healthy/default silent",async()=>{
+  const {createCalendarInt009Capture:make}=await actualFixtureOrigins(),a=make(),b=make(),meta:Record<string,unknown>={},healthy={};a.phase("REPLACE","REPLACE_DDL");a.fail("UNKNOWN",Object.freeze({name:"error",code:"42P13"}));b.publish(healthy);assert.deepEqual(healthy,{});
+  for(let i=0;i<9;i++)a.cleanup("REQUALIFY",{name:"error",code:"42501"});a.publish(meta);const rows=meta.calendarInt009SetupV1 as readonly Record<string,string>[];assert.equal(rows.length,4);assert.equal(rows[0].sqlstate,"42P13");assert.equal(rows[3].guard,"OMITTED");assert.ok(Object.isFrozen(rows)&&rows.every(Object.isFrozen));const snapshot=JSON.stringify(rows);a.fail("STATE");a.cleanup("ROLLBACK");a.phase("UNKNOWN");a.publish({});assert.equal(JSON.stringify(rows),snapshot);
+  const report=await actualMetaJsonReport(meta),published=report.testResults[0].assertionResults[0].meta;assert.deepEqual(published.calendarInt009SetupV1,rows);assert.ok(/^[\x00-\x7f]*$/.test(JSON.stringify(published)));assert.ok(Buffer.byteLength(JSON.stringify(published,null,10))<=4096);
+
+});
+
+function actualInt009Callback() {
+  const source=readFileSync(new URL("../../../integration/commands/calendar-feed.int.test.ts",import.meta.url),"utf8"),start=source.indexOf('  test("[P0] 15.5-INT009'),end=source.indexOf('  test("[P0] 15.5-INT010',start);assert.ok(start>0&&end>start);
+  const strip=(nodeModule as unknown as {stripTypeScriptTypes(source:string):string}).stripTypeScriptTypes;
+  return (make:unknown,fixture:unknown,expect:unknown)=>{let callback!:(context:unknown)=>Promise<void>;new Function("test","createCalendarInt009Capture","withCalendarFeedFixture","lifecycle","expect",strip(source.slice(start,end)))((_name:string,run:typeof callback)=>{callback=run;},make,fixture,()=>({action:"create"}),expect);return callback;};
+}
+
+test("INT009 actual enclosing callback preserves setup error identity cause and cleanup override while later work stays unreached",async()=>{
+  const {createCalendarInt009Capture:make}=await actualFixtureOrigins(),compile=actualInt009Callback();
+  for(const mode of ["setup","sink","override","healthy"] as const){const primary=Object.assign(Error("PRIVATE"),{cause:{}}),outer=Object.assign(Error("PRIVATE"),{cause:{}}),meta={},events:string[]=[];
+    const run=compile(make,async(_lane:string,callback:(fx:unknown)=>Promise<void>,capture:ReturnType<typeof make>)=>{
+      if(mode==="setup"||mode==="sink"){capture.phase("CAPTURE","PRE_CATALOG");capture.fail("ROW_FIELDS");try{throw primary;}catch(error){capture.publish();throw error;}finally{events.push("outer-cleanup");capture.close();} }
+      await callback({subjects:{own:{}},serial:{barrier:async()=>({waitUntilEntered:async()=>{},release:async()=>{},assertOwnedObjectsAbsent:async()=>{events.push("inner-cleanup");if(mode==="override")throw outer;}})},manage:async()=>{events.push("manage");return{outcome:"denied"};},setAuthority:async()=>{events.push("role");},physical:async()=>({tokens:[],audits:[]})});
+    },()=>({toBe(){if(mode==="override")throw primary;},toHaveLength(){}}));
+    const task=mode==="sink"?Object.defineProperty({},"meta",{get(){throw Error("PRIVATE sink");}}):{meta};
+    const caught=await run({task}).catch(error=>error);if(mode==="setup"||mode==="sink"){assert.equal(caught,primary);assert.equal(caught.cause,primary.cause);assert.deepEqual(events,["outer-cleanup"]);assert.equal(Object.hasOwn(meta,"calendarInt009SetupV1"),mode!=="sink");}else if(mode==="override"){assert.equal(caught,outer);assert.equal(caught.cause,outer.cause);assert.ok(events.indexOf("role")>events.indexOf("manage"));assert.ok(events.includes("inner-cleanup"));}else{assert.equal(caught,undefined);assert.deepEqual(meta,{});}
+  }
+});
+
+
+test("INT009 actual successful owner callback followed by wrapper rejection remains wrapper UNKNOWN not COMMIT failure",async()=>{
+  const f=await int009Control();let operations=0;
+  const retired=async(run:(session:{query:(sql:string)=>Promise<unknown[]>})=>Promise<unknown>)=>{await run({query:async(sql)=>{operations++;return sql.startsWith("select p.oid")?[structuredClone(f.canonical)]:[];}});throw new f.factory.api.AdminRetiredSessionError(false,["retirement-unverified"]);};
+  const atomic=f.api.calendarOwnerAtomic as unknown as (purpose:string,body:string,operation:object,retired:unknown)=>Promise<unknown>;
+  f.capture.phase("CAPTURE");await f.run(()=>atomic("subject",f.body,{kind:"capture"},retired)).catch(()=>{});const rows=f.publish()!;assert.equal(rows[0].operation,"WRAPPER_OUTCOME_UNKNOWN");assert.equal(rows[0].sqlstate,"UNKNOWN");assert.equal(operations,4);assert.ok(f.api.getCustody());await f.factory.pool()?.end();
+});
+
+
+test("INT009 actual scoped captures stay distinct and altered guard publication fails the source oracle",async()=>{
+  const a=await int009Control({unsafe:{identityQualified:false}}),b=await int009Control({faults:["replace"],failure:Object.freeze({code:"42P13"})});
+  await Promise.all([a.run(()=>a.api.calendarPublish("subject",()=>"changed",true)).catch(()=>{}),b.run(()=>b.api.calendarPublish("subject",()=>"changed",true)).catch(()=>{})]);assert.equal(a.publish()![0].guard,"ROW_QUALIFICATION");assert.equal(b.publish()![0].sqlstate,"42P13");await a.factory.pool()?.end();await b.factory.pool()?.end();
+  const source=readFileSync(new URL("../../../support/calendar-feed-atdd.ts",import.meta.url),"utf8"),start=source.indexOf("function calendarOwnerFacts("),end=source.indexOf("const calendarOwnerCatalogSql=",start),strip=(nodeModule as unknown as {stripTypeScriptTypes(source:string):string}).stripTypeScriptTypes;
+  const run=(text:string)=>{const c=a.origins.createCalendarInt009Capture(),meta:Record<string,unknown>={};c.phase("CAPTURE","PRE_CATALOG");const facts=new Function("calendarInt009Guard","calendarOwnerRefused",strip(text)+";return calendarOwnerFacts;")((_purpose:string,guard:string)=>c.fail(guard),()=>Error("fixed"));assert.throws(()=>facts([],"subject","fixed"));c.publish(meta);return meta.calendarInt009SetupV1 as {guard:string}[]|undefined;};
+  const region=source.slice(start,end);assert.equal(run(region)![0].guard,"ROW_COUNT");const altered=region.replace('calendarInt009Guard(purpose,"ROW_COUNT");',"");assert.notEqual(region,altered);assert.throws(()=>assert.equal(run(altered)?.[0]?.guard,"ROW_COUNT"));
+});
+
+
+test("INT009 actual fixture final errors publish through the controlled sink without replacing primary or cleanup errors",async()=>{
+  const {createCalendarInt009Capture:make}=await actualFixtureOrigins(),primary=Object.assign(Error("PRIVATE"),{cause:{}});
+  for(const fault of [undefined,"cleanup"] as const){const f=await actualCanonicalComposition(fault),meta:Record<string,unknown>={},capture=make(()=>meta);capture.phase("CAPTURE","PRE_CATALOG");capture.fail("ROW_FIELDS");const error=await f.api.withCalendarFeedFixture("row-isolated",async()=>{throw primary;},capture).catch(error=>error);assert.ok(error instanceof AggregateError);assert.equal(error.errors[0],primary);assert.equal(error.errors[0].cause,primary.cause);assert.ok(Object.hasOwn(meta,"calendarInt009SetupV1"));assert.ok(f.events.includes("canonical:cleanup")&&f.events.includes("auth:cleanup"));if(fault)assert.ok(error.errors.length>1);}
+  const f=await actualCanonicalComposition(),capture=make(()=>{throw Error("PRIVATE sink");});capture.fail();const error=await f.api.withCalendarFeedFixture("row-isolated",async()=>{throw primary;},capture).catch(error=>error);assert.equal(error.errors[0],primary);
+});
+
+test("INT009 actual entire subject barrier setup closes capture before later restore cleanup",async()=>{
+  const f=await int009Control(),source=readFileSync(new URL("../../../support/calendar-feed-atdd.ts",import.meta.url),"utf8"),start=source.indexOf("async function calendarBarrier("),end=source.indexOf("/** Independent small RFC5545",start),strip=(nodeModule as unknown as {stripTypeScriptTypes(source:string):string}).stripTypeScriptTypes;
+  const names=["randomUUID","adminSession","calendarPublish","calendarRestore","calendarSettle","adminQuery","redactFailure","calendarOwnerRefused","calendarInt009Subject"];
+  const barrier=new Function(...names,strip("let calendarSharedCustody=null;"+source.slice(start,end))+";return calendarBarrier;")(()=>"00000000-0000-4000-8000-000000000001",async(run:(session:{query:()=>Promise<unknown[]>})=>Promise<unknown>)=>run({query:async()=>[]}),f.api.calendarPublish,f.api.calendarRestore,f.api.calendarSettle,async()=>[],()=>Error("fixed"),()=>Error("fixed"),f.api.calendarInt009Subject);
+  const fx={pendingRequests:new Set<Promise<unknown>>(),finalizers:new Set<()=>Promise<void>>()};
+  const owned=await f.run(()=>barrier({stage:"management-before-authority",tenantId:"fixed",membershipId:"fixed"},fx)) as {release():Promise<void>;assertOwnedObjectsAbsent():Promise<void>};
+  f.capture.phase("REPLACE","DEFINITION");f.capture.fail("STATE");f.capture.cleanup("SETUP_CLEANUP",Error("PRIVATE later cleanup"));assert.equal(f.publish(),undefined);await owned.release();await owned.assertOwnedObjectsAbsent();assert.deepEqual(f.meta,{});await f.factory.pool()?.end();
 });

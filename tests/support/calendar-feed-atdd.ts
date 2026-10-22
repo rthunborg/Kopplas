@@ -180,6 +180,53 @@ export type FixtureByLane<L extends Lane> = CalendarFixture &
   (L extends "row-isolated" ? Record<never, never> : { serial: SerialControls });
 
 // Pure fixture diagnostics: no DB/client imports or native error text are read.
+import { types as calendarNativeTypes } from "node:util";
+export const calendarInt009MetaKey="calendarInt009SetupV1";
+export function createCalendarInt009Capture(readMeta?:()=>unknown) {
+  const publications=["UNREACHED","STATE_PRECHECK","CANONICAL_SOURCE","CAPTURE","BODY_BUILD","REPLACE","STATE_PUBLISH","UNKNOWN"];
+  const operations=["UNREACHED","BEGIN","TIMEOUTS","PRE_CATALOG","CREATE_GRANT","SET_ROLE","VERIFY_ROLE","DEFINITION","REPLACE_DDL","RESET_ROLE","CREATE_REVOKE","POST_CATALOG","COMMIT_ATTEMPT","WRAPPER_OUTCOME_UNKNOWN","ROLLBACK","REQUALIFY","HOLDER_RELEASE","SETUP_CLEANUP","UNKNOWN"];
+  const guards=["UNKNOWN","STATE","ROW_COUNT","ROW_ENTRY","ROW_FIELDS","ROW_QUALIFICATION","METADATA_SHAPE","MISSING_METADATA","DEFAULT_LANGUAGE","OID_METADATA","SCHEMA_AUTHORITY","ROLE_SWITCH","OMITTED"];
+  const fields=["proname","prokind","proretset","provariadic","proallargtypes","proargmodes","pronargs","proargtypes","proargnames","prorettype","pronargdefaults","prosecdef","provolatile","proconfig","proisstrict","proleakproof","proparallel","prosupport","procost","prorows","protrftypes","prosqlbody"];
+  type RecordValue=Readonly<{kind:string;publication:string;operation:string;guard:string;nativeClass:string;sqlstate:string}>;
+  let publication="UNREACHED",operation="UNREACHED",closed=false,published=false,primary:RecordValue|undefined;
+  const cleanup:RecordValue[]=[];
+  const native=(error:unknown)=>{let nativeClass="UNKNOWN",sqlstate="UNKNOWN";
+    try{if(error!==null&&(typeof error==="object"||typeof error==="function")&&!calendarNativeTypes.isProxy(error)){
+      const name=Object.getOwnPropertyDescriptor(error,"name"),code=Object.getOwnPropertyDescriptor(error,"code");
+      if(name&&"value" in name&&["Error","TypeError","RangeError","AssertionError","DatabaseError","error"].includes(name.value))nativeClass=name.value;
+      if(code&&"value" in code&&["42501","42P01","42703","42883","23502","23503","23505","23514","22P02","25P02","57014","40001","40P01","08006","42601","42P13"].includes(code.value))sqlstate=code.value;
+    }}catch{/* capture is unknown, never a fallback property access */}
+    return {nativeClass,sqlstate};
+  };
+  const record=(kind:"PRIMARY"|"CLEANUP",guard:string,error?:unknown,at=operation)=>{
+    if(closed||(kind==="PRIMARY"&&primary))return;
+    const valid=typeof guard==="string"&&(guards.includes(guard)||guard.startsWith("FIELD:")&&fields.includes(guard.slice(6)));
+    const value=Object.freeze({kind,publication,operation:operations.includes(at)?at:"UNKNOWN",guard:valid?guard:"UNKNOWN",...native(error)});
+    if(kind==="PRIMARY")primary=value;
+    else if(cleanup.length<3)cleanup.push(value);
+    else cleanup[2]=Object.freeze({kind:"CLEANUP",publication:"UNKNOWN",operation:"UNKNOWN",guard:"OMITTED",nativeClass:"UNKNOWN",sqlstate:"UNKNOWN"});
+  };
+  return {
+    phase(nextPublication:string,nextOperation="UNREACHED"){if(!closed){publication=publications.includes(nextPublication)?nextPublication:"UNKNOWN";operation=operations.includes(nextOperation)?nextOperation:"UNKNOWN";}},
+    at(next:string){if(!closed)operation=operations.includes(next)?next:"UNKNOWN";},
+    fail(guard="UNKNOWN",error?:unknown){record("PRIMARY",guard,error);},
+    cleanup(at:string,error?:unknown){record("CLEANUP","UNKNOWN",error,at);},
+    close(){closed=true;},
+    publish(meta?:unknown){
+      if(closed||published)return;published=true;closed=true;if(!primary)return;
+      try{
+        if(meta===undefined&&readMeta){if(calendarNativeTypes.isProxy(readMeta)||calendarNativeTypes.isAsyncFunction(readMeta))return;meta=readMeta();}
+        if(meta===null||typeof meta!=="object"||calendarNativeTypes.isProxy(meta))return;
+        if(Object.getPrototypeOf(meta)!==Object.prototype&&Object.getPrototypeOf(meta)!==null)return;
+        if(Object.getOwnPropertyDescriptor(meta,calendarInt009MetaKey)||!Object.isExtensible(meta))return;
+        const snapshot=Object.freeze([primary,...cleanup]);
+        if(JSON.stringify(snapshot,null,10).length>3500)return; // conservative reporter indentation/escaping headroom
+        Object.defineProperty(meta,calendarInt009MetaKey,{value:snapshot,enumerable:true,writable:false,configurable:false});
+      }catch{/* never mask original failure, including a readonly/hostile sink */}
+    }
+  };
+}
+export type CalendarInt009Capture=ReturnType<typeof createCalendarInt009Capture>;
 export const calendarFixtureOwnedOrigins = ["scenario-assertion", "scenario-issued-denied", "scenario-issued-unavailable", "scenario-issued-conflict", "scenario-issued-replayed", "scenario-issued-unknown-noncommitted", "scenario-issued-committed-missing-url", "scenario-canonical-token-route", "scenario-http-transport", "scenario-rls001-own", "scenario-rls001-admin", "scenario-rls001-planner", "scenario-rls001-mixed"] as const;
 export type CalendarFixtureOwnedOrigin = typeof calendarFixtureOwnedOrigins[number];
 export const calendarFixtureDiagnosticStages = ["booking-fixture-before-callback", "canonical-fixture-cleanup", "additional-users", "bind-membership", "bind-profile", "bind-client", "owned-row-cleanup", "additional-auth-cleanup", "cleanup-absence-check", "serial-window-setup", "serial-window-restore", "scenario", "unknown", ...calendarFixtureOwnedOrigins] as const;
@@ -273,7 +320,7 @@ async function calendarJoined<T extends readonly unknown[]>(promises:T):Promise<
   if(errors.length)throw new AggregateError(errors,"Calendar sibling work failed after actual settlement");return results.map(result=>(result as PromiseFulfilledResult<unknown>).value) as {[K in keyof T]:Awaited<T[K]>};
 }
 const calendarFixtureCustody=new Set<Awaited<ReturnType<typeof createRoleAwarePhaseAFixture>>>();
-export async function withCalendarFeedFixture<L extends Lane>(lane:L,run:(fixture:FixtureByLane<L>)=>Promise<void>):Promise<void> {
+export async function withCalendarFeedFixture<L extends Lane>(lane:L,run:(fixture:FixtureByLane<L>)=>Promise<void>,int009?:CalendarInt009Capture):Promise<void> {
   let canonical:Awaited<ReturnType<typeof createRoleAwarePhaseAFixture>>|undefined,fixture:BoundFixture|undefined;
   let additionalUsers:readonly FixtureUser[]=[],phase:CalendarFixtureDiagnosticStage="booking-fixture-before-callback";
   const errors:Error[]=[];let base:BookingFixture|undefined;
@@ -285,7 +332,7 @@ export async function withCalendarFeedFixture<L extends Lane>(lane:L,run:(fixtur
     phase="bind-membership";fixture=await bindCalendarFixture(base,extra);
     const serial=lane==="row-isolated"?{}:{serial:await calendarSerialControls(fixture)};phase="scenario";
     const scenario=()=>calendarFixtureStep("scenario",()=>run(Object.assign(fixture!,serial) as FixtureByLane<L>));
-    await calendarWorkScope(fixture,()=>lane==="row-isolated"?scenario():withOwnedUnknownWindow(fixture!,scenario));
+    await calendarWorkScope(fixture,()=>lane==="row-isolated"?scenario():withOwnedUnknownWindow(fixture!,scenario),int009);
   }catch(error){errors.push(calendarFixtureDiagnostic(phase,error));}
   // Close first; actual pending work, owner restoration, and same-session proof
   // precede EVERY destructive row/Auth/canonical cleanup, including failure.
@@ -306,7 +353,8 @@ export async function withCalendarFeedFixture<L extends Lane>(lane:L,run:(fixtur
       if((await adminQuery("select 1 from auth.users where id=any($1::uuid[]) limit 1",[users])).length)errors.push(calendarFixtureDiagnostic("cleanup-absence-check",new Error()));
     }catch(error){errors.push(calendarFixtureDiagnostic("cleanup-absence-check",error));}
   }
-  if(errors.length)throw calendarFixtureDiagnostic("scenario",new AggregateError(errors,"Calendar fixture primary and ALL reached cleanup failures retained"));
+  if(errors.length){int009?.publish();throw calendarFixtureDiagnostic("scenario",new AggregateError(errors,"Calendar fixture primary and ALL reached cleanup failures retained"));}
+  int009?.close();
 }
 function redactFailure(error: unknown): Error {
   return calendarFixtureDiagnostic("scenario", error);
@@ -655,7 +703,7 @@ function calendarFetchPort(anon:Pick<TestServerClient,"rpc">) {
     }catch(error){calendarRetainTransportCustody();throw error;}
   }};
 }
-const calendarWorkContext=new AsyncLocalStorage<{open:boolean}[]>();
+const calendarWorkContext=new AsyncLocalStorage<{open:boolean;int009?:CalendarInt009Capture}[]>();
 export async function calendarSettle(fx:Pick<BoundFixture,"pendingRequests">,timeoutMs=20_000):Promise<void> {
   let timer:ReturnType<typeof setTimeout>|undefined;
   const drain=(async()=>{while(fx.pendingRequests.size)await Promise.allSettled([...fx.pendingRequests]);})();void drain.catch(()=>{});
@@ -663,12 +711,14 @@ export async function calendarSettle(fx:Pick<BoundFixture,"pendingRequests">,tim
   if(!settled)calendarSharedCustody??={purpose:"clock",phase:"ordinary-work-unsettled"};
   if(!settled||calendarSharedCustody)throw calendarOwnerRefused();
 }
-export async function calendarWorkScope<T>(fx:Pick<BoundFixture,"pendingRequests">,run:()=>Promise<T>):Promise<T> {
-  const scope={open:true},ancestors=calendarWorkContext.getStore()??[];let result:T|undefined;const errors:Error[]=[];
+export async function calendarWorkScope<T>(fx:Pick<BoundFixture,"pendingRequests">,run:()=>Promise<T>,int009?:CalendarInt009Capture):Promise<T> {
+  const scope={open:true,int009},ancestors=calendarWorkContext.getStore()??[];let result:T|undefined;const errors:Error[]=[];
   try{result=await calendarWorkContext.run([...ancestors,scope],run);}catch(error){errors.push(redactFailure(error));}
   finally{scope.open=false;try{await calendarSettle(fx);}catch(error){errors.push(redactFailure(error));}}
   if(errors.length)throw new AggregateError(errors,"Calendar ordinary callback and ALL settlement failures retained");return result as T;
 }
+function calendarInt009Subject(purpose:string){return purpose==="subject"?calendarWorkContext.getStore()?.find(scope=>scope.int009)?.int009:undefined;}
+function calendarInt009Guard(purpose:string,guard:string){calendarInt009Subject(purpose)?.fail(guard);}
 export type CalendarOwnerPurpose = "clock" | "subject" | "fetch";
 type CalendarOwnerRow = {oid:string;metadata:Record<string,unknown>;definition:string;body:string;language:string;default_expr:string|null;identityQualified:boolean;ownerQualified:boolean;setQualified:boolean;notInherited:boolean;schemaQualified:boolean;noCreate:boolean;aclQualified:boolean};
 const calendarOwnerTargets={clock:"public.calendar_feed_now_internal()",subject:"public.calendar_feed_subject_internal(uuid,uuid,uuid,boolean)",fetch:"public.fetch_calendar_feed(text,text,jsonb,text)"} as const;
@@ -685,21 +735,21 @@ function calendarOwnerData(value:unknown,depth=0):unknown {
   return Object.fromEntries(keys.map(key=>[key,calendarOwnerData(descriptors[key as string].value,depth+1)]));
 }
 function calendarOwnerFacts(rows:unknown,purpose:CalendarOwnerPurpose,expectedBody:string,expected?:CalendarOwnerRow,subjectFault=false):CalendarOwnerRow {
-  if(!Array.isArray(rows)||rows.length!==1)throw calendarOwnerRefused();
-  const entry=Object.getOwnPropertyDescriptor(rows,"0");if(!entry||!("value" in entry)||!entry.value||typeof entry.value!=="object")throw calendarOwnerRefused();
+  if(!Array.isArray(rows)||rows.length!==1){calendarInt009Guard(purpose,"ROW_COUNT");throw calendarOwnerRefused();}
+  const entry=Object.getOwnPropertyDescriptor(rows,"0");if(!entry||!("value" in entry)||!entry.value||typeof entry.value!=="object"){calendarInt009Guard(purpose,"ROW_ENTRY");throw calendarOwnerRefused();}
   const fields=Object.getOwnPropertyDescriptors(entry.value),names=["oid","metadata","definition","body","language","default_expr","identityQualified","ownerQualified","setQualified","notInherited","schemaQualified","noCreate","aclQualified"];
-  if(Reflect.ownKeys(fields).length!==names.length||!names.every(name=>Object.hasOwn(fields,name)&&"value" in fields[name]))throw calendarOwnerRefused();
+  if(Reflect.ownKeys(fields).length!==names.length||!names.every(name=>Object.hasOwn(fields,name)&&"value" in fields[name])){calendarInt009Guard(purpose,"ROW_FIELDS");throw calendarOwnerRefused();}
   const row=Object.fromEntries(names.map(name=>[name,fields[name].value])) as CalendarOwnerRow;
-  if(!["identityQualified","ownerQualified","setQualified","notInherited","noCreate","aclQualified"].every(name=>(row as unknown as Record<string,unknown>)[name]===true)||typeof row.schemaQualified!=="boolean"||typeof row.oid!=="string"||!/^\d+$/.test(row.oid)||typeof row.definition!=="string"||row.body!==expectedBody||!row.metadata||typeof row.metadata!=="object"||Array.isArray(row.metadata))throw calendarOwnerRefused();
+  if(!["identityQualified","ownerQualified","setQualified","notInherited","noCreate","aclQualified"].every(name=>(row as unknown as Record<string,unknown>)[name]===true)||typeof row.schemaQualified!=="boolean"||typeof row.oid!=="string"||!/^\d+$/.test(row.oid)||typeof row.definition!=="string"||row.body!==expectedBody||!row.metadata||typeof row.metadata!=="object"||Array.isArray(row.metadata)){calendarInt009Guard(purpose,"ROW_QUALIFICATION");throw calendarOwnerRefused();}
   row.metadata=calendarOwnerData(row.metadata) as Record<string,unknown>;
   const m=Object.getOwnPropertyDescriptors(row.metadata);
-  if(Reflect.ownKeys(m).some(name=>typeof name!=="string"||!("value" in m[name])))throw calendarOwnerRefused();
-  const value=(name:string)=>{if(!Object.hasOwn(m,name))throw calendarOwnerRefused();return m[name].value;};
+  if(Reflect.ownKeys(m).some(name=>typeof name!=="string"||!("value" in m[name]))){calendarInt009Guard(purpose,"METADATA_SHAPE");throw calendarOwnerRefused();}
+  const value=(name:string)=>{if(!Object.hasOwn(m,name)){calendarInt009Guard(purpose,"MISSING_METADATA");throw calendarOwnerRefused();}return m[name].value;};
   const namesExpected=purpose==="clock"?null:purpose==="subject"?["p_tenant","p_membership","p_actor","p_admin"]:["p_token_hash","p_ip_hash","p_claims","p_signature"];
   const fixed:Record<string,unknown>={proname:purpose==="clock"?"calendar_feed_now_internal":purpose==="subject"?"calendar_feed_subject_internal":"fetch_calendar_feed",prokind:"f",proretset:false,provariadic:0,proallargtypes:null,proargmodes:null,pronargs:purpose==="clock"?0:4,proargtypes:purpose==="clock"?"":purpose==="subject"?"2950 2950 2950 16":"25 25 3802 25",proargnames:namesExpected,prorettype:purpose==="clock"?1184:purpose==="subject"?16:3802,pronargdefaults:purpose==="subject"?2:0,prosecdef:purpose==="fetch",provolatile:purpose==="subject"&&!subjectFault?"s":"v",proconfig:['search_path=""'],proisstrict:false,proleakproof:false,proparallel:"u",prosupport:0,procost:100,prorows:0,protrftypes:null,prosqlbody:null};
-  for(const [name,want]of Object.entries(fixed))if(JSON.stringify(value(name))!==JSON.stringify(want))throw calendarOwnerRefused();
-  if(row.default_expr!==(purpose==="subject"?"NULL::uuid, false":null)||row.language!==(purpose==="fetch"||subjectFault?"plpgsql":"sql"))throw calendarOwnerRefused();
-  if(expected&&(row.oid!==expected.oid||calendarOwnerMetadata(row,purpose==="subject"&&(subjectFault||expected.language==="plpgsql"))!==calendarOwnerMetadata(expected,purpose==="subject"&&(subjectFault||expected.language==="plpgsql"))))throw calendarOwnerRefused();
+  for(const [name,want]of Object.entries(fixed))if(JSON.stringify(value(name))!==JSON.stringify(want)){calendarInt009Guard(purpose,"FIELD:"+name);throw calendarOwnerRefused();}
+  if(row.default_expr!==(purpose==="subject"?"NULL::uuid, false":null)||row.language!==(purpose==="fetch"||subjectFault?"plpgsql":"sql")){calendarInt009Guard(purpose,"DEFAULT_LANGUAGE");throw calendarOwnerRefused();}
+  if(expected&&(row.oid!==expected.oid||calendarOwnerMetadata(row,purpose==="subject"&&(subjectFault||expected.language==="plpgsql"))!==calendarOwnerMetadata(expected,purpose==="subject"&&(subjectFault||expected.language==="plpgsql")))){calendarInt009Guard(purpose,"OID_METADATA");throw calendarOwnerRefused();}
   return row;
 }
 const calendarOwnerCatalogSql=`select p.oid::text oid,(to_jsonb(p)||jsonb_build_object('provariadic',p.provariadic::bigint,'prorettype',p.prorettype::bigint,'prosupport',p.prosupport::oid::bigint)) metadata,pg_get_functiondef(p.oid) definition,p.prosrc body,l.lanname language,pg_get_expr(p.proargdefaults,0) default_expr,
@@ -714,42 +764,45 @@ const calendarOwnerCatalogSql=`select p.oid::text oid,(to_jsonb(p)||jsonb_build_
  from pg_proc p join pg_language l on l.oid=p.prolang join pg_roles o on o.rolname='calendar_feed_owner' join pg_roles e on e.rolname=current_user join pg_namespace n on n.oid='public'::regnamespace where p.oid=to_regprocedure($1)
  and (select count(*) from pg_proc x where x.pronamespace=n.oid and x.proname=p.proname)=1`;
 export async function calendarOwnerAtomic(purpose:CalendarOwnerPurpose,canonicalBody:string,operation:{kind:"capture"}|{kind:"replace";body:string;expected:CalendarOwnerRow;subjectFault?:boolean}|{kind:"read";expected?:CalendarOwnerRow},retired=adminRetiredSession) {
-  if(calendarSharedCustody)throw calendarOwnerRefused();
+  const trace=calendarInt009Subject(purpose);trace?.at("UNREACHED");
+  if(calendarSharedCustody){trace?.fail("STATE");throw calendarOwnerRefused();}
   let captured:CalendarOwnerRow|undefined,phase="preflight",commitAttempted=false,rollbackVerified=false;const failures:Error[]=[];
   try{return await retired(async({query})=>{
     try {
-      await query("begin");await query("set local statement_timeout='5s'; set local lock_timeout='1s'; set local idle_in_transaction_session_timeout='5s'");
+      trace?.at("BEGIN");await query("begin");trace?.at("TIMEOUTS");await query("set local statement_timeout='5s'; set local lock_timeout='1s'; set local idle_in_transaction_session_timeout='5s'");
       const expected=operation.kind==="capture"?undefined:operation.expected;
       const expectedFault=purpose==="subject"&&expected?.language==="plpgsql";
-      captured=calendarOwnerFacts(await query(calendarOwnerCatalogSql,[calendarOwnerTargets[purpose],purpose]),purpose,expected?.body??canonicalBody,expected,expectedFault);
+      trace?.at("PRE_CATALOG");captured=calendarOwnerFacts(await query(calendarOwnerCatalogSql,[calendarOwnerTargets[purpose],purpose]),purpose,expected?.body??canonicalBody,expected,expectedFault);
       let row=captured,now:unknown;
       if(operation.kind!=="capture"){
-        if(operation.kind==="replace"&&!row.schemaQualified)throw calendarOwnerRefused();
-        if(operation.kind==="replace")await query("grant create on schema public to calendar_feed_owner");
-        await query("set local role calendar_feed_owner");
-        const switched=await query("select session_user='postgres' and current_user='calendar_feed_owner' as qualified");
-        if(switched.length!==1||switched[0].qualified!==true)throw calendarOwnerRefused();
+        if(operation.kind==="replace"&&!row.schemaQualified){trace?.fail("SCHEMA_AUTHORITY");throw calendarOwnerRefused();}
+        if(operation.kind==="replace"){trace?.at("CREATE_GRANT");await query("grant create on schema public to calendar_feed_owner");}
+        trace?.at("SET_ROLE");await query("set local role calendar_feed_owner");
+        trace?.at("VERIFY_ROLE");const switched=await query("select session_user='postgres' and current_user='calendar_feed_owner' as qualified");
+        if(switched.length!==1||switched[0].qualified!==true){trace?.fail("ROLE_SWITCH");throw calendarOwnerRefused();}
         phase="owner-operation";
         if(operation.kind==="read"){
           if(purpose!=="clock")throw calendarOwnerRefused();const clocks=await query("select public.calendar_feed_now_internal() now");if(clocks.length!==1)throw calendarOwnerRefused();now=clocks[0].now;
         } else {
-          const definition=calendarOwnerDefinition(captured,operation.body,!!operation.subjectFault);
-          await query(definition);
+          trace?.at("DEFINITION");const definition=calendarOwnerDefinition(captured,operation.body,!!operation.subjectFault);
+          trace?.at("REPLACE_DDL");await query(definition);
         }
-        await query("reset role");
-        if(operation.kind==="replace")await query("revoke create on schema public from calendar_feed_owner");
-        row=calendarOwnerFacts(await query(calendarOwnerCatalogSql,[calendarOwnerTargets[purpose],purpose]),purpose,operation.kind==="replace"?operation.body:captured.body,captured,operation.kind==="replace"?!!operation.subjectFault:expectedFault);
+        trace?.at("RESET_ROLE");await query("reset role");
+        if(operation.kind==="replace"){trace?.at("CREATE_REVOKE");await query("revoke create on schema public from calendar_feed_owner");}
+        trace?.at("POST_CATALOG");row=calendarOwnerFacts(await query(calendarOwnerCatalogSql,[calendarOwnerTargets[purpose],purpose]),purpose,operation.kind==="replace"?operation.body:captured.body,captured,operation.kind==="replace"?!!operation.subjectFault:expectedFault);
       }
-      phase="commit";commitAttempted=true;await query("commit");return {row,now};
-    } catch {
+      phase="commit";commitAttempted=true;trace?.at("COMMIT_ATTEMPT");await query("commit");trace?.at("WRAPPER_OUTCOME_UNKNOWN");return {row,now};
+    } catch (error) {
+      trace?.fail("UNKNOWN",error);
       const cleanup:Error[]=[];
-      try{await query("rollback");}catch{cleanup.push(calendarOwnerRefused());}
-      try{await query("reset role");}catch{cleanup.push(calendarOwnerRefused());}
-      try{const expected=operation.kind==="capture"?undefined:operation.expected;calendarOwnerFacts(await query(calendarOwnerCatalogSql,[calendarOwnerTargets[purpose],purpose]),purpose,captured?.body??expected?.body??canonicalBody,captured??expected,purpose==="subject"&&(captured??expected)?.language==="plpgsql");}catch{cleanup.push(calendarOwnerRefused());}
+      try{await query("rollback");}catch(error){trace?.cleanup("ROLLBACK",error);cleanup.push(calendarOwnerRefused());}
+      try{await query("reset role");}catch(error){trace?.cleanup("RESET_ROLE",error);cleanup.push(calendarOwnerRefused());}
+      try{const expected=operation.kind==="capture"?undefined:operation.expected;calendarOwnerFacts(await query(calendarOwnerCatalogSql,[calendarOwnerTargets[purpose],purpose]),purpose,captured?.body??expected?.body??canonicalBody,captured??expected,purpose==="subject"&&(captured??expected)?.language==="plpgsql");}catch(error){trace?.cleanup("REQUALIFY",error);cleanup.push(calendarOwnerRefused());}
       rollbackVerified=cleanup.length===0;
       failures.push(calendarOwnerRefused(),...cleanup);throw new AggregateError(failures,"Calendar owner operation and ALL cleanup failures retained");
     }
   });}catch(error){
+    trace?.fail("UNKNOWN");trace?.cleanup("WRAPPER_OUTCOME_UNKNOWN"); // wrapper rejection alone is not failed retirement
     if(commitAttempted||!rollbackVerified||!(error instanceof AdminRetiredSessionError)||!error.retirementVerified)calendarSharedCustody={purpose,row:captured,phase};
     throw new AggregateError([...failures,calendarOwnerRefused()],"Calendar owner operation and ALL transaction/retirement failures retained");
   }
@@ -769,10 +822,15 @@ async function calendarCanonicalBody(purpose:CalendarOwnerPurpose) {
   if(at<0||start<at||end<start)throw calendarOwnerRefused();return source.slice(start,end);
 }
 async function calendarPublish(purpose:CalendarOwnerPurpose,body:(canonical:string)=>string,subjectFault=false) {
-  if(calendarSharedCustody||calendarOwnedStates.has(purpose))throw calendarOwnerRefused();
-  const canonicalBody=await calendarCanonicalBody(purpose),canonical=(await calendarOwnerAtomic(purpose,canonicalBody,{kind:"capture"})).row;
-  const current=(await calendarOwnerAtomic(purpose,canonicalBody,{kind:"replace",body:body(canonicalBody),expected:canonical,subjectFault})).row;
-  const state={canonical,current};calendarOwnedStates.set(purpose,state);return state;
+  const trace=calendarInt009Subject(purpose);trace?.phase("STATE_PRECHECK");
+  try {
+  if(calendarSharedCustody||calendarOwnedStates.has(purpose)){trace?.fail("STATE");throw calendarOwnerRefused();}
+  trace?.phase("CANONICAL_SOURCE");const canonicalBody=await calendarCanonicalBody(purpose);
+  trace?.phase("CAPTURE");const canonical=(await calendarOwnerAtomic(purpose,canonicalBody,{kind:"capture"})).row;
+  trace?.phase("BODY_BUILD");const replacement=body(canonicalBody);
+  trace?.phase("REPLACE");const current=(await calendarOwnerAtomic(purpose,canonicalBody,{kind:"replace",body:replacement,expected:canonical,subjectFault})).row;
+  trace?.phase("STATE_PUBLISH");const state={canonical,current};calendarOwnedStates.set(purpose,state);return state;
+  }catch(error){trace?.fail("UNKNOWN",error);throw error;}
 }
 async function calendarRestore(purpose:CalendarOwnerPurpose) {
   if(calendarSharedCustody)throw calendarOwnerRefused();const state=calendarOwnedStates.get(purpose);if(!state)throw calendarOwnerRefused();
@@ -872,8 +930,8 @@ async function calendarBarrier(scope: Parameters<SerialControls["barrier"]>[0],f
     await adminQuery(`create function public.${fn}() returns trigger language plpgsql security definer set search_path='' as $$ begin if ${condition} then perform pg_advisory_xact_lock(27155,${lock}); end if; return new; end $$; revoke all on function public.${fn}() from public,anon,authenticated,service_role;`);
     await adminQuery(`create trigger ${trigger} before ${table==="audit_events"?"insert":"update"} on public.${table} for each row execute function public.${fn}()`);
   }} catch(error) {
-    releaseGate();const failures=[redactFailure(error)];try{await holder;}catch{failures.push(new Error("Owned holder release failed"));}
-    try {if(calendarSharedCustody)throw calendarOwnerRefused();await calendarSettle(fx);if(installed)await calendarRestore("subject");else if(!authority){await adminQuery(`drop trigger if exists ${trigger} on public.${table}`);await adminQuery(`drop function if exists public.${fn}()`);}}catch{failures.push(new Error("Owned barrier setup cleanup failed"));}
+    releaseGate();const failures=[redactFailure(error)];try{await holder;}catch(error){calendarInt009Subject("subject")?.cleanup("HOLDER_RELEASE",error);failures.push(new Error("Owned holder release failed"));}
+    try {if(calendarSharedCustody)throw calendarOwnerRefused();await calendarSettle(fx);if(installed)await calendarRestore("subject");else if(!authority){await adminQuery(`drop trigger if exists ${trigger} on public.${table}`);await adminQuery(`drop function if exists public.${fn}()`);}}catch(error){calendarInt009Subject("subject")?.cleanup("SETUP_CLEANUP",error);failures.push(new Error("Owned barrier setup cleanup failed"));}
     throw new AggregateError(failures,"Barrier setup and cleanup outcomes retained");
   }
   let released=false,releasePromise:Promise<void>|undefined,cleanupPromise:Promise<void>|undefined;
@@ -889,6 +947,7 @@ async function calendarBarrier(scope: Parameters<SerialControls["barrier"]>[0],f
     if(errors.length)throw new AggregateError(errors,"Barrier primary and ALL reached cleanup failures retained");
   })();void cleanupPromise.catch(()=>{});}return cleanupPromise;};
   fx.finalizers.add(cleanup);
+  if(authority)calendarInt009Subject("subject")?.close(); // entire setup returned successfully; later cleanup is not setup
   return {
     waitUntilEntered:async(timeoutMs)=>{if(released)throw calendarOwnerRefused();const deadline=Date.now()+timeoutMs;while(Date.now()<deadline){const rows=await adminQuery("select 1 from pg_locks where locktype='advisory' and classid=27155 and objid=$1 and not granted",[lock]);if(rows.length)return;await new Promise(resolve=>setTimeout(resolve,20));}throw new Error("Owned calendar barrier was not reached");},
     release,assertOwnedObjectsAbsent:cleanup,
