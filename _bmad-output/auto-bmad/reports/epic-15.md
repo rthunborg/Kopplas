@@ -7400,3 +7400,34 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Completed fresh finite Coordinator allocation, fresh sourceproof/bothownedclean/exclusiveprovideractivation+oneGET, RootnonforceFFpush1/exactPOST1/soleboundedpoller. Oldslotsclosed; newterminal separateacquisition. Full95/P5delivery/P6automate/P7helper/15.6/E8 remain.
+
+## Report — 2026-10-22T15:21:03Z (working)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `a6c8469`).
+**Pipeline status:** Story15.5 P5 OPEN; correctedcase finiteallocation actualcompleted saved, zero neweffects
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 314h 23m (≈77h 24m AI-run, ≈236h 58m human/idle wait); resumed 225×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Fresh bothownedclean/source14+immutable118proof, exclusiveprovideractivation, NativeHighoneGET/outerattribution thenRooteffectsactivation/nonforceFFpush/exactPOST/soleboundedpoll; newterminal separateartifactallocation.
