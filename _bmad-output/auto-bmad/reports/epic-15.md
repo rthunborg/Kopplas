@@ -7307,3 +7307,34 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** SoleRoot poll at >=60s within remaining89pairs/90min; stop/freeze once9terminal. Separateartifactreader/allocation only afterward. Fullfunctional95 and remainingepicgates still required.
+
+## Report — 2026-10-22T14:55:01Z (working)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `cc0d654`).
+**Pipeline status:** Story15.5 P5 OPEN; diagnosticterminalUNITFAIL/DBSKIP andRootSTOPPED; onefixture sourceonlyactive/fullNodepending
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 313h 57m (≈77h 24m AI-run, ≈236h 32m human/idle wait); resumed 222×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Implementfixtureexplicitdisabledflag+samecasefixedmodeinverses; fullcanonicalNode1run<=600s; Rootlocalcommit/independentHightargetedreview; separatelyadmittedfreshCIproposal onlyafterfullpurePASS.
