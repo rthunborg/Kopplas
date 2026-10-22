@@ -7431,3 +7431,34 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Fresh bothownedclean/source14+immutable118proof, exclusiveprovideractivation, NativeHighoneGET/outerattribution thenRooteffectsactivation/nonforceFFpush/exactPOST/soleboundedpoll; newterminal separateartifactallocation.
+
+## Report — 2026-10-22T15:36:29Z (working)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `85cd59a`).
+**Pipeline status:** Story15.5 P5 OPEN; acceptedcorrecteddispatch localHOLD preserved, independentHigh15P GET-onlyrecoverySOURCEPASS
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 314h 38m (≈77h 24m AI-run, ≈237h 14m human/idle wait); resumed 226×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** ExclusiveRootGET-onlyactivation/newnamespace init thenobserveaccepteddispatch withinoriginalremainingbudgets; no provider/push/POST. Actualnewterminal onlythen separateboundedartifactacquisition. Full95/P5delivery/P6automate/P7helper/15.6/E8 remain.
