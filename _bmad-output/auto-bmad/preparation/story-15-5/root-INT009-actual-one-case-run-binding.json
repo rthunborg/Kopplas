@@ -1,0 +1,89 @@
+{
+  "schema": "ROOT_INT009_ACTUAL_ONE_CASE_RUN_BINDING_v1",
+  "status": "DISPATCH_ACCEPTED_EXACT_RUN_RESOLVED_ROOT_SOLE_POLLER_ACTIVE",
+  "head": "d818c75370fc4a575fdf08d8add97a7294f5a4fc",
+  "branch": "codex/epic-15-int009-debug",
+  "run_id": 39797377455,
+  "url": "https://github.com/rthunborg/Kopplas/actions/runs/39797377455",
+  "attempt": 1,
+  "checkpoint_id": "3558af82-553d-4e86-8a39-f7de8bcce85e",
+  "title": "checkpoint:original-int009:3558af82-553d-4e86-8a39-f7de8bcce85e:d818c75370fc4a575fdf08d8add97a7294f5a4fc",
+  "workflow_id": 296219797,
+  "actor": "rthunborg",
+  "triggering_actor": "rthunborg",
+  "event": "workflow_dispatch",
+  "Root_effect_tool": {
+    "chunk_id": "87e2f6",
+    "exit_code": 0,
+    "wall_seconds": 8.8323019,
+    "session_id": null,
+    "waits": []
+  },
+  "Root_resolution_tool": "ece79b/native0/0.8810837s",
+  "Root_firstpoll_tool": "9111b5/native0/1.3080033s",
+  "provider_execution": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-INT009-provider-execution-receipt.json",
+    "bytes": 4415,
+    "sha256": "39ffaaa50d097fc5481989c115894dc82897f6569b6c5c19e56286a30da16b87"
+  },
+  "provider_qualification": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-INT009-vercel-readonly-qualification.json",
+    "bytes": 11191,
+    "sha256": "dd44a8b7fcd3d448ba1f2b310107a686d545faee00a99de2fe6b976413cbd669"
+  },
+  "allocation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-resumed-INT009-one-case-effects-allocation.json",
+    "bytes": 4172,
+    "sha256": "2b68b6e896f17a82193b7034af9489e8bfd3a0fb9bad8cc0464a07605627827d"
+  },
+  "root_effects_activation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-INT009-root-effects-activation.json",
+    "bytes": 1781,
+    "sha256": "c57ec240feeca9270070a835f82df89d088310fa18a228c3c8580dda34dc3aef"
+  },
+  "push_intent": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-INT009-root-operation/push-intent.json",
+    "bytes": 169,
+    "sha256": "e93277c1915e1f777505d11694fa449eda4448c1ae3d6755198ef8be94dc995b"
+  },
+  "push_receipt": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-INT009-root-operation/push-receipt.json",
+    "bytes": 698,
+    "sha256": "b940768980e657d98f4d61ac859c0147a1aa6d62f2fc5ec898596f306c2c5d41"
+  },
+  "dispatch_intent": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-INT009-root-operation/dispatch-intent.json",
+    "bytes": 259,
+    "sha256": "1d6402cc45919aa3e3f49281c3f15b8642e09a423e29d41fe6965ec4621db31b"
+  },
+  "dispatch_receipt": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-INT009-root-operation/dispatch-receipt.json",
+    "bytes": 696,
+    "sha256": "9f2471850620e205cf603f458cc1f82894969e57e92878c44549e6c3b393c009"
+  },
+  "first_observation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-INT009-root-operation/observation-1.json",
+    "bytes": 1097,
+    "sha256": "38d9df17a81a8f42ee51cec33ab143a4c98515f609ef958b99b666e652addb11"
+  },
+  "actual_counts": {
+    "providerGET": 1,
+    "userGET": 1,
+    "workflowGET": 1,
+    "remote_before": 1,
+    "nonforce_push": 1,
+    "remote_readback": 1,
+    "fixed_POST": 1,
+    "resolution_GET": 1,
+    "run_GET": 1,
+    "jobs_GET": 1,
+    "artifacts_GET": 0
+  },
+  "push": "owned debug exactbranch only, nonforce, remoteabsent/readbackexact; no MAINpush",
+  "no_deployment": "Fresh previewdisabled+unconditionalexit0 qualifies ordinaryGitpush only; no manual/CLI/globalproductionclaim or deployment action",
+  "diagnostic_acceptance": 0,
+  "normal95": "68P1F26unexecuted unchanged",
+  "terminal": false,
+  "custody": "Existingfailurecustody rules; actualnewrun outcome UNKNOWN",
+  "next": "SoleRoot poll at >=60s within remaining89pairs/90min; stop/freeze once9terminal. Separateartifactreader/allocation only afterward. Fullfunctional95 and remainingepicgates still required."
+}

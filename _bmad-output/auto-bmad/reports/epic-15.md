@@ -7276,3 +7276,34 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Fresh bothownedclean/sourceproof and exclusive provider activation; NativeHigh oneGET; actual outer attribution then Root effectsactivation/push/POST/solepoller; terminal separate acquisition.
+
+## Report — 2026-10-22T14:39:26Z (working)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `296230f`).
+**Pipeline status:** Story15.5 P5 OPEN; one fixedINT009 run39797377455 accepted/resolved, Root solepoller active; no acceptance
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 313h 41m (≈77h 24m AI-run, ≈236h 17m human/idle wait); resumed 221×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** SoleRoot poll at >=60s within remaining89pairs/90min; stop/freeze once9terminal. Separateartifactreader/allocation only afterward. Fullfunctional95 and remainingepicgates still required.
