@@ -1,0 +1,203 @@
+{
+  "schema": "browser-v2-normal-parser-source-review/v1",
+  "verdict": "PASS_BROWSER_V2_NORMAL_PARSER_SOURCE_ONLY",
+  "reviewer": {
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "independent": true,
+    "not_author": true
+  },
+  "scope": {
+    "source": "dec30783a23dcac35d6ba57f649420221d741ecd",
+    "metadata_HEAD": "5da9bc694d86d0754737b2bba8c47a163d871ae0",
+    "broad_review": false,
+    "review_counter": 3,
+    "source_grant_tool": "exec-4c2fd625-22eb-4a30-943d-bfe6343aa606"
+  },
+  "frozen_inputs": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/browser-v2-normal-evidence-preparation/normal-evidence-operator.py",
+      "bytes": 50513,
+      "sha256": "c57bbb84b41b2a79e1c8a94d7b53ce4f7408832ef9b0ee0504a9121d11cf3f05"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/browser-v2-normal-evidence-preparation/bindings.json",
+      "bytes": 74961,
+      "sha256": "f79bc2e987a95918cb412ff85bd21e5ac88b80372302414a5c9d10b0c61d9674"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/browser-v2-normal-evidence-preparation/result.json",
+      "bytes": 101621,
+      "sha256": "20e29fc3bcdb80b6cc109687913f1a3242e5990d7ad3e2d30e55cc7c1ba667c9"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/browser-v2-normal-evidence-preparation/manifest.json",
+      "bytes": 1028,
+      "sha256": "52efd98fca6a59e2accd6f1f788b434cccca74b25ca89564abd947d03d87a222"
+    }
+  ],
+  "baseline_operator": {
+    "bytes": 47872,
+    "sha256": "5c16681bf8d701a9ce5b2f16da9ec803dc18147a0b8108cf28e0186982876990"
+  },
+  "source_delta": {
+    "total_definitions": 36,
+    "changed": [
+      "parse_browser",
+      "browser_labels",
+      "assemble_labels",
+      "label_budget_admission"
+    ],
+    "unchanged": 32,
+    "legacy_helper_hashes": 16,
+    "helper_hash_boundary": "ast.get_source_segment excludes trailing newline",
+    "other_AST_changes": [
+      "SOURCE",
+      "BROWSER_PREFIX",
+      "BROWSER_CASES",
+      "BROWSER_SELECTORS",
+      "SNAPSHOTS",
+      "SCENARIO",
+      "COMPLETION_PHASE"
+    ],
+    "outside_grant_expansion": false
+  },
+  "independent_final_pure": {
+    "tool_chunk": "fe8fc5",
+    "exit": 0,
+    "wall_seconds": 0.7158907,
+    "proof": {
+      "verdict": "PURE_BINDING_MATCH_BUDGET_PASS",
+      "raw_clean_rows": 205,
+      "source_and_metadata_Git_equalities": 410,
+      "source75_normalizations": 37,
+      "bound_input_refs": 11,
+      "catalogs": 20,
+      "static_titles": 407,
+      "excluded_dynamic": 19,
+      "changed_catalogs": [
+        "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts"
+      ],
+      "unchanged_catalogs": 19,
+      "wrapper_literals": 157,
+      "producer_instances": 6,
+      "exact_emitted_retained_rows": 28,
+      "budget": {
+        "global_records": 44,
+        "browser_records": 28,
+        "nudge_records": 16,
+        "retained_global_cap": 48,
+        "record_bytes": 512,
+        "production_assembler_bytes": 27213,
+        "cap_bytes": 32768,
+        "margin_bytes": 5555,
+        "same_admitted_published_bytes": true
+      },
+      "same_production_assembler_bytes_with_real_producer_rows": 20485,
+      "Node_child_exit": 0,
+      "Node_stdout_bytes": 44142,
+      "Node_stdout_sha256": "fe7da0ea5a73ba86d827fa7572110c8d61429ac4ebaa49dfd079c0510c0f455d",
+      "Node_stderr_bytes": 0,
+      "Node_script_sha256": "b6eea5652ecfcdc789bf2607fbeff21f995380f7768d39345a86e71fc54341b4",
+      "old_assembler_reproduced": 28194,
+      "independent_conservative_48_slot_bytes": 29274,
+      "inherited_suite_literal_in_inventory": 1,
+      "independent_control_groups": 3,
+      "operator_main_calls": 0,
+      "transport_functions_selected": 0,
+      "API": 0
+    },
+    "execution": "Selected pure AST definitions only; no imported operator, source top-level execution, main, transport or filesystem writer. Node imports bound installed TS compiler only, compiles extracted producer function and scans source ASTs; no test/app module imports.",
+    "producer_function_boundary_sha256": "b3fa5e48a8656c0dccc958a717d2aacee33383ea8556154817925bb884438684",
+    "outer_control_script_record": "Actual executed command retained in tool chunk fe8fc5; selected Python AST functions and bound Node extraction only."
+  },
+  "reader_harness_history": {
+    "stops": [
+      {
+        "chunk": "cfa1f1",
+        "kind": "reader-only",
+        "reason": "Generic first-element display assumed list; unit_sources is a mapping; inspection stopped after source output."
+      },
+      {
+        "chunk": "1282ea",
+        "kind": "pure-harness",
+        "reason": "Fresh test/it-only catalog scan omitted one inherited describe-suite inventory record; exact historical record subsequently source-bound."
+      },
+      {
+        "chunk": "bb7726",
+        "kind": "pure-harness",
+        "reason": "Assumed author extraction hash boundary; replaced with independently bound exact AST function source segment."
+      },
+      {
+        "chunk": "bd50d3",
+        "kind": "pure-harness",
+        "reason": "Source literal setup overwrote injected UNIT_CATALOG with empty dict; corrected setup to model admission's existing catalog assignment."
+      },
+      {
+        "chunk": "a5df4a",
+        "kind": "pure-harness",
+        "reason": "Guessed padded-envelope exact length omitted record_count digit growth; retained actual measured conservative length."
+      },
+      {
+        "chunk": "f73e91",
+        "kind": "pure-harness",
+        "reason": "Confused intentionally retained fixed historical identities with null future identity fields; corrected assertion to the prepared inert contract."
+      },
+      {
+        "chunk": "1cdd59",
+        "kind": "reader-only",
+        "reason": "Helper source-span hash included trailing newline; actual AST get_source_segment boundary reproduced all16 author hashes."
+      },
+      {
+        "chunk": "327b07",
+        "kind": "artifact-writer-only",
+        "reason": "Embedded review script contained the writer's triple-quote delimiter; Python parser refused before any file write. Writer payload encoding corrected; source and proofs untouched."
+      }
+    ],
+    "nonadditive": true,
+    "source_changes": 0,
+    "operator_calls": 0,
+    "API": 0
+  },
+  "reused_author_proof": {
+    "controls_pass": 13,
+    "controls_fail": 0,
+    "API": 0,
+    "attribution": "Author-reported retained result; no author receipts re-executed or overwritten.",
+    "catalog_prewrite_failure": "MISSING_PER_FILE_DYNAMIC_METADATA_KEY before JSON writes, corrected metadata only; controls not rerun.",
+    "truncated_output": "Inside large catalog metadata; independent final re-extraction binds current catalog data.",
+    "producer157_and_prior_independent12": "Historical and nonadditive; not rerun here."
+  },
+  "interpretation": {
+    "inherited_suite_literal_count": 1,
+    "catalog407_is_execution_count": false,
+    "wrapper_current157": 157,
+    "legacy_descriptive_contract402": "Historical baseline; live inventory and static_title_count407 verified.",
+    "author_outer48_bytes": 29237,
+    "independent_outer48_bytes": 29274,
+    "padding_diff_not_real_report": true
+  },
+  "future_authority": {
+    "activation": null,
+    "head": null,
+    "run": null,
+    "UUID": null,
+    "historical_fixed_identifiers_retained": true,
+    "old_activation_cannot_authorize_current_SOURCE": true,
+    "needs_actual_terminal_binding_and_review": true,
+    "needs_fresh_source_proof_allocation_Root_activation": true,
+    "effect_authority": false
+  },
+  "findings": [],
+  "limits": {
+    "native_publication": "UNKNOWN",
+    "SQL_runtime": "UNKNOWN",
+    "functional_causes": "UNKNOWN",
+    "custody": "UNKNOWN",
+    "normal_acceptance": 0,
+    "required95": true,
+    "network_GET_operator_SQL_browser_CI_resource_actions": 0,
+    "Git_mutations": 0,
+    "source_Spec_state_changes": 0
+  }
+}

@@ -6563,3 +6563,34 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** ExistingNativeHigh ONLYnarrowexistingbrowser_labelsv2/3selectors+actualproducerparser/erroridentity/budgetcontrols; distinctsourceaudit then shortestONEfunctionalNORMALproposal. No GET/dispatch/push/sourcepolish.
+
+## Report — 2026-10-22T01:03:54Z (15.5 reviewed corrections ready for one functional checkpoint)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `5da9bc6`).
+**Pipeline status:** P5 open; source reviews passed, current native gates pending
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 300h 06m (≈77h 24m AI-run, ≈222h 41m human/idle wait); resumed 198×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Coordinate one provider qualification, FF checkpoint push and NORMAL run. SQL/runtime/browser/custody remain unproven; source-only parser audit passed, 205 bindings/410 Git equalities and actual 27213/32768 envelope. No deployment.
