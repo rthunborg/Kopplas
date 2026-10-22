@@ -10,6 +10,10 @@ Exhaustive browser matrices, screenshot comparisons, visual inspection, manual w
 
 Use two distinct statements: development complete means applicable development checks and independent review passed; release ready additionally requires actual release-validation evidence and existing release/merge/deployment approvals. Development complete alone never authorizes deployment or claims release readiness. Existing BMAD done means development completion only. A deferred release check is deferred, never passed, waived, or falsely covered by unrelated evidence. TEA trace distinguishes development requirements from deferred release validation; only missing required development evidence blocks development. Release gaps remain visible to retrospective and reports.
 
+## Final Phase B release checkpoint
+
+Owner decision — 2026-10-22: after all approved current Phase B epics are development-complete and integrated, the Coordinator opens and assigns the [Phase B release validation and stabilization checkpoint](../quality/phase-b-release-validation-checkpoint.md). This is a required final milestone; completing the epics does not complete this checkpoint. It consolidates deferred release validation across all epics and preserves actual evidence, owners and unresolved functional findings. Until its applicable checks pass and explicit release approval is recorded, `release_ready` remains false. This instruction schedules the work by completion of the epics, not by a calendar date, and does not authorize deployment.
+
 ## Bounded recovery and ownership
 
 After two unsuccessful attempts at the same approach, stop repeating it. Inspect the evidence and choose a materially simpler safe route within existing authorization. If none exists, retain a named blocker with owner, evidence, next action and the exact resume condition. Never blindly retry an uncertain remote mutation. Do not expand scope or change protected boundaries to clear a gate. A deferred release check must not stall ordinary development; a real development blocker must not be hidden.
