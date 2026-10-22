@@ -1,0 +1,180 @@
+{
+  "schema": "targeted-browser-v2-source-review/v1",
+  "verdict": "PASS_BROWSER_V2_SOURCE_ONLY",
+  "reviewer": {
+    "role": "independent source reviewer; not implementation author",
+    "model": "gpt-6.1-sol",
+    "effort": "high"
+  },
+  "scope": {
+    "commit": "dec30783a23dcac35d6ba57f649420221d741ecd",
+    "parent": "58c2d24804a19f78e360a9736d7257bf289c5666",
+    "tree": "696c84dac883994612d9274393545b690da70846",
+    "exact_paths": 4,
+    "broad_review": false,
+    "counter": 3
+  },
+  "sources": [
+    {
+      "path": "tests/e2e/support/calendar-feed-atdd.ts",
+      "bytes": 61917,
+      "sha256": "e98f4776aabd1aba9291b91062a3cd38a20e9aa09673fe8f85b8c1b3e945c5a5",
+      "head_blob": "790f7e0a0eba764a0e88d484ff87f3d38a997e84",
+      "parent_blob": "920b6d31f68254f340067f85d6a7155ee8bdf600",
+      "raw_equals_clean_and_committed": true
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "bytes": 275768,
+      "sha256": "2aaa62d8f7d18f3733f99dc5387c4f78e2ca37ffaef281a35dfa24fe6b705e75",
+      "head_blob": "18ede90869c6f09eecf9da6bbeae7d4f615c47ea",
+      "parent_blob": "c9ed2801dfa1b8cd2c6710481e7715d9a8a5de4d",
+      "raw_equals_clean_and_committed": true
+    },
+    {
+      "path": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "bytes": 28770,
+      "sha256": "1dbc33c3f74ebd873d91316235eef14743d161c4cee358ad945409eb6b1b8cbb",
+      "head_blob": "a45830d01fb4aee221f7df6a327138a1b0a6539a",
+      "parent_blob": "4865721f7930e08f3be2b01af683e923ae8d85fb",
+      "raw_equals_clean_and_committed": true
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "bytes": 226073,
+      "sha256": "a8cc2bb0f7cde663a94e997f25085907db6e749c0dd043ab3c696f90605b9f82",
+      "head_blob": "1055aade115e11222bc0dfd5a787855ebee027e5",
+      "parent_blob": "c6100dc9860ee188ef2a29d44aaa5fb075f2810d",
+      "raw_equals_clean_and_committed": true
+    }
+  ],
+  "preparation": {
+    "manifest": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/browser-v2-source-observability-correction/manifest.json",
+      "bytes": 850,
+      "sha256": "3614893d57bc9b7d3739523aefd1390a22d22456eac456afc1c6c8dc96c24414"
+    },
+    "receipt": {
+      "bytes": 13238,
+      "sha256": "4670dd028d0cd96404d9fb5528e710c230fa216be8a586a27423b01947742ff0"
+    },
+    "bindings": {
+      "bytes": 4829,
+      "sha256": "8f38e7f5ffe2e96c23fba50a92e5ae5cd17d6ff5f62228845401828feba108f5"
+    },
+    "result": {
+      "bytes": 1290,
+      "sha256": "b86a4cf841d443668f27d313513e631c864fb7232404c79b6242336e1a5d1051"
+    },
+    "root_precommit": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-browser-v2-source-precommit-admission.json",
+      "bytes": 2644,
+      "sha256": "aad73ad17287fae43a8835f8a4865d8a80167f299be8a48d972fe552697deb2a"
+    }
+  },
+  "methods": [
+    "Read actual helper/caller/unit delta against parent and relevant existing downstream controls.",
+    "Bound actual HEAD/tree and exact four raw/clean/head/parent source identities.",
+    "Verified existing completion await count and receiver; selected cases and enclosing cleanup catches; immutable producer snapshots and closed output.",
+    "Verified unchanged SQL/series sources since 490f910fedfc1ec4ebbc5f0b8ecf980698fb1678; reused prior sensitive-source closure.",
+    "Inspected pure harness imports/extraction and injected I/O before one bounded focused Node command."
+  ],
+  "independent_actual_control_run": {
+    "argv": [
+      "node",
+      "--experimental-strip-types",
+      "--import",
+      "./tests/support/register.mjs",
+      "--test",
+      "--test-name-pattern=browser v2|actual labelled caller assertions|label instrumentation preserves|actual browser records|actual waiter labels|actual browser readback|actual concurrent browser records|actual label budgets",
+      "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts"
+    ],
+    "exit": 0,
+    "summary": {
+      "tests": 12,
+      "suites": 0,
+      "pass": 12,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "duration_ms": 643.6238,
+    "stdout_bytes": 4487,
+    "stdout_sha256": "f79260ee1f3d4d5c92dfe9aeb3981c258b6386b3b1bdcf59c2cf1692e3012d6e",
+    "stderr_bytes": 0,
+    "tool_chunk": "ad2c05",
+    "reader_note": "Underlying command passed; subsequent combined-output JSON display parsing stopped because an earlier source excerpt also contained a brace. No test rerun or extra pass credit."
+  },
+  "mechanical_binding_check": {
+    "tool_chunk": "9268c6",
+    "exit": 0,
+    "wall_seconds": 0.767398,
+    "exact4": true
+  },
+  "protocol": {
+    "cases": [
+      "E2E001",
+      "E2E007",
+      "E2E010-revoke"
+    ],
+    "action_profiles": [
+      3,
+      2,
+      2
+    ],
+    "snapshots": [
+      "PRE_CLEANUP",
+      "FINAL"
+    ],
+    "attempts": 2,
+    "browser_max": 28,
+    "nudge_max": 16,
+    "combined_max": 44,
+    "global_records": 48,
+    "per_test_records": 16,
+    "line_ascii_bytes": 512,
+    "existing_report_bytes": 32768,
+    "proposed_reused_envelope_bytes": 26913,
+    "matching_private_parser_built_or_audited": false
+  },
+  "controls_qualified": [
+    "Actual completion phases, call counts, receiver and failure identity",
+    "Independent immutable snapshots and final-failure-only publication",
+    "Closed fields/cases/ordinals, unknown replacement, row/ASCII/line caps",
+    "Hostile field getters and throwing sink do not affect error propagation",
+    "Actual selected callback outer catches and cleanup ordering with injected I/O",
+    "Rotate remains silent; operation/assertion portability guards retained"
+  ],
+  "author_evidence_reused": {
+    "affected_unit": {
+      "pass": 157,
+      "fail": 0,
+      "skip": 0,
+      "cancel": 0
+    },
+    "whole_typescript_exit": 0,
+    "affected_three_TS_lint_exit": 0,
+    "diff_reader_exit": 0,
+    "SRO": 184,
+    "independently_rerun": false,
+    "nonadditive": true,
+    "earlier_attempts_retained": true
+  },
+  "findings": [],
+  "limits": {
+    "callback_services_stubbed": true,
+    "live_backend_settlement_proved": false,
+    "matching_parser_and_assembler_required": true,
+    "native_browser_DB_SQL_CI_executions": 0,
+    "network_or_provider_actions": 0,
+    "git_mutations": 0,
+    "source_or_spec_writes": 0,
+    "normal_acceptance": 0,
+    "required_gates": 95,
+    "historical_v1_new_fields": "UNKNOWN",
+    "hosted_original_cause": "UNKNOWN",
+    "custody": "UNKNOWN",
+    "effect_authority": false
+  }
+}

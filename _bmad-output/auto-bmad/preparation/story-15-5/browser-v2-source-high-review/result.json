@@ -1,0 +1,37 @@
+{
+  "Outcome": "PASS_BROWSER_V2_SOURCE_ONLY",
+  "Files changed": [
+    "_bmad-output/auto-bmad/preparation/story-15-5/browser-v2-source-high-review/original-report.md",
+    "_bmad-output/auto-bmad/preparation/story-15-5/browser-v2-source-high-review/original-attestation.json",
+    "_bmad-output/auto-bmad/preparation/story-15-5/browser-v2-source-high-review/result.json",
+    "_bmad-output/auto-bmad/preparation/story-15-5/browser-v2-source-high-review/manifest.json"
+  ],
+  "Status": {
+    "commit": "dec30783a23dcac35d6ba57f649420221d741ecd",
+    "parent": "58c2d24804a19f78e360a9736d7257bf289c5666",
+    "tree": "696c84dac883994612d9274393545b690da70846",
+    "findings": 0,
+    "independent_pure": {
+      "pass": 12,
+      "fail": 0,
+      "skip": 0,
+      "cancel": 0
+    },
+    "author_affected_157": "reused; not additive",
+    "source_bindings": 4,
+    "SQL117_and_frozen_series_sources_unchanged": true,
+    "native_actions": 0,
+    "normal_acceptance": 0,
+    "review_counter": 3
+  },
+  "Open questions": [
+    "Historical causes and custody remain UNKNOWN."
+  ],
+  "Deferred work": [
+    "Matching private parser source review, real assembler budget qualification and required native gates remain separate."
+  ],
+  "Blockers": [
+    "None within this bounded source review; this result grants no effect authority."
+  ],
+  "artifact_binding": "The self-excluded manifest binds the other three files; final response binds all four."
+}

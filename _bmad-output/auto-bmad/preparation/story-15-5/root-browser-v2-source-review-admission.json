@@ -1,0 +1,24 @@
+{
+  "schema": "ROOT_BROWSER_V2_SOURCE_REVIEW_ADMISSION_v1",
+  "outcome": "PASS_BROWSER_V2_SOURCE_ONLY",
+  "source_commit": "dec30783a23dcac35d6ba57f649420221d741ecd",
+  "parent": "58c2d24804a19f78e360a9736d7257bf289c5666",
+  "exact_review4_hashes": "PASS",
+  "review_manifest": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/browser-v2-source-high-review/manifest.json",
+    "bytes": 882,
+    "sha256": "6f6fc980fd0f43dad172f320dd3957b75b1c517a2ba511157b7437617555b45c"
+  },
+  "independent_actual_focused": "12P0F0skip0cancel",
+  "author_full_affected_reused_nonadditive": "157P0F0skip0cancel,wholeTS0/final3TSlint0/diff0/reader0",
+  "case_scope": "001,007,010-revoke only;rotate/otherssilent",
+  "functional_changes": "Reviewerfoundnoconsequentialintroduceddefect; currentoperations/erroridentity/cleanup/custodyguardspreserved",
+  "SQL_source_closure": "490fsourcePASS/frozen117",
+  "actual_matching_private_parser": "PENDING",
+  "actual_final_assembler_budget": "PENDING",
+  "native_gate_execution": "PENDING",
+  "review_counter": 3,
+  "normal_acceptance": 0,
+  "development_complete": false,
+  "next": "ExistingNativeHigh ONLYnarrowexistingbrowser_labelsv2/3selectors+actualproducerparser/erroridentity/budgetcontrols; distinctsourceaudit then shortestONEfunctionalNORMALproposal. No GET/dispatch/push/sourcepolish."
+}

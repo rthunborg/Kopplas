@@ -1,0 +1,23 @@
+{
+  "schema": "self-excluded-sha256-manifest/v1",
+  "self_excluded": true,
+  "commit": "dec30783a23dcac35d6ba57f649420221d741ecd",
+  "verdict": "PASS_BROWSER_V2_SOURCE_ONLY",
+  "members": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/browser-v2-source-high-review/original-report.md",
+      "bytes": 3394,
+      "sha256": "d3827e13b0e88fa9d4fcd15d37873058f67e5f7f97ac4ff58312599440d5eeef"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/browser-v2-source-high-review/original-attestation.json",
+      "bytes": 6531,
+      "sha256": "51300628c84a2047e346eb4250d661db74c916b52cbabe4b9b3b35fb3097329b"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/browser-v2-source-high-review/result.json",
+      "bytes": 1446,
+      "sha256": "eba0d32c5133a97e87df08e6ab9da279862844b83725d9b536330ea8fa9cbe3a"
+    }
+  ]
+}

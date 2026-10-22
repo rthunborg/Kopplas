@@ -6532,3 +6532,34 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Boundedalreadyallocatedbrowser-v2observabilitysource+privateparserrevision, actualsourcecontrols andtargetedHighreview; thenshortestonefunctionalNORMALcheckpointproposal.
+
+## Report — 2026-10-22T00:50:30Z (checkpoint — bounded browser source independently reviewed)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `dec3078`).
+**Pipeline status:** in progress; browser-v2 source review PASS atdec30783 with independent12 focused controls. Matching parser, final budget proof and full functional gates remain pending.
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 299h 52m (≈77h 24m AI-run, ≈222h 28m human/idle wait); resumed 197×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** ExistingNativeHigh ONLYnarrowexistingbrowser_labelsv2/3selectors+actualproducerparser/erroridentity/budgetcontrols; distinctsourceaudit then shortestONEfunctionalNORMALproposal. No GET/dispatch/push/sourcepolish.
