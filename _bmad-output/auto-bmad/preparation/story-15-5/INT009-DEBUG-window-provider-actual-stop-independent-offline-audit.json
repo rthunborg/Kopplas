@@ -1,0 +1,169 @@
+{
+  "schema": "INT009_DEBUG_WINDOW_PROVIDER_ACTUAL_STOP_INDEPENDENT_OFFLINE_AUDIT_V1",
+  "status": "FIRST_FAILURE_LOCALIZED_OFFLINE_NO_EFFECTS",
+  "outcome": "DONE_SOURCE_CORRECTION_REQUIRED",
+  "independent": true,
+  "route": "Explicit gpt-6.1-sol High independent targeted actual-stop audit requested by Root; not a fourth broad story review.",
+  "execution_authorized": false,
+  "effect_authority": false,
+  "provider_reexecution": false,
+  "historical_invocation_utc": "2026-10-22T18:50:58.808087+00:00",
+  "current_clock_not_used_for_admission": true,
+  "bindings": {
+    "provider": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-capture-window-corrected-operational-preparation/provider-readonly.py",
+      "bytes": 15811,
+      "sha256": "e5632f646204da80f76313b11ed23838e8eec19315b5c303ff920102cbb64739"
+    },
+    "controller": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-capture-window-corrected-operational-preparation/root-driver.py",
+      "bytes": 18699,
+      "sha256": "8ac63abd76567b8ab21dcbe16d258cc9c7e573563f8eb041d02e9dda4b530c2d"
+    },
+    "proposal": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-capture-window-corrected-operational-preparation/proposal.json",
+      "bytes": 190076,
+      "sha256": "e36adaa3ecf4dfea10944d126023f4ce984984bf85364d22331bd389d8486a5f"
+    },
+    "actual_activation": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-window-provider-readonly-activation.json",
+      "bytes": 2216,
+      "sha256": "82a676725fb3d270487fe2d6a042d968883163b5517b01580f72f67979f61d8c"
+    },
+    "actual_source_proof": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-window-current-source-proof.json",
+      "bytes": 3052,
+      "sha256": "6e147abbbe0bf2529587b112b6405860c98193e85cdc24888d42f4a6a89134ad"
+    },
+    "host_invocation": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-window-provider-host-invocation.json",
+      "bytes": 712,
+      "sha256": "a2ee0dea593fbdeccf247c11f6f17657b6127209e4b696ac672302cfd70bd876"
+    },
+    "outer_capture": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-window-provider-outer-capture.json",
+      "bytes": 1591,
+      "sha256": "33d29a41ccc5adb7a7eeccfb40b278034d8b72d0c71ff9f5c0e9c94381473431"
+    },
+    "stop_attribution": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-window-provider-host-stop-attribution.json",
+      "bytes": 884,
+      "sha256": "6028d650a2feb759582c50508282f3053e14b9475f74370bd511b9534cc502be"
+    },
+    "prior_source_review_unchanged": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-capture-window-corrective-operational-source-review.json",
+      "bytes": 22244,
+      "sha256": "706d59db084351c9884a3463371c26441b22f4bf3aa342d7b080f308b97b83f7"
+    },
+    "policy_read": {
+      "path": "docs/process/development-completion-policy.md",
+      "bytes": 8460,
+      "sha256": "d3617c2bcfb64e0b185c82e8a39f84af40bfc5b0ddda739552d2e099c38d4893"
+    }
+  },
+  "first_failure": {
+    "id": "INT009-DEBUG-OP-02",
+    "owner": "Native operational source author; Root owns future packet/grant/proof/activation admission.",
+    "provider_line": 70,
+    "exact_caller": "for r in proposal['input_refs']:load_pin(r)",
+    "callee": "load_pin lines43-48 verifies byte size and SHA, then unconditionally returns json.loads(b.decode(utf-8)).",
+    "first_input_index0": 0,
+    "first_input_ref": {
+      "bytes": 129335,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-operational-preparation/proposal.json",
+      "sha256": "0085c22b70b84d0041fba8fdda5600f4a43fa15903d2394f9ecbd750b107acc1"
+    },
+    "actual_failed_ref_bytes_and_SHA_match": true,
+    "first_input_type": "Python source, .py; not a JSON admission document.",
+    "observed_exception_class": "JSONDecodeError",
+    "raw_exception_text_persisted": false,
+    "invariant": "Heterogeneous immutable source/proof references require byte/hash verification. JSON parsing is valid only for actual JSON admission documents. A correct code-source pin cannot pass the JSON parser.",
+    "historical_preceding_gates": "Executed exact extracted frozen preflight statements53 through69 in order with historical now. Activation cap/schema/keyset/UUID/both identities/freshness/selfpin, six actual top-level JSON pins, producer, corrected reader binding, completed grant, operational review, sourceproof/SQL vectors and proposal identity all passed. Statement70 failed before source inventory/config/CLI/once checks; no later gate is newly declared passed.",
+    "ages_seconds_at_invocation": {
+      "activation": 23.390963,
+      "source_proof": 56.910848
+    },
+    "excluded_causes": "Failure precedes CRLF/LF/NUL conversion and source inventory loop. Byte/hash and provider selfpin passed. Historical freshness passed. No escaping cause or current-expiry inference.",
+    "same_reachable_controller_interface": {
+      "checkref_lines": "83-86: byte/hash verification followed by json.loads(raw).",
+      "localproof_line108": "for r in p['input_refs']:checkref(r)",
+      "admit_line143": "for r in p['input_refs']:checkref(r)",
+      "reachability": "The same Python first input reaches these decoders in the controller/docs admission path after a provider-only repair. This was established by source read, not by invoking a controller or remote effect."
+    },
+    "minimum_correction": "In a NEW immutable operational successor, separate byte-only pin verification for proposal input_refs from JSON decoding. Use byte-only verification at provider line70 and controller localproof/admit heterogeneous input loops; retain current strict size/SHA checks and JSON decoding for actual activation/proof/grant/review/proposal/provider qualification documents. No source inventory relaxation, blanket parse-error catch, skipped pin, gate weakening, runtime retry or product change.",
+    "minimum_followup_evidence": "Focused pure regression using actual heterogeneous28 refs must pass byte verification, corrupted byte/hash must refuse, JSON admission consumers must still parse/reject malformed JSON, exact historical first-failure closure must be demonstrated with transports disabled; targeted independent source delta review and Root admission required before any new effects."
+  },
+  "actual_zero_GET_stop_qualification": {
+    "actual_outer_tool": {
+      "chunk_id": "4014fe",
+      "exit_code": 1,
+      "wall_time_seconds": 0.1969639,
+      "session_id": null,
+      "wait_calls": []
+    },
+    "provider_child_native_exit": 2,
+    "capture_complete": true,
+    "readers_joined": true,
+    "handles_closed": true,
+    "direct_process_settled": true,
+    "stdout": {
+      "bytes": 62,
+      "sha256": "70332a24121ea9558c21b43bc114807ac1b9b9b0c19cf65e4e4a6809afdb7087",
+      "closed_projection": "PRE_REQUEST_REFUSED / logical_GET_invocations0",
+      "CRLF_exact_digest_independently_recomputed": true
+    },
+    "stderr_bytes": 0,
+    "physical_EOF_both": true,
+    "causal_source_boundary": "Provider try preflight line70 fails; catch92-93 emits refusal and exits2. Consumed intent is only created at95 and sole subprocess providerGET at112, both unreachable on this failure. Offline extraction stopped at first failed statement; no provider module main or transport was invoked.",
+    "current_absence_of_owned_effect_paths": {
+      "INT009-DEBUG-window-vercel-readonly-consumed-intent.json": false,
+      "INT009-DEBUG-window-vercel-readonly-qualification.json": false,
+      "INT009-DEBUG-window-main-docs-operation": false,
+      "INT009-DEBUG-window-root-operation": false
+    },
+    "actual_effect_counts": {
+      "provider_GET": 0,
+      "MAIN_push": 0,
+      "DEBUG_push": 0,
+      "POST": 0,
+      "metadata_GET": 0,
+      "artifact_GET": 0
+    },
+    "all_effect_slots_closed": true,
+    "host_invocation_once_consumed": true,
+    "no_replay": "Absent provider intent does not reopen the already-consumed host invocation or any closed effect slot. Old allocation, activation and source review remain immutable historical evidence, not a new execution grant."
+  },
+  "offline_controls_and_actual_receipts": [
+    {
+      "tool": "9af846",
+      "native_exit": 0,
+      "scope": "Read current development completion policy and actual activation/sourceproof/capture byte pins; no effects."
+    },
+    {
+      "tool": "dcd0fb",
+      "native_exit": 0,
+      "scope": "AST-extracted constants/functions and preflight statements only, supplied exact historical now, load_pin tracking; hard-disabled subprocess surface. Lines53-69 passed,70 failed JSONDecodeError on first valid Python pin. Read actual host/stop receipts and absence of effect paths."
+    },
+    {
+      "tool": "a30d34",
+      "native_exit": 0,
+      "scope": "All28 actual mixed inputrefs passed size/SHA verification without JSON decoding; actual controller decoder/callers read; historical ages and exact62-byte stdout digest independently recomputed."
+    }
+  ],
+  "review_provenance": "Prior operational SOURCEPASS remains immutable. This actual stop exposed a heterogeneous-reference parsing defect not exercised by the earlier branch and mocked-flow controls. The new finding is recorded here without relabelling past controls or claiming the fixed source has been reviewed.",
+  "preservation_and_limits": "Only this NEW private audit file written. All old packets/reviews/activation/grant/copy/journals/source heads remain untouched. No API, network, provider reexecution, Git, Popen, resources, config/app/test/DB workload, SQL scan, source repair or runtime assignment.",
+  "normal_acceptance": 0,
+  "required95": {
+    "passed": 68,
+    "failed": 1,
+    "unexecuted": 26
+  },
+  "current_functional_cause": "UNKNOWN",
+  "DB_custody": "retained/unverified",
+  "P5": "OPEN",
+  "next_action": {
+    "owner": "Root commissions Native narrow source-only successor, then same independent High targeted delta review.",
+    "resume_condition": "Actual source correction and focused offline regressions frozen/reviewed; any future operation requires its separately admitted fresh finite grant/proof/activation and exclusive namespace. This audit grants none."
+  },
+  "open_questions": []
+}

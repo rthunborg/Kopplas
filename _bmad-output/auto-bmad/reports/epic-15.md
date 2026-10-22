@@ -7648,3 +7648,34 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Complete source-bound inert reader data check; prepare minimal reviewed fresh provider/MAINdocs+DEBUGpublication and ONE existing originalINT009 diagnostic checkpoint. Actual finite effects allocation required before any effect; no deployment.
+
+## Report — 2026-10-22T19:01:46Z (working)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `30951e7`).
+**Pipeline status:** 15.5 P5 remains open. Provider pre-request refusal independently qualified with zero network/mutation effects; all old operation slots closed. Narrow bytepin/JSON interface correction in new private packet is underway.
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 318h 03m (≈77h 24m AI-run, ≈240h 39m human/idle wait); resumed 233×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Freeze successor with complete offline actual-pin preflight, obtain targeted independent High review and fresh finite operation admission. Required95 remains68P/1F/26unexecuted; functional cause UNKNOWN, DB custody retained/unverified. No deployment.

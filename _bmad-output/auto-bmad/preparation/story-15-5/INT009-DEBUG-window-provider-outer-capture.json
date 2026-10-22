@@ -1,0 +1,49 @@
+{
+  "schema": "ROOT_DEBUG_WINDOW_PROVIDER_OUTER_CAPTURE_V1",
+  "at": "2026-10-22T18:50:58.808087+00:00",
+  "operation_id": "e492b7df-961d-49da-adf2-a00183a1aa94",
+  "argv": [
+    "C:/Users/Rasmus/AppData/Local/Programs/Python/Python314/python.exe",
+    "-I",
+    "-X",
+    "utf8",
+    "-B",
+    ".env.epic15.mail-runtime\\story-15-5-preparation\\INT009-DEBUG-capture-window-corrected-operational-preparation\\provider-readonly.py",
+    "--execute-once-after-new-root-provider-grant"
+  ],
+  "activation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-window-provider-readonly-activation.json",
+    "bytes": 2216,
+    "sha256": "82a676725fb3d270487fe2d6a042d968883163b5517b01580f72f67979f61d8c"
+  },
+  "transport": {
+    "native_exit": 2,
+    "category": "PROCESS_NONZERO",
+    "elapsed_seconds": 0.076943,
+    "timeout_seconds": 60,
+    "capture_complete": true,
+    "readers_joined": true,
+    "handles_closed": true,
+    "direct_process_settled": true,
+    "streams": [
+      {
+        "observed_bytes": 62,
+        "sha256": "70332a24121ea9558c21b43bc114807ac1b9b9b0c19cf65e4e4a6809afdb7087",
+        "physical_EOF": true,
+        "reader_done": true,
+        "reader_error": false,
+        "overflow": false
+      },
+      {
+        "observed_bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "physical_EOF": true,
+        "reader_done": true,
+        "reader_error": false,
+        "overflow": false
+      }
+    ]
+  },
+  "raw_persisted": false,
+  "actual_outer_tool": "PENDING_ROOT_HOST_ATTRIBUTION"
+}
