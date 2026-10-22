@@ -7214,3 +7214,34 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Prepare frozen finite fixedINT009 operational admission at revieweddebugd818c753, including no-deployment qualification, Rootownedpush/exactPOST/runfence. No native/effect authority yet; onecase diagnostic0acceptance/full95 and remaining epicgates retained.
+
+## Report — 2026-10-22T14:33:31Z (working)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `f3d86a0`).
+**Pipeline status:** Story15.5 P5 OPEN; fixed INT009 operational source independently High PASS, no runtime effects
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 313h 35m (≈77h 24m AI-run, ≈236h 11m human/idle wait); resumed 219×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Completed finite Coordinator allocation, fresh sourceproof/exclusiveactivation/oneproviderGET, Rootpush1/POST1/boundedpoll, then separate terminal acquisition. Full95/P5delivery/P6automate/P7helper/15.6freshSpec+validation/E8/finalPR remain.
