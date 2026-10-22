@@ -1,0 +1,154 @@
+{
+  "schema": "kopplas.resumed-original-E2E001-completion-contract-assessment.v1",
+  "outcome": "SOURCE_SUPPORTED_SDK_NONSETTLING_PATH;ACTUAL_TIMEOUT_OWNER_AND_CAUSE_UNPROVEN",
+  "route": "existing gpt-6.1-sol High sensitive read-only contract assessment; no fourth broad review",
+  "current_main_metadata_HEAD": "ab254a650b0b57b217868128d8edaf905c1b7385",
+  "assessment_started_as_of_HEAD": "846a474ed3bb59e18a009e01e46025dc4c1e6e76",
+  "diagnostic_source_HEAD": "584e97329ea516d49b49dec242e8e097594adf95",
+  "source_reach": "Current main unchanged completion/drain contract correlated to independently bound diagnostic helper; diagnostic helper canonicalLF6319a38678a350774c9167a3dc6d073e8d3947b457dffb03f3da0916a91afefa is not claimed byte-identical to main.",
+  "references": {
+    "qualified_actual_evidence": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/resumed-original-E2E001-diagnostic-causal-qualification.json",
+      "bytes": 9839,
+      "sha256": "c0078cf1c3506a414291dc8a00ef2d6ea8ccab7168850d76a74ea2f777f1a716"
+    },
+    "main_helper": {
+      "path": "tests/e2e/support/calendar-feed-atdd.ts",
+      "bytes": 64967,
+      "sha256": "ab6365672c89f129a8cc3e712a2456faa5d4dcfbb9f2999e0dd77d92440d4c91"
+    },
+    "main_case": {
+      "path": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "bytes": 28770,
+      "sha256": "1dbc33c3f74ebd873d91316235eef14743d161c4cee358ad945409eb6b1b8cbb"
+    },
+    "installed_primary_SDK": {
+      "path": "node_modules/.pnpm/playwright-core@1.61.1/node_modules/playwright-core/lib/coreBundle.js",
+      "bytes": 3352341,
+      "sha256": "6be5c2ea035554e9b184b1dbc7aa5e7f1fb428dd1b5c202022858dcfae9bee27",
+      "checkout": "C:/Users/Rasmus/.codex/worktrees/epic-15-original-failure-debug/Kopplas",
+      "version": "1.61.1",
+      "read_only": true
+    }
+  },
+  "qualified_facts": {
+    "run": 39754927821,
+    "attempt": 1,
+    "mode": "original-e2e001",
+    "case_count": 1,
+    "retry": 0,
+    "status": "unexpected/failed",
+    "rotate_original_code": "net::ERR_ABORTED",
+    "copies": "RESULT and TEST are agreeing copies, not independent witnesses",
+    "drain_error": "cleanup-lifecycle/timeout;custody-retained/unverified",
+    "projected_exception_classes_and_frames": "all four unavailable",
+    "timeout_owner": "UNKNOWN",
+    "initiator_ordering_backend_settlement": "UNKNOWN",
+    "acceptance": 0
+  },
+  "installed_contract": [
+    {
+      "lines": "58076-58077",
+      "fact": "Request.response awaits channel.response and maps its associated Response; no new call performed by assessment."
+    },
+    {
+      "lines": "58435-58441",
+      "fact": "Response creates one ManualPromise and binds its Request."
+    },
+    {
+      "lines": "58491-58492;58156-58157",
+      "fact": "Response.finished races that ManualPromise with the service-worker/page closed-or-crashed scope. Ordinary navigation/reload is not itself this target-closure scope."
+    },
+    {
+      "lines": "60689-60695",
+      "fact": "RequestFailed stores failureText||null, sets responseEnd and emits events; this handler does not resolve/reject Response._finishedPromise."
+    },
+    {
+      "lines": "60696-60706",
+      "fact": "RequestFinished maps Request/Response, sets responseEnd, emits events and resolves the associated Response._finishedPromise(null). This is the only inspected client-side _finishedPromise resolution in the exact Response/BrowserContext region."
+    },
+    {
+      "lines": "58115-58124",
+      "fact": "failure/timing expose recorded local SDK state. Empty failure text becomes null; timing is not backend proof."
+    }
+  ],
+  "current_caller_and_invariants": [
+    {
+      "path": "tests/e2e/support/calendar-feed-atdd.ts",
+      "lines": "188-222",
+      "fact": "Separately owned completion and observation are joined by allSettled; callers receive the observation/readback promise, not native completion. Completion catch marks cancellation unverified."
+    },
+    {
+      "path": "tests/e2e/support/calendar-feed-atdd.ts",
+      "lines": "157-168;224-236",
+      "fact": "Drain closes future callbacks, cancels matchers and joins every pending entry plus actual tracked readbacks through existing20s deadline. Timeout alone cannot identify which component remained pending."
+    },
+    {
+      "path": "tests/e2e/support/calendar-feed-atdd.ts",
+      "lines": "618-637",
+      "fact": "Same matched action Request is bound; await629 request.response, then await632 response.finished. PhaseFINISHED names the latter await, not proof of successful completion."
+    },
+    {
+      "path": "tests/e2e/support/calendar-feed-atdd.ts",
+      "lines": "745-755;791-801",
+      "fact": "Drain precedes failure-code sampling, disposal and about:blank; uncertainty retains row/Auth custody. Error aggregation and canonical cleanup gates must remain unchanged."
+    },
+    {
+      "path": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "lines": "104-130",
+      "fact": "Rotate observation awaits readback; revoke and later reload are authored afterwards. The acquired packet does not prove that later reload executed or initiated the sampled abort."
+    }
+  ],
+  "conclusion": {
+    "source_proved": "A response can exist and its Request can become failed while the client Response.finished ManualPromise remains unresolved until target closure. The helper therefore has a reachable pending-native-completion path on an SDK failed request.",
+    "consequential_harness_defect_proved": false,
+    "why_not": "The actual drain joins all owners, and this diagnostic packet does not bind its deadline to rotate Response.finished. Request failure text alone supplies neither that binding nor backend settlement or an initiator. Failing closed and retaining custody is not an invariant bypass. No completion/reload/cleanup change is justified by abort alone.",
+    "shortest_next_action": "Obtain only the exact owned component and await site still pending at the existing drain deadline in one separately admitted original-E2E001 reproduction. If rotate Response.finished is the sole blocker, the SDK source explains nonsettling frontend behavior; do not call reload the cause without a same-Request ordering/initiator fact. Do not run full NORMAL or add another enum-only diagnostic family."
+  },
+  "minimal_temporary_capture_proposal": {
+    "authority": "PROPOSED_ONLY; Root must allocate source/private companions and independent High review before any edits or execution.",
+    "source_paths": [
+      "tests/e2e/support/calendar-feed-atdd.ts (existing diagnostic-only ownership/annotation seam)",
+      "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts (focused existing ownership/error/identity controls)"
+    ],
+    "private_companion": "Existing original-E2E001 diagnostic annotation projection only, exact owner/path to be named and allocated by Native/Root; no acquisition/workflow/wrapper/selector or new artifact family proposed.",
+    "scope": "Only original001 attempt0, existing create/rotate/revoke owners. Add one bounded structured pending-at-deadline record to the existing private annotation, not new browser wire enums.",
+    "observation_point": "Copy synchronous primitive owner states inside the EXISTING20s timeout callback, before resolving false, cancellation disposal or target teardown. This binds deadline state rather than later sample time.",
+    "actual_promise_binding": "Keep exact existing completion and observation Promise identities; initial pending state and settlement bookkeeping must follow their existing one-handler consumption chains. If needed, replace each existing void promise.catch handler with one void promise.then(success-mark,rejection-mark), preserving one observer, discarded result, unchanged original promise/result/error and rejection handling. This is a proposed diagnostic-only bookkeeping change requiring source/control review, not an assumed no-effect fix. Actual tracked readbacks already have settlement handlers and a Set; report its actual pending count separately.",
+    "minimum_payload": [
+      "existing fixed action and Request association (no URL/ID)",
+      "component observation or native completion; its exact existing await site request.response or response.finished",
+      "actual settled/pending bookkeeping at the deadline, plus total pending actual-readback count and total active entries, so other owners cannot be omitted",
+      "existing same-Request allowlisted failure code only; unavailable linkage or overflow remains UNKNOWN"
+    ],
+    "bounds": "At most three fixed action owner rows plus one aggregate readback/active-entry count record for001. No raw error/message/stack/body/header/URL/token/identity/timing values. Unknown/overflow cannot imply no other work. Keep existing private annotation/envelope bounds; exact serialization proof required before execution.",
+    "preservation": "No new request/query/client/principal/listener/await/timer/retry/timeout or public field; no discarded work, changed assertions, error identity/cause/precedence, operation count or custody relaxation. Same original20s deadline and ordinary commands remain.",
+    "conditional_followup": "Only after the timeout owner is proven, select a cause-backed correction. Attribute navigation/teardown only if necessary and only with same-Request before/after ordering at the specific existing operation; do not preallocate an initiator/event framework. SDK failure/completion facts alone never authorize destructive cleanup."
+  },
+  "canonical6": {
+    "Outcome": "Bounded source assessment frozen; no consequential actual-run defect proved.",
+    "Files changed": [
+      "This assessment JSON only."
+    ],
+    "Status": "Exact installed SDK and current ownership source read/hash-bound; tests0, runtime0, SQL0, API0, Git mutations0.",
+    "Open questions": [
+      "Exact owned promise/await pending at deadline; then same-Request initiator/order only if required for attribution.",
+      "Backend settlement/exact retained-key disposition remain independently unqualified."
+    ],
+    "Deferred work": [
+      "Separately allocated minimal deadline capture and independent targeted High validation before any reproduction/correction.",
+      "Required full DB/RLS/recovery/all95/sixserial/essential smoke;35 missing cases remain uncredited."
+    ],
+    "Blockers": [
+      "No original deadline-owner proof; native abort is not backend settlement; no automatic fix/retry authority."
+    ]
+  },
+  "preserved": {
+    "all118SQL_unchanged": "no source/SQL writes by assessment",
+    "broad_review_counter": 3,
+    "normal_acceptance": 0,
+    "development_complete": false,
+    "release_ready": false,
+    "only_write": "_bmad-output/auto-bmad/preparation/story-15-5/resumed-original-E2E001-completion-contract-assessment.json"
+  }
+}

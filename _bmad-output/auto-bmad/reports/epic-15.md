@@ -6873,3 +6873,34 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Complete narrow High read-only completion/drain and installed SDK assessment; change source only for a proved defect, otherwise obtain only the exact missing ownership/order fact under a separate bounded reproduction. P5 remains open; full NORMAL is still failed with 35 mandatory cases unexecuted.
+
+## Report — 2026-10-22T09:54:01Z (checkpoint — installed SDK completion assessment; finite deadline capture in preparation)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `ab254a6`).
+**Pipeline status:** P5 remains open. The installed Playwright1.61.1 contract supports a possible Response.finished wait after request failure, but the actual timeout owner and cancellation initiator remain unproved. A finite source-only allocation permits two temporary diagnostic files and a minimal version of the private report projection. It preserves promises, rejection handling, the existing deadline and custody. No new runtime or cleanup waiver is authorized; no normal acceptance is claimed.
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 308h 56m (≈77h 24m AI-run, ≈231h 31m human/idle wait); resumed 208×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Implement and independently review the exact two-file temporary deadline ownership capture and minimal versioned private projection under the completed source-only allocation. No runtime effects are allocated yet. Preserve original promises, rejection handling, deadline and custody. Then propose one existing E2E001 reproduction only after targeted source PASS.
