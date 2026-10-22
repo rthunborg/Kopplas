@@ -1,0 +1,248 @@
+{
+  "schema": "INDEPENDENT_RETRY_INT009_TERMINAL_READER_ACTUAL_SOURCE_REVIEW_V1",
+  "outcome": "PASS_RETRY_INT009_TERMINAL_READER_ACTUAL_SOURCE_ONLY",
+  "status": "PASS",
+  "independent": true,
+  "route": "Root45c7ec explicit gpt-6.1-sol High",
+  "reviewer": "/root/validate15_4_high; independent of NativeHigh reader author and Root operator",
+  "scope": "Targeted operational source/privacy review of exact inert two-read terminal artifact reader; no broad fourth story review. This result qualifies source only.",
+  "execution_authorized": false,
+  "effect_authority_granted": false,
+  "findings": [],
+  "required_repairs": [],
+  "finding_count": 0,
+  "actual_read_bindings": {
+    "exact_frozen4": [
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/retry-INT009-terminal-acquisition-preparation/reader.py",
+        "bytes": 17439,
+        "sha256": "54d015baf316be24d4b86d6bacebe01de51700fb468e3ef29e37c752b5d6388c"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/retry-INT009-terminal-acquisition-preparation/proposal.json",
+        "bytes": 26485,
+        "sha256": "841471ceefec492a82e47bcfdb2715792ae630b9393e4779b4d84e9430934b74"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/retry-INT009-terminal-acquisition-preparation/pure-controls.json",
+        "bytes": 26609,
+        "sha256": "eb4f9e1aa00c3677f212dc83fc7890a4730d7407fe2fa8f1d094464247cad353"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/retry-INT009-terminal-acquisition-preparation/manifest.json",
+        "bytes": 942,
+        "sha256": "ad0088ba19126d9be3fc0d42945e3a4b58272ad3a72cab8d5c3419b88fbacfcb"
+      }
+    ],
+    "qualified_dependency": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-main-fenced-normal-terminal-preparation/normal-evidence-operator.py",
+      "bytes": 50745,
+      "sha256": "4dd32afdc6bc3adcef2b2f9ecf4c410b1247c202d781f00f2b5467a1d7a8da76"
+    },
+    "dependency_helper_count": 9,
+    "all9_helper_source_slices_match_proposal": true,
+    "proposal_input_refs_count": 9,
+    "all_input_refs_actual_size_hash_match": true,
+    "source_bindings": {
+      "source": "3bbf67b48d6f9f1f3e564774b1cf3b1b8794b07e",
+      "count": 14,
+      "raw_LF_bytes_SHA256_and_LF_Git_blob_actual_match": true,
+      "inventory_reference": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/retry-INT009-terminal-acquisition-preparation/proposal.json",
+        "bytes": 26485,
+        "sha256": "841471ceefec492a82e47bcfdb2715792ae630b9393e4779b4d84e9430934b74"
+      },
+      "Git_commands_run": 0
+    },
+    "installed_schema_bindings": [
+      {
+        "path": "node_modules/vitest/dist/chunks/index.UpGiHP7g.js",
+        "bytes": 151531,
+        "sha256": "cdafaf8e508042dddba72f8c7bbae84e2836ddb6b06c7026520c35d91af4e798"
+      },
+      {
+        "path": "node_modules/vitest/dist/chunks/reporters.d.DtoKVV2s.d.ts",
+        "bytes": 113407,
+        "sha256": "7fa6fdc6eeeb3850e6b3166836f8c9199594c4f4bed3cee02cac0ca33d71894d"
+      },
+      {
+        "path": "node_modules/vitest/package.json",
+        "bytes": 5918,
+        "sha256": "e12762a5b629bea6cbb2b0540a8a15c50f3098bb3193d3e319293b58b64c4ed9"
+      }
+    ],
+    "installed3_actual_size_SHA256_match": true,
+    "actual_terminal": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/retry-INT009-readonly-reconciliation/terminal.json",
+      "bytes": 14770,
+      "sha256": "f2ae14542c2344c75cac075342c8031366638cfe592469ce6e624db838e431b6"
+    },
+    "ownership_record": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/root-retry-INT009-actual-terminal-ownership.json",
+      "bytes": 5494,
+      "sha256": "aacd7f03c78d2865105973069038f7bfe233057a0acf521122dc90019b0268d1"
+    },
+    "conditional_completed_allocation": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-retry-INT009-terminal-two-read-allocation.json",
+      "bytes": 2910,
+      "sha256": "8bbc73151046b4df84d0f3434e9bd6ef1b4cc301248f62f86ae6442e36f0d0cb"
+    },
+    "independent_controls": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/retry-INT009-terminal-reader-source-review-controls.json",
+      "bytes": 6381,
+      "sha256": "c38576182380efeb0423c68a6356acad5a80a97284585d76180f7243274bd591"
+    },
+    "policies": [
+      {
+        "path": "AGENTS.md",
+        "bytes": 11938,
+        "sha256": "b28eec9c075877d175362dad65b739054e45a3134d748b3c11e601ae36fbb823"
+      },
+      {
+        "path": "docs/process/development-completion-policy.md",
+        "bytes": 8460,
+        "sha256": "d3617c2bcfb64e0b185c82e8a39f84af40bfc5b0ddda739552d2e099c38d4893"
+      }
+    ]
+  },
+  "owned_identity": {
+    "run": 39804170137,
+    "head": "3bbf67b48d6f9f1f3e564774b1cf3b1b8794b07e",
+    "source": "3bbf67b48d6f9f1f3e564774b1cf3b1b8794b07e",
+    "main_current_metadata_HEAD_Root_reported": "a19a0135",
+    "attempt": 1,
+    "checkpoint_id": "a6d7e90f-4486-4093-a407-b5b3c495d88a",
+    "branch": "codex/epic-15-int009-debug",
+    "repo": "rthunborg/Kopplas",
+    "workflow_id": 296219797,
+    "event": "workflow_dispatch",
+    "actor": "rthunborg",
+    "triggering_actor": "rthunborg",
+    "db_job_id": 119914541809,
+    "normal_acceptance": 0
+  },
+  "review_stops": [
+    {
+      "area": "Admission and once-only effects",
+      "conclusion": "Actual validate requires strict activation schema, execution flag, exact tuple/attempt1/jobs/output, fresh canonical UUIDv4, activation freshness0..300s and independent PASS evidence; exact reader/proposal and all input/allocation/review/sourceproof/terminal/ownership file hashes are checked before output intent or GET. Completed allocation turn/tool and fresh source/terminal proof plus118SQL vector pins required. Actual14 source and3 installed reporter bindings are reread. Existing output refuses; exclusive mkdir and exclusive fsynced operator/request files prevent a second invocation from reaching GET. Root owns semantic qualification of the completed allocation and review evidence; this review grants none."
+    },
+    {
+      "area": "Terminal ownership and finite network surface",
+      "conclusion": "Actual pinned terminal matches run39804170137, head3bbf67b48d6f9f1f3e564774b1cf3b1b8794b07e, checkpointa6d7e90f-4486-4093-a407-b5b3c495d88a, branch, workflow296219797, workflow_dispatch, both actorsrthunborg, attempt1, completed/failure and exact9 completed job conclusions including db119914541809 failure. Actual main contains exactly two M.get calls: fixed owned-run artifact listing and uniquely selected positive artifact ZIP. No status/log/provider/Git/POST/runtime or retry path. Listing ambiguity/missing eligibility stops after first logical GET. Any transport/ZIP/schema uncertainty stops and closes unused slots."
+    },
+    {
+      "area": "Transport dependency and privacy",
+      "conclusion": "Dependency50745/4dd32... is hash checked before import and defines globals/helpers only with guarded main; reader import does not invoke dependency main. All9 reused helper slices match. Qualified get fixes gh api --method GET, uses15s/4MiB listing or32MiB ZIP/64KiB stderr, durable exclusive intent before Popen, bounded RAM capture, EOF/join/handle/native settlement receipt and no raw stream persistence. Failure receipt precedes Halt, so partial output cannot become usable artifact. No new transport family executed during review; unchanged qualification reused with exact provenance."
+    },
+    {
+      "area": "Composed archive boundary",
+      "conclusion": "Owned listing requires exactly one expected named artifact, positive non-bool id, bounded advertised ZIP size, nonexpired flag, run/head binding, lowercase SHA256 digest and explicit nullable expiry; no pagination/refetch. ZIP bytes must match API advertised size and digest. Actual main composes qualified metadata/raw-name guards with singleton exact native.json before inflate; traversal, duplicate, raw NUL/backslash, other members, encryption/symlink/compression/ratio/declaration bounds and CRC failures refuse. No extraction. Member JSON16MiB and total inflate128MiB bounds remain. Actual finally closes accepted ZipFile handle."
+    },
+    {
+      "area": "Reporter and case cardinality",
+      "conclusion": "Installed actual JsonReporter source3559..3595 writes assertion ancestorTitles/fullName/title/status/meta directly from task; actual d.ts2297..2314 agrees. Current workflow327..334 uploads only native.json in this mode. Actual reader requires one matching source file/title/fullName and derived all-report passed+failed exactly1, selected case passed/failed, declared P/F equal derived. Extra executed case, duplicate case, wrong file/fullName or count conflict refuses. Pending/todo/total declarations are retained as declarations and never passing coverage. Effective retry0 derives from unchanged qualified fixed argv/config; native retry counter remains null because reporter has none."
+    },
+    {
+      "area": "Producer vocabulary, ordered metadata and atomic limits",
+      "conclusion": "Actual producer calendar-feed-atdd.ts185..227 is descriptor-only and first PRIMARY wins; <=3 secondary CLEANUP records preserve order/duplicates with exact final OMITTED marker. Actual source737..752 records field/qualification guard before throw;766..807 retains BEGIN/COMMIT_ATTEMPT/WRAPPER_OUTCOME_UNKNOWN and cleanup separately, never converts retirement uncertainty into settlement. Reader exact six closed string fields/vocabularies match producer; ordered PRIMARY then CLEANUP and OMITTED position enforced. Missing/malformed/foreign/oversized namespace becomes typed UNKNOWN with no raw fallback. Six-field projection is rebuilt in fixed field order; JSON packed key sorting changes object key presentation only, not ordered record semantics. Original errors/stacks/SQL values remain omitted."
+    },
+    {
+      "area": "Output and evidence meaning",
+      "conclusion": "Raw listing/archive/native JSON/errors/messages stay RAM only. Persisted values are closed enums/fixed names, exact source-bound case hashes/counts, eligibility id/digest/byte sizes and qualified capture receipts. Artifact list excludes unselected names/URLs. Namespace4096 ASCII cap and final actual M.packed native8192 cap enforced before write; unknown namespaces persist typed UNKNOWN, not invented metadata. Wrapper lifecycle receipt is absent from this upload, so key_deleted=null/backend_settlement=UNKNOWN. COMMIT_ATTEMPT is not a commit outcome. Diagnostic normal_acceptance remains0 regardless captured case status."
+    }
+  ],
+  "controls": {
+    "independent": {
+      "evidence": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/retry-INT009-terminal-reader-source-review-controls.json",
+        "bytes": 6381,
+        "sha256": "c38576182380efeb0423c68a6356acad5a80a97284585d76180f7243274bd591"
+      },
+      "qualified_groups": 10,
+      "failed": 0,
+      "module_imports": 0,
+      "real_API_GETs": 0,
+      "Popen": 0,
+      "runtime_workloads": 0,
+      "method": "Read actual source and AST-extract function/class definitions and literal constants only. Real transport unavailable. Actual main function exercised only against synthetic bounded in-memory GET/write/output and fixed local source reads. No module top-level or main entrypoint invocation.",
+      "initial_attempt": {
+        "tool": "9a561d",
+        "native_exit": 0,
+        "wall_seconds": 0.3412802,
+        "groups": "9P1F",
+        "preserved_in_controls": true
+      },
+      "localization": {
+        "tool": "8c5320",
+        "native_exit": 0,
+        "wall_seconds": 0.247449,
+        "result": "ZIP writer normalized NUL filename before serialization; no reader defect"
+      },
+      "targeted_correction": {
+        "tool": "49726e",
+        "native_exit": 0,
+        "wall_seconds": 0.3428222,
+        "fresh_groups": 1,
+        "unchanged_groups_reused": 9,
+        "result": "Raw local+central NUL/backslash filenames refused by actual composed guard; original failed expectation retained, counts nonadditive"
+      },
+      "measured_actual_main_synthetic_budget": {
+        "actual_packed_native_bytes": 4507,
+        "executed": 1,
+        "namespace_cap": 4096,
+        "namespace_pretty10_bytes": 1190,
+        "native_cap": 8192,
+        "pending": 9999
+      }
+    },
+    "author_corrobation": {
+      "evidence": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/retry-INT009-terminal-acquisition-preparation/pure-controls.json",
+        "bytes": 26609,
+        "sha256": "eb4f9e1aa00c3677f212dc83fc7890a4730d7407fe2fa8f1d094464247cad353"
+      },
+      "qualified_groups": 16,
+      "failed": 0,
+      "nonadditive_history": "Initial15P1F; targeted2 composed-boundary groups and1 final actual-main budget group qualified with other groups reused. Not added to independent10.",
+      "actual_author_max_closed_fixture": {
+        "namespace_pretty10_bytes": 1314,
+        "actual_packed_native_bytes": 4766,
+        "namespace_cap": 4096,
+        "native_cap": 8192
+      },
+      "actual_producer_JsonReporter_control": "Existing source-bound actualMetaJsonReport wrapper unit/focused/full controls reused; no fresh reporter or workload execution claimed."
+    }
+  },
+  "commands_and_results": {
+    "read_only_source_and_binding_controls": "PowerShell Set-Location MAIN; python -X utf8 - stdin source/AST/hash/ref reads; commands native0 after initial console-encoding failure. One first read command stopped before writes with cp1252 UnicodeEncodeError, corrected by UTF8. No file effects from failed read.",
+    "independent_pure_controls": "PowerShell Set-Location MAIN; python -X utf8 - stdin AST definitions + synthetic fixtures; actual tool receipts9a561d/8c5320/49726e recorded above. Only owned private controls JSON written.",
+    "source_search": "rg -n bounded producer guard/capture symbols; source-only Python line reads. No suites, CI, browser, API or Git."
+  },
+  "remaining_execution_conditions": [
+    "Root reads and qualifies this exact completed source PASS and its hashes.",
+    "Root materializes fresh current source/terminal/ownership proof with exact118 SQL vector and14 source/3 installed bindings, checked_at<=300s.",
+    "Root binds completed conditional allocation2910/8bbc73151046b4df84d0f3434e9bd6ef1b4cc301248f62f86ae6442e36f0d0cb and this review evidence to fresh exact activation/self/proposal refs and exclusive new operation UUID.",
+    "Exactly one invocation with one listing and only one uniquely eligible ZIP logical GET; no retry/refetch/fallback, all unused slots closed on refusal/uncertainty.",
+    "Actual outer/native capture attribution and independent evidence qualification required after acquisition before cause inference or correction."
+  ],
+  "continuity": {
+    "required95": {
+      "passed": 68,
+      "failed": 1,
+      "unexecuted": 26
+    },
+    "qualified_feed_browser_retry0_passed": 14,
+    "normal_acceptance_added": 0,
+    "actual_acquisition_during_review": false,
+    "original_native_cause": "UNKNOWN",
+    "artifact_capture_and_case_status_before_acquisition": "UNKNOWN",
+    "wrapper_custody": "UNKNOWN; absent from native-only upload"
+  },
+  "open_questions": [],
+  "deferred_work": [
+    "Root activation and finite acquisition under separately completed allocation, if all conditions hold.",
+    "Independent qualification of actual acquired evidence and cause-backed next action; no normal acceptance inferred."
+  ],
+  "blockers": [],
+  "source_conservation": "Frozen exact4 rehashed unchanged immediately before writing this new report; all source/runtime/config/Git/state inputs read only. Only owned private controls and this report created. No acquisition authorized by this review."
+}

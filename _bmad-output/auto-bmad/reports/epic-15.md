@@ -7493,3 +7493,34 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Prepareactualschema-bound fixedINT009 native reader fromcurrentproducer; independentHighsourcevalidation, completedfinite1listing+1uniqueZIPgrant, thenactualacquisition+independentnativeevidencequalification. No rawlogs/fallback/refetch. Cause-backedpatchonlyafterqualifiedfacts.
+
+## Report — 2026-10-22T16:01:19Z (working)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `a19a013`).
+**Pipeline status:** 15.5 P5 OPEN. Corrected run39804170137 source-bound reader independently PASS privacy/source,10 control groups0F. Actual completed Coordinator two-read allocation saved and qualified. Acquisition not executed; full95 remains68P1F26unexecuted.
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 315h 03m (≈77h 24m AI-run, ≈237h 38m human/idle wait); resumed 228×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Fresh exclusive Root activation/current proof, one listing+unique ZIP, distinct High actual-evidence qualification; no new runtime or acceptance.

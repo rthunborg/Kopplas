@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-22T15:40:06Z"
+updated_at: "2026-10-22T16:01:19Z"
 started_at: "2026-10-20T12:18:56Z"
 completed_at: null
 active_seconds: 86219
@@ -18,15 +18,15 @@ is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: INT009_corrected_case_terminal_consumer_preparation
-selected_role: inert bounded actual-schema artifact reader preparer
-selected_profile: build
+selected_phase: INT009_corrected_case_actual_artifact_acquisition
+selected_role: native acquisition operator
+selected_profile: sensitive
 selected_model: gpt-6.1-sol
 selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Sensitive nativefailure metadata privacy/custody/case cardinality; preparationonlyafteractualterminal, zeroGETauthority."
+escalation_reason: "Explicit High native operator for bounded authenticated artifact acquisition, privacy and actual capture provenance."
 routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"High preparation for hashed public-feed tokens, rotation/revocation and tenant/member disclosure boundaries; plan-only before distinctvalidation and ownershipallocation\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct High independent specification validation of actual public-feed token/proof/IP/limiter authorization design and exact ownership/test-key boundaries before anybuild\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"cross_model_layer\",\"profile\":\"diverse_review\",\"role\":\"independent-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -284,6 +284,8 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive freshoneproviderread/no-deployment source14 qualification; actualcompletedfiniteallocation; no sourceauthoring.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"INT009_corrected_case_provider_execution\",\"profile\":\"build\",\"role\":\"bounded provider execution\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Critical local-controller precondition mistake; proveonlymetadatareadonlyphase correction/no repeatedmutation/counterreset withinexistingremainingfinitegrant. No story broadreview or sourcechange.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"INT009_local_precondition_readonly_critical_resolution\",\"profile\":\"final_convergence\",\"role\":\"independent critical controller reconciliation reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive nativefailure metadata privacy/custody/case cardinality; preparationonlyafteractualterminal, zeroGETauthority.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"INT009_corrected_case_terminal_consumer_preparation\",\"profile\":\"build\",\"role\":\"inert bounded actual-schema artifact reader preparer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Artifact privacy, exact-case evidence and bounded authenticated acquisition require distinct High review before execution.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"INT009_corrected_case_artifact_reader_source_review\",\"profile\":\"sensitive\",\"role\":\"independent reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Explicit High native operator for bounded authenticated artifact acquisition, privacy and actual capture provenance.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"INT009_corrected_case_actual_artifact_acquisition\",\"profile\":\"sensitive\",\"role\":\"native acquisition operator\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: "Hashed public tokens, rotation/revocation, externalfeed andcross-tenant abuseprotection requireHigh-riskATDD+automate; lastthreeno traceadvisory"
@@ -2108,3 +2110,4 @@ exact_e16_local_full_unit_identification:
   next: "Coordinateexact3test-onlyownership; explicitHigh verifiesauthorityandrepairsfixtures/loaderswithoutweakeningproductionguards; fullpureunitvalidationandtargetedindependentreviewbeforeanyhostedretry."
 exact_e16_three_fixture_closure:
   INT009_corrected_case_actual_terminal: "{\"binding\":{\"path\":\"_bmad-output/auto-bmad/preparation/story-15-5/root-retry-INT009-actual-terminal-ownership.json\",\"bytes\":5494,\"sha256\":\"aacd7f03c78d2865105973069038f7bfe233057a0acf521122dc90019b0268d1\"},\"run_id\":39804170137,\"terminal\":{\"path\":\".env.epic15.mail-runtime/story-15-5-preparation/retry-INT009-readonly-reconciliation/terminal.json\",\"bytes\":14770,\"sha256\":\"f2ae14542c2344c75cac075342c8031366638cfe592469ce6e624db838e431b6\"},\"status\":\"QUALIFIED_RUN_OWNERSHIP_TERMINAL_DBFAIL_CASE_CARDINALITY_UNKNOWN\",\"Root_poller\":\"STOPPED\",\"normal_acceptance\":0,\"case_cause\":\"UNKNOWN\"}"
+  INT009_terminal_artifact_reader_admitted: "{\"admission\":{\"path\":\"_bmad-output/auto-bmad/preparation/story-15-5/root-retry-INT009-terminal-two-read-admission.json\",\"bytes\":1123,\"sha256\":\"1c48ed150b3c11e41089ae8a0ad5dbe0d2576cfbc80d971ef431ecc3a15987f1\"},\"review\":{\"path\":\"_bmad-output/auto-bmad/preparation/story-15-5/retry-INT009-terminal-reader-actual-source-review.json\",\"bytes\":15799,\"sha256\":\"dc535126aeeae6ba3cefcf295fb9d04753de6983e3c95932855108ff50c43a36\"},\"allocation\":{\"path\":\".env.epic15.mail-runtime/story-15-5-preparation/accepted-retry-INT009-terminal-two-read-allocation.json\",\"bytes\":2910,\"sha256\":\"8bbc73151046b4df84d0f3434e9bd6ef1b4cc301248f62f86ae6442e36f0d0cb\"},\"source_only\":true,\"normal_acceptance\":0,\"case_cause\":\"UNKNOWN\"}"
