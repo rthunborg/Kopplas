@@ -1,0 +1,52 @@
+{
+  "schema": "SERIES_CURRENT_PROTOCOL_TARGETED_HIGH_REVIEW_RESULT_v1",
+  "Outcome": "NOTPASS_TARGETED_PROTOCOL_TEST_REGRESSION",
+  "Files changed": [
+    "_bmad-output/auto-bmad/preparation/story-15-5/series-current-conflict-protocol-high-review/original-report.md",
+    "_bmad-output/auto-bmad/preparation/story-15-5/series-current-conflict-protocol-high-review/original-attestation.json",
+    "_bmad-output/auto-bmad/preparation/story-15-5/series-current-conflict-protocol-high-review/result.json",
+    "_bmad-output/auto-bmad/preparation/story-15-5/series-current-conflict-protocol-high-review/manifest.json"
+  ],
+  "Status": {
+    "commit": "cb65b06b8884938f2054821166e9fd7e4d5e4aa9",
+    "parent": "537ad798a117464192d2a146d7573f1351848ad2",
+    "Root_bound_tree": "98a19328cbd46528cfa12625a54d323834917853",
+    "findings": [
+      {
+        "id": "SERIES-PROTOCOL-01",
+        "priority": "P2",
+        "path": "tests/integration/commands/booking-series.int.test.ts",
+        "line": 802,
+        "case": "15.2-INT-REAL-011",
+        "actual_after_migration": [
+          "booking-conflicts-v4",
+          "stockholm-capacity-v2"
+        ],
+        "active_expected_literal": [
+          "booking-conflicts-v3",
+          "stockholm-capacity-v1"
+        ],
+        "reachability": "Qualified live stack, successful real snapshotBookingSeries admits v4/v2, then old assertion fails. Other old literals at177/178 are skipped and excluded."
+      }
+    ],
+    "effective_body_inverses": "PASS snapshot2032/finalizer14472 with shared refresh",
+    "actual_predecessor_newlines": "22LF-only/127CRLF both admitted",
+    "historical116": "raw hashes unchanged;117total",
+    "negative_unit_prefix": "29415B unchanged",
+    "independent_focused": "42pass/0fail/0skip/0cancel",
+    "metadata_invariance": "statically enforced; not runtime-proven",
+    "SQL_runtime": 0,
+    "normal_acceptance": 0,
+    "review_counter": 3,
+    "execution_authority": false
+  },
+  "Open questions": [
+    "Hosted first throw/browser cause/custody UNKNOWN; SQL application/metadata/ACL/rollback unexecuted."
+  ],
+  "Deferred work": [
+    "Required native SQL/series/RLS/browser/recovery gates outside source review."
+  ],
+  "Blockers": [
+    "P2 SERIES-PROTOCOL-01: active REAL011 line802 expects obsolete v3/v1 against repaired producer."
+  ]
+}

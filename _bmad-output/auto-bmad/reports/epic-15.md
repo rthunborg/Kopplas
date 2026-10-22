@@ -6470,3 +6470,34 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Existing High author implements exact4path forward series repair preserving EFFECTIVE predecessor and independently diagnoses browser lifecycle using qualified facts only; no additional GET/CI/provider/resource grant.
+
+## Report — 2026-10-22T00:36:06Z (checkpoint — targeted series review found active assertion)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `cb65b06`).
+**Pipeline status:** in progress; targeted review NOTPASS at cb65b06b due active REAL-011 old-version assertion. Functional CI remains failed; no development-complete claim.
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 299h 38m (≈77h 24m AI-run, ≈222h 13m human/idle wait); resumed 195×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Existing High author fixes activepositiveprotocolassertion and SpecSROonly withinexistingallocation; allfacts/digestguards and migration/unit bodiespreserved. Rootcommit thenSAMEdistinctHighfinding/regressionclosure, no broadreview.

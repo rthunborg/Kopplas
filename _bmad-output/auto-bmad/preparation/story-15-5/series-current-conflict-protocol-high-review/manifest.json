@@ -1,0 +1,25 @@
+{
+  "schema": "SERIES_CURRENT_PROTOCOL_TARGETED_HIGH_REVIEW_MANIFEST_v1",
+  "self_excluded": true,
+  "files": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/series-current-conflict-protocol-high-review/original-report.md",
+      "bytes": 3691,
+      "sha256": "664796231b9f1aa34d49de5807a442e324844f1b109d2f4d11af98e12cb5aa6d"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/series-current-conflict-protocol-high-review/original-attestation.json",
+      "bytes": 8201,
+      "sha256": "337d2f47c93b521f6d989e7211cb24ea2ff42c89490382939b8b50809416fb23"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/series-current-conflict-protocol-high-review/result.json",
+      "bytes": 2326,
+      "sha256": "1d074eae72ba06ef744916e137a908013e36474a1e3ebb79093f0b81c8dbc18c"
+    }
+  ],
+  "reviewed_commit": "cb65b06b8884938f2054821166e9fd7e4d5e4aa9",
+  "frozen": true,
+  "normal_acceptance": 0,
+  "execution_authority": false
+}
