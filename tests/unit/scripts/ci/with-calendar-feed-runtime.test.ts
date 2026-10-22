@@ -2370,40 +2370,41 @@ async function labelledBrowserControl(sink?:(line:string)=>void) {
     const result=registry.observe({label,request:()=>wait("request"),response:()=>wait("response"),readback:options.readback??(async()=>({fixed:true})),...(!options.noCompletion?{completion:options.completion??(async()=>true)}:{})});return result;
   };
   const match=(action:string)=>{events.emit(action+"request",{});events.emit(action+"response",{});};
-  return{seams,lines,labels,registry,observe,match,events};
+  const report=()=>{labels.capture("PRE_CLEANUP");labels.capture("FINAL");labels.failure();labels.publish();};
+  return{seams,lines,labels,registry,observe,match,events,report};
 }
 
 test("actual browser records keep successful create distinct from rotate native-pending and revoke not registered",async()=>{
   const x=await labelledBrowserControl(),first=x.observe("create");x.match("create");await first;
   let release!:(value:boolean)=>void;const completion=new Promise<boolean>(yes=>{release=yes;}),second=x.observe("rotate",{completion:()=>completion});x.match("rotate");await second;
-  const unsettled=await x.registry.cancelAndSettle();assert.equal(unsettled.settled,false);
+  const unsettled=await x.registry.cancelAndSettle();assert.equal(unsettled.settled,false);x.report();
   assert.ok(x.lines.some(line=>line.includes("action=create ordinal=1")&&line.includes("completion=SETTLED_SUCCESS")&&line.includes("observation=SETTLED_SUCCESS")));
   assert.ok(x.lines.some(line=>line.includes("action=rotate ordinal=2")&&line.includes("completion=PENDING")));
-  assert.ok(x.lines.some(line=>line.includes("action=revoke ordinal=3 registration=NOT_REGISTERED")));
+  assert.ok(!x.lines.some(line=>line.includes("action=revoke")),"unregistered actions have no row, which is not backend absence proof");
   release(true);assert.equal((await x.registry.cancelAndSettle()).settled,true);
 });
 
 test("actual waiter labels distinguish matched response from failed or cancelled request and never-started work",async()=>{
-  for(const failed of [false,true]){const x=await labelledBrowserControl(),pending=x.observe("create",{requestPredicate:()=>{if(failed)throw Error("PRIVATE predicate");return true;}});x.events.emit("createresponse",{});if(failed)x.events.emit("createrequest",{});const settled=x.registry.cancelAndSettle();await assert.rejects(pending);assert.equal((await settled).settled,false);
+  for(const failed of [false,true]){const x=await labelledBrowserControl(),pending=x.observe("create",{requestPredicate:()=>{if(failed)throw Error("PRIVATE predicate");return true;}});x.events.emit("createresponse",{});if(failed)x.events.emit("createrequest",{});const settled=x.registry.cancelAndSettle();await assert.rejects(pending);assert.equal((await settled).settled,false);x.report();
     assert.ok(x.lines.some(line=>line.includes("action=create")&&line.includes("response=MATCHED")&&line.includes(failed?"request=SETTLED_FAILURE":"request=CANCELLED")&&line.includes("readback=NOT_STARTED")&&line.includes("completion=NOT_STARTED")));
   }
 });
 
 test("actual browser readback failure native failure and optional completion have independent terminal states",async()=>{
-  const read=await labelledBrowserControl(),bad=read.observe("create",{readback:async()=>{throw Error("PRIVATE SQL");}});read.match("create");await assert.rejects(bad);await read.registry.cancelAndSettle();assert.ok(read.lines.some(line=>line.includes("readback=SETTLED_FAILURE")));
-  const native=await labelledBrowserControl(),good=native.observe("create",{completion:async()=>false});native.match("create");await good;assert.equal((await native.registry.cancelAndSettle()).settled,false);assert.ok(native.lines.some(line=>line.includes("readback=SETTLED_SUCCESS")&&line.includes("completion=SETTLED_FAILURE")&&line.includes("observation=SETTLED_SUCCESS")));
-  const optional=await labelledBrowserControl(),done=optional.observe("create",{noCompletion:true});optional.match("create");await done;assert.equal((await optional.registry.cancelAndSettle()).settled,true);assert.equal(optional.lines.length,0);optional.labels.failure();assert.ok(optional.lines.some(line=>line.includes("completion=NOT_APPLICABLE")));
+  const read=await labelledBrowserControl(),bad=read.observe("create",{readback:async()=>{throw Error("PRIVATE SQL");}});read.match("create");await assert.rejects(bad);await read.registry.cancelAndSettle();read.report();assert.ok(read.lines.some(line=>line.includes("readback=SETTLED_FAILURE")));
+  const native=await labelledBrowserControl(),good=native.observe("create",{completion:async()=>false});native.match("create");await good;assert.equal((await native.registry.cancelAndSettle()).settled,false);native.report();assert.ok(native.lines.some(line=>line.includes("readback=SETTLED_SUCCESS")&&line.includes("completion=SETTLED_FAILURE")&&line.includes("observation=SETTLED_SUCCESS")));
+  const optional=await labelledBrowserControl(),done=optional.observe("create",{noCompletion:true});optional.match("create");await done;assert.equal((await optional.registry.cancelAndSettle()).settled,true);assert.equal(optional.lines.length,0);optional.report();assert.ok(optional.lines.some(line=>line.includes("completion=NOT_APPLICABLE")));
 });
 
 test("actual concurrent browser records preserve pending readback and post-cancel observation separately",async()=>{
   const x=await labelledBrowserControl();let release!:(value:unknown)=>void;const held=new Promise(yes=>{release=yes;}),first=x.observe("create",{readback:()=>held}),second=x.observe("rotate");x.match("create");x.match("rotate");await second;
-  assert.equal((await x.registry.cancelAndSettle()).settled,false);assert.ok(x.lines.some(line=>line.includes("action=create")&&line.includes("readback=PENDING")));release({fixed:true});await assert.rejects(first);await x.registry.cancelAndSettle();assert.ok(x.lines.some(line=>line.includes("action=create")&&line.includes("readback=SETTLED_SUCCESS")&&line.includes("observation=CANCELLED")));
+  assert.equal((await x.registry.cancelAndSettle()).settled,false);x.labels.capture("PRE_CLEANUP");release({fixed:true});await assert.rejects(first);await x.registry.cancelAndSettle();x.labels.capture("FINAL");x.labels.failure();x.labels.publish();assert.ok(x.lines.some(line=>line.includes("snapshot=PRE_CLEANUP")&&line.includes("readback=PENDING")));assert.ok(x.lines.some(line=>line.includes("action=create")&&line.includes("readback=SETTLED_SUCCESS")&&line.includes("observation=CANCELLED")));
 });
 
 test("actual label budgets sink failures and invalid registration never affect lifecycle behavior or expose payload getters",async()=>{
   const x=await labelledBrowserControl(()=>{throw Error("PRIVATE sink");}),done=x.observe("create");x.match("create");assert.deepEqual(await done,{fixed:true});assert.equal((await x.registry.cancelAndSettle()).settled,true);
   const bad=await labelledBrowserControl(()=>{throw Error("PRIVATE sink");}),safe=bad.seams.calendarBrowserDiagnostic("action-readback",{}),failed=bad.observe("create",{readback:async()=>{throw safe;}});bad.match("create");assert.equal(await failed.catch(error=>error),safe);await bad.registry.cancelAndSettle();
-  const y=await labelledBrowserControl();y.labels.register("create");y.labels.register("create");for(let i=0;i<20;i++)y.labels.failure();assert.equal(y.lines.length,16);assert.ok(y.lines.every(line=>line.includes("UNKNOWN")&&Buffer.byteLength(line)<=512));assert.ok(Buffer.byteLength(y.lines.join("\n"))<8192);
+  const y=await labelledBrowserControl();y.labels.register("create");y.labels.register("create");for(let i=0;i<20;i++){y.labels.capture("PRE_CLEANUP");y.labels.capture("FINAL");y.labels.failure();}y.labels.publish();assert.equal(y.lines.length,2);assert.ok(y.lines.every(line=>line.includes("UNKNOWN")&&Buffer.byteLength(line)<=512));assert.ok(Buffer.byteLength(y.lines.join("\n"))<8192);
 });
 
 test("label instrumentation preserves actual promise observer timer operation counts and default silent waiters",async()=>{
@@ -2434,7 +2435,7 @@ test("actual recipient cleanup retains the callback and every reached cleanup er
   assert.ok(caught instanceof AggregateError);assert.equal(caught.cause,x.f.inner);assert.deepEqual(caught.errors,[x.f.inner,x.f.cleanup]);assert.equal(x.events.filter(event=>event==="auth").length,27);assert.equal(x.events.filter(event=>event==="delete").length,3);assert.ok(x.f.lines.some(line=>line.includes("site=recipients-callback")));assert.ok(x.f.lines.some(line=>line.includes("site=cleanup-reports")));
 });
 
-test("actual labelled caller assertions match their frozen baseline and opt-in is restricted to NUDGE004 and E2E001",async()=>{
+test("actual labelled caller assertions match their frozen baseline and opt-in is restricted to NUDGE004 and exact three browser cases",async()=>{
   const ts=await import("typescript");
   // Ordered assertion AST text, normalized exactly as the original comparison, captured
   // independently from 166cad1c21f423b96c815a3f5b34d2fb81bc28bf (not current source).
@@ -2449,7 +2450,8 @@ test("actual labelled caller assertions match their frozen baseline and opt-in i
     assert.match(baseline.blob,/^[a-f0-9]{40}$/);verify(after);
     const changed=after.replace("expect(","expect(false&&");assert.notEqual(changed,after);assert.throws(()=>verify(changed));
     assert.throws(()=>verify(after+"\nexpect(false).toBe(true);"));
-    assert.equal((after.match(baseline.path.includes("nudge")?/const labels=createNudgeFailureLabels\(createNudgeTaskMetaSink\(task\.meta\)\)/g:/const labels=createCalendarFailureLabels\(\)/g)??[]).length,1);
+    if(baseline.path.includes("nudge"))assert.equal((after.match(/const labels=createNudgeFailureLabels\(createNudgeTaskMetaSink\(task\.meta\)\)/g)??[]).length,1);
+    else{assert.equal((after.match(/createCalendarFailureLabels\(/g)??[]).length,3);assert.ok(after.includes('competingAction==="revoke"?createCalendarFailureLabels(undefined,"E2E010-revoke"):undefined'));for(const name of ["E2E001","E2E007"])assert.ok(after.includes('createCalendarFailureLabels(undefined,"'+name+'")'));}
   }
 });
 
@@ -2552,4 +2554,77 @@ test("VITEST-META healthy default budget and recording failures cannot change or
   const direct:Record<string,unknown>={},directSink=actualNudgeMetaSink()(direct);for(let i=0;i<20;i++)directSink(values[0]);assert.equal((direct.calendarSourceLabelsV1 as readonly string[]).length,16);
   const frozen=actualMetaNudge("clients");Object.freeze(frozen.meta);assert.equal(await frozen.run().catch(error=>error),frozen.inner);assert.ok(!Object.hasOwn(frozen.meta,"calendarSourceLabelsV1"));assert.equal(frozen.events.filter(event=>event==="outer-cleanup").length,1);
   const foreign=actualMetaNudge("override"),slot={notOwned:true};foreign.meta.calendarSourceLabelsV1=slot;assert.equal(await foreign.run().catch(error=>error),foreign.outer);assert.equal(foreign.meta.calendarSourceLabelsV1,slot);assert.ok(foreign.events.indexOf("report-cleanup")<foreign.events.indexOf("outer-cleanup"));
+});
+
+
+function actualBrowserCompletion(label:{set(field:string,state:string):void}){
+  const source=readFileSync(new URL("../../../e2e/support/calendar-feed-atdd.ts",import.meta.url),"utf8"),start=source.indexOf("completion: async request => {"),end=source.indexOf("\n              },",start);assert.ok(start>0&&end>start);
+  const expression=source.slice(start+"completion: ".length,end)+"\n}";
+  const strip=(nodeModule as unknown as {stripTypeScriptTypes(source:string):string}).stripTypeScriptTypes;
+  return new Function("calendarLabel","label","return ("+strip(expression)+");")((run:()=>void)=>{try{run();}catch{/* same no-throw seam */}},label) as (request:{response():Promise<{finished():Promise<unknown>}|null>})=>Promise<boolean>;
+}
+
+test("browser v2 actual completion boundaries distinguish both pending awaits failures null and done with unchanged receiver and calls",async()=>{
+  const seams=await actualBrowserSeams();
+  for(const mode of ["response-pending","response-failure","finished-pending","finished-failure","null","done","finished-error"] as const){
+    const lines:string[]=[],labels=seams.createCalendarFailureLabels(line=>lines.push(line)),label=labels.register("create")!;let calls=0,ends=0,releaseResponse!:(value:{finished():Promise<unknown>})=>void,releaseFinished!:(value:null)=>void;
+    const failure=Error("PRIVATE native failure"),native:{finished():Promise<unknown>}={async finished(){assert.equal(this,native);ends++;if(mode==="finished-failure")throw failure;if(mode==="finished-pending")return new Promise<null>(yes=>{releaseFinished=yes;});return mode==="finished-error"?"PRIVATE failure":null;}},request={async response(){assert.equal(this,request);calls++;if(mode==="response-failure")throw failure;if(mode==="response-pending")return new Promise<typeof native>(yes=>{releaseResponse=yes;});return mode==="null"?null:native;}};
+    const actual=actualBrowserCompletion(label),work=actual(request);void work.catch(()=>{});
+    await Promise.resolve();await Promise.resolve();labels.capture("PRE_CLEANUP");assert.equal(lines.length,0);
+    if(mode==="response-pending")releaseResponse(native);if(mode==="finished-pending")releaseFinished(null);
+    const result=await work.catch(error=>error);if(mode.endsWith("failure"))assert.equal(result,failure);else assert.equal(result,mode!=="null"&&mode!=="finished-error");
+    labels.capture("FINAL");labels.failure();labels.publish();assert.equal(calls,1);assert.equal(ends,mode==="null"||mode==="response-failure"?0:1);
+    const pre=lines.find(line=>line.includes("snapshot=PRE_CLEANUP"))!,final=lines.find(line=>line.includes("snapshot=FINAL"))!;
+    assert.ok(pre.includes("completionPhase="+(mode.startsWith("response")||mode==="null"?"RESPONSE":mode==="done"?"DONE":"FINISHED")));
+    assert.ok(final.includes("completionPhase="+(mode==="response-failure"||mode==="null"?"RESPONSE":mode==="finished-failure"||mode==="finished-error"?"FINISHED":"DONE")));
+    assert.ok(lines.every(line=>!line.includes("PRIVATE")&&Buffer.byteLength(line)<=512));
+  }
+});
+
+test("browser v2 immutable pre-cleanup and final snapshots preserve mixed action and scenario states without early output",async()=>{
+  const x=await labelledBrowserControl(),first=x.observe("create");x.match("create");await first;
+  let release!:(value:boolean)=>void;const second=x.observe("rotate",{completion:()=>new Promise<boolean>(yes=>{release=yes;})});x.match("rotate");await second;
+  x.labels.scenario("PENDING");x.labels.capture("PRE_CLEANUP");assert.equal(x.lines.length,0);release(false);await x.registry.cancelAndSettle();x.labels.scenario("SETTLED_FAILURE");x.labels.capture("FINAL");x.labels.failure();x.labels.publish();
+  assert.equal(x.lines.length,4);assert.ok(x.lines.some(line=>line.includes("snapshot=PRE_CLEANUP")&&line.includes("action=rotate")&&line.includes("completion=PENDING")&&line.includes("scenario=PENDING")));
+  assert.ok(x.lines.some(line=>line.includes("snapshot=FINAL")&&line.includes("action=rotate")&&line.includes("completion=SETTLED_FAILURE")&&line.includes("scenario=SETTLED_FAILURE")));
+  assert.ok(!x.lines.some(line=>line.includes("action=revoke")));assert.ok(x.lines.some(line=>line.includes("action=create")&&line.includes("observation=SETTLED_SUCCESS")));
+});
+
+test("browser v2 closed producer rows match finite parser contract and exact 28 browser plus16 nudge cap without extra unknown rows",async()=>{
+  const seams=await actualBrowserSeams(),all:string[]=[];
+  const cases=[["E2E001",["create","rotate","revoke"]],["E2E007",["create","revoke"]],["E2E010-revoke",["create","revoke"]]] as const;
+  for(const [name,actions] of cases)for(let attempt=0;attempt<2;attempt++){
+    const lines:string[]=[],labels=seams.createCalendarFailureLabels(line=>lines.push(line),name);for(const action of actions)labels.register(action);labels.scenario("SETTLED_SUCCESS");labels.capture("PRE_CLEANUP");labels.capture("FINAL");labels.failure();labels.publish();labels.publish();
+    assert.equal(lines.length,actions.length*2);assert.ok(lines.length<=16);all.push(...lines);
+    for(const line of lines){assert.ok(/^[\x20-\x7e]{1,512}$/.test(line));const fields=Object.fromEntries(line.split(" ").slice(1).map(part=>part.split("=")));assert.deepEqual(Object.keys(fields),["case","snapshot","site","scenario","action","ordinal","registration","request","response","readback","completion","completionPhase","observation"]);assert.equal(fields.case,name);assert.ok(["PRE_CLEANUP","FINAL"].includes(fields.snapshot!));assert.equal(fields.scenario,"SETTLED_SUCCESS");}
+  }
+  assert.equal(all.length,28);assert.equal(all.length+16,44);assert.ok(all.length+16<48);
+  const none:string[]=[],empty=seams.createCalendarFailureLabels(line=>none.push(line),"E2E007");empty.capture("PRE_CLEANUP");empty.capture("FINAL");empty.failure();empty.publish();assert.equal(none.length,2);assert.ok(none.every(line=>line.includes("action=none ordinal=0")));
+  const bad:string[]=[],labels=seams.createCalendarFailureLabels(line=>bad.push(line));labels.register("create");labels.capture("PRE_CLEANUP");labels.capture("PRE_CLEANUP");labels.register("create");labels.capture("FINAL");labels.failure();labels.publish();assert.equal(bad.length,2);assert.ok(bad.every(line=>line.endsWith("state=UNKNOWN")));
+});
+
+test("browser v2 malformed fields and throwing sink never touch payload getters change lifecycle identity or emit on healthy completion",async()=>{
+  const seams=await actualBrowserSeams();let touched=0;const hostile=new Proxy({}, {get(){touched++;throw Error("PRIVATE");},getOwnPropertyDescriptor(){touched++;throw Error("PRIVATE");}});
+  const lines:string[]=[],labels=seams.createCalendarFailureLabels(line=>lines.push(line)),record=labels.register("create")!;
+  record.set("readback",hostile as never);labels.capture("PRE_CLEANUP");labels.capture("FINAL");labels.failure();labels.publish();assert.equal(touched,0);assert.equal(lines.length,2);assert.ok(lines.every(line=>line.endsWith("state=UNKNOWN")));
+  const healthy=await labelledBrowserControl(),work=healthy.observe("create");healthy.match("create");await work;await healthy.registry.cancelAndSettle();healthy.labels.capture("PRE_CLEANUP");healthy.labels.capture("FINAL");healthy.labels.publish();assert.deepEqual(healthy.lines,[]);
+  const throwing=await labelledBrowserControl(()=>{throw Error("PRIVATE sink");}),safe=throwing.seams.calendarBrowserDiagnostic("action-readback",{}),failed=throwing.observe("create",{readback:async()=>{throw safe;}});throwing.match("create");assert.equal(await failed.catch(error=>error),safe);await throwing.registry.cancelAndSettle();assert.doesNotThrow(()=>throwing.report());
+});
+
+
+test("browser v2 actual enclosing selected case catches preserve primary or cleanup override identity with fixed output and rotate remains silent",async()=>{
+  const ts=await import("typescript"),seams=await actualBrowserSeams(),source=readFileSync(new URL("../../../e2e/calendar-feed.e2e.spec.ts",import.meta.url),"utf8"),ast=ts.createSourceFile("calendar-feed.e2e.spec.ts",source,ts.ScriptTarget.Latest,true),callbacks=new Map<string,string>();
+  const visit=(node:import("typescript").Node)=>{if(ts.isCallExpression(node)&&ts.isIdentifier(node.expression)&&node.expression.text==="test"&&node.arguments.length===2){const title=node.arguments[0]!.getText(ast);for(const id of ["001","007","010-"])if(title.includes("15.5-E2E-"+id)){const callback=node.arguments[1]!;callbacks.set(id,callback.getText(ast));}}ts.forEachChild(node,visit);};visit(ast);assert.equal(callbacks.size,3);
+  const strip=(nodeModule as unknown as {stripTypeScriptTypes(source:string):string}).stripTypeScriptTypes;
+  for(const [id,mode] of [["001","primary"],["007","primary"],["007","cleanup"],["007","early"],["010-","primary"],["010-","rotate"]] as const){
+    const lines:string[]=[],events:string[]=[],primary=Error("PRIVATE primary"),cleanup=Error("PRIVATE cleanup"),context={async newPage(){events.push("page");return{};},async close(){events.push("close");if(mode==="cleanup")throw cleanup;}},browser={async newContext(){events.push("context");return context;}},page={context(){return{browser(){if(mode==="early")return null;return browser;}}}};let fixtures=0;
+    const run=new Function("createCalendarFailureLabels","withCalendarBrowserFixture","calendarBrowserCleanup","competingAction","return ("+strip(callbacks.get(id)!)+");")(
+      (_sink:unknown,name:"E2E001"|"E2E007"|"E2E010-revoke")=>seams.createCalendarFailureLabels(line=>lines.push(line),name),
+      async(_page:unknown,_scenario:unknown,_callback:unknown,labels?:import("../../../e2e/support/calendar-feed-atdd").CalendarFailureLabels)=>{fixtures++;events.push("fixture");labels?.scenario("PENDING");labels?.capture("PRE_CLEANUP");labels?.scenario("SETTLED_FAILURE");throw primary;},
+      async(steps:{run():Promise<unknown>}[],captured?:{error:unknown})=>{assert.equal(captured?.error,primary);for(const step of steps)await step.run();},mode==="rotate"?"rotate":"revoke") as (input:unknown,info?:unknown)=>Promise<void>;
+    const thrown=await run({resourcePage:page},{project:{use:{baseURL:"fixed"}}}).catch(error=>error);
+    if(mode==="cleanup")assert.equal(thrown,cleanup);else if(mode!=="early")assert.equal(thrown,primary);else assert.match(thrown.message,/requires the owned browser/);
+    assert.equal(fixtures,mode==="early"?0:1);if(id==="007"&&mode!=="early")assert.ok(events.indexOf("close")>events.indexOf("fixture"));
+    if(mode==="rotate")assert.equal(lines.length,0);else{assert.equal(lines.length,2);assert.ok(lines.every(line=>line.startsWith("calendar-source-label-v2 ")&&!line.includes("PRIVATE")));assert.ok(lines.some(line=>line.includes("snapshot=FINAL")));}
+  }
 });

@@ -13,24 +13,40 @@ export const CALENDAR_FIXTURE_DATE = "2026-10-12";
 // Pure diagnostic/observation seams: injected checks need no browser or database.
 export type CalendarLabelWorkState="NOT_APPLICABLE"|"NOT_STARTED"|"PENDING"|"SETTLED_SUCCESS"|"SETTLED_FAILURE"|"UNKNOWN";
 export type CalendarLabelWaiterState="NOT_STARTED"|"PENDING"|"MATCHED"|"SETTLED_FAILURE"|"CANCELLED"|"UNKNOWN";
-export type CalendarObservationLabel={set(field:"registration"|"request"|"response"|"readback"|"completion"|"observation",state:string):void};
+export type CalendarObservationLabel={set(field:"registration"|"request"|"response"|"readback"|"completion"|"completionPhase"|"observation",state:string):void};
 export const calendarFailureSites=["scenario","sign-in","navigation","warning","create","feed","last-use","rotation","old-new-feed","revoke","observation","settlement","fixture-final","unknown"] as const;
+export type CalendarFailureCase="E2E001"|"E2E007"|"E2E010-revoke";
 export type CalendarFailureLabels=ReturnType<typeof createCalendarFailureLabels>;
-export function createCalendarFailureLabels(sink:(line:string)=>void=line=>console.error(line)) {
-  const records=(["create","rotate","revoke"] as const).map((action,index)=>({action,ordinal:index+1,registration:"NOT_REGISTERED",request:"NOT_STARTED",response:"NOT_STARTED",readback:"NOT_STARTED",completion:"NOT_STARTED",observation:"NOT_STARTED"}));
-  let site:typeof calendarFailureSites[number]="scenario",lines=0,unknown=false;
-  const allowed={registration:["NOT_REGISTERED","REGISTERED","REGISTRATION_FAILED","UNKNOWN"],request:["NOT_STARTED","PENDING","MATCHED","SETTLED_FAILURE","CANCELLED","UNKNOWN"],response:["NOT_STARTED","PENDING","MATCHED","SETTLED_FAILURE","CANCELLED","UNKNOWN"],readback:["NOT_APPLICABLE","NOT_STARTED","PENDING","SETTLED_SUCCESS","SETTLED_FAILURE","UNKNOWN"],completion:["NOT_APPLICABLE","NOT_STARTED","PENDING","SETTLED_SUCCESS","SETTLED_FAILURE","UNKNOWN"],observation:["NOT_STARTED","PENDING","SETTLED_SUCCESS","SETTLED_FAILURE","CANCELLED","UNKNOWN"]};
+/** Closed v2 namespace only. Two immutable snapshots, published only on final failure. */
+export function createCalendarFailureLabels(sink:(line:string)=>void=line=>console.error(line),caseId:CalendarFailureCase="E2E001") {
+  const records=(["create","rotate","revoke"] as const).map((action,index)=>({action,ordinal:index+1,registration:"NOT_REGISTERED",request:"NOT_STARTED",response:"NOT_STARTED",readback:"NOT_STARTED",completion:"NOT_STARTED",completionPhase:"NOT_STARTED",observation:"NOT_STARTED"}));
+  const snapshots:Partial<Record<"PRE_CLEANUP"|"FINAL",readonly string[]>>={};
+  let site:typeof calendarFailureSites[number]="scenario",scenario="NOT_STARTED",unknown=false,failed=false,published=false;
+  const allowed={registration:["NOT_REGISTERED","REGISTERED","REGISTRATION_FAILED","UNKNOWN"],request:["NOT_STARTED","PENDING","MATCHED","SETTLED_FAILURE","CANCELLED","UNKNOWN"],response:["NOT_STARTED","PENDING","MATCHED","SETTLED_FAILURE","CANCELLED","UNKNOWN"],readback:["NOT_APPLICABLE","NOT_STARTED","PENDING","SETTLED_SUCCESS","SETTLED_FAILURE","UNKNOWN"],completion:["NOT_APPLICABLE","NOT_STARTED","PENDING","SETTLED_SUCCESS","SETTLED_FAILURE","UNKNOWN"],completionPhase:["NOT_STARTED","RESPONSE","FINISHED","DONE","UNKNOWN"],observation:["NOT_STARTED","PENDING","SETTLED_SUCCESS","SETTLED_FAILURE","CANCELLED","UNKNOWN"]};
+  const validCase=["E2E001","E2E007","E2E010-revoke"].includes(caseId),safeCase=validCase?caseId:"E2E001";
+  const unknownRow=(snapshot:"PRE_CLEANUP"|"FINAL")=>Object.freeze([`calendar-source-label-v2 case=${safeCase} snapshot=${snapshot} state=UNKNOWN`]);
   return {
-    at(next:typeof calendarFailureSites[number]){try{site=calendarFailureSites.includes(next)?next:"unknown";}catch{unknown=true;}},
+    at(next:typeof calendarFailureSites[number]){try{if(calendarFailureSites.includes(next))site=next;else unknown=true;}catch{unknown=true;}},
+    scenario(state:"NOT_STARTED"|"PENDING"|"SETTLED_SUCCESS"|"SETTLED_FAILURE"){try{if(["NOT_STARTED","PENDING","SETTLED_SUCCESS","SETTLED_FAILURE"].includes(state))scenario=state;else unknown=true;}catch{unknown=true;}},
     register(action:"create"|"rotate"|"revoke"):CalendarObservationLabel|undefined {
       try{const record=records.find(record=>record.action===action);if(!record||record.registration!=="NOT_REGISTERED"){unknown=true;return;}record.registration="REGISTERED";
-        return{set(field,state){try{if(Object.hasOwn(allowed,field)&&allowed[field].includes(state))record[field]=state;else unknown=true;}catch{unknown=true;}}};
+        return{set(field,state){try{if(typeof field==="string"&&typeof state==="string"&&Object.hasOwn(allowed,field)&&allowed[field].includes(state))record[field]=state;else unknown=true;}catch{unknown=true;}}};
       }catch{unknown=true;}
     },
-    failure() {try{for(const record of records){if(lines>=16)return;const overflow=lines===15;lines++;
-      const line=unknown||overflow?"calendar-source-label-v1 case=E2E001 site=unknown state=UNKNOWN":`calendar-source-label-v1 case=E2E001 site=${site} action=${record.action} ordinal=${record.ordinal} registration=${record.registration} request=${record.request} response=${record.response} readback=${record.readback} completion=${record.completion} observation=${record.observation}`;
-      if(line.length>512){unknown=true;continue;}try{sink(line);}catch{unknown=true;}
-    }}catch{unknown=true;}}
+    failure(){failed=true;},
+    capture(snapshot:"PRE_CLEANUP"|"FINAL"){
+      try{
+        if(snapshot!=="PRE_CLEANUP"&&snapshot!=="FINAL"){unknown=true;snapshots.FINAL=unknownRow("FINAL");return;}
+        if(snapshots[snapshot]||unknown||!validCase){snapshots[snapshot]=unknownRow(snapshot);return;}
+        const registered=records.filter(record=>record.registration!=="NOT_REGISTERED"),selected=registered.length?registered:[records[0]!];
+        const lines=selected.map(record=>`calendar-source-label-v2 case=${safeCase} snapshot=${snapshot} site=${site} scenario=${scenario} action=${registered.length?record.action:"none"} ordinal=${registered.length?record.ordinal:0} registration=${record.registration} request=${record.request} response=${record.response} readback=${record.readback} completion=${record.completion} completionPhase=${record.completionPhase} observation=${record.observation}`);
+        snapshots[snapshot]=lines.length>3||lines.some(line=>line.length>512||!/^[\x20-\x7e]+$/.test(line))?unknownRow(snapshot):Object.freeze(lines);
+      }catch{snapshots[snapshot==="PRE_CLEANUP"?"PRE_CLEANUP":"FINAL"]=unknownRow(snapshot==="PRE_CLEANUP"?"PRE_CLEANUP":"FINAL");}
+    },
+    publish(){
+      if(!failed||published)return;published=true;
+      for(const snapshot of ["PRE_CLEANUP","FINAL"] as const)for(const line of snapshots[snapshot]??unknownRow(snapshot)){try{sink(line);}catch{/* never replace the original failure */}}
+    }
   };
 }
 /** Diagnostic bookkeeping cannot affect matching, errors or cleanup authority. */
@@ -471,7 +487,7 @@ export async function withCalendarBrowserFixture(
 ): Promise<void> {
   // Even Playwright locator errors can include the one-time input in DOM context.
   // Preserve failure, but never let those native details reach JSON/HTML reports.
-  let base: CalendarBaseFixture | undefined, cleanupAllowed = true;
+  let base: CalendarBaseFixture | undefined, cleanupAllowed = true, preCleanupCaptured = false;
   const finalErrors: Error[] = [];
   try {
     base = await calendarBrowserStep("fixture-base", () => createRoleAwarePhaseAFixture());
@@ -584,8 +600,15 @@ export async function withCalendarBrowserFixture(
               request: () => calendarEventWaiter<Request>({ subscribe: listener => { sourcePage.on("request", listener); }, unsubscribe: listener => { sourcePage.off("request", listener); }, predicate: request => actionInput(request)?.action === action, stage: "action-request", timeoutMs: 30_000,label:state=>label?.set("request",state) }),
               readback: async (request, signal) => ({ committed: true, snapshot: await committedAttempt(actionInput(request)!, signal) }),
               completion: async request => {
+                calendarLabel(()=>label?.set("completionPhase","RESPONSE"));
                 const response = await request.response();
-                return response !== null && await response.finished() === null;
+                if(response!==null){
+                  calendarLabel(()=>label?.set("completionPhase","FINISHED"));
+                  const complete=await response.finished()===null;
+                  if(complete)calendarLabel(()=>label?.set("completionPhase","DONE"));
+                  return complete;
+                }
+                return false;
               },
             });
           },
@@ -689,9 +712,12 @@ export async function withCalendarBrowserFixture(
           },
         };
         stage = "scenario";
+        calendarLabel(()=>labels?.scenario("PENDING"));
         await run(fixture);
-      } catch (error) {calendarLabel(()=>labels?.failure()); errors.push(calendarBrowserDiagnostic(stage, error)); }
+        calendarLabel(()=>labels?.scenario("SETTLED_SUCCESS"));
+      } catch (error) {calendarLabel(()=>{if(stage==="scenario")labels?.scenario("SETTLED_FAILURE");labels?.failure();}); errors.push(calendarBrowserDiagnostic(stage, error)); }
       finally {
+        calendarLabel(()=>labels?.capture("PRE_CLEANUP"));preCleanupCaptured=true;
         let releasesVerified = true;
         try { page.off("request", requestListener); } catch (error) { releasesVerified = false; errors.push(calendarBrowserDiagnostic("cleanup-lifecycle", error)); }
         // Release EVERY gate before cancelling/joining observations or handlers.
@@ -735,6 +761,7 @@ export async function withCalendarBrowserFixture(
   } catch (error) {
     finalErrors.push(calendarBrowserDiagnostic("scenario", error));
   } finally {
+    if(!preCleanupCaptured)calendarLabel(()=>labels?.capture("PRE_CLEANUP"));
     if (base && cleanupAllowed) {
       try { await cleanupRoleAwarePhaseAFixture(base); } catch (error) { finalErrors.push(calendarBrowserDiagnostic("cleanup-canonical", error)); }
     } else if (base) retainedCalendarFixtureCustody.add(base); // no SQL/Auth deletion while references remain unverified

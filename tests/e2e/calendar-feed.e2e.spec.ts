@@ -71,8 +71,8 @@ async function issueFromUI(page: Page, fixture: CalendarBrowserFixture) {
 
 test.describe("15.5 Kalenderprenumeration essential production-host", () => {
   test("[P0] 15.5-E2E-001 [AC1 AC3 AC4 AC6 AC7 AC9] Planering → own issue → anonymous feed → physical last-use → rotate/revoke", async ({ resourcePage: page }) => {
-    const labels=createCalendarFailureLabels();
-    await withCalendarBrowserFixture(page, "own-and-foreign", async (f) => {
+    const labels=createCalendarFailureLabels(undefined,"E2E001");
+    try { await withCalendarBrowserFixture(page, "own-and-foreign", async (f) => {
       labels.at("sign-in"); await f.signIn("montor");
       labels.at("navigation"); await followPersonalSubscriptionByKeyboard(page, "day");
       labels.at("warning"); await expectAccessWarning(page);
@@ -127,7 +127,7 @@ test.describe("15.5 Kalenderprenumeration essential production-host", () => {
       await page.reload();
       expectPublicFeed(await f.fetchAnonymous(first.handle), 404);
       expectPublicFeed(await f.fetchAnonymous(second.handle), 404);
-    },labels);
+    },labels); } catch(error) { labels.capture("FINAL");labels.failure();labels.publish();throw error; }
   });
 
   for (const variant of [
@@ -306,6 +306,8 @@ test.describe("15.5 Kalenderprenumeration essential production-host", () => {
   test.describe("connected phone essentials", () => {
     test.use({ viewport: { width: 360, height: 640 }, hasTouch: true });
     test("[P1] 15.5-E2E-007 [AC1 AC6] 360×640 keyboard entry, touch issue and revoke confirmation remain usable", async ({ resourcePage }, testInfo) => {
+      const labels=createCalendarFailureLabels(undefined,"E2E007");
+      try {
       // CDP resourcePage intentionally supplies its own context. Create this
       // test's touch-enabled context on that same owned browser so its options
       // are real under both CDP and the configured native Playwright runner.
@@ -338,8 +340,9 @@ test.describe("15.5 Kalenderprenumeration essential production-host", () => {
         await page.keyboard.press("Enter");
         expect((await revoked).snapshot.own.activeCount).toBe(0);
         expectPublicFeed(await f.fetchAnonymous(issued.handle), 404);
-      }); } catch (error) { phonePrimary = { error }; throw error; }
+      },labels); } catch (error) { phonePrimary = { error }; throw error; }
       finally { await calendarBrowserCleanup([{ stage: "cleanup-page", run: () => context.close() }], phonePrimary); }
+      } catch(error) { labels.capture("FINAL");labels.failure();labels.publish();throw error; }
     });
   });
 
@@ -383,7 +386,8 @@ test.describe("15.5 Kalenderprenumeration essential production-host", () => {
 
   for (const competingAction of ["rotate", "revoke"] as const) {
     test(`[P0] 15.5-E2E-010-${competingAction} [AC2 AC6] automatic refresh removes a superseded issuance and success announcement after concurrent ${competingAction}`, async ({ resourcePage: page }) => {
-      await withCalendarBrowserFixture(page, "own-and-foreign", async f => {
+      const labels=competingAction==="revoke"?createCalendarFailureLabels(undefined,"E2E010-revoke"):undefined;
+      try { await withCalendarBrowserFixture(page, "own-and-foreign", async f => {
         await f.signIn("montor");
         await followPersonalSubscriptionByKeyboard(page, "day");
         const before = await f.snapshot(), held = await f.armFault("hold-committed-response");
@@ -445,7 +449,7 @@ test.describe("15.5 Kalenderprenumeration essential production-host", () => {
             { stage: "cleanup-page", run: async () => competingPage?.close() },
           ], racePrimary);
         }
-      });
+      },labels); } catch(error) { labels?.capture("FINAL");labels?.failure();labels?.publish();throw error; }
     });
   }
 

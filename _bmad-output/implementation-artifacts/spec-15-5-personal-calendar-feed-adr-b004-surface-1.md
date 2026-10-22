@@ -2151,6 +2151,53 @@ controls/LF-CRLF inverse evidence are reused by immutable provenance, not rerun.
 Affected lint/diff/reader/SRO are checked; targeted independent closure and native
 SQL/integration gates remain pending.
 
+## Browser v2 finite completion observability — source only
+
+The earlier browser proposal above remains historical to the SQL repair. Root's
+separate completed allocation now implements only opt-in001,007 and010-revoke;
+010-rotate and all other cases remain silent. No browser/SQL/network/CI or private
+collector execution accompanies this source change. Applied117 SQL files and the
+series unit/integration closure remain unchanged.
+
+The producer emits calendar-source-label-v2 within its owned namespace. Existing
+request.response() and response.finished() awaits retain their order/call counts;
+completionPhase is assigned RESPONSE or FINISHED immediately before those awaits,
+and DONE only after the existing successful result. Null/failure/pending retains
+its actual last phase and separate completion state. Scenario state surrounds
+only the existing run callback. Neither readback success nor JavaScript settlement
+becomes backend completion, rollback, cleanup or custody proof.
+
+PRE_CLEANUP is copied before existing fixture teardown; setup failure uses the
+existing outer finally boundary. FINAL is copied by the actual enclosing selected
+case catch, after its existing cleanup, including007's outer context cleanup.
+Those catches rethrow the identical final error. Only final failures publish;
+normal successes remain silent. Registered action rows only are included;
+no-registration yields one summary, missing/malformed/duplicate boundary yields
+one UNKNOWN replacing its affected snapshot. Snapshots are immutable and remain
+independent as later action/cleanup state changes. Sink failures cannot replace
+errors, change cleanup or add retries/observers/queries/timers/awaits.
+
+The actual producer controls yield at most28 browser records over actions3/2/2,
+two snapshots and two attempts, plus unchanged NUDGEv1 max16 =44 below global48.
+Each record is canonical ASCII <=512 bytes and <=6 rows per selected attempt,
+within16. The previously parent-executed real assembler proposed-envelope proof
+measured26913/32768 bytes with8 worst unit failures/maxmetadata (margin5855),
+old48-slot28194 reconstructed. That is inherited envelope evidence, not proof of
+a current private parser: separately owned browser_labels v2 matching/review is
+still required; historical v1 new fields remain UNKNOWN. No private operator was
+edited, invoked or rebound by this author.
+
+Actual final affected unit file:157P/0F/0skip/0cancel. Existing operation vector and
+ordered assertion fingerprints remain; new actual-source completion and selected
+case callbacks cover pending/failing/successful awaits, null, scenario/cleanup
+ordering, same final error identity,007 cleanup override,010-rotate silence,
+immutable mixed records, exact28+16 cap and hostile/sink inputs. Source extraction
+and injected I/O prove only those offline boundaries, not live Playwright/SQL or
+native report publication. Initial156P preceded test-only TypeScript narrowing
+corrections; a later added injected fixture had a missing brace and failed to load,
+then was corrected. These attempts are nonadditive; final whole TypeScript and
+three-file lint pass. Required native/independent gates remain open, acceptance0.
+
 ## Suggested Review Order
 
 Author: Story 15.5 implementation/fix author (gpt-6.1-sol High), incorporating
@@ -2174,8 +2221,8 @@ retry before uncertain results have been reconciled; all four isolated SSR cases
 - `src/components/calendar-feed/CalendarSubscription.tsx:34` — `const current = await refresh();`: clears superseded post-commit output and success.
 - `src/components/calendar-feed/CalendarSubscription.tsx:69` — `state?.status === "error"`: AC2/6 renders fallback guidance without changing lifecycle controls.
 - `tests/integration/components/calendar-feed.test.ts:36` — `15.5-COMP-003`: AC2/6 existing error/retry SSR assertions passed in isolation.
-- `tests/e2e/calendar-feed.e2e.spec.ts:385` — `15.5-E2E-010-`: AC2/6 supersession cases failed at3e7; changed-head browser evidence pending.
-- `tests/e2e/calendar-feed.e2e.spec.ts:452` — `15.5-E2E-011`: AC2/6 browser control failed at3e7; changed-head evidence pending.
+- `tests/e2e/calendar-feed.e2e.spec.ts:388` — `15.5-E2E-010-`: AC2/6 supersession cases failed at3e7; changed-head browser evidence pending.
+- `tests/e2e/calendar-feed.e2e.spec.ts:456` — `15.5-E2E-011`: AC2/6 browser control failed at3e7; changed-head evidence pending.
 
 ### Signed current-self authority and atomic writes
 
@@ -2244,13 +2291,13 @@ restricted-session oracle. No new privileged child configuration or grant is add
 - `tests/integration/commands/calendar-feed.int.test.ts:508` — `await fresh.connect(); await setupQualified(fresh); await absent(fresh);`: INT015 fresh authority/privacy and exact absence oracle passed at3e7.
 - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:156` — `setup construction refuses missing`: credential/target refusals cannot reach secrets or children; actual identity negatives and child-config tests complete the bounded boundary evidence.
 
-- `tests/e2e/support/calendar-feed-atdd.ts:107` — `export function createCalendarLifecycleObservations`: AC2/6 observes both transport promises and joins actual readback before teardown; pure regressions are not native acceptance.
-- `tests/e2e/support/calendar-feed-atdd.ts:49` — `export function calendarBrowserDiagnostic`: preserves closed stage/category/SQLSTATE without native error payloads.
-- `tests/e2e/support/calendar-feed-atdd.ts:738` — `if (base && cleanupAllowed)`: canonical SQL/Auth cleanup waits for verified settlement; unresolved references retain fixture custody.
+- `tests/e2e/support/calendar-feed-atdd.ts:123` — `export function createCalendarLifecycleObservations`: AC2/6 observes both transport promises and joins actual readback before teardown; pure regressions are not native acceptance.
+- `tests/e2e/support/calendar-feed-atdd.ts:65` — `export function calendarBrowserDiagnostic`: preserves closed stage/category/SQLSTATE without native error payloads.
+- `tests/e2e/support/calendar-feed-atdd.ts:765` — `if (base && cleanupAllowed)`: canonical SQL/Auth cleanup waits for verified settlement; unresolved references retain fixture custody.
 - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:498` — `missing leaders with persistent groups`: absence is measured within existing budgets; anonymous groups grant no signaling authority.
 - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1045` — `actual browser bounded cancellation`: timeout cannot credit in-flight SQL/readback settlement; release and real completion are distinct.
 
-- `tests/e2e/support/calendar-feed-atdd.ts:117` — `trackReadback<T>`: registers actual callback/query work independently of Playwright deadlines and closes before drain.
+- `tests/e2e/support/calendar-feed-atdd.ts:133` — `trackReadback<T>`: registers actual callback/query work independently of Playwright deadlines and closes before drain.
 - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1125` — `installed polling deadline cannot credit`: HTTP completion plus outer timeout cannot credit unresolved physical query siblings or callback completion.
 
 - `tests/support/calendar-feed-atdd.ts:203` — `export function calendarFixtureDiagnostic`: fixed stages/own-data SQLSTATE preserve only reaching errors within bounded aggregates.
@@ -2592,13 +2639,13 @@ stay unchanged. Opaque outer failure remains UNKNOWN, even after an inner error.
 - `tests/integration/notifications/time-report-nudge-producer.int.test.ts:192` — `const labels=createNudgeFailureLabels(`: opts in only the real27-recipient case.
 - `tests/support/time-reports-atdd.ts:50` — `export function createNudgeFailureLabels`: bounds fixed output without error/property reads.
 - `tests/support/time-reports-atdd.ts:74` — `export async function withTimeReportFixture`: preserves outer error identity and precedence.
-- `tests/e2e/calendar-feed.e2e.spec.ts:74` — `const labels=createCalendarFailureLabels()`: opts in only the existing lifecycle case.
-- `tests/e2e/support/calendar-feed-atdd.ts:19` — `export function createCalendarFailureLabels`: isolates action/ordinal applicability and state.
-- `tests/e2e/support/calendar-feed-atdd.ts:105` — `const wasDone=done`: preserves MATCHED on no-op final cancellation.
-- `tests/e2e/support/calendar-feed-atdd.ts:171` — `note("readback","SETTLED_SUCCESS")`: keeps readback separate from observation cancellation.
+- `tests/e2e/calendar-feed.e2e.spec.ts:74` — `const labels=createCalendarFailureLabels(undefined,"E2E001")`: opts in only the existing lifecycle case.
+- `tests/e2e/support/calendar-feed-atdd.ts:21` — `export function createCalendarFailureLabels`: isolates action/ordinal applicability and state.
+- `tests/e2e/support/calendar-feed-atdd.ts:121` — `const wasDone=done`: preserves MATCHED on no-op final cancellation.
+- `tests/e2e/support/calendar-feed-atdd.ts:187` — `note("readback","SETTLED_SUCCESS")`: keeps readback separate from observation cancellation.
 - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2319` — `actual opted-in outer nudge boundary`: exercises opaque rejection and final identity.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2392` — `actual browser readback failure native failure`: exercises independent completion states.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2423` — `installed Node test runner receives only fixed`: proves the bounded offline stderr boundary only.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2393` — `actual browser readback failure native failure`: exercises independent completion states.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2424` — `installed Node test runner receives only fixed`: proves the bounded offline stderr boundary only.
 
 Evidence: final affected146P and unchanged C4 acceptance/inverses2P are separate
 actual runs, not an aggregate. Whole TypeScript/five-file lint exit0. Review must
@@ -2613,7 +2660,7 @@ outer helper's established same/different/absence relation. Factory cause is UNK
 
 - `tests/support/time-reports-atdd.ts:52` — `let finalRelation:`: starts with no evaluated relation.
 - `tests/support/time-reports-atdd.ts:66` — `const relation=`: separates LOCAL unknown from final relation retention.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2466` — `SOURCE-LABEL-01 actual helper and enclosing NUDGE004`: exercises the actual composed final boundary.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2468` — `SOURCE-LABEL-01 actual helper and enclosing NUDGE004`: exercises the actual composed final boundary.
 
 Evidence: selected8P/0F/0skip/0cancel first run; whole TypeScript/two-file lint
 exit0. No new full148 aggregate, native or independent closure credit. The old
@@ -2627,8 +2674,8 @@ metadata is preserved, not sanitized; absent publication remains UNKNOWN.
 
 - `tests/integration/notifications/time-report-nudge-producer.int.test.ts:9` — `export function createNudgeTaskMetaSink`: validates fixed source records before publishing.
 - `tests/integration/notifications/time-report-nudge-producer.int.test.ts:38` — `Object.defineProperty(meta,key`: replaces only the exact owned frozen-array slot.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2498` — `async function actualMetaJsonReport`: invokes real installed onTestRunEnd in memory.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2522` — `VITEST-META actual helper and public NUDGE callback`: proves byte-equal reporter metadata and original failures.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2500` — `async function actualMetaJsonReport`: invokes real installed onTestRunEnd in memory.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2524` — `VITEST-META actual helper and public NUDGE callback`: proves byte-equal reporter metadata and original failures.
 
 Evidence: final focused13P/0F/0skip/0cancel, whole TypeScript/two-file lint exit0.
 Installed-source/type hashes are in the new author receipt. This carrier proof
@@ -2640,8 +2687,8 @@ or functional/custody gates; independent targeted source review remains pending.
 Fixed baselines come from reviewed166cad objects; current code must match their
 operation counts and ordered assertion fingerprints, including biting inverses.
 
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2409` — `label instrumentation preserves actual promise`: checks six counts and added-operation negatives.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2437` — `actual labelled caller assertions match`: checks ordered original assertions and changed-source negatives.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2410` — `label instrumentation preserves actual promise`: checks six counts and added-operation negatives.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2438` — `actual labelled caller assertions match`: checks ordered original assertions and changed-source negatives.
 
 Evidence: full affected Linux152P/0F/0skip/0cancel, whole TypeScript and affected
 lint exit0. Pre-edit Windows2P vs controlled Linux2F are distinct; opaque hosted
@@ -2667,3 +2714,17 @@ reader failure retained nonadditively; wholeTS/lint0.
 Source inverse is not PostgreSQL execution; native body/metadata/ACL/rollback proof
 is pending. Review exact forward body composition and target-only substitutions.
 Browser phase/custody diagnosis remains UNKNOWN/separately allocated, not a fix.
+
+
+### Observe only existing browser completion phases and final failure boundaries
+
+- `tests/e2e/support/calendar-feed-atdd.ts:21` — `export function createCalendarFailureLabels`: bounds immutable registered-action snapshots and failure-only publication.
+- `tests/e2e/support/calendar-feed-atdd.ts:603` — `label?.set("completionPhase","RESPONSE")`: marks the first existing native completion await without adding work.
+- `tests/e2e/calendar-feed.e2e.spec.ts:389` — `const labels=competingAction===`: opts in revoke only, leaving rotate silent.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2615` — `browser v2 actual enclosing selected case catches`: executes actual enclosing catches and final error/cleanup precedence.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2593` — `browser v2 closed producer rows match`: checks actual producer rows and exact28+16 bound.
+
+Evidence: final157 affected offline controls, wholeTS and three-file lint0; initial
+156/type failure and later fixture syntax-load failure retained nonadditively.
+Private v2 parser/qualified hosted transport/native completion remain unexecuted;
+this is source observability, not a functional fix or fourth broad review.
