@@ -1,0 +1,34 @@
+{
+  "Outcome": "PASS_TARGETED_OWNED_REQUEST_V3_CONSUMER_SOURCE_ONLY",
+  "Files changed": [
+    "original-report.md",
+    "original-attestation.json",
+    "result.json",
+    "manifest.json"
+  ],
+  "Status": {
+    "private_files": 4,
+    "changed_definitions": 2,
+    "unchanged_definitions": 34,
+    "unchanged_helpers": 16,
+    "inverse_bytes": 50513,
+    "independent_replay": "9P0F/API0/main0; nonadditive",
+    "actual_producer_rows_same_bytes": 28,
+    "once_probes": 14,
+    "new_worst_assembler": 27213,
+    "cap": 32768,
+    "actual_rows_assembly": 21382,
+    "bindings206": true,
+    "computed_clean_OIDs206": true,
+    "Native412": "retained object-read attribution",
+    "catalogs": "20exact/410static19dynamic/18unchanged",
+    "scope_within_grant": true,
+    "findings": 0,
+    "effects": 0,
+    "acceptance": 0,
+    "counter": 3
+  },
+  "Open questions": "Native facts, functional causes and custody UNKNOWN; auxiliary display-hash serialization unqualified and unused.",
+  "Deferred work": "Fresh actual terminal binding/review and separately admitted effects; required functional gates. No manufactured failure labels required.",
+  "Blockers": "None within consumer source admission; existing failed/missing functional gates and custody remain."
+}

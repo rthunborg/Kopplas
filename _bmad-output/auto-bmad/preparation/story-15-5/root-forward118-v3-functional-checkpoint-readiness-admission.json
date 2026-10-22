@@ -1,0 +1,73 @@
+{
+  "schema": "ROOT_FORWARD118_FINAL_V3_FUNCTIONAL_CHECKPOINT_READINESS_v1",
+  "source": "7238c589bf562b4a578f6ddc1a991fac3e489988",
+  "metadata_HEAD_before_artifact_commit": "162d4b9e714ddb88b6d22fa973e19be26c7905dc",
+  "independent_consumer_review": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/owned-request-lifetime-v3-consumer-high-review/manifest.json",
+    "bytes": 958,
+    "sha256": "0a1d735a29e02fd2ab8a4bb1ccdd8659b037fe101ce45e0dfa9f7019bae224e3"
+  },
+  "verdict": "PASS_TARGETED_OWNED_REQUEST_V3_CONSUMER_SOURCE_ONLY",
+  "private_exact4": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/browser-v3-normal-evidence-preparation/normal-evidence-operator.py",
+      "bytes": 50719,
+      "sha256": "bdd99f4e7db387175d68c82b1a6122a3c000a8c54401f58966b70507bc6dbfe5"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/browser-v3-normal-evidence-preparation/bindings.json",
+      "bytes": 77858,
+      "sha256": "088f5c37b0af465b78ecbd0facb1981800ebebe442a62dd8faab7d0f9390f326"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/browser-v3-normal-evidence-preparation/result.json",
+      "bytes": 120932,
+      "sha256": "b42fe295f4dc398c555400604e90c6238e487a86f6e17a2e97caf579d68a9e3e"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/browser-v3-normal-evidence-preparation/manifest.json",
+      "bytes": 1028,
+      "sha256": "eb0b02894ed937affda0e7c82b54140fbba46f0c76acee69413812be7eb4c608"
+    }
+  ],
+  "Root_mechanical_checks": {
+    "source_raw_clean_rows": 206,
+    "source_metadata_Git_object_equalities": 412,
+    "SQL": 118,
+    "source75_normalizations": 40,
+    "private_and_review_exact4_hashes": "PASS"
+  },
+  "source_review_reuse": [
+    "PASS_TARGETED_JOB_CARD_SHARED_REFRESH_SOURCE_ONLY at d65b6666c5883a7445b3732b6ae5938c08f4a91f",
+    "PASS_TARGETED_OWNED_REQUEST_V3_PRODUCER_SOURCE_ONLY at 7238c589bf562b4a578f6ddc1a991fac3e489988"
+  ],
+  "consumer_scope": "Exactly parse_browser+assemble_labels changed;34otherdefs/16helpers byteidentical/full50513inverse",
+  "pure_evidence": {
+    "author_new_controls": 9,
+    "independent_replay": 9,
+    "counts_nonadditive": true,
+    "old13": "not rerun",
+    "actual_producer_rows_same_bytes": 28,
+    "once_probes": 14,
+    "NEW_actual_production_assembler_bytes": 27213,
+    "cap": 32768,
+    "actual_row_assembly_bytes": 21382,
+    "API_calls": 0
+  },
+  "catalog": {
+    "files": 20,
+    "static_inventory": 410,
+    "dynamic_exclusions": 19,
+    "wrapper_current": 161,
+    "containment_current": 3,
+    "other18": "equal",
+    "historical_limit": "Inherited describe inventory removed against exactcurrentobjects; no leaf-only assumption/noallowlist expansion. Auxiliary display-hash serialization unqualified; exact catalogobjects and frozen bindinghashes passed."
+  },
+  "runtime_truth": "PriorNORMAL39703778989 remains qualifiedFAILED;35mandatorycases/backendsettlement/custody remainUNKNOWN/unexecuted; new118PostgreSQLcompilation/catalogACLrollback and nativev3facts unproven.",
+  "final_bounded_gap_policy": "ONE separatelycoordinatedfunctionalNORMAL proposal; noopaque retry/genericfamily. Successfulrequiredgates neednotmanufacturefailurelabels; ambiguousfailurefactsSTOPautofix/rerun.",
+  "normal_acceptance": 0,
+  "development_complete": false,
+  "review_counter": 3,
+  "no_deployment": true,
+  "effect_authority": "NONE; source-only readiness"
+}

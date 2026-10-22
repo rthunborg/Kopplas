@@ -1,0 +1,269 @@
+{
+  "schema": "owned-request-v3-consumer-targeted-high-review/v1",
+  "verdict": "PASS_TARGETED_OWNED_REQUEST_V3_CONSUMER_SOURCE_ONLY",
+  "reviewer": {
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "independent_of_author": true
+  },
+  "scope": {
+    "producer_source": "7238c589bf562b4a578f6ddc1a991fac3e489988",
+    "metadata_HEAD": "162d4b9e714ddb88b6d22fa973e19be26c7905dc",
+    "broad_review": false,
+    "counter": 3
+  },
+  "frozen_inputs": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/browser-v3-normal-evidence-preparation/normal-evidence-operator.py",
+      "bytes": 50719,
+      "sha256": "bdd99f4e7db387175d68c82b1a6122a3c000a8c54401f58966b70507bc6dbfe5"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/browser-v3-normal-evidence-preparation/bindings.json",
+      "bytes": 77858,
+      "sha256": "088f5c37b0af465b78ecbd0facb1981800ebebe442a62dd8faab7d0f9390f326"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/browser-v3-normal-evidence-preparation/result.json",
+      "bytes": 120932,
+      "sha256": "b42fe295f4dc398c555400604e90c6238e487a86f6e17a2e97caf579d68a9e3e"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/browser-v3-normal-evidence-preparation/manifest.json",
+      "bytes": 1028,
+      "sha256": "eb0b02894ed937affda0e7c82b54140fbba46f0c76acee69413812be7eb4c608"
+    }
+  ],
+  "grant": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-owned-request-lifetime-v3-source-allocation.json",
+    "bytes": 3200,
+    "sha256": "81483dc48f0dd0cc9cbbbcdd888d3a2407ae5120776d437fb0e0dcda5a4c3179",
+    "tool": "exec-41c584ac-a859-4d6e-8885-7d79514b22ab",
+    "actual_read_reused_from_producer_review": true
+  },
+  "producer_review": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/owned-request-lifetime-v3-source-high-review/manifest.json",
+    "bytes": 1007,
+    "sha256": "252cc1d4959ef41204ae644804b733f19043e4196712df0a605601148cb5907b"
+  },
+  "independent_replay": {
+    "chunk": "ec6467",
+    "exit": 0,
+    "wall_seconds": 0.8467101,
+    "proof": {
+      "verdict": "TARGETED_V3_CONSUMER_SCOPE_BINDINGS_CONTROLS_PASS",
+      "raw_clean_rows": 206,
+      "computed_source_metadata_Git_OIDs": 206,
+      "Native_Git_object_equalities412": "Retained Native proof, source/metadata same OID; no new Git command",
+      "changed_definitions": [
+        "parse_browser",
+        "assemble_labels"
+      ],
+      "unchanged_definitions": 34,
+      "unchanged_helpers": 16,
+      "full_inverse_bytes": 50513,
+      "full_inverse_sha256": "c57bbb84b41b2a79e1c8a94d7b53ce4f7408832ef9b0ee0504a9121d11cf3f05",
+      "catalog_changed_files": [
+        "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "tests/unit/scripts/verify/email-delivery-containment.atdd.test.ts"
+      ],
+      "catalog_unchanged_files": 18,
+      "email_source_raw_clean_unchanged": true,
+      "removed_inventory_hash_kind": "describe suite; no test deletion",
+      "inline_script_sha256": "2a6b4bef27d322fae939fa1dc1b4e84161d5948fb3e4cf601129c9383ce09912",
+      "independent_replay": {
+        "controls": [
+          {
+            "name": "actual_current_TS_producer_28_lines_parser_same_bytes",
+            "status": "passed"
+          },
+          {
+            "name": "sample_once_PRE_notsampled_FINAL_immutable_after_targetclose_closed7enum",
+            "status": "passed"
+          },
+          {
+            "name": "actual_producer_unknown_none_success_and_longest_closed_rows",
+            "status": "passed"
+          },
+          {
+            "name": "strict_field_order_enum_omission_bytecaps_closedprivacy_refusal",
+            "status": "passed"
+          },
+          {
+            "name": "legacy_v1_v2_terminal_fact_UNKNOWN_no_promoted_rows",
+            "status": "passed"
+          },
+          {
+            "name": "unchanged_three_selectors_rotate_excluded_no_extra_rows",
+            "status": "passed"
+          },
+          {
+            "name": "partial_v3_snapshot_retained_unknown_not_zero",
+            "status": "passed"
+          },
+          {
+            "name": "NEW_actual_production_assembler_maxmetadata8fail_global44_32768_samebytes",
+            "status": "passed"
+          },
+          {
+            "name": "exact_two_definition_delta_otherdefs_and_budgets_unchanged",
+            "status": "passed"
+          }
+        ],
+        "passed": 9,
+        "failed": 0,
+        "API": 0,
+        "application_test_runs": 0,
+        "operational_main_calls": 0,
+        "budget": {
+          "global_records": 44,
+          "browser_records": 28,
+          "nudge_records": 16,
+          "retained_global_cap": 48,
+          "record_bytes": 512,
+          "production_assembler_bytes": 27213,
+          "cap_bytes": 32768,
+          "margin_bytes": 5555,
+          "same_admitted_published_bytes": true
+        },
+        "assembled_actual_28plus16_bytes": 21382,
+        "assembled_actual_sha256": "6b5091ce269296b15b6f54ffecb7cc2114bfc0a06241b7b8c5ab24c254368751",
+        "producer": {
+          "native_exit": 0,
+          "stdout_bytes": 11420,
+          "stdout_sha256": "62a2737cf0855e356c2b547d4b26d880ad767a1d44609d3e7b0d7c55334b73f0",
+          "stderr_bytes": 0,
+          "script_sha256": "c32ea7cd4f6d6a9f6c8554194c2aac31387ad880d4698a972ca227c751bb43b7",
+          "extracted_sha256": "cb2bfdf8260c54ebcab8037ed54ddaab668cb40b0bba9e07b94f6961588ebcaa",
+          "compiled_sha256": "3d7b22631efcaf84ee6b9dce0ecd41073ff91ed265f8e7b0ec01dc6da32c9a2f",
+          "max_emitted_line_bytes": 318,
+          "longest_closed_producer_control_bytes": 357,
+          "probe_calls": 14,
+          "fixture_instances": 6,
+          "records": 28,
+          "unknown_rows": 2,
+          "none_rows": 2
+        },
+        "catalog": {
+          "static_titles": 410,
+          "excluded_dynamic_titles": 19,
+          "files": 20,
+          "wrapper_static_titles": 161,
+          "wrapper_dynamic": 0,
+          "script_sha256": "ea345f22d8c1c0344097dc116451c8193e63efaa01f05592e983c622f173dd19",
+          "native_exit": 0,
+          "stdout_bytes": 35841,
+          "stdout_sha256": "3792a76f61c7a6a2149f2514e2af649d8bfc52349f4e73cd508738762808d2d2",
+          "stderr_bytes": 0
+        }
+      },
+      "operator_main": 0,
+      "transport_calls": 0,
+      "API": 0,
+      "Git_commands": 0,
+      "writes": 0,
+      "normal_acceptance": 0
+    },
+    "script_inspected_before_execution": true,
+    "main_import_guard_false": true,
+    "network_functions_called": 0,
+    "historical_receipts_or_fixtures_written": 0
+  },
+  "catalog_binding": {
+    "actual20_extracted_objects_equal_frozen_bindings": true,
+    "exact_comparison_chunk": "12fdc4",
+    "equality_assertion_passed_before_reader_display_hash_stop": true,
+    "extractor_sha256": "ea345f22d8c1c0344097dc116451c8193e63efaa01f05592e983c622f173dd19",
+    "extraction_stdout_bytes": 35841,
+    "extraction_stdout_sha256": "3792a76f61c7a6a2149f2514e2af649d8bfc52349f4e73cd508738762808d2d2",
+    "catalogs": 20,
+    "static_declarations": 410,
+    "dynamic_excluded": 19,
+    "unchanged_catalogs": 18,
+    "wrapper_static": 161,
+    "containment_static": 3,
+    "containment_old4": "Removed inherited suite inventory record; actual source raw/clean exactly unchanged",
+    "removed_inventory_hash": "d5aad2852a93f0f91962daf5aeb348687978953262e5fcb5a78414c4ced31840",
+    "leaf_test_count_inferred": false,
+    "allowlist_expanded": false,
+    "reader_history": [
+      {
+        "chunk": "12fdc4",
+        "exit": 1,
+        "stage": "After actual20 object equality, serialized display-hash comparison used compact JSON assumption."
+      },
+      {
+        "chunk": "e299ad",
+        "exit": 1,
+        "stage": "Default JSON separator assumption also did not reproduce unspecified display hash."
+      }
+    ],
+    "display_hashes_independently_qualified": false,
+    "admission_basis": "Frozen binding hashes and actual extracted catalog objects, not separately displayed hashes",
+    "protected_series2_and_selector": {
+      "chunk": "22e5bf",
+      "exit": 0,
+      "unchanged": true
+    }
+  },
+  "source_effect_scope": {
+    "changed_definitions": [
+      "parse_browser",
+      "assemble_labels"
+    ],
+    "other_definitions_unchanged": 34,
+    "transport_helpers": 16,
+    "complete_inverse_bytes": 50513,
+    "complete_inverse_sha256": "c57bbb84b41b2a79e1c8a94d7b53ce4f7408832ef9b0ee0504a9121d11cf3f05",
+    "GET_transport_main_admission_caps_unchanged": true
+  },
+  "budget": {
+    "fresh_v3_evaluation": true,
+    "worst_assembler_bytes": 27213,
+    "margin": 5555,
+    "cap": 32768,
+    "actual_row_assembly_bytes": 21382,
+    "actual_row_assembly_sha256": "6b5091ce269296b15b6f54ffecb7cc2114bfc0a06241b7b8c5ab24c254368751",
+    "rows": 44,
+    "browser": 28,
+    "nudge": 16,
+    "global_cap": 48,
+    "per_test_cap": 16,
+    "line_ASCII_cap": 512,
+    "old_budget_PASS_inherited": false,
+    "publisher_writer_executed": false
+  },
+  "authority": {
+    "future_run": null,
+    "future_head": null,
+    "future_UUID": null,
+    "future_activation": null,
+    "future_output": null,
+    "historical_consumed_identity_retained": true,
+    "fresh_terminal_binding_review_allocation_sourceproof_Root_activation_required": true,
+    "effect_authority": false
+  },
+  "reuse": {
+    "author_new9": "Retained separately; reviewer replay9 not additive",
+    "old13": "Not rerun",
+    "producer161_and_independent8": "Unchanged source authority; not rerun here",
+    "Native_Git412": "Retained provenance;206 computed clean OIDs independently bound, no new Git command"
+  },
+  "findings": [],
+  "limits": {
+    "native_v3_publication": "UNEXECUTED",
+    "native_request_finished_body_backend_linkage": "UNKNOWN",
+    "SQL_runtime_metadata_ACL_rollback": "UNEXECUTED",
+    "functional_causes_custody": "UNKNOWN",
+    "successful_functional_gates_need_failure_labels": false,
+    "normal_acceptance": 0,
+    "development_complete": false
+  },
+  "effects": {
+    "GET_API_main_transport": 0,
+    "Git_commands": 0,
+    "SQL_browser_CI_provider_resources": 0,
+    "source_Spec_state_or_authorproof_writes": 0
+  },
+  "policy": "development-completion-policy2026-10-19; required95 unchanged"
+}
