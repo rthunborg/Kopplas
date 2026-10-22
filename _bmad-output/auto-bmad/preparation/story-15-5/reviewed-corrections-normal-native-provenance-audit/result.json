@@ -1,0 +1,33 @@
+{
+  "Outcome": "QUALIFIED_FAILED_NORMAL_EVIDENCE",
+  "Files changed": [
+    "original-report.md",
+    "original-attestation.json",
+    "result.json",
+    "manifest.json"
+  ],
+  "Status": {
+    "packet_members": 23,
+    "member_hashes": 22,
+    "input_refs": 29,
+    "Native_GETs": 5,
+    "review_GETs": 0,
+    "source_raw_clean": 205,
+    "Root_Git615": "attributed Root proof",
+    "Node": "3398P0F0skip;30distinct story",
+    "Python_separate": 43,
+    "DB": "2058P2F9pending52skip;16storyP/35missing",
+    "browser": "56:51expected4flaky1unexpected;story14:9expected4flaky1unexpected007;19attempts13P6F",
+    "recovery_separate": 1,
+    "v2_rows": 18,
+    "functional_status": "FAILED",
+    "normal_acceptance": 0,
+    "review_counter": 3
+  },
+  "Open questions": "Original exceptions, causes, backend settlement and retained-key custody remain UNKNOWN.",
+  "Deferred work": "Bounded source assessment candidates only: two retained DB file/title hashes and observed browser completion boundary. No correction or retry authority.",
+  "Blockers": [
+    "Required DB/browser gates failed;35 required story cases missing/unexecuted.",
+    "Unverified retained key custody; no normal acceptance."
+  ]
+}

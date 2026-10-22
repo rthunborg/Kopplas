@@ -6594,3 +6594,34 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Coordinate one provider qualification, FF checkpoint push and NORMAL run. SQL/runtime/browser/custody remain unproven; source-only parser audit passed, 205 bindings/410 Git equalities and actual 27213/32768 envelope. No deployment.
+
+## Report — 2026-10-22T01:31:15Z (15.5 qualified current failed NORMAL evidence)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `64dc690`).
+**Pipeline status:** P5 open; current native DB/browser gates failed; no development-complete claim
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 300h 33m (≈77h 24m AI-run, ≈223h 08m human/idle wait); resumed 199×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Read-only source-bound assessment of two DB failure hashes and browser completion boundary. Qualified Node3398P/recovery1P;DB2058P2F/story16P35unexecuted;browser9expected4flaky1unexpected007. Custody/backendsettlementUNKNOWN; all5GETslots and Rootpoller closed, counter3 unchanged. No deployment or automatic retry.

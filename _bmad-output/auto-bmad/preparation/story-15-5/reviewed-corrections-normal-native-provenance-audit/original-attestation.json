@@ -1,0 +1,225 @@
+{
+  "schema": "reviewed-corrections-native-offline-audit/v1",
+  "verdict": "QUALIFIED_FAILED_NORMAL_EVIDENCE",
+  "functional_status": "FAILED",
+  "evidence_truth": "QUALIFIED; no material projection-truth defect found",
+  "reviewer": {
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "independent": true
+  },
+  "scope": {
+    "run": 39703778989,
+    "attempt": 1,
+    "head": "64dc6908e58c323cb63453c4abb904ec29474a32",
+    "source": "dec30783a23dcac35d6ba57f649420221d741ecd",
+    "UUID": "bf7e5fd4-76e5-43ce-86a9-3af87f2446ad",
+    "broad_review": false,
+    "review_counter": 3
+  },
+  "packet_manifest": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-64dc6908-reviewed-corrections-normal-ci-independent/manifest.json",
+    "bytes": 6255,
+    "sha256": "a356c8267fecc1968e4af725843135168bdf9ef00a866e4dbca39c1db9b62b5d"
+  },
+  "activation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/reviewed-corrections-normal-terminal-evidence-activation.json",
+    "bytes": 4205,
+    "sha256": "36766f5766397b23ab8fc1e0c37a84b8de3b4c8f691a34651e74b87b2f6fd258"
+  },
+  "terminal": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/reviewed-corrections-normal-terminal.json",
+    "bytes": 23446,
+    "sha256": "7d04d195be3af9194c426a0894b3832852df048997d5c8a9283b75e5ea5d8a4c"
+  },
+  "allocation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-reviewed-corrections-normal-terminal-acquisition-allocation.json",
+    "bytes": 3001,
+    "sha256": "f4b05eb7ebeca45bb742f35200d3d510cfc40a859db0124776f1f9b82bf7d635"
+  },
+  "allocation_tool": {
+    "tool": "exec-ba578782-07f1-4037-ac46-b79b06f0ebe4",
+    "turn": "01a16136-5060-7650-b94e-a93e076a6260",
+    "status": "completed"
+  },
+  "native_attribution": {
+    "tool_chunk": "713f30",
+    "exit": 0,
+    "wall_seconds": 6.6386552,
+    "session": null,
+    "waits": [],
+    "source": "Native-reported receipt, not independently Root/reviewer-observed child lifecycle",
+    "GETs": 5,
+    "slots_closed": true,
+    "own_child_output_settlement_only": true
+  },
+  "independent_offline_command": {
+    "chunk": "0626d5",
+    "exit": 0,
+    "wall_seconds": 0.1968561,
+    "proof": {
+      "verdict": "QUALIFIED_FAILED_NORMAL_EVIDENCE",
+      "packet_members": 23,
+      "bound_input_refs": 29,
+      "actual_GETs_Native_reported": [
+        {
+          "sequence": 1,
+          "label": "normal-run-archive",
+          "bytes": 821756,
+          "sha256": "ef16b6d5a87ecea339776a145ed5765cc993db12ee66cbb450241d5c8af81595"
+        },
+        {
+          "sequence": 2,
+          "label": "normal-artifact-list",
+          "bytes": 2195,
+          "sha256": "f196d3a03525105138fd94468d2cd853fa06579acc39586bb76ffe3b63769736"
+        },
+        {
+          "sequence": 3,
+          "label": "native-general-browser",
+          "bytes": 12417,
+          "sha256": "b1ca4dd8454feabd50addb8af9382060f32a0c091f6d8132907cc381e41f21f0"
+        },
+        {
+          "sequence": 4,
+          "label": "native-full-integration",
+          "bytes": 109188,
+          "sha256": "27a605a99189e86bef58c480be9ab70a759bdff96b8f2acd8ecb08ee2f99b203"
+        },
+        {
+          "sequence": 5,
+          "label": "native-isolated-storage-recovery",
+          "bytes": 676,
+          "sha256": "a98682fb53c8d2316f9e17d59b2ce82f21bdfbe13a4bd9330b993035e0e11049"
+        }
+      ],
+      "all_request_receipts_consistent": true,
+      "DB": {
+        "failed": 2,
+        "passed": 2058,
+        "pending": 9,
+        "skipped": 52
+      },
+      "DB_summary_pending_distinct": 52,
+      "DB_story_passed": 16,
+      "DB_missing": 35,
+      "Node": 3398,
+      "Node_story_distinct": 30,
+      "Node_lines": 32,
+      "Python_separate": 43,
+      "browser_stats": {
+        "duration": 465066.157,
+        "expected": 51,
+        "flaky": 4,
+        "skipped": 0,
+        "unexpected": 1
+      },
+      "browser_story": {
+        "flaky": 4,
+        "expected": 9,
+        "unexpected": 1
+      },
+      "browser_attempts": 19,
+      "browser_attempt_statuses": {
+        "failed": 6,
+        "passed": 13
+      },
+      "recovery_separate": 1,
+      "v2_rows": 18,
+      "source205_current_raw_clean": true,
+      "source_Git_current615": "Root-provided proof, hash-bound; no new Git operation in this audit",
+      "custody": "UNKNOWN_RETAINED_UNVERIFIED",
+      "cause": "UNKNOWN",
+      "backend_settlement": "UNKNOWN",
+      "required95_missing": 35,
+      "acceptance": 0,
+      "audit_GETs": 0,
+      "operator_executions": 0,
+      "source_changes": 0
+    },
+    "methods": [
+      "Closed23-member packet and22 SHA bindings",
+      "29 intent input refs; exact activation/operator/allocation/terminal tuple",
+      "Five request-intent/result receipt equality; eligibility/API SHA/size/member bounds cross-checks",
+      "Projection arithmetic, identity reconciliation, attempt counts and UNKNOWN checks",
+      "Actual18 label rows validated against closed literal enum tables, without executing operator functions",
+      "Current205 raw/clean hashes; prior parser/binding reviews reused"
+    ],
+    "new_Git_operations": 0,
+    "new_runtime_tests": 0
+  },
+  "DB_failed_source_candidates": [
+    {
+      "file": "tests/integration/commands/conflict-resolver.int.test.ts",
+      "title_sha256": "7423c7cf71aba2914da156e160cab1d8c998f247622e15218bd2d2dd44018168"
+    },
+    {
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "title_sha256": "2d70949cd5f1151d6145830f8e28fe5f97c74a2e664dc364628d853621f407c9"
+    }
+  ],
+  "browser_observations": {
+    "rows": 18,
+    "projection_bytes": 7276,
+    "cap": 32768,
+    "E2E001_retry0": "create and rotate completionPENDING/FINISHED in PRE_CLEANUP and FINAL; readback/scenario successful",
+    "E2E010_revoke_retry0": "create completionPENDING/FINISHED in both snapshots; readback/scenario successful",
+    "E2E007_retry0_and1": "revoke PRE_CLEANUP PENDING -> FINAL SETTLED_FAILURE, phaseFINISHED",
+    "successful_retry_labels": "UNKNOWN_MISSING; no inferred phase",
+    "interpretation": "UNKNOWN; not cause/body/settlement",
+    "nudge": "NULL/UNKNOWN_MISSING"
+  },
+  "limits": {
+    "no_raw_archive_ZIP_JSON_error_stack_DOM_provider_payload_retention": true,
+    "raw_capture_rehashed_independently": false,
+    "API_SHA_qualification": "Retained Native stream/archive/API advertised hashes agree; source-reviewed digest check reused",
+    "attachments": {
+      "references": 6,
+      "acquired_contents": 0,
+      "privacy": null
+    },
+    "legacy_launch_false_does_not_negate_executed_children": true,
+    "key_outcome": "unverified",
+    "key_deleted": false,
+    "custody_retained": true,
+    "projected_dbClosed": true,
+    "backend_settlement": "UNKNOWN",
+    "specific117_migration_marker": "NOT_PROJECTED",
+    "original_exceptions": "UNKNOWN",
+    "six_serial_complete": "NOT_FULLY_QUALIFIED; missing35 INT/API",
+    "RLS010_finer_predicates": "Not individually serialized",
+    "recovery_finer_predicates": "Not individually serialized"
+  },
+  "reuse": {
+    "parser_review": "PASS_BROWSER_V2_NORMAL_PARSER_SOURCE_ONLY",
+    "binding_review": "PASS_PRE_EFFECT_DATA_BINDING_SOURCE_ONLY",
+    "algorithm_tests_rerun": false,
+    "Root_source_Git_checks615": "Hash-bound Root proof; no new Git audit",
+    "catalog_static407_dynamic19": "Unchanged bound declaration inventory; not test execution count"
+  },
+  "native_history": {
+    "offline_finalization_syntax_stop": {
+      "chunk": "45ab64",
+      "exit": 1,
+      "additional_API": 0,
+      "writes": 0
+    },
+    "nonadditive": true
+  },
+  "findings": [],
+  "functional_blockers": [
+    "DB gate failed,2failures;35 story cases missing/unexecuted",
+    "E2E007 unexpected;four calendar cases flaky",
+    "Unverified retained key custody; backend settlement UNKNOWN"
+  ],
+  "effects": {
+    "review_GETs": 0,
+    "operator_calls": 0,
+    "Git": 0,
+    "source_Spec_SQL_state_changes": 0,
+    "CI_provider_resources_deploy": 0
+  },
+  "normal_acceptance": 0,
+  "required95": true,
+  "policy": "development-completion-policy2026-10-19"
+}

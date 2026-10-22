@@ -1,0 +1,33 @@
+{
+  "Outcome": "PASS_PRE_EFFECT_DATA_BINDING_SOURCE_ONLY",
+  "Files changed": [
+    "original-report.md",
+    "original-attestation.json",
+    "result.json",
+    "manifest.json"
+  ],
+  "Status": {
+    "run": 39703778989,
+    "head": "64dc6908e58c323cb63453c4abb904ec29474a32",
+    "UUID": "bf7e5fd4-76e5-43ce-86a9-3af87f2446ad",
+    "attempt": 1,
+    "inverse_bytes": 50513,
+    "inverse_sha256": "c57bbb84b41b2a79e1c8a94d7b53ce4f7408832ef9b0ee0504a9121d11cf3f05",
+    "unchanged_definitions": 35,
+    "legacy_helpers": 16,
+    "raw_clean_rows": 205,
+    "Git_equalities": 410,
+    "terminal_jobs": 9,
+    "catalogs_unchanged": true,
+    "independent_binding_command_exit": 0,
+    "budget27213": "reused",
+    "prior13": "not rerun",
+    "effects": 0,
+    "acceptance": 0,
+    "counter": 3,
+    "findings": 0
+  },
+  "Open questions": "Counts, publication, causes and custody remain UNKNOWN.",
+  "Deferred work": "Fresh actual acquisition allocation, source proof and exclusive Root activation; later offline native evidence audit.",
+  "Blockers": "None in this finite binding audit. No acquisition authority granted."
+}

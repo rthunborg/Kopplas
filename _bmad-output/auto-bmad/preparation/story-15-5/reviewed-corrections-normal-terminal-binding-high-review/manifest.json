@@ -1,0 +1,23 @@
+{
+  "schema": "self-excluded-sha256-manifest/v1",
+  "self_excluded": true,
+  "verdict": "PASS_PRE_EFFECT_DATA_BINDING_SOURCE_ONLY",
+  "run": 39703778989,
+  "members": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/reviewed-corrections-normal-terminal-binding-high-review/original-report.md",
+      "bytes": 2773,
+      "sha256": "8a677ed7c615a5516641ad225d7fd9ffc51fa21ef5b64bfadf4de1c99c4567c5"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/reviewed-corrections-normal-terminal-binding-high-review/original-attestation.json",
+      "bytes": 5700,
+      "sha256": "58be18da38ebec159ef8a685e9bb07788c25b85e246e65846297e3f5bec11ba2"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/reviewed-corrections-normal-terminal-binding-high-review/result.json",
+      "bytes": 1120,
+      "sha256": "5813a687bc1eee448d4c3a974d63bfccb7704fcafe1efb4258fe8037a2e7c778"
+    }
+  ]
+}
