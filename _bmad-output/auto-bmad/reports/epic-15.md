@@ -7338,3 +7338,34 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Implementfixtureexplicitdisabledflag+samecasefixedmodeinverses; fullcanonicalNode1run<=600s; Rootlocalcommit/independentHightargetedreview; separatelyadmittedfreshCIproposal onlyafterfullpurePASS.
+
+## Report — 2026-10-22T15:06:10Z (working)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `f8ca1a8`).
+**Pipeline status:** Story15.5 P5 OPEN; corrected solefixture3bbf67b4 independentlyHighPASS andfullpure3428P0F1skip; freshcaseeffectsnotadmitted
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 314h 08m (≈77h 24m AI-run, ≈236h 43m human/idle wait); resumed 223×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Prepare finite fresh correctedcase operation from committed3bbf67b4, reusing capture/operators with only exactsource/ref/UUID/remote-preimage metadata delta, targetedHighoperationalvalidation then completedfiniteallocation. No genericnewframework/opaqueNORMALretry. Full95/P5delivery/P6automate/P7helper/15.6freshSpec+validation/E8/finalPR remain.
