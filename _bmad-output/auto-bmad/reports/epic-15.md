@@ -6997,3 +6997,34 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Complete narrow Documents ownership reconciliation and exact five-path source amendment, then implement the guarded correction with all PLAN-A1..A5 requirements and the three context Service Worker blocks. Keep global playwright.config.ts outside the write scope. No native effects are allocated; actual committed fix requires distinct High review before functional verification.
+
+## Report — 2026-10-22T11:26:52Z (working)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `b638e09`).
+**Pipeline status:** 15.5 P5 open; five-path completion-contract correction committed and independent High source PASS
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 310h 29m (≈77h 24m AI-run, ≈233h 04m human/idle wait); resumed 212×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Independent bounded NORMAL preparation/data validation, concrete finite completed Coordinator allocation, fresh provider qualification, RootFFcheckpointpush and NORMALdispatch; no furthergenericdiagnosticrun. Required full95/35 missingDBcases/custody remain; no runtime acceptance.15.6/E8 still required.
