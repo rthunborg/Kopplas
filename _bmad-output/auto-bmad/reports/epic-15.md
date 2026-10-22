@@ -6811,3 +6811,34 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Finish isolated temporary E2E001 source and independent CI/privacy review; qualify one reproduction before the next full functional run.
+
+## Report — 2026-10-22T09:06:16Z (checkpoint — isolated original-request diagnostic source independently passed)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `be20005`).
+**Pipeline status:** P5 remains open. The temporary diagnostic branch at 584e9732 passed independent High CI/privacy review. Its fixed E2E001 command and safe request-code capture preserve ordinary arguments, workflow inverses, cleanup and custody guards. It is separate from the epic branch and grants no acceptance or runtime coverage. INT011 source correction also passed targeted review; 35 mandatory DB cases remain unexecuted.
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 308h 08m (≈77h 24m AI-run, ≈230h 43m human/idle wait); resumed 206×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Qualify fresh project containment, publish the reviewed main and diagnostic checkpoints, and execute exactly one owned E2E001 diagnostic run after finite effects admission. Qualify its evidence before any browser correction or full NORMAL run.
