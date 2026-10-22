@@ -2888,3 +2888,34 @@ test("INT009 actual entire subject barrier setup closes capture before later res
   const owned=await f.run(()=>barrier({stage:"management-before-authority",tenantId:"fixed",membershipId:"fixed"},fx)) as {release():Promise<void>;assertOwnedObjectsAbsent():Promise<void>};
   f.capture.phase("REPLACE","DEFINITION");f.capture.fail("STATE");f.capture.cleanup("SETUP_CLEANUP",Error("PRIVATE later cleanup"));assert.equal(f.publish(),undefined);await owned.release();await owned.assertOwnedObjectsAbsent();assert.deepEqual(f.meta,{});await f.factory.pool()?.end();
 });
+
+
+function actualCanonicalCatalogProjection() {
+  const source=readFileSync(new URL("../../../support/calendar-feed-atdd.ts",import.meta.url),"utf8").replaceAll("\r\n","\n"),prefix="const calendarOwnerCatalogSql=`",start=source.indexOf(prefix)+prefix.length,end=source.indexOf("`;\nexport async function calendarOwnerAtomic",start);assert.ok(start>prefix.length&&end>start);
+  const query=source.slice(start,end),addition=",'proargtypes',p.proargtypes::text";
+  const inverse=(sql:string)=>{assert.equal(sql.split(addition).length-1,1);return createHash("sha256").update(sql.replace(addition,"")).digest("hex");};
+  // Independently bound BEFORE editing in INT009-canonical-catalog-source-analysis.json.
+  assert.equal(inverse(query),"67687b5b6b0bd34031df3374d1b04f2222a0a34fe2cb9314fae6169d2c430a60");
+  const facts=source.slice(source.indexOf("function calendarOwnerFacts("),source.indexOf("const calendarOwnerCatalogSql="));assert.equal(createHash("sha256").update(facts).digest("hex"),"3cd5094c031027b20f5c61cb0ddceba589ac05fd6fe61872eae3defa7df87085");
+  return {query,inverse,addition};
+}
+
+test("canonical catalog projection has one native oidvector text cast with exact authority and strict guard inverse",()=>{
+  const {query,inverse,addition}=actualCanonicalCatalogProjection();assert.ok(query.includes("to_jsonb(p)||jsonb_build_object("));assert.ok(query.includes("'proargtypes',p.proargtypes::text"));
+  for(const altered of [query.replace(addition,""),query.replace("p.proargtypes::text","p.proargtypes::jsonb"),query.replace("session_user='postgres'","true"),query.replace("not has_schema_privilege(o.oid,n.oid,'CREATE')","true"),query.replace("p.oid=to_regprocedure($1)","true")])assert.throws(()=>assert.equal(inverse(altered),"67687b5b6b0bd34031df3374d1b04f2222a0a34fe2cb9314fae6169d2c430a60"));
+});
+
+test("canonical catalog synthetic PG17 array representation bridges only explicit text projection to exact ordered argument guards",async()=>{
+  actualCanonicalCatalogProjection();
+  // Synthetic contract fixtures, not executed PostgreSQL. Official PG17 source
+  // establishes oidvector JSON arrays of OID strings and oidvectorout text order.
+  for(const [purpose,vector,text]of [["clock",[],""],["subject",["2950","2950","2950","16"],"2950 2950 2950 16"],["fetch",["25","25","3802","25"],"25 25 3802 25"]] as const){
+    const f=await actualCalendarOwner({purpose}),raw={...f.canonical,metadata:{...f.canonical.metadata,proargtypes:[...vector]}};
+    assert.throws(()=>f.api.calendarOwnerFacts([raw],purpose,f.body));
+    const projected={...raw,metadata:{...raw.metadata,proargtypes:vector.join(" ")}};assert.equal(projected.metadata.proargtypes,text);assert.doesNotThrow(()=>f.api.calendarOwnerFacts([projected],purpose,f.body));
+    for(const bad of [undefined,null,[...vector],text+" "," "+text,"2950 2950 16 2950","2950 2950 2950","2950 2950 2950 16 16","25 25 25 3802"]){if(bad===text)continue;assert.throws(()=>f.api.calendarOwnerFacts([{...projected,metadata:{...projected.metadata,proargtypes:bad}}],purpose,f.body));}
+    const missing={...projected.metadata} as Record<string,unknown>;delete missing.proargtypes;assert.throws(()=>f.api.calendarOwnerFacts([{...projected,metadata:missing}],purpose,f.body));
+    for(const patch of [{oid:"wrong"},{aclQualified:false},{body:f.body+"drift"},{ownerQualified:false},{setQualified:false},{notInherited:false},{default_expr:"wrong"}])assert.throws(()=>f.api.calendarOwnerFacts([{...projected,...patch}],purpose,f.body));
+    await f.factory.pool()?.end();
+  }
+});

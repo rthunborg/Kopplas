@@ -752,7 +752,7 @@ function calendarOwnerFacts(rows:unknown,purpose:CalendarOwnerPurpose,expectedBo
   if(expected&&(row.oid!==expected.oid||calendarOwnerMetadata(row,purpose==="subject"&&(subjectFault||expected.language==="plpgsql"))!==calendarOwnerMetadata(expected,purpose==="subject"&&(subjectFault||expected.language==="plpgsql")))){calendarInt009Guard(purpose,"OID_METADATA");throw calendarOwnerRefused();}
   return row;
 }
-const calendarOwnerCatalogSql=`select p.oid::text oid,(to_jsonb(p)||jsonb_build_object('provariadic',p.provariadic::bigint,'prorettype',p.prorettype::bigint,'prosupport',p.prosupport::oid::bigint)) metadata,pg_get_functiondef(p.oid) definition,p.prosrc body,l.lanname language,pg_get_expr(p.proargdefaults,0) default_expr,
+const calendarOwnerCatalogSql=`select p.oid::text oid,(to_jsonb(p)||jsonb_build_object('provariadic',p.provariadic::bigint,'prorettype',p.prorettype::bigint,'prosupport',p.prosupport::oid::bigint,'proargtypes',p.proargtypes::text)) metadata,pg_get_functiondef(p.oid) definition,p.prosrc body,l.lanname language,pg_get_expr(p.proargdefaults,0) default_expr,
  (session_user='postgres' and current_user='postgres' and e.rolcanlogin and not e.rolsuper) "identityQualified",
  (p.proowner=o.oid and p.pronamespace='public'::regnamespace and not(o.rolcanlogin or o.rolinherit or o.rolsuper or o.rolcreatedb or o.rolcreaterole or o.rolreplication or o.rolbypassrls)) "ownerQualified",
  (pg_has_role(current_user,o.oid,'SET') and exists(select 1 from pg_auth_members where roleid=o.oid and member=e.oid and set_option and not inherit_option)) "setQualified",

@@ -245,12 +245,12 @@ Deferred release validation: exhaustive browser/device/calendar-provider matrice
 ## Auto Run Result
 
 Status: in-review
-Blocking condition: qualified NORMAL39772086777 provides68/95 required passes, INT009 failure and26zero-coverage cases (INT010-015 pending/API001-020 absent). All14 browser cases passed retry0 and separate recovery1 passed; DB key custody remains retained/unverified. A separately qualified generated setup-catch875 narrows INT009 to subject barrier publication before management/role-loss assertions. Original refusing predicate/SQLSTATE remain UNKNOWN. The current opt-in capture is source preparation only; independent changed-code/privacy review and a separately allocated targeted execution boundary remain pending. Development complete=false, acceptance0; no source change authorizes a retry.
+Blocking condition: required95 remains68P, INT009F and26zero coverage. The separately qualified fixed INT009 diagnostic39804170137 failed at PRIMARY CAPTURE/PRE_CATALOG/FIELD:proargtypes; received type/value, native throw and DB custody remain UNKNOWN. Official PostgreSQL17 source establishes an oidvector JSON-array versus exact text-comparison contract mismatch. The current helper projection repair is source evidence only; independent targeted review and separately admitted native functional/cleanup gates remain pending. All14 browser retry0 successes remain historical qualified evidence, not new coverage. Development complete=false, acceptance0; no source fix authorizes a retry.
 
-Current result — 2026-10-22: exact-four-path INT009 subject-setup capture source
-handoff. Final affected179P/0F/0skip/0cancel; separate unchanged C4 guard/inverses2P
-confirm all34 direct awaits. Whole TypeScript and three-file lint exit0. No SQL,
-browser, services, resources, API/CI or Git mutation occurred.
+Current result — 2026-10-22: exact-three-path canonical catalog representation
+repair. First focused18P/0F/0skip/0cancel; whole TypeScript and two-file lint exit0.
+No unchanged full-suite rerun, PostgreSQL/browser execution, API/CI, resource or Git
+mutation occurred.
 The following planning paragraphs are retained historical results, not the current
 status, permission, gate outcome or runtime evidence. The historical ARR warning
 and three completed broad review rounds remain preserved.
@@ -2407,6 +2407,47 @@ installed JSON reporter; they are not native DB/browser/cause/cleanup qualificat
 No original INT009 predicate or functional fix is claimed. Independent source/privacy
 review, targeted execution allocation and full native completion gates remain pending.
 
+### Canonical owner-catalog argument-vector representation — conditional source repair
+
+Before source editing, INT009-canonical-catalog-source-analysis.json was frozen
+at6775bytes/SHA c91c0d5508c11fe479d952300589e27737e6db520d802d71313abe244603edcf.
+The independent native qualification identifies the first local proargtypes guard,
+not its received value. Parent read-only official PostgreSQL17 source establishes
+pg_proc.proargtypes as oidvector, array categorization through get_element_type,
+and recursive JSONB conversion into an array of OID strings. oidvectorout instead
+emits exact ordered unsigned OIDs separated by one space. This engine-source
+inference does not reconstruct the unavailable native catalog payload.
+
+The minimal repair adds proargtypes:p.proargtypes::text in the SAME existing
+jsonb_build_object projection. No extra query or roundtrip is introduced. The
+existing strict canonical text comparison remains unchanged: subject requires
+2950 2950 2950 16, preserving the exact four authoritative argument types/order.
+Capture, requalification and restore consume the same projection. There is no
+string-or-array fallback or missing-field acceptance. All other identity, OID,
+body, metadata, ACL, SET/inheritance, schema, defaults, language and owner guards,
+transactions, original errors, role-loss oracles and custody remain unchanged.
+Removing the one projection addition restores the complete helper source.
+
+Primary sources: PostgreSQL17 [pg_proc](https://raw.githubusercontent.com/postgres/postgres/REL_17_STABLE/src/include/catalog/pg_proc.h),
+[array catalog](https://raw.githubusercontent.com/postgres/postgres/REL_17_STABLE/src/include/catalog/pg_type.dat),
+[JSON categorization](https://raw.githubusercontent.com/postgres/postgres/REL_17_STABLE/src/backend/utils/adt/jsonfuncs.c),
+[JSONB conversion](https://raw.githubusercontent.com/postgres/postgres/REL_17_STABLE/src/backend/utils/adt/jsonb.c)
+and [oidvector text output](https://raw.githubusercontent.com/postgres/postgres/REL_17_STABLE/src/backend/utils/adt/oid.c).
+These REL_17_STABLE URLs are branch provenance as read by the parent, not immutable
+release-commit bindings. The pre-edit analysis records the complete source chain.
+
+First focused18 controls passed without initial failures (1.025s). Synthetic
+PG17-shaped array/text fixtures bridge the actual projection to the actual strict
+owner guard; wrong/missing/extra/reordered argument representations, changed
+identity/body/ACL/owner/default facts and altered-query inverses remain rejected.
+The pre-edit query hash and unchanged complete strict-guard hash are independently
+pinned, preventing current-to-current comparison. Existing affected owner and
+INT009 capture controls also passed; wholeTS/two-file lint0. These are pure source
+controls, not a PostgreSQL parser, query, engine or native-cause execution. Prior
+179 full-file controls are historical and are not relabelled a new181 aggregate.
+All118SQL remain immutable. Independent changed-code High review and separately
+admitted native full95/INT009/metadata/rollback/custody gates remain pending.
+
 ## Suggested Review Order
 
 Author: Story 15.5 implementation/fix author (gpt-6.1-sol High), incorporating
@@ -3020,3 +3061,18 @@ Evidence: final179 pure controls and separate actual C4 guard/inverses2P; TS/lin
 Intermediate and failed runs above remain historical/nonadditive. Native subject
 setup/cause/custody and26 mandatory cases remain open; no independent CODEPASS,
 normal acceptance, automatic retry or fourth broad review is implied.
+
+
+### Canonicalize the catalog argument vector without relaxing its exact signature
+
+One explicit native text projection reconciles PostgreSQL JSON representation
+with the existing strict signature oracle; no alternate encoding is accepted.
+
+- `tests/support/calendar-feed-atdd.ts:755` — `'proargtypes',p.proargtypes::text`: normalizes only this metadata representation in the existing SELECT.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2893` — `function actualCanonicalCatalogProjection`: pins exact pre-edit query inverse and unchanged strict guard.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2908` — `canonical catalog synthetic PG17 array`: retains ordered argument and metadata negatives with synthetic source fixtures.
+
+Evidence: first focused18P/0F/0skip/0cancel, TS/two-file lint0; no SQL/runtime
+execution. Qualified native guard attribution is narrower than proof of the actual
+received value or successful repair. Current native functional/custody gates remain
+open; no retry, acceptance or fourth broad review is implied.
