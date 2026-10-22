@@ -7524,3 +7524,34 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Fresh exclusive Root activation/current proof, one listing+unique ZIP, distinct High actual-evidence qualification; no new runtime or acceptance.
+
+## Report — 2026-10-22T16:08:29Z (working)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `6310eb9`).
+**Pipeline status:** 15.5 P5 OPEN. Actual diagnostic39804170137 independently qualified: exactcase0P1Fonce/14skip; firstlocalguardCAPTURE/PRE_CATALOG/FIELD:proargtypes. Actual value/nativefirstthrow/body/custodyUNKNOWN. TwoGETslotsclosed; no acceptance added.
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 315h 10m (≈77h 24m AI-run, ≈237h 46m human/idle wait); resumed 229×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Completed exact3 sourceallocation: Highread-onlyserialization assessment, minimalrepair only if mechanicallyproven; distinct targetedHighreview before any checkpoint.
