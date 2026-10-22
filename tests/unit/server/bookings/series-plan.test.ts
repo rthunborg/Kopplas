@@ -387,3 +387,58 @@ test("Forward predecessor line-ending admission preserves actual LF or CRLF byte
     }
   }
 });
+
+
+/** Forward118 is source-bound to the latest E16 body, never the pre-E16 finalizer. */
+function forwardJobCardRefreshSources(override?:string){
+  const read=(path:string)=>readFileSync(path,"utf8").replaceAll("\r\n","\n"),e16=read("supabase/migrations/20261020210000_e16_16_4_job_upgrade_and_scheduling.sql"),resolver=read("supabase/migrations/20261020180000_conflict_resolver.sql"),revision=read("supabase/migrations/20261021061932_e16_card_revision_and_option_scope.sql");
+  const extract=(source:string,name:string)=>{const found=source.match(new RegExp("create(?: or replace)? function public[.]"+name+"\\([\\s\\S]*?as \\$\\$([\\s\\S]*?)\\$\\$;","i"));assert.ok(found);return found[1]!;};
+  const before=extract(e16,"finalize_job_card"),helper=extract(resolver,"booking_conflict_refresh_internal"),matches=[...before.matchAll(/ delete from public[.]booking_conflicts c where[\s\S]*?on conflict\(tenant_id,natural_key\) do nothing;/g)];assert.equal(matches.length,1);
+  const block=matches[0]![0],sql=override??read("supabase/migrations/20261022014027_job_card_shared_conflict_refresh.sql"),data=(tag:string)=>{const match=sql.match(new RegExp("\\$"+tag+"\\$([\\s\\S]*?)\\$"+tag+"\\$"));assert.ok(match);return match[1]!;};
+  assert.equal(data("card_source"),before);assert.equal(data("old_refresh"),block);assert.equal(data("helper_source"),helper);
+  assert.equal(createHash("sha256").update(before).digest("hex"),"4abac05b664633f4100953964e7d5131a78f23a7130e5b886cccc96b99b4c06f");
+  const replacement=sql.match(/replacement constant text := '([^']+)';/)?.[1];assert.equal(replacement," perform public.booking_conflict_refresh_internal(p_tenant_id,output);");
+  assert.ok(resolver.includes("execute regexp_replace(definition,pattern,'perform public.booking_conflict_refresh_internal(p_tenant_id,'||argument||');')"));
+  assert.ok(!before.includes(replacement),"later E16 overwrote the previously composed seam");
+  for(const guard of ["source_before is distinct from reference_body","source_before is distinct from pg_catalog.replace(reference_body,E'\\n',E'\\r\\n')","helper_before is distinct from reference_helper","pg_catalog.replace(expected_after,replacement,actual_refresh) is distinct from source_before","source_after is distinct from expected_after","metadata_after is distinct from metadata_before","helper_after is distinct from helper_metadata_before","pg_catalog.to_regprocedure(signature)::oid is distinct from target_oid"]){assert.ok(sql.includes(guard),guard);}
+  assert.ok(sql.includes("select p.prosrc,pg_catalog.to_jsonb(p)-'prosrc' into source_before,metadata_before"));
+  assert.ok(sql.includes("expected_after := pg_catalog.replace(source_before,actual_refresh,replacement);"));
+  assert.ok(sql.includes("execute pg_catalog.replace(definition,actual_refresh,replacement);"));assert.equal((sql.match(/^\s*execute /gm)??[]).length,1);
+  assert.ok(!sql.includes("source_before := pg_catalog.replace"));
+  for(const call of ["public.job_card_payload_internal(p_payload)","public.job_card_related_internal(p_tenant_id,p_actor_id,p_job_id,p_candidate_id,p)","public.job_card_baseline_internal(p_tenant_id,p_job_id,p)","public.job_card_replay_internal(p_tenant_id,p_actor_id,p_command_id,p_job_id,p_candidate_id,p)"])assert.ok(before.includes(call));
+  assert.ok(revision.includes("canonical:=public.job_card_payload_v1_internal(p-'expectedRevision');"));assert.ok(revision.includes("p->>'expectedRevision' is distinct from public.job_card_revision_internal(p_tenant_id,p_job_id)"));
+  assert.ok(before.includes("'booking-conflicts-v4'")&&before.includes("'stockholm-capacity-v2'"));
+  assert.ok(helper.includes("c.status<>'resolved'"));assert.ok(helper.includes("c.status='resolved' and exists"));for(const field of ["resolution_outcome=null","resolved_by_membership_id=null","resolved_at=null","accepted_at=null"])assert.ok(helper.includes(field));
+  return{before,block,replacement,sql};
+}
+
+test("Forward job card migration composes only latest E16 refresh with current helper and loaded-card guards; altered body or metadata is refused",()=>{
+  const {sql}=forwardJobCardRefreshSources();
+  for(const changed of [sql.replace("p:=public.job_card_payload_internal(p_payload);","p:=p_payload;"),sql.replace("metadata_after is distinct from metadata_before","false"),sql.replace("c.status<>'resolved'","true"),sql.replace("source_before is distinct from reference_body","false"),sql.replace("end $job_card_refresh$;","execute 'unexpected';\nend $job_card_refresh$;")])assert.throws(()=>forwardJobCardRefreshSources(changed));
+});
+
+test("Actual forward job card block substitution inverts full LF and CRLF E16 source and refuses mixed unrelated or doubled blocks",()=>{
+  const {before,block,replacement}=forwardJobCardRefreshSources();
+  for(const raw of [before,before.replaceAll("\n","\r\n")]){
+    const actualBlock=raw===before?block:block.replaceAll("\n","\r\n"),after=raw.replace(actualBlock,replacement);
+    assert.equal(raw.split(actualBlock).length-1,1);assert.equal(after.split(replacement).length-1,1);assert.equal(after.replace(replacement,actualBlock),raw);
+    assert.equal(after.replace(replacement,""),raw.replace(actualBlock,""),"every auth/proof/lock/replay/persistence/audit byte outside seam remains identical");
+    assert.equal(after.includes("\r\n"),raw.includes("\r\n"));
+  }
+  const admit=(raw:string)=>raw===before||raw===before.replaceAll("\n","\r\n");
+  for(const invalid of [before.replace("\n","\r\n"),before.replace("\n","\r"),before.replace("'booking-conflicts-v4'","'booking-conflicts-v3'"),before+block])assert.equal(admit(invalid),false);
+});
+
+test("REAL011 retains full strict authoritative nine-field job facts and exact prior null-empty digest stale and rollback assertions",()=>{
+  const path="tests/integration/commands/booking-series.int.test.ts",current=readFileSync(path,"utf8").replaceAll("\r\n","\n"),start=current.indexOf('  test("15.2-INT-REAL-011'),end=current.indexOf('  test("15.2-INT-REAL-010',start);assert.ok(start>0&&end>start);
+  const fields="estimatedDurationMinutes:null,crewSize:null,plannedTravelMinutes:null,plannedStartDate:null,plannedEndDate:null,earliestDate:null,desiredDate:null,latestDate:null,customerPresenceRequired:null,";
+  assert.equal(current.slice(start,end).split(fields).length-1,3);
+  // Independently derived from actual9384d4f3 integration Git object69199f... successor e89834e...;
+  // no runtime Git/shallow-checkout dependency. Only the3 new exact literal groups invert.
+  assert.equal(createHash("sha256").update(current.replaceAll(fields,"")).digest("hex"),"cfbf9ab2fd978f682841a13135276b16d3473a7a95a0ab674591ac84c4a2e00b");
+  const depth=readFileSync("supabase/migrations/20261019133151_e16_16_1_job_depth.sql","utf8");
+  for(const declaration of ["add column estimated_duration_minutes integer check","add column planned_travel_minutes integer check","add column crew_size integer check","add column earliest_date date, add column desired_date date, add column latest_date date","add column customer_presence_required boolean,"])assert.ok(depth.includes(declaration));
+  const priorDates=readFileSync("supabase/migrations/20260709120000_acceptance_to_job_model.sql","utf8");assert.ok(priorDates.includes("planned_start_date date,"));assert.ok(priorDates.includes("planned_end_date date,"));
+  const canonical=readFileSync("supabase/migrations/20261020210000_e16_16_4_job_upgrade_and_scheduling.sql","utf8");
+  for(const key of ["estimatedDurationMinutes","crewSize","plannedTravelMinutes","plannedStartDate","plannedEndDate","earliestDate","desiredDate","latestDate","customerPresenceRequired"])assert.ok(canonical.includes("'"+key+"'"));
+});

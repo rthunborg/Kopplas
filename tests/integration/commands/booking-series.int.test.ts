@@ -801,9 +801,9 @@ describe("15.2 real checked series command", () => {
       const snapshot=await snapshotBookingSeries(fx.adminClient,args);if(snapshot.kind!=="snapshot")throw new Error("Expected full production facts");
       expect(snapshot.claims).toMatchObject({engineVersion:BOOKING_CONFLICT_ENGINE_VERSION,configVersion:SCHEDULING_RULES_VERSION});
       expect(snapshot.facts.detection.jobInputs).toEqual([
-        {jobId:ids[0],requiredWorkRoleIds:null,accessWindows:[]},
-        {jobId:ids[1],requiredWorkRoleIds:[],accessWindows:null},
-        {jobId:ids[2],requiredWorkRoleIds:[parents.workRoleId],accessWindows:[{startsAt:"2026-10-20T06:00:00.000000Z",endsAt:"2026-10-20T08:00:00.000000Z"}]},
+        {jobId:ids[0],estimatedDurationMinutes:null,crewSize:null,plannedTravelMinutes:null,plannedStartDate:null,plannedEndDate:null,earliestDate:null,desiredDate:null,latestDate:null,customerPresenceRequired:null,requiredWorkRoleIds:null,accessWindows:[]},
+        {jobId:ids[1],estimatedDurationMinutes:null,crewSize:null,plannedTravelMinutes:null,plannedStartDate:null,plannedEndDate:null,earliestDate:null,desiredDate:null,latestDate:null,customerPresenceRequired:null,requiredWorkRoleIds:[],accessWindows:null},
+        {jobId:ids[2],estimatedDurationMinutes:null,crewSize:null,plannedTravelMinutes:null,plannedStartDate:null,plannedEndDate:null,earliestDate:null,desiredDate:null,latestDate:null,customerPresenceRequired:null,requiredWorkRoleIds:[parents.workRoleId],accessWindows:[{startsAt:"2026-10-20T06:00:00.000000Z",endsAt:"2026-10-20T08:00:00.000000Z"}]},
       ]);
       expect(snapshot.facts.detection.bookings.some(b=>b.jobId===ids[0])).toBe(true);expect(snapshot.facts.detection.bookings.some(b=>b.jobId===null)).toBe(true);
       const [{digest}]=await adminQuery<{digest:string}>("select encode(extensions.digest(public.booking_series_facts_internal($1)::text,'sha256'),'hex') digest",[fx.base.tenantA.id]);

@@ -245,7 +245,7 @@ Deferred release validation: exhaustive browser/device/calendar-provider matrice
 ## Auto Run Result
 
 Status: in-review
-Blocking condition: the new series protocol forward migration below is source-only and unexecuted. Current SQL series snapshot/finalizer still use v3/v1 while the integrated TS boundary requires v4/v2; the source mismatch is demonstrated, not an observed hosted first-error cause. Local unit-fixture correction had3390 tests/3389P/0F/1Linux-xattrskip; that separate historical pure run is not native acceptance. Browser primary failures/completion phases/custody remain UNKNOWN. Root-managed independent review and required exact-head native gates remain pending; development complete=false, acceptance0.
+Blocking condition: the new118th job-card shared-refresh migration is source-only and unexecuted. Qualified NORMAL39703778989 retained2058DBpass/2fail/9pending/52skip;35mandatory story DB cases includingAPI019/INT015 are unexecuted. The new correction addresses demonstrated E16 job-card refresh overwrite and strict REAL011 fact-shape mismatch, not a proved hosted first throw. Browser007unexpected/fourflaky and response.finished/backend custody remain UNKNOWN; no browser change or retry is authorized here. Independent targeted source review and required qualified native gates remain pending; development complete=false, acceptance0.
 
 Current result — 2026-10-22: exact4 forward-correction source handoff only. One
 CLI-generated migration changes only the series protocol pair after exact effective
@@ -2198,6 +2198,66 @@ corrections; a later added injected fixture had a missing brace and failed to lo
 then was corrected. These attempts are nonadditive; final whole TypeScript and
 three-file lint pass. Required native/independent gates remain open, acceptance0.
 
+## Effective job-card shared-refresh forward correction — source only
+
+Root admitted exactly four source paths and one installed CLI2.115.0 offline
+`migration new job_card_shared_conflict_refresh`. It generated the sole empty
+20261022014027_job_card_shared_conflict_refresh.sql; Root independently verified
+count118, all117 old raw hashes and three mutable baselines unchanged before
+content clearance. No second generation/rename/manual timestamp or native SQL
+execution occurred. All117 historical migrations remain immutable.
+
+The current finalizer is the20261020210000 E16 v4/v2 body, not the older resolver
+composition. Its8101-byte canonical prosrc SHA
+4abac05b664633f4100953964e7d5131a78f23a7130e5b886cccc96b99b4c06f
+contains exactly one807-byte complete bad refresh block SHA
+5a3e74977a19639356a2c20071735b165476fdb907ad9c2a903813693771d507.
+Later20261021061932 renamed the old payload helper, installed its expectedRevision
+wrapper and strengthened related/revision validation; it did not redefine this
+finalizer. The forward change derives its CREATE OR REPLACE from the actual
+catalog definition and replaces only the complete refresh block with the existing
+booking_conflict_refresh_internal(p_tenant_id,output). Every other E16 body byte
+and later helper binding remains. No pre-E16 finalizer, signature or proof-domain
+copy is restored.
+
+One atomic DO qualifies exact effective target and common-helper bodies before
+DDL; canonicalizes only embedded reference CRLF to LF; accepts actual bodies
+only as exact LF or complete CRLF variants; snapshots original raw target source.
+The single block substitution must invert exactly, preserving original newline
+bytes outside that removed block. Postflight requires the exact expected raw
+body, stable target/helper OIDs, every target non-prosrc pg_proc attribute and
+complete unchanged helper metadata. Unknown shape/count/metadata refuses and
+rolls back that statement. No helper replacement, role/grant/Auth/schema change
+is introduced. These are source assertions; PostgreSQL compilation/application,
+atomic rollback and physical catalog preservation are not executed proof.
+
+REAL011 keeps exact full equality and independently expected null values for all
+nine current nullable job fields: duration, crew, travel, planned dates, earliest/
+desired/latest dates and customer-presence. Their originating column declarations
+have no non-null/default values; the fixture inserts do not assign them. Existing
+job ordering, role/window null-versus-empty distinctions, full fact digest,
+stale-preview rejection and exact physical no-change remain. A full-file inverse
+back to the independently hashed9384d4f3 integration blob proves no other changes.
+The resolver INT001 history/reopen/ledger/replay/common-helper oracle is unchanged.
+
+Actual affected source controls: first-run45P/0F/0skip/0cancel, retaining42 old
+cases plus effective-body/altered-guard/metadata inverses, LF/CRLF/drift/block-count
+controls and authoritative full-fact expectation preservation. Whole TypeScript
+and two-file ESLint exit0. No full unit suite/app build/SQL/integration/browser run
+was repeated. The observed native title hashes locate the two failed cases but
+not their first assertion/exception; source corrections do not claim native cause.
+No acceptance/completion claim or fourth broad review follows.
+
+Browser source is unchanged. Fixed v2 observations identify FINISHED (the existing
+response.finished await), successful scenario callbacks and subsequent retained
+custody, not backend settlement. A cleanup/context-close self-dependency is not
+proved. Keep the finished wait, custody/error-precedence/caps; any transport proof
+needs separately named scope rather than another opaque retry or generic family.
+The required35 missing DB cases remain blocked by actual failed gates, never
+filtered or credited. After independent source PASS, Root's shortest next action
+is a separately qualified functional checkpoint proposal with all95 enrollment
+and explicit remaining browser transport-lifetime evidence; no automatic run.
+
 ## Suggested Review Order
 
 Author: Story 15.5 implementation/fix author (gpt-6.1-sol High), incorporating
@@ -2728,3 +2788,17 @@ Evidence: final157 affected offline controls, wholeTS and three-file lint0; init
 156/type failure and later fixture syntax-load failure retained nonadditively.
 Private v2 parser/qualified hosted transport/native completion remain unexecuted;
 this is source observability, not a functional fix or fourth broad review.
+
+
+### Restore shared job-card refresh without losing later E16 validation
+
+- `supabase/migrations/20261022014027_job_card_shared_conflict_refresh.sql:4` — `do $job_card_refresh$`: contains the one atomic target-only forward correction.
+- `supabase/migrations/20261022014027_job_card_shared_conflict_refresh.sql:7` — `expected_body constant text`: binds effective E16 source rather than an old finalizer copy.
+- `supabase/migrations/20261022014027_job_card_shared_conflict_refresh.sql:158` — `execute pg_catalog.replace(definition`: changes exactly the existing complete refresh seam.
+- `tests/unit/server/bookings/series-plan.test.ts:393` — `function forwardJobCardRefreshSources`: derives effective source/helper/revision provenance and altered-source inverses.
+- `tests/unit/server/bookings/series-plan.test.ts:432` — `REAL011 retains full strict authoritative`: pins exact full-file inverse and independent nullable schema facts.
+
+Evidence: first affected45P; wholeTS/two-file lint0; source guards/inverse are not
+PostgreSQL execution. Existing117SQL and resolver INT001 remain unchanged. Review
+new118 exact preimage/one replacement/metadata and full REAL011 expectations;
+native first throw and browser completion/custody remain UNKNOWN.
