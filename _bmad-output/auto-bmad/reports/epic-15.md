@@ -6842,3 +6842,34 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Qualify fresh project containment, publish the reviewed main and diagnostic checkpoints, and execute exactly one owned E2E001 diagnostic run after finite effects admission. Qualify its evidence before any browser correction or full NORMAL run.
+
+## Report — 2026-10-22T09:46:34Z (checkpoint — isolated original-request abort observed; cause remains open)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `846a474`).
+**Pipeline status:** P5 remains open. The reviewed main checkpoint 846a474e and diagnostic 584e9732 were pushed. Diagnostic39754927821 reproduced one E2E001 retry0 failure and captured net::ERR_ABORTED. Independent High qualification verified the bounded evidence but did not prove a harness defect or backend settlement. Both artifact reads are closed; the Root poller is stopped. The full NORMAL run remains failed and 35 mandatory DB cases remain unexecuted. Story15.6 is unstarted. No deployment or merge occurred.
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 308h 48m (≈77h 24m AI-run, ≈231h 24m human/idle wait); resumed 207×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Complete narrow High read-only completion/drain and installed SDK assessment; change source only for a proved defect, otherwise obtain only the exact missing ownership/order fact under a separate bounded reproduction. P5 remains open; full NORMAL is still failed with 35 mandatory cases unexecuted.

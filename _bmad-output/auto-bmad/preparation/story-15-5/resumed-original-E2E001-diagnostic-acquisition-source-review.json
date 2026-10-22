@@ -1,0 +1,128 @@
+{
+  "schema": "kopplas.resumed-original-E2E001-diagnostic-acquisition-source-review.v1",
+  "verdict": "PASS_SOURCE_ONLY_EXACT_TWO_READ_DIAGNOSTIC_ACQUISITION",
+  "status": "PASS",
+  "review": {
+    "independent": true,
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "route": "P5-resumed-original-E2E001-diagnostic-acquisition-source-review",
+    "scope": "Finite existing-reader reuse, exact run/data binding and bounded one-case annotation/static-frame projection only. No fourth broad review or new control family."
+  },
+  "source": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-original-E2E001-diagnostic-acquisition-preparation/read-diagnostic-artifact.py",
+    "bytes": 13519,
+    "sha256": "136f2baea86c9b281d599325b499f90c97765eaaf2b180746dc18585bfb47400"
+  },
+  "proposal": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-original-E2E001-diagnostic-acquisition-preparation/proposal.json",
+    "bytes": 10141,
+    "sha256": "a5d52cf84e7ab03511f2e8736ec9f47131d474903c9d95bde6b07eaa98ce2e01"
+  },
+  "terminal": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-original-E2E001-terminal.json",
+    "bytes": 15056,
+    "sha256": "7588c1ddaa6198c7936beea6d23e20ebb46d967eefbf0e31a722d8872d73d186"
+  },
+  "completed_allocation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-resumed-original-E2E001-diagnostic-two-read-allocation.json",
+    "bytes": 2903,
+    "sha256": "628f18b240785ee56589bfc9dcaf42313f1ee9cfb0ae1caed72fd849420290ce",
+    "effect_qualification_turn_status": "completed",
+    "tool_status": "completed",
+    "scope": "Maximum one run artifact-list GET and at most one uniquely eligible native-general-browser ZIP GET; no pagination, logs, status, alternate, refetch or retry."
+  },
+  "binding": {
+    "run": 39754927821,
+    "attempt": 1,
+    "head": "584e97329ea516d49b49dec242e8e097594adf95",
+    "ref": "codex/epic-15-original-failure-debug",
+    "checkpoint_id": "84abad63-9898-452d-9995-81b1d35d79ea",
+    "repo": "rthunborg/Kopplas",
+    "actor": "rthunborg",
+    "triggering_actor": "rthunborg",
+    "workflow_id": 296219797,
+    "event": "workflow_dispatch",
+    "mode": "original-e2e001",
+    "original_e2e001": true,
+    "cause_proof": false,
+    "release_validation": false,
+    "jobs": {
+      "admission": "success",
+      "verify": "success",
+      "e2e": "failure",
+      "db": "skipped",
+      "recovery": "skipped",
+      "optional_four": "skipped"
+    },
+    "terminal_stop_stack": "success"
+  },
+  "assessment": {
+    "transport_reuse": "The reader hash-checks and imports the immutable reviewed browser reader definitions, which import the immutable reviewed normal operator definitions. No predecessor main, validate or acquire_normal is called. Existing get/write/load/nodup/ZIP/inflate/raw-name/source-path/fixture-tuple/encoder definitions remain in their frozen files; no transport/archive helper is copied or edited.",
+    "predecessors": [
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/current-browser-diagnostic-preparation/operator.py",
+        "bytes": 14515,
+        "sha256": "e1f27daef874cc5c08cc181a917f234fb0ac66683792323b911686ada5c3e531"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/fixture-reconciled-normal-terminal-evidence-preparation/normal-evidence-operator.py",
+        "bytes": 47872,
+        "sha256": "5c16681bf8d701a9ce5b2f16da9ec803dc18147a0b8108cf28e0186982876990"
+      }
+    ],
+    "admission": "Before output creation or GET, the exact main checkout, source/proposal hashes, completed terminal ownership/title/run/head/attempt and nine completed job conclusions must match. Root capability requires execution_authorized=true, exact fixed mode, maximum two requests, no retry, a fresh operation UUID distinct from checkpoint, bound allocation/source proof/independent PASS evidence and absent exact output path. Template false is inert. Root is the trusted completed-allocation/source-proof producer; this review does not create activation.",
+    "first_GET": "Exact repos/rthunborg/Kopplas/actions/runs/39754927821/artifacts?per_page=100; at most 100 entries and 4MiB; pagination/inconsistent shape refuses. Missing native-general-browser closes the unused slot as UNAVAILABLE; duplicate exact-name candidates stop.",
+    "second_GET": "Only the unique exact native-general-browser with positive integer ID, fixed run/head, nonexpired flag, valid nullable expiry, size and API SHA256 is durably admitted before its single ID-bound ZIP request. No provider URL from the response is executed. Compressed bytes and SHA256 must match. Only general-browser.json plus safe directories are admitted through retained ZIP/path/symlink/duplicate/CRC/ratio guards.",
+    "intent_and_bounds": "Exclusive output and fsynced operator intent precede transport. Imported transport consumes each exclusive intent before request and preserves 15s/native exit/EOF/joined reader/closed handle/settlement safeguards. Failure or uncertainty consumes its slot; there is no retry loop. Caps remain list4MiB, ZIP32MiB, declared/actual aggregate inflate128MiB, selected JSON16MiB, stderr64KiB.",
+    "projection": "Only exact source-path/full-title-SHA E2E001 is identity-bound. At most one retry0 result is projected; retry1/malformed scope becomes UNKNOWN, duplicates stop. Scope/count fields disclose extra/missing cases rather than supplying acceptance. Source class is closed; only bounded source-backed coordinates from the two pinned paths and first four of at most16 errors survive, with omission_UNKNOWN for truncation. Frames remain candidates and cause remains UNKNOWN.",
+    "annotation": "calendar-original-rotate-post-drain accepts only exact net::ERR_ABORTED, net::ERR_FAILED or UNKNOWN descriptions from bounded test/result annotation containers. Missing is UNKNOWN_MISSING; malformed, conflicting or within-container duplicated records are UNKNOWN_REFUSED. Agreeing records copied across test/result containers retain their recorded sources. No original annotation text is copied.",
+    "privacy": "Raw archives/report/errors/messages/titles/stacks/URLs/tokens/DOM/body values remain RAM-only. No arbitrary raw exception is persisted or printed. Fixed enum/status/count fields, title SHA, bound source coordinates and existing closed fixture tuples are the only projected diagnostics.",
+    "publication": "The real production projection is encoded once and those exact bytes are exclusively written only if <=32768. The author measured one supported one-case sample at2812 bytes; this is not a universal arbitrary-integer envelope proof. Oversize refuses after consumption and grants no retry.",
+    "limits": "A native code, static frame or successful acquisition does not prove abort origin, body linkage, canonical cleanup, key deletion or backend settlement. Report-only wrapper lifecycle/key-deletion fields remain null/UNKNOWN. Ended job and Stop-stack success remain separate limited metadata."
+  },
+  "independent_check": {
+    "chunk": "05d414",
+    "native_exit": 0,
+    "wall_seconds": 0.3079982,
+    "kind": "Pure local read/hash/AST parse and source-data correlation only",
+    "checked": [
+      "Both ready files, actual terminal and completed allocation hashes.",
+      "Exact ownership, display title, run/head/attempt and nine terminal job conclusions.",
+      "All predecessor and prior committed-source review input references.",
+      "Four diagnostic raw/LF/computed Git source bindings.",
+      "Exactly two static M.get call sites outside loops; no reader execution.",
+      "Fresh activation/output absent and false activation template.",
+      "Unique literal E2E001 source identity hash."
+    ],
+    "tests_run": 0,
+    "imports_or_main_executed": 0,
+    "GETs": 0,
+    "API_calls": 0,
+    "resources": 0,
+    "Git_commands": 0
+  },
+  "author_evidence": {
+    "pure_controls": 9,
+    "failed": 0,
+    "API_requests": 0,
+    "measured_production_encoded_sample_bytes": 2812,
+    "attribution": "Native author-reported frozen preparation evidence, reused nonadditively; reviewer did not rerun or count these as independent controls."
+  },
+  "findings": [],
+  "remaining": {
+    "activation_created_by_reviewer": false,
+    "acquisition_executed_by_reviewer": false,
+    "next_condition": "Root verifies this exact source-only PASS and fresh source/terminal bindings, then creates its exclusive fsynced activation under the already completed finite allocation. Native must use the exact Python314 -I -X utf8 -B invocation and source/review hashes. Actual acquisition and distinct causal qualification remain separate.",
+    "normal_acceptance": 0,
+    "required_missing_cases": 35,
+    "P5": "OPEN",
+    "story_15_6": "UNSTARTED",
+    "broad_review_counter": 3,
+    "development_complete": false,
+    "release_ready": false,
+    "original_cause": "UNKNOWN",
+    "backend_settlement": "UNKNOWN",
+    "effect_authority_from_this_artifact": false
+  }
+}
