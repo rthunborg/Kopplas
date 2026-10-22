@@ -7617,3 +7617,34 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** High read-only current Normal capture-publication/source assessment. No inferred patch/CI rerun; exact next source/effects ownership needed.
+
+## Report — 2026-10-22T18:16:42Z (working)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `1a28708`).
+**Pipeline status:** P5 OPEN: DEBUG3e6bd capture-window source independentlyPASS after phase01 correction; no nativecause/coverage/custody acceptance.24P and corrective8P are separate controls;118SQL/MAINsource/kernel/counter3 conserved. Currentfull95 still68P/INT009F/26zero; DBcustodyretained.
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 317h 18m (≈77h 24m AI-run, ≈239h 54m human/idle wait); resumed 232×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Complete source-bound inert reader data check; prepare minimal reviewed fresh provider/MAINdocs+DEBUGpublication and ONE existing originalINT009 diagnostic checkpoint. Actual finite effects allocation required before any effect; no deployment.

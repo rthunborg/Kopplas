@@ -1,0 +1,125 @@
+{
+  "schema": "ROOT_INT009_DEBUG_CAPTURE_WINDOW_SOURCE_ADMISSION_V1",
+  "debug_source": "3e6bd3ae0d307eaf6411636ad83a5fba59683148",
+  "debug_parent": "8d2bf3086d4d12a0809a05a37a6801ad75539e3e",
+  "debug_pushed_before": "3bbf67b48d6f9f1f3e564774b1cf3b1b8794b07e",
+  "MAIN_metadata_before": "1a287085407b4f75dfb2df0eabb5ee42f92d1cfc",
+  "MAIN_functional_source": "0ed3710929ea09afae49ef7b8d3266975331e827",
+  "source_eligibility": "PASS_INT009_WINDOW_PHASE01_CLOSURE_SOURCE_ONLY",
+  "closure": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-DEBUG-window-phase01-independent-closure.json",
+    "bytes": 14058,
+    "sha256": "b3cc6a3ea8eccd4f09fa0e84f472cc342fe221f4347145a328d7177f035d02fb"
+  },
+  "original_NOTPASS": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-DEBUG-current-capture-window-actual-source-review.json",
+    "bytes": 19246,
+    "sha256": "06cab049092252cc95a224a0b8c7172a506015edaafdd49ab4ec6a6c38c3534b"
+  },
+  "source_artifacts": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-current-normal-capture-publication-source-assessment.json",
+      "bytes": 20090,
+      "sha256": "f046b31a0e6b2c2802fee548c33129318d0f794d392ff22eeb475291ad40cc5b"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-current-capture-window-independent-plan-review.json",
+      "bytes": 23350,
+      "sha256": "5a9261fb931dfcc0298c0bd26b92ecdb7e582cbe9829865f9a699ea49fe12d88"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-INT009-DEBUG-current-capture-window-three-source-allocation.json",
+      "bytes": 2998,
+      "sha256": "8cb3d6cb7ff2589d02b8d18d7c9fc247d250247c0b38c4dc4d8668053e699aa5"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-DEBUG-current-capture-window-author-result.json",
+      "bytes": 21805,
+      "sha256": "52c05c2d060de7e86367faeaf468c0ea5e6097880e0d9d34397b63f5cc538594"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-DEBUG-capture-window-phase-boundary-correction-author-result.json",
+      "bytes": 18170,
+      "sha256": "ccd0656a07a6405fbdf9bfd1d791071bb4d89da204d39481ccb4b020e3e3d677"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-DEBUG-capture-window-reader-independent-source-review.json",
+      "bytes": 17614,
+      "sha256": "6f2579b98dbd670ac518110e197b30298e64f7a97b0ef82db7b0289f9c17727d"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-DEBUG-capture-window-reader-independent-controls.json",
+      "bytes": 2006,
+      "sha256": "5563f215e4edb926dacaaa21b074c656bfd7271142c958df32bbdf6f3855a87c"
+    }
+  ],
+  "root_commit_proofs": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-current-capture-window-root-commit-proof.json",
+      "bytes": 2238,
+      "sha256": "b9e0bc133013b10848e5931adf80effe63ddca74ecbdb10a84060a9ac6230a3e"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-capture-window-phase-boundary-correction-root-commit-proof.json",
+      "bytes": 1533,
+      "sha256": "534dae1b359f95f7a3fb8595bccc687f0745dbeca1ea555ac19f96dda8a1fd6d"
+    }
+  ],
+  "routes_recorded": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-current-normal-capture-publication-assessment-route.json",
+      "bytes": 591,
+      "sha256": "85f3da95ebdb3343eda0a1a353b1e80a1b06bd69d93a87d0e51866bb27c6d340"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-current-capture-window-plan-review-route.json",
+      "bytes": 566,
+      "sha256": "6888329588c856c367dc5f7a045d595dd1faf13c7b6654c0cf37d510839e500a"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-current-capture-window-implementation-route.json",
+      "bytes": 616,
+      "sha256": "3f3f9a94811ae0b7c9d454c80b47a93661d30ac93f4f9a376e6627aa9bd4611f"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-current-capture-window-source-review-route.json",
+      "bytes": 594,
+      "sha256": "527df31f408d5fcb8dda9f0e15124088121d8ef3da95e190348a6e70e7fc92ba"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-capture-window-reader-preparation-route.json",
+      "bytes": 586,
+      "sha256": "21a9abdbb202b42c173f0458fd12cda91360391dba75878bae689ed6b356b1cc"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-capture-window-phase-boundary-correction-route.json",
+      "bytes": 621,
+      "sha256": "5a2b031275eceb9724c34319bbdb140d243ea161f37afb615c4e32d5f1f3a64d"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-capture-window-reader-source-review-route.json",
+      "bytes": 619,
+      "sha256": "fdcc97739d50ed233653295ae5f57cfc17a0b5ef24954099b0d59bdc849b6107"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-window-phase01-independent-closure-route.json",
+      "bytes": 577,
+      "sha256": "2919e4462725765270011bf836ed7b5969ebfbd5d2d0c7eb5c43e67342a6daaf"
+    }
+  ],
+  "source_scope": "DEBUG3 only; corrective2 subset; no MAIN capability transplant",
+  "checks": "Original24P then corrective8P separate/nonadditive; scopedTS/lint/diff0; meaningful actual-source/inverse controls",
+  "conservation": "Strict comparator, existing queries/order/awaits/error/redaction/custody unchanged except approved34B projection and bounded diagnostic plumbing.118SQL/MAINsource+Spec+kernel/counter3 conserved; six oldtempcompanions retained.",
+  "inert_reader": "Finite enum source-only PASS; actual correctedproducer3 rebind and distinctcheck pending; futuretupleNone/DB0 defaultrefuses; not operational admission",
+  "target_run": "NOT_REGISTERED",
+  "current_native_first_cause": "UNKNOWN",
+  "current_DB_custody": "retained/unverified",
+  "required95": "68P1F26zero",
+  "P5": "OPEN",
+  "normal_acceptance": 0,
+  "development_complete": false,
+  "release_ready": false,
+  "all_prior_effect_slots_closed": true,
+  "new_effect_authority": false,
+  "next": "Complete source-bound inert reader data check; prepare minimal reviewed fresh provider/MAINdocs+DEBUGpublication and ONE existing originalINT009 diagnostic checkpoint. Actual finite effects allocation required before any effect; no deployment."
+}
