@@ -6749,3 +6749,34 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Resolve the named original browser failure/body-event linkage and retained-key settlement/custody with an explicit bounded course decision; no further generic diagnostic family or automatic retry.
+
+## Report — 2026-10-22T08:39:08Z (resumed — original failure localized; bounded correction and reproduction pending)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `0d1ab83`).
+**Pipeline status:** Epic 15 remains in progress. Original DB AssertionError confirms INT011 stale strict expectation; independent High review traced nine authoritative E16 fields. Browser original request-failure text was not recorded. Two original-report reads closed; ended-job custody handoff qualified without key-deletion or backend-settlement credit. Required gates remain failed; 35 mandatory cases remain unexecuted.
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 307h 41m (≈77h 24m AI-run, ≈230h 16m human/idle wait); resumed 204×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Correct the independently confirmed INT011 strict expectation after exact source allocation; prepare one isolated E2E001 original-request reproduction. Prior consumed effects remain closed.
