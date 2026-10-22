@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-22T08:39:08Z"
+updated_at: "2026-10-22T08:51:35Z"
 started_at: "2026-10-09T12:57:49Z"
 completed_at: null
 active_seconds: 278674
@@ -329,7 +329,7 @@ branch_deleted: false
 open_questions: []
 deferred_work: []
 blockers:
-  - "[15-5-personal-calendar-feed-adr-b004-surface-1] 15.5 required gates remain failed: INT011 stale strict expectation independently confirmed by original AssertionError at290:39 and enforced nine-field contract;35mandatory DB cases unexecuted; browser original Request failure text unrecorded. Direct human resumed one bounded debugging course. Prior custody handed to ended disposable-job operator; key deletion/backend settlement unverified."
+  - "[15-5-personal-calendar-feed-adr-b004-surface-1] 15.5 required native gates remain unpassed: INT011 strict fixture source corrected at29466300 and independently reviewed;35mandatory DB cases remain unexecuted. Browser original Request failure text remains unknown; one temporary isolated reproduction is being prepared. Prior ended-job custody handoff is qualified without key-deletion/backend-settlement credit."
 overrides:
   oracle: "Owner2026-10-09 removes observation prerequisite; recommended designs, zero observation/parity claim"
   ownership: "Coordinator 2026-10-19 permits independent 15.2 story-only preparation; E16 shared source/schema/fixture claims remain reserved pending exact overlap coordination."
@@ -3235,7 +3235,7 @@ Oct19_checkpoint:
   portable_loader_fix: "{\"path\": \"tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts\", \"working_bytes\": 137600, \"working_sha256\": \"c4a6c935533cb925090b40c9feb07737e9324716fc19fbe5185b99abbfd50857\", \"independent_focused_high_review\": \"PASS actual turn01a153a3-dad0-7be3-b6a6-0d431b9977aa\", \"reproduction\": \"Private loader path denied RED4 to GREEN4\", \"related_unit_suite\": \"214pass/0fail/0cancel/0skip\", \"negative_witnesses\": \"Wrong version and source hash refuse before TaskRunner evaluation\", \"checks\": \"Lint/full nonincremental typecheck/diff check native0\", \"source_conservation\": \"31 other source bindings and historical prefixes/inverse conserved\", \"next_checkpoint_paths\": [\"tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts\", \"_bmad-output/auto-bmad/state/15-1-the-five-scheduling-views.yaml\", \"_bmad-output/auto-bmad/state/epic/epic-15.yaml\", \"_bmad-output/auto-bmad/reports/epic-15.md\"], \"p5_complete\": false, \"broad_review_rounds\": 0}"
 active_story_progress:
   story: 15-5-personal-calendar-feed-adr-b004-surface-1
-  phase: "P5 OPEN; direct-human resumed bounded original-failure debugging"
+  phase: "P5 OPEN; INT011 source correction independently passed; temporary browser reproduction source in progress"
   actual_run: 39710514719
   head: 193361acf6cc6b0d8275bff41470f647e2404b34
   admission: "{\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/root-forward118-v3-failed-normal-admission.json\", \"bytes\": 5162, \"sha256\": \"b3e0f10d47c6956bad93465129aaf17c1fc997bb7845c476197bd3e2481dbc31\"}"
@@ -3243,8 +3243,10 @@ active_story_progress:
   story15_6: unstarted
   normal_acceptance: 0
   development_complete: false
-  next: "Correct the independently confirmed INT011 strict expectation after exact source allocation; prepare one isolated E2E001 original-request reproduction. Prior consumed effects remain closed."
+  next: "Finish isolated temporary E2E001 source and independent CI/privacy review; qualify one reproduction before the next full functional run."
   causal_qualification: "{\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/resumed-original-failure-causal-qualification.json\", \"bytes\": 11078, \"sha256\": \"31ad736454f4dbe3fa0881dec554c4155d91aa34bd751f0073296549d019c126\"}"
+  source_commit: 294663001f7afd9ed155f1554886bbe6911ed048
+  targeted_review: "{\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/resumed-INT011-source-targeted-review.json\", \"bytes\": 7977, \"sha256\": \"e237512ff25aed07b7adbbb591afd82f1c750816f35b53ab8284bd4cb9cba313\"}"
 release_validation_ledger: "_bmad-output/auto-bmad/recovery/deferred-validation.md"
 last_story_development_record:
   story: 15-2-recurring-bookings-series-materialized-occurrences-exceptions

@@ -6780,3 +6780,34 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Correct the independently confirmed INT011 strict expectation after exact source allocation; prepare one isolated E2E001 original-request reproduction. Prior consumed effects remain closed.
+
+## Report — 2026-10-22T08:51:35Z (checkpoint — INT011 strict fixture correction independently passed)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `2946630`).
+**Pipeline status:** P5 remains open. INT011 correction at 29466300 adds exactly nine authoritative null fields to each strict expected object; independent targeted High review passed. Full inverse preserves every surrounding assertion and all 118 migrations. No runtime or missing-case coverage is credited. Browser reproduction remains isolated on its temporary branch.
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 307h 53m (≈77h 24m AI-run, ≈230h 29m human/idle wait); resumed 205×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Finish isolated temporary E2E001 source and independent CI/privacy review; qualify one reproduction before the next full functional run.
