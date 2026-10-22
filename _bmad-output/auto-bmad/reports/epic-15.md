@@ -7090,3 +7090,34 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Narrow explicitHigh read-only assessment of subject canonical publication/owner preflight/setup cleanup. No cause-backed patch or Stage2 source/runtime allocation yet. Preserve P5open, P6automate/P7helper,15.6freshSpec+validation,E8/finalPR.
+
+## Report — 2026-10-22T13:05:11Z (working)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `3d1e10b`).
+**Pipeline status:** INT009 diagnostic source admitted for exactly4ownedpaths after actual completed Coordinator allocation and Root-read distinctHigh plan/privacyPASS. CAPTURE-P1..P5 mandatory; no native runtime or source-cause fix inferred. P5open/68of95P/1F/26unexecuted/counter3 retained.
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 312h 07m (≈77h 24m AI-run, ≈234h 42m human/idle wait); resumed 215×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Existing High author implements exact4 bounded capture, actualsource controls and oneSRO; distinctHigh changed-source/privacyreview before separate targetedexecution boundary.
