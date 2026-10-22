@@ -799,7 +799,7 @@ describe("15.2 real checked series command", () => {
       expect(await bookingCommand("create",fx.adminClient,{...base.template,assigneeIds:[...base.template.assigneeIds],commandId:crypto.randomUUID(),startsAt:"2026-10-16T05:00:00Z",endsAt:"2026-10-16T06:00:00Z",jobId:null})).toMatchObject({ok:true});
       const args={p_tenant_id:fx.base.tenantA.id,p_actor_id:fx.base.adminA.id,p_correlation_id:crypto.randomUUID(),p_command_id:base.commandId,p_input:seriesCommandPayload(base)};
       const snapshot=await snapshotBookingSeries(fx.adminClient,args);if(snapshot.kind!=="snapshot")throw new Error("Expected full production facts");
-      expect(snapshot.claims).toMatchObject({engineVersion:"booking-conflicts-v3",configVersion:"stockholm-capacity-v1"});
+      expect(snapshot.claims).toMatchObject({engineVersion:BOOKING_CONFLICT_ENGINE_VERSION,configVersion:SCHEDULING_RULES_VERSION});
       expect(snapshot.facts.detection.jobInputs).toEqual([
         {jobId:ids[0],requiredWorkRoleIds:null,accessWindows:[]},
         {jobId:ids[1],requiredWorkRoleIds:[],accessWindows:null},

@@ -2138,6 +2138,19 @@ preserving all operations/guards/caps, plus separately allocated private parser
 v2 compatibility; legacy labels would leave new facts UNKNOWN. This is proposal
 only, not implemented or a justification to retry NORMAL blindly.
 
+The distinct targeted review of cb65 returned NOTPASS for SERIES-PROTOCOL-01:
+active REAL011 still required obsolete v3/v1 after the new SQL producer and real
+TS guard agreed on v4/v2. Its original review remains immutable. The finite
+correction changes only that positive expectation to the same actual current
+constants used by REAL004. Exact inverse restores the prior integration source;
+all per-job null/empty, digest, stale-review and physical no-change assertions
+remain byte-identical, as do skipped historical scaffolds. Migration02335 and
+series-plan unit bytes remain exactly cb65. This is a test-contract correction,
+not a runtime proof or a diagnosis of the hosted first throw. Prior42 source
+controls/LF-CRLF inverse evidence are reused by immutable provenance, not rerun.
+Affected lint/diff/reader/SRO are checked; targeted independent closure and native
+SQL/integration gates remain pending.
+
 ## Suggested Review Order
 
 Author: Story 15.5 implementation/fix author (gpt-6.1-sol High), incorporating
@@ -2646,6 +2659,7 @@ shared refresh and the resolver's separate compatibility protocol.
 - `tests/unit/server/bookings/series-plan.test.ts:326` — `function forwardSeriesProtocolSources`: derives the historical resolver composition and inverse.
 - `tests/unit/server/bookings/series-plan.test.ts:359` — `Actual forward SQL producer protocol`: invokes the real TS admission boundary with SQL-derived protocol.
 - `tests/unit/server/bookings/series-plan.test.ts:371` — `Forward predecessor line-ending admission`: preserves actual raw LF/CRLF and rejects mixed/bare-CR/drift.
+- `tests/integration/commands/booking-series.int.test.ts:802` — `expect(snapshot.claims).toMatchObject`: aligns active REAL011 positive protocol only; all null/empty/digest/stale negatives remain.
 - `tests/integration/commands/booking-series.int.test.ts:993` — `expect(snapshot.claims.engineVersion)`: asserts future actual checked SQL claims without extra RPCs.
 
 Evidence: final affected42P after newline controls; prior41P and initial39P/2F
