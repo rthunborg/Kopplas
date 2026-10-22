@@ -945,7 +945,7 @@ async function calendarBarrier(scope: Parameters<SerialControls["barrier"]>[0],f
     if(!calendarSharedCustody)try{
       trace?.phase("FINALLY","BARRIER_CLEANUP");
       if(installed)await calendarRestore("subject",trace);else {await adminQuery(`drop trigger if exists ${trigger} on public.${table}`);await adminQuery(`drop function if exists public.${fn}()`);}
-      const rows=await adminQuery("select 1 from pg_proc where proname=$1 union all select 1 from pg_trigger where tgname=$2",[fn,trigger]);if(rows.length)throw calendarOwnerRefused();
+      trace?.phase("FINALLY","BARRIER_CLEANUP");const rows=await adminQuery("select 1 from pg_proc where proname=$1 union all select 1 from pg_trigger where tgname=$2",[fn,trigger]);if(rows.length)throw calendarOwnerRefused();
     }catch(error){trace?.observe(error);errors.push(redactFailure(error));calendarSharedCustody={purpose:"subject",phase:"barrier-restore-unverified"};}
     if(calendarSharedCustody){trace?.phase("FINALLY","CUSTODY");trace?.observe();errors.push(calendarOwnerRefused());}else fx.finalizers.delete(cleanup);
     if(errors.length)throw new AggregateError(errors,"Barrier primary and ALL reached cleanup failures retained");

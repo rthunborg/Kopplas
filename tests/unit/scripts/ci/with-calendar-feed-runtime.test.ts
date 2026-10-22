@@ -2880,14 +2880,26 @@ test("INT009 actual fixture final errors publish through the controlled sink wit
   const f=await actualCanonicalComposition(),capture=make(()=>{throw Error("PRIVATE sink");});capture.fail();const error=await f.api.withCalendarFeedFixture("row-isolated",async()=>{throw primary;},capture).catch(error=>error);assert.equal(error.errors[0],primary);
 });
 
-async function actualWindowBarrier(f:Awaited<ReturnType<typeof int009Control>>,inverse=false,readyFailure?:unknown) {
+async function actualWindowBarrier(f:Awaited<ReturnType<typeof int009Control>>,inverse=false,readyFailure?:unknown,absence?:{reject?:unknown;leftover?:boolean;removeReset?:boolean}) {
   const source=readFileSync(new URL("../../../support/calendar-feed-atdd.ts",import.meta.url),"utf8"),start=source.indexOf("async function calendarBarrier("),end=source.indexOf("/** Independent small RFC5545",start),strip=(nodeModule as unknown as {stripTypeScriptTypes(source:string):string}).stripTypeScriptTypes;
   let region=source.slice(start,end);assert.ok(start>0&&end>start);
   if(inverse)region=region.replace('  // Keep this opted-in local capture through reached scenario and finalization.','  if(authority)calendarInt009Subject("subject")?.close();');
+  if(absence?.removeReset){const marker='trace?.phase("FINALLY","BARRIER_CLEANUP");const rows=await adminQuery("select 1 from pg_proc';assert.equal(region.split(marker).length,2);region=region.replace(marker,'const rows=await adminQuery("select 1 from pg_proc');}
   const names=["randomUUID","adminSession","calendarPublish","calendarRestore","calendarSettle","adminQuery","redactFailure","calendarOwnerRefused","calendarInt009Subject"];
-  const barrier=new Function(...names,strip("let calendarSharedCustody=null;"+region)+";return calendarBarrier;")(()=>"00000000-0000-4000-8000-000000000001",async(run:(session:{query:()=>Promise<unknown[]>})=>Promise<unknown>)=>run({query:async()=>{if(readyFailure)throw readyFailure;return[];}}),f.api.calendarPublish,f.api.calendarRestore,f.api.calendarSettle,async()=>[],()=>Error("fixed"),()=>Error("fixed"),()=>f.capture);
+  const barrier=new Function(...names,strip("let calendarSharedCustody=null;"+region)+";return calendarBarrier;")(()=>"00000000-0000-4000-8000-000000000001",async(run:(session:{query:()=>Promise<unknown[]>})=>Promise<unknown>)=>run({query:async()=>{if(readyFailure)throw readyFailure;return[];}}),f.api.calendarPublish,f.api.calendarRestore,f.api.calendarSettle,async(sql:string)=>{if(absence){assert.ok(sql.startsWith("select 1 from pg_proc"));assert.equal(f.api.calendarOwnedStates.size,0);assert.deepEqual(f.row(),f.canonical);if(absence.reject)throw absence.reject;return absence.leftover?[{owned:true}]:[];}return[];},()=>Error("fixed"),()=>Error("fixed"),()=>f.capture);
   return barrier as (scope:unknown,fx:unknown)=>Promise<{release():Promise<void>;assertOwnedObjectsAbsent():Promise<void>}>;
 }
+
+test("INT009 window postrestore absence failure resets exact boundary and missing-reset inverse fails",async()=>{
+  for(const mode of ["reject","leftover"]){for(const inverse of [false,true]){
+    const f=await int009Control(),native=Object.freeze({code:"23505"}),barrier=await actualWindowBarrier(f,false,undefined,{reject:mode==="reject"?native:undefined,leftover:mode==="leftover",removeReset:inverse}),fx={pendingRequests:new Set<Promise<unknown>>(),finalizers:new Set<()=>Promise<void>>()};
+    const owned=await f.run(()=>barrier({stage:"management-before-authority",tenantId:"fixed",membershipId:"fixed"},fx)) as {release():Promise<void>;assertOwnedObjectsAbsent():Promise<void>};
+    await owned.release();const caught=await owned.assertOwnedObjectsAbsent().catch(error=>error);assert.ok(caught instanceof AggregateError);assert.equal(f.api.calendarOwnedStates.size,0);assert.deepEqual(f.row(),f.canonical);assert.ok(fx.finalizers.size===1);const rows=f.publish()!;
+    const correct=()=>{assert.equal(rows[0].kind,"PRIMARY");assert.equal(rows[0].publication,"FINALLY");assert.equal(rows[0].operation,"BARRIER_CLEANUP");};
+    if(inverse){assert.throws(correct);assert.equal(rows[0].publication,"OWNER_RESTORE");assert.equal(rows[0].operation,"WRAPPER_OUTCOME_UNKNOWN");}else correct();
+    assert.equal(rows[0].sqlstate,mode==="reject"?"23505":"UNKNOWN");assert.notEqual(caught,native);assert.ok(!String(caught).includes("23505"));await f.factory.pool()?.end();
+  }}
+});
 
 test("INT009 window actual successful setup remains open through late error and early-close inverse loses evidence",async()=>{
   for(const inverse of [false,true]){const f=await int009Control(),barrier=await actualWindowBarrier(f,inverse),fx={pendingRequests:new Set<Promise<unknown>>(),finalizers:new Set<()=>Promise<void>>()};
