@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-22T14:33:31Z"
+updated_at: "2026-10-22T14:36:11Z"
 started_at: "2026-10-20T12:18:56Z"
 completed_at: null
 active_seconds: 86219
@@ -18,15 +18,15 @@ is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: INT009_one_case_operational_source_review
-selected_role: independent operational source reviewer
-selected_profile: followup_review
+selected_phase: INT009_one_case_provider_execution
+selected_role: bounded provider execution
+selected_profile: build
 selected_model: gpt-6.1-sol
 selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Sensitive privileged CI admission/read privacy/remote effect/no-deployment controls; private predispatch record e3fc33 preserved; canonical fold now. No broad fourth story review."
+escalation_reason: "Sensitive exact one provider read/no-deployment containment, explicit finite completed Coordinator allocation; no source authoring."
 routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"High preparation for hashed public-feed tokens, rotation/revocation and tenant/member disclosure boundaries; plan-only before distinctvalidation and ownershipallocation\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct High independent specification validation of actual public-feed token/proof/IP/limiter authorization design and exact ownership/test-key boundaries before anybuild\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"cross_model_layer\",\"profile\":\"diverse_review\",\"role\":\"independent-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -276,6 +276,7 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Review exact6 committed temporary CI capability for privileged admission, privacy, DB custody, complete ordinary inverses and fixed selector/C4; no fourth broad story review.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"INT009_temporary_six_actual_source_review\",\"profile\":\"critical\",\"role\":\"independent-sensitive-ci-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Actual six-sourcePASS read; prepare inert finite no-deployment/qualification and Root-only mutation/runfence proposal before separate effect allocation.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"INT009_operational_preparation\",\"profile\":\"critical\",\"role\":\"sensitive-operational-preparer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive privileged CI admission/read privacy/remote effect/no-deployment controls; private predispatch record e3fc33 preserved; canonical fold now. No broad fourth story review.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"INT009_one_case_operational_source_review\",\"profile\":\"followup_review\",\"role\":\"independent operational source reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive exact one provider read/no-deployment containment, explicit finite completed Coordinator allocation; no source authoring.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"INT009_one_case_provider_execution\",\"profile\":\"build\",\"role\":\"bounded provider execution\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: "Hashed public tokens, rotation/revocation, externalfeed andcross-tenant abuseprotection requireHigh-riskATDD+automate; lastthreeno traceadvisory"
@@ -301,7 +302,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [159557e114f18123e73282c39c90830917de9948, c42b45abbca262ff79e26da479a3032d9015aeee, b940df85acfb2de36c0dcd5000a0039758f2b820, 3a1c3bc9fbf22b13c926179288a8b6eefe440c12, ae020f63a88089966b9323c55a36b6554f7e3900, 672099e9dc6569f4ac1cb9a967037e0d91df689c, aa5733116f20015cc3d14e1441d0eab232ecc9fd, 360fe850c18552f23a2bf74d8eda865431f0af38, 611c86295540161d31169110bf2139cf1d85d708, 9487c0d9, 2674b3f7, c5758058, a76fc492, 1cea5c4c, 3383a1eb, e91b366b, e472741a, c7570096, 4562cfd0, fae644b5, 33b595a8, e3f1c2e1, cba60486, e74cae6c, 3e7b6131a00e6c7b4d25c49373d8ba1c1eefe42f, 906f80f301d8034f8efe510018137195f3e4c4eb, 6dad688ec6a51143bfee902618bb88647a81c940, 380c3e720d5caaa1dc2181d70737b9320337f451, be2c1a535dff0e58b1579fe3db5890c7819916ab, 55db468eef3106ca1b02dc846ba12967a28dc238, 56324120f8e08de995e8cc7432ab27f2d0c98635, cb8d696d19c53e63be05ecb1ae273449af60efaf, 52007b760ff10f056ac75c5ed5b7dcdf49f99036, af5af69fd5018795a963a28c1ad367147b4a9bc3, 2524306ca9edd6079c23d205cf01268797288d89, f304ea548faa05f037cd3aa44c65888d96d543df, 33cfa8dfa1323708edf80034c0a98b0620790b6a, 7cdee0c52b6de5d416208971d6eaec6b86caa034, 93f4bf6543f6a9dc519a28f3d6f7824e8f6feedf, 8efb90e5038874c672df120651041176a70b1f2f, f0b1e5735872ba2effcd7c1480756326125f6752, bc9c30856f6272f9a099e52691d4ec4a7582732f, 1a643e24968a06cdeaba23ffc2506471b659c62a, 187a4c6f, 193361ac, 0d1ab835, "29466300", be20005c, 6414d94, 3d1e10bc, ec2f82df, 173e1f65, 68a4add8, e15905e6, f3d86a09]
+commits: [159557e114f18123e73282c39c90830917de9948, c42b45abbca262ff79e26da479a3032d9015aeee, b940df85acfb2de36c0dcd5000a0039758f2b820, 3a1c3bc9fbf22b13c926179288a8b6eefe440c12, ae020f63a88089966b9323c55a36b6554f7e3900, 672099e9dc6569f4ac1cb9a967037e0d91df689c, aa5733116f20015cc3d14e1441d0eab232ecc9fd, 360fe850c18552f23a2bf74d8eda865431f0af38, 611c86295540161d31169110bf2139cf1d85d708, 9487c0d9, 2674b3f7, c5758058, a76fc492, 1cea5c4c, 3383a1eb, e91b366b, e472741a, c7570096, 4562cfd0, fae644b5, 33b595a8, e3f1c2e1, cba60486, e74cae6c, 3e7b6131a00e6c7b4d25c49373d8ba1c1eefe42f, 906f80f301d8034f8efe510018137195f3e4c4eb, 6dad688ec6a51143bfee902618bb88647a81c940, 380c3e720d5caaa1dc2181d70737b9320337f451, be2c1a535dff0e58b1579fe3db5890c7819916ab, 55db468eef3106ca1b02dc846ba12967a28dc238, 56324120f8e08de995e8cc7432ab27f2d0c98635, cb8d696d19c53e63be05ecb1ae273449af60efaf, 52007b760ff10f056ac75c5ed5b7dcdf49f99036, af5af69fd5018795a963a28c1ad367147b4a9bc3, 2524306ca9edd6079c23d205cf01268797288d89, f304ea548faa05f037cd3aa44c65888d96d543df, 33cfa8dfa1323708edf80034c0a98b0620790b6a, 7cdee0c52b6de5d416208971d6eaec6b86caa034, 93f4bf6543f6a9dc519a28f3d6f7824e8f6feedf, 8efb90e5038874c672df120651041176a70b1f2f, f0b1e5735872ba2effcd7c1480756326125f6752, bc9c30856f6272f9a099e52691d4ec4a7582732f, 1a643e24968a06cdeaba23ffc2506471b659c62a, 187a4c6f, 193361ac, 0d1ab835, "29466300", be20005c, 6414d94, 3d1e10bc, ec2f82df, 173e1f65, 68a4add8, e15905e6, f3d86a09, a0c6c2d1]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -2099,4 +2100,4 @@ exact_e16_local_full_unit_identification:
   development_complete: false
   next: "Coordinateexact3test-onlyownership; explicitHigh verifiesauthorityandrepairsfixtures/loaderswithoutweakeningproductionguards; fullpureunitvalidationandtargetedindependentreviewbeforeanyhostedretry."
 exact_e16_three_fixture_closure:
-  INT009_operational_source_PASS: "{\"status\":\"PASS_INT009_ONE_CASE_OPERATIONAL_SOURCE_ONLY\",\"operational_review\":{\"path\":\"_bmad-output/auto-bmad/preparation/story-15-5/resumed-INT009-one-case-operational-review.json\",\"bytes\":13201,\"sha256\":\"17034da6937a556027ceceea2faa817d99af32da9f850e740a14e44263efa201\"},\"Root_actual_review_read\":\"7b6e49/native0 plus metadata correction current read\",\"driver\":{\"path\":\".env.epic15.mail-runtime/story-15-5-preparation/resumed-INT009-root-driver.py\",\"bytes\":15017,\"sha256\":\"5505ebe73b38bb2014c22253ec220e077652bd54ecbefa829f9cf5985056e589\"},\"packet\":{\"path\":\".env.epic15.mail-runtime/story-15-5-preparation/resumed-INT009-root-operational-packet-v2.json\",\"bytes\":1905,\"sha256\":\"b9690c3491f433118a7be4a1fdf85614866bce9fdbd518b6771aec4bad60353a\"},\"source_head\":\"d818c75370fc4a575fdf08d8add97a7294f5a4fc\",\"fixed_checkpoint\":\"3558af82-553d-4e86-8a39-f7de8bcce85e\",\"OP1\":\"Freshness before push/POST closed by actual10P/no effects; initial REVISE immutable\",\"actual_effects\":0,\"runtime_authorized\":false,\"normal_acceptance\":0,\"development_complete\":false,\"release_ready\":false,\"next\":\"Completed finite Coordinator allocation, fresh sourceproof/exclusiveactivation/oneproviderGET, Rootpush1/POST1/boundedpoll, then separate terminal acquisition. Full95/P5delivery/P6automate/P7helper/15.6freshSpec+validation/E8/finalPR remain.\"}"
+  INT009_finite_effects_admission: "{\"admission\":{\"path\":\"_bmad-output/auto-bmad/preparation/story-15-5/root-INT009-one-case-effects-admission.json\",\"bytes\":2201,\"sha256\":\"ee532912bed823791454328a1677e0eee6e436f6b2ca27a31ab04c7252d3ba1d\"},\"status\":\"ADMITTED_PENDING_FRESH_PROOF_PROVIDER_ACTIVATION\",\"actual_effects\":0,\"normal_acceptance\":0}"

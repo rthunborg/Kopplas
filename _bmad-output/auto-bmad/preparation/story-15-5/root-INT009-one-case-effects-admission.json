@@ -1,0 +1,50 @@
+{
+  "schema": "ROOT_INT009_ONE_CASE_FINITE_EFFECTS_ADMISSION_v1",
+  "status": "ADMITTED_PENDING_FRESH_PROOF_PROVIDER_ACTIVATION",
+  "head": "d818c75370fc4a575fdf08d8add97a7294f5a4fc",
+  "branch": "codex/epic-15-int009-debug",
+  "checkpoint_id": "3558af82-553d-4e86-8a39-f7de8bcce85e",
+  "actual_allocation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-resumed-INT009-one-case-effects-allocation.json",
+    "bytes": 4172,
+    "sha256": "2b68b6e896f17a82193b7034af9489e8bfd3a0fb9bad8cc0464a07605627827d"
+  },
+  "actual_turn": "01a16408-8e45-7231-aee7-35f23923f033",
+  "actual_tool": "exec-d57656a9-af6d-4966-8e43-284cb40fc69a",
+  "Root_actual_completed_read": "b9daf6/native0",
+  "operational_review": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/resumed-INT009-one-case-operational-review.json",
+    "bytes": 13201,
+    "sha256": "17034da6937a556027ceceea2faa817d99af32da9f850e740a14e44263efa201"
+  },
+  "driver": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-INT009-root-driver.py",
+    "bytes": 15017,
+    "sha256": "5505ebe73b38bb2014c22253ec220e077652bd54ecbefa829f9cf5985056e589"
+  },
+  "packet": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-INT009-root-operational-packet-v2.json",
+    "bytes": 1905,
+    "sha256": "b9690c3491f433118a7be4a1fdf85614866bce9fdbd518b6771aec4bad60353a"
+  },
+  "slots": {
+    "provider_GET": 1,
+    "GitHub_user_GET": 1,
+    "workflow_GET": 1,
+    "remote_before": 1,
+    "nonforce_debug_push": 1,
+    "remote_readback": 1,
+    "fixed_POST": 1,
+    "run_resolution_GET_max": 6,
+    "sole_run_GET_max": 90,
+    "sole_job_list_GET_max": 90,
+    "artifact_or_log_GET": 0
+  },
+  "freshness": "300s proof/provider/activation; rechecked immediately before push/POST",
+  "unknown": "Consumes slot; no automatic retries/cleanup/deployment",
+  "normal_acceptance": 0,
+  "actual_effects_so_far": 0,
+  "no_deployment": true,
+  "full95_required": "68P1F26unexecuted unchanged",
+  "next": "Fresh bothownedclean/sourceproof and exclusive provider activation; NativeHigh oneGET; actual outer attribution then Root effectsactivation/push/POST/solepoller; terminal separate acquisition."
+}
