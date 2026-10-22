@@ -6966,3 +6966,34 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Implement the bounded MAIN three-file completion/certificate correction only under the completed conditional source allocation and all PLAN-A1..A5 requirements. Demonstrate an effective managed-dispatch admission fence and per-Request ledger, exact same-operation COMMIT certificate, distinct frontend failure/unknown and preserved other-work/custody gates. Then independently review the committed actual fix before separately admitted functional verification. No further generic diagnostic run is needed.
+
+## Report — 2026-10-22T11:00:53Z (checkpoint — context routing prerequisite verified before correction edits)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `27678f9`).
+**Pipeline status:** P5 remains open. The author stopped before edits because the three browser-context paths permit Service Workers, which can bypass the proposed route fence. Independent High validation confirms the prerequisite and a narrow five-path solution: calendar test.use plus the existing attached and phone context options. Global Playwright configuration need not change. Exact shared-file ownership is being reconciled with the retained Documents session before the amendment. No source implementation, new runtime or acceptance is claimed.
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 310h 03m (≈77h 24m AI-run, ≈232h 38m human/idle wait); resumed 211×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Complete narrow Documents ownership reconciliation and exact five-path source amendment, then implement the guarded correction with all PLAN-A1..A5 requirements and the three context Service Worker blocks. Keep global playwright.config.ts outside the write scope. No native effects are allocated; actual committed fix requires distinct High review before functional verification.
