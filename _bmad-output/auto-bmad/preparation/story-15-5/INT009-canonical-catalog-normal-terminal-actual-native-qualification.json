@@ -1,0 +1,1071 @@
+{
+  "schema": "INDEPENDENT_INT009_CANONICAL_CATALOG_NORMAL_ACTUAL_NATIVE_QUALIFICATION_V1",
+  "outcome": "QUALIFIED_NORMAL_FAILURE_68_PASS_1_FAIL_26_ZERO_COVERAGE",
+  "status": "EVIDENCE_QUALIFIED_REQUIRED_NATIVE_GATES_NOT_PASSED",
+  "independent": true,
+  "reviewer": {
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "route": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-terminal-actual-qualification-route.json",
+      "bytes": 597,
+      "sha256": "9cbf3bf861f00f59fd6ee91da4ef012a16431fae321df6151716349351cdc26d"
+    },
+    "role": "Distinct actual evidence reviewer, not reader preparer/operator",
+    "scope": "Existing frozen native evidence qualification only; no fourth broad story review/source diagnosis"
+  },
+  "identity": {
+    "ownership": {
+      "actor": "rthunborg",
+      "attempt": 1,
+      "cause_proof": false,
+      "checkpoint_id": "ec23cc94-24db-4b37-827b-3cba5246222b",
+      "event": "workflow_dispatch",
+      "head": "fd930e7158e7fd9dc89cc7d759667e75803f6e89",
+      "mode": "normal",
+      "original_e2e001": false,
+      "ref": "codex/epic-15-scheduling-time-calendar",
+      "release_validation": false,
+      "repo": "rthunborg/Kopplas",
+      "run_id": 39816833651,
+      "triggering_actor": "rthunborg",
+      "workflow_id": 296219797
+    },
+    "source": "0ed3710929ea09afae49ef7b8d3266975331e827",
+    "pushed_metadata_head": "fd930e7158e7fd9dc89cc7d759667e75803f6e89",
+    "actual9_job_conclusions": {
+      "checkpoint-admission": "success",
+      "dashboard-e2e": "skipped",
+      "db": "failure",
+      "e2e": "success",
+      "fixed-chromium-application-verification": "skipped",
+      "fixed-chromium-paired-probe": "skipped",
+      "native-stream-probe": "skipped",
+      "recovery-storage-loader": "success",
+      "verify": "success"
+    },
+    "DB_failed_step": 11,
+    "Root_poller": "STOPPED",
+    "terminal_conclusion": "failure"
+  },
+  "evidence_refs": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-terminal-execution-receipt.json",
+      "bytes": 10553,
+      "sha256": "a53eebdd14cb27933112c8ec6a24e95c2dd5c3a5ae3c21b5ee4180b121d39192"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-fd930e71-INT009-canonical-catalog-normal-ci-independent/manifest.json",
+      "bytes": 3648,
+      "sha256": "6f3ffdc3ba13501479629b9a46651f23a84eee7642f6077f5e91dee2fe0ba0d5"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-terminal-actual-qualification-route.json",
+      "bytes": 597,
+      "sha256": "9cbf3bf861f00f59fd6ee91da4ef012a16431fae321df6151716349351cdc26d"
+    },
+    {
+      "bytes": 23827,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-actual-terminal-envelope.json",
+      "sha256": "f31671e0456ae9fef5a7f66fd81affac8d53ddd654e7240b9a178a505f2871fa"
+    },
+    {
+      "bytes": 1804,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-terminal-current-source-proof.json",
+      "sha256": "41b78ebeaf9d3eed991c84bce25e0c0ce072c55a042f85d9f115701ae4e8053a"
+    },
+    {
+      "bytes": 2954,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-INT009-canonical-catalog-normal-terminal-max5-allocation.json",
+      "sha256": "dded82dfb088fce1b1a48b67490a44ce41b936ee086ee2c966c7dd6c9b98f037"
+    },
+    {
+      "bytes": 26289,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-terminal-reader-independent-source-review.json",
+      "sha256": "f4f3afc32af11364036d16df234850aae72257bd1383888367caed81afe921c2"
+    },
+    {
+      "bytes": 3387,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-terminal-ownership.json",
+      "sha256": "8ecd810e854e5fa445e35bc691c0de5e57e8c1c12b65c387f647e0d1c7a106bf"
+    },
+    {
+      "bytes": 129335,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-operational-preparation/proposal.json",
+      "sha256": "0085c22b70b84d0041fba8fdda5600f4a43fa15903d2394f9ecbd750b107acc1"
+    },
+    {
+      "bytes": 1732,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-actual-run-binding.json",
+      "sha256": "74a2ab1bf5650c73aafa70c37450f982aa151014e427dbbdeaf58aefccb63ea6"
+    },
+    {
+      "bytes": 652,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-terminal-preparation-route.json",
+      "sha256": "a29186077dfc779e4a3388c207cdffa5aa97723661b420c3d7e1788e59a526d8"
+    },
+    {
+      "bytes": 19693,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-canonical-catalog-actual-source-review.json",
+      "sha256": "b741b45dde5b535862a9af5c96d9496a63e116c222afa3df6ea8dfd73d6960d1"
+    },
+    {
+      "bytes": 18126,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/resumed-main-INT009-capture-actual-source-review.json",
+      "sha256": "b4763afe2c7db66780f973a091dcd9378f3522af2a1ca1b43bd872a28e2c7d55"
+    },
+    {
+      "bytes": 12881,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/resumed-main-fenced-completion-actual-source-review.json",
+      "sha256": "0d956247e8f80611fed17e4c7bfb16c5578b10ab96b6552a8974550d27ab9684"
+    },
+    {
+      "bytes": 24085,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-root-operation/terminal.json",
+      "sha256": "33da582caff461fc376234c27e11797d4616416306dc223986e997f26455975b"
+    },
+    {
+      "bytes": 31634,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-terminal-actual-preparation/source-rows.json",
+      "sha256": "d4b63fef797796b75a38f3a0d1137afbde9b0644fc7be5d60036620e68a42c64"
+    },
+    {
+      "bytes": 9112572,
+      "path": "node_modules/.pnpm/typescript@5.9.3/node_modules/typescript/lib/typescript.js",
+      "sha256": "3ae902c92cc44dace175c0e69e13a4b0899f6983c6121d76b9ab8dd5795e7675"
+    },
+    {
+      "bytes": 3620,
+      "path": "node_modules/.pnpm/typescript@5.9.3/node_modules/typescript/package.json",
+      "sha256": "822ef7ca6452205657b6288b066481ecf508bfbf43455d715cf7d3ec457561e6"
+    },
+    {
+      "bytes": 3679,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-terminal-evidence-activation.json",
+      "sha256": "ec7a35cb23eec361e071eb6d62029f37b711070e3d1145cf68851e3b19670e64"
+    },
+    {
+      "bytes": 50755,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-terminal-actual-preparation/reader.py",
+      "sha256": "6b1532b12316f24e441d7be3f8993c018f98ca7e7bf9537465a984711ca306cb"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-terminal-actual-preparation/proposal.json",
+      "bytes": 120353,
+      "sha256": "1589645c9f286fbc84c89e188042a01fe30d2a1ea23c66369a0cf7f2b20a7c93"
+    },
+    {
+      "bytes": 1649,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-terminal-execution-consumed-journal.json",
+      "sha256": "2199f23ae3730114f202d608f5083745618300a7f93fbc261b0eb08457990fee"
+    }
+  ],
+  "packet": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-fd930e71-INT009-canonical-catalog-normal-ci-independent",
+    "exact_files": 21,
+    "producer_members": 20,
+    "self_excluded_manifest": true,
+    "all20_bytes_hashes_and_exact_set_independently_verified": true,
+    "members": [
+      {
+        "bytes": 2553,
+        "path": "acquisition-summary.json",
+        "sha256": "18cf6676dd256dc804b661209b037013c6229ccc7c000c50ee226807695bfafa"
+      },
+      {
+        "bytes": 1291,
+        "path": "artifact-list-projection.json",
+        "sha256": "4c967b8801ef3e89a73929ef09426ea0a71e6c9599d976c2c494ac21d59c2c58"
+      },
+      {
+        "bytes": 63568,
+        "path": "native-full-integration-projection.json",
+        "sha256": "25bb1d6a469814081d25567decddcf49066f86b89d07d4656068fae239e3f755"
+      },
+      {
+        "bytes": 13905,
+        "path": "native-general-browser-projection.json",
+        "sha256": "f250d7259bd7dfabb24b32c327b04a9273a7ec24a6659f84c3fedd8ef788142f"
+      },
+      {
+        "bytes": 2008,
+        "path": "native-isolated-storage-recovery-projection.json",
+        "sha256": "9aac08a4c92c0d7b65fcd7fdcb5192364d23cea646f9b1a31846c052225edeef"
+      },
+      {
+        "bytes": 7030,
+        "path": "operator-intent.json",
+        "sha256": "dd06965ecc410457446973f4ab7f1633b76ceda483c8ab441330c1d0baf908e1"
+      },
+      {
+        "bytes": 413,
+        "path": "request-01-intent.json",
+        "sha256": "0e9b5dc8df8aba4867a0213d184922edba70f034f416911c36aed03fe3dcff29"
+      },
+      {
+        "bytes": 1134,
+        "path": "request-01-result.json",
+        "sha256": "9608690217fe67bec1cd5012abab87e9b0e67c363fcd84a7aacec5488acf1292"
+      },
+      {
+        "bytes": 432,
+        "path": "request-02-intent.json",
+        "sha256": "f341d4fb117b8138c1b74aa07b51adc9d92ec6cf72e2f2c395d69aa301b637ee"
+      },
+      {
+        "bytes": 1151,
+        "path": "request-02-result.json",
+        "sha256": "d1fa56c5016a20bd7ad3beb82f96b50e59a5e57cef8d4b7c52bf3c649b8f8c2b"
+      },
+      {
+        "bytes": 422,
+        "path": "request-03-intent.json",
+        "sha256": "d7cb7a0fed18a7443bb6bece759eaf4399ae81bf41d952f84651abbfba63b4c6"
+      },
+      {
+        "bytes": 1143,
+        "path": "request-03-result.json",
+        "sha256": "37c86a581faaf8eaf731264eefb3e8f25a12ca2abb32f49c6da0c1e0a27767e0"
+      },
+      {
+        "bytes": 421,
+        "path": "request-04-intent.json",
+        "sha256": "c8fdf4d52d2a12f75f3599ba1928fa1640f7053a6f3494915983385aee6e68e1"
+      },
+      {
+        "bytes": 1141,
+        "path": "request-04-result.json",
+        "sha256": "55a6f5a8f3c3dc42c06d4d004827b41b79f101a7ff5784a0b319da6c354efa2f"
+      },
+      {
+        "bytes": 431,
+        "path": "request-05-intent.json",
+        "sha256": "fb35627b8b07c533db4650354560fe3dfa216826906a40b3c7242f6e7161f71c"
+      },
+      {
+        "bytes": 1148,
+        "path": "request-05-result.json",
+        "sha256": "f343a28d3c71660d0771edf6b7caed5a7d02952b3da6195fad5303a7529e1fb1"
+      },
+      {
+        "bytes": 48552,
+        "path": "run-archive-projection.json",
+        "sha256": "9a74044900aad483a6292778f9eb0884ad62d2845f6fe3ea60088fd9e7cbc554"
+      },
+      {
+        "bytes": 1691,
+        "path": "source-label-projection.json",
+        "sha256": "afa91fd6fbcd438ba409008aa2f40c70edd0b0ec8448063c750251d8c4ede6e8"
+      },
+      {
+        "bytes": 6293,
+        "path": "source-provenance.json",
+        "sha256": "47aca8ad408fa63a67979bce715ffe8e3fd0ab286bab65391a26aadf154395ff"
+      },
+      {
+        "bytes": 14266,
+        "path": "terminal-bindings.json",
+        "sha256": "12defab8cc6dce52d500e48ced78761f35afe3d38eb2d06fc31513cbb42bb985"
+      }
+    ]
+  },
+  "provenance": {
+    "all_operator_activation_input_refs_actual_bytes_hashes_checked": true,
+    "reader_source_review": {
+      "status": "PASS",
+      "independent": true,
+      "findings": [],
+      "qualified_checks_reused_nonadditively": 8,
+      "sha256": "f4f3afc32af11364036d16df234850aae72257bd1383888367caed81afe921c2"
+    },
+    "source_and_catalog": "Root fresh203-source/current-pushed proof and independently reviewed current75 sourceRows/raw/clean/Git/compiler compatibility and430static/19excluded catalog reused unchanged. All actual input files hash-bound; no reviewer catalog extraction or passing-coverage inference from static declarations.",
+    "SQL118": "Prior immutable118 source/Git/canonical vectors and Root raw-preservation proof reused; no full rescan or runtimeACL/restoration proof.",
+    "attribution": "NativeHigh-reported actual outer/child lifecycle, checked against closed receipts/intents/source admission/packet. Root and reviewer did not independently observe child lifecycle. Raw RAM bytes unavailable for independent second digest/extraction; stored API/archive/member digests and capture facts mutually agree under reviewed strict enforcement."
+  },
+  "effects": {
+    "actual_tool": {
+      "chunk_id": "a55b05",
+      "exit_code": 0,
+      "session_id": null,
+      "tool": "tools.exec_command",
+      "wait_calls": [],
+      "wall_time_seconds": 6.8047322999999995
+    },
+    "reader_outer_transport": {
+      "capture_complete": true,
+      "direct_process_settled": true,
+      "elapsed_seconds": 6.679025,
+      "handles_closed": true,
+      "launch_error": false,
+      "native_exit": 0,
+      "readers_joined": true,
+      "streams": {
+        "stderr": {
+          "observed_bytes": 0,
+          "observed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "overflow": false,
+          "physical_EOF": true,
+          "read_error": false,
+          "reader_done": true
+        },
+        "stdout": {
+          "observed_bytes": 732,
+          "observed_sha256": "0cbabdbec538b4b0fe77597acb1fee6221b4419e34cc8123c9db37916fb5190b",
+          "overflow": false,
+          "physical_EOF": true,
+          "read_error": false,
+          "reader_done": true
+        }
+      },
+      "timed_out": false
+    },
+    "argv": [
+      "C:/Users/Rasmus/AppData/Local/Programs/Python/Python314/python.exe",
+      "-I",
+      "-X",
+      "utf8",
+      "-B",
+      "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\story-15-5-preparation\\INT009-canonical-catalog-normal-terminal-actual-preparation\\reader.py",
+      "--execute-once-after-terminal-grant"
+    ],
+    "one_invocation": true,
+    "logical_GETs": 5,
+    "all_slots_closed": true,
+    "retries": 0,
+    "requests": [
+      {
+        "sequence": 1,
+        "label": "normal-run-archive",
+        "argv": [
+          "gh",
+          "api",
+          "--method",
+          "GET",
+          "repos/rthunborg/Kopplas/actions/runs/39816833651/logs"
+        ],
+        "stdout_cap": 33554432,
+        "stderr_cap": 65536,
+        "timeout_seconds": 15,
+        "native_exit": 0,
+        "elapsed_seconds": 2.598,
+        "stdout_bytes": 833363,
+        "stdout_sha256": "4ee7cad4e0fc625cfe41e6b45bd1f72c1993e51cbe6321eb7bfa834a0f341a7b",
+        "stderr_bytes": 0,
+        "intent_persisted_before_spawn": true,
+        "fullEOF_readersJoined_handlesClosed_settled": true
+      },
+      {
+        "sequence": 2,
+        "label": "normal-artifact-list",
+        "argv": [
+          "gh",
+          "api",
+          "--method",
+          "GET",
+          "repos/rthunborg/Kopplas/actions/runs/39816833651/artifacts?per_page=100"
+        ],
+        "stdout_cap": 4194304,
+        "stderr_cap": 65536,
+        "timeout_seconds": 15,
+        "native_exit": 0,
+        "elapsed_seconds": 0.495,
+        "stdout_bytes": 2195,
+        "stdout_sha256": "b4769e71ddb2bc7e5a799c07d6007d4b6917878ca8c9356486fd21cc129d7678",
+        "stderr_bytes": 0,
+        "intent_persisted_before_spawn": true,
+        "fullEOF_readersJoined_handlesClosed_settled": true
+      },
+      {
+        "sequence": 3,
+        "label": "native-full-integration",
+        "argv": [
+          "gh",
+          "api",
+          "--method",
+          "GET",
+          "repos/rthunborg/Kopplas/actions/artifacts/12444580340/zip"
+        ],
+        "stdout_cap": 33554432,
+        "stderr_cap": 65536,
+        "timeout_seconds": 15,
+        "native_exit": 0,
+        "elapsed_seconds": 1.172,
+        "stdout_bytes": 111167,
+        "stdout_sha256": "cdb1c4d1c71ae5d595e90dbbf0e0cc9bfab4bafd2ed455cf0de7e9d77179eac4",
+        "stderr_bytes": 0,
+        "intent_persisted_before_spawn": true,
+        "fullEOF_readersJoined_handlesClosed_settled": true
+      },
+      {
+        "sequence": 4,
+        "label": "native-general-browser",
+        "argv": [
+          "gh",
+          "api",
+          "--method",
+          "GET",
+          "repos/rthunborg/Kopplas/actions/artifacts/12443247243/zip"
+        ],
+        "stdout_cap": 33554432,
+        "stderr_cap": 65536,
+        "timeout_seconds": 15,
+        "native_exit": 0,
+        "elapsed_seconds": 1.131,
+        "stdout_bytes": 11152,
+        "stdout_sha256": "743c717bd6a198ad42fe5d494eb1475dfdb6dffa87f6782f83cf5f914d0bceb9",
+        "stderr_bytes": 0,
+        "intent_persisted_before_spawn": true,
+        "fullEOF_readersJoined_handlesClosed_settled": true
+      },
+      {
+        "sequence": 5,
+        "label": "native-isolated-storage-recovery",
+        "argv": [
+          "gh",
+          "api",
+          "--method",
+          "GET",
+          "repos/rthunborg/Kopplas/actions/artifacts/12442898253/zip"
+        ],
+        "stdout_cap": 33554432,
+        "stderr_cap": 65536,
+        "timeout_seconds": 15,
+        "native_exit": 0,
+        "elapsed_seconds": 1.03,
+        "stdout_bytes": 680,
+        "stdout_sha256": "64248e4a009a5a7d78e5865970f053dfaa9e0920a391edf98ff4afba5536104d",
+        "stderr_bytes": 0,
+        "intent_persisted_before_spawn": true,
+        "fullEOF_readersJoined_handlesClosed_settled": true
+      }
+    ],
+    "intent_once": "Persisted exclusive fsynced operator/request intents before spawn and Root consumed journal, matching exact activation/reader/proposal/allocation/sourceproof and independent PASS. No consumed capability reused.",
+    "bounds": "Qualified unchanged15s/GET,32MiB archive/ZIP,4MiB listing,64KiB stderr,16MiB JSON,128MiB inflate plus ratio/member/raw-name/CRC guards. All5 native0/fullEOF/done/joined/closed/settled; no timeout/overflow/error/fallback.",
+    "archive": {
+      "archive_bytes": 833363,
+      "archive_sha256": "4ee7cad4e0fc625cfe41e6b45bd1f72c1993e51cbe6321eb7bfa834a0f341a7b",
+      "zip_entries": 85,
+      "declared_total_bytes": 4509581,
+      "selected_inflated_bytes": 2249839
+    },
+    "listing": {
+      "artifacts": [
+        {
+          "advertised_bytes": 111167,
+          "digest": "sha256:cdb1c4d1c71ae5d595e90dbbf0e0cc9bfab4bafd2ed455cf0de7e9d77179eac4",
+          "expired": false,
+          "expires_at_null": false,
+          "expires_at_present": true,
+          "id": 12444580340,
+          "name": "native-full-integration",
+          "qualified_for_single_download": true,
+          "run_head_bound": true
+        },
+        {
+          "advertised_bytes": 11152,
+          "digest": "sha256:743c717bd6a198ad42fe5d494eb1475dfdb6dffa87f6782f83cf5f914d0bceb9",
+          "expired": false,
+          "expires_at_null": false,
+          "expires_at_present": true,
+          "id": 12443247243,
+          "name": "native-general-browser",
+          "qualified_for_single_download": true,
+          "run_head_bound": true
+        },
+        {
+          "advertised_bytes": 680,
+          "digest": "sha256:64248e4a009a5a7d78e5865970f053dfaa9e0920a391edf98ff4afba5536104d",
+          "expired": false,
+          "expires_at_null": false,
+          "expires_at_present": true,
+          "id": 12442898253,
+          "name": "native-isolated-storage-recovery",
+          "qualified_for_single_download": true,
+          "run_head_bound": true
+        }
+      ],
+      "listing_bytes": 2195,
+      "listing_sha256": "b4769e71ddb2bc7e5a799c07d6007d4b6917878ca8c9356486fd21cc129d7678",
+      "raw_persisted": false,
+      "total_count": 3
+    },
+    "reports": [
+      {
+        "artifact": {
+          "advertised_bytes": 111167,
+          "digest": "sha256:cdb1c4d1c71ae5d595e90dbbf0e0cc9bfab4bafd2ed455cf0de7e9d77179eac4",
+          "expired": false,
+          "expires_at_null": false,
+          "expires_at_present": true,
+          "id": 12444580340,
+          "name": "native-full-integration",
+          "qualified_for_single_download": true,
+          "run_head_bound": true
+        },
+        "archive_bytes": 111167,
+        "archive_sha256": "cdb1c4d1c71ae5d595e90dbbf0e0cc9bfab4bafd2ed455cf0de7e9d77179eac4",
+        "member": "full-integration.json",
+        "member_bytes": 1029153,
+        "member_sha256": "03541a24713308754d36c5946550ba03d1243a93d729c184c4f2a905d8202766",
+        "zip_entries": 1,
+        "API_digest_verified": true,
+        "advertised_size_equal": true
+      },
+      {
+        "artifact": {
+          "advertised_bytes": 11152,
+          "digest": "sha256:743c717bd6a198ad42fe5d494eb1475dfdb6dffa87f6782f83cf5f914d0bceb9",
+          "expired": false,
+          "expires_at_null": false,
+          "expires_at_present": true,
+          "id": 12443247243,
+          "name": "native-general-browser",
+          "qualified_for_single_download": true,
+          "run_head_bound": true
+        },
+        "archive_bytes": 11152,
+        "archive_sha256": "743c717bd6a198ad42fe5d494eb1475dfdb6dffa87f6782f83cf5f914d0bceb9",
+        "member": "general-browser.json",
+        "member_bytes": 105677,
+        "member_sha256": "c9fa0765f5f766ce4ffc4c3b818eb83d74d03eb9f763c5a191a4c6aaf9c41ffa",
+        "zip_entries": 1,
+        "API_digest_verified": true,
+        "advertised_size_equal": true
+      },
+      {
+        "artifact": {
+          "advertised_bytes": 680,
+          "digest": "sha256:64248e4a009a5a7d78e5865970f053dfaa9e0920a391edf98ff4afba5536104d",
+          "expired": false,
+          "expires_at_null": false,
+          "expires_at_present": true,
+          "id": 12442898253,
+          "name": "native-isolated-storage-recovery",
+          "qualified_for_single_download": true,
+          "run_head_bound": true
+        },
+        "archive_bytes": 680,
+        "archive_sha256": "64248e4a009a5a7d78e5865970f053dfaa9e0920a391edf98ff4afba5536104d",
+        "member": "isolated-storage-recovery.json",
+        "member_bytes": 1161,
+        "member_sha256": "eea9e2cd8433391f0925928bff2d78f6ca7d4e38351b08ce767364a27a8db987",
+        "zip_entries": 1,
+        "API_digest_verified": true,
+        "advertised_size_equal": true
+      }
+    ]
+  },
+  "required95": {
+    "totals": {
+      "expected": 95,
+      "attempted_distinct": 69,
+      "passed_distinct": 68,
+      "failed_distinct": 1,
+      "zero_coverage": 26
+    },
+    "Node30": {
+      "expected": 30,
+      "attempted": 30,
+      "passed": 30,
+      "failed": 0,
+      "missing": [],
+      "passed_ids": [
+        "R1-05-order",
+        "R1-05-positive-1",
+        "R1-05-positive-2",
+        "R1-05-positive-3",
+        "R1-05-positive-4",
+        "R1-05-positive-5",
+        "R1-06",
+        "R1-07",
+        "UNIT-001",
+        "UNIT-002-autumn",
+        "UNIT-002-spring",
+        "UNIT-003",
+        "UNIT-004",
+        "UNIT-005",
+        "UNIT-006",
+        "UNIT-007",
+        "UNIT-008",
+        "UNIT-009",
+        "UNIT-010",
+        "UNIT-011",
+        "UNIT-012",
+        "UNIT-013",
+        "UNIT-014",
+        "UNIT-015",
+        "UNIT-016",
+        "UNIT-017",
+        "UNIT-018",
+        "UNIT-019",
+        "UNIT-020",
+        "UNIT-021"
+      ],
+      "native_pass_line_occurrences": 32,
+      "duplicate_ID_occurrences": {
+        "R1-06": 2,
+        "R1-07": 2
+      },
+      "basis": "Source-qualified successful native TAP leaf records in verify12, deduplicated; summary/job success/static catalog never substitutes."
+    },
+    "DB_RLS51": {
+      "expected": 51,
+      "attempted": 25,
+      "passed": 24,
+      "failed": 1,
+      "pending": 6,
+      "absent": 20,
+      "passed_ids": [
+        "COMP-001",
+        "COMP-002",
+        "COMP-003",
+        "COMP-004",
+        "INT001",
+        "INT002",
+        "INT003",
+        "INT004",
+        "INT005",
+        "INT006",
+        "INT007",
+        "INT008",
+        "RLS001",
+        "RLS002",
+        "RLS003",
+        "RLS004",
+        "RLS005",
+        "RLS006",
+        "RLS007",
+        "RLS008",
+        "RLS009",
+        "RLS010",
+        "RLS011",
+        "RLS012"
+      ],
+      "failed_ids": [
+        "INT009"
+      ],
+      "pending_ids": [
+        "INT010",
+        "INT011",
+        "INT012",
+        "INT013",
+        "INT014",
+        "INT015"
+      ],
+      "absent_ids": [
+        "API001",
+        "API002",
+        "API003",
+        "API004",
+        "API005",
+        "API006",
+        "API007",
+        "API008",
+        "API009",
+        "API010",
+        "API011",
+        "API012",
+        "API013",
+        "API014",
+        "API015",
+        "API016",
+        "API017",
+        "API018",
+        "API019",
+        "API020"
+      ],
+      "group_counts": {
+        "INT": {
+          "expected": 15,
+          "passed": 8,
+          "failed": 1,
+          "pending": 6
+        },
+        "RLS": {
+          "expected": 12,
+          "passed": 12
+        },
+        "COMP": {
+          "expected": 4,
+          "passed": 4
+        },
+        "API": {
+          "expected": 20,
+          "absent": 20
+        }
+      },
+      "basis": "Native file/assertion/ID/status records,31 unique reported=25 attempted+6pending;20 absent API includingAPI019 remain0coverage."
+    },
+    "browser14": {
+      "expected": 14,
+      "attempted_distinct": 14,
+      "passed": 14,
+      "failed": 0,
+      "missing": [],
+      "passed_retry0_ids": [
+        "E2E-001",
+        "E2E-002A",
+        "E2E-002B",
+        "E2E-002C",
+        "E2E-003",
+        "E2E-004",
+        "E2E-005",
+        "E2E-006",
+        "E2E-007",
+        "E2E-008",
+        "E2E-009",
+        "E2E-010-revoke",
+        "E2E-010-rotate",
+        "E2E-011"
+      ],
+      "observed_attempts": 14,
+      "all_attempts_passed_retry0": true,
+      "basis": "Each required native leaf has one actual passed retry0 attempt; job status alone not used."
+    },
+    "nonadditivity": "Current run alone; no cross-run/retry union or Python/recovery/broad totals added to fill missing cases. Prior68P/INT009F/26zero history remains preserved."
+  },
+  "broad_totals_separate": {
+    "Node": {
+      "native_summary": [
+        {
+          "cancelled": 0,
+          "fail": 0,
+          "pass": 3425,
+          "skipped": 0,
+          "suites": 103,
+          "tests": 3425,
+          "todo": 0
+        }
+      ],
+      "log_member": "verify/12_Unit tests (pure logic, node --test).txt",
+      "member_sha256": "47de210e9da052d00c4279e331de1aaa372e19703d4e781f2be8fdc64ea31e94",
+      "story30_is_subset": true
+    },
+    "Python": {
+      "batches": [
+        2,
+        26,
+        10,
+        5
+      ],
+      "total": 43,
+      "OK_markers": 4,
+      "not_Node_or_required95": true
+    },
+    "DB": {
+      "leaf_counts": {
+        "failed": 1,
+        "passed": 2090,
+        "pending": 6,
+        "skipped": 52
+      },
+      "leaf_total": 2149,
+      "native_summary": {
+        "numFailedTestSuites": 2,
+        "numFailedTests": 1,
+        "numPassedTestSuites": 544,
+        "numPassedTests": 2090,
+        "numPendingTestSuites": 0,
+        "numPendingTests": 52,
+        "numTodoTests": 0,
+        "numTotalTestSuites": 546,
+        "numTotalTests": 2149,
+        "success": false
+      },
+      "leaf_file_counts_reconcile": true,
+      "nonstory_failed_cases": [],
+      "caveat": "2149=2090pass+1fail+6pending+52skipped. Preserve emitted numPendingTests52; separate6pending leaf records remain unexecuted. No suite-count-to-case-count inference."
+    },
+    "browser": {
+      "cases": 56,
+      "expected": 55,
+      "flaky": 1,
+      "unexpected": 0,
+      "skipped": 0,
+      "attempts": 57,
+      "attempt_passed": 56,
+      "attempt_failed": 1,
+      "required_story_cases": 14,
+      "other_cases": 42,
+      "other_expected": 41,
+      "other_flaky": 1,
+      "other_attempts": 43,
+      "other_attempt_passed": 42,
+      "other_attempt_failed": 1,
+      "nonstory_caveat": "One other leaf failed retry0 and passed retry1. Source/title identity unavailable in this normal projection; retain flakiness, do not claim all56 retry0-clean."
+    },
+    "recovery": {
+      "native_passed": 1,
+      "file": "tests/integration/ops/recovery-storage-immutability.int.test.ts",
+      "leaf_counts": {
+        "passed": 1
+      },
+      "summary": {
+        "numFailedTestSuites": 0,
+        "numFailedTests": 0,
+        "numPassedTestSuites": 2,
+        "numPassedTests": 1,
+        "numPendingTestSuites": 0,
+        "numPendingTests": 0,
+        "numTodoTests": 0,
+        "numTotalTestSuites": 2,
+        "numTotalTests": 1,
+        "success": true
+      },
+      "outside_required95": true,
+      "scope": "One separately qualified direct recovery/storage integrity report and terminal lane; not globalStorage/ACL/rollback restoration."
+    }
+  },
+  "current_failure": {
+    "declaration": {
+      "duration_ms": 2584.6755139999987,
+      "failure": {
+        "fixed_category_counts": {},
+        "invalid_owned_tuple_headers": 0,
+        "owned_leaf_tuple_count": 10,
+        "owned_leaf_tuples": [
+          {
+            "category": "unknown",
+            "sqlState": null,
+            "stage": "scenario"
+          },
+          {
+            "category": "unknown",
+            "sqlState": null,
+            "stage": "scenario"
+          },
+          {
+            "category": "unknown",
+            "sqlState": null,
+            "stage": "scenario"
+          },
+          {
+            "category": "unknown",
+            "sqlState": null,
+            "stage": "scenario"
+          },
+          {
+            "category": "unknown",
+            "sqlState": null,
+            "stage": "scenario"
+          },
+          {
+            "category": "unknown",
+            "sqlState": null,
+            "stage": "scenario"
+          },
+          {
+            "category": "cycle",
+            "sqlState": null,
+            "stage": "scenario"
+          },
+          {
+            "category": "unknown",
+            "sqlState": null,
+            "stage": "scenario"
+          },
+          {
+            "category": "unknown",
+            "sqlState": null,
+            "stage": "scenario"
+          },
+          {
+            "category": "unknown",
+            "sqlState": null,
+            "stage": "scenario"
+          }
+        ],
+        "raw_failure_details": "NOT_PERSISTED",
+        "typed_assertion_pairs": [],
+        "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+      },
+      "file": "tests/integration/commands/calendar-feed.int.test.ts",
+      "id": "INT009",
+      "status": "failed"
+    },
+    "interpretation": "INT009 failed after8 passed INT001\u2013008. Ten retained generic source-owned tuples:9unknown+1cycle, all stagescenario/sqlStatenull. These redacted graph/parser observations are not ten proved native firstthrows. No assertion pair or native class/frame/SQLSTATE/cause is retained.",
+    "capture_gap": "Unchanged normal reader intentionally omits calendarInt009SetupV1. Current primary publication/operation/guard, original firstthrow/class/frame/SQLSTATE and body reach cannot be qualified from this packet. Missing metadata is not absence of a guard.",
+    "canonicalization_outcome": "Reviewed source0ed was exercised, but INT009 still fails. Current projection does not establish whether the prior proargtypes guard cleared, recurred, or preceded another refusal. Actual received type/value and native cause remainUNKNOWN; no repair success or new patch inferred.",
+    "smallest_constrained_source_inquiry": "Current INT009\u2192existing serial subject-barrier/catalog/cleanup source may be correlated only with a qualified current first-guard fact if separately assigned. Current evidence alone supplies no safe new correction, permission/oracle weakening or diagnostic effect authority."
+  },
+  "C4_and_custody": {
+    "certificates": {
+      "db": {
+        "member": "db/11_Integration, RLS, and Epic 11 pilot performance gates (local stack).txt",
+        "sha256": "b7fa34741e09f164fb93845cf58642f537b86f1ba0e9b14684c8a2328922b1cd",
+        "step_conclusion": "failure",
+        "certificate": {
+          "childExitCodes": [
+            0,
+            1
+          ],
+          "childLaunchState": "not-attempted",
+          "custody_retained": true,
+          "dbClosed": true,
+          "diagnostic_count": 1,
+          "diagnostics": [],
+          "failure_count": 1,
+          "keyDeleted": false,
+          "keyOutcome": "unverified",
+          "launchAttempted": false,
+          "mode": "db",
+          "privacy_controls": [
+            {
+              "canSet": true,
+              "context": "superuser",
+              "matchesRequired": true,
+              "name": "log_min_error_statement"
+            },
+            {
+              "canSet": true,
+              "context": "superuser",
+              "matchesRequired": true,
+              "name": "log_parameter_max_length"
+            },
+            {
+              "canSet": true,
+              "context": "user",
+              "matchesRequired": true,
+              "name": "log_parameter_max_length_on_error"
+            },
+            {
+              "canSet": true,
+              "context": "superuser",
+              "matchesRequired": true,
+              "name": "log_statement"
+            }
+          ],
+          "ready": true,
+          "setupAuthority": {
+            "current_is_setup_admin": true,
+            "current_login": true,
+            "current_superuser": true,
+            "same_identity": true,
+            "session_is_setup_admin": true,
+            "session_login": true,
+            "session_superuser": true
+          }
+        }
+      },
+      "e2e": {
+        "member": "e2e/10_Essential authentication smoke (production app and local Auth).txt",
+        "sha256": "f4ddb1a5913d23655d4b4384c951b4ad4b143afa5b665fce7b60540b7e046181",
+        "step_conclusion": "success",
+        "certificate": {
+          "childExitCodes": [
+            0
+          ],
+          "childLaunchState": "not-attempted",
+          "custody_retained": false,
+          "dbClosed": true,
+          "diagnostic_count": 0,
+          "diagnostics": [],
+          "failure_count": 0,
+          "keyDeleted": true,
+          "keyOutcome": "deleted-confirmed",
+          "launchAttempted": false,
+          "mode": "browser",
+          "privacy_controls": [
+            {
+              "canSet": true,
+              "context": "superuser",
+              "matchesRequired": true,
+              "name": "log_min_error_statement"
+            },
+            {
+              "canSet": true,
+              "context": "superuser",
+              "matchesRequired": true,
+              "name": "log_parameter_max_length"
+            },
+            {
+              "canSet": true,
+              "context": "user",
+              "matchesRequired": true,
+              "name": "log_parameter_max_length_on_error"
+            },
+            {
+              "canSet": true,
+              "context": "superuser",
+              "matchesRequired": true,
+              "name": "log_statement"
+            }
+          ],
+          "ready": false,
+          "setupAuthority": {
+            "current_is_setup_admin": true,
+            "current_login": true,
+            "current_superuser": true,
+            "same_identity": true,
+            "session_is_setup_admin": true,
+            "session_login": true,
+            "session_superuser": true
+          }
+        }
+      }
+    },
+    "DB": "childExitCodes[0,1],dbClosedtrue,keyDeletedfalse/keyOutcomeunverified,custody_retainedtrue,failure_count1. DB outcome remains retained/unverified; closed adapter/process or Stopstack success does not prove rollback/function/ACL/canonical restoration/global key deletion. Preserve historical retained DB custody.",
+    "browser": "childExitCodes[0],dbClosedtrue,keyDeletedtrue/deleted-confirmed,custody_retainedfalse,failure_count0. Qualified only for this browser wrapper-owned key/connection/cleanup predicates; does not repair independent DB custody or establish global backend settlement.",
+    "legacy_defaults": "launchAttemptedfalse/childLaunchStatenot-attempted and browser readyfalse are inherited mode defaults, not no-child/server/browser proof. Actual exit codes and native leaf executions remain facts.",
+    "frontend_backend_limit": "Passing14 bound scenarios supports their actual assertions and reviewed cleanup guards. Reviewed same-attempt COMMIT certificate contracts remain scoped; no newly published per-action certificate/nativeResponse.finished event/global backend completion is inferred from absent labels or wrapper child exit.",
+    "privacy": "All4 required logging controls and setup identity qualification match recorded predicates.",
+    "unproved": [
+      "DB key deletion",
+      "DB rollback/backend settlement",
+      "Function/ACL/canonical restoration across mutable tests",
+      "Global key cleanup outside the scoped browser certificate"
+    ]
+  },
+  "labels_and_attachments": {
+    "source_label_member_sha256": "afa91fd6fbcd438ba409008aa2f40c70edd0b0ec8448063c750251d8c4ede6e8",
+    "passing_cases_missing_labels": "NUDGE004/E2E001/007/010-revoke NULL/UNKNOWN; not negative proof or a requirement to manufacture failure labels. Cause/settlement/slot completeness remainUNKNOWN.",
+    "attachments": {
+      "available_content_qualification": null,
+      "inline": 0,
+      "path_only": 2,
+      "references": 2,
+      "types": {
+        "application/zip": 1,
+        "text/markdown": 1
+      }
+    },
+    "attachment_coverage": "2 path-only references,0acquired content coverage; no extra attachment/log/artifact GET authorized."
+  },
+  "privacy": "Frozen outputs are sanitized fixed paths/IDs/hashes/counts/enums/source-bound cases and capture/lifecycle predicates. Raw log/errors/stacks/body/URLs/tokens/payload/nativeJSON remainedRAM. No raw value dump, re-extraction or invented causal facts.",
+  "verification_and_history": {
+    "read_only_tools": [
+      "7eb821",
+      "78982a",
+      "ee6857",
+      "2554e6",
+      "b622e6",
+      "13298e",
+      "162f48"
+    ],
+    "initial_report_assembly": "First local receipt assembly passed binding/capture/count assertions but exceeded its50677-byte local output-size threshold before opening output. This compact report preserves the verified facts; no input write/effect or test rerun occurred.",
+    "reviewer_new_GET_API_runtime_Git_actions": 0,
+    "reviewer_suite_extractor_controls_reruns": 0,
+    "only_write": "This qualification JSON"
+  },
+  "findings": [],
+  "blockers": [
+    "Actual INT009 failure persists; current first cause unavailable in normal projection.",
+    "26 required cases0coverage:INT010\u2013015 pending andAPI001\u2013020 absent.",
+    "DB custody/key deletion/backend restoration unverified.",
+    "Nonstory browser flaky case retained; identity unavailable in this projection."
+  ],
+  "continuity": {
+    "required95": "68P/1F/26zero",
+    "P5": "OPEN",
+    "review_counter": 3,
+    "fourth_broad_review": false,
+    "normal_acceptance": 0,
+    "development_complete": false,
+    "release_ready": false,
+    "all_acquisition_slots_closed": true
+  },
+  "open_questions": [
+    "Current INT009 first guard/class/staticframe/SQLSTATE/body reach and DB custody remainUNKNOWN."
+  ],
+  "deferred_work": "Any separate current-cause projection/assessment requires its own assignment/allocation. No automatic patch, rerun, new diagnostic framework or acceptance approval follows."
+}

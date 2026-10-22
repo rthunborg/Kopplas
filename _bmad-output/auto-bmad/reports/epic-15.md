@@ -7586,3 +7586,34 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Prepare inert minimal fresh NORMAL operationaldelta and review; full95still68P1F26zero/custodyUNKNOWN. No deployment.
+
+## Report — 2026-10-22T17:36:46Z (working)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `fd930e7`).
+**Pipeline status:** P5 OPEN: Normal39816833651 qualified68P/INT009F/26zero.14storybrowser retry0P; recovery1P separate; one nonstory browser flaky. Exact existing-artifact capture unavailable, currentcauseUNKNOWN; all5+1readslots closed. DBcustodyretained/unverified. No development/release acceptance.
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 316h 38m (≈77h 24m AI-run, ≈239h 14m human/idle wait); resumed 231×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** High read-only current Normal capture-publication/source assessment. No inferred patch/CI rerun; exact next source/effects ownership needed.
