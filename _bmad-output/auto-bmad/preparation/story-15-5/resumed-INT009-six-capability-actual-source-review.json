@@ -1,0 +1,392 @@
+{
+  "schema": "INDEPENDENT_INT009_SIX_CAPABILITY_ACTUAL_SOURCE_REVIEW_v1",
+  "outcome": "PASS_INT009_SIX_TEMPORARY_CAPABILITY_SOURCE_ONLY",
+  "reviewer": {
+    "role": "Independent source/CI privilege/privacy/custody reviewer; distinct from implementation author and Root",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "route": "resumed_INT009_six_capability_actual_source_review",
+    "review_kind": "Narrow consequential latest six-path delta; not a fourth broad story review"
+  },
+  "source": {
+    "worktree": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-int009-debug\\Kopplas",
+    "branch": "codex/epic-15-int009-debug",
+    "commit": "d818c75370fc4a575fdf08d8add97a7294f5a4fc",
+    "parent": "68a4add8f5b559ba49c798868dac28355f9b6f71",
+    "Git_identity_provenance": "Root frozen actual committed-diff and commit proof; reviewer independently matched all six current raw/LF bytes and computed clean blob identities, without Git commands",
+    "bindings": [
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "base_raw_bytes": 48616,
+        "base_raw_sha256": "f7cba16a1a51958d13fc652c83daae8d9ab9455683e17b1175648cb59c958d00",
+        "base_LF_bytes": 47931,
+        "base_LF_sha256": "c1a71aca72edf79553f75b14401dca81a1feec97edf3ddfb05cdaa8fade69bc9",
+        "current_raw_bytes": 49972,
+        "current_raw_sha256": "ae8aa986c3d49161ed3bccbcbb3d746a4c1fd8abd259f0e4c16c6c864e944cc0",
+        "current_LF_bytes": 49972,
+        "current_LF_sha256": "ae8aa986c3d49161ed3bccbcbb3d746a4c1fd8abd259f0e4c16c6c864e944cc0",
+        "computed_clean_blob": "eab9f7a1b170b600209edbe5dc7bf050a3cf66d4",
+        "full_LF_inverse": true
+      },
+      {
+        "path": ".github/workflows/ci.yml",
+        "base_raw_bytes": 77431,
+        "base_raw_sha256": "746357360a23b84f6c6cefb818b134ec75d35fb8a057258c50be3f30a44ad5db",
+        "base_LF_bytes": 75930,
+        "base_LF_sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e",
+        "current_raw_bytes": 78497,
+        "current_raw_sha256": "46597b470ed4997d29a67780b109997031e6dc20e5b8f544f36331dc5363815d",
+        "current_LF_bytes": 78497,
+        "current_LF_sha256": "46597b470ed4997d29a67780b109997031e6dc20e5b8f544f36331dc5363815d",
+        "computed_clean_blob": "6b9f2897a89695fe7a5f63c2cef9d90e6b160dc7",
+        "full_LF_inverse": true
+      },
+      {
+        "path": "tests/support/calendar-feed-ci-contract.ts",
+        "base_raw_bytes": 8135,
+        "base_raw_sha256": "7dfedc0974c40fa0388a783de2d9db5097c14f5c574e1ce0fe7fdf0e30fd7c63",
+        "base_LF_bytes": 8024,
+        "base_LF_sha256": "b8faeb354340ef779b79225dd46a19e60c46ccb16200de49f9e4120020198677",
+        "current_raw_bytes": 13782,
+        "current_raw_sha256": "99fb81590ad3bf232c7cbf73f12c69a9441d6430c6fd813b199ae41bf7b8f652",
+        "current_LF_bytes": 13782,
+        "current_LF_sha256": "99fb81590ad3bf232c7cbf73f12c69a9441d6430c6fd813b199ae41bf7b8f652",
+        "computed_clean_blob": "1f8c961bd4a3b5db4610523144dcaa8d1a35242d",
+        "full_LF_inverse": true
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "base_raw_bytes": 313827,
+        "base_raw_sha256": "38e3fce52e693ddebaf83ba1af547a3ccadce2381eab22441db8e91c0173f225",
+        "base_LF_bytes": 310937,
+        "base_LF_sha256": "f53a3b48f08afca40bef68ae015c8ef9eb436c957594051c7bcb303851795cd2",
+        "current_raw_bytes": 319180,
+        "current_raw_sha256": "89a8dc719b064ec9d240beedea68549da761ebd2d635755e32aed5edff328eec",
+        "current_LF_bytes": 319180,
+        "current_LF_sha256": "89a8dc719b064ec9d240beedea68549da761ebd2d635755e32aed5edff328eec",
+        "computed_clean_blob": "c725a1c77b4d84f4ee6c924c94a50a4fe79de2a7",
+        "full_LF_inverse": true
+      },
+      {
+        "path": "tests/unit/scripts/verify/epic-11-pilot-ci-gate.test.ts",
+        "base_raw_bytes": 3434,
+        "base_raw_sha256": "ae1467b029e73a65978d68220b7501edbb8f0fea197e2dab97e78b1440ed8624",
+        "base_LF_bytes": 3374,
+        "base_LF_sha256": "53c722f11869cdf4492722e996ddda57c64206a837f45320adb40fc7b5e1ffc1",
+        "current_raw_bytes": 3416,
+        "current_raw_sha256": "a29cd53e57b34152ecaec11b34a94db636f39eda79a931a542ecc8fffc9b9fbf",
+        "current_LF_bytes": 3416,
+        "current_LF_sha256": "a29cd53e57b34152ecaec11b34a94db636f39eda79a931a542ecc8fffc9b9fbf",
+        "computed_clean_blob": "46d079e57492d220e85658fc0df4005f7c3a6eab",
+        "full_LF_inverse": true
+      },
+      {
+        "path": "tests/unit/scripts/verify/ci-native-test-reports.test.ts",
+        "base_raw_bytes": 3999,
+        "base_raw_sha256": "34584fe0f110ae936d63025dbfe03c17ba368b1c7f23b82ddb0c402e8f27ab75",
+        "base_LF_bytes": 3946,
+        "base_LF_sha256": "a3e666701c2b1eb6b0b8f81e7fdbf6411b5c0f1093bd2afbf02d5b8a162938d6",
+        "current_raw_bytes": 4602,
+        "current_raw_sha256": "4bced2920f386a254d5b335442c5bbc41d2b7fbc09664c0e864999c9355dab78",
+        "current_LF_bytes": 4602,
+        "current_LF_sha256": "4bced2920f386a254d5b335442c5bbc41d2b7fbc09664c0e864999c9355dab78",
+        "computed_clean_blob": "c690a9d2c244d1788745e194b2ddf41f48e0949e",
+        "full_LF_inverse": true
+      }
+    ]
+  },
+  "input_refs": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-INT009-six-capability-author-result.json",
+      "bytes": 27989,
+      "sha256": "38d6800293c72bb81af411d0815b1a8638c1c088f2aec5e8f92819e7b0e76b6f"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-INT009-six-capability-root-commit-proof.json",
+      "bytes": 5950,
+      "sha256": "aa0e47a42a34d0791f71220874dfbef3ea3b61a5fd7c9096b59cd45c36ae523d"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-INT009-six-capability-committed.diff",
+      "bytes": 44063,
+      "sha256": "9c2e2c984427f78565f1bc2d5b045487fbb4e1358764c4e38d55f2ee833928f2"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-resumed-INT009-six-temporary-source-allocation.json",
+      "bytes": 3402,
+      "sha256": "47fdb3041230764a256afb709ce7f6427d1f8f7a21b0607c1b45eb2d4c5e1fdb"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-INT009-six-capability-source-activation.json",
+      "bytes": 5024,
+      "sha256": "cf76bde709ce469978c30e09dd9470b851bea66125bf8b5a308fa035840e601a"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-main-INT009-debug-initial-root-proof.json",
+      "bytes": 5640,
+      "sha256": "de5c0d3865f4f5793a99e950a19239caba75c5baa9d6bf6720913bcd3ba586e5"
+    }
+  ],
+  "findings": [],
+  "scope_judgment": "Actual six-path delta fits the completed source-only allocation. It introduces one fixed boolean-selected diagnostic capability and its exact contract/test adaptations. Helper, calendar integration test, Spec, all118SQL, dispatcher, configuration and dependencies are outside the change. No additional privilege or generic selector/command channel was identified.",
+  "independent_checks": {
+    "commands": "Bounded Python -I -X utf8 -B stdin scripts: local UTF8 reads, SHA256/clean-blob computation, frozen diff parsing and inverse application only. No evaluated project source, imported application code, test runner or services.",
+    "tool_chunks": [
+      "3a60af",
+      "f9b29f",
+      "cbd0ac",
+      "df5469",
+      "00642e",
+      "fc0e71"
+    ],
+    "complete_committed_patch_inverses": [
+      {
+        "path": ".github/workflows/ci.yml",
+        "hunks": 8,
+        "recovered_LF_bytes": 75930,
+        "recovered_LF_sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e"
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "hunks": 10,
+        "recovered_LF_bytes": 47931,
+        "recovered_LF_sha256": "c1a71aca72edf79553f75b14401dca81a1feec97edf3ddfb05cdaa8fade69bc9"
+      },
+      {
+        "path": "tests/support/calendar-feed-ci-contract.ts",
+        "hunks": 3,
+        "recovered_LF_bytes": 8024,
+        "recovered_LF_sha256": "b8faeb354340ef779b79225dd46a19e60c46ccb16200de49f9e4120020198677"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "hunks": 4,
+        "recovered_LF_bytes": 310937,
+        "recovered_LF_sha256": "f53a3b48f08afca40bef68ae015c8ef9eb436c957594051c7bcb303851795cd2"
+      },
+      {
+        "path": "tests/unit/scripts/verify/ci-native-test-reports.test.ts",
+        "hunks": 1,
+        "recovered_LF_bytes": 3946,
+        "recovered_LF_sha256": "a3e666701c2b1eb6b0b8f81e7fdbf6411b5c0f1093bd2afbf02d5b8a162938d6"
+      },
+      {
+        "path": "tests/unit/scripts/verify/epic-11-pilot-ci-gate.test.ts",
+        "hunks": 1,
+        "recovered_LF_bytes": 3374,
+        "recovered_LF_sha256": "53c722f11869cdf4492722e996ddda57c64206a837f45320adb40fc7b5e1ffc1"
+      }
+    ],
+    "independent_recipe_inverses": "Applied exact wrapper replacement counts (including all8 DB comparisons) and all10 workflow recipes to actual files in memory; full baseline LF hashes recovered.",
+    "actual_contract_inverse": "Parsed the actual originalInt009Inverse table as data. All10 entries occur once; applying it to actual workflow recovers baseline75930/8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e. Its loop precedes the existing causeProofInverse loop. Complete contract inverse recovers prior8024-byte body, retaining the old ordinary-command projection/guard chain.",
+    "preserved_capture_independently_rehashed": [
+      {
+        "path": "tests/integration/commands/calendar-feed.int.test.ts",
+        "raw_bytes": 37507,
+        "raw_sha256": "c703429ee6b1518b89a0ce93c97cbaeb65dee9b2b98ca5f549e8dece131a3d24",
+        "unchanged": true
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "raw_bytes": 139439,
+        "raw_sha256": "c3b599846d0c604192f7cb52e7e2851ec63bc9228145a94b581f50b755f0b454",
+        "unchanged": true
+      },
+      {
+        "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+        "raw_bytes": 251180,
+        "raw_sha256": "b13bd79235829d8359351bf562dafb016f68a3efb512048dd98dd5df9763fd6b",
+        "unchanged": true
+      }
+    ],
+    "SQL_and_remaining_preservation": "Reuse Root actual mechanical118 raw/canonical vectors,7 protected source bindings and frozen lock. No redundant exhaustive SQL scan or unchanged code review.",
+    "reviewer_tests_run": 0,
+    "reviewer_network_API_provider_actions": 0,
+    "reviewer_native_workloads_resources": 0,
+    "reviewer_Git_commands_or_mutations": 0,
+    "all_checked_source_input_bytes_still_match_before_output": true
+  },
+  "assessment": [
+    {
+      "topic": "Admission before privileged work",
+      "status": "PASS",
+      "locations": [
+        "scripts/ci/with-calendar-feed-runtime.mjs:201",
+        ".github/workflows/ci.yml:101",
+        ".github/workflows/ci.yml:116"
+      ],
+      "evidence": "False-default typed workflow boolean. Diagnostic admission fixes repository, actor and triggering actor, exact debug branch/ref, dispatch event and exclusion of cause-proof/release/other diagnostics. The enforced general dispatch guard checks lowercase SHA, expectedSHA equality, UUID, attempt1 and branch ref type before verify/db setup. Wrapper additionally checks fixed job/disposable hosted identity, ports/URLs, expected title/checkpoint/SHA and exact false flags before any resource/key operation. Existing cause-proof mode cannot combine. No missing guard finding: the downstream/general guards are enforced before the privileged caller."
+    },
+    {
+      "topic": "Fixed selection and C4 partition",
+      "status": "PASS",
+      "locations": [
+        "scripts/ci/with-calendar-feed-runtime.mjs:15",
+        "vitest.config.ts:30"
+      ],
+      "evidence": "One fixed11-element child command vector (pnpm plus10 frozen arguments) selects the unchanged calendar-feed integration file and exact INT009 title suffix, maxWorkers1 and fixed reporters/output. No shell interpolation or user-selected argv/file/pattern. Only this new argv omits the unsupported global no-file-parallelism override. Existing NORMAL/browser/DIAG001 declarations are conserved. Unchanged config validates the complete two-project partition and retains isolation, parallel group0, serial group1/maxWorkers1/bail1 and the same six serial files, with the selected file excluded from parallel and included serial once. Effective retry0 is author-proven using the installed retry helper rather than treating an undefined optional config property as literal0."
+    },
+    {
+      "topic": "DB lifecycle, failure and custody",
+      "status": "PASS",
+      "locations": [
+        "scripts/ci/with-calendar-feed-runtime.mjs:561",
+        "scripts/ci/with-calendar-feed-runtime.mjs:631",
+        "scripts/ci/with-calendar-feed-runtime.mjs:663"
+      ],
+      "evidence": "All8 mode===db classifications extend only to original-int009: production server port3195, readiness/runtime branch, stop verification, interrupt handling and unsuccessful DB-runtime custody. New diagnostic child uses the same build/start/ready and fixed child-run branch. Failed build/readiness/child, forced or failed stop and interrupt retain the key via the existing failure/runtime-unverified gate. Launch attempted/started bookkeeping adds no cleanup proof. Existing authority/query/owner/ledger/key-absence checks and close/error ordering are conserved by exact inverse. Child/server closure is not backend rollback, global key deletion or restored ACL proof."
+    },
+    {
+      "topic": "Workflow ordinary behavior and distinct reports",
+      "status": "PASS",
+      "evidence": "Admission/verify/db retained; normal integration+pilot and their native-full-integration uploader are excluded only for this fixed dispatch mode in addition to the existing cause-proof condition. Browser/recovery skip this diagnostic; mutually exclusive optional flags prevent hidden jobs. One distinct native-calendar-feed-original-int009 uploader uses only its fixed native.json, including failure runs with missing-report refusal. No new job/permissions/config/dispatcher channel. Full ordinary workflow inverse and raw consumer report-identity guards remain enforced."
+    },
+    {
+      "topic": "Strict source contract and regression controls",
+      "status": "PASS",
+      "evidence": "Actual wrapper LF hash is pinned to ae8aa986c3d49161ed3bccbcbb3d746a4c1fd8abd259f0e4c16c6c864e944cc0. Both old cause-proof and new exact argv are checked. Every new workflow fragment is accepted exactly once before the old inverse; malformed/duplicate/report-renamed variants are tested to refuse. Six new actual-wrapper harness tests exercise fixed selection, pre-mutation identity/refusal inverses, real DB branch seams and failure/interrupt custody; they do not mirror only declarations. Existing mutation/golden/assertion bodies recover exactly. Only two existing owned unit migration read views add CRLF-to-LF normalization; no SQL body or old assertion changes. Pilot and native-report unit deltas adapt the exact dispatch guard and distinct report assertions only."
+    },
+    {
+      "topic": "Privacy and capture boundary",
+      "status": "PASS",
+      "evidence": "The new mode does not change the previously reviewed INT009/helper metadata producer or its closed bounded capture schema. No raw-message/body/token/native-capture channel is added by the wrapper/contract. Existing native reporter artifact remains separate from public source review; source review contains only safe source hashes/controls. Report availability and exact attempted count still require later actual evidence qualification."
+    }
+  ],
+  "author_evidence_reused_nonadditively": {
+    "attribution": "Author receipt, not independently observed child lifecycle; reviewer inspected source tests and proof records rather than rerunning broad suites.",
+    "affected_final": {
+      "initial": {
+        "chunk_id": "d11d99",
+        "wall_time_seconds": 10.0123736,
+        "session_id": 82007,
+        "original_token_count": 0,
+        "output": ""
+      },
+      "completion": {
+        "chunk_id": "3b8fa6",
+        "wall_time_seconds": 8.5e-06,
+        "exit_code": 0,
+        "original_token_count": 98,
+        "output": "{\"child_code\":0,\"signal\":null,\"capped\":false,\"stdout_bytes\":53232,\"stdout_sha256\":\"e7d4bfbaa6b1f3da937cc1892f99c9836e2e0dcedae259e63efa0f146e8186d8\",\"stderr_bytes\":0,\"stderr_sha256\":\"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\"summary\":[\"# tests 185\",\"# suites 0\",\"# pass 185\",\"# fail 0\",\"# cancelled 0\",\"# skipped 0\",\"# todo 0\",\"# duration_ms 13409.2\"],\"failures\":[]}\n"
+      },
+      "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts; bounded60s outer RAM capture",
+      "counts": {
+        "tests": 185,
+        "pass": 185,
+        "fail": 0,
+        "skip": 0,
+        "cancel": 0
+      },
+      "nonadditive": true
+    },
+    "separate_raw_consumers": {
+      "tool": "f67693",
+      "exit": 0,
+      "tests": 9,
+      "pass": 9,
+      "fail": 0
+    },
+    "types_final": {
+      "start": {
+        "chunk_id": "10f82a",
+        "wall_time_seconds": 10.0129682,
+        "session_id": 49426,
+        "original_token_count": 0,
+        "output": ""
+      },
+      "completion": {
+        "chunk_id": "dfccfe",
+        "wall_time_seconds": 6.3e-06,
+        "exit_code": 0,
+        "original_token_count": 0,
+        "output": ""
+      },
+      "command": "node node_modules/typescript/bin/tsc --noEmit --incremental false"
+    },
+    "lint_final": {
+      "chunk_id": "b7d776",
+      "wall_time_seconds": 2.5577328,
+      "exit_code": 0,
+      "original_token_count": 0,
+      "output": ""
+    },
+    "config_only_final": {
+      "tool": "43c797",
+      "exit": 0,
+      "runner_closed": true,
+      "test_bodies": 0,
+      "scope": "Actual createVitest/config/glob from fixed argv, no global file-parallel override; actual installed getRetryCount source evaluation",
+      "installed_runner": "@vitest/runner4.1.9",
+      "installed_chunk_bytes": 119048,
+      "installed_chunk_sha256": "c10a7a80fca65fb42e27eabf7655c5ce5ecf36e8aaeb1811499efd063df62556",
+      "retry_helper_sha256": "4c58306fce6fe4173d508cb2219f92a07f46dbcc41c84756f5fbc397157f4dd9"
+    },
+    "prior_failures_retained": {
+      "focused": {
+        "tool": "362c85",
+        "exit": 1,
+        "tests": 6,
+        "pass": 5,
+        "fail": 1,
+        "reason": "New declaration assertion used it() instead of actual unchanged test(); corrected only new unit assertion."
+      },
+      "full": {
+        "initial_tool": "d862c6",
+        "wait": "b6b633",
+        "exit": 1,
+        "tests": 185,
+        "pass": 183,
+        "fail": 2,
+        "reason": "Two unchanged migration read views mixed CRLF and LF; every assertion retained, only these owned read views canonicalized."
+      },
+      "localization_outer_vs_child": {
+        "initial_tool": "552e6b",
+        "wait": "94a684",
+        "outer_exit": 0,
+        "child_exit": 1,
+        "tests": 185,
+        "pass": 183,
+        "fail": 2,
+        "stdout_bytes": 60710,
+        "stdout_sha256": "19bc198e8a0be800b188cbfed065ffb1731364f90644a71ddfc5afeb11f326d0"
+      },
+      "config_probe": {
+        "tool": "364acb",
+        "exit": 1,
+        "runner_closed": true,
+        "test_bodies": 0,
+        "reason": "Probe directly asserted optional project.config.retry===0; actual field undefined. Source/config/argv unchanged; final proof uses installed getRetryCount(undefined)."
+      }
+    },
+    "accounting": "Final185 includes inherited179+6 new. Corrected6 focus is a subset,9 raw guards separate, initial183P2F/focus5P1F/config-probe failure remain historical. No arithmetic aggregation or native-workload credit."
+  },
+  "protected_limits": {
+    "SQL_count": 118,
+    "Root_raw_SQL_vector_sha256": "8e94aadad6e2cc6037b2b5138d21a454318e00027df82f75bae95c48f35e4ff6",
+    "Root_LF_SQL_vector_sha256": "44affd4128ee22262017d27d461784a63ded12075c5196b5c7a1316cb356476b",
+    "frozen_lock_LF_sha256": "84c969ae2b2dfdbb0f88afba7890c58f36b2415bb02e255e1a99bf8aaf60450f",
+    "capture_SOURCE_review_reused": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/resumed-main-INT009-capture-actual-source-review.json",
+      "bytes": 18126,
+      "sha256": "b4763afe2c7db66780f973a091dcd9378f3522af2a1ca1b43bd872a28e2c7d55"
+    },
+    "review_counter": 3,
+    "P5": "open",
+    "normal_acceptance": 0,
+    "development_complete": false
+  },
+  "execution_conditions": [
+    "This SOURCE_ONLY verdict grants no push/provider/dispatch/variable/runtime/resource/acquisition/deployment authority. Root must obtain the separately completed finite operational allocation and bind the exact reviewed head, debug ref, UUID, actor/event/attempt and no-deployment preconditions.",
+    "A future fixed diagnostic must qualify actual unique INT009 attempted cardinality P+F=1 and retry0, terminal lifecycle/capture and report provenance. Unmatched pending declarations and aggregate counts confer no coverage.",
+    "Preserve exact full two-project C4 configuration and existing setup/stop/custody gates; do not substitute full NORMAL or a generic selector. Any uncertain transport/effect stops rather than authorizing a blind retry.",
+    "Artifact/log acquisition remains separately unallocated. Original native cause, custody/key deletion and backend restoration remain UNKNOWN until actual qualified evidence; code/config controls do not establish them."
+  ],
+  "open_questions": [
+    "Actual future INT009 result and bounded first-failure metadata remain unobserved; original native first throw remains UNKNOWN."
+  ],
+  "deferred_work": "Separately authorized single-case execution and bounded evidence qualification; full required95 NORMAL gates remain required. No new generic diagnostic family approved.",
+  "blockers": {
+    "source_review": [],
+    "functional": "Existing full95 status remains68pass/1failed/26unexecuted-or-unknown; INT009 and all required missing gates block P5. No acceptance, deployment or completion credit."
+  }
+}
