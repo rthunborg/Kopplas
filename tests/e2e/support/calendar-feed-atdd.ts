@@ -13,25 +13,49 @@ export const CALENDAR_FIXTURE_DATE = "2026-10-12";
 // Pure diagnostic/observation seams: injected checks need no browser or database.
 export type CalendarLabelWorkState="NOT_APPLICABLE"|"NOT_STARTED"|"PENDING"|"SETTLED_SUCCESS"|"SETTLED_FAILURE"|"UNKNOWN";
 export type CalendarLabelWaiterState="NOT_STARTED"|"PENDING"|"MATCHED"|"SETTLED_FAILURE"|"CANCELLED"|"UNKNOWN";
-export type CalendarObservationLabel={set(field:"registration"|"request"|"response"|"readback"|"completion"|"completionPhase"|"observation",state:string):void};
+export type CalendarTerminalAtDrain="NOT_SAMPLED"|"FAILED_OPEN"|"END_WITHOUT_FAILURE_OPEN"|"NO_END_NO_FAILURE_OPEN"|"TARGET_CLOSED"|"UNAVAILABLE"|"UNKNOWN";
+/** Public SDK facts only: no event identity, response completion or backend proof. */
+export function calendarRequestTerminalAtDrain(page:{isClosed():boolean},request?:{failure():unknown;timing():unknown}):CalendarTerminalAtDrain {
+  try {
+    const closed=page.isClosed();if(closed===true)return "TARGET_CLOSED";if(closed!==false)return "UNKNOWN";
+    if(request===undefined)return "UNAVAILABLE";
+    const failure=request.failure();
+    if(failure!==null)return typeof failure==="object"&&!Array.isArray(failure)?"FAILED_OPEN":"UNKNOWN";
+    const timing=request.timing();if(timing===null||typeof timing!=="object")return "UNKNOWN";
+    const descriptor=Object.getOwnPropertyDescriptor(timing,"responseEnd");
+    if(!descriptor||!Object.hasOwn(descriptor,"value"))return "UNKNOWN";
+    const end:unknown=descriptor.value;
+    return typeof end==="number"&&Number.isFinite(end)?end>=0?"END_WITHOUT_FAILURE_OPEN":end===-1?"NO_END_NO_FAILURE_OPEN":"UNKNOWN":"UNKNOWN";
+  }catch{return "UNKNOWN";}
+}
+export type CalendarObservationLabel={bindTerminal?(probe:()=>CalendarTerminalAtDrain):void;set(field:"registration"|"request"|"response"|"readback"|"completion"|"completionPhase"|"observation",state:string):void};
 export const calendarFailureSites=["scenario","sign-in","navigation","warning","create","feed","last-use","rotation","old-new-feed","revoke","observation","settlement","fixture-final","unknown"] as const;
 export type CalendarFailureCase="E2E001"|"E2E007"|"E2E010-revoke";
 export type CalendarFailureLabels=ReturnType<typeof createCalendarFailureLabels>;
-/** Closed v2 namespace only. Two immutable snapshots, published only on final failure. */
+/** Closed v3 namespace only. Two immutable snapshots, published only on final failure. */
 export function createCalendarFailureLabels(sink:(line:string)=>void=line=>console.error(line),caseId:CalendarFailureCase="E2E001") {
-  const records=(["create","rotate","revoke"] as const).map((action,index)=>({action,ordinal:index+1,registration:"NOT_REGISTERED",request:"NOT_STARTED",response:"NOT_STARTED",readback:"NOT_STARTED",completion:"NOT_STARTED",completionPhase:"NOT_STARTED",observation:"NOT_STARTED"}));
+  const records=(["create","rotate","revoke"] as const).map((action,index)=>({action,ordinal:index+1,registration:"NOT_REGISTERED",request:"NOT_STARTED",response:"NOT_STARTED",readback:"NOT_STARTED",completion:"NOT_STARTED",completionPhase:"NOT_STARTED",observation:"NOT_STARTED",terminalAtDrain:"NOT_SAMPLED" as CalendarTerminalAtDrain}));
+  const terminalProbes=new Map<string,()=>CalendarTerminalAtDrain>();
+  let terminalSampled=false;
   const snapshots:Partial<Record<"PRE_CLEANUP"|"FINAL",readonly string[]>>={};
   let site:typeof calendarFailureSites[number]="scenario",scenario="NOT_STARTED",unknown=false,failed=false,published=false;
   const allowed={registration:["NOT_REGISTERED","REGISTERED","REGISTRATION_FAILED","UNKNOWN"],request:["NOT_STARTED","PENDING","MATCHED","SETTLED_FAILURE","CANCELLED","UNKNOWN"],response:["NOT_STARTED","PENDING","MATCHED","SETTLED_FAILURE","CANCELLED","UNKNOWN"],readback:["NOT_APPLICABLE","NOT_STARTED","PENDING","SETTLED_SUCCESS","SETTLED_FAILURE","UNKNOWN"],completion:["NOT_APPLICABLE","NOT_STARTED","PENDING","SETTLED_SUCCESS","SETTLED_FAILURE","UNKNOWN"],completionPhase:["NOT_STARTED","RESPONSE","FINISHED","DONE","UNKNOWN"],observation:["NOT_STARTED","PENDING","SETTLED_SUCCESS","SETTLED_FAILURE","CANCELLED","UNKNOWN"]};
   const validCase=["E2E001","E2E007","E2E010-revoke"].includes(caseId),safeCase=validCase?caseId:"E2E001";
-  const unknownRow=(snapshot:"PRE_CLEANUP"|"FINAL")=>Object.freeze([`calendar-source-label-v2 case=${safeCase} snapshot=${snapshot} state=UNKNOWN`]);
+  const unknownRow=(snapshot:"PRE_CLEANUP"|"FINAL")=>Object.freeze([`calendar-source-label-v3 case=${safeCase} snapshot=${snapshot} state=UNKNOWN`]);
   return {
     at(next:typeof calendarFailureSites[number]){try{if(calendarFailureSites.includes(next))site=next;else unknown=true;}catch{unknown=true;}},
     scenario(state:"NOT_STARTED"|"PENDING"|"SETTLED_SUCCESS"|"SETTLED_FAILURE"){try{if(["NOT_STARTED","PENDING","SETTLED_SUCCESS","SETTLED_FAILURE"].includes(state))scenario=state;else unknown=true;}catch{unknown=true;}},
     register(action:"create"|"rotate"|"revoke"):CalendarObservationLabel|undefined {
       try{const record=records.find(record=>record.action===action);if(!record||record.registration!=="NOT_REGISTERED"){unknown=true;return;}record.registration="REGISTERED";
-        return{set(field,state){try{if(typeof field==="string"&&typeof state==="string"&&Object.hasOwn(allowed,field)&&allowed[field].includes(state))record[field]=state;else unknown=true;}catch{unknown=true;}}};
+        return{bindTerminal(probe){try{if(terminalSampled)return;if(typeof probe!=="function"||terminalProbes.has(action)){terminalProbes.set(action,()=>"UNKNOWN");return;}terminalProbes.set(action,probe);}catch{/* diagnostic only */}},set(field,state){try{if(typeof field==="string"&&typeof state==="string"&&Object.hasOwn(allowed,field)&&allowed[field].includes(state))record[field]=state;else unknown=true;}catch{unknown=true;}}};
       }catch{unknown=true;}
+    },
+    sampleAtDrain(){
+      if(terminalSampled)return;terminalSampled=true;
+      for(const record of records){
+        try{const probe=terminalProbes.get(record.action),value=probe?probe():"UNAVAILABLE";record.terminalAtDrain=["FAILED_OPEN","END_WITHOUT_FAILURE_OPEN","NO_END_NO_FAILURE_OPEN","TARGET_CLOSED","UNAVAILABLE","UNKNOWN"].includes(value)?value:"UNKNOWN";}catch{record.terminalAtDrain="UNKNOWN";}
+      }
+      terminalProbes.clear();
     },
     failure(){failed=true;},
     capture(snapshot:"PRE_CLEANUP"|"FINAL"){
@@ -39,7 +63,7 @@ export function createCalendarFailureLabels(sink:(line:string)=>void=line=>conso
         if(snapshot!=="PRE_CLEANUP"&&snapshot!=="FINAL"){unknown=true;snapshots.FINAL=unknownRow("FINAL");return;}
         if(snapshots[snapshot]||unknown||!validCase){snapshots[snapshot]=unknownRow(snapshot);return;}
         const registered=records.filter(record=>record.registration!=="NOT_REGISTERED"),selected=registered.length?registered:[records[0]!];
-        const lines=selected.map(record=>`calendar-source-label-v2 case=${safeCase} snapshot=${snapshot} site=${site} scenario=${scenario} action=${registered.length?record.action:"none"} ordinal=${registered.length?record.ordinal:0} registration=${record.registration} request=${record.request} response=${record.response} readback=${record.readback} completion=${record.completion} completionPhase=${record.completionPhase} observation=${record.observation}`);
+        const lines=selected.map(record=>`calendar-source-label-v3 case=${safeCase} snapshot=${snapshot} site=${site} scenario=${scenario} action=${registered.length?record.action:"none"} ordinal=${registered.length?record.ordinal:0} registration=${record.registration} request=${record.request} response=${record.response} readback=${record.readback} completion=${record.completion} completionPhase=${record.completionPhase} observation=${record.observation} terminalAtDrain=${record.terminalAtDrain}`);
         snapshots[snapshot]=lines.length>3||lines.some(line=>line.length>512||!/^[\x20-\x7e]+$/.test(line))?unknownRow(snapshot):Object.freeze(lines);
       }catch{snapshots[snapshot==="PRE_CLEANUP"?"PRE_CLEANUP":"FINAL"]=unknownRow(snapshot==="PRE_CLEANUP"?"PRE_CLEANUP":"FINAL");}
     },
@@ -600,6 +624,7 @@ export async function withCalendarBrowserFixture(
               request: () => calendarEventWaiter<Request>({ subscribe: listener => { sourcePage.on("request", listener); }, unsubscribe: listener => { sourcePage.off("request", listener); }, predicate: request => actionInput(request)?.action === action, stage: "action-request", timeoutMs: 30_000,label:state=>label?.set("request",state) }),
               readback: async (request, signal) => ({ committed: true, snapshot: await committedAttempt(actionInput(request)!, signal) }),
               completion: async request => {
+                calendarLabel(()=>label?.bindTerminal?.(()=>calendarRequestTerminalAtDrain(sourcePage,request)));
                 calendarLabel(()=>label?.set("completionPhase","RESPONSE"));
                 const response = await request.response();
                 if(response!==null){
@@ -724,6 +749,7 @@ export async function withCalendarBrowserFixture(
         for (const fault of activeFaults) { try { await fault.release(); } catch (error) { releasesVerified = false; errors.push(calendarBrowserDiagnostic("cleanup-fault-release", error)); } }
         try { const settlement = await observations.cancelAndSettle(); errors.push(...settlement.errors); cleanupAllowed = releasesVerified && settlement.settled && transportVerified; }
         catch (error) { cleanupAllowed = false; errors.push(calendarBrowserDiagnostic("cleanup-lifecycle", error)); }
+        calendarLabel(()=>labels?.sampleAtDrain());
         for (const fault of activeFaults) { try { await fault.dispose(); } catch (error) { cleanupAllowed = false; errors.push(calendarBrowserDiagnostic("cleanup-fault-dispose", error)); } }
         cleanupAllowed &&= transportVerified;
         if (!cleanupAllowed) errors.push(calendarBrowserDiagnostic("custody-retained", { name: "CalendarUnverified" }));

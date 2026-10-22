@@ -2557,14 +2557,14 @@ test("VITEST-META healthy default budget and recording failures cannot change or
 });
 
 
-function actualBrowserCompletion(label:{set(field:string,state:string):void}){
+function actualBrowserCompletion(label:{set(field:string,state:string):void},terminal?:unknown,page:unknown={isClosed:()=>false}){
   const source=readFileSync(new URL("../../../e2e/support/calendar-feed-atdd.ts",import.meta.url),"utf8"),start=source.indexOf("completion: async request => {"),end=source.indexOf("\n              },",start);assert.ok(start>0&&end>start);
   const expression=source.slice(start+"completion: ".length,end)+"\n}";
   const strip=(nodeModule as unknown as {stripTypeScriptTypes(source:string):string}).stripTypeScriptTypes;
-  return new Function("calendarLabel","label","return ("+strip(expression)+");")((run:()=>void)=>{try{run();}catch{/* same no-throw seam */}},label) as (request:{response():Promise<{finished():Promise<unknown>}|null>})=>Promise<boolean>;
+  return new Function("calendarLabel","label","calendarRequestTerminalAtDrain","sourcePage","return ("+strip(expression)+");")((run:()=>void)=>{try{run();}catch{/* same no-throw seam */}},label,terminal,page) as (request:{response():Promise<{finished():Promise<unknown>}|null>})=>Promise<boolean>;
 }
 
-test("browser v2 actual completion boundaries distinguish both pending awaits failures null and done with unchanged receiver and calls",async()=>{
+test("browser v3 actual completion boundaries distinguish both pending awaits failures null and done with unchanged receiver and calls",async()=>{
   const seams=await actualBrowserSeams();
   for(const mode of ["response-pending","response-failure","finished-pending","finished-failure","null","done","finished-error"] as const){
     const lines:string[]=[],labels=seams.createCalendarFailureLabels(line=>lines.push(line)),label=labels.register("create")!;let calls=0,ends=0,releaseResponse!:(value:{finished():Promise<unknown>})=>void,releaseFinished!:(value:null)=>void;
@@ -2581,7 +2581,7 @@ test("browser v2 actual completion boundaries distinguish both pending awaits fa
   }
 });
 
-test("browser v2 immutable pre-cleanup and final snapshots preserve mixed action and scenario states without early output",async()=>{
+test("browser v3 immutable pre-cleanup and final snapshots preserve mixed action and scenario states without early output",async()=>{
   const x=await labelledBrowserControl(),first=x.observe("create");x.match("create");await first;
   let release!:(value:boolean)=>void;const second=x.observe("rotate",{completion:()=>new Promise<boolean>(yes=>{release=yes;})});x.match("rotate");await second;
   x.labels.scenario("PENDING");x.labels.capture("PRE_CLEANUP");assert.equal(x.lines.length,0);release(false);await x.registry.cancelAndSettle();x.labels.scenario("SETTLED_FAILURE");x.labels.capture("FINAL");x.labels.failure();x.labels.publish();
@@ -2590,20 +2590,20 @@ test("browser v2 immutable pre-cleanup and final snapshots preserve mixed action
   assert.ok(!x.lines.some(line=>line.includes("action=revoke")));assert.ok(x.lines.some(line=>line.includes("action=create")&&line.includes("observation=SETTLED_SUCCESS")));
 });
 
-test("browser v2 closed producer rows match finite parser contract and exact 28 browser plus16 nudge cap without extra unknown rows",async()=>{
+test("browser v3 closed producer rows match finite parser contract and exact 28 browser plus16 nudge cap without extra unknown rows",async()=>{
   const seams=await actualBrowserSeams(),all:string[]=[];
   const cases=[["E2E001",["create","rotate","revoke"]],["E2E007",["create","revoke"]],["E2E010-revoke",["create","revoke"]]] as const;
   for(const [name,actions] of cases)for(let attempt=0;attempt<2;attempt++){
     const lines:string[]=[],labels=seams.createCalendarFailureLabels(line=>lines.push(line),name);for(const action of actions)labels.register(action);labels.scenario("SETTLED_SUCCESS");labels.capture("PRE_CLEANUP");labels.capture("FINAL");labels.failure();labels.publish();labels.publish();
     assert.equal(lines.length,actions.length*2);assert.ok(lines.length<=16);all.push(...lines);
-    for(const line of lines){assert.ok(/^[\x20-\x7e]{1,512}$/.test(line));const fields=Object.fromEntries(line.split(" ").slice(1).map(part=>part.split("=")));assert.deepEqual(Object.keys(fields),["case","snapshot","site","scenario","action","ordinal","registration","request","response","readback","completion","completionPhase","observation"]);assert.equal(fields.case,name);assert.ok(["PRE_CLEANUP","FINAL"].includes(fields.snapshot!));assert.equal(fields.scenario,"SETTLED_SUCCESS");}
+    for(const line of lines){assert.ok(/^[\x20-\x7e]{1,512}$/.test(line));const fields=Object.fromEntries(line.split(" ").slice(1).map(part=>part.split("=")));assert.deepEqual(Object.keys(fields),["case","snapshot","site","scenario","action","ordinal","registration","request","response","readback","completion","completionPhase","observation","terminalAtDrain"]);assert.equal(fields.case,name);assert.ok(["PRE_CLEANUP","FINAL"].includes(fields.snapshot!));assert.equal(fields.scenario,"SETTLED_SUCCESS");}
   }
   assert.equal(all.length,28);assert.equal(all.length+16,44);assert.ok(all.length+16<48);
   const none:string[]=[],empty=seams.createCalendarFailureLabels(line=>none.push(line),"E2E007");empty.capture("PRE_CLEANUP");empty.capture("FINAL");empty.failure();empty.publish();assert.equal(none.length,2);assert.ok(none.every(line=>line.includes("action=none ordinal=0")));
   const bad:string[]=[],labels=seams.createCalendarFailureLabels(line=>bad.push(line));labels.register("create");labels.capture("PRE_CLEANUP");labels.capture("PRE_CLEANUP");labels.register("create");labels.capture("FINAL");labels.failure();labels.publish();assert.equal(bad.length,2);assert.ok(bad.every(line=>line.endsWith("state=UNKNOWN")));
 });
 
-test("browser v2 malformed fields and throwing sink never touch payload getters change lifecycle identity or emit on healthy completion",async()=>{
+test("browser v3 malformed fields and throwing sink never touch payload getters change lifecycle identity or emit on healthy completion",async()=>{
   const seams=await actualBrowserSeams();let touched=0;const hostile=new Proxy({}, {get(){touched++;throw Error("PRIVATE");},getOwnPropertyDescriptor(){touched++;throw Error("PRIVATE");}});
   const lines:string[]=[],labels=seams.createCalendarFailureLabels(line=>lines.push(line)),record=labels.register("create")!;
   record.set("readback",hostile as never);labels.capture("PRE_CLEANUP");labels.capture("FINAL");labels.failure();labels.publish();assert.equal(touched,0);assert.equal(lines.length,2);assert.ok(lines.every(line=>line.endsWith("state=UNKNOWN")));
@@ -2612,7 +2612,7 @@ test("browser v2 malformed fields and throwing sink never touch payload getters 
 });
 
 
-test("browser v2 actual enclosing selected case catches preserve primary or cleanup override identity with fixed output and rotate remains silent",async()=>{
+test("browser v3 actual enclosing selected case catches preserve primary or cleanup override identity with fixed output and rotate remains silent",async()=>{
   const ts=await import("typescript"),seams=await actualBrowserSeams(),source=readFileSync(new URL("../../../e2e/calendar-feed.e2e.spec.ts",import.meta.url),"utf8"),ast=ts.createSourceFile("calendar-feed.e2e.spec.ts",source,ts.ScriptTarget.Latest,true),callbacks=new Map<string,string>();
   const visit=(node:import("typescript").Node)=>{if(ts.isCallExpression(node)&&ts.isIdentifier(node.expression)&&node.expression.text==="test"&&node.arguments.length===2){const title=node.arguments[0]!.getText(ast);for(const id of ["001","007","010-"])if(title.includes("15.5-E2E-"+id)){const callback=node.arguments[1]!;callbacks.set(id,callback.getText(ast));}}ts.forEachChild(node,visit);};visit(ast);assert.equal(callbacks.size,3);
   const strip=(nodeModule as unknown as {stripTypeScriptTypes(source:string):string}).stripTypeScriptTypes;
@@ -2625,6 +2625,60 @@ test("browser v2 actual enclosing selected case catches preserve primary or clea
     const thrown=await run({resourcePage:page},{project:{use:{baseURL:"fixed"}}}).catch(error=>error);
     if(mode==="cleanup")assert.equal(thrown,cleanup);else if(mode!=="early")assert.equal(thrown,primary);else assert.match(thrown.message,/requires the owned browser/);
     assert.equal(fixtures,mode==="early"?0:1);if(id==="007"&&mode!=="early")assert.ok(events.indexOf("close")>events.indexOf("fixture"));
-    if(mode==="rotate")assert.equal(lines.length,0);else{assert.equal(lines.length,2);assert.ok(lines.every(line=>line.startsWith("calendar-source-label-v2 ")&&!line.includes("PRIVATE")));assert.ok(lines.some(line=>line.includes("snapshot=FINAL")));}
+    if(mode==="rotate")assert.equal(lines.length,0);else{assert.equal(lines.length,2);assert.ok(lines.every(line=>line.startsWith("calendar-source-label-v3 ")&&!line.includes("PRIVATE")));assert.ok(lines.some(line=>line.includes("snapshot=FINAL")));}
   }
+});
+
+
+test("browser v3 public terminal facts prioritize page and failure presence without reading error payload",async()=>{
+  const {calendarRequestTerminalAtDrain:sample}=await actualBrowserSeams();let failures=0,timings=0;
+  const request={failure(){failures++;return null;},timing(){timings++;return {responseEnd:1};}};
+  assert.equal(sample({isClosed:()=>true},request),"TARGET_CLOSED");assert.equal(failures,0);assert.equal(timings,0);
+  assert.equal(sample({isClosed:()=>false}),"UNAVAILABLE");
+  const hostile=Object.defineProperty({},"errorText",{get(){throw Error("PRIVATE");}});
+  for(const failure of [{errorText:""},hostile,{}])assert.equal(sample({isClosed:()=>false},{failure:()=>failure,timing(){throw Error("must not read");}}),"FAILED_OPEN");
+  for(const failure of [undefined,"PRIVATE",false,[],1])assert.equal(sample({isClosed:()=>false},{failure:()=>failure,timing:()=>({responseEnd:1})}),"UNKNOWN");
+  assert.equal(sample({isClosed(){throw Error("PRIVATE");}},request),"UNKNOWN");
+  assert.equal(sample({isClosed:()=>0} as never,request),"UNKNOWN");
+  assert.equal(sample({isClosed:()=>false},{failure(){throw Error("PRIVATE");},timing:()=>({responseEnd:1})}),"UNKNOWN");
+});
+
+test("browser v3 timing accepts only an own finite data responseEnd and preserves empty failure ambiguity",async()=>{
+  const {calendarRequestTerminalAtDrain:sample}=await actualBrowserSeams();
+  for(const [timing,expected] of [[{responseEnd:-1},"NO_END_NO_FAILURE_OPEN"],[{responseEnd:0},"END_WITHOUT_FAILURE_OPEN"],[{responseEnd:9},"END_WITHOUT_FAILURE_OPEN"],[{responseEnd:-2},"UNKNOWN"],[{responseEnd:Infinity},"UNKNOWN"],[{responseEnd:NaN},"UNKNOWN"],[{responseEnd:"PRIVATE"},"UNKNOWN"],[null,"UNKNOWN"],[Object.create({responseEnd:1}),"UNKNOWN"],[Object.defineProperty({},"responseEnd",{get(){throw Error("PRIVATE");}}),"UNKNOWN"],[new Proxy({},{getOwnPropertyDescriptor(){throw Error("PRIVATE");}}),"UNKNOWN"]] as const){
+    assert.equal(sample({isClosed:()=>false},{failure:()=>null,timing:()=>timing}),expected);
+  }
+  assert.equal(sample({isClosed:()=>false},{failure:()=>null,timing(){throw Error("PRIVATE");}}),"UNKNOWN");
+  // SDK maps an empty failure text to null; timing alone cannot identify the finished event.
+  assert.equal(sample({isClosed:()=>false},{failure:()=>null,timing:()=>({responseEnd:1})}),"END_WITHOUT_FAILURE_OPEN");
+});
+
+test("browser v3 actual matched request is sampled once after drain and remains immutable after target closure",async()=>{
+  const seams=await actualBrowserSeams(),lines:string[]=[],labels=seams.createCalendarFailureLabels(line=>lines.push(line));
+  const label=labels.register("create")!;let closed=false,failureCalls=0,timingCalls=0,responseCalls=0,finishedCalls=0;
+  const request={failure(){assert.equal(this,request);failureCalls++;return null;},timing(){assert.equal(this,request);timingCalls++;return {responseEnd:7};},async response(){assert.equal(this,request);responseCalls++;return {async finished(){finishedCalls++;return null;}};}};
+  const completion=actualBrowserCompletion(label,seams.calendarRequestTerminalAtDrain,{isClosed:()=>closed});
+  assert.equal(await completion(request),true);assert.equal(failureCalls,0);
+  labels.capture("PRE_CLEANUP");labels.sampleAtDrain();closed=true;labels.sampleAtDrain();labels.capture("FINAL");labels.failure();labels.publish();
+  assert.equal(failureCalls,1);assert.equal(timingCalls,1);assert.equal(responseCalls,1);assert.equal(finishedCalls,1);
+  assert.ok(lines[0]!.endsWith("terminalAtDrain=NOT_SAMPLED"));assert.ok(lines[1]!.endsWith("terminalAtDrain=END_WITHOUT_FAILURE_OPEN"));
+  label.bindTerminal?.(()=>{throw Error("late PRIVATE");});labels.sampleAtDrain();assert.equal(failureCalls,1);
+});
+
+test("browser v3 unavailable omitted malformed and throwing samples preserve original errors and fixed row caps",async()=>{
+  const seams=await actualBrowserSeams();
+  for(const mode of ["missing","omitted","throwing","malformed","duplicate"] as const){
+    const lines:string[]=[],labels=seams.createCalendarFailureLabels(line=>lines.push(line)),label=labels.register("create")!;
+    if(mode==="throwing")label.bindTerminal?.(()=>{throw Error("PRIVATE");});
+    if(mode==="malformed")label.bindTerminal?.(()=>"PRIVATE" as never);
+    if(mode==="duplicate"){label.bindTerminal?.(()=>"FAILED_OPEN");label.bindTerminal?.(()=>"END_WITHOUT_FAILURE_OPEN");}
+    const cause={},original=Object.assign(Error("PRIVATE"),{cause});let caught:unknown;
+    try{try{throw original;}finally{labels.capture("PRE_CLEANUP");if(mode!=="omitted")labels.sampleAtDrain();}}catch(error){caught=error;}
+    labels.capture("FINAL");labels.failure();labels.publish();assert.equal(caught,original);assert.equal((caught as Error).cause,cause);
+    const expected=mode==="omitted"?"NOT_SAMPLED":mode==="missing"?"UNAVAILABLE":"UNKNOWN";
+    assert.ok(lines[1]!.endsWith("terminalAtDrain="+expected));assert.equal(lines.length,2);assert.ok(lines.every(line=>/^[\x20-\x7e]{1,512}$/.test(line)&&!line.includes("PRIVATE")));
+  }
+  const source=readFileSync(new URL("../../../e2e/support/calendar-feed-atdd.ts",import.meta.url),"utf8");
+  const drain=source.indexOf("const settlement = await observations.cancelAndSettle()"),caught=source.indexOf('catch (error) { cleanupAllowed = false;',drain),sample=source.indexOf('calendarLabel(()=>labels?.sampleAtDrain());',caught),dispose=source.indexOf('await fault.dispose()',sample);
+  assert.ok(drain>0&&caught>drain&&sample>caught&&dispose>sample);assert.equal(source.split('labels?.sampleAtDrain()').length-1,1);
 });
