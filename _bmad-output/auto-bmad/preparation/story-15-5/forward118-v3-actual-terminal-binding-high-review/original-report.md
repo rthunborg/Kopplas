@@ -1,0 +1,17 @@
+# Forward118 v3 actual terminal: finite binding audit
+
+**PASS_PRE_EFFECT_FORWARD118_V3_TERMINAL_BINDING_SOURCE_ONLY**. No consequential identity or compatibility defect found. This is data-binding review only, with no producer/parser re-review or control execution.
+
+The exact four prepared files and actual Root terminal were bound before evaluation. Five literal substitutions set run39710514719, head193361acf6cc6b0d8275bff41470f647e2404b34, checkpointfc6f206d-b3ac-4393-884e-49d98b922a30 and the new activation/output names. Reversing only those substitutions restores the complete reviewed50719-byte operator, SHA256bdd99f4e7db387175d68c82b1a6122a3c000a8c54401f58966b70507bc6dbfe5. Only validate_admission identity text changes;35 definitions and16 helper hashes remain exact. Source7238c589bf562b4a578f6ddc1a991fac3e489988 and lowercase normal ownership/activation guards are unchanged.
+
+The actual typed ownership tuple matches repo rthunborg/Kopplas, actor/triggering_actor rthunborg, workflow296219797, workflow_dispatch, the exact branch/head/checkpoint title and attempt1. All nine jobs are completed: admission/verify/recovery success, DB/E2E failure, four optional jobs skipped. Step-derived archive-member keys are unique. This binds locally retained Root terminal observations; no status endpoint was queried by this reviewer.
+
+The reviewed206-row source basis and complete20-catalog data (410 literal declarations/19 dynamic exclusions) are unchanged. The prior v3 consumer/producer proofs, newly evaluated27213/32768 assembler and prior9/13 controls are reused without rerun or additive credit. No new native counts, labels, discriminator, artifact availability, cause or custody facts follow from this binding.
+
+Root's fresh523-byte source proof SHA256cda74728d284eb411b5bdbe3a9f49dd595848f2c69cbe260c57979037d5f1316 is independently hash-bound and matches source/current/pushed identities. It reports206 raw/clean checks,618 source/current/pushed Git object checks,118 migrations and tracked clean. Those mechanical checks remain Root-attributed, not reviewer Git execution. The older467-byte post-push proof remains immutable historical input.
+
+New activation and output paths are absent. Enrolled Python314 -I -X utf8 -B argv is correct but was not launched. Existing strict admission still requires independent review, exact terminal/operator/bindings, actual acquisition allocation/current source proof, pushed equality and exclusive fresh output; max5 logical GETs/no retry remain unchanged. The endpoint envelope is archive1/list1/eligibleZIP<=3 with the existing caps/privacy/EOF/readers/settlement and durable intent logic. No consumed historical grant/output is adopted.
+
+The existing completed allocation covers push/dispatch only. A separately completed acquisition allocation and exclusive Root activation remain required; the fresh source proof and this PASS grant no effects authority. Actual acquisition counts/discriminator/causes/custody remain UNKNOWN. Successful functional gates need no manufactured failure labels; an ambiguous future browser fact authorizes neither automatic fix/rerun nor a new generic diagnostic family.
+
+No controls, imports of the operator, main/transport/API, Git, runtime/resource, source/Spec/state or foreign writes occurred. Only these four audit artifacts were created. Current failed DB/E2E job conclusions remain failed; acceptance0, in-review, counter3 and required95 remain. No development-completion or native coverage credit.

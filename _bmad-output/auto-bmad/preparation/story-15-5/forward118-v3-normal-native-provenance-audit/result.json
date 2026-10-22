@@ -1,0 +1,36 @@
+{
+  "Outcome": "QUALIFIED_FAILED_FORWARD118_V3_NORMAL_EVIDENCE",
+  "Files changed": [
+    "original-report.md",
+    "original-attestation.json",
+    "result.json",
+    "manifest.json"
+  ],
+  "Status": {
+    "packet23_hashes22": true,
+    "input_refs": 29,
+    "Native_GETs": 5,
+    "audit_GETs": 0,
+    "Node": "3405P/103suites/30storydistinct",
+    "Python_separate": 43,
+    "DB": "2068P1F52skip;16storyP35missing",
+    "browser": "54expected1flaky1unexpected;story12expected009flaky001unexpected;16attempts13P3F",
+    "recovery_separate": 1,
+    "v3_rows": 12,
+    "categories": "6NOT_SAMPLED/4END_WITHOUT_FAILURE_OPEN/2FAILED_OPEN",
+    "category": "Definite001rotateFAILED_OPEN both failed attempts",
+    "causal_discrimination": "Unresolved",
+    "controls_Git_effects": 0,
+    "P5": "open",
+    "story15_6": "unstarted",
+    "counter": 3,
+    "acceptance": 0
+  },
+  "Open questions": "Original failure origin, body/event linkage, backend settlement and custody UNKNOWN.",
+  "Deferred work": "No new diagnostic proposal or automatic correction/retry authority; preserve qualified blockers and precise remaining causal fact.",
+  "Blockers": [
+    "DB failure/35mandatory cases missing",
+    "Essential001unexpected/009flaky",
+    "Retained unverified key custody; STOP automatic fix/rerun under causal ambiguity"
+  ]
+}

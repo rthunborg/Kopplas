@@ -6718,3 +6718,34 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Coordinate ONE fresh provider qualification/FFpush/NORMALdispatcher withall118SQL/original95/fullintegrationRLS/6serial/directrecovery/11essentialsmoke/static/unit/build. Root206rawclean/412GitPASS; v3newactual27213/32768/28samebytes. No nativeacceptance/custodyclaim/no deployment. Ambiguousremainingfailure stopsautofix/rerun; successfulgatesneednotmanufacturelabels.
+
+## Report — 2026-10-22T02:47:55Z (halted — required native gates failed; causal ambiguity)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `193361a`).
+**Pipeline status:** Epic15 incomplete:15.1–15.4 landed;15.5 P5 open;15.6 unstarted. NORMAL39710514719 independently qualified FAILED; Node3405P,DB2068P1F/35mandatory story cases unexecuted,browser E2E001 unexpected/E2E009 flaky,recovery1P. Retained-key custody/backendsettlement UNKNOWN. Automatic fix/rerun STOPPED; no deployment.
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 301h 50m (≈77h 24m AI-run, ≈224h 25m human/idle wait); resumed 203×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Resolve the named original browser failure/body-event linkage and retained-key settlement/custody with an explicit bounded course decision; no further generic diagnostic family or automatic retry.
