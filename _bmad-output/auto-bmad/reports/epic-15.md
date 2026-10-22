@@ -6904,3 +6904,34 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Implement and independently review the exact two-file temporary deadline ownership capture and minimal versioned private projection under the completed source-only allocation. No runtime effects are allocated yet. Preserve original promises, rejection handling, deadline and custody. Then propose one existing E2E001 reproduction only after targeted source PASS.
+
+## Report — 2026-10-22T10:12:24Z (checkpoint — bounded deadline capture independently reviewed)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `a73b7c5`).
+**Pipeline status:** P5 remains open. The temporary diagnostic at687b1af9 passed independent High source/privacy review, including exact inverses, original promise identities, rejection paths, fixed deadline sampling and bounded private projection. The full affected unit file passed173/173; TypeScript/lint/diff passed. No new runtime facts, normal acceptance or backend settlement are claimed. The 35 mandatory DB cases remain unexecuted.
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 309h 14m (≈77h 24m AI-run, ≈231h 50m human/idle wait); resumed 209×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Qualify a fresh provider containment read and publish the two reviewed checkpoint branches under a finite effects allocation, then dispatch exactly one existing original-E2E001 diagnostic at687b1af9 with fresh UUID. No full NORMAL, fix or custody waiver follows from source PASS. Qualify actual deadline facts independently before the next correction.
