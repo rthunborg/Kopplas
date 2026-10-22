@@ -11,6 +11,7 @@ import pg from "pg";
 
 export const INTEGRATION_ARGS = Object.freeze(["run", "test:int", "--reporter=default", "--reporter=github-actions", "--reporter=json", "--outputFile=test-results/full-integration.json"]);
 export const BROWSER_ARGS = Object.freeze(["run", "test:smoke"]);
+export const ORIGINAL_E2E001_ARGS = Object.freeze(["exec", "playwright", "test", "tests/e2e/calendar-feed.e2e.spec.ts", "--grep", "(?:^| )15[.]5-E2E-001(?: |$)", "--retries=0", "--workers=1", "--reporter=list,json"]);
 export const CAUSE_PROOF_ARGS = Object.freeze(["exec", "vitest", "run", "tests/integration/commands/calendar-feed.int.test.ts", "--maxWorkers=1", "--no-file-parallelism", "--testNamePattern=^15[.]5-DIAG001$", "--reporter=default", "--reporter=github-actions", "--reporter=json", "--outputFile=test-results/calendar-feed-cause-proof/native.json"]);
 export const CAUSE_PROOF_OUTCOMES = Object.freeze(["PRE_SQL_STOP", "AMBIGUOUS_SQL42501", "NONREPRODUCED", "UNKNOWN_ENGINE_ERROR", "INCOMPARABLE", "CLEANUP_UNVERIFIED", "ORDINARY_SUCCESS", "CAPTURE_UNAVAILABLE"]);
 const CAUSE_DIRECTORY = "test-results/calendar-feed-cause-proof";
@@ -209,6 +210,12 @@ export function validateAdmission(mode, env, platform) {
     if (env[key] && env[key] !== expected) fail("endpoint-refused");
   }
   if (env.E2E_PORT && env.E2E_PORT !== "3100") fail("port-refused");
+  if (env.CALENDAR_FEED_ORIGINAL_E2E001 !== undefined || env.CALENDAR_FEED_ORIGINAL_CHECKPOINT !== undefined) {
+    if (env.CALENDAR_FEED_ORIGINAL_E2E001 !== "1" || mode !== "browser" || env.GITHUB_JOB !== "e2e"
+      || env.GITHUB_EVENT_NAME !== "workflow_dispatch" || env.GITHUB_RUN_ATTEMPT !== "1"
+      || !/^[a-f0-9]{40}$/.test(env.GITHUB_SHA ?? "") || !UUID.test(env.CALENDAR_FEED_ORIGINAL_CHECKPOINT ?? "")
+      || env.CALENDAR_FEED_CAUSE_PROOF_CHECKPOINT !== undefined || env.CALENDAR_FEED_CAUSE_PROOF_MODE !== undefined) fail("original-e2e001-admission-refused");
+  }
   if (mode === "cause-proof" && (env.GITHUB_RUN_ATTEMPT !== "1" || !/^[a-f0-9]{40}$/.test(env.GITHUB_SHA ?? "")
     || !UUID.test(env.CALENDAR_FEED_CAUSE_PROOF_CHECKPOINT ?? "") || env.GITHUB_EVENT_NAME !== "workflow_dispatch")) fail("diagnostic-admission-refused");
 }
@@ -621,7 +628,7 @@ export async function runCalendarFeedRuntime({ mode, env = process.env, platform
       await deps.ready(childEnv.CALENDAR_FEED_TEST_BASE_URL, server, abort.signal); receipt.ready = true;
       await run("pnpm", INTEGRATION_ARGS, childEnv, observe, 1_800_000);
     } else {
-      await run("pnpm", BROWSER_ARGS, childEnv, observe, 1_800_000);
+      await run("pnpm", env.CALENDAR_FEED_ORIGINAL_E2E001 === "1" ? ORIGINAL_E2E001_ARGS : BROWSER_ARGS, childEnv, observe, 1_800_000);
     }
     checkSignal();
   } catch (error) {

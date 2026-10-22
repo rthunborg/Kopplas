@@ -54,7 +54,8 @@ test("diagnostic dispatch excludes pilot and browser/recovery while the normal f
   const raw=readFileSync(join(process.cwd(),".github/workflows/ci.yml"),"utf8").replaceAll("\r\n","\n");
   const diagnostic=raw.slice(raw.indexOf("      - name: Calendar feed cause proof"),raw.indexOf("      # Stage 8:"));
   assert.ok(!diagnostic.includes("test:pilot-performance")); assert.ok(diagnostic.includes("with-calendar-feed-runtime.mjs cause-proof"));
-  for(const name of ["e2e","recovery-storage-loader"])assert.ok(raw.includes("  "+name+":\n    if: \$\{\{ !(github.event_name == 'workflow_dispatch' && inputs.calendar_feed_cause_proof) \}\}".replaceAll("\\", "")));
+  assert.ok(raw.includes("  e2e:\n    if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.calendar_feed_cause_proof) }}"));
+  assert.ok(raw.includes("  recovery-storage-loader:\n    if: ${{ !(github.event_name == 'workflow_dispatch' && (inputs.calendar_feed_cause_proof || inputs.calendar_feed_original_e2e001)) }}"));
   assert.match(ci,/pnpm run test:int[\s\S]*?pnpm run test:pilot-performance/);
   assert.throws(()=>projectCalendarFeedCiCommands(raw.replace('test "$RELEASE_VALIDATION" = false','test "$RELEASE_VALIDATION" = true')));
 });

@@ -3,7 +3,7 @@ import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 
 const wrapperPath = new URL("../../scripts/ci/with-calendar-feed-runtime.mjs", import.meta.url);
-const wrapperSha256 = "c1a71aca72edf79553f75b14401dca81a1feec97edf3ddfb05cdaa8fade69bc9";
+const wrapperSha256 = "8e6235531201a1fed01e4bb30eeaad98218b24747c6cac2ff38a2158f87a7f07";
 const integrationArgs = ["run", "test:int", "--reporter=default", "--reporter=github-actions", "--reporter=json", "--outputFile=test-results/full-integration.json"];
 const browserArgs = ["run", "test:smoke"];
 const stackBinding = "          CALENDAR_FEED_CI_DISPOSABLE_STACK: ${{ github.run_id }}:${{ github.run_attempt }}:${{ github.job }}";
@@ -27,6 +27,41 @@ const browserEntry = [
 ].join("\n") + "\n";
 
 // Exact newly reviewed diagnostic fragments only. Every unrelated byte survives.
+const originalE2E001Inverse: readonly [string, string][] = [
+  [
+    "run-name: ${{ github.event_name == 'workflow_dispatch' && (inputs.calendar_feed_original_e2e001 && format('checkpoint:original-e2e001:{0}:{1}', inputs.checkpoint_id, inputs.expected_sha) || inputs.calendar_feed_cause_proof && format('checkpoint:cause-proof:{0}:{1}', inputs.checkpoint_id, inputs.expected_sha) || format('checkpoint:{0}:{1}', inputs.checkpoint_id, inputs.expected_sha)) || format('CI {0}', github.ref_name) }}",
+    "run-name: ${{ github.event_name == 'workflow_dispatch' && (inputs.calendar_feed_cause_proof && format('checkpoint:cause-proof:{0}:{1}', inputs.checkpoint_id, inputs.expected_sha) || format('checkpoint:{0}:{1}', inputs.checkpoint_id, inputs.expected_sha)) || format('CI {0}', github.ref_name) }}"
+  ],
+  [
+    "      calendar_feed_cause_proof:\n        description: One diagnostic call and unmodified rollback-only baseline; zero acceptance\n        type: boolean\n        required: false\n        default: false\n      calendar_feed_original_e2e001:\n        description: Fixed E2E001 original request diagnostic; zero acceptance\n        type: boolean\n        required: false\n        default: false\n",
+    "      calendar_feed_cause_proof:\n        description: One diagnostic call and unmodified rollback-only baseline; zero acceptance\n        type: boolean\n        required: false\n        default: false\n"
+  ],
+  [
+    "          CAUSE_PROOF: ${{ inputs.calendar_feed_cause_proof || false }}\n          ORIGINAL_E2E001: ${{ inputs.calendar_feed_original_e2e001 || false }}\n",
+    "          CAUSE_PROOF: ${{ inputs.calendar_feed_cause_proof || false }}\n"
+  ],
+  [
+    "          if [ \"$CAUSE_PROOF\" = true ]; then\n            test \"$GITHUB_EVENT_NAME\" = workflow_dispatch\n            test \"$RELEASE_VALIDATION\" = false\n            test \"$OTHER_DIAGNOSTICS\" = false\n          fi\n          if [ \"${ORIGINAL_E2E001:-false}\" = true ]; then\n            test \"$GITHUB_EVENT_NAME\" = workflow_dispatch\n            test \"$CAUSE_PROOF\" = false\n            test false = \"$RELEASE_VALIDATION\"\n            test false = \"$OTHER_DIAGNOSTICS\"\n          fi\n",
+    "          if [ \"$CAUSE_PROOF\" = true ]; then\n            test \"$GITHUB_EVENT_NAME\" = workflow_dispatch\n            test \"$RELEASE_VALIDATION\" = false\n            test \"$OTHER_DIAGNOSTICS\" = false\n          fi\n"
+  ],
+  [
+    "  db:\n    if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.calendar_feed_original_e2e001) }}\n",
+    "  db:\n"
+  ],
+  [
+    "  recovery-storage-loader:\n    if: ${{ !(github.event_name == 'workflow_dispatch' && (inputs.calendar_feed_cause_proof || inputs.calendar_feed_original_e2e001)) }}",
+    "  recovery-storage-loader:\n    if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.calendar_feed_cause_proof) }}"
+  ],
+  [
+    "      - name: Essential authentication smoke (production app and local Auth)\n        if: ${{ !(github.event_name == 'workflow_dispatch' && (inputs.release_validation || inputs.calendar_feed_original_e2e001)) }}\n",
+    "      - name: Essential authentication smoke (production app and local Auth)\n        if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.release_validation) }}\n"
+  ],
+  [
+    "      - name: Fixed E2E001 original request diagnostic (zero acceptance)\n        if: ${{ github.event_name == 'workflow_dispatch' && inputs.calendar_feed_original_e2e001 }}\n        env:\n          PLAYWRIGHT_JSON_OUTPUT_NAME: test-results/general-browser.json\n          CALENDAR_FEED_CI_DISPOSABLE_STACK: ${{ github.run_id }}:${{ github.run_attempt }}:${{ github.job }}\n          CALENDAR_FEED_ORIGINAL_E2E001: \"1\"\n          CALENDAR_FEED_ORIGINAL_CHECKPOINT: ${{ inputs.checkpoint_id }}\n        run: node scripts/ci/with-calendar-feed-runtime.mjs browser\n\n      - name: Exhaustive browser validation (explicit opt-in)\n",
+    "      - name: Exhaustive browser validation (explicit opt-in)\n"
+  ]
+];
+
 const causeProofInverse: readonly [string, string][] = [
   [
     "run-name: ${{ github.event_name == 'workflow_dispatch' && (inputs.calendar_feed_cause_proof && format('checkpoint:cause-proof:{0}:{1}', inputs.checkpoint_id, inputs.expected_sha) || format('checkpoint:{0}:{1}', inputs.checkpoint_id, inputs.expected_sha)) || format('CI {0}', github.ref_name) }}",
@@ -86,7 +121,12 @@ export function projectCalendarFeedCiCommands(workflow: string, wrapperSource = 
   const browser = literalArgs(source, "BROWSER_ARGS", browserArgs);
   assert.equal(createHash("sha256").update(source).digest("hex"), wrapperSha256, "calendar feed CI reviewed wrapper source");
   literalArgs(source, "CAUSE_PROOF_ARGS", ["exec","vitest","run","tests/integration/commands/calendar-feed.int.test.ts","--maxWorkers=1","--no-file-parallelism","--testNamePattern=^15[.]5-DIAG001$","--reporter=default","--reporter=github-actions","--reporter=json","--outputFile=test-results/calendar-feed-cause-proof/native.json"]);
+  literalArgs(source, "ORIGINAL_E2E001_ARGS", ["exec", "playwright", "test", "tests/e2e/calendar-feed.e2e.spec.ts", "--grep", "(?:^| )15[.]5-E2E-001(?: |$)", "--retries=0", "--workers=1", "--reporter=list,json"]);
   let projected = workflow.replaceAll("\r\n", "\n");
+  for (const [entry, replacement] of originalE2E001Inverse) {
+    assert.equal(projected.split(entry).length - 1, 1, "calendar feed exact workflow entry diagnostic fragment");
+    projected = projected.replace(entry, replacement);
+  }
   for (const [entry, replacement] of causeProofInverse) {
     assert.equal(projected.split(entry).length - 1, 1, "calendar feed exact diagnostic workflow fragment");
     projected = projected.replace(entry, replacement);

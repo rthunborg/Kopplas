@@ -9,7 +9,7 @@ import { join, resolve } from "node:path";
 import { tmpdir } from "node:os";
 import { pathToFileURL } from "node:url";
 import { projectCalendarFeedCiCommands } from "../../../support/calendar-feed-ci-contract";
-import { INTEGRATION_ARGS, BROWSER_ARGS, CAUSE_PROOF_ARGS, FEED_FUNCTIONS, validateAdmission, validateStackIdentity, validateCauseProofObservation, finishCauseProof, createCalendarFeedDatabaseClient, createTelemetryObserver, hasSensitiveOutput, createOwnedGroupStopper, ownsListenerRecord, waitForOwnedHttp, runCalendarFeedRuntime, launchOwned } from "../../../../scripts/ci/with-calendar-feed-runtime.mjs";
+import { INTEGRATION_ARGS, BROWSER_ARGS, ORIGINAL_E2E001_ARGS, CAUSE_PROOF_ARGS, FEED_FUNCTIONS, validateAdmission, validateStackIdentity, validateCauseProofObservation, finishCauseProof, createCalendarFeedDatabaseClient, createTelemetryObserver, hasSensitiveOutput, createOwnedGroupStopper, ownsListenerRecord, waitForOwnedHttp, runCalendarFeedRuntime, launchOwned } from "../../../../scripts/ci/with-calendar-feed-runtime.mjs";
 import { captureCalendarFeedTrace, recordCalendarFeedTrace, recordCalendarFeedContext, recordCalendarFeedMembership, executeCalendarFeed } from "../../../../src/server/commands/calendar-feed/calendar-feed-db";
 import { CommandError } from "../../../../src/server/commands/command-errors";
 import { validateCalendarFeedIntent } from "../../../../src/features/calendar-feed/validation";
@@ -1681,7 +1681,7 @@ test("actual ACL source and existing RLS010 reject actor metadata dependency and
   await assert.rejects(run(facts=>{facts.helpers=facts.helpers.filter((x:{purpose:string})=>x.purpose!=="actor");}));
 });
 test("new atomic migration cross-validates exact original bodies and eight substitutions without widening historical SQL",()=>{
-  const original=readFileSync(new URL("../../../../supabase/migrations/20261020220000_personal_calendar_feed.sql",import.meta.url),"utf8").replaceAll("\r\n","\n"),migration=readFileSync(new URL("../../../../supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",import.meta.url),"utf8");
+  const original=readFileSync(new URL("../../../../supabase/migrations/20261020220000_personal_calendar_feed.sql",import.meta.url),"utf8").replaceAll("\r\n","\n"),migration=readFileSync(new URL("../../../../supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",import.meta.url),"utf8").replaceAll("\r\n","\n");
   const names=["read_calendar_feed_status","manage_calendar_feed","read_calendar_feed_abuse"],counts=[3,2,3];let total=0;
   for(let i=0;i<names.length;i++){
     const at=original.indexOf("create function public."+names[i]+"("),a=original.indexOf("as $$",at)+5,b=original.indexOf("$$;",a),body=original.slice(a,b),tag="$original_"+i+"$";
@@ -1923,7 +1923,7 @@ test("complete RLS010 actual assertions reject raw ACL owner service subject and
 });
 
 async function actualOwnerAclSeams(){return (await actualFixtureOrigins()) as unknown as {calendarOwnerAclSource:(source:string,adapter:string,owner:string,migrator:string,schema:string,fn:string)=>{bootstrap:string;identity:string;create:string;revoke:string;grant:string;reconcile:string};calendarOwnerAclExercise:(sql:(text:string,values?:unknown[])=>Promise<{rows:Record<string,unknown>[]}>,input:Record<string,unknown>)=>Promise<void>};}
-function ownerAclSources(){const root=new URL("../../../../supabase/migrations/",import.meta.url);return{source:readFileSync(new URL("20261020220000_personal_calendar_feed.sql",root),"utf8"),adapter:readFileSync(new URL("20261021102723_calendar_feed_preparsed_actor_identity.sql",root),"utf8"),owner:"cf_acl_o_"+"1".repeat(32),migrator:"cf_acl_m_"+"1".repeat(32),schema:"cf_acl_s_"+"1".repeat(32),fn:"cf_acl_f_"+"1".repeat(32)};}
+function ownerAclSources(){const root=new URL("../../../../supabase/migrations/",import.meta.url);return{source:readFileSync(new URL("20261020220000_personal_calendar_feed.sql",root),"utf8"),adapter:readFileSync(new URL("20261021102723_calendar_feed_preparsed_actor_identity.sql",root),"utf8").replaceAll("\r\n","\n"),owner:"cf_acl_o_"+"1".repeat(32),migrator:"cf_acl_m_"+"1".repeat(32),schema:"cf_acl_s_"+"1".repeat(32),fn:"cf_acl_f_"+"1".repeat(32)};}
 
 test("actual native regression construction uses reversible bootstrap exact predecessor commands and actual owner fragment only",async()=>{
   const {calendarOwnerAclSource:prepare}=await actualOwnerAclSeams(),s=ownerAclSources(),p=prepare(s.source,s.adapter,s.owner,s.migrator,s.schema,s.fn);
@@ -2557,11 +2557,11 @@ test("VITEST-META healthy default budget and recording failures cannot change or
 });
 
 
-function actualBrowserCompletion(label:{set(field:string,state:string):void},terminal?:unknown,page:unknown={isClosed:()=>false}){
+function actualBrowserCompletion(label:{set(field:string,state:string):void},terminal?:unknown,page:unknown={isClosed:()=>false},action="create",originalRotate:{bind(request:unknown):void}={bind(){throw Error("create must not bind rotate");}}){
   const source=readFileSync(new URL("../../../e2e/support/calendar-feed-atdd.ts",import.meta.url),"utf8"),start=source.indexOf("completion: async request => {"),end=source.indexOf("\n              },",start);assert.ok(start>0&&end>start);
   const expression=source.slice(start+"completion: ".length,end)+"\n}";
   const strip=(nodeModule as unknown as {stripTypeScriptTypes(source:string):string}).stripTypeScriptTypes;
-  return new Function("calendarLabel","label","calendarRequestTerminalAtDrain","sourcePage","return ("+strip(expression)+");")((run:()=>void)=>{try{run();}catch{/* same no-throw seam */}},label,terminal,page) as (request:{response():Promise<{finished():Promise<unknown>}|null>})=>Promise<boolean>;
+  return new Function("calendarLabel","label","calendarRequestTerminalAtDrain","sourcePage","action","originalRotate","return ("+strip(expression)+");")((run:()=>void)=>{try{run();}catch{/* same no-throw seam */}},label,terminal,page,action,originalRotate) as (request:{response():Promise<{finished():Promise<unknown>}|null>})=>Promise<boolean>;
 }
 
 test("browser v3 actual completion boundaries distinguish both pending awaits failures null and done with unchanged receiver and calls",async()=>{
@@ -2681,4 +2681,85 @@ test("browser v3 unavailable omitted malformed and throwing samples preserve ori
   const source=readFileSync(new URL("../../../e2e/support/calendar-feed-atdd.ts",import.meta.url),"utf8");
   const drain=source.indexOf("const settlement = await observations.cancelAndSettle()"),caught=source.indexOf('catch (error) { cleanupAllowed = false;',drain),sample=source.indexOf('calendarLabel(()=>labels?.sampleAtDrain());',caught),dispose=source.indexOf('await fault.dispose()',sample);
   assert.ok(drain>0&&caught>drain&&sample>caught&&dispose>sample);assert.equal(source.split('labels?.sampleAtDrain()').length-1,1);
+});
+
+// Temporary diagnostic lane: fixed one-case command, no acceptance or arbitrary selectors.
+const originalEnv = { ...env, GITHUB_JOB:"e2e", CALENDAR_FEED_CI_DISPOSABLE_STACK:"123:1:e2e",
+  GITHUB_SHA:"0d1ab835c4274f313cc6a62ef461c96f3641d924", GITHUB_EVENT_NAME:"workflow_dispatch",
+  CALENDAR_FEED_ORIGINAL_E2E001:"1", CALENDAR_FEED_ORIGINAL_CHECKPOINT:"717a587b-46ad-4763-8cb0-13450df3a29f" };
+
+test("fixed original E2E001 command uses retries zero one worker and existing browser custody", async()=>{
+  const h=harness();const result=await runCalendarFeedRuntime({mode:"browser",env:originalEnv,platform:"linux"},h.deps);
+  assert.equal(result.exitCode,0);assert.equal(h.launches.length,1);
+  assert.deepEqual([...ORIGINAL_E2E001_ARGS],["exec","playwright","test","tests/e2e/calendar-feed.e2e.spec.ts","--grep","(?:^| )15[.]5-E2E-001(?: |$)","--retries=0","--workers=1","--reporter=list,json"]);
+  assert.deepEqual(h.launches[0].args,[...ORIGINAL_E2E001_ARGS]);
+  assert.equal(h.launches[0].childEnv.CALENDAR_FEED_ORIGINAL_E2E001,"1");
+  assert.ok(h.events.lastIndexOf("settled:0")<h.events.indexOf("delete"));assert.equal(result.receipt.keyDeleted,true);
+  const failed=harness({failChild:0});const stop=await runCalendarFeedRuntime({mode:"browser",env:originalEnv,platform:"linux"},failed.deps);
+  assert.equal(stop.exitCode,1);assert.equal(stop.receipt.keyDeleted,false);assert.equal(stop.receipt.keyOutcome,"unverified");assert.ok(stop.receipt.custody);
+  assert.ok(!failed.queries.some(call=>call.sql.startsWith("delete")));
+});
+
+test("fixed original diagnostic refuses wrong admission before entropy key or child effects",async()=>{
+  const patches=[{CALENDAR_FEED_ORIGINAL_E2E001:"true"},{CALENDAR_FEED_ORIGINAL_E2E001:undefined},{CALENDAR_FEED_ORIGINAL_CHECKPOINT:undefined},
+    {GITHUB_RUN_ATTEMPT:"2",CALENDAR_FEED_CI_DISPOSABLE_STACK:"123:2:e2e"},{GITHUB_EVENT_NAME:"push"},{GITHUB_SHA:"bad"},
+    {CALENDAR_FEED_ORIGINAL_CHECKPOINT:"bad"},{CALENDAR_FEED_CAUSE_PROOF_CHECKPOINT:keyId},{CALENDAR_FEED_CAUSE_PROOF_MODE:"1"},
+    {GITHUB_JOB:"db",CALENDAR_FEED_CI_DISPOSABLE_STACK:"123:1:db"}];
+  for(const patch of patches){const h=harness();const result=await runCalendarFeedRuntime({mode:"browser",env:{...originalEnv,...patch},platform:"linux"},h.deps);
+    assert.equal(result.exitCode,1);assert.equal(h.launches.length,0);assert.equal(h.queries.length,0);assert.ok(!h.events.includes("qualified"));}
+  assert.throws(()=>validateAdmission("db",originalEnv,"linux"),/original-e2e001-admission-refused/);
+  assert.throws(()=>validateAdmission("cause-proof",originalEnv,"linux"),/original-e2e001-admission-refused/);
+});
+
+test("fixed original workflow inverse rejects missing duplicate flag and command drift",()=>{
+  const workflow=readFileSync(new URL("../../../../.github/workflows/ci.yml",import.meta.url),"utf8").replaceAll("\r\n","\n");
+  for(const [before,after]of[["      calendar_feed_original_e2e001:","      different_input:"],
+    ['          CALENDAR_FEED_ORIGINAL_E2E001: "1"','          CALENDAR_FEED_ORIGINAL_E2E001: "true"'],
+    ["Fixed E2E001 original request diagnostic (zero acceptance)","Changed diagnostic"],
+    ["          ORIGINAL_E2E001: ${{ inputs.calendar_feed_original_e2e001 || false }}",""]]){
+    assert.ok(workflow.includes(before));assert.throws(()=>projectCalendarFeedCiCommands(workflow.replace(before,after)),/exact workflow entry diagnostic fragment/);
+  }
+  const wrapper=readFileSync(new URL("../../../../scripts/ci/with-calendar-feed-runtime.mjs",import.meta.url),"utf8").replaceAll("\r\n","\n");
+  assert.throws(()=>projectCalendarFeedCiCommands(workflow,wrapper.replace('"--retries=0"','"--retries=1"')),/reviewed wrapper source|argv/);
+});
+
+test("same rotate request original code sample is post-drain once and disabled in normal mode",async()=>{
+  const {createCalendarOriginalRotateCapture}=await actualBrowserSeams();const codes:string[]=[];let reads=0;
+  const request={failure(){reads++;return{errorText:"net::ERR_ABORTED"};}};
+  const capture=createCalendarOriginalRotateCapture(true,code=>codes.push(code));capture.bind(request);assert.equal(reads,0);
+  capture.sample();capture.sample();assert.equal(reads,1);assert.deepEqual(codes,["net::ERR_ABORTED"]);
+  const other:string[]=[];const failed=createCalendarOriginalRotateCapture(true,code=>other.push(code));failed.bind({failure:()=>({errorText:"net::ERR_FAILED"})});failed.sample();assert.deepEqual(other,["net::ERR_FAILED"]);
+  const disabled=createCalendarOriginalRotateCapture(false,code=>codes.push(code));disabled.bind(request);disabled.sample();assert.equal(reads,1);assert.equal(codes.length,1);
+});
+
+test("original code projection refuses native text accessors foreign errors and conflicting requests",async()=>{
+  const {createCalendarOriginalRotateCapture}=await actualBrowserSeams();let getters=0;
+  const hostile=Object.defineProperty({},"errorText",{get(){getters++;throw Error("PRIVATE");}});
+  for(const failure of[null,undefined,{errorText:"PRIVATE URL token body"},{errorText:"net::ERR_ABORTED PRIVATE"},hostile]){
+    const codes:string[]=[];const capture=createCalendarOriginalRotateCapture(true,code=>codes.push(code));capture.bind({failure:()=>failure});capture.sample();
+    assert.deepEqual(codes,["UNKNOWN"]);assert.ok(!JSON.stringify(codes).includes("PRIVATE"));
+  }
+  assert.equal(getters,0);
+  const codes:string[]=[];const capture=createCalendarOriginalRotateCapture(true,code=>codes.push(code));
+  capture.bind({failure:()=>({errorText:"net::ERR_ABORTED"})});capture.bind({failure:()=>({errorText:"net::ERR_ABORTED"})});capture.sample();assert.deepEqual(codes,["UNKNOWN"]);
+  const unavailable=createCalendarOriginalRotateCapture(true,()=>{throw Error("PRIVATE sink");});assert.doesNotThrow(()=>unavailable.sample());
+});
+
+test("original request sample preserves existing drain disposal and annotation privacy boundary",()=>{
+  const source=readFileSync(new URL("../../../e2e/support/calendar-feed-atdd.ts",import.meta.url),"utf8");
+  const drain=source.indexOf("const settlement = await observations.cancelAndSettle()"),sample=source.indexOf("originalRotate.sample();"),dispose=source.indexOf("await fault.dispose()",drain);
+  assert.ok(drain>=0&&sample>drain&&dispose>sample);assert.equal(source.split("originalRotate.sample();").length,2);
+  assert.ok(source.includes('if(action==="rotate")originalRotate.bind(request);'));
+  assert.ok(source.includes('annotations.push({type:"calendar-original-rotate-post-drain",description:code})'));
+  const start=source.indexOf("export function createCalendarOriginalRotateCapture"),end=source.indexOf("export type CalendarObservationLabel",start),body=source.slice(start,end);
+  assert.ok(!/\bawait\b|setTimeout|setInterval|console\.|JSON\.stringify/.test(body));
+  assert.ok(body.includes('field.value==="net::ERR_ABORTED"'));assert.ok(body.includes("finally{owned=undefined;}"));
+});
+
+test("actual rotate completion binds only its existing matched Request before the post-drain original sample",async()=>{
+  const seams=await actualBrowserSeams(),codes:string[]=[],capture=seams.createCalendarOriginalRotateCapture(true,code=>codes.push(code));
+  const labels=seams.createCalendarFailureLabels(()=>{}),label=labels.register("rotate")!;let failureReads=0,responseReads=0,finishedReads=0;
+  const request={failure(){failureReads++;return{errorText:"net::ERR_ABORTED"};},async response(){responseReads++;return{async finished(){finishedReads++;return null;}};}};
+  assert.equal(await actualBrowserCompletion(label,seams.calendarRequestTerminalAtDrain,{isClosed:()=>false},"rotate",capture)(request),true);
+  assert.equal(failureReads,0);assert.equal(responseReads,1);assert.equal(finishedReads,1);capture.sample();assert.equal(failureReads,1);assert.deepEqual(codes,["net::ERR_ABORTED"]);
 });

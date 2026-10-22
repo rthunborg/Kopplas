@@ -1,5 +1,5 @@
 /** Real production browser adapter. Uses isolated rows and the already provisioned runtime key read-only. No key/global-IP mutation or resource startup. */
-import { expect, type Locator, type Page, type Request, type Response, type Route } from "@playwright/test";
+import { expect, test as playwrightTest, type Locator, type Page, type Request, type Response, type Route } from "@playwright/test";
 import { createHash, randomBytes, randomUUID } from "node:crypto";
 import type { BookingFixture } from "../../support/bookings-atdd";
 import { adminQuery, adminSession } from "../../factories/admin-sql";
@@ -27,6 +27,29 @@ export function calendarRequestTerminalAtDrain(page:{isClosed():boolean},request
     const end:unknown=descriptor.value;
     return typeof end==="number"&&Number.isFinite(end)?end>=0?"END_WITHOUT_FAILURE_OPEN":end===-1?"NO_END_NO_FAILURE_OPEN":"UNKNOWN":"UNKNOWN";
   }catch{return "UNKNOWN";}
+}
+/** Temporary fixed-case observation: sample the same matched rotate Request only
+ * after the existing drain. Native text never leaves this closure. No completion,
+ * cancellation origin, cleanup or backend-settlement claim follows from the code. */
+export function createCalendarOriginalRotateCapture(enabled:boolean,sink:(code:string)=>void) {
+  let owned:{failure():unknown}|undefined,sampled=false,ambiguous=false;
+  return {
+    bind(request:{failure():unknown}){if(!enabled||sampled)return;if(owned&&owned!==request)ambiguous=true;else owned=request;},
+    sample(){
+      if(!enabled||sampled)return;sampled=true;
+      let code="UNKNOWN";
+      try {
+        const failure=ambiguous?undefined:owned?.failure();
+        if(failure!==null&&typeof failure==="object"){
+          const field=Object.getOwnPropertyDescriptor(failure,"errorText");
+          // These exact native literals are source-backed by installed Playwright.
+          if(field&&Object.hasOwn(field,"value")&&(field.value==="net::ERR_ABORTED"||field.value==="net::ERR_FAILED"))code=field.value;
+        }
+      }catch{/* unavailable native fact stays UNKNOWN */}
+      finally{owned=undefined;}
+      try{sink(code);}catch{/* never replace the original test/cleanup failure */}
+    }
+  };
 }
 export type CalendarObservationLabel={bindTerminal?(probe:()=>CalendarTerminalAtDrain):void;set(field:"registration"|"request"|"response"|"readback"|"completion"|"completionPhase"|"observation",state:string):void};
 export const calendarFailureSites=["scenario","sign-in","navigation","warning","create","feed","last-use","rotation","old-new-feed","revoke","observation","settlement","fixture-final","unknown"] as const;
@@ -513,6 +536,7 @@ export async function withCalendarBrowserFixture(
   // Preserve failure, but never let those native details reach JSON/HTML reports.
   let base: CalendarBaseFixture | undefined, cleanupAllowed = true, preCleanupCaptured = false;
   const finalErrors: Error[] = [];
+  const originalRotate=createCalendarOriginalRotateCapture(process.env.CALENDAR_FEED_ORIGINAL_E2E001 === "1",code=>{playwrightTest.info().annotations.push({type:"calendar-original-rotate-post-drain",description:code});});
   try {
     base = await calendarBrowserStep("fixture-base", () => createRoleAwarePhaseAFixture());
     const fx = await seedCalendarBookingFixture(base);
@@ -624,6 +648,7 @@ export async function withCalendarBrowserFixture(
               request: () => calendarEventWaiter<Request>({ subscribe: listener => { sourcePage.on("request", listener); }, unsubscribe: listener => { sourcePage.off("request", listener); }, predicate: request => actionInput(request)?.action === action, stage: "action-request", timeoutMs: 30_000,label:state=>label?.set("request",state) }),
               readback: async (request, signal) => ({ committed: true, snapshot: await committedAttempt(actionInput(request)!, signal) }),
               completion: async request => {
+              if(action==="rotate")originalRotate.bind(request);
                 calendarLabel(()=>label?.bindTerminal?.(()=>calendarRequestTerminalAtDrain(sourcePage,request)));
                 calendarLabel(()=>label?.set("completionPhase","RESPONSE"));
                 const response = await request.response();
@@ -750,6 +775,7 @@ export async function withCalendarBrowserFixture(
         try { const settlement = await observations.cancelAndSettle(); errors.push(...settlement.errors); cleanupAllowed = releasesVerified && settlement.settled && transportVerified; }
         catch (error) { cleanupAllowed = false; errors.push(calendarBrowserDiagnostic("cleanup-lifecycle", error)); }
         calendarLabel(()=>labels?.sampleAtDrain());
+        originalRotate.sample();
         for (const fault of activeFaults) { try { await fault.dispose(); } catch (error) { cleanupAllowed = false; errors.push(calendarBrowserDiagnostic("cleanup-fault-dispose", error)); } }
         cleanupAllowed &&= transportVerified;
         if (!cleanupAllowed) errors.push(calendarBrowserDiagnostic("custody-retained", { name: "CalendarUnverified" }));

@@ -1,5 +1,5 @@
 name: CI
-run-name: ${{ github.event_name == 'workflow_dispatch' && (inputs.calendar_feed_cause_proof && format('checkpoint:cause-proof:{0}:{1}', inputs.checkpoint_id, inputs.expected_sha) || format('checkpoint:{0}:{1}', inputs.checkpoint_id, inputs.expected_sha)) || format('CI {0}', github.ref_name) }}
+run-name: ${{ github.event_name == 'workflow_dispatch' && (inputs.calendar_feed_original_e2e001 && format('checkpoint:original-e2e001:{0}:{1}', inputs.checkpoint_id, inputs.expected_sha) || inputs.calendar_feed_cause_proof && format('checkpoint:cause-proof:{0}:{1}', inputs.checkpoint_id, inputs.expected_sha) || format('checkpoint:{0}:{1}', inputs.checkpoint_id, inputs.expected_sha)) || format('CI {0}', github.ref_name) }}
 
 # Phase A verification gates (architecture §19).
 # `verify` job — stages 1-5 + 10: install, lockfile guard, service-role containment
@@ -21,6 +21,11 @@ on:
     inputs:
       calendar_feed_cause_proof:
         description: One diagnostic call and unmodified rollback-only baseline; zero acceptance
+        type: boolean
+        required: false
+        default: false
+      calendar_feed_original_e2e001:
+        description: Fixed E2E001 original request diagnostic; zero acceptance
         type: boolean
         required: false
         default: false
@@ -87,6 +92,7 @@ jobs:
           EXPECTED_SHA: ${{ inputs.expected_sha }}
           CHECKPOINT_ID: ${{ inputs.checkpoint_id }}
           CAUSE_PROOF: ${{ inputs.calendar_feed_cause_proof || false }}
+          ORIGINAL_E2E001: ${{ inputs.calendar_feed_original_e2e001 || false }}
           RELEASE_VALIDATION: ${{ inputs.release_validation || false }}
           OTHER_DIAGNOSTICS: ${{ inputs.native_stream_probe || inputs.fixed_chromium_paired_probe || inputs.fixed_chromium_application_verification || false }}
         shell: bash
@@ -96,6 +102,12 @@ jobs:
             test "$GITHUB_EVENT_NAME" = workflow_dispatch
             test "$RELEASE_VALIDATION" = false
             test "$OTHER_DIAGNOSTICS" = false
+          fi
+          if [ "${ORIGINAL_E2E001:-false}" = true ]; then
+            test "$GITHUB_EVENT_NAME" = workflow_dispatch
+            test "$CAUSE_PROOF" = false
+            test false = "$RELEASE_VALIDATION"
+            test false = "$OTHER_DIAGNOSTICS"
           fi
           if [ "$GITHUB_EVENT_NAME" = workflow_dispatch ]; then
             [[ "$EXPECTED_SHA" =~ ^[a-f0-9]{40}$ ]]
@@ -191,6 +203,7 @@ jobs:
   # can never silently false-green.
   # ──────────────────────────────────────────────────────────────────────────
   db:
+    if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.calendar_feed_original_e2e001) }}
     runs-on: ubuntu-latest
     timeout-minutes: 45
     # Gate the expensive ~20-min Supabase boot behind the fast `verify` job: if a
@@ -304,7 +317,7 @@ jobs:
   # the local CI stack, restores it into a separate recovery volume, then proves
   # absent bytes can be materialized without changing protected logical rows.
   recovery-storage-loader:
-    if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.calendar_feed_cause_proof) }}
+    if: ${{ !(github.event_name == 'workflow_dispatch' && (inputs.calendar_feed_cause_proof || inputs.calendar_feed_original_e2e001)) }}
     runs-on: ubuntu-latest
     timeout-minutes: 45
     needs: [verify]
@@ -545,10 +558,19 @@ jobs:
       # (NEXT_PUBLIC_* are inlined from playwright.config.ts), globalSetup seeds the
       # two-tenant fixture, and the specs drive the real browser journeys (G-2/G-3).
       - name: Essential authentication smoke (production app and local Auth)
-        if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.release_validation) }}
+        if: ${{ !(github.event_name == 'workflow_dispatch' && (inputs.release_validation || inputs.calendar_feed_original_e2e001)) }}
         env:
           PLAYWRIGHT_JSON_OUTPUT_NAME: test-results/general-browser.json
           CALENDAR_FEED_CI_DISPOSABLE_STACK: ${{ github.run_id }}:${{ github.run_attempt }}:${{ github.job }}
+        run: node scripts/ci/with-calendar-feed-runtime.mjs browser
+
+      - name: Fixed E2E001 original request diagnostic (zero acceptance)
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.calendar_feed_original_e2e001 }}
+        env:
+          PLAYWRIGHT_JSON_OUTPUT_NAME: test-results/general-browser.json
+          CALENDAR_FEED_CI_DISPOSABLE_STACK: ${{ github.run_id }}:${{ github.run_attempt }}:${{ github.job }}
+          CALENDAR_FEED_ORIGINAL_E2E001: "1"
+          CALENDAR_FEED_ORIGINAL_CHECKPOINT: ${{ inputs.checkpoint_id }}
         run: node scripts/ci/with-calendar-feed-runtime.mjs browser
 
       - name: Exhaustive browser validation (explicit opt-in)
