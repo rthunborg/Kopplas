@@ -171,20 +171,23 @@ if (process.env.CALENDAR_FEED_CAUSE_PROOF_MODE !== "1") describe("15.5 authentic
     const capture=createCalendarInt009Capture(()=>task.meta);
     await withCalendarFeedFixture("serial-commands", async fx => {
       const intent = lifecycle("create", 0), subject = fx.subjects.own;
+      capture.phase("SUBJECT_SETUP","HOLDER_READY");
       const barrier = await fx.serial.barrier({ ...subject, attemptId: intent.attemptId, stage: "management-before-authority" });
       const pending: Promise<ManagementObservation>[] = [];
       try {
-        pending.push(fx.manage("own", intent));
-        await barrier.waitUntilEntered(5_000);
-        await fx.setAuthority("own", { primary: "saljare", additional: [] });
-        await barrier.release();
-        expect((await pending[0]).outcome).toBe("denied");
-        expect((await fx.physical()).tokens).toHaveLength(0);
-        expect((await fx.physical()).audits).toHaveLength(0);
-      } finally {
-        await barrier.release(); // release BEFORE settling all promises, even after an assertion failure
-        await Promise.allSettled(pending);
-        await barrier.assertOwnedObjectsAbsent();
+        capture.phase("SCENARIO","DISPATCH");pending.push(fx.manage("own", intent));
+        capture.phase("SCENARIO","WAIT_ENTERED");await barrier.waitUntilEntered(5_000);
+        capture.phase("SCENARIO","AUTHORITY_CHANGE");await fx.setAuthority("own", { primary: "saljare", additional: [] });
+        capture.phase("SCENARIO","RELEASE");await barrier.release();
+        capture.phase("SCENARIO","RESULT");expect((await pending[0]).outcome).toBe("denied");
+        capture.phase("SCENARIO","TOKEN_ASSERTION");expect((await fx.physical()).tokens).toHaveLength(0);
+        capture.phase("SCENARIO","AUDIT_ASSERTION");expect((await fx.physical()).audits).toHaveLength(0);
+      } catch(error) {capture.observe(error);throw error;} finally {
+        try {
+        capture.phase("FINALLY","FINALLY_RELEASE");await barrier.release(); // release BEFORE settling all promises, even after an assertion failure
+        capture.phase("FINALLY","FINALLY_SETTLE");await Promise.allSettled(pending);
+        capture.phase("FINALLY","BARRIER_CLEANUP");await barrier.assertOwnedObjectsAbsent();
+        }catch(error){capture.observe(error);throw error;}
       }
     },capture);
   });

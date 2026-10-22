@@ -2165,7 +2165,7 @@ async function actualCanonicalComposition(fault?:"seed"|"cleanup"|"custody"|"pri
     async(sql:string,params:unknown[])=>{if(sql.startsWith("select id from public.tenant_memberships")){inputs.push(params);return[{id:"membership-"+params[1]}];}if(sql.startsWith("insert into public.person_profiles")){events.push("profile");inputs.push(params);if(fault==="seed"&&params[2]==="membership-own")throw Error("PRIVATE_SEED");return[];}events.push("absence");return[];},()=>"UUID-"+(++counter),
     async(_stage:string,run:()=>Promise<unknown>)=>run(),(_stage:string,error:unknown)=>error instanceof Error?error:Error("safe"),()=>Error("safe"),()=>{},
     async(value:unknown)=>{assert.equal(value,role.base);events.push("additional");return{extraUsers:[user("additional")]};},async(base:unknown)=>{assert.ok(base);return fx;},async(_fx:unknown,run:()=>Promise<unknown>)=>run(),async()=>{events.push("settle");},()=>Error("safe custody"),async(tenants:unknown)=>{assert.deepEqual(tenants,["A","B"]);events.push("row:cleanup");},async(id:string)=>{assert.equal(id,"additional");events.push("auth:cleanup");},new Map(fault==="prior-seam"?[["clock",{held:true}]]:[])
-  ) as {withCalendarFeedFixture:(lane:string,run:(fx:unknown)=>Promise<void>,capture?:{publish():void;close():void})=>Promise<void>;calendarSeedBookingFixture:(base:typeof role)=>Promise<Record<string,unknown>>;retain:()=>void;custody:()=>Set<unknown>};
+  ) as {withCalendarFeedFixture:(lane:string,run:(fx:unknown)=>Promise<void>,capture?:ReturnType<Awaited<ReturnType<typeof actualFixtureOrigins>>["createCalendarInt009Capture"]>)=>Promise<void>;calendarSeedBookingFixture:(base:typeof role)=>Promise<Record<string,unknown>>;retain:()=>void;custody:()=>Set<unknown>};
   return{api,events,inputs,role,fx};
 }
 
@@ -2880,15 +2880,92 @@ test("INT009 actual fixture final errors publish through the controlled sink wit
   const f=await actualCanonicalComposition(),capture=make(()=>{throw Error("PRIVATE sink");});capture.fail();const error=await f.api.withCalendarFeedFixture("row-isolated",async()=>{throw primary;},capture).catch(error=>error);assert.equal(error.errors[0],primary);
 });
 
-test("INT009 actual entire subject barrier setup closes capture before later restore cleanup",async()=>{
-  const f=await int009Control(),source=readFileSync(new URL("../../../support/calendar-feed-atdd.ts",import.meta.url),"utf8"),start=source.indexOf("async function calendarBarrier("),end=source.indexOf("/** Independent small RFC5545",start),strip=(nodeModule as unknown as {stripTypeScriptTypes(source:string):string}).stripTypeScriptTypes;
+async function actualWindowBarrier(f:Awaited<ReturnType<typeof int009Control>>,inverse=false,readyFailure?:unknown) {
+  const source=readFileSync(new URL("../../../support/calendar-feed-atdd.ts",import.meta.url),"utf8"),start=source.indexOf("async function calendarBarrier("),end=source.indexOf("/** Independent small RFC5545",start),strip=(nodeModule as unknown as {stripTypeScriptTypes(source:string):string}).stripTypeScriptTypes;
+  let region=source.slice(start,end);assert.ok(start>0&&end>start);
+  if(inverse)region=region.replace('  // Keep this opted-in local capture through reached scenario and finalization.','  if(authority)calendarInt009Subject("subject")?.close();');
   const names=["randomUUID","adminSession","calendarPublish","calendarRestore","calendarSettle","adminQuery","redactFailure","calendarOwnerRefused","calendarInt009Subject"];
-  const barrier=new Function(...names,strip("let calendarSharedCustody=null;"+source.slice(start,end))+";return calendarBarrier;")(()=>"00000000-0000-4000-8000-000000000001",async(run:(session:{query:()=>Promise<unknown[]>})=>Promise<unknown>)=>run({query:async()=>[]}),f.api.calendarPublish,f.api.calendarRestore,f.api.calendarSettle,async()=>[],()=>Error("fixed"),()=>Error("fixed"),f.api.calendarInt009Subject);
-  const fx={pendingRequests:new Set<Promise<unknown>>(),finalizers:new Set<()=>Promise<void>>()};
-  const owned=await f.run(()=>barrier({stage:"management-before-authority",tenantId:"fixed",membershipId:"fixed"},fx)) as {release():Promise<void>;assertOwnedObjectsAbsent():Promise<void>};
-  f.capture.phase("REPLACE","DEFINITION");f.capture.fail("STATE");f.capture.cleanup("SETUP_CLEANUP",Error("PRIVATE later cleanup"));assert.equal(f.publish(),undefined);await owned.release();await owned.assertOwnedObjectsAbsent();assert.deepEqual(f.meta,{});await f.factory.pool()?.end();
+  const barrier=new Function(...names,strip("let calendarSharedCustody=null;"+region)+";return calendarBarrier;")(()=>"00000000-0000-4000-8000-000000000001",async(run:(session:{query:()=>Promise<unknown[]>})=>Promise<unknown>)=>run({query:async()=>{if(readyFailure)throw readyFailure;return[];}}),f.api.calendarPublish,f.api.calendarRestore,f.api.calendarSettle,async()=>[],()=>Error("fixed"),()=>Error("fixed"),()=>f.capture);
+  return barrier as (scope:unknown,fx:unknown)=>Promise<{release():Promise<void>;assertOwnedObjectsAbsent():Promise<void>}>;
+}
+
+test("INT009 window actual successful setup remains open through late error and early-close inverse loses evidence",async()=>{
+  for(const inverse of [false,true]){const f=await int009Control(),barrier=await actualWindowBarrier(f,inverse),fx={pendingRequests:new Set<Promise<unknown>>(),finalizers:new Set<()=>Promise<void>>()};
+    const owned=await f.run(()=>barrier({stage:"management-before-authority",tenantId:"fixed",membershipId:"fixed"},fx)) as {release():Promise<void>;assertOwnedObjectsAbsent():Promise<void>};
+    f.capture.phase("SCENARIO","TOKEN_ASSERTION");f.capture.observe(Object.freeze({code:"23514"}));await owned.release();await owned.assertOwnedObjectsAbsent();const rows=f.publish();
+    if(inverse){assert.equal(rows,undefined);assert.throws(()=>assert.equal((rows as readonly {operation:string}[]|undefined)?.[0]?.operation,"TOKEN_ASSERTION"));}else{assert.equal(rows![0].operation,"TOKEN_ASSERTION");assert.equal(rows![0].sqlstate,"23514");assert.equal(f.api.calendarInt009Subject("subject"),undefined);}
+    await f.factory.pool()?.end();
+  }
 });
 
+test("INT009 window actual holder-ready rejection is captured before barrier assignment and no unentered cleanup runs",async()=>{
+  const f=await int009Control(),error=Object.freeze(Object.assign(Error("PRIVATE"),{code:"42501"})),barrier=await actualWindowBarrier(f,false,error),fx={pendingRequests:new Set<Promise<unknown>>(),finalizers:new Set()};
+  const caught=await barrier({stage:"management-before-authority"},fx).catch(value=>value);assert.equal(caught,error);assert.equal(fx.finalizers.size,0);assert.equal(f.calls.length,0);const rows=f.publish()!;assert.equal(rows[0].operation,"HOLDER_READY");assert.equal(rows[0].sqlstate,"42501");await f.factory.pool()?.end();
+});
+
+test("INT009 window actual local finalizer outside ALS captures restore native code before existing replacement",async()=>{
+  const f=await int009Control({faults:["replace"],failure:Object.freeze({code:"42P13"})});
+  // Consume the one injected failure on restoration rather than initial publication.
+  const g=await int009Control(),barrier=await actualWindowBarrier(g),fx={pendingRequests:new Set<Promise<unknown>>(),finalizers:new Set<()=>Promise<void>>()};
+  const owned=await g.run(()=>barrier({stage:"management-before-authority",tenantId:"fixed",membershipId:"fixed"},fx)) as {release():Promise<void>;assertOwnedObjectsAbsent():Promise<void>};
+  assert.equal(g.api.calendarInt009Subject("subject"),undefined);g.row().metadata.proacl=["drift"];
+  await owned.release();await assert.rejects(owned.assertOwnedObjectsAbsent());const rows=g.publish()!;assert.equal(rows[0].publication,"OWNER_RESTORE");assert.equal(rows[0].operation,"PRE_CATALOG");assert.equal(rows[0].kind,"PRIMARY");assert.ok(g.api.getCustody());
+  // Direct actual restore with explicit capture sees native own-data before masking.
+  f.api.calendarOwnedStates.set("subject",{canonical:f.canonical,current:f.canonical});const restore=f.api.calendarRestore as unknown as (purpose:string,capture:typeof f.capture)=>Promise<void>;
+  const failure=await restore("subject",f.capture).catch(value=>value);assert.notEqual(failure,undefined);assert.notEqual(failure.code,"42P13");assert.equal(f.publish()![0].sqlstate,"42P13");await f.factory.pool()?.end();await g.factory.pool()?.end();
+});
+
+async function actualWindowCallback(mode:string){
+  const origins=await actualFixtureOrigins(),f=await actualCanonicalComposition(mode==="outer-cleanup"?"cleanup":mode==="never"?"seed":undefined),meta:Record<string,unknown>={},events:string[]=[],e1=Object.assign(Error("PRIVATE_BODY"),{code:"23514",cause:{body:true}}),e2=Object.assign(Error("PRIVATE_FINALLY"),{code:"08006",cause:{cleanup:true}});
+  let releases=0,capture!:ReturnType<typeof origins.createCalendarInt009Capture>;
+  const make=(read:()=>unknown)=>capture=origins.createCalendarInt009Capture(read);
+  const fx=Object.assign(f.fx,{subjects:{own:{}},serial:{barrier:async()=>{events.push("barrier");if(mode==="setup")throw e1;return{waitUntilEntered:async()=>{events.push("wait");if(mode==="wait")throw e1;},release:async()=>{events.push("release");releases++;if(mode==="finally-only"||mode==="both")if(releases===1)throw e2;},assertOwnedObjectsAbsent:async()=>{events.push("barrier-cleanup");if(mode==="barrier-cleanup")throw e2;}};}},manage:async()=>{events.push("manage");return{outcome:"denied"};},setAuthority:async()=>{events.push("role");},physical:async()=>{events.push("physical");return{tokens:[],audits:[]};}});
+  const expect=()=>({toBe(){if(mode==="body"||mode==="both")throw e1;},toHaveLength(){if(mode==="assertion")throw e1;}});
+  const run=actualInt009Callback()(make,async(_lane:string,callback:(x:unknown)=>Promise<void>,c:typeof capture)=>f.api.withCalendarFeedFixture("row-isolated",async()=>{events.push("callback");await callback(fx);},c),expect);
+  const final=await run({task:{meta}}).catch(error=>error);return{...f,meta,events,e1,e2,final,capture,releases};
+}
+
+test("INT009 window actual callback and fixture capture postsetup assertion wait and cleanup-only first failure without changing operations",async()=>{
+  for(const [mode,operation] of [["setup","HOLDER_READY"],["wait","WAIT_ENTERED"],["body","RESULT"],["assertion","TOKEN_ASSERTION"],["barrier-cleanup","BARRIER_CLEANUP"],["outer-cleanup","CANONICAL_CLEANUP"],["never","FIXTURE_SETUP"]]){
+    const f=await actualWindowCallback(mode),rows=f.meta.calendarInt009SetupV1 as {kind:string;operation:string;sqlstate:string}[];assert.ok(f.final);assert.equal(rows[0].kind,"PRIMARY");assert.equal(rows[0].operation,operation);assert.ok(f.events.indexOf("role")>f.events.indexOf("manage")||["never","setup","wait"].includes(mode));
+    if(mode==="never")assert.deepEqual(f.events,[]);if(mode==="setup")assert.deepEqual(f.events,["callback","barrier"]);if(mode==="wait")assert.ok(!f.events.includes("role"));assert.ok(f.events.includes("barrier-cleanup")||["never","setup"].includes(mode));
+  }
+  const healthy=await actualWindowCallback("healthy");assert.equal(healthy.final,undefined);assert.deepEqual(healthy.meta,{});assert.deepEqual(healthy.events,["callback","barrier","manage","wait","role","release","physical","physical","release","barrier-cleanup"]);
+});
+
+test("INT009 window E1 body then E2 finally preserves exact final identity cause and skipped later finally work",async()=>{
+  const f=await actualWindowCallback("both"),rows=f.meta.calendarInt009SetupV1 as {kind:string;operation:string;sqlstate:string}[];
+  // In this mode first scenario release throws E2 before result; finally release runs again.
+  assert.equal(f.final.errors[0],f.e2);assert.equal(f.final.errors[0].cause,f.e2.cause);assert.equal(rows[0].operation,"RELEASE");assert.equal(rows[0].sqlstate,"08006");
+  const origins=await actualFixtureOrigins(),meta:Record<string,unknown>={},e1=Object.assign(Error("PRIVATE"),{cause:{first:true}}),e2=Object.assign(Error("PRIVATE"),{cause:{second:true}});let capture!:ReturnType<typeof origins.createCalendarInt009Capture>,calls=0,later=0;
+  const run=actualInt009Callback()((read:()=>unknown)=>capture=origins.createCalendarInt009Capture(read),async(_lane:string,callback:(fx:unknown)=>Promise<void>)=>{try{await callback({subjects:{own:{}},manage:async()=>({outcome:"denied"}),setAuthority:async()=>{},physical:async()=>({tokens:[],audits:[]}),serial:{barrier:async()=>({waitUntilEntered:async()=>{},release:async()=>{if(++calls===2)throw e2;},assertOwnedObjectsAbsent:async()=>{later++;}})}});}catch(error){capture.publish();throw error;}},()=>({toBe(){throw e1;},toHaveLength(){}}));
+  const final=await run({task:{meta}}).catch(error=>error);assert.equal(final,e2);assert.equal(final.cause,e2.cause);assert.equal(later,0);const records=meta.calendarInt009SetupV1 as {kind:string;operation:string}[];assert.equal(records[0].operation,"RESULT");assert.equal(records[1].operation,"FINALLY_RELEASE");
+});
+
+test("INT009 window actual serial setup and restore capture before erasure with honest phase and unchanged rollback precedence",async()=>{
+  const source=readFileSync(new URL("../../../support/calendar-feed-atdd.ts",import.meta.url),"utf8"),start=source.indexOf("async function withOwnedUnknownWindow"),end=source.indexOf("const calendarCanonicalSourceUrl",start),strip=(nodeModule as unknown as {stripTypeScriptTypes(source:string):string}).stripTypeScriptTypes;
+  for(const mode of ["setup","restore","rollback","handled","healthy"]){const origins=await actualFixtureOrigins(),meta:Record<string,unknown>={},capture=origins.createCalendarInt009Capture(()=>meta),original=Object.freeze(Object.assign(Error("PRIVATE"),{code:"23505"})),override=Object.freeze(Object.assign(Error("PRIVATE"),{code:"08006"})),events:string[]=[];
+    const run=new Function("hashFeedIp","calendarFixtureStep","adminQuery","calendarWorkScope","calendarSettle","calendarOwnerRefused","adminSession","calendarFixtureDiagnostic","redactFailure",strip("let calendarSharedCustody=null;"+source.slice(start,end))+";return withOwnedUnknownWindow;")(()=>"private-key",origins.calendarFixtureStep,async()=>{events.push("setup-query");if(mode==="setup")throw original;return[];},async(_fx:unknown,callback:()=>Promise<unknown>)=>callback(),async()=>{events.push("settle");},()=>Error("fixed"),async(callback:(session:{query:(sql:string)=>Promise<unknown[]>})=>Promise<unknown>)=>callback({query:async(sql)=>{events.push(sql);if(sql.startsWith("delete")&&["restore","rollback"].includes(mode))throw original;if(sql==="rollback"&&mode==="rollback")throw override;return[];}}),(_stage:string,error:unknown)=>error,()=>Error("fixed"));
+    const result=await run({secret:"PRIVATE"},async()=>{events.push("callback");if(mode==="handled"){try{throw original;}catch{/* handled by existing caller, no diagnostic catch reached */}}return 17;},capture).catch((error:unknown)=>error);capture.publish();
+    if(mode==="healthy"||mode==="handled"){assert.equal(result,17);assert.deepEqual(meta,{});}else{const rows=meta.calendarInt009SetupV1 as {operation:string;sqlstate:string}[];assert.equal(rows[0].operation,mode==="setup"?"SERIAL_SETUP":"SERIAL_RESTORE");assert.equal(rows[0].sqlstate,"23505");assert.ok(!events.includes("callback")||mode!=="setup");if(mode==="rollback"){assert.equal((result as AggregateError).errors[0],override);assert.equal(rows[1].sqlstate,"08006");}}
+  }
+});
+
+test("INT009 window source operations queries awaits and original callback have pinned reviewed-base inverses",async()=>{
+  const ts=await import("typescript"),helper=readFileSync(new URL("../../../support/calendar-feed-atdd.ts",import.meta.url),"utf8").replaceAll("\r\n","\n"),scenario=readFileSync(new URL("../../../integration/commands/calendar-feed.int.test.ts",import.meta.url),"utf8").replaceAll("\r\n","\n");
+  // Constants derived once from actual DEBUG3bb Git objects, not current-to-current.
+  const digest=(value:unknown)=>createHash("sha256").update(JSON.stringify(value)).digest("hex");
+  const vector=(text:string)=>{const source=text.slice(text.indexOf("export async function withCalendarFeedFixture"),text.indexOf("/** Independent small RFC5545")),file=ts.createSourceFile("fixed.ts",source,ts.ScriptTarget.Latest,true,ts.ScriptKind.TS),calls:string[]=[],queries:string[]=[],awaits:string[]=[];
+    const visit=(node:import("typescript").Node)=>{if(ts.isCallExpression(node)){const name=ts.isParenthesizedExpression(node.expression)&&ts.isArrowFunction(node.expression.expression)?"<immediate-owned-callback>":node.expression.getText(file).replace(/\s/g,"");if(!/^(?:int009|trace)\??\./.test(name)&&!name.startsWith("calendarInt009Subject")&&!["calendarInt009Guard","ancestors.find"].includes(name))calls.push(name);if(["query","adminQuery"].includes(name))queries.push(node.getText(file));}if(ts.isAwaitExpression(node))awaits.push(ts.isCallExpression(node.expression)?node.expression.expression.getText(file).replace(/\s/g,""):node.expression.getText(file));ts.forEachChild(node,visit);};visit(file);return{calls,queries,awaits};};
+  const addition=",'proargtypes',p.proargtypes::text";assert.equal(helper.split(addition).length,2);const original=helper.replace(addition,"");
+  const catalog=original.match(/const calendarOwnerCatalogSql=`([\s\S]*?)`;/)![1];assert.equal(createHash("sha256").update(catalog).digest("hex"),"67687b5b6b0bd34031df3374d1b04f2222a0a34fe2cb9314fae6169d2c430a60");
+  const prove=(text:string)=>{const result=vector(text);assert.equal(digest(result.calls),"f9b4e27ef7a68b31dc568142b7faae1f610c555bdbde7d98579eb8b73af97a57");assert.equal(digest(result.queries),"4b86abcc55ee57142f19cf41c0e6e8425569e5360163b233576c0384b621d5a0");assert.equal(digest(result.awaits),"09084a1e4fc3f8e67f64c9ffe1849b7cbcd0c225969cf2cfce9a6ea74a45eacc");assert.deepEqual([result.calls.length,result.queries.length,result.awaits.length],[628,106,190]);};prove(original);
+  for(const changed of [original.replace('await finalize();','finalize();'),original.replace('query("set local role calendar_feed_owner")','query("reset role")'),original.replace('await release();','await release();await release();')]){assert.notEqual(changed,original);assert.throws(()=>prove(changed));}
+  const start=scenario.indexOf('  test("[P0] 15.5-INT009'),end=scenario.indexOf('  test("[P0] 15.5-INT010',start),actual=scenario.slice(start,end);
+  const inverse=(text:string)=>text.replace(/      capture\.phase\("SUBJECT_SETUP","HOLDER_READY"\);\n/g,"").replace(/capture\.phase\("(?:SCENARIO|FINALLY)","[A-Z_]+"\);/g,"").replace('      } catch(error) {capture.observe(error);throw error;} finally {\n        try {','      } finally {').replace('        }catch(error){capture.observe(error);throw error;}\n      }','      }');
+  const originalCallback=inverse(actual);assert.equal(createHash("sha256").update(originalCallback).digest("hex"),"46504a62a1c1b7c49914c86ba9f9bdb19a2dd0961a7bcbcde8ba5739664aebd7");
+  assert.notEqual(createHash("sha256").update(inverse(actual.replace('toBe("denied")','toBe("unavailable")'))).digest("hex"),"46504a62a1c1b7c49914c86ba9f9bdb19a2dd0961a7bcbcde8ba5739664aebd7");
+});
 
 // Temporary fixed original-INT009 capability; injected seams never launch services.
 const originalInt009Env = {
