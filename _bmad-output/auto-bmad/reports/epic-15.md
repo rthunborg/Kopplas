@@ -7121,3 +7121,34 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Existing High author implements exact4 bounded capture, actualsource controls and oneSRO; distinctHigh changed-source/privacyreview before separate targetedexecution boundary.
+
+## Report — 2026-10-22T13:26:40Z (working)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `173e1f6`).
+**Pipeline status:** Exact4 INT009 diagnostic capture source173e1f65 independently passes CAPTURE-P1..P5/privacy review. Final affected179P and2separateC4guardP; TS/lint/reader/SRO213/diff0. Native cause/custody and95casegate remain unresolved; sourcePASS creates no runtime or acceptance credit.
+**Continues:** (none — first run)
+
+**Summary:** (none)
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 312h 28m (≈77h 24m AI-run, ≈235h 04m human/idle wait); resumed 216×.
+
+**Stories:** (none)
+
+**Skipped:** (none)
+
+**Epic gate:** (none)
+
+**TEA:** (none)
+
+**Retrospective:** (none)
+
+**Overrides:** none
+
+**Open questions:** (none)
+
+**Deferred work:** (none)
+
+**⚠️ Needs human:** (none)
+
+**Next:** Finalize separately scoped temporary fixed INT009 execution capability proposal after draft independent validation; current sourcePASS grants no native runtime. P5/full95/fullDB-RLS/custody/delivery/P6automate/P7helper/15.6/E8 remain.

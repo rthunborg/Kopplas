@@ -1,0 +1,237 @@
+{
+  "schema": "kopplas.INT009.capture-committed-source-review.v1",
+  "verdict": "PASS_TARGETED_INT009_CAPTURE_SOURCE_PRIVACY_ONLY",
+  "status": "Independent review found no consequential introduced defect in the exact four-path committed diagnostic capture. CAPTURE-P1 through CAPTURE-P5 are satisfied at source level. This is not a cause fix, native capture qualification, reproduction grant or functional acceptance.",
+  "review": {
+    "route": "resumed_main_INT009_capture_actual_source_privacy_review",
+    "model_effort": "explicit gpt-6.1-sol High",
+    "independent_of_implementation_author_executor": true,
+    "owned_checkout": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas",
+    "commit": "173e1f65a79045cfe1ffdbe215f299548edc2b8b",
+    "parent": "ec2f82df1c6b3471951d5f0bd58a23eae72dafc1",
+    "prior_source": "b638e09d29759eeb17ad48cb8391d1e30a3a427e",
+    "scope": "Exact new diagnostic four-path delta, mandatory capture conditions and consequential latest regressions only; no fourth broad story review"
+  },
+  "bound_inputs": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-main-INT009-capture-root-commit-proof.json",
+      "bytes": 3363,
+      "sha256": "0b46972e9629f18f50cea72eab79114110fb45b6d95de40a6b8835f04e838c42"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-main-INT009-capture-author-result.json",
+      "bytes": 15783,
+      "sha256": "fdf22d2eccf8eb44393cf179b12651d2640f82862bbdaa1a2c0ee53a80fdcfc1"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-main-INT009-capture-exact4-committed.diff",
+      "bytes": 84804,
+      "sha256": "0fdf8974e04228f1b0255899fbcef2d19f67d4cd61ed4647eccf1c42320c774b"
+    }
+  ],
+  "source_bindings": [
+    {
+      "path": "tests/integration/commands/calendar-feed.int.test.ts",
+      "raw_bytes": 36989,
+      "raw_sha256": "d30ae48bfe06c9fa83803c61114fff44f26b89db2cdd9f66e66510548e1473c7",
+      "LF_bytes": 36989,
+      "LF_sha256": "d30ae48bfe06c9fa83803c61114fff44f26b89db2cdd9f66e66510548e1473c7",
+      "prospective_clean_oid": "c5b96c42305a91f7a435381b7b0b4580e685a9bd",
+      "base_blob": "35863f8eeb563f21e9c0ff741115f018ee545134",
+      "base_LF_sha256": "55e4105f0c9e110c7fc08ef17d51f3d5cdd3c8ea6996cf215f53621da1e45e08"
+    },
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "raw_bytes": 139439,
+      "raw_sha256": "c3b599846d0c604192f7cb52e7e2851ec63bc9228145a94b581f50b755f0b454",
+      "LF_bytes": 138050,
+      "LF_sha256": "c8ca8e4e7bec96bb7cb602c3eaba0de09f43db338b1f4d2d07d97edfd6547202",
+      "prospective_clean_oid": "b2217ebb023207097b688c4c78c037643b239cbf",
+      "base_blob": "46d78f836b41899fcfe87932ebb2e14abf35a4d6",
+      "base_LF_sha256": "66b90539dc01d04102305e3cd9cf26187dd8685e384ff622252197335f574956"
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "raw_bytes": 313827,
+      "raw_sha256": "38e3fce52e693ddebaf83ba1af547a3ccadce2381eab22441db8e91c0173f225",
+      "LF_bytes": 310937,
+      "LF_sha256": "f53a3b48f08afca40bef68ae015c8ef9eb436c957594051c7bcb303851795cd2",
+      "prospective_clean_oid": "d9306e4681f00728a52d3002a07537cf65181449",
+      "base_blob": "aaa643128f6bb888a7fba62bb87e03300a2a61f0",
+      "base_LF_sha256": "1ab52c098c30929a7c5e15742ce0a69599d515995b50ee48ca1e6eda014a4309"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "raw_bytes": 251180,
+      "raw_sha256": "b13bd79235829d8359351bf562dafb016f68a3efb512048dd98dd5df9763fd6b",
+      "LF_bytes": 248158,
+      "LF_sha256": "c65732db79630d7793d3c6fdc0333c54fc267f2b83b305f083b57d7b839c8898",
+      "prospective_clean_oid": "58736c8bcde2288ee74dc18c1eb90c3e6b2ae5ed",
+      "base_blob": "b53d8774d2f50d808203b04ab7d09af5c7101927",
+      "base_LF_sha256": "1540755ceb9222c003760e17c7fcc5c43ff1ce8d85d9c871674bd00dcc9d426e"
+    }
+  ],
+  "immutable_refs_independently_hash_checked": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-main-INT009-four-path-source-activation.json",
+      "bytes": 3389,
+      "sha256": "28bd15e8366ebcb824b9aa42408a019dcc1da5c347678d589011403f4c0bb374"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-resumed-main-INT009-four-path-source-allocation.json",
+      "bytes": 3132,
+      "sha256": "94cb549cd20e1de470c821389d1c08028ff59e3dfb53cb4c02308a064346937c"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-main-INT009-capture-plan-review.json",
+      "bytes": 18020,
+      "sha256": "d012c3d3612b7c47df0518ffbc167fbf26d7a85fadd837c847e096c2ed24f083"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-main-INT009-qualified-setup-assessment.json",
+      "bytes": 15556,
+      "sha256": "d4af7e4c430b43013ed7f55bed05707b0bac910ffb0e1b850652be37acd23c98"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-main-INT009-four-path-preimplementation-baseline.json",
+      "bytes": 3779,
+      "sha256": "7a1a21783d8088e7aebb026f9c03f95af51cbb2c7458d0710e4df670e373ff65"
+    }
+  ],
+  "findings": [],
+  "CAPTURE_conditions": [
+    {
+      "id": "CAPTURE-P1",
+      "status": "PASS_SOURCE",
+      "locations": [
+        "tests/support/calendar-feed-atdd.ts:767",
+        "tests/support/calendar-feed-atdd.ts:772",
+        "tests/support/calendar-feed-atdd.ts:794-805",
+        "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2809",
+        "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2860"
+      ],
+      "evidence": "Atomic operation resets UNREACHED before invoking retired session; BEGIN is assigned only inside the actual callback at the original begin query. The actual callback may remain unentered. COMMIT_ATTEMPT precedes the original commit; after callback fulfillment the phase becomes WRAPPER_OUTCOME_UNKNOWN. Outer wrapper rejection records unknown propagation rather than failed retirement and cannot overwrite a prior primary. Actual-source controls cover zero callback calls, entered callback with own42501, callback failure with verified retirement and successful callback followed by uncertain wrapper result. Existing original custody decision still uses the unchanged retirementVerified logic."
+    },
+    {
+      "id": "CAPTURE-P2",
+      "status": "PASS_SOURCE",
+      "locations": [
+        "tests/support/calendar-feed-atdd.ts:737-752",
+        "tests/support/calendar-feed-atdd.ts:766-807",
+        "tests/support/calendar-feed-atdd.ts:824-833"
+      ],
+      "evidence": "Each instrumented existing failed local comparison records one closed guard/combined ID before the original refusal. The hardcoded metadata loop records FIELD:name only after its existing comparison fails; no second predicate/row read. Existing query/definition failure records the last reached operation before erasure, and original own native code is read only at that catch. Original guard-generated errors remain nativeClass/code UNKNOWN. Uninstrumented subdetail is not fabricated: e.g. a definition failure is at DEFINITION with guard UNKNOWN. First primary is immutable and later cleanup/wrapper diagnostics cannot replace it. Added calendarPublish catch rethrows the same received object; existing owner aggregate construction/custody logic is retained."
+    },
+    {
+      "id": "CAPTURE-P3",
+      "status": "PASS_SOURCE",
+      "locations": [
+        "tests/support/calendar-feed-atdd.ts:183-225",
+        "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2794",
+        "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2822"
+      ],
+      "evidence": "Native util.types.isProxy rejection precedes descriptor reflection. Only allowlisted own-data primitive name/code become output; inherited/accessor/unknown values stay UNKNOWN. No native text, stack, cause, prototype traversal or error mutation is added. Frozen/readonly caught errors are read safely and not modified. Proxy/async-function metadata accessors are refused; the sole real accessor is controlled synchronous ()=>task.meta. Synchronous accessor/target exceptions are caught at publication and cannot mask original failure. The new code does not claim to sanitize arbitrary external callback behavior. Actual zero-trap proxy, accessor, inherited, frozen, foreign-key and throwing sink controls are present."
+    },
+    {
+      "id": "CAPTURE-P4",
+      "status": "PASS_SOURCE",
+      "locations": [
+        "tests/integration/commands/calendar-feed.int.test.ts:170-189",
+        "tests/support/calendar-feed-atdd.ts:185-227",
+        "tests/support/calendar-feed-atdd.ts:356",
+        "tests/support/calendar-feed-atdd.ts:950",
+        "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2834",
+        "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2877-2889"
+      ],
+      "evidence": "Only INT009 passes a controller through the existing fixture/work scope. Fresh records contain exactly kind/publication/operation/guard/nativeClass/sqlstate closed primitives. One primary plus max3 cleanup records are frozen, with overflow replacing only the last cleanup by OMITTED/UNKNOWN. Publication closes first, skips absent primary, refuses proxy/nonplain/nonextensible targets and any preexisting reserved key, then defines one immutable enumerable calendarInt009SetupV1 snapshot. Default/healthy cases remain silent. Capture closes after successful entire barrier setup/finalizer registration before returning; later normal restoration cannot become setup failure. Failure publication occurs in the existing final-errors branch after cleanup. Producer pretty10 bound3500 reserves596 bytes against4096; actual installed JsonReporter tests preserve exact owned records and ASCII/budget bounds. Missing/refused metadata remains UNKNOWN, not successful capture."
+    },
+    {
+      "id": "CAPTURE-P5",
+      "status": "PASS_SOURCE",
+      "locations": [
+        "tests/integration/commands/calendar-feed.int.test.ts:170-189",
+        "tests/support/calendar-feed-atdd.ts:323-357",
+        "tests/support/calendar-feed-atdd.ts:714-721",
+        "tests/support/calendar-feed-atdd.ts:766-839",
+        "tests/support/calendar-feed-atdd.ts:932-953"
+      ],
+      "evidence": "The INT009 direct fixture await and all original manage/role-loss/assertion/finally calls remain. Entire test file reverts exactly to baseline by removing only the opt-in changes. Existing work scope carries the controller without a new await/observer. Source operation vector is unchanged: await324,then6,catch4,newPromise6,setTimeout4,adminQuery70,query59,rpc5. Exact committed diff inverse recovers all four original LF bodies and base Git blobs. Actual-source query fingerprints and enclosing callback/final-errors controls preserve error identity/cause/cleanup precedence. Holder release-before-join, body/metadata/OID/owner/ACL/config checks, COMMIT/rollback/RESET/retirement, denial/zero-token/zero-audit oracles and failclosed custody remain."
+    }
+  ],
+  "actual_control_provenance": {
+    "author_final_affected_file": "179 passed,0 failed,0 skipped,0 cancelled;12.346281s on final three TS source bytes, as attributed to the bound author receipt.",
+    "separate_unchanged_C4_guard": "2 passed separately; no inferred181 total or native coverage. Actual current34 enrollment guard/caller inverses remain unchanged.",
+    "static_checks": "Author-attributed whole TypeScript and three-file lint0; final Spec reader/parser warnings empty,SRO213,diff0. Root proof independently binds committed four-file bytes. Reviewer did not rerun these checks.",
+    "history": "Chronological initial6P/intermediate175P177P; direct-await10-control draft8P2F due missing accessor invocation, corrected10P then final179P. Failed/intermediate receipts remain nonadditive history, not current pass evidence.",
+    "controls_inspected": "Read actual ten new unit controls and relevant existing extraction/reporter seams. They execute TypeScript-stripped production record maker, owner/caller/final-errors/barrier source, exact guard inverse and installed JsonReporter; boundary SQL/fixture/native objects are injected with no DB/browser/runtime. No separate mirrored capture implementation.",
+    "meaningful_cases": "Original readonly own42601 before replacement, exact calls comparison, existing composite/field/schema guard, callback-unreached/BEGIN distinction, verified and uncertain wrapper outcomes, proxy zero traps, inherited/accessor/frozen objects, immutable primary/cleanup overflow, real reporter value, setup-unreached later work, original error/cause/finally override, scoped concurrency, actual altered-guard inverse, actual fixture final-errors publication and successful barrier closure.",
+    "limitations": "Pure controls and source counts are not live PG/owner-predicate/native-class capture or hosted metadata qualification. The unchanged helper matrices were not re-run by reviewer."
+  },
+  "independent_mechanical_evidence": {
+    "raw_LF_clean_blob_binding": "All four current raw byte/SHA,LF byte/SHA and independently computed clean Git OIDs match exact Root commit proof. No reviewer Git command.",
+    "full_committed_diff_inverse": "Applied the frozen exact committed diff inverse in memory to each actual current LF body. All four recovered baseline SHA256 and base Git blob identities match proof, including exact original36884-byte INT009 test and131461-byte helper.",
+    "minimal_INT009_inverse": "Removing only imported capture symbol, TestContext/controller declaration and capture argument restores the entire original test byte-for-byte; original call order/assertions/args remain.",
+    "helper_operation_vector_before_after": [
+      324,
+      6,
+      4,
+      6,
+      4,
+      70,
+      59,
+      5
+    ],
+    "kernel": {
+      "bytes": 5760,
+      "sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+      "independently_extracted": true
+    },
+    "story_status": "Current frontmatter in-review/review_loop_iteration3 and single Suggested Review Order independently checked; author SRO213 anchors inspected against latest capture section. Historical oversized frontmatter warning retained; actual parser warnings[] author-attributed.",
+    "unchanged_protected_inputs": "Root proof binds all118 SQL raw/LF vectors and unchanged wrapper/consumer/workflow/config/dependencies. No redundant118-file scan or unchanged semantic audit by reviewer.",
+    "command_chunks": [
+      "6dc92a",
+      "64a188",
+      "3ac602",
+      "c74ef3",
+      "7d8e1d"
+    ],
+    "display_limit": "Combined unit/diff display was truncated; full current helper regions and all ten unit cases were read, and complete diff/provenance hashes/in-memory inverse were checked. No raw native logs were read."
+  },
+  "wire_privacy_and_scope": {
+    "key": "calendarInt009SetupV1",
+    "shape": "Readonly array with1 PRIMARY and at most3 CLEANUP records; exact six closed string fields per record. Existing fixed field-name vocabulary only; no actual/expected values.",
+    "budget": "Producer JSON.stringify(snapshot,null,10) must be<=3500; all admitted values are closed ASCII primitives. Guarded single publication plus actual installed JsonReporter/pretty10 checks support4096 owned-value budget. Entire reporter/foreign metadata is not claimed sanitized or bounded by this namespace.",
+    "native_class_limit": "Only original own allowlisted name is captured at the reached failure; inherited name stays UNKNOWN. A generated owner/wrapper replacement is not retrospectively native cause.",
+    "publication_limit": "No promised diagnostic if metadata is absent, foreign, readonly, proxy or sink fails. Diagnostics cannot authorize cleanup, alter final test failure or prove backend settlement.",
+    "no_privilege_expansion": "No production SQL/app/wrapper/workflow/selector/admission/SDK/dependency change. node:util is a standard-library import, not a new installed dependency. The capture adds no request/query/client/principal/transaction/timer/observer."
+  },
+  "invariants_and_authority": {
+    "original_cause": "UNKNOWN until separately admitted actual capture and provenance qualification. Source review does not infer which owner guard or SQLSTATE produced the historical setup failure.",
+    "source_implementation": "Exact four committed paths only; independently qualified here.",
+    "reproduction": "Unallocated. Current fullDB argv and DIAG001 route do not admit filtered INT009; future execution-boundary proposal/companions require separate actual authority and independent review. No automatic NORMAL retry or DIAG001 substitution.",
+    "private_consumer": "Actual forthcoming report/schema binding must be qualified before acquisition; no new parser/effects authorization is created by this source PASS.",
+    "required95": "Prior actual68P+INT009F+26zero coverage remains. Browser14 and separate recovery1 successes unchanged; no new coverage from these controls.",
+    "DB_key": "RETAINED_UNVERIFIED",
+    "backend_rollback_canonical_restoration_global_keys": "UNKNOWN",
+    "all118_SQL": "IMMUTABLE, no new native SQL proof",
+    "normal_acceptance": 0,
+    "development_complete": false,
+    "release_ready": false,
+    "P5": "open",
+    "15.6": "unstarted",
+    "broad_review_counter": 3,
+    "execution_authority": false
+  },
+  "reviewer_actions": {
+    "tests_suites_or_control_reruns": 0,
+    "operator_or_app_runtime": 0,
+    "API_provider_CI_resources": 0,
+    "Git_commands_or_mutations": 0,
+    "source_Spec_SQL_packet_or_foreign_edits": 0,
+    "writes": "This one new tracked review JSON only; all frozen input/source hashes verified before and after"
+  },
+  "open_questions": [
+    "Actual first subject-publication failure/guard/code and cleanup outcome are still unobserved."
+  ],
+  "blockers": "No consequential introduced source/privacy defect identified. Separately scoped targeted execution/consumer admission and remaining functional/custody gates are still required; source PASS grants no runtime or acceptance credit."
+}
