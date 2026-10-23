@@ -1,0 +1,357 @@
+{
+  "schema": "ROOT_INT014_SOURCE_CLOSURE_MANIFEST_V1",
+  "self_excluded": true,
+  "byte_identical_JSON_copies": [
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-author/INT014-diff-check-native.json",
+        "bytes": 1175,
+        "sha256": "ade2f1a2e7b8ad0c368558c565a9367f8827677d69b181980b57a79f4ebfe2f6"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT014-observation-source-closure/INT014-diff-check-native.json",
+        "bytes": 1175,
+        "sha256": "ade2f1a2e7b8ad0c368558c565a9367f8827677d69b181980b57a79f4ebfe2f6"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-author/INT014-focused-GREEN-native.json",
+        "bytes": 1217,
+        "sha256": "6a323a4c89ecdfb3c8ff9e5d78226c51a179a3084e1e7789555c884467894304"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT014-observation-source-closure/INT014-focused-GREEN-native.json",
+        "bytes": 1217,
+        "sha256": "6a323a4c89ecdfb3c8ff9e5d78226c51a179a3084e1e7789555c884467894304"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-author/INT014-focused-RED-corrected-controls-native.json",
+        "bytes": 1233,
+        "sha256": "c0c88ef6ae359843a6b29f50c2812478a6c03dd0b68d42d7cfdba075b0a02441"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT014-observation-source-closure/INT014-focused-RED-corrected-controls-native.json",
+        "bytes": 1233,
+        "sha256": "c0c88ef6ae359843a6b29f50c2812478a6c03dd0b68d42d7cfdba075b0a02441"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-author/INT014-focused-RED-localization-native.json",
+        "bytes": 1236,
+        "sha256": "f101d7b9ef61b560911dcf0b4f6b7bf3bbeacdf416c6de5a6e127db0acbdbfec"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT014-observation-source-closure/INT014-focused-RED-localization-native.json",
+        "bytes": 1236,
+        "sha256": "f101d7b9ef61b560911dcf0b4f6b7bf3bbeacdf416c6de5a6e127db0acbdbfec"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-author/INT014-focused-RED-native.json",
+        "bytes": 1214,
+        "sha256": "6ce1237ab56d8a261d7f98522a6789bb8935c564b7ed3098245453f6bf3562b5"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT014-observation-source-closure/INT014-focused-RED-native.json",
+        "bytes": 1214,
+        "sha256": "6ce1237ab56d8a261d7f98522a6789bb8935c564b7ed3098245453f6bf3562b5"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-author/INT014-full-affected-unit-native.json",
+        "bytes": 1153,
+        "sha256": "0ab620e309cf7a86ebf2ff138ed82a9b731478d3aaf8b704f2e86a24f13ee346"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT014-observation-source-closure/INT014-full-affected-unit-native.json",
+        "bytes": 1153,
+        "sha256": "0ab620e309cf7a86ebf2ff138ed82a9b731478d3aaf8b704f2e86a24f13ee346"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-author/INT014-rejection-assertion-localization-native.json",
+        "bytes": 2397,
+        "sha256": "dbb84d8d120e7ecfe5c369c9c13c6c8d27899e9894aa3e4494619daeba964e00"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT014-observation-source-closure/INT014-rejection-assertion-localization-native.json",
+        "bytes": 2397,
+        "sha256": "dbb84d8d120e7ecfe5c369c9c13c6c8d27899e9894aa3e4494619daeba964e00"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-author/INT014-scoped-lint-native.json",
+        "bytes": 1304,
+        "sha256": "bd4f7a6c82bb0b34af3fc01f5ba0449b5f643d34110d4a17f32744cff1efe4f0"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT014-observation-source-closure/INT014-scoped-lint-native.json",
+        "bytes": 1304,
+        "sha256": "bd4f7a6c82bb0b34af3fc01f5ba0449b5f643d34110d4a17f32744cff1efe4f0"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-author/INT014-SQL-dirty-paths-native.json",
+        "bytes": 1000,
+        "sha256": "44fb8525006011b0f0dd0241de77bc9356e1923918d9968b6c4b0c7943cdb338"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT014-observation-source-closure/INT014-SQL-dirty-paths-native.json",
+        "bytes": 1000,
+        "sha256": "44fb8525006011b0f0dd0241de77bc9356e1923918d9968b6c4b0c7943cdb338"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-author/INT014-test-extraction-boundary-native.json",
+        "bytes": 2488,
+        "sha256": "37a8b3e2c47994541c04170e98757162de1199eb4dbfe1a02d147d730f54bdd8"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT014-observation-source-closure/INT014-test-extraction-boundary-native.json",
+        "bytes": 2488,
+        "sha256": "37a8b3e2c47994541c04170e98757162de1199eb4dbfe1a02d147d730f54bdd8"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-author/INT014-test-extraction-localization-native.json",
+        "bytes": 2242,
+        "sha256": "bdece182ae8f785e9865357b41e9df76b26f455e7a277dc164e0ed97a88d5829"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT014-observation-source-closure/INT014-test-extraction-localization-native.json",
+        "bytes": 2242,
+        "sha256": "bdece182ae8f785e9865357b41e9df76b26f455e7a277dc164e0ed97a88d5829"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-author/INT014-typecheck-native.json",
+        "bytes": 1198,
+        "sha256": "e3b89cacfb85386bf493b35b705410ccbe46f195362af68f19997f4b0d7fe931"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT014-observation-source-closure/INT014-typecheck-native.json",
+        "bytes": 1198,
+        "sha256": "e3b89cacfb85386bf493b35b705410ccbe46f195362af68f19997f4b0d7fe931"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-author/final-conservation-summary.json",
+        "bytes": 2632,
+        "sha256": "c070392defa2483278211ad305ad001de3098d381d63748183559ca17bd30737"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT014-observation-source-closure/final-conservation-summary.json",
+        "bytes": 2632,
+        "sha256": "c070392defa2483278211ad305ad001de3098d381d63748183559ca17bd30737"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-author/INT014-focused-GREEN-summary.json",
+        "bytes": 382,
+        "sha256": "9e8b0934aa6dc561bc7d379bbef47c25a4effbcdce996ba140028ebbe23043fb"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT014-observation-source-closure/INT014-focused-GREEN-summary.json",
+        "bytes": 382,
+        "sha256": "9e8b0934aa6dc561bc7d379bbef47c25a4effbcdce996ba140028ebbe23043fb"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-author/INT014-focused-RED-corrected-controls-summary.json",
+        "bytes": 600,
+        "sha256": "d90611dbf667a019233f136fa0657e685d9f59c4c563d82b9ca73b02f946591c"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT014-observation-source-closure/INT014-focused-RED-corrected-controls-summary.json",
+        "bytes": 600,
+        "sha256": "d90611dbf667a019233f136fa0657e685d9f59c4c563d82b9ca73b02f946591c"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-author/INT014-focused-RED-localization-summary.json",
+        "bytes": 535,
+        "sha256": "cc4cd031eb8d31872d9c6ae96bb09996dd2e94469860cf26de897537c1fc35d9"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT014-observation-source-closure/INT014-focused-RED-localization-summary.json",
+        "bytes": 535,
+        "sha256": "cc4cd031eb8d31872d9c6ae96bb09996dd2e94469860cf26de897537c1fc35d9"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-author/INT014-focused-RED-summary.json",
+        "bytes": 690,
+        "sha256": "ba67096746cd968ea39018d1a1adf35d9b39610c370ba23ee8f6412726f79d66"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT014-observation-source-closure/INT014-focused-RED-summary.json",
+        "bytes": 690,
+        "sha256": "ba67096746cd968ea39018d1a1adf35d9b39610c370ba23ee8f6412726f79d66"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-author/INT014-full-affected-unit-summary.json",
+        "bytes": 287,
+        "sha256": "ad472380df58fedca448969715386b2cf4e3d32379fe81f90ad9b95eed947a57"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT014-observation-source-closure/INT014-full-affected-unit-summary.json",
+        "bytes": 287,
+        "sha256": "ad472380df58fedca448969715386b2cf4e3d32379fe81f90ad9b95eed947a57"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-author/INT014-rejection-assertion-localization-summary.json",
+        "bytes": 219,
+        "sha256": "06aeac6c3475d49799df954a31058c2a1c698230aa9f0a710fee2e048b3df4d1"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT014-observation-source-closure/INT014-rejection-assertion-localization-summary.json",
+        "bytes": 219,
+        "sha256": "06aeac6c3475d49799df954a31058c2a1c698230aa9f0a710fee2e048b3df4d1"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-author/INT014-scoped-lint-summary.json",
+        "bytes": 173,
+        "sha256": "0e7bf3715cc5b4ce339b7541438e3e733120665788924d1886c40fc4004a4bf8"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT014-observation-source-closure/INT014-scoped-lint-summary.json",
+        "bytes": 173,
+        "sha256": "0e7bf3715cc5b4ce339b7541438e3e733120665788924d1886c40fc4004a4bf8"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-author/INT014-test-extraction-boundary-summary.json",
+        "bytes": 17,
+        "sha256": "12b34da73b0c67a0319e6eddbd3582af66e3b558b4d44e4a6860e0cec20d726f"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT014-observation-source-closure/INT014-test-extraction-boundary-summary.json",
+        "bytes": 17,
+        "sha256": "12b34da73b0c67a0319e6eddbd3582af66e3b558b4d44e4a6860e0cec20d726f"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-author/INT014-test-extraction-localization-summary.json",
+        "bytes": 121,
+        "sha256": "824f2ff0d7513cad89d7a69879decf0c061847fab42bd5dbb32bda33fb2b805a"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT014-observation-source-closure/INT014-test-extraction-localization-summary.json",
+        "bytes": 121,
+        "sha256": "824f2ff0d7513cad89d7a69879decf0c061847fab42bd5dbb32bda33fb2b805a"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-author/INT014-typecheck-summary.json",
+        "bytes": 171,
+        "sha256": "bf7b06b854cb641b8c348da388ac9846572ee379968ee7f07e92d453c076f244"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT014-observation-source-closure/INT014-typecheck-summary.json",
+        "bytes": 171,
+        "sha256": "bf7b06b854cb641b8c348da388ac9846572ee379968ee7f07e92d453c076f244"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-author/author-result.json",
+        "bytes": 20724,
+        "sha256": "9b99210e19781469affdbc02e6894aa8d798b3ca4ad5671f728c1ebae7849a79"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT014-observation-source-closure/author-result.json",
+        "bytes": 20724,
+        "sha256": "9b99210e19781469affdbc02e6894aa8d798b3ca4ad5671f728c1ebae7849a79"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-author/final-source-delta.json",
+        "bytes": 1572,
+        "sha256": "b9fd4c5e134954ce9488e4204db889cc4b0d03c4f7e4fa5261ce8d02f71d30c9"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT014-observation-source-closure/final-source-delta.json",
+        "bytes": 1572,
+        "sha256": "b9fd4c5e134954ce9488e4204db889cc4b0d03c4f7e4fa5261ce8d02f71d30c9"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-first-failure-source-assessment.json",
+        "bytes": 12594,
+        "sha256": "a73f339fd60af9033b6e2f3e2a2343e380a603fa6dc5bf0287e0f31ee5a24d20"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT014-observation-source-closure/normal-INT014-first-failure-source-assessment.json",
+        "bytes": 12594,
+        "sha256": "a73f339fd60af9033b6e2f3e2a2343e380a603fa6dc5bf0287e0f31ee5a24d20"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-minimum-plan-independent-review.json",
+        "bytes": 11286,
+        "sha256": "0d72ca477ba474a16d716924453f0da57c8f0575220f9a0e263de1f22eb4ecb6"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT014-observation-source-closure/normal-INT014-minimum-plan-independent-review.json",
+        "bytes": 11286,
+        "sha256": "0d72ca477ba474a16d716924453f0da57c8f0575220f9a0e263de1f22eb4ecb6"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-actual-patch-independent-review.json",
+        "bytes": 13637,
+        "sha256": "374466ac6b85f9fb41118893361d3dfe9ad61cde22ace83b216526b021b1acfc"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT014-observation-source-closure/normal-INT014-actual-patch-independent-review.json",
+        "bytes": 13637,
+        "sha256": "374466ac6b85f9fb41118893361d3dfe9ad61cde22ace83b216526b021b1acfc"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-root-source-commit-proof.json",
+        "bytes": 2329,
+        "sha256": "c3a713701eb33d5cef9dc72ef373ae766da90449f5229384e018e5c77e935a9f"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT014-observation-source-closure/normal-INT014-root-source-commit-proof.json",
+        "bytes": 2329,
+        "sha256": "c3a713701eb33d5cef9dc72ef373ae766da90449f5229384e018e5c77e935a9f"
+      }
+    }
+  ],
+  "file_count": 29,
+  "raw_source_insertions_or_preimages_copied": false,
+  "local_recovery": "ffe1d7duplicateinputglob stopped exclusivecopy before statewrites; reused25byte-identicalcopies, deduplicatedinputlist, no deletion/rewrite/sourceeffect."
+}

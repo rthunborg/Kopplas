@@ -1,0 +1,9 @@
+{
+  "label": "INT014-typecheck",
+  "native_exit": 0,
+  "counts": {},
+  "raw_persisted": false,
+  "TS_diagnostics": [],
+  "stderr_nonempty": false,
+  "nonadditive": true
+}

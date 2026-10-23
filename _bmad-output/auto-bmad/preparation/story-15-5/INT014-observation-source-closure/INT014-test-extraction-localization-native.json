@@ -1,0 +1,41 @@
+{
+  "label": "INT014-test-extraction-localization",
+  "argv": [
+    "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+    "--input-type=module",
+    "-e",
+    "import fs from \"node:fs\";import assert from \"node:assert/strict\";import * as nodeModule from \"node:module\";import {pathToFileURL} from \"node:url\";\nconst file=\"C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts\";let s=fs.readFileSync(file,\"utf8\").replaceAll(\"\\r\\n\",\"\\n\");const readFileSync=fs.readFileSync,CommandError=Error;const url=JSON.stringify(pathToFileURL(file).href);const part=(start,end)=>s.slice(s.indexOf(start),s.indexOf(end,s.indexOf(start))).replaceAll(\"import.meta.url\",url);try{eval(nodeModule.stripTypeScriptTypes(part(\"function actualFeedRegion(\",'test(\"actual status mapper distinguishes'))+\";actualFixtureStatusObservation('2026-10-20T12:07:00Z');\");console.log(JSON.stringify({ok:true}));}catch(e){console.log(JSON.stringify({ok:false,name:[\"AssertionError\",\"SyntaxError\",\"ReferenceError\",\"TypeError\"].includes(e.name)?e.name:\"UNKNOWN\",code:e.code===\"ERR_ASSERTION\"?e.code:null,actual:typeof e.actual===\"number\"?e.actual:null,expected:typeof e.expected===\"number\"?e.expected:null,ownFrames:String(e.stack).match(/with-calendar-feed-runtime[.]test[.]ts:[0-9]+:[0-9]+/g)}));}"
+  ],
+  "Node": "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+  "native_exit": 0,
+  "elapsed_seconds": 0.088371,
+  "reason": null,
+  "caps": {
+    "seconds": 30,
+    "stdout": 2097152,
+    "stderr": 262144
+  },
+  "direct_process_settled": true,
+  "readers_joined": true,
+  "handles_closed": true,
+  "streams": [
+    {
+      "bytes": 96,
+      "sha256": "8e03c19900533bf76e00d5065298a76f9c7d46bd3a5812d6514f94c510989b94",
+      "physical_EOF": true,
+      "reader_done": true,
+      "reader_error": false,
+      "overflow": false
+    },
+    {
+      "bytes": 183,
+      "sha256": "6ce68d6638e740c4b30ef4e0574b386af6bc23c5150854c393cb291b84f94fcc",
+      "physical_EOF": true,
+      "reader_done": true,
+      "reader_error": false,
+      "overflow": false
+    }
+  ],
+  "raw_persisted": false,
+  "extra_environment_keys": []
+}

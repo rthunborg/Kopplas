@@ -1,0 +1,29 @@
+{
+  "schema": "ROOT_INT014_OBSERVATION_SOURCE_CLOSEOUT_V1",
+  "source_commit": "a9489663addf99aa7da62c9c7ec4089a77f523d7",
+  "parent": "bd4121e55489bf8f5a35fdd80d3f9ffd68fb98ea",
+  "change": "Fixture status lastUsedAt normalized viaexistingiso AFTER strictRPC/schema/privacy+actualmapper;rawpublicDtoidentity/spelling+productionmapperunchanged.",
+  "author": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT014-observation-source-closure/author-result.json",
+    "bytes": 20724,
+    "sha256": "9b99210e19781469affdbc02e6894aa8d798b3ca4ad5671f728c1ebae7849a79"
+  },
+  "review": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT014-observation-source-closure/normal-INT014-actual-patch-independent-review.json",
+    "bytes": 13637,
+    "sha256": "374466ac6b85f9fb41118893361d3dfe9ad61cde22ace83b216526b021b1acfc"
+  },
+  "manifest": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT014-observation-source-closure/manifest.json",
+    "bytes": 16400,
+    "sha256": "1322139e85aaa9612f752e701f1972e565f9992ea403e76928ca381e0cd9712b"
+  },
+  "source_paths": 3,
+  "checks": "SemanticRED1P2F/3 -> GREEN3P0F; affected187P0F0skip;TS/scopedlint/diff0,allsettled;initialcontrol/localizationhistorypreserved;countsnonadditive.",
+  "preserved": "2RPCorder/args;integrationassertions;strictguards;ownerFacts3cd509;all118SQL/app/deps;kernel/outsideSRO/status/counter3.",
+  "runtime": "Run39950998114remains73P1F21zero/INT014F/retainedDBcustody/capexception;exacthostedassertion/value/causeUNKNOWN.",
+  "P5": "OPEN;completedphases0..4;no done/releaseclaim",
+  "next": "MinimalexistingNORMALrebind/independentreview/freshfinitegrant/proof/provider/push/canonicaldispatch;qualified95/recovery/custody.",
+  "remote_effects": 0,
+  "deployments": 0
+}

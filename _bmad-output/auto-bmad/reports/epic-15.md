@@ -7824,3 +7824,39 @@ Existing deferredreleasevalidation remainsdeferred.
 **⚠️ Needs human:** (none)
 
 **Next:** Apply independently checked minimum INT014 fixture correction with focused regression evidence and independent actual-patch review, then qualify fresh full NORMAL95/recovery/custody before completing15.5 and preparing15.6.
+
+## Report — 2026-10-23T13:14:14Z (continuing — INT014 fixture correction independently reviewed)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `a948966`).
+**Pipeline status:** P5OPEN; sourcea9489663eligible for fresh NORMAL95/recovery/custody.
+**Continues:** WholeEpic15 active; minimalexistingNORMALrebind next.
+
+**Summary:** Return-onlyfixturetimestampnormalization preservesrawDTO/strictguards/productionbehavior;independentHighactualpatchreviewPASS.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 336h 16m (≈77h 24m AI-run, ≈258h 51m human/idle wait); resumed 238×.
+
+**Stories:**
+1. 15.1–15.4landed.
+2. 15.5semanticRED1P2F→GREEN3P;187affectedP0skip/TS0/lint0. Historicalcurrentrun39950998114remains73P1F21zero/INT014F/DBcustodyretained.
+3. 15.6unstarted; sequentialspecprepare+independentvalidationbeforebuild.
+
+**Skipped:** (none)
+
+**Epic gate:** Pendingrequireddevelopmentcompletion.
+
+**TEA:** P6automate required.
+
+**Retrospective:** Epic14October8accepted-with-open-items authoritative; Epic15pending.
+
+**Overrides:** No deployment; conditionalmergeafterindependentreview/allchecks/productionmaincontainment;cap3no4thbroad;historicalcapdiscrepanciespreserved.
+
+**Open questions:**
+1. ExacthostedINT014matcher/value/causeUNKNOWN; fresh95/custodypending.
+
+**Deferred work:**
+1. Existingexhaustivereleasevalidation deferred,neverpassed.
+
+**⚠️ Needs human:** (none)
+
+**Next:** ReviewminimalNORMALbindings with actual20sremoteGitcaps, thenfreshfiniteallocation/proof/provider/push/onecanonicalNORMAL.
