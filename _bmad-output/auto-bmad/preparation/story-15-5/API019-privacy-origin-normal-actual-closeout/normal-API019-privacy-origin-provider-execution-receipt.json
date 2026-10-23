@@ -1,0 +1,116 @@
+{
+  "schema": "PRIVACY_ORIGIN_PROVIDER_EXECUTION_RECEIPT_V1",
+  "invocations": 1,
+  "preinvoke_ages_seconds": {
+    "activation": 65.982731,
+    "source_proof": 65.982731
+  },
+  "activation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-provider-readonly-activation.json",
+    "bytes": 2498,
+    "sha256": "4a2f41d113412428b737c5403836cfadff50de4aff996efb0e00aa027adbf847"
+  },
+  "allocation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-normal-API019-privacy-origin-effects-allocation.json",
+    "bytes": 5952,
+    "sha256": "6403123ad4873d4d4b1c2d7363b89c7d23baab021c8fdc6d7455f204fbd9b34d"
+  },
+  "operator": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-execution-preparation/provider.py",
+    "bytes": 20591,
+    "sha256": "0b33181f9cbbfdc1b36a463d3a66fc5d1b33db8e9a170ccc1379822ca7c2fdcc"
+  },
+  "outer_native_argv": [
+    "C:/Users/Rasmus/AppData/Local/Programs/Python/Python314/python.exe",
+    "-I",
+    "-X",
+    "utf8",
+    "-B",
+    ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-execution-preparation/provider.py",
+    "--execute-once-after-new-root-provider-grant"
+  ],
+  "outer_native_capture": {
+    "native_exit": 0,
+    "category": null,
+    "elapsed_seconds": 4.220515,
+    "timeout_seconds": 60,
+    "capture_complete": true,
+    "readers_joined": true,
+    "handles_closed": true,
+    "direct_process_settled": true,
+    "streams": [
+      {
+        "observed_bytes": 1000,
+        "sha256": "31221b1cb93760a8f6c423731787ef977d430c54514b016edd8af0c912e5eca6",
+        "physical_EOF": true,
+        "reader_done": true,
+        "reader_error": false,
+        "overflow": false
+      },
+      {
+        "observed_bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "physical_EOF": true,
+        "reader_done": true,
+        "reader_error": false,
+        "overflow": false
+      }
+    ]
+  },
+  "qualification": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-vercel-readonly-qualification.json",
+    "bytes": 30499,
+    "sha256": "62b47063fd172caa3d1b0c7753cacb5c15b4ec08e65ed8061653136716e86057"
+  },
+  "status": "PASS_LIMITED_ORDINARY_GIT_PUSH_CONTAINMENT",
+  "category": null,
+  "logical_GET_invocations": 1,
+  "provider_transport": {
+    "native_exit": 0,
+    "elapsed_seconds": 4.108672,
+    "launch_error": false,
+    "timed_out": false,
+    "capture_complete": true,
+    "direct_process_settled": true,
+    "readers_joined": true,
+    "handles_closed": true,
+    "streams": {
+      "stdout": {
+        "observed_bytes": 17940,
+        "physical_EOF": true,
+        "reader_done": true,
+        "read_error": false,
+        "overflow": false,
+        "observed_sha256": "5078a17c7808addc7c78b668a79fa651accf812a3d18ccfa49a87b1a2c8a7013"
+      },
+      "stderr": {
+        "observed_bytes": 0,
+        "physical_EOF": true,
+        "reader_done": true,
+        "read_error": false,
+        "overflow": false,
+        "observed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  },
+  "slots_closed": true,
+  "retry": false,
+  "raw_persisted": false,
+  "normal_acceptance": 0,
+  "actual_tool_provenance": {
+    "chunk_id": "1b7aa3",
+    "outer_native_exit": 0,
+    "outer_wall_seconds": 4.384527,
+    "session_id": null,
+    "wait_calls": 0
+  },
+  "configured_limits": {
+    "provider_loop_seconds": 15,
+    "provider_same_child_wait_seconds": 2,
+    "provider_reader_join_seconds_each": 2,
+    "outer_loop_seconds": 60,
+    "outer_same_child_wait_seconds": 2,
+    "outer_reader_join_seconds_each": 1,
+    "strict_hardwall_claim": false
+  }
+}

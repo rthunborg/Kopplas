@@ -1,0 +1,32 @@
+{
+  "schema": "ROOT_ACTUAL_INITIAL_OUTER_PROVENANCE_V1",
+  "operation_id": "5e17d7ae-9ad6-4ac4-a4fa-e304a20ce207",
+  "run_id": 39990057474,
+  "records": [
+    {
+      "phase": "publication-initial",
+      "chunk_id": "b1f407",
+      "wall_time_seconds": 10.0141037,
+      "native_exit": null,
+      "session_id": 58991,
+      "meaning": "Running tool return, not completed native process."
+    },
+    {
+      "phase": "publication-final",
+      "chunk_id": "464ec9",
+      "wall_time_seconds": 2.0391906,
+      "native_exit": 0,
+      "session_id": null,
+      "resumed_session": 58991
+    },
+    {
+      "phase": "resolver",
+      "chunk_id": "34981b",
+      "wall_time_seconds": 1.5139444,
+      "native_exit": 0,
+      "session_id": null
+    }
+  ],
+  "actual_outer_returns": 3,
+  "source": "Root primary returned tool records verified against functions stores; no child-capture/host-outer conflation."
+}

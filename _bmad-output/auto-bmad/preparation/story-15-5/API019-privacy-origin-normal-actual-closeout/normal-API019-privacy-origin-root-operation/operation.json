@@ -1,0 +1,20 @@
+{
+  "operation_id": "5e17d7ae-9ad6-4ac4-a4fa-e304a20ce207",
+  "head": "7d8b213f9f1ff9cdeb31689a0bb08577a24249cd",
+  "checkpoint_id": "8b61639c-1015-45a7-835f-b9a88ccd9e92",
+  "phase": "ROOT_STOPPED",
+  "started_at": "2026-10-23T16:49:59.854511+00:00",
+  "resolution_count": 1,
+  "poll_count": 5,
+  "run_id": 39990057474,
+  "normal_acceptance": 0,
+  "dispatch_accepted_at": "2026-10-23T16:50:08.681568+00:00",
+  "canonical_state": {
+    "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-dispatch-state.json",
+    "bytes": 485,
+    "sha256": "c1d9e2b169524b21c273a3d60db05871cd9d252486c86cc2e69c1af5221c63b0"
+  },
+  "last_resolution": "2026-10-23T16:50:27.974316+00:00",
+  "last_poll": "2026-10-23T17:03:05.357479+00:00",
+  "stopped_at": "2026-10-23T17:03:06.584792+00:00"
+}

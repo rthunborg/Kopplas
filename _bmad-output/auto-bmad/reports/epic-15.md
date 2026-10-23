@@ -8021,3 +8021,42 @@ Development completion is separate from release readiness.
 **⚠️ Needs human:** (none)
 
 **Next:** Materialize and independently verify the existing operational procedure against the committed source and metadata head. Obtain the finite allocation before the next bounded observation; then close required95/custody/delivery and continueP6/P7,15.6 and epic gates.
+
+## Report — 2026-10-23T17:38:32Z (continuing — pre-integration startup failure independently qualified)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `7d8b213`).
+**Pipeline status:** Story15.5 P5 remains open; required development evidence is incomplete.
+**Continues:** True
+
+**Summary:** The closed current NORMAL run passed44 required cases;51 database cases never executed after Supabase startup failed. Independent qualification found no current API019 execution, startup cause or main DB custody proof. No source-proven startup fix was identified.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 340h 40m (≈77h 24m AI-run, ≈263h 16m human/idle wait); resumed 243×.
+
+**Stories:**
+1. 15.1–15.4 remain landed.
+2. 15.5 current run39990057474/source48a7: Node30 distinct required cases and browser14 passed;51 DB cases unexecuted. Separate recovery passed. All operational and acquisition slots closed.
+3. 15.2 final metadata readiness confirms3 broad rounds exhausted. Its inherited recommendation/unverified flag remains pending final author evidence and explicit supported independent closure disposition.
+4. 15.6 remains unstarted until15.5 completes.
+
+**Skipped:** (none)
+
+**Epic gate:** Pending required development evidence and remaining story.
+
+**TEA:** ATDD complete; P6 automation and epic trace remain required.
+
+**Retrospective:** Epic14 October8 accepted-with-open-items remains authoritative; October7 is historical. Epic15 retrospective pending.
+
+**Overrides:** Owner design defaults, sequential ownership, independent High sensitive review, three-round cap, one final PR, retained branches and no deployment remain enforced. Minimum-plan review route recorded after dispatch; first invalid route-select made no write.
+
+**Open questions:**
+1. Current startup cause, first API019 privacy child/predicate and main DB key/backend settlement remain UNKNOWN.
+2. Final15.2 metadata reconciliation and actual main production auto-deployment containment remain pending.
+
+**Deferred work:**
+1. Exhaustive visual/manual matrices and live release validation remain explicitly deferred with owners; none is counted as passed.
+Development completion remains separate from release readiness.
+
+**⚠️ Needs human:** (none)
+
+**Next:** Independent minimum-plan review passed for one fresh unchanged NORMAL observation. Prepare new exact bindings, fresh proofs and completed finite allocation. A second consecutive startup7 failure stops this approach. Then close95/custody/delivery and continueP6/P7,15.6 and epic gates.

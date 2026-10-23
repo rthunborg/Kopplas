@@ -1,0 +1,250 @@
+{
+  "schema": "INDEPENDENT_HIGH_15_2_FINAL_METADATA_CONTRACT_READINESS_V1",
+  "route": "Root7ba40b explicitgpt-6.1-solHigh",
+  "Outcome": "HISTORICAL_DELIVERY_CONTRACT_VALID_FINAL_AUTHOR_REFRESH_AND_EXPLICIT_FLAG_DISPOSITION_REMAIN",
+  "Files changed": "One new private readiness JSON only; canonical delivery, spec, state, reports and process code remain unchanged.",
+  "Status": {
+    "scope": "Read-only final author-metadata/delivery contract planning. Prior review completion,25-path map and one-seam closure reused without rerun.",
+    "reported_current_head": "7d8b213f9f1ff9cdeb31689a0bb08577a24249cd",
+    "reported_source": "48a7",
+    "authoritative_reader": {
+      "command": "python -X utf8 -B .agents/skills/auto-bmad/scripts/story_plan.py --spec _bmad-output/implementation-artifacts/spec-15-2-recurring-bookings-series-materialized-occurrences-exceptions.md",
+      "tool": "1748d6",
+      "native_exit": 0,
+      "spec_status": "done",
+      "auto_run_status": "done",
+      "blocking_condition": null,
+      "followup_review_recommended": true,
+      "review_loop_iteration": 0,
+      "parse_warnings": [],
+      "warnings": [
+        "oversized"
+      ],
+      "last_review_pass": {
+        "date": "2026-10-20",
+        "patch": 2,
+        "reject": 3,
+        "intent_gap": 0,
+        "bad_spec": 0,
+        "defer": 0
+      }
+    },
+    "canonical_delivery": {
+      "path": "_bmad-output/auto-bmad/delivery/15-2-recurring-bookings-series-materialized-occurrences-exceptions.json",
+      "exists": true,
+      "bytes": 53247,
+      "sha256": "a40a8ec4a3b78e63809d99f18f34b0648f1e708aa4ba472e17792699db3a7048",
+      "evidence_revision": "a00dd595d96a73c398328ed1778bac334aca9de6",
+      "release_ready": false,
+      "development_checks": 8,
+      "deferred_release_items": 3,
+      "record_status": "qualified-exact-a00-development-evidence-awaiting-Root-gate-and-final-frozen-provenance",
+      "classification": "Intentionally preserved historical pre-admission freeze; later historical Root gate/provenance/admission are supplied by the already-qualified prior evidence. Pending wording is freeze-time provenance, not proof those historical admissions never happened."
+    },
+    "delivery_gate": {
+      "command": "python -X utf8 -B .agents/skills/auto-bmad/scripts/delivery_gate.py _bmad-output/auto-bmad/delivery/15-2-recurring-bookings-series-materialized-occurrences-exceptions.json",
+      "tool": "b0d218",
+      "native_exit": 0,
+      "result": {
+        "ok": true,
+        "development_complete": true,
+        "errors": [],
+        "approval_granted": false
+      },
+      "limit": "Pure structural contract validation only. The helper checks neither evidence truth nor dependency freshness, source/current CI equality, recommendation convergence or merge authority. Its development_complete field is not a fresh acceptance claim by this audit."
+    },
+    "actual_epic_finalize": {
+      "command": "python -X utf8 -B .agents/skills/auto-bmad/scripts/state_plan.py --state-dir _bmad-output/auto-bmad/state --scope epic --story-key epic-15 --finalize",
+      "tool": "2d4920",
+      "native_exit": 1,
+      "stdout_bytes": 1756,
+      "stdout_sha256": "cde2c31014392623f7b8ad6dd9514f5c2d9d5143d951fbfdb97a97217c1e2d67",
+      "stderr_bytes": 0,
+      "draft": true,
+      "clean_completion": false,
+      "flip_bmad_status": false,
+      "clauses": {
+        "blocker": true,
+        "review_unverified": true,
+        "gate_waived": false,
+        "ci_failed_or_timeout": true
+      },
+      "error_class": "Missing _bmad-output/auto-bmad/delivery/epic-15.json",
+      "interpretation": "Missing epic delivery is an expected future-finalization obligation while15.5 remains active and15.6 unstarted, not permission to create or finalize it now. Stored CI state is failed and a live15.5 blocker exists; this command does not poll or independently qualify the currently running39990057474."
+    },
+    "review_history": "Third broad pass already completed3/3; score6/recommendedtrue/nonconvergence0/followup_passes2 are distinct and preserved. No unresolved consequential finding in the final retained15.2 reports; the sole documentary seam is closed by the reused targeted source/provenance receipt. Old planned-third-pass override is historical."
+  },
+  "Open questions": [
+    "After final actual-head CI and Coordinator fresh PR review, Root/Coordinator must supply an explicit supported policy disposition of the inherited recommendation/flag. The present documents do not say that a delivery refresh or final PR PASS automatically supersedes a Phase7 recommendation.",
+    "If that disposition cannot be established under existing authority and the three-round cap, the supported current result remains caveated/draft/clean_completion=false; do not turn it into a fourth broad review or infer a new permission request."
+  ],
+  "Deferred work": {
+    "author_metadata_scope_only": {
+      "timing": "After final source freezes and actual final-head native/CI qualification and required final independent review are available; no prospective passed records.",
+      "canonical_delivery_requirements": [
+        "Preserve the exact historical a40 record and its raw/Git-normalization lineage before any authorized canonical refresh. Link the immutable historical source/CI/admission evidence; do not rewrite it as if it tested the new head.",
+        "policy_version remains2026-10-19. contract_reconciliation explicitly names preserved kernel/tasks/ACs, historical3/3 and retained recommendation, what later changes/reviews apply, development versus deferred release requirements, and the current evidence limits.",
+        "evidence_revision identifies the final actually qualified source revision. If the later commit changes only metadata, supply the explicit source/dependency equality bridge; do not claim a metadata-head build was executed.",
+        "development_checks contains only applicable passed checks with actual commands/results/counts and closed evidence refs for the final source or justified exact unchanged-source reuse. Reconcile 15.2 recurrence/series/permission/receipt AC evidence; neither15.5's95 nor aggregate CI totals alone prove every15.2 gate/body executed. No skipped/pending/unexecuted cases as coverage; fullDB/RLS and direct recovery remain applicable.",
+        "independent_review.status=passed requires actual final-head review/provenance evidence composed with the already-completed15.2 reviews/map/closure. Distinguish code review, runtime qualification and delivery-record provenance; no new broad round is created by a metadata refresh.",
+        "deferred_release_validation keeps the three legitimate release items with owner/status/evidence/next_action. Existing narrow Admin-users performance evidence is not representative scheduling certification; exhaustive visuals/manual work remains deferred rather than passed or deleted.",
+        "release_ready remainsfalse absent real release evidence and separate release approval. Development completion, final PR review, conditional merge and NO-deployment are separate boundaries."
+      ],
+      "extra_existing_fields_to_reconcile": [
+        "record_status and development_admission: distinguish old freeze-time pending text from the historical completed admission, then describe the new refresh's actual stage. New Root gate/frozen-record review/status admission must be real before markedpassed; no advance authorship of those receipts.",
+        "worktree_evidence, dependency_assessment, CI_provenance and historical_checkpoint_CI: replace universal current reuse claims with the actual final revision/dependency bridge and retain the historical source-specific records. Reuse the completed25changed/28unchanged map plus seam closure, without repeating it or pretending all later dependencies are a00-identical.",
+        "release_deferred_ledger_harvest: reconcile the already-completed historical P7/E5h mappings to the real ledger; retain unrelated rows and historical ownership/status. No stale pending task becomes a new review or automatic deletion.",
+        "migration_byte_provenance: reference existing exact historical migrations/conservation evidence and final source-bound proof; no new raw SQL scan or migration edit is required for this metadata task."
+      ],
+      "author_artifacts": [
+        "_bmad-output/auto-bmad/delivery/15-2-recurring-bookings-series-materialized-occurrences-exceptions.json: bounded author refresh only after exact scope is assigned.",
+        "_bmad-output/implementation-artifacts/spec-15-2-recurring-bookings-series-materialized-occurrences-exceptions.md: evidence/ARR/Suggested Review Order reconciliation only if needed for the final record; preserve approved kernel, tasks/ACs, historical review triage, score6, recommendation and actual3/3 counters. Do not represent a new broad pass.",
+        "_bmad-output/test-artifacts/story15-2/build-round3-author-verification.json or a separately admitted final metadata evidence record: maintain actual-versus-reused attribution and preserve original Round3 proof. No new tests are required merely to edit metadata."
+      ]
+    },
+    "root_owned_sequence": [
+      "After future author refresh, run pure delivery_gate on the exact new frozen record. A nonzero contract result blocks admission. Independent High checks evidence/dependency truth and exact record provenance; the helper alone does not.",
+      "Root records the actual author/independent/gate/admission references in story and epic reports/state using the canonical writers. Re-read spec metadata through story_plan.py; do not manufacture frontmatter values or copy historicalspecdone into completed epic state.",
+      "Mark the planned-third-pass override as fulfilled history with its actual final receipts. Preserve completed_phases/followup_passes/broad3of3/review_loop_iteration0 and review_unverified/recommendation unless an explicit supported later disposition exists; do not silently re-count or re-run reviews.",
+      "E5h propagates any story review_unverified=true to the anchor and never turns it false. E8a records real trace/NFR/test-review outcomes; E8b reconciles/archives deferred work and retrospective, then uses the same final predicate. These steps do not themselves clear review caveats.",
+      "Before eventual epic finalization, obtain an author/delegate-written canonical _bmad-output/auto-bmad/delivery/epic-15.json bound to actual whole-epic evidence and run its contract/provenance gates. Its current absence is not fixed by validating the story15.2 record.",
+      "Apply final actual CI status, final PR review and current containment/conditional merge rules only when obtained. Ordinary15.6 remains unstarted until its normal sequential phase; this preparation advances none of it."
+    ]
+  },
+  "Blockers": {
+    "current": "No current final-head all-pass native evidence or fresh final PR review; current15.5 run remains Root-owned and unqualified here. No final epic delivery exists yet.",
+    "exact_policy_gate": [
+      {
+        "source": ".agents/skills/auto-bmad/references/pipeline.md:192",
+        "rule": "review_unverified true iff the final Phase7 spec still recommends follow-up (or skipped)."
+      },
+      {
+        "source": ".agents/skills/auto-bmad/references/epic-pipeline.md:113",
+        "rule": "E5h aggregates true and never writes it backfalse."
+      },
+      {
+        "source": ".agents/skills/auto-bmad/references/git-and-pr.md:130-145",
+        "rule": "review_unverified is draft clause2; clean_completion is the full predicate's negation. no_pr_draft changes draft only, not clean_completion."
+      },
+      {
+        "source": ".agents/skills/auto-bmad/references/epic-pipeline.md:130,138",
+        "rule": "Pre-retro/final batch flips require clean_completion; caveated runs do not batch-flip."
+      },
+      {
+        "source": ".agents/skills/auto-bmad/references/git-and-pr.md:170-176",
+        "rule": "Routine merge path requires clean_completion as well as the other merge conditions."
+      }
+    ],
+    "needed_decision_and_resume_condition": "Root/Coordinator records how the historical derived recommendation/flag is legitimately resolved or retained after actual final independent closure, under existing authorization and without a fourth broad story pass, waiver or process-code workaround. Resume clean finalization only when the supported authoritative state actually satisfies the predicate and required delivery/CI/review gates. Otherwise preserve the caveated/draft outcome; this planning audit authorizes no flag change.",
+    "not_a_solution": "Refreshing passed fields, clearing stale prose, passing delivery_gate, final CI success, or merely making a PR ready cannot alone bypass the persisted review predicate. No no_pr_draft workaround is proposed."
+  },
+  "reused_evidence": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/inherited-15-2-review-provenance-audit.json",
+      "bytes": 28277,
+      "sha256": "8c3546636780a0aa5ce8ab1ca064f8adc1be8fcf8f6fcfe4512ea66ce7ff2b8d",
+      "reused_without_review_or_mapping_rerun": true
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/inherited-15-2-changed-blob-applicability-map.json",
+      "bytes": 24527,
+      "sha256": "43cb0de148347bf95e3635c43621022cfc7a25323ba5cc169c802dca853f8075",
+      "reused_without_review_or_mapping_rerun": true
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/inherited-15-2-booking-editor-merge-seam-confirmation.json",
+      "bytes": 10886,
+      "sha256": "2388615818d3baf54b85cfe37ae693a2eb1accdd1b43a81aafbef2c68988fcb5",
+      "reused_without_review_or_mapping_rerun": true
+    }
+  ],
+  "source_pins": [
+    {
+      "path": "AGENTS.md",
+      "bytes": 11938,
+      "sha256": "b28eec9c075877d175362dad65b739054e45a3134d748b3c11e601ae36fbb823"
+    },
+    {
+      "path": "docs/process/development-completion-policy.md",
+      "bytes": 8460,
+      "sha256": "d3617c2bcfb64e0b185c82e8a39f84af40bfc5b0ddda739552d2e099c38d4893"
+    },
+    {
+      "path": "docs/process/agent-model-routing.md",
+      "bytes": 7957,
+      "sha256": "116a1d54038568120f4c55be607cb9da9a8850ac3091c410c9bed3caee3ee891"
+    },
+    {
+      "path": ".agents/skills/auto-bmad/scripts/story_plan.py",
+      "bytes": 230306,
+      "sha256": "13cf46aceda340152fd10cb0bc57991c498c36e28628a98bfb4e60e1fd99d5ae"
+    },
+    {
+      "path": ".agents/skills/auto-bmad/scripts/delivery_gate.py",
+      "bytes": 3864,
+      "sha256": "fd4c0e9b029feb2e6b50720dad438b85aa46888988f1c275cdbde4d17717fbc3"
+    },
+    {
+      "path": ".agents/skills/auto-bmad/scripts/state_plan.py",
+      "bytes": 53399,
+      "sha256": "e6752772168ebbe171857566fa1a253afcb265696fab9839312568c3ec11c9e3"
+    },
+    {
+      "path": ".agents/skills/auto-bmad/references/epic-pipeline.md",
+      "bytes": 27263,
+      "sha256": "743e948e322ea5820d74d418872262a53d07941524d9f037dbf6348675e10070"
+    },
+    {
+      "path": ".agents/skills/auto-bmad/references/pipeline.md",
+      "bytes": 51216,
+      "sha256": "5b344a38acb58e57ddc383ddbdbcd7b76c4dc6e8f19a995de7d0d0098e589877"
+    },
+    {
+      "path": ".agents/skills/auto-bmad/references/git-and-pr.md",
+      "bytes": 27328,
+      "sha256": "c790d3ddba04d9d80d9c50fe0354d52b9797880890e5eaf58ac33e48d01b74b1"
+    },
+    {
+      "path": ".agents/skills/auto-bmad/references/state-and-resume.md",
+      "bytes": 46553,
+      "sha256": "eb8f8e8caa8bd49ad1dabcfe59a9d1e02728a93e2fff3de60dd6b1ee35d37957"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/delivery/15-2-recurring-bookings-series-materialized-occurrences-exceptions.json",
+      "bytes": 53247,
+      "sha256": "a40a8ec4a3b78e63809d99f18f34b0648f1e708aa4ba472e17792699db3a7048"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-2-recurring-bookings-series-materialized-occurrences-exceptions.md",
+      "bytes": 76316,
+      "sha256": "1738f2519989e62634eb0b826ef8d24585d4d1e533cf42e6c25ddff942b15a81"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/state/15-2-recurring-bookings-series-materialized-occurrences-exceptions.yaml",
+      "bytes": 12059,
+      "sha256": "d0d31c5fbd4991c502ed207af7e143167dfcf2ba5f9f8dbd3fadf3ffb3f4516e"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/state/epic/epic-15.yaml",
+      "bytes": 486190,
+      "sha256": "52f2886a47f4d9a528cb55c570d8e5b5eb22d70b72c66546ec3614c1c513b012"
+    }
+  ],
+  "effects": {
+    "new_reviews": 0,
+    "mapping_or_inverses_rerun": 0,
+    "tests": 0,
+    "API": 0,
+    "Git_mutations": 0,
+    "resources": 0,
+    "source_Spec_state_report_record_writes": 0,
+    "foreign_checkout_writes": 0,
+    "own_private_readiness_files": 1
+  },
+  "acceptance": 0,
+  "current_development_complete_claim": false,
+  "flag_clear": false,
+  "review_counter_change": false,
+  "waiver": false,
+  "execution_authority": false
+}

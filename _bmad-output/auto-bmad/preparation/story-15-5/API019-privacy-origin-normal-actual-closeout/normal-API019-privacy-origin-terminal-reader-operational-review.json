@@ -1,0 +1,217 @@
+{
+  "schema": "TARGETED_ACTUAL_TERMINAL_READER_OPERATIONAL_REVIEW_V1",
+  "status": "PASS_API019_PRIVACY_ORIGIN_TERMINAL_REBIND_ONLY",
+  "outcome": "PASS_API019_PRIVACY_ORIGIN_TERMINAL_REBIND_ONLY",
+  "verdict": "PASS",
+  "independent": true,
+  "execution_authorized": false,
+  "findings": [],
+  "scope": "Single final bounded source/data/ownership enrollment review. Reuses previously qualified 28-stage parser/privacy/ZIP/capture algorithms and source catalog; no fourth broad story review, algorithm matrix rerun, test execution, source extraction, Git or external request.",
+  "packet": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-actual-preparation/reader.py",
+      "bytes": 52638,
+      "sha256": "8a1985592420ab2271e484ee52d238286f6ef92a081d0998f67acdd5a277eb68"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-actual-preparation/source-rows.json",
+      "bytes": 32933,
+      "sha256": "c59f8b39cc9cfe57b3a36259c04c1185622f682e6bef7d52ce8c925fc9b57ead"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-actual-preparation/actual-terminal-envelope.json",
+      "bytes": 26294,
+      "sha256": "5abc36d28f1f7e36a004a7aa510150d1f7f9e53bcb9ddb141d1efbecb989b811"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-actual-preparation/proposal.json",
+      "bytes": 113205,
+      "sha256": "bdf29463f744fa29faf03208867370be895c70fdd9420af43103e3c6179fe550"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-actual-preparation/manifest.json",
+      "bytes": 1182,
+      "sha256": "85968d82cad505e37e78ea043055bf85cf9a7daf921bb7b1f059f62084fdbfae"
+    }
+  ],
+  "ownership_inputs": {
+    "raw_terminal": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-root-operation/terminal.json",
+      "bytes": 24085,
+      "sha256": "1a8cd8c017e2a09933f05c8debb2fafcb837385a775eb1aa8cbd7d7a3d7d7d2e"
+    },
+    "Root_closed_ownership": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-actual-root-ownership.json",
+      "bytes": 34524,
+      "sha256": "5626dc096d8dbdcb406c1d77b555c1539ce6b4299a98bd8299d829cad22368ed"
+    },
+    "raw_operation": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-root-operation/operation.json",
+      "bytes": 867,
+      "sha256": "07dd7b52257acc02bb65f865f38b2e95e7bed2774313917dddf8d6e658dbd1b9"
+    }
+  },
+  "identity": {
+    "run": 39990057474,
+    "head": "7d8b213f9f1ff9cdeb31689a0bb08577a24249cd",
+    "source": "48a7c32faa1be7ae2b6d81095282521cebfaa621",
+    "checkpoint": "8b61639c-1015-45a7-835f-b9a88ccd9e92",
+    "operation_id": "5e17d7ae-9ad6-4ac4-a4fa-e304a20ce207",
+    "attempt": 1,
+    "repository": "rthunborg/Kopplas",
+    "workflow_id": 296219797,
+    "actor": "rthunborg",
+    "triggering_actor": "rthunborg",
+    "branch": "codex/epic-15-scheduling-time-calendar",
+    "mode": "normal",
+    "cause_proof": false,
+    "release_validation": false,
+    "original_int009": false
+  },
+  "verified_source_delta": {
+    "actual_reader_bytes": 52638,
+    "inert_predecessor": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-inert-preparation/reader.py",
+      "bytes": 52631,
+      "sha256": "278531786c36acaf5c219e23b9970c45533b647358b75a544742e6e68af44007"
+    },
+    "complete_raw_inverse_to_inert": true,
+    "only_delta": "run==None becomes run==39990057474 exactly once",
+    "function_segments_total": 41,
+    "function_segments_byteexact": 40,
+    "changed_function": "validate_admission run literal only",
+    "ancestral_qualified_stage_reader": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-author/reader-stage-data-successor.py",
+      "bytes": 52622,
+      "sha256": "f6d39f15c21a643850909790d7cd9b90b42a5ceb5457a2b6d6fdeb926daedb31"
+    },
+    "complete_raw_inverse_through_declared_ancestry": true,
+    "existing28_fixed_stages_conserved": true,
+    "source75_byteequal_inert": true,
+    "source75_revalidation": "Five reviewed current overlays/70 retained rows and current444 static/19 excluded/195 wrapper catalog reused from prior independent operational source qualification. No new extraction or runtime-credit claim.",
+    "algorithms": "get/ZIP/inflate/parsers/native projection/custody/main byte conserved; no new transport, collector, predicate, schema or fallback.",
+    "input_refs_checked": 11
+  },
+  "actual_terminal_checks": {
+    "ordered9jobs_and_all_steps_exact_equal_raw_envelope_proposal_ownership": true,
+    "ordered_jobs_canonical_sha256": "c7bc31616b7b8b789761339bb7210bf8ae20adefb683cf451a43ca59c91638d9",
+    "run_mapping_exact": true,
+    "source_qualified_constants": "Repository/source/mode/false flags, including legacy original_e2e001:false, are source-backed canonical-dispatch facts; not invented independent GitHub payload fields.",
+    "actual_jobs": {
+      "checkpoint-admission": "success",
+      "verify": "success",
+      "db": "failure",
+      "e2e": "success",
+      "recovery-storage-loader": "success",
+      "dashboard-e2e": "skipped",
+      "native-stream-probe": "skipped",
+      "fixed-chromium-paired-probe": "skipped",
+      "fixed-chromium-application-verification": "skipped"
+    },
+    "db_job": {
+      "id": 120540771874,
+      "first_failed_step": 7,
+      "first_failed_step_name": "Start local Supabase stack",
+      "integration_step11": "skipped",
+      "native_full_integration_upload_step12": "failure",
+      "stack_stop_step13": "success"
+    },
+    "case_limits": "No current API019 execution, exact case count, underlying failure cause, raw error or backend/key custody inferred from these job steps. Missing integration artifact is handled as absence by unchanged eligible-only acquisition; no fallback download.",
+    "old_operation_phase": "ROOT_STOPPED",
+    "consumed_resolution_count": 1,
+    "consumed_poll_pairs": 5,
+    "unused_resolver_slots_closed": 5,
+    "unused_poll_pairs_closed": 85,
+    "original_started_at": "2026-10-23T16:49:59.854511+00:00",
+    "stopped_at": "2026-10-23T17:03:06.584792+00:00",
+    "clock_reset": false,
+    "controller_capture_count": 15,
+    "controller_capture_qualified_native0_full_EOF_joined_handlesclosed_settled": true,
+    "actual_Root_outer_returns": 8,
+    "outer_return_limit": "Includes running initial publication return/session58991; does not assert eight completed native executions.",
+    "artifact_GETs_before_review": 0,
+    "initial_local_assembly_refusal": "Uppercase NORMAL mismatch refused before output/effects; corrected exact lowercase normal recorded in ownership, not a driver change."
+  },
+  "interfaces": {
+    "review_path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-reader-operational-review.json",
+    "required_status_and_outcome": "PASS_API019_PRIVACY_ORIGIN_TERMINAL_REBIND_ONLY",
+    "independent_required": true,
+    "current_reader_argv": [
+      "C:/Users/Rasmus/AppData/Local/Programs/Python/Python314/python.exe",
+      "-I",
+      "-X",
+      "utf8",
+      "-B",
+      ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-actual-preparation/reader.py",
+      "--execute-once-after-terminal-grant"
+    ],
+    "current_archive_endpoint": "repos/rthunborg/Kopplas/actions/runs/39990057474/logs",
+    "current_listing_endpoint": "repos/rthunborg/Kopplas/actions/runs/39990057474/artifacts?per_page=100",
+    "terminal_jobs_endpoints_NULL": false,
+    "activation": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-evidence-activation.json",
+    "activation_exact_field_count": 23,
+    "template": "Actual run/jobs/envelope/source are enrolled; execution_authorized:false, pushed_source_objects_equal:false, review status:null/independent:false/evidence:[], grant/proof/proposal sizes and hashes null remain inert.",
+    "operator_bindings": "Exact current113205-byte proposal SHA bdf29463f744fa29faf03208867370be895c70fdd9420af43103e3c6179fe550; no alias or historical proposal admission.",
+    "operator_review_wrapper": "Existing reader consumes status:PASS, independent:true, evidence:[exact report ref]; Root additionally verifies this actual report BOTH status/outcome equal required enum.",
+    "fresh_source_proof": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-fresh-source-proof.json",
+    "allocation": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-normal-API019-privacy-origin-terminal-effects-allocation.json",
+    "exclusive_once_journal": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-root-once-journal.json",
+    "outside_receipt": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-execution-receipt.json",
+    "output_packet": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-7d8b213f-normal-API019-privacy-origin-ci-independent",
+    "no_self_stale_tuple_or_old_execution_endpoint": true
+  },
+  "future_finite_caps": {
+    "authority_now": 0,
+    "maximum_logical_GETs": 5,
+    "surface": "One exact owned run archive, one listing page100, and at most one ZIP each of native-full-integration/full-integration.json, native-general-browser/general-browser.json, native-isolated-storage-recovery/isolated-storage-recovery.json, only unique eligible owned head/run/nonexpired positive-ID/digest-qualified entries. Absent/ineligible reports receive no request and zero coverage.",
+    "each_GET_loop_seconds": 15,
+    "same_child_cleanup_wait_seconds": 2,
+    "reader_join_count": 2,
+    "seconds_per_join": 1,
+    "strict_15_second_totalwall_claim": false,
+    "archive_or_report_ZIP_bytes": 33554432,
+    "artifact_listing_bytes": 4194304,
+    "artifact_listing_count": 100,
+    "selected_JSON_or_archive_member_bytes": 16777216,
+    "declared_actual_inflate_bytes": 134217728,
+    "stderr_bytes": 65536,
+    "source_label_projection_bytes_ONLY": 32768,
+    "generic_projection_32768_cap": false,
+    "raw_material": "Raw ZIP/log/JSON in RAM only; persist existing closed projections/digests/labels, no raw exception/source/output fallback. Other full projections can exceed32768.",
+    "no_retry": true,
+    "no_pagination_fallback_perjoblogs_refetch_or_other_requests": true,
+    "intent": "Exclusive output directory and persisted request intent before each child; uncertainty/overflow/nonzero/unsettled captures STOP_UNKNOWN, slots consumed with no blind replay."
+  },
+  "Root_obligations_before_execution": [
+    "New actual completed finite Coordinator allocation with exact current tuple, current source-configured loop/cleanup/join and byte caps, eligible-only at-most5 surface; this review grants no GET.",
+    "Fresh <=300s Root source/ownership proof with exact current raw/LF/Git bindings and retained SQL vectors, actual completed grant evidence, exact current five packet pins and this report ref. Do not repeat SQL raw scans or fabricate fresh remote/provider observations.",
+    "Exclusive new once journal and 23-field activation; replace false/null template values with actual qualified refs, current pushed-source equality and status:PASS independent evidence wrapper; exact current Python argv.",
+    "Native sole invocation with independent outside tool/session/wait/native closure attribution; after any refusal or uncertain invocation consume and stop, no retry or old grant replay.",
+    "Distinct subsequent actual evidence qualification for positive95 IDs/dedup/skips, direct recovery separately, scoped key/client/backend custody and new fixed origin only if actually present. No job-pass acceptance inference."
+  ],
+  "actual_review_controls": {
+    "native_read_commands": [
+      "32e010/native0",
+      "c149ef/native0",
+      "0780d5/native0",
+      "728e34/native0",
+      "50548e/native0"
+    ],
+    "method": "Actual file byte/hash pin checks; full raw inverse to inert and qualified52622 ancestry; complete41-function source segment comparison; actual ordered job/step JSON equality and canonical digest; all11 input refpins; closed15 capture receipt pins; exact23 activation/template/argv/endpoints/catalog metadata checks. Inspected reader code never imported/executed.",
+    "tests_or_control_matrices_rerun": 0,
+    "API_GETs": 0,
+    "Git_mutations_or_remote_calls": 0,
+    "managed_resources": 0
+  },
+  "limits": {
+    "normal_acceptance": 0,
+    "current_required95": "UNKNOWN until newly acquired qualified evidence; prior93P1F1zero is historical only.",
+    "current_case_cause_custody": "UNKNOWN",
+    "P5": "OPEN",
+    "review_round_counter": 3,
+    "development_complete": false,
+    "release_ready": false,
+    "main_merge_or_deployment_authority": false,
+    "historical_cap_exceptions": "Preserved without retroactive waiver; current future cap wording explicitly source-label-only32768."
+  }
+}

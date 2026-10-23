@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-23T16:30:32Z"
+updated_at: "2026-10-23T17:38:32Z"
 started_at: "2026-10-20T12:18:56Z"
 completed_at: null
 active_seconds: 86219
@@ -382,6 +382,18 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Actual API019 privacy refusal requires minimal fixed first-origin evidence in owned child observer without secret retention or weakening security/custody guards. Independently approved five-path plan only; preserve cap3, no fourth broad review.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-sensitive-API019-privacy-first-origin-author\",\"profile\":\"sensitive\",\"role\":\"implementation-author\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Independent targeted actual five-path privacy first-origin change review; preserve public-token/secret custody, predicate equivalence, fixed label boundaries and failure semantics. Broad cap3 exhausted; changed lines and consequential regressions only.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-sensitive-API019-privacy-first-origin-actual-patch-review\",\"profile\":\"sensitive\",\"role\":\"independent-changed-diff-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Inert data/source rebinding of already independently qualified provider/publisher/canonical dispatcher/poller, parallel only to frozen-source review. Head/source NULL until Rootcommit; no execution/effect allocation/new collector.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-sensitive-API019-privacy-origin-inert-operational-reuse\",\"profile\":\"sensitive\",\"role\":\"operational-preparation\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Final materialization of exact qualified operational5 against reviewed source48a7 and docs-onlyhead7d8b; no effect authority. Preserve source function/canonical adapter/caps, record exact target/path bindings and changed-data overlays without new collector.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-sensitive-API019-privacy-origin-final-operational-enrollment\",\"profile\":\"sensitive\",\"role\":\"operational-preparation\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Independent exact five-bundle source/tuple/path/cap/inverse/offline review before any finite provider/push/CI allocation. Existing algorithms reused; no new collector, broad story cap3 remains intact.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-sensitive-API019-privacy-origin-operational-independent-review\",\"profile\":\"sensitive\",\"role\":\"independent-operational-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Actual completed finitegrant +independentoperational/helperPASS; one strict source-guarded readonlyVercelprojectGET with privacy/identity/freshness/nativeclosure attribution, no providerwrite or deployment.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-sensitive-API019-privacy-origin-provider-once-native-read\",\"profile\":\"sensitive\",\"role\":\"read-only-provider-operator\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Inert reuse of already qualified41-function terminal reader and current28fixed-stage/canonicalcatalog data while Root monitors exactownedrun. Actualterminal/enrollment/review/separategrant remain required; no GET/newcollector or source edits.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-sensitive-API019-privacy-origin-inert-terminal-reader-reuse\",\"profile\":\"sensitive\",\"role\":\"terminal-evidence-preparation\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Reuse completed25-path sensitive booking/receipt provenance map and single-seam closure to identify exact remaining final acceptance metadata/delivery obligations. No fresh code review, source rescans, status clearing or waiver; preserve cap3 and final actual-head review/CI.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"Epic15-inherited15_2-final-metadata-contract-readiness\",\"profile\":\"sensitive\",\"role\":\"read-only-provenance-readiness\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"All9 actual terminal/closedRootoperation now frozen; minimal existing41-function reader data/run/envelope rebind before one final independent review and separate finiteartifactallocation. No new parser/collector/extraction/effects.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-sensitive-API019-privacy-origin-actual-terminal-enrollment\",\"profile\":\"sensitive\",\"role\":\"terminal-evidence-preparation\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Single final independent existing41-function reader rebind review after actual9terminal/Rootclosedownership. Verify exacttuple/envelope/source75/catalog/caps/provenance before separate max5readonlyGETallocation; no fourth broad review or newcollector.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-sensitive-API019-privacy-origin-terminal-operational-review\",\"profile\":\"sensitive\",\"role\":\"independent-terminal-reader-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Compact supplementary check of Root-owned mechanical freshproof/admission helper with4unchangedfunctions and onlycurrenttuple/5pins/interfacekey/status literals. Same reader review, no new broad pass or collector/effects.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-sensitive-API019-privacy-origin-terminal-root-admission-check\",\"profile\":\"sensitive\",\"role\":\"independent-operational-interface-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Actualcompletedfinite max5readonlyGETallocation plus independentfinalreader/helperPASS; strictprivacy/ownership/digest/caps/actualclosure required. Missing DBreport remainsabsence; no newcollector/sourcefix/caseacceptance.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-sensitive-API019-privacy-origin-actual-terminal-acquisition\",\"profile\":\"sensitive\",\"role\":\"sole-native-evidence-reader\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Distinctactual17file/4GET/nativeclosure/provenance/95coverage/recovery/custody qualification; DBstackstartupF/integrationSKIP/reportabsent requires honestzero/unknown distinctions. No sourcefix/extraGET/broadreview/acceptance authority.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-sensitive-API019-privacy-origin-actual-native-qualification\",\"profile\":\"sensitive\",\"role\":\"independent-native-evidence-qualifier\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Confirmed currentpretestSupabase startupfailure needs narrowly bounded source/previous-success comparison and safestnextplan without speculativeprivilege/SQL/setupchanges. Reuse actualclosedpacket/qualifiedsource, no newGET/collector/review/sourceedit or effectallocation.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-sensitive-current-stack-start-failure-source-assessment\",\"profile\":\"sensitive\",\"role\":\"read-only-source-assessor\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive CI startup evidence and fresh-operation admission; bounded minimum-plan only. Route recorded after followup dispatch; timing exception retained; first route-select refused invalid route value without write.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-sensitive-current-stack-start-failure-minimum-plan-review\",\"profile\":\"sensitive\",\"role\":\"independent-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: "Hashed public tokens, rotation/revocation, externalfeed andcross-tenant abuseprotection requireHigh-riskATDD+automate; lastthreeno traceadvisory"
@@ -407,7 +419,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [159557e114f18123e73282c39c90830917de9948, c42b45abbca262ff79e26da479a3032d9015aeee, b940df85acfb2de36c0dcd5000a0039758f2b820, 3a1c3bc9fbf22b13c926179288a8b6eefe440c12, ae020f63a88089966b9323c55a36b6554f7e3900, 672099e9dc6569f4ac1cb9a967037e0d91df689c, aa5733116f20015cc3d14e1441d0eab232ecc9fd, 360fe850c18552f23a2bf74d8eda865431f0af38, 611c86295540161d31169110bf2139cf1d85d708, 9487c0d9, 2674b3f7, c5758058, a76fc492, 1cea5c4c, 3383a1eb, e91b366b, e472741a, c7570096, 4562cfd0, fae644b5, 33b595a8, e3f1c2e1, cba60486, e74cae6c, 3e7b6131a00e6c7b4d25c49373d8ba1c1eefe42f, 906f80f301d8034f8efe510018137195f3e4c4eb, 6dad688ec6a51143bfee902618bb88647a81c940, 380c3e720d5caaa1dc2181d70737b9320337f451, be2c1a535dff0e58b1579fe3db5890c7819916ab, 55db468eef3106ca1b02dc846ba12967a28dc238, 56324120f8e08de995e8cc7432ab27f2d0c98635, cb8d696d19c53e63be05ecb1ae273449af60efaf, 52007b760ff10f056ac75c5ed5b7dcdf49f99036, af5af69fd5018795a963a28c1ad367147b4a9bc3, 2524306ca9edd6079c23d205cf01268797288d89, f304ea548faa05f037cd3aa44c65888d96d543df, 33cfa8dfa1323708edf80034c0a98b0620790b6a, 7cdee0c52b6de5d416208971d6eaec6b86caa034, 93f4bf6543f6a9dc519a28f3d6f7824e8f6feedf, 8efb90e5038874c672df120651041176a70b1f2f, f0b1e5735872ba2effcd7c1480756326125f6752, bc9c30856f6272f9a099e52691d4ec4a7582732f, 1a643e24968a06cdeaba23ffc2506471b659c62a, 187a4c6f, 193361ac, 0d1ab835, "29466300", be20005c, 6414d94, 3d1e10bc, ec2f82df, 173e1f65, 68a4add8, e15905e6, f3d86a09, a0c6c2d1, 296230fc, cc0d6543, f8ca1a89, 4e317aed, a6c84690, 85cd59ae, 724b105e, "99364562", 0ed37109, fd930e71, 1a287085, 30951e7a, 987edccd, e3069dee, bbd6d1f3, ca240693, 5e0b6363, 215078e7, bd4121e5, a9489663, 2c8e8077, c4c195d9, e5256879, edce7b87, 104976f7, 48a7c32f]
+commits: [159557e114f18123e73282c39c90830917de9948, c42b45abbca262ff79e26da479a3032d9015aeee, b940df85acfb2de36c0dcd5000a0039758f2b820, 3a1c3bc9fbf22b13c926179288a8b6eefe440c12, ae020f63a88089966b9323c55a36b6554f7e3900, 672099e9dc6569f4ac1cb9a967037e0d91df689c, aa5733116f20015cc3d14e1441d0eab232ecc9fd, 360fe850c18552f23a2bf74d8eda865431f0af38, 611c86295540161d31169110bf2139cf1d85d708, 9487c0d9, 2674b3f7, c5758058, a76fc492, 1cea5c4c, 3383a1eb, e91b366b, e472741a, c7570096, 4562cfd0, fae644b5, 33b595a8, e3f1c2e1, cba60486, e74cae6c, 3e7b6131a00e6c7b4d25c49373d8ba1c1eefe42f, 906f80f301d8034f8efe510018137195f3e4c4eb, 6dad688ec6a51143bfee902618bb88647a81c940, 380c3e720d5caaa1dc2181d70737b9320337f451, be2c1a535dff0e58b1579fe3db5890c7819916ab, 55db468eef3106ca1b02dc846ba12967a28dc238, 56324120f8e08de995e8cc7432ab27f2d0c98635, cb8d696d19c53e63be05ecb1ae273449af60efaf, 52007b760ff10f056ac75c5ed5b7dcdf49f99036, af5af69fd5018795a963a28c1ad367147b4a9bc3, 2524306ca9edd6079c23d205cf01268797288d89, f304ea548faa05f037cd3aa44c65888d96d543df, 33cfa8dfa1323708edf80034c0a98b0620790b6a, 7cdee0c52b6de5d416208971d6eaec6b86caa034, 93f4bf6543f6a9dc519a28f3d6f7824e8f6feedf, 8efb90e5038874c672df120651041176a70b1f2f, f0b1e5735872ba2effcd7c1480756326125f6752, bc9c30856f6272f9a099e52691d4ec4a7582732f, 1a643e24968a06cdeaba23ffc2506471b659c62a, 187a4c6f, 193361ac, 0d1ab835, "29466300", be20005c, 6414d94, 3d1e10bc, ec2f82df, 173e1f65, 68a4add8, e15905e6, f3d86a09, a0c6c2d1, 296230fc, cc0d6543, f8ca1a89, 4e317aed, a6c84690, 85cd59ae, 724b105e, "99364562", 0ed37109, fd930e71, 1a287085, 30951e7a, 987edccd, e3069dee, bbd6d1f3, ca240693, 5e0b6363, 215078e7, bd4121e5, a9489663, 2c8e8077, c4c195d9, e5256879, edce7b87, 104976f7, 48a7c32f, 7d8b213f9f1ff9cdeb31689a0bb08577a24249cd]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -424,7 +436,7 @@ retro:
   open_action_items: 0
 bmad_status_flipped_at: null
 pr_url: null
-ci_run_url: "https://github.com/rthunborg/Kopplas/actions/runs/39950998114"
+ci_run_url: "https://github.com/rthunborg/Kopplas/actions/runs/39990057474"
 ci_status: failed
 pr_merged: false
 merge_method: null
@@ -433,7 +445,7 @@ branch_deleted: false
 open_questions: []
 deferred_work: []
 blockers:
-  - "15.5 P5 remains open. Source48a7c32 adds independently reviewed fixed first-privacy-origin evidence only, verified195P/0F/0skip, TypeScript/lint/SRO. It proves no functional repair or hosted cause. Last actual39975009683/sourcee525 remains93 passed, API019 privacy-refused failed, API020 pending; DB key retained/deletion unverified/backend settlement UNKNOWN. Final exact operational enrollment/review and finite checkpoint allocation precede any observation. Required95/custody/delivery, P6/P7,15.6 and epic gates remain."
+  - "15.5 P5 open: current39990057474/head7d8/source48a7 independently qualified44 passed/0 failed cases/51 unexecuted; DB startup7 failed before migration8/integration11. Startup cause, API019 origin and main DB custody UNKNOWN. All old slots closed. No startup input delta or proven fix. Independent High minimum-plan PASS for exactly one fresh unchanged NORMAL after new exact bindings/proofs/finite allocation. Second consecutive startup7 failure stops this approach. Required95/custody/delivery, P6/P7,15.6 and epic gates remain."
 overrides:
   oracle: "Owner2026-10-15 prohibits legacyURLs/browsing; useapprovedrequirements/existingdesignsystem/accessibility andrecordowner-authorizeddefaults, notlegacyobservations."
   ownership: "Own15.5spec/ownedepic15context/preparationonly initially; exactsharedsource/schema/test/resource handoff withCoordinator before overlappingimplementation; no foreigncheckoutwrites or pausedsessionresume"
@@ -2324,6 +2336,8 @@ inherited_15_2_review_readiness:
   current_changed_blob_applicability: "25 changed paths mapped;28 unchanged; single booking-editor test merge seam independently confirmed; final review/CI/metadata reconciliation still pending"
   applicability_map: "{\"source\": \".env.epic15.mail-runtime/story-15-5-preparation/inherited-15-2-changed-blob-applicability-map.json\", \"destination\": \"_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/inherited-15-2-changed-blob-applicability-map.json\", \"bytes\": 24527, \"sha256\": \"43cb0de148347bf95e3635c43621022cfc7a25323ba5cc169c802dca853f8075\"}"
   one_seam_confirmation: "{\"source\": \".env.epic15.mail-runtime/story-15-5-preparation/inherited-15-2-booking-editor-merge-seam-confirmation.json\", \"destination\": \"_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/inherited-15-2-booking-editor-merge-seam-confirmation.json\", \"bytes\": 10886, \"sha256\": \"2388615818d3baf54b85cfe37ae693a2eb1accdd1b43a81aafbef2c68988fcb5\"}"
+  final_metadata_contract_readiness: "{\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/inherited-15-2-final-metadata-contract-readiness.json\", \"bytes\": 16913, \"sha256\": \"be0bbc03ab509d390e7344d434761ebc0589095351ca8f66d805540b8c792dee\"}"
+  automatic_flag_clear: false
 p5_API019_NORMAL_actual_result:
   status: ACTUAL_NATIVE_EVIDENCE_QUALIFIED_REQUIRED95_INCOMPLETE
   run: 39975009683
@@ -2374,3 +2388,30 @@ p5_API019_privacy_first_origin_source:
   manifest: "{\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-first-origin-source-closure/root-fold-manifest.json\", \"bytes\": 4947, \"sha256\": \"0b81a603e555c5a7eeb311450fd902302cb63d63188b3a8db1fc105e2c3f4bd5\"}"
   no_deployment: true
   closeout: "{\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-first-origin-source-closure/root-closeout.json\", \"bytes\": 1722, \"sha256\": \"6af0a6cb965af38f3574bcead3b97a2956f8f8c2744460cbfea2e22b6bbef28f\"}"
+p5_API019_privacy_origin_NORMAL_actual_result:
+  status: ACTUAL_NATIVE_EVIDENCE_QUALIFIED_REQUIRED95_INCOMPLETE
+  run: 39990057474
+  required95: "{\"passed\": 44, \"failed_cases\": 0, \"unexecuted\": 51}"
+  startup_boundary: "DB step7 Start local Supabase stack failed; migration8 and integration11 skipped; native DB report absent. Cause UNKNOWN."
+  Node: "3439 passed/0 failed/0 skipped;30 distinct required story cases"
+  browser: "14 distinct required cases passed at retry0; own fixture key deleted/client closed only"
+  separate_direct_recovery: "1 passed; no credit toward required95"
+  DB_custody: "Current main DB key/backend settlement UNKNOWN; previous retained custody remains historical/open"
+  privacy_first_origin: "UNKNOWN; current API019 did not execute"
+  operational_closure: "15 controller native captures/8 actual Root outer returns;1 resolver/5 poll pairs; 4 terminal logical GETs/17 safe projected members; all slots closed"
+  history: "Prior run39975009683/sourcee525 93P1F1pending is historical only, never carried into current counts."
+  development_complete: false
+  release_ready: false
+  P5: OPEN
+  review_counter: 3
+  story15_6: UNSTARTED
+  readiness15_2: "Three broad rounds exhausted; inherited recommendation and review_unverified retained pending author final evidence and explicit supported independent closure disposition. No automatic flag clear."
+  next: "One fresh unchanged NORMAL plan independently qualified. New exact bindings/proofs/finite allocation/exclusive admission required; all old slots closed. Second consecutive startup7 failure stops this approach."
+  no_deployment: true
+  manifest: "{\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/root-fold-manifest.json\", \"bytes\": 41409, \"sha256\": \"3458848d2ca5812ad376212e5bb217e189a72582ccc643f0057c19d09fa256f9\"}"
+  head: 7d8b213f9f1ff9cdeb31689a0bb08577a24249cd
+  source: 48a7c32faa1be7ae2b6d81095282521cebfaa621
+  checkpoint: 8b61639c-1015-45a7-835f-b9a88ccd9e92
+  qualification: "{\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-terminal-actual-native-qualification.json\", \"bytes\": 25597, \"sha256\": \"f7f4d85f1c3bc5e3af0ec5d785a7f333e8ed90989b6c722f99fc0a84dfccde4d\"}"
+  closeout: "{\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/root-closeout.json\", \"bytes\": 2562, \"sha256\": \"f275a7bf8aa77295bad5f2ab9088057880dec6b1efe884164fe43e2d5695f634\"}"
+  minimum_plan_review: "{\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/current-stack-start-failure-minimum-plan-independent-review.json\", \"bytes\": 8035, \"sha256\": \"e689f0af2b2bdbc230c7dab2e8d4ee98acef85dc1f3ff937b7df41aea744f8c7\"}"

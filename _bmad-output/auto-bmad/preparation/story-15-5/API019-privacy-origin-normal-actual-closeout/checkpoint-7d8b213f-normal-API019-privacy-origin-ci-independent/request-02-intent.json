@@ -1,0 +1,17 @@
+{
+  "argv": [
+    "gh",
+    "api",
+    "--method",
+    "GET",
+    "repos/rthunborg/Kopplas/actions/runs/39990057474/artifacts?per_page=100"
+  ],
+  "inline_source_sha256": "8a1985592420ab2271e484ee52d238286f6ef92a081d0998f67acdd5a277eb68",
+  "intent_persisted_before_spawn": true,
+  "label": "normal-artifact-list",
+  "raw_persisted": false,
+  "sequence": 2,
+  "stderr_cap": 65536,
+  "stdout_cap": 4194304,
+  "timeout_seconds": 15
+}
