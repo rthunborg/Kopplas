@@ -1,0 +1,32 @@
+{
+  "schema": "ROOT_INT009_DEFAULT_VOLATILITY_REVIEWED_SOURCE_CLOSURE_V1",
+  "status": "SOURCE_ELIGIBLE_REQUIRED_NORMAL_PENDING",
+  "source_commit": "5e0b63639dfd8636faab4ab5c798ca81bf1b4e41",
+  "parent_docs": "ca240693766ae9141fb2b768569629e39231d042",
+  "author": "gpt-6.1-sol High /root/native15_5_high",
+  "independent_reviewer": "gpt-6.1-sol High /root/validate15_4_high",
+  "review": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-default-volatility-source-closure/INT009-default-volatility-actual-patch-review.json",
+    "bytes": 12229,
+    "sha256": "36edb72452d3e14543137d9381b4e7ffe5d5909d355a878e8816f62b8d5f09de"
+  },
+  "plan": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-default-volatility-source-closure/Next16-4-1-original-INT009-restore-definition-minimum-plan-review.json",
+    "bytes": 9737,
+    "sha256": "bc4908e9e8247f528d0df83e2d8647a5bb2baa0fcf5568e332d8712a7a51a052"
+  },
+  "actual_local_results": "RED1F; focused6P; fullaffected184P0F0skip; counts overlap/nonadditive; TS/scopedlint/diff0",
+  "exact_scope": "Helper+existingunitfile+authorSuggestedReviewOrder-only refresh",
+  "invariants": "Independent source review confirms metadata/authority/transaction/canonical-restoration/custody guards,118SQL and SpecoutsideSRO conserved",
+  "source_defect": "DefaultVOLATILE deparser/textguard incompatibility source-proven using officialPG17 implementation; literalclause no longer required as redundant metadata-backed representation",
+  "native_limit": "Hosted exactheader/nativefirstthrow/body/backend/keycustody UNKNOWN from39943446009; sourceeligibility is not runtimeacceptance",
+  "review_counter": 3,
+  "fourth_broad_review": false,
+  "P5": "OPEN/phases0..4",
+  "normal_acceptance": 0,
+  "required95": "Historical68P1F26unexecuted; freshfullNORMAL95+recovery/custody required",
+  "next": "Minimal existing qualifiedNORMALlane rebind to current source/checkpoint, independentbound review/freshfinitegrant, sourceproof/provider/push/oneNORMALdispatch",
+  "deployment": false,
+  "development_complete": false,
+  "release_ready": false
+}

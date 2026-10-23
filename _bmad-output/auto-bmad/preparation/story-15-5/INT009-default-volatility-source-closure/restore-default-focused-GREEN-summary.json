@@ -1,0 +1,14 @@
+{
+  "stage": "FOCUSED_GREEN",
+  "native_exit": 0,
+  "summary": {
+    "tests": 6,
+    "pass": 6,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "raw_persisted": false,
+  "resources": 0
+}

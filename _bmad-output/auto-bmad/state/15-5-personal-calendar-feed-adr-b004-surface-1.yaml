@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-23T11:30:17Z"
+updated_at: "2026-10-23T11:46:10Z"
 started_at: "2026-10-20T12:18:56Z"
 completed_at: null
 active_seconds: 86219
@@ -18,15 +18,15 @@ is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: P5-sensitive-INT009-owner-restore-definition-minimum-plan-review
-selected_role: independent-sensitive-plan-reviewer
+selected_phase: P5-sensitive-INT009-owner-restore-definition-actual-patch-review
+selected_role: independent-sensitive-patch-reviewer
 selected_profile: sensitive
 selected_model: gpt-6.1-sol
 selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Assess exact two-file correction of source-proven PostgreSQL deparser default-VOLATILE mismatch while retaining all metadata/permission/restoration invariants; no broad review/new diagnostic"
+escalation_reason: "Review frozen actual helper/unit/SRO correction and184focusedpassing tests; preserve all metadata/authority/custody/kernel invariants within three-round cap; targeted fix only"
 routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"High preparation for hashed public-feed tokens, rotation/revocation and tenant/member disclosure boundaries; plan-only before distinctvalidation and ownershipallocation\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct High independent specification validation of actual public-feed token/proof/IP/limiter authorization design and exact ownership/test-key boundaries before anybuild\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"cross_model_layer\",\"profile\":\"diverse_review\",\"role\":\"independent-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -329,6 +329,10 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Qualify actual acquired native projection/cardinality/first observed failure/custody before minimal cause-backed repair; reuse unchanged reader source/privacy proof\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-sensitive-postsecurity-actual-INT009-acquired-evidence-qualification\",\"profile\":\"sensitive\",\"role\":\"independent-sensitive-provenance-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Read-only minimum causal assessment at independently qualifying actual OWNER_RESTORE/DEFINITION boundary; no speculative edit or new diagnostic\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-sensitive-INT009-observed-owner-restore-definition-cause-assessment\",\"profile\":\"sensitive\",\"role\":\"sensitive-source-assessor\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Assess exact two-file correction of source-proven PostgreSQL deparser default-VOLATILE mismatch while retaining all metadata/permission/restoration invariants; no broad review/new diagnostic\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-sensitive-INT009-owner-restore-definition-minimum-plan-review\",\"profile\":\"sensitive\",\"role\":\"independent-sensitive-plan-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Implement independently qualified minimal test-helper deparser/default-VOLATILE correction with real regression coverage preserving catalog/authorization/restoration invariants; source security sensitivity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-sensitive-INT009-owner-restore-definition-two-source-correction\",\"profile\":\"sensitive\",\"role\":\"sensitive-implementation-author\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Targeted review of actual two-source restoration correction and meaningful regression results; preserve source/authority/custody invariants within exhausted three-round broad-review cap\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-sensitive-INT009-owner-restore-definition-actual-patch-review\",\"profile\":\"sensitive\",\"role\":\"independent-sensitive-patch-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Independent read-only identification of minimum current-source rebind for already qualified requiredNORMAL95/recovery lane while author fixes two files; no effect or new packet\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-sensitive-existing-NORMAL-lane-minimum-rebind-readiness\",\"profile\":\"sensitive\",\"role\":\"sensitive-operational-readiness-assessor\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Review frozen actual helper/unit/SRO correction and184focusedpassing tests; preserve all metadata/authority/custody/kernel invariants within three-round cap; targeted fix only\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-sensitive-INT009-owner-restore-definition-actual-patch-review\",\"profile\":\"sensitive\",\"role\":\"independent-sensitive-patch-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: "Hashed public tokens, rotation/revocation, externalfeed andcross-tenant abuseprotection requireHigh-riskATDD+automate; lastthreeno traceadvisory"
@@ -354,7 +358,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [159557e114f18123e73282c39c90830917de9948, c42b45abbca262ff79e26da479a3032d9015aeee, b940df85acfb2de36c0dcd5000a0039758f2b820, 3a1c3bc9fbf22b13c926179288a8b6eefe440c12, ae020f63a88089966b9323c55a36b6554f7e3900, 672099e9dc6569f4ac1cb9a967037e0d91df689c, aa5733116f20015cc3d14e1441d0eab232ecc9fd, 360fe850c18552f23a2bf74d8eda865431f0af38, 611c86295540161d31169110bf2139cf1d85d708, 9487c0d9, 2674b3f7, c5758058, a76fc492, 1cea5c4c, 3383a1eb, e91b366b, e472741a, c7570096, 4562cfd0, fae644b5, 33b595a8, e3f1c2e1, cba60486, e74cae6c, 3e7b6131a00e6c7b4d25c49373d8ba1c1eefe42f, 906f80f301d8034f8efe510018137195f3e4c4eb, 6dad688ec6a51143bfee902618bb88647a81c940, 380c3e720d5caaa1dc2181d70737b9320337f451, be2c1a535dff0e58b1579fe3db5890c7819916ab, 55db468eef3106ca1b02dc846ba12967a28dc238, 56324120f8e08de995e8cc7432ab27f2d0c98635, cb8d696d19c53e63be05ecb1ae273449af60efaf, 52007b760ff10f056ac75c5ed5b7dcdf49f99036, af5af69fd5018795a963a28c1ad367147b4a9bc3, 2524306ca9edd6079c23d205cf01268797288d89, f304ea548faa05f037cd3aa44c65888d96d543df, 33cfa8dfa1323708edf80034c0a98b0620790b6a, 7cdee0c52b6de5d416208971d6eaec6b86caa034, 93f4bf6543f6a9dc519a28f3d6f7824e8f6feedf, 8efb90e5038874c672df120651041176a70b1f2f, f0b1e5735872ba2effcd7c1480756326125f6752, bc9c30856f6272f9a099e52691d4ec4a7582732f, 1a643e24968a06cdeaba23ffc2506471b659c62a, 187a4c6f, 193361ac, 0d1ab835, "29466300", be20005c, 6414d94, 3d1e10bc, ec2f82df, 173e1f65, 68a4add8, e15905e6, f3d86a09, a0c6c2d1, 296230fc, cc0d6543, f8ca1a89, 4e317aed, a6c84690, 85cd59ae, 724b105e, "99364562", 0ed37109, fd930e71, 1a287085, 30951e7a, 987edccd, e3069dee, bbd6d1f3]
+commits: [159557e114f18123e73282c39c90830917de9948, c42b45abbca262ff79e26da479a3032d9015aeee, b940df85acfb2de36c0dcd5000a0039758f2b820, 3a1c3bc9fbf22b13c926179288a8b6eefe440c12, ae020f63a88089966b9323c55a36b6554f7e3900, 672099e9dc6569f4ac1cb9a967037e0d91df689c, aa5733116f20015cc3d14e1441d0eab232ecc9fd, 360fe850c18552f23a2bf74d8eda865431f0af38, 611c86295540161d31169110bf2139cf1d85d708, 9487c0d9, 2674b3f7, c5758058, a76fc492, 1cea5c4c, 3383a1eb, e91b366b, e472741a, c7570096, 4562cfd0, fae644b5, 33b595a8, e3f1c2e1, cba60486, e74cae6c, 3e7b6131a00e6c7b4d25c49373d8ba1c1eefe42f, 906f80f301d8034f8efe510018137195f3e4c4eb, 6dad688ec6a51143bfee902618bb88647a81c940, 380c3e720d5caaa1dc2181d70737b9320337f451, be2c1a535dff0e58b1579fe3db5890c7819916ab, 55db468eef3106ca1b02dc846ba12967a28dc238, 56324120f8e08de995e8cc7432ab27f2d0c98635, cb8d696d19c53e63be05ecb1ae273449af60efaf, 52007b760ff10f056ac75c5ed5b7dcdf49f99036, af5af69fd5018795a963a28c1ad367147b4a9bc3, 2524306ca9edd6079c23d205cf01268797288d89, f304ea548faa05f037cd3aa44c65888d96d543df, 33cfa8dfa1323708edf80034c0a98b0620790b6a, 7cdee0c52b6de5d416208971d6eaec6b86caa034, 93f4bf6543f6a9dc519a28f3d6f7824e8f6feedf, 8efb90e5038874c672df120651041176a70b1f2f, f0b1e5735872ba2effcd7c1480756326125f6752, bc9c30856f6272f9a099e52691d4ec4a7582732f, 1a643e24968a06cdeaba23ffc2506471b659c62a, 187a4c6f, 193361ac, 0d1ab835, "29466300", be20005c, 6414d94, 3d1e10bc, ec2f82df, 173e1f65, 68a4add8, e15905e6, f3d86a09, a0c6c2d1, 296230fc, cc0d6543, f8ca1a89, 4e317aed, a6c84690, 85cd59ae, 724b105e, "99364562", 0ed37109, fd930e71, 1a287085, 30951e7a, 987edccd, e3069dee, bbd6d1f3, ca240693, 5e0b6363]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -380,7 +384,7 @@ branch_deleted: false
 open_questions: []
 deferred_work: []
 blockers:
-  - "15.5 consequential gates open: current diagnostic39943446009 verifies exact security head, INT009onceFAILED/14skipped; qualified local PRIMARY OWNER_RESTORE/DEFINITION, actual hosted header/nativefirstthrow/body/custodyUNKNOWN. Source-backed deparser text-guard defect under minimum High plan review. Last fullNORMAL39816833651 remains68P1F26unexecuted; required newNORMAL95/recovery/custody/delivery thenP6/P7 remain."
+  - "15.5 consequential gates open: source-proven defaultVOLATILE/deparser correction5e0b636 reviewed eligible, local184P0F0skip/TS/lint passed. Currentdiagnostic39943446009 INT009onceFAILED/14skip and nativefirstthrow/body/custodyUNKNOWN remainhistorical. FreshfullNORMAL95/recovery/custody/delivery required; lastqualified95 remains68P1F26unexecuted. P6/P7 then15.6/epicgates pending."
 overrides:
   oracle: "Owner2026-10-15 prohibits legacyURLs/browsing; useapprovedrequirements/existingdesignsystem/accessibility andrecordowner-authorizeddefaults, notlegacyobservations."
   ownership: "Own15.5spec/ownedepic15context/preparationonly initially; exactsharedsource/schema/test/resource handoff withCoordinator before overlappingimplementation; no foreigncheckoutwrites or pausedsessionresume"
@@ -2188,4 +2192,18 @@ p5_postsecurity_actual_INT009_diagnostic:
   P5: OPEN
   normal_acceptance: 0
   required95: 68P1F26unexecuted_historical
+  no_deployment: true
+p5_default_volatility_source_correction:
+  status: SOURCE_ELIGIBLE_REQUIRED_NORMAL_PENDING
+  source_commit: 5e0b63639dfd8636faab4ab5c798ca81bf1b4e41
+  record: "_bmad-output/auto-bmad/preparation/story-15-5/INT009-default-volatility-source-closure/root-closeout.json"
+  record_sha256: 3aac248ed4d2d2b7649c00ed6fbe77698f4e3fd184c3e9ac4e1db8fcf12cdaf0
+  review: PASS_DEFAULT_VOLATILITY_PATCH_SOURCE_ELIGIBLE/independenttrue/findings0
+  local_affected: 184P0F0skip
+  red_green: RED1F_to_focused6P_nonadditive
+  required_NORMAL95: PENDING
+  P5: OPEN
+  normal_acceptance: 0
+  SQL118: UNCHANGED
+  spec_outside_SRO: UNCHANGED
   no_deployment: true

@@ -7752,3 +7752,39 @@ No newarchive; existing deferred release validation remains deferred.
 **⚠️ Needs human:** (none)
 
 **Next:** Finish minimumHigh plan review of source-proven deparser/textguard mismatch, boundedhelper/unit correction and targeted review; then requiredNORMAL95/recovery/custody/delivery, P6/P7,15.6 and epicgates.
+
+## Report — 2026-10-23T11:46:10Z (working — reviewed default-volatility source correction)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `5e0b636`).
+**Pipeline status:** P5 OPEN; continues to required fullNORMAL
+**Continues:** True
+
+**Summary:** Minimal restoration-helper defaultVOLATILE compatibility correction and meaningful fixture regression committed after independentHigh patch review. No newruntimeacceptance or completedstatus claimed.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 334h 48m (≈77h 24m AI-run, ≈257h 23m human/idle wait); resumed 236×.
+
+**Stories:**
+1. 15.1–15.4 landed; inherited15.2review_unverified retained.
+2. 15.5 source5e0b636: RED1F→focused6P/fullaffected184P0F0skip, TS/scopedlint/diff0; counts nonadditive; reviewPASS/findings0.
+3. 15.6 unstarted; specification preparation/independentvalidation precede build.
+
+**Skipped:** (none)
+
+**Epic gate:** Required full95+recovery/custody and remainingstory/epicgates pending; historical68P1F26unexecuted unchanged.
+
+**TEA:** 15.5 ATDD retained; P6automate/P7tailpending.
+
+**Retrospective:** Epic14 October8 accepted-with-open-items authoritative; October7 historical. Epic15pending.
+
+**Overrides:** Sequentialwholeepic; ordinarySolLow/sensitiveSolHigh; independentreview/counter3/no fourthbroad; nolegacybrowse; onefinalepicPR/retainbranches/no deployment.
+
+**Open questions:**
+1. Hostedexactheader/nativefirstthrow/bodyreach/backend/keycustody remainUNKNOWN; sourceprovenrepresentationbug is not falselyclaimedhostedcause.
+
+**Deferred work:**
+Existing deferredreleasevalidation remainsdeferred.
+
+**⚠️ Needs human:** (none)
+
+**Next:** ReusequalifiedNORMALoperational lane with minimalexactsourcebindings, boundedindependentreview/freshfiniteallocation; freshprovider/push/oneNORMAL95+recovery, actualevidencequalification/delivery thenP6/P7/15.6.
