@@ -110,7 +110,7 @@ function harness(options: {
       };
     },
     uuid: () => { events.push("key-id"); return keyId; }, entropy: () => { events.push("entropy"); return Buffer.alloc(32, 7); },
-    async createTelemetry() { return { path: "/private/allowlisted.jsonl", persist: async () => undefined }; },
+    async createTelemetry(): Promise<{path:string;persist:(line:string)=>Promise<void>}> { return { path: "/private/allowlisted.jsonl", persist: async () => undefined }; },
     launch(command: string, args: string[], childEnv: Record<string, string>) {
       const index = launches.length;
       launches.push({ command, args, childEnv }); events.push(`launch:${index}`);
@@ -1304,15 +1304,15 @@ test("uncertain create plus rollback failure retains both failures and named cus
   ]);
 });
 
-function actualApi019Telemetry(origins: { calendarFixtureOrigin: unknown }, read: (path: string, encoding: string) => Promise<string>, path: string | undefined = "owned-telemetry.jsonl") {
+function actualApi019Telemetry(origins: { calendarFixtureOrigin: unknown; calendarTelemetryPrivacyOrigins?: unknown }, read: (path: string, encoding: string) => Promise<string>, path: string | undefined = "owned-telemetry.jsonl") {
   const source=readFileSync(new URL("../../../support/calendar-feed-atdd.ts",import.meta.url),"utf8").replaceAll("\r\n","\n");
   const start="    telemetry: async () => {",end="    sensitiveTestValues:";
   assert.equal(source.split(start).length,2);assert.equal(source.split(end).length,2);
   const strip=(nodeModule as unknown as {stripTypeScriptTypes(source:string):string}).stripTypeScriptTypes;
   let now=0;const sleeps:number[]=[],reads:{path:string;encoding:string}[]=[];
-  const telemetry=new Function("process","Date","readFile","setTimeout","calendarFixtureOrigin","return "+strip(`({${source.slice(source.indexOf(start),source.indexOf(end))}}).telemetry`))(
+  const telemetry=new Function("process","Date","readFile","setTimeout","calendarFixtureOrigin","calendarTelemetryPrivacyOrigins","return "+strip(`({${source.slice(source.indexOf(start),source.indexOf(end))}}).telemetry`))(
     {env:{CALENDAR_FEED_TEST_LOG_FILE:path}},{now:()=>now},async(p:string,e:string)=>{reads.push({path:p,encoding:e});return read(p,e);},
-    (resolve:()=>void,ms:number)=>{sleeps.push(ms);now+=ms;resolve();},origins.calendarFixtureOrigin) as ()=>Promise<string>;
+    (resolve:()=>void,ms:number)=>{sleeps.push(ms);now+=ms;resolve();},origins.calendarFixtureOrigin,origins.calendarTelemetryPrivacyOrigins) as ()=>Promise<string>;
   return {telemetry,sleeps,reads,now:()=>now};
 }
 
@@ -1340,8 +1340,8 @@ test("API019 actual telemetry privacy refusals retain detection and publish only
   await observe("owned-secret");await observe('{"event":"calendar_feed.response","status":200}');
   assert.ok(!records.join("\n").includes("owned-secret"));
   const values=[records.join("\n"),...[[true,0],[false,1],[undefined,0],[false,"0"],[0,0]].map(([flag,count])=>JSON.stringify({event:"calendar_feed.response",status:200})+"\n"+JSON.stringify({event:"calendar_feed.runtime_observation",responseCount:1,sensitiveOutputDetected:flag,sensitiveOutputCount:count}))];
-  for(const value of values){const f=actualApi019Telemetry(origins,async()=>value),error=await f.telemetry().catch(error=>error);
-    assert.equal(origins.calendarFixtureDiagnostic("scenario",error),error);assert.equal(error.message,"Calendar fixture failure [stage=scenario-telemetry-privacy-refused;category=unknown;sqlstate=unavailable]");assert.deepEqual(f.sleeps,[]);assert.equal(f.reads.length,1);
+  for(const [index,value] of values.entries()){const f=actualApi019Telemetry(origins,async()=>value),error=await f.telemetry().catch(error=>error);
+    assert.equal(origins.calendarFixtureDiagnostic("scenario",error),error);assert.equal(error.message,`Calendar fixture failure [stage=${index===0?"scenario-telemetry-privacy-refused-unknown-known-credential":"scenario-telemetry-privacy-refused"};category=unknown;sqlstate=unavailable]`);assert.deepEqual(f.sleeps,[]);assert.equal(f.reads.length,1);
   }
 });
 
@@ -1355,6 +1355,55 @@ test("API019 actual telemetry parse origin never exposes raw text and IO or miss
   assert.equal(origins.calendarFixtureDiagnostic("scenario",missing).message,"Calendar fixture failure [stage=scenario;category=unknown;sqlstate=unavailable]");assert.deepEqual(absent.reads,[]);
 });
 
+async function api019PreimageDetector() {
+  const source=readFileSync(new URL("../../../../scripts/ci/with-calendar-feed-runtime.mjs",import.meta.url),"utf8").replaceAll("\r\n","\n"),start=source.indexOf("function isSafeInfrastructureAddress("),end=source.indexOf("/** Inspect raw output",start);assert.ok(start>0&&end>start);
+  const original="export function hasSensitiveOutput(line, { keyId, secret, knownValues = /** @type {string[]} */ ([]) }) {\n  if ([keyId, secret, ...knownValues].some(value => value && line.includes(value))) return true;\n  if (/\\/calendar\\/feed\\/[A-Za-z0-9_%=-]+|x-vercel-forwarded-for|[\"']?(?:proof|signature|tokenHash|ipHash)[\"']?\\s*[:=]/i.test(line)) return true;\n  if (/(?<![a-f0-9])[a-f0-9]{64}(?![a-f0-9])/i.test(line)) return true;\n  // A capability or base64-encoded SHA256 proof has exactly 32 canonical bytes.\n  for (const match of line.matchAll(/(?<![A-Za-z0-9+/_-])[A-Za-z0-9+/_-]{43}=?(?![A-Za-z0-9+/_=-])/g)) {\n    const raw = match[0];\n    const bytes = Buffer.from(raw, \"base64url\");\n    if (bytes.length === 32 && [bytes.toString(\"base64url\"), bytes.toString(\"base64\")].includes(raw)) return true;\n  }\n  if (isSafeInfrastructureAddress(line)) return false;\n  for (const match of line.matchAll(/(?<![\\d.])(?:\\d{1,3}\\.){3}\\d{1,3}(?![\\d.])/g)) if (isIP(match[0]) === 4) return true;\n  for (const match of line.matchAll(/(?<![a-f0-9:])(?:[a-f0-9]{0,4}:){2,}[a-f0-9:.]*(?:%[a-z0-9_.-]+)?/gi)) if (isIP(match[0]) === 6) return true;\n  return false;\n}";
+  assert.equal(createHash("sha256").update(original).digest("hex"),"56c256c0c3fb6687854c6e90190221b6ca35d4e7d76a3c26fcf3c3418445eade");
+  return new Function("isIP","stripVTControlCharacters",source.slice(start,end)+original.replace("export function ","function ")+";return hasSensitiveOutput;")((await import("node:net")).isIP,(await import("node:util")).stripVTControlCharacters) as typeof hasSensitiveOutput;
+}
+
+test("API019 first privacy origin preserves preimage boolean predicates precedence and clean observation shape",async()=>{
+  const previous=await api019PreimageDetector(),params={keyId:"synthetic-key",secret:"synthetic-secret"};
+  const vectors:[string,string|null][]=[["synthetic-secret 203.0.113.7","known-credential"],["proof="+"a".repeat(64),"feed-path-or-security-field"],["/calendar/feed/fixed","feed-path-or-security-field"],["a".repeat(64),"hex64"],[Buffer.alloc(32,21).toString("base64url"),"canonical32"],["203.0.113.7","ip-literal"],["2001:db8::7","ip-literal"],["Next banner",null],["▲ Next.js 16.4.1",null],["- Local: http://127.0.0.1:3195",null],["GET - Local: http://127.0.0.1:3195","ip-literal"]];
+  for(const [line,predicate]of vectors){assert.equal(hasSensitiveOutput(line,params),previous(line,params));const rows:Record<string,unknown>[]=[];const observe=createTelemetryObserver({...params,persist:async(value:string)=>{rows.push(JSON.parse(value));}});await observe(line,"build");
+    assert.equal(rows.length,predicate?1:0);if(predicate)assert.deepEqual(rows[0],{event:"calendar_feed.runtime_observation",responseCount:0,sensitiveOutputCount:1,sensitiveOutputDetected:true,firstPrivacy:{child:"build",predicate}});
+    assert.ok(!JSON.stringify(rows).includes("synthetic-secret"));
+  }
+  const rows:Record<string,unknown>[]=[];const observe=createTelemetryObserver({...params,persist:async(value:string)=>{rows.push(JSON.parse(value));}});
+  for(const status of[200,404,429,503])await observe(JSON.stringify({event:"calendar_feed.response",status}),"production-server");
+  assert.deepEqual(rows.at(-1),{event:"calendar_feed.runtime_observation",responseCount:4,sensitiveOutputCount:0,sensitiveOutputDetected:false});
+  await observe('{"event":"calendar_feed.response","status":201}',"integration");assert.deepEqual(rows.at(-1)?.firstPrivacy,{child:"integration",predicate:"unexpected-response-shape"});
+});
+
+test("API019 first privacy origin is synchronous immutable across interleaved children and rejected persistence",async()=>{
+  let release!:()=>void;const held=new Promise<void>(resolve=>{release=resolve;}),rows:Record<string,unknown>[]=[];
+  const observe=createTelemetryObserver({keyId:"synthetic-key",secret:"synthetic-secret",persist:(value:string)=>{rows.push(JSON.parse(value));return rows.length===1?held:Promise.resolve();}});
+  const first=observe("synthetic-secret","build"),later=observe("203.0.113.7","production-server");await later;
+  assert.deepEqual(rows.map(row=>row.firstPrivacy),[{child:"build",predicate:"known-credential"},{child:"build",predicate:"known-credential"}]);
+  (rows[0].firstPrivacy as {child:string}).child="integration";await observe("proof=fixed","integration");assert.deepEqual(rows.at(-1)?.firstPrivacy,{child:"build",predicate:"known-credential"});release();await first;
+  const error=Object.freeze({private:"PRIVATE"}),retained:Record<string,unknown>[]=[];let calls=0;
+  const failed=createTelemetryObserver({keyId:"synthetic-key",secret:"synthetic-secret",persist:async(value:string)=>{retained.push(JSON.parse(value));if(++calls===1)throw error;}});
+  assert.equal(await failed("203.0.113.7","PRIVATE child" as "unknown").catch(value=>value),error);await failed("synthetic-secret","build");
+  assert.deepEqual(retained.at(-1)?.firstPrivacy,{child:"unknown",predicate:"ip-literal"});assert.equal(retained.at(-1)?.sensitiveOutputCount,2);assert.ok(!JSON.stringify(retained).includes("PRIVATE"));assert.equal(failed.privacyFailed(),true);
+});
+
+test("API019 first privacy origin actual db child closures preserve promise and error identity without launch changes",async()=>{
+  const source=readFileSync(new URL("../../../../scripts/ci/with-calendar-feed-runtime.mjs",import.meta.url),"utf8"),matches=[...source.matchAll(/line => observe\(line, "(build|production-server|integration)"\)/g)];assert.equal(matches.length,3);
+  for(const match of matches){const promise=Promise.resolve({fixed:true}),error={},args:unknown[][]=[];const fn=new Function("observe","return ("+match[0]+")")((...values:unknown[])=>{args.push(values);return promise;});assert.equal(fn("fixed"),promise);assert.deepEqual(args,[["fixed",match[1]]]);const throwing=new Function("observe","return ("+match[0]+")")(()=>{throw error;});assert.throws(()=>throwing("fixed"),value=>value===error);}
+  for(const [index,child]of["build","production-server","integration"].entries()){const h=harness(),rows:Record<string,unknown>[]=[],pending:Promise<void>[]=[];let order=0;h.deps.createTelemetry=async()=>({path:"/private/allowlisted.jsonl",persist:async(value:string)=>{rows.push(JSON.parse(value));}});const launch=h.deps.launch;
+    h.deps.launch=(command,args,childEnv,observe?:(value:string)=>Promise<void>)=>{if(order++===index){assert.ok(observe);pending.push(observe("proof=fixed"));}return launch(command,args,childEnv);};
+    const result=await runFixture("db",h);await Promise.all(pending);assert.equal(result.exitCode,0);assert.equal(h.launches.length,3);assert.deepEqual(rows[0].firstPrivacy,{child,predicate:"feed-path-or-security-field"});assert.deepEqual(h.launches[2].args,[...INTEGRATION_ARGS]);assert.equal(result.receipt.dbClosed,true);
+  }
+});
+
+test("API019 first privacy origin maps exactly28 static pairs one safe leaf inclusive80 and invalid metadata fallback",async()=>{
+  const origins=await actualFixtureOrigins(),children=["build","production-server","integration","unknown"],predicates=["known-credential","feed-path-or-security-field","hex64","canonical32","ip-literal","unexpected-response-shape","unknown"],labels:string[]=[];
+  const fail=async(firstPrivacy:unknown)=>{const value=JSON.stringify({event:"calendar_feed.response",status:200})+"\n"+JSON.stringify({event:"calendar_feed.runtime_observation",responseCount:1,sensitiveOutputDetected:true,sensitiveOutputCount:1,firstPrivacy});const f=actualApi019Telemetry(origins,async()=>value),error=await f.telemetry().catch(error=>error);assert.equal(origins.calendarFixtureDiagnostic("scenario",error),error);assert.ok(error instanceof Error);assert.ok(!(error instanceof AggregateError));assert.deepEqual(f.sleeps,[]);assert.equal(f.reads.length,1);return error.message as string;};
+  for(const child of children)for(const predicate of predicates){const stage=`scenario-telemetry-privacy-refused-${child}-${predicate}`;labels.push(stage);assert.ok(stage.length<=80);assert.equal(await fail({child,predicate}),`Calendar fixture failure [stage=${stage};category=unknown;sqlstate=unavailable]`);assert.ok(origins.calendarFixtureOwnedOrigins.includes(stage));}
+  assert.equal(new Set(labels).size,28);assert.equal(Math.max(...labels.map(label=>label.length)),80);
+  for(const value of[undefined,null,[],{},"PRIVATE",{child:"build"},{predicate:"known-credential"},{child:"build",predicate:"PRIVATE"},{child:"PRIVATE",predicate:"hex64"},{child:"build",predicate:"hex64",extra:"PRIVATE"},{child:{private:"PRIVATE"},predicate:"hex64"}])assert.equal(await fail(value),"Calendar fixture failure [stage=scenario-telemetry-privacy-refused;category=unknown;sqlstate=unavailable]");
+});
+
 test("telemetry persists actual allowlisted markers and measured leak flags, never raw lines", async () => {
   const persisted: string[] = [];
   const observe = createTelemetryObserver({ keyId: "owned-key-id", secret: "owned-private-key", persist: async (line: string) => { persisted.push(line); } });
@@ -1363,9 +1412,9 @@ test("telemetry persists actual allowlisted markers and measured leak flags, nev
   await observe('{"event":"calendar_feed.response","status":200}');
   assert.deepEqual(JSON.parse(persisted[1]), { event: "calendar_feed.runtime_observation", responseCount: 1, sensitiveOutputCount: 0, sensitiveOutputDetected: false });
   await observe("GET /calendar/feed/sensitive-capability owned-private-key owned-key-id");
-  assert.deepEqual(JSON.parse(persisted[2]), { event: "calendar_feed.runtime_observation", responseCount: 1, sensitiveOutputCount: 1, sensitiveOutputDetected: true });
+  assert.deepEqual(JSON.parse(persisted[2]), { event: "calendar_feed.runtime_observation", responseCount: 1, sensitiveOutputCount: 1, sensitiveOutputDetected: true, firstPrivacy: { child: "unknown", predicate: "known-credential" } });
   await observe('{"event":"calendar_feed.response","status":404}');
-  assert.deepEqual(JSON.parse(persisted[4]), { event: "calendar_feed.runtime_observation", responseCount: 2, sensitiveOutputCount: 1, sensitiveOutputDetected: true });
+  assert.deepEqual(JSON.parse(persisted[4]), { event: "calendar_feed.runtime_observation", responseCount: 2, sensitiveOutputCount: 1, sensitiveOutputDetected: true, firstPrivacy: { child: "unknown", predicate: "known-credential" } });
   assert.ok(!persisted.join("").includes("sensitive-capability")); assert.ok(!persisted.join("").includes("owned-private-key"));
 });
 

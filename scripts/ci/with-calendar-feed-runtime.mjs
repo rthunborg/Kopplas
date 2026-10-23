@@ -244,33 +244,40 @@ function isSafeInfrastructureAddress(line) {
 }
 
 /** Inspect raw output in memory before dropping it; never return its contents. */
-export function hasSensitiveOutput(line, { keyId, secret, knownValues = /** @type {string[]} */ ([]) }) {
-  if ([keyId, secret, ...knownValues].some(value => value && line.includes(value))) return true;
-  if (/\/calendar\/feed\/[A-Za-z0-9_%=-]+|x-vercel-forwarded-for|["']?(?:proof|signature|tokenHash|ipHash)["']?\s*[:=]/i.test(line)) return true;
-  if (/(?<![a-f0-9])[a-f0-9]{64}(?![a-f0-9])/i.test(line)) return true;
+function sensitiveOutputPredicate(line, { keyId, secret, knownValues = /** @type {string[]} */ ([]) }) {
+  if ([keyId, secret, ...knownValues].some(value => value && line.includes(value))) return "known-credential";
+  if (/\/calendar\/feed\/[A-Za-z0-9_%=-]+|x-vercel-forwarded-for|["']?(?:proof|signature|tokenHash|ipHash)["']?\s*[:=]/i.test(line)) return "feed-path-or-security-field";
+  if (/(?<![a-f0-9])[a-f0-9]{64}(?![a-f0-9])/i.test(line)) return "hex64";
   // A capability or base64-encoded SHA256 proof has exactly 32 canonical bytes.
   for (const match of line.matchAll(/(?<![A-Za-z0-9+/_-])[A-Za-z0-9+/_-]{43}=?(?![A-Za-z0-9+/_=-])/g)) {
     const raw = match[0];
     const bytes = Buffer.from(raw, "base64url");
-    if (bytes.length === 32 && [bytes.toString("base64url"), bytes.toString("base64")].includes(raw)) return true;
+    if (bytes.length === 32 && [bytes.toString("base64url"), bytes.toString("base64")].includes(raw)) return "canonical32";
   }
-  if (isSafeInfrastructureAddress(line)) return false;
-  for (const match of line.matchAll(/(?<![\d.])(?:\d{1,3}\.){3}\d{1,3}(?![\d.])/g)) if (isIP(match[0]) === 4) return true;
-  for (const match of line.matchAll(/(?<![a-f0-9:])(?:[a-f0-9]{0,4}:){2,}[a-f0-9:.]*(?:%[a-z0-9_.-]+)?/gi)) if (isIP(match[0]) === 6) return true;
-  return false;
+  if (isSafeInfrastructureAddress(line)) return null;
+  for (const match of line.matchAll(/(?<![\d.])(?:\d{1,3}\.){3}\d{1,3}(?![\d.])/g)) if (isIP(match[0]) === 4) return "ip-literal";
+  for (const match of line.matchAll(/(?<![a-f0-9:])(?:[a-f0-9]{0,4}:){2,}[a-f0-9:.]*(?:%[a-z0-9_.-]+)?/gi)) if (isIP(match[0]) === 6) return "ip-literal";
+  return null;
+}
+
+export function hasSensitiveOutput(line, { keyId, secret, knownValues = /** @type {string[]} */ ([]) }) {
+  return sensitiveOutputPredicate(line, { keyId, secret, knownValues }) !== null;
 }
 
 /** Never return/persist raw lines. Detection runs before filtering. */
 export function createTelemetryObserver({ keyId, secret, persist, knownValues = /** @type {string[]} */ ([]) }) {
   let responseCount = 0, sensitiveOutputCount = 0;
-  const observation = () => persist(JSON.stringify({ event: "calendar_feed.runtime_observation", responseCount, sensitiveOutputCount, sensitiveOutputDetected: sensitiveOutputCount !== 0 }) + "\n");
-  const observe = async (line) => {
+  let firstPrivacy = /** @type {null | Readonly<{child:string,predicate:string}>} */ (null);
+  const observation = () => persist(JSON.stringify({ event: "calendar_feed.runtime_observation", responseCount, sensitiveOutputCount, sensitiveOutputDetected: sensitiveOutputCount !== 0, ...(firstPrivacy ? { firstPrivacy } : {}) }) + "\n");
+  const observe = async (line, child = "unknown") => {
     let record;
     try { record = JSON.parse(line); } catch { /* Unstructured output is still inspected below. */ }
     const validResponse = record !== null && typeof record === "object" && !Array.isArray(record)
       && Object.keys(record).sort().join(",") === "event,status" && record.event === "calendar_feed.response" && [200, 404, 429, 503].includes(record.status);
     const unexpectedResponse = record?.event === "calendar_feed.response" && !validResponse;
-    if (hasSensitiveOutput(line, { keyId, secret, knownValues }) || unexpectedResponse) {
+    const predicate = sensitiveOutputPredicate(line, { keyId, secret, knownValues });
+    if (predicate !== null || unexpectedResponse) {
+      if (firstPrivacy === null) firstPrivacy = Object.freeze({ child: ["build", "production-server", "integration"].includes(child) ? child : "unknown", predicate: predicate ?? "unexpected-response-shape" });
       sensitiveOutputCount++;
       await observation();
     }
@@ -616,10 +623,10 @@ export async function runCalendarFeedRuntime({ mode, env = process.env, platform
       await run("pnpm", CAUSE_PROOF_ARGS, childEnv, observe, 240_000);
       try { await deps.readDiagnostic(); } catch { diagnosticUnverified = true; fail("diagnostic-settlement-unverified"); }
     } else if (mode === "db") {
-      await run(process.execPath, ["node_modules/next/dist/bin/next", "build"], childEnv, observe, 240_000);
-      const server = launch(process.execPath, ["node_modules/next/dist/bin/next", "start", "--hostname", "127.0.0.1", "--port", "3195"], childEnv, observe);
+      await run(process.execPath, ["node_modules/next/dist/bin/next", "build"], childEnv, line => observe(line, "build"), 240_000);
+      const server = launch(process.execPath, ["node_modules/next/dist/bin/next", "start", "--hostname", "127.0.0.1", "--port", "3195"], childEnv, line => observe(line, "production-server"));
       await deps.ready(childEnv.CALENDAR_FEED_TEST_BASE_URL, server, abort.signal); receipt.ready = true;
-      await run("pnpm", INTEGRATION_ARGS, childEnv, observe, 1_800_000);
+      await run("pnpm", INTEGRATION_ARGS, childEnv, line => observe(line, "integration"), 1_800_000);
     } else {
       await run("pnpm", BROWSER_ARGS, childEnv, observe, 1_800_000);
     }

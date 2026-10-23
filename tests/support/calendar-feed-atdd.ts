@@ -227,7 +227,45 @@ export function createCalendarInt009Capture(readMeta?:()=>unknown) {
   };
 }
 export type CalendarInt009Capture=ReturnType<typeof createCalendarInt009Capture>;
-export const calendarFixtureOwnedOrigins = ["scenario-assertion", "scenario-issued-denied", "scenario-issued-unavailable", "scenario-issued-conflict", "scenario-issued-replayed", "scenario-issued-unknown-noncommitted", "scenario-issued-committed-missing-url", "scenario-canonical-token-route", "scenario-http-transport", "scenario-telemetry-observation-timeout", "scenario-telemetry-privacy-refused", "scenario-telemetry-parse-refused", "scenario-rls001-own", "scenario-rls001-admin", "scenario-rls001-planner", "scenario-rls001-mixed"] as const;
+export const calendarTelemetryPrivacyOrigins = {
+  "build": {
+    "known-credential": "scenario-telemetry-privacy-refused-build-known-credential",
+    "feed-path-or-security-field": "scenario-telemetry-privacy-refused-build-feed-path-or-security-field",
+    "hex64": "scenario-telemetry-privacy-refused-build-hex64",
+    "canonical32": "scenario-telemetry-privacy-refused-build-canonical32",
+    "ip-literal": "scenario-telemetry-privacy-refused-build-ip-literal",
+    "unexpected-response-shape": "scenario-telemetry-privacy-refused-build-unexpected-response-shape",
+    "unknown": "scenario-telemetry-privacy-refused-build-unknown"
+  },
+  "production-server": {
+    "known-credential": "scenario-telemetry-privacy-refused-production-server-known-credential",
+    "feed-path-or-security-field": "scenario-telemetry-privacy-refused-production-server-feed-path-or-security-field",
+    "hex64": "scenario-telemetry-privacy-refused-production-server-hex64",
+    "canonical32": "scenario-telemetry-privacy-refused-production-server-canonical32",
+    "ip-literal": "scenario-telemetry-privacy-refused-production-server-ip-literal",
+    "unexpected-response-shape": "scenario-telemetry-privacy-refused-production-server-unexpected-response-shape",
+    "unknown": "scenario-telemetry-privacy-refused-production-server-unknown"
+  },
+  "integration": {
+    "known-credential": "scenario-telemetry-privacy-refused-integration-known-credential",
+    "feed-path-or-security-field": "scenario-telemetry-privacy-refused-integration-feed-path-or-security-field",
+    "hex64": "scenario-telemetry-privacy-refused-integration-hex64",
+    "canonical32": "scenario-telemetry-privacy-refused-integration-canonical32",
+    "ip-literal": "scenario-telemetry-privacy-refused-integration-ip-literal",
+    "unexpected-response-shape": "scenario-telemetry-privacy-refused-integration-unexpected-response-shape",
+    "unknown": "scenario-telemetry-privacy-refused-integration-unknown"
+  },
+  "unknown": {
+    "known-credential": "scenario-telemetry-privacy-refused-unknown-known-credential",
+    "feed-path-or-security-field": "scenario-telemetry-privacy-refused-unknown-feed-path-or-security-field",
+    "hex64": "scenario-telemetry-privacy-refused-unknown-hex64",
+    "canonical32": "scenario-telemetry-privacy-refused-unknown-canonical32",
+    "ip-literal": "scenario-telemetry-privacy-refused-unknown-ip-literal",
+    "unexpected-response-shape": "scenario-telemetry-privacy-refused-unknown-unexpected-response-shape",
+    "unknown": "scenario-telemetry-privacy-refused-unknown-unknown"
+  }
+} as const;
+export const calendarFixtureOwnedOrigins = ["scenario-assertion", "scenario-issued-denied", "scenario-issued-unavailable", "scenario-issued-conflict", "scenario-issued-replayed", "scenario-issued-unknown-noncommitted", "scenario-issued-committed-missing-url", "scenario-canonical-token-route", "scenario-http-transport", "scenario-telemetry-observation-timeout", "scenario-telemetry-privacy-refused", "scenario-telemetry-parse-refused", "scenario-rls001-own", "scenario-rls001-admin", "scenario-rls001-planner", "scenario-rls001-mixed", ...Object.values(calendarTelemetryPrivacyOrigins).flatMap(row => Object.values(row))] as const;
 export type CalendarFixtureOwnedOrigin = typeof calendarFixtureOwnedOrigins[number];
 export const calendarFixtureDiagnosticStages = ["booking-fixture-before-callback", "canonical-fixture-cleanup", "additional-users", "bind-membership", "bind-profile", "bind-client", "owned-row-cleanup", "additional-auth-cleanup", "cleanup-absence-check", "serial-window-setup", "serial-window-restore", "scenario", "unknown", ...calendarFixtureOwnedOrigins] as const;
 export type CalendarFixtureDiagnosticStage = typeof calendarFixtureDiagnosticStages[number];
@@ -556,7 +594,18 @@ async function bindCalendarFixture(base: BookingFixture, extra: Awaited<ReturnTy
         catch { throw calendarFixtureOrigin("scenario-telemetry-parse-refused"); }
         const observed=records.filter(row=>row.event==="calendar_feed.runtime_observation").at(-1);
         if(records.some(row=>row.event==="calendar_feed.response") && observed && Number(observed.responseCount)>0) {
-          if(observed.sensitiveOutputDetected!==false||observed.sensitiveOutputCount!==0)throw calendarFixtureOrigin("scenario-telemetry-privacy-refused");
+          if(observed.sensitiveOutputDetected!==false||observed.sensitiveOutputCount!==0) {
+            let origin:CalendarFixtureOwnedOrigin="scenario-telemetry-privacy-refused";
+            const first=observed.firstPrivacy;
+            if(first!==null&&typeof first==="object"&&!Array.isArray(first)&&Object.keys(first).sort().join(",")==="child,predicate") {
+              const fact=first as Record<string,unknown>;
+              if(typeof fact.child==="string"&&typeof fact.predicate==="string"&&Object.hasOwn(calendarTelemetryPrivacyOrigins,fact.child)) {
+                const row=calendarTelemetryPrivacyOrigins[fact.child as keyof typeof calendarTelemetryPrivacyOrigins];
+                if(Object.hasOwn(row,fact.predicate))origin=row[fact.predicate as keyof typeof row];
+              }
+            }
+            throw calendarFixtureOrigin(origin);
+          }
           return value;
         }
         await new Promise(resolve=>setTimeout(resolve,20));
