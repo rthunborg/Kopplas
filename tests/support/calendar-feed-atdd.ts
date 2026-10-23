@@ -227,7 +227,7 @@ export function createCalendarInt009Capture(readMeta?:()=>unknown) {
   };
 }
 export type CalendarInt009Capture=ReturnType<typeof createCalendarInt009Capture>;
-export const calendarFixtureOwnedOrigins = ["scenario-assertion", "scenario-issued-denied", "scenario-issued-unavailable", "scenario-issued-conflict", "scenario-issued-replayed", "scenario-issued-unknown-noncommitted", "scenario-issued-committed-missing-url", "scenario-canonical-token-route", "scenario-http-transport", "scenario-rls001-own", "scenario-rls001-admin", "scenario-rls001-planner", "scenario-rls001-mixed"] as const;
+export const calendarFixtureOwnedOrigins = ["scenario-assertion", "scenario-issued-denied", "scenario-issued-unavailable", "scenario-issued-conflict", "scenario-issued-replayed", "scenario-issued-unknown-noncommitted", "scenario-issued-committed-missing-url", "scenario-canonical-token-route", "scenario-http-transport", "scenario-telemetry-observation-timeout", "scenario-telemetry-privacy-refused", "scenario-telemetry-parse-refused", "scenario-rls001-own", "scenario-rls001-admin", "scenario-rls001-planner", "scenario-rls001-mixed"] as const;
 export type CalendarFixtureOwnedOrigin = typeof calendarFixtureOwnedOrigins[number];
 export const calendarFixtureDiagnosticStages = ["booking-fixture-before-callback", "canonical-fixture-cleanup", "additional-users", "bind-membership", "bind-profile", "bind-client", "owned-row-cleanup", "additional-auth-cleanup", "cleanup-absence-check", "serial-window-setup", "serial-window-restore", "scenario", "unknown", ...calendarFixtureOwnedOrigins] as const;
 export type CalendarFixtureDiagnosticStage = typeof calendarFixtureDiagnosticStages[number];
@@ -550,15 +550,18 @@ async function bindCalendarFixture(base: BookingFixture, extra: Awaited<ReturnTy
       const path=process.env.CALENDAR_FEED_TEST_LOG_FILE;if(!path)throw new Error("Actual sanitized server telemetry fixture absent");
       const deadline=Date.now()+3000;
       while(Date.now()<deadline) {
-        const value=await readFile(path,"utf8"),records=value.trim().split("\n").filter(Boolean).map(line=>JSON.parse(line) as Record<string,unknown>);
+        const value=await readFile(path,"utf8");
+        let records:Record<string,unknown>[];
+        try { records=value.trim().split("\n").filter(Boolean).map(line=>JSON.parse(line) as Record<string,unknown>); }
+        catch { throw calendarFixtureOrigin("scenario-telemetry-parse-refused"); }
         const observed=records.filter(row=>row.event==="calendar_feed.runtime_observation").at(-1);
         if(records.some(row=>row.event==="calendar_feed.response") && observed && Number(observed.responseCount)>0) {
-          if(observed.sensitiveOutputDetected!==false||observed.sensitiveOutputCount!==0)throw new Error("Runtime sensitive-output detector failed");
+          if(observed.sensitiveOutputDetected!==false||observed.sensitiveOutputCount!==0)throw calendarFixtureOrigin("scenario-telemetry-privacy-refused");
           return value;
         }
         await new Promise(resolve=>setTimeout(resolve,20));
       }
-      throw new Error("Actual feed telemetry observation absent");
+      throw calendarFixtureOrigin("scenario-telemetry-observation-timeout");
     },
     sensitiveTestValues: async () => [key.secret,...trackedProof],
     seedSchedulingRegressionState: async () => {

@@ -1304,6 +1304,57 @@ test("uncertain create plus rollback failure retains both failures and named cus
   ]);
 });
 
+function actualApi019Telemetry(origins: { calendarFixtureOrigin: unknown }, read: (path: string, encoding: string) => Promise<string>, path: string | undefined = "owned-telemetry.jsonl") {
+  const source=readFileSync(new URL("../../../support/calendar-feed-atdd.ts",import.meta.url),"utf8").replaceAll("\r\n","\n");
+  const start="    telemetry: async () => {",end="    sensitiveTestValues:";
+  assert.equal(source.split(start).length,2);assert.equal(source.split(end).length,2);
+  const strip=(nodeModule as unknown as {stripTypeScriptTypes(source:string):string}).stripTypeScriptTypes;
+  let now=0;const sleeps:number[]=[],reads:{path:string;encoding:string}[]=[];
+  const telemetry=new Function("process","Date","readFile","setTimeout","calendarFixtureOrigin","return "+strip(`({${source.slice(source.indexOf(start),source.indexOf(end))}}).telemetry`))(
+    {env:{CALENDAR_FEED_TEST_LOG_FILE:path}},{now:()=>now},async(p:string,e:string)=>{reads.push({path:p,encoding:e});return read(p,e);},
+    (resolve:()=>void,ms:number)=>{sleeps.push(ms);now+=ms;resolve();},origins.calendarFixtureOrigin) as ()=>Promise<string>;
+  return {telemetry,sleeps,reads,now:()=>now};
+}
+
+test("API019 actual telemetry returns observer bytes unchanged without extra reads or sleeps",async()=>{
+  const origins=await actualFixtureOrigins(),records:string[]=[];
+  const observe=createTelemetryObserver({keyId:"owned-key",secret:"owned-secret",persist:async(line:string)=>{records.push(line);}});
+  await observe('{"event":"calendar_feed.response","status":200}');const value=records.join("\n")+"\n";
+  const f=actualApi019Telemetry(origins,async()=>value);assert.equal(await f.telemetry(),value);
+  assert.deepEqual(f.reads,[{path:"owned-telemetry.jsonl",encoding:"utf8"}]);assert.deepEqual(f.sleeps,[]);assert.equal(f.now(),0);
+});
+
+test("API019 actual telemetry absence retains exact deadline cadence and owned timeout origin",async()=>{
+  const origins=await actualFixtureOrigins();
+  for(const records of [[],[{event:"calendar_feed.response",status:200}],[{event:"calendar_feed.runtime_observation",responseCount:1}],[{event:"calendar_feed.response",status:200},{event:"calendar_feed.runtime_observation",responseCount:0}]]){
+    const f=actualApi019Telemetry(origins,async()=>records.map(row=>JSON.stringify(row)).join("\n")),error=await f.telemetry().catch(error=>error);
+    assert.equal(origins.calendarFixtureDiagnostic("scenario",error),error);
+    assert.equal(error.message,"Calendar fixture failure [stage=scenario-telemetry-observation-timeout;category=unknown;sqlstate=unavailable]");
+    assert.equal(f.now(),3000);assert.equal(f.reads.length,150);assert.deepEqual(f.sleeps,Array(150).fill(20));
+  }
+});
+
+test("API019 actual telemetry privacy refusals retain detection and publish only fixed owned origin",async()=>{
+  const origins=await actualFixtureOrigins(),records:string[]=[];
+  const observe=createTelemetryObserver({keyId:"owned-key",secret:"owned-secret",persist:async(line:string)=>{records.push(line);}});
+  await observe("owned-secret");await observe('{"event":"calendar_feed.response","status":200}');
+  assert.ok(!records.join("\n").includes("owned-secret"));
+  const values=[records.join("\n"),...[[true,0],[false,1],[undefined,0],[false,"0"],[0,0]].map(([flag,count])=>JSON.stringify({event:"calendar_feed.response",status:200})+"\n"+JSON.stringify({event:"calendar_feed.runtime_observation",responseCount:1,sensitiveOutputDetected:flag,sensitiveOutputCount:count}))];
+  for(const value of values){const f=actualApi019Telemetry(origins,async()=>value),error=await f.telemetry().catch(error=>error);
+    assert.equal(origins.calendarFixtureDiagnostic("scenario",error),error);assert.equal(error.message,"Calendar fixture failure [stage=scenario-telemetry-privacy-refused;category=unknown;sqlstate=unavailable]");assert.deepEqual(f.sleeps,[]);assert.equal(f.reads.length,1);
+  }
+});
+
+test("API019 actual telemetry parse origin never exposes raw text and IO or missing path remain unknown",async()=>{
+  const origins=await actualFixtureOrigins(),f=actualApi019Telemetry(origins,async()=>'{PRIVATE source token IP stack');
+  const error=await f.telemetry().catch(error=>error);assert.equal(origins.calendarFixtureDiagnostic("scenario",error),error);
+  assert.equal(error.message,"Calendar fixture failure [stage=scenario-telemetry-parse-refused;category=unknown;sqlstate=unavailable]");assert.deepEqual(f.sleeps,[]);assert.equal(f.reads.length,1);
+  const io=Object.freeze({private:"PRIVATE IO"}),g=actualApi019Telemetry(origins,async()=>{throw io;}),caught=await g.telemetry().catch(error=>error);
+  assert.equal(caught,io);assert.equal(origins.calendarFixtureDiagnostic("scenario",caught).message,"Calendar fixture failure [stage=scenario;category=unknown;sqlstate=unavailable]");assert.deepEqual(g.sleeps,[]);
+  const absent=actualApi019Telemetry(origins,async()=>{throw Error("Unexpected read");},"");const missing=await absent.telemetry().catch(error=>error);
+  assert.equal(origins.calendarFixtureDiagnostic("scenario",missing).message,"Calendar fixture failure [stage=scenario;category=unknown;sqlstate=unavailable]");assert.deepEqual(absent.reads,[]);
+});
+
 test("telemetry persists actual allowlisted markers and measured leak flags, never raw lines", async () => {
   const persisted: string[] = [];
   const observe = createTelemetryObserver({ keyId: "owned-key-id", secret: "owned-private-key", persist: async (line: string) => { persisted.push(line); } });

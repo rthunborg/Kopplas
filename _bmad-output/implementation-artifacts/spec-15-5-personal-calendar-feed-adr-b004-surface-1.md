@@ -2459,12 +2459,18 @@ actual SQL callback ownership, executed-feature fixture/status/policy repairs an
 bounded safe-leaf transport through the installed reporter, closed owned scenario origins, the minimal Vite security patch, the admitted staged diagnostic-only lane and the discovery-order unit correction.
 Stops below resolve to the current forward-protocol working source handed to Root; no author Git mutation occurs.
 
+### API019 telemetry origin — bounded evidence only
+
+- `tests/support/calendar-feed-atdd.ts` — the existing telemetry path retains its3s deadline,20ms cadence, success/privacy criteria and IO behavior. Only the final observation timeout, privacy refusal and synchronous JSON parse rejection now use three closed owned origins. File reading stays outside the parse catch, so IO and missing-path failures remain UNKNOWN. This is an evidence discriminator, not a functional repair or certified hosted cause.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts` — four real-source controls exercise telemetry with the existing actual observer and inert clock/read dependencies: unchanged success bytes, exact deadline/cadence, privacy refusal, malformed JSON and unchanged IO/missing-path erasure. After correcting a control-only TypeScript extraction boundary, unchanged producer was1P/3F and the bounded label change is4P/0F. Initial extraction failure remains historical in the author evidence.
+- Current independently qualified required95 is93P/1F(API019)/1zero(API020 pending), with separate recovery1P and14browser retry0P. Exact native failure/cause and retained DB-key/backend custody remain UNKNOWN. The matching private reader successor changes only three finite stage literals; no new collector/schema/caps or native execution is authorized by this source work. Whole affected wrapper191/191 passed with0skips; whole TypeScript and scoped ESLint passed. Focused/whole counts overlap. Targeted independent review remains required before checkpoint eligibility; no development-complete/release claim.
+
 ### INT014 last-used observation — canonical instant without changing raw status
 
 - `tests/support/calendar-feed-atdd.ts` — only the fixture `status` return normalizes validated `lastUsedAt` through the existing `iso`, matching physical readback's millisecond UTC observation. Review both unchanged ordinary JWT RPC calls and their exact arguments/order, raw-field/privacy checks and actual production mapper before this return. `publicDto:data` retains the original object and timestamp spelling; database values and production mapper are untouched.
 - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts` — three real-source adapter regressions use the actual status method, actual mapper and existing `iso`. They cover equivalent offsets/precision/null, distinct instants and exact counts, raw DTO identity, two-RPC order, invalid timestamp/count and raw schema/privacy/RPC rejection before normalization. The unchanged-helper semantic run was1P/2F after correcting a new test's physical-privacy read-order expectation; the return-only fix is3P/0F. Initial control-localization failures remain in the author evidence, not silently passed.
 - Verification: full affected wrapper unit file187/187 passed,0skipped; TypeScript and scoped ESLint passed. Focused and whole-file counts overlap. No integration, browser, database or resource execution occurred for this correction.
-- The independently qualified current required95 remains73P/1F/21zero with its explicit projection-cap scope exception: INT009 passed, INT014 failed, INT015 pending and API001–020 absent. Exact hosted INT014 matcher/value/native cause and custody remain UNKNOWN. This reachable observation mismatch is not a certified hosted root cause; required exact-head NORMAL95 plus separate recovery/custody remain pending. Serial `bail:1` remains unchanged and skipped/absent cases receive no coverage. No development-complete, release-ready or deployment claim.
+- The independently qualified current required95 remains73P/1F/21zero with its explicit projection-cap scope exception: INT009 passed, INT014 failed, INT015 pending and API001–020 absent. Exact hosted INT014 matcher/value/native cause and custody remain UNKNOWN. This reachable observation mismatch is not a certified hosted root cause; required exact-head NORMAL95 plus separate recovery/custody remain pending. Serial `bail: 1` remains unchanged and skipped/absent cases receive no coverage. No development-complete, release-ready or deployment claim.
 
 ### Default-volatility owner restoration — source-backed compatibility correction
 
@@ -2523,7 +2529,7 @@ keeps SupAdmin-only NOADMIN. Retained unsafe roles fail closed.
 - `tests/integration/calendar-feed/public-feed.int.test.ts:364` — `15.5-API018`: AC5/8 case failed at3e7; changed-head durability evidence pending.
 - `supabase/migrations/20261020220000_personal_calendar_feed.sql:27` — `pg_has_role(current_user,feed_owner.oid,'SET')`: qualifies source ownership authority independently of creator ADMIN.
 - `tests/integration/commands/calendar-feed.int.test.ts:446` — `memberships.every(row => row.inherit_option === false)`: AC4/9 INT015 native fresh/replay inherited-owner oracle passed at3e7.
-- `tests/support/calendar-feed-atdd.ts:621` — `has_schema_privilege(oid,'public','CREATE')`: reads actual effective schema privileges including PUBLIC/inherited access.
+- `tests/support/calendar-feed-atdd.ts:624` — `has_schema_privilege(oid,'public','CREATE')`: reads actual effective schema privileges including PUBLIC/inherited access.
 - `tests/integration/rls/calendar-feed.rls.test.ts:182` — `publicSchemaCreate: false`: AC4/9 RLS010 failed at3e7; individual predicate reach remains unknown.
 - `tests/integration/ops/recovery-storage-immutability.int.test.ts:131` — `has_schema_privilege('calendar_feed_owner','public','CREATE')`: the existing recovery case checks the restored target before Storage requests; separately qualified native case.
 
@@ -2601,7 +2607,7 @@ safe source frames identify other assertion lines without inspecting native erro
 
 - `tests/support/calendar-feed-atdd.ts:238` — `export function calendarFixtureOrigin`: registers only newly created fixed safe errors.
 - `tests/support/calendar-feed-atdd.ts:243` — `export function calendarFixtureAssertionAt`: calls the existing assertion once and returns its result.
-- `tests/support/calendar-feed-atdd.ts:992` — `const outcome = result.outcome`: classifies the same consumed outcome without observing an RPC.
+- `tests/support/calendar-feed-atdd.ts:999` — `const outcome = result.outcome`: classifies the same consumed outcome without observing an RPC.
 - `tests/integration/rls/calendar-feed.rls.test.ts:24` — `calendarFixtureAssertionAt(allowedSites[subject]`: distinguishes four allowed contracts without changing the loop.
 - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:800` — `actual first INT001 and API001 callbacks stop`: proves preceding/no-later operations with injected fixtures, not native acceptance.
 - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:832` — `actual first callbacks retain precise safe assertion frames`: proves controlled frames and unrecoverable upstream UNKNOWN limits.
@@ -2637,18 +2643,18 @@ and the43DB/14browser gaps remain failed/unresolved; no whole-native reuse.
 - `src/server/commands/calendar-feed/calendar-feed-db.ts:25` — `export async function captureCalendarFeedTrace`: closed per-invocation events, result/error identity and late-context closure.
 - `src/server/commands/calendar-feed/manage-calendar-feed.ts:48` — `const code = result.code`: observes the already-consumed stable envelope result without changing its outcome.
 - `src/server/read-models/calendar-feed.ts:10` — `if (error?.code === "42501")`: locates status erasure before its existing typed denial.
-- `tests/support/calendar-feed-atdd.ts:1002` — `export function calendarCauseProofSelection`: selects at most one warranted original-function baseline.
-- `tests/support/calendar-feed-atdd.ts:1008` — `export async function calendarCauseProofIdle`: a pg timeout is not actual protocol settlement.
-- `tests/support/calendar-feed-atdd.ts:1068` — `export async function runCalendarFeedCauseProof`: one ordinary command, qualified restricted original baseline, rollback/fresh verification and conditional custody cleanup.
+- `tests/support/calendar-feed-atdd.ts:1009` — `export function calendarCauseProofSelection`: selects at most one warranted original-function baseline.
+- `tests/support/calendar-feed-atdd.ts:1015` — `export async function calendarCauseProofIdle`: a pg timeout is not actual protocol settlement.
+- `tests/support/calendar-feed-atdd.ts:1075` — `export async function runCalendarFeedCauseProof`: one ordinary command, qualified restricted original baseline, rollback/fresh verification and conditional custody cleanup.
 - `tests/integration/commands/calendar-feed.int.test.ts:21` — `test("15.5-DIAG001"`: explicit-mode-only diagnostic inventory; normal95/INT015 are not replaced.
 - `scripts/ci/checkpoint-dispatch.mjs:83` — `function diagnosticAvailability`: candidate/default availability refusal before the sole POST.
 - `scripts/ci/checkpoint-dispatch.mjs:15` — `function verificationMode`: persisted diagnostic/legacy mode cannot downgrade to normal acceptance.
 - `scripts/ci/with-calendar-feed-runtime.mjs:14` — `export const CAUSE_PROOF_ARGS`: fixed single-case serial argv/reporters/output without a Next/browser child.
 - `scripts/ci/with-calendar-feed-runtime.mjs:65` — `export async function finishCauseProof`: validated distinct report upload on test failure as well as success, with private custody redaction.
 - `.github/workflows/ci.yml:262` — `- name: Calendar feed cause proof (diagnostic only; no pilot or acceptance)`: separate mode-bound step; ordinary full+pilot remains intact.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1357` — `actual per-invocation trace preserves once-call value`: actual scoped trace concurrency/nesting and identity controls.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1378` — `actual baseline decision chooses one observed boundary`: conditional selection and protocol-settlement negatives.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1403` — `actual installed failed native report and closed observation`: actual reporter/temporary-FS capture on failure without publishing custody handles.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1408` — `actual per-invocation trace preserves once-call value`: actual scoped trace concurrency/nesting and identity controls.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1429` — `actual baseline decision chooses one observed boundary`: conditional selection and protocol-settlement negatives.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1454` — `actual installed failed native report and closed observation`: actual reporter/temporary-FS capture on failure without publishing custody handles.
 - `tests/unit/scripts/ci/checkpoint-dispatch.test.ts:245` — `diagnostic selection is durable before the only POST`: actual dispatcher durable mode/nonce/zero-acceptance transport controls.
 - `tests/unit/scripts/verify/ci-native-test-reports.test.ts:41` — `cause-proof capture is distinct mode-bound`: raw upload/artifact mode and negative controls preserve ordinary native reports.
 - `tests/unit/scripts/verify/epic-11-pilot-ci-gate.test.ts:53` — `diagnostic dispatch excludes pilot`: normal pilot/inverse guards and diagnostic NOT_RUN stay distinct.
@@ -2664,13 +2670,13 @@ The corrective allocation adds same-statement visibility so hidden rows cannot
 qualify absence, and separates actual launch evidence from exit completion.
 Default registration/event presence and candidate capability have distinct gates.
 
-- `tests/support/calendar-feed-atdd.ts:1184` — `(select r.rolsuper or r.rolbypassrls`: qualifies visibility on the executing query role.
-- `tests/support/calendar-feed-atdd.ts:1190` — `if (!Array.isArray(rows)`: rejects malformed or false absence observations without getters.
+- `tests/support/calendar-feed-atdd.ts:1191` — `(select r.rolsuper or r.rolbypassrls`: qualifies visibility on the executing query role.
+- `tests/support/calendar-feed-atdd.ts:1197` — `if (!Array.isArray(rows)`: rejects malformed or false absence observations without getters.
 - `scripts/ci/with-calendar-feed-runtime.mjs:403` — `child.once("spawn",`: actual adapter events establish launch independently of done.
 - `scripts/ci/with-calendar-feed-runtime.mjs:517` — `const refreshLaunch`: retains late actual launch facts through cleanup.
 - `scripts/ci/with-calendar-feed-runtime.mjs:84` — `if (!["not-attempted", "not-created-confirmed"].includes(receipt.childLaunchState))`: uncertain or started missing reports fail capture.
 - `scripts/ci/checkpoint-dispatch.mjs:26` — `export function assertDefaultDispatchWorkflow`: rejects ambiguous structure before the sole POST.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1494` — `actual diagnostic caller requires same-statement`: actual caller visibility/absence, exact parameter and custody controls.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1605` — `actual diagnostic caller requires same-statement`: actual caller visibility/absence, exact parameter and custody controls.
 - `tests/unit/scripts/ci/checkpoint-dispatch.test.ts:286` — `default recognizer refuses comments`: malformed event definitions cannot satisfy default presence.
 
 Evidence: actual374 seven-file Node PASS includes86 runtime and30 dispatcher
@@ -2713,12 +2719,12 @@ new-head private qualification and fresh reviewed Root dispatch remain pending.
 The status-only SELECT and catch keep the original operation and parameters.
 Strict facts carry evidence to the future qualifier; table ACL alone is insufficient.
 
-- `tests/support/calendar-feed-atdd.ts:1017` — `export function calendarStatusErrorOrigin`: maps only three own-data routine literals.
-- `tests/support/calendar-feed-atdd.ts:1024` — `export async function calendarCauseProofRestricted`: adds eighteen facts inside the original status SELECT.
-- `tests/support/calendar-feed-atdd.ts:1139` — `Object.assign(report, await calendarCauseProofBaseline`: joins the original call before existing protocol cleanup.
+- `tests/support/calendar-feed-atdd.ts:1024` — `export function calendarStatusErrorOrigin`: maps only three own-data routine literals.
+- `tests/support/calendar-feed-atdd.ts:1031` — `export async function calendarCauseProofRestricted`: adds eighteen facts inside the original status SELECT.
+- `tests/support/calendar-feed-atdd.ts:1146` — `Object.assign(report, await calendarCauseProofBaseline`: joins the original call before existing protocol cleanup.
 - `scripts/ci/with-calendar-feed-runtime.mjs:48` — `if (value.statusDiscriminator === null`: enforces the strict current eleven-field contract.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1554` — `status discriminator classifies actual installed pg-protocol frames`: uses real parser frames with injected source helpers.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1593` — `status strict wire schema preserves false TABLE_ACL_ONLY`: retains table-only false without a cause claim.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1665` — `status discriminator classifies actual installed pg-protocol frames`: uses real parser frames with injected source helpers.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1704` — `status strict wire schema preserves false TABLE_ACL_ONLY`: retains table-only false without a cause claim.
 
 Evidence:93 affected Node controls passed0F/skip/cancel; whole TypeScript and
 focused lint passed. Synthetic query/finite-frame/source seams do not execute
@@ -2744,11 +2750,11 @@ EXECUTE and caller identity. One atomic owner-scoped replacement preserves guard
 - `supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql:326` — `language sql stable security invoker`: binds canonical identity without a privileged runtime helper.
 - `supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql:242` — `execute 'set local role calendar_feed_owner'`: uses actual ownership plus transient schema CREATE.
 - `supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql:348` — `and to_jsonb(p)-'prosrc'=metadata[i]`: asserts OIDs and unchanged function metadata after eight substitutions.
-- `tests/support/calendar-feed-atdd.ts:1036` — `export function calendarCauseProofExpectedBody`: derives only the fixed adapted source from historical SQL.
+- `tests/support/calendar-feed-atdd.ts:1043` — `export function calendarCauseProofExpectedBody`: derives only the fixed adapted source from historical SQL.
 - `scripts/ci/with-calendar-feed-runtime.mjs:56` — `if (schema !== "status-origin-v2"`: refuses old or mixed observation contracts.
 - `tests/integration/rls/calendar-feed.rls.test.ts:209` — `sqlStable: true, preparsed: true`: extends existing RLS010 canonical dependency and private ACL assertions.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1673` — `actual ACL source and existing RLS010 reject actor`: exercises actual callback negatives using injected catalog facts.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1683` — `new atomic migration cross-validates exact original bodies`: cross-validates immutable sources and substitution boundaries.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1784` — `actual ACL source and existing RLS010 reject actor`: exercises actual callback negatives using injected catalog facts.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1794` — `new atomic migration cross-validates exact original bodies`: cross-validates immutable sources and substitution boundaries.
 
 Evidence: final97 affected controls and3183 full pure-Node tests passed separately
 (not additive), whole TypeScript/focused ESLint passed. Native migration, RLS010,
@@ -2762,8 +2768,8 @@ ADMIN metadata. All unsafe membership and owner hardening checks remain required
 
 - `supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql:181` — `and member=executor_oid and set_option and not inherit_option`: retains the existing direct non-inherited SET requirement.
 - `supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql:182` — `member<>executor_oid or inherit_option))`: rejects foreign/inherited rows without requiring SET on every grant.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1730` — `actual owner guard admits parallel native creator ADMIN`: executes the source positive and biting old-predicate counterexample.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1738` — `actual owner guard retains foreign outbound inherited`: executes preserved membership, SET and seven-attribute refusals.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1841` — `actual owner guard admits parallel native creator ADMIN`: executes the source positive and biting old-predicate counterexample.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1849` — `actual owner guard retains foreign outbound inherited`: executes preserved membership, SET and seven-attribute refusals.
 
 Evidence:99 affected pure-Node cases passed0F/skip/cancel; whole TypeScript and
 affected lint passed. These are extracted Boolean/source fixtures, not PostgreSQL
@@ -2777,8 +2783,8 @@ a missing invariant; NULL or drift without established cause still requires a st
 
 - `supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql:304` — `raise exception 'calendar actor original function refused %'`: emits only the closed matrix after the original refusal.
 - `supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql:305` — `'schema','calendar-original-function-guard-v1'`: binds fixed schema and ordinal to eleven nullable booleans.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1810` — `actual unchanged original guard emits the named eleven-bit`: exercises exact false-bit and first-ordinal mapping from source.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1827` — `failure-message inverse restores exact original migration`: proves only message construction changed and P0001 remains default.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1921` — `actual unchanged original guard emits the named eleven-bit`: exercises exact false-bit and first-ordinal mapping from source.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1938` — `failure-message inverse restores exact original migration`: proves only message construction changed and P0001 remains default.
 
 Evidence: final102 affected controls passed0F/skip/cancel; whole TypeScript and
 affected lint passed after recorded initial test/type failures. The finite source
@@ -2793,17 +2799,17 @@ unknown sources/grantors are refused before mutation. AC4/AC9 keep least privile
 - `supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql:189` — `-- Begin all-eight source-comparable preflight`: finishes source and raw ACL admission before effects.
 - `supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql:250` — `-- Begin exact owner ACL reconciliation fragment.`: changes only exact target ACLs as owner.
 - `supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql:279` — `grantees is distinct from intended_grantees`: requires exact raw and effective final boundaries.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1886` — `all-eight actual preflight cross-validates`: executes source guards and byte-conservation controls offline.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1997` — `all-eight actual preflight cross-validates`: executes source guards and byte-conservation controls offline.
 
 ### Prove the ordinary-grantor boundary without shared catalog faults
 
 The planned native regression is private UUID and rollback-only, before row fixtures.
 Source controls exercise its actual operation/cleanup paths; native proof is pending.
 
-- `tests/support/calendar-feed-atdd.ts:1203` — `export async function calendarOwnerAclRegression()`: qualifies isolated main/fresh setup and owns exact UUID custody.
-- `tests/support/calendar-feed-atdd.ts:1337` — `export async function calendarOwnerAclExercise(`: runs ordinary witness, forced rollback and actual owner fragment.
+- `tests/support/calendar-feed-atdd.ts:1210` — `export async function calendarOwnerAclRegression()`: qualifies isolated main/fresh setup and owns exact UUID custody.
+- `tests/support/calendar-feed-atdd.ts:1344` — `export async function calendarOwnerAclExercise(`: runs ordinary witness, forced rollback and actual owner fragment.
 - `tests/integration/rls/calendar-feed.rls.test.ts:179` — `await calendarOwnerAclRegression();`: keeps the proof separate from production ACL projection.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2006` — `actual native cleanup preserves the primary and ALL`: exercises cleanup order, failure retention and custody offline.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2117` — `actual native cleanup preserves the primary and ALL`: exercises cleanup order, failure retention and custody offline.
 
 Evidence: final affected pure-Node110P/0F/0skip/0cancel; whole TypeScript exit0;
 focused three-file ESLint exit0/no warnings; native diff and canonical reader/SRO
@@ -2821,7 +2827,7 @@ uses structure plus visible copy/navigation while populated visibility remains.
 - `tests/integration/rls/calendar-feed.rls.test.ts:42` — `const legitimate =`: establishes the positive before negative baseline.
 - `tests/integration/rls/calendar-feed.rls.test.ts:47` — `const otherTenant =`: changes every caller's tenant override.
 - `tests/e2e/calendar-feed.e2e.spec.ts:142` — `if (variant.scenario === "no-profile")`: requires visible empty UI and structural agenda.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2187` — `actual RLS002 uses a different spoof`: executes actual negative matrix and physical checks.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2342` — `actual RLS002 uses a different spoof`: executes actual negative matrix and physical checks.
 
 ### Retire owned sessions and restore only after actual work
 
@@ -2830,12 +2836,12 @@ Atomic owner operations commit/retire before callbacks; uncertainty retains cust
 
 - `tests/factories/admin-sql.ts:111` — `function retiredGate(`: delegates foreign events to original Node emit.
 - `tests/factories/admin-sql.ts:136` — `export async function adminRetiredSession`: bounds query/drain/end and retires once.
-- `tests/support/calendar-feed-atdd.ts:766` — `export async function calendarOwnerAtomic`: qualifies same-session mutation and reset before COMMIT.
+- `tests/support/calendar-feed-atdd.ts:769` — `export async function calendarOwnerAtomic`: qualifies same-session mutation and reset before COMMIT.
 - `tests/support/calendar-feed-atdd.ts:311` — `async function calendarSeedBookingFixture`: composes the same exported canonical setup.
 - `tests/support/calendar-feed-atdd.ts:344` — `if(calendarSharedCustody){if(canonical)`: blocks destructive cleanup against uncertain work.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2198` — `actual withDatabaseTime awaits committed retired publication`: executes callback/settlement/restoration order.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2055` — `actual owned error gate preserves foreign listeners`: exercises listeners/monitors and concurrent ownership.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2180` — `actual composition cleans after seed failure`: exercises cleanup versus custody with exact exports.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2353` — `actual withDatabaseTime awaits committed retired publication`: executes callback/settlement/restoration order.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2166` — `actual owned error gate preserves foreign listeners`: exercises listeners/monitors and concurrent ownership.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2335` — `actual composition cleans after seed failure`: exercises cleanup versus custody with exact exports.
 
 Evidence: prior124P/0F/0skip/0cancel plus final affected2P/0F/0skip/0cancel;
 other122 controls reused, no inferred new aggregate. Final whole TypeScript/
@@ -2865,7 +2871,7 @@ Owned frontend settlement is not canonical backend restoration. Failed or uncert
 runtime retains the existing key; healthy verified cleanup stays unchanged.
 
 - `scripts/ci/with-calendar-feed-runtime.mjs:651` — `const dbRuntimeUnverified`: forbids failed-runtime deletion/readback.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2218` — `failed DB signal cancellation launch timeout`: exercises failure/cancellation/forced/unknown custody.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2373` — `failed DB signal cancellation launch timeout`: exercises failure/cancellation/forced/unknown custody.
 - `tests/support/calendar-feed-ci-contract.ts:6` — `const wrapperSha256 =`: pins reviewed LF wrapper bytes without changing argv/inverse.
 
 Evidence: runtime125P and partition C4 subset5P are separate actual runs; whole
@@ -2881,11 +2887,11 @@ remains independent of JavaScript promise removal or a caught scenario error.
 
 - `tests/support/calendar-feed-atdd.ts:523` — `http:`: observes body completion or latches transport custody.
 - `tests/support/calendar-feed-atdd.ts:528` — `trustedFetch:`: wires the existing anonymous dependency through the finite view.
-- `tests/support/calendar-feed-atdd.ts:680` — `function calendarRetainTransportCustody`: preserves the first uncertainty before error erasure.
-- `tests/support/calendar-feed-atdd.ts:693` — `function calendarFetchPort`: forwards the same receiver, args and result once.
-- `tests/support/calendar-feed-atdd.ts:712` — `if(!settled||calendarSharedCustody)`: rejects custody even when pending is empty.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2253` — `actual clock scope retains caught HTTP rejection`: blocks restoration after caught transport failure.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2279` — `installed Postgrest status zero`: proves the actual public-erasure path offline.
+- `tests/support/calendar-feed-atdd.ts:683` — `function calendarRetainTransportCustody`: preserves the first uncertainty before error erasure.
+- `tests/support/calendar-feed-atdd.ts:696` — `function calendarFetchPort`: forwards the same receiver, args and result once.
+- `tests/support/calendar-feed-atdd.ts:715` — `if(!settled||calendarSharedCustody)`: rejects custody even when pending is empty.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2408` — `actual clock scope retains caught HTTP rejection`: blocks restoration after caught transport failure.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2434` — `installed Postgrest status zero`: proves the actual public-erasure path offline.
 
 Evidence: final affected131P/0F/0skip/0cancel, whole TypeScript and two-file lint
 exit0. Initial127P/4F, intermediate7P and prior125/partition5 runs remain separate.
@@ -2907,9 +2913,9 @@ stay unchanged. Opaque outer failure remains UNKNOWN, even after an inner error.
 - `tests/e2e/support/calendar-feed-atdd.ts:36` — `export function createCalendarFailureLabels`: isolates action/ordinal applicability and state.
 - `tests/e2e/support/calendar-feed-atdd.ts:187` — `const wasDone=done`: preserves MATCHED on no-op final cancellation.
 - `tests/e2e/support/calendar-feed-atdd.ts:253` — `note("readback","SETTLED_SUCCESS")`: keeps readback separate from observation cancellation.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2319` — `actual opted-in outer nudge boundary`: exercises opaque rejection and final identity.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2393` — `actual browser readback failure native failure`: exercises independent completion states.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2429` — `installed Node test runner receives only fixed`: proves the bounded offline stderr boundary only.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2474` — `actual opted-in outer nudge boundary`: exercises opaque rejection and final identity.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2548` — `actual browser readback failure native failure`: exercises independent completion states.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2584` — `installed Node test runner receives only fixed`: proves the bounded offline stderr boundary only.
 
 Evidence: final affected146P and unchanged C4 acceptance/inverses2P are separate
 actual runs, not an aggregate. Whole TypeScript/five-file lint exit0. Review must
@@ -2924,7 +2930,7 @@ outer helper's established same/different/absence relation. Factory cause is UNK
 
 - `tests/support/time-reports-atdd.ts:52` — `let finalRelation:`: starts with no evaluated relation.
 - `tests/support/time-reports-atdd.ts:66` — `const relation=`: separates LOCAL unknown from final relation retention.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2473` — `SOURCE-LABEL-01 actual helper and enclosing NUDGE004`: exercises the actual composed final boundary.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2628` — `SOURCE-LABEL-01 actual helper and enclosing NUDGE004`: exercises the actual composed final boundary.
 
 Evidence: selected8P/0F/0skip/0cancel first run; whole TypeScript/two-file lint
 exit0. No new full148 aggregate, native or independent closure credit. The old
@@ -2938,8 +2944,8 @@ metadata is preserved, not sanitized; absent publication remains UNKNOWN.
 
 - `tests/integration/notifications/time-report-nudge-producer.int.test.ts:9` — `export function createNudgeTaskMetaSink`: validates fixed source records before publishing.
 - `tests/integration/notifications/time-report-nudge-producer.int.test.ts:38` — `Object.defineProperty(meta,key`: replaces only the exact owned frozen-array slot.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2505` — `async function actualMetaJsonReport`: invokes real installed onTestRunEnd in memory.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2529` — `VITEST-META actual helper and public NUDGE callback`: proves byte-equal reporter metadata and original failures.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2660` — `async function actualMetaJsonReport`: invokes real installed onTestRunEnd in memory.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2684` — `VITEST-META actual helper and public NUDGE callback`: proves byte-equal reporter metadata and original failures.
 
 Evidence: final focused13P/0F/0skip/0cancel, whole TypeScript/two-file lint exit0.
 Installed-source/type hashes are in the new author receipt. This carrier proof
@@ -2951,8 +2957,8 @@ or functional/custody gates; independent targeted source review remains pending.
 Fixed baselines come from reviewed166cad objects; current code must match their
 operation counts and ordered assertion fingerprints, including biting inverses.
 
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2410` — `label instrumentation preserves actual promise`: checks six counts and added-operation negatives.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2443` — `actual labelled caller assertions match`: checks ordered original assertions and changed-source negatives.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2565` — `label instrumentation preserves actual promise`: checks six counts and added-operation negatives.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2598` — `actual labelled caller assertions match`: checks ordered original assertions and changed-source negatives.
 
 Evidence: full affected Linux152P/0F/0skip/0cancel, whole TypeScript and affected
 lint exit0. Pre-edit Windows2P vs controlled Linux2F are distinct; opaque hosted
@@ -2985,8 +2991,8 @@ Browser phase/custody diagnosis remains UNKNOWN/separately allocated, not a fix.
 - `tests/e2e/support/calendar-feed-atdd.ts:36` — `export function createCalendarFailureLabels`: bounds immutable registered-action snapshots and failure-only publication.
 - `tests/e2e/support/calendar-feed-atdd.ts:579` — `context.on("requestfinished"`: records frontend success without constructing a finished promise.
 - `tests/e2e/calendar-feed.e2e.spec.ts:389` — `const labels=competingAction===`: opts in revoke only, leaving rotate silent.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2620` — `browser v3 actual enclosing selected case catches`: executes actual enclosing catches and final error/cleanup precedence.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2598` — `browser v3 closed producer rows match`: checks actual producer rows and exact28+16 bound.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2775` — `browser v3 actual enclosing selected case catches`: executes actual enclosing catches and final error/cleanup precedence.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2753` — `browser v3 closed producer rows match`: checks actual producer rows and exact28+16 bound.
 
 Evidence: final157 affected offline controls, wholeTS and three-file lint0; initial
 156/type failure and later fixture syntax-load failure retained nonadditively.
@@ -3014,8 +3020,8 @@ native first throw and browser completion/custody remain UNKNOWN.
 - `tests/e2e/support/calendar-feed-atdd.ts:53` — `sampleAtDrain()`: latches and copies one finite result per existing action; later closure cannot rewrite it.
 - `tests/e2e/support/calendar-feed-atdd.ts:699` — `label.bindTerminal?.`: binds the same matched Request before certified readback.
 - `tests/e2e/support/calendar-feed-atdd.ts:818` — `labels?.sampleAtDrain()`: samples after return/throw of the existing drain and before fault disposal.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2661` — `browser v3 actual matched request`: checks actual-source once calls, receiver identity and immutable final facts.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2673` — `browser v3 unavailable omitted malformed`: checks omission, throwing diagnostics, unchanged final error/cause and source boundary ordering.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2816` — `browser v3 actual matched request`: checks actual-source once calls, receiver identity and immutable final facts.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2828` — `browser v3 unavailable omitted malformed`: checks omission, throwing diagnostics, unchanged final error/cause and source boundary ordering.
 
 Evidence: affected161 first-run passes; TS/lint0; no browser/SQL execution or native
 credit. Strict v3 consumer/publication and new real assembler proof remain separately
@@ -3047,8 +3053,8 @@ work joined; uncertified or malformed work retains custody.
 - `tests/e2e/support/calendar-feed-atdd.ts:810` — `const protocolWork=management.close()`: closes admission before existing drain and disposal.
 - `tests/e2e/calendar-feed.e2e.spec.ts:31` — `test.use({ trace:`: blocks worker interception on stock calendar contexts.
 - `tests/e2e/support/resource-cdp-attachment.ts:46` — `serviceWorkers:"block"`: applies the same option to the existing attached context.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2700` — `managed admission freezes exact Request`: exercises exact certificate identity and unique audit inverses.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2770` — `actual owned fault callback joins`: executes held callback and failclosed disposal on the live source region.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2855` — `managed admission freezes exact Request`: exercises exact certificate identity and unique audit inverses.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2925` — `actual owned fault callback joins`: executes held callback and failclosed disposal on the live source region.
 
 Evidence: final affected169P; separate unchanged consumers18P; wholeTS/four-file
 lint0. Initial167/164P/3F and focused corrections remain chronological, not summed.
@@ -3066,10 +3072,10 @@ remain authoritative independently of whether metadata publication succeeds.
 - `tests/integration/commands/calendar-feed.int.test.ts:171` — `const capture=createCalendarInt009Capture`: binds only INT009 public task metadata.
 - `tests/support/calendar-feed-atdd.ts:185` — `export function createCalendarInt009Capture`: bounds immutable owned records and proxy-safe native primitives.
 - `tests/support/calendar-feed-atdd.ts:356` — `if(errors.length){int009?.publish()`: publishes from the existing final-errors branch.
-- `tests/support/calendar-feed-atdd.ts:772` — `trace?.at("BEGIN")`: marks actual callback entry before its unchanged query.
-- `tests/support/calendar-feed-atdd.ts:950` — `if(authority)calendarInt009Subject("subject")?.close()`: closes at entire successful barrier setup.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2877` — `INT009 actual fixture final errors`: exercises original primary/cleanup and hostile sink behavior.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2883` — `INT009 actual entire subject barrier setup`: verifies closure before later restoration.
+- `tests/support/calendar-feed-atdd.ts:775` — `trace?.at("BEGIN")`: marks actual callback entry before its unchanged query.
+- `tests/support/calendar-feed-atdd.ts:957` — `if(authority)calendarInt009Subject("subject")?.close()`: closes at entire successful barrier setup.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:3032` — `INT009 actual fixture final errors`: exercises original primary/cleanup and hostile sink behavior.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:3038` — `INT009 actual entire subject barrier setup`: verifies closure before later restoration.
 
 Evidence: final179 pure controls and separate actual C4 guard/inverses2P; TS/lint0.
 Intermediate and failed runs above remain historical/nonadditive. Native subject
@@ -3082,9 +3088,9 @@ normal acceptance, automatic retry or fourth broad review is implied.
 One explicit native text projection reconciles PostgreSQL JSON representation
 with the existing strict signature oracle; no alternate encoding is accepted.
 
-- `tests/support/calendar-feed-atdd.ts:755` — `'proargtypes',p.proargtypes::text`: normalizes only this metadata representation in the existing SELECT.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2893` — `function actualCanonicalCatalogProjection`: pins exact pre-edit query inverse and unchanged strict guard.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2908` — `canonical catalog synthetic PG17 array`: retains ordered argument and metadata negatives with synthetic source fixtures.
+- `tests/support/calendar-feed-atdd.ts:758` — `'proargtypes',p.proargtypes::text`: normalizes only this metadata representation in the existing SELECT.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:3048` — `function actualCanonicalCatalogProjection`: pins exact pre-edit query inverse and unchanged strict guard.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:3063` — `canonical catalog synthetic PG17 array`: retains ordered argument and metadata negatives with synthetic source fixtures.
 
 Evidence: first focused18P/0F/0skip/0cancel, TS/two-file lint0; no SQL/runtime
 execution. Qualified native guard attribution is narrower than proof of the actual
