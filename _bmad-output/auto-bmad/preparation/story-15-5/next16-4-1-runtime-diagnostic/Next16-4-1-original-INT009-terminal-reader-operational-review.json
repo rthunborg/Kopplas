@@ -1,0 +1,187 @@
+{
+  "schema": "NEXT1641_ORIGINAL_INT009_ACTUAL_TERMINAL_READER_INDEPENDENT_OPERATIONAL_REVIEW_V1",
+  "status": "PASS_NEXT1641_ORIGINAL_INT009_TERMINAL_READER_BINDING_ONLY",
+  "outcome": "PASS_NEXT1641_ORIGINAL_INT009_TERMINAL_READER_BINDING_ONLY",
+  "verdict": "PASS",
+  "independent": true,
+  "route": "Roota26628 privately recorded; explicit gpt-6.1-sol High, targeted operational enrollment/privacy follow-up, no fourth broad story review/counter3 unchanged.",
+  "execution_authorized": false,
+  "effect_authority": false,
+  "normal_acceptance": 0,
+  "packet": [
+    {
+      "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-terminal-reader-preparation/reader.py",
+      "bytes": 17875,
+      "sha256": "cb08895c292db089bb9d8e67d8c8fb1eff6bdd0a562c0d922505b633d282bfc9"
+    },
+    {
+      "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-terminal-reader-preparation/proposal.json",
+      "bytes": 33191,
+      "sha256": "e001ffb985d01e82958c21358ad44c169816c7ea69697cba046aa2e95f2e3e03"
+    },
+    {
+      "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-terminal-reader-preparation/manifest.json",
+      "bytes": 677,
+      "sha256": "52690387371610a9ee98910ec28ed080c07bc91d2e51dbad1a55b2ce4c3bc609"
+    }
+  ],
+  "findings": [],
+  "actual_enrollment": {
+    "run": 39943446009,
+    "head": "1eeb3d2b784ecdbdf61cf665b4717b3f54770d52",
+    "checkpoint_id": "430dbc33-7e01-440e-aa3c-dcd1f528908a",
+    "DB_job": 120381133081,
+    "attempt": 1,
+    "mode": "original-int009",
+    "cause": false,
+    "release_validation": false,
+    "original": true,
+    "branch": "codex/epic-15-int009-debug",
+    "workflow_id": 296219797,
+    "actor": "rthunborg",
+    "triggering_actor": "rthunborg"
+  },
+  "actual_terminal": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-dispatch-only-root-operation/terminal.json",
+    "bytes": 14868,
+    "sha256": "1a79febc202375e5cbc586fd584601361fbc49cf9d9161bc47551d5ae1f07a0e"
+  },
+  "ownership_record": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-dispatch-only-actual-root-ownership.json",
+    "bytes": 15458,
+    "sha256": "727c2d5a28f5a7f3e7c8cb5f710f464a6fa2057faa3d1655543ef8c9f63b98fc"
+  },
+  "actual_jobs": {
+    "checkpoint-admission": "success",
+    "verify": "success",
+    "db": "failure",
+    "recovery-storage-loader": "skipped",
+    "native-stream-probe": "skipped",
+    "fixed-chromium-application-verification": "skipped",
+    "e2e": "skipped",
+    "fixed-chromium-paired-probe": "skipped",
+    "dashboard-e2e": "skipped"
+  },
+  "closed_run_provenance": {
+    "reads": [
+      "553aa7/native0",
+      "0262e9/native0"
+    ],
+    "verified": "Exact15458 ownership727c2d5a... and14868 terminal1a79febc... pins;11 referenced operation/terminal/provenance inputs and20 native API receipts match bytes/SHA. All20 native0/full physicalEOF/joined readers/closed handles/settled direct process. ROOT_STOPPED/all remaining slots closed,20GitHubcalls=4preGET+1POST+1resolver+7run/jobs pairs,provider1,artifactGET0.",
+    "tuple": "39943446009/attempt1/1eeb3d2b/430dbc33/workflow296219797/rthunborg/owned DEBUG ref matches exactly. Nine unique terminal jobs; admission+verify success, db120381133081 failure, six skipped. DB step11 failed and step14 native original JSON upload succeeded. Neither job/step status proves reporter cardinality, first native throw or custody."
+  },
+  "actual_source_checks": {
+    "source_and_packet_read": "bc8dec/native0;5fea06/native0",
+    "independent_binding_controls": "92d958/native0",
+    "full_inverse": "Exact reverse literal substitutions restore17493-byte source SHA0f1f7600c68246acaa07a3919b754e0d62cd07e06c2bcd55c48c56708527761d. No undeclared algorithm or parser change.",
+    "functions": "Ten of11 functions byte-identical. validate differs only exact DB0 sentinel->120381133081; inverse restores original predicate, no relaxation. Globals enroll run/head/UUID/nine conclusions and fresh activation/output namespace.",
+    "source14": "Actual validate verifies current14 raw/LF/Git blobs. Thirteen source rows byte-identical to source-bound predecessor; package.json alone updates to reviewed Next16.4.1 row. Existing14-path allowlist retained.",
+    "installed_schema": "Actual validate verifies3 current installed schema byte pins, all unchanged from qualified predecessor. No module import, package main or application execution.",
+    "security4": "Four supplemental current DEBUG raw/LF/Git rows independently verified; source/replay/security review/publication bridge pinned. Reader directly checks14+installed3; Root fresh sourceproof/admission must additionally verify these4 supplemental paths as explicitly required by proposal. No invented direct reader loop or source authority.",
+    "other_inputs": "Actual10 input_refs plus exact50745-byte qualified dependency, terminal and ownership pins verified. Dependency hash4dd32afdc6bc3adcef2b2f9ecf4c410b1247c202d781f00f2b5467a1d7a8da76 retained; helpers/transport/ZIP/reporter/namespace proofs reused, not rewritten.",
+    "SQL": "118 immutable vector/tree proof reuse, no rawSQL scan/catalog extraction.",
+    "case_schema": "Exact case path/full title/suite, global executedP+F==1, full report reconciliation, duplicate/missing/fullName guards unchanged. Same native.json singleton archive and finite six-field capture namespace; no new schema, raw error fallback or normal-run adapter."
+  },
+  "independent_controls": {
+    "receipt": "92d958/native0",
+    "whole_actual_validate_positive": 1,
+    "future_virtualization": "Only future activation, completed grant, sourceproof and review capabilities are virtual; all current source14/installed3/terminal/ownership/dependency and supplemental4 bytes are actual. Pure JSON load substitute used solely for binding data; unchanged strict production parser qualification reused. No reader/dependency import or main execution.",
+    "refusals": [
+      "wrong run",
+      "wrong job conclusions",
+      "wrong terminal reference",
+      "inert execution authorization",
+      "wrong DB job id0 against actual predicate"
+    ],
+    "exact_DB_job_positive": true,
+    "full_inverse_and_10_unchanged_function_comparisons": "PASS",
+    "current14_rows_and3installed": "PASS",
+    "security4": "PASS",
+    "new_author_controls": {
+      "passed": 9,
+      "failed": 0,
+      "scope": "Nine bound data/AST controls reported in proposal; source and focused admission/data controls independently exercised. Previous algorithm/privacy controls reused nonadditively, not rerun."
+    },
+    "real_API_Git_network_tests_resources": 0
+  },
+  "acquisition_contract": {
+    "maximum_logical_GETs": 2,
+    "order": [
+      "One fixed owned run39943446009 artifact listing?per_page=100",
+      "One ZIP GET only for unique eligible native-calendar-feed-original-int009 ID selected from that listing"
+    ],
+    "artifact_ID_digest": "UNKNOWN until actual listing; none invented or precredited.",
+    "selection": "Existing exact unique name, positive ID/size, <=32MiB, nonexpired, run/head binding, typed sha256 digest and nullable expiry predicate. Missing/duplicate/pagination/metadata ambiguity STOP; no fallback. Attempt1 is terminal-bound; artifact metadata lacks an independently observed attempt field.",
+    "archive": "Verify advertised byte length and digest, raw ZIP name guard, exactly one member named native.json, existing bounded inflate and strict report schema; no raw extraction or unselected names persisted.",
+    "caps": {
+      "ZIP_declared_and_actual_selected_inflate_bytes": 134217728,
+      "ZIP_max_entries": 4096,
+      "ZIP_stdout_bytes": 33554432,
+      "case_report_rows_max": 10000,
+      "listing_stdout_bytes": 4194304,
+      "namespace_ascii_bytes": 4096,
+      "native_projection_actual_packed_bytes": 8192,
+      "ratio_max": 1000,
+      "requests_max": 2,
+      "seconds_per_request": 15,
+      "selected_JSON_bytes": 16777216,
+      "stderr_bytes": 65536
+    },
+    "privacy": "Listing/ZIP/native JSON/error/stack/message/SQL values/tokens/IP/body/URLs remain RAM-only. Only source-bound labels/hashes/counts, closed finite6fields and capture receipts persist. Namespace4096ASCII and packed projection8192; firstPRIMARY+<=3CLEANUP/OMITTED semantics unchanged.",
+    "UNKNOWN": "Unavailable/malformed capture is UNKNOWN/STOP, never empty-success or native cause. First local observed boundary is not proof of original native first throw/backend outcome. Wrapper or DB custody absent from evidence remains UNKNOWN."
+  },
+  "once_and_capture": {
+    "reviewed_current_state": "New activation and output paths absent; old packets/reports/operations immutable. No effects grant exists in this review.",
+    "requirements": "Root creates exclusive fresh activation/invocation journal only after actual completed finite grant and exact report/packet admission; output mkdir exclusive, operator intent and qualified per-request intents precede GETs. Any refusal/timeout/partial/unsettled capture/ZIP/schema ambiguity consumes the finite slot and closes unused slots; no retry/replay.",
+    "transport": "Same qualified15s per-request native capture/fullEOF/joined/closed/settled checks, caps and raw-RAM behavior. No new collector, parser, privilege or endpoint family."
+  },
+  "Root_interfaces": {
+    "review_path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-terminal-reader-operational-review.json",
+    "actual_report_status_outcome": "PASS_NEXT1641_ORIGINAL_INT009_TERMINAL_READER_BINDING_ONLY",
+    "actual_report_independent": true,
+    "activation_operator_review": "Exact wrapper {status:PASS,independent:true,evidence:[1..3 actual pinned review refs]}; wrapper PASS differs intentionally from this report enum. Root must first verify this actual report enum/pin/independence, then include its ref. No copying/rewriting input required.",
+    "activation_path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-terminal-reader-activation.json",
+    "output_packet": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-terminal-artifact-capture",
+    "before_effects": [
+      "Root actual full read and exact immutable packet/report pin admission.",
+      "NEW actual completed Coordinator max2GET allocation with actual turn/tool and completed statuses; prior dispatch/poll/acquisition slots remain closed.",
+      "Fresh awareUTC activation/sourceproof age0..300s: actual run/head, current14/installed3 plus supplemental4 security/replay bridge, exact9 terminal jobs/DB upload and118SQL vector/tree conservation verified. Root must record actual tracked/untracked ownership truthfully.",
+      "Exclusive new activation/journal; exact reader/proposal/terminal/ownership/allocation/sourceproof/review pins, actual job conclusions and output namespace; invoke fixed future argv once."
+    ],
+    "future_argv": [
+      "C:/Users/Rasmus/AppData/Local/Programs/Python/Python314/python.exe",
+      "-I",
+      "-X",
+      "utf8",
+      "-B",
+      ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-terminal-reader-preparation/reader.py",
+      "--execute-once-after-terminal-grant"
+    ],
+    "forbidden_effects": "No logs/status/provider/runtime/Git/push/POST/CI/resources/pagination/fallback/retry. Acquisition2GET only after new grant."
+  },
+  "retained_limits": {
+    "actual_reporter_case_cardinality": "UNKNOWN pending acquired native report",
+    "capture_cause_DB_custody": "UNKNOWN pending actual bounded evidence; no accepted first-throw or cleanup/backend claim",
+    "required95": "Historical68P1F26unexecuted unchanged",
+    "P5": "OPEN",
+    "normal_acceptance": 0,
+    "development_complete": false,
+    "release_ready": false,
+    "deployment": false
+  },
+  "nonexecution": {
+    "GET_provider_API_network": 0,
+    "Git_source_spec_state_mutations": 0,
+    "dependency_or_reader_module_import_main": 0,
+    "application_tests_DB_browser_resources": 0,
+    "SQL_raw_scan": 0
+  },
+  "open_questions": [
+    "Actual native case/cardinality/capture/cause/custody remain UNKNOWN until separately admitted acquisition and qualification."
+  ],
+  "deferred_work": [
+    "Root actual admission, completed finite2GET grant, fresh proof and exclusive activation.",
+    "Actual acquired evidence qualification; canonical development/completion gates remain separate."
+  ],
+  "blockers": []
+}

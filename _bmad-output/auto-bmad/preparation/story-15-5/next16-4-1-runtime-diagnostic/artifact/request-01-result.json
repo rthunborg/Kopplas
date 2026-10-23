@@ -1,0 +1,44 @@
+{
+  "argv": [
+    "gh",
+    "api",
+    "--method",
+    "GET",
+    "repos/rthunborg/Kopplas/actions/runs/39943446009/artifacts?per_page=100"
+  ],
+  "capture_complete": true,
+  "category": null,
+  "custody": "OWN_GH_CHILD_AND_OUTPUT_SETTLED",
+  "elapsed_seconds": 0.578,
+  "handles_closed": true,
+  "inline_source_sha256": "cb08895c292db089bb9d8e67d8c8fb1eff6bdd0a562c0d922505b633d282bfc9",
+  "intent_persisted_before_spawn": true,
+  "label": "owned-INT009-artifact-list",
+  "native_exit": 0,
+  "raw_persisted": false,
+  "sequence": 1,
+  "settled": true,
+  "stderr_cap": 65536,
+  "stdout_cap": 4194304,
+  "streams": [
+    {
+      "joined": true,
+      "observed_bytes": 750,
+      "overflow": false,
+      "physical_EOF": true,
+      "reader_done": true,
+      "reader_error": false,
+      "sha256": "f0c7746d41a979e532455d553f63c6f8b537bbabb57bd3749e3bc5d2b0824041"
+    },
+    {
+      "joined": true,
+      "observed_bytes": 0,
+      "overflow": false,
+      "physical_EOF": true,
+      "reader_done": true,
+      "reader_error": false,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "timeout_seconds": 15
+}

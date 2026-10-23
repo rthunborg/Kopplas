@@ -1,0 +1,52 @@
+{
+  "schema": "NEXT1641_INT009_RESTORE_DEFAULT_VOLATILITY_PRIMARY_CORROBORATION_V1",
+  "prior_immutable_assessment": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-restore-definition-cause-assessment.json",
+    "bytes": 9842,
+    "sha256": "8a3391f732513e8797e260c0705a5ee36477562e8bac8247e45222e6fb5c73de"
+  },
+  "Outcome": "PRIMARY_POSTGRESQL_SOURCE_CORROBORATES_DETERMINISTIC_REACHABLE_RENDERING_DEFECT",
+  "primary_sources": [
+    {
+      "url": "https://www.postgresql.org/docs/17/sql-createfunction.html",
+      "location": "CREATE FUNCTION / IMMUTABLE STABLE VOLATILE parameters",
+      "read_actual": true,
+      "fact": "Omitting a volatility attribute selects default VOLATILE."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/postgres/postgres/REL_17_STABLE/src/backend/utils/adt/ruleutils.c",
+      "location": "pg_get_functiondef(PG_FUNCTION_ARGS), switch(proc->provolatile)",
+      "read_actual": true,
+      "fact": "The IMMUTABLE and STABLE cases append their attribute text. The PROVOLATILE_VOLATILE case exits the switch without appending a VOLATILE clause. Language is emitted independently before this switch."
+    }
+  ],
+  "branch_proof": [
+    "Current catalog preflight enforces subject fault language plpgsql and metadata.provolatile v before DEFINITION.",
+    "Official PostgreSQL17 deparser emits LANGUAGE plpgsql and omits default volatile text for this qualified catalog state.",
+    "MAIN calendarOwnerDefinition:815 refuses the omitted textual clause, although the actual catalog volatility remains the required v.",
+    "The native observed record OWNER_RESTORE/DEFINITION occurs before REPLACE_DDL, matching this reachable local source refusal. Exact actual hosted header and original/native firstthrow still UNKNOWN.",
+    "Existing fixture2088 always prints VOLATILE and2101 keeps submittedDDL verbatim, so it misses this deparser normalization."
+  ],
+  "source_conservation_required": {
+    "ownerFacts_hash": "3cd5094c031027b20f5c61cb0ddceba589ac05fd6fe61872eae3defa7df87085",
+    "retain": "metadata.provolatile v andlanguage/precondition/OID/ACL/SETnotINHERIT/schema-authority/fullcanonicalpostrestoredefinition comparison/rollbackretirement/sharedcustody all unchanged",
+    "correction": "Only replace redundant header-spelling assumption with definition reconstruction that still produces canonical SQL STABLE target under existing catalog qualification; update existing ownerfixture to source-faithful default omission. No permission or cleanup relaxation."
+  },
+  "prospective_MAIN_paths": [
+    "tests/support/calendar-feed-atdd.ts",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts"
+  ],
+  "targeted_checks": [
+    "Source-faithful omitted-default fixture must fail current guard and pass corrected restore, preserving exact canonical OID/body/fullmetadata/definition.",
+    "Explicit-form compatibility if supported; malformed/multiple body and invalid language/volatility/catalogsecurity inputs still refuse.",
+    "Existing rollback/reset/requalification/retirement/custody controls and fullaffectedunit file pass after separatelyallocated implementation."
+  ],
+  "authority": "Read-only source+explicitlyauthorized boundedprimarydocs/source corroboration only; no sourceedit/test/runtime/GETartifact/provider/Git/CI authority. IndependentHighactualqualification+minimumplanreview before code.",
+  "native_firstthrow": "UNKNOWN",
+  "actual_hosted_header": "UNKNOWN",
+  "body_assertions_reached": "UNKNOWN",
+  "backend_settlement": "UNKNOWN",
+  "normal_acceptance": 0,
+  "SQL118": "Immutable/no rawscan",
+  "web_read_limit": "PrimaryofficialPostgreSQL17docs+officialsource only; initial GitHub rawredirect restricted, exact officialrawsource subsequently read. No runtime/probe or credentials."
+}

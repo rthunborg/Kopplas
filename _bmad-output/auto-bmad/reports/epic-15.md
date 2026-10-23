@@ -7716,3 +7716,39 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Prepare minimalfresh reviewed source-bound checkpoint/push and isolatedINT009 diagnostic; obtain actualcause, repairwithinapprovedscope, runfullNORMAL95/recovery, finish15.5P5–P7, then15.6 andepicgates.
+
+## Report — 2026-10-23T11:30:17Z (working — qualified current INT009 diagnostic)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `bbd6d1f`).
+**Pipeline status:** P5 OPEN; wholeepic continues
+**Continues:** True
+
+**Summary:** Reviewed Next16.4.1 checkpoints published and verified. Current isolatedINT009 run verifies canonical static/build gates but fails exactcase once; bounded artifact acquisition and independent qualification are complete.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 334h 32m (≈77h 24m AI-run, ≈257h 07m human/idle wait); resumed 235×.
+
+**Stories:**
+1. 15.1–15.4 landed; inherited15.2 review_unverified preserved.
+2. 15.5:0P1F/14skip in current diagnostic; firstlocalfailure OWNER_RESTORE/DEFINITION; no currentnormalacceptance.
+3. 15.6 unstarted; prepare/validate specification before build.
+
+**Skipped:** (none)
+
+**Epic gate:** Pending full95/recovery/custody and remainingstory/epicgates; historical95=68P1F26unexecuted.
+
+**TEA:** 15.5 ATDD retained; automate/P6 andP7 tail pending.
+
+**Retrospective:** Epic14 October8 accepted-with-open-items authoritative; October7 historical. Epic15 retro pending.
+
+**Overrides:** Wholeepic sequential; ordinarySolLow/sensitiveSolHigh; legacyowner-default decision; independentreview/counter3 cap; onefinalepicPR; no deployment; retainbranches.
+
+**Open questions:**
+1. Actual hosted header/nativefirstthrow/bodyassertions/backend/keycustody UNKNOWN; no inference from cleanup/upload success.
+
+**Deferred work:**
+No newarchive; existing deferred release validation remains deferred.
+
+**⚠️ Needs human:** (none)
+
+**Next:** Finish minimumHigh plan review of source-proven deparser/textguard mismatch, boundedhelper/unit correction and targeted review; then requiredNORMAL95/recovery/custody/delivery, P6/P7,15.6 and epicgates.
