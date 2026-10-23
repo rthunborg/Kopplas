@@ -873,7 +873,7 @@ test("generated Next descriptor transfer refuses namespace substitution with no 
   for (const fault of ["substitution-during-chmod", "parent-substitution", "chown-error", "chmod-error"]) await runGeneratedNextEnv(fault);
 });
 test("pinned Next direct writer needs only the existing generated file writable", async () => {
-  const nextPackage = JSON.parse(source("node_modules/next/package.json")); assert.equal(nextPackage.version, "16.3.8");
+  const nextPackage = JSON.parse(source("node_modules/next/package.json")); assert.equal(nextPackage.version, "16.4.1");
   const actual = source("node_modules/next/dist/lib/typescript/writeAppTypeDeclarations.js");
   const { posix } = await import("node:path");
   for (const present of [false, true]) {
