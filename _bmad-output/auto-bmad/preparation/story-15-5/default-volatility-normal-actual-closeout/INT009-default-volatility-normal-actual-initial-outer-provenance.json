@@ -1,0 +1,128 @@
+{
+  "schema": "ROOT_INT009_DEFAULT_VOLATILITY_NORMAL_ACTUAL_INITIAL_OUTER_PROVENANCE_V1",
+  "Root_publish_outer": {
+    "initial_chunk": "c5dc76",
+    "initial_wall_seconds": 10.003447,
+    "session_id": 5213,
+    "waits": [
+      {
+        "chunk": "1799c6",
+        "native_exit": 0,
+        "wall_seconds": 2.7676056,
+        "full_output": "DISPATCH_ACCEPTED/exact2150/acceptance0"
+      }
+    ],
+    "settled": true
+  },
+  "Root_resolver_outer": {
+    "chunk": "05e3e6",
+    "native_exit": 0,
+    "wall_seconds": 1.287672,
+    "resolution_count": 1,
+    "run_id": 39950998114
+  },
+  "Root_first_two_poll_outers": [
+    {
+      "chunk": "299bcc",
+      "native_exit": 0,
+      "wall_seconds": 1.3224784,
+      "poll_count": 1
+    },
+    {
+      "chunk": "618aaf",
+      "native_exit": 0,
+      "wall_seconds": 1.2993439,
+      "poll_count": 2
+    }
+  ],
+  "native_publish_receipts": [
+    {
+      "name": "remote-before",
+      "receipt": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-root-operation/remote-before-receipt.json",
+        "bytes": 697,
+        "sha256": "c616abdacba6aa002d46d20c9595018756ae81919d40607c926330fdff328f08"
+      },
+      "native_exit": 0,
+      "configured_timeout_seconds": 20,
+      "elapsed_seconds": 0.599305,
+      "full_native_capture": true
+    },
+    {
+      "name": "push",
+      "receipt": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-root-operation/push-receipt.json",
+        "bytes": 698,
+        "sha256": "c04353335bc054b2113f403d0fadcdd523de01d2c37ae777afc3120616d50b85"
+      },
+      "native_exit": 0,
+      "configured_timeout_seconds": 60,
+      "elapsed_seconds": 3.211003,
+      "full_native_capture": true
+    },
+    {
+      "name": "remote-readback",
+      "receipt": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-root-operation/remote-readback-receipt.json",
+        "bytes": 697,
+        "sha256": "07da828db44836a7114aa39a94528bbb8a8ba8ad8206e7afa88577ad4e1f831c"
+      },
+      "native_exit": 0,
+      "configured_timeout_seconds": 20,
+      "elapsed_seconds": 0.596385,
+      "full_native_capture": true
+    },
+    {
+      "name": "dispatch",
+      "receipt": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-root-operation/dispatch-receipt.json",
+        "bytes": 842,
+        "sha256": "132f64e23c79662f01c5a84a18cf11ef3bf1bfb2ff9236dbcda23b71f5a9e972"
+      },
+      "native_exit": 0,
+      "configured_timeout_seconds": 90,
+      "elapsed_seconds": 3.796483,
+      "full_native_capture": true
+    }
+  ],
+  "actual_remote_readbacks_verified_from_exact_closed_stdout_length_digest": {
+    "remote-before": "bbd6d1f307aa9fccbbaf83281779042f9a2e4bfe",
+    "remote-readback": "215078e7dd74d9c4b4511581682b4c0be1a21c8d"
+  },
+  "provider_outside_receipt": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-provider-execution-receipt.json",
+    "bytes": 3643,
+    "sha256": "5527c0c297be5e44543ad1d33411dff9ebc339754d9e4c2dd84b27b692bdd105"
+  },
+  "Root_actual_provider_reads": [
+    "b9b3e9/native0",
+    "ef6e70/native0/fulloutsideclosedreceipt"
+  ],
+  "metadata_helper_history": [
+    "98ac71 missingqualification.source KeyError before rootactivation/publish; corrected read only/no provider rerun",
+    "44326f dispatchreceipt nestedtransport KeyError before provenanceoutputwrite; correctedclosedread3781ac only/no effects rerun"
+  ],
+  "configured_remote_cap_discrepancy": {
+    "allocated_seconds": 15,
+    "actual_configured_seconds": 20,
+    "actual_elapsed_seconds": [
+      0.599305,
+      0.596385
+    ],
+    "actual_elapsed_above15": false,
+    "configured_admission_drift": true,
+    "not_relabelled_or_waived": true,
+    "Root_external_observation_after_poll2": "HELD_PENDING_HIGH_QUALIFICATION",
+    "Coordinator_readonly_continuation": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-INT009-default-volatility-normal-read-only-continuation.json",
+      "bytes": 1967,
+      "sha256": "075a0f7eb28aef63d4fb3841c987d80f5e496d4dd9fd472986418f4b6a5c6271"
+    }
+  },
+  "operation_started_at": "2026-10-23T12:07:29.339308+00:00",
+  "run_id": 39950998114,
+  "normal_acceptance": 0,
+  "artifact_logs_GET": 0,
+  "Root_sole_poller": true,
+  "underlying_canonical_API_attribution": "4metadataGET+1POST qualifiedfromunchangedpinnedadapter/canonicalsource+successfulNodereceipt/state; no false individualgh-native-receiptclaim"
+}

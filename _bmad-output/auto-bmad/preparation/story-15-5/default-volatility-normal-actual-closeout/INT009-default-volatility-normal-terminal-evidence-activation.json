@@ -1,0 +1,106 @@
+{
+  "actual_jobs": {
+    "checkpoint-admission": "success",
+    "verify": "success",
+    "e2e": "success",
+    "recovery-storage-loader": "success",
+    "db": "failure",
+    "dashboard-e2e": "skipped",
+    "fixed-chromium-paired-probe": "skipped",
+    "fixed-chromium-application-verification": "skipped",
+    "native-stream-probe": "skipped"
+  },
+  "actual_run_id": 39950998114,
+  "actual_terminal": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-terminal-actual-preparation/actual-terminal-envelope.json",
+    "bytes": 27101,
+    "sha256": "b9848eab2c828a4d60a9fc8476bccf50b167434e7ec6d8bf5734cffe56d49155"
+  },
+  "allocation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-INT009-default-volatility-normal-terminal-effects-allocation.json",
+    "bytes": 3414,
+    "sha256": "26d86f56c36ff02c3edef23dfdadac79a7e0ff0028e62ac93b7df506b0fdec41"
+  },
+  "attempt": 1,
+  "cause_proof": false,
+  "checkpoint_id": "c2fade03-6ac5-44ae-abfd-898e1a3dd602",
+  "current_review_readiness": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-terminal-fresh-source-proof.json",
+      "bytes": 56578,
+      "sha256": "4a28943d678d6aa3fb1eba6e0bb70bbc26f39e757cef759613602aaa86a32520"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-terminal-reader-operational-review.json",
+      "bytes": 12651,
+      "sha256": "b236d128f2d8f637351ebc17c4856728f3c08d070fccf5d9ba7191ba2f020799"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-terminal-actual-preparation/proposal-v2.json",
+      "bytes": 120926,
+      "sha256": "7ebda6dfd20f6682805505f49e8d3acb7065e77d349698814a71bc4102b3658a"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-terminal-actual-preparation/manifest-v2.json",
+      "bytes": 1936,
+      "sha256": "ef0fc4225b5289dbe794a14b51faea509c147722e1a52adb6e08cb485fe3559b"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-terminal-actual-preparation/manifest.json",
+      "bytes": 1271,
+      "sha256": "1e82d467e1c8d4ef5fbdb5bd39c9ed7b9857a9712aab0643507d7aec9542fd9c"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-terminal-actual-preparation/source-rows.json",
+      "bytes": 32107,
+      "sha256": "4608d866358dcacb41a355b38b1f718fd1a34cbcaadde49ff65bbc51f99d81fd"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-root-operation/terminal.json",
+      "bytes": 24085,
+      "sha256": "c6753fd270588112c73d9d512a2a599b655a60ba257162328085aa31765bbe81"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-actual-root-ownership.json",
+      "bytes": 15880,
+      "sha256": "5d66c65015fd81291fae597e1540934fcccd3be5b8cb5a90f124e21a130af5e6"
+    }
+  ],
+  "execution_authorized": true,
+  "head": "215078e7dd74d9c4b4511581682b4c0be1a21c8d",
+  "maximum_logical_requests": 5,
+  "mode": "normal",
+  "no_retry": true,
+  "normal_acceptance_credit": 0,
+  "operator_bindings": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-terminal-actual-preparation/proposal.json",
+    "bytes": 121698,
+    "sha256": "46d3e393cbc39b83f064f9a9cace1ccaff5287573a7b3afa5d2dd7343b3c7002"
+  },
+  "operator_review": {
+    "status": "PASS",
+    "independent": true,
+    "evidence": [
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-terminal-reader-operational-review.json",
+        "bytes": 12651,
+        "sha256": "b236d128f2d8f637351ebc17c4856728f3c08d070fccf5d9ba7191ba2f020799"
+      }
+    ]
+  },
+  "operator_source": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-terminal-actual-preparation/reader.py",
+    "bytes": 50757,
+    "sha256": "7ab93cea641319bc1c18580d1235db7d901c0e75dc9cbc2273f36f37131cfae8"
+  },
+  "output_packet": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-215078e7-INT009-default-volatility-normal-ci-independent",
+  "pushed_source_head": "215078e7dd74d9c4b4511581682b4c0be1a21c8d",
+  "pushed_source_objects_equal": true,
+  "release_validation": false,
+  "source_Git_proof": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-terminal-fresh-source-proof.json",
+    "bytes": 56578,
+    "sha256": "4a28943d678d6aa3fb1eba6e0bb70bbc26f39e757cef759613602aaa86a32520"
+  },
+  "source_head": "5e0b63639dfd8636faab4ab5c798ca81bf1b4e41"
+}

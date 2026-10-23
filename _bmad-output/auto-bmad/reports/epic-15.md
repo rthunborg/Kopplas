@@ -7788,3 +7788,39 @@ Existing deferredreleasevalidation remainsdeferred.
 **⚠️ Needs human:** (none)
 
 **Next:** ReusequalifiedNORMALoperational lane with minimalexactsourcebindings, boundedindependentreview/freshfiniteallocation; freshprovider/push/oneNORMAL95+recovery, actualevidencequalification/delivery thenP6/P7/15.6.
+
+## Report — 2026-10-23T12:54:19Z (continuing — actual INT014 failure localized)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `215078e`).
+**Pipeline status:** Story15.5 P5 open. Actual NORMAL39950998114 failed; all observation/acquisition slots closed. Required95 independently qualified73P/1F/21zero with explicit projection-cap scope exception.
+**Continues:** Whole Epic15 remains active under existing owner authorization; narrow source assessment and minimum-plan check complete, prospective fixture correction next.
+
+**Summary:** INT009 passes after reviewed default-volatility correction. INT014 is the first current failed required case; exact hosted assertion/cause remains UNKNOWN. Current closed evidence copied byte-identically into _bmad-output/auto-bmad/preparation/story-15-5/default-volatility-normal-actual-closeout.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 335h 56m (≈77h 24m AI-run, ≈258h 31m human/idle wait); resumed 237×.
+
+**Stories:**
+1. 15.1–15.4 landed.
+2. 15.5 P5 open: Node30distinctP, DB29P/INT014F/INT015pending/API20absent, browser14retry0P. Separate recovery1P. DB key retained/deletion unverified/backend settlement UNKNOWN.
+3. 15.6 unstarted; sequential preparation and independent specification validation required before build.
+
+**Skipped:** (none)
+
+**Epic gate:** Not run; required development evidence incomplete.
+
+**TEA:** P6 automate remains required; no skipped/absent coverage accepted.
+
+**Retrospective:** Epic14 October8 accepted-with-open-items remains authoritative; October7 rejection historical. Epic15 retrospective pending.
+
+**Overrides:** No deployment. One final epicPR; independent sensitive High review; broad story review cap3 retained. Owner design-default decision supersedes legacy-oracle browsing. Both historical cap discrepancies remain explicit; no retroactive compliance claim.
+
+**Open questions:**
+1. INT014 exact hosted matcher/value/nativefirstthrow and backend settlement remain UNKNOWN.
+
+**Deferred work:**
+1. Existing exhaustive release-validation ledger remains deferred, never passed.
+
+**⚠️ Needs human:** (none)
+
+**Next:** Apply independently checked minimum INT014 fixture correction with focused regression evidence and independent actual-patch review, then qualify fresh full NORMAL95/recovery/custody before completing15.5 and preparing15.6.

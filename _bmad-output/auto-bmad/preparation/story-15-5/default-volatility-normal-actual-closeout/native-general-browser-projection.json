@@ -1,0 +1,671 @@
+{
+  "API_digest_verified": true,
+  "advertised_size_equal": true,
+  "archive_bytes": 9614,
+  "archive_sha256": "33c3518b34b668c501b62a80982d6f447c57944de302c784366a1f2df5a701ed",
+  "artifact": {
+    "advertised_bytes": 9614,
+    "digest": "sha256:33c3518b34b668c501b62a80982d6f447c57944de302c784366a1f2df5a701ed",
+    "expired": false,
+    "expires_at_null": false,
+    "expires_at_present": true,
+    "id": 12501156303,
+    "name": "native-general-browser",
+    "qualified_for_single_download": true,
+    "run_head_bound": true
+  },
+  "declared_total_bytes": 91991,
+  "member": "general-browser.json",
+  "member_bytes": 91991,
+  "member_sha256": "a69579d4891c48147f61ab0ee2cb1780eb5f5f60694852258cec82267fcf940f",
+  "projection": {
+    "attachments": {
+      "available_content_qualification": null,
+      "inline": 0,
+      "path_only": 0,
+      "references": 0,
+      "types": {}
+    },
+    "kind": "PLAYWRIGHT_NORMAL_REPORT",
+    "other_smoke_cases": [
+      {
+        "attempts": [
+          {
+            "failure": null,
+            "retry": 0,
+            "status": "passed"
+          }
+        ],
+        "id": null,
+        "status": "expected"
+      },
+      {
+        "attempts": [
+          {
+            "failure": null,
+            "retry": 0,
+            "status": "passed"
+          }
+        ],
+        "id": null,
+        "status": "expected"
+      },
+      {
+        "attempts": [
+          {
+            "failure": null,
+            "retry": 0,
+            "status": "passed"
+          }
+        ],
+        "id": null,
+        "status": "expected"
+      },
+      {
+        "attempts": [
+          {
+            "failure": null,
+            "retry": 0,
+            "status": "passed"
+          }
+        ],
+        "id": null,
+        "status": "expected"
+      },
+      {
+        "attempts": [
+          {
+            "failure": null,
+            "retry": 0,
+            "status": "passed"
+          }
+        ],
+        "id": null,
+        "status": "expected"
+      },
+      {
+        "attempts": [
+          {
+            "failure": null,
+            "retry": 0,
+            "status": "passed"
+          }
+        ],
+        "id": null,
+        "status": "expected"
+      },
+      {
+        "attempts": [
+          {
+            "failure": null,
+            "retry": 0,
+            "status": "passed"
+          }
+        ],
+        "id": null,
+        "status": "expected"
+      },
+      {
+        "attempts": [
+          {
+            "failure": null,
+            "retry": 0,
+            "status": "passed"
+          }
+        ],
+        "id": null,
+        "status": "expected"
+      },
+      {
+        "attempts": [
+          {
+            "failure": null,
+            "retry": 0,
+            "status": "passed"
+          }
+        ],
+        "id": null,
+        "status": "expected"
+      },
+      {
+        "attempts": [
+          {
+            "failure": null,
+            "retry": 0,
+            "status": "passed"
+          }
+        ],
+        "id": null,
+        "status": "expected"
+      },
+      {
+        "attempts": [
+          {
+            "failure": null,
+            "retry": 0,
+            "status": "passed"
+          }
+        ],
+        "id": null,
+        "status": "expected"
+      },
+      {
+        "attempts": [
+          {
+            "failure": null,
+            "retry": 0,
+            "status": "passed"
+          }
+        ],
+        "id": null,
+        "status": "expected"
+      },
+      {
+        "attempts": [
+          {
+            "failure": null,
+            "retry": 0,
+            "status": "passed"
+          }
+        ],
+        "id": null,
+        "status": "expected"
+      },
+      {
+        "attempts": [
+          {
+            "failure": null,
+            "retry": 0,
+            "status": "passed"
+          }
+        ],
+        "id": null,
+        "status": "expected"
+      },
+      {
+        "attempts": [
+          {
+            "failure": null,
+            "retry": 0,
+            "status": "passed"
+          }
+        ],
+        "id": null,
+        "status": "expected"
+      },
+      {
+        "attempts": [
+          {
+            "failure": null,
+            "retry": 0,
+            "status": "passed"
+          }
+        ],
+        "id": null,
+        "status": "expected"
+      },
+      {
+        "attempts": [
+          {
+            "failure": null,
+            "retry": 0,
+            "status": "passed"
+          }
+        ],
+        "id": null,
+        "status": "expected"
+      },
+      {
+        "attempts": [
+          {
+            "failure": null,
+            "retry": 0,
+            "status": "passed"
+          }
+        ],
+        "id": null,
+        "status": "expected"
+      },
+      {
+        "attempts": [
+          {
+            "failure": null,
+            "retry": 0,
+            "status": "passed"
+          }
+        ],
+        "id": null,
+        "status": "expected"
+      },
+      {
+        "attempts": [
+          {
+            "failure": null,
+            "retry": 0,
+            "status": "passed"
+          }
+        ],
+        "id": null,
+        "status": "expected"
+      },
+      {
+        "attempts": [
+          {
+            "failure": null,
+            "retry": 0,
+            "status": "passed"
+          }
+        ],
+        "id": null,
+        "status": "expected"
+      },
+      {
+        "attempts": [
+          {
+            "failure": null,
+            "retry": 0,
+            "status": "passed"
+          }
+        ],
+        "id": null,
+        "status": "expected"
+      },
+      {
+        "attempts": [
+          {
+            "failure": null,
+            "retry": 0,
+            "status": "passed"
+          }
+        ],
+        "id": null,
+        "status": "expected"
+      },
+      {
+        "attempts": [
+          {
+            "failure": null,
+            "retry": 0,
+            "status": "passed"
+          }
+        ],
+        "id": null,
+        "status": "expected"
+      },
+      {
+        "attempts": [
+          {
+            "failure": null,
+            "retry": 0,
+            "status": "passed"
+          }
+        ],
+        "id": null,
+        "status": "expected"
+      },
+      {
+        "attempts": [
+          {
+            "failure": null,
+            "retry": 0,
+            "status": "passed"
+          }
+        ],
+        "id": null,
+        "status": "expected"
+      },
+      {
+        "attempts": [
+          {
+            "failure": null,
+            "retry": 0,
+            "status": "passed"
+          }
+        ],
+        "id": null,
+        "status": "expected"
+      },
+      {
+        "attempts": [
+          {
+            "failure": null,
+            "retry": 0,
+            "status": "passed"
+          }
+        ],
+        "id": null,
+        "status": "expected"
+      },
+      {
+        "attempts": [
+          {
+            "failure": null,
+            "retry": 0,
+            "status": "passed"
+          }
+        ],
+        "id": null,
+        "status": "expected"
+      },
+      {
+        "attempts": [
+          {
+            "failure": null,
+            "retry": 0,
+            "status": "passed"
+          }
+        ],
+        "id": null,
+        "status": "expected"
+      },
+      {
+        "attempts": [
+          {
+            "failure": null,
+            "retry": 0,
+            "status": "passed"
+          }
+        ],
+        "id": null,
+        "status": "expected"
+      },
+      {
+        "attempts": [
+          {
+            "failure": null,
+            "retry": 0,
+            "status": "passed"
+          }
+        ],
+        "id": null,
+        "status": "expected"
+      },
+      {
+        "attempts": [
+          {
+            "failure": null,
+            "retry": 0,
+            "status": "passed"
+          }
+        ],
+        "id": null,
+        "status": "expected"
+      },
+      {
+        "attempts": [
+          {
+            "failure": null,
+            "retry": 0,
+            "status": "passed"
+          }
+        ],
+        "id": null,
+        "status": "expected"
+      },
+      {
+        "attempts": [
+          {
+            "failure": null,
+            "retry": 0,
+            "status": "passed"
+          }
+        ],
+        "id": null,
+        "status": "expected"
+      },
+      {
+        "attempts": [
+          {
+            "failure": null,
+            "retry": 0,
+            "status": "passed"
+          }
+        ],
+        "id": null,
+        "status": "expected"
+      },
+      {
+        "attempts": [
+          {
+            "failure": null,
+            "retry": 0,
+            "status": "passed"
+          }
+        ],
+        "id": null,
+        "status": "expected"
+      },
+      {
+        "attempts": [
+          {
+            "failure": null,
+            "retry": 0,
+            "status": "passed"
+          }
+        ],
+        "id": null,
+        "status": "expected"
+      },
+      {
+        "attempts": [
+          {
+            "failure": null,
+            "retry": 0,
+            "status": "passed"
+          }
+        ],
+        "id": null,
+        "status": "expected"
+      },
+      {
+        "attempts": [
+          {
+            "failure": null,
+            "retry": 0,
+            "status": "passed"
+          }
+        ],
+        "id": null,
+        "status": "expected"
+      },
+      {
+        "attempts": [
+          {
+            "failure": null,
+            "retry": 0,
+            "status": "passed"
+          }
+        ],
+        "id": null,
+        "status": "expected"
+      },
+      {
+        "attempts": [
+          {
+            "failure": null,
+            "retry": 0,
+            "status": "passed"
+          }
+        ],
+        "id": null,
+        "status": "expected"
+      }
+    ],
+    "privacy_limit": "Reference metadata does not prove content leak or privacy; unacquired report attachment bodies NULL/UNQUALIFIED. No optional playwright-report acquired.",
+    "stats": {
+      "duration": 298231.651,
+      "expected": 56,
+      "flaky": 0,
+      "skipped": 0,
+      "unexpected": 0
+    },
+    "story_cases": [
+      {
+        "attempts": [
+          {
+            "failure": null,
+            "retry": 0,
+            "status": "passed"
+          }
+        ],
+        "id": "E2E-001",
+        "status": "expected"
+      },
+      {
+        "attempts": [
+          {
+            "failure": null,
+            "retry": 0,
+            "status": "passed"
+          }
+        ],
+        "id": "E2E-002A",
+        "status": "expected"
+      },
+      {
+        "attempts": [
+          {
+            "failure": null,
+            "retry": 0,
+            "status": "passed"
+          }
+        ],
+        "id": "E2E-002B",
+        "status": "expected"
+      },
+      {
+        "attempts": [
+          {
+            "failure": null,
+            "retry": 0,
+            "status": "passed"
+          }
+        ],
+        "id": "E2E-002C",
+        "status": "expected"
+      },
+      {
+        "attempts": [
+          {
+            "failure": null,
+            "retry": 0,
+            "status": "passed"
+          }
+        ],
+        "id": "E2E-003",
+        "status": "expected"
+      },
+      {
+        "attempts": [
+          {
+            "failure": null,
+            "retry": 0,
+            "status": "passed"
+          }
+        ],
+        "id": "E2E-004",
+        "status": "expected"
+      },
+      {
+        "attempts": [
+          {
+            "failure": null,
+            "retry": 0,
+            "status": "passed"
+          }
+        ],
+        "id": "E2E-005",
+        "status": "expected"
+      },
+      {
+        "attempts": [
+          {
+            "failure": null,
+            "retry": 0,
+            "status": "passed"
+          }
+        ],
+        "id": "E2E-006",
+        "status": "expected"
+      },
+      {
+        "attempts": [
+          {
+            "failure": null,
+            "retry": 0,
+            "status": "passed"
+          }
+        ],
+        "id": "E2E-008",
+        "status": "expected"
+      },
+      {
+        "attempts": [
+          {
+            "failure": null,
+            "retry": 0,
+            "status": "passed"
+          }
+        ],
+        "id": "E2E-009",
+        "status": "expected"
+      },
+      {
+        "attempts": [
+          {
+            "failure": null,
+            "retry": 0,
+            "status": "passed"
+          }
+        ],
+        "id": "E2E-010-rotate",
+        "status": "expected"
+      },
+      {
+        "attempts": [
+          {
+            "failure": null,
+            "retry": 0,
+            "status": "passed"
+          }
+        ],
+        "id": "E2E-010-revoke",
+        "status": "expected"
+      },
+      {
+        "attempts": [
+          {
+            "failure": null,
+            "retry": 0,
+            "status": "passed"
+          }
+        ],
+        "id": "E2E-011",
+        "status": "expected"
+      },
+      {
+        "attempts": [
+          {
+            "failure": null,
+            "retry": 0,
+            "status": "passed"
+          }
+        ],
+        "id": "E2E-007",
+        "status": "expected"
+      }
+    ],
+    "story_reconciliation": {
+      "attempted_distinct_story_cases": 14,
+      "duplicate_story_ids": [],
+      "expected_count": 14,
+      "missing_expected_ids": [],
+      "normal_acceptance": 0,
+      "reported_cases_without_observed_attempt": 0,
+      "reported_unique_count": 14,
+      "unexpected_source_ids": []
+    }
+  },
+  "raw_persisted": false,
+  "zip_entries": 1
+}

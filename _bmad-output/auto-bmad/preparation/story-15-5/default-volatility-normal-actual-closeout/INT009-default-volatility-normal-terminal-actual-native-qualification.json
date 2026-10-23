@@ -1,0 +1,547 @@
+{
+  "schema": "INDEPENDENT_INT009_DEFAULT_VOLATILITY_NORMAL_ACTUAL_NATIVE_QUALIFICATION_V1",
+  "status": "ACTUAL_EVIDENCE_QUALIFIED_WITH_CAP_SCOPE_EXCEPTION_REQUIRED_GATES_INCOMPLETE",
+  "outcome": "ACTUAL_EVIDENCE_QUALIFIED_WITH_CAP_SCOPE_EXCEPTION_REQUIRED_GATES_INCOMPLETE",
+  "independent": true,
+  "scope": "Distinct actual closed evidence/provenance qualification only, following targeted reader review. No new broad story review, source repair or request authority.",
+  "identity": {
+    "run_id": 39950998114,
+    "attempt": 1,
+    "head": "215078e7dd74d9c4b4511581682b4c0be1a21c8d",
+    "source": "5e0b63639dfd8636faab4ab5c798ca81bf1b4e41",
+    "checkpoint": "c2fade03-6ac5-44ae-abfd-898e1a3dd602",
+    "mode": "normal",
+    "cause_proof": false,
+    "release_validation": false,
+    "original_int009": false
+  },
+  "provenance": {
+    "grant": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-INT009-default-volatility-normal-terminal-effects-allocation.json",
+      "bytes": 3414,
+      "sha256": "26d86f56c36ff02c3edef23dfdadac79a7e0ff0028e62ac93b7df506b0fdec41"
+    },
+    "fresh_proof": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-terminal-fresh-source-proof.json",
+      "bytes": 56578,
+      "sha256": "4a28943d678d6aa3fb1eba6e0bb70bbc26f39e757cef759613602aaa86a32520"
+    },
+    "activation": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-terminal-evidence-activation.json",
+      "bytes": 4778,
+      "sha256": "ad3e15f23e91991d2e5d81186ca1d25e35dd20abfd8478b88235fb249a3bfa88"
+    },
+    "root_once_journal": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-terminal-root-once-journal.json",
+      "bytes": 1403,
+      "sha256": "5824692dd97fb5ab64ba517913a5077d14ce8b9e8f9c4bff686d4af174653476"
+    },
+    "reader_review": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-terminal-reader-operational-review.json",
+      "bytes": 12651,
+      "sha256": "b236d128f2d8f637351ebc17c4856728f3c08d070fccf5d9ba7191ba2f020799"
+    },
+    "execution_receipt": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-terminal-execution-receipt.json",
+      "bytes": 9998,
+      "sha256": "3c224c6983d2017448a2ea8c7fa42ed71ec99ecc7916856bf66f971efbf89559"
+    },
+    "actual_tool": {
+      "chunk_id": "6ccbd9",
+      "outer_native_exit": 0,
+      "outer_wall_seconds": 6.9698185,
+      "session_id": null,
+      "waits": [],
+      "observation": "NativeHigh tool result; no claim Root independently observed child lifecycle"
+    },
+    "inner_native_exit": 0,
+    "inner_elapsed_seconds": 6.695226100000582,
+    "source_proof_age_at_invocation_seconds": 116.775994,
+    "full_EOF_joined_handles_closed_direct_process_settled": true,
+    "stdout_bytes": 731,
+    "stderr_bytes": 0,
+    "whole_stdout_JSON_projection": null,
+    "limitation": "Whole stdout was not admitted as one JSON document; no raw stdout retained. Actual facts independently reconciled from the closed packet, not guessed or rerun."
+  },
+  "packet_custody": {
+    "directory": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-215078e7-INT009-default-volatility-normal-ci-independent",
+    "member_count": 20,
+    "member_inventory_location": "Immutable outer execution receipt.packet_inventory; no separate operator manifest produced and none fabricated.",
+    "canonical_inventory_sha256": "3627156a05ad104def7513f7b96d61f6a04f01415e379b9c568d49bfb7d22b01",
+    "every_member_bytes_and_SHA_independently_verified": true,
+    "raw_bodies_persisted": false,
+    "actual_logical_GETs": 5,
+    "all_unused_slots_closed": true,
+    "retry_refetch_additional_GETs": 0,
+    "requests": [
+      {
+        "sequence": 1,
+        "label": "normal-run-archive",
+        "elapsed_seconds": 2.605,
+        "native_exit": 0,
+        "timeout_seconds": 15,
+        "stdout_bytes": 832755,
+        "stderr_bytes": 0,
+        "full_EOF_joined_closed_settled": true
+      },
+      {
+        "sequence": 2,
+        "label": "normal-artifact-list",
+        "elapsed_seconds": 0.434,
+        "native_exit": 0,
+        "timeout_seconds": 15,
+        "stdout_bytes": 2194,
+        "stderr_bytes": 0,
+        "full_EOF_joined_closed_settled": true
+      },
+      {
+        "sequence": 3,
+        "label": "native-full-integration",
+        "elapsed_seconds": 1.42,
+        "native_exit": 0,
+        "timeout_seconds": 15,
+        "stdout_bytes": 110945,
+        "stderr_bytes": 0,
+        "full_EOF_joined_closed_settled": true
+      },
+      {
+        "sequence": 4,
+        "label": "native-general-browser",
+        "elapsed_seconds": 1.018,
+        "native_exit": 0,
+        "timeout_seconds": 15,
+        "stdout_bytes": 9614,
+        "stderr_bytes": 0,
+        "full_EOF_joined_closed_settled": true
+      },
+      {
+        "sequence": 5,
+        "label": "native-isolated-storage-recovery",
+        "elapsed_seconds": 0.964,
+        "native_exit": 0,
+        "timeout_seconds": 15,
+        "stdout_bytes": 679,
+        "stderr_bytes": 0,
+        "full_EOF_joined_closed_settled": true
+      }
+    ]
+  },
+  "ZIP_and_report_checks": {
+    "result": "PASS_SOURCE_BOUND_CLOSED_RECEIPTS",
+    "detail": "All5 request intents match result argv and current owned tuple endpoints. Each native0/categoryNULL/fullEOF/readersdone+joined/handlesclosed/settled/nooverflow. Run archive stream hash+bytes bind archive projection. Each artifact stream hash+bytes equals unique advertised owned/head-bound nonexpired SHA digest; one allowed member, strict parse and full counts reconciliation under unchanged reviewed code. Raw ZIP/JSON is unavailable by design, not re-fetched or independently re-inflated.",
+    "artifacts": [
+      {
+        "name": "native-full-integration",
+        "id": 12501715541,
+        "ZIP_bytes": 110945,
+        "ZIP_sha256": "dba6f8f2701cbc91239f5b33aca6388a125ad881945453d03f6dfbe405773e99",
+        "member": "full-integration.json",
+        "member_bytes": 1020355,
+        "member_sha256": "6da38797ec9953df3415d40ca40b45b6de8cea652b52331766f51f3959f06502",
+        "projection_ref": {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-215078e7-INT009-default-volatility-normal-ci-independent/native-full-integration-projection.json",
+          "bytes": 61132,
+          "sha256": "e0aaf1dc2876d7438fb70f6fd818496f1435c555a5214cb6d466b21aa72678a3"
+        }
+      },
+      {
+        "name": "native-general-browser",
+        "id": 12501156303,
+        "ZIP_bytes": 9614,
+        "ZIP_sha256": "33c3518b34b668c501b62a80982d6f447c57944de302c784366a1f2df5a701ed",
+        "member": "general-browser.json",
+        "member_bytes": 91991,
+        "member_sha256": "a69579d4891c48147f61ab0ee2cb1780eb5f5f60694852258cec82267fcf940f",
+        "projection_ref": {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-215078e7-INT009-default-volatility-normal-ci-independent/native-general-browser-projection.json",
+          "bytes": 13358,
+          "sha256": "985763deb2abfd7d25e532722cae5643b1af4983c68ab06b6f8452686565c1b7"
+        }
+      },
+      {
+        "name": "native-isolated-storage-recovery",
+        "id": 12500528021,
+        "ZIP_bytes": 679,
+        "ZIP_sha256": "1b1475c46458eb1773bda0779b15d573d0f38fff6d94e1f4c1db96e7b33730c1",
+        "member": "isolated-storage-recovery.json",
+        "member_bytes": 1161,
+        "member_sha256": "2ed493efd6d6327ecee4a0e2eb1deb4299f2d80a7212721199751ee4446d2b32",
+        "projection_ref": {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-215078e7-INT009-default-volatility-normal-ci-independent/native-isolated-storage-recovery-projection.json",
+          "bytes": 2008,
+          "sha256": "ec7fe45d22f40cec2a0fe5683fbb862bcd09b859de9c23e3ceec12e67609b140"
+        }
+      }
+    ]
+  },
+  "required95": {
+    "expected": 95,
+    "passed": 73,
+    "failed": 1,
+    "zero_passing_coverage": 21,
+    "partition": {
+      "Node": {
+        "expected": 30,
+        "passed_distinct": 30,
+        "positive_ID_occurrences": 32,
+        "deduped_repeated_ID_occurrences": {
+          "R1-06": 2,
+          "R1-07": 2
+        },
+        "passed_ids": [
+          "R1-05-order",
+          "R1-05-positive-1",
+          "R1-05-positive-2",
+          "R1-05-positive-3",
+          "R1-05-positive-4",
+          "R1-05-positive-5",
+          "R1-06",
+          "R1-07",
+          "UNIT-001",
+          "UNIT-002-autumn",
+          "UNIT-002-spring",
+          "UNIT-003",
+          "UNIT-004",
+          "UNIT-005",
+          "UNIT-006",
+          "UNIT-007",
+          "UNIT-008",
+          "UNIT-009",
+          "UNIT-010",
+          "UNIT-011",
+          "UNIT-012",
+          "UNIT-013",
+          "UNIT-014",
+          "UNIT-015",
+          "UNIT-016",
+          "UNIT-017",
+          "UNIT-018",
+          "UNIT-019",
+          "UNIT-020",
+          "UNIT-021"
+        ]
+      },
+      "DB": {
+        "expected": 51,
+        "passed": 29,
+        "failed": 1,
+        "pending": 1,
+        "missing": 20,
+        "passed_ids": [
+          "COMP-001",
+          "COMP-002",
+          "COMP-003",
+          "COMP-004",
+          "INT001",
+          "INT002",
+          "INT003",
+          "INT004",
+          "INT005",
+          "INT006",
+          "INT007",
+          "INT008",
+          "INT009",
+          "INT010",
+          "INT011",
+          "INT012",
+          "INT013",
+          "RLS001",
+          "RLS002",
+          "RLS003",
+          "RLS004",
+          "RLS005",
+          "RLS006",
+          "RLS007",
+          "RLS008",
+          "RLS009",
+          "RLS010",
+          "RLS011",
+          "RLS012"
+        ],
+        "failed_ids": [
+          "INT014"
+        ],
+        "pending_ids": [
+          "INT015"
+        ],
+        "missing_ids": [
+          "API001",
+          "API002",
+          "API003",
+          "API004",
+          "API005",
+          "API006",
+          "API007",
+          "API008",
+          "API009",
+          "API010",
+          "API011",
+          "API012",
+          "API013",
+          "API014",
+          "API015",
+          "API016",
+          "API017",
+          "API018",
+          "API019",
+          "API020"
+        ],
+        "duplicates": []
+      },
+      "browser": {
+        "expected": 14,
+        "passed_distinct_retry0": 14,
+        "failed": 0,
+        "missing": 0,
+        "flaky": 0,
+        "retries": 0,
+        "passed_ids": [
+          "E2E-001",
+          "E2E-002A",
+          "E2E-002B",
+          "E2E-002C",
+          "E2E-003",
+          "E2E-004",
+          "E2E-005",
+          "E2E-006",
+          "E2E-007",
+          "E2E-008",
+          "E2E-009",
+          "E2E-010-revoke",
+          "E2E-010-rotate",
+          "E2E-011"
+        ]
+      }
+    },
+    "arithmetic": "30+29+14=73P; INT014=1F; INT015pending+20missingAPI=21zero;73+1+21=95. Missing/skipped/pending/dynamic/nonleaf never counted passed.",
+    "historical95": "Earlier68P/1F/26unexecuted remains historical; this current run establishes73P/1F/21zero, not95acceptance."
+  },
+  "full_suite_observations": {
+    "Node_totals": [
+      {
+        "cancelled": 0,
+        "fail": 0,
+        "pass": 3428,
+        "skipped": 0,
+        "suites": 103,
+        "tests": 3428,
+        "todo": 0
+      }
+    ],
+    "Vitest_summary": {
+      "numFailedTestSuites": 2,
+      "numFailedTests": 1,
+      "numPassedTestSuites": 544,
+      "numPassedTests": 2095,
+      "numPendingTestSuites": 0,
+      "numPendingTests": 52,
+      "numTodoTests": 0,
+      "numTotalTestSuites": 546,
+      "numTotalTests": 2149,
+      "success": false
+    },
+    "Vitest_actual_assertion_status_counts": {
+      "failed": 1,
+      "passed": 2095,
+      "pending": 1,
+      "skipped": 52
+    },
+    "native_summary_caveat": "HeadernumPendingTests52 and actual1pending+52skipped are retained distinctly;2095P+1F+1pending+52skipped=2149. Two failed-suite summary entries do not imply2failed assertions.",
+    "browser_global_stats": {
+      "duration": 298231.651,
+      "expected": 56,
+      "flaky": 0,
+      "skipped": 0,
+      "unexpected": 0
+    },
+    "other_browser_smokes": 42,
+    "note": "Global suite totals are not a substitute for exact95 distinct acceptance-case reconciliation."
+  },
+  "first_consequential_case_failure": {
+    "id": "INT014",
+    "file": "tests/integration/commands/calendar-feed.int.test.ts",
+    "source_line": 273,
+    "status": "failed",
+    "duration_ms": 2859.3887449999966,
+    "observed_failure": {
+      "fixed_category_counts": {},
+      "invalid_owned_tuple_headers": 0,
+      "owned_leaf_tuple_count": 1,
+      "owned_leaf_tuples": [
+        {
+          "category": "unknown",
+          "sqlState": null,
+          "stage": "scenario-assertion"
+        }
+      ],
+      "raw_failure_details": "NOT_PERSISTED",
+      "typed_assertion_pairs": [],
+      "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+    },
+    "INT009": "PASSED current run; cannot infer absence of every restore risk.",
+    "scope": "INT014 AC6 checks createusage0/null,lastUsedAt at admitted database fetch time,usage increment1,physical/status consistency and public DTO token/hash exclusion. One owned leaf tuple reaches scenario-assertion with categoryunknown/sqlStateNULL; exact failed assertion, expected/actual pair, native firstthrow and causal defect remain UNKNOWN.",
+    "minimum_next_step": "Use the already assigned NativeHigh readonly assessment of this exact leaf and existing withDatabaseTime/trustedFetch/status/physical dependencies. Establish a deterministic reachable source defect and minimum meaningful regression before any proposed repair. No repeated CI/test/acquisition, new collector, relaxed oracle or speculative patch is authorized by this evidence."
+  },
+  "custody_and_recovery": {
+    "DB_step11_archive_ref": {
+      "member": "db/11_Integration, RLS, and Epic 11 pilot performance gates (local stack).txt",
+      "bytes": 2339,
+      "sha256": "1dc16f8f42e0cbcc8e3f90cd2451661e458c9590009d6d7c9c82b61690fd5a0d"
+    },
+    "DB_wrapper_lifecycle": {
+      "childExitCodes": [
+        0,
+        1
+      ],
+      "childLaunchState": "not-attempted",
+      "custody_retained": true,
+      "dbClosed": true,
+      "diagnostic_count": 1,
+      "diagnostics": [],
+      "failure_count": 1,
+      "keyDeleted": false,
+      "keyOutcome": "unverified",
+      "launchAttempted": false,
+      "mode": "db",
+      "privacy_controls": [
+        {
+          "canSet": true,
+          "context": "superuser",
+          "matchesRequired": true,
+          "name": "log_min_error_statement"
+        },
+        {
+          "canSet": true,
+          "context": "superuser",
+          "matchesRequired": true,
+          "name": "log_parameter_max_length"
+        },
+        {
+          "canSet": true,
+          "context": "user",
+          "matchesRequired": true,
+          "name": "log_parameter_max_length_on_error"
+        },
+        {
+          "canSet": true,
+          "context": "superuser",
+          "matchesRequired": true,
+          "name": "log_statement"
+        }
+      ],
+      "ready": true,
+      "setupAuthority": {
+        "current_is_setup_admin": true,
+        "current_login": true,
+        "current_superuser": true,
+        "same_identity": true,
+        "session_is_setup_admin": true,
+        "session_login": true,
+        "session_superuser": true
+      }
+    },
+    "DB_backend_settlement": "UNKNOWN",
+    "DB_key_deleted": false,
+    "DB_key_outcome": "unverified",
+    "DB_custody_retained": true,
+    "scope_limit": "ReporteddbClosedtrue and capture-child closure do not establish privileged backend settlement or key deletion. childLaunchStatenot-attempted/launchAttemptedfalse coexist with childExitCodes[0,1]; retain all facts, do not infer no test execution or reconcile by assumption. Diagnostics count1 withclosed diagnosticlist empty gives no underlying cause.",
+    "recovery_separate": {
+      "status": "ACTUAL1PASS",
+      "file": "tests/integration/ops/recovery-storage-immutability.int.test.ts",
+      "executed": 1,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "member_sha256": "2ed493efd6d6327ecee4a0e2eb1deb4299f2d80a7212721199751ee4446d2b32",
+      "scope": "Independent direct physical Storage protected-row recovery evidence. Does not close main DB wrapper custody or count toward95."
+    }
+  },
+  "privacy_and_unknowns": {
+    "closed_source_label_projection": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-215078e7-INT009-default-volatility-normal-ci-independent/source-label-projection.json",
+      "bytes": 1691,
+      "sha256": "a95c7502b504de74901c3738c49dc7dc43682d20e2b8332c98527e918c4638d0"
+    },
+    "source_labels": {
+      "nudge": "UNKNOWN_MISSING",
+      "browser": "UNKNOWN_PARTIAL;3cases passed retry0 but no admitted snapshots/records",
+      "cause": "UNKNOWN",
+      "settlement": "UNKNOWN",
+      "slot_completeness": "UNKNOWN"
+    },
+    "setup_namespace": "Not projected by unchanged normal reader; missing metadata does not identify branch/bodyreach or native firstthrow.",
+    "attachments": "General report has0references/path-only/inline; optional playwright-report content not acquired and remains unqualified. No raw failure messages, source, tokens, SQL or response bodies newly persisted by reviewer."
+  },
+  "projection_cap_scope_note": {
+    "actual_source_label_bytes": 1691,
+    "source_LABEL_CAP_bytes": 32768,
+    "actual_full_integration_projection_bytes": 61132,
+    "actual_run_archive_projection_bytes": 48553,
+    "source_fact": "The inherited32768 enforcement applies to source-label label_bytes/budget; generic write() serializes closed projections without a generic32768 guard. Do not claim every projection is<=32KiB. Input/ZIP/member/inflate caps and closed-schema constraints remain source-bound and were not exceeded.",
+    "allocation_interpretation": "Historical grant/request wording was generic projection32KiB; actual source enforces32768 only for source-label output. Fullintegration61132 and runarchive48553 exceed32768. This is an explicit grant/source-cap attribution discrepancy and actual size exception, not every-file compliance. Do not retroactively narrow grant wording or claim retroapproval. Prior operational review projection_bytes32768 attribution was insufficiently scoped and is preserved as a review attribution miss. Counts/nativeclosure/privacy conclusions are independently qualified with this exception; all slots are closed and no effect replay or output rewrite is authorized."
+  },
+  "checks_and_attribution": [
+    {
+      "chunk": "44164b",
+      "native_exit": 0,
+      "check": "Actual completed allocation pin/provenance"
+    },
+    {
+      "chunk": "ae9820",
+      "native_exit": 0,
+      "check": "Actual activation/proof/journal and originalproposal/v2 readiness references"
+    },
+    {
+      "chunk": "fac790",
+      "native_exit": 0,
+      "check": "Actual outer receipt and closed packet JSON reads; oversized output truncated, relied on focused subsequent projections not unseen output"
+    },
+    {
+      "chunk": "3b3258",
+      "native_exit": 0,
+      "check": "Focused actual failure/case/status/archive fields; no raw logs acquired"
+    },
+    {
+      "chunk": "032096",
+      "native_exit": 0,
+      "check": "Only INT014 current source leaf read to name exact next assessment scope; no cause inferred"
+    },
+    {
+      "chunk": "73be04",
+      "native_exit": 0,
+      "check": "All20member pins+canonicalinventory; all5nativecaptures; stream/API ZIPdigest links;30Node dedup/29DB+1F+21zero/14browserretry0 arithmetic"
+    },
+    {
+      "chunk": "8d2d4c",
+      "native_exit": 0,
+      "check": "Actual unchanged packed/write/label-budget definitions localize32KiB cap scope; no execution"
+    },
+    {
+      "chunk": "finalization",
+      "check": "Actual activation/allocation/readiness refs rehashed; proofage116.775994<=300; no repeatedsourcecatalog/SQL/test."
+    }
+  ],
+  "acceptance": {
+    "normal_acceptance": false,
+    "development_complete": false,
+    "release_ready": false,
+    "P5": "OPEN",
+    "deployment": false,
+    "effect_authority": false,
+    "blockers": [
+      "INT014 failed; exact assertion and cause not yet qualified.",
+      "INT015pending and API001..020missing:21requiredcases provide0passing coverage.",
+      "MainDB wrapper custodyretained/keyDeletedfalse/unverified; backend settlementUNKNOWN.",
+      "Historical generic projection32KiB allocation vs source-label-only enforcement discrepancy; actual61132/48553 size exception preserved. Root notifies Coordinator for historical interpretation only, without new effects or retroapproval."
+    ]
+  },
+  "reviewer_effects": {
+    "API_GET": 0,
+    "Git_remote_mutation": 0,
+    "provider": 0,
+    "tests_or_CI": 0,
+    "resources": 0,
+    "source_spec_state_edits": 0
+  },
+  "files_changed": "This new private qualification only."
+}

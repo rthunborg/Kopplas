@@ -1,0 +1,41 @@
+{
+  "artifacts": [
+    {
+      "advertised_bytes": 110945,
+      "digest": "sha256:dba6f8f2701cbc91239f5b33aca6388a125ad881945453d03f6dfbe405773e99",
+      "expired": false,
+      "expires_at_null": false,
+      "expires_at_present": true,
+      "id": 12501715541,
+      "name": "native-full-integration",
+      "qualified_for_single_download": true,
+      "run_head_bound": true
+    },
+    {
+      "advertised_bytes": 9614,
+      "digest": "sha256:33c3518b34b668c501b62a80982d6f447c57944de302c784366a1f2df5a701ed",
+      "expired": false,
+      "expires_at_null": false,
+      "expires_at_present": true,
+      "id": 12501156303,
+      "name": "native-general-browser",
+      "qualified_for_single_download": true,
+      "run_head_bound": true
+    },
+    {
+      "advertised_bytes": 679,
+      "digest": "sha256:1b1475c46458eb1773bda0779b15d573d0f38fff6d94e1f4c1db96e7b33730c1",
+      "expired": false,
+      "expires_at_null": false,
+      "expires_at_present": true,
+      "id": 12500528021,
+      "name": "native-isolated-storage-recovery",
+      "qualified_for_single_download": true,
+      "run_head_bound": true
+    }
+  ],
+  "listing_bytes": 2194,
+  "listing_sha256": "7c17889dde95e0181e17a0a4dd9e268c588efe80229213e44c243e51994999f7",
+  "raw_persisted": false,
+  "total_count": 3
+}

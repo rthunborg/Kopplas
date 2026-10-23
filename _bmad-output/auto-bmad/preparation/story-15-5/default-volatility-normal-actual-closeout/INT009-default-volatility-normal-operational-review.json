@@ -1,0 +1,256 @@
+{
+  "schema": "INT009_DEFAULT_VOLATILITY_NORMAL_INDEPENDENT_OPERATIONAL_SOURCE_REVIEW_V1",
+  "status": "PASS_INT009_DEFAULT_VOLATILITY_NORMAL_OPERATIONAL_SOURCE_ONLY",
+  "outcome": "PASS_INT009_DEFAULT_VOLATILITY_NORMAL_OPERATIONAL_SOURCE_ONLY",
+  "verdict": "PASS",
+  "independent": true,
+  "route": "Roota9cf62 bounded explicitgpt-6.1-sol High; targeted operational rebind, no fourth broad story review/counter3 unchanged.",
+  "execution_authorized": false,
+  "effect_authority": false,
+  "normal_acceptance": 0,
+  "packet": [
+    {
+      "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-operational-preparation/provider-readonly.py",
+      "bytes": 20367,
+      "sha256": "d38b1214794fbcd8d1fe83437c1b6f039871efc88173f58689150cb865cab7a4"
+    },
+    {
+      "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-operational-preparation/root-driver.py",
+      "bytes": 20841,
+      "sha256": "83c2d107e33bc5b3960ad990049155aad73eb810b93120afd9a8f4476fcbd54e"
+    },
+    {
+      "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-operational-preparation/proposal.json",
+      "bytes": 139186,
+      "sha256": "95e43d8e89d528ee67070448495d096e7effcbba17c398976b6fea29bdc7862f"
+    },
+    {
+      "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-operational-preparation/pure-controls.json",
+      "bytes": 14887,
+      "sha256": "e3dd4420dd553ff0dbe95c02df9f84082e9a7bb50da7a5f9781f54f0935166b5"
+    },
+    {
+      "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-operational-preparation/manifest.json",
+      "bytes": 1209,
+      "sha256": "402bc9a2be01652881eb9d1553fd94fefe1599e0bc3bbe722037fa4537610633"
+    }
+  ],
+  "findings": [],
+  "reviewed_tuple": {
+    "schema": "ROOT_INT009_CANONICAL_CATALOG_NORMAL_INERT_CANDIDATE_V1",
+    "head": "215078e7dd74d9c4b4511581682b4c0be1a21c8d",
+    "source": "5e0b63639dfd8636faab4ab5c798ca81bf1b4e41",
+    "checkpoint_id": "c2fade03-6ac5-44ae-abfd-898e1a3dd602",
+    "ref": "codex/epic-15-scheduling-time-calendar",
+    "expected_remote_preimage": "bbd6d1f307aa9fccbbaf83281779042f9a2e4bfe",
+    "repo": "rthunborg/Kopplas",
+    "workflow_id": 296219797,
+    "event": "workflow_dispatch",
+    "actor": "rthunborg",
+    "triggering_actor": "rthunborg",
+    "attempt": 1,
+    "mode": "NORMAL",
+    "release_validation": false,
+    "cause_proof": false,
+    "original_int009": false,
+    "source_review": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-default-volatility-source-closure/INT009-default-volatility-actual-patch-review.json",
+      "bytes": 12229,
+      "sha256": "36edb72452d3e14543137d9381b4e7ffe5d5909d355a878e8816f62b8d5f09de"
+    },
+    "effects_authorized": false,
+    "all_old_slots_closed": true,
+    "normal_acceptance": 0
+  },
+  "local_source_bridge": {
+    "commit_proof": {
+      "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-root-source-commit-proof.json",
+      "bytes": 2181,
+      "sha256": "3c20957745be14c7ecfe856c8cb498426da4fdbba3a9287a274ecab12c4c19af"
+    },
+    "docs_proof": {
+      "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-root-docs-fold-proof.json",
+      "bytes": 2808,
+      "sha256": "8309f664f88db692a30317f6657960a5f7e9f0c7525455b3ad4b4ae09f27fc8e"
+    },
+    "inert_binding": {
+      "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-NORMAL-inert-binding.json",
+      "bytes": 573,
+      "sha256": "568e3942337bbf8d8c6fdefff57db0879485b897afa7135d2d7309752fb062d2"
+    },
+    "actual_local_reads": [
+      "10c3da/native0",
+      "55b4e6/native0"
+    ],
+    "result": "MAIN clean215078e7/source5e0b6363; historical publishedbbd6 is a local FF ancestor. No remote observation ran; exact remote-before/readback still required after actual grant."
+  },
+  "actual_delta_review": {
+    "actual_packet_source_reads": [
+      "5eabbb/native0",
+      "1cf41e/native0",
+      "931b8f/native0"
+    ],
+    "independent_controls": "29b3d2/native0",
+    "full_inverses": "Both complete indexed-line inverses restore exact qualified NORMAL provider18529/e4527c... and driver18938/dd97a8... .",
+    "provider": "All6 old function bodies unchanged; added verify_pin is byte-identical to qualified successful dispatch-only provider implementation. Current tuple/ref/lock/trigger data, review guards, heterogeneous refs and source row bindings rebound. Capture/typed project predicate unchanged.",
+    "driver": "Only existing localproof/admit bodies change;15 other function bodies unchanged, including main/publisher/api/native/freshness/resolver/poller/STOP. Added verify_pin exactly reuses qualified successful dispatch-only root implementation.",
+    "byte_vs_JSON": "Actual Python source pins pass each new byte verifier and reject through unchanged strict load_pin/checkref JSON consumers; wrong byte hashes refuse. Only heterogeneous input_refs loops use byte verification; actual JSON activation/proposal/proof/review/grant consumers stay strict. No parsing relaxation.",
+    "source_views": "203 retained catalog rows:6 updated,197 byte-identical row records;1 explicit image-test security supplemental yields204 distinct bindings. All7 current changed raw/LF/Git blobs independently checked. Provider checks86 nonSQL rows; Root localproof verifies204 Git bindings, skips rawSQL reads, and reads nonSQL bytes. Exact Next16.4.1 lock LF SHA69603a5d... and current10 trigger guards retained.",
+    "reviews_and_refs": "Actual15 input refs verified. Provider/root require exact pinned security13795/49b5... and restore12229/36ed... source-eligibility reports with matching enums/independenttrue. Existing canonical/capture/browser approvals and consumed reference texts remain inert references, not executable authority.",
+    "SQL": "118 immutable vectors and tree/FF conservation reused; no rawSQL scan or catalog extraction.",
+    "DEBUG": "No DEBUG operation, read, source change, push or diagnostic transplant in this review/lane."
+  },
+  "canonical_dispatch_assessment": {
+    "adapter": "Exact1762 UTF8 bytes/SHA4aa63a58e373ebb1dd2d7d34188f1d5175144b1ec332a2ae001f3a34a966ca8e unchanged. Same current exported checkpoint(dispatch,options,{api:guardedApi}) and githubApi ABI/source preserved through retained binding. Prior9ASTgroups/6NodeVM subchecks reused, not rerun.",
+    "actual_sequence": "Exactly4 already-required metadata GETs user/collaborator permission/ownedMAINbranch/workflow, then1POST. Adapter pins actual userrthunborg/workflow296219797/path/active before POST; canonical helper retains permissions/branch/current workflow/protocol/state.lock/exclusive uncertain journal/onlyPOST behavior. No duplicate GET.",
+    "ordinary_body": {
+      "method": "POST",
+      "endpoint": "repos/rthunborg/Kopplas/actions/workflows/296219797/dispatches",
+      "body": {
+        "ref": "codex/epic-15-scheduling-time-calendar",
+        "inputs": {
+          "expected_sha": "215078e7dd74d9c4b4511581682b4c0be1a21c8d",
+          "checkpoint_id": "c2fade03-6ac5-44ae-abfd-898e1a3dd602",
+          "release_validation": "false"
+        }
+      },
+      "JSON_stringify_bytes_no_newline": 201,
+      "JSON_stringify_sha256": "57f7fbccd38344281e6d6c351538a8c709041d8d056a2658755351204a87f56a",
+      "ordinary_inputs_only": true
+    },
+    "semantics": "Release validation false literal; cause-proof false options and original-int009 absent/defaultfalse. No temporary diagnostic input or normal-body overlay. Exact compact201-byte body hash57f7fbccd38344281e6d6c351538a8c709041d8d056a2658755351204a87f56a independently recomputed.",
+    "once": "One owned nonforce FF push after exactbbd6 before-read, exact2150 readback, then one canonical invocation. Old states/activations untouched; new OWN/state/intent/activation/qualification paths absent at review. Any uncertain/refused effect closes unused slots; no retry/adoption/force or repeated push/POST."
+  },
+  "control_attribution": {
+    "independent": "29b3d2: source inverses, function comparisons, helper provenance, actual Python positive/strictJSON negative/badbytes negative for both implementations, actual mixed-ref admit with only future caps virtual, wrong operational outcome/incomplete grant refusal,7current pins/15refs/adapter/body checks. No real main/native/provider/API/config/test run. Admission control is not a freshness or mutation execution claim.",
+    "author": "Bound13group controls8f47a5/native0/0.2289211s exercise exact complete preGET/current86sourceguards and actual Rootadmit/localproof with actual source/pinned files, only future capability/time/Git answers virtual and all real transports hard-disabled. Final control/proposal pins verified.",
+    "post_control_metadata": "Author explicitly records final pure-control manifest-reference/route/caveat metadata edit only; no code/admission/body/endpoint data change. No selfhash cycle.",
+    "unchanged_families": "Qualified publisher/adapter/native/parser/poller/privacy controls reused nonadditively."
+  },
+  "freshness_capture_and_limits": {
+    "freshness": "Unchanged mutation_fresh checks awareUTC age0..300s for activation/sourceproof/provider immediately before push and dispatcher. Provider additionally<=180s before bounded90s canonical invocation; embedded adapter checks same immutable completion stamp<=300s immediately before githubApi POST. Host clock assumption explicit; no server-response freshness claim. Expiry STOP, no renewed provider GET/retry.",
+    "capture": "Qualified provider15s/4MiBstdout/256KiBstderr; push60s; canonical90s with bounded per-API15s/4MiB; Root poll APIs20s/2MiB and existing stderr caps. All require native0/fullphysicalEOF/joined/closed/directsettled; partial/timeout/capture uncertainty UNKNOWN_STOP. Provider/API raw response/error data RAM-only; existing closed projection and receipts only.",
+    "finite_effect_maxima": {
+      "provider_GET": {
+        "max": 1,
+        "endpoint": "/v9/projects/prj_QYRxEeUBlCStlPL0YZd72y8245rg?teamId=team_jvgtCLGEU7h6atn0TyGLNncd",
+        "caps": {
+          "seconds": 15,
+          "stdout": 4194304,
+          "stderr": 262144
+        },
+        "mutations": 0,
+        "limited_contract": "Fresh point-in-time ordinary ownedbranch Git-push buildskip only; previewDisabledtrue/unconditionalexit0/exactprojectteamrepo/mainbranchmapfalse/noignoreoverride. Gitcreationenabled/cancelledrecordspossible. Not blanketmanualCLI/productiondisable or actualfuturealias proof."
+      },
+      "remote_before": {
+        "max": 1,
+        "required_sha": "bbd6d1f307aa9fccbbaf83281779042f9a2e4bfe",
+        "ref": "refs/heads/codex/epic-15-scheduling-time-calendar"
+      },
+      "FFpush": {
+        "max": 1,
+        "force": false,
+        "head": "215078e7dd74d9c4b4511581682b4c0be1a21c8d",
+        "timeout_seconds": 60
+      },
+      "remote_readback": {
+        "max": 1,
+        "required_sha": "215078e7dd74d9c4b4511581682b4c0be1a21c8d"
+      },
+      "canonical_dispatch": {
+        "invocations_max": 1,
+        "prePOST_GETs_max": 4,
+        "POSTs_max": 1,
+        "outer_seconds": 90,
+        "per_API_seconds": 15,
+        "per_API_stdout_cap": 4194304,
+        "outer_stdout": 524288,
+        "stderr": 65536
+      },
+      "resolve": {
+        "GET_max": 6,
+        "per_page": 20,
+        "minimum_cooldown_seconds": 5,
+        "no_pagination": true,
+        "unique_owned_only": true
+      },
+      "poll": {
+        "run_GET_max": 90,
+        "jobs_GET_max": 90,
+        "minimum_cooldown_seconds": 30,
+        "max_wall_seconds": 5400,
+        "jobs_per_page": 100,
+        "no_pagination": true,
+        "stop_all9terminal": true,
+        "API_seconds": 20,
+        "API_stdout": 2097152,
+        "stderr": 65536
+      },
+      "provider_writes": 0,
+      "repository_variables": 0,
+      "artifact_logs_GET_now": 0,
+      "diagnostic_runs": 0,
+      "main_merge_deploy_demo_db_push": 0,
+      "local_managed_resources": 0
+    },
+    "lease_and_polling": "Root sole operator/poller; immutable original started_at bounds operation5400s. At most6resolver/min5s or90run/jobs pairs/min30s, exact owned head/ref/title/UUID/actors/repo/event/workflow/attempt1 before polling. Closed/early/unregistered observe returnsWAIT0GET; all9terminal or budget/ambiguity/unknown closes slots. No second poller, counter/deadline reset, implicit extension/autorenewal, automation or resource lease/start is authorized. Actual completed grant governs any shorter scope/deadline.",
+    "provider_contract": "Fresh exact project/team/repository, previewsDisabledtrue/unconditionalignored-buildexit0 and MAIN branchmapfalse constrain ordinary owned Git push only. No blanket manual/CLI/main-production disable or deployment authority."
+  },
+  "Root_interfaces": {
+    "review_path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-operational-review.json",
+    "required_status_and_outcome": "PASS_INT009_DEFAULT_VOLATILITY_NORMAL_OPERATIONAL_SOURCE_ONLY",
+    "independent": true,
+    "full_exact_paths_and_templates": "Bound proposal.Root_interfaces paths/false-null templates; fixed source/proposal/reader references cannot be replaced by old namespaces.",
+    "before_effects": [
+      "Root actual full read and exact packet/report pin/status/outcome/independence admission.",
+      "NEW actual completed finite Coordinator allocation with actual turn/tool and completed statuses for only the finite effects shown.",
+      "Fresh truthful current sourceproof: clean exact2150/source5e0, current7rawLF/203catalog+1supplement=204distinct/118SQLtree+vectors/10triggerguards, local FF and exact reviews/selfpins. Historicalbbd6 readback is a preimage, not a new remote observation.",
+      "Exclusive provider activation/Rootonce journal, actual successful provider+outside outer attribution, then fresh exclusive Root effects activation/state/OWN intents. No effects from templates or this sourcePASS."
+    ],
+    "source_rows_interface": "Legacy template source_rows203 denotes retained catalog; record supplementary1/actual204 distinctly and truthfully. Do not omit supplemental verification.",
+    "after_terminal": "Rebind actual terminal reader/source data under separate review and finite maximum5GET acquisition allocation; artifact/log GET0 now."
+  },
+  "catalog_and_acceptance_limits": {
+    "old_catalog": "430static/19dynamic-excluded/wrapper181 are qualified historical baseline only.",
+    "new_known_delta": "3 actual newly authored direct static declarations; affected wrapper184 passed locally. Later terminal enrollment must update current data/pins; no current aggregate catalog/runtime pass inferred now.",
+    "required_functional": {
+      "Node": 30,
+      "DB_RLS": 51,
+      "essential_browser": 14,
+      "total": 95,
+      "recovery_storage_direct_separate": 1
+    },
+    "required_jobs": [
+      "checkpoint-admission",
+      "verify",
+      "db",
+      "recovery-storage-loader",
+      "e2e"
+    ],
+    "optional_jobs": [
+      "dashboard-e2e",
+      "native-stream-probe",
+      "fixed-chromium-paired-probe",
+      "fixed-chromium-application-verification"
+    ],
+    "historical95": "68P1F26unexecuted unchanged",
+    "custody": "Required same-session backend/canonical checks and keydeleted/dbclosed/recovery proof remain required; absent/skipped/pending/uncertain/flaky/bailed is zero coverage.",
+    "P5": "OPEN",
+    "hosted_header_native_firstthrow_body_backendcustody": "UNKNOWN",
+    "development_complete": false,
+    "release_ready": false,
+    "deployment": false
+  },
+  "reviewer_nonexecution": {
+    "API_provider_remoteGit_push_POST_CI": 0,
+    "application_tests_config_resources_DB_browser": 0,
+    "source_spec_state_Git_mutations": 0,
+    "DEBUG_activity_SQLrawscan": 0
+  },
+  "open_questions": [],
+  "deferred_work": [
+    "Actual Root admission/new finite allocation/fresh proof/exclusive activations.",
+    "Exact-head NORMAL95+recovery and separately bound terminal acquisition/qualification."
+  ],
+  "blockers": []
+}
