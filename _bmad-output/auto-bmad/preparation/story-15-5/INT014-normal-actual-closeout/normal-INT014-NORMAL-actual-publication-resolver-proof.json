@@ -1,0 +1,114 @@
+{
+  "schema": "ROOT_INT014_NORMAL_ACTUAL_PUBLICATION_RESOLVER_PROOF_V1",
+  "head": "2c8e8077f74067a06cd5e6c5136e4c545b83a5ba",
+  "run_id": 39962445963,
+  "checkpoint_id": "127ec671-bb41-4c77-9f30-64b8c386f3fe",
+  "operation_id": "9ace75d3-954d-40b4-b870-cc3dea11265f",
+  "original_started_at": "2026-10-23T13:35:05.548695+00:00",
+  "phase_at_proof": "ROOT_ACTIVE",
+  "controller_native_captures": [
+    {
+      "receipt": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-root-operation/remote-before-receipt.json",
+        "bytes": 697,
+        "sha256": "432f9f509fc3d294d577df367195b3fc2fd2dffb4f72bca1a449289f7662ee0d"
+      },
+      "native_exit": 0,
+      "configured_timeout_seconds": 20,
+      "elapsed_seconds": 0.679052,
+      "full_capture_closed_settled": true
+    },
+    {
+      "receipt": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-root-operation/push-receipt.json",
+        "bytes": 698,
+        "sha256": "a76fd7f53e849d73b43cc10b0542b46d8d85d6fad96169e40223d2dae9100761"
+      },
+      "native_exit": 0,
+      "configured_timeout_seconds": 60,
+      "elapsed_seconds": 3.206976,
+      "full_capture_closed_settled": true
+    },
+    {
+      "receipt": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-root-operation/remote-readback-receipt.json",
+        "bytes": 697,
+        "sha256": "9688b33c8c35a871aa3f3ff5098776298a382a00826107379cf1b85bd54e1910"
+      },
+      "native_exit": 0,
+      "configured_timeout_seconds": 20,
+      "elapsed_seconds": 0.588322,
+      "full_capture_closed_settled": true
+    },
+    {
+      "receipt": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-root-operation/dispatch-receipt.json",
+        "bytes": 842,
+        "sha256": "d46e296188890e06804dceedf9374f83fd2d02b03159c31a0b5f169a16fd38f1"
+      },
+      "native_exit": 0,
+      "configured_timeout_seconds": 90,
+      "elapsed_seconds": 3.912428,
+      "full_capture_closed_settled": true
+    },
+    {
+      "receipt": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-root-operation/resolve-1-receipt.json",
+        "bytes": 701,
+        "sha256": "060a31599093981c39cda041929b25c6d1b3ca50c27a7deeb3472a736ab4d9ba"
+      },
+      "native_exit": 0,
+      "configured_timeout_seconds": 20,
+      "elapsed_seconds": 1.485813,
+      "full_capture_closed_settled": true
+    }
+  ],
+  "native_capture_count_excluding_polls": 5,
+  "remote_Git_calls": 3,
+  "pushes": 1,
+  "canonical_Node_invocations": 1,
+  "canonical_nested_GitHub_calls": {
+    "source_bound_not_separate_native_receipts": true,
+    "metadata_GETs": 4,
+    "POSTs": 1
+  },
+  "resolver_GETs": 1,
+  "provider_GETs_separate": 1,
+  "readback_digests_verified": true,
+  "freshness_at_intents": [
+    {
+      "intent": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-root-operation/push-intent.json",
+        "bytes": 201,
+        "sha256": "94367c15454c5160ff39f290187ecf42c70924413b4d07a8791e1302a00d35aa"
+      },
+      "sourceproof_age_seconds": 244.894457,
+      "provider_age_seconds": 101.145227,
+      "note": "Intent timestamp; unchanged reviewed guards also enforce freshness immediately before each mutation and canonical POST."
+    },
+    {
+      "intent": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-root-operation/dispatch-intent.json",
+        "bytes": 463,
+        "sha256": "262116b6edaf9acf257fb7735b698e21f2d132682b9175039c5b862389c2a4fc"
+      },
+      "sourceproof_age_seconds": 248.720074,
+      "provider_age_seconds": 104.970844,
+      "note": "Intent timestamp; unchanged reviewed guards also enforce freshness immediately before each mutation and canonical POST."
+    }
+  ],
+  "configured_remote_caps_match_actual_grant_20s": true,
+  "initial_outer_provenance": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-actual-initial-outer-provenance.json",
+    "bytes": 1434,
+    "sha256": "07eb682f617c2bfef1be207ccdd1ca276809a0e28d885c54b2a9224ddfccd13e"
+  },
+  "admission_resolution": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-root-admission-interface-resolution.json",
+    "bytes": 3904,
+    "sha256": "61ecf4b252cd25d9e2792fae233f64d1c81c59f787d309f62def067d072d8737"
+  },
+  "normal_acceptance": 0,
+  "remaining_readonly_operation": "Sole owned observer; original5400s and counters; all9terminal immediateSTOP. No artifact/log authority now.",
+  "no_source_or_git_mutation_from_this_proof": true
+}

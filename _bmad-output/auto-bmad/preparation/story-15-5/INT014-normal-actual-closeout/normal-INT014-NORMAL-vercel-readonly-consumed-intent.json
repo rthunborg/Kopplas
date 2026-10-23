@@ -1,0 +1,28 @@
+{
+  "schema": "INT009_PROVIDER_READ_CONSUMED_v1",
+  "at": "2026-10-23T13:33:22.810970+00:00",
+  "operation_id": "9ace75d3-954d-40b4-b870-cc3dea11265f",
+  "request": {
+    "method": "GET",
+    "endpoint": "/v9/projects/prj_QYRxEeUBlCStlPL0YZd72y8245rg?teamId=team_jvgtCLGEU7h6atn0TyGLNncd"
+  },
+  "activation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-provider-readonly-activation.json",
+    "bytes": 2460,
+    "sha256": "84aee3979f7310ba24e6e0d8cc22b836ff3bb53f4abb4db9c7fe54312cc04065"
+  },
+  "allocation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-normal-INT014-NORMAL-effects-allocation.json",
+    "bytes": 4177,
+    "sha256": "e9ce2ca0f25ce32b11cbabbe8916910fa6e495bcb8f69c70795efd6681cf9146"
+  },
+  "source_proof": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-current-source-proof.json",
+    "bytes": 59132,
+    "sha256": "8519ff335a3acfa1f22800777b3f31f393336246e4fa9ec78bc8bb9baadd18bc"
+  },
+  "head": "2c8e8077f74067a06cd5e6c5136e4c545b83a5ba",
+  "checkpoint_id": "127ec671-bb41-4c77-9f30-64b8c386f3fe",
+  "allowed_invocations": 1,
+  "retry": false
+}

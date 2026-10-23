@@ -7860,3 +7860,42 @@ Existing deferredreleasevalidation remainsdeferred.
 **⚠️ Needs human:** (none)
 
 **Next:** ReviewminimalNORMALbindings with actual20sremoteGitcaps, thenfreshfiniteallocation/proof/provider/push/onecanonicalNORMAL.
+
+## Report — 2026-10-23T14:21:41Z (continuing — Story15.5 API019 diagnosis)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `2c8e807`).
+**Pipeline status:** Story15.5 P5 open; development completion and later phases remain pending.
+**Continues:** True
+
+**Summary:** The reviewed timestamp normalization now passes INT014. The next completed NORMAL run reached API019 and failed there; no unsupported cause or completion claim is made.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 337h 23m (≈77h 24m AI-run, ≈259h 59m human/idle wait); resumed 239×.
+
+**Stories:**
+1. 15.1–15.4 remain landed.
+2. 15.5:93 of95 required tests passed; API019 failed and API020 is pending. INT009, INT014 and INT015 passed. Separate direct recovery passed.
+3. 15.6 remains unstarted until15.5 completes.
+
+**Skipped:** (none)
+
+**Epic gate:** Not started; required development evidence remains incomplete.
+
+**TEA:** 15.5 ATDD complete; required post-development automation and epic trace remain pending.
+
+**Retrospective:** Epic14 October8 accepted-with-open-items remains authoritative. Epic15 retrospective has not run.
+
+**Overrides:** Owner-authorized design defaults replace legacy browsing. Sequential ownership, independent High review, three-round cap, one final epic PR, retained branches and no deployment remain enforced.
+
+**Open questions:**
+1. API019 exact native error, matcher and cause are UNKNOWN.
+2. The failed DB lane retains runtime-key custody; key deletion and backend settlement are unverified.
+3. Current production auto-deployment containment remains UNKNOWN; only the independently reviewed final-merge containment plan exists.
+
+**Deferred work:**
+1. Exhaustive visual/manual matrices and live release validation remain explicitly deferred with owners in the author delivery draft; no release-ready claim.
+No deferred release work is counted as passed.
+
+**⚠️ Needs human:** (none)
+
+**Next:** Finish the active read-only API019 source assessment, independently review a minimal evidence-backed next step, then close95/custody/delivery beforeP6/P7 and15.6.

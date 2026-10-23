@@ -1,0 +1,21 @@
+{
+  "schema": "ROOT_INT014_NORMAL_TERMINAL_ACTUAL_COMPLETED_ALLOCATION_V1",
+  "actual_turn": "01a16919-5ce6-7950-bdb4-ecb28cdd55b3",
+  "turn_status": "completed",
+  "turn_completed_at": 1792764688,
+  "actual_tool": "exec-f001ed6e-3b70-47b1-a37e-707597b3db3f",
+  "tool_status": "completed",
+  "tool_arguments": {
+    "threadId": "01a120bb-ec6d-7611-9dde-ca64bc8e280f",
+    "prompt": "Coordinator grants ONE NEW finite max5GET terminal acquisition only for actualNORMAL39962445963, under standingauthority. Bind actualindependentHigh normal-INT014-NORMAL-terminal-reader-operational-review.json12861/SHA5bb18d5f2f4ebf78907a3981685486011935c2e1155016363ec5f9f9234f5b0f PASS_INT014_NORMAL_TERMINAL_REBIND_ONLY/findings0/Rootactualread. Exact5packet B/normal-INT014-NORMAL-terminal-actual-preparation reader50733/6b20079069e05e4ddf836fcd973d3e3348d4ed5cbfe9309e3561ccf48f9dd920 rows32340/a2a020b26877f3f7de8b2b23cec96748806f07228308cfc70c25b6a879240182 envelope26268/fc448cc4141e98d6400fbd8345feb15053c17f33befc334b02c161e2ab74fdfa proposal189647/ecc395e1056588f7ab338eb7028a8ff127b4a974af3d5cfa619f0851259c6028 manifest1200/812e5200899edfe5c1d6f50e431b37a477576ebe38fad333c48e410cda2543fe mustrecheckbeforeactivation. Save completedactualgrantturn/tool beforeeffects.\nTuplehead2c8e8077f74067a06cd5e6c5136e4c545b83a5ba/sourcea9489663addf99aa7da62c9c7ec4089a77f523d7/CP127ec671-bb41-4c77-9f30-64b8c386f3fe/attempt1/NORMALcausefalse releasefalse/op9ace75d3-954d-40b4-b870-cc3dea11265f/ownedMAIN/workflow296219797/rthunborg. RootSTOPPEDresolver1poll11/all9terminal/oldslotsclosed. Freshcurrent204Git75rawLF118GitSQL+historicalvectors10triggersinstalledpins/actualterminalownership9jobsequal proof+exclusiveonceactivation<=300s/outputabsent/journal required.\nNativeHighSOLE invocation: ONErunlogsarchiveGET repos/rthunborg/Kopplas/actions/runs/39962445963/logs; ONEartifacts?per_page=100 listing; <=ONEZIPeachpositivelyuniqueownedheadnonexpired/digest-qualified native-full-integration/full-integration.json, native-general-browser/general-browser.json, native-isolated-storage-recovery/isolated-storage-recovery.json. MAX5logicalGET. ActualGETloop15s plus SAMEchildcleanupwait<=2s and<=2joins<=1seach (NOTtotal15swall); ZIP32MiB/list4MiB100entries/stderr64KiB/selectedJSON16MiB/inflate128MiB/allreviewedZIPprivacyguards. SOURCE-LABEL projection32768ONLY; no generic32KiBprojectioncap/complianceclaim. Otherclosedprojections perunchangedreviewedreader, preserve actualsizes explicitly. Rawresponses/logsZIPJSONRAMonly/closedprojections/exclusivefsyncedconsumedperGETintents/fullEOFjoinedclosedsettled/nativeexit+outerattribution.\nAnyrefusal/partial/unknownSTOPconsumes/closesunused/no retry/refetch/fallback/pagination/perjob/status/otherGET/provider/Gitnetwork/push/POST/vars/resources/newCI/merge/deploy. Alloldslotsclosed. DISTINCTHighACTUALprovenance/95counts/failure/custody qualification mandatory before acceptance/cause-backedrepair; currentcasecausecountsUNKNOWN/no inferenceINT014fromjobstatus. Proceedexactacquisition/returnqualifiedminimalnextstep; no newcollector/broadreviews/duplicatedtests."
+  },
+  "source_thread_id": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "run": 39962445963,
+  "head": "2c8e8077f74067a06cd5e6c5136e4c545b83a5ba",
+  "source": "a9489663addf99aa7da62c9c7ec4089a77f523d7",
+  "maximum_logical_GETs": 5,
+  "no_retry": true,
+  "source_label_cap_scope": "32768 bytes source-label projection only; no generic projection cap",
+  "all_old_slots_closed": true,
+  "normal_acceptance": 0
+}

@@ -1,0 +1,117 @@
+{
+  "schema": "INDEPENDENT_FINAL_MAIN_NO_DEPLOYMENT_MINIMUM_PLAN_REVIEW_V1",
+  "status": "PASS_MINIMUM_PLAN_ONLY_MERGE_AND_EFFECTS_HELD",
+  "outcome": "PASS_MINIMUM_PLAN_ONLY_MERGE_AND_EFFECTS_HELD",
+  "independent": true,
+  "findings": [],
+  "scope": "Targeted readonly minimum containment-plan qualification only, not actual settings/source review, hosted-state proof, merge approval or fourth broad story review. Active NORMAL observation remains Root sole responsibility and was not queried.",
+  "inputs": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/final-merge-no-deployment-readiness-assessment.json",
+      "bytes": 12281,
+      "sha256": "276e4bcd75e06f9dae8ac9bc0985715943e27d6913d7883bc7e3cc5c9e6fb50a"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/final-merge-main-containment-minimum-plan.json",
+      "bytes": 13695,
+      "sha256": "e9b72a1d7fdac1666a53e6fec5056427ab167ed1b95db4b64648d6d508caedc4"
+    }
+  ],
+  "local_source_check": {
+    "vercel_config": {
+      "path": "vercel.json",
+      "bytes": 472,
+      "sha256": "e0e52756499ec94a8a4cce992fb6766b03b5a549ca5de94fa7424f3701791129"
+    },
+    "actual": "Five feature-branch false entries; no main entry/globalfalse and no ignored-command override in this file. Cron declaration unchanged. All13 source pins in readiness assessment verified equal; unchanged workflow/process analyses reused without broad rereview.",
+    "evidence": "a7cdab/native0; localfile/hash reads only, noGit/CLI/networkrepository invocation."
+  },
+  "qualified_choice": {
+    "first": "At final readiness, qualify an already existing pre-event project/production-main Git stop if one can be positively established; avoid unnecessary mutation.",
+    "if_not_present": "For strict zero new Git-deployment creation from the merge event, the documented exact-project Git Disconnect action with positive fresh disconnected readback is the smallest independent pre-event route supported here. This avoids relying on the new main config first taking effect during the same event.",
+    "why_inference_not_hosted_fact": "Official docs prescribe project Settings > Git > Connected Git Repository > Disconnect and separately state that deploying repository commits requires a project connection. Pre-event suppression follows from those two documented facts; no fresh hosted state, atomicity, queued-job cancellation or guarantee across manual deployment routes was observed.",
+    "config_option": "Adding only git.deploymentEnabled.main:false to existing vercel.json map is the smallest persistent main rule; retain every existing false rule/schema/cron. Booleanfalse is the documented all-branch alternative, broader than one main entry. Such a source rule is optional maintained policy/backstop when disconnect alone supplies the pre-event boundary; do not require two changes unnecessarily.",
+    "config_bootstrap_limit": "Docs specify intended Git suppression and true-match precedence but do not specify which config revision controls the first merge introducing a rule. main:false alone is not independently proven strict first-event containment here. Do not trialmerge/deploy to establish it.",
+    "rejected_shortcuts": "Ignored-build exit0 runs after deployment entersBUILDING, leavesCANCELED and counts as a deployment. Previewdisabled does not prove production/main suppression. createDeployments rawenum is not established as a Vercel Git creation kill switch. No unsupported PATCHlink:null/delete-link API is approved."
+  },
+  "concrete_operation_boundary": {
+    "protected_source_path": "vercel.json only if optionA is later chosen/claimed/reviewed; current472B/e0e527... preimage and eventual exactPR/merge-tree config hashes required, no config editnow.",
+    "supported_mutation": "Exact owned project Dashboard Settings > Git > Connected Git Repository > Disconnect, once. This review identifies no documented mutation API request/body and approves none. Any chosen automated actuator/concrete controls must be qualified separately before effect.",
+    "candidate_read_endpoint": "GET /v9/projects/prj_QYRxEeUBlCStlPL0YZd72y8245rg?teamId=team_jvgtCLGEU7h6atn0TyGLNncd through separately allocated existing closed capture lane; endpoint itself was not called.",
+    "minimum_finite_shape": "One fresh exact-project preimage read; if an existing sufficient stop is positively established, no mutation. Otherwise one separately allocated disconnect action and one separately allocated successful exact-project readback. No blind retries, new inventory family, connection restoration or deployment experiment.",
+    "capture_bounds_to_bind": "Existing qualified project read loop15s/stdout4MiB/stderr256KiB plus samechildwait\u22642s+2threadjoins\u22642s each; retain actual native/EOF/joined/closed/settled attribution. Allocate mutation/observation mechanism and its finite time/attempt limits explicitly before effect; this plan does not supply an executable actuator.",
+    "readback": "Require positive unambiguous disconnected state for exact project/team, with identity/previewdisable and unrelated settings preserved. API link is documented optional; missing field alone is UNKNOWN, not disconnected proof. If REST shape is insufficient, an explicitly allocated exact-project Dashboard disconnected-state observation may supply proof; not an automatic retry/fallback or permission to repeat mutation.",
+    "concurrency": "Root sole shared-project mutation owner; coordinate actual project claim and other writers. Verify exact expected Git link/project/team/productionbranch immediately before action and record exclusive intent/preimage once. No documented CAS/IfMatch contract is established; compare-before-action is not server-atomic. Drift, lostack, nonzero/partial capture or failedreadback =>UNKNOWN/STOP/mergeheld, no overwrite/replay/adoption.",
+    "known_pending_work": "Account for known already accepted/queued Git work before claiming the prospective event boundary. Disconnect does not cancel or settle it. If relevant pending-work facts remain unknown, keep merge held or qualify them through a separately admitted bounded proof; no new diagnostic/cancellation authority is implied.",
+    "no_automatic_reconnect": "Retain disconnected postimage after merge. A reconnect can resume deployment processing and needs separate explicit qualified authority/preconditions; no automatic restoration to preimage. Do not pause existing service, uninstall account GitHub app, alterdomains/secrets/prodbranch, deletehooks, canceljobs or promote/deploy."
+  },
+  "authorization_and_gates": {
+    "now": "Only private review and bounded publicofficialdocs reads performed. No source or provider change, merge, reconnect or deployment authorized by plan/verdict.",
+    "shared_mutation": "Project Git disconnection affects all integrated branches, not only final main. Previous owned-feature-branch reads/checkpoint grants do not authorize it. Actual trusted Coordinator finite allocation must explicitly bind that shared-project effect/sideeffects and existing human NoDeploy/necessarycontainment authorization; plan narrative alone is not authority. Reuse actual standing userauthorization where it covers the concrete step; no repeat human permission question at this stage.",
+    "merge": "Conditional user intent persists, but required development/integrity/full95/recovery/custody gates, finalactualPRhead/targetmain identity, consequential finding closure and Coordinator fresh Codex-chat externalreview of actualfinalhead remain required. Retain mergecommit and branches. Explicitly reconcile merge_main:false in actual trusted conditionalmerge course; this review leaves it unchanged.",
+    "scope": "AllautomaticPreviews remain disabled. Git controls/disconnection do not establish blanket manualCLI/API/Dashboard/hook deployment suppression or stop current production service. These routes remain prohibited in the operation; no dbpush/hostedschema followon, deployment/promotion/reconnect implied."
+  },
+  "actionable_next_proof": {
+    "owner": "Root/Coordinator",
+    "current_missing_facts": [
+      "Actual final PR/head and targetmain identity plus all required executed gate/freshreview evidence.",
+      "Fresh exact-project/team/currentrepoGitlink/productionbranch/config-selection identity and sufficient current main suppression or explicit disconnected state.",
+      "If disconnect is needed: actual shared-project claim/preimage, concrete supported actuator/control review, completed finite mutation/readback allocation grounded in existing userauthorization.",
+      "Positive fullcapture postimage beforemerge; ambiguous omittedlink/uncertainresponse must remainUNKNOWN."
+    ],
+    "next": "Prepare the exact final-readiness project read/admission only when finalmerge readiness is otherwise met; no immediate provider request or sourcechange from this review. If no existing stop is proven, prepare exact one-project disconnect/readback course and independently review concrete execution packet. No deployment test.",
+    "resume_condition": "Actual completed requiredchecks/reviews + qualified existingorpre-eventmaincontainment + reconciledconditionalmergeauthorization and finiteoperation allocation, with current identities/preimages unchanged."
+  },
+  "primary_official_verification": [
+    {
+      "url": "https://vercel.com/docs/project-configuration/git-configuration#gitdeploymentenabled",
+      "checked": "Branch/defaulttrue/maporboolean behavior and anymatchingtrue precedence; no explicit same-event config activation guarantee.",
+      "source_lines": "234-327"
+    },
+    {
+      "url": "https://vercel.com/docs/project-configuration/git-settings#disconnect-your-git-repository",
+      "checked": "Documented exactproject Dashboard disconnect action.",
+      "source_lines": "232-238"
+    },
+    {
+      "url": "https://vercel.com/docs/errors/error-list#lost-git-repository-access",
+      "checked": "Projectconnection required for repositorycommit deployment; pre-event boundary is explicitly an inference.",
+      "source_lines": "511-518"
+    },
+    {
+      "url": "https://vercel.com/docs/project-configuration/project-settings#ignored-build-step",
+      "checked": "BUILDING-beforeignore command;exit0CANCELED and canceled builds count as deployments.",
+      "source_lines": "279-292"
+    },
+    {
+      "url": "https://vercel.com/docs/rest-api/projects/find-a-project-by-id-or-name",
+      "checked": "Supported GETprojectlookup; linkoptional and productionBranch within link. No optional-field absence proof or mutation API invented.",
+      "source_lines": "261-265,2094-2169,4421-4423"
+    }
+  ],
+  "commands_and_limits": [
+    "909dbc/native0:actualtwoinputbytes/pins/fullJSON read",
+    "Publicofficialwebopen/find only for critical sourceclaims; one bounded official-domain search did not establish a disconnect mutation API and no operation was inferred from it. No communitysource reliedupon.",
+    "a7cdab/native0:all13 original local sourcepins equal/currentvercelJSON read; noGitcommand/tests/collector."
+  ],
+  "current_state": {
+    "main_containment": "UNKNOWN",
+    "merge_ready": false,
+    "merge_main_false_override": "UNCHANGED",
+    "development_complete": false,
+    "release_ready": false,
+    "effect_authority": false,
+    "source_or_runtime_acceptance": 0
+  },
+  "effects": {
+    "authenticated_provider_GET": 0,
+    "provider_writes": 0,
+    "CLI_or_Git_commands": 0,
+    "network_repository_reads": 0,
+    "source_state_spec_writes": 0,
+    "tests_resources": 0,
+    "merge_deploy_reconnect": 0,
+    "public_official_documentation_reads": true,
+    "own_new_private_review_files": 1
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "label": "normal-INT014-NORMAL-provider",
+  "argv": [
+    "C:/Users/Rasmus/AppData/Local/Programs/Python/Python314/python.exe",
+    "-I",
+    "-X",
+    "utf8",
+    "-B",
+    ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-operational-preparation/provider-readonly.py",
+    "--execute-once-after-new-root-provider-grant"
+  ],
+  "Node": "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+  "native_exit": 0,
+  "elapsed_seconds": 2.468621,
+  "reason": null,
+  "caps": {
+    "seconds": 60,
+    "stdout": 65536,
+    "stderr": 65536
+  },
+  "direct_process_settled": true,
+  "readers_joined": true,
+  "handles_closed": true,
+  "streams": [
+    {
+      "bytes": 991,
+      "sha256": "70aaf325c12e01dd06273d96e5b2579636a127b80bbeb8358da30d657dd11c7d",
+      "physical_EOF": true,
+      "reader_done": true,
+      "reader_error": false,
+      "overflow": false
+    },
+    {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "physical_EOF": true,
+      "reader_done": true,
+      "reader_error": false,
+      "overflow": false
+    }
+  ],
+  "raw_persisted": false,
+  "extra_environment_keys": [],
+  "actual_tool_provenance": {
+    "chunk_id": "692d5c",
+    "outer_native_exit": 0,
+    "outer_wall_seconds": 2.6625289,
+    "session_id": null,
+    "waits": [],
+    "observer": "NativeHigh direct tool result; no claim Root independently observed child lifecycle"
+  },
+  "qualification": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-vercel-readonly-qualification.json",
+    "bytes": 30458,
+    "sha256": "50eb47a3cc6ed7bb2ea32db3bdfca3cf9659ffbf91dc3a8cf237cc0e4cb37bc0",
+    "status": "PASS_LIMITED_ORDINARY_GIT_PUSH_CONTAINMENT",
+    "category": null,
+    "utc_completed": "2026-10-23T13:33:25.158422+00:00",
+    "logical_GET_invocations": 1,
+    "identity_matches": {
+      "project_id_exact": true,
+      "account_id_exact": true,
+      "project_name_exact": true,
+      "repository_provider_github": true,
+      "repository_owner_exact": true,
+      "repository_name_exact": true
+    },
+    "selected_five_fields": {
+      "id": "prj_QYRxEeUBlCStlPL0YZd72y8245rg",
+      "accountId": "team_jvgtCLGEU7h6atn0TyGLNncd",
+      "commandForIgnoringBuildStep": "exit 0",
+      "previewDeploymentsDisabled": true,
+      "gitProviderOptions.createDeployments": "enabled"
+    },
+    "transport": {
+      "native_exit": 0,
+      "elapsed_seconds": 2.34546,
+      "launch_error": false,
+      "timed_out": false,
+      "capture_complete": true,
+      "direct_process_settled": true,
+      "readers_joined": true,
+      "handles_closed": true,
+      "streams": {
+        "stdout": {
+          "observed_bytes": 17940,
+          "physical_EOF": true,
+          "reader_done": true,
+          "read_error": false,
+          "overflow": false,
+          "observed_sha256": "5078a17c7808addc7c78b668a79fa651accf812a3d18ccfa49a87b1a2c8a7013"
+        },
+        "stderr": {
+          "observed_bytes": 0,
+          "physical_EOF": true,
+          "reader_done": true,
+          "read_error": false,
+          "overflow": false,
+          "observed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    }
+  },
+  "activation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-provider-readonly-activation.json",
+    "bytes": 2460,
+    "sha256": "84aee3979f7310ba24e6e0d8cc22b836ff3bb53f4abb4db9c7fe54312cc04065"
+  },
+  "allocation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-normal-INT014-NORMAL-effects-allocation.json",
+    "bytes": 4177,
+    "sha256": "e9ce2ca0f25ce32b11cbabbe8916910fa6e495bcb8f69c70795efd6681cf9146"
+  },
+  "proof_age_before_invocation_seconds": 141.281439,
+  "sole_invocation_consumed": true,
+  "all_unused_provider_slots_closed": true,
+  "no_retry": true,
+  "acceptance": 0,
+  "outer_capture_reuse": "Exact qualified capture() function; only in-memory evidence destination maps its one native receipt to this approved outside receipt path. No capture/provider algorithm changes."
+}
