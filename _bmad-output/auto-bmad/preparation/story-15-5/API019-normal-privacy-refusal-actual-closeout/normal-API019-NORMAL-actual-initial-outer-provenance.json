@@ -1,0 +1,41 @@
+{
+  "schema": "ROOT_API019_NORMAL_INITIAL_ACTUAL_OUTER_ATTRIBUTION_V1",
+  "publication": {
+    "initial": {
+      "chunk_id": "6f5ea4",
+      "wall_time_seconds": 10.0034498,
+      "session_id": 11163,
+      "original_token_count": 0,
+      "output": ""
+    },
+    "waits": [
+      {
+        "chunk_id": "974aaf",
+        "wall_time_seconds": 5.0079509,
+        "session_id": 11163,
+        "original_token_count": 0,
+        "output": ""
+      },
+      {
+        "chunk_id": "4eac9e",
+        "wall_time_seconds": 1.09e-05,
+        "exit_code": 0,
+        "original_token_count": 27,
+        "output": "{\"phase\": \"DISPATCH_ACCEPTED\", \"head\": \"edce7b8725ad379224bfa9fea517ad097f3906cb\", \"normal_acceptance\": 0}\r\n"
+      }
+    ]
+  },
+  "resolver": {
+    "chunk_id": "54f105",
+    "wall_time_seconds": 2.0770827,
+    "exit_code": 0,
+    "original_token_count": 24,
+    "output": "{\"phase\": \"ROOT_ACTIVE\", \"run_id\": 39975009683, \"resolution_count\": 1, \"normal_acceptance\": 0}\r\n"
+  },
+  "head": "edce7b8725ad379224bfa9fea517ad097f3906cb",
+  "source": "e52568795789034c556f64b0721318f75aa13691",
+  "run": 39975009683,
+  "operation_id": "e7f012f0-db8c-427c-9d5c-52b20fcb4914",
+  "no_replay": true,
+  "normal_acceptance": 0
+}

@@ -1,0 +1,29 @@
+{
+  "schema": "API019_NORMAL_ACTUAL_TERMINAL_READER_MANIFEST_V1",
+  "self_excluded": true,
+  "execution_authorized": false,
+  "members": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-terminal-actual-preparation/reader.py",
+      "bytes": 50846,
+      "sha256": "a8beb9a4e7a62c699080ee6152674d0a8571528504307be96ef78f109e6e03c5"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-terminal-actual-preparation/source-rows.json",
+      "bytes": 34648,
+      "sha256": "0b75cb944e9d6a6ad2bfa7876041020ae966bc59cc1188c8aee3630b96c17ed9"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-terminal-actual-preparation/proposal.json",
+      "bytes": 194113,
+      "sha256": "27e5d11896725d7b0f3cd87aaecd7bb620f62412c25187d698112f825a8427e8"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-terminal-actual-preparation/actual-terminal-envelope.json",
+      "bytes": 26956,
+      "sha256": "d7aebdb3427bcf4d3e0d23e81ae9f87ce3c60fbc3c670f0cd7f277c70ab96466"
+    }
+  ],
+  "draft_history_preserved_in": "proposal.data_enrollment_delta.prior_draft_pins/fullsourceinverse/sourceprecheck",
+  "actual_new_run": 39975009683
+}

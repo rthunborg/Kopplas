@@ -1,0 +1,350 @@
+{
+  "label": "normal-API019-NORMAL-terminal",
+  "argv": [
+    "C:/Users/Rasmus/AppData/Local/Programs/Python/Python314/python.exe",
+    "-I",
+    "-X",
+    "utf8",
+    "-B",
+    ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-terminal-actual-preparation/reader.py",
+    "--execute-once-after-terminal-grant"
+  ],
+  "Node": "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+  "native_exit": 0,
+  "elapsed_seconds": 6.983064,
+  "reason": null,
+  "caps": {
+    "seconds": 120,
+    "stdout": 2097152,
+    "stderr": 262144
+  },
+  "direct_process_settled": true,
+  "readers_joined": true,
+  "handles_closed": true,
+  "streams": [
+    {
+      "bytes": 731,
+      "sha256": "c98ac92ba7808eb73fd49319d9e464fa4ed564f0ba3cec800446659198830dbd",
+      "physical_EOF": true,
+      "reader_done": true,
+      "reader_error": false,
+      "overflow": false
+    },
+    {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "physical_EOF": true,
+      "reader_done": true,
+      "reader_error": false,
+      "overflow": false
+    }
+  ],
+  "raw_persisted": false,
+  "extra_environment_keys": [],
+  "actual_outer_tool": {
+    "chunk_id": "83ea1f",
+    "native_exit": 0,
+    "wall_time_seconds": 7.3162087,
+    "session_id": null,
+    "waits": 0,
+    "attribution": "Actual exec_command result; captured readerchild0/6.983064s and fiveGET nativechildren separately recorded. No Root direct-lifecycle claim."
+  },
+  "preinvocation_sourceproof_age_seconds": 74.403823,
+  "qualification": "UNQUALIFIED_PENDING_DISTINCT_HIGH_ACTUAL_EVIDENCE_REVIEW",
+  "packet": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edce7b87-normal-API019-NORMAL-ci-independent",
+  "inventory": [
+    {
+      "path": "acquisition-summary.json",
+      "bytes": 2544,
+      "sha256": "fe4f92a60aa6659968de81b90bd3c5faaa0db32ff690ab8611a26913f180bc35"
+    },
+    {
+      "path": "artifact-list-projection.json",
+      "bytes": 1290,
+      "sha256": "5e849be7eae76a26563b62953f0630c1a03015c48a5c0f8c19b703a6b039be1a"
+    },
+    {
+      "path": "native-full-integration-projection.json",
+      "bytes": 67030,
+      "sha256": "03c1fbfdeb41f5253b90cc4e56ba260b8d7204e6dc295eadfdcd21b07cbc4d03"
+    },
+    {
+      "path": "native-general-browser-projection.json",
+      "bytes": 13358,
+      "sha256": "10b2b92b3c773707d4f377db035a18c0b463f6100f5d40270e6c028897fde41c"
+    },
+    {
+      "path": "native-isolated-storage-recovery-projection.json",
+      "bytes": 2008,
+      "sha256": "9a4d676a63e5fe273ac8128b9c50e78157b34d6193f8a2796942c1a60e2cfb9f"
+    },
+    {
+      "path": "operator-intent.json",
+      "bytes": 11540,
+      "sha256": "a7a6950fb6d23a2fec43d710ecf6fc3aa3dbdbe7b8e4cec9480d6ffb6ffa1063"
+    },
+    {
+      "path": "request-01-intent.json",
+      "bytes": 413,
+      "sha256": "99e9a913f2e09897216810e320f91d8259d8137ee9e819307aa8c1823adcac94"
+    },
+    {
+      "path": "request-01-result.json",
+      "bytes": 1134,
+      "sha256": "d08a1edf45aa38fd9d5020d42977a3fdef70cb5a5fd76dd6cdfc3a591124d679"
+    },
+    {
+      "path": "request-02-intent.json",
+      "bytes": 432,
+      "sha256": "6820820abd9a454c045452c0451a2c9a75d57ccae2906e1f96bb1153af210036"
+    },
+    {
+      "path": "request-02-result.json",
+      "bytes": 1151,
+      "sha256": "67595c9a3d68852a01c2c4e5b55ffeabfa9e5fbfd153f76b75c2eb019ddabd29"
+    },
+    {
+      "path": "request-03-intent.json",
+      "bytes": 421,
+      "sha256": "7f8caecbea000227199ce065e9e1028a73382ffed785949c71ef4c589b7c5573"
+    },
+    {
+      "path": "request-03-result.json",
+      "bytes": 1140,
+      "sha256": "99646ac336409ce2809dfd181b55ab073c9a5ff663390efac7782836ded9679f"
+    },
+    {
+      "path": "request-04-intent.json",
+      "bytes": 431,
+      "sha256": "05f46180bdb2547ea36fa45f6ee82afa0a6573745e1a305f468ac8c759fe44f5"
+    },
+    {
+      "path": "request-04-result.json",
+      "bytes": 1149,
+      "sha256": "0489050251c5b85a25a543f5b29217cf4120f85fb5ce701a4639accf1eac0e99"
+    },
+    {
+      "path": "request-05-intent.json",
+      "bytes": 422,
+      "sha256": "e019d2fe3cd96b1b2fd3635524b72e5199468c7d3b4c1fc334b0f241f128e792"
+    },
+    {
+      "path": "request-05-result.json",
+      "bytes": 1143,
+      "sha256": "fbde86365d54f70a6762dfe64c8c6bf779bbbc7e658a0044927f65537bcf035b"
+    },
+    {
+      "path": "run-archive-projection.json",
+      "bytes": 48552,
+      "sha256": "1a0f47d977ee33793d8a38591103855a876436b91901055753b81767ae62fd48"
+    },
+    {
+      "path": "source-label-projection.json",
+      "bytes": 1691,
+      "sha256": "16a75428d71a64737d0e676188203868023a48f67c67a602f7ea4c7ef0364886"
+    },
+    {
+      "path": "source-provenance.json",
+      "bytes": 10814,
+      "sha256": "ad66f606296444c69a8757eeb352ae937bcfddc4d44d3ed69371479ac312a86f"
+    },
+    {
+      "path": "terminal-bindings.json",
+      "bytes": 14266,
+      "sha256": "8a48fffaf82f322a28394c46b0aecb638a0eaf197c25b0207e4b321aab42f7df"
+    }
+  ],
+  "inventory_count": 20,
+  "inventory_sha256": "2a91818424c3b21974af225da5b62449d4787f9d0048bfcd737066e04e9b24ab",
+  "GET_capture_facts": [
+    {
+      "sequence": 1,
+      "label": "normal-run-archive",
+      "native_exit": 0,
+      "category": null,
+      "settled": true,
+      "capture_complete": true,
+      "handles_closed": true,
+      "streams": [
+        {
+          "joined": true,
+          "observed_bytes": 825888,
+          "overflow": false,
+          "physical_EOF": true,
+          "reader_done": true,
+          "reader_error": false,
+          "sha256": "c99afc6612e72b04f6a4083bb8d133f4e2e93af2765b93437f75380a86b28a51"
+        },
+        {
+          "joined": true,
+          "observed_bytes": 0,
+          "overflow": false,
+          "physical_EOF": true,
+          "reader_done": true,
+          "reader_error": false,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "sequence": 2,
+      "label": "normal-artifact-list",
+      "native_exit": 0,
+      "category": null,
+      "settled": true,
+      "capture_complete": true,
+      "handles_closed": true,
+      "streams": [
+        {
+          "joined": true,
+          "observed_bytes": 2194,
+          "overflow": false,
+          "physical_EOF": true,
+          "reader_done": true,
+          "reader_error": false,
+          "sha256": "dd174b26da13f6839c823e9d10d0283584ef4b68e68d7b6793325ca20915c398"
+        },
+        {
+          "joined": true,
+          "observed_bytes": 0,
+          "overflow": false,
+          "physical_EOF": true,
+          "reader_done": true,
+          "reader_error": false,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "sequence": 3,
+      "label": "native-general-browser",
+      "native_exit": 0,
+      "category": null,
+      "settled": true,
+      "capture_complete": true,
+      "handles_closed": true,
+      "streams": [
+        {
+          "joined": true,
+          "observed_bytes": 9623,
+          "overflow": false,
+          "physical_EOF": true,
+          "reader_done": true,
+          "reader_error": false,
+          "sha256": "423df9ac3d61310a1b2314d0ce6ef2219d3eb11f08010dea52197467a14cf3da"
+        },
+        {
+          "joined": true,
+          "observed_bytes": 0,
+          "overflow": false,
+          "physical_EOF": true,
+          "reader_done": true,
+          "reader_error": false,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "sequence": 4,
+      "label": "native-isolated-storage-recovery",
+      "native_exit": 0,
+      "category": null,
+      "settled": true,
+      "capture_complete": true,
+      "handles_closed": true,
+      "streams": [
+        {
+          "joined": true,
+          "observed_bytes": 682,
+          "overflow": false,
+          "physical_EOF": true,
+          "reader_done": true,
+          "reader_error": false,
+          "sha256": "01d6cf1dbb8eb9ad8e770716cf8d67f4da07910d567385a654dfa6a7db001c85"
+        },
+        {
+          "joined": true,
+          "observed_bytes": 0,
+          "overflow": false,
+          "physical_EOF": true,
+          "reader_done": true,
+          "reader_error": false,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "sequence": 5,
+      "label": "native-full-integration",
+      "native_exit": 0,
+      "category": null,
+      "settled": true,
+      "capture_complete": true,
+      "handles_closed": true,
+      "streams": [
+        {
+          "joined": true,
+          "observed_bytes": 112050,
+          "overflow": false,
+          "physical_EOF": true,
+          "reader_done": true,
+          "reader_error": false,
+          "sha256": "a0127b48d664d2e568869a347ef210436e180d5158b38aa24caf8528eee1ae3d"
+        },
+        {
+          "joined": true,
+          "observed_bytes": 0,
+          "overflow": false,
+          "physical_EOF": true,
+          "reader_done": true,
+          "reader_error": false,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    }
+  ],
+  "logical_GETs": 5,
+  "maximum_GETs": 5,
+  "unused_slots_closed": true,
+  "no_retry": true,
+  "raw_stdout_persisted": false,
+  "stdout_projection_limitation": "Only metadata of generated closed packet retained; stdout is RAM-only and not cause/coverage authority.",
+  "caps_scope": "Source labels32768 only; no genericprojectioncap. Readerloop15s+cleanupwait2+2joins1; original32MiBZIP/4MiBlisting100/64KiBstderr/16MiBselectedJSON/128MiBinflate retained. OuterPython directcapture120s/2MiBstdout/256KiBstderr.",
+  "capture_child_kind": "Python314 frozen reader. Retained capture utility Node field is PATH/runtime provenance, not child executable claim.",
+  "slots": {
+    "invocations": 1,
+    "logical_GETs_consumed": 5,
+    "unused_GETs_closed": 0,
+    "all_slots_closed": true,
+    "retries": 0,
+    "other_effects": 0
+  },
+  "closed_projection_refs": {
+    "native-full-integration-projection.json": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edce7b87-normal-API019-NORMAL-ci-independent/native-full-integration-projection.json",
+      "bytes": 67030,
+      "sha256": "03c1fbfdeb41f5253b90cc4e56ba260b8d7204e6dc295eadfdcd21b07cbc4d03"
+    },
+    "native-general-browser-projection.json": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edce7b87-normal-API019-NORMAL-ci-independent/native-general-browser-projection.json",
+      "bytes": 13358,
+      "sha256": "10b2b92b3c773707d4f377db035a18c0b463f6100f5d40270e6c028897fde41c"
+    },
+    "native-isolated-storage-recovery-projection.json": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edce7b87-normal-API019-NORMAL-ci-independent/native-isolated-storage-recovery-projection.json",
+      "bytes": 2008,
+      "sha256": "9a4d676a63e5fe273ac8128b9c50e78157b34d6193f8a2796942c1a60e2cfb9f"
+    },
+    "acquisition-summary.json": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edce7b87-normal-API019-NORMAL-ci-independent/acquisition-summary.json",
+      "bytes": 2544,
+      "sha256": "fe4f92a60aa6659968de81b90bd3c5faaa0db32ff690ab8611a26913f180bc35"
+    },
+    "source-label-projection.json": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edce7b87-normal-API019-NORMAL-ci-independent/source-label-projection.json",
+      "bytes": 1691,
+      "sha256": "16a75428d71a64737d0e676188203868023a48f67c67a602f7ea4c7ef0364886"
+    }
+  },
+  "summary_stdout_lookup": "Safe metadata lookups projection-summary.json and summary.json were absent; empty stdout-summary metadata is a local lookup limitation, not missing packet evidence. Actual acquisition-summary.json and source-label-projection.json now bound by exact file references; no payload change/refetch/cause qualification."
+}

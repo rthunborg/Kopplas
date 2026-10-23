@@ -1,0 +1,114 @@
+{
+  "schema": "ROOT_API019_NORMAL_ACTUAL_PUBLICATION_RESOLVER_PROOF_V1",
+  "head": "edce7b8725ad379224bfa9fea517ad097f3906cb",
+  "source": "e52568795789034c556f64b0721318f75aa13691",
+  "run": 39975009683,
+  "operation_id": "e7f012f0-db8c-427c-9d5c-52b20fcb4914",
+  "checkpoint_id": "7718bd09-e9b0-4f0b-956b-3cece4d8a28a",
+  "started_at": "2026-10-23T15:03:41.145402+00:00",
+  "dispatch_accepted_at": "2026-10-23T15:03:49.482382+00:00",
+  "resolution_count": 1,
+  "controller_native_receipts": [
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-root-operation/remote-before-receipt.json",
+        "bytes": 697,
+        "sha256": "4975aa44b6e3c8c670bfae67128933168ad630c397e28c1c6d9f1c6256c24b78"
+      },
+      "native_exit": 0,
+      "actual_elapsed_seconds": 0.651389,
+      "configured_loop_seconds": 20,
+      "cleanup_wait_seconds": 2,
+      "joins_max": 2,
+      "seconds_each_join": 1,
+      "full_EOF_joined_closed_settled": true
+    },
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-root-operation/push-receipt.json",
+        "bytes": 698,
+        "sha256": "4c36b50e9a861258cbbd1366e7296cf06a9c08639d131a5f31eba25db75dddca"
+      },
+      "native_exit": 0,
+      "actual_elapsed_seconds": 3.406937,
+      "configured_loop_seconds": 60,
+      "cleanup_wait_seconds": 2,
+      "joins_max": 2,
+      "seconds_each_join": 1,
+      "full_EOF_joined_closed_settled": true
+    },
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-root-operation/remote-readback-receipt.json",
+        "bytes": 697,
+        "sha256": "a68125267fe0757899dbfc738594cb1cfa223deee1ba40fda42767eddf3eb60e"
+      },
+      "native_exit": 0,
+      "actual_elapsed_seconds": 0.569174,
+      "configured_loop_seconds": 20,
+      "cleanup_wait_seconds": 2,
+      "joins_max": 2,
+      "seconds_each_join": 1,
+      "full_EOF_joined_closed_settled": true
+    },
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-root-operation/dispatch-receipt.json",
+        "bytes": 842,
+        "sha256": "1ff9544c862e94f8d56a75fda79c78256454e2c8eb01c7eaf80bb3b5c0fa69e7"
+      },
+      "native_exit": 0,
+      "actual_elapsed_seconds": 3.574331,
+      "configured_loop_seconds": 90,
+      "cleanup_wait_seconds": 2,
+      "joins_max": 2,
+      "seconds_each_join": 1,
+      "full_EOF_joined_closed_settled": true
+    },
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-root-operation/resolve-1-receipt.json",
+        "bytes": 701,
+        "sha256": "92dbf934dce8eb219fca9ef6cebdf355d01e1694db66ee5d13d2ad02d6fe412e"
+      },
+      "native_exit": 0,
+      "actual_elapsed_seconds": 1.903882,
+      "configured_loop_seconds": 20,
+      "cleanup_wait_seconds": 2,
+      "joins_max": 2,
+      "seconds_each_join": 1,
+      "full_EOF_joined_closed_settled": true
+    }
+  ],
+  "native_captured_count": 5,
+  "underlying_GitHub_calls": "Canonical4metadataGET+1POST under the one Node captured child, plus1resolverGET; they are not separately observed native children. ProviderGET1 and remoteGit3 separately attributed.",
+  "configured_remote20_matches_allocation": true,
+  "remote_before_and_readback_exact_expected_91bytes_sha256": true,
+  "source_proof_age_at_dispatch_accepted_upper_bound_seconds": 168.03588,
+  "provider_age_at_dispatch_accepted_upper_bound_seconds": 100.758203,
+  "guard_basis": "Unchanged reviewed controller and guarded canonical adapter enforce freshness immediately before each mutation/POST. Accepted timestamp is a conservative upper bound.",
+  "initial_actual_outer": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-actual-initial-outer-provenance.json",
+    "bytes": 1243,
+    "sha256": "299126b7c999c8040fc4726cd235172436ddf40263e95ef41246285a296af4ad"
+  },
+  "allocation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-normal-API019-NORMAL-effects-allocation.json",
+    "bytes": 4081,
+    "sha256": "255bd6aaf021c8cf52b59bae83eee228041344b592fb5c294bc60de97bc8c2e3"
+  },
+  "provider_outer": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-provider-execution-receipt.json",
+    "bytes": 2459,
+    "sha256": "4ad4d488d2929fb628422b6698b2f1be648479a4feb782eaa9030cad1e2fa480"
+  },
+  "source_proof": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-current-source-proof.json",
+    "bytes": 59054,
+    "sha256": "91f63f404e2da4b44e4934b34d89bbcbe6d40de231c56aeace1a1ce1b75fb041"
+  },
+  "normal_acceptance": 0,
+  "phase": "ROOT_ACTIVE",
+  "artifact_GETs": 0,
+  "no_retry": true
+}

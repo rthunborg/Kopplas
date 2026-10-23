@@ -7940,3 +7940,43 @@ Release validation is separate from required development gates.
 **⚠️ Needs human:** (none)
 
 **Next:** Prepare and independently validate the existing operational lineage against the reviewed evidence source, then obtain the finite checkpoint allocation and observe the missing boundary. Continue required95/custody/delivery, P6/P7,15.6 and epic gates.
+
+## Report — 2026-10-23T15:56:57Z (continuing — API019 privacy refusal qualified)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `edce7b8`).
+**Pipeline status:** Story15.5 P5 remains open; development completion and release readiness are unproven.
+**Continues:** True
+
+**Summary:** The actual NORMAL run independently confirms the telemetry privacy guard refused an observed record. Source controls found no emitter mismatch or demonstrated false positive; the cause and first emitting child remain unknown.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 338h 59m (≈77h 24m AI-run, ≈261h 34m human/idle wait); resumed 241×.
+
+**Stories:**
+1. 15.1–15.4 remain landed.
+2. 15.5:93 required tests passed, API019 failed, API020 pending. Separate direct recovery passed. DB key remains retained; backend settlement is unknown.
+3. 15.2 inherited review provenance is mapped with the single remaining test merge seam confirmed. All3 broad rounds are consumed; review_unverified is preserved pending final reconciliation.
+4. 15.6 remains unstarted until15.5 completes.
+
+**Skipped:** (none)
+
+**Epic gate:** Pending required development evidence and later stories.
+
+**TEA:** ATDD complete; required post-development automation and epic trace remain pending.
+
+**Retrospective:** Epic14 October8 accepted-with-open-items is authoritative; October7 rejection remains historical. Epic15 retrospective pending.
+
+**Overrides:** Owner-authorized design defaults, sequential ownership, independent sensitive High review, three-round cap, one final epic PR, retained branches and no deployment remain enforced.
+
+**Open questions:**
+1. First privacy increment predicate and owned child are UNKNOWN; guard refusal alone proves neither a specific leak nor a false positive.
+2. DB key deletion and backend settlement remain unverified.
+3. Actual current production auto-deployment containment and final15.2 metadata reconciliation remain pending.
+
+**Deferred work:**
+1. Exhaustive visual/manual matrices and live release validation remain deferred with owners; no passed or waived credit.
+Development completion is separate from release readiness.
+
+**⚠️ Needs human:** (none)
+
+**Next:** Independently review the minimum closed discriminator within the existing observer/source-label seam, then use evidence-backed repair and required95/custody/delivery beforeP6/P7,15.6 and epic gates.

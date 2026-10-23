@@ -1,0 +1,47 @@
+{
+  "schema": "ROOT_API019_NORMAL_TERMINAL_ACTUAL_COMPLETED_ALLOCATION_V1",
+  "actual_turn": "01a16969-4412-7780-a605-4a766eb1ecf1",
+  "turn_status": "completed",
+  "turn_completed_at": 1792769912,
+  "actual_tool": "exec-f62e67ca-fa12-4096-9620-fc1f32ebbe1f",
+  "tool_status": "completed",
+  "tool_arguments": {
+    "threadId": "01a120bb-ec6d-7611-9dde-ca64bc8e280f",
+    "prompt": "Completed finite Coordinator allocation under standing human authority: authorize ONE sole invocation of the exact reviewed terminal reader for NORMAL39975009683, attempt1/headedce7b8725ad379224bfa9fea517ad097f3906cb/sourcee52568795789034c556f64b0721318f75aa13691/CP7718bd09-e9b0-4f0b-956b-3cece4d8a28a/op e7f012f0-db8c-427c-9d5c-52b20fcb4914/workflow296219797/rthunborg/ownedMAIN. Root actual verification e7c6fd plus this hash check confirms final independent High review15744/db86efc22e40b29dbcd94a06a5e1bbaee8a09cf17aaf9ed605fee15489fff987 PASS/independent/findings0 and all exact five packet lengths/hashes in your request. Bind those unchanged reader50846/a8beb9a4, rows34648/0b75cb94, envelope26956/d7aebdb3, proposal194113/27e5d118, manifest1293/674bc4a6 in the saved completed allocation. Maximum FIVE logical GETs only: exact run39975009683 logs archive1, artifacts?per_page=100 listing1, then <=one positively unique ownedhead/nonexpired/digest-qualified ZIP for each native-full-integration/full-integration.json, native-general-browser/general-browser.json, native-isolated-storage-recovery/isolated-storage-recovery.json. Fresh current/pushed204Git/75rawLF/118Git-only historical vectors/10triggers/install/clean proof <=300s and exclusive23field activation/once journal required before sole Native High invocation. Each GET capture loop15s plus same-child wait<=2s plus <=2joins<=1s each; archive/report ZIP32MiB/list4MiB<=100/stderr64KiB/selectedJSON16MiB/declared+actual inflate128MiB. SOURCE-LABEL projection32768B ONLY; no generic projection32KiB claim. Preserve RAM-only raw bodies/ZIP/errors, closed projections, privacy/ZIP metadata guards, exclusive fsynced consumed per-GET intents, native exit+fullEOF joined handlesclosed settled and actual outer attribution. Refusal/partial/unknown/cap/decode/digest failure STOP and close unused, no retry/refetch/fallback/pagination/per-job/status/other GET. All prior authority remains closed. Provider/Gitnetwork/push/POST/vars/resources/otherCI/merge/deploy0. After closed acquisition use existing distinct High actual95/failure/recovery/custody qualification; new case/cause/custody remain UNKNOWN until evidence. No speculative functional fix or blind NORMAL repeat. This is the completed finite allocation, not a proposal or request for further human approval."
+  },
+  "source_thread_id": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "run": 39975009683,
+  "head": "edce7b8725ad379224bfa9fea517ad097f3906cb",
+  "source": "e52568795789034c556f64b0721318f75aa13691",
+  "maximum_logical_GETs": 5,
+  "no_retry": true,
+  "source_label_cap_scope": "32768 bytes source-label projection only; no generic projection cap",
+  "bound_review": {
+    "bytes": 15744,
+    "sha256": "db86efc22e40b29dbcd94a06a5e1bbaee8a09cf17aaf9ed605fee15489fff987"
+  },
+  "bound_packet": {
+    "reader": {
+      "bytes": 50846,
+      "sha256": "a8beb9a4e7a62c699080ee6152674d0a8571528504307be96ef78f109e6e03c5"
+    },
+    "rows": {
+      "bytes": 34648,
+      "sha256": "0b75cb944e9d6a6ad2bfa7876041020ae966bc59cc1188c8aee3630b96c17ed9"
+    },
+    "envelope": {
+      "bytes": 26956,
+      "sha256": "d7aebdb3427bcf4d3e0d23e81ae9f87ce3c60fbc3c670f0cd7f277c70ab96466"
+    },
+    "proposal": {
+      "bytes": 194113,
+      "sha256": "27e5d11896725d7b0f3cd87aaecd7bb620f62412c25187d698112f825a8427e8"
+    },
+    "manifest": {
+      "bytes": 1293,
+      "sha256": "674bc4a652c3b7a217a942f7f1ceb61c45c155551ecb9ac0ad1c38593067f098"
+    }
+  },
+  "all_old_slots_closed": true,
+  "normal_acceptance": 0
+}

@@ -1,0 +1,608 @@
+{
+  "schema": "kopplas.independent-actual-normal-native-evidence-qualification.v1",
+  "policy_version": "2026-10-19",
+  "created_at_utc": "2026-10-23T15:47:35.116786+00:00",
+  "status": "ACTUAL_NATIVE_EVIDENCE_QUALIFIED_REQUIRED95_INCOMPLETE",
+  "outcome": "ACTUAL_NATIVE_EVIDENCE_QUALIFIED_REQUIRED95_INCOMPLETE",
+  "independent": true,
+  "route": "Rootcca54f; explicit gpt-6.1-sol High",
+  "scope": "Distinct actual evidence/provenance qualification only, not fourth broad story review, new requests, functional fix or development acceptance.",
+  "identity": {
+    "run": 39975009683,
+    "attempt": 1,
+    "head": "edce7b8725ad379224bfa9fea517ad097f3906cb",
+    "source": "e52568795789034c556f64b0721318f75aa13691",
+    "checkpoint": "7718bd09-e9b0-4f0b-956b-3cece4d8a28a",
+    "operation_id": "e7f012f0-db8c-427c-9d5c-52b20fcb4914",
+    "mode": "normal",
+    "cause_proof": false,
+    "release_validation": false
+  },
+  "receipt": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-terminal-execution-receipt.json",
+    "bytes": 11982,
+    "sha256": "d85a7cde19e7d45518782d960465cd44564608563d3e1b4024d2eb5b9d2a6ca9"
+  },
+  "packet_inventory": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edce7b87-normal-API019-NORMAL-ci-independent",
+    "members": 20,
+    "canonical_sha256": "2a91818424c3b21974af225da5b62449d4787f9d0048bfcd737066e04e9b24ab",
+    "canonicalization": "SHA256(JSON.dumps outside receipt inventory,sort_keys=True,separators comma/colon UTF8)",
+    "all_member_names_bytes_SHA_and_JSON_parse_verified": true,
+    "no_separate_operator_manifest": "Complete inventory is outside receipt; do not invent missing manifest.",
+    "refs": [
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edce7b87-normal-API019-NORMAL-ci-independent/acquisition-summary.json",
+        "bytes": 2544,
+        "sha256": "fe4f92a60aa6659968de81b90bd3c5faaa0db32ff690ab8611a26913f180bc35"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edce7b87-normal-API019-NORMAL-ci-independent/native-full-integration-projection.json",
+        "bytes": 67030,
+        "sha256": "03c1fbfdeb41f5253b90cc4e56ba260b8d7204e6dc295eadfdcd21b07cbc4d03"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edce7b87-normal-API019-NORMAL-ci-independent/native-general-browser-projection.json",
+        "bytes": 13358,
+        "sha256": "10b2b92b3c773707d4f377db035a18c0b463f6100f5d40270e6c028897fde41c"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edce7b87-normal-API019-NORMAL-ci-independent/native-isolated-storage-recovery-projection.json",
+        "bytes": 2008,
+        "sha256": "9a4d676a63e5fe273ac8128b9c50e78157b34d6193f8a2796942c1a60e2cfb9f"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edce7b87-normal-API019-NORMAL-ci-independent/run-archive-projection.json",
+        "bytes": 48552,
+        "sha256": "1a0f47d977ee33793d8a38591103855a876436b91901055753b81767ae62fd48"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edce7b87-normal-API019-NORMAL-ci-independent/source-label-projection.json",
+        "bytes": 1691,
+        "sha256": "16a75428d71a64737d0e676188203868023a48f67c67a602f7ea4c7ef0364886"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edce7b87-normal-API019-NORMAL-ci-independent/artifact-list-projection.json",
+        "bytes": 1290,
+        "sha256": "5e849be7eae76a26563b62953f0630c1a03015c48a5c0f8c19b703a6b039be1a"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edce7b87-normal-API019-NORMAL-ci-independent/operator-intent.json",
+        "bytes": 11540,
+        "sha256": "a7a6950fb6d23a2fec43d710ecf6fc3aa3dbdbe7b8e4cec9480d6ffb6ffa1063"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edce7b87-normal-API019-NORMAL-ci-independent/source-provenance.json",
+        "bytes": 10814,
+        "sha256": "ad66f606296444c69a8757eeb352ae937bcfddc4d44d3ed69371479ac312a86f"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edce7b87-normal-API019-NORMAL-ci-independent/terminal-bindings.json",
+        "bytes": 14266,
+        "sha256": "8a48fffaf82f322a28394c46b0aecb638a0eaf197c25b0207e4b321aab42f7df"
+      }
+    ]
+  },
+  "authority_and_provenance": {
+    "refs": [
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-normal-API019-NORMAL-terminal-effects-allocation.json",
+        "bytes": 3914,
+        "sha256": "15e291469cdcb3626af5a0b679b021720b001f76a97e4dbd554b0b840c015e80"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-terminal-fresh-source-proof.json",
+        "bytes": 59815,
+        "sha256": "539f9f4903a31c2c9a2efa1863fd286d607dd5599f94a0b7546a6a3dd7028b27"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-terminal-evidence-activation.json",
+        "bytes": 4100,
+        "sha256": "d47d8f6c266aad6a70ab30d3583f41538f4cc494104febc2e06a19440c045bbf"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-terminal-root-once-journal.json",
+        "bytes": 1323,
+        "sha256": "49abf3bff92ec2bc67d5a0e54fb2257578ca953cb68eee38994307cf91526cee"
+      }
+    ],
+    "Coordinator_completed_turn": "01a16969-4412-7780-a605-4a766eb1ecf1",
+    "Coordinator_completed_tool": "exec-f62e67ca-fa12-4096-9620-fc1f32ebbe1f",
+    "sourceproof_age_before_invoke_seconds": 74.403823,
+    "operator_self_proposal_terminal_and_activation_refs_matched": true,
+    "current440catalog": "Reused current reviewed source/enrollment provenance; no source/catalog extractor/revalidation.",
+    "host_outer": {
+      "chunk_id": "83ea1f",
+      "native_exit": 0,
+      "wall_time_seconds": 7.3162087,
+      "session_id": null,
+      "waits": 0,
+      "attribution": "Actual exec_command result; captured readerchild0/6.983064s and fiveGET nativechildren separately recorded. No Root direct-lifecycle claim."
+    },
+    "reader_child": {
+      "native_exit": 0,
+      "elapsed_seconds": 6.983064,
+      "fullEOF_joined_handlesclosed_directsettled_nooverflow": true
+    },
+    "stdout_lookup_limit": "Receipt guessed metadata summary filenames that were absent; actual closed acquisition-summary/source-label refs are present and bound. RAM-only stdout lookup is not coverage/cause authority; no refetch/rewrite."
+  },
+  "bounded_requests": {
+    "count": 5,
+    "calls": [
+      {
+        "sequence": 1,
+        "label": "normal-run-archive",
+        "endpoint": "repos/rthunborg/Kopplas/actions/runs/39975009683/logs",
+        "native_exit": 0,
+        "elapsed_seconds": 2.733,
+        "stdout_bytes": 825888,
+        "stdout_sha256": "c99afc6612e72b04f6a4083bb8d133f4e2e93af2765b93437f75380a86b28a51",
+        "stdout_cap": 33554432,
+        "capture_closed": true
+      },
+      {
+        "sequence": 2,
+        "label": "normal-artifact-list",
+        "endpoint": "repos/rthunborg/Kopplas/actions/runs/39975009683/artifacts?per_page=100",
+        "native_exit": 0,
+        "elapsed_seconds": 0.456,
+        "stdout_bytes": 2194,
+        "stdout_sha256": "dd174b26da13f6839c823e9d10d0283584ef4b68e68d7b6793325ca20915c398",
+        "stdout_cap": 4194304,
+        "capture_closed": true
+      },
+      {
+        "sequence": 3,
+        "label": "native-general-browser",
+        "endpoint": "repos/rthunborg/Kopplas/actions/artifacts/12511752649/zip",
+        "native_exit": 0,
+        "elapsed_seconds": 1.112,
+        "stdout_bytes": 9623,
+        "stdout_sha256": "423df9ac3d61310a1b2314d0ce6ef2219d3eb11f08010dea52197467a14cf3da",
+        "stdout_cap": 33554432,
+        "capture_closed": true
+      },
+      {
+        "sequence": 4,
+        "label": "native-isolated-storage-recovery",
+        "endpoint": "repos/rthunborg/Kopplas/actions/artifacts/12511735623/zip",
+        "native_exit": 0,
+        "elapsed_seconds": 0.971,
+        "stdout_bytes": 682,
+        "stdout_sha256": "01d6cf1dbb8eb9ad8e770716cf8d67f4da07910d567385a654dfa6a7db001c85",
+        "stdout_cap": 33554432,
+        "capture_closed": true
+      },
+      {
+        "sequence": 5,
+        "label": "native-full-integration",
+        "endpoint": "repos/rthunborg/Kopplas/actions/artifacts/12511587764/zip",
+        "native_exit": 0,
+        "elapsed_seconds": 1.424,
+        "stdout_bytes": 112050,
+        "stdout_sha256": "a0127b48d664d2e568869a347ef210436e180d5158b38aa24caf8528eee1ae3d",
+        "stdout_cap": 33554432,
+        "capture_closed": true
+      }
+    ],
+    "all_intents_before_spawn": true,
+    "all_native0_physicalEOF_joined_handlesclosed_directsettled_nooverflow_no_stderr": true,
+    "single_invocation": true,
+    "all_slots_closed": true,
+    "retries": 0,
+    "other_effects": 0,
+    "native_outer_vs_GET": "Host83ea1f0/7.3162087s/no session/waits; captured Python reader0/6.983064s; five own GET children separately qualified."
+  },
+  "digest_and_privacy": {
+    "run_archive": {
+      "bytes": 825888,
+      "sha256": "c99afc6612e72b04f6a4083bb8d133f4e2e93af2765b93437f75380a86b28a51",
+      "zip_entries": 85,
+      "declared_total_bytes": 4522419,
+      "selected_inflated_bytes": 2256259,
+      "basis": "Own exactrun endpoint/nativebytes digest; no unsupported GitHub API logarchive digest claim."
+    },
+    "artifacts": [
+      {
+        "artifact": {
+          "advertised_bytes": 112050,
+          "digest": "sha256:a0127b48d664d2e568869a347ef210436e180d5158b38aa24caf8528eee1ae3d",
+          "expired": false,
+          "expires_at_null": false,
+          "expires_at_present": true,
+          "id": 12511587764,
+          "name": "native-full-integration",
+          "qualified_for_single_download": true,
+          "run_head_bound": true
+        },
+        "ZIP_bytes": 112050,
+        "ZIP_sha256": "a0127b48d664d2e568869a347ef210436e180d5158b38aa24caf8528eee1ae3d",
+        "member": "full-integration.json",
+        "member_bytes": 1029110,
+        "member_sha256": "41c6d4010bae1918ba1c4d2675761d8549296f636f0b02786545477316598c1f",
+        "zip_entries": 1,
+        "API_digest_verified": true,
+        "advertised_size_equal": true
+      },
+      {
+        "artifact": {
+          "advertised_bytes": 9623,
+          "digest": "sha256:423df9ac3d61310a1b2314d0ce6ef2219d3eb11f08010dea52197467a14cf3da",
+          "expired": false,
+          "expires_at_null": false,
+          "expires_at_present": true,
+          "id": 12511752649,
+          "name": "native-general-browser",
+          "qualified_for_single_download": true,
+          "run_head_bound": true
+        },
+        "ZIP_bytes": 9623,
+        "ZIP_sha256": "423df9ac3d61310a1b2314d0ce6ef2219d3eb11f08010dea52197467a14cf3da",
+        "member": "general-browser.json",
+        "member_bytes": 92008,
+        "member_sha256": "a2298ebb2f1a6492293f667268f80a657e8988b26341c9a2efdda2282bcbfd56",
+        "zip_entries": 1,
+        "API_digest_verified": true,
+        "advertised_size_equal": true
+      },
+      {
+        "artifact": {
+          "advertised_bytes": 682,
+          "digest": "sha256:01d6cf1dbb8eb9ad8e770716cf8d67f4da07910d567385a654dfa6a7db001c85",
+          "expired": false,
+          "expires_at_null": false,
+          "expires_at_present": true,
+          "id": 12511735623,
+          "name": "native-isolated-storage-recovery",
+          "qualified_for_single_download": true,
+          "run_head_bound": true
+        },
+        "ZIP_bytes": 682,
+        "ZIP_sha256": "01d6cf1dbb8eb9ad8e770716cf8d67f4da07910d567385a654dfa6a7db001c85",
+        "member": "isolated-storage-recovery.json",
+        "member_bytes": 1161,
+        "member_sha256": "4f5866c83abdfaf036a31a8800a0f348989ec294630983d3ddfb3938e5f5d479",
+        "zip_entries": 1,
+        "API_digest_verified": true,
+        "advertised_size_equal": true
+      }
+    ],
+    "raw_not_persisted": "Only20 closed JSON projection/intent/receipt files; no raw logs,ZIP/report bodies/messages/stacks/source/secret fallback persisted. Frozen parser/strictZIP/caps pipeline reused.",
+    "source_label_projection_bytes": 1691,
+    "fullintegration_projection_bytes": 67030,
+    "archive_projection_bytes": 48552,
+    "cap_scope": "32768 applies SOURCE-LABEL ONLY; full/archive projections exceeding32768 comply with current explicit source-label-only allocation. Historical generic/source-label projection-cap exceptions remain historical and unwaived.",
+    "configured_capture": "EachGET15s loop+wait2+twojoins1; archive/reportZIP32MiB/list4MiB100/stderr64KiB/member16MiB/inflate128MiB. All actual bytes/times within configured limits. Outer120s/2MiBstdout/256KiBstderr complete."
+  },
+  "required95": {
+    "expected": 95,
+    "passed": 93,
+    "failed": 1,
+    "zero_coverage": 1,
+    "Node": {
+      "expected_distinct": 30,
+      "actual_distinct_passed": 30,
+      "positive_ID_occurrences": 32,
+      "duplicate_positive_ID_occurrences": {
+        "R1-07": 2,
+        "R1-06": 2
+      },
+      "all_positive_IDs": [
+        "R1-05-order",
+        "R1-05-positive-1",
+        "R1-05-positive-2",
+        "R1-05-positive-3",
+        "R1-05-positive-4",
+        "R1-05-positive-5",
+        "R1-06",
+        "R1-07",
+        "UNIT-001",
+        "UNIT-002-autumn",
+        "UNIT-002-spring",
+        "UNIT-003",
+        "UNIT-004",
+        "UNIT-005",
+        "UNIT-006",
+        "UNIT-007",
+        "UNIT-008",
+        "UNIT-009",
+        "UNIT-010",
+        "UNIT-011",
+        "UNIT-012",
+        "UNIT-013",
+        "UNIT-014",
+        "UNIT-015",
+        "UNIT-016",
+        "UNIT-017",
+        "UNIT-018",
+        "UNIT-019",
+        "UNIT-020",
+        "UNIT-021"
+      ],
+      "global": {
+        "cancelled": 0,
+        "fail": 0,
+        "pass": 3435,
+        "skipped": 0,
+        "suites": 103,
+        "tests": 3435,
+        "todo": 0
+      },
+      "source_step": {
+        "member": "verify/12_Unit tests (pure logic, node --test).txt",
+        "bytes": 1679336,
+        "sha256": "114cf61eedb06aff4d32b43b02bd5ecb6a23203831be90e67e329c95d6f2d9da"
+      },
+      "dedup_basis": "R1-06/R1-07 occur twice but contribute one each. Source catalog440/19 is declaration inventory; dynamic/inherited/unbound/skip gives no extra coverage."
+    },
+    "DB_RLS": {
+      "expected": 51,
+      "unique_present": 51,
+      "passed": 49,
+      "failed": 1,
+      "pending_zero_coverage": 1,
+      "failed_id": "API019",
+      "pending_id": "API020",
+      "reconciliation": {
+        "attempted_story_pass_or_fail": 50,
+        "duplicate_story_ids": [],
+        "expected_count": 51,
+        "missing_expected_ids": [],
+        "noncoverage_story_count": 1,
+        "normal_acceptance": 0,
+        "reported_unique_count": 51,
+        "unexpected_source_ids": []
+      },
+      "native_global": {
+        "numFailedTestSuites": 2,
+        "numFailedTests": 1,
+        "numPassedTestSuites": 545,
+        "numPassedTests": 2115,
+        "numPendingTestSuites": 0,
+        "numPendingTests": 52,
+        "numTodoTests": 0,
+        "numTotalTestSuites": 547,
+        "numTotalTests": 2169,
+        "success": false
+      },
+      "actual_assertion_status_counts": {
+        "failed": 1,
+        "passed": 2115,
+        "pending": 1,
+        "skipped": 52
+      },
+      "native_header_discrepancy": "HeadernumPendingTests52; actual statuses1pending+52skipped=53noncoverage. Preserve both, no summary relabel.2169=2115P+1F+1pending+52skipped.",
+      "global_nonstory_failures": 0,
+      "attempt_semantics": "P/F executed; pending/skipped/todo unavailablezero. Native report unique cases, runattempt1/sourceeffectiveretry0; no invented nativeattemptcounter."
+    },
+    "essential_browser": {
+      "expected_distinct": 14,
+      "actual_distinct_passed": 14,
+      "every_story_attempt": "One observed passed/retry0 each",
+      "global": {
+        "duration": 301461.913,
+        "expected": 56,
+        "flaky": 0,
+        "skipped": 0,
+        "unexpected": 0
+      },
+      "other_smoke_cases": 42,
+      "reconciliation": {
+        "attempted_distinct_story_cases": 14,
+        "duplicate_story_ids": [],
+        "expected_count": 14,
+        "missing_expected_ids": [],
+        "normal_acceptance": 0,
+        "reported_cases_without_observed_attempt": 0,
+        "reported_unique_count": 14,
+        "unexpected_source_ids": []
+      }
+    },
+    "arithmetic": "30+49+14=93P;API0191F;API020pending1zero.95distinct not global suite count.",
+    "normal_acceptance_credit": 0
+  },
+  "actual_first_failure": {
+    "case": {
+      "duration_ms": 3021.937936999995,
+      "failure": {
+        "fixed_category_counts": {},
+        "invalid_owned_tuple_headers": 0,
+        "owned_leaf_tuple_count": 1,
+        "owned_leaf_tuples": [
+          {
+            "category": "unknown",
+            "sqlState": null,
+            "stage": "scenario-telemetry-privacy-refused"
+          }
+        ],
+        "raw_failure_details": "NOT_PERSISTED",
+        "typed_assertion_pairs": [],
+        "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+      },
+      "file": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "id": "API019",
+      "status": "failed"
+    },
+    "observed_boundary": "scenario-telemetry-privacy-refused exactlyonce; timeout/parse stages not reported.",
+    "source_scoped_interpretation": "Existing telemetry method reached its strict privacy flag/count refusal after eligible response/observation condition. This fixed owned-origin discriminator narrows the branch; it does not expose flag/count values, identify emitted line, prove a secret leak, native firstthrow or causal defect.",
+    "unknowns": [
+      "Exactnativeerror/message/matcher/value",
+      "Which privacy comparison/observer input produced refusal",
+      "Underlying production/fixture/runtime cause",
+      "Later final observable secret-exclusion assertions passed"
+    ],
+    "API020": "Pending, reason/order not independently established. Bail1 source compatibility is not exact runtime cancellation proof."
+  },
+  "direct_recovery_separate": {
+    "summary": {
+      "numFailedTestSuites": 0,
+      "numFailedTests": 0,
+      "numPassedTestSuites": 2,
+      "numPassedTests": 1,
+      "numPendingTestSuites": 0,
+      "numPendingTests": 0,
+      "numTodoTests": 0,
+      "numTotalTestSuites": 2,
+      "numTotalTests": 1,
+      "success": true
+    },
+    "assertion_counts": {
+      "passed": 1
+    },
+    "file": "tests/integration/ops/recovery-storage-immutability.int.test.ts",
+    "actual_passed": 1,
+    "contributes_to95": false,
+    "does_not_prove": "Main DB key deletion/backendrollback/retirement."
+  },
+  "runtime_custody": {
+    "DB": {
+      "childExitCodes": [
+        0,
+        1
+      ],
+      "childLaunchState": "not-attempted",
+      "custody_retained": true,
+      "dbClosed": true,
+      "diagnostic_count": 1,
+      "diagnostics": [],
+      "failure_count": 1,
+      "keyDeleted": false,
+      "keyOutcome": "unverified",
+      "launchAttempted": false,
+      "mode": "db",
+      "privacy_controls": [
+        {
+          "canSet": true,
+          "context": "superuser",
+          "matchesRequired": true,
+          "name": "log_min_error_statement"
+        },
+        {
+          "canSet": true,
+          "context": "superuser",
+          "matchesRequired": true,
+          "name": "log_parameter_max_length"
+        },
+        {
+          "canSet": true,
+          "context": "user",
+          "matchesRequired": true,
+          "name": "log_parameter_max_length_on_error"
+        },
+        {
+          "canSet": true,
+          "context": "superuser",
+          "matchesRequired": true,
+          "name": "log_statement"
+        }
+      ],
+      "ready": true,
+      "setupAuthority": {
+        "current_is_setup_admin": true,
+        "current_login": true,
+        "current_superuser": true,
+        "same_identity": true,
+        "session_is_setup_admin": true,
+        "session_login": true,
+        "session_superuser": true
+      }
+    },
+    "browser": {
+      "childExitCodes": [
+        0
+      ],
+      "childLaunchState": "not-attempted",
+      "custody_retained": false,
+      "dbClosed": true,
+      "diagnostic_count": 0,
+      "diagnostics": [],
+      "failure_count": 0,
+      "keyDeleted": true,
+      "keyOutcome": "deleted-confirmed",
+      "launchAttempted": false,
+      "mode": "browser",
+      "privacy_controls": [
+        {
+          "canSet": true,
+          "context": "superuser",
+          "matchesRequired": true,
+          "name": "log_min_error_statement"
+        },
+        {
+          "canSet": true,
+          "context": "superuser",
+          "matchesRequired": true,
+          "name": "log_parameter_max_length"
+        },
+        {
+          "canSet": true,
+          "context": "user",
+          "matchesRequired": true,
+          "name": "log_parameter_max_length_on_error"
+        },
+        {
+          "canSet": true,
+          "context": "superuser",
+          "matchesRequired": true,
+          "name": "log_statement"
+        }
+      ],
+      "ready": false,
+      "setupAuthority": {
+        "current_is_setup_admin": true,
+        "current_login": true,
+        "current_superuser": true,
+        "same_identity": true,
+        "session_is_setup_admin": true,
+        "session_login": true,
+        "session_superuser": true
+      }
+    },
+    "main_DB_qualified_state": "Retained key/keyDeletedfalse/keyOutcomeunverified/dbClosedtrue. dbClosed is client-close fact; backend protocol settlement/rollback/canonical runtime custody UNKNOWN. Stack/job stop success is not key deletion or backend proof.",
+    "browser_qualified_state": "Own browser keyDeletedtrue/deleted-confirmed/custodyfalse/dbClosedtrue scoped to browser runtime, cannot discharge main DB custody.",
+    "legacy_projection_limits": "childLaunchStatenot-attempted/launchAttemptedfalse preserved in both, not inferred no execution; actual native reports independently demonstrate executed cases. DB diagnostic_count1/diagnostics[] preserves unqualified unknown detail.",
+    "source_labels": {
+      "cause": "UNKNOWN",
+      "settlement": "UNKNOWN",
+      "slot_completeness": "UNKNOWN",
+      "nudge": "UNKNOWN_MISSING",
+      "browser": "UNKNOWN_PARTIAL",
+      "verify": "UNKNOWN_NOT_ACQUIRED"
+    },
+    "source_label_absence": "Missing optional failure labels orpassed-browser snapshots do not establish cause/settlement, nor erase actual native passes."
+  },
+  "minimum_next_step": {
+    "owner": "Root delegates already active Native High read-only source assessment, then distinct minimum-plan review if warranted.",
+    "action": "Localize current telemetry privacy-refusal condition and existing observer/hasSensitiveOutput/unexpected-response producers against source-backed invariants. Determine whether a deterministic reachable defect exists before proposing any repair or evidence amendment.",
+    "preserve": "Do not relax privacy detector/required false+0 threshold, assertions, timeout, schemas, raw-erasure or custody. Do not claim a leak or speculate a fix from duration. No blind fullNORMAL repeat/newGET; all acquisition slots are closed.",
+    "resume_condition": "Concrete source-backed smallest plan independently qualified and separately allocated; current evidence remains P5OPEN/required95+mainDBcustody incomplete."
+  },
+  "completion": {
+    "P5": "OPEN",
+    "development_complete": false,
+    "release_ready": false,
+    "merge_or_deployment_authority": false,
+    "required_blockers": [
+      "API019failed",
+      "API020pending zero coverage",
+      "Main DB retained key/backend custody unverified"
+    ],
+    "historical_evidence": "Earlier93P1F1zero and priorcapexceptions retained; current tag is new scoped evidence, not retroactive causal requalification."
+  },
+  "reviewer_checks": {
+    "bounded_reads": [
+      "44ea08/native0",
+      "30461d/native0",
+      "daee49/native0",
+      "738d31/native0",
+      "06947f/native0"
+    ],
+    "read_shape_localizations": "Two bounded inspection commands stopped on incorrect nested JSON/list access (8b6726/39e31c) before any writes/effects; corrected access used actual projection/step arrays, not missing-evidence or native failure claims.",
+    "final": "Offline hashes/canonicalinventory/typedcount arithmetic/dedup/closure/digest/source-reference checks only. No source extractor/catalog rescan/module/test/runtime/API/Git/resource/foreigncheckout action.",
+    "GET": 0,
+    "tests": 0,
+    "source_edits": 0,
+    "Git": 0
+  },
+  "qualification_blockers": []
+}

@@ -1,0 +1,128 @@
+{
+  "schema": "kopplas.targeted-inert-terminal-draft-source-precheck.v1",
+  "policy_version": "2026-10-19",
+  "created_at_utc": "2026-10-23T15:03:30.191575+00:00",
+  "status": "PASS_INERT_SOURCE_PRECHECK_FINAL_ENROLLMENT_REQUIRED",
+  "outcome": "PASS_INERT_SOURCE_PRECHECK_FINAL_ENROLLMENT_REQUIRED",
+  "independent": true,
+  "route": "Rootff4732; explicit gpt-6.1-sol High",
+  "scope": "Inert source/metadata precheck only; not executable operational review, final terminal admission or fourth broad review. Current provider/publish admission unaffected.",
+  "packet": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-terminal-actual-preparation/reader.py",
+      "bytes": 50839,
+      "sha256": "6ffa6295407fe3c7afe8a097dc3f80e91af19035d1e317c1919267fa0c010704"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-terminal-actual-preparation/source-rows.json",
+      "bytes": 34648,
+      "sha256": "0b75cb944e9d6a6ad2bfa7876041020ae966bc59cc1188c8aee3630b96c17ed9"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-terminal-actual-preparation/proposal.json",
+      "bytes": 170459,
+      "sha256": "3347ed2eb6afd26d41ee270c648451722c6fc061b10de5b40f355c11155572df"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-terminal-actual-preparation/manifest.json",
+      "bytes": 1004,
+      "sha256": "283e58ea9cb65df95a92f451beb9a6f270c5c689f45b41435324dc83a5774966"
+    }
+  ],
+  "checks": {
+    "complete_inverse_to_qualified_three_tag_baseline": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/reader-stage-data-successor.py",
+      "bytes": 50846,
+      "sha256": "b7a34c43b1b1cd1e088685c31f29787c908f201354468b71f6929a2d788e5d9c"
+    },
+    "full_source_inverse_equal": true,
+    "AST_function_segments_including_nested": 41,
+    "unchanged": 40,
+    "only_changed_definition": "validate_admission tuple/source/path/output literals; all parser/privacy/transport/cap functions conserved.",
+    "source75": {
+      "same_paths": 75,
+      "current3": [
+        "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+        "tests/support/calendar-feed-atdd.ts",
+        "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts"
+      ],
+      "reused72": true,
+      "all75_row_metadata_equal_current_qualified_operational_data": true,
+      "raw_source_SQL_rescan": false
+    },
+    "catalog": {
+      "static": 440,
+      "excluded": 19,
+      "wrapper": 191,
+      "unit_sources_exactly_equal_qualified_operational_data": true,
+      "catalog_delta": "Exact op-qualified data plus disclosed data_reuse_only:true marker",
+      "new_extractor_or_tests": false,
+      "static_declarations_not_runtime_coverage": true
+    },
+    "inert_refusal": "validate_admission requires run==None and immediately type(run)is int: no value satisfies both. Template also execution_authorizedfalse/operator_reviewnull. Existing main validates admission before output mkdir/intents/acquire_normal. Mathematical/static source proof only; reader not invoked.",
+    "interfaces": "Exact23-field activation template, current reader futureargv/activation/output path lineage checked. Run/jobs/terminal/archive/list endpoints NULL, no fifth envelope exists. Typed ownership run_idNULL is prospective binding data, not observed ownership.",
+    "manifest_input_pins": "All4packet pins, manifest3members,20proposal refs and source-data input refs matched; no full inventories/logs duplicated."
+  },
+  "required_final_data_correction": [
+    {
+      "id": "DRAFT_DATA_01",
+      "field": "proposal.static_catalog_contract.literal_titles",
+      "frozen_value": 436,
+      "current_catalog": 440,
+      "meaning": "Stale descriptive count only, not read by reader admission/parser. static_title_count/unit_sources already440.",
+      "repair": "In later immutable actual terminal enrollment, correct value to440 and pin final proposal. Preserve current frozen draft. No extractor/parser/code change required.",
+      "blocks_current_provider_publish": false,
+      "must_resolve_before_final_operational_PASS": true
+    }
+  ],
+  "configured_future_caps": {
+    "archive_ZIP_bytes": 33554432,
+    "declared_actual_inflate": 134217728,
+    "listing_bytes": 4194304,
+    "listing_count": 100,
+    "seconds_each": 15,
+    "selected_JSON_bytes": 16777216,
+    "stderr_bytes": 65536,
+    "source_label_projection_bytes": 32768,
+    "cleanup_wait_seconds": 2,
+    "reader_joins_max": 2,
+    "seconds_each_join": 1,
+    "scope": "Source-label32KiB only; no generic-projection32KiB claim. Actual GET loop15s plus bounded cleanup/join, not hard15s totalwall."
+  },
+  "maximum_future_GETs": 5,
+  "requirements_before_GET": [
+    "Actual uniquely owned new run/all9terminal RootSTOP/nativeclosedownership; no current run observation by reviewer.",
+    "Author actualtuple/jobs/rawprojection+closedownership-derived fifth envelope, current endpoints/argv/refpins and DRAFT_DATA_01 correction. Label repo/original-mode derived constants as sourceguard facts, not new API observations.",
+    "Distinct final actualsource/data operational review; this precheck cannot substitute.",
+    "NEW completed finite max5GET allocation; source-label-only32KiB and explicit15s capture loop+wait2+twojoins1; fresh current/pushed sourceproof<=300s/exclusive activation/oncejournal/outputabsent. Old grants/slots remain closed.",
+    "Sole invocation/intents before calls, strict artifact/member/digest/parser/privacy/nativeclosure; uncertainSTOP/no retry/fallback/extra GET. Independent actualevidence qualification separate."
+  ],
+  "limits": {
+    "actual_run": null,
+    "actual_terminal": null,
+    "new_counts": "UNKNOWN",
+    "historical_required95": "93P1F(API019)1zero(API020pending)",
+    "API019_cause": "UNKNOWN",
+    "main_DB_custody": "Retained/unverified/backend settlement UNKNOWN",
+    "P5": "OPEN",
+    "counter": 3,
+    "effect_authority": false,
+    "operational_admission": false,
+    "development_complete": false,
+    "acceptance": 0
+  },
+  "reviewer_controls": {
+    "reads": [
+      "0a8305/native0",
+      "fe8a4a/native0"
+    ],
+    "local_control_history": "ff74cc refused before output write because reviewer compared full catalog_delta dictionaries without allowing disclosed data_reuse_only:true.26175f/150e24 localized only that metadata marker. Corrected comparison above proves exact qualified catalog data; no source changes/effects.",
+    "final": "Offline Python AST/hash/fullinverse/data comparisons only; no reader/module invocation, extractor/config/app/test/Git/API/network/resource/foreigncheckout action.",
+    "API": 0,
+    "GET": 0,
+    "tests": 0,
+    "Git": 0,
+    "source_edits": 0
+  },
+  "blockers_to_inert_source_precheck": []
+}

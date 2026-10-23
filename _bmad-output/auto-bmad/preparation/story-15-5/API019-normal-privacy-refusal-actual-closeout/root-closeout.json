@@ -1,0 +1,35 @@
+{
+  "status": "ACTUAL_NATIVE_EVIDENCE_QUALIFIED_REQUIRED95_INCOMPLETE",
+  "run": 39975009683,
+  "attempt": 1,
+  "head": "edce7b8725ad379224bfa9fea517ad097f3906cb",
+  "source": "e52568795789034c556f64b0721318f75aa13691",
+  "checkpoint": "7718bd09-e9b0-4f0b-956b-3cece4d8a28a",
+  "required95": "93 passed; API019 failed; API020 pending",
+  "observed_failure_boundary": "scenario-telemetry-privacy-refused",
+  "category": "unknown",
+  "sqlState": null,
+  "hosted_cause": "UNKNOWN",
+  "specific_secret_leak_proven": false,
+  "separate_direct_recovery": "passed",
+  "DB_custody": "key retained; deletion unverified; dbClosed true; backend settlement UNKNOWN",
+  "browser_cleanup": "own key only; not DB lane custody",
+  "acquisition": "5 logical GETs; actual outer83ea1f/native0;20 projected members; all slots closed",
+  "root_operation": "21 controller native captures;12 outer returns;1 resolver;8 poll pairs; stopped on terminal; all unused slots closed",
+  "qualification": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-terminal-actual-native-qualification.json",
+    "bytes": 24754,
+    "sha256": "9525eff4ea62388c62f1e4adea432083426280cc95ce1796c8154e8e894065eb"
+  },
+  "manifest": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/root-fold-manifest.json",
+    "bytes": 43555,
+    "sha256": "dff15640edebdcf6e024dbeca5e07ae90f38e909253778ee0957097312eeec3f"
+  },
+  "P5": "OPEN",
+  "review_counter": 3,
+  "development_complete": false,
+  "release_ready": false,
+  "no_deployment": true,
+  "next": "Independent minimum-plan check for closed first-increment predicate and owned-child origin; preserve privacy guard and timing. No unchanged opaque NORMAL repeat."
+}

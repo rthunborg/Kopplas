@@ -1,0 +1,73 @@
+{
+  "schema": "ROOT_API019_NORMAL_ACTUAL_POLL_OUTER_PROVENANCE_V1",
+  "run": 39975009683,
+  "head": "edce7b8725ad379224bfa9fea517ad097f3906cb",
+  "source": "e52568795789034c556f64b0721318f75aa13691",
+  "checkpoint_id": "7718bd09-e9b0-4f0b-956b-3cece4d8a28a",
+  "operation_id": "e7f012f0-db8c-427c-9d5c-52b20fcb4914",
+  "closed": true,
+  "actual_outer_count": 8,
+  "outers": [
+    {
+      "chunk_id": "cb0daa",
+      "wall_time_seconds": 1.4211835,
+      "exit_code": 0,
+      "original_token_count": 73,
+      "output": "{\"phase\": \"ROOT_ACTIVE\", \"run_id\": 39975009683, \"status\": \"in_progress\", \"conclusion\": null, \"poll_count\": 1, \"jobs\": [{\"name\": \"checkpoint-admission\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"verify\", \"status\": \"in_progress\", \"conclusion\": null}], \"normal_acceptance\": 0}\r\n"
+    },
+    {
+      "chunk_id": "bb6b4f",
+      "wall_time_seconds": 1.6245081,
+      "exit_code": 0,
+      "original_token_count": 144,
+      "output": "{\"phase\": \"ROOT_ACTIVE\", \"run_id\": 39975009683, \"status\": \"in_progress\", \"conclusion\": null, \"poll_count\": 2, \"jobs\": [{\"name\": \"checkpoint-admission\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"verify\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"recovery-storage-loader\", \"status\": \"in_progress\", \"conclusion\": null}, {\"name\": \"db\", \"status\": \"in_progress\", \"conclusion\": null}, {\"name\": \"e2e\", \"status\": \"in_progress\", \"conclusion\": null}, {\"name\": \"dashboard-e2e\", \"status\": \"completed\", \"conclusion\": \"skipped\"}], \"normal_acceptance\": 0}\r\n"
+    },
+    {
+      "chunk_id": "4335c1",
+      "wall_time_seconds": 1.5440705000000001,
+      "exit_code": 0,
+      "original_token_count": 145,
+      "output": "{\"phase\": \"ROOT_ACTIVE\", \"run_id\": 39975009683, \"status\": \"in_progress\", \"conclusion\": null, \"poll_count\": 3, \"jobs\": [{\"name\": \"checkpoint-admission\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"verify\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"recovery-storage-loader\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"db\", \"status\": \"in_progress\", \"conclusion\": null}, {\"name\": \"e2e\", \"status\": \"in_progress\", \"conclusion\": null}, {\"name\": \"dashboard-e2e\", \"status\": \"completed\", \"conclusion\": \"skipped\"}], \"normal_acceptance\": 0}\r\n"
+    },
+    {
+      "chunk_id": "36c103",
+      "wall_time_seconds": 1.404979,
+      "exit_code": 0,
+      "original_token_count": 145,
+      "output": "{\"phase\": \"ROOT_ACTIVE\", \"run_id\": 39975009683, \"status\": \"in_progress\", \"conclusion\": null, \"poll_count\": 4, \"jobs\": [{\"name\": \"checkpoint-admission\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"verify\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"recovery-storage-loader\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"db\", \"status\": \"in_progress\", \"conclusion\": null}, {\"name\": \"e2e\", \"status\": \"in_progress\", \"conclusion\": null}, {\"name\": \"dashboard-e2e\", \"status\": \"completed\", \"conclusion\": \"skipped\"}], \"normal_acceptance\": 0}\r\n"
+    },
+    {
+      "chunk_id": "2246fc",
+      "wall_time_seconds": 1.4115905,
+      "exit_code": 0,
+      "original_token_count": 145,
+      "output": "{\"phase\": \"ROOT_ACTIVE\", \"run_id\": 39975009683, \"status\": \"in_progress\", \"conclusion\": null, \"poll_count\": 5, \"jobs\": [{\"name\": \"checkpoint-admission\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"verify\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"recovery-storage-loader\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"db\", \"status\": \"in_progress\", \"conclusion\": null}, {\"name\": \"e2e\", \"status\": \"in_progress\", \"conclusion\": null}, {\"name\": \"dashboard-e2e\", \"status\": \"completed\", \"conclusion\": \"skipped\"}], \"normal_acceptance\": 0}\r\n"
+    },
+    {
+      "chunk_id": "cf8c36",
+      "wall_time_seconds": 1.4944908,
+      "exit_code": 0,
+      "original_token_count": 145,
+      "output": "{\"phase\": \"ROOT_ACTIVE\", \"run_id\": 39975009683, \"status\": \"in_progress\", \"conclusion\": null, \"poll_count\": 6, \"jobs\": [{\"name\": \"checkpoint-admission\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"verify\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"recovery-storage-loader\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"db\", \"status\": \"in_progress\", \"conclusion\": null}, {\"name\": \"e2e\", \"status\": \"in_progress\", \"conclusion\": null}, {\"name\": \"dashboard-e2e\", \"status\": \"completed\", \"conclusion\": \"skipped\"}], \"normal_acceptance\": 0}\r\n"
+    },
+    {
+      "chunk_id": "0fff63",
+      "wall_time_seconds": 1.41679,
+      "exit_code": 0,
+      "original_token_count": 146,
+      "output": "{\"phase\": \"ROOT_ACTIVE\", \"run_id\": 39975009683, \"status\": \"in_progress\", \"conclusion\": null, \"poll_count\": 7, \"jobs\": [{\"name\": \"checkpoint-admission\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"verify\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"recovery-storage-loader\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"db\", \"status\": \"completed\", \"conclusion\": \"failure\"}, {\"name\": \"e2e\", \"status\": \"in_progress\", \"conclusion\": null}, {\"name\": \"dashboard-e2e\", \"status\": \"completed\", \"conclusion\": \"skipped\"}], \"normal_acceptance\": 0}\r\n"
+    },
+    {
+      "chunk_id": "78bb28",
+      "wall_time_seconds": 1.4852186,
+      "exit_code": 0,
+      "original_token_count": 215,
+      "output": "{\"phase\": \"ROOT_STOPPED\", \"run_id\": 39975009683, \"status\": \"completed\", \"conclusion\": \"failure\", \"poll_count\": 8, \"jobs\": [{\"name\": \"checkpoint-admission\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"verify\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"recovery-storage-loader\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"db\", \"status\": \"completed\", \"conclusion\": \"failure\"}, {\"name\": \"e2e\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"dashboard-e2e\", \"status\": \"completed\", \"conclusion\": \"skipped\"}, {\"name\": \"fixed-chromium-application-verification\", \"status\": \"completed\", \"conclusion\": \"skipped\"}, {\"name\": \"fixed-chromium-paired-probe\", \"status\": \"completed\", \"conclusion\": \"skipped\"}, {\"name\": \"native-stream-probe\", \"status\": \"completed\", \"conclusion\": \"skipped\"}], \"normal_acceptance\": 0}\r\n"
+    }
+  ],
+  "no_retries": true,
+  "normal_acceptance": 0,
+  "original_started_at": "2026-10-23T15:03:41.145402+00:00",
+  "phase": "ROOT_STOPPED",
+  "resolution_count": 1
+}
